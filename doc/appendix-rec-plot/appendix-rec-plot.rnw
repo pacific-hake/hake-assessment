@@ -10,7 +10,7 @@ recruitment variability in an intuitive way.
 
 \begin{figure}[b]
 \begin{center}
-<<recruitment-last-assessment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+<<recruitment-last-assessment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the estimated recruitments from last year's assessment">>=
 make.recruitment.plot(last.yr.base.model,
                       equil.yr = unfished.eq.yr,
                       start.yr = start.yr,
@@ -57,7 +57,7 @@ a value that was only considered by one respondent.
 %
 \begin{figure}[tbp]
 \begin{center}
-<<recruitment-answers, fig.height=4.5, fig.width=5, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+<<recruitment-answers, fig.height=4.5, fig.width=5, is.fig = TRUE, alt.text = "This figure shows respondents' answers to the survey">>=
 make.rec.question.plot()
 @
 \end{center}
@@ -72,13 +72,6 @@ make.rec.question.plot()
 %
 Therefore it seems appropriate to explain this discrepancy and to derive a
 more intuitive figure to complement the existing figure.
-
-%% [GOING to just use new results.**Andy will do: when have 2022 base model change the figures to last.yr.base.model not
-%% base.model, so that this text is correct (and the figure is one we asked people
-%% about). And go through text again (plus do some editing). Don't change final
-%% one as want that based on the new base model, plus
-%% will be interesting to compare to how it differs to last year's base model. OR
-%% maybe just do them all for new base model if they look similar enough.]
 
 % In issue I did: mean(base.model$mcmc$"Recr_2014" > base.model$mcmc$"Recr_2010")
 
@@ -114,7 +107,7 @@ recruitment estimates (Figure~\ref{fig:recruitment-last-asssessment}), up until
 
 \begin{figure}[tbp]
 \begin{center}
-<<recruitment-trace-recent, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+<<recruitment-trace-recent, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the time series for 100 MCMC estimates of recruitment">>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
                            equil.yr = unfished.eq.yr,
@@ -135,7 +128,7 @@ make.mcmc.recruitment.plot(base.model,
 %
 \begin{figure}[tbp]
 \begin{center}
-<<recruitment-trace-recent-highlight, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+<<recruitment-trace-recent-highlight, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure highlights the time series for 10 MCMC estimates of recruitment">>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
                            equil.yr = unfished.eq.yr,
@@ -166,7 +159,7 @@ value.
 %
 \begin{figure}[tbp]
 \begin{center}
-<<recruitment-trace-scale, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+<<recruitment-trace-scale, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the time series for 100 MCMC estimates of recruitment rescaled by each sample's recruitment in 2010">>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
                            equil.yr = unfished.eq.yr,
@@ -188,7 +181,7 @@ credible intervals
 definitely not as large.
 \begin{figure}[tbp]
 \begin{center}
-<<recruitment-scale, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+<<recruitment-scale, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows recent distributions of recruiment estimates relative to those in 2010">>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
                            equil.yr = unfished.eq.yr,
@@ -207,7 +200,7 @@ make.mcmc.recruitment.plot(base.model,
 
 \begin{figure}[tbp]
 \begin{center}
-<<recruitment-scale-all, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+<<recruitment-scale-all, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows distributions of recruiment estimates relative to those in 2010 for all years">>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 1966,
                            equil.yr = unfished.eq.yr,

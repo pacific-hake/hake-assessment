@@ -72,7 +72,7 @@ make.overview.map.plot(path = rootd.map.data)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-total-catches, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that catches in the last 5 years have been the largest in the time series">>=
+<<main-total-catches, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that catches in four of the last five years have been the largest in the time series">>=
 ## leg.y.loc is y-coord to place legend at
 make.catches.plot(ct, leg.y.loc = 550)
 @
@@ -187,7 +187,7 @@ make_age_comp_bubble_plot(base.model, subplot = 2, alpha = 0.4)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-survey-extrap-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has increased from 2017 to 2019">>=
+<<main-survey-extrap-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has decreased from 2019 to 2021">>=
 make.survey.biomass.extrap.plot(survey.comparison)
 @
 \end{center}
@@ -202,7 +202,7 @@ make.survey.biomass.extrap.plot(survey.comparison)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-age-one-index, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the age-1 index has dropped from 2017 to 2019">>=
+<<main-age-one-index, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the age-1 survey estimate has increased from 2019 to 2021">>=
 make.survey.age1.plot.data(age.1.index,
                            log.scale = FALSE,
                            yLim = c(0, 16))
@@ -308,7 +308,7 @@ make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1, highlight = 5)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-bridge-5-panel-1, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the minimal differences between the first bridging models for various model outputs">>=
+<<main-bridge-5-panel-1, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the differences between the first bridging models for various model outputs">>=
 bridge.density.names <- c("SSB_Virgin",
                           "R0",
                           "Main_RecrDev_2010",
@@ -375,7 +375,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-bridge-5-panel-2, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the minimal differences between the first bridging models for various model outputs">>=
+<<main-bridge-5-panel-2, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the differences between the final bridging models for various model outputs">>=
 oldpar <- par(no.readonly = TRUE)
 bridge.density.names <- c("SSB_Virgin",
                           "R0",
@@ -641,7 +641,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock has been decreasing in size since 2017">>=
+<<main-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been decreasing in size since 2019">>=
 make.biomass.plot(base.model,
                   equil.yr = unfished.eq.yr,
                   start.yr = start.yr,
@@ -658,7 +658,7 @@ make.biomass.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-relative-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the relative biomass has been decreasing in size since 2017">>=
+<<main-relative-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the relative biomass has been decreasing since 2019">>=
 make.depletion.plot(base.model,
                     start.yr = start.yr,
                     end.yr = end.yr,
@@ -676,7 +676,7 @@ make.depletion.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-recruitment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016">>=
+<<main-recruitment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
 make.recruitment.plot(base.model,
                       equil.yr = unfished.eq.yr,
                       start.yr = start.yr,
@@ -697,7 +697,7 @@ make.recruitment.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-recruitment-devs, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large recruitment deviations: 2010, 2014, and 2016">>=
+<<main-recruitment-devs, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
 make.recruitment.dev.plot(base.model,
                           end.yr = end.yr)
 
@@ -830,7 +830,7 @@ make.forecast.catch.posterior.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-forecast-depletion-comparison-plot, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to decline for all non-zero catch levels evaluated">>=
+<<main-forecast-depletion-comparison-plot, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to increase and then decline for all non-zero catch levels evaluated">>=
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those forecast models which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
@@ -859,7 +859,7 @@ make.forecast.depletion.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-forecast-risk-comparison-plot-year-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline next year regardless of catch level">>=
+<<main-forecast-risk-comparison-plot-year-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably not decline next year except for very high catch levels">>=
 make.forecast.risk.comparison.plot(base.model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[1],
@@ -878,7 +878,7 @@ make.forecast.risk.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-forecast-risk-comparison-plot-year-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline in the next two years regardless of catch level">>=
+<<main-forecast-risk-comparison-plot-year-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably decline the year after next (except under zero catch)">>=
 make.forecast.risk.comparison.plot(base.model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[2],
@@ -898,7 +898,7 @@ make.forecast.risk.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-forecast-risk-comparison-plot-year-3, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline in the next three years regardless of catch level">>=
+<<main-forecast-risk-comparison-plot-year-3, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline in three years' time regardless of catch level">>=
 make.forecast.risk.comparison.plot(base.model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[3],
@@ -1043,7 +1043,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 %% \begin{figure}[H]
 % \begin{figure}[H]
 \begin{center}
-<<main-index-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the similarity between some sensitivity runs of the estimates of the fit to the survey index">>=
+<<main-index-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the similarity between some sensitivity runs of the estimates of the fit to the biomass index">>=
 make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 14,
                      model.names = c(base.model.name, sens.model.names.2),
@@ -1142,7 +1142,7 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-index-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows differences in the fit to the survey index for certain sensitivity runs">>=
+<<main-index-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows differences in the fit to the biomass index for certain sensitivity runs">>=
 make.comparison.plot(c(list(base.model), sens.models.4),
                      subplots = 13,
                      model.names = c(base.model.name, sens.model.names.4),
@@ -1296,7 +1296,7 @@ make_squid_plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-relative-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "The estimates of recruitment deviations scaled to the most recent estimate almost all trend towards zero by age three, except for the 2015 cohort, which was a strong negative recruitment deviation. This figure provides support for not estimating recruitment of fish until they are seen in the fishery and the survey given current selectivity.">>=
+<<main-relative-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "The estimates of recruitment deviations scaled to the most recent estimate almost all trend towards zero by age three, except for the 2015 cohort, which was a strong negative recruitment deviation.">>=
 make_squid_plot(base.model,
                 subplot = 2,
                 cohorts = retro_cohorts,
