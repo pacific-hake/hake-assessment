@@ -3,8 +3,8 @@
 \chapter{Sensitivity run that excludes the age-1 survey}
 \label{chap:age1-survey}
 
-This appendix contains Bayesian MCMC results for the model run in which the age-1
-survey index is excluded as an index of recruitment as described in
+This appendix contains Bayesian MCMC results for the sensitivity run in which the age-1
+survey index is excluded as an index of recruitment, as described in
 Sections~\ref{sec:data-acoustic-survey} and \ref{sec:assessment-sensitivity-analyses}
 (also see Table~\ref{tab:main-parameter-estimates-sens-1}).
 It highlights
@@ -14,27 +14,59 @@ important enough to warrant further consideration, especially in the context of 
 forecast uncertainty, and given it was excluded in the base model for previous assessments.
 Nonetheless, this appendix is meant to provide supplemental information,
 and should not be viewed as an alternative base model.
-The figures and tables show results from this sensitivity run (plus
-Figure~\ref{fig:age-one-index-age1-base} for the base model, as noted in its caption).
+The figures and tables show results from this sensitivity run (except where stated
+in the caption when the base model is shown for comparison).
 
-**Need to update the next paragraph depending on final results. Current results (with
-diagnostics issue) give high 2020 recruitment without age-1, so it's not just
-age-1 index driving that. That might help counter our previous warning below.
+In general, the pattern of the estimated median age-1 index is similar whether
+or not the age-1 index is excluded (the sensitivity run, Figure~\ref{fig:age-one-index-age1}) or
+included (the base model,
+Figure~\ref{fig:age-one-index-age1-base}). The only appreciative changes (on the
+log scale) are for the 2018 and 2020 cohorts. The exclusion of the age-1 index
+decreases the estimate of age-1 fish in 2019 (2018 cohort) away from the survey age-1 index value, and
+the 2020 cohort is also somewhat decreased. In absolute
+terms, the median 2020 recruitment decreases from
+\Sexpr{f(base.model$mcmccalcs$rmed["2020"], 1)}~billion fish (base model)
+to
+\Sexpr{f(sens.models.2[[1]]$mcmccalcs$rmed["2020"], 1)}~billion fish
+(sensitivity run).
 
-**[2021 assessment text] The estimated size of the 2010 and 2014 year classes when using only data when that
-cohort is age-2 is closer to the final estimated size when excluding the age-1 index
-(Figure~\ref{fig:retrospective-recruitment-age1}) than it is for the base model
-(Figure~\ref{fig:main-retrospective-recruitment}). In terms of general year class strength,
-the main difference between models is with the 2018 year class where the age-1 index estimates
-it to be near average in size whereas the base model estimates to be well below average
-(Figures~\ref{fig:retrospective-recruitment-age1} and~\ref{fig:main-retrospective-recruitment}).
-Despite possible advantages in some
-instances, previous comparisons with the age-1 survey
-sensitivity have indicated that its use could lead to misleading results. For example,
-the perception of the 2008 year class was higher in 2011 (near 20\%) and 2012 (near 100\%)
-retrospectively when using the age-1 survey sensitivity instead of the base model.
-Given that the stock was in a low biomass state in 2011 and 2012, including the
-age-1 index at that time would have given misleadingly optimistic forecasts.
+Due to the age-1 index generally only being available in odd years, the sensitivity run shows little difference in the retrospectives
+for odd-year cohorts
+(Figures~\ref{fig:main-retrospective-recruitment} and~\ref{fig:retrospective-recruitment-age1}),
+except for the 2011 cohort (due to the extra survey in 2012) which appears to
+settle down more slowly to its final estimated size than in the base model.
+The estimated time series of spawning biomass in the sensitivy run is similar to the base model's
+when removing up to 4~years of data, yet is higher when removing 5~years of data
+(Figure~\ref{fig:retrospective-biomass-base-age1}).
+
+The largest recent cohort is 2014, and its estimated size
+when using only data up to age-2
+is overestimated when including the
+age-1 index and underestimated when excluding it, compared to its final
+estimated size
+(Figures~\ref{fig:main-retrospective-recruitment}
+and~\ref{fig:retrospective-recruitment-age1}). However, both models using data
+up to age-3 appear to overestimate it by the same amount.
+The 2016 cohort (the next-largest even-year cohort) shows similar retrospective
+patterns when including or excluding the age-1 index. The 2018 cohort is
+expected, using data up to age-2, to be as large as the above-average 2012 cohort when including
+the age-1 index, but somewhat smaller when excluding it. Both models estimate it
+to be below-average when using all available data. The 2012 cohort has opposite
+behaviour using data up to age-2, with the age-1 index suggesting it is above
+average while excluding the age-1 index suggesting it to be below, and both
+models suggesting it to be above average when using all available data.
+
+%% **[2021 assessment text] The estimated size of the 2010 and 2014 year classes when using only data when that
+%% cohort is age-2 is closer to the final estimated size when excluding the age-1 index
+%% (Figure~\ref{fig:retrospective-recruitment-age1}) than it is for the base model
+%% (Figure~\ref{fig:main-retrospective-recruitment}). Despite possible advantages in some
+%% instances, previous comparisons with the age-1 survey
+%% sensitivity have indicated that its use could lead to misleading results. For example,
+%% the perception of the 2008 year class was higher in 2011 (near 20\%) and 2012 (near 100\%)
+%% retrospectively when using the age-1 survey sensitivity instead of the base model.
+%% Given that the stock was in a low biomass state in 2011 and 2012, including the
+%% age-1 index at that time would have given misleadingly optimistic forecasts.
+
 % To get exact numbers could run Kelli's code for each model, but I just
 %  eyeballed the numbers which I think is fine:
 % retro.list <- list(base.model)
@@ -44,7 +76,7 @@ age-1 index at that time would have given misleadingly optimistic forecasts.
 % xx <- r4ss::SSsummarize(retro.list)
 % xx$recruits[xx$recruits$Yr %in% 2008, ]
 
-%The inclusion of the age-1 index does not greatly change the uncertainty of
+%[2020? assessment text probably] The inclusion of the age-1 index does not greatly change the uncertainty of
 %historical or forecast spawning biomass
 %(Figure~\ref{fig:retrospective-biomass-base-age1}); this is also true for the
 %retrospective runs. Overall, it
@@ -52,9 +84,6 @@ age-1 index at that time would have given misleadingly optimistic forecasts.
 %recruitments, and, in fact, can be overly optimistic in some situations (Figure~\ref{fig:retrospective-2008-base-age1}).
 %Recall that the survey design is not structured specifically for indexing age-1
 %fish.
-
-
-**Mention Figures~\ref{fig:age-one-index-age1-base} and~\ref{fig:age-one-index-age1}.
 
 Figures \ref{fig:spawning-biomass-age1}--\ref{fig:forecast-risk-comparison-year-2-age1}
 and
@@ -92,7 +121,8 @@ make_squid_plot(sens.models.2[[1]],
   \Sexpr{min(retro.cohorts)} to \Sexpr{max(retro.cohorts)}, with cohort
   birth year marked at the right of each color-coded line. Values are
   estimated by models using data available only up to the year in which
-  each cohort was a given age.}
+  each cohort was a given age. Compare with
+  Figure~\ref{fig:main-retrospective-recruitment} for the base model.}
 \label{fig:retrospective-recruitment-age1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -157,7 +187,7 @@ par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1, 2), nrow = 2, ncol = 1, byrow = TRUE))
 make.comparison.plot(retro.list,
                      subplots = 2,
-                     model.names = retro.model.names,
+                     model.names = retro.model.names.age1,
                      legend = TRUE,
                      legend_loc = "topright",
                      plot_mcmc = TRUE,
@@ -165,7 +195,7 @@ make.comparison.plot(retro.list,
 ## Now for age-1 index sensitivity
 make.comparison.plot(retro.list.age1,
                      subplots = 2,
-                     model.names = retro.model.names.age1,
+                     model.names = retro.model.names,
                      legend = TRUE,
                      legend_loc = "topright",
                      plot_mcmc = TRUE,
@@ -175,7 +205,7 @@ par <- oldpar
 @
 \end{center}
 \caption{Spawning biomass from retrospective MCMC model runs and associated uncertainties
-  for the base model (top) and age-1 index sensitivity run (bottom).}
+  for the age-1 index sensitivity run (top) and the base model (bottom).}
 \label{fig:retrospective-biomass-base-age1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
