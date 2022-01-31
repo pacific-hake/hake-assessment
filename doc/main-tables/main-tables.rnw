@@ -221,7 +221,7 @@ make.input.age.data.table(base.model,
 make.survey.history.table(survey.history,
                           age.1.index,
                           digits = 3,
-                          xcaption = paste0("**Summary of the acoustic surveys from 1995 to ", survey.end.yr, "."),
+                          xcaption = paste0("Summary of the acoustic surveys from ", survey.start.yr, " to ", survey.end.yr, "."),
                           xlabel = "tab:main-survey-history",
                           font.size = 10,
                           space.size = 11)
@@ -229,7 +229,7 @@ make.survey.history.table(survey.history,
 
 <<main-maturity-ogives-table, results='asis', echo=FALSE>>=
 make.maturity.ogives.table(maturity.ogives,
-                           xcaption = paste0("**Information on maturity and fecundity used in this assessment as
+                           xcaption = paste0("Information on maturity and fecundity used in this assessment as
                                        shown in Figure~\\ref{fig:main-maturity}. The sample sizes refer
                                        to the subset of samples in Table~\\ref{tab:main-ovaries} for which
                                        age readings and histological estimates of maturity have been completed.
@@ -248,7 +248,7 @@ make.maturity.ogives.table(maturity.ogives,
 
 <<main-ovaries-table, results='asis', echo=FALSE>>=
 make.maturity.samples.table(ovary.samples,
-                            xcaption = "**Number of \\fishname\\ ovaries collected for histological analysis.
+                            xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.
                                         The maturity ogive was determined from a subset of these samples
                                         (up to and including 2017; see \\citealt{JTC2018}).",
                             xlabel = "tab:main-ovaries",
@@ -263,7 +263,7 @@ make.parameters.estimated.summary.table(
   start.rec.dev.yr = recruit.dev.start.yr,
   end.rec.dev.yr = end.yr - 1,
   digits = 2,
-  xcaption = paste0("**Summary of estimated model parameters and priors in the base model.
+  xcaption = paste0("Summary of estimated model parameters and priors in the base model.
                      The Beta prior is parameterized with a mean and standard deviation.
                      The Lognormal prior is parameterized with the median and standard
                      deviation in log space."),
@@ -276,7 +276,7 @@ make.parameters.estimated.summary.table(
 
 <<main-assessment-changes-table, results='asis', echo=FALSE>>=
 make.assessment.changes.table(assessment.changes,
-                              xcaption = paste0("**[Add 2022] Annual changes in the modeling framework used to assess ",
+                              xcaption = paste0("Annual changes in the modeling framework used to assess ",
                                                 "\\fishname\\ since 2011. ",
                                                 "The bias adjustment is reported as the maximum used for each assessment. ",
                                                 "Methods used to weight the age-composition data (Comp Method), i.e., ",
@@ -419,7 +419,7 @@ make.median.posterior.table(
   end.yr = end.yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
   csv.dir = output.csv.dir,
-  xcaption = paste0("[**Check total biomass; copy table from errata?]Time series of median posterior population estimates from the base
+  xcaption = paste0("Time series of median posterior population estimates from the base
                      model. Relative spawning biomass is spawning biomass relative to the
                      unfished equilibrium ($\\Bzero$). Total biomass includes females and males
                      of ages 0 and above. Age-2+ biomass includes females and males ages 2 and
@@ -471,7 +471,7 @@ param_est_table(list(base.model, last.yr.base.model),
 
 <<main-reference-points-table, results='asis', echo=FALSE>>=
 make.reference.points.table.old(base.model,
-                            xcaption = paste0("**Summary of median and 95\\% credibility
+                            xcaption = paste0("Summary of median and 95\\% credibility
                                                intervals of equilibrium conceptual reference points for
                                                the base assessment model. Equilibrium
                                                reference points were computed using ",
