@@ -709,11 +709,12 @@ to control annual changes to the fishery selectivity parameters.
 The standard deviation of the normal penalty function,
 $\Phi$, associated with these deviations has been fixed at \Sexpr{sel.Phi.val}
 since the 2018 assessment (see \citealt{JTC2018} for justification).
-Using
+The resulting changes in year-specific values controlling the changing
+selectivity from age $a-1$ to $a$ are
 \eb
 p_{ay} = p_a + \epsilon_{ay},
 \ee
-$\epsilon_{ay}$ are the parameter deviations estimated in the model.
+where $\epsilon_{ay}$ are the parameter deviations estimated in the model.
 For years with time-varying parameters,
 these deviations are included in an additional likelihood component
 with negative log-likelihood
