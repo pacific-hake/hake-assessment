@@ -4,7 +4,7 @@
 #' by year (y-axis) and age (x-axis). The plot uses output from a
 #' Stock Synthesis model.
 #'
-#' @details 
+#' @details
 #' Ages zero through the maximum age modeled in the data are shown
 #' for each year plotted. This maximum-age shown is found by removing ages
 #' that are the duplicate of the previous age, no user input is needed.
@@ -23,11 +23,11 @@
 #' on a single page or on a slide with readable values. Using this truncation,
 #' the colours would show trends across all plots made rather than just the
 #' truncated data.
-#' 
+#'
 #' @param model An list of results read in from an SS model using
 #' \code{\link{load_ss_files}}.
 #' @param fleet An integer value specifying which fleet you want plotted.
-#' Fleet -2 will plot fecundity information. 
+#' Fleet -2 will plot fecundity information.
 #' Fleet -1 will plot population weight-at-age for the middle of the year.
 #' Fleet 0 will plot population weight-at-age for the beginning of the year.
 #' Positive values for fleet will link to a modeled fleet.
@@ -54,7 +54,7 @@
 #' year of the data in the model will be used to calculate means and colors.
 #' This parameter facilitates splitting the plot into two separate plots when
 #' there are a number of years.
-#' @param colour A character string of \code{"both"}, \code{"all"}, 
+#' @param colour A character string of \code{"both"}, \code{"all"},
 #' or \code{"age"}. If the default of \code{"both"}, then the colors of the
 #' boxes will be based on all of the data and the transparency of the colors
 #' will strictly be a function of each individual age in turn. That is, the
@@ -70,7 +70,7 @@
 #' @importFrom grDevices colorRampPalette
 #' @importFrom stats reshape
 #' @importFrom utils type.convert
-#' @import ggplot2 
+#' @import ggplot2
 #'
 weight.at.age.heatmap <- function(model,
                                   fleet = 1,
@@ -78,6 +78,7 @@ weight.at.age.heatmap <- function(model,
                                   proj.line.width = 1,
                                   proj.line.yr = NULL,
                                   first.year = 1975,
+                                  start.yr = 1966,
                                   extrap.mask = NULL,
                                   longterm.mean.ages = NULL,
                                   font.size = 4,
@@ -100,6 +101,17 @@ weight.at.age.heatmap <- function(model,
     select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet)) %>%
     filter(Yr > 0)
   wa <- wa[,1:which(apply(wa, 1, duplicated)[, 1])[1]-1]
+  min_yr <- min(wa$Yr)
+  if(min_yr > start.yr){
+    row <- wa[wa$Yr == max(wa$Yr), ]
+    wa <- row %>% bind_rows(wa)
+    wa[1, "Yr"] <- start.yr
+    for(yr in (start.yr + 1):min_yr){
+      wa <- row %>% bind_rows(wa)
+      wa[1, "Yr"] <- yr
+    }
+    wa <- wa[order(wa$Yr), ]
+  }
 
   last.yr <- max(wa$Yr)
 
@@ -118,7 +130,7 @@ weight.at.age.heatmap <- function(model,
   if (is.null(longterm.mean.ages)) {
     longterm.mean.ages <- unlist(wa[wa$Yr == min(wa$Yr), -1])
   }
-  avg <- data.frame(Yr = min(w$Yr) - 2,
+  avg <- data.frame(Yr = min(wa$Yr) - 2,
                     variable = ages,
                     value = longterm.mean.ages)
   w <- as.data.frame(rbind(w, avg))
@@ -128,7 +140,7 @@ weight.at.age.heatmap <- function(model,
 
   nn <- pivot_longer(extrap.mask, cols = starts_with("a"),
     values_to = "a", names_to = "age", names_prefix = "a") %>%
-    arrange(as.numeric(age, fleet, Yr)) %>% 
+    arrange(as.numeric(age, fleet, Yr)) %>%
     mutate(Yr = if_else(Yr < 0, min(w$Yr), Yr))
 
   valswithmask <- merge(w, nn, by = c("Yr", "age"), all = TRUE)
@@ -147,7 +159,7 @@ weight.at.age.heatmap <- function(model,
       g <- bycolumn + geom_tile(aes(fill = rescale))
     }
     if (colour == "both") {
-      g <- bycolumn + 
+      g <- bycolumn +
         geom_tile(aes(alpha = rescale, fill = value))
     }
 
@@ -199,7 +211,7 @@ weight.at.age.heatmap <- function(model,
     scale_colour_gradientn(colors = colors, guide = FALSE)
     # Code below adds squiggle line of mean weight-at-age down each column
     # geom_path(
-    #   data = valswithmask %>% dplyr::filter(Yr > 1965, Yr <= 2020) %>% 
+    #   data = valswithmask %>% dplyr::filter(Yr > 1965, Yr <= 2020) %>%
     #     arrange(Yr) %>%
     #     group_by(age) %>%
     #     mutate(scaling = rescale(value,to = c(-0.25,0.25))) %>%
