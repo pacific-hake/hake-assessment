@@ -626,19 +626,17 @@ The third step implemented changes related to the addition of the age-1 index.
 Stock Synthesis version \Sexpr{ss.version} includes
 a number of changes since the version used by \citet{JTC2021},
 mostly related to options not explicitly used in this assessment.
-%Changes relevant to the assessment of \fishname\ include changes to
-%increase the convergence of estimates of catchability and parameter deviations,
-%performance of jitter runs when parameters are near boundary conditions, and
-%stability of the transition to MCMC when the parameters specifying
-%bias adjustment of the recruitment deviations are turned off.
-Adaptations within the stock synthesis modeling framework itself had no effect
+Changes relevant to the assessment of \fishname\ include changes to
+how files are saved for MCMC samples and
+the timing of the calculation of key population processes such as
+growth and natural mortality.
+Adaptations within the Stock Synthesis modeling framework itself had little effect
 on parameter estimates compared to the \Sexpr{last.assess.yr}
 base model and thus no effect on resulting time series.
-%(Figure~\ref{fig:main-bridge-5-panel-1}).
 
 The second set of bridging steps was conducted to update fishery-dependent
 and fishery-independent data.
-This primarily included minor adjustments in catch, fishery age-composition,
+This primarily included minor adjustments in catch, fishery age compositions,
 the 2019 acoustic survey biomass estimate, and
 weight-at-age values as databases are continually updated.
 Samples that were recently aged but not available for the \Sexpr{last.assess.yr}
@@ -646,9 +644,9 @@ assessment were included.
 These changes to pre-\Sexpr{last.assess.yr} data were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-5-panel-1}).
 
-The addition of \Sexpr{last.data.yr} catch and fishery age compositions allowed the model to be
-extended to the start of \Sexpr{assess.yr}, but the estimates for
-\Sexpr{assess.yr} remained highly uncertain
+The addition of \Sexpr{last.data.yr} catch and fishery age compositions extend the model
+to the start of \Sexpr{assess.yr} but the estimates for
+\Sexpr{assess.yr} are highly uncertain
 (Figure~\ref{fig:main-bridge-5-panel-1})
 in the absence of additional information about recent recruitment.
 These data had relatively little impact on the historical biomass estimates,
@@ -682,17 +680,18 @@ the 2018 and 2019 cohorts were adequately sampled (age-2 or older) by the survey
 which is why the uncertainty associated with these cohorts was reduced (though
 still quite uncertain; Figure~\ref{fig:main-bridge-5-panel-1}).
 
-The final bridging step added the age-1 index time series (1995 to
+The final bridging was adding the age-1 index time series (1995 to
 \Sexpr{last.survey.year}) as an additional source of information to inform recent
-recruitment. The age-1 index has been evaluated in many previous stock
-assessments as a sensitivity analysis, and in recent years a close examination
-of the full suite of assessment results (mimicking the structure of executive summary)
-were produced in appendices to examine this key sensitivity model run. The age-1 index is fit
+recruitment (Section~\ref{sec:data-acoustic-survey}).
+The age-1 index has been evaluated in many previous stock
+assessments as a sensitivity analysis and in recent years a close examination
+of the full suite of assessment results were produced to examine this key sensitivity.
+The age-1 index is fit
 in the assessment model through a lognormal contribution to the likelihood function.
-Section~\ref{sec:data-acoustic-survey} provides further description and justification
-for using the age-1 index in the base model. The addition of this data source resulted
-in a slight increase in recent recruitment, most noticeably for the 2018 and 2020 year
-classes (Figure~\ref{fig:main-bridge-5-panel-2}). In turn, this results in a slightly higher
+The addition of this data source resulted
+in a slight increase in estimated recent recruitment, most noticeably for the 2018 and 2020 year
+classes (Figure~\ref{fig:main-bridge-5-panel-2}), and
+increase in virgin recruitment. In turn, this results in a slightly higher
 trajectory of spawning stock biomass from 2013--2022 and a change in 2022
 median relative spawning stock biomass from
 \Sexpr{round(median(bridge.models.2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
