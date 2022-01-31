@@ -13,7 +13,7 @@
 \subsection*{Stock} \label{sec:es-stock}
 \phantomsection \addcontentsline{toc}{subsection}{Stock} This assessment reports
 the status of the coastal \fishname\ (or \commonname, \emph{\sciencename})
-resource off the west coast of the United States and Canada at the start of
+stock off the west coast of the United States and Canada at the start of
 \Sexpr{assess.yr}. This stock exhibits seasonal migratory behavior, ranging from
 offshore and generally southern waters during the winter spawning season to
 coastal areas between northern California and northern British Columbia during
@@ -433,7 +433,7 @@ commercial catch in 2014,
 unchanged from last year's assessment), and
 \Sexpr{top.coh(base.model, 2020, spec.yr=2010)}\% of the 2020 catch.
 The decline from 2014 to 2016
-was due to the large influx of the 2014
+was partly due to the large influx of the 2014
 year class (\Sexpr{top.coh(base.model, 2016, spec.yr=2014)}\% of the 2016 catch was age-2 fish from the
 2014 year class; this was larger than the proportion of age-2 fish,
 \Sexpr{top.coh(base.model, 2012, spec.yr=2010)}\%, from the 2010 year
@@ -453,11 +453,12 @@ and 2018 year classes (median recruitment well below the mean of all median recr
 %  spawning biomass was small enough that the S-R curve had an effect
 %  [keep this helpful explanation]
 
-The 2014 and 2016 year classes are likely both larger than average, however there is a
-very high chance (\Sexpr{prob.percent.2014.rec.gt.2016.rec}\%) that 2014 is larger than 2016.
+The 2014 and 2016 year classes are likely both larger than average, with a
+very high chance (\Sexpr{prob.percent.2014.rec.gt.2016.rec}\%) that 2014 is
+larger than 2016, but zero chance that is larger than 2010. % prob.percent.2014.rec.gt.2010.rec
 With the addition of the age-1 index, there is information beyond just fishery encounters in
 the data to estimate the size of the \Sexpr{end.yr-2} year class. Collectively, these data
-indicate that the \Sexpr{end.yr-2} year class is above average, while the 2019 year class is
+indicate that the \Sexpr{end.yr-2} year class is likely above average, while the 2019 year class is
 informed by the \Sexpr{last.survey.year} biomass index and fishery data, but has no age-1 index.
 There is no information in the data to estimate the sizes of the
 \Sexpr{end.yr-1} and \Sexpr{end.yr} year classes. Retrospective analyses of year
@@ -567,7 +568,7 @@ remained relatively stable since then (dropping no further than
 There is a
 considerable amount of uncertainty around estimates of relative fishing intensity,
 with the 95\% posterior credibility interval reaching above the SPR management
-target (of 1.0) for 2017--2018 (Figure~\ref{fig:es-fishing-intensity}).
+target (of 1.0) in 2017 (Figure~\ref{fig:es-fishing-intensity}).
 % 2016 assessment we had: '... is below the SPR management target for the
 %  last three years (Figure~\ref{fig:es-fishing-intensity})'.
 %  Interestingly, for 2017 the 2016 intensity interval reaches above 1.
@@ -589,8 +590,8 @@ utilization rate (proportion of catch target removed) has been
 the last five years (\Sexpr{end.yr-5} to \Sexpr{end.yr-1}), the mean utilization
 rates were \Sexpr{usa.last.5.years.attainment}\% for the United States
 and \Sexpr{can.last.5.years.attainment}\% for Canada. Country-specific
-quotas (or catch targets) in 2021 were specified unilaterally, due to the lack of
-an agreement on a coast-wide 2021 TAC. The U.S. catch target was
+quotas (or catch targets) in 2020 and 2021 were specified unilaterally, due to the lack of
+an agreement on coast-wide 2020 and 2021 TACs. The 2021 U.S. catch target was
 \Sexpr{us.allotment.percent.last.year}\% of the total coast-wide catch target, and
 the Canada catch target was \Sexpr{can.allotment.percent.last.year}\%. These
 percentages are different to the usual
@@ -636,7 +637,7 @@ make_landings_tac_table(ct,
                         start_yr = end.yr - 10,
                         end_yr = end.yr - 1,
                         xcaption = "Recent trends in \\fishname\\ landings and
-                                     management decisions. Catch targets in 2020 were
+                                     management decisions. Catch targets in 2020 and 2021 were
                                      specified unilaterally.",
                         xlabel = "tab:es-landings-tac",
                         font_size = 7,
@@ -684,10 +685,12 @@ all years except 2007, 2009, and 2010
 % Andy summarising those years manually, based on:
 % median.relative.bio.below.target
 % Manual done 2020. Interesting that years are becoming fewer.
-As such, the median relative fishing
-intensity has never been above the target of 1.0 when the female spawning biomass
-is below the
-reference point of $\Bforty$ (Figure~\ref{fig:es-phase}). This highlights the
+The median relative fishing
+intensity has never been above the target of 1.0
+%when the female spawning biomass
+%is below the
+%reference point of $\Bforty$
+(Figure~\ref{fig:es-phase}). This highlights the
 highly dynamic nature of the stock due to high variation in recruitment strength.
 The target fishing mortality ($\Fforty$) and
 $\Bforty$ result in different population sizes (see Table~\ref{tab:es-reference-points}),
@@ -720,8 +723,8 @@ the start of \Sexpr{end.yr}.
 \subsection*{Reference points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
 
-The term reference points is used throughout this document to describe common
-conceptual summary metrics. The Treaty specifically identifies $\Fforty$ as the
+The term `reference points' is used throughout this document to describe common
+conceptual summary metrics. The Agreement specifically identifies $\Fforty$ as the
 default harvest rate and $\Bforty$ as a point where the 40:10 TAC adjustment is triggered
 (see the Glossary in Appendix~\ref{chap:glossary}).
 Estimates of the \Sexpr{assess.yr} base model reference points with posterior
@@ -765,7 +768,7 @@ and the scientific basis for prior probability distributions. To address such
 structural uncertainties, we performed sensitivity analyses to investigate a
 range of alternative assumptions and present the key ones in the main document. A more
 extensive examination of sensitivity results are provided for a model that excludes
-that age-1 index (see Appendix~\ref{chap:age1-survey}).
+the age-1 index (see Appendix~\ref{chap:age1-survey}).
 
 %**Update from main text**Uncertainty in the best method for calculating acoustic
 % survey biomass is a particular focus and
@@ -782,9 +785,9 @@ cohorts are fished before the assessment can accurately determine how big
 they are (i.e., cohort strength is typically not well known until it is observed
 by the fishery and survey, typically at minimum age-3).  While the addition of the age-1 index
 helps inform recent recruitment, the survey is conducted every other year and does not directly
-address current or future recruitment expectations. Further, the interaction
+address current or future recruitment expectations. Further, the interactions
 among variance parameters that govern variability in fishery selectivity and recruitment
-parameters through time, as well as those used in relative data weighting, is not well
+parameters through time, as well as those used in relative data weighting, are not well
 understood and could propagate uncertainty beyond what is presented in this assessment.
 
 %%**Maybe something like: This is particularly apparent for this assessment, because the **2014
@@ -1143,7 +1146,7 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % 2018 - probably not worth saying that any more.
 As the large 2010, 2014, and 2016 cohorts continue to age, their biomass is expected to decrease
 as losses from mortality outweigh increases from growth.  The
-estimated above-average 2020 cohort will play a large role in determining spawning stock biomass
+estimated above-average 2020 (yet still highly uncertain) cohort will play a large role in determining spawning stock biomass
 during the forecast years presented here.
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean
