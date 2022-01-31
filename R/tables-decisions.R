@@ -93,7 +93,7 @@ decision_table <- function(model,
   forecast.tab <- forecast.tab %>%
     bind_cols(c.levels, tab.letters) %>%
     mutate(Year = as.numeric(Year) - 1,
-           start_yr = as.character(Year + 1)) %>%
+           start_yr = paste("Start of", as.character(Year + 1))) %>%
     select(labels, Year, `Catch (t)`, start_yr, everything()) %>%
     mutate(Year = as.character(Year),
            `Catch (t)` = f(`Catch (t)`),
@@ -102,7 +102,7 @@ decision_table <- function(model,
            `95\\%` = f(`95\\%`, 2))
 
   first_biomass_yr[ ,-1] <- as.list(f(unlist(first_biomass_yr[ ,-1]), 2))
-
+  first_biomass_yr[1] <- paste("Start of", first_biomass_yr[1])
   quant.levels <- grep("%", names(forecast.tab), value = TRUE)
 
   # Add the extra header spanning multiple columns
