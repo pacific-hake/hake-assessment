@@ -357,7 +357,7 @@ JTC:
   The standard suite of catch projections were then conducted using
   mean recruitment from the main time period and scaled virgin recruitment based on
   the median estimates of recruitment relative to $R_0$.
-  Results will be presented during the SRG in 2022 during the review.}
+  Results will be presented during the 2022 SRG review meeting.}
 
 4. \fishname\ dynamics are highly variable even without fishing
   mortality. {\bf The SRG encourages the JTC (and MSE technical team) to continue
@@ -787,7 +787,7 @@ a couple of above-average cohorts that are now mature.
 %resulting in a population
 %trend that has been relatively stable from 2013 to \Sexpr{survey.end.yr}.
 
-The base model fit to the index of age-1 fish highlights 
+The base model fit to the index of age-1 fish highlights
 an overall general confirmation of relative cohort strength
 (Figure~\ref{fig:main-mcmc-age1-fit}). In particular,
 the 2008 and 2014 cohorts were estimated to be less than the index, while the
