@@ -75,7 +75,7 @@ last.year.us.shore.catch <- ct %>% filter(year == last.data.yr) %>% pull(us_shor
 last.year.us.ti.catch <- us.ti.catch.by.month %>% filter(year == last.data.yr) %>% pull(catch) %>% sum
 catcher.processor.catch <- ((ct_last1 %>% select(us_cp_xx) %>% pull) / (last.year.us.cp.quota.reallocated) * 100) %>% f(1)
 mothership.catch <- ((ct_last1 %>% select(us_ms_xx) %>% pull) / (last.year.us.ms.quota.reallocated) * 100) %>% f(1)
-shore.based.catch <- ((ct_last1 %>% select(us_shore_xx) %>% pull) / (last.year.us.shore.quota.reallocated) * 100) %>% f(1)
+shore.based.catch <- ((ct_last1 %>% select(us_shore_xx) %>% pull - last.year.us.ti.catch) / (last.year.us.shore.quota.reallocated) * 100) %>% f(1)
 
 # US Attainment by fleet, last year ------------------------------------------------
 last.year.us.research.catch.percent <- f(last.year.us.research.catch / last.year.us.research * 100, 1)
