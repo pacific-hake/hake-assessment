@@ -792,7 +792,7 @@ a couple of above-average cohorts that are now mature.
 %trend that has been relatively stable from 2013 to \Sexpr{survey.end.yr}.
 
 The base model fit to the index of age-1 fish highlights some over- and
-under-estimation but an overall general confirmation of relative year class strength
+under-estimation but an overall general confirmation of relative cohort strength
 (Figure~\ref{fig:main-mcmc-age1-fit}). In particular, age-1 fish in 2009 and 2015
 (the 2008 and 2014 cohorts) were underestimated relative to the index, while the
 age-1 fish in 1995 and 2017 (1994 and 2016 cohorts) were overestimated.
