@@ -66,7 +66,7 @@ make.mcmc.sr.variability.plot <- function(model,
   lines(c(0, dlnorm(x = adj, meanlog = meanlog, sdlog = sigma_R)),
         y = c(adj, adj), lty = 1, col = 2)
   axis(2, at = c(0, adj, 1, nrow(model$mcmc)), lab = rep("", 4), las = 1)
-  mtext("Distribution of absolute recruitments", side = 4, line = -2, adj = 0.8)
+  mtext("Expected distribution of absolute recruitments", side = 4, line = -2, adj = 0.8)
 
   # Main plot
   par(mar = c(4, 4, 1, 1) + 0.1, mgp = c(2.3, 1, 0))
