@@ -987,7 +987,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 @
 \end{center}
 \caption{MCMC estimates of spawning biomass for the base model and alternative
-  sensitivity runs that represent the following changes in data: removing the age-1 index of abundance
+  sensitivity runs that represent the following changes in data: removing the index of age-1 fish
   and downweighting fishery composition data using the McAllister-Ianelli method.}
 \label{fig:main-biomass-base-alternative-2}
 %% \end{figure}
@@ -1147,7 +1147,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC estimates of the fit to the survey index of abundance
+\caption{MCMC estimates of the fit to the survey index of age-2$+$ biomass
   for the base model and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
   See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
