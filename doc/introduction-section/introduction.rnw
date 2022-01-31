@@ -261,7 +261,8 @@ of the catch. Catches were occasionally greater than 200,000~t prior to 1986,
 and since then they have been greater than 200,000~t for all except
 \Sexpr{catches.below.200000.since.1986} years.
 
-In 2020, \fishname\ was Canada's largest commercial wild fishery,
+In 2020, \fishname\ was Canada's largest commercial wild fishery (species with
+the largest catch),
 representing 14\% of Canada's total landings of all species
 \href{https://www.dfo-mpo.gc.ca/stats/commercial/land-debarq/sea-maritimes/s2020pq-eng.htm}{(www.dfo-mpo.gc.ca)}.
 Over CA\$26~million in wages was estimated to have been paid to employees of the
