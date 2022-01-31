@@ -1,0 +1,12 @@
+Table of outliers by data set generated from
+ c:/stockassessment/hake-assessment/data/LengthWeightAge/LWAdata_2014.csv 
+       outlierL
+        FALSE TRUE
+  ATSEA  2636    0
+  SHORE  1274    1
+
+The below fish were eliminated if their age fell within
+ the following ages:  99 
+
+   2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17 
+ 118  144 2617  263  488   51  100   58   26   10    2    4    7   15    5    2 

@@ -1,0 +1,16 @@
+Table of outliers by data set generated from
+ c:/stockassessment/hake-assessment/data/LengthWeightAge/LWAdata_2019.csv 
+                 outlierL
+                  FALSE
+  Acoustic Canada   391
+  Acoustic U.S.    2866
+  ATSEA            2014
+  SHORE            1825
+
+The below fish were eliminated if their age fell within
+ the following ages:  99 
+
+   0    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15 
+   1  363  800 1540   91 2205  144  236  152 1228  130   89   40   30   24   12 
+  16   17   18   20   21   26 
+   3    3    1    2    1    1 
