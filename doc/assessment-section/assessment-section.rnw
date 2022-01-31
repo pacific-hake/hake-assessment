@@ -140,7 +140,7 @@ which was fixed at the maximum value of one.
 
 An age-1 index was included in the base model. It spans the same years as the acoustic survey, as it was
 part of the same survey, on the same vessels. Selectivity was set to one for age-1 for this index
-and zero for all other ages. For more information about the survey and reasons for its
+and zero for all other ages. For more information about the index and reasons for its
 inclusion in the assessment model, see Section~\ref{sec:data-acoustic-survey}.
 
 Prior probability distributions are used for a select few parameters
