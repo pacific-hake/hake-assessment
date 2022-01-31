@@ -335,7 +335,7 @@ follows by nation.
 
 \subsubsub{United States}
 
-**The U.S.
+The U.S.
 specified catch target
 %adjusted allocation
 (i.e., adjusted for carryovers) of
@@ -356,25 +356,22 @@ and
 \Sexpr{f(last.year.us.shore.quota.reallocated)}~t,
 respectively.
 
-**The midwater fishery for \fishname\ began on May 15 for the shore-based and
+The midwater fishery for \fishname\ began on May 15 for the shore-based and
 at-sea fisheries.  In earlier years, the shore-based midwater fishery began on
 June 15 north of 42$^\circ$N latitude, but could fish for hake between
 40$^\circ$30'N and 42$^\circ$N latitudes starting on April 1.  Beginning in
 2015, the shore-based fishery has been allowed to fish north of 40$^\circ$30'N
 latitude starting May 15 and could fish south of 40$^\circ$30'N latitude
 starting on April 15.  Regulations do not allow at-sea processing south of
-42$^\circ$N latitude at any time during the year. The start of the tribal
-fishery (September) was considerably delayed due to the COVID-19 pandemic.
-% Manual done 2020 KFJ.
+42$^\circ$N latitude at any time during the year.
 
-**The overall catch of \fishname\ in U.S. waters was less than the past three years,
-but was the fourth highest value ever recorded (Table~\ref{tab:intro-catches-US}).
-Monthly catch rates in the at-sea sector were higher than in recent years for most
-months (Figure~\ref{fig:main-us-catch-rates}). Tribal landings available
+The overall catch of \fishname\ in U.S. waters was less than the past four years,
+but was the fifth highest value ever recorded (Table~\ref{tab:intro-catches-US}).
+Monthly catch rates in the at-sea sector were lower than last year in all months
+except October, which was only slighter higher than last year, and
+September, for which there was no fishing in September of last year
+(Figure~\ref{fig:main-us-catch-rates}). Tribal landings available
 at the time of the assessment were \Sexpr{f(last.year.us.ti.catch)}~t.
-As in recent years, careful
-consideration was needed to accurately account for tribal landings. Ongoing
-efforts continue to work towards streamlining tribal catch reporting.
 The catcher-processor, mothership, and
 shore-based fleets caught \Sexpr{catcher.processor.catch}\%,
 \Sexpr{mothership.catch}\%, and \Sexpr{shore.based.catch}\% of their final
@@ -383,15 +380,11 @@ reallocated quotas, respectively. There was
 \Sexpr{last.year.us.not.attained}\% of the total U.S. adjusted TAC that was not
 caught.  For further details and specific impacts related to the COVID-19 pandemic
 see the report from the U.S. Advisory Panel
-(Appendix~\ref{chap:us-fishery-report}). Thanks to serological testing of almost
-all crew members prior to departure, one fishing vessel that experienced an
-outbreak of COVID-19 provided the first direct evidence that neutralizing
-antibodies are protective against infection in humans, contributing to the
-science behind vaccine development \citep{AddetiaCrawfordEtAl2020}.
-% Manual done 2020 KFJ
+(Appendix~\ref{chap:us-fishery-report}).
 
-**In both U.S. at-sea sectors (CP and MS) the most common fish in the fishery were age-4, age-6, and age-10 associated with the 2016, 2014, and 2010 year-classes.
-Age-2 fish were far less prevalent in the catch this year than in 2018 or 2019.
+In both U.S. at-sea sectors, age-5 and age-7, associated with the 2016 and 2014 year classes,
+were the most common ages.
+Age-2 fish were again not seen in appreciable numbers in the catch this year.
 Age sampling was conducted on \Sexpr{us.age.n.cp} CP hauls and \Sexpr{us.age.n.ms}
 MS hauls (Table~\ref{tab:main-sampling-history}).
 For the CP sector, the four most abundant age classes (by numbers) seen in \Sexpr{last.data.yr} were
@@ -413,26 +406,20 @@ age-\Sexpr{us.age.2.prop.age.shore} (\Sexpr{us.age.2.prop.shore}\%),
 age-\Sexpr{us.age.3.prop.age.shore} (\Sexpr{us.age.3.prop.shore}\%), and
 age-\Sexpr{us.age.4.prop.age.shore} (\Sexpr{us.age.4.prop.shore}\%)
 in \Sexpr{last.data.yr} (Table~\ref{tab:main-us-shore-age-data}).
-% Manual done 2020 KFJ
 
-**The at-sea fishery maintained moderately high catch rates throughout the
-year (Figure~\ref{fig:main-us-catch-rates}), averaging higher than in 2018 and 2019
-for all months.
-%around 20 t/hr in the spring (May--June) and 15 t/hr in the fall (September--November).
-%Relative
-%to last year, the spring fisheries saw a decline in catch
-%rates, whereas catch rates were higher in September and October.
-The median fishing depth for the at-sea fleets was slightly deeper than last year, which was near average over
-recent years (Figure~\ref{fig:main-us-at-sea-depths}). From mid-June to September/October, operators
+The at-sea fishery maintained moderately high catch rates in the fall
+(Figure~\ref{fig:main-us-catch-rates}),
+but catch rates in the spring were lower than last year.
+The median fishing depth for the at-sea fleets was shallower than last year but near the
+average over the last five years (Figure~\ref{fig:main-us-at-sea-depths}).
+From mid-June to September/October, operators
 in the at-sea fishery moved to their usual summer fishing grounds off the coast of Alaska in search of
 Bering sea Walleye Pollock.  The shore-based fishery had the largest monthly
 catches during June, July, and August.
 The U.S. utilization rate
 (\Sexpr{last.year.us.attained}\%) continued to be maintained close to what
-it has been in recent years because of high catch rates,
-despite vessels needing to implement bycatch-avoidance measures
+it has been in recent years because of high catch rates
 (see Appendix~\ref{chap:us-fishery-report} for more details).
-% Manual done 2020 KFJ.
 
 \newpage % kludge to avoid dangling heading:
 
