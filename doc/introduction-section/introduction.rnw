@@ -27,14 +27,12 @@ scientists nominated by an Advisory Panel (AP) of fishery stakeholders.
 
 The data sources for this assessment include an acoustic survey, annual fishery
 catch, as well as survey and fishery age-composition data. The assessment depends
-primarily upon the acoustic survey biomass index time-series for information on
+primarily upon acoustic survey index of biomass time series for information on
 the scale of the current hake stock. Age-composition data from the aggregated
 fishery and the acoustic survey provide additional information allowing the
 model to resolve strong and weak cohorts. The catch is an important source of
-information in contributing to changes in abundance and providing a lower bound
+information regarding changes in abundance and lower bound
 on the available population biomass in each year.
-% Annual fishery catch is not considered data in the sense that it does not
-%  contribute to the likelihood.
 
 This assessment is fully Bayesian, with the base model incorporating prior
 information on several key parameters (including natural mortality, $M$, and
@@ -42,13 +40,12 @@ steepness of the stock-recruit relationship, $h$) and integrating over parameter
 uncertainty to provide results that can be probabilistically interpreted. From a
 range of alternate models investigated by the JTC, a subset of sensitivity
 analyses are also reported to provide a broad qualitative comparison of
-structural uncertainty with respect to the base case. These sensitivity analyses
-are thoroughly described in this assessment document.
+structural uncertainty with respect to the base model
+(Section~\ref{sec:assessment-sensitivity-analyses}).
 The structural assumptions
 of this \Sexpr{assess.yr} base model,
-implemented using version \Sexpr{ss.version} of the Stock Synthesis software.
+implemented using version \Sexpr{ss.version} of the Stock Synthesis software
 \citep{MethotWetzel2013},
-% Manual done 2022 AMB
 are largely the same as the
 \Sexpr{last.assess.yr} base model \citep{JTC2020}.  The exception is that the
 \Sexpr{assess.yr} base model includes the age-1 index.
@@ -56,16 +53,6 @@ The Bayesian estimation continues to be computed using a new efficient approach
 that was successfully tested in 2020 assessment
 \citep{JTC2020}. For the first time, all model runs reported in this stock
 assessment document are performed in a Bayesian context.
-% Use this later:
-%Bayesian Markov chain Monte Carlo (MCMC) sampling, the
-% No-U-Turn Sampler (NUTS; \citealt{HoffmanGelman2014}), implemented using the
-% {\tt adnuts} R package \citep{Monnahan2018, Monnahan2019}, that was successfully
-%tested in last year's assessment \citep{JTC2020}.
-%The 35-day 2018/2019 U.S. government shutdown considerably delayed delivery of U.S.
-%age data and reduced the JTC's time available to collectively complete the
-%\Sexpr{assess.yr} assessment. As a result,
-%many planned supplementary and exploratory analyses could not be completed, including
-%some developed for
 Responses to \Sexpr{last.assess.yr} SRG requests are in
 Section~\ref{sec:assessment-response-review} and a
 Glossary of terms appears in Appendix~\ref{chap:glossary}.
@@ -83,26 +70,24 @@ The coastal stock of
 \fishname\ is currently the most abundant groundfish population in the
 California Current system. Smaller populations of this species occur in the
 major inlets of the Northeast Pacific Ocean, including the Strait of Georgia,
-the Puget Sound, and the Gulf of California. The
-Strait of Georgia and the Puget Sound populations are genetically distinct from
-the coastal population \citep{IwamotoFordEtAl2004,
-KingMcFarlaneEtAl2012, GarciaEtAl2018}. Genetic differences have also been found between the
-coastal population and hake off the west coast of Baja California
-\citep{VroomanPaloma1977, GarciaEtAl2018}. The coastal stock is also distinguished from the
+the Puget Sound, and the Gulf of California.
+Each of these smaller populations are genetically distinct from the coastal population
+\citep{VroomanPaloma1977, IwamotoFordEtAl2004, KingMcFarlaneEtAl2012, GarciaEtAl2018}.
+The coastal stock is also distinguished from the
 inshore populations by larger size-at-age and seasonal migratory behavior
-and from fish off west of coast of Baja California by smaller size-at-age and
+and from fish off the west of coast of Baja California by smaller size-at-age and
 later spawning \citep{Zamora-Garcia2020}.
 
 The coastal stock of \fishname\ typically ranges from the waters off southern
 California to northern British Columbia and rarely into southern Alaska, with
-the northern boundary related to fluctuations in annual migration. In spring,
+the northern boundary related to fluctuations in annual migration \citep{JTC2013}. In spring,
 adult \fishname\ migrate onshore and northward to feed along the continental
 shelf and slope from northern California to Vancouver Island. In summer,
 \fishname\ often form extensive mid-water aggregations in association with the
 continental shelf break, with highest densities located over bottom depths of
 200-300~m \citep{DornMethot1991,DornMethot1992}.
 
-**Older \fishname\ exhibit the greatest northern migration each season, with two-
+Older \fishname\ exhibit the greatest northern migration each season, with two-
 and three-year old fish rarely observed in Canadian waters north of southern
 Vancouver Island. During El Ni\~no events (warm ocean conditions such as in 1998),
 a larger proportion of the stock migrates into Canadian waters
@@ -119,29 +104,23 @@ north and lower biomass around the U.S-Canadian border, while cooler than averag
 conditions leads to higher biomass of immature \fishname\ coast-wide
 \citep{MalickHunsickerEtAl2020}. The distribution of age-1 fish also changes
 between years (Figure~\ref{fig:main-backscatter-map-age1}).
-% Presumably next sentence can just stay same for 2018:
-
-Additional information on the stock structure for \fishname\ is available in the
-2013 \fishname\ stock assessment document \citep{JTC2013}.
 
 \subsection{Ecosystem considerations}\label{sec:intro-ecosystem-considerations}
 
 ** \fishname\ are important to ecosystem dynamics in the Eastern Pacific Ocean due to
 their relatively large total biomass and potentially large role as both prey and
-predator. A more detailed description of ecosystem
-considerations is given in the 2013 \fishname\ stock assessment
-\citep{JTC2013}. Recent research has developed an index of abundance for
+predator \citep{JTC2013}. Recent research has developed an index of abundance for
 Humboldt Squid and suggested hake abundance decreased with increasing squid abundance
 \citep{StewartHazenEtAl2014} and has evaluated hake distribution, recruitment,
 and growth patterns in relation to oceanographic conditions for assessment and
 management \citep{ResslerHolmesEtAl2007, HamelEtAl2015, MalickHunsickerEtAl2020,
 MalickSiedleckiEtAl2020}.  The 2015 \fishname\
-stock assessment document presented a sensitivity analysis where hake mortality
-was linked to the Humboldt Squid index \citep{JTC2015}. This sensitivity was not
-repeated in this assessment, although further research on this topic is needed.
+stock assessment document presented a sensitivity analysis where the mortality
+of \fishname\ was linked to the Humboldt Squid index \citep{JTC2015}; but
+further research on this topic is still needed.
 Ongoing research investigating abiotic (environmental conditions) and biotic
-(e.g., euphausiid distribution and abundance) drivers of hake distribution,
-recruitment, and survival could provide insight into how the hake population
+(e.g., euphausiid distribution and abundance) drivers of the distribution,
+recruitment, and survival of \fishname\ could provide insight into how the population
 is linked with broader ecosystem considerations. For example,
 \citet{TurleyRykaczewski2019} found decreased survival of larval \fishname\
 as storm events increased, contrary to many other species in the southern
@@ -153,9 +132,7 @@ well as associated with northward long-shore transport and the number of days
 between storm events during larval stages (Vestfals et al., pers. comm.).
 In terms of an `Ecosystem Approach to Fisheries Management' (a priority for DFO
 and NOAA), the use of empirical weight-at-age somewhat accounts for ecosystem
-effects (see
-Section~\ref{sec:data-weight-at-age}).
-
+effects (see Section~\ref{sec:data-weight-at-age}).
 
 \subsection{Management of \fishname\ }\label{sec:intro-management}
 
@@ -184,7 +161,7 @@ targets reasonably well.
 Since 1999, catch
 targets have been calculated using an $\Fforty$ default harvest rate with a
 40:10 adjustment. This decreases the catch linearly from the catch target at a
-relative spawning biomass of 40\%, to zero catch at relative spawning
+relative spawning biomass of 40\% to zero catch at relative spawning
 biomass values of 10\% or less (called the default harvest policy in the
 Agreement); relative spawning biomass is the female spawning biomass divided by
 that at unfished
@@ -192,7 +169,7 @@ equilibrium. Further considerations have often resulted in catch targets being
 set lower than the recommended catch limit.
 % Manual done 2020 KFJ
 In the last decade, total catch has
-never exceeded the coast-wide quota, and harvest rates have not exceeded
+never exceeded the coast-wide quota and harvest rates have not exceeded
 the $\Fforty$ target.
 Overall, management appears to be effective at maintaining a sustainable stock
 size, in spite of uncertain stock assessments and a highly dynamic
@@ -217,14 +194,15 @@ small amount of the shore-based allocation is released prior to the opening of
 the main shore-based fishery (May 15). The current allocation agreement,
 effective since 1997, divides the U.S. harvest into tribal (17.5\%) and non-tribal
 (82.5\%, with a small amount set aside for research) components.
+Starting in 1996, the Makah Indian Tribe has conducted a fishery with a specified
+allocation in its ``usual and accustomed fishing area''.
 The non-tribal harvest allocation is divided among
 catcher-processors (34\%), motherships (24\%), and the shore-based fleet
 (42\%). Since 2011, the non-tribal U.S. fishery has been fully rationalized with
 allocations in the form of Individual Fishing Quotas (IFQs)
 to the shore-based sector and group shares to
-cooperatives in the at-sea mothership and catcher-processor sectors. Starting in
-1996, the Makah Indian Tribe has conducted a fishery with a specified
-allocation in its ``usual and accustomed fishing area''. The At-Sea Hake Observer
+cooperatives in the at-sea mothership and catcher-processor sectors.
+The At-Sea Hake Observer
 Program has been monitoring fishing vessel activity since 1975, originally monitoring
 foreign and joint-venture vessels. Observer coverage has been 100\% on all domestic
 vessels since 1991 (including the 2020 and 2021 fishing seasons, despite the COVID-19 pandemic).
@@ -244,8 +222,7 @@ managed with IFQs.
 
 \subsubsection{Management of \fishname\ in Canada}\label{sec:intro-management-canada}
 
-Canadian groundfish managers distribute their portion
-(usually \Sexpr{can.allotment.percent}\%) of the TAC as quota to
+Canadian groundfish managers distribute their portion of the coast-wide TAC as quota to
 individual license holders. In \Sexpr{last.data.yr}, Canadian hake fishermen
 were allocated a TAC of \Sexpr{last.year.can.tac}~t, including
 \Sexpr{last.year.can.carryover}~t of uncaught carryover fish from
@@ -254,22 +231,21 @@ when there is determined to be an excess of fish for which there is not enough
 domestic processing capacity, fisheries managers give consideration to a
 Joint-Venture fishery in which foreign processor vessels are allowed to accept
 codends from Canadian catcher vessels while at sea.
-% Manual done 2021 CJG
 The last year a Joint-Venture fishery was conducted was in \Sexpr{latest.year.can.jv}.
 
 In \Sexpr{last.data.yr}, all Canadian \fishname\ trips were subject to 100\%
 observer coverage, by electronic monitoring for the shoreside component
 of the domestic fishery or on-board observer for the freezer-trawler
 component. However, due to the staffing issues, there were no observers available to
-board freezer trawler vessels for the entirety of the hake fishing season. All
-shoreside hake landings are usually subject to 100\% verification by the groundfish
-Dockside Monitoring Program (DMP), but these were also impacted by staffing
-issues and only four samples were taken.
+board freezer trawler vessels for the entirety of the fishing season. All
+shoreside landings are usually subject to 100\% verification by the groundfish
+Dockside Monitoring Program (DMP) because of staffing
+issues only four samples were taken.
 
 Retention of all catch,
 with the exception of prohibited species, was mandatory. The retention of
 groundfish other than Sablefish, Mackerel, Walleye Pollock, and Pacific Halibut
-on non-observed (but electronically monitored) dedicated \fishname\ trips was
+on dedicated \fishname\ trips using electronic monitoring was
 not allowed to exceed 10\% of the landed catch weight. The bycatch allowance for
 Walleye Pollock was 30\% of the total landed weight.
 
@@ -277,20 +253,17 @@ Walleye Pollock was 30\% of the total landed weight.
 
 The fishery for the coastal population of \fishname\ occurs along the coasts of
 northern California, Oregon, Washington, and British Columbia primarily during
-May-November. The fishery is conducted with mid-water trawls and has met the Marine
+May-November \citep{JTC2013}. The fishery is conducted with mid-water trawls and has met the Marine
 Stewardship Council (MSC) Fisheries Standard to be certified as meeting sustainable
 fishing benchmarks since 2009. Foreign fleets
 dominated the fishery until 1991, when domestic fleets began taking the majority
 of the catch. Catches were occasionally greater than 200,000~t prior to 1986,
 and since then they have been greater than 200,000~t for all except
-\Sexpr{catches.below.200000.since.1986} years. A more detailed description of
-the history of the fishery is provided by \citet{JTC2013}.
+\Sexpr{catches.below.200000.since.1986} years.
 
-% The \fishname\ stock is of huge commercial value.
-In 2020, \fishname\ was Canada's largest commercial wild fishery (species
-with the largest catch), representing 14\% of Canada's total landings of all species
-\href{https://www.dfo-mpo.gc.ca/stats/commercial/land-debarq/sea-maritimes/s2020pq-eng.htm}{(click
-  for reference)}. % It's too long to fit well on page
+In 2020, \fishname\ was Canada's largest commercial wild fishery,
+representing 14\% of Canada's total landings of all species
+\href{https://www.dfo-mpo.gc.ca/stats/commercial/land-debarq/sea-maritimes/s2020pq-eng.htm}{(www.dfo-mpo.gc.ca)}.
 Over CA\$26~million in wages was estimated to have been paid to employees of the
 processing industry in British Columbia in 2019, with an exported value of
 CA\$100~million in product mainly
@@ -305,7 +278,7 @@ on catcher-processor vessels, and workers on mothership vessels. The exported va
 US\$151~million in 2019, including to Ukraine, Nigeria, and Netherlands, which make up about 54\% of the total
 % (\href{https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321:::::}
 (https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321).
-The total economic impact of the whiting fishery on the U.S. West Coast in 2019 was
+The total economic impact of the \fishname\ fishery on the U.S. West Coast in 2019 was
 US\$311~million in income and 4,200 jobs.
 
 \subsubsection{Overview of the fisheries in \Sexpr{last.data.yr}}\label{sec:intro-fisheries-overview}
@@ -426,11 +399,11 @@ it has been in recent years because of high catch rates
 \subsubsub{Canada}
 
 The \Sexpr{last.data.yr} Canadian \fishname\ domestic fishery removed
-\Sexpr{last.year.can.landings}~t from Canadian waters, which was
+\Sexpr{last.year.can.landings}~t from Canadian waters (Table~\ref{tab:intro-catches-Can}), which was
 \Sexpr{last.year.can.attained}\% of the Canadian TAC of
 \Sexpr{last.year.can.tac}~t. The attainment for Canada appears much lower than usual, due
 to the fishing vessels having a difficult time finding fish in Canadian waters. The
-Canadian report from the Advisory panel explains this in more detail (Appendix~\ref{chap:canada-fishery-report}).
+Canadian report from the Advisory Panel explains this in more detail (Appendix~\ref{chap:canada-fishery-report}).
 %The attainment for Canada appears much higher than usual,
 %due to Canadian managers setting a lower Canadian TAC than what would have been allotted
 %using the usual method which is calculated as \Sexpr{can.allotment.percent}\% of a
@@ -449,9 +422,8 @@ The fish caught in Canada appeared to
 be mostly from one age class (approximately 800 grams body weight), with very few smaller fish
 (less than 500 grams) caught.
 
-Usually the most abundant age classes found in the freezer trawler catch are listed here,
-but due staffing issues with observers there were no observers on board in 2021, so there were no age samples taken
-and therefore no representation of year-class composition from the freezer trawlers.
+Usually the most abundant age classes found in the freezer-trawler catch are listed here.
+Unfortunately, no trips were observed due staffing issues, leading to no age samples.
 %
 % The most abundant year classes (by numbers) in the Canadian freezer-trawler
 % catch were age
@@ -463,25 +435,12 @@ and therefore no representation of year-class composition from the freezer trawl
 % \Sexpr{third.freezer.trawler.age.prop}\%, and age
 % \Sexpr{fourth.freezer.trawler.age.prop.age} at
 % \Sexpr{fourth.freezer.trawler.age.prop}\%.
-
-Although there were four samples taken from the Shoreside fleet, only one sample was received in time for ageing
+Although there were four samples taken from the shoreside fleet, only one sample was received in time for ageing
 for this year's assessment.
 
 The most abundant year classes in the
-Canadian Shoreside catch were age \Sexpr{max.shoreside.age.prop.age} at
+Canadian shoreside catch were age \Sexpr{max.shoreside.age.prop.age} at
 \Sexpr{max.shoreside.age.prop}\%, age \Sexpr{second.shoreside.age.prop.age} at
 \Sexpr{second.shoreside.age.prop}\%, age \Sexpr{third.shoreside.age.prop.age} at
 \Sexpr{third.shoreside.age.prop}\%, and age
 \Sexpr{fourth.shoreside.age.prop.age} at \Sexpr{fourth.shoreside.age.prop}\%.
-
-For an overview of Canadian catch by year and fleet, see
-Table~\ref{tab:intro-catches-Can}. For
-some years
-% \Sexpr{years.Can.JV.catch.eq.0.recent[-length(years.Can.JV.catch.eq.0.recent)]}
-% and
-% \Sexpr{years.Can.JV.catch.eq.0.recent[length(years.Can.JV.catch.eq.0.recent)]}
-there was no Joint-Venture fishery operating in Canada, as reflected
-by the relevant zeros in Table~\ref{tab:intro-catches-Can}.
-
-For further details see the report from the Canadian Advisory Panel
-(Appendix~\ref{chap:canada-fishery-report}).
