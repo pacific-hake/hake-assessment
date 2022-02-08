@@ -7,10 +7,10 @@ passwd -d cgrandin
 usermod -a -G adm cgrandin
 usermod -a -G wheel cgrandin
 # cgrandin - Install AWS CLI
-cd /home/cgrandin
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip -o awscliv2.zip
-./aws/install
+#cd /home/cgrandin
+#curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+#unzip -o awscliv2.zip
+#./aws/install
 
 # Add user aedwards
 useradd -m aedwards

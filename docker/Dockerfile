@@ -2,7 +2,7 @@
 # Used to produce Docker image cgrandin/hake
 # https://hub.docker.com/repository/docker/cgrandin/hake
 
-FROM cgrandin/ss_admb1376cb as ss
+FROM cgrandin/ss_streamline_ss_proced as ss
 LABEL maintainer = "chris.grandin@gmail.com"
 
 FROM rocker/verse:latest
