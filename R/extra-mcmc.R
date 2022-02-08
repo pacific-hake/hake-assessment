@@ -137,9 +137,10 @@ fetch_extra_mcmc <- function(model_path,
   # Selectivity * Weight ------------------------------------------------------
   # TODO: hack of subtracting 1 - See issue #856
   message("Extracting vulnerable biomass...")
-  selwt_ind <- grep(paste0(next_yr - 1, "_1_sel\\*wt"), rep_example)
+  selwt_ind <- grep(paste0(next_yr, "_1_sel\\*wt"), rep_example)
   reps_selwt <- map(reps, ~{.x[selwt_ind]})
-  selwt <- extract_rep_table(reps_selwt, sel_header) %>%
+  selwt <- extract_rep_table(reps_selwt, sel_header)
+  selwt <- selwt %>%
     select(-c("Factor",
               "Fleet",
               "Seas",
@@ -147,7 +148,7 @@ fetch_extra_mcmc <- function(model_path,
               "Morph",
               "Label")) %>%
     map_df(as.numeric) %>%
-    dplyr::filter(Yr == next_yr - 1) %>%
+    dplyr::filter(Yr == next_yr) %>%
     select(-c(Iter, Yr))
 
   # Dynamic B0 ----------------------------------------------------------------
