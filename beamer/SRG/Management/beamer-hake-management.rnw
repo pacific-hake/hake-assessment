@@ -131,7 +131,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 	  \bi
 	    \item March \Sexpr{last.assess.yr}
       \bi
-        \item Default harvest TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Assessment TAC`)} t
+        \item Default harvest TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Default HCR TAC`)} t
         \item Sum of unilateral TACs = \Sexpr{last.year.tac} t
       \ei
       \item When default HR suggests a large catch, TAC is often set less
