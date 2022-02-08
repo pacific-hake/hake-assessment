@@ -82,6 +82,43 @@ run_adnuts <- function(path,
     modify_starter_mcmc_type(mcmc_path, 1)
   }
 
+  rdata_file <- file.path(mcmc_path, "hake.Rdata")
+
+  # First optimize the model to make sure the Hessian is good (and optimize without
+  # bias adjustment turned on - i.e., mcmc used)
+  system_(paste0("cd ", path, " && ", exe,  " -nox -iprint 200 -mcmc 15"))
+
+  # Then run parallel RWM chains as a first test to ensure
+  # mcmc itself is working properly, or that model is converging in mcmc space
+  # Start chains from MLE
+  pilot <- sample_rwm(model = exe,
+                      iter = iter,
+                      thin = 10,
+                      seeds = seeds,
+                      init = NULL,
+                      chains = 100 * 10, # 100 * thin
+                      warmup = (100 * 10) / 4,  # chains / 4
+                      path = pth,
+                      cores = reps)
+  if(check_issues){
+    # Check convergence and slow mixing parameters
+    save(list = ls(all.names = TRUE), file = rdata_file, envir = environment())
+    mon <- monitor(pilot$samples,
+                   warmup = pilot$warmup,
+                   print = FALSE)
+    # max(mon[,'Rhat'])
+    # min(mon[,'n_eff'])
+    # Examine the slowest mixing parameters
+    slow <- names(sort(mon[,"n_eff"]))[1:8]
+    pairs_admb(fit = pilot, pars = slow)
+    pairs_admb(fit = pilot, pars = c("MGparm[1]", "SR_parm[1]", "SR_parm[2]"))
+  }
+  # After regularizing run NUTS chains. First re-optimize to get the
+  # correct mass matrix for NUTS. Note the -hbf 1 argument. This is a
+  # technical requirement b/c NUTS uses a different set of bounding
+  # functions and thus the mass matrix will be different.
+  system_(paste0("cd ", path, " && ", exe,  " -hbf 1 -nox -iprint 200 -mcmc 15"))
+
   if(run_mle){
     system_(paste0("cd ", path, " && ", exe))
     if(hess_step){
@@ -112,7 +149,6 @@ run_adnuts <- function(path,
                           hess_step = hess_step)
   # Check for issues like slow mixing, divergences, max tree depths with
   # ShinyStan and pairs_admb as above. Fix using the shiny app and rerun this part as needed.
-  rdata_file <- file.path(mcmc_path, "hake.Rdata")
   if(check_issues){
     save(list = ls(all.names = TRUE), file = rdata_file, envir = environment())
     launch_shinyadmb(nuts_mle)
