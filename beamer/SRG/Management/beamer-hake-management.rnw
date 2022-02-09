@@ -618,7 +618,7 @@ decision_table(base.model,
 %% }
 
 % -----------------------------------------------------------------------------%
-\section{With Age-1 Index}
+\section{Without Age-1 Index}
 \subsection{}
 \begin{frame}
 \frametitle{Base model projections}
@@ -635,7 +635,11 @@ make.forecast.depletion.comparison.plot(base.model,
                                         model.end.yr = end.yr,
                                         end.yr = forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft",
-                                        ylim = c(0, 1.03))
+                                        ylimAdj = 1.018) # you can only scale ylim,
+                                          # not set it unfortunately, in
+                                          # SSplotComparisons, so change here
+                                          # so this fig has same y-axis as next
+
 par <- oldpar
 @
 \end{center}
@@ -644,7 +648,7 @@ par <- oldpar
 
 % -----------------------------------------------------------------------------%
 \begin{frame}
-\frametitle{Age-1 index projections}
+\frametitle{Projections without Age-1 index}
 \begin{center}
 <<age1.sensitivity.proj, fig.height=3.5>>=
 oldpar <- par()
@@ -658,7 +662,7 @@ make.forecast.depletion.comparison.plot(sens.models.2[[1]],
                                         model.end.yr = end.yr,
                                         end.yr = forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft",
-                                        ylim = c(0, 0.95))
+                                        ylimAdj = 1)
 par <- oldpar
 @
 \end{center}
