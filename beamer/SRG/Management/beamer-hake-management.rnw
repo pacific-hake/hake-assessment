@@ -131,8 +131,8 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 	  \bi
 	    \item March \Sexpr{last.assess.yr}
       \bi
-        \item Default median HR TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Default HCR TAC`)} t
-        \item Sum of unilateral TACs = \Sexpr{last.year.tac} t
+        \item Default median HR TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Default HCR TAC`)}~t
+        \item Sum of unilateral TACs = \Sexpr{last.year.tac}~t
       \ei
       \item When default HR suggests a large catch, TAC is often set less
       \item Catches are often less than the TAC
@@ -303,14 +303,22 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
   \end{column}
   \begin{column}{0.65\textwidth}
   <<decisions.biomass.table, results='asis', echo=FALSE>>=
-    make.decision.table.pres(base.model,
-                             models.inds,
+  decision_table(base.model,
+#                             models.inds,
                              xcaption = NULL,
                              xlabel = "tab:es-decisions-spr",
                              font.size = 8,
                              space.size = 10,
                              type = "biomass",
                              placement = "h")
+  %% make.decision.table.pres(base.model,
+  %%                            models.inds,
+  %%                            xcaption = NULL,
+  %%                            xlabel = "tab:es-decisions-spr",
+  %%                            font.size = 8,
+  %%                            space.size = 10,
+  %%                            type = "biomass",
+  %%                            placement = "h")
 @
 
   \end{column}

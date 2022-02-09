@@ -19,7 +19,7 @@ decision_table <- function(model,
                            placement  = "H"){
 
   if(type != "biomass" & type != "spr"){
-    stop("make.decisions.table: Error - type '",
+    stop("decision_table: Error - type '",
          type,
          "' is not implemented. Stopping...\n\n")
   }
