@@ -24,12 +24,14 @@ for model in ${models[@]}; do
   (trap 'kill 0' SIGINT; \
   echo "Running mceval for $model in parallel in a subshell"; \
   echo; \
-  cd /home/cgrandin/hake-assessment/hakestore/models/$model/mcmc; \
+  cp /home/cgrandin/hake-assessment/hakestore/models/$model/mcmc/* /home/cgrandin/hake-assessment/models/$model/mcmc; \
+  cd /home/cgrandin/hake-assessment/models/$model; \
   /usr/bin/ss/ss -mceval; \
-  Rscript -e " \
-  setwd(here::here()); \
-  source('R/all.R'); \
-  build_rds('$model', '/home/cgrandin/hake-assessment/models');" > /dev/null 2>&1; \
   echo; \
-  echo "$model MCeval complete") &
+  echo "$model MCeval complete"; \
+  rm -rf ~/hake-assessment/hakestore/$MODELS_DIR/$model/mcmc; \
+  cp -r ~/hake-assessment/$MODELS_DIR/$model/mcmc ~/hake-assessment/hakestore/$MODELS_DIR; \
+  echo; \
+  echo "Copied $model model output to S3 storage") &
+
 done

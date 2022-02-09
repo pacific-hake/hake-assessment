@@ -25,14 +25,19 @@ models=(2022.01.01_newSSexe \
 for model in ${models[@]}; do
   (trap 'kill 0' SIGINT; \
   echo "Running mceval for $model in parallel in a subshell"; \
-  echo; \
-  cd /home/cgrandin/hake-assessment/hakestore/models/$model/mcmc; \
+  cp /home/cgrandin/hake-assessment/hakestore/models/$model/mcmc/* /home/cgrandin/hake-assessment/models/$mode/mcmc; \
+  cd /home/cgrandin/hake-assessment/models/$model/mcmc; \
   /usr/bin/ss/ss -mceval; \
   Rscript -e " \
   setwd(here::here()); \
   source('R/all.R'); \
-  build_rds('$model', '/home/cgrandin/hake-assessment/models');" > /dev/null 2>&1; \
+  build_rds('$model');" > /dev/null 2>&1; \
   echo; \
-  echo "$model MCeval complete") &
+  echo "$model MCeval complete"; \
+  rm -rf ~/hake-assessment/hakestore/$MODELS_DIR/$model/mcmc/sso; \
+  cp -r ~/hake-assessment/$MODELS_DIR/$model/mcmc/sso ~/hake-assessment/hakestore/$MODELS_DIR/mcmc; \
+  echo; \
+  echo "Copied $model model output to S3 storage") &
+
 done
 
