@@ -288,41 +288,27 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 
 \subsection{Spawning Biomass}
 \frame{\frametitle{Relative Spawning Biomass}
-\begin{columns}
-  \begin{column}{0.33\textwidth}
-    \bi
-      % \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end.yr} (35\%)
-      \item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
-        for all non-zero catch levels (continued decline of large 2010 and 2014 cohorts)
-        % Commenting in 2021, think should just talk about probs
-        % \bi
-        % \item Median is > $B_{40\%}$ for all **2021 catch
-        % \item Median goes below $B_{40\%}$ in **2022 between d and e
-        % \ei
-    \ei
-  \end{column}
-  \begin{column}{0.65\textwidth}
+%\begin{columns}
+%  \begin{column}{0.33\textwidth}
+%    \bi
+%      % \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end.yr} (35\%)
+%      \item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
+%        for all non-zero catch levels (continued decline of large 2010 and 2014 cohorts)
+%    \ei
+%  \end{column}
+%  \begin{column}{0.65\textwidth}
   <<decisions.biomass.table, results='asis', echo=FALSE>>=
   decision_table(base.model,
-#                             models.inds,
                              xcaption = NULL,
                              xlabel = "tab:es-decisions-spr",
                              font.size = 8,
                              space.size = 10,
                              type = "biomass",
-                             placement = "h")
-  %% make.decision.table.pres(base.model,
-  %%                            models.inds,
-  %%                            xcaption = NULL,
-  %%                            xlabel = "tab:es-decisions-spr",
-  %%                            font.size = 8,
-  %%                            space.size = 10,
-  %%                            type = "biomass",
-  %%                            placement = "h")
+                             placement = "h",
+                             presentation = TRUE)
 @
-
-  \end{column}
-\end{columns}
+%  \end{column}
+%\end{columns}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

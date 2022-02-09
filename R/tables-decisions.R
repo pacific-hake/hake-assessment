@@ -1,4 +1,4 @@
-#' Make the Executive Summary decision tables
+#' Make the Executive Summary decision tables. rows2Label needs changing each year.
 #'
 #' @param model An mcmc run, `model$mcmc` is the output of the [r4ss::SSgetMCMC()]
 #' @param xcaption Caption to appear in the calling document
@@ -7,7 +7,10 @@
 #' @param space.size Size of the vertical spaces for the table
 #' @param type Type to build. `biomass` or `spr`
 #' @param placement Latex code for placement of table
-#'
+#' @param presentation Logical indicating shorter table for management
+#'   presentation (default is for document)
+#' @param first.streams number of catch streams (from 1 to first.streams) to
+#'   show if presentation = TRUE
 #' @return The latex code needed to build the table
 #' @export
 decision_table <- function(model,
@@ -16,14 +19,18 @@ decision_table <- function(model,
                            font.size  = 9,
                            space.size = 10,
                            type      = "biomass",
-                           placement  = "H"){
+                           placement  = "H",
+                           presentation = FALSE,
+                           first.streams = 5){
 
   if(type != "biomass" & type != "spr"){
     stop("decision_table: Error - type '",
          type,
          "' is not implemented. Stopping...\n\n")
   }
+
   forecast <- model$forecasts[[length(model$forecasts)]]
+
   if(type == "biomass"){
     num.rows <- nrow(forecast[[1]]$biomass) - 1
     table.header <- latex.bold("Resulting relative spawning biomass")
@@ -180,8 +187,17 @@ decision_table <- function(model,
   }
   # Add the right number of horizontal lines to make the table break in the
   #  correct places
-  # A line is not needed at the bottom explains (length(forecast)-1).
-  for(i in 1:(length(forecast) - 1)){
+  # A line is not needed at the bottom explains (length(forecast)-1) in the loop.
+  # Tweaking to just first five catch streams for presentation
+  if(!presentation){   # use all for doc
+    length_forecast <- length(forecast)
+  } else {             # just use the first first.streams for presentation
+    length_forecast <- first.streams
+    forecast.tab <- forecast.tab <- forecast.tab[1:(3 * first.streams), ]
+    addtorow$pos[[2]] <- nrow(forecast.tab)
+  }
+
+  for(i in 1:(length_forecast - 1)){
     addtorow$pos[[i + 2]] <- i * num.rows
     addtorow$command <- c(addtorow$command, latex.hline)
   }
