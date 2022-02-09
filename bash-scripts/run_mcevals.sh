@@ -12,7 +12,6 @@ models=(2022.01.01_newSSexe \
         2022.01.18_sigmR_fix_high \
         2022.01.20_M_0.2SD \
         2022.01.21_M_0.3SD \
-        2022.01.22_M_hamel_prior \
         2022.01.24_compWeight_HarmonicMean \
         2022.01.27_tvSelect_phi_extralow \
         2022.01.28_tvSelect_phi_low \
@@ -25,11 +24,11 @@ models=(2022.01.01_newSSexe \
 for model in ${models[@]}; do
   (trap 'kill 0' SIGINT; \
   echo "Running mceval for $model in parallel in a subshell"; \
-  mkdir /home/cgrandin/hake-assessment/models/$model/mcmc; \
-  mkdir /home/cgrandin/hake-assessment/$MODELS_DIR/$model/mcmc/sso; \
-  cp /home/cgrandin/hake-assessment/hakestore/$MODELS_DIR/$model/* /home/cgrandin/hake-assessment/$MODELS_DIR/$model; \
-  cp /home/cgrandin/hake-assessment/hakestore/models/$model/mcmc/* /home/cgrandin/hake-assessment/models/$mode/mcmc; \
-  cd /home/cgrandin/hake-assessment/models/$model/mcmc; \
+  mkdir ~/hake-assessment/models/$model/mcmc; \
+  mkdir ~/hake-assessment/$MODELS_DIR/$model/mcmc/sso; \
+  cp ~/hake-assessment/hakestore/$MODELS_DIR/$model/* ~/hake-assessment/$MODELS_DIR/$model; \
+  cp ~/hake-assessment/hakestore/models/$model/mcmc/* ~/hake-assessment/models/$model/mcmc; \
+  cd ~/hake-assessment/models/$model/mcmc; \
   /usr/bin/ss/ss -mceval; \
   Rscript -e " \
   setwd(here::here()); \
@@ -37,8 +36,7 @@ for model in ${models[@]}; do
   build_rds('$model');" > /dev/null 2>&1; \
   echo; \
   echo "$model MCeval complete"; \
-  rm -rf ~/hake-assessment/hakestore/$MODELS_DIR/$model/mcmc/sso; \
-  cp -r ~/hake-assessment/$MODELS_DIR/$model/mcmc/sso ~/hake-assessment/hakestore/$MODELS_DIR/mcmc; \
+  cp ~/hake-assessment/$MODELS_DIR/$model/$model.rds ~/hake-assessment/hakestore/$MODELS_DIR/$model; \
   echo; \
   echo "Copied $model model output to S3 storage") &
 
