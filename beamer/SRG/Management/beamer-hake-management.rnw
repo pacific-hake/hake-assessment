@@ -297,15 +297,15 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 %    \ei
 %  \end{column}
 %  \begin{column}{0.65\textwidth}
-  <<decisions.biomass.table, results='asis', echo=FALSE>>=
-  decision_table(base.model,
-                             xcaption = NULL,
-                             xlabel = "tab:es-decisions-spr",
-                             font.size = 8,
-                             space.size = 10,
-                             type = "biomass",
-                             placement = "h",
-                             presentation = TRUE)
+<<decisions.biomass.table, results='asis', echo=FALSE>>=
+decision_table(base.model,
+               xcaption = NULL,
+               xlabel = "tab:es-decisions-spr",
+               font.size = 8,
+               space.size = 10,
+               type = "biomass",
+               placement = "h",
+               presentation = TRUE)
 @
 %  \end{column}
 %\end{columns}
@@ -316,12 +316,15 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 % \subsection{Risk}
 \frame{\frametitle{Probability table definitions}
   Probabilities associated with biomass and fishing-based metrics for different fixed catch levels
-  (see Executive Summary: Tables i and j; Figures j and k)
+  (see Executive Summary: Tables i, j, and k; Figures k, l, and m)
   \bi
-    \item Fix catch in \Sexpr{assess.yr} to estimate $B_{\Sexpr{assess.yr + 1}}$
-    \item Fix catch in \Sexpr{assess.yr} and \Sexpr{assess.yr + 1} to estimate $B_{\Sexpr{assess.yr + 2}}$
-    \item P($B_x < B_y$): Probability that biomass in forecasted year
-      is less than specified biomass
+    \item Fix the catch in \Sexpr{assess.yr} to estimate $B_{\Sexpr{assess.yr + 1}}$
+    \item Fix the catches in \Sexpr{assess.yr} and \Sexpr{assess.yr + 1} to estimate $B_{\Sexpr{assess.yr + 2}}$
+    \item Fix the catches in \Sexpr{assess.yr}, \Sexpr{assess.yr + 1},
+      and \Sexpr{assess.yr + 2} to estimate $B_{\Sexpr{assess.yr + 3}}$
+    \item P($B_{\Sexpr{assess.yr + 1}} < B_y$): Probability that biomass in \Sexpr{assess.yr + 1}
+      is less a specified biomass\\
+      such as $B_{\Sexpr{assess.yr}}$ or $\Bforty$
     \item P(relative FI > 100\% target): Probability that relative fishing intensity in fixed catch
       year is greater than the target fishing intensity
     %Only last column of table refers to catches, and is spelt out in words
@@ -337,8 +340,8 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
                       forecast_yrs,
                       index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                       xcaption = NULL,
-                      font.size = 10,
-                      space.size = 11)
+                      font.size = 9,
+                      space.size = 9)
     @
 }
 
@@ -360,20 +363,20 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 }
 
 %--------------------------------------------------------------
-\frame{\frametitle{Probabilities based on \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} and \Sexpr{end.yr+1} catches}
     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast_yrs,
                       index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                       xcaption = NULL,
-                      font.size = 10,
-                      space.size = 11)
+                      font.size = 9,
+                      space.size = 9)
     @
 }
 
 %--------------------------------------------------------------
 
-\frame{\frametitle{Probabilities based on \Sexpr{end.yr} and \Sexpr{end.yr+1} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr} and \Sexpr{end.yr+1} catches}
   \bc
     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
       make.forecast.risk.comparison.plot(base.model,
@@ -384,6 +387,36 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
                                          legend.loc = "topleft",
                                          legend.cex = 0.7)
 
+    @
+  \ec
+}
+
+%--------------------------------------------------------------
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr}, \Sexpr{end.yr+1},
+    and \Sexpr{end.yr+2} catches}
+    <<main.risk.forecast.year.3.table, results='asis', echo=FALSE>>=
+      make.risk.table(base.model,
+                      forecast_yrs,
+                      index = 3, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                      xcaption = NULL,
+                      font.size = 9,
+                      space.size = 9)
+    @
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Probabilities based on \Sexpr{end.yr}, \Sexpr{end.yr+1},
+    and \Sexpr{end.yr+2} catches}
+  \bc
+    <<forecast.risk.comparison.plot.year.3, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+      make.forecast.risk.comparison.plot(base.model,
+                                         forecast_yrs = forecast_yrs,
+                                         fore.yr = forecast_yrs[3],
+                                         colors = c("black","blue","green","orange","red","tan"),
+                                         pch = c(16,17,17,17,15,18),
+                                         legend.loc = "topleft",
+                                         legend.cex = 0.7)
     @
   \ec
 }
