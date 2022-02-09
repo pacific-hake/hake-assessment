@@ -25,7 +25,7 @@ models=(2022.01.01_newSSexe \
 for model in ${models[@]}; do
   (trap 'kill 0' SIGINT; \
   echo "Running mceval for $model in parallel in a subshell"; \
-  mkdir /home/cgrandin/hake-assessment/models/$mode/mcmc; \
+  mkdir /home/cgrandin/hake-assessment/models/$model/mcmc; \
   mkdir /home/cgrandin/hake-assessment/$MODELS_DIR/$model/mcmc/sso; \
   cp /home/cgrandin/hake-assessment/hakestore/$MODELS_DIR/$model/* /home/cgrandin/hake-assessment/$MODELS_DIR/$model; \
   cp /home/cgrandin/hake-assessment/hakestore/models/$model/mcmc/* /home/cgrandin/hake-assessment/models/$mode/mcmc; \
