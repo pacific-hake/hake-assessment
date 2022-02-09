@@ -20,13 +20,16 @@ models=(2022.01.01_newSSexe \
         2022.01.43_maxSel_Age5 \
         2022.01.44_maxSel_Age7 \
         2022.01.45_maxSel_Age8 \
-        2022.01.100_zerosumcontraint))
+        2022.01.100_zerosumcontraint)
 
 for model in ${models[@]}; do
   (trap 'kill 0' SIGINT; \
   echo "Running mceval for $model in parallel in a subshell"; \
-  cp /home/cgrandin/hake-assessment/hakestore/$MODELS_DIR/$model/mcmc/* /home/cgrandin/hake-assessment/$MODELS_DIR/$model/mcmc; \
-  cd /home/cgrandin/hake-assessment/$MODELS_DIR/$model/mcmc; \
+  mkdir /home/cgrandin/hake-assessment/models/$mode/mcmc; \
+  mkdir /home/cgrandin/hake-assessment/$MODELS_DIR/$model/mcmc/sso; \
+  cp /home/cgrandin/hake-assessment/hakestore/$MODELS_DIR/$model/* /home/cgrandin/hake-assessment/$MODELS_DIR/$model; \
+  cp /home/cgrandin/hake-assessment/hakestore/models/$model/mcmc/* /home/cgrandin/hake-assessment/models/$mode/mcmc; \
+  cd /home/cgrandin/hake-assessment/models/$model/mcmc; \
   /usr/bin/ss/ss -mceval; \
   Rscript -e " \
   setwd(here::here()); \
@@ -35,8 +38,7 @@ for model in ${models[@]}; do
   echo; \
   echo "$model MCeval complete"; \
   rm -rf ~/hake-assessment/hakestore/$MODELS_DIR/$model/mcmc/sso; \
-  cp -r ~/hake-assessment/$MODELS_DIR/$model/mcmc/sso ~/hake-assessment/hakestore/$MODELS_DIR/$model/mcmc; \
-  cp ~/hake-assessment/$MODELS_DIR/$model/$model.rds ~/hake-assessment/hakestore/$MODELS_DIR/$model; \
+  cp -r ~/hake-assessment/$MODELS_DIR/$model/mcmc/sso ~/hake-assessment/hakestore/$MODELS_DIR/mcmc; \
   echo; \
   echo "Copied $model model output to S3 storage") &
 
