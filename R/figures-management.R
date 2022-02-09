@@ -143,7 +143,7 @@ management_catch_vs_tac_1_to_1 <- function(d,
   abline(a = 0,
          b = 1,
          col = gray(0.5))
-  title(xlab = "TAC from harvest rule (thousand t)",
+  title(xlab = "Median TAC from harvest rule (thousand t)",
         mgp = c(2.1, 1, 0),
         cex.lab = 1.1)
   title(ylab = "Catch or TAC (1,000 t)",

@@ -92,7 +92,7 @@ forecasts <- base.model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
 ## models.inds are the indices of those which will be plotted against each other
 ## next 2 lines copied from executive-summary.rnw  (manual 2017)
-models.inds <- c(1, 2, 4, 5, catch.default.policy.ind)
+models.inds <- c(1, 2, 6, 12, catch.default.policy.ind)
 models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty catch level name
 
 @
@@ -131,7 +131,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 	  \bi
 	    \item March \Sexpr{last.assess.yr}
       \bi
-        \item Default harvest TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Default HCR TAC`)} t
+        \item Default median HR TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Default HCR TAC`)} t
         \item Sum of unilateral TACs = \Sexpr{last.year.tac} t
       \ei
       \item When default HR suggests a large catch, TAC is often set less
@@ -179,12 +179,13 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 \subsection{Methods}
 \frame{\frametitle{Forecast methods}
   \bi
-    \item Forecasts estimate biomass at start of \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
+    \item Forecasts estimate the biomass at start
+      of \Sexpr{end.yr+1}, \Sexpr{end.yr+2}, and \Sexpr{end.yr+3}
     \bi
       \item Mean of fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
       \item Mean of weight-at-age from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
       \item Recruitment from stock-recruit relationship (with uncertain deviations)
-      \item Used for default catch limit calculations
+      \item Used for default HR calculations
       \item Alternative future catch levels explored
     \ei
     \item Equilibrium calculations (\emph{B}\subscr{0}, \emph{F}\subscr{SPR}, MSY, etc.)
@@ -217,15 +218,15 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 \end{columns}
 }
 
-\frame{\frametitle{Two-year forecasts}
+\frame{\frametitle{Three-year forecasts}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item No fishing results in relatively constant \emph{median} relative
-        spawning biomass from \Sexpr{assess.yr} to \Sexpr{assess.yr+1} then
-        slight increase
-      \item All other catch streams result in decreases in the median
-      \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr+2}
+      \item No fishing results in increase in \emph{median} relative
+        spawning biomass from \Sexpr{assess.yr} to \Sexpr{assess.yr+2} then
+        levelling off
+      \item All others shown result in eventual declines in the median
+      \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr+3}
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -248,7 +249,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 \subsection{Intro}
 \frame{\frametitle{Decision Tables}
   \bi
-    \item Decision table format
+    \item Decision table format (as improved last year)
     \bi
       \item Quantiles from the posterior distribution for relative spawning biomass and fishing intensity
       % \item Tables provided for the base model as well as age-1 survey and adnuts sensitivity runs
@@ -256,17 +257,28 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
     \item Catch streams % text and which are gray is all manual, updated 2021
     \bi
       \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
-      \item b. Constant catch of \Sexpr{catch_levels[[2]][[2]]}
-      \item \textcolor{gray}{c. Constant catch of \Sexpr{catch_levels[[3]][[2]]}}
-      \item d. Constant catch (\Sexpr{catch_levels[[4]][[2]]})
-      \item e. Constant catch (\Sexpr{catch_levels[[5]][[2]]})
-      \item \textcolor{gray}{f. Constant catch (\Sexpr{catch_levels[[6]][[2]]})}
-      \item \textcolor{gray}{g. Constant catch (\Sexpr{catch_levels[[7]][[2]]})}
-      \item \textcolor{gray}{h. Fishing Intensity = 100\% in each year
+      \item b, c, d, g, i, k: Constant catches of \Sexpr{catch_levels[[2]][[2]]},
+        \Sexpr{catch_levels[[3]][[2]]},
+        \Sexpr{catch_levels[[4]][[2]]},
+        \Sexpr{catch_levels[[7]][[2]]},
+        \Sexpr{catch_levels[[9]][[2]]}, and
+        \Sexpr{catch_levels[[11]][[2]]}.
+      \item f. Constant catch of \Sexpr{catch_levels[[6]][[2]]},
+      \item l. Constant catch of \Sexpr{catch_levels[[12]][[2]]},
+      \item e, h, j: Annual reductions of 10\% from:
+        \Sexpr{f(catch_levels[[5]][[1]][1])}~t,
+        \Sexpr{f(catch_levels[[8]][[1]][1])}~t, and
+        \Sexpr{f(catch_levels[[10]][[1]][1])}~t.
+%      \item \textcolor{gray}{c. Constant catch of \Sexpr{catch_levels[[3]][[2]]}}
+%      \item d. Constant catch (\Sexpr{catch_levels[[4]][[2]]})
+%      \item e. Constant catch (\Sexpr{catch_levels[[5]][[2]]})
+%      \item \textcolor{gray}{f. Constant catch (\Sexpr{catch_levels[[6]][[2]]})}
+%      \item \textcolor{gray}{m. Constant catch (\Sexpr{catch_levels[[7]][[2]]})}
+      \item \textcolor{gray}{m. Fishing Intensity = 100\% in each year
         conditioned on fixed catch in previous year}
-      \item i. Median default Harvest Rule in each year conditioned on
+      \item n. Median default Harvest Rule in each year conditioned on
         fixed catch in previous year
-      \item \textcolor{gray}{j. Fishing intensity giving 50\% prob.~that the
+      \item \textcolor{gray}{o. Fishing intensity giving 50\% prob.~that the
           median \Sexpr{assess.yr} catch equals median  \Sexpr{assess.yr+1} catch}
     \ei
     % \item More catch streams can be added as determined by SRG/AP/JMC
@@ -585,8 +597,8 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 <<age1.sensitivity.base.proj, fig.height=3.5>>=
 oldpar <- par()
 par(mar = c(20, 4.1, 0, 1))
-models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-models.names <- map_chr(base.model$catch.levels[models.inds], ~{.x[[2]]})
+# models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
+# models.names <- map_chr(base.model$catch.levels[models.inds], ~{.x[[2]]})
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
@@ -608,8 +620,8 @@ par <- oldpar
 <<age1.sensitivity.proj, fig.height=3.5>>=
 oldpar <- par()
 par(mar = c(20, 4.1, 0, 1))
-models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-models.names <- map_chr(sens.models.2[[1]]$catch.levels[models.inds], ~{.x[[2]]})
+# models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
+# models.names <- map_chr(sens.models.2[[1]]$catch.levels[models.inds], ~{.x[[2]]})
 make.forecast.depletion.comparison.plot(sens.models.2[[1]],
                                         models.inds,
                                         models.names,
