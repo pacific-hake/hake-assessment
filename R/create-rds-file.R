@@ -42,14 +42,15 @@ build_rds <- function(model_dirs = model_list,
 #' Create an rds file to hold the model's data and outputs.
 #'
 #' @param model_dir Directory name of model to be loaded
+#' @param models_dir The directory which contains all the model directories
 #'
 #' @return [base::invisible()]
 #' @export
-create_rds_file <- function(model_dir = NULL, ...){
+create_rds_file <- function(model_dir = NULL, models_dir = rootd.models, ...){
 
   stopifnot(!is.null(model_dir))
 
-  model_fullpath <- file.path(rootd.models, model_dir)
+  model_fullpath <- file.path(models_dir, model_dir)
   if(!dir.exists(model_fullpath)){
     stop("Error - the directory ", model_fullpath, " does not exist.\n",
          "Fix the problem and try again.", call. = FALSE)
