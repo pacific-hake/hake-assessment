@@ -426,17 +426,19 @@ decision_table(base.model,
 \frame{\frametitle{Forecast age compositions for \Sexpr{end.yr} fishery catch}
 \begin{columns}
   \begin{column}{0.35\textwidth}
+    Median proportions (by numbers) are:
     \bi
-% This needs to be somewhat manual so you can pick the cohorts to
-% specify - look at fore.catch.prop and see assessment-section.rnw.
-% Increment the ages (not cohort years!) each assessment.
-  \item Dependent on selectivity assumption
-  \item Median proportions (by numbers) are:
-  \item \Sexpr{fore.catch.prop$Age7}\% age-7 fish, 2014 cohort
-  \item \Sexpr{fore.catch.prop$Age5}\% age-5 fish, 2016 cohort
-  \item \Sexpr{fore.catch.prop$Age4}\% age-4 fish, 2017 cohort
-  \item \Sexpr{fore.catch.prop$Age11}\% age-11 fish, 2010 cohort
-    \ei
+    % From assessment-section.rnw using more automated code; check
+    %  that text to see which cohorts we highlighted
+    \item \Sexpr{fore.catch.prop$Age6}\% age-6 fish, \Sexpr{forecast_yrs[1] - 6} cohort,
+    \item \Sexpr{fore.catch.prop$Age2}\% age-2 fish, \Sexpr{forecast_yrs[1] - 2} cohort,
+    \item \Sexpr{fore.catch.prop$Age8}\% age-8 fish, \Sexpr{forecast_yrs[1] - 8} cohort,
+    \item \Sexpr{fore.catch.prop$Age5}\% age-5 fish, \Sexpr{forecast_yrs[1] - 5} cohort,
+    % \Sexpr{fore.catch.prop$Age4}\% age-4 fish from the \Sexpr{forecast_yrs[1] - 4} cohort,
+    % \Sexpr{fore.catch.prop$Age7}\% age-7 fish from the \Sexpr{forecast_yrs[1] - 7} cohort
+    \item \Sexpr{fore.catch.prop$Age12}\% age-12 fish from the large \Sexpr{forecast_yrs[1] - 12} cohort
+    % \Sexpr{fore.catch.prop$Age11}\% age-11 fish from the \Sexpr{forecast_yrs[1] - 11} cohort
+  \ei
   \end{column}
   \begin{column}{0.65\textwidth}
 
