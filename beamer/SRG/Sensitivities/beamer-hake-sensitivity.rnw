@@ -100,18 +100,16 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
         \item Alternative values for steepness ($h$)
         \item Higher standard deviation on prior for natural mortality
         \item Variation on recruitment ($\sigma_r$)
-        \item Alternative data-weighting methods
+        \item Downweight fishery age-composition data
         \item Alternative standard deviations on time-varying selectivity ($\Phi$)
-        \item Include age-1 index
+        \item Remove the age-1 index
         \item Alternative maximum age of selectivity
-        \item Using time-invariant ageing error instead of cohort-based ageing error
-        \item Use of random walk Metropolis Hastings (rwMH) MCMC sampling
         \ei
   \item Retrospectives
         \bi
         \item \Sexpr{length(retrospective_yrs)} years into the past
         \item Cohort determination (`squid plot') for the base model and the age-1 inclusion sensitivity
-        \item Historical assessments: - \Sexpr{assess.yr - 1991 + 1} years
+        \item Historical assessments: \Sexpr{assess.yr - 1991 + 1} years
         \ei
 \end{enumerate}
 \end{frame}
@@ -167,7 +165,7 @@ param_est_table(c(list(base.model),
                 digits = 3,
                 xcaption = NULL,
                 font.size = 6.5,
-                space.size = 7,
+                space.size = 6.5,
                 getrecs = c(2010, 2014, 2016),
                 show_like = FALSE)
 @
@@ -271,9 +269,9 @@ param_est_table(c(list(base.model),
 
 % -----------------------------------------------------------------------------%
 \section{Weighting}
-\subsection{Alternative methods for data weighting}
+\subsection{Downweight fishery age-composition data}
 \begin{frame}
-\frametitle{Alternative methods for data weighting}
+\frametitle{Downweight fishery age-composition data}
 \vspace{5pt}
 \begin{center}
 <<harmonicmean.sensitivity.biomass>>=
@@ -293,7 +291,7 @@ par <- oldpar
 
 % -----------------------------------------------------------------------------%
 \begin{frame}
-\frametitle{Alternative methods for data weighting}
+\frametitle{Downweight fishery age-composition data}
 \vspace{5pt}
 \begin{center}
 <<harmonicmean.sensitivity.biomass.rel>>=
@@ -357,7 +355,7 @@ par <- oldpar
 
 % -----------------------------------------------------------------------------%
 \begin{frame}
-\frametitle{Alternative deviations for selectivity -- Acoustic survey fit}
+\frametitle{Alternative deviations for selectivity -- biomass index fit}
 \begin{center}
 \vspace{5pt}
 <<phi.sensitivity.survey, fig.height=3.5, fig.width=8>>=
@@ -398,8 +396,8 @@ param_est_table(c(list(base.model),
                 end.yr = end.yr,
                 digits = 3,
                 xcaption = NULL,
-                font.size = 7,
-                space.size = 7,
+                font.size = 6.5,
+                space.size = 6.5,
                 getrecs = c(2010, 2014, 2016),
                 show_like = FALSE)
 @
@@ -449,7 +447,7 @@ par <- oldpar
 
 % -----------------------------------------------------------------------------%
 \begin{frame}
-\frametitle{Include age-1 index -- age-1 estimates compared to age-1 index}
+\frametitle{Exclude age-1 index -- age-1 estimates compared to age-1 index}
 \begin{center}
 \vspace{5pt}
 <<age1.sensitivity.age1.fit, fig.height=3.5>>=
@@ -467,7 +465,7 @@ par <- oldpar
 % -----------------------------------------------------------------------------%
 \subsection{Spawning biomass}
 \begin{frame}
-\frametitle{Including age-1 index -- Spawning biomass}
+\frametitle{Excluding age-1 index -- Spawning biomass}
 \begin{center}
 \vspace{5pt}
 <<age1.sensitivity.biomass.a>>=
@@ -506,9 +504,9 @@ par <- oldpar
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
-\subsection{Recruitment}
+% \subsection{Recruitment}
 \begin{frame}
-\frametitle{Including age-1 index -- Recruitment}
+\frametitle{Excluding age-1 index -- Recruitment}
 \begin{center}
 <<age1.sensitivity.recr, fig.height=3.5>>=
 oldpar <- par()
@@ -528,34 +526,34 @@ par <- oldpar
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
-% \subsection{$R_0$ and $B_0$ for age-1 index}
-% \begin{frame}
-% \frametitle{$R_0$ and $B_0$ for age-1 index}
-% <<main-parameter-estimates-sens-1, results='asis', echo=FALSE>>=
-% probs <- c(0.025, 0.5, 0.975)
-% base_bo <- f((quantile(base.model$mcmc$`SSB_Initial`, probs = probs)) / 2e3, 0)
-% age1_bo <- f((quantile(sens.models.2[[1]]$mcmc$`SSB_Initial`, probs = probs)) / 2e3, 0)
-%
-% base_ro <- f((quantile(base.model$mcmc$`SR_LN(R0)`, probs = probs) %>% exp) / 1e3, 0)
-% age1_ro <- f((quantile(sens.models.2[[1]]$mcmc$`SR_LN(R0)`, probs = probs) %>% exp) / 1e3, 0)
-% @
-% \begin{table}[tbp]
-% \centering
-% % \begingroup\fontsize{12}{14}\selectfont
-% \begin{tabular}{lrrr}
-% Quantity & 2.5\% & Median & 97.5\% \\
-% \hline
-% \color{blue}{Base model} & & & \\
-% \alert<1>{$B_0$, thousand t} & \alert<1>{\Sexpr{base_bo[1]}} & \alert<1>{\Sexpr{base_bo[2]}} & \alert<1>{\Sexpr{base_bo[3]}} \\
-% \alert<2>{$R_0$, millions} & \alert<2>{\Sexpr{base_ro[1]}} & \alert<2>{\Sexpr{base_ro[2]}} & \alert<2>{\Sexpr{base_ro[3]}} \\
-% \hline
-% \color{blue}{With age-1 index} & & & \\
-% \alert<1>{$B_0$, thousand t} & \alert<1>{\Sexpr{age1_bo[1]}} & \alert<1>{\Sexpr{age1_bo[2]}} & \alert<1>{\Sexpr{age1_bo[3]}} \\
-% \alert<2>{$R_0$, millions} & \alert<2>{\Sexpr{age1_ro[1]}} & \alert<2>{\Sexpr{age1_ro[2]}} & \alert<2>{\Sexpr{age1_ro[3]}} \\
-% \bottomrule
-% \end{tabular}
-% \end{table}
-% \end{frame}
+% \subsection{$R_0$ and $B_0$ when excluding age-1 index}
+\begin{frame}
+\frametitle{$R_0$ and $B_0$ without age-1 index}
+<<main-parameter-estimates-sens-1, results='asis', echo=FALSE>>=
+probs <- c(0.025, 0.5, 0.975)
+base_bo <- f((quantile(base.model$mcmc$`SSB_Initial`, probs = probs)) / 2e3, 0)
+age1_bo <- f((quantile(sens.models.2[[1]]$mcmc$`SSB_Initial`, probs = probs)) / 2e3, 0)
+
+base_ro <- f((quantile(base.model$mcmc$`SR_LN(R0)`, probs = probs) %>% exp) / 1e3, 0)
+age1_ro <- f((quantile(sens.models.2[[1]]$mcmc$`SR_LN(R0)`, probs = probs) %>% exp) / 1e3, 0)
+@
+\begin{table}[tbp]
+\centering
+% \begingroup\fontsize{12}{14}\selectfont
+\begin{tabular}{lrrr}
+Quantity & 2.5\% & Median & 97.5\% \\
+\hline
+\color{blue}{Base model} & & & \\
+\alert<1>{$B_0$, thousand t} & \alert<1>{\Sexpr{base_bo[1]}} & \alert<1>{\Sexpr{base_bo[2]}} & \alert<1>{\Sexpr{base_bo[3]}} \\
+\alert<2>{$R_0$, millions} & \alert<2>{\Sexpr{base_ro[1]}} & \alert<2>{\Sexpr{base_ro[2]}} & \alert<2>{\Sexpr{base_ro[3]}} \\
+\hline
+\color{blue}{Without age-1 index} & & & \\
+\alert<1>{$B_0$, thousand t} & \alert<1>{\Sexpr{age1_bo[1]}} & \alert<1>{\Sexpr{age1_bo[2]}} & \alert<1>{\Sexpr{age1_bo[3]}} \\
+\alert<2>{$R_0$, millions} & \alert<2>{\Sexpr{age1_ro[1]}} & \alert<2>{\Sexpr{age1_ro[2]}} & \alert<2>{\Sexpr{age1_ro[3]}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
 % -----------------------------------------------------------------------------%
 
 
@@ -564,7 +562,7 @@ par <- oldpar
 \begin{frame}
 \frametitle{Recruitment values}
 <<main-parameter-estimates-sens-1-rec, results='asis', echo=FALSE>>=
-yrs <- c(2010, 2014, 2016, 2017, 2018)
+yrs <- c(2014, 2017, 2018, 2020)
 make_rec_tbl <- function(mc, digits = 3){
   rec <- map(yrs, ~{c(mc$rlower[[as.character(.x)]] * 1e3,
                       mc$rmed[[as.character(.x)]] * 1e3,
@@ -616,7 +614,7 @@ Year & \multicolumn{3}{c}{Absolute recruitment} & \multicolumn{3}{c}{Recruitment
 \color{blue}{Base model} & & & & & & \\
 \Sexpr{base_table}
 \midrule
-\color{blue}{With age-1 index} & & & & & & \\
+\color{blue}{Exclude age-1 index} & & & & & & \\
 \Sexpr{age1_table}
 \bottomrule
 \end{tabular}
