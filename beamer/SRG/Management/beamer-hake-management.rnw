@@ -707,6 +707,141 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 % -----------------------------------------------------------------------------%
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Historical performance}
+\subsection{}
+\frame{\frametitle{Historical performance of the Pacific Hake stock assessment}
+  \bi
+  \item General question -- how `good' are projection probabilities? And why do
+    they seem to change over time?
+\pause
+  \item For example, 2019 assessment Table~i we had:
+  \ei
+\begin{table}[h]
+\begin{tabularx}{0.6\textwidth}{lYY}  %{\textwidth}{lYYYYYY}
+\toprule
+\mlc{\textbf{Catch} \\ \textbf{in 2019}} &
+\mlc{\textbf{Probability} \\ \textbf{B\subscr{2020} < B\subscr{2019}}} &
+\mlc{\textbf{Probability} \\ \textbf{B\subscr{2020} < B\subscr{40\%}}} \\
+\midrule
+  a:       0 & 17\% & 8\% \\
+  b: 180,000 & 40\% & 13\% \\
+  c: 350,000 & 57\% & 17\% \\
+  \red{d: 410,000} & \red{61\%} & \red{19\%} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\pause
+\bi
+  \item Now (since it's \Sexpr{assess.yr}) we `\emph{know}' the 2019 catch was 411,574~t, so row~d was close enough.
+\pause
+\item How do the probabilities in row~d compare to estimates of them from the
+    current base model?
+\ei
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bc
+<<historical.prob.plot.1a, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+make.historical.probs.plot(base.model,
+                           type = "decline.one.year",
+                           add.50 = FALSE)
+@
+\ec
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bc
+<<historical.prob.plot.1c, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+  make.historical.probs.plot(base.model)
+@
+\ec
+}
+
+% ----------------------------------------------------------
+
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bc
+<<historical.prob.plot.1d, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+  make.historical.probs.plot(base.model,
+                             add.projs = TRUE)
+@
+\ec
+}
+
+%----------------------------------------------------------
+
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bi
+  \item{Previous assessments have `correctly' projected an increase or decrease
+      in subsequent year (except 2018)}
+  \item{An assessment's projection is always less definitive than from
+      the current base model (except 2018), since current model has more information}
+  \item{Analysis gives some confidence in the current expectation of
+      unlikely decline next year (except for the highest catch alternatives)}
+\ei
+}
+
+
+%----------------------------------------------------------
+\frame{\frametitle{Spawning Biomass}
+  \bc
+  <<spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+  make.biomass.plot(base.model,
+                    equil.yr = unfished.eq.yr,
+                    start.yr = start.yr,
+                    end.yr = end.yr,
+                    color = "blue")
+  @
+  \ec
+}
+
+% --------------------------------------------------------------
+\frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
+\bc
+<<historical.prob.plot.2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+  make.historical.probs.plot(base.model,
+                             type = "bforty")
+@
+\ec
+}
+
+\frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
+\bc
+<<historical.prob.plot.2b, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+  make.historical.probs.plot(base.model,
+                             type = "bforty",
+                             add.projs = TRUE)
+@
+\ec
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{}
+\frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
+  \bi
+  \item{Previous assessments have `correctly' projected not falling below $\Bforty$ in
+      all years, except 2012 (presumably due to unknown huge 2010 recruitment)}
+  \item{Caveat: that's not a particularly high bar to meet, given the stock was
+      high from 2013 onwards
+  \item{Given uncertainty in most recent recruitments, assessments always give some small probability of
+      falling below $\Bforty$; current model says that's (in hindsight) even more unlikely}
+  \item{Analysis gives some confidence in the current expectation of remaining
+      above $\Bforty$.}
+  \ei
+
+~\\
+
+Overall, we estimate probabilities of future events, and these results give some idea of the
+confidence we can have in those probabilities.
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary}
 \subsection{}
