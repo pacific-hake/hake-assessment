@@ -810,6 +810,7 @@ make.historical.probs.plot(base.model,
 \ec
 }
 
+% --------------------------------------------------------------
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
 \bc
 <<historical.prob.plot.2b, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
@@ -825,20 +826,42 @@ make.historical.probs.plot(base.model,
 \subsection{}
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
   \bi
-  \item{Previous assessments have `correctly' projected not falling below $\Bforty$ in
-      all years, except 2012 (presumably due to unknown huge 2010 recruitment)}
-  \item{Caveat: that's not a particularly high bar to meet, given the stock was
+  \item Previous assessments have `correctly' projected not falling below $\Bforty$ in
+      all years, except 2012 (presumably due to unknown huge 2010 recruitment)
+  \item Caveat: that's not a particularly high bar to meet, given the stock was
       high from 2013 onwards
-  \item{Given uncertainty in most recent recruitments, assessments always give some small probability of
-      falling below $\Bforty$; current model says that's (in hindsight) even more unlikely}
-  \item{Analysis gives some confidence in the current expectation of remaining
-      above $\Bforty$.}
+  \item Given uncertainty in most recent recruitments, assessments always give some small probability of
+      falling below $\Bforty$; current model says that's (in hindsight) even more unlikely
+  \item Analysis gives some confidence in the current expectation of remaining
+      above $\Bforty$
   \ei
+}
 
-~\\
+% --------------------------------------------------------------
+\frame{\frametitle{Can also do retrospective calculations -- base model}
+\bc
+<<historical.prob.plot.retro, fig.height=3.2, fig.width=6, out.width='0.6\\columnwidth'>>=
+make.historical.probs.retro.plot(base.model,
+                                 select.retros = 1,
+                                 make.one.figure = FALSE)
+@
+\ec
+Current base model with data up to 2011 would have said low chance of decline
+from 2012 to 2013 ...
+}
 
-Overall, we estimate probabilities of future events, and these results give some idea of the
-confidence we can have in those probabilities.
+\frame{\frametitle{Can also do retrospective calculations -- remove age-1 index}
+\bc
+<<historical.prob.plot.retro.age1, fig.height=3.2, fig.width=6, out.width='0.6\\columnwidth'>>=
+make.historical.probs.retro.plot(sens.models.2[[1]],
+                                 select.retros = 1,
+                                 make.one.figure = FALSE,
+                                 legend.text.model = "Current without age-1 index")
+@
+\ec
+... and even omitting age-1 index gives a lower prob of decline
+from 2012 to 2013 than the 2012 assessment. Suggests other modelling
+changes over the years have helped performance.
 }
 
 
@@ -861,8 +884,12 @@ confidence we can have in those probabilities.
       \Sexpr{assess.yr+1} to \Sexpr{assess.yr+2} for any catch $>0$~t.
     \item Maintaining a constant catch of 473,880~t (the 2021 TAC) gives a 11\%
       chance of falling below $B_{40\%}$ in 1 year (21\% in 2 years' time).
+    \item Overall, we estimate probabilities of future events, and analyses
+      give some idea of the confidence we can have in those probabilities.
   \ei
 }
+
+\end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Commenting out in 2021 to shorten and since covered in sensitivity talk.
@@ -1039,5 +1066,3 @@ confidence we can have in those probabilities.
 %% %                           placement = "h")
 %% %@
 %% %}
-
-\end{document}

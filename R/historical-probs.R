@@ -1,8 +1,8 @@
-##' Calculate probabilities from base model to compare with estimates from past assessments
+##' Calculate probabilities from an MCMC model to compare with estimates from past assessments
 ##'
-##' Calculate the base model's estimate of P(B_t+1 < B_t) and P(B_t+1 < B_40%)
+##' Calculate a model's estimate of P(B_t+1 < B_t) and P(B_t+1 < B_40%)
 ##'  to then compare with the estimates of those quantities in year t's
-##'  assessment, in ****().
+##'  assessment, in combine_historical_probs().
 ##'
 ##' @param model A model as loaded by [load_ss_files()]
 ##' @param start First assessment year to do comparisons
@@ -42,7 +42,7 @@ calc_historical_probs <- function(model,
 
 
 
-##' Calculate the base model's probability of stock decline in a year and
+##' Calculate a model's probability of stock decline in a year and
 ##'  combine with past assessment estimates
 ##'
 ##' @param model A model as loaded by [load_ss_files()]
@@ -364,6 +364,7 @@ make.historical.probs.plot <- function(model,
 #'   the earliest four retrospective runs (for not doing all plots to be able to
 #'   spread them out over multiple pages).
 #' @param lwd.val.for.retros lwd for retro lines, default of 1 is for one.figure
+#' @param legend.text.model text to describe `model` in the legend
 #' @param ... arguments to pass to `make.historical.probs.plot()`
 #' @export
 #' @examples
@@ -392,6 +393,7 @@ make.historical.probs.retro.plot <- function(model,
                                              omit.current = TRUE,
                                              select.retros = NULL,
                                              lwd.val.for.retros = 1,
+                                             legend.text.model = "From current base model",
                                              ...){
   if(!make.one.figure){   # override default for multiple figures
     lwd.val.for.retros = 3
@@ -422,7 +424,7 @@ make.historical.probs.retro.plot <- function(model,
                                  pch = c(16, 17, 15),
                                  legend.text =
                                    c("From year t's assessment",
-                                     "From current base model",
+                                     legend.text.model,
                                      "Retrospectives"),
                                  colors = c("red", "blue", "grey"),
                                  ...)
@@ -441,7 +443,7 @@ make.historical.probs.retro.plot <- function(model,
                                  pch = c(16, 17, 15),
                                  legend.text =
                                    c("From year t's assessment",
-                                     "From current base model",
+                                     legend.text.model,
                                      paste0("Retrospective: data to ",
                                             assess.yr - 1 - i)),
                                  colors = c("red", "blue", cols[i]),
