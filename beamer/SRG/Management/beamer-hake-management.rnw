@@ -175,15 +175,15 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Forecasts}
+\section{Projections}
 \subsection{Methods}
-\frame{\frametitle{Forecast methods}
+\frame{\frametitle{Projection methods}
   \bi
-    \item Forecasts estimate the biomass at start
+    \item Projections estimate the biomass at start
       of \Sexpr{end.yr+1}, \Sexpr{end.yr+2}, and \Sexpr{end.yr+3}
     \bi
-      \item Mean of fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
-      \item Mean of weight-at-age from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in forecasts
+      \item Mean of fishery selectivity from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in projections
+      \item Mean of weight-at-age from \Sexpr{end.yr-5}--\Sexpr{end.yr-1} used in projections
       \item Recruitment from stock-recruit relationship (with uncertain deviations)
       \item Used for default HR calculations
       \item Alternative future catch levels explored
@@ -194,16 +194,16 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
       \item Mean of weight-at-age across 1975-\Sexpr{last.data.yr}
       \item Recruitment at estimated \emph{R}\subscr{0} or from stock-recruit relationship
     \ei
-    \item Catch streams presented for some specific cases
+    \item Catch alternatives presented for some specific cases
   \ei
 }
 
-\subsection{Two-year forecasts}
+\subsection{Two-year projections}
 \frame{\frametitle{Harvest-rule predicted catch for \Sexpr{assess.yr}}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median forecasted \Sexpr{end.yr} TAC is
+      \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median projected \Sexpr{end.yr} TAC is
       \smallskip
       \bc {\bf \Sexpr{catch.limit.quantiles["median"]} t} \ec
       \smallskip
@@ -218,7 +218,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 \end{columns}
 }
 
-\frame{\frametitle{Three-year forecasts}
+\frame{\frametitle{Three-year projections}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
@@ -254,7 +254,10 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
       \item Quantiles from the posterior distribution for relative spawning biomass and fishing intensity
       % \item Tables provided for the base model as well as age-1 survey and adnuts sensitivity runs
     \ei
-    \item Catch streams % text and which are gray is all manual, updated 2021
+    \item Catch alternatives % text manually updated 2022,
+                             %  used to use grey for ones not
+                             %  explicitly showing in next table
+                             %  but just showing first five now
     \bi
       \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
       \item b, c, d, g, i, k: Constant catches of \Sexpr{catch_levels[[2]][[2]]},
@@ -274,14 +277,14 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 %      \item e. Constant catch (\Sexpr{catch_levels[[5]][[2]]})
 %      \item \textcolor{gray}{f. Constant catch (\Sexpr{catch_levels[[6]][[2]]})}
 %      \item \textcolor{gray}{m. Constant catch (\Sexpr{catch_levels[[7]][[2]]})}
-      \item \textcolor{gray}{m. Fishing Intensity = 100\% in each year
-        conditioned on fixed catch in previous year}
+      \item m. Fishing Intensity = 100\% in each year
+        conditioned on fixed catch in previous year
       \item n. Median default Harvest Rule in each year conditioned on
         fixed catch in previous year
-      \item \textcolor{gray}{o. Fishing intensity giving 50\% prob.~that the
-          median \Sexpr{assess.yr} catch equals median  \Sexpr{assess.yr+1} catch}
+      \item o. Fishing intensity giving 50\% prob.~that the
+          median \Sexpr{assess.yr} catch equals median  \Sexpr{assess.yr+1} catch
     \ei
-    % \item More catch streams can be added as determined by SRG/AP/JMC
+    % \item More catch alternatives can be added as determined by SRG/AP/JMC
   \ei
 }
 
@@ -328,7 +331,7 @@ decision_table(base.model,
     \item P(relative FI > 100\% target): Probability that relative fishing intensity in fixed catch
       year is greater than the target fishing intensity
     %Only last column of table refers to catches, and is spelt out in words
-    %\item P($C_{y+1} < C_y$): Probability that the calculated catch in forecast
+    %\item P($C_{y+1} < C_y$): Probability that the calculated catch in projection
     %  year is less than the fixed catch
   \ei
 }
@@ -423,7 +426,7 @@ decision_table(base.model,
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\frame{\frametitle{Forecast age compositions for \Sexpr{end.yr} fishery catch}
+\frame{\frametitle{Projected age compositions for \Sexpr{end.yr} fishery catch}
 \begin{columns}
   \begin{column}{0.35\textwidth}
     Median proportions (by numbers) are:
@@ -707,14 +710,14 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary}
 \subsection{}
-\frame{\frametitle{Summary of forecasting}
+\frame{\frametitle{Summary of projections}
   \bi
     \item Uncertainty is large, but stock currently has \Sexpr{probs.curr.below.bforty}\%
       chance of being below $B_{40\%}$ and
       \Sexpr{probs.curr.rel.fish.intens.above.one}\% chance of relative fishing
       intensity being above 100\%.
     \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
-    \item Forecasts strongly influenced by size of above-average 2014 and 2016
+    \item Projections strongly influenced by size of above-average 2014 and 2016
       cohorts, 2017 still looks to be average, 2018 and 2019 small, and
       2020 large (but still highly uncertain).
     \item There is $<50\%$ chance that spawning biomass will decline from
