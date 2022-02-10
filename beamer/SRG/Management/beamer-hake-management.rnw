@@ -840,28 +840,32 @@ make.historical.probs.plot(base.model,
 % --------------------------------------------------------------
 \frame{\frametitle{Can also do retrospective calculations -- base model}
 \bc
-<<historical.prob.plot.retro, fig.height=3.2, fig.width=6, out.width='0.6\\columnwidth'>>=
+<<historical.prob.plot.retro, fig.height=3.6, fig.width=6, out.width='0.6\\columnwidth'>>=
 make.historical.probs.retro.plot(base.model,
+                                 type = "bforty",
                                  select.retros = 1,
-                                 make.one.figure = FALSE)
+                                 make.one.figure = FALSE,
+                                 legend.loc = "topright")
 @
 \ec
-Current base model with data up to 2011 would have said low chance of decline
-from 2012 to 2013 ...
+Current base model with data up to 2011 would have said very low chance of
+$B_{2013}$ falling below $\Bforty$.
 }
 
 \frame{\frametitle{Can also do retrospective calculations -- remove age-1 index}
 \bc
-<<historical.prob.plot.retro.age1, fig.height=3.2, fig.width=6, out.width='0.6\\columnwidth'>>=
+<<historical.prob.plot.retro.age1, fig.height=3.6, fig.width=6, out.width='0.6\\columnwidth'>>=
 make.historical.probs.retro.plot(sens.models.2[[1]],
+                                 type = "bforty",
                                  select.retros = 1,
                                  make.one.figure = FALSE,
-                                 legend.text.model = "Current without age-1 index")
+                                 legend.text.model = "Current without age-1 index",
+                                 legend.loc = "topright")
 @
 \ec
-... and even omitting age-1 index gives a lower prob of decline
-from 2012 to 2013 than the 2012 assessment. Suggests other modelling
-changes over the years have helped performance.
+Omitting age-1 index and using data only to 2011 still gives a very low prob of
+$B_{2013}$ falling below $\Bforty$.
+Suggests other modelling changes over the years have helped performance.
 }
 
 

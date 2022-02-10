@@ -1359,7 +1359,8 @@ described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 <<historical-2, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock going below B40.">>=
 make.historical.probs.plot(base.model,
                            add.projs = TRUE,
-                           type = "bforty")
+                           type = "bforty",
+                           legend.loc = "topleft")
 @
 \end{center}
 %\vspace{0mm}
@@ -1475,7 +1476,8 @@ make.historical.probs.retro.plot(base.model)
 \begin{center}
 <<historical-retro-bforty-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining below B40 with those from the current base model and for retrospective analyses.">>=
 make.historical.probs.retro.plot(base.model,
-                                 type = "bforty")
+                                 type = "bforty",
+                                 legend.loc = "topleft")
 @
 \end{center}
 \caption{Retrospective results of Figure~\ref{fig:main-historical-2} for

@@ -665,7 +665,8 @@ make.risk.table(sens.models.2[[1]],
 \begin{figure}[H]
 \begin{center}
 <<historical-retro-all-age1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses for the age-1 sensitivity analysis.">>=
-make.historical.probs.retro.plot(sens.models.2[[1]])
+make.historical.probs.retro.plot(sens.models.2[[1]],
+                                 legend.text.model = "Current without age-1 index")
 @
 \end{center}
 \caption{Equivalent of Figure~\ref{fig:main-historical-retro-all}
@@ -680,7 +681,9 @@ make.historical.probs.retro.plot(sens.models.2[[1]])
 \begin{center}
 <<historical-retro-bforty-all-age1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining below B40 with those from the current base model and for retrospective analyses for the age-1 sensitivity analysis.">>=
 make.historical.probs.retro.plot(sens.models.2[[1]],
-                                 type = "bforty")
+                                 type = "bforty",
+                                 legend.loc = "topleft",
+                                 legend.text.model = "Current without age-1 index")
 @
 \end{center}
 \caption{Equivalent of Figure~\ref{fig:main-historical-retro-bforty-all}

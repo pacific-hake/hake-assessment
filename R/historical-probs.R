@@ -304,7 +304,6 @@ make.historical.probs.plot <- function(model,
              pch = pch[2],
              col = colors[2],
              lwd = lwd.val)
-      legend.loc = "topleft"
 
       if(add.projs){
         segments(rep(assess.yr - 1, num.projs),
