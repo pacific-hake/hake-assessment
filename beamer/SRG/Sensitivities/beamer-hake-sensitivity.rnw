@@ -68,7 +68,10 @@ opts_chunk$set(dev = 'cairo_ps',
                cache.path = 'knitr-cache/')
 
 source(file.path(here::here(), "R", "all.R"))
-load_models_rds()
+if(!(exists("models_loaded") && models_loaded)){
+  load_models_rds()
+}
+models_loaded <- TRUE
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 
@@ -277,12 +280,10 @@ param_est_table(c(list(base.model),
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(c(list(base.model),
-                       sens.models.2[2],
-                       sens.models.2[3]),
+                       sens.models.2[2]),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end.yr),
-                                     sens.model.names.2[2],
-                                     sens.model.names.2[3]),
+                                     sens.model.names.2[2]),
                      end.yr = end.yr)
 par <- oldpar
 @
@@ -299,12 +300,10 @@ par <- oldpar
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(c(list(base.model),
-                       sens.models.2[2],
-                       sens.models.2[3]),
+                       sens.models.2[2]),
                      subplots = 4,
                      model.names = c(paste0("Base model ", end.yr),
-                                     sens.model.names.2[2],
-                                     sens.model.names.2[3]),
+                                     sens.model.names.2[2]),
                      end.yr = end.yr)
 par <- oldpar
 @
@@ -374,6 +373,7 @@ make.comparison.plot(c(list(base.model),
                                      sens.model.names.4[2],
                                      sens.model.names.4[3]),
                      end.yr = end.yr,
+                     indexfleets = 2,
                      legend_pos = c(0.2, 0.85))
 par <- oldpar
 @
@@ -722,26 +722,6 @@ par <- oldpar
 \end{frame}
 % -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
-\section{Age Error}
-\subsection{Spawning biomass}
-\begin{frame}
-\frametitle{Age Error -- Spawning biomass}
-\begin{center}
-\vspace{5pt}
-<<age-error, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model), list(sens.models.5)),
-                     subplots = 4,
-                     model.names = c(base.model.name, sens.model.names.5),
-                     legend = TRUE,
-                     end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-% -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
 \section{rwMH}
@@ -773,44 +753,6 @@ par <- oldpar
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
-\subsection{Spawning biomass}
-\begin{frame}
-\frametitle{rwMH algorithm -- Spawning biomass}
-\begin{center}
-\vspace{5pt}
-<<biomass-base-alt-rwmh-sens-1>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model), list(sens.models.7)),
-                     subplots = 2,
-                     model.names = c(base.model.name, sens.model.names.7),
-                     end.yr = end.yr, plot_mcmc = TRUE)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
-\subsection{Relative Spawning biomass}
-\begin{frame}
-\frametitle{rwMH algorithm -- Relative Spawning biomass}
-\begin{center}
-\vspace{5pt}
-<<biomass-base-alt-rwmh-sens-2>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model), list(sens.models.7)),
-                     subplots = 3,
-                     model.names = c(base.model.name, sens.model.names.7),
-                     end.yr = end.yr, plot_mcmc = TRUE)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
 \subsection{Base model MCMC diagnostics}
 \begin{frame}
 \frametitle{Base model MCMC diagnostics}
@@ -825,28 +767,6 @@ plot_mcmc_param_stats(base.model,
                       show_ro_loc = TRUE,
                       ro_yloc = 110,
                       ro_yloc_arr_start = 100,
-                      ro_yloc_arr_end = 60)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% ----------------------------------------------------------------------------%
-\subsection{rwMH MCMC diagnostics}
-\begin{frame}
-\frametitle{rwMH MCMC diagnostics}
-\begin{center}
-\vspace{5pt}
-<<rwmh.hists, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(4.1, 4.1, 3.1, 0.1))
-plot_mcmc_param_stats(sens.models.7,
-                      effn_labels = TRUE,
-                      ylim_mult = 1.2,
-                      show_ro_loc = TRUE,
-                      ro_yloc = 210,
-                      ro_yloc_arr_start = 190,
                       ro_yloc_arr_end = 60)
 par <- oldpar
 @
@@ -905,7 +825,7 @@ make.comparison.plot(retro.list,
                      subplots = 2,
                      model.names = retro.model.names,
                      legend = TRUE,
-                     legendloc = "topright",
+                     legend_loc = "bottomleft",
                      is.retro = TRUE,
                      ylim = c(0, 0.5))
 par <- oldpar
