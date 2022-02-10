@@ -439,7 +439,7 @@ decision_table(base.model,
     \item \Sexpr{fore.catch.prop$Age5}\% age-5 fish, \Sexpr{forecast_yrs[1] - 5} cohort,
     % \Sexpr{fore.catch.prop$Age4}\% age-4 fish from the \Sexpr{forecast_yrs[1] - 4} cohort,
     % \Sexpr{fore.catch.prop$Age7}\% age-7 fish from the \Sexpr{forecast_yrs[1] - 7} cohort
-    \item \Sexpr{fore.catch.prop$Age12}\% age-12 fish from the large \Sexpr{forecast_yrs[1] - 12} cohort
+    \item \Sexpr{fore.catch.prop$Age12}\% age-12 fish from the huge \Sexpr{forecast_yrs[1] - 12} cohort
     % \Sexpr{fore.catch.prop$Age11}\% age-11 fish from the \Sexpr{forecast_yrs[1] - 11} cohort
   \ei
   \end{column}
@@ -868,11 +868,29 @@ $B_{2013}$ falling below $\Bforty$.
 Suggests other modelling changes over the years have helped performance.
 }
 
+\frame{\frametitle{Suggestion for further converying recruitment variability (Appendix~H)}
+\bc
+<<rec.variability, fig.height=3.8, fig.width=6, out.width='0.6\\columnwidth'>>=
+make.mcmc.recruitment.plot(base.model,
+                           start.yr = 1966,
+                           equil.yr = unfished.eq.yr,
+                           samples = NULL,
+                           rescale = TRUE,
+                           traceplot = FALSE,
+                           end.yr = assess.yr + 2,
+                           auto.xaxis = FALSE)
+@
+\ec
+Plotting annual recruitment relative to huge 2010 recruitment shows that 2014
+was definitely not as large as 2010, in contrast to intuition from usual plot.
+}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary}
 \subsection{}
-\frame{\frametitle{Summary of projections}
+\frame{\frametitle{Summary of management outcomes}
   \bi
     \item Uncertainty is large, but stock currently has \Sexpr{probs.curr.below.bforty}\%
       chance of being below $B_{40\%}$ and
