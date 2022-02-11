@@ -722,29 +722,26 @@ par <- oldpar
 
 
 % -----------------------------------------------------------------------------%
-\section{rwMH}
-\subsection{random walk Metropolis Hastings (rwMH) MCMC}
+\section{NUTS}
 \begin{frame}
-\frametitle{Run base model using rwMH algorithm}
+\frametitle{All models run using NUTS algorithm}
 \fontsize{11pt}{2}\selectfont
 \bi
-  \item Base model uses NUTS MCMC algorithm
-  \item Compare NUTS with previous rwMH algorithm (last year's base model)
+  \item All models used NUTS MCMC algorithm (no Metropolis-Hastings this year)
   \item NUTS:
     \bi
-      \item took $\sim$4.5~hours to run
-      \item resulted in 8,250 posterior samples
-      \item uses a parallel algorithm, on multiple cores
-      \item better explores the parameter space
-      \item has the same base model structure, just a different numerical algorithm
-      \item Sensitivities took $\sim$4.5~hours each to run
-      \item Retrospectives took between $\sim$4.5~hours and $\sim$30~hours each to run
-    \ei
-  \item rwMH:
-    \bi
-      \item took $\sim$38~hours to run
-      \item resulted in 2,041 posterior samples from a 24,000,000 chain length, after thinning and burning-in
-      \item We also ran one to a chain length of 110,320,000 which resulted in 10,632 posterior samples, and took $\sim$8~days to complete. Results were essentially identical to the 24,000,000 run.
+      \item **CHRIS to update.
+      \item **Took $\sim$4.5~hours to run
+      \item **Resulted in \Sexpr{f(num.mcmc.samples)} posterior samples for base
+        model (8,000 for sensitivites)
+      \item **Uses a parallel algorithm, on multiple cores
+      \item Cloud computing used for first time: Amazon Web Services
+        \bi
+          \item Pros: Left our local computers mostly free to not run huge models
+          \item Cons: But was a lot of extra work to set up
+        \ei
+      \item **Sensitivities took $\sim$4.5~hours each to run
+      \item **Retrospectives took between $\sim$4.5~hours and $\sim$30~hours each to run
     \ei
 \ei
 \end{frame}
