@@ -36,7 +36,13 @@ for model in ${models[@]}; do
   build_rds('$model');" > /dev/null 2>&1; \
   echo; \
   echo "$model MCeval complete"; \
-  cp ~/hake-assessment/$MODELS_DIR/$model/$model.rds ~/hake-assessment/hakestore/$MODELS_DIR/$model; \
+  cp ~/hake-assessment/$MODELS_DIR/$model/$model.rds ~/hake-assessment/hakestore/$MODELS_DIR/$model/$model.rds; \
+  cp ~/hake-assessment/$MODELS_DIR/$model/mcmc/sso/posteriors.sso ~/hake-assessment/hakestore/$MODELS_DIR/$model/mcmc/sso/posteriors.sso; \
+  cp ~/hake-assessment/$MODELS_DIR/$model/mcmc/sso/derived_posteriors.sso ~/hake-assessment/hakestore/$MODELS_DIR/$model/mcmc/sso/derived_posteriors.sso; \
+  cp ~/hake-assessment/$MODELS_DIR/$model/mcmc/sso/posterior_vectors.sso ~/hake-assessment/hakestore/$MODELS_DIR/$model/mcmc/sso/posterior_vectors.sso; \
+  cp ~/hake-assessment/$MODELS_DIR/$model/mcmc/sso/posterior_obj_func.sso ~/hake-assessment/hakestore/$MODELS_DIR/$model/mcmc/sso/posterior_obj_func.sso; \
+  cp ~/hake-assessment/$MODELS_DIR/$model/mcmc/sso/nuisanceposteriors.csv ~/hake-assessment/hakestore/$MODELS_DIR/$model/mcmc/sso/nuisanceposteriors.csv; \
+  cp ~/hake-assessment/$MODELS_DIR/$model/mcmc/sso/keyposteriors.csv ~/hake-assessment/hakestore/$MODELS_DIR/$model/mcmc/sso/keyposteriors.csv; \
   echo; \
   echo "Copied $model model output to S3 storage") &
 
