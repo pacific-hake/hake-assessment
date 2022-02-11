@@ -7,7 +7,8 @@
 ##' @param par.mar par(mar = c(x, x, x, x)) values; default is for doc
 make.assessment.history.plot <- function(base,
                                          assessment.history,
-                                         par.mar = c(3.1, 3.1, 1.1, 6.1)){
+                                         par.mar = c(3.1, 3.1, 1.1, 6.1),
+                                         cex.legend = 0.5){
 
   xx <- assessment.history
   xx <- xx[xx$Value == "SB million mt",]
@@ -136,7 +137,7 @@ make.assessment.history.plot <- function(base,
          col = legCol,
          lwd = lwds + 1,
          pch = legPch,
-         cex = 0.5,
+         cex = cex.legend,
          bty = "n",
          xpd = NA)
 

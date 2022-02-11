@@ -1316,7 +1316,9 @@ make_squid_plot(base.model,
 \begin{center}
 <<historical-assessments, fig.height=4.5, fig.width=6.5, is.fig = TRUE, alt.text = "This figure shows the varying historical estimates of spawning biomass from the annual assessments">>=
 make.assessment.history.plot(base.model,
-                             assessment.history)
+                             assessment.history,
+                             cex.legend = 0.5 * 38 / (38 + assess.yr - 2022))
+                             # automatically shrink font size each year to fit.
 @
 \end{center}
 %\vspace{0mm}

@@ -876,10 +876,9 @@ par <- oldpar
 \vspace{-5pt}
 <<retro.4, out.width='.88\\columnwidth', out.height='.8\\textheight'>>=
 make.assessment.history.plot(base.model,
-                             assessment.history)
-                             # par.mar = c(2.5, 3.1, 1.1, 6.1))
-                             # 2022 gets cut off but I gave up tweaking.
-                             # Default is c(3.1, 3.1, 1.1, 6.1)
+                             assessment.history,
+                             cex.legend = 0.48 * 38 / (38 + assess.yr - 2022))
+                             # automatically shrink font size each year to fit.
 @
 \end{center}
 \end{frame}
