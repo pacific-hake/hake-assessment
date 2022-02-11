@@ -1268,10 +1268,14 @@ get_os <- function(){
   tolower(os)
 }
 
+#' Make RDS files smaller by removing unnecessary objects
+#'
+#' @param models A character vector of model directory names
 make_small_rds <- function(models = c("2022.01.03_newcatchage",
                                       "2022.01.05_updatesurvey",
                                       "2022.01.06_newsurvey",
                                       "2022.01.07_newwtatage",
+                                      "2022.01.09_age1index",
                                       "2022.01.15_h_prior_mean_low",
                                       "2022.01.16_h_fix_high",
                                       "2022.01.17_sigmR_fix_low",
@@ -1286,6 +1290,14 @@ make_small_rds <- function(models = c("2022.01.03_newcatchage",
                                       "2022.01.44_maxSel_Age7",
                                       "2022.01.45_maxSel_Age8",
                                       "2022.01.100_zerosumcontraint")){
+
+  # change this year to the current year once you've updated the argument list for the new year
+  func_year <- 2022
+  if(as.numeric(format(Sys.Date(), "%Y")) != func_year){
+    stop("The make_small_rds() function has default arguments that need to be updated each year")
+  }
+
+  message("Making smaller RDS files for bridge models and sensitivity models.")
 
   for(i in 1:length(models)){
     fn <- file.path("models", models[i], paste0(models[i], ".rds"))
