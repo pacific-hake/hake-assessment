@@ -1,0 +1,515 @@
+%% hake-assessment.Rnw
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL hake-assessment-2022-preSRG-andy.tex   Mon Jan 31 14:49:45 2022
+%DIF ADD hake-assessment.tex                    Fri Feb 11 11:40:23 2022
+%% Pacific Hake Joint technical committee.
+
+\documentclass[12pt]{book}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\makeatletter
+\@ifundefined{AddToHook}{}{\AddToHook{package/xcolor/after}{\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}}}
+\makeatother
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\makeatletter
+\@ifundefined{AddToHook}{}{\AddToHook{package/xcolor/after}{
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+}}
+\makeatother
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+%% Allows the numbering of figures/tables to be unique witin a section
+%%  so that clicking table d in the executive summary takes you there, and not
+%%  to the fourth table in the main-tables section
+\usepackage{chngcntr}
+
+\usepackage{../doc/hake}
+%% title gives 'Appendix A', not
+%% just 'A', but doesn't seem to work, may need article class,
+%% but need to see appendix manual.
+\usepackage[titletoc,title]{appendix}
+
+%% for bold math symbols
+\usepackage{bm}
+\usepackage{cite}
+%% need array when specifying a ragged right column:
+%%  >{\raggedright\arraybackslash}{p2in}.
+\usepackage{longtable,array}
+%% \renewcommand{\chaptername}{Appendix}
+%% \addto\captionsenglish{\renewcommand\chaptername{Part}}
+%% For figures in chapter subdirectories
+\usepackage{import}
+%% Allow figures and tables to be controlled better (avoid the floating).
+\usepackage{float}
+
+%% Allows symbols inside a verbatim-type section
+\usepackage{alltt}
+%% For code listing with syntax highlighting
+\usepackage{listings}
+%% For inclusion of figures
+\usepackage{graphicx}
+%% verbatim package allows blocks with special characters to be shown easily.
+\usepackage{verbatim,fancyvrb}
+%% Used innecessary for decision tables
+\usepackage{multicol}
+%% Used in decision tables
+\usepackage{multirow}
+%% Used in executive summary tables
+\usepackage{booktabs}
+%% Used in decision tables and others so vertical lines line up properly.
+\usepackage{tabularx}
+%% Allows the citation to reflect the number of pages in the document.
+\usepackage{lastpage}
+%% So paragraphs will have a blank line between them.
+\usepackage[parfill]{parskip}
+\setlength{\parskip}{12pt}
+
+\usepackage[yyyymmdd]{datetime}
+\renewcommand{\dateseparator}{--}
+\newdateformat{usvardate}{\monthname[\THEMONTH] \ordinal{DAY}, \THEYEAR}
+
+%% For fitting the backscatter plot
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+
+%% Use the following codes for references within the document.
+%% Example of label format - fig:catch
+%%   chap: chapter - for Appendices
+%%    sec: section
+%% subsec: subsection
+%%   fig: figure
+%%    tab: table
+%%     eq: equation
+%%    lst: code listing
+%%    itm: enumerated list item
+%%    app: appendix subsection
+%% Something to do with spaces after macros.
+\usepackage{xspace}
+%% So links will anchor at figure, not caption
+\usepackage{hypcap}
+%% For two-panel plots
+\usepackage{subfig}
+%% For display of pseudocode
+\usepackage{algorithm}
+%% For display of pseudocode
+\usepackage{algpseudocode}
+%% For display of pseudocode
+\usepackage{linegoal}
+\newcommand*{\TitleFont}{
+      \usefont{\encodingdefault}{\rmdefault}{b}{n}
+      \fontsize{20}{24}
+      \selectfont}
+
+%% A \Let command for defining assignments within the algorithmic environment
+%%  which supports automatic indentation when the second argument is too long
+%%  to fit on one line
+\newcommand*{\Let}[2]{\State #1 $\gets$
+\parbox[t]{\linegoal}{#2\strut}}
+%% A \State command that supports automatic indentation when the argument's
+%%  content is too long to fit on one line
+\newcommand*{\LongState}[1]{\State
+\parbox[t]{\linegoal}{#1\strut}}
+
+%% To remove spacing between list items [noitemsep,nolistsep]
+\usepackage{enumitem}
+\newlist{longitem}{enumerate}{5}
+\setlist[longitem,1]{label=\arabic*)}
+\setlist[longitem,2]{label=\alph*)}
+\setlist[longitem,3]{label=\roman*)}
+\setlist[longitem,4]{label=\arabic*)}
+\setlist[longitem,5]{label=\alph*)}
+
+\definecolor{rowclr}{RGB}{255, 192, 203}
+%% For centering or right cell values in a tabularx using stretched cells (X)
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcommand{\sQuote}[1]{`#1'}
+\newcommand{\dQuote}[1]{``#1''}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\gfrac}[2]{\genfrac{}{}{}{0}{#1}{#2}}
+%% For centered, even columns in a table. Use 'C' instead of 'c'
+\newcolumntype{C}{>{\centering\arraybackslash}p{2em}}
+
+\newenvironment{codefont}{\fontfamily{pcr}\selectfont}{\par}
+
+\lstset{
+  language=R,
+  numbers=left,
+  frame=single,
+  commentstyle=\color{dkgreen},
+  basicstyle={\scriptsize\ttfamily},
+  keywordstyle=\color{blue},
+  %identifierstyle=\color{blue},
+  stringstyle=\color{mauve},
+  captionpos=t,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  caption=\getlstname,
+}
+
+%% Multi-line-cell in an xtable
+%% syntax is \mlc{first line\\secondline}
+\newcommand{\mlc}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\fishname}{Pacific Hake}
+\newcommand{\commonname}{Pacific whiting}
+\newcommand{\sciencename}{Merluccius productus}
+\newcommand{\simplename}{hake}
+\newcommand{\surveyname}{Joint U.S. and Canadian Integrated Acoustic and Trawl Survey}
+%% Needs to be done as $\Fforty$
+\newcommand{\Fforty}{F_{\text{SPR}=40\%}}
+\newcommand{\BSPRforty}{B_{\text{SPR}=40\%}}
+%% Harvest control rule, \Ffortyten{} to have a space after
+\newcommand{\Ffortyten}{$\Fforty$--40:10}
+\newcommand{\Bforty}{B_{40\%}}
+\newcommand{\Btwentyfive}{B_{25\%}}
+\newcommand{\Bten}{B_{10\%}}
+\newcommand{\Bzero}{B_{0}}
+\newcommand{\Bmsy}{B_{\text{MSY}}}
+\newcommand{\Fmsy}{F_{\text{MSY}}}
+\newcommand{\Fspr}{F_{\text{SPR}}}
+
+%% For subscripts and superscripts in text mode
+\newcommand{\subscr}[1]{$_{\text{#1}}$}
+\newcommand{\supscr}[1]{$^{\text{#1}}$}
+
+\newcommand{\altshort}{alternative run}
+\newcommand{\altlong}{alternative time-varying fecundity run}
+
+%% Make counters so text isn't repeated
+\newcounter{counter_research-needs}
+
+%% Headers and footers
+\lhead{}
+\rhead{}
+
+%% Tried to not have indent on disclaimer (but doesn't work):
+%% \def\thanks#1{{\let\thefootnote\relax\footnote{#1.}\setcounter{footnote}{0}}}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+\begin{picture}(1,1)% %DIF PREAMBLE
+\thicklines\linethickness{2pt} %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+\end{picture}% %DIF PREAMBLE
+}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF LISTINGS PREAMBLE %DIF PREAMBLE
+\lstdefinelanguage{codediff}{ %DIF PREAMBLE
+  moredelim=**[is][\color{red}]{*!----}{----!*}, %DIF PREAMBLE
+  moredelim=**[is][\color{blue}]{*!++++}{++++!*} %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{codediff}{ %DIF PREAMBLE
+	belowcaptionskip=.25\baselineskip, %DIF PREAMBLE
+	language=codediff, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true, %DIF PREAMBLE
+} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+
+\begin{document}
+% \counterwithin{figure}{section}
+% \counterwithin{table}{section}
+
+Correction to:
+
+DRAFT of Status of the \fishname\ (whiting) stock in U.S. and Canadian
+waters in 2022
+
+% \pagenumbering{arabic}
+During the Joint Management Committee briefing it was realised that the
+biomass at the start of 2022 was incorrectly reported in some places.
+
+This was traced to a recent change in Stock Synthesis (to do with which
+weights-at-age are used to calculate the biomass at the start of 2022), that has now been
+fixed. The revised biomass values are highlighted as differences in the
+following updated One-page Summary. Also shown here is the corrected spawning biomass
+tracjectory, followed by the originally submitted version shown for comparison.
+
+All projection calculations are unchanged (as the biomass at the start of 2022
+was correctly calculated for these).
+
+The revised assessment document will be fully updated, and all presentations in
+the SRG meeting use the correct values. Previous stock
+assessments were correct, because the issue only arose this year.
+
+
+\newpage
+
+%% Table of contents, etc.
+% \input{preamble}
+% \setcounter{secnumdepth}{5} %% To number subsubheadings-ish
+
+%% Executive summary number Tables a,b,c.
+% \renewcommand{\thetable}{\alph{table}}
+
+% \renewcommand{\thefigure}{\alph{figure}}
+% \renewcommand{\thesection}{\arabic{section}}
+% \renewcommand{\theequation}{\arabic{equation}}
+
+% \renewcommand{\bibsection}{\section{REFERENCES}\label{sec:references}}
+
+%% Add line numbers
+%% \linenumbers
+%% Put line numbers in right margin
+%% \rightlinenumbers
+%% Just number every 5th line. Doesn't restart numbers on each page, but need
+%%  lineno package
+%% \modulolinenumbers[5]
+
+\lfoot{
+       DRAFT correction -- \fishname\ assessment 2022
+       %% \fishname\ assessment assess.yr
+       }
+\rfoot{One-page summary}
+
+%% one-page-summary.Rnw
+%% Note some variables are global from the calling file (hake-assessent.Rnw)
+
+\clearpage
+\section*{One-page summary - differences from submitted version are highlighted}
+\phantomsection \addcontentsline{toc}{section}{ONE-PAGE SUMMARY}
+
+\begin{itemize}
+  \item The stock assessment model for 2022 has the same population
+    dynamics structure as the 2021 model. For 2022,
+    it is fit to an acoustic survey index of biomass, an index of age-1 fish, annual
+    commercial catch data, and age-composition data from the survey and commercial fisheries.
+    The addition of the age-1 index is the main change in data streams from 2021.
+
+%  \item The main change from last.assess.yr is the use of the age-1 index
+%    efficient algorithm (the No-U-Turn Sampler) for obtaining posterior samples. Consequently,
+%    all model results, including sensitivity and retrospective analyses, are
+%    now based on posterior distributions rather than maximum likelihood estimates.
+
+  \item Updates to the data include:
+    the new biomass estimate and age-composition data from the acoustic survey conducted in 2021,
+    fishery catch and age-composition data from 2021, weight-at-age data for
+    2021, the addition of the age-1 index time series
+    (1995~--2021), and minor changes to pre-2021 data. Due to
+    staffing issues, age data from 2021 were unavailable from the Canadian freezer-trawler fleet and minimally
+    available for the shoreside fleet.
+
+  \item Coast-wide catch in 2021 was 326,629~t
+    [t represents metric tons], close to the average over the past decade of
+    329,035~t,
+    out of a total allowable catch (TAC), adjusted for carryovers, of 473,880~t.
+    Quotas were specified unilaterally in 2021 due to the lack of a
+    bilateral TAC agreement. The U.S. caught 269,553~t (73.0\%
+    of their quota) and Canada caught 57,076~t
+    (54.6\% of their quota).
+%Attainment in the U.S. was last.year.us.attained\% of its quota
+%(paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))~abs(as.numeric(last.2year.us.attained.diff))\%
+%from last year); attainment in Canada was
+%last.year.can.attained\%
+%(paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))~abs(as.numeric(last.2year.can.attained.diff))\%
+%from last year).
+%us.allotment.percent.last.year\% of the TAC and the Canada allotment was
+%can.allotment.percent.last.year\%, compared to the usual
+%us.allotment.percent\% and can.allotment.percent\%.
+
+  \item The median estimate of the 2022 relative spawning biomass
+    (female spawning biomass at the start of 2022 divided by that at
+    unfished equilibrium, $B_0$) is \DIFdelbegin \DIFdel{69}\DIFdelend \DIFaddbegin \DIFadd{65}\DIFaddend \% but is highly
+    uncertain (with 95\% credible interval from \DIFdelbegin \DIFdel{33\% to
+    145}\DIFdelend \DIFaddbegin \DIFadd{31\% to
+    135}\DIFaddend \%). The median relative spawning biomass
+    has progressively declined since 2019, due to the aging large cohorts (2010,
+    2014, and 2016) and relatively high catches. Based on limited data, the 2020
+    cohort looks likely to be large.
+%     Stock status increased relative to last year due to slightly higher estimates of
+%    recent recruitment than were previously expected.
+% That last sentence seemed a bit confusing. We'd have to compare the 2021 B/B0 with
+%  2021 assessment's value (which we kind of do in the Exec Summary).
+
+  \item The median estimate of female spawning biomass at the start
+    of 2022 is 1,\DIFdelbegin \DIFdel{253,810}\DIFdelend \DIFaddbegin \DIFadd{171,180}\DIFaddend ~t (with 95\% credible
+    interval from \DIFdelbegin \DIFdel{626,655 }\DIFdelend \DIFaddbegin \DIFadd{583,632 }\DIFaddend to 2,\DIFdelbegin \DIFdel{750,174}\DIFdelend \DIFaddbegin \DIFadd{584,659}\DIFaddend ~t).
+    This is less than this assessment's median estimate
+    for the 2021 female spawning biomass of 1,347,400~t
+    (with 95\% credible interval
+    743,081--2,896,386~t).
+
+%  \item The estimated joint probability of being both
+%    above the target relative fishing intensity in end.yr-1
+%    and below the $\Bforty$ (40\% of $B_0$) reference point
+%    at the start of end.yr is joint.percent.prob.above.below\%.
+
+  \item The estimated probability that spawning biomass at the start of
+    2022 is below the $\Bforty$ (40\% of $B_0$) reference point is
+    \DIFdelbegin \DIFdel{6.7}\DIFdelend \DIFaddbegin \DIFadd{9.5}\DIFaddend \%, and the probability that the relative fishing
+    intensity exceeds its target in 2021 is
+    0\%. The joint
+    probability of both these occurring is 0\%.
+
+  \item Based on the default harvest rule, the estimated median catch limit for
+2022 is   \DIFdelbegin \DIFdel{716,264}\DIFdelend \DIFaddbegin \DIFadd{715,643}\DIFaddend ~t (with
+95\% credible interval from   \DIFdelbegin \DIFdel{305,395 }\DIFdelend \DIFaddbegin \DIFadd{300,110 }\DIFaddend to
+1,882,776~t).
+
+  \item Projections are highly uncertain due to uncertainty in
+estimates of recruitment for recent years and so were conducted for a fairly wide
+range of catch levels. Projections setting the 2022 and
+2023 catches equal to the 2021
+coast-wide (unilaterally summed) TAC of
+473,880~t show the estimated median relative spawning biomass
+changing from
+65\% in 2022 to
+71\% in 2023 to
+64\% in
+2024, with a 21\% chance
+of the spawning biomass falling below $\Bforty$ in 2024. There is an
+estimated 41\% chance of the spawning biomass declining from 2022 to
+2023, a
+77\% chance of it declining from 2023 to
+2024, and a 85\% chance of it declining
+from 2024 to 2025 for these constant catches.
+    % Manual to do (check this enitre bullet point)
+    % 3% from Table j, 38% from Table i, 50% from Table j
+    % 2018, have automated the years. 2/11/18 AME.
+    % 64%, 59%, 49% from Table g, row e
+    % 40% from Table j, 72% from Table i, 86% from Table j
+\end{itemize}
+
+\clearpage
+
+\begin{figure}[tbp]
+\begin{center}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{../doc/knitr-cache/spawning-biomass-1}
+\end{knitrout}
+\end{center}
+%\vspace{0mm}
+\caption{{\bf Corrected version of:} Median of the posterior distribution for beginning of the year female
+         spawning biomass ($B_t$ in year $t$) through 2022 (solid line) with 95\% posterior
+         credibility intervals (shaded area). The solid circle with a 95\%
+         posterior credibility interval is the estimated unfished equilibrium
+         biomass.}
+\label{fig:es-female-spawning-biomass}
+\end{figure}
+
+
+\clearpage
+
+\begin{figure}[tbp]
+\begin{center}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{../doc/knitr-cache-old/knitr-cache-2022-preSRG/spawning-biomass-1}
+\end{knitrout}
+\end{center}
+%\vspace{0mm}
+\caption{{\bf Originally submitted version of:} Median of the posterior distribution for beginning of the year female
+         spawning biomass ($B_t$ in year $t$) through 2022 (solid line) with 95\% posterior
+         credibility intervals (shaded area). The solid circle with a 95\%
+         posterior credibility interval is the estimated unfished equilibrium
+         biomass.}
+\label{fig:es-female-spawning-biomass-old}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
