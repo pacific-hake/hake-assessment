@@ -335,6 +335,9 @@ fetch_extra_mcmc <- function(model_path,
   # CPUE table and values (Q) -------------------------------------------------
   message("Extracting index fits and catchabilities...")
   index_table <- extract_rep_table(reps_q, q_header)
+  # Separate by fleet, 2 is acoustic survey 2+, 3 is Age-1 survey
+  index_table_age2plus <- index_table %>% filter(Fleet == 2)
+  index_table_age1 <- index_table %>% filter(Fleet == 3)
 
   extra_mcmc$q.med <- index_table %>%
     mutate(Calc_Q = as.numeric(Calc_Q)) %>%
@@ -366,21 +369,28 @@ fetch_extra_mcmc <- function(model_path,
     group_by(Fleet, Yr) %>%
     summarize(value = quantile(Exp, 0.975))
 
-  # Deprecated objects
-  q <- extract_rep_table(reps_q, q_header) %>%
+  q <- index_table %>%
     select(Iter, Exp, Calc_Q)
   iter <- unique(q$Iter)
+
   cpue <- q %>%
     select(-Calc_Q) %>%
     group_by(Iter) %>%
     group_nest()
   cpue <- do.call(cbind, cpue$data)
   names(cpue) <- iter
+
   extra_mcmc$cpue.table <- cpue %>%
     as_tibble() %>%
     map_df(~{as.numeric(.x)})
 
-  extra_mcmc$Q_vector <- q %>%
+  extra_mcmc$Q_vector <- index_table_age2plus %>%
+    group_by(Iter) %>%
+    slice(1) %>%
+    pull(Calc_Q) %>%
+    as.numeric()
+
+  extra_mcmc$Q_vector_age1 <- index_table_age1 %>%
     group_by(Iter) %>%
     slice(1) %>%
     pull(Calc_Q) %>%
