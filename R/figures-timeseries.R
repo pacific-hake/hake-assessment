@@ -557,6 +557,7 @@ make.comparison.plot <- function(models,
     indices <- indices %>%
       filter(fleet %in% indexfleets) %>%
       mutate_at(.vars = vars(lower, upper, med, obs), ~{.x / 1e6})
+
     xlim <- range(min(indices$year), max(indices$year))
     ylim <- range(0, indices$upper)
     plot(0,
@@ -574,13 +575,14 @@ make.comparison.plot <- function(models,
     is_plotted <- NULL
     models_plotted <- unique(indices$name)
     for(nm in seq_along(model.names)){
-      is_plotted[nm] <- ifelse(length(grep(model.names[nm], models_plotted)), TRUE, FALSE)
+      is_plotted[nm] <- ifelse(any(`==`(model.names[nm], models_plotted)), TRUE, FALSE)
     }
     if(length(models) == 2){
       cols <- rich.colors.short(length(models))[is_plotted]
     }else{
       cols <- rich.colors.short(length(models) + 1)[-1][is_plotted]
     }
+
     for(i in 1:length(models)){
       rows <- indices %>% filter(name == index_names[i])
       x <- rows$year

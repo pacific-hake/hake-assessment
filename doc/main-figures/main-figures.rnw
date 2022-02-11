@@ -1045,7 +1045,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 \begin{center}
 <<main-index-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the similarity between some sensitivity runs of the estimates of the fit to the biomass index">>=
 make.comparison.plot(c(list(base.model), sens.models.2),
-                     subplots = 14,
+                     subplots = 13,
                      model.names = c(base.model.name, sens.model.names.2),
                      legend = TRUE,
                      legend_loc = "topleft",
