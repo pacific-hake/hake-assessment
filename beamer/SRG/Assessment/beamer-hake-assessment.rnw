@@ -126,34 +126,26 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frametitle{Changes from \Sexpr{last.assess.yr} assessment}
   \bi
     \item Update Stock Synthesis to version \Sexpr{ss.version}
-      compiled with ADMB \Sexpr{admb.version} at Git commit \Sexpr{admb.commit}
-      on \Sexpr{admb.commit.date}.
-    \item Change the phase of the data-weighting parameters to terminal phase
-    \item Update pre-\Sexpr{last.assess.yr} data:
+      compiled with ADMB \Sexpr{admb.version}
+      %at Git commit \Sexpr{admb.commit} on \Sexpr{admb.commit.date}.
+    \item  Update fishery catch and age composition data:
       \bi
-      \item Fishery catch
-      \item Fishery age compositions
-      \item Weight-at-age
-      %\item Survey data (small changes to some CVs)
+      \item Years prior to \Sexpr{last.assess.yr}
+      \item Add new data for \Sexpr{last.assess.yr}
       \ei
-    \item Add new data for \Sexpr{last.assess.yr}:
+    \item Update survey biomass estimate and age data:
     \bi
-      \item Fishery catch and age data for \Sexpr{last.assess.yr}
-      \item Weight-at-age values for \Sexpr{last.assess.yr}
-      %\item Survey biomass estimate and age data for \Sexpr{last.assess.yr}
+      \item Years prior to \Sexpr{last.assess.yr}
+      \item Add new data for \Sexpr{last.assess.yr}
     \ei
-    \item Implemented the No-U-Turn Sampler (NUTS) algorithm for
-      Bayesian posterior sampling
-      \bi
-      \item Base model: always MCMC (previous random walk Metropolis Hastings algorithm)
-      \item Sensitivity models: MCMC this year (previously used MLE)
-      \item Retrospective models: MCMC this year (previously used MLE)
-      \ei
+    \item Update and add new \Sexpr{last.assess.yr} weight-at-age data
+    \item Add the age-1 index time series
+    \item All model runs in the assessment use MCMC (including bridging models)
   \ei
 \end{frame}
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: Update SS / DM phase}
+\frame{\frametitle{Bridging: Update and Add Data}
   \bc
   <<bridge.biomass.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
@@ -163,14 +155,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                        subplots = 2,
                        model.names = bridge.model.names.1,
                        densitynames = NULL,
-                       plot_mcmc = FALSE,
-                       legendloc = "topleft",
+                       plot_mcmc = TRUE,
                        end.yr = bridge.model.end.yr.1)
   make.comparison.plot(bridge.models.1,
                        subplots = 9,
                        model.names = bridge.model.names.1,
                        densitynames = NULL,
-                       plot_mcmc = FALSE,
+                       plot_mcmc = TRUE,
                        legend = FALSE,
                        end.yr = bridge.model.end.yr.1)
   box()
@@ -180,34 +171,34 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-%\frame{\frametitle{Bridging: Update SS / DM phase (Fig. 15)}
-%  \bc
-%  <<bridge.rel.biomass.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
-%  oldpar <- par(mfrow = c(1, 2),
-%                mar =c(5, 4, 1, 1),
-%                no.readonly = TRUE)
-%  make.comparison.plot(bridge.models.1,
-%                       subplots = 3,
-%                       model.names = bridge.model.names.1,
-%                       densitynames = NULL,
-%                       legendloc = "topleft",
-%                       end.yr = bridge.model.end.yr.1)
-%  make.comparison.plot(bridge.models.1,
-%                       subplots = 12,
-%                       model.names = bridge.model.names.1,
-%                       densitynames = NULL,
-%                       legend = FALSE,
-%                       end.yr = bridge.model.end.yr.1)
-%  box()
-%  par(oldpar)
-%  @
-%  \ec
-%}
-
+\frame{\frametitle{Bridging: Update and Add Data}
+  \bc
+  <<bridge.survey.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+  oldpar <- par(mfrow = c(1, 2),
+                mar =c(5, 4, 1, 1),
+                no.readonly = TRUE)
+  make.comparison.plot(bridge.models.1,
+                       subplots = 12,
+                       model.names = bridge.model.names.1,
+                       densitynames = NULL,
+                       plot_mcmc = TRUE,
+                       legend = FALSE,
+                       end.yr = bridge.model.end.yr.1)
+  make.comparison.plot(bridge.models.1,
+                       subplots = 13,
+                       model.names = bridge.model.names.1,
+                       plot_mcmc = TRUE,
+                       legendloc = "topleft",
+                       indexfleets = 2,
+                       end.yr = bridge.model.end.yr.1)
+  box()
+  par(oldpar)
+  @
+  \ec
+}
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: Update Pre-\Sexpr{last.data.yr}
-  data / add \Sexpr{assess.yr - 1} fishery data}
+\frame{\frametitle{Bridging: Add age-1 index}
   \bc
   <<bridge.biomass.2, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
@@ -224,13 +215,41 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                        subplots = 2,
                        model.names = bridge.model.names.2,
                        densitynames = bridge.density.names,
-                       plot_mcmc = FALSE,
+                       plot_mcmc = TRUE,
+                       end.yr = bridge.model.end.yr.2)
+  make.comparison.plot(bridge.models.2,
+                       subplots = 4,
+                       model.names = bridge.model.names.2,
+                       densitynames = bridge.density.names,
+                       plot_mcmc = TRUE,
+                       legend = FALSE,
+                       end.yr = bridge.model.end.yr.2,
+                       btarg = 0.4)
+  box()
+  par(oldpar)
+  @
+  \ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Bridging: Add age-1 index}
+  \bc
+  <<bridge.recdev.biomass.3, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+  oldpar <- par(mfrow = c(1, 2),
+                mar =c(5, 4, 1, 1),
+                no.readonly = TRUE)
+  make.comparison.plot(bridge.models.2,
+                       subplots = 12,
+                       model.names = bridge.model.names.2,
+                       densitynames = bridge.density.names,
+                       plot_mcmc = TRUE,
                        end.yr = bridge.model.end.yr.2)
   make.comparison.plot(bridge.models.2,
                        subplots = 9,
                        model.names = bridge.model.names.2,
                        densitynames = bridge.density.names,
-                       plot_mcmc = FALSE,
+                       plot_mcmc = TRUE,
+                       legend = FALSE,
                        end.yr = bridge.model.end.yr.2)
   box()
   par(oldpar)
@@ -239,18 +258,27 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: Update Pre-\Sexpr{last.data.yr}
-  data / add \Sexpr{assess.yr - 1} fishery data}
+\frame{\frametitle{Bridging: Add age-1 index}
   \bc
-  <<bridge.recdev.biomass.3, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+  <<bridge.survey.2, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+  oldpar <- par(mfrow = c(1, 2),
+                mar =c(5, 4, 1, 1),
+                no.readonly = TRUE)
   make.comparison.plot(bridge.models.2,
-                       subplots = 12,
-                       legendloc = "topleft",
+                       subplots = 13,
                        model.names = bridge.model.names.2,
-                       densitynames = bridge.density.names,
-                       plot_mcmc = FALSE,
+                       plot_mcmc = TRUE,
+                       indexfleets = 2,
+                       end.yr = bridge.model.end.yr.2)
+  make.comparison.plot(bridge.models.2,
+                       subplots = 13,
+                       model.names = bridge.model.names.2,
+                       plot_mcmc = TRUE,
+                       indexfleets = 3,
+                       legend = FALSE,
                        end.yr = bridge.model.end.yr.2)
   box()
+  par(oldpar)
   @
   \ec
 }
@@ -395,23 +423,22 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Summary}
   \bi
-    \item Updating Stock Synthesis and switching the data weighting parameters to the
-      final estimation phase has no effect on results.
-    \item Updating pre-\Sexpr{last.assess.yr} data has no effect on model outcome.
-    \item Adding \Sexpr{last.assess.yr} catch and \Sexpr{last.assess.yr} weight-at-age
-      data has very minor effect on biomass trajectories.
-    \item Adding fishery age compositions results in slight adjustments to recruitment
-      estimates (notably an increase in 2010 and decrease in 2014 and 2018 cohorts) resulting
-      in a very small increase in recent spawning biomass estimates.
-    %\item Adding the \Sexpr{last.data.yr} survey biomass estimate leads to slightly more optimistic
-    %  estimate of biomass for the last few years and reduces uncertainty.
+    \item Updating Stock Synthesis software has no effect on results.
+    \item Updating fishery catch and age composition data to \Sexpr{last.assess.yr} has little effect
+      on the stock trajectory.
+    \item Adding the \Sexpr{last.data.yr} survey biomass estimate and age compositions leads to
+      slightly more optimistic estimate of biomass for the last few years and reduces uncertainty.
+    \item Small changes in recruitment with the addition of \Sexpr{last.assess.yr} fishery age composition
+      data were largely offset with the addition of \Sexpr{last.assess.yr} survey age composition data.
+    \item Adding \Sexpr{last.data.yr} weight-at-age data resulted in a slight upward shift in current biomass,
+      because the mean weights in \Sexpr{last.data.yr} were mostly above the recent 5-year average mean
+      weights (which is the assumption before the addition of these data).
+    \item The addition of the age-1 index resulted in a small increase in $B_0$, an increase in
+      relative spawning biomass from 2019--2022, and an increase in the estimated size of the 2018 and 2020 cohorts.
+      
     %\item Adding the \Sexpr{last.data.yr} survey age compositions further reduced uncertainty,
     %  but provided a worse fit to the 2017 and \Sexpr{last.data.yr} survey indices.
-    %\item Using the random walk Metropolis Hastings (rwMH) MCMC sampling algorithm (used in the
-    %  \Sexpr{last.assess.yr} base model) lead to similar population trends but a small
-    %  difference in the $log(R_0)$ parameter when compared to the NUTS algorithm used in the
-    %  \Sexpr{assess.yr} base model.
-   \ei
+ \ei
 }
 
 %----------------------------------------------------------
@@ -536,7 +563,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \item Many others
       \ei
     \item Posterior correlations among key parameters and summary diagnostics for all chains
-      combined are shown in Appendix A.
+      combined are shown in Appendix A (no issues identified).
    \ei
 }
 
@@ -586,15 +613,30 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
+\frame{\frametitle{Fit to the age-1 index}
+  \bc
+  <<mcmc.age1.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+    make.mcmc.survey.fit.plot(base.model,
+                              start.yr = survey.start.yr,
+                              end.yr = survey.end.yr,
+                              probs = c(0.025, 0.975),
+                              y.max = 10e6,
+                              survey.type = "age1",
+                              survey.col = "red")
+  @
+  \ec
+}
+%----------------------------------------------------------
 \frame{\frametitle{Fit to acoustic survey age comps}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
       \item 1999 cohort often over--predicted relative to the survey
       \item Young cohorts in 2003--2011 underfit
-      \item Recent years (2012--\Sexpr{last.survey.year}) show good fits, including 2010 cohort
-      \item Proportion of 2010 and 2014 cohort in the population differed between fishery and survey data in 2017
-        but largely agreed in 2019
+      \item 2010 cohort over--predicted and 2014 cohort under--predicted in 2017
+      \item Predictions for 2014 and 2016 cohorts are similar in the 2019 and 2021 surveys,
+        despite differences in survey estimates (although well within the range
+        of uncertainty)
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -617,7 +659,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \item Large 1999, 2010, and 2014 cohorts fit particularly well
       \item Some over- and under-fitting in 1980 and 1984 cohorts
       \item Several cohorts in the mid-2000s were underfit (2005, 2006, 2008) when young
-      \item The 2016 and 2017 cohorts fit well
+      \item The 2014, 2016 and 2017 cohorts fit well
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -681,11 +723,16 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     <<main.prior.posterior, fig.height=6, fig.width=8,out.width='0.95\\columnwidth'>>=
 make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
                                               key.posteriors,
+                                              hist_breaks = c(50, 50, 50, 50, 100, 100),
                                               ncol = 2,
                                               nrow = 3,
                                               show_legend = TRUE,
                                               legend_panel = 3,
-                                              titles = key.posteriors.titles)
+                                              titles = key.posteriors.titles,
+                                              show_mle = FALSE,
+                                              show_prior = TRUE,
+                                              show_init = TRUE,
+                                              show_median = TRUE)
     @
     \ec
   \end{column}
@@ -694,7 +741,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Catchability (\emph{q}) posterior and values for recent assessments}
+\frame{\frametitle{Catchability (\emph{$q_b$}) posterior and values for recent assessments}
  \bc
   <<histQ, fig.height=2.25, fig.width=5.5>>=
      make.mcmc.catchability.plot(base.model, last.yr.base.model)
@@ -716,6 +763,16 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
  \ec
 }
 
+%----------------------------------------------------------
+%
+%\frame{\frametitle{Catchability (\emph{q}) posterior and values for recent assessments}
+% \bc
+%  <<histQ.age1, , fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+%     make.mcmc.catchability.plot(base.model)
+%  @
+% \ec
+%}
+%
 %----------------------------------------------------------
  \frame{\frametitle{Time-varying selectivity}
  \begin{columns}
@@ -862,10 +919,11 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   ~\\
 
 \bi
-  \item 2010 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2010 * 100, 1)}\% of the biomass
-  \item 2014 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2014 * 100, 1)}\% of the biomass
-  \item 2016 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2016 * 100, 1)}\% of the biomass
-  \item 2017 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2017 * 100, 1)}\% of the biomass
+  \item 2010 cohort is estimated to make up 6.8\% of the biomass 
+  \item 2014 cohort is estimated to make up 12.8\% of the biomass
+  \item 2016 cohort is estimated to make up 18.3\% of the biomass
+  \item 2017 cohort is estimated to make up 11.4\% of the biomass
+  \item 2020 cohort is estimated to make up 32.1\% of the biomass
 \ei
 }
 
@@ -902,8 +960,8 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
       \item Median posterior distribution estimates
       \item Red line is mean age for the year
       \item Mean age drops significantly in years with large age-0 cohorts
-      \item Mean age increasing over recent years due to ageing large cohorts
-        and no new large year-classes
+      \item Mean age increasing over recent years until 2020 when it drops
+        due to incoming year-class
     \ei
   \end{column}
   \begin{column}{0.5\textwidth}
@@ -1026,18 +1084,19 @@ year's assessment, the credible interval remains well within that from last year
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
     {\bf Response:} \emph{Explore recruitment parameterizations}}
   \bi
-    \item Research to treat recruitment deviations as a random effect and estimate $\sigma_R$
+    \item Medium-term: continuing research to treat recruitment deviations as a random effect and estimate $\sigma_R$
+      \bi
+        \item WHAM model
+        \item Hake MSE estimation model
+      \ei
     \pause
-    \item Research, more broadly, the concurrent estimation of multiple variance parameters
+    \item Medium-term: conduct research, more broadly, to evaluate concurrent estimation of multiple variance parameters
       in stock assessment and their interactions
     \pause
-    \item Utilize existing MSE framework and other state-space assessment framework
-      developments to explore recruitment estimation
+    \item Medium-term: explore how larval/juvenile survival and factors affecting recruitment can be linked
+      into stock assessment process (more on this Tuesday afternoon)
     \pause
-    \item Explore how larval/juvenile survival and factors affecting recruitment can be linked
-      into stock assessment process
-    \pause
-    \item Continue monitoring ongoing development of recruitment priors through meta-analysis research
+    \item Long-term: continue monitoring ongoing development of recruitment priors through meta-analysis research
   \ei
 }
 
@@ -1098,126 +1157,129 @@ year's assessment, the credible interval remains well within that from last year
 %
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-  {\bf Time-varying selectivity}}
+  {\bf Projecting recruitment}}
 % \setbeamercovered{dynamic}   % need for \pause
   %\bi
-  {\bf The SRG encourages ongoing work to develop approaches to estimating
-    variance parameters.}
+  {\bf The SRG recommends exploring alternative methods to simulate recruitment in
+    the projections.}
   %\ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Time-varying selectivity}}
+    {\bf Response:} \emph{Projecting recruitment}}
   \bi
-    \item Research, more broadly, the concurrent estimation of multiple variance parameters
-      (including time-varying selectivity) in stock assessment and their interactions
+    \item Exploring approaches to make informed decisions about current and
+      future recruitment, instead of default long-term averages or \emph{adhoc}
+      bidirectional multipliers (i.e., plus or minus x\%)
+      \bi
+        \item Age-1 index
+        \item Oceanographic and environmental drivers of recruitment (previous and
+          ongoing work) as a recruitment index
+      \ei
     \pause
-    \item Continue monitoring ongoing time-varying selectivity research, including
-      comparisons among different statistical approaches in different operational and
-      research-based stock assessment frameworks
+    \item Stock synthesis currently does not have capacity to draw from past
+      observations or use mixing distributions to simulate recruitment in the
+      projection period. Available options include:
+      \bi
+        \item stock-recruitment curve
+        \item stock-recruitment curve with a multiplier
+        \item mean recruitment across a user-defined time period
+      \ei
     \pause
-    \item Explorations into input age-composition sample sizes will need
-      to be jointly considered
+    \item Appendix H presents new ideas for visualizing annual recruitment
   \ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-  {\bf Reference points}}
+  {\bf Decison tables}}
 % \setbeamercovered{dynamic}   % need for \pause
   %\bi
-  {\bf The SRG recommends that the JTC explore alternative methods of estimating
-    reference points, including dynamic reference points or reference points based
-    on a defined time period. There is some urgency to this work as biomass is
-    declining and the relative spawning biomass may fall below the target level
-    $\Bforty$ within 2 years.}
+  {\bf The SRG requests that the JTC consider developing a decision table
+    in the next assessment with recruitment fixed at the median and mean levels
+    to assess the resulting impact on stock depletion.}
   %\ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Reference points}}
+    {\bf Response:} \emph{Decision tables}}
   \bi
-    \item Use the MSE to systematically evaluate dynamic reference points, including
-      the implications of necessary assumptions, as suggested by recent international
-      workshops and related research
+    \item Specifying projected recruitment as the median of a given year range
+      is not explicitly an option in Stock Synthesis.
     \pause
-    \item Preliminary investigations based on the estimated no-fishing ("unfished") time series
-      indicates that the stock could be more productive than what virgin equilibrium
-      conditions otherwise indicate. If this is the case, estimates of relative fishing
-      intensity would be higher than currently estimated, and estimates of relative stock
-      size would be lower than currently estimated. However, many simplifying assumptions
-      are made when estimating unfished time series and these need to be thoroughly examined.
+    \item To work around this, the JTC calculated the median of estimates
+      of recruitment from the main time period (1970-2020) and scaled this
+      value to the estimate of $R_0$. Scaled median recruitment was then used
+      as in input value to Stock Synthesis which does allow for scaling
+      recruitment forecasts in terms of virgin recruitment. The standard suite of
+      catch projections were then conducted using mean recruitment from the main time
+      period and scaled virgin recruitment based on the median estimates of recruitment
+      relative to $R_0$. Brief example of results will be shown.
   \ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-  {\bf Sample sizes and downweighting data}}
+  {\bf Dynamic reference points}}
 % \setbeamercovered{dynamic}   % need for \pause
   %\bi
-  {\bf The SRG recommends (1) that the JTC undertake simulations to investigate
-    the effect of downweighting age-composition data on management performance,
-    and (2) that the JTC explore temporal trends in sample sizes and appropriate
-    ways of estimating the annual variability in age-composition data.}
+  {\bf The SRG encourages the JTC (and MSE technical team) to continue investigating
+    the usefulness of dynamic reference points in the management of Pacific Hake.}
   %\ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Sample sizes and downweighting data}}
+    {\bf Response:} \emph{Dynamic reference points}}
   \bi
-    \item Exploration of pre-2008 data proved difficult as they are not investigated
-      annually. There is no way to know if current extractions of historical data from the
-      databases match what was used to generate historical age compositions.
+    \item No additional work investigating the usefulness of dynamic reference points over the
+      past year.
     \pause
-    \item Next steps include extracting historical age compositions and rectifying differences,
-      then conducting simulations to determine how to best assign sample sizes to disparate sampling
-      methods when aggregating to a single fleet.
+    \item Instead, the JTC and MSE technical team have been working with Stock
+      Synthesis developers to incorporate dynamic reference point capabilities into
+      the stock assessment statistical (Bayesian) and MSE coding (full closed-loop simulation)
+      frameworks. Posterior distributions associated with dynamic reference points are now
+      possible within Stock Synthesis. Likewise, the MSE can now utilize dynamic reference
+      points in management procedure scenarios. 
     \pause
-    \item The JTC investigated how many tows are typically included in a trip for the shore-based
-      fleet using records from observer data. The number of tows completed per trip will help inform
-      the amount of overdispersion present in the data and thus used in the simulation. Preliminary
-      investigations suggest that on average there are about two hauls conducted per shore-based trip
-      in the U.S.; and, combined, those hauls, on average, contain about half as much in catch weight
-      as a single at-sea haul.
+    \item The JTC plans to continue engaging in
+      research related to dynamic reference points broadly, as well as specifically
+      for Pacific Hake.
   \ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-  {\bf Age composition variability}}
+  {\bf Forecasting weight-at-age}}
 % \setbeamercovered{dynamic}   % need for \pause
   %\bi
-  {\bf The SRG recommends that the JTC undertake an analysis of the annual
-    age-composition data in a more disaggregated form (e.g., by fleet) outside
-    of the model to evaluate the sources of between-sample variability in the
-    fishery age-compositions (month, year, fleet, sample size, etc.) and whether
-    the variability relates to simple metrics of sample size such as the number
-    of sampled tows, the number of sampled trips, and the number of sampled fish.}
+  {\bf The SRG requests that the JTC explore alternative methods for forecasting
+    weight-at-age and evaluate whether they can improve projections.}
   %\ei
 }
 
 %----------------------------------------------------------
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
-    {\bf Response:} \emph{Age composition variability}}
+    {\bf Response:} \emph{Forecasting weight-at-age}}
   \bi
-    \item Need to understand the historical data first (in progress). Currently, the
-      disaggregated forms of the compositional data are unavailable because the raw data
-      are unavailable.
+    \item Recent, current, and future recruitment are perhaps the most influential
+      sources of uncertainty in stock assessment projections. Thus, the JTC has prioritized
+      research on recruitment, including supporting analyses
+      and the justification for using the age-1 index in the 2022 base model and other
+      related analyses.
     \pause
-    \item The JTC explored several approaches for adjusting the input sample sizes for age
-      composition data without changing the method of weighting by landings using data since 2008.
-      These included adjusting the U.S. (or U.S. and Canadian) at-sea sectors to be more consistent with the
-      shore-based sector ratio of fish per sample, and applying generic regression equations built
-      through meta-analysis of West coast groundfish stocks that define candidate input sample sizes
-      based on the number of samples (hauls or trips) and the number of fish sampled. In both cases,
-      results from exploratory model runs showed similar estimates of equilibrium and current spawning
-      stock biomass compared to what was estimated for this assessment.
+    \item The JTC is scoping plans to explicitly evaluate these relationships
+      using random effects models to partition the variance components (year and cohort) in
+      available weight-at-age data. The JTC also plans to explore new weight-at-age forecasting
+      capabilities in Stock Synthesis (once fully tested).
     \pause
-    \item In addition, systematically removing all age-composition data from the beginning of
-      the assessment model time series through 1990 led to similar stock trajectories from 1990 forward.
+    \item Simulation experiment that evaluates the influence of variable
+      weight-at-age data relative to other sources of variance in stock assessment
+      projections (e.g., recruitment) would also be useful. Until this work is completed,
+      the JTC continues to use a recent five-year average in the projection period because
+      it is consistent with recent data.
   \ei
 }
 
@@ -1225,20 +1287,37 @@ year's assessment, the credible interval remains well within that from last year
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
     {\bf Other requests: see details in assessment document}}
   \bi
-    \item Reproductive cycle: no new ovary samples in 2020 and no new maturity analyses conducted
+    \item Reproductive cycle: ovary samples collected in 2021, no new maturity analyses conducted,
+      and ongoing liver lipid research towards improving predicting sexual maturity.
     \pause
-    \item Genetic studies: ongoing with second round of sequencing and manuscript underway
+    \item Genetic studies: evidence for some weak differentiation among some spatial-temporal grid
+      locations, but overall genetic results corroborate the coastal single-stock hypothesis.
     \pause
-    \item NUTS: used in base model and sensitivity runs this year
+    \item Sensitivity models: the JTC has conducted all of the requested sensitivities (and many others).
     \pause
-    \item NUTS: age-1 and rwMH sensitivity runs provided (appendices G and H, respectively)
+    \item Executive summary: completed a reproduction of the executive summary
+      excluding the age-1 index (Appendix G).
     \pause
-    \item Sensitivity models: all requested sensitivity analyses were conducted using NUTS
+    \item Recruitment performance: the JTC has extended this analysis (figures 58-65), including
+      a retrospective component given that all retrospective model runs are performed using MCMC
+      (this will be further discussed in the management presentation).
     \pause
-    \item Ageing error: study will be conducted using new software package being developed and once
-      updated inter-lab comparisons are completed
+    \item Ageing error: an ageing error study in conjunction with CARE has commenced, however
+      a full exchange is on hold due to staffing issues.
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+    {\bf Other requests: see details in assessment document}}
+  \bi
+    \item Historical otoliths: restrictions related to COVID-19 have limited access to historical
+      data. Previous analyses have shown that small changes in historical data have little
+      relevance on current management quantities.
     \pause
-    \item Historical otoliths: the Burke Museum has not been visited due to COVID-19 related closures
+    \item Biological sampling: already discussed in the data presentation.
+    \pause
+    \item Decision table format: decision tables have been reformatted as requested.
   \ei
 }
 
@@ -1271,7 +1350,7 @@ year's assessment, the credible interval remains well within that from last year
 %----------------------------------------------------------
 \frame{\frametitle{Summary -- Biomass}
   \bi
-  \item Model continues to fit the age data particularly well
+  \item Model fits the age data particularly well
   %\item The estimated spawning stock biomass has continually dropped since 2017
   \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
@@ -1321,17 +1400,21 @@ year's assessment, the credible interval remains well within that from last year
 
 \frame{\frametitle{Summary -- Key Points}
   \bi
-  \item Highest catches on record over last four years
-  \item Very low catches of age-2 and age-1 fish in 2020 fishery
-  \item Large 2010 and 2014 cohort biomass: mortality outpacing growth (28\% and 33\%
-    decline, respectively, from beginning of 2020)
-  \item Rate of spawning stock biomass decline has increased over recent (2018--2021) years
+  \item Catch has continually declined over last five years from a time
+    series high in 2017
+  \item Low proportion of young fish (ages 1--3) in 2021 fishery
+  \item Above average 2014 and 2016 cohort biomass: mortality outpacing growth (36\% and 34\%
+    decline, respectively, from beginning of 2021)
+  \item Spawning stock biomass relatively high (65\% of $B_0$), but steady decline over recent years:
     \bi
-      \item SSB(2018) to SSB(2019): -1\%
-      \item SSB(2019) to SSB(2020): -13\%
-      \item SSB(2020) to SSB(2021): -25\%
+      \item SSB(2019) to SSB(2020): -9\%
+      \item SSB(2020) to SSB(2021): -12\%
+      \item SSB(2021) to SSB(2022): -13\%
     \ei
-  \item While relative SSB(2021) is above $\Bforty$, it is approaching it at an increasing pace
+  \item the model estimates a \Sexpr{joint.percent.prob.above.below}\%
+    joint probability of being both above the target relative fishing intensity in
+    \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the
+    start of \Sexpr{end.yr}
   \ei
 }
 
