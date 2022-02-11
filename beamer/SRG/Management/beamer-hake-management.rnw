@@ -2,6 +2,10 @@
 %\documentclass[draft]{beamer}
 %\documentclass[notesonly]{beamer}
 %\documentclass[notes]{beamer}
+% Command line building in R (obviously repeat the latex step if running fresh):
+% knitr::knit("beamer-hake-management.rnw")
+% shell("latex beamer-hake-management"); shell("dvips beamer-hake-management");  shell("ps2pdf beamer-hake-management.ps")
+
 \documentclass[aspectratio=169]{beamer}
 \mode<presentation>
 \usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
@@ -805,7 +809,8 @@ make.historical.probs.plot(base.model,
 \bc
 <<historical.prob.plot.2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
   make.historical.probs.plot(base.model,
-                             type = "bforty")
+                             type = "bforty",
+                             legend.loc = "topright")
 @
 \ec
 }
@@ -814,9 +819,10 @@ make.historical.probs.plot(base.model,
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
 \bc
 <<historical.prob.plot.2b, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
-  make.historical.probs.plot(base.model,
-                             type = "bforty",
-                             add.projs = TRUE)
+make.historical.probs.plot(base.model,
+                           type = "bforty",
+                           add.projs = TRUE,
+                           legend.loc = "topright")
 @
 \ec
 }
