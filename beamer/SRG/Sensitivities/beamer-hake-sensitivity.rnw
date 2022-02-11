@@ -892,15 +892,15 @@ make.assessment.history.plot(base.model,
 \vspace{-1cm}
 \bi
   \item In general, sensitivities show no significant departure from base model
-  \item Absolute scale changes for some sensitivities mostly due to differing $R_0$ estimates
+  \item Absolute scale changes for some sensitivities, mostly due to differing $R_0$ estimates
   \item Overall relative pattern consistent -- large increases in biomass in early 2010s and currently biomass is declining
-  \item Addition of Age-1 index increases all recruitment estimates
-  \item Retrospective squid plots show that:
+  \item Removal of Age-1 index decreases recruitment estimates
+  \item Retrospective squid plots show that since \Sexpr{assess.yr - 11}, and
+    based on medians:
   \bi
-    \item 2010 cohort is the largest in the population
-    \item 2014 cohort is the second largest
-    \item 2016 cohort is the third largest
-    \item No large cohorts since 2016
+    \item 2014 cohort is the largest
+    \item 2016 cohort is the second largest
+    \item 2020 cohort currently looks as large as 2016 did at age-2
   \ei
 \ei
 \end{frame}
