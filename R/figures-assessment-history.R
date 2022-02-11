@@ -2,9 +2,12 @@
 #'
 #' @details The csv file should be set up with blanks for SSB in the most recent year
 #' it is read in data-tables.r which is sourced in all.R
-#' @param base This year's base model
-#' @param assessment.history A data frame read in from the assessment history file
-make.assessment.history.plot <- function(base, assessment.history){
+##' @param base This year's base model
+##' @param assessment.history A data frame read in from the assessment history file
+##' @param par.mar par(mar = c(x, x, x, x)) values; default is for doc
+make.assessment.history.plot <- function(base,
+                                         assessment.history,
+                                         par.mar = c(3.1, 3.1, 1.1, 6.1)){
 
   xx <- assessment.history
   xx <- xx[xx$Value == "SB million mt",]
@@ -65,7 +68,8 @@ make.assessment.history.plot <- function(base, assessment.history){
   legCol <- legPch <- rep(NA, nrow(xx))
 
   # set parameters for margins and axes
-  par(mar = c(3, 3, 1, 6) + 0.1, mgp = c(2, 1, 0))
+  par(mar = par.mar,
+      mgp = c(2, 1, 0))
   ymax <- 1.05 * max(xx[,yearInd], na.rm = TRUE)
 
   # make empty plot
@@ -73,7 +77,7 @@ make.assessment.history.plot <- function(base, assessment.history){
        range(xx[,yearInd], na.rm = TRUE),
        type = "n",
        xlab = "Year",
-       ylab = "Spawning Biomass (million t)",
+       ylab = "Spawning biomass (million t)",
        las = 1,
        xlim = c(min(years), max(years)),
        ylim = c(0, ymax),

@@ -820,9 +820,9 @@ make.comparison.plot(retro.list,
                      subplots = 2,
                      model.names = retro.model.names,
                      legend = TRUE,
-                     legend_loc = "bottomleft",
+                     legend_loc = "topleft",
                      is.retro = TRUE,
-                     ylim = c(0, 0.5))
+                     ylimAdj = 0.95)
 par <- oldpar
 @
 \end{center}
@@ -852,14 +852,13 @@ par <- oldpar
 % -----------------------------------------------------------------------------%
 \subsection{Age-1 model squid plot}
 \begin{frame}
-\frametitle{Include age-1 index retrospective -- squid plot}
+\frametitle{Exclude age-1 index retrospective -- squid plot}
 \begin{center}
 \vspace{-5pt}
 %, out.width='0.9\\columnwidth'>>=   Keep following values else
 %   years get too close to the tendrils
 <<retro.3.age1, fig.height=3.5>>=
 oldpar <- par(mar = c(5, 4, 1, 1), no.readonly = TRUE)
-retro.cohorts <- (end.yr - 11):end.yr
 make_squid_plot(sens.models.2[[1]],
                 subplot = 1,
                 cohorts = retro.cohorts)
@@ -874,9 +873,13 @@ par <- oldpar
 \begin{frame}
 \frametitle{Historical assessments}
 \begin{center}
+\vspace{-5pt}
 <<retro.4, out.width='.88\\columnwidth', out.height='.8\\textheight'>>=
 make.assessment.history.plot(base.model,
                              assessment.history)
+                             # par.mar = c(2.5, 3.1, 1.1, 6.1))
+                             # 2022 gets cut off but I gave up tweaking.
+                             # Default is c(3.1, 3.1, 1.1, 6.1)
 @
 \end{center}
 \end{frame}
