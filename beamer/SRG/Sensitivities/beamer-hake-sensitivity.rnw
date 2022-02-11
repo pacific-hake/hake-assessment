@@ -914,15 +914,14 @@ make.assessment.history.plot(base.model,
 \bi
   \item Total time to run all MCMC models this year:
   \bi
-    \item Base model: $\sim$4.5 hours
-    \item Sensitivities: 21 * $\sim$4.5~hours = $\sim$94.5 hours
-    \item Retrospectives: 10, total = $\sim$96 hours
-    \item rwMH long chain run: $\sim$8 days
-    \item Total with rwMH long chain: $\sim$16 days
-    \item Total without rwMH long chain run: 8 days
+    \item **Base model: ***$\sim$4.5 hours  [but had to run **?? times]
+    \item **Age-1 sensitivity: [same as base, plus retros]
+    \item **Sensitivities: 21 $\times \sim$4.5~hours = $\sim$94.5 hours
+    \item **Retrospectives: 10, total = $\sim$96 hours
   \ei
-  \item \textbf{Total time to run all MCMC models last year: 44.5 hours}
-  \item \textbf{Total time to run all MCMC models this year: 16 days}
+  \item \textbf{Total time to run all MCMC models for 2020 assessment: 44.5 hours}
+  \item \textbf{Total time to run all MCMC models for 2021 assessment: 16 days}
+  \item \textbf{Total time to run all MCMC models for 2022 assessment: ** days}
 \ei
 \end{frame}
 % -----------------------------------------------------------------------------%
