@@ -427,7 +427,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \item Updating fishery catch and age composition data to \Sexpr{last.assess.yr} has little effect
       on the stock trajectory.
     \item Adding the \Sexpr{last.data.yr} survey biomass estimate and age compositions leads to
-      slightly more optimistic estimate of biomass for the last few years and reduces uncertainty.
+      slightly more optimistic estimates of biomass for the last few years and reduces uncertainty.
     \item Small changes in recruitment with the addition of \Sexpr{last.assess.yr} fishery age composition
       data were largely offset with the addition of \Sexpr{last.assess.yr} survey age composition data.
     \item Adding \Sexpr{last.data.yr} weight-at-age data resulted in a slight upward shift in current biomass,
@@ -741,10 +741,10 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 
 %----------------------------------------------------------
 
-\frame{\frametitle{Catchability (\emph{$q_b$}) posterior and values for recent assessments}
+\frame{\frametitle{Survey catchability (\emph{$q_b$}) posterior and values for recent assessments}
  \bc
   <<histQ, fig.height=2.25, fig.width=5.5>>=
-     make.mcmc.catchability.plot(base.model, last.yr.base.model)
+     make.mcmc.catchability.plot(base.model, last.yr.base.model,type = "age2plus")
   @
   \begin{table}
     \begin{tabular}{cccc} \hline
@@ -765,14 +765,28 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 
 %----------------------------------------------------------
 %
-%\frame{\frametitle{Catchability (\emph{q}) posterior and values for recent assessments}
-% \bc
-%  <<histQ.age1, , fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%     make.mcmc.catchability.plot(base.model)
-%  @
-% \ec
-%}
-%
+\frame{\frametitle{Catchability (\emph{$q_1$}) posterior for the age-1 index}
+ \bc
+  <<histQ.age1,fig.height=2.25, fig.width=5.5>>=
+     make.mcmc.catchability.plot(base.model, type = "age1")
+  @
+ \begin{table}
+    \begin{tabular}{cccc} \hline
+      \textcolor{blue}{Median (\Sexpr{assess.yr})} &
+      \textcolor{red}{Median (\Sexpr{assess.yr - 1})} \\
+      %\textcolor{blue}{MLE (\Sexpr{assess.yr})} &
+      %\textcolor{red}{MLE (\Sexpr{assess.yr - 1})} \\
+      \hline
+      \textcolor{blue}{\Sexpr{f(median(base.model$extra.mcmc$Q_vector_age1), 2)}} &
+      \textcolor{red}{--} \\
+      %\textcolor{blue}{\Sexpr{f(base.model$cpue$Calc_Q[1],2)}}  &
+      %\textcolor{red}{\Sexpr{f(last.yr.base.model$cpue$Calc_Q[1],2)}} \\
+      \hline
+    \end{tabular}
+  \end{table}
+ \ec
+}
+
 %----------------------------------------------------------
  \frame{\frametitle{Time-varying selectivity}
  \begin{columns}
@@ -1213,10 +1227,10 @@ year's assessment, the credible interval remains well within that from last year
       of recruitment from the main time period (1970-2020) and scaled this
       value to the estimate of $R_0$. Scaled median recruitment was then used
       as in input value to Stock Synthesis which does allow for scaling
-      recruitment forecasts in terms of virgin recruitment. The standard suite of
-      catch projections were then conducted using mean recruitment from the main time
+      recruitment forecasts in terms of virgin recruitment. Catch projections were
+      then conducted using mean recruitment from the main time
       period and scaled virgin recruitment based on the median estimates of recruitment
-      relative to $R_0$. Brief example of results will be shown.
+      relative to $R_0$. Brief example of results will be shown, if desired.
   \ei
 }
 
@@ -1287,7 +1301,7 @@ year's assessment, the credible interval remains well within that from last year
 \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
     {\bf Other requests: see details in assessment document}}
   \bi
-    \item Reproductive cycle: ovary samples collected in 2021, no new maturity analyses conducted,
+    \item Reproductive cycle: ovary samples collected in 2021; no new maturity analyses conducted;
       and ongoing liver lipid research towards improving predicting sexual maturity.
     \pause
     \item Genetic studies: evidence for some weak differentiation among some spatial-temporal grid
