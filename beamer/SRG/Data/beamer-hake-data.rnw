@@ -101,8 +101,9 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   @
   \bi
     \item \Sexpr{last.assess.yr} TAC, adjusted for carryovers, was \Sexpr{last.year.tac} t.
-    \item Canadian and U.S. fisheries predominantly started in March and May, respectively.
-    \item Fourth-highest coast-wide catch, \Sexpr{pchangecatch}\% decrease from last year.
+    \item Canadian and U.S. fisheries predominantly started in April and May, respectively.
+    \item \Sexpr{scales::ordinal(tail(rank(base.model$catch$Obs*-1),1))} highest coast-wide catch.
+    \item \Sexpr{pchangecatch}\% decrease in catch from last year.
     \item No Canadian Joint-Venture Fishery and no ages from Freezer-Trawlers in \Sexpr{last.assess.yr}.
     \item Highest proportion-at-age by sector
       \bi
@@ -112,10 +113,10 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %        \item Age-\Sexpr{max.freezer.trawler.age.prop.age} fish in Canadian freezer-trawler sector, and
         \item Age-\Sexpr{max.shoreside.age.prop.age} fish in Canadian shoreside sector.
       \ei
-    \item Avoidance of sablefish was less of an issue this year, but rockfish species were problematic.
-    \item Stakeholders reported generally good fishing in the U.S. and longer search times in Canada relative to recent years.
-    \item No new information from the survey in \Sexpr{last.assess.yr}.
-%    \item \Sexpr{last.survey.year} acoustic survey biomass estimate was \Sexpr{last.survey.year.biomass} million tons (\Sexpr{(type.convert(as.is = TRUE, last.factor.penult)-1)*100}\% \Sexpr{ifelse(last.factor.penult > 1, "increase", "decline")} from \Sexpr{penult.survey.year}).
+    \item Canadians fished shallower than normal to avoid rockfish species.
+    \item Stakeholders reported good fishing in the U.S.A. and relatively few fish in Canada.
+%    \item No new information from the survey in \Sexpr{last.assess.yr}.
+    \item \Sexpr{last.survey.year} acoustic survey biomass estimate was \Sexpr{last.survey.year.biomass} million tons (\Sexpr{(type.convert(as.is = TRUE, last.factor.penult))*100}\% of \Sexpr{penult.survey.year}).
   \ei
 }
 
@@ -124,7 +125,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \subsection{Data sources}
 \frame{\frametitle{Summary of data sources used}
 \begin{columns}[t]
-  \begin{column}{0.4\linewidth}
+  \begin{column}{0.38\linewidth}
   \bi
       \item Fishery-dependent data
       \bi
@@ -133,10 +134,11 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \ei
       \item Acoustic survey (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr})
       \bi
-        \item Biomass index
+        \item Biomass index age 2$^+$
+        \item Numbers of age-1 fish
         \item Age compositions
       \ei
-      \item Weight-at-age (1975--\Sexpr{end.yr - 1}; combined)
+      \item Weight-at-age (1975--\Sexpr{end.yr - 1})
       \item Ageing imprecision and biases
       \bi
         \item double reads
@@ -145,13 +147,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \item Maturity ogive (NWFSC, 2017)
   \ei
   \end{column}
-  \begin{column}{0.6\linewidth}
-    <<data.overview.map, out.width='2.9in', out.height = '3.4in',out.width='1.0\\columnwidth'>>=
+  \begin{column}{0.65\linewidth}
+    <<data.overview.map, out.height = '3.4in',out.width='1\\columnwidth'>>=
       oldpar <- par()
       par(mgp = c(2, 0.5, 0))
       make.data.overview.plot(base.model,
-        fleetname = c("Fishery", "Acoustic\nSurvey"),
-        margins = c(5.1, 3, 0, 4))
+        fleetname = c("Fishery", "Survey (2+)", "Survey (1)"),
+        margins = c(5.1, 1, 0, 5))
       par(mgp = oldpar$mgp)
     @
   \end{column}
@@ -223,8 +225,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
           \bi
             \item Catcher Processor  -- \Sexpr{f(last.year.us.cp.catch)} t, \Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")} of US CP allocation
             \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t, \Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")} of US MS allocation
-            \item Shore-Based         -- \Sexpr{f(last.year.us.shore.catch)} t, \Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")} of shore-based allocation, includes 133 t of tribal catches
-            %todo: automate tribal catch amount
+            \item Shore-Based         -- \Sexpr{f(last.year.us.shore.catch)} t, \Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")} of shore-based allocation, includes \Sexpr{round(sum(subset(us.ti.catch.by.month,year == last.assess.yr)$catch), 0)} t of tribal catches
           \ei
     \end{column}
   \end{columns}
@@ -385,7 +386,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \end{center}
 }
 
-%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Age composition comparison}
 \frame{\frametitle{Survey and fishery age-composition comparison}
@@ -406,28 +407,40 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \section[Survey]{Survey}
-% \subsection{Acoustic backscatter}
-% \frame{\frametitle{Acoustic survey backscatter and age composition}
-%   \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/hake_survey_1995-19_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}
-% }
+\section[Survey]{Survey}
+\subsection{Acoustic backscatter}
+\frame{\frametitle{Acoustic survey backscatter and age composition}
+%  \includegraphics[width=\maxwidth, height=3in]{../../../doc/main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}
+}
 
-% \subsubsection{Age-1 acoustic backscatter}
-% \frame{\frametitle{Acoustic survey backscatter of age-1 fish}
-% \begin{center}
-%   \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-%   \includegraphics[height=2.9in]{../../../doc/main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}
-% \end{center}
-% }
+\subsubsection{Age-1 acoustic backscatter}
+\frame{\frametitle{Acoustic survey backscatter of age-1 fish}
+\begin{center}
+  \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+%  \includegraphics[height=2.9in]{../../../doc/main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue}
+\end{center}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \subsection{Acoustic survey biomass estimates}
- \frame{\frametitle{Acoustic survey biomass estimates}
+ \subsection{Acoustic survey age-2$^+$ biomass estimates}
+ \frame{\frametitle{Acoustic survey age-2$^+$ biomass estimates}
    \begin{figure}
 \centering
   <<survey.compare.extrap.noextrap, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
     make.survey.biomass.extrap.plot(survey.comparison)
+  @
+\end{figure}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \subsection{Acoustic survey age-1 fish estimates}
+ \frame{\frametitle{Acoustic survey age-1 fish estimates}
+   \begin{figure}
+\centering
+  <<survey.age1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+    make.survey.age1.plot.data(age.1.index, log.scale = FALSE, yLim = c(0, 16))
   @
 \end{figure}
 }
@@ -541,7 +554,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \bi
     \item Fishery independent
       \bi
-        \item Age-1 index from the acoustic survey (included as a sensitivity).
         \item Length / sex frequencies from the acoustic survey.
         \item Bottom-trawl survey age-composition data.
         \item Juvenile and pre-recruit surveys from the
@@ -559,6 +571,28 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \ei
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Removal of data sources used in the base model}
+%<<nocanagesfigure,fig.height=4.5, fig.width=8, out.width='0.85\\columnwidth'>>=
+%ghostmodelname <- file.path("..", "..", "..", 
+%  "models", "2022.01.50_ghostfleets"
+%)
+%newpaths <- dir("../../../models", pattern = "no[FC]", full.names = TRUE)[c(2, 16, 26:28) - 1]
+%modlist <- mapply(r4ss::SS_output, c(ghostmodelname, newpaths),
+%  MoreArgs = list(verbose = FALSE, printstats = FALSE),
+%  SIMPLIFY = FALSE
+%)
+%make.comparison.plot(modlist, subplot = 1,
+%  model.names = gsub("[0-9\\.]+_", "", c("base", basename(newpaths))),
+%  plot_mcmc = FALSE, legend_pos = c(0.5, 0.9),
+%  end.yr = 2021
+%)
+%@
+\includegraphics{../../images/nocanagesfigure-1.eps}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
