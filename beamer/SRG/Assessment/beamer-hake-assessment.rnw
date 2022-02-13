@@ -1100,7 +1100,14 @@ year's assessment, the credible interval remains well within that from last year
   \bi
     \item Medium-term: continuing research to treat recruitment deviations as a random effect and estimate $\sigma_R$
       \bi
-        \item WHAM model
+        \item Woods Hole Assessment Model (WHAM) - a state-space age-structured assessment framework
+        developed at the Norteast Fisheries Science Center, facilitates estimation of process error rather than using fixed variances
+        \bi
+          \item Should be estimating age-specific $M$
+          \item Mean recruitment fits just as well as Beverton-Holt stock-recruit function
+          \item $q$ of the age-2$^+$ biomass index was 0.525
+          \item Age-specific autocorrelation in selectivity was 0.598
+        \ei
         \item Hake MSE estimation model
       \ei
     \pause
