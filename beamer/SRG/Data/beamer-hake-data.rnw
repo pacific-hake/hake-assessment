@@ -414,7 +414,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 \section[Survey]{Survey}
 \subsection{Acoustic backscatter}
-\frame{\frametitle{Acoustic survey backscatter (age-2$+$) and age composition}
+\frame{\frametitle{Acoustic survey backscatter (age-2$^+$) and age composition}
 \includegraphics[width=\maxwidth, height=2.8in]{../../../doc/main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}
 }
 
