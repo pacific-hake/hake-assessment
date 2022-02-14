@@ -93,16 +93,17 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \begin{frame}
 \frametitle{Overview}
 \fontsize{11pt}{2}\selectfont
-\textbf{All sensitivities are comparisons of MCMC runs}
+\textbf{All bridge, sensitivity, and retrospective models were run in MCMC mode on cloud computers}
 \begin{enumerate}
+  \item Modeling on the cloud
   \item Sensitivities
         \bi
-        \item Alternative values for steepness ($h$)
         \item Higher standard deviation on prior for natural mortality
+        \item Alternative values for steepness ($h$)
         \item Variation on recruitment ($\sigma_r$)
+        \item Remove the age-1 index
         \item Downweight fishery age-composition data
         \item Alternative standard deviations on time-varying selectivity ($\Phi$)
-        \item Remove the age-1 index
         \item Alternative maximum age of selectivity
         \ei
   \item Retrospectives
@@ -114,6 +115,29 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \end{enumerate}
 \end{frame}
 % -----------------------------------------------------------------------------
+
+% -----------------------------------------------------------------------------%
+\section{Cloud}
+\begin{frame}
+\frametitle{Modeling on the cloud}
+\fontsize{11pt}{2}\selectfont
+\bi
+  \item All models used NUTS MCMC algorithm (no Metropolis-Hastings this year)
+  \item All models run on Amazon Web Services (AWS) Elastic Cloud Computing (EC2) instances
+  \item Instances are on-demand and cost XX \$ per/hour, depending on number of CPUs
+  \item Models run in parallel using multiple 96- and 48-CPU instances
+  \item Each model ran parallel NUTS using 16 CPUs. Each 96-CPU instance ran 6 models at once
+  \item In this doubly-parallel configuration, all models were run over the period of one day
+  \item All 20 retrospective runs were done the same way
+  \item 62 MCMC runs in total
+  \item Each model and retrospective has \Sexpr{f(nrow(sens.models.1[[1]]$mcmc))} samples except base model with \Sexpr{f(num.mcmc.samples)}
+  \item Cost for 2022 is approximately \$1,700 USD (so far)
+  \item Over 1.25 million files generated as output. Over 99\% of those contribute values to the assessment document
+  \item Bottleneck is now dealing with massive amounts of output (RAM and HD throughput limitations)
+  \item Amazon Simple Storage Service (S3) has unlimited storage but takes time to transfer data to and from local machines
+\ei
+\end{frame}
+% -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------
 \section{$h$ and $M$}
@@ -223,27 +247,6 @@ par <- oldpar
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
-% \begin{frame}
-% \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
-% \begin{center}
-% \vspace{5pt}
-% <<sigmar.recdevs.figure>>=
-% par(mar = c(7.1, 4.1, 0, 1))
-% make.comparison.plot(c(list(base.model),
-%                        sens.models.1[3],
-%                        sens.models.1[4]),
-%                      model.names = c("Base model",
-%                                      sens.model.names.1[3],
-%                                      sens.model.names.1[4]),
-%                      subplots = 10,
-%                      end.yr = end.yr)
-% par <- oldpar
-% @
-% \end{center}
-% \end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
@@ -316,11 +319,13 @@ par <- oldpar
 \frametitle{Flexibility in time-varying selectivity -- $\Phi$}
 \fontsize{11pt}{2}\selectfont
 \bi
-\item \red{2017 assessment} -- deviation of time-varying fishery selectivity was increased,
-to reduce an anomalously high estimate of 2014 recruitment driven solely by fishery
-catch-at-age data
+\item \red{2017 assessment} -- deviation of time-varying fishery selectivity was increased
+from $\phi=0.03$ to $\phi=0.20$, to reduce an anomalously high estimate of 2014 recruitment
+driven solely by fishery catch-at-age data
 
-\item \red{2018-\Sexpr{assess.yr} assessments} -- retained the (equivalent) 2017 value of $\Phi=1.40$
+\item \red{2018 assessment} -- changed from logistic space ($\phi=0.20$) to standard space ($\Phi=1.40$)
+
+\item \red{2019-\Sexpr{assess.yr} assessments} -- retained the 2018 value of $\Phi=1.40$
 \ei
 \vspace{20pt}
 Here we test alternative values of $\Phi$
@@ -372,7 +377,7 @@ make.comparison.plot(c(list(base.model),
                                      sens.model.names.4[3]),
                      end.yr = end.yr,
                      indexfleets = 2,
-                     legend_pos = c(0.2, 0.85))
+                     legend_loc = "topleft")
 par <- oldpar
 @
 \end{center}
@@ -403,29 +408,6 @@ param_est_table(c(list(base.model),
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
-% \section{Age-1 index}
-% \subsection{Age-1 index fit}
-% \begin{frame}
-% \frametitle{Including the age-1 index -- Acoustic survey fit}
-% \begin{center}
-% \vspace{5pt}
-% <<age1.sensitivity.index, fig.height=3.5, fig.width=8>>=
-% oldpar <- par()
-% par(mar = c(7.1, 5, 3, 1))
-% make.comparison.plot(c(list(base.model), list(sens.models.2[[1]])),
-%                      subplots = 13,
-%                      model.names = c(base.model.name, sens.model.names.2[1]),
-%                      end.yr = end.yr,
-%                      indexfleets = c(2),
-%                      indexUncertainty = TRUE,
-%                      legend_pos = c(0.2, 0.9))
-% par <- oldpar
-% @
-% \end{center}
-% \end{frame}
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
@@ -461,7 +443,6 @@ par <- oldpar
 \end{frame}
 % -----------------------------------------------------------------------------%
 
-
 % -----------------------------------------------------------------------------%
 \subsection{Spawning biomass}
 \begin{frame}
@@ -480,7 +461,6 @@ par <- oldpar
 \end{center}
 \end{frame}
 % -----------------------------------------------------------------------------%
-
 
 % -----------------------------------------------------------------------------%
 \begin{frame}
@@ -528,7 +508,7 @@ par <- oldpar
 % -----------------------------------------------------------------------------%
 % \subsection{$R_0$ and $B_0$ when excluding age-1 index}
 \begin{frame}
-\frametitle{$R_0$ and $B_0$ without age-1 index}
+\frametitle{$R_0$ and $B_0$ with and without age-1 index}
 <<main-parameter-estimates-sens-1, results='asis', echo=FALSE>>=
 probs <- c(0.025, 0.5, 0.975)
 base_bo <- f((quantile(base.model$mcmc$`SSB_Initial`, probs = probs)) / 2e3, 0)
@@ -556,7 +536,6 @@ Quantity & 2.5\% & Median & 97.5\% \\
 \end{frame}
 % -----------------------------------------------------------------------------%
 
-
 % -----------------------------------------------------------------------------%
 \subsection{Recruitment values}
 \begin{frame}
@@ -574,7 +553,7 @@ make_rec_tbl <- function(mc, digits = 3){
     mutate(Year = yrs) %>%
     select(Year, everything()) %>%
     mutate_at(.vars = vars(-Year), ~{f(.x, 0)})
-  dev <- map(yrs, ~{c(mc$devlower[[as.character(.x)]],
+    dev <- map(yrs, ~{c(mc$devlower[[as.character(.x)]],
                       mc$devmed[[as.character(.x)]],
                       mc$devupper[[as.character(.x)]])}) %>%
     `names<-`(yrs) %>%
@@ -623,83 +602,6 @@ Year & \multicolumn{3}{c}{Absolute recruitment} & \multicolumn{3}{c}{Recruitment
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
-% \subsection{Projections}
-% \begin{frame}
-% \frametitle{Base model projections}
-% \begin{center}
-% <<age1.sensitivity.base.proj, fig.height=3.5>>=
-% oldpar <- par()
-% par(mar = c(20, 4.1, 0, 1))
-% models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-% models.names <- map_chr(base.model$catch.levels[models.inds], ~{.x[[2]]})
-% make.forecast.depletion.comparison.plot(base.model,
-%                                         models.inds,
-%                                         models.names,
-%                                         start.yr = 2009,
-%                                         model.end.yr = end.yr,
-%                                         end.yr = forecast_yrs[length(forecast_yrs)],
-%                                         legend.loc = "topleft",
-%                                         ylim = c(0, 1))
-% par <- oldpar
-% @
-% \end{center}
-% \end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
-% \begin{frame}
-% \frametitle{Age-1 index projections}
-% \begin{center}
-% <<age1.sensitivity.proj, fig.height=3.5>>=
-% oldpar <- par()
-% par(mar = c(20, 4.1, 0, 1))
-% models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-% models.names <- map_chr(sens.models.2[[1]]$catch.levels[models.inds], ~{.x[[2]]})
-% make.forecast.depletion.comparison.plot(sens.models.2[[1]],
-%                                         models.inds,
-%                                         models.names,
-%                                         start.yr = 2009,
-%                                         model.end.yr = end.yr,
-%                                         end.yr = forecast_yrs[length(forecast_yrs)],
-%                                         legend.loc = "topleft",
-%                                         ylim = c(0, 0.90))
-% par <- oldpar
-% @
-% \end{center}
-% \end{frame}
-% % -----------------------------------------------------------------------------%
-
-% % -----------------------------------------------------------------------------%
-% \subsection{Probabilities change with inclusion of age-1 index}
-% \begin{frame}
-% \frametitle{Probabilities change with inclusion of age-1 index}
-% \begin{table}[tbp]
-% \centering
-% \begin{tabular}{lrr}
-% \hline
-% Probability & Base model & Age-1 index \\
-% \hline
-% With zero catch scenario: & & \\
-% P$(B_{\Sexpr{assess.yr+1}} < \Bforty)$ &
-%   \Sexpr{f( base.model$risks[[1]][1, paste0("Bratio_", end.yr + 1, "<0.40")])}\% &
-%   \Sexpr{f( sens.models.2[[1]]$risks[[1]][1,paste0("Bratio_", end.yr + 1, "<0.40")])}\% \\
-% P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
-%   \Sexpr{f( base.model$risks[[2]][1, paste0("Bratio_", end.yr + 2, "<0.40")])}\% &
-%   \Sexpr{f( sens.models.2[[1]]$risks[[2]][1, paste0("Bratio_", end.yr + 2, "<0.40")])}\% \\
-% With \Sexpr{f(catch_levels[[catch.actual.ind]][[1]][1])}~t catch scenario: & & \\
-% P$(B_{\Sexpr{assess.yr+1}} < \Bforty)$ &
-%   \Sexpr{f( base.model$risks[[1]][catch.actual.ind, paste0("Bratio_", end.yr + 1, "<0.40")])}\% &
-%   \Sexpr{f( sens.models.2[[1]]$risks[[1]][catch.actual.ind, paste0("Bratio_", end.yr + 1, "<0.40")])}\% \\
-% P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
-%   \Sexpr{f( base.model$risks[[2]][4, paste0("Bratio_", end.yr + 2, "<0.40")])}\% &
-%   \Sexpr{f( sens.models.2[[1]]$risks[[2]][catch.actual.ind, paste0("Bratio_", end.yr + 2, "<0.40")])}\% \\
-% \hline
-% \end{tabular}
-% \end{table}
-% \end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
 \section{Max. Age Selectivity}
 \subsection{Spawning biomass}
 \begin{frame}
@@ -720,35 +622,8 @@ par <- oldpar
 \end{frame}
 % -----------------------------------------------------------------------------%
 
-
 % -----------------------------------------------------------------------------%
-\section{NUTS}
-\begin{frame}
-\frametitle{All models run using NUTS algorithm}
-\fontsize{11pt}{2}\selectfont
-\bi
-  \item All models used NUTS MCMC algorithm (no Metropolis-Hastings this year)
-  \item NUTS:
-    \bi
-      \item **CHRIS to update.
-      \item **Took $\sim$4.5~hours to run
-      \item **Resulted in \Sexpr{f(num.mcmc.samples)} posterior samples for base
-        model (8,000 for sensitivites)
-      \item **Uses a parallel algorithm, on multiple cores
-      \item Cloud computing used for first time: Amazon Web Services
-        \bi
-          \item Pros: Left our local computers mostly free to not run huge models
-          \item Cons: But was a lot of extra work to set up
-        \ei
-      \item **Sensitivities took $\sim$4.5~hours each to run
-      \item **Retrospectives took between $\sim$4.5~hours and $\sim$30~hours each to run
-    \ei
-\ei
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
-\subsection{Base model MCMC diagnostics}
+\section{MCMC diagnostics}
 \begin{frame}
 \frametitle{Base model MCMC diagnostics}
 \begin{center}
@@ -767,39 +642,6 @@ par <- oldpar
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
-% \subsection{}
-% \begin{frame}
-% \frametitle{Suggested sensitivity runs}
-% \fontsize{11pt}{2}\selectfont
-% Current sensitivity runs, with ones to retain in \alert{red}:
-% \begin{enumerate}
-%   \item \alert{Higher standard deviation on prior for natural mortality}
-%
-%   \item Alternative values for steepness
-%
-%   \item \alert{Higher/lower ($\sigma_r$)}
-%
-%   \item \alert{Include age-1 survey index}
-%
-%   \item McAllister-Ianelli method for data-weighting
-%
-%   \item Francis method for data-weighting
-%
-%   \item \alert{Alternative standard deviations for time-varying
-%       selectivity, just $\Phi = 0.21$}
-%
-%   \item \alert{Alternative parameterization for time-varying selectivity}
-%
-%   \item Removal of cohort-based ageing error
-%
-%   \item \alert{Base model using {\tt adnuts} -- need a Metropolis algorithm sensitivity
-%     next year?}
-%
-% \end{enumerate}
-% \end{frame}
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
@@ -894,7 +736,7 @@ make.assessment.history.plot(base.model,
   \item In general, sensitivities show no significant departure from base model
   \item Absolute scale changes for some sensitivities, mostly due to differing $R_0$ estimates
   \item Overall relative pattern consistent -- large increases in biomass in early 2010s and currently biomass is declining
-  \item Removal of Age-1 index decreases recruitment estimates
+  \item Removal of Age-1 index decreases recruitment estimates and increases recruitment uncertainty for 2020
   \item Retrospective squid plots show that since \Sexpr{assess.yr - 11}, and
     based on medians:
   \bi
@@ -902,26 +744,6 @@ make.assessment.history.plot(base.model,
     \item 2016 cohort is the second largest
     \item 2020 cohort currently looks as large as 2016 did at age-2
   \ei
-\ei
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
-\subsection{Runtimes}
-\begin{frame}
-\frametitle{Summary -- Runtimes}
-\vspace{-2cm}
-\bi
-  \item Total time to run all MCMC models this year:
-  \bi
-    \item **Base model: ***$\sim$4.5 hours  [but had to run **?? times]
-    \item **Age-1 sensitivity: [same as base, plus retros]
-    \item **Sensitivities: 21 $\times \sim$4.5~hours = $\sim$94.5 hours
-    \item **Retrospectives: 10, total = $\sim$96 hours
-  \ei
-  \item \textbf{Total time to run all MCMC models for 2020 assessment: 44.5 hours}
-  \item \textbf{Total time to run all MCMC models for 2021 assessment: 16 days}
-  \item \textbf{Total time to run all MCMC models for 2022 assessment: ** days}
 \ei
 \end{frame}
 % -----------------------------------------------------------------------------%
