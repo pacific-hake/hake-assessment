@@ -135,7 +135,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \item Fishery-dependent data
       \bi
         \item Annual catch (\Sexpr{start.yr}--\Sexpr{end.yr - 1})
-        \item Age compositions (1975--\Sexpr{end.yr - 1})
+        \item Age compositions (1975--\Sexpr{end.yr - 1}; 1$^+$)
       \ei
       \item Acoustic survey (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr})
       \bi
