@@ -435,7 +435,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       weights (which is the assumption before the addition of these data).
     \item The addition of the age-1 index resulted in a small increase in $B_0$, an increase in
       relative spawning biomass from 2019--2022, and an increase in the estimated size of the 2018 and 2020 cohorts.
-      
+
     %\item Adding the \Sexpr{last.data.yr} survey age compositions further reduced uncertainty,
     %  but provided a worse fit to the 2017 and \Sexpr{last.data.yr} survey indices.
  \ei
@@ -933,7 +933,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   ~\\
 
 \bi
-  \item 2010 cohort is estimated to make up 6.8\% of the biomass 
+  \item 2010 cohort is estimated to make up 6.8\% of the biomass
   \item 2014 cohort is estimated to make up 12.8\% of the biomass
   \item 2016 cohort is estimated to make up 18.3\% of the biomass
   \item 2017 cohort is estimated to make up 11.4\% of the biomass
@@ -1036,7 +1036,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   \end{table}
   ~\\
 While the median estimate of $B_{\Sexpr{end.yr-1}}$ has increased from last
-year's assessment, the credible interval remains well within that from last year's assessment.
+year's assessment, the credible interval mostly overlaps that from last year's assessment.
 }
 
 %----------------------------------------------------------
@@ -1191,7 +1191,7 @@ year's assessment, the credible interval remains well within that from last year
     {\bf Response:} \emph{Projecting recruitment}}
   \bi
     \item Exploring approaches to make informed decisions about current and
-      future recruitment, instead of default long-term averages or \emph{adhoc}
+      future recruitment, instead of default long-term averages or \emph{ad hoc}
       bidirectional multipliers (i.e., plus or minus x\%)
       \bi
         \item Age-1 index
@@ -1263,7 +1263,7 @@ year's assessment, the credible interval remains well within that from last year
       the stock assessment statistical (Bayesian) and MSE coding (full closed-loop simulation)
       frameworks. Posterior distributions associated with dynamic reference points are now
       possible within Stock Synthesis. Likewise, the MSE can now utilize dynamic reference
-      points in management procedure scenarios. 
+      points in management procedure scenarios.
     \pause
     \item The JTC plans to continue engaging in
       research related to dynamic reference points broadly, as well as specifically
