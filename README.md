@@ -282,13 +282,19 @@ For 2018, Julia Clemons produced the multi-year panel plots from the surveys. An
 pdf2ps <filename>.pdf <filename>.eps
 ```
 
-which is a ghostscript command. Seems to be fine in document (may not be a properly encapsulated .eps, but we resize it anyway and it looks good and is zoomable). Presumably used that for 2020 assessment also. For 2021 we need .png files, and these worked just fine:
+which is a ghostscript command. Seems to be fine in document (may not be a properly encapsulated .eps, but we resize it anyway and it looks good and is zoomable). Presumably used that for 2020 assessment also. For 2021 we need .png files for web accessibility, and these worked just fine:
 ```
 magick <filename>.pdf <filename>.png
 magick <filename>.eps <filename>.png
 
 ```
 So Julia can continue to give us a `.pdf` if she can't make a `.png`.
+
+Still need to make .eps for the data presentation. This worked fine (the `pdf2ps` above probably would work also):
+```
+magick <filename>.pdf <filename>.png
+```
+(I actually did `magick convert ...` but looks like convert is not needed).
 
 ---
 ## GitHub workflow
