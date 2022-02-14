@@ -630,7 +630,7 @@ par <- oldpar
   and fishery selectivities (bottom -- for \Sexpr{end.yr-1} only)
   from the posterior distribution for the base model.
   Selectivity for the biomass index is 0 at age-1 and
-  constant from age-6 onwards.
+  1 from age-6 onwards.
 }
 \label{fig:main-tv-selex-uncertainty-lines}
 \end{figure}
