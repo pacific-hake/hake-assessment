@@ -578,10 +578,19 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %
 \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
   \bc
-  <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-  plot_mcmc_param_stats(base.model)
-  @
-  \ec
+<<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+  oldpar <- par()
+  par(mar = c(4.1, 4.1, 3.1, 0.1))
+  plot_mcmc_param_stats(base.model,
+                        effn_labels = TRUE,
+                        ylim_mult = 1.2,
+                        show_ro_loc = TRUE,
+                        ro_yloc = 110,
+                        ro_yloc_arr_start = 100,
+                        ro_yloc_arr_end = 60)
+  par <- oldpar
+@
+\ec
 }
 
 % \frame{\frametitle{MCMC diagnostics -- Gelman-Rubin plot for key parameters}

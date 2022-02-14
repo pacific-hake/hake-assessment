@@ -623,25 +623,25 @@ par <- oldpar
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
-\section{MCMC diagnostics}
-\begin{frame}
-\frametitle{Base model MCMC diagnostics}
-\begin{center}
-\vspace{5pt}
-<<base.hists, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(4.1, 4.1, 3.1, 0.1))
-plot_mcmc_param_stats(base.model,
-                      effn_labels = TRUE,
-                      ylim_mult = 1.2,
-                      show_ro_loc = TRUE,
-                      ro_yloc = 110,
-                      ro_yloc_arr_start = 100,
-                      ro_yloc_arr_end = 60)
-par <- oldpar
-@
-\end{center}
-\end{frame}
+% \section{MCMC diagnostics}
+% \begin{frame}
+% \frametitle{Base model MCMC diagnostics}
+% \begin{center}
+% \vspace{5pt}
+% <<base.hists, fig.height=3.5>>=
+% oldpar <- par()
+% par(mar = c(4.1, 4.1, 3.1, 0.1))
+% plot_mcmc_param_stats(base.model,
+%                       effn_labels = TRUE,
+%                       ylim_mult = 1.2,
+%                       show_ro_loc = TRUE,
+%                       ro_yloc = 110,
+%                       ro_yloc_arr_start = 100,
+%                       ro_yloc_arr_end = 60)
+% par <- oldpar
+% @
+% \end{center}
+% \end{frame}
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
