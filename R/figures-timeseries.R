@@ -566,7 +566,7 @@ make.comparison.plot <- function(models,
          ylim = ylim,
          xlim = xlim,
          xlab = "Year",
-         ylab = "Biomass (million t)",
+         ylab = ifelse(indexfleets == 3, "Relative age-1 index (billions of fish)", "Biomass (million t)"),
          axes = FALSE)
     index_names <- unique(indices$name)
     first_index <- indices %>% filter(name == index_names[1])
