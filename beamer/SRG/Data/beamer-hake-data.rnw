@@ -230,7 +230,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
           \bi
             \item Catcher Processor  -- \Sexpr{f(last.year.us.cp.catch)} t, \Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")} of US CP allocation
             \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t, \Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")} of US MS allocation
-            \item Shore-Based         -- \Sexpr{f(last.year.us.shore.catch)} t, \Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")} of shore-based allocation, includes \Sexpr{round(sum(subset(us.ti.catch.by.month,year == last.assess.yr)$catch), 0)} t of tribal catches
+            \item Shore-Based         -- \Sexpr{f(last.year.us.shore.catch)} t, \Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")} of shore-based allocation, includes \Sexpr{f(round(sum(subset(us.ti.catch.by.month,year == last.assess.yr)$catch), 0))} t of tribal catches
           \ei
     \end{column}
   \end{columns}
