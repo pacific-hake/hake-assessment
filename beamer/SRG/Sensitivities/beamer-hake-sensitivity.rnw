@@ -109,7 +109,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \item Retrospectives
         \bi
         \item \Sexpr{length(retrospective_yrs)} years into the past
-        \item Cohort determination (`squid plot') for the base model and the age-1 inclusion sensitivity
+        \item Cohort determination (`squid plot') for the base model and the age-1 exclusion sensitivity
         \item Historical assessments: \Sexpr{assess.yr - 1991 + 1} years
         \ei
 \end{enumerate}
@@ -118,6 +118,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 % -----------------------------------------------------------------------------%
 \section{Cloud}
+\subsection{Modeling on the cloud}
 \begin{frame}
 \frametitle{Modeling on the cloud}
 \fontsize{11pt}{2}\selectfont
@@ -128,6 +129,15 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \item Models run in parallel using multiple 96- and 48-CPU instances
   \item Each model ran parallel NUTS using 16 CPUs. Each 96-CPU instance ran 6 models at once
   \item In this doubly-parallel configuration, all models were run over the period of one day
+\ei
+\end{frame}
+% -----------------------------------------------------------------------------%
+
+% -----------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Modeling on the cloud}
+\fontsize{11pt}{2}\selectfont
+\bi
   \item All 20 retrospective runs were done the same way
   \item 62 MCMC runs in total
   \item Each model and retrospective has \Sexpr{f(nrow(sens.models.1[[1]]$mcmc))} samples except base model with \Sexpr{f(num.mcmc.samples)}
@@ -411,6 +421,27 @@ param_est_table(c(list(base.model),
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
+\section{Max. Age Selectivity}
+\subsection{Spawning biomass}
+\begin{frame}
+\frametitle{Max. Age Selectivity -- Spawning biomass}
+\begin{center}
+\vspace{5pt}
+<<max-age-sel, fig.height=3.5>>=
+oldpar <- par()
+par(mar = c(7.1, 4.1, 0, 1))
+make.comparison.plot(c(list(base.model), sens.models.6),
+                     subplots = 4,
+                     model.names = c(base.model.name, sens.model.names.6),
+                     legend = TRUE,
+                     end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\end{frame}
+% -----------------------------------------------------------------------------%
+
+% -----------------------------------------------------------------------------%
 \section{Age-1 index}
 \begin{frame}
 \frametitle{Base model age-1 estimates compared to age-1 index}
@@ -602,27 +633,6 @@ Year & \multicolumn{3}{c}{Absolute recruitment} & \multicolumn{3}{c}{Recruitment
 % -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
-\section{Max. Age Selectivity}
-\subsection{Spawning biomass}
-\begin{frame}
-\frametitle{Max. Age Selectivity -- Spawning biomass}
-\begin{center}
-\vspace{5pt}
-<<max-age-sel, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model), sens.models.6),
-                     subplots = 4,
-                     model.names = c(base.model.name, sens.model.names.6),
-                     legend = TRUE,
-                     end.yr = end.yr)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
 % \section{MCMC diagnostics}
 % \begin{frame}
 % \frametitle{Base model MCMC diagnostics}
@@ -733,7 +743,7 @@ make.assessment.history.plot(base.model,
 \frametitle{Summary}
 \vspace{-1cm}
 \bi
-  \item In general, sensitivities show no significant departure from base model
+  \item In general, sensitivities show no significant departure in population dynamics from base model
   \item Absolute scale changes for some sensitivities, mostly due to differing $R_0$ estimates
   \item Overall relative pattern consistent -- large increases in biomass in early 2010s and currently biomass is declining
   \item Removal of Age-1 index decreases recruitment estimates and increases recruitment uncertainty for 2020
