@@ -21,7 +21,7 @@
     the new biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey.end.yr},
     fishery catch and age-composition data from \Sexpr{end.yr-1}, weight-at-age data for
     \Sexpr{end.yr-1}, the addition of the age-1 index time series
-    (\Sexpr{survey.start.yr}~--\Sexpr{survey.end.yr}), and minor changes to pre-\Sexpr{end.yr-1} data. Due to
+    (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), and minor changes to pre-\Sexpr{end.yr-1} data. Due to
     staffing issues, age data from \Sexpr{end.yr-1} were unavailable from the Canadian freezer-trawler fleet and minimally
     available for the shoreside fleet.
 

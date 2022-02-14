@@ -235,9 +235,9 @@ fishery selectivity could reduce the effects of errors caused
 by assuming selectivity is constant over time. Therefore, we retain time-varying
 selectivity in this assessment.
 We retain the Dirichlet-multinomial estimation approach to weighting
-composition data.
-We again provide sensitivities to alternative data-weighting
-approaches. Time-varying fecundity, which was introduced in 2019, is retained.
+composition data, and
+again investigate sensitivity to an alternative data-weighting
+approach. Time-varying fecundity, which was introduced in 2019, is retained.
 The weight-at-age information for the forecast period
 is a representation of the last five years, as for the \Sexpr{last.assess.yr} assessment.
 
@@ -442,9 +442,9 @@ very slightly below the highest ever (for 1980), with a \Sexpr{prob.percent.2010
 probability that the 2010 year class is larger than the 1980 year class (this
 probability was \Sexpr{prob.percent.2010.rec.gt.1980.rec.last.year.assess}\% for
 last year's assessment).
-The model currently estimates small 2011, 2013, 2015,
-and 2018 year classes (median recruitment well below the mean of all median recruitments).
-% Done for for 2020 assessment
+Since 2010, the model currently estimates small 2011, 2012, 2013, 2015, 2017, 2018,
+and 2019 year classes (median recruitment well below the mean of all median recruitments).
+% Done for for 2022 assessment
 % This gives all years, but some are close to average so do manually:
 %  years.since.2010.recruitment.med.below.mean  # ignore assess.yr-1
 % AME put in definition of below-average, else it looks like it contradicts the
@@ -455,7 +455,7 @@ and 2018 year classes (median recruitment well below the mean of all median recr
 
 The 2014 and 2016 year classes are likely both larger than average, with a
 very high chance (\Sexpr{prob.percent.2014.rec.gt.2016.rec}\%) that 2014 is
-larger than 2016, but zero chance that is larger than 2010. % prob.percent.2014.rec.gt.2010.rec
+larger than 2016, but zero chance that it is larger than 2010. % prob.percent.2014.rec.gt.2010.rec
 With the addition of the age-1 index, there is information beyond just fishery encounters in
 the data to estimate the size of the \Sexpr{end.yr-2} year class. Collectively, these data
 indicate that the \Sexpr{end.yr-2} year class is likely above average, while the 2019 year class is
