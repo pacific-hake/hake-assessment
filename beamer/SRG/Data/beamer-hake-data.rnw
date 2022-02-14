@@ -457,11 +457,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Weight-at-age data}
 \bi
   \item Pre-1975 U.S.~weight-at-age data are not included because they were collected from the Puget Sound.
-  \item Updates
-    \begin{itemize}
-      \item Pulled best information from Canadian databases based on location of sampling.
-      \item Recently aged fish from historical years.
-    \end{itemize}
   \item Historical fecundity uses mean weight-at-age data from all years.
   \item Future fecundity uses mean weight-at-age data from most recent five years.
 \ei
