@@ -119,7 +119,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
         \item Age-\Sexpr{max.shoreside.age.prop.age} fish in Canadian shoreside sector.
       \ei
     \item Canadians fished shallower than normal to avoid rockfish species.
-    \item Stakeholders reported good fishing in the U.S.A. and relatively few fish in Canada.
+    \item Stakeholders reported good fishing in the U.S.A. and difficulty finding fish in Canada.
 %    \item No new information from the survey in \Sexpr{last.assess.yr}.
     \item \Sexpr{last.survey.year} acoustic survey biomass estimate was \Sexpr{last.survey.year.biomass} million tons (\Sexpr{(type.convert(as.is = TRUE, last.factor.penult))*100}\% of \Sexpr{penult.survey.year}).
   \ei
@@ -140,8 +140,8 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \item Acoustic survey (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr})
       \bi
         \item Biomass index age 2$^+$
+        \item Age compositions (2$^+$)
         \item Numbers of age-1 fish
-        \item Age compositions
       \ei
       \item Weight-at-age (1975--\Sexpr{end.yr - 1})
       \item Ageing imprecision and biases
@@ -596,7 +596,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %  end.yr = 2021
 %)
 %@
-\includegraphics{../../images/nocanagesfigure-1.eps}
+\includegraphics[width=\maxwidth, height=2.8in]{../../images/nocanagesfigure-1.eps}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
