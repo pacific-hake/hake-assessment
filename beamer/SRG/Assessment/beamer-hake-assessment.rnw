@@ -932,13 +932,13 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   \end{table}
   ~\\
 
-\bi
-  \item 2010 cohort is estimated to make up 6.8\% of the biomass
-  \item 2014 cohort is estimated to make up 12.8\% of the biomass
-  \item 2016 cohort is estimated to make up 18.3\% of the biomass
-  \item 2017 cohort is estimated to make up 11.4\% of the biomass
-  \item 2020 cohort is estimated to make up 32.1\% of the biomass
-\ei
+%\bi
+%  \item 2010 cohort is estimated to make up 6.8\% of the biomass
+%  \item 2014 cohort is estimated to make up 12.8\% of the biomass
+%  \item 2016 cohort is estimated to make up 18.3\% of the biomass
+%  \item 2017 cohort is estimated to make up 11.4\% of the biomass
+%  \item 2020 cohort is estimated to make up 32.1\% of the biomass
+%\ei
 }
 
 %----------------------------------------------------------
@@ -1432,7 +1432,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
       \item SSB(2020) to SSB(2021): -12\%
       \item SSB(2021) to SSB(2022): -13\%
     \ei
-  \item the model estimates a \Sexpr{joint.percent.prob.above.below}\%
+  \item The model estimates a \Sexpr{joint.percent.prob.above.below}\%
     joint probability of being both above the target relative fishing intensity in
     \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the
     start of \Sexpr{end.yr}
