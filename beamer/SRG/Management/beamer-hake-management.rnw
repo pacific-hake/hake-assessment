@@ -874,7 +874,7 @@ $B_{2013}$ falling below $\Bforty$.
 Suggests other modelling changes over the years have helped performance.
 }
 
-\frame{\frametitle{Suggestion for further converying recruitment variability (Appendix~H)}
+\frame{\frametitle{Suggestion for further conveying recruitment variability (Appendix~H)}
 \bc
 <<rec.variability, fig.height=3.8, fig.width=6, out.width='0.6\\columnwidth'>>=
 make.mcmc.recruitment.plot(base.model,
