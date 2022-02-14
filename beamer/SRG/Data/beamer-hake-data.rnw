@@ -218,9 +218,9 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \center{\textbf{TAC was \Sexpr{last.year.can.tac} t}} \\
 \Sexpr{last.year.can.landings} t, \Sexpr{paste0(last.year.can.attained, "\\%")} of the Canadian TAC
         \bi
-          \item Freezer Trawlers -- \Sexpr{last.year.can.freezer} t, \Sexpr{paste0(last.year.can.freezer.percent, "\\%")} of Canadian TAC
-          \item Shoreside        -- \Sexpr{last.year.can.shore} t, \Sexpr{paste0(last.year.can.shore.percent, "\\%")} of Canadian TAC
-          \item Joint Venture    -- \Sexpr{last.year.can.jv} t, \Sexpr{paste0(last.year.can.jv.percent, "\\%")} of Canadian TAC
+          \item Freezer Trawlers -- \Sexpr{last.year.can.freezer} t, \Sexpr{paste0(last.year.can.freezer.percent, "\\%")} of Canadian catch
+          \item Shoreside        -- \Sexpr{last.year.can.shore} t, \Sexpr{paste0(last.year.can.shore.percent, "\\%")} of Canadian catch
+          \item Joint Venture    -- \Sexpr{last.year.can.jv} t, \Sexpr{paste0(last.year.can.jv.percent, "\\%")} of Canadian catch
         \ei
     \end{column}
     \begin{column}[t]{0.5\linewidth}
