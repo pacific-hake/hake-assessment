@@ -351,7 +351,7 @@ make.survey.biomass.extrap.plot <- function(dat){
               yaxs = 'i',
               pch = 20,
               xlab="Year",
-              ylab = "Biomass index estimate (million t)",
+              ylab = "Biomass index (million t)",
               cex = 1.5,
               las = 1,
               gap = 0.05,
