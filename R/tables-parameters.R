@@ -344,6 +344,28 @@ param_est_table <- function(models,
     recs <- map_dbl(getrecs, ~{median(.y$mcmc[[paste0("Recr_", .x)]]) / 1e3}, .y = .x)
     names(recs) <- paste0("recr_", getrecs)
     recs <- f(recs, 0)
+
+    # Catchabilities
+    if(.x$extra_mcmc_exists){
+      q_med <- .x$extra.mcmc$q.med
+      # Filter for last year in the series, since q's are not time varying
+      q_acoustic <- q_med %>% filter(Fleet == 2)
+      if(nrow(q_acoustic)){
+        q_acoustic <- q_acoustic %>% `[`("value") %>% tail(1) %>% unlist
+      }else{
+        q_acoustic <- NA
+      }
+      q_age1 <- q_med %>% filter(Fleet == 3)
+      if(nrow(q_age1)){
+        q_age1 <- q_age1 %>% `[`("value") %>% tail(1) %>% unlist
+      }else{
+        q_age1 <- NA
+      }
+    }else{
+      q_acoustic <- NA
+      q_age1 <- NA
+    }
+
     df <- enframe(
       c(nat_m =
           ifelse("NatM_uniform_Fem_GP_1" %in% names(.x$mcmc),
@@ -353,10 +375,10 @@ param_est_table <- function(models,
         h = ifelse(is.null(.x$mcmc$`SR_BH_steep`), NA, f(median(.x$mcmc$`SR_BH_steep`), digits)),
 
         survey_sd = f(median(.x$mcmc$`Q_extraSD_Acoustic_Survey(2)`), digits),
-        catchability = ifelse(is.null(.x$extra.mcmc), NA, f(median(.x$extra.mcmc$Q_vector), digits)),
+        catchability = ifelse(is.na(q_acoustic), NA, f(q_acoustic, digits)),
 
         survey_age1_sd = ifelse(is.null(.x$mcmc$`Q_extraSD_Age1_Survey(3)`), NA, f(median(.x$mcmc$`Q_extraSD_Age1_Survey(3)`), digits)),
-        catchability_age1 = ifelse(all(is.null(.x$extra.mcmc)), NA, f(as.numeric(.x$extra.mcmc$q.med[.x$extra.mcmc$q.med$Fleet == 3, ][1, "value"]), digits)),
+        catchability_age1 = ifelse(all(is.na(q_age1)), NA, f(q_age1, digits)),
 
         dm_fishery = ifelse(is.null(.x$mcmc$`ln(DM_theta)_1`),
                             ifelse(is.null(.x$mcmc$`ln(EffN_mult)_1`),
