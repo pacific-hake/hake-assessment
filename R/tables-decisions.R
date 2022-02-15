@@ -74,21 +74,6 @@ decision_table <- function(model,
   tab.letters <- tab.letters %>%
     enframe(name = NULL, value = "labels")
 
-  # Merge the list elements into a data frame
-  forecast.tab <- map(forecast, ~{
-    if(type == "biomass"){
-      tmp <- .x$biomass
-    }else{
-      tmp <- .x$spr
-    }
-    tmp <- tmp %>%
-      as_tibble(rownames = "Year") %>%
-      select(-c("25%", "75%"))
-    names(tmp) <- gsub("%", "\\\\%", names(tmp))
-    first_biomass_yr <<- slice(tmp, 1)
-    slice(tmp, -1)
-  }) %>% map_df(~{.x})
-
   c.levels <- map(model$catch.levels, ~{
     tmp <- .x[[1]]
     tmp[tmp < 1] <- 0
@@ -97,42 +82,54 @@ decision_table <- function(model,
     unlist %>%
     enframe(name = NULL, value = "Catch (t)")
 
-  forecast.tab <- forecast.tab %>%
-    bind_cols(c.levels, tab.letters) %>%
-    mutate(Year = as.numeric(Year) - 1,
-           start_yr = paste("Start of", as.character(Year + 1))) %>%
-    select(labels, Year, `Catch (t)`, start_yr, everything()) %>%
-    mutate(Year = as.character(Year),
-           `Catch (t)` = f(`Catch (t)`),
-           `5\\%` = f(`5\\%`, 2),
-           `50\\%` = f(`50\\%`, 2),
-           `95\\%` = f(`95\\%`, 2))
-
-  first_biomass_yr[ ,-1] <- as.list(f(unlist(first_biomass_yr[ ,-1]), 2))
-  first_biomass_yr[1] <- paste("Start of", first_biomass_yr[1])
-  quant.levels <- grep("%", names(forecast.tab), value = TRUE)
-
-  # Add the extra header spanning multiple columns
-  addtorow <- list()
-  addtorow$pos <- list()
-  addtorow$pos[[1]] <- -1
-  addtorow$pos[[2]] <- nrow(forecast.tab)
-
-  quant.string <- ""
-  quant.ampersands <- ""
-  quant.cell.defs <- NULL
-  for(i in 1:length(quant.levels)){
-    quant.string <- paste0(quant.string,
-                           latex.amp(),
-                           quant.levels[i])
-    quant.ampersands <- paste0(quant.ampersands,
-                               latex.amp())
-    quant.cell.defs <- c(quant.cell.defs, "Y")
-  }
-  # Add the vertical bar to the edge of the last quant cell
-  quant.cell.defs[length(quant.cell.defs)] <- paste0(quant.cell.defs[length(quant.cell.defs)], "|")
-
+  # Merge the list elements into a data frame
   if(type == "biomass"){
+    forecast.tab <- map(forecast, ~{
+      tmp <- .x$biomass
+      tmp <- tmp %>%
+        as_tibble(rownames = "Year") %>%
+        select(-c("25%", "75%"))
+      names(tmp) <- gsub("%", "\\\\%", names(tmp))
+      first_biomass_yr <<- slice(tmp, 1)
+      slice(tmp, -1)
+    }) %>% map_df(~{.x})
+
+    forecast.tab <- forecast.tab %>%
+      bind_cols(c.levels, tab.letters) %>%
+      mutate(Year = as.numeric(Year) - 1,
+             start_yr = paste("Start of", as.character(Year + 1))) %>%
+      select(labels, Year, `Catch (t)`, start_yr, everything()) %>%
+      mutate(Year = as.character(Year),
+             `Catch (t)` = f(`Catch (t)`),
+             `5\\%` = f(`5\\%`, 2),
+             `50\\%` = f(`50\\%`, 2),
+             `95\\%` = f(`95\\%`, 2))
+
+    first_biomass_yr[, -1] <- as.list(f(unlist(first_biomass_yr[ ,-1]), 2))
+    first_biomass_yr[1] <- paste("Start of", first_biomass_yr[1])
+
+    quant.levels <- grep("%", names(forecast.tab), value = TRUE)
+
+    # Add the extra header spanning multiple columns
+    addtorow <- list()
+    addtorow$pos <- list()
+    addtorow$pos[[1]] <- -1
+    addtorow$pos[[2]] <- nrow(forecast.tab)
+
+    quant.string <- ""
+    quant.ampersands <- ""
+    quant.cell.defs <- NULL
+    for(i in 1:length(quant.levels)){
+      quant.string <- paste0(quant.string,
+                             latex.amp(),
+                             quant.levels[i])
+      quant.ampersands <- paste0(quant.ampersands,
+                                 latex.amp())
+      quant.cell.defs <- c(quant.cell.defs, "Y")
+    }
+    # Add the vertical bar to the edge of the last quant cell
+    quant.cell.defs[length(quant.cell.defs)] <- paste0(quant.cell.defs[length(quant.cell.defs)], "|")
+
     addtorow$command <- c(paste0(latex.cline("1-7"),
                                  latex.mcol(3,
                                             "|c|",
@@ -164,7 +161,50 @@ decision_table <- function(model,
                                  latex.hline),
                           latex.hline)
 
-  }else{
+  }else if(type == "spr"){
+    forecast.tab <- map(forecast, ~{
+      tmp <- .x$spr
+      tmp <- tmp %>%
+        as_tibble(rownames = "Year") %>%
+        select(-c("25%", "75%"))
+      names(tmp) <- gsub("%", "\\\\%", names(tmp))
+      slice(tmp, -nrow(tmp))
+    }) %>% map_df(~{.x})
+
+    forecast.tab <- forecast.tab %>%
+      bind_cols(c.levels, tab.letters) %>%
+      mutate(Year = as.numeric(Year),
+             start_yr = paste("Start of", as.character(Year + 1))) %>%
+      select(labels, Year, `Catch (t)`, start_yr, everything()) %>%
+      mutate(Year = as.character(Year),
+             `Catch (t)` = f(`Catch (t)`),
+             `5\\%` = f(`5\\%`, 2),
+             `50\\%` = f(`50\\%`, 2),
+             `95\\%` = f(`95\\%`, 2))
+
+
+    quant.levels <- grep("%", names(forecast.tab), value = TRUE)
+
+    # Add the extra header spanning multiple columns
+    addtorow <- list()
+    addtorow$pos <- list()
+    addtorow$pos[[1]] <- -1
+    addtorow$pos[[2]] <- nrow(forecast.tab)
+
+    quant.string <- ""
+    quant.ampersands <- ""
+    quant.cell.defs <- NULL
+    for(i in 1:length(quant.levels)){
+      quant.string <- paste0(quant.string,
+                             latex.amp(),
+                             quant.levels[i])
+      quant.ampersands <- paste0(quant.ampersands,
+                                 latex.amp())
+      quant.cell.defs <- c(quant.cell.defs, "Y")
+    }
+    # Add the vertical bar to the edge of the last quant cell
+    quant.cell.defs[length(quant.cell.defs)] <- paste0(quant.cell.defs[length(quant.cell.defs)], "|")
+
     addtorow$command <- c(paste0(latex.cline("1-6"),
                                  latex.mcol(3,
                                             "|c|",
@@ -184,7 +224,9 @@ decision_table <- function(model,
                                  latex.nline,
                                  latex.hline),
                           latex.hline)
+
   }
+
   # Add the right number of horizontal lines to make the table break in the
   #  correct places
   # A line is not needed at the bottom explains (length(forecast)-1) in the loop.
