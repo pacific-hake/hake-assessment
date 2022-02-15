@@ -161,12 +161,12 @@ abline(v=median(test),lwd=2,col="red")
 % -----------------------------------------------------------------------------
 
 \frame{\frametitle{Remove Recent Age-1 Index Points}
-\includegraphics[width=\maxwidth, height=2.8in]{../../../images/compare2_spawnbio_uncertainty}
+\includegraphics[width=\maxwidth, height=2.8in]{../../../images/compare2_spawnbio_uncertainty.eps}
 }
 % -----------------------------------------------------------------------------
 
 \frame{\frametitle{Remove Recent Age-1 Index Points}
-\includegraphics[width=\maxwidth, height=2.8in]{../../../images/compare10_recruits_uncertainty}
+\includegraphics[width=\maxwidth, height=2.8in]{../../../images/compare10_recruits_uncertainty.eps}
 }
 % -----------------------------------------------------------------------------
 
