@@ -140,8 +140,7 @@ which was fixed at the maximum value of one.
 
 An age-1 index was included in the base model. It spans the same years as the acoustic survey, as it was
 part of the same survey, on the same vessels. Selectivity was set to one for age-1 for this index
-and zero for all other ages. For more information about the index and reasons for its
-inclusion in the assessment model, see Section~\ref{sec:data-acoustic-survey}.
+and zero for all other ages.
 
 Prior probability distributions are used for a select few parameters
 and fixed values are used for several parameters. For the base model, the
@@ -150,7 +149,7 @@ instantaneous rate of natural mortality ($M$) is estimated with a
 deviation (in log-space) of 0.1 (see
 Section~\ref{sec:data-natural-mortality}). The stock-recruitment function is a
 Beverton-Holt parameterization, with the log of the mean unexploited recruitment
-(log~$R_0$) freely estimated. This assessment uses the same Beta-distributed prior for
+(log~$R_0$) freely estimated. This assessment uses the same beta-distributed prior for
 stock-recruit steepness ($h$), based on \citet{MyersBowenEtAl1999}, that has
 been applied since 2011 \citep{StewartForrestEtAl2011}.
 Year-specific recruitment deviations were estimated
@@ -1488,12 +1487,12 @@ Figure~\ref{fig:main-age-comp-forecast}).     % $
 With respect to the DFO reference points, with the largest
 \Sexpr{assess.yr} catch of \Sexpr{largest.next.catch}~t given in Table~\ref{tab:main-risk-year-1},
 at the start of \Sexpr{assess.yr+1} the stock is expected to be above the critical zone with a probability of
-P$(B_{\Sexpr{assess.yr+1}} > \Bten)=
+P$(B_{\Sexpr{assess.yr+1}} > \Bten) =
 \Sexpr{prob.next.over.b10}$\%
 and in the healthy zone with a probability of
-P$(B_{\Sexpr{assess.yr+1}} > \Bforty)=
+P$(B_{\Sexpr{assess.yr+1}} > \Bforty) =
 \Sexpr{prob.next.over.b40}$\%.
-With respect to the DFO provisional reference points (based on $\Bmsy$), the
+With respect to the DFO provisional reference points (based on $\Bmsy$),
 the stock is expected to be above the provisional critical zone with a
 probability of
 P$(B_{\Sexpr{assess.yr+1}} > 0.4\Bmsy) = \Sexpr{dfo.prob.next.over.40bmsy}$\%,
@@ -1734,14 +1733,6 @@ Downweighting fishery composition data using the McAllister-Ianelli method
 led to minor changes in relative spawning stock biomass and increased uncertainty
 in estimates of early recruitments compared to the base model
 (Figures~\ref{fig:main-status-base-alternative-2} and~\ref{fig:main-recruit-base-alternative-2}).
-Another weighting approach, the Francis method, attempts
-to make the fit of the expected mean age
-lie within the uncertainty intervals at a rate which is consistent
-with variability expected based on the adjusted sample sizes. However, as
-noted in Section~\ref{sec:data-age-comp-likelihood},
-the Francis method is known to be sensitive to outliers and prone to convergence
-issues when selectivity is time-varying, as it is in this assessment, and thus was
-not included as a sensitivity.
 
 % section below on selectivity
 % Manual 2021 - CG
@@ -1887,14 +1878,14 @@ for several possible catches in 2019 (such as 0~t, 180,000~t,
 411,574~t. Therefore, we can select the 410,000~t row (which is close enough to
 411,574~t) in the table from the 2019
 assessment to give that assessment's
-P$(B_{2020} < B_{2019})=$\Sexpr{prob.decline.from.2019.to.2020.historic}\%, given the catch
+P$(B_{2020} < B_{2019}) = $\Sexpr{prob.decline.from.2019.to.2020.historic}\%, given the catch
 that we now know occurred in 2019.
 
 We can also calculate P($B_{2020} < B_{2019}$) using the current
 assessment model, i.e.,~calculate our most up-to-date estimate of the probability
 that the stock declined from 2019 to 2020 using all available data. This
 implicitly includes the 411,574~t catch from 2019. From the current assessment
-model we get P$(B_{2020} < B_{2019}) =$\Sexpr{prob.decline.from.2019.to.2020.curr}\%.
+model we get P$(B_{2020} < B_{2019}) = $\Sexpr{prob.decline.from.2019.to.2020.curr}\%.
 The \Sexpr{prob.decline.from.2019.to.2020.historic}\% and
 \Sexpr{prob.decline.from.2019.to.2020.curr}\% probabilities
 are shown for 2019 in Figure~\ref{fig:main-historical-1}.
@@ -1910,9 +1901,9 @@ the exact catch in year $t$ was not given in the decision tables in year $t$'s a
 We also calculate analogous probabilities,
 P$(B_{t+1} < B_{t})$, from the current base model (Figure~\ref{fig:main-historical-1}).
 
-The historic probability of P$(B_{2013} < B_{2012}) =$\Sexpr{prob.decline.from.2012.to.2013.historic}\%
+The historic probability of P$(B_{2013} < B_{2012}) = $\Sexpr{prob.decline.from.2012.to.2013.historic}\%
 from the 2012 assessment is
-somewhat above the \Sexpr{prob.decline.from.2012.to.2013.curr}\% calculated using the current assessment model
+higher than the \Sexpr{prob.decline.from.2012.to.2013.curr}\% calculated using the current assessment model
 (Figure~\ref{fig:main-historical-1}). But, this makes sense because the
 2012 assessment model had no information that the 2010 recruitment was going to be very large
 (it did not include the age-1 index, which in 2011 did indicate a large 2010 recruitment,

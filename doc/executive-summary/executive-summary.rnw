@@ -48,8 +48,7 @@ make.catches.plot(ct,
 %\vspace{0mm}
 \caption{Total \fishname\ catch used in the assessment by sector,
   \Sexpr{start.yr}--\Sexpr{last.data.yr}.
-  U.S. tribal catches are included in the sectors where they are represented.
-  CP is catcher-processor and MS is mothership.}
+  U.S. tribal catches are included in the sectors where they are represented.}
 \label{fig:es-catches}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -163,7 +162,7 @@ make.survey.age1.plot.data(age.1.index,
   and approximate 95\% confidence intervals
   based on sampling variability.
   The index is relative because
-  the survey does not attempt to catch all available
+  the survey does not attempt to sample all available
   age-1 fish and the analysis does not include kriging
   like what is done to estimate age-2$+$ biomass.}
 \label{fig:es-survey-age1}
@@ -175,7 +174,7 @@ landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}), an acoustic survey biomass
 index (Figure~\ref{fig:es-survey-biomass}) and age compositions
 (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), an acoustic survey index of
 age-1 fish (Figure~\ref{fig:es-survey-age1}),
-as well as fishery age compositions (\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}).
+and fishery age compositions (\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}).
 In 2011 the survey biomass index was the lowest in the time series and was followed by the index increasing
 in 2012, 2013, and again in 2015 before decreasing to near the time series average in 2017.
 The 2019 estimate is the fourth highest of the series, and the 2021 estimate is near the time
@@ -212,7 +211,7 @@ estimation (rather than some maximum likelihood estimation).
 Retrospective analyses
 identify possible poor performance of the assessment model with respect to
 future predictions. Past assessments have conducted closed-loop simulations
-which provide insights into how alternative combinations of survey frequency,
+that provide insights into how alternative combinations of survey frequency,
 assessment model selectivity assumptions, and harvest control rules affect
 expected management outcomes given repeated application of these procedures over
 the long-term. The results of past (and ongoing) closed-loop simulations help inform
@@ -416,7 +415,7 @@ make.recruitment.plot(base.model,
          distribution for recruitment (billions of age-0) with 95\% posterior
          credibility intervals (blue lines). The median of the posterior
          distribution for mean unfished equilibrium recruitment ($R_0$) is shown
-         as the horizontal dashed line with a 95\% posterior credibility interval
+         as the horizontal dashed line with the 95\% posterior credibility interval
          shaded between the dotted lines.}
 \label{fig:es-recruitment}
 \end{figure}
@@ -1146,7 +1145,7 @@ Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 % 2018 - probably not worth saying that any more.
 As the large 2010, 2014, and 2016 cohorts continue to age, their biomass is expected to decrease
 as losses from mortality outweigh increases from growth.  The
-estimated above-average 2020 (yet still highly uncertain) cohort will play a large role in determining spawning stock biomass
+estimated above-average (yet still highly uncertain) 2020 cohort will play a large role in determining spawning stock biomass
 during the forecast years presented here.
 % Still true for 2017 assessment - see
 %  years.since.2010.recruitment.med.below.mean

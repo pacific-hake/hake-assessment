@@ -646,7 +646,7 @@ Since the 2011 assessment, a combination of the informative
 prior for natural mortality
 used in previous Canadian assessments and results from analyses using
 \citeauthor{Hoenig1983}'s (\citeyear{Hoenig1983}) method support the use of a
-\Sexpr{m.prior[1]} distribution with a median of \Sexpr{m.prior[2]} and a logarithmic standard deviation of
+\Sexpr{m.prior[1]} distribution with a median of \Sexpr{f(as.numeric(m.prior[2]), 2)} and a logarithmic standard deviation of
 \Sexpr{m.prior[3]}. Sensitivity to this prior has been evaluated
 extensively in many previous assessments of \fishname\
 (see \citealt{JTC2013} for a discussion of the historical treatment of $M$ and its prior)
@@ -816,7 +816,7 @@ Composition data can also be weighted using the Francis method
 which is based on variability in the observed ages by year.
 This method, like the McAllister-Ianelli method, is iterative,
 where the sample sizes are adjusted such that the fit of the expected
-compositions should be within the estimated uncertainty at a rate
+mean age should be within the estimated uncertainty at a rate
 that is consistent with the variability expected given
 the effective sample sizes. The Francis method is known to be sensitive to
 outliers and prone to convergence issues when selectivity is time-varying. As

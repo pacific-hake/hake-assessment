@@ -114,7 +114,7 @@ make.catches.plot(ct, leg.y.loc = 550)
   mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
 @
 \end{center}
-\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of hauls targeting \fishname\ in the U.S. Catcher-Processor and Mothership sectors from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}. Horizontal lines in each box represents the median depth and boxes encompass the middle 50\% of the data. Whiskers encompass the 95\% quantiles.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of hauls targeting \fishname\ in the U.S. Catcher-Processor and Mothership sectors from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}. Horizontal lines in each box represent the median depth and boxes encompass the middle 50\% of the data. Whiskers encompass the 95\% quantiles.}
 \label{fig:main-us-at-sea-depths}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -144,7 +144,7 @@ make.catches.plot(ct, leg.y.loc = 550)
   mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
 @
 \end{center}
-\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of hauls targeting \fishname\ in the Canadian fleets from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}. Horizontal lines in each box represents the median depth and boxes encompass the middle 50\% of the data. Whiskers encompass the 95\% quantiles.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of hauls targeting \fishname\ in the Canadian fleets from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}. Horizontal lines in each box represent the median depth and boxes encompass the middle 50\% of the data. Whiskers encompass the 95\% quantiles.}
 \label{fig:main-can-at-sea-depths}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -215,7 +215,7 @@ make.survey.age1.plot.data(age.1.index,
   The index is relative because
   the survey does not attempt to catch all available
   age-1 fish and the analysis does not include kriging
-  like what is done to estimate age-2$+$ biomass.}
+  unlike estimates of age-2$+$ biomass.}
 \label{fig:main-age-one-index}
 \end{figure}
 

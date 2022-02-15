@@ -264,8 +264,8 @@ make.parameters.estimated.summary.table(
   end.rec.dev.yr = end.yr - 1,
   digits = 2,
   xcaption = paste0("Summary of estimated model parameters and priors in the base model.
-                     The Beta prior is parameterized with a mean and standard deviation.
-                     The Lognormal prior is parameterized with the median and standard
+                     The beta prior is parameterized with a mean and standard deviation.
+                     The lognormal prior is parameterized with the median and standard
                      deviation in log space."),
   xlabel = "tab:main-params-est-summary",
   font.size = 10,
