@@ -110,169 +110,64 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 % -----------------------------------------------------------------------------
-\section{Request 1 - Density of posteriors, NUTS vs rwMH}
+\section{Request 1 - Recruitment Deviates}
 \subsection{}
 \begin{frame}
-\frametitle{Density of $ln(R_0)$, NUTS vs rwMH}
-Request 1 -- Please plot the NUTS and random walk Metropolis-Hastings estimator outputs for relative biomass with the same scale (one plot) so that the SRG can evaluate any differences that may have occurred.
+\frametitle{Sum of Recruitment Deviates}
+Request 1 -- Provide the sum of the recruitment deviates in the main period for the base model
+  and the model without the age-1 index. Also, multiply this sum by the estimated $R_0$ to determine
+  the average recruitment over the main period (or just calculate the average recruitment?).
 \bi
-\item Figure includes density of $ln(R_0)$ not relative biomass as listed above.
-\item Medians are shown using dashed vertical lines.
-\item Raw count is left y axis and density is right y axis.
-\item Hash marks above x axis are locations of samples.
+\item Remarks here...
 \ei
 \end{frame}
 % -----------------------------------------------------------------------------
 
 % -----------------------------------------------------------------------------
+%\begin{frame}
+%\frametitle{Density of $ln(R_0)$, NUTS vs rwMH}
+%<<fig1, fig.height = 3.5>>=
+%placeholder for any figures
+%@
+%\end{frame}
+%
+% -----------------------------------------------------------------------------
+\section{Request 2 - Decision Tables}
+\subsection{}
 \begin{frame}
-\frametitle{Density of $ln(R_0)$, NUTS vs rwMH}
+\frametitle{Fishing Intensity Decision Table}
+Request 2 -- Investigate the fishing intensity decision table to make sure that the numbers
+  are correct. For example, the fishing intensities should be the same for rows with the same
+  2022 catch. And, please verify that the projections are correct.
+\bi
+\item The fishing intensity decision tables have been corrected.
+\item An updated draft assessment document can be found on the google drive labelled
+      {\tt hake-assessment-2022-preSRG\_V3 (corrected FI table).pdf}.
+\ei
+\end{frame}
+% -----------------------------------------------------------------------------
+
+\section{Extras}
+\subsection{}
+\begin{frame}
+\frametitle{Closer Look at Survey DM Posterior}
 <<fig1, fig.height = 3.5>>=
-plot_doublehist <- function(param_name = "SR_LN(R0)",
-                            xlabel = expression(ln(R[0]))){
+test<-exp(base.model$mcmc[,"ln(DM_theta)_2"])
+test <- test / (1 + test)
+hist(test,breaks=200,main="Posterior Distribution of Survey Theta",xlab="")
+abline(v=median(test),lwd=2,col="red")
+@
+\end{frame}
+% -----------------------------------------------------------------------------
 
-  sums <- SSsummarize(list(base.model, sens.models.7))
-  didit <- dplyr::bind_rows(lapply(sums$mcmc, "[", param_name), .id = "Model")
-  colnames(didit)[2] <- "value"
-  didit[["Model"]] <- factor(didit[["Model"]],
-                             labels = c("NUTS", "random walk Metropolis-Hastings"))
-
-  # https://www.datanovia.com/en/blog/ggplot-histogram-with-density-curve-in-r-using-secondary-y-axis/
-  # 1. Create the histogram plot
-  phist <- gghistogram(didit,
-                       x = "value",
-                       xlab = xlabel,
-                       add = "median",
-                       rug = TRUE,
-                       fill = "Model",
-                       palette = c("#00AFBB", "#E7B800"))
-  # 2. Create the density plot with y-axis on the right
-  # Remove x axis elements
-  pdensity <- ggdensity(didit,
-                        x = "value",
-                        xlab = xlabel,
-                        color= "Model",
-                        palette = c("#00AFBB", "#E7B800"),
-                        alpha = 0) +
-    scale_y_continuous(expand = expansion(mult = c(0, 0.05)),
-                       position = "right")  +
-    theme_half_open(11, rel_small = 1) +
-    rremove("x.axis")+
-    rremove("xlab") +
-    rremove("x.text") +
-    rremove("x.ticks") +
-    rremove("legend")
-  # 3. Align the two plots and then overlay them.
-  aligned_plots <- align_plots(phist, pdensity, align = "hv", axis = "tblr")
-  ggdraw(aligned_plots[[1]]) + draw_plot(aligned_plots[[2]])
-
-  # Code for ggplot (not as good)
-  # ggplot(didit,
-  #   aes(x=R0, col=factor(model, labels = ))
-  #   )+
-  # geom_density(lwd=1.5,show.legend=FALSE)+
-  # stat_density(geom="line",position="identity")+
-  # labs(colour="Model")+
-  # theme(legend.position=c(0.8,.8),legend.box.background=element_rect(linetype=0))+
-  # scale_colour_grey()
+\frame{\frametitle{Remove Recent Age-1 Index Points}
+\includegraphics[width=\maxwidth, height=2.8in]{../../../images/compare2_spawnbio_uncertainty}
 }
-plot_doublehist()
-@
-\end{frame}
 % -----------------------------------------------------------------------------
 
-\begin{frame}
-\frametitle{Literature Snippets}
-Excerpts from: Betancourt, M.A. 2018. A conceptual introduction to Hamiltonian Monte Carlo.
-Statistics Methodology, Cornell University. 60p. https://arxiv.org/abs/1701.02434.
-  \bi
-    \item Random walk Metropolis is popular in many applications because of its
-      conceptual simplicity. But that seductive simplicity hides a performance
-      that scales poorly with increasing dimension and complexity of the target
-      distribution. For high-dimensional probability distributions of practical
-      interest then we need a better way of exploring the typical set. In particular,
-      we need to better exploit the geometry of the typical set itself.
-    \item Hamiltonian Monte Carlo approaches [e.g., NUTS] can better follow the contours of
-      high probability mass, coherently gliding through the typical set.
-      Results show that implementations of the Hamiltonian Monte Carlo
-      method are geometrically ergodic over a large class of target distributions.
-      In particular, this class is significantly larger than the class for non-gradient
-      based algorithms like Random Walk Metropolis Hastings, consistent with the
-      intuition that gradients are critical to robust Markov chain Monte Carlo
-      in high-dimensional problems.
-  \ei
-\end{frame}
-
-% -----------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Density of $M$, NUTS vs rwMH}
-<<fig2, fig.height = 3.5>>=
-plot_doublehist("NatM_uniform_Fem_GP_1", "Natural Mortality")
-@
-\end{frame}
-% -----------------------------------------------------------------------------
-
-% -----------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Density of $h$, NUTS vs rwMH}
-<<fig3, fig.height = 3.5>>=
-plot_doublehist("SR_BH_steep", "steepness")
-@
-\end{frame}
-% -----------------------------------------------------------------------------
-
-% -----------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Density of Extra Survey SD, NUTS vs rwMH}
-<<fig4, fig.height = 3.5>>=
-plot_doublehist("Q_extraSD_Acoustic_Survey(2)", "Extra Survey SD")
-@
-\end{frame}
-% -----------------------------------------------------------------------------
-
-% -----------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Density of DM for fishery, NUTS vs rwMH}
-<<fig5, fig.height = 3.5>>=
-plot_doublehist("ln(DM_theta)_1", "Dirichlet-multinomial Fishery")
-@
-\end{frame}
-% -----------------------------------------------------------------------------
-
-% -----------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Density of DM for survey, NUTS vs rwMH}
-<<fig6, fig.height = 3.5>>=
-plot_doublehist("ln(DM_theta)_2", "Dirichlet-multinomial Survey")
-@
-\end{frame}
-% -----------------------------------------------------------------------------
-
-% -----------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Density of 2010 recruitment, NUTS vs rwMH}
-<<fig7, fig.height = 3.5>>=
-plot_doublehist("Recr_2010", "2010 Recruitment")
-@
-\end{frame}
-% -----------------------------------------------------------------------------
-
-% -----------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Density of 2014 recruitment, NUTS vs rwMH}
-<<fig8, fig.height = 3.5>>=
-plot_doublehist("Recr_2014", "2014 Recruitment")
-@
-\end{frame}
-% -----------------------------------------------------------------------------
-
-% -----------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Density of 2016 recruitment, NUTS vs rwMH}
-<<fig9, fig.height = 3.5>>=
-plot_doublehist("Recr_2016", "2016 Recruitment")
-@
-\end{frame}
+\frame{\frametitle{Remove Recent Age-1 Index Points}
+\includegraphics[width=\maxwidth, height=2.8in]{../../../images/compare10_recruits_uncertainty}
+}
 % -----------------------------------------------------------------------------
 
 \end{document}
