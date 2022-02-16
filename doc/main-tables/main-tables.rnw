@@ -335,10 +335,10 @@ atage_table(
   end_yr = end.yr - 1,
   digits = 2,
   csv_dir = output.csv.dir,
-  xcaption = paste0("Estimated exploitation-rate-at-age ",
+  xcaption = paste0("Estimated exploitation-fraction-at-age ",
                     "(catch-at-age divided by biomass-at-age at the beginning of the year) ",
-                    "for each year from the base model (posterior medians; percentage of age class removed by fishing). ",
-                    "Annual exploitation rates for ages 6$+$ are equivalent because those fish are fully selected."),
+                    "presented as a percentage ",
+                    "for each year from the base model (posterior medians; percentage of age class removed by fishing)."),
   xlabel = "tab:main-est-exp-rate-at-age",
   font_size = 9,
   space_size = 10)
@@ -556,7 +556,7 @@ make.risk.table(base.model,
                                   end.yr,
                                   " catch options (catch options explained in Table \\ref{tab:main-decisions-biomass})."),
                 xlabel = "tab:main-risk-year-1",
-                font.size = 12,
+                font.size = 11,
                 space.size = 13)
 @
 
@@ -574,7 +574,7 @@ make.risk.table(base.model,
                                   " catch level shown in Table~\\ref{tab:main-risk-year-1} (catch options
                                   explained in Table \\ref{tab:main-decisions-biomass})."),
                 xlabel = "tab:main-risk-year-2",
-                font.size = 12,
+                font.size = 11,
                 space.size = 13)
 @
 
@@ -597,7 +597,7 @@ make.risk.table(base.model,
                                   explained in Table
                                   \\ref{tab:main-decisions-biomass})."),
                 xlabel = "tab:main-risk-year-3",
-                font.size = 12,
+                font.size = 11,
                 space.size = 13)
 @
 
