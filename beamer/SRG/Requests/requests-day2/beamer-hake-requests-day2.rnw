@@ -110,35 +110,29 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 }
 
 % -----------------------------------------------------------------------------
-\section{Request 1 - Recruitment Deviates}
+\section{Request 3 - Survey Weighting Parameter}
 \subsection{}
 \begin{frame}
-\frametitle{Sum of Recruitment Deviates}
-  <<request-day1-R0, echo=FALSE>>=
-  base_R0 <- f((median(base.model$mcmc[,"Recr_Virgin"])) / 1e3, 0)
-  @
-Request 1 -- Provide the sum of the recruitment deviates in the main period for the base model
-  and the model without the age-1 index. Also, multiply this sum by the estimated $R_0$ to determine
-  the average recruitment over the main period (or just calculate the average recruitment?).
-\\~\\
-Response: Table shows summary of characteristics for recruitment in the main period (1970--2020).
-~\\
-\begin{table}
-    \begin{tabular}{ccc} \hline
-      Model & Deviate Sum & Average Recruitment (millions) \\
-      \hline
-      2022 Base & 8.38 & 3,143 \\
-      2022 No age-1 index & 7.97 & 2,953 \\
-      2022 Steepness is 1 & 7.64 & 3,090 \\
-      2021 Base & 8.30 & 2,884 \\
-      \hline
-    \end{tabular}
-  \end{table}
-~\\
-The median estimate of $R_0$ from the 2022 base model is \Sexpr{base_R0} million fish.
+\frametitle{Survey Weighting Parameter}
+Request 3 -- The SRG requests two additional runs of the model to explore the impact
+  of reducing or increasing the weight assigned to the age composition data from the
+  hydroacoustic survey. We recommend fixing the Dirichlet-multinomial survey weighting
+  parameter to the median of the posterior, and then in run 1, multiplying the input sample
+  size by 0.2, and in run 2 multiplying the input sample size by 2. Runs using MLE estimates
+  would be sufficient, with MCMC runs conducted if possible.
 \end{frame}
 % -----------------------------------------------------------------------------
-
+\begin{frame}
+\frametitle{Increase/Decrease Survey Samples}
+Fix survey theta at median of the posterior and multiply the input survey sample size by 2.0
+Fix survey theta at median of the posterior and multiply the input survey sample size by 0.20
+%<<fig1, fig.height = 3.5>>=
+%test<-exp(base.model$mcmc[,"ln(DM_theta)_2"])
+%test <- test / (1 + test)
+%hist(test,breaks=200,main="Posterior Distribution of Survey Theta",xlab="")
+%abline(v=median(test),lwd=2,col="red")
+%@
+\end{frame}
 % -----------------------------------------------------------------------------
 %\begin{frame}
 %\frametitle{Density of $ln(R_0)$, NUTS vs rwMH}
@@ -148,72 +142,20 @@ The median estimate of $R_0$ from the 2022 base model is \Sexpr{base_R0} million
 %\end{frame}
 %
 % -----------------------------------------------------------------------------
-\section{Request 2 - Decision Tables}
-\subsection{}
-\begin{frame}
-\frametitle{Fishing Intensity Decision Table}
-Request 2 -- Investigate the fishing intensity decision table to make sure that the numbers
-  are correct. For example, the fishing intensities should be the same for rows with the same
-  2022 catch. And, please verify that the projections are correct.
-\\~\\
-Response: Request has been completed.  
-\bi
-\item The fishing intensity decision tables have been corrected.
-\item An updated draft assessment document can be found on the google drive labelled
-      {\tt hake-assessment-2022-preSRG\_V3 (corrected FI table).pdf}.
-\ei
-\end{frame}
-% -----------------------------------------------------------------------------
-\section{Request 3 - Survey Weighting Parameter}
-\subsection{}
-\begin{frame}
-\frametitle{Survey Weighting Parameter}
-Request 3 -- The SRG requests two additional runs of the model to explore the impact
-  of reducing or increasing the weight assigned to the age composition data from the
-  hydroacoustic survey. We recommend fixing the Dirichlet-multinomial survey weighting
-  parameter to the median of the posterior, and then in run 1, multiplying the input sample
-  size by 0.2, and in run 2 multiplying the input sample size by 2. Run 3, estimate the D-M
-  theta parameter for the alternative input sample size run that multiplies base case input
-  sample size by 2.  Runs using MLE estimates would be sufficient, with MCMC runs conducted
-  if possible. Report the posterior distribution for theta, when estimated, and compare to the
-  estimated theta from the base assessment. Report the typical sensitivity plots and fits
-  to the survey age comps (e.g., bottom of Figure 20).
-\end{frame}
-% -----------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Increase/Decrease Survey Samples}
-\bi
-\item Fix survey theta at median of the posterior and multiply the input survey sample size by 2.0
-\item Fix survey theta at median of the posterior and multiply the input survey sample size by 0.20
-\ei
-%<<fig1, fig.height = 3.5>>=
-%test<-exp(base.model$mcmc[,"ln(DM_theta)_2"])
-%test <- test / (1 + test)
-%hist(test,breaks=200,main="Posterior Distribution of Survey Theta",xlab="")
-%abline(v=median(test),lwd=2,col="red")
-%@
-\end{frame}
-% -----------------------------------------------------------------------------
-\section{Extras}
-\subsection{}
-\begin{frame}
-\frametitle{Closer Look at Survey DM Posterior}
-<<fig1, fig.height = 3.5>>=
-test<-exp(base.model$mcmc[,"ln(DM_theta)_2"])
-test <- test / (1 + test)
-hist(test,breaks=200,main="Posterior Distribution of Survey Theta",xlab="")
-abline(v=median(test),lwd=2,col="red")
-@
-\end{frame}
-% -----------------------------------------------------------------------------
-
-\frame{\frametitle{Remove Recent Age-1 Index Points (*MLE Models)}
-\includegraphics[width=\maxwidth, height=2.8in]{../../../images/compare2_spawnbio_uncertainty.eps}
-}
-% -----------------------------------------------------------------------------
-
-\frame{\frametitle{Remove Recent Age-1 Index Points (*MLE Models)}
-\includegraphics[width=\maxwidth, height=2.8in]{../../../images/compare10_recruits_uncertainty.eps}
-}
+%\section{Request 2 - Decision Tables}
+%\subsection{}
+%\begin{frame}
+%\frametitle{Fishing Intensity Decision Table}
+%Request 2 -- Investigate the fishing intensity decision table to make sure that the numbers
+%  are correct. For example, the fishing intensities should be the same for rows with the same
+%  2022 catch. And, please verify that the projections are correct.
+%\\~\\
+%Response: Request has been completed.  
+%\bi
+%\item The fishing intensity decision tables have been corrected.
+%\item An updated draft assessment document can be found on the google drive labelled
+%      {\tt hake-assessment-2022-preSRG\_V3 (corrected FI table).pdf}.
+%\ei
+%\end{frame}
 % -----------------------------------------------------------------------------
 \end{document}
