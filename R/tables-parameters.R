@@ -346,7 +346,10 @@ param_est_table <- function(models,
     recs <- f(recs, 0)
 
     # Catchabilities
-    if(.x$extra_mcmc_exists){
+    if(.x$endyr == 2020){
+      q_acoustic <- median(.x$extra.mcmc$Q_vector)
+      q_age1 <- NA
+    }else if(.x$extra_mcmc_exists){
       q_med <- .x$extra.mcmc$q.med
       # Filter for last year in the series, since q's are not time varying
       q_acoustic <- q_med %>% filter(Fleet == 2)
