@@ -191,7 +191,7 @@ weight.at.age.heatmap <- function(model,
           axis.text.x = element_text(size = axis.font.size),
           axis.text.y = element_text(size = axis.font.size)) +
     scale_y_continuous(breaks = seq(min(w$Yr), max(w$Yr), 1),
-                       labels = c("mean",
+                       labels = c(ifelse(samplesize, "sum", "mean"),
                                   "",
                                   seq(min(w$Yr),
                                       max(w$Yr),
@@ -207,16 +207,18 @@ weight.at.age.heatmap <- function(model,
     g <- g +
       geom_text(
         data = g$data %>% dplyr::filter(Yr != min(w$Yr)),
-        aes(x = factor(age), label = a),
+        aes(x = as.numeric(factor(age)) + 0.3, label = a),
+        hjust = "right",
         size = font.size) +
       geom_text(
         data = g$data %>% dplyr::filter(Yr == min(w$Yr)),
-        aes(x = factor(age), y = Yr + .5, label = a),
+        aes(x = as.numeric(factor(age)) + 0.3, y = Yr + .5, label = a),
         size = font.size, angle = 20) +
       coord_cartesian(expand = FALSE, ylim = print.years,
         xlim = c(0.5, model$nage + 2.5)) +
       geom_text(data = subset(valswithmask, age == 15 & Yr > min(w$Yr)),
-                x = model$nage + 2, aes(label = N, col = rescale(N))) +
+        hjust = "right",
+                x = model$nage + 2.5, aes(label = N, col = rescale(N))) +
       geom_text(
         data = g$data %>% dplyr::filter(Yr == min(w$Yr), age == model$nage),
         label = "sum",
