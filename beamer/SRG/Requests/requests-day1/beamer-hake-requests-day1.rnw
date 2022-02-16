@@ -280,11 +280,11 @@ make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202
 \section{Extras}
 \subsection{}
 \begin{frame}
-\frametitle{Closer Look at Survey DM Posterior}
+\frametitle{Closer Look at Base Model Survey Weighting}
 <<fig1, fig.height = 3.5>>=
 test<-exp(base.model$mcmc[,"ln(DM_theta)_2"])
 test <- test / (1 + test)
-hist(test,breaks=200,main="Posterior Distribution of Survey Theta",xlab="")
+hist(test,breaks=200,main="Posterior Distribution of Survey Weighting Factor",xlab="")
 abline(v=median(test),lwd=2,col="red")
 @
 \end{frame}
