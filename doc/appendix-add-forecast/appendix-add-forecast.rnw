@@ -1,0 +1,40 @@
+\clearpage
+
+\chapter{Additional forecast catch levels}
+\label{chap:add-forecast}
+
+This appendix contains decision tables for additional forecast catch levels requests by JMC or AP members.
+
+\begin{table}[H]
+\centering
+\caption{Forecast quantiles of \fishname\ relative spawning biomass at the beginning of the year, for the extra constant catch alternative of 525,000~t.}
+\label{tab:**}
+\begingroup\fontsize{11}{12}\selectfont
+\begin{tabularx}{\textwidth}{|ccc|c|YYY|}
+  \cline{1-7}\multicolumn{3}{|c|}{} & \textbf{Biomass at} & \multicolumn{3}{c|}{\textbf{Resulting relative spawning biomass}} \\ \cline{1-3}\multicolumn{3}{|c|}{\textbf{Management Action}} & \textbf{start of year} & \textbf{5\%} & \textbf{50\%} & \textbf{95\%} \\  \hline  & \textbf{Catch year} & \textbf{Catch (t)} & Start of 2022 & 0.35 & 0.65 & 1.19 \\
+\hline
+Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
+   & 2023 &       525,000 & Start of 2024 & 0.21 & 0.62 & 1.68 \\
+   & 2024 &       525,000 & Start of 2025 & 0.11 & 0.50 & 1.61 \\
+\hline
+\end{tabularx}
+\endgroup
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Forecast quantiles of \fishname\ fishing intensity at the beginning of the year, for the extra constant catch alternative of 525,000~t.}
+\label{tab:**}
+\begingroup\fontsize{11}{12}\selectfont
+\begin{tabularx}{\textwidth}{|ccc|YYY|}
+  \cline{1-6}\multicolumn{3}{|c|}{\textbf{Management Action}} & \multicolumn{3}{c|}{\textbf{Relative fishing intensity}} \\ \cline{1-3} & \textbf{Catch year} & \textbf{Catch (t)} & \textbf{5\%} & \textbf{50\%} & \textbf{95\%} \\
+\hline
+Extra & 2022 &  525,000 & 0.54 & 0.84 & 1.11 \\
+      & 2023 &  525,000 & 0.54 & 0.88 & 1.24 \\
+      & 2024 &  525,000 & 0.50 & 0.91 & 1.32 \\
+\hline
+\end{tabularx}
+\endgroup
+\end{table}
+
+\clearpage % Needed to make footers correct

@@ -419,6 +419,10 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 <<appendices-rec-plot, child='appendix-rec-plot/appendix-rec-plot.rnw'>>=
 @
 
+\rfoot{Appendix~\ref{chap:add-forecast} -- Additional forecast catch levels}
+<<appendix-add-forecast, child='appendix-add-forecast/appendix-add-forecast.rnw'>>=
+@
+
 % Putting the base model results into a temporary appendix to easily compare
 %  the figures and tables to previous two appendices:
 % \rfoot{Appendix~\ref{chap:base} -- BASE MODEL RESULTS **TEMPORARY}
