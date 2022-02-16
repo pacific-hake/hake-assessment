@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+
+\usepackage{tabu} % https://tex.stackexchange.com/questions/50332/vertical-spacing-of-a-table-cell
+
+\pdfcompresslevel=5 % faster PNGs
+
+% \bibliographystyle{csas-style/res-doc}
+
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{epsfig}
+% Let it begin
+\begin{document}
+% \input{../1995/dataPrepPreamble.tex}
+
+<<knitr-opts, echo=FALSE, cache=FALSE, results='hide', message=FALSE, warning=FALSE>>=
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = NA,
+  fig.path = "knitr-figs/",
+  cache.path = "knitr-cache/",
+  fig.asp = 0.618,
+  fig.width = 9,
+  echo = TRUE,
+  autodep = TRUE,
+  cache = TRUE,
+  cache.comments = FALSE,
+  dev = "png",
+  dpi = 200,
+  fig.align = "center",
+  fig.pos = "htb"
+)
+
+figheight = 6
+figwidth = 5.7
+
+source(file.path(here::here(), "R", "all.R"))
+if(!(exists("models_loaded") && models_loaded)){
+  load_models_rds()
+}
+models_loaded <- TRUE
+source(file.path(rootd.R, "custom-knitr-variables.R"))
+
+source("hdi-calcs.R")
+@
+
+\title{Working notes on hdi idea}
+\author{Andrew Edwards}
+
+\maketitle
+
+Current biomass:
+
+<<b2022, echo = TRUE>>=
+B2022 <- base.model$mcmc[["SSB_2022"]]
+f(quantile(B2022, probs = c(0.025, 0.975)))
+f(diff(quantile(B2022, probs = c(0.025, 0.975))))
+f(HDInterval::hdi(B2022))
+f(diff(HDInterval::hdi(B2022)))
+@
+
+HCR TAC:
+<<HCR>>=
+dat <- eval(parse(text = paste0("base.model$mcmc$ForeCatch_", assess.yr+1))) / 1000.0
+make.posterior.intervals(dat)
+make.posterior.intervals(dat, interval.type = "equal")
+@
+
+
+\end{document}

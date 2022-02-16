@@ -54,7 +54,7 @@ make.forecast.catch.posterior.hist <- function(model,         ## model is the mo
 #DO A FUNCTION FOR THE BIN BREAKS (Above) if needed more
 #  HERE
 
-  br <- base.model$mcmc[["Bratio_2022"]]
+br <- base.model$mcmc[["Bratio_2022"]]
 
 > > quantile(br, probs = c(0.025, 0.975))
      2.5%     97.5%
@@ -66,17 +66,6 @@ attr(,"credMass")
 [1] 0.95
   >
 
-B2022 <- base.model$mcmc[["SSB_2022"]]
-> quantile(B2022, probs = c(0.025, 0.975))
-     2.5%     97.5%
- 583631.8 2584659.0
-> f(quantile(B2022, probs = c(0.025, 0.975)))
-       2.5%       97.5%
-"  583,632" "2,584,659"
-> f(HDInterval::hdi(B2022))
-      lower       upper
-"  469,149" "2,298,790"
-  >
 
   > br <- base.model$mcmc[["Bratio_2022"]]
 > > quantile(br, probs = c(0.025, 0.975))

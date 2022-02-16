@@ -34,7 +34,7 @@
 ##' @}
 make.posterior.intervals <- function(vec,
                                      credible.mass = 0.95,
-                                     num.bins.in.cred = 20,
+                                     num.bins.in.cred = 30,
                                      interval.type = "hpdi",
                                      do.plot = TRUE,
                                      ...){
