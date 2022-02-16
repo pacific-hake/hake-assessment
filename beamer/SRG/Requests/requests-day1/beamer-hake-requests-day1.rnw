@@ -183,8 +183,9 @@ Request 3 -- The SRG requests two additional runs of the model to explore the im
 \begin{frame}
 \frametitle{Increase/Decrease Survey Samples}
 \bi
-\item Fix survey theta at median of the posterior and multiply the input survey sample size by 2.0
-\item Fix survey theta at median of the posterior and multiply the input survey sample size by 0.20
+\item Run 1: Fix survey theta at median of the posterior and multiply the input survey sample size by 2.0
+\item Run 2: Fix survey theta at median of the posterior and multiply the input survey sample size by 0.20
+\item Run 3: Estimate survey theta when input survey sample size is multiplied by 2.0
 \ei
 %<<fig1, fig.height = 3.5>>=
 %test<-exp(base.model$mcmc[,"ln(DM_theta)_2"])
