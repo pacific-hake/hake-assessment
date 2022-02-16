@@ -55,7 +55,7 @@ make.forecast.catch.posterior.hist <- function(model,         ## model is the mo
 #  HERE
 
   br <- base.model$mcmc[["Bratio_2022"]]
-(list "" '(("object" . "") ("..." . "") ("digits" . "") ("quantile.type" . "7")) '("object" "..." "test.statistic" "univariate" "multivariate" "p.adjust.method" "intercept" "split" "expand.split" "keep.zero.df" "parm" "high.moments" "extremes" "all" "full" "maxsum" "digits" "quantile.type" "dispersion" "correlation" "symbolic.cor" "test" "tol" "quantiles" "ny" "names" "verbosity" "loadings" "cutoff" "max_frames" "dir" "srcrefs" "maxp4s" "showValues" "useSource"))
+
 > > quantile(br, probs = c(0.025, 0.975))
      2.5%     97.5%
 0.3105285 1.3473200
