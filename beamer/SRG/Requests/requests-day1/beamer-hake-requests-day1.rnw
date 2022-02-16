@@ -93,6 +93,9 @@ if(!(exists("models_loaded") && models_loaded)){
 }
 models_loaded <- TRUE
 source(file.path(rootd.R, "custom-knitr-variables.R"))
+#mod200 <- load_models("2022.01.200_inputnsmall")
+#mod201 <- load_models("2022.01.201_inputnlarge")
+#mod202 <- load_models("2022.01.202_inputnlargee")
 @
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -181,18 +184,97 @@ Request 3 -- The SRG requests two additional runs of the model to explore the im
 \end{frame}
 % -----------------------------------------------------------------------------
 \begin{frame}
-\frametitle{Increase/Decrease Survey Samples}
-\bi
-\item Run 1: Fix survey theta at median of the posterior and multiply the input survey sample size by 2.0
-\item Run 2: Fix survey theta at median of the posterior and multiply the input survey sample size by 0.20
-\item Run 3: Estimate survey theta when input survey sample size is multiplied by 2.0
-\ei
-%<<fig1, fig.height = 3.5>>=
-%test<-exp(base.model$mcmc[,"ln(DM_theta)_2"])
-%test <- test / (1 + test)
-%hist(test,breaks=200,main="Posterior Distribution of Survey Theta",xlab="")
-%abline(v=median(test),lwd=2,col="red")
-%@
+\frametitle{Fits to Survey Age Composition Data (Base model)}
+<<request-fig-comp-fit-base, fig.height = 3.5>>=
+oldpar <- par(no.readonly = TRUE)
+make.age.comp.fit.plot(base.model,
+                       subplot = 2,
+                       fill = FALSE)
+par <- oldpar
+@
+\end{frame}
+% -----------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Fits to Survey Age Composition Data (Fix theta, 0.2 x input sample size)}
+<<request-fig-comp-fit-run1, fig.height = 3.5>>=
+oldpar <- par(no.readonly = TRUE)
+make.age.comp.fit.plot(mod200,
+                       subplot = 2,
+                       fill = FALSE)
+par <- oldpar
+@
+\end{frame}
+% -----------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Fits to Survey Age Composition Data (Fix theta, 2.0 x input sample size)}
+<<request-fig-comp-fit-run2, fig.height = 3.5>>=
+oldpar <- par(no.readonly = TRUE)
+make.age.comp.fit.plot(mod201,
+                       subplot = 2,
+                       fill = FALSE)
+par <- oldpar
+@
+\end{frame}
+% -----------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Fits to Survey Age Composition Data (Est. theta, 2.0 x input sample size)}
+<<request-fig-comp-fit-run3, fig.height = 3.5>>=
+oldpar <- par(no.readonly = TRUE)
+make.age.comp.fit.plot(mod202,
+                       subplot = 2,
+                       fill = FALSE)
+par <- oldpar
+@
+\end{frame}
+% -----------------------------------------------------------------------------
+\frame{\frametitle{Posterior Estimates (Est. theta; 2.0 x input sample size)}
+\includegraphics[width=\maxwidth, height=2.8in]{../../../images/DMweighting.eps}
+}
+% -----------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Spawning Biomass}
+<<request-fig-SB-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+req3.model.names <- c("Fix theta, 0.2 x input sample size","Fix theta, 2.0 x input sample size",
+                      "Est. theta, 2.0 x input sample size")
+make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+                     subplots = 2,
+                     model.names = c(base.model.name, req3.model.names),
+                     end.yr = end.yr)
+@
+\end{frame}
+% -----------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Relative Spawning Biomass}
+<<request-fig-SBratio-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+                     subplots = 4,
+                     legend = FALSE,
+                     model.names = c(base.model.name, req3.model.names),
+                     end.yr = end.yr)
+@
+\end{frame}
+% -----------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Recruitment Deviations}
+<<request-fig-recdev-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+                     subplots = 12,
+                     legend = FALSE,
+                     model.names = c(base.model.name, req3.model.names),
+                     end.yr = end.yr)
+@
+\end{frame}
+% -----------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Survey Index of Age-2$+$ Biomass}
+<<request-fig-acoustic2-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+                     subplots = 13,
+                     model.names = c(base.model.name, req3.model.names),
+                     indexfleets = 2,
+                     legend = FALSE,
+                     end.yr = end.yr)
+@
 \end{frame}
 % -----------------------------------------------------------------------------
 \section{Extras}
