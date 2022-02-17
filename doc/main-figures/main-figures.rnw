@@ -533,9 +533,9 @@ plot_pearson_bubbles(base.model, type = 2, alpha = 0.7)
 <<main-prior-posterior, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how the posteriors shift from the priors for key parameters">>=
 make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
                                               key.posteriors,
-                                              hist_breaks = c(50, 50, 50, 50, 100, 100),
+                                              hist_breaks = rep(50, length(key.posteriors)),
                                               ncol = 2,
-                                              nrow = 3,
+                                              nrow = 4,
                                               show_legend = TRUE,
                                               legend_panel = 3,
                                               titles = key.posteriors.titles,
@@ -549,8 +549,8 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 \caption{Prior (black lines) and posterior (gray histograms) distributions for
   key parameters in the base model. The parameters are: natural mortality ($M$),
   equilibrium log recruitment ($\log R_0)$, steepness ($h$), the additional
-  process-error standard deviation for the biomass index, and the
-  Dirichlet-multinomial parameters for the fishery ($\theta_{\text{fish}}$) and
+  process-error standard deviation for the acoustic survey and the age-1 biomass
+  index, and the Dirichlet-multinomial parameters for the fishery ($\theta_{\text{fish}}$) and
   the survey ($\theta_{\text{surv}}$).}
   % This didn't seem needed for 2022:
   % There

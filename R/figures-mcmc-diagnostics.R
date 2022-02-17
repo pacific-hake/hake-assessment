@@ -190,9 +190,9 @@ make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
                                                           titles = NULL,
                                                           ...){
   stopifnot(length(hist_breaks) == length(posterior_regex))
-  if(ncol * nrow != length(posterior_regex)){
+  if(ncol * nrow < length(posterior_regex)){
     stop("The length of the posterior_regex vector (", length(posterior_regex),
-         ") is not equal to nrow (", nrow, ") * ncol (", ncol, ")", call. = FALSE)
+         ") is larger than nrow (", nrow, ") * ncol (", ncol, ")", call. = FALSE)
   }
   oldpar <- par("mar", "mfrow")
   on.exit(par(oldpar))

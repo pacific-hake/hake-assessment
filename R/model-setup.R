@@ -85,12 +85,14 @@ key.posteriors <- c("NatM",
                     "SR_BH_steep",
                     "Q_extraSD_Acoustic_Survey",
                     "ln\\(DM_theta\\)_1",
+                    "Q_extraSD_Age1_Survey",
                     "ln\\(DM_theta\\)_2")
 key.posteriors.titles <- c("Natural mortality",
                            "LN(R0)",
                            "Steepness",
-                           "Survey extra SD",
+                           "Acoustic survey (age 2+) extra SD",
                            "Dirichlet-Multinomial fishery",
+                           "Age-1 index extra SD",
                            "Dirichlet-Multinomial survey")
 message("Key posteriors in this assessment: ", key.posteriors)
 
