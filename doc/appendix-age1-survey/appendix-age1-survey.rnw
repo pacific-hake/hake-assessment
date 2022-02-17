@@ -14,17 +14,12 @@ allows for comparisons with the \Sexpr{last.assess.yr} base model.
 This appendix is meant to provide supplemental information,
 and should not be viewed as an alternative base model.
 
-In general, the pattern of the estimated time series of median age-1 fish (billions) is similar whether
-or not the age-1 index is excluded (Figure~\ref{fig:age-one-index-age1}) or
-included (Figure~\ref{fig:age-one-index-age1-base}).
-The only appreciative changes (on the
-log scale) are for the 2018 and 2020 cohorts, where excluding the age-1 index
-decreases the estimates of the size of the 2018 and 2020 cohorts. In absolute
-terms, the median 2020 recruitment decreases from
-\Sexpr{f(base.model$mcmccalcs$rmed["2020"], 1)}~billion fish (base model)
+Removal of the age-1 index from the model decreases the estimates of 2018 and 2020
+cohort size (age-0 recruitment). The median 2020 recruitment decreases from
+\Sexpr{f(base.model$mcmccalcs$rmed["2020"], 1)}~billion fish (base model, Table~\ref{tab:main-est-numbers-at-age})
 to
 \Sexpr{f(sens.models.2[[1]]$mcmccalcs$rmed["2020"], 1)}~billion fish
-(sensitivity run).
+(sensitivity run, Table~\ref{tab:age1-est-numbers-at-age}).
 Estimates for cohorts born in odd years are similar between the two models
 because the age-1 index is generally only available in odd years
 (Figures~\ref{fig:main-retrospective-recruitment} and~\ref{fig:retrospective-recruitment-age1}).
@@ -84,7 +79,7 @@ models suggesting it to be above average when using all available data.
 
 Figures \ref{fig:spawning-biomass-age1}--\ref{fig:forecast-risk-comparison-year-2-age1}
 and
-Tables~\ref{tab:biomass-age1}--\ref{tab:risk-year-2-age1}
+Tables~\ref{tab:biomass-age1}--\ref{tab:age1-est-numbers-at-age}
 show further quantities of interest and decision tables from the MCMC results
 when excluding the age-1 index.
 
@@ -206,48 +201,6 @@ par <- oldpar
 \label{fig:retrospective-biomass-base-age1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<age-one-index-age1-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the fit of the sensitivity run to the age-1 index">>=
-make.survey.age1.plot(sens.models.2[[1]],
-                      age.1.index)
-@
-\end{center}
-%\vspace{0mm}
-\caption{Acoustic survey age-1 index overlaid on estimated numbers
-  of age-1 fish (medians of the posterior distribution) from the
-  sensitivity model run that
-  that {\bf excludes the age-1 index}.
-  The index is scaled to
-  have the same mean as the estimated age-1 fish on a log scale,
-  as the index is not included in this sensitivity run.
-  The equivalent figure
-  for the base model is shown in Figure~\ref{fig:age-one-index-age1-base}.}
-\label{fig:age-one-index-age1}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<age-one-index-age1-base, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the fit of the base model to the age-1 index">>=
-make.survey.age1.plot(base.model,
-                      age.1.index)
-@
-\end{center}
-%\vspace{0mm}
-\caption{Acoustic survey age-1 index overlaid on estimated numbers
-  of age-1 fish (medians of the posterior distribution) from the base model
-  that {\bf includes the age-1 index}. The index is scaled to
-  have the same mean as the estimated age-1 fish on a log scale
-  for comparison with Figure~\ref{fig:age-one-index-age1}.}
-\label{fig:age-one-index-age1-base}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -660,6 +613,26 @@ make.risk.table(sens.models.2[[1]],
 @
 
 \clearpage
+
+\begin{landscape}
+\pagestyle{mylandscape}
+\centering
+<<age1-est-numbers-at-age-table, results='asis', echo=FALSE>>=
+atage_table(
+  sens.models.2[[1]],
+  table_type = 1,
+  end_yr = end.yr,
+  csv_dir = output.csv.dir,
+  xcaption = paste0("Estimated numbers-at-age at the beginning ",
+                    "of the year from the base model (posterior medians; million)."),
+  xlabel = "tab:age1-est-numbers-at-age",
+  font_size = 9,
+  space_size = 10)
+@
+\end{landscape}
+\pagestyle{fancy}
+\clearpage
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
