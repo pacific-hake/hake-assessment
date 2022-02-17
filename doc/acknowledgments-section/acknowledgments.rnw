@@ -7,6 +7,8 @@
 
 We thank the authors of previous assessments whose work remains an
 influential part of this assessment.
+In particular, we would like to extend our appreciation to Kiva Oken for
+assisting the JTC this year.
 We are grateful for the hard work of the
 U.S. and Canadian acoustics teams, including (in alphabetical order)
 Ethan Beyer,
@@ -24,7 +26,7 @@ Scott Buchanan, Cassandra Donavan, Mark Freeman, Joanne Groot,
 Marie Guldin, Owen Hamel (who gave insightful
 comments on a draft version), Jim Hastie, Melissa Head, Jason Jannot, William Jasper,
 Jerry Leonard, Kristin Marshall, Rick Methot, Patrick McDonald, Cole Monnahan,
-Elizabeth Phillips, Erin Steiner, Brad Stenberg, Ian Taylor, Jim Thorson,
+Kiva Oken, Elizabeth Phillips, Erin Steiner, Brad Stenberg, Ian Taylor, Jim Thorson,
 Vanessa Tuttle, Joe Watson, Steve Wischniowski, and contributions by many others that are
 too numerous to list here.
 We thank the Stock Synthesis, the {\tt r4ss} R package, and the {\tt adnuts}
@@ -39,13 +41,13 @@ and other industry representatives including
 Shannon Mann, Mike Okoniewski, Brent Paine, Dave Smith, Dan
 Waldeck, and Teresa Williams.
 % Add the following back in after SRG
-% We thank all the members of the
-% Scientific Review Group for their thoughtful review and smoothly run SRG
-% meeting, including co-chairs John Holmes and Jim Hastie, panel members
-% Trevor Branch,
-% Jaclyn Cleary,
-% Allan Hicks, and David Sampson, and AP advisors
-% Shannon Mann and Lori Steele.
+We thank all the members of the
+Scientific Review Group for their thoughtful review and smoothly run SRG
+meeting, including co-chairs John Holmes and Jim Hastie, panel members
+Trevor Branch,
+Jaclyn Cleary,
+and Allan Hicks, and AP advisors
+Shannon Mann and Lori Steele.
 %
 % Change name for 2022 if necessary.
 % management. Finally, we are very thankful to Stacey Miller for
