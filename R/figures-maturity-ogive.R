@@ -109,7 +109,7 @@ maturity.ogive.figure <- function(model, useyears = 1975:(assess.yr - 1)){
   # second plot
   plot(0, type = "l", lwd = 3, xlim = c(1, 20),
        ylim = c(0, max(c(avg.wt, fec.vec.new)) * 1.05), #yaxs='i',
-       xlab = "", ylab = "Weight (kg) or fecundity", axes = FALSE)
+       xlab = "", ylab = "Weight or fecundity (kg)", axes = FALSE)
   axis(1, at = 1:20)
   axis(2, las = 1)
   abline(h = seq(0, 1, 0.2), col = "grey")
