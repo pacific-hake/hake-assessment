@@ -40,9 +40,10 @@ discarded from the 2009 assessment \citep{HamelStewart2009}. Acoustic
 surveys from the years prior to 1995 were used for assessments in the early
 1990s but \citet{StewartForrestEtAl2011} reviewed these early surveys and
 deemed that sampling was insufficient to be comparable with more
-recent data. Various recruitment indices have also been considered and subsequently
-rejected \citep{HelserDornEtAl2002, HelserFleischerEtAl2005,
-StewartHamel2010}. The process for generating fecundity-at-age from weight-at-age data
+recent data. Several recruitment indices have been considered
+but ultimately identified as adding no appreciable contribution to model results
+\citep{HelserDornEtAl2002, HelserFleischerEtAl2005, StewartHamel2010}.
+The process for generating fecundity-at-age from weight-at-age data
 changed in 2019 from using time-invariant to year-specific values.
 Even where data have been consistently used, the weighting of these data
 in the statistical likelihood has changed through the use of various emphasis factors
@@ -1343,8 +1344,7 @@ in the projection of overfishing. An alternative catch level where median
 relative fishing intensity is 100\% is provided for comparison (catch
 alternative~\Sexpr{letters[catch.spr100.ind]}: FI=100\%).
 
-Management metrics that were first identified as important to the Joint Management
-Committee (JMC) and the Advisory Panel (AP) in 2012 are presented for
+Key management metrics are presented for
 \Sexpr{forecast_yrs[2:(length(forecast_yrs)-1)]} and
 \Sexpr{forecast_yrs[length(forecast_yrs)]}
 projections

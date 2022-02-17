@@ -409,13 +409,12 @@ age-1 fish (Table~\ref{tab:main-all-age-data-survey}).
 
 A separate age-1 index (numbers of fish) has been explored for its inclusion in the
 assessment since 2013 \citep{JTC2013, JTC2020, JTC2021}.
-The relative index of age-1 fish estimated for inclusion in this assessment were
+The relative index of age-1 fish in this assessment were
 estimated similarly to previous years,
 except the estimate of 2021 numbers of age-1 fish
 was scaled by a factor of 1.06 to account for differences between
 the EK~60 and EK~80 echosounders (the same approach used for the estimate of age-2$+$ biomass).
-The index is a relative index (of numbers) that indicates relative changes between
-years (unlike the biomass index for which the calculated biomass is absolute).
+The index is a relative index (of numbers) that indicates relative changes between years.
 The age-1 index confirms the large 2010 and 2014 year classes and the moderate year-classes
 in 2008, 2016, and 2020 (Table~\ref{tab:main-survey-history} and Figure~\ref{fig:main-age-one-index}).
 In 2021, some age-1 fish were found
@@ -563,8 +562,8 @@ led to delays.
 A matrix of empirically derived population weight-at-age means by year
 (Figures~\ref{fig:main-empirical-weight-at-age}--\ref{fig:main-weight-at-age-lines}) is used in the
 current assessment model to translate numbers-at-age directly to biomass-at-age.
-Mean weight-at-age was
-calculated from samples pooled from all fisheries and the acoustic survey for
+Annual mean weight-at-age was
+calculated from year-specific samples pooled from all fisheries and the acoustic survey for
 the years 1975 to \Sexpr{max.fishery.age.prop[2]}
 (Figures~\ref{fig:main-empirical-weight-at-age}--\ref{fig:main-weight-at-age-lines}).
 Past investigations into
@@ -743,7 +742,6 @@ survey-composition data, respectively.
 As of 2021, Stock Synthesis includes the constant of integration
 in the likelihood calculation for the D-M model
 such that likelihoods are comparable across weighting methods.
-Where previously, the D-M method appeared to always be the model that fit the data best.
 
 Integration of weighting the composition data within the assessment
 increases the efficiency of the assessment process, removes the
