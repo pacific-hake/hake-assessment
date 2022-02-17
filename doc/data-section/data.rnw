@@ -166,7 +166,6 @@ consisting of 100 randomly selected fish for individual length and weight, and
 from these typically 20 fish are randomly subsampled for otolith extraction.
 
 Observers aboard Canadian freezer-trawler vessels
-(\emph{\Sexpr{combine_words(gsub("\\#","\\\\#", can.vessels))}})
 collect 50 otoliths and 300 lengths per sample, sampling once per day during
 trips that on average last approximately seven days.
 The sampled weight from which
