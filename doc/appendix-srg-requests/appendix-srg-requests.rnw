@@ -1,28 +1,249 @@
 \clearpage
 
+<<srg-DMmods>>=
+mod200 <- load_models("2022.01.200_inputnsmall")
+mod201 <- load_models("2022.01.201_inputnlarge")
+mod202 <- load_models("2022.01.202_inputnlargee")
+base_R0 <- f((median(base.model$mcmc[,"Recr_Virgin"])) / 1e3, 0)
+@
+
 \chapter{Scientific Review Group (SRG) requests from
   \Sexpr{assess.yr} meeting}
 \label{chap:srg-requests}
 
-This appendix will summarize results produced in response to
-any Scientific Review Group requests made during the virtual meeting to be held
+This appendix summarizes results produced in response to
+the Scientific Review Group requests made during the virtual meeting to be held
 from 14th to 17th February 2022. % in Vancouver, BC, Canada.
 
 % Commenting these out to not encourage requests!
 
-% \section{Day 1}
+\section{Day 1}
 
-% {\bf Request 1:}
+{\bf Request 1:}
 
-% {\bf JTC Response:}
+Provide the sum of the recruitment deviates in the main period for the base model
+and the model without the age-1 index. Also, multiply this sum by the estimated $R_0$ to determine
+the average recruitment over the main period (or just calculate the average recruitment?).
 
-% \section{Day 2}
+{\bf JTC Response:}
 
-% {\bf Request 1:}
+The JTC produced the following table that provides summary characteristics for recruitment during the main
+recruitment period (1970--2020) for four models: the base model, the sensitivity model that
+excludes the age-1 index, the sensitivity model that fixes steepness at 1.0, and last year's (2021) base model.
+The sum of the recruitment deviates differed slightly among models and, in particular, the difference
+between the 2021 and 2022
+base model was negligible. Average recruitment also differed slightly among models, but was 24\% above
+the median estimate of $R_0$ from the 2022 base model (\Sexpr{base_R0} million fish). A consequence of this
+discrepancy is that equilibrium-based reference points are being estimated using productivity that is not
+as high as the main recruitment period would otherwise suggest. The JTC plans to investigate the consequences
+of this inconsistency as part of ongoing dynamic reference point work as highlighted in
+Section~\ref{sec:assessment-response-review}.
 
-% {\bf JTC Response:}
+\begin{table}[H]
+\centering
+\caption{Summary of characteristics for recruitment during the main recruitment period.}
+    \begin{tabular}{ccc} \hline
+      Model & Deviate Sum & Average Recruitment (millions) \\
+      \hline
+      2022 Base & 8.38 & 3,143 \\
+      2022 No age-1 index & 7.97 & 2,953 \\
+      2022 Steepness is 1 & 7.64 & 3,090 \\
+      2021 Base & 8.30 & 2,884 \\
+      \hline
+    \end{tabular}
+  \end{table}
+
+{\bf Request 2:}
+
+Investigate the fishing intensity decision table to make sure that the numbers
+are correct. For example, the fishing intensities should be the same for rows with the same
+2022 catch. And, please verify that the projections are correct.
+
+{\bf JTC Response:}
+
+The request was completed during the meeting.  The fishing intensity decision tables have been corrected,
+and the corrected versions are included in this assessment document.
+
+\section{Day 2}
+
+{\bf Request 3:}
+
+The SRG requests two additional runs of the model to explore the impact
+of reducing or increasing the weight assigned to the age composition data from the
+hydroacoustic survey. We recommend fixing the Dirichlet-multinomial survey weighting
+parameter to the median of the posterior, and then in run 1, multiplying the input sample
+size by 0.2, and in run 2 multiplying the input sample size by 2. Run 3, estimate the D-M
+theta parameter for the alternative input sample size run that multiplies base case input
+sample size by 2.  Runs using MLE estimates would be sufficient, with MCMC runs conducted
+if possible. Report the posterior distribution for theta, when estimated, and compare to the
+estimated theta from the base assessment. Report the typical sensitivity plots and fits
+to the survey age comps (e.g., bottom of Figure 20).
+
+{\bf JTC Response:}
+
+The JTC configured and ran the requested three additional model runs in MCMC to compare them to the base model. 
+Downweighting (run 1) and upweighting (run 2) survey age compositions when the theta parameter was fixed
+resulted in very minor changes to survey fit (Figures~\ref{fig:req-age-comp-fits1} 
+and~\ref{fig:req-age-comp-fits2}). Upweighting these data while also estimating the theta
+parameter (run 3) had no noticeable affect on the age composition fit, but did result in a nearly
+halving of the survey weight (as expected) and a more normal posterior distribution
+(Figure~\ref{fig:comp-DM-post}). Spawning stock biomass and stock size (relative spawning biomass)
+were largely unaffected by these sensitivity runs (Figure~\ref{fig:req-DM-biomass}). However, there
+were minor changes in recruitment and in the overall fit to the acoustic survey biomass index
+(Figure~\ref{fig:req-DM-rec}). Overall, the largest changes were associated with the downweighting run
+for specific years (e.g., 2003), where the relatively less important survey age compositions
+(in terms of total likelihood) in this case gave other data points (e.g., fishery age compositions)
+more flexibility (relative to the base model) to influence fits
+(Figure~\ref{fig:req-DM-rec}, bottom panel). 
+
+\begin{figure}[H]
+\begin{center}
+<<request-age-comp-fits1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that survey age composition estimates fit similarly well for alternative models">>=
+oldpar <- par(no.readonly = TRUE)
+## par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.age.comp.fit.plot(base.model,
+                       subplot = 2,
+                       fill = FALSE)
+make.age.comp.fit.plot(mod200,
+                       subplot = 2,
+                       fill = FALSE)
+par <- oldpar
+@
+\end{center}
+\caption{Base model fits to the observed acoustic survey age-composition data for the base (top)
+and alternative run 1 (bottom) models. Colored bars show observed proportions with colors following each cohort across years. Points with intervals indicate median expected proportions and 95\% credibility intervals from the MCMC calculations.}
+\label{fig:req-age-comp-fits1}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+<<request-age-comp-fits2, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that survey age composition estimates fit similarly well for alternative models">>=
+oldpar <- par(no.readonly = TRUE)
+## par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.age.comp.fit.plot(mod201,
+                       subplot = 2,
+                       fill = FALSE)
+make.age.comp.fit.plot(mod202,
+                       subplot = 2,
+                       fill = FALSE)
+par <- oldpar
+@
+\end{center}
+\caption{Base model fits to the observed acoustic survey age-composition data for the alternative run 2 (top)
+and alternative run 3 (bottom) models. Colored bars show observed proportions with colors following each cohort across years. Points with intervals indicate median expected proportions and 95\% credibility intervals from the MCMC calculations.}
+\label{fig:req-age-comp-fits2}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\pdftooltip{\includegraphics[width=\maxwidth, height=5in]{main-figures/DMweighting}}{This
+  figure shows that survey theta for run 3 is nearly half that of the base model}
+\end{center}
+\caption{The posterior distribution is shown for the survey theta parameter for the base (bottom)
+and alternative run 3 (top) models. Distribution summaries are provided by the black circle (median)
+thick bar (50\% quantile), and thin bar (90\% quantile).}
+\label{fig:comp-DM-post}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{center}
+<<request-DM-biomass, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "These figures show that the biomass and stock status trajectory are largely unaffected by these alternative model runs">>=
+req3.model.names <- c("Fix theta, 0.2 x input sample size","Fix theta, 2.0 x input sample size",
+                      "Est. theta, 2.0 x input sample size")
+oldpar <- par(no.readonly = TRUE)
+## par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+                     subplots = 2,
+                     model.names = c(base.model.name, req3.model.names),
+                     end.yr = end.yr)
+make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+                     subplots = 4,
+                     legend = FALSE,
+                     model.names = c(base.model.name, req3.model.names),
+                     end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\caption{MCMC estimates of spawning biomass (top) and stock status (relative spawning biomass; bottom) for the base model and the three alternative model runs.}
+\label{fig:req-DM-biomass}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{center}
+<<request-DM-rec, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "These figures show that there are only small changes in recruitment and the fit to the biomass index associated with the alternative model runs">>=
+oldpar <- par(no.readonly = TRUE)
+## par(mar=c(4.1, 4.1, 3.1, 0.1))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+                     subplots = 12,
+                     legend = FALSE,
+                     model.names = c(base.model.name, req3.model.names),
+                     end.yr = end.yr)
+make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+                     subplots = 13,
+                     model.names = c(base.model.name, req3.model.names),
+                     indexfleets = 2,
+                     legend = FALSE,
+                     end.yr = end.yr)
+par <- oldpar
+@
+\end{center}
+\caption{MCMC estimates of recruitment deviations (top) and the fit to the biomass index (bottom) for the base model and the three alternative model runs.}
+\label{fig:req-DM-rec}
+\end{figure}
 
 \section{Further analyses}
+
+Several other data and model explorations were conducted during the review panel week. In particular,
+the JTC responded to an `informal' SRG request to run an additional projection using a constant
+catch of 525,000~t and show results in decision tables in the final assessment document
+(see Appendix~\ref{chap:add-forecast}). In addition to SRG Request 3, a closer look at the posterior
+distribution of the survey weighting factor (back-transformed survey Dirichlet-Multinomial theta
+parameter) was conducted to evaluate estimation properties near the upper bound
+of one (Figure~\ref{fig:ext-DM-breaks}).
+An additional sensitivity run (in MLE) was conducted to examine how the stock trajectory
+(Figure~\ref{fig:ext-age1-remove-biomass}) and recruitment (Figure~\ref{fig:ext-age1-remove-recruit})
+are influenced by the removal of the most recent (2021) and the two most recent
+(2019 and 2021) age-1 index data points relative to the base model. Overall, removing
+these data points reduces the size of the
+2020 year class and the 2018 year class (as expected), which alters the stock trajectory
+in the final years of the time series.
+
+\begin{figure}[H]
+\begin{center}
+<<ext-DM-breaks, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the posterior distribution of the survey weighting factor">>=
+test<-exp(base.model$mcmc[,"ln(DM_theta)_2"])
+test <- test / (1 + test)
+hist(test,breaks=200,main="Posterior Distribution of Survey Weighting Factor",xlab="")
+abline(v=median(test),lwd=2,col="red")
+@
+\end{center}
+\caption{Posterior distribution of the weighting factor for survey age composition data from the base model.}
+\label{fig:ext-DM-breaks}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\pdftooltip{\includegraphics[width=\maxwidth, height=5in]{main-figures/compare2_spawnbio_uncertainty}}{This
+  figure shows that removing recent age-1 data points slightly alters recent stock trends}
+\end{center}
+\caption{Maximum likelihood estimates of spawning stock biomass for the base model and alternative models that systematicallly remove recent age-1 data points.}
+\label{fig:ext-age1-remove-biomass}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\pdftooltip{\includegraphics[width=\maxwidth, height=5in]{main-figures/compare10_recruits_uncertainty}}{This
+  figure shows that removing recent age-1 data points slightly alters recent recruitment}
+\end{center}
+\caption{Maximum likelihood estimates of recruitment for the base model and alternative models that systematicallly remove recent age-1 data points.}
+\label{fig:ext-age1-remove-recruit}
+\end{figure}
 
 
 \clearpage % Needed to make footers correct
