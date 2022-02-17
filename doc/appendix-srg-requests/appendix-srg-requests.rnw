@@ -1,12 +1,5 @@
 \clearpage
 
-<<srg-DMmods>>=
-mod200 <- load_models("2022.01.200_inputnsmall")
-mod201 <- load_models("2022.01.201_inputnlarge")
-mod202 <- load_models("2022.01.202_inputnlargee")
-base_R0 <- f((median(base.model$mcmc[,"Recr_Virgin"])) / 1e3, 0)
-@
-
 \chapter{Scientific Review Group (SRG) requests from
   \Sexpr{assess.yr} meeting}
 \label{chap:srg-requests}
@@ -33,7 +26,7 @@ excludes the age-1 index, the sensitivity model that fixes steepness at 1.0, and
 The sum of the recruitment deviates differed slightly among models and, in particular, the difference
 between the 2021 and 2022
 base model was negligible. Average recruitment also differed slightly among models, but was 24\% above
-the median estimate of $R_0$ from the 2022 base model (\Sexpr{base_R0} million fish). A consequence of this
+the median estimate of $R_0$ from the 2022 base model (\Sexpr{f((median(base.model$mcmc[,"Recr_Virgin"])) / 1e3, 0)} million fish). A consequence of this
 discrepancy is that equilibrium-based reference points are being estimated using productivity that is not
 as high as the main recruitment period would otherwise suggest. The JTC plans to investigate the consequences
 of this inconsistency as part of ongoing dynamic reference point work as highlighted in
@@ -81,9 +74,9 @@ to the survey age comps (e.g., bottom of Figure 20).
 
 {\bf JTC Response:}
 
-The JTC configured and ran the requested three additional model runs in MCMC to compare them to the base model. 
+The JTC configured and ran the requested three additional model runs in MCMC to compare them to the base model.
 Downweighting (run 1) and upweighting (run 2) survey age compositions when the theta parameter was fixed
-resulted in very minor changes to survey fit (Figures~\ref{fig:req-age-comp-fits1} 
+resulted in very minor changes to survey fit (Figures~\ref{fig:req-age-comp-fits1}
 and~\ref{fig:req-age-comp-fits2}). Upweighting these data while also estimating the theta
 parameter (run 3) had no noticeable affect on the age composition fit, but did result in a nearly
 halving of the survey weight (as expected) and a more normal posterior distribution
@@ -94,7 +87,7 @@ were minor changes in recruitment and in the overall fit to the acoustic survey 
 for specific years (e.g., 2003), where the relatively less important survey age compositions
 (in terms of total likelihood) in this case gave other data points (e.g., fishery age compositions)
 more flexibility (relative to the base model) to influence fits
-(Figure~\ref{fig:req-DM-rec}, bottom panel). 
+(Figure~\ref{fig:req-DM-rec}, bottom panel).
 
 \begin{figure}[H]
 \begin{center}
@@ -156,14 +149,14 @@ req3.model.names <- c("Fix theta, 0.2 x input sample size","Fix theta, 2.0 x inp
 oldpar <- par(no.readonly = TRUE)
 ## par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+make.comparison.plot(dm_models,
                      subplots = 2,
-                     model.names = c(base.model.name, req3.model.names),
+                     model.names = dm_model_names,
                      end.yr = end.yr)
-make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+make.comparison.plot(dm_models,
                      subplots = 4,
                      legend = FALSE,
-                     model.names = c(base.model.name, req3.model.names),
+                     model.names = dm_model_names,
                      end.yr = end.yr)
 par <- oldpar
 @
@@ -179,14 +172,14 @@ par <- oldpar
 oldpar <- par(no.readonly = TRUE)
 ## par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+make.comparison.plot(dm_models,
                      subplots = 12,
                      legend = FALSE,
-                     model.names = c(base.model.name, req3.model.names),
+                     model.names = dm_model_names,
                      end.yr = end.yr)
-make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+make.comparison.plot(dm_models,
                      subplots = 13,
-                     model.names = c(base.model.name, req3.model.names),
+                     model.names = dm_model_names,
                      indexfleets = 2,
                      legend = FALSE,
                      end.yr = end.yr)
