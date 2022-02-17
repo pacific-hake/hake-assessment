@@ -1,28 +1,151 @@
 \clearpage
 
-\chapter{Scientific Review Group (SRG) requests from
-  \Sexpr{assess.yr} meeting}
+\chapter{Scientific Review Group (SRG) requests from \Sexpr{assess.yr} meeting}
 \label{chap:srg-requests}
 
-This appendix will summarize results produced in response to
-any Scientific Review Group requests made during the virtual meeting to be held
-from 14th to 17th February 2022. % in Vancouver, BC, Canada.
+This appendix summarizes results produced in response to
+the Scientific Review Group requests made during the virtual meeting held
+from 14th to 17th February 2022.
 
-% Commenting these out to not encourage requests!
+{\bf Request 1:}
 
-% \section{Day 1}
+Provide the sum of the recruitment deviates in the main period for the base model
+and the model without the age-1 index. Also, multiply this sum by the estimated $R_0$ to determine
+the average recruitment over the main period (or just calculate the average recruitment?).
 
-% {\bf Request 1:}
+{\bf JTC Response:}
 
-% {\bf JTC Response:}
+Th following table shows summary of characteristics for recruitment in the main period (1970--2020).
 
-% \section{Day 2}
+\begin{table}[H]
+    \begin{tabular}{ccc} \hline
+      \textbf{Model} & \textbf{Deviate Sum} & \textbf{Average Recruitment (millions)} \\
+      \hline
+      2022 Base & 8.38 & 3,143 \\
+      2022 No age-1 index & 7.97 & 2,953 \\
+      2022 Steepness is 1 & 7.64 & 3,090 \\
+      2021 Base & 8.30 & 2,884 \\
+      \hline
+    \end{tabular}
+  \end{table}
 
-% {\bf Request 1:}
+The median estimate of $R_0$ from the 2022 base model is \Sexpr{f((median(base.model$mcmc[,"Recr_Virgin"])) / 1e3, 0)} million fish.
 
-% {\bf JTC Response:}
+{\bf Request 2:}
 
-\section{Further analyses}
+Investigate the fishing intensity decision table to make sure that the numbers
+are correct. For example, the fishing intensities should be the same for rows with the same
+2022 catch. And, please verify that the projections are correct.
 
+{\bf JTC Response:}
+
+Request has been completed, the fishing intensity decision tables have been corrected.
+
+{\bf Request 3:}
+
+The SRG requests two additional runs of the model to explore the impact
+of reducing or increasing the weight assigned to the age composition data from the
+hydroacoustic survey. We recommend fixing the Dirichlet-multinomial survey weighting
+parameter to the median of the posterior, and then in run 1, multiplying the input sample
+size by 0.2, and in run 2 multiplying the input sample size by 2. Run 3, estimate the D-M
+theta parameter for the alternative input sample size run that multiplies base case input
+sample size by 2. Runs using MLE estimates would be sufficient, with MCMC runs conducted
+if possible. Report the posterior distribution for theta, when estimated, and compare to the
+estimated theta from the base assessment. Report the typical sensitivity plots and fits
+to the survey age comps (e.g., bottom of Figure~\ref{fig:main-age-comp-fits}).
+
+{\bf JTC Response:}
+
+The JTC ran the additional models and produced some plots to convey the requested information.
+
+<<request-fig-comp-fit-base, fig.height = 3.5>>=
+oldpar <- par(no.readonly = TRUE)
+make.age.comp.fit.plot(base.model,
+                       subplot = 2,
+                       fill = FALSE)
+par <- oldpar
+@
+
+<<request-fig-comp-fit-run1, fig.height = 3.5>>=
+oldpar <- par(no.readonly = TRUE)
+make.age.comp.fit.plot(mod200,
+                       subplot = 2,
+                       fill = FALSE)
+par <- oldpar
+@
+
+<<request-fig-comp-fit-run2, fig.height = 3.5>>=
+oldpar <- par(no.readonly = TRUE)
+make.age.comp.fit.plot(mod201,
+                       subplot = 2,
+                       fill = FALSE)
+par <- oldpar
+@
+
+<<request-fig-comp-fit-run3, fig.height = 3.5>>=
+oldpar <- par(no.readonly = TRUE)
+make.age.comp.fit.plot(mod202,
+                       subplot = 2,
+                       fill = FALSE)
+par <- oldpar
+@
+
+\includegraphics[width=\maxwidth, height=2.8in]{main-figures/DMweighting.eps}
+
+Fits to Survey Age Composition Data (Base model)
+
+<<request-fig-SB-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+make.comparison.plot(dm_models,
+                     subplots = 2,
+                     model.names = dm_model_names,
+                     end.yr = end.yr)
+@
+
+Fits to Survey Age Composition Data (Fix $\theta$, 0.2 x input sample size)
+
+<<request-fig-SBratio-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+make.comparison.plot(dm_models,
+                     subplots = 4,
+                     legend = FALSE,
+                     model.names = dm_model_names,
+                     end.yr = end.yr)
+@
+
+
+Fits to Survey Age Composition Data (Fix $\theta$, 2.0 x input sample size)
+
+<<request-fig-recdev-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+make.comparison.plot(dm_models,
+                     subplots = 12,
+                     legend = FALSE,
+                     model.names = dm_model_names,
+                     end.yr = end.yr)
+@
+
+Fits to Survey Age Composition Data (Estimated $\theta$, 2.0 x input sample size)
+
+<<request-fig-acoustic2-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+make.comparison.plot(dm_models,
+                     subplots = 13,
+                     model.names = dm_model_names,
+                     indexfleets = 2,
+                     legend = FALSE,
+                     end.yr = end.yr)
+@
+
+{\bf Extra:}
+
+This was an extra item done by the JTC without formal request to show the effect on the model
+of removing the 2019 and 2021 age-1 index points, but leaving the rest of the years in.
+
+{\bf Plots:}
+
+Posteriors for the survey Dirichlet-Multinomial $\theta$.
+
+\includegraphics[width=\maxwidth, height=2.8in]{main-figures/compare2_spawnbio_uncertainty.eps}
+
+Spawning biomass comparison for the three models and the base model.
+
+\includegraphics[width=\maxwidth, height=2.8in]{main-figures/compare10_recruits_uncertainty.eps}
 
 \clearpage % Needed to make footers correct
