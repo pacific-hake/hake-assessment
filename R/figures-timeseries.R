@@ -570,7 +570,6 @@ make.comparison.plot <- function(models,
          axes = FALSE)
     index_names <- unique(indices$name)
     first_index <- indices %>% filter(name == index_names[1])
-    points(first_index$year, first_index$obs, pch = 19, cex = 1.5)
     # Get the plot mask so colors match
     is_plotted <- NULL
     models_plotted <- unique(indices$name)
@@ -593,6 +592,7 @@ make.comparison.plot <- function(models,
       arrows(x0 = x + 0.1 * (i - 1), y0 = lower, x1 = x + 0.1 * (i - 1), y1 = upper, lwd = 2, lty = 1,
              col = cols[i], length = 0.025, angle = 90, code = 3)
     }
+    points(first_index$year, first_index$obs, pch = 19, cex = 1.5)
     box()
     axis(1, pretty(xlim))
     axis(2, pretty(ylim))
