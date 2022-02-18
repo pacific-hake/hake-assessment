@@ -609,6 +609,7 @@ rec_2010 <- get_rec_ci(last.yr.base.model, base.model, 2010)
 rec_2014 <- get_rec_ci(last.yr.base.model, base.model, 2014)
 rec_2016 <- get_rec_ci(last.yr.base.model, base.model, 2016)
 rec_2017 <- get_rec_ci(last.yr.base.model, base.model, 2017)
+rec_2020 <- get_rec_ci(last.yr.base.model, base.model, 2020)
 
 # Cohort biomass-at-age -------------------------------------------------------
 baa <- get_baa(base.model, assess.yr)

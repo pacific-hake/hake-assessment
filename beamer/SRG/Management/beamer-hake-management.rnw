@@ -20,6 +20,7 @@
 \usepackage{tabularx}
 \usepackage{booktabs}          %% Used in risk tables
 \usepackage{multirow}          %% Used in decision tables
+\usepackage{xcolor}            %% Used in Historical performance section
 %\usepackage{beamerarticle}
 %\usepackage{enumitem}
 %\usepackage{beamerthemesplit}
@@ -731,7 +732,7 @@ P$(B_{\Sexpr{assess.yr+2}} < \Bforty)$ &
   a:       0 & 17\% & 8\% \\
   b: 180,000 & 40\% & 13\% \\
   c: 350,000 & 57\% & 17\% \\
-  \red{d: 410,000} & \red{61\%} & \red{19\%} \\
+  \textcolor{red}{d: 410,000} & \textcolor{red}{61\%} & \textcolor{red}{19\%} \\
 \bottomrule
 \end{tabularx}
 \end{table}
