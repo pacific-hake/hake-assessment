@@ -2,19 +2,20 @@
 
 # 2022
 devtools::install_github("cgrandin/r4ss")
-devtools::install_github("ropensci/rnaturalearthhires")
 devtools::install_github("cgrandin/adnuts@hake2021")
+devtools::install_github("haozhu233/kableExtra@9e459")
+devtools::install_github("ropensci/rnaturalearthhires")
 
 # 2021
-#devtools::install_github("r4ss/r4ss@7e15b") # Commit 7e15ba6d7566f574a9c33a90c26d5f79c3a75bd4
-#devtools::install_github("ropensci/rnaturalearthhires@2ed7a") # Commit 2ed7a937f3cca4f44b157098c472f6b3ae8cd9f3
-#devtools::install_github("Cole-Monnahan-NOAA/adnuts@df246") # Commit df2462db8b73fc5d6925d36bf9e167468125e052
+#devtools::install_github("r4ss/r4ss@7e15b")
+#devtools::install_github("ropensci/rnaturalearthhires@2ed7a")
+#devtools::install_github("Cole-Monnahan-NOAA/adnuts@df246")
 
 install.packages(c(
-  "aws.s3", "cowplot", "data.tree", "date", "furrr", "future", "ggpubr",
-  "ggrepel", "here", "maps", "maptools", "matrixcalc",
-  "rgeos", "rnaturalearth", "rstan", "shinystan", "snowfall",
-  "tictoc","tidyverse","dlookr"))
+  "aws.s3", "cowplot", "data.tree", "date", "dlookr",
+  "furrr", "future", "ggpubr", "ggrepel", "here",
+  "maps", "maptools", "matrixcalc", "rgeos", "rnaturalearth",
+  "rstan", "shinystan", "snowfall", "tictoc", "tidyverse"))
 
 tinytex::tlmgr_install(c(
   "amsmath", "adjustbox", "algorithmicx", "algorithms", "appendix",
