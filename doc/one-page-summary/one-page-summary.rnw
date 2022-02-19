@@ -94,15 +94,13 @@ changing from
 \Sexpr{end.yr+2}, with a \Sexpr{last.yr.tac.risk.2.bforty}\% chance
 of the spawning biomass falling below $\Bforty$ in \Sexpr{end.yr+2}. There is an
 estimated \Sexpr{last.yr.tac.risk.1.biomass.decline}\% chance of the spawning biomass declining from \Sexpr{end.yr} to
-\Sexpr{end.yr+1}, a
+\Sexpr{end.yr+1}, and a
 \Sexpr{last.yr.tac.risk.2.biomass.decline}\% chance of it declining from \Sexpr{end.yr+1} to
-\Sexpr{end.yr+2}, and a \Sexpr{last.yr.tac.risk.3.biomass.decline}\% chance of it declining
-from \Sexpr{end.yr+2} to \Sexpr{end.yr+3} for these constant catches.
-    % Manual to do (check this enitre bullet point)
-    % 3% from Table j, 38% from Table i, 50% from Table j
-    % 2018, have automated the years. 2/11/18 AME.
-    % 64%, 59%, 49% from Table g, row e
-    % 40% from Table j, 72% from Table i, 86% from Table j
+\Sexpr{end.yr+2}
+% , and a \Sexpr{last.yr.tac.risk.3.biomass.decline}\% chance of it declining
+% from \Sexpr{end.yr+2} to \Sexpr{end.yr+3}
+for these constant catches.
+    % Always good to check those numbers manually from the tables. Done 2022.
 \end{itemize}
 
 \clearpage
