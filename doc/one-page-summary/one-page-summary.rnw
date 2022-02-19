@@ -87,9 +87,10 @@ range of catch levels. Projections setting the \Sexpr{forecast_yrs[1]} and
 \Sexpr{forecast_yrs[2]} catches equal to the \Sexpr{forecast_yrs[1]-1}
 coast-wide (unilaterally summed) TAC of
 \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
-changing from
+increasing from
 \Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end.yr} to
-\Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end.yr+1} to
+\Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end.yr+1} (due to the
+growth of the expected large 2020 cohort) then decreasing to
 \Sexpr{last.yr.tac.fore.3.biomass}\% in
 \Sexpr{end.yr+2}, with a \Sexpr{last.yr.tac.risk.2.bforty}\% chance
 of the spawning biomass falling below $\Bforty$ in \Sexpr{end.yr+2}. There is an
