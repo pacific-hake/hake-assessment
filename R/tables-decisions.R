@@ -1,35 +1,51 @@
-#' Make the Executive Summary decision tables. rows2Label needs changing each year.
+#' Create the Executive Summary decision tables. `rows_to_label` and `row_labels`
+#' need changing each year.
 #'
-#' @param model An mcmc run, `model$mcmc` is the output of the [r4ss::SSgetMCMC()]
+#' @param model An mcmc run, `model$forecasts` must be populated from [run_forecasts()]
 #' @param xcaption Caption to appear in the calling document
 #' @param xlabel The label used to reference the table in latex
 #' @param font.size Size of the font for the table
 #' @param space.size Size of the vertical spaces for the table
 #' @param type Type to build. `biomass` or `spr`
 #' @param placement Latex code for placement of table
-#' @param presentation Logical indicating shorter table for management
-#'   presentation (default is for document)
-#' @param first.streams number of catch streams (from 1 to first.streams) to
-#'   show if presentation = TRUE
+#' @param forecast_inds Indices of forecast catch levels to show. By default all
+#' catch levels will be shown
+#' @param rows_to_label A vector of letters representing rows to add custom labels to
+#' @param row_labels A list of length two vectors with text to place in the empty
+#' two rows under the letter for the letters given in `rows_to_label`
 #' @return The latex code needed to build the table
 #' @export
 decision_table <- function(model,
-                           xcaption   = "default",
-                           xlabel     = "default",
-                           font.size  = 9,
+                           xcaption = "default",
+                           xlabel = "default",
+                           font.size = 9,
                            space.size = 10,
-                           type      = "biomass",
-                           placement  = "H",
-                           presentation = FALSE,
-                           first.streams = 5){
+                           type = "biomass",
+                           placement = "H",
+                           forecast_inds = seq_along(model$forecasts[[length(model$forecasts)]]),
+                           rows_to_label = c("e", "f", "h", "j", "l", "m", "n", "o"),
+                           row_labels = list(c("10\\%", "reduction"),
+                                             c(assess.yr - 1, "catch"),
+                                             c("10\\%", "reduction"),
+                                             c("10\\%", "reduction"),
+                                             c(assess.yr - 1, "TAC"),
+                                             c("FI=", "100\\%"),
+                                             c("default", "HR"),
+                                             c(paste0("C", assess.yr, "="),
+                                               paste0("C", assess.yr + 1)))){
 
-  if(type != "biomass" & type != "spr"){
-    stop("decision_table: Error - type '",
-         type,
-         "' is not implemented. Stopping...\n\n")
+  if(length(rows_to_label) != length(row_labels)){
+    stop("rows_to_label vector must be the same length as row_labels list")
   }
 
-  forecast <- model$forecasts[[length(model$forecasts)]]
+  if(!all(rows_to_label %in% letters)){
+    stop("All characters in rows_to_label must be a single letter of the alphabet")
+  }
+
+  if(type != "biomass" & type != "spr"){
+    stop("type '", type, "' is not implemented")
+  }
+  forecast <- model$forecasts[[length(model$forecasts)]][forecast_inds]
 
   if(type == "biomass"){
     num.rows <- nrow(forecast[[1]]$biomass) - 1
@@ -39,31 +55,15 @@ decision_table <- function(model,
     table.header <- latex.bold("Relative fishing intensity")
   }
 
-  # *If you add or remove a row from the table, you only need to change the next two variables*
-  #
-  # tab.letters are the letters in the table, one for each forecast management
-  # action and a blank for all but the first year in a management action
-  # additional labels are given for some rows (below letter)
-  rows2Label <- c("e", "f", "h", "j", "l", "m", "n", "o")
-  rowLabels <- list(c("10\\%", "reduction"),
-                    c(assess.yr - 1, "catch"),
-                    c("10\\%", "reduction"),
-                    c("10\\%", "reduction"),
-                    c(assess.yr - 1, "TAC"),
-                    c("FI=", "100\\%"),
-                    c("default", "HR"),
-                    c(paste0("C", assess.yr, "="),
-                      paste0("C", assess.yr + 1)))
-
   tab.letters <- NULL
   next.ind <- 1
 
-  for(i in 1:length(forecast)){
+  for(i in forecast_inds){
     tab.letters[next.ind] <- paste0(letters[i], ":")
     next.ind <- next.ind + 1
     for(j in 1:(num.rows - 1)){
-      if(letters[i] %in% rows2Label) {
-        lab <- rowLabels[[which(letters[i] == rows2Label)]]
+      if(letters[i] %in% rows_to_label) {
+        lab <- row_labels[[which(letters[i] == rows_to_label)]]
         tab.letters[next.ind] <- lab[j]
       } else {
         tab.letters[next.ind] <- ""
@@ -74,7 +74,7 @@ decision_table <- function(model,
   tab.letters <- tab.letters %>%
     enframe(name = NULL, value = "labels")
 
-  c.levels <- map(model$catch.levels, ~{
+  c.levels <- map(model$catch.levels[forecast_inds], ~{
     tmp <- .x[[1]]
     tmp[tmp < 1] <- 0
     head(tmp, -1)
@@ -130,36 +130,37 @@ decision_table <- function(model,
     # Add the vertical bar to the edge of the last quant cell
     quant.cell.defs[length(quant.cell.defs)] <- paste0(quant.cell.defs[length(quant.cell.defs)], "|")
 
-    addtorow$command <- c(paste0(latex.cline("1-7"),
-                                 latex.mcol(3,
-                                            "|c|",
-                                            ""),
-                                 latex.amp(),
-                                 latex.bold("Biomass at"),
-                                 latex.amp(),
-                                 latex.mcol(3,
-                                            "c|",
-                                            table.header),
-                                 latex.nline,
-                                 latex.cline("1-3"),
-                                 latex.mcol(3,
-                                            "|c|",
-                                            latex.bold("Management Action")),
-                                 latex.amp(),
-                                 latex.bold("start of year"),
-                                 latex.amp(),
-                                 paste(latex.bold(quant.levels), collapse = latex.amp()),
-                                 latex.nline,
-                                 latex.hline,
-                                 latex.amp(),
-                                 latex.bold("Catch year"),
-                                 latex.amp(),
-                                 latex.bold("Catch (t)"),
-                                 latex.amp(),
-                                 paste(first_biomass_yr[1,], collapse = latex.amp()),
-                                 latex.nline,
-                                 latex.hline),
-                          latex.hline)
+    addtorow$command <- c(
+      paste0(latex.cline("1-7"),
+             latex.mcol(3,
+                        "|c|",
+                        ""),
+             latex.amp(),
+             latex.bold("Biomass at"),
+             latex.amp(),
+             latex.mcol(3,
+                        "c|",
+                        table.header),
+             latex.nline,
+             latex.cline("1-3"),
+             latex.mcol(3,
+                        "|c|",
+                        latex.bold("Management Action")),
+             latex.amp(),
+             latex.bold("start of year"),
+             latex.amp(),
+             paste(latex.bold(quant.levels), collapse = latex.amp()),
+             latex.nline,
+             latex.hline,
+             latex.amp(),
+             latex.bold("Catch year"),
+             latex.amp(),
+             latex.bold("Catch (t)"),
+             latex.amp(),
+             paste(first_biomass_yr[1, ], collapse = latex.amp()),
+             latex.nline,
+             latex.hline),
+      latex.hline)
 
   }else if(type == "spr"){
     forecast.tab <- map(forecast, ~{
@@ -227,19 +228,9 @@ decision_table <- function(model,
 
   }
 
-  # Add the right number of horizontal lines to make the table break in the
-  #  correct places
+  # Add the right number of horizontal lines to make the table break in the correct places
   # A line is not needed at the bottom explains (length(forecast)-1) in the loop.
-  # Tweaking to just first five catch streams for presentation
-  if(!presentation){   # use all for doc
-    length_forecast <- length(forecast)
-  } else {             # just use the first first.streams for presentation
-    length_forecast <- first.streams
-    forecast.tab <- forecast.tab <- forecast.tab[1:(3 * first.streams), ]
-    addtorow$pos[[2]] <- nrow(forecast.tab)
-  }
-
-  for(i in 1:(length_forecast - 1)){
+  for(i in 1:(length(forecast_inds) - 1)){
     addtorow$pos[[i + 2]] <- i * num.rows
     addtorow$command <- c(addtorow$command, latex.hline)
   }
@@ -265,159 +256,6 @@ decision_table <- function(model,
                caption = xcaption,
                label = xlabel,
                align = align),
-        caption.placement = "top",
-        include.rownames = FALSE,
-        include.colnames = FALSE,
-        sanitize.text.function = function(x){x},
-        size = size.string,
-        add.to.row = addtorow,
-        table.placement = placement,
-        tabular.environment = "tabularx",
-        width = "\\textwidth",
-        hline.after = NULL)
-}
-
-make.decision.table.pres <- function(model,
-                                     model.inds,
-                                     xcaption   = "default",
-                                     xlabel     = "default",
-                                     font.size  = 9,
-                                     space.size = 10,
-                                     type       = "biomass",
-                                     placement  = "H"){
-  ## Returns an xtable in the proper format for the management presentation in
-  ##  beamer
-  ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
-  ## model.inds - indices of the forecast models you want to show
-  ## xcaption - caption to appear in the calling document
-  ## xlabel - the label used to reference the table in latex
-  ## font.size - size of the font for the table
-  ## space.size - size of the vertical spaces for the table
-  ## type - type to build. "biomass" or "spr"
-  ## placement - latex code for placement of table
-
-  if(type != "biomass" & type != "spr"){
-    stop("make.decisions.table: Error - type '",
-         type,
-         "' is not implemented. Stopping...\n\n")
-  }
-  ## The numbers below index several of the forecast catch levels
-  forecast <- model$forecasts[[length(model$forecasts)]][model.inds]
-  if(type == "biomass"){
-    table.header1 <- latex.bold("Beginning of year")
-    table.header2 <- latex.bold("relative spawning biomass")
-    forecast.tab <- f(do.call("rbind",
-                              lapply(forecast, "[[", "biomass")) * 100)
-  }else{
-    table.header1 <- latex.bold("Fishing")
-    table.header2 <- latex.bold("Intensity")
-    forecast.tab <- f(do.call("rbind",
-                              lapply(forecast, "[[", "spr")) * 100)
-  }
-
-  ## Store years for binding later
-  yrs <- rownames(forecast.tab)
-
-  ## Append the escaped % symbols
-  forecast.tab <- apply(forecast.tab,
-                        2,
-                        paste0,
-                        "\\%")
-
-  ## Change the quantile levels so they have correct latex escape sequence
-  quant.levels <- gsub("%",
-                       "\\\\%",
-                       colnames(forecast.tab))
-
-  ## Set any catch less than 1 to be 0
-  c.levels <- unlist(lapply(model$catch.levels[model.inds], "[[", 1))
-  c.levels[c.levels < 1] <- 0
-  ## Bind the catch levels and years to the correct rows
-  row.labs <- rep("", length(model.inds) * length(model$forecasts))
-  row.labs[seq(1,
-               length(model.inds) * length(model$forecasts),
-               length(model$forecasts))] <-
-    paste0(letters[model.inds], ":")
-
-  forecast.tab <- cbind(row.labs,
-                        yrs,
-                        f(c.levels),
-                        forecast.tab)
-  colnames(forecast.tab) <- c("",
-                              "Year",
-                              "Catch (t)",
-                              quant.levels)
-
-  ## Add the extra header spanning multiple columns
-  addtorow <- list()
-  addtorow$pos <- list()
-  addtorow$pos[[1]] <- -1
-  addtorow$pos[[2]] <- nrow(forecast.tab)
-
-  quant.string <- ""
-  quant.cell.defs <- NULL
-  for(i in 1:length(quant.levels)){
-    quant.string <- paste0(quant.string,
-                           latex.amp(),
-                           quant.levels[i])
-    quant.cell.defs <- c(quant.cell.defs,
-                         "Y")
-  }
-  ## Add the vertical bar to the edge of the last quant cell
-  quant.cell.defs[length(quant.cell.defs)] <-
-    paste0(quant.cell.defs[length(quant.cell.defs)], "|")
-  addtorow$command <- c(paste0(latex.hline,
-                               latex.mcol(3,
-                                          "|c|",
-                                          "Within model quantile"),
-                               quant.string,
-                               latex.nline,
-                               latex.hline,
-                               latex.mcol(3,
-                                          "|c|",
-                                          "Management Action"),
-                               latex.amp(),
-                               latex.mcol(length(quant.levels),
-                                          "c|",
-                                          table.header1),
-                               latex.nline,
-                               latex.cline("1-3"),
-                               latex.amp(),
-                               "Year",
-                               latex.amp(),
-                               "Catch (t)",
-                               latex.amp(),
-                               latex.mcol(length(quant.levels),
-                                          "c|",
-                                          table.header2),
-                               latex.nline,
-                               latex.hline),
-                        latex.hline)
-
-  ## Add the right number of horizontal lines to make the table break in the
-  ##  correct places
-  ## A line is not needed at the bottom explains (length(forecast)-1)
-  for(i in 1:(length(forecast)-1)){
-    if(!is.null(forecast[[i]])){
-      if(type == "biomass"){
-        addtorow$pos[[i+2]] <- i * nrow(forecast[[i]]$biomass)
-      }else{
-        addtorow$pos[[i+2]] <- i * nrow(forecast[[i]]$spr)
-      }
-      addtorow$command <- c(addtorow$command, latex.hline)
-    }
-  }
-
-  ## Make the size string for font and space size
-  size.string <- latex.size.str(font.size, space.size)
-  print(xtable(forecast.tab,
-               caption = xcaption,
-               label = xlabel,
-               align = c("c",
-                         "|c",
-                         "c",
-                         "c|",
-                         quant.cell.defs)),
         caption.placement = "top",
         include.rownames = FALSE,
         include.colnames = FALSE,
