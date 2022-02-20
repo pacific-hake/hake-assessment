@@ -230,11 +230,12 @@ decision_table <- function(model,
 
   # Add the right number of horizontal lines to make the table break in the correct places
   # A line is not needed at the bottom explains (length(forecast)-1) in the loop.
-  for(i in 1:(length(forecast_inds) - 1)){
-    addtorow$pos[[i + 2]] <- i * num.rows
-    addtorow$command <- c(addtorow$command, latex.hline)
+  if(length(forecast_inds) > 1){
+    for(i in 1:(length(forecast_inds) - 1)){
+      addtorow$pos[[i + 2]] <- i * num.rows
+      addtorow$command <- c(addtorow$command, latex.hline)
+    }
   }
-
   if(type == "biomass"){
     align <- c("c",
                "|c",
