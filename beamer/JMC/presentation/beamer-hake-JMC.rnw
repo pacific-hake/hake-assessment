@@ -99,11 +99,11 @@ opts_chunk$set(dev = 'cairo_ps',
                cache = TRUE,
                cache.path = 'knitr-cache/')
 
-source(file.path(here::here(), "R", "all.R"))
+source(here::here("R/all.R"))
 if(!(exists("models_loaded") && models_loaded)){
   load_models_rds()
 }
-models_loaded <- TRUE
+models_loaded <<- TRUE
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 metric <- NULL
@@ -629,28 +629,66 @@ par <- oldpar
 
 
 \subsection{Spawning Biomass}
-\frame{\frametitle{Relative spawning biomass}
-%\begin{columns}
-%  \begin{column}{0.33\textwidth}
-%    \bi
-%      % \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end.yr} (35\%)
-%      \item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
-%        for all non-zero catch levels (continued decline of large 2010 and 2014 cohorts)
-%    \ei
-%  \end{column}
-%  \begin{column}{0.65\textwidth}
-<<decisions.biomass.table, results='asis', echo=FALSE>>=
+\frame{\frametitle{Relative spawning biomass, zero catch}
+<<decisions.biomass.table.0, results='asis', echo=FALSE>>=
 decision_table(base.model,
                xcaption = NULL,
-               xlabel = "tab:es-decisions-spr",
                font.size = 8,
                space.size = 10,
                type = "biomass",
                placement = "h",
-               presentation = TRUE)
+               forecast_inds = 1)
 @
-%  \end{column}
-%\end{columns}
+}
+
+\frame{\frametitle{Relative spawning biomass, constant catch}
+<<decisions.biomass.table.const, results='asis', echo=FALSE>>=
+decision_table(base.model,
+               xcaption = NULL,
+               font.size = 8,
+               space.size = 10,
+               type = "biomass",
+               forecast_inds = c(2, 3, 4, 7, 9, 11))
+@
+}
+
+\frame{\frametitle{Relative spawning biomass, 2021 catch and TAC}
+<<decisions.biomass.table.last.yr.catch.tac, results='asis', echo=FALSE>>=
+decision_table(base.model,
+               xcaption = NULL,
+               font.size = 8,
+               space.size = 10,
+               type = "biomass",
+               forecast_inds = c(6, 12))
+@
+}
+
+\frame{\frametitle{Relative spawning biomass, 10\% reductions}
+<<decisions.biomass.table.reductions, results='asis', echo=FALSE>>=
+decision_table(base.model,
+               xcaption = NULL,
+               font.size = 8,
+               space.size = 10,
+               type = "biomass",
+               forecast_inds = c(5, 8, 10))
+@
+}
+
+\frame{\frametitle{Relative spawning biomass, 525,000 t catch}
+\begin{table}[H]
+\centering
+\label{tab:**}
+\begingroup\fontsize{11}{12}\selectfont
+\begin{tabularx}{\textwidth}{|ccc|c|YYY|}
+  \cline{1-7}\multicolumn{3}{|c|}{} & \textbf{Biomass at} & \multicolumn{3}{c|}{\textbf{Resulting relative spawning biomass}} \\ \cline{1-3}\multicolumn{3}{|c|}{\textbf{Management Action}} & \textbf{start of year} & \textbf{5\%} & \textbf{50\%} & \textbf{95\%} \\  \hline  & \textbf{Catch year} & \textbf{Catch (t)} & Start of 2022 & 0.35 & 0.65 & 1.19 \\
+\hline
+Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
+   & 2023 &       525,000 & Start of 2024 & 0.21 & 0.62 & 1.68 \\
+   & 2024 &       525,000 & Start of 2025 & 0.11 & 0.50 & 1.61 \\
+\hline
+\end{tabularx}
+\endgroup
+\end{table}
 }
 
 %----------------------------------------------------------
@@ -658,7 +696,7 @@ decision_table(base.model,
 \begin{columns}
   \begin{column}{0.35\textwidth}
       %\item Fishing Intensity is different for all years and rows because it accounts for catch that year
-  The median (50\% column) fishing intensity resulting from a 2022 catch similar to: 
+  The median (50\% column) fishing intensity resulting from a 2022 catch similar to:
         \bi
            \item the 2021 catch of 325,000~t is 64\%
            \item the 2021 TAC of 473,880~t is 79\%
