@@ -13,6 +13,7 @@ del *.out
 del *.nav
 del *.snm
 del *.synctex.gz
+del *(busy)
 del beamer-hake-JMC.tex
 del beamer-hake-JMC.pdf
 rmdir /S /Q knitr-cache
