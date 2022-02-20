@@ -45,8 +45,11 @@ decision_table <- function(model,
   if(type != "biomass" & type != "spr"){
     stop("type '", type, "' is not implemented")
   }
-  forecast <- model$forecasts[[length(model$forecasts)]][forecast_inds]
+  if(any(forecast_inds > length(model$forecasts[[length(model$forecasts)]]))){
+    stop("forecast_inds contains values greater than the length of the forecast catch levels list")
+  }
 
+  forecast <- model$forecasts[[length(model$forecasts)]][forecast_inds]
   if(type == "biomass"){
     num.rows <- nrow(forecast[[1]]$biomass) - 1
     table.header <- latex.bold("Resulting relative spawning biomass")
