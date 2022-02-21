@@ -33,6 +33,20 @@ us.allotment.percent <- 73.88
 can.allotment.percent.last.year <- f(pull(ct_last1, can_tac) / pull(ct_last1, tot_tac) * 100, 2)
 us.allotment.percent.last.year <- f(pull(ct_last1, us_tac) / pull(ct_last1, tot_tac) * 100, 2)
 
+# Further TAC sources ---------------------------------------------------------
+# further.tac is defined in R/data-tables.R
+ft <- further.tac
+last.year.us.tribal <- ft %>% filter(Year == last.data.yr) %>% pull(us.tribal.quota)
+last.year.us.research <- ft %>% filter(Year == last.data.yr) %>% pull(us.research.quota)
+last.year.us.non.tribal <- ft %>% filter(Year == last.data.yr) %>% pull(us.nontribal.quota)
+last.year.us.tribal.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% pull(us.tribal.quota.reallocated)
+last.year.us.tribal.reallocate.dates <- ft %>% filter(Year == last.data.yr) %>% pull(us.tribal.reallocate.dates)
+last.year.us.tribal.reallocate.dates.f <- format(as.Date(as.character(last.year.us.tribal.reallocate.dates),"%d-%b"),"%B %d")
+last.year.us.tribal.max.landed <- ft %>% filter(Year == last.data.yr) %>% pull(us.tribal.max.landed)
+last.year.us.shore.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% pull(us.shore.reallocated)
+last.year.us.cp.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% pull(us.cp.reallocated)
+last.year.us.ms.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% pull(us.ms.reallocated)
+
 # Catch -----------------------------------------------------------------------
 # ... recent catch ------------------------------------------------------------
 last.5.years.of.catch.data <- (max(ct$year) - 4):max(ct$year)
@@ -71,18 +85,6 @@ last.2year.us.attained.diff <- (ct_last1 %>% pull(us_attain) - ct_secondlast %>%
 last.year.us.not.attained <- (100 - ct_last1 %>% pull(us_attain)) %>% f(1)
 last.year.us.not.attained.tonnes <- abs(ct_last1 %>% pull(us_attain) - ct_last1 %>% pull(us_catch))
 last.year.us.tac <- ct_last1 %>% pull(us_tac) %>% f(0)
-# further.tac is defined in R/data-tables.R
-ft <- further.tac
-last.year.us.tribal <- ft %>% filter(Year == last.data.yr) %>% pull(us.tribal.quota)
-last.year.us.research <- ft %>% filter(Year == last.data.yr) %>% pull(us.research.quota)
-last.year.us.non.tribal <- ft %>% filter(Year == last.data.yr) %>% pull(us.nontribal.quota)
-last.year.us.tribal.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% pull(us.tribal.quota.reallocated)
-last.year.us.tribal.reallocate.dates <- ft %>% filter(Year == last.data.yr) %>% pull(us.tribal.reallocate.dates)
-last.year.us.tribal.reallocate.dates.f <- format(as.Date(as.character(last.year.us.tribal.reallocate.dates),"%d-%b"),"%B %d")
-last.year.us.tribal.max.landed <- ft %>% filter(Year == last.data.yr) %>% pull(us.tribal.max.landed)
-last.year.us.shore.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% pull(us.shore.reallocated)
-last.year.us.cp.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% pull(us.cp.reallocated)
-last.year.us.ms.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% pull(us.ms.reallocated)
 # ... US Attainment by fleet, last year ---------------------------------------
 last.year.us.research.catch.percent <- f(last.year.us.research.catch / last.year.us.research * 100, 1)
 last.year.us.cp.catch.percent <- f(last.year.us.cp.catch / last.year.us.cp.quota.reallocated * 100, 1)
