@@ -152,7 +152,7 @@ make.catches.plot(ct, leg.y.loc = 550)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-data-overview-map, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "Catches span the whole time series, ages and weight-at-age start are available from 1975 to present, and the survey started in 1995. Data are available in tabular form in hake_data.ss">>=
+<<main-data-overview-map, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "Catches span the whole time series, ages and weights-at-age are available from 1975 to present, and the survey started in 1995. Data are available in tabular form in hake_data.ss">>=
 make.data.overview.plot(base.model)
 @
 \end{center}
