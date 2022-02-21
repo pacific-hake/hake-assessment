@@ -61,6 +61,8 @@ appendix-srg-requests-2017.rnw
 appendix-srg-requests-2018.rnw
 appendix-srg-requests-2019.rnw
 /data/recruitment-question-responses-orig.csv
+/data/US_CAN_Ratios_1995_2021.csv
+/sandbox/andy/iphc2013data.Rnw
 
 # Bash
 .bash_history
