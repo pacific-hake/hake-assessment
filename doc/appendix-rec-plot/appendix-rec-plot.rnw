@@ -107,7 +107,7 @@ recruitment estimates (Figure~\ref{fig:recruitment-last-asssessment}), up until
 
 \begin{figure}[tbp]
 \begin{center}
-<<recruitment-trace-recent, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the time series for 100 MCMC estimates of age zero recruitment">>=
+<<recruitment-trace-recent, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the time series for 100 MCMC estimates of recruitment">>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
                            equil.yr = unfished.eq.yr,
@@ -128,7 +128,7 @@ make.mcmc.recruitment.plot(base.model,
 %
 \begin{figure}[tbp]
 \begin{center}
-<<recruitment-trace-recent-highlight, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure highlights the time series for 10 MCMC estimates of age zero recruitment">>=
+<<recruitment-trace-recent-highlight, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure highlights the time series for 10 MCMC estimates of recruitment">>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
                            equil.yr = unfished.eq.yr,
