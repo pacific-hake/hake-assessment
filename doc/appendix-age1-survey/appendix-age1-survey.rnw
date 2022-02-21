@@ -337,8 +337,8 @@ decision_table(sens.models.2[[1]],
                      letters[catch.stable.ind],
                      ")."),
                xlabel = "tab:decisions-biomass-age1",
-               font_size = 11,
-               space_size = 12,
+               font.size = 11,
+               space.size = 12,
                type = "biomass")
 @
 
@@ -354,8 +354,8 @@ decision_table(sens.models.2[[1]],
                      the $\\Fforty$ harvest policy calculated using baseline
                      selectivity."),
                     xlabel = "tab:decisions-spr-age1",
-                    font_size = 11,
-                    space_size = 12,
+                    font.size = 11,
+                    space.size = 12,
                     type = "spr")
 @
 
