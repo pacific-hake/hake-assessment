@@ -72,7 +72,7 @@ plot_mcmc_param_stats(base.model)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-pairs, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many parameters and derived quantities">>=
+<<main-mcmc-pairs, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many parameters and derived quantities. There is little correlation between values">>=
 make.mcmc.diag.pairs.plot(base.model,
                           inc.key.params = TRUE,
                           key.posteriors.regex = key.posteriors,
@@ -92,7 +92,7 @@ make.mcmc.diag.pairs.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-pairs-recruit-devs, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many derived quantities">>=
+<<main-mcmc-pairs-recruit-devs, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many derived quantities. There is little correlation between values">>=
 make.mcmc.diag.pairs.plot(base.model,
                           inc.key.params = FALSE,
                           recr = (end.yr-10):(end.yr-1))
