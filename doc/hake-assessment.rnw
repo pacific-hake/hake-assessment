@@ -1,7 +1,7 @@
 %% hake-assessment.Rnw
 %% Pacific Hake Joint technical committee.
-\RequirePackage{pdfmanagement-testphase}
-\DeclareDocumentMetadata{lang=en-US}
+% \RequirePackage{pdfmanagement-testphase}
+% \DeclareDocumentMetadata{lang=en-US}
 
 \documentclass[12pt]{book}
 %% Allows the numbering of figures/tables to be unique witin a section
