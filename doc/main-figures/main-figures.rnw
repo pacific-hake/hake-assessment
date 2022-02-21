@@ -24,9 +24,7 @@ make.overview.map.plot(path = rootd.map.data)
 \hspace{-10mm}  % Each mm change shifts it by more than 1mm, changing
                 %  from -20 to -21 jumps it to the left when using center.
                 %  Commenting out {center} works better.
-\pdftooltip{\includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]
-  {main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}}{This
-  figure shows that \fishname\ migrate further north in some years}
+\pdftooltip{\includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]{main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}}{This figure shows that \fishname\ migrate further north in some years}
    % Get pdf from Julia then convert with 'magick <name>.pdf <name>.png' and push to GitHub.
 % \end{center}
 % \vspace{-3mm}
@@ -51,9 +49,7 @@ make.overview.map.plot(path = rootd.map.data)
 % \vspace{-5mm}
 \begin{center}
 \hspace{-10mm}
-\pdftooltip{\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]
-   {main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue}}{This
-   figure shows the assumed varying locations of age-1 \fishname}
+\pdftooltip{\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]{main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue}}{This figure shows the assumed varying locations of age-1 \fishname}
    % Get pdf from Julia then convert with 'magick <name>.pdf <name>.png' and push to GitHub.
 \end{center}
 %\vspace{-5mm}
@@ -88,8 +84,7 @@ make.catches.plot(ct, leg.y.loc = 550)
 %% Call the figures directly instead of creating them because the data are confidential
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\pdftooltip{\includegraphics[width=0.75\paperwidth]{main-figures/fishCatchRatesUS}}{This
-  figure shows changes in catch rates for the U.S. fleet}
+\pdftooltip{\includegraphics[width=0.75\paperwidth]{main-figures/fishCatchRatesUS}}{This figure shows changes in catch rates for the U.S. fleet}
 \end{center}
 \caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
   the U.S. at-sea fleet from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}.}

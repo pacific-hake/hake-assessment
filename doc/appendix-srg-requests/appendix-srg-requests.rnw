@@ -131,8 +131,7 @@ and alternative run 3 (bottom) models. Colored bars show observed proportions wi
 
 \begin{figure}[H]
 \begin{center}
-\pdftooltip{\includegraphics[width=\maxwidth, height=5in]{main-figures/DMweighting}}{This
-  figure shows that survey theta for run 3 is nearly half that of the base model}
+\pdftooltip{\includegraphics[width=\maxwidth, height=5in]{main-figures/DMweighting}}{This figure shows that survey theta for run 3 is nearly half that of the base model}
 \end{center}
 \caption{The posterior distribution is shown for the survey theta parameter for the base (bottom)
 and alternative run 3 (top) models. Distribution summaries are provided by the black circle (median)
@@ -222,8 +221,7 @@ abline(v=median(test),lwd=2,col="red")
 
 \begin{figure}[p]
 \begin{center}
-\pdftooltip{\includegraphics[width=\maxwidth, height=5in]{main-figures/compare2_spawnbio_uncertainty}}{This
-  figure shows that removing recent age-1 data points slightly alters recent stock trends}
+\pdftooltip{\includegraphics[width=\maxwidth, height=5in]{main-figures/compare2_spawnbio_uncertainty}}{This figure shows that removing recent age-1 data points slightly alters recent stock trends}
 \end{center}
 \caption{Maximum likelihood estimates of spawning stock biomass for the base model and alternative models that systematicallly remove recent age-1 data points.}
 \label{fig:ext-age1-remove-biomass}
@@ -231,8 +229,7 @@ abline(v=median(test),lwd=2,col="red")
 
 \begin{figure}[p]
 \begin{center}
-\pdftooltip{\includegraphics[width=\maxwidth, height=5in]{main-figures/compare10_recruits_uncertainty}}{This
-  figure shows that removing recent age-1 data points slightly alters recent recruitment}
+\pdftooltip{\includegraphics[width=\maxwidth, height=5in]{main-figures/compare10_recruits_uncertainty}}{This figure shows that removing recent age-1 data points slightly alters recent recruitment}
 \end{center}
 \caption{Maximum likelihood estimates of recruitment for the base model and alternative models that systematicallly remove recent age-1 data points.}
 \label{fig:ext-age1-remove-recruit}
