@@ -157,9 +157,11 @@ make.data.overview.plot(base.model)
 @
 \end{center}
 \caption{Overview of data used in this assessment.
-  The size of the circle reflects the assumed relative precision, i.e.,
-  input sample size, coefficient of variation, etc.,
-  for each given source of data.}
+Circle areas are proportional to:
+total catch for the fishery data, precision for the indices,
+and total sample size for
+the age compositions (and cannot be compared
+across data types).}
 \label{fig:main-data-overview}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
