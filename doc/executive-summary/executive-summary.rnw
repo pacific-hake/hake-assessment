@@ -929,6 +929,60 @@ This explains why a few probabilities decline
 catch levels in Tables~\ref{tab:es-risk-year-2} and~\ref{tab:es-risk-year-3}
 and Figures~\ref{fig:es-forecast-risk-comparison-year-2} and~\ref{fig:es-forecast-risk-comparison-year-3}.
 
+The predicted relative spawning biomass trajectory through
+\Sexpr{forecast_yrs[length(forecast_yrs)]} is shown in
+Figure~\ref{fig:es-forecast-depletion-comparison} for several of the management
+actions. With zero catch for the next three years, the biomass has a
+\Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
+\Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]} (Table~\ref{tab:es-risk-year-1}), a
+\Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from
+\Sexpr{forecast_yrs[2]} to \Sexpr{forecast_yrs[3]} (Table~\ref{tab:es-risk-year-2}), and a
+\Sexpr{zero.catch.prob.bio.down.3}\% probability of decreasing from
+\Sexpr{forecast_yrs[3]} to \Sexpr{forecast_yrs[4]} (Table~\ref{tab:es-risk-year-3}).
+%Manual 2020 done, though all automated.
+
+% The spawning biomass is predicted to decrease from \Sexpr{end.yr} to
+%  \Sexpr{end.yr+1} with a less than 50\% probability only for the 0~t and
+%  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
+%  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
+The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
+\Sexpr{end.yr+1} is under 57\% for all catch levels
+(Table~\ref{tab:es-risk-year-1} and
+Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 30\% for the
+\Sexpr{end.yr} catch level similar to that for \Sexpr{end.yr-1} (catch alternative~f).
+% Can maybe unhardwire some numbers with things like
+% \Sexpr{f(min(base.model$risks[[1]][,2]))}\% (see assesment-section).
+%The highest probability of
+%decrease is 97\%, which is for the default harvest policy
+%(row~g in Table~\ref{tab:es-risk-year-1}).
+For all explored catches,
+the maximum probability of the spawning biomass dropping below $B_{10\%}$ at
+the start of \Sexpr{end.yr+1} is 0\%, and of
+dropping below $B_{40\%}$ is 18\%
+(Table~\ref{tab:es-risk-year-1} and
+Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
+% It should be noted that
+% the natural mortality rate is larger than the current and future growth rate for
+% the large 2010 year class.
+% Andy presumes that last phrase is still true - not sure where/how to check
+% 2018 - probably not worth saying that any more.
+As the large 2010, 2014, and 2016 cohorts continue to age, their biomass is expected to decrease
+as losses from mortality outweigh increases from growth.  The
+estimated above-average (yet still highly uncertain) 2020 cohort will play a large role in determining spawning stock biomass
+during the forecast years presented here.
+% Still true for 2017 assessment - see
+%  years.since.2010.recruitment.med.below.mean
+%   2018 assessment.
+%  Definition of 'below-average' is given earlier (around line 222 of this file)
+
+% 2017: Following sentence replaced with 'The highest probability ...' above,
+%  which fits better:
+% The probability that the 2017 spawning
+% biomass will be less than the 2016 spawning biomass is less than 55\% for all
+%  catch levels. (Table~\ref{tab:es-risk-year-1} and
+%  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
+% Manual 2019 done above.
+
 % \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
 
 
@@ -1105,60 +1159,6 @@ make.risk.table(base.model,
 \clearpage
 
 %% End of projection figures and tables code
-
-The predicted relative spawning biomass trajectory through
-\Sexpr{forecast_yrs[length(forecast_yrs)]} is shown in
-Figure~\ref{fig:es-forecast-depletion-comparison} for several of the management
-actions. With zero catch for the next three years, the biomass has a
-\Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
-\Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]} (Table~\ref{tab:es-risk-year-1}), a
-\Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from
-\Sexpr{forecast_yrs[2]} to \Sexpr{forecast_yrs[3]} (Table~\ref{tab:es-risk-year-2}), and a
-\Sexpr{zero.catch.prob.bio.down.3}\% probability of decreasing from
-\Sexpr{forecast_yrs[3]} to \Sexpr{forecast_yrs[4]} (Table~\ref{tab:es-risk-year-3}).
-%Manual 2020 done, though all automated.
-
-% The spawning biomass is predicted to decrease from \Sexpr{end.yr} to
-%  \Sexpr{end.yr+1} with a less than 50\% probability only for the 0~t and
-%  180,000~t catch levels (Table~\ref{tab:es-risk-year-1} and
-%  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-The probability of the spawning biomass decreasing from \Sexpr{end.yr} to
-\Sexpr{end.yr+1} is under 57\% for all catch levels
-(Table~\ref{tab:es-risk-year-1} and
-Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 30\% for the
-\Sexpr{end.yr} catch level similar to that for \Sexpr{end.yr-1} (catch alternative~f).
-% Can maybe unhardwire some numbers with things like
-% \Sexpr{f(min(base.model$risks[[1]][,2]))}\% (see assesment-section).
-%The highest probability of
-%decrease is 97\%, which is for the default harvest policy
-%(row~g in Table~\ref{tab:es-risk-year-1}).
-For all explored catches,
-the maximum probability of the spawning biomass dropping below $B_{10\%}$ at
-the start of \Sexpr{end.yr+1} is 0\%, and of
-dropping below $B_{40\%}$ is 18\%
-(Table~\ref{tab:es-risk-year-1} and
-Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-% It should be noted that
-% the natural mortality rate is larger than the current and future growth rate for
-% the large 2010 year class.
-% Andy presumes that last phrase is still true - not sure where/how to check
-% 2018 - probably not worth saying that any more.
-As the large 2010, 2014, and 2016 cohorts continue to age, their biomass is expected to decrease
-as losses from mortality outweigh increases from growth.  The
-estimated above-average (yet still highly uncertain) 2020 cohort will play a large role in determining spawning stock biomass
-during the forecast years presented here.
-% Still true for 2017 assessment - see
-%  years.since.2010.recruitment.med.below.mean
-%   2018 assessment.
-%  Definition of 'below-average' is given earlier (around line 222 of this file)
-
-% 2017: Following sentence replaced with 'The highest probability ...' above,
-%  which fits better:
-% The probability that the 2017 spawning
-% biomass will be less than the 2016 spawning biomass is less than 55\% for all
-%  catch levels. (Table~\ref{tab:es-risk-year-1} and
-%  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-% Manual 2019 done above.
 
 
 \enlargethispage{\baselineskip}
