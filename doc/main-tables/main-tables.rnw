@@ -226,6 +226,16 @@ make.survey.history.table(survey.history,
                           font.size = 10,
                           space.size = 11)
 @
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<main-survey-by-country-table, results='asis', echo=FALSE>>=
+make.survey.by.country.table(survey.by.country,
+                             digits = 3,
+                             xcaption = paste0("Summary of the acoustic survey age-2+ biomass attributed to each country."),
+                             xlabel = "tab:main-survey-by-country",
+                             font.size = 10,
+                             space.size = 12)
+@
+
 
 <<main-maturity-ogives-table, results='asis', echo=FALSE>>=
 make.maturity.ogives.table(maturity.ogives,

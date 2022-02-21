@@ -26,7 +26,8 @@ Fishery-dependent and fishery-independent data used in this assessment
   % use knitr::combine_words(survey.age.years) below
   (\Sexpr{survey.age.years[-length(survey.age.years)]}, and
   \Sexpr{survey.age.years[length(survey.age.years)]};
-  Tables~\ref{tab:main-all-age-data-survey} and~\ref{tab:main-survey-history}
+  Tables~\ref{tab:main-all-age-data-survey}, ~\ref{tab:main-survey-history},
+  and~\ref{tab:main-survey-by-country},
   and Figures~\ref{fig:main-age-comp-bubbles} and~\ref{fig:main-survey-extrap-biomass}).
 
 \item The relative age-1 index (billions of age-1 fish) derived from the \surveyname\
@@ -377,7 +378,8 @@ Figure~\ref{fig:main-bridge-5-panel-1}). Additionally, the 2021 survey
 estimate was scaled by factor of 1.06 to convert EK~80 acoustic data
 (2021 survey only) to EK~60 acoustic data to standardize the survey time series.
 The survey team will eventually be converting all pre-2021 EK~60 data to an equivalent
-EK~80 format.
+EK~80 format. The survey team also provided estimates of the age-2+ survey biomass
+attributable to each country (Table~\ref{tab:main-survey-by-country}).
 
 Thus, a full time series of consistently analyzed survey
 biomass (Table~\ref{tab:main-survey-history} and

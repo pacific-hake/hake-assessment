@@ -77,54 +77,75 @@ make.survey.by.country.table <- function(dat,
   ## Returns an xtable of the values of the survey by country.
   ##
   ## dat is a data frame containing the survey by country data
-  ## digits - number of decimal places for biomass and CV values, and age-1 index
+  ## digits - number of decimal places for biomass and CV values
   ## xcaption - caption to appear in the calling document
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
   ## space.size - size of the vertical spaces for the table
 
-  dat$biomass[!is.na(dat$biomass)] <- f(dat$biomass[!is.na(dat$biomass)], digits)
-  dat$cv[!is.na(dat$cv)] <- f(dat$cv[!is.na(dat$cv)], digits)
+  dat$total <- dat$total / 1e3
+  dat$canada.total <- dat$canada.total / 1e3
+  dat$us.total <- dat$total - dat$canada.total
+  dat$us.prop <- 100 - dat$canada.prop
+  dat$us.cv <- dat$us.cv / 100
+  dat$canada.cv <- dat$canada.cv / 100
+
+  dat$us.total <- f(dat$us.total, digits)
+  dat$us.cv <- f(dat$us.cv, digits)
+  dat$us.prop <- paste0(f(dat$us.prop, 2), "\\%")
+  dat$canada.total <- f(dat$canada.total, digits)
+  dat$canada.cv <- f(dat$canada.cv, digits)
+  dat$canada.prop <- paste0(f(dat$canada.prop, 2), "\\%")
+
+  dat <- as_tibble(dat) %>%
+    select("year",
+           "us.total",
+           "us.cv",
+           "us.prop",
+           "canada.total",
+           "canada.cv",
+           "canada.prop",
+           )
+
 
   ## Put the vessels in the right format
-  lst <- lapply(dat$vessels,
-              function(x){p <- strsplit(as.character(x), " +")[[1]]
-                q <- sapply(p, function(y){gsub("-", " ", y)})})
-  dat$vessels <- sapply(lst, function(x){latex.mlc(x, FALSE)})
+#  lst <- lapply(dat$vessels,
+#              function(x){p <- strsplit(as.character(x), " +")[[1]]
+#                q <- sapply(p, function(y){gsub("-", " ", y)})})
+#  dat$vessels <- sapply(lst, function(x){latex.mlc(x, FALSE)})
 
-  dat <- dplyr::left_join(dat, dat.age1, by = c("year" = "Year"))
-  dat$Index <- dat$Index/1e6     # Convert thousands to billions
-  dat$Index[!is.na(dat$Index)] <- f(dat$Index[!is.na(dat$Index)], digits)
+#  dat <- dplyr::left_join(dat, dat.age1, by = c("year" = "Year"))
+#  dat$Index <- dat$Index/1e6     # Convert thousands to billions
+#  dat$Index[!is.na(dat$Index)] <- f(dat$Index[!is.na(dat$Index)], digits)
 
-  dat[is.na(dat)] <- "--"
+#  dat[is.na(dat)] <- "--"
 
   colnames(dat) <- c(latex.bold("Year"),
-                     latex.mlc(c("Start",
-                                 "date")),
-                     latex.mlc(c("End",
-                                 "date")),
-                     latex.bold("Vessels"),
-                     latex.mlc(c("Age-2+ biomass",
-                                 "index",
+                     latex.mlc(c("U.S. Age-2+",
+                                 "biomass",
                                  "(million t)")),
-                     latex.mlc(c("Sampling",
+                     latex.mlc(c("U.S. sampling",
                                  "CV age-2+")),
-                     latex.mlc(c("Number of",
-                                 "hauls with",
-                                 "age samples")),
-                     latex.mlc(c("Age-1 index",
-                                 "(billions of",
-                                 "fish)")),
-                     latex.mlc(c("Sampling",
-                                 "CV age-1"))
+                     latex.mlc(c("U.S. percentage",
+                                 "of biomass")),
+                     latex.mlc(c("Canada Age-2+",
+                                 "biomass",
+                                 "(million t)")),
+                     latex.mlc(c("Canada sampling",
+                                 "CV age-2+")),
+                     latex.mlc(c("Canada",
+                                 "percentage",
+                                 "of biomass"))
                     )
 
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(dat,
                caption = xcaption,
                label = xlabel,
-               align = get.align(ncol(dat),
-                                 just = "c")),
+#               align = c("l", "r", "c", "r", "c")),
+               align = c(get.align(ncol(dat)-1,
+                                   just = "c"),
+                         "r")),
         caption.placement = "top",
         include.rownames = FALSE,
         table.placement = "H",
