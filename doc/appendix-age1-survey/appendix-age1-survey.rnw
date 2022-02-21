@@ -17,8 +17,7 @@ and should not be viewed as an alternative base model.
 Removal of the age-1 index from the model decreases the estimates of 2018 and 2020
 cohort size (age-0 recruitment). The median 2020 recruitment decreases from
 \Sexpr{f(base.model$mcmccalcs$rmed["2020"], 1)}~billion fish (base model, Table~\ref{tab:main-est-numbers-at-age})
-to
-\Sexpr{f(sens.models.2[[1]]$mcmccalcs$rmed["2020"], 1)}~billion fish
+to \Sexpr{f(sens.models.2[[1]]$mcmccalcs$rmed["2020"], 1)}~billion fish
 (sensitivity run, Table~\ref{tab:age1-est-numbers-at-age}).
 Estimates for cohorts born in odd years are similar between the two models
 because the age-1 index is generally only available in odd years
@@ -48,38 +47,8 @@ behavior using data up to age-2, with the age-1 index suggesting it is above
 average while excluding the age-1 index suggesting it to be below, and both
 models suggesting it to be above average when using all available data.
 
-%% **[2021 assessment text] The estimated size of the 2010 and 2014 year classes when using only data when that
-%% cohort is age-2 is closer to the final estimated size when excluding the age-1 index
-%% (Figure~\ref{fig:retrospective-recruitment-age1}) than it is for the base model
-%% (Figure~\ref{fig:main-retrospective-recruitment}). Despite possible advantages in some
-%% instances, previous comparisons with the age-1 survey
-%% sensitivity have indicated that its use could lead to misleading results. For example,
-%% the perception of the 2008 year class was higher in 2011 (near 20\%) and 2012 (near 100\%)
-%% retrospectively when using the age-1 survey sensitivity instead of the base model.
-%% Given that the stock was in a low biomass state in 2011 and 2012, including the
-%% age-1 index at that time would have given misleadingly optimistic forecasts.
-
-% To get exact numbers could run Kelli's code for each model, but I just
-%  eyeballed the numbers which I think is fine:
-% retro.list <- list(base.model)
-% for(i in 1:5){     # was plot.retro.yrs but that's got changed somewhere
-%  retro.list[[i + 1]] <- base.model$retros[[i]]
-% }
-% xx <- r4ss::SSsummarize(retro.list)
-% xx$recruits[xx$recruits$Yr %in% 2008, ]
-
-%[2020? assessment text probably] The inclusion of the age-1 index does not greatly change the uncertainty of
-%historical or forecast spawning biomass
-%(Figure~\ref{fig:retrospective-biomass-base-age1}); this is also true for the
-%retrospective runs. Overall, it
-%appears that the inclusion of the age-1 index does not consistently improve estimates of
-%recruitments, and, in fact, can be overly optimistic in some situations (Figure~\ref{fig:retrospective-2008-base-age1}).
-%Recall that the survey design is not structured specifically for indexing age-1
-%fish.
-
 Figures \ref{fig:spawning-biomass-age1}--\ref{fig:forecast-risk-comparison-year-2-age1}
-and
-Tables~\ref{tab:biomass-age1}--\ref{tab:age1-est-numbers-at-age}
+and Tables~\ref{tab:biomass-age1}--\ref{tab:age1-est-numbers-at-age}
 show further quantities of interest and decision tables from the MCMC results
 when excluding the age-1 index.
 
@@ -90,13 +59,10 @@ the equivalent base model results (Figures~\ref{fig:main-historical-retro-all}
 and~\ref{fig:main-historical-retro-bforty-all}) in
 Section~\ref{sec:assessment-past-projections}.
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
 <<retrospective-recruitment-age1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how recruitment estimates for age-0 fish using the age-1 sensitivity model tend to be small but positive to allow for forecasted landings and that information is not typically available to estimate recruitments until fish are of age three. Estimates of larger, in absolute terms, deviates take a longer time to stabilize.">>=
-## Number of retro years for the plot. Assumes you've run them.
 retro.cohorts <- (end.yr - 11):(end.yr - 2)
 make_squid_plot(sens.models.2[[1]],
                 subplot = 1,
@@ -117,56 +83,6 @@ make_squid_plot(sens.models.2[[1]],
   Figure~\ref{fig:main-retrospective-recruitment} for the base model.}
 \label{fig:retrospective-recruitment-age1}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%\vspace{-70mm}
-%\begin{figure}[H]
-%\begin{center}
-%<<retro.density.2008, fig.height=4, fig.width=7>>=
-%oldpar <- par(no.readonly=TRUE)
-%par(mar = c(4.1, 4.1, 1.1, 1.1), oma = c(0, 0, 0, 0))
-%layout(matrix(c(1, 1), nrow = 2, ncol = 1, byrow = TRUE))
-%retro.list <- list(base.model)
-%for(i in 1:11){
-%  retro.list[[i + 1]] <- base.model$retros[[i]]
-%}
-%make.comparison.plot(
-%  retro.list,
-%  subplots = 16,
-%  model.names = c(retro.model.names, "-6 years", "-7 years", "-8 years",
-%                  "-9 years", "-10 years","-11 years"),
-%  legendloc = "topright",
-%  densitynames = c("Recr_2008"),
-%  densityxlab  = "Recruitment in 2008 (billions)",
-%  indexPlotEach = TRUE,
-%  end.yr = end.yr)
-%## Now for age-1 index sensitivity
-%retro.list <- list(sens.models.2[[1]])
-%for(i in 1:10){
-%  retro.list[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
-%}
-%make.comparison.plot(
-%  retro.list,
-%  subplots = 16,
-%  model.names = c(retro.model.names.age1, "-6 years", "-7 years", "-8 years",
-%                  "-9 years", "-10 years"),
-%  legendloc = "topright",
-%  densitynames = c("Recr_2008"),
-%  densityxlab  = "Recruitment in 2008 (billions)",
-%  indexPlotEach = TRUE,
-%  end.yr = end.yr)
-%par <- oldpar
-%@
-%\end{center}
-%\caption{The retrospective MLEs and associated uncertainties of the
-%  recruitment in 2008 for the base model (top) and age-1 index sensitivity run (bottom).
-%  When running the model with all data (the top run in each key) this cohort is observed in 2019 at
-%  age-11; so taking off 9 years of data, for example, means that cohort is only
-%  observed up to age-2.}
-%\label{fig:retrospective-2008-base-age1}
-%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -205,7 +121,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<spawning-biomass-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been decreasing in size since 2019 for the age-1 sensitivity">>=
+<<spawning-biomass-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been decreasing in size since 2019 for the model without the age-1 index">>=
 make.biomass.plot(sens.models.2[[1]],
                   equil.yr = unfished.eq.yr,
                   start.yr = start.yr,
@@ -226,7 +142,7 @@ make.biomass.plot(sens.models.2[[1]],
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<relative-spawning-biomass-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that median relative biomass has been decreasing since 2019 for the age-1 sensitivity model">>=
+<<relative-spawning-biomass-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that median relative biomass has been decreasing since 2019 for the model without the age-1 index">>=
 make.depletion.plot(sens.models.2[[1]],
                     start.yr = start.yr,
                     end.yr = end.yr,
@@ -244,7 +160,7 @@ make.depletion.plot(sens.models.2[[1]],
 
 <<biomass-table-age1, results='asis', echo=FALSE>>=
 make.biomass.table(sens.models.2[[1]],
-                   start.yr = end.yr-9,
+                   start.yr = end.yr - 9,
                    end.yr = end.yr,
                    weight.factor = 1000,
                    xcaption = "Recent trends in estimated beginning of the year
@@ -260,8 +176,8 @@ make.biomass.table(sens.models.2[[1]],
 
 <<recruitment-table-age1, results='asis', echo=FALSE>>=
 make.recruitment.table(sens.models.2[[1]],
-                       start.yr = end.yr-10,
-                       end.yr = end.yr-1,
+                       start.yr = end.yr - 10,
+                       end.yr = end.yr - 1,
                        weight.factor = 1000,
                        xcaption = "Estimates of recent recruitment (millions of
                                     age-0) and recruitment deviations, where
@@ -277,7 +193,7 @@ make.recruitment.table(sens.models.2[[1]],
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<recruitment-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016 for the age-1 sensitivity model, with 2020 possibly large but highly uncertain">>=
+<<recruitment-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016 for the model without the age-1 index, with 2020 possibly large but highly uncertain">>=
 make.recruitment.plot(sens.models.2[[1]],
                       equil.yr = unfished.eq.yr,
                       start.yr = start.yr,
@@ -299,8 +215,8 @@ make.recruitment.plot(sens.models.2[[1]],
 
 <<fishing-intensity-table-age1, results='asis', echo=FALSE>>=
 make.fishing.intensity.table(sens.models.2[[1]],
-                             start.yr = end.yr-10,
-                             end.yr = end.yr-1,
+                             start.yr = end.yr - 10,
+                             end.yr = end.yr - 1,
                              digits = 3,
                              xcaption = "Recent estimates of relative fishing
                                           intensity,
@@ -316,10 +232,10 @@ make.fishing.intensity.table(sens.models.2[[1]],
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<fishing-intensity-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management target of 1 throughout the time series for the age-1 sensitivity model">>=
+<<fishing-intensity-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management target of 1 throughout the time series for the model without the age-1 index">>=
 make.fishing.intensity.plot(sens.models.2[[1]],
                             start.yr = start.yr,
-                            end.yr = end.yr-1,
+                            end.yr = end.yr - 1,
                             color = "blue",
                             upper.lim = 1.5)
 @
@@ -336,10 +252,10 @@ make.fishing.intensity.plot(sens.models.2[[1]],
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<exploitation-fraction-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the stock biomass is approximately 0.1 for the age-1 sensitivity model">>=
+<<exploitation-fraction-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the stock biomass is approximately 0.12 for the model without the age-1 index">>=
 make.exploitation.fraction.plot(sens.models.2[[1]],
                                 start.yr = start.yr,
-                                end.yr = end.yr-1,
+                                end.yr = end.yr - 1,
                                 color = "blue",
                                 upper.lim = 0.35)
 @
@@ -353,7 +269,7 @@ make.exploitation.fraction.plot(sens.models.2[[1]],
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<phase-plot-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state">>=
+<<phase-plot-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state for the model without the age-1 index">>=
 make.phase.plot(sens.models.2[[1]],
                 start.yr = start.yr,
                 end.yr = end.yr)
@@ -421,10 +337,9 @@ decision_table(sens.models.2[[1]],
                      letters[catch.stable.ind],
                      ")."),
                xlabel = "tab:decisions-biomass-age1",
-               font.size = 11,
-               space.size = 12,
-               type = "biomass",
-               placement = "H")
+               font_size = 11,
+               space_size = 12,
+               type = "biomass")
 @
 
 <<decisions-spr-table-age1, results='asis', echo=FALSE>>=
@@ -439,22 +354,17 @@ decision_table(sens.models.2[[1]],
                      the $\\Fforty$ harvest policy calculated using baseline
                      selectivity."),
                     xlabel = "tab:decisions-spr-age1",
-                    font.size = 11,
-                    space.size = 12,
-                    type = "spr",
-                    placement = "H")
+                    font_size = 11,
+                    space_size = 12,
+                    type = "spr")
 @
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<forecast-depletion-comparison-plot-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to start to decline for all non-zero catch levels evaluated using the age-1 sensitivity model">>=
-## Look at catch.levels and catch.levels to decide which to include here
-## models.inds are the indices of those which will be plotted against each other
+<<forecast-depletion-comparison-plot-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to decline for all catch levels greater than 180,000 tonnes for the model without the age-1 index">>=
 models.inds <- c(1, 2, 6, catch.tac.ind, catch.default.policy.ind)
 models.names <- sapply(sens.models.2[[1]]$catch.levels, "[[", 2)[models.inds]
-                       ## pretty catch level name
 make.forecast.depletion.comparison.plot(sens.models.2[[1]],
                                         models.inds,
                                         models.names,
@@ -475,19 +385,16 @@ make.forecast.depletion.comparison.plot(sens.models.2[[1]],
 
 \clearpage
 
-%% 2022: See notes in Exec Summary regarding tweaks to keep each year's figure
-%%  and table on the same page, due to the five extra catch streams.
-%%  Year 1 forecast
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast-risk-comparison-plot-year-1-age1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text =   "This figure shows that the stock will probably decline next year (except for zero catch) using the age-1 sensitivity model">>=
+<<forecast-risk-comparison-plot-year-1-age1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably decline next year (except for zero catch) for the model without the age-1 index">>=
 make.forecast.risk.comparison.plot(sens.models.2[[1]],
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[1],
-                                   colors = c("black","blue","green","orange",
-                                              "red","tan"),
-                                   pch = c(16,17,17,17,15,18),
+                                   colors = c("black", "blue", "green", "orange",
+                                              "red", "tan"),
+                                   pch = c(16, 17, 17, 17, 15, 18),
                                    legend.loc = "topleft",
                                    legend.cex = 0.7)
 @
@@ -519,11 +426,10 @@ make.risk.table(sens.models.2[[1]],
 @
 \clearpage
 
-%% Year 2 forecast
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast-risk-comparison-plot-year-2-age1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably decline the year after next (except under zero catch) using the age-1 sensitivity model">>=
+<<forecast-risk-comparison-plot-year-2-age1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably decline the year after next (except under zero catch) for the model without the age-1 index">>=
 make.forecast.risk.comparison.plot(sens.models.2[[1]],
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[2],
@@ -562,11 +468,10 @@ make.risk.table(sens.models.2[[1]],
 @
 \clearpage
 
-%% Year 3 forecast
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<forecast-risk-comparison-plot-year-3-age1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline in three years' time regardless of catch level (except under zero catch) using the age-1 sensitivity model">>=
+<<forecast-risk-comparison-plot-year-3-age1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline in three years' time regardless of catch level (except under zero catch) for the model without the age-1 index">>=
 make.forecast.risk.comparison.plot(sens.models.2[[1]],
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[3],
@@ -587,6 +492,7 @@ The symbols indicate points
 that were computed directly from model output and lines interpolate between the points.}
 \label{fig:forecast-risk-comparison-year-3-age1}
 \end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%
 <<risk-forecast-year-3-table-age1, results='asis', echo=FALSE>>=
 make.risk.table(sens.models.2[[1]],
@@ -633,11 +539,10 @@ atage_table(
 \pagestyle{fancy}
 \clearpage
 
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical-retro-all-age1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses for the age-1 sensitivity analysis.">>=
+<<historical-retro-all-age1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses for the model without the age-1 index">>=
 make.historical.probs.retro.plot(sens.models.2[[1]],
                                  legend.text.model = "Current without age-1 index")
 @
@@ -652,7 +557,7 @@ make.historical.probs.retro.plot(sens.models.2[[1]],
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical-retro-bforty-all-age1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining below B40 with those from the current base model and for retrospective analyses for the age-1 sensitivity analysis.">>=
+<<historical-retro-bforty-all-age1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining below B40 with those from the current base model and for retrospective analyses for the model without the age-1 index">>=
 make.historical.probs.retro.plot(sens.models.2[[1]],
                                  type = "bforty",
                                  legend.loc = "topleft",
@@ -666,5 +571,5 @@ make.historical.probs.retro.plot(sens.models.2[[1]],
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-
-\clearpage        % needed for footer to be correct
+ % needed for footer to be correct
+\clearpage
