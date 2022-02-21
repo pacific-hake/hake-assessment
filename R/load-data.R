@@ -74,6 +74,15 @@ load.survey.history <- function(fn ## fn is the filename with relative path
   return(dat)
 }
 
+load.survey.by.country <- function(fn ## fn is the filename with relative path
+                                ){
+  ## Reads in the survey by country file and returns it as a data frame
+
+  dat <- read.csv(fn,
+                  comment.char = "#")
+  return(dat)
+}
+
 load.sampling.history <- function(fn ## fn is the filename with relative path
                                 ){
   ## Reads in the sampling history file and returns it as a data frame

@@ -5,6 +5,7 @@ catch.targets.file <- "catch-targets-biomass.csv"
 catch.data.file <- "landings-tac-history.csv"
 further.tac.file <- "further-tac-details.csv"
 survey.history.file <- "survey-history.csv"
+survey.by.country.file <- "survey-by-country.csv"
 survey.comparison.file <- "survey-comparison.csv"
 sampling.history.file <- "fishery-sampling-history.csv"
 ovary.samples.file <- "ovary-samples.csv"
@@ -48,7 +49,19 @@ cat("Loading all data tables (csv files) from ", rootd.data, "\n")
 ct <- load_catches(file.path(rootd.data, catch.data.file))
 catch.targets <- read_csv(file.path(rootd.data, catch.targets.file))
 survey.history <- load.survey.history(file.path(rootd.data, survey.history.file))
-survey.comparison <- read.csv(file.path(rootd.data, survey.comparison.file), stringsAsFactors = FALSE)
+survey.by.country <- load.survey.by.country(file.path(rootd.data, survey.by.country.file))
+survey.comparison <- read.csv(file.path(rootd.data, survey.comparison.file),
+                              stringsAsFactors = FALSE)
+testthat::expect_equal(round(survey.history$biomass * 1000),
+                       round(survey.by.country$total))
+testthat::expect_equal(round(survey.history$biomass * 1000),
+                       round(survey.comparison$with.extrap))
+testthat::expect_equal(round(survey.history$cv * 100, 1),
+                       round(survey.by.country$total.cv, 1))
+#testthat::expect_equal(round(survey.history$cv * 100, 1),
+#                       round(survey.comparison$cv.with.extrap * 100, 1)) #
+#                       Fails in 2022, but small differences, didn't yet look
+#                       into exactly which columns to compare.
 sampling.history <- load.sampling.history(file.path(rootd.data, sampling.history.file))
 further.tac <- further.tac.details(file.path(rootd.data, further.tac.file))
 can.ages <- load.can.age.data(file.path(rootd.data, can.age.file))
