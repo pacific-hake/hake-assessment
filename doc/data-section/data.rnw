@@ -136,7 +136,7 @@ dockside monitors within the Groundfish Trawl Dockside Monitoring Program
 using total catch weights provided by processing plants.
 Discards are negligible relative to the total fishery catch for all sectors.
 
-For recent catches with haul or trip-level information,
+For recent catches with haul- or trip-level information,
 removals by month during the fishing season allowed for the estimation of
 monthly bycatch rates from observer information.
 This information has also allowed a detailed investigation of shifts in fishery
@@ -146,8 +146,8 @@ Minor updates to catches used in previous assessments were made based on the bes
 This included adjustments of less than 10~t to catch in several years over the period 2007--2018 and an increase in catches of 430~t
 and 1,128~t in 2019 and 2020, respectively.
 Tribal catches this year were available in PacFIN for the U.S. tribal fishery at the time the data were extracted and were cross-checked
-with numbers based on information provided by the Makah tribe.
-The Makah tribe is also working on providing historical catches such that shore-based catches can be summarized separately from tribal catches since the onset of the fishery.
+with numbers based on information provided by the Makah Tribe.
+The Makah Tribe is also working on providing historical catches such that shore-based catches can be summarized separately from tribal catches since the onset of the fishery.
 % Manual 2022 KFJ
 
 \subsubsection{Fishery biological data}\label{sec:data-fishery-biological-data}
@@ -248,7 +248,7 @@ recent years. The treatment of weight- and length-at-age are described in more
 detail in Sections \ref{sec:data-weight-at-age} and \ref{sec:data-length-at-age}.
 Although length-composition data are not fit explicitly in the base
 assessment model presented here, the presence of the 2008 and 2010 year classes
-have been clearly observed in length data from both of the U.S. fishery sectors
+have been clearly observed in length data from both of the U.S. fishery sectors,
 and the 2014 year class has been apparent since 2016.
 % Manual 2022 KFJ
 % ggplot(atsea.ages,aes(LENGTH,group=factor(YEAR),col=factor(YEAR)))+geom_density()+facet_grid(YEAR~.)
@@ -323,7 +323,7 @@ the 2019 survey saw \fishname\ on all survey transects from just north of Morro 
 U.S. waters and a continuation of conditions moving towards higher productivity La Ni\~na conditions in the
 California Current from 2020 to 2021.
 Ongoing research is looking into relationships between environmental
-conditions and \fishname\ distribution and recruitment, which will help to inform the mechanisms
+conditions and \fishname\ distribution and recruitment, that will help to inform the mechanisms
 behind observations \citep{MalickSiedleckiEtAl2020}.
 % Manual 2022
 
@@ -401,7 +401,7 @@ to \Sexpr{f(survey.biomass["2017"], 2)}~million~t and then increased to
 1.72 million~t in 2019 before decreasing again to \Sexpr{last.survey.year.biomass}~million~t in \Sexpr{last.survey.year}.
 % Manual 2022 KFJ: add new survey
 The \Sexpr{last.survey.year} survey age composition was made up of
-\Sexpr{combine_words(paste0(survey.last.year.age[1:5]*100, "\\%"))}
+\Sexpr{combine_words(paste0(f(survey.last.year.age[1:5]*100), "\\%"))}
 from the
 \Sexpr{combine_words(last.survey.year-type.convert(as.is=TRUE,names(survey.last.year.age[1:5])))}
 year classes, respectively.
@@ -785,7 +785,7 @@ $\protect{\theta / (1 + \theta)}$ can be compared to the sample size
 multipliers used in the McAllister-Ianelli data-weighting method
 \citep{McAllisterIanelli1997} that was used for assessments prior to 2018
 (Table~\ref{tab:main-assessment-changes}) and
-as a sensitivity (see Section~\ref{sec:assessment-sensitivity-analyses}).
+as a sensitivity here (see Section~\ref{sec:assessment-sensitivity-analyses}).
 In short, the McAllister-Ianelli method involves
 iteratively adjusting multipliers of the input sample sizes
 passed to the multinomial likelihoods until they are
