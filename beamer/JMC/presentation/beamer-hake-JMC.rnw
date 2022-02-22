@@ -706,13 +706,13 @@ Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
   \begin{column}{0.65\textwidth}
   <<decisions.spr.table, results='asis', echo=FALSE>>=
                decision_table(base.model,
-                             models.inds,
                              xcaption = NULL,
                              xlabel = "tab:es-decisions-spr",
                              font.size = 8,
                              space.size = 10,
                              type = "spr",
-                             placement = "h")
+                             placement = "h",
+                             forecast_inds = c(4, 6, 10,11, 12))
 @
   \end{column}
 \end{columns}
@@ -952,7 +952,8 @@ Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
     \item Timeline was very tight this year
     \item JTC being asked to do more with less
     \item Technology helping, but bottlenecks remain
-    \item 18 business 'working' days this year (data deadline to draft assessment due date)
+    \item Given 18 business 'working' days this year (data deadline to draft assessment due date)
+    \item Required 24/7 work schedules to complete on time
     \item Extremely taxing on analysts (not sustainable)
   \ei
   \end{column}
