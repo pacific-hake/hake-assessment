@@ -334,8 +334,8 @@ Table~\ref{tab:main-survey-history} for the number of trawls in each survey
 year). Biological samples collected from these trawls are post-stratified,
 based on similarity in size composition, and the composite length frequency is
 used to characterize the size distribution of \fishname\ along each transect and to
-predict the expected backscattering cross section for \fishname\ based on the fish
-size-target strength (TS) relationship. Any potential biases that might be
+predict the expected backscattering cross section for \fishname\ based on the
+fish-size target-strength (TS) relationship. Any potential biases that might be
 caused by factors such as alternative TS relationships are partially accounted
 for in catchability, but variability in the estimated survey biomass due to
 uncertainty in TS is not explicitly accounted for in the
@@ -589,6 +589,9 @@ to the amount of catch, so the combinations of year and age with no samples
 should have relatively little importance in the overall estimates of the
 population dynamics.
 
+The biomass at the start of a given year is based on the weight-at-age from
+the previous year; for example, the biomass at the start of 2022 is calculated
+using the empirical weight-at-age from 2021 (Figure~\ref{fig:main-empirical-weight-at-age}).
 Prior to 1975, weight-at-age is assumed to be equal to the mean of all available
 information for each respective age
 (1975-\Sexpr{last.data.yr}), consistent with the \Sexpr{last.assess.yr} base model
