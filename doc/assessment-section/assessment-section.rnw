@@ -1871,10 +1871,10 @@ probabilities in the decision tables.
 % gives the probs, maybe
 % worth making a table
 
-As an example, the 2019 assessment provides the estimated probability of the spawning stock
+As an example, the 2019 assessment \citep{JTC2019} provides the estimated probability of the spawning stock
 biomass declining in the subsequent year, i.e.,~P($B_{2020} < B_{2019}$),
-for several possible catches in 2019 (such as 0~t, 180,000~t,
-350,000~t, 410,000~t etc.). Now, in \Sexpr{assess.yr}, we `know' that the catch in 2019 was
+for several possible catches in 2019, such as 0~t, 180,000~t,
+350,000~t, 410,000~t etc. Now, in \Sexpr{assess.yr}, we `know' that the catch in 2019 was
 411,574~t. Therefore, we can select the 410,000~t row (which is close enough to
 411,574~t) in the table from the 2019
 assessment to give that assessment's
@@ -1901,9 +1901,9 @@ the exact catch in year $t$ was not given in the decision tables in year $t$'s a
 We also calculate analogous probabilities,
 P$(B_{t+1} < B_{t})$, from the current base model (Figure~\ref{fig:main-historical-1}).
 
-The historic probability of P$(B_{2013} < B_{2012}) = $\Sexpr{prob.decline.from.2012.to.2013.historic}\%
+The historical probability of P$(B_{2013} < B_{2012}) = $\Sexpr{prob.decline.from.2012.to.2013.historic}\%
 from the 2012 assessment is
-higher than the \Sexpr{prob.decline.from.2012.to.2013.curr}\% calculated using the current assessment model
+quite a lot higher than the \Sexpr{prob.decline.from.2012.to.2013.curr}\% calculated using the current assessment model
 (Figure~\ref{fig:main-historical-1}). But, this makes sense because the
 2012 assessment model had no information that the 2010 recruitment was going to be very large
 (it did not include the age-1 index, which in 2011 did indicate a large 2010 recruitment,
@@ -1934,7 +1934,9 @@ documents are not too definitive (too close to 0\% or to 100\%) because they are
 admitting a wide range of uncertainty given unknown recruitments. The 2021 assessment's
 estimate is very close to that of this year's assessment.
 
-Interestingly, in Figure~B.3.1 of the 2021 assessment \citep{JTC2021} we found that the 2018 probability from the
+Interestingly, in the last assessment (Figure~B.3.1 of \citealt{JTC2021}) we found that
+P${\protect (B_{2019} < B_{2018})}$
+from the
 2021 base model was above
 the 50\% line (unlike for this year's base model), agreeing with the 2018
 assessment calculation (2018 was also the only
@@ -2003,7 +2005,7 @@ incorrectly expecting the biomass to fall below $\Bforty$ (which did not happen 
 the large 2010 year class), projections `correctly' estimated the
 biomass to not go below $\Bforty$.
 
-Given we have full Bayesian results for the retrospective analyses, we can
+Given we have Bayesian results for the retrospective analyses, we can
 calculate restrospective versions of Figures~\ref{fig:main-historical-1}
 and~\ref{fig:main-historical-2}. By using data only up to 2011, the current
 base model estimates a very low probability of biomass decline from 2012 to 2013,
@@ -2017,7 +2019,7 @@ change is the inclusion of the age-1 index in this year's base model. The equiva
 calculation for the sensitivity run that excludes the age-1 index (and hence excludes
 the 2011 age-1 index that gives strong evidence for the large 2010 cohort), gives
 P$(B_{2013} < B_{2012}) >20\%$
-(grey square in Figure~\ref{fig:historical-retro-all-age1}). This suggest that the age-1 index
+(grey square in Figure~\ref{fig:historical-retro-all-age1}). This suggests that the age-1 index
 accounts for some of the reduction
 of P$(B_{2013} < B_{2012})$ from the 2012 assessment's calculation (red circle
 in top panel of Figure~\ref{fig:main-historical-retro-1}) to the retrospective calculation using the
@@ -2042,7 +2044,7 @@ top panel of Figure~\ref{fig:main-historical-retro-2}). Yet, when the 2015 data
 are included, the probability falls noticeably (the gold square at 2014 in the middle panel of
 Figure~\ref{fig:main-historical-retro-2}). It falls further when the 2016 data
 are included (the orange square at 2014 in the bottom panel of
-Figure~\ref{fig:main-historical-retro-2}), and then agrees with the current base
+Figure~\ref{fig:main-historical-retro-2}), finally agreeing with the current base
 model when the 2017 data are included (the pink square at 2014 in the top panel of
 Figure~\ref{fig:main-historical-retro-3}). This is presumably explained by the
 retrospective analysis of recruitment deviations of the large 2014 cohort. The
