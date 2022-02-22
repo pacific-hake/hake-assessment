@@ -407,7 +407,6 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
-
 \rfoot{Appendix~\ref{chap:age1-survey} -- Age-1 survey sensitivity}
 <<appendices-age1-survey, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
 @
