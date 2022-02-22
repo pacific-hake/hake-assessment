@@ -1161,7 +1161,8 @@ make.risk.table(base.model,
 %% End of projection figures and tables code
 
 
-\enlargethispage{\baselineskip}
+% \enlargethispage{\baselineskip}  % Think only if want to squeeze a dangling
+%  line onto the page.
 
 \subsection*{Research and data needs} \label{sec:es-research-data-needs}
 \phantomsection \addcontentsline{toc}{subsection}{Research and data needs}
