@@ -12,6 +12,7 @@
 #' @param make_pdf Logical. `TRUE` to make the pdf, if `FALSE` it will only go as far as postscript. If `png_figs`
 #' is set to `TRUE`, this argument will have no effect, a PDF will be built anyway
 #' @param make_bib Logical. Run bibtex
+#' @param ... Arguments to pass to [add_alt_text()]
 #'
 #' @return [base::invisible()]
 #' @export
@@ -20,7 +21,8 @@ build_doc <- function(doc_name = "hake-assessment",
                       alt_text = FALSE,
                       knit_only = FALSE,
                       make_pdf = TRUE,
-                      make_bib = TRUE){
+                      make_bib = TRUE,
+                      ...){
 
   curr_dir <- getwd()
   on.exit(setwd(curr_dir))
@@ -29,9 +31,9 @@ build_doc <- function(doc_name = "hake-assessment",
   latex_command <- "pdflatex"
 
   knit(paste0(doc_name, ".rnw"))
-  # The knitting process creates the global `alt_fig_text`, but only if the figures were not cached,
+  # The knitting process creates the global `alt_fig_text`, but only if the figures were not cached
   if(alt_text){
-    add_alt_text(paste0(doc_name, ".tex"), alt_fig_text)
+    add_alt_text(paste0(doc_name, ".tex"), alt_fig_text, ...)
   }
 
   if(!knit_only){

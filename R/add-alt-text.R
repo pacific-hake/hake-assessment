@@ -4,6 +4,12 @@
 #' text for each one from the given `alt_fig_text`
 #' @param tex_file The name of the TEX file
 #' @param alt_fig_text A character vector of alternative text to insert
+#' @param appendix_breaks The first figure number in the 'main' figures list in the given appendix.
+#' Appendices names are the vector element names, and the same as in the document. The easiest way to
+#' figure out these numbers is to build the full document with alternative text on and `appendix_breaks`
+#' set to NULL, then go through the document and match the text with the tooltips, and record the
+#' first figure number for each appendix in this vector. Use `NA` for appendices which have no
+#' figures in them or don't include them at all
 #' @param debug Show the matching `includegraphics` lines from the `tex_file` and their
 #' line numbers and the `alt_fig_text` data frame for comparison
 #'
@@ -11,7 +17,20 @@
 #' @export
 add_alt_text <- function(tex_file = "hake-assessment.tex",
                          alt_fig_text,
+                         executive_summary_line_cutoff = 4000,
+                         appendix_breaks = c(A = 66, B = 72, C = 80,
+                                             G = 82, H = 96),
                          debug = TRUE){
+
+  if(!is.null(appendix_breaks)){
+    if(is.null(names(appendix_breaks))){
+      stop("appendix_breaks must have names representing the appendices which it represents")
+    }
+    if(!all(names(appendix_breaks) %in% toupper(letters))){
+      stop("appendix_breaks must be a named vector with the names being uppercase appendix letters")
+    }
+  }
+  appendix_breaks <- appendix_breaks[!is.na(appendix_breaks)]
 
   # The match for knitr chunk figures looks like \\includegraphics[width=\\maxwidth]{Filename-1}
   # Some chunks may have more than one plot in them, in those cases only the first plot will
@@ -55,12 +74,32 @@ add_alt_text <- function(tex_file = "hake-assessment.tex",
   }
   # Figures before line 4000 in the TEX file are assumed to be in the executive summary
   # After 4000 are grouped together
-  num_exec_summary_figs <- length(g_all[g_all < 4000])
+  num_exec_summary_figs <- length(g_all[g_all < executive_summary_line_cutoff])
   exec_summary_figs <- paste("Figure", letters[seq_len(num_exec_summary_figs)])
-  num_figure_section_figs <- length(g_all[g_all >= 4000])
-  # Assumes the Executive summary is always present. The rest can be missing though.
+  num_figure_section_figs <- length(g_all[g_all >= executive_summary_line_cutoff])
+  # Assumes the Executive summary is always present. The rest can be missing
   if(num_figure_section_figs){
-    figure_section_figs <- paste("Figure", seq_len(num_figure_section_figs))
+    if(is.null(appendix_breaks)){
+      figure_section_figs <- paste("Figure", seq_len(num_figure_section_figs))
+    }else{
+      figure_section_figs <- NULL
+      # Main figures section
+      max_main_figs <- min(appendix_breaks) - 1
+      figure_section_figs[1:max_main_figs] <- paste("Figure", 1:max_main_figs)
+      # Appendix figures
+      br <- c(appendix_breaks, num_figure_section_figs)
+      names(br)[length(br)] <- names(br)[length(br) - 1]
+      br <- enframe(br) %>%
+        complete(value = min(value):max(value)) %>%
+        fill(everything()) %>%
+        group_by(name) %>%
+        mutate(fig_num = 1:n()) %>%
+        ungroup
+      app_figs <- pmap(br, ~{
+        paste0("Figure ", ..2, ".", ..3)
+      }) %>% map_chr(~{.x})
+      figure_section_figs <- c(figure_section_figs, app_figs)
+    }
     figure_summary <- enframe(c(exec_summary_figs, figure_section_figs), name = NULL) %>%
       bind_cols(alt_fig_text) %>%
       select(value, text) %>%
