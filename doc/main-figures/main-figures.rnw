@@ -624,11 +624,11 @@ make.selex.uncertainty.lines.plot(base.model,
 par <- oldpar
 @
 \end{center}
-\caption{Estimated biomass index (top -- for all years)
-  and fishery selectivities (bottom -- for \Sexpr{end.yr-1} only)
+\caption{Estimated selectivities for the biomass index (top -- for all years)
+  and fishery (bottom -- for \Sexpr{end.yr-1} only)
   from the posterior distribution for the base model.
   Selectivity for the biomass index is 0 at age-1 and
-  1 from age-6 onwards.
+  constant from age-6 onwards.
 }
 \label{fig:main-tv-selex-uncertainty-lines}
 \end{figure}
