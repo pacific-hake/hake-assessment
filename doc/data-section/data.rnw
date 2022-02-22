@@ -261,7 +261,7 @@ particularly problematic for \fishname, and it has never been used as a tuning
 index for the assessment of this stock. There are many reasons that fishery CPUE
 would not index the abundance of \fishname, which are discussed in the 2013
 stock assessment \citep{JTC2013}.
-\enlargethispage{\baselineskip}
+% \enlargethispage{\baselineskip}
 
 \subsection{Fishery-independent data}\label{sec:data-fishery-independent}
 
