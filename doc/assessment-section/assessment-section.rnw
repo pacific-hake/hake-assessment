@@ -144,7 +144,9 @@ and zero for all other ages.
 Prior probability distributions are used for a select few parameters
 and fixed values are used for several parameters. For the base model, the
 instantaneous rate of natural mortality ($M$) is estimated with a
-\Sexpr{m.prior[1]} prior having a median of \Sexpr{m.prior[2]} and a standard
+\Sexpr{m.prior[1]} prior having a median of
+\Sexpr{f(exp(as.numeric(m.prior[2])), 2)}
+and a standard
 deviation (in log-space) of 0.1 (see
 Section~\ref{sec:data-natural-mortality}). The stock-recruitment function is a
 Beverton-Holt parameterization, with the log of the mean unexploited recruitment
