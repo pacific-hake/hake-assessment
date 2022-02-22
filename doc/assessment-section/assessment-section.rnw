@@ -99,7 +99,7 @@ that aim for a sustainable coast-wide fishery.
 
 The \Sexpr{assess.yr} base model has the same population dynamics structure
 as the \Sexpr{last.assess.yr} stock assessment.
-See Appendices~\ref{chap:data-file}-\ref{chap:weight-at-age-file} for input files.
+% See Appendices~\ref{chap:data-file}-\ref{chap:weight-at-age-file} for input files.
 The statistical-catch-at-age model assumes that the
 \fishname\ population is a single coast-wide stock subject to
 one aggregated fleet with combined male and female population dynamics.
