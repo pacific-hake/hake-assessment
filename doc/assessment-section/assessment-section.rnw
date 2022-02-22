@@ -1889,7 +1889,7 @@ and compared them to estimates from this assessment.
 Each assessment correctly predicted whether the stock would increase or
 decrease the following year,
 except for 2018 (Figure~\ref{fig:main-historical-1}).
-Also, for all years (except 2018 and 2021) estimates from the historical assessments 
+Also, for all years (except 2018 and 2021) estimates from the historical assessments
 are closer to 50\% than those from the current base
 model. Such behavior is desirable and sensible. These probabilities
 are for binary events that either happen or do not happen.
@@ -1916,7 +1916,7 @@ the current base model than results from the 2012 assessment
 (Figure~\ref{fig:main-historical-1}).
 
 Interestingly, in the last assessment (Figure~B.3.1 of \citealt{JTC2021})
-the P$(B_{2019} < B_{2018}) was above
+the P$(B_{2019} < B_{2018})$ was above
 the 50\% line and agreed with the 2018
 assessment calculation. The differing results to the current
 base model may be because there is no
