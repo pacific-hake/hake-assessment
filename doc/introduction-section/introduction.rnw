@@ -48,7 +48,7 @@ implemented using version \Sexpr{ss.version} of the Stock Synthesis software
 \citep{MethotWetzel2013},
 are largely the same as the
 \Sexpr{last.assess.yr} base model \citep{JTC2020}.  The exception is that the
-\Sexpr{assess.yr} base model includes the age-1 index.
+\Sexpr{assess.yr} base model includes an age-1 index from the acoustic survey.
 The Bayesian estimation continues to be computed using a new efficient approach
 that was successfully tested in 2020 assessment
 \citep{JTC2020}. For the first time, all model runs reported in this stock
@@ -114,9 +114,9 @@ Humboldt Squid and suggested hake abundance decreased with increasing squid abun
 \citep{StewartHazenEtAl2014} and has evaluated hake distribution, recruitment,
 and growth patterns in relation to oceanographic conditions for assessment and
 management \citep{ResslerHolmesEtAl2007, HamelEtAl2015, MalickHunsickerEtAl2020,
-MalickSiedleckiEtAl2020}.  The 2015 \fishname\
+MalickSiedleckiEtAl2020}. The 2015 \fishname\
 stock assessment document presented a sensitivity analysis where the mortality
-of \fishname\ was linked to the Humboldt Squid index \citep{JTC2015}; but
+of \fishname\ was linked to the Humboldt Squid index \citep{JTC2015}, but
 further research on this topic is still needed.
 Ongoing research investigating abiotic (environmental conditions) and biotic
 (e.g., euphausiid distribution and abundance) drivers of the distribution,
@@ -145,14 +145,14 @@ countries historically collaborated through the Technical Subcommittee of the
 Canada-U.S. Groundfish Committee (TSC), and there were informal agreements on
 the adoption of annual fishing policies. During the 1990s, however,
 disagreements between the U.S. and Canada on the allotment of the catch limits
-between U.S. and Canadian fisheries led to quota overruns; 1991-1992 national
-quotas summed to \Sexpr{tot.9192.attainment}\% of the coast-wide limit, while the 1993-1999 combined
+between U.S. and Canadian fisheries led to quota overruns; the 1991--1992 national
+quotas summed to \Sexpr{tot.9192.attainment}\% of the coast-wide limit, while the 1993--1999 combined
 quotas were an average of \Sexpr{tot.9399.attainment}\% of the limit. The Agreement between the U.S. and
 Canada establishes U.S. and Canadian shares of the coast-wide total allowable
  catch (TAC) at \Sexpr{us.allotment.percent}\% and
 \Sexpr{can.allotment.percent}\%, respectively, and this distribution has been
 adhered to since 2005. However, a bilateral
-agreement on the coast-wide TAC could not be reached in 2020 or 2021, and thus, catch targets were set unilaterally
+agreement on the coast-wide TAC could not be reached in 2020 or 2021, and so catch targets were set unilaterally
 during these years for the first time since the inception of the Agreement.
 
 Throughout the last decade, the total coast-wide catch has tracked harvest
@@ -165,7 +165,7 @@ relative spawning biomass of 40\% to zero catch at relative spawning
 biomass values of 10\% or less (called the default harvest policy in the
 Agreement); relative spawning biomass is the female spawning biomass divided by
 that at unfished
-equilibrium. Further considerations have often resulted in catch targets being
+equilibrium. Further considerations have almost always resulted in catch targets being
 set lower than the recommended catch limit.
 % Manual done 2020 KFJ
 In the last decade, total catch has
@@ -236,11 +236,11 @@ The last year a Joint-Venture fishery was conducted was in \Sexpr{latest.year.ca
 In \Sexpr{last.data.yr}, all Canadian \fishname\ trips were subject to 100\%
 observer coverage, by electronic monitoring for the shoreside component
 of the domestic fishery or on-board observer for the freezer-trawler
-component. However, due to the staffing issues, there were no observers available to
-board freezer trawler vessels for the entirety of the fishing season. All
+component. However, due to staffing issues, there were no observers available to
+board freezer-trawler vessels for the entirety of the fishing season. All
 shoreside landings are usually subject to 100\% verification by the groundfish
-Dockside Monitoring Program (DMP) because of staffing
-issues only four samples were taken.
+Dockside Monitoring Program, but because of staffing
+issues only four samples were taken in 2021.
 
 Retention of all catch,
 with the exception of prohibited species, was mandatory. The retention of
@@ -272,13 +272,13 @@ to Ukraine, China,  Lithuania, and South Africa \citep{DFO2021}.
 
 In the US, over US\$80~million in wages is estimated to have been paid to employees in 2019
 % (\href{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}
-(https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/).
+\href{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}{(www.noaa.gov)}.
 This includes wages paid to crew and captains fishing on catcher vessels that deliver shoreside
 and at-sea to motherships, workers in shore-based processing facilities, crew, captains, and workers
 on catcher-processor vessels, and workers on mothership vessels. The exported value of \fishname\ was
 US\$151~million in 2019, including to Ukraine, Nigeria, and Netherlands, which make up about 54\% of the total
 % (\href{https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321:::::}
-(https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321).
+\href{https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321}{(www.noaa.gov)}.
 The total economic impact of the \fishname\ fishery on the U.S. West Coast in 2019 was
 US\$311~million in income and 4,200 jobs.
 
@@ -356,7 +356,7 @@ caught.  For further details and specific impacts related to the COVID-19 pandem
 see the report from the U.S. Advisory Panel
 (Appendix~\ref{chap:us-fishery-report}).
 
-In both U.S. at-sea sectors, age-5 and age-7, associated with the 2016 and 2014 year classes,
+In both U.S. at-sea sectors, age-5 and age-7 fish, associated with the 2016 and 2014 year classes,
 were the most common ages.
 Age-2 fish were again not seen in appreciable numbers in the catch this year.
 Age sampling was conducted on \Sexpr{us.age.n.cp} catcher-processor hauls and \Sexpr{us.age.n.ms}
@@ -395,7 +395,7 @@ The U.S. utilization rate
 it has been in recent years because of high catch rates
 (see Appendix~\ref{chap:us-fishery-report} for more details).
 
-\newpage % kludge to avoid dangling heading:
+% \newpage % kludge to avoid dangling heading:
 
 \subsubsub{Canada}
 
@@ -440,8 +440,8 @@ Although there were four samples taken from the shoreside fleet, only one sample
 for this year's assessment.
 
 The most abundant year classes in the
-Canadian shoreside catch were age \Sexpr{max.shoreside.age.prop.age} at
-\Sexpr{max.shoreside.age.prop}\%, age \Sexpr{second.shoreside.age.prop.age} at
-\Sexpr{second.shoreside.age.prop}\%, age \Sexpr{third.shoreside.age.prop.age} at
-\Sexpr{third.shoreside.age.prop}\%, and age
-\Sexpr{fourth.shoreside.age.prop.age} at \Sexpr{fourth.shoreside.age.prop}\%.
+Canadian shoreside catch were age-\Sexpr{max.shoreside.age.prop.age} at
+\Sexpr{max.shoreside.age.prop}\%, age-\Sexpr{second.shoreside.age.prop.age} at
+\Sexpr{second.shoreside.age.prop}\%, age-\Sexpr{third.shoreside.age.prop.age} at
+\Sexpr{third.shoreside.age.prop}\%, and age-\Sexpr{fourth.shoreside.age.prop.age}
+at \Sexpr{fourth.shoreside.age.prop}\%.
