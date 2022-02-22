@@ -407,23 +407,20 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
-
 \rfoot{Appendix~\ref{chap:age1-survey} -- Age-1 survey sensitivity}
 <<appendices-age1-survey, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
 @
-
-% \rfoot{Appendix~\ref{chap:rwmh} -- rwMH MCMC run}
-% <<appendices-rwmh, child='appendix-rwmh/appendix-rwmh.rnw'>>=
-% @
-
 
 \rfoot{Appendix~\ref{chap:rec-plot} -- Recruitment plots}
 <<appendices-rec-plot, child='appendix-rec-plot/appendix-rec-plot.rnw'>>=
 @
 
-\rfoot{Appendix~\ref{chap:add-forecast} -- Additional forecast catch levels}
-<<appendix-add-forecast, child='appendix-add-forecast/appendix-add-forecast.rnw'>>=
-@
+% Can include these listings for the draft if we want to but keep them commented out for
+% the final submission. There are over 630 unannotated tags created by this appendix
+% listing so we fix the issue by just not listing them in the final version.
+%\rfoot{Appendix~\ref{chap:add-forecast} -- Additional forecast catch levels}
+%<<appendix-add-forecast, child='appendix-add-forecast/appendix-add-forecast.rnw'>>=
+%@
 
 % Putting the base model results into a temporary appendix to easily compare
 %  the figures and tables to previous two appendices:
