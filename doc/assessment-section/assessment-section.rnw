@@ -694,6 +694,8 @@ median relative spawning stock biomass from
 \Sexpr{round(median(bridge.models.2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
 \Sexpr{round(median(base.model$mcmc$Bratio_2022),3)*100}\%.
 
+\newpage
+
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
 
 \subsubsub{Model Fit}
