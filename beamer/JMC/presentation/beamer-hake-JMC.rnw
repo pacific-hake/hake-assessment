@@ -509,13 +509,13 @@ par <- oldpar
 }
 
 %----------------------------------------------------------
-\section{Forecasts}
-\subsection{Two year forecasts}
-\frame{\frametitle{Harvest rule predicted catch for \Sexpr{assess.yr}}
+\section{Projections}
+\subsection{Three-year forecasts}
+\frame{\frametitle{Harvest-rule predicted catch for \Sexpr{assess.yr}}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median forecasted \Sexpr{end.yr} TAC is
+      \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median projected \Sexpr{end.yr} TAC is
       \smallskip
       \bc {\bf \Sexpr{catch.limit.quantiles["median"]} t} \ec
       \smallskip
@@ -525,7 +525,7 @@ par <- oldpar
   \end{column}
   \begin{column}{0.65\textwidth}
     <<main.projected.catch.density, out.width='.99\\columnwidth'>>=
-      make.forecast.catch.posterior.plot(base.model, fore.yr = end.yr, xmax=2000)
+      make.forecast.catch.posterior.plot(base.model, fore.yr = end.yr, xmax=2500)
       @
   \end{column}
 \end{columns}
@@ -646,7 +646,7 @@ decision_table(base.model,
 decision_table(base.model,
                xcaption = NULL,
                font.size = 8,
-               space.size = 10,
+               space.size = 9,
                type = "biomass",
                forecast_inds = c(2, 3, 4, 7, 9, 11))
 @
