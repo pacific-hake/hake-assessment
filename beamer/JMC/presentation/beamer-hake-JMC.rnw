@@ -992,7 +992,7 @@ Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section[Ages]{Ages}
+\section[Extra slides]{Extra slides}
 \frame{\frametitle{Removal of data sources used in the base model}
 %\begin{columns}
 %  \begin{column}{0.25\textwidth}
@@ -1027,7 +1027,7 @@ Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Historical performance}
+% \section{Historical performance}
 \subsection{}
 \frame{\frametitle{Historical performance of the Pacific Hake stock assessment}
   \bi
