@@ -6,6 +6,10 @@
 \mode<presentation>
 \usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
+% Command line building in R (obviously repeat the latex step if running fresh):
+% knitr::knit("beamer-hake-JMC.rnw")
+% shell("latex beamer-hake-JMC"); shell("dvips beamer-hake-JMC");  shell("ps2pdf beamer-hake-JMC.ps")
+
 
 %\usefonttheme{serif}
 % font themes: default, professionalfonts, serif, structurebold, structureitalicserif, structuresmallcapsserif
@@ -701,7 +705,9 @@ Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
            \item the 2021 catch of 325,000~t is 64\%
            \item the 2021 TAC of 473,880~t is 79\%
          \ei
-  But large uncertainty, e.g., 5\% chance that 430,000~t is $>$100\% in 2022.
+  But large uncertainty,
+  with upper end of credible interval reaching $>$100\%
+  in most cases shown here.
   \end{column}
   \begin{column}{0.65\textwidth}
   <<decisions.spr.table, results='asis', echo=FALSE>>=
@@ -911,13 +917,17 @@ Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
     \item Projections strongly influenced by size of above-average 2014 and 2016
       cohorts, 2017 still looks to be average, 2018 and 2019 small, and
       2020 large (but still highly uncertain).
-    \item There is $<50\%$ chance that spawning biomass will decline from
+    \item Spawning biomass will likely increase from
+      % There is $<50\%$ chance that spawning biomass will decline from
       \Sexpr{assess.yr} to \Sexpr{assess.yr+1} for any catch $\leq 473,880$~t.
-    \item But $>50\%$ chance that spawning biomass will decline from
-      \Sexpr{assess.yr+1} to \Sexpr{assess.yr+2} for any catch stream evaluated $>0$~t.
+      Driven by expected growth of the large 2020 cohort.
+    \item But then likely decline from
+      % $>50\%$ chance that spawning biomass will decline from
+      \Sexpr{assess.yr+1} to \Sexpr{assess.yr+2} for any catch evaluated $>0$~t.
     \item Maintaining a constant catch of 473,880~t (the 2021 TAC) gives a 11\%
       chance of falling below $B_{40\%}$ in 1 year (21\% in 2 years' time).
     \item Overall, we estimate probabilities of future events, and analyses
+      of past projections
       give some idea of the confidence we can have in those probabilities.
   \ei
 }
@@ -930,11 +940,12 @@ Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
   \item Low proportion of young fish (ages 1--3) in 2021 fishery
   \item Above average 2014 and 2016 cohort biomass: mortality outpacing growth (36\% and 34\%
     decline, respectively, from beginning of 2021)
-  \item Spawning stock biomass relatively high (65\% of $B_0$), but steady decline over recent years:
+  \item Median spawning stock biomass relatively high (65\% of $B_0$), but
+    steady recent year-upon-year declines:
     \bi
-      \item SSB(2019) to SSB(2020): -9\%
-      \item SSB(2020) to SSB(2021): -12\%
-      \item SSB(2021) to SSB(2022): -13\%
+      \item $B_{2019}$ to $B_{2020}$: -9\%
+      \item $B_{2020}$ to $B_{2021}$: -12\%
+      \item $B_{2021}$ to $B_{2022}$: -13\%
     \ei
   \item The 2020 year class currently estimated to be above average
   \item The model estimates a \Sexpr{joint.percent.prob.above.below}\%
@@ -951,10 +962,12 @@ Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
     \bi
     \item Timeline was very tight this year
     \item JTC being asked to do more with less
-    \item Technology helping, but bottlenecks remain
-    \item Given 18 business 'working' days this year (data deadline to draft assessment due date)
+    \item Technology `helping', but bottlenecks remain
+    \item Only 18 business `working' days this year (data deadline to
+      due date of draft assessment)
     \item Required 24/7 work schedules to complete on time
     \item Extremely taxing on analysts (not sustainable)
+    \item Not obvious beforehand what will suck up the time.
   \ei
   \end{column}
   \begin{column}{0.5\textwidth}
