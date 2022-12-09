@@ -91,15 +91,15 @@ run_adnuts <- function(path,
   # Then run parallel RWM chains as a first test to ensure
   # mcmc itself is working properly, or that model is converging in mcmc space
   # Start chains from MLE
+  thin <- 10
   pilot <- sample_rwm(model = exe,
-                      iter = iter,
-                      thin = 10,
+                      iter = 100 * thin,
+                      thin = thin,
                       seeds = seeds,
                       init = NULL,
-                      chains = 100 * 10, # 100 * thin
-                      warmup = (100 * 10) / 4,  # chains / 4
-                      path = pth,
-                      cores = reps)
+                      chains = 100 * thin,
+                      warmup = 100 * thin / 4,
+                      path = path)
   if(check_issues){
     # Check convergence and slow mixing parameters
     save(list = ls(all.names = TRUE), file = rdata_file, envir = environment())
@@ -135,18 +135,16 @@ run_adnuts <- function(path,
   # Run ADNUTS MCMC
   # Use default MLE covariance (mass matrix) and short parallel NUTS chains
   # started from the MLE. Recall iter is number per core running in parallel.
-  nuts_mle <- sample_admb(model = exe,
+  # `nuts::sample_admb()` is deprecated and replaced with `nuts::sample_nuts()`
+  nuts_mle <- sample_nuts(model = exe,
                           path = mcmc_path,
-                          algorithm = "NUTS",
                           iter = 500,
-                          init = NULL,
                           seeds = seeds,
                           parallel = parallel,
                           chains = chains,
                           warmup = 100,
                           control = list(metric = "mle",
-                                         adapt_delta = adapt_delta),
-                          hess_step = hess_step)
+                                         adapt_delta = adapt_delta))
   # Check for issues like slow mixing, divergences, max tree depths with
   # ShinyStan and pairs_admb as above. Fix using the shiny app and rerun this part as needed.
   if(check_issues){
@@ -161,9 +159,8 @@ run_adnuts <- function(path,
   inits <- sample_inits(nuts_mle, chains)
   iterations <- ceiling(((chains * warmup_final) + n_final) / chains)
   # The following, nuts_updated, is used for inferences
-  nuts_updated <- sample_admb(model = exe,
+  nuts_updated <- sample_nuts(model = exe,
                               path = mcmc_path,
-                              algorithm = "NUTS",
                               iter = iterations,
                               init = inits,
                               seeds = seeds,
@@ -172,8 +169,7 @@ run_adnuts <- function(path,
                               warmup = warmup_final,
                               mceval = TRUE,
                               control = list(metric = mass,
-                                             adapt_delta = adapt_delta),
-                              hess_step = hess_step)
+                                             adapt_delta = adapt_delta))
 
   save(list = ls(all.names = TRUE), file = rdata_file, envir = environment())
   system_(paste0("cd ", mcmc_path, " && ", exe, " -mceval"))
