@@ -1,0 +1,35 @@
+`r yr <- YEAR`
+`r version <- "01"`
+# Pacific hake `r yr` Version `r version` Request models
+
+```{r paste("dirs-", yr, "-version-", version, "-sensitivity-models"), echo = FALSE}
+links <- c("https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L298",
+           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L298",
+           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L298")
+
+df <- tibble(`Model Name` = c("2022.01.200_inputnsmall",
+                              "2022.01.201_inputnlarge",
+                              "2022.01.202_inputnlargee"),
+             `Last changed by` = c("Kelli",
+                                   "Kelli",
+                                   "Kelli"),
+             `Last changed date` = c("2022-02-19",
+                                     "2022-02-19",
+                                     "2022-02-19"),
+             Description = c("Fix survey DM weighting parameter (theta) and multiply input sample size by 0.2",
+                             "Fix survey DM weighting parameter (theta) and multiply input sample size by 2",
+                             "Estimate survey DM weighting parameter (theta) and multiply input sample size by 2"),
+             `Code link` = c("link to loading code",
+                             "link to loading code",
+                             "link to loading code")) %>%
+  mutate(`Code link` = cell_spec(`Code link`, "html", link = links))
+
+kbl(df, format = "html", escape = FALSE) |> 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                font_size = 16) |> 
+  column_spec(1, width = "20em") |> 
+  column_spec(2, width = "15em") |> 
+  column_spec(3, width = "15em") |> 
+  column_spec(4, width = "30em") |> 
+  column_spec(5, width = "20em")
+```

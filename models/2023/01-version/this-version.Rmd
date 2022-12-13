@@ -1,0 +1,63 @@
+`r yr <- 2023`
+`r version <- "01"`
+# Models directory for `r yr`, version `r version`
+
+This directory contains all the **version `r version`** models run for the **`r yr`** stock assessment.
+
+```{r paste("dirs-", yr, "-version-", version), echo = FALSE, message = FALSE, results = "asis"}
+library(purrr)
+library(tibble)
+library(data.tree)
+library(plyr)
+
+drs <- list.dirs(recursive = FALSE)
+drs_nice <- gsub("\\.\\/", "", drs)
+
+walk2(drs, drs_nice, ~{
+  x <- file.path(.x, "details.html")
+  cat(paste0("[Click to enter **", .y, "** directory]("), x, ")\n\n")
+})
+```
+
+```{r paste("tree-dirs-", yr, "-version-", version), echo = FALSE}
+path <- list.dirs(here::here("models",
+                             yr,
+                             paste0(version, "-version")),
+                  recursive = TRUE,
+                  full.names = FALSE)
+path <- path[path != ""]
+# Extract unique root dirs
+root_inds <- grep("^[-a-zA-Z0-9_]+$", path)
+if(!length(root_inds)){
+  vecs <- NULL
+}else if(length(root_inds) == 1){
+  # There's only one subdirectory
+  vecs <- list(path)
+}else{
+  vecs <- split_at(path, root_inds)
+}
+
+# Create a list element for each root dir
+lst <- map(vecs, ~{
+  df <- map(strsplit(.x, "/"), ~{
+    as_tibble(t(.x)) |> 
+      rbind.fill()
+  }) |> 
+    map_df(~{.x})
+  df$pathString <- apply(df, 1, function(x) paste(trimws(na.omit(x)), collapse = "/"))
+  as.Node(df)
+}) |> 
+  setNames(path[root_inds])
+
+# Print them out
+map(lst, ~{
+  .x  
+})
+```
+
+```{r paste0("rmarkdown-chunk-", yr, "-version-", version), echo = FALSE, message = FALSE, results = "hide"}
+rmarkdown::render("01-base-models/details.Rmd")
+rmarkdown::render("02-bridging-models/details.Rmd")
+rmarkdown::render("03-sensitivity-models/details.Rmd")
+rmarkdown::render("04-request-models/details.Rmd")
+```

@@ -1,0 +1,23 @@
+`r yr <- 2023`
+`r version <- "01"`
+# Pacific hake `r yr` Version `r version` Request models
+
+```{r paste("dirs-", yr, "-version-", version, "-sensitivity-models"), echo = FALSE}
+links <- "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L298"
+
+df <- tibble(`Model Name` = c("01-request-01-remove-age-1-index"),
+             `Last changed by` = c("Chris"),
+             `Last changed date` = c("2022-12-13"),
+             Description = c("Remove the age-1 index from the base model"),
+             `Code link` = c("link to loading code")) %>%
+  mutate(`Code link` = cell_spec(`Code link`, "html", link = links))
+
+kbl(df, format = "html", escape = FALSE) |> 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                font_size = 16) |> 
+  column_spec(1, width = "20em") |> 
+  column_spec(2, width = "15em") |> 
+  column_spec(3, width = "15em") |> 
+  column_spec(4, width = "30em") |> 
+  column_spec(5, width = "20em")
+```

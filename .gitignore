@@ -48,8 +48,7 @@ extra-models*
 aws/key_pair
 knitr-cache*
 knitr-figs*
-models*
-models-dev*
+models-*
 out-csv*
 papers*
 references*

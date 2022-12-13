@@ -1,0 +1,78 @@
+---
+title: Models for Pacific hake stock assessment
+author: Pacific hake JTC
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+## {.tabset .tabset-pills}
+
+```{r dirs, echo = FALSE, message = FALSE, results = "asis"}
+library(kableExtra)
+library(purrr)
+library(tibble)
+library(data.tree)
+library(plyr)
+
+drs <- list.dirs(recursive = FALSE)
+drs_nice <- gsub("\\.\\/", "", drs)
+
+walk2(drs, drs_nice, ~{
+  x <- file.path(.x, "this-year.html")
+  cat(paste0("[Click to enter **", .y, "** directory]("), x, ")\n\n")
+})
+
+```
+
+
+```{r tree, echo = FALSE}
+split_at <- function(x, pos){
+  # Split vector up at indices in vector `pos`
+  # Example:
+  # a <- c(1, 2, 2, 3)
+  # split_at(a, c(2, 4))
+  # [[1]]
+  # [1] 1
+  # 
+  # [[2]]
+  # [1] 2 2
+  # 
+  # [[3]]
+  # [1] 3
+  unname(split(x, cumsum(seq_along(x) %in% pos))) 
+}
+path <- list.dirs(here::here("models"), recursive = TRUE, full.names = FALSE)
+path <- path[path != ""]
+# Extract unique root dirs
+root_inds <- grep("^[-a-zA-Z0-9_]+$", path)
+if(!length(root_inds)){
+  vecs <- NULL
+}else if(length(root_inds) == 1){
+  # There's only one subdirectory
+  vecs <- list(path)
+}else{
+  vecs <- split_at(path, root_inds)
+}
+
+# Create a list element for each root dir
+lst <- map(vecs, ~{
+  df <- map(strsplit(.x, "/"), ~{
+    as_tibble(t(.x)) |> 
+      rbind.fill()
+  }) |> 
+    map_df(~{.x})
+  df$pathString <- apply(df, 1, function(x) paste(trimws(na.omit(x)), collapse = "/"))
+  as.Node(df)
+}) |> 
+  setNames(path[root_inds])
+
+# Print them out
+map(lst, ~{
+  .x  
+})
+```
+
+```{r rmarkdown-chunk, echo = FALSE, message = FALSE, results = "hide"}
+rmarkdown::render("2022/this-year.Rmd")
+rmarkdown::render("2023/this-year.Rmd")
+```

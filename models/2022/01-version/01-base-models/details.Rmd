@@ -1,0 +1,30 @@
+`r yr <- 2022`
+`r version <- "01"`
+# Pacific hake `r yr` Version `r version` Base models
+
+```{r paste("dirs-", yr, "-version-", version, "-base-models"), echo = FALSE}
+
+links <- c("https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L128",
+           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L107")
+df <- tibble(`Model Name` = c("2021.00.04_base_v1",
+                              "2022.01.10_base_v2"),
+             `Last changed by` = c("Chris",
+                                   "Chris"),
+             `Last changed date` = c("2022-01-08",
+                                     "2022-01-08"),
+             Description = c("Base model from 2021",
+                             "Base model for 2022"),
+             `Code link` = c("link to loading code",
+                             "link to loading code")) |> 
+  mutate(`Code link` = cell_spec(`Code link`, "html", link = links)) |> 
+  mutate(`Last changed date` = format(as.Date(`Last changed date`), "%d %B, %Y"))
+
+kbl(df, format = "html", escape = FALSE) |> 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                font_size = 16) |> 
+  column_spec(1, width = "20em") |> 
+  column_spec(2, width = "15em") |> 
+  column_spec(3, width = "15em") |> 
+  column_spec(4, width = "30em") |> 
+  column_spec(5, width = "20em")
+```
