@@ -1,23 +1,19 @@
 `r yr <- 2023`
 `r version <- "01"`
-# Pacific hake `r yr` Version `r version` Bridging models
+# Pacific hake `r yr` Version `r version` Test models
 
 This table contains all directories in this directory.
 
 If any red rows with **Uninitialized** in their cells are present, they exist in the directory but have not been described properly in the **details.Rmd** file.
 
-```{r paste("dirs-", yr, "-version-", version, "-bridge-models"), echo = FALSE}
+```{r paste("dirs-", yr, "-version-", version, "-test-models"), echo = FALSE}
 fmod <- function(fn){
   format(file.info(fn)$mtime, "%b %d, %Y")  
 }
 
 df <- tribble(
-  ~`Model Name`,        ~`Last changed by`, ~`Last changed date`,     ~`Description`, 
-  "01-new-ss-exe",      "Chris",            fmod("01-new-ss-exe"),    "Version 3.30.18-safe, commit a0f982, ADMB 12.3, commit 1376cb",
-  "02-new-catch-age",   "Chris",            fmod("02-new-catch-age"), "Update catch and age-composition data",
-  "03-update-survey",   "Chris",            fmod("03-update-survey"), "Update acoustic survey biomass and age-composition data from years prior to 2021",
-  "04-new-wt-at-age",   "Chris",            fmod("04-new-wt-at-age"), "Add the 2021 acoustic survey biomass and age-composition estimates",
-  "05-age-1-index",     "Chris",            fmod("05-age-1-index"),   "Add weight-at-age data for 2021 as well as update data for years prior")
+  ~`Model Name`,          ~`Last changed by`, ~`Last changed date`,         ~`Description`, 
+  "01-placeholder-model", "Chris",            fmod("01-placeholder-model"), "A placeholder for the first real test model")
 
 described_dirs <- df$`Model Name`
 real_dirs <- list.dirs(".")[-1]

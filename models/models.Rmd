@@ -2,7 +2,9 @@
 title: Models for Pacific hake stock assessment
 author: Pacific hake JTC
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: html_document
+output:
+  html_document:
+      css: style.css
 ---
 
 ## {.tabset .tabset-pills}

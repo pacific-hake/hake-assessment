@@ -2,113 +2,85 @@
 `r version <- "01"`
 # Pacific hake `r yr` Version `r version` Sensitivity models
 
+This table contains all directories in this directory.
+
+If any red rows with **Uninitialized** in their cells are present, they exist in the directory but have not been described properly in the **details.Rmd** file.
+
 ```{r paste("dirs-", yr, "-version-", version, "-sensitivity-models"), echo = FALSE}
-links <- c("https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L167",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L167",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L167",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L167",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L167",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L167",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L167",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L187",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L187",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L195",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L195",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L195",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L211",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L211",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L211",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L211")
+fmod <- function(fn){
+  format(file.info(fn)$mtime, "%b %d, %Y")  
+}
 
-df <- tibble(`Model Name` = c("01-h-prior-mean-low",
-                              "02-h-fix-high",
-                              "03-sigma-r-fix-low",
-                              "04-sigma-r-fix-high",
-                              "05-m-02-sd",
-                              "06-m-03-sd",
-                              "07-m-hamel-prior",
-                              "08-age-1-survey",
-                              "09-comp-weight-harmonic-mean",
-                              "10-tv-select-phi-extra-low",
-                              "11-tv-select-phi-low",
-                              "12-tv-select-phi-high",
-                              "13-max-sel-age-5",
-                              "14-max-sel-age-7",
-                              "15-max-sel-age-8",
-                              "16-zero-sum-constraint"),
-             `Last changed by` = c("Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris",
-                                   "Chris"),
-             `Last changed date` = c("2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13",
-                                     "2022-12-13"),
-             Description = c(
-               "Alternative lower value for the mean of the prior distribution for steepness",
-               "Fix steepness at 1.0",
-               "Fix sigma R at 1.0",
-               "Fix sigma R at 1.6",
-               "Increase prior SD on M to 0.2",
-               "Increase prior SD on M to 0.3",
-               "Use maximum age of 25; mean = -1.532; SD = 0.438. Not included in document in 2020 or 2021",
-               "Full suite of forecasts, catch levels, and retrospectives as this was used to create an appendix which is a full copy of the Executive Summary. Use SE for age-1 index of 0.5 for all points",
-               "Remove Dirichlet - use harmonic mean approach instead to weight comps",
-               "Reduce variance associated with t.v. selectivity",
-               "Reduce variance associated with t.v. selectivity",
-               "Increase variance associated with t.v. selectivity",
-               "Maximum age of fishery selectivity is 5 (not 6)",
-               "Maximum age of fishery selectivity is 7 (not 6)",
-               "Maximum age of fishery selectivity is 8 (not 6)",
-               "Remove zero-sum constraint for recruitment deviations parameters"),
-             `Code link` = c("link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code",
-                             "link to loading code")) %>%
-  mutate(`Code link` = cell_spec(`Code link`, "html", link = links))
+df <- tribble(
+  ~`Model Name`,                   ~`Last changed by`, ~`Last changed date`,                  ~`Description`, 
+  "01-h-prior-mean-low",           "Chris",            fmod("01-h-prior-mean-low"),           "Alternative lower value for the mean of the prior distribution for steepness",
+  "02-h-fix-high",                 "Chris",            fmod("02-h-fix-high"),                 "Fix steepness at 1.0",
+  "03-sigma-r-fix-low",            "Chris",            fmod("03-sigma-r-fix-low"),            "Fix sigma R at 1.0",
+  "04-sigma-r-fix-high",           "Chris",            fmod("04-sigma-r-fix-high"),           "Fix sigma R at 1.6",
+  "05-m-02-sd",                    "Chris",            fmod("05-m-02-sd"),                    "Increase prior SD on M to 0.2",
+  "06-m-03-sd",                    "Chris",            fmod("06-m-03-sd"),                    "Increase prior SD on M to 0.3",
+  "07-m-hamel-prior",              "Chris",            fmod("07-m-hamel-prior"),              "Use maximum age of 25; mean = -1.532; SD = 0.438. Not included in document in 2020 or 2021",
+  "08-age-1-survey",               "Chris",            fmod("08-age-1-survey"),               "Full suite of forecasts, catch levels, and retrospectives as this was used to create an appendix which is a full copy of the Executive Summary. Use SE for age-1 index of 0.5 for all points",
+  "09-comp-weight-harmonic-mean",  "Chris",            fmod("09-comp-weight-harmonic-mean"),  "Remove Dirichlet - use harmonic mean approach instead to weight comps",
+  "10-tv-select-phi-extra-low",    "Chris",            fmod("10-tv-select-phi-extra-low"),    "Reduce variance associated with t.v. selectivity",
+  "11-tv-select-phi-low",          "Chris",            fmod("11-tv-select-phi-low"),          "Reduce variance associated with t.v. selectivity",
+  "12-tv-select-phi-high",         "Chris",            fmod("12-tv-select-phi-high"),         "Increase variance associated with t.v. selectivity",
+  "13-max-sel-age-5",              "Chris",            fmod("13-max-sel-age-5"),              "Maximum age of fishery selectivity is 5 (not 6)",
+  "14-max-sel-age-7",              "Chris",            fmod("14-max-sel-age-7"),              "Maximum age of fishery selectivity is 7 (not 6)",
+  "15-max-sel-age-8",              "Chris",            fmod("15-max-sel-age-8"),              "Maximum age of fishery selectivity is 8 (not 6)",
+  "16-zero-sum-constraint",        "Chris",            fmod("16-zero-sum-constraint"),        "Remove zero-sum constraint for recruitment deviations parameters")
 
-kbl(df, format = "html", escape = FALSE) |> 
+described_dirs <- df$`Model Name`
+real_dirs <- list.dirs(".")[-1]
+real_dirs <- gsub("\\.\\/", "", real_dirs)
+
+extra_described_dirs <- described_dirs[!described_dirs %in% real_dirs]
+
+if(length(extra_described_dirs)){
+  stop("You have described directories that do not exist in ",
+       getwd(), ". The bad directories are:\n\n",
+       paste(extra_described_dirs, collapse = "\n"),
+       call. = FALSE)
+}
+
+extra_real_dirs <- real_dirs[!real_dirs %in% described_dirs]
+if(length(extra_real_dirs)){
+  walk(extra_real_dirs, ~{
+     df <<- df |>
+       add_row(`Model Name` = .x,
+               `Last changed by` = "Uninitialized",
+               `Last changed date` = "Uninitialized",
+               `Description` = "Uninitialized",
+               .after = TRUE)
+  })
+}
+
+k <- kbl(df, format = "html", escape = FALSE) |> 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-                font_size = 16) |> 
-  column_spec(1, width = "20em") |> 
-  column_spec(2, width = "15em") |> 
-  column_spec(3, width = "15em") |> 
-  column_spec(4, width = "30em") |> 
-  column_spec(5, width = "20em")
+                font_size = 16)
+
+walk(seq_along(df), ~{
+  if(.x == 1 || .x == ncol(df)){
+    k <<- k |> 
+      column_spec(.x, width = "60em")
+  }else{
+    k <<- k |> 
+      column_spec(.x, width = "30em")
+  }
+})
+
+if(length(grep("Uninit", df))){
+  # Find any Unitialized rows and color them
+  iter <- 1
+  pwalk(df, ~{
+    if(length(grep("Uninitialized", list(...)))){
+      k <<- k |> 
+        row_spec(iter, background = "red") |> 
+        row_spec(iter, color = "white")
+    }
+    iter <<- iter + 1
+  })  
+}
+
+k
 ```

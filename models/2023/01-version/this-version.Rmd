@@ -60,4 +60,6 @@ rmarkdown::render("01-base-models/details.Rmd")
 rmarkdown::render("02-bridging-models/details.Rmd")
 rmarkdown::render("03-sensitivity-models/details.Rmd")
 rmarkdown::render("04-request-models/details.Rmd")
+rmarkdown::render("05-test-models/details.Rmd")
 ```
+s
