@@ -18,6 +18,7 @@ library(dplyr)
 library(future)
 library(furrr)
 library(here)
+library(gfutilities)
 library(ggplot2)
 library(ggpubr)
 library(ggrepel)
@@ -50,10 +51,7 @@ library(tictoc)
 library(tidyverse)
 library(xtable)
 
-models_path <- Sys.getenv("MODELS_DIR")
-if(models_path == ""){
-  models_path <- "models"
-}
+# What kind of machine are we on
 
 rootd <- here::here()
 rootd.R <- file.path(rootd, "R")
@@ -63,8 +61,21 @@ rootd.map.data <- file.path(rootd.data, "map-data")
 rootd.data.prep <- file.path(rootd, "data-prep")
 rootd.doc <- file.path(rootd, "doc")
 rootd.extra.calcs <- file.path(rootd, "extra-calculations")
-rootd.models <- file.path(rootd, models_path)
 rootd.pres <- file.path(rootd, "beamer")
+
+os <- gfutilities::get_os()
+models_path <- Sys.getenv("MODELS_DIR")
+if(models_path == ""){
+  if(os == "linux"){
+    models_year <- 2022
+    rootd.models <- file.path("/srv", "hake", models_year)
+  }else{
+    models_path <- "models"
+    rootd.models <- file.path(rootd, models_path)
+  }
+}else{
+  rootd.models <- file.path(rootd, models_path)
+}
 
 catch_levels_path <- "catch-levels"
 default_hr_path <- "default-hr"
