@@ -2,7 +2,7 @@ maturity.ogive.figure <- function(model, useyears = 1975:(assess.yr - 1)){
 
   # maturity.samples is created by data-tables.r
   # which reads
-  # maturity.samples.file <- "hake-maturity-data.csv"
+  # maturity_samples_file <- "hake-maturity-data.csv"
   mat1 <- maturity.samples
   Amax <- 15 # plus group used in calculations below
 

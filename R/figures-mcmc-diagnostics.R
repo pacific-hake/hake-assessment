@@ -754,11 +754,11 @@ make.mcmc.depletion.plot <- function(model,         ## model is a model with an 
 ## adapting from make.mcmc.depletion.plot, and values for make.recruitment.plot
 ## Plot of MCMC samples of recruitment, to help for Issue #836.
 ## just running as:
-##   make.mcmc.recruitment.plot(base.model, start.yr = start.yr, equil.yr = unfished.eq.yr)
+##   make.mcmc.recruitment.plot(base.model, start.yr = start.yr, equil.yr = unfished_eq_yr)
 ## and manually saving .png.
-## make.mcmc.recruitment.plot(base.model, start.yr = 2006, equil.yr = unfished.eq.yr, samples = 100)
-## make.mcmc.recruitment.plot(base.model, start.yr = 2006, equil.yr = unfished.eq.yr, samples = 100, rescale = TRUE)
-## make.mcmc.recruitment.plot(base.model, start.yr = 1966, equil.yr = unfished.eq.yr, samples = NULL, rescale = TRUE, traceplot = FALSE)
+## make.mcmc.recruitment.plot(base.model, start.yr = 2006, equil.yr = unfished_eq_yr, samples = 100)
+## make.mcmc.recruitment.plot(base.model, start.yr = 2006, equil.yr = unfished_eq_yr, samples = 100, rescale = TRUE)
+## make.mcmc.recruitment.plot(base.model, start.yr = 1966, equil.yr = unfished_eq_yr, samples = NULL, rescale = TRUE, traceplot = FALSE)
 make.mcmc.recruitment.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
                                                     ##  r4ss package's function
                                                     ##  SSgetMCMC and has the extra.mcmc member

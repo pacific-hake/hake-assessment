@@ -6,7 +6,7 @@
 \begin{figure}[H]
 \begin{center}    % Don't make any bigger as then previous page becomes blank
 <<main-overview-map, fig.height=9, is.fig = TRUE, alt.text = "This figure shows many ports and cities of interest for the hake fishery">>=
-make.overview.map.plot(path = rootd.map.data)
+make.overview.map.plot(path = rootd_map_data)
 @
 \end{center}
 \caption{Overview map of the area in the Northeast Pacific Ocean occupied by \fishname.
@@ -700,7 +700,7 @@ make.recruitment.dev.plot(base.model,
 @
 \end{center}
 \caption{Medians (solid circles) of the posterior distribution for log-scale recruitment deviations with
-  95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit.dev.start.yr}--\Sexpr{start.yr-1}
+  95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit_dev_start_yr}--\Sexpr{start.yr-1}
   are used to calculate the numbers at age in \Sexpr{start.yr}, the initial year of the model.}
 \label{fig:main-recruitment-devs}
 \end{figure}

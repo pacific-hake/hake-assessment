@@ -197,7 +197,7 @@ make.historical.probs.plot(base.model,
   \bc
   <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.recruitment.plot(base.model,
-                          equil.yr = unfished.eq.yr,
+                          equil.yr = unfished_eq_yr,
                           start.yr = start.yr,
                           end.yr = end.yr,
                           color = "blue",

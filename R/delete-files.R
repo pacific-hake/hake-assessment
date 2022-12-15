@@ -5,7 +5,7 @@
 #'
 #' @return [base::invisible()]
 #' @export
-delete_rds_files <- function(models_dir = rootd.models,
+delete_rds_files <- function(models_dir = rootd_models,
                              dont_del = last.yr.base.model.dir.name){
 
   dirs <- dir(models_dir)
@@ -24,7 +24,7 @@ delete_rds_files <- function(models_dir = rootd.models,
 #'
 #' @return [base::invisible()]
 #' @export
-delete_dirs <- function(models_dir = rootd.models,
+delete_dirs <- function(models_dir = rootd_models,
                         sub_dir = NULL){
 
   dirs <- dir(models_dir)

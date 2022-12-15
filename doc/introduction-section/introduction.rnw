@@ -44,7 +44,7 @@ structural uncertainty with respect to the base model
 (Section~\ref{sec:assessment-sensitivity-analyses}).
 The structural assumptions
 of this \Sexpr{assess.yr} base model,
-implemented using version \Sexpr{ss.version} of the Stock Synthesis software
+implemented using version \Sexpr{ss_version} of the Stock Synthesis software
 \citep{MethotWetzel2013},
 are largely the same as the
 \Sexpr{last.assess.yr} base model \citep{JTC2020}.  The exception is that the

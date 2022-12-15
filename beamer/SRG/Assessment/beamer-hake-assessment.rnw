@@ -125,8 +125,8 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \begin{frame}
 \frametitle{Changes from \Sexpr{last.assess.yr} assessment}
   \bi
-    \item Update Stock Synthesis to version \Sexpr{ss.version}
-      compiled with ADMB \Sexpr{admb.version}
+    \item Update Stock Synthesis to version \Sexpr{ss_version}
+      compiled with ADMB \Sexpr{admb_version}
       %at Git commit \Sexpr{admb.commit} on \Sexpr{admb.commit.date}.
     \item  Update fishery catch and age composition data:
       \bi
@@ -900,7 +900,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   \bc
   <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.recruitment.plot(base.model,
-                          equil.yr = unfished.eq.yr,
+                          equil.yr = unfished_eq_yr,
                           start.yr = start.yr,
                           end.yr = end.yr,
                           color = "blue",
@@ -1009,7 +1009,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   \bc
   <<female.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.biomass.plot(base.model,
-                      equil.yr = unfished.eq.yr,
+                      equil.yr = unfished_eq_yr,
                       start.yr = start.yr,
                       end.yr = end.yr,
                       color = "blue")
@@ -1398,7 +1398,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 %    cohort_table(base.model,
 %             end_yr = end.yr,
 %             cohorts = c(1999, 2010, 2014, 2016),
-%             csv_dir = output.csv.dir,
+%             csv_dir = output_csv_dir,
 %             xcaption = paste0("Changes in biomass at each age"),
 %             font_size = 4.5,
 %             space_size = 4.5)

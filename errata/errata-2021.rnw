@@ -230,7 +230,7 @@ make.median.posterior.table(
   start.yr = start.yr,
   end.yr = end.yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-  csv.dir = output.csv.dir,
+  csv.dir = output_csv_dir,
   xcaption = paste0("Time series of median posterior population estimates from the base
                      model. Relative spawning biomass is spawning biomass relative to the
                      unfished equilibrium ($\\Bzero$). Total biomass includes females and males

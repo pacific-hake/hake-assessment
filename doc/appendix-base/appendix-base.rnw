@@ -13,7 +13,7 @@ Can then just flick back and forth between two open .pdf's.
 \begin{center}
 <<spawning-biomass-base-temp, fig.height=5, fig.width=8>>=
 make.biomass.plot(base.model,
-                  equil.yr = unfished.eq.yr,
+                  equil.yr = unfished_eq_yr,
                   start.yr = start.yr,
                   end.yr = end.yr,
                   color = "blue")
@@ -85,7 +85,7 @@ make.recruitment.table(base.model,
 \begin{center}
 <<recruitment-base-temp, fig.height=5, fig.width=8>>=
 make.recruitment.plot(base.model,
-                      equil.yr = unfished.eq.yr,
+                      equil.yr = unfished_eq_yr,
                       start.yr = start.yr,
                       end.yr = end.yr,
                       color = "blue",

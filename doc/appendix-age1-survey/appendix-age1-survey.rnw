@@ -123,7 +123,7 @@ par <- oldpar
 \begin{center}
 <<spawning-biomass-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been decreasing in size since 2019 for the model without the age-1 index">>=
 make.biomass.plot(sens.models.2[[1]],
-                  equil.yr = unfished.eq.yr,
+                  equil.yr = unfished_eq_yr,
                   start.yr = start.yr,
                   end.yr = end.yr,
                   color = "blue")
@@ -195,7 +195,7 @@ make.recruitment.table(sens.models.2[[1]],
 \begin{center}
 <<recruitment-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016 for the model without the age-1 index, with 2020 possibly large but highly uncertain">>=
 make.recruitment.plot(sens.models.2[[1]],
-                      equil.yr = unfished.eq.yr,
+                      equil.yr = unfished_eq_yr,
                       start.yr = start.yr,
                       end.yr = end.yr,
                       color = "blue",
@@ -528,7 +528,7 @@ atage_table(
   sens.models.2[[1]],
   table_type = 1,
   end_yr = end.yr,
-  csv_dir = output.csv.dir,
+  csv_dir = output_csv_dir,
   xcaption = paste0("Estimated numbers-at-age at the beginning ",
                     "of the year from the base model (posterior medians; million)."),
   xlabel = "tab:age1-est-numbers-at-age",

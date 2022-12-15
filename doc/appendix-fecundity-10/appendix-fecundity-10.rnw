@@ -17,7 +17,7 @@ the mean over the entire time series of data (see Section~\ref{sec:assessment-se
 \begin{center}
 <<spawning-biomass-fecundity, fig.height=5, fig.width=8>>=
 make.biomass.plot(sens.models.5[[3]],
-                  equil.yr = unfished.eq.yr,
+                  equil.yr = unfished_eq_yr,
                   start.yr = start.yr,
                   end.yr = end.yr,
                   color = "blue")
@@ -89,7 +89,7 @@ make.recruitment.table(sens.models.5[[3]],
 \begin{center}
 <<recruitment-fecundity, fig.height=5, fig.width=8>>=
 make.recruitment.plot(sens.models.5[[3]],
-                      equil.yr = unfished.eq.yr,
+                      equil.yr = unfished_eq_yr,
                       start.yr = start.yr,
                       end.yr = end.yr,
                       color = "blue",

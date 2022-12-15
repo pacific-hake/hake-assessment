@@ -501,7 +501,7 @@ par <- oldpar
 oldpar <- par()
 par(mar = c(20, 4.1, 0, 1))
 make.recruitment.plot(base.model,
-                      equil.yr = unfished.eq.yr,
+                      equil.yr = unfished_eq_yr,
                       start.yr = start.yr,
                       end.yr = end.yr,
                       color = "blue",
@@ -523,7 +523,7 @@ par <- oldpar
 oldpar <- par()
 par(mar = c(20, 4.1, 0, 1))
 make.recruitment.plot(sens.models.2[[1]],
-                      equil.yr = unfished.eq.yr,
+                      equil.yr = unfished_eq_yr,
                       start.yr = start.yr,
                       end.yr = end.yr,
                       color = "blue",

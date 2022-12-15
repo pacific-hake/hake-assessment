@@ -130,7 +130,7 @@ box()
 %\begin{center}
 %<<spawning-biomass-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 %make.biomass.plot(sens.models.6,
-%                  equil.yr = unfished.eq.yr,
+%                  equil.yr = unfished_eq_yr,
 %                  start.yr = start.yr,
 %                  end.yr = end.yr,
 %                  color = "blue")
@@ -202,7 +202,7 @@ box()
 %\begin{center}
 %<<recruitment-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 %make.recruitment.plot(sens.models.6,
-%                      equil.yr = unfished.eq.yr,
+%                      equil.yr = unfished_eq_yr,
 %                      start.yr = start.yr,
 %                      end.yr = end.yr,
 %                      color = "blue",

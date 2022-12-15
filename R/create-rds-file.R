@@ -46,7 +46,7 @@ build_rds <- function(model_dirs = model_list,
 #'
 #' @return [base::invisible()]
 #' @export
-create_rds_file <- function(model_dir = NULL, models_dir = rootd.models, ...){
+create_rds_file <- function(model_dir = NULL, models_dir = rootd_models, ...){
 
   stopifnot(!is.null(model_dir))
 

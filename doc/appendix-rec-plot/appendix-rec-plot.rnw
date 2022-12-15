@@ -12,7 +12,7 @@ recruitment variability in an intuitive way.
 \begin{center}
 <<recruitment-last-assessment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the estimated recruitments from last year's assessment">>=
 make.recruitment.plot(last.yr.base.model,
-                      equil.yr = unfished.eq.yr,
+                      equil.yr = unfished_eq_yr,
                       start.yr = start.yr,
                       end.yr = end.yr-1,
                       color = "blue",
@@ -110,7 +110,7 @@ recruitment estimates (Figure~\ref{fig:recruitment-last-asssessment}), up until
 <<recruitment-trace-recent, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the time series for 100 MCMC estimates of recruitment">>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
-                           equil.yr = unfished.eq.yr,
+                           equil.yr = unfished_eq_yr,
                            samples = 100,
                            end.yr = assess.yr + 2,
                            y.max = 50)
@@ -131,7 +131,7 @@ make.mcmc.recruitment.plot(base.model,
 <<recruitment-trace-recent-highlight, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure highlights the time series for 10 MCMC estimates of recruitment">>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
-                           equil.yr = unfished.eq.yr,
+                           equil.yr = unfished_eq_yr,
                            samples = 100,
                            end.yr = assess.yr + 2,
                            highlight.num = 7,
@@ -162,7 +162,7 @@ value.
 <<recruitment-trace-scale, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the time series for 100 MCMC estimates of recruitment rescaled by each sample's recruitment in 2010">>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
-                           equil.yr = unfished.eq.yr,
+                           equil.yr = unfished_eq_yr,
                            samples = 100,
                            rescale = TRUE,
                            end.yr = assess.yr + 2,
@@ -184,7 +184,7 @@ definitely not as large.
 <<recruitment-scale, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows recent distributions of recruitment estimates relative to those in 2010">>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 2006,
-                           equil.yr = unfished.eq.yr,
+                           equil.yr = unfished_eq_yr,
                            samples = NULL,
                            rescale = TRUE,
                            traceplot = FALSE,
@@ -203,7 +203,7 @@ make.mcmc.recruitment.plot(base.model,
 <<recruitment-scale-all, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows distributions of recruitment estimates relative to those in 2010 for all years">>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 1966,
-                           equil.yr = unfished.eq.yr,
+                           equil.yr = unfished_eq_yr,
                            samples = NULL,
                            rescale = TRUE,
                            traceplot = FALSE,

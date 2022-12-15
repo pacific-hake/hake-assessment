@@ -218,7 +218,7 @@ from last year)
   \bc
   <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.recruitment.plot(base.model,
-                          equil.yr = unfished.eq.yr,
+                          equil.yr = unfished_eq_yr,
                           start.yr = start.yr,
                           end.yr = end.yr,
                           color = "blue",
@@ -233,7 +233,7 @@ from last year)
   \bc
   <<female.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.biomass.plot(base.model,
-                      equil.yr = unfished.eq.yr,
+                      equil.yr = unfished_eq_yr,
                       start.yr = start.yr,
                       end.yr = end.yr,
                       color = "blue")
@@ -316,7 +316,7 @@ from last year)
 <<squid, fig.height=3.5>>=
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
-# plot.retro.yrs <- retro.yrs
+# plot_retro_yrs <- retro.yrs
 retro.cohorts <- (end.yr - 11):(end.yr - 2)
 make_squid_plot(base.model,
                 subplot = 1,
@@ -1111,7 +1111,7 @@ make.historical.probs.plot(base.model,
   \bc
   <<spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
   make.biomass.plot(base.model,
-                    equil.yr = unfished.eq.yr,
+                    equil.yr = unfished_eq_yr,
                     start.yr = start.yr,
                     end.yr = end.yr,
                     color = "blue")
@@ -1194,7 +1194,7 @@ Suggests other modelling changes over the years have helped performance.
 <<rec.variability, fig.height=3.8, fig.width=6, out.width='0.6\\columnwidth'>>=
 make.mcmc.recruitment.plot(base.model,
                            start.yr = 1966,
-                           equil.yr = unfished.eq.yr,
+                           equil.yr = unfished_eq_yr,
                            samples = NULL,
                            rescale = TRUE,
                            traceplot = FALSE,

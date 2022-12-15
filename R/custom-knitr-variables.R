@@ -418,7 +418,7 @@ exploitation.med.penult.yr <- f(mc$fmed[as.character(last.data.yr)], 2)
 
 # Priors settings from the control file ---------------------------------------
 param.details <- make.parameters.estimated.summary.table(base.model,
-                                                         start.rec.dev.yr = recruit.dev.start.yr,
+                                                         start.rec.dev.yr = recruit_dev_start_yr,
                                                          end.rec.dev.yr = end.yr - 1,
                                                          return.xtable = FALSE)
 m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals", ][4],
@@ -529,19 +529,19 @@ wt.at.age <- base.model$wtatage[, !grepl("comment", colnames(base.model$wtatage)
 
 # Retrospective setup for the document ----------------------------------------
 retro.model.names <- c(base.model.name,
-                       map_chr(plot.retro.yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))
+                       map_chr(plot_retro_yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))
 # Assemble the retrospective list with the base as the first element
 retro.list <- list(base.model)
-for(i in plot.retro.yrs){
+for(i in plot_retro_yrs){
   retro.list[[i + 1]] <- base.model$retros[[i]]
 }
 retro.list.age1 <- list(sens.models.2[[1]])
-for(i in plot.retro.yrs){
+for(i in plot_retro_yrs){
   retro.list.age1[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
 }
 # Adding the age-1 index for a sensitivity case -------------------------------
 retro.model.names.age1 <- c(sens.model.names.2[1],
-                            map_chr(plot.retro.yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))
+                            map_chr(plot_retro_yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))
 
 # Define number of 'recent' years for several tables --------------------------
 num.recent.yrs <- 10
