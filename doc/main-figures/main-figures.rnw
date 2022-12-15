@@ -30,7 +30,7 @@ make.overview.map.plot(path = rootd_map_data)
 % \vspace{-3mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from the Joint U.S.~and Canada acoustic surveys
-  \Sexpr{survey.start_yr}--\Sexpr{survey.end_yr}. Area of the circle is roughly
+  \Sexpr{survey_start_yr}--\Sexpr{survey.end_yr}. Area of the circle is roughly
   proportional to observed backscatter.
   Barplots show survey-estimated biomass for ages 2 to 20, with major cohorts
   highlighted in color.
@@ -441,7 +441,7 @@ par <- oldpar
 \begin{center}
 <<main-mcmc-survey-fit, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows many posterior trajectories of the expected survey biomass fitting well to the observed biomass.">>=
 make.mcmc.survey.fit.plot(base.model,
-                          start_yr = survey.start_yr,
+                          start_yr = survey_start_yr,
                           end_yr = survey.end_yr,
                           surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),
@@ -463,7 +463,7 @@ make.mcmc.survey.fit.plot(base.model,
 \begin{center}
 <<main-mcmc-age1-fit, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows many posterior trajectories of the expected numbers of age-1 fish fitting well to the age-1 index.">>=
 make.mcmc.survey.fit.plot(base.model,
-                          start_yr = survey.start_yr,
+                          start_yr = survey_start_yr,
                           end_yr = survey.end_yr,
                           surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),

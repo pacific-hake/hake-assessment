@@ -172,7 +172,7 @@ make.survey.age1.plot.data(age.1.index,
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery
 landings (\Sexpr{start_yr}--\Sexpr{last.data.yr}), an acoustic survey biomass
 index (Figure~\ref{fig:es-survey-biomass}) and age compositions
-(\Sexpr{survey.start_yr}--\Sexpr{survey.end_yr}), an acoustic survey index of
+(\Sexpr{survey_start_yr}--\Sexpr{survey.end_yr}), an acoustic survey index of
 age-1 fish (Figure~\ref{fig:es-survey-age1}),
 and fishery age compositions (\Sexpr{start_yr_age_comps}--\Sexpr{last.data.yr}).
 In 2011 the survey biomass index was the lowest in the time series and was followed by the index increasing

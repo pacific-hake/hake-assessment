@@ -47,8 +47,8 @@ message("Start year for fishery age comps data: ", start_yr_age_comps)
 end_yr <- assess_yr
 message("End year for model: ", end_yr)
 # First year in the survey timeseries
-survey.start_yr <- 1995
-message("First survey year: ", survey.start_yr)
+survey_start_yr <- 1995
+message("First survey year: ", survey_start_yr)
 # Last year in the survey timeseries
 survey.end_yr <- 2021
 # Years in which the survey took place
