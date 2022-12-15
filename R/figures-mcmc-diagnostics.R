@@ -899,10 +899,10 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
   if(auto.xaxis){
     axis(1, at = start_yr:end_yr) #cex.axis = 0.8, tcl = -0.6)
     } else {
-    axis(1, at = big.ticks)
+    axis(1, at = big_ticks)
     axis(1,
-         at = little.ticks,
-         lab = rep("",length(little.ticks)), tcl = -0.3)
+         at = small_ticks,
+         lab = rep("",length(small_ticks)), tcl = -0.3)
     }
   axis(2)  #, at = 0:5, las = 1)
   par <- oldpar

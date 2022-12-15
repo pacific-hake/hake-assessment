@@ -68,8 +68,8 @@ surv_yrs <- c(1995,
               2021)
 
 # tick marks for time series plot (not catch time series though)
-big.ticks <- seq(1970, end_yr + 4, 5)
-little.ticks <- start_yr:max(big.ticks)
+big_ticks <- seq(1970, end_yr + 4, 5)
+small_ticks <- start_yr:max(big_ticks)
 
 message("Last survey year: ", survey_end_yr)
 # Final year of data (This is what is the end year is in the model data files)

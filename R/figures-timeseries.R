@@ -33,10 +33,10 @@ make.biomass.plot <- function(model,    ## model is an mcmc run and is the outpu
        xaxt = "n",
        yaxs = "i")
 
-  axis(1, at = big.ticks)
+  axis(1, at = big_ticks)
   axis(1,
-       at = little.ticks,
-       lab = rep("",length(little.ticks)), tcl = -0.3)
+       at = small_ticks,
+       lab = rep("",length(small_ticks)), tcl = -0.3)
   axis(1,
        at = yrs[1],
        lab = paste0("Unfished\nequilibrium"),
@@ -83,10 +83,10 @@ make.depletion.plot <- function(model,    ## model is an mcmc run and is the out
        mgp = c(2.3,1,0),
        xaxt = "n",
        yaxs = "i")
-  axis(1, at = big.ticks)
+  axis(1, at = big_ticks)
   axis(1,
-       at = little.ticks,
-       lab = rep("",length(little.ticks)), tcl = -0.3)
+       at = small_ticks,
+       lab = rep("",length(small_ticks)), tcl = -0.3)
   axis(2,at = c(0.1,0.4), cex.axis = 0.8)
   addpoly(yrs, dlower, dupper, color)
   abline(h = c(0.1,0.4,1), lty = 2,col = gray(0.5))
@@ -164,10 +164,10 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
                 add = TRUE)
     legend("topleft","Unfished equilibrium recruitment",pch=4,bty="n")
   }
-  axis(1, at = big.ticks)
+  axis(1, at = big_ticks)
   axis(1,
-       at = little.ticks,
-       lab = rep("",length(little.ticks)), tcl = -0.3)
+       at = small_ticks,
+       lab = rep("",length(small_ticks)), tcl = -0.3)
   ##axis(1, at = seq(equil.yr + 1, end_yr, 5))
   abline(h = 0, col = rgb(0,0,0,0.5))
 
@@ -248,8 +248,8 @@ make.fishing.intensity.plot <- function(model,            ## model is an mcmc ru
             ylab = expression(paste("Rel. fishing intensity", ~~(1-italic(SPR))/(1-italic(SPR)['40%']))),
             cex = 0.8, las = 1, gap = 0.02, xaxt = "n", ciLwd = 1, ciCol = rgb(0,0,1,0.5),
             mgp = c(2.3,1,0), xlim = range(yrs), yaxs = "i")
-  axis(1, at = big.ticks)
-  axis(1, at = little.ticks, lab = rep("",length(little.ticks)), tcl = -0.3)
+  axis(1, at = big_ticks)
+  axis(1, at = small_ticks, lab = rep("",length(small_ticks)), tcl = -0.3)
   abline(h = 1, col = rgb(0,0,0,0.4))
   text(start_yr+4, 1.05, "Management Target", cex = 0.8, col = rgb(0,0,0,0.4))
   par <- oldpar
@@ -280,8 +280,8 @@ make.exploitation.fraction.plot <- function(model,            ## model is an mcm
   plotBars.fn(yrs, y, ylim = c(0,upper.lim), pch = 20, xlab = "Year", ylab = "",
               cex = 0.8, las = 1, gap = 0.005, xaxt = "n", ciLwd = 1, ciCol = rgb(0,0,1,0.5),
               mgp = c(2.3,1,0), xlim = range(yrs), yaxs="i")
-  axis(1, at = big.ticks)
-  axis(1, at = little.ticks, lab = rep("",length(little.ticks)), tcl = -0.3)
+  axis(1, at = big_ticks)
+  axis(1, at = small_ticks, lab = rep("",length(small_ticks)), tcl = -0.3)
   mtext("Exploitation fraction", side=2, line=3, las=0)
   par <- oldpar
 }
