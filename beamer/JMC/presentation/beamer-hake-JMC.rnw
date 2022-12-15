@@ -124,7 +124,7 @@ fi.names <- sapply(base.model$catch.levels, "[[", 2)[fi.inds]
 \title[Hake Summary]{Results of the \Sexpr{end.yr} Pacific Hake stock assessment}
 \author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
-\date{{\footnotesize AP/JMC March meeting -- \Sexpr{assess.yr}}}
+\date{{\footnotesize AP/JMC March meeting -- \Sexpr{assess_yr}}}
 %\subtitle{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
 
 \begin{document}
@@ -159,15 +159,15 @@ fi.names <- sapply(base.model$catch.levels, "[[", 2)[fi.inds]
       %at Git commit \Sexpr{admb.commit} on \Sexpr{admb.commit.date}.
     \item  Update fishery catch and age composition data:
       \bi
-      \item Years prior to \Sexpr{last.assess.yr}
-      \item Add new data for \Sexpr{last.assess.yr}
+      \item Years prior to \Sexpr{last.assess_yr}
+      \item Add new data for \Sexpr{last.assess_yr}
       \ei
     \item Update survey biomass estimate and age data:
     \bi
-      \item Years prior to \Sexpr{last.assess.yr}
-      \item Add new data for \Sexpr{last.assess.yr}
+      \item Years prior to \Sexpr{last.assess_yr}
+      \item Add new data for \Sexpr{last.assess_yr}
     \ei
-    \item Update and add new \Sexpr{last.assess.yr} weight-at-age data
+    \item Update and add new \Sexpr{last.assess_yr} weight-at-age data
     \item Add the age-1 index time series
     \item All model runs in the assessment use MCMC (including bridging models)
   \ei
@@ -279,11 +279,11 @@ from last year)
 %----------------------------------------------------------
 \frame{\frametitle{Biomass and relative fishing intensity}
   \bi
-    \item Biomass has remained above $\BfortyB$ since 2010; current estimate is $\frac{B_{\Sexpr{assess.yr}}}{B_0} = \Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr], 2)}$
+    \item Biomass has remained above $\BfortyB$ since 2010; current estimate is $\frac{B_{\Sexpr{assess_yr}}}{B_0} = \Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr], 2)}$
     \item Fishing intensity has continually remained below $\Fforty$; current estimate is
-    $\frac{1-SPR_{\Sexpr{assess.yr - 1}}}{1 - SPR_{40\%}} = \Sexpr{f(base.model$mcmccalcs$pmed[names(base.model$mcmccalcs$pmed) == assess.yr - 1], 2)}$
+    $\frac{1-SPR_{\Sexpr{assess_yr - 1}}}{1 - SPR_{40\%}} = \Sexpr{f(base.model$mcmccalcs$pmed[names(base.model$mcmccalcs$pmed) == assess_yr - 1], 2)}$
     \item The estimated probability that spawning biomass at the start of
-    \Sexpr{assess.yr} is below the $\BfortyB$ (40\% of $B_0$) reference point is
+    \Sexpr{assess_yr} is below the $\BfortyB$ (40\% of $B_0$) reference point is
     \Sexpr{probs.curr.below.bforty}\%
     \item The probability that the relative fishing
     intensity is above $\Fforty$ at the end of \Sexpr{end.yr-1} is
@@ -333,20 +333,20 @@ par <- oldpar
     \begin{tabular}{ccrcc} \hline
       Calculation (billions) & Low (2.5\%) & Median & High (97.5\%) & Interval size\\
       \hline
-      \Sexpr{assess.yr-1} assessment recruitment in 2010 & \Sexpr{rec_2010[[1]][1]} & \Sexpr{rec_2010[[1]][2]} & \Sexpr{rec_2010[[1]][3]} & \Sexpr{rec_2010[[1]][4]}\\
-      \Sexpr{assess.yr} assessment recruitment in 2010 & \Sexpr{rec_2010[[2]][1]} & \Sexpr{rec_2010[[2]][2]} & \Sexpr{rec_2010[[2]][3]} & \Sexpr{rec_2010[[2]][4]}\\
+      \Sexpr{assess_yr-1} assessment recruitment in 2010 & \Sexpr{rec_2010[[1]][1]} & \Sexpr{rec_2010[[1]][2]} & \Sexpr{rec_2010[[1]][3]} & \Sexpr{rec_2010[[1]][4]}\\
+      \Sexpr{assess_yr} assessment recruitment in 2010 & \Sexpr{rec_2010[[2]][1]} & \Sexpr{rec_2010[[2]][2]} & \Sexpr{rec_2010[[2]][3]} & \Sexpr{rec_2010[[2]][4]}\\
       \hline
-      \Sexpr{assess.yr-1} assessment recruitment in 2014 & \Sexpr{rec_2014[[1]][1]} & \Sexpr{rec_2014[[1]][2]} & \Sexpr{rec_2014[[1]][3]} & \Sexpr{rec_2014[[1]][4]}\\
-      \Sexpr{assess.yr} assessment recruitment in 2014 & \Sexpr{rec_2014[[2]][1]} & \Sexpr{rec_2014[[2]][2]} & \Sexpr{rec_2014[[2]][3]} & \Sexpr{rec_2014[[2]][4]}\\
+      \Sexpr{assess_yr-1} assessment recruitment in 2014 & \Sexpr{rec_2014[[1]][1]} & \Sexpr{rec_2014[[1]][2]} & \Sexpr{rec_2014[[1]][3]} & \Sexpr{rec_2014[[1]][4]}\\
+      \Sexpr{assess_yr} assessment recruitment in 2014 & \Sexpr{rec_2014[[2]][1]} & \Sexpr{rec_2014[[2]][2]} & \Sexpr{rec_2014[[2]][3]} & \Sexpr{rec_2014[[2]][4]}\\
       \hline
-      \Sexpr{assess.yr-1} assessment recruitment in 2016 & \Sexpr{rec_2016[[1]][1]} & \Sexpr{rec_2016[[1]][2]} & \Sexpr{rec_2016[[1]][3]} & \Sexpr{rec_2016[[1]][4]}\\
-      \Sexpr{assess.yr} assessment recruitment in 2016 & \Sexpr{rec_2016[[2]][1]} & \Sexpr{rec_2016[[2]][2]} & \Sexpr{rec_2016[[2]][3]} & \Sexpr{rec_2016[[2]][4]}\\
+      \Sexpr{assess_yr-1} assessment recruitment in 2016 & \Sexpr{rec_2016[[1]][1]} & \Sexpr{rec_2016[[1]][2]} & \Sexpr{rec_2016[[1]][3]} & \Sexpr{rec_2016[[1]][4]}\\
+      \Sexpr{assess_yr} assessment recruitment in 2016 & \Sexpr{rec_2016[[2]][1]} & \Sexpr{rec_2016[[2]][2]} & \Sexpr{rec_2016[[2]][3]} & \Sexpr{rec_2016[[2]][4]}\\
       \hline
-      \Sexpr{assess.yr-1} assessment recruitment in 2017 & \Sexpr{rec_2017[[1]][1]} & \Sexpr{rec_2017[[1]][2]} & \Sexpr{rec_2017[[1]][3]} & \Sexpr{rec_2017[[1]][4]}\\
-      \Sexpr{assess.yr} assessment recruitment in 2017 & \Sexpr{rec_2017[[2]][1]} & \Sexpr{rec_2017[[2]][2]} & \Sexpr{rec_2017[[2]][3]} & \Sexpr{rec_2017[[2]][4]}\\
+      \Sexpr{assess_yr-1} assessment recruitment in 2017 & \Sexpr{rec_2017[[1]][1]} & \Sexpr{rec_2017[[1]][2]} & \Sexpr{rec_2017[[1]][3]} & \Sexpr{rec_2017[[1]][4]}\\
+      \Sexpr{assess_yr} assessment recruitment in 2017 & \Sexpr{rec_2017[[2]][1]} & \Sexpr{rec_2017[[2]][2]} & \Sexpr{rec_2017[[2]][3]} & \Sexpr{rec_2017[[2]][4]}\\
       \hline
-      \Sexpr{assess.yr-1} assessment recruitment in 2020 & \Sexpr{rec_2020[[1]][1]} & \Sexpr{rec_2020[[1]][2]} & \Sexpr{rec_2020[[1]][3]} & \Sexpr{rec_2020[[1]][4]}\\
-      \Sexpr{assess.yr} assessment recruitment in 2020 & \Sexpr{rec_2020[[2]][1]} & \Sexpr{rec_2020[[2]][2]} & \Sexpr{rec_2020[[2]][3]} & \Sexpr{rec_2020[[2]][4]}\\
+      \Sexpr{assess_yr-1} assessment recruitment in 2020 & \Sexpr{rec_2020[[1]][1]} & \Sexpr{rec_2020[[1]][2]} & \Sexpr{rec_2020[[1]][3]} & \Sexpr{rec_2020[[1]][4]}\\
+      \Sexpr{assess_yr} assessment recruitment in 2020 & \Sexpr{rec_2020[[2]][1]} & \Sexpr{rec_2020[[2]][2]} & \Sexpr{rec_2020[[2]][3]} & \Sexpr{rec_2020[[2]][4]}\\
       \hline
     \end{tabular}
   \end{table}
@@ -466,7 +466,7 @@ par <- oldpar
 %----------------------------------------------------------
 \section{Past management}
 \subsection{}
-%\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass (\Sexpr{assess.yr - 1})}
+%\frame{\frametitle{Joint History of Rel. Fishing Intensity and Rel. Biomass (\Sexpr{assess_yr - 1})}
 %\begin{figure}[tbp]
 %\begin{center}
 %<<phase.plot.last.yr, fig.height=3, fig.width=6>>=
@@ -484,9 +484,9 @@ par <- oldpar
 \begin{columns}
   \begin{column}{0.4\textwidth}
       \bi
-	    \item March \Sexpr{last.assess.yr}
+	    \item March \Sexpr{last.assess_yr}
       \bi
-        \item Default harvest rule TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess.yr))$`Default HCR TAC`)} t
+        \item Default harvest rule TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess_yr))$`Default HCR TAC`)} t
         \item Sum of unilateral TACs = \Sexpr{last.year.tac} t
       \ei
       \item When default HR suggests a large catch, TAC is often set less
@@ -515,7 +515,7 @@ par <- oldpar
 %----------------------------------------------------------
 \section{Projections}
 \subsection{Three-year forecasts}
-\frame{\frametitle{Harvest-rule predicted catch for \Sexpr{assess.yr}}
+\frame{\frametitle{Harvest-rule predicted catch for \Sexpr{assess_yr}}
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
@@ -564,10 +564,10 @@ par <- oldpar
   \begin{column}{0.38\textwidth}
     \bi
 %      \item No fishing results in relatively constant \emph{median} relative
-%        spawning biomass from \Sexpr{assess.yr} to \Sexpr{assess.yr+1} then
+%        spawning biomass from \Sexpr{assess_yr} to \Sexpr{assess_yr+1} then
 %        slight increase
       \item No fishing results in increase in \emph{median} relative
-        spawning biomass from \Sexpr{assess.yr} to \Sexpr{assess.yr+2} then
+        spawning biomass from \Sexpr{assess_yr} to \Sexpr{assess_yr+2} then
         levelling off
       \item All others shown result in eventual declines in the median
       \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr+3}
@@ -625,7 +625,7 @@ par <- oldpar
       \item n. Median default Harvest Rule in each year conditioned on
         fixed catch in previous year
       \item o. Fishing intensity giving 50\% prob.~that the
-          median \Sexpr{assess.yr} catch equals median  \Sexpr{assess.yr+1} catch
+          median \Sexpr{assess_yr} catch equals median  \Sexpr{assess_yr+1} catch
     \ei
     \item Constant catch of 525,000~t added per request at SRG (see Appendix I)
   \ei
@@ -731,13 +731,13 @@ Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
   Probabilities associated with biomass and fishing-based metrics for different fixed catch levels
   (see Executive Summary: Tables i, j, and k; Figures k, l, and m)
   \bi
-    \item Fix the catch in \Sexpr{assess.yr} to estimate $B_{\Sexpr{assess.yr + 1}}$
-    \item Fix the catches in \Sexpr{assess.yr} and \Sexpr{assess.yr + 1} to estimate $B_{\Sexpr{assess.yr + 2}}$
-    \item Fix the catches in \Sexpr{assess.yr}, \Sexpr{assess.yr + 1},
-      and \Sexpr{assess.yr + 2} to estimate $B_{\Sexpr{assess.yr + 3}}$
-    \item P($B_{\Sexpr{assess.yr + 1}} < B_y$): Probability that biomass in \Sexpr{assess.yr + 1}
+    \item Fix the catch in \Sexpr{assess_yr} to estimate $B_{\Sexpr{assess_yr + 1}}$
+    \item Fix the catches in \Sexpr{assess_yr} and \Sexpr{assess_yr + 1} to estimate $B_{\Sexpr{assess_yr + 2}}$
+    \item Fix the catches in \Sexpr{assess_yr}, \Sexpr{assess_yr + 1},
+      and \Sexpr{assess_yr + 2} to estimate $B_{\Sexpr{assess_yr + 3}}$
+    \item P($B_{\Sexpr{assess_yr + 1}} < B_y$): Probability that biomass in \Sexpr{assess_yr + 1}
       is less a specified biomass\\
-      such as $B_{\Sexpr{assess.yr}}$ or $\Bforty$
+      such as $B_{\Sexpr{assess_yr}}$ or $\Bforty$
     \item P(relative FI > 100\% target): Probability that relative fishing intensity in fixed catch
       year is greater than the target fishing intensity
     %Only last column of table refers to catches, and is spelt out in words
@@ -919,11 +919,11 @@ Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
       2020 large (but still highly uncertain).
     \item Spawning biomass will likely increase from
       % There is $<50\%$ chance that spawning biomass will decline from
-      \Sexpr{assess.yr} to \Sexpr{assess.yr+1} for any catch $\leq 473,880$~t.
+      \Sexpr{assess_yr} to \Sexpr{assess_yr+1} for any catch $\leq 473,880$~t.
       Driven by expected growth of the large 2020 cohort.
     \item But then likely decline from
       % $>50\%$ chance that spawning biomass will decline from
-      \Sexpr{assess.yr+1} to \Sexpr{assess.yr+2} for any catch evaluated $>0$~t.
+      \Sexpr{assess_yr+1} to \Sexpr{assess_yr+2} for any catch evaluated $>0$~t.
     \item Maintaining a constant catch of 473,880~t (the 2021 TAC) gives a 11\%
       chance of falling below $B_{40\%}$ in 1 year (21\% in 2 years' time).
     \item Overall, we estimate probabilities of future events, and analyses
@@ -1052,7 +1052,7 @@ Extra   & 2022 &       525,000 & Start of 2023 & 0.31 & 0.69 & 1.54 \\
 \end{table}
 \pause
 \bi
-  \item Now (since it's \Sexpr{assess.yr}) we `\emph{know}' the 2019 catch was 411,574~t, so row~d was close enough.
+  \item Now (since it's \Sexpr{assess_yr}) we `\emph{know}' the 2019 catch was 411,574~t, so row~d was close enough.
 \pause
 \item How do the probabilities in row~d compare to estimates of them from the
     current base model?
@@ -1198,7 +1198,7 @@ make.mcmc.recruitment.plot(base.model,
                            samples = NULL,
                            rescale = TRUE,
                            traceplot = FALSE,
-                           end.yr = assess.yr + 2,
+                           end.yr = assess_yr + 2,
                            auto.xaxis = FALSE)
 @
 \ec

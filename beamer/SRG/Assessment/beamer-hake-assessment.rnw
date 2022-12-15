@@ -90,11 +90,11 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 
 %----------------------------------------------------------
-\title[Hake Assessment]{\Sexpr{assess.yr} Pacific Hake Stock Assessment Methods
+\title[Hake Assessment]{\Sexpr{assess_yr} Pacific Hake Stock Assessment Methods
   and Results}
 \author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
-\date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
 \subtitle{\tiny \disclaimer}
 
 
@@ -109,36 +109,36 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \subsection{}
 \frame{\frametitle{Outline}
 \bi
-  \item Model changes from \Sexpr{last.assess.yr}
+  \item Model changes from \Sexpr{last.assess_yr}
   \item Show some MCMC diagnostics
   \item Fits to data
   \item Estimates of key quantities
-  \item Brief response to \Sexpr{last.assess.yr} SRG assessment recommendations
+  \item Brief response to \Sexpr{last.assess_yr} SRG assessment recommendations
   \item Summary
 \ei
 }
 
 %----------------------------------------------------------
-\section{Changes from \Sexpr{last.assess.yr}}
+\section{Changes from \Sexpr{last.assess_yr}}
 \subsection{}
 
 \begin{frame}
-\frametitle{Changes from \Sexpr{last.assess.yr} assessment}
+\frametitle{Changes from \Sexpr{last.assess_yr} assessment}
   \bi
     \item Update Stock Synthesis to version \Sexpr{ss_version}
       compiled with ADMB \Sexpr{admb_version}
       %at Git commit \Sexpr{admb.commit} on \Sexpr{admb.commit.date}.
     \item  Update fishery catch and age composition data:
       \bi
-      \item Years prior to \Sexpr{last.assess.yr}
-      \item Add new data for \Sexpr{last.assess.yr}
+      \item Years prior to \Sexpr{last.assess_yr}
+      \item Add new data for \Sexpr{last.assess_yr}
       \ei
     \item Update survey biomass estimate and age data:
     \bi
-      \item Years prior to \Sexpr{last.assess.yr}
-      \item Add new data for \Sexpr{last.assess.yr}
+      \item Years prior to \Sexpr{last.assess_yr}
+      \item Add new data for \Sexpr{last.assess_yr}
     \ei
-    \item Update and add new \Sexpr{last.assess.yr} weight-at-age data
+    \item Update and add new \Sexpr{last.assess_yr} weight-at-age data
     \item Add the age-1 index time series
     \item All model runs in the assessment use MCMC (including bridging models)
   \ei
@@ -342,7 +342,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 % }
 
 %----------------------------------------------------------
-%\frame{\frametitle{Bridging: \Sexpr{assess.yr} Base model correlations (Fig. A.6)}
+%\frame{\frametitle{Bridging: \Sexpr{assess_yr} Base model correlations (Fig. A.6)}
 %  \bc
 %  <<bridge.pairs.3, fig.height=3.5>>=
 %  make.mcmc.diag.pairs.plot(base.model,
@@ -354,7 +354,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %}
 %
 %----------------------------------------------------------
-%\frame{\frametitle{Bridging: \Sexpr{last.assess.yr} Base model correlations (Fig. 21 in 2019 doc)}
+%\frame{\frametitle{Bridging: \Sexpr{last.assess_yr} Base model correlations (Fig. 21 in 2019 doc)}
 %  \bc
 %  <<last.yr.key.pairs, fig.height=3.5>>=
 %  make.mcmc.diag.pairs.plot(last.yr.base.model,
@@ -424,12 +424,12 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Bridging: Summary}
   \bi
     \item Updating Stock Synthesis software has no effect on results.
-    \item Updating fishery catch and age composition data to \Sexpr{last.assess.yr} has little effect
+    \item Updating fishery catch and age composition data to \Sexpr{last.assess_yr} has little effect
       on the stock trajectory.
     \item Adding the \Sexpr{last.data.yr} survey biomass estimate and age compositions leads to
       slightly more optimistic estimates of biomass for the last few years and reduces uncertainty.
-    \item Small changes in recruitment with the addition of \Sexpr{last.assess.yr} fishery age composition
-      data were largely offset with the addition of \Sexpr{last.assess.yr} survey age composition data.
+    \item Small changes in recruitment with the addition of \Sexpr{last.assess_yr} fishery age composition
+      data were largely offset with the addition of \Sexpr{last.assess_yr} survey age composition data.
     \item Adding \Sexpr{last.data.yr} weight-at-age data resulted in a slight upward shift in current biomass,
       because the mean weights in \Sexpr{last.data.yr} were mostly above the recent 5-year average mean
       weights (which is the assumption before the addition of these data).
@@ -451,7 +451,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %   \item Normally-distributed penalty function applied to keep deviations
 %     straying too far from zero.
 %   \item Deviation is controlled by fixed standard deviation parameter $\Phi = 1.40$,
-%     (same value as in the \Sexpr{last.assess.yr} assessment).
+%     (same value as in the \Sexpr{last.assess_yr} assessment).
 %   \item Maximum age for which selectivity is estimated is 6. Greater than this,
 %     selectivity is constant. Maximum selectivity is 1.
 %   \item See page 40-41 for equations and details.
@@ -471,9 +471,9 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %    choice of how many iterations to do, and automatically tunes each model as opposed to all having the
 %    same tuning.
 %  \item Uniform prior [-5, 20] was used in 2019 assessment.
-%  \item In the \Sexpr{last.assess.yr} assessment, the DM survey parameter was stuck between 0.99--1.00 (at the upper bound).
+%  \item In the \Sexpr{last.assess_yr} assessment, the DM survey parameter was stuck between 0.99--1.00 (at the upper bound).
 %  \item A Normal (almost Uniform) prior with a mean of 0 and a standard deviation of \Sexpr{priors_mle[[1]]$Psd}
-%    is used in \Sexpr{assess.yr} to improve MCMC convergence of these parameters.
+%    is used in \Sexpr{assess_yr} to improve MCMC convergence of these parameters.
 %\ei
 %\end{frame}
 %
@@ -757,10 +757,10 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   @
   \begin{table}
     \begin{tabular}{cccc} \hline
-      \textcolor{blue}{Median (\Sexpr{assess.yr})} &
-      \textcolor{red}{Median (\Sexpr{assess.yr - 1})} \\
-      %\textcolor{blue}{MLE (\Sexpr{assess.yr})} &
-      %\textcolor{red}{MLE (\Sexpr{assess.yr - 1})} \\
+      \textcolor{blue}{Median (\Sexpr{assess_yr})} &
+      \textcolor{red}{Median (\Sexpr{assess_yr - 1})} \\
+      %\textcolor{blue}{MLE (\Sexpr{assess_yr})} &
+      %\textcolor{red}{MLE (\Sexpr{assess_yr - 1})} \\
       \hline
       \textcolor{blue}{\Sexpr{f(median(base.model$extra.mcmc$Q_vector), 2)}} &
       \textcolor{red}{\Sexpr{f(median(last.yr.base.model$extra.mcmc$Q_vector), 2)}} \\
@@ -781,10 +781,10 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   @
  \begin{table}
     \begin{tabular}{cccc} \hline
-      \textcolor{blue}{Median (\Sexpr{assess.yr})} &
-      \textcolor{red}{Median (\Sexpr{assess.yr - 1})} \\
-      %\textcolor{blue}{MLE (\Sexpr{assess.yr})} &
-      %\textcolor{red}{MLE (\Sexpr{assess.yr - 1})} \\
+      \textcolor{blue}{Median (\Sexpr{assess_yr})} &
+      \textcolor{red}{Median (\Sexpr{assess_yr - 1})} \\
+      %\textcolor{blue}{MLE (\Sexpr{assess_yr})} &
+      %\textcolor{red}{MLE (\Sexpr{assess_yr - 1})} \\
       \hline
       \textcolor{blue}{\Sexpr{f(median(base.model$extra.mcmc$Q_vector_age1), 2)}} &
       \textcolor{red}{--} \\
@@ -919,23 +919,23 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 %~\\
 %
 %Addition of new data for this year's model decreases 2014 cohort uncertainty to \Sexpr{rec_2014[[3]]}\%
-%and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{assess.yr - 1} assessment:
+%and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{assess_yr - 1} assessment:
 
   \begin{table}
     \begin{tabular}{ccrcc} \hline
       Calculation (billions) & Low (2.5\%) & Median & High (97.5\%) & Interval size\\
       \hline
-      \Sexpr{assess.yr-1} assessment recruitment in 2010 & \Sexpr{rec_2010[[1]][1]} & \Sexpr{rec_2010[[1]][2]} & \Sexpr{rec_2010[[1]][3]} & \Sexpr{rec_2010[[1]][4]}\\
-      \Sexpr{assess.yr} assessment recruitment in 2010 & \Sexpr{rec_2010[[2]][1]} & \Sexpr{rec_2010[[2]][2]} & \Sexpr{rec_2010[[2]][3]} & \Sexpr{rec_2010[[2]][4]}\\
+      \Sexpr{assess_yr-1} assessment recruitment in 2010 & \Sexpr{rec_2010[[1]][1]} & \Sexpr{rec_2010[[1]][2]} & \Sexpr{rec_2010[[1]][3]} & \Sexpr{rec_2010[[1]][4]}\\
+      \Sexpr{assess_yr} assessment recruitment in 2010 & \Sexpr{rec_2010[[2]][1]} & \Sexpr{rec_2010[[2]][2]} & \Sexpr{rec_2010[[2]][3]} & \Sexpr{rec_2010[[2]][4]}\\
       \hline
-      \Sexpr{assess.yr-1} assessment recruitment in 2014 & \Sexpr{rec_2014[[1]][1]} & \Sexpr{rec_2014[[1]][2]} & \Sexpr{rec_2014[[1]][3]} & \Sexpr{rec_2014[[1]][4]}\\
-      \Sexpr{assess.yr} assessment recruitment in 2014 & \Sexpr{rec_2014[[2]][1]} & \Sexpr{rec_2014[[2]][2]} & \Sexpr{rec_2014[[2]][3]} & \Sexpr{rec_2014[[2]][4]}\\
+      \Sexpr{assess_yr-1} assessment recruitment in 2014 & \Sexpr{rec_2014[[1]][1]} & \Sexpr{rec_2014[[1]][2]} & \Sexpr{rec_2014[[1]][3]} & \Sexpr{rec_2014[[1]][4]}\\
+      \Sexpr{assess_yr} assessment recruitment in 2014 & \Sexpr{rec_2014[[2]][1]} & \Sexpr{rec_2014[[2]][2]} & \Sexpr{rec_2014[[2]][3]} & \Sexpr{rec_2014[[2]][4]}\\
       \hline
-      \Sexpr{assess.yr-1} assessment recruitment in 2016 & \Sexpr{rec_2016[[1]][1]} & \Sexpr{rec_2016[[1]][2]} & \Sexpr{rec_2016[[1]][3]} & \Sexpr{rec_2016[[1]][4]}\\
-      \Sexpr{assess.yr} assessment recruitment in 2016 & \Sexpr{rec_2016[[2]][1]} & \Sexpr{rec_2016[[2]][2]} & \Sexpr{rec_2016[[2]][3]} & \Sexpr{rec_2016[[2]][4]}\\
+      \Sexpr{assess_yr-1} assessment recruitment in 2016 & \Sexpr{rec_2016[[1]][1]} & \Sexpr{rec_2016[[1]][2]} & \Sexpr{rec_2016[[1]][3]} & \Sexpr{rec_2016[[1]][4]}\\
+      \Sexpr{assess_yr} assessment recruitment in 2016 & \Sexpr{rec_2016[[2]][1]} & \Sexpr{rec_2016[[2]][2]} & \Sexpr{rec_2016[[2]][3]} & \Sexpr{rec_2016[[2]][4]}\\
       \hline
-      \Sexpr{assess.yr-1} assessment recruitment in 2017 & \Sexpr{rec_2017[[1]][1]} & \Sexpr{rec_2017[[1]][2]} & \Sexpr{rec_2017[[1]][3]} & \Sexpr{rec_2017[[1]][4]}\\
-      \Sexpr{assess.yr} assessment recruitment in 2017 & \Sexpr{rec_2017[[2]][1]} & \Sexpr{rec_2017[[2]][2]} & \Sexpr{rec_2017[[2]][3]} & \Sexpr{rec_2017[[2]][4]}\\
+      \Sexpr{assess_yr-1} assessment recruitment in 2017 & \Sexpr{rec_2017[[1]][1]} & \Sexpr{rec_2017[[1]][2]} & \Sexpr{rec_2017[[1]][3]} & \Sexpr{rec_2017[[1]][4]}\\
+      \Sexpr{assess_yr} assessment recruitment in 2017 & \Sexpr{rec_2017[[2]][1]} & \Sexpr{rec_2017[[2]][2]} & \Sexpr{rec_2017[[2]][3]} & \Sexpr{rec_2017[[2]][4]}\\
       \hline
     \end{tabular}
   \end{table}
@@ -951,7 +951,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 }
 
 %----------------------------------------------------------
-% \frame{\frametitle{Proportions of biomass for cohorts in \Sexpr{assess.yr}}
+% \frame{\frametitle{Proportions of biomass for cohorts in \Sexpr{assess_yr}}
 %
 % \begin{columns}
 %   \begin{column}{0.5\textwidth}
@@ -965,7 +965,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 %     g <- ggplot(baa %>% arrange(Cohort), aes(x = Cohort, y = Median)) +
 %       geom_point(color = "black", shape = "o", size = 6) +
 %       geom_errorbar(aes(ymin = `Lower CI`, ymax = `Upper CI`), color = "royalblue", size = 1, width = 0.2) +
-%       labs(y = paste0("Proportion of Biomass beginning of ", assess.yr)) +
+%       labs(y = paste0("Proportion of Biomass beginning of ", assess_yr)) +
 %       scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = 1))
 %     g
 %     @
@@ -997,7 +997,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
                              mean_age_line_type = "solid",
                              legend.position = "top",
                              legend.title = "Numbers (billions)",
-                             xlim = c(1965, assess.yr))
+                             xlim = c(1965, assess_yr))
       @
     \ec
   \end{column}
@@ -1025,20 +1025,20 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
     lb.smed <- lb$mcmccalcs$smed
     lb.slower <- lb$mcmccalcs$slower
     lb.supper <- lb$mcmccalcs$supper
-    last.slower <- f(lb.slower[names(lb.slower) == assess.yr - 1], 3)
-    last.supper <- f(lb.supper[names(lb.supper) == assess.yr - 1], 3)
-    last.smed <- f(lb.smed[names(lb.smed) == assess.yr - 1], 3)
+    last.slower <- f(lb.slower[names(lb.slower) == assess_yr - 1], 3)
+    last.supper <- f(lb.supper[names(lb.supper) == assess_yr - 1], 3)
+    last.smed <- f(lb.smed[names(lb.smed) == assess_yr - 1], 3)
     @
   \begin{table}
     \begin{tabular}{cccc} \hline
       Calculation & Low & Median & High \\
       \hline
-      \Sexpr{assess.yr-1} assessment $B_{\Sexpr{end.yr-1}}$ &
+      \Sexpr{assess_yr-1} assessment $B_{\Sexpr{end.yr-1}}$ &
          \Sexpr{last.slower} & \Sexpr{last.smed} & \Sexpr{last.supper} \\
-      \Sexpr{assess.yr} assessment $B_{\Sexpr{end.yr-1}}$ &
+      \Sexpr{assess_yr} assessment $B_{\Sexpr{end.yr-1}}$ &
          \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} &
          \Sexpr{prev.bio.upper} \\
-      \Sexpr{assess.yr} assessment $B_{\Sexpr{end.yr}}$ & \Sexpr{curr.bio.lower} &
+      \Sexpr{assess_yr} assessment $B_{\Sexpr{end.yr}}$ & \Sexpr{curr.bio.lower} &
          \Sexpr{curr.bio.median} & \Sexpr{curr.bio.upper} \\
       \hline
     \end{tabular}
@@ -1086,15 +1086,15 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 %----------------------------------------------------------
-\section{\Sexpr{last.assess.yr} SRG recommendations}
+\section{\Sexpr{last.assess_yr} SRG recommendations}
 \begin{frame}[c]
   \begin{center}
-  \Huge \Sexpr{last.assess.yr} SRG recommendations
+  \Huge \Sexpr{last.assess_yr} SRG recommendations
   \end{center}
 \end{frame}
 
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
   {\bf Explore recruitment parameterizations}}
   %\bi
   {\bf The SRG notes that $\sigma_R$ is an influential parameter and that
@@ -1104,7 +1104,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
     {\bf Response:} \emph{Explore recruitment parameterizations}}
   \bi
     \item Medium-term: continuing research to treat recruitment deviations as a random effect and estimate $\sigma_R$
@@ -1131,7 +1131,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 %----------------------------------------------------------
-%\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+%\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
 %    {\bf Response:} \emph{Explore recruitment parameterizations (page 2)}}
 %  \bi
 %    \item The near completion of the Management Strategy Evaluation framework for \fishname\ creates
@@ -1152,7 +1152,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 %}
 %
 %----------------------------------------------------------
-%\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+%\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
 %    {\bf Response:} \emph{Explore recruitment parameterizations (page 3)}}
 %  \bi
 %    \item The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
@@ -1174,7 +1174,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 %}
 %
 %----------------------------------------------------------
-%\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+%\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
 %    {\bf Response:} \emph{Explore recruitment parameterizations (page 4)}}
 %  \bi
 %    \item The JTC plans to continue to work towards evaluating and testing best practices
@@ -1186,7 +1186,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 %}
 %
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
   {\bf Projecting recruitment}}
 % \setbeamercovered{dynamic}   % need for \pause
   %\bi
@@ -1196,7 +1196,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
     {\bf Response:} \emph{Projecting recruitment}}
   \bi
     \item Exploring approaches to make informed decisions about current and
@@ -1222,7 +1222,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
   {\bf Decison tables}}
 % \setbeamercovered{dynamic}   % need for \pause
   %\bi
@@ -1233,7 +1233,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
     {\bf Response:} \emph{Decision tables}}
   \bi
     \item Specifying projected recruitment as the median of a given year range
@@ -1251,7 +1251,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
   {\bf Dynamic reference points}}
 % \setbeamercovered{dynamic}   % need for \pause
   %\bi
@@ -1261,7 +1261,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
     {\bf Response:} \emph{Dynamic reference points}}
   \bi
     \item No additional work investigating the usefulness of dynamic reference points over the
@@ -1281,7 +1281,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
   {\bf Forecasting weight-at-age}}
 % \setbeamercovered{dynamic}   % need for \pause
   %\bi
@@ -1291,7 +1291,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
     {\bf Response:} \emph{Forecasting weight-at-age}}
   \bi
     \item Recent, current, and future recruitment are perhaps the most influential
@@ -1314,7 +1314,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
     {\bf Other requests: see details in assessment document}}
   \bi
     \item Reproductive cycle: ovary samples collected in 2021; no new maturity analyses conducted;
@@ -1338,7 +1338,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+\frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
     {\bf Other requests: see details in assessment document}}
   \bi
     \item Historical otoliths: restrictions related to COVID-19 have limited access to historical
@@ -1352,8 +1352,8 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 }
 
 % %----------------------------------------------------------
-% \section{\Sexpr{last.assess.yr} SRG recommendations}
-% \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+% \section{\Sexpr{last.assess_yr} SRG recommendations}
+% \frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
 %   {\bf }}
 % % \setbeamercovered{dynamic}   % need for \pause
 %   \bi
@@ -1362,7 +1362,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 % }
 %
 % %----------------------------------------------------------
-% \frame{\frametitle{\Sexpr{last.assess.yr} SRG assessment recommendations\\
+% \frame{\frametitle{\Sexpr{last.assess_yr} SRG assessment recommendations\\
 %     {\bf Response:} \emph{}}
 %   \bi
 %     \item
@@ -1413,9 +1413,9 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 %  \item The 2010 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) / (prev.assess.recruitment.med)["2010"]) * 100), 0)}\%)
 %  \item The 2014 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) / (prev.assess.recruitment.med)["2014"]) * 100), 0)}\%)
 %  \item The 2016 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"]) / (prev.assess.recruitment.med)["2016"]) * 100), 0)}\%)
-%  \item The 2010 cohort uncertainty is \Sexpr{rec_2010[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
-%  \item The 2014 cohort uncertainty is \Sexpr{rec_2014[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
-%  \item The 2016 cohort uncertainty is \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{last.assess.yr} assessment.
+%  \item The 2010 cohort uncertainty is \Sexpr{rec_2010[[3]]}\% of what it was in the \Sexpr{last.assess_yr} assessment.
+%  \item The 2014 cohort uncertainty is \Sexpr{rec_2014[[3]]}\% of what it was in the \Sexpr{last.assess_yr} assessment.
+%  \item The 2016 cohort uncertainty is \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{last.assess_yr} assessment.
 %  \item 2010 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2010 * 100, 1)}\% of the biomass
 %  \item 2014 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2014 * 100, 1)}\% of the biomass
 %  \item 2016 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2016 * 100, 1)}\% of the biomass

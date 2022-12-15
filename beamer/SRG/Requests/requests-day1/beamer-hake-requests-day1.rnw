@@ -103,7 +103,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \title[Hake Management]{SRG Assessment Requests}
 \author[JTC]{JTC}
 %\institute{}
-\date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
 \subtitle{\tiny \disclaimer}
 
 \begin{document}

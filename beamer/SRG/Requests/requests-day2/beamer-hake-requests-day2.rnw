@@ -87,7 +87,7 @@ if (!"ggpubr" %in% installed.packages()[,"Package"]){
 }
 library(ggpubr)
 
-assess.yr <- 2022
+assess_yr <- 2022
 # UNCOMMENT these lines to gain access to all the R objects in the assessment doc!
 
 #source(here::here("R", "all.R"))
@@ -103,7 +103,7 @@ assess.yr <- 2022
 \title[Hake Management]{SRG Assessment Requests}
 \author[JTC]{JTC}
 %\institute{}
-\date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
 \subtitle{\tiny \disclaimer}
 
 \begin{document}

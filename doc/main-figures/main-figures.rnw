@@ -220,7 +220,7 @@ make.survey.age1.plot.data(age.1.index,
 \begin{figure}[H]
 \begin{center}
 <<maturity-ogive-figure, fig.height=7.5, fig.width=7.5, is.fig = TRUE, alt.text = "This figure shows how maturity increases with age">>=
-maturity.ogive.figure(model = base.model, useyears = 1975:(assess.yr - 1))
+maturity.ogive.figure(model = base.model, useyears = 1975:(assess_yr - 1))
 @
 \end{center}
 \caption{Fraction of fish that are mature at each age north and south of
@@ -716,7 +716,7 @@ make_numbers_at_age_plot(base.model,
                          mean_age_line_type = "solid",
                          legend.position = "top",
                          legend.title = "Numbers (billions)",
-                         xlim = c(1965, assess.yr))
+                         xlim = c(1965, assess_yr))
 @
 \end{center}
 \caption{Bubble plot of the medians of the posterior distributions of population
@@ -1275,12 +1275,12 @@ make_squid_plot(base.model,
   Lines represent estimated recruitment deviations for cohorts born from
   \Sexpr{min(retro_cohorts)} to \Sexpr{max(retro_cohorts)}, with cohort
   birth year marked at the right of each color-coded line.
-  For example, the right-most point for the \Sexpr{assess.yr - 8} cohort shows the
-  cohort at age-8 (i.e., at the start of \Sexpr{assess.yr}, which represents
-  the base model and includes data to \Sexpr{assess.yr - 1} because
+  For example, the right-most point for the \Sexpr{assess_yr - 8} cohort shows the
+  cohort at age-8 (i.e., at the start of \Sexpr{assess_yr}, which represents
+  the base model and includes data to \Sexpr{assess_yr - 1} because
   data collection ends December~31). The next point
-  to the left is the \Sexpr{assess.yr - 8} cohort at age-7, calculated by
-  removing one year of data (so includes data up to \Sexpr{assess.yr - 2}).
+  to the left is the \Sexpr{assess_yr - 8} cohort at age-7, calculated by
+  removing one year of data (so includes data up to \Sexpr{assess_yr - 2}).
   Thus, models are fit to data available only up to the start of the year in which
   each cohort became a given age, such that the last year of data
   for a given point equals
@@ -1313,7 +1313,7 @@ make_squid_plot(base.model,
 <<historical-assessments, fig.height=4.5, fig.width=6.5, is.fig = TRUE, alt.text = "This figure shows the varying historical estimates of spawning biomass from the annual assessments">>=
 make.assessment.history.plot(base.model,
                              assessment.history,
-                             cex.legend = 0.5 * 38 / (38 + assess.yr - 2022))
+                             cex.legend = 0.5 * 38 / (38 + assess_yr - 2022))
                              # automatically shrink font size each year to fit.
 @
 \end{center}
@@ -1340,12 +1340,12 @@ make.historical.probs.plot(base.model,
   Red: the probability is taken from year $t$'s stock assessment document, from
   the row in the decision table corresponding to the consequent catch in year $t$
 (with interpolation if necessary). Blue: the probability is calculated using the
-current \Sexpr{assess.yr} base model. The grey horizontal line is the 50\% value. For each
+current \Sexpr{assess_yr} base model. The grey horizontal line is the 50\% value. For each
 year except 2018, both probabilities lie on the same side of the grey line, indicating that
 each year's assessment model has almost always
 `correctly` estimated an increase or decrease the
-subsequent year's biomass. For the \Sexpr{assess.yr} assessment the
-probabilities are shown for all catch alternatives for \Sexpr{assess.yr}, as
+subsequent year's biomass. For the \Sexpr{assess_yr} assessment the
+probabilities are shown for all catch alternatives for \Sexpr{assess_yr}, as
 described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 \label{fig:main-historical-1}
 \end{figure}
@@ -1369,13 +1369,13 @@ make.historical.probs.plot(base.model,
   Red: the probability is taken from year $t$'s stock assessment document, from
   the row in the decision table corresponding to the consequent catch in year $t$
 (with interpolation if necessary). Blue: the probability is calculated using the
-current \Sexpr{assess.yr} base model. The grey horizontal line is the 50\% value. For each
+current \Sexpr{assess_yr} base model. The grey horizontal line is the 50\% value. For each
 year except 2012, both probabilities lie on the same side of the grey line, indicating that
 each year's assessment model almost always
 `correctly` estimated that the subsequent year's
 biomass will not fall below $\Bforty$.
-For the \Sexpr{assess.yr} assessment the
-probabilities are shown for all catch alternatives for \Sexpr{assess.yr}, as
+For the \Sexpr{assess_yr} assessment the
+probabilities are shown for all catch alternatives for \Sexpr{assess_yr}, as
 described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 \label{fig:main-historical-2}
 \end{figure}

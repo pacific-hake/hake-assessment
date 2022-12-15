@@ -6,13 +6,13 @@
 \phantomsection \addcontentsline{toc}{section}{ONE-PAGE SUMMARY}
 
 \begin{itemize}
-  \item The stock assessment model for \Sexpr{assess.yr} has the same population
-    dynamics structure as the \Sexpr{last.assess.yr} model. For \Sexpr{assess.yr},
+  \item The stock assessment model for \Sexpr{assess_yr} has the same population
+    dynamics structure as the \Sexpr{last.assess_yr} model. For \Sexpr{assess_yr},
     it is fit to an acoustic survey index of biomass, an index of age-1 fish, annual
     commercial catch data, and age-composition data from the survey and commercial fisheries.
-    The addition of the age-1 index is the main change in data streams from \Sexpr{last.assess.yr}.
+    The addition of the age-1 index is the main change in data streams from \Sexpr{last.assess_yr}.
 
-%  \item The main change from \Sexpr{last.assess.yr} is the use of the age-1 index
+%  \item The main change from \Sexpr{last.assess_yr} is the use of the age-1 index
 %    efficient algorithm (the No-U-Turn Sampler) for obtaining posterior samples. Consequently,
 %    all model results, including sensitivity and retrospective analyses, are
 %    now based on posterior distributions rather than maximum likelihood estimates.
@@ -70,7 +70,7 @@
 %    at the start of \Sexpr{end.yr} is \Sexpr{joint.percent.prob.above.below}\%.
 
   \item The estimated probability that spawning biomass at the start of
-    \Sexpr{assess.yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
+    \Sexpr{assess_yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
     \Sexpr{probs.curr.below.bforty}\%, and the probability that the relative fishing
     intensity exceeds its target in \Sexpr{end.yr-1} is
     \Sexpr{probs.curr.rel.fish.intens.above.one}\%. The joint

@@ -102,7 +102,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \title[Hake Historical Performance]{Historical performance of the Pacific Hake stock assessment}
 \author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
-\date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
 \subtitle{\tiny \disclaimer}
 
 \begin{document}
@@ -161,7 +161,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 \end{table}
 \pause
 \bi
-  \item Now (since it's \Sexpr{assess.yr}) we \emph{know} the 2019 catch was 411,574~t, so row~d was close enough.
+  \item Now (since it's \Sexpr{assess_yr}) we \emph{know} the 2019 catch was 411,574~t, so row~d was close enough.
 \pause
 \item How do the probabilities in row~d compare to estimates of them from the
     current base model?

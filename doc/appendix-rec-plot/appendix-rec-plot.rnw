@@ -20,7 +20,7 @@ make.recruitment.plot(last.yr.base.model,
                       add.r0 = TRUE)
 @
 \end{center}
-\caption{Recruitment Figure~e (or Figure~26) from the \Sexpr{assess.yr - 1} assessment \citep{JTC2021}.
+\caption{Recruitment Figure~e (or Figure~26) from the \Sexpr{assess_yr - 1} assessment \citep{JTC2021}.
   Medians (solid circles) and means ($\times$) of the posterior distribution for
   recruitment (billions of age-0 fish) with
   95\% posterior credibility intervals (blue lines). The median of the posterior distribution for mean unfished
@@ -33,7 +33,7 @@ Variability in annual recruitment is a key feature of the \fishname\
 stock. This is demonstrated  in figures of the estimated
 recruitment of age-0 fish in each year, as shown in
 Figure~\ref{fig:main-recruitment} and the equivalent
-figure from the \Sexpr{assess.yr - 1} assessment \citep{JTC2021}, reproduced
+figure from the \Sexpr{assess_yr - 1} assessment \citep{JTC2021}, reproduced
 below as Figure~\ref{fig:recruitment-last-asssessment}.
 
 However, we realised that these figures may not clearly or intuitively convey
@@ -112,7 +112,7 @@ make.mcmc.recruitment.plot(base.model,
                            start_yr = 2006,
                            equil.yr = unfished_eq_yr,
                            samples = 100,
-                           end.yr = assess.yr + 2,
+                           end.yr = assess_yr + 2,
                            y.max = 50)
 @
 \end{center}
@@ -133,7 +133,7 @@ make.mcmc.recruitment.plot(base.model,
                            start_yr = 2006,
                            equil.yr = unfished_eq_yr,
                            samples = 100,
-                           end.yr = assess.yr + 2,
+                           end.yr = assess_yr + 2,
                            highlight.num = 7,
                            highlight = TRUE,
                            y.max = 50)
@@ -165,7 +165,7 @@ make.mcmc.recruitment.plot(base.model,
                            equil.yr = unfished_eq_yr,
                            samples = 100,
                            rescale = TRUE,
-                           end.yr = assess.yr + 2,
+                           end.yr = assess_yr + 2,
                            highlight = FALSE)
 @
 \end{center}
@@ -188,7 +188,7 @@ make.mcmc.recruitment.plot(base.model,
                            samples = NULL,
                            rescale = TRUE,
                            traceplot = FALSE,
-                           end.yr = assess.yr + 2)
+                           end.yr = assess_yr + 2)
 @
 \end{center}
 \caption{Estimated recruitments divided by the estimated 2010 recruitment.
@@ -207,7 +207,7 @@ make.mcmc.recruitment.plot(base.model,
                            samples = NULL,
                            rescale = TRUE,
                            traceplot = FALSE,
-                           end.yr = assess.yr + 2,
+                           end.yr = assess_yr + 2,
                            auto.xaxis = FALSE)
 @
 \end{center}

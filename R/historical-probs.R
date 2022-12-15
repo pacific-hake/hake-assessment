@@ -17,7 +17,7 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' @donttest{
-##' calc_historical_probs(base.model, end = assess.yr-1)
+##' calc_historical_probs(base.model, end = assess_yr-1)
 ##' @}
 calc_historical_probs <- function(model,
                                   start = 2012,
@@ -65,7 +65,7 @@ calc_historical_probs <- function(model,
 ##' @author Andrew Edwards
 ##' @examples
 ##' @donttest{
-##' combine_historical_probs(model = base.model, end = assess.yr-1)
+##' combine_historical_probs(model = base.model, end = assess_yr-1)
 ##' @}
 combine_historical_probs <- function(model,
                                      file = paste0(rootd,
@@ -125,7 +125,7 @@ combine_historical_probs <- function(model,
 ##'
 make.historical.probs.plot <- function(model,
                                        type = "decline",
-                                       end = assess.yr - 1,
+                                       end = assess_yr - 1,
                                        xLim = NULL,
                                        add.50 = TRUE,
                                        add.50.col = "darkgrey",
@@ -155,20 +155,20 @@ make.historical.probs.plot <- function(model,
              col = colors[2],
              lwd = lwd.val)
       if(add.projs){
-        segments(rep(assess.yr - 1, num.projs),
+        segments(rep(assess_yr - 1, num.projs),
                  rep(res$P_decline[length(res$P_decline)], num.projs),
-                 rep(assess.yr, num.projs),
+                 rep(assess_yr, num.projs),
                  model$risks[[1]][1:num.projs,
-                                  paste0("SSB_", assess.yr + 1, "<SSB_",
-                                         assess.yr)],
+                                  paste0("SSB_", assess_yr + 1, "<SSB_",
+                                         assess_yr)],
                  pch = pch[1],
                  col = c("pink",
                          rep(colors[1], num.projs - 1)),
                  lwd = lwd.val)
-        points(rep(assess.yr, num.projs),
+        points(rep(assess_yr, num.projs),
                model$risks[[1]][1:num.projs,
-                                paste0("SSB_", assess.yr + 1, "<SSB_",
-                                       assess.yr)],
+                                paste0("SSB_", assess_yr + 1, "<SSB_",
+                                       assess_yr)],
                pch = pch[1],
                col = c("pink",
                        rep(colors[1], num.projs - 1)),
@@ -184,18 +184,18 @@ make.historical.probs.plot <- function(model,
              col = colors[2],
              lwd = lwd.val)
       if(add.projs){
-        segments(rep(assess.yr - 1, num.projs),
+        segments(rep(assess_yr - 1, num.projs),
                  rep(res$P_below_B40[length(res$P_below_B40)], num.projs),
-                 rep(assess.yr, num.projs),
+                 rep(assess_yr, num.projs),
                  model$risks[[1]][1:num.projs,
-                                  paste0("Bratio_", assess.yr + 1, "<0.40")],
+                                  paste0("Bratio_", assess_yr + 1, "<0.40")],
                  pch = pch[1],
                  col = c("pink",
                          rep(colors[1], num.projs - 1)),
                  lwd = lwd.val)
-        points(rep(assess.yr, num.projs),
+        points(rep(assess_yr, num.projs),
                model$risks[[1]][1:num.projs,
-                                paste0("Bratio_", assess.yr + 1, "<0.40")],
+                                paste0("Bratio_", assess_yr + 1, "<0.40")],
                pch = pch[1],
                col = c("pink",
                        rep(colors[1], num.projs - 1)),
@@ -227,20 +227,20 @@ make.historical.probs.plot <- function(model,
              col = colors[2],
              lwd = lwd.val)
       if(add.projs){
-        segments(rep(assess.yr - 1, num.projs),
+        segments(rep(assess_yr - 1, num.projs),
                  rep(res$P_decline[length(res$P_decline)], num.projs),
-                 rep(assess.yr, num.projs),
+                 rep(assess_yr, num.projs),
                  model$risks[[1]][1:num.projs,
-                                  paste0("SSB_", assess.yr + 1, "<SSB_",
-                                         assess.yr)],
+                                  paste0("SSB_", assess_yr + 1, "<SSB_",
+                                         assess_yr)],
                  pch = pch[1],
                  col = c("pink",
                          rep(colors[1], num.projs - 1)),
                  lwd = lwd.val)
-        points(rep(assess.yr, num.projs),
+        points(rep(assess_yr, num.projs),
                model$risks[[1]][1:num.projs,
-                                paste0("SSB_", assess.yr + 1, "<SSB_",
-                                       assess.yr)],
+                                paste0("SSB_", assess_yr + 1, "<SSB_",
+                                       assess_yr)],
                pch = pch[1],
                col = c("pink",
                        rep(colors[1], num.projs - 1)),
@@ -306,18 +306,18 @@ make.historical.probs.plot <- function(model,
              lwd = lwd.val)
 
       if(add.projs){
-        segments(rep(assess.yr - 1, num.projs),
+        segments(rep(assess_yr - 1, num.projs),
                  rep(res$P_below_B40[length(res$P_below_B40)], num.projs),
-                 rep(assess.yr, num.projs),
+                 rep(assess_yr, num.projs),
                  model$risks[[1]][1:num.projs,
-                                  paste0("Bratio_", assess.yr + 1, "<0.40")],
+                                  paste0("Bratio_", assess_yr + 1, "<0.40")],
                  pch = pch[1],
                  col = c("pink",
                          rep(colors[1], num.projs - 1)),
                  lwd = lwd.val)
-        points(rep(assess.yr, num.projs),
+        points(rep(assess_yr, num.projs),
                model$risks[[1]][1:num.projs,
-                                paste0("Bratio_", assess.yr + 1, "<0.40")],
+                                paste0("Bratio_", assess_yr + 1, "<0.40")],
                pch = pch[1],
                col = c("pink",
                        rep(colors[1], num.projs - 1)),
@@ -376,7 +376,7 @@ make.historical.probs.plot <- function(model,
 #' @}
 make.historical.probs.retro.plot <- function(model,
                                              type = "decline",
-                                             xLim = c(2012, assess.yr),
+                                             xLim = c(2012, assess_yr),
                                              make.one.figure = TRUE,
                                              cols = c("darkgreen",
                                                       "lightgreen",
@@ -399,7 +399,7 @@ make.historical.probs.retro.plot <- function(model,
   }
 
   earliest.retro.available = length(model$retros)  # For 2021 base.case: 10
-  earliest.retro.to.use = assess.yr - xLim[1]      # any further is before
+  earliest.retro.to.use = assess_yr - xLim[1]      # any further is before
                                         # xLim[1], want first retro year of data
                                         # to be 2011 (for 2012 calcs to compare
                                         # with 2012 assessment), which is retros[[9]].
@@ -416,7 +416,7 @@ make.historical.probs.retro.plot <- function(model,
   if(make.one.figure | !omit.current){
       make.historical.probs.plot(model,
                                  type = type,
-                                 end = assess.yr - 1,
+                                 end = assess_yr - 1,
                                  xLim = xLim,
                                  add.to.plot = FALSE,
                                  lwd.val = 3,
@@ -435,7 +435,7 @@ make.historical.probs.retro.plot <- function(model,
       # Still want current base model results and full legend for individual plots
       make.historical.probs.plot(model,
                                  type = type,
-                                 end = assess.yr - i,
+                                 end = assess_yr - i,
                                  xLim = xLim,
                                  add.to.plot = FALSE,
                                  lwd.val = 3,
@@ -444,14 +444,14 @@ make.historical.probs.retro.plot <- function(model,
                                    c("From year t's assessment",
                                      legend.text.model,
                                      paste0("Retrospective: data to ",
-                                            assess.yr - 1 - i)),
+                                            assess_yr - 1 - i)),
                                  colors = c("red", "blue", cols[i]),
                                  ...)
     }
 
     make.historical.probs.plot(model$retros[[i]],
                                type = type,
-                               end = assess.yr - i,
+                               end = assess_yr - i,
                                xLim = xLim,
                                add.to.plot = TRUE,
                                colors = c("red", cols[i]),

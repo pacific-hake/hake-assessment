@@ -231,7 +231,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \thispagestyle{empty}
 
 \title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian
-  waters in \Sexpr{assess.yr}
+  waters in \Sexpr{assess_yr}
 %% Uncomment for DRAFT:
 % \\ ~\\ DRAFT for submission to Scientific Review Group
 % \thanks{\noindent \disclaimer}
@@ -284,8 +284,8 @@ Authors of this document are (all authors contribute extensively so the order ro
 %% Final version (with standard author rotation)
 This document should be cited as follows:\\
 Edwards, A.M., A.M. Berger, C.J. Grandin and K.F. Johnson.
-\Sexpr{assess.yr}. Status of the \fishname\ (whiting) stock in
-U.S. and Canadian waters in \Sexpr{assess.yr}. Prepared by the Joint Technical
+\Sexpr{assess_yr}. Status of the \fishname\ (whiting) stock in
+U.S. and Canadian waters in \Sexpr{assess_yr}. Prepared by the Joint Technical
 Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
 Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 
@@ -313,8 +313,8 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 %% \modulolinenumbers[5]
 
 \lfoot{
-       %%DRAFT -- \fishname\ assessment \Sexpr{assess.yr}
-       \fishname\ assessment \Sexpr{assess.yr}
+       %%DRAFT -- \fishname\ assessment \Sexpr{assess_yr}
+       \fishname\ assessment \Sexpr{assess_yr}
        }
 \rfoot{One-page summary}
 <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=

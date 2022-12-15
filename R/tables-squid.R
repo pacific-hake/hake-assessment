@@ -1,6 +1,6 @@
 make.recr.dev.uncertainty.table <- function(models,
                                             model.names,
-                                            assess.yr,
+                                            assess_yr,
                                             age = 2,
                                             cohorts = c(2010, 2014, 2016),
                                             digits = 3,
@@ -15,7 +15,7 @@ make.recr.dev.uncertainty.table <- function(models,
   tab <- lapply(1:length(models),
                 function(x){
                   k <- lapply(cohorts, function(yr){
-                    j <- models[[x]]$retros[[assess.yr - yr - 2]]$recruitpars %>%
+                    j <- models[[x]]$retros[[assess_yr - yr - 2]]$recruitpars %>%
                       dplyr::filter(grepl(paste0("^.*RecrDev_",
                                           yr,
                                           "$"), rownames(.))) %>%

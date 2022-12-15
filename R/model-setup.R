@@ -1,14 +1,14 @@
 # -----------------------------------------------------------------------------
 # Year for this assessment - default is current year
 # -----------------------------------------------------------------------------
-assess.yr <- assess_yr
-message("Assessment year: ", assess.yr)
+assess_yr <- assess_yr
+message("Assessment year: ", assess_yr)
 
 # -----------------------------------------------------------------------------
 # Year for last assessment - default is current year - 1
 # -----------------------------------------------------------------------------
-last.assess.yr <- assess.yr - 1
-message("Last assessment year: ", last.assess.yr)
+last.assess_yr <- assess_yr - 1
+message("Last assessment year: ", last.assess_yr)
 
 # Output CSV directory for outputs of at-age which are calculated by the
 # atage_table() function (in r-functions/tables-age.r)
@@ -45,7 +45,7 @@ start_yr_age_comps <- 1975
 message("Start year for fishery age comps data: ", start_yr_age_comps)
 # The last non-forecast year in the model. This is the year for which the
 # mcmc outputs will be used in reference point calculations.
-end.yr <- assess.yr
+end.yr <- assess_yr
 message("End year for model: ", end.yr)
 # First year in the survey timeseries
 survey.start_yr <- 1995
@@ -105,7 +105,7 @@ message("Key posteriors file: ", nuisance.posteriors.file)
 # Base model name and directory
 # -----------------------------------------------------------------------------
 base.model.dir.name <- "2022.01.10_base_v2"
-base.model.name <- paste0(assess.yr, " Base model")
+base.model.name <- paste0(assess_yr, " Base model")
 
 message("Base model directory name: ", base.model.dir.name)
 message("Base model pretty name: ", base.model.name)
@@ -116,17 +116,17 @@ message("Base model pretty name: ", base.model.name)
 #  not necessarily considering as alt runs for 2019).
 # -----------------------------------------------------------------------------
 # alt.base.model.1.dir.name <- "2019.02.36_fecundity"
-# alt.base.model.1.name <- paste0(assess.yr, " Short-term pre-1975 wt at age")
+# alt.base.model.1.name <- paste0(assess_yr, " Short-term pre-1975 wt at age")
 # alt.base.model.2.dir.name <- "2019.02.32_fecundity"
-# alt.base.model.2.name <- paste0(assess.yr, " Long-term pre-1975 wt at age")
+# alt.base.model.2.name <- paste0(assess_yr, " Long-term pre-1975 wt at age")
 # alt.base.model.3.dir.name <- "2019.02.38_fecundity"
-# alt.base.model.3.name <- paste0(assess.yr, " TV Fec, short-term pre-1975 wt at age")
+# alt.base.model.3.name <- paste0(assess_yr, " TV Fec, short-term pre-1975 wt at age")
 
 # -----------------------------------------------------------------------------
 # Last assessment year's base model name and directory
 # -----------------------------------------------------------------------------
 last.yr.base.model.dir.name <- "2021.00.04_base_v1"
-last.yr.base.model.name <- paste(last.assess.yr, "Base model")
+last.yr.base.model.name <- paste(last.assess_yr, "Base model")
 message("Last assessment year's base model directory name: ", last.yr.base.model.dir.name)
 message("Last assessment year's base model pretty name: ", last.yr.base.model.name)
 

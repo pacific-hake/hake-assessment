@@ -208,7 +208,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %% Title page and author references page
 \thispagestyle{empty}
 
-\title{Diagnostics plots of ADNUTS results for bridging models for the \Sexpr{assess.yr} \fishname\ (whiting) stock assessment
+\title{Diagnostics plots of ADNUTS results for bridging models for the \Sexpr{assess_yr} \fishname\ (whiting) stock assessment
 %% Uncomment for DRAFT:
 \\ ~\\ Primarily for use by Joint Technical Committee
 \thanks{\noindent Disclaimer: This
@@ -234,7 +234,7 @@ or policy.}
 \input{../../doc/preamble}
 \setcounter{secnumdepth}{5} %% To number subsubheadings-ish
 
-\lfoot{Bridge diagnostics -- hake \Sexpr{assess.yr}}
+\lfoot{Bridge diagnostics -- hake \Sexpr{assess_yr}}
 
 \rfoot{Introduction}
 \chapter{Introduction}

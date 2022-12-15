@@ -25,14 +25,14 @@ decision_table <- function(model,
                            forecast_inds = seq_along(model$forecasts[[length(model$forecasts)]]),
                            rows_to_label = c("e", "f", "h", "j", "l", "m", "n", "o"),
                            row_labels = list(c("10\\%", "reduction"),
-                                             c(assess.yr - 1, "catch"),
+                                             c(assess_yr - 1, "catch"),
                                              c("10\\%", "reduction"),
                                              c("10\\%", "reduction"),
-                                             c(assess.yr - 1, "TAC"),
+                                             c(assess_yr - 1, "TAC"),
                                              c("FI=", "100\\%"),
                                              c("default", "HR"),
-                                             c(paste0("C", assess.yr, "="),
-                                               paste0("C", assess.yr + 1)))){
+                                             c(paste0("C", assess_yr, "="),
+                                               paste0("C", assess_yr + 1)))){
 
   if(length(rows_to_label) != length(row_labels)){
     stop("rows_to_label vector must be the same length as row_labels list")

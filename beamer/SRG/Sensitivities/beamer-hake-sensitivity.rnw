@@ -76,10 +76,10 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 @
 
 % -----------------------------------------------------------------------------
-\title[Hake Sensitivities]{\Sexpr{assess.yr} Pacific Hake Assessment: Sensitivities and Retrospectives}
+\title[Hake Sensitivities]{\Sexpr{assess_yr} Pacific Hake Assessment: Sensitivities and Retrospectives}
 \author[JTC]{Pacific Hake Joint Technical Committee}
 %\institute{}
-\date{{\footnotesize SRG meeting -- \Sexpr{assess.yr}}}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
 \subtitle{\tiny \disclaimer}
 
 \begin{document}
@@ -110,7 +110,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
         \bi
         \item \Sexpr{length(retrospective_yrs)} years into the past
         \item Cohort determination (`squid plot') for the base model and the age-1 exclusion sensitivity
-        \item Historical assessments: \Sexpr{assess.yr - 1991 + 1} years
+        \item Historical assessments: \Sexpr{assess_yr - 1991 + 1} years
         \ei
 \end{enumerate}
 \end{frame}
@@ -335,7 +335,7 @@ driven solely by fishery catch-at-age data
 
 \item \red{2018 assessment} -- changed from logistic space ($\phi=0.20$) to standard space ($\Phi=1.40$)
 
-\item \red{2019-\Sexpr{assess.yr} assessments} -- retained the 2018 value of $\Phi=1.40$
+\item \red{2019-\Sexpr{assess_yr} assessments} -- retained the 2018 value of $\Phi=1.40$
 \ei
 \vspace{20pt}
 Here we test alternative values of $\Phi$
@@ -729,7 +729,7 @@ par <- oldpar
 <<retro.4, out.width='.88\\columnwidth', out.height='.8\\textheight'>>=
 make.assessment.history.plot(base.model,
                              assessment.history,
-                             cex.legend = 0.48 * 38 / (38 + assess.yr - 2022))
+                             cex.legend = 0.48 * 38 / (38 + assess_yr - 2022))
                              # automatically shrink font size each year to fit.
 @
 \end{center}
@@ -747,7 +747,7 @@ make.assessment.history.plot(base.model,
   \item Absolute scale changes for some sensitivities, mostly due to differing $R_0$ estimates
   \item Overall relative pattern consistent -- large increases in biomass in early 2010s and currently biomass is declining
   \item Removal of Age-1 index decreases recruitment estimates and increases recruitment uncertainty for 2020
-  \item Retrospective squid plots show that since \Sexpr{assess.yr - 11}, and
+  \item Retrospective squid plots show that since \Sexpr{assess_yr - 11}, and
     based on medians:
   \bi
     \item 2014 cohort is the largest

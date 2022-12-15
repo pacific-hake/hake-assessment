@@ -285,33 +285,33 @@ zero.catch.prob.bio.down.2 <- f(base.model$risks[[2]][1, 2])
 # ... biomass declines 2 years after next to year after that with 0 catch -----
 zero.catch.prob.bio.down.3 <- f(base.model$risks[[3]][1,2])
 # ... current biomass being above/below B40%, B25%, and B10% ------------------
-probs.curr.bforty <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] > 0.40) * 100, 1)
-probs.curr.btwentyfive <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] > 0.25) * 100, 1)
-probs.curr.bten <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] > 0.10) * 100, 0)
-probs.curr.below.bforty <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] < 0.40) * 100, 1)
-probs.curr.below.btwentyfive <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] < 0.25) * 100, 1)
-probs.curr.below.bten <- f(mean(base.model$mcmc[[paste0("Bratio_", assess.yr)]] < 0.10) * 100, 1)
+probs.curr.bforty <- f(mean(base.model$mcmc[[paste0("Bratio_", assess_yr)]] > 0.40) * 100, 1)
+probs.curr.btwentyfive <- f(mean(base.model$mcmc[[paste0("Bratio_", assess_yr)]] > 0.25) * 100, 1)
+probs.curr.bten <- f(mean(base.model$mcmc[[paste0("Bratio_", assess_yr)]] > 0.10) * 100, 0)
+probs.curr.below.bforty <- f(mean(base.model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.40) * 100, 1)
+probs.curr.below.btwentyfive <- f(mean(base.model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.25) * 100, 1)
+probs.curr.below.bten <- f(mean(base.model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.10) * 100, 1)
 
 # Reference point probabilities -----------------------------------------------
 # ... reference points next year given largest catch this year ----------------
-largest.next.catch.index <- which.max(base.model$risks[[1]][, paste0("ForeCatch_", assess.yr)])
-largest.next.catch <- f(base.model$risks[[1]][largest.next.catch.index, paste0("ForeCatch_", assess.yr)], 0)
-prob.next.over.b10 <- f(100 - as.numeric(base.model$risks[[1]][largest.next.catch.index, paste0("Bratio_", assess.yr + 1, "<0.10")]), 0)
-prob.next.over.b40 <- f(100 - as.numeric(base.model$risks[[1]][largest.next.catch.index, paste0("Bratio_", assess.yr + 1, "<0.40")]), 0)
+largest.next.catch.index <- which.max(base.model$risks[[1]][, paste0("ForeCatch_", assess_yr)])
+largest.next.catch <- f(base.model$risks[[1]][largest.next.catch.index, paste0("ForeCatch_", assess_yr)], 0)
+prob.next.over.b10 <- f(100 - as.numeric(base.model$risks[[1]][largest.next.catch.index, paste0("Bratio_", assess_yr + 1, "<0.10")]), 0)
+prob.next.over.b40 <- f(100 - as.numeric(base.model$risks[[1]][largest.next.catch.index, paste0("Bratio_", assess_yr + 1, "<0.40")]), 0)
 # ... Canadian (DFO) provisional reference points -----------------------------
 dfo.probs.curr <- base.model$risks[[1]][,(ncol(base.model$risks[[1]])-2):ncol(base.model$risks[[1]])]
 dfo.probs.fore <- base.model$risks[[2]][,(ncol(base.model$risks[[2]])-2):ncol(base.model$risks[[2]])]
 # ... next year DFO probs given largest catch this year -----------------------
-dfo.prob.next.over.40bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess.yr + 1, ">0.4SSB_MSY")])
-dfo.prob.next.over.80bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess.yr + 1, ">0.8SSB_MSY")])
-dfo.prob.next.over.bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess.yr + 1, ">SSB_MSY")])
+dfo.prob.next.over.40bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess_yr + 1, ">0.4SSB_MSY")])
+dfo.prob.next.over.80bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess_yr + 1, ">0.8SSB_MSY")])
+dfo.prob.next.over.bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess_yr + 1, ">SSB_MSY")])
 # ... US (PFMC) stock size reference points based on default Treaty HCR -------
 next.treaty.catch <- f(base.model$catch.levels[[catch.default.policy.ind]][[1]][1], 0)
-pfmc.prob.next.year.below.b40 <- f(base.model$risks[[1]][catch.default.policy.ind, paste0("Bratio_", assess.yr + 1, "<0.40")], 0)
-pfmc.prob.next.year.below.b25 <- f(base.model$risks[[1]][catch.default.policy.ind, paste0("Bratio_", assess.yr + 1, "<0.25")], 0)
+pfmc.prob.next.year.below.b40 <- f(base.model$risks[[1]][catch.default.policy.ind, paste0("Bratio_", assess_yr + 1, "<0.40")], 0)
+pfmc.prob.next.year.below.b25 <- f(base.model$risks[[1]][catch.default.policy.ind, paste0("Bratio_", assess_yr + 1, "<0.25")], 0)
 same.catch.as.last.year <- f(base.model$catch.levels[[catch.actual.ind]][[1]][1], 0)
-same.catch.prob.next.year.below.b40 <- f(base.model$risks[[1]][catch.actual.ind, paste0("Bratio_", assess.yr + 1, "<0.40")], 0)
-same.catch.prob.year.after.next.below.b40 <- f(base.model$risks[[2]][catch.actual.ind, paste0("Bratio_", assess.yr + 2, "<0.40")], 0)
+same.catch.prob.next.year.below.b40 <- f(base.model$risks[[1]][catch.actual.ind, paste0("Bratio_", assess_yr + 1, "<0.40")], 0)
+same.catch.prob.year.after.next.below.b40 <- f(base.model$risks[[2]][catch.actual.ind, paste0("Bratio_", assess_yr + 2, "<0.40")], 0)
 # ... Prob most recent relative fishing intensity is above target of 1 --------
 probs.curr.rel.fish.intens.above.one <-
   f(sum(base.model$mcmc[[paste0("SPRratio_", end.yr-1)]] > 1) /
@@ -460,7 +460,7 @@ rec_2016 <- get_rec_ci(last.yr.base.model, base.model, 2016)
 rec_2017 <- get_rec_ci(last.yr.base.model, base.model, 2017)
 rec_2020 <- get_rec_ci(last.yr.base.model, base.model, 2020)
 # ... Cohort biomass-at-age ---------------------------------------------------
-baa <- get_baa(base.model, assess.yr)
+baa <- get_baa(base.model, assess_yr)
 baa_large <- baa %>% arrange(desc(Median))
 baa_2010 <- baa %>% filter(Cohort == 2010) %>% pull(Median) * 100
 baa_2014 <- baa %>% filter(Cohort == 2014) %>% pull(Median) * 100
@@ -597,11 +597,11 @@ nat_m_03 <- quantile(sens.models.1[[6]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred
 steep <- quantile(base.model$mcmc$SR_BH_steep, probs = cred_int)
 steep_prior_05 <- quantile(sens.models.1[[1]]$mcmc$SR_BH_steep, probs = cred_int)
 # ... bratio ------------------------------------------------------------------
-bratio_curr <- quantile(base.model$mcmc[[paste0("Bratio_", assess.yr)]], probs = cred_int)
-bratio_age1 <- quantile(sens.models.2[[1]]$mcmc[[paste0("Bratio_", assess.yr)]], probs = cred_int)
+bratio_curr <- quantile(base.model$mcmc[[paste0("Bratio_", assess_yr)]], probs = cred_int)
+bratio_age1 <- quantile(sens.models.2[[1]]$mcmc[[paste0("Bratio_", assess_yr)]], probs = cred_int)
 # ... depletion ---------------------------------------------------------------
-depl_curr <- mc$dmed[names(mc$dmed) == assess.yr]
-# depl_no_ageerr <- sens.models.5$mcmccalcs$dmed[names(mc$dmed) == assess.yr]
+depl_curr <- mc$dmed[names(mc$dmed) == assess_yr]
+# depl_no_ageerr <- sens.models.5$mcmccalcs$dmed[names(mc$dmed) == assess_yr]
 # ... joint probability -------------------------------------------------------
 # (%age) of being being both above the target relative fishing intensity in \Sexpr{end.yr-1}
 # and below the $\Bforty$ (40\% of $B_0$) reference point at the start of \Sexpr{end.yr}
@@ -612,7 +612,7 @@ joint.percent.prob.above.below <- f(sum(base.model$mcmc[[paste0("Bratio_", end.y
 
 # Probabilities for historical performance analyses ---------------------------
 historical.probs.tibble <- combine_historical_probs(model = base.model,
-                                                    end = assess.yr - 1) %>%
+                                                    end = assess_yr - 1) %>%
   as_tibble()
 prob.decline.from.2019.to.2020.historic <- filter(historical.probs.tibble,
                                                          Year == 2019) %>%

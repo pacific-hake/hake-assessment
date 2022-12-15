@@ -1,4 +1,4 @@
-maturity.ogive.figure <- function(model, useyears = 1975:(assess.yr - 1)){
+maturity.ogive.figure <- function(model, useyears = 1975:(assess_yr - 1)){
 
   # maturity.samples is created by data-tables.r
   # which reads

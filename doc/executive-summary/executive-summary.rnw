@@ -14,7 +14,7 @@
 \phantomsection \addcontentsline{toc}{subsection}{Stock} This assessment reports
 the status of the coastal \fishname\ (or \commonname, \emph{\sciencename})
 stock off the west coast of the United States and Canada at the start of
-\Sexpr{assess.yr}. This stock exhibits seasonal migratory behavior, ranging from
+\Sexpr{assess_yr}. This stock exhibits seasonal migratory behavior, ranging from
 offshore and generally southern waters during the winter spawning season to
 coastal areas between northern California and northern British Columbia during
 the spring, summer, and fall when the fishery is conducted. In years with warmer
@@ -73,8 +73,8 @@ total allowable catch (TAC, adjusted for carryovers) of
 
 <<total-catches-table, results='asis', echo=FALSE>>=
 make_catch_table(ct,
-                 start_yr = assess.yr - 10,
-                 end_yr = assess.yr - 1,
+                 start_yr = assess_yr - 10,
+                 end_yr = assess_yr - 1,
                  xcaption =
                    "Recent commercial fishery catch (t). Tribal catches are
                     included in the sector totals. Research catch includes landed
@@ -126,8 +126,8 @@ freezer-trawler fleet and minimally available for the shoreside fleet.
 %% (Figure~\ref{fig:es-survey-biomass}). A new age-based maturity ogive was
 %% developed for this assessment, replacing the previous ogive that was based on
 %% estimates of maturity-at-length from 1997 and weight-at-length  from 2011.
-%% Further new data for this \Sexpr{assess.yr}
-%% assessment, that were not in the \Sexpr{last.assess.yr} assessment,
+%% Further new data for this \Sexpr{assess_yr}
+%% assessment, that were not in the \Sexpr{last.assess_yr} assessment,
 %% are the
 %% \Sexpr{last.data.yr} fishery catch and fishery age compositions, and the mean
 %% weight-at-age for \Sexpr{last.data.yr}.
@@ -217,9 +217,9 @@ expected management outcomes given repeated application of these procedures over
 the long-term. The results of past (and ongoing) closed-loop simulations help inform
 decisions made for this assessment.
 
-This \Sexpr{assess.yr} assessment retains the same general population dynamics structure
-as the base assessment model from \Sexpr{last.assess.yr} as well as many of the previous
-elements as configured in Stock Synthesis. The main change from \Sexpr{last.assess.yr} is
+This \Sexpr{assess_yr} assessment retains the same general population dynamics structure
+as the base assessment model from \Sexpr{last.assess_yr} as well as many of the previous
+elements as configured in Stock Synthesis. The main change from \Sexpr{last.assess_yr} is
 the addition of the age-1 index to help inform recent and current recruitment expectations.
 % (see Section~\ref{sec:data-acoustic-survey} for more details).
 Analyses conducted in 2014
@@ -238,7 +238,7 @@ composition data, and
 again investigate sensitivity to an alternative data-weighting
 approach. Time-varying fecundity, which was introduced in 2019, is retained.
 The weight-at-age information for the forecast period
-is a representation of the last five years, as for the \Sexpr{last.assess.yr} assessment.
+is a representation of the last five years, as for the \Sexpr{last.assess_yr} assessment.
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
 \addcontentsline{toc}{subsection}{Stock biomass}
@@ -445,7 +445,7 @@ Since 2010, the model currently estimates small 2011, 2012, 2013, 2015, 2017, 20
 and 2019 year classes (median recruitment well below the mean of all median recruitments).
 % Done for for 2022 assessment
 % This gives all years, but some are close to average so do manually:
-%  years.since.2010.recruitment.med.below.mean  # ignore assess.yr-1
+%  years.since.2010.recruitment.med.below.mean  # ignore assess_yr-1
 % AME put in definition of below-average, else it looks like it contradicts the
 %  median deviations in the table.
 % Allan agrees. Even though the deviation is slightly above average, the 2011
@@ -726,16 +726,16 @@ The term `reference points' is used throughout this document to describe common
 conceptual summary metrics. The Agreement specifically identifies $\Fforty$ as the
 default harvest rate and $\Bforty$ as a point where the 40:10 TAC adjustment is triggered
 (see the Glossary in Appendix~\ref{chap:glossary}).
-Estimates of the \Sexpr{assess.yr} base model reference points with posterior
+Estimates of the \Sexpr{assess_yr} base model reference points with posterior
 credibility intervals are in Table~\ref{tab:es-reference-points}.
 The medians of sustainable yields and biomass reference points are almost
-10\% higher than in the \Sexpr{last.assess.yr} assessment.
+10\% higher than in the \Sexpr{last.assess_yr} assessment.
 This is a result of incorporating the age-1 index to help refine estimates of recruitment.
-The probability that spawning biomass at the beginning of \Sexpr{assess.yr}
+The probability that spawning biomass at the beginning of \Sexpr{assess_yr}
 is below $\Bforty$ is
-P$(B_{\Sexpr{assess.yr}} < \Bforty) = \Sexpr{probs.curr.below.bforty}$\%,
+P$(B_{\Sexpr{assess_yr}} < \Bforty) = \Sexpr{probs.curr.below.bforty}$\%,
 and of being below $\Btwentyfive$ is
-P$(B_{\Sexpr{assess.yr}} < \Btwentyfive) = \Sexpr{probs.curr.below.btwentyfive}$\%.
+P$(B_{\Sexpr{assess_yr}} < \Btwentyfive) = \Sexpr{probs.curr.below.btwentyfive}$\%.
 The probability that the relative fishing intensity was above its target of 1.0
 at the end of \Sexpr{end.yr-1} is \Sexpr{probs.curr.rel.fish.intens.above.one}\%.
 
@@ -854,7 +854,7 @@ of stock status and fishing intensity. Figure~\ref{fig:es-forecast-depletion-com
 the projected biomass for several catch alternatives. Population dynamics and governing
 parameters assumed during the forecast period include random recruitment;
 selectivity, weight-at-age and fecundity averaged over
-the five most recent years (\Sexpr{assess.yr-5}--\Sexpr{assess.yr-1}); and all other
+the five most recent years (\Sexpr{assess_yr-5}--\Sexpr{assess_yr-1}); and all other
 parameters as constant.
 
 A relative fishing intensity above 1 (or 100\% when shown as a percentage) indicates fishing greater than the
@@ -902,30 +902,30 @@ These metrics summarize the probability of various outcomes from the base model
 given each potential management action. Although not linear, probabilities can
 be interpolated from these results for intermediate catch
 values
-in \Sexpr{assess.yr} (Table~\ref{tab:es-risk-year-1} and
+in \Sexpr{assess_yr} (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
 %**[May not be needed
 %depending on results; if not then comment out rather than delete so we have for
 %future]
 However, interpolation is
 not appropriate for all catches in
-\Sexpr{assess.yr+1} or \Sexpr{assess.yr+2}, because they are conditional on previous
+\Sexpr{assess_yr+1} or \Sexpr{assess_yr+2}, because they are conditional on previous
 year(s) catch levels.
 %removed this text because it gets even more complicated with two more years to consider
 %catch alternatives~h and~i
 %have catches that are $>$\Sexpr{f(catch_levels[[5]][[1]][1])}~t (the constant
-%catch for alternative~\Sexpr{letters[5]}) in \Sexpr{assess.yr} but
-%$<$\Sexpr{f(catch_levels[[5]][[1]][1])}~t in \Sexpr{assess.yr+1}.
+%catch for alternative~\Sexpr{letters[5]}) in \Sexpr{assess_yr} but
+%$<$\Sexpr{f(catch_levels[[5]][[1]][1])}~t in \Sexpr{assess_yr+1}.
 %
-% \Sexpr{assess.yr+1} because catch alternatives~h and~i apply a
-%\Sexpr{assess.yr+1} catch level that is dependent on the
-%\Sexpr{assess.yr} catch (i.e., it is not constant).  Therefore, the probabilities for
+% \Sexpr{assess_yr+1} because catch alternatives~h and~i apply a
+%\Sexpr{assess_yr+1} catch level that is dependent on the
+%\Sexpr{assess_yr} catch (i.e., it is not constant).  Therefore, the probabilities for
 %% \Sexpr{catch_levels[[5]][[1]][1]}~t
 %% \Sexpr{catch_levels[[5]][[1]][1]}~t
-%\Sexpr{assess.yr+1} shown in Figure~\ref{fig:es-forecast-risk-comparison-year-2}
+%\Sexpr{assess_yr+1} shown in Figure~\ref{fig:es-forecast-risk-comparison-year-2}
 % are conditional and can be non-linear.
 This explains why a few probabilities decline
-(rather than rise) with increased \Sexpr{assess.yr+1} and \Sexpr{assess.yr+2}
+(rather than rise) with increased \Sexpr{assess_yr+1} and \Sexpr{assess_yr+2}
 catch levels in Tables~\ref{tab:es-risk-year-2} and~\ref{tab:es-risk-year-3}
 and Figures~\ref{fig:es-forecast-risk-comparison-year-2} and~\ref{fig:es-forecast-risk-comparison-year-3}.
 

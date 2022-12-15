@@ -1,7 +1,7 @@
 \clearpage
 
 \chapter{Scientific Review Group (SRG) requests from
-  \Sexpr{assess.yr} meeting}
+  \Sexpr{assess_yr} meeting}
 \label{chap:srg-requests}
 
 This appendix summarizes results produced in response to
