@@ -1176,7 +1176,7 @@ $B_{2013}$ falling below $\Bforty$.
 \frame{\frametitle{Can also do retrospective calculations -- remove age-1 index}
 \bc
 <<historical.prob.plot.retro.age1, fig.height=3.6, fig.width=6, out.width='0.6\\columnwidth'>>=
-make.historical.probs.retro.plot(sens.models.2[[1]],
+make.historical.probs.retro.plot(sens_models_2[[1]],
                                  type = "bforty",
                                  select.retros = 1,
                                  make.one.figure = FALSE,

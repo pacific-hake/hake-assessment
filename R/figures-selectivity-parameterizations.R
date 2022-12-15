@@ -8,7 +8,7 @@ make.selectivity.illustration <- function(
   # using equations 39-40 of the 2017 hake assessment
 
   ## mod.old <- base_model
-  ## mod.alt <- sens.models.4[[which(sens_model_dir_names_4=="2018.40.10_semiPara_tvSelect_sig0.695")]]
+  ## mod.alt <- sens_models_4[[which(sens_model_dir_names_4=="2018.40.10_semiPara_tvSelect_sig0.695")]]
 
   ###########################################################
   # define two years, one for baseline and other with deviations

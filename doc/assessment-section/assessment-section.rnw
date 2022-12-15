@@ -691,7 +691,7 @@ classes (Figure~\ref{fig:main-bridge-5-panel-2}), and
 increase in virgin recruitment. In turn, this results in a slightly higher
 trajectory of spawning stock biomass from 2013--2022 and a change in 2022
 median relative spawning stock biomass from
-\Sexpr{round(median(bridge.models.2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
+\Sexpr{round(median(bridge_models_2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
 \Sexpr{round(median(base_model$mcmc$Bratio_2022),3)*100}\%.
 
 \clearpage

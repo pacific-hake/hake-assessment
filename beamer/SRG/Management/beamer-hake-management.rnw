@@ -553,13 +553,13 @@ decision_table(base_model,
 %%   \begin{column}{0.59\textwidth}
 %%   <<compare.no2015fishAge, fig.height=5, fig.width=5.5, out.width='0.95\\columnwidth'>>=
 %%     oldpar <- par(mfrow=c(2,1), mar=c(5,4,1,1),no.readonly = TRUE)
-%%     make.comparison.plot.mcmc(c(list(base_model), sens.models.5),
+%%     make.comparison.plot.mcmc(c(list(base_model), sens_models_5),
 %%                               subplots = 2,
 %%                               model.names = c(paste0("Base model ", end_yr), sens_model_names_5),
 %%                               end_yr = end_yr+2,
 %%                               xlims = c(2008,end_yr+2),
 %%                               legendloc = "topleft")
-%%     make.comparison.plot.mcmc(c(list(base_model), sens.models.5),
+%%     make.comparison.plot.mcmc(c(list(base_model), sens_models_5),
 %%                               subplots = 8,
 %%                               model.names = c(paste0("Base model ", end_yr), sens_model_names_5),
 %%                               end_yr = end_yr+2,
@@ -662,8 +662,8 @@ par <- oldpar
 oldpar <- par()
 par(mar = c(20, 4.1, 0, 1))
 # models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-# models.names <- map_chr(sens.models.2[[1]]$catch.levels[models.inds], ~{.x[[2]]})
-make.forecast.depletion.comparison.plot(sens.models.2[[1]],
+# models.names <- map_chr(sens_models_2[[1]]$catch.levels[models.inds], ~{.x[[2]]})
+make.forecast.depletion.comparison.plot(sens_models_2[[1]],
                                         models.inds,
                                         models.names,
                                         start_yr = 2009,
@@ -690,17 +690,17 @@ Probability & Base model & Without age-1 index \\
 With zero catch scenario: & & \\
 P$(B_{\Sexpr{assess_yr+1}} < \Bforty)$ &
   \Sexpr{f( base_model$risks[[1]][1, paste0("Bratio_", end_yr + 1, "<0.40")])}\% &
-  \Sexpr{f( sens.models.2[[1]]$risks[[1]][1,paste0("Bratio_", end_yr + 1, "<0.40")])}\% \\
+  \Sexpr{f( sens_models_2[[1]]$risks[[1]][1,paste0("Bratio_", end_yr + 1, "<0.40")])}\% \\
 P$(B_{\Sexpr{assess_yr+2}} < \Bforty)$ &
   \Sexpr{f( base_model$risks[[2]][1, paste0("Bratio_", end_yr + 2, "<0.40")])}\% &
-  \Sexpr{f( sens.models.2[[1]]$risks[[2]][1, paste0("Bratio_", end_yr + 2, "<0.40")])}\% \\
+  \Sexpr{f( sens_models_2[[1]]$risks[[2]][1, paste0("Bratio_", end_yr + 2, "<0.40")])}\% \\
 With \Sexpr{f(catch_levels[[catch.actual.ind]][[1]][1])}~t catch scenario: & & \\
 P$(B_{\Sexpr{assess_yr+1}} < \Bforty)$ &
   \Sexpr{f( base_model$risks[[1]][catch.actual.ind, paste0("Bratio_", end_yr + 1, "<0.40")])}\% &
-  \Sexpr{f( sens.models.2[[1]]$risks[[1]][catch.actual.ind, paste0("Bratio_", end_yr + 1, "<0.40")])}\% \\
+  \Sexpr{f( sens_models_2[[1]]$risks[[1]][catch.actual.ind, paste0("Bratio_", end_yr + 1, "<0.40")])}\% \\
 P$(B_{\Sexpr{assess_yr+2}} < \Bforty)$ &
   \Sexpr{f( base_model$risks[[2]][4, paste0("Bratio_", end_yr + 2, "<0.40")])}\% &
-  \Sexpr{f( sens.models.2[[1]]$risks[[2]][catch.actual.ind, paste0("Bratio_", end_yr + 2, "<0.40")])}\% \\
+  \Sexpr{f( sens_models_2[[1]]$risks[[2]][catch.actual.ind, paste0("Bratio_", end_yr + 2, "<0.40")])}\% \\
 \hline
 \end{tabular}
 \end{table}
@@ -862,7 +862,7 @@ $B_{2013}$ falling below $\Bforty$.
 \frame{\frametitle{Can also do retrospective calculations -- remove age-1 index}
 \bc
 <<historical.prob.plot.retro.age1, fig.height=3.6, fig.width=6, out.width='0.6\\columnwidth'>>=
-make.historical.probs.retro.plot(sens.models.2[[1]],
+make.historical.probs.retro.plot(sens_models_2[[1]],
                                  type = "bforty",
                                  select.retros = 1,
                                  make.one.figure = FALSE,
@@ -943,7 +943,7 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 %%   \end{column}
 %%   \begin{column}{0.59\textwidth}
 %%     <<age.one.index.comp, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
-%%       make.comparison.plot(c(list(base_model), list(sens.models.2[[1]])),
+%%       make.comparison.plot(c(list(base_model), list(sens_models_2[[1]])),
 %%                      subplots = 2,
 %%                      model.names = c(base_model_name, sens_model_names_2[1]),
 %%                      end_yr = end_yr,
@@ -1024,14 +1024,14 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 %% % \begin{columns}
 %% %   \begin{column}{0.25\textwidth}
 %% %     \bi
-%% %       \item median $\log(R_0)$ = \Sexpr{round(median(sens.models.6$mcmc$SR_LN),2)}
+%% %       \item median $\log(R_0)$ = \Sexpr{round(median(sens_models_6$mcmc$SR_LN),2)}
 %% %       \item equilibrium recruitment is 2,314 millions of fish
 %% %       \item adnuts 92\% of base model
 %% %     \ei
 %% %   \end{column}
 %% %   \begin{column}{0.75\textwidth}
 %% %    <<main.mcmc.diag.R0.adnuts, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%% %    make.mcmc.diag.plot(sens.models.6, key_posteriors[2], key_posteriors_titles[2])
+%% %    make.mcmc.diag.plot(sens_models_6, key_posteriors[2], key_posteriors_titles[2])
 %% %    @
 %% %   \end{column}
 %% % \end{columns}
@@ -1054,7 +1054,7 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 %% %-----------------------------------------------------------------
 %% \frame{\frametitle{Decison Table - age-1 survey model}
 %% <<decisions.biomass.table_age1, results='asis', echo=FALSE>>=
-%%     make.decision.table.pres(sens.models.2[[1]],
+%%     make.decision.table.pres(sens_models_2[[1]],
 %%                              models.inds,
 %%                              xcaption = NULL,
 %%                              xlabel = "tab:es-decisions-spr",
@@ -1068,7 +1068,7 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 %% %-----------------------------------------------------------------
 %% % \frame{\frametitle{Decison Table - adnuts model}
 %% % <<decisions.biomass.table_adnuts, results='asis', echo=FALSE>>=
-%% %     make.decision.table.pres(sens.models.6,
+%% %     make.decision.table.pres(sens_models_6,
 %% %                              models.inds,
 %% %                              xcaption = NULL,
 %% %                              xlabel = "tab:es-decisions-spr",

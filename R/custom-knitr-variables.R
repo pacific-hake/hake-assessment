@@ -495,7 +495,7 @@ fore.catch.prop.wt.age11.median <- median(extramc$natselwt.prop[, 12]) * 100
 sigma_r <- f(base_model$sigma_R_in, 2)
 
 # Alternative sigma_r based on all years of recdevs ---------------------------
-sigma_r_info <- extract_sigma_r(c(list(base_model), sens.models.1),
+sigma_r_info <- extract_sigma_r(c(list(base_model), sens_models_1),
                                 c("base", sens_model_names_1),
                                 base_model$sigma_R_in)
 sigma_r_hi_main <- sigma_r_info %>%
@@ -535,9 +535,9 @@ retro.list <- list(base_model)
 for(i in plot_retro_yrs){
   retro.list[[i + 1]] <- base_model$retros[[i]]
 }
-retro.list.age1 <- list(sens.models.2[[1]])
+retro.list.age1 <- list(sens_models_2[[1]])
 for(i in plot_retro_yrs){
-  retro.list.age1[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
+  retro.list.age1[[i + 1]] <- sens_models_2[[1]]$retros[[i]]
 }
 # Adding the age-1 index for a sensitivity case -------------------------------
 retro.model.names.age1 <- c(sens_model_names_2[1],
@@ -591,17 +591,17 @@ DM.weight.survey.high <- f(max(exp(base_model$mcmc[, col.effn]) /
 # Need to change indexing if sensitivity models order changes in model-setup.R
 # ... natural mortality -------------------------------------------------------
 nat_m <- quantile(base_model$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
-nat_m_02 <- quantile(sens.models.1[[5]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
-nat_m_03 <- quantile(sens.models.1[[6]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
+nat_m_02 <- quantile(sens_models_1[[5]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
+nat_m_03 <- quantile(sens_models_1[[6]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
 # ... steepness ---------------------------------------------------------------
 steep <- quantile(base_model$mcmc$SR_BH_steep, probs = cred_int)
-steep_prior_05 <- quantile(sens.models.1[[1]]$mcmc$SR_BH_steep, probs = cred_int)
+steep_prior_05 <- quantile(sens_models_1[[1]]$mcmc$SR_BH_steep, probs = cred_int)
 # ... bratio ------------------------------------------------------------------
 bratio_curr <- quantile(base_model$mcmc[[paste0("Bratio_", assess_yr)]], probs = cred_int)
-bratio_age1 <- quantile(sens.models.2[[1]]$mcmc[[paste0("Bratio_", assess_yr)]], probs = cred_int)
+bratio_age1 <- quantile(sens_models_2[[1]]$mcmc[[paste0("Bratio_", assess_yr)]], probs = cred_int)
 # ... depletion ---------------------------------------------------------------
 depl_curr <- mc$dmed[names(mc$dmed) == assess_yr]
-# depl_no_ageerr <- sens.models.5$mcmccalcs$dmed[names(mc$dmed) == assess_yr]
+# depl_no_ageerr <- sens_models_5$mcmccalcs$dmed[names(mc$dmed) == assess_yr]
 # ... joint probability -------------------------------------------------------
 # (%age) of being being both above the target relative fishing intensity in \Sexpr{end_yr-1}
 # and below the $\Bforty$ (40\% of $B_0$) reference point at the start of \Sexpr{end_yr}

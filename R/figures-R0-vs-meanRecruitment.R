@@ -12,8 +12,8 @@ make.R0.vs.meanRecruitment.fig <- function(plot=TRUE){
     round(mean(model$timeseries$Recruit_0[model$timeseries$Era=="TIME"])/1e6, 3)
   }
 
-  mod.sig1.0 <- sens.models.1[[which(sens_model_names_1=="Sigma R 1.0")]]
-  mod.sig1.8 <- sens.models.1[[which(sens_model_names_1=="Sigma R 1.8")]]
+  mod.sig1.0 <- sens_models_1[[which(sens_model_names_1=="Sigma R 1.0")]]
+  mod.sig1.8 <- sens_models_1[[which(sens_model_names_1=="Sigma R 1.8")]]
       
   # make table
   sigma.table <- data.frame(sigmaR = c(1.0, 1.4, 1.8), R0 = NA, MeanRecr1966to2017=NA)

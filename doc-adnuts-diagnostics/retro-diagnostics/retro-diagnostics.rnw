@@ -263,7 +263,7 @@ replaces that for the main acoustic survey, as identified in the figure labels.
 # All the model results to show diagnostics for. Doing manually as easy to
 #  change on the fly and hard to automate, so do a check here:
 if(!(length(retro.list) == 6 # &
-     #length(bridge.models.2) == 2
+     #length(bridge_models_2) == 2
      )
    ){ stop("Need to update diagnostic.model in retro-diagnostics.rnw")
   }

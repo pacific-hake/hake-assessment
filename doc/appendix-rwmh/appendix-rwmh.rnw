@@ -62,7 +62,7 @@ samples.
 \begin{figure}[H]
 \begin{center}
 <<biomass-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar values of spawning biomass between the base model and rwMH sensitivity run">>=
-make.comparison.plot(c(list(base_model), list(sens.models.7)),
+make.comparison.plot(c(list(base_model), list(sens_models_7)),
                      subplots = 2,
                      model.names = c(base_model_name, sens.model.names.7),
                      end_yr = end_yr, plot_mcmc = TRUE)
@@ -76,7 +76,7 @@ make.comparison.plot(c(list(base_model), list(sens.models.7)),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
 <<status-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar patterns of relative spawning biomass between the base model and rwMH sensitivity run">>=
-make.comparison.plot(c(list(base_model), list(sens.models.7)),
+make.comparison.plot(c(list(base_model), list(sens_models_7)),
                      subplots = 4,
                      model.names = c(base_model_name, sens.model.names.7),
                      end_yr = end_yr, plot_mcmc = TRUE, legend = FALSE)
@@ -92,7 +92,7 @@ make.comparison.plot(c(list(base_model), list(sens.models.7)),
 \begin{figure}[H]
 \begin{center}
 <<recruitment-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar patterns of recruitment between the base model and rwMH sensitivity run">>=
-make.comparison.plot(c(list(base_model), list(sens.models.7)),
+make.comparison.plot(c(list(base_model), list(sens_models_7)),
                      legend = TRUE,
                      subplots = 10,
                      model.names = c(base_model_name, sens.model.names.7),
@@ -111,7 +111,7 @@ box()
 %% \begin{figure}[H]
 \begin{center}
 <<recruitment-devs-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar patterns of recruitment deviations between the base model and rwMH sensitivity run">>=
-make.comparison.plot(c(list(base_model), list(sens.models.7)),
+make.comparison.plot(c(list(base_model), list(sens_models_7)),
                      legend = FALSE,
                      subplots = 12,
                      model.names = c(base_model_name, sens.model.names.7),
@@ -129,7 +129,7 @@ box()
 %\begin{figure}[H]
 %\begin{center}
 %<<spawning-biomass-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
-%make.biomass.plot(sens.models.6,
+%make.biomass.plot(sens_models_6,
 %                  equil.yr = unfished_eq_yr,
 %                  start_yr = start_yr,
 %                  end_yr = end_yr,
@@ -150,7 +150,7 @@ box()
 %\begin{figure}[H]
 %\begin{center}
 %<<relative-spawning-biomass-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
-%make.depletion.plot(sens.models.6,
+%make.depletion.plot(sens_models_6,
 %                    start_yr = start_yr,
 %                    end_yr = end_yr,
 %                    color = "blue")
@@ -166,7 +166,7 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %<<biomass-table-adnuts, results='asis', echo=FALSE>>=
-%make.biomass.table(sens.models.6,
+%make.biomass.table(sens_models_6,
 %                   start_yr = end_yr-9,
 %                   end_yr = end_yr,
 %                   weight.factor = 1000,
@@ -182,7 +182,7 @@ box()
 %\clearpage
 %
 %<<recruitment-table-adnuts, results='asis', echo=FALSE>>=
-%make.recruitment.table(sens.models.6,
+%make.recruitment.table(sens_models_6,
 %                       start_yr = end_yr-10,
 %                       end_yr = end_yr-1,
 %                       weight.factor = 1000,
@@ -201,7 +201,7 @@ box()
 %\begin{figure}[H]
 %\begin{center}
 %<<recruitment-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
-%make.recruitment.plot(sens.models.6,
+%make.recruitment.plot(sens_models_6,
 %                      equil.yr = unfished_eq_yr,
 %                      start_yr = start_yr,
 %                      end_yr = end_yr,
@@ -221,7 +221,7 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %<<fishing-intensity-table-adnuts, results='asis', echo=FALSE>>=
-%make.fishing.intensity.table(sens.models.6,
+%make.fishing.intensity.table(sens_models_6,
 %                             start_yr = end_yr-10,
 %                             end_yr = end_yr-1,
 %                             digits = 3,
@@ -240,7 +240,7 @@ box()
 %\begin{figure}[H]
 %\begin{center}
 %<<fishing-intensity-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
-%make.fishing.intensity.plot(sens.models.6,
+%make.fishing.intensity.plot(sens_models_6,
 %                            start_yr = start_yr,
 %                            end_yr = end_yr-1,
 %                            color = "blue",
@@ -260,7 +260,7 @@ box()
 %\begin{figure}[H]
 %\begin{center}
 %<<exploitation-fraction-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
-%make.exploitation.fraction.plot(sens.models.6,
+%make.exploitation.fraction.plot(sens_models_6,
 %                                start_yr = start_yr,
 %                                end_yr = end_yr-1,
 %                                color = "blue",
@@ -277,7 +277,7 @@ box()
 %\begin{figure}[H]
 %\begin{center}
 %<<phase-plot-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
-%make.phase.plot(sens.models.6,
+%make.phase.plot(sens_models_6,
 %                start_yr = start_yr,
 %                end_yr = end_yr,
 %                x.max = 1.5)
@@ -298,7 +298,7 @@ box()
 
 %<<reference-points-table-adnuts, results='asis', echo=FALSE>>=
 %make.reference.points.table(
-%  sens.models.6,
+%  sens_models_6,
 %  xcaption = paste0("For the \\altshort, summary of median and 95\\%",
 %                     " credibility intervals of equilibrium reference points.",
 %                     " Equilibrium reference points were computed using ",
@@ -311,7 +311,7 @@ box()
 %@
 %
 %<<decisions-biomass-table-adnuts, results='asis', echo=FALSE>>=
-%decision_table(sens.models.6,
+%decision_table(sens_models_6,
 %                    xcaption = paste0("Forecast quantiles of \\fishname\\
 %                     relative spawning biomass at the beginning of the year
 %                     before fishing.  Catch alternatives are based on: constant
@@ -357,9 +357,9 @@ box()
 % ## Look at catch.levels and catch.levels to decide which to include here
 % ## models.inds are the indices of those which will be plotted against each other
 % models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-% models.names <- sapply(sens.models.6$catch.levels, "[[", 2)[models.inds]
+% models.names <- sapply(sens_models_6$catch.levels, "[[", 2)[models.inds]
 %                        ## pretty catch level name
-% make.forecast.depletion.comparison.plot(sens.models.6,
+% make.forecast.depletion.comparison.plot(sens_models_6,
 %                                         models.inds,
 %                                         models.names,
 %                                         start_yr = 2009,
@@ -386,7 +386,7 @@ box()
 %\begin{figure}[H]
 %\begin{center}
 %<<forecast-risk-comparison-plot-year-1-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
-%make.forecast.risk.comparison.plot(sens.models.6,
+%make.forecast.risk.comparison.plot(sens_models_6,
 %                                   forecast_yrs = forecast_yrs,
 %                                   fore.yr = forecast_yrs[1],
 %                                   colors = c("black","blue","green","orange",
@@ -408,7 +408,7 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %<<risk-forecast-year-1-table-adnuts, results='asis', echo=FALSE>>=
-%make.risk.table(sens.models.6,
+%make.risk.table(sens_models_6,
 %                forecast_yrs,
 %                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
 %                           ##  forecast year 2 compared to forecast year 1
@@ -427,7 +427,7 @@ box()
 %\begin{figure}[H]
 %\begin{center}
 %<<forecast-risk-comparison-plot-year-2-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
-%make.forecast.risk.comparison.plot(sens.models.6,
+%make.forecast.risk.comparison.plot(sens_models_6,
 %                                   forecast_yrs = forecast_yrs,
 %                                   fore.yr = forecast_yrs[2],
 %                                   colors = c("black","blue","green","orange",
@@ -449,7 +449,7 @@ box()
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %<<risk-forecast-year-2-table-adnuts, results='asis', echo=FALSE>>=
-%make.risk.table(sens.models.6,
+%make.risk.table(sens_models_6,
 %                forecast_yrs,
 %                index = 2, ## Index in models[[]]$risks to use, e.g.
 %                           ##  1 means forecast year 2 compared to forecast year 1
@@ -469,7 +469,7 @@ box()
 \begin{figure}[H]
 \begin{center}
 <<mcmc-survey-fit-rwmh, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows fits to the acoustic survey for some rwMH samples">>=
-make.mcmc.survey.fit.plot(sens.models.7,
+make.mcmc.survey.fit.plot(sens_models_7,
                           start_yr = survey_start_yr,
                           end_yr = survey_end_yr,
                           surv_yrs = surv_yrs,
@@ -494,8 +494,8 @@ make.mcmc.survey.fit.plot(sens.models.7,
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(sens.models.7, key.posteriors[1], key.posteriors.titles[1])
-make.mcmc.diag.plot(sens.models.7, key.posteriors[2], key.posteriors.titles[2])
+make.mcmc.diag.plot(sens_models_7, key.posteriors[1], key.posteriors.titles[1])
+make.mcmc.diag.plot(sens_models_7, key.posteriors[2], key.posteriors.titles[2])
 par <- oldpar
 @
 \end{center}
@@ -511,8 +511,8 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(sens.models.7, key.posteriors[3], key.posteriors.titles[3])
-make.mcmc.diag.plot(sens.models.7, key.posteriors[4], key.posteriors.titles[4])
+make.mcmc.diag.plot(sens_models_7, key.posteriors[3], key.posteriors.titles[3])
+make.mcmc.diag.plot(sens_models_7, key.posteriors[4], key.posteriors.titles[4])
 par <- oldpar
 @
 \end{center}
@@ -528,8 +528,8 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(sens.models.7, key.posteriors[5], key.posteriors.titles[5])
-make.mcmc.diag.plot(sens.models.7, key.posteriors[6], key.posteriors.titles[6])
+make.mcmc.diag.plot(sens_models_7, key.posteriors[5], key.posteriors.titles[5])
+make.mcmc.diag.plot(sens_models_7, key.posteriors[6], key.posteriors.titles[6])
 par <- oldpar
 @
 \end{center}
@@ -544,7 +544,7 @@ par <- oldpar
 \begin{figure}[H]
 \begin{center}
 <<mcmc-diag-hists-rwmh, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure summarizes good MCMC diagnostics for all parameters">>=
-plot_mcmc_param_stats(sens.models.7)
+plot_mcmc_param_stats(sens_models_7)
 @
 \end{center}
 \caption{\Sexpr{plot_mcmc_param_stats_makecaption(modelname = "rwMH")}}
@@ -568,7 +568,7 @@ plot_mcmc_param_stats(sens.models.7)
 \begin{figure}[H]
 \begin{center}
 <<mcmc-pairs-rwmh, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many parameters and derived quantities">>=
-make.mcmc.diag.pairs.plot(sens.models.7,
+make.mcmc.diag.pairs.plot(sens_models_7,
                           inc.key.params = TRUE,
                           key.posteriors.regex = key.posteriors,
                           key.posteriors.names = key.posteriors.titles,
@@ -588,7 +588,7 @@ make.mcmc.diag.pairs.plot(sens.models.7,
 \begin{figure}[H]
 \begin{center}
 <<mcmc-pairs-recruit-devs-rwmh, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many derived quantities">>=
-make.mcmc.diag.pairs.plot(sens.models.7,
+make.mcmc.diag.pairs.plot(sens_models_7,
                           inc.key.params = FALSE,
                           recr = (end_yr-10):(end_yr-1))
 @

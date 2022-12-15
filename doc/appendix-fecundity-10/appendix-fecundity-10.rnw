@@ -16,7 +16,7 @@ the mean over the entire time series of data (see Section~\ref{sec:assessment-se
 \begin{figure}[H]
 \begin{center}
 <<spawning-biomass-fecundity, fig.height=5, fig.width=8>>=
-make.biomass.plot(sens.models.5[[3]],
+make.biomass.plot(sens_models_5[[3]],
                   equil.yr = unfished_eq_yr,
                   start_yr = start_yr,
                   end_yr = end_yr,
@@ -37,7 +37,7 @@ make.biomass.plot(sens.models.5[[3]],
 \begin{figure}[H]
 \begin{center}
 <<relative-spawning-biomass-fecundity, fig.height=5, fig.width=8>>=
-make.depletion.plot(sens.models.5[[3]],
+make.depletion.plot(sens_models_5[[3]],
                     start_yr = start_yr,
                     end_yr = end_yr,
                     color = "blue")
@@ -53,7 +53,7 @@ make.depletion.plot(sens.models.5[[3]],
 %%%%%%%%%%%%%%%%%%%%%%%
 
 <<biomass-table-fecundity, results='asis', echo=FALSE>>=
-make.biomass.table(sens.models.5[[3]],
+make.biomass.table(sens_models_5[[3]],
                    start_yr = end_yr-9,
                    end_yr = end_yr,
                    weight.factor = 1000,
@@ -69,7 +69,7 @@ make.biomass.table(sens.models.5[[3]],
 \clearpage
 
 <<recruitment-table-fecundity, results='asis', echo=FALSE>>=
-make.recruitment.table(sens.models.5[[3]],
+make.recruitment.table(sens_models_5[[3]],
                        start_yr = end_yr-10,
                        end_yr = end_yr-1,
                        weight.factor = 1000,
@@ -88,7 +88,7 @@ make.recruitment.table(sens.models.5[[3]],
 \begin{figure}[H]
 \begin{center}
 <<recruitment-fecundity, fig.height=5, fig.width=8>>=
-make.recruitment.plot(sens.models.5[[3]],
+make.recruitment.plot(sens_models_5[[3]],
                       equil.yr = unfished_eq_yr,
                       start_yr = start_yr,
                       end_yr = end_yr,
@@ -108,7 +108,7 @@ make.recruitment.plot(sens.models.5[[3]],
 %%%%%%%%%%%%%%%%%%%%%%%
 
 <<fishing-intensity-table-fecundity, results='asis', echo=FALSE>>=
-make.fishing.intensity.table(sens.models.5[[3]],
+make.fishing.intensity.table(sens_models_5[[3]],
                              start_yr = end_yr-10,
                              end_yr = end_yr-1,
                              digits = 3,
@@ -127,7 +127,7 @@ make.fishing.intensity.table(sens.models.5[[3]],
 \begin{figure}[H]
 \begin{center}
 <<fishing-intensity-fecundity, fig.height=5, fig.width=8>>=
-make.fishing.intensity.plot(sens.models.5[[3]],
+make.fishing.intensity.plot(sens_models_5[[3]],
                             start_yr = start_yr,
                             end_yr = end_yr-1,
                             color = "blue",
@@ -147,7 +147,7 @@ make.fishing.intensity.plot(sens.models.5[[3]],
 \begin{figure}[H]
 \begin{center}
 <<exploitation-fraction-fecundity, fig.height=5, fig.width=8>>=
-make.exploitation.fraction.plot(sens.models.5[[3]],
+make.exploitation.fraction.plot(sens_models_5[[3]],
                                 start_yr = start_yr,
                                 end_yr = end_yr-1,
                                 color = "blue",
@@ -164,7 +164,7 @@ make.exploitation.fraction.plot(sens.models.5[[3]],
 \begin{figure}[H]
 \begin{center}
 <<phase-plot-fecundity, fig.height=5, fig.width=8>>=
-make.phase.plot(sens.models.5[[3]],
+make.phase.plot(sens_models_5[[3]],
                 start_yr = start_yr,
                 end_yr = end_yr)
 @
@@ -180,7 +180,7 @@ make.phase.plot(sens.models.5[[3]],
 
 <<reference-points-table-fecundity, results='asis', echo=FALSE>>=
 make.reference.points.table(
-  sens.models.5[[3]],
+  sens_models_5[[3]],
   xcaption = paste0("For the \\altshort, summary of median and 95\\%",
                      " credibility intervals of equilibrium reference points.",
                      " Equilibrium reference points were computed using ",
@@ -193,7 +193,7 @@ make.reference.points.table(
 @
 
 <<decisions-biomass-table-fecundity, results='asis', echo=FALSE>>=
-decision_table(sens.models.5[[3]],
+decision_table(sens_models_5[[3]],
                xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
@@ -239,9 +239,9 @@ decision_table(sens.models.5[[3]],
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-models.names <- sapply(sens.models.5[[3]]$catch.levels, "[[", 2)[models.inds]
+models.names <- sapply(sens_models_5[[3]]$catch.levels, "[[", 2)[models.inds]
                        ## pretty catch level name
-make.forecast.depletion.comparison.plot(sens.models.5[[3]],
+make.forecast.depletion.comparison.plot(sens_models_5[[3]],
                                         models.inds,
                                         models.names,
                                         start_yr = 2009,
@@ -268,7 +268,7 @@ make.forecast.depletion.comparison.plot(sens.models.5[[3]],
 \begin{figure}[H]
 \begin{center}
 <<forecast-risk-comparison-plot-year-1-fecundity, fig.height=5, fig.width=8>>=
-make.forecast.risk.comparison.plot(sens.models.5[[3]],
+make.forecast.risk.comparison.plot(sens_models_5[[3]],
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[1],
                                    colors = c("black","blue","green","orange",
@@ -290,7 +290,7 @@ make.forecast.risk.comparison.plot(sens.models.5[[3]],
 %%%%%%%%%%%%%%%%%%%%%%%
 
 <<risk-forecast-year-1-table-fecundity, results='asis', echo=FALSE>>=
-make.risk.table(sens.models.5[[3]],
+make.risk.table(sens_models_5[[3]],
                 forecast_yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
                            ##  forecast year 2 compared to forecast year 1
@@ -309,7 +309,7 @@ make.risk.table(sens.models.5[[3]],
 \begin{figure}[H]
 \begin{center}
 <<forecast-risk-comparison-plot-year-2-fecundity, fig.height=5, fig.width=8>>=
-make.forecast.risk.comparison.plot(sens.models.5[[3]],
+make.forecast.risk.comparison.plot(sens_models_5[[3]],
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[2],
                                    colors = c("black","blue","green","orange",
@@ -331,7 +331,7 @@ directly from model output and lines interpolate between the points.}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 <<risk-forecast-year-2-table-fecundity, results='asis', echo=FALSE>>=
-make.risk.table(sens.models.5[[3]],
+make.risk.table(sens_models_5[[3]],
                 forecast_yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
                            ##  1 means forecast year 2 compared to forecast year 1

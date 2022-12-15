@@ -259,37 +259,37 @@ load_models_rds <- function(){
       last_yr_base_model$mcmc[, grep("SSB", names(last_yr_base_model$mcmc))]/2
   }
 
-  bridge.models.1 <<- load_models(bridge_model_dir_names_1)
+  bridge_models_1 <<- load_models(bridge_model_dir_names_1)
   # For 2022 assessment only due to changes in SS3 to make figures and tables work.
   #  Can remove in 2023:
   if(bridge_model_names_1[1] == "2021 Base model"){
-    bridge.models.1[[1]]$mcmc[, grep("SSB", names(bridge.models.1[[1]]$mcmc))] <<-
-      bridge.models.1[[1]]$mcmc[, grep("SSB", names(bridge.models.1[[1]]$mcmc))]/2
+    bridge_models_1[[1]]$mcmc[, grep("SSB", names(bridge_models_1[[1]]$mcmc))] <<-
+      bridge_models_1[[1]]$mcmc[, grep("SSB", names(bridge_models_1[[1]]$mcmc))]/2
   }
 
-  bridge.models.2 <<- load_models(bridge_model_dir_names_2)
-  sens.models.1 <<- load_models(sens_model_dir_names_1)
-  sens.models.2 <<- load_models(sens_model_dir_names_2, TRUE)
-  sens.models.4 <<- load_models(sens_model_dir_names_4)
-  # sens.models.5 <<- load_models(sens_model_dir_names_5)
-  sens.models.6 <<- load_models(sens_model_dir_names_6)
-  # sens.models.7 <<- load_models(sens_model_dir_names_7)
+  bridge_models_2 <<- load_models(bridge_model_dir_names_2)
+  sens_models_1 <<- load_models(sens_model_dir_names_1)
+  sens_models_2 <<- load_models(sens_model_dir_names_2, TRUE)
+  sens_models_4 <<- load_models(sens_model_dir_names_4)
+  # sens_models_5 <<- load_models(sens_model_dir_names_5)
+  sens_models_6 <<- load_models(sens_model_dir_names_6)
+  # sens_models_7 <<- load_models(sens_model_dir_names_7)
 #  srg_day2_req1_model <<- load_models("2022.01.47_day2request_wtatage")
 #  srg_day2_req2_model <<- load_models("2022.01.46_base_v1_4yrForecast")
 
   # Lists of sensitivities for the MLE parameters, derived quantiles,
   #  and reference points table
   # First set includes base and sensitivity group 1 and 2
-  sens.models.1.for.table <<- c(list(base_model), sens.models.1, sens.models.2)
-  sens_model_names_1.for.table <<- c("Base model", sens_model_names_1,sens_model_names_2)
+  sens_models_1_for_table <<- c(list(base_model), sens_models_1, sens_models_2)
+  sens_model_names_1_for_table <<- c("Base model", sens_model_names_1, sens_model_names_2)
   # Second set includes base and sensitivity groups 3 and 4
 
   # Removing the sens group 4 from this because it's causing problems when
   # running param_est_table()
-  sens.models.2.for.table <<- c(list(base_model),
-                                sens.models.4,
-                                sens.models.6)
-  sens_model_names_2.for.table <<- c("Base model",
+  sens_models_2_for_table <<- c(list(base_model),
+                                sens_models_4,
+                                sens_models_6)
+  sens_model_names_2_for_table <<- c("Base model",
                                      sens_model_names_4,
                                      sens_model_names_6)
 
@@ -307,10 +307,10 @@ load_models_rds <- function(){
                        "Est. theta, 2.0 x input sample size")
 
   # Third set
-  # sens.models.3.for.table <<- c(list(base_model), list(sens.models.5), sens.models.6, list(sens.models.7))
+  # sens_models_3.for.table <<- c(list(base_model), list(sens_models_5), sens_models_6, list(sens_models_7))
   # sens_model_names_3.for.table <<- c("Base model", sens_model_names_5, sens_model_names_6, sens_model_names_7)
 
   # Fourth set
-  # sens.models.4.for.table <<- c(list(base_model), list(sens.models.6))
+  # sens_models_4.for.table <<- c(list(base_model), list(sens_models_6))
   # sens_model_names_4.for.table <<- c("Base model", sens_model_names_6)
 }
