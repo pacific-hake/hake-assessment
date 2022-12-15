@@ -551,7 +551,7 @@ make.kriging.parameters.table <- function(krig.pars = kriging.pars,
                                "$k$\\subscr{max}",
                                latex.nline,
                                "\\midrule"),
-                        paste0(latex.bold(last.assess_yr), latex.nline),
+                        paste0(latex.bold(last_assess_yr), latex.nline),
                         paste0(latex.bold(assess_yr), latex.nline),
                         "\\bottomrule")
 

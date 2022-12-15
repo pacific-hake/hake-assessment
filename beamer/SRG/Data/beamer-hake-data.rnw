@@ -105,11 +105,11 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       tail(last.5.years.total.catch,2)[1] * 100))
   @
   \bi
-    \item \Sexpr{last.assess_yr} TAC, adjusted for carryovers, was \Sexpr{last.year.tac} t.
+    \item \Sexpr{last_assess_yr} TAC, adjusted for carryovers, was \Sexpr{last.year.tac} t.
     \item Canadian and U.S. fisheries predominantly started in April and May, respectively.
     \item \Sexpr{scales::ordinal(tail(rank(base.model$catch$Obs*-1),1))} highest coast-wide catch.
     \item \Sexpr{pchangecatch}\% decrease in catch from last year.
-    \item No Canadian Joint-Venture Fishery and no ages from Freezer-Trawlers in \Sexpr{last.assess_yr}.
+    \item No Canadian Joint-Venture Fishery and no ages from Freezer-Trawlers in \Sexpr{last_assess_yr}.
     \item Highest proportion-at-age by sector
       \bi
         \item Age-\Sexpr{us.age.1.prop.age.cp} fish in U.S. catcher-processor sector,
@@ -120,7 +120,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
       \ei
     \item Canadians fished shallower than normal to avoid rockfish species.
     \item Stakeholders reported good fishing in the U.S.A. and difficulty finding fish in Canada.
-%    \item No new information from the survey in \Sexpr{last.assess_yr}.
+%    \item No new information from the survey in \Sexpr{last_assess_yr}.
     \item \Sexpr{last.survey.year} acoustic survey biomass estimate was \Sexpr{last.survey.year.biomass} million tons (\Sexpr{(type.convert(as.is = TRUE, last.factor.penult))*100}\% of \Sexpr{penult.survey.year}).
   \ei
 }
@@ -230,7 +230,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
           \bi
             \item Catcher Processor  -- \Sexpr{f(last.year.us.cp.catch)} t, \Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")} of US CP allocation
             \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t, \Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")} of US MS allocation
-            \item Shore-Based         -- \Sexpr{f(last.year.us.shore.catch)} t, \Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")} of shore-based allocation, includes \Sexpr{f(round(sum(subset(us.ti.catch.by.month,year == last.assess_yr)$catch), 0))} t of tribal catches
+            \item Shore-Based         -- \Sexpr{f(last.year.us.shore.catch)} t, \Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")} of shore-based allocation, includes \Sexpr{f(round(sum(subset(us.ti.catch.by.month,year == last_assess_yr)$catch), 0))} t of tribal catches
           \ei
     \end{column}
   \end{columns}

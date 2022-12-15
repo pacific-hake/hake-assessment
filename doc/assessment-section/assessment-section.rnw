@@ -98,14 +98,14 @@ that aim for a sustainable coast-wide fishery.
 \subsection{Description of base model}\label{sec:assessment-base-model}
 
 The \Sexpr{assess_yr} base model has the same population dynamics structure
-as the \Sexpr{last.assess_yr} stock assessment.
+as the \Sexpr{last_assess_yr} stock assessment.
 % See Appendices~\ref{chap:data-file}-\ref{chap:weight-at-age-file} for input files.
 The statistical-catch-at-age model assumes that the
 \fishname\ population is a single coast-wide stock subject to
 one aggregated fleet with combined male and female population dynamics.
 Stock Synthesis \citep{MethotWetzel2013} version \Sexpr{ss_version} was the modeling platform used.
 The largest changes between the
-\Sexpr{last.assess_yr} and \Sexpr{assess_yr} stock assessments are the addition of another
+\Sexpr{last_assess_yr} and \Sexpr{assess_yr} stock assessments are the addition of another
 year of
 acoustic survey and
 fishery data and the incorporation of the age-1 index into the base model.
@@ -126,7 +126,7 @@ associated with age-composition data, rather than iteratively tuning the sample 
 as in 2017 and earlier assessments (see
 Section~\ref{sec:data-age-comp-likelihood}). Time-varying fishery
 selectivity is retained in the \Sexpr{assess_yr} base model with the magnitude
-of the allowable deviations unchanged from the \Sexpr{last.assess_yr} base model
+of the allowable deviations unchanged from the \Sexpr{last_assess_yr} base model
 (see Section~\ref{sec:data-variability-selectivity}).
 The general parameterization of
 selectivity was retained, although additional parameters were required to
@@ -162,7 +162,7 @@ constraint and is fixed at
 \Sexpr{base.model$sigma_R_in} in this assessment. This value is based on
 consistency with the observed variability in the time series of recruitment
 deviation estimates and is the same as assumed in assessments from 2013 to
-\Sexpr{last.assess_yr} (Table~\ref{tab:main-assessment-changes}).
+\Sexpr{last_assess_yr} (Table~\ref{tab:main-assessment-changes}).
 Catchabilities associated with the biomass index ($q_b$) and with the age-1 index
 ($q_1$) were
 calculated analytically as per \citet{LudwigWalters1981}
@@ -595,10 +595,10 @@ of the JTC Stock Assessment document.}
 
 \subsection{Modeling results}\label{sec:assessment-modeling-results}
 
-\subsubsection{Changes from \Sexpr{last.assess_yr} }\label{sec:assessment-changes}
+\subsubsection{Changes from \Sexpr{last_assess_yr} }\label{sec:assessment-changes}
 
 A set of `bridging' models was constructed to evaluate the component-specific
-effects of all changes from the \Sexpr{last.assess_yr} base model to
+effects of all changes from the \Sexpr{last_assess_yr} base model to
 the \Sexpr{assess_yr} base model.
 
 In short, these included the following:
@@ -628,7 +628,7 @@ how files are saved for MCMC samples and
 the timing of the calculation of key population processes such as
 growth and natural mortality.
 Adaptations within the Stock Synthesis modeling framework itself had little effect
-on parameter estimates compared to the \Sexpr{last.assess_yr}
+on parameter estimates compared to the \Sexpr{last_assess_yr}
 base model and thus no effect on resulting time series.
 
 The second set of bridging steps was conducted to update fishery-dependent
@@ -636,9 +636,9 @@ and fishery-independent data.
 This primarily included minor adjustments in catch, fishery age compositions,
 the 2019 acoustic survey biomass estimate, and
 weight-at-age values as databases are continually updated.
-Samples that were recently aged but not available for the \Sexpr{last.assess_yr}
+Samples that were recently aged but not available for the \Sexpr{last_assess_yr}
 assessment were included.
-These changes to pre-\Sexpr{last.assess_yr} data were small enough that they had
+These changes to pre-\Sexpr{last_assess_yr} data were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-5-panel-1}).
 
 The addition of \Sexpr{last.data.yr} catch and fishery age compositions extends the model
@@ -665,7 +665,7 @@ whereas updating the 2019 survey biomass estimate itself had negligible
 effect. The addition of \Sexpr{last.data.yr} survey data led to small shifts
 in expected recruitment, particularly for the 2016, 2017, and 2018 year classes.
 The 2018 year class is estimated to be higher in this
-assessment than in the \Sexpr{last.assess_yr} assessment, but it still remains
+assessment than in the \Sexpr{last_assess_yr} assessment, but it still remains
 a below-average year class.
 This increase is largely driven by the addition
 of the 2021 acoustic-survey age compositions, because this
@@ -758,14 +758,14 @@ of
 
 The base model fit to the
 acoustic survey biomass index (Figure~\ref{fig:main-mcmc-survey-fit})
-remains similar to the \Sexpr{last.assess_yr} base model.
+remains similar to the \Sexpr{last_assess_yr} base model.
 The \Sexpr{survey.end.yr} survey biomass estimate resulted in a slight upward shift
 in the fit to the \Sexpr{penult.survey.year}
 survey data points, but the result of a relatively stable biomass trend from 2013--2019
 is the same (Figure~\ref{fig:main-mcmc-survey-fit}).
-The addition of \Sexpr{last.assess_yr} fishery data
+The addition of \Sexpr{last_assess_yr} fishery data
 was the main reason for this change in fit to the 2019 data point (Figure~\ref{fig:main-bridge-5-panel-1}).
-The \Sexpr{last.assess_yr} survey estimate was lower than in 2019 (second lowest since 2013),
+The \Sexpr{last_assess_yr} survey estimate was lower than in 2019 (second lowest since 2013),
 and the model fit indicates a decline in biomass compared to the relatively stable 2013--2019 period.
 The 2001 survey biomass index continues to be well below any model predictions that were evaluated,
 and no direct cause for this is known.  The survey did begin earlier that year than all other surveys
@@ -855,7 +855,7 @@ Section~\ref{sec:data-age-comp-likelihood}).
 
 The \Sexpr{assess_yr} base model specified the same level of variation (standard
 deviation of $\Phi = 1.4$) associated with time-varying fishery selectivity as
-the \Sexpr{last.assess_yr} base model, effectively
+the \Sexpr{last_assess_yr} base model, effectively
 allowing the model flexibility (i.e., a lower penalty on the overall
 likelihood) to fit to data that suggests high variability among years for each
 age. This level
@@ -1245,7 +1245,7 @@ $\Bforty$, $\Bmsy$, and MSY) with posterior credibility intervals in
 Table~\ref{tab:main-reference-points}. The
 median of the female spawning biomass at $\Fforty$ (namely the median of $\BSPRforty$) and
 the median yield at $\Fforty$ are higher than the estimates in the
-\Sexpr{last.assess_yr} assessment (Table~\ref{tab:main-parameter-estimates}).
+\Sexpr{last_assess_yr} assessment (Table~\ref{tab:main-parameter-estimates}).
 % Manual 2021 done
 
 % Look at dfo.probs.curr and decide what to write. Check that

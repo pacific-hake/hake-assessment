@@ -159,15 +159,15 @@ fi.names <- sapply(base.model$catch.levels, "[[", 2)[fi.inds]
       %at Git commit \Sexpr{admb.commit} on \Sexpr{admb.commit.date}.
     \item  Update fishery catch and age composition data:
       \bi
-      \item Years prior to \Sexpr{last.assess_yr}
-      \item Add new data for \Sexpr{last.assess_yr}
+      \item Years prior to \Sexpr{last_assess_yr}
+      \item Add new data for \Sexpr{last_assess_yr}
       \ei
     \item Update survey biomass estimate and age data:
     \bi
-      \item Years prior to \Sexpr{last.assess_yr}
-      \item Add new data for \Sexpr{last.assess_yr}
+      \item Years prior to \Sexpr{last_assess_yr}
+      \item Add new data for \Sexpr{last_assess_yr}
     \ei
-    \item Update and add new \Sexpr{last.assess_yr} weight-at-age data
+    \item Update and add new \Sexpr{last_assess_yr} weight-at-age data
     \item Add the age-1 index time series
     \item All model runs in the assessment use MCMC (including bridging models)
   \ei
@@ -484,9 +484,9 @@ par <- oldpar
 \begin{columns}
   \begin{column}{0.4\textwidth}
       \bi
-	    \item March \Sexpr{last.assess_yr}
+	    \item March \Sexpr{last_assess_yr}
       \bi
-        \item Default harvest rule TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess_yr))$`Default HCR TAC`)} t
+        \item Default harvest rule TAC = \Sexpr{f((catch.targets %>% filter(Year == last_assess_yr))$`Default HCR TAC`)} t
         \item Sum of unilateral TACs = \Sexpr{last.year.tac} t
       \ei
       \item When default HR suggests a large catch, TAC is often set less

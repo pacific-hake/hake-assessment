@@ -10,7 +10,7 @@ recruitment is excluded from the data used to fit the assessment
 Table~\ref{tab:main-parameter-estimates-sens-1}).
 Removing the age-1 index highlights
 model uncertainty arising from fitting the base model to less data and
-allows for comparisons with the \Sexpr{last.assess_yr} base model.
+allows for comparisons with the \Sexpr{last_assess_yr} base model.
 This appendix is meant to provide supplemental information,
 and should not be viewed as an alternative base model.
 

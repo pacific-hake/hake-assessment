@@ -134,9 +134,9 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 \begin{columns}
   \begin{column}{0.45\textwidth}
 	  \bi
-	    \item March \Sexpr{last.assess_yr}
+	    \item March \Sexpr{last_assess_yr}
       \bi
-        \item Default median HR TAC = \Sexpr{f((catch.targets %>% filter(Year == last.assess_yr))$`Default HCR TAC`)}~t
+        \item Default median HR TAC = \Sexpr{f((catch.targets %>% filter(Year == last_assess_yr))$`Default HCR TAC`)}~t
         \item Sum of unilateral TACs = \Sexpr{last.year.tac}~t
       \ei
       \item When default HR suggests a large catch, TAC is often set less

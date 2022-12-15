@@ -127,7 +127,7 @@ freezer-trawler fleet and minimally available for the shoreside fleet.
 %% developed for this assessment, replacing the previous ogive that was based on
 %% estimates of maturity-at-length from 1997 and weight-at-length  from 2011.
 %% Further new data for this \Sexpr{assess_yr}
-%% assessment, that were not in the \Sexpr{last.assess_yr} assessment,
+%% assessment, that were not in the \Sexpr{last_assess_yr} assessment,
 %% are the
 %% \Sexpr{last.data.yr} fishery catch and fishery age compositions, and the mean
 %% weight-at-age for \Sexpr{last.data.yr}.
@@ -218,8 +218,8 @@ the long-term. The results of past (and ongoing) closed-loop simulations help in
 decisions made for this assessment.
 
 This \Sexpr{assess_yr} assessment retains the same general population dynamics structure
-as the base assessment model from \Sexpr{last.assess_yr} as well as many of the previous
-elements as configured in Stock Synthesis. The main change from \Sexpr{last.assess_yr} is
+as the base assessment model from \Sexpr{last_assess_yr} as well as many of the previous
+elements as configured in Stock Synthesis. The main change from \Sexpr{last_assess_yr} is
 the addition of the age-1 index to help inform recent and current recruitment expectations.
 % (see Section~\ref{sec:data-acoustic-survey} for more details).
 Analyses conducted in 2014
@@ -238,7 +238,7 @@ composition data, and
 again investigate sensitivity to an alternative data-weighting
 approach. Time-varying fecundity, which was introduced in 2019, is retained.
 The weight-at-age information for the forecast period
-is a representation of the last five years, as for the \Sexpr{last.assess_yr} assessment.
+is a representation of the last five years, as for the \Sexpr{last_assess_yr} assessment.
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
 \addcontentsline{toc}{subsection}{Stock biomass}
@@ -729,7 +729,7 @@ default harvest rate and $\Bforty$ as a point where the 40:10 TAC adjustment is 
 Estimates of the \Sexpr{assess_yr} base model reference points with posterior
 credibility intervals are in Table~\ref{tab:es-reference-points}.
 The medians of sustainable yields and biomass reference points are almost
-10\% higher than in the \Sexpr{last.assess_yr} assessment.
+10\% higher than in the \Sexpr{last_assess_yr} assessment.
 This is a result of incorporating the age-1 index to help refine estimates of recruitment.
 The probability that spawning biomass at the beginning of \Sexpr{assess_yr}
 is below $\Bforty$ is

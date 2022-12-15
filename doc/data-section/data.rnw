@@ -71,10 +71,10 @@ additional data sources are:
   % presume won't change, no need to automate.
 
 \item Bottom trawl surveys in the U.S.A. and Canada (various years and spatial
-  coverage from 1977--\Sexpr{last.assess_yr}).
+  coverage from 1977--\Sexpr{last_assess_yr}).
 
 \item NWFSC/Southwest Fisheries Science Center/PWCC coast-wide juvenile \fishname\ and rockfish surveys
-  (2001--\Sexpr{last.assess_yr}).
+  (2001--\Sexpr{last_assess_yr}).
 
 \item Bycatch of \fishname\ in the trawl fishery for Pink Shrimp off the coast of
   Oregon (2004, 2005, 2007, and 2008).
@@ -371,7 +371,7 @@ during the preparation of survey data collected since 2017. The assumptions are 
 
 \end{itemize}
 
-The \Sexpr{last.assess_yr} stock assessment incorporated an updated estimate of 2019
+The \Sexpr{last_assess_yr} stock assessment incorporated an updated estimate of 2019
 survey biomass. A small double counting error was resolved that resulted in a less
 than 1\% difference in biomass and had little influence on model results (see
 Figure~\ref{fig:main-bridge-5-panel-1}). Additionally, the 2021 survey
@@ -594,7 +594,7 @@ the previous year; for example, the biomass at the start of 2022 is calculated
 using the empirical weight-at-age from 2021 (Figure~\ref{fig:main-empirical-weight-at-age}).
 Prior to 1975, weight-at-age is assumed to be equal to the mean of all available
 information for each respective age
-(1975-\Sexpr{last.data.yr}), consistent with the \Sexpr{last.assess_yr} base model
+(1975-\Sexpr{last.data.yr}), consistent with the \Sexpr{last_assess_yr} base model
 (Figure~\ref{fig:main-empirical-weight-at-age}).
 Both forecast weight-at-age data and forecast selectivity are based on the respective means from the most recent five years
 (\Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}), for consistency (Figure~\ref{fig:main-empirical-weight-at-age}).
