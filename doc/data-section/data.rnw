@@ -285,7 +285,7 @@ takes place.
 Observations of age-1 \fishname\ are recorded during the survey,
 and additional analyses, described below, are conducted to develop an age-1 index.
 
-The \Sexpr{survey.end.yr} survey covered U.S. and Canadian waters from Point Conception
+The \Sexpr{survey.end_yr} survey covered U.S. and Canadian waters from Point Conception
 to north of Haida Gwaii using 108 transects (Figure \ref{fig:main-backscatter-map}). In the U.S.A.,
 transects were mostly separated by 10~nmi, except 20~nmi spacing was used north of San Francisco
 Bay to Cape Mendocino and again in northern Washington to account for available ship days at sea.

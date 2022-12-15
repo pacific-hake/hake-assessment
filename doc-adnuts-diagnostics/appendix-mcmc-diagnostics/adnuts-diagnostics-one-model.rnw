@@ -104,8 +104,8 @@ make.mcmc.diag.pairs.plot(this.model,
                           key.posteriors.regex = key.posteriors,
                           key.posteriors.names = key.posteriors.titles,
                           recr = c(2010, 2014),
-                          bratio = end.yr,
-                          forecatch = end.yr)
+                          bratio = end_yr,
+                          forecatch = end_yr)
 @
 \end{center}
 \caption{Posterior correlations among key model parameters and derived
@@ -121,7 +121,7 @@ make.mcmc.diag.pairs.plot(this.model,
 <<fig.height=8, fig.width=8, is.fig = TRUE>>=
 make.mcmc.diag.pairs.plot(this.model,
                           inc.key.params = FALSE,
-                          recr = (end.yr-10):(end.yr-1))
+                          recr = (end_yr-10):(end_yr-1))
 @
 \end{center}
 \caption{Posterior correlations among recruitment deviations from recent years

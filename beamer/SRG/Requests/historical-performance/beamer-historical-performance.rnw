@@ -125,7 +125,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %--------------------------------------------------------------
-\frame{\frametitle{Risk based on fixed \Sexpr{end.yr} catch}
+\frame{\frametitle{Risk based on fixed \Sexpr{end_yr} catch}
     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast_yrs,
@@ -199,7 +199,7 @@ make.historical.probs.plot(base.model,
     make.recruitment.plot(base.model,
                           equil.yr = unfished_eq_yr,
                           start_yr = start_yr,
-                          end.yr = end.yr,
+                          end_yr = end_yr,
                           color = "blue",
                           add.mean = TRUE,
                           add.r0 = TRUE)
@@ -247,7 +247,7 @@ make.historical.probs.plot(base.model,
   <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.depletion.plot(base.model,
                         start_yr = start_yr,
-                        end.yr = end.yr,
+                        end_yr = end_yr,
                         color = "blue")
   @
   \ec

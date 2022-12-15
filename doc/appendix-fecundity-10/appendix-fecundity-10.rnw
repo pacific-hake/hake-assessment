@@ -19,13 +19,13 @@ the mean over the entire time series of data (see Section~\ref{sec:assessment-se
 make.biomass.plot(sens.models.5[[3]],
                   equil.yr = unfished_eq_yr,
                   start_yr = start_yr,
-                  end.yr = end.yr,
+                  end_yr = end_yr,
                   color = "blue")
 @
 \end{center}
 %\vspace{0mm}
 \caption{Median of the posterior distribution for beginning of the year female
-         spawning biomass through \Sexpr{end.yr} (solid line) with 95\% posterior
+         spawning biomass through \Sexpr{end_yr} (solid line) with 95\% posterior
          credibility intervals (shaded area). The solid circle with a 95\%
          posterior credibility interval is the estimated unfished equilibrium
          biomass.}
@@ -39,13 +39,13 @@ make.biomass.plot(sens.models.5[[3]],
 <<relative-spawning-biomass-fecundity, fig.height=5, fig.width=8>>=
 make.depletion.plot(sens.models.5[[3]],
                     start_yr = start_yr,
-                    end.yr = end.yr,
+                    end_yr = end_yr,
                     color = "blue")
 @
 \end{center}
 %\vspace{0mm}
 \caption{Median (solid line) of the posterior distribution for relative spawning
-         biomass ($B_t / B_0$) through \Sexpr{end.yr} with 95\% posterior
+         biomass ($B_t / B_0$) through \Sexpr{end_yr} with 95\% posterior
          credibility intervals (shaded area). Dashed horizontal lines show
          10\%, 40\% and 100\% levels.}
 \label{fig:relative-spawning-biomass-fecundity}
@@ -54,8 +54,8 @@ make.depletion.plot(sens.models.5[[3]],
 
 <<biomass-table-fecundity, results='asis', echo=FALSE>>=
 make.biomass.table(sens.models.5[[3]],
-                   start_yr = end.yr-9,
-                   end.yr = end.yr,
+                   start_yr = end_yr-9,
+                   end_yr = end_yr,
                    weight.factor = 1000,
                    xcaption = "Recent trends in estimated beginning of the year
                                 female spawning biomass (thousand~t) and spawning
@@ -70,8 +70,8 @@ make.biomass.table(sens.models.5[[3]],
 
 <<recruitment-table-fecundity, results='asis', echo=FALSE>>=
 make.recruitment.table(sens.models.5[[3]],
-                       start_yr = end.yr-10,
-                       end.yr = end.yr-1,
+                       start_yr = end_yr-10,
+                       end_yr = end_yr-1,
                        weight.factor = 1000,
                        xcaption = "Estimates of recent recruitment (millions of
                                     age-0) and recruitment deviations, where
@@ -91,7 +91,7 @@ make.recruitment.table(sens.models.5[[3]],
 make.recruitment.plot(sens.models.5[[3]],
                       equil.yr = unfished_eq_yr,
                       start_yr = start_yr,
-                      end.yr = end.yr,
+                      end_yr = end_yr,
                       color = "blue",
                       add.mean = TRUE,
                       add.r0 = TRUE)
@@ -109,8 +109,8 @@ make.recruitment.plot(sens.models.5[[3]],
 
 <<fishing-intensity-table-fecundity, results='asis', echo=FALSE>>=
 make.fishing.intensity.table(sens.models.5[[3]],
-                             start_yr = end.yr-10,
-                             end.yr = end.yr-1,
+                             start_yr = end_yr-10,
+                             end_yr = end_yr-1,
                              digits = 3,
                              xcaption = "Recent estimates of relative fishing
                                           intensity,
@@ -129,13 +129,13 @@ make.fishing.intensity.table(sens.models.5[[3]],
 <<fishing-intensity-fecundity, fig.height=5, fig.width=8>>=
 make.fishing.intensity.plot(sens.models.5[[3]],
                             start_yr = start_yr,
-                            end.yr = end.yr-1,
+                            end_yr = end_yr-1,
                             color = "blue",
                             upper.lim = 1.5)
 @
 \end{center}
 \caption{Trend in median relative fishing intensity (relative to the SPR
-         management target) through \Sexpr{end.yr-1} with 95\% posterior
+         management target) through \Sexpr{end_yr-1} with 95\% posterior
          credibility intervals. The management target defined in the Agreement is
          shown as a horizontal line at 1.0.}
 \label{fig:fishing-intensity-fecundity}
@@ -149,13 +149,13 @@ make.fishing.intensity.plot(sens.models.5[[3]],
 <<exploitation-fraction-fecundity, fig.height=5, fig.width=8>>=
 make.exploitation.fraction.plot(sens.models.5[[3]],
                                 start_yr = start_yr,
-                                end.yr = end.yr-1,
+                                end_yr = end_yr-1,
                                 color = "blue",
                                 upper.lim = 0.35)
 @
 \end{center}
 \caption{Trend in median exploitation fraction (catch divided by age-2+ biomass)
-         through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
+         through \Sexpr{end_yr-1} with 95\% posterior credibility intervals.}
 \label{fig:exploitation-fraction-fecundity}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -166,13 +166,13 @@ make.exploitation.fraction.plot(sens.models.5[[3]],
 <<phase-plot-fecundity, fig.height=5, fig.width=8>>=
 make.phase.plot(sens.models.5[[3]],
                 start_yr = start_yr,
-                end.yr = end.yr)
+                end_yr = end_yr)
 @
 \end{center}
 \caption{Estimated historical path followed by medians of relative fishing
          intensity and relative spawning biomass for \fishname\ with labels on the
          start and end years (and 1999). Gray bars span the 95\% credibility
-         intervals for \Sexpr{end.yr-1} relative fishing intensity (vertical) and
+         intervals for \Sexpr{end_yr-1} relative fishing intensity (vertical) and
          relative spawning biomass (horizontal).}
 \label{fig:phase-fecundity}
 \end{figure}
@@ -184,7 +184,7 @@ make.reference.points.table(
   xcaption = paste0("For the \\altshort, summary of median and 95\\%",
                      " credibility intervals of equilibrium reference points.",
                      " Equilibrium reference points were computed using ",
-                     start_yr, "--", end.yr-1, " averages for mean",
+                     start_yr, "--", end_yr-1, " averages for mean",
                      " size-at-age and selectivity-at-age."),
                             xlabel = "tab:reference-points-fecundity",
                             font.size = 12,
@@ -245,17 +245,17 @@ make.forecast.depletion.comparison.plot(sens.models.5[[3]],
                                         models.inds,
                                         models.names,
                                         start_yr = 2009,
-                                        model.end.yr = end.yr,
-                                        end.yr =forecast_yrs[length(forecast_yrs)],
+                                        model.end_yr = end_yr,
+                                        end_yr =forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft")
 @
 \end{center}
-\caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
+\caption{Time series of estimated relative spawning biomass to \Sexpr{end_yr}
          from the base model, and forecast trajectories to
          \Sexpr{forecast_yrs[length(forecast_yrs)]} (grey region) for several management actions
          defined in Table~\ref{tab:decisions-biomass-fecundity}, with 95\%
          posterior credibility intervals.}
-% The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
+% The \Sexpr{end_yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
 %  using the default harvest policy, as defined in the Agreement.}
 % Above commented sentence Was in 2016 but I think is wrong - plot shows the
 %  FI=100% action, so not sure why this talks about default HR (action g).
@@ -279,8 +279,8 @@ make.forecast.risk.comparison.plot(sens.models.5[[3]],
 @
 \end{center}
 \caption{Graphical representation of the probabilities related to spawning
-         biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
-         harvest policy catch for alternative \Sexpr{end.yr} catch options (catch
+         biomass, relative fishing intensity, and the \Sexpr{end_yr+1} default
+         harvest policy catch for alternative \Sexpr{end_yr} catch options (catch
          options explained in Table~\ref{tab:decisions-biomass-fecundity}) as listed in
          Table~\ref{tab:risk-year-1-fecundity}. The symbols indicate points that were
          computed directly from model output and lines interpolate between the
@@ -295,9 +295,9 @@ make.risk.table(sens.models.5[[3]],
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
                            ##  forecast year 2 compared to forecast year 1
                 xcaption = paste0("Probabilities related to spawning biomass,
-                             relative fishing intensity, and the ",end.yr+1,
+                             relative fishing intensity, and the ",end_yr+1,
                              " default harvest policy catch for alternative ",
-                             end.yr," catch options (catch options explained in
+                             end_yr," catch options (catch options explained in
                              Table~\\ref{tab:decisions-biomass-fecundity})."),
                 xlabel = "tab:risk-year-1-fecundity",
                 font.size = 12,
@@ -320,9 +320,9 @@ make.forecast.risk.comparison.plot(sens.models.5[[3]],
 @
 \end{center}
 \caption{Graphical representation of the probabilities related to spawning
-biomass, relative fishing intensity, and the \Sexpr{end.yr+2} default harvest
-policy catch for alternative \Sexpr{end.yr+1} catch options (including
-associated \Sexpr{end.yr} catch; catch options explained in
+biomass, relative fishing intensity, and the \Sexpr{end_yr+2} default harvest
+policy catch for alternative \Sexpr{end_yr+1} catch options (including
+associated \Sexpr{end_yr} catch; catch options explained in
 Table~\ref{tab:decisions-biomass-fecundity}) as listed in
 Table~\ref{tab:risk-year-2-fecundity}. The symbols indicate points that were computed
 directly from model output and lines interpolate between the points.}
@@ -336,9 +336,9 @@ make.risk.table(sens.models.5[[3]],
                 index = 2, ## Index in models[[]]$risks to use, e.g.
                            ##  1 means forecast year 2 compared to forecast year 1
                 xcaption = paste0("Probabilities related to spawning biomass,
-                 relative fishing intensity, and the ",end.yr+2," default harvest
-                 policy catch for alternative ",end.yr+1," catch options, given
-                 the ",end.yr," catch level shown in
+                 relative fishing intensity, and the ",end_yr+2," default harvest
+                 policy catch for alternative ",end_yr+1," catch options, given
+                 the ",end_yr," catch level shown in
                  Table~\\ref{tab:risk-year-1-fecundity} (catch options explained in
                  Table~\\ref{tab:decisions-biomass-fecundity})."),
                 xlabel = "tab:risk-year-2-fecundity",

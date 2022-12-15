@@ -171,14 +171,14 @@ fetch_extra_mcmc <- function(model_path,
   # extra_mcmc$dynb_fish <- extract_rep_table(reps_dynb_fish, dynb_header) %>%
   #   select(-c(1, 3)) %>%
   #   map_df(as.numeric) %>%
-  #   dplyr::filter(Yr %in% start_yr:end.yr)
+  #   dplyr::filter(Yr %in% start_yr:end_yr)
   # extra_mcmc$dynb_fish_median <- extra_mcmc$dynb_fish %>%
   #   group_by(Yr) %>%
   #   summarize(median_bo = median(Value))
   # extra_mcmc$dynb_nofish <- extract_rep_table(reps_dynb_nofish, dynb_header) %>%
   #   select(-c(1, 3)) %>%
   #   map_df(as.numeric) %>%
-  #   dplyr::filter(Yr %in% start_yr:end.yr)
+  #   dplyr::filter(Yr %in% start_yr:end_yr)
   # extra_mcmc$dynb_nofish_median <- extra_mcmc$dynb_nofish %>%
   #   group_by(Yr) %>%
   #   summarize(median_bo = median(Value))

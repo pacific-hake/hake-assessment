@@ -200,7 +200,7 @@ get_age_comp_limits <- function(model, type = 1){
                max_prop_yr,
                max_prop_age)
 
-  names(ret_vec) <- c("start_yr", "end.yr", "max.prop", "max.prop.yr", "max.prop.age")
+  names(ret_vec) <- c("start_yr", "end_yr", "max.prop", "max.prop.yr", "max.prop.age")
 
   ret_vec
 }
@@ -260,7 +260,7 @@ make_numbers_at_age_plot <- function(model,
 
 make.age.comp.compare.bubble.plot <- function(model,                  ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                               start_yr = min(d1$Yr, d2$Yr), ## First year for age comps - default from the data frame
-                                              end.yr = max(d1$Yr, d2$Yr),   ## Last year for age comps - default from the data frame
+                                              end_yr = max(d1$Yr, d2$Yr),   ## Last year for age comps - default from the data frame
                                               show.key = FALSE,       ## Show some sample bubbles at the top with sizes
                                               key.yrs = NULL,         ## Vector of 4 years for locations to put the key if show.key == TRUE
                                               inches = 0.12,
@@ -283,8 +283,8 @@ make.age.comp.compare.bubble.plot <- function(model,                  ## model i
   d1 <- model$dat$agecomp[model$dat$agecomp$FltSvy == 1,]
   d2 <- model$dat$agecomp[model$dat$agecomp$FltSvy == 2,]
   survey.yrs <- d2$Yr
-  if(end.yr < start_yr){
-    stop("make.age.comp.bubble.plot: Error - end.yr cannot be less than start_yr\n")
+  if(end_yr < start_yr){
+    stop("make.age.comp.bubble.plot: Error - end_yr cannot be less than start_yr\n")
   }
   for(i in 2:1){
     dat <- model$dat$agecomp[model$dat$agecomp$FltSvy == i,]
@@ -310,7 +310,7 @@ make.age.comp.compare.bubble.plot <- function(model,                  ## model i
             circles = sqrt(c(x[,3], max.prop)),
             inches = inches,
             ylim = c(min.age, max.age),
-            xlim = c(start_yr, end.yr),
+            xlim = c(start_yr, end_yr),
             xlab = "",
             ylab = "",
             xaxt = "n",

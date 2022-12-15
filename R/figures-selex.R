@@ -1,7 +1,7 @@
 make.selex.plot <- function(model,
                             subplot = 2,
                             agefactors = "Asel",
-                            #years = c(1966, end.yr-2, end.yr-1),
+                            #years = c(1966, end_yr-2, end_yr-1),
                             years = c(1966, 2016, 2017),
                             fleetnames = c("Fishery","Survey"),
                             showmain = FALSE,
@@ -30,7 +30,7 @@ make.selex.plot <- function(model,
                                         "Fishery 2016",
                                         "Fishery 2017",
                                         "Survey", ""),
-                          Yr_range  = c(1966, 2017:2018, 1966, end.yr-1),
+                          Yr_range  = c(1966, 2017:2018, 1966, end_yr-1),
                           col       = cols,
                           lty       = c(1,2,4,1,1),
                           lwd       = c(4,2,2,3,NA),
@@ -47,7 +47,7 @@ make.selex.plot <- function(model,
 
 calc.tv.selex <- function(model,
                           start_yr,
-                          end.yr,
+                          end_yr,
                           ages = 1:8,  ## ages to be included
                           probs = c(0.025, 0.975)){
   ## Calculate the data frame to use for the functions involving time varying selectivity
@@ -55,7 +55,7 @@ calc.tv.selex <- function(model,
   ##  as calculated for the given probablities. The columns in the data frames are the years
   ##  and the rows are ages. Both row names and column names have been set properly.
 
-  yrs <- start_yr:end.yr
+  yrs <- start_yr:end_yr
   selex <- list()
 
   ## changing indexing from 2:length(yrs) to 1:length(yrs)
@@ -226,7 +226,7 @@ make.multiple.tv.selex.uncertainty.plots <- function(tv.sel.list ## A list of ou
 }
 
 make.selex.uncertainty.lines.plot <- function(model,
-                                              year = end.yr - 1, # final fishing year
+                                              year = end_yr - 1, # final fishing year
                                               type = 1, # 1 = Fishery, any other value is the survey
                                               selex.list = NULL, # A list of time varying selectivites as returned by calc.tv.selex
                                                                  # *Only used when type=1 (fishery)

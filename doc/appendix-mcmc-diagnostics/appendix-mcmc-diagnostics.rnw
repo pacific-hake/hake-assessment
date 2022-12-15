@@ -78,8 +78,8 @@ make.mcmc.diag.pairs.plot(base.model,
                           key.posteriors.regex = key.posteriors,
                           key.posteriors.names = key.posteriors.titles,
                           recr = c(2014, 2016),
-                          bratio = end.yr,
-                          forecatch = c(end.yr,end.yr+1,end.yr+2))
+                          bratio = end_yr,
+                          forecatch = c(end_yr,end_yr+1,end_yr+2))
 @
 \end{center}
 \caption{Posterior correlations among key base-model parameters and derived
@@ -95,7 +95,7 @@ make.mcmc.diag.pairs.plot(base.model,
 <<main-mcmc-pairs-recruit-devs, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many derived quantities. There is little correlation between values">>=
 make.mcmc.diag.pairs.plot(base.model,
                           inc.key.params = FALSE,
-                          recr = (end.yr-10):(end.yr-1))
+                          recr = (end_yr-10):(end_yr-1))
 @
 \end{center}
 \caption{Posterior correlations among recruitment deviations from recent years and equilibrium recruitment. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}

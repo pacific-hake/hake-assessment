@@ -173,7 +173,7 @@ make.comparison.plot(c(list(base.model),
                                      sens.model.names.1[2],
                                      sens.model.names.1[5],
                                      sens.model.names.1[6]),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 par <- oldpar
 @
 \end{center}
@@ -195,7 +195,7 @@ param_est_table(c(list(base.model),
                                 sens.model.names.1[2],
                                 sens.model.names.1[5],
                                 sens.model.names.1[6]),
-                end.yr = end.yr,
+                end_yr = end_yr,
                 digits = 3,
                 xcaption = NULL,
                 font.size = 6.5,
@@ -227,7 +227,7 @@ make.comparison.plot(c(list(base.model),
                      model.names = c("Base model ",
                                      sens.model.names.1[3],
                                      sens.model.names.1[4]),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 par <- oldpar
 @
 \end{center}
@@ -249,7 +249,7 @@ make.comparison.plot(c(list(base.model),
                      model.names = c("Base model ",
                                      sens.model.names.1[3],
                                      sens.model.names.1[4]),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 par <- oldpar
 @
 \end{center}
@@ -267,7 +267,7 @@ param_est_table(c(list(base.model),
                 model.names = c("Base model",
                                 sens.model.names.1[3],
                                 sens.model.names.1[4]),
-                end.yr = end.yr,
+                end_yr = end_yr,
                 digits = 3,
                 xcaption = NULL,
                 font.size = 6.5,
@@ -293,9 +293,9 @@ par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(c(list(base.model),
                        sens.models.2[2]),
                      subplots = 2,
-                     model.names = c(paste0("Base model ", end.yr),
+                     model.names = c(paste0("Base model ", end_yr),
                                      sens.model.names.2[2]),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 par <- oldpar
 @
 \end{center}
@@ -313,9 +313,9 @@ par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(c(list(base.model),
                        sens.models.2[2]),
                      subplots = 4,
-                     model.names = c(paste0("Base model ", end.yr),
+                     model.names = c(paste0("Base model ", end_yr),
                                      sens.model.names.2[2]),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 par <- oldpar
 @
 \end{center}
@@ -357,11 +357,11 @@ make.comparison.plot(c(list(base.model),
                        sens.models.4[2],
                        sens.models.4[3]),
                      subplots = 2,
-                     model.names = c(paste0("Base model ", end.yr),
+                     model.names = c(paste0("Base model ", end_yr),
                                      sens.model.names.4[1],
                                      sens.model.names.4[2],
                                      sens.model.names.4[3]),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 par <- oldpar
 @
 \end{center}
@@ -381,11 +381,11 @@ make.comparison.plot(c(list(base.model),
                        sens.models.4[2],
                        sens.models.4[3]),
                      subplots = 13,
-                     model.names = c(paste0("Base model ", end.yr),
+                     model.names = c(paste0("Base model ", end_yr),
                                      sens.model.names.4[1],
                                      sens.model.names.4[2],
                                      sens.model.names.4[3]),
-                     end.yr = end.yr,
+                     end_yr = end_yr,
                      indexfleets = 2,
                      legend_loc = "topleft")
 par <- oldpar
@@ -408,7 +408,7 @@ param_est_table(c(list(base.model),
                                 sens.model.names.4[1],
                                 sens.model.names.4[2],
                                 sens.model.names.4[3]),
-                end.yr = end.yr,
+                end_yr = end_yr,
                 digits = 3,
                 xcaption = NULL,
                 font.size = 6.5,
@@ -434,7 +434,7 @@ make.comparison.plot(c(list(base.model), sens.models.6),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.6),
                      legend = TRUE,
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 par <- oldpar
 @
 \end{center}
@@ -486,7 +486,7 @@ par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(list(base.model, sens.models.2[[1]]),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.2[1]),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 par <- oldpar
 @
 \end{center}
@@ -503,7 +503,7 @@ par(mar = c(20, 4.1, 0, 1))
 make.recruitment.plot(base.model,
                       equil.yr = unfished_eq_yr,
                       start_yr = start_yr,
-                      end.yr = end.yr,
+                      end_yr = end_yr,
                       color = "blue",
                       add.mean = TRUE,
                       add.r0 = TRUE,
@@ -525,7 +525,7 @@ par(mar = c(20, 4.1, 0, 1))
 make.recruitment.plot(sens.models.2[[1]],
                       equil.yr = unfished_eq_yr,
                       start_yr = start_yr,
-                      end.yr = end.yr,
+                      end_yr = end_yr,
                       color = "blue",
                       add.mean = TRUE,
                       add.r0 = TRUE,
@@ -691,7 +691,7 @@ par <- oldpar
 %   years get too close to the tendrils
 <<retro.3, fig.height=3.5>>=
 oldpar <- par(mar = c(5, 4, 1, 1), no.readonly = TRUE)
-retro.cohorts <- (end.yr - 11):(end.yr - 2)
+retro.cohorts <- (end_yr - 11):(end_yr - 2)
 make_squid_plot(base.model,
                 subplot = 1,
                 cohorts = retro.cohorts)

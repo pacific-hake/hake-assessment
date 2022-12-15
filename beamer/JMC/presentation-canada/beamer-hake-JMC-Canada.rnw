@@ -113,7 +113,7 @@ fore.names <- cmodels.names <- sapply(base.model$catch.levels, "[[", 2)[fore.ind
 
 
 %------------------------------------------------------------------------------
-\title[Hake Summary]{Results of the \Sexpr{end.yr} Pacific Hake stock assessment}
+\title[Hake Summary]{Results of the \Sexpr{end_yr} Pacific Hake stock assessment}
 \author[JTC]{Pacific Hake Joint Technical Committee}
 \date{{\footnotesize Canadian AP/JMC March meeting -- \Sexpr{assess_yr}}}
 
@@ -127,7 +127,7 @@ fore.names <- cmodels.names <- sapply(base.model$catch.levels, "[[", 2)[fore.ind
 \begin{frame}
   \frametitle{Overview of stock assessment}
   \bi
-    \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
+    \item The median estimate of \Sexpr{end_yr} relative spawning biomass is
       \Sexpr{curr.depl.median}\% \\
       (with 95\% interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%)
     \item Large 2010, 2014, and 2016 cohorts continue to make up large fraction of catches
@@ -139,7 +139,7 @@ fore.names <- cmodels.names <- sapply(base.model$catch.levels, "[[", 2)[fore.ind
       (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]}
       to \Sexpr{catch.limit.quantiles["upper"]}~t)
     \item New \Sexpr{last.data.yr} age data from fishery is fit well by the model
-    \item Coastwide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t,
+    \item Coastwide catch in \Sexpr{end_yr-1} was \Sexpr{last.year.landings}~t,
       out of a TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t
     \item Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota
       (\Sexpr{paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.us.attained.diff))}\%
@@ -168,7 +168,7 @@ from last year)
     make.recruitment.plot(base.model,
                           equil.yr = unfished_eq_yr,
                           start_yr = start_yr,
-                          end.yr = end.yr,
+                          end_yr = end_yr,
                           color = "blue",
                           add.mean = TRUE,
                           add.r0 = TRUE)
@@ -182,7 +182,7 @@ from last year)
   <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.depletion.plot(base.model,
                         start_yr = start_yr,
-                        end.yr = end.yr,
+                        end_yr = end_yr,
                         color = "blue")
   @
   \ec
@@ -195,7 +195,7 @@ from last year)
       <<fishing.intensity, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
       make.fishing.intensity.plot(base.model,
                                   start_yr = start_yr,
-                                  end.yr = end.yr-1,
+                                  end_yr = end_yr-1,
                                   color = "blue")
       @
     \end{column}
@@ -203,7 +203,7 @@ from last year)
       <<exploitation, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
       make.exploitation.fraction.plot(base.model,
       start_yr = start_yr,
-      end.yr = end.yr-1,
+      end_yr = end_yr-1,
       upper.lim = 0.3,
       color = "blue")
       @
@@ -214,14 +214,14 @@ from last year)
 %----------------------------------------------------------
 \frame{\frametitle{Biomass and relative fishing intentisy}
   \bi
-    \item Biomass has remained above $\BfortyB$ since 2011; current estimate is $\frac{B_{\Sexpr{assess_yr}}}{B_0} = \Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end.yr], 2)}$
+    \item Biomass has remained above $\BfortyB$ since 2011; current estimate is $\frac{B_{\Sexpr{assess_yr}}}{B_0} = \Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end_yr], 2)}$
     \item Fishing intensity has continually remained below $\Fforty$; current estimate is
     $\frac{1-SPR_{\Sexpr{assess_yr - 1}}}{1 - SPR_{40\%}} = \Sexpr{f(base.model$mcmccalcs$pmed[names(base.model$mcmccalcs$pmed) == assess_yr - 1], 2)}$
     \item The estimated probability that spawning biomass at the start of
     \Sexpr{assess_yr} is below the $\BfortyB$ (40\% of $B_0$) reference point is
     \Sexpr{probs.curr.below.bforty}\%
     \item The probability that the relative fishing
-    intensity is above $\Fforty$ at the end of \Sexpr{end.yr-1} is
+    intensity is above $\Fforty$ at the end of \Sexpr{end_yr-1} is
     \Sexpr{probs.curr.rel.fish.intens.above.one}\%
     \item The probability of both of these things occurring is \Sexpr{joint.percent.prob.above.below}\%
   \ei
@@ -242,7 +242,7 @@ from last year)
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median forecasted \Sexpr{end.yr} TAC is
+      \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median forecasted \Sexpr{end_yr} TAC is
       \smallskip
       \bc {\bf \Sexpr{catch.limit.quantiles["median"]} t} \ec
       \smallskip
@@ -252,7 +252,7 @@ from last year)
   \end{column}
   \begin{column}{0.65\textwidth}
     <<main.projected.catch.density, out.width='.99\\columnwidth'>>=
-      make.forecast.catch.posterior.plot(base.model, fore.yr = end.yr, xmax=2000)
+      make.forecast.catch.posterior.plot(base.model, fore.yr = end_yr, xmax=2000)
       @
   \end{column}
 \end{columns}
@@ -292,7 +292,7 @@ from last year)
         spawning biomass from \Sexpr{assess_yr} to \Sexpr{assess_yr+1} then
         slight increase
       \item All other catch streams result in decreases in the median
-      \item Uncertainty is large and increases from \Sexpr{end.yr} to \Sexpr{end.yr+2}
+      \item Uncertainty is large and increases from \Sexpr{end_yr} to \Sexpr{end_yr+2}
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -301,8 +301,8 @@ from last year)
                                               models.inds,
                                               models.names,
                                               start_yr = 2009,
-                                              model.end.yr = end.yr,
-                                              end.yr = forecast_yrs[length(forecast_yrs)],
+                                              model.end_yr = end_yr,
+                                              end_yr = forecast_yrs[length(forecast_yrs)],
                                               legend.loc = "topleft")
     @
   \end{column}
@@ -310,7 +310,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Probabilities based on \Sexpr{end.yr} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast_yrs,
@@ -322,7 +322,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Probabilities based on \Sexpr{end.yr} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
   \bc
     <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
         make.forecast.risk.comparison.plot.short(base.model,
@@ -336,7 +336,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Probabilities based on \Sexpr{end.yr} and \Sexpr{end.yr + 1} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr + 1} catch}
     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
       make.risk.table(base.model,
                       forecast_yrs,
@@ -348,7 +348,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Probabilities based on \Sexpr{end.yr} and \Sexpr{end.yr + 1} catch}
+\frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr + 1} catch}
   \bc
     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
         make.forecast.risk.comparison.plot.short(base.model,
@@ -367,7 +367,7 @@ from last year)
 \begin{columns}
   \begin{column}{0.33\textwidth}
     \bi
-      \item Median (50\%) decreases from \Sexpr{end.yr} to \Sexpr{end.yr+1} and \Sexpr{end.yr+2}
+      \item Median (50\%) decreases from \Sexpr{end_yr} to \Sexpr{end_yr+1} and \Sexpr{end_yr+2}
         for all non-zero catch levels examined (continued decline of large 2010 and 2014 cohorts)
     \ei
   \end{column}
@@ -410,7 +410,7 @@ new_decision_table(srg_day2_req2_model,
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Forecast age compositions for \Sexpr{end.yr} fishery catch}
+\frame{\frametitle{Forecast age compositions for \Sexpr{end_yr} fishery catch}
 \begin{columns}
   \begin{column}{0.35\textwidth}
     \bi
@@ -443,7 +443,7 @@ new_decision_table(srg_day2_req2_model,
 oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 # plot_retro_yrs <- retro.yrs
-retro.cohorts <- (end.yr - 11):(end.yr - 2)
+retro.cohorts <- (end_yr - 11):(end_yr - 2)
 make_squid_plot(base.model,
                 subplot = 1,
                 cohorts = retro.cohorts)
@@ -562,7 +562,7 @@ par <- oldpar
                          list(model_2019)),
                      subplots = 2,
                      model.names = c(base.model.name, last.yr.base.model.name, "2019 Base model"),
-                     end.yr = c(end.yr, end.yr - 1, end.yr - 2),
+                     end_yr = c(end_yr, end_yr - 1, end_yr - 2),
                      lwd = 4,
                      legendloc = "topright",
                      plot_mcmc = TRUE)
@@ -584,7 +584,7 @@ par <- oldpar
                      subplots = 3,
                      xlim = c(2010, 2021),
                      model.names = c(base.model.name, last.yr.base.model.name, "2019 Base model"),
-                     end.yr = c(end.yr, end.yr - 1, end.yr - 2),
+                     end_yr = c(end_yr, end_yr - 1, end_yr - 2),
                      lwd = 4,
                      legendloc = "topleft",
                      plot_mcmc = TRUE)

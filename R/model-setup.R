@@ -44,13 +44,13 @@ start_yr_age_comps <- 1975
 message("Start year for fishery age comps data: ", start_yr_age_comps)
 # The last non-forecast year in the model. This is the year for which the
 # mcmc outputs will be used in reference point calculations.
-end.yr <- assess_yr
-message("End year for model: ", end.yr)
+end_yr <- assess_yr
+message("End year for model: ", end_yr)
 # First year in the survey timeseries
 survey.start_yr <- 1995
 message("First survey year: ", survey.start_yr)
 # Last year in the survey timeseries
-survey.end.yr <- 2021
+survey.end_yr <- 2021
 # Years in which the survey took place
 surv.yrs <- c(1995,
               1998,
@@ -68,12 +68,12 @@ surv.yrs <- c(1995,
               2021)
 
 # tick marks for time series plot (not catch time series though)
-big.ticks <- seq(1970, end.yr + 4, 5)
+big.ticks <- seq(1970, end_yr + 4, 5)
 little.ticks <- start_yr:max(big.ticks)
 
-message("Last survey year: ", survey.end.yr)
+message("Last survey year: ", survey.end_yr)
 # Final year of data (This is what is the end year is in the model data files)
-last.data.yr <- end.yr - 1
+last.data.yr <- end_yr - 1
 message("Last year of model data: ", last.data.yr)
 
 # -----------------------------------------------------------------------------
@@ -143,7 +143,7 @@ bridge.model.names.1 <- c(last.yr.base.model.name,
                           "Update pre-2021 survey data",
                           "Add 2021 survey data",
                           "Update wt-at-age data")
-bridge.model.end.yr.1 <- end.yr - c(1, 0, 0, 0, 0) # subtract 1 year from all 4 models
+bridge.model.end_yr.1 <- end_yr - c(1, 0, 0, 0, 0) # subtract 1 year from all 4 models
 
 
 # -----------------------------------------------------------------------------
@@ -153,7 +153,7 @@ bridge.model.dir.names.2 <- c("2022.01.07_newwtatage",
                               "2022.01.09_age1index")
 bridge.model.names.2 <- c("Update wt-at-age data",
                           "Add age 1 index = 2022 base model")
-bridge.model.end.yr.2 <- end.yr - c(0, 0)
+bridge.model.end_yr.2 <- end_yr - c(0, 0)
 
 # -----------------------------------------------------------------------------
 # Sensitivity models group 1

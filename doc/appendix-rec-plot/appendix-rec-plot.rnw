@@ -14,7 +14,7 @@ recruitment variability in an intuitive way.
 make.recruitment.plot(last.yr.base.model,
                       equil.yr = unfished_eq_yr,
                       start_yr = start_yr,
-                      end.yr = end.yr-1,
+                      end_yr = end_yr-1,
                       color = "blue",
                       add.mean = TRUE,
                       add.r0 = TRUE)
@@ -112,7 +112,7 @@ make.mcmc.recruitment.plot(base.model,
                            start_yr = 2006,
                            equil.yr = unfished_eq_yr,
                            samples = 100,
-                           end.yr = assess_yr + 2,
+                           end_yr = assess_yr + 2,
                            y.max = 50)
 @
 \end{center}
@@ -133,7 +133,7 @@ make.mcmc.recruitment.plot(base.model,
                            start_yr = 2006,
                            equil.yr = unfished_eq_yr,
                            samples = 100,
-                           end.yr = assess_yr + 2,
+                           end_yr = assess_yr + 2,
                            highlight.num = 7,
                            highlight = TRUE,
                            y.max = 50)
@@ -165,7 +165,7 @@ make.mcmc.recruitment.plot(base.model,
                            equil.yr = unfished_eq_yr,
                            samples = 100,
                            rescale = TRUE,
-                           end.yr = assess_yr + 2,
+                           end_yr = assess_yr + 2,
                            highlight = FALSE)
 @
 \end{center}
@@ -188,7 +188,7 @@ make.mcmc.recruitment.plot(base.model,
                            samples = NULL,
                            rescale = TRUE,
                            traceplot = FALSE,
-                           end.yr = assess_yr + 2)
+                           end_yr = assess_yr + 2)
 @
 \end{center}
 \caption{Estimated recruitments divided by the estimated 2010 recruitment.
@@ -207,7 +207,7 @@ make.mcmc.recruitment.plot(base.model,
                            samples = NULL,
                            rescale = TRUE,
                            traceplot = FALSE,
-                           end.yr = assess_yr + 2,
+                           end_yr = assess_yr + 2,
                            auto.xaxis = FALSE)
 @
 \end{center}

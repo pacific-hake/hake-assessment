@@ -1,6 +1,6 @@
 make.assessment.changes.table <- function(assessment.changes,
                                           start_yr = 2011,
-                                          end.yr = NULL,
+                                          end_yr = NULL,
                                           xcaption = "default",
                                           xlabel   = "default",
                                           font.size = 10,

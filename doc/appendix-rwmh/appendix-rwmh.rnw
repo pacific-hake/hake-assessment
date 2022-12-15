@@ -65,7 +65,7 @@ samples.
 make.comparison.plot(c(list(base.model), list(sens.models.7)),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.7),
-                     end.yr = end.yr, plot_mcmc = TRUE)
+                     end_yr = end_yr, plot_mcmc = TRUE)
 @
 \end{center}
 \caption{MCMC median posterior estimates with 95\% credible intervals of spawning biomass for the base
@@ -79,7 +79,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.7)),
 make.comparison.plot(c(list(base.model), list(sens.models.7)),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.7),
-                     end.yr = end.yr, plot_mcmc = TRUE, legend = FALSE)
+                     end_yr = end_yr, plot_mcmc = TRUE, legend = FALSE)
 @
 \end{center}
 \caption{MCMC median posterior estimates with 95\% credible intervals of relative
@@ -96,7 +96,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.7)),
                      legend = TRUE,
                      subplots = 10,
                      model.names = c(base.model.name, sens.model.names.7),
-                     end.yr = end.yr, plot_mcmc = TRUE)
+                     end_yr = end_yr, plot_mcmc = TRUE)
 box()
 @
 \end{center}
@@ -115,7 +115,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.7)),
                      legend = FALSE,
                      subplots = 12,
                      model.names = c(base.model.name, sens.model.names.7),
-                     end.yr = end.yr, plot_mcmc = TRUE)
+                     end_yr = end_yr, plot_mcmc = TRUE)
 box()
 @
 \end{center}
@@ -132,13 +132,13 @@ box()
 %make.biomass.plot(sens.models.6,
 %                  equil.yr = unfished_eq_yr,
 %                  start_yr = start_yr,
-%                  end.yr = end.yr,
+%                  end_yr = end_yr,
 %                  color = "blue")
 %@
 %\end{center}
 %%\vspace{0mm}
 %\caption{Median of the posterior distribution for beginning of the year female
-%         spawning biomass through \Sexpr{end.yr} (solid line) with 95\% posterior
+%         spawning biomass through \Sexpr{end_yr} (solid line) with 95\% posterior
 %         credibility intervals (shaded area). The solid circle with a 95\%
 %         posterior credibility interval is the estimated unfished equilibrium
 %         biomass.}
@@ -152,13 +152,13 @@ box()
 %<<relative-spawning-biomass-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 %make.depletion.plot(sens.models.6,
 %                    start_yr = start_yr,
-%                    end.yr = end.yr,
+%                    end_yr = end_yr,
 %                    color = "blue")
 %@
 %\end{center}
 %%\vspace{0mm}
 %\caption{Median (solid line) of the posterior distribution for relative spawning
-%         biomass ($B_t / B_0$) through \Sexpr{end.yr} with 95\% posterior
+%         biomass ($B_t / B_0$) through \Sexpr{end_yr} with 95\% posterior
 %         credibility intervals (shaded area). Dashed horizontal lines show
 %         10\%, 40\% and 100\% levels.}
 %\label{fig:relative-spawning-biomass-adnuts}
@@ -167,8 +167,8 @@ box()
 
 %<<biomass-table-adnuts, results='asis', echo=FALSE>>=
 %make.biomass.table(sens.models.6,
-%                   start_yr = end.yr-9,
-%                   end.yr = end.yr,
+%                   start_yr = end_yr-9,
+%                   end_yr = end_yr,
 %                   weight.factor = 1000,
 %                   xcaption = "Recent trends in estimated beginning of the year
 %                                female spawning biomass (thousand~t) and spawning
@@ -183,8 +183,8 @@ box()
 %
 %<<recruitment-table-adnuts, results='asis', echo=FALSE>>=
 %make.recruitment.table(sens.models.6,
-%                       start_yr = end.yr-10,
-%                       end.yr = end.yr-1,
+%                       start_yr = end_yr-10,
+%                       end_yr = end_yr-1,
 %                       weight.factor = 1000,
 %                       xcaption = "Estimates of recent recruitment (millions of
 %                                    age-0) and recruitment deviations, where
@@ -204,7 +204,7 @@ box()
 %make.recruitment.plot(sens.models.6,
 %                      equil.yr = unfished_eq_yr,
 %                      start_yr = start_yr,
-%                      end.yr = end.yr,
+%                      end_yr = end_yr,
 %                      color = "blue",
 %                      add.mean = TRUE,
 %                      add.r0 = TRUE)
@@ -222,8 +222,8 @@ box()
 
 %<<fishing-intensity-table-adnuts, results='asis', echo=FALSE>>=
 %make.fishing.intensity.table(sens.models.6,
-%                             start_yr = end.yr-10,
-%                             end.yr = end.yr-1,
+%                             start_yr = end_yr-10,
+%                             end_yr = end_yr-1,
 %                             digits = 3,
 %                             xcaption = "Recent estimates of relative fishing
 %                                          intensity,
@@ -242,13 +242,13 @@ box()
 %<<fishing-intensity-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 %make.fishing.intensity.plot(sens.models.6,
 %                            start_yr = start_yr,
-%                            end.yr = end.yr-1,
+%                            end_yr = end_yr-1,
 %                            color = "blue",
 %                            upper.lim = 1.5)
 %@
 %\end{center}
 %\caption{Trend in median relative fishing intensity (relative to the SPR
-%         management target) through \Sexpr{end.yr-1} with 95\% posterior
+%         management target) through \Sexpr{end_yr-1} with 95\% posterior
 %         credibility intervals. The management target defined in the Agreement is
 %         shown as a horizontal line at 1.0.}
 %\label{fig:fishing-intensity-adnuts}
@@ -262,13 +262,13 @@ box()
 %<<exploitation-fraction-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 %make.exploitation.fraction.plot(sens.models.6,
 %                                start_yr = start_yr,
-%                                end.yr = end.yr-1,
+%                                end_yr = end_yr-1,
 %                                color = "blue",
 %                                upper.lim = 0.35)
 %@
 %\end{center}
 %\caption{Trend in median exploitation fraction (catch divided by age-2+ biomass)
-%         through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
+%         through \Sexpr{end_yr-1} with 95\% posterior credibility intervals.}
 %\label{fig:exploitation-fraction-adnuts}
 %\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -279,7 +279,7 @@ box()
 %<<phase-plot-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 %make.phase.plot(sens.models.6,
 %                start_yr = start_yr,
-%                end.yr = end.yr,
+%                end_yr = end_yr,
 %                x.max = 1.5)
 %@
 %\end{center}
@@ -289,8 +289,8 @@ box()
 %         start year, end year and year of highest relative fishing
 %         intensity; labels correspond to year $t$ (i.e., year of the relative
 %         spawning biomass). Gray bars span the 95\% credibility
-%         intervals for \Sexpr{end.yr} relative spawning biomass (horizontal) and
-%         \Sexpr{end.yr-1} relative fishing intensity (vertical).
+%         intervals for \Sexpr{end_yr} relative spawning biomass (horizontal) and
+%         \Sexpr{end_yr-1} relative fishing intensity (vertical).
 %         }
 %\label{fig:phase-adnuts}
 %\end{figure}
@@ -302,7 +302,7 @@ box()
 %  xcaption = paste0("For the \\altshort, summary of median and 95\\%",
 %                     " credibility intervals of equilibrium reference points.",
 %                     " Equilibrium reference points were computed using ",
-%                     start_yr, "--", end.yr-1, " averages for mean",
+%                     start_yr, "--", end_yr-1, " averages for mean",
 %                     " size-at-age and selectivity-at-age."),
 %                            xlabel = "tab:reference-points-adnuts",
 %                            font.size = 12,
@@ -363,17 +363,17 @@ box()
 %                                         models.inds,
 %                                         models.names,
 %                                         start_yr = 2009,
-%                                         model.end.yr = end.yr,
-%                                         end.yr =forecast_yrs[length(forecast_yrs)],
+%                                         model.end_yr = end_yr,
+%                                         end_yr =forecast_yrs[length(forecast_yrs)],
 %                                         legend.loc = "topleft")
 % @
 % \end{center}
-% \caption{Time series of estimated relative spawning biomass to \Sexpr{end.yr}
+% \caption{Time series of estimated relative spawning biomass to \Sexpr{end_yr}
 %          from the base model, and forecast trajectories to
 %          \Sexpr{forecast_yrs[length(forecast_yrs)]} (grey region) for several management actions
 %          defined in Table~\ref{tab:decisions-biomass-53}, with 95\%
 %          posterior credibility intervals.}
-% % The \Sexpr{end.yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
+% % The \Sexpr{end_yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
 % %  using the default harvest policy, as defined in the Agreement.}
 % % Above commented sentence Was in 2016 but I think is wrong - plot shows the
 % %  FI=100% action, so not sure why this talks about default HR (action g).
@@ -397,8 +397,8 @@ box()
 %@
 %\end{center}
 %\caption{Graphical representation of the probabilities related to spawning
-%         biomass, relative fishing intensity, and the \Sexpr{end.yr+1} default
-%         harvest policy catch for alternative \Sexpr{end.yr} catch options (catch
+%         biomass, relative fishing intensity, and the \Sexpr{end_yr+1} default
+%         harvest policy catch for alternative \Sexpr{end_yr} catch options (catch
 %         options explained in Table~\ref{tab:decisions-biomass-adnuts}) as listed in
 %         Table~\ref{tab:risk-year-1-adnuts}. The symbols indicate points that were
 %         computed directly from model output and lines interpolate between the
@@ -413,9 +413,9 @@ box()
 %                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
 %                           ##  forecast year 2 compared to forecast year 1
 %                xcaption = paste0("Probabilities related to spawning biomass,
-%                             relative fishing intensity, and the ",end.yr+1,
+%                             relative fishing intensity, and the ",end_yr+1,
 %                             " default harvest policy catch for alternative ",
-%                             end.yr," catch options (catch options explained in
+%                             end_yr," catch options (catch options explained in
 %                             Table~\\ref{tab:decisions-biomass-adnuts})."),
 %                xlabel = "tab:risk-year-1-adnuts",
 %                font.size = 12,
@@ -438,9 +438,9 @@ box()
 %@
 %\end{center}
 %\caption{Graphical representation of the probabilities related to spawning
-%biomass, relative fishing intensity, and the \Sexpr{end.yr+2} default harvest
-%policy catch for alternative \Sexpr{end.yr+1} catch options (including
-%associated \Sexpr{end.yr} catch; catch options explained in
+%biomass, relative fishing intensity, and the \Sexpr{end_yr+2} default harvest
+%policy catch for alternative \Sexpr{end_yr+1} catch options (including
+%associated \Sexpr{end_yr} catch; catch options explained in
 %Table~\ref{tab:decisions-biomass-adnuts}) as listed in
 %Table~\ref{tab:risk-year-2-adnuts}. The symbols indicate points that were computed
 %directly from model output and lines interpolate between the points.}
@@ -454,9 +454,9 @@ box()
 %                index = 2, ## Index in models[[]]$risks to use, e.g.
 %                           ##  1 means forecast year 2 compared to forecast year 1
 %                xcaption = paste0("Probabilities related to spawning biomass,
-%                 relative fishing intensity, and the ",end.yr+2," default harvest
-%                 policy catch for alternative ",end.yr+1," catch options, given
-%                 the ",end.yr," catch level shown in
+%                 relative fishing intensity, and the ",end_yr+2," default harvest
+%                 policy catch for alternative ",end_yr+1," catch options, given
+%                 the ",end_yr," catch level shown in
 %                 Table~\\ref{tab:risk-year-1-adnuts} (catch options explained in
 %                 Table~\\ref{tab:decisions-biomass-adnuts})."),
 %                xlabel = "tab:risk-year-2-adnuts",
@@ -471,7 +471,7 @@ box()
 <<mcmc-survey-fit-rwmh, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows fits to the acoustic survey for some rwMH samples">>=
 make.mcmc.survey.fit.plot(sens.models.7,
                           start_yr = survey.start_yr,
-                          end.yr = survey.end.yr,
+                          end_yr = survey.end_yr,
                           surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),
                           y.max = 5.5e6)
@@ -573,8 +573,8 @@ make.mcmc.diag.pairs.plot(sens.models.7,
                           key.posteriors.regex = key.posteriors,
                           key.posteriors.names = key.posteriors.titles,
                           recr = c(2010, 2014),
-                          bratio = end.yr,
-                          forecatch = end.yr)
+                          bratio = end_yr,
+                          forecatch = end_yr)
 @
 \end{center}
 \caption{Posterior correlations among key parameters and derived
@@ -590,7 +590,7 @@ make.mcmc.diag.pairs.plot(sens.models.7,
 <<mcmc-pairs-recruit-devs-rwmh, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many derived quantities">>=
 make.mcmc.diag.pairs.plot(sens.models.7,
                           inc.key.params = FALSE,
-                          recr = (end.yr-10):(end.yr-1))
+                          recr = (end_yr-10):(end_yr-1))
 @
 \end{center}
 \caption{Posterior correlations among recruitment deviations from recent years and equilibrium recruitment. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}

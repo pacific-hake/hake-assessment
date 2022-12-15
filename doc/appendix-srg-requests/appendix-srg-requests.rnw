@@ -151,12 +151,12 @@ layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
 make.comparison.plot(dm_models,
                      subplots = 2,
                      model.names = dm_model_names,
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 make.comparison.plot(dm_models,
                      subplots = 4,
                      legend = FALSE,
                      model.names = dm_model_names,
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 par <- oldpar
 @
 \end{center}
@@ -175,13 +175,13 @@ make.comparison.plot(dm_models,
                      subplots = 12,
                      legend = FALSE,
                      model.names = dm_model_names,
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 make.comparison.plot(dm_models,
                      subplots = 13,
                      model.names = dm_model_names,
                      indexfleets = 2,
                      legend = FALSE,
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 par <- oldpar
 @
 \end{center}

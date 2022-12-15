@@ -33,7 +33,7 @@ We thank the Stock Synthesis, the {\tt r4ss} R package, and the {\tt adnuts}
 R package development teams for continually
 improving stock assessment tools used in this assessment.
 We also thank the attendees at the official JTC meeting
-who provided valuable insight into the \Sexpr{end.yr-1} commercial fisheries in
+who provided valuable insight into the \Sexpr{end_yr-1} commercial fisheries in
 Canada and the U.S., as well as additional perspective on the acoustic
 survey. We appreciate the input from the AP (particularly for providing
 Appendices~\ref{chap:canada-fishery-report} and~\ref{chap:us-fishery-report})

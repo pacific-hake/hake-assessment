@@ -27,7 +27,7 @@ make.assessment.history.plot <- function(base,
   yr.colnames <- paste0("X", years[years %in% latestYrs])
   yr.ssb.colnames <- paste0("SSB_", years[years %in% latestYrs])
   xx[nrow(xx), yr.colnames] <- apply(latestAssess, 2, median)[yr.ssb.colnames] / 1e6
-  end.yr <- xx[nrow(xx),]$Year
+  end_yr <- xx[nrow(xx),]$Year
 
   slower <- base$mcmccalcs$slower
   supper <- base$mcmccalcs$supper

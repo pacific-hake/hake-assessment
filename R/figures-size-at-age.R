@@ -79,7 +79,7 @@ weight.at.age.heatmap <- function(model,
                                   proj.line.yr = NULL,
                                   first.year = 1975,
                                   start_yr = 1966,
-                                  end.yr = assess_yr - 1,
+                                  end_yr = assess_yr - 1,
                                   extrap.mask = NULL,
                                   longterm.mean.ages = NULL,
                                   font.size = 4,
@@ -108,7 +108,7 @@ weight.at.age.heatmap <- function(model,
     # Copy first row, modify it, and bind it on at the start
     #row <- wa[1, ]
     # Change to mean of all years
-    mean_yrs <- first.year:end.yr
+    mean_yrs <- first.year:end_yr
     mean_dat <- wa %>%
       filter(Yr %in% mean_yrs) %>%
       select(-Yr) %>%

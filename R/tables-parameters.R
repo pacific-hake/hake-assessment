@@ -30,7 +30,7 @@ make.parameters.estimated.summary.table <- function(model,
   p.type <- 6 # prior type
   phase <- 7
   start_yr.sel <- 10
-  end.yr.sel <- 11
+  end_yr.sel <- 11
   sel.dev.sd <- 12
 
   prior.type <- c("0" = "Uniform",
@@ -187,7 +187,7 @@ make.parameters.estimated.summary.table <- function(model,
                       paste0("(", min(tmp[tmp[, 7]>0, lo]), ", ",
                         max(tmp[tmp[, 7]>0, hi]), ")"),
                       "Uniform")
-  n.yrs.sel.vals <- diff(as.numeric(tmp[tmp[,7]>0,start_yr.sel:end.yr.sel][1, 1:2])) + 1
+  n.yrs.sel.vals <- diff(as.numeric(tmp[tmp[,7]>0,start_yr.sel:end_yr.sel][1, 1:2])) + 1
 
   # Selectivity deviations for fishery. Uses last line to get values, assumes
   #  all are the same
@@ -199,7 +199,7 @@ make.parameters.estimated.summary.table <- function(model,
     c(paste0("Selectivity deviations (",
              min(tmp[tmp[,start_yr.sel] != 0,start_yr.sel]),
              "--",
-             max(tmp[tmp[,end.yr.sel] != 0,end.yr.sel]),
+             max(tmp[tmp[,end_yr.sel] != 0,end_yr.sel]),
              ", ages ",
              min(f.ages.estimated),
              "--",
@@ -310,7 +310,7 @@ make.parameters.estimated.summary.table <- function(model,
 #'
 #' @param models A list of models which contain the MCMC output
 #' @param model.names A vector of names of the same length as the number of models in the models list
-#' @param end.yr The last year to include
+#' @param end_yr The last year to include
 #' @param digits Number of decimal points for the estimates
 #' @param xcaption Caption to appear in the calling document
 #' @param xlabel The label used to reference the table in latex
@@ -325,7 +325,7 @@ make.parameters.estimated.summary.table <- function(model,
 #'
 param_est_table <- function(models,
                             model.names,
-                            end.yr,
+                            end_yr,
                             digits = 3,
                             xcaption = "default",
                             xlabel   = "default",
@@ -396,12 +396,12 @@ param_est_table <- function(models,
         recs,
         bo = f(median(.x$mcmc$`SSB_Initial`) / 1e3, 0),
         ssb_2009 = paste0(f(median(.x$mcmc$`SSB_2009` / .x$mcmc$SSB_Initial) * 100, 1), "\\%"),
-        ssb_curr = ifelse(.x$endyr <= end.yr - 2,
+        ssb_curr = ifelse(.x$endyr <= end_yr - 2,
                           "--",
-                          paste0(f(median(.x$mcmc[[paste0("SSB_", end.yr)]] / .x$mcmc$SSB_Initial) * 100, 1), "\\%")),
-        spr_last = ifelse(.x$endyr <= end.yr - 2,
+                          paste0(f(median(.x$mcmc[[paste0("SSB_", end_yr)]] / .x$mcmc$SSB_Initial) * 100, 1), "\\%")),
+        spr_last = ifelse(.x$endyr <= end_yr - 2,
                           "--",
-                          paste0(f(median(.x$mcmc[[paste0("SPRratio_", end.yr - 1)]]) * 100, 1), "\\%")),
+                          paste0(f(median(.x$mcmc[[paste0("SPRratio_", end_yr - 1)]]) * 100, 1), "\\%")),
         ssb_curr_fem = f(median(.x$mcmc$`SSB_SPR`) / 1e3, 0),
         spr_msy = "40.0\\%",
         exp_frac = .x$mcmccalcs$exp.frac.spr[2],
@@ -444,9 +444,9 @@ param_est_table <- function(models,
         bo = (mddq %>% filter(Label == "SSB_Initial") %>% pull(Value) / 1e3) %>% f(0),
         ssb_2009 = ((mddq %>% filter(Label == "SSB_2009") %>% pull(Value)) /
                       (mddq %>% filter(Label == "SSB_Initial") %>% pull(Value)) * 100) %>% f(1) %>% paste0("\\%"),
-        ssb_curr = ((mddq %>% filter(Label == paste0("SSB_", end.yr)) %>% pull(Value)) /
+        ssb_curr = ((mddq %>% filter(Label == paste0("SSB_", end_yr)) %>% pull(Value)) /
                       (mddq %>% filter(Label == "SSB_Initial") %>% pull(Value)) * 100) %>% f(1) %>% paste0("\\%"),
-        spr_last = ((mddq %>% filter(Label == paste0("SPRratio_", end.yr - 1)) %>% pull(Value)) * 100) %>% f(1) %>% paste0("\\%"),
+        spr_last = ((mddq %>% filter(Label == paste0("SPRratio_", end_yr - 1)) %>% pull(Value)) * 100) %>% f(1) %>% paste0("\\%"),
         ssb_curr_fem = (mddq %>% filter(Label == "SSB_SPR") %>% pull(Value) / 1e3) %>% f(0),
         spr_msy = "40.0\\%",
         exp_frac = ((mddq %>% filter(Label == "annF_SPR") %>% pull(Value)) * 100) %>% f(1) %>% paste0("\\%"),
@@ -489,8 +489,8 @@ param_est_table <- function(models,
       paste(getrecs, "recruitment (millions)"),
       paste0("Unfished female spawning biomass (", latex.subscr(latex.italics("B"), "0"), ", thousand t)"),
       "2009 relative spawning biomass",
-      paste0(end.yr, " relative spawning biomass"),
-      paste0(end.yr - 1, " rel. fishing intensity: (1-SPR)/(1-", latex.subscr("SPR", "40\\%"), ")"),
+      paste0(end_yr, " relative spawning biomass"),
+      paste0(end_yr - 1, " rel. fishing intensity: (1-SPR)/(1-", latex.subscr("SPR", "40\\%"), ")"),
       paste0("Female spawning biomass at ",
              latex.subscr(latex.italics("F"), "SPR=40\\%"),
              " (",

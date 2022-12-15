@@ -69,9 +69,9 @@ make.forecast.catch.posterior.plot <- function(model,         ## model is the mo
 #' compare These numbers will reference list members of the `model$forecasts$outputs` list
 #' @param models.names A vector of names for the models (used in legend)
 #' @param start_yr Year to start the plot on
-#' @param model.end.yr The model end year, not including forecasting. This will be
+#' @param model.end_yr The model end year, not including forecasting. This will be
 #' pasted to `Bratio_ `for `densitynames` argument to [r4ss::SSplotComparisons()]
-#' @param end.yr Year to end the plot on
+#' @param end_yr Year to end the plot on
 #' @param legend.loc Legend location
 #' @param ... Extra arguments to pass to [r4ss::SSplotComparisons()]
 #'
@@ -81,8 +81,8 @@ make.forecast.depletion.comparison.plot <- function(model,
                                                     models.inds,
                                                     models.names,
                                                     start_yr,
-                                                    model.end.yr,
-                                                    end.yr,
+                                                    model.end_yr,
+                                                    end_yr,
                                                     legend.loc = "topleft",
                                                     ...){
 
@@ -96,14 +96,14 @@ make.forecast.depletion.comparison.plot <- function(model,
 
   SSplotComparisons(compare.summary,
                     legendlabels = models.names,
-                    endyr = end.yr,
-                    densitynames = c(paste0("Bratio_", model.end.yr)),
+                    endyr = end_yr,
+                    densitynames = c(paste0("Bratio_", model.end_yr)),
                     new = FALSE,
                     minbthresh = 0,
                     subplots = 4,
                     plot = TRUE,
                     mcmcVec = rep(TRUE, length(model.list)),
-                    xlim = c(start_yr,end.yr),
+                    xlim = c(start_yr,end_yr),
                     legendloc = legend.loc,
                     labels = c("Year",
                                "Spawning biomass (t)",
@@ -122,7 +122,7 @@ make.forecast.depletion.comparison.plot <- function(model,
                     ...)
   abline(h = c(0.1, 0.4), lty = 2, col =" grey")
   axis(2, at = c(0.1, 0.4), las = 1, cex.axis = 0.8)
-  axis(1, at = seq(start_yr, end.yr, 2))
+  axis(1, at = seq(start_yr, end_yr, 2))
   par <- oldpar
 }
 

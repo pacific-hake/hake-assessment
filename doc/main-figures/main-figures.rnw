@@ -30,7 +30,7 @@ make.overview.map.plot(path = rootd_map_data)
 % \vspace{-3mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from the Joint U.S.~and Canada acoustic surveys
-  \Sexpr{survey.start_yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
+  \Sexpr{survey.start_yr}--\Sexpr{survey.end_yr}. Area of the circle is roughly
   proportional to observed backscatter.
   Barplots show survey-estimated biomass for ages 2 to 20, with major cohorts
   highlighted in color.
@@ -54,7 +54,7 @@ make.overview.map.plot(path = rootd_map_data)
 \end{center}
 %\vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
-  from the Joint U.S.~and Canada acoustic surveys 2003--\Sexpr{survey.end.yr}. Age-1 \fishname\ are not fully sampled
+  from the Joint U.S.~and Canada acoustic surveys 2003--\Sexpr{survey.end_yr}. Age-1 \fishname\ are not fully sampled
   during the acoustic survey and were not explicitly considered during establishment of the
   survey sampling design. Area of the circle is roughly
   proportional to observed backscatter. Figure produced by Julia Clemons
@@ -322,14 +322,14 @@ make.comparison.plot(bridge.models.1,
                      model.names = bridge.model.names.1,
                      densitynames = bridge.density.names,
                      plot_mcmc = TRUE,
-                     end.yr = bridge.model.end.yr.1)
+                     end_yr = bridge.model.end_yr.1)
 make.comparison.plot(bridge.models.1,
                      subplots = 4,
                      model.names = bridge.model.names.1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end.yr = bridge.model.end.yr.1,
+                     end_yr = bridge.model.end_yr.1,
                      btarg = 0.4)
 make.comparison.plot(bridge.models.1,
                      subplots = 10,
@@ -337,20 +337,20 @@ make.comparison.plot(bridge.models.1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end.yr = bridge.model.end.yr.1)
+                     end_yr = bridge.model.end_yr.1)
 make.comparison.plot(bridge.models.1,
                      subplots = 12,
                      model.names = bridge.model.names.1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end.yr = bridge.model.end.yr.1)
+                     end_yr = bridge.model.end_yr.1)
 make.comparison.plot(bridge.models.1,
                      subplots = 13,
                      model.names = bridge.model.names.1,
                      legend = FALSE,
                      indexfleets = 2,
-                     end.yr = bridge.model.end.yr.1)
+                     end_yr = bridge.model.end_yr.1)
 box()
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
@@ -391,14 +391,14 @@ make.comparison.plot(bridge.models.2,
                      densitynames = bridge.density.names,
                      legend = TRUE,
                      plot_mcmc = TRUE,
-                     end.yr = bridge.model.end.yr.2)
+                     end_yr = bridge.model.end_yr.2)
 make.comparison.plot(bridge.models.2,
                      subplots = 4,
                      model.names = bridge.model.names.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end.yr = bridge.model.end.yr.2,
+                     end_yr = bridge.model.end_yr.2,
                      btarg = 0.4)
 make.comparison.plot(bridge.models.2,
                      subplots = 10,
@@ -406,19 +406,19 @@ make.comparison.plot(bridge.models.2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end.yr = bridge.model.end.yr.2)
+                     end_yr = bridge.model.end_yr.2)
 make.comparison.plot(bridge.models.2,
                      subplots = 13,
                      model.names = bridge.model.names.2,
                      plot_mcmc = TRUE,
                      indexfleets = 2,
-                     end.yr = bridge.model.end.yr.2)
+                     end_yr = bridge.model.end_yr.2)
 make.comparison.plot(bridge.models.2,
                      subplots = 13,
                      model.names = bridge.model.names.2,
                      plot_mcmc = TRUE,
                      indexfleets = 3,
-                     end.yr = bridge.model.end.yr.2)
+                     end_yr = bridge.model.end_yr.2)
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
@@ -442,7 +442,7 @@ par <- oldpar
 <<main-mcmc-survey-fit, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows many posterior trajectories of the expected survey biomass fitting well to the observed biomass.">>=
 make.mcmc.survey.fit.plot(base.model,
                           start_yr = survey.start_yr,
-                          end.yr = survey.end.yr,
+                          end_yr = survey.end_yr,
                           surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),
                           y.max = 5.5e6)
@@ -464,7 +464,7 @@ make.mcmc.survey.fit.plot(base.model,
 <<main-mcmc-age1-fit, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows many posterior trajectories of the expected numbers of age-1 fish fitting well to the age-1 index.">>=
 make.mcmc.survey.fit.plot(base.model,
                           start_yr = survey.start_yr,
-                          end.yr = survey.end.yr,
+                          end_yr = survey.end_yr,
                           surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),
                           y.max = 10e6,
@@ -566,7 +566,7 @@ tv.selex.start_yr <- 1990
 tv.selex.ages <- 1:8
 tv.selex <- calc.tv.selex(base.model,
                           start_yr = tv.selex.start_yr,
-                          end.yr = last.data.yr,
+                          end_yr = last.data.yr,
                           ages = tv.selex.ages,
                           probs = c(0.025, 0.975))
 make.tv.selex.plot(tv.selex)
@@ -586,12 +586,12 @@ make.tv.selex.plot(tv.selex)
 ##  then call the plotting function with them as a list to make a multipanel plot.
 tv.selex.left <- calc.tv.selex(base.model,
                                start_yr = tv.selex.start_yr,
-                               end.yr = 2004,
+                               end_yr = 2004,
                                ages = tv.selex.ages,
                                probs = c(0.025, 0.975))
 tv.selex.right <- calc.tv.selex(base.model,
                                 start_yr = 2005,
-                                end.yr = last.data.yr,
+                                end_yr = last.data.yr,
                                 ages = tv.selex.ages,
                                 probs = c(0.025, 0.975))
 make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
@@ -617,7 +617,7 @@ make.selex.uncertainty.lines.plot(base.model,
                                   type = 2,   # this is survey, don't think year gets used
                                   probs = c(0.025, 0.975))
 make.selex.uncertainty.lines.plot(base.model,
-                                  year = last.data.yr,   # think this should be end.yr-1
+                                  year = last.data.yr,   # think this should be end_yr-1
                                   type = 1,
                                   selex.list = tv.selex,
                                   probs = c(0.025, 0.975))
@@ -625,7 +625,7 @@ par <- oldpar
 @
 \end{center}
 \caption{Estimated selectivities for the biomass index (top -- for all years)
-  and fishery (bottom -- for \Sexpr{end.yr-1} only)
+  and fishery (bottom -- for \Sexpr{end_yr-1} only)
   from the posterior distribution for the base model.
   Selectivity for the biomass index is 0 at age-1 and
   constant from age-6 onwards.
@@ -641,11 +641,11 @@ par <- oldpar
 make.biomass.plot(base.model,
                   equil.yr = unfished.eq.yr,
                   start_yr = start_yr,
-                  end.yr = end.yr,
+                  end_yr = end_yr,
                   color = "blue")
 @
 \end{center}
-\caption{Median of the posterior distribution for female spawning biomass at the start of each year ($B_t$) for the base model up to \Sexpr{end.yr} (solid line)
+\caption{Median of the posterior distribution for female spawning biomass at the start of each year ($B_t$) for the base model up to \Sexpr{end_yr} (solid line)
   with 95\% posterior credibility intervals (shaded area).}
 \label{fig:main-female-spawning-biomass}
 %% \end{figure}
@@ -657,13 +657,13 @@ make.biomass.plot(base.model,
 <<main-relative-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the relative biomass has been decreasing since 2019">>=
 make.depletion.plot(base.model,
                     start_yr = start_yr,
-                    end.yr = end.yr,
+                    end_yr = end_yr,
                     color = "blue")
 @
 \end{center}
 %\vspace{0mm}
 \caption{Median (solid line) of the posterior distribution for relative spawning biomass ($B_t/B_0$) for the base model
-  through \Sexpr{end.yr} with 95\% posterior credibility intervals (shaded area). Dashed horizontal lines show 10\%, 40\% and 100\% levels.}
+  through \Sexpr{end_yr} with 95\% posterior credibility intervals (shaded area). Dashed horizontal lines show 10\%, 40\% and 100\% levels.}
 \label{fig:main-relative-spawning-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -676,7 +676,7 @@ make.depletion.plot(base.model,
 make.recruitment.plot(base.model,
                       equil.yr = unfished.eq.yr,
                       start_yr = start_yr,
-                      end.yr = end.yr,
+                      end_yr = end_yr,
                       color = "blue",
                       add.mean = TRUE,
                       add.r0 = TRUE)
@@ -695,7 +695,7 @@ make.recruitment.plot(base.model,
 \begin{center}
 <<main-recruitment-devs, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
 make.recruitment.dev.plot(base.model,
-                          end.yr = end.yr)
+                          end_yr = end_yr)
 
 @
 \end{center}
@@ -736,7 +736,7 @@ make_numbers_at_age_plot(base.model,
 <<main-mcmc-sr-variability, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the Stock Recruitment curve does not fit the estimated recruitments very well for this stock">>=
 make.mcmc.sr.variability.plot(base.model,
                               start_yr = start_yr,
-                              end.yr = end.yr - 1,
+                              end_yr = end_yr - 1,
                               xlim = c(0, 1.5),
                               ylim = c(0, 7),
                               probs = c(0.025, 0.5, 0.975))
@@ -759,12 +759,12 @@ make.mcmc.sr.variability.plot(base.model,
 <<main-fishing-intensity, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management target of 1 throughout the time series">>=
 make.fishing.intensity.plot(base.model,
                             start_yr = start_yr,
-                            end.yr = end.yr-1,
+                            end_yr = end_yr-1,
                             color = "blue",
                             upper.lim = 1.5)
 @
 \end{center}
-\caption{Trend in median fishing intensity (relative to the SPR management target) through \Sexpr{end.yr-1}
+\caption{Trend in median fishing intensity (relative to the SPR management target) through \Sexpr{end_yr-1}
   with 95\% posterior credibility intervals. The management target defined in the Agreement is shown as a horizontal line at 1.0.}
 \label{fig:main-fishing-intensity}
 %% \end{figure}
@@ -776,12 +776,12 @@ make.fishing.intensity.plot(base.model,
 <<main-exploitation-fraction, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the stock biomass is approximately 0.1">>=
 make.exploitation.fraction.plot(base.model,
                                 start_yr = start_yr,
-                                end.yr = end.yr-1,
+                                end_yr = end_yr-1,
                                 color = "blue",
                                 upper.lim = 0.35)
 @
 \end{center}
-\caption{Trend in median exploitation fraction (catch divided by biomass of fish of age-2 and above) through \Sexpr{end.yr-1} with 95\% posterior credibility intervals.}
+\caption{Trend in median exploitation fraction (catch divided by biomass of fish of age-2 and above) through \Sexpr{end_yr-1} with 95\% posterior credibility intervals.}
 \label{fig:main-exploitation-fraction}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -793,7 +793,7 @@ make.exploitation.fraction.plot(base.model,
 <<main-phase, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state">>=
 make.phase.plot(base.model,
                 start_yr = start_yr,
-                end.yr = end.yr)
+                end_yr = end_yr)
 @
 \end{center}
 \caption{Estimated historical path of median relative spawning biomass in
@@ -802,8 +802,8 @@ make.phase.plot(base.model,
          start year, end year and year of highest relative fishing
          intensity; labels correspond to year $t$ (i.e., year of the relative
          spawning biomass). Gray bars span the 95\% credibility
-         intervals for \Sexpr{end.yr} relative spawning biomass (horizontal) and
-         \Sexpr{end.yr-1} relative fishing intensity (vertical).
+         intervals for \Sexpr{end_yr} relative spawning biomass (horizontal) and
+         \Sexpr{end_yr-1} relative fishing intensity (vertical).
          }
 \label{fig:main-phase}
 \end{figure}
@@ -814,10 +814,10 @@ make.phase.plot(base.model,
 \begin{center}
 <<main-projected-catch-density, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the wide distribution of the default catch limit using the default harvest policy">>=
 make.forecast.catch.posterior.plot(base.model,
-                                   fore.yr = end.yr)
+                                   fore.yr = end_yr)
 @
 \end{center}
-\caption{The posterior distribution of the default \Sexpr{end.yr} catch limit calculated using the default harvest
+\caption{The posterior distribution of the default \Sexpr{end_yr} catch limit calculated using the default harvest
   policy (\Ffortyten). The median is \Sexpr{catch.limit.quantiles["median"]}~t (vertical line), with the dark shaded area ranging from the 2.5\% quantile to the 97.5\% quantile, covering the range \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.}
 \label{fig:main-projected-catch-density}
 %% \end{figure}
@@ -836,17 +836,17 @@ make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
                                         start_yr = forecast_yrs[length(forecast_yrs)] - 10,
-                                        model.end.yr = end.yr,
-                                        end.yr = forecast_yrs[length(forecast_yrs)],
+                                        model.end_yr = end_yr,
+                                        end_yr = forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft")
 @
 \end{center}
-\caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end.yr} as estimated from the base model, and forecast trajectories
+\caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end_yr} as estimated from the base model, and forecast trajectories
   to the start of \Sexpr{forecast_yrs[length(forecast_yrs)]} for several management options from the decision table (grey region), with 95\% posterior
   credibility intervals. The default harvest policy catches are
-  \Sexpr{f(base.model$catch.default.policy[1])}~t in \Sexpr{end.yr},
-  \Sexpr{f(base.model$catch.default.policy[2])}~t in \Sexpr{end.yr+1}, and
-  \Sexpr{f(base.model$catch.default.policy[3])}~t in \Sexpr{end.yr+2}.}
+  \Sexpr{f(base.model$catch.default.policy[1])}~t in \Sexpr{end_yr},
+  \Sexpr{f(base.model$catch.default.policy[2])}~t in \Sexpr{end_yr+1}, and
+  \Sexpr{f(base.model$catch.default.policy[3])}~t in \Sexpr{end_yr+2}.}
 \label{fig:main-forecast-depletion-comparison}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -922,13 +922,13 @@ make.forecast.risk.comparison.plot(base.model,
 make.age.comp.forecast.plot(base.model)
 @
 \end{center}
-\caption{Forecast age compositions in numbers and in weight for the \Sexpr{end.yr} fishery catch
+\caption{Forecast age compositions in numbers and in weight for the \Sexpr{end_yr} fishery catch
   (combined across all sectors in both countries). Gray bars show median estimates.
   Thick black lines show 50\% credibility intervals and thin black lines show 95\%
   credibility intervals. These estimates are based on the posterior distribution for
   selectivity averaged across the most recent five years, weight-at-age data averaged across the
   most recent five years, and the distribution for expected
-  numbers at age at the start of \Sexpr{end.yr} (see Table~\ref{tab:main-est-numbers-at-age} for
+  numbers at age at the start of \Sexpr{end_yr} (see Table~\ref{tab:main-est-numbers-at-age} for
   the MCMC medians of numbers-at-age for all years). The panel on the right is scaled based on
   the weight at each age averaged across the last five years.}
 \label{fig:main-age-comp-forecast}
@@ -943,7 +943,7 @@ make.age.comp.forecast.plot(base.model)
 make.comparison.plot(c(list(base.model), sens.models.1),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.1),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 @
 \end{center}
 \caption{MCMC estimates of spawning biomass for the base
@@ -964,7 +964,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.1),
                      legend = FALSE,
-                     end.yr = end.yr,
+                     end_yr = end_yr,
                      btarg = 0.4)
 @
 \end{center}
@@ -985,7 +985,7 @@ make.comparison.plot(c(list(base.model), sens.models.1),
 make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.2),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 @
 \end{center}
 \caption{MCMC estimates of spawning biomass for the base model and alternative
@@ -1003,7 +1003,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.2),
                      legend = FALSE,
-                     end.yr = end.yr,
+                     end_yr = end_yr,
                      btarg = 0.4)
 @
 \end{center}
@@ -1024,7 +1024,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      subplots = 12,
                      model.names = c(base.model.name, sens.model.names.2),
                      legend = FALSE,
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 @
 \end{center}
 \caption{MCMC estimates of recruitment deviations for the base
@@ -1046,7 +1046,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
                      legend = TRUE,
                      legend_loc = "topleft",
                      indexfleets= c(2),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 @
 \end{center}
 \caption{MCMC estimates of the fit to the biomass index for the base
@@ -1064,7 +1064,7 @@ make.comparison.plot(c(list(base.model), sens.models.2),
 make.comparison.plot(c(list(base.model), sens.models.4),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.4),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 @
 \end{center}
 \caption{MCMC estimates of spawning biomass for the base model
@@ -1082,7 +1082,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.4),
                      legend = FALSE,
-                     end.yr = end.yr,
+                     end_yr = end_yr,
                      btarg = 0.4)
 @
 \end{center}
@@ -1104,7 +1104,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      legend = TRUE,
                      subplots = 10,
                      model.names = c(base.model.name, sens.model.names.4),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 box()
 @
 \end{center}
@@ -1124,7 +1124,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      legend = FALSE,
                      subplots = 12,
                      model.names = c(base.model.name, sens.model.names.4),
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 box()
 @
 \end{center}
@@ -1145,7 +1145,7 @@ make.comparison.plot(c(list(base.model), sens.models.4),
                      legend = TRUE,
                      legend_loc = "topleft",
                      indexfleets = 2,
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 @
 \end{center}
 %\vspace{0mm}
@@ -1193,7 +1193,7 @@ make.comparison.plot(c(list(base.model), sens.models.6),
                      subplots = 2,
                      model.names = c(base.model.name, sens.model.names.6),
                      legend = TRUE,
-                     end.yr = end.yr)
+                     end_yr = end_yr)
 @
 \end{center}
 \caption{MCMC estimates of spawning biomass for the base
@@ -1211,7 +1211,7 @@ make.comparison.plot(c(list(base.model), sens.models.6),
                      subplots = 4,
                      model.names = c(base.model.name, sens.model.names.6),
                      legend = TRUE,
-                     end.yr = end.yr,
+                     end_yr = end_yr,
                      btarg = 0.4)
 @
 \end{center}
@@ -1258,7 +1258,7 @@ par <- oldpar
 \begin{figure}[H]
 \begin{center}
 <<main-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how recruitment estimates for age-0 fish tend to be small but positive to allow for forecasted landings and that information is not typically available to estimate recruitments until fish are of age three. Estimates of larger, in absolute terms, deviates take a longer time to stabilize.">>=
-retro_cohorts <- (end.yr - 11):(end.yr - 2)
+retro_cohorts <- (end_yr - 11):(end_yr - 2)
 make_squid_plot(base.model,
                 subplot = 1,
                 cohorts = retro_cohorts,
@@ -1321,7 +1321,7 @@ make.assessment.history.plot(base.model,
 \caption{Summary of historical \fishname\ assessment estimates of spawning
   biomass. Estimates are MLEs or MCMC medians depending on the model structure.
   Shading represents the 95\% credible interval from the
-  \Sexpr{end.yr} base model.}
+  \Sexpr{end_yr} base model.}
 \label{fig:main-historical-assessments}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

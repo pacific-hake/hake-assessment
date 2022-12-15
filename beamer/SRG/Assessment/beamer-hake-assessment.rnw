@@ -156,14 +156,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                        model.names = bridge.model.names.1,
                        densitynames = NULL,
                        plot_mcmc = TRUE,
-                       end.yr = bridge.model.end.yr.1)
+                       end_yr = bridge.model.end_yr.1)
   make.comparison.plot(bridge.models.1,
                        subplots = 9,
                        model.names = bridge.model.names.1,
                        densitynames = NULL,
                        plot_mcmc = TRUE,
                        legend = FALSE,
-                       end.yr = bridge.model.end.yr.1)
+                       end_yr = bridge.model.end_yr.1)
   box()
   par(oldpar)
   @
@@ -183,14 +183,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                        densitynames = NULL,
                        plot_mcmc = TRUE,
                        legend = FALSE,
-                       end.yr = bridge.model.end.yr.1)
+                       end_yr = bridge.model.end_yr.1)
   make.comparison.plot(bridge.models.1,
                        subplots = 13,
                        model.names = bridge.model.names.1,
                        plot_mcmc = TRUE,
                        legendloc = "topleft",
                        indexfleets = 2,
-                       end.yr = bridge.model.end.yr.1)
+                       end_yr = bridge.model.end_yr.1)
   box()
   par(oldpar)
   @
@@ -216,14 +216,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                        model.names = bridge.model.names.2,
                        densitynames = bridge.density.names,
                        plot_mcmc = TRUE,
-                       end.yr = bridge.model.end.yr.2)
+                       end_yr = bridge.model.end_yr.2)
   make.comparison.plot(bridge.models.2,
                        subplots = 4,
                        model.names = bridge.model.names.2,
                        densitynames = bridge.density.names,
                        plot_mcmc = TRUE,
                        legend = FALSE,
-                       end.yr = bridge.model.end.yr.2,
+                       end_yr = bridge.model.end_yr.2,
                        btarg = 0.4)
   box()
   par(oldpar)
@@ -243,14 +243,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                        model.names = bridge.model.names.2,
                        densitynames = bridge.density.names,
                        plot_mcmc = TRUE,
-                       end.yr = bridge.model.end.yr.2)
+                       end_yr = bridge.model.end_yr.2)
   make.comparison.plot(bridge.models.2,
                        subplots = 9,
                        model.names = bridge.model.names.2,
                        densitynames = bridge.density.names,
                        plot_mcmc = TRUE,
                        legend = FALSE,
-                       end.yr = bridge.model.end.yr.2)
+                       end_yr = bridge.model.end_yr.2)
   box()
   par(oldpar)
   @
@@ -269,14 +269,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                        model.names = bridge.model.names.2,
                        plot_mcmc = TRUE,
                        indexfleets = 2,
-                       end.yr = bridge.model.end.yr.2)
+                       end_yr = bridge.model.end_yr.2)
   make.comparison.plot(bridge.models.2,
                        subplots = 13,
                        model.names = bridge.model.names.2,
                        plot_mcmc = TRUE,
                        indexfleets = 3,
                        legend = FALSE,
-                       end.yr = bridge.model.end.yr.2)
+                       end_yr = bridge.model.end_yr.2)
   box()
   par(oldpar)
   @
@@ -325,7 +325,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %                        model.names = bridge.model.names.3,
 %                        densitynames = bridge.density.names,
 %                        plot_mcmc = FALSE,
-%                        end.yr = bridge.model.end.yr.3)
+%                        end_yr = bridge.model.end_yr.3)
 %   make.comparison.plot(bridge.models.3,
 %                        subplots = 13,
 %                        legend = FALSE,
@@ -334,7 +334,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %                        indexPlotEach = TRUE,
 %                        indexUncertainty = TRUE,
 %                        plot_mcmc = FALSE,
-%                        end.yr = bridge.model.end.yr.3)
+%                        end_yr = bridge.model.end_yr.3)
 %   box()
 %   par(oldpar)
 %   @
@@ -377,14 +377,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %                       model.names = c(base.model.name, sens.model.names.7),
 %                       densitynames = NULL,
 %                       legendloc = "topleft",
-%                       end.yr = end.yr,
+%                       end_yr = end_yr,
 %                       plot_mcmc = TRUE)
 %  make.comparison.plot(c(list(base.model), list(sens.models.7)),
 %                       subplots = 4,
 %                       model.names = c(base.model.name, sens.model.names.7),
 %                       densitynames = NULL,
 %                       legend = FALSE,
-%                       end.yr = end.yr,
+%                       end_yr = end_yr,
 %                       plot_mcmc = TRUE)
 %  box()
 %  par(oldpar)
@@ -614,7 +614,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.mcmc.survey.fit.plot(base.model,
                               start_yr = survey.start_yr,
-                              end.yr = survey.end.yr,
+                              end_yr = survey.end_yr,
                               probs = c(0.025, 0.975),
                               y.max = 5.5e6)
   @
@@ -627,7 +627,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   <<mcmc.age1.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.mcmc.survey.fit.plot(base.model,
                               start_yr = survey.start_yr,
-                              end.yr = survey.end.yr,
+                              end_yr = survey.end_yr,
                               probs = c(0.025, 0.975),
                               y.max = 10e6,
                               survey.type = "age1",
@@ -808,7 +808,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
     tv.selex.ages <- 1:8
     tv.selex <- calc.tv.selex(base.model,
                               start_yr = tv.selex.start_yr,
-                              end.yr = last.data.yr,
+                              end_yr = last.data.yr,
                               ages = tv.selex.ages,
                               probs = c(0.025, 0.975))
     make.tv.selex.plot(tv.selex)
@@ -823,12 +823,12 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
     ##  then call the plotting function with them as a list to make a multipanel plot.
     tv.selex.left <- calc.tv.selex(base.model,
                                    start_yr = tv.selex.start_yr,
-                                   end.yr = 2001,
+                                   end_yr = 2001,
                                    ages = tv.selex.ages,
                                    probs = c(0.025, 0.975))
     tv.selex.right <- calc.tv.selex(base.model,
                                     start_yr = 2002,
-                                    end.yr = last.data.yr,
+                                    end_yr = last.data.yr,
                                     ages = tv.selex.ages,
                                     probs = c(0.025, 0.975))
     make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
@@ -870,7 +870,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   <<main.parameter.estimates, results='asis', echo=FALSE>>=
     param_est_table(list(base.model, last.yr.base.model),
                     model.names = c(base.model.name, last.yr.base.model.name),
-                    end.yr = end.yr,
+                    end_yr = end_yr,
                     digits = 3,
                     getrecs = c(2010, 2014, 2016),
                     show_like = FALSE,
@@ -889,7 +889,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     #oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
     make.recruitment.dev.plot(base.model,
-                              end.yr = end.yr)
+                              end_yr = end_yr)
     #par(oldpar)
   @
   \ec
@@ -902,7 +902,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
     make.recruitment.plot(base.model,
                           equil.yr = unfished_eq_yr,
                           start_yr = start_yr,
-                          end.yr = end.yr,
+                          end_yr = end_yr,
                           color = "blue",
                           add.mean = TRUE,
                           add.r0 = TRUE)
@@ -1011,7 +1011,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
     make.biomass.plot(base.model,
                       equil.yr = unfished_eq_yr,
                       start_yr = start_yr,
-                      end.yr = end.yr,
+                      end_yr = end_yr,
                       color = "blue")
   @
   \ec
@@ -1033,18 +1033,18 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
     \begin{tabular}{cccc} \hline
       Calculation & Low & Median & High \\
       \hline
-      \Sexpr{assess_yr-1} assessment $B_{\Sexpr{end.yr-1}}$ &
+      \Sexpr{assess_yr-1} assessment $B_{\Sexpr{end_yr-1}}$ &
          \Sexpr{last.slower} & \Sexpr{last.smed} & \Sexpr{last.supper} \\
-      \Sexpr{assess_yr} assessment $B_{\Sexpr{end.yr-1}}$ &
+      \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr-1}}$ &
          \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} &
          \Sexpr{prev.bio.upper} \\
-      \Sexpr{assess_yr} assessment $B_{\Sexpr{end.yr}}$ & \Sexpr{curr.bio.lower} &
+      \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr}}$ & \Sexpr{curr.bio.lower} &
          \Sexpr{curr.bio.median} & \Sexpr{curr.bio.upper} \\
       \hline
     \end{tabular}
   \end{table}
   ~\\
-While the median estimate of $B_{\Sexpr{end.yr-1}}$ has increased from last
+While the median estimate of $B_{\Sexpr{end_yr-1}}$ has increased from last
 year's assessment, the credible interval mostly overlaps that from last year's assessment.
 }
 
@@ -1054,7 +1054,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
   <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.depletion.plot(base.model,
                         start_yr = start_yr,
-                        end.yr = end.yr,
+                        end_yr = end_yr,
                         color = "blue")
   @
   \ec
@@ -1066,7 +1066,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
   <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.fishing.intensity.plot(base.model,
                                 start_yr = start_yr,
-                                end.yr = end.yr-1,
+                                end_yr = end_yr-1,
                                 color = "blue")
   @
   \ec
@@ -1079,7 +1079,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
   <<exploitation, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.exploitation.fraction.plot(base.model,
                                     start_yr = start_yr,
-                                    end.yr = end.yr-1,
+                                    end_yr = end_yr-1,
                                     color = "blue")
   @
   \ec
@@ -1382,10 +1382,10 @@ year's assessment, the credible interval mostly overlaps that from last year's a
   \bi
   \item Model fits the age data particularly well
   %\item The estimated spawning stock biomass has continually dropped since 2017
-  \item The median estimate of \Sexpr{end.yr} relative spawning biomass is
+  \item The median estimate of \Sexpr{end_yr} relative spawning biomass is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%)
-  \item The median estimate of \Sexpr{end.yr} female spawning biomass is
+  \item The median estimate of \Sexpr{end_yr} female spawning biomass is
     \Sexpr{curr.bio.median}~million~t
     (\Sexpr{curr.bio.lower}-\Sexpr{curr.bio.upper}~million~t)
   \ei
@@ -1396,7 +1396,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 %  %\bi
 %  <<main.cohort.table, results='asis', echo=FALSE>>=
 %    cohort_table(base.model,
-%             end_yr = end.yr,
+%             end_yr = end_yr,
 %             cohorts = c(1999, 2010, 2014, 2016),
 %             csv_dir = output_csv_dir,
 %             xcaption = paste0("Changes in biomass at each age"),
@@ -1443,8 +1443,8 @@ year's assessment, the credible interval mostly overlaps that from last year's a
     \ei
   \item The model estimates a \Sexpr{joint.percent.prob.above.below}\%
     joint probability of being both above the target relative fishing intensity in
-    \Sexpr{end.yr-1} and below the $\Bforty$ relative spawning biomass level at the
-    start of \Sexpr{end.yr}
+    \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at the
+    start of \Sexpr{end_yr}
   \ei
 }
 
