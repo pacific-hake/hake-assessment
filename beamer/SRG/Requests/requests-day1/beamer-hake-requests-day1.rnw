@@ -238,7 +238,7 @@ req3.model.names <- c("Fix theta, 0.2 x input sample size","Fix theta, 2.0 x inp
                       "Est. theta, 2.0 x input sample size")
 make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
                      subplots = 2,
-                     model.names = c(base.model.name, req3.model.names),
+                     model.names = c(base_model_name, req3.model.names),
                      end_yr = end_yr)
 @
 \end{frame}
@@ -249,7 +249,7 @@ make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202
 make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
                      subplots = 4,
                      legend = FALSE,
-                     model.names = c(base.model.name, req3.model.names),
+                     model.names = c(base_model_name, req3.model.names),
                      end_yr = end_yr)
 @
 \end{frame}
@@ -260,7 +260,7 @@ make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202
 make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
                      subplots = 12,
                      legend = FALSE,
-                     model.names = c(base.model.name, req3.model.names),
+                     model.names = c(base_model_name, req3.model.names),
                      end_yr = end_yr)
 @
 \end{frame}
@@ -270,7 +270,7 @@ make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202
 <<request-fig-acoustic2-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
 make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
                      subplots = 13,
-                     model.names = c(base.model.name, req3.model.names),
+                     model.names = c(base_model_name, req3.model.names),
                      indexfleets = 2,
                      legend = FALSE,
                      end_yr = end_yr)

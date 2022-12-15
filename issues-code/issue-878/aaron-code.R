@@ -14,12 +14,12 @@ models_loaded <- TRUE
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 # Run this once, from hake-assessment/
-#s3_download(c(paste0("models/", base.model.dir.name, "/Report.sso"),
-#              paste0("models/", base.model.dir.name, "/CompReport.sso"),
-#              paste0("models/", base.model.dir.name, "/posteriors.sso")))
+#s3_download(c(paste0("models/", base_model_dir_name, "/Report.sso"),
+#              paste0("models/", base_model_dir_name, "/CompReport.sso"),
+#              paste0("models/", base_model_dir_name, "/posteriors.sso")))
 
-# Aaron used these r4ss commands, Andy adding in base.model.dir.name:
-my_mcmc <-SSgetMCMC(dir = paste0(rootd, "/models/", base.model.dir.name),
+# Aaron used these r4ss commands, Andy adding in base_model_dir_name:
+my_mcmc <-SSgetMCMC(dir = paste0(rootd, "/models/", base_model_dir_name),
                     verbose = TRUE,
                     writecsv = TRUE,
                     csv1 = "keyposteriors.csv",

@@ -528,7 +528,7 @@ wt.at.age <- base.model$wtatage[, !grepl("comment", colnames(base.model$wtatage)
   rename(year = Yr)
 
 # Retrospective setup for the document ----------------------------------------
-retro.model.names <- c(base.model.name,
+retro.model.names <- c(base_model_name,
                        map_chr(plot_retro_yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))
 # Assemble the retrospective list with the base as the first element
 retro.list <- list(base.model)

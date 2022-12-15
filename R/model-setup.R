@@ -103,12 +103,11 @@ message("Key posteriors file: ", nuisance_posteriors_file)
 # -----------------------------------------------------------------------------
 # Base model name and directory
 # -----------------------------------------------------------------------------
-base.model.dir.name <- "2022.01.10_base_v2"
-base.model.name <- paste0(assess_yr, " Base model")
+base_model_dir_name <- "2022.01.10_base_v2"
+base_model_name <- paste0(assess_yr, " Base model")
 
-message("Base model directory name: ", base.model.dir.name)
-message("Base model pretty name: ", base.model.name)
-
+message("Base model directory name: ", base_model_dir_name)
+message("Base model pretty name: ", base_model_name)
 
 # -----------------------------------------------------------------------------
 # Alternative base model names and directories (runs we want MCMC results for,
@@ -124,21 +123,21 @@ message("Base model pretty name: ", base.model.name)
 # -----------------------------------------------------------------------------
 # Last assessment year's base model name and directory
 # -----------------------------------------------------------------------------
-last.yr.base.model.dir.name <- "2021.00.04_base_v1"
-last.yr.base.model.name <- paste(last_assess_yr, "Base model")
-message("Last assessment year's base model directory name: ", last.yr.base.model.dir.name)
-message("Last assessment year's base model pretty name: ", last.yr.base.model.name)
+last.yr.base_model_dir_name <- "2021.00.04_base_v1"
+last.yr.base_model_name <- paste(last_assess_yr, "Base model")
+message("Last assessment year's base model directory name: ", last.yr.base_model_dir_name)
+message("Last assessment year's base model pretty name: ", last.yr.base_model_name)
 
 # -----------------------------------------------------------------------------
 # Bridge models group 1
 # -----------------------------------------------------------------------------
-# First one must be last.yr.base.model.dir.name:
-bridge.model.dir.names.1 <- c(last.yr.base.model.dir.name,
+# First one must be last.yr.base_model_dir_name:
+bridge.model.dir.names.1 <- c(last.yr.base_model_dir_name,
                               "2022.01.03_newcatchage",
                               "2022.01.05_updatesurvey",
                               "2022.01.06_newsurvey",
                               "2022.01.07_newwtatage")
-bridge.model.names.1 <- c(last.yr.base.model.name,
+bridge.model.names.1 <- c(last.yr.base_model_name,
                           "Update all fishery catch and comps",
                           "Update pre-2021 survey data",
                           "Add 2021 survey data",
@@ -220,7 +219,7 @@ sens.model.names.6 <- c("Max. age selectivity 5",
 # sens.model.dir.names.7 <- c("2022.01.28_tvSelect_phi_low")
 # sens.model.names.7 <- c("DUMMY FOR NOW")
 
-model_list <- c(base.model.dir.name,
+model_list <- c(base_model_dir_name,
                 unlist(bridge.model.dir.names.1),
                 unlist(bridge.model.dir.names.2),
                 unlist(sens.model.dir.names.1),
@@ -229,7 +228,7 @@ model_list <- c(base.model.dir.name,
                 # unlist(sens.model.dir.names.5),
                 unlist(sens.model.dir.names.6))
                 # unlist(sens.model.dir.names.7))
-model_list <- model_list[! model_list %in% last.yr.base.model.dir.name]
+model_list <- model_list[! model_list %in% last.yr.base_model_dir_name]
 model_list <- as.list(unique(model_list))
 
 # This function must be called from within the first knitr code chunk
@@ -237,7 +236,7 @@ model_list <- as.list(unique(model_list))
 # as the other model setup and should be changed if bridge models
 # and sensitivity models change in the model.dir.names above..
 load_models_rds <- function(){
-  base.model <<- load_models(base.model.dir.name)
+  base.model <<- load_models(base_model_dir_name)
   if(is.null(base.model$mcmccalcs)){
     stop("Error - base.model$mcmccalcs is NULL. Make sure the directory\n",
             file.path(base.model$path, "mcmc"), " exists and contains valid\n",
@@ -251,11 +250,11 @@ load_models_rds <- function(){
            "   within build_rds() in model-setup.r and try again.\n")
   }
 
-  last.yr.base.model <<- load_models(last.yr.base.model.dir.name)
+  last.yr.base.model <<- load_models(last.yr.base_model_dir_name)
 
   # For 2022 assessment only due to changes in SS3 to make figures and tables work.
   #  Can remove in 2023:
-  if(last.yr.base.model.name == "2021 Base model"){
+  if(last.yr.base_model_name == "2021 Base model"){
     last.yr.base.model$mcmc[, grep("SSB", names(last.yr.base.model$mcmc))] <<-
       last.yr.base.model$mcmc[, grep("SSB", names(last.yr.base.model$mcmc))]/2
   }
@@ -302,7 +301,7 @@ load_models_rds <- function(){
                   list(mod200),
                   list(mod201),
                   list(mod202))
-  dm_model_names <<- c(base.model.name,
+  dm_model_names <<- c(base_model_name,
                        "Fix theta, 0.2 x input sample size",
                        "Fix theta, 2.0 x input sample size",
                        "Est. theta, 2.0 x input sample size")

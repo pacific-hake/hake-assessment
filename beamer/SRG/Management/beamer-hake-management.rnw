@@ -945,7 +945,7 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 %%     <<age.one.index.comp, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
 %%       make.comparison.plot(c(list(base.model), list(sens.models.2[[1]])),
 %%                      subplots = 2,
-%%                      model.names = c(base.model.name, sens.model.names.2[1]),
+%%                      model.names = c(base_model_name, sens.model.names.2[1]),
 %%                      end_yr = end_yr,
 %%                      legendloc = "topright")
 %%     @

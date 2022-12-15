@@ -374,14 +374,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %                no.readonly = TRUE)
 %  make.comparison.plot(c(list(base.model), list(sens.models.7)),
 %                       subplots = 2,
-%                       model.names = c(base.model.name, sens.model.names.7),
+%                       model.names = c(base_model_name, sens.model.names.7),
 %                       densitynames = NULL,
 %                       legendloc = "topleft",
 %                       end_yr = end_yr,
 %                       plot_mcmc = TRUE)
 %  make.comparison.plot(c(list(base.model), list(sens.models.7)),
 %                       subplots = 4,
-%                       model.names = c(base.model.name, sens.model.names.7),
+%                       model.names = c(base_model_name, sens.model.names.7),
 %                       densitynames = NULL,
 %                       legend = FALSE,
 %                       end_yr = end_yr,
@@ -869,7 +869,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   \bc
   <<main.parameter.estimates, results='asis', echo=FALSE>>=
     param_est_table(list(base.model, last.yr.base.model),
-                    model.names = c(base.model.name, last.yr.base.model.name),
+                    model.names = c(base_model_name, last.yr.base_model_name),
                     end_yr = end_yr,
                     digits = 3,
                     getrecs = c(2010, 2014, 2016),

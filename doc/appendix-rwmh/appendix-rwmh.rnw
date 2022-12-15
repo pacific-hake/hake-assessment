@@ -64,7 +64,7 @@ samples.
 <<biomass-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar values of spawning biomass between the base model and rwMH sensitivity run">>=
 make.comparison.plot(c(list(base.model), list(sens.models.7)),
                      subplots = 2,
-                     model.names = c(base.model.name, sens.model.names.7),
+                     model.names = c(base_model_name, sens.model.names.7),
                      end_yr = end_yr, plot_mcmc = TRUE)
 @
 \end{center}
@@ -78,7 +78,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.7)),
 <<status-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar patterns of relative spawning biomass between the base model and rwMH sensitivity run">>=
 make.comparison.plot(c(list(base.model), list(sens.models.7)),
                      subplots = 4,
-                     model.names = c(base.model.name, sens.model.names.7),
+                     model.names = c(base_model_name, sens.model.names.7),
                      end_yr = end_yr, plot_mcmc = TRUE, legend = FALSE)
 @
 \end{center}
@@ -95,7 +95,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.7)),
 make.comparison.plot(c(list(base.model), list(sens.models.7)),
                      legend = TRUE,
                      subplots = 10,
-                     model.names = c(base.model.name, sens.model.names.7),
+                     model.names = c(base_model_name, sens.model.names.7),
                      end_yr = end_yr, plot_mcmc = TRUE)
 box()
 @
@@ -114,7 +114,7 @@ box()
 make.comparison.plot(c(list(base.model), list(sens.models.7)),
                      legend = FALSE,
                      subplots = 12,
-                     model.names = c(base.model.name, sens.model.names.7),
+                     model.names = c(base_model_name, sens.model.names.7),
                      end_yr = end_yr, plot_mcmc = TRUE)
 box()
 @

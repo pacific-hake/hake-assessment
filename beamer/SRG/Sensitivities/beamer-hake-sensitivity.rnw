@@ -432,7 +432,7 @@ oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(c(list(base.model), sens.models.6),
                      subplots = 4,
-                     model.names = c(base.model.name, sens.model.names.6),
+                     model.names = c(base_model_name, sens.model.names.6),
                      legend = TRUE,
                      end_yr = end_yr)
 par <- oldpar
@@ -485,7 +485,7 @@ oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(list(base.model, sens.models.2[[1]]),
                      subplots = 2,
-                     model.names = c(base.model.name, sens.model.names.2[1]),
+                     model.names = c(base_model_name, sens.model.names.2[1]),
                      end_yr = end_yr)
 par <- oldpar
 @
