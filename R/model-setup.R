@@ -252,30 +252,13 @@ load_models_rds <- function(){
 
   last_yr_base_model <<- load_models(last_yr_base_model_dir_name)
 
-  # For 2022 assessment only due to changes in SS3 to make figures and tables work.
-  #  Can remove in 2023:
-  if(last_yr_base_model_name == "2021 Base model"){
-    last_yr_base_model$mcmc[, grep("SSB", names(last_yr_base_model$mcmc))] <<-
-      last_yr_base_model$mcmc[, grep("SSB", names(last_yr_base_model$mcmc))]/2
-  }
-
   bridge_models_1 <<- load_models(bridge_model_dir_names_1)
-  # For 2022 assessment only due to changes in SS3 to make figures and tables work.
-  #  Can remove in 2023:
-  if(bridge_model_names_1[1] == "2021 Base model"){
-    bridge_models_1[[1]]$mcmc[, grep("SSB", names(bridge_models_1[[1]]$mcmc))] <<-
-      bridge_models_1[[1]]$mcmc[, grep("SSB", names(bridge_models_1[[1]]$mcmc))]/2
-  }
-
   bridge_models_2 <<- load_models(bridge_model_dir_names_2)
   sens_models_1 <<- load_models(sens_model_dir_names_1)
   sens_models_2 <<- load_models(sens_model_dir_names_2, TRUE)
   sens_models_4 <<- load_models(sens_model_dir_names_4)
   # sens_models_5 <<- load_models(sens_model_dir_names_5)
   sens_models_6 <<- load_models(sens_model_dir_names_6)
-  # sens_models_7 <<- load_models(sens_model_dir_names_7)
-#  srg_day2_req1_model <<- load_models("2022.01.47_day2request_wtatage")
-#  srg_day2_req2_model <<- load_models("2022.01.46_base_v1_4yrForecast")
 
   # Lists of sensitivities for the MLE parameters, derived quantiles,
   #  and reference points table
