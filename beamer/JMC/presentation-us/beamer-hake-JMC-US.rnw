@@ -167,7 +167,7 @@ from last year)
   <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.recruitment.plot(base.model,
                           equil.yr = unfished_eq_yr,
-                          start.yr = start.yr,
+                          start_yr = start_yr,
                           end.yr = end.yr,
                           color = "blue",
                           add.mean = TRUE,
@@ -181,7 +181,7 @@ from last year)
   \bc
   <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.depletion.plot(base.model,
-                        start.yr = start.yr,
+                        start_yr = start_yr,
                         end.yr = end.yr,
                         color = "blue")
   @
@@ -194,7 +194,7 @@ from last year)
     \begin{column}{0.5\textwidth}
       <<fishing.intensity, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
       make.fishing.intensity.plot(base.model,
-                                  start.yr = start.yr,
+                                  start_yr = start_yr,
                                   end.yr = end.yr-1,
                                   color = "blue")
       @
@@ -202,7 +202,7 @@ from last year)
     \begin{column}{0.5\textwidth}
       <<exploitation, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
       make.exploitation.fraction.plot(base.model,
-      start.yr = start.yr,
+      start_yr = start_yr,
       end.yr = end.yr-1,
       upper.lim = 0.3,
       color = "blue")
@@ -300,7 +300,7 @@ from last year)
       make.forecast.depletion.comparison.plot(base.model,
                                               models.inds,
                                               models.names,
-                                              start.yr = 2009,
+                                              start_yr = 2009,
                                               model.end.yr = end.yr,
                                               end.yr = forecast_yrs[length(forecast_yrs)],
                                               legend.loc = "topleft")

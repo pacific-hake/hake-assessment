@@ -8,7 +8,7 @@ Fishery-dependent and fishery-independent data used in this assessment
 \begin{itemize}
 
 \item Total catch from all U.S. and Canadian fisheries that target \fishname\
-  from \Sexpr{start.yr} to \Sexpr{last.data.yr} (Tables
+  from \Sexpr{start_yr} to \Sexpr{last.data.yr} (Tables
   \ref{tab:intro-catches-US}--\ref{tab:main-landings-tac}).
 
 \item Fishery age compositions aggregated by year and country for the last ten years
@@ -101,7 +101,7 @@ additional data sources are:
 
 \subsubsection{Total catch}\label{sec:data-total-catch}
 
-The catch of \fishname\ for \Sexpr{start.yr}--\Sexpr{last.data.yr} is
+The catch of \fishname\ for \Sexpr{start_yr}--\Sexpr{last.data.yr} is
 summarized by nation and fishery sector
 (Tables~\ref{tab:intro-catches-US}--\ref{tab:main-landings-tac})
 and modeled as yearly coast-wide catches.

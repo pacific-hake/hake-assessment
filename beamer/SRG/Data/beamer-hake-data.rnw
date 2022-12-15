@@ -134,10 +134,10 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \bi
       \item Fishery-dependent data
       \bi
-        \item Annual catch (\Sexpr{start.yr}--\Sexpr{end.yr - 1})
+        \item Annual catch (\Sexpr{start_yr}--\Sexpr{end.yr - 1})
         \item Age compositions (1975--\Sexpr{end.yr - 1}; 1$^+$)
       \ei
-      \item Acoustic survey (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr})
+      \item Acoustic survey (\Sexpr{survey.start_yr}--\Sexpr{survey.end.yr})
       \bi
         \item Biomass index age 2$^+$
         \item Age compositions (2$^+$)
@@ -386,7 +386,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     make_age_comp_bubble_plot(base.model,
                               clines = c(1984, 1999, 2010, 2014, 2016),
                               subplot = 2,
-                              xlim = c(survey.start.yr, survey.end.yr))
+                              xlim = c(survey.start_yr, survey.end.yr))
   @
 \end{center}
 }
@@ -401,7 +401,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     par(mar=c(1.1, 1.1, 0, 1.1), oma=c(1.1, 2.1, 0, 0), las = 1)
     ## NOTE this function is not generalized and needs to be fixed
     make.age.comp.compare.bubble.plot(base.model,
-                                      start.yr = survey.start.yr,
+                                      start_yr = survey.start_yr,
                                       end.yr = survey.end.yr,
                                       show.key = TRUE,
                                       key.yrs = c(1997, 1999, 2002, 2005)+1)
@@ -480,7 +480,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Sample sizes of weight-at-age by year}
 \begin{center}
 <<main-weight-at-age-numbers, out.height='90%', out.width='90%'>>=
-  midyear <- (base.model$endyr - start.yr.age.comps)/2 + start.yr.age.comps
+  midyear <- (base.model$endyr - start_yr.age.comps)/2 + start_yr.age.comps
   weight.at.age.heatmap(base.model,
                         proj.line.yr = base.model$endyr,
                         extrap.mask = weight_age_extrapolation_mask,

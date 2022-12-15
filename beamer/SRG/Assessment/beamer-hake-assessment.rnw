@@ -613,7 +613,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \bc
   <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.mcmc.survey.fit.plot(base.model,
-                              start.yr = survey.start.yr,
+                              start_yr = survey.start_yr,
                               end.yr = survey.end.yr,
                               probs = c(0.025, 0.975),
                               y.max = 5.5e6)
@@ -626,7 +626,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \bc
   <<mcmc.age1.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.mcmc.survey.fit.plot(base.model,
-                              start.yr = survey.start.yr,
+                              start_yr = survey.start_yr,
                               end.yr = survey.end.yr,
                               probs = c(0.025, 0.975),
                               y.max = 10e6,
@@ -804,10 +804,10 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
     \bc
     <<main.tv.selex, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
     ## Extract TV selectivity fits by running the calculation function.
-    tv.selex.start.yr <- 1990
+    tv.selex.start_yr <- 1990
     tv.selex.ages <- 1:8
     tv.selex <- calc.tv.selex(base.model,
-                              start.yr = tv.selex.start.yr,
+                              start_yr = tv.selex.start_yr,
                               end.yr = last.data.yr,
                               ages = tv.selex.ages,
                               probs = c(0.025, 0.975))
@@ -822,12 +822,12 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
     ## Extract TV selectivity fits by running the calculation function, once for each year span,
     ##  then call the plotting function with them as a list to make a multipanel plot.
     tv.selex.left <- calc.tv.selex(base.model,
-                                   start.yr = tv.selex.start.yr,
+                                   start_yr = tv.selex.start_yr,
                                    end.yr = 2001,
                                    ages = tv.selex.ages,
                                    probs = c(0.025, 0.975))
     tv.selex.right <- calc.tv.selex(base.model,
-                                    start.yr = 2002,
+                                    start_yr = 2002,
                                     end.yr = last.data.yr,
                                     ages = tv.selex.ages,
                                     probs = c(0.025, 0.975))
@@ -901,7 +901,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.recruitment.plot(base.model,
                           equil.yr = unfished_eq_yr,
-                          start.yr = start.yr,
+                          start_yr = start_yr,
                           end.yr = end.yr,
                           color = "blue",
                           add.mean = TRUE,
@@ -1010,7 +1010,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   <<female.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.biomass.plot(base.model,
                       equil.yr = unfished_eq_yr,
-                      start.yr = start.yr,
+                      start_yr = start_yr,
                       end.yr = end.yr,
                       color = "blue")
   @
@@ -1053,7 +1053,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
   \bc
   <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.depletion.plot(base.model,
-                        start.yr = start.yr,
+                        start_yr = start_yr,
                         end.yr = end.yr,
                         color = "blue")
   @
@@ -1065,7 +1065,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
   \bc
   <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.fishing.intensity.plot(base.model,
-                                start.yr = start.yr,
+                                start_yr = start_yr,
                                 end.yr = end.yr-1,
                                 color = "blue")
   @
@@ -1078,7 +1078,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
   \bc
   <<exploitation, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.exploitation.fraction.plot(base.model,
-                                    start.yr = start.yr,
+                                    start_yr = start_yr,
                                     end.yr = end.yr-1,
                                     color = "blue")
   @

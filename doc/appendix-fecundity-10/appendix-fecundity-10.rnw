@@ -18,7 +18,7 @@ the mean over the entire time series of data (see Section~\ref{sec:assessment-se
 <<spawning-biomass-fecundity, fig.height=5, fig.width=8>>=
 make.biomass.plot(sens.models.5[[3]],
                   equil.yr = unfished_eq_yr,
-                  start.yr = start.yr,
+                  start_yr = start_yr,
                   end.yr = end.yr,
                   color = "blue")
 @
@@ -38,7 +38,7 @@ make.biomass.plot(sens.models.5[[3]],
 \begin{center}
 <<relative-spawning-biomass-fecundity, fig.height=5, fig.width=8>>=
 make.depletion.plot(sens.models.5[[3]],
-                    start.yr = start.yr,
+                    start_yr = start_yr,
                     end.yr = end.yr,
                     color = "blue")
 @
@@ -54,7 +54,7 @@ make.depletion.plot(sens.models.5[[3]],
 
 <<biomass-table-fecundity, results='asis', echo=FALSE>>=
 make.biomass.table(sens.models.5[[3]],
-                   start.yr = end.yr-9,
+                   start_yr = end.yr-9,
                    end.yr = end.yr,
                    weight.factor = 1000,
                    xcaption = "Recent trends in estimated beginning of the year
@@ -70,7 +70,7 @@ make.biomass.table(sens.models.5[[3]],
 
 <<recruitment-table-fecundity, results='asis', echo=FALSE>>=
 make.recruitment.table(sens.models.5[[3]],
-                       start.yr = end.yr-10,
+                       start_yr = end.yr-10,
                        end.yr = end.yr-1,
                        weight.factor = 1000,
                        xcaption = "Estimates of recent recruitment (millions of
@@ -90,7 +90,7 @@ make.recruitment.table(sens.models.5[[3]],
 <<recruitment-fecundity, fig.height=5, fig.width=8>>=
 make.recruitment.plot(sens.models.5[[3]],
                       equil.yr = unfished_eq_yr,
-                      start.yr = start.yr,
+                      start_yr = start_yr,
                       end.yr = end.yr,
                       color = "blue",
                       add.mean = TRUE,
@@ -109,7 +109,7 @@ make.recruitment.plot(sens.models.5[[3]],
 
 <<fishing-intensity-table-fecundity, results='asis', echo=FALSE>>=
 make.fishing.intensity.table(sens.models.5[[3]],
-                             start.yr = end.yr-10,
+                             start_yr = end.yr-10,
                              end.yr = end.yr-1,
                              digits = 3,
                              xcaption = "Recent estimates of relative fishing
@@ -128,7 +128,7 @@ make.fishing.intensity.table(sens.models.5[[3]],
 \begin{center}
 <<fishing-intensity-fecundity, fig.height=5, fig.width=8>>=
 make.fishing.intensity.plot(sens.models.5[[3]],
-                            start.yr = start.yr,
+                            start_yr = start_yr,
                             end.yr = end.yr-1,
                             color = "blue",
                             upper.lim = 1.5)
@@ -148,7 +148,7 @@ make.fishing.intensity.plot(sens.models.5[[3]],
 \begin{center}
 <<exploitation-fraction-fecundity, fig.height=5, fig.width=8>>=
 make.exploitation.fraction.plot(sens.models.5[[3]],
-                                start.yr = start.yr,
+                                start_yr = start_yr,
                                 end.yr = end.yr-1,
                                 color = "blue",
                                 upper.lim = 0.35)
@@ -165,7 +165,7 @@ make.exploitation.fraction.plot(sens.models.5[[3]],
 \begin{center}
 <<phase-plot-fecundity, fig.height=5, fig.width=8>>=
 make.phase.plot(sens.models.5[[3]],
-                start.yr = start.yr,
+                start_yr = start_yr,
                 end.yr = end.yr)
 @
 \end{center}
@@ -184,7 +184,7 @@ make.reference.points.table(
   xcaption = paste0("For the \\altshort, summary of median and 95\\%",
                      " credibility intervals of equilibrium reference points.",
                      " Equilibrium reference points were computed using ",
-                     start.yr, "--", end.yr-1, " averages for mean",
+                     start_yr, "--", end.yr-1, " averages for mean",
                      " size-at-age and selectivity-at-age."),
                             xlabel = "tab:reference-points-fecundity",
                             font.size = 12,
@@ -244,7 +244,7 @@ models.names <- sapply(sens.models.5[[3]]$catch.levels, "[[", 2)[models.inds]
 make.forecast.depletion.comparison.plot(sens.models.5[[3]],
                                         models.inds,
                                         models.names,
-                                        start.yr = 2009,
+                                        start_yr = 2009,
                                         model.end.yr = end.yr,
                                         end.yr =forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft")

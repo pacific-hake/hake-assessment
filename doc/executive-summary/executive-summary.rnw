@@ -47,7 +47,7 @@ make.catches.plot(ct,
 \end{center}
 %\vspace{0mm}
 \caption{Total \fishname\ catch used in the assessment by sector,
-  \Sexpr{start.yr}--\Sexpr{last.data.yr}.
+  \Sexpr{start_yr}--\Sexpr{last.data.yr}.
   U.S. tribal catches are included in the sectors where they are represented.}
 \label{fig:es-catches}
 \end{figure}
@@ -170,11 +170,11 @@ make.survey.age1.plot.data(age.1.index,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery
-landings (\Sexpr{start.yr}--\Sexpr{last.data.yr}), an acoustic survey biomass
+landings (\Sexpr{start_yr}--\Sexpr{last.data.yr}), an acoustic survey biomass
 index (Figure~\ref{fig:es-survey-biomass}) and age compositions
-(\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), an acoustic survey index of
+(\Sexpr{survey.start_yr}--\Sexpr{survey.end.yr}), an acoustic survey index of
 age-1 fish (Figure~\ref{fig:es-survey-age1}),
-and fishery age compositions (\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}).
+and fishery age compositions (\Sexpr{start_yr.age.comps}--\Sexpr{last.data.yr}).
 In 2011 the survey biomass index was the lowest in the time series and was followed by the index increasing
 in 2012, 2013, and again in 2015 before decreasing to near the time series average in 2017.
 The 2019 estimate is the fourth highest of the series, and the 2021 estimate is near the time
@@ -259,7 +259,7 @@ and~\ref{fig:es-relative-spawning-biomass}). Model estimates suggest
 <<spawning-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been decreasing in size since 2019">>=
 make.biomass.plot(base.model,
                   equil.yr = unfished.eq.yr,
-                  start.yr = start.yr,
+                  start_yr = start_yr,
                   end.yr = end.yr,
                   color = "blue")
 @
@@ -282,7 +282,7 @@ assessment period, due to lower than average recruitment.
 \begin{center}
 <<relative-spawning-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the relative biomass has been decreasing since 2019">>=
 make.depletion.plot(base.model,
-                    start.yr = start.yr,
+                    start_yr = start_yr,
                     end.yr = end.yr,
                     color = "blue")
 @
@@ -337,7 +337,7 @@ biomass index and age compositions, plus the full age-1 index.
 % Manual 2022 done (updated numbers in final sentence and revised text).
 <<biomass-table, results='asis', echo=FALSE>>=
 make.biomass.table(base.model,
-                   start.yr = end.yr-9,
+                   start_yr = end.yr-9,
                    end.yr = end.yr,
                    weight.factor = 1000,
                    xcaption = "Recent trends in estimated beginning of the year
@@ -359,7 +359,7 @@ make.biomass.table(base.model,
 %  If that stops happening then move to after paragraph.
 <<recruitment-table, results='asis', echo=FALSE>>=
 make.recruitment.table(base.model,
-                       start.yr = end.yr-10,
+                       start_yr = end.yr-10,
                        end.yr = end.yr-1,
                        weight.factor = 1000,
                        xcaption = "Estimates of recent recruitment (millions of
@@ -404,7 +404,7 @@ have low to moderate recruitment with occasional large year classes
 <<recruitment, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
 make.recruitment.plot(base.model,
                       equil.yr = unfished.eq.yr,
-                      start.yr = start.yr,
+                      start_yr = start_yr,
                       end.yr = end.yr,
                       color = "blue",
                       add.mean = TRUE,
@@ -484,7 +484,7 @@ target SPR of 40\%; it is reported here interchangeably as a decimal proportion 
 % Table may end up too early, if so move to end of this section.
 <<fishing-intensity-table, results='asis', echo=FALSE>>=
 make.fishing.intensity.table(base.model,
-                             start.yr = end.yr-10,
+                             start_yr = end.yr-10,
                              end.yr = end.yr-1,
                              digits = 3,
                              xcaption = "Recent estimates of relative fishing
@@ -528,7 +528,7 @@ years and Figure~\ref{fig:es-fishing-intensity}).
 \begin{center}
 <<fishing-intensity, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management target of 1 throughout the time series">>=
 make.fishing.intensity.plot(base.model,
-                            start.yr = start.yr,
+                            start_yr = start_yr,
                             end.yr = end.yr-1,
                             color = "blue",
                             upper.lim = 1.5)
@@ -613,7 +613,7 @@ due to the appearance of the 1999 year class.
 \begin{center}
 <<exploitation-fraction, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the stock biomass is approximately 0.1">>=
 make.exploitation.fraction.plot(base.model,
-                                start.yr = start.yr,
+                                start_yr = start_yr,
                                 end.yr = end.yr-1,
                                 color = "blue",
                                 upper.lim = 0.35)
@@ -652,7 +652,7 @@ make_landings_tac_table(ct,
 \begin{center}
 <<phase-plot, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state">>=
 make.phase.plot(base.model,
-                start.yr = start.yr,
+                start_yr = start_yr,
                 end.yr = end.yr)
 @
 \end{center}
@@ -997,7 +997,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
-                                        start.yr = 2009,
+                                        start_yr = 2009,
                                         model.end.yr = end.yr,
                                         end.yr =forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft")

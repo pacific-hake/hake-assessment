@@ -46,7 +46,7 @@ make.selex.plot <- function(model,
 }
 
 calc.tv.selex <- function(model,
-                          start.yr,
+                          start_yr,
                           end.yr,
                           ages = 1:8,  ## ages to be included
                           probs = c(0.025, 0.975)){
@@ -55,7 +55,7 @@ calc.tv.selex <- function(model,
   ##  as calculated for the given probablities. The columns in the data frames are the years
   ##  and the rows are ages. Both row names and column names have been set properly.
 
-  yrs <- start.yr:end.yr
+  yrs <- start_yr:end.yr
   selex <- list()
 
   ## changing indexing from 2:length(yrs) to 1:length(yrs)

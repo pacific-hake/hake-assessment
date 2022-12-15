@@ -194,10 +194,10 @@ calc.mcmc <- function(mcmc,
   names(dev) <- gsub("ForeRecr_", "", names(dev))
 
   # Change the Early_Init names to be the correct preceeding years
-  start.yr <- as.numeric(min(names(dev)))
+  start_yr <- as.numeric(min(names(dev)))
   early <- grep("Early_InitAge_", names(dev))
   num.early.yrs <- length(early)
-  early.yrs <- seq(start.yr - num.early.yrs, start.yr - 1, 1)
+  early.yrs <- seq(start_yr - num.early.yrs, start_yr - 1, 1)
   late.yrs <- names(dev[-early])
   names(dev) <- c(as.character(early.yrs), late.yrs)
 

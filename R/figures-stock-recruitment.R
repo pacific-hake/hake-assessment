@@ -1,6 +1,6 @@
 
 make.mcmc.sr.variability.plot <- function(model,
-                                          start.yr,
+                                          start_yr,
                                           end.yr,
                                           xlim = c(0, 1.5),
                                           ylim = c(0, 7),
@@ -8,7 +8,7 @@ make.mcmc.sr.variability.plot <- function(model,
   oldpar <- par()
   on.exit(par(oldpar))
 
-  yrs <- start.yr:end.yr
+  yrs <- start_yr:end.yr
 
   beverton.holt <- function(h, b = seq(0, 1.5, 0.005)){
     (4.0 * h * b) / ((1.0 - h) + (5.0 * h - 1.0) * b)

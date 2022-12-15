@@ -227,8 +227,8 @@ year.of.max.median.nat <- extramc$natage_median[year.of.max.median.nat.ind, "Yr"
 
 # Executive Summary and Assessment section ------------------------------------
 num.mcmc.samples <- dim(base.model$mcmc)[1]
-median.bio.min <- f(min(mc$smed[names(mc$smed) %in% start.yr:end.yr]), 3)
-median.bio.min.year <- names(which.min(mc$smed[names(mc$smed) %in% start.yr:end.yr]))
+median.bio.min <- f(min(mc$smed[names(mc$smed) %in% start_yr:end.yr]), 3)
+median.bio.min.year <- names(which.min(mc$smed[names(mc$smed) %in% start_yr:end.yr]))
 median.intensity <- mc$pmed
 median.intensity.2007.to.2010 <- median.intensity[c("2007", "2008", "2009", "2010")]
 median.intensity.2007.to.2010.min <- f(min(median.intensity.2007.to.2010) * 100, 0)
@@ -251,7 +251,7 @@ median.intensity.penult.yr <- f(mc$pmed[as.character(end.yr - 1)] * 100, 1)
 median.relative.bio <- mc$dmed
 # Remove extra non-year columns to avoid warnings below
 median.relative.bio <- median.relative.bio[grepl("^[0-9]+$", names(median.relative.bio))]
-median.relative.bio <- median.relative.bio[names(median.relative.bio) %in% start.yr:end.yr]
+median.relative.bio <- median.relative.bio[names(median.relative.bio) %in% start_yr:end.yr]
 median.relative.bio.2007.to.2010 <- median.relative.bio[c("2007", "2008", "2009", "2010")]
 median.relative.bio.2007.to.2010.min <- f(min(median.relative.bio.2007.to.2010), 2)
 median.relative.bio.2007.to.2010.max <- f(max(median.relative.bio.2007.to.2010), 2)
@@ -389,7 +389,7 @@ us.age.4.prop.shore <- f(us.last.year.age.shore[4] * 100, 1)
 # Recruitment -----------------------------------------------------------------
 #  ... years median recruitment is below the mean of the median ---------------
 # recruitments for years > 2010 and < (end.yr - 1) ; end.yr - 1 won't be well estimated
-recruitment.med.since.2010 <- mc$rmed[which(names(mc$rmed) %in% 2010:end.yr & names(mc$rmed) %in% start.yr:(end.yr - 1))]
+recruitment.med.since.2010 <- mc$rmed[which(names(mc$rmed) %in% 2010:end.yr & names(mc$rmed) %in% start_yr:(end.yr - 1))]
 years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[recruitment.med.since.2010  < mean(mc$rmed)])
 # ... est, recruitment in 2014 and 2016 in billions ---------------------------
 recruitment.med.in.2014 <- f(mc$rmed["2014"], 3)
@@ -522,7 +522,7 @@ main.recdevbias.end <- max(base.model$recruit$Yr[base.model$recruit$biasadjuster
 
 # Weight-at-age for the base model --------------------------------------------
 wt.at.age <- base.model$wtatage[, !grepl("comment", colnames(base.model$wtatage))] %>%
-  filter(Yr %in% start.yr.age.comps:(end.yr - 1),
+  filter(Yr %in% start_yr.age.comps:(end.yr - 1),
          Fleet == 2) %>%
   select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet)) %>%
   rename(year = Yr)

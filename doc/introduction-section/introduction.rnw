@@ -297,7 +297,7 @@ was set at \Sexpr{last.year.us.tac}~t and the Canadian catch target at
 %(\Sexpr{us.allotment.percent}\%) and a Canadian allocation of
 %\Sexpr{last.year.can.tac}~t (\Sexpr{can.allotment.percent}\%).
 The historical
-catch of \fishname\ for \Sexpr{start.yr}--\Sexpr{last.data.yr} by nation and
+catch of \fishname\ for \Sexpr{start_yr}--\Sexpr{last.data.yr} by nation and
 fishery sector is shown in Figure~\ref{fig:main-catches} and
 Tables~\ref{tab:intro-catches-US}--\ref{tab:main-landings-tac}.
 Table~\ref{tab:main-landings-tac} also shows recent catches in relation to targets

@@ -38,18 +38,18 @@ message("Recruitment deviations start year: ", recruit_dev_start_yr)
 unfished_eq_yr <- 1964
 message("Unfished equilibrium year: ", unfished_eq_yr)
 # Start year for the models
-start.yr <- 1966
-message("Start year for catch data: ", start.yr)
+start_yr <- 1966
+message("Start year for catch data: ", start_yr)
 # Start year for the fishery age comps
-start.yr.age.comps <- 1975
-message("Start year for fishery age comps data: ", start.yr.age.comps)
+start_yr.age.comps <- 1975
+message("Start year for fishery age comps data: ", start_yr.age.comps)
 # The last non-forecast year in the model. This is the year for which the
 # mcmc outputs will be used in reference point calculations.
 end.yr <- assess.yr
 message("End year for model: ", end.yr)
 # First year in the survey timeseries
-survey.start.yr <- 1995
-message("First survey year: ", survey.start.yr)
+survey.start_yr <- 1995
+message("First survey year: ", survey.start_yr)
 # Last year in the survey timeseries
 survey.end.yr <- 2021
 # Years in which the survey took place
@@ -70,7 +70,7 @@ surv.yrs <- c(1995,
 
 # tick marks for time series plot (not catch time series though)
 big.ticks <- seq(1970, end.yr + 4, 5)
-little.ticks <- start.yr:max(big.ticks)
+little.ticks <- start_yr:max(big.ticks)
 
 message("Last survey year: ", survey.end.yr)
 # Final year of data (This is what is the end year is in the model data files)

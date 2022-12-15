@@ -171,14 +171,14 @@ fetch_extra_mcmc <- function(model_path,
   # extra_mcmc$dynb_fish <- extract_rep_table(reps_dynb_fish, dynb_header) %>%
   #   select(-c(1, 3)) %>%
   #   map_df(as.numeric) %>%
-  #   dplyr::filter(Yr %in% start.yr:end.yr)
+  #   dplyr::filter(Yr %in% start_yr:end.yr)
   # extra_mcmc$dynb_fish_median <- extra_mcmc$dynb_fish %>%
   #   group_by(Yr) %>%
   #   summarize(median_bo = median(Value))
   # extra_mcmc$dynb_nofish <- extract_rep_table(reps_dynb_nofish, dynb_header) %>%
   #   select(-c(1, 3)) %>%
   #   map_df(as.numeric) %>%
-  #   dplyr::filter(Yr %in% start.yr:end.yr)
+  #   dplyr::filter(Yr %in% start_yr:end.yr)
   # extra_mcmc$dynb_nofish_median <- extra_mcmc$dynb_nofish %>%
   #   group_by(Yr) %>%
   #   summarize(median_bo = median(Value))
@@ -205,7 +205,7 @@ fetch_extra_mcmc <- function(model_path,
               "Era",
               "Time")) %>%
     map_df(as.numeric) %>%
-    dplyr::filter(Yr >= start.yr) %>%
+    dplyr::filter(Yr >= start_yr) %>%
     mutate_at(.vars = vars(-Yr), ~{.x / 1e3})
   extra_mcmc$natage_median <- extra_mcmc$natage %>%
     group_by(Yr) %>%
@@ -234,7 +234,7 @@ fetch_extra_mcmc <- function(model_path,
               "Time")) %>%
     map_df(as.numeric) %>%
     mutate_at(.vars = vars(-Yr), ~{.x / 1e3}) %>%
-    dplyr::filter(Yr >= start.yr)
+    dplyr::filter(Yr >= start_yr)
   extra_mcmc$batage_median <- extra_mcmc$batage %>%
     group_by(Yr) %>%
     summarize_all(median)
@@ -257,7 +257,7 @@ fetch_extra_mcmc <- function(model_path,
               "Seas",
               "Era")) %>%
     map_df(as.numeric) %>%
-    dplyr::filter(Yr >= start.yr)
+    dplyr::filter(Yr >= start_yr)
   extra_mcmc$catage_median <- extra_mcmc$catage %>%
     group_by(Yr) %>%
     summarize_all(median)
@@ -271,7 +271,7 @@ fetch_extra_mcmc <- function(model_path,
     as_tibble() %>%
     dplyr::filter(Fleet == 1) %>%
     select(-(2:6)) %>%
-    dplyr::filter(Yr >= start.yr)
+    dplyr::filter(Yr >= start_yr)
   wtatage <- map_df(iter, ~{wtatage})
   yrs <- extra_mcmc$catage$Yr
   extra_mcmc$catage_biomass <- map2(extra_mcmc$catage, wtatage, ~{.x * .y}) %>% map_df(~{.x}) %>%

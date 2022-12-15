@@ -14,7 +14,7 @@ Can then just flick back and forth between two open .pdf's.
 <<spawning-biomass-base-temp, fig.height=5, fig.width=8>>=
 make.biomass.plot(base.model,
                   equil.yr = unfished_eq_yr,
-                  start.yr = start.yr,
+                  start_yr = start_yr,
                   end.yr = end.yr,
                   color = "blue")
 @
@@ -34,7 +34,7 @@ make.biomass.plot(base.model,
 \begin{center}
 <<relative-spawning-biomass-base-temp, fig.height=5, fig.width=8>>=
 make.depletion.plot(base.model,
-                    start.yr = start.yr,
+                    start_yr = start_yr,
                     end.yr = end.yr,
                     color = "blue")
 @
@@ -50,7 +50,7 @@ make.depletion.plot(base.model,
 
 <<biomass-table-base-temp, results='asis', echo=FALSE>>=
 make.biomass.table(base.model,
-                   start.yr = end.yr-9,
+                   start_yr = end.yr-9,
                    end.yr = end.yr,
                    weight.factor = 1000,
                    xcaption = "Recent trends in estimated beginning of the year
@@ -66,7 +66,7 @@ make.biomass.table(base.model,
 
 <<recruitment-table-base-temp, results='asis', echo=FALSE>>=
 make.recruitment.table(base.model,
-                       start.yr = end.yr-10,
+                       start_yr = end.yr-10,
                        end.yr = end.yr-1,
                        weight.factor = 1000,
                        xcaption = "Estimates of recent recruitment (millions of
@@ -86,7 +86,7 @@ make.recruitment.table(base.model,
 <<recruitment-base-temp, fig.height=5, fig.width=8>>=
 make.recruitment.plot(base.model,
                       equil.yr = unfished_eq_yr,
-                      start.yr = start.yr,
+                      start_yr = start_yr,
                       end.yr = end.yr,
                       color = "blue",
                       add.mean = TRUE,
@@ -105,7 +105,7 @@ make.recruitment.plot(base.model,
 
 <<fishing-intensity-table-base-temp, results='asis', echo=FALSE>>=
 make.fishing.intensity.table(base.model,
-                             start.yr = end.yr-10,
+                             start_yr = end.yr-10,
                              end.yr = end.yr-1,
                              digits = 3,
                              xcaption = "Recent estimates of relative fishing
@@ -124,7 +124,7 @@ make.fishing.intensity.table(base.model,
 \begin{center}
 <<fishing-intensity-base-temp, fig.height=5, fig.width=8>>=
 make.fishing.intensity.plot(base.model,
-                            start.yr = start.yr,
+                            start_yr = start_yr,
                             end.yr = end.yr-1,
                             color = "blue",
                             upper.lim = 1.5)
@@ -144,7 +144,7 @@ make.fishing.intensity.plot(base.model,
 \begin{center}
 <<exploitation-fraction-base-temp, fig.height=5, fig.width=8>>=
 make.exploitation.fraction.plot(base.model,
-                                start.yr = start.yr,
+                                start_yr = start_yr,
                                 end.yr = end.yr-1,
                                 color = "blue",
                                 upper.lim = 0.35)
@@ -161,7 +161,7 @@ make.exploitation.fraction.plot(base.model,
 \begin{center}
 <<phase-plot-base-temp, fig.height=5, fig.width=8>>=
 make.phase.plot(base.model,
-                start.yr = start.yr,
+                start_yr = start_yr,
                 end.yr = end.yr,
                 x.max = 1.5)
 @
@@ -185,7 +185,7 @@ make.reference.points.table(
   xcaption = paste0("For the \\altshort, summary of median and 95\\%",
                      " credibility intervals of equilibrium reference points.",
                      " Equilibrium reference points were computed using ",
-                     start.yr, "--", end.yr-1, " averages for mean",
+                     start_yr, "--", end.yr-1, " averages for mean",
                      " size-at-age and selectivity-at-age."),
                             xlabel = "tab:reference-points-base-temp",
                             font.size = 12,
@@ -245,7 +245,7 @@ decision_table(base.model,
 % make.forecast.depletion.comparison.plot(base.model,
 %                                         models.inds,
 %                                         models.names,
-%                                         start.yr = 2009,
+%                                         start_yr = 2009,
 %                                         model.end.yr = end.yr,
 %                                         end.yr =forecast_yrs[length(forecast_yrs)],
 %                                         legend.loc = "topleft")
@@ -353,7 +353,7 @@ make.risk.table(base.model,
 \begin{center}
 <<mcmc-survey-fit-base-temp, fig.height=6, fig.width=8>>=
 make.mcmc.survey.fit.plot(base.model,
-                          start.yr = survey.start.yr,
+                          start_yr = survey.start_yr,
                           end.yr = survey.end.yr,
                           surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),

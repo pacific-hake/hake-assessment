@@ -476,7 +476,7 @@ make.mcmc.diag.pairs.plot <- function(model,
 # MCMC trace plots for either age-2+ biomass or age-1 index
 make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
                                                      ##  r4ss package's function SSgetMCMC and has the extra.mcmc member
-                                      start.yr,      ## Year to start the plot
+                                      start_yr,      ## Year to start the plot
                                       end.yr,        ## Year to end the plot
                                       surv.yrs,      ## Years in which the survey took place
                                       probs = c(0.025, 0.975), ## Confidence interval values lower and upper
@@ -508,7 +508,7 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
   plot(0,
        type = 'n',
-       xlim = c(start.yr-0.5, end.yr+0.5),
+       xlim = c(start_yr-0.5, end.yr+0.5),
        xaxs = 'i',
        ylim = c(0, y.max),
        yaxs = 'i',
@@ -530,13 +530,13 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
 
   # Need to do biomass and age1 surveys, this was what it was when only biomass,
   #  but the first rows happend to be that index:
-  # y = model$extra.mcmc$cpue.table[1:length(start.yr:end.yr), subsample],
+  # y = model$extra.mcmc$cpue.table[1:length(start_yr:end.yr), subsample],
   # model$extra.mcmc$cpue.table is 54x8015, each row presumably corresponding to
   #  a row of model$dat$CPUE. -survey.index here corresponds to non-survey years:
   y.vals.to.plot <- model$extra.mcmc$cpue.table[model$dat$CPUE$index %in%
                                                 c(survey.index, -survey.index) &
                                                 model$dat$CPUE$year %in%
-                                                start.yr:end.yr,
+                                                start_yr:end.yr,
                                                 subsample]
 
   # If doesn't work then try results from (may have to transpose, or reshape):
@@ -545,18 +545,18 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
 
   # lines showing expected survey values include in-between years
   # where no survey took place and therefore are not included in surv.yrs
-  matplot(x = start.yr:end.yr,
+  matplot(x = start_yr:end.yr,
           y = y.vals.to.plot,
           col = rgb(0, 0, 1, 0.03),
           type = 'l',
           add=TRUE,
           lty = 1)
-  lines(x = start.yr:end.yr,
-        # y = model$extra.mcmc$cpue.median[1:length(start.yr:end.yr)],
+  lines(x = start_yr:end.yr,
+        # y = model$extra.mcmc$cpue.median[1:length(start_yr:end.yr)],
         y = model$extra.mcmc$cpue.median[model$dat$CPUE$index %in%
                                          c(survey.index, -survey.index) &
                                          model$dat$CPUE$year %in%
-                                         start.yr:end.yr],
+                                         start_yr:end.yr],
         col = rgb(0, 0, 0.5, 0.7),
         lty = 1,
         lwd = 3)
@@ -587,8 +587,8 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
     col = survey.col)
   axis(1, at = cpue$year, cex.axis = 0.8, tcl = -0.6)
   axis(1,
-       at = (start.yr-4):(end.yr+7),
-       lab = rep("", length((start.yr-4):(end.yr+7))),
+       at = (start_yr-4):(end.yr+7),
+       lab = rep("", length((start_yr-4):(end.yr+7))),
        cex.axis = 0.8,
        tcl = -0.3)
   box()
@@ -666,7 +666,7 @@ make.mcmc.catchability.plot <- function(model,
 ## just running as: make.mcmc.depletion.plot(base.model) and manually saving .png.
 make.mcmc.depletion.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
                                                     ##  r4ss package's function SSgetMCMC and has the extra.mcmc member
-                                     start.yr = 2020,      ## Year to start the plot
+                                     start_yr = 2020,      ## Year to start the plot
                                                     ##  (currently will only plot 2020 to 2023)
                                      end.yr = 2023,        ## Year to end the plot
                                      y.max = 3,   ## maximum value for the y-axis
@@ -685,7 +685,7 @@ make.mcmc.depletion.plot <- function(model,         ## model is a model with an 
 
   plot(0,
        type = 'n',
-       xlim = c(start.yr-0.5, end.yr+0.5),
+       xlim = c(start_yr-0.5, end.yr+0.5),
        ylim = c(0, y.max),
        axes = FALSE,
        xlab = "Year",
@@ -703,14 +703,14 @@ make.mcmc.depletion.plot <- function(model,         ## model is a model with an 
   colour <- rep(paleblue, length(increase))
   colour[increase] <- palepink      # pink if increasing
 
-  matplot(x = start.yr:end.yr,
+  matplot(x = start_yr:end.yr,
           y = t(dat_sub),
           col = colour,
           type = 'l',
           add=TRUE,
           lty = 1)
   box()
-  axis(1, at = start.yr:end.yr) #cex.axis = 0.8, tcl = -0.6)
+  axis(1, at = start_yr:end.yr) #cex.axis = 0.8, tcl = -0.6)
   axis(2, at = 0:5, las = 1)
   legend('topleft',
          legend = c(paste0(sum(increase),
@@ -754,16 +754,16 @@ make.mcmc.depletion.plot <- function(model,         ## model is a model with an 
 ## adapting from make.mcmc.depletion.plot, and values for make.recruitment.plot
 ## Plot of MCMC samples of recruitment, to help for Issue #836.
 ## just running as:
-##   make.mcmc.recruitment.plot(base.model, start.yr = start.yr, equil.yr = unfished_eq_yr)
+##   make.mcmc.recruitment.plot(base.model, start_yr = start_yr, equil.yr = unfished_eq_yr)
 ## and manually saving .png.
-## make.mcmc.recruitment.plot(base.model, start.yr = 2006, equil.yr = unfished_eq_yr, samples = 100)
-## make.mcmc.recruitment.plot(base.model, start.yr = 2006, equil.yr = unfished_eq_yr, samples = 100, rescale = TRUE)
-## make.mcmc.recruitment.plot(base.model, start.yr = 1966, equil.yr = unfished_eq_yr, samples = NULL, rescale = TRUE, traceplot = FALSE)
+## make.mcmc.recruitment.plot(base.model, start_yr = 2006, equil.yr = unfished_eq_yr, samples = 100)
+## make.mcmc.recruitment.plot(base.model, start_yr = 2006, equil.yr = unfished_eq_yr, samples = 100, rescale = TRUE)
+## make.mcmc.recruitment.plot(base.model, start_yr = 1966, equil.yr = unfished_eq_yr, samples = NULL, rescale = TRUE, traceplot = FALSE)
 make.mcmc.recruitment.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
                                                     ##  r4ss package's function
                                                     ##  SSgetMCMC and has the extra.mcmc member
                                        equil.yr,
-                                       start.yr,      ## Year to start the plot
+                                       start_yr,      ## Year to start the plot
                                        end.yr = 2023, ## Year to end the plot
                                        y.max = NULL,  ## maximum value for the y-axis
                                        samples = 1000,## how many lines to show
@@ -810,7 +810,7 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
 
   dat <- as_tibble(model$mcmc) %>%
-    select(paste0("Recr_", start.yr):paste0("Recr_", end.yr)) / 1e6  # convert
+    select(paste0("Recr_", start_yr):paste0("Recr_", end.yr)) / 1e6  # convert
                                         # from thousands to billions
 
   if(rescale){
@@ -845,7 +845,7 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
 
   plot(0,
        type = 'n',
-       xlim = c(start.yr-0.5, end.yr+0.5),
+       xlim = c(start_yr-0.5, end.yr+0.5),
        ylim = c(0, y.max),
        axes = FALSE,
        xlab = "Year",
@@ -856,7 +856,7 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
 
   if(traceplot){
     if(!highlight){
-      matplot(x = start.yr:end.yr,
+      matplot(x = start_yr:end.yr,
             y = t(dat_sub),
             col = trace.col,
             type = 'l',
@@ -872,7 +872,7 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
       dat_sub_highlight <- as_tibble(dat_sub) %>%
         arrange(Recr_2010)
       dat_sub_highlight <- dat_sub_highlight[highlight.rows, ]
-      matplot(x = start.yr:end.yr,
+      matplot(x = start_yr:end.yr,
               y = t(dat_sub_highlight),
               col = highlight.cols,
               type = 'l',
@@ -886,7 +886,7 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
     medians <- apply(dat_sub, 2, median)
     upper <- apply(dat_sub, 2, quantile, probs = 0.975)
 
-    yrs <- start.yr:end.yr
+    yrs <- start_yr:end.yr
     points(yrs, medians, pch = 20)
     segments(x0 = yrs,
              y0 = lower,
@@ -897,7 +897,7 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
 
   box()
   if(auto.xaxis){
-    axis(1, at = start.yr:end.yr) #cex.axis = 0.8, tcl = -0.6)
+    axis(1, at = start_yr:end.yr) #cex.axis = 0.8, tcl = -0.6)
     } else {
     axis(1, at = big.ticks)
     axis(1,

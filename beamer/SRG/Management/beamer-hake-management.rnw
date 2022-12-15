@@ -172,7 +172,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
     \begin{column}{0.75\textwidth}
     \bc
     <<main.phase, fig.height=5, fig.width=8,out.width='1.0\\columnwidth'>>=
-      make.phase.plot(base.model, start.yr = start.yr, end.yr = end.yr)
+      make.phase.plot(base.model, start_yr = start_yr, end.yr = end.yr)
     @
     \ec
     \end{column}
@@ -239,7 +239,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
       make.forecast.depletion.comparison.plot(base.model,
                                               models.inds,
                                               models.names,
-                                              start.yr = 2009,
+                                              start_yr = 2009,
                                               model.end.yr = end.yr,
                                               end.yr = forecast_yrs[length(forecast_yrs)],
                                               legend.loc = "topleft")
@@ -639,7 +639,7 @@ par(mar = c(20, 4.1, 0, 1))
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
-                                        start.yr = 2009,
+                                        start_yr = 2009,
                                         model.end.yr = end.yr,
                                         end.yr = forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft",
@@ -666,7 +666,7 @@ par(mar = c(20, 4.1, 0, 1))
 make.forecast.depletion.comparison.plot(sens.models.2[[1]],
                                         models.inds,
                                         models.names,
-                                        start.yr = 2009,
+                                        start_yr = 2009,
                                         model.end.yr = end.yr,
                                         end.yr = forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft",
@@ -798,7 +798,7 @@ make.historical.probs.plot(base.model,
   <<spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
   make.biomass.plot(base.model,
                     equil.yr = unfished_eq_yr,
-                    start.yr = start.yr,
+                    start_yr = start_yr,
                     end.yr = end.yr,
                     color = "blue")
   @
@@ -879,7 +879,7 @@ Suggests other modelling changes over the years have helped performance.
 \bc
 <<rec.variability, fig.height=3.8, fig.width=6, out.width='0.6\\columnwidth'>>=
 make.mcmc.recruitment.plot(base.model,
-                           start.yr = 1966,
+                           start_yr = 1966,
                            equil.yr = unfished_eq_yr,
                            samples = NULL,
                            rescale = TRUE,

@@ -3,7 +3,7 @@
 #' fishing intensity, and exploitation fraction. Also output a CSV file with the table contents.
 #'
 #' @param model A model list as output by [load_models()]
-#' @param start.yr Start year in the table
+#' @param start_yr Start year in the table
 #' @param end.yr End year in the table
 #' @param weight.factor Factor to divide biomass values by and multiply the recruitment by
 #' @param xcaption Caption for the latex table
@@ -17,7 +17,7 @@
 #' @return An [xtable::xtable()]
 #' @export
 make.ci.posterior.table <- function(model,
-                                    start.yr,
+                                    start_yr,
                                     end.yr,
                                     weight.factor = 1000,
                                     xcaption = "default",
@@ -33,7 +33,7 @@ make.ci.posterior.table <- function(model,
 
   lower_col_sym <- sym(lower_col)
   upper_col_sym <- sym(upper_col)
-  yrs <- start.yr:end.yr
+  yrs <- start_yr:end.yr
   df <- map(model$mcmccalcs, ~{.x[names(.x) %in% yrs]})
   ts <- model$timeseries
 
@@ -152,7 +152,7 @@ make.ci.posterior.table <- function(model,
 #' fishing intensity, and exploitation fraction. Also output a CSV file with the table contents.
 #'
 #' @param model A model list as output by [load_models()]
-#' @param start.yr Start year in the table
+#' @param start_yr Start year in the table
 #' @param end.yr End year in the table
 #' @param weight.factor Factor to divide biomass values by and multiply the recruitment by
 #' @param csv.dir Directory for outputting the CSV version of the table
@@ -165,7 +165,7 @@ make.ci.posterior.table <- function(model,
 #' @return An [xtable::xtable()]
 #' @export
 make.median.posterior.table <- function(model,
-                                        start.yr = NULL,
+                                        start_yr = NULL,
                                         end.yr = NULL,
                                         weight.factor = 1000,
                                         csv.dir = NULL,
@@ -181,7 +181,7 @@ make.median.posterior.table <- function(model,
     }
   }
 
-  yrs <- start.yr:end.yr
+  yrs <- start_yr:end.yr
   df <- map(model$mcmccalcs, ~{.x[names(.x) %in% yrs]})
   ts <- model$timeseries
   tot_bm <- model$extra.mcmc$total_biomass_quants %>%
@@ -286,7 +286,7 @@ make.median.posterior.table <- function(model,
 }
 
 make.biomass.table <- function(model,
-                               start.yr,
+                               start_yr,
                                end.yr,
                                weight.factor = 1000,
                                xcaption = "default",
@@ -299,7 +299,7 @@ make.biomass.table <- function(model,
   ##  values for the base case mcmc biomass quantiles
   ##
   ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
-  ## start.yr - the first year to show in the table
+  ## start_yr - the first year to show in the table
   ## end.yr - the last year to show in the table
   ## weight.factor - divide catches by this factor
   ## xcaption - caption to appear in the calling document
@@ -328,7 +328,7 @@ make.biomass.table <- function(model,
 
   ## Filter for correct years to show and make thousand-seperated numbers
   ##  (year assumed to be column 1)
-  tab.filt <- tab[match(start.yr:end.yr, rownames(tab)),]
+  tab.filt <- tab[match(start_yr:end.yr, rownames(tab)),]
 
   ## Add year as a column
   tab.filt <- cbind.data.frame(rownames(tab.filt), tab.filt)
@@ -384,7 +384,7 @@ make.biomass.table <- function(model,
 }
 
 make.recruitment.table <- function(model,
-                                   start.yr,
+                                   start_yr,
                                    end.yr,
                                    weight.factor = 1000,
                                    xcaption = "default",
@@ -398,7 +398,7 @@ make.recruitment.table <- function(model,
   ##  recruitment and deviations values for the base case mcmc
   ##
   ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
-  ## start.yr - the first year to show in the table
+  ## start_yr - the first year to show in the table
   ## end.yr - the last year to show in the table
   ## weight.factor - divide catches by this factor
   ## xcaption - caption to appear in the calling document
@@ -409,7 +409,7 @@ make.recruitment.table <- function(model,
   ## digits.dev - number of decimal points on recruitment devs
   ## placement - latex code for placement of the table in document
 
-  yrs <- start.yr:end.yr
+  yrs <- start_yr:end.yr
   calcs <- model$mcmccalcs
   ## Recruitment quantiles
   rlower <- calcs$rlower * weight.factor
@@ -440,7 +440,7 @@ make.recruitment.table <- function(model,
 
   ## Filter for correct years to show and make thousand-seperated numbers
   ##  year assumed to be column 1)
-  tab.filt <- tab[match(start.yr:end.yr, rownames(tab)),]
+  tab.filt <- tab[match(start_yr:end.yr, rownames(tab)),]
 
   ## Add year as a column
   tab.filt <- cbind.data.frame(rownames(tab.filt), tab.filt)
@@ -492,7 +492,7 @@ make.recruitment.table <- function(model,
 }
 
 make.fishing.intensity.table <- function(model,
-                                         start.yr,
+                                         start_yr,
                                          end.yr,
                                          xcaption = "default",
                                          xlabel   = "default",
@@ -505,7 +505,7 @@ make.fishing.intensity.table <- function(model,
   ##  fishing intensity quantiles
   ##
   ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
-  ## start.yr - the first year to show in the table
+  ## start_yr - the first year to show in the table
   ## end.yr - the last year to show in the table
   ## weight.factor - divide catches by this factor
   ## xcaption - caption to appear in the calling document
@@ -525,7 +525,7 @@ make.fishing.intensity.table <- function(model,
   fmed <- calcs$fmed
   fupper <- calcs$fupper
 
-  yrs <- start.yr:end.yr
+  yrs <- start_yr:end.yr
 
   ## remove prepended strings from year labels
   names(plower) <- gsub("SPRratio_", "", names(plower))
@@ -555,7 +555,7 @@ make.fishing.intensity.table <- function(model,
                  f(fupper, digits)))
 
   ## Filter for correct years to show
-  tab.filt <- tab[match(start.yr:end.yr, rownames(tab)),]
+  tab.filt <- tab[match(start_yr:end.yr, rownames(tab)),]
 
   ## Add year as a column
   tab.filt <- cbind.data.frame(rownames(tab.filt), tab.filt)

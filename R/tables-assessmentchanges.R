@@ -1,5 +1,5 @@
 make.assessment.changes.table <- function(assessment.changes,
-                                          start.yr = 2011,
+                                          start_yr = 2011,
                                           end.yr = NULL,
                                           xcaption = "default",
                                           xlabel   = "default",
@@ -24,7 +24,7 @@ make.assessment.changes.table <- function(assessment.changes,
   tab$Comp_Method <- apply(tab[, grep("Comp_", colnames(tab))], 1,
                            function(x) paste0(x[1], " (", x[2], ", ", x[3], ")"))
   tab <- tab[, -grep("Comp_F|Comp_S", colnames(tab))]
-  tab <- tab[tab$Year >= start.yr, ]
+  tab <- tab[tab$Year >= start_yr, ]
   #tab$Bias_Adjust <- format(tab$Bias_Adjust, digits = 2)
   tab$MCMC <- f(tab$MCMC)
   #tab$Change <- sapply(strsplit(tab$Change, "; |, "), latex.mlc, make.bold = FALSE)

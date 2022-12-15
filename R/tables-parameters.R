@@ -29,7 +29,7 @@ make.parameters.estimated.summary.table <- function(model,
   p.sd <- 5   # prior sd
   p.type <- 6 # prior type
   phase <- 7
-  start.yr.sel <- 10
+  start_yr.sel <- 10
   end.yr.sel <- 11
   sel.dev.sd <- 12
 
@@ -187,7 +187,7 @@ make.parameters.estimated.summary.table <- function(model,
                       paste0("(", min(tmp[tmp[, 7]>0, lo]), ", ",
                         max(tmp[tmp[, 7]>0, hi]), ")"),
                       "Uniform")
-  n.yrs.sel.vals <- diff(as.numeric(tmp[tmp[,7]>0,start.yr.sel:end.yr.sel][1, 1:2])) + 1
+  n.yrs.sel.vals <- diff(as.numeric(tmp[tmp[,7]>0,start_yr.sel:end.yr.sel][1, 1:2])) + 1
 
   # Selectivity deviations for fishery. Uses last line to get values, assumes
   #  all are the same
@@ -197,7 +197,7 @@ make.parameters.estimated.summary.table <- function(model,
   sel_dev_bounds <- paste0("(", sel_dev_bounds[1], ", ", sel_dev_bounds[2], ")")
   f.age.sel.dev.vals <-
     c(paste0("Selectivity deviations (",
-             min(tmp[tmp[,start.yr.sel] != 0,start.yr.sel]),
+             min(tmp[tmp[,start_yr.sel] != 0,start_yr.sel]),
              "--",
              max(tmp[tmp[,end.yr.sel] != 0,end.yr.sel]),
              ", ages ",

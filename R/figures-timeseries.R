@@ -1,6 +1,6 @@
 make.biomass.plot <- function(model,    ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                               equil.yr, ## Year in which unfished equilibium is assumed
-                              start.yr, ## Year the timeseries starts (i.e. first year in model)
+                              start_yr, ## Year the timeseries starts (i.e. first year in model)
                               end.yr,   ## Year the timeseries ends (i.e. last year in model)
                               color = "blue"
                               ){
@@ -15,7 +15,7 @@ make.biomass.plot <- function(model,    ## model is an mcmc run and is the outpu
   yrs <- equil.yr:end.yr
   par(mfrow=c(1,1),las=1,mar=c(3.5,3.5,1,1))
 
-  start.equil.diff <- start.yr - equil.yr
+  start.equil.diff <- start_yr - equil.yr
   non.equil.yrs <- yrs[-(1:start.equil.diff)]
   non.equil.smed <- smed[names(smed) %in% non.equil.yrs]
 
@@ -52,7 +52,7 @@ make.biomass.plot <- function(model,    ## model is an mcmc run and is the outpu
 }
 
 make.depletion.plot <- function(model,    ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                start.yr, ## Year the timeseries starts (i.e. first year in model)
+                                start_yr, ## Year the timeseries starts (i.e. first year in model)
                                 end.yr,   ## Year the timeseries ends (i.e. last year in model)
                                 color = "blue"
                                 ){
@@ -62,7 +62,7 @@ make.depletion.plot <- function(model,    ## model is an mcmc run and is the out
   dmed <- model$mcmccalcs$dmed
   dupper <- model$mcmccalcs$dupper
 
-  yrs <- start.yr:end.yr
+  yrs <- start_yr:end.yr
   ## Only include start year to end year
   dlower <- dlower[names(dlower) %in% yrs]
   dmed <- dmed[names(dmed) %in% yrs]
@@ -96,7 +96,7 @@ make.depletion.plot <- function(model,    ## model is an mcmc run and is the out
 
 make.recruitment.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
                                   equil.yr,         ## Year in which unfished equilibium is assumed
-                                  start.yr,         ## Year the timeseries starts (i.e. first year in model)
+                                  start_yr,         ## Year the timeseries starts (i.e. first year in model)
                                   end.yr,           ## Year the timeseries ends (i.e. last year in model)
                                   color = "blue",
                                   add.mean = FALSE,
@@ -115,8 +115,8 @@ make.recruitment.plot <- function(model,            ## model is an mcmc run and 
 
   unfished.eq.r <- model$mcmccalcs$rinit
 
-  #non.equil.yrs <- start.yr:(end.yr - 1) # former setting to exclude final year
-  non.equil.yrs <- start.yr:end.yr
+  #non.equil.yrs <- start_yr:(end.yr - 1) # former setting to exclude final year
+  non.equil.yrs <- start_yr:end.yr
   yrs <- equil.yr:end.yr
   ## Only include start year to end year
   rlower <- rlower[names(rlower) %in% non.equil.yrs]
@@ -222,7 +222,7 @@ make.recruitment.dev.plot <- function(model,  ## model is an mcmc run and is the
 }
 
 make.fishing.intensity.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                        start.yr,         ## Year the timeseries starts (i.e. first year in model)
+                                        start_yr,         ## Year the timeseries starts (i.e. first year in model)
                                         end.yr,           ## Year the timeseries ends (i.e. last year that values are required for; note that SS calculates a fishing intensity for the final year of the model, but the number is meaningless).
                                         color = "blue",
                                         upper.lim = 1.4){
@@ -233,7 +233,7 @@ make.fishing.intensity.plot <- function(model,            ## model is an mcmc ru
   pmed <- model$mcmccalcs$pmed
   pupper <- model$mcmccalcs$pupper
 
-  yrs <- start.yr:end.yr
+  yrs <- start_yr:end.yr
 
   ## Only include start year to end year
   plower <- plower[names(plower) %in% yrs]
@@ -251,12 +251,12 @@ make.fishing.intensity.plot <- function(model,            ## model is an mcmc ru
   axis(1, at = big.ticks)
   axis(1, at = little.ticks, lab = rep("",length(little.ticks)), tcl = -0.3)
   abline(h = 1, col = rgb(0,0,0,0.4))
-  text(start.yr+4, 1.05, "Management Target", cex = 0.8, col = rgb(0,0,0,0.4))
+  text(start_yr+4, 1.05, "Management Target", cex = 0.8, col = rgb(0,0,0,0.4))
   par <- oldpar
 }
 
 make.exploitation.fraction.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                                            start.yr,         ## Year the timeseries starts (i.e. first year in model)
+                                            start_yr,         ## Year the timeseries starts (i.e. first year in model)
                                             end.yr,           ## Year the timeseries ends (i.e. last year that values are required for; note that SS calculates an exploitation rate for the final year of the model, but the number is meaningless because that year has no catch).
                                             color = "blue",
                                             upper.lim = 0.4){
@@ -267,7 +267,7 @@ make.exploitation.fraction.plot <- function(model,            ## model is an mcm
   fmed <- model$mcmccalcs$fmed
   fupper <- model$mcmccalcs$fupper
 
-  yrs <- start.yr:end.yr
+  yrs <- start_yr:end.yr
 
   ## Only include start year to end year
   flower <- flower[(names(flower) %in% yrs)]
@@ -287,7 +287,7 @@ make.exploitation.fraction.plot <- function(model,            ## model is an mcm
 }
 
 make.phase.plot <- function(model,            ## model is an mcmc run and is the output of the r4ss package's function SSgetMCMC
-                            start.yr,         ## Year the timeseries starts (i.e. first year in model)
+                            start_yr,         ## Year the timeseries starts (i.e. first year in model)
                             end.yr,           ## Year the timeseries ends (i.e. last year in model)
                             cex.lab = 1,
                             x.max = 1.5,      ## maximum of x-axis (1.3 for base
@@ -298,7 +298,7 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   ## biomass in year t, as a historical look at the fishery for the mcmc given by model
   oldpar <- par()
 
-  yrs <- start.yr:end.yr
+  yrs <- start_yr:end.yr
 
   dlower <- model$mcmccalcs$dlower
   dmed   <- model$mcmccalcs$dmed
@@ -309,7 +309,7 @@ make.phase.plot <- function(model,            ## model is an mcmc run and is the
   pupper <- model$mcmccalcs$pupper
 
   ## Only include start year to end year (results contain extra calculations),
-  ##  but don't need dmed[start.yr], since no pmed[start.yr-1] to plot it with,
+  ##  but don't need dmed[start_yr], since no pmed[start_yr-1] to plot it with,
   ##  or pmed[end.yr] since that's meaningless here (yet SS calculates it)
   ## as we don't know catch in end.yr.
   dmed   <- dmed[(names(dmed) %in% yrs[-1])]

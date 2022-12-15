@@ -78,7 +78,7 @@ weight.at.age.heatmap <- function(model,
                                   proj.line.width = 1,
                                   proj.line.yr = NULL,
                                   first.year = 1975,
-                                  start.yr = 1966,
+                                  start_yr = 1966,
                                   end.yr = assess.yr - 1,
                                   extrap.mask = NULL,
                                   longterm.mean.ages = NULL,
@@ -104,7 +104,7 @@ weight.at.age.heatmap <- function(model,
   wa <- wa[,1:which(apply(wa, 1, duplicated)[, 1])[1]-1]
 
   min_yr <- min(wa$Yr)
-  if(min_yr > start.yr){
+  if(min_yr > start_yr){
     # Copy first row, modify it, and bind it on at the start
     #row <- wa[1, ]
     # Change to mean of all years
@@ -115,10 +115,10 @@ weight.at.age.heatmap <- function(model,
       summarize_all(~{mean(.x)}) %>%
       unlist()
     # Make new single row for earliest year, which contains means of all years in the data
-    row <- c(start.yr, mean_dat) %>% t() %>% as.data.frame() %>% as_tibble()
+    row <- c(start_yr, mean_dat) %>% t() %>% as.data.frame() %>% as_tibble()
     names(row)[1] <- "Yr"
     rows <- row
-    for(yr in (start.yr + 1):(min_yr - 1)){
+    for(yr in (start_yr + 1):(min_yr - 1)){
       # Bind a new row for all years between the earliest year and the year before the start year of data
       row[1, 1] <- yr
       rows <- bind_rows(rows, row)

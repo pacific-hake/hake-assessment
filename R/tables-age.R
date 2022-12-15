@@ -2,7 +2,7 @@
 #'
 #' @param model The model to make the table for
 #' @param fleet The fishing fleet (1 = commercial, 2 = survey)
-#' @param start.yr First year in table
+#' @param start_yr First year in table
 #' @param end.yr Last year in table
 #' @param csv.dir Directory for output of the table in csv format
 #' @param xcaption Caption for the table
@@ -15,7 +15,7 @@
 #' @return an [xtable::xtable()]
 make.input.age.data.table <- function(model,
                                       fleet = 1,
-                                      start.yr,
+                                      start_yr,
                                       end.yr,
                                       csv.dir = "out-csv",
                                       xcaption = "default",
@@ -62,7 +62,7 @@ make.input.age.data.table <- function(model,
   # Remove fleet information from data frame
   age.df <- age.df[,-3]
   # Extract years
-  age.df <- age.df[age.df[,"yr"] >= start.yr & age.df[,"yr"] <= end.yr,]
+  age.df <- age.df[age.df[,"yr"] >= start_yr & age.df[,"yr"] <= end.yr,]
 
   # Make number of samples pretty
   age.df[,2] <- f(as.numeric(age.df[,2]))
@@ -127,7 +127,7 @@ make.input.age.data.table <- function(model,
 make.can.age.data.table <- function(dat,
                                     dat_num_fish,
                                     fleet = 1,
-                                    start.yr,
+                                    start_yr,
                                     end.yr,
                                     xcaption = "default",
                                     xlabel = "default",
@@ -139,7 +139,7 @@ make.can.age.data.table <- function(dat,
   ##  Canadian age data.
   ##
   ## fleet - 1 = Can-Shoreside, 2 = Can-FT, 3 = Can-JV
-  ## start.yr - start the table on this year
+  ## start_yr - start the table on this year
   ## end.yr - end the table on this year
   ## xcaption - caption to appear in the calling document
   ## xlabel - the label used to reference the table in latex
@@ -152,7 +152,7 @@ make.can.age.data.table <- function(dat,
   n.trip.haul <- as.numeric(dat[[fleet + 3]])
   ages.df <- cbind(n.trip.haul, ages.df)
   dat <- cbind(as.numeric(rownames(ages.df)), ages.df)
-  dat <- dat[dat[,1] >= start.yr & dat[,1] <= end.yr,]
+  dat <- dat[dat[,1] >= start_yr & dat[,1] <= end.yr,]
   colnames(dat)[1] <- "year"
   dat <- as_tibble(dat)
   dat_num_fish <- as_tibble(dat_num_fish)
@@ -224,7 +224,7 @@ make.can.age.data.table <- function(dat,
 
 make.us.age.data.table <- function(dat,
                                    fleet = 1,
-                                   start.yr,
+                                   start_yr,
                                    end.yr,
                                    xcaption = "default",
                                    xlabel = "default",
@@ -237,7 +237,7 @@ make.us.age.data.table <- function(dat,
   ##  age data.
   ##
   ## fleet - 1=US-CP, 2=US-MS, 3=US-Shoreside
-  ## start.yr - start the table on this year
+  ## start_yr - start the table on this year
   ## end.yr - end the table on this year
   ## xcaption - caption to appear in the calling document
   ## xlabel - the label used to reference the table in latex
@@ -248,7 +248,7 @@ make.us.age.data.table <- function(dat,
   ncolumns <- grep("n\\.", colnames(dat))
   dat[, ncolumns] <- f(dat[, ncolumns])
   dat[, -c(1, ncolumns)] <- f(dat[, -c(1, ncolumns)]* 100, decimals)
-  dat <- dat[dat[,1] >= start.yr & dat[,1] <= end.yr,]
+  dat <- dat[dat[,1] >= start_yr & dat[,1] <= end.yr,]
 
   ## Add the extra header spanning multiple columns
   addtorow <- list()

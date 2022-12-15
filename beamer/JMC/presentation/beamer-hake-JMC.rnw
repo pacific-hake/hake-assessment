@@ -219,7 +219,7 @@ from last year)
   <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.recruitment.plot(base.model,
                           equil.yr = unfished_eq_yr,
-                          start.yr = start.yr,
+                          start_yr = start_yr,
                           end.yr = end.yr,
                           color = "blue",
                           add.mean = TRUE,
@@ -234,7 +234,7 @@ from last year)
   <<female.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.biomass.plot(base.model,
                       equil.yr = unfished_eq_yr,
-                      start.yr = start.yr,
+                      start_yr = start_yr,
                       end.yr = end.yr,
                       color = "blue")
   @
@@ -246,7 +246,7 @@ from last year)
   \bc
   <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.depletion.plot(base.model,
-                        start.yr = start.yr,
+                        start_yr = start_yr,
                         end.yr = end.yr,
                         color = "blue")
   @
@@ -259,7 +259,7 @@ from last year)
     \begin{column}{0.5\textwidth}
       <<fishing.intensity, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
       make.fishing.intensity.plot(base.model,
-                                  start.yr = start.yr,
+                                  start_yr = start_yr,
                                   end.yr = end.yr-1,
                                   color = "blue")
       @
@@ -267,7 +267,7 @@ from last year)
     \begin{column}{0.5\textwidth}
       <<exploitation, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
       make.exploitation.fraction.plot(base.model,
-      start.yr = start.yr,
+      start_yr = start_yr,
       end.yr = end.yr-1,
       upper.lim = 0.3,
       color = "blue")
@@ -298,7 +298,7 @@ from last year)
 \begin{center}
 <<phase.plot, fig.height=2.8, fig.width=5.5>>=
       make.phase.plot(base.model,
-                      start.yr = start.yr,
+                      start_yr = start_yr,
                       end.yr = end.yr,
                       cex.lab = 0.5)
   @
@@ -471,7 +471,7 @@ par <- oldpar
 %\begin{center}
 %<<phase.plot.last.yr, fig.height=3, fig.width=6>>=
 %      make.phase.plot(last.yr.base.model,
-%                      start.yr = start.yr,
+%                      start_yr = start_yr,
 %                      end.yr = end.yr - 1,
 %                      cex.lab = 0.5)
 %  @
@@ -578,7 +578,7 @@ par <- oldpar
       make.forecast.depletion.comparison.plot(base.model,
                                               models.inds,
                                               models.names,
-                                              start.yr = 2009,
+                                              start_yr = 2009,
                                               model.end.yr = end.yr,
                                               end.yr = forecast_yrs[length(forecast_yrs)],
                                               legend.loc = "topleft")
@@ -1112,7 +1112,7 @@ make.historical.probs.plot(base.model,
   <<spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
   make.biomass.plot(base.model,
                     equil.yr = unfished_eq_yr,
-                    start.yr = start.yr,
+                    start_yr = start_yr,
                     end.yr = end.yr,
                     color = "blue")
   @
@@ -1193,7 +1193,7 @@ Suggests other modelling changes over the years have helped performance.
 \bc
 <<rec.variability, fig.height=3.8, fig.width=6, out.width='0.6\\columnwidth'>>=
 make.mcmc.recruitment.plot(base.model,
-                           start.yr = 1966,
+                           start_yr = 1966,
                            equil.yr = unfished_eq_yr,
                            samples = NULL,
                            rescale = TRUE,

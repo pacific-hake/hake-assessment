@@ -131,7 +131,7 @@ box()
 %<<spawning-biomass-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 %make.biomass.plot(sens.models.6,
 %                  equil.yr = unfished_eq_yr,
-%                  start.yr = start.yr,
+%                  start_yr = start_yr,
 %                  end.yr = end.yr,
 %                  color = "blue")
 %@
@@ -151,7 +151,7 @@ box()
 %\begin{center}
 %<<relative-spawning-biomass-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 %make.depletion.plot(sens.models.6,
-%                    start.yr = start.yr,
+%                    start_yr = start_yr,
 %                    end.yr = end.yr,
 %                    color = "blue")
 %@
@@ -167,7 +167,7 @@ box()
 
 %<<biomass-table-adnuts, results='asis', echo=FALSE>>=
 %make.biomass.table(sens.models.6,
-%                   start.yr = end.yr-9,
+%                   start_yr = end.yr-9,
 %                   end.yr = end.yr,
 %                   weight.factor = 1000,
 %                   xcaption = "Recent trends in estimated beginning of the year
@@ -183,7 +183,7 @@ box()
 %
 %<<recruitment-table-adnuts, results='asis', echo=FALSE>>=
 %make.recruitment.table(sens.models.6,
-%                       start.yr = end.yr-10,
+%                       start_yr = end.yr-10,
 %                       end.yr = end.yr-1,
 %                       weight.factor = 1000,
 %                       xcaption = "Estimates of recent recruitment (millions of
@@ -203,7 +203,7 @@ box()
 %<<recruitment-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 %make.recruitment.plot(sens.models.6,
 %                      equil.yr = unfished_eq_yr,
-%                      start.yr = start.yr,
+%                      start_yr = start_yr,
 %                      end.yr = end.yr,
 %                      color = "blue",
 %                      add.mean = TRUE,
@@ -222,7 +222,7 @@ box()
 
 %<<fishing-intensity-table-adnuts, results='asis', echo=FALSE>>=
 %make.fishing.intensity.table(sens.models.6,
-%                             start.yr = end.yr-10,
+%                             start_yr = end.yr-10,
 %                             end.yr = end.yr-1,
 %                             digits = 3,
 %                             xcaption = "Recent estimates of relative fishing
@@ -241,7 +241,7 @@ box()
 %\begin{center}
 %<<fishing-intensity-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 %make.fishing.intensity.plot(sens.models.6,
-%                            start.yr = start.yr,
+%                            start_yr = start_yr,
 %                            end.yr = end.yr-1,
 %                            color = "blue",
 %                            upper.lim = 1.5)
@@ -261,7 +261,7 @@ box()
 %\begin{center}
 %<<exploitation-fraction-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 %make.exploitation.fraction.plot(sens.models.6,
-%                                start.yr = start.yr,
+%                                start_yr = start_yr,
 %                                end.yr = end.yr-1,
 %                                color = "blue",
 %                                upper.lim = 0.35)
@@ -278,7 +278,7 @@ box()
 %\begin{center}
 %<<phase-plot-adnuts, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
 %make.phase.plot(sens.models.6,
-%                start.yr = start.yr,
+%                start_yr = start_yr,
 %                end.yr = end.yr,
 %                x.max = 1.5)
 %@
@@ -302,7 +302,7 @@ box()
 %  xcaption = paste0("For the \\altshort, summary of median and 95\\%",
 %                     " credibility intervals of equilibrium reference points.",
 %                     " Equilibrium reference points were computed using ",
-%                     start.yr, "--", end.yr-1, " averages for mean",
+%                     start_yr, "--", end.yr-1, " averages for mean",
 %                     " size-at-age and selectivity-at-age."),
 %                            xlabel = "tab:reference-points-adnuts",
 %                            font.size = 12,
@@ -362,7 +362,7 @@ box()
 % make.forecast.depletion.comparison.plot(sens.models.6,
 %                                         models.inds,
 %                                         models.names,
-%                                         start.yr = 2009,
+%                                         start_yr = 2009,
 %                                         model.end.yr = end.yr,
 %                                         end.yr =forecast_yrs[length(forecast_yrs)],
 %                                         legend.loc = "topleft")
@@ -470,7 +470,7 @@ box()
 \begin{center}
 <<mcmc-survey-fit-rwmh, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows fits to the acoustic survey for some rwMH samples">>=
 make.mcmc.survey.fit.plot(sens.models.7,
-                          start.yr = survey.start.yr,
+                          start_yr = survey.start_yr,
                           end.yr = survey.end.yr,
                           surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),

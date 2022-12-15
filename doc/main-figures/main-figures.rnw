@@ -30,7 +30,7 @@ make.overview.map.plot(path = rootd_map_data)
 % \vspace{-3mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from the Joint U.S.~and Canada acoustic surveys
-  \Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
+  \Sexpr{survey.start_yr}--\Sexpr{survey.end.yr}. Area of the circle is roughly
   proportional to observed backscatter.
   Barplots show survey-estimated biomass for ages 2 to 20, with major cohorts
   highlighted in color.
@@ -73,7 +73,7 @@ make.overview.map.plot(path = rootd_map_data)
 make.catches.plot(ct, leg.y.loc = 550)
 @
 \end{center}
-\caption{Total \fishname\ catch used in the assessment by sector, \Sexpr{start.yr}--\Sexpr{last.data.yr}.
+\caption{Total \fishname\ catch used in the assessment by sector, \Sexpr{start_yr}--\Sexpr{last.data.yr}.
   U.S. tribal catches are included in the appropriate sector.}
 \label{fig:main-catches}
 \end{figure}
@@ -230,7 +230,7 @@ maturity.ogive.figure(model = base.model, useyears = 1975:(assess.yr - 1))
   of the weight-at-age
   and the maturity-at-age for the samples
   collected from North of 34.44$^\circ$N (blue line in upper plot)
-  averaged across \Sexpr{start.yr.age.comps} to \Sexpr{last.data.yr}.}
+  averaged across \Sexpr{start_yr.age.comps} to \Sexpr{last.data.yr}.}
 \label{fig:main-maturity}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -252,10 +252,10 @@ weight.at.age.heatmap(base.model,
   correspond to the values, with red being the lightest fish (across all years
   and ages) and blue being the heaviest fish. For each age, the most transparent cells indicate
   the lightest fish of that age.
-  Data are only available from \Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}.
-  Values based on assumptions for the pre-\Sexpr{start.yr.age.comps} and forecast years are shown
+  Data are only available from \Sexpr{start_yr.age.comps}--\Sexpr{last.data.yr}.
+  Values based on assumptions for the pre-\Sexpr{start_yr.age.comps} and forecast years are shown
   outside the blue lines.
-  Bold values between \Sexpr{start.yr.age.comps}--\Sexpr{max.fishery.age.prop[2]} represent
+  Bold values between \Sexpr{start_yr.age.comps}--\Sexpr{max.fishery.age.prop[2]} represent
   unavailable data such that weights were interpolated or extrapolated from adjacent ages or years.
   The bottom row (mean) is the sample-weighted mean weight-at-age.}
 \label{fig:main-empirical-weight-at-age}
@@ -279,7 +279,7 @@ weight.at.age.heatmap(base.model,
   Colors and transparency are identical to Figure~\ref{fig:main-empirical-weight-at-age}
   and based on mean values.
   Sample sizes of zero highlight years for which data are not available, i.e.,
-  pre \Sexpr{start.yr.age.comps} and post \Sexpr{last.data.yr}.
+  pre \Sexpr{start_yr.age.comps} and post \Sexpr{last.data.yr}.
   The total sample sizes for each age used in the mean over all years are shown at the bottom and
   year-specific sample sizes are shown to the right using the same color scale with red indicating
   small sample sizes and blue indicating the large sample sizes.}
@@ -441,7 +441,7 @@ par <- oldpar
 \begin{center}
 <<main-mcmc-survey-fit, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows many posterior trajectories of the expected survey biomass fitting well to the observed biomass.">>=
 make.mcmc.survey.fit.plot(base.model,
-                          start.yr = survey.start.yr,
+                          start_yr = survey.start_yr,
                           end.yr = survey.end.yr,
                           surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),
@@ -463,7 +463,7 @@ make.mcmc.survey.fit.plot(base.model,
 \begin{center}
 <<main-mcmc-age1-fit, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows many posterior trajectories of the expected numbers of age-1 fish fitting well to the age-1 index.">>=
 make.mcmc.survey.fit.plot(base.model,
-                          start.yr = survey.start.yr,
+                          start_yr = survey.start_yr,
                           end.yr = survey.end.yr,
                           surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),
@@ -562,10 +562,10 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
 \begin{center}
 <<main-tv-selex, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows individual selectivity plots for each year in a 3 D array">>=
 ## Extract TV selectivity fits by running the calculation function.
-tv.selex.start.yr <- 1990
+tv.selex.start_yr <- 1990
 tv.selex.ages <- 1:8
 tv.selex <- calc.tv.selex(base.model,
-                          start.yr = tv.selex.start.yr,
+                          start_yr = tv.selex.start_yr,
                           end.yr = last.data.yr,
                           ages = tv.selex.ages,
                           probs = c(0.025, 0.975))
@@ -585,12 +585,12 @@ make.tv.selex.plot(tv.selex)
 ## Extract TV selectivity fits by running the calculation function, once for each year span,
 ##  then call the plotting function with them as a list to make a multipanel plot.
 tv.selex.left <- calc.tv.selex(base.model,
-                               start.yr = tv.selex.start.yr,
+                               start_yr = tv.selex.start_yr,
                                end.yr = 2004,
                                ages = tv.selex.ages,
                                probs = c(0.025, 0.975))
 tv.selex.right <- calc.tv.selex(base.model,
-                                start.yr = 2005,
+                                start_yr = 2005,
                                 end.yr = last.data.yr,
                                 ages = tv.selex.ages,
                                 probs = c(0.025, 0.975))
@@ -600,8 +600,8 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 \caption{Fishery selectivity sampled from posterior probability distribution by year for the base model.
   Black dots and bars indicate the median and 95\% credibility interval, respectively. The shaded polygon
   also shows the 95\% credibility interval. Range is from 0 to 1 within each year. Selectivity
-  for \Sexpr{tv.selex.start.yr} is shared for all years from \Sexpr{start.yr} to
-  \Sexpr{tv.selex.start.yr}.}
+  for \Sexpr{tv.selex.start_yr} is shared for all years from \Sexpr{start_yr} to
+  \Sexpr{tv.selex.start_yr}.}
 \label{fig:main-tv-selex-uncertainty}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -640,7 +640,7 @@ par <- oldpar
 <<main-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been decreasing in size since 2019">>=
 make.biomass.plot(base.model,
                   equil.yr = unfished.eq.yr,
-                  start.yr = start.yr,
+                  start_yr = start_yr,
                   end.yr = end.yr,
                   color = "blue")
 @
@@ -656,7 +656,7 @@ make.biomass.plot(base.model,
 \begin{center}
 <<main-relative-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the relative biomass has been decreasing since 2019">>=
 make.depletion.plot(base.model,
-                    start.yr = start.yr,
+                    start_yr = start_yr,
                     end.yr = end.yr,
                     color = "blue")
 @
@@ -675,7 +675,7 @@ make.depletion.plot(base.model,
 <<main-recruitment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
 make.recruitment.plot(base.model,
                       equil.yr = unfished.eq.yr,
-                      start.yr = start.yr,
+                      start_yr = start_yr,
                       end.yr = end.yr,
                       color = "blue",
                       add.mean = TRUE,
@@ -700,8 +700,8 @@ make.recruitment.dev.plot(base.model,
 @
 \end{center}
 \caption{Medians (solid circles) of the posterior distribution for log-scale recruitment deviations with
-  95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit_dev_start_yr}--\Sexpr{start.yr-1}
-  are used to calculate the numbers at age in \Sexpr{start.yr}, the initial year of the model.}
+  95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit_dev_start_yr}--\Sexpr{start_yr-1}
+  are used to calculate the numbers at age in \Sexpr{start_yr}, the initial year of the model.}
 \label{fig:main-recruitment-devs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -735,7 +735,7 @@ make_numbers_at_age_plot(base.model,
 \begin{center}
 <<main-mcmc-sr-variability, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the Stock Recruitment curve does not fit the estimated recruitments very well for this stock">>=
 make.mcmc.sr.variability.plot(base.model,
-                              start.yr = start.yr,
+                              start_yr = start_yr,
                               end.yr = end.yr - 1,
                               xlim = c(0, 1.5),
                               ylim = c(0, 7),
@@ -758,7 +758,7 @@ make.mcmc.sr.variability.plot(base.model,
 \begin{center}
 <<main-fishing-intensity, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management target of 1 throughout the time series">>=
 make.fishing.intensity.plot(base.model,
-                            start.yr = start.yr,
+                            start_yr = start_yr,
                             end.yr = end.yr-1,
                             color = "blue",
                             upper.lim = 1.5)
@@ -775,7 +775,7 @@ make.fishing.intensity.plot(base.model,
 \begin{center}
 <<main-exploitation-fraction, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the stock biomass is approximately 0.1">>=
 make.exploitation.fraction.plot(base.model,
-                                start.yr = start.yr,
+                                start_yr = start_yr,
                                 end.yr = end.yr-1,
                                 color = "blue",
                                 upper.lim = 0.35)
@@ -792,7 +792,7 @@ make.exploitation.fraction.plot(base.model,
 \begin{center}
 <<main-phase, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state">>=
 make.phase.plot(base.model,
-                start.yr = start.yr,
+                start_yr = start_yr,
                 end.yr = end.yr)
 @
 \end{center}
@@ -835,7 +835,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 make.forecast.depletion.comparison.plot(base.model,
                                         models.inds,
                                         models.names,
-                                        start.yr = forecast_yrs[length(forecast_yrs)] - 10,
+                                        start_yr = forecast_yrs[length(forecast_yrs)] - 10,
                                         model.end.yr = end.yr,
                                         end.yr = forecast_yrs[length(forecast_yrs)],
                                         legend.loc = "topleft")

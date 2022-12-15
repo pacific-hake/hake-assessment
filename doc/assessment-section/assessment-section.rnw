@@ -119,7 +119,7 @@ maturity ogive updated in 2018 was retained
 (see Section~\ref{sec:data-maturity}).
 Fecundity is defined as weight-at-age multiplied by the maturity ogive
 and is time-varying across years with empirical weight-at-age data
-(\Sexpr{start.yr.age.comps}--\Sexpr{last.data.yr}; see Section~\ref{sec:data-weight-at-age}).
+(\Sexpr{start_yr.age.comps}--\Sexpr{last.data.yr}; see Section~\ref{sec:data-weight-at-age}).
 The D-M
 likelihood approach \citep{ThorsonEtAl2017Dirichlet} is again used to estimate the weights
 associated with age-composition data, rather than iteratively tuning the sample size multiplier
