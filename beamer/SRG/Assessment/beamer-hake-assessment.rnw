@@ -869,7 +869,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
   \bc
   <<main.parameter.estimates, results='asis', echo=FALSE>>=
     param_est_table(list(base.model, last.yr.base.model),
-                    model.names = c(base_model_name, last.yr.base_model_name),
+                    model.names = c(base_model_name, last_yr_base_model_name),
                     end_yr = end_yr,
                     digits = 3,
                     getrecs = c(2010, 2014, 2016),

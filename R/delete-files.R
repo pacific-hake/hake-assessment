@@ -6,7 +6,7 @@
 #' @return [base::invisible()]
 #' @export
 delete_rds_files <- function(models_dir = rootd_models,
-                             dont_del = last.yr.base_model_dir_name){
+                             dont_del = last_yr_base_model_dir_name){
 
   dirs <- dir(models_dir)
   dirs <- dirs[! dirs %in% dont_del]

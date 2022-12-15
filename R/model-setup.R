@@ -123,21 +123,21 @@ message("Base model pretty name: ", base_model_name)
 # -----------------------------------------------------------------------------
 # Last assessment year's base model name and directory
 # -----------------------------------------------------------------------------
-last.yr.base_model_dir_name <- "2021.00.04_base_v1"
-last.yr.base_model_name <- paste(last_assess_yr, "Base model")
-message("Last assessment year's base model directory name: ", last.yr.base_model_dir_name)
-message("Last assessment year's base model pretty name: ", last.yr.base_model_name)
+last_yr_base_model_dir_name <- "2021.00.04_base_v1"
+last_yr_base_model_name <- paste(last_assess_yr, "Base model")
+message("Last assessment year's base model directory name: ", last_yr_base_model_dir_name)
+message("Last assessment year's base model pretty name: ", last_yr_base_model_name)
 
 # -----------------------------------------------------------------------------
 # Bridge models group 1
 # -----------------------------------------------------------------------------
-# First one must be last.yr.base_model_dir_name:
-bridge.model.dir.names.1 <- c(last.yr.base_model_dir_name,
+# First one must be last_yr_base_model_dir_name:
+bridge.model.dir.names.1 <- c(last_yr_base_model_dir_name,
                               "2022.01.03_newcatchage",
                               "2022.01.05_updatesurvey",
                               "2022.01.06_newsurvey",
                               "2022.01.07_newwtatage")
-bridge.model.names.1 <- c(last.yr.base_model_name,
+bridge.model.names.1 <- c(last_yr_base_model_name,
                           "Update all fishery catch and comps",
                           "Update pre-2021 survey data",
                           "Add 2021 survey data",
@@ -228,7 +228,7 @@ model_list <- c(base_model_dir_name,
                 # unlist(sens.model.dir.names.5),
                 unlist(sens.model.dir.names.6))
                 # unlist(sens.model.dir.names.7))
-model_list <- model_list[! model_list %in% last.yr.base_model_dir_name]
+model_list <- model_list[! model_list %in% last_yr_base_model_dir_name]
 model_list <- as.list(unique(model_list))
 
 # This function must be called from within the first knitr code chunk
@@ -250,11 +250,11 @@ load_models_rds <- function(){
            "   within build_rds() in model-setup.r and try again.\n")
   }
 
-  last.yr.base.model <<- load_models(last.yr.base_model_dir_name)
+  last.yr.base.model <<- load_models(last_yr_base_model_dir_name)
 
   # For 2022 assessment only due to changes in SS3 to make figures and tables work.
   #  Can remove in 2023:
-  if(last.yr.base_model_name == "2021 Base model"){
+  if(last_yr_base_model_name == "2021 Base model"){
     last.yr.base.model$mcmc[, grep("SSB", names(last.yr.base.model$mcmc))] <<-
       last.yr.base.model$mcmc[, grep("SSB", names(last.yr.base.model$mcmc))]/2
   }
