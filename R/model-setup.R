@@ -132,27 +132,27 @@ message("Last assessment year's base model pretty name: ", last_yr_base_model_na
 # Bridge models group 1
 # -----------------------------------------------------------------------------
 # First one must be last_yr_base_model_dir_name:
-bridge.model.dir.names.1 <- c(last_yr_base_model_dir_name,
+bridge_model_dir_names_1 <- c(last_yr_base_model_dir_name,
                               "2022.01.03_newcatchage",
                               "2022.01.05_updatesurvey",
                               "2022.01.06_newsurvey",
                               "2022.01.07_newwtatage")
-bridge.model.names.1 <- c(last_yr_base_model_name,
+bridge_model_names_1 <- c(last_yr_base_model_name,
                           "Update all fishery catch and comps",
                           "Update pre-2021 survey data",
                           "Add 2021 survey data",
                           "Update wt-at-age data")
-bridge.model.end_yr.1 <- end_yr - c(1, 0, 0, 0, 0) # subtract 1 year from all 4 models
+bridge_model_end_yr_1 <- end_yr - c(1, 0, 0, 0, 0) # subtract 1 year from all 4 models
 
 
 # -----------------------------------------------------------------------------
 # Bridge models group 2
 # -----------------------------------------------------------------------------
-bridge.model.dir.names.2 <- c("2022.01.07_newwtatage",
+bridge_model_dir_names_2 <- c("2022.01.07_newwtatage",
                               "2022.01.09_age1index")
-bridge.model.names.2 <- c("Update wt-at-age data",
+bridge_model_names_2 <- c("Update wt-at-age data",
                           "Add age 1 index = 2022 base model")
-bridge.model.end_yr.2 <- end_yr - c(0, 0)
+bridge_model_end_yr_2 <- end_yr - c(0, 0)
 
 # -----------------------------------------------------------------------------
 # Sensitivity models group 1
@@ -162,13 +162,13 @@ bridge.model.end_yr.2 <- end_yr - c(0, 0)
 #  'sens.model'); also see load_models_rds() defined at the end of this file.
 # NOTE: For ADNUTS diagnostics document, update the list in adnuts-diagnostics.rnw if
 #  sensitivity models get added or removed here.
-sens.model.dir.names.1 <- c("2022.01.15_h_prior_mean_low",
+sens_model_dir_names_1 <- c("2022.01.15_h_prior_mean_low",
                             "2022.01.16_h_fix_high",
                             "2022.01.17_sigmR_fix_low",
                             "2022.01.18_sigmR_fix_high",
                             "2022.01.20_M_0.2SD",
                             "2022.01.21_M_0.3SD")
-sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
+sens_model_names_1 <- c("Steepness Mean Prior Low (0.5)",
                         "Steepness Fix 1.0",
                         "Sigma R 1.0",
                         "Sigma R 1.6",
@@ -182,52 +182,52 @@ sens.model.names.1 <- c("Steepness Mean Prior Low (0.5)",
 # full appendix (and other results) will be somewhat automatic (even if some
 # variables have 'age1' in them, we know this to be the sens that removes age-1
 # index instead of adding it (as in the past).**
-sens.model.dir.names.2 <- c("2022.01.23_age1Survey",
+sens_model_dir_names_2 <- c("2022.01.23_age1Survey",
                             "2022.01.24_compWeight_HarmonicMean")
-sens.model.names.2 <- c("Remove Age 1 Index",
+sens_model_names_2 <- c("Remove Age 1 Index",
                         "Downweight Fishery Comps")
 
 # -----------------------------------------------------------------------------
 # Sensitivity models group 4
 # -----------------------------------------------------------------------------
-sens.model.dir.names.4 <- c("2022.01.27_tvSelect_phi_extralow",
+sens_model_dir_names_4 <- c("2022.01.27_tvSelect_phi_extralow",
                             "2022.01.28_tvSelect_phi_low",
                             "2022.01.29_tvSelect_phi_high")
-sens.model.names.4 <- c("Phi t.v. selectivity (0.21)",
+sens_model_names_4 <- c("Phi t.v. selectivity (0.21)",
                         "Phi t.v. selectivity (0.70)",
                         "Phi t.v. selectivity (2.10)")
 
 # -----------------------------------------------------------------------------
 # Sensitivity models group 5  -
 # -----------------------------------------------------------------------------
-# sens.model.dir.names.5 <- c("2022.01.28_tvSelect_phi_low")
-# sens.model.names.5 <- c("DUMMY FOR NOW")
+# sens_model_dir_names_5 <- c("2022.01.28_tvSelect_phi_low")
+# sens_model_names_5 <- c("DUMMY FOR NOW")
 
 # -----------------------------------------------------------------------------
 # Sensitivity models group 6  -
 # -----------------------------------------------------------------------------
-sens.model.dir.names.6 <- c("2022.01.43_maxSel_Age5",
+sens_model_dir_names_6 <- c("2022.01.43_maxSel_Age5",
                             "2022.01.44_maxSel_Age7",
                             "2022.01.45_maxSel_Age8")
-sens.model.names.6 <- c("Max. age selectivity 5",
+sens_model_names_6 <- c("Max. age selectivity 5",
                         "Max. age selectivity 7",
                         "Max. age selectivity 8")
 
 # -----------------------------------------------------------------------------
 # Sensitivity models group 7  - MH mcmc
 # -----------------------------------------------------------------------------
-# sens.model.dir.names.7 <- c("2022.01.28_tvSelect_phi_low")
-# sens.model.names.7 <- c("DUMMY FOR NOW")
+# sens_model_dir_names_7 <- c("2022.01.28_tvSelect_phi_low")
+# sens_model_names_7 <- c("DUMMY FOR NOW")
 
 model_list <- c(base_model_dir_name,
-                unlist(bridge.model.dir.names.1),
-                unlist(bridge.model.dir.names.2),
-                unlist(sens.model.dir.names.1),
-                unlist(sens.model.dir.names.2),
-                unlist(sens.model.dir.names.4),
-                # unlist(sens.model.dir.names.5),
-                unlist(sens.model.dir.names.6))
-                # unlist(sens.model.dir.names.7))
+                unlist(bridge_model_dir_names_1),
+                unlist(bridge_model_dir_names_2),
+                unlist(sens_model_dir_names_1),
+                unlist(sens_model_dir_names_2),
+                unlist(sens_model_dir_names_4),
+                # unlist(sens_model_dir_names_5),
+                unlist(sens_model_dir_names_6))
+                # unlist(sens_model_dir_names_7))
 model_list <- model_list[! model_list %in% last_yr_base_model_dir_name]
 model_list <- as.list(unique(model_list))
 
@@ -259,21 +259,21 @@ load_models_rds <- function(){
       last.yr.base.model$mcmc[, grep("SSB", names(last.yr.base.model$mcmc))]/2
   }
 
-  bridge.models.1 <<- load_models(bridge.model.dir.names.1)
+  bridge.models.1 <<- load_models(bridge_model_dir_names_1)
   # For 2022 assessment only due to changes in SS3 to make figures and tables work.
   #  Can remove in 2023:
-  if(bridge.model.names.1[1] == "2021 Base model"){
+  if(bridge_model_names_1[1] == "2021 Base model"){
     bridge.models.1[[1]]$mcmc[, grep("SSB", names(bridge.models.1[[1]]$mcmc))] <<-
       bridge.models.1[[1]]$mcmc[, grep("SSB", names(bridge.models.1[[1]]$mcmc))]/2
   }
 
-  bridge.models.2 <<- load_models(bridge.model.dir.names.2)
-  sens.models.1 <<- load_models(sens.model.dir.names.1)
-  sens.models.2 <<- load_models(sens.model.dir.names.2, TRUE)
-  sens.models.4 <<- load_models(sens.model.dir.names.4)
-  # sens.models.5 <<- load_models(sens.model.dir.names.5)
-  sens.models.6 <<- load_models(sens.model.dir.names.6)
-  # sens.models.7 <<- load_models(sens.model.dir.names.7)
+  bridge.models.2 <<- load_models(bridge_model_dir_names_2)
+  sens.models.1 <<- load_models(sens_model_dir_names_1)
+  sens.models.2 <<- load_models(sens_model_dir_names_2, TRUE)
+  sens.models.4 <<- load_models(sens_model_dir_names_4)
+  # sens.models.5 <<- load_models(sens_model_dir_names_5)
+  sens.models.6 <<- load_models(sens_model_dir_names_6)
+  # sens.models.7 <<- load_models(sens_model_dir_names_7)
 #  srg_day2_req1_model <<- load_models("2022.01.47_day2request_wtatage")
 #  srg_day2_req2_model <<- load_models("2022.01.46_base_v1_4yrForecast")
 
@@ -281,7 +281,7 @@ load_models_rds <- function(){
   #  and reference points table
   # First set includes base and sensitivity group 1 and 2
   sens.models.1.for.table <<- c(list(base.model), sens.models.1, sens.models.2)
-  sens.model.names.1.for.table <<- c("Base model", sens.model.names.1,sens.model.names.2)
+  sens_model_names_1.for.table <<- c("Base model", sens_model_names_1,sens_model_names_2)
   # Second set includes base and sensitivity groups 3 and 4
 
   # Removing the sens group 4 from this because it's causing problems when
@@ -289,9 +289,9 @@ load_models_rds <- function(){
   sens.models.2.for.table <<- c(list(base.model),
                                 sens.models.4,
                                 sens.models.6)
-  sens.model.names.2.for.table <<- c("Base model",
-                                     sens.model.names.4,
-                                     sens.model.names.6)
+  sens_model_names_2.for.table <<- c("Base model",
+                                     sens_model_names_4,
+                                     sens_model_names_6)
 
   # For the SRG requests appendix. Remove for 2023
   mod200 <<- load_models("2022.01.200_inputnsmall")
@@ -308,9 +308,9 @@ load_models_rds <- function(){
 
   # Third set
   # sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), sens.models.6, list(sens.models.7))
-  # sens.model.names.3.for.table <<- c("Base model", sens.model.names.5, sens.model.names.6, sens.model.names.7)
+  # sens_model_names_3.for.table <<- c("Base model", sens_model_names_5, sens_model_names_6, sens_model_names_7)
 
   # Fourth set
   # sens.models.4.for.table <<- c(list(base.model), list(sens.models.6))
-  # sens.model.names.4.for.table <<- c("Base model", sens.model.names.6)
+  # sens_model_names_4.for.table <<- c("Base model", sens_model_names_6)
 }

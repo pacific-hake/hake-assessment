@@ -319,38 +319,38 @@ par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
 make.comparison.plot(bridge.models.1,
                      subplots = 2,
-                     model.names = bridge.model.names.1,
+                     model.names = bridge_model_names_1,
                      densitynames = bridge.density.names,
                      plot_mcmc = TRUE,
-                     end_yr = bridge.model.end_yr.1)
+                     end_yr = bridge_model_end_yr_1)
 make.comparison.plot(bridge.models.1,
                      subplots = 4,
-                     model.names = bridge.model.names.1,
+                     model.names = bridge_model_names_1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end_yr = bridge.model.end_yr.1,
+                     end_yr = bridge_model_end_yr_1,
                      btarg = 0.4)
 make.comparison.plot(bridge.models.1,
                      subplots = 10,
-                     model.names = bridge.model.names.1,
+                     model.names = bridge_model_names_1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end_yr = bridge.model.end_yr.1)
+                     end_yr = bridge_model_end_yr_1)
 make.comparison.plot(bridge.models.1,
                      subplots = 12,
-                     model.names = bridge.model.names.1,
+                     model.names = bridge_model_names_1,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end_yr = bridge.model.end_yr.1)
+                     end_yr = bridge_model_end_yr_1)
 make.comparison.plot(bridge.models.1,
                      subplots = 13,
-                     model.names = bridge.model.names.1,
+                     model.names = bridge_model_names_1,
                      legend = FALSE,
                      indexfleets = 2,
-                     end_yr = bridge.model.end_yr.1)
+                     end_yr = bridge_model_end_yr_1)
 box()
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
@@ -387,38 +387,38 @@ layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
 
 make.comparison.plot(bridge.models.2,
                      subplots = 2,
-                     model.names = bridge.model.names.2,
+                     model.names = bridge_model_names_2,
                      densitynames = bridge.density.names,
                      legend = TRUE,
                      plot_mcmc = TRUE,
-                     end_yr = bridge.model.end_yr.2)
+                     end_yr = bridge_model_end_yr_2)
 make.comparison.plot(bridge.models.2,
                      subplots = 4,
-                     model.names = bridge.model.names.2,
+                     model.names = bridge_model_names_2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end_yr = bridge.model.end_yr.2,
+                     end_yr = bridge_model_end_yr_2,
                      btarg = 0.4)
 make.comparison.plot(bridge.models.2,
                      subplots = 10,
-                     model.names = bridge.model.names.2,
+                     model.names = bridge_model_names_2,
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end_yr = bridge.model.end_yr.2)
+                     end_yr = bridge_model_end_yr_2)
 make.comparison.plot(bridge.models.2,
                      subplots = 13,
-                     model.names = bridge.model.names.2,
+                     model.names = bridge_model_names_2,
                      plot_mcmc = TRUE,
                      indexfleets = 2,
-                     end_yr = bridge.model.end_yr.2)
+                     end_yr = bridge_model_end_yr_2)
 make.comparison.plot(bridge.models.2,
                      subplots = 13,
-                     model.names = bridge.model.names.2,
+                     model.names = bridge_model_names_2,
                      plot_mcmc = TRUE,
                      indexfleets = 3,
-                     end_yr = bridge.model.end_yr.2)
+                     end_yr = bridge_model_end_yr_2)
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @

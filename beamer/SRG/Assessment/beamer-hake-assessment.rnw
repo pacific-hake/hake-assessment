@@ -153,17 +153,17 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                 no.readonly = TRUE)
   make.comparison.plot(bridge.models.1,
                        subplots = 2,
-                       model.names = bridge.model.names.1,
+                       model.names = bridge_model_names_1,
                        densitynames = NULL,
                        plot_mcmc = TRUE,
-                       end_yr = bridge.model.end_yr.1)
+                       end_yr = bridge_model_end_yr_1)
   make.comparison.plot(bridge.models.1,
                        subplots = 9,
-                       model.names = bridge.model.names.1,
+                       model.names = bridge_model_names_1,
                        densitynames = NULL,
                        plot_mcmc = TRUE,
                        legend = FALSE,
-                       end_yr = bridge.model.end_yr.1)
+                       end_yr = bridge_model_end_yr_1)
   box()
   par(oldpar)
   @
@@ -179,18 +179,18 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                 no.readonly = TRUE)
   make.comparison.plot(bridge.models.1,
                        subplots = 12,
-                       model.names = bridge.model.names.1,
+                       model.names = bridge_model_names_1,
                        densitynames = NULL,
                        plot_mcmc = TRUE,
                        legend = FALSE,
-                       end_yr = bridge.model.end_yr.1)
+                       end_yr = bridge_model_end_yr_1)
   make.comparison.plot(bridge.models.1,
                        subplots = 13,
-                       model.names = bridge.model.names.1,
+                       model.names = bridge_model_names_1,
                        plot_mcmc = TRUE,
                        legendloc = "topleft",
                        indexfleets = 2,
-                       end_yr = bridge.model.end_yr.1)
+                       end_yr = bridge_model_end_yr_1)
   box()
   par(oldpar)
   @
@@ -213,17 +213,17 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                             "ForeCatch_2016")
   make.comparison.plot(bridge.models.2,
                        subplots = 2,
-                       model.names = bridge.model.names.2,
+                       model.names = bridge_model_names_2,
                        densitynames = bridge.density.names,
                        plot_mcmc = TRUE,
-                       end_yr = bridge.model.end_yr.2)
+                       end_yr = bridge_model_end_yr_2)
   make.comparison.plot(bridge.models.2,
                        subplots = 4,
-                       model.names = bridge.model.names.2,
+                       model.names = bridge_model_names_2,
                        densitynames = bridge.density.names,
                        plot_mcmc = TRUE,
                        legend = FALSE,
-                       end_yr = bridge.model.end_yr.2,
+                       end_yr = bridge_model_end_yr_2,
                        btarg = 0.4)
   box()
   par(oldpar)
@@ -240,17 +240,17 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                 no.readonly = TRUE)
   make.comparison.plot(bridge.models.2,
                        subplots = 12,
-                       model.names = bridge.model.names.2,
+                       model.names = bridge_model_names_2,
                        densitynames = bridge.density.names,
                        plot_mcmc = TRUE,
-                       end_yr = bridge.model.end_yr.2)
+                       end_yr = bridge_model_end_yr_2)
   make.comparison.plot(bridge.models.2,
                        subplots = 9,
-                       model.names = bridge.model.names.2,
+                       model.names = bridge_model_names_2,
                        densitynames = bridge.density.names,
                        plot_mcmc = TRUE,
                        legend = FALSE,
-                       end_yr = bridge.model.end_yr.2)
+                       end_yr = bridge_model_end_yr_2)
   box()
   par(oldpar)
   @
@@ -266,17 +266,17 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
                 no.readonly = TRUE)
   make.comparison.plot(bridge.models.2,
                        subplots = 13,
-                       model.names = bridge.model.names.2,
+                       model.names = bridge_model_names_2,
                        plot_mcmc = TRUE,
                        indexfleets = 2,
-                       end_yr = bridge.model.end_yr.2)
+                       end_yr = bridge_model_end_yr_2)
   make.comparison.plot(bridge.models.2,
                        subplots = 13,
-                       model.names = bridge.model.names.2,
+                       model.names = bridge_model_names_2,
                        plot_mcmc = TRUE,
                        indexfleets = 3,
                        legend = FALSE,
-                       end_yr = bridge.model.end_yr.2)
+                       end_yr = bridge_model_end_yr_2)
   box()
   par(oldpar)
   @
@@ -322,19 +322,19 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %                 no.readonly = TRUE)
 %   make.comparison.plot(bridge.models.3,
 %                        subplots = 2,
-%                        model.names = bridge.model.names.3,
+%                        model.names = bridge_model_names_3,
 %                        densitynames = bridge.density.names,
 %                        plot_mcmc = FALSE,
-%                        end_yr = bridge.model.end_yr.3)
+%                        end_yr = bridge_model_end_yr_3)
 %   make.comparison.plot(bridge.models.3,
 %                        subplots = 13,
 %                        legend = FALSE,
-%                        model.names = bridge.model.names.3,
+%                        model.names = bridge_model_names_3,
 %                        #densitynames = bridge.density.names,
 %                        indexPlotEach = TRUE,
 %                        indexUncertainty = TRUE,
 %                        plot_mcmc = FALSE,
-%                        end_yr = bridge.model.end_yr.3)
+%                        end_yr = bridge_model_end_yr_3)
 %   box()
 %   par(oldpar)
 %   @
@@ -374,14 +374,14 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %                no.readonly = TRUE)
 %  make.comparison.plot(c(list(base.model), list(sens.models.7)),
 %                       subplots = 2,
-%                       model.names = c(base_model_name, sens.model.names.7),
+%                       model.names = c(base_model_name, sens_model_names_7),
 %                       densitynames = NULL,
 %                       legendloc = "topleft",
 %                       end_yr = end_yr,
 %                       plot_mcmc = TRUE)
 %  make.comparison.plot(c(list(base.model), list(sens.models.7)),
 %                       subplots = 4,
-%                       model.names = c(base_model_name, sens.model.names.7),
+%                       model.names = c(base_model_name, sens_model_names_7),
 %                       densitynames = NULL,
 %                       legend = FALSE,
 %                       end_yr = end_yr,

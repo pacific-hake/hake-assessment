@@ -169,10 +169,10 @@ make.comparison.plot(c(list(base.model),
                        sens.models.1[6]),
                      subplots = 2,
                      model.names = c("Base model ",
-                                     sens.model.names.1[1],
-                                     sens.model.names.1[2],
-                                     sens.model.names.1[5],
-                                     sens.model.names.1[6]),
+                                     sens_model_names_1[1],
+                                     sens_model_names_1[2],
+                                     sens_model_names_1[5],
+                                     sens_model_names_1[6]),
                      end_yr = end_yr)
 par <- oldpar
 @
@@ -191,10 +191,10 @@ param_est_table(c(list(base.model),
                   sens.models.1[5],
                   sens.models.1[6]),
                 model.names = c("Base model",
-                                sens.model.names.1[1],
-                                sens.model.names.1[2],
-                                sens.model.names.1[5],
-                                sens.model.names.1[6]),
+                                sens_model_names_1[1],
+                                sens_model_names_1[2],
+                                sens_model_names_1[5],
+                                sens_model_names_1[6]),
                 end_yr = end_yr,
                 digits = 3,
                 xcaption = NULL,
@@ -225,8 +225,8 @@ make.comparison.plot(c(list(base.model),
                        sens.models.1[4]),
                      subplots = 2,
                      model.names = c("Base model ",
-                                     sens.model.names.1[3],
-                                     sens.model.names.1[4]),
+                                     sens_model_names_1[3],
+                                     sens_model_names_1[4]),
                      end_yr = end_yr)
 par <- oldpar
 @
@@ -247,8 +247,8 @@ make.comparison.plot(c(list(base.model),
                        sens.models.1[4]),
                      subplots = 4,
                      model.names = c("Base model ",
-                                     sens.model.names.1[3],
-                                     sens.model.names.1[4]),
+                                     sens_model_names_1[3],
+                                     sens_model_names_1[4]),
                      end_yr = end_yr)
 par <- oldpar
 @
@@ -265,8 +265,8 @@ param_est_table(c(list(base.model),
                   sens.models.1[3],
                   sens.models.1[4]),
                 model.names = c("Base model",
-                                sens.model.names.1[3],
-                                sens.model.names.1[4]),
+                                sens_model_names_1[3],
+                                sens_model_names_1[4]),
                 end_yr = end_yr,
                 digits = 3,
                 xcaption = NULL,
@@ -294,7 +294,7 @@ make.comparison.plot(c(list(base.model),
                        sens.models.2[2]),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end_yr),
-                                     sens.model.names.2[2]),
+                                     sens_model_names_2[2]),
                      end_yr = end_yr)
 par <- oldpar
 @
@@ -314,7 +314,7 @@ make.comparison.plot(c(list(base.model),
                        sens.models.2[2]),
                      subplots = 4,
                      model.names = c(paste0("Base model ", end_yr),
-                                     sens.model.names.2[2]),
+                                     sens_model_names_2[2]),
                      end_yr = end_yr)
 par <- oldpar
 @
@@ -358,9 +358,9 @@ make.comparison.plot(c(list(base.model),
                        sens.models.4[3]),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end_yr),
-                                     sens.model.names.4[1],
-                                     sens.model.names.4[2],
-                                     sens.model.names.4[3]),
+                                     sens_model_names_4[1],
+                                     sens_model_names_4[2],
+                                     sens_model_names_4[3]),
                      end_yr = end_yr)
 par <- oldpar
 @
@@ -382,9 +382,9 @@ make.comparison.plot(c(list(base.model),
                        sens.models.4[3]),
                      subplots = 13,
                      model.names = c(paste0("Base model ", end_yr),
-                                     sens.model.names.4[1],
-                                     sens.model.names.4[2],
-                                     sens.model.names.4[3]),
+                                     sens_model_names_4[1],
+                                     sens_model_names_4[2],
+                                     sens_model_names_4[3]),
                      end_yr = end_yr,
                      indexfleets = 2,
                      legend_loc = "topleft")
@@ -405,9 +405,9 @@ param_est_table(c(list(base.model),
                   sens.models.4[2],
                   sens.models.4[3]),
                 model.names = c("Base model",
-                                sens.model.names.4[1],
-                                sens.model.names.4[2],
-                                sens.model.names.4[3]),
+                                sens_model_names_4[1],
+                                sens_model_names_4[2],
+                                sens_model_names_4[3]),
                 end_yr = end_yr,
                 digits = 3,
                 xcaption = NULL,
@@ -432,7 +432,7 @@ oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(c(list(base.model), sens.models.6),
                      subplots = 4,
-                     model.names = c(base_model_name, sens.model.names.6),
+                     model.names = c(base_model_name, sens_model_names_6),
                      legend = TRUE,
                      end_yr = end_yr)
 par <- oldpar
@@ -485,7 +485,7 @@ oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
 make.comparison.plot(list(base.model, sens.models.2[[1]]),
                      subplots = 2,
-                     model.names = c(base_model_name, sens.model.names.2[1]),
+                     model.names = c(base_model_name, sens_model_names_2[1]),
                      end_yr = end_yr)
 par <- oldpar
 @

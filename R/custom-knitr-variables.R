@@ -496,7 +496,7 @@ sigma_r <- f(base.model$sigma_R_in, 2)
 
 # Alternative sigma_r based on all years of recdevs ---------------------------
 sigma_r_info <- extract_sigma_r(c(list(base.model), sens.models.1),
-                                c("base", sens.model.names.1),
+                                c("base", sens_model_names_1),
                                 base.model$sigma_R_in)
 sigma_r_hi_main <- sigma_r_info %>%
   filter(model == "Sigma R 1.6", period == "Main") %>%
@@ -540,7 +540,7 @@ for(i in plot_retro_yrs){
   retro.list.age1[[i + 1]] <- sens.models.2[[1]]$retros[[i]]
 }
 # Adding the age-1 index for a sensitivity case -------------------------------
-retro.model.names.age1 <- c(sens.model.names.2[1],
+retro.model.names.age1 <- c(sens_model_names_2[1],
                             map_chr(plot_retro_yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))
 
 # Define number of 'recent' years for several tables --------------------------

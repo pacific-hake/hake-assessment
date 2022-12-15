@@ -555,13 +555,13 @@ decision_table(base.model,
 %%     oldpar <- par(mfrow=c(2,1), mar=c(5,4,1,1),no.readonly = TRUE)
 %%     make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
 %%                               subplots = 2,
-%%                               model.names = c(paste0("Base model ", end_yr), sens.model.names.5),
+%%                               model.names = c(paste0("Base model ", end_yr), sens_model_names_5),
 %%                               end_yr = end_yr+2,
 %%                               xlims = c(2008,end_yr+2),
 %%                               legendloc = "topleft")
 %%     make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
 %%                               subplots = 8,
-%%                               model.names = c(paste0("Base model ", end_yr), sens.model.names.5),
+%%                               model.names = c(paste0("Base model ", end_yr), sens_model_names_5),
 %%                               end_yr = end_yr+2,
 %%                               xlims = c(2008,end_yr+2),
 %%                               legend = FALSE)
@@ -945,7 +945,7 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 %%     <<age.one.index.comp, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
 %%       make.comparison.plot(c(list(base.model), list(sens.models.2[[1]])),
 %%                      subplots = 2,
-%%                      model.names = c(base_model_name, sens.model.names.2[1]),
+%%                      model.names = c(base_model_name, sens_model_names_2[1]),
 %%                      end_yr = end_yr,
 %%                      legendloc = "topright")
 %%     @

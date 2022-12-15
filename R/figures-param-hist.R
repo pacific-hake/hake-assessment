@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' plot_hist(model=list(base.model), model.name=base_model_name,param_name = "Late_RecrDev_2019",xlabel = "RecDev_2019",legend.pos="none")
-#' plot_hist(model=c(list(base.model), list(sens.models.7),sens.models.2),model.name=c(base_model_name,"rwMH",sens.model.dir.names.2))
+#' plot_hist(model=c(list(base.model), list(sens.models.7),sens.models.2),model.name=c(base_model_name,"rwMH",sens_model_dir_names_2))
 #' plot_hist(model=list(base.model), model.name=base_model_name,param_name = "Recr_2019",xlabel = "Rec_2019",legend.pos="none",vert.line=16149000)
 #' 
 plot_hist <- function(model=list(base.model),model.name=base_model_name,param_name = "SR_LN(R0)",
