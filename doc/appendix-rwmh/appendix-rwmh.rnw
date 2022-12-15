@@ -472,7 +472,7 @@ box()
 make.mcmc.survey.fit.plot(sens.models.7,
                           start_yr = survey_start_yr,
                           end_yr = survey_end_yr,
-                          surv.yrs = surv.yrs,
+                          surv_yrs = surv_yrs,
                           probs = c(0.025, 0.975),
                           y.max = 5.5e6)
 @

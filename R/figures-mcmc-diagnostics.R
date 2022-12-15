@@ -478,7 +478,7 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
                                                      ##  r4ss package's function SSgetMCMC and has the extra.mcmc member
                                       start_yr,      ## Year to start the plot
                                       end_yr,        ## Year to end the plot
-                                      surv.yrs,      ## Years in which the survey took place
+                                      surv_yrs,      ## Years in which the survey took place
                                       probs = c(0.025, 0.975), ## Confidence interval values lower and upper
                                       y.max = 5.5e6, ## maximum value for the y-axis
                                       samples = 1000, ## how many lines to show
@@ -544,7 +544,7 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
   #    dplyr::filter(Yr %in% 1995:2021)
 
   # lines showing expected survey values include in-between years
-  # where no survey took place and therefore are not included in surv.yrs
+  # where no survey took place and therefore are not included in surv_yrs
   matplot(x = start_yr:end_yr,
           y = y.vals.to.plot,
           col = rgb(0, 0, 1, 0.03),

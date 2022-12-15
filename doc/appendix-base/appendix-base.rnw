@@ -355,7 +355,7 @@ make.risk.table(base.model,
 make.mcmc.survey.fit.plot(base.model,
                           start_yr = survey_start_yr,
                           end_yr = survey_end_yr,
-                          surv.yrs = surv.yrs,
+                          surv_yrs = surv_yrs,
                           probs = c(0.025, 0.975),
                           y.max = 5.5e6)
 @

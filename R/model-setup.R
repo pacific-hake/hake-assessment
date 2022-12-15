@@ -52,7 +52,7 @@ message("First survey year: ", survey_start_yr)
 # Last year in the survey timeseries
 survey_end_yr <- 2021
 # Years in which the survey took place
-surv.yrs <- c(1995,
+surv_yrs <- c(1995,
               1998,
               2001,
               2003,
