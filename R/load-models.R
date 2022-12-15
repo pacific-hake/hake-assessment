@@ -110,7 +110,7 @@ load_ss_files <- function(model_path = NA,
                             verbose = FALSE)
     # replace any SPB with SSB
     names(model$mcmc) <- gsub(pattern="SPB", replacement="SSB", names(model$mcmc))
-    create.key.nuisance.posteriors.files(model,
+    create.key.nuisance_posteriors_files(model,
                                          key_posts,
                                          key_posts_fn,
                                          nuisance_posts_fn)
@@ -324,7 +324,7 @@ calc.mcmc <- function(mcmc,
          function(x){get(x)})
 }
 
-create.key.nuisance.posteriors.files <- function(model,
+create.key.nuisance_posteriors_files <- function(model,
                                                  posterior_regex,
                                                  key_post_file,
                                                  nuisance_post_file){

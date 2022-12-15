@@ -79,26 +79,26 @@ message("Last year of model data: ", last_data_yr)
 # -----------------------------------------------------------------------------
 # Key posteriors used in the assessment
 # -----------------------------------------------------------------------------
-key.posteriors <- c("NatM",
+key_posteriors <- c("NatM",
                     "SR_LN",
                     "SR_BH_steep",
                     "Q_extraSD_Acoustic_Survey",
                     "ln\\(DM_theta\\)_1",
                     "Q_extraSD_Age1_Survey",
                     "ln\\(DM_theta\\)_2")
-key.posteriors.titles <- c("Natural mortality",
+key_posteriors_titles <- c("Natural mortality",
                            "LN(R0)",
                            "Steepness",
                            "Acoustic survey (age 2+) extra SD",
                            "Dirichlet-Multinomial fishery",
                            "Age-1 index extra SD",
                            "Dirichlet-Multinomial survey")
-message("Key posteriors in this assessment: ", key.posteriors)
+message("Key posteriors in this assessment: ", key_posteriors)
 
-key.posteriors.file <- "keyposteriors.csv"
-message("Key posteriors file: ", key.posteriors.file)
-nuisance.posteriors.file <- "nuisanceposteriors.csv"
-message("Key posteriors file: ", nuisance.posteriors.file)
+key_posteriors_file <- "keyposteriors.csv"
+message("Key posteriors file: ", key_posteriors_file)
+nuisance_posteriors_file <- "nuisanceposteriors.csv"
+message("Key posteriors file: ", nuisance_posteriors_file)
 
 # -----------------------------------------------------------------------------
 # Base model name and directory

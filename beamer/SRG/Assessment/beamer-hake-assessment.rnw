@@ -347,8 +347,8 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %  <<bridge.pairs.3, fig.height=3.5>>=
 %  make.mcmc.diag.pairs.plot(base.model,
 %                            inc.key.params = TRUE,
-%                            key.posteriors.regex = key.posteriors,
-%                            key.posteriors.names = key.posteriors.titles)
+%                            key_posteriors.regex = key_posteriors,
+%                            key_posteriors.names = key_posteriors_titles)
 %  @
 %  \ec
 %}
@@ -359,8 +359,8 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %  <<last.yr.key.pairs, fig.height=3.5>>=
 %  make.mcmc.diag.pairs.plot(last.yr.base.model,
 %                            inc.key.params = TRUE,
-%                            key.posteriors.regex = key.posteriors,
-%                            key.posteriors.names = key.posteriors.titles)
+%                            key_posteriors.regex = key_posteriors,
+%                            key_posteriors.names = key_posteriors_titles)
 %  @
 %  \ec
 %}
@@ -399,7 +399,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %  oldpar <- par(mfrow = c(1, 2),
 %                mar =c(5, 4, 1, 1),
 %                no.readonly = TRUE)
-%  make.mcmc.diag.plot(base.model, key.posteriors[2], key.posteriors.titles[2])
+%  make.mcmc.diag.plot(base.model, key_posteriors[2], key_posteriors_titles[2])
 %  box()
 %  par(oldpar)
 %  @
@@ -413,7 +413,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %  oldpar <- par(mfrow = c(1, 2),
 %                mar =c(5, 4, 1, 1),
 %                no.readonly = TRUE)
-%  make.mcmc.diag.plot(sens.models.7, key.posteriors[2], key.posteriors.titles[2])
+%  make.mcmc.diag.plot(sens.models.7, key_posteriors[2], key_posteriors_titles[2])
 %  box()
 %  par(oldpar)
 %  @
@@ -462,7 +462,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %\begin{frame}
 %\frametitle{Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
 %<<get.prior.values>>=
-%  priors_mle <- get_prior_data(base.model, tail(key.posteriors, 2))
+%  priors_mle <- get_prior_data(base.model, tail(key_posteriors, 2))
 %@
 %\bi
 %  \item Used in the assessment since 2018. Prior to this, an iterative weighting scheme was used
@@ -532,12 +532,12 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %    \bc
 %    <<dm.prior.posterior, fig.height=3.5, fig.width=8,out.width='0.95\\columnwidth'>>=
 %make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
-%                                              tail(key.posteriors, 2),
+%                                              tail(key_posteriors, 2),
 %                                              ncol = 2,
 %                                              nrow = 1,
 %                                              show_legend = TRUE,
 %                                              legend_panel = 2,
-%                                              titles = tail(key.posteriors.titles, 2))
+%                                              titles = tail(key_posteriors_titles, 2))
 %    @
 %    \ec
 %\end{frame}
@@ -571,7 +571,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %\frame{\frametitle{MCMC trace plots (more in Appendix A, Figures A.1--A.3)}
 %   \bc
 %   <<main.mcmc.diag.m, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%   make.mcmc.diag.plot(base.model, key.posteriors[5], key.posteriors.titles[5])
+%   make.mcmc.diag.plot(base.model, key_posteriors[5], key_posteriors_titles[5])
 %   @
 %   \ec
 %}
@@ -731,13 +731,13 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \bc
     <<main.prior.posterior, fig.height=6, fig.width=8,out.width='0.95\\columnwidth'>>=
 make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
-                                              key.posteriors,
+                                              key_posteriors,
                                               hist_breaks = c(50, 50, 50, 50, 100, 100),
                                               ncol = 2,
                                               nrow = 3,
                                               show_legend = TRUE,
                                               legend_panel = 3,
-                                              titles = key.posteriors.titles,
+                                              titles = key_posteriors_titles,
                                               show_mle = FALSE,
                                               show_prior = TRUE,
                                               show_init = TRUE,

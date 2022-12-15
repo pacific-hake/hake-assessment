@@ -247,7 +247,7 @@ runs are in the stock assessment document. This document is meant for the Joint
 Technical Committee's perusal, but can be made freely available.
 
 Each chapter is for a separate model run, and shows a four-panel figure for each
-of the \Sexpr{length(key.posteriors.titles)} key posterior parameters (if they
+of the \Sexpr{length(key_posteriors.titles)} key posterior parameters (if they
 exist for that run), plus histograms of diagnostics for all estimated
 parameters, and pairs plots for key parameters and further standard ones of
 interest. See captions for details.

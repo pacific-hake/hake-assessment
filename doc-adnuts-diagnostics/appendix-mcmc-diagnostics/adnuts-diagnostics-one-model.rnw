@@ -18,13 +18,13 @@ this.model.name <- gsub("_", "-", this.model.name)
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot.if.exists(this.model, key.posteriors[1], key.posteriors.titles[1])
-make.mcmc.diag.plot.if.exists(this.model, key.posteriors[2], key.posteriors.titles[2])
+make.mcmc.diag.plot.if.exists(this.model, key_posteriors[1], key_posteriors_titles[1])
+make.mcmc.diag.plot.if.exists(this.model, key_posteriors[2], key_posteriors_titles[2])
 par <- oldpar
 @
 \end{center}
-\caption{Summary of MCMC diagnostics for \Sexpr{key.posteriors.titles[1]} (upper
-  panels) and \Sexpr{key.posteriors.titles[2]} (lower panels), if they exist for
+\caption{Summary of MCMC diagnostics for \Sexpr{key_posteriors_titles[1]} (upper
+  panels) and \Sexpr{key_posteriors_titles[2]} (lower panels), if they exist for
   this model run. Top sub-panels show the trace of the sampled values across
   iterations (absolute values, top left; cumulative running mean with 5th and
   95th percentiles, top right). The lower left sub-panel indicates the
@@ -43,13 +43,13 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot.if.exists(this.model, key.posteriors[3], key.posteriors.titles[3])
-make.mcmc.diag.plot.if.exists(this.model, key.posteriors[4], key.posteriors.titles[4])
+make.mcmc.diag.plot.if.exists(this.model, key_posteriors[3], key_posteriors_titles[3])
+make.mcmc.diag.plot.if.exists(this.model, key_posteriors[4], key_posteriors_titles[4])
 par <- oldpar
 @
 \end{center}
-\caption{Summary of MCMC diagnostics for \Sexpr{key.posteriors.titles[3]} (upper
-  panels) and \Sexpr{key.posteriors.titles[4]} (lower panels), if they exist for
+\caption{Summary of MCMC diagnostics for \Sexpr{key_posteriors_titles[3]} (upper
+  panels) and \Sexpr{key_posteriors_titles[4]} (lower panels), if they exist for
   this model run; details as in previous figure.}
 \label{fig:main-mcmc-diag-h-extra-sd}
 \end{figure}
@@ -62,13 +62,13 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot.if.exists(this.model, key.posteriors[5], key.posteriors.titles[5])
-make.mcmc.diag.plot.if.exists(this.model, key.posteriors[6], key.posteriors.titles[6])
+make.mcmc.diag.plot.if.exists(this.model, key_posteriors[5], key_posteriors_titles[5])
+make.mcmc.diag.plot.if.exists(this.model, key_posteriors[6], key_posteriors_titles[6])
 par <- oldpar
 @
 \end{center}
-\caption{Summary of MCMC diagnostics for \Sexpr{key.posteriors.titles[5]} (upper
-  panels) and \Sexpr{key.posteriors.titles[6]} (lower panels), if they exist for
+\caption{Summary of MCMC diagnostics for \Sexpr{key_posteriors_titles[5]} (upper
+  panels) and \Sexpr{key_posteriors_titles[6]} (lower panels), if they exist for
   this model run; details as in previous figure.}
 \label{fig:main-mcmc-diag-dm}
 \end{figure}
@@ -101,8 +101,8 @@ different sections of the chain.}
 <<fig.height=8, fig.width=8, is.fig = TRUE>>=
 make.mcmc.diag.pairs.plot(this.model,
                           inc.key.params = TRUE,
-                          key.posteriors.regex = key.posteriors,
-                          key.posteriors.names = key.posteriors.titles,
+                          key_posteriors.regex = key_posteriors,
+                          key_posteriors.names = key_posteriors_titles,
                           recr = c(2010, 2014),
                           bratio = end_yr,
                           forecatch = end_yr)

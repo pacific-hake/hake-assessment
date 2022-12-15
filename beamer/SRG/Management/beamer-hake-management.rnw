@@ -1013,7 +1013,7 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 %%   \end{column}
 %%   \begin{column}{0.75\textwidth}
 %%    <<main.mcmc.diag.R0.base, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%%    make.mcmc.diag.plot(base.model, key.posteriors[2], key.posteriors.titles[2])
+%%    make.mcmc.diag.plot(base.model, key_posteriors[2], key_posteriors_titles[2])
 %%    @
 %%   \end{column}
 %% \end{columns}
@@ -1031,7 +1031,7 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 %% %   \end{column}
 %% %   \begin{column}{0.75\textwidth}
 %% %    <<main.mcmc.diag.R0.adnuts, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%% %    make.mcmc.diag.plot(sens.models.6, key.posteriors[2], key.posteriors.titles[2])
+%% %    make.mcmc.diag.plot(sens.models.6, key_posteriors[2], key_posteriors_titles[2])
 %% %    @
 %% %   \end{column}
 %% % \end{columns}
