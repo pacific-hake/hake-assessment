@@ -36,16 +36,16 @@ us.allotment.percent.last.year <- f(pull(ct_last1, us_tac) / pull(ct_last1, tot_
 # Further TAC sources ---------------------------------------------------------
 # further.tac is defined in R/data-tables.R
 ft <- further.tac
-last.year.us.tribal <- ft %>% filter(Year == last.data.yr) %>% pull(us.tribal.quota)
-last.year.us.research <- ft %>% filter(Year == last.data.yr) %>% pull(us.research.quota)
-last.year.us.non.tribal <- ft %>% filter(Year == last.data.yr) %>% pull(us.nontribal.quota)
-last.year.us.tribal.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% pull(us.tribal.quota.reallocated)
-last.year.us.tribal.reallocate.dates <- ft %>% filter(Year == last.data.yr) %>% pull(us.tribal.reallocate.dates)
+last.year.us.tribal <- ft %>% filter(Year == last_data_yr) %>% pull(us.tribal.quota)
+last.year.us.research <- ft %>% filter(Year == last_data_yr) %>% pull(us.research.quota)
+last.year.us.non.tribal <- ft %>% filter(Year == last_data_yr) %>% pull(us.nontribal.quota)
+last.year.us.tribal.quota.reallocated <- ft %>% filter(Year == last_data_yr) %>% pull(us.tribal.quota.reallocated)
+last.year.us.tribal.reallocate.dates <- ft %>% filter(Year == last_data_yr) %>% pull(us.tribal.reallocate.dates)
 last.year.us.tribal.reallocate.dates.f <- format(as.Date(as.character(last.year.us.tribal.reallocate.dates),"%d-%b"),"%B %d")
-last.year.us.tribal.max.landed <- ft %>% filter(Year == last.data.yr) %>% pull(us.tribal.max.landed)
-last.year.us.shore.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% pull(us.shore.reallocated)
-last.year.us.cp.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% pull(us.cp.reallocated)
-last.year.us.ms.quota.reallocated <- ft %>% filter(Year == last.data.yr) %>% pull(us.ms.reallocated)
+last.year.us.tribal.max.landed <- ft %>% filter(Year == last_data_yr) %>% pull(us.tribal.max.landed)
+last.year.us.shore.quota.reallocated <- ft %>% filter(Year == last_data_yr) %>% pull(us.shore.reallocated)
+last.year.us.cp.quota.reallocated <- ft %>% filter(Year == last_data_yr) %>% pull(us.cp.reallocated)
+last.year.us.ms.quota.reallocated <- ft %>% filter(Year == last_data_yr) %>% pull(us.ms.reallocated)
 
 # Catch -----------------------------------------------------------------------
 # ... recent catch ------------------------------------------------------------
@@ -68,11 +68,11 @@ catch_us_mean_10yrs <- f(mean(catch_last_10yrs$us_catch))
 catch_can_mean_10yrs <- f(mean(catch_last_10yrs$can_catch))
 # ... US Catch by fleet, last year --------------------------------------------
 # The following ct object with columns *_xx comes from the load_catches() function in R/catches.R
-last.year.us.research.catch <- ct %>% filter(year == last.data.yr) %>% pull(us_research_xx)
-last.year.us.cp.catch <- ct %>% filter(year == last.data.yr) %>% pull(us_cp_xx)
-last.year.us.ms.catch <- ct %>% filter(year == last.data.yr) %>% pull(us_ms_xx)
-last.year.us.shore.catch <- ct %>% filter(year == last.data.yr) %>% pull(us_shore_xx)
-last.year.us.ti.catch <- us.ti.catch.by.month %>% filter(year == last.data.yr) %>% pull(catch) %>% sum
+last.year.us.research.catch <- ct %>% filter(year == last_data_yr) %>% pull(us_research_xx)
+last.year.us.cp.catch <- ct %>% filter(year == last_data_yr) %>% pull(us_cp_xx)
+last.year.us.ms.catch <- ct %>% filter(year == last_data_yr) %>% pull(us_ms_xx)
+last.year.us.shore.catch <- ct %>% filter(year == last_data_yr) %>% pull(us_shore_xx)
+last.year.us.ti.catch <- us.ti.catch.by.month %>% filter(year == last_data_yr) %>% pull(catch) %>% sum
 catcher.processor.catch <- ((ct_last1 %>% select(us_cp_xx) %>% pull) / (last.year.us.cp.quota.reallocated) * 100) %>% f(1)
 mothership.catch <- ((ct_last1 %>% select(us_ms_xx) %>% pull) / (last.year.us.ms.quota.reallocated) * 100) %>% f(1)
 shore.based.catch <- ((ct_last1 %>% select(us_shore_xx) %>% pull - last.year.us.ti.catch) / (last.year.us.shore.quota.reallocated) * 100) %>% f(1)
@@ -94,13 +94,13 @@ last.year.us.tribal.catch.percent <- f(last.year.us.tribal.max.landed / last.yea
 # ... Canada Attainment, catch, and TAC ---------------------------------------
 can.vessels <- c("Viking Enterprise", "Northern Alliance", "Osprey #1", "Raw Spirit",
                  "Pacific Legacy #1", "Sunderoey", "Viking Alliance")
-last.year.can.carryover <- ft %>% filter(Year == last.data.yr) %>% pull(can.carried.over) %>% f(0)
+last.year.can.carryover <- ft %>% filter(Year == last_data_yr) %>% pull(can.carried.over) %>% f(0)
 last.year.can.attained <- ct_last1 %>% pull(can_attain) %>% f(1)
 last.2year.can.attained.diff <- ((ct_last1 %>% pull(can_attain)) - (ct_secondlast %>% pull(can_attain))) %>% f(1)
 last.year.can.landings <- ct_last1 %>% pull(can_catch) %>% f(0)
 last.year.can.tac <- ct_last1 %>% pull(can_tac) %>% f
-last.year.can.tac.jv <- ft %>% filter(Year == last.data.yr) %>% pull(can.jv.tac) %>% f
-last.year.can.shoreside.tac <- ((ct_last1 %>% pull(can_tac)) - (ft %>% filter(Year == last.data.yr) %>% pull(can.jv.tac))) %>% f(0)
+last.year.can.tac.jv <- ft %>% filter(Year == last_data_yr) %>% pull(can.jv.tac) %>% f
+last.year.can.shoreside.tac <- ((ct_last1 %>% pull(can_tac)) - (ft %>% filter(Year == last_data_yr) %>% pull(can.jv.tac))) %>% f(0)
 latest.year.can.jv <- ct %>% filter(can_jv_xx > 0) %>% pull(year) %>% max
 last.year.can.shore <- ct_last1 %>% pull(can_shore_xx) %>% f(0)
 last.year.can.freezer <- ct_last1 %>% pull(can_freeze_xx) %>% f(0)
@@ -176,16 +176,16 @@ curr.bio.median.tonnes <- f(mc$smed[names(mc$smed) %in% end_yr] * 1e6, 0)
 curr.bio.upper.tonnes <- f(mc$supper[names(mc$supper) %in% end_yr] * 1e6, 0)
 # ... spawning biomass for previous year --------------------------------------
 # (calculated in this assessment) in millions of tonnes and then tonnes
-prev.bio.lower <- f(mc$slower[names(mc$slower) %in% last.data.yr], 3)
-prev.bio.median <- f(mc$smed[names(mc$smed) %in% last.data.yr], 3)
-prev.bio.upper <- f(mc$supper[names(mc$supper) %in% last.data.yr], 3)
-prev.bio.lower.tonnes <- f(mc$slower[names(mc$slower) %in% last.data.yr] * 1e6, 0)
-prev.bio.median.tonnes <- f(mc$smed[names(mc$smed) %in% last.data.yr] * 1e6, 0)
-prev.bio.upper.tonnes <- f(mc$supper[names(mc$supper) %in% last.data.yr] * 1e6, 0)
+prev.bio.lower <- f(mc$slower[names(mc$slower) %in% last_data_yr], 3)
+prev.bio.median <- f(mc$smed[names(mc$smed) %in% last_data_yr], 3)
+prev.bio.upper <- f(mc$supper[names(mc$supper) %in% last_data_yr], 3)
+prev.bio.lower.tonnes <- f(mc$slower[names(mc$slower) %in% last_data_yr] * 1e6, 0)
+prev.bio.median.tonnes <- f(mc$smed[names(mc$smed) %in% last_data_yr] * 1e6, 0)
+prev.bio.upper.tonnes <- f(mc$supper[names(mc$supper) %in% last_data_yr] * 1e6, 0)
 # ... spawning biomass for previous year (last year's assessment) -------------
-prev.bio.lower.last.assess <- f(last.yr.base.model$mcmccalcs$slower[names(mc$slower) %in% last.data.yr], 3)
-prev.bio.median.last.assess <- f(last.yr.base.model$mcmccalcs$smed[names(mc$smed) %in% last.data.yr], 3)
-prev.bio.upper.last.assess <- f(last.yr.base.model$mcmccalcs$supper[names(mc$supper) %in% last.data.yr], 3)
+prev.bio.lower.last.assess <- f(last.yr.base.model$mcmccalcs$slower[names(mc$slower) %in% last_data_yr], 3)
+prev.bio.median.last.assess <- f(last.yr.base.model$mcmccalcs$smed[names(mc$smed) %in% last_data_yr], 3)
+prev.bio.upper.last.assess <- f(last.yr.base.model$mcmccalcs$supper[names(mc$supper) %in% last_data_yr], 3)
 
 # Forecasting -----------------------------------------------------------------
 # ... first forecast year depletion and spawning biomass estimates ------------
@@ -325,7 +325,7 @@ survey.age.years <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy == 2, ]
 max.fishery.age.prop <- get_age_comp_limits(base.model, type = 1)
 max.survey.age.prop <- get_age_comp_limits(base.model, type = 2)
 # ... Canadian Freezer trawlers age data --------------------------------------
-last.year.can.ages.ft <- can.ages[[2]][rownames(can.ages[[2]]) == last.data.yr, ]
+last.year.can.ages.ft <- can.ages[[2]][rownames(can.ages[[2]]) == last_data_yr, ]
 ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 1)
 max.freezer.trawler.age.prop.age <- ft.age.prop.holder[1]
 max.freezer.trawler.age.prop <- f(ft.age.prop.holder[2] * 100, 1)
@@ -339,7 +339,7 @@ ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 4)
 fourth.freezer.trawler.age.prop.age <- ft.age.prop.holder[1]
 fourth.freezer.trawler.age.prop <- f(ft.age.prop.holder[2] * 100, 1)
 # ... Canadian Shoreside age data ---------------------------------------------
-last.year.can.ages.ss <- can.ages[[1]][rownames(can.ages[[1]]) == last.data.yr, ]
+last.year.can.ages.ss <- can.ages[[1]][rownames(can.ages[[1]]) == last_data_yr, ]
 ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 1)
 max.shoreside.age.prop.age <- ss.age.prop.holder[1]
 max.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
@@ -353,9 +353,9 @@ ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 4)
 fourth.shoreside.age.prop.age <- ss.age.prop.holder[1]
 fourth.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
 # ... US age data -------------------------------------------------------------
-us.age.n.cp <- us.cp.age[us.cp.age$year == last.data.yr, "n.hauls"]
-us.age.n.ms <- us.ms.age[us.ms.age$year == last.data.yr, "n.hauls"]
-us.last.year.age.cp <- us.cp.age[us.cp.age$year == last.data.yr, grep("^a", colnames(us.cp.age))]
+us.age.n.cp <- us.cp.age[us.cp.age$year == last_data_yr, "n.hauls"]
+us.age.n.ms <- us.ms.age[us.ms.age$year == last_data_yr, "n.hauls"]
+us.last.year.age.cp <- us.cp.age[us.cp.age$year == last_data_yr, grep("^a", colnames(us.cp.age))]
 us.last.year.age.cp <- us.last.year.age.cp[order(us.last.year.age.cp, decreasing = TRUE)]
 us.age.1.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[1]))
 us.age.1.prop.cp <- f(us.last.year.age.cp[1] * 100, 1)
@@ -365,7 +365,7 @@ us.age.3.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[3])
 us.age.3.prop.cp <- f(us.last.year.age.cp[3] * 100, 1)
 us.age.4.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[4]))
 us.age.4.prop.cp <- f(us.last.year.age.cp[4] * 100, 1)
-us.last.year.age.ms <- us.ms.age[us.ms.age$year == last.data.yr, grep("^a", colnames(us.ms.age))]
+us.last.year.age.ms <- us.ms.age[us.ms.age$year == last_data_yr, grep("^a", colnames(us.ms.age))]
 us.last.year.age.ms <- us.last.year.age.ms[order(us.last.year.age.ms, decreasing = TRUE)]
 us.age.1.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[1]))
 us.age.1.prop.ms <- f(us.last.year.age.ms[1] * 100, 1)
@@ -375,7 +375,7 @@ us.age.3.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[3])
 us.age.3.prop.ms <- f(us.last.year.age.ms[3] * 100, 1)
 us.age.4.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[4]))
 us.age.4.prop.ms <- f(us.last.year.age.ms[4] * 100, 1)
-us.last.year.age.shore <- us.shore.age[us.shore.age$year == last.data.yr, grep("^a", colnames(us.shore.age))]
+us.last.year.age.shore <- us.shore.age[us.shore.age$year == last_data_yr, grep("^a", colnames(us.shore.age))]
 us.last.year.age.shore <- us.last.year.age.shore[order(us.last.year.age.shore, decreasing = TRUE)]
 us.age.1.prop.age.shore <- as.numeric(gsub("^a", "", names(us.last.year.age.shore)[1]))
 us.age.1.prop.shore <- f(us.last.year.age.shore[1] * 100, 1)
@@ -401,7 +401,7 @@ recruitment.lower.in.2016 <- f(mc$rlower["2016"], 3)
 recruitment.med.in.2016 <- f(mc$rmed["2016"], 3)
 recruitment.upper.in.2016 <- f(mc$rupper["2016"], 3)
 prob.percent.2016.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2016 > base.model$mcmc$Recr_2010) * 100, 1)
-sd.med.recr.dev.estimates <- f(sd(mc$devmed[names(mc$devmed) >= 1970 & names(mc$devmed) <= (last.data.yr - 2)]), 2)
+sd.med.recr.dev.estimates <- f(sd(mc$devmed[names(mc$devmed) >= 1970 & names(mc$devmed) <= (last_data_yr - 2)]), 2)
 prob.percent.2010.rec.gt.1980.rec <- f(mean(base.model$mcmc$Recr_2010 > base.model$mcmc$Recr_1980) * 100, 0)
 prob.percent.2010.rec.gt.1980.rec.last.year.assess <-
   f(mean(last.yr.base.model$mcmc$Recr_2010 > last.yr.base.model$mcmc$Recr_1980) * 100, 0)
@@ -414,7 +414,7 @@ exploitation.med.2015 <- f(mc$fmed["2015"],2)
 exploitation.med.2017 <- f(mc$fmed["2017"],2)
 exploitation.med.2018 <- f(mc$fmed["2018"],2)
 exploitation.med.2019 <- f(mc$fmed["2019"],2)
-exploitation.med.penult.yr <- f(mc$fmed[as.character(last.data.yr)], 2)
+exploitation.med.penult.yr <- f(mc$fmed[as.character(last_data_yr)], 2)
 
 # Priors settings from the control file ---------------------------------------
 param.details <- make.parameters.estimated.summary.table(base.model,

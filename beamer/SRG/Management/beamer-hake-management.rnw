@@ -196,7 +196,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
     \item Equilibrium calculations (\emph{B}\subscr{0}, \emph{F}\subscr{SPR}, MSY, etc.)
     \bi
       \item Base selectivity (used for years before 1991 as well)
-      \item Mean of weight-at-age across 1975-\Sexpr{last.data.yr}
+      \item Mean of weight-at-age across 1975-\Sexpr{last_data_yr}
       \item Recruitment at estimated \emph{R}\subscr{0} or from stock-recruit relationship
     \ei
     \item Catch alternatives presented for some specific cases

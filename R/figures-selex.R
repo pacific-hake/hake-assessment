@@ -143,7 +143,7 @@ make.tv.selex.plot <- function(selex.list,
     agesel <- selex.list$agesel # get selectivity at age
     selex.dat <- agesel[agesel$Factor=="Asel" &
                           agesel$Fleet==1 &
-                            agesel$Yr %in% 1990:last.data.yr, ] # subset rows
+                            agesel$Yr %in% 1990:last_data_yr, ] # subset rows
     rownames(selex.dat) <- selex.dat$year # add row names for year
     selex.dat <- selex.dat[,paste(1:8)] # subset columns
   }

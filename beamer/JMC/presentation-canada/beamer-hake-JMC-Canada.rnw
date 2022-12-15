@@ -138,7 +138,7 @@ fore.names <- cmodels.names <- sapply(base.model$catch.levels, "[[", 2)[fore.ind
       for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t \\
       (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]}
       to \Sexpr{catch.limit.quantiles["upper"]}~t)
-    \item New \Sexpr{last.data.yr} age data from fishery is fit well by the model
+    \item New \Sexpr{last_data_yr} age data from fishery is fit well by the model
     \item Coastwide catch in \Sexpr{end_yr-1} was \Sexpr{last.year.landings}~t,
       out of a TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t
     \item Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota
@@ -458,12 +458,12 @@ par <- oldpar
     \begin{column}{0.48\textwidth}
       Estimated total catch from each cohort
       \bi
-    \item 1999 cohort (ages 1--\Sexpr{last.data.yr - 1999}): \Sexpr{f(max(cohortCumSum1999))} t
-    \item 1999 cohort (ages 1--\Sexpr{last.data.yr - 2010}): \Sexpr{f(max(cohortCumSum1999[ages1999 <= (last.data.yr - 2010 + 1)]))} t
-    \item 2010 cohort (ages 1--\Sexpr{last.data.yr - 2010}): \Sexpr{f(max(cohortCumSum2010))} t
-    \item 2014 cohort (ages 1--\Sexpr{last.data.yr - 2014}): \Sexpr{f(max(cohortCumSum2014))} t
-    \item 2016 cohort (ages 1--\Sexpr{last.data.yr - 2016}): \Sexpr{f(max(cohortCumSum2016))} t
-    \item 2017 cohort (ages 1--\Sexpr{last.data.yr - 2017}): \Sexpr{f(max(cohortCumSum2017))} t
+    \item 1999 cohort (ages 1--\Sexpr{last_data_yr - 1999}): \Sexpr{f(max(cohortCumSum1999))} t
+    \item 1999 cohort (ages 1--\Sexpr{last_data_yr - 2010}): \Sexpr{f(max(cohortCumSum1999[ages1999 <= (last_data_yr - 2010 + 1)]))} t
+    \item 2010 cohort (ages 1--\Sexpr{last_data_yr - 2010}): \Sexpr{f(max(cohortCumSum2010))} t
+    \item 2014 cohort (ages 1--\Sexpr{last_data_yr - 2014}): \Sexpr{f(max(cohortCumSum2014))} t
+    \item 2016 cohort (ages 1--\Sexpr{last_data_yr - 2016}): \Sexpr{f(max(cohortCumSum2016))} t
+    \item 2017 cohort (ages 1--\Sexpr{last_data_yr - 2017}): \Sexpr{f(max(cohortCumSum2017))} t
       \ei
     \end{column}
     \begin{column}{0.48\textwidth}
@@ -477,22 +477,22 @@ par <- oldpar
       lines(ages2016, cohortCumSum2016/1e3, lwd=5, col="green")
       lines(ages2017, cohortCumSum2017/1e3, lwd=5, col="orange")
       text('2017 cohort',
-           x = last.data.yr - 2017 + 1,
+           x = last_data_yr - 2017 + 1,
            y = max(cohortCumSum2017 / 1e3),
            col = "orange",
            pos = 4)
       text('2016 cohort',
-           x = last.data.yr - 2016 + 1,
+           x = last_data_yr - 2016 + 1,
            y = max(cohortCumSum2016 / 1e3),
            col = "green",
            pos = 4)
       text('2014 cohort',
-           x = last.data.yr - 2014 + 1,
+           x = last_data_yr - 2014 + 1,
            y = max(cohortCumSum2014 / 1e3),
            col = 4,
            pos = 4)
       text('2010 cohort',
-           x = last.data.yr - 2010 + 1,
+           x = last_data_yr - 2010 + 1,
            y = max(cohortCumSum2010 / 1e3),
            col = 2,
            pos = 4)
@@ -521,22 +521,22 @@ par <- oldpar
       lines(ages2017, cohortCumSum2017/1e3, lwd=5, col="orange")
       box()
       text('2017 cohort',
-           x = last.data.yr - 2017 + 1,
+           x = last_data_yr - 2017 + 1,
            y = max(cohortCumSum2017 / 1e3),
            col = "orange",
            pos = 4)
       text('2016 cohort',
-           x = last.data.yr - 2016 + 1,
+           x = last_data_yr - 2016 + 1,
            y = max(cohortCumSum2016 / 1e3),
            col = "green",
            pos = 4)
       text('2014 cohort',
-           x = last.data.yr - 2014 + 1,
+           x = last_data_yr - 2014 + 1,
            y = max(cohortCumSum2014 / 1e3),
            col = 4,
            pos = 4)
       text('2010 cohort',
-           x = last.data.yr - 2010 + 1,
+           x = last_data_yr - 2010 + 1,
            y = max(cohortCumSum2010 / 1e3),
            col = 2,
            pos = 4)

@@ -93,9 +93,9 @@ weight.at.age.heatmap <- function(model,
   stopifnot(!is.null(extrap.mask))
 
   ## Toggle data frame for which values are extrapolated values
-  last.data.yr <- model$endyr
-  input.yrs <-  first.year:last.data.yr
-  if (is.null(proj.line.yr)) proj.line.yr <- last.data.yr
+  last_data_yr <- model$endyr
+  input.yrs <-  first.year:last_data_yr
+  if (is.null(proj.line.yr)) proj.line.yr <- last_data_yr
 
   wa <- as_tibble(model$wtatage[, !grepl("comment", colnames(model$wtatage))]) %>%
     filter(Fleet == fleet) %>%
@@ -238,7 +238,7 @@ weight.at.age.heatmap <- function(model,
       geom_text(aes(x = variable, label = sprintf('%0.2f', value)), size = font.size)
   }
 
-  if(last.yr > last.data.yr){
+  if(last.yr > last_data_yr){
     ## Add line separating projections
     g <- g + geom_hline(yintercept = proj.line.yr + 0.5,
                         color = proj.line.color,

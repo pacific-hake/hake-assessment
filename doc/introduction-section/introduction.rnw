@@ -223,17 +223,17 @@ managed with IFQs.
 \subsubsection{Management of \fishname\ in Canada}\label{sec:intro-management-canada}
 
 Canadian groundfish managers distribute their portion of the coast-wide TAC as quota to
-individual license holders. In \Sexpr{last.data.yr}, Canadian hake fishermen
+individual license holders. In \Sexpr{last_data_yr}, Canadian hake fishermen
 were allocated a TAC of \Sexpr{last.year.can.tac}~t, including
 \Sexpr{last.year.can.carryover}~t of uncaught carryover fish from
-\Sexpr{last.data.yr - 1}. Canadian priority lies with the domestic fishery, but
+\Sexpr{last_data_yr - 1}. Canadian priority lies with the domestic fishery, but
 when there is determined to be an excess of fish for which there is not enough
 domestic processing capacity, fisheries managers give consideration to a
 Joint-Venture fishery in which foreign processor vessels are allowed to accept
 codends from Canadian catcher vessels while at sea.
 The last year a Joint-Venture fishery was conducted was in \Sexpr{latest.year.can.jv}.
 
-In \Sexpr{last.data.yr}, all Canadian \fishname\ trips were subject to 100\%
+In \Sexpr{last_data_yr}, all Canadian \fishname\ trips were subject to 100\%
 observer coverage, by electronic monitoring for the shoreside component
 of the domestic fishery or on-board observer for the freezer-trawler
 component. However, due to staffing issues, there were no observers available to
@@ -282,12 +282,12 @@ US\$151~million in 2019, including to Ukraine, Nigeria, and Netherlands, which m
 The total economic impact of the \fishname\ fishery on the U.S. West Coast in 2019 was
 US\$311~million in income and 4,200 jobs.
 
-\subsubsection{Overview of the fisheries in \Sexpr{last.data.yr}}\label{sec:intro-fisheries-overview}
+\subsubsection{Overview of the fisheries in \Sexpr{last_data_yr}}\label{sec:intro-fisheries-overview}
 %**ADJUST AGAIN AS NEEDED in 2022
 %The Joint Management Committee (JMC) determined an adjusted (for carryovers)
-The coast-wide TAC of \Sexpr{last.year.tac}~t for \Sexpr{last.data.yr}
+The coast-wide TAC of \Sexpr{last.year.tac}~t for \Sexpr{last_data_yr}
 was specified as the sum of unilateral TAC decisions due to the lack of
-a bilateral agreement in \Sexpr{last.data.yr}. The U.S. catch target
+a bilateral agreement in \Sexpr{last_data_yr}. The U.S. catch target
 was set at \Sexpr{last.year.us.tac}~t and the Canadian catch target at
 \Sexpr{last.year.can.tac}~t.
 % , and the proportion of each that was removed
@@ -297,12 +297,12 @@ was set at \Sexpr{last.year.us.tac}~t and the Canadian catch target at
 %(\Sexpr{us.allotment.percent}\%) and a Canadian allocation of
 %\Sexpr{last.year.can.tac}~t (\Sexpr{can.allotment.percent}\%).
 The historical
-catch of \fishname\ for \Sexpr{start_yr}--\Sexpr{last.data.yr} by nation and
+catch of \fishname\ for \Sexpr{start_yr}--\Sexpr{last_data_yr} by nation and
 fishery sector is shown in Figure~\ref{fig:main-catches} and
 Tables~\ref{tab:intro-catches-US}--\ref{tab:main-landings-tac}.
 Table~\ref{tab:main-landings-tac} also shows recent catches in relation to targets
 (see Section~\ref{sec:assessment-model-results}).
-A review of the \Sexpr{last.data.yr} fishery now
+A review of the \Sexpr{last_data_yr} fishery now
 follows by nation.
 
 % \newpage % kludge to avoid dangling heading:
@@ -317,7 +317,7 @@ specified catch target
 catcher-processor, mothership, and shore-based sectors. After the tribal
 allocation of 17.5\% (\Sexpr{f(last.year.us.tribal)}~t), and a
 \Sexpr{f(last.year.us.research)}~t allocation for research catch and bycatch in
-non-groundfish fisheries, the \Sexpr{last.data.yr} non-tribal U.S. catch limit
+non-groundfish fisheries, the \Sexpr{last_data_yr} non-tribal U.S. catch limit
 of \Sexpr{f(last.year.us.non.tribal)}~t was allocated to the catcher-processor
 (34\%), mothership (24\%), and shore-based (42\%) commercial sectors.
 Reallocation of \Sexpr{f(last.year.us.tribal.quota.reallocated)}~t of tribal
@@ -361,25 +361,25 @@ were the most common ages.
 Age-2 fish were again not seen in appreciable numbers in the catch this year.
 Age sampling was conducted on \Sexpr{us.age.n.cp} catcher-processor hauls and \Sexpr{us.age.n.ms}
 mothership hauls (Table~\ref{tab:main-sampling-history}).
-For the catcher-processor sector, the four most abundant age classes (by numbers) seen in \Sexpr{last.data.yr} were
+For the catcher-processor sector, the four most abundant age classes (by numbers) seen in \Sexpr{last_data_yr} were
 age-\Sexpr{us.age.1.prop.age.cp} (\Sexpr{us.age.1.prop.cp}\%),
 age-\Sexpr{us.age.2.prop.age.cp} (\Sexpr{us.age.2.prop.cp}\%),
 age-\Sexpr{us.age.3.prop.age.cp} (\Sexpr{us.age.3.prop.cp}\%), and
 age-\Sexpr{us.age.4.prop.age.cp} (\Sexpr{us.age.4.prop.cp}\%;
 Table~\ref{tab:main-us-cp-age-data}).
-For the mothership sector, the four most abundant age classes for \Sexpr{last.data.yr} were
+For the mothership sector, the four most abundant age classes for \Sexpr{last_data_yr} were
 age-\Sexpr{us.age.1.prop.age.ms} (\Sexpr{us.age.1.prop.ms}\%),
 age-\Sexpr{us.age.2.prop.age.ms} (\Sexpr{us.age.2.prop.ms}\%),
 age-\Sexpr{us.age.3.prop.age.ms} (\Sexpr{us.age.3.prop.ms}\%), and
 age-\Sexpr{us.age.4.prop.age.ms} (\Sexpr{us.age.4.prop.ms}\%;
 Table~\ref{tab:main-us-ms-age-data}).
-Age-samples from \Sexpr{us.shore.age[us.shore.age$year == last.data.yr, "n.trips"]} shoreside trips
+Age-samples from \Sexpr{us.shore.age[us.shore.age$year == last_data_yr, "n.trips"]} shoreside trips
 showed similar age compositions in the catch with the highest occurrences being for
 age-\Sexpr{us.age.1.prop.age.shore} (\Sexpr{us.age.1.prop.shore}\%),
 age-\Sexpr{us.age.2.prop.age.shore} (\Sexpr{us.age.2.prop.shore}\%),
 age-\Sexpr{us.age.3.prop.age.shore} (\Sexpr{us.age.3.prop.shore}\%), and
 age-\Sexpr{us.age.4.prop.age.shore} (\Sexpr{us.age.4.prop.shore}\%)
-in \Sexpr{last.data.yr} (Table~\ref{tab:main-us-shore-age-data}).
+in \Sexpr{last_data_yr} (Table~\ref{tab:main-us-shore-age-data}).
 
 The at-sea fishery maintained moderately high catch rates in the fall
 (Figure~\ref{fig:main-us-catch-rates}),
@@ -399,7 +399,7 @@ it has been in recent years because of high catch rates
 
 \subsubsub{Canada}
 
-The \Sexpr{last.data.yr} Canadian \fishname\ domestic fishery removed
+The \Sexpr{last_data_yr} Canadian \fishname\ domestic fishery removed
 \Sexpr{last.year.can.landings}~t from Canadian waters (Table~\ref{tab:intro-catches-Can}), which was
 \Sexpr{last.year.can.attained}\% of the Canadian TAC of
 \Sexpr{last.year.can.tac}~t. The attainment for Canada appears much lower than usual, due

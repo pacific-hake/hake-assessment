@@ -119,7 +119,7 @@ maturity ogive updated in 2018 was retained
 (see Section~\ref{sec:data-maturity}).
 Fecundity is defined as weight-at-age multiplied by the maturity ogive
 and is time-varying across years with empirical weight-at-age data
-(\Sexpr{start_yr_age_comps}--\Sexpr{last.data.yr}; see Section~\ref{sec:data-weight-at-age}).
+(\Sexpr{start_yr_age_comps}--\Sexpr{last_data_yr}; see Section~\ref{sec:data-weight-at-age}).
 The D-M
 likelihood approach \citep{ThorsonEtAl2017Dirichlet} is again used to estimate the weights
 associated with age-composition data, rather than iteratively tuning the sample size multiplier
@@ -604,14 +604,14 @@ the \Sexpr{assess_yr} base model.
 In short, these included the following:
 \begin{itemize}
   \item Update to the latest version of Stock Synthesis, version \Sexpr{ss_version};
-  \item Update catch and age-composition data from years prior to \Sexpr{last.data.yr};
-  \item Add new catch and age-composition data for \Sexpr{last.data.yr};
-  \item Update acoustic survey biomass and age-composition data from years prior to \Sexpr{last.data.yr};
-  \item Add the \Sexpr{last.data.yr} acoustic survey biomass and age-composition estimates;
-  \item Add weight-at-age data for \Sexpr{last.data.yr} as well as update data for years prior; and
+  \item Update catch and age-composition data from years prior to \Sexpr{last_data_yr};
+  \item Add new catch and age-composition data for \Sexpr{last_data_yr};
+  \item Update acoustic survey biomass and age-composition data from years prior to \Sexpr{last_data_yr};
+  \item Add the \Sexpr{last_data_yr} acoustic survey biomass and age-composition estimates;
+  \item Add weight-at-age data for \Sexpr{last_data_yr} as well as update data for years prior; and
   \item Add the age-1 index time series.
-  %\item Add \Sexpr{last.data.yr} survey biomass estimate;
-  %\item Add \Sexpr{last.data.yr} survey age-composition data; and
+  %\item Add \Sexpr{last_data_yr} survey biomass estimate;
+  %\item Add \Sexpr{last_data_yr} survey age-composition data; and
 \end{itemize}
 
 The bridging steps can be grouped into three main sets of changes,
@@ -641,28 +641,28 @@ assessment were included.
 These changes to pre-\Sexpr{last_assess_yr} data were small enough that they had
 little impact on the model results (Figure~\ref{fig:main-bridge-5-panel-1}).
 
-The addition of \Sexpr{last.data.yr} catch and fishery age compositions extends the model
+The addition of \Sexpr{last_data_yr} catch and fishery age compositions extends the model
 to the start of \Sexpr{assess_yr} but the estimates for
 \Sexpr{assess_yr} are highly uncertain
 (Figure~\ref{fig:main-bridge-5-panel-1})
 in the absence of additional information about recent recruitment.
 These data had relatively little impact on the historical biomass estimates,
-indicating that the observed \Sexpr{last.data.yr} ages were consistent with the model
+indicating that the observed \Sexpr{last_data_yr} ages were consistent with the model
 estimates without those data (Figure~\ref{fig:main-bridge-5-panel-1}). However,
 the addition of these data did slightly shift recent recruitment
 estimates, though overall uncertainty was still high. Recruitment estimates and stock
-trajectory were relatively unchanged with the addition of \Sexpr{last.data.yr}
+trajectory were relatively unchanged with the addition of \Sexpr{last_data_yr}
 weight-at-age data.
 This bridging step also shifted the ending year of the deviations
-in the selectivity parameters from \Sexpr{last.data.yr-1} to
-\Sexpr{last.data.yr} because of the addition of fishery data in \Sexpr{last.data.yr}.
+in the selectivity parameters from \Sexpr{last_data_yr-1} to
+\Sexpr{last_data_yr} because of the addition of fishery data in \Sexpr{last_data_yr}.
 
-Including the \Sexpr{last.data.yr} fishery-independent biomass estimate and
+Including the \Sexpr{last_data_yr} fishery-independent biomass estimate and
 age compositions led to a slightly more optimistic
 trajectory of the stock over the last couple of years
 (Figure~\ref{fig:main-bridge-5-panel-1}),
 whereas updating the 2019 survey biomass estimate itself had negligible
-effect. The addition of \Sexpr{last.data.yr} survey data led to small shifts
+effect. The addition of \Sexpr{last_data_yr} survey data led to small shifts
 in expected recruitment, particularly for the 2016, 2017, and 2018 year classes.
 The 2018 year class is estimated to be higher in this
 assessment than in the \Sexpr{last_assess_yr} assessment, but it still remains
@@ -808,10 +808,10 @@ when the data give a consistent signal
 selectivity, the fit to commercial age-composition data is particularly good,
 although models with time-invariant selectivity used in previous years also fit
 the age compositions well.
-In the \Sexpr{last.data.yr} fishery, \Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}.
+In the \Sexpr{last_data_yr} fishery, \Sexpr{top.coh(base.model, last_data_yr, 3, cap = FALSE)}.
 Age compositions from the \Sexpr{survey_end_yr} acoustic survey suggest a similar age
 structure, i.e., \Sexpr{top.coh(base.model, survey_end_yr, 3, cap = FALSE, fleet = 2)}.
-Combined, the 2015--\Sexpr{last.data.yr} fishery age-composition data and the
+Combined, the 2015--\Sexpr{last_data_yr} fishery age-composition data and the
 2017--\Sexpr{survey_end_yr} acoustic survey age-composition data
 suggest that 2014 was a strong recruitment
 year, and the model was able to adequately
@@ -1049,7 +1049,7 @@ expectation and about the joint uncertainty of individual recruitment and
 spawning biomass pairs are evident. High and low recruitments have
 been produced throughout the range of observed spawning biomass
 (Figure~\ref{fig:main-mcmc-sr-variability}). The standard deviation of the time
-series of median recruitment deviation estimates for the years 1970-\Sexpr{last.data.yr - 1}, which
+series of median recruitment deviation estimates for the years 1970-\Sexpr{last_data_yr - 1}, which
 are informed by the age compositions and the age-1 index, is
 \Sexpr{sd.med.recr.dev.estimates}. This value is higher than,
 but consistent with, the base model value of \Sexpr{base.model$sigma_R_in}.  % $

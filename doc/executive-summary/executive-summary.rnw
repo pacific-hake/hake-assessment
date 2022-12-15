@@ -47,7 +47,7 @@ make.catches.plot(ct,
 \end{center}
 %\vspace{0mm}
 \caption{Total \fishname\ catch used in the assessment by sector,
-  \Sexpr{start_yr}--\Sexpr{last.data.yr}.
+  \Sexpr{start_yr}--\Sexpr{last_data_yr}.
   U.S. tribal catches are included in the sectors where they are represented.}
 \label{fig:es-catches}
 \end{figure}
@@ -107,14 +107,14 @@ Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
 1999 year class, with the cumulative removal (through \Sexpr{end_yr-1}) from
 that cohort estimated at approximately
-\Sexpr{f(cohort.catch.1999/1e6,2)}~million~t. Through \Sexpr{last.data.yr}, the
+\Sexpr{f(cohort.catch.1999/1e6,2)}~million~t. Through \Sexpr{last_data_yr}, the
 cumulative catch of the 2010, 2014, and 2016 year classes is estimated to be about
 \Sexpr{f(cohort.catch.2010/1e6,2)}~million~t,
 \Sexpr{f(cohort.catch.2014/1e6,2)}~million~t, and
 \Sexpr{f(cohort.catch.2016/1e6,2)}~million~t,
 respectively.
 In the \Sexpr{end_yr-1} catch,
-\Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}.
+\Sexpr{top.coh(base.model, last_data_yr, 3, cap = FALSE)}.
 % Can check that manually from final row of Table 10 showing the proportions at age
 Due to staffing issues, age data from \Sexpr{end_yr-1} were unavailable from the Canadian
 freezer-trawler fleet and minimally available for the shoreside fleet.
@@ -129,8 +129,8 @@ freezer-trawler fleet and minimally available for the shoreside fleet.
 %% Further new data for this \Sexpr{assess_yr}
 %% assessment, that were not in the \Sexpr{last_assess_yr} assessment,
 %% are the
-%% \Sexpr{last.data.yr} fishery catch and fishery age compositions, and the mean
-%% weight-at-age for \Sexpr{last.data.yr}.
+%% \Sexpr{last_data_yr} fishery catch and fishery age compositions, and the mean
+%% weight-at-age for \Sexpr{last_data_yr}.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
@@ -170,11 +170,11 @@ make.survey.age1.plot.data(age.1.index,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery
-landings (\Sexpr{start_yr}--\Sexpr{last.data.yr}), an acoustic survey biomass
+landings (\Sexpr{start_yr}--\Sexpr{last_data_yr}), an acoustic survey biomass
 index (Figure~\ref{fig:es-survey-biomass}) and age compositions
 (\Sexpr{survey_start_yr}--\Sexpr{survey_end_yr}), an acoustic survey index of
 age-1 fish (Figure~\ref{fig:es-survey-age1}),
-and fishery age compositions (\Sexpr{start_yr_age_comps}--\Sexpr{last.data.yr}).
+and fishery age compositions (\Sexpr{start_yr_age_comps}--\Sexpr{last_data_yr}).
 In 2011 the survey biomass index was the lowest in the time series and was followed by the index increasing
 in 2012, 2013, and again in 2015 before decreasing to near the time series average in 2017.
 The 2019 estimate is the fourth highest of the series, and the 2021 estimate is near the time

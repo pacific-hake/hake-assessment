@@ -314,7 +314,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %}
 %
 %----------------------------------------------------------
-% \frame{\frametitle{Bridging: Add \Sexpr{last.data.yr} survey data / DM Priors (Fig. 17)}
+% \frame{\frametitle{Bridging: Add \Sexpr{last_data_yr} survey data / DM Priors (Fig. 17)}
 %   \bc
 %   <<bridge.biomass.3, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
 %   oldpar <- par(mfrow = c(1, 2),
@@ -426,18 +426,18 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     \item Updating Stock Synthesis software has no effect on results.
     \item Updating fishery catch and age composition data to \Sexpr{last_assess_yr} has little effect
       on the stock trajectory.
-    \item Adding the \Sexpr{last.data.yr} survey biomass estimate and age compositions leads to
+    \item Adding the \Sexpr{last_data_yr} survey biomass estimate and age compositions leads to
       slightly more optimistic estimates of biomass for the last few years and reduces uncertainty.
     \item Small changes in recruitment with the addition of \Sexpr{last_assess_yr} fishery age composition
       data were largely offset with the addition of \Sexpr{last_assess_yr} survey age composition data.
-    \item Adding \Sexpr{last.data.yr} weight-at-age data resulted in a slight upward shift in current biomass,
-      because the mean weights in \Sexpr{last.data.yr} were mostly above the recent 5-year average mean
+    \item Adding \Sexpr{last_data_yr} weight-at-age data resulted in a slight upward shift in current biomass,
+      because the mean weights in \Sexpr{last_data_yr} were mostly above the recent 5-year average mean
       weights (which is the assumption before the addition of these data).
     \item The addition of the age-1 index resulted in a small increase in $B_0$, an increase in
       relative spawning biomass from 2019--2022, and an increase in the estimated size of the 2018 and 2020 cohorts.
 
-    %\item Adding the \Sexpr{last.data.yr} survey age compositions further reduced uncertainty,
-    %  but provided a worse fit to the 2017 and \Sexpr{last.data.yr} survey indices.
+    %\item Adding the \Sexpr{last_data_yr} survey age compositions further reduced uncertainty,
+    %  but provided a worse fit to the 2017 and \Sexpr{last_data_yr} survey indices.
  \ei
 }
 
@@ -808,7 +808,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
     tv.selex.ages <- 1:8
     tv.selex <- calc.tv.selex(base.model,
                               start_yr = tv.selex.start_yr,
-                              end_yr = last.data.yr,
+                              end_yr = last_data_yr,
                               ages = tv.selex.ages,
                               probs = c(0.025, 0.975))
     make.tv.selex.plot(tv.selex)
@@ -828,7 +828,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
                                    probs = c(0.025, 0.975))
     tv.selex.right <- calc.tv.selex(base.model,
                                     start_yr = 2002,
-                                    end_yr = last.data.yr,
+                                    end_yr = last_data_yr,
                                     ages = tv.selex.ages,
                                     probs = c(0.025, 0.975))
     make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))

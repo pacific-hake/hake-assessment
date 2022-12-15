@@ -364,7 +364,7 @@ intensity.plot()
 \begin{figure}[t]
 \begin{center}
 <<SPR-illustration, fig.height=7, fig.width=6, is.fig = TRUE, alt.text = "This figure shows how SPR is calculated">>=
-make.SPR.illustration(last.yr.base.model, yrs = start_yr_age_comps:last.data.yr)
+make.SPR.illustration(last.yr.base.model, yrs = start_yr_age_comps:last_data_yr)
 @
 \end{center}
 \caption{Illustration of the spawning potential ratio (SPR) calculation based on
