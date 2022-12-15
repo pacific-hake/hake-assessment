@@ -302,8 +302,8 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %\frame{\frametitle{Last assessment: Fishery empirical weight-at-age}
 %  \bc
 %  <<last.yr.wtage.heatmap, fig.height=3.5>>=
-%  weight.at.age.heatmap(last.yr.base_model,
-%                        proj.line.yr = last.yr.base_model$endyr,
+%  weight.at.age.heatmap(last_yr_base_model,
+%                        proj.line.yr = last_yr_base_model$endyr,
 %                        extrap.mask = weight_age_extrapolation_mask,
 %                        proj.line.width = 0.4,
 %                        longterm.mean.ages = NULL,
@@ -357,7 +357,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 %\frame{\frametitle{Bridging: \Sexpr{last_assess_yr} Base model correlations (Fig. 21 in 2019 doc)}
 %  \bc
 %  <<last.yr.key.pairs, fig.height=3.5>>=
-%  make.mcmc.diag.pairs.plot(last.yr.base_model,
+%  make.mcmc.diag.pairs.plot(last_yr_base_model,
 %                            inc.key.params = TRUE,
 %                            key_posteriors.regex = key_posteriors,
 %                            key_posteriors.names = key_posteriors_titles)
@@ -753,7 +753,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
 \frame{\frametitle{Survey catchability (\emph{$q_b$}) posterior and values for recent assessments}
  \bc
   <<histQ, fig.height=2.25, fig.width=5.5>>=
-     make.mcmc.catchability.plot(base_model, last.yr.base_model,type = "age2plus")
+     make.mcmc.catchability.plot(base_model, last_yr_base_model,type = "age2plus")
   @
   \begin{table}
     \begin{tabular}{cccc} \hline
@@ -763,9 +763,9 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
       %\textcolor{red}{MLE (\Sexpr{assess_yr - 1})} \\
       \hline
       \textcolor{blue}{\Sexpr{f(median(base_model$extra.mcmc$Q_vector), 2)}} &
-      \textcolor{red}{\Sexpr{f(median(last.yr.base_model$extra.mcmc$Q_vector), 2)}} \\
+      \textcolor{red}{\Sexpr{f(median(last_yr_base_model$extra.mcmc$Q_vector), 2)}} \\
       %\textcolor{blue}{\Sexpr{f(base_model$cpue$Calc_Q[1],2)}}  &
-      %\textcolor{red}{\Sexpr{f(last.yr.base_model$cpue$Calc_Q[1],2)}} \\
+      %\textcolor{red}{\Sexpr{f(last_yr_base_model$cpue$Calc_Q[1],2)}} \\
       \hline
     \end{tabular}
   \end{table}
@@ -789,7 +789,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
       \textcolor{blue}{\Sexpr{f(median(base_model$extra.mcmc$Q_vector_age1), 2)}} &
       \textcolor{red}{--} \\
       %\textcolor{blue}{\Sexpr{f(base_model$cpue$Calc_Q[1],2)}}  &
-      %\textcolor{red}{\Sexpr{f(last.yr.base_model$cpue$Calc_Q[1],2)}} \\
+      %\textcolor{red}{\Sexpr{f(last_yr_base_model$cpue$Calc_Q[1],2)}} \\
       \hline
     \end{tabular}
   \end{table}
@@ -868,7 +868,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
 \frame{\frametitle{Key quantities}
   \bc
   <<main.parameter.estimates, results='asis', echo=FALSE>>=
-    param_est_table(list(base_model, last.yr.base_model),
+    param_est_table(list(base_model, last_yr_base_model),
                     model.names = c(base_model_name, last_yr_base_model_name),
                     end_yr = end_yr,
                     digits = 3,
@@ -1021,7 +1021,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
 
 \frame{\frametitle{Spawning Biomass (million~t)}
   <<biomass.calcs>>=
-    lb <- last.yr.base_model
+    lb <- last_yr_base_model
     lb.smed <- lb$mcmccalcs$smed
     lb.slower <- lb$mcmccalcs$slower
     lb.supper <- lb$mcmccalcs$supper

@@ -183,9 +183,9 @@ prev.bio.lower.tonnes <- f(mc$slower[names(mc$slower) %in% last_data_yr] * 1e6, 
 prev.bio.median.tonnes <- f(mc$smed[names(mc$smed) %in% last_data_yr] * 1e6, 0)
 prev.bio.upper.tonnes <- f(mc$supper[names(mc$supper) %in% last_data_yr] * 1e6, 0)
 # ... spawning biomass for previous year (last year's assessment) -------------
-prev.bio.lower.last.assess <- f(last.yr.base_model$mcmccalcs$slower[names(mc$slower) %in% last_data_yr], 3)
-prev.bio.median.last.assess <- f(last.yr.base_model$mcmccalcs$smed[names(mc$smed) %in% last_data_yr], 3)
-prev.bio.upper.last.assess <- f(last.yr.base_model$mcmccalcs$supper[names(mc$supper) %in% last_data_yr], 3)
+prev.bio.lower.last.assess <- f(last_yr_base_model$mcmccalcs$slower[names(mc$slower) %in% last_data_yr], 3)
+prev.bio.median.last.assess <- f(last_yr_base_model$mcmccalcs$smed[names(mc$smed) %in% last_data_yr], 3)
+prev.bio.upper.last.assess <- f(last_yr_base_model$mcmccalcs$supper[names(mc$supper) %in% last_data_yr], 3)
 
 # Forecasting -----------------------------------------------------------------
 # ... first forecast year depletion and spawning biomass estimates ------------
@@ -265,9 +265,9 @@ median.relative.bio.above.target.since <- max(as.numeric(names(median.relative.b
 median.relative.bio.2017 <- f(mc$dmed["2017"] * 100, 1)
 
 # Recruitments in current assessment vs last assessment -----------------------
-prev.assess.recruitment.lower  <- last.yr.base_model$mcmccalcs$rlower
-prev.assess.recruitment.med  <- last.yr.base_model$mcmccalcs$rmed
-prev.assess.recruitment.upper <- last.yr.base_model$mcmccalcs$rupper
+prev.assess.recruitment.lower  <- last_yr_base_model$mcmccalcs$rlower
+prev.assess.recruitment.med  <- last_yr_base_model$mcmccalcs$rmed
+prev.assess.recruitment.upper <- last_yr_base_model$mcmccalcs$rupper
 
 # Current assessment w/o final projection year --------------------------------
 # since not in previous assessment)
@@ -393,7 +393,7 @@ recruitment.med.since.2010 <- mc$rmed[which(names(mc$rmed) %in% 2010:end_yr & na
 years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[recruitment.med.since.2010  < mean(mc$rmed)])
 # ... est, recruitment in 2014 and 2016 in billions ---------------------------
 recruitment.med.in.2014 <- f(mc$rmed["2014"], 3)
-last.assess.recruitment.med.in.2014 <- f(last.yr.base_model$mcmccalcs$rmed["2014"], 3)
+last.assess.recruitment.med.in.2014 <- f(last_yr_base_model$mcmccalcs$rmed["2014"], 3)
 prob.percent.2014.rec.gt.2010.rec <- f(mean(base_model$mcmc$Recr_2014 > base_model$mcmc$Recr_2010) * 100, 0)
 prob.percent.2016.rec.gt.2010.rec <- f(mean(base_model$mcmc$Recr_2016 > base_model$mcmc$Recr_2010) * 100, 1)
 prob.percent.2014.rec.gt.2016.rec <- f(mean(base_model$mcmc$Recr_2014 > base_model$mcmc$Recr_2016) * 100, 0)
@@ -404,7 +404,7 @@ prob.percent.2016.rec.gt.2010.rec <- f(mean(base_model$mcmc$Recr_2016 > base_mod
 sd.med.recr.dev.estimates <- f(sd(mc$devmed[names(mc$devmed) >= 1970 & names(mc$devmed) <= (last_data_yr - 2)]), 2)
 prob.percent.2010.rec.gt.1980.rec <- f(mean(base_model$mcmc$Recr_2010 > base_model$mcmc$Recr_1980) * 100, 0)
 prob.percent.2010.rec.gt.1980.rec.last.year.assess <-
-  f(mean(last.yr.base_model$mcmc$Recr_2010 > last.yr.base_model$mcmc$Recr_1980) * 100, 0)
+  f(mean(last_yr_base_model$mcmc$Recr_2010 > last_yr_base_model$mcmc$Recr_1980) * 100, 0)
 
 # Exploitation ----------------------------------------------------------------
 exploitation.med.2010 <- f(mc$fmed["2010"],2)
@@ -454,11 +454,11 @@ ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
 ages2016 <- as.numeric(names(cohortCumSum2016)) - 2016
 ages2017 <- as.numeric(names(cohortCumSum2017)) - 2017
 # ... Cohort medians, credible intervals --------------------------------------
-rec_2010 <- get_rec_ci(last.yr.base_model, base_model, 2010)
-rec_2014 <- get_rec_ci(last.yr.base_model, base_model, 2014)
-rec_2016 <- get_rec_ci(last.yr.base_model, base_model, 2016)
-rec_2017 <- get_rec_ci(last.yr.base_model, base_model, 2017)
-rec_2020 <- get_rec_ci(last.yr.base_model, base_model, 2020)
+rec_2010 <- get_rec_ci(last_yr_base_model, base_model, 2010)
+rec_2014 <- get_rec_ci(last_yr_base_model, base_model, 2014)
+rec_2016 <- get_rec_ci(last_yr_base_model, base_model, 2016)
+rec_2017 <- get_rec_ci(last_yr_base_model, base_model, 2017)
+rec_2020 <- get_rec_ci(last_yr_base_model, base_model, 2020)
 # ... Cohort biomass-at-age ---------------------------------------------------
 baa <- get_baa(base_model, assess_yr)
 baa_large <- baa %>% arrange(desc(Median))

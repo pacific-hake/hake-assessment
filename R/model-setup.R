@@ -250,13 +250,13 @@ load_models_rds <- function(){
            "   within build_rds() in model-setup.r and try again.\n")
   }
 
-  last.yr.base_model <<- load_models(last_yr_base_model_dir_name)
+  last_yr_base_model <<- load_models(last_yr_base_model_dir_name)
 
   # For 2022 assessment only due to changes in SS3 to make figures and tables work.
   #  Can remove in 2023:
   if(last_yr_base_model_name == "2021 Base model"){
-    last.yr.base_model$mcmc[, grep("SSB", names(last.yr.base_model$mcmc))] <<-
-      last.yr.base_model$mcmc[, grep("SSB", names(last.yr.base_model$mcmc))]/2
+    last_yr_base_model$mcmc[, grep("SSB", names(last_yr_base_model$mcmc))] <<-
+      last_yr_base_model$mcmc[, grep("SSB", names(last_yr_base_model$mcmc))]/2
   }
 
   bridge.models.1 <<- load_models(bridge_model_dir_names_1)

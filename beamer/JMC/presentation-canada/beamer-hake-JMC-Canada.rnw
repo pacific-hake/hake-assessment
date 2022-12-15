@@ -558,7 +558,7 @@ par <- oldpar
   # run `build_rds("2019.03.00_base")`
   model_2019 <- load_models("2019.03.00_base")
   make.comparison.plot(c(list(base_model),
-                         list(last.yr.base_model),
+                         list(last_yr_base_model),
                          list(model_2019)),
                      subplots = 2,
                      model.names = c(base_model_name, last_yr_base_model_name, "2019 Base model"),
@@ -579,7 +579,7 @@ par <- oldpar
   # run `build_rds("2019.03.00_base")`
   model_2019 <- load_models("2019.03.00_base")
   make.comparison.plot(c(list(base_model),
-                         list(last.yr.base_model),
+                         list(last_yr_base_model),
                          list(model_2019)),
                      subplots = 3,
                      xlim = c(2010, 2021),

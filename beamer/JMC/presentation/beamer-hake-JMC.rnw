@@ -470,7 +470,7 @@ par <- oldpar
 %\begin{figure}[tbp]
 %\begin{center}
 %<<phase.plot.last.yr, fig.height=3, fig.width=6>>=
-%      make.phase.plot(last.yr.base_model,
+%      make.phase.plot(last_yr_base_model,
 %                      start_yr = start_yr,
 %                      end_yr = end_yr - 1,
 %                      cex.lab = 0.5)
