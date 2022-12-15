@@ -118,7 +118,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \begin{frame}
 \frametitle{Sum of Recruitment Deviates}
   <<request-day1-R0, echo=FALSE>>=
-  base_R0 <- f((median(base.model$mcmc[,"Recr_Virgin"])) / 1e3, 0)
+  base_R0 <- f((median(base_model$mcmc[,"Recr_Virgin"])) / 1e3, 0)
   @
 Request 1 -- Provide the sum of the recruitment deviates in the main period for the base model
   and the model without the age-1 index. Also, multiply this sum by the estimated $R_0$ to determine
@@ -187,7 +187,7 @@ Request 3 -- The SRG requests two additional runs of the model to explore the im
 \frametitle{Fits to Survey Age Composition Data (Base model)}
 <<request-fig-comp-fit-base, fig.height = 3.5>>=
 oldpar <- par(no.readonly = TRUE)
-make.age.comp.fit.plot(base.model,
+make.age.comp.fit.plot(base_model,
                        subplot = 2,
                        fill = FALSE)
 par <- oldpar
@@ -236,7 +236,7 @@ par <- oldpar
 <<request-fig-SB-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
 req3.model.names <- c("Fix theta, 0.2 x input sample size","Fix theta, 2.0 x input sample size",
                       "Est. theta, 2.0 x input sample size")
-make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+make.comparison.plot(c(list(base_model), list(mod200), list(mod201), list(mod202)),
                      subplots = 2,
                      model.names = c(base_model_name, req3.model.names),
                      end_yr = end_yr)
@@ -246,7 +246,7 @@ make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202
 \begin{frame}
 \frametitle{Relative Spawning Biomass}
 <<request-fig-SBratio-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+make.comparison.plot(c(list(base_model), list(mod200), list(mod201), list(mod202)),
                      subplots = 4,
                      legend = FALSE,
                      model.names = c(base_model_name, req3.model.names),
@@ -257,7 +257,7 @@ make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202
 \begin{frame}
 \frametitle{Recruitment Deviations}
 <<request-fig-recdev-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+make.comparison.plot(c(list(base_model), list(mod200), list(mod201), list(mod202)),
                      subplots = 12,
                      legend = FALSE,
                      model.names = c(base_model_name, req3.model.names),
@@ -268,7 +268,7 @@ make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202
 \begin{frame}
 \frametitle{Survey Index of Age-2$+$ Biomass}
 <<request-fig-acoustic2-compare, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202)),
+make.comparison.plot(c(list(base_model), list(mod200), list(mod201), list(mod202)),
                      subplots = 13,
                      model.names = c(base_model_name, req3.model.names),
                      indexfleets = 2,
@@ -282,7 +282,7 @@ make.comparison.plot(c(list(base.model), list(mod200), list(mod201), list(mod202
 \begin{frame}
 \frametitle{Closer Look at Base Model Survey Weighting}
 <<fig1, fig.height = 3.5>>=
-test<-exp(base.model$mcmc[,"ln(DM_theta)_2"])
+test<-exp(base_model$mcmc[,"ln(DM_theta)_2"])
 test <- test / (1 + test)
 hist(test,breaks=200,main="Posterior Distribution of Survey Weighting Factor",xlab="")
 abline(v=median(test),lwd=2,col="red")

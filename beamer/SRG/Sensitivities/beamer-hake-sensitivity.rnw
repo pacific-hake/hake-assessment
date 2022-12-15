@@ -162,7 +162,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model),
+make.comparison.plot(c(list(base_model),
                        sens.models.1[1],
                        sens.models.1[2],
                        sens.models.1[5],
@@ -185,7 +185,7 @@ par <- oldpar
 \frametitle{Sensitivities to steepness, $h$, and natural mortality, $M$}
 \begin{center}
 <<hm.par.table, results='asis', echo=FALSE>>=
-param_est_table(c(list(base.model),
+param_est_table(c(list(base_model),
                   sens.models.1[1],
                   sens.models.1[2],
                   sens.models.1[5],
@@ -220,7 +220,7 @@ param_est_table(c(list(base.model),
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model),
+make.comparison.plot(c(list(base_model),
                        sens.models.1[3],
                        sens.models.1[4]),
                      subplots = 2,
@@ -242,7 +242,7 @@ par <- oldpar
 <<sigmar.biomass.fig.rel>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model),
+make.comparison.plot(c(list(base_model),
                        sens.models.1[3],
                        sens.models.1[4]),
                      subplots = 4,
@@ -261,7 +261,7 @@ par <- oldpar
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
 <<sigmar.par.table, results='asis', echo=FALSE>>=
-param_est_table(c(list(base.model),
+param_est_table(c(list(base_model),
                   sens.models.1[3],
                   sens.models.1[4]),
                 model.names = c("Base model",
@@ -290,7 +290,7 @@ param_est_table(c(list(base.model),
 <<harmonicmean.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model),
+make.comparison.plot(c(list(base_model),
                        sens.models.2[2]),
                      subplots = 2,
                      model.names = c(paste0("Base model ", end_yr),
@@ -310,7 +310,7 @@ par <- oldpar
 <<harmonicmean.sensitivity.biomass.rel>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model),
+make.comparison.plot(c(list(base_model),
                        sens.models.2[2]),
                      subplots = 4,
                      model.names = c(paste0("Base model ", end_yr),
@@ -352,7 +352,7 @@ Here we test alternative values of $\Phi$
 <<phi.sensitivity.biomass>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model),
+make.comparison.plot(c(list(base_model),
                        sens.models.4[1],
                        sens.models.4[2],
                        sens.models.4[3]),
@@ -376,7 +376,7 @@ par <- oldpar
 <<phi.sensitivity.survey, fig.height=3.5, fig.width=8>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model),
+make.comparison.plot(c(list(base_model),
                        sens.models.4[1],
                        sens.models.4[2],
                        sens.models.4[3]),
@@ -400,7 +400,7 @@ par <- oldpar
 \begin{center}
 \vspace{-5pt}
 <<phi.sensitivity.table, results='asis', echo=FALSE>>=
-param_est_table(c(list(base.model),
+param_est_table(c(list(base_model),
                   sens.models.4[1],
                   sens.models.4[2],
                   sens.models.4[3]),
@@ -430,7 +430,7 @@ param_est_table(c(list(base.model),
 <<max-age-sel, fig.height=3.5>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base.model), sens.models.6),
+make.comparison.plot(c(list(base_model), sens.models.6),
                      subplots = 4,
                      model.names = c(base_model_name, sens_model_names_6),
                      legend = TRUE,
@@ -450,7 +450,7 @@ par <- oldpar
 <<age1.sensitivity.age1.fit.base, fig.height=3.5>>=
 oldpar <- par()
 par(mar = c(4, 5, 0, 1))
-make.survey.age1.plot(base.model,
+make.survey.age1.plot(base_model,
                       age.1.index)
 par <- oldpar
 @
@@ -483,7 +483,7 @@ par <- oldpar
 <<age1.sensitivity.biomass.a>>=
 oldpar <- par()
 par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(list(base.model, sens.models.2[[1]]),
+make.comparison.plot(list(base_model, sens.models.2[[1]]),
                      subplots = 2,
                      model.names = c(base_model_name, sens_model_names_2[1]),
                      end_yr = end_yr)
@@ -500,7 +500,7 @@ par <- oldpar
 <<age1.sensitivity.recr.base, fig.height=3.5>>=
 oldpar <- par()
 par(mar = c(20, 4.1, 0, 1))
-make.recruitment.plot(base.model,
+make.recruitment.plot(base_model,
                       equil.yr = unfished_eq_yr,
                       start_yr = start_yr,
                       end_yr = end_yr,
@@ -542,10 +542,10 @@ par <- oldpar
 \frametitle{$R_0$ and $B_0$ with and without age-1 index}
 <<main-parameter-estimates-sens-1, results='asis', echo=FALSE>>=
 probs <- c(0.025, 0.5, 0.975)
-base_bo <- f((quantile(base.model$mcmc$`SSB_Initial`, probs = probs)) / 2e3, 0)
+base_bo <- f((quantile(base_model$mcmc$`SSB_Initial`, probs = probs)) / 2e3, 0)
 age1_bo <- f((quantile(sens.models.2[[1]]$mcmc$`SSB_Initial`, probs = probs)) / 2e3, 0)
 
-base_ro <- f((quantile(base.model$mcmc$`SR_LN(R0)`, probs = probs) %>% exp) / 1e3, 0)
+base_ro <- f((quantile(base_model$mcmc$`SR_LN(R0)`, probs = probs) %>% exp) / 1e3, 0)
 age1_ro <- f((quantile(sens.models.2[[1]]$mcmc$`SR_LN(R0)`, probs = probs) %>% exp) / 1e3, 0)
 @
 \begin{table}[tbp]
@@ -594,7 +594,7 @@ make_rec_tbl <- function(mc, digits = 3){
     mutate_all(~{f(.x, digits)})
   bind_cols(rec, dev)
 }
-base <- make_rec_tbl(base.model$mcmccalcs) %>%
+base <- make_rec_tbl(base_model$mcmccalcs) %>%
   mutate(Year = as.character(Year))
 age1 <- make_rec_tbl(sens.models.2[[1]]$mcmccalcs) %>%
   mutate(Year = as.character(Year))
@@ -641,7 +641,7 @@ Year & \multicolumn{3}{c}{Absolute recruitment} & \multicolumn{3}{c}{Recruitment
 % <<base.hists, fig.height=3.5>>=
 % oldpar <- par()
 % par(mar = c(4.1, 4.1, 3.1, 0.1))
-% plot_mcmc_param_stats(base.model,
+% plot_mcmc_param_stats(base_model,
 %                       effn_labels = TRUE,
 %                       ylim_mult = 1.2,
 %                       show_ro_loc = TRUE,
@@ -692,7 +692,7 @@ par <- oldpar
 <<retro.3, fig.height=3.5>>=
 oldpar <- par(mar = c(5, 4, 1, 1), no.readonly = TRUE)
 retro.cohorts <- (end_yr - 11):(end_yr - 2)
-make_squid_plot(base.model,
+make_squid_plot(base_model,
                 subplot = 1,
                 cohorts = retro.cohorts)
 par <- oldpar
@@ -727,7 +727,7 @@ par <- oldpar
 \begin{center}
 \vspace{-5pt}
 <<retro.4, out.width='.88\\columnwidth', out.height='.8\\textheight'>>=
-make.assessment.history.plot(base.model,
+make.assessment.history.plot(base_model,
                              assessment.history,
                              cex.legend = 0.48 * 38 / (38 + assess_yr - 2022))
                              # automatically shrink font size each year to fit.

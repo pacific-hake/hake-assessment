@@ -255,7 +255,7 @@ make.forecast.depletion.comparison.plot(sens.models.5[[3]],
          \Sexpr{forecast_yrs[length(forecast_yrs)]} (grey region) for several management actions
          defined in Table~\ref{tab:decisions-biomass-fecundity}, with 95\%
          posterior credibility intervals.}
-% The \Sexpr{end_yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
+% The \Sexpr{end_yr} catch of \Sexpr{f(base_model$catch.default.policy[1])}~t was calculated
 %  using the default harvest policy, as defined in the Agreement.}
 % Above commented sentence Was in 2016 but I think is wrong - plot shows the
 %  FI=100% action, so not sure why this talks about default HR (action g).

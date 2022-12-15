@@ -7,7 +7,7 @@ make.selectivity.illustration <- function(
   # code to make figures illustrating parameterization of selectivity
   # using equations 39-40 of the 2017 hake assessment
 
-  ## mod.old <- base.model
+  ## mod.old <- base_model
   ## mod.alt <- sens.models.4[[which(sens_model_dir_names_4=="2018.40.10_semiPara_tvSelect_sig0.695")]]
 
   ###########################################################

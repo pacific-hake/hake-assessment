@@ -277,7 +277,7 @@ cohort.catch <- function(model, cohort, ages = 0:20, trim.end.year = NA) {
 
 #' Create text describing the top `num.cohorts` cohorts by year and percentage as a sentence
 #'
-#' @details top.coh(base.model, 2018, 2) produces:
+#' @details top.coh(base_model, 2018, 2) produces:
 ##  "The 2018 cohort was the largest (29\\%), followed by the 2010 cohort (27\\%)"
 #'
 #' @param model The model as returned from [load_ss_files()]
@@ -809,7 +809,7 @@ get.args <- function(){
 #' @export
 #'
 #' @examples
-#' get_active_parameter_names(base.model)
+#' get_active_parameter_names(base_model)
 get_active_parameter_names <- function(model){
   params <- model$parameters
   params$Label[!is.na(params$Active_Cnt)]
@@ -824,10 +824,10 @@ get_active_parameter_names <- function(model){
 #' @return A list of posterior vectors, one for each of the regular expressions in `param_regex`
 #' @export
 #' @examples
-#' get_posterior_data(base.model, "BH_steep")
-#' get_posterior_data(base.model, "e")
-#' get_posterior_data(base.model, "asdfg")
-#' get_posterior_data(base.model, c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"))
+#' get_posterior_data(base_model, "BH_steep")
+#' get_posterior_data(base_model, "e")
+#' get_posterior_data(base_model, "asdfg")
+#' get_posterior_data(base_model, c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"))
 get_posterior_data <- function(model, param_regex){
 
   mcmc <- model$mcmc
@@ -875,10 +875,10 @@ get_posterior_data <- function(model, param_regex){
 #' @return A list of prior and MLE data, one for each of the regular expressions in `param_regex`
 #' @export
 #' @examples
-#' get_prior_data(base.model, "BH_steep")
-#' get_prior_data(base.model, "e")
-#' get_prior_data(base.model, "asdfg")
-#' get_prior_data(base.model, c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"))
+#' get_prior_data(base_model, "BH_steep")
+#' get_prior_data(base_model, "e")
+#' get_prior_data(base_model, "asdfg")
+#' get_prior_data(base_model, c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"))
 get_prior_data <- function(model, param_regex){
 
   stopifnot(class(param_regex) == "character")
@@ -974,7 +974,7 @@ get_prior_data <- function(model, param_regex){
 #' @export
 #'
 #' @examples
-#' split_df(base.model, tibble(from = c(1, 100), to = c(101, 200)))
+#' split_df(base_model, tibble(from = c(1, 100), to = c(101, 200)))
 split_df <- function(df, from_to){
   stopifnot(nrow(df) >= max(from_to))
   pmap(from_to, ~{df[.x:.y,]})

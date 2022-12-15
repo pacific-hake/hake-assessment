@@ -113,12 +113,12 @@ message("Base model pretty name: ", base_model_name)
 # Alternative base model names and directories (runs we want MCMC results for,
 #  not necessarily considering as alt runs for 2019).
 # -----------------------------------------------------------------------------
-# alt.base.model.1.dir.name <- "2019.02.36_fecundity"
-# alt.base.model.1.name <- paste0(assess_yr, " Short-term pre-1975 wt at age")
-# alt.base.model.2.dir.name <- "2019.02.32_fecundity"
-# alt.base.model.2.name <- paste0(assess_yr, " Long-term pre-1975 wt at age")
-# alt.base.model.3.dir.name <- "2019.02.38_fecundity"
-# alt.base.model.3.name <- paste0(assess_yr, " TV Fec, short-term pre-1975 wt at age")
+# alt.base_model.1.dir.name <- "2019.02.36_fecundity"
+# alt.base_model.1.name <- paste0(assess_yr, " Short-term pre-1975 wt at age")
+# alt.base_model.2.dir.name <- "2019.02.32_fecundity"
+# alt.base_model.2.name <- paste0(assess_yr, " Long-term pre-1975 wt at age")
+# alt.base_model.3.dir.name <- "2019.02.38_fecundity"
+# alt.base_model.3.name <- paste0(assess_yr, " TV Fec, short-term pre-1975 wt at age")
 
 # -----------------------------------------------------------------------------
 # Last assessment year's base model name and directory
@@ -236,27 +236,27 @@ model_list <- as.list(unique(model_list))
 # as the other model setup and should be changed if bridge models
 # and sensitivity models change in the model.dir.names above..
 load_models_rds <- function(){
-  base.model <<- load_models(base_model_dir_name)
-  if(is.null(base.model$mcmccalcs)){
-    stop("Error - base.model$mcmccalcs is NULL. Make sure the directory\n",
-            file.path(base.model$path, "mcmc"), " exists and contains valid\n",
+  base_model <<- load_models(base_model_dir_name)
+  if(is.null(base_model$mcmccalcs)){
+    stop("Error - base_model$mcmccalcs is NULL. Make sure the directory\n",
+            file.path(base_model$path, "mcmc"), " exists and contains valid\n",
             "   mcmc output, set ovwrt.rdata = TRUE in the create.rdata.file() calls\n",
             "   within build_rds() in model-setup.r, and try again.\n")
   }
-  if(is.null(base.model$risks)){
-    stop("Error - base.model$risks is NULL. Maybe you forgot to run the forecasting?\n",
+  if(is.null(base_model$risks)){
+    stop("Error - base_model$risks is NULL. Maybe you forgot to run the forecasting?\n",
            "   Make sure to setup running and/or loading of forecasts, and\n",
            "   set ovwrt.rdata = TRUE in the create.rdata.file() calls\n",
            "   within build_rds() in model-setup.r and try again.\n")
   }
 
-  last.yr.base.model <<- load_models(last_yr_base_model_dir_name)
+  last.yr.base_model <<- load_models(last_yr_base_model_dir_name)
 
   # For 2022 assessment only due to changes in SS3 to make figures and tables work.
   #  Can remove in 2023:
   if(last_yr_base_model_name == "2021 Base model"){
-    last.yr.base.model$mcmc[, grep("SSB", names(last.yr.base.model$mcmc))] <<-
-      last.yr.base.model$mcmc[, grep("SSB", names(last.yr.base.model$mcmc))]/2
+    last.yr.base_model$mcmc[, grep("SSB", names(last.yr.base_model$mcmc))] <<-
+      last.yr.base_model$mcmc[, grep("SSB", names(last.yr.base_model$mcmc))]/2
   }
 
   bridge.models.1 <<- load_models(bridge_model_dir_names_1)
@@ -280,13 +280,13 @@ load_models_rds <- function(){
   # Lists of sensitivities for the MLE parameters, derived quantiles,
   #  and reference points table
   # First set includes base and sensitivity group 1 and 2
-  sens.models.1.for.table <<- c(list(base.model), sens.models.1, sens.models.2)
+  sens.models.1.for.table <<- c(list(base_model), sens.models.1, sens.models.2)
   sens_model_names_1.for.table <<- c("Base model", sens_model_names_1,sens_model_names_2)
   # Second set includes base and sensitivity groups 3 and 4
 
   # Removing the sens group 4 from this because it's causing problems when
   # running param_est_table()
-  sens.models.2.for.table <<- c(list(base.model),
+  sens.models.2.for.table <<- c(list(base_model),
                                 sens.models.4,
                                 sens.models.6)
   sens_model_names_2.for.table <<- c("Base model",
@@ -297,7 +297,7 @@ load_models_rds <- function(){
   mod200 <<- load_models("2022.01.200_inputnsmall")
   mod201 <<- load_models("2022.01.201_inputnlarge")
   mod202 <<- load_models("2022.01.202_inputnlargee")
-  dm_models <<- c(list(base.model),
+  dm_models <<- c(list(base_model),
                   list(mod200),
                   list(mod201),
                   list(mod202))
@@ -307,10 +307,10 @@ load_models_rds <- function(){
                        "Est. theta, 2.0 x input sample size")
 
   # Third set
-  # sens.models.3.for.table <<- c(list(base.model), list(sens.models.5), sens.models.6, list(sens.models.7))
+  # sens.models.3.for.table <<- c(list(base_model), list(sens.models.5), sens.models.6, list(sens.models.7))
   # sens_model_names_3.for.table <<- c("Base model", sens_model_names_5, sens_model_names_6, sens_model_names_7)
 
   # Fourth set
-  # sens.models.4.for.table <<- c(list(base.model), list(sens.models.6))
+  # sens.models.4.for.table <<- c(list(base_model), list(sens.models.6))
   # sens_model_names_4.for.table <<- c("Base model", sens_model_names_6)
 }

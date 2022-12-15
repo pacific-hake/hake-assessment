@@ -26,7 +26,7 @@ excludes the age-1 index, the sensitivity model that fixes steepness at 1.0, and
 The sum of the recruitment deviates differed slightly among models and, in particular, the difference
 between the 2021 and 2022
 base model was negligible. Average recruitment also differed slightly among models, but was 24\% above
-the median estimate of $R_0$ from the 2022 base model (\Sexpr{f((median(base.model$mcmc[,"Recr_Virgin"])) / 1e3, 0)} million fish). A consequence of this
+the median estimate of $R_0$ from the 2022 base model (\Sexpr{f((median(base_model$mcmc[,"Recr_Virgin"])) / 1e3, 0)} million fish). A consequence of this
 discrepancy is that equilibrium-based reference points are being estimated using productivity that is not
 as high as the main recruitment period would otherwise suggest. The JTC plans to investigate the consequences
 of this inconsistency as part of ongoing dynamic reference point work as highlighted in
@@ -95,7 +95,7 @@ more flexibility (relative to the base model) to influence fits
 oldpar <- par(no.readonly = TRUE)
 ## par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.age.comp.fit.plot(base.model,
+make.age.comp.fit.plot(base_model,
                        subplot = 2,
                        fill = FALSE)
 make.age.comp.fit.plot(mod200,
@@ -209,7 +209,7 @@ in the final years of the time series.
 \begin{figure}[H]
 \begin{center}
 <<ext-DM-breaks, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the posterior distribution of the survey weighting factor">>=
-test<-exp(base.model$mcmc[,"ln(DM_theta)_2"])
+test<-exp(base_model$mcmc[,"ln(DM_theta)_2"])
 test <- test / (1 + test)
 hist(test,breaks=200,main="Posterior Distribution of Survey Weighting Factor",xlab="")
 abline(v=median(test),lwd=2,col="red")

@@ -12,7 +12,7 @@ Can then just flick back and forth between two open .pdf's.
 \begin{figure}[H]
 \begin{center}
 <<spawning-biomass-base-temp, fig.height=5, fig.width=8>>=
-make.biomass.plot(base.model,
+make.biomass.plot(base_model,
                   equil.yr = unfished_eq_yr,
                   start_yr = start_yr,
                   end_yr = end_yr,
@@ -33,7 +33,7 @@ make.biomass.plot(base.model,
 \begin{figure}[H]
 \begin{center}
 <<relative-spawning-biomass-base-temp, fig.height=5, fig.width=8>>=
-make.depletion.plot(base.model,
+make.depletion.plot(base_model,
                     start_yr = start_yr,
                     end_yr = end_yr,
                     color = "blue")
@@ -49,7 +49,7 @@ make.depletion.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 <<biomass-table-base-temp, results='asis', echo=FALSE>>=
-make.biomass.table(base.model,
+make.biomass.table(base_model,
                    start_yr = end_yr-9,
                    end_yr = end_yr,
                    weight.factor = 1000,
@@ -65,7 +65,7 @@ make.biomass.table(base.model,
 \clearpage
 
 <<recruitment-table-base-temp, results='asis', echo=FALSE>>=
-make.recruitment.table(base.model,
+make.recruitment.table(base_model,
                        start_yr = end_yr-10,
                        end_yr = end_yr-1,
                        weight.factor = 1000,
@@ -84,7 +84,7 @@ make.recruitment.table(base.model,
 \begin{figure}[H]
 \begin{center}
 <<recruitment-base-temp, fig.height=5, fig.width=8>>=
-make.recruitment.plot(base.model,
+make.recruitment.plot(base_model,
                       equil.yr = unfished_eq_yr,
                       start_yr = start_yr,
                       end_yr = end_yr,
@@ -104,7 +104,7 @@ make.recruitment.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 <<fishing-intensity-table-base-temp, results='asis', echo=FALSE>>=
-make.fishing.intensity.table(base.model,
+make.fishing.intensity.table(base_model,
                              start_yr = end_yr-10,
                              end_yr = end_yr-1,
                              digits = 3,
@@ -123,7 +123,7 @@ make.fishing.intensity.table(base.model,
 \begin{figure}[H]
 \begin{center}
 <<fishing-intensity-base-temp, fig.height=5, fig.width=8>>=
-make.fishing.intensity.plot(base.model,
+make.fishing.intensity.plot(base_model,
                             start_yr = start_yr,
                             end_yr = end_yr-1,
                             color = "blue",
@@ -143,7 +143,7 @@ make.fishing.intensity.plot(base.model,
 \begin{figure}[H]
 \begin{center}
 <<exploitation-fraction-base-temp, fig.height=5, fig.width=8>>=
-make.exploitation.fraction.plot(base.model,
+make.exploitation.fraction.plot(base_model,
                                 start_yr = start_yr,
                                 end_yr = end_yr-1,
                                 color = "blue",
@@ -160,7 +160,7 @@ make.exploitation.fraction.plot(base.model,
 \begin{figure}[H]
 \begin{center}
 <<phase-plot-base-temp, fig.height=5, fig.width=8>>=
-make.phase.plot(base.model,
+make.phase.plot(base_model,
                 start_yr = start_yr,
                 end_yr = end_yr,
                 x.max = 1.5)
@@ -181,7 +181,7 @@ make.phase.plot(base.model,
 
 <<reference-points-table-base-temp, results='asis', echo=FALSE>>=
 make.reference.points.table(
-  base.model,
+  base_model,
   xcaption = paste0("For the \\altshort, summary of median and 95\\%",
                      " credibility intervals of equilibrium reference points.",
                      " Equilibrium reference points were computed using ",
@@ -194,7 +194,7 @@ make.reference.points.table(
 @
 
 <<decisions-biomass-table-base-temp, results='asis', echo=FALSE>>=
-decision_table(base.model,
+decision_table(base_model,
                xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year
                      before fishing.  Catch alternatives are based on: constant
@@ -240,9 +240,9 @@ decision_table(base.model,
 % ## Look at catch.levels and catch.levels to decide which to include here
 % ## models.inds are the indices of those which will be plotted against each other
 % models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-% models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
+% models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds]
 %                        ## pretty catch level name
-% make.forecast.depletion.comparison.plot(base.model,
+% make.forecast.depletion.comparison.plot(base_model,
 %                                         models.inds,
 %                                         models.names,
 %                                         start_yr = 2009,
@@ -256,7 +256,7 @@ decision_table(base.model,
 %          \Sexpr{forecast_yrs[length(forecast_yrs)]} (grey region) for several management actions
 %          defined in Table~\ref{tab:decisions-biomass-53}, with 95\%
 %          posterior credibility intervals.}
-% % The \Sexpr{end_yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
+% % The \Sexpr{end_yr} catch of \Sexpr{f(base_model$catch.default.policy[1])}~t was calculated
 % %  using the default harvest policy, as defined in the Agreement.}
 % % Above commented sentence Was in 2016 but I think is wrong - plot shows the
 % %  FI=100% action, so not sure why this talks about default HR (action g).
@@ -269,7 +269,7 @@ decision_table(base.model,
 \begin{figure}[H]
 \begin{center}
 <<forecast-risk-comparison-plot-year-1-base-temp, fig.height=5, fig.width=8>>=
-make.forecast.risk.comparison.plot(base.model,
+make.forecast.risk.comparison.plot(base_model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[1],
                                    colors = c("black","blue","green","orange",
@@ -291,7 +291,7 @@ make.forecast.risk.comparison.plot(base.model,
 %%%%%%%%%%%%%%%%%%%%%%%
 
 <<risk-forecast-year-1-table-base-temp, results='asis', echo=FALSE>>=
-make.risk.table(base.model,
+make.risk.table(base_model,
                 forecast_yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
                            ##  forecast year 2 compared to forecast year 1
@@ -310,7 +310,7 @@ make.risk.table(base.model,
 \begin{figure}[H]
 \begin{center}
 <<forecast-risk-comparison-plot-year-2-base-temp, fig.height=5, fig.width=8>>=
-make.forecast.risk.comparison.plot(base.model,
+make.forecast.risk.comparison.plot(base_model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[2],
                                    colors = c("black","blue","green","orange",
@@ -332,7 +332,7 @@ directly from model output and lines interpolate between the points.}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 <<risk-forecast-year-2-table-base-temp, results='asis', echo=FALSE>>=
-make.risk.table(base.model,
+make.risk.table(base_model,
                 forecast_yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
                            ##  1 means forecast year 2 compared to forecast year 1
@@ -352,7 +352,7 @@ make.risk.table(base.model,
 \begin{figure}[H]
 \begin{center}
 <<mcmc-survey-fit-base-temp, fig.height=6, fig.width=8>>=
-make.mcmc.survey.fit.plot(base.model,
+make.mcmc.survey.fit.plot(base_model,
                           start_yr = survey_start_yr,
                           end_yr = survey_end_yr,
                           surv_yrs = surv_yrs,
@@ -377,8 +377,8 @@ make.mcmc.survey.fit.plot(base.model,
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(base.model, key_posteriors[1], key_posteriors.titles[1])
-make.mcmc.diag.plot(base.model, key_posteriors[2], key_posteriors.titles[2])
+make.mcmc.diag.plot(base_model, key_posteriors[1], key_posteriors.titles[1])
+make.mcmc.diag.plot(base_model, key_posteriors[2], key_posteriors.titles[2])
 par <- oldpar
 @
 \end{center}
@@ -394,8 +394,8 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(base.model, key_posteriors[3], key_posteriors.titles[3])
-make.mcmc.diag.plot(base.model, key_posteriors[4], key_posteriors.titles[4])
+make.mcmc.diag.plot(base_model, key_posteriors[3], key_posteriors.titles[3])
+make.mcmc.diag.plot(base_model, key_posteriors[4], key_posteriors.titles[4])
 par <- oldpar
 @
 \end{center}
@@ -411,8 +411,8 @@ par <- oldpar
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(base.model, key_posteriors[5], key_posteriors.titles[5])
-make.mcmc.diag.plot(base.model, key_posteriors[6], key_posteriors.titles[6])
+make.mcmc.diag.plot(base_model, key_posteriors[5], key_posteriors.titles[5])
+make.mcmc.diag.plot(base_model, key_posteriors[6], key_posteriors.titles[6])
 par <- oldpar
 @
 \end{center}
@@ -425,7 +425,7 @@ par <- oldpar
 \begin{figure}[H]
 \begin{center}
 <<mcmc-diag-hists-base-temp, fig.height=6, fig.width=8>>=
-plot_mcmc_param_stats(base.model)
+plot_mcmc_param_stats(base_model)
 @
 \end{center}
 \caption{Summary histograms of MCMC diagnostics for all parameters
@@ -451,7 +451,7 @@ The level of autocorrelation in the chain (distribution across lag times, i.e., 
 \begin{figure}[H]
 \begin{center}
 <<mcmc-pairs-base-temp, fig.height=8, fig.width=8>>=
-make.mcmc.diag.pairs.plot(base.model,
+make.mcmc.diag.pairs.plot(base_model,
                           inc.key.params = TRUE,
                           key_posteriors.regex = key_posteriors,
                           key_posteriors.names = key_posteriors.titles,
@@ -471,7 +471,7 @@ make.mcmc.diag.pairs.plot(base.model,
 \begin{figure}[H]
 \begin{center}
 <<mcmc-pairs-recruit-devs-base-temp, fig.height=8, fig.width=8>>=
-make.mcmc.diag.pairs.plot(base.model,
+make.mcmc.diag.pairs.plot(base_model,
                           inc.key.params = FALSE,
                           recr = (end_yr-10):(end_yr-1))
 @

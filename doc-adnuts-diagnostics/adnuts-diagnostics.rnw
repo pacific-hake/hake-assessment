@@ -269,7 +269,7 @@ if(!(length(sens.models.1) == 6 &
 # When changing number of models in each group in model-setup.R then need to
 #  change the vector below, and update the if statement above. No need if
 #  just commenting any of these out:
-diagnostic.model <- c("base.model",
+diagnostic.model <- c("base_model",
                       "sens.models.1[[1]]",
                       "sens.models.1[[2]]",
                       "sens.models.1[[3]]",

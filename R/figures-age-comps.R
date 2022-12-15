@@ -357,7 +357,7 @@ make.age.comp.compare.bubble.plot <- function(model,                  ## model i
 }
 
 #' @param model A model list with MCMC output included. This is typically
-#' `base.model` for the hake assessment. Information included in the list
+#' `base_model` for the hake assessment. Information included in the list
 #' will be typical information and output from [r4ss::SSgetMCMC].
 #' @param subplot An integer specifying which fishery include in the figure.
 #' @param fill A logical specifying if missing years should be

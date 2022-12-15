@@ -93,7 +93,7 @@ baa_table <- function(d,
 #' @export
 #'
 #' @examples
-#' baa <- get_baa(base.model)
+#' baa <- get_baa(base_model)
 get_baa_mle <- function(model, yrs = NULL, scale = 1e3){
 
   naa <- model$natage
@@ -146,7 +146,7 @@ get_baa_mle <- function(model, yrs = NULL, scale = 1e3){
 #' @export
 #'
 #' @examples
-#' get_rec_ci_mle(base.model, end_yr = 2019, cohorts = c(1999, 2010, 2014, 2016))
+#' get_rec_ci_mle(base_model, end_yr = 2019, cohorts = c(1999, 2010, 2014, 2016))
 get_rec_ci_mle <- function(model,
                            end_yr = NULL,
                            cohorts = NULL){
@@ -228,7 +228,7 @@ get_rec_ci_mle <- function(model,
 }
 
 function(){
-  get_rec_ci_mle(base.model, end_yr = 2019, cohorts = c(1999, 2010, 2014, 2016))
-  get_rec_ci_mle(base.model, end_yr = 2019, cohorts = c(2000:2009, 2011:2013, 2015, 2017:2019))
-  get_rec_ci_mle(base.model, end_yr = 2019, cohorts = 1999:2019)
+  get_rec_ci_mle(base_model, end_yr = 2019, cohorts = c(1999, 2010, 2014, 2016))
+  get_rec_ci_mle(base_model, end_yr = 2019, cohorts = c(2000:2009, 2011:2013, 2015, 2017:2019))
+  get_rec_ci_mle(base_model, end_yr = 2019, cohorts = 1999:2019)
 }

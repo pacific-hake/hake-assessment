@@ -103,12 +103,12 @@ models_loaded <- TRUE
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 metric <- NULL
-forecasts <- base.model$forecasts[[1]]
+forecasts <- base_model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
 models.inds <- c(1, 2, 4, 5, catch.default.policy.ind)
-models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
+models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds]
 fore.inds <- c(1, 2, 3, 4, 5, catch.tac.ind)
-fore.names <- cmodels.names <- sapply(base.model$catch.levels, "[[", 2)[fore.inds]
+fore.names <- cmodels.names <- sapply(base_model$catch.levels, "[[", 2)[fore.inds]
 @
 
 
@@ -165,7 +165,7 @@ from last year)
 \frame{\frametitle{Recruitment (numbers of fish)}
   \bc
   <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-    make.recruitment.plot(base.model,
+    make.recruitment.plot(base_model,
                           equil.yr = unfished_eq_yr,
                           start_yr = start_yr,
                           end_yr = end_yr,
@@ -180,7 +180,7 @@ from last year)
 \frame{\frametitle{Relative Spawning Biomass}
   \bc
   <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-    make.depletion.plot(base.model,
+    make.depletion.plot(base_model,
                         start_yr = start_yr,
                         end_yr = end_yr,
                         color = "blue")
@@ -193,7 +193,7 @@ from last year)
   \begin{columns}
     \begin{column}{0.5\textwidth}
       <<fishing.intensity, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
-      make.fishing.intensity.plot(base.model,
+      make.fishing.intensity.plot(base_model,
                                   start_yr = start_yr,
                                   end_yr = end_yr-1,
                                   color = "blue")
@@ -201,7 +201,7 @@ from last year)
     \end{column}
     \begin{column}{0.5\textwidth}
       <<exploitation, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
-      make.exploitation.fraction.plot(base.model,
+      make.exploitation.fraction.plot(base_model,
       start_yr = start_yr,
       end_yr = end_yr-1,
       upper.lim = 0.3,
@@ -214,9 +214,9 @@ from last year)
 %----------------------------------------------------------
 \frame{\frametitle{Biomass and relative fishing intentisy}
   \bi
-    \item Biomass has remained above $\BfortyB$ since 2011; current estimate is $\frac{B_{\Sexpr{assess_yr}}}{B_0} = \Sexpr{f(base.model$mcmccalcs$dmed[names(base.model$mcmccalcs$dmed) %in% end_yr], 2)}$
+    \item Biomass has remained above $\BfortyB$ since 2011; current estimate is $\frac{B_{\Sexpr{assess_yr}}}{B_0} = \Sexpr{f(base_model$mcmccalcs$dmed[names(base_model$mcmccalcs$dmed) %in% end_yr], 2)}$
     \item Fishing intensity has continually remained below $\Fforty$; current estimate is
-    $\frac{1-SPR_{\Sexpr{assess_yr - 1}}}{1 - SPR_{40\%}} = \Sexpr{f(base.model$mcmccalcs$pmed[names(base.model$mcmccalcs$pmed) == assess_yr - 1], 2)}$
+    $\frac{1-SPR_{\Sexpr{assess_yr - 1}}}{1 - SPR_{40\%}} = \Sexpr{f(base_model$mcmccalcs$pmed[names(base_model$mcmccalcs$pmed) == assess_yr - 1], 2)}$
     \item The estimated probability that spawning biomass at the start of
     \Sexpr{assess_yr} is below the $\BfortyB$ (40\% of $B_0$) reference point is
     \Sexpr{probs.curr.below.bforty}\%
@@ -231,7 +231,7 @@ from last year)
 \frame{\frametitle{Total Allowable Catch (time series)}
     <<tac.vs.realized.catch.ts, fig.height=3.5>>==
       management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE, connect_vars_linetype = "solid",
-      connect_vars_alpha = 0.2, curr_assess_biomass = base.model$catch.default.policy[1])
+      connect_vars_alpha = 0.2, curr_assess_biomass = base_model$catch.default.policy[1])
     @
 }
 
@@ -252,7 +252,7 @@ from last year)
   \end{column}
   \begin{column}{0.65\textwidth}
     <<main.projected.catch.density, out.width='.99\\columnwidth'>>=
-      make.forecast.catch.posterior.plot(base.model, fore.yr = end_yr, xmax=2000)
+      make.forecast.catch.posterior.plot(base_model, fore.yr = end_yr, xmax=2000)
       @
   \end{column}
 \end{columns}
@@ -297,7 +297,7 @@ from last year)
   \end{column}
   \begin{column}{0.59\textwidth}
     <<main.forecast.depletion.comparison.plot, out.width='.95\\columnwidth'>>=
-      make.forecast.depletion.comparison.plot(base.model,
+      make.forecast.depletion.comparison.plot(base_model,
                                               models.inds,
                                               models.names,
                                               start_yr = 2009,
@@ -312,7 +312,7 @@ from last year)
 %----------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
-      make.risk.table(base.model,
+      make.risk.table(base_model,
                       forecast_yrs,
                       index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                       xcaption = NULL,
@@ -325,7 +325,7 @@ from last year)
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
   \bc
     <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-        make.forecast.risk.comparison.plot.short(base.model,
+        make.forecast.risk.comparison.plot.short(base_model,
                                                  forecast_yrs = forecast_yrs,
                                                  fore.yr = forecast_yrs[1],
                                                  legend.loc = "topleft",
@@ -338,7 +338,7 @@ from last year)
 %----------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr + 1} catch}
     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
-      make.risk.table(base.model,
+      make.risk.table(base_model,
                       forecast_yrs,
                       index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                       xcaption = NULL,
@@ -351,7 +351,7 @@ from last year)
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr + 1} catch}
   \bc
     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-        make.forecast.risk.comparison.plot.short(base.model,
+        make.forecast.risk.comparison.plot.short(base_model,
                                                  forecast_yrs = forecast_yrs,
                                                  fore.yr = forecast_yrs[2],
                                                  legend.loc = "topleft",
@@ -373,7 +373,7 @@ from last year)
   \end{column}
   \begin{column}{0.65\textwidth}
   <<decisions.biomass.table, results='asis', echo=FALSE>>=
-    make.decision.table.pres(base.model,
+    make.decision.table.pres(base_model,
                              models.inds,
                              xcaption = NULL,
                              xlabel = "tab:es-decisions-spr",
@@ -425,7 +425,7 @@ new_decision_table(srg_day2_req2_model,
   \end{column}
   \begin{column}{0.65\textwidth}
     <<main.age.comp.forecast, fig.height=3.5, fig.width=5.5>>=
-    make.age.comp.forecast.plot(base.model)
+    make.age.comp.forecast.plot(base_model)
     @
   \end{column}
 \end{columns}
@@ -444,7 +444,7 @@ oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 # plot_retro_yrs <- retro.yrs
 retro.cohorts <- (end_yr - 11):(end_yr - 2)
-make_squid_plot(base.model,
+make_squid_plot(base_model,
                 subplot = 1,
                 cohorts = retro.cohorts)
 par <- oldpar
@@ -557,8 +557,8 @@ par <- oldpar
   # Need to copy this model folder into the models directory, remove all forecasts, extra-mcmc, and retro folders and then
   # run `build_rds("2019.03.00_base")`
   model_2019 <- load_models("2019.03.00_base")
-  make.comparison.plot(c(list(base.model),
-                         list(last.yr.base.model),
+  make.comparison.plot(c(list(base_model),
+                         list(last.yr.base_model),
                          list(model_2019)),
                      subplots = 2,
                      model.names = c(base_model_name, last_yr_base_model_name, "2019 Base model"),
@@ -578,8 +578,8 @@ par <- oldpar
   # Need to copy this model folder into the models directory, remove all forecasts, extra-mcmc, and retro folders and then
   # run `build_rds("2019.03.00_base")`
   model_2019 <- load_models("2019.03.00_base")
-  make.comparison.plot(c(list(base.model),
-                         list(last.yr.base.model),
+  make.comparison.plot(c(list(base_model),
+                         list(last.yr.base_model),
                          list(model_2019)),
                      subplots = 3,
                      xlim = c(2010, 2021),
@@ -607,7 +607,7 @@ par <- oldpar
       \Sexpr{catch.limit.quantiles["upper"]}~t)
     \item Forecasts strongly influenced by size of above-average 2014 and 2016
       cohorts; 2017 now looks to be average and 2018 is small.
-    \item There is a \Sexpr{f(base.model$risks[[1]][4, 2])}\% chance that spawning biomass will decline from \Sexpr{assess_yr} to \Sexpr{assess_yr + 1} at a catch level of \Sexpr{f(base.model$risks[[1]][4, 1])}~t (i.e., 2020 catch), partly due to mortality on ageing large cohorts (Figure j)
+    \item There is a \Sexpr{f(base_model$risks[[1]][4, 2])}\% chance that spawning biomass will decline from \Sexpr{assess_yr} to \Sexpr{assess_yr + 1} at a catch level of \Sexpr{f(base_model$risks[[1]][4, 1])}~t (i.e., 2020 catch), partly due to mortality on ageing large cohorts (Figure j)
     \item Maintaining a constant catch of 380,000~t (i.e., 2020 catch) results in a 36\%
       chance of falling below $B_{40\%}$ in 1 year and 47\% in 2 years time (Tables i and j)
   \ei

@@ -172,7 +172,7 @@ make_mcmc_priors_vs_posts_plot <- function(prior_mle,
 #' @export
 #'
 #' @examples
-#' make_key_posteriors_mcmc_priors_vs_posts_plot(base.model,
+#' make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
 #'                                               key_posteriors,
 #'                                               ncol = 2,
 #'                                               nrow = 2,
@@ -663,7 +663,7 @@ make.mcmc.catchability.plot <- function(model,
 
 ## adapting from make.mcmc.survey.fit.plot:
 ## Plot of MCMC samples for projection years, to help understand Issue #747,
-## just running as: make.mcmc.depletion.plot(base.model) and manually saving .png.
+## just running as: make.mcmc.depletion.plot(base_model) and manually saving .png.
 make.mcmc.depletion.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
                                                     ##  r4ss package's function SSgetMCMC and has the extra.mcmc member
                                      start_yr = 2020,      ## Year to start the plot
@@ -677,7 +677,7 @@ make.mcmc.depletion.plot <- function(model,         ## model is a model with an 
   oldpar <- par()
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
 
-  dat <- base.model$forecasts$`2021`$`01-0`$outputs[, c("Bratio_2020", "Bratio_2021", "Bratio_2022", "Bratio_2023")]
+  dat <- base_model$forecasts$`2021`$`01-0`$outputs[, c("Bratio_2020", "Bratio_2021", "Bratio_2022", "Bratio_2023")]
 
   if(is.null(y.max)){
     y.max <- max(max(dat))
@@ -754,11 +754,11 @@ make.mcmc.depletion.plot <- function(model,         ## model is a model with an 
 ## adapting from make.mcmc.depletion.plot, and values for make.recruitment.plot
 ## Plot of MCMC samples of recruitment, to help for Issue #836.
 ## just running as:
-##   make.mcmc.recruitment.plot(base.model, start_yr = start_yr, equil.yr = unfished_eq_yr)
+##   make.mcmc.recruitment.plot(base_model, start_yr = start_yr, equil.yr = unfished_eq_yr)
 ## and manually saving .png.
-## make.mcmc.recruitment.plot(base.model, start_yr = 2006, equil.yr = unfished_eq_yr, samples = 100)
-## make.mcmc.recruitment.plot(base.model, start_yr = 2006, equil.yr = unfished_eq_yr, samples = 100, rescale = TRUE)
-## make.mcmc.recruitment.plot(base.model, start_yr = 1966, equil.yr = unfished_eq_yr, samples = NULL, rescale = TRUE, traceplot = FALSE)
+## make.mcmc.recruitment.plot(base_model, start_yr = 2006, equil.yr = unfished_eq_yr, samples = 100)
+## make.mcmc.recruitment.plot(base_model, start_yr = 2006, equil.yr = unfished_eq_yr, samples = 100, rescale = TRUE)
+## make.mcmc.recruitment.plot(base_model, start_yr = 1966, equil.yr = unfished_eq_yr, samples = NULL, rescale = TRUE, traceplot = FALSE)
 make.mcmc.recruitment.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
                                                     ##  r4ss package's function
                                                     ##  SSgetMCMC and has the extra.mcmc member

@@ -16,7 +16,7 @@ and should not be viewed as an alternative base model.
 
 Removal of the age-1 index from the model decreases the estimates of 2018 and 2020
 cohort size (age-0 recruitment). The median 2020 recruitment decreases from
-\Sexpr{f(base.model$mcmccalcs$rmed["2020"], 1)}~billion fish (base model, Table~\ref{tab:main-est-numbers-at-age})
+\Sexpr{f(base_model$mcmccalcs$rmed["2020"], 1)}~billion fish (base model, Table~\ref{tab:main-est-numbers-at-age})
 to \Sexpr{f(sens.models.2[[1]]$mcmccalcs$rmed["2020"], 1)}~billion fish
 (sensitivity run, Table~\ref{tab:age1-est-numbers-at-age}).
 Estimates for cohorts born in odd years are similar between the two models

@@ -8,7 +8,7 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), basename(base.model$dat_file))}}
+\lstinputlisting{\Sexpr{here::here(models_path, basename(base_model$path), basename(base_model$dat_file))}}
 
 \end{codefont}
 
@@ -20,7 +20,7 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), basename(base.model$ctl_file))}}
+\lstinputlisting{\Sexpr{here::here(models_path, basename(base_model$path), basename(base_model$ctl_file))}}
 
 \end{codefont}
 
@@ -32,7 +32,7 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), starter_file_name)}}
+\lstinputlisting{\Sexpr{here::here(models_path, basename(base_model$path), starter_file_name)}}
                 % $ [so emacs renders properly]
 
 \end{codefont}
@@ -46,7 +46,7 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), forecast_file_name)}}
+\lstinputlisting{\Sexpr{here::here(models_path, basename(base_model$path), forecast_file_name)}}
 
 \end{codefont}
 
@@ -58,7 +58,7 @@
 
 \begin{codefont}
 
-\lstinputlisting{\Sexpr{here::here(models_path, basename(base.model$path), weight_at_age_file_name)}}
+\lstinputlisting{\Sexpr{here::here(models_path, basename(base_model$path), weight_at_age_file_name)}}
 
 \end{codefont}
 

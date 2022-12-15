@@ -39,7 +39,7 @@ text(x = p, y = trans.fn(p) + eps/2, "epsilon", pos=2)
 box()
 dev.off()
 
-### check values use last.yr.base.model
+### check values use last.yr.base_model
 p
 ## [1] 1.56975
 eps
@@ -50,7 +50,7 @@ trans.fn(p) + eps
 ## [1] -0.03771986
 backtrans.fn(trans.fn(p) + eps)
 ## [1] 1.736086
-last.yr.base.model$SelAgeAdj$Par4[last.yr.base.model$SelAgeAdj$FleetSvy==1 & last.yr.base.model$SelAgeAdj$Yr==2001]
+last.yr.base_model$SelAgeAdj$Par4[last.yr.base_model$SelAgeAdj$FleetSvy==1 & last.yr.base_model$SelAgeAdj$Yr==2001]
 ## [1] 1.73608 
 # SelAgeAdj is the adjusted parameter value used in the model which matches the
 # calculation above

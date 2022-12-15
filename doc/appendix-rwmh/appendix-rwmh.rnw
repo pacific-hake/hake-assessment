@@ -62,7 +62,7 @@ samples.
 \begin{figure}[H]
 \begin{center}
 <<biomass-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar values of spawning biomass between the base model and rwMH sensitivity run">>=
-make.comparison.plot(c(list(base.model), list(sens.models.7)),
+make.comparison.plot(c(list(base_model), list(sens.models.7)),
                      subplots = 2,
                      model.names = c(base_model_name, sens.model.names.7),
                      end_yr = end_yr, plot_mcmc = TRUE)
@@ -76,7 +76,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.7)),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
 <<status-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar patterns of relative spawning biomass between the base model and rwMH sensitivity run">>=
-make.comparison.plot(c(list(base.model), list(sens.models.7)),
+make.comparison.plot(c(list(base_model), list(sens.models.7)),
                      subplots = 4,
                      model.names = c(base_model_name, sens.model.names.7),
                      end_yr = end_yr, plot_mcmc = TRUE, legend = FALSE)
@@ -92,7 +92,7 @@ make.comparison.plot(c(list(base.model), list(sens.models.7)),
 \begin{figure}[H]
 \begin{center}
 <<recruitment-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar patterns of recruitment between the base model and rwMH sensitivity run">>=
-make.comparison.plot(c(list(base.model), list(sens.models.7)),
+make.comparison.plot(c(list(base_model), list(sens.models.7)),
                      legend = TRUE,
                      subplots = 10,
                      model.names = c(base_model_name, sens.model.names.7),
@@ -111,7 +111,7 @@ box()
 %% \begin{figure}[H]
 \begin{center}
 <<recruitment-devs-base-alternative-7-rwmh-sens, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows similar patterns of recruitment deviations between the base model and rwMH sensitivity run">>=
-make.comparison.plot(c(list(base.model), list(sens.models.7)),
+make.comparison.plot(c(list(base_model), list(sens.models.7)),
                      legend = FALSE,
                      subplots = 12,
                      model.names = c(base_model_name, sens.model.names.7),
@@ -373,7 +373,7 @@ box()
 %          \Sexpr{forecast_yrs[length(forecast_yrs)]} (grey region) for several management actions
 %          defined in Table~\ref{tab:decisions-biomass-53}, with 95\%
 %          posterior credibility intervals.}
-% % The \Sexpr{end_yr} catch of \Sexpr{f(base.model$catch.default.policy[1])}~t was calculated
+% % The \Sexpr{end_yr} catch of \Sexpr{f(base_model$catch.default.policy[1])}~t was calculated
 % %  using the default harvest policy, as defined in the Agreement.}
 % % Above commented sentence Was in 2016 but I think is wrong - plot shows the
 % %  FI=100% action, so not sure why this talks about default HR (action g).

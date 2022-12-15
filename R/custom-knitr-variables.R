@@ -6,8 +6,8 @@
 cred_int <- c(0.025, 0.5, 0.975)
 
 # Shortened names -------------------------------------------------------------
-mc <- base.model$mcmccalcs
-extramc <- base.model$extra.mcmc
+mc <- base_model$mcmccalcs
+extramc <- base_model$extra.mcmc
 
 # Attainment in the past ------------------------------------------------------
 ct_last10 <- ct %>% filter(year %in% (end_yr - 10):(end_yr - 1))
@@ -54,7 +54,7 @@ last.5.years.total.catch <- ct_last5 %>% pull(tot_catch)
 long.term.avge.catch <- mean(ct$tot_catch)
 last.5.years.above.avge <- last.5.years.of.catch.data[last.5.years.total.catch > long.term.avge.catch]
 last.5.years.below.avge <- last.5.years.of.catch.data[last.5.years.total.catch < long.term.avge.catch]
-catch.limit.quantiles <- f(as.numeric(quantile(base.model$mcmc[[paste0("ForeCatch_", end_yr)]],
+catch.limit.quantiles <- f(as.numeric(quantile(base_model$mcmc[[paste0("ForeCatch_", end_yr)]],
                                                probs = cred_int)))
 names(catch.limit.quantiles) <- c("lower", "median", "upper")
 # ... recent catch, last year -------------------------------------------------
@@ -121,7 +121,7 @@ first.year.us.atsea <- ct %>% select(year, matches("us_cp|us_ms")) %>%
 # Survey values ---------------------------------------------------------------
 survey.biomass <- survey.history$biomass
 names(survey.biomass) <- as.character(survey.history$year)
-survey.comps <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy == 2, ]
+survey.comps <- base_model$dat$agecomp[base_model$dat$agecomp$FltSvy == 2, ]
 rownames(survey.comps) <- survey.comps$Yr
 survey.last.year <- survey.comps[nrow(survey.comps),]
 survey.last.year.age <- sort(decreasing = TRUE, round(unlist(prop.table(
@@ -183,13 +183,13 @@ prev.bio.lower.tonnes <- f(mc$slower[names(mc$slower) %in% last_data_yr] * 1e6, 
 prev.bio.median.tonnes <- f(mc$smed[names(mc$smed) %in% last_data_yr] * 1e6, 0)
 prev.bio.upper.tonnes <- f(mc$supper[names(mc$supper) %in% last_data_yr] * 1e6, 0)
 # ... spawning biomass for previous year (last year's assessment) -------------
-prev.bio.lower.last.assess <- f(last.yr.base.model$mcmccalcs$slower[names(mc$slower) %in% last_data_yr], 3)
-prev.bio.median.last.assess <- f(last.yr.base.model$mcmccalcs$smed[names(mc$smed) %in% last_data_yr], 3)
-prev.bio.upper.last.assess <- f(last.yr.base.model$mcmccalcs$supper[names(mc$supper) %in% last_data_yr], 3)
+prev.bio.lower.last.assess <- f(last.yr.base_model$mcmccalcs$slower[names(mc$slower) %in% last_data_yr], 3)
+prev.bio.median.last.assess <- f(last.yr.base_model$mcmccalcs$smed[names(mc$smed) %in% last_data_yr], 3)
+prev.bio.upper.last.assess <- f(last.yr.base_model$mcmccalcs$supper[names(mc$supper) %in% last_data_yr], 3)
 
 # Forecasting -----------------------------------------------------------------
 # ... first forecast year depletion and spawning biomass estimates ------------
-fore.tac.mcmc.yr1 <- base.model$forecasts[[1]][[catch.tac.ind]]$mcmccalcs
+fore.tac.mcmc.yr1 <- base_model$forecasts[[1]][[catch.tac.ind]]$mcmccalcs
 next.depl.lower.tac.based <- f(fore.tac.mcmc.yr1$dlower[names(fore.tac.mcmc.yr1$dlower) %in% (end_yr + 1)] * 100, 1)
 next.depl.median.tac.based <- f(fore.tac.mcmc.yr1$dmed[names(fore.tac.mcmc.yr1$dmed) %in% (end_yr + 1)] * 100, 1)
 next.depl.upper.tac.based <- f(fore.tac.mcmc.yr1$dupper[names(fore.tac.mcmc.yr1$dupper) %in% (end_yr + 1)] * 100, 1)
@@ -197,7 +197,7 @@ next.bio.lower.tac.based <- f(fore.tac.mcmc.yr1$slower[names(fore.tac.mcmc.yr1$s
 next.bio.median.tac.based <- f(fore.tac.mcmc.yr1$smed[names(fore.tac.mcmc.yr1$smed) %in% (end_yr + 1)] * 100, 1)
 next.bio.upper.tac.based <- f(fore.tac.mcmc.yr1$supper[names(fore.tac.mcmc.yr1$supper) %in% (end_yr + 1)] * 100, 1)
 # ... second forecast year depletion and spawning biomass estimates -----------
-fore.tac.mcmc.yr2 <- base.model$forecasts[[2]][[catch.tac.ind]]$mcmccalcs
+fore.tac.mcmc.yr2 <- base_model$forecasts[[2]][[catch.tac.ind]]$mcmccalcs
 next2.depl.lower.tac.based <- f(fore.tac.mcmc.yr2$dlower[names(fore.tac.mcmc.yr2$dlower) %in% (end_yr + 2)] * 100, 1)
 next2.depl.median.tac.based <- f(fore.tac.mcmc.yr2$dmed[names(fore.tac.mcmc.yr2$dmed) %in% (end_yr + 2)] * 100, 1)
 next2.depl.upper.tac.based <- f(fore.tac.mcmc.yr2$dupper[names(fore.tac.mcmc.yr2$dupper) %in% (end_yr + 2)] * 100, 1)
@@ -206,13 +206,13 @@ next2.bio.median.tac.based <- f(fore.tac.mcmc.yr2$smed[names(fore.tac.mcmc.yr2$s
 next2.bio.upper.tac.based <- f(fore.tac.mcmc.yr2$supper[names(fore.tac.mcmc.yr2$supper) %in% (end_yr + 2)] * 100, 1)
 
 # Biomass medians for last year's TAC catch level -----------------------------
-.fore.last.yr.tac <- base.model$forecasts[[length(base.model$forecasts)]][catch.tac.ind][[1]]
+.fore.last.yr.tac <- base_model$forecasts[[length(base_model$forecasts)]][catch.tac.ind][[1]]
 last.yr.tac.fore.1.biomass <- f(.fore.last.yr.tac$biomass[1,3] * 100)
 last.yr.tac.fore.2.biomass <- f(.fore.last.yr.tac$biomass[2,3] * 100)
 last.yr.tac.fore.3.biomass <- f(.fore.last.yr.tac$biomass[3,3] * 100)
-.risk.last.yr.tac.1 <- base.model$risks[[1]]
-.risk.last.yr.tac.2 <- base.model$risks[[2]]
-.risk.last.yr.tac.3 <- base.model$risks[[3]]
+.risk.last.yr.tac.1 <- base_model$risks[[1]]
+.risk.last.yr.tac.2 <- base_model$risks[[2]]
+.risk.last.yr.tac.3 <- base_model$risks[[3]]
 last.yr.tac.risk.1.biomass.decline <- f(as.numeric(.risk.last.yr.tac.1[catch.tac.ind, 2]))
 last.yr.tac.risk.2.biomass.decline <- f(as.numeric(.risk.last.yr.tac.2[catch.tac.ind, 2]))
 last.yr.tac.risk.3.biomass.decline <- f(as.numeric(.risk.last.yr.tac.3[catch.tac.ind, 2]))
@@ -226,7 +226,7 @@ year.of.max.median.nat.ind <- which(median.nat.no.year == max(median.nat.no.year
 year.of.max.median.nat <- extramc$natage_median[year.of.max.median.nat.ind, "Yr"]
 
 # Executive Summary and Assessment section ------------------------------------
-num.mcmc.samples <- dim(base.model$mcmc)[1]
+num.mcmc.samples <- dim(base_model$mcmc)[1]
 median.bio.min <- f(min(mc$smed[names(mc$smed) %in% start_yr:end_yr]), 3)
 median.bio.min.year <- names(which.min(mc$smed[names(mc$smed) %in% start_yr:end_yr]))
 median.intensity <- mc$pmed
@@ -265,9 +265,9 @@ median.relative.bio.above.target.since <- max(as.numeric(names(median.relative.b
 median.relative.bio.2017 <- f(mc$dmed["2017"] * 100, 1)
 
 # Recruitments in current assessment vs last assessment -----------------------
-prev.assess.recruitment.lower  <- last.yr.base.model$mcmccalcs$rlower
-prev.assess.recruitment.med  <- last.yr.base.model$mcmccalcs$rmed
-prev.assess.recruitment.upper <- last.yr.base.model$mcmccalcs$rupper
+prev.assess.recruitment.lower  <- last.yr.base_model$mcmccalcs$rlower
+prev.assess.recruitment.med  <- last.yr.base_model$mcmccalcs$rmed
+prev.assess.recruitment.upper <- last.yr.base_model$mcmccalcs$rupper
 
 # Current assessment w/o final projection year --------------------------------
 # since not in previous assessment)
@@ -279,51 +279,51 @@ recruitment.upper.to.compare <- mc$rupper[compareablenames]
 
 # Biomass probabilities -------------------------------------------------------
 # ... biomass declines next year to year after with zero catch ----------------
-zero.catch.prob.bio.down.1 <- f(base.model$risks[[1]][1, 2])
+zero.catch.prob.bio.down.1 <- f(base_model$risks[[1]][1, 2])
 # ... biomass declines year after next to year after that with 0 catch --------
-zero.catch.prob.bio.down.2 <- f(base.model$risks[[2]][1, 2])
+zero.catch.prob.bio.down.2 <- f(base_model$risks[[2]][1, 2])
 # ... biomass declines 2 years after next to year after that with 0 catch -----
-zero.catch.prob.bio.down.3 <- f(base.model$risks[[3]][1,2])
+zero.catch.prob.bio.down.3 <- f(base_model$risks[[3]][1,2])
 # ... current biomass being above/below B40%, B25%, and B10% ------------------
-probs.curr.bforty <- f(mean(base.model$mcmc[[paste0("Bratio_", assess_yr)]] > 0.40) * 100, 1)
-probs.curr.btwentyfive <- f(mean(base.model$mcmc[[paste0("Bratio_", assess_yr)]] > 0.25) * 100, 1)
-probs.curr.bten <- f(mean(base.model$mcmc[[paste0("Bratio_", assess_yr)]] > 0.10) * 100, 0)
-probs.curr.below.bforty <- f(mean(base.model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.40) * 100, 1)
-probs.curr.below.btwentyfive <- f(mean(base.model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.25) * 100, 1)
-probs.curr.below.bten <- f(mean(base.model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.10) * 100, 1)
+probs.curr.bforty <- f(mean(base_model$mcmc[[paste0("Bratio_", assess_yr)]] > 0.40) * 100, 1)
+probs.curr.btwentyfive <- f(mean(base_model$mcmc[[paste0("Bratio_", assess_yr)]] > 0.25) * 100, 1)
+probs.curr.bten <- f(mean(base_model$mcmc[[paste0("Bratio_", assess_yr)]] > 0.10) * 100, 0)
+probs.curr.below.bforty <- f(mean(base_model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.40) * 100, 1)
+probs.curr.below.btwentyfive <- f(mean(base_model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.25) * 100, 1)
+probs.curr.below.bten <- f(mean(base_model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.10) * 100, 1)
 
 # Reference point probabilities -----------------------------------------------
 # ... reference points next year given largest catch this year ----------------
-largest.next.catch.index <- which.max(base.model$risks[[1]][, paste0("ForeCatch_", assess_yr)])
-largest.next.catch <- f(base.model$risks[[1]][largest.next.catch.index, paste0("ForeCatch_", assess_yr)], 0)
-prob.next.over.b10 <- f(100 - as.numeric(base.model$risks[[1]][largest.next.catch.index, paste0("Bratio_", assess_yr + 1, "<0.10")]), 0)
-prob.next.over.b40 <- f(100 - as.numeric(base.model$risks[[1]][largest.next.catch.index, paste0("Bratio_", assess_yr + 1, "<0.40")]), 0)
+largest.next.catch.index <- which.max(base_model$risks[[1]][, paste0("ForeCatch_", assess_yr)])
+largest.next.catch <- f(base_model$risks[[1]][largest.next.catch.index, paste0("ForeCatch_", assess_yr)], 0)
+prob.next.over.b10 <- f(100 - as.numeric(base_model$risks[[1]][largest.next.catch.index, paste0("Bratio_", assess_yr + 1, "<0.10")]), 0)
+prob.next.over.b40 <- f(100 - as.numeric(base_model$risks[[1]][largest.next.catch.index, paste0("Bratio_", assess_yr + 1, "<0.40")]), 0)
 # ... Canadian (DFO) provisional reference points -----------------------------
-dfo.probs.curr <- base.model$risks[[1]][,(ncol(base.model$risks[[1]])-2):ncol(base.model$risks[[1]])]
-dfo.probs.fore <- base.model$risks[[2]][,(ncol(base.model$risks[[2]])-2):ncol(base.model$risks[[2]])]
+dfo.probs.curr <- base_model$risks[[1]][,(ncol(base_model$risks[[1]])-2):ncol(base_model$risks[[1]])]
+dfo.probs.fore <- base_model$risks[[2]][,(ncol(base_model$risks[[2]])-2):ncol(base_model$risks[[2]])]
 # ... next year DFO probs given largest catch this year -----------------------
 dfo.prob.next.over.40bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess_yr + 1, ">0.4SSB_MSY")])
 dfo.prob.next.over.80bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess_yr + 1, ">0.8SSB_MSY")])
 dfo.prob.next.over.bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess_yr + 1, ">SSB_MSY")])
 # ... US (PFMC) stock size reference points based on default Treaty HCR -------
-next.treaty.catch <- f(base.model$catch.levels[[catch.default.policy.ind]][[1]][1], 0)
-pfmc.prob.next.year.below.b40 <- f(base.model$risks[[1]][catch.default.policy.ind, paste0("Bratio_", assess_yr + 1, "<0.40")], 0)
-pfmc.prob.next.year.below.b25 <- f(base.model$risks[[1]][catch.default.policy.ind, paste0("Bratio_", assess_yr + 1, "<0.25")], 0)
-same.catch.as.last.year <- f(base.model$catch.levels[[catch.actual.ind]][[1]][1], 0)
-same.catch.prob.next.year.below.b40 <- f(base.model$risks[[1]][catch.actual.ind, paste0("Bratio_", assess_yr + 1, "<0.40")], 0)
-same.catch.prob.year.after.next.below.b40 <- f(base.model$risks[[2]][catch.actual.ind, paste0("Bratio_", assess_yr + 2, "<0.40")], 0)
+next.treaty.catch <- f(base_model$catch.levels[[catch.default.policy.ind]][[1]][1], 0)
+pfmc.prob.next.year.below.b40 <- f(base_model$risks[[1]][catch.default.policy.ind, paste0("Bratio_", assess_yr + 1, "<0.40")], 0)
+pfmc.prob.next.year.below.b25 <- f(base_model$risks[[1]][catch.default.policy.ind, paste0("Bratio_", assess_yr + 1, "<0.25")], 0)
+same.catch.as.last.year <- f(base_model$catch.levels[[catch.actual.ind]][[1]][1], 0)
+same.catch.prob.next.year.below.b40 <- f(base_model$risks[[1]][catch.actual.ind, paste0("Bratio_", assess_yr + 1, "<0.40")], 0)
+same.catch.prob.year.after.next.below.b40 <- f(base_model$risks[[2]][catch.actual.ind, paste0("Bratio_", assess_yr + 2, "<0.40")], 0)
 # ... Prob most recent relative fishing intensity is above target of 1 --------
 probs.curr.rel.fish.intens.above.one <-
-  f(sum(base.model$mcmc[[paste0("SPRratio_", end_yr-1)]] > 1) /
-    nrow(base.model$mcmc) * 100,
+  f(sum(base_model$mcmc[[paste0("SPRratio_", end_yr-1)]] > 1) /
+    nrow(base_model$mcmc) * 100,
     0)
 catches.below.200000.since.1986 <- number.to.word(length(filter(ct, tot_catch <= 200000, year > 1986)$year))
 
 # Age compositions ------------------------------------------------------------
 # ... age composition data for data section -----------------------------------
-survey.age.years <- base.model$dat$agecomp[base.model$dat$agecomp$FltSvy == 2, ]$Yr
-max.fishery.age.prop <- get_age_comp_limits(base.model, type = 1)
-max.survey.age.prop <- get_age_comp_limits(base.model, type = 2)
+survey.age.years <- base_model$dat$agecomp[base_model$dat$agecomp$FltSvy == 2, ]$Yr
+max.fishery.age.prop <- get_age_comp_limits(base_model, type = 1)
+max.survey.age.prop <- get_age_comp_limits(base_model, type = 2)
 # ... Canadian Freezer trawlers age data --------------------------------------
 last.year.can.ages.ft <- can.ages[[2]][rownames(can.ages[[2]]) == last_data_yr, ]
 ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 1)
@@ -393,18 +393,18 @@ recruitment.med.since.2010 <- mc$rmed[which(names(mc$rmed) %in% 2010:end_yr & na
 years.since.2010.recruitment.med.below.mean <- names(recruitment.med.since.2010[recruitment.med.since.2010  < mean(mc$rmed)])
 # ... est, recruitment in 2014 and 2016 in billions ---------------------------
 recruitment.med.in.2014 <- f(mc$rmed["2014"], 3)
-last.assess.recruitment.med.in.2014 <- f(last.yr.base.model$mcmccalcs$rmed["2014"], 3)
-prob.percent.2014.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2014 > base.model$mcmc$Recr_2010) * 100, 0)
-prob.percent.2016.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2016 > base.model$mcmc$Recr_2010) * 100, 1)
-prob.percent.2014.rec.gt.2016.rec <- f(mean(base.model$mcmc$Recr_2014 > base.model$mcmc$Recr_2016) * 100, 0)
+last.assess.recruitment.med.in.2014 <- f(last.yr.base_model$mcmccalcs$rmed["2014"], 3)
+prob.percent.2014.rec.gt.2010.rec <- f(mean(base_model$mcmc$Recr_2014 > base_model$mcmc$Recr_2010) * 100, 0)
+prob.percent.2016.rec.gt.2010.rec <- f(mean(base_model$mcmc$Recr_2016 > base_model$mcmc$Recr_2010) * 100, 1)
+prob.percent.2014.rec.gt.2016.rec <- f(mean(base_model$mcmc$Recr_2014 > base_model$mcmc$Recr_2016) * 100, 0)
 recruitment.lower.in.2016 <- f(mc$rlower["2016"], 3)
 recruitment.med.in.2016 <- f(mc$rmed["2016"], 3)
 recruitment.upper.in.2016 <- f(mc$rupper["2016"], 3)
-prob.percent.2016.rec.gt.2010.rec <- f(mean(base.model$mcmc$Recr_2016 > base.model$mcmc$Recr_2010) * 100, 1)
+prob.percent.2016.rec.gt.2010.rec <- f(mean(base_model$mcmc$Recr_2016 > base_model$mcmc$Recr_2010) * 100, 1)
 sd.med.recr.dev.estimates <- f(sd(mc$devmed[names(mc$devmed) >= 1970 & names(mc$devmed) <= (last_data_yr - 2)]), 2)
-prob.percent.2010.rec.gt.1980.rec <- f(mean(base.model$mcmc$Recr_2010 > base.model$mcmc$Recr_1980) * 100, 0)
+prob.percent.2010.rec.gt.1980.rec <- f(mean(base_model$mcmc$Recr_2010 > base_model$mcmc$Recr_1980) * 100, 0)
 prob.percent.2010.rec.gt.1980.rec.last.year.assess <-
-  f(mean(last.yr.base.model$mcmc$Recr_2010 > last.yr.base.model$mcmc$Recr_1980) * 100, 0)
+  f(mean(last.yr.base_model$mcmc$Recr_2010 > last.yr.base_model$mcmc$Recr_1980) * 100, 0)
 
 # Exploitation ----------------------------------------------------------------
 exploitation.med.2010 <- f(mc$fmed["2010"],2)
@@ -417,7 +417,7 @@ exploitation.med.2019 <- f(mc$fmed["2019"],2)
 exploitation.med.penult.yr <- f(mc$fmed[as.character(last_data_yr)], 2)
 
 # Priors settings from the control file ---------------------------------------
-param.details <- make.parameters.estimated.summary.table(base.model,
+param.details <- make.parameters.estimated.summary.table(base_model,
                                                          start.rec.dev.yr = recruit_dev_start_yr,
                                                          end.rec.dev.yr = end_yr - 1,
                                                          return.xtable = FALSE)
@@ -425,42 +425,42 @@ m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals", ]
                             dec.points = 2,
                             first.to.lower = TRUE)
 # ... Dirichlet Multinomial priors --------------------------------------------
-effn.priors <- base.model$parameters %>%
+effn.priors <- base_model$parameters %>%
   as_tibble() %>%
   select(Label, Prior, Pr_SD) %>%
   filter(grepl("DM_theta", Label))
 effn.prior <- unlist(effn.priors[1, ])
-sel.Phi.val <- base.model$parameters %>%
+sel.Phi.val <- base_model$parameters %>%
   as_tibble() %>%
   filter(Label == "AgeSel_P3_Fishery(1)_dev_se") %>%
   pull(Value)
 
 # Cohort specifics ------------------------------------------------------------
 # ... Cohort catch ------------------------------------------------------------
-cohort.catch.1999 <- sum(cohort.catch(base.model, 1999, trim.end.year = end_yr))
-cohort.catch.2010 <- sum(cohort.catch(base.model, 2010, trim.end.year = end_yr))
-cohort.catch.2014 <- sum(cohort.catch(base.model, 2014, trim.end.year = end_yr))
-cohort.catch.2016 <- sum(cohort.catch(base.model, 2016, trim.end.year = end_yr))
-cohort.catch.2017 <- sum(cohort.catch(base.model, 2017, trim.end.year = end_yr))
+cohort.catch.1999 <- sum(cohort.catch(base_model, 1999, trim.end.year = end_yr))
+cohort.catch.2010 <- sum(cohort.catch(base_model, 2010, trim.end.year = end_yr))
+cohort.catch.2014 <- sum(cohort.catch(base_model, 2014, trim.end.year = end_yr))
+cohort.catch.2016 <- sum(cohort.catch(base_model, 2016, trim.end.year = end_yr))
+cohort.catch.2017 <- sum(cohort.catch(base_model, 2017, trim.end.year = end_yr))
 # ... Cumulative sums of Cohorts for use in JMC presentation ------------------
-cohortCumSum1999 <- cumsum(cohort.catch(base.model, 1999, trim.end.year = end_yr))
-cohortCumSum2010 <- cumsum(cohort.catch(base.model, 2010, trim.end.year = end_yr))
-cohortCumSum2014 <- cumsum(cohort.catch(base.model, 2014, trim.end.year = end_yr))
-cohortCumSum2016 <- cumsum(cohort.catch(base.model, 2016, trim.end.year = end_yr))
-cohortCumSum2017 <- cumsum(cohort.catch(base.model, 2017, trim.end.year = end_yr))
+cohortCumSum1999 <- cumsum(cohort.catch(base_model, 1999, trim.end.year = end_yr))
+cohortCumSum2010 <- cumsum(cohort.catch(base_model, 2010, trim.end.year = end_yr))
+cohortCumSum2014 <- cumsum(cohort.catch(base_model, 2014, trim.end.year = end_yr))
+cohortCumSum2016 <- cumsum(cohort.catch(base_model, 2016, trim.end.year = end_yr))
+cohortCumSum2017 <- cumsum(cohort.catch(base_model, 2017, trim.end.year = end_yr))
 ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
 ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
 ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
 ages2016 <- as.numeric(names(cohortCumSum2016)) - 2016
 ages2017 <- as.numeric(names(cohortCumSum2017)) - 2017
 # ... Cohort medians, credible intervals --------------------------------------
-rec_2010 <- get_rec_ci(last.yr.base.model, base.model, 2010)
-rec_2014 <- get_rec_ci(last.yr.base.model, base.model, 2014)
-rec_2016 <- get_rec_ci(last.yr.base.model, base.model, 2016)
-rec_2017 <- get_rec_ci(last.yr.base.model, base.model, 2017)
-rec_2020 <- get_rec_ci(last.yr.base.model, base.model, 2020)
+rec_2010 <- get_rec_ci(last.yr.base_model, base_model, 2010)
+rec_2014 <- get_rec_ci(last.yr.base_model, base_model, 2014)
+rec_2016 <- get_rec_ci(last.yr.base_model, base_model, 2016)
+rec_2017 <- get_rec_ci(last.yr.base_model, base_model, 2017)
+rec_2020 <- get_rec_ci(last.yr.base_model, base_model, 2020)
 # ... Cohort biomass-at-age ---------------------------------------------------
-baa <- get_baa(base.model, assess_yr)
+baa <- get_baa(base_model, assess_yr)
 baa_large <- baa %>% arrange(desc(Median))
 baa_2010 <- baa %>% filter(Cohort == 2010) %>% pull(Median) * 100
 baa_2014 <- baa %>% filter(Cohort == 2014) %>% pull(Median) * 100
@@ -492,12 +492,12 @@ fore.catch.prop.wt.age10.median <- median(extramc$natselwt.prop[, 11]) * 100
 fore.catch.prop.wt.age11.median <- median(extramc$natselwt.prop[, 12]) * 100
 
 # Sigma_r, standard deviation of recruitment variability ----------------------
-sigma_r <- f(base.model$sigma_R_in, 2)
+sigma_r <- f(base_model$sigma_R_in, 2)
 
 # Alternative sigma_r based on all years of recdevs ---------------------------
-sigma_r_info <- extract_sigma_r(c(list(base.model), sens.models.1),
+sigma_r_info <- extract_sigma_r(c(list(base_model), sens.models.1),
                                 c("base", sens_model_names_1),
-                                base.model$sigma_R_in)
+                                base_model$sigma_R_in)
 sigma_r_hi_main <- sigma_r_info %>%
   filter(model == "Sigma R 1.6", period == "Main") %>%
   pull(SD_of_devs) %>%
@@ -512,16 +512,16 @@ sigma_r_alt_allyr <- sigma_r_info %>%
   f(2)
 
 # Range of "main" recdevs -----------------------------------------------------
-main.recdev.start <- min(base.model$recruit$Yr[base.model$recruit$era == "Main"])
-main.recdev.end <- max(base.model$recruit$Yr[base.model$recruit$era == "Main"])
-main.recdev.early <- min(base.model$recruit$Yr[base.model$recruit$era == "Early"])
+main.recdev.start <- min(base_model$recruit$Yr[base_model$recruit$era == "Main"])
+main.recdev.end <- max(base_model$recruit$Yr[base_model$recruit$era == "Main"])
+main.recdev.early <- min(base_model$recruit$Yr[base_model$recruit$era == "Early"])
 
 # Range of "main" bias adjustement period for recdevs -------------------------
-main.recdevbias.start <- min(base.model$recruit$Yr[base.model$recruit$biasadjuster == max(base.model$recruit$biasadjuster)])
-main.recdevbias.end <- max(base.model$recruit$Yr[base.model$recruit$biasadjuster == max(base.model$recruit$biasadjuster)])
+main.recdevbias.start <- min(base_model$recruit$Yr[base_model$recruit$biasadjuster == max(base_model$recruit$biasadjuster)])
+main.recdevbias.end <- max(base_model$recruit$Yr[base_model$recruit$biasadjuster == max(base_model$recruit$biasadjuster)])
 
 # Weight-at-age for the base model --------------------------------------------
-wt.at.age <- base.model$wtatage[, !grepl("comment", colnames(base.model$wtatage))] %>%
+wt.at.age <- base_model$wtatage[, !grepl("comment", colnames(base_model$wtatage))] %>%
   filter(Yr %in% start_yr_age_comps:(end_yr - 1),
          Fleet == 2) %>%
   select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet)) %>%
@@ -531,9 +531,9 @@ wt.at.age <- base.model$wtatage[, !grepl("comment", colnames(base.model$wtatage)
 retro.model.names <- c(base_model_name,
                        map_chr(plot_retro_yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))
 # Assemble the retrospective list with the base as the first element
-retro.list <- list(base.model)
+retro.list <- list(base_model)
 for(i in plot_retro_yrs){
-  retro.list[[i + 1]] <- base.model$retros[[i]]
+  retro.list[[i + 1]] <- base_model$retros[[i]]
 }
 retro.list.age1 <- list(sens.models.2[[1]])
 for(i in plot_retro_yrs){
@@ -547,57 +547,57 @@ retro.model.names.age1 <- c(sens_model_names_2[1],
 num.recent.yrs <- 10
 
 # Dirichlet-Multinomial data weighting parameters MLE -------------------------
-log.theta.fishery <- round(base.model$parameters["ln(EffN_mult)_1", "Value"], 3)
-log.theta.survey <- round(base.model$parameters["ln(EffN_mult)_2", "Value"], 3)
-theta.fishery <- exp(base.model$parameters["ln(EffN_mult)_1", "Value"])
-theta.survey <- exp(base.model$parameters["ln(EffN_mult)_2", "Value"])
+log.theta.fishery <- round(base_model$parameters["ln(EffN_mult)_1", "Value"], 3)
+log.theta.survey <- round(base_model$parameters["ln(EffN_mult)_2", "Value"], 3)
+theta.fishery <- exp(base_model$parameters["ln(EffN_mult)_1", "Value"])
+theta.survey <- exp(base_model$parameters["ln(EffN_mult)_2", "Value"])
 # Approximate MLE weights
 DM.weight.fishery <- round(theta.fishery / (1 + theta.fishery), 3)
 DM.weight.survey <- round(theta.survey / (1 + theta.survey), 3)
 # MCMC medians for the fishery and survey, and quantiles (and low and high)
-col.effn <- grep("DM_theta.*_1", colnames(base.model$mcmc), perl = TRUE)
+col.effn <- grep("DM_theta.*_1", colnames(base_model$mcmc), perl = TRUE)
 # Probably shouldn't really round these values before then using them in the
 #  weight calculations. Should use f() for values to be in document not round.
 #  No time to look into now (Andy).
-log.theta.fishery.median <- round(median(base.model$mcmc[, col.effn]), 3)
-log.theta.fishery.025 <- round(quantile(base.model$mcmc[, col.effn], probs = 0.025), 3)
-log.theta.fishery.975 <- round(quantile(base.model$mcmc[, col.effn], probs = 0.975), 3)
-DM.weight.fishery.median <- f(median(exp(base.model$mcmc[, col.effn]) /
-                                       (1 + exp(base.model$mcmc[, col.effn]))), 3)
+log.theta.fishery.median <- round(median(base_model$mcmc[, col.effn]), 3)
+log.theta.fishery.025 <- round(quantile(base_model$mcmc[, col.effn], probs = 0.025), 3)
+log.theta.fishery.975 <- round(quantile(base_model$mcmc[, col.effn], probs = 0.975), 3)
+DM.weight.fishery.median <- f(median(exp(base_model$mcmc[, col.effn]) /
+                                       (1 + exp(base_model$mcmc[, col.effn]))), 3)
 DM.weight.fishery.025 <- f(exp(log.theta.fishery.025) /
                              (1 + exp(log.theta.fishery.025)), 3)
 DM.weight.fishery.975 <- f(exp(log.theta.fishery.975) /
                              ( 1 + exp(log.theta.fishery.975)), 3)
-col.effn <- grep("ln\\(DM_theta\\)_2", names(base.model$mcmc))
-log.theta.survey.median <- round(median(base.model$mcmc[, col.effn]), 3)
-log.theta.survey.025 <- round(quantile(base.model$mcmc[, col.effn],
+col.effn <- grep("ln\\(DM_theta\\)_2", names(base_model$mcmc))
+log.theta.survey.median <- round(median(base_model$mcmc[, col.effn]), 3)
+log.theta.survey.025 <- round(quantile(base_model$mcmc[, col.effn],
                                        probs = 0.025), 3)
-log.theta.survey.975 <- round(quantile(base.model$mcmc[, col.effn],
+log.theta.survey.975 <- round(quantile(base_model$mcmc[, col.effn],
                                        probs = 0.975), 3)
-DM.weight.survey.median <- f(median(exp(base.model$mcmc[, col.effn]) /
-                                      (1 + exp(base.model$mcmc[, col.effn]))), 3)
+DM.weight.survey.median <- f(median(exp(base_model$mcmc[, col.effn]) /
+                                      (1 + exp(base_model$mcmc[, col.effn]))), 3)
 DM.weight.survey.025 <- f(exp(log.theta.survey.025) /
                             (1 + exp(log.theta.survey.025)), 3)
 DM.weight.survey.975 <- f(exp(log.theta.survey.975) /
                             (1 + exp(log.theta.survey.975)), 3)
-DM.weight.survey.median <- f(median(exp(base.model$mcmc[, col.effn]) /
-                                      (1 + exp(base.model$mcmc[, col.effn]))), 3)
-DM.weight.survey.low <- f(min(exp(base.model$mcmc[, col.effn]) /
-                                (1 + exp(base.model$mcmc[, col.effn+1]))), 2)
-DM.weight.survey.high <- f(max(exp(base.model$mcmc[, col.effn]) /
-                                 (1 + exp(base.model$mcmc[, col.effn+1]))), 2)
+DM.weight.survey.median <- f(median(exp(base_model$mcmc[, col.effn]) /
+                                      (1 + exp(base_model$mcmc[, col.effn]))), 3)
+DM.weight.survey.low <- f(min(exp(base_model$mcmc[, col.effn]) /
+                                (1 + exp(base_model$mcmc[, col.effn+1]))), 2)
+DM.weight.survey.high <- f(max(exp(base_model$mcmc[, col.effn]) /
+                                 (1 + exp(base_model$mcmc[, col.effn+1]))), 2)
 
 # MCMC parameter estimates for base model -------------------------------------
 # Need to change indexing if sensitivity models order changes in model-setup.R
 # ... natural mortality -------------------------------------------------------
-nat_m <- quantile(base.model$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
+nat_m <- quantile(base_model$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
 nat_m_02 <- quantile(sens.models.1[[5]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
 nat_m_03 <- quantile(sens.models.1[[6]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
 # ... steepness ---------------------------------------------------------------
-steep <- quantile(base.model$mcmc$SR_BH_steep, probs = cred_int)
+steep <- quantile(base_model$mcmc$SR_BH_steep, probs = cred_int)
 steep_prior_05 <- quantile(sens.models.1[[1]]$mcmc$SR_BH_steep, probs = cred_int)
 # ... bratio ------------------------------------------------------------------
-bratio_curr <- quantile(base.model$mcmc[[paste0("Bratio_", assess_yr)]], probs = cred_int)
+bratio_curr <- quantile(base_model$mcmc[[paste0("Bratio_", assess_yr)]], probs = cred_int)
 bratio_age1 <- quantile(sens.models.2[[1]]$mcmc[[paste0("Bratio_", assess_yr)]], probs = cred_int)
 # ... depletion ---------------------------------------------------------------
 depl_curr <- mc$dmed[names(mc$dmed) == assess_yr]
@@ -605,13 +605,13 @@ depl_curr <- mc$dmed[names(mc$dmed) == assess_yr]
 # ... joint probability -------------------------------------------------------
 # (%age) of being being both above the target relative fishing intensity in \Sexpr{end_yr-1}
 # and below the $\Bforty$ (40\% of $B_0$) reference point at the start of \Sexpr{end_yr}
-joint.percent.prob.above.below <- f(sum(base.model$mcmc[[paste0("Bratio_", end_yr)]] < 0.4 &
-                                          base.model$mcmc[[paste0("SPRratio_", end_yr - 1)]] > 1) /
-                                      nrow(base.model$mcmc) * 100,
+joint.percent.prob.above.below <- f(sum(base_model$mcmc[[paste0("Bratio_", end_yr)]] < 0.4 &
+                                          base_model$mcmc[[paste0("SPRratio_", end_yr - 1)]] > 1) /
+                                      nrow(base_model$mcmc) * 100,
                                     0)
 
 # Probabilities for historical performance analyses ---------------------------
-historical.probs.tibble <- combine_historical_probs(model = base.model,
+historical.probs.tibble <- combine_historical_probs(model = base_model,
                                                     end = assess_yr - 1) %>%
   as_tibble()
 prob.decline.from.2019.to.2020.historic <- filter(historical.probs.tibble,

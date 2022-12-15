@@ -20,12 +20,12 @@ make.R0.vs.meanRecruitment.fig <- function(plot=TRUE){
 
   # add R0 values
   sigma.table$R0[sigma.table$sigmaR==1.0] <- getR0(mod.sig1.0)
-  sigma.table$R0[sigma.table$sigmaR==1.4] <- getR0(base.model)
+  sigma.table$R0[sigma.table$sigmaR==1.4] <- getR0(base_model)
   sigma.table$R0[sigma.table$sigmaR==1.8] <- getR0(mod.sig1.8)
 
   # add Mean Recruitments
   sigma.table$MeanRecr1966to2017[sigma.table$sigmaR==1.0] <- getMeanRecr(mod.sig1.0)
-  sigma.table$MeanRecr1966to2017[sigma.table$sigmaR==1.4] <- getMeanRecr(base.model)
+  sigma.table$MeanRecr1966to2017[sigma.table$sigmaR==1.4] <- getMeanRecr(base_model)
   sigma.table$MeanRecr1966to2017[sigma.table$sigmaR==1.8] <- getMeanRecr(mod.sig1.8)
 
   # make plot

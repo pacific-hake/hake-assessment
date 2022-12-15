@@ -13,7 +13,7 @@
 #' @return A [ggplot2::ggplot()] object
 #' @export
 #' @examples
-#' management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE, connect_vars_linetype = "solid", connect_vars_alpha = 0.2, curr_assess_biomass = base.model$catch.default.policy[1])
+#' management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE, connect_vars_linetype = "solid", connect_vars_alpha = 0.2, curr_assess_biomass = base_model$catch.default.policy[1])
 management_catch_vs_tac_plot <- function(d,
                                          curr_assess_biomass = NULL,
                                          connect_vals_linetype = "dashed",

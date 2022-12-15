@@ -130,7 +130,7 @@ Request 3 -- The SRG requests two additional runs of the model to explore the im
 Fix survey theta at median of the posterior and multiply the input survey sample size by 2.0
 Fix survey theta at median of the posterior and multiply the input survey sample size by 0.20
 %<<fig1, fig.height = 3.5>>=
-%test<-exp(base.model$mcmc[,"ln(DM_theta)_2"])
+%test<-exp(base_model$mcmc[,"ln(DM_theta)_2"])
 %test <- test / (1 + test)
 %hist(test,breaks=200,main="Posterior Distribution of Survey Theta",xlab="")
 %abline(v=median(test),lwd=2,col="red")

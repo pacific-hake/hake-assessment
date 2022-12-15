@@ -7,7 +7,7 @@
 
 
 <<appendix-parameter-estimates, results='asis', echo=FALSE>>=
-make.long.parameter.estimates.table(base.model,
+make.long.parameter.estimates.table(base_model,
                                     key.posteriors,
                                     digits = 4,
                                     xcaption = "Medians of estimated parameters for the base model.",

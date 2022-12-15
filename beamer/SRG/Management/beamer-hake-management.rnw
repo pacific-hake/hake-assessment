@@ -93,12 +93,12 @@ models_loaded <- TRUE
 source(file.path(rootd.R, "custom-knitr-variables.R"))
 
 metric <- NULL
-forecasts <- base.model$forecasts[[1]]
+forecasts <- base_model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
 ## models.inds are the indices of those which will be plotted against each other
 ## next 2 lines copied from executive-summary.rnw  (manual 2017)
 models.inds <- c(1, 2, 6, 12, catch.default.policy.ind)
-models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty catch level name
+models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] ## pretty catch level name
 
 @
 
@@ -124,7 +124,7 @@ models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds] ## pretty 
 management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
                              connect_vars_linetype = "solid",
                              connect_vars_alpha = 0.2,
-                             curr_assess_biomass = base.model$catch.default.policy[1])
+                             curr_assess_biomass = base_model$catch.default.policy[1])
 @
 }
 
@@ -172,7 +172,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
     \begin{column}{0.75\textwidth}
     \bc
     <<main.phase, fig.height=5, fig.width=8,out.width='1.0\\columnwidth'>>=
-      make.phase.plot(base.model, start_yr = start_yr, end_yr = end_yr)
+      make.phase.plot(base_model, start_yr = start_yr, end_yr = end_yr)
     @
     \ec
     \end{column}
@@ -217,7 +217,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
   \end{column}
   \begin{column}{0.65\textwidth}
     <<main.projected.catch.density, out.width='.99\\columnwidth'>>=
-      make.forecast.catch.posterior.plot(base.model, fore.yr = end_yr, xmax=3000)
+      make.forecast.catch.posterior.plot(base_model, fore.yr = end_yr, xmax=3000)
       @
   \end{column}
 \end{columns}
@@ -236,7 +236,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
   \end{column}
   \begin{column}{0.59\textwidth}
     <<main.forecast.depletion.comparison.plot, out.width='.95\\columnwidth'>>=
-      make.forecast.depletion.comparison.plot(base.model,
+      make.forecast.depletion.comparison.plot(base_model,
                                               models.inds,
                                               models.names,
                                               start_yr = 2009,
@@ -306,7 +306,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 %  \end{column}
 %  \begin{column}{0.65\textwidth}
 <<decisions.biomass.table, results='asis', echo=FALSE>>=
-decision_table(base.model,
+decision_table(base_model,
                xcaption = NULL,
                xlabel = "tab:es-decisions-spr",
                font.size = 8,
@@ -344,7 +344,7 @@ decision_table(base.model,
 %--------------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
     <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
-      make.risk.table(base.model,
+      make.risk.table(base_model,
                       forecast_yrs,
                       index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                       xcaption = NULL,
@@ -358,7 +358,7 @@ decision_table(base.model,
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
   \bc
     <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base.model,
+      make.forecast.risk.comparison.plot(base_model,
                                          forecast_yrs = forecast_yrs,
                                          fore.yr = forecast_yrs[1],
                                          colors = c("black","blue","green","orange","red","tan"),
@@ -373,7 +373,7 @@ decision_table(base.model,
 %--------------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr+1} catches}
     <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
-      make.risk.table(base.model,
+      make.risk.table(base_model,
                       forecast_yrs,
                       index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                       xcaption = NULL,
@@ -387,7 +387,7 @@ decision_table(base.model,
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr+1} catches}
   \bc
     <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base.model,
+      make.forecast.risk.comparison.plot(base_model,
                                          forecast_yrs = forecast_yrs,
                                          fore.yr = forecast_yrs[2],
                                          colors = c("black","blue","green","orange","red","tan"),
@@ -403,7 +403,7 @@ decision_table(base.model,
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr}, \Sexpr{end_yr+1},
     and \Sexpr{end_yr+2} catches}
     <<main.risk.forecast.year.3.table, results='asis', echo=FALSE>>=
-      make.risk.table(base.model,
+      make.risk.table(base_model,
                       forecast_yrs,
                       index = 3, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                       xcaption = NULL,
@@ -418,7 +418,7 @@ decision_table(base.model,
     and \Sexpr{end_yr+2} catches}
   \bc
     <<forecast.risk.comparison.plot.year.3, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base.model,
+      make.forecast.risk.comparison.plot(base_model,
                                          forecast_yrs = forecast_yrs,
                                          fore.yr = forecast_yrs[3],
                                          colors = c("black","blue","green","orange","red","tan"),
@@ -451,7 +451,7 @@ decision_table(base.model,
   \begin{column}{0.65\textwidth}
 
     <<main.age.comp.forecast, fig.height=3.5, fig.width=5.5>>=
-    make.age.comp.forecast.plot(base.model)
+    make.age.comp.forecast.plot(base_model)
     @
   \end{column}
 \end{columns}
@@ -496,17 +496,17 @@ decision_table(base.model,
 %%         \item \Sexpr{end_yr} default catch limit (bottom row)
 %%         \bi
 %%           \item similarly high correlation for 2010, 2014, and 2016 recruitment
-%%             ( Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end_yr)],
-%%                 base.model$mcmc$Recr_2010),2)},
-%%              Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end_yr)],
-%%                 base.model$mcmc$Recr_2014),2)},
+%%             ( Sexpr{round(cor(base_model$mcmc[paste0("ForeCatch_",end_yr)],
+%%                 base_model$mcmc$Recr_2010),2)},
+%%              Sexpr{round(cor(base_model$mcmc[paste0("ForeCatch_",end_yr)],
+%%                 base_model$mcmc$Recr_2014),2)},
 %%             and
-%%              Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end_yr)],
-%%                 base.model$mcmc$Recr_2016),2)},
+%%              Sexpr{round(cor(base_model$mcmc[paste0("ForeCatch_",end_yr)],
+%%                 base_model$mcmc$Recr_2016),2)},
 %%             respectively)
 %%           \item increasing correlation with 2017 recruitment
-%%             ( Sexpr{round(cor(base.model$mcmc[paste0("ForeCatch_",end_yr)],
-%%               base.model$mcmc$Recr_2017),2)}, not shown)
+%%             ( Sexpr{round(cor(base_model$mcmc[paste0("ForeCatch_",end_yr)],
+%%               base_model$mcmc$Recr_2017),2)}, not shown)
 %%         \ei
 %%         \item Sexpr{end_yr+1} default catch limit (not shown) is more dependent on
 %%           2016 recruitment and the highly uncertain 2017 recruitment
@@ -514,7 +514,7 @@ decision_table(base.model,
 %%     \end{column}
 %%     \begin{column}{0.49\textwidth}
 %%     <<main.mcmc.pairs, fig.height=8, fig.width=8, out.width='0.92\\columnwidth'>>=
-%%       make.mcmc.diag.pairs.plot(base.model,
+%%       make.mcmc.diag.pairs.plot(base_model,
 %%                                 inc.key.params = TRUE,
 %%                                 recr = c(2010, 2014, 2016),
 %%                                 bratio = end_yr,
@@ -553,13 +553,13 @@ decision_table(base.model,
 %%   \begin{column}{0.59\textwidth}
 %%   <<compare.no2015fishAge, fig.height=5, fig.width=5.5, out.width='0.95\\columnwidth'>>=
 %%     oldpar <- par(mfrow=c(2,1), mar=c(5,4,1,1),no.readonly = TRUE)
-%%     make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
+%%     make.comparison.plot.mcmc(c(list(base_model), sens.models.5),
 %%                               subplots = 2,
 %%                               model.names = c(paste0("Base model ", end_yr), sens_model_names_5),
 %%                               end_yr = end_yr+2,
 %%                               xlims = c(2008,end_yr+2),
 %%                               legendloc = "topleft")
-%%     make.comparison.plot.mcmc(c(list(base.model), sens.models.5),
+%%     make.comparison.plot.mcmc(c(list(base_model), sens.models.5),
 %%                               subplots = 8,
 %%                               model.names = c(paste0("Base model ", end_yr), sens_model_names_5),
 %%                               end_yr = end_yr+2,
@@ -619,7 +619,7 @@ decision_table(base.model,
 %%   \end{column}
 %%   \begin{column}{0.59\textwidth}
 %%     <<age.one.index, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
-%%       make.survey.age1.plot(base.model, age.1.index)
+%%       make.survey.age1.plot(base_model, age.1.index)
 %%     @
 %%   \end{column}
 %% \end{columns}
@@ -635,8 +635,8 @@ decision_table(base.model,
 oldpar <- par()
 par(mar = c(20, 4.1, 0, 1))
 # models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
-# models.names <- map_chr(base.model$catch.levels[models.inds], ~{.x[[2]]})
-make.forecast.depletion.comparison.plot(base.model,
+# models.names <- map_chr(base_model$catch.levels[models.inds], ~{.x[[2]]})
+make.forecast.depletion.comparison.plot(base_model,
                                         models.inds,
                                         models.names,
                                         start_yr = 2009,
@@ -689,17 +689,17 @@ Probability & Base model & Without age-1 index \\
 \hline
 With zero catch scenario: & & \\
 P$(B_{\Sexpr{assess_yr+1}} < \Bforty)$ &
-  \Sexpr{f( base.model$risks[[1]][1, paste0("Bratio_", end_yr + 1, "<0.40")])}\% &
+  \Sexpr{f( base_model$risks[[1]][1, paste0("Bratio_", end_yr + 1, "<0.40")])}\% &
   \Sexpr{f( sens.models.2[[1]]$risks[[1]][1,paste0("Bratio_", end_yr + 1, "<0.40")])}\% \\
 P$(B_{\Sexpr{assess_yr+2}} < \Bforty)$ &
-  \Sexpr{f( base.model$risks[[2]][1, paste0("Bratio_", end_yr + 2, "<0.40")])}\% &
+  \Sexpr{f( base_model$risks[[2]][1, paste0("Bratio_", end_yr + 2, "<0.40")])}\% &
   \Sexpr{f( sens.models.2[[1]]$risks[[2]][1, paste0("Bratio_", end_yr + 2, "<0.40")])}\% \\
 With \Sexpr{f(catch_levels[[catch.actual.ind]][[1]][1])}~t catch scenario: & & \\
 P$(B_{\Sexpr{assess_yr+1}} < \Bforty)$ &
-  \Sexpr{f( base.model$risks[[1]][catch.actual.ind, paste0("Bratio_", end_yr + 1, "<0.40")])}\% &
+  \Sexpr{f( base_model$risks[[1]][catch.actual.ind, paste0("Bratio_", end_yr + 1, "<0.40")])}\% &
   \Sexpr{f( sens.models.2[[1]]$risks[[1]][catch.actual.ind, paste0("Bratio_", end_yr + 1, "<0.40")])}\% \\
 P$(B_{\Sexpr{assess_yr+2}} < \Bforty)$ &
-  \Sexpr{f( base.model$risks[[2]][4, paste0("Bratio_", end_yr + 2, "<0.40")])}\% &
+  \Sexpr{f( base_model$risks[[2]][4, paste0("Bratio_", end_yr + 2, "<0.40")])}\% &
   \Sexpr{f( sens.models.2[[1]]$risks[[2]][catch.actual.ind, paste0("Bratio_", end_yr + 2, "<0.40")])}\% \\
 \hline
 \end{tabular}
@@ -750,7 +750,7 @@ P$(B_{\Sexpr{assess_yr+2}} < \Bforty)$ &
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
 <<historical.prob.plot.1a, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
-make.historical.probs.plot(base.model,
+make.historical.probs.plot(base_model,
                            type = "decline.one.year",
                            add.50 = FALSE)
 @
@@ -762,7 +762,7 @@ make.historical.probs.plot(base.model,
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
 <<historical.prob.plot.1c, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
-  make.historical.probs.plot(base.model)
+  make.historical.probs.plot(base_model)
 @
 \ec
 }
@@ -772,7 +772,7 @@ make.historical.probs.plot(base.model,
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
 <<historical.prob.plot.1d, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
-  make.historical.probs.plot(base.model,
+  make.historical.probs.plot(base_model,
                              add.projs = TRUE)
 @
 \ec
@@ -796,7 +796,7 @@ make.historical.probs.plot(base.model,
 \frame{\frametitle{Spawning Biomass}
   \bc
   <<spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-  make.biomass.plot(base.model,
+  make.biomass.plot(base_model,
                     equil.yr = unfished_eq_yr,
                     start_yr = start_yr,
                     end_yr = end_yr,
@@ -809,7 +809,7 @@ make.historical.probs.plot(base.model,
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
 \bc
 <<historical.prob.plot.2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
-  make.historical.probs.plot(base.model,
+  make.historical.probs.plot(base_model,
                              type = "bforty",
                              legend.loc = "topright")
 @
@@ -820,7 +820,7 @@ make.historical.probs.plot(base.model,
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
 \bc
 <<historical.prob.plot.2b, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
-make.historical.probs.plot(base.model,
+make.historical.probs.plot(base_model,
                            type = "bforty",
                            add.projs = TRUE,
                            legend.loc = "topright")
@@ -848,7 +848,7 @@ make.historical.probs.plot(base.model,
 \frame{\frametitle{Can also do retrospective calculations -- base model}
 \bc
 <<historical.prob.plot.retro, fig.height=3.6, fig.width=6, out.width='0.6\\columnwidth'>>=
-make.historical.probs.retro.plot(base.model,
+make.historical.probs.retro.plot(base_model,
                                  type = "bforty",
                                  select.retros = 1,
                                  make.one.figure = FALSE,
@@ -878,7 +878,7 @@ Suggests other modelling changes over the years have helped performance.
 \frame{\frametitle{Suggestion for further conveying recruitment variability (Appendix~H)}
 \bc
 <<rec.variability, fig.height=3.8, fig.width=6, out.width='0.6\\columnwidth'>>=
-make.mcmc.recruitment.plot(base.model,
+make.mcmc.recruitment.plot(base_model,
                            start_yr = 1966,
                            equil.yr = unfished_eq_yr,
                            samples = NULL,
@@ -943,7 +943,7 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 %%   \end{column}
 %%   \begin{column}{0.59\textwidth}
 %%     <<age.one.index.comp, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
-%%       make.comparison.plot(c(list(base.model), list(sens.models.2[[1]])),
+%%       make.comparison.plot(c(list(base_model), list(sens.models.2[[1]])),
 %%                      subplots = 2,
 %%                      model.names = c(base_model_name, sens_model_names_2[1]),
 %%                      end_yr = end_yr,
@@ -1007,13 +1007,13 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 %% \begin{columns}
 %%   \begin{column}{0.25\textwidth}
 %%     \bi
-%%       \item median $\log(R_0)$ = \Sexpr{round(median(base.model$mcmc$SR_LN),2)}
+%%       \item median $\log(R_0)$ = \Sexpr{round(median(base_model$mcmc$SR_LN),2)}
 %%       \item equilibrium recruitment is 2,505 millions of fish
 %%     \ei
 %%   \end{column}
 %%   \begin{column}{0.75\textwidth}
 %%    <<main.mcmc.diag.R0.base, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%%    make.mcmc.diag.plot(base.model, key_posteriors[2], key_posteriors_titles[2])
+%%    make.mcmc.diag.plot(base_model, key_posteriors[2], key_posteriors_titles[2])
 %%    @
 %%   \end{column}
 %% \end{columns}
@@ -1040,7 +1040,7 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 %% %-----------------------------------------------------------------
 %% \frame{\frametitle{Decison Table - base model}
 %% <<decisions.biomass.table_base, results='asis', echo=FALSE>>=
-%%     make.decision.table.pres(base.model,
+%%     make.decision.table.pres(base_model,
 %%                              models.inds,
 %%                              xcaption = NULL,
 %%                              xlabel = "tab:es-decisions-spr",
@@ -1084,9 +1084,9 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% %\frame{\frametitle{Trevor's request - 4 years forecast decision table}
-%% %<<decisions.biomass.base.model.with.4.yrs.forecasts, results = 'asis', echo = FALSE>>=
-%% %  base.model.4 <-  load.models(model.dir, "2019.03.00_base_forecast4")
-%% %  make.decision.table.pres(base.model.4,
+%% %<<decisions.biomass.base_model.with.4.yrs.forecasts, results = 'asis', echo = FALSE>>=
+%% %  base_model.4 <-  load.models(model.dir, "2019.03.00_base_forecast4")
+%% %  make.decision.table.pres(base_model.4,
 %% %                           model.inds = 1:8,
 %% %                           xcaption = NULL,
 %% %                           font.size = 4,

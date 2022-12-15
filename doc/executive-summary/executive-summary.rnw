@@ -114,7 +114,7 @@ cumulative catch of the 2010, 2014, and 2016 year classes is estimated to be abo
 \Sexpr{f(cohort.catch.2016/1e6,2)}~million~t,
 respectively.
 In the \Sexpr{end_yr-1} catch,
-\Sexpr{top.coh(base.model, last_data_yr, 3, cap = FALSE)}.
+\Sexpr{top.coh(base_model, last_data_yr, 3, cap = FALSE)}.
 % Can check that manually from final row of Table 10 showing the proportions at age
 Due to staffing issues, age data from \Sexpr{end_yr-1} were unavailable from the Canadian
 freezer-trawler fleet and minimally available for the shoreside fleet.
@@ -257,7 +257,7 @@ and~\ref{fig:es-relative-spawning-biomass}). Model estimates suggest
 \begin{figure}[tbp]
 \begin{center}
 <<spawning-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been decreasing in size since 2019">>=
-make.biomass.plot(base.model,
+make.biomass.plot(base_model,
                   equil.yr = unfished.eq.yr,
                   start_yr = start_yr,
                   end_yr = end_yr,
@@ -281,7 +281,7 @@ assessment period, due to lower than average recruitment.
 \begin{figure}[tbp]
 \begin{center}
 <<relative-spawning-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the relative biomass has been decreasing since 2019">>=
-make.depletion.plot(base.model,
+make.depletion.plot(base_model,
                     start_yr = start_yr,
                     end_yr = end_yr,
                     color = "blue")
@@ -336,7 +336,7 @@ The increase appears to be due to the addition of survey data, namely the 2021
 biomass index and age compositions, plus the full age-1 index.
 % Manual 2022 done (updated numbers in final sentence and revised text).
 <<biomass-table, results='asis', echo=FALSE>>=
-make.biomass.table(base.model,
+make.biomass.table(base_model,
                    start_yr = end_yr-9,
                    end_yr = end_yr,
                    weight.factor = 1000,
@@ -358,7 +358,7 @@ make.biomass.table(base.model,
 %  put this here, which currently places table after its first referred.
 %  If that stops happening then move to after paragraph.
 <<recruitment-table, results='asis', echo=FALSE>>=
-make.recruitment.table(base.model,
+make.recruitment.table(base_model,
                        start_yr = end_yr-10,
                        end_yr = end_yr-1,
                        weight.factor = 1000,
@@ -402,7 +402,7 @@ have low to moderate recruitment with occasional large year classes
 \begin{figure}[tbp]
 \begin{center}
 <<recruitment, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
-make.recruitment.plot(base.model,
+make.recruitment.plot(base_model,
                       equil.yr = unfished.eq.yr,
                       start_yr = start_yr,
                       end_yr = end_yr,
@@ -425,17 +425,17 @@ Very large year classes in 1980, 1984, and 1999 supported much of the commercial
 catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment
 was at some of the lowest values in the time series, but this was followed by an above average
 2008 year class. Current estimates continue to indicate a very strong
-2010 year class comprising \Sexpr{top.coh(base.model, 2014, spec.yr=2010)}\% of the coast-wide
+2010 year class comprising \Sexpr{top.coh(base_model, 2014, spec.yr=2010)}\% of the coast-wide
 commercial catch in 2014,
-\Sexpr{top.coh(base.model, 2016, spec.yr=2010)}\% of the 2016 catch,
-\Sexpr{top.coh(base.model, 2018, spec.yr=2010)}\% of the 2018 catch (all
+\Sexpr{top.coh(base_model, 2016, spec.yr=2010)}\% of the 2016 catch,
+\Sexpr{top.coh(base_model, 2018, spec.yr=2010)}\% of the 2018 catch (all
 unchanged from last year's assessment), and
-\Sexpr{top.coh(base.model, 2020, spec.yr=2010)}\% of the 2020 catch.
+\Sexpr{top.coh(base_model, 2020, spec.yr=2010)}\% of the 2020 catch.
 The decline from 2014 to 2016
 was partly due to the large influx of the 2014
-year class (\Sexpr{top.coh(base.model, 2016, spec.yr=2014)}\% of the 2016 catch was age-2 fish from the
+year class (\Sexpr{top.coh(base_model, 2016, spec.yr=2014)}\% of the 2016 catch was age-2 fish from the
 2014 year class; this was larger than the proportion of age-2 fish,
-\Sexpr{top.coh(base.model, 2012, spec.yr=2010)}\%, from the 2010 year
+\Sexpr{top.coh(base_model, 2012, spec.yr=2010)}\%, from the 2010 year
 class in 2012). The median estimate of the 2010 year class is
 very slightly below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1980.rec}\%
 probability that the 2010 year class is larger than the 1980 year class (this
@@ -483,7 +483,7 @@ target SPR of 40\%; it is reported here interchangeably as a decimal proportion 
 
 % Table may end up too early, if so move to end of this section.
 <<fishing-intensity-table, results='asis', echo=FALSE>>=
-make.fishing.intensity.table(base.model,
+make.fishing.intensity.table(base_model,
                              start_yr = end_yr-10,
                              end_yr = end_yr-1,
                              digits = 3,
@@ -527,7 +527,7 @@ years and Figure~\ref{fig:es-fishing-intensity}).
 \begin{figure}[tbp]
 \begin{center}
 <<fishing-intensity, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management target of 1 throughout the time series">>=
-make.fishing.intensity.plot(base.model,
+make.fishing.intensity.plot(base_model,
                             start_yr = start_yr,
                             end_yr = end_yr-1,
                             color = "blue",
@@ -612,7 +612,7 @@ due to the appearance of the 1999 year class.
 \begin{figure}[tbp]
 \begin{center}
 <<exploitation-fraction, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the stock biomass is approximately 0.1">>=
-make.exploitation.fraction.plot(base.model,
+make.exploitation.fraction.plot(base_model,
                                 start_yr = start_yr,
                                 end_yr = end_yr-1,
                                 color = "blue",
@@ -651,7 +651,7 @@ make_landings_tac_table(ct,
 \begin{figure}[tbp]
 \begin{center}
 <<phase-plot, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state">>=
-make.phase.plot(base.model,
+make.phase.plot(base_model,
                 start_yr = start_yr,
                 end_yr = end_yr)
 @
@@ -743,7 +743,7 @@ at the end of \Sexpr{end_yr-1} is \Sexpr{probs.curr.rel.fish.intens.above.one}\%
 \enlargethispage{\baselineskip}
 
 <<reference-points-table, results='asis', echo=FALSE>>=
-make.reference.points.table.old(base.model,
+make.reference.points.table.old(base_model,
                             xcaption = paste0("Summary of median and 95\\%
                              credibility intervals of equilibrium conceptual reference points
                              for the \\fishname\\ base assessment model.
@@ -806,7 +806,7 @@ wide range of uncertainty, the 95\% credibility interval being
 % May need to move after the next paragraph
 %%** Remove "(unilaterally summed)" text from this caption (and main-table caption; table 28) after 2022
 <<decisions-biomass-table, results='asis', echo=FALSE>>=
-decision_table(base.model,
+decision_table(base_model,
                    xcaption =
                      paste0("Forecast quantiles of \\fishname\\
                              relative spawning biomass at the beginning of the year.
@@ -870,7 +870,7 @@ FI=100\%).
 % Manual 2020 done.
 %
 <<decisions-spr-table, results='asis', echo=FALSE>>=
-decision_table(base.model,
+decision_table(base_model,
                     xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}),
                      expressed as a proportion,
@@ -951,7 +951,7 @@ The probability of the spawning biomass decreasing from \Sexpr{end_yr} to
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 30\% for the
 \Sexpr{end_yr} catch level similar to that for \Sexpr{end_yr-1} (catch alternative~f).
 % Can maybe unhardwire some numbers with things like
-% \Sexpr{f(min(base.model$risks[[1]][,2]))}\% (see assesment-section).
+% \Sexpr{f(min(base_model$risks[[1]][,2]))}\% (see assesment-section).
 %The highest probability of
 %decrease is 97\%, which is for the default harvest policy
 %(row~g in Table~\ref{tab:es-risk-year-1}).
@@ -993,8 +993,8 @@ during the forecast years presented here.
 ## Look at catch.levels and catch.levels to decide which to include here
 ## models.inds are the indices of those which will be plotted against each other
 models.inds <- c(1, 2, 6, catch.tac.ind, catch.default.policy.ind)
-models.names <- sapply(base.model$catch.levels, "[[", 2)[models.inds]
-make.forecast.depletion.comparison.plot(base.model,
+models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds]
+make.forecast.depletion.comparison.plot(base_model,
                                         models.inds,
                                         models.names,
                                         start_yr = 2009,
@@ -1024,7 +1024,7 @@ make.forecast.depletion.comparison.plot(base.model,
 \begin{figure}[tbp]
 \begin{center}
 <<forecast-risk-comparison-plot-year-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably not decline next year except for very high catch levels">>=
-make.forecast.risk.comparison.plot(base.model,
+make.forecast.risk.comparison.plot(base_model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[1],
                                    colors = c("black","blue","green","orange",
@@ -1045,7 +1045,7 @@ make.forecast.risk.comparison.plot(base.model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 <<risk-forecast-year-1-table, results='asis', echo=FALSE>>=
-make.risk.table(base.model,
+make.risk.table(base_model,
                 forecast_yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
                            ##  forecast year 2 compared to forecast year 1
@@ -1068,7 +1068,7 @@ make.risk.table(base.model,
 
 
 <<forecast-risk-comparison-plot-year-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably decline the year after next (except under zero catch)">>=
-make.forecast.risk.comparison.plot(base.model,
+make.forecast.risk.comparison.plot(base_model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[2],
                                    colors = c("black","blue","green","orange",
@@ -1089,7 +1089,7 @@ directly from model output and lines interpolate between the points.}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 <<risk-forecast-year-2-table, results='asis', echo=FALSE>>=
-make.risk.table(base.model,
+make.risk.table(base_model,
                 forecast_yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
                            ##  1 means forecast year 2 compared to forecast year 1
@@ -1112,7 +1112,7 @@ make.risk.table(base.model,
 \begin{figure}[tbp]
 \begin{center}
 <<forecast-risk-comparison-plot-year-3, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline in three years' time regardless of catch level">>=
-make.forecast.risk.comparison.plot(base.model,
+make.forecast.risk.comparison.plot(base_model,
                                    forecast_yrs = forecast_yrs,
                                    fore.yr = forecast_yrs[3],
                                    colors = c("black","blue","green","orange","red","tan"),
@@ -1134,7 +1134,7 @@ that were computed directly from model output and lines interpolate between the 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 <<risk-forecast-year-3-table, results='asis', echo=FALSE>>=
-make.risk.table(base.model,
+make.risk.table(base_model,
                 forecast_yrs,
                 index = 3, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                 xcaption = paste0("Probabilities related to spawning biomass,

@@ -17,7 +17,7 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' @donttest{
-##' calc_historical_probs(base.model, end = assess_yr-1)
+##' calc_historical_probs(base_model, end = assess_yr-1)
 ##' @}
 calc_historical_probs <- function(model,
                                   start = 2012,
@@ -65,7 +65,7 @@ calc_historical_probs <- function(model,
 ##' @author Andrew Edwards
 ##' @examples
 ##' @donttest{
-##' combine_historical_probs(model = base.model, end = assess_yr-1)
+##' combine_historical_probs(model = base_model, end = assess_yr-1)
 ##' @}
 combine_historical_probs <- function(model,
                                      file = paste0(rootd,
@@ -121,7 +121,7 @@ combine_historical_probs <- function(model,
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
-##' make.historical.probs.plot(base.model)
+##' make.historical.probs.plot(base_model)
 ##'
 make.historical.probs.plot <- function(model,
                                        type = "decline",
@@ -368,10 +368,10 @@ make.historical.probs.plot <- function(model,
 #' @export
 #' @examples
 #' @donttest{
-#' make.historical.probs.retro.plot(base.model)
+#' make.historical.probs.retro.plot(base_model)
 #'
 #' par(mfrow = c(3,3))
-#' make.historical.probs.retro.plot(base.model, make.one.figure = FALSE,
+#' make.historical.probs.retro.plot(base_model, make.one.figure = FALSE,
 #'  time.sleep = 2)
 #' @}
 make.historical.probs.retro.plot <- function(model,
