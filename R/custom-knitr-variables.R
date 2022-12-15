@@ -522,7 +522,7 @@ main.recdevbias.end <- max(base.model$recruit$Yr[base.model$recruit$biasadjuster
 
 # Weight-at-age for the base model --------------------------------------------
 wt.at.age <- base.model$wtatage[, !grepl("comment", colnames(base.model$wtatage))] %>%
-  filter(Yr %in% start_yr.age.comps:(end.yr - 1),
+  filter(Yr %in% start_yr_age_comps:(end.yr - 1),
          Fleet == 2) %>%
   select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet)) %>%
   rename(year = Yr)

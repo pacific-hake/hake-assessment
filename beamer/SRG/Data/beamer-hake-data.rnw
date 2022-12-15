@@ -480,7 +480,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frame{\frametitle{Sample sizes of weight-at-age by year}
 \begin{center}
 <<main-weight-at-age-numbers, out.height='90%', out.width='90%'>>=
-  midyear <- (base.model$endyr - start_yr.age.comps)/2 + start_yr.age.comps
+  midyear <- (base.model$endyr - start_yr_age_comps)/2 + start_yr_age_comps
   weight.at.age.heatmap(base.model,
                         proj.line.yr = base.model$endyr,
                         extrap.mask = weight_age_extrapolation_mask,

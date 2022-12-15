@@ -230,7 +230,7 @@ maturity.ogive.figure(model = base.model, useyears = 1975:(assess.yr - 1))
   of the weight-at-age
   and the maturity-at-age for the samples
   collected from North of 34.44$^\circ$N (blue line in upper plot)
-  averaged across \Sexpr{start_yr.age.comps} to \Sexpr{last.data.yr}.}
+  averaged across \Sexpr{start_yr_age_comps} to \Sexpr{last.data.yr}.}
 \label{fig:main-maturity}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -252,10 +252,10 @@ weight.at.age.heatmap(base.model,
   correspond to the values, with red being the lightest fish (across all years
   and ages) and blue being the heaviest fish. For each age, the most transparent cells indicate
   the lightest fish of that age.
-  Data are only available from \Sexpr{start_yr.age.comps}--\Sexpr{last.data.yr}.
-  Values based on assumptions for the pre-\Sexpr{start_yr.age.comps} and forecast years are shown
+  Data are only available from \Sexpr{start_yr_age_comps}--\Sexpr{last.data.yr}.
+  Values based on assumptions for the pre-\Sexpr{start_yr_age_comps} and forecast years are shown
   outside the blue lines.
-  Bold values between \Sexpr{start_yr.age.comps}--\Sexpr{max.fishery.age.prop[2]} represent
+  Bold values between \Sexpr{start_yr_age_comps}--\Sexpr{max.fishery.age.prop[2]} represent
   unavailable data such that weights were interpolated or extrapolated from adjacent ages or years.
   The bottom row (mean) is the sample-weighted mean weight-at-age.}
 \label{fig:main-empirical-weight-at-age}
@@ -279,7 +279,7 @@ weight.at.age.heatmap(base.model,
   Colors and transparency are identical to Figure~\ref{fig:main-empirical-weight-at-age}
   and based on mean values.
   Sample sizes of zero highlight years for which data are not available, i.e.,
-  pre \Sexpr{start_yr.age.comps} and post \Sexpr{last.data.yr}.
+  pre \Sexpr{start_yr_age_comps} and post \Sexpr{last.data.yr}.
   The total sample sizes for each age used in the mean over all years are shown at the bottom and
   year-specific sample sizes are shown to the right using the same color scale with red indicating
   small sample sizes and blue indicating the large sample sizes.}

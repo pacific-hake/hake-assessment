@@ -174,7 +174,7 @@ landings (\Sexpr{start_yr}--\Sexpr{last.data.yr}), an acoustic survey biomass
 index (Figure~\ref{fig:es-survey-biomass}) and age compositions
 (\Sexpr{survey.start_yr}--\Sexpr{survey.end.yr}), an acoustic survey index of
 age-1 fish (Figure~\ref{fig:es-survey-age1}),
-and fishery age compositions (\Sexpr{start_yr.age.comps}--\Sexpr{last.data.yr}).
+and fishery age compositions (\Sexpr{start_yr_age_comps}--\Sexpr{last.data.yr}).
 In 2011 the survey biomass index was the lowest in the time series and was followed by the index increasing
 in 2012, 2013, and again in 2015 before decreasing to near the time series average in 2017.
 The 2019 estimate is the fourth highest of the series, and the 2021 estimate is near the time

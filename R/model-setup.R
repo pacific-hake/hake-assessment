@@ -41,8 +41,8 @@ message("Unfished equilibrium year: ", unfished_eq_yr)
 start_yr <- 1966
 message("Start year for catch data: ", start_yr)
 # Start year for the fishery age comps
-start_yr.age.comps <- 1975
-message("Start year for fishery age comps data: ", start_yr.age.comps)
+start_yr_age_comps <- 1975
+message("Start year for fishery age comps data: ", start_yr_age_comps)
 # The last non-forecast year in the model. This is the year for which the
 # mcmc outputs will be used in reference point calculations.
 end.yr <- assess.yr
