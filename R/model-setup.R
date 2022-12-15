@@ -293,24 +293,4 @@ load_models_rds <- function(){
                                      sens_model_names_4,
                                      sens_model_names_6)
 
-  # For the SRG requests appendix. Remove for 2023
-  mod200 <<- load_models("2022.01.200_inputnsmall")
-  mod201 <<- load_models("2022.01.201_inputnlarge")
-  mod202 <<- load_models("2022.01.202_inputnlargee")
-  dm_models <<- c(list(base_model),
-                  list(mod200),
-                  list(mod201),
-                  list(mod202))
-  dm_model_names <<- c(base_model_name,
-                       "Fix theta, 0.2 x input sample size",
-                       "Fix theta, 2.0 x input sample size",
-                       "Est. theta, 2.0 x input sample size")
-
-  # Third set
-  # sens_models_3.for.table <<- c(list(base_model), list(sens_models_5), sens_models_6, list(sens_models_7))
-  # sens_model_names_3.for.table <<- c("Base model", sens_model_names_5, sens_model_names_6, sens_model_names_7)
-
-  # Fourth set
-  # sens_models_4.for.table <<- c(list(base_model), list(sens_models_6))
-  # sens_model_names_4.for.table <<- c("Base model", sens_model_names_6)
 }
