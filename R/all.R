@@ -1,80 +1,48 @@
 # Pacific Hake Joint Technical Committee
-# This is the master file - it loads all packages and sources all
-#  other R source code files.
+# This is the master file - it loads all packages and sources all other R
+# source code files.
 #
 # To debug in an R session, run these 3 commands first:
 # source(here::here("R/all.R"));load_models_rds();source(here::here("R/custom-knitr-variables.R"))
 
-# This is so the s3_dir() command shows all results
+assess_yr <- 2022
+model_version <- "01"
+
+# Show non-scientific notation
 options(max.print = 999999)
 
-library(adnuts)
-library(aws.s3)
-library(coda)
-library(cowplot)
-library(data.tree)
-library(date)
-library(dplyr)
-library(future)
-library(furrr)
-library(here)
-library(gfutilities)
-library(ggplot2)
-library(ggpubr)
-library(ggrepel)
-library(grDevices)
-library(grid)
-library(gridExtra)
-library(gtools)
-library(here)
-library(kableExtra)
-library(knitr)
-library(lubridate)
-library(maps)
-library(maptools)
-library(matrixcalc)
-library(parallel)
-library(purrr)
-library(r4ss)
-library(reshape2)
-library(rgeos)
-library(rnaturalearth)
-library(rnaturalearthhires)  # devtools::install_github("ropensci/rnaturalearthhires")
-library(rstan)
-library(scales)
-library(shinystan)
-library(sf)
-library(snowfall)
-library(stringr)
-library(testthat)
-library(tictoc)
-library(tidyverse)
-library(xtable)
-
-# What kind of machine are we on
+# To install rnaturalearthhires (it was hard to find with Google):
+# devtools::install_github("ropensci/rnaturalearthhires")
+message("Loading R packages...")
+pacman::p_load(adnuts, coda, aws.s3, coda, cowplot, data.tree, date, dplyr, future, furrr,
+               here, gfutilities, ggplot2, ggpubr, ggrepel, grDevices, grid, gridExtra,
+               gtools, here, kableExtra, knitr, lubridate, maps, maptools, matrixcalc, parallel,
+               purrr, r4ss, reshape2, rgeos, rnaturalearth, rnaturalearthhires, rstan, scales,
+               shinystan, sf, snowfall, stringr, testthat, tictoc, tidyverse, xtable)
+message("Finished loading R packages...")
 
 rootd <- here::here()
-rootd.R <- file.path(rootd, "R")
-rootd.admin <- file.path(rootd, "admin")
-rootd.data <- file.path(rootd, "data")
-rootd.map.data <- file.path(rootd.data, "map-data")
-rootd.data.prep <- file.path(rootd, "data-prep")
-rootd.doc <- file.path(rootd, "doc")
-rootd.extra.calcs <- file.path(rootd, "extra-calculations")
-rootd.pres <- file.path(rootd, "beamer")
+rootd_r <- file.path(rootd, "R")
+rootd_admin <- file.path(rootd, "admin")
+rootd_data <- file.path(rootd, "data")
+rootd_map_data <- file.path(rootd_data, "map-data")
+rootd_data_prep <- file.path(rootd, "data-prep")
+rootd_doc <- file.path(rootd, "doc")
+rootd_extra_calcs <- file.path(rootd, "extra-calculations")
+rootd_pres <- file.path(rootd, "beamer")
 
-os <- gfutilities::get_os()
-models_path <- Sys.getenv("MODELS_DIR")
+sys_info <- Sys.info()
+computer_name <- sys_info[["nodename"]]
+os_name <- sys_info[["sysname"]]
+user_name <- sys_info[["user"]]
+
+models_path <- file.path(assess_yr, paste0(model_version, "-version"))
 if(models_path == ""){
-  if(os == "linux"){
-    models_year <- 2022
-    rootd.models <- file.path("/srv", "hake", models_year)
+  if(computer_name == "hake-precision"){
+    rood_models <- file.path("/srv", "hake", models_path)
   }else{
-    models_path <- "models"
-    rootd.models <- file.path(rootd, models_path)
+    rood_models <- file.path(rootd, "models", models_path)
   }
-}else{
-  rootd.models <- file.path(rootd, models_path)
 }
 
 catch_levels_path <- "catch-levels"
@@ -84,7 +52,7 @@ spr_100_path <- "spr-100"
 forecasts_path <- "forecasts"
 retrospectives_path <- "retrospectives"
 
-ss_executable <- "ss"
+ss_executable <- "ss3"
 starter_file_name <- "starter.ss"
 par_file_name <- "ss.par"
 forecast_file_name <- "forecast.ss"
@@ -93,6 +61,7 @@ posts_file_name <- "posteriors.sso"
 derposts_file_name <- "derived_posteriors.sso"
 report_file_name <- "Report.sso"
 compreport_file_name <- "CompReport.sso"
+
 # For linking commands together in a shell
 cmd_link <- " && "
 
@@ -106,70 +75,36 @@ catch_levels_catch_tol <- 50
 #  be found within the tolerances above
 catch_levels_max_iter <- 20
 
-assess_yr <- 2022
 forecast_yrs <- assess_yr:(assess_yr + 3)
 forecast_yrs_extra <- assess_yr:(assess_yr + 3)
 forecast_probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 
 retrospective_yrs <- 1:10
-plot.retro.yrs <- 1:5
+plot_retro_yrs <- 1:5
 
 show_ss_output <- FALSE
 
-source(file.path(rootd.R, "utilities.R"))
-source(file.path(rootd.R, "add-alt-text.R"))
-source(file.path(rootd.R, "catches.R"))
-source(file.path(rootd.R, "run-catch-levels.R"))
-source(file.path(rootd.R, "run-forecasts.R"))
-source(file.path(rootd.R, "run-retrospectives.R"))
-source(file.path(rootd.R, "runs_sens_base.R"))
-source(file.path(rootd.R, "create-rds-file.R"))
-source(file.path(rootd.R, "build-doc.R"))
-source(file.path(rootd.R, "delete-files.R"))
-source(file.path(rootd.R, "extra-mcmc.R"))
-source(file.path(rootd.R, "extract-sigma-r.R"))
-source(file.path(rootd.R, "load-models.R"))
-source(file.path(rootd.R, "run-adnuts.R"))
-source(file.path(rootd.R, "survey.R"))
-source(file.path(rootd.R, "load-data.R"))
-source(file.path(rootd.R, "read-list.R"))
-source(file.path(rootd.R, "figures-timeseries.R"))
-source(file.path(rootd.R, "figures-timeseries-squidhist.R"))
-source(file.path(rootd.R, "figures-compare-forecasts.R"))
-source(file.path(rootd.R, "figures-mcmc-diagnostics.R"))
-source(file.path(rootd.R, "figures-age-comps.R"))
-source(file.path(rootd.R, "figures-selex.R"))
-source(file.path(rootd.R, "figures-stock-recruitment.R"))
-source(file.path(rootd.R, "figures-mle-mcmc.R"))
-source(file.path(rootd.R, "figures-mcmc-param-stats.R"))
-source(file.path(rootd.R, "figures-overview-map.R"))
-source(file.path(rootd.R, "figures-data.R"))
-source(file.path(rootd.R, "figures-assessment-history.R"))
-source(file.path(rootd.R, "figures-age-comp-forecast.R"))
-source(file.path(rootd.R, "figures-SPR-illustration-appendix.R"))
-source(file.path(rootd.R, "figures-selectivity-parameterizations.R"))
-source(file.path(rootd.R, "figures-size-at-age.R"))
-source(file.path(rootd.R, "figures-maturity-ogive.R"))
-source(file.path(rootd.R, "figures-management.R"))
-source(file.path(rootd.R, "figures-R0-vs-meanRecruitment.R"))
-source(file.path(rootd.R, "figures-makebox.R"))
-source(file.path(rootd.R, "plotcolour.R"))
-source(file.path(rootd.R, "s3.R"))
-source(file.path(rootd.R, "tables-cohort.R"))
-source(file.path(rootd.R, "tables-timeseries.R"))
-source(file.path(rootd.R, "tables-reference-points.R"))
-source(file.path(rootd.R, "tables-decisions.R"))
-source(file.path(rootd.R, "tables-age.R"))
-source(file.path(rootd.R, "tables-assessmentchanges.R"))
-source(file.path(rootd.R, "tables-parameters.R"))
-source(file.path(rootd.R, "tables-sampling.R"))
-source(file.path(rootd.R, "tables-squid.R"))
-source(file.path(rootd.R, "tables-maturity.R"))
-source(file.path(rootd.R, "theme.R"))
-source(file.path(rootd.R, "model-setup.R"))
-source(file.path(rootd.R, "forecast-catch-levels.R"))
-source(file.path(rootd.R, "data-tables.R"))
-source(file.path(rootd.R, "useful-quantities.R"))
-source(file.path(rootd.R, "historical-probs.R"))
-source(file.path(rootd.R, "recruitment-question-responses.R"))
+source_all <- function(lst){
+  walk(lst, ~{
+    source(file.path(rootd_r, .x))
+  })
+}
+
+src_lst <- c("utilities.R", "add-alt-text.R", "catches.R", "run-catch-levels.R",
+             "run-forecasts.R", "run-retrospectives.R", "runs_sens_base.R", "create-rds-file.R",
+             "build-doc.R", "delete-files.R", "extra-mcmc.R", "extract-sigma-r.R",
+             "load-models.R", "run-adnuts.R", "survey.R", "load-data.R",
+             "read-list.R", "figures-timeseries.R", "figures-timeseries-squidhist.R", "figures-compare-forecasts.R",
+             "figures-mcmc-diagnostics.R", "figures-age-comps.R", "figures-selex.R", "figures-stock-recruitment.R",
+             "figures-mle-mcmc.R", "figures-mcmc-param-stats.R", "figures-overview-map.R", "figures-data.R",
+             "figures-assessment-history.R", "figures-age-comp-forecast.R", "figures-SPR-illustration-appendix.R",
+             "figures-selectivity-parameterizations.R",
+             "figures-size-at-age.R", "figures-maturity-ogive.R", "figures-management.R", "figures-R0-vs-meanRecruitment.R",
+             "figures-makebox.R", "plotcolour.R", "s3.R", "tables-cohort.R", "tables-timeseries.R",
+             "tables-reference-points.R", "tables-decisions.R", "tables-age.R", "tables-assessmentchanges.R",
+             "tables-parameters.R", "tables-sampling.R", "tables-squid.R", "tables-maturity.R",
+             "theme.R", "model-setup.R", "forecast-catch-levels.R", "data-tables.R",
+             "useful-quantities.R", "historical-probs.R", "recruitment-question-responses.R")
+source_all(src_lst)
+
 theme_set(hake_theme())
