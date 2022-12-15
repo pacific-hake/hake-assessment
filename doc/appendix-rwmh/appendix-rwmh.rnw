@@ -471,7 +471,7 @@ box()
 <<mcmc-survey-fit-rwmh, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows fits to the acoustic survey for some rwMH samples">>=
 make.mcmc.survey.fit.plot(sens.models.7,
                           start_yr = survey_start_yr,
-                          end_yr = survey.end_yr,
+                          end_yr = survey_end_yr,
                           surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),
                           y.max = 5.5e6)

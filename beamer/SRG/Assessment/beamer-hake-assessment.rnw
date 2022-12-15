@@ -614,7 +614,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.mcmc.survey.fit.plot(base.model,
                               start_yr = survey_start_yr,
-                              end_yr = survey.end_yr,
+                              end_yr = survey_end_yr,
                               probs = c(0.025, 0.975),
                               y.max = 5.5e6)
   @
@@ -627,7 +627,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   <<mcmc.age1.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
     make.mcmc.survey.fit.plot(base.model,
                               start_yr = survey_start_yr,
-                              end_yr = survey.end_yr,
+                              end_yr = survey_end_yr,
                               probs = c(0.025, 0.975),
                               y.max = 10e6,
                               survey.type = "age1",

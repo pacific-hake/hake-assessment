@@ -30,7 +30,7 @@ make.overview.map.plot(path = rootd_map_data)
 % \vspace{-3mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from the Joint U.S.~and Canada acoustic surveys
-  \Sexpr{survey_start_yr}--\Sexpr{survey.end_yr}. Area of the circle is roughly
+  \Sexpr{survey_start_yr}--\Sexpr{survey_end_yr}. Area of the circle is roughly
   proportional to observed backscatter.
   Barplots show survey-estimated biomass for ages 2 to 20, with major cohorts
   highlighted in color.
@@ -54,7 +54,7 @@ make.overview.map.plot(path = rootd_map_data)
 \end{center}
 %\vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
-  from the Joint U.S.~and Canada acoustic surveys 2003--\Sexpr{survey.end_yr}. Age-1 \fishname\ are not fully sampled
+  from the Joint U.S.~and Canada acoustic surveys 2003--\Sexpr{survey_end_yr}. Age-1 \fishname\ are not fully sampled
   during the acoustic survey and were not explicitly considered during establishment of the
   survey sampling design. Area of the circle is roughly
   proportional to observed backscatter. Figure produced by Julia Clemons
@@ -442,7 +442,7 @@ par <- oldpar
 <<main-mcmc-survey-fit, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows many posterior trajectories of the expected survey biomass fitting well to the observed biomass.">>=
 make.mcmc.survey.fit.plot(base.model,
                           start_yr = survey_start_yr,
-                          end_yr = survey.end_yr,
+                          end_yr = survey_end_yr,
                           surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),
                           y.max = 5.5e6)
@@ -464,7 +464,7 @@ make.mcmc.survey.fit.plot(base.model,
 <<main-mcmc-age1-fit, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows many posterior trajectories of the expected numbers of age-1 fish fitting well to the age-1 index.">>=
 make.mcmc.survey.fit.plot(base.model,
                           start_yr = survey_start_yr,
-                          end_yr = survey.end_yr,
+                          end_yr = survey_end_yr,
                           surv.yrs = surv.yrs,
                           probs = c(0.025, 0.975),
                           y.max = 10e6,

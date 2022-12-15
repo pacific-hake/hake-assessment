@@ -122,7 +122,7 @@ freezer-trawler fleet and minimally available for the shoreside fleet.
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
 \phantomsection \addcontentsline{toc}{subsection}{Data and assessment}
 %% The biomass index and age composition from the acoustic survey conducted
-%% in \Sexpr{survey.end_yr} have been added to the survey time series
+%% in \Sexpr{survey_end_yr} have been added to the survey time series
 %% (Figure~\ref{fig:es-survey-biomass}). A new age-based maturity ogive was
 %% developed for this assessment, replacing the previous ogive that was based on
 %% estimates of maturity-at-length from 1997 and weight-at-length  from 2011.
@@ -172,7 +172,7 @@ make.survey.age1.plot.data(age.1.index,
 This Joint Technical Committee (JTC) assessment depends primarily on the fishery
 landings (\Sexpr{start_yr}--\Sexpr{last.data.yr}), an acoustic survey biomass
 index (Figure~\ref{fig:es-survey-biomass}) and age compositions
-(\Sexpr{survey_start_yr}--\Sexpr{survey.end_yr}), an acoustic survey index of
+(\Sexpr{survey_start_yr}--\Sexpr{survey_end_yr}), an acoustic survey index of
 age-1 fish (Figure~\ref{fig:es-survey-age1}),
 and fishery age compositions (\Sexpr{start_yr_age_comps}--\Sexpr{last.data.yr}).
 In 2011 the survey biomass index was the lowest in the time series and was followed by the index increasing

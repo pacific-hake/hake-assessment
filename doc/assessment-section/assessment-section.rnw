@@ -759,7 +759,7 @@ of
 The base model fit to the
 acoustic survey biomass index (Figure~\ref{fig:main-mcmc-survey-fit})
 remains similar to the \Sexpr{last_assess_yr} base model.
-The \Sexpr{survey.end_yr} survey biomass estimate resulted in a slight upward shift
+The \Sexpr{survey_end_yr} survey biomass estimate resulted in a slight upward shift
 in the fit to the \Sexpr{penult.survey.year}
 survey data points, but the result of a relatively stable biomass trend from 2013--2019
 is the same (Figure~\ref{fig:main-mcmc-survey-fit}).
@@ -788,7 +788,7 @@ suggest as population trends.
 Additionally, the population has undergone recent high catch levels and produced
 a couple of above-average cohorts that are now mature.
 %resulting in a population
-%trend that has been relatively stable from 2013 to \Sexpr{survey.end_yr}.
+%trend that has been relatively stable from 2013 to \Sexpr{survey_end_yr}.
 
 The base model fit to the index of age-1 fish highlights
 an overall general confirmation of relative cohort strength
@@ -809,21 +809,21 @@ selectivity, the fit to commercial age-composition data is particularly good,
 although models with time-invariant selectivity used in previous years also fit
 the age compositions well.
 In the \Sexpr{last.data.yr} fishery, \Sexpr{top.coh(base.model, last.data.yr, 3, cap = FALSE)}.
-Age compositions from the \Sexpr{survey.end_yr} acoustic survey suggest a similar age
-structure, i.e., \Sexpr{top.coh(base.model, survey.end_yr, 3, cap = FALSE, fleet = 2)}.
+Age compositions from the \Sexpr{survey_end_yr} acoustic survey suggest a similar age
+structure, i.e., \Sexpr{top.coh(base.model, survey_end_yr, 3, cap = FALSE, fleet = 2)}.
 Combined, the 2015--\Sexpr{last.data.yr} fishery age-composition data and the
-2017--\Sexpr{survey.end_yr} acoustic survey age-composition data
+2017--\Sexpr{survey_end_yr} acoustic survey age-composition data
 suggest that 2014 was a strong recruitment
 year, and the model was able to adequately
 fit to these observations (Figure~\ref{fig:main-age-comp-fits}).
 The 2016 cohort, which has been observed twice by the survey,
-%\Sexpr{ceiling((survey.end_yr-2016)/2)} times
+%\Sexpr{ceiling((survey_end_yr-2016)/2)} times
 still appears to be smaller than
 the 2014 cohort.
-The \Sexpr{survey.end_yr} survey was the first to sample the
-\Sexpr{survey.end_yr-2} cohort, confirming that
+The \Sexpr{survey_end_yr} survey was the first to sample the
+\Sexpr{survey_end_yr-2} cohort, confirming that
 it
-was not extremely large (\Sexpr{survey.a2.prop}\% of the \Sexpr{survey.end_yr} survey catch).
+was not extremely large (\Sexpr{survey.a2.prop}\% of the \Sexpr{survey_end_yr} survey catch).
 Residual
 patterns to the fishery and survey age data do not show patterns that would
 indicate systematic bias in model predictions
@@ -859,7 +859,7 @@ the \Sexpr{last_assess_yr} base model, effectively
 allowing the model flexibility (i.e., a lower penalty on the overall
 likelihood) to fit to data that suggests high variability among years for each
 age. This level
-of variation led to results that were consistent with the \Sexpr{survey.end_yr} acoustic survey
+of variation led to results that were consistent with the \Sexpr{survey_end_yr} acoustic survey
 biomass estimate and gave reasonable fits to the fishery age-composition data,
 given that there is considerable uncertainty associated with
 spatial changes in fish availability (due to movement) and recent

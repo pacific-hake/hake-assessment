@@ -137,7 +137,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
         \item Annual catch (\Sexpr{start_yr}--\Sexpr{end_yr - 1})
         \item Age compositions (1975--\Sexpr{end_yr - 1}; 1$^+$)
       \ei
-      \item Acoustic survey (\Sexpr{survey_start_yr}--\Sexpr{survey.end_yr})
+      \item Acoustic survey (\Sexpr{survey_start_yr}--\Sexpr{survey_end_yr})
       \bi
         \item Biomass index age 2$^+$
         \item Age compositions (2$^+$)
@@ -386,7 +386,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     make_age_comp_bubble_plot(base.model,
                               clines = c(1984, 1999, 2010, 2014, 2016),
                               subplot = 2,
-                              xlim = c(survey_start_yr, survey.end_yr))
+                              xlim = c(survey_start_yr, survey_end_yr))
   @
 \end{center}
 }
@@ -402,7 +402,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
     ## NOTE this function is not generalized and needs to be fixed
     make.age.comp.compare.bubble.plot(base.model,
                                       start_yr = survey_start_yr,
-                                      end_yr = survey.end_yr,
+                                      end_yr = survey_end_yr,
                                       show.key = TRUE,
                                       key.yrs = c(1997, 1999, 2002, 2005)+1)
     par <- oldpar

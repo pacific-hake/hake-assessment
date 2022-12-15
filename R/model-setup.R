@@ -50,7 +50,7 @@ message("End year for model: ", end_yr)
 survey_start_yr <- 1995
 message("First survey year: ", survey_start_yr)
 # Last year in the survey timeseries
-survey.end_yr <- 2021
+survey_end_yr <- 2021
 # Years in which the survey took place
 surv.yrs <- c(1995,
               1998,
@@ -71,7 +71,7 @@ surv.yrs <- c(1995,
 big.ticks <- seq(1970, end_yr + 4, 5)
 little.ticks <- start_yr:max(big.ticks)
 
-message("Last survey year: ", survey.end_yr)
+message("Last survey year: ", survey_end_yr)
 # Final year of data (This is what is the end year is in the model data files)
 last.data.yr <- end_yr - 1
 message("Last year of model data: ", last.data.yr)
