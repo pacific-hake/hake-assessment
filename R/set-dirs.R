@@ -2,39 +2,35 @@
 #'
 #' @details
 #' Sensitivity groups will have the base model directory prepended,
-#' The first bridge model group will have `last_yr_base_model_dir`
-#' prepended. If directories do not exist, they will be assigned
-#' `NULL` and a warning issued. If the `models_dir` does not exist,
-#' an error will be thrown.
+#' The bridge model groups can have `last_yr_base_model_dir`
+#' prepended if `prepend_to_bridge` is set to `TRUE` for the model group.
+#' If directories do not exist, they will be assigned `NULL` and a warning
+#' issued. If the `models_dir` does not exist, an error will be thrown.
 #'
 #' @param models_dir Full path in which the SS3 model directories are
-#' located. This must have the year, followed by the version number.
-#' The default value is `<here::here()>/models/<YEAR>/01-version/<NAME>` where
-#' `<YEAR>` is the year after the current year if currently in the months of
-#' May to December, and the current year if currently in the months of
-#' January to April, and `<NAME>` is the subdirectory name for the case model
-#' in that year
+#' located. The default value is `<here::here()>/models`
 #' @param last_yr_base_model_dir Full path in which the SS3 output
 #' for the last assessment year's model resides. The default value is
-#' `<here::here()>/models/<YEAR>/01-version/<NAME>` where `<YEAR>` is the
-#' current year if currently in the months of May to December, and the year
-#' before the current year if currently in the months of January to April, and
-#' `<NAME>` is the subdirectory name for the case model in that year
+#' `<here::here()>/models/<YEAR>/01-version/01-base-models/01-base-model`
+#' where `<YEAR>` is the current year if currently in the months of May
+#' to December, and the year before the current year if currently in the
+#' months of January to April, and `<NAME>` is the subdirectory name for
+#' the case model in that year
 #' @param base_model_dir Full path of the base model directory
-#' @param bridge_models_dir Full path of the bridging models directory
+#' @param bridge_models_dir Name of the bridging models directory
+#' @param sens_models_dir Name of the sensitivity models directory
+#' @param request_models_dir Name  of the request models directory
+#' @param test_models_dir Name of the test models directory
+#' @param retro_models_dir Name of the retrospective models directory
 #' @param bridge_models_dirs A vector of subdirectory names in
 #' `bridge_models_dir` that each contain an individual SS3 bridge model
-#' @param sens_models_dir Full path of the sensitivity models directory
 #' @param sens_models_dirs A vector of subdirectory names in `sens_models_dir`
 #' that each contain an individual SS3 sensitivity model
-#' @param request_models_dir Full path of the request models directory
 #' @param request_models_dirs A vector of subdirectory names in
 #' `request_models_dir` that each contain an individual SS3 base model request
 #' model
-#' @param test_models_dir Full path of the retrospective models directory
 #' @param test_models_dirs A vector of subdirectory names in `test_models_dir`
 #'  that each contain an individual SS3 base model test model
-#' @param retro_models_dir Full path of the retrospective models directory
 #' @param retro_models_dirs A vector of subdirectory names in
 #' `retro_models_dir` that each contain an individual SS3 base model
 #' retrospective model
@@ -45,47 +41,70 @@
 #'
 #' @return A list of twelve full paths, which will have `NULL` elements for
 #' the directories which don't exist:
-#' 1. `models_dir`. If it doesn't exist, an error will be thrown
-#' 2. `last_yr_base_model_dir`
-#' 3. `base_model_dir`
-#' 4. `bridge_models_dir`
-#' 5. A vector of the bridge model directories
-#' 6. `sens_models_dir`
-#' 7. A vector of the sensitivity model directories
-#' 8. `request_models_dir`
-#' 9. A vector of the request model directories
-#' 10. `test_models_dir`
-#' 11. A vector of the test model directories
-#' 12.`retro_models_dir`
+#' 1.  Full path of `models_dir`
+#' 2.  Full path of `last_yr_base_model_dir`
+#' 3.  Full path of `base_model_dir`
+#' 4.  Full path of `bridge_models_dir`
+#' 5.  Full path of `sens_models_dir`
+#' 6.  Full path of `request_models_dir`
+#' 7.  Full path of `test_models_dir`
+#' 8.  Full path of `retro_models_dir`
+#' 9.  A vector of the bridge model directories
+#' 10. A vector of the sensitivity model directories
+#' 11. A vector of the request model directories
+#' 12. A vector of the test model directories
 #' 13. A vector of the retrospective model directories
 #' @importFrom purrr map map_lgl
 #' @importFrom lubridate year month
 #' @export
 set_dirs <- function(
-    models_dir = here::here("models",
-                            ifelse(month(Sys.Date()) %in% 5:12,
-                                   year(Sys.Date()) + 1,
-                                   year(Sys.Date())),
-                            "01-version"),
-    last_yr_base_model_dir = here::here("models",
-                                        ifelse(month(Sys.Date()) %in% 5:12,
-                                               year(Sys.Date()),
-                                               year(Sys.Date()) - 1),
-                                        "01-version",
-                                        "01-base-models",
-                                        "2022.01.10_base_v2"),
-    base_model_dir = file.path(models_dir, "01-base-models", "01-base"),
-    bridge_models_dir = file.path(models_dir, "02-bridging-models"),
+    models_dir = here::here("models"),
+    year_dir = ifelse(month(Sys.Date()) %in% 5:12,
+                      year(Sys.Date()) + 1,
+                      year(Sys.Date())),
+    version_dir = "01-version",
+    last_yr_base_model_dir = file.path(models_dir,
+                                       year_dir - 1,
+                                       "01-version",
+                                       "01-base-models",
+                                       "01-base"),
+    base_model_dir = file.path("01-base-models",
+                               "01-base"),
+    bridge_models_dir = "02-bridging-models",
+    sens_models_dir = "03-sensitivity-models",
+    request_models_dir = "04-request-models",
+    test_models_dir = "05-test-models",
+    retro_models_dir = "06-retrospective-models",
     bridge_models_dirs = NULL,
-    sens_models_dir = file.path(models_dir, "03-sensitivity-models"),
     sens_models_dirs = NULL,
-    request_models_dir = file.path(models_dir, "04-request-models"),
     request_models_dirs = NULL,
-    test_models_dir = file.path(models_dir, "05-test-models"),
     test_models_dirs = NULL,
-    retro_models_dir = file.path(models_dir, "06-retrospective-models"),
     retro_models_dirs = NULL,
     prepend_to_bridge = NULL){
+
+  if(is.null(models_dir)){
+    stop("`models_dir` is `NULL`", call. = FALSE)
+  }
+
+  if(is.null(year_dir)){
+    stop("`year_dir` is `NULL`", call. = FALSE)
+  }
+
+  if(is.null(version_dir)){
+    stop("`version_dir` is `NULL`", call. = FALSE)
+  }
+
+  models_dir <- file.path(models_dir,
+                          year_dir,
+                          version_dir)
+
+  # Make model type directories full paths
+  base_model_dir = file.path(models_dir, base_model_dir)
+  bridge_models_dir = file.path(models_dir, bridge_models_dir)
+  sens_models_dir = file.path(models_dir, sens_models_dir)
+  request_models_dir = file.path(models_dir, request_models_dir)
+  test_models_dir = file.path(models_dir, test_models_dir)
+  retro_models_dir = file.path(models_dir, retro_models_dir)
 
   # Check existence of all model type directories
   lst <- list(models_dir, last_yr_base_model_dir, base_model_dir, bridge_models_dir,
@@ -107,6 +126,7 @@ set_dirs <- function(
   subdirs <- list(bridge_models_dirs, sens_models_dirs, request_models_dirs, test_models_dirs, retro_models_dirs)
 
   # Get paths for all directories
+  type_iter <- 1
   dirs_full <- map2(dirs, subdirs, function(dir_name, subdir_names){
     dir_full <- NULL
     if(!is.null(subdir_names)){
@@ -114,13 +134,14 @@ set_dirs <- function(
         grp_full <- file.path(dir_name, grp)
         dir_existence <- map_lgl(grp_full, ~{dir.exists(.x)})
         if(!all(dir_existence)){
-          stop(paste0("Some ", dir_types[iter], " model directories do not exist:\n\n"),
+          stop(paste0("Some ", dir_types[type_iter], " model directories do not exist:\n\n"),
                paste0(grp_full[!dir_existence], collapse = "\n"),
                call. = FALSE)
         }
         grp_full
       })
     }
+    type_iter <- type_iter + 1
     dir_full
   })
 
@@ -147,15 +168,16 @@ set_dirs <- function(
   })
 
   list(models_dir = models_dir,
-       base_model_dir = base_model_dir_full,
-       bridge_models_dir = file.path(models_dir, bridge_models_dir),
+       last_yr_base_model_dir = last_yr_base_model_dir,
+       base_model_dir = base_model_dir,
+       bridge_models_dir = bridge_models_dir,
+       sens_models_dir = sens_models_dir,
+       request_models_dir = request_models_dir,
+       test_models_dir = test_models_dir,
+       retro_models_dir = retro_models_dir,
        bridge_models_dirs = dirs_full[[1]],
-       sens_models_dir = file.path(models_dir, sens_models_dir),
        sens_models_dirs = dirs_full[[2]],
-       request_models_dir = file.path(models_dir, request_models_dir),
        request_models_dirs = dirs_full[[3]],
-       test_models_dir = file.path(models_dir, test_models_dir),
        test_models_dirs = dirs_full[[4]],
-       retro_models_dir = file.path(models_dir, retro_models_dir),
        retro_models_dirs = dirs_full[[5]])
 }

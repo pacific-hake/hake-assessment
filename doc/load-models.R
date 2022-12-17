@@ -1,14 +1,28 @@
 # This is a list of vectors of bridge groups (bridge models that will be
-# plotted against each other). It can be `NULL` if to be ignored.
+# plotted against each other). It can be `NULL` if you want it to be ignored.
+# `prepend_to_bridge` is the same length as the number of groups in
+# `bridge_models_dirs` and for those groups set to `TRUE`, last year's base
+# model will be prepended to the group.
+# See `set_dirs()`
 bridge_models_dirs <-
   list(c("01-new-ss-exe",
          "02-new-catch-age",
          "03-update-survey"),
-       c("04-new-wt-at-age",
-         "05-age-1-index"))
+       c("04-age-1-index",
+         "05-new-wt-at-age"))
+bridge_models_desc <-
+  list(c("Update Stock Synthesis version to 3.30.20",
+         "Update all fishery catch and comps",
+         "Update pre-2021 survey data"),
+       c("Update wt-at-age data",
+         "Add 2021 survey data"))
+prepend_to_bridge <- c(TRUE, FALSE)
 
-# This is a list of vectors of bridge groups (bridge models that will be
-# plotted against each other). It can be `NULL` if to be ignored.
+# This is a list of vectors of sensitivity groups (sensitivity models that
+# will be plotted against each other). It can be `NULL` if you want it to be
+# ignored.
+# The base mode will be prepended to each group by the function.
+# See `set_dirs()`
 sens_models_dirs <-
   list(c("01-h-prior-mean-low",
          "02-h-fix-high",
@@ -24,14 +38,48 @@ sens_models_dirs <-
        c("12-max-sel-age-5",
          "13-max-sel-age-7",
          "14-max-sel-age-8"))
+#sens_models_desc <- NULL
+sens_models_desc <-
+  list(c("Steepness Mean Prior Low (0.5)",
+         "Steepness Fix 1.0",
+         "Sigma R 1.0",
+         "Sigma R 1.6",
+         "Natural Mortality (SD=0.2)",
+         "Natural Mortality (SD=0.3)"),
+       c("Remove Age 1 Index",
+         "Downweight Fishery Comps"),
+       c("Phi t.v. selectivity (0.21)",
+         "Phi t.v. selectivity (0.70)",
+         "Phi t.v. selectivity (2.10)"),
+       c("Max. age selectivity 5",
+         "Max. age selectivity 7",
+         "Max. age selectivity 8"))
 
 request_models_dirs <- NULL
-test_models_dirs <- NULL
-retro_models_dirs <- NULL
+request_models_desc <- NULL
 
-drs <- set_dirs(bridge_models_dirs = bridge_models_dirs,
+test_models_dirs <- NULL
+test_models_desc <- NULL
+
+retro_models_dirs <- NULL
+retro_models_desc <- NULL
+
+drs <- set_dirs(last_yr_base_model_dir = here::here("models",
+                                                    "2022",
+                                                    "01-version",
+                                                    "01-base-models",
+                                                    "2022.01.10_base_v2"),
+                bridge_models_dirs = bridge_models_dirs,
                 sens_models_dirs = sens_models_dirs,
                 request_models_dirs = request_models_dirs,
                 test_models_dirs = test_models_dirs,
                 retro_models_dirs = retro_models_dirs,
-                prepend_to_bridge = c(TRUE, FALSE))
+                prepend_to_bridge = prepend_to_bridge)
+stop()
+
+models <- model_setup(main_dirs = drs,
+                      bridge_models_desc = bridge_models_desc,
+                      sens_models_desc = sens_models_desc,
+                      request_models_desc = request_models_desc,
+                      test_models_desc = test_models_desc,
+                      retro_models_desc = retro_models_desc)
