@@ -64,20 +64,20 @@ test_models_desc <- NULL
 retro_models_dirs <- NULL
 retro_models_desc <- NULL
 
-drs <- set_dirs(last_yr_base_model_dir = here::here("models",
-                                                    "2022",
+drs <- set_dirs(year_dir = 2022,
+                last_yr_base_model_dir = here::here("models",
+                                                    "2021",
                                                     "01-version",
                                                     "01-base-models",
-                                                    "2022.01.10_base_v2"),
+                                                    "01-base"),
                 bridge_models_dirs = bridge_models_dirs,
                 sens_models_dirs = sens_models_dirs,
                 request_models_dirs = request_models_dirs,
                 test_models_dirs = test_models_dirs,
                 retro_models_dirs = retro_models_dirs,
                 prepend_to_bridge = prepend_to_bridge)
-stop()
 
-models <- model_setup(main_dirs = drs,
+models <- model_setup(drs = drs,
                       bridge_models_desc = bridge_models_desc,
                       sens_models_desc = sens_models_desc,
                       request_models_desc = request_models_desc,

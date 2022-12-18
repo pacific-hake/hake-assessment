@@ -5,7 +5,7 @@
 #' If any of the text lists are `NULL`, default description text will be
 #' assigned and a warning given.
 #'
-#' @param main_dirs Output list from [set_dirs()]
+#' @param drs Output list from [set_dirs()]
 #' @param bridge_models_desc A list of vectors of text strings to show in
 #' the legends for bridge model plots, one name for each model, where the
 #' list elements represent a group of models
@@ -87,7 +87,7 @@
 #'                         retro_models_desc = retro_models_desc,
 #'                         overwrite_rds_files = TRUE)
 #' }
-model_setup <- function(main_dirs = NULL,
+model_setup <- function(drs = NULL,
                         bridge_models_desc = NULL,
                         sens_models_desc = NULL,
                         request_models_desc = NULL,
@@ -95,8 +95,8 @@ model_setup <- function(main_dirs = NULL,
                         retro_models_desc = NULL,
                         ...){
 
-  if(is.null(main_dirs[1])){
-    stop("`main_dirs` is NULL. Set main_dirs to the output of `set_dirs()`",
+  if(is.null(drs[1])){
+    stop("`drs` is NULL. Set drs to the output of `set_dirs()`",
          call. = FALSE)
   }
 
@@ -113,7 +113,7 @@ model_setup <- function(main_dirs = NULL,
               "for plot legends")
       dir_type_name <- gsub("_desc", "_dirs", .y)
 
-      if(is.null(main_dirs[[dir_type_name]])){
+      if(is.null(drs[[dir_type_name]])){
         message("  - Directory names for `", .y, "` are also `NULL`")
         message("  - Cannot set up default descriptions for folders that ",
                 "do not exist\n")
@@ -121,7 +121,7 @@ model_setup <- function(main_dirs = NULL,
       }else{
         message("  - Successfully set descriptions for `", .y, "` to ",
                 "directory names.\n")
-        map(main_dirs[[dir_type_name]], ~{
+        map(drs[[dir_type_name]], ~{
           basename(.x)
         })
       }
@@ -130,19 +130,20 @@ model_setup <- function(main_dirs = NULL,
     }
   })
 
-  #model_list <-
-browser()
-
   # model_list is a list of three lists, one for the base model, one for the bridge models,
   # and one for the sensitivity models
-  model_list <- list(base_model_groups = list(main_dirs$base_model_dir),
-                     bridge_model_groups = main_dirs$bridge_models_dirs,
-                     sens_model_groups = main_dirs$sens_models_dirs,
-                     retro_model_groups = main_dirs$retro_models_dirs)
+  model_list <- list(base_model_groups = list(drs$base_model_dir),
+                     bridge_model_groups = drs$bridge_models_dirs,
+                     sens_model_groups = drs$sens_models_dirs,
+                     request_model_groups = drs$request_models_dirs,
+                     test_model_groups = drs$test_models_dirs,
+                     retro_model_groups = drs$retro_models_dirs)
 
-  model_names_list <- list(base_model_groups = ifelse(fr(), "Modèle de base", "Base model"),
+  model_names_list <- list(base_model_groups = "Base model",
                            bridge_model_groups = bridge_models_desc,
                            sens_model_groups = sens_models_desc,
+                           request_model_groups = request_models_desc,
+                           test_model_groups = test_models_desc,
                            retro_model_groups = retro_models_desc)
 
   j <- imap(model_list, function(.x, .y, ...){
@@ -156,6 +157,7 @@ browser()
       walk(unique_models_dirs, function(x, ...){
                     create_rds_file(x, ...)},
                   ...)
+
 
       # This ensures that each unique model is loaded only once, even if it is in multiple
       # sensitivity groups
@@ -175,6 +177,7 @@ browser()
       })
     }
   }, ...)
+  browser()
 
   base_model <- j[[1]][[1]]
   bridge_grps <- j[[2]]

@@ -114,7 +114,8 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "tables-sampling.R", "tables-squid.R", "tables-maturity.R",
              "theme.R", "model-setup.R", "forecast-catch-levels.R",
              "data-tables.R", "useful-quantities.R", "historical-probs.R",
-             "recruitment-question-responses.R")
+             "recruitment-question-responses.R", "run.R", "build-rds.R",
+             "append-retros.R")
 source_all(src_lst)
 
 theme_set(hake_theme())
