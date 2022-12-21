@@ -40,7 +40,7 @@ run_adnuts <- function(path,
                        check_issues = FALSE,
                        save_image = TRUE,
                        extra_mcmc = FALSE,
-                       hess_step = FALSE,
+                       hess_step = TRUE,
                        exe = ifelse(exists("ss_executable"),
                                     ss_executable,
                                     "ss3"),
@@ -115,7 +115,7 @@ run_adnuts <- function(path,
                       thin = thin,
                       seeds = seeds,
                       init = NULL,
-                      chains = 100 * thin,
+                      chains = chains,
                       warmup = 100 * thin / 4,
                       path = path)
   if(check_issues){
@@ -154,6 +154,10 @@ run_adnuts <- function(path,
   # Use default MLE covariance (mass matrix) and short parallel NUTS chains
   # started from the MLE. Recall iter is number per core running in parallel.
   # `nuts::sample_admb()` is deprecated and replaced with `nuts::sample_nuts()`
+  # Warning messages:
+# 1: Argument parallel is deprecated, set cores=1 for serial, and cores>1 for parallel.
+# 2: In sample_nuts(model = exe, path = mcmc_path, iter = 500, seeds = seeds,  :
+#   Default init of MLE used for each chain. Consider using dispersed inits
   nuts_mle <- sample_nuts(model = exe,
                           path = mcmc_path,
                           iter = 500,
