@@ -11,7 +11,7 @@ make_age_comp_bubble_plot <- function(model,
                                       ...){
 
   dat <- model$dat$agecomp %>%
-    filter(FltSvy == subplot) %>%
+    dplyr::filter(FltSvy == subplot) %>%
     select(Yr, starts_with("a", ignore.case = FALSE)) %>%
     setNames(gsub("a", "", names(.))) %>%
     rename(Year = Yr) %>%

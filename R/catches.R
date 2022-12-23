@@ -352,6 +352,7 @@ make.catches.plot <- function(ct,
   ## leg.cex - text size for legend
 
   yrs <- ct$year
+  ct[is.na(ct)] <- 0
   ct <- ct %>%
     select(can_foreign_xx,
            can_jv_xx,

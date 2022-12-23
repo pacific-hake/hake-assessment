@@ -14,12 +14,15 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
   ## Cumulative catch plot for years given
   ## Remove any data with years not within limits
   if (!"month" %in% colnames(d)) {
+    colnames(d) <- gsub("Year", "year", colnames(d))
     d <- reshape(d, direction = "long",
       idvar = "year", varying = 2:NCOL(d), sep = "",
       timevar = "month", v.names = "catch")
+    d <- as.data.frame(d)
   }
+
   d <- d %>%
-    filter(year %in% yrs)
+    dplyr::filter(year %in% yrs)
 ## TODO: Fix this to work on new file structure of can-ft-catch-by-month.csv.
 ## See hakedata package (canada) as it has this function already built in.
 
@@ -118,6 +121,7 @@ make.wt.at.age.plot <- function(d,
                                 ylab = "Mean weight-at-age (kg)",
                                 highlight = NULL){
   if (any(is.na(d$year))) d <- d[!is.na(d$year), ]
+  d <- d[d$year > 0, ]
   year <- d$year
   df <- d[, names(d) %in% ages]
   col.fn <- colorRampPalette(c("darkblue", "blue", "green", "darkgreen"))
