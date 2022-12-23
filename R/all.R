@@ -43,9 +43,9 @@ user_name <- sys_info[["user"]]
 models_path <- file.path(assess_yr, paste0(model_version, "-version"))
 if(models_path == ""){
   if(computer_name == "hake-precision"){
-    rood_models <- file.path("/srv", "hake", models_path)
+    rootd_models <- file.path("/srv", "hake", models_path)
   }else{
-    rood_models <- file.path(rootd, "models", models_path)
+    rootd_models <- file.path(rootd, "models", models_path)
   }
 }
 

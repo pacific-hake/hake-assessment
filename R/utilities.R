@@ -1,3 +1,14 @@
+#' Stop the program without issuing an error message
+#'
+#' @return Nothing
+#' @export
+stop_quietly <- function(...) {
+  opt <- options(show.error.messages = FALSE)
+  on.exit(options(opt))
+  message(unlist(list(...)))
+  stop()
+}
+
 #' Format x to have supplied number of decimal points
 #'
 #' @details Make thousands separated by commas and the number of decimal points given by `dec.points`
@@ -1121,13 +1132,13 @@ calc_quantiles_by_group <- function(df = NULL,
 #'
 #' @return The output from the command function called
 #' @export
-system_ <- function(...){
-  if(get_os() == "windows"){
-    shell(...)
-  }else{
-    system(...)
-  }
-}
+# system_ <- function(...){
+#   if(get_os() == "windows"){
+#     shell(...)
+#   }else{
+#     system(...)
+#   }
+# }
 
 #' Copy `files` and their containing directories from all subdirectories of `fromdir`
 #' to `todir`. Only subdirs of `fromdir` are searched for `files`, not `fromdir` itself,
@@ -1252,21 +1263,21 @@ modify_starter_mcmc_type <- function(path, value){
 #'
 #' @return A character string describing the OS, e.g. 'windows', 'linux', or 'osx'
 #' @export
-get_os <- function(){
-  sysinf <- Sys.info()
-  if(!is.null(sysinf)){
-    os <- sysinf["sysname"]
-    if(os == "Darwin")
-      os <- "osx"
-  } else { ## mystery machine
-    os <- .Platform$OS.type
-    if (grepl("^darwin", R.version$os))
-      os <- "osx"
-    if (grepl("linux-gnu", R.version$os))
-      os <- "linux"
-  }
-  tolower(os)
-}
+# get_os <- function(){
+#   sysinf <- Sys.info()
+#   if(!is.null(sysinf)){
+#     os <- sysinf["sysname"]
+#     if(os == "Darwin")
+#       os <- "osx"
+#   } else { ## mystery machine
+#     os <- .Platform$OS.type
+#     if (grepl("^darwin", R.version$os))
+#       os <- "osx"
+#     if (grepl("linux-gnu", R.version$os))
+#       os <- "linux"
+#   }
+#   tolower(os)
+# }
 
 #' Make RDS files smaller by removing unnecessary objects
 #'

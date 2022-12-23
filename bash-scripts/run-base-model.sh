@@ -18,14 +18,12 @@ extra_mcmc=FALSE
 model_path=$models_path/$year_path/$version_path/$type_path/$model_name
 [[ ! -d $model_path ]] && { echo "Error: Directory $model_path does not exist, bailing out." ; exit 1; }
 
-Rscript -e "source('$repo_path/R/all.R');"
-exit 1;
-(trap 'kill 0' SIGINT; Rscript -e "setwd("$repo_path"); source('R/all.R'); \
+(trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); source('R/all.R'); \
 run_adnuts('$model_path', adapt_delta = $adapt_delta, extra_mcmc = $extra_mcmc, n_cores = $n_cores)" \
 > /dev/null 2>&1; echo "Base model MCMC complete")
 
 # Run the base models catch-level calculations
-(trap 'kill 0' SIGINT; Rscript -e "setwd($repo_path); source('R/all.R'); \
+(trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); source('R/all.R'); \
 build_rds('$model_path', run_catch_levels = TRUE, build_file = FALSE)" \
 > /dev/null 2>&1; echo "Base model catch level calculations complete")
 
@@ -34,7 +32,7 @@ find $model_path/catch-levels -type f \
  ! -name 'forecast.ss' -delete
 
 # Run the base models forecasts
-(trap 'kill 0' SIGINT; Rscript -e "setwd($repo_path); source('R/all.R'); \
+(trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); source('R/all.R'); \
 build_rds('$model_name', run_catch_levels = FALSE, run_forecasts = TRUE, build_file = FALSE)" \
 > /dev/null 2>&1; echo "Base model forecasts complete")
 
