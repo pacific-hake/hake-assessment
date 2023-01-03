@@ -13,6 +13,7 @@ options(max.print = 999999)
 
 # To install rnaturalearthhires (it was hard to find with Google):
 # devtools::install_github("ropensci/rnaturalearthhires")
+# devtools::install_github("pbs-assess/gfutilities")
 message("Loading R packages...")
 pacman::p_load(adnuts, coda, aws.s3, coda, cowplot, data.tree, date, dplyr,
                future, furrr, here, gfutilities, ggplot2, ggpubr, ggrepel,
