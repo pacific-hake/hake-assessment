@@ -220,11 +220,13 @@ opts_chunk$set(alt.text = "")
 options(xtable.comment = FALSE)
 
 source(here::here("R/all.R"))
-if(!(exists("models_loaded") || models_loaded)){
+
+if(!(exists("models_loaded"))){
   load_models_rds()
 }
 models_loaded <<- TRUE
-source(file.path(rootd.R, "custom-knitr-variables.R"))
+
+source(file.path(rootd_r, "custom-knitr-variables.R"))
 @
 
 %% Title page and author references page
