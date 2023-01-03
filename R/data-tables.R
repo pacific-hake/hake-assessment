@@ -119,4 +119,3 @@ out_est_caa_bio_file <- "estimated-catch-at-age-biomass.csv"
 out_est_baa_file <- "estimated-biomass-at-age.csv"
 
 message("All data tables have been loaded")
-
