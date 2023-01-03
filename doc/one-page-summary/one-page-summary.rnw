@@ -7,27 +7,27 @@
 
 \begin{itemize}
   \item The stock assessment model for \Sexpr{assess_yr} has the same population
-    dynamics structure as the \Sexpr{last.assess_yr} model. For \Sexpr{assess_yr},
+    dynamics structure as the \Sexpr{last_assess_yr} model. For \Sexpr{assess_yr},
     it is fit to an acoustic survey index of biomass, an index of age-1 fish, annual
     commercial catch data, and age-composition data from the survey and commercial fisheries.
-    The addition of the age-1 index is the main change in data streams from \Sexpr{last.assess_yr}.
+    The addition of the age-1 index is the main change in data streams from \Sexpr{last_assess_yr}.
 
-%  \item The main change from \Sexpr{last.assess_yr} is the use of the age-1 index
+%  \item The main change from \Sexpr{last_assess_yr} is the use of the age-1 index
 %    efficient algorithm (the No-U-Turn Sampler) for obtaining posterior samples. Consequently,
 %    all model results, including sensitivity and retrospective analyses, are
 %    now based on posterior distributions rather than maximum likelihood estimates.
 
   \item Updates to the data include:
-    the new biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey.end.yr},
-    fishery catch and age-composition data from \Sexpr{end.yr-1}, weight-at-age data for
-    \Sexpr{end.yr-1}, the addition of the age-1 index time series
-    (\Sexpr{survey.start.yr}--\Sexpr{survey.end.yr}), and minor changes to pre-\Sexpr{end.yr-1} data. Due to
-    staffing issues, age data from \Sexpr{end.yr-1} were unavailable from the Canadian freezer-trawler fleet and minimally
+    the new biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey_end_yr},
+    fishery catch and age-composition data from \Sexpr{end_yr-1}, weight-at-age data for
+    \Sexpr{end_yr-1}, the addition of the age-1 index time series
+    (\Sexpr{survey_start_yr}--\Sexpr{survey_end_yr}), and minor changes to pre-\Sexpr{end_yr-1} data. Due to
+    staffing issues, age data from \Sexpr{end_yr-1} were unavailable from the Canadian freezer-trawler fleet and minimally
     available for the shoreside fleet.
 
-  \item Coast-wide catch in \Sexpr{end.yr-1} was \Sexpr{last.year.landings}~t
+  \item Coast-wide catch in \Sexpr{end_yr-1} was \Sexpr{last.year.landings}~t
     [t represents metric tons], close to the average over the past decade of
-    \Sexpr{f(mean(ct$tot_catch[(end.yr-start.yr-9):(end.yr-start.yr)]),0)}~t,
+    \Sexpr{f(mean(ct$tot_catch[(end_yr-start_yr-9):(end.yr-start_yr)]),0)}~t,
     out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t.
     Quotas were specified unilaterally in 2021 due to the lack of a
     bilateral TAC agreement. The U.S. caught \Sexpr{last.year.us.landings}~t (\Sexpr{last.year.us.attained}\%
