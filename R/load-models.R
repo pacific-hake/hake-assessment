@@ -363,14 +363,14 @@ create.key.nuisance_posteriors_files <- function(model,
 load_models <- function(model_dirs,
                         ret_single_list = FALSE){
   ret_list <- NULL
-  model_rds_files <- file.path(rootd.models, model_dirs, paste0(model_dirs, ".rds"))
+  model_rds_files <- file.path(rootd_models, model_dirs, paste0(model_dirs, ".rds"))
   if(!all(file.exists(model_rds_files))){
     stop("The following files do not exist, run build_rds() on the associated directories:\n",
          paste(model_rds_files[!file.exists(model_rds_files)], collapse = "\n"),
          call. = FALSE)
   }
   for(i in 1:length(model_rds_files)){
-    small_file <- file.path(rootd.models, model_dirs[i], paste0("small_", model_dirs[i], ".rds"))
+    small_file <- file.path(rootd_models, model_dirs[i], paste0("small_", model_dirs[i], ".rds"))
     if(file.exists(small_file)){
       #message("Trying ", small_file)
       #gzfile(small_file, "rb")

@@ -33,6 +33,7 @@ rootd_data_prep <- file.path(rootd, "data-prep")
 rootd_doc <- file.path(rootd, "doc")
 rootd_extra_calcs <- file.path(rootd, "extra-calculations")
 rootd_pres <- file.path(rootd, "beamer")
+rootd_models <- file.path(rootd, "models")
 
 sys_info <- Sys.info()
 computer_name <- sys_info[["nodename"]]

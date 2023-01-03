@@ -4,14 +4,14 @@
 \vspace{10mm}
 <<catches-us, results='asis', echo=FALSE>>=
 make_catch_table(ct,
-                 start_yr = start.yr,
+                 start_yr = start_yr,
                  end_yr = end_yr,
                  country = 2,
                  xcaption = paste("Annual catches of \\fishname\\ (t) in
                         U.S. waters by sector, ",
-                        start.yr,
+                        start_yr,
                         "-",
-                        last.data.yr,
+                        last_data_yr,
                         ". Tribal catches are included in the sector totals.
                         Research catch includes landed catch associated with
                         research-related activities. Catch associated with
@@ -27,14 +27,14 @@ make_catch_table(ct,
 
 <<catches-can, results='asis', echo=FALSE>>=
 make_catch_table(ct,
-                 start_yr = start.yr,
+                 start_yr = start_yr,
                  end_yr = end_yr,
                  country = 1,
                  xcaption = paste("Annual catches of \\fishname\\ (t) in
                          Canadian  waters by sector, ",
-                         start.yr,
+                         start_yr,
                          "-",
-                         last.data.yr,
+                         last_data_yr,
                          ".",
                          sep=""),
                  xlabel = "tab:intro-catches-Can",
@@ -47,7 +47,7 @@ make_catch_table(ct,
 \centering
 <<main-landings-tac-table, results='asis', echo=FALSE>>=
 make_landings_tac_table(ct,
-                        start_yr = start.yr,
+                        start_yr = start_yr,
                         end_yr = end_yr-1,
                         xcaption = "\\fishname\\ landings and
                                      management decisions. A dash (--) indicates the management decision
@@ -88,8 +88,8 @@ make.sampling.history.table(sampling.history,
 <<main-us-cp-age-data-table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.cp.age,
                        fleet = 1,
-                       start.yr = end_yr - num.recent.yrs,
-                       end_yr = last.data.yr,
+                       start_yr = end_yr - num.recent.yrs,
+                       end_yr = last_data_yr,
                        xcaption = paste0("Recent age proportion data used in
                          the assessment for the U.S. Catcher-Processor fleet.
                          Proportions are calculated from numbers of individuals
@@ -103,8 +103,8 @@ make.us.age.data.table(us.cp.age,
 <<main-us-ms-data-table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.ms.age,
                        fleet = 2,
-                       start.yr = end_yr - num.recent.yrs,
-                       end_yr = last.data.yr,
+                       start_yr = end_yr - num.recent.yrs,
+                       end_yr = last_data_yr,
                        xcaption = paste0("Recent age proportion data used in
                          the assessment for the U.S. Mothership fleet.
                          Proportions are calculated from numbers of
@@ -124,8 +124,8 @@ make.us.age.data.table(us.ms.age,
 <<main-us-shore-age-data-table, results='asis', echo=FALSE>>=
 make.us.age.data.table(us.shore.age,
                        fleet = 3,
-                       start.yr = end_yr - num.recent.yrs,
-                       end_yr = last.data.yr,
+                       start_yr = end_yr - num.recent.yrs,
+                       end_yr = last_data_yr,
                        xcaption = paste0("Recent age proportion data used in the assessment for ",
                                          "the U.S. Shore-Based fleet. Proportions are ",
                                          "calculated from numbers of individuals in each age group. ",
@@ -140,8 +140,8 @@ make.us.age.data.table(us.shore.age,
 make.can.age.data.table(can.ages,
                         can.ss.num.fish,
                         fleet = 1,
-                        start.yr = end_yr - num.recent.yrs,
-                        end_yr = last.data.yr,
+                        start_yr = end_yr - num.recent.yrs,
+                        end_yr = last_data_yr,
                         xcaption = paste0("Recent age proportion data used in the assessment for ",
                                           "the Canadian Shoreside fleet. Proportions are ",
                                           "calculated from numbers of individuals in each age group. ",
@@ -161,8 +161,8 @@ make.can.age.data.table(can.ages,
 make.can.age.data.table(can.ages,
                         can.ft.num.fish,
                         fleet = 2,
-                        start.yr = end_yr - num.recent.yrs,
-                        end_yr = last.data.yr,
+                        start_yr = end_yr - num.recent.yrs,
+                        end_yr = last_data_yr,
                         xcaption = paste0("Recent age proportion data used in the assessment for ",
                                           "the Canadian freezer-trawler fleet. Proportions are ",
                                           "calculated from numbers of individuals in each age group. ",
@@ -176,10 +176,10 @@ make.can.age.data.table(can.ages,
 \clearpage
 
 <<main-all-age-data-fishery-table, results='asis', echo=FALSE>>=
-make.input.age.data.table(base.model,
+make.input.age.data.table(base_model,
                           fleet = 1,
-                          start.yr = start.yr.age.comps,
-                          end_yr = last.data.yr,
+                          start_yr = start_yr_age_comps,
+                          end_yr = last_data_yr,
                           csv.dir = output_csv_dir,
                           xcaption = paste0("Aggregated fishery age proportion data used in the base model. Proportions are ",
                                             "calculated from numbers of individuals in each age group where the ",
@@ -200,9 +200,9 @@ make.input.age.data.table(base.model,
 \pagestyle{mylandscape}
 \centering
 <<main-all-age-survey-table, results='asis', echo=FALSE>>=
-make.input.age.data.table(base.model,
+make.input.age.data.table(base_model,
                           fleet = 2,
-                          start.yr = survey.start.yr,
+                          start_yr = survey_start_yr,
                           end_yr = survey_end_yr,
                           csv.dir = output_csv_dir,
                           xcaption = paste0("Survey age proportion data used in the base model. Proportions are ",
@@ -221,7 +221,7 @@ make.input.age.data.table(base.model,
 make.survey.history.table(survey.history,
                           age.1.index,
                           digits = 3,
-                          xcaption = paste0("Summary of the acoustic surveys from ", survey.start.yr, " to ", survey_end_yr, "."),
+                          xcaption = paste0("Summary of the acoustic surveys from ", survey_start_yr, " to ", survey_end_yr, "."),
                           xlabel = "tab:main-survey-history",
                           font.size = 10,
                           space.size = 11)
@@ -248,7 +248,7 @@ make.maturity.ogives.table(maturity.ogives,
                                        year-specific fecundities from ",
                                        start.yr.age.comps,
                                        "--",
-                                       last.data.yr,
+                                       last_data_yr,
                                        " were used in the stock assessment. The values reported for ages 15 and ",
                                        "above represent the average across all samples in this range."),
                            xlabel = "tab:main-ogives",
@@ -269,7 +269,7 @@ make.maturity.samples.table(ovary.samples,
 
 <<main-parameters-estimated-summary-table, results='asis', echo=FALSE>>=
 make.parameters.estimated.summary.table(
-  base.model,
+  base_model,
   start.rec.dev.yr = recruit_dev_start_yr,
   end.rec.dev.yr = end_yr - 1,
   digits = 2,
@@ -303,7 +303,7 @@ make.assessment.changes.table(assessment.changes,
 \centering
 <<main-est-numbers-at-age-table, results='asis', echo=FALSE>>=
 atage_table(
-  base.model,
+  base_model,
   table_type = 1,
   end_yr = end_yr,
   csv_dir = output_csv_dir,
@@ -322,7 +322,7 @@ atage_table(
 \centering
 <<main-est-biomass-at-age-table, results='asis', echo=FALSE>>=
 atage_table(
-  base.model,
+  base_model,
   table_type = 5,
   end_yr = end_yr,
   csv_dir = output_csv_dir,
@@ -340,7 +340,7 @@ atage_table(
 \centering
 <<main-est-exp-rate-at-age-table, results='asis', echo=FALSE>>=
 atage_table(
-  base.model,
+  base_model,
   table_type = 2,
   end_yr = end_yr - 1,
   digits = 2,
@@ -361,7 +361,7 @@ atage_table(
 \centering
 <<main-est-catch-at-age-table, results='asis', echo=FALSE>>=
 atage_table(
-  base.model,
+  base_model,
   table_type = 3,
   end_yr = end_yr - 1,
   csv_dir = output_csv_dir,
@@ -379,7 +379,7 @@ atage_table(
 \centering
 <<main-est-catch-at-age-biomass-table, results='asis', echo=FALSE>>=
 atage_table(
-  base.model,
+  base_model,
   table_type = 4,
   end_yr = end_yr - 1,
   csv_dir = output_csv_dir,
@@ -396,7 +396,7 @@ atage_table(
 \pagestyle{mylandscape}
 \centering
 <<main-cohort-effects-table, results='asis', echo=FALSE>>=
-cohort_table(base.model,
+cohort_table(base_model,
              end_yr = end_yr,
              cohorts = c(1999, 2010, 2014, 2016),
              csv_dir = output_csv_dir,
@@ -423,8 +423,8 @@ cohort_table(base.model,
 
 <<main-median-posterior-table, results='asis', echo=FALSE>>=
 make.median.posterior.table(
-  base.model,
-  start.yr = start.yr,
+  base_model,
+  start.yr = start_yr,
   end_yr = end_yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
   csv.dir = output_csv_dir,
@@ -444,8 +444,8 @@ make.median.posterior.table(
 
 <<main-ci-posterior-table, results='asis', echo=FALSE>>=
 make.ci.posterior.table(
-  base.model,
-  start.yr = start.yr,
+  base_model,
+  start.yr = start_yr,
   end_yr = end_yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
   xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities
@@ -459,8 +459,8 @@ make.ci.posterior.table(
 @
 
 <<main-parameter-estimates, results='asis', echo=FALSE>>=
-param_est_table(list(base.model, last.yr.base.model),
-                model.names = c(base.model.name, last.yr.base.model.name),
+param_est_table(list(base_model, last_yr_base_model),
+                model.names = c(base_model_name, last_yr_base_model_name),
                 end_yr = end_yr,
                 digits = 3,
                 getrecs = c(2010, 2014, 2016),
@@ -479,7 +479,7 @@ param_est_table(list(base.model, last.yr.base.model),
 @
 
 <<main-reference-points-table, results='asis', echo=FALSE>>=
-make.reference.points.table.old(base.model,
+make.reference.points.table.old(base_model,
                             xcaption = paste0("Summary of median and 95\\% credibility
                                                intervals of equilibrium conceptual reference points for
                                                the base assessment model. Equilibrium
@@ -498,7 +498,7 @@ make.reference.points.table.old(base.model,
 \clearpage
 
 <<main-biomass-table, results='asis', echo=FALSE>>=
-decision_table(base.model,
+decision_table(base_model,
                xcaption =
                  paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year.
@@ -538,7 +538,7 @@ decision_table(base.model,
 \clearpage
 
 <<main-decisions-spr-table, results='asis', echo=FALSE>>=
-decision_table(base.model,
+decision_table(base_model,
                xcaption = paste0("Forecast quantiles of \\fishname\\
                      relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}),
                      expressed as a proportion,
@@ -558,7 +558,7 @@ decision_table(base.model,
 \clearpage
 
 <<main-risk-forecast-year-1-table, results='asis', echo=FALSE>>=
-make.risk.table(base.model,
+make.risk.table(base_model,
                 forecast_yrs,
                 index = 1, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                 xcaption = paste0("Probabilities related to spawning biomass, relative fishing intensity,
@@ -571,7 +571,7 @@ make.risk.table(base.model,
 @
 
 <<main-risk-forecast-year-2-table, results='asis', echo=FALSE>>=
-make.risk.table(base.model,
+make.risk.table(base_model,
                 forecast_yrs,
                 index = 2, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                 xcaption = paste0("Probabilities related to spawning biomass, relative fishing intensity,
@@ -589,7 +589,7 @@ make.risk.table(base.model,
 @
 
 <<main-risk-forecast-year-3-table, results='asis', echo=FALSE>>=
-make.risk.table(base.model,
+make.risk.table(base_model,
                 forecast_yrs,
                 index = 3, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                 xcaption = paste0("Probabilities related to spawning biomass,
@@ -615,8 +615,8 @@ make.risk.table(base.model,
 \pagestyle{mylandscape}
 \centering
 <<main-parameter-estimates-sens-1, results='asis', echo=FALSE>>=
-param_est_table(sens.models.1.for.table,
-                model.names = sens.model.names.1.for.table,
+param_est_table(sens_models_1_for_table,
+                model.names = sens_model_names_1_for_table,
                 end_yr = end_yr,
                 digits = 3,
                 xcaption = paste0("Posterior medians for select parameters, derived quantities,
@@ -631,8 +631,8 @@ param_est_table(sens.models.1.for.table,
 @
 
 <<main-parameter-estimates-sens-2, results='asis', echo=FALSE>>=
-param_est_table(sens.models.2.for.table,
-                model.names = sens.model.names.2.for.table,
+param_est_table(sens_models_2_for_table,
+                model.names = sens_model_names_2_for_table,
                 end_yr = end_yr,
                 digits = 3,
                 xcaption = paste0("Posterior medians for select parameters,

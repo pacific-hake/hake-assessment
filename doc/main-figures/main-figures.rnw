@@ -73,7 +73,7 @@ make.overview.map.plot(path = rootd_map_data)
 make.catches.plot(ct, leg.y.loc = 550)
 @
 \end{center}
-\caption{Total \fishname\ catch used in the assessment by sector, \Sexpr{start_yr}--\Sexpr{last.data.yr}.
+\caption{Total \fishname\ catch used in the assessment by sector, \Sexpr{start_yr}--\Sexpr{last_data_yr}.
   U.S. tribal catches are included in the appropriate sector.}
 \label{fig:main-catches}
 \end{figure}
@@ -87,7 +87,7 @@ make.catches.plot(ct, leg.y.loc = 550)
 \pdftooltip{\includegraphics[width=0.75\paperwidth]{main-figures/fishCatchRatesUS}}{This figure shows changes in catch rates for the U.S. fleet}
 \end{center}
 \caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
-  the U.S. at-sea fleet from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}.}
+  the U.S. at-sea fleet from \Sexpr{last_data_yr-4}--\Sexpr{last_data_yr}.}
 \label{fig:main-us-catch-rates}
 %%%%%%%%%%%%%%%%%%%%%%%
 %% JOINED ON PAGE
@@ -109,7 +109,7 @@ make.catches.plot(ct, leg.y.loc = 550)
   mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
 @
 \end{center}
-\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of hauls targeting \fishname\ in the U.S. Catcher-Processor and Mothership sectors from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}. Horizontal lines in each box represent the median depth and boxes encompass the middle 50\% of the data. Whiskers encompass the 95\% quantiles.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of hauls targeting \fishname\ in the U.S. Catcher-Processor and Mothership sectors from \Sexpr{last_data_yr-4}--\Sexpr{last_data_yr}. Horizontal lines in each box represent the median depth and boxes encompass the middle 50\% of the data. Whiskers encompass the 95\% quantiles.}
 \label{fig:main-us-at-sea-depths}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -139,7 +139,7 @@ make.catches.plot(ct, leg.y.loc = 550)
   mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
 @
 \end{center}
-\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of hauls targeting \fishname\ in the Canadian fleets from \Sexpr{last.data.yr-4}--\Sexpr{last.data.yr}. Horizontal lines in each box represent the median depth and boxes encompass the middle 50\% of the data. Whiskers encompass the 95\% quantiles.}
+\caption{Distribution of fishing depths (left) and bottom depths (right), in meters, of hauls targeting \fishname\ in the Canadian fleets from \Sexpr{last_data_yr-4}--\Sexpr{last_data_yr}. Horizontal lines in each box represent the median depth and boxes encompass the middle 50\% of the data. Whiskers encompass the 95\% quantiles.}
 \label{fig:main-can-at-sea-depths}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -230,7 +230,7 @@ maturity.ogive.figure(model = base_model, useyears = 1975:(assess_yr - 1))
   of the weight-at-age
   and the maturity-at-age for the samples
   collected from North of 34.44$^\circ$N (blue line in upper plot)
-  averaged across \Sexpr{start_yr_age_comps} to \Sexpr{last.data.yr}.}
+  averaged across \Sexpr{start_yr_age_comps} to \Sexpr{last_data_yr}.}
 \label{fig:main-maturity}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -252,7 +252,7 @@ weight.at.age.heatmap(base_model,
   correspond to the values, with red being the lightest fish (across all years
   and ages) and blue being the heaviest fish. For each age, the most transparent cells indicate
   the lightest fish of that age.
-  Data are only available from \Sexpr{start_yr_age_comps}--\Sexpr{last.data.yr}.
+  Data are only available from \Sexpr{start_yr_age_comps}--\Sexpr{last_data_yr}.
   Values based on assumptions for the pre-\Sexpr{start_yr_age_comps} and forecast years are shown
   outside the blue lines.
   Bold values between \Sexpr{start_yr_age_comps}--\Sexpr{max.fishery.age.prop[2]} represent
@@ -279,7 +279,7 @@ weight.at.age.heatmap(base_model,
   Colors and transparency are identical to Figure~\ref{fig:main-empirical-weight-at-age}
   and based on mean values.
   Sample sizes of zero highlight years for which data are not available, i.e.,
-  pre \Sexpr{start_yr_age_comps} and post \Sexpr{last.data.yr}.
+  pre \Sexpr{start_yr_age_comps} and post \Sexpr{last_data_yr}.
   The total sample sizes for each age used in the mean over all years are shown at the bottom and
   year-specific sample sizes are shown to the right using the same color scale with red indicating
   small sample sizes and blue indicating the large sample sizes.}
@@ -357,9 +357,9 @@ par <- oldpar
 @
 \end{center}
 \caption{Bridging models showing the sequential addition of updating
-  pre-\Sexpr{last.data.yr} fishery data, pre-\Sexpr{last.data.yr} survey data,
-  adding \Sexpr{last.data.yr} survey data, and adding
-  \Sexpr{last.data.yr} weight-at-age information.
+  pre-\Sexpr{last_data_yr} fishery data, pre-\Sexpr{last_data_yr} survey data,
+  adding \Sexpr{last_data_yr} survey data, and adding
+  \Sexpr{last_data_yr} weight-at-age information.
   Panels are spawning biomass
   (upper panel), relative spawning biomass (spawning biomass in each year
   relative to the unfished equilibrium spawning biomass, middle left),
@@ -529,13 +529,13 @@ plot_pearson_bubbles(base_model, type = 2, alpha = 0.7)
 \begin{center}
 <<main-prior-posterior, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how the posteriors shift from the priors for key parameters">>=
 make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
-                                              key.posteriors,
-                                              hist_breaks = rep(50, length(key.posteriors)),
+                                              key_posteriors,
+                                              hist_breaks = rep(50, length(key_posteriors)),
                                               ncol = 2,
                                               nrow = 4,
                                               show_legend = TRUE,
                                               legend_panel = 3,
-                                              titles = key.posteriors.titles,
+                                              titles = key_posteriors_titles,
                                               show_mle = FALSE,
                                               show_prior = TRUE,
                                               show_init = TRUE,
@@ -566,7 +566,7 @@ tv.selex.start_yr <- 1990
 tv.selex.ages <- 1:8
 tv.selex <- calc.tv.selex(base_model,
                           start_yr = tv.selex.start_yr,
-                          end_yr = last.data.yr,
+                          end_yr = last_data_yr,
                           ages = tv.selex.ages,
                           probs = c(0.025, 0.975))
 make.tv.selex.plot(tv.selex)
@@ -591,7 +591,7 @@ tv.selex.left <- calc.tv.selex(base_model,
                                probs = c(0.025, 0.975))
 tv.selex.right <- calc.tv.selex(base_model,
                                 start_yr = 2005,
-                                end_yr = last.data.yr,
+                                end_yr = last_data_yr,
                                 ages = tv.selex.ages,
                                 probs = c(0.025, 0.975))
 make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
@@ -613,11 +613,11 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 oldpar <- par(no.readonly = TRUE)
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
 make.selex.uncertainty.lines.plot(base_model,
-                                  year = last.data.yr,
+                                  year = last_data_yr,
                                   type = 2,   # this is survey, don't think year gets used
                                   probs = c(0.025, 0.975))
 make.selex.uncertainty.lines.plot(base_model,
-                                  year = last.data.yr,   # think this should be end_yr-1
+                                  year = last_data_yr,   # think this should be end_yr-1
                                   type = 1,
                                   selex.list = tv.selex,
                                   probs = c(0.025, 0.975))
@@ -639,7 +639,7 @@ par <- oldpar
 \begin{center}
 <<main-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been decreasing in size since 2019">>=
 make.biomass.plot(base_model,
-                  equil.yr = unfished.eq.yr,
+                  equil.yr = unfished_eq_yr,
                   start_yr = start_yr,
                   end_yr = end_yr,
                   color = "blue")
@@ -674,7 +674,7 @@ make.depletion.plot(base_model,
 \begin{center}
 <<main-recruitment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
 make.recruitment.plot(base_model,
-                      equil.yr = unfished.eq.yr,
+                      equil.yr = unfished_eq_yr,
                       start_yr = start_yr,
                       end_yr = end_yr,
                       color = "blue",
@@ -940,9 +940,9 @@ make.age.comp.forecast.plot(base_model)
 \begin{figure}[H]
 \begin{center}
 <<main-biomass-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between the first set of sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens.models.1),
+make.comparison.plot(c(list(base_model), sens_models_1),
                      subplots = 2,
-                     model.names = c(base_model.name, sens.model.names.1),
+                     model.names = c(base_model_name, sens_model_names_1),
                      end_yr = end_yr)
 @
 \end{center}
@@ -960,9 +960,9 @@ make.comparison.plot(c(list(base_model), sens.models.1),
 %% \begin{figure}[H]
 \begin{center}
 <<main-status-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how relative spawning biomass changes between the first set of sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens.models.1),
+make.comparison.plot(c(list(base_model), sens_models_1),
                      subplots = 4,
-                     model.names = c(base_model.name, sens.model.names.1),
+                     model.names = c(base_model_name, sens_model_names_1),
                      legend = FALSE,
                      end_yr = end_yr,
                      btarg = 0.4)
@@ -982,9 +982,9 @@ make.comparison.plot(c(list(base_model), sens.models.1),
 \begin{figure}[H]
 \begin{center}
 <<main-biomass-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between the second set of sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens.models.2),
+make.comparison.plot(c(list(base_model), sens_models_2),
                      subplots = 2,
-                     model.names = c(base_model.name, sens.model.names.2),
+                     model.names = c(base_model_name, sens_model_names_2),
                      end_yr = end_yr)
 @
 \end{center}
@@ -999,9 +999,9 @@ make.comparison.plot(c(list(base_model), sens.models.2),
 %% \begin{figure}[H]
 \begin{center}
 <<main-status-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how relative spawning biomass changes between the second set of sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens.models.2),
+make.comparison.plot(c(list(base_model), sens_models_2),
                      subplots = 4,
-                     model.names = c(base_model.name, sens.model.names.2),
+                     model.names = c(base_model_name, sens_model_names_2),
                      legend = FALSE,
                      end_yr = end_yr,
                      btarg = 0.4)
@@ -1020,9 +1020,9 @@ make.comparison.plot(c(list(base_model), sens.models.2),
 \begin{figure}[H]
 \begin{center}
 <<main-recruit-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the occasional changes in recruitment deviations for some of the sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens.models.2),
+make.comparison.plot(c(list(base_model), sens_models_2),
                      subplots = 12,
-                     model.names = c(base_model.name, sens.model.names.2),
+                     model.names = c(base_model_name, sens_model_names_2),
                      legend = FALSE,
                      end_yr = end_yr)
 @
@@ -1040,9 +1040,9 @@ make.comparison.plot(c(list(base_model), sens.models.2),
 % \begin{figure}[H]
 \begin{center}
 <<main-index-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the similarity between some sensitivity runs of the estimates of the fit to the biomass index">>=
-make.comparison.plot(c(list(base_model), sens.models.2),
+make.comparison.plot(c(list(base_model), sens_models_2),
                      subplots = 13,
-                     model.names = c(base_model.name, sens.model.names.2),
+                     model.names = c(base_model_name, sens_model_names_2),
                      legend = TRUE,
                      legend_loc = "topleft",
                      indexfleets= c(2),
@@ -1061,9 +1061,9 @@ make.comparison.plot(c(list(base_model), sens.models.2),
 \begin{figure}[H]
 \begin{center}
 <<main-biomass-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recent spawning biomass varies for some sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens.models.4),
+make.comparison.plot(c(list(base_model), sens_models_4),
                      subplots = 2,
-                     model.names = c(base_model.name, sens.model.names.4),
+                     model.names = c(base_model_name, sens_model_names_4),
                      end_yr = end_yr)
 @
 \end{center}
@@ -1078,9 +1078,9 @@ make.comparison.plot(c(list(base_model), sens.models.4),
 %% \begin{figure}[H]
 \begin{center}
 <<main-status-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recent relative spawning biomass varies for some sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens.models.4),
+make.comparison.plot(c(list(base_model), sens_models_4),
                      subplots = 4,
-                     model.names = c(base_model.name, sens.model.names.4),
+                     model.names = c(base_model_name, sens_model_names_4),
                      legend = FALSE,
                      end_yr = end_yr,
                      btarg = 0.4)
@@ -1100,10 +1100,10 @@ make.comparison.plot(c(list(base_model), sens.models.4),
 \begin{figure}[H]
 \begin{center}
 <<main-recruitment-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows occasional differences in recruitment between certain sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens.models.4),
+make.comparison.plot(c(list(base_model), sens_models_4),
                      legend = TRUE,
                      subplots = 10,
-                     model.names = c(base_model.name, sens.model.names.4),
+                     model.names = c(base_model_name, sens_model_names_4),
                      end_yr = end_yr)
 box()
 @
@@ -1120,10 +1120,10 @@ box()
 %% \begin{figure}[H]
 \begin{center}
 <<main-recruitment-devs-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows occasional differences in recruitment deviations between certain sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens.models.4),
+make.comparison.plot(c(list(base_model), sens_models_4),
                      legend = FALSE,
                      subplots = 12,
-                     model.names = c(base_model.name, sens.model.names.4),
+                     model.names = c(base_model_name, sens_model_names_4),
                      end_yr = end_yr)
 box()
 @
@@ -1139,9 +1139,9 @@ box()
 \begin{figure}[H]
 \begin{center}
 <<main-index-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows differences in the fit to the biomass index for certain sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens.models.4),
+make.comparison.plot(c(list(base_model), sens_models_4),
                      subplots = 13,
-                     model.names = c(base_model.name, sens.model.names.4),
+                     model.names = c(base_model_name, sens_model_names_4),
                      legend = TRUE,
                      legend_loc = "topleft",
                      indexfleets = 2,
@@ -1162,9 +1162,9 @@ make.comparison.plot(c(list(base_model), sens.models.4),
 % \begin{figure}[H]
 % \begin{center}
 % <<main-selectivity-illustration, fig.height=9, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
-% temp <- grep("tvSelect_sig", sapply(sens.models.4, "[[", "path"))[1]
+% temp <- grep("tvSelect_sig", sapply(sens_models_4, "[[", "path"))[1]
 % make.selectivity.illustration(mod.old = base_model,
-%                               mod.alt = sens.models.4[[temp]],
+%                               mod.alt = sens_models_4[[temp]],
 %                               yr1 = 1990, # baseline year
 %                               yr2 = 1991) # year to illustrate with deviations
 % rm(temp)
@@ -1189,9 +1189,9 @@ make.comparison.plot(c(list(base_model), sens.models.4),
 \begin{figure}[H]
 \begin{center}
 <<main-biomass-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between further sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens.models.6),
+make.comparison.plot(c(list(base_model), sens_models_6),
                      subplots = 2,
-                     model.names = c(base_model.name, sens.model.names.6),
+                     model.names = c(base_model_name, sens_model_names_6),
                      legend = TRUE,
                      end_yr = end_yr)
 @
@@ -1207,9 +1207,9 @@ make.comparison.plot(c(list(base_model), sens.models.6),
 %% \begin{figure}[H]%%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
 <<main-status-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how relative spawning biomass changes between further sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens.models.6),
+make.comparison.plot(c(list(base_model), sens_models_6),
                      subplots = 4,
-                     model.names = c(base_model.name, sens.model.names.6),
+                     model.names = c(base_model_name, sens_model_names_6),
                      legend = TRUE,
                      end_yr = end_yr,
                      btarg = 0.4)

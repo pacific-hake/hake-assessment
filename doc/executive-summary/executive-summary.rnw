@@ -258,7 +258,7 @@ and~\ref{fig:es-relative-spawning-biomass}). Model estimates suggest
 \begin{center}
 <<spawning-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been decreasing in size since 2019">>=
 make.biomass.plot(base_model,
-                  equil.yr = unfished.eq.yr,
+                  equil.yr = unfished_eq_yr,
                   start_yr = start_yr,
                   end_yr = end_yr,
                   color = "blue")
@@ -403,7 +403,7 @@ have low to moderate recruitment with occasional large year classes
 \begin{center}
 <<recruitment, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
 make.recruitment.plot(base_model,
-                      equil.yr = unfished.eq.yr,
+                      equil.yr = unfished_eq_yr,
                       start_yr = start_yr,
                       end_yr = end_yr,
                       color = "blue",

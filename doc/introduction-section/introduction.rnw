@@ -47,13 +47,13 @@ of this \Sexpr{assess_yr} base model,
 implemented using version \Sexpr{ss_version} of the Stock Synthesis software
 \citep{MethotWetzel2013},
 are largely the same as the
-\Sexpr{last.assess_yr} base model \citep{JTC2020}.  The exception is that the
+\Sexpr{last_assess_yr} base model \citep{JTC2020}.  The exception is that the
 \Sexpr{assess_yr} base model includes an age-1 index from the acoustic survey.
 The Bayesian estimation continues to be computed using a new efficient approach
 that was successfully tested in 2020 assessment
 \citep{JTC2020}. For the first time, all model runs reported in this stock
 assessment document are performed in a Bayesian context.
-Responses to \Sexpr{last.assess_yr} SRG requests are in
+Responses to \Sexpr{last_assess_yr} SRG requests are in
 Section~\ref{sec:assessment-response-review} and a
 Glossary of terms appears in Appendix~\ref{chap:glossary}.
 

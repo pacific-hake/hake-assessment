@@ -362,9 +362,9 @@ panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...){
 #' Plot pairs for MCMC posteriors
 #'
 #' @param model A model object as output by [load_ss_models()]
-#' @param inc.key.params If TRUE, use the arguments `key_posteriors.regex` and `key_posteriors.names`
-#' @param key_posteriors.regex  A vector of regular experessions represting key posteriors
-#' @param key_posteriors.names  A vector of names to show for the key posteriors
+#' @param inc.key.params If TRUE, use the arguments `key_posteriors_regex` and `key_posteriors_names`
+#' @param key_posteriors_regex  A vector of regular experessions represting key posteriors
+#' @param key_posteriors_names  A vector of names to show for the key posteriors
 #' @param recr A vector of recruitment deviation years to include if `inc.key.params` is FALSE
 #' @param bratio A vector of Bratio years to include if `inc.key.params` is FALSE
 #' @param forecatch A vector of forecast catch years to include if `inc.key.params` is FALSE
@@ -373,8 +373,8 @@ panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...){
 #' @export
 make.mcmc.diag.pairs.plot <- function(model,
                                       inc.key.params = TRUE,
-                                      key_posteriors.regex = NULL,
-                                      key_posteriors.names = NULL,
+                                      key_posteriors_regex = NULL,
+                                      key_posteriors_names = NULL,
                                       recr = NULL,
                                       bratio = NULL,
                                       forecatch = NULL){
@@ -382,13 +382,13 @@ make.mcmc.diag.pairs.plot <- function(model,
   m <- model$mcmc
 
   if(inc.key.params){
-    lst <- lapply(seq_along(key_posteriors.regex), function(x){
-      select(m, matches(key_posteriors.regex[x]))
+    lst <- lapply(seq_along(key_posteriors_regex), function(x){
+      select(m, matches(key_posteriors_regex[x]))
     })
     par_estimated <- vector()    # check which key_posteriors are estimated
     par_estimated_number <- vector()    # check which key_posteriors end up with
                                         # two columns due to regex
-    for(i in 1:length(key_posteriors.regex)){
+    for(i in 1:length(key_posteriors_regex)){
       par_estimated[i] <- ncol(lst[[i]]) > 0
       par_estimated_number[i] <- ncol(lst[[i]])
     }
@@ -402,9 +402,9 @@ make.mcmc.diag.pairs.plot <- function(model,
 
       if("Q_extraSD_Age1_Survey(3)" %in%
          names(lst[[dupl]])){
-        key_posteriors.names <- c(key_posteriors.names[1:dupl],
+        key_posteriors_names <- c(key_posteriors_names[1:dupl],
                                   "Age-1 survey extra SD",
-                                  key_posteriors.names[(dupl+1):length(key_posteriors.names)])
+                                  key_posteriors_names[(dupl+1):length(key_posteriors_names)])
       } else {
         stop(paste0("Need to decide which variables to show in
              make.mcmc.diag.pairs.plot() for model run ",
@@ -414,7 +414,7 @@ make.mcmc.diag.pairs.plot <- function(model,
 
     obj_func_col <- select(m, contains("Objective_function"))
     df <- bind_cols(obj_func_col, lst)
-    labels <- c("Objective\nFunction", key_posteriors.names[par_estimated])
+    labels <- c("Objective\nFunction", key_posteriors_names[par_estimated])
     if(length(names(df)) != length(labels)){
       stop("Number of parameters estimated from key posteriors is wrong.")
     }
