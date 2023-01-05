@@ -1,25 +1,11 @@
 \clearpage
 
-\chapter{Report of the 2021 \fishname\ fishery in Canada} % from the Advisory Panel}
+\chapter{Report of the \Sexpr{assess_yr} \fishname\ fishery in Canada} % from the Advisory Panel}
 \label{chap:canada-fishery-report}
 
 {\bf Prepared by the Canadian Advisory Panel and submitted for inclusion
-  in this assessment document on January 4, 2022.}
+  in this assessment document on January **, \Sexpr{assess_yr}.}
 
-While there was some exploratory hake fishing in early April, significant effort and catch didn't start until late April and early May and continued through to mid October. The fishery ended in early November. A total of 55,771 tonnes of hake was caught in 2021 which equates to 53\% of the Adjusted TAC of 104,480 tonnes
-
-Low hake abundance, choke species such as Rougheye/Blackspotted and Bocaccio, and COVID related restrictions all negatively impacted the Canadian offshore hake fishery in 2021.
-
-Hake fishing occurred from the southern Canada/US border all the way up to lower Queen Charlotte Sound both on the shelf and off the edge at depths between 40-180 fathoms.
-
-The general view from the Canadian fleet is that, especially in the shallower depths on the shelf or just off the edge, the hake abundance was lower in 2021, with much more time spent searching for fish, and when found was patchy and couldn't sustain effort as long as in 2020, which was also poorer than 2019. This impacted all vessels, especially vessels delivering fresh fish for shoreside processing.
-
-Fishing was much more difficult this year. The season started later than normal and ended earlier.  Some wet boats never left the dock and others had short season because it wasn't economically viable.  The abundance in Canada was considerably lower. Towing time was almost double last year's and there was considerably more searching for fish. Catches were sporadic throughout the season due in part to reduced abundance but also due to concentrated effort on the shelf.  Most of the fishing was on the shelf in shallower water due to restrictive Rougheye/Blackspotted rockfish quota availability that moved vessels away from the deeper sets.
-
-A significant share of the catch occurred south between the Canada/US border and Tofino in depths ranging from 40 - 180 fathoms.  There was also an amount of catch more north between Brooks Peninsula and Cape Scott Channel in depths ranging from 65 - 165 fathoms. Generally the fish were caught deeper in the spring (120 - 180 fathoms) and shallower in the summer (40 - 70 fathoms).
-
-Most of the fish were the same size and year class. The average size this year was approximately 800 grams round weight.  There were very few signs of small fish (less than 500 grams).
-
-Off the edge and in the deeper water there was Rougheye/Blackspotted and Pacific Ocean Perch rockfish bycatch that moved the fleet onto the shelf and into shallower areas. On the shelf the primary bycatch problem this year was Walleye pollock which became limiting on the fishery because of the quantity of catch relative to the pollock TAC for the area. Also in the shallows there was bycatch of smaller quantities of Bocaccio, greenies, brownies, Pacific Ocean Perch, canaries, redstripes and juvenile sablefish.
+**
 
 \clearpage

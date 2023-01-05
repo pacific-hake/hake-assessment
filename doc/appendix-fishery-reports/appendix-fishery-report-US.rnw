@@ -3,79 +3,16 @@
 
 \clearpage
 
-\chapter{Report of the 2021 \fishname\ fishery in the United States} % from the Advisory Panel}
+\chapter{Report of the \Sexpr{assess_yr} \fishname\ fishery in the United States} % from the Advisory Panel}
 \label{chap:us-fishery-report}
 
 {\bf Prepared by the United States Advisory Panel and submitted for the Canada/US
   Joint Management Committee's and the Joint Technical Committee's consideration on
-  January 25, 2022.}
+  January **, \Sexpr{assess_yr}. **make text same as for Canadian?}
 
-The Mothership (MS), Catcher Processor (CP), and Shoreside (SS) sectors of the
-U.S. fishery started on May 15, 2021.  The Tribal sector also began fishing in
-the spring and operated throughout the 2021 season; however, effort was limited
-to shoreside deliveries largely via use of a tender vessel. Consistent with normal
-fishing patterns, the SS sector ramped-up across the spring and continued to harvest
-and process its allocation throughout the summer, while the MS and CP sectors completed
-their spring fishery in June and then paused hake fishing and processing until after the
-completion of the Bering Sea pollock fishery. Relative to 2020, although still significant,
-the direct and indirect impacts of COVID-19 had less of an effect on the industry.  Overall,
-effort in the spring fishery was close to normal, especially in comparison to 2020 where COVID-19
-outbreaks caused several processor closures and vessel port calls. Nonetheless, several vessels
-had delays to their start in the at-sea sector due to COVID related issues and the ongoing
-challenges associated with maintaining a full labor force were still significant
-for many shoreside and at-sea processors throughout the 2021 season.
+**
 
-Fishery performance overall and throughout the 2021 season was very good in terms of catch
-per unit effort (CPUE), fish size, wide spread availability on the grounds and in proximity
-to the plants, and lower than normal incidental catch rates for the typical rockfish and
-Chinook bycatch species. During the spring fishery, participants reported stronger schools
-of fish than in recent years with fishing effort spread out along the coast from north to south
-and in both deep and shallow bottom depths. Over the course of the 2021 season, the at-sea sectors
-caught fish in the 500--700 gram range, as well as significant amounts of hake of about 400 grams
-(on average) in May and October. There was consistent, but limited catch of hake larger than 600
-grams, primarily in October, and trace amounts of smaller hake (less than 250 grams) were encountered
-throughout the season. In general, fish size remained consistent throughout the year with the SS plants
-noting little change in quality, size, and condition through the spring, summer and fall.
-Throughout the entire year, fish quality was excellent with "healthy and fat" fish
-being reported by at-sea and shoreside processors alike.
-
-Fall fishery effort in the at-sea sectors began in mid-September, with CPs fishing the second
-week of September and MS operations starting back up in late September/early October. Nine CPs
-and three MS vessels participated in the fall fishery, with some vessels out of commission
-for maintenance and shipyard work. Participating vessels reported excellent fishing and the best
-fall fishing seen in recent years, especially in September and early October. A series of major storms
-in mid/late October and typical hake migratory patterns reduced fishery productivity later in the fall.
-SS operations began to taper off by mid-October. MS operations ended in mid- October. CP operations ended
-in mid-November. While bycatch patterns were generally typical in the fall at-sea fishery,
-the occurrence of large amounts of less typical species, such as jack mackerel, were challenging
-because these species were often mixed with dense hake schools.
-
-Hake were present consistently in the U.S. zone throughout the 2021 season. Fishing was good
-on strong schools from the start of the fishery in May up to mid-October, when extraordinarily strong
-storms hampered fishing effort. Bycatch monitoring and avoidance continued to be a primary
-driver of U.S. fishing patterns. In addition to usual species of concern (widow rockfish,
-canary rockfish, darkblotched rockfish, yellowtail rockfish, sablefish, and Chinook salmon), the
-emergence of unusually large amounts of "new" species, such as shortbelly rockfish, jack mackerel,
-and pacific (blue) mackerel proved challenging at times. No significant bycatch was observed
-in the SS sector other than a few trips with some darkblotched rockfish and shortbelly rockfish.
-The SS sector also reported that bycatch of yellowtail rockfish, which can be constraining for some vessels,
-was very low overall in 2021, despite some early season encounters, particularly in the mothership
-sector. Fishery participants believe that the lower than normal bycatch correlates, in part, to the
-improved CPUE experienced in 2021. The use of cooperatives in each sector of the non-tribal fishery,
-near real-time observer data, and third-party monitoring by Sea State Inc. continue to provide
-fishery participants the necessary tools to closely monitor fishery progress, share information
-broadly across the fishery, and minimize bycatch of non-target species.
-
-Overall, the U.S. harvest in 2021 decreased slightly from 287,314 in 2020 to 269,300 in 2021 [these
-values may be slightly different than in the stock assessment due to the timing of data extraction].
-Utilization rates were generally consistent with those projected by industry at the March 2021
-JMC meeting - SS sector before Tribal release was 99\% (89\% following Tribal release), CP sector
-before Tribal release was 100\% (90\% following Tribal release), and MS sector was 48\% before
-Tribal release (43\% following Tribal release). Utilization in the MS sector, as projected
-pre-season, was low due to several processors being unable to participate in the spring
-fishery and/or in the fall fishery due to shipyard schedules.
-
-%**Table was used in 2020 assessment but not in 2021 or 2022 so commenting out for this year:
+%**Table was used in 2020 assessment but not in 2021 or 2022 so commenting out
 %
 %<<catches.us.ap, results='asis', echo=FALSE>>=
 %make.catches.table.us.ap(us.ap.catch,

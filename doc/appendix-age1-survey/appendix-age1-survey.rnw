@@ -3,6 +3,8 @@
 \chapter{Sensitivity run that excludes the age-1 survey}
 \label{chap:age1-survey}
 
+** maybe won't be needed (think SRG mentioned it).
+
 This appendix contains Bayesian MCMC results for the sensitivity to the base model
 in which the acoustic survey of age-1 fish which provides information on
 recruitment is excluded from the data used to fit the assessment
