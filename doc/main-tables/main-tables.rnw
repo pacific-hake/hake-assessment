@@ -424,7 +424,7 @@ cohort_table(base_model,
 <<main-median-posterior-table, results='asis', echo=FALSE>>=
 make.median.posterior.table(
   base_model,
-  start.yr = start_yr,
+  start_yr = start_yr,
   end_yr = end_yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
   csv.dir = output_csv_dir,
@@ -445,7 +445,7 @@ make.median.posterior.table(
 <<main-ci-posterior-table, results='asis', echo=FALSE>>=
 make.ci.posterior.table(
   base_model,
-  start.yr = start_yr,
+  start_yr = start_yr,
   end_yr = end_yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
   xcaption = paste0("Time-series of 95\\% posterior credibility intervals for the quantities
