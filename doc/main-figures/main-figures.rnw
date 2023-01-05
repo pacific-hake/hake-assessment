@@ -356,7 +356,7 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{Bridging models showing the sequential addition of updating
+\caption{** Bridging models showing the sequential addition of updating
   pre-\Sexpr{last_data_yr} fishery data, pre-\Sexpr{last_data_yr} survey data,
   adding \Sexpr{last_data_yr} survey data, and adding
   \Sexpr{last_data_yr} weight-at-age information.
@@ -423,7 +423,7 @@ mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
 @
 \end{center}
-\caption{Bridging models showing the addition of
+\caption{** Bridging models showing the addition of
   the age-1 index to the final bridging model (update weight-at-age
   data) from
   Figure \ref{fig:main-bridge-5-panel-1}. Panels are spawning biomass
@@ -543,7 +543,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Prior (black lines) and posterior (gray histograms) distributions for
+\caption{**[check key ones have not changed] Prior (black lines) and posterior (gray histograms) distributions for
   key parameters in the base model. The parameters are: natural mortality ($M$),
   equilibrium log recruitment ($\log R_0)$, steepness ($h$), the additional
   process-error standard deviation for the acoustic survey and the age-1 biomass
@@ -946,7 +946,7 @@ make.comparison.plot(c(list(base_model), sens_models_1),
                      end_yr = end_yr)
 @
 \end{center}
-\caption{MCMC estimates of spawning biomass for the base
+\caption{**[if sens runs change] MCMC estimates of spawning biomass for the base
   model and alternative sensitivity runs representing changing the mean of
   the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher
   (1.6) levels of variation assumed about the stock-recruitment relationship
@@ -969,7 +969,7 @@ make.comparison.plot(c(list(base_model), sens_models_1),
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC estimates of stock status (relative
+\caption{** MCMC estimates of stock status (relative
   spawning biomass) for the base model and alternative sensitivity runs
   representing changing key parameters. See
   Figure~\ref{fig:main-biomass-base-alternative-1} for sensitivity descriptions.}
@@ -988,7 +988,7 @@ make.comparison.plot(c(list(base_model), sens_models_2),
                      end_yr = end_yr)
 @
 \end{center}
-\caption{MCMC estimates of spawning biomass for the base model and alternative
+\caption{** MCMC estimates of spawning biomass for the base model and alternative
   sensitivity runs that represent the following changes in data: removing the index of age-1 fish
   and downweighting fishery composition data using the McAllister-Ianelli method.}
 \label{fig:main-biomass-base-alternative-2}
@@ -1008,7 +1008,7 @@ make.comparison.plot(c(list(base_model), sens_models_2),
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC estimates of stock status (relative spawning biomass) for the base
+\caption{** MCMC estimates of stock status (relative spawning biomass) for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-2}
@@ -1027,7 +1027,7 @@ make.comparison.plot(c(list(base_model), sens_models_2),
                      end_yr = end_yr)
 @
 \end{center}
-\caption{MCMC estimates of recruitment deviations for the base
+\caption{** MCMC estimates of recruitment deviations for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-recruit-base-alternative-2}
@@ -1049,7 +1049,7 @@ make.comparison.plot(c(list(base_model), sens_models_2),
                      end_yr = end_yr)
 @
 \end{center}
-\caption{MCMC estimates of the fit to the biomass index for the base
+\caption{** MCMC estimates of the fit to the biomass index for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-index-base-alternative-2}
@@ -1067,7 +1067,7 @@ make.comparison.plot(c(list(base_model), sens_models_4),
                      end_yr = end_yr)
 @
 \end{center}
-\caption{MCMC estimates of spawning biomass for the base model
+\caption{** MCMC estimates of spawning biomass for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.}
 \label{fig:main-biomass-base-alternative-4}
@@ -1087,7 +1087,7 @@ make.comparison.plot(c(list(base_model), sens_models_4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC estimates of stock status (relative spawning biomass) for the base model
+\caption{** MCMC estimates of stock status (relative spawning biomass) for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
   See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
@@ -1108,7 +1108,7 @@ make.comparison.plot(c(list(base_model), sens_models_4),
 box()
 @
 \end{center}
-\caption{MCMC estimates of recruitment for the base model
+\caption{** MCMC estimates of recruitment for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
   See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
@@ -1128,7 +1128,7 @@ make.comparison.plot(c(list(base_model), sens_models_4),
 box()
 @
 \end{center}
-\caption{MCMC estimates of recruitment deviations for the base model
+\caption{** MCMC estimates of recruitment deviations for the base model
   and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
   See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
@@ -1149,7 +1149,7 @@ make.comparison.plot(c(list(base_model), sens_models_4),
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC estimates of the fit to the survey index of age-2$+$ biomass
+\caption{** MCMC estimates of the fit to the survey index of age-2$+$ biomass
   for the base model and alternative sensitivity runs representing different standard
   deviations ($\Phi$) associated with time-varying selectivity.
   See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
@@ -1196,7 +1196,7 @@ make.comparison.plot(c(list(base_model), sens_models_6),
                      end_yr = end_yr)
 @
 \end{center}
-\caption{MCMC estimates of spawning biomass for the base
+\caption{** MCMC estimates of spawning biomass for the base
   model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5)
   or increased (age-7 and age-8) relative to the base model (age-6).}
 \label{fig:main-biomass-base-alternative-6}
@@ -1216,7 +1216,7 @@ make.comparison.plot(c(list(base_model), sens_models_6),
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC estimates of stock status for the base
+\caption{** MCMC estimates of stock status for the base
   model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5)
   or increased (age-7 and age-8) relative to the base model (age-6).}
 \label{fig:main-status-base-alternative-6}
@@ -1266,7 +1266,7 @@ make_squid_plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Retrospective analysis of recruitment deviations from MCMC models over the last
+\caption{** Retrospective analysis of recruitment deviations from MCMC models over the last
   \Sexpr{length(retro_cohorts) + 1} years. Recruitment deviations are
   the median log-scale differences between recruitment estimated by the model
   and expected recruitment from the spawner-recruit relationship.
@@ -1318,7 +1318,7 @@ make.assessment.history.plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Summary of historical \fishname\ assessment estimates of spawning
+\caption{** Summary of historical \fishname\ assessment estimates of spawning
   biomass. Estimates are MLEs or MCMC medians depending on the model structure.
   Shading represents the 95\% credible interval from the
   \Sexpr{end_yr} base model.}
@@ -1334,7 +1334,7 @@ make.historical.probs.plot(base_model,
                            add.projs = TRUE)
 @
 \end{center}
-\caption{For each year $t$, $P(B_{t+1} < B_t)$ is
+\caption{** For each year $t$, $P(B_{t+1} < B_t)$ is
   the probability that the spawning biomass at the
   start of $t+1$ is below that at the start of $t$. It is calculated in two ways.
   Red: the probability is taken from year $t$'s stock assessment document, from
@@ -1362,7 +1362,7 @@ make.historical.probs.plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{For each year $t$, $P(B_{t+1} < \Bforty)$ is
+\caption{** For each year $t$, $P(B_{t+1} < \Bforty)$ is
   the probability that the spawning biomass at the
   start of $t+1$ is below $\Bforty$. It is calculated in two ways (as for
   Figure~\ref{fig:main-historical-1}).
@@ -1391,7 +1391,7 @@ make.historical.probs.retro.plot(base_model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{Retrospective versions of Figure~\ref{fig:main-historical-1}.
+\caption{** Retrospective versions of Figure~\ref{fig:main-historical-1}.
   For each panel, the current base model is run using only data up to
   (and including) the year
   shown (i.e. a retrospective analysis) -- `data to 2011' would
@@ -1416,7 +1416,7 @@ make.historical.probs.retro.plot(base_model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{As for Figure~\ref{fig:main-historical-retro-1} for
+\caption{** As for Figure~\ref{fig:main-historical-retro-1} for
   further retrospective years.}
 \label{fig:main-historical-retro-2}
 \end{figure}
@@ -1432,7 +1432,7 @@ make.historical.probs.retro.plot(base_model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{As for Figure~\ref{fig:main-historical-retro-1} for
+\caption{** As for Figure~\ref{fig:main-historical-retro-1} for
   further retrospective years.}
 \label{fig:main-historical-retro-3}
 \end{figure}
@@ -1447,7 +1447,7 @@ make.historical.probs.retro.plot(base_model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{As for Figure~\ref{fig:main-historical-retro-1} for
+\caption{** As for Figure~\ref{fig:main-historical-retro-1} for
   the final retrospective year.}
 \label{fig:main-historical-retro-4}
 \end{figure}
@@ -1461,7 +1461,7 @@ make.historical.probs.retro.plot(base_model,
 make.historical.probs.retro.plot(base_model)
 @
 \end{center}
-\caption{Retrospective results of
+\caption{** Retrospective results of
   Figures~\ref{fig:main-historical-retro-1}--\ref{fig:main-historical-retro-4}
   shown in a single panel.}
 \label{fig:main-historical-retro-all}
@@ -1478,7 +1478,7 @@ make.historical.probs.retro.plot(base_model,
                                  legend.loc = "topleft")
 @
 \end{center}
-\caption{Retrospective results of Figure~\ref{fig:main-historical-2} for
+\caption{** Retrospective results of Figure~\ref{fig:main-historical-2} for
   $P(B_{t+1} < \Bforty)$ for each year $t$.}
 \label{fig:main-historical-retro-bforty-all}
 \end{figure}
