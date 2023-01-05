@@ -235,8 +235,7 @@ source(file.path(rootd_r, "custom-knitr-variables.R"))
 \title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian
   waters in \Sexpr{assess_yr}
 %% Uncomment for DRAFT:
-% \\ ~\\ DRAFT for submission to Scientific Review Group
-% \thanks{\noindent \disclaimer}
+\\ ~\\ DRAFT for submission to Scientific Review Group\thanks{\noindent \disclaimer}
 \\ ~\\ ~\\ \pdftooltip{\includegraphics[width=4in]{hake-picture}}{Drawing of a \fishname}}
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
@@ -276,7 +275,7 @@ Authors of this document are (all authors contribute extensively so the order ro
   Commerce, 2725 Montlake Blvd. East, Seattle, WA 98112-2097, USA}
 
 %% Draft version
-%% This DRAFT document is non-citable.
+This DRAFT document is non-citable.
 
 %% ** - The double asterisks indicate a paragraph, or sentence that needs to be thought about this year
 %% and double checked (i.e. isn't fully automated, may just need someone to have a
@@ -315,8 +314,8 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 %% \modulolinenumbers[5]
 
 \lfoot{
-       %%DRAFT -- \fishname\ assessment \Sexpr{assess_yr}
-       \fishname\ assessment \Sexpr{assess_yr}
+       DRAFT -- \fishname\ assessment \Sexpr{assess_yr}
+       %% \fishname\ assessment \Sexpr{assess_yr}
        }
 \rfoot{One-page summary}
 <<one-page-summary, child='one-page-summary/one-page-summary.rnw'>>=
