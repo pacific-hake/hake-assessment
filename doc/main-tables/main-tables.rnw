@@ -246,7 +246,7 @@ make.maturity.ogives.table(maturity.ogives,
                                        The mean weight (kg) is based on a much larger set of samples. Mean
                                        fecundity is the product of maturity and mean weight, but note that
                                        year-specific fecundities from ",
-                                       start.yr.age.comps,
+                                       start_yr_age_comps,
                                        "--",
                                        last_data_yr,
                                        " were used in the stock assessment. The values reported for ages 15 and ",
