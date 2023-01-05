@@ -6,7 +6,7 @@
 \phantomsection \addcontentsline{toc}{section}{ONE-PAGE SUMMARY}
 
 \begin{itemize}
-  \item The stock assessment model for \Sexpr{assess_yr} has the same population
+  \item ** The stock assessment model for \Sexpr{assess_yr} has the same population
     dynamics structure as the \Sexpr{last_assess_yr} model. For \Sexpr{assess_yr},
     it is fit to an acoustic survey index of biomass, an index of age-1 fish, annual
     commercial catch data, and age-composition data from the survey and commercial fisheries.
@@ -17,7 +17,7 @@
 %    all model results, including sensitivity and retrospective analyses, are
 %    now based on posterior distributions rather than maximum likelihood estimates.
 
-  \item Updates to the data include:
+  \item ** Updates to the data include:
     the new biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey_end_yr},
     fishery catch and age-composition data from \Sexpr{end_yr-1}, weight-at-age data for
     \Sexpr{end_yr-1}, the addition of the age-1 index time series
@@ -25,7 +25,7 @@
     staffing issues, age data from \Sexpr{end_yr-1} were unavailable from the Canadian freezer-trawler fleet and minimally
     available for the shoreside fleet.
 
-  \item Coast-wide catch in \Sexpr{end_yr-1} was \Sexpr{last.year.landings}~t
+  \item ** Coast-wide catch in \Sexpr{end_yr-1} was \Sexpr{last.year.landings}~t
     [t represents metric tons], close to the average over the past decade of
     \Sexpr{f(mean(ct$tot_catch[(end_yr-start_yr-9):(end_yr-start_yr)]),0)}~t,
     out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t.
@@ -43,7 +43,7 @@
 %\Sexpr{can.allotment.percent.last.year}\%, compared to the usual
 %\Sexpr{us.allotment.percent}\% and \Sexpr{can.allotment.percent}\%.
 
-  \item The median estimate of the \Sexpr{end_yr} relative spawning biomass
+  \item ** The median estimate of the \Sexpr{end_yr} relative spawning biomass
     (female spawning biomass at the start of \Sexpr{end_yr} divided by that at
     unfished equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly
     uncertain (with 95\% credible interval from \Sexpr{curr.depl.lower}\% to
@@ -56,7 +56,7 @@
 % That last sentence seemed a bit confusing. We'd have to compare the 2021 B/B0 with
 %  2021 assessment's value (which we kind of do in the Exec Summary).
 
-  \item The median estimate of female spawning biomass at the start
+  \item ** The median estimate of female spawning biomass at the start
     of \Sexpr{end_yr} is \Sexpr{curr.bio.median.tonnes}~t (with 95\% credible
     interval from \Sexpr{curr.bio.lower.tonnes} to \Sexpr{curr.bio.upper.tonnes}~t).
     This is less than this assessment's median estimate
@@ -69,19 +69,19 @@
 %    and below the $\Bforty$ (40\% of $B_0$) reference point
 %    at the start of \Sexpr{end_yr} is \Sexpr{joint.percent.prob.above.below}\%.
 
-  \item The estimated probability that spawning biomass at the start of
+  \item ** The estimated probability that spawning biomass at the start of
     \Sexpr{assess_yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
     \Sexpr{probs.curr.below.bforty}\%, and the probability that the relative fishing
     intensity exceeds its target in \Sexpr{end_yr-1} is
     \Sexpr{probs.curr.rel.fish.intens.above.one}\%. The joint
     probability of both these occurring is \Sexpr{joint.percent.prob.above.below}\%.
 
-  \item Based on the default harvest rule, the estimated median catch limit for
+  \item ** Based on the default harvest rule, the estimated median catch limit for
 \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with
 95\% credible interval from \Sexpr{catch.limit.quantiles["lower"]} to
 \Sexpr{catch.limit.quantiles["upper"]}~t).
 
-  \item Projections are highly uncertain due to uncertainty in
+  \item ** Projections are highly uncertain due to uncertainty in
 estimates of recruitment for recent years and so were conducted for a fairly wide
 range of catch levels. Projections setting the \Sexpr{forecast_yrs[1]} and
 \Sexpr{forecast_yrs[2]} catches equal to the \Sexpr{forecast_yrs[1]-1}
