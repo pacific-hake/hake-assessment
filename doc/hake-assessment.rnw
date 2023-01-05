@@ -412,9 +412,9 @@ new results are incorporated.
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
-\rfoot{Appendix~\ref{chap:age1-survey} -- Age-1 survey sensitivity}
-<<appendices-age1-survey, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
-@
+% \rfoot{Appendix~\ref{chap:age1-survey} -- Age-1 survey sensitivity}
+% <<appendices-age1-survey, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
+% @
 
 \rfoot{Appendix~\ref{chap:rec-plot} -- Recruitment plots}
 <<appendices-rec-plot, child='appendix-rec-plot/appendix-rec-plot.rnw'>>=
