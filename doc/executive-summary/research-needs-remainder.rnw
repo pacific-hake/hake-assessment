@@ -1,22 +1,22 @@
 % research-needs-remainder.rnw - the remaining research needs that won't go into
 %  the Executive Summary but only into research.rnw in the main text.
 
-\item Develop a set of candidate ecosystem indicators that are potentially
+\item ** Develop a set of candidate ecosystem indicators that are potentially
   associated with \fishname\ biology and ecology (e.g., recruitment, distribution,
   predator, and prey). Such information can broaden the context within which a single
   species stock assessment is interpreted, be used to support model development, and
   provide non-assessment indicators to management.
 
-\item Conduct an inter-laboratory otolith exchange and
+\item ** Conduct an inter-laboratory otolith exchange and
   use the results to update estimates of ageing error used in the stock assessment.
   This would include updated information about ageing imprecision and the effects of
   large cohorts as understood given simulation analyses and
   blind-source age reads of samples with
   differing underlying age distributions -- with and without dominant year
   classes. The last inter-laboratory comparison was done in 2010 (``CARE''
-  exchanges). 
+  exchanges).
 
-\item Continue to collect and analyze life-history data, including weight,
+\item ** Continue to collect and analyze life-history data, including weight,
   maturity, and fecundity for \fishname. Explore possible relationships among
   these life-history traits and correlations with
   time, empirical growth, and population density.
@@ -28,16 +28,16 @@
   Additionally, a more spatially comprehensive maturity analysis that
   incorporates information from Canadian samples would be advantageous.
 
-\item Explore the operational use of eDNA data for characterizing aspects
+\item ** Explore the operational use of eDNA data for characterizing aspects
   of \fishname\ population dynamics, such as changes in species distribution or
   perhaps density, and the incorporation of these data into stock assessments.
 
-\item Maintain the flexibility to undertake additional acoustic surveys for
+\item ** Maintain the flexibility to undertake additional acoustic surveys for
   \fishname\ in non-survey years when uncertainty in the results of the
   stock assessment presents a potential risk to or underutilization of the
   stock.
 
-\item Explore alternative approaches and related assumptions for parameterizing
+\item ** Explore alternative approaches and related assumptions for parameterizing
   time-varying fishery selectivity in the assessment. Simulations that
   evaluate methods for including multiple variance structures, including interactions,
   tradeoffs, and related assumptions, across multiple processes (e.g., selectivity,
@@ -45,12 +45,12 @@
   particularly beneficial.
 %\enlargethispage{\baselineskip}
 
-\item Consider alternative methods for refining existing prior distributions
+\item ** Consider alternative methods for refining existing prior distributions
   for natural mortality ($M$), including the use of meta-analytic methods.
   Evaluate feasibility of estimating age-specific natural mortality for
   \fishname.
 
-\item Explore the potential to use acoustic data collected from commercial
+\item ** Explore the potential to use acoustic data collected from commercial
   fishing vessels to study hake distributions, schooling patterns, and other
   questions of interest. This could be similar to the
   ``acoustic vessels of opportunity'' program on fishing vessels
