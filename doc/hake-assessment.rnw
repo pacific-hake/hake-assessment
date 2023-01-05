@@ -256,19 +256,19 @@ Canadian members of the Joint Technical Committee, and others that
 contributed significantly.
 
 Authors of this document are (all authors contribute extensively so the order rotates annually):\\
-\hspace{4ex}Andrew M. Edwards\supscr{1} \\
-\hspace{4ex}Aaron M. Berger\supscr{2} \\
-\hspace{4ex}Chris J. Grandin\supscr{1} \\
+\hspace{4ex}Aaron M. Berger\supscr{1} \\
+\hspace{4ex}Chris J. Grandin\supscr{2} \\
 \hspace{4ex}Kelli F. Johnson\supscr{3} \\
+\hspace{4ex}Andrew M. Edwards\supscr{2} \\
 \bigskip
 
-\emph{\supscr{1}Pacific Biological Station, Fisheries and Oceans Canada,
-  3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada}
-
-\emph{\supscr{2}Northwest Fisheries Science Center, National Marine
+\emph{\supscr{1}Northwest Fisheries Science Center, National Marine
   Fisheries Service, National Oceanic and Atmospheric Administration,
   U.S. Department of Commerce, 2032 SE OSU Dr. Bldg. 955, Newport, OR
   97365-5275, USA}
+
+\emph{\supscr{2}Pacific Biological Station, Fisheries and Oceans Canada,
+  3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada}
 
 \emph{\supscr{3}Northwest Fisheries Science Center, National Marine Fisheries
   Service, National Oceanic and Atmospheric Administration, U.S. Department of
@@ -277,18 +277,18 @@ Authors of this document are (all authors contribute extensively so the order ro
 %% Draft version
 This DRAFT document is non-citable.
 
-%% ** - The double asterisks indicate a paragraph, or sentence that needs to be thought about this year
-%% and double checked (i.e. isn't fully automated, may just need someone to have a
-%% quick think). If at the start of a paragraph then need to look at the full
-%% paragraph.
+** - The double asterisks indicate a paragraph, or sentence that needs to be thought about this year
+and double checked (i.e. isn't fully automated, may just need someone to have a
+quick think). If at the start of a paragraph then need to look at the full
+paragraph.
 
 %% Final version (with standard author rotation)
-This document should be cited as follows:\\
-Edwards, A.M., A.M. Berger, C.J. Grandin and K.F. Johnson.
-\Sexpr{assess_yr}. Status of the \fishname\ (whiting) stock in
-U.S. and Canadian waters in \Sexpr{assess_yr}. Prepared by the Joint Technical
-Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
-Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
+% This document should be cited as follows:\\
+% Berger, A.M., C.J. Grandin, K.F. Johnson and A.M. Edwards.
+% \Sexpr{assess_yr}. Status of the \fishname\ (whiting) stock in
+% U.S. and Canadian waters in \Sexpr{assess_yr}. Prepared by the Joint Technical
+% Committee of the U.S. and Canada \fishname/Whiting Agreement, National Marine
+% Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 
 \newpage
 
