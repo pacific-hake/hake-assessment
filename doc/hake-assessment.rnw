@@ -420,9 +420,9 @@ new results are incorporated.
 <<appendices-rec-plot, child='appendix-rec-plot/appendix-rec-plot.rnw'>>=
 @
 
-\rfoot{Appendix~\ref{chap:add-forecast} -- Additional forecast catch levels}
-<<appendix-add-forecast, child='appendix-add-forecast/appendix-add-forecast.rnw'>>=
-@
+% \rfoot{Appendix~\ref{chap:add-forecast} -- Additional forecast catch levels}
+% <<appendix-add-forecast, child='appendix-add-forecast/appendix-add-forecast.rnw'>>=
+% @
 
 % Can include these listings for the draft if we want to but keep them commented out for
 % the final submission. There are over 630 unannotated tags created by this appendix
