@@ -286,7 +286,7 @@ make.parameters.estimated.summary.table(
 
 <<main-assessment-changes-table, results='asis', echo=FALSE>>=
 make.assessment.changes.table(assessment.changes,
-                              xcaption = paste0("Annual changes in the modeling framework used to assess ",
+                              xcaption = paste0("**[add 2023] Annual changes in the modeling framework used to assess ",
                                                 "\\fishname\\ since 2011. ",
                                                 "The bias adjustment is reported as the maximum used for each assessment. ",
                                                 "Methods used to weight the age-composition data (Comp Method), i.e., ",
@@ -500,7 +500,7 @@ make.reference.points.table.old(base_model,
 <<main-biomass-table, results='asis', echo=FALSE>>=
 decision_table(base_model,
                xcaption =
-                 paste0("Forecast quantiles of \\fishname\\
+                 paste0("**[if labels change] Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year.
                      Catch alternatives are based on: constant
                      catches (rows ",
