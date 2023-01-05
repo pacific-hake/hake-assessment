@@ -535,7 +535,7 @@ SRG meeting showed that the posterior distribution of the parameter may have som
 probability of upweighting the age samples from the base assessment inputs, although
 likely had little difference on stock assessment outcomes. {\bf The SRG encourages the JTC
 to consider methods to determine the maximum input sample size for the survey age
-compositions. Previous work of **[add ref] Stewart and Hamel (2014) may be useful for this
+compositions. Previous work of \citet{StewartHamel2014} may be useful for this
 purpose.}
 
 \emph{Response -- **}
