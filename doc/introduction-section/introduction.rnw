@@ -46,12 +46,12 @@ The structural assumptions
 of this \Sexpr{assess_yr} base model,
 implemented using version \Sexpr{ss_version} of the Stock Synthesis software
 \citep{MethotWetzel2013},
-are largely the same as the
-\Sexpr{last_assess_yr} base model \citep{JTC2020}.  The exception is that the
+** are largely the same as the
+\Sexpr{last_assess_yr} base model \citep{JTC2020}. ** The exception is that the
 \Sexpr{assess_yr} base model includes an age-1 index from the acoustic survey.
 The Bayesian estimation continues to be computed using a new efficient approach
-that was successfully tested in 2020 assessment
-\citep{JTC2020}. For the first time, all model runs reported in this stock
+that was successfully tested in the 2020 assessment
+\citep{JTC2020}. ** For the first time, all model runs reported in this stock
 assessment document are performed in a Bayesian context.
 Responses to \Sexpr{last_assess_yr} SRG requests are in
 Section~\ref{sec:assessment-response-review} and a
@@ -103,7 +103,7 @@ habitat conditions for mature \fishname\ leads to higher biomass further
 north and lower biomass around the U.S-Canadian border, while cooler than average
 conditions leads to higher biomass of immature \fishname\ coast-wide
 \citep{MalickHunsickerEtAl2020}. The distribution of age-1 fish also changes
-between years (Figure~\ref{fig:main-backscatter-map-age1}).
+between years (Figure~\ref{fig:main-backscatter-map-age1}). **Maybe add any new refs?
 
 \subsection{Ecosystem considerations}\label{sec:intro-ecosystem-considerations}
 
@@ -132,7 +132,7 @@ well as associated with northward long-shore transport and the number of days
 between storm events during larval stages (Vestfals et al., pers. comm.).
 In terms of an `Ecosystem Approach to Fisheries Management' (a priority for DFO
 and NOAA), the use of empirical weight-at-age somewhat accounts for ecosystem
-effects (see Section~\ref{sec:data-weight-at-age}).
+effects (see Section~\ref{sec:data-weight-at-age}). **Maybe add any new refs?
 
 \subsection{Management of \fishname\ }\label{sec:intro-management}
 
@@ -153,9 +153,10 @@ Canada establishes U.S. and Canadian shares of the coast-wide total allowable
 \Sexpr{can.allotment.percent}\%, respectively, and this distribution has been
 adhered to since 2005. However, a bilateral
 agreement on the coast-wide TAC could not be reached in 2020 or 2021, and so catch targets were set unilaterally
-during these years for the first time since the inception of the Agreement.
+during these years for the first time since the inception of the
+Agreement. **Could mention 2022 TAC was bilateral.
 
-Throughout the last decade, the total coast-wide catch has tracked harvest
+** Throughout the last decade, the total coast-wide catch has tracked harvest
 targets reasonably well.
 %  (Table~\ref{tab:main-landings-tac})    % so Table 4 isn't ref'ed before 1-3
 Since 1999, catch
@@ -180,7 +181,7 @@ stock assessment outputs.
 \subsubsection{Management of \fishname\ in the United States}
 \label{sec:intro-management-us}
 
-In the U.S. zone, participants in the directed fishery are required to use
+** In the U.S. zone, participants in the directed fishery are required to use
 pelagic trawls with a codend mesh of at least 7.5~cm (3~inches). Regulations
 also restrict the area and season of fishing to reduce the bycatch of Chinook
 Salmon (\emph{Oncorhynchus tshawytscha}), depleted rockfish stocks
@@ -207,7 +208,7 @@ Program has been monitoring fishing vessel activity since 1975, originally monit
 foreign and joint-venture vessels. Observer coverage has been 100\% on all domestic
 vessels since 1991 (including the 2020 and 2021 fishing seasons, despite the COVID-19 pandemic).
 
-Shortly after the 1997 allocation agreement was approved by the Pacific Marine
+**[probably fine as is] Shortly after the 1997 allocation agreement was approved by the Pacific Marine
 Fisheries Commission, fishing companies owning catcher-processor (CP)
 vessels with U.S. west coast groundfish permits established the Pacific Whiting
 Conservation Cooperative (PWCC). The primary role of the PWCC is to distribute
@@ -222,7 +223,7 @@ managed with IFQs.
 
 \subsubsection{Management of \fishname\ in Canada}\label{sec:intro-management-canada}
 
-Canadian groundfish managers distribute their portion of the coast-wide TAC as quota to
+** Canadian groundfish managers distribute their portion of the coast-wide TAC as quota to
 individual license holders. In \Sexpr{last_data_yr}, Canadian hake fishermen
 were allocated a TAC of \Sexpr{last.year.can.tac}~t, including
 \Sexpr{last.year.can.carryover}~t of uncaught carryover fish from
@@ -233,7 +234,7 @@ Joint-Venture fishery in which foreign processor vessels are allowed to accept
 codends from Canadian catcher vessels while at sea.
 The last year a Joint-Venture fishery was conducted was in \Sexpr{latest.year.can.jv}.
 
-In \Sexpr{last_data_yr}, all Canadian \fishname\ trips were subject to 100\%
+** In \Sexpr{last_data_yr}, all Canadian \fishname\ trips were subject to 100\%
 observer coverage, by electronic monitoring for the shoreside component
 of the domestic fishery or on-board observer for the freezer-trawler
 component. However, due to staffing issues, there were no observers available to
@@ -242,7 +243,7 @@ shoreside landings are usually subject to 100\% verification by the groundfish
 Dockside Monitoring Program, but because of staffing
 issues only four samples were taken in 2021.
 
-Retention of all catch,
+** Retention of all catch,
 with the exception of prohibited species, was mandatory. The retention of
 groundfish other than Sablefish, Mackerel, Walleye Pollock, and Pacific Halibut
 on dedicated \fishname\ trips using electronic monitoring was
@@ -251,7 +252,7 @@ Walleye Pollock was 30\% of the total landed weight.
 
 \subsection{Fisheries}\label{sec:intro-fisheries}
 
-The fishery for the coastal population of \fishname\ occurs along the coasts of
+** The fishery for the coastal population of \fishname\ occurs along the coasts of
 northern California, Oregon, Washington, and British Columbia primarily during
 May-November \citep{JTC2013}. The fishery is conducted with mid-water trawls and has met the Marine
 Stewardship Council (MSC) Fisheries Standard to be certified as meeting sustainable
@@ -261,7 +262,7 @@ of the catch. Catches were occasionally greater than 200,000~t prior to 1986,
 and since then they have been greater than 200,000~t for all except
 \Sexpr{catches.below.200000.since.1986} years.
 
-In 2020, \fishname\ was Canada's largest commercial wild fishery (species with
+**[newer numbers may not be available] In 2020, \fishname\ was Canada's largest commercial wild fishery (species with
 the largest catch),
 representing 14\% of Canada's total landings of all species
 \href{https://www.dfo-mpo.gc.ca/stats/commercial/land-debarq/sea-maritimes/s2020pq-eng.htm}{(www.dfo-mpo.gc.ca)}.
@@ -270,7 +271,7 @@ processing industry in British Columbia in 2019, with an exported value of
 CA\$100~million in product mainly
 to Ukraine, China,  Lithuania, and South Africa \citep{DFO2021}.
 
-In the US, over US\$80~million in wages is estimated to have been paid to employees in 2019
+** In the US, over US\$80~million in wages is estimated to have been paid to employees in 2019
 % (\href{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}
 \href{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}{(www.noaa.gov)}.
 This includes wages paid to crew and captains fishing on catcher vessels that deliver shoreside
@@ -285,7 +286,7 @@ US\$311~million in income and 4,200 jobs.
 \subsubsection{Overview of the fisheries in \Sexpr{last_data_yr}}\label{sec:intro-fisheries-overview}
 %**ADJUST AGAIN AS NEEDED in 2022
 %The Joint Management Committee (JMC) determined an adjusted (for carryovers)
-The coast-wide TAC of \Sexpr{last.year.tac}~t for \Sexpr{last_data_yr}
+** The coast-wide TAC of \Sexpr{last.year.tac}~t for \Sexpr{last_data_yr}
 was specified as the sum of unilateral TAC decisions due to the lack of
 a bilateral agreement in \Sexpr{last_data_yr}. The U.S. catch target
 was set at \Sexpr{last.year.us.tac}~t and the Canadian catch target at
@@ -309,7 +310,7 @@ follows by nation.
 
 \subsubsub{United States}
 
-The U.S.
+** The U.S.
 specified catch target
 %adjusted allocation
 (i.e., adjusted for carryovers) of
@@ -330,7 +331,7 @@ and
 \Sexpr{f(last.year.us.shore.quota.reallocated)}~t,
 respectively.
 
-The midwater fishery for \fishname\ began on May 15 for the shore-based and
+** The midwater fishery for \fishname\ began on May 15 for the shore-based and
 at-sea fisheries.  In earlier years, the shore-based midwater fishery began on
 June 15 north of 42$^\circ$N latitude, but could fish for hake between
 40$^\circ$30'N and 42$^\circ$N latitudes starting on April 1.  Beginning in
@@ -339,7 +340,7 @@ latitude starting May 15 and could fish south of 40$^\circ$30'N latitude
 starting on April 15.  Regulations do not allow at-sea processing south of
 42$^\circ$N latitude at any time during the year.
 
-The overall catch of \fishname\ in U.S. waters was less than the past four years,
+** The overall catch of \fishname\ in U.S. waters was less than the past four years,
 but was the fifth highest value ever recorded (Table~\ref{tab:intro-catches-US}).
 Monthly catch rates in the at-sea sector were lower than last year in all months
 except October, which was only slighter higher than last year, and
@@ -356,7 +357,7 @@ caught.  For further details and specific impacts related to the COVID-19 pandem
 see the report from the U.S. Advisory Panel
 (Appendix~\ref{chap:us-fishery-report}).
 
-In both U.S. at-sea sectors, age-5 and age-7 fish, associated with the 2016 and 2014 year classes,
+** In both U.S. at-sea sectors, age-5 and age-7 fish, associated with the 2016 and 2014 year classes,
 were the most common ages.
 Age-2 fish were again not seen in appreciable numbers in the catch this year.
 Age sampling was conducted on \Sexpr{us.age.n.cp} catcher-processor hauls and \Sexpr{us.age.n.ms}
@@ -381,7 +382,7 @@ age-\Sexpr{us.age.3.prop.age.shore} (\Sexpr{us.age.3.prop.shore}\%), and
 age-\Sexpr{us.age.4.prop.age.shore} (\Sexpr{us.age.4.prop.shore}\%)
 in \Sexpr{last_data_yr} (Table~\ref{tab:main-us-shore-age-data}).
 
-The at-sea fishery maintained moderately high catch rates in the fall
+** The at-sea fishery maintained moderately high catch rates in the fall
 (Figure~\ref{fig:main-us-catch-rates}),
 but catch rates in the spring were lower than last year.
 The median fishing depth for the at-sea fleets was shallower than last year but near the
@@ -399,7 +400,7 @@ it has been in recent years because of high catch rates
 
 \subsubsub{Canada}
 
-The \Sexpr{last_data_yr} Canadian \fishname\ domestic fishery removed
+** The \Sexpr{last_data_yr} Canadian \fishname\ domestic fishery removed
 \Sexpr{last.year.can.landings}~t from Canadian waters (Table~\ref{tab:intro-catches-Can}), which was
 \Sexpr{last.year.can.attained}\% of the Canadian TAC of
 \Sexpr{last.year.can.tac}~t. The attainment for Canada appears much lower than usual, due
@@ -410,20 +411,20 @@ Canadian report from the Advisory Panel explains this in more detail (Appendix~\
 %using the usual method which is calculated as \Sexpr{can.allotment.percent}\% of a
 %bilaterally agreed-upon TAC.
 
-The shoreside component, made up of vessels landing fresh round product onshore,
+** The shoreside component, made up of vessels landing fresh round product onshore,
 landed \Sexpr{last.year.can.shore}~t. The freezer-trawler component,
 which freezes headed and gutted product while at sea, landed
 \Sexpr{last.year.can.freezer}~t. There was no Joint-Venture fishery this year.
 
 % Paraphrased from Appendix B, no point in repeating lots of it:
-Fishing started in early April and ended in mid-October. The general view from the
+** Fishing started in early April and ended in mid-October. The general view from the
 Canadian fleet is that general abundance was down in 2021, especially in the shallower
 depths (Figure~\ref{fig:main-can-at-sea-depths}). Finding fish was difficult in 2021.
 The fish caught in Canada appeared to
 be mostly from one age class (approximately 800 grams body weight), with very few smaller fish
 (less than 500 grams) caught.
 
-Usually the most abundant age classes found in the freezer-trawler catch are listed here.
+** Usually the most abundant age classes found in the freezer-trawler catch are listed here.
 Unfortunately, no trips were observed due to staffing issues, leading to no age samples.
 %
 % The most abundant year classes (by numbers) in the Canadian freezer-trawler
@@ -439,7 +440,7 @@ Unfortunately, no trips were observed due to staffing issues, leading to no age 
 Although there were four samples taken from the shoreside fleet, only one sample was received in time for ageing
 for this year's assessment.
 
-The most abundant year classes in the
+** The most abundant year classes in the
 Canadian shoreside catch were age-\Sexpr{max.shoreside.age.prop.age} at
 \Sexpr{max.shoreside.age.prop}\%, age-\Sexpr{second.shoreside.age.prop.age} at
 \Sexpr{second.shoreside.age.prop}\%, age-\Sexpr{third.shoreside.age.prop.age} at
