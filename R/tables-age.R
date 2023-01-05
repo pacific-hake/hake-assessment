@@ -343,7 +343,7 @@ atage_table <- function(model,
                  model$extra.mcmc$batage_median)
   fn <- switch (table_type,
                 file.path(csv_dir, out_est_naa_file),
-                file.path(csv_dir, out_est_eaa_.file),
+                file.path(csv_dir, out_est_eaa_file),
                 file.path(csv_dir, out_est_caa_file),
                 file.path(csv_dir, out_est_caa_bio_file),
                 file.path(csv_dir, out_est_baa_file))
