@@ -15,7 +15,7 @@ options(max.print = 999999)
 # devtools::install_github("ropensci/rnaturalearthhires")
 # devtools::install_github("pbs-assess/gfutilities")
 message("Loading R packages...")
-pacman::p_load(adnuts, coda, aws.s3, coda, cowplot, data.tree, date, dplyr,
+pacman::p_load(adnuts, cli, coda, crayon, coda, cowplot, data.tree, date, dplyr,
                future, furrr, here, gfutilities, ggplot2, ggpubr, ggrepel,
                grDevices, grid, gridExtra, gtools, here, kableExtra, knitr,
                lubridate, maps, maptools, matrixcalc, parallel, purrr, r4ss,
@@ -117,7 +117,7 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "theme.R", "model-setup.R", "forecast-catch-levels.R",
              "data-tables.R", "useful-quantities.R", "historical-probs.R",
              "recruitment-question-responses.R", "run.R", "build-rds.R",
-             "append-retros.R")
+             "append-retros.R", "run-adnuts.R", "run-adnuts-timed.R")
 source_all(src_lst)
 
 theme_set(hake_theme())

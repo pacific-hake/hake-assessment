@@ -20,7 +20,9 @@ VignetteBuilder: knitr
 Depends:
     R (>= 3.3)
 Imports:
+    cli,
     cowplot,
+    crayon,
     furrr,
     ggplot2,
     ggrepel,
