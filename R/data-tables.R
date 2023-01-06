@@ -93,7 +93,7 @@ testthat::expect_equal(round(survey.history$cv * 100, 1),
 # Fails in 2022, but small differences, didn't yet look
 # into exactly which columns to compare.
 # testthat::expect_equal(round(survey.history$cv * 100, 1),
-#                        round(survey.comparison$cv.with.extrap * 100, 1))
+#                         round(survey.comparison$cv.with.extrap * 100, 1))
 
 # Depth data filenames ----
 # * Canada depths ----
