@@ -20,7 +20,6 @@
 #' run to discover issues. This will stop the function before the main
 #' iterations are done, so you will have to re-run the function again
 #' with this set to `FALSE`.
-#' @param save_image Save the output as an RData file
 #' @param run_extra_mcmc If `TRUE`, run SS extra mcmc option which outputs
 #' files into the `sso` subdirectory. If `FALSE`, those files will not be
 #' created and the `posteriors.sso` and `dervied_posteriors.sso` files
@@ -33,6 +32,7 @@
 #' @importFrom crayon green
 #' @importFrom cli symbol
 #' @importFrom lubridate seconds_to_period
+#' @importFrom r4ss copy_SS_inputs
 #'
 #' @return Nothing
 run_adnuts <- function(path,
@@ -41,16 +41,28 @@ run_adnuts <- function(path,
                        num_samples = 8000,
                        num_warmup_samples = 250,
                        adapt_delta = 0.8,
-                       check_issues = FALSE,
-                       save_image = TRUE,
                        run_extra_mcmc = FALSE,
-                       hess_step = FALSE,
-                       duration = NULL,
+                       hess_step = TRUE,
                        fn_exe = ifelse(exists("ss_executable"),
                                     ss_executable,
                                     "ss3"),
                        overwrite = FALSE,
-                       fn_logfile = "model_output.log"){
+                       fn_logfile = "model_output.log",
+                       input_files = c(ifelse(exists("starter_file_name"),
+                                              starter_file_name,
+                                              "starter.ss"),
+                                       ifelse(exists("starter_file_name"),
+                                              forecast_file_name,
+                                              "forecast.ss"),
+                                       ifelse(exists("weight_at_age_file_name"),
+                                              weight_at_age_file_name,
+                                              "wtatage.ss"),
+                                       ifelse(exists("control_file_name"),
+                                              control_file_name,
+                                              "hake_control.ss"),
+                                       ifelse(exists("data_file_name"),
+                                              data_file_name,
+                                              "hake_data.ss"))){
 
   # Determine if the caller is calling from an Rstudio session
   is_rstudio <- Sys.getenv("RSTUDIO") == "1"
@@ -97,6 +109,20 @@ run_adnuts <- function(path,
   }
   dir.create(mcmc_path, showWarnings = FALSE)
 
+  mle_files <- list.files(path, all.files = TRUE, full.names = TRUE)
+  file.copy(mle_files, mcmc_path)
+
+  if(run_extra_mcmc){
+    dir.create(file.path(mcmc_path, "sso"), showWarnings = FALSE)
+    modify_starter_mcmc_type(mcmc_path, 2)
+  }else{
+    modify_starter_mcmc_type(mcmc_path, 1)
+  }
+
+  if(hess_step){
+    input_files <- c(input_files, "admodel.cov", "admodel.hes", "ss.bar")
+  }
+
   rdata_file <- file.path(mcmc_path, "hake.Rdata")
 
   message("\n")
@@ -123,55 +149,6 @@ run_adnuts <- function(path,
   if(!is.null(fn_logfile)){
     cmd <- paste0(cmd, " > ", fn_logfile, " 2>&1")
   }
-  system_(cmd, intern = TRUE, wait = TRUE)
-
-  # Then run parallel RWM chains as a first test to ensure
-  # mcmc itself is working properly, or that model is converging in mcmc space
-  # Start chains from MLE
-  msg <- "Running Pilot RWM MCMC (chain length 100, warmup 25)...\n"
-  if(is_rstudio){
-    message(green(symbol$info, msg))
-  }else{
-    message(msg)
-  }
-  pilot <- sample_admb(model = fn_exe,
-                       path = path,
-                       num_samples = 100,
-                       init = NULL,
-                       num_chains = num_chains,
-                       warmup = 25,
-                       seeds = seeds,
-                       algorithm = "rwm",
-                       duration = duration,
-                       fn_logfile = fn_logfile)
-
-  # Copy all input/output from the MLE run to the `mcmc` directory
-  # This way, all input to the mcmc run will be based on the MLE outputs
-  if(run_extra_mcmc){
-    dir.create(file.path(mcmc_path, "sso"), showWarnings = FALSE)
-  }
-  mle_files <- list.files(path, all.files = TRUE, full.names = TRUE)
-  file.copy(mle_files, mcmc_path)
-
-  if(run_extra_mcmc){
-    modify_starter_mcmc_type(mcmc_path, 2)
-  }else{
-    modify_starter_mcmc_type(mcmc_path, 1)
-  }
-
-  if(check_issues){
-    # Check convergence and slow mixing parameters
-    save(list = ls(all.names = TRUE), file = rdata_file, envir = environment())
-    mon <- monitor(pilot$samples,
-                   warmup = pilot$warmup,
-                   print = FALSE)
-    # max(mon[,'Rhat'])
-    # min(mon[,'n_eff'])
-    # Examine the slowest mixing parameters
-    slow <- names(sort(mon[,"n_eff"]))[1:8]
-    pairs_admb(fit = pilot, pars = slow)
-    pairs_admb(fit = pilot, pars = c("MGparm[1]", "SR_parm[1]", "SR_parm[2]"))
-  }
 
   # The -hbf 1 argument is a technical requirement because NUTS uses a
   # different set of bounding functions and thus the mass matrix will be
@@ -182,6 +159,12 @@ run_adnuts <- function(path,
     cmd <- paste0(cmd, " > ", fn_logfile, " 2>&1")
   }
   system_(cmd, intern = TRUE, wait = TRUE)
+
+  copy_SS_inputs(dir.old = mcmc_path,
+                 dir.new = mcmc_path,
+                 use_ss_new = TRUE,
+                 overwrite = TRUE)
+
   if(hess_step){
     msg <- paste0("Running re-optimization MCMC (chain length 15) ",
                   "to get the correct mass ",
@@ -192,7 +175,7 @@ run_adnuts <- function(path,
     }else{
       message(msg)
     }
-    cmd <- paste0("cd ", path, " && ", fn_exe,
+    cmd <- paste0("cd ", mcmc_path, " && ", fn_exe,
                   " -hbf 1 -nox -iprint 200 -mcmc 15 -hess_step 10 ",
                   "-binp ss.bar")
     if(!is.null(fn_logfile)){
@@ -235,25 +218,7 @@ run_adnuts <- function(path,
                                              adapt_delta = adapt_delta),
                               fn_logfile = fn_logfile)
 
-  # Check for issues like slow mixing, divergences, max tree depths with
-  # ShinyStan and pairs_admb as above. Fix using the shiny app and rerun
-  # this part as needed.
-  if(check_issues){
-    save(list = ls(all.names = TRUE), file = rdata_file, envir = environment())
-    launch_shinyadmb(nuts_initial)
-    msg <- paste0("Stopped execution becuse `check_issues` is `TRUE`. Once ",
-                  "you have ensured the hessian is positive definite, ",
-                  "checked the slow mixing parameters, and looked at the ",
-                  "output using `shiny`, then re-run with ",
-                  "`check_issues` set to `FALSE`\n")
-    if(is_rstudio){
-      message(red(symbol$cross, msg))
-      stop_quietly(call. = FALSE)
-    }else{
-      stop(msg, call. = FALSE)
-    }
-  }
-  # Once acceptable, run again for inference using updated mass matrix.
+  # Run again for inference using updated mass matrix.
   # Increase adapt_delta toward 1 if you have divergences (runs will take
   # longer). Note this is in unbounded parameter space
   mass <- nuts_initial$covar.est

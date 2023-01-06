@@ -19,7 +19,7 @@ model_path=$models_path/$year_path/$version_path/$type_path/$model_name
 [[ ! -d $model_path ]] && { echo "Error: Directory $model_path does not exist, bailing out." ; exit 1; }
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); source('R/all.R'); \
-run_adnuts('$model_path', adapt_delta = $adapt_delta, extra_mcmc = $extra_mcmc, n_cores = $n_cores)" \
+run_adnuts('$model_path', adapt_delta = $adapt_delta, extra_mcmc = $extra_mcmc, num_chains = $n_cores)" \
 > /dev/null 2>&1; echo "Base model MCMC complete")
 
 # Run the base models catch-level calculations
