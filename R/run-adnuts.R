@@ -67,6 +67,9 @@ run_adnuts <- function(path,
   # Determine if the caller is calling from an Rstudio session
   is_rstudio <- Sys.getenv("RSTUDIO") == "1"
 
+  # Get the actual full path of the executable on whatever machine you're on
+  fn_exe <- get_model_executable(fn_exe)
+
   # Chains to run in parallel
   num_machine_cores  <- detectCores()
   if(is.null(num_chains)){
@@ -109,21 +112,9 @@ run_adnuts <- function(path,
   }
   dir.create(mcmc_path, showWarnings = FALSE)
 
-  mle_files <- list.files(path, all.files = TRUE, full.names = TRUE)
-  file.copy(mle_files, mcmc_path)
-
-  if(run_extra_mcmc){
-    dir.create(file.path(mcmc_path, "sso"), showWarnings = FALSE)
-    modify_starter_mcmc_type(mcmc_path, 2)
-  }else{
-    modify_starter_mcmc_type(mcmc_path, 1)
-  }
-
   if(hess_step){
     input_files <- c(input_files, "admodel.cov", "admodel.hes", "ss.bar")
   }
-
-  rdata_file <- file.path(mcmc_path, "hake.Rdata")
 
   message("\n")
   if(!is.null(fn_logfile)){
@@ -137,6 +128,7 @@ run_adnuts <- function(path,
     }
   }
 
+  # Run MLE and optimization MCMC (path) ----
   msg <- paste0("Running optimization MCMC (chain length 15) ",
                 "to ensure hessian is good ",
                 "and optimize without bias adjustment turned on\n")
@@ -145,26 +137,57 @@ run_adnuts <- function(path,
   }else{
     message(msg)
   }
+
   cmd <- paste0("cd ", path, " && ", fn_exe,  " -nox -iprint 200 -mcmc 15")
   if(!is.null(fn_logfile)){
     cmd <- paste0(cmd, " > ", fn_logfile, " 2>&1")
   }
+  initial_run <- system_(cmd, intern = TRUE, wait = TRUE)
+  if(!is.null(attributes(initial_run)) && attr(initial_run, "status")){
+    msg <- paste0("System command returned an error (status 1):\n", cmd)
+    if(is_rstudio){
+      message(red(symbol$cross, msg))
+      stop_quietly(call. = FALSE)
+    }else{
+      stop(msg, call. = FALSE)
+    }
+  }
+
+  # Run initial MCMC (mcmc_path) ----
+  input_files <- file.path(path, input_files)
+  file.copy(input_files, mcmc_path, overwrite = TRUE)
+  if(run_extra_mcmc){
+    dir.create(file.path(mcmc_path, "sso"), showWarnings = FALSE)
+    modify_starter_mcmc_type(mcmc_path, 2)
+  }else{
+    modify_starter_mcmc_type(mcmc_path, 1)
+  }
+  rdata_file <- file.path(mcmc_path, "hake.Rdata")
+  # Run MLE to create .ss_new files
+  cmd <- paste0("cd ", mcmc_path, " && ", fn_exe)
+  if(!is.null(fn_logfile)){
+    cmd <- paste0(cmd, " > ", fn_logfile, " 2>&1")
+  }
+  ss_new_run <- system_(cmd, intern = TRUE, wait = TRUE)
+  if(!is.null(attributes(ss_new_run)) && attr(ss_new_run, "status")){
+    msg <- paste0("System command returned an error (status 1):\n", cmd)
+    if(is_rstudio){
+      message(red(symbol$cross, msg))
+      stop_quietly(call. = FALSE)
+    }else{
+      stop(msg, call. = FALSE)
+    }
+  }
+  # Copy .ss_new files to .ss files in the mcmc directory
+  copy_SS_inputs(dir.old = mcmc_path,
+                 dir.new = mcmc_path,
+                 use_ss_new = TRUE,
+                 overwrite = TRUE,
+                 verbose = FALSE)
 
   # The -hbf 1 argument is a technical requirement because NUTS uses a
   # different set of bounding functions and thus the mass matrix will be
   # different
-  # First, run MLE
-  cmd <- paste0("cd ", path, " && ", fn_exe)
-  if(!is.null(fn_logfile)){
-    cmd <- paste0(cmd, " > ", fn_logfile, " 2>&1")
-  }
-  system_(cmd, intern = TRUE, wait = TRUE)
-
-  copy_SS_inputs(dir.old = mcmc_path,
-                 dir.new = mcmc_path,
-                 use_ss_new = TRUE,
-                 overwrite = TRUE)
-
   if(hess_step){
     msg <- paste0("Running re-optimization MCMC (chain length 15) ",
                   "to get the correct mass ",
@@ -221,7 +244,7 @@ run_adnuts <- function(path,
   # Run again for inference using updated mass matrix.
   # Increase adapt_delta toward 1 if you have divergences (runs will take
   # longer). Note this is in unbounded parameter space
-  mass <- nuts_initial$covar.est
+  mass <- nuts_initial$covar_est
   inits <- sample_inits(nuts_initial, num_chains)
   num_iters <- ceiling(((num_chains * num_warmup_samples) + num_samples) / num_chains)
 

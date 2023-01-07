@@ -16,6 +16,7 @@ bridge_models_desc <-
          "Update pre-2021 survey data"),
        c("Update wt-at-age data",
          "Add 2021 survey data"))
+# Prepend the base model to each group? TRUE or FALSE
 prepend_to_bridge <- c(TRUE, FALSE)
 
 # This is a list of vectors of sensitivity groups (sensitivity models that

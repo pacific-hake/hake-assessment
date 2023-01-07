@@ -107,11 +107,22 @@ set_dirs <- function(
   retro_models_dir = file.path(models_dir, retro_models_dir)
 
   # Check existence of all model type directories
-  lst <- list(models_dir, last_yr_base_model_dir, base_model_dir, bridge_models_dir,
-              sens_models_dir, request_models_dir, test_models_dir,
+  # These two lists must be the same length for the `walk2()` call that follows
+  lst <- list(models_dir,
+              last_yr_base_model_dir,
+              base_model_dir,
+              bridge_models_dir,
+              sens_models_dir,
+              request_models_dir,
+              test_models_dir,
               retro_models_dir)
-  lst_names <- list("Models", "Last year's base model", "Base model ",
-                    "Bridging models", "Sensitivity monels", "Request models", "Test models",
+  lst_names <- list("Models",
+                    "Last year's base model",
+                    "Base model ",
+                    "Bridging models",
+                    "Sensitivity monels",
+                    "Request models",
+                    "Test models",
                     "Retrospective models")
   walk2(lst, lst_names, ~{
     stopifnot(!is.null(.x))
@@ -121,9 +132,23 @@ set_dirs <- function(
     }
   })
 
-  dir_types <- list("Bridging", "Sensitivity", "Request", "Test", "Retrospective")
-  dirs <- list(bridge_models_dir, sens_models_dir, request_models_dir, test_models_dir, retro_models_dir)
-  subdirs <- list(bridge_models_dirs, sens_models_dirs, request_models_dirs, test_models_dirs, retro_models_dirs)
+  # All three of these lists must be the same length for the `map2()`
+  # call that follows
+  dir_types <- list("Bridging",
+                    "Sensitivity",
+                    "Request",
+                    "Test",
+                    "Retrospective")
+  dirs <- list(bridge_models_dir,
+               sens_models_dir,
+               request_models_dir,
+               test_models_dir,
+               retro_models_dir)
+  subdirs <- list(bridge_models_dirs,
+                  sens_models_dirs,
+                  request_models_dirs,
+                  test_models_dirs,
+                  retro_models_dirs)
 
   # Get paths for all directories
   type_iter <- 1

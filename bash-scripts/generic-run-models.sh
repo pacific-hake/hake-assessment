@@ -13,9 +13,9 @@ models_path="models"
 year_path=2023
 version_path="01-version"
 
-n_cores=16
-n_final=8000
-warmup_final=250
+num_chains=16
+num_samples=8000
+num_warmup_samples=250
 
 models_path=$project_path/$models_path/$year_path/$version_path/$type_path
 [ -d "$models_path" ] && echo "Directory $models_path exists, starting run loop." || \
@@ -30,12 +30,12 @@ for model in ${models[@]}; do
   Rscript -e " \
   setwd(here::here()); \
   source('R/all.R'); \
-  run_adnuts('$model_path', \
+  run_adnuts(path = '$model_path', \
              extra_mcmc = $extra_mcmc, \
-             n_cores = $n_cores, \
+             num_chains = $num_chains, \
              adapt_delta = $adapt_delta, \
-             n_final = $n_final, \
-             warmup_final = $warmup_final);
+             num_samples = $num_samples, \
+             num_warmup_samples = $num_warmup_samples); \
   build_rds('$model');" > /dev/null 2>&1; \
   echo; \
   echo "Run complete for model $model"; \
