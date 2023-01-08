@@ -137,6 +137,21 @@ run_adnuts <- function(path,
   }else{
     message(msg)
   }
+  # Run MLE to create .ss_new files
+  cmd <- paste0("cd ", path, " && ", fn_exe)
+  if(!is.null(fn_logfile)){
+    cmd <- paste0(cmd, " > ", fn_logfile, " 2>&1")
+  }
+  ss_new_run <- system_(cmd, intern = TRUE, wait = TRUE)
+  if(!is.null(attributes(ss_new_run)) && attr(ss_new_run, "status")){
+    msg <- paste0("System command returned an error (status 1):\n", cmd)
+    if(is_rstudio){
+      message(red(symbol$cross, msg))
+      stop_quietly(call. = FALSE)
+    }else{
+      stop(msg, call. = FALSE)
+    }
+  }
 
   cmd <- paste0("cd ", path, " && ", fn_exe,  " -nox -iprint 200 -mcmc 15")
   if(!is.null(fn_logfile)){
