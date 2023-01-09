@@ -5,19 +5,21 @@
 # model will be prepended to the group.
 # See `set_dirs()`
 bridge_models_dirs <-
-  list(c("01-new-ss-exe",
-         "02-new-catch-age",
-         "03-update-survey"),
-       c("04-age-1-index",
-         "05-new-wt-at-age"))
+  list(c("01-updated-ss-exe",
+         "02-add-new-catch",
+         "03-add-new-weight-at-age",
+         "04-add-survey-age-2-plus",
+         "05-add-survey-age-1",
+         "06-add-new-fishery-ages"))
 bridge_models_desc <-
   list(c("Update Stock Synthesis version to 3.30.20",
-         "Update all fishery catch and comps",
-         "Update pre-2021 survey data"),
-       c("Update wt-at-age data",
-         "Add 2021 survey data"))
+         paste0("Add ", last_data_yr, " catch"),
+         paste0("Add ", last_data_yr, " weight-at-age"),
+         "Add age-2+ acoustic survey",
+         "Add age-1 acoustic survey",
+         paste0("Add ", last_data_yr, " fishery age comps")))
 # Prepend the base model to each group? TRUE or FALSE
-prepend_to_bridge <- c(TRUE, FALSE)
+prepend_to_bridge <- TRUE
 
 # This is a list of vectors of sensitivity groups (sensitivity models that
 # will be plotted against each other). It can be `NULL` if you want it to be
