@@ -10,7 +10,7 @@ load_catches <- function(fn = NA){
 
   stopifnot(!is.na(fn))
 
-  d <- read_csv(fn, col_types = cols())
+  d <- readr::read_csv(fn, col_types = readr::cols())
   d <- as_tibble(d)
   d %>%
     transmute(year = Year,
