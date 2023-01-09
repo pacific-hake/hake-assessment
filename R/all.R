@@ -5,7 +5,7 @@
 # To debug in an R session, run these 3 commands first:
 # source(here::here("R/all.R"));load_models_rds();source(here::here("R/custom-knitr-variables.R"))
 
-assess_yr <- 2022
+assess_yr <- 2023
 model_version <- "01"
 
 # Show non-scientific notation
@@ -121,3 +121,40 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
 source_all(src_lst)
 
 theme_set(hake_theme())
+
+# -----------------------------------------------------------------------------
+# Data start and endpoint variables
+# -----------------------------------------------------------------------------
+recruit_dev_start_yr <- 1946
+unfished_eq_yr <- 1964
+start_yr <- 1966
+start_yr_age_comps <- 1975
+end_yr <- assess_yr
+last_data_yr <- end_yr - 1
+survey_start_yr <- 1995
+survey_end_yr <- 2021
+surv_yrs <- c(1995, 1998, 2001, 2003, 2005, 2007,
+              2009, 2011, 2012, 2013, 2015, 2017,
+              2019, 2021)
+
+# tick marks for time series plot (not catch time series though)
+big_ticks <- seq(1970, end_yr + 4, 5)
+small_ticks <- start_yr:max(big_ticks)
+
+# -----------------------------------------------------------------------------
+# Key posteriors used in the assessment
+# -----------------------------------------------------------------------------
+key_posteriors <- c("NatM",
+                    "SR_LN",
+                    "SR_BH_steep",
+                    "Q_extraSD_Acoustic_Survey",
+                    "ln\\(DM_theta\\)_1",
+                    "ln\\(DM_theta\\)_2")
+key_posteriors_titles <- c("Natural mortality",
+                           "LN(R0)",
+                           "Steepness",
+                           "Survey extra SD",
+                           "Dirichlet-Multinomial fishery",
+                           "Dirichlet-Multinomial survey")
+key_posteriors_file <- "keyposteriors.csv"
+nuisance_posteriors_file <- "nuisanceposteriors.csv"
