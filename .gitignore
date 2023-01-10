@@ -42,6 +42,7 @@ key_pair.R
 
 
 # Folders
+.history/
 admin*
 cache*
 extra-models*
