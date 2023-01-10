@@ -391,7 +391,7 @@ if(FALSE){
   df2$month <- df2$SAMPLE_MONTH
   df2$length <- df2$FISH_LENGTH/10
   df2$weight <- df2$FISH_WEIGHT
-  df2$age <- df2$FISH_AGE_YEARS_FINAL
+  df2$age <- df2$AGE
   make.size.at.age.plot(df2, type='len')
   make.size.at.age.plot(df2, type='wt')
 }
