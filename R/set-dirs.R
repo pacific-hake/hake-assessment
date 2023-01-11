@@ -8,18 +8,13 @@
 #' issued. If the `models_dir` does not exist, an error will be thrown.
 #'
 #' @param models_dir Full path in which the SS3 model directories are
-#' located. The default value is `<here::here()>/models`
-#' @param last_yr_base_model_dir Full path in which the SS3 output
-#' for the last assessment year's model resides. The default value is
-#' `<here::here()>/models/<YEAR>/01-version/01-base-models/01-base-model`
-#' where `<YEAR>` is the current year if currently in the months of May
-#' to December, and the year before the current year if currently in the
-#' months of January to April, and `<NAME>` is the subdirectory name for
-#' the case model in that year
-#' @param base_model_dir Full path of the base model directory
+#' located for the current assessment year
+#' @param last_yr_models_dir Full path in which the SS3 model directories are
+#' located for the the last assessment year
+#' @param base_model_dir Name of the base model directory
 #' @param bridge_models_dir Name of the bridging models directory
 #' @param sens_models_dir Name of the sensitivity models directory
-#' @param request_models_dir Name  of the request models directory
+#' @param request_models_dir Name of the request models directory
 #' @param test_models_dir Name of the test models directory
 #' @param retro_models_dir Name of the retrospective models directory
 #' @param bridge_models_dirs A vector of subdirectory names in
@@ -58,23 +53,15 @@
 #' @importFrom lubridate year month
 #' @export
 set_dirs <- function(
-    models_dir = here::here("models"),
-    year_dir = ifelse(month(Sys.Date()) %in% 5:12,
-                      year(Sys.Date()) + 1,
-                      year(Sys.Date())),
-    version_dir = "01-version",
-    last_yr_base_model_dir = file.path(models_dir,
-                                       year_dir - 1,
-                                       "01-version",
-                                       "01-base-models",
-                                       "01-base"),
-    base_model_dir = file.path("01-base-models",
-                               "01-base"),
+    models_dir = NULL,
+    last_yr_models_dir = NULL,
+    base_models_dir = "01-base-models",
     bridge_models_dir = "02-bridging-models",
     sens_models_dir = "03-sensitivity-models",
     request_models_dir = "04-request-models",
     test_models_dir = "05-test-models",
     retro_models_dir = "06-retrospective-models",
+    base_models_dirs = NULL,
     bridge_models_dirs = NULL,
     sens_models_dirs = NULL,
     request_models_dirs = NULL,
@@ -83,76 +70,97 @@ set_dirs <- function(
     prepend_to_bridge = NULL){
 
   if(is.null(models_dir)){
-    stop("`models_dir` is `NULL`", call. = FALSE)
+    stop("`models_dir` is `NULL`",
+         call. = FALSE)
   }
 
-  if(is.null(year_dir)){
-    stop("`year_dir` is `NULL`", call. = FALSE)
+  if(!dir.exists(models_dir)){
+    stop("`models_dir` does not exist",
+         call. = FALSE)
   }
 
-  if(is.null(version_dir)){
-    stop("`version_dir` is `NULL`", call. = FALSE)
+  if(is.null(last_yr_models_dir)){
+    stop("`last_yr_models_dir` is `NULL`",
+         call. = FALSE)
   }
 
-  models_dir <- file.path(models_dir,
-                          year_dir,
-                          version_dir)
+  if(!dir.exists(last_yr_models_dir)){
+    stop("`last_yr_models_dir` does not exist",
+         call. = FALSE)
+  }
+
+  all_models_dir <- list(base_models_dir,
+                         bridge_models_dir,
+                         sens_models_dir,
+                         request_models_dir,
+                         test_models_dir,
+                         retro_models_dir)
+  all_models_dirs <- list(base_models_dirs,
+                          bridge_models_dirs,
+                          sens_models_dirs,
+                          request_models_dirs,
+                          test_models_dirs,
+                          retro_models_dirs)
+  has_models_dir <- map_lgl(all_models_dir, ~{!is.null(.x)})
+  has_models_subdirs <- map_lgl(all_models_dirs, ~{!is.null(.x)})
 
   # Make model type directories full paths
-  base_model_dir = file.path(models_dir, base_model_dir)
-  bridge_models_dir = file.path(models_dir, bridge_models_dir)
-  sens_models_dir = file.path(models_dir, sens_models_dir)
-  request_models_dir = file.path(models_dir, request_models_dir)
-  test_models_dir = file.path(models_dir, test_models_dir)
-  retro_models_dir = file.path(models_dir, retro_models_dir)
+  base_models_dir <- ifelse(has_models_dir[1] && has_models_subdirs[1],
+                            file.path(models_dir, base_models_dir),
+                            NA_character_)
+  bridge_models_dir <- ifelse(has_models_dir[2] && has_models_subdirs[2],
+                              file.path(models_dir, bridge_models_dir),
+                              NA_character_)
+  sens_models_dir <- ifelse(has_models_dir[3] && has_models_subdirs[3],
+                            file.path(models_dir, sens_models_dir),
+                            NA_character_)
+  request_models_dir <- ifelse(has_models_dir[4] && has_models_subdirs[4],
+                               file.path(models_dir, request_models_dir),
+                               NA_character_)
+  test_models_dir <- ifelse(has_models_dir[5] && has_models_subdirs[5],
+                            file.path(models_dir, test_models_dir),
+                            NA_character_)
+  retro_models_dir <- ifelse(has_models_dir[6] && has_models_subdirs[6],
+                             file.path(models_dir, retro_models_dir),
+                             NA_character_)
 
   # Check existence of all model type directories
-  # These two lists must be the same length for the `walk2()` call that follows
-  lst <- list(models_dir,
-              last_yr_base_model_dir,
-              base_model_dir,
-              bridge_models_dir,
-              sens_models_dir,
-              request_models_dir,
-              test_models_dir,
-              retro_models_dir)
-  lst_names <- list("Models",
-                    "Last year's base model",
-                    "Base model ",
-                    "Bridging models",
-                    "Sensitivity monels",
-                    "Request models",
-                    "Test models",
-                    "Retrospective models")
-  walk2(lst, lst_names, ~{
-    stopifnot(!is.null(.x))
-    if(!dir.exists(.x)){
+  # These three lists must be the same length for the `walk2()` and `map2()`
+  # calls that follow
+dirs <- list(base_models_dir,
+             bridge_models_dir,
+             sens_models_dir,
+             request_models_dir,
+             test_models_dir,
+             retro_models_dir)
+dir_types <- list("Base model",
+                  "Bridging models",
+                  "Sensitivity monels",
+                  "Request models",
+                  "Test models",
+                  "Retrospective models")
+subdirs <- list(base_models_dirs,
+                bridge_models_dirs,
+                sens_models_dirs,
+                request_models_dirs,
+                test_models_dirs,
+                retro_models_dirs)
+
+  # Check that encapsulating directories exist
+  walk2(dirs, dir_types, ~{
+    if(!is.na(.x) && !dir.exists(.x)){
       stop(paste0(.y, " directory does not exist:\n"),
-           .x, call. = FALSE)
+           .x,
+           call. = FALSE)
     }
   })
 
-  # All three of these lists must be the same length for the `map2()`
-  # call that follows
-  dir_types <- list("Bridging",
-                    "Sensitivity",
-                    "Request",
-                    "Test",
-                    "Retrospective")
-  dirs <- list(bridge_models_dir,
-               sens_models_dir,
-               request_models_dir,
-               test_models_dir,
-               retro_models_dir)
-  subdirs <- list(bridge_models_dirs,
-                  sens_models_dirs,
-                  request_models_dirs,
-                  test_models_dirs,
-                  retro_models_dirs)
-
-  # Get paths for all directories
+  # check that all subdirectories exist, and get paths for them
   type_iter <- 1
   dirs_full <- map2(dirs, subdirs, function(dir_name, subdir_names){
+    if(is.na(dir_name)){
+      return(NULL)
+    }
     dir_full <- NULL
     if(!is.null(subdir_names)){
       dir_full <- map(subdir_names, function(grp){
@@ -170,6 +178,10 @@ set_dirs <- function(
     dir_full
   })
 
+  last_yr_base_model_dir <- file.path(last_yr_models_dir,
+                                      basename(base_models_dir),
+                                      base_models_dirs)
+
   # Prepend last year's base model to the bridge model groups as defined
   # by `prepend_to_bridge`
   if(!is.null(prepend_to_bridge[1])){
@@ -178,31 +190,36 @@ set_dirs <- function(
            ") is not equal to length of `bridge_model_dirs` (",
            length(bridge_models_dirs), ")", call. = FALSE)
     }
-    dirs_full[[1]] <- map2(dirs_full[[1]], prepend_to_bridge, function(br, prp){
-      if(prp){
-        c(last_yr_base_model_dir, br)
-      }else{
-        br
-      }
-    })
+    if(has_models_dir[2] && has_models_subdirs[2]){
+      dirs_full[[2]] <- map2(dirs_full[[2]], prepend_to_bridge, function(br, prp){
+        if(prp){
+          c(last_yr_base_model_dir, br)
+        }else{
+          br
+        }
+      })
+    }
   }
 
   # Prepend the base model to the sensitivity model groups
-  dirs_full[[2]] <- map(dirs_full[[2]], function(sns){
-    c(base_model_dir, sns)
-  })
+  if(has_models_dir[3] && has_models_subdirs[3]){
+    dirs_full[[3]] <- map(dirs_full[[3]], function(sns){
+      c(base_model_dir, sns)
+    })
+  }
 
   list(models_dir = models_dir,
        last_yr_base_model_dir = last_yr_base_model_dir,
-       base_model_dir = base_model_dir,
+       base_model_dir = base_models_dir,
        bridge_models_dir = bridge_models_dir,
        sens_models_dir = sens_models_dir,
        request_models_dir = request_models_dir,
        test_models_dir = test_models_dir,
        retro_models_dir = retro_models_dir,
-       bridge_models_dirs = dirs_full[[1]],
-       sens_models_dirs = dirs_full[[2]],
-       request_models_dirs = dirs_full[[3]],
-       test_models_dirs = dirs_full[[4]],
-       retro_models_dirs = dirs_full[[5]])
+       base_models_dirs = dirs_full[[1]],
+       bridge_models_dirs = dirs_full[[2]],
+       sens_models_dirs = dirs_full[[3]],
+       request_models_dirs = dirs_full[[4]],
+       test_models_dirs = dirs_full[[5]],
+       retro_models_dirs = dirs_full[[6]])
 }

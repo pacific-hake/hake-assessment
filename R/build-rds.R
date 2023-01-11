@@ -15,12 +15,10 @@
 #' @return Nothing
 #' @export
 #' @importFrom purrr map
-#'
-#' @examples
-#' build_rds(c("base", "nuts"), TRUE, TRUE, TRUE)
 build_rds <- function(model_dirs = model_list,
                       build_file = TRUE,
                       ...){
+
   tic()
   map(model_dirs, function(x = .x, ...){
     run(model_dir = x,
@@ -34,7 +32,8 @@ build_rds <- function(model_dirs = model_list,
     }
   }, ...)
   message("\nCompleted build.\n")
-  invisible()
   toc()
+
+  invisible()
 }
 

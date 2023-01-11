@@ -1,3 +1,7 @@
+# This is a list of vectors of base model groups (See below). This should
+# typically be only a single directory name, but is kept the same format as
+# the other types for code simplicity
+base_models_dirs <- "01-base"
 # This is a list of vectors of bridge groups (bridge models that will be
 # plotted against each other). It can be `NULL` if you want it to be ignored.
 # `prepend_to_bridge` is the same length as the number of groups in
@@ -10,7 +14,7 @@ bridge_models_dirs <-
          "03-add-new-weight-at-age",
          "04-add-survey-age-2-plus",
          "05-add-survey-age-1",
-         "06-add-new-fishery-ages"))
+         "06-add-fishery-ages"))
 bridge_models_desc <-
   list(c("Update Stock Synthesis version to 3.30.20",
          paste0("Add ", last_data_yr, " catch"),
@@ -58,6 +62,9 @@ sens_models_desc <-
          "Max. age selectivity 7",
          "Max. age selectivity 8"))
 
+sens_models_dirs <- NULL
+sens_models_desc <- NULL
+
 request_models_dirs <- NULL
 request_models_desc <- NULL
 
@@ -67,12 +74,9 @@ test_models_desc <- NULL
 retro_models_dirs <- NULL
 retro_models_desc <- NULL
 
-drs <- set_dirs(year_dir = 2022,
-                last_yr_base_model_dir = here::here("models",
-                                                    "2021",
-                                                    "01-version",
-                                                    "01-base-models",
-                                                    "01-base"),
+drs <- set_dirs(models_dir = models_dir,
+                last_yr_models_dir = last_yr_models_dir,
+                base_models_dirs = base_models_dirs,
                 bridge_models_dirs = bridge_models_dirs,
                 sens_models_dirs = sens_models_dirs,
                 request_models_dirs = request_models_dirs,

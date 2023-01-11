@@ -140,7 +140,7 @@ run_catch_levels_default_hr <- function(model,
     # Make a modification to the starter file so the extra MCMC files are not created
     modify_starter_mcmc_type(default_hr_path, 1)
 
-    shell_command <- paste0("cd ", default_hr_path, cmd_link, ss_executable, " -mceval")
+    shell_command <- paste0("cd ", default_hr_path, " && ", ss_executable, " -mceval")
     system_(shell_command, wait = TRUE, intern = !show_ss_output)
   }
 }
@@ -208,7 +208,7 @@ run_catch_levels_spr_100 <- function(model,
       # Make a modification to the starter file so the extra MCMC files are not created
       modify_starter_mcmc_type(spr_100_path, 1)
 
-      shell_command <- paste0("cd ", spr_100_path, cmd_link, ss_executable, " -mceval")
+      shell_command <- paste0("cd ", spr_100_path, " && ", ss_executable, " -mceval")
       system_(shell_command, wait = TRUE, intern = !show_ss_output)
       out <- read.table(file.path(spr_100_path,
                                   derposts_file_name),
@@ -324,7 +324,7 @@ run_catch_levels_stable_catch <- function(model,
     # Make a modification to the starter file so the extra MCMC files are not created
     modify_starter_mcmc_type(stable_catch_path, 1)
 
-    shell_command <- paste0("cd ", stable_catch_path, cmd_link, ss_executable, " -mceval")
+    shell_command <- paste0("cd ", stable_catch_path, " && ", ss_executable, " -mceval")
     system_(shell_command, wait = TRUE, intern = !show_ss_output)
     iter <- iter + 1
   }
@@ -344,7 +344,7 @@ run_catch_levels_stable_catch <- function(model,
                    verbose = FALSE)
   unlink(file.path(stable_catch_path, derposts_file_name),
          force = TRUE)
-  shell_command <- paste0("cd ", stable_catch_path, cmd_link, ss_executable, " -mceval")
+  shell_command <- paste0("cd ", stable_catch_path, " && ", ss_executable, " -mceval")
   system_(shell_command, wait = FALSE, intern = !show_ss_output)
 }
 
@@ -431,7 +431,6 @@ run_catch_levels <- function(model_path,
                                        show_ss_output = show_ss_output,
                                        starter_file_name = starter_file_name,
                                        modify_starter_mcmc_type = modify_starter_mcmc_type,
-                                       cmd_link = cmd_link,
                                        system_ = system_)))
   plan()
 }

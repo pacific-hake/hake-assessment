@@ -37,9 +37,9 @@ find $model_path/catch-levels -type f \
  ! -name 'forecast.ss' -delete
 
 # Run the base models forecasts
-#(trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); source('R/all.R'); \
-#build_rds('$model_name', run_catch_levels = FALSE, run_forecasts = TRUE, build_file = FALSE)" \
-#> /dev/null 2>&1; echo "Base model forecasts complete")
+(trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); source('R/all.R'); \
+build_rds('$model_path', run_catch_levels = FALSE, run_forecasts = TRUE, build_file = FALSE)" \
+> /dev/null 2>&1; echo "Base model forecasts complete")
 
 # Delete the unnecessary files. Some are huge (eg. echoinput.sso can 3GB)
 find $model_path/forecasts -type f \

@@ -6,6 +6,7 @@
 # source(here::here("R/all.R"));load_models_rds();source(here::here("R/custom-knitr-variables.R"))
 
 assess_yr <- 2023
+last_assess_yr <- assess_yr - 1
 model_version <- "01"
 
 # Show non-scientific notation
@@ -33,20 +34,30 @@ rootd_data_prep <- file.path(rootd, "data-prep")
 rootd_doc <- file.path(rootd, "doc")
 rootd_extra_calcs <- file.path(rootd, "extra-calculations")
 rootd_pres <- file.path(rootd, "beamer")
-rootd_models <- file.path(rootd, "models")
 
 sys_info <- Sys.info()
 computer_name <- sys_info[["nodename"]]
 os_name <- sys_info[["sysname"]]
 user_name <- sys_info[["user"]]
 
-models_path <- file.path(assess_yr, paste0(model_version, "-version"))
-if(models_path == ""){
-  if(computer_name == "hake-precision"){
-    rootd_models <- file.path("/srv", "hake", models_path)
-  }else{
-    rootd_models <- file.path(rootd, "models", models_path)
-  }
+if(computer_name == "hake-precision"){
+  models_dir <- file.path("/srv",
+                          "hake",
+                          "models",
+                          assess_yr,
+                          paste0(model_version, "-version"))
+  last_yr_models_dir <- file.path("/srv",
+                                  "hake",
+                                  "models",
+                                  last_assess_yr,
+                                  paste0(model_version, "-version"))
+}else{
+  models_dir <- file.path(rootd, "models",
+                          assess_yr,
+                          paste0(model_version, "-version"))
+  last_yr_models_dir <- file.path(rootd, "models_last_yr",
+                                  last_assess_yr,
+                                  paste0(model_version, "-version"))
 }
 
 catch_levels_path <- "catch-levels"
@@ -65,9 +76,6 @@ posts_file_name <- "posteriors.sso"
 derposts_file_name <- "derived_posteriors.sso"
 report_file_name <- "Report.sso"
 compreport_file_name <- "CompReport.sso"
-
-# For linking commands together in a shell
-cmd_link <- " && "
 
 # Custom catch levels calculations
 # The tolerance in the spr away from 1 for the calculation of catch for SPR = 1

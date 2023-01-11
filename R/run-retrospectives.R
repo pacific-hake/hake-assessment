@@ -121,7 +121,7 @@ run_retrospectives <- function(model_path,
                    warmup_final = retro_warmup_final,
                    n_cores = n_cores)
       }else{
-        shell_command <- paste0("cd ", retro_subdir, cmd_link, ss_executable, " -nox")
+        shell_command <- paste0("cd ", retro_subdir, " && ", ss_executable, " -nox")
         system_(shell_command, wait = FALSE, intern = !show_ss_output)
       }
       data_new <- readLines(file.path(retro_subdir, "data.ss_new"))
