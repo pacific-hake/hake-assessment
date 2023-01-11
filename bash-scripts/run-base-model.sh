@@ -23,7 +23,7 @@ run_extra_mcmc=TRUE
 model_path=$models_path/$year_path/$version_path/$type_path/$model_name
 [[ ! -d $model_path ]] && { echo "Error: Directory $model_path does not exist, bailing out." ; exit 1; }
 
-#(trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); source('R/all.R'); \
+(trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); source('R/all.R'); \
 run_adnuts_timed('$model_path', adapt_delta = $adapt_delta, run_extra_mcmc = $run_extra_mcmc, \
                  num_chains = $num_chains, num_samples = $num_samples, \
                  num_warmup_samples = $num_warmup_samples)" \
@@ -49,7 +49,7 @@ find $model_path/forecasts -type f \
 
 # Build the RDS file
 (trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); source('R/all.R'); \
-build_rds('$model_path')" \
+create_rds_file('$model_path')" \
 > /dev/null 2>&1; echo "Base model RDS file created")
 
 ELAPSED="Script runtime: $(($SECONDS / 3600)) hrs $((($SECONDS / 60) % 60)) min $(($SECONDS % 60)) sec"
