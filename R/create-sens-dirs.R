@@ -1,4 +1,4 @@
-#' Run standard sensitivities for Pacific Hake
+#' Create standard sensitivity directories
 #'
 #' The SRG requests that the following sensitivities are run as standard
 #' protocol for the base model on an annual basis.
@@ -6,34 +6,47 @@
 #' setting up all of the required sensitivity runs.
 #'
 #' @param dir_version A file path to the current model version of interest. For
-#'   example, `"models/2023/01-version"`. This directory will contain
+#'   example, `/srv/hake/models/2023/01-version`. This directory will contain
 #'   subdirectories that store folders for the base model and a separate folder
 #'   for sensitivities.
+#' @param sens_dir_name Name of the sensitivity diretory found in the `dir_version`
+#' directory
 #'
 #' @author Kelli F. Johnson
 #' @return A string is returned providing the path to the sensitivity directory.
 #' Files are written to the disk inside the following directories:
-#' * 01_h_prior_mean_low
-#' * 02_h_fix_high
-#' * 03_sigmaR_fix_low
-#' * 04_sigmaR_fix_high
-#' * _sigmaR_extra
-#' * 05.20_M_0.2SD
-#' * 06_M_0.3SD
-#' * 07_M_hamel_prior
-#' * 08_age1Survey
-#' * 09_compWeight_HarmonicMean
-#' * 10_tvSelect_phi_extralow
-#' * 11_tvSelect_phi_low
-#' * 12_tvSelect_phi_high
-#' * 13_maxSel_Age5
-#' * 14_maxSel_Age7
-#' * 15_maxSel_Age8
-#' * 16_zerosumcontraint
+#' * 01-h-prior-mean-low
+#' * 02-h-fix-high
+#' * 03-sigma-r-fix-low
+#' * 04-sigma-r-fix-high
+#' * 05-m-02-sd
+#' * 06-m-03-sd
+#' * 07-m-hamel-prior
+#' * 08-age-1-survey,
+#' * 09-comp-weight-harmonic-mean
+#' * 10-tv-select-phi-extra-low
+#' * 11-tv-select-phi-low
+#' * 12-tv-select-phi-high
+#' * 13-max-sel-age-'5
+#' * 14-max-sel-age-7
+#' * 15-max-sel-age-8
+#'* 16-zero-sum-constraint
 #'
-runs_sens_base <- function(dir_version) {
+create_sens_dirs <- function(dir_version,
+                             sens_dir_name = "03-sensitivity-models") {
   main <- normalizePath(dir_version)
   dir_base <- fs::path(dir_version, "01-base-models", "01-base")
+  sens_dir <- fs::path(dir_version, sens_dir_name)
+  if(dir.exists(sens_dir)){
+    fns <- list.files(sens_dir, all.files = TRUE, recursive = TRUE, no.. = TRUE, include.dirs = TRUE)
+    if(length(fns)){
+      stop("\nDirectory `", sens_dir, "` exists and contains files and/or directories. ",
+           "Delete these or the whole directory and try again\n",
+           call. = FALSE)
+    }
+  }
+  dir.create(sens_dir)
+
   file_exe <- fs::dir_ls(dir_base, regex = "exe$")
   if (length(file_exe) > 1 | length(file_exe) == 0) {
     message(
@@ -48,11 +61,11 @@ runs_sens_base <- function(dir_version) {
   setup_sensitivity <- function(prefix_number,
                                 path_version = dir_version,
                                 suffix_string) {
-    main <- fs::path(path_version, "03-sensitivity-models")
+    main <- fs::path(path_version, sens_dir_name)
     # Make the sensitivity path name
     path_new <- fs::path(
       main,
-      sprintf("%02d_%s", prefix_number, suffix_string)
+      sprintf("%02d-%s", prefix_number, suffix_string)
     )
     # Copy inputs
     r4ss::copy_SS_inputs(
@@ -63,8 +76,7 @@ runs_sens_base <- function(dir_version) {
       copy_exe = FALSE,
       verbose = FALSE
     )
-    # Return the file path
-    return(path_new)
+    path_new
   }
 
   setup_ctl <- function(path_sens, return = c("ctl", "dat")) {
@@ -72,16 +84,19 @@ runs_sens_base <- function(dir_version) {
     input_list <- r4ss::SS_read(dir = path_sens)
     file.starter <- file.path(path_sens, "starter.ss")
     starter <- r4ss::SS_readstarter(file.starter, verbose = FALSE)
-    if (return == "dat") return(input_list[["dat"]])
-    return(input_list[["ctl"]])
+    if(return == "dat"){
+      input_list[["dat"]]
+    }else{
+      input_list[["ctl"]]
+    }
   }
 
-  aa <- setup_sensitivity(prefix_number = 1, suffix_string = "h_prior_mean_low")
+  aa <- setup_sensitivity(prefix_number = 1, suffix_string = "h-prior-mean-low")
   ctl <- setup_ctl(aa)
   ctl[["SR_parms"]]["SR_BH_steep", "PRIOR"] <- 0.5
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
-  aa <- setup_sensitivity(prefix_number = 2, suffix_string = "h_fix_high")
+  aa <- setup_sensitivity(prefix_number = 2, suffix_string = "h-fix-high")
   ctl <- setup_ctl(aa)
   ctl[["SR_parms"]]["SR_BH_steep", "INIT"] <- 1
   ctl[["SR_parms"]]["SR_BH_steep", "HI"] <- 1
@@ -91,7 +106,7 @@ runs_sens_base <- function(dir_version) {
   # profile over sigmaR
   sigmavals <- c(1.0, 1.6)
   aa <- mapply(setup_sensitivity,
-    suffix_string = paste0("sigmR_fix_", c("low", "high")),
+    suffix_string = paste0("sigma-r-fix-", c("low", "high")),
     prefix_number = 3:4
     )
   for (ii in seq_along(aa)) {
@@ -101,20 +116,20 @@ runs_sens_base <- function(dir_version) {
     r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
   }
 
-  aa <- setup_sensitivity(prefix_number = 5, suffix_string = "M_0.2SD")
+  aa <- setup_sensitivity(prefix_number = 5, suffix_string = "m-02-sd")
   ctl <- setup_ctl(aa)
   ctl[["MG_parms"]]["NatM_p_1_Fem_GP_1", "PR_SD"] <- 0.2
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
-  aa <- setup_sensitivity(prefix_number = 6, suffix_string = "M_0.3SD")
+  aa <- setup_sensitivity(prefix_number = 6, suffix_string = "m-03-sd")
   ctl <- setup_ctl(aa)
   ctl[["MG_parms"]]["NatM_p_1_Fem_GP_1", "PR_SD"] <- 0.3
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
-  aa <- setup_sensitivity(prefix_number = 7, suffix_string = "M_hamel_prior")
+  aa <- setup_sensitivity(prefix_number = 7, suffix_string = "m-hamel-prior")
   ctl <- setup_ctl(aa)
   ctl[["MG_parms"]]["NatM_p_1_Fem_GP_1", c("PRIOR", "PR_SD")] <- c(-1.53245582, 0.4384383)
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
-  aa <- setup_sensitivity(prefix_number = 8, suffix_string = "age1Survey")
+  aa <- setup_sensitivity(prefix_number = 8, suffix_string = "age-1-survey")
   ctl <- setup_ctl(aa)
   dat <- setup_ctl(aa, return = "dat")
   dat[["Nfleets"]] <- 2
@@ -150,7 +165,7 @@ runs_sens_base <- function(dir_version) {
 
   aa <- setup_sensitivity(
     prefix_number = 9,
-    suffix_string = "compWeight_HarmonicMean"
+    suffix_string = "comp-weight-harmonic-mean"
   )
   ctl <- setup_ctl(aa)
   dat <- setup_ctl(aa, return = "dat")
@@ -166,42 +181,44 @@ runs_sens_base <- function(dir_version) {
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
   r4ss::SS_writedat(dat, dat[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
-  aa <- setup_sensitivity(prefix_number = 10, suffix_string = "tvSelect_phi_extralow")
+  aa <- setup_sensitivity(prefix_number = 10, suffix_string = "tv-select-phi-extra-low")
   ctl <- setup_ctl(aa)
   rows <- grep("dev_se", rownames(ctl[["age_selex_parms_tv"]]))
   ctl[["age_selex_parms_tv"]][rows, "INIT"] <- 0.21
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
-  aa <- setup_sensitivity(prefix_number = 11, suffix_string = "tvSelect_phi_low")
+  aa <- setup_sensitivity(prefix_number = 11, suffix_string = "tv-select-phi-low")
   ctl <- setup_ctl(aa)
   rows <- grep("dev_se", rownames(ctl[["age_selex_parms_tv"]]))
   ctl[["age_selex_parms_tv"]][rows, "INIT"] <- 0.70
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
-  aa <- setup_sensitivity(prefix_number = 12, suffix_string = "tvSelect_phi_high")
+  aa <- setup_sensitivity(prefix_number = 12, suffix_string = "tv-select-phi-high")
   ctl <- setup_ctl(aa)
   rows <- grep("dev_se", rownames(ctl[["age_selex_parms_tv"]]))
   ctl[["age_selex_parms_tv"]][rows, "INIT"] <- 2.10
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
-  aa <- setup_sensitivity(prefix_number = 13, suffix_string = "maxSel_Age5")
+  aa <- setup_sensitivity(prefix_number = 13, suffix_string = "max-sel-age-5")
   ctl <- setup_ctl(aa)
   rows <- grep("\\(2\\)", rownames(ctl[["age_selex_parms"]]))
   ctl[["age_selex_parms"]][rows[7:length(rows)], "PHASE"] <- -2
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
-  aa <- setup_sensitivity(prefix_number = 14, suffix_string = "maxSel_Age7")
+  aa <- setup_sensitivity(prefix_number = 14, suffix_string = "max-sel-age-7")
   ctl <- setup_ctl(aa)
   rows <- grep("\\(2\\)", rownames(ctl[["age_selex_parms"]]))
   ctl[["age_selex_parms"]][rows[6:8], "PHASE"] <- 2
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
-  aa <- setup_sensitivity(prefix_number = 15, suffix_string = "maxSel_Age8")
+  aa <- setup_sensitivity(prefix_number = 15, suffix_string = "max-sel-age-8")
   ctl <- setup_ctl(aa)
   rows <- grep("\\(2\\)", rownames(ctl[["age_selex_parms"]]))
   ctl[["age_selex_parms"]][rows[6:9], "PHASE"] <- 2
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
   # zero sum rec dev constraint
-  aa <- setup_sensitivity(prefix_number = 16, suffix_string = "zerosumcontraint")
+  aa <- setup_sensitivity(prefix_number = 16, suffix_string = "zero-sum-constraint")
   ctl <- setup_ctl(aa)
   ctl[["do_recdev"]] <- 1
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
+  message("Created new sensitivity directories in ",
+          sens_dir)
 }

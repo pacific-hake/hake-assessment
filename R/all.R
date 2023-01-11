@@ -104,7 +104,7 @@ source_all <- function(lst){
 
 src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "run-catch-levels.R", "run-forecasts.R", "run-retrospectives.R",
-             "runs_sens_base.R", "create-rds-file.R", "build-doc.R",
+             "create-sens-dirs.R", "create-rds-file.R", "build-doc.R",
              "delete-files.R", "extra-mcmc.R", "extract-sigma-r.R",
              "set-dirs.R", "load-models.R", "run-adnuts.R", "survey.R",
              "load-data.R", "read-list.R", "figures-timeseries.R",
