@@ -28,7 +28,7 @@ catch_levels <-
        list(rep(380000, length(forecast_yrs)), "380,000 t", "09-380000"),
        list(c(380000, 342000, 307800, 277020), "380,000 t 10% red.", "10-380000-10"),
        list(rep(430000, length(forecast_yrs)), "430,000 t", "11-430000"),
-       list(rep(473880, length(forecast_yrs)), "2022 TAC: 545,880 t", "12-545000"),
+       list(rep(545880, length(forecast_yrs)), "2022 TAC: 545,880 t", "12-545880"),
        list(rep(NA, length(forecast_yrs)), "FI=100%", "13-spr-100"),
        list(rep(NA, length(forecast_yrs)), "Default Harvest Policy", "14-default-hr"),
        list(rep(NA, length(forecast_yrs)), "Stable Catch", "15-stable-catch"))
