@@ -166,3 +166,8 @@ key_posteriors_titles <- c("Natural mortality",
                            "Dirichlet-Multinomial survey")
 key_posteriors_file <- "keyposteriors.csv"
 nuisance_posteriors_file <- "nuisanceposteriors.csv"
+
+# Don't allow partial matches using the dollar operator
+options(warnPartialMatchDollar = TRUE)
+# Error out on all warnings
+# options(warn = 2)
