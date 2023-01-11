@@ -36,15 +36,15 @@ sens_models_dirs <-
          "03-sigma-r-fix-low",
          "04-sigma-r-fix-high",
          "05-m-02-sd",
-         "06-m-03-sd"),
-       c("07-age-1-survey",
-         "08-comp-weight-harmonic-mean"),
-       c("09-tv-select-phi-extra-low",
-         "10-tv-select-phi-low",
-         "11-tv-select-phi-high"),
-       c("12-max-sel-age-5",
-         "13-max-sel-age-7",
-         "14-max-sel-age-8"))
+         "06-m-03-sd")
+       c("08-age-1-survey",
+         "09-comp-weight-harmonic-mean"),
+       c("10-tv-select-phi-extra-low",
+         "11-tv-select-phi-low",
+         "12-tv-select-phi-high"),
+       c("13-max-sel-age-5",
+         "14-max-sel-age-7",
+         "15-max-sel-age-8"))
 #sens_models_desc <- NULL
 sens_models_desc <-
   list(c("Steepness Mean Prior Low (0.5)",
