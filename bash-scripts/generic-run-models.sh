@@ -30,12 +30,12 @@ for model in ${models[@]}; do
   Rscript -e " \
   setwd(here::here()); \
   source('R/all.R'); \
-  run_adnuts(path = '$model_path', \
-             extra_mcmc = $extra_mcmc, \
-             num_chains = $num_chains, \
-             adapt_delta = $adapt_delta, \
-             num_samples = $num_samples, \
-             num_warmup_samples = $num_warmup_samples); \
+  run_adnuts_timed(path = '$model_path', \
+                   extra_mcmc = $extra_mcmc, \
+                   num_chains = $num_chains, \
+                   adapt_delta = $adapt_delta, \
+                   num_samples = $num_samples, \
+                   num_warmup_samples = $num_warmup_samples); \
   build_rds('$model');" > /dev/null 2>&1; \
   echo; \
   echo "Run complete for model $model"; \

@@ -20,7 +20,6 @@ run <- function(model_dir = NULL,
                 ...){
 
   stopifnot(!is.null(model_dir))
-  model_dir <- file.path(models_path, model_dir)
 
   if(!dir.exists(model_dir)){
     stop("The ", model_dir, " directory does not exist",

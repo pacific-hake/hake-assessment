@@ -1,12 +1,13 @@
 #!/bin/bash
 
-models=(01-new-ss-exe \
-        02-new-catch-age \
-        03-update-survey \
-        04-age-1-index \
-        05-new-wt-at-age)
+models=(01-updated-ss-exe \
+        02-add-new-catch \
+        03-add-new-weight-at-age \
+        04-add-survey-age-2-plus \
+        05-add-survey-age-1 \
+        06-add-fishery-ages)
 
-#project_path=`Rscript -e "cat(dirname(here::here()))"`
+#project  _path=`Rscript -e "cat(dirname(here::here()))"`
 project_path="/srv/hake"
 
 type_path="02-bridging-models"
