@@ -36,7 +36,8 @@ sens_models_dirs <-
          "03-sigma-r-fix-low",
          "04-sigma-r-fix-high",
          "05-m-02-sd",
-         "06-m-03-sd")
+         "06-m-03-sd",
+         "07-m-hamel-prior")
        c("08-age-1-survey",
          "09-comp-weight-harmonic-mean"),
        c("10-tv-select-phi-extra-low",
@@ -44,7 +45,8 @@ sens_models_dirs <-
          "12-tv-select-phi-high"),
        c("13-max-sel-age-5",
          "14-max-sel-age-7",
-         "15-max-sel-age-8"))
+         "15-max-sel-age-8",
+         "16-zero-sum-constraint"))
 #sens_models_desc <- NULL
 sens_models_desc <-
   list(c("Steepness Mean Prior Low (0.5)",
@@ -52,7 +54,8 @@ sens_models_desc <-
          "Sigma R 1.0",
          "Sigma R 1.6",
          "Natural Mortality (SD=0.2)",
-         "Natural Mortality (SD=0.3)"),
+         "Natural Mortality (SD=0.3)",
+         "Natural Mortality (Hamel prior)"),
        c("Remove Age 1 Index",
          "Downweight Fishery Comps"),
        c("Phi t.v. selectivity (0.21)",
@@ -60,7 +63,8 @@ sens_models_desc <-
          "Phi t.v. selectivity (2.10)"),
        c("Max. age selectivity 5",
          "Max. age selectivity 7",
-         "Max. age selectivity 8"))
+         "Max. age selectivity 8",
+         "Recdevs sum to zero"))
 
 sens_models_dirs <- NULL
 sens_models_desc <- NULL
