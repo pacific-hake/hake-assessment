@@ -9,7 +9,7 @@
 #'   example, `/srv/hake/models/2023/01-version`. This directory will contain
 #'   subdirectories that store folders for the base model and a separate folder
 #'   for sensitivities.
-#' @param sens_dir_name Name of the sensitivity diretory found in the `dir_version`
+#' @param sens_dir_name Name of the sensitivity directory found in the `dir_version`
 #' directory
 #'
 #' @author Kelli F. Johnson
@@ -30,7 +30,7 @@
 #' * 13-max-sel-age-'5
 #' * 14-max-sel-age-7
 #' * 15-max-sel-age-8
-#'* 16-zero-sum-constraint
+#' * 16-zero-sum-constraint
 #'
 create_sens_dirs <- function(dir_version,
                              sens_dir_name = "03-sensitivity-models") {
