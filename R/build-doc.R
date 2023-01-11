@@ -68,6 +68,16 @@ build_test <- function(doc_name = "hake-assessment-test"){
   invisible()
 }
 
+#' Build the executive summary section only
+#'
+#' @param doc_name What to name the document (no extension needed)
+#'
+#' @return [base::invisible()]
+#' @export
+build_es <- function(){
+  build_test(doc_name = "hake-assessment-es-only")
+}
+
 #' Build the ADNUT diagnostics document entirely from within an R session
 #'
 #' @details Make sure you have created the .rds files by running [build_rds()] in the appropriate manner.
