@@ -14,3 +14,4 @@ Year,Framework,Survey,Comp_Method,Comp_Fishery,Comp_Survey,MCMC,Change
 2020,SS 3.30.14.08,yes,Dirichlet-Multinomial,0.364,0.912,2000,Add Normal prior for Dirichlet parameters; remove rec devs sum to zero restriction
 2021,SS 3.30.16.03,no,Dirichlet-Multinomial,0.361,0.911,8250,No U-turn MCMC Sampling (adnuts)
 2022,SS 3.30.16.03,yes,Dirichlet-Multinomial,0.363,0.93,12005,Add age-1 index
+2023,SS 3.30.20.00,no,Dirichlet-Multinomial,0.348,0.93,8000,No major changes
