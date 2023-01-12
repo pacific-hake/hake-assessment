@@ -1,17 +1,15 @@
 #!/bin/bash
 
-models=(06-m-03-sd \
-        07-age-1-survey \
-        08-comp-weight-harmonic-mean \
-        09-tv-select-phi-extra-low \
-        10-tv-select-phi-low)
+models=(05-m-02-sd \
+        06-m-03-sd \
+        07-m-hamel-prior \
+        08-age-1-survey)
 
-#project_path=`Rscript -e "cat(dirname(here::here()))"`
 project_path="/srv/hake"
 
 type_path="03-sensitivity-models"
 
-extra_mcmc=FALSE
+run_extra_mcmc=FALSE
 adapt_delta=0.95
 
-. ./generic_run_models.sh
+. ./generic-run-models.sh

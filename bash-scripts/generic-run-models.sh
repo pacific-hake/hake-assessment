@@ -6,7 +6,7 @@
 [[ -z $project_path ]] && { echo "Variable 'project_path' has not been set, bailing out." ; exit 1; }
 [[ -z $type_path ]] && { echo "Variable 'type_path' has not been set, bailing out." ; exit 1; }
 [[ -z $models ]] &&{ echo "Variable 'models' has not been set, bailing out." ; exit 1; }
-[[ -z $extra_mcmc ]] &&{ echo "Variable 'extra_mcmc' has not been set, bailing out." ; exit 1; }
+[[ -z $run_extra_mcmc ]] &&{ echo "Variable 'run_extra_mcmc' has not been set, bailing out." ; exit 1; }
 [[ -z $adapt_delta ]] &&{ echo "Variable 'adapt_delta' has not been set, bailing out." ; exit 1; }
 
 repo_path=`Rscript -e "cat(here::here())"`
@@ -31,7 +31,7 @@ for model in ${models[@]}; do
   Rscript -e " \
   setwd('$repo_path'); source('R/all.R'); \
   run_adnuts_timed(path = '$model_path', \
-                   extra_mcmc = $extra_mcmc, \
+                   run_extra_mcmc = $run_extra_mcmc, \
                    num_chains = $num_chains, \
                    adapt_delta = $adapt_delta, \
                    num_samples = $num_samples, \
@@ -39,5 +39,5 @@ for model in ${models[@]}; do
   create_rds_file('$model_path');" > /dev/null 2>&1; \
   echo; \
   echo "Run complete for model $model"; \
-  echo; \
+  echo) &
 done
