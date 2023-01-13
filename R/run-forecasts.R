@@ -96,7 +96,7 @@ fetch_forecasts <- function(model_path,
   # Get the directory listing and choose the last one for loading
   dir_listing <- dir(forecasts_path)
 
-  plan("multisession")
+  #plan("multisession", workers = length(forecast_yrs))
   lst <- map(forecast_yrs, ~{
     fore_path <- file.path(forecasts_path, paste0("forecast-year-", .x))
     # Get the directory listing of the last year's forecasts directory and make sure
