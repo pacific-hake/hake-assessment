@@ -3,7 +3,7 @@
 # the other types for code simplicity
 base_models_dirs <- "01-base"
 # This is a list of vectors of bridge groups (bridge models that will be
-# plotted against each other). It can be `NULL` if you want it to be ignored.
+# plotted against each other). It can be `NA` if you want it to be ignored.
 # `prepend_to_bridge` is the same length as the number of groups in
 # `bridge_models_dirs` and for those groups set to `TRUE`, last year's base
 # model will be prepended to the group.
@@ -37,7 +37,7 @@ sens_models_dirs <-
          "04-sigma-r-fix-high",
          "05-m-02-sd",
          "06-m-03-sd",
-         "07-m-hamel-prior")
+         "07-m-hamel-prior"),
        c("08-age-1-survey",
          "09-comp-weight-harmonic-mean"),
        c("10-tv-select-phi-extra-low",
@@ -47,7 +47,6 @@ sens_models_dirs <-
          "14-max-sel-age-7",
          "15-max-sel-age-8",
          "16-zero-sum-constraint"))
-#sens_models_desc <- NULL
 sens_models_desc <-
   list(c("Steepness Mean Prior Low (0.5)",
          "Steepness Fix 1.0",
@@ -66,17 +65,18 @@ sens_models_desc <-
          "Max. age selectivity 8",
          "Recdevs sum to zero"))
 
-sens_models_dirs <- NULL
-sens_models_desc <- NULL
+#bridge_models_dirs <- NA
+#bridge_models_desc <- NA
+#prepend_to_bridge <- NA
 
-request_models_dirs <- NULL
-request_models_desc <- NULL
+sens_models_dirs <- NA
+sens_models_desc <- NA
 
-test_models_dirs <- NULL
-test_models_desc <- NULL
+request_models_dirs <- NA
+request_models_desc <- NA
 
-retro_models_dirs <- NULL
-retro_models_desc <- NULL
+test_models_dirs <- NA
+test_models_desc <- NA
 
 drs <- set_dirs(models_dir = models_dir,
                 last_yr_models_dir = last_yr_models_dir,
@@ -85,12 +85,10 @@ drs <- set_dirs(models_dir = models_dir,
                 sens_models_dirs = sens_models_dirs,
                 request_models_dirs = request_models_dirs,
                 test_models_dirs = test_models_dirs,
-                retro_models_dirs = retro_models_dirs,
                 prepend_to_bridge = prepend_to_bridge)
-
+stop_quietly()
 models <- model_setup(drs = drs,
                       bridge_models_desc = bridge_models_desc,
                       sens_models_desc = sens_models_desc,
                       request_models_desc = request_models_desc,
-                      test_models_desc = test_models_desc,
-                      retro_models_desc = retro_models_desc)
+                      test_models_desc = test_models_desc)
