@@ -12,7 +12,7 @@ models_path="/srv/hake/models"
 year_path=2023
 version_path="01-version"
 type_path="01-base-models"
-model_name="01-base"
+model_name="01-base-cp"
 
 num_chains=16
 num_samples=8000

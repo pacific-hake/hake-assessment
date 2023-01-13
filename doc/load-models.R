@@ -1,7 +1,7 @@
-# This is a list of vectors of base model groups (See below). This should
-# typically be only a single directory name, but is kept the same format as
-# the other types for code simplicity
+# Base model directory name and description. these can be a lists of vectors
+# like the other types if necessary
 base_models_dirs <- "01-base"
+base_models_desc <- "Base model"
 # This is a list of vectors of bridge groups (bridge models that will be
 # plotted against each other). It can be `NA` if you want it to be ignored.
 # `prepend_to_bridge` is the same length as the number of groups in
@@ -22,11 +22,10 @@ bridge_models_desc <-
          "Add age-2+ acoustic survey",
          "Add age-1 acoustic survey",
          paste0("Add ", last_data_yr, " fishery age comps")))
-# Prepend the base model to each group? TRUE or FALSE
 prepend_to_bridge <- TRUE
 
 # This is a list of vectors of sensitivity groups (sensitivity models that
-# will be plotted against each other). It can be `NULL` if you want it to be
+# will be plotted against each other). It can be `NA` if you want it to be
 # ignored.
 # The base mode will be prepended to each group by the function.
 # See `set_dirs()`
@@ -69,8 +68,8 @@ sens_models_desc <-
 #bridge_models_desc <- NA
 #prepend_to_bridge <- NA
 
-sens_models_dirs <- NA
-sens_models_desc <- NA
+#sens_models_dirs <- NA
+#sens_models_desc <- NA
 
 request_models_dirs <- NA
 request_models_desc <- NA
@@ -86,9 +85,11 @@ drs <- set_dirs(models_dir = models_dir,
                 request_models_dirs = request_models_dirs,
                 test_models_dirs = test_models_dirs,
                 prepend_to_bridge = prepend_to_bridge)
-stop_quietly()
+
 models <- model_setup(drs = drs,
+                      base_models_desc = base_models_desc,
                       bridge_models_desc = bridge_models_desc,
                       sens_models_desc = sens_models_desc,
                       request_models_desc = request_models_desc,
-                      test_models_desc = test_models_desc)
+                      test_models_desc = test_models_desc,
+                      prepend_to_bridge = prepend_to_bridge)

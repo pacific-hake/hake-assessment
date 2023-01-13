@@ -200,6 +200,17 @@ set_dirs <- function(
     }
   })
 
+
+  # Remove `NA` entries
+  dirs <- dirs |>
+    map(~{
+      if(is.na(.x[1])){
+        return(NA)
+      }
+      .x
+    })
+  #dirs[is.na(dirs)] <- NULL
+
   list(models_dir = models_dir,
        last_yr_base_model_dir = last_yr_base_model_dir,
        base_model_dir = base_models_dir,
@@ -207,9 +218,9 @@ set_dirs <- function(
        sens_models_dir = sens_models_dir,
        request_models_dir = request_models_dir,
        test_models_dir = test_models_dir,
-       base_models_dirs = dirs[[1]],
-       bridge_models_dirs = dirs[[2]],
-       sens_models_dirs = dirs[[3]],
-       request_models_dirs = dirs[[4]],
-       test_models_dirs = dirs[[5]])
+       base_models_dirs = `if`(length(dirs) >= 1, dirs[[1]], NULL),
+       bridge_models_dirs = `if`(length(dirs) >= 2, dirs[[2]], NULL),
+       sens_models_dirs = `if`(length(dirs) >= 3, dirs[[3]], NULL),
+       request_models_dirs = `if`(length(dirs) >= 4, dirs[[4]], NULL),
+       test_models_dirs = `if`(length(dirs) >= 5, dirs[[5]], NULL))
 }

@@ -87,114 +87,120 @@
 #'                         retro_models_desc = retro_models_desc,
 #'                         overwrite_rds_files = TRUE)
 #' }
-model_setup <- function(drs = NULL,
-                        bridge_models_desc = NULL,
-                        sens_models_desc = NULL,
-                        request_models_desc = NULL,
-                        test_models_desc = NULL,
-                        retro_models_desc = NULL,
+model_setup <- function(drs = NA,
+                        base_models_desc = NA,
+                        bridge_models_desc = NA,
+                        sens_models_desc = NA,
+                        request_models_desc = NA,
+                        test_models_desc = NA,
+                        retro_models_desc = NA,
+                        prepend_to_bridge = NA,
                         ...){
 
-  if(is.null(drs[1])){
-    stop("`drs` is NULL. Set drs to the output of `set_dirs()`",
+  if(is.null(drs[1]) || is.na(drs[1])){
+    stop("`drs` is `NULL` or `NA`. Set drs to the output of `set_dirs()`",
          call. = FALSE)
   }
 
   # Set `NULL` descriptions to defaults where possible (directories exist)
-  lst <- list(bridge_models_desc, sens_models_desc, request_models_desc,
-              test_models_desc, retro_models_desc)
-  names(lst) <- c("bridge_models_desc", "sens_models_desc",
-                  "request_models_desc", "test_models_desc",
-                  "retro_models_desc")
+  if(!is.list(base_models_desc)){
+    base_models_desc <- list(base_models_desc)
+  }
+  lst <- list(base_models_desc, bridge_models_desc,
+              sens_models_desc, request_models_desc,
+              test_models_desc)
+  names(lst) <- c("base_models_dirs", "bridge_models_dirs",
+                  "sens_models_dirs", "request_models_dirs",
+                  "test_models_dirs")
+  model_lst <- drs[names(lst)]
 
-  descs <- imap(lst, ~{
-    if(is.null(.x[1])){
-      message("`", .y, "` is `NULL`. Attempting to use directory names ",
-              "for plot legends")
-      dir_type_name <- gsub("_desc", "_dirs", .y)
+  # If the descriptions are not present, use the directory names as
+  # descriptions
+  iter <- 1
+  model_desc_lst <- map2(lst, model_lst, function(grp_descs, grp_drs){
+    nm <- names(lst)[iter]
+    if(is.null(grp_descs[[1]]) || is.na(grp_descs[1])){
+      message("`", nm, "` has a `NULL` or `NA` description. Attempting ",
+              "to use directory names for plot legends")
 
-      if(is.null(drs[[dir_type_name]])){
-        message("  - Directory names for `", .y, "` are also `NULL`")
+      if(is.null(grp_drs[1]) || is.na(grp_drs[1])){
+        message("  - Directory names for `", nm, "` are also `NULL` or `NA`")
         message("  - Cannot set up default descriptions for folders that ",
                 "do not exist\n")
         NULL
       }else{
-        message("  - Successfully set descriptions for `", .y, "` to ",
+        message("  - Successfully set descriptions for `", nm, "` to ",
                 "directory names.\n")
-        map(drs[[dir_type_name]], ~{
+        iter <<- iter + 1
+        return(map(grp_drs, ~{
           basename(.x)
-        })
+        }))
       }
     }else{
-      .x
+      iter <<- iter + 1
+      if(nm == "bridge_models_dirs"){
+        return(map2(grp_descs, prepend_to_bridge, ~{
+          if(.y){
+            c("Last assessment base model", .x)
+          }else{
+            .x
+          }
+          }))
+      }else if(nm == "sens_models_dirs"){
+        return(map(grp_descs, ~{
+          c(lst$base_models_dirs[[1]], .x)
+          }))
+      }else{
+        return(grp_descs)
+      }
     }
+    iter <<- iter + 1
+    NA
   })
 
-  # model_list is a list of three lists, one for the base model, one for the bridge models,
-  # and one for the sensitivity models
-  model_list <- list(base_model_groups = list(drs$base_model_dir),
-                     bridge_model_groups = drs$bridge_models_dirs,
-                     sens_model_groups = drs$sens_models_dirs,
-                     request_model_groups = drs$request_models_dirs,
-                     test_model_groups = drs$test_models_dirs,
-                     retro_model_groups = drs$retro_models_dirs)
+  # A vector of unique model directories
+  unique_models_dirs <- model_lst[!is.na(model_lst)] |>
+  flatten() |>
+    flatten() |>
+    as.character() |>
+    unique()
 
-  model_names_list <- list(base_model_groups = "Base model",
-                           bridge_model_groups = bridge_models_desc,
-                           sens_model_groups = sens_models_desc,
-                           request_model_groups = request_models_desc,
-                           test_model_groups = test_models_desc,
-                           retro_model_groups = retro_models_desc)
+  # For each type (base, bridge, sens, request, test) extract unique groups,
+  # load them only once if duplicates (to save time) and match with where they
+  # belong in the list according to model_list
+  map2(model_lst, model_desc_lst, function(type, type_nm, ...){
 
-  j <- imap(model_list, function(.x, .y, ...){
-    models <- NULL
-    if(!is.null(.x)){
-      unique_models_dirs <- .x %>%
-        flatten() %>%
-        unique() %>%
-        map_chr(~{.x})
+    if(!is.null(type) && !is.na(type)){
+      # Check that the RDS files exists for these models. If they don't, create them
+      walk(unique_models_dirs, function(path, ...){
+        fn <- file.path(path, paste0(basename(path), ".rds"))
+        if(!file.exists(fn)){
+          create_rds_file(path, ...)
+        }}, ...)
 
-      walk(unique_models_dirs, function(x, ...){
-                    create_rds_file(x, ...)},
-                  ...)
-
-
-      # This ensures that each unique model is loaded only once, even if it is in multiple
-      # sensitivity groups
-      unique_models <- map(unique_models_dirs, ~{load_rds_file(.x)}) %>%
-        `names<-`(unique_models_dirs)
-
-      models <- map2(.x, model_names_list[[.y]], ~{
-        map2(.x, .y, ~{
-          k <- unique_models[[match(.x, unique_models_dirs)]] %>%
-            `class<-`(mdl_cls)
-          # Assign description text to the model (from bridge_model_desc and sens_model_desc)
-          attr(k, "model_desc") <- .y
-          k
-        }) %>%
-          `names<-`(.y) %>%
-          `class<-`(mdl_lst_cls)
+      # Load the models in from the RDS files
+      unique_models <- map(unique_models_dirs, function(path){
+        fn <- file.path(path, paste0(basename(path), ".rds"))
+        readRDS(fn)
       })
     }
+
+    # Populate actual model output
+    models <- map2(type, type_nm, function(dirs, descs){
+      if(is.na(type[1])){
+        return(NA)
+      }
+      map2(dirs, descs, function(dr, desc){
+        tmp <- unique_models[[match(dr, unique_models_dirs)]]
+        # Add description to the model
+        # Example of how to access description for bridge model
+        # group 1 model 3:
+        # attr(models$bridge_models_dirs[[1]][[3]], "desc")
+        attr(tmp, which = "desc") <- desc
+        tmp
+      })
+    })
+
+    models
   }, ...)
-  browser()
-
-  base_model <- j[[1]][[1]]
-  bridge_grps <- j[[2]]
-  if(!is.null(bridge_grps)){
-    class(bridge_grps) <- mdl_grp_cls
-  }
-  sens_grps <- j[[3]]
-  if(!is.null(sens_grps)){
-    class(sens_grps) <- mdl_grp_cls
-  }
-  retro_grps <- j[[4]]
-  if(!is.null(retro_grps)){
-    class(retro_grps) <- mdl_grp_cls
-  }
-
-  list(base_model = base_model,
-       bridge_grps = bridge_grps,
-       sens_grps = sens_grps,
-       retro_grps = retro_grps)
 }
