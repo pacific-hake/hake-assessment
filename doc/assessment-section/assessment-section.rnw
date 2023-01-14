@@ -241,9 +241,7 @@ JTC:
   determining the choice of $\sigma_R$ remains a challenge and encourages the
   JTC to continue to work on the issue.}
 
-** last year was same and we had:
-
-\emph{** Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
+\emph{Response -- Developing best practices for modeling equilibrium recruitment ($R_0$)
   and recruitment variability ($\sigma_R$)
   remain broad topics of contemporary research. Recent recommendations suggest that the next
   generation of stock assessment modeling frameworks
@@ -254,10 +252,10 @@ JTC:
   approaches for advancing recruitment estimation, as applied to \fishname\ and
   in general. Many of these issues are widespread
   in stock assessment and scientific-based solutions are likely to be the result of medium
-  to long-term research projects. We provide an update to our previous response, including specific
-  advances in research endeavors.}
+  to long-term research projects. Here, we provide a few updates to our previous response on this topic,
+  including specific advances in research endeavors where applicable.}
 
-\emph{** The JTC continues to participate in collaborative research to investigate the concurrent
+\emph{The JTC continues to participate in collaborative research to investigate the concurrent
   estimation of multiple variance parameters within stock assessments.
   For \fishname, this includes the estimation of the variability associated with
   time-varying selectivity ($\Phi$), $\sigma_R$,
@@ -280,23 +278,25 @@ JTC:
   and fitting a wide variety of stock assessment frameworks to data when
   multiple random processes are present in the true dynamics.}
 
-\emph{** The Management Strategy Evaluation (MSE) framework for \fishname\ creates
+\emph{The Management Strategy Evaluation (MSE) framework for \fishname\ creates
   considerable advantages for examining recruitment.
   The stock assessment model in the MSE is written in Template Model Builder (TMB),
   which provides efficient estimation of random effects using the Laplace approximation,
-  while being parameterized to mimic the pertinent features of Stock Synthesis used in this assessment.
+  while being parameterized to mimic many (but currently not all) of the pertinent features of
+  Stock Synthesis used in this assessment.
   Thus, the performance of using restricted maximum likelihood to estimate $\sigma_R$ \citep{Thorson2019}
   can be investigated in terms of management as well as statistical performance.
-  The MSE framework can also be used to evaluate the robustness
+  Research projects using the MSE framework are underway to evalute the robustness
   of recruitment modeling assumptions and the advantages of including environmentally-driven recruitment indices
-  on management performance and uncertainty.  Research slated to be published by Dr. Cathleen Vestfals and
-  colleagues at the Northwest Fisheries Science Center that identified specific climate drivers associated with
-  \fishname\ early life-history stages and recruitment is now being used to
+  on management performance and uncertainty.  Research in publication review by Dr. Cathleen Vestfals and
+  colleagues at the Northwest Fisheries Science Center has identified specific climate drivers associated with
+  \fishname\ early life-history stages and recruitment and is being used to
   select which environmental variables to fit as an index of recruitment within the stock assessment model.
-  The utility of fitting to a recruitment index will be investigated in terms of
+  Further development of environmentally-driven recruitment indices using updated environmental predictions
+  is also underway. The utility of fitting to a recruitment index will be investigated in terms of
   forecasting skill and management performance within the MSE by the MSE working group.}
 
-\emph{** The number of stock assessment frameworks written in TMB or other platforms that allow for
+\emph{The number of stock assessment frameworks written in TMB or other platforms that allow for
   the estimation of random effects is increasing.
   These frameworks, specifically the
   Woods Hole Assessment Model (WHAM; \citealt{StockMiller2021}) and
@@ -308,14 +308,13 @@ JTC:
   Next steps include fitting data using SAM and
   using estimates from both frameworks as inputs to Stock Synthesis.}
 
-\emph{** The JTC is also following work being conducted by the International Council for
+\emph{The JTC is also following work being conducted by the International Council for
   the Exploration of the Sea (ICES) Methods Working Group which, among other things,
   is looking at meta-analytical approaches for estimating recruitment parameters. Results
   from this work could be used to develop informative prior distributions on key
   recruitment parameters.
   Deliverables were put on hold as a result of COVID-19 but
-  the project has been making recent progress.}
-
+  the project continues to be making progress.}
 
 
 2. {\bf The SRG recommends exploring alternative methods to simulate recruitment in the
@@ -325,34 +324,29 @@ improvements such as drawing from past observations or using a mixture
 distribution to simulate recruitment should be considered for modelling platforms
 in the future.}
 
-** last year was similar:
-
-{\bf ** The SRG recommends exploring alternative methods to simulate recruitment
-  in the projections, such as drawing from past observations or using a mixture
-  distribution, to characterize a different process than the assumed lognormal
-  distribution.}
-
-** and we had:
-
-\emph{** Response -- The JTC has begun exploring approaches to make informed decisions about
+\emph{Response -- The JTC continues to explore approaches to make informed decisions about
   current and future recruitment in projections. The inclusion, and associated justification,
-  of the age-1 index in the 2022 base model is one example of this (see
+  of the age-1 index in the 2022 and 2023 base model is one example of this (see
   Sections~\ref{sec:data-acoustic-survey} and~\ref{sec:assessment-base-model}).
-  Additionally, the JTC has been exploring the fit of oceanographic and environmental
+  Additionally, the JTC is working with Dr. Kristin Marshall to further explore the fit
+  of oceanographic and environmental
   variables identified by Dr. Cathleen Vestfals as being informative about the
   early life history of \fishname\ as indices of recruitment within Stock Synthesis.
-  Originally, these variables were only available for the years 1980--2010.
-  Recently, data through 2020 were kindly provided and future research will will focus on
-  how to best create a single time series from the two periods.}
+  Ongoing research includes expanding variables to years beyond 2010 to create a single
+  time series from the two data periods and investigating relationships leading to better informed
+  recent, current, and potential near-term forecast recruitment estimates.}
 
-\emph{** Stock synthesis currently does not have capacity to draw from past observations or use
-  mixing distributions to simulate recruitment in the projection period. Available options
+\emph{Available options in Stock Synthesis
   for recruitment during the projection period are the stock-recruitment curve,
   the stock-recruitment curve with a multiplier, and the mean
   across a user-defined time period.  The MSE tool could be used
-  to consider alternative recruitment distributional assumptions as future research.}
+  to consider alternative recruitment distributional assumptions as future research.
+  A member of the JTC is on the next generation NOAA stock assessment modeling
+  platform (FIMS) development team, which ensures features such as recruitment forecast options
+  will be taken into consideration. Plans are for the \fishname\ stock assessment to be a test
+  model.}
 
-\emph{** Appendix~\ref{chap:rec-plot} presents some new ideas
+\emph{We again include Appendix~\ref{chap:rec-plot} to promote continued discussion on ideas
   for visualising annual recruitment relative to the largest recent recruitment
   to avoid misunderstanding of how large some recruitment
   events might be. It also includes figures that further
@@ -365,25 +359,26 @@ specifying dynamic reference points within the assessment and MSE platforms, and
 encourage those groups to work together and develop a discussion of alternative
 reference points, including dynamic reference points, for future SRG consideration.}
 
-** last year was similar:
-
--- ** \fishname\ dynamics are highly variable even without fishing
-  mortality. {\bf The SRG encourages the JTC (and MSE technical team) to continue
-  investigating the usefulness of dynamic reference points in the management of
-  \fishname.}
-
-** and we had:
-
-\emph{** Response -- There has been no additional work investigating the usefulness of dynamic
-  reference points over the past year. Instead, the JTC and MSE technical team have been
-  working with Stock Synthesis developers to incorporate dynamic reference point
-  capabilities into the stock assessment statistical (Bayesian) and MSE coding
-  (full closed-loop simulation) frameworks.
-  Posterior distributions associated with dynamic reference points are now possible
-  within Stock Synthesis.
-  Likewise, the MSE can now utilize dynamic reference points in management procedure
-  scenarios. The JTC plans to continue engaging in research related to dynamic reference
-  points broadly, as well as specifically for \fishname.}
+\emph{Response -- The JTC agrees that future reference point discussions stemming
+  from simulation work, preferably through the MSE, would be beneficial. In particular,
+  the JTC continues to have interest in exploring the utility of dynmaic reference points.
+  The MSE can now utilize dynamic reference points in management procedure
+  scenarios, and Stock Synthesis models can now incorporate dynamic reference point
+  capabilities into routine stock assessment output. In the coming year, the JTC plans to
+  initiate simulations that explore alterantive dynamic F-based target reference points coupled
+  with static (equilibrium-based) biomass limite reference points in exploratory harvest control
+  rule scenarios.}
+  
+\emph{Over the past year, the JTC has continued to engage in research activities and outreach related to
+  dynamic reference points broadly, as well as specifically for \fishname.  In particular, the JTC
+  conducted a learning session at the summer JMC meting to promote internal awareness
+  and basic understanding of the key concepts, methods, and assumptions associated with dynamic reference
+  point calculations. The JTC also engaged with external partners, the Western and Central Pacific Fisheries
+  Commission science provider (Secretariate of the Pacific Community), to learn from thier experience developing
+  and applying dynmaic reference points to operational higly migratory species assessments and management plans.
+  Additionally, the JTC is contributing to, and following, updates to Canadian and United States national guidance
+  documentation on the incorporation of prevailing ennvironmetnal conditions into stock assessments and
+  subsequent management advice (e.g., defining reference points).}
 
 
 4. The SRG encourages work to develop a picture of the Pacific Hake reproductive cycle
@@ -393,31 +388,14 @@ winter research cruises should be included in the maturity analysis. {\bf The SR
 encourages continued sampling and analysis to improve understanding of the
 Pacific Hake reproductive cycle.}
 
-** last year was the same, and we had:
-
-\emph{** Response -- A project was initiated at the Northwest Fisheries Science Center just
-  prior to the start of the COVID-19 pandemic that seeked to refine \fishname\ stock assessment
-  assumptions through incorporation of physiological indices of fish reproductive and metabolic status.
-  This novel biological information would bolster the current practice of using gonadal histology
-  alone for surveyed \fishname\ and provide important data to more accurately determine the reproductive
-  cycle of females and the potential spawning stock biomass.
-  Data generated so far indicate that two types of lipids, triacylglycerols and phospholipids,
-  in the livers of \fishname\ are inversely related and predictive of sexual maturity in females. Levels of
-  these lipids are also considerably shifted when aborted/atretic ovarian follicles
-  are observed, suggesting that lipid levels may be predictive of skipped spawning, which can reduce
-  the effective spawning stock biomass. In 2021, over 20 novel gene expression assays were designed
-  for validation in \fishname\ that target factors involved in ovarian development and atresia. Gonadal histology
-  and staging was also conducted for fish collected in summer 2018 and 2019, and additional physiological
-  samples were collected during the 2021 \surveyname.
-  To the extent that onsite laboratory work will be possible in 2022, the goal for the project is to conduct
-  liver lipid-class and ovarian RNA analyses for \fishname\ samples collected in 2018 and 2019.
-  The addition of these samples will greatly expand the data set and will help determine the utility
-  of physiological indicators of reproductive/metabolic status. New developments are expected to inform
-  maturity in future \fishname\ stock assessments.}
-
-\emph{** \fishname\ ovary samples continue to be collected (see Table~\ref{tab:main-ovaries}) for future
-  analyses. While laboratory work has been limited over the past year due to facility closures, plans remain
-  to include any available Canadian samples in subsequent maturity analyses.}
+\emph{Response -- \fishname\ ovary samples were not collected over the past year, but plans include more
+  sample collections in the coming years. Including Canadian samples in subsequent maturity analyses still
+  remains a goal, but barriers (lab training, capacity, and moving bio-samples across the borader) still
+  remain. Research is in-progress by Melissa Head (NWFSC) focusing on temporal and spatial trends
+  in hake reproduction. The analysis will include over a decade of maturity samples, spanning much of the U.S.
+  West Coast.  The project aims to evaluate how interannual changes effect size and age at maturity across a latitudinal
+  gradient, and how the timing of spawning and rate of skip spawning differs spatio-temporally. A presentation
+  summarizing progress to date and future plans is planned for the SRG meeting.}
 
 
 5. {\bf The SRG also recommends continuing to conduct the following sensitivities:
@@ -425,15 +403,11 @@ steepness, natural mortality, $\sigma_R$ , excluding the age-1 index, alternativ
 deviations for time-varying selectivity, and down-weighting fishery age-composition
 data.}
 
-** Same as last year, except we now excluding age-1 index as a normal sensitivity,
-dropping the requirement for it to be a full Appendix. Woo-hoo.
-
-\emph{**2022 we said: Response -- The JTC has conducted all of the requested sensitivities (and many
+\emph{Response -- The JTC has conducted all of the requested sensitivities (and many
   others) and provides summaries in written (Section~\ref{sec:assessment-sensitivity-analyses}),
   tabular (beginning with Table~\ref{tab:main-parameter-estimates-sens-1}), and
   graphical (beginning with Figure~\ref{fig:main-biomass-base-alternative-1}) formats in
-  this document. Diagnostics of sensitivity models are produced in a separate document
-  and are available upon request.}
+  this document.}
 
 6. Based on the preliminary results shown, previous assessments have correctly predicted an
 increase or decrease in recruitment and spawning biomass in subsequent years, although
@@ -444,30 +418,16 @@ analysis for future assessments. The SRG encourages the JTC to explore, with the
 JMC and AP, the value of a threshold for specifying the probability of projected
 declines or increases of the stock in future assessments.}
 
-** Last year was similar:
-
--- Based on the preliminary results shown, previous assessments have `correctly'
-projected an increase or decrease in recruitment and spawning biomass in
-subsequent years, although the projections are usually less definitive than the
-current base model results. Given that this analysis provides some confidence in
-the current expectations of continued stock decline, {\bf the SRG recommends that the
-JTC continue to explore and refine this analysis for future assessments.}
-
-** and we had:
-
-\emph{**Response -- The JTC has extended this analysis in
+\emph{Response -- The JTC has included this analysis in
   Figures~\ref{fig:main-historical-1}--\ref{fig:main-historical-retro-bforty-all}
-  in response to this
-  request, including a retrospective component given that
-  all retrospective model runs are performed using MCMC. Analyses are also
-  presented for the sensitivity to the base model that removes the age-1 index in
-  Figures~\ref{fig:historical-retro-all-age1}
-  and~\ref{fig:historical-retro-bforty-all-age1}; all results
-  are discussed in
-  Section~\ref{sec:assessment-past-projections}.
-  Related, the
-  JTC is continuing to explore options for improving recruitment estimation and predictions
-  (see Responses 1--3, 5, and~8).}
+  again this year to continue evaluating current base model versus previous forecast
+  relationships. Related, the JTC is continuing to explore options for improving recruitment
+  estimation and predictions (see Responses 1--4 and 7).}
+
+\emph{The JTC has not had an opportunity to meet with JMC, AP, or the MSE working group
+  to explicitly explore threshold values for specifying the probability of projected
+  declines or increases of the stock in future assessments. This endeavor is well suited
+  for upcoming MSE-related performance metrics discussions.}
 
 
 7. The SRG notes that there are currently multiple strong cohorts in the stock
@@ -477,58 +437,55 @@ on this observation, the SRG recommends that an ageing error study using samples
 collected during the past decade be conducted in conjunction with the Committee
 of Age Reading Experts (CARE).}
 
-** same as last year, for which we replied:
-
-\emph{** Response -- An ageing error study in conjunction with CARE has commenced, including
+\emph{Response -- An ageing error study in conjunction with CARE has commenced, including
   planned sample exchanges between United States and Canada ageing labs. However, a full exchange
-  is on hold until there are staff to process the necessary aquatic animal health import permits
-  to send age structures to Canada.}
+  remains on hold due to difficulties with permits to send biological specimens across the border.}
 
 8. {\bf The SRG recommends that historical sources of data be investigated to
 determine whether they can be used to supplement the weight-at-age matrix},
 including unaged otolith samples (and associated data) from the 1970s that may
 be available in the Burke Museum in Seattle.
 
-** same as last year, for which we replied:
-
-\emph{** Response -- Restrictions related to the COVID-19 pandemic have limited the availability
-  to access historical data. Even if historical \fishname\ age structures were found and were
-  determined to be in a usable state, these new structures would need to be integrated into existing
-  ageing laboratory work plans.  The JTC has conducted analyses previously showing that small changes to
+\emph{Response -- The JTC has conducted analyses previously showing that small changes to
   historical data have little relevance to current management quantities of interest. So at this time,
   the JTC does not expect small amounts of historical weight-at-age data to significantly alter
-  stock assessment results used for management decisions.}
+  stock assessment results used for management decisions. The JTC has not yet had the opportunity to
+  visit the Burke Museum in Seattle to ascertain whether \fishname\ age structures are available and
+  in a usable state.}
 
 9. Uncertainty in weight-at-age is not accounted for in the stock assessment
 and a five-year average of recent observations is used for all years of the
 projections. {\bf The SRG requests that the JTC explore alternative methods for
 forecasting weight-at-age and evaluate whether they can improve projections.}
 
-** same as last year, for which we replied:
-
-\emph{** Response -- It is important to capture key, mechanistic and/or stochastic population processes
+\emph{Response -- It is important to capture key, mechanistic and/or stochastic population processes
   in stock assessment projections to sufficiently characterize levels of prediction uncertainty
   that are consistent with available information to adequately contextualize metrics used to aid
   management decisions. Likewise, it is as important to evaluate the basic population-dynamics
   assumptions used in such projections. Recent, current, and future recruitment are perhaps the most
   influential sources of uncertainty in stock assessment projections. As a result, the JTC has
-  prioritized research on recruitment, including supporting analyses and the justification for using
-  the age-1 index in the \Sexpr{assess_yr} base model and other related analyses mentioned in this section.}
+  prioritized research on recruitment, including supporting analyses and other related analyses
+  mentioned in this section. Over the next biennium, the JTC plans to work with the MSE working group
+  on a newly funded research project aimed at incorporting environmentally-driven growth into the
+  operating model and testing consequences of climate-driven changes in recruitment, growth,
+  and movement concomitantly.}
 
-\emph{** Empirical weight-at-age data indicate inter-annual variation in \fishname\ growth, and this variation could
-  be related to individual cohort effects (e.g., large cohorts have a negative growth
-  influence on
-  adjacent cohorts). The JTC is scoping plans to explicitly evaluate these relationships using random effects
-  models to partition the variance components (year and cohort) in available weight-at-age data. The JTC also
-  plans to explore new weight-at-age forecasting capabilities in Stock Synthesis (once fully tested). A simulation
-  experiment that evaluates the influence of variable weight-at-age data relative to other sources of variance in
-  stock assessment projections (e.g., recruitment) would also be useful. Until this work is completed, the JTC continues to use
+\emph{Empirical weight-at-age data indicate inter-annual variation in \fishname\ growth, and this variation could
+  be related to individual cohort effects (e.g., large cohorts have a negative growth influence on
+  adjacent cohorts). The JTC has future plans to explicitly evaluate these relationships using random effects
+  models to partition the variance components (year and cohort) in available weight-at-age data and to explore
+  spatial patterns \citep{Indiveroetal2023}. This work could rely or build upon research currently in progress
+  by a graduate student looking at variation in \fishname\ weight-at-age.
+  The JTC also plans to explore new weight-at-age forecasting capabilities
+  in Stock Synthesis (once fully tested). A simulation experiment that evaluates the influence of variable
+  weight-at-age data relative to other sources of variance in stock assessment projections (e.g., recruitment)
+  would also be useful. Until this work is completed, the JTC continues to use
   a recent five-year average in the projection period because it is consistent with recent data
   (Figures~\ref{fig:main-empirical-weight-at-age} and~\ref{fig:main-weight-at-age-lines}).
-  This assumption is consistent with what is allowable within other
-  commonly used stock assessment frameworks that accommodate
-  time-varying dynamics.}
+  This assumption is consistent with what is allowable within other commonly used stock assessment
+  frameworks that accommodate time-varying dynamics.}
 
+ 
 10. The parameter weighting the acoustic survey age samples was often estimated near the
 upper bound of 1.0 and could not upweight the age samples. Investigations during the
 SRG meeting showed that the posterior distribution of the parameter may have some
@@ -538,27 +495,43 @@ to consider methods to determine the maximum input sample size for the survey ag
 compositions. Previous work of \citet{StewartHamel2014} may be useful for this
 purpose.}
 
-\emph{Response -- **}
+\emph{Response -- The JTC concurs that determining maximum input sample sizes, as well as
+  relative maximums across years, is a worthwhile endeavor. Determining appropriate input
+  samples sizes for composition data is a long-standing issue with much debate. Progress made for
+  \fishname\ will undoubtedly provide useful for stock assessment more broadly.  The JTC has yet to
+  undertake any specific analyses investigating input sample sizes. Researchers at the
+  Alaska Fisheries Science Center have recently begun similar inquires, indicating that a collaborative
+  approach may be mutually beneficial.}
 
 11. The use of high-performance computing (e.g., a dedicated server or cloud computing)
 allowed for the complete set of assessment results to be characterized using MCMC at a
 minimal cost. {\bf The SRG recommends future use of high-performance computing to
 provide complete and thorough assessment results in a timely manner.}
 
-\emph{Response -- **}
+\emph{Response -- Resources were made available for the JTC to use a new high-performance computing
+   network server with 80 processors to complete all model runs (bridging, base, sensitivity, retrospectives, and
+   forecasts) and build all assessment document dependencies.
+   Another high-preformance server unit and two high-performance laptops have also been aquired for
+   completing the \fishname\ assessment.  These resources are used for data preperation, diagnostic examination,
+   running test models, and exploring alternative model configurations.}
 
 12. The SRG appreciates the investigation of alternative model structures, including
 alternative modelling platforms. {\bf The SRG encourages the JTC to continue these types
 of investigations.}
 
-\emph{Response -- **}
+\emph{Response -- The JTC continues to explore the implementation of a hake-like assessment in WHAM
+  Woods Hole Assessment Model) and SAM (state-space Stock Assessment Model), in addition to the
+  custom TMB (Template Model Builder) estimation model used in the MSE, to evaluate the impact of
+  platform-specific configurations, assumptions, and capabilities.}
 
 
 13. {\bf The SRG appreciates the dedication and teamwork displayed by the JTC in
 producing the best available scientific information and advice on the Pacific
 Hake stock during the COVID-19 pandemic.}
 
-\emph{**[can keep last year's:] Response -- Teamwork is an attribute of great interest and pride within the JTC, thank you.}
+\emph{Response -- Teamwork and collaboration is an attribute of great interest
+  and pride within the JTC, and we believe it is fundamental to successfully achieving
+  the science objectives as outlined in the Treaty.}
 
 % \newpage
 
