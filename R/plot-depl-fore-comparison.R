@@ -14,8 +14,6 @@
 #' @param leg_pos The position of the legend inside the plot. If `NULL`,
 #; the legend will be in its defaut location outside the plot margin
 #' @param leg_font_size The legend font size
-#' @param catch_levels The `catch_levels` object as defined in the file
-#' `forecast-catch-levels.R`
 #' @param forecast_yrs The `forecast_yrs` vector as defined in the file
 #' `all.R`
 
@@ -34,8 +32,7 @@ plot_depl_fore_comparison <- function(model,
                                                    1.5,
                                                    2,
                                                    2.5,
-                                                   3,
-                                                   3.5),
+                                                   3),
                                       y_labels = expression("0",
                                                             "0.1B"[0],
                                                             "0.4B"[0],
@@ -43,19 +40,17 @@ plot_depl_fore_comparison <- function(model,
                                                             "1.5",
                                                             "2",
                                                             "2.5",
-                                                            "3",
-                                                            "3.5"),
+                                                            "3"),
                                       y_colors = c("black",
                                                           "red",
                                                           "green",
                                                           rep("black", 6)),
                                       alpha = 0.2,
-                                      leg_pos = c(0.1, 0.9),
-                                      leg_font_size = 16,
-                                      catch_levels,
+                                      leg_pos = c(0.15, 0.83),
+                                      leg_font_size = 12,
                                       forecast_yrs){
 
-  nice_nms <- map_chr(catch_levels[fore_inds], ~{
+  nice_nms <- map_chr(model$catch.levels[fore_inds], ~{
     .x[[2]]
   })
 
@@ -90,7 +85,7 @@ plot_depl_fore_comparison <- function(model,
     mutate(model = factor(model, levels = nice_nms))
 
   fore_future <- fore |>
-    filter(year >= 2023 )
+    filter(year >= min(forecast_yrs))
 
   fore <- fore |>
     mutate(year = as.numeric(year))
