@@ -7,7 +7,9 @@ cred_int <- c(0.025, 0.5, 0.975)
 
 # Shortened names -------------------------------------------------------------
 mc <- base_model$mcmccalcs
-extramc <- base_model$extra.mcmc
+# TODO: Fix this!! It is set to last year's model until the extra mcmc is built correctly!!!
+extramc <- last_yr_base_model$extra.mcmc
+#extramc <- base_model$extra.mcmc
 
 # Attainment in the past ------------------------------------------------------
 ct_last10 <- ct %>% filter(year %in% (end_yr - 10):(end_yr - 1))
@@ -460,11 +462,12 @@ rec_2016 <- get_rec_ci(last_yr_base_model, base_model, 2016)
 rec_2017 <- get_rec_ci(last_yr_base_model, base_model, 2017)
 rec_2020 <- get_rec_ci(last_yr_base_model, base_model, 2020)
 # ... Cohort biomass-at-age ---------------------------------------------------
-baa <- get_baa(base_model, assess_yr)
-baa_large <- baa %>% arrange(desc(Median))
-baa_2010 <- baa %>% filter(Cohort == 2010) %>% pull(Median) * 100
-baa_2014 <- baa %>% filter(Cohort == 2014) %>% pull(Median) * 100
-baa_2016 <- baa %>% filter(Cohort == 2016) %>% pull(Median) * 100
+# TODO - uncomment these ines - Jan 13, 2023
+#baa <- get_baa(base_model, assess_yr)
+#baa_large <- baa %>% arrange(desc(Median))
+#baa_2010 <- baa %>% filter(Cohort == 2010) %>% pull(Median) * 100
+#baa_2014 <- baa %>% filter(Cohort == 2014) %>% pull(Median) * 100
+#baa_2016 <- baa %>% filter(Cohort == 2016) %>% pull(Median) * 100
 
 
 # Estimated prop at age (numbers) of the catch in first forecast year ---------
@@ -495,8 +498,9 @@ fore.catch.prop.wt.age11.median <- median(extramc$natselwt.prop[, 12]) * 100
 sigma_r <- f(base_model$sigma_R_in, 2)
 
 # Alternative sigma_r based on all years of recdevs ---------------------------
-sigma_r_info <- extract_sigma_r(c(list(base_model), sens_models_1),
-                                c("base", sens_model_names_1),
+sigma_r_info <- extract_sigma_r(c(list(base_model), sens_models[[1]]),
+                                c("base",
+                                  sens_models_names[[1]]),
                                 base_model$sigma_R_in)
 sigma_r_hi_main <- sigma_r_info %>%
   filter(model == "Sigma R 1.6", period == "Main") %>%
@@ -531,17 +535,18 @@ wt.at.age <- base_model$wtatage[, !grepl("comment", colnames(base_model$wtatage)
 retro.model.names <- c(base_model_name,
                        map_chr(plot_retro_yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))
 # Assemble the retrospective list with the base as the first element
-retro.list <- list(base_model)
-for(i in plot_retro_yrs){
-  retro.list[[i + 1]] <- base_model$retros[[i]]
-}
-retro.list.age1 <- list(sens_models_2[[1]])
-for(i in plot_retro_yrs){
-  retro.list.age1[[i + 1]] <- sens_models_2[[1]]$retros[[i]]
-}
+# TODO: uncomment these Jan 13, 2023
+# retro.list <- list(base_model)
+# for(i in plot_retro_yrs){
+#   retro.list[[i + 1]] <- base_model$retros[[i]]
+# }
+# retro.list.age1 <- list(sens_models_2[[1]])
+# for(i in plot_retro_yrs){
+#   retro.list.age1[[i + 1]] <- sens_models_2[[1]]$retros[[i]]
+# }
 # Adding the age-1 index for a sensitivity case -------------------------------
-retro.model.names.age1 <- c(sens_model_names_2[1],
-                            map_chr(plot_retro_yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))
+#retro.model.names.age1 <- c(sens_model_names_2[1],
+#                            map_chr(plot_retro_yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))
 
 # Define number of 'recent' years for several tables --------------------------
 num.recent.yrs <- 10
@@ -555,7 +560,7 @@ theta.survey <- exp(base_model$parameters["ln(EffN_mult)_2", "Value"])
 DM.weight.fishery <- round(theta.fishery / (1 + theta.fishery), 3)
 DM.weight.survey <- round(theta.survey / (1 + theta.survey), 3)
 # MCMC medians for the fishery and survey, and quantiles (and low and high)
-col.effn <- grep("DM_theta.*_1", colnames(base_model$mcmc), perl = TRUE)
+col.effn <- grep("^.*\\(DM_theta\\)_Age_P1$", colnames(base_model$mcmc))
 # Probably shouldn't really round these values before then using them in the
 #  weight calculations. Should use f() for values to be in document not round.
 #  No time to look into now (Andy).
@@ -568,7 +573,7 @@ DM.weight.fishery.025 <- f(exp(log.theta.fishery.025) /
                              (1 + exp(log.theta.fishery.025)), 3)
 DM.weight.fishery.975 <- f(exp(log.theta.fishery.975) /
                              ( 1 + exp(log.theta.fishery.975)), 3)
-col.effn <- grep("ln\\(DM_theta\\)_2", names(base_model$mcmc))
+col.effn <- grep("^.*\\(DM_theta\\)_Age_P2$", colnames(base_model$mcmc))
 log.theta.survey.median <- round(median(base_model$mcmc[, col.effn]), 3)
 log.theta.survey.025 <- round(quantile(base_model$mcmc[, col.effn],
                                        probs = 0.025), 3)
@@ -591,14 +596,14 @@ DM.weight.survey.high <- f(max(exp(base_model$mcmc[, col.effn]) /
 # Need to change indexing if sensitivity models order changes in model-setup.R
 # ... natural mortality -------------------------------------------------------
 nat_m <- quantile(base_model$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
-nat_m_02 <- quantile(sens_models_1[[5]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
-nat_m_03 <- quantile(sens_models_1[[6]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
+nat_m_02 <- quantile(sens_models[[1]][[6]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
+nat_m_03 <- quantile(sens_models[[1]][[7]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
 # ... steepness ---------------------------------------------------------------
 steep <- quantile(base_model$mcmc$SR_BH_steep, probs = cred_int)
-steep_prior_05 <- quantile(sens_models_1[[1]]$mcmc$SR_BH_steep, probs = cred_int)
+steep_prior_05 <- quantile(sens_models[[1]][[2]]$mcmc$SR_BH_steep, probs = cred_int)
 # ... bratio ------------------------------------------------------------------
 bratio_curr <- quantile(base_model$mcmc[[paste0("Bratio_", assess_yr)]], probs = cred_int)
-bratio_age1 <- quantile(sens_models_2[[1]]$mcmc[[paste0("Bratio_", assess_yr)]], probs = cred_int)
+bratio_age1 <- quantile(sens_models[[2]][[2]]$mcmc[[paste0("Bratio_", assess_yr)]], probs = cred_int)
 # ... depletion ---------------------------------------------------------------
 depl_curr <- mc$dmed[names(mc$dmed) == assess_yr]
 # depl_no_ageerr <- sens_models_5$mcmccalcs$dmed[names(mc$dmed) == assess_yr]
@@ -611,26 +616,27 @@ joint.percent.prob.above.below <- f(sum(base_model$mcmc[[paste0("Bratio_", end_y
                                     0)
 
 # Probabilities for historical performance analyses ---------------------------
-historical.probs.tibble <- combine_historical_probs(model = base_model,
-                                                    end = assess_yr - 1) %>%
-  as_tibble()
-prob.decline.from.2019.to.2020.historic <- filter(historical.probs.tibble,
-                                                         Year == 2019) %>%
-  select("P_decline") %>%
-  as.numeric() %>%
-  f()
-prob.decline.from.2019.to.2020.curr <- filter(historical.probs.tibble,
-                                                     Year == 2019) %>%
-  select("P_decline_curr") %>%
-  as.numeric() %>%
-  f()
-prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
-                                                         Year == 2012) %>%
-  select("P_decline") %>%
-  as.numeric() %>%
-  f()
-prob.decline.from.2012.to.2013.curr <- filter(historical.probs.tibble,
-                                                     Year == 2012) %>%
-  select("P_decline_curr") %>%
-  as.numeric() %>%
-  f()
+# TODO: All these break, fix if needed this year- January 13, 2023
+#historical.probs.tibble <- combine_historical_probs(model = base_model,
+#                                                    end = assess_yr - 1) %>%
+#  as_tibble()
+#prob.decline.from.2019.to.2020.historic <- filter(historical.probs.tibble,
+#                                                         Year == 2019) %>%
+#  select("P_decline") %>%
+#  as.numeric() %>%
+#  f()
+#prob.decline.from.2019.to.2020.curr <- filter(historical.probs.tibble,
+#                                                     Year == 2019) %>%
+#  select("P_decline_curr") %>%
+#  as.numeric() %>%
+#  f()
+#prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
+#                                                         Year == 2012) %>%
+#  select("P_decline") %>%
+#  as.numeric() %>%
+#  f()
+# prob.decline.from.2012.to.2013.curr <- filter(historical.probs.tibble,
+#                                                      Year == 2012) %>%
+#   select("P_decline_curr") %>%
+#   as.numeric() %>%
+#   f()

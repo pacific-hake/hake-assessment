@@ -101,6 +101,8 @@ load_ss_files <- function(model_path = NA,
   model$par_file <- file.path(model_path, model_path_listing[par_fn_ind])
   model$dat <- SS_readdat(model$dat_file, verbose = FALSE)
   model$ctl <- readLines(model$ctl_file)
+  model$ctl <- gsub("\t", " ", model$ctl)
+
   # model$par <- readLines(par_fn)
   # Set default mcmc members to NA. Later code depends on this.
   model$mcmc <- NA

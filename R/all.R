@@ -20,6 +20,7 @@ pacman::p_load(adnuts, cli, coda, crayon, coda, cowplot, data.tree, date, dplyr,
                future, furrr, here, gfutilities, ggplot2, ggpubr, ggrepel,
                grDevices, grid, gridExtra, gtools, here, kableExtra, knitr,
                lubridate, maps, maptools, matrixcalc, parallel, purrr, r4ss,
+               RColorBrewer,
                reshape2, rgeos, rnaturalearth, rnaturalearthhires, rstan,
                scales, shinystan, sf, snowfall, stringr, testthat, tictoc,
                tidyverse, xtable)
@@ -118,7 +119,8 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "figures-selectivity-parameterizations.R", "figures-size-at-age.R",
              "figures-maturity-ogive.R", "figures-management.R",
              "figures-R0-vs-meanRecruitment.R", "figures-makebox.R",
-             "plotcolour.R", "s3.R", "tables-cohort.R", "tables-timeseries.R",
+             "plotcolour.R", "plot-color.R", "plot-depl-fore-comparison.R",
+             "s3.R", "tables-cohort.R", "tables-timeseries.R",
              "tables-reference-points.R", "tables-decisions.R", "tables-age.R",
              "tables-assessmentchanges.R", "tables-parameters.R",
              "tables-sampling.R", "tables-squid.R", "tables-maturity.R",
@@ -170,4 +172,4 @@ nuisance_posteriors_file <- "nuisanceposteriors.csv"
 # Don't allow partial matches using the dollar operator
 options(warnPartialMatchDollar = TRUE)
 # Error out on all warnings
-# options(warn = 2)
+#options(warn = 0)

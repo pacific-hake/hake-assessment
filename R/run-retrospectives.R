@@ -69,7 +69,7 @@ run_retrospectives <- function(model_path,
       dat <- SS_readdat(file.path(retro_subdir, starter$datfile),
                         verbose = FALSE,
                         version = model$SS_versionshort)
-      ctl <- SS_readctl(file.path(retro_subdir, starter$ctlfile),
+      ctl <- r4ss::SS_readctl(file.path(retro_subdir, starter$ctlfile),
                         verbose = FALSE,
                         use_datlist = TRUE,
                         datlist = dat,

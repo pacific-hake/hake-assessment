@@ -35,6 +35,7 @@ Imports:
     nwfscMapping,
     PBSmapping,
     PBSmodelling,
+    RColorBrewer,
     reshape2,
     rnaturalearthhires
     r4ss (>= 1.35.3),

@@ -1,7 +1,7 @@
 #' Remove a fleet
-#' 
+#'
 #' Remove a fleet from SS input files.
-#' 
+#'
 #' @param dir A directory with SS input files.
 #' @param fleets A vector of fleets to turn off.
 #' @param remove A logical value whether or not the fleet should be
@@ -108,12 +108,12 @@ remove_data.comps <- function(dir, fleets, removeyears, removewtatage = FALSE) {
     dat[["agecomp"]][, "Yr"], NA), na.rm = TRUE) - 5
   ctl[["first_yr_fullbias_adj"]] <- min(ifelse(dat[["agecomp"]][, "Yr"] > 0,
     dat[["agecomp"]][, "Yr"], NA), na.rm = TRUE) + 5
-  
+
   if (removewtatage) {
     wtatage <- r4ss::SS_readwtatage(file.path(dir, "wtatage.ss"))
     newwtatage <- wtatage[!(wtatage[["Yr"]] %in% removeyears), ]
     newmeans <- newwtatage %>% filter(Yr %in% 0:dat$endyr) %>%
-      group_by(Fleet) %>% summarize(across(everything(), mean), .groups = "keep") %>% 
+      group_by(Fleet) %>% summarize(across(everything(), mean), .groups = "keep") %>%
       mutate(Yr = min(wtatage$Yr))
     newcomplete <- dplyr::full_join(filter(newwtatage, Yr != min(wtatage$Yr)), newmeans,
       by = colnames(wtatage)) %>% ungroup() %>% arrange(Fleet, Yr)

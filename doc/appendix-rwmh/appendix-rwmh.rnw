@@ -359,13 +359,12 @@ box()
 % models.inds <- c(1, 2, 3, catch.tac.ind, catch.default.policy.ind)
 % models.names <- sapply(sens_models_6$catch.levels, "[[", 2)[models.inds]
 %                        ## pretty catch level name
-% make.forecast.depletion.comparison.plot(sens_models_6,
-%                                         models.inds,
-%                                         models.names,
-%                                         start_yr = 2009,
-%                                         model.end_yr = end_yr,
-%                                         end_yr =forecast_yrs[length(forecast_yrs)],
-%                                         legend.loc = "topleft")
+% See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
+%# `fore_inds` below are the indices of those forecast values in that list.
+%plot_depl_fore_comparison(base_model,
+%                          fore_inds = c(1, 2, 6, 12, 14),
+%                          catch_levels = catch_levels,
+%                          forecast_yrs = forecast_yrs)
 % @
 % \end{center}
 % \caption{Time series of estimated relative spawning biomass to \Sexpr{end_yr}

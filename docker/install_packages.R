@@ -24,8 +24,8 @@ tinytex::tlmgr_install(c(
   "etex-pkg", "etoolbox", "fancyhdr", "fancyvrb", "float",
   "fmtcount", "framed", "geometry", "hyperref", "iftex",
   "import", "infwarerr", "kvoptions", "lastpage", "linegoal",
-  "lineno", "marginnote", "multirow", "natbib", "ncctools",
-  "nowidow", "pdflscape", "pdfcomment", "pdftexcmds", "psnfss",
+  "lineno", "listings", "marginnote", "multirow", "natbib", "ncctools",
+  "nowidow", "parskip", "pdflscape", "pdfcomment", "pdftexcmds", "psnfss",
   "rsfs", "soulpos", "soulutf8", "subfig", "times",
   "tocloft", "tracklang", "zref"))
 

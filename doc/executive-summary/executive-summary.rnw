@@ -381,7 +381,7 @@ For example, this assessment's median estimate of the 2014 recruitment is
 % putting in - signs when it's a decrease, and saying 'lower'. So check
 %  carefully in 2022 (could put in an automatic switch for the text)
 \Sexpr{f(((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]), 1)}~billion
-fish higher than in last year's assessment
+fish higher than in the last assessment
 (a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) /
 (prev.assess.recruitment.med)["2014"]) * 100), 0)}\% increase).
 Similarly, estimates for the large 2016 and small 2018 recruitments have increased by
@@ -429,7 +429,7 @@ was at some of the lowest values in the time series, but this was followed by an
 commercial catch in 2014,
 \Sexpr{top.coh(base_model, 2016, spec.yr=2010)}\% of the 2016 catch,
 \Sexpr{top.coh(base_model, 2018, spec.yr=2010)}\% of the 2018 catch (all
-unchanged from last year's assessment), and
+unchanged from the last assessment), and
 \Sexpr{top.coh(base_model, 2020, spec.yr=2010)}\% of the 2020 catch.
 The decline from 2014 to 2016
 was partly due to the large influx of the 2014
@@ -440,7 +440,7 @@ class in 2012). The median estimate of the 2010 year class is
 very slightly below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1980.rec}\%
 probability that the 2010 year class is larger than the 1980 year class (this
 probability was \Sexpr{prob.percent.2010.rec.gt.1980.rec.last.year.assess}\% for
-last year's assessment).
+the last assessment).
 Since 2010, the model currently estimates small 2011, 2012, 2013, 2015, 2017, 2018,
 and 2019 year classes (median recruitment well below the mean of all median recruitments).
 % Done for for 2022 assessment
@@ -743,7 +743,8 @@ at the end of \Sexpr{end_yr-1} is \Sexpr{probs.curr.rel.fish.intens.above.one}\%
 \enlargethispage{\baselineskip}
 
 <<reference-points-table, results='asis', echo=FALSE>>=
-make.reference.points.table.old(base_model,
+# TODO: Check this versus make.reference.points.table() which is what was here Jan 13, 2023
+make.reference.points.table(base_model,
                             xcaption = paste0("Summary of median and 95\\%
                              credibility intervals of equilibrium conceptual reference points
                              for the \\fishname\\ base assessment model.
@@ -986,22 +987,16 @@ during the forecast years presented here.
 
 % \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
 
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
 <<forecast-depletion-comparison-plot, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to increase and then decline for all non-zero catch levels evaluated">>=
-## Look at catch.levels and catch.levels to decide which to include here
-## models.inds are the indices of those which will be plotted against each other
-models.inds <- c(1, 2, 6, catch.tac.ind, catch.default.policy.ind)
-models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds]
-make.forecast.depletion.comparison.plot(base_model,
-                                        models.inds,
-                                        models.names,
-                                        start_yr = 2009,
-                                        model.end_yr = end_yr,
-                                        end_yr =forecast_yrs[length(forecast_yrs)],
-                                        legend.loc = "topleft")
+# See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
+# `fore_inds` below are the indices of those forecast values in that list.
+plot_depl_fore_comparison(base_model,
+                          fore_inds = c(1, 2, 6, 12, 14),
+                          catch_levels = catch_levels,
+                          forecast_yrs = forecast_yrs)
 @
 \end{center}
 \caption{Time series of estimated relative spawning biomass to \Sexpr{end_yr}
@@ -1015,7 +1010,7 @@ make.forecast.depletion.comparison.plot(base_model,
 
 \clearpage
 
-%% 2022: To keep each year's figure and table on the same page, due to
+%% 2022: To keep each years figure and table on the same page, due to
 %%  the five extra catch streams, needed to shrink fig.height from 5 to 4.5
 %%  and have smaller space.size for Year 2 and 3 tables (since caption
 %%  has an extra row -- could keep all captions to two rows of text, but

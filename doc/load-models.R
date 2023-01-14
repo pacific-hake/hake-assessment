@@ -86,10 +86,50 @@ drs <- set_dirs(models_dir = models_dir,
                 test_models_dirs = test_models_dirs,
                 prepend_to_bridge = prepend_to_bridge)
 
-models <- model_setup(drs = drs,
-                      base_models_desc = base_models_desc,
-                      bridge_models_desc = bridge_models_desc,
-                      sens_models_desc = sens_models_desc,
-                      request_models_desc = request_models_desc,
-                      test_models_desc = test_models_desc,
-                      prepend_to_bridge = prepend_to_bridge)
+if(!exists("models")){
+  models <- model_setup(drs = drs,
+                        base_models_desc = base_models_desc,
+                        bridge_models_desc = bridge_models_desc,
+                        sens_models_desc = sens_models_desc,
+                        request_models_desc = request_models_desc,
+                        test_models_desc = test_models_desc,
+                        prepend_to_bridge = prepend_to_bridge)
+}
+
+last_yr_base_model <-
+  readRDS(file.path(drs$last_yr_base_model_dir,
+                    paste0(basename(drs$last_yr_base_model_dir), ".rds")))
+
+base_model <- models$base_models_dirs[[1]][[1]]
+base_model$ctl <- gsub("\t", " ", base_model$ctl)
+base_model_name <- attr(base_model, "desc")
+
+bridge_models <- models$bridge_models_dirs
+if(is.na(bridge_models)[1]){
+  bridge_models_names <- NA
+}else{
+  bridge_models_names <- map(bridge_models, ~{map_chr(.x, ~{attr(.x, "desc")})})
+}
+
+sens_models <- models$sens_models_dirs
+if(is.na(sens_models)[1]){
+  sens_models_names <- NA
+}else{
+  sens_models_names <- map(sens_models, ~{map_chr(.x, ~{attr(.x, "desc")})})
+}
+
+request_models <- models$request_models_dirs
+if(is.na(request_models)[1]){
+  request_models_names <- NA
+}else{
+  request_models_names <- map(request_models, ~{map_chr(.x, ~{attr(.x, "desc")})})
+}
+
+test_models <- models$test_models_dirs
+if(is.na(test_models)[1]){
+  test_models_names <- NA
+}else{
+  test_models_names <- map(request_models, ~{map_chr(.x, ~{attr(.x, "desc")})})
+}
+
+source(file.path(rootd_r, "custom-knitr-variables.R"))

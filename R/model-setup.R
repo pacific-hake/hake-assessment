@@ -120,8 +120,8 @@ model_setup <- function(drs = NA,
   model_desc_lst <- map2(lst, model_lst, function(grp_descs, grp_drs){
     nm <- names(lst)[iter]
     if(is.null(grp_descs[[1]]) || is.na(grp_descs[1])){
-      message("`", nm, "` has a `NULL` or `NA` description. Attempting ",
-              "to use directory names for plot legends")
+      message("`", nm, "` has a `NULL` or `NA` description.\nAttempting ",
+              "to use directory names for plot legends.")
 
       if(is.null(grp_drs[1]) || is.na(grp_drs[1])){
         message("  - Directory names for `", nm, "` are also `NULL` or `NA`")
@@ -170,7 +170,7 @@ model_setup <- function(drs = NA,
   # belong in the list according to model_list
   map2(model_lst, model_desc_lst, function(type, type_nm, ...){
 
-    if(!is.null(type) && !is.na(type)){
+    if(!is.null(type[1]) && !is.na(type[1])){
       # Check that the RDS files exists for these models. If they don't, create them
       walk(unique_models_dirs, function(path, ...){
         fn <- file.path(path, paste0(basename(path), ".rds"))
