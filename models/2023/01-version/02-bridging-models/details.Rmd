@@ -8,11 +8,11 @@ If any red rows with **Uninitialized** in their cells are present, they exist in
 
 ```{r paste("dirs-", yr, "-version-", version, "-bridge-models"), echo = FALSE}
 fmod <- function(fn){
-  format(file.info(fn)$mtime, "%b %d, %Y")  
+  format(file.info(fn)$mtime, "%b %d, %Y")
 }
 
 df <- tribble(
-  ~`Model Name`,        ~`Last changed by`, ~`Last changed date`,     ~`Description`, 
+  ~`Model Name`,        ~`Last changed by`, ~`Last changed date`,     ~`Description`,
   "01-new-ss-exe",      "Chris",            fmod("01-new-ss-exe"),    "Version 3.30.18-safe, commit a0f982, ADMB 12.3, commit 1376cb",
   "02-new-catch-age",   "Chris",            fmod("02-new-catch-age"), "Update catch and age-composition data",
   "03-update-survey",   "Chris",            fmod("03-update-survey"), "Update acoustic survey biomass and age-composition data from years prior to 2021",
@@ -44,16 +44,16 @@ if(length(extra_real_dirs)){
   })
 }
 
-k <- kbl(df, format = "html", escape = FALSE) |> 
+k <- kbl(df, format = "html", escape = FALSE) |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
                 font_size = 16)
 
 walk(seq_along(df), ~{
   if(.x == 1 || .x == ncol(df)){
-    k <<- k |> 
+    k <<- k |>
       column_spec(.x, width = "60em")
   }else{
-    k <<- k |> 
+    k <<- k |>
       column_spec(.x, width = "30em")
   }
 })
@@ -63,12 +63,12 @@ if(length(grep("Uninit", df))){
   iter <- 1
   pwalk(df, ~{
     if(length(grep("Uninitialized", list(...)))){
-      k <<- k |> 
-        row_spec(iter, background = "red") |> 
+      k <<- k |>
+        row_spec(iter, background = "red") |>
         row_spec(iter, color = "white")
     }
     iter <<- iter + 1
-  })  
+  })
 }
 
 k

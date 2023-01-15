@@ -8,11 +8,11 @@ If any red rows with **Uninitialized** in their cells are present, they exist in
 
 ```{r paste("dirs-", yr, "-version-", version, "-sensitivity-models"), echo = FALSE}
 fmod <- function(fn){
-  format(file.info(fn)$mtime, "%b %d, %Y")  
+  format(file.info(fn)$mtime, "%b %d, %Y")
 }
 
 df <- tribble(
-  ~`Model Name`,                   ~`Last changed by`, ~`Last changed date`,                  ~`Description`, 
+  ~`Model Name`,                   ~`Last changed by`, ~`Last changed date`,                  ~`Description`,
   "01-h-prior-mean-low",           "Chris",            fmod("01-h-prior-mean-low"),           "Alternative lower value for the mean of the prior distribution for steepness",
   "02-h-fix-high",                 "Chris",            fmod("02-h-fix-high"),                 "Fix steepness at 1.0",
   "03-sigma-r-fix-low",            "Chris",            fmod("03-sigma-r-fix-low"),            "Fix sigma R at 1.0",
@@ -55,16 +55,16 @@ if(length(extra_real_dirs)){
   })
 }
 
-k <- kbl(df, format = "html", escape = FALSE) |> 
+k <- kbl(df, format = "html", escape = FALSE) |>
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
                 font_size = 16)
 
 walk(seq_along(df), ~{
   if(.x == 1 || .x == ncol(df)){
-    k <<- k |> 
+    k <<- k |>
       column_spec(.x, width = "60em")
   }else{
-    k <<- k |> 
+    k <<- k |>
       column_spec(.x, width = "30em")
   }
 })
@@ -74,12 +74,12 @@ if(length(grep("Uninit", df))){
   iter <- 1
   pwalk(df, ~{
     if(length(grep("Uninitialized", list(...)))){
-      k <<- k |> 
-        row_spec(iter, background = "red") |> 
+      k <<- k |>
+        row_spec(iter, background = "red") |>
         row_spec(iter, color = "white")
     }
     iter <<- iter + 1
-  })  
+  })
 }
 
 k
