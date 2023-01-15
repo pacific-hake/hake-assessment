@@ -51,6 +51,7 @@ Imports:
     snowfall
 Remotes: 
     github::cgrandin/adnuts,
+    github::pbs-assess/gfutilities,
     github::nwfsc-assess/nwfscMapping@development,
     github::r4ss/r4ss@bioscale,
     github::ropensci/rnaturalearthhires
