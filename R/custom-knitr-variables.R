@@ -619,27 +619,30 @@ joint.percent.prob.above.below <- f(sum(base_model$mcmc[[paste0("Bratio_", end_y
                                     0)
 
 # Probabilities for historical performance analyses ---------------------------
-# TODO: All these break, fix if needed this year- January 13, 2023
-#historical.probs.tibble <- combine_historical_probs(model = base_model,
-#                                                    end = assess_yr - 1) %>%
-#  as_tibble()
-#prob.decline.from.2019.to.2020.historic <- filter(historical.probs.tibble,
-#                                                         Year == 2019) %>%
-#  select("P_decline") %>%
-#  as.numeric() %>%
-#  f()
-#prob.decline.from.2019.to.2020.curr <- filter(historical.probs.tibble,
-#                                                     Year == 2019) %>%
-#  select("P_decline_curr") %>%
-#  as.numeric() %>%
-#  f()
-#prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
-#                                                         Year == 2012) %>%
-#  select("P_decline") %>%
-#  as.numeric() %>%
-#  f()
-# prob.decline.from.2012.to.2013.curr <- filter(historical.probs.tibble,
-#                                                      Year == 2012) %>%
-#   select("P_decline_curr") %>%
-#   as.numeric() %>%
-#   f()
+historical.probs.tibble <- combine_historical_probs(model = base_model,
+                                                    end = assess_yr - 1) %>%
+  as_tibble()
+
+prob.decline.from.2019.to.2020.historic <- filter(historical.probs.tibble,
+                                                         Year == 2019) %>%
+  select("P_decline") %>%
+  as.numeric() %>%
+  f()
+
+prob.decline.from.2019.to.2020.curr <- filter(historical.probs.tibble,
+                                                     Year == 2019) %>%
+  select("P_decline_curr") %>%
+  as.numeric() %>%
+  f()
+
+prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
+                                                         Year == 2012) %>%
+  select("P_decline") %>%
+  as.numeric() %>%
+  f()
+
+ prob.decline.from.2012.to.2013.curr <- filter(historical.probs.tibble,
+                                                      Year == 2012) %>%
+   select("P_decline_curr") %>%
+   as.numeric() %>%
+   f()

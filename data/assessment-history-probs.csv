@@ -22,7 +22,8 @@
 # 2018 - 413,719 actual, options were 350,000 and 440,000, so 2/3 from 350,000, interpolate.
 # 2019 - 411,574 actual, use 410,000
 # 2020 - 379,270 actual, use halfway between 350,000 and 410,000
-# 2021 - 320,000 actual (approx), each 30,000 was about 1% change in P_decline and 2% in P_below_B40
+# 2021 - 326,629 actual (approx), each 30,000 was about 1% change in P_decline and 2% in P_below_B40
+# 2022 - 320,224 actual, use option e from 2022 assessment.
 Year, P_decline, P_below_B40
 2012, 43, 58
 2013, 5, 5
@@ -34,3 +35,4 @@ Year, P_decline, P_below_B40
 2019, 61, 19
 2020, 94, 27
 2021, 84, 32
+2022, 30, 8
