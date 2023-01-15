@@ -368,7 +368,7 @@ reference points, including dynamic reference points, for future SRG considerati
   initiate simulations that explore alternative dynamic F-based target reference points coupled
   with static (equilibrium-based) biomass limit reference points in exploratory harvest control
   rule scenarios.}
-  
+
 \emph{Over the past year, the JTC has continued to engage in research activities and outreach related to
   dynamic reference points broadly, as well as specifically for \fishname.  In particular, the JTC
   conducted a learning session at the summer JMC meting to promote internal awareness
@@ -485,7 +485,7 @@ forecasting weight-at-age and evaluate whether they can improve projections.}
   This assumption is consistent with what is allowable within other commonly used stock assessment
   frameworks that accommodate time-varying dynamics.}
 
- 
+
 10. The parameter weighting the acoustic survey age samples was often estimated near the
 upper bound of 1.0 and could not upweight the age samples. Investigations during the
 SRG meeting showed that the posterior distribution of the parameter may have some
@@ -632,9 +632,9 @@ in a slight increase in estimated recent recruitment, most noticeably for the 20
 classes (Figure~\ref{fig:main-bridge-5-panel-2}), and
 increase in virgin recruitment. In turn, this results in a slightly higher
 trajectory of spawning stock biomass from 2013--2022 and a change in 2022
-median relative spawning stock biomass from
-\Sexpr{round(median(bridge_models_2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
-\Sexpr{round(median(base_model$mcmc$Bratio_2022),3)*100}\%.
+median relative spawning stock biomass from **
+% round(median(bridge_models_2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
+% round(median(base_model$mcmc$Bratio_2022),3)*100}\%.
 
 \clearpage
 

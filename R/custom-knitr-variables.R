@@ -2,6 +2,9 @@
 # The function f() is for formatting and is defined in
 # r-functions/utilities.r
 
+# Could probably extract automatically from bridge_models_desc[[1]][1]
+ss_version <- "3.30.20"
+
 # Credible interval -----------------------------------------------------------
 cred_int <- c(0.025, 0.5, 0.975)
 
