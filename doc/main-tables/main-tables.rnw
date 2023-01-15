@@ -615,8 +615,8 @@ make.risk.table(base_model,
 \pagestyle{mylandscape}
 \centering
 <<main-parameter-estimates-sens-1, results='asis', echo=FALSE>>=
-param_est_table(sens_models_1_for_table,
-                model.names = sens_model_names_1_for_table,
+param_est_table(sens_models[[1]],
+                model.names = sens_models_names[[1]],
                 end_yr = end_yr,
                 digits = 3,
                 xcaption = paste0("Posterior medians for select parameters, derived quantities,
@@ -631,8 +631,8 @@ param_est_table(sens_models_1_for_table,
 @
 
 <<main-parameter-estimates-sens-2, results='asis', echo=FALSE>>=
-param_est_table(sens_models_2_for_table,
-                model.names = sens_model_names_2_for_table,
+param_est_table(sens_models[[3]],
+                model.names = sens_models_names[[3]],
                 end_yr = end_yr,
                 digits = 3,
                 xcaption = paste0("Posterior medians for select parameters,
