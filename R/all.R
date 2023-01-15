@@ -8,6 +8,7 @@
 assess_yr <- 2023
 last_assess_yr <- assess_yr - 1
 model_version <- "01"
+last_yr_model_version <- "01"
 
 # Show non-scientific notation
 options(max.print = 999999)
@@ -51,14 +52,14 @@ if(computer_name == "hake-precision"){
                                   "hake",
                                   "models",
                                   last_assess_yr,
-                                  paste0(model_version, "-version"))
+                                  paste0(last_yr_model_version, "-version"))
 }else{
   models_dir <- file.path(rootd, "models",
                           assess_yr,
                           paste0(model_version, "-version"))
-  last_yr_models_dir <- file.path(rootd, "models_last_yr",
+  last_yr_models_dir <- file.path(rootd, "models",
                                   last_assess_yr,
-                                  paste0(model_version, "-version"))
+                                  paste0(last_yr_model_version, "-version"))
 }
 
 catch_levels_path <- "catch-levels"
