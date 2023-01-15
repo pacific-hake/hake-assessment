@@ -138,7 +138,7 @@ and age-1 for the fishery until a maximum age of 6, after which
 all ages are assumed to have the same selectivity.
 
 ** An age-1 index was included in the base model. It spans the same years as the acoustic survey, as it was
-part of the same survey, on the same vessels (but no value is available for 2001). Selectivity was set to one for age-1 for this index
+part of the same survey, on the same vessels (but no value is available for 2001). Selectivity was set to one for age-1 fish for this index
 and zero for all other ages.
 
 Prior probability distributions are used for a select few parameters
@@ -394,7 +394,7 @@ encourages continued sampling and analysis to improve understanding of the
   remain. Research is in-progress by Melissa Head (NWFSC) focusing on temporal and spatial trends
   in hake reproduction. The analysis will include over a decade of maturity samples, spanning much of the U.S.
   West Coast.  The project aims to evaluate how interannual changes effect size and age at maturity across a latitudinal
-  gradient, and how the timing of spawning and rate of skip spawning differs spatio-temporally. A presentation
+  gradient and how the timing of spawning and rate of skip spawning differs spatio-temporally. A presentation
   summarizing progress to date and future plans is planned for the SRG meeting.}
 
 
@@ -475,7 +475,7 @@ forecasting weight-at-age and evaluate whether they can improve projections.}
   adjacent cohorts). The JTC has future plans to explicitly evaluate these relationships using random effects
   models to partition the variance components (year and cohort) in available weight-at-age data and to explore
   spatial patterns \citep{Indiveroetal2023}. This work could rely or build upon research currently in progress
-  by a graduate student looking at variation in \fishname\ weight-at-age.
+  by a graduate student looking at variation in \fishname\ weight-at-age data.
   The JTC also plans to explore new weight-at-age forecasting capabilities
   in Stock Synthesis (once fully tested). A simulation experiment that evaluates the influence of variable
   weight-at-age data relative to other sources of variance in stock assessment projections (e.g., recruitment)
