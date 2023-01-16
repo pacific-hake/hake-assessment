@@ -10,11 +10,12 @@ output:
 ## {.tabset .tabset-pills}
 
 ```{r dirs, echo = FALSE, message = FALSE, results = "asis"}
+library(data.tree)
+library(dplyr)
 library(kableExtra)
+library(plyr)
 library(purrr)
 library(tibble)
-library(data.tree)
-library(plyr)
 
 sys_info <- Sys.info()
 computer_name <- sys_info[["nodename"]]
@@ -127,11 +128,17 @@ map(lst, ~{
 
 ```{r rmarkdown-chunk, echo = FALSE, message = FALSE, results = "hide"}
 walk2(drs_src_dir, drs_dest_dir, ~{
-  rmarkdown::render(file.path(.x, "this-year.Rmd"))
+  suppressWarnings(rmarkdown::render(file.path(.x, "this-year.Rmd")))
   if(src_dir != dest_dir){
-    file.copy(file.path(.x, "this-year.html"), 
-              file.path(.y, "this-year.html"))
-    message("File `", .x, "` copied to `", .y, "`")
+    copied <- file.copy(file.path(.x, "this-year.html"), 
+                        file.path(.y, "this-year.html"),
+                        overwrite = TRUE)
+      if(copied){
+        message("File `", .x, "` copied to `", .y, "`")
+      }else{
+        stop("File `", .x, "` was not copied to `", .y, "`",
+             call. = FALSE)
+      }
   }
 })
 ```

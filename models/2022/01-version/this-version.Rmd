@@ -1,3 +1,7 @@
+---
+title: Models for Pacific hake stock assessment
+---
+
 `r yr <- 2022`
 `r version <- "01"`
 # Models directory for `r yr`, version `r version`
@@ -73,11 +77,17 @@ map(lst, ~{
 
 ```{r paste0("rmarkdown-chunk-", yr, "-version-", version), echo = FALSE, message = FALSE, results = "hide"}
 walk2(drs_src_dir, drs_dest_dir, ~{
-  rmarkdown::render(file.path(.x, "details.Rmd"))
+  suppressWarnings(rmarkdown::render(file.path(.x, "details.Rmd")))
     if(src_dir != dest_dir){
-    file.copy(file.path(.x, "details.html"), 
-              file.path(.y, "details.html"))
-    message("File `", .x, "` copied to `", .y, "`")
+      copied <- file.copy(file.path(.x, "details.html"), 
+                          file.path(.y, "details.html"),
+                          overwrite = TRUE)
+      if(copied){
+        message("File `", .x, "` copied to `", .y, "`")
+      }else{
+        stop("File `", .x, "` was not copied to `", .y, "`",
+             call. = FALSE)
+      }
   }
 })
 ```

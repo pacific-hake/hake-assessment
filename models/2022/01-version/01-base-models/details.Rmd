@@ -1,30 +1,99 @@
+---
+title: Models for Pacific hake stock assessment
+---
+
 `r yr <- 2022`
 `r version <- "01"`
 # Pacific hake `r yr` Version `r version` Base models
 
+This table contains all directories in this directory.
+
+If any red rows with **Uninitialized** in their cells are present, they exist in the directory but have not been described properly in the **details.Rmd** file.
+
 ```{r paste("dirs-", yr, "-version-", version, "-base-models"), echo = FALSE}
+fmod <- function(fn){
+  format(file.info(fn)$mtime, "%c")
+}
 
-links <- c("https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L128",
-           "https://github.com/pacific-hake/hake-assessment/blob/947de55a5943aa6ca471e7e1077720c3c19682be/R/model-setup.R#L107")
-df <- tibble(`Model Name` = c("2021.00.04_base_v1",
-                              "2022.01.10_base_v2"),
-             `Last changed by` = c("Chris",
-                                   "Chris"),
-             `Last changed date` = c("2022-01-08",
-                                     "2022-01-08"),
-             Description = c("Base model from 2021",
-                             "Base model for 2022"),
-             `Code link` = c("link to loading code",
-                             "link to loading code")) |> 
-  mutate(`Code link` = cell_spec(`Code link`, "html", link = links)) |> 
-  mutate(`Last changed date` = format(as.Date(`Last changed date`), "%d %B, %Y"))
+df <- tribble(
+  ~`Model Name`, ~`Last changed by`, ~`Description`, 
+  "01-base",     "Chris",            "Base model for 2022")
 
-kbl(df, format = "html", escape = FALSE) |> 
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-                font_size = 16) |> 
-  column_spec(1, width = "20em") |> 
-  column_spec(2, width = "15em") |> 
-  column_spec(3, width = "15em") |> 
-  column_spec(4, width = "30em") |> 
-  column_spec(5, width = "20em")
+described_dirs <- df$`Model Name`
+
+sys_info <- Sys.info()
+computer_name <- sys_info[["nodename"]]
+dr <- ifelse(computer_name == "hake-precision",
+             file.path("/srv/hake/models",
+                       yr,
+                       paste0(version, "-version"),
+                       "01-base-models"),
+             ".")
+
+real_dirs <- list.dirs(dr, recursive = FALSE)
+dot_ind <- grep("^\\.$", real_dirs)
+if(length(dot_ind)){
+  real_dirs <- real_dirs[-dot_ind]
+}  
+real_dirs <- gsub("^\\.\\/(.*)$", "\\1", real_dirs)
+
+extra_described_dirs <- described_dirs[!described_dirs %in% basename(real_dirs)]
+if(length(extra_described_dirs)){
+  stop("You have described directories that do not exist in ",
+       getwd(), ". The bad directories are:\n\n",
+       paste(extra_described_dirs, collapse = "\n"),
+       call. = FALSE)
+}
+
+extra_real_dirs <- real_dirs[!basename(real_dirs) %in% described_dirs]
+if(length(extra_real_dirs)){
+  walk(extra_real_dirs, ~{
+     df <<- df |>
+       add_row(`Model Name` = .x,
+               `Last changed by` = "Uninitialized",
+               `Last changed date` = "Uninitialized",
+               `Description` = "Uninitialized",
+               .after = TRUE)
+  })
+}
+
+# Insert time stamp
+df <- df |> 
+  mutate(`Last changed date` = fmod(real_dirs)) |> 
+  select(`Model Name`,
+         `Last changed by`,
+         `Last changed date`,
+         `Description`)
+
+k <- kbl(df, format = "html", escape = FALSE) |> 
+  kable_styling(bootstrap_options = c("striped",
+                                      "hover",
+                                      "condensed",
+                                      "responsive"),
+                font_size = 16)
+
+walk(seq_along(df), ~{
+  if(.x == 1 || .x == ncol(df)){
+    k <<- k |> 
+      column_spec(.x, width = "60em")
+  }else{
+    k <<- k |> 
+      column_spec(.x, width = "30em")
+  }
+})
+
+if(length(grep("Uninit", df))){
+  # Find any Unitialized rows and color them
+  iter <- 1
+  pwalk(df, ~{
+    if(length(grep("Uninitialized", list(...)))){
+      k <<- k |> 
+        row_spec(iter, background = "red") |> 
+        row_spec(iter, color = "white")
+    }
+    iter <<- iter + 1
+  })  
+}
+
+k
 ```

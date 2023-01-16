@@ -1,3 +1,7 @@
+---
+title: Models for Pacific hake stock assessment
+---
+
 `r yr <- 2023`
 `r version <- "01"`
 # Pacific hake `r yr` Version `r version` Test models
@@ -8,12 +12,12 @@ If any red rows with **Uninitialized** in their cells are present, they exist in
 
 ```{r paste("dirs-", yr, "-version-", version, "-test-models"), echo = FALSE}
 fmod <- function(fn){
-  format(file.info(fn)$mtime, "%b %d, %Y")  
+  format(file.info(fn)$mtime, "%c")  
 }
 
 df <- tribble(
-  ~`Model Name`,          ~`Last changed by`, ~`Last changed date`,         ~`Description`, 
-  "01-placeholder-model", "Chris",            fmod("01-placeholder-model"), "A placeholder for the first real test model")
+  ~`Model Name`,          ~`Last changed by`, ~`Description`, 
+  "01-placeholder-model", "Chris",            "A placeholder for the first real test model")
 
 described_dirs <- df$`Model Name`
 sys_info <- Sys.info()
@@ -30,12 +34,12 @@ dot_ind <- grep("^\\.$", real_dirs)
 if(length(dot_ind)){
   real_dirs <- real_dirs[-dot_ind]
 }  
-real_dirs <- gsub("\\.\\/", "", real_dirs)
+real_dirs <- gsub("^\\.\\/(.*)$", "\\1", real_dirs)
 
 extra_described_dirs <- described_dirs[!described_dirs %in% basename(real_dirs)]
 if(length(extra_described_dirs)){
-  stop("You have described directories that do not exist in ",
-       getwd(), ". The bad directories are:\n\n",
+  stop("\n\nYou have described directories that do not exist in:\n\n",
+       getwd(), "/details.Rmd\n\nThe directories described which don't exist are:\n\n",
        paste(extra_described_dirs, collapse = "\n"),
        call. = FALSE)
 }
@@ -44,16 +48,26 @@ extra_real_dirs <- real_dirs[!basename(real_dirs) %in% described_dirs]
 if(length(extra_real_dirs)){
   walk(extra_real_dirs, ~{
      df <<- df |>
-       add_row(`Model Name` = .x,
+       add_row(`Model Name` = basename(.x),
                `Last changed by` = "Uninitialized",
-               `Last changed date` = "Uninitialized",
                `Description` = "Uninitialized",
                .after = TRUE)
   })
 }
 
+# Insert time stamp
+df <- df |> 
+  mutate(`Last changed date` = fmod(real_dirs)) |> 
+  select(`Model Name`,
+         `Last changed by`,
+         `Last changed date`,
+         `Description`)
+
 k <- kbl(df, format = "html", escape = FALSE) |> 
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+  kable_styling(bootstrap_options = c("striped",
+                                      "hover",
+                                      "condensed",
+                                      "responsive"),
                 font_size = 16)
 
 walk(seq_along(df), ~{
