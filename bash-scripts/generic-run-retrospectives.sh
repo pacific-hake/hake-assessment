@@ -1,8 +1,10 @@
 #!/bin/bash
 
+# Must comment out two rows of this at a time to run on hake-precision server
+# Each takes 16 CPUs
 years=(1 2 3 4)
-       #5 6 7 8 \
-       #9 10)
+       5 6 7 8)
+       9 10)
 repo_path=`Rscript -e "cat(here::here())"`
 models_path="/srv/hake/models"
 year_path=2023
