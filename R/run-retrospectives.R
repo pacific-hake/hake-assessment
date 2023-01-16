@@ -162,7 +162,7 @@ fetch_retrospectives <- function(retro_path,
                                  ...){
 
   message("\nLoading retrospectives from ", retro_path)
-  retros_list <- map(retrospective_yrs, function(x = .x, ...){
+  retros_list <- purrr::map(retrospective_yrs, function(x, ...){
     retro_sub <- paste0("retro-", pad.num(x, 2))
     retro_dir <- file.path(retro_path, retro_sub)
     message("Loading from ", retro_dir)
