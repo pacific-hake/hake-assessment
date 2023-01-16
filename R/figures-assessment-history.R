@@ -61,7 +61,8 @@ make.assessment.history.plot <- function(base,
             rgb(1,    0.5,  0),         # 2018
             rgb(0.7, 0.7, 0.7),         # 2019
             rgb(0.1, 0.1, 1),           # 2020
-            rgb(0.5, 0.6, 0.7))         # 2021
+            rgb(0.5, 0.6, 0.7),         # 2021
+            rgb(1, 0.2, 1))             # 2022
 
   # set line widths and plot characters
   lwds <- c(rep(1,nrow(xx) - 1), 3)
