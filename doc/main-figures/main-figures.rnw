@@ -152,11 +152,13 @@ make.data.overview.plot(base_model)
 @
 \end{center}
 \caption{Overview of data used in this assessment.
-Circle areas are proportional to:
+Circle areas are proportional to
 total catch for the fishery data, precision for the indices,
 and total sample size for
 the age compositions (and cannot be compared
-across data types).}
+across data types).
+Additionally, mean weight-at-age data (not depicted here) are
+used to account for time-varying growth.}
 \label{fig:main-data-overview}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

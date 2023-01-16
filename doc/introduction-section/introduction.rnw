@@ -26,13 +26,14 @@ nations. Additionally, the Agreement calls for both of these bodies to include
 scientists nominated by an Advisory Panel (AP) of fishery stakeholders.
 
 The data sources for this assessment include an acoustic survey, annual fishery
-catch, as well as survey and fishery age-composition data. The assessment depends
-primarily upon an acoustic survey index of biomass time series for information on
-the scale of the current population. Age-composition data from the aggregated
-fishery and the acoustic survey provide additional information allowing the
-model to resolve strong and weak cohorts. The catch is an important source of
-information regarding changes in abundance and places a lower bound
-on the available population biomass in each year.
+catch, mean weight-at-age data, as well as survey and fishery age-composition
+data. The assessment depends primarily upon an acoustic survey index of biomass
+time series for information on the scale of the current population.
+Age-composition data from the aggregated fishery and the acoustic survey
+provide additional information allowing the model to resolve strong and weak
+cohorts. The catch is an important source of information regarding changes in
+abundance and places a lower bound on the available population biomass in each
+year.
 
 This assessment is fully Bayesian, with the base model incorporating prior
 information on several key parameters (including natural mortality, $M$, and

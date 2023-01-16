@@ -6,12 +6,11 @@
 \phantomsection \addcontentsline{toc}{section}{ONE-PAGE SUMMARY}
 
 \begin{itemize}
-  \item ** The stock assessment model for \Sexpr{assess_yr} has the same population
-    dynamics structure as the \Sexpr{last_assess_yr} model. For \Sexpr{assess_yr},
-    it is fit to an acoustic survey index of biomass, an index of age-1 fish, annual
-    commercial catch data, and age-composition data from the survey and commercial fisheries.
-    The addition of the age-1 index is the main change in data streams from \Sexpr{last_assess_yr}.
-
+  \item ** The stock assessment model for \Sexpr{assess_yr} has the same
+    population dynamics structure as the \Sexpr{last_assess_yr} model. For
+    \Sexpr{assess_yr}, it is fit to an acoustic survey index of biomass, an
+    index of age-1 fish, annual commercial catch data, mean weight-at-age data,
+    and age-composition data from the survey and commercial fisheries.
 
   \item ** Updates to the data include:
     % the new biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey_end_yr},
