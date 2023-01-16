@@ -830,8 +830,7 @@ make.forecast.catch.posterior.plot(base_model,
 # See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,
-                          fore_inds = c(1, 2, 3, catch.tac.ind, catch.default.policy.ind),
-                          catch_levels = catch_levels,
+                          fore_inds = c(1, 2, 6, 12, 14),
                           forecast_yrs = forecast_yrs)
 @
 \end{center}
