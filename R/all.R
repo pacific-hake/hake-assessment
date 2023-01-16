@@ -27,41 +27,29 @@ pacman::p_load(adnuts, cli, coda, crayon, coda, cowplot, data.tree, date, dplyr,
                tidyverse, xtable)
 message("Finished loading R packages...")
 
-rootd <- here::here()
-rootd_r <- file.path(rootd, "R")
-rootd_admin <- file.path(rootd, "admin")
-rootd_data <- file.path(rootd, "data")
-rootd_map_data <- file.path(rootd_data, "map-data")
-rootd_data_prep <- file.path(rootd, "data-prep")
-rootd_doc <- file.path(rootd, "doc")
-rootd_extra_calcs <- file.path(rootd, "extra-calculations")
-rootd_pres <- file.path(rootd, "beamer")
-
 sys_info <- Sys.info()
 computer_name <- sys_info[["nodename"]]
 os_name <- sys_info[["sysname"]]
 user_name <- sys_info[["user"]]
 
-if(computer_name == "hake-precision"){
-  models_dir <- file.path("/srv",
-                          "hake",
-                          "models",
-                          assess_yr,
-                          paste0(model_version, "-version"))
-  last_yr_models_dir <- file.path("/srv",
-                                  "hake",
-                                  "models",
-                                  last_assess_yr,
-                                  paste0(last_yr_model_version, "-version"))
-}else{
-  models_dir <- file.path(rootd, "models",
-                          assess_yr,
-                          paste0(model_version, "-version"))
-  last_yr_models_dir <- file.path(rootd, "models",
-                                  last_assess_yr,
-                                  paste0(last_yr_model_version, "-version"))
-}
-
+rootd <- here::here()
+rootd_admin <- file.path(rootd, "admin")
+rootd_data <- file.path(rootd, "data")
+rootd_data_prep <- file.path(rootd, "data-prep")
+rootd_doc <- file.path(rootd, "doc")
+rootd_extra_calcs <- file.path(rootd, "extra-calculations")
+rootd_map_data <- file.path(rootd_data, "map-data")
+rootd_models <- ifelse(computer_name == "hake-precision",
+                       "/srv/hake/models",
+                       here::here("models"))
+rootd_pres <- file.path(rootd, "beamer")
+rootd_r <- file.path(rootd, "R")
+models_dir <- file.path(rootd_models,
+                        assess_yr,
+                        paste0(model_version, "-version"))
+last_yr_models_dir <- file.path(rootd_models,
+                                last_assess_yr,
+                                paste0(last_yr_model_version, "-version"))
 catch_levels_path <- "catch-levels"
 default_hr_path <- "default-hr"
 stable_catch_path <- "stable-catch"

@@ -4,12 +4,14 @@
 #' @param remove_blocks If `TRUE`, remove block designs from control file prior to running
 #' @param retro_mcmc If `TRUE`, run the ADNUTS MCMC in the *mcmc* subdirectory for each
 #' retrospective in addition to the MLE run
+#' @param num_samples Same as in [run_adnuts()]
+#' @param num_warmup_samples Same as in [run_adnuts()]
+#' @param num_chains Same as in [run_adnuts()]
 #' @param continue If TRUE, attempt to continue the runs from where it left off
 #' (in case of unwanted computer shutdown)
 #' @param retrospective_yrs The years (e.g. 1:6) to run so each of these numbers means that many
 #' years of data removed from the model
-#' @param n_cores The number of CPUs to use if running `run_adnuts()`
-#' @param ... Arguments passed to `load_ss_files()`
+#' @param ... Arguments passed to [load_ss_files()]
 #'
 #' @details This will create a *retrospectives* directory in the same directory as the model resides,
 #' create a directory for each retrospective year, copy all model files into each directory,
@@ -23,26 +25,28 @@
 run_retrospectives <- function(model_path,
                                remove_blocks = FALSE,
                                retro_mcmc = TRUE,
-                               retro_n_final = 8000,
-                               retro_warmup_final = 250,
-                               retro_continue = TRUE,
+                               num_samples = 8000,
+                               num_warmup_samples = 250,
+                               nun_chains = 16,
+                               continue = TRUE,
                                retrospective_yrs = NA,
-                               n_cores = NA,
+                               fn_exe = ifelse(exists("ss_executable"),
+                                               ss_executable,
+                                               "ss3"),
                                ...){
 
   stopifnot(!is.na(retrospective_yrs))
 
   model <- load_ss_files(model_path, ...)
   retro_path <- file.path(model_path, "retrospectives")
-  done <- rep(FALSE, length(retrospective_yrs))
-  if(!dir.exists(retro_path) | !retro_continue){
+
+  if(!dir.exists(retro_path) | !continue){
     dir.create(retro_path, showWarnings = FALSE)
     unlink(file.path(retro_path, "*"), recursive = TRUE)
   }
 
   # Copy all required model files into the retrospective directory
-  files_to_copy <- c(file.path(model_path, c(#ifelse(get_os() == "windows", paste0(ss_executable, ".exe"), ss_executable),
-                                             starter_file_name,
+  files_to_copy <- c(file.path(model_path, c(starter_file_name,
                                              forecast_file_name,
                                              weight_at_age_file_name)),
                      model$ctl_file,
@@ -50,10 +54,17 @@ run_retrospectives <- function(model_path,
 
 
   # Create a directory for each retrospective, copy files, and run retro
-  purrr::map(retrospective_yrs, ~{
+
+  # Instead of running in parallel here, use a bash file so you can see
+  # every model run
+  #plan("multisession", workers = length(retrospective_yrs))
+  walk(retrospective_yrs, ~{
     retro_subdir <- file.path(retro_path, paste0("retro-", pad.num(.x, 2)))
     if(dir.exists(retro_subdir)){
-      message(" The directory ", retro_subdir, " already exists. Not running the retrospective for that scenario")
+      message(" The directory ",
+              retro_subdir,
+              " already exists. Not running the retrospective for ",
+              "that scenario")
     }else{
       dir.create(retro_subdir, showWarnings = FALSE)
       file.copy(files_to_copy, retro_subdir)
@@ -69,7 +80,7 @@ run_retrospectives <- function(model_path,
       dat <- SS_readdat(file.path(retro_subdir, starter$datfile),
                         verbose = FALSE,
                         version = model$SS_versionshort)
-      ctl <- r4ss::SS_readctl(file.path(retro_subdir, starter$ctlfile),
+      ctl <- SS_readctl(file.path(retro_subdir, starter$ctlfile),
                         verbose = FALSE,
                         use_datlist = TRUE,
                         datlist = dat,
@@ -83,10 +94,10 @@ run_retrospectives <- function(model_path,
       asp <- ifelse(asp > dat$endyr - .x, dat$endyr - .x, asp)
       ctl$age_selex_parms$dev_maxyr <- asp
 
-      chk <- ctl$age_selex_parms %>%
-        dplyr::filter(dev_minyr !=0) %>%
-        select(dev_minyr, dev_maxyr) %>%
-        mutate(diff = dev_maxyr - dev_minyr) %>%
+      chk <- ctl$age_selex_parms |>
+        filter(dev_minyr !=0) |>
+        select(dev_minyr, dev_maxyr) |>
+        mutate(diff = dev_maxyr - dev_minyr) |>
         pull(diff)
       if(length(chk) > 0){
         if(any(chk < 1)){
@@ -103,7 +114,8 @@ run_retrospectives <- function(model_path,
       if(remove_blocks){
         ctl_file <- file.path(retro_subdir, model$ctl_file)
         ctl <- readLines(ctl_file)
-        ctl[grep("block designs", ctl)] <- "0 # Number of block designs for time varying parameters"
+        ctl[grep("block designs", ctl)] <-
+          "0 # Number of block designs for time varying parameters"
         ctl[grep("blocks per design", ctl) + 0:2] <- "# blocks deleted"
         unlink(ctl_file)
         writeLines(ctl, ctl_file)
@@ -113,25 +125,29 @@ run_retrospectives <- function(model_path,
         unlink(covar_file)
       }
       if(retro_mcmc){
-        # Make a modification to the starter file so the extra MCMC files are not created
+        # Make a modification to the starter file so the extra MCMC
+        # files are not created
         modify_starter_mcmc_type(retro_subdir, 1)
-
         run_adnuts(retro_subdir,
-                   n_final = retro_n_final,
-                   warmup_final = retro_warmup_final,
-                   n_cores = n_cores)
+                   num_samples = 8000,
+                   num_warmup_samples = 250,
+                   num_chains = 16,
+                   ...)
       }else{
-        shell_command <- paste0("cd ", retro_subdir, " && ", ss_executable, " -nox")
+        shell_command <- paste0("cd ", retro_subdir, " && ", fn_exe, " -nox")
         system_(shell_command, wait = FALSE, intern = !show_ss_output)
       }
       data_new <- readLines(file.path(retro_subdir, "data.ss_new"))
       df_for_meanbody <- grep("DF_for_meanbodysize", data_new)
       if(length(df_for_meanbody)){
-        data_new[df_for_meanbody] <- paste0("#_COND_", data_new[df_for_meanbody])
-        writeLines(data_new, con = file.path(retro_subdir, "data.ss_new"))
+        data_new[df_for_meanbody] <- paste0("#_COND_",
+                                            data_new[df_for_meanbody])
+        writeLines(data_new, con = file.path(retro_subdir,
+                                             "data.ss_new"))
       }
     }
   })
+  #plan()
 }
 
 #' Fetch the retrospectives and return a list of each. If there are no retrospective
