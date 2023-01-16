@@ -13,14 +13,26 @@ fmod <- function(fn){
 
 df <- tribble(
   ~`Model Name`,                      ~`Last changed by`, ~`Last changed date`,                     ~`Description`, 
-  "01-request-01-remove-age-1-index", "Chris",            fmod("01-request-01-remove-age-1-index"), "Remove the age-1 index from the base model")
+  "01-placeholder-model", "Chris",            fmod("01-placeholder-model"), "A placeholder for the first real test model")
 
 described_dirs <- df$`Model Name`
-real_dirs <- list.dirs(".")[-1]
+sys_info <- Sys.info()
+computer_name <- sys_info[["nodename"]]
+dr <- ifelse(computer_name == "hake-precision",
+             file.path("/srv/hake/models",
+                       yr,
+                       paste0(version, "-version"),
+                       "04-request-models"),
+             "04-request-models")
+
+real_dirs <- list.dirs(dr, recursive = FALSE)
+dot_ind <- grep("^\\.$", real_dirs)
+if(length(dot_ind)){
+  real_dirs <- real_dirs[-dot_ind]
+}  
 real_dirs <- gsub("\\.\\/", "", real_dirs)
 
-extra_described_dirs <- described_dirs[!described_dirs %in% real_dirs]
-
+extra_described_dirs <- described_dirs[!described_dirs %in% basename(real_dirs)]
 if(length(extra_described_dirs)){
   stop("You have described directories that do not exist in ",
        getwd(), ". The bad directories are:\n\n",
@@ -28,7 +40,7 @@ if(length(extra_described_dirs)){
        call. = FALSE)
 }
 
-extra_real_dirs <- real_dirs[!real_dirs %in% described_dirs]
+extra_real_dirs <- real_dirs[!basename(real_dirs) %in% described_dirs]
 if(length(extra_real_dirs)){
   walk(extra_real_dirs, ~{
      df <<- df |>

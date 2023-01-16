@@ -31,11 +31,24 @@ df <- tribble(
   "16-zero-sum-constraint",        "Chris",            fmod("16-zero-sum-constraint"),        "Remove zero-sum constraint for recruitment deviations parameters")
 
 described_dirs <- df$`Model Name`
-real_dirs <- list.dirs(".")[-1]
+
+sys_info <- Sys.info()
+computer_name <- sys_info[["nodename"]]
+dr <- ifelse(computer_name == "hake-precision",
+             file.path("/srv/hake/models",
+                       yr,
+                       paste0(version, "-version"),
+                       "03-sensitivity-models"),
+             "03-sensitivity-models")
+
+real_dirs <- list.dirs(dr, recursive = FALSE)
+dot_ind <- grep("^\\.$", real_dirs)
+if(length(dot_ind)){
+  real_dirs <- real_dirs[-dot_ind]
+}  
 real_dirs <- gsub("\\.\\/", "", real_dirs)
 
-extra_described_dirs <- described_dirs[!described_dirs %in% real_dirs]
-
+extra_described_dirs <- described_dirs[!described_dirs %in% basename(real_dirs)]
 if(length(extra_described_dirs)){
   stop("You have described directories that do not exist in ",
        getwd(), ". The bad directories are:\n\n",
@@ -43,7 +56,7 @@ if(length(extra_described_dirs)){
        call. = FALSE)
 }
 
-extra_real_dirs <- real_dirs[!real_dirs %in% described_dirs]
+extra_real_dirs <- real_dirs[!basename(real_dirs) %in% described_dirs]
 if(length(extra_real_dirs)){
   walk(extra_real_dirs, ~{
      df <<- df |>

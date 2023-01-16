@@ -9,17 +9,29 @@ library(tibble)
 library(data.tree)
 library(plyr)
 
-drs <- list.dirs(recursive = FALSE)
-drs_nice <- gsub("\\.\\/", "", drs)
+sys_info <- Sys.info()
+computer_name <- sys_info[["nodename"]]
 
-walk2(drs, drs_nice, ~{
+src_dir <- here::here("models", yr)
+dest_dir <- ifelse(computer_name == "hake-precision",
+                   file.path("/srv/hake/models", yr),
+                   src_dir)
+
+drs_dest_dir <- list.dirs(dest_dir, recursive = FALSE)
+drs_dest_dir_nice <- gsub("\\.\\/", "", drs_dest_dir)
+drs_src_dir <- list.dirs(src_dir, recursive = FALSE)
+drs_src_dir_nice <- gsub("\\.\\/", "", drs_src_dir)
+
+walk2(drs_dest_dir, drs_dest_dir_nice, ~{
   x <- file.path(.x, "this-version.html")
   cat(paste0("[Click to enter **", .y, "** directory]("), x, ")\n\n")
 })
 ```
 
 ```{r paste("tree-dirs-", yr), echo = FALSE}
-path <- list.dirs(here::here("models", yr), recursive = TRUE, full.names = FALSE)
+path <- list.dirs(dest_dir,
+                  recursive = TRUE,
+                  full.names = FALSE)
 path <- path[path != ""]
 # Extract unique root dirs
 root_inds <- grep("^[-a-zA-Z0-9_]+$", path)
@@ -39,7 +51,11 @@ lst <- map(vecs, ~{
       rbind.fill()
   }) |> 
     map_df(~{.x})
-  df$pathString <- apply(df, 1, function(x) paste(trimws(na.omit(x)), collapse = "/"))
+  df$pathString <- apply(df,
+                         1,
+                         function(x){
+                           paste(trimws(na.omit(x)), collapse = "/") 
+                         })
   as.Node(df)
 }) |> 
   setNames(path[root_inds])
@@ -51,5 +67,12 @@ map(lst, ~{
 ```
 
 ```{r paste0("rmarkdown-chunk-", yr), echo = FALSE, message = FALSE, results = "hide"}
-rmarkdown::render("01-version/this-version.Rmd")
+walk2(drs_src_dir, drs_dest_dir, ~{
+  rmarkdown::render(file.path(.x, "this-version.Rmd"))
+  if(src_dir != dest_dir){
+    file.copy(file.path(.x, "this-version.html"), 
+              file.path(.y, "this-version.html"))
+    message("File `", .x, "` copied to `", .y, "`")
+  }
+})
 ```

@@ -10,19 +10,31 @@ library(tibble)
 library(data.tree)
 library(plyr)
 
-drs <- list.dirs(recursive = FALSE)
-drs_nice <- gsub("\\.\\/", "", drs)
+sys_info <- Sys.info()
+computer_name <- sys_info[["nodename"]]
 
-walk2(drs, drs_nice, ~{
+src_dir <- here::here("models",
+                      yr,
+                      paste0(version, "-version"))
+dest_dir <- ifelse(computer_name == "hake-precision",
+                   file.path("/srv/hake/models",
+                             yr,
+                             paste0(version, "-version")),
+                   src_dir)
+
+drs_dest_dir <- list.dirs(dest_dir, recursive = FALSE)
+drs_dest_dir_nice <- gsub("\\.\\/", "", drs_dest_dir)
+drs_src_dir <- list.dirs(src_dir, recursive = FALSE)
+drs_src_dir_nice <- gsub("\\.\\/", "", drs_src_dir)
+
+walk2(drs_dest_dir, drs_dest_dir_nice, ~{
   x <- file.path(.x, "details.html")
   cat(paste0("[Click to enter **", .y, "** directory]("), x, ")\n\n")
 })
 ```
 
 ```{r paste("tree-dirs-", yr, "-version-", version), echo = FALSE}
-path <- list.dirs(here::here("models",
-                             yr,
-                             paste0(version, "-version")),
+path <- list.dirs(dest_dir,
                   recursive = TRUE,
                   full.names = FALSE)
 path <- path[path != ""]
@@ -44,7 +56,11 @@ lst <- map(vecs, ~{
       rbind.fill()
   }) |> 
     map_df(~{.x})
-  df$pathString <- apply(df, 1, function(x) paste(trimws(na.omit(x)), collapse = "/"))
+  df$pathString <- apply(df,
+                         1,
+                         function(x){
+                           paste(trimws(na.omit(x)), collapse = "/") 
+                         })
   as.Node(df)
 }) |> 
   setNames(path[root_inds])
@@ -56,10 +72,12 @@ map(lst, ~{
 ```
 
 ```{r paste0("rmarkdown-chunk-", yr, "-version-", version), echo = FALSE, message = FALSE, results = "hide"}
-rmarkdown::render("01-base-models/details.Rmd")
-rmarkdown::render("02-bridging-models/details.Rmd")
-rmarkdown::render("03-sensitivity-models/details.Rmd")
-rmarkdown::render("04-request-models/details.Rmd")
-rmarkdown::render("05-test-models/details.Rmd")
+walk2(drs_src_dir, drs_dest_dir, ~{
+  rmarkdown::render(file.path(.x, "details.Rmd"))
+    if(src_dir != dest_dir){
+    file.copy(file.path(.x, "details.html"), 
+              file.path(.y, "details.html"))
+    message("File `", .x, "` copied to `", .y, "`")
+  }
+})
 ```
-s

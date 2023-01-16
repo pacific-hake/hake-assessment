@@ -16,16 +16,58 @@ library(tibble)
 library(data.tree)
 library(plyr)
 
-drs <- list.dirs(recursive = FALSE)
-drs_nice <- gsub("\\.\\/", "", drs)
+sys_info <- Sys.info()
+computer_name <- sys_info[["nodename"]]
 
-walk2(drs, drs_nice, ~{
+src_dir <- here::here("models")
+dest_dir <- ifelse(computer_name == "hake-precision",
+                   "/srv/hake/models",
+                   src_dir)
+if(!dir.exists(dest_dir)){
+  stop("Directory `", dest_dir,"` does not exist. Bailing out",
+       call. = FALSE)
+}
+if(!dir.exists(src_dir)){
+  stop("Directory `", src_dir,"` does not exist. Bailing out",
+       call. = FALSE)
+}
+if(src_dir != dest_dir){
+  # Check that the directories in the documentation source are all found in
+  # the destination directory recursively
+  drs_dest_dir <- list.dirs(dest_dir,
+                            recursive = TRUE,
+                            full.names = FALSE)
+  drs_src_dir <- list.dirs(src_dir,
+                           recursive = TRUE,
+                           full.names = FALSE)
+  if(!length(drs_dest_dir)){
+    stop("Directory `", dest_dir, "` does not contain any directories",
+         call. = FALSE)
+  }
+  if(!length(drs_src_dir)){
+    stop("Directory `", src_dir, "` does not contain any directories",
+         call. = FALSE)
+  }
+  in_dest_dir <- drs_src_dir %in% drs_dest_dir
+  if(!all(in_dest_dir)){
+    stop("Not all the model documentation directories are in the ",
+         "destination directory. Missing directories are:\n",
+         paste(drs_src_dir[!in_dest_dir], collapse = "\n"),
+         call. = FALSE)
+  }
+}
+
+drs_dest_dir <- list.dirs(dest_dir, recursive = FALSE)
+drs_dest_dir_nice <- gsub("\\.\\/", "", drs_dest_dir)
+drs_src_dir <- list.dirs(src_dir, recursive = FALSE)
+drs_src_dir_nice <- gsub("\\.\\/", "", drs_src_dir)
+
+walk2(drs_dest_dir, drs_dest_dir_nice, ~{
   x <- file.path(.x, "this-year.html")
   cat(paste0("[Click to enter **", .y, "** directory]("), x, ")\n\n")
 })
 
 ```
-
 
 ```{r tree, echo = FALSE}
 split_at <- function(x, pos){
@@ -43,7 +85,9 @@ split_at <- function(x, pos){
   # [1] 3
   unname(split(x, cumsum(seq_along(x) %in% pos))) 
 }
-path <- list.dirs(here::here("models"), recursive = TRUE, full.names = FALSE)
+path <- list.dirs(dest_dir,
+                  recursive = TRUE,
+                  full.names = FALSE)
 path <- path[path != ""]
 # Extract unique root dirs
 root_inds <- grep("^[-a-zA-Z0-9_]+$", path)
@@ -63,7 +107,14 @@ lst <- map(vecs, ~{
       rbind.fill()
   }) |> 
     map_df(~{.x})
-  df$pathString <- apply(df, 1, function(x) paste(trimws(na.omit(x)), collapse = "/"))
+  df$pathString <-
+    apply(df,
+          1,
+          function(x){
+            paste(trimws(na.omit(x)),
+                  collapse = "/") 
+          })
+
   as.Node(df)
 }) |> 
   setNames(path[root_inds])
@@ -75,6 +126,12 @@ map(lst, ~{
 ```
 
 ```{r rmarkdown-chunk, echo = FALSE, message = FALSE, results = "hide"}
-rmarkdown::render("2022/this-year.Rmd")
-rmarkdown::render("2023/this-year.Rmd")
+walk2(drs_src_dir, drs_dest_dir, ~{
+  rmarkdown::render(file.path(.x, "this-year.Rmd"))
+  if(src_dir != dest_dir){
+    file.copy(file.path(.x, "this-year.html"), 
+              file.path(.y, "this-year.html"))
+    message("File `", .x, "` copied to `", .y, "`")
+  }
+})
 ```
