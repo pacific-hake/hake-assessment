@@ -12,18 +12,12 @@
     commercial catch data, and age-composition data from the survey and commercial fisheries.
     The addition of the age-1 index is the main change in data streams from \Sexpr{last_assess_yr}.
 
-%  \item The main change from \Sexpr{last_assess_yr} is the use of the age-1 index
-%    efficient algorithm (the No-U-Turn Sampler) for obtaining posterior samples. Consequently,
-%    all model results, including sensitivity and retrospective analyses, are
-%    now based on posterior distributions rather than maximum likelihood estimates.
 
   \item ** Updates to the data include:
     the new biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey_end_yr},
     fishery catch and age-composition data from \Sexpr{end_yr-1}, weight-at-age data for
     \Sexpr{end_yr-1}, the addition of the age-1 index time series
-    (\Sexpr{survey_start_yr}--\Sexpr{survey_end_yr}), and minor changes to pre-\Sexpr{end_yr-1} data. Due to
-    staffing issues, age data from \Sexpr{end_yr-1} were unavailable from the Canadian freezer-trawler fleet and minimally
-    available for the shoreside fleet.
+    (\Sexpr{survey_start_yr}--\Sexpr{survey_end_yr}), and minor changes to pre-\Sexpr{end_yr-1} data.
 
   \item ** Coast-wide catch in \Sexpr{end_yr-1} was \Sexpr{last.year.landings}~t
     [t represents metric tons], close to the average over the past decade of
