@@ -14,7 +14,7 @@
 
 
   \item ** Updates to the data include:
-    the new biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey_end_yr},
+    % the new biomass estimate and age-composition data from the acoustic survey conducted in \Sexpr{survey_end_yr},
     fishery catch and age-composition data from \Sexpr{end_yr-1}, weight-at-age data for
     \Sexpr{end_yr-1}, the addition of the age-1 index time series
     (\Sexpr{survey_start_yr}--\Sexpr{survey_end_yr}), and minor changes to pre-\Sexpr{end_yr-1} data.
