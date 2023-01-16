@@ -346,7 +346,25 @@ in the future.}
   will be taken into consideration. Plans are for the \fishname\ stock assessment to be a test
   model.}
 
-\emph{We again include Appendix~\ref{chap:rec-plot} to promote continued discussion on ideas
+\emph{The JTC has requested DFO funding to collaborate with Australian, US, and Canadian
+  researchers on developing an index of age-0 \fishname.
+  \citet{SuthersWhiteEtAl2022} proposed and simulation-tested a novel method for estimating growth and mortality of fish larvae, based
+on size distributions. Dr. Suthers (from Australia) subsequently visited NOAA's Southwest Fisheries Science Center in 2022 to
+start developing the method for age-0 \fishname\ using CalCOFI data
+(which include 1.3 million hake larvae), and to compare results to estimated
+recruitments from the last hake assessment \citep{JTC2022}.
+\citet{HinchliffePepinEtAl2019} proposed a novel method relating the mortality/growth ratio of larval fish to the slope of the zooplankton
+size spectrum (which characterises the size distribution of zooplankton), to quantify the recruitment potential of larval fish.}
+
+\emph{The proposed work is a collaboration with authors of the above two
+  papers and the JTC. It will (i)~continue the hake-larvae analyses, and
+  (ii)~analyse the extensive CalCOFI zooplankton data to try and predict variations in age-0
+  hake recruitment from variations in the size spectrum. This
+  gives two potential approaches to providing new information on hake
+  recruitment and will utilise JTC expertise in developing likelihood methods for fitting size
+  spectra to data \citep{EdwardsRobinsonEtAl2020}.}
+
+\emph{**[may just show the figure, Issue \#977] We again include Appendix~\ref{chap:rec-plot} to promote continued discussion on ideas
   for visualising annual recruitment relative to the largest recent recruitment
   to avoid misunderstanding of how large some recruitment
   events might be. It also includes figures that further
