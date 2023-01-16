@@ -159,8 +159,8 @@ key_posteriors <- c("NatM",
                     "SR_LN",
                     "SR_BH_steep",
                     "Q_extraSD_Acoustic_Survey",
-                    "ln\\(DM_theta\\)_1",
-                    "ln\\(DM_theta\\)_2")
+                    "ln\\(DM_theta\\)_Age_P1",
+                    "ln\\(DM_theta\\)_Age_P2")
 key_posteriors_titles <- c("Natural mortality",
                            "LN(R0)",
                            "Steepness",
