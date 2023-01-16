@@ -319,40 +319,40 @@ bridge.density.names <- c("SSB_Virgin",
 oldpar <- par(no.readonly = TRUE)
 par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
 layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
-make.comparison.plot(bridge_models_1,
+make.comparison.plot(bridge_models[[1]],
                      subplots = 2,
-                     model.names = bridge_model_names_1,
+                     model.names = bridge_models_names[[1]],
                      densitynames = bridge.density.names,
                      plot_mcmc = TRUE,
-                     end_yr = bridge_model_end_yr_1)
-make.comparison.plot(bridge_models_1,
+                     end_yr = bridge_model_end_yr)
+make.comparison.plot(bridge_models[[1]],
                      subplots = 4,
-                     model.names = bridge_model_names_1,
+                     model.names = bridge_models_names[[1]],
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end_yr = bridge_model_end_yr_1,
+                     end_yr = bridge_model_end_yr,
                      btarg = 0.4)
-make.comparison.plot(bridge_models_1,
+make.comparison.plot(bridge_models[[1]],
                      subplots = 10,
-                     model.names = bridge_model_names_1,
+                     model.names = bridge_models_names[[1]],
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end_yr = bridge_model_end_yr_1)
-make.comparison.plot(bridge_models_1,
+                     end_yr = bridge_model_end_yr)
+make.comparison.plot(bridge_models[[1]],
                      subplots = 12,
-                     model.names = bridge_model_names_1,
+                     model.names = bridge_models_names[[1]],
                      densitynames = bridge.density.names,
                      legend = FALSE,
                      plot_mcmc = TRUE,
-                     end_yr = bridge_model_end_yr_1)
-make.comparison.plot(bridge_models_1,
+                     end_yr = bridge_model_end_yr)
+make.comparison.plot(bridge_models[[1]],
                      subplots = 13,
-                     model.names = bridge_model_names_1,
+                     model.names = bridge_models_names[[1]],
                      legend = FALSE,
                      indexfleets = 2,
-                     end_yr = bridge_model_end_yr_1)
+                     end_yr = bridge_model_end_yr)
 box()
 mtext("Year", side = 1, line = 1, outer = TRUE)
 par <- oldpar
@@ -370,73 +370,6 @@ par <- oldpar
 \label{fig:main-bridge-5-panel-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
-% See commit 7c57cf7a12 for four-panel plot code
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<main-bridge-5-panel-2, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the differences between the final bridging models for various model outputs">>=
-oldpar <- par(no.readonly = TRUE)
-bridge.density.names <- c("SSB_Virgin",
-                          "R0",
-                          "Main_RecrDev_2010",
-                          "Late_RecrDev_2012",
-                          "Late_RecrDev_2014",
-                          "SR_BH_steep",
-                          "ForeCatch_2016")
-par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
-layout(matrix(c(1,1,2,3,4,5), nrow = 3, ncol = 2, byrow=TRUE))
-
-make.comparison.plot(bridge_models_2,
-                     subplots = 2,
-                     model.names = bridge_model_names_2,
-                     densitynames = bridge.density.names,
-                     legend = TRUE,
-                     plot_mcmc = TRUE,
-                     end_yr = bridge_model_end_yr_2)
-make.comparison.plot(bridge_models_2,
-                     subplots = 4,
-                     model.names = bridge_model_names_2,
-                     densitynames = bridge.density.names,
-                     legend = FALSE,
-                     plot_mcmc = TRUE,
-                     end_yr = bridge_model_end_yr_2,
-                     btarg = 0.4)
-make.comparison.plot(bridge_models_2,
-                     subplots = 10,
-                     model.names = bridge_model_names_2,
-                     densitynames = bridge.density.names,
-                     legend = FALSE,
-                     plot_mcmc = TRUE,
-                     end_yr = bridge_model_end_yr_2)
-make.comparison.plot(bridge_models_2,
-                     subplots = 13,
-                     model.names = bridge_model_names_2,
-                     plot_mcmc = TRUE,
-                     indexfleets = 2,
-                     end_yr = bridge_model_end_yr_2)
-make.comparison.plot(bridge_models_2,
-                     subplots = 13,
-                     model.names = bridge_model_names_2,
-                     plot_mcmc = TRUE,
-                     indexfleets = 3,
-                     end_yr = bridge_model_end_yr_2)
-mtext("Year", side = 1, line = 1, outer = TRUE)
-par <- oldpar
-@
-\end{center}
-\caption{** Bridging models showing the addition of
-  the age-1 index to the final bridging model (update weight-at-age
-  data) from
-  Figure \ref{fig:main-bridge-5-panel-1}. Panels are spawning biomass
-  (upper panel), relative spawning biomass (spawning biomass in each year
-  relative to the unfished equilibrium spawning biomass, middle left),
-  absolute recruitment (middle right),
-  survey biomass index (lower left), and age-1 index (lower right).}
-\label{fig:main-bridge-5-panel-2}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-% \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]

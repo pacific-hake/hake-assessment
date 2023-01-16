@@ -23,6 +23,7 @@ bridge_models_desc <-
          "Add age-1 acoustic survey",
          paste0("Add ", last_data_yr, " fishery age comps")))
 prepend_to_bridge <- TRUE
+bridge_model_end_yr <- end_yr - c(1, 0, 0, 0, 0, 0, 0)
 
 # This is a list of vectors of sensitivity groups (sensitivity models that
 # will be plotted against each other). It can be `NA` if you want it to be
