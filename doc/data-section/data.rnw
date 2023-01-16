@@ -611,11 +611,11 @@ general, using empirical weight-at-age when many observations are available
 results in more accurate estimates of spawning biomass than modeling growth
 \citep{KuriyamaOnoEtAl2015}.
 
-The temporal changes in weight-at-age may be due to ecosystem
-effects such as prey availability, predator abundance, and ocean
-temperature. Thus, while not explicitly parameterized in the assessment,
-such ecosystem effects are somewhat implicitly accounted for, especially compared to
-assuming time-invariant weight-at-age.
+The temporal changes in weight-at-age may be due to ecosystem effects such as
+prey availability, predator abundance, and ocean temperature
+\citep{ChittaroGrandinetal2022}. Thus, while not explicitly parameterized in
+the assessment, such ecosystem effects are somewhat implicitly accounted for,
+especially compared to assuming time-invariant weight-at-age.
 
 \subsubsection{Length-at-age}\label{sec:data-length-at-age}
 
