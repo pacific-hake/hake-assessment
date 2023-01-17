@@ -542,10 +542,6 @@ retro.list <- list(base_model)
 for(i in plot_retro_yrs){
   retro.list[[i + 1]] <- base_model$retros[[i]]
 }
-retro.list.age1 <- list(sens_models_2[[1]])
-for(i in plot_retro_yrs){
-  retro.list.age1[[i + 1]] <- sens_models_2[[1]]$retros[[i]]
-}
 
 # Adding the age-1 index for a sensitivity case -------------------------------
 #retro.model.names.age1 <- c(sens_model_names_2[1],
