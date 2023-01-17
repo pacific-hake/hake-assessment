@@ -538,15 +538,15 @@ wt.at.age <- base_model$wtatage[, !grepl("comment", colnames(base_model$wtatage)
 retro.model.names <- c(base_model_name,
                        map_chr(plot_retro_yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))
 # Assemble the retrospective list with the base as the first element
-# TODO: uncomment these Jan 13, 2023
-# retro.list <- list(base_model)
-# for(i in plot_retro_yrs){
-#   retro.list[[i + 1]] <- base_model$retros[[i]]
-# }
-# retro.list.age1 <- list(sens_models_2[[1]])
-# for(i in plot_retro_yrs){
-#   retro.list.age1[[i + 1]] <- sens_models_2[[1]]$retros[[i]]
-# }
+retro.list <- list(base_model)
+for(i in plot_retro_yrs){
+  retro.list[[i + 1]] <- base_model$retros[[i]]
+}
+retro.list.age1 <- list(sens_models_2[[1]])
+for(i in plot_retro_yrs){
+  retro.list.age1[[i + 1]] <- sens_models_2[[1]]$retros[[i]]
+}
+
 # Adding the age-1 index for a sensitivity case -------------------------------
 #retro.model.names.age1 <- c(sens_model_names_2[1],
 #                            map_chr(plot_retro_yrs, ~{paste0("-", .x, ifelse(.x == 1, " year", " years"))}))
