@@ -523,7 +523,7 @@ param_est_table <- function(models,
 
   # Split up the headers (model names) by words and let them stack on
   # top of each other to reduce width of table
-  model.names.str <- map_chr(model.names, ~{latex.mlc(gsub(" ", "\\\\\\\\", .x), make.bold = FALSE)})
+  model.names.str <- map_chr(model.names, ~{latex.mlc(gsub(" ", "\\\\\\\\", .x), make.bold = TRUE)})
   colnames(tab) <- c("", model.names.str)
 
   # Add sub-headers for different parameter types
