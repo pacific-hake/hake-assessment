@@ -6,6 +6,9 @@ years=(1 2 3 4)
        5 6 7 8)
        9 10)
 repo_path=`Rscript -e "cat(here::here())"`
+# If running on a local machine and the model folder is in your
+# repo root, uncomment the next line and comment the line after it
+#models+path=$repo_path/models
 models_path="/srv/hake/models"
 year_path=2023
 version_path="01-version"
