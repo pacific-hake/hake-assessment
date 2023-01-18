@@ -328,6 +328,10 @@ plist[[2]] <-
                    y_labels = expression("0", "0.1B"[0], "0.4B"[0], "0.5",
                                          "B"[0], "1.5", "2", "2.5"),
                    leg_pos = "none")
+plist[[2]] <-
+  plot_recdevs(bridge_models[[1]],
+               bridge_models_names[[1]],
+               leg_pos = "none")
 
 cowplot::plot_grid()
 
