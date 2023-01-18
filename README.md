@@ -35,7 +35,8 @@ _____________________________________________________________
 * To run all forecasts and retrospectives for the base model, and then build the `RDS` files for the base model, bridge models, and sensitivity models included in the assessment, do the following  [note that `build_rds()` has to be run from your `hake-assessment/` folder, which is given by `here::here()`]:
 
 ```R
-source(here::here("R/all.r"))
+source(here::here("R/all.R"))
+
 
 # Run forecasts, retrospectives, catch-levels, and extra-mcmc for the base model only
 build_rds(model_dirs = "2021.00.04_base_v1",
@@ -53,7 +54,7 @@ build_rds()
 * The retrospectives will be run by default using the ADNUTS MCMC routine set to 8000 samples with a warm-up of 250. This takes a very long time (days). To change the way this is run you would call `build_rds()` like this:
 
 ```R
-source(here::here("R/all.r"))
+source(here::here("R/all.R"))
 
 # Run retrospectives with half the default samples and half the default warmup samples
 # for the base model only
@@ -71,7 +72,7 @@ build_rds(model_dirs = "2021.00.04_base_v1",
 * The `model_list` as defined in the `R/model-setup.R` file is what is used by default by `build_rds()`. You can also use any list of model directory names, or a single directory name. If you wanted to run retrospectives only for a model called **test-model** you would call it like this:
 
 ```R
-source(here::here("R/all.r"))
+source(here::here("R/all.R"))
 build_rds("test-model", run_retrospectives = TRUE)
 ```
 
@@ -81,7 +82,7 @@ build_rds("test-model", run_retrospectives = TRUE)
 
 * To delete all existing RDS files and rebuild them again from the model outputs, run the following. This assumes you have previously done all the forecasting, retrospectives, and extra-mcmc calculations:
 ```R
-source(here::here("R/all.r"))
+source(here::here("R/all.R"))
 delete_rds_files()
 build_rds()
 ```
@@ -102,7 +103,7 @@ build_rds()
 
   * Run this in an R session:
   ```R
-  source(here::here("R/all.r"))
+  source(here::here("R/all.R"))
   build_doc()
   ```
   
@@ -139,7 +140,7 @@ build_rds()
   This is important while debugging the R code, because you will need to run this each
   time you make a change in the code and want to test it, or if you insert a `browser()` command somewhere:
   ```R
-	source(here::here("R/all.r"));load_models_rds();source(here::here("R/custom-knitr-variables.r"))
+	source(here::here("R/all.R"));load_models_rds();source(here::here("R/custom-knitr-variables.R"))
   ```
 * Cut-and-paste the figure/table code from the knitr chunk you want to debug into R and the output will be exactly
   what will appear in the document.
@@ -161,7 +162,7 @@ Document build took about 20 minutes for the `knitr` component (it looks like it
   * Run this in an R session:
   ```R
   setwd(here::here("doc"))
-  source(here::here("R/all.r"))
+  source(here::here("R/all.R"))
   build_adnuts_doc()
   ```
 
