@@ -1363,10 +1363,12 @@ make.historical.probs.retro.plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical-retro-4, fig.height=4, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
+<<historical-retro-4, fig.height=3, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 make.historical.probs.retro.plot(base_model,
                                  select.retros = 10,
-                                 make.one.figure = FALSE)
+                                 make.one.figure = FALSE,
+                                 legend.cex = 0.6,
+                                 legend.loc = "topright")
 @
 \end{center}
 \caption{As for Figure~\ref{fig:main-historical-retro-1} for
@@ -1377,9 +1379,12 @@ make.historical.probs.retro.plot(base_model,
 %% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
 % \begin{figure}[H]
+~ \\
 \begin{center}
 <<historical-retro-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
-make.historical.probs.retro.plot(base_model)
+make.historical.probs.retro.plot(base_model,
+                                 legend.cex = 0.6,
+                                 legend.loc = "topright")
 @
 \end{center}
 \caption{Retrospective results of
