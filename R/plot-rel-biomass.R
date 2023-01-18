@@ -1,4 +1,4 @@
-#' Title
+#' Plot relative biomass from MCMC output for one or more models
 #'
 #' @param model_lst A list of models, each created by [create_rds_file()]
 #' @param model_names A vector of model names,the same length as `models_lst`
