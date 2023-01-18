@@ -10,9 +10,7 @@ cred_int <- c(0.025, 0.5, 0.975)
 
 # Shortened names -------------------------------------------------------------
 mc <- base_model$mcmccalcs
-# TODO: Fix this!! It is set to last year's model until the extra mcmc is built correctly!!!
-extramc <- last_yr_base_model$extra.mcmc
-#extramc <- base_model$extra.mcmc
+extramc <- base_model$extra.mcmc
 
 # Attainment in the past ------------------------------------------------------
 ct_last10 <- ct %>% filter(year %in% (end_yr - 10):(end_yr - 1))
