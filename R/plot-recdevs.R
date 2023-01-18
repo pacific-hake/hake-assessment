@@ -84,7 +84,7 @@ plot_recdevs <- function(model_lst,
     xlab("Year") +
     ylab("Recruitment deviations")
 
-  if(is.null(leg_pos) || is.na(leg_pos)){
+  if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
       theme(legend.position = "none")
   }else{

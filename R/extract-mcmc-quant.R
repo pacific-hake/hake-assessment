@@ -1,4 +1,4 @@
-#' Extract a vector of MCMC quantiles from models and return them
+#' Extract MCMC quantiles from models and return them
 #' in a [ggplot2::ggplot()]-ready data frame
 #'
 #' @param model_lst A list of models, each created by [create_rds_file()]

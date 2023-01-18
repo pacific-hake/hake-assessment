@@ -118,7 +118,7 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "recruitment-question-responses.R", "run.R", "build-rds.R",
              "append-retros.R", "run-adnuts.R", "run-adnuts-timed.R",
              "extract-mcmc-quant.R", "plot-biomass.R", "plot-rel-biomass.R",
-             "plot-recdevs.R")
+             "plot-recdevs.R", "extract-survey-index-fits.R", "plot-survey-index-fits.R")
 source_all(src_lst)
 
 theme_set(hake_theme())

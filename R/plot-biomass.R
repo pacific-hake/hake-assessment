@@ -93,7 +93,7 @@ plot_biomass <- function(model_lst,
                   size = line_width,
                   position = position_dodge(1.5))
 
-  if(is.null(leg_pos) || is.na(leg_pos)){
+  if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
       theme(legend.position = "none")
   }else{

@@ -309,19 +309,8 @@ make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1, highlight = 5)
 \begin{figure}[H]
 \begin{center}
 <<main-bridge-5-panel-1, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the differences between the first bridging models for various model outputs">>=
-bridge.density.names <- c("SSB_Virgin",
-                          "R0",
-                          "Main_RecrDev_2010",
-                          "Late_RecrDev_2012",
-                          "Late_RecrDev_2014",
-                          "SR_BH_steep",
-                          "ForeCatch_2016")
-
 plist <- list()
 plist[[1]] <-
-  plot_biomass(bridge_models[[1]],
-               bridge_models_names[[1]])
-plist[[2]] <-
   plot_rel_biomass(bridge_models[[1]],
                    bridge_models_names[[1]],
                    ylim = c(0, 2.5),
@@ -333,45 +322,35 @@ plist[[2]] <-
                bridge_models_names[[1]],
                leg_pos = "none")
 
-cowplot::plot_grid()
+plist[[3]] <-
+  plot_survey_index_fits(bridge_models[[1]],
+                         bridge_models_names[[1]],
+                         survey_type = "age2",
+                         leg_pos = "none")
 
-make.comparison.plot(bridge_models[[1]],
-                     subplots = 2,
-                     model.names = bridge_models_names[[1]],
-                     densitynames = bridge.density.names,
-                     legend = TRUE,
-                     plot_mcmc = TRUE,
-                     end_yr = bridge_model_end_yr)
-make.comparison.plot(bridge_modelsbridge_models[[1]],
-                     subplots = 4,
-                     model.names = bridge_models_names[[1]],
-                     densitynames = bridge.density.names,
-                     legend = FALSE,
-                     plot_mcmc = TRUE,
-                     end_yr = bridge_model_end_yr,
-                     btarg = 0.4)
-make.comparison.plot(bridge_models[[1]],
-                     subplots = 12,
-                     model.names = bridge_models_names[[1]],
-                     densitynames = bridge.density.names,
-                     legend = FALSE,
-                     plot_mcmc = TRUE,
-                     end_yr = bridge_model_end_yr)
-make.comparison.plot(bridge_models[[1]],
-                     subplots = 13,
-                     model.names = bridge_models_names[[1]],
-                     plot_mcmc = TRUE,
-                     indexfleets = 2,
-                     end_yr = bridge_model_end_yr)
-make.comparison.plot(bridge_models[[1]],
-                     subplots = 13,
-                     model.names = bridge_models_names[[1]],
-                     plot_mcmc = TRUE,
-                     indexfleets = 3,
-                     end_yr = bridge_model_end_yr)
-box()
-mtext("Year", side = 1, line = 1, outer = TRUE)
-par <- oldpar
+plist[[4]] <-
+  plot_survey_index_fits(bridge_models[[1]],
+                         bridge_models_names[[1]],
+                         survey_type = "age1",
+                         xlim = c(1995, 2022),
+                         ylim = c(0, 6.5),
+                         leg_pos = "none")
+
+# Grid of 2 rows and 1 column with one plot at the top (biomass)
+# and 4 plots embedded in another grid (quad_grid) at the bottom
+quad_grid <- cowplot::plot_grid(plotlist = plist,
+                                nrow = 2,
+                                ncol = 2)
+full_plist <- list()
+full_plist[[1]] <-
+  plot_biomass(bridge_models[[1]],
+               bridge_models_names[[1]])
+full_plist[[2]] <- quad_grid
+
+cowplot::plot_grid(plotlist = full_plist,
+                   nrow = 2,
+                   ncol = 1,
+                   rel_heights = c(0.33, 0.67))
 @
 \end{center}
 \caption{** Bridging models showing the sequential addition of updating
