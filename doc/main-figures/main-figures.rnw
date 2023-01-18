@@ -859,9 +859,11 @@ make.age.comp.forecast.plot(base_model)
 \begin{figure}[H]
 \begin{center}
 <<main-biomass-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between the first set of sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens_models_1),
+# TODO: Change this to new plot function (Jan 18 2023)
+make.comparison.plot(c(list(base_model), sens_models[[1]]),
                      subplots = 2,
-                     model.names = c(base_model_name, sens_model_names_1),
+                     model.names = c(base_model_name,
+                                     sens_model_names[[1]]),
                      end_yr = end_yr)
 @
 \end{center}
