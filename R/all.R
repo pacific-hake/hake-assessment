@@ -3,7 +3,7 @@
 # source code files.
 #
 # To debug in an R session, run these 3 commands first:
-# source(here::here("R/all.R"));source("doc/load-models.R");source(here::here("R/custom-knitr-variables.R"))
+# source(here::here("R/all.R"));source(here::here("doc/load-models.R"));source(here::here("R/custom-knitr-variables.R"))
 
 assess_yr <- 2023
 last_assess_yr <- assess_yr - 1
