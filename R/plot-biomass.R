@@ -62,7 +62,7 @@ plot_biomass <- function(model_lst = NULL,
     bo <- d_obj[[2]]
   }
   colors <- plot_color(length(unique(d$model)))
-browser()
+
   g <- ggplot(d,
               aes(x = year,
                   y = smed,
