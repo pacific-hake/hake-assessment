@@ -317,7 +317,7 @@ relatively steady from 2017 to 2019, and then declined in 2020 and 2021 due to
 the 2014 and 2016 year classes moving through the growth-mortality
 transition during a period of high catches. The increase in spawning biomass since 2021 is
 due to the expected above average 2020 cohort entering maturity and
-the recent declining trend in catch. 
+the recent declining trend in catch.
 
 
 The median estimate of the \Sexpr{end_yr} relative spawning biomass (spawning
@@ -440,7 +440,7 @@ was partly due to the large influx of the 2014
 year class (\Sexpr{top.coh(base_model, 2016, spec.yr=2014)}\% of the 2016 catch was age-2 fish from the
 2014 year class; this was larger than the proportion of age-2 fish,
 \Sexpr{top.coh(base_model, 2012, spec.yr=2010)}\%, from the 2010 year
-class in 2012). 
+class in 2012).
 %The median estimate of the 2010 year class is
 %very slightly below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1980.rec}\%
 %probability that the 2010 year class is larger than the 1980 year class (this
@@ -471,7 +471,6 @@ class strength for young fish have shown the estimates of recent recruitment to
 be unreliable prior to at least model age-3 (observed at age-2) without a survey in the
 most recent year and age-2 (observed at age-1) with a survey. While the 2020 cohort was observed
 by the age-1 index in 2021, it will not be observed by the acoustic survey until 2023.
-% Manual 2020 done.
 
 \subsection*{Default harvest policy} \label{sec:es-harvest-policy}
 \phantomsection  \addcontentsline{toc}{subsection}{Default harvest policy}
@@ -559,8 +558,6 @@ Note that in earlier assessments the
 exploitation fraction was often defined in terms of fish age-3 and above, but
 since the 2018 assessment the definition age was lowered to age-2, because these
 fish are often caught by the fishery.
-% Manual 2020 done.
-%
 %
 Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
@@ -584,7 +581,6 @@ target (of 1.0) in 2017 and 2018 (Figure~\ref{fig:es-fishing-intensity}).
 %  places but Table rounds to three, but rounding is done correctly because of
 %  the automation; i.e. we haven't incorrectly rounded up to 0.07, which we
 %  could happen from looking at Table d (if the true value wasn't checked). Nice.
-% Manual 2020 done.
 
 \subsection*{Management performance} \label{sec:es-management-performance}
 \phantomsection  \addcontentsline{toc}{subsection}{Management performance}
@@ -607,7 +603,7 @@ Total landings last exceeded
 the coast-wide quota in 2002 when utilization was 112\%, though
 the fishing intensity was relatively low that year
 due to the appearance of the 1999 year class.
-% Manual 2020 done. For last sentence just check
+% For last sentence just check
 %  landings.vs.tac[landings.vs.tac$Year > 2000, c("Year", "ATTAIN")]
 
 \clearpage
@@ -632,7 +628,7 @@ make.exploitation.fraction.plot(base_model,
 
 ~\\
 
-\vspace{10mm}  % fudge it manually
+\vspace{10mm}
 
 ~\\
 
@@ -688,7 +684,6 @@ all years except 2007--2010
 (Figures~\ref{fig:es-relative-spawning-biomass} and~\ref{fig:es-phase}), yet
 % Andy summarising those years manually, based on:
 % median.relative.bio.below.target
-% Manual done 2020. Interesting that years are becoming fewer.
 the median relative fishing
 intensity has never been above the target of 1.0
 %when the female spawning biomass
@@ -700,9 +695,6 @@ intensity has never been above the target of 1.0
 The target fishing mortality ($\Fforty$) and
 $\Bforty$ result in different population sizes (see Table~\ref{tab:es-reference-points}),
 highlighting that there are subtle differences in these conceptual reference points.
-% 2017 - only in 1999 was it both (just)
-% Manual done 2020.
-%%Manual done 2020.
 %
 % See comment after paragraph for choice of years to use.
 Between 2007 and 2010, median relative fishing intensity ranged from
@@ -714,8 +706,7 @@ the 2008, 2010, 2014, and 2016 recruitments, and
 % and, correspondingly, fishing intensity has fallen below targets.
 median relative spawning biomass has been above the reference point of 40\%
 since \Sexpr{median.relative.bio.above.target.since}.
-% Manual done 2020. Years chosen are based on median.relative.bio.below.target,
-%  2011 no longer below ref point in 2020 assessment.
+% Years chosen are based on median.relative.bio.below.target,
 
 While there is large uncertainty in the estimates of relative
 fishing intensity and relative spawning biomass, the model estimates a
@@ -723,7 +714,6 @@ fishing intensity and relative spawning biomass, the model estimates a
 joint probability of being both above the target relative fishing intensity
 in \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end_yr}.
-% Manual done 2021. Just check the sentence reads okay (a/an).
 
 \subsection*{Reference points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
@@ -745,7 +735,6 @@ P$(B_{\Sexpr{assess_yr}} < \Btwentyfive) = \Sexpr{probs.curr.below.btwentyfive}$
 The probability that the relative fishing intensity was above its target of 1.0
 at the end of \Sexpr{end_yr-1} is \Sexpr{probs.curr.rel.fish.intens.above.one}\%.
 
-% Manual done 2020.
 \enlargethispage{\baselineskip}
 
 <<reference-points-table, results='asis', echo=FALSE>>=
@@ -773,7 +762,7 @@ fishery processes (e.g., selectivity)
 and the scientific basis for prior probability distributions. To address such
 structural uncertainties, we performed sensitivity analyses to investigate a
 range of alternative assumptions and present the key ones in the main
-document. 
+document.
 %A more extensive examination of sensitivity results are provided for a model that excludes
 %the age-1 index (see Appendix~\ref{chap:age1-survey}).
 
@@ -879,11 +868,10 @@ averaged over the last five years. Recent changes in selectivity will thus be re
 in the determination of fishing relative to the default harvest
 policy. For example, fishing at the $\Fforty$ default harvest-rate catch limit
 (scenario m: default HR) in 2023 results in a median relative fishing intensity of
-0.91.  
+0.91.
 %Alternative catch levels where median relative fishing intensity is
 %100\% for three years of projections are provided for comparison (scenario m:
 %FI=100\%).
-% Manual 2020 done.
 %
 <<decisions-spr-table, results='asis', echo=FALSE>>=
 decision_table(base_model,
@@ -903,7 +891,6 @@ decision_table(base_model,
                     placement = "tbp")
 @
 
-%[**May have to move paragraph after tables]
 Management metrics that were identified as important to the Joint Management Committee and the Advisory
 Panel in 2012 are presented for
 \Sexpr{forecast_yrs[2:(length(forecast_yrs)-1)]} and
@@ -955,7 +942,6 @@ actions. With zero catch for the next three years, the biomass has a
 \Sexpr{forecast_yrs[2]} to \Sexpr{forecast_yrs[3]} (Table~\ref{tab:es-risk-year-2}), and a
 \Sexpr{zero.catch.prob.bio.down.3}\% probability of decreasing from
 \Sexpr{forecast_yrs[3]} to \Sexpr{forecast_yrs[4]} (Table~\ref{tab:es-risk-year-3}).
-%Manual 2020 done, though all automated.
 
 % The spawning biomass is predicted to decrease from \Sexpr{end_yr} to
 %  \Sexpr{end_yr+1} with a less than 50\% probability only for the 0~t and
@@ -986,20 +972,7 @@ As the large 2010, 2014, and 2016 cohorts continue to age, their biomass is expe
 as losses from mortality outweigh increases from growth.  The
 estimated above-average (yet still highly uncertain) 2020 cohort will continue to play a large role
 in determining spawning stock biomass during the forecast years presented here.
-% Still true for 2017 assessment - see
-%  years.since.2010.recruitment.med.below.mean
-%   2018 assessment.
-%  Definition of 'below-average' is given earlier (around line 222 of this file)
-
-% 2017: Following sentence replaced with 'The highest probability ...' above,
-%  which fits better:
-% The probability that the 2017 spawning
-% biomass will be less than the 2016 spawning biomass is less than 55\% for all
-%  catch levels. (Table~\ref{tab:es-risk-year-1} and
-%  Figure~\ref{fig:es-forecast-risk-comparison-year-1}).
-% Manual 2019 done above.
-
-% \clearpage  % 2018: Then forces Table i and Fig j to be on same page, and j/k.
+%  Definition of 'below-average' is given earlier
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
