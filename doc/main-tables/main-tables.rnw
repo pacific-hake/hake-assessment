@@ -180,7 +180,7 @@ make.input.age.data.table(base_model,
                           fleet = 1,
                           start_yr = start_yr_age_comps,
                           end_yr = last_data_yr,
-                          # csv.dir = output_csv_dir,
+                          csv.dir = output_csv_dir,
                           xcaption = paste0("Aggregated fishery age proportion data used in the base model. Proportions are ",
                                             "calculated from numbers of individuals in each age group where the ",
                                             "contributions from each sector are weighted by the catch in that sector. ",
@@ -204,7 +204,7 @@ make.input.age.data.table(base_model,
                           fleet = 2,
                           start_yr = survey_start_yr,
                           end_yr = survey_end_yr,
-                          # csv.dir = output_csv_dir,
+                          csv.dir = output_csv_dir,
                           xcaption = paste0("Survey age proportion data used in the base model. Proportions are ",
                                             "calculated from numbers of individuals in each age group. ",
                                             "Age 15 is an accumulator group."),
@@ -427,7 +427,7 @@ make.median.posterior.table(
   start_yr = start_yr,
   end_yr = end_yr,
   digits = 1, ## Number of decimal points for the percentage columns. Other columns have none.
-  # csv.dir = output_csv_dir,
+  csv.dir = output_csv_dir,
   xcaption = paste0("Time series of median posterior population estimates from the base
                      model. Relative spawning biomass is spawning biomass relative to the
                      unfished equilibrium ($\\Bzero$). Total biomass includes females and males

@@ -50,6 +50,9 @@ models_dir <- file.path(rootd_models,
 last_yr_models_dir <- file.path(rootd_models,
                                 last_assess_yr,
                                 paste0(last_yr_model_version, "-version"))
+
+output_csv_dir <- file.path(rootd_doc, "out-csv")
+
 catch_levels_path <- "catch-levels"
 default_hr_path <- "default-hr"
 stable_catch_path <- "stable-catch"
