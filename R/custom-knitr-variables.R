@@ -250,6 +250,7 @@ median.intensity.2018 <- f(mc$pmed["2018"] * 100, 1)
 median.intensity.2019 <- f(mc$pmed["2019"] * 100, 1)
 median.intensity.2020 <- f(mc$pmed["2020"] * 100, 1)
 median.intensity.2021 <- f(mc$pmed["2021"] * 100, 1)
+median.intensity.2022 <- f(mc$pmed["2022"] * 100, 1)
 median.intensity.penult.yr <- f(mc$pmed[as.character(end_yr - 1)] * 100, 1)
 median.relative.bio <- mc$dmed
 # Remove extra non-year columns to avoid warnings below
