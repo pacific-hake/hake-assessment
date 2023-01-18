@@ -1312,11 +1312,12 @@ make.historical.probs.retro.plot(base_model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{** Retrospective versions of Figure~\ref{fig:main-historical-1}.
+\caption{Retrospective versions of Figure~\ref{fig:main-historical-1}.
   For each panel, the current base model is run using only data up to
   (and including) the year
-  shown (i.e. a retrospective analysis) -- `data to 2011' would
-  equate to doing an assessment at the start of 2012.
+  shown (i.e. a retrospective analysis) -- `data to
+  \Sexpr{assess_yr - length(base_model$retros) - 1}' would
+  equate to doing an assessment at the start of \Sexpr{assess_yr - length(base_model$retros)}.
   Results are shown for further retrospective years in
   Figures~\ref{fig:main-historical-retro-2},
   ~\ref{fig:main-historical-retro-3}
@@ -1337,7 +1338,7 @@ make.historical.probs.retro.plot(base_model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{** As for Figure~\ref{fig:main-historical-retro-1} for
+\caption{As for Figure~\ref{fig:main-historical-retro-1} for
   further retrospective years.}
 \label{fig:main-historical-retro-2}
 \end{figure}
@@ -1353,7 +1354,7 @@ make.historical.probs.retro.plot(base_model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{** As for Figure~\ref{fig:main-historical-retro-1} for
+\caption{As for Figure~\ref{fig:main-historical-retro-1} for
   further retrospective years.}
 \label{fig:main-historical-retro-3}
 \end{figure}
@@ -1368,21 +1369,20 @@ make.historical.probs.retro.plot(base_model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{** As for Figure~\ref{fig:main-historical-retro-1} for
+\caption{As for Figure~\ref{fig:main-historical-retro-1} for
   the final retrospective year.}
 \label{fig:main-historical-retro-4}
-\end{figure}
+% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
-
+%% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
+% \begin{figure}[H]
 \begin{center}
 <<historical-retro-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 make.historical.probs.retro.plot(base_model)
 @
 \end{center}
-\caption{** Retrospective results of
+\caption{Retrospective results of
   Figures~\ref{fig:main-historical-retro-1}--\ref{fig:main-historical-retro-4}
   shown in a single panel.}
 \label{fig:main-historical-retro-all}

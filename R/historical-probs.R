@@ -401,11 +401,15 @@ make.historical.probs.retro.plot <- function(model,
   }
 
   earliest.retro.available = length(model$retros)  # For 2021 base.case: 10
-  earliest.retro.to.use = assess_yr - xLim[1]      # any further is before
+  earliest.retro.to.use = min(assess_yr - xLim[1],
+                              earliest.retro.available)
+                                        # Any further is before
                                         # xLim[1], want first retro year of data
                                         # to be 2011 (for 2012 calcs to compare
                                         # with 2012 assessment), which is retros[[9]].
-
+                                        # Now for 2023 assessment, we can't got
+                                        # back to data up to 2011 because first
+                                        # 10th retro year back is data up to 2012.
 
   retros.to.use = rev(1:earliest.retro.to.use)
   if(!is.null(select.retros)){
