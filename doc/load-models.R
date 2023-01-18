@@ -97,9 +97,11 @@ if(!exists("models")){
                         prepend_to_bridge = prepend_to_bridge)
 }
 
-last_yr_base_model <-
-  readRDS(file.path(drs$last_yr_base_model_dir,
-                    paste0(basename(drs$last_yr_base_model_dir), ".rds")))
+if(!exists("last_yr_base_model"){
+  last_yr_base_model <-
+    readRDS(file.path(drs$last_yr_base_model_dir,
+                      paste0(basename(drs$last_yr_base_model_dir), ".rds")))
+}
 last_yr_base_model_name <- "Base model"
 
 base_model <- models$base_models_dirs[[1]][[1]]
