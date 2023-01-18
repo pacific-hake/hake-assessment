@@ -12,6 +12,11 @@
 #' @param leg_font_size The legend font size
 #' @param point_size Size of all points shownin plot
 #' @param line_width Width of all lines on the plot
+#' @param d_obj If not `NULL` this is a list which has been
+#' pre-processed to contain all models in a format that is ready to plot.
+#' Essentially the first steps of this function have been replicated
+#' outside the function (The code inside the `if(is.null(d_obj))`)
+#' is done to stop the Rmd process from taking forever
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
@@ -31,28 +36,32 @@ plot_biomass <- function(model_lst,
                          leg_pos = c(0.65, 0.83),
                          leg_font_size = 12,
                          point_size = 2,
-                         line_width = 1){
+                         line_width = 1,
+                         d_obj = NULL){
 
-  init_year <- model_lst[[1]]$startyr - 1
+  if(is.null(d_obj)){
+    init_year <- model_lst[[1]]$startyr - 1
+    bo <- map(model_lst, ~{
+      .x$mcmccalcs$sinit
+    }) |>
+      map_dfr(~{.x}) |>
+      mutate(model = model_names) |>
+      mutate(year = init_year) |>
+      select(model, year, everything()) |>
+      setNames(c("model", "year", "slower", "smed", "supper")) |>
+      mutate(model = factor(model, levels = model_names),
+             year = as.numeric(year))
 
-  bo <- map(model_lst, ~{
-    .x$mcmccalcs$sinit
-  }) |>
-    map_dfr(~{.x}) |>
-    mutate(model = model_names) |>
-    mutate(year = init_year) |>
-    select(model, year, everything()) |>
-    setNames(c("model", "year", "slower", "smed", "supper")) |>
-    mutate(model = factor(model, levels = model_names),
-           year = as.numeric(year))
-
-  d <- bind_cols(extract_mcmc_quant(model_lst, model_names, "slower", TRUE),
-                 extract_mcmc_quant(model_lst, model_names, "smed"),
-                 extract_mcmc_quant(model_lst, model_names, "supper")) |>
-    mutate(model = factor(model, levels = model_names),
-           year = as.numeric(year))
-
-  colors <- plot_color(length(model_lst))
+    d <- bind_cols(extract_mcmc_quant(model_lst, model_names, "slower", TRUE),
+                   extract_mcmc_quant(model_lst, model_names, "smed"),
+                   extract_mcmc_quant(model_lst, model_names, "supper")) |>
+      mutate(model = factor(model, levels = model_names),
+             year = as.numeric(year))
+  }else{
+    d <- d_obj[[1]]
+    bo <- d_obj[[2]]
+  }
+  colors <- plot_color(length(unique(d$model)))
 
   g <- ggplot(d,
               aes(x = year,

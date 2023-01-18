@@ -636,3 +636,121 @@ prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
    select("P_decline_curr") %>%
    as.numeric() %>%
    f()
+
+ # Set up bridge model groups for plotting ------------------------------------
+ # Biomass  -------------------------------------------------------------------
+ init_year <- bridge_models[[1]][[1]]$startyr - 1
+ d_obj_bridge_biomass <- list(
+   bo = map(bridge_models[[1]], ~{
+     .x$mcmccalcs$sinit
+   }) |>
+     map_dfr(~{.x}) |>
+     mutate(model = bridge_models_names[[1]]) |>
+     mutate(year = init_year) |>
+     select(model, year, everything()) |>
+     setNames(c("model", "year", "slower", "smed", "supper")) |>
+     mutate(model = factor(model, levels = bridge_models_names[[1]]),
+            year = as.numeric(year)),
+
+   d = bind_cols(extract_mcmc_quant(bridge_models[[1]],
+                                    bridge_models_names[[1]],
+                                    "slower", TRUE),
+                 extract_mcmc_quant(bridge_models[[1]],
+                                    bridge_models_names[[1]],
+                                    "smed"),
+                 extract_mcmc_quant(bridge_models[[1]],
+                                    bridge_models_names[[1]],
+                                    "supper")) |>
+     mutate(model = factor(model, levels = bridge_models_names[[1]]),
+            year = as.numeric(year))
+ )
+
+ # Relative biomass  ----------------------------------------------------------
+ d_obj_bridge_rel_biomass <- list(
+   d = bind_cols(extract_mcmc_quant(bridge_models[[1]],
+                                    bridge_models_names[[1]],
+                                    "dlower", TRUE),
+                 extract_mcmc_quant(bridge_models[[1]],
+                                    bridge_models_names[[1]],
+                                    "dmed"),
+                 extract_mcmc_quant(bridge_models[[1]],
+                                    bridge_models_names[[1]],
+                                    "dupper")) |>
+     mutate(model = factor(model, levels = bridge_models_names[[1]]),
+            year = as.numeric(year)))
+
+ # Recdevs  -------------------------------------------------------------------
+ d_obj_bridge_recdevs <- list(
+   d = bind_cols(extract_mcmc_quant(bridge_models[[1]],
+                                    bridge_models_names[[1]],
+                                    "devlower", TRUE),
+                  extract_mcmc_quant(bridge_models[[1]],
+                                     bridge_models_names[[1]],
+                                     "devmed"),
+                  extract_mcmc_quant(bridge_models[[1]],
+                                     bridge_models_names[[1]],
+                                     "devupper")) |>
+     mutate(model = factor(model, levels = bridge_models_names[[1]]),
+            year = as.numeric(year)))
+
+ # Survey age2+ index  --------------------------------------------------------
+ obs <- bridge_models[[1]][[1]]$dat$CPUE |>
+   as_tibble() |>
+   filter(index == 2) |>
+   select(-seas, -se_log, -index) |>
+   setNames(c("year", "index.med")) |>
+   mutate(year = as.numeric(year)) |>
+   mutate(model = "Observed") |>
+   mutate(index.025 = index.med,
+          index.975 = index.med) |>
+   select(model, year, index.025, index.med, index.975)
+
+ d_obj_bridge_survey_age2_index <- list(
+   d = bind_cols(extract_survey_index_fits(bridge_models[[1]],
+                                           bridge_models_names[[1]],
+                                           "age2",
+                                           "index.025", TRUE),
+                 extract_survey_index_fits(bridge_models[[1]],
+                                           bridge_models_names[[1]],
+                                           "age2",
+                                           "index.med"),
+                 extract_survey_index_fits(bridge_models[[1]],
+                                           bridge_models_names[[1]],
+                                           "age2",
+                                           "index.975")) |>
+     bind_rows(obs) |>
+     mutate(model = factor(model, levels = c(bridge_models_names[[1]], "Observed")),
+            year = as.numeric(year)) |>
+     mutate_at(vars(index.025, index.med, index.975),
+               ~{.x / 1e6}))
+
+ # Survey age1 index  ---------------------------------------------------------
+ obs <- bridge_models[[1]][[1]]$dat$CPUE |>
+   as_tibble() |>
+   filter(index == 3) |>
+   select(-seas, -se_log, -index) |>
+   setNames(c("year", "index.med")) |>
+   mutate(year = as.numeric(year)) |>
+   mutate(model = "Observed") |>
+   mutate(index.025 = index.med,
+          index.975 = index.med) |>
+   select(model, year, index.025, index.med, index.975)
+
+ d_obj_bridge_survey_age1_index <- list(
+   d = bind_cols(extract_survey_index_fits(bridge_models[[1]],
+                                           bridge_models_names[[1]],
+                                           "age1",
+                                           "index.025", TRUE),
+                 extract_survey_index_fits(bridge_models[[1]],
+                                           bridge_models_names[[1]],
+                                           "age1",
+                                           "index.med"),
+                 extract_survey_index_fits(bridge_models[[1]],
+                                           bridge_models_names[[1]],
+                                           "age1",
+                                           "index.975")) |>
+     bind_rows(obs) |>
+     mutate(model = factor(model, levels = c(bridge_models_names[[1]], "Observed")),
+            year = as.numeric(year)) |>
+     mutate_at(vars(index.025, index.med, index.975),
+               ~{.x / 1e6}))

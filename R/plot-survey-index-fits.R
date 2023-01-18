@@ -18,6 +18,11 @@
 #' @param line_width Width of all lines on the plot
 #' @param dodge_val The amount to offset the lines from each other in the
 #' case of multiple models
+#' @param d_obj If not `NULL` this is a list which has been
+#' pre-processed to contain all models in a format that is ready to plot.
+#' Essentially the first steps of this function have been replicated
+#' outside the function (The code inside the `if(is.null(d_obj))`)
+#' is done to stop the Rmd process from taking forever
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
@@ -39,41 +44,47 @@ plot_survey_index_fits <- function(
     leg_font_size = 12,
     point_size = 1.5,
     line_width = 0.5,
-    dodge_val = 0.5){
+    dodge_val = 0.5,
+    d_obj = NULL){
 
   survey_type <- match.arg(survey_type)
   fleet <- ifelse(survey_type == "age2", 2, 3)
 
-  obs <- model_lst[[1]]$dat$CPUE |>
-    as_tibble() |>
-    filter(index == fleet) |>
-    select(-seas, -se_log, -index) |>
-    setNames(c("year", "index.med")) |>
-    mutate(year = as.numeric(year)) |>
-    mutate(model = "Observed") |>
-    mutate(index.025 = index.med,
-           index.975 = index.med) |>
-    select(model, year, index.025, index.med, index.975)
+  if(is.null(d_obj)){
+    obs <- model_lst[[1]]$dat$CPUE |>
+      as_tibble() |>
+      filter(index == fleet) |>
+      select(-seas, -se_log, -index) |>
+      setNames(c("year", "index.med")) |>
+      mutate(year = as.numeric(year)) |>
+      mutate(model = "Observed") |>
+      mutate(index.025 = index.med,
+             index.975 = index.med) |>
+      select(model, year, index.025, index.med, index.975)
 
-  d <- bind_cols(extract_survey_index_fits(model_lst,
-                                           model_names,
-                                           survey_type,
-                                           "index.025", TRUE),
-                 extract_survey_index_fits(model_lst,
-                                           model_names,
-                                           survey_type,
-                                           "index.med"),
-                 extract_survey_index_fits(model_lst,
-                                           model_names,
-                                           survey_type,
-                                           "index.975")) |>
-    bind_rows(obs) |>
-    mutate(model = factor(model, levels = c(model_names, "Observed")),
-           year = as.numeric(year)) |>
-    mutate_at(vars(index.025, index.med, index.975),
-              ~{.x / 1e6})
+    d <- bind_cols(extract_survey_index_fits(model_lst,
+                                             model_names,
+                                             survey_type,
+                                             "index.025", TRUE),
+                   extract_survey_index_fits(model_lst,
+                                             model_names,
+                                             survey_type,
+                                             "index.med"),
+                   extract_survey_index_fits(model_lst,
+                                             model_names,
+                                             survey_type,
+                                             "index.975")) |>
+      bind_rows(obs) |>
+      mutate(model = factor(model, levels = c(model_names, "Observed")),
+             year = as.numeric(year)) |>
+      mutate_at(vars(index.025, index.med, index.975),
+                ~{.x / 1e6})
+  }else{
+    d <- d_obj[[1]]
+    obs <- d_obj[[2]]
+  }
 
-  colors <- plot_color(length(model_lst) + 1)
+  colors <- plot_color(length(unique(d$model)))
 
   g <- ggplot(d,
               aes(x = year,

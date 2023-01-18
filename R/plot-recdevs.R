@@ -16,6 +16,11 @@
 #' @param line_width Width of all lines on the plot
 #' @param dodge_val The amount to offset the lines from each other in the
 #' case of multiple models
+#' @param d_obj If not `NULL` this is a list which has been
+#' pre-processed to contain all models in a format that is ready to plot.
+#' Essentially the first steps of this function have been replicated
+#' outside the function (The code inside the `if(is.null(d_obj))`)
+#' is done to stop the Rmd process from taking forever
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
@@ -39,15 +44,20 @@ plot_recdevs <- function(model_lst,
                          leg_font_size = 12,
                          point_size = 1.5,
                          line_width = 0.5,
-                         dodge_val = 0.5){
+                         dodge_val = 0.5,
+                         d_obj = NULL){
 
-  d <- bind_cols(extract_mcmc_quant(model_lst, model_names, "devlower", TRUE),
-                 extract_mcmc_quant(model_lst, model_names, "devmed"),
-                 extract_mcmc_quant(model_lst, model_names, "devupper")) |>
-    mutate(model = factor(model, levels = model_names),
-           year = as.numeric(year))
+  if(is.null(d_obj)){
+    d <- bind_cols(extract_mcmc_quant(model_lst, model_names, "devlower", TRUE),
+                   extract_mcmc_quant(model_lst, model_names, "devmed"),
+                   extract_mcmc_quant(model_lst, model_names, "devupper")) |>
+      mutate(model = factor(model, levels = model_names),
+             year = as.numeric(year))
+  }else{
+    d <- d_obj[[1]]
+  }
 
-  colors <- plot_color(length(model_lst))
+  colors <- plot_color(length(unique(d$model)))
 
   g <- ggplot(d,
               aes(x = year,

@@ -311,26 +311,22 @@ make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1, highlight = 5)
 <<main-bridge-5-panel-1, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the differences between the first bridging models for various model outputs">>=
 plist <- list()
 plist[[1]] <-
-  plot_rel_biomass(bridge_models[[1]],
-                   bridge_models_names[[1]],
+  plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass,
                    ylim = c(0, 2.5),
                    y_labels = expression("0", "0.1B"[0], "0.4B"[0], "0.5",
                                          "B"[0], "1.5", "2", "2.5"),
                    leg_pos = "none")
 plist[[2]] <-
-  plot_recdevs(bridge_models[[1]],
-               bridge_models_names[[1]],
+  plot_recdevs(d_obj = d_obj_bridge_recdevs,
                leg_pos = "none")
 
 plist[[3]] <-
-  plot_survey_index_fits(bridge_models[[1]],
-                         bridge_models_names[[1]],
+  plot_survey_index_fits(d_obj_bridge_survey_age2_index,
                          survey_type = "age2",
                          leg_pos = "none")
 
 plist[[4]] <-
-  plot_survey_index_fits(bridge_models[[1]],
-                         bridge_models_names[[1]],
+  plot_survey_index_fits(d_obj_bridge_survey_age1_index,
                          survey_type = "age1",
                          xlim = c(1995, 2022),
                          ylim = c(0, 6.5),
@@ -343,8 +339,8 @@ quad_grid <- cowplot::plot_grid(plotlist = plist,
                                 ncol = 2)
 full_plist <- list()
 full_plist[[1]] <-
-  plot_biomass(bridge_models[[1]],
-               bridge_models_names[[1]])
+  plot_biomass(d_obj = d_obj_bridge_biomass)
+
 full_plist[[2]] <- quad_grid
 
 cowplot::plot_grid(plotlist = full_plist,
