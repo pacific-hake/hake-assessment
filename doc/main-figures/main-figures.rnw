@@ -321,12 +321,12 @@ plist[[2]] <-
                leg_pos = "none")
 
 plist[[3]] <-
-  plot_survey_index_fits(d_obj_bridge_survey_age2_index,
+  plot_survey_index_fits(d_obj = d_obj_bridge_survey_age2_index,
                          survey_type = "age2",
                          leg_pos = "none")
 
 plist[[4]] <-
-  plot_survey_index_fits(d_obj_bridge_survey_age1_index,
+  plot_survey_index_fits(d_obj = d_obj_bridge_survey_age1_index,
                          survey_type = "age1",
                          xlim = c(1995, 2022),
                          ylim = c(0, 6.5),

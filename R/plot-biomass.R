@@ -20,16 +20,16 @@
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
-plot_biomass <- function(model_lst,
+plot_biomass <- function(model_lst = NULL,
                          model_names,
-                         xlim = c(model_lst[[1]]$startyr - 2,
-                                  model_lst[[1]]$endyr + 1),
-                         x_breaks = c(model_lst[[1]]$startyr,
+                         xlim = c(1964,
+                                  year(Sys.time())),
+                         x_breaks = c(1966,
                                       seq(1970,
                                           # Current decade, i.e. 2020
-                                          round(lubridate::year(Sys.time()), -1),
+                                          round(year(Sys.time()), -1),
                                           by = 5),
-                                      model_lst[[1]]$endyr + 1),
+                                      year(Sys.time())),
                          ylim = c(0, 4.5),
                          y_breaks = seq(ylim[1], ylim[2], by = 0.5),
                          alpha = 0.1,
@@ -62,7 +62,7 @@ plot_biomass <- function(model_lst,
     bo <- d_obj[[2]]
   }
   colors <- plot_color(length(unique(d$model)))
-
+browser()
   g <- ggplot(d,
               aes(x = year,
                   y = smed,
@@ -77,7 +77,7 @@ plot_biomass <- function(model_lst,
                     ylim = ylim) +
     geom_ribbon(alpha = alpha,
                 linetype = "dashed") +
-    geom_line(size = line_width) +
+    geom_line(linewidth = line_width) +
     geom_point(size = point_size) +
     scale_x_continuous(expand = c(0, 0),
                        breaks = x_breaks,
@@ -99,7 +99,7 @@ plot_biomass <- function(model_lst,
                size = point_size,
                position = position_dodge(1.5)) +
     geom_errorbar(data = bo,
-                  size = line_width,
+                  linewidth = line_width,
                   position = position_dodge(1.5))
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){

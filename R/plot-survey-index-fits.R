@@ -31,11 +31,8 @@ plot_survey_index_fits <- function(
     model_names,
     survey_type = c("age1",
                     "age2"),
-    xlim = c(min(as.numeric(model_lst[[1]]$extra.mcmc$index.med$Yr)),
-             max(as.numeric(model_lst[[1]]$extra.mcmc$index.med$Yr))),
-    x_breaks = seq(min(as.numeric(model_lst[[1]]$extra.mcmc$index.med$Yr)),
-                   max(as.numeric(model_lst[[1]]$extra.mcmc$index.med$Yr)),
-                   by = 5),
+    xlim = c(1995, 2021),
+    x_breaks = seq(1995, 2021, by = 5),
     ylim = c(0, 3),
     y_breaks = seq(ylim[1], ylim[2], by = 0.5),
     y_labels = expression("0", "0.5", "1", "1.5", "2", "2.5", "3"),
@@ -81,7 +78,6 @@ plot_survey_index_fits <- function(
                 ~{.x / 1e6})
   }else{
     d <- d_obj[[1]]
-    obs <- d_obj[[2]]
   }
 
   colors <- plot_color(length(unique(d$model)))

@@ -642,16 +642,6 @@ prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
  # Biomass  -------------------------------------------------------------------
  init_year <- bridge_models[[1]][[1]]$startyr - 1
  d_obj_bridge_biomass <- list(
-   bo = map(bridge_models[[1]], ~{
-     .x$mcmccalcs$sinit
-   }) |>
-     map_dfr(~{.x}) |>
-     mutate(model = bridge_models_names[[1]]) |>
-     mutate(year = init_year) |>
-     select(model, year, everything()) |>
-     setNames(c("model", "year", "slower", "smed", "supper")) |>
-     mutate(model = factor(model, levels = bridge_models_names[[1]]),
-            year = as.numeric(year)),
 
    d = bind_cols(extract_mcmc_quant(bridge_models[[1]],
                                     bridge_models_names[[1]],
@@ -663,8 +653,18 @@ prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
                                     bridge_models_names[[1]],
                                     "supper")) |>
      mutate(model = factor(model, levels = bridge_models_names[[1]]),
-            year = as.numeric(year))
- )
+            year = as.numeric(year)),
+
+   bo = map(bridge_models[[1]], ~{
+     .x$mcmccalcs$sinit
+   }) |>
+     map_dfr(~{.x}) |>
+     mutate(model = bridge_models_names[[1]]) |>
+     mutate(year = init_year) |>
+     select(model, year, everything()) |>
+     setNames(c("model", "year", "slower", "smed", "supper")) |>
+     mutate(model = factor(model, levels = bridge_models_names[[1]]),
+            year = as.numeric(year)))
 
  # Relative biomass  ----------------------------------------------------------
  d_obj_bridge_rel_biomass <- list(

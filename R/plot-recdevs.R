@@ -26,15 +26,15 @@
 #' @export
 plot_recdevs <- function(model_lst,
                          model_names,
-                         xlim = c(min(model_lst[[1]]$recruit$Yr),
-                                  model_lst[[1]]$endyr + 1),
-                         x_breaks = c(min(model_lst[[1]]$recruit$Yr),
+                         xlim = c(1946,
+                                  year(Sys.time())),
+                         x_breaks = c(1946,
                                       seq(
-                                        round(min(model_lst[[1]]$recruit$Yr) + 10, -1),
+                                        round(1946 + 10, -1),
                                         # Current decade, i.e. 2020
-                                        round(lubridate::year(Sys.time()) - 10, -1),
+                                        round(year(Sys.time()) - 10, -1),
                                         by = 10),
-                                      model_lst[[1]]$endyr + 1),
+                                      year(Sys.time())),
                          ylim = c(-4, 4),
                          y_breaks = seq(ylim[1], ylim[2], by = 2),
                          y_labels = expression("-4", "-2", "0", "2", "4"),

@@ -22,13 +22,15 @@
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
-plot_rel_biomass <- function(model_lst,
+plot_rel_biomass <- function(model_lst = NULL,
                              model_names,
-                             xlim = c(model_lst[[1]]$startyr - 2,
-                                      model_lst[[1]]$endyr + 1),
-                             x_breaks = c(model_lst[[1]]$startyr,
-                                          seq(1970, 2020, by = 5),
-                                          model_lst[[1]]$endyr + 1),
+                             xlim = c(1966, year(Sys.time())),
+                             x_breaks = c(1966,
+                                          seq(1970,                                           # Current decade, i.e. 2020
+                                              # Current decade, i.e. 2020
+                                              round(year(Sys.time()), -1),
+                                              by = 5),
+                                          year(Sys.time())),
                              ylim = c(0, 3.5),
                              y_breaks = c(
                                0,
@@ -91,20 +93,20 @@ plot_rel_biomass <- function(model_lst,
                     ylim = ylim) +
     geom_ribbon(alpha = alpha,
                 linetype = "dashed") +
-    geom_line(size = line_width) +
+    geom_line(linewidth = line_width) +
     geom_point(size = point_size) +
     geom_hline(yintercept = 0.1,
                linetype = "dotted",
                color = "red",
-               size = 1) +
+               linewidth = 1) +
     geom_hline(yintercept = 0.4,
                linetype = "dotted",
                color = "green",
-               size = 1) +
+               linewidth = 1) +
     geom_hline(yintercept = 1,
                linetype = "dotted",
                color = "blue",
-               size = 1) +
+               linewidth = 1) +
     scale_x_continuous(expand = c(0, 0),
                        breaks = x_breaks,
                        labels = x_breaks) +
