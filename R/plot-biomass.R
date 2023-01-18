@@ -8,7 +8,7 @@
 #' @param y_breaks The depletion value tick marks to show for the y axis
 #' @param alpha The transparency for all ribbons
 #' @param leg_pos The position of the legend inside the plot. If `NULL`,
-#' the legend will be in its default location outside the plot margin
+#' `NA`, or `none`, the legend will not be shown
 #' @param leg_font_size The legend font size
 #' @param point_size Size of all points shownin plot
 #' @param line_width Width of all lines on the plot
@@ -74,7 +74,7 @@ plot_biomass <- function(model_lst,
                        breaks = y_breaks,
                        labels = y_breaks) +
     theme(legend.title = element_blank(),
-          legend.text=element_text(size = leg_font_size),
+          legend.text = element_text(size = leg_font_size),
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 0, 0)) +
@@ -90,7 +90,10 @@ plot_biomass <- function(model_lst,
                   size = line_width,
                   position = position_dodge(1.5))
 
-  if(!is.null(leg_pos)){
+  if(is.null(leg_pos) || is.na(leg_pos)){
+    g <- g +
+      theme(legend.position = "none")
+  }else{
     g <- g +
       theme(legend.position = leg_pos)
   }
