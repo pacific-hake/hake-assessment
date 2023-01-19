@@ -1126,9 +1126,11 @@ plist[[1]] <- plot_biomass(d_obj = d_obj_retro_biomass,
                            leg_font_size = 9,
                            leg_pos = c(0.6, 0.89),
                            leg_ncol = 2,
-                           alpha = 0.1)
+                           alpha = 0.1,
+                           rev_colors = TRUE)
 plist[[2]] <- plot_recruitment(d_obj = d_obj_retro_recr,
-                               leg_pos = "none")
+                               leg_pos = "none",
+                               rev_colors = TRUE)
 
 cowplot::plot_grid(plotlist = plist,
                    nrow = 2,
@@ -1342,11 +1344,7 @@ make.historical.probs.retro.plot(base_model,
 \label{fig:main-historical-retro-4}
 % \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-<<<<<<< HEAD
-%% JOINED ON PAGE
-=======
 
->>>>>>> 9a09910d (Add a bunch of new plots)
 %%%%%%%%%%%%%%%%%%%%%%%
 % \begin{figure}[H]
 ~ \\
@@ -1362,7 +1360,6 @@ make.historical.probs.retro.plot(base_model,
 \label{fig:main-historical-retro-all}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]

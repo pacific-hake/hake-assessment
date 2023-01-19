@@ -638,10 +638,18 @@ prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
  for(i in plot_retro_yrs){
    retro.list[[i + 1]] <- base_model$retros[[i]]
  }
+ retro_models_end_yr <- c(end_yr, end_yr - plot_retro_yrs)
  # Assemble the retrospective list with the base as the first element
- d_obj_retro_biomass <- create_group_df_biomass(retro.list, retro.model.names)
- d_obj_retro_rel_biomass <- create_group_df_biomass(retro.list, retro.model.names, rel = TRUE)
- d_obj_retro_recr <- create_group_df_recr(retro.list, retro.model.names)
+ d_obj_retro_biomass <- create_group_df_biomass(retro.list,
+                                                retro.model.names,
+                                                end_yrs = retro_models_end_yr)
+ d_obj_retro_rel_biomass <- create_group_df_biomass(retro.list,
+                                                    retro.model.names,
+                                                    rel = TRUE,
+                                                    end_yrs = retro_models_end_yr)
+ d_obj_retro_recr <- create_group_df_recr(retro.list,
+                                          retro.model.names,
+                                          end_yrs = retro_models_end_yr)
 
  # Set up bridge model groups for plotting ------------------------------------
  iter <- 0
