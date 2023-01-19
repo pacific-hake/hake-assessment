@@ -23,7 +23,11 @@ bridge_models_desc <-
          #"Add age-1 index", # Uncomment in survey years
          paste0("Add ", last_data_yr, " fishery age comps")))
 prepend_to_bridge <- TRUE
-bridge_model_end_yr <- end_yr - c(1, 0, 0, 0, 0, 0)
+# Subtract the following number of years of the end of the models
+# when plotting. Should only be 1 for the first one or two, then zeroes.
+# This vector must be 1 longer than the above lists, because last year's
+# base model is prepended to those lists
+bridge_model_end_yr <- list(end_yr - c(1, 1, 0, 0, 0))
 
 # This is a list of vectors of sensitivity groups (sensitivity models that
 # will be plotted against each other). It can be `NA` if you want it to be

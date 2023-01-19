@@ -5,6 +5,8 @@
 #' @param model_names A vector of model names,the same length as `model_lst`
 #' @param rel Logical. If `TRUE` return a list of one element, the relative
 #' biomass (no B0 element)
+#' @param end_yrs A vector of the end years for each model.
+#' If one value, it will apply to all models
 #'
 #' @return A list or one or two [tibble::tibble()]. If `rel` is `TRUE`, one
 #' (biomass) If `rel` is `FALSE`, two (biomass and B0)
@@ -12,7 +14,8 @@
 #' @export
 create_group_df_biomass <- function(model_lst = NULL,
                                     model_names = NULL,
-                                    rel = FALSE){
+                                    rel = FALSE,
+                                    ...){
 
   init_year <- model_lst[[1]]$startyr - 1
 
@@ -20,13 +23,17 @@ create_group_df_biomass <- function(model_lst = NULL,
 
   d <- bind_cols(extract_mcmc_quant(model_lst,
                                     model_names,
-                                    vals[1], TRUE),
+                                    type = vals[1],
+                                    inc_model_year = TRUE,
+                                    ...),
                  extract_mcmc_quant(model_lst,
                                     model_names,
-                                    vals[2]),
+                                    type = vals[2],
+                                    ...),
                  extract_mcmc_quant(model_lst,
                                     model_names,
-                                    vals[3])) |>
+                                    type = vals[3],
+                                    ...)) |>
     mutate(model = factor(model, levels = model_names),
            year = as.numeric(year))
 

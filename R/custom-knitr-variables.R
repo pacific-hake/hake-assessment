@@ -644,20 +644,37 @@ prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
  d_obj_retro_recr <- create_group_df_recr(retro.list, retro.model.names)
 
  # Set up bridge model groups for plotting ------------------------------------
+ iter <- 0
  d_obj_bridge_biomass <- map2(bridge_models, bridge_models_names, ~{
-   create_group_df_biomass(.x, .y)
+   iter <- iter + 1
+   create_group_df_biomass(.x, .y,
+                           end_yrs = bridge_model_end_yr[[iter]])
  })
+ iter <- 0
  d_obj_bridge_rel_biomass <- map2(bridge_models, bridge_models_names, ~{
-   create_group_df_biomass(.x, .y, rel = TRUE)
+   iter <- iter + 1
+   create_group_df_biomass(.x, .y,
+                           rel = TRUE,
+                           end_yrs = bridge_model_end_yr[[iter]])
  })
+ iter <- 0
  d_obj_bridge_recdev <- map2(bridge_models, bridge_models_names, ~{
-   create_group_df_recr(.x, .y, devs = TRUE)
+   iter <- iter + 1
+   create_group_df_recr(.x, .y,
+                        devs = TRUE,
+                        end_yrs = bridge_model_end_yr[[iter]])
  })
+ iter <- 0
  d_obj_bridge_age1_index <- map2(bridge_models, bridge_models_names, ~{
-   create_group_df_index(.x, .y, "age1")
+   iter <- iter + 1
+   create_group_df_index(.x, .y,
+                         type = "age1")
  })
+ iter <- 0
  d_obj_bridge_age2_index <- map2(bridge_models, bridge_models_names, ~{
-   create_group_df_index(.x, .y, "age2")
+   iter <- iter + 1
+   create_group_df_index(.x, .y,
+                         type = "age2")
  })
 
  # Set up sensitivity model groups for plotting -------------------------------

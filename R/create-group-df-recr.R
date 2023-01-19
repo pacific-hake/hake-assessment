@@ -11,20 +11,25 @@
 #' @export
 create_group_df_recr <- function(model_lst = NULL,
                                  model_names = NULL,
-                                 devs = FALSE){
+                                 devs = FALSE,
+                                 ...){
 
   vals <- paste0(ifelse(devs, "dev", "r"),
                  c("lower", "med", "upper"))
 
   d <- bind_cols(extract_mcmc_quant(model_lst,
                                     model_names,
-                                    vals[1], TRUE),
+                                    vals[1],
+                                    TRUE,
+                                    ...),
                  extract_mcmc_quant(model_lst,
                                     model_names,
-                                    vals[2]),
+                                    vals[2],
+                                    ...),
                  extract_mcmc_quant(model_lst,
                                     model_names,
-                                    vals[3])) |>
+                                    vals[3],
+                                    ...)) |>
     mutate(model = factor(model, levels = model_names),
            year = as.numeric(year))
 

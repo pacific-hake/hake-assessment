@@ -8,19 +8,32 @@
 #' `type` = "smed"
 #' @param inc_models_yr Logical. If `TRUE`, include the `model` and `year`
 #' columns in the data frame
+#' @param end_yrs A vector of the end years for each model.
+#' If one value, it will apply to all models
 #'
 #' @return A [tibble::tibble()]
 #' @export
-extract_mcmc_quant <-  function(model_lst,
-                                model_names,
-                                type,
-                                inc_model_year = FALSE){
+extract_mcmc_quant <- function(model_lst,
+                               model_names,
+                               type,
+                               inc_model_year = FALSE,
+                               end_yrs = year(Sys.time())){
 
-  out <- map(model_lst, ~{
+  if(length(end_yrs) == 1){
+    end_yrs <- rep(end_yrs, length(model_lst))
+  }
+  if(length(end_yrs) != length(model_lst)){
+    stop("Length of `end_yrs` does not equal the length ",
+         "of `model_lst`",
+         call. = FALSE)
+  }
+
+  out <- map2(model_lst, end_yrs, ~{
     tmp <- .x$mcmccalcs[[type]]
     type_nms <- names(tmp)
     type_nms <- type_nms[suppressWarnings(!is.na(as.numeric(type_nms)))]
-    tmp[type_nms]
+    tmp <- tmp[type_nms]
+    tmp[as.numeric(type_nms) <= .y]
   }) |>
     map_dfr(~{.x}) |>
     mutate(model = model_names) |>
