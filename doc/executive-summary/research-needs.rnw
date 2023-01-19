@@ -3,7 +3,7 @@
 %  for the Exec Summary, that also get called into research.rnw.
 \begin{enumerate}
 
-\item ** Conduct research to evaluate ways to improve recent,
+\item Continue to conduct research to evaluate ways to improve recent,
 current, and future recruitment estimates for use in stock assessment.
 This could include the development of recruitment indices, time series of
 informative environmental or oceanographic variables, and models that
@@ -12,31 +12,18 @@ incorporating information on recruitment into the stock assessment model and
 the \fishname\ management framework. For example, estimates could be included
 in the stock assessment as a standalone data source (similar to acoustic survey
 biomass estimates) or the estimation procedure itself could be integrated directly
-into the stock assessment model. Results from such work should be connected to ongoing
+into the stock assessment model. Results from such work should be connected to or in
+cooperation with ongoing
 research related to recruitment variability, $\sigma_R$, as discussed in
 Section~\ref{sec:assessment-response-review}. Related, there is
 a need to streamline and broaden the availability of products from oceanographic models (e.g.,
 \ifnum\value{counter_research-needs}>0 {ROMS}\else{Regional Ocean Modeling System; ROMS}\fi)
 so that they are available stock-wide and can be
-used on a recurring basis as informative links in operational stock assessments.
+used on a recurring basis as informative links in operational stock assessments. A successful
+example of this has been the annual production of \fishname\ distribution forecasts
+according to 9-month lead time sea surface temperature predictions. 
 
-\item ** Use and build upon the existing
-\ifnum\value{counter_research-needs}>0 {MSE }\else{management strategy evaluation (MSE) }\fi
-framework to evaluate major sources of
-uncertainty relating to data, model structure, and the harvest policy for this
-fishery and compare potential methods to address them. In particular,
-utilize and adapt this simulation framework to address new and ongoing
-stock assessment research and data needs through the Pacific Hake MSE
-Working Group. For example, research investigating links between hake biomass,
-spatial distribution, growth, and recruitment and how
-these links vary with ocean conditions and ecosystem variables such as
-temperature, transport, and prey availability would be beneficial.
-These investigations have the potential to improve
-the scenarios considered in future MSE
-work and the basic understanding of drivers of hake
-population dynamics and availability to fisheries and surveys.
-
-\item ** Document the existing survey methodologies, protocols,
+\item Document the existing survey methodologies, protocols,
 and adaptive survey-design decisions that lead to the development of \fishname\
 biomass and age-composition estimates and the age-1 index used in the stock assessment.
 Such documentation will ensure transparency, enable repeatability, and
@@ -60,5 +47,13 @@ Re-Envisioning West Coast Surveys Initiative) and
 Fisheries and Oceans Canada
 to determine optimal survey designs given constraints, including designs that incorporate ecosystem-based factors
 and other potential target species (e.g., rockfish, euphausiids, and mesopelagics) for the \surveyname.
+
+\item Work with regional partners to develop an annual workflow that provides key metrics,
+indicators, or other summaries of general ecosystem conditions relevant to the \fishname\ coast-wide
+stock.  In particular, include those that are potentially associated with \fishname\ biology
+and ecology (e.g., recruitment, distribution, predation, prey, and communities). Such information
+can broaden the context within which a single species stock assessment is interpreted, be used to
+support model development, refine uncertain assessment conclusions (e.g., productivity),
+and provide other non-assessment indicators of system-state to management.
 
 \addtocounter{counter_research-needs}{1}
