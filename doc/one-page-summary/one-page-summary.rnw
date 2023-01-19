@@ -23,7 +23,6 @@
     [t represents metric tons], a 6\% decrease from the average over the past decade of
     \Sexpr{f(mean(ct$tot_catch[(end_yr-start_yr-9):(end_yr-start_yr)]),0)}~t,
     out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t.
-    %Quotas were specified unilaterally in 2021 due to the lack of a bilateral TAC agreement.
     The U.S. caught \Sexpr{last.year.us.landings}~t (\Sexpr{last.year.us.attained}\%
     of their quota) and Canada caught \Sexpr{last.year.can.landings}~t
     (\Sexpr{last.year.can.attained}\% of their quota).
@@ -39,7 +38,7 @@
 
   \item The median estimate of the \Sexpr{end_yr} relative female spawning biomass
     (female spawning biomass at the start of \Sexpr{end_yr} divided by that at
-    unfished equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly
+    unfished equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but it is highly
     uncertain (with 95\% credible interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%). The median relative female spawning biomass
     has increased since 2021, due to the expected above average
@@ -90,7 +89,7 @@
    outpace growth of the expected large 2020 cohort), with a \Sexpr{last.yr.tac.risk.2.bforty}\% chance
    of the female spawning biomass falling below $\Bforty$ in \Sexpr{end_yr+2}. There is an
    estimated \Sexpr{last.yr.tac.risk.1.biomass.decline}\% chance of the female spawning biomass declining from \Sexpr{end_yr} to
-   \Sexpr{end_yr+1}, and a
+   \Sexpr{end_yr+1}, and an
    \Sexpr{last.yr.tac.risk.2.biomass.decline}\% chance of it declining from \Sexpr{end_yr+1} to
    \Sexpr{end_yr+2}
 % , and a \Sexpr{last.yr.tac.risk.3.biomass.decline}\% chance of it declining
