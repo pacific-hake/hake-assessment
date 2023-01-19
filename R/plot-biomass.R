@@ -9,9 +9,12 @@
 #' @param alpha The transparency for all ribbons
 #' @param leg_pos The position of the legend inside the plot. If `NULL`,
 #' `NA`, or `none`, the legend will not be shown
+#' @param leg_ncol The number of columns to show in the legend
 #' @param leg_font_size The legend font size
 #' @param point_size Size of all points shownin plot
 #' @param line_width Width of all lines on the plot
+#' @param wrap_y_label Logical. If `TRUE`, adds a newline to the y axis
+#' label so that it doesn't get cut off
 #' @param d_obj If not `NULL` this is a list which has been
 #' pre-processed to contain all models in a format that is ready to plot.
 #' Essentially the first steps of this function have been replicated
@@ -35,6 +38,7 @@ plot_biomass <- function(model_lst = NULL,
                          y_breaks = seq(ylim[1], ylim[2], by = 0.5),
                          alpha = 0.2,
                          leg_pos = c(0.65, 0.83),
+                         leg_ncol = 1,
                          leg_font_size = 12,
                          point_size = 2.5,
                          point_shape = 16,
@@ -42,6 +46,7 @@ plot_biomass <- function(model_lst = NULL,
                          single_line_color = "black",
                          single_ribbon_color = "blue",
                          rev_colors = FALSE,
+                         wrap_y_label = FALSE,
                          d_obj = NULL){
 
   if(is.null(d_obj)){
@@ -100,8 +105,10 @@ plot_biomass <- function(model_lst = NULL,
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 0, 0)) +
-    xlab("Year") +
-    ylab("Female Spawning Biomass (million t)")
+    labs(x = "Year",
+         y = ifelse(wrap_y_label,
+                    add_newlines("Female Spawning Biomass+(million t)"),
+                    "Female Spawning Biomass (million t)"))
 
   # Add B0 to the plot
   g <- g +
@@ -117,7 +124,9 @@ plot_biomass <- function(model_lst = NULL,
       theme(legend.position = "none")
   }else{
     g <- g +
-      theme(legend.position = leg_pos)
+      theme(legend.position = leg_pos) +
+      guides(fill = guide_legend(ncol = leg_ncol),
+             color = guide_legend(ncol = leg_ncol))
   }
 
   g

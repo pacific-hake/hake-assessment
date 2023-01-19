@@ -11,6 +11,7 @@
 #' @param alpha The transparency for all ribbons
 #' @param leg_pos The position of the legend inside the plot. If `NULL`,
 #' `NA`, or `none`, the legend will not be shown
+#' @param leg_ncol The number of columns to show in the legend
 #' @param leg_font_size The legend font size
 #' @param point_size Size of all points shownin plot
 #' @param line_width Width of all lines on the plot
@@ -34,9 +35,8 @@ plot_recdevs <- function(model_lst = NULL,
                                       seq(
                                         round(1946 + 10, -1),
                                         # Current decade, i.e. 2020
-                                        round(year(Sys.time()) - 10, -1),
-                                        by = 10),
-                                      year(Sys.time())),
+                                        round(year(Sys.time()), -1),
+                                        by = 10)),
                          x_expansion = 3,
                          ylim = c(-5, 5),
                          y_breaks = seq(ylim[1], ylim[2], by = 1),
@@ -48,6 +48,7 @@ plot_recdevs <- function(model_lst = NULL,
                                       "black", "black", "black", "black", "black"),
                          alpha = 0.1,
                          leg_pos = c(0.65, 0.83),
+                         leg_ncol = 1,
                          leg_font_size = 12,
                          point_size = 1.5,
                          line_width = 0.5,
@@ -130,7 +131,8 @@ plot_recdevs <- function(model_lst = NULL,
       theme(legend.position = "none")
   }else{
     g <- g +
-      theme(legend.position = leg_pos)
+      theme(legend.position = leg_pos) +
+      guides(color = guide_legend(ncol = leg_ncol))
   }
 
   g

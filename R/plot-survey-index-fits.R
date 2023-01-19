@@ -13,6 +13,7 @@
 #' @param alpha The transparency for all ribbons
 #' @param leg_pos The position of the legend inside the plot. If `NULL`,
 #' `NA`, or `none`, the legend will not be shown
+#' @param leg_ncol The number of columns to show in the legend
 #' @param leg_font_size The legend font size
 #' @param point_size Size of all points shownin plot
 #' @param line_width Width of all lines on the plot
@@ -39,9 +40,11 @@ plot_survey_index_fits <- function(
     y_labels = expression("0", "0.5", "1", "1.5", "2", "2.5", "3"),
     alpha = 0.1,
     leg_pos = c(0.65, 0.83),
+    leg_ncol = 1,
     leg_font_size = 12,
     point_size = 1.5,
     line_width = 0.5,
+    rev_colors = FALSE,
     dodge_val = 0.5,
     d_obj = NULL){
 
@@ -58,7 +61,13 @@ plot_survey_index_fits <- function(
   }
 
   d <- d_obj[[1]]
-  colors <- plot_color(length(unique(d$model)))
+  colors <- c("black", plot_color(length(unique(d$model)) - 1))
+  num_models <- length(unique(d$model)) - 1 # Minus 1 for observed
+  linetypes <- c(rep("solid", num_models), "dashed")
+  shapes <- c(rep(16, num_models), 17)
+  if(rev_colors){
+    colors <- rev(colors)
+  }
 
   g <- ggplot(d,
               aes(x = year,
@@ -67,9 +76,11 @@ plot_survey_index_fits <- function(
                   ymax = index.975,
                   group = model,
                   color = model,
-                  fill = model)) +
-    scale_fill_manual(values = colors) +
+                  linetype = model,
+                  shape = model)) +
     scale_color_manual(values = colors) +
+    scale_shape_manual(values = shapes) +
+    scale_linetype_manual(values = linetypes) +
     coord_cartesian(xlim = xlim,
                     ylim = ylim) +
     geom_hline(yintercept = 0,
@@ -101,7 +112,8 @@ plot_survey_index_fits <- function(
       theme(legend.position = "none")
   }else{
     g <- g +
-      theme(legend.position = leg_pos)
+      theme(legend.position = leg_pos) +
+      guides(color = guide_legend(ncol = leg_ncol))
   }
 
   g

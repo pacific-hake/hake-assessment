@@ -12,18 +12,18 @@ bridge_models_dirs <-
   list(c("01-updated-ss-exe",
          "02-add-new-catch",
          "03-add-new-weight-at-age",
-         "04-add-survey-age-2-plus",
-         "05-add-survey-age-1",
+         #"04-add-survey-age-2-plus", # Uncomment in survey years
+         #"05-add-survey-age-1", # Uncomment in survey years
          "06-add-fishery-ages"))
 bridge_models_desc <-
   list(c("Update Stock Synthesis version to 3.30.20",
          paste0("Add ", last_data_yr, " catch"),
          paste0("Add ", last_data_yr, " weight-at-age"),
-         "Add age-2+ acoustic survey",
-         "Add age-1 acoustic survey",
+         #"Add age-2+ acoustic survey", # Uncomment in survey years
+         #"Add age-1 index", # Uncomment in survey years
          paste0("Add ", last_data_yr, " fishery age comps")))
 prepend_to_bridge <- TRUE
-bridge_model_end_yr <- end_yr - c(1, 0, 0, 0, 0, 0, 0)
+bridge_model_end_yr <- end_yr - c(1, 0, 0, 0, 0, 0)
 
 # This is a list of vectors of sensitivity groups (sensitivity models that
 # will be plotted against each other). It can be `NA` if you want it to be

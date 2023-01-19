@@ -12,6 +12,7 @@
 #' @param alpha The transparency for all ribbons
 #' @param leg_pos The position of the legend inside the plot. If `NULL`,
 #' `NA`, or `none`, the legend will not be shown
+#' @param leg_ncol The number of columns to show in the legend
 #' @param leg_font_size The legend font size
 #' @param point_size Size of all points shownin plot
 #' @param line_width Width of all lines on the plot
@@ -49,6 +50,7 @@ plot_recruitment <- function(model_lst = NULL,
                              y_colors = rep("black", length(y_breaks)),
                              alpha = 0.2,
                              leg_pos = c(0.65, 0.83),
+                             leg_ncol = 1,
                              leg_font_size = 12,
                              point_size = 1.5,
                              line_width = 0.5,
@@ -124,7 +126,6 @@ plot_recruitment <- function(model_lst = NULL,
                       ymax = rupper),
                   alpha = alpha,
                   linetype = "dotted")
-
   }
 
   g <- g +
@@ -157,7 +158,8 @@ plot_recruitment <- function(model_lst = NULL,
       theme(legend.position = "none")
   }else{
     g <- g +
-      theme(legend.position = leg_pos)
+      theme(legend.position = leg_pos) +
+      guides(color = guide_legend(ncol = leg_ncol))
   }
 
   g

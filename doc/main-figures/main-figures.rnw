@@ -312,6 +312,9 @@ make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1, highlight = 5)
 plist <- list()
 plist[[1]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
+                   x_breaks = c(seq(1970,
+                                    round(year(Sys.time()), -1),
+                                    by = 10)),
                    ylim = c(0, 2.5),
                    y_labels = expression("0", "0.1B"[0], "0.4B"[0], "0.5",
                                          "B"[0], "1.5", "2", "2.5"),
@@ -322,12 +325,14 @@ plist[[2]] <-
 
 plist[[3]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
+                         rev_colors = TRUE,
                          leg_pos = "none")
 
 plist[[4]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
                          xlim = c(1995, 2022),
                          ylim = c(0, 6.5),
+                         rev_colors = TRUE,
                          leg_pos = "none")
 
 # Grid of 2 rows and 1 column with one plot at the top (biomass)
@@ -338,7 +343,10 @@ quad_grid <- cowplot::plot_grid(plotlist = plist,
 full_plist <- list()
 full_plist[[1]] <-
   plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
-               leg_font_size = 10)
+               leg_ncol = 2,
+               leg_font_size = 7,
+               wrap_y_label = TRUE,
+               leg_pos = c(0.74, 0.82)) # leg_pos set Jan 19 2023
 
 full_plist[[2]] <- quad_grid
 
@@ -854,7 +862,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[1]],
              ylim = c(0, 20),
              y_breaks = seq(0, 20, 2),
              x_expansion = 2,
-             leg_font_size = 10,
+             leg_font_size = 9,
              rev_colors = TRUE)
 @
 \end{center}
@@ -874,7 +882,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[1]],
 <<main-status-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how relative spawning biomass changes between the first set of sensitivity runs">>=
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
                  x_expansion = 2,
-                 leg_font_size = 10,
+                 leg_font_size = 9,
                  rev_colors = TRUE)
 @
 \end{center}
@@ -965,7 +973,7 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
 <<main-biomass-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recent spawning biomass varies for some sensitivity runs">>=
 plot_biomass(d_obj = d_obj_sens_biomass[[3]],
              x_expansion = 2,
-             leg_font_size = 10,
+             leg_font_size = 9,
              rev_colors = TRUE)
 @
 \end{center}
@@ -980,7 +988,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[3]],
 <<main-status-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recent relative spawning biomass varies for some sensitivity runs">>=
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
                  x_expansion = 2,
-                 leg_font_size = 10,
+                 leg_font_size = 9,
                  rev_colors = TRUE)
 @
 \end{center}
@@ -997,7 +1005,7 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
 <<main-recruitment-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows occasional differences in recruitment between certain sensitivity runs">>=
 plot_recruitment(d_obj = d_obj_sens_recr[[3]],
                  x_expansion = 2,
-                 leg_font_size = 10,
+                 leg_font_size = 9,
                  rev_colors = TRUE)
 @
 \end{center}
@@ -1012,7 +1020,7 @@ plot_recruitment(d_obj = d_obj_sens_recr[[3]],
 <<main-recruitment-devs-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows occasional differences in recruitment deviations between certain sensitivity runs">>=
 plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
              x_expansion = 2,
-             leg_font_size = 10,
+             leg_font_size = 9,
              rev_colors = TRUE)
 @
 \end{center}
@@ -1073,7 +1081,7 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
 <<main-biomass-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between further sensitivity runs">>=
 plot_biomass(d_obj = d_obj_sens_biomass[[4]],
              x_expansion = 2,
-             leg_font_size = 10,
+             leg_font_size = 9,
              rev_colors = TRUE)
 @
 \end{center}
@@ -1088,7 +1096,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[4]],
 <<main-status-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how relative spawning biomass changes between further sensitivity runs">>=
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[4]],
                  x_expansion = 2,
-                 leg_font_size = 10,
+                 leg_font_size = 9,
                  rev_colors = TRUE)
 @
 \end{center}
@@ -1105,7 +1113,7 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[4]],
 
 plist <- list()
 plist[[1]] <- plot_biomass(d_obj = d_obj_retro_biomass,
-                           leg_font_size = 10,
+                           leg_font_size = 9,
                            alpha = 0.1)
 plist[[2]] <- plot_recruitment(d_obj = d_obj_retro_recr,
                                leg_pos = "none")

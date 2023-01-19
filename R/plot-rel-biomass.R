@@ -64,6 +64,7 @@ plot_rel_biomass <- function(model_lst = NULL,
                                                        by = 0.5)))),
                              alpha = 0.1,
                              leg_pos = c(0.65, 0.83),
+                             leg_ncol = 1,
                              leg_font_size = 12,
                              point_size = 2,
                              point_shape = 16,
@@ -71,6 +72,7 @@ plot_rel_biomass <- function(model_lst = NULL,
                              single_line_color = "black",
                              single_ribbon_color = "blue",
                              rev_colors = FALSE,
+                             wrap_y_label = FALSE,
                              d_obj = NULL){
 
   if(is.null(d_obj)){
@@ -140,15 +142,20 @@ plot_rel_biomass <- function(model_lst = NULL,
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 0, 0)) +
-    xlab("Year") +
-    ylab(expression(paste("Relative Spawning Biomass ("~B[t]/B[0]~")")))
+    labs(x = "Year",
+         y = ifelse(wrap_y_label,
+                    expression(atop("Relative Spawning Biomass",
+                                    paste("("~B[t]/B[0]~")"))),
+                    expression(paste("Relative Spawning Biomass ("~B[t]/B[0]~")"))))
 
   if(is.null(leg_pos) || is.na(leg_pos)){
     g <- g +
       theme(legend.position = "none")
   }else{
     g <- g +
-      theme(legend.position = leg_pos)
+      theme(legend.position = leg_pos) +
+      guides(fill = guide_legend(ncol = leg_ncol),
+             color = guide_legend(ncol = leg_ncol))
   }
 
   g
