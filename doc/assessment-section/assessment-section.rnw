@@ -190,7 +190,7 @@ fishing fleets or the number of trawl sets in the research surveys (see Section~
 The {\tt adnuts} R package \citep{Monnahan2018} was used to apply the NUTS algorithm producing
 \Sexpr{f(num.mcmc.samples)} MCMC samples which describe posterior distributions for model
 parameters and derived quantities. This is nearly a ten-fold increase in samples from the
-2020 \citep{JTC2020} and earlier assessments. The number of samples used for sensitivity models,
+2020 \citep{JTC2020} and earlier assessments. The number of samples used for bridging models, sensitivity models,
 retrospective models, and forecasting scenarios was also set to \Sexpr{f(num.mcmc.samples)}.
 Medians (50\% quantiles) are reported together with the
 bounds of 95\% credibility intervals calculated as
@@ -560,102 +560,102 @@ Hake stock during the COVID-19 pandemic.}
 
 \subsubsection{Changes from \Sexpr{last_assess_yr} }\label{sec:assessment-changes}
 
-** A set of `bridging' models was constructed to evaluate the component-specific
+A set of `bridging' models was constructed to evaluate the component-specific
 effects of all changes from the \Sexpr{last_assess_yr} base model to
 the \Sexpr{assess_yr} base model.
 
-** In short, these included the following:
+In short, steps that went into developing these models included the following:
 \begin{itemize}
   \item Update to the latest version of Stock Synthesis, version \Sexpr{ss_version};
   \item Update catch and age-composition data from years prior to \Sexpr{last_data_yr};
   \item Add new catch and age-composition data for \Sexpr{last_data_yr};
-  \item Update acoustic survey biomass and age-composition data from years prior to \Sexpr{last_data_yr};
-  \item Add the \Sexpr{last_data_yr} acoustic survey biomass and age-composition estimates;
-  \item Add weight-at-age data for \Sexpr{last_data_yr} as well as update data for years prior; and
-  \item Add the age-1 index time series.
+  %\item Update acoustic survey biomass and age-composition data from years prior to \Sexpr{last_data_yr};
+  %\item Add the \Sexpr{last_data_yr} acoustic survey biomass and age-composition estimates; and
+  \item Add weight-at-age data for \Sexpr{last_data_yr} as well as update data for years prior.
+  %\item Add the age-1 index time series.
   %\item Add \Sexpr{last_data_yr} survey biomass estimate;
   %\item Add \Sexpr{last_data_yr} survey age-composition data; and
 \end{itemize}
 
-** The bridging steps can be grouped into three main sets of changes,
+The bridging steps can be grouped into two main sets of changes,
 with the majority of the steps being those that are performed routinely.
 The first step updated the Stock Synthesis framework to follow current best practices.
 The second step updated all information available from the fishery and acoustic survey.
-The third step implemented changes related to the addition of the age-1 index.
+%The third step implemented changes related to the addition of the age-1 index.
 
-** Stock Synthesis version \Sexpr{ss_version} includes
+Stock Synthesis version \Sexpr{ss_version} includes
 a number of changes since the version used by \citet{JTC2021},
 mostly related to options not explicitly used in this assessment.
 Changes relevant to the assessment of \fishname\ include changes to
-how files are saved for MCMC samples and
-the timing of the calculation of key population processes such as
-growth and natural mortality.
+** how forecasting....
 Adaptations within the Stock Synthesis modeling framework itself had little effect
 on parameter estimates compared to the \Sexpr{last_assess_yr}
 base model and thus no effect on resulting time series.
 
-** The second set of bridging steps was conducted to update fishery-dependent
+The second set of bridging steps was conducted to update fishery-dependent
 and fishery-independent data.
 This primarily included minor adjustments in catch, fishery age compositions,
-the 2019 acoustic survey biomass estimate, and
-weight-at-age values as databases are continually updated.
+%the 2019 acoustic survey biomass estimate,
+and weight-at-age values as databases are continually updated.
 Samples that were recently aged but not available for the \Sexpr{last_assess_yr}
 assessment were included.
 These changes to pre-\Sexpr{last_assess_yr} data were small enough that they had
-little impact on the model results (Figure~\ref{fig:main-bridge-5-panel-1}).
+little impact on the model results.
 
-** The addition of \Sexpr{last_data_yr} catch and fishery age compositions extends the model
-to the start of \Sexpr{assess_yr} but the estimates for
-\Sexpr{assess_yr} are highly uncertain
-(Figure~\ref{fig:main-bridge-5-panel-1})
-in the absence of additional information about recent recruitment.
-These data had relatively little impact on the historical biomass estimates,
-indicating that the observed \Sexpr{last_data_yr} ages were consistent with the model
-estimates without those data (Figure~\ref{fig:main-bridge-5-panel-1}). However,
-the addition of these data did slightly shift recent recruitment
-estimates, though overall uncertainty was still high. Recruitment estimates and stock
-trajectory were relatively unchanged with the addition of \Sexpr{last_data_yr}
-weight-at-age data.
+The addition of \Sexpr{last_data_yr} catch and weight-at-age data extends the model
+to the start of \Sexpr{assess_yr}. Recruitment estimates and historical stock
+trajectory were relatively unchanged with the addition of these data, but did 
+result in a slight increase in spawning
+biomass from \Sexpr{last_data_yr-1} to \Sexpr{assess_yr}
+(Figure~\ref{fig:main-bridge-5-panel-1}).
+
+%%Only include an updated version of the following paragraph during survey years
+%Including the \Sexpr{last_data_yr} fishery-independent biomass estimate and
+%age compositions led to a slightly more optimistic
+%trajectory of the stock over the last couple of years
+%(Figure~\ref{fig:main-bridge-5-panel-1}),
+%whereas updating the 2019 survey biomass estimate itself had negligible
+%effect. The addition of \Sexpr{last_data_yr} survey data led to small shifts
+%in expected recruitment, particularly for the 2016, 2017, and 2018 year classes.
+%The 2018 year class is estimated to be higher in this
+%assessment than in the \Sexpr{last_assess_yr} assessment, but it still remains
+%a below-average year class.
+%This increase is largely driven by the addition
+%of the 2021 acoustic-survey age compositions, because this
+%was the first time
+%the 2018 and 2019 cohorts were adequately sampled (age-2 or older) by the survey,
+%which is why the uncertainty associated with these cohorts was reduced (though
+%still quite uncertain; Figure~\ref{fig:main-bridge-5-panel-1}).
+
+%%Only include an updated version of the following paragraph during survey years
+%Adding the \Sexpr{last_data_yr} fishery-independent age-1 index information as an
+%additional source of information to inform recent
+%recruitment (Section~\ref{sec:data-acoustic-survey}) resulted
+%in a slight increase in estimated recent recruitment, most noticeably for the 2018 and 2020 year
+%classes (Figure~\ref{fig:main-bridge-5-panel-2}), and
+%increase in virgin recruitment. In turn, this results in a slightly higher
+%trajectory of spawning stock biomass from 2013--2022 and a change in 2022
+%median relative spawning stock biomass from
+% round(median(bridge_models_2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
+% round(median(base_model$mcmc$Bratio_2022),3)*100}\%.
+
+The final bridging step was the addition of \Sexpr{last_data_yr} fishery age compositions.
 This bridging step also shifted the ending year of the deviations
 in the selectivity parameters from \Sexpr{last_data_yr-1} to
 \Sexpr{last_data_yr} because of the addition of fishery data in \Sexpr{last_data_yr}.
-
-** Including the \Sexpr{last_data_yr} fishery-independent biomass estimate and
-age compositions led to a slightly more optimistic
-trajectory of the stock over the last couple of years
-(Figure~\ref{fig:main-bridge-5-panel-1}),
-whereas updating the 2019 survey biomass estimate itself had negligible
-effect. The addition of \Sexpr{last_data_yr} survey data led to small shifts
-in expected recruitment, particularly for the 2016, 2017, and 2018 year classes.
-The 2018 year class is estimated to be higher in this
-assessment than in the \Sexpr{last_assess_yr} assessment, but it still remains
-a below-average year class.
-This increase is largely driven by the addition
-of the 2021 acoustic-survey age compositions, because this
-%where the proportion of age-9 fish and age-5 fish were higher than what
-%the \Sexpr{end_yr-1} assessment model would have otherwise predicted
-%given mortality.
-was the first time
-the 2018 and 2019 cohorts were adequately sampled (age-2 or older) by the survey,
-which is why the uncertainty associated with these cohorts was reduced (though
-still quite uncertain; Figure~\ref{fig:main-bridge-5-panel-1}).
-
-** The final bridging was adding the age-1 index time series (1995 to
-\Sexpr{last.survey.year}) as an additional source of information to inform recent
-recruitment (Section~\ref{sec:data-acoustic-survey}).
-The age-1 index has been evaluated in many previous stock
-assessments as a sensitivity analysis and in recent years a close examination
-of the full suite of assessment results were produced to examine this key sensitivity.
-The age-1 index is fit
-in the assessment model through a lognormal contribution to the likelihood function.
-The addition of this data source resulted
-in a slight increase in estimated recent recruitment, most noticeably for the 2018 and 2020 year
-classes (Figure~\ref{fig:main-bridge-5-panel-2}), and
-increase in virgin recruitment. In turn, this results in a slightly higher
-trajectory of spawning stock biomass from 2013--2022 and a change in 2022
-median relative spawning stock biomass from **
-% round(median(bridge_models_2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
-% round(median(base_model$mcmc$Bratio_2022),3)*100}\%.
+These data had relatively little impact on the historical biomass estimates,
+%indicating that the observed \Sexpr{last_data_yr} ages were consistent with the model
+%estimates without those data (Figure~\ref{fig:main-bridge-5-panel-1}). 
+but did shift recent recruitment estimates (Figure~\ref{fig:main-bridge-5-panel-1}). 
+Recruitment estimates in 2019 were shifted downwards, while estimates in 2020 were shifted
+upwards. The increase in 2020 recruitment contributes to a considerable increase
+in spawning biomass by the start of \Sexpr{assess_yr}, as these fish are now mostly mature.
+Despite both fishery age compositions and the age-1 index pointing towards
+a strong 2020 cohort, estimates of \Sexpr{assess_yr} spawning biomass remain highly uncertain,
+largely due to underlying uncertainty in recent recruitment
+(Figure~\ref{fig:main-bridge-5-panel-1}). Uncertainty related to the 2020 cohort should
+decrease once these fish have been observed by the acoustic survey, as well as the
+the fishery during \Sexpr{last_data_yr+1}. 
 
 \clearpage
 
@@ -663,7 +663,7 @@ median relative spawning stock biomass from **
 
 \subsubsub{Model Fit}
 
-** Stationarity of the posterior distribution for model parameters was
+Stationarity of the posterior distribution for model parameters was
 assessed via a suite of standard single-chain and multi-chain diagnostic tests
 via graphical summaries and interactive web applications ({\tt ShinySTAN};
 \href{https://mc-stan.org/users/interfaces/shinystan}{https://mc-stan.org/users/interfaces/shinystan}).
@@ -683,7 +683,7 @@ which compares within-chain variance to among-chain variance, further indicated 
 convergence was adequately achieved (examined via {\tt ShinySTAN}).
 Correlations among key parameters were
 generally low, with the exception of $M$ and $\log R_0$ (Figure~\ref{fig:main-mcmc-pairs}).
-Estimates of recruitment in 2010 and 2014 were correlated with
+Estimates of recruitment in 2014 and 2016 were correlated with
 the derived quantity of catch from the default harvest rule in \Sexpr{end_yr},
 as to be expected given the dependencies
 among these quantities (Figure~\ref{fig:main-mcmc-pairs}). An examination of
@@ -693,10 +693,10 @@ recruitment values) from recent years
 correlation
 (\Sexpr{round(cor(base_model$mcmc$Main_RecrDev_2014,base_model$mcmc$Main_RecrDev_2016),2)})
 was between the 2014 and 2016 recruitment deviations. This continues to be likely
-caused by the relative proportion of these two cohorts being better informed by
+caused by the relative proportion of these two cohorts being continually better informed by
 recent age-composition data.
 
-** The estimate (median and 95\% credible interval) for $\log \theta_{\text{fish}}$ is
+The estimate (median and 95\% credible interval) for $\log \theta_{\text{fish}}$ is
 \Sexpr{log.theta.fishery.median}
 (\Sexpr{log.theta.fishery.025},
 \Sexpr{log.theta.fishery.975}),
@@ -719,17 +719,18 @@ of
 (\Sexpr{DM.weight.survey.025},
 \Sexpr{DM.weight.survey.975}).
 
-** The base model fit to the
+The base model fit to the
 acoustic survey biomass index (Figure~\ref{fig:main-mcmc-survey-fit})
-remains similar to the \Sexpr{last_assess_yr} base model.
+remains similar to the \Sexpr{last_assess_yr} base model, which is not surprising
+given no new survey information is available for this assessment.
 The \Sexpr{survey_end_yr} survey biomass estimate resulted in a slight upward shift
 in the fit to the \Sexpr{penult.survey.year}
 survey data points, but the result of a relatively stable biomass trend from 2013--2019
 is the same (Figure~\ref{fig:main-mcmc-survey-fit}).
-The addition of \Sexpr{last_assess_yr} fishery data
+At the time, the addition of 2021 fishery data
 was the main reason for this change in fit to the 2019 data point (Figure~\ref{fig:main-bridge-5-panel-1}).
-The \Sexpr{last_assess_yr} survey estimate was lower than in 2019 (second lowest since 2013),
-and the model fit indicates a decline in biomass compared to the relatively stable 2013--2019 period.
+The 2021 survey estimate was lower than in 2019 (second lowest since 2013),
+and the model fit indicates a slight decline in biomass from 2019 to 2021.
 The 2001 survey biomass index continues to be well below any model predictions that were evaluated,
 and no direct cause for this is known.  The survey did begin earlier that year than all other surveys
 between 1995 and 2009 (Table~\ref{tab:main-survey-history}), which may explain
@@ -742,29 +743,29 @@ survey. Humboldt Squid have similar target strength to hake
 which could introduce bias in the biomass estimate for that year, and
 which also likely influenced hake population dynamics through predation in that year.
 
-** The median posterior density estimates were less than the 2015 survey index,
+The median posterior density estimates from the fit to the survey were less than the 2015 survey index,
 greater than the 2017 and 2019 survey indices, and
 closely fit the 2021 index (Figure~\ref{fig:main-mcmc-survey-fit}).
 This is likely due to slight differences in what the fishery composition data
 and survey composition data, when considered independently, would otherwise
 suggest as population trends.
-Additionally, the population has undergone recent high catch levels and produced
+Additionally, the population has undergone recent high, but declining, catch levels and produced
 a couple of above-average cohorts that are now mature.
 %resulting in a population
 %trend that has been relatively stable from 2013 to \Sexpr{survey_end_yr}.
 
-** The base model fit to the index of age-1 fish highlights
+The base model fit to the index of age-1 fish highlights
 an overall general confirmation of relative cohort strength
 (Figure~\ref{fig:main-mcmc-age1-fit}). In particular,
 the 2008 and 2014 cohorts were estimated to be less than the index, while the
 1994 and 2016 cohorts were estimated to be larger than indicated by the index.
 The age-1 fish in 2011 (the large 2010 cohort) was closely fit.  Age-1 fish in 2021 (2020 cohort)
-were estimated slightly under the index value and, being so young, had the largest amount of uncertainty in the time
-series. The model indicates that the 2020 cohort may be similar in
-size to the 2016 cohort, based on information in the age-1 index and from age-1 fish
-caught in the fishery.
+were estimated slightly above the index value and, being so young, include a large amount of uncertainty.
+The model indicates that the 2020 cohort may be similar in
+size to the 2014 cohort, based on information in the age-1 index, age-1 fish
+caught in the 2021 fishery, and from age-2 fish caught in the 2022 fishery.
 
-** Fits to the age-composition data continue to show close correspondence to the
+Fits to the age-composition data continue to show close correspondence to the
 dominant and small cohorts observed in the data
 when the data give a consistent signal
 (Figure~\ref{fig:main-age-comp-fits}). Because of the time-varying fishery
@@ -773,7 +774,9 @@ although models with time-invariant selectivity used in previous years also fit
 the age compositions well.
 In the \Sexpr{last_data_yr} fishery, \Sexpr{top.coh(base_model, last_data_yr, 3, cap = FALSE)}.
 Age compositions from the \Sexpr{survey_end_yr} acoustic survey suggest a similar age
-structure, i.e., \Sexpr{top.coh(base_model, survey_end_yr, 3, cap = FALSE, fleet = 2)}.
+structure 
+%i.e., \Sexpr{top.coh(base_model, survey_end_yr, 3, cap = FALSE, fleet = 2)}
+for older fish. The 2020 cohort has not yet been observed by the acoustic survey.
 Combined, the 2015--\Sexpr{last_data_yr} fishery age-composition data and the
 2017--\Sexpr{survey_end_yr} acoustic survey age-composition data
 suggest that 2014 was a strong recruitment
@@ -786,13 +789,14 @@ the 2014 cohort.
 The \Sexpr{survey_end_yr} survey was the first to sample the
 \Sexpr{survey_end_yr-2} cohort, confirming that
 it
-was not extremely large (\Sexpr{survey.a2.prop}\% of the \Sexpr{survey_end_yr} survey catch).
-Residual
+was not large (\Sexpr{survey.a2.prop}\% of the \Sexpr{survey_end_yr} survey catch).
+The 2020 cohort, which has been observed twice by the fishery, once by the age-1 index, but
+not the acoustic survey is currently expected to be above average in size. Residual
 patterns to the fishery and survey age data do not show patterns that would
 indicate systematic bias in model predictions
 (Figure~\ref{fig:main-age-comp-pearson}).
 
-** The median estimates for numbers, biomass,
+The median estimates for numbers, biomass,
 exploitation rate, and catch (in numbers and in biomass) for each age class in
 each year are given in
 Tables~\ref{tab:main-est-numbers-at-age}-\ref{tab:main-est-catch-at-age-biomass}.
@@ -803,7 +807,7 @@ than that of the 2010 cohort at age-5 and the resulting surviving biomass of
 the 2014 cohort was approximately half of the surviving biomass of the 2010
 cohort.
 
-** Posterior distributions for both steepness and natural mortality are strongly
+Posterior distributions for both steepness and natural mortality are
 influenced by priors (Figure~\ref{fig:main-prior-posterior}). The posterior for
 steepness is only slightly updated by the data, as expected given the low
 sensitivity to steepness values found in previous hake assessments. The natural
@@ -816,13 +820,13 @@ Other parameters showed updating from diffuse priors to posterior
 distributions, including $\theta_{\text{fish}}$ and  $\theta_{\text{surv}}$ (as outlined in
 Section~\ref{sec:data-age-comp-likelihood}).
 
-** The \Sexpr{assess_yr} base model specified the same level of variation (standard
+The \Sexpr{assess_yr} base model specified the same level of variation (standard
 deviation of $\Phi = 1.4$) associated with time-varying fishery selectivity as
 the \Sexpr{last_assess_yr} base model, effectively
 allowing the model flexibility (i.e., a lower penalty on the overall
 likelihood) to fit to data that suggests high variability among years for each
 age. This level
-of variation led to results that were consistent with the \Sexpr{survey_end_yr} acoustic survey
+of variation led to results that remained consistent with the \Sexpr{survey_end_yr} acoustic survey
 biomass estimate and gave reasonable fits to the fishery age-composition data,
 given that there is considerable uncertainty associated with
 spatial changes in fish availability (due to movement) and recent
@@ -836,11 +840,13 @@ in those years. This pattern is consistent with the 2008 cohort appearing strong
 in the fishery age compositions initially, but decreasing in prominence
 from 2013 onward (Figure~\ref{fig:main-age-comp-fits}).
 Fishery selectivity on age-2 fish was at its highest
-in 2016, followed by 2018.
-Fishery selectivity for the most recent year was characteristic of a logistic
-pattern, where selectivity increased smoothly from age-2
-to a peak at age-5 and older ages
-(Figure~\ref{fig:main-tv-selex-uncertainty}). Even though the
+in 2016.
+Fishery selectivity for the most recent year was characteristic by a logistic
+pattern, where selectivity generally increased smoothly from age-3
+to a peak at age-6 and older ages
+(Figure~\ref{fig:main-tv-selex-uncertainty}). However, age-2 selectivity was slightly
+higher than for other younger fish, likely as a result of increased availability
+of this above average cohort. Even though the
 survey selectivity is time invariant, the
 posterior shows a broad band of uncertainty between ages 2 and 5
 (Figure~\ref{fig:main-tv-selex-uncertainty-lines}). The decline in
@@ -851,7 +857,7 @@ Fishery selectivity is
 likewise very uncertain (Figures~\ref{fig:main-tv-selex-uncertainty}
 and~\ref{fig:main-tv-selex-uncertainty-lines}), but in spite of this
 uncertainty, changes in year-to-year patterns in the estimates are still
-evident, particularly for age-3 and age-4 fish, though these patterns might also
+evident, particularly for age-2, age-3, and age-4 fish, though these patterns might also
 reflect time-varying mortality processes.
 
 \subsubsub{Stock biomass}
