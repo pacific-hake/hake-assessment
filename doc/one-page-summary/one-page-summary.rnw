@@ -79,7 +79,7 @@
    high uncertainty in estimates of recent and forecasted recruitment.
    Projections setting the \Sexpr{forecast_yrs[1]} and
    \Sexpr{forecast_yrs[2]} catches equal to the \Sexpr{forecast_yrs[1]-1}
-   coast-wide (unilaterally summed) TAC of
+   coast-wide TAC of
    \Sexpr{last.year.tac}~t show the estimated median relative female spawning biomass
    decreasing from
    \Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end_yr} to
