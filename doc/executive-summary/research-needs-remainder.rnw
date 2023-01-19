@@ -1,48 +1,61 @@
 % research-needs-remainder.rnw - the remaining research needs that won't go into
 %  the Executive Summary but only into research.rnw in the main text.
 
-\item ** Develop a set of candidate ecosystem indicators that are potentially
-  associated with \fishname\ biology and ecology (e.g., recruitment, distribution,
-  predator, and prey). Such information can broaden the context within which a single
-  species stock assessment is interpreted, be used to support model development, and
-  provide non-assessment indicators to management.
+\item Use, build, and expand upon the existing
+  \ifnum\value{counter_research-needs}>0 {MSE }\else{management strategy evaluation (MSE) }\fi
+  framework to evaluate major sources of
+  uncertainty relating to data, model structure, and the harvest policy for this
+  fishery (as needed) and compare potential methods to address them. In particular,
+  utilize and adapt this simulation framework to address new and ongoing
+  stock assessment research and data needs through the Pacific Hake MSE
+  Working Group, including relevant requests by the Scientific Review Group
+  (see Section~\ref{sec:assessment-response-review}).
+  For example, research investigating links between hake biomass,
+  spatial distribution, growth, and recruitment, and how
+  these links vary with ocean conditions and ecosystem variables such as
+  temperature, transport, and prey availability would be beneficial.
+  Ongoing investigations have the potential to improve
+  the scenarios considered in future MSE
+  work and the basic understanding of drivers of hake
+  population dynamics and availability to fisheries and surveys.
 
-\item ** Conduct an inter-laboratory otolith exchange and
+\item Complete the ongoing inter-laboratory otolith exchange and
   use the results to update estimates of ageing error used in the stock assessment.
   This would include updated information about ageing imprecision and the effects of
   large cohorts as understood given simulation analyses and
   blind-source age reads of samples with
   differing underlying age distributions -- with and without dominant year
   classes. The last inter-laboratory comparison was done in 2010 (``CARE''
-  exchanges).
+  exchanges). Related, streamline procedures that ease the exchange
+  of biological materials (e.g., otoliths) across international borders.
 
-\item ** Continue to collect and analyze life-history data, including weight,
+\item Continue to collect and analyze life-history data, including weight,
   maturity, and fecundity for \fishname. Explore possible relationships among
   these life-history traits and correlations with
   time, empirical growth, and population density.
   Improve understanding of links between fecundity
   and size, age, weight, and batch spawning, as well as spatio-temporal
   variability in the timing of spawning, skip spawning, batch fecundity, and size
-  and age at maturity. Continue to explore the possibility of using
-  additional data types such as length data within the stock assessment.
-  Additionally, a more spatially comprehensive maturity analysis that
-  incorporates information from Canadian samples would be advantageous.
+  and age at maturity. Additionally, a more spatially comprehensive maturity
+  analysis that incorporates information from Canadian samples would be advantageous.
 
-\item ** Explore the operational use of environmental DNA data for
+\item Explore the operational use of environmental DNA data for
   characterizing aspects of \fishname\ population dynamics, such as changes in
   species distribution or perhaps density, and the incorporation of these data
   into stock assessments. Recent research demonstrated that environmental DNA
   provides similar information as the acoustic survey at scales relevant to
   managment, i.e., coast-wide and not just sample-to-sample comparisons
   \citep{SheltonRamonLacaEtAl2022}, but longer time series are needed before
-  the data can be used to inform trends in abundance.
+  the data can be used to inform trends in abundance. Environmental DNA is now
+  available for 2019 and 2021 (two years total).  Given recent success,
+  continuing to extend the time series would be beneficial to stock assessment.  
 
-\item ** Maintain the flexibility to undertake additional acoustic surveys for
+\item Maintain the flexibility to undertake additional acoustic surveys for
   \fishname\ in non-survey years when uncertainty in the results of the
   stock assessment presents a potential risk to or underutilization of the
   stock.
 
-\item ** Explore alternative approaches and related assumptions for parameterizing
+\item Explore alternative approaches and related assumptions for parameterizing
   time-varying fishery selectivity in the assessment. Simulations that
   evaluate methods for including multiple variance structures, including interactions,
   tradeoffs, and related assumptions, across multiple processes (e.g., selectivity,
@@ -50,12 +63,18 @@
   particularly beneficial.
 %\enlargethispage{\baselineskip}
 
-\item ** Consider alternative methods for refining existing prior distributions
+\item Revisit alternative methods for refining existing prior distributions
   for natural mortality ($M$), including the use of meta-analytic methods.
   Evaluate feasibility of estimating age-specific natural mortality for
   \fishname.
 
-\item ** Explore the potential to use acoustic data collected from commercial
+\item Explore mid-water community dynamics (or predator/prey relationships more generally)
+  to better understand linkages to \fishname\ distribution, abundance, and growth.
+  For example, weight-at-age data or other mechanistic linkages (e.g., from diet
+  studies) can inform inter-annual variability and trends in growth, which
+  can improve biomass forecasting capabilities for \fishname\.
+
+\item Explore the potential to use acoustic data collected from commercial
   fishing vessels to study hake distributions, schooling patterns, and other
   questions of interest. This could be similar to the
   ``acoustic vessels of opportunity'' program on fishing vessels

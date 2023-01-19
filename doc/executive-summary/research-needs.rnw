@@ -33,7 +33,8 @@ and abundance from data collected during the acoustic survey.
 This includes, but is not limited to, research on
 species identification, target verification, target strength,
 implications of the south-to-north directionality of the survey,
-alternative technologies to assist in the survey, and
+alternative technologies to assist in the survey (e.g., artificial intelligence
+and machine learning), and
 efficient analysis methods.
 The latter should include bootstrapping of the acoustic survey time series
 or related methods that can incorporate relevant uncertainties
