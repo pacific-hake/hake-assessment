@@ -356,15 +356,14 @@ cowplot::plot_grid(plotlist = full_plist,
                    rel_heights = c(0.33, 0.67))
 @
 \end{center}
-\caption{** Bridging models showing the sequential addition of updating
-  pre-\Sexpr{last_data_yr} fishery data, pre-\Sexpr{last_data_yr} survey data,
-  adding \Sexpr{last_data_yr} survey data, and adding
-  \Sexpr{last_data_yr} weight-at-age information.
-  Panels are spawning biomass
-  (upper panel), relative spawning biomass (spawning biomass in each year
+\caption{Bridging models showing the sequential addition of updating
+  the Stock Synthesis model code version, adding \Sexpr{last_data_yr} catch,
+  adding \Sexpr{last_data_yr} weight-at-age, and adding \Sexpr{last_data_yr}
+  fishery age compositions. Panels are spawning biomass (upper panel),
+  relative spawning biomass (spawning biomass in each year
   relative to the unfished equilibrium spawning biomass, middle left),
-  absolute recruitment (middle right), recruitment deviations (lower left),
-  and survey biomass index (lower right).}
+  recruitment deviation (middle right), age 2+ survey biomass index
+  (lower left), and age 1 index (lower right).}
 \label{fig:main-bridge-5-panel-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
