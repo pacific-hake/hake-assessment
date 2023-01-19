@@ -862,6 +862,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[1]],
              y_breaks = seq(0, 20, 2),
              x_expansion = 2,
              leg_font_size = 9,
+             leg_pos = c(0.8, 0.75),
              rev_colors = TRUE)
 @
 \end{center}
@@ -882,6 +883,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[1]],
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
                  x_expansion = 2,
                  leg_font_size = 9,
+                 leg_pos = c(0.8, 0.75),
                  rev_colors = TRUE)
 @
 \end{center}
@@ -901,6 +903,7 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
 <<main-biomass-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between the second set of sensitivity runs">>=
 plot_biomass(d_obj = d_obj_sens_biomass[[2]],
              x_expansion = 2,
+             leg_pos = c(0.75, 0.9),
              rev_colors = TRUE)
 @
 \end{center}
@@ -915,6 +918,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[2]],
 <<main-status-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how relative spawning biomass changes between the second set of sensitivity runs">>=
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[2]],
                  x_expansion = 2,
+                 leg_pos = c(0.75, 0.9),
                  rev_colors = TRUE)
 @
 \end{center}
@@ -931,6 +935,7 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[2]],
 <<main-recruit-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the occasional changes in recruitment deviations for some of the sensitivity runs">>=
 plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
              x_expansion = 2,
+             leg_pos = c(0.75, 0.9),
              rev_colors = TRUE)
 @
 \end{center}
@@ -973,6 +978,7 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
 plot_biomass(d_obj = d_obj_sens_biomass[[3]],
              x_expansion = 2,
              leg_font_size = 9,
+             leg_pos = c(0.83, 0.88),
              rev_colors = TRUE)
 @
 \end{center}
@@ -988,6 +994,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[3]],
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
                  x_expansion = 2,
                  leg_font_size = 9,
+                 leg_pos = c(0.83, 0.88),
                  rev_colors = TRUE)
 @
 \end{center}
@@ -1005,6 +1012,7 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
 plot_recruitment(d_obj = d_obj_sens_recr[[3]],
                  x_expansion = 2,
                  leg_font_size = 9,
+                 leg_pos = c(0.13, 0.88),
                  rev_colors = TRUE)
 @
 \end{center}
@@ -1020,6 +1028,7 @@ plot_recruitment(d_obj = d_obj_sens_recr[[3]],
 plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
              x_expansion = 2,
              leg_font_size = 9,
+             leg_pos = c(0.13, 0.88),
              rev_colors = TRUE)
 @
 \end{center}
@@ -1081,6 +1090,7 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
 plot_biomass(d_obj = d_obj_sens_biomass[[4]],
              x_expansion = 2,
              leg_font_size = 9,
+             leg_pos = c(0.8, 0.85),
              rev_colors = TRUE)
 @
 \end{center}
@@ -1096,6 +1106,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[4]],
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[4]],
                  x_expansion = 2,
                  leg_font_size = 9,
+                 leg_pos = c(0.8, 0.85),
                  rev_colors = TRUE)
 @
 \end{center}
@@ -1113,6 +1124,8 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[4]],
 plist <- list()
 plist[[1]] <- plot_biomass(d_obj = d_obj_retro_biomass,
                            leg_font_size = 9,
+                           leg_pos = c(0.6, 0.89),
+                           leg_ncol = 2,
                            alpha = 0.1)
 plist[[2]] <- plot_recruitment(d_obj = d_obj_retro_recr,
                                leg_pos = "none")
