@@ -285,7 +285,7 @@ Steepness ($h$): A stock-recruit relationship parameter representing the proport
 
 Stock Synthesis (SS): The age-structured stock assessment model applied in this stock assessment. % For a more detailed description of this model, see \citet{**Methot and Wetzel (2013).
 
-Target spawning potential ratio ($\mbox{SPR}_{40\%}$): The spawning potential ratio of 40\%, where the 40\% relates to the default harvest rate of $\Fforty$ specified in the Agreement. Even under equilibrium conditions, $\Fforty$ would not necessarily result in a spawning biomass of $B_{40\%}$ because $\Fforty$ is defined in terms of the spawning potential ratio which depends on the spawning biomass \emph{per recruit}.
+Target spawning potential ratio ($\mbox{SPR}_{40\%}$): The spawning potential ratio of 40\%, where the 40\% relates to the default harvest rate of $\Fforty$ specified in the Agreement. Even under equilibrium conditions, $\Fforty$ would not necessarily result in a female spawning biomass of $B_{40\%}$ because $\Fforty$ is defined in terms of the spawning potential ratio which depends on the female spawning biomass \emph{per recruit}.
 
 Target strength (TS): The amount of backscatter from an individual acoustic target.
 
