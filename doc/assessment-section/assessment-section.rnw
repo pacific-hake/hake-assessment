@@ -26,11 +26,12 @@ control rules (Table~\ref{tab:main-assessment-changes}).
 Analysts are constantly trying to improve the caliber and relevance of the assessment by
 responding to new scientific developments related to statistics and biological dynamics,
 policy requirements, and
-different or new insights brought up during the peer review process.
+different or new insights brought up during the peer review process to ensure a robust
+stock assessment.
 
 Data processing, filtering, and weighting choices have been modified several times
 since the first assessment. For example, modifications to the target-strength
-relationship used to scale acoustic data changed in 1997 \citep{DornSaunders1997}
+relationship used to scale acoustic data changed in 1997 \citep{DornSaunders1997},
 and kriging was implemented to account for the spatial correlation in the
 acoustic data in 2010 \citep{StewartHamel2010}.
 While survey data have been the key index for
@@ -38,11 +39,13 @@ biomass since 1988, surveys that have been used have varied considerably. The
 AFSC/NWFSC triennial bottom trawl survey was used from 1988 before being
 discarded from the 2009 assessment \citep{HamelStewart2009}. Acoustic
 surveys from the years prior to 1995 were used for assessments in the early
-1990s but \citet{StewartForrestEtAl2011} reviewed these early surveys and
+1990s, but \citet{StewartForrestEtAl2011} reviewed these early surveys and
 deemed that sampling was insufficient to be comparable with more
-recent data. **[re-write and mention age-1 used in 2022] Several recruitment indices have been considered
-but ultimately identified as adding no appreciable contribution to model results
-\citep{HelserDornEtAl2002, HelserFleischerEtAl2005, StewartHamel2010}.
+recent data. Several recruitment indices have been considered
+but ultimately none were identified as adding appreciable contribution to model results
+\citep{HelserDornEtAl2002, HelserFleischerEtAl2005, StewartHamel2010}, except for
+the fishery-independent acoustic-based age-1 index which has been included
+in the base model since 2021.
 The process for generating fecundity-at-age from weight-at-age data
 changed in 2019 from using time-invariant to year-specific values.
 Even where data have been consistently used, the weighting of these data
@@ -79,7 +82,7 @@ age-based \citep{Dorn1994, DornSaunders1997, JTC2012, JTC2013}, and length-based
 \citep{HelserMartell2007}.
 
 Several harvest control rules have been explored for providing catch limits from
-these stock assessments. \fishname\ stock assessments have presented decision
+stock assessment output. \fishname\ stock assessments have presented decision
 makers with constant $F$, variable $F$, and the following hybrid control rules:
 $F_{\text{SPR}=35\%}$, $\Fforty$, \Ffortyten, $F_{\text{SPR}=45\%}$,
 $F_{\text{SPR}=45\%}$--40:10, and $F_{\text{SPR}=50\%}$ (e.g., \citealt{Dorn1996,
@@ -104,11 +107,13 @@ The statistical-catch-at-age model assumes that the
 \fishname\ population is a single coast-wide stock subject to
 one aggregated fleet with combined male and female population dynamics.
 Stock Synthesis \citep{MethotWetzel2013} version \Sexpr{ss_version} was the modeling platform used.
-** The largest changes between the
+The largest changes between the
 \Sexpr{last_assess_yr} and \Sexpr{assess_yr} stock assessments are the addition of another
 year of
-acoustic survey and
-fishery data and the incorporation of the age-1 index into the base model.
+%acoustic survey and
+fishery data
+%and the incorporation of the age-1 index 
+into the base model.
 
 The \Sexpr{assess_yr} base model includes a time series (1995 to
 \Sexpr{last.survey.year}) of acoustic age-2$+$ biomass
@@ -136,9 +141,7 @@ non-parametric functions estimating age-specific values for each age beginning
 at age-2 for the index of age-2$+$ biomass
 and age-1 for the fishery until a maximum age of 6, after which
 all ages are assumed to have the same selectivity.
-
-** An age-1 index was included in the base model. It spans the same years as the acoustic survey, as it was
-part of the same survey, on the same vessels (but no value is available for 2001). Selectivity was set to one for age-1 fish for this index
+Selectivity for the age-1 index was set to one for age-1
 and zero for all other ages.
 
 Prior probability distributions are used for a select few parameters
@@ -155,7 +158,7 @@ stock-recruit steepness ($h$), based on \citet{MyersBowenEtAl1999}, that has
 been applied since 2011 \citep{StewartForrestEtAl2011}.
 Year-specific recruitment deviations were estimated
 from \Sexpr{main.recdev.early}--\Sexpr{main.recdev.end+1}
-as well as the years \Sexpr{assess_yr}--\Sexpr{assess_yr+3}
+as well as the years \Sexpr{assess_yr-1}--\Sexpr{assess_yr+3}
 for purposes of forecasting. The standard deviation,
 $\sigma_r$, of recruitment variability serves as a recruitment deviation
 constraint and is fixed at
@@ -184,12 +187,11 @@ fishing fleets or the number of trawl sets in the research surveys (see Section~
 
 \subsubsub{Software and Hardware}
 
-** The {\tt adnuts} R package \citep{Monnahan2018} was used to apply the NUTS algorithm producing
+The {\tt adnuts} R package \citep{Monnahan2018} was used to apply the NUTS algorithm producing
 \Sexpr{f(num.mcmc.samples)} MCMC samples which describe posterior distributions for model
 parameters and derived quantities. This is nearly a ten-fold increase in samples from the
-2020 assessment \citep{JTC2020} and earlier and a 33\% increase in samples from last
-year's assessment \citep{JTC2021}. The number of samples for the sensitivity analyses
-remained the same as last year's assessment at 8,000 samples.
+2020 \citep{JTC2020} and earlier assessments. The number of samples used for sensitivity models,
+retrospective models, and forecasting scenarios was also set to \Sexpr{f(num.mcmc.samples)}.
 Medians (50\% quantiles) are reported together with the
 bounds of 95\% credibility intervals calculated as
 the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
@@ -205,12 +207,13 @@ The covariance matrix from this short run is used as the mass matrix for the mai
 \Sexpr{f(num.mcmc.samples)} samples from the posterior for inference. The {\tt adapt\_delta} value
 sets the target average acceptance probability and was set to 0.95 for
 the main NUTS run. The choice of {\tt adapt\_delta} of 0.95 was made based on less divergence
-of the posterior and higher effective sample size compared to 0.90, which was used for last
-year's assessment. A full explanation of the NUTS algorithm and the {\tt adnuts} package,
+of the posterior and higher effective sample size.
+A full explanation of the NUTS algorithm and the {\tt adnuts} package,
 including an analysis with the \fishname\ stock
 can be found in \citet{Monnahan2019}.
 
-** Cloud computing was used for the first time for this assessment through Amazon Web Services' (AWS)
+** [Change to server - but in print here let's just say server, and not note the location of the server so as not to raise any
+flags] Cloud computing was used for the first time for this assessment through Amazon Web Services' (AWS)
 Elastic Compute Cloud (EC2) instances. Use of these services allowed the JTC to run many models
 simultaneously and to acquire more samples from the posterior distribution than what was used
 for inference in the last assessment. Thus, the use of AWS left local computers
@@ -218,15 +221,13 @@ available to continue work on the document and other analyses.
 AWS Simple Storage Service (S3), which can hold "any amount of data" privately, was used to
 share the model results between JTC members.
 
-** Calculations and figures from Stock Synthesis output were performed using
+Calculations and figures from Stock Synthesis output were performed using
 \Sexpr{R.Version()$version.string} and many R \citep{R2021} packages (in
 particular r4ss, adnuts, and xtable). The use of R, knitr, \LaTeX, and GitHub immensely
 facilitated the collaborative writing of this document.
 In particular, having most of the code under version control since the 2016
 assessment \citep{JTC2016} allows for the completion of a full assessment
-in the limited time available. This successful workflow partly motivated a DFO
-workshop \citep{EdwardsDupliseaEtAl2018} and an e-book
-\citep{CuddingtonEdwardsEtAl2021} to encourage wider uptake of such tools among biologists.
+in the limited time available.
 
 \subsection{Response to 2022 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
