@@ -337,7 +337,8 @@ quad_grid <- cowplot::plot_grid(plotlist = plist,
                                 ncol = 2)
 full_plist <- list()
 full_plist[[1]] <-
-  plot_biomass(d_obj = d_obj_bridge_biomass[[1]])
+  plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
+               leg_font_size = 10)
 
 full_plist[[2]] <- quad_grid
 
@@ -853,6 +854,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[1]],
              ylim = c(0, 20),
              y_breaks = seq(0, 20, 2),
              x_expansion = 2,
+             leg_font_size = 10,
              rev_colors = TRUE)
 @
 \end{center}
@@ -872,6 +874,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[1]],
 <<main-status-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how relative spawning biomass changes between the first set of sensitivity runs">>=
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
                  x_expansion = 2,
+                 leg_font_size = 10,
                  rev_colors = TRUE)
 @
 \end{center}
@@ -962,6 +965,7 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
 <<main-biomass-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recent spawning biomass varies for some sensitivity runs">>=
 plot_biomass(d_obj = d_obj_sens_biomass[[3]],
              x_expansion = 2,
+             leg_font_size = 10,
              rev_colors = TRUE)
 @
 \end{center}
@@ -976,6 +980,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[3]],
 <<main-status-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recent relative spawning biomass varies for some sensitivity runs">>=
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
                  x_expansion = 2,
+                 leg_font_size = 10,
                  rev_colors = TRUE)
 @
 \end{center}
@@ -992,8 +997,8 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
 <<main-recruitment-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows occasional differences in recruitment between certain sensitivity runs">>=
 plot_recruitment(d_obj = d_obj_sens_recr[[3]],
                  x_expansion = 2,
+                 leg_font_size = 10,
                  rev_colors = TRUE)
-box()
 @
 \end{center}
 \caption{MCMC estimates of recruitment for the base model and alternative sensitivity runs representing different standard deviations ($\Phi$) associated with time-varying selectivity. See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
@@ -1007,8 +1012,8 @@ box()
 <<main-recruitment-devs-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows occasional differences in recruitment deviations between certain sensitivity runs">>=
 plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
              x_expansion = 2,
+             leg_font_size = 10,
              rev_colors = TRUE)
-box()
 @
 \end{center}
 \caption{MCMC estimates of recruitment deviations for the base model and alternative sensitivity runs representing different standard deviations ($\Phi$) associated with time-varying selectivity. See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
@@ -1068,6 +1073,7 @@ box()
 <<main-biomass-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between further sensitivity runs">>=
 plot_biomass(d_obj = d_obj_sens_biomass[[4]],
              x_expansion = 2,
+             leg_font_size = 10,
              rev_colors = TRUE)
 @
 \end{center}
@@ -1082,6 +1088,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[4]],
 <<main-status-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how relative spawning biomass changes between further sensitivity runs">>=
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[4]],
                  x_expansion = 2,
+                 leg_font_size = 10,
                  rev_colors = TRUE)
 @
 \end{center}
@@ -1098,6 +1105,7 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[4]],
 
 plist <- list()
 plist[[1]] <- plot_biomass(d_obj = d_obj_retro_biomass,
+                           leg_font_size = 10,
                            alpha = 0.1)
 plist[[2]] <- plot_recruitment(d_obj = d_obj_retro_recr,
                                leg_pos = "none")
@@ -1176,7 +1184,7 @@ make.assessment.history.plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{** Summary of historical \fishname\ assessment estimates of spawning
+\caption{Summary of historical \fishname\ assessment estimates of spawning
   biomass. Estimates are MLEs or MCMC medians depending on the model structure.
   Shading represents the 95\% credible interval from the
   \Sexpr{end_yr} base model.}
@@ -1253,8 +1261,8 @@ described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 \caption{Retrospective versions of Figure~\ref{fig:main-historical-1}.
   For each panel, the current base model is run using only data up to
   (and including) the year
-  shown (i.e. a retrospective analysis) -- `data to
-  \Sexpr{assess_yr - length(base_model$retros) - 1}' would
+  shown (i.e. a retrospective analysis) -- data to
+  \Sexpr{assess_yr - length(base_model$retros) - 1} would
   equate to doing an assessment at the start of \Sexpr{assess_yr - length(base_model$retros)}.
   Results are shown for further retrospective years in
   Figures~\ref{fig:main-historical-retro-2},
