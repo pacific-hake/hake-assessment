@@ -1,9 +1,10 @@
-#' Plot recruitment deviations from MCMC output for one or more models
+#' Plot recruitment from MCMC output for one or more models
 #'
 #' @param model_lst A list of models, each created by [create_rds_file()]
 #' @param model_names A vector of model names,the same length as `models_lst`
 #' @param xlim The year limits to plot
 #' @param x_breaks The year value tick marks to show for the x axis
+#' @param x_expansion Amount of space to leave either side on the x-axis
 #' @param ylim The depletion limits to plot
 #' @param y_breaks The depletion value tick marks to show for the y axis
 #' @param y_labels The depletion labels to show for the y axis tick marks
@@ -14,6 +15,10 @@
 #' @param leg_font_size The legend font size
 #' @param point_size Size of all points shownin plot
 #' @param line_width Width of all lines on the plot
+#' @param single_point_color Point color for the case where there is only
+#' one model to plot
+#' @param single_line_color Line color for the case where there is only
+#' one model to plot
 #' @param crossbar_width The width of the end bars (top and bottom) of the errorbar
 #' lines. Default of zero removes them
 #' @param dodge_val The amount to offset the lines from each other in the
@@ -26,37 +31,33 @@
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
-plot_recdevs <- function(model_lst = NULL,
-                         model_names,
-                         xlim = c(1946,
-                                  year(Sys.time())),
-                         x_breaks = c(1946,
-                                      seq(
-                                        round(1946 + 10, -1),
-                                        # Current decade, i.e. 2020
-                                        round(year(Sys.time()) - 10, -1),
-                                        by = 10),
+plot_recruitment <- function(model_lst = NULL,
+                             model_names,
+                             xlim = c(1966,
                                       year(Sys.time())),
-                         x_expansion = 3,
-                         ylim = c(-5, 5),
-                         y_breaks = seq(ylim[1], ylim[2], by = 1),
-                         y_labels = expression("-5", "-4", "-3", "-2", "-1",
-                                               "0",
-                                               "1", "2", "3", "4", "5"),
-                         y_colors = c("black", "black", "black", "black", "black",
-                                      "blue",
-                                      "black", "black", "black", "black", "black"),
-                         alpha = 0.1,
-                         leg_pos = c(0.65, 0.83),
-                         leg_font_size = 12,
-                         point_size = 1.5,
-                         line_width = 0.5,
-                         single_point_color = "black",
-                         single_line_color = "black",
-                         crossbar_width = 0,
-                         dodge_val = 0.5,
-                         rev_colors = FALSE,
-                         d_obj = NULL){
+                             x_breaks = c(1966,
+                                          seq(
+                                            round(1966 + 10, -1),
+                                            # Current decade, i.e. 2020
+                                            round(year(Sys.time()) - 10, -1),
+                                            by = 10),
+                                          year(Sys.time())),
+                             x_expansion = 3,
+                             ylim = c(0, 40),
+                             y_breaks = seq(ylim[1], ylim[2], by = 10),
+                             y_labels = y_breaks,
+                             y_colors = rep("black", length(y_breaks)),
+                             alpha = 0.2,
+                             leg_pos = c(0.65, 0.83),
+                             leg_font_size = 12,
+                             point_size = 1.5,
+                             line_width = 0.5,
+                             single_point_color = "black",
+                             single_line_color = "black",
+                             crossbar_width = 0,
+                             dodge_val = 0.5,
+                             rev_colors = FALSE,
+                             d_obj = NULL){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -64,7 +65,7 @@ plot_recdevs <- function(model_lst = NULL,
            "must be supplied. Both are `NULL`",
            call. = FALSE)
     }
-    d_obj <- create_group_df_recr(model_lst, model_names, devs = TRUE)
+    d_obj <- create_group_df_recr(model_lst, model_names)
   }
 
   d <- d_obj[[1]]
@@ -78,6 +79,15 @@ plot_recdevs <- function(model_lst = NULL,
   if(is_single_model){
     colors <- single_point_color
     line_colors <- single_line_color
+    ro_vec <- model_lst[[1]]$mcmccalcs$rinit
+    yrs <- c(seq(min(d$year) - x_expansion,
+                 min(d$year) - 1), d$year)
+    ro <- tibble(model = model_names[[1]],
+                 year = yrs,
+                 rlower = ro_vec[1],
+                 rmed = ro_vec[2],
+                 rupper = ro_vec[3]) |>
+      mutate(model = factor(model))
   }
 
   # Remove projection years
@@ -86,24 +96,47 @@ plot_recdevs <- function(model_lst = NULL,
 
   g <- ggplot(d,
               aes(x = year,
-                  y = devmed,
-                  ymin = devlower,
-                  ymax = devupper,
+                  y = rmed,
+                  ymin = rlower,
+                  ymax = rupper,
                   group = model,
                   color = model,
                   fill = model)) +
     scale_color_manual(values = line_colors) +
     coord_cartesian(xlim = xlim,
-                    ylim = ylim) +
+                    ylim = ylim)
+
+  if(is_single_model){
+    ro_val <- ro$rmed[1]
+    below <- which(ro_val > y_breaks)
+    above <- which(ro_val < y_breaks)
+    tmp <- y_breaks
+    y_breaks <- c(tmp[below], ro_val, tmp[above])
+    y_labels <- c(tmp[below], expression(R[0]), tmp[above])
+    g <- g +
+      geom_point(size = point_size,
+                 color = colors) +
+      geom_hline(data = ro,
+                 aes(yintercept = rmed),
+                 linetype = "dashed") +
+      geom_ribbon(data = ro,
+                  aes(ymin = rlower,
+                      ymax = rupper),
+                  alpha = alpha,
+                  linetype = "dotted")
+
+  }
+
+  g <- g +
     geom_hline(yintercept = 0,
                color = "black",
                linetype = "solid",
                size = 0.5) +
+    geom_point(size = point_size,
+               position = position_dodge(dodge_val)) +
     geom_errorbar(size = line_width,
                   position = position_dodge(dodge_val),
                   width = crossbar_width) +
-    geom_point(size = point_size,
-               position = position_dodge(dodge_val)) +
     scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
                        labels = x_breaks) +
@@ -117,14 +150,8 @@ plot_recdevs <- function(model_lst = NULL,
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 0, 0)) +
     xlab("Year") +
-    ylab("Recruitment deviations")
+    ylab("Age-0 recruits (billions)")
 
-  if(is_single_model){
-    g <- g +
-      geom_point(size = point_size,
-                 color = colors)
-
-  }
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
       theme(legend.position = "none")

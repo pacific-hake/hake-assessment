@@ -27,12 +27,13 @@
 #' @return a [ggplot2::ggplot()] object
 #' @export
 plot_survey_index_fits <- function(
-    model_lst,
+    model_lst = NULL,
     model_names,
     survey_type = c("age1",
                     "age2"),
     xlim = c(1995, 2021),
     x_breaks = seq(1995, 2021, by = 5),
+    x_expansion = 3,
     ylim = c(0, 3),
     y_breaks = seq(ylim[1], ylim[2], by = 0.5),
     y_labels = expression("0", "0.5", "1", "1.5", "2", "2.5", "3"),
@@ -48,38 +49,15 @@ plot_survey_index_fits <- function(
   fleet <- ifelse(survey_type == "age2", 2, 3)
 
   if(is.null(d_obj)){
-    obs <- model_lst[[1]]$dat$CPUE |>
-      as_tibble() |>
-      filter(index == fleet) |>
-      select(-seas, -se_log, -index) |>
-      setNames(c("year", "index.med")) |>
-      mutate(year = as.numeric(year)) |>
-      mutate(model = "Observed") |>
-      mutate(index.025 = index.med,
-             index.975 = index.med) |>
-      select(model, year, index.025, index.med, index.975)
-
-    d <- bind_cols(extract_survey_index_fits(model_lst,
-                                             model_names,
-                                             survey_type,
-                                             "index.025", TRUE),
-                   extract_survey_index_fits(model_lst,
-                                             model_names,
-                                             survey_type,
-                                             "index.med"),
-                   extract_survey_index_fits(model_lst,
-                                             model_names,
-                                             survey_type,
-                                             "index.975")) |>
-      bind_rows(obs) |>
-      mutate(model = factor(model, levels = c(model_names, "Observed")),
-             year = as.numeric(year)) |>
-      mutate_at(vars(index.025, index.med, index.975),
-                ~{.x / 1e6})
-  }else{
-    d <- d_obj[[1]]
+    if(is.null(model_lst[1] || is.null(model_names[1]))){
+      stop("Either `d_obj` or both `model_lst` and `model_names` ",
+           "must be supplied. Both are `NULL`",
+           call. = FALSE)
+    }
+    d_obj <- create_group_df_index(model_lst, model_names, survey_type)
   }
 
+  d <- d_obj[[1]]
   colors <- plot_color(length(unique(d$model)))
 
   g <- ggplot(d,
@@ -104,7 +82,7 @@ plot_survey_index_fits <- function(
               position = position_dodge(dodge_val)) +
     geom_errorbar(size = line_width,
                   position = position_dodge(dodge_val)) +
-    scale_x_continuous(expand = c(0, 0),
+    scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
                        labels = x_breaks) +
     scale_y_continuous(expand = c(0, 0),

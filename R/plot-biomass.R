@@ -28,40 +28,49 @@ plot_biomass <- function(model_lst = NULL,
                                       seq(1970,
                                           # Current decade, i.e. 2020
                                           round(year(Sys.time()), -1),
-                                          by = 5),
-                                      year(Sys.time())),
+                                          by = 5)),
+                                      #year(Sys.time())),
+                         x_expansion = 3,
                          ylim = c(0, 4.5),
                          y_breaks = seq(ylim[1], ylim[2], by = 0.5),
-                         alpha = 0.1,
+                         alpha = 0.2,
                          leg_pos = c(0.65, 0.83),
                          leg_font_size = 12,
-                         point_size = 2,
+                         point_size = 2.5,
+                         point_shape = 16,
                          line_width = 1,
+                         single_line_color = "black",
+                         single_ribbon_color = "blue",
+                         rev_colors = FALSE,
                          d_obj = NULL){
 
   if(is.null(d_obj)){
-    init_year <- model_lst[[1]]$startyr - 1
-    bo <- map(model_lst, ~{
-      .x$mcmccalcs$sinit
-    }) |>
-      map_dfr(~{.x}) |>
-      mutate(model = model_names) |>
-      mutate(year = init_year) |>
-      select(model, year, everything()) |>
-      setNames(c("model", "year", "slower", "smed", "supper")) |>
-      mutate(model = factor(model, levels = model_names),
-             year = as.numeric(year))
-
-    d <- bind_cols(extract_mcmc_quant(model_lst, model_names, "slower", TRUE),
-                   extract_mcmc_quant(model_lst, model_names, "smed"),
-                   extract_mcmc_quant(model_lst, model_names, "supper")) |>
-      mutate(model = factor(model, levels = model_names),
-             year = as.numeric(year))
-  }else{
-    d <- d_obj[[1]]
-    bo <- d_obj[[2]]
+    if(is.null(model_lst[1]) || is.null(model_names[1])){
+      stop("Either `d_obj` or both `model_lst` and `model_names` ",
+           "must be supplied. Both are `NULL`",
+           call. = FALSE)
+    }
+    d_obj <- create_group_df_biomass(model_lst, model_names)
   }
+
+  d <- d_obj[[1]]
+  bo <- d_obj[[2]]
+  is_single_model <- length(unique(d$model)) == 1
+
   colors <- plot_color(length(unique(d$model)))
+  ribbon_colors <- colors
+  if(rev_colors){
+    colors <- rev(colors)
+    ribbon_colors <- rev(ribbon_colors)
+  }
+  if(is_single_model){
+    colors <- single_line_color
+    ribbon_colors <- single_ribbon_color
+  }
+
+  # Remove projection years
+  d <- d |>
+    filter(year <= xlim[2])
 
   g <- ggplot(d,
               aes(x = year,
@@ -71,15 +80,16 @@ plot_biomass <- function(model_lst = NULL,
                   group = model,
                   color = model,
                   fill = model)) +
-    scale_fill_manual(values = colors) +
+    scale_fill_manual(values = ribbon_colors) +
     scale_color_manual(values = colors) +
     coord_cartesian(xlim = xlim,
                     ylim = ylim) +
     geom_ribbon(alpha = alpha,
-                linetype = "dashed") +
+                linetype = "dotted") +
     geom_line(linewidth = line_width) +
-    geom_point(size = point_size) +
-    scale_x_continuous(expand = c(0, 0),
+    geom_point(size = point_size,
+               shape = point_shape) +
+    scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
                        labels = x_breaks) +
     scale_y_continuous(expand = c(0, 0),
@@ -91,7 +101,7 @@ plot_biomass <- function(model_lst = NULL,
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 0, 0)) +
     xlab("Year") +
-    ylab("Spawning Biomass (million t)")
+    ylab("Female Spawning Biomass (million t)")
 
   # Add B0 to the plot
   g <- g +

@@ -186,7 +186,7 @@ fig_align <- "center"
 fig_pos <- "htb"
 library(knitr)   # Needed else next line gives hidden error for the first run
                  # using knitr::knit("hake-assessment.rnw")
-opts_chunk$set(dev = 'png',
+opts_chunk$set(dev = "png",
                dpi = fig_dpi,
                fig.width = fig_width,
                fig.pos = fig_pos,
@@ -196,10 +196,9 @@ opts_chunk$set(dev = 'png',
                message = FALSE,
                warning = FALSE,
                comment = "#>",
-               results = 'hide',
-               fig.path = 'knitr-cache/',
-               cache.path = 'knitr-cache/',
-               cache.lazy = FALSE,
+               results = "hide",
+               fig.path = here::here("doc/knitr-cache/"),
+               cache.path = here::here("doc/knitr-cache/"),
                cache = TRUE)
 
 # Data frame of alternative figure text to be populated by a knitr hook

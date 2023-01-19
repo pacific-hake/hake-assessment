@@ -148,6 +148,7 @@ make.historical.probs.plot <- function(model,
   res <- combine_historical_probs(model = model,
                                   end = end,
                                   ...)
+
   if(add.to.plot){
     if(type == "decline"){
       points(res$Year,

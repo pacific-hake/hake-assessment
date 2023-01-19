@@ -311,23 +311,21 @@ make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1, highlight = 5)
 <<main-bridge-5-panel-1, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the differences between the first bridging models for various model outputs">>=
 plist <- list()
 plist[[1]] <-
-  plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass,
+  plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
                    ylim = c(0, 2.5),
                    y_labels = expression("0", "0.1B"[0], "0.4B"[0], "0.5",
                                          "B"[0], "1.5", "2", "2.5"),
                    leg_pos = "none")
 plist[[2]] <-
-  plot_recdevs(d_obj = d_obj_bridge_recdevs,
+  plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
                leg_pos = "none")
 
 plist[[3]] <-
-  plot_survey_index_fits(d_obj = d_obj_bridge_survey_age2_index,
-                         survey_type = "age2",
+  plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
                          leg_pos = "none")
 
 plist[[4]] <-
-  plot_survey_index_fits(d_obj = d_obj_bridge_survey_age1_index,
-                         survey_type = "age1",
+  plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
                          xlim = c(1995, 2022),
                          ylim = c(0, 6.5),
                          leg_pos = "none")
@@ -339,7 +337,7 @@ quad_grid <- cowplot::plot_grid(plotlist = plist,
                                 ncol = 2)
 full_plist <- list()
 full_plist[[1]] <-
-  plot_biomass(d_obj = d_obj_bridge_biomass)
+  plot_biomass(d_obj = d_obj_bridge_biomass[[1]])
 
 full_plist[[2]] <- quad_grid
 
@@ -563,12 +561,12 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been decreasing in size since 2019">>=
-make.biomass.plot(base_model,
-                  equil.yr = unfished_eq_yr,
-                  start_yr = start_yr,
-                  end_yr = end_yr,
-                  color = "blue")
+<<main-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been increasing in size since 2021">>=
+plot_biomass(list(base_model),
+             list(base_model_name),
+             ylim = c(0, 5),
+             point_shape = 1,
+             leg_pos = "none")
 @
 \end{center}
 \caption{Median of the posterior distribution for female spawning biomass at the start of each year ($B_t$) for the base model up to \Sexpr{end_yr} (solid line)
@@ -581,10 +579,10 @@ make.biomass.plot(base_model,
 %% \begin{figure}[H]
 \begin{center}
 <<main-relative-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the relative biomass has been decreasing since 2019">>=
-make.depletion.plot(base_model,
-                    start_yr = start_yr,
-                    end_yr = end_yr,
-                    color = "blue")
+plot_rel_biomass(list(base_model),
+                 list(base_model_name),
+                 point_shape = 1,
+                 leg_pos = "none")
 @
 \end{center}
 %\vspace{0mm}
@@ -599,19 +597,13 @@ make.depletion.plot(base_model,
 \begin{figure}[H]
 \begin{center}
 <<main-recruitment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
-make.recruitment.plot(base_model,
-                      equil.yr = unfished_eq_yr,
-                      start_yr = start_yr,
-                      end_yr = end_yr,
-                      color = "blue",
-                      add.mean = TRUE,
-                      add.r0 = TRUE)
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 single_line_color = "blue",
+                 leg_pos = "none")
 @
 \end{center}
-\caption{Medians (solid circles) and means ($\times$) of the posterior distribution for recruitment (billions of age-0 fish) with
-  95\% posterior credibility intervals (blue lines). The median of the posterior distribution for mean unfished
-  equilibrium recruitment ($R_0$) is shown as the horizontal dashed line with a 95\% posterior credibility
-  interval shaded between the dotted lines.}
+\caption{Medians (solid circles) of the posterior distribution for recruitment (billions of age-0 fish) with 95\% posterior credibility intervals (blue lines). The median of the posterior distribution for mean unfished equilibrium recruitment ($R_0$) is shown as the horizontal dashed line with a 95\% posterior credibility interval shaded between the dotted lines.}
 \label{fig:main-recruitment}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -620,14 +612,13 @@ make.recruitment.plot(base_model,
 %% \begin{figure}[H]
 \begin{center}
 <<main-recruitment-devs, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
-make.recruitment.dev.plot(base_model,
-                          end_yr = end_yr)
-
+plot_recdevs(list(base_model),
+             list(base_model_name),
+             single_line_color = "blue",
+             leg_pos = "none")
 @
 \end{center}
-\caption{Medians (solid circles) of the posterior distribution for log-scale recruitment deviations with
-  95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit_dev_start_yr}--\Sexpr{start_yr-1}
-  are used to calculate the numbers at age in \Sexpr{start_yr}, the initial year of the model.}
+\caption{Medians (solid circles) of the posterior distribution for log-scale recruitment deviations with 95\% posterior credibility intervals (blue lines). Recruitment deviations for the years \Sexpr{recruit_dev_start_yr}--\Sexpr{start_yr-1} are used to calculate the numbers at age in \Sexpr{start_yr}, the initial year of the model.}
 \label{fig:main-recruitment-devs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -854,17 +845,15 @@ make.age.comp.forecast.plot(base_model)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
 <<main-biomass-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between the first set of sensitivity runs">>=
-# TODO: Change this to new plot function (Jan 18 2023)
-make.comparison.plot(c(list(base_model), sens_models[[1]]),
-                     subplots = 2,
-                     model.names = c(base_model_name,
-                                     sens_model_names[[1]]),
-                     end_yr = end_yr)
+plot_biomass(d_obj = d_obj_sens_biomass[[1]],
+             ylim = c(0, 20),
+             y_breaks = seq(0, 20, 2),
+             x_expansion = 2,
+             rev_colors = TRUE)
 @
 \end{center}
 \caption{**[if sens runs change] MCMC estimates of spawning biomass for the base
@@ -881,12 +870,9 @@ make.comparison.plot(c(list(base_model), sens_models[[1]]),
 %% \begin{figure}[H]
 \begin{center}
 <<main-status-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how relative spawning biomass changes between the first set of sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens_models_1),
-                     subplots = 4,
-                     model.names = c(base_model_name, sens_model_names_1),
-                     legend = FALSE,
-                     end_yr = end_yr,
-                     btarg = 0.4)
+plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
+                 x_expansion = 2,
+                 rev_colors = TRUE)
 @
 \end{center}
 %\vspace{0mm}
@@ -903,15 +889,12 @@ make.comparison.plot(c(list(base_model), sens_models_1),
 \begin{figure}[H]
 \begin{center}
 <<main-biomass-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between the second set of sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens_models_2),
-                     subplots = 2,
-                     model.names = c(base_model_name, sens_model_names_2),
-                     end_yr = end_yr)
+plot_biomass(d_obj = d_obj_sens_biomass[[2]],
+             x_expansion = 2,
+             rev_colors = TRUE)
 @
 \end{center}
-\caption{** MCMC estimates of spawning biomass for the base model and alternative
-  sensitivity runs that represent the following changes in data: removing the index of age-1 fish
-  and downweighting fishery composition data using the McAllister-Ianelli method.}
+\caption{MCMC estimates of spawning biomass for the base model and alternative sensitivity models that represent the following changes in data: removing the index of age-1 fish and down-weighting fishery composition data using the McAllister-Ianelli method.}
 \label{fig:main-biomass-base-alternative-2}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -920,18 +903,13 @@ make.comparison.plot(c(list(base_model), sens_models_2),
 %% \begin{figure}[H]
 \begin{center}
 <<main-status-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how relative spawning biomass changes between the second set of sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens_models_2),
-                     subplots = 4,
-                     model.names = c(base_model_name, sens_model_names_2),
-                     legend = FALSE,
-                     end_yr = end_yr,
-                     btarg = 0.4)
+plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[2]],
+                 x_expansion = 2,
+                 rev_colors = TRUE)
 @
 \end{center}
 %\vspace{0mm}
-\caption{** MCMC estimates of stock status (relative spawning biomass) for the base
-  model and alternative sensitivity runs that represent changes in data.
-  See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
+\caption{MCMC estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity models that represent changes in data. See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -941,16 +919,12 @@ make.comparison.plot(c(list(base_model), sens_models_2),
 \begin{figure}[H]
 \begin{center}
 <<main-recruit-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the occasional changes in recruitment deviations for some of the sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens_models_2),
-                     subplots = 12,
-                     model.names = c(base_model_name, sens_model_names_2),
-                     legend = FALSE,
-                     end_yr = end_yr)
+plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
+             x_expansion = 2,
+             rev_colors = TRUE)
 @
 \end{center}
-\caption{** MCMC estimates of recruitment deviations for the base
-  model and alternative sensitivity runs that represent changes in data.
-  See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
+\caption{MCMC estimates of recruitment deviations for the base model and alternative sensitivity runs that represent changes in data. See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-recruit-base-alternative-2}
 % \end{figure}
 %% \end{figure}
@@ -961,16 +935,20 @@ make.comparison.plot(c(list(base_model), sens_models_2),
 % \begin{figure}[H]
 \begin{center}
 <<main-index-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the similarity between some sensitivity runs of the estimates of the fit to the biomass index">>=
-make.comparison.plot(c(list(base_model), sens_models_2),
-                     subplots = 13,
-                     model.names = c(base_model_name, sens_model_names_2),
-                     legend = TRUE,
-                     legend_loc = "topleft",
-                     indexfleets= c(2),
-                     end_yr = end_yr)
+#TODO: Run extra mcmc for these models
+# plot_survey_index_fits(d_obj = d_obj_sens_index[[2]],
+#                        x_expansion = 2,
+#                        rev_colors = TRUE)
+# make.comparison.plot(sens_models[[2]],
+#                      subplots = 13,
+#                      model.names = sens_models_names[[2]],
+#                      legend = TRUE,
+#                      legend_loc = "topleft",
+#                      indexfleets= c(2),
+#                      end_yr = end_yr)
 @
 \end{center}
-\caption{** MCMC estimates of the fit to the biomass index for the base
+\caption{** TODO: Run extra mcmc for these models...** MCMC estimates of the fit to the biomass index for the base
   model and alternative sensitivity runs that represent changes in data.
   See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-index-base-alternative-2}
@@ -982,15 +960,12 @@ make.comparison.plot(c(list(base_model), sens_models_2),
 \begin{figure}[H]
 \begin{center}
 <<main-biomass-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recent spawning biomass varies for some sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens_models_4),
-                     subplots = 2,
-                     model.names = c(base_model_name, sens_model_names_4),
-                     end_yr = end_yr)
+plot_biomass(d_obj = d_obj_sens_biomass[[3]],
+             x_expansion = 2,
+             rev_colors = TRUE)
 @
 \end{center}
-\caption{** MCMC estimates of spawning biomass for the base model
-  and alternative sensitivity runs representing different standard
-  deviations ($\Phi$) associated with time-varying selectivity.}
+\caption{MCMC estimates of spawning biomass for the base model and alternative sensitivity runs representing different standard deviations ($\Phi$) associated with time-varying selectivity.}
 \label{fig:main-biomass-base-alternative-4}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -999,19 +974,13 @@ make.comparison.plot(c(list(base_model), sens_models_4),
 %% \begin{figure}[H]
 \begin{center}
 <<main-status-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recent relative spawning biomass varies for some sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens_models_4),
-                     subplots = 4,
-                     model.names = c(base_model_name, sens_model_names_4),
-                     legend = FALSE,
-                     end_yr = end_yr,
-                     btarg = 0.4)
+plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
+                 x_expansion = 2,
+                 rev_colors = TRUE)
 @
 \end{center}
 %\vspace{0mm}
-\caption{** MCMC estimates of stock status (relative spawning biomass) for the base model
-  and alternative sensitivity runs representing different standard
-  deviations ($\Phi$) associated with time-varying selectivity.
-  See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
+\caption{MCMC estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing different standard deviations ($\Phi$) associated with time-varying selectivity. See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-4}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1021,18 +990,13 @@ make.comparison.plot(c(list(base_model), sens_models_4),
 \begin{figure}[H]
 \begin{center}
 <<main-recruitment-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows occasional differences in recruitment between certain sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens_models_4),
-                     legend = TRUE,
-                     subplots = 10,
-                     model.names = c(base_model_name, sens_model_names_4),
-                     end_yr = end_yr)
+plot_recruitment(d_obj = d_obj_sens_recr[[3]],
+                 x_expansion = 2,
+                 rev_colors = TRUE)
 box()
 @
 \end{center}
-\caption{** MCMC estimates of recruitment for the base model
-  and alternative sensitivity runs representing different standard
-  deviations ($\Phi$) associated with time-varying selectivity.
-  See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
+\caption{MCMC estimates of recruitment for the base model and alternative sensitivity runs representing different standard deviations ($\Phi$) associated with time-varying selectivity. See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
 \label{fig:main-recruit-base-alternative-4}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1041,18 +1005,13 @@ box()
 %% \begin{figure}[H]
 \begin{center}
 <<main-recruitment-devs-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows occasional differences in recruitment deviations between certain sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens_models_4),
-                     legend = FALSE,
-                     subplots = 12,
-                     model.names = c(base_model_name, sens_model_names_4),
-                     end_yr = end_yr)
+plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
+             x_expansion = 2,
+             rev_colors = TRUE)
 box()
 @
 \end{center}
-\caption{** MCMC estimates of recruitment deviations for the base model
-  and alternative sensitivity runs representing different standard
-  deviations ($\Phi$) associated with time-varying selectivity.
-  See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
+\caption{MCMC estimates of recruitment deviations for the base model and alternative sensitivity runs representing different standard deviations ($\Phi$) associated with time-varying selectivity. See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
 \label{fig:main-recruit-devs-base-alternative-4}
 \end{figure}
 
@@ -1060,13 +1019,10 @@ box()
 \begin{figure}[H]
 \begin{center}
 <<main-index-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows differences in the fit to the biomass index for certain sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens_models_4),
-                     subplots = 13,
-                     model.names = c(base_model_name, sens_model_names_4),
-                     legend = TRUE,
-                     legend_loc = "topleft",
-                     indexfleets = 2,
-                     end_yr = end_yr)
+# TODO: run extra mcmc for sensitivity models
+# plot_survey_index_fits(d_obj = d_obj_sens_index[[3]],
+#                        x_expansion = 2,
+#                        rev_colors = TRUE)
 @
 \end{center}
 %\vspace{0mm}
@@ -1110,16 +1066,12 @@ make.comparison.plot(c(list(base_model), sens_models_4),
 \begin{figure}[H]
 \begin{center}
 <<main-biomass-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between further sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens_models_6),
-                     subplots = 2,
-                     model.names = c(base_model_name, sens_model_names_6),
-                     legend = TRUE,
-                     end_yr = end_yr)
+plot_biomass(d_obj = d_obj_sens_biomass[[4]],
+             x_expansion = 2,
+             rev_colors = TRUE)
 @
 \end{center}
-\caption{** MCMC estimates of spawning biomass for the base
-  model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5)
-  or increased (age-7 and age-8) relative to the base model (age-6).}
+\caption{MCMC estimates of spawning biomass for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6).}
 \label{fig:main-biomass-base-alternative-6}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1128,18 +1080,13 @@ make.comparison.plot(c(list(base_model), sens_models_6),
 %% \begin{figure}[H]%%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
 <<main-status-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how relative spawning biomass changes between further sensitivity runs">>=
-make.comparison.plot(c(list(base_model), sens_models_6),
-                     subplots = 4,
-                     model.names = c(base_model_name, sens_model_names_6),
-                     legend = TRUE,
-                     end_yr = end_yr,
-                     btarg = 0.4)
+plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[4]],
+                 x_expansion = 2,
+                 rev_colors = TRUE)
 @
 \end{center}
 %\vspace{0mm}
-\caption{** MCMC estimates of stock status for the base
-  model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5)
-  or increased (age-7 and age-8) relative to the base model (age-6).}
+\caption{MCMC estimates of stock status for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6).}
 \label{fig:main-status-base-alternative-6}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1148,29 +1095,19 @@ make.comparison.plot(c(list(base_model), sens_models_6),
 \begin{figure}[H]
 \begin{center}
 <<main-biomass-recruitment-retrospective, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass and recruitment vary for retrospective runs">>=
-oldpar <- par()
-par(mar = c(2.1, 4.1, 1.1, 1.1), oma = c(2.1, 0, 0, 0))
-layout(matrix(c(1, 2), nrow = 2, ncol = 1, byrow = TRUE))
-make.comparison.plot(retro.list,
-                     subplots = 2,
-                     model.names = retro.model.names,
-                     legend = FALSE,
-                     plot_mcmc = TRUE,
-                     is.retro = TRUE)
-make.comparison.plot(retro.list,
-                     subplots = 10,
-                     model.names = retro.model.names,
-                     legend = TRUE,
-                     legend_loc = "topleft",
-                     plot_mcmc = TRUE,
-                     is.retro = TRUE)
-mtext("Year", side = 1, line = 1, outer = TRUE)
-par <- oldpar
+
+plist <- list()
+plist[[1]] <- plot_biomass(d_obj = d_obj_retro_biomass,
+                           alpha = 0.1)
+plist[[2]] <- plot_recruitment(d_obj = d_obj_retro_recr,
+                               leg_pos = "none")
+
+cowplot::plot_grid(plotlist = plist,
+                   nrow = 2,
+                   ncol = 1)
 @
 \end{center}
-\caption{Estimates of spawning biomass at the start of each year (top)
-  and recruitment (bottom) for the base model and retrospective runs
-  (based on MCMC model runs).}
+\caption{Estimates of spawning biomass at the start of each year (top) and recruitment (bottom) for the base model and retrospective runs (based on MCMC model runs).}
 \label{fig:main-biomass-recruitment-retrospective}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1306,10 +1243,11 @@ described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 \begin{figure}[H]
 \begin{center}
 <<historical-retro-1, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
-par(mfrow = c(3,1))
-make.historical.probs.retro.plot(base_model,
-                                 select.retros = 1:3,
-                                 make.one.figure = FALSE)
+# TODO: Error in model$retros[[i]] : subscript out of bounds
+# par(mfrow = c(3,1))
+# make.historical.probs.retro.plot(base_model,
+#                                  select.retros = 1:3,
+#                                  make.one.figure = FALSE)
 @
 \end{center}
 \caption{Retrospective versions of Figure~\ref{fig:main-historical-1}.
@@ -1376,15 +1314,18 @@ make.historical.probs.retro.plot(base_model,
 \label{fig:main-historical-retro-4}
 % \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
+<<<<<<< HEAD
 %% JOINED ON PAGE
+=======
+
+>>>>>>> 9a09910d (Add a bunch of new plots)
 %%%%%%%%%%%%%%%%%%%%%%%
 % \begin{figure}[H]
 ~ \\
 \begin{center}
 <<historical-retro-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
-make.historical.probs.retro.plot(base_model,
-                                 legend.cex = 0.6,
-                                 legend.loc = "topright")
+# TODO: Error in model$retros[[i]] : subscript out of bounds
+#make.historical.probs.retro.plot(base_model)
 @
 \end{center}
 \caption{Retrospective results of
@@ -1399,9 +1340,10 @@ make.historical.probs.retro.plot(base_model,
 \begin{figure}[H]
 \begin{center}
 <<historical-retro-bforty-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining below B40 with those from the current base model and for retrospective analyses.">>=
-make.historical.probs.retro.plot(base_model,
-                                 type = "bforty",
-                                 legend.loc = "topleft")
+# TODO: Error in model$retros[[i]] : subscript out of bounds
+# make.historical.probs.retro.plot(base_model,
+#                                  type = "bforty",
+#                                  legend.loc = "topleft")
 @
 \end{center}
 \caption{** Retrospective results of Figure~\ref{fig:main-historical-2} for

@@ -136,4 +136,3 @@ if(is.na(test_models)[1]){
   test_models_names <- map(request_models, ~{map_chr(.x, ~{attr(.x, "desc")})})
 }
 
-source(file.path(rootd_r, "custom-knitr-variables.R"))

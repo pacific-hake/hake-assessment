@@ -120,8 +120,11 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "data-tables.R", "useful-quantities.R", "historical-probs.R",
              "recruitment-question-responses.R", "run.R", "build-rds.R",
              "append-retros.R", "run-adnuts.R", "run-adnuts-timed.R",
-             "extract-mcmc-quant.R", "plot-biomass.R", "plot-rel-biomass.R",
-             "plot-recdevs.R", "extract-survey-index-fits.R", "plot-survey-index-fits.R")
+             "extract-mcmc-quant.R", "extract-survey-index-fits.R",
+             "create-group-df-biomass.R", "create-group-df-recr.R",
+             "create-group-df-index.R", "plot-biomass.R", "plot-rel-biomass.R",
+             "plot-recruitment.R", "plot-recdevs.R", "plot-survey-index-fits.R",
+             "plot-retro-recruits.R")
 source_all(src_lst)
 
 theme_set(hake_theme())
@@ -140,6 +143,7 @@ survey_end_yr <- 2021
 surv_yrs <- c(1995, 1998, 2001, 2003, 2005, 2007,
               2009, 2011, 2012, 2013, 2015, 2017,
               2019, 2021)
+
 
 # tick marks for time series plot (not catch time series though)
 big_ticks <- seq(1970, end_yr + 4, 5)
