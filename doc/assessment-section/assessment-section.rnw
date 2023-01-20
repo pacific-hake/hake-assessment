@@ -862,7 +862,7 @@ reflect time-varying mortality processes.
 
 \subsubsub{Stock biomass}
 
-** The base stock assessment model indicates that, since the 1960s, \fishname\
+The base stock assessment model indicates that, since the 1960s, \fishname\
 female spawning biomass has ranged from well below to above unfished
 equilibrium (Figures~\ref{fig:main-female-spawning-biomass}
 and~\ref{fig:main-relative-spawning-biomass} and
@@ -887,105 +887,117 @@ The 2014 year class is estimated to be large, though not as large as the 1999
 and 2010 year classes, resulting in an increased biomass in 2017. The estimated
 biomass was relatively steady from 2017 to 2019, and then declined in 2020
 and 2021 due to the 2014 and 2016 year classes moving through the growth-mortality
-transition during a period of high catches.
+transition during a period of high catches. The increase in spawning biomass since 2021 is
+due to the expected above average 2020 cohort entering maturity and
+the recent declining trend in catch.
 
-** The median estimate of the \Sexpr{end_yr} relative spawning biomass (spawning
+The median estimate of the \Sexpr{end_yr} relative spawning biomass (spawning
 biomass at the start of \Sexpr{end_yr} divided by that at unfished equilibrium,
 $B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
 is large, with a 95\%
 posterior credibility interval from \Sexpr{curr.depl.lower}\% to
 \Sexpr{curr.depl.upper}\% (Tables~\ref{tab:main-median-posterior} and
-\ref{tab:main-ci-posterior}).
+\ref{tab:main-ci-posterior}), due to remaining unknowns about the size
+of the 2020 cohort (e.g., not yet sampled by the acoustic survey).
 
-** The median estimate of
+The median estimate of
 the \Sexpr{end_yr} spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
-\Sexpr{curr.bio.upper}~million~t). The estimate of the \Sexpr{end_yr-1} female
+\Sexpr{curr.bio.upper}~million~t). The current estimate of the \Sexpr{end_yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
 (\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a somewhat higher
 median and broader credibility interval than the \Sexpr{prev.bio.median.last.assess}
 (\Sexpr{prev.bio.lower.last.assess}--\Sexpr{prev.bio.upper.last.assess})~million~t estimated
 in the \Sexpr{end_yr-1} assessment, but there is considerable overlap of the credibility
 intervals.
-The increase appears to be due to the addition of survey data, namely the 2021
-biomass index and age compositions, plus the full age-1 index (as outlined in
+The increase appears to be due to the addition of 2022 fishery age composition data, which suggests
+the 2020 cohort may be larger than the age-1 index alone was indicating in the last assessment (as outlined in
 Section~\ref{sec:assessment-changes}).   % copied to Exec Summary also.
-%%The additional
-%%data in the 2018 assessment has reduced the uncertainty of the 2017 biomass, and
-%%decreased the median partly due to the impact of the survey biomass estimate.
+
 
 % \newpage % kludge to avoid dangling heading:
 
 \subsubsub{Recruitment}
 
-** The new data and addition of the age-1 index for this assessment do not
+The new data for this assessment do not
 significantly change the pattern of recruitment estimated in recent assessments.
-However, estimates of absolute recruitment for some recent years have increased.
-For example, this assessment's median estimate of the 2014 recruitment is
+However, estimates of absolute recruitment for the most recent years can change with
+new data.
+For example, this assessment's median estimate of the 2020 recruitment is
 % putting in - signs when it's a decrease, and saying 'lower'. So check
 %  carefully in 2022 (could put in an automatic switch for the text)
-\Sexpr{f(((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]), 1)}~billion
-fish higher than in last year's assessment
-(a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) /
-(prev.assess.recruitment.med)["2014"]) * 100), 0)}\% increase).
-Similarly, estimates for the large 2016 and small 2018 recruitments have increased by
-\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"]) /
-(prev.assess.recruitment.med)["2016"]) * 100), 0)}\%
-(\Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"], 1)}~billion fish) and
-\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2018"]) /
-(prev.assess.recruitment.med)["2018"]) * 100), 0)}\%
-(\Sexpr{f(((recruitment.med.to.compare - prev.assess.recruitment.med)["2018"]), 1)}~billion fish),
-respectively, but the general notion remains that the 2016 cohort is above average
-and the 2018 cohort is below average.
+\Sexpr{f(((recruitment.med.to.compare - prev.assess.recruitment.med)["2020"]), 1)}~billion
+fish higher than in the last assessment
+(a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2020"]) /
+(prev.assess.recruitment.med)["2020"]) * 100), 0)}\% increase).
+Similarly, estimates for 2019 and 2021 recruitments have decreased by
+\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2019"]) /
+(prev.assess.recruitment.med)["2019"]) * 100), 0)}\%
+(\Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2019"], 1)}~billion fish) and
+\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2021"]) /
+(prev.assess.recruitment.med)["2021"]) * 100), 0)}\%
+(\Sexpr{f(((recruitment.med.to.compare - prev.assess.recruitment.med)["2021"]), 1)}~billion fish),
+respectively, but the general notion remains that recent recruitment is highly uncertain.
 
-** \fishname\ appear to have low average recruitment with occasional large year-classes
+\fishname\ appear to have low average recruitment with occasional large year-classes
 (Figures~\ref{fig:main-recruitment} and \ref{fig:main-recruitment-devs},
 Tables~\ref{tab:main-median-posterior} and \ref{tab:main-ci-posterior}).
 Very large year classes in 1980, 1984, and 1999 supported much of the commercial
 catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment
 was at some of the lowest values in the time series, but this was followed by an above average
-2008 year class. Current estimates continue to indicate a very strong
-2010 year class comprising \Sexpr{top.coh(base_model, 2014, spec.yr=2010)}\% of the coast-wide
+2008 year class. The very strong
+2010 year class comprised \Sexpr{top.coh(base_model, 2014, spec.yr=2010)}\% of the coast-wide
 commercial catch in 2014,
 \Sexpr{top.coh(base_model, 2016, spec.yr=2010)}\% of the 2016 catch,
-\Sexpr{top.coh(base_model, 2018, spec.yr=2010)}\% of the 2018 catch (all
-unchanged from last year's assessment), and
-\Sexpr{top.coh(base_model, 2020, spec.yr=2010)}\% of the 2020 catch.
+\Sexpr{top.coh(base_model, 2018, spec.yr=2010)}\% of the 2018 catch,
+\Sexpr{top.coh(base_model, 2020, spec.yr=2010)}\% of the 2020 catch, and
+\Sexpr{top.coh(base_model, 2022, spec.yr=2010)}\% of the 2022 catch.
 The decline from 2014 to 2016
 was partly due to the large influx of the 2014
 year class (\Sexpr{top.coh(base_model, 2016, spec.yr=2014)}\% of the 2016 catch was age-2 fish from the
 2014 year class; this was larger than the proportion of age-2 fish,
 \Sexpr{top.coh(base_model, 2012, spec.yr=2010)}\%, from the 2010 year
-class in 2012). The median estimate of the 2010 year class is
-very slightly below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1980.rec}\%
-probability that the 2010 year class is larger than the 1980 year class (this
-probability was \Sexpr{prob.percent.2010.rec.gt.1980.rec.last.year.assess}\% for
-last year's assessment).
+class in 2012). Since 2010, the model currently estimates small 2011, 2012, 2013, 2015, 2018, 2019
+and 2021 year classes (median recruitment well below the mean of all median recruitments).
+%The median estimate of the 2010 year class is
+%very slightly below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1980.rec}\%
+%probability that the 2010 year class is larger than the 1980 year class (this
+%probability was \Sexpr{prob.percent.2010.rec.gt.1980.rec.last.year.assess}\% for
+%last year's assessment).
 
-** The current assessment also estimates a strong 2014 year class
+The current assessment also estimates a strong 2014 year class
 (Figure~\ref{fig:main-numbers-at-age}) comprising
 \Sexpr{top.coh(base_model, 2016, spec.yr=2014)}\% of the 2016 catch,
 \Sexpr{top.coh(base_model, 2017, spec.yr=2014)}\% of the 2017 catch,
 \Sexpr{top.coh(base_model, 2018, spec.yr=2014)}\% of the 2018 catch,
 \Sexpr{top.coh(base_model, 2019, spec.yr=2014)}\% of the 2019 catch,
-\Sexpr{top.coh(base_model, 2020, spec.yr=2014)}\% of the 2020 catch, and
-\Sexpr{top.coh(base_model, 2021, spec.yr=2014)}\% of the 2021 catch.
+\Sexpr{top.coh(base_model, 2020, spec.yr=2014)}\% of the 2020 catch
+\Sexpr{top.coh(base_model, 2021, spec.yr=2014)}\% of the 2021 catch, and
+\Sexpr{top.coh(base_model, 2022, spec.yr=2014)}\% of the 2022 catch.
 The 2016 cohort also appears to be above average at
 \Sexpr{top.coh(base_model, 2018, spec.yr=2016)}\% of the 2018 catch,
 \Sexpr{top.coh(base_model, 2019, spec.yr=2016)}\% of the 2019 catch,
 \Sexpr{top.coh(base_model, 2020, spec.yr=2016)}\% of the 2020 catch, and
-\Sexpr{top.coh(base_model, 2021, spec.yr=2016)}\% of the 2021 catch.
-Although the absolute size of the 2014 year
-class remains uncertain, at least more so than
-cohorts that have been observed for more years, seven years of fishery data and four years of survey data
-show that it is a strong year class.  The 2016 year class is
-estimated to be above average (similar in size to the 2008 year class) from five years
-of fishery data and three years of survey data. The 2017 year class was first observed by the survey in 2019 and
-is estimated to be about average in size. With the addition of the age-1 index, there
-is information beyond just fishery encounters in
-the data to estimate the size of the \Sexpr{end_yr-2} year class. Collectively, these data
-indicate that the \Sexpr{end_yr-2} year class is above average, while the 2019 year class is
-informed by the \Sexpr{last.survey.year} biomass index and fishery data, but has no age-1 index.
+\Sexpr{top.coh(base_model, 2021, spec.yr=2016)}\% of the 2021 catch, and
+\Sexpr{top.coh(base_model, 2022, spec.yr=2016)}\% of the 2022 catch.
+The absolute size of the 2014 year
+class has now stabalized after observations across eight years of fishery observations
+and three acoustic surveys. The 2016 year class is
+estimated to be above average (similar in size to the 2008 year class) from six years
+of fishery data and two years of survey data. The model currently estimates small 2011, 2013, 2015, 2018, 2019,
+and 2021 year classes (median recruitment well below the mean of all median recruitments) and near
+average 2012 and 2017 year class.  
+With the addition of the age-1 index, there is information beyond just fishery encounters in
+the data to estimate the size of the 2020 year class. Collectively, these data
+indicate that the 2020 year class is likely well above average. The much smaller 2019 year class is
+informed by the \Sexpr{last.survey.year} biomass index and fishery data, but has no age-1 index,
+and the 2021 year class is only informed by fishery data.
+There is no information in the data to estimate the sizes of the
+\Sexpr{end_yr-1} and \Sexpr{end_yr} year classes. Retrospective analyses of year
+class strength for young fish have shown the estimates of recent recruitment to
+be unreliable prior to at least model age-3 (observed at age-2) without a survey in the
+most recent year and age-2 (observed at age-1) with a survey. While the 2020 cohort was observed
+by the age-1 index in 2021, it will not be observed by the acoustic survey until 2023.
 
 %The additional data in the 2020 assessment has decreased the median estimate of the
 %2014 year class to
@@ -998,20 +1010,18 @@ informed by the \Sexpr{last.survey.year} biomass index and fishery data, but has
 %(\Sexpr{recruitment.lower.in.2016}--\Sexpr{recruitment.upper.in.2016}~billion fish; Tables~\ref{tab:main-median-posterior} and
 %\ref{tab:main-ci-posterior}).
 
-** The model currently estimates small 2011, 2013, 2015, 2018
-and 2019 year classes (median recruitment well below the mean of all median recruitments) and near
-average 2012 and 2017 year class.  The proportion of the fishery catch that was age-1 fish
-in 2019 (2018 year class) and 2020 (2019 year class) was well below that observed in 2018
-(2017 year class) and 2017 (2016 year class; Table~\ref{tab:main-all-age-data-fishery}).
+%The proportion of the fishery catch that was age-1 fish
+%in 2019 (2018 year class) and 2020 (2019 year class) was well below that observed in 2018
+%(2017 year class) and 2017 (2016 year class; Table~\ref{tab:main-all-age-data-fishery}).
 % See exec-summary text, and look at this also:
 %  years.since.2010.recruitment.med.below.mean
-There is no information in the data to estimate the sizes of the
-\Sexpr{end_yr-1} and \Sexpr{end_yr} year classes. Retrospective analyses of year
-class strength for young fish have shown the estimates of recent recruitment to
-be unreliable prior to at least model age-3 (observed at age-2) without a survey in the
-most recent year and age-2 (observed at age-1) with a survey.
+%There is no information in the data to estimate the sizes of the
+%\Sexpr{end_yr-1} and \Sexpr{end_yr} year classes. Retrospective analyses of year
+%class strength for young fish have shown the estimates of recent recruitment to
+%be unreliable prior to at least model age-3 (observed at age-2) without a survey in the
+%most recent year and age-2 (observed at age-1) with a survey.
 
-** The estimated recruitments with uncertainty for each year and the
+The estimated recruitments with uncertainty for each year and the
 overall stock recruit relationship are provided in
 Figure~\ref{fig:main-mcmc-sr-variability}. Extremely large variability about the
 expectation and about the joint uncertainty of individual recruitment and
@@ -1027,7 +1037,7 @@ but consistent with, the base model value of \Sexpr{base_model$sigma_R_in}.  % $
 
 \subsubsub{Exploitation status}
 
-** The median estimated relative fishing intensity on the stock is below
+The median estimated relative fishing intensity on the stock is below
 the SPR$_{40\%}$ target for all years
 % sort(median.intensity)    % 2017 assessment 1999 was slightly over
 (Figure~\ref{fig:main-fishing-intensity} and
@@ -1048,19 +1058,17 @@ intensity more directly accounts for the age-structure of both the population an
 the catch.
 Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
-in 2015, and then it leveled off around 70\% from 2016 to 2019 before dropping to
-\Sexpr{median.intensity.2020}\% in 2020 and
-\Sexpr{median.intensity.2021}\% in 2021.
+in 2015, and then it leveled off around 70\% from 2016 to 2019 before declining to
+\Sexpr{median.intensity.2022}\% in 2022..
 The median exploitation fraction has increased from a recent low of
-\Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2017} in 2017 and has
-remained relatively stable since then (dropping no further than
-\Sexpr{exploitation.med.2018}).
+\Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2017} in 2017 where it
+remained relatively stable before dropping back to 2012--2015 levels in 2022.
 Although there is a considerable amount of imprecision
 around these recent estimates due to uncertainty in recruitment and spawning
 biomass, the 95\% posterior credibility interval of relative fishing intensity
 was below the SPR management target from 2012 through 2016 and again from 2018
-to 2021 (Figure~\ref{fig:main-fishing-intensity}). The median estimate
-for 2017 is below the management target, however the 95\% posterior
+to 2022 (Figure~\ref{fig:main-fishing-intensity}). The median estimate
+for 2017 and 2018 is below the management target, however the 95\% posterior
 credibility interval does include the target level.
 
 % Note that exploitation.med.penult.yr comes out as 0.06, but in Table d
@@ -1071,7 +1079,7 @@ credibility interval does include the target level.
 
 \subsubsub{Management performance}
 
-** Over the last decade (\Sexpr{end_yr-10}--\Sexpr{end_yr-1}), the mean coast-wide
+Over the last decade (\Sexpr{end_yr-10}--\Sexpr{end_yr-1}), the mean coast-wide
 utilization rate (i.e., proportion of catch target removed) has been
 \Sexpr{tot.last.10.years.attainment}\% and catches have been below
 coast-wide targets (Table~\ref{tab:main-landings-tac}). From \Sexpr{end_yr-5} to
@@ -1092,15 +1100,24 @@ suggested that hake were less aggregated in Canada and availability had
 declined. In 2016, the utilization rate increased but remained below pre-2015
 levels, despite the total 2016 catch being one of the highest of the preceding years.
 This is in large part due to increasing catch targets as biomass continues to
-increase. The total utilization rate in recent years (2017--2021) has been relatively steady
-and close to the average over the last decade (\Sexpr{tot.last.year.attainment}\%).
+increase. While the total utilization rate between 2017--2021 has been relatively steady
+and close to the average over the last decade (\Sexpr{tot.last.10.years.attainment}\%),
+it decreased in 2022 to \Sexpr{tot.last.year.attainment}\%. This is primarily due
+to the utilization rate in Canada declining since 2020
+to a time-series low of 20.3\% in 2022. 
+Country-specific
+quotas (or catch targets) in 2020 and 2021 were specified unilaterally, due to the lack of
+an agreement on coast-wide 2020 and 2021 TACs. The usual
+\Sexpr{us.allotment.percent}\% and
+\Sexpr{can.allotment.percent}\% allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
+Agreement for \fishname, was once again implemented in 2022.
 %During the last two years, utilization rates have been stable
 %in both the United States (\Sexpr{usa.last.2.years.attainment}\%) and Canada
 %(about \Sexpr{can.last.2.years.attainment}\%).
 Total landings last exceeded the coast-wide quota in 2002 when utilization was 112\%.
 % Manual done 2020, including checking penultimate sentence numbers with table.
 
-** The median relative fishing intensity was below target in all years throughout the time series
+The median relative fishing intensity was below target in all years throughout the time series
 %the 1999 year used to be just above 1 but now estimated to be just below 1
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and
 % Manual 2017 done - comment out above line if only one year, include it if
@@ -1109,7 +1126,7 @@ Total landings last exceeded the coast-wide quota in 2002 when utilization was 1
 (Table~\ref{tab:main-median-posterior} and
 Figures~\ref{fig:main-fishing-intensity} and~\ref{fig:main-phase}).
 The median relative spawning biomass was
-above the $\Bforty$ reference point in all years except 2007, 2009, and 2010
+above the $\Bforty$ reference point in all years except 2007--2010
 (Table~\ref{tab:main-median-posterior} and Figure~\ref{fig:main-relative-spawning-biomass}).
 % 2017 assessment: all years except 1968, 1998-2000 and 2007-2011
 % 2019 assessment: all years except 1999-2000 and 2007-2011
@@ -1126,8 +1143,9 @@ and relative fishing intensity
 %between \Sexpr{median.relative.bio.2007.to.2011.min} and
 %\Sexpr{median.relative.bio.2007.to.2011.max}.
 Relative spawning biomass increased from the lows in 2007--2010 with above average
-recruitment in 2008, 2010, 2014, and 2016. Correspondingly, relative fishing
-intensity has remained well below target despite recent increases in total catch.
+recruitment in 2008, 2010, 2014, 2016, and 2020. Correspondingly, relative fishing
+intensity has remained well below target, and total catch has been declining since the
+time series high in 2017.
 % Relative spawning biomass has been
 % above the target since \Sexpr{median.relative.bio.above.target.since}.
 While
