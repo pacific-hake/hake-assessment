@@ -215,7 +215,7 @@ We retained the Dirichlet-multinomial estimation approach to weighting
 composition data and
 investigated sensitivity to an alternative data-weighting
 approach. Time-varying fecundity, which was introduced in 2019, is retained.
-Assumptions for the forecast period for weight at age and selectivity are based on 
+Assumptions for the forecast period for weight at age and selectivity are based on
 conditions during the last five years, as for the \Sexpr{last_assess_yr} assessment.
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
@@ -315,7 +315,7 @@ somewhat higher
 median and broader credibility interval than the \Sexpr{prev.bio.median.last.assess}
 (\Sexpr{prev.bio.lower.last.assess}--\Sexpr{prev.bio.upper.last.assess})~million~t estimated in the \Sexpr{end_yr-1}
 assessment.
-The increase appears to be due to the addition of 2022 fishery age composition data, which suggests
+The increase appears to be due to the addition of 2022 fishery age-composition data, which suggests
 the 2020 cohort may be larger than the age-1 index alone was indicating in the last assessment.
 % Manual 2023 done (updated numbers in final sentence and revised text).
 <<biomass-table, results='asis', echo=FALSE>>=
@@ -357,7 +357,7 @@ make.recruitment.table(base_model,
 @
 %
 
-The addition of 2022 data for this assessment does not significantly change the
+The addition of \Sexpr{last_data_yr} data for this assessment does not significantly change the
 pattern of recruitment estimated in recent assessments.
 However, estimates of absolute recruitment for the most recent years can change with
 new data.
@@ -393,8 +393,8 @@ plot_recruitment(list(base_model),
 @
 \end{center}
 \caption{Medians (solid circles) and means ($\times$) of the posterior
-         distribution for recruitment (billions of age-0) with 95\% posterior
-         credibility intervals (blue lines). The median of the posterior
+         distribution for recruitment (billions of age-0 fish) with 95\% posterior
+         credibility intervals (blue, vertical lines). The median of the posterior
          distribution for mean unfished equilibrium recruitment ($R_0$) is shown
          as the horizontal dashed line with the 95\% posterior credibility interval
          shaded between the dotted lines.}
@@ -402,10 +402,10 @@ plot_recruitment(list(base_model),
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
-Very large year classes in 1980, 1984, and 1999 supported much of the commercial
+Large year classes in 1980, 1984, and 1999 supported much of the commercial
 catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment
-was at some of the lowest values in the time series, but this was followed by an above average
-2008 year class. The very strong
+was at some of the lowest values in the time series but this was followed by an above average
+2008 year class. The strong
 2010 year class comprised \Sexpr{top.coh(base_model, 2014, spec.yr=2010)}\% of the coast-wide
 commercial catch in 2014,
 \Sexpr{top.coh(base_model, 2016, spec.yr=2010)}\% of the 2016 catch,
@@ -418,11 +418,6 @@ year class (\Sexpr{top.coh(base_model, 2016, spec.yr=2014)}\% of the 2016 catch 
 2014 year class; this was larger than the proportion of age-2 fish,
 \Sexpr{top.coh(base_model, 2012, spec.yr=2010)}\%, from the 2010 year
 class in 2012).
-%The median estimate of the 2010 year class is
-%very slightly below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1980.rec}\%
-%probability that the 2010 year class is larger than the 1980 year class (this
-%probability was \Sexpr{prob.percent.2010.rec.gt.1980.rec.last.year.assess}\% for
-%the last assessment).
 Since 2010, the model currently estimates small 2011, 2012, 2013, 2015, 2018, 2019
 and 2021 year classes (median recruitment well below the mean of all median recruitments).
 % Done for for 2023 assessment
@@ -435,19 +430,20 @@ and 2021 year classes (median recruitment well below the mean of all median recr
 %  [keep this helpful explanation]
 
 The 2014 and 2016 year classes are likely both larger than average, with a
-very high chance (\Sexpr{prob.percent.2014.rec.gt.2016.rec}\%) that 2014 is
-larger than 2016, but zero chance that it is larger than 2010. % prob.percent.2014.rec.gt.2010.rec
-With the addition of the age-1 index, there is information beyond just fishery encounters in
+high chance (\Sexpr{prob.percent.2014.rec.gt.2016.rec}\%) that 2014 is
+larger than 2016 but zero chance that it is larger than 2010. % prob.percent.2014.rec.gt.2010.rec
+With the addition of the relative age-1 index, there is information beyond just fishery encounters in
 the data to estimate the size of the 2020 year class. Collectively, these data
 indicate that the 2020 year class is likely well above average. The much smaller 2019 year class is
-informed by the \Sexpr{last.survey.year} biomass index and fishery data, but has no age-1 index,
+informed by the \Sexpr{last.survey.year} biomass index and fishery data but
+is not informed by the relative age-1 index,
 and the 2021 year class is only informed by fishery data.
 There is no information in the data to estimate the sizes of the
-\Sexpr{end_yr-1} and \Sexpr{end_yr} year classes. Retrospective analyses of year
-class strength for young fish have shown the estimates of recent recruitment to
-be unreliable prior to at least model age-3 (observed at age-2) without a survey in the
-most recent year and age-2 (observed at age-1) with a survey. While the 2020 cohort was observed
-by the age-1 index in 2021, it will not be observed by the acoustic survey until 2023.
+\Sexpr{end_yr-1} and \Sexpr{end_yr} year classes. Retrospective analyses of
+year-class strength for young fish have shown the estimates of recent recruitment to
+be unreliable prior to at least a model age of three (i.e., fish observed at age two) without a survey in the
+most recent year and two (i.e., fish observed at age one) with a survey. While the 2020 cohort was observed
+by the relative age-1 index in 2021, it will not be observed by the acoustic survey until 2023.
 
 \subsection*{Default harvest policy} \label{sec:es-harvest-policy}
 \phantomsection  \addcontentsline{toc}{subsection}{Default harvest policy}
