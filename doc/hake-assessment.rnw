@@ -197,8 +197,8 @@ opts_chunk$set(dev = "png",
                warning = FALSE,
                comment = "#>",
                results = "hide",
-               fig.path = here::here("doc/knitr-cache/"),
-               cache.path = here::here("doc/knitr-cache/"),
+               fig.path = here::here("doc", "knitr-cache", "/"),
+               cache.path = here::here("doc", "knitr-cache", "/"),
                cache = TRUE)
 
 # Data frame of alternative figure text to be populated by a knitr hook
