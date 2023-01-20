@@ -1201,7 +1201,7 @@ make_squid_plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical-assessments, fig.height=4.5, fig.width=6.5, is.fig = TRUE, alt.text = "This figure shows the varying historical estimates of spawning biomass from the annual assessments">>=
+<<main-historical-assessments, fig.height=4.5, fig.width=6.5, is.fig = TRUE, alt.text = "This figure shows the varying historical estimates of spawning biomass from the annual assessments">>=
 make.assessment.history.plot(base_model,
                              assessment.history,
                              cex.legend = 0.5 * 38 / (38 + assess_yr - 2022))
@@ -1225,14 +1225,14 @@ make.historical.probs.plot(base_model,
                            add.projs = TRUE)
 @
 \end{center}
-\caption{** For each year $t$, $P(B_{t+1} < B_t)$ is
+\caption{For each year $t$, $P(B_{t+1} < B_t)$ is
   the probability that the spawning biomass at the
   start of $t+1$ is below that at the start of $t$. It is calculated in two ways.
-  Red: the probability is taken from year $t$'s stock assessment document, from
+  Red circles: the probability is taken from year $t$'s stock assessment document, from
   the row in the decision table corresponding to the consequent catch in year $t$
-(with interpolation if necessary). Blue: the probability is calculated using the
+(with interpolation if necessary). Blue squares: the probability is calculated using the
 current \Sexpr{assess_yr} base model. The grey horizontal line is the 50\% value. For each
-year except 2018, both probabilities lie on the same side of the grey line, indicating that
+year except 2018 and 2021, both probabilities lie on the same side of the grey line, indicating that
 each year's assessment model has almost always
 `correctly` estimated an increase or decrease the
 subsequent year's biomass. For the \Sexpr{assess_yr} assessment the
@@ -1245,7 +1245,7 @@ described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical-2, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock going below B40.">>=
+<<main-historical-2, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock going below B40.">>=
 make.historical.probs.plot(base_model,
                            add.projs = TRUE,
                            type = "bforty",
@@ -1253,14 +1253,12 @@ make.historical.probs.plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{** For each year $t$, $P(B_{t+1} < \Bforty)$ is
-  the probability that the spawning biomass at the
-  start of $t+1$ is below $\Bforty$. It is calculated in two ways (as for
-  Figure~\ref{fig:main-historical-1}).
-  Red: the probability is taken from year $t$'s stock assessment document, from
-  the row in the decision table corresponding to the consequent catch in year $t$
-(with interpolation if necessary). Blue: the probability is calculated using the
-current \Sexpr{assess_yr} base model. The grey horizontal line is the 50\% value. For each
+\caption{For each year $t$, $P(B_{t+1} < \Bforty)$ is
+the probability that the spawning biomass at the
+start of $t+1$ is below $\Bforty$.
+The red circles and blue squares represent probabilities calculated analagously
+to Figure~\ref{fig:main-historical-1}.
+The grey horizontal line is the 50\% value. For each
 year except 2012, both probabilities lie on the same side of the grey line, indicating that
 each year's assessment model almost always
 `correctly` estimated that the subsequent year's
@@ -1275,7 +1273,7 @@ described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical-retro-1, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
+<<main-historical-retro-1, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 par(mfrow = c(3,1))
 make.historical.probs.retro.plot(base_model,
                                  select.retros = 1:3,
@@ -1301,7 +1299,7 @@ make.historical.probs.retro.plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical-retro-2, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
+<<main-historical-retro-2, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 par(mfrow = c(3,1))
 make.historical.probs.retro.plot(base_model,
                                  select.retros = 4:6,
@@ -1317,7 +1315,7 @@ make.historical.probs.retro.plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical-retro-3, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
+<<main-historical-retro-3, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 par(mfrow = c(3,1))
 make.historical.probs.retro.plot(base_model,
                                  select.retros = 7:9,
@@ -1333,7 +1331,7 @@ make.historical.probs.retro.plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical-retro-4, fig.height=3, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
+<<main-historical-retro-4, fig.height=3, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 make.historical.probs.retro.plot(base_model,
                                  select.retros = 10,
                                  make.one.figure = FALSE,
@@ -1351,7 +1349,7 @@ make.historical.probs.retro.plot(base_model,
 % \begin{figure}[H]
 ~ \\
 \begin{center}
-<<historical-retro-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
+<<main-historical-retro-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 make.historical.probs.retro.plot(base_model)
 @
 \end{center}
@@ -1365,13 +1363,13 @@ make.historical.probs.retro.plot(base_model)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<historical-retro-bforty-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining below B40 with those from the current base model and for retrospective analyses.">>=
+<<main-historical-retro-bforty-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining below B40 with those from the current base model and for retrospective analyses.">>=
 make.historical.probs.retro.plot(base_model,
                                  type = "bforty",
                                  legend.loc = "topleft")
 @
 \end{center}
-\caption{** Retrospective results of Figure~\ref{fig:main-historical-2} for
+\caption{Retrospective results of Figure~\ref{fig:main-historical-2} for
   $P(B_{t+1} < \Bforty)$ for each year $t$.}
 \label{fig:main-historical-retro-bforty-all}
 \end{figure}
