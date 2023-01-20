@@ -63,7 +63,7 @@
 %    and below the $\Bforty$ (40\% of $B_0$) reference point
 %    at the start of \Sexpr{end_yr} is \Sexpr{joint.percent.prob.above.below}\%.
 
-  \item The mean estimated probability that female spawning biomass at the start of
+  \item The estimated probability that female spawning biomass at the start of
     \Sexpr{assess_yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
     \Sexpr{probs.curr.below.bforty}\%, and the probability that the relative fishing
     intensity exceeds its target in \Sexpr{end_yr-1} is
