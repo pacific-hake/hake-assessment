@@ -100,9 +100,6 @@ plot_recdevs <- function(model_lst = NULL,
                color = "black",
                linetype = "solid",
                size = 0.5) +
-    geom_errorbar(size = line_width,
-                  position = position_dodge(dodge_val),
-                  width = crossbar_width) +
     geom_point(size = point_size,
                position = position_dodge(dodge_val)) +
     scale_x_continuous(expand = c(0, x_expansion),
@@ -123,9 +120,18 @@ plot_recdevs <- function(model_lst = NULL,
   if(is_single_model){
     g <- g +
       geom_point(size = point_size,
-                 color = colors)
-
+                 color = colors) +
+      geom_errorbar(size = line_width,
+                    position = position_dodge(dodge_val),
+                    alpha = 0.5,
+                    width = crossbar_width)
+  }else{
+    g <- g +
+      geom_errorbar(size = line_width,
+                  position = position_dodge(dodge_val),
+                  width = crossbar_width)
   }
+
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
       theme(legend.position = "none")

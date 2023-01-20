@@ -2,6 +2,8 @@
 #'
 #' @param model_lst A list of models, each created by [create_rds_file()]
 #' @param model_names A vector of model names,the same length as `models_lst`
+#' @param inc_means Logical. If `TRUE`, include means for each year and
+#' model as an X
 #' @param xlim The year limits to plot
 #' @param x_breaks The year value tick marks to show for the x axis
 #' @param x_expansion Amount of space to leave either side on the x-axis
@@ -34,6 +36,7 @@
 #' @export
 plot_recruitment <- function(model_lst = NULL,
                              model_names,
+                             inc_means = FALSE,
                              xlim = c(1966,
                                       year(Sys.time())),
                              x_breaks = c(1966,
@@ -115,6 +118,15 @@ plot_recruitment <- function(model_lst = NULL,
     tmp <- y_breaks
     y_breaks <- c(tmp[below], ro_val, tmp[above])
     y_labels <- c(tmp[below], expression(R[0]), tmp[above])
+
+    # Expand right side of ro so that ribbon covers whole plot
+    ro_row <- ro[nrow(ro),]
+    ro_next_yr <- ro_row$year
+    for(yr in ro_next_yr:(ro_next_yr + x_expansion)){
+      ro_row$year <- yr
+      ro <- bind_rows(ro, ro_row)
+    }
+
     g <- g +
       geom_point(size = point_size,
                  color = colors) +
@@ -125,7 +137,22 @@ plot_recruitment <- function(model_lst = NULL,
                   aes(ymin = rlower,
                       ymax = rupper),
                   alpha = alpha,
-                  linetype = "dotted")
+                  linetype = "dotted") +
+      geom_errorbar(size = line_width,
+                    position = position_dodge(dodge_val),
+                    width = crossbar_width,
+                    alpha = 0.5,
+                    color = line_colors) +
+      geom_point(size = point_size,
+                 position = position_dodge(dodge_val),
+                 color = colors)
+  }else{
+    g <- g +
+      geom_errorbar(size = line_width,
+                    position = position_dodge(dodge_val),
+                    width = crossbar_width) +
+      geom_point(size = point_size,
+                 position = position_dodge(dodge_val))
   }
 
   g <- g +
@@ -133,11 +160,6 @@ plot_recruitment <- function(model_lst = NULL,
                color = "black",
                linetype = "solid",
                size = 0.5) +
-    geom_point(size = point_size,
-               position = position_dodge(dodge_val)) +
-    geom_errorbar(size = line_width,
-                  position = position_dodge(dodge_val),
-                  width = crossbar_width) +
     scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
                        labels = x_breaks) +
@@ -153,6 +175,19 @@ plot_recruitment <- function(model_lst = NULL,
     xlab("Year") +
     ylab("Age-0 recruits (billions)")
 
+  if(inc_means){
+    if(is_single_model){
+      g <- g +
+        geom_point(aes(y = rmean),
+                   shape = 4,
+                   color = colors)
+    }else{
+      g <- g +
+        geom_point(aes(y = rmean),
+                   shape = 4)
+    }
+
+  }
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
       theme(legend.position = "none")

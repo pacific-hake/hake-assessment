@@ -16,6 +16,10 @@ create_group_df_recr <- function(model_lst = NULL,
 
   vals <- paste0(ifelse(devs, "dev", "r"),
                  c("lower", "med", "upper"))
+  if(!devs){
+    # Needed for the x's on the recruitment plot
+    vals <-  c(vals, "rmean")
+  }
 
   d <- bind_cols(extract_mcmc_quant(model_lst,
                                     model_names,
@@ -29,7 +33,15 @@ create_group_df_recr <- function(model_lst = NULL,
                  extract_mcmc_quant(model_lst,
                                     model_names,
                                     vals[3],
-                                    ...)) |>
+                                    ...))
+  if(!devs){
+    d <- bind_cols(d,
+                   extract_mcmc_quant(model_lst,
+                                      model_names,
+                                      vals[4],
+                                      ...))
+  }
+  d <- d |>
     mutate(model = factor(model, levels = model_names),
            year = as.numeric(year))
 

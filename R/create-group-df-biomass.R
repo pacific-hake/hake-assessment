@@ -7,6 +7,8 @@
 #' biomass (no B0 element)
 #' @param end_yrs A vector of the end years for each model.
 #' If one value, it will apply to all models
+#' @param bo_yr The number of years prior to the start of the time series
+#' that you want to use as a plot point for B0 on biomass plots.
 #'
 #' @return A list or one or two [tibble::tibble()]. If `rel` is `TRUE`, one
 #' (biomass) If `rel` is `FALSE`, two (biomass and B0)
@@ -15,9 +17,10 @@
 create_group_df_biomass <- function(model_lst = NULL,
                                     model_names = NULL,
                                     rel = FALSE,
+                                    bo_yr = 4,
                                     ...){
 
-  init_year <- model_lst[[1]]$startyr - 1
+  init_year <- model_lst[[1]]$startyr - bo_yr
 
   vals <- paste0(ifelse(rel, "d", "s"), c("lower", "med", "upper"))
 

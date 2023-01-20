@@ -73,6 +73,12 @@ plot_biomass <- function(model_lst = NULL,
     ribbon_colors <- single_ribbon_color
   }
 
+  # Add "Unfished Equilibrium" to the x break labels
+  # with a newline between them
+  x_labels <- c(expression(atop("Unfished", "Equilibrium")),
+                parse(text = x_breaks))
+  x_breaks = c(bo$year[1], x_breaks)
+
   # Remove projection years
   d <- d |>
     filter(year <= xlim[2])
@@ -96,7 +102,7 @@ plot_biomass <- function(model_lst = NULL,
                shape = point_shape) +
     scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
-                       labels = x_breaks) +
+                       labels = x_labels) +
     scale_y_continuous(expand = c(0, 0),
                        breaks = y_breaks,
                        labels = y_breaks) +
@@ -117,7 +123,9 @@ plot_biomass <- function(model_lst = NULL,
                position = position_dodge(1.5)) +
     geom_errorbar(data = bo,
                   linewidth = line_width,
-                  position = position_dodge(1.5))
+                  position = position_dodge(1.5),
+                  color = ribbon_colors,
+                  alpha = 0.5)
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +

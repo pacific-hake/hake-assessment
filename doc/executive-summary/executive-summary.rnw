@@ -258,11 +258,11 @@ and~\ref{fig:es-relative-spawning-biomass}). Model estimates suggest
 \begin{figure}[tbp]
 \begin{center}
 <<spawning-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been decreasing in size since 2019">>=
-make.biomass.plot(base_model,
-                  equil.yr = unfished_eq_yr,
-                  start_yr = start_yr,
-                  end_yr = end_yr,
-                  color = "blue")
+plot_biomass(list(base_model),
+             list(base_model_name),
+             ylim = c(0, 5),
+             point_shape = 1,
+             leg_pos = "none")
 @
 \end{center}
 %\vspace{0mm}
@@ -282,10 +282,12 @@ assessment period, due to lower than average recruitment.
 \begin{figure}[tbp]
 \begin{center}
 <<relative-spawning-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the relative biomass has been decreasing since 2019">>=
-make.depletion.plot(base_model,
-                    start_yr = start_yr,
-                    end_yr = end_yr,
-                    color = "blue")
+plot_rel_biomass(list(base_model),
+                 list(base_model_name),
+                 point_shape = 1,
+                 ylim = c(0, 3),
+                 alpha = 0.2,
+                 leg_pos = "none")
 @
 \end{center}
 %\vspace{0mm}
@@ -406,13 +408,11 @@ have low to moderate recruitment with occasional large year classes
 \begin{figure}[tbp]
 \begin{center}
 <<recruitment, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
-make.recruitment.plot(base_model,
-                      equil.yr = unfished_eq_yr,
-                      start_yr = start_yr,
-                      end_yr = end_yr,
-                      color = "blue",
-                      add.mean = TRUE,
-                      add.r0 = TRUE)
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 single_line_color = "blue",
+                 inc_means = TRUE,
+                 leg_pos = "none")
 @
 \end{center}
 \caption{Medians (solid circles) and means ($\times$) of the posterior

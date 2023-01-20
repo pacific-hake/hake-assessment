@@ -33,35 +33,35 @@ plot_rel_biomass <- function(model_lst = NULL,
                                           year(Sys.time())),
                              x_expansion = 3,
                              ylim = c(0, 3.5),
-                             y_breaks = c(
-                               0,
-                               0.1,
-                               0.4,
-                               0.5,
-                               1.0,
-                               seq(1.5,
-                                   ylim[2],
-                                   by = 0.5)),
-                             y_labels = expression(
-                               "0",
-                               "0.1B"[0],
-                               "0.4B"[0],
-                               "0.5",
-                               "B"[0],
-                               "1.5",
-                               "2",
-                               "2.5",
-                               "3",
-                               "3.5"),
-                             y_colors = c(
-                               "black",
-                               "red",
-                               "green",
-                               "black",
-                               "blue",
-                               rep("black", length(seq(1.5,
-                                                       ylim[2],
-                                                       by = 0.5)))),
+                             # y_breaks = c(
+                             #   0,
+                             #   0.1,
+                             #   0.4,
+                             #   0.5,
+                             #   1.0,
+                             #   seq(1.5,
+                             #       ylim[2],
+                             #       by = 0.5)),
+                             # y_labels = expression(
+                             #   "0",
+                             #   "0.1B"[0],
+                             #   "0.4B"[0],
+                             #   "0.5",
+                             #   "B"[0],
+                             #   "1.5",
+                             #   "2",
+                             #   "2.5",
+                             #   "3",
+                             #   "3.5"),
+                             # y_colors = c(
+                             #   "black",
+                             #   "red",
+                             #   "green",
+                             #   "black",
+                             #   "blue",
+                             #   rep("black", length(seq(1.5,
+                             #                           ylim[2],
+                             #                           by = 0.5)))),
                              alpha = 0.1,
                              leg_pos = c(0.65, 0.83),
                              leg_ncol = 1,
@@ -82,6 +82,20 @@ plot_rel_biomass <- function(model_lst = NULL,
            call. = FALSE)
     }
     d_obj <- create_group_df_biomass(model_lst, model_names, rel = TRUE)
+  }
+
+  y_breaks <- c(0, 0.1, 0.4, 0.5, 1.0)
+  y_labels <- expression("0", "0.1B"[0], "0.4B"[0], "0.5", "B"[0])
+  y_colors <- c("black", "red", "green", "black", "blue")
+  if(ylim[2] < 1){
+    stop("Relative spawning biomass plot y-axis max must be 1 or greater",
+         call. = FALSE)
+  }
+  if(ylim[2] > 1){
+    seq_above_1 <- seq(1.5, ylim[2], by = 0.5)
+    y_breaks <- c(y_breaks, seq_above_1)
+    y_labels <- c(y_labels, parse(text = as.character(seq_above_1)))
+    y_colors <- c(y_colors, rep("black", length(seq_above_1)))
   }
 
   d <- d_obj[[1]]
