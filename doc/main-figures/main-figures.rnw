@@ -1276,11 +1276,10 @@ described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 \begin{figure}[H]
 \begin{center}
 <<historical-retro-1, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
-# TODO: Error in model$retros[[i]] : subscript out of bounds
-# par(mfrow = c(3,1))
-# make.historical.probs.retro.plot(base_model,
-#                                  select.retros = 1:3,
-#                                  make.one.figure = FALSE)
+par(mfrow = c(3,1))
+make.historical.probs.retro.plot(base_model,
+                                 select.retros = 1:3,
+                                 make.one.figure = FALSE)
 @
 \end{center}
 \caption{Retrospective versions of Figure~\ref{fig:main-historical-1}.
