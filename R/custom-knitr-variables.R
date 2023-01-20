@@ -184,6 +184,18 @@ prev.bio.median <- f(mc$smed[names(mc$smed) %in% last_data_yr], 3)
 prev.bio.upper <- f(mc$supper[names(mc$supper) %in% last_data_yr], 3)
 prev.bio.lower.tonnes <- f(mc$slower[names(mc$slower) %in% last_data_yr] * 1e6, 0)
 prev.bio.median.tonnes <- f(mc$smed[names(mc$smed) %in% last_data_yr] * 1e6, 0)
+ratio.bio.median.curr.last <- mc$smed[names(mc$smed) %in% end_yr] / mc$smed[names(mc$smed) %in% last_data_yr]
+if(ratio.bio.median.curr.last > 1){
+  diff.bio.median.last.curr <-
+    f((mc$smed[names(mc$smed) %in% end_yr] /
+                mc$smed[names(mc$smed) %in% last_data_yr] - 1) * 100)
+  diff.bio.median.last.curr.text <- "higher than"
+}else{
+  diff.bio.median.last.curr <-
+    f((mc$smed[names(mc$smed) %in% end_yr] /
+         mc$smed[names(mc$smed) %in% last_data_yr]) * 100)
+  diff.bio.median.last.curr.text <- "of"
+}
 prev.bio.upper.tonnes <- f(mc$supper[names(mc$supper) %in% last_data_yr] * 1e6, 0)
 # ... spawning biomass for previous year (last year's assessment) -------------
 prev.bio.lower.last.assess <- f(last_yr_base_model$mcmccalcs$slower[names(mc$slower) %in% last_data_yr], 3)
@@ -209,17 +221,60 @@ next2.bio.median.tac.based <- f(fore.tac.mcmc.yr2$smed[names(fore.tac.mcmc.yr2$s
 next2.bio.upper.tac.based <- f(fore.tac.mcmc.yr2$supper[names(fore.tac.mcmc.yr2$supper) %in% (end_yr + 2)] * 100, 1)
 
 # Biomass medians for last year's TAC catch level -----------------------------
-.fore.last.yr.tac <- base_model$forecasts[[length(base_model$forecasts)]][catch.tac.ind][[1]]
-last.yr.tac.fore.1.biomass <- f(.fore.last.yr.tac$biomass[1,3] * 100)
-last.yr.tac.fore.2.biomass <- f(.fore.last.yr.tac$biomass[2,3] * 100)
-last.yr.tac.fore.3.biomass <- f(.fore.last.yr.tac$biomass[3,3] * 100)
-.risk.last.yr.tac.1 <- base_model$risks[[1]]
-.risk.last.yr.tac.2 <- base_model$risks[[2]]
-.risk.last.yr.tac.3 <- base_model$risks[[3]]
-last.yr.tac.risk.1.biomass.decline <- f(as.numeric(.risk.last.yr.tac.1[catch.tac.ind, 2]))
-last.yr.tac.risk.2.biomass.decline <- f(as.numeric(.risk.last.yr.tac.2[catch.tac.ind, 2]))
-last.yr.tac.risk.3.biomass.decline <- f(as.numeric(.risk.last.yr.tac.3[catch.tac.ind, 2]))
-last.yr.tac.risk.2.bforty <- f(as.numeric(.risk.last.yr.tac.2[catch.tac.ind, 3]))
+endyr_plus_3_fore <- base_model$forecasts[[as.character(end_yr + 3)]]
+endyr_plus_3_fore_tac_catch <- endyr_plus_3_fore[[catch.tac.ind]]$biomass |>
+  as_tibble(rownames = "year")
+last.yr.tac.fore.1.biomass <- endyr_plus_3_fore_tac_catch |>
+  filter(year == end_yr) |>
+  pull(`50%`)
+last.yr.tac.fore.1.biomass <- f(last.yr.tac.fore.1.biomass * 100)
+
+last.yr.tac.fore.2.biomass <- endyr_plus_3_fore_tac_catch |>
+  filter(year == end_yr + 1) |>
+  pull(`50%`)
+last.yr.tac.fore.2.biomass <- f(last.yr.tac.fore.2.biomass * 100)
+
+last.yr.tac.fore.3.biomass <- endyr_plus_3_fore_tac_catch |>
+  filter(year == end_yr + 2) |>
+  pull(`50%`)
+last.yr.tac.fore.3.biomass <- f(last.yr.tac.fore.3.biomass * 100)
+
+curr_catch_tac_value <- catch_levels[[catch.tac.ind]][[1]][1]
+catch_col <- sym(paste0("ForeCatch_", end_yr))
+yr_prob_col <- paste0("SSB_", end_yr + 1, "<SSB_", end_yr)
+last.yr.tac.risk.1.biomass.decline <-
+  base_model$risks[[as.character(end_yr)]] |>
+  as_tibble() |>
+  filter(!!catch_col == curr_catch_tac_value) |>
+  pull(yr_prob_col) |>
+  f()
+
+catch_col <- sym(paste0("ForeCatch_", end_yr + 1))
+yr_prob_col <- paste0("SSB_", end_yr + 2, "<SSB_", end_yr + 1)
+last.yr.tac.risk.2.biomass.decline <-
+  base_model$risks[[as.character(end_yr + 1)]] |>
+  as_tibble() |>
+  filter(!!catch_col == curr_catch_tac_value) |>
+  pull(yr_prob_col) |>
+  f()
+
+yr_prob_col <- paste0("Bratio_", end_yr + 2, "<0.40")
+last.yr.tac.risk.2.bforty <-
+  base_model$risks[[as.character(end_yr + 1)]] |>
+  as_tibble() |>
+  filter(!!catch_col == curr_catch_tac_value) |>
+  pull(yr_prob_col) |>
+  f()
+
+catch_col <- sym(paste0("ForeCatch_", end_yr + 2))
+yr_prob_col <- paste0("SSB_", end_yr + 3, "<SSB_", end_yr + 2)
+last.yr.tac.risk.3.biomass.decline <-
+  base_model$risks[[as.character(end_yr + 2)]] |>
+  as_tibble() |>
+  filter(!!catch_col == curr_catch_tac_value) |>
+  pull(yr_prob_col) |>
+  f()
+
 
 # Numbers at age calculations for bubble plot caption -------------------------
 median.nat.no.year <- select(extramc$natage_median, -c("Yr"))
@@ -320,7 +375,7 @@ same.catch.prob.year.after.next.below.b40 <- f(base_model$risks[[2]][catch.actua
 probs.curr.rel.fish.intens.above.one <-
   f(sum(base_model$mcmc[[paste0("SPRratio_", end_yr-1)]] > 1) /
     nrow(base_model$mcmc) * 100,
-    0)
+    1)
 catches.below.200000.since.1986 <- number.to.word(length(filter(ct, tot_catch <= 200000, year > 1986)$year))
 
 # Age compositions ------------------------------------------------------------
@@ -595,10 +650,11 @@ depl_curr <- mc$dmed[names(mc$dmed) == assess_yr]
 # ... joint probability -------------------------------------------------------
 # (%age) of being being both above the target relative fishing intensity in \Sexpr{end_yr-1}
 # and below the $\Bforty$ (40\% of $B_0$) reference point at the start of \Sexpr{end_yr}
-joint.percent.prob.above.below <- f(sum(base_model$mcmc[[paste0("Bratio_", end_yr)]] < 0.4 &
-                                          base_model$mcmc[[paste0("SPRratio_", end_yr - 1)]] > 1) /
-                                      nrow(base_model$mcmc) * 100,
-                                    0)
+joint.percent.prob.above.below <-
+  f(sum(base_model$mcmc[[paste0("Bratio_", end_yr)]] < 0.4 &
+          base_model$mcmc[[paste0("SPRratio_", end_yr - 1)]] > 1) /
+      nrow(base_model$mcmc) * 100,
+    1)
 
 # Probabilities for historical performance analyses ---------------------------
 historical.probs.tibble <- combine_historical_probs(model = base_model,

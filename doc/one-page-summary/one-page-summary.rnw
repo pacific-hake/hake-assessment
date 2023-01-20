@@ -21,7 +21,7 @@
 
   \item Coast-wide catch in \Sexpr{end_yr-1} was \Sexpr{last.year.landings}~t
     [t represents metric tons], a 6\% decrease from the average over the past decade of
-    \Sexpr{f(mean(ct$tot_catch[(end_yr-start_yr-9):(end_yr-start_yr)]),0)}~t,
+    \Sexpr{ct |> tail(10) |> pull(tot_catch) |> mean() |> f()}~t,
     out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t.
     The U.S. caught \Sexpr{last.year.us.landings}~t (\Sexpr{last.year.us.attained}\%
     of their quota) and Canada caught \Sexpr{last.year.can.landings}~t
@@ -44,7 +44,7 @@
     has increased since 2021, due to the expected above average
     2020 cohort entering maturity and the recent declining trend in catch. The large,
     but uncertain, size of the 2020 year class is based on the 2021 age-1 index estimate and
-    2022 fishery age-composition data. 
+    2022 fishery age-composition data.
 %     Stock status increased relative to last year due to slightly higher estimates of
 %    recent recruitment than were previously expected.
 % That last sentence seemed a bit confusing. We'd have to compare the 2021 B/B0 with
@@ -53,9 +53,9 @@
   \item The median estimate of female spawning biomass at the start
     of \Sexpr{end_yr} is \Sexpr{curr.bio.median.tonnes}~t (with 95\% credible
     interval from \Sexpr{curr.bio.lower.tonnes} to \Sexpr{curr.bio.upper.tonnes}~t).
-    This is 34\% higher than this assessment's median estimate
-    for the \Sexpr{end_yr-1} female spawning biomass of \Sexpr{prev.bio.median.tonnes}~t
-    (with 95\% credible interval
+    This is \Sexpr{diff.bio.median.last.curr}\% \Sexpr{diff.bio.median.last.curr.text}
+    this assessment's median estimate for the \Sexpr{end_yr-1} female spawning
+    biomass of \Sexpr{prev.bio.median.tonnes}~t (with 95\% credible interval
     \Sexpr{prev.bio.lower.tonnes}--\Sexpr{prev.bio.upper.tonnes}~t).
 
 %  \item The estimated joint probability of being both
@@ -63,7 +63,7 @@
 %    and below the $\Bforty$ (40\% of $B_0$) reference point
 %    at the start of \Sexpr{end_yr} is \Sexpr{joint.percent.prob.above.below}\%.
 
-  \item The estimated probability that female spawning biomass at the start of
+  \item The mean estimated probability that female spawning biomass at the start of
     \Sexpr{assess_yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
     \Sexpr{probs.curr.below.bforty}\%, and the probability that the relative fishing
     intensity exceeds its target in \Sexpr{end_yr-1} is
