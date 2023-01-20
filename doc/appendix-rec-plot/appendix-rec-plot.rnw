@@ -14,13 +14,9 @@ recruitment variability in an intuitive way.
 \begin{figure}[b]
 \begin{center}
 <<recruitment-last-assessment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the estimated recruitments from last year's assessment">>=
-make.recruitment.plot(last_yr_base_model,
-                      equil.yr = unfished_eq_yr,
-                      start_yr = start_yr,
-                      end_yr = end_yr-1,
-                      color = "blue",
-                      add.mean = TRUE,
-                      add.r0 = TRUE)
+plot_recruitment(list(last_yr_base_model),
+                 list(last_yr_base_model_name),
+                 single_line_color = "blue")
 @
 \end{center}
 \caption{Recruitment Figure~e (or Figure~26) from the \Sexpr{assess_yr - 1} assessment \citep{JTC2021}.
