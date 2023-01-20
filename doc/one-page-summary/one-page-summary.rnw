@@ -20,7 +20,7 @@
     and minor changes to pre-\Sexpr{end_yr-1} data.
 
   \item Coast-wide catch in \Sexpr{end_yr-1} was \Sexpr{last.year.landings}~t
-    [t represents metric tons], a 6\% decrease from the average over the past decade of
+    [t represents metric tons], a 6\% decrease from the average over the most recent 10 years of
     \Sexpr{ct |> tail(10) |> pull(tot_catch) |> mean() |> f()}~t,
     out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t.
     The U.S. caught \Sexpr{last.year.us.landings}~t (\Sexpr{last.year.us.attained}\%
