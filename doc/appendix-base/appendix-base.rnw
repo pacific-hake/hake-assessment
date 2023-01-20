@@ -84,13 +84,10 @@ make.recruitment.table(base_model,
 \begin{figure}[H]
 \begin{center}
 <<recruitment-base-temp, fig.height=5, fig.width=8>>=
-make.recruitment.plot(base_model,
-                      equil.yr = unfished_eq_yr,
-                      start_yr = start_yr,
-                      end_yr = end_yr,
-                      color = "blue",
-                      add.mean = TRUE,
-                      add.r0 = TRUE)
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 single_line_color = "blue",
+                 leg_pos = "none")
 @
 \end{center}
 \caption{Medians (solid circles) and means ($\times$) of the posterior
