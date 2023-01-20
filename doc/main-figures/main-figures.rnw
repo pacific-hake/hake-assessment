@@ -1350,8 +1350,7 @@ make.historical.probs.retro.plot(base_model,
 ~ \\
 \begin{center}
 <<historical-retro-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
-# TODO: Error in model$retros[[i]] : subscript out of bounds
-#make.historical.probs.retro.plot(base_model)
+make.historical.probs.retro.plot(base_model)
 @
 \end{center}
 \caption{Retrospective results of
@@ -1365,10 +1364,9 @@ make.historical.probs.retro.plot(base_model,
 \begin{figure}[H]
 \begin{center}
 <<historical-retro-bforty-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining below B40 with those from the current base model and for retrospective analyses.">>=
-# TODO: Error in model$retros[[i]] : subscript out of bounds
-# make.historical.probs.retro.plot(base_model,
-#                                  type = "bforty",
-#                                  legend.loc = "topleft")
+make.historical.probs.retro.plot(base_model,
+                                 type = "bforty",
+                                 legend.loc = "topleft")
 @
 \end{center}
 \caption{** Retrospective results of Figure~\ref{fig:main-historical-2} for
