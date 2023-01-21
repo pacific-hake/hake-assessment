@@ -9,6 +9,10 @@ create_rds_file <- function(model_dir = NULL,
 
   stopifnot(!is.null(model_dir))
 
+  if(length(grep("\\/$", model_dir))){
+    # Remove trailing slashes
+    model_dir <- gsub("\\/+$", "", model_dir)
+  }
   if(!dir.exists(model_dir)){
     stop("Directory `", model_dir, "` does not exist",
          call. = FALSE)
@@ -16,21 +20,26 @@ create_rds_file <- function(model_dir = NULL,
 
   # The RDS file will have the same name as the directory it is in
   rds_file <- file.path(model_dir, paste0(basename(model_dir), ".rds"))
-  if(file.exists(rds_file)){
-    unlink(rds_file, force = TRUE)
-  }
+  # if(file.exists(rds_file)){
+  #   unlink(rds_file, force = TRUE)
+  # }
+  # if(file.exists(rds_file)){
+  #   unlink(rds_file, force = TRUE)
+  # }
 
-  message("Creating a new RDS file in ", model_dir, "\n")
-
-  # If this point is reached, no RData file exists so it has to be built from scratch
+  message("Creating a new RDS file from SS3 model output in:\n`",
+          model_dir, "`\n")
+  tic("Load SS3 files")
   model <- load_ss_files(model_dir, ...)
+  toc()
+  message("SS3 input and output files loaded successfully from model output in:\n`",
+          model_dir, "`\n")
 
-  # Try loading extra mcmc output. If none are found or there is a problem, model$extra.mcmc will be NA
-  if(model$extra_mcmc_exists){
-    model$extra.mcmc <- fetch_extra_mcmc(model$path)
-  }else{
-    model$extra.mcmc <- NA
-  }
+  # Try loading extra mcmc output. If none are found or there is a problem,
+  # model$extra.mcmc will be NA
+  tic("Load extra MCMC")
+  model$extra.mcmc <- fetch_extra_mcmc(model)
+  toc()
 
   # Load forecasts. If none are found or there is a problem, model$forecasts will be NA
   if(dir.exists(file.path(model_dir, forecasts_path))){

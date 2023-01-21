@@ -124,7 +124,7 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "create-group-df-biomass.R", "create-group-df-recr.R",
              "create-group-df-index.R", "plot-biomass.R", "plot-rel-biomass.R",
              "plot-recruitment.R", "plot-recdevs.R", "plot-survey-index-fits.R",
-             "plot-retro-recruits.R")
+             "plot-retro-recruits.R", "make-small-rds.R", "extract-rep-table.R")
 source_all(src_lst)
 
 theme_set(hake_theme())
