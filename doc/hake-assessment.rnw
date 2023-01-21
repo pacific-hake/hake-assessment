@@ -411,10 +411,6 @@ new results are incorporated.
 % <<appendices-age1-survey, child='appendix-age1-survey/appendix-age1-survey.rnw'>>=
 % @
 
-\rfoot{Appendix~\ref{chap:rec-plot} -- Recruitment plots}
-<<appendices-rec-plot, child='appendix-rec-plot/appendix-rec-plot.rnw'>>=
-@
-
 % \rfoot{Appendix~\ref{chap:add-forecast} -- Additional forecast catch levels}
 % <<appendix-add-forecast, child='appendix-add-forecast/appendix-add-forecast.rnw'>>=
 % @

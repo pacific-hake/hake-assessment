@@ -647,10 +647,9 @@ make.mcmc.recruitment.plot(base_model,
                            auto.xaxis = FALSE)
 @
 \end{center}
-\caption{Estimated recruitments divided by the estimated 2010 recruitment
-  shown as
-  medians (solid circles) of the resulting posterior distribution for
-  recruitment relative to that in 2010, with
+\caption{Medians (solid circles) of the posterior distribution
+  of `recruitments divided by the 2010 recruitment',
+  with
   95\% posterior credibility intervals (red lines);
   the division is done for each MCMC sample.
   This scales out the uncertainty due to uncertainty in unfished equilibrium
