@@ -534,8 +534,8 @@ names(fore.catch.prop) <- paste0("Age", 0:20)
 
 # Credible intervals for age5 -------------------------------------------------
 # (pick the biggest cohort from fore.catch.prop; note natsel.prop columns start with age-0).
-fore.catch.prop.age2.lower <- quantile(extramc$natsel.prop[, 3], 0.025) * 100
-fore.catch.prop.age2.upper <- quantile(extramc$natsel.prop[, 3], 0.975) * 100
+fore.catch.prop.age3.lower <- quantile(extramc$natsel.prop[, 4], 0.025) * 100
+fore.catch.prop.age3.upper <- quantile(extramc$natsel.prop[, 4], 0.975) * 100
 
 fore.catch.prop.age6.lower <- quantile(extramc$natsel.prop[, 7], 0.025) * 100
 fore.catch.prop.age6.upper <- quantile(extramc$natsel.prop[, 7], 0.975) * 100
@@ -549,6 +549,7 @@ fore.catch.prop.wt.age3.median <- median(extramc$natselwt.prop[, 4]) * 100
 fore.catch.prop.wt.age4.median <- median(extramc$natselwt.prop[, 5]) * 100
 fore.catch.prop.wt.age5.median <- median(extramc$natselwt.prop[, 6]) * 100
 fore.catch.prop.wt.age6.median <- median(extramc$natselwt.prop[, 7]) * 100
+fore.catch.prop.wt.age7.median <- median(extramc$natselwt.prop[, 8]) * 100
 fore.catch.prop.wt.age10.median <- median(extramc$natselwt.prop[, 11]) * 100
 fore.catch.prop.wt.age11.median <- median(extramc$natselwt.prop[, 12]) * 100
 
