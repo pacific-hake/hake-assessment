@@ -1021,6 +1021,31 @@ by the age-1 index in 2021, it will not be observed by the acoustic survey until
 %be unreliable prior to at least model age-3 (observed at age-2) without a survey in the
 %most recent year and age-2 (observed at age-1) with a survey.
 
+From Figure~\ref{fig:main-recruitment} it looks
+as though the 2014 recruitment could be as large as the 2010 recruitment.
+However, the assessment model
+estimates a \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance that this
+could be the case.
+The overlapping of the credible intervals in Figure~\ref{fig:main-recruitment} is because large
+MCMC estimates of 2010 recruitment are associated with large estimates of 2014
+recruitment (presumably with large estimates of $R_0$).
+By scaling all recruitments by the 2010 recruitment,
+Figure~\ref{fig:main-recruitment-scale-all} provides an intuitive way to compare
+recruitment across years
+(see Appendix~H of \citealt{JTC2022} for full details).
+It shows that there have only been two past recruitment events (1980 and 1984) that
+might be as large as in 2010, whereas Figure~\ref{fig:main-recruitment}
+suggests that 1970, 1999 and 2014  could also possibly be larger than in 2010, giving an
+over-optimistic impression of how often we can expect cohorts the size of the
+2010 cohort to occur. The 2020 cohort is still very uncertain but has a
+\Sexpr{prob.percent.2020.rec.gt.2010.rec}\% chance of exceeding the 2010 cohort, while the
+2021 cohort is definitely smaller than the 2010 cohort (Figure~\ref{fig:main-recruitment-scale-all}).
+Participants in the \fishname\ process have an
+intuition that the 2010 is a very large recruitment event --
+Figure~\ref{fig:main-recruitment-scale-all} shows how it is the largest for at least
+30 years, and that such large cohorts are rarer than is inferred from
+Figure~\ref{fig:main-recruitment}.
+
 The estimated recruitments with uncertainty for each year and the
 overall stock recruit relationship are provided in
 Figure~\ref{fig:main-mcmc-sr-variability}. Extremely large variability about the

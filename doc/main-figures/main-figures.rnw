@@ -636,6 +636,44 @@ plot_recdevs(list(base_model),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
+<<main-recruitment-scale-all, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows distributions of recruitment estimates relative to those in 2010 for all years">>=
+make.mcmc.recruitment.plot(base_model,
+                           start_yr = 1966,
+                           equil.yr = unfished_eq_yr,
+                           samples = NULL,
+                           rescale = TRUE,
+                           traceplot = FALSE,
+                           end_yr = assess_yr + 2,
+                           auto.xaxis = FALSE)
+@
+\end{center}
+\caption{Estimated recruitments divided by the estimated 2010 recruitment
+  shown as
+  medians (solid circles) of the resulting posterior distribution for
+  recruitment relative to that in 2010, with
+  95\% posterior credibility intervals (red lines);
+  the division is done for each MCMC sample.
+  This scales out the uncertainty due to uncertainty in unfished equilibrium
+  recruitment ($R_0$), and shows that, for example, the 2014 recruitment
+  is definitely smaller than the 2010 recruitment
+  (2010 was chosen as it is estimated to be one of the largest
+  recruitment events). However, intuition from
+  plots of absolute recruitment (Figure~\ref{fig:main-recruitment})
+  is that the 2014
+  is possibly (even probably) larger than the 2010 recruitment \citep{JTC2022}.
+  This figure gives a somewhat more intuitive y-axis
+  (people familiar with
+  \fishname\ know 2010 to be a very large recruitment year) than the
+  `billions of age-0 fish' necessarily used in Figure~\ref{fig:main-recruitment}.
+}
+\label{fig:main-recruitment-scale-all}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
 <<main-numbers-at-age, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure clearly shows the strong cohorts decreasing in numbers as they pass through time">>=
 make_numbers_at_age_plot(base_model,
                          mean_age_line_color = "red",
