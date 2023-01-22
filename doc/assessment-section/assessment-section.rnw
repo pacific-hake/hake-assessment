@@ -1527,25 +1527,26 @@ structural uncertainty of the base model by investigating how changes to the
 model affected the estimated values and derived quantities. All sensitivity analyses
 compared MCMC posteriors that were created using the {\tt adnuts} R package
 \citep{Monnahan2018, Monnahan2019} to implement the NUTS
-algorithm with a similar number of posterior samples as the base model. For a comparison of the
-parameter estimates for the sensitivity analyses with those from the base model
-see Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-2}.
-** Many additional sensitivity runs were conducted when developing and testing the
+algorithm with a similar number of posterior samples as the base model. A comparison of the
+parameter estimates between the main sensitivity models and those from the base model are shown
+in Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-2}.
+Many additional sensitivity runs were conducted when developing and testing the
 \Sexpr{assess_yr} base model. Here we focus on the main sensitivities which include
 the following:
 
 %**update list (and see earlier also I think)
 
-**
-
 \begin{enumerate}
 
 \item Consideration of higher standard deviations on the prior distribution
-  for natural mortality;
+  used in the base model for natural mortality;
 
-\item Consideration of alternative values for steepness;
+\item Consideration of an alternative prior distribution (mean and standard deviation) for natural
+  mortality based on the \citet{Hamel2015} life history meta-analytic method;
 
-\item Assumption of higher/lower variation about the stock-recruitment curve
+\item Consideration of an alternative prior distribution and a fixed value for steepness;
+
+\item Assumption of higher and lower variation about the stock-recruitment curve
   ($\sigma_r$);
 
 \item Removal of the age-1 index as a data source;
@@ -1553,10 +1554,12 @@ the following:
 \item Downweighting fishery age-composition data;
 
 \item Consideration of alternative standard deviations for time-varying
-  selectivity; and
+  selectivity;
 
 \item Consideration of an alternative maximum age for fishery and survey
-  selectivity.
+  selectivity; and
+
+\item Add the constraint that recruitment deviates must sum to zero.
 
 %\item Removal of cohort-based ageing error from the model; and
 
@@ -1578,11 +1581,12 @@ the following:
 %selectivity both yielded lower effective sample sizes; and all three maximum-age-selectivity
 %analyses led to a few failed Heidelberger and Welch statistics.
 
-** None of the sensitivities resulted in any substantial departure from
+None of the sensitivities resulted in any substantial departure from
 the main population dynamics of the base model. All sensitivity models showed large
 estimated increases in spawning biomass in the early- to mid-2010s that continues to be
-driven by the 2010, 2014, and 2016 cohorts and a steady reduction in spawning biomass from
-high levels over the last few years.  All sensitivity models indicate that \Sexpr{assess_yr}
+driven by the 2010, 2014, and 2016 cohorts followed by severl years of steady decline
+(2019--2021) before increasing again due to a strong 2020 cohort.
+All sensitivity models indicate that \Sexpr{assess_yr}
 relative spawning stock biomass is above $\Bforty$. The overall scale of the
 population was impacted by various alternative assumptions, and the highly
 uncertain size of the recent cohorts were more variable across sensitivity analyses
@@ -1592,12 +1596,7 @@ than earlier cohorts which have been observed for more years.
 % in here). May not be needed anyway.
 %%The results of this model relative to the base model are shown in Table~\ref{tab:main-parameter-estimates-sens-2} and Figures~\ref{fig:main-biomass-base-alternative-2} and \ref{fig:main-recruitment-base-alternative-2}. In general, the estimated population dynamics are similar, regardless of extrapolation, throughout most of the time series.  However, there is some divergence in recent year estimates; e.g., the estimated relative spawning biomass in \Sexpr{end_yr} is \Sexpr{f(100*sens.models.2.for.table[[1]]$derived_quants["Bratio_2016","Value"],1)}\% for the base model (with extrapolation) and \Sexpr{f(100*sens.models.2.for.table[[2]]$derived_quants["Bratio_2016","Value"],1)}\% for the model without extrapolation. The 2016 default harvest control catch limit coming from the base model is \Sexpr{f(sens.models.2.for.table[[1]]$derived_quants["ForeCatch_2016","Value"])}~t compared to \Sexpr{f(sens.models.2.for.table[[2]]$derived_quants["ForeCatch_2016","Value"])}~t for the model using no extrapolation (using MLE values).
 
-% MLE added to emphasise why numbers are different to usual (MCMC) base model
-% ones.
-% even though this is generlaized, it is not very general since the index
-% number of the list is used
-
-** Several key underlying structural model assumptions were identified that have
+Several key underlying structural model assumptions were identified that have
 persisted across many previous hake assessments, and thus warrant revisiting
 annually as a set of reference sensitivity examinations to new base models.
 Those identified here (as noted above) include the specification of natural mortality, the level
@@ -1605,7 +1604,6 @@ of variation assumed about the stock-recruitment relationship ($\sigma_r$), and
 the resiliency of the stock in terms of recruitment (steepness).
 
 % section below on natural mortality sensitivity
-% Manual 2021 done - CG
 ** The standard deviation of the prior distribution on natural mortality was
 increased from the base model value of 0.1 to 0.2 and 0.3. The median of the MCMC posteriors
 for natural mortality increased from
@@ -1614,8 +1612,12 @@ of \Sexpr{f(nat_m[1], 3)}--\Sexpr{f(nat_m[3], 3)} for the base model (prior stan
 deviation of 0.1) to \Sexpr{f(nat_m_03[2], 3)} with a 95\% credible interval
 of \Sexpr{f(nat_m_03[1], 3)}--\Sexpr{f(nat_m_03[3], 3)}
 for the sensitivity run with the prior standard
-deviation set to 0.3 (Table~\ref{tab:main-parameter-estimates-sens-1}). In addition to allowing a higher estimated value for
-natural mortality, the broader prior on $M$ also increased the overall scale of
+deviation set to 0.3 (Table~\ref{tab:main-parameter-estimates-sens-1}).
+The Hamel prior model estimated natural mortality at \Sexpr{f(nat_m_hamel[2], 3)}
+with a 95\% credible interval of \Sexpr{f(nat_m_hamel[1], 3)}--\Sexpr{f(nat_m_hamel[3], 3)}
+(Table~\ref{tab:main-parameter-estimates-sens-1}). 
+In addition to allowing a higher estimated value for
+natural mortality, these $M$ sensitivity models increased the overall scale of
 the population, the estimated stock status relative to $B_0$ prior to 1990, the
 uncertainty in spawning biomass on both absolute and relative scales, halved estimated relative
 fishing intensity in \Sexpr{end_yr-1}, and doubled equilibrium yield at $\BSPRforty$.
@@ -1623,8 +1625,7 @@ fishing intensity in \Sexpr{end_yr-1}, and doubled equilibrium yield at $\BSPRfo
 and~\ref{fig:main-status-base-alternative-1}).
 
 % section below on steepness sensitivity
-% Manual 2021 done - CG
-** The mean of the prior distribution on steepness was decreased from 0.777 (base)
+The mean of the prior distribution on steepness was decreased from 0.777 (base)
 to 0.5 and, separately, steepness was fixed at 1.0. The decrease in the mean of the
 prior resulted in a decrease in the MCMC estimate of steepness from
 a median of \Sexpr{f(steep[2],3)} with a 95\% credible interval
@@ -1633,22 +1634,22 @@ a median of \Sexpr{f(steep_prior_05[2],3)} with a 95\% credible interval
 of \Sexpr{f(steep_prior_05[1], 3)}--\Sexpr{f(steep_prior_05[3], 3)}
 (Table~\ref{tab:main-parameter-estimates-sens-1}).
 However, neither steepness
-sensitivity analysis had an impact on the overall model results
+sensitivity analysis had a large impact on the overall model results
 (Figures~\ref{fig:main-biomass-base-alternative-1} and
 \ref{fig:main-status-base-alternative-1}), because \fishname\ spawning biomass has
 remained above levels where changes in steepness would appreciably influence
 stock-recruit dynamics (Figure~\ref{fig:main-mcmc-sr-variability}).
 
 % section below on sigma_r
-** The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
+The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
 high (1.6) and low (1.0) states. The low value, $\sigma_r = 1.0$,
 resulted in a model where the standard deviation of the MLEs of
 recruitment deviations in the period with the most informative data was
-1.55,
+1.52,
 suggesting that the data were inconsistent with the lower value of $\sigma_r$.
 The high value, $\sigma_r = 1.6$, resulted in a model with a more
 consistent standard deviation for the estimated recruitment deviations, at
-1.86.
+1.75.
 However, the high $\sigma_r$ model had a larger difference between the
 spawning biomass at unfished
 equilibrium and the spawning biomass at the initial year of the model
@@ -1657,7 +1658,7 @@ than the low $\sigma_r$ model
 Figures~\ref{fig:main-biomass-base-alternative-1} and
 \ref{fig:main-status-base-alternative-1}). Similar to previous assessments,
 estimates of unfished recruitment ($\log R_0$) and relative spawning biomass are sensitive
-to $\sigma_r$, whereas absolute estimates of spawning biomass are insensitive.
+to $\sigma_r$, whereas absolute estimates of spawning biomass are relatively insensitive.
 The method of \citet{MethotTaylor2011}
 considers a combination of the variability among the
 estimated deviations and the uncertainty around the estimates using the formula
@@ -1667,8 +1668,8 @@ estimated deviations and the uncertainty around the estimates using the formula
 where $\mbox{Var}(\hat{r})$ is the variance among deviations and
 $\mbox{SE}(\hat{r}_y)$ is the standard error of each estimate. It
 produced a suggested
-$\sigma_r$ of 1.77, which was slightly more similar to the
-base-model value of 1.4 than the 1.81 estimated in the 2021 assessment.
+$\sigma_r$ of 1.68, which was more similar to the
+base-model value of 1.4 than the 1.77 estimated in the 2021 assessment.
 %the sigma R calculated values were done by hand using the posteriors.sso file for each model
 %following the above equation using the Main period rec devs
 

@@ -640,6 +640,7 @@ DM.weight.survey.high <- f(max(exp(base_model$mcmc[, col.effn]) /
 nat_m <- quantile(base_model$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
 nat_m_02 <- quantile(sens_models[[1]][[6]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
 nat_m_03 <- quantile(sens_models[[1]][[7]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
+nat_m_hamel <- quantile(sens_models[[1]][[8]]$mcmc$NatM_uniform_Fem_GP_1, probs = cred_int)
 # ... steepness ---------------------------------------------------------------
 steep <- quantile(base_model$mcmc$SR_BH_steep, probs = cred_int)
 steep_prior_05 <- quantile(sens_models[[1]][[2]]$mcmc$SR_BH_steep, probs = cred_int)
