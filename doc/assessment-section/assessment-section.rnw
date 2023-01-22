@@ -1604,7 +1604,7 @@ of variation assumed about the stock-recruitment relationship ($\sigma_r$), and
 the resiliency of the stock in terms of recruitment (steepness).
 
 % section below on natural mortality sensitivity
-** The standard deviation of the prior distribution on natural mortality was
+The standard deviation of the prior distribution on natural mortality was
 increased from the base model value of 0.1 to 0.2 and 0.3. The median of the MCMC posteriors
 for natural mortality increased from
 \Sexpr{f(nat_m[2], 3)} with a 95\% credible interval
@@ -1673,7 +1673,7 @@ base-model value of 1.4 than the 1.77 estimated in the 2021 assessment.
 %the sigma R calculated values were done by hand using the posteriors.sso file for each model
 %following the above equation using the Main period rec devs
 
-% Manual 2021 done - CG
+% Section below on age-1 index
 ** The sensitivity of the base model to the removal of the age-1 survey index
 provides a comparative evaluation of how the base model incorporates information
 about juvenile fish. Compared to the base model, estimates

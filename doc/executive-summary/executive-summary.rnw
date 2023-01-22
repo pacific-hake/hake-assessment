@@ -57,7 +57,7 @@ Prior to \Sexpr{min(ct$year)}, total removals were negligible compared to
 the modern fishery. Over the early period (\Sexpr{min(ct$year)}--1990) most
 removals were from foreign or joint-venture fisheries.  Across the time series,
 annual catch in U.S. waters averaged \Sexpr{f(mean(ct$us_catch))}~t,
-(\Sexpr{f(sum(ct$us_catch)/sum(ct$tot_catch)), 1)}\% of the
+(\Sexpr{f((sum(ct$us_catch)/sum(ct$tot_catch)), 1)}\% of the
 total catch) while catch from Canadian waters averaged
 \Sexpr{f(mean(ct$can_catch))}~t. Over the last 10 years,
 \Sexpr{max(ct$year) - 9}--\Sexpr{max(ct$year)}
