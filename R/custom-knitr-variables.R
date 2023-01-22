@@ -415,7 +415,7 @@ fourth.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
 us.age.n.cp <- us.cp.age[us.cp.age$year == last_data_yr, "n.hauls"]
 us.age.n.ms <- us.ms.age[us.ms.age$year == last_data_yr, "n.hauls"]
 us.last.year.age.cp <- us.cp.age[us.cp.age$year == last_data_yr, grep("^a", colnames(us.cp.age))]
-us.last.year.age.cp <- us.last.year.age.cp[order(us.last.year.age.cp, decreasing = TRUE)]
+us.last.year.age.cp <- us.last.year.age.cp[order(unlist(us.last.year.age.cp[1, , drop = TRUE]), decreasing = TRUE)]
 us.age.1.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[1]))
 us.age.1.prop.cp <- f(us.last.year.age.cp[1] * 100, 1)
 us.age.2.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[2]))
@@ -425,7 +425,7 @@ us.age.3.prop.cp <- f(us.last.year.age.cp[3] * 100, 1)
 us.age.4.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[4]))
 us.age.4.prop.cp <- f(us.last.year.age.cp[4] * 100, 1)
 us.last.year.age.ms <- us.ms.age[us.ms.age$year == last_data_yr, grep("^a", colnames(us.ms.age))]
-us.last.year.age.ms <- us.last.year.age.ms[order(us.last.year.age.ms, decreasing = TRUE)]
+us.last.year.age.ms <- us.last.year.age.ms[order(unlist(us.last.year.age.ms[1, , drop = TRUE]), decreasing = TRUE)]
 us.age.1.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[1]))
 us.age.1.prop.ms <- f(us.last.year.age.ms[1] * 100, 1)
 us.age.2.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[2]))
@@ -435,7 +435,7 @@ us.age.3.prop.ms <- f(us.last.year.age.ms[3] * 100, 1)
 us.age.4.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[4]))
 us.age.4.prop.ms <- f(us.last.year.age.ms[4] * 100, 1)
 us.last.year.age.shore <- us.shore.age[us.shore.age$year == last_data_yr, grep("^a", colnames(us.shore.age))]
-us.last.year.age.shore <- us.last.year.age.shore[order(us.last.year.age.shore, decreasing = TRUE)]
+us.last.year.age.shore <- us.last.year.age.shore[order(unlist(us.last.year.age.shore[1, , drop = TRUE]), decreasing = TRUE)]
 us.age.1.prop.age.shore <- as.numeric(gsub("^a", "", names(us.last.year.age.shore)[1]))
 us.age.1.prop.shore <- f(us.last.year.age.shore[1] * 100, 1)
 us.age.2.prop.age.shore <- as.numeric(gsub("^a", "", names(us.last.year.age.shore)[2]))
