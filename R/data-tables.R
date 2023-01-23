@@ -7,8 +7,10 @@ message("Loading all data tables (csv files) from `", rootd_data, "`")
 # Assessment history and changes ----
 assessment_history_file <- "assessment-history.csv"
 assessment_changes_file <- "assessment-changes.csv"
+assessment_history_disp_file <- "assessment-history-SSBdispersion.csv"
 assessment.history <- read.csv(file.path(rootd_data, assessment_history_file))
 assessment.changes <- read.csv(file.path(rootd_data, assessment_changes_file))
+assessment.history.disp <- read.csv(file.path(rootd_data, assessment_history_disp_file))
 
 # Maturity and weight-at-age ----
 ovary_samples_file <- "ovary-samples.csv"

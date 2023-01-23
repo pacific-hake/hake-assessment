@@ -143,3 +143,34 @@ make.assessment.history.plot <- function(base,
          xpd = NA)
 
 }
+##
+##' @param base This year's base model
+##' @param assessment.history.disp A data frame read in from the assessment history SSBdispersion file
+##' @param par.mar par(mar = c(x, x, x, x)) values; default is for doc
+make.assessment.history.disp.plot <- function(base,
+                                         assessment.history.disp){
+
+  xx <- assessment.history.disp
+  # define multi-figure layout and margins
+  par(mfrow = c(1, 2), mar=c(4, 4, 1, 1), oma = c(1,1, 0, 0))
+
+  plot(xx$InterQuartileRange~xx$Assessment_Year,type="o",ylim=c(0,2000),
+     ylab="Interquartile Range of Spawning Biomass Estimate ('000s)",
+     xlab="Assessment Year",
+     cex.lab=1.2,
+     col="black",
+     cex=1.3,
+     lwd=2,
+     las=1)
+
+  plot(xx$QuartileCoeffDispersion~xx$Assessment_Year,type="o",ylim=c(0,0.6)
+     ,ylab="Quartile Coefficient of Dispersion",
+     xlab="Assessment Year",
+     cex.lab=1.2,
+     col="black",
+     cex=1.3,
+     lwd=2,
+     las=1)
+
+
+}
