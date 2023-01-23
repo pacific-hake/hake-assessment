@@ -856,7 +856,7 @@ The probability of the female spawning biomass decreasing from \Sexpr{end_yr} to
 \Sexpr{end_yr+1} is above 72\% for all catch levels
 (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 81\% for the
-\Sexpr{end_yr} catch level similar to that for \Sexpr{end_yr-1} (scenario f: \Spexr{end_yr} catch).
+\Sexpr{end_yr} catch level similar to that for \Sexpr{end_yr-1} (scenario f: \Sexpr{end_yr} catch).
 % Can maybe unhardwire some numbers with things like
 % \Sexpr{f(min(base_model$risks[[1]][,2]))}\% (see assesment-section).
 %The highest probability of
