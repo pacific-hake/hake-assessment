@@ -3,12 +3,16 @@
 #' @param reps_lst A list of vectors, all the same length and structure,
 #' typically extracted as a portion of a Report.sso file
 #' @param header A vector of column names for the new table
+#' @param verbose Logical. If `TRUE`, show message about which iteration
+#' and row range is being populated from the loop
 #'
 #' @return A [tibble::tibble()] representing one row for each of the list
 #'  elements found in `reps_lst`. A new column called `Iter` is prepended and
 #'  represents the list element number that the data for each row came from.
 #'  List elements that are NA will not be included in the table.
-extract_rep_table <- function(reps_lst, header){
+extract_rep_table <- function(reps_lst,
+                              header,
+                              verbose = TRUE){
 
   num_iters <- length(reps_lst)
   nrow_per_iter <- map_dbl(reps_lst, ~{length(.x)})
@@ -44,15 +48,21 @@ extract_rep_table <- function(reps_lst, header){
       # Which is taken care of already
       .x[.x == "B"] <- 9999
       .x[.x == "M"] <- 8888
-
+      # Catch-at-age table (also has time period FOR, TIME etc
+      .x[.x == "dead"] <- 9999
+      # Pearson Residuals table
+      .x[.x == "AGE"] <- 9999
       as.numeric(.x)
     })
     mtch_end <- i * nrow_per_iter[1]
-    if(i %% 500 == 0)
-      cat("Iter: ", i, " -> ", row_ind_start, "--", row_ind_end, "\n")
+    if(i %% 500 == 0 && verbose)
+      cat("Iter: ", i, " -> Matrix rows: ", row_ind_start, "--", row_ind_end, "\n")
     vecs <- map(vecs, ~{c(i, .x)})
     iter <- 1
     for(j in row_ind_start:row_ind_end){
+      if(length(mat[j, ]) > length(vecs[[iter]])){
+        length(vecs[[iter]]) <- length(mat[j, ])
+      }
       mat[j, ] <- vecs[[iter]]
       iter <- iter + 1
     }
@@ -98,6 +108,18 @@ extract_rep_table <- function(reps_lst, header){
                              ifelse(`Beg/Mid` == 8888,
                                     "M",
                                     `Beg/Mid`)))
+  }
+  if("Type" %in% names(df)){
+    df <- df |>
+      mutate(Type = ifelse(Type == 9999,
+                           "dead",
+                           Type))
+  }
+  if("Kind" %in% names(df)){
+    df <- df |>
+      mutate(Type = ifelse(Kind == 9999,
+                           "AGE",
+                           Kind))
   }
 
   df

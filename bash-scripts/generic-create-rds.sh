@@ -19,7 +19,7 @@ for model in ${models[@]}; do
   Rscript -e " \
   setwd('$repo_path'); \
   source('R/all.R'); \
-  create_rds_file('$model_path')"; \
+  create_rds_file('$model_path', verbose = FALSE)"; \
   echo; \
   echo "$model RDS complete") &
 done

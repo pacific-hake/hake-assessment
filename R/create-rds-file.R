@@ -1,10 +1,13 @@
 #' Create an rds file to hold the model's data and outputs.
 #'
 #' @param model_dir Directory name of model to be loaded
+#' @param ... Arguments to pass to [load_extra_mcmc()]
 #'
 #' @return [base::invisible()]
 #' @export
 create_rds_file <- function(model_dir = NULL,
+                            verbose = TRUE,
+                            overwrite = TRUE,
                             ...){
 
   stopifnot(!is.null(model_dir))
@@ -20,25 +23,29 @@ create_rds_file <- function(model_dir = NULL,
 
   # The RDS file will have the same name as the directory it is in
   rds_file <- file.path(model_dir, paste0(basename(model_dir), ".rds"))
-  # if(file.exists(rds_file)){
-  #   unlink(rds_file, force = TRUE)
-  # }
-  # if(file.exists(rds_file)){
-  #   unlink(rds_file, force = TRUE)
-  # }
+  if(file.exists(rds_file) && !overwrite){
+    stop_quietly("The RDS file `", rds_file, "` exists and you did not set ",
+         "`overwrite = TRUE`")
+  }
 
-  message("Creating a new RDS file from SS3 model output in:\n`",
-          model_dir, "`\n")
+  if(verbose){
+    message("\nCreating a new RDS file from SS3 model output...\n")
+    message("Loading SS3 model input and output files in:\n",
+            "`", model_dir, "`\n")
+  }
   tic("Load SS3 files")
   model <- load_ss_files(model_dir, ...)
   toc()
-  message("SS3 input and output files loaded successfully from model output in:\n`",
-          model_dir, "`\n")
-
+  if(verbose){
+    message("SS3 input and output files loaded successfully from ",
+            "model output in:\n`",
+            model_dir, "`\n")
+  }
   # Try loading extra mcmc output. If none are found or there is a problem,
   # model$extra.mcmc will be NA
+  # `small` is an argument needed, passed through `...`
   tic("Load extra MCMC")
-  model$extra.mcmc <- fetch_extra_mcmc(model)
+  model$extra.mcmc <- load_extra_mcmc(model, verbose = verbose, ...)
   toc()
 
   # Load forecasts. If none are found or there is a problem, model$forecasts will be NA
@@ -58,6 +65,7 @@ create_rds_file <- function(model_dir = NULL,
   }
 
   # Load retrospectives. If none are found or there is a problem, model$retros will be NA
+  tic("Load retrospectives")
   model$retropath <- file.path(model_dir, retrospectives_path)
   if(dir.exists(model$retropath)){
     model$retros <- fetch_retrospectives(model$retropath,
@@ -65,8 +73,18 @@ create_rds_file <- function(model_dir = NULL,
   }else{
     model$retros <- NA
   }
+  toc()
 
   saveRDS(model, file = rds_file)
+  if(file.exists(rds_file)){
+    dt <- now() - file.info(rds_file)$mtime
+    message("RDS file `", rds_file, "` was created ",
+            f(dt[[1]], 2), " ", units(dt), " ago\n")
+  }else{
+    stop("File was not created during the `saveRDS()` call",
+         call. = FALSE)
+  }
+
   invisible()
 }
 

@@ -98,7 +98,7 @@ source_all <- function(lst){
 src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "run-catch-levels.R", "run-forecasts.R", "run-retrospectives.R",
              "create-sens-dirs.R", "create-rds-file.R", "build-doc.R",
-             "delete-files.R", "extra-mcmc.R", "extract-sigma-r.R",
+             "delete-files.R", "load-extra-mcmc.R", "extract-sigma-r.R",
              "set-dirs.R", "load-models.R", "run-adnuts.R", "survey.R",
              "load-data.R", "read-list.R", "figures-timeseries.R",
              "figures-timeseries-squidhist.R", "figures-compare-forecasts.R",
@@ -171,3 +171,6 @@ nuisance_posteriors_file <- "nuisanceposteriors.csv"
 options(warnPartialMatchDollar = TRUE)
 # Error out on all warnings
 #options(warn = 0)
+# Stop these messages:
+#`summarise()` has grouped output by 'Fleet'. You can override using the `.groups` argument.
+options(dplyr.summarise.inform = FALSE)
