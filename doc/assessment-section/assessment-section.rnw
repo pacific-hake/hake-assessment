@@ -189,14 +189,13 @@ fishing fleets or the number of trawl sets in the research surveys (see Section~
 The {\tt adnuts} R package \citep{Monnahan2018} was used to apply the NUTS algorithm producing
 \Sexpr{f(num.mcmc.samples)} MCMC samples which describe posterior distributions for model
 parameters and derived quantities. This is nearly a ten-fold increase in samples from the
-2020 \citep{JTC2020} and earlier assessments. The number of samples used for bridging models, sensitivity models,
-retrospective models, and forecasting scenarios was also set to \Sexpr{f(num.mcmc.samples)}.
+2020 \citep{JTC2020} and earlier assessments. The number of samples used for bridging models, sensitivity models, retrospective models, and forecasting scenarios was also set to \Sexpr{f(num.mcmc.samples)}.
 Medians (50\% quantiles) are reported together with the
 bounds of 95\% credibility intervals calculated as
 the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
 MCMC samples, to give equal-tailed intervals.
 
-** The {\tt adnuts} software goes through several steps including
+The {\tt adnuts} software goes through several steps including
 a pilot run using rwMH sampling with a few short chains in parallel to ensure the MCMC algorithm is
 converging. Once the pilot had been checked for convergence, low effective sample size,
 and for slow mixing parameters by comparing pairwise correlation plots, MLE was run to
@@ -204,29 +203,24 @@ obtain the covariance matrix. The covariance matrix is then used as the mass mat
 a short run producing 500 samples using a warmup of 100 samples.
 The covariance matrix from this short run is used as the mass matrix for the main run, providing
 \Sexpr{f(num.mcmc.samples)} samples from the posterior for inference. The {\tt adapt\_delta} value
-sets the target average acceptance probability and was set to 0.95 for
-the main NUTS run. The choice of {\tt adapt\_delta} of 0.95 was made based on less divergence
-of the posterior and higher effective sample size.
-A full explanation of the NUTS algorithm and the {\tt adnuts} package,
+sets the target average acceptance probability and was set to 0.95 for all models presented in this assessment. The choice of {\tt adapt\_delta} of 0.95 was made based on less divergence of the posterior and higher effective sample size. A full explanation of the NUTS algorithm and the {\tt adnuts} package,
 including an analysis with the \fishname\ stock
 can be found in \citet{Monnahan2019}.
 
-** [Change to server - but in print here let's just say server, and not note the location of the server so as not to raise any
-flags] Cloud computing was used for the first time for this assessment through Amazon Web Services' (AWS)
-Elastic Compute Cloud (EC2) instances. Use of these services allowed the JTC to run many models
-simultaneously and to acquire more samples from the posterior distribution than what was used
-for inference in the last assessment. Thus, the use of AWS left local computers
-available to continue work on the document and other analyses.
-AWS Simple Storage Service (S3), which can hold "any amount of data" privately, was used to
-share the model results between JTC members.
+A new server was purchased and used to run all the models and for running the software that builds the document. The server has 80 Intel Xeon Gold CPUs and 128 GB of RAM and is running Ubuntu Linux version 22.04.1 LTS which was the newest stable version at the time of writing.
+
+The server was set up with user account for each JTC member, with a remote desktop server (X-Remote Desktop Protocol - XRDP) running for easy access. All connections were through a 4096-bit passwordless Secure SHell (SSH) and the server was otherwise locked down from a security standpoint.
+
+The entire server is automatically backed up on a mirrored RAID device once per day, with model input files also backed up to a Google drive. If everything were lost the models could be re-run very quickly and the document regenerated in full.
+
+Scripts were written in the Bash shell scripting language to allow Operating system level control and monitoring over parallel model runs. Each run was also parallelized internally with 16 chains per model; that parallelism was controlled from within R using the {\tt future} and {\tt furrr} packages. With each model needing 16 CPUs, the JTC were able to run 4 models at a time, taking up 64 CPUs and leaving 16 available for use in writing and building the document. The total runtime for these models is now on the order of 1-3 hours, depending on the CPU and memory load on the server at the time.
+
+The server setup allowed all JTC members to work together in a way not possible before. This integrated setup will ensure an ideal workflow, with a centralized system housing all model runs and document software.
 
 Calculations and figures from Stock Synthesis output were performed using
 \Sexpr{R.Version()$version.string} and many R \citep{R2021} packages (in
-particular r4ss, adnuts, and xtable). The use of R, knitr, \LaTeX, and GitHub immensely
-facilitated the collaborative writing of this document.
-In particular, having most of the code under version control since the 2016
-assessment \citep{JTC2016} allows for the completion of a full assessment
-in the limited time available.
+particular {\tt r4ss}, {\tt adnuts}, and {\tt xtable}). The use of R, {\tt knitr}, \LaTeX, and GitHub immensely facilitated the collaborative writing of this document.
+In particular, having all of the code under {\\t git} version control \citep{JTC2016} has ensured delivery of the assessment document within a contracted timeframe.
 
 \subsection{Response to 2022 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
