@@ -1,33 +1,32 @@
 % research-needs-remainder.rnw - the remaining research needs that won't go into
 %  the Executive Summary but only into research.rnw in the main text.
 
-\item Use, build, and expand upon the existing
-  \ifnum\value{counter_research-needs}>0 {MSE }\else{management strategy evaluation (MSE) }\fi
+\item Use, build, and expand upon the existing management strategy evaluation
   framework to evaluate major sources of
   uncertainty relating to data, model structure, and the harvest policy for this
   fishery (as needed) and compare potential methods to address them. In particular,
-  utilize and adapt the MSE simulation framework to address new and ongoing
-  stock assessment research and data needs through the Pacific Hake MSE
+  utilize and adapt the management strategy evaluation framework to address new and ongoing
+  stock assessment research and data needs through the Pacific Hake Management Strategy Evaluation
   Working Group, including relevant requests by the Scientific Review Group
   (see Section~\ref{sec:assessment-response-review}).
-  For example, research investigating links between hake biomass,
+  For example, research investigating links between \fishname\ biomass,
   spatial distribution, growth, recruitment, and natural mortality, and how
   these biological processes vary with ocean conditions and ecosystem variables such as
   temperature, transport, and prey availability would be beneficial.
   Ongoing investigations have the potential to improve
-  the scenarios considered in future MSE
-  work and the basic understanding of drivers of hake
+  the scenarios considered in future work on the management strategy evaulation framework
+  and the basic understanding of drivers of \fishname\
   population dynamics and availability to fisheries and surveys.
 
 \item Complete the ongoing inter-laboratory otolith exchange and
   use the results to update estimates of ageing error used in the stock assessment.
   This would include updated information about ageing imprecision and the effects of
   large cohorts as understood given simulation analyses and
-  blind-source age reads of samples with
-  differing underlying age distributions -- with and without dominant year
+  blind-source age reads of samples with and without dominant year
   classes. The last inter-laboratory comparison was done in 2010 (``CARE''
-  exchanges). Related, streamline procedures that ease the exchange
-  of biological materials (e.g., otoliths) across international borders.
+  exchanges). Related, streamlining procedures that ease the exchange
+  of biological materials (e.g., otoliths) across international borders
+  would increase the efficiency at which research products can be produced.
 
 \item Continue to collect and analyze life-history data, including weight,
   maturity, and fecundity for \fishname. Explore possible relationships among
@@ -44,11 +43,11 @@
   species distribution or perhaps density, and the incorporation of these data
   into stock assessments. Recent research demonstrated that environmental DNA
   provides similar information as the acoustic survey at scales relevant to
-  managment, i.e., coast-wide and not just sample-to-sample comparisons
+  management, i.e., coast-wide and not just sample-to-sample comparisons
   \citep{SheltonRamonLacaEtAl2022}, but longer time series are needed before
   the data can be used to inform trends in abundance. Environmental DNA is now
-  available for 2019 and 2021 (two years total).  Given recent success,
-  continuing to extend the time series would be beneficial to stock assessment.  
+  available for 2019 and 2021 (two years total). Continuing to extend the time series
+  would allow for its incorporation in future stock assessments as an index of abundance.
 
 \item Maintain the flexibility to undertake additional acoustic surveys for
   \fishname\ in non-survey years when uncertainty in the results of the
@@ -61,10 +60,9 @@
   tradeoffs, and related assumptions, across multiple processes (e.g., selectivity,
   recruitment, data weighting) in integrated stock assessment models would be
   particularly beneficial.
-%\enlargethispage{\baselineskip}
 
 \item Revisit alternative methods for refining existing prior distributions
-  for natural mortality ($M$), including the use of meta-analytic methods.
+  for natural mortality, including the use of meta-analytic methods.
   Evaluate feasibility of estimating age-specific natural mortality for
   \fishname.
 
@@ -75,7 +73,7 @@
   can improve biomass forecasting capabilities for \fishname.
 
 \item Explore the potential to use acoustic data collected from commercial
-  fishing vessels to study hake distributions, schooling patterns, and other
+  fishing vessels to study \fishname\ distributions, schooling patterns, and other
   questions of interest. This could be similar to the
   ``acoustic vessels of opportunity'' program on fishing vessels
   targeting Pollock in Alaska \citep{StienessenHonkalehtoEtAl2019}.
