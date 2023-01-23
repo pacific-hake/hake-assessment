@@ -24,5 +24,8 @@ models=(01-h-prior-mean-low \
 #project  path=`Rscript -e "cat(dirname(here::here()))"`
 project_path="/srv/hake"
 type_path="03-sensitivity-models"
+ # Create small RDS by only having a subset of the extra MCMC output
+small=TRUE
+verbose=FALSE
 
 . ./generic-create-rds.sh
