@@ -298,6 +298,19 @@ median.intensity.2007.to.2011.max <- f(max(median.intensity.2007.to.2011) * 100,
 median.intensity.above.one.all.years <- names(which(mc$pmed > 1))
 median.intensity.above.one.years <- median.intensity.above.one.all.years[
          median.intensity.above.one.all.years < end_yr]
+median.intensity.above.one.text <- paste(
+  ifelse(
+    test = length(median.intensity.above.one.all.years) == 0,
+    "for all years",
+    "except for the years "
+  ),
+  stringr::str_flatten(
+    median.intensity.above.one.all.years,
+    collapse = ", ",
+    last = ", and "
+  ),
+  sep = ""
+)
 median.intensity.2010 <- f(mc$pmed["2010"] * 100, 1)
 median.intensity.2015 <- f(mc$pmed["2015"] * 100, 1)
 median.intensity.2017 <- f(mc$pmed["2017"] * 100, 1)
@@ -474,6 +487,7 @@ exploitation.med.2015 <- f(mc$fmed["2015"],2)
 exploitation.med.2017 <- f(mc$fmed["2017"],2)
 exploitation.med.2018 <- f(mc$fmed["2018"],2)
 exploitation.med.2019 <- f(mc$fmed["2019"],2)
+exploitation.med.2020 <- f(mc$fmed["2020"],2)
 exploitation.med.penult.yr <- f(mc$fmed[as.character(last_data_yr)], 2)
 
 # Priors settings from the control file ---------------------------------------

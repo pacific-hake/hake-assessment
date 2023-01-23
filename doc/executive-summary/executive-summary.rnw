@@ -455,7 +455,7 @@ that without fishing. If female spawning biomass is below $\Bforty$ (40\% of $B_
 the policy reduces the TAC linearly until it equals zero at $\Bten$ (10\% of
 $B_0$). Relative fishing intensity for fishing rate $F$ is
 $(1-\mbox{SPR}(F))/(1-\mbox{SPR}_{40\%})$, where $\mbox{SPR}_{40\%}$ is the
-target SPR of 40\%; it is reported here interchangeably as a decimal proportion or a percentage.
+target SPR of 40\%; it is reported here interchangeably as a proportion or a percentage.
 
 \subsection*{Exploitation status} \label{sec:es-exploitation-status}
 \phantomsection  \addcontentsline{toc}{subsection}{Exploitation status}
@@ -477,25 +477,9 @@ make.fishing.intensity.table(base_model,
                              placement = "tbp")
 @
 
-%% for 2017 assessment, base-model candidate 41 has no median fishing intensity
-%%  estimated above 1 so code in 2 lines below causes error. Commenting out
-%%  and posting issue.
-%% Okay for base-model 45, though only year. Keep all this so can easily switch
-%%  around.
 The median estimated relative fishing intensity on the stock is below
 the target of 1.0
-%% except for
-%% the years
-%%  \Sexpr{median.intensity.above.one.years[1:(length(median.intensity.above.one.years)-1)]}
-%% and
-%%  \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
-%% See 'The median fishing intensity ...' sentence in Management Performance
-%%  Section below, which seeminly didn't give an error when
-%%  median.intensity.above.one.years was empty. Could adapt that here for 2018,
-%%  not doing for 2017 since this works fine.
-%% the year \Sexpr{median.intensity.above.one.years}
-%% when spawning biomass was low
-for all years
+\Sexpr{median.intensity.above.one.text}
 (see Table~\ref{tab:es-fishing-intensity} for recent
 years and Figure~\ref{fig:es-fishing-intensity}).
 % for 2017 assessment, consider revising definition of Fishing Intensity as
@@ -527,27 +511,17 @@ above) peaked in 2006 and reached similar levels in 1999 and 2008
 median estimated exploitation
 fraction was the highest in 2020 followed closely by 2021
 before dropping nearly by half in 2022 (Table~\ref{tab:es-fishing-intensity}).
-Note that in earlier assessments the
-exploitation fraction was often defined in terms of fish age-3 and above, but
-since the 2018 assessment the definition age was lowered to age-2, because these
-fish are often caught by the fishery.
-%
 Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
-in 2015, and then it leveled off around 70\% from 2016 to 2019 before declining to
+in 2015. It leveled off around 70\% from 2016 to 2019 before declining to
 \Sexpr{median.intensity.2022}\% in 2022.
-The median exploitation fraction has increased from a recent low of
-\Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2017} in 2017 where it
-remained relatively stable before dropping back to 2012--2015 levels in 2022.
-% Happen to be the same for 2020 assessment.
+The median exploitation fraction has, on average, increased from a recent low of
+\Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2020} in 2020
+before dropping back to 2012--2015 levels in 2022.
 There is a
 considerable amount of uncertainty around estimates of relative fishing intensity,
 with the 95\% posterior credibility interval reaching above the SPR management
 target (of 1.0) in 2017 and 2018 (Figure~\ref{fig:es-fishing-intensity}).
-% 2016 assessment we had: '... is below the SPR management target for the
-%  last three years (Figure~\ref{fig:es-fishing-intensity})'.
-%  Interestingly, for 2017 the 2016 intensity interval reaches above 1.
-%
 % 2016 assessment, leave as an explanation:
 % Note that exploitation.med.penult.yr comes out as 0.06, but in Table d
 %  is 0.065, because the true value is 0.0648.... The text rounds to two decimal
