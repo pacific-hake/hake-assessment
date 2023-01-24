@@ -8,6 +8,8 @@
 [[ -z $models ]] &&{ echo "Variable 'models' has not been set, bailing out." ; exit 1; }
 [[ -z $run_extra_mcmc ]] &&{ echo "Variable 'run_extra_mcmc' has not been set, bailing out." ; exit 1; }
 [[ -z $adapt_delta ]] &&{ echo "Variable 'adapt_delta' has not been set, bailing out." ; exit 1; }
+[[ -z $small ]] &&{ echo "Variable 'small' has not been set, bailing out." ; exit 1; }
+[[ -z $verbose ]] &&{ echo "Variable 'verbose' has not been set, bailing out." ; exit 1; }
 
 repo_path=`Rscript -e "cat(here::here())"`
 models_path="models"
@@ -36,7 +38,7 @@ for model in ${models[@]}; do
                    adapt_delta = $adapt_delta, \
                    num_samples = $num_samples, \
                    num_warmup_samples = $num_warmup_samples); \
-  create_rds_file('$model_path');" > /dev/null 2>&1; \
+  create_rds_file('$model_path', small = $small, verbose = $verbose);" > /dev/null 2>&1; \
   echo; \
   echo "Run complete for model $model"; \
   echo) &

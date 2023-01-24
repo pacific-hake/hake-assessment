@@ -14,5 +14,8 @@ models=(01-updated-ss-exe \
 #project  path=`Rscript -e "cat(dirname(here::here()))"`
 project_path="/srv/hake"
 type_path="02-bridging-models"
+ # Create small RDS by only having a subset of the extra MCMC output
+small=TRUE
+verbose=FALSE
 
 . ./generic-create-rds.sh
