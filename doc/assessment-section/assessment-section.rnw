@@ -188,7 +188,7 @@ fishing fleets or the number of trawl sets in the research surveys (see Section~
 
 The {\tt adnuts} R package \citep{Monnahan2018} was used to apply the NUTS algorithm producing
 \Sexpr{f(num.mcmc.samples)} MCMC samples which describe posterior distributions for model
-parameters and derived quantities. This is nearly a ten-fold increase in samples from the
+parameters and derived quantities. This is a four-fold increase in samples from the
 2020 \citep{JTC2020} and earlier assessments. The number of samples used for bridging models, sensitivity models, retrospective models, and forecasting scenarios was also set to \Sexpr{f(num.mcmc.samples)}.
 Medians (50\% quantiles) are reported together with the
 bounds of 95\% credibility intervals calculated as
@@ -203,13 +203,15 @@ obtain the covariance matrix. The covariance matrix is then used as the mass mat
 a short run producing 500 samples using a warmup of 100 samples.
 The covariance matrix from this short run is used as the mass matrix for the main run, providing
 \Sexpr{f(num.mcmc.samples)} samples from the posterior for inference. The {\tt adapt\_delta} value
-sets the target average acceptance probability and was set to 0.95 for all models presented in this assessment. The choice of {\tt adapt\_delta} of 0.95 was made based on less divergence of the posterior and higher effective sample size. A full explanation of the NUTS algorithm and the {\tt adnuts} package,
+sets the target average acceptance probability and was set to 0.95 for all
+models presented in this assessment. The choice of {\tt adapt\_delta} of 0.95
+(same as for the 2022 assessment) was made based on less divergence of the posterior and higher effective sample size. A full explanation of the NUTS algorithm and the {\tt adnuts} package,
 including an analysis with the \fishname\ stock
 can be found in \citet{Monnahan2019}.
 
 A new server was purchased and used to run all the models and for running the software that builds the document. The server has 80 Intel Xeon Gold CPUs and 128 GB of RAM and is running Ubuntu Linux version 22.04.1 LTS which was the newest stable version at the time of writing.
 
-The server was set up with user account for each JTC member, with a remote desktop server (X-Remote Desktop Protocol - XRDP) running for easy access. All connections were through a 4096-bit passwordless Secure SHell (SSH) and the server was otherwise locked down from a security standpoint.
+The server was set up with user account for each JTC member, with a remote desktop server (X-Remote Desktop Protocol; XRDP) running for easy access. All connections were through a 4096-bit passwordless Secure SHell (SSH) and the server was otherwise locked down from a security standpoint.
 
 The entire server is automatically backed up on a mirrored RAID device once per day, with model input files also backed up to a Google drive. If everything were lost the models could be re-run very quickly and the document regenerated in full.
 
@@ -220,7 +222,8 @@ The server setup allowed all JTC members to work together in a way not possible 
 Calculations and figures from Stock Synthesis output were performed using
 \Sexpr{R.Version()$version.string} and many R \citep{R2021} packages (in
 particular {\tt r4ss}, {\tt adnuts}, and {\tt xtable}). The use of R, {\tt knitr}, \LaTeX, and GitHub immensely facilitated the collaborative writing of this document.
-In particular, having all of the code under {\\t git} version control \citep{JTC2016} has ensured delivery of the assessment document within a contracted timeframe.
+In particular, having all of the code under {\tt git} version control
+since the 2016 assessment \citep{JTC2016} has ensured delivery of the assessment document within a contracted timeframe.
 
 \subsection{Response to 2022 Scientific Review Group (SRG) review}\label{sec:assessment-response-review}
 
@@ -410,10 +413,10 @@ encourages continued sampling and analysis to improve understanding of the
   gradient and how the timing of spawning and rate of skip spawning differs spatio-temporally. A presentation
   summarizing progress to date and future plans is planned for the SRG meeting.}
 
-\emph{Response -- Research being led by Adam Luckenbach at the Northwest Fisheries
+\emph{Research being led by Adam Luckenbach at the Northwest Fisheries
   Science Center looking at physiological
   indices of fish reproductive and metabolic status is expected to bolster the current
-  practice of using gonadal histology alone for surveyed /fishname/ and provide important data to more accurately
+  practice of using gonadal histology alone for surveyed \fishname\ and provide important data to more accurately
   determine the reproductive cycle of females. Data generated to date indicate that two types of lipids,
   triacylglycerols and phospholipids, in the livers of Pacific Hake are inversely related and predictive
   of sexual maturity in females. Levels of these lipids are also considerably shifted when aborted, atretic
@@ -1713,7 +1716,7 @@ This differene is due to the age-1 index providing additonal information on recr
 associated with recent age-1 indicies (i.e., 2018 and 2020 cohorts detected in the 2019 and 2021 age-1 index).
 In particular, the base model with the age-1 index suggests that the 2020 year class is estimated to be large,
 but not as large as the 2021 and 2022 fishery data alone (i.e., removal of the age-1 index) would otherwise
-suggest (Figure~\ref{fig:main-biomass-base-alternative-2}).  
+suggest (Figure~\ref{fig:main-biomass-base-alternative-2}).
 %The largest changes are for the most recent years where the model without the index
 %has less information about recruitment size.
 **Removing the age-1 index led to minor changes in fit to the acoustic survey estimates, with
@@ -1760,7 +1763,7 @@ In particular, recruitment estimates for 2016 and 2020 are linked to the choice 
 model with the smallest $\Phi$ (0.21) estimates the 2016 and 2020 recruitment deviation as
 the highest of the $\Phi$ sensitivity models (Figure~\ref{fig:main-recruit-devs-base-alternative-4}),
 leading to a large increase in spawning biomass in recent years compared to the base model
-(Figure~\ref{fig:main-biomass-base-alternative-4}). 
+(Figure~\ref{fig:main-biomass-base-alternative-4}).
 **It also provides the worst fit to the most recent survey biomass estimate
 (Figure~\ref{fig:main-index-base-alternative-4}).
 
