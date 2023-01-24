@@ -1085,7 +1085,7 @@ the SPR$_{40\%}$ target for all years
 (Figure~\ref{fig:main-fishing-intensity} and
 Tables~\ref{tab:main-median-posterior} and \ref{tab:main-ci-posterior}).
 It was close
-to the target in 2008, 2010 and 2011, but harvest in those years did not exceed
+to the target in 2008 and 2010, but harvest in those years did not exceed
 the catch limits that were specified, based on the best available science and
 harvest control rules in place at the time.
 % Also close in 1999 but no TAC then according to landings.vs.tac[34,], so
@@ -1108,9 +1108,9 @@ remained relatively stable before dropping back to 2012--2015 levels in 2022.
 Although there is a considerable amount of imprecision
 around these recent estimates due to uncertainty in recruitment and spawning
 biomass, the 95\% posterior credibility interval of relative fishing intensity
-was below the SPR management target from 2012 through 2016 and again from 2018
+was below the SPR management target from 2012 through 2016 and again from 2019
 to 2022 (Figure~\ref{fig:main-fishing-intensity}). The median estimate
-for 2017 and 2018 is below the management target, however the 95\% posterior
+for 2017 and 2018 is below the management target though the 95\% posterior
 credibility interval does include the target level.
 
 % Note that exploitation.med.penult.yr comes out as 0.06, but in Table d
