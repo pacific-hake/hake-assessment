@@ -491,10 +491,12 @@ param_est_table <- function(models,
       "Dirichlet-Multinomial fishery (log~$\\theta_{\\text{fish}}$)",
       "Dirichlet-Multinomial survey (log~$\\theta_{\\text{surv}}$)",
       paste(getrecs, "recruitment (millions)"),
-      paste0("Unfished female spawning biomass (", latex.subscr(latex.italics("B"), "0"), ", thousand t)"),
+      paste0("Unfished female spawning biomass (",
+             latex.subscr(latex.italics("B"), "0"), ", thousand t)"),
       "2009 relative spawning biomass",
       paste0(end_yr, " relative spawning biomass"),
-      paste0(end_yr - 1, " rel. fishing intensity: (1-SPR)/(1-", latex.subscr("SPR", "40\\%"), ")"),
+      paste0(end_yr - 1, " rel. fishing intensity: (1-SPR)/(1-",
+             latex.subscr("SPR", "40\\%"), ")"),
       paste0("Female spawning biomass at ",
              latex.subscr(latex.italics("F"), "SPR=40\\%"),
              " (",
@@ -535,7 +537,7 @@ param_est_table <- function(models,
   addtorow$pos <- list()
   addtorow$pos[[1]] <- 1
   addtorow$pos[[2]] <- ifelse(age_1, 10, 9)
-  addtorow$pos[[3]] <- ifelse(age_1, 16, 15)
+  addtorow$pos[[3]] <- ifelse(age_1, 17, 16)
   addtorow$command <-
     c(paste0(latex.bold(latex.under("Parameters")),
              latex.nline),
