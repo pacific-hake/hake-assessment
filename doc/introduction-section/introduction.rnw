@@ -14,7 +14,8 @@
 The Joint U.S.-Canada Agreement for \fishname\ (called the Agreement) was signed
 in 2003, went into force in 2008, and was implemented in 2010.  The committees
 defined by the Agreement were first formed in 2011, and 2012 was the first year
-for which the process defined by the Agreement was followed. This is the
+for which the process defined by the Agreement was followed, including stock
+assessment. This is the
 \Sexpr{number.to.word(assess_yr - 2011, th = TRUE)} annual stock assessment
 conducted under the Agreement process.
 
@@ -25,7 +26,7 @@ the Scientific Review Group (SRG) that consists of representatives from both
 nations. Additionally, the Agreement calls for both of these bodies to include
 scientists nominated by an Advisory Panel (AP) of fishery stakeholders.
 
-The data sources for this assessment include an acoustic survey, annual fishery
+The primary data sources for this assessment include an acoustic survey, annual fishery
 catch, mean weight-at-age data, as well as survey and fishery age-composition
 data. The assessment depends primarily upon an acoustic survey index of biomass
 time series for information on the scale of the current population.
@@ -36,7 +37,8 @@ abundance and places a lower bound on the available population biomass in each
 year.
 
 This assessment is fully Bayesian, with the base model incorporating prior
-information on several key parameters (including natural mortality, $M$, and
+information on several key parameters (including informative priors
+on natural mortality, $M$, and
 steepness of the stock-recruit relationship, $h$) and integrating over parameter
 uncertainty to provide results that can be probabilistically interpreted. From a
 range of alternate models investigated by the JTC, a subset of sensitivity
@@ -46,7 +48,7 @@ structural uncertainty with respect to the base model
 The structural assumptions of this \Sexpr{assess_yr} base model,
 implemented using version \Sexpr{ss_version} of the Stock Synthesis software
 \citep{MethotWetzel2013},
-are largely the same as the \Sexpr{last_assess_yr} base model \citep{JTC2020}.
+are the same as the \Sexpr{last_assess_yr} base model \citep{JTC2020}.
 All model runs reported in this document are performed in a Bayesian context.
 Responses to \Sexpr{last_assess_yr} SRG requests are in
 Section~\ref{sec:assessment-response-review} and a
@@ -75,7 +77,9 @@ later spawning \citep{Zamora-Garcia2020}.
 
 The coastal population of \fishname\ typically ranges from the waters off southern
 California to northern British Columbia and rarely into southern Alaska, with
-the northern boundary related to fluctuations in annual migration \citep{JTC2013}. In spring,
+the northern boundary related to fluctuations in annual migration \citep{JTC2013}
+depending, in part, on water temperature (\citep{MalickHunsickerEtAl2020,
+MalickSiedleckiEtAl2020}). In spring,
 adult \fishname\ migrate onshore and northward to feed along the continental
 shelf and slope from northern California to Vancouver Island. In summer,
 \fishname\ often form extensive mid-water aggregations in association with the
@@ -84,40 +88,44 @@ continental shelf break, with the highest densities located over bottom depths o
 
 Older \fishname\ exhibit the greatest northern migration each season, with two-
 and three-year old fish rarely observed in Canadian waters north of southern
-Vancouver Island. During El Ni\~no events (warm ocean conditions such as in 1998),
+Vancouver Island. During El Ni\~no events (warm ocean conditions such as in 1998 and 2016),
 a larger proportion of the population migrates into Canadian waters
 (Figure~\ref{fig:main-backscatter-map}),
 due to temperature effects \citep{MalickHunsickerEtAl2020} and possibly intensified
 northward transport during the period of active
 migration \citep{Dorn1995b, AgostiniFrancisEtAl2006}. In contrast, La Ni\~na
-conditions (colder water, such as in 2001) result in a southward shift in their
+conditions (colder water, such as in 2001, 2011, and 2021) result in a southward shift in their
 distribution, with a much smaller proportion of the population found in
-Canadian waters, as seen in the 2001 survey
+Canadian waters, as seen in those surveys
 (Figure~\ref{fig:main-backscatter-map}). In general, warmer than average thermal
-habitat conditions for mature \fishname\ leads to higher biomass further
-north and lower biomass around the U.S.-Canadian border, while cooler than average
-conditions leads to higher biomass of immature \fishname\ coast-wide
-\citep{MalickHunsickerEtAl2020}. The distribution of age-1 fish also changes
-between years (Figure~\ref{fig:main-backscatter-map-age1}). **Maybe add any new refs?
+habitat conditions for mature \fishname\ leads to relatively higher biomass further
+north and relatively lower biomass around the U.S.-Canadian border, while cooler than average
+conditions leads to relatively higher biomass of immature \fishname\ generally spread evenly
+across thier distribution \citep{MalickHunsickerEtAl2020}. The distribution of age-1 fish also changes
+between years (Figure~\ref{fig:main-backscatter-map-age1}).
 
 \subsection{Ecosystem considerations}\label{sec:intro-ecosystem-considerations}
 
 \fishname\ are important to ecosystem dynamics in the Eastern Pacific Ocean due to
 their relatively large total biomass and potentially large role as both prey and
-predator \citep{JTC2013}. Recent research has developed an index of abundance for
+predator \citep{JTC2013}. Previous research developed an index of abundance for
 Humboldt Squid (\emph{Dosidicus gigas}) and suggested that the abundance of
-\fishname\ decreased with increasing squid abundance \citep{StewartHazenEtAl2014}
-and has evaluated distribution, recruitment, and growth patterns of \fishname\
+\fishname\ decreased with increasing squid abundance \citep{StewartHazenEtAl2014},
+and has also evaluated distribution, recruitment, and growth patterns of \fishname\
 in relation to oceanographic conditions for assessment and
 management \citep{ResslerHolmesEtAl2007, HamelEtAl2015, MalickHunsickerEtAl2020,
 MalickSiedleckiEtAl2020}. The 2015 \fishname\
 stock assessment document presented a sensitivity analysis where the mortality
 of \fishname\ was linked to the Humboldt Squid index \citep{JTC2015} but
-further research on this topic is still needed.
+further research on this topic is still needed. New research has developed a
+krill (i.e., euphausiids; \emph{\Euphausiacea}) abundance time
+series \citep{Phillips2022} and suggests that temperature dynamically
+influences hake--krill co-occurrence \citep{Phillips2023}, which can influence
+annual /fishname/ growth and recruitment as the availability of key prey species shifts.
 Ongoing research investigating abiotic (environmental conditions) and biotic
-(e.g., euphausiid distribution and abundance) drivers of the distribution,
-recruitment, and survival of \fishname\ could provide insight into how the population
-is linked with broader ecosystem considerations. For example,
+(e.g., maturity and diet) drivers of the distribution,
+recruitment, growth, and survival of \fishname\ could provide insight into how
+the population is linked with broader ecosystem considerations. For example,
 \citet{TurleyRykaczewski2019} found decreased survival of larval \fishname\
 as storm events increased, contrary to many other species in the southern
 California Current Ecosystem. An analysis of drivers of recruitment across the
@@ -130,7 +138,10 @@ Fitting the assessment model to empirical weight-at-age data allows for
 time-varying growth without needing a mechanistic relationship or environmental
 data, which facilitates an `Ecosystem Approach to Fisheries Management'
 (a priority for DFO and NOAA) (see Section~\ref{sec:data-weight-at-age}).
-**Maybe add any new refs?
+Nonetheless, ongoing research investigating spatiotemporal drivers of weight-at-age will
+provide more insights into the specific mechanisms affecting changes in growth,
+which will enable condition-specific prediction capabilities (e.g., assumptions of
+growth, or weight-at-age, during forecast years). 
 
 \subsection{Management of \fishname\ }\label{sec:intro-management}
 
@@ -152,21 +163,21 @@ establishes U.S. and Canadian shares of the coast-wide total allowable
 adhered to since 2005. However, a bilateral
 agreement on the coast-wide TAC could not be reached in 2020 or 2021; so, catch targets were set unilaterally
 during these years for the first time since the inception of the
-Agreement.
+Agreement. Catch shares distributions as specified in the Agreement were once
+again applied in 2022.
 
 Since 1999, catch
 targets have been calculated using an $\Fforty$ default harvest rate with a
 40:10 adjustment. This decreases the catch linearly from the catch target at a
-relative spawning biomass of 40\% to zero catch at relative spawning
+relative spawning biomass of 40\% to zero catch at a relative spawning
 biomass values of 10\% or less (called the default harvest policy in the
 Agreement); relative spawning biomass is the female spawning biomass divided by
 that at unfished
 equilibrium. Further considerations have almost always resulted in catch targets being
 set lower than the recommended catch limit.
 % Manual done 2023 KFJ
-In the last decade, total catch has
-never exceeded the coast-wide quota and harvest rates have not exceeded
-the $\Fforty$ target.
+Total catch has not exceeded the coast-wide quota since 2002, and harvest rates
+are likely to have never exceeded the $\Fforty$ target.
 
 \subsubsection{Management of \fishname\ in the United States}
 \label{sec:intro-management-us}
@@ -209,7 +220,7 @@ to avoid and reduce bycatch of salmon and rockfish.
 
 Canadian groundfish managers distribute their portion of the coast-wide TAC as quota to
 individual license holders. In \Sexpr{last_data_yr}, Canadian hake fishermen
-were allocated a TAC of \Sexpr{last.year.can.tac}~t, including
+were allocated a TAC of \Sexpr{last.year.can.tac}~t, of which included
 \Sexpr{last.year.can.carryover}~t of uncaught carryover fish from
 \Sexpr{last_data_yr - 1}. Canadian priority lies with the domestic fishery, but
 when there is determined to be an excess of fish for which there is not enough
@@ -246,8 +257,8 @@ of the catch. Catches were occasionally greater than 200,000~t prior to 1986,
 and since then they have been greater than 200,000~t for all except
 \Sexpr{catches.below.200000.since.1986} years.
 
-**[newer numbers may not be available] In 2020, \fishname\ was Canada's largest commercial wild fishery (species with
-the largest catch),
+According to 2020 statistics, the \fishname\ fishery was Canada's largest commercial
+wild fishery (species with the largest catch),
 representing 14\% of Canada's total landings of all species
 \href{https://www.dfo-mpo.gc.ca/stats/commercial/land-debarq/sea-maritimes/s2020pq-eng.htm}{(www.dfo-mpo.gc.ca)}.
 Over CA\$26~million in wages was estimated to have been paid to employees of the
@@ -256,7 +267,7 @@ CA\$100~million in product mainly
 to Ukraine, China,  Lithuania, and South Africa \citep{DFO2021}.
 
 % Manual updated 2022; Email Erin Steiner
-** In the US, over US\$80~million in wages is estimated to have been paid to employees in 2019
+In the US, over US\$80~million in wages is estimated to have been paid to employees in 2019
 % (\href{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}
 \href{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}{(www.noaa.gov)}.
 This includes wages paid to crew and captains fishing on catcher vessels that deliver shoreside
@@ -277,8 +288,10 @@ at \Sexpr{last.year.can.tac}~t. The historical catch of \fishname\ for
 Tables~\ref{tab:intro-catches-US}--\ref{tab:main-landings-tac} and
 Figure~\ref{fig:main-catches}. Table~\ref{tab:main-landings-tac} also shows
 recent catches in relation to targets (see
-Section~\ref{sec:assessment-model-results}). A review of the
-\Sexpr{last_data_yr} fishery now follows by nation.
+Section~\ref{sec:assessment-model-results}). A brief review of the
+\Sexpr{last_data_yr} fishery is presented here by country.  Additional
+information is available in annual United States and Canada Advisory Panel
+reports (Appendicies~\ref{chap:us-fishery-report}--\ref{chap:canada-fishery-report}).
 
 % \newpage % kludge to avoid dangling heading:
 
@@ -329,7 +342,8 @@ shore-based fleets caught \Sexpr{catcher.processor.catch}\%,
 reallocated quotas, respectively. Tribal landings, which are included in the
 shoreside sector totals were \Sexpr{f(last.year.us.ti.catch)}~t. Monthly catch
 rates in the at-sea sector were on average lower than last year except for May,
-which was slightly higher, and August, which typically has a catch rate of zero
+which was slightly higher, and August, which in most years has no catch due to vessels
+fishing Alaskan pollock at that time
 (Figure~\ref{fig:main-us-catch-rates}). The median fishing depth for the at-sea
 fleets was deeper than last year but near the average over the last five years
 (Figure~\ref{fig:main-us-at-sea-depths}). The shore-based fishery had the
@@ -375,26 +389,36 @@ The \Sexpr{last_data_yr} Canadian \fishname\ domestic fishery removed
 \Sexpr{last.year.can.landings}~t from Canadian waters
 (Table~\ref{tab:intro-catches-Can}), which was \Sexpr{last.year.can.attained}\%
 of the Canadian TAC of \Sexpr{last.year.can.tac}~t. The attainment for Canada
-appears much lower than usual, due to the fishing vessels having a difficult
+was much lower than usual, due to the fishing vessels having a difficult
 time finding fish in Canadian waters (see
 Appendix~\ref{chap:canada-fishery-report} for more details).
 
 % Manual done 2023 KFJ
-The shoreside component, made up of vessels landing fresh round product onshore,
-landed \Sexpr{last.year.can.shore}~t. The freezer-trawler component,
+The shoreside component made up of vessels landing fresh round product onshore
+landed \Sexpr{last.year.can.shore}~t, the lowest on record since 1990.
+The freezer-trawler component,
 which freezes headed and gutted product while at sea, landed
 \Sexpr{last.year.can.freezer}~t. There was no Joint-Venture fishery this year.
 
 % Manual done 2023 (Paraphrased Appendix B)
-Fishing started in early April and ended in mid-October. The general view from
-the Canadian fleet is that general abundance was down in 2022, especially in
+Fishing started in early April and ended in November. The general view of
+the Canadian fleet is that abundance in Candian-waters was down in 2022, including
 areas outside of Southwest Vancouver Island. The freezer trawlers fished in
-shallower areas than last year and at shallower depths, where the shoreside
+considerably shallower areas than last year and at shallower depths, where the shoreside
 vessels fished their gear at deeper depths than in 2021
-(Figure~\ref{fig:main-can-at-sea-depths}). Finding fish was difficult in 2022.
-The fish caught in Canada appeared to be mostly from three age classes (ages 5,
-6, and 8), with very few smaller fish (less than 500 grams) caught.
+(Figure~\ref{fig:main-can-at-sea-depths}). Reports of difficulties finding fish in 2022,
+and thus additional searching, is perhaps related to these standout
+differences in fishing depths.
+The fish caught in Canada appeared to be mostly from three age classes (ages 6,
+8, 12, and 5), with very few smaller fish (less than 500 grams) caught.
 
+The most abundant year classes in the
+Canadian shoreside catch were
+age-\Sexpr{max.shoreside.age.prop.age} at \Sexpr{max.shoreside.age.prop}\%,
+age-\Sexpr{second.shoreside.age.prop.age} at \Sexpr{second.shoreside.age.prop}\%,
+age-\Sexpr{third.shoreside.age.prop.age} at \Sexpr{third.shoreside.age.prop}\%, and
+age-\Sexpr{fourth.shoreside.age.prop.age} at \Sexpr{fourth.shoreside.age.prop}\%
+(Table~\ref{tab:main-can-shore-age-data}).
 The most abundant year classes (by numbers) in the Canadian freezer-trawler
 catch were age
 \Sexpr{max.freezer.trawler.age.prop.age} at
@@ -404,10 +428,5 @@ catch were age
 \Sexpr{third.freezer.trawler.age.prop.age} at
 \Sexpr{third.freezer.trawler.age.prop}\%, and age
 \Sexpr{fourth.freezer.trawler.age.prop.age} at
-\Sexpr{fourth.freezer.trawler.age.prop}\%.
-The most abundant year classes in the
-Canadian shoreside catch were
-age-\Sexpr{max.shoreside.age.prop.age} at \Sexpr{max.shoreside.age.prop}\%,
-age-\Sexpr{second.shoreside.age.prop.age} at \Sexpr{second.shoreside.age.prop}\%,
-age-\Sexpr{third.shoreside.age.prop.age} at \Sexpr{third.shoreside.age.prop}\%, and
-age-\Sexpr{fourth.shoreside.age.prop.age} at \Sexpr{fourth.shoreside.age.prop}\%.
+\Sexpr{fourth.freezer.trawler.age.prop}\%
+(Table~\ref{tab:main-can-ft-age-data}).
