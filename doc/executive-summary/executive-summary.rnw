@@ -910,14 +910,11 @@ plot_depl_fore_comparison(base_model,
 \begin{figure}[tbp]
 \begin{center}
 <<forecast-risk-comparison-plot-year-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably not decline next year except for very high catch levels">>=
-make.forecast.risk.comparison.plot(base_model,
-                                   forecast_yrs = forecast_yrs,
-                                   fore.yr = forecast_yrs[1],
-                                   colors = c("black","blue","green","orange",
-                                              "red","tan"),
-                                   pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
-                                   legend.cex = 0.7)
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[1],
+                  leg_pos = "out",
+                  remove_x_val = 325)
 @
 \end{center}
 \caption{Graphical representation of the probabilities related to spawning
@@ -954,14 +951,11 @@ make.risk.table(base_model,
 
 
 <<forecast-risk-comparison-plot-year-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably decline the year after next (except under zero catch)">>=
-make.forecast.risk.comparison.plot(base_model,
-                                   forecast_yrs = forecast_yrs,
-                                   fore.yr = forecast_yrs[2],
-                                   colors = c("black","blue","green","orange",
-                                              "red","tan"),
-                                   pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
-                                   legend.cex = 0.7)
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[2],
+                  leg_pos = "out",
+                  remove_x_val = 740)
 @
 \end{center}
 \caption{Graphical representation of the probabilities related to spawning
@@ -998,13 +992,11 @@ make.risk.table(base_model,
 \begin{figure}[tbp]
 \begin{center}
 <<forecast-risk-comparison-plot-year-3, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline in three years' time regardless of catch level">>=
-make.forecast.risk.comparison.plot(base_model,
-                                   forecast_yrs = forecast_yrs,
-                                   fore.yr = forecast_yrs[3],
-                                   colors = c("black","blue","green","orange","red","tan"),
-                                   pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
-                                   legend.cex = 0.7)
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[3],
+                  leg_pos = "out",
+                  remove_x_val = 621)
 @
 \end{center}
 \caption{Graphical representation of the probabilities related to spawning

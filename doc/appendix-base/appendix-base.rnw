@@ -265,14 +265,11 @@ decision_table(base_model,
 \begin{figure}[H]
 \begin{center}
 <<forecast-risk-comparison-plot-year-1-base-temp, fig.height=5, fig.width=8>>=
-make.forecast.risk.comparison.plot(base_model,
-                                   forecast_yrs = forecast_yrs,
-                                   fore.yr = forecast_yrs[1],
-                                   colors = c("black","blue","green","orange",
-                                              "red","tan"),
-                                   pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
-                                   legend.cex = 0.7)
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[1],
+                  leg_pos = "out",
+                  remove_x_val = 740)
 @
 \end{center}
 \caption{Graphical representation of the probabilities related to spawning
@@ -306,14 +303,11 @@ make.risk.table(base_model,
 \begin{figure}[H]
 \begin{center}
 <<forecast-risk-comparison-plot-year-2-base-temp, fig.height=5, fig.width=8>>=
-make.forecast.risk.comparison.plot(base_model,
-                                   forecast_yrs = forecast_yrs,
-                                   fore.yr = forecast_yrs[2],
-                                   colors = c("black","blue","green","orange",
-                                              "red","tan"),
-                                   pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
-                                   legend.cex = 0.7)
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[2],
+                  leg_pos = "out",
+                  remove_x_val = 740)
 @
 \end{center}
 \caption{Graphical representation of the probabilities related to spawning
