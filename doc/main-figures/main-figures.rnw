@@ -1159,6 +1159,40 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[4]],
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
+<<main-recruitment-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows occasional differences in recruitment between certain sensitivity runs with different maximum age-based selectivity">>=
+plot_recruitment(d_obj = d_obj_sens_recr[[4]],
+                 x_expansion = 2,
+                 leg_font_size = 9,
+                 leg_pos = c(0.13, 0.88),
+                 inc_means = TRUE,
+                 rev_colors = TRUE)
+@
+\end{center}
+\caption{MCMC estimates of recruitment for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6).}
+\label{fig:main-recruit-base-alternative-6}
+%% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% JOINED ON PAGE
+%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{figure}[H]
+\begin{center}
+<<main-recruitment-devs-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows occasional differences in recruitment deviations between certain sensitivity runs with different maximum age-based selectivity">>=
+plot_recdevs(d_obj = d_obj_sens_recdev[[4]],
+             x_expansion = 2,
+             leg_font_size = 9,
+             leg_pos = c(0.13, 0.88),
+             rev_colors = TRUE)
+@
+\end{center}
+\caption{MCMC estimates of recruitment deviations for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6).}
+\label{fig:main-recruit-devs-base-alternative-6}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
 <<main-biomass-recruitment-retrospective, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass and recruitment vary for retrospective runs">>=
 
 plist <- list()

@@ -763,6 +763,20 @@ were estimated slightly above the index value and, being so young, include a lar
 The model indicates that the 2020 cohort may be similar in
 size to the 2014 cohort, based on information in the age-1 index, age-1 fish
 caught in the 2021 fishery, and from age-2 fish caught in the 2022 fishery.
+The high age-1 survey index from 2021 is largely in concurrence with
+oceanographic conditions, as summarized in NOAA's annual Ecosystem Status Report
+of the California Current \citep{HarveyGarfieldEtAl2021}.
+Recruitment is generally impacted by oceanographic
+conditions both during maternal preconditioning and during egg and larval
+stages. During maternal preconditioning (spring-fall, 2019) upwelling
+conditions were variable but near average \citep{HarveyGarfieldEtAl2020}. Weaker
+upwelling conditions are associated with higher \fishname\ recruitment during this
+phase (Vestfals et al., pers. comm.). During egg and larval phases (2020), ocean
+conditions were broadly associated with high productivity across many taxa
+\citep{HarveyGarfieldEtAl2021}. These conditions were marked by strong winter
+upwelling which brings nutrients to coastal waters, cooler temperatures, an
+energy-rich copepod community, and high productivity of krill, a key food source
+for \fishname\ \citep{BuckleyLivingston1997, HarveyGarfieldEtAl2021}.
 
 Fits to the age-composition data continue to show close correspondence to the
 dominant and small cohorts observed in the data
@@ -1675,7 +1689,7 @@ base-model value of 1.4 than the 1.77 estimated in the 2021 assessment.
 %following the above equation using the Main period rec devs
 
 % Section below on removal of the age-1 index
-**The sensitivity of the base model to the removal of the age-1 index
+The sensitivity of the base model to the removal of the age-1 index
 provides a comparative evaluation of how the base model incorporates information
 about juvenile fish. Compared to the base model, estimates
 of spawning biomass throughout most of the time series are similar, but do
@@ -1690,42 +1704,28 @@ of \Sexpr{f(100*bratio_curr[1], 1)}--\Sexpr{f(100*bratio_curr[3], 1)}\%) and
 \Sexpr{f(100*bratio_age1[2], 1)}\%
 for the removal of the age-1 index model (95\% credible interval
 of \Sexpr{f(100*bratio_age1[1], 1)}--\Sexpr{f(100*bratio_age1[3], 1)}\%)).
-This change is likely due to the age-1 index suggesting slightly higher recruitment
-in 2014 (age-1 in 2015) and 2016 (age-1 in 2017) and moderately higher
-recruitment in 2018 (age-1 in 2019)
-and 2020 (age-1 in 2021) than the model without the index
-(Figures~\ref{fig:main-age-one-index} and~\ref{fig:main-recruit-base-alternative-2}).
-The largest changes are for the most recent years where the model without the index
-has less information about recruitment size.
-Removing the age-1 index led to minor changes in fit to the acoustic survey estimates, with
+This differene is due to the age-1 index providing additonal information on recruitment for cohorts
+associated with recent age-1 indicies (i.e., 2018 and 2020 cohorts detected in the 2019 and 2021 age-1 index).
+In particular, the base model with the age-1 index suggests that the 2020 year class is estimated to be large,
+but not as large as the 2021 and 2022 fishery data alone (i.e., removal of the age-1 index) would otherwise
+suggest (Figure~\ref{fig:main-biomass-base-alternative-2}).  
+%The largest changes are for the most recent years where the model without the index
+%has less information about recruitment size.
+**Removing the age-1 index led to minor changes in fit to the acoustic survey estimates, with
 some years showing slight improvement and others a slight deterioration compared to the base
 model (Figure~\ref{fig:main-index-base-alternative-2}).
 %For further details and results from the removal of the age-1 survey index sensitivity see
 %Appendix~\ref{chap:age1-survey}.
 
-** The high age-1 survey index from 2021 is largely in concurrence with
-oceanographic conditions, as summarized in NOAA's annual Ecosystem Status Report
-of the California Current. Recruitment is generally impacted by oceanographic
-conditions both during maternal preconditioning and during egg and larval
-stages. During maternal preconditioning (spring-fall, 2019) upwelling
-conditions were variable but near average \citep{HarveyGarfieldEtAl2020}. Weaker
-upwelling conditions are associated with higher \fishname\ recruitment during this
-phase (Vestfals et al., pers. comm.). During egg and larval phases (2020), ocean
-conditions were broadly associated with high productivity across many taxa
-\citep{HarveyGarfieldEtAl2021}. These conditions were marked by strong winter
-upwelling which brings nutrients to coastal waters, cooler temperatures, an
-energy-rich copepod community, and high productivity of krill, a key food source
-for \fishname\ \citep{BuckleyLivingston1997, HarveyGarfieldEtAl2021}.
-
 % section below on composition weighting
-% Manual 2021 done - CG
-** The base model includes a Dirichlet-multinomial likelihood component,
+The base model includes a Dirichlet-multinomial likelihood component,
 which uses two estimated parameters to automatically weight each of the fishery and survey age
 compositions. The base model was compared to a sensitivity model that downweighted
 the fishery age compositions relative to the survey age compositions. The data weighting used
 in the sensitivity model was based on the McAllister-Ianelli method.
 This method requires manual iterative adjustments to the input sample sizes
-using a derived multiplier. The McAllister-Ianelli method, which was used in assessments prior to 2018,
+using a derived multiplier. The McAllister-Ianelli method, which was used in assessments prior to
+2018 (Table~\ref{tab:main-assessment-changes}),
 attempts to make the arithmetic mean of the input
 sample size approximately equal to the harmonic mean of the effective
 sample size. The McAllister-Ianelli method
@@ -1736,13 +1736,12 @@ used in the base model was \Sexpr{DM.weight.fishery.median} and
 \Sexpr{f(as.numeric(DM.weight.fishery.median) /
 as.numeric(DM.weight.survey.median),2)}).
 Downweighting fishery composition data using the McAllister-Ianelli method
-led to minor changes in relative spawning stock biomass and increased uncertainty
+led to minor changes in relative spawning stock biomass, recruitment estimates, and increased uncertainty
 in estimates of early recruitments compared to the base model
 (Figures~\ref{fig:main-status-base-alternative-2} and~\ref{fig:main-recruit-base-alternative-2}).
 
 % section below on selectivity
-% Manual 2021 - CG
-** The degree of flexibility of annual variation in the fishery selectivity was tested using
+The degree of flexibility of annual variation in the fishery selectivity was tested using
 three sensitivities which set alternative values of the $\Phi$ parameter
 (Figures~\ref{fig:main-biomass-base-alternative-4}-\ref{fig:main-index-base-alternative-4}).
 The consideration of alternative standard deviations ($\Phi$) for time-varying
@@ -1751,26 +1750,35 @@ Section~\ref{sec:data-variability-selectivity}. Changing the values of the
 parameter $\Phi$ controlling the flexibility in time-varying selectivity from
 the base model value of $\Phi = 1.40$ to alternative values of 0.21, 0.70, and 2.10,
 did not appreciably influence the estimates, or precision, associated with recruitment
-in 2014 (Figure~\ref{fig:main-recruit-base-alternative-4}).
-However, recruitment estimates for 2016 and 2017 are linked to the choice of $\Phi$, where the
-model with the smallest $\Phi$ at 0.21 estimates the 2016 and 2017 recruitment deviation as
+in 2014, but it did impact more recent recruitments (Figure~\ref{fig:main-recruit-base-alternative-4}).
+In particular, recruitment estimates for 2016 and 2020 are linked to the choice of $\Phi$, where the
+model with the smallest $\Phi$ (0.21) estimates the 2016 and 2020 recruitment deviation as
 the highest of the $\Phi$ sensitivity models (Figure~\ref{fig:main-recruit-devs-base-alternative-4}),
 leading to a large increase in spawning biomass in recent years compared to the base model
-(Figure~\ref{fig:main-biomass-base-alternative-4}). It also
-provides the worst fit to the most recent survey biomass estimate
+(Figure~\ref{fig:main-biomass-base-alternative-4}). 
+**It also provides the worst fit to the most recent survey biomass estimate
 (Figure~\ref{fig:main-index-base-alternative-4}).
 
-** The estimated population trends throughout the time series are similar, irrespective of maximum
+The estimated population trends throughout the time series are similar, irrespective of maximum
 selectivity age (Figures~\ref{fig:main-biomass-base-alternative-6}-\ref{fig:main-status-base-alternative-6}).
 The largest differences are in the mid-1980s when age-composition data was sparse, and then again
-over the last few years of the model. The sensitivity run with
-maximum selectivity at age-5 resulted in the lowest estimate of the 2016 year class compared
-to the other model runs, while runs with higher maximum age produced similar
-levels of recruitment but at the cost of a considerable increase in the number of model
-parameters (Table~\ref{tab:main-parameter-estimates-sens-2}).  The choice of age-6 as the
-maximum was retained in the base model as it offered more flexibility than the choice of age-5.
+over the last few years of the model. Estimates of recruitment were insensitive to the
+choice of maximum age for selectivity, despite the considerable increase in the number of model
+parameters for older maximum ages (Table~\ref{tab:main-parameter-estimates-sens-2}).  The choice of age-6 as the
+maximum was retained in the base model as it offered more flexibility given historical population structure
+fluctuations and related dynamics than the choice of age-5.
 %All three alternative runs had reduced
 %performance in terms of MCMC diagnostics when compared with the base model.
+
+Constraining deviations from the stock recruitment relationship (i.e., recruitment deviates)
+to sum to zero across the main recruitment period (an assumption used in pre-2020 stock assessments;
+Table~\ref{tab:main-assessment-changes}; \citet{JTC2020}), lead to a very similar spawning
+biomass trend compared to the base model but increased the estimate of $B_0$ thereby creating
+a downward shift in stock status
+(Figures~\ref{fig:main-biomass-base-alternative-6}-\ref{fig:main-status-base-alternative-6}).
+Recruitment estimates were slightly higher and deviations from the stock recruitment relationship
+were ubiquitously more negative than in the base model
+(Figures~\ref{fig:main-recruit-base-alternative-6}-\ref{fig:main-recruit-devs-base-alternative-6}).
 
 % Ageing Error
 % Did not run this sensitivity in 2022
@@ -1810,7 +1818,7 @@ parameters under the assumptions of the base
 model. With the addition of the age-1 index time series, recruitment
 strength estimates now come closer to the long-term stable estimate by age-2 in some cases
 (Figure~\ref{fig:main-retrospective-recruitment}) compared to models without the age-1 index
-(\citep{JTC2022}).
+\citep{JTC2022}.
 However, some cohort recruitments still are over or under-estimated at age-2.
 Over-estimation can be seen most clearly with the 2014, 2015, 2017, and 2018 cohorts.  The 2014 cohort
 reached a high deviation after two years, then even higher after three years only to drop back down
