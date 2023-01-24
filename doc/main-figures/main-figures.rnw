@@ -1198,6 +1198,26 @@ make.assessment.history.plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
+<<main-historical-dispersion, fig.height=4.5, fig.width=6.5, is.fig = TRUE, alt.text = "This figure shows the amount of absolute
+and scaled variability present with terminal year estimates of spawning biomass from assessments dating back to 2012">>=
+make.assessment.history.disp.plot(base_model,
+                                  assessment.history.disp)
+@
+\end{center}
+%\vspace{0mm}
+\caption{Comparison of absolute (left panel) and relative (right panel) variability associated with terminal year estimates of spawning
+biomass from \fishname\ stock assessments dating back to 2012 (note: terminal year is the same as assessment year). The interquartile range
+specifies the width from quartile 1 (Q1: 25th percentile) to quartile 3 (Q3: 75th percentile) of terminal year spanwing biomass from
+the posterior distribution and is a measure of absolute variability (similar to credible intervals). The quartile coefficient
+of dispersion is a relative measure of variability that can be compared across different data sets (similar to the coefficient
+of variation but less susceptable to outliers) and is calculated as $\protect{(Q3-Q1) / (Q1+Q3)}$.}
+\label{fig:main-historical-dispersion}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
 <<historical-1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model.">>=
 make.historical.probs.plot(base_model,
                            add.projs = TRUE)
