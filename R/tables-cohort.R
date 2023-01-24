@@ -123,7 +123,13 @@ cohort_table <- function(model,
   csv_out <- df %>% mutate_all(~{as.character(.x)})
   colnames(csv_out) <- csv_headers
   csv_out[is.na(csv_out)] <- ""
-  write_csv(csv_out, here::here(csv_dir, "cohort-effects.csv"))
+
+  csv_dir_full <- here::here("doc", csv_dir)
+  if(!dir.exists(csv_dir_full)){
+    dir.create(csv_dir_full)
+  }
+  write_csv(csv_out,
+            file.path(csv_dir_full, "cohort-effects.csv"))
 
   # Change the number of decimal points displayed and remove NAs
   df <- df %>%
