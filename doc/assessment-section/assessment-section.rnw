@@ -568,52 +568,50 @@ Hake stock during the COVID-19 pandemic.}
 \subsubsection{Changes from \Sexpr{last_assess_yr} }\label{sec:assessment-changes}
 
 A set of `bridging' models was constructed to evaluate the component-specific
-effects of all changes from the \Sexpr{last_assess_yr} base model to
-the \Sexpr{assess_yr} base model.
-
-In short, steps that went into developing these models included the following:
+effects of the steps to change from the \Sexpr{last_assess_yr} base model to
+the \Sexpr{assess_yr} base model. The steps are:
 \begin{itemize}
-  \item Update to the latest version of Stock Synthesis, version \Sexpr{ss_version};
-  \item Update catch and age-composition data from years prior to \Sexpr{last_data_yr};
-  \item Add new catch and age-composition data for \Sexpr{last_data_yr};
+  \item Update to the latest version of Stock Synthesis, version
+    \Sexpr{ss_version}, to follow current best practices;
+  \item Update catch, age-composition, and weight-at-age data from years prior to \Sexpr{last_data_yr};
+  \item Add new catch data for \Sexpr{last_data_yr};
+  % For 2024, check the order of these:
   %\item Update acoustic survey biomass and age-composition data from years prior to \Sexpr{last_data_yr};
   %\item Add the \Sexpr{last_data_yr} acoustic survey biomass and age-composition estimates; and
-  \item Add weight-at-age data for \Sexpr{last_data_yr} as well as update data for years prior.
+  \item Add weight-at-age data for \Sexpr{last_data_yr}.
+  \item Add fishery age-composition data for \Sexpr{last_data_yr}
   %\item Add the age-1 index time series.
   %\item Add \Sexpr{last_data_yr} survey biomass estimate;
   %\item Add \Sexpr{last_data_yr} survey age-composition data; and
 \end{itemize}
 
-The bridging steps can be grouped into two main sets of changes,
-with the majority of the steps being those that are performed routinely.
-The first step updated the Stock Synthesis framework to follow current best practices.
-The second step updated all information available from the fishery and acoustic survey.
-%The third step implemented changes related to the addition of the age-1 index.
+**Kelli to add to this paragraph if needed:
 
 Stock Synthesis version \Sexpr{ss_version} includes
-a number of changes since the version used by \citet{JTC2021},
+a number of changes since the version used by \citet{JTC2022},
 mostly related to options not explicitly used in this assessment.
-Changes relevant to the assessment of \fishname\ include changes to
-** how forecasting....
 Adaptations within the Stock Synthesis modeling framework itself had little effect
 on parameter estimates compared to the \Sexpr{last_assess_yr}
-base model and thus no effect on resulting time series.
+base model and thus no effect on resulting time series (Figure~\ref{fig:main-bridge-5-panel-1}).
+% Changes relevant to the assessment of \fishname\ include changes to
 
-The second set of bridging steps was conducted to update fishery-dependent
-and fishery-independent data.
-This primarily included minor adjustments in catch, fishery age compositions,
-%the 2019 acoustic survey biomass estimate,
-and weight-at-age values as databases are continually updated.
+The update of pre-\Sexpr{last_data_yr} data occurs because databases are
+continually updated and
+yielded minor adjustments to the data.
 Samples that were recently aged but not available for the \Sexpr{last_assess_yr}
 assessment were included.
 These changes to pre-\Sexpr{last_assess_yr} data were small enough that they had
-little impact on the model results.
+little impact on the model results (not shown).
 
-The addition of \Sexpr{last_data_yr} catch and weight-at-age data extends the model
-to the start of \Sexpr{assess_yr}. Recruitment estimates and historical stock
-trajectory were relatively unchanged with the addition of these data, but did
-result in a slight increase in spawning
-biomass from \Sexpr{last_data_yr-1} to \Sexpr{assess_yr}
+The addition of the \Sexpr{last_data_yr} catch data extends the model
+to the start of \Sexpr{assess_yr}.
+Recruitment estimates and historical stock
+trajectory were relatively unchanged, and the new data suggest
+a slight increase in spawning
+biomass from \Sexpr{assess_yr-1} to \Sexpr{assess_yr}
+(Figure~\ref{fig:main-bridge-5-panel-1}).
+Adding the weight-at-age data for \Sexpr{last_data_yr} makes little change,
+though slightly increases the estimated spawning biomass
 (Figure~\ref{fig:main-bridge-5-panel-1}).
 
 %%Only include an updated version of the following paragraph during survey years
@@ -646,25 +644,29 @@ biomass from \Sexpr{last_data_yr-1} to \Sexpr{assess_yr}
 % round(median(bridge_models_2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
 % round(median(base_model$mcmc$Bratio_2022),3)*100}\%.
 
-The final bridging step was the addition of \Sexpr{last_data_yr} fishery age compositions.
-This bridging step also shifted the ending year of the deviations
+
+
+The final step added the fishery age-composition data for \Sexpr{last_data_yr}, which
+shifted the ending year of the deviations
 in the selectivity parameters from \Sexpr{last_data_yr-1} to
-\Sexpr{last_data_yr} because of the addition of fishery data in \Sexpr{last_data_yr}.
+\Sexpr{last_data_yr}.
 These data had relatively little impact on the historical biomass estimates,
 %indicating that the observed \Sexpr{last_data_yr} ages were consistent with the model
 %estimates without those data (Figure~\ref{fig:main-bridge-5-panel-1}).
 but did shift recent recruitment estimates (Figure~\ref{fig:main-bridge-5-panel-1}).
-Recruitment estimates in 2019 were shifted downwards, while estimates in 2020 were shifted
-upwards. The increase in 2020 recruitment contributes to a considerable increase
-in spawning biomass by the start of \Sexpr{assess_yr}, as these fish are now mostly mature.
+The estimated 2019 recruitment decreased, while the estimated large 2020 cohort
+was shifted even larger.
+The increase in 2020 recruitment contributes to a considerable increase
+in spawning biomass by the start of \Sexpr{assess_yr}, as these fish are
+considered mostly mature at the start of \Sexpr{assess_yr}.
 Despite both fishery age compositions and the age-1 index pointing towards
 a strong 2020 cohort, estimates of \Sexpr{assess_yr} spawning biomass remain highly uncertain,
 largely due to underlying uncertainty in recent recruitment
 (Figure~\ref{fig:main-bridge-5-panel-1}). Uncertainty related to the 2020 cohort should
-decrease once these fish have been observed by the acoustic survey, as well as the
+decrease once these fish have been observed by the acoustic survey and
 the fishery during \Sexpr{last_data_yr+1}.
 
-\clearpage
+% \clearpage
 
 \subsubsection{Assessment model results}\label{sec:assessment-model-results}
 

@@ -350,7 +350,16 @@ cowplot::plot_grid(plotlist = full_plist,
                    rel_heights = c(0.33, 0.67))
 @
 \end{center}
-\caption{Bridging models showing the sequential steps made to the base model from the \Sexpr{last_assess_yr} base model to the \Sexpr{assess_yr} base model. In order the steps are: update the Stock Synthesis model code version, add \Sexpr{last_data_yr} catch, add \Sexpr{last_data_yr} weight-at-age, and add \Sexpr{last_data_yr} fishery age compositions. The final model is the base model for \Sexpr{assess_yr}. Panels are spawning biomass (upper panel), relative spawning biomass (spawning biomass in each year relative to the unfished equilibrium spawning biomass, middle left), recruitment deviation (middle right), age 2+ survey biomass index (lower left), and age 1 index (lower right).}
+\caption{Bridging models showing the sequential steps made to the base model
+  from the \Sexpr{last_assess_yr} base model to the \Sexpr{assess_yr} base
+  model. In order the steps are: update the Stock Synthesis model code version,
+  add \Sexpr{last_data_yr} catch, add \Sexpr{last_data_yr} weight-at-age, and
+  add \Sexpr{last_data_yr} fishery age compositions. The final model is the base
+  model for \Sexpr{assess_yr}. Panels are spawning biomass (upper panel),
+  relative spawning biomass (spawning biomass in each year relative to the
+  unfished equilibrium spawning biomass, middle left), recruitment deviation
+  (middle right), age-2+ survey biomass index (lower left), and age-1 index
+  (lower right), with triangles representing the observed survey indices.}
 \label{fig:main-bridge-5-panel-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
