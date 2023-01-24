@@ -106,7 +106,7 @@ if(!exists("last_yr_base_model")){
     readRDS(file.path(drs$last_yr_base_model_dir,
                       paste0(basename(drs$last_yr_base_model_dir), ".rds")))
 }
-last_yr_base_model_name <- "Base model"
+last_yr_base_model_name <- paste0(assess_yr-1," Base model")
 
 base_model <- models$base_models_dirs[[1]][[1]]
 base_model$ctl <- gsub("\t", " ", base_model$ctl)

@@ -157,20 +157,18 @@ make.assessment.history.disp.plot <- function(base,
   plot(xx$InterQuartileRange~xx$Assessment_Year,type="o",ylim=c(0,2000),
      ylab="Interquartile Range of Spawning Biomass Estimate ('000s)",
      xlab="Assessment Year",
-     cex.lab=1,
+     cex.lab=0.9,
      col="black",
-     cex=1,
+     cex=0.9,
      lwd=2,
      las=1)
 
   plot(xx$QuartileCoeffDispersion~xx$Assessment_Year,type="o",ylim=c(0,0.6)
      ,ylab="Quartile Coefficient of Dispersion",
      xlab="Assessment Year",
-     cex.lab=1,
+     cex.lab=0.9,
      col="black",
-     cex=1,
+     cex=0.9,
      lwd=2,
      las=1)
-
-
 }

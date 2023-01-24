@@ -52,8 +52,7 @@ make_landings_tac_table(ct,
                         xcaption = "\\fishname\\ landings and
                                      management decisions. A dash (--) indicates the management decision
                                      was either not specified or was unknown to the authors at the time of
-                                     this assessment.
-                                     Catch targets in 2020 and 2021 were specified unilaterally.",
+                                     this assessment.",
                         xlabel = "tab:main-landings-tac",
                         font_size = 8,
                         space_size = 10)
@@ -286,12 +285,13 @@ make.parameters.estimated.summary.table(
 
 <<main-assessment-changes-table, results='asis', echo=FALSE>>=
 make.assessment.changes.table(assessment.changes,
-                              xcaption = paste0("**[add 2023] Annual changes in the modeling framework used to assess ",
+                              xcaption = paste0("Annual changes in the modeling framework used to assess ",
                                                 "\\fishname\\ since 2011. ",
                                                 "The bias adjustment is reported as the maximum used for each assessment. ",
                                                 "Methods used to weight the age-composition data (Comp Method), i.e., ",
                                                 "McAllister-Ianelli (MI) and Dirichlet-multinomial (D-M) approaches, are explained in ",
-                                                "the main text."),
+                                                "the main text. The number of posterior samples (MCMC) is used to describe ",
+                                                "model results and produce statistical inference."),
                               xlabel = "tab:main-assessment-changes",
                               font.size = 10,
                               space.size = 11)
@@ -433,7 +433,8 @@ make.median.posterior.table(
                      unfished equilibrium ($\\Bzero$). Total biomass includes females and males
                      of ages 0 and above. Age-2+ biomass includes females and males ages 2 and
                      above. Exploitation fraction is total catch divided by total age-2+ biomass.
-                     Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%}). A dash (--)
+                     Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%}) such that
+                     values below 100\% are below the target rate. A dash (--)
                      indicates a quantity requiring ", end_yr, " catch which has not taken place yet."),
   xlabel = "tab:main-median-posterior",
   font.size = 9,
@@ -463,7 +464,7 @@ param_est_table(list(base_model, last_yr_base_model),
                 model.names = c(base_model_name, last_yr_base_model_name),
                 end_yr = end_yr,
                 digits = 3,
-                getrecs = c(2010, 2014, 2016),
+                getrecs = c(2010, 2014, 2016, 2020),
                 show_like = FALSE,
                 mle_table = FALSE,
                 xcaption =
@@ -500,7 +501,7 @@ make.reference.points.table.old(base_model,
 <<main-biomass-table, results='asis', echo=FALSE>>=
 decision_table(base_model,
                xcaption =
-                 paste0("**[if labels change] Forecast quantiles of \\fishname\\
+                 paste0("Forecast quantiles of \\fishname\\
                      relative spawning biomass at the beginning of the year.
                      Catch alternatives are based on: constant
                      catches (rows ",
@@ -508,7 +509,7 @@ decision_table(base_model,
                      "), including catch similar to ",
                      min(forecast_yrs_extra)-1," (row~",
                      letters[catch.actual.ind],
-                     ") and to the (unilaterally summed) TAC from ",
+                     ") and to the TAC from ",
                      min(forecast_yrs_extra)-1," (row~",
                      letters[catch.tac.ind],
                      "); and non-constant catches that result in
@@ -638,7 +639,8 @@ param_est_table(sens_models[[3]],
                 xcaption = paste0("Posterior medians for select parameters,
                                    derived quantities, reference points, and negative log likelihoods
                                    for the base model and further sensitivity runs (described in
-                                   Section~\\ref{sec:assessment-sensitivity-analyses})."),
+                                   Section~\\ref{sec:assessment-sensitivity-analyses}).
+                                   A dash (--) indicates that the parameter or derived quantity was not estimated in the model."),
                 xlabel = "tab:main-parameter-estimates-sens-2",
                 font.size = 9,
                 space.size = 11,
