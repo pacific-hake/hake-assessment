@@ -945,13 +945,11 @@ significantly change the pattern of recruitment estimated in recent assessments.
 However, estimates of absolute recruitment for the most recent years can change with
 new data.
 For example, this assessment's median estimate of the 2020 recruitment is
-% putting in - signs when it's a decrease, and saying 'lower'. So check
-%  carefully in 2022 (could put in an automatic switch for the text)
 \Sexpr{f(((recruitment.med.to.compare - prev.assess.recruitment.med)["2020"]), 1)}~billion
 fish higher than in the last assessment
 (a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2020"]) /
 (prev.assess.recruitment.med)["2020"]) * 100), 0)}\% increase).
-Similarly, estimates for 2019 and 2021 recruitments have decreased by
+Similarly, estimates for 2019 and 2021 recruitments have changed by
 \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2019"]) /
 (prev.assess.recruitment.med)["2019"]) * 100), 0)}\%
 (\Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2019"], 1)}~billion fish) and
@@ -978,8 +976,7 @@ was partly due to the large influx of the 2014
 year class (\Sexpr{top.coh(base_model, 2016, spec.yr=2014)}\% of the 2016 catch was age-2 fish from the
 2014 year class; this was larger than the proportion of age-2 fish,
 \Sexpr{top.coh(base_model, 2012, spec.yr=2010)}\%, from the 2010 year
-class in 2012). Since 2010, the model currently estimates small 2011, 2012, 2013, 2015, 2018, 2019
-and 2021 year classes (median recruitment well below the mean of all median recruitments).
+class in 2012).
 %The median estimate of the 2010 year class is
 %very slightly below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1980.rec}\%
 %probability that the 2010 year class is larger than the 1980 year class (this
@@ -995,7 +992,7 @@ The current assessment also estimates a strong 2014 year class
 \Sexpr{top.coh(base_model, 2020, spec.yr=2014)}\% of the 2020 catch
 \Sexpr{top.coh(base_model, 2021, spec.yr=2014)}\% of the 2021 catch, and
 \Sexpr{top.coh(base_model, 2022, spec.yr=2014)}\% of the 2022 catch.
-The 2016 cohort also appears to be above average at
+The 2016 cohort also appears to be above average, comprising
 \Sexpr{top.coh(base_model, 2018, spec.yr=2016)}\% of the 2018 catch,
 \Sexpr{top.coh(base_model, 2019, spec.yr=2016)}\% of the 2019 catch,
 \Sexpr{top.coh(base_model, 2020, spec.yr=2016)}\% of the 2020 catch, and
@@ -1005,7 +1002,10 @@ The absolute size of the 2014 year
 class has now stabalized after observations across eight years of fishery observations
 and three acoustic surveys. The 2016 year class is
 estimated to be above average (similar in size to the 2008 year class) from six years
-of fishery data and two years of survey data. The model currently estimates small 2011, 2013, 2015, 2018, 2019,
+of fishery data and two years of survey data.
+% years.since.2010.recruitment.med.below.mean  to see all years, then see figure
+% for 'well below':
+Since 2020, the model currently estimates small 2011, 2013, 2015, 2018, 2019,
 and 2021 year classes (median recruitment well below the mean of all median recruitments) and near
 average 2012 and 2017 year class.
 With the addition of the age-1 index, there is information beyond just fishery encounters in
@@ -1035,12 +1035,7 @@ by the age-1 index in 2021, it will not be observed by the acoustic survey until
 %in 2019 (2018 year class) and 2020 (2019 year class) was well below that observed in 2018
 %(2017 year class) and 2017 (2016 year class; Table~\ref{tab:main-all-age-data-fishery}).
 % See exec-summary text, and look at this also:
-%  years.since.2010.recruitment.med.below.mean
-%There is no information in the data to estimate the sizes of the
-%\Sexpr{end_yr-1} and \Sexpr{end_yr} year classes. Retrospective analyses of year
-%class strength for young fish have shown the estimates of recent recruitment to
-%be unreliable prior to at least model age-3 (observed at age-2) without a survey in the
-%most recent year and age-2 (observed at age-1) with a survey.
+%
 
 From Figure~\ref{fig:main-recruitment} it looks
 as though the 2014 recruitment could be as large as the 2010 recruitment.
@@ -1053,8 +1048,8 @@ recruitment (presumably with large estimates of $R_0$).
 By scaling all recruitments by the 2010 recruitment,
 Figure~\ref{fig:main-recruitment-scale-all} provides an intuitive way to compare
 recruitment across years
-(see Appendix~H of \citealt{JTC2022} for full details).
-It shows that there have only been two past recruitment events (1980 and 1984) that
+(see Appendix~H of \citealt{JTC2022} for motivation and full methods).
+It shows that there have only been two historical recruitment events (1980 and 1984) that
 might be as large as in 2010, whereas Figure~\ref{fig:main-recruitment}
 suggests that 1970, 1999 and 2014  could also possibly be larger than in 2010, giving an
 over-optimistic impression of how often we can expect cohorts the size of the
@@ -1074,7 +1069,7 @@ expectation and about the joint uncertainty of individual recruitment and
 spawning biomass pairs are evident. High and low recruitments have
 been produced throughout the range of observed spawning biomass
 (Figure~\ref{fig:main-mcmc-sr-variability}). The standard deviation of the time
-series of median recruitment deviation estimates for the years 1970-\Sexpr{last_data_yr - 1}, which
+series of median recruitment deviation estimates for the years 1970--\Sexpr{last_data_yr - 1}, which
 are informed by the age compositions and the age-1 index, is
 \Sexpr{sd.med.recr.dev.estimates}. This value is higher than,
 but consistent with, the base model value of \Sexpr{base_model$sigma_R_in}.  % $
