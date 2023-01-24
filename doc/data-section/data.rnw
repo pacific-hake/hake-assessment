@@ -105,7 +105,7 @@ additional data sources are:
 **[should all be good] The catch of \fishname\ for \Sexpr{start_yr}--\Sexpr{last_data_yr} is
 summarized by nation and fishery sector
 (Tables~\ref{tab:intro-catches-US}--\ref{tab:main-landings-tac})
-and modeled as yearly coast-wide catches.
+and modeled as annual coast-wide catches.
 Catches in U.S. waters prior to 1978 are
 available only by year from \citet{BaileyFrancisEtAl1982} and historical
 assessment documents. Canadian catches prior to 1989 are also unavailable in
@@ -430,7 +430,7 @@ multiple factors. While the \surveyname\ was not originally designed to
 index recruitment, independent age-1 estimates from the survey have tracked
 recruitment estimates reasonably well when using assessment models that do not
 incorporate age-1 acoustic data (e.g.,~Figure 11 of \citealt{JTC2021}). Incorporating
-the age-1 index results in estimates of recruitment strength (e.g., size of yearly
+the age-1 index results in estimates of recruitment strength (e.g., size of annual
 deviations from the stock-recruitment relationship) that are informed on average one year
 earlier than models without the index (compare the retrospective Figures~54
 and~G.1 in \citealt{JTC2021} [updated as
@@ -681,7 +681,7 @@ Section \ref{sec:assessment-sensitivity-analyses}).
 \subsubsection{Variability on fishery selectivity deviations}\label{sec:data-variability-selectivity}
 
 Time-varying selectivity was introduced in the 2014 assessment
-\citep{JTC2014} and is modeled using yearly deviations since 1991 applied to the
+\citep{JTC2014} and is modeled using annual deviations since 1991 applied to the
 selectivity-at-age parameters for the fishery.
 A penalty function in the form of a normal
 distribution is applied to each deviation to keep it from straying
