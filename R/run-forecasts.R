@@ -109,7 +109,7 @@ fetch_forecasts <- function(model_path,
     }
     lvls_lst <- future_map2(my_catch_levels, .x, ~{
       fore_level_path <- file.path(fore_path, .x[[3]])
-      message("Loading forecast data from ", fore_level_path)
+      message("Loading from ", fore_level_path)
 
       mcmc_out <- SSgetMCMC(dir = fore_level_path, writecsv = FALSE, verbose = FALSE)
       # Get the values of interest, namely Spawning biomass and SPR for the two

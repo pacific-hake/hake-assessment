@@ -75,6 +75,7 @@ create_rds_file <- function(model_dir = NULL,
   }
   toc()
 
+  tic("Saving the RDS file")
   saveRDS(model, file = rds_file)
   if(file.exists(rds_file)){
     dt <- now() - file.info(rds_file)$mtime
@@ -84,6 +85,7 @@ create_rds_file <- function(model_dir = NULL,
     stop("File was not created during the `saveRDS()` call",
          call. = FALSE)
   }
+  toc()
 
   invisible()
 }

@@ -162,12 +162,14 @@ fetch_retrospectives <- function(retro_path,
                                  ...){
 
   message("\nLoading retrospectives from ", retro_path)
-  retros_list <- purrr::map(retrospective_yrs, function(x, ...){
+  #plan("multisession", workers = length(retrospective_yrs))
+  retros_list <- map(retrospective_yrs, function(x, ...){
     retro_sub <- paste0("retro-", pad.num(x, 2))
     retro_dir <- file.path(retro_path, retro_sub)
     message("Loading from ", retro_dir)
     load_ss_files(retro_dir, ...)
   }, ...)
+  #plan()
   message("Finished loading retrospectives")
   retros_list
 }
