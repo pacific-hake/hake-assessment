@@ -78,24 +78,10 @@ us.ms.age <- load.us.age.data(file.path(rootd_data, us_ms_age_data_file))
 # Survey data ----
 survey_history_file <- "survey-history.csv"
 survey_by_country_file <- "survey-by-country.csv"
-survey_comparison_file <- "survey-comparison.csv"
-age_1_file <- "age-1.csv"
 kriging_parameters_file <- "kriging-parameters.csv"
-age.1.index <- read.csv(file.path(rootd_data, age_1_file))
 kriging.pars <- read.csv(file.path(rootd_data, kriging_parameters_file), comment.char = "#")
 survey.history <- load.survey.history(file.path(rootd_data, survey_history_file))
 survey.by.country <- load.survey.by.country(file.path(rootd_data, survey_by_country_file))
-survey.comparison <- read.csv(file.path(rootd_data, survey_comparison_file))
-testthat::expect_equal(round(survey.history$biomass * 1000),
-                       round(survey.by.country$total))
-testthat::expect_equal(round(survey.history$biomass * 1000),
-                       round(survey.comparison$with.extrap))
-testthat::expect_equal(round(survey.history$cv * 100, 1),
-                       round(survey.by.country$total.cv, 1))
-# Fails in 2022, but small differences, didn't yet look
-# into exactly which columns to compare.
-# testthat::expect_equal(round(survey.history$cv * 100, 1),
-#                         round(survey.comparison$cv.with.extrap * 100, 1))
 
 # Depth data filenames ----
 # * Canada depths ----

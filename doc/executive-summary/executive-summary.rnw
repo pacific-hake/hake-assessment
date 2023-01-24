@@ -118,7 +118,9 @@ In the \Sexpr{end_yr-1} catch,
 \begin{figure}[tbp]
 \begin{center}
 <<survey-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has decreased from 2019 to 2021">>=
-make.survey.biomass.extrap.plot(survey.comparison)
+make.survey.biomass.extrap.plot(
+  dplyr::filter(base_model[["dat"]][["CPUE"]], index == 2)
+)
 @
 \end{center}
 %\vspace{0mm}
@@ -134,9 +136,9 @@ make.survey.biomass.extrap.plot(survey.comparison)
 \begin{figure}[tbp]
 \begin{center}
 <<survey-age1, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the age-1 survey estimate has increased from 2019 to 2021">>=
-make.survey.age1.plot.data(age.1.index,
+make.survey.age1.plot.data(dplyr::filter(base_model[["dat"]][["CPUE"]], index == 3),
                            log.scale = FALSE,
-                           yLim = c(0,16))
+                           yLim = c(0, 16))
 @
 \end{center}
 %\vspace{0mm}

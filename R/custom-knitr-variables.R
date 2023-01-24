@@ -122,8 +122,10 @@ first.year.us.atsea <- ct %>% select(year, matches("us_cp|us_ms")) %>%
   rowwise() %>% mutate(sumV = sum(c_across(matches("us")))) %>% filter(sumV > 0) %>% select(year) %>% min
 
 # Survey values ---------------------------------------------------------------
-survey.biomass <- survey.history$biomass
-names(survey.biomass) <- as.character(survey.history$year)
+survey.biomass <- base_model[["dat"]][["CPUE"]] %>%
+  dplyr::filter(index == 2) %>%
+  dplyr::pull(var = obs, name = year) / 1e6
+
 survey.comps <- base_model$dat$agecomp[base_model$dat$agecomp$FltSvy == 2, ]
 rownames(survey.comps) <- survey.comps$Yr
 survey.last.year <- survey.comps[nrow(survey.comps),]
@@ -139,31 +141,29 @@ survey.3.prop <- f(survey.last.year.age[3] * 100, 1)
 survey.4.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[4]))
 survey.4.prop <- f(survey.last.year.age[4] * 100, 1)
 survey.a2.prop <- f(survey.last.year["a2"], 1)
-last.survey.year <- survey.history[nrow(survey.history), ]$year
+last.survey.year <- max(as.numeric(names(survey.biomass)))
 # Millions of tonnes
-last.survey.year.biomass <- f(survey.history[nrow(survey.history), ]$biomass, 2)
-penult.survey.year <- survey.history[nrow(survey.history) - 1, ]$year
-penult.survey.year.biomass <- f(survey.history[nrow(survey.history) - 1, ]$biomass, 2)
-antepenult.survey.year <- survey.history[nrow(survey.history) - 2, ]$year
-antepenult.survey.year.biomass <- f(survey.history[nrow(survey.history) - 2, ]$biomass, 2)
+last.survey.year.biomass <- f(
+  base_model[["dat"]][["CPUE"]] %>%
+    dplyr::filter(index == 2, year == max(year)) %>%
+    dplyr::pull(var = obs) / 1e6,
+  dec.points = 2
+)
+penult.survey.year <- base_model[["dat"]][["CPUE"]] %>%
+  dplyr::filter(index == 2) %>%
+  dplyr::mutate(rank = rank(year * -1, ties.method = "first")) %>%
+  dplyr::filter(rank == 2) %>%
+  dplyr::pull(year)
 
 # How many times higher is the last survey than the one before it?
-last.factor.penult <- f(survey.history[nrow(survey.history), ]$biomass /
-                          survey.history[nrow(survey.history) - 1, ]$biomass, 1)
-# How many times higher is the last survey than the one that was two before it?
-last.factor.antepenult <- f(survey.history[nrow(survey.history),]$biomass /
-                              survey.history[nrow(survey.history) - 2,]$biomass, 1)
-
-# ... survey extrapolation values ---------------------------------------------
-survey.extrap.percent <- 100 * (survey.comparison$with.extrap - survey.comparison$no.extrap) /
-  survey.comparison$with.extrap
-names(survey.extrap.percent) <- as.character(survey.comparison$year)
-survey.extrap.percent <- survey.extrap.percent[!is.na(survey.extrap.percent)]
-survey.largest.extrap.percent <- f(max(survey.extrap.percent), 2)
-survey.year.of.largest.extrap <- names(survey.extrap.percent[survey.extrap.percent == max(survey.extrap.percent)])
-survey.smallest.extrap.percent <- f(min(survey.extrap.percent), 2)
-survey.year.of.smallest.extrap <- names(survey.extrap.percent[survey.extrap.percent == min(survey.extrap.percent)])
-survey.average.extrap.percent <- f(mean(survey.extrap.percent), 2)
+last.factor.penult <- f(
+  base_model[["dat"]][["CPUE"]] %>%
+    dplyr::filter(index == 2) %>%
+    dplyr::mutate(new = obs / lag(obs)) %>%
+    dplyr::filter(year %in% c(last.survey.year)) %>%
+    dplyr::pull(new),
+  1
+)
 
 # Spawning Biomass and Depletion estimates ------------------------------------
 curr.depl.lower <- f(mc$dlower[names(mc$dlower) %in% end_yr] * 100, 0)

@@ -181,7 +181,9 @@ make_age_comp_bubble_plot(base_model, subplot = 2, alpha = 0.4)
 \begin{figure}[H]
 \begin{center}
 <<main-survey-extrap-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has decreased from 2019 to 2021">>=
-make.survey.biomass.extrap.plot(survey.comparison)
+make.survey.biomass.extrap.plot(
+  dplyr::filter(base_model[["dat"]][["CPUE"]], index == 2)
+)
 @
 \end{center}
 \caption{Acoustic survey biomass index of age-2+ fish (millions of tons,
@@ -196,7 +198,7 @@ make.survey.biomass.extrap.plot(survey.comparison)
 %\begin{figure}[H]
 \begin{center}
 <<main-age-one-index, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the age-1 survey estimate has increased from 2019 to 2021">>=
-make.survey.age1.plot.data(age.1.index,
+make.survey.age1.plot.data(dplyr::filter(base_model[["dat"]][["CPUE"]], index == 3),
                            log.scale = FALSE,
                            yLim = c(0, 16))
 @

@@ -1,15 +1,15 @@
-year,start.date,end.date,vessels,biomass,cv,hauls.with.samples
-1995,1-Jul,1-Sep,Miller-Freeman Ricker,1.318,0.086,69
-1998,6-Jul,27-Aug,Miller-Freeman Ricker,1.569,0.046,105
-2001,15-Jun,18-Aug,Miller-Freeman Ricker,0.862,0.102,57
-2003,29-Jun,1-Sep,Ricker,2.138,0.062,71
-2005,20-Jun,19-Aug,Miller-Freeman,1.376,0.062,47
-2007,20-Jun,21-Aug,Miller-Freeman,0.943,0.074,69
-2009,30-Jun,7-Sep,Miller-Freeman Ricker,1.502,0.096,72
-2011,26-Jun,10-Sep,Bell-Shimada Ricker,0.675,0.113,46
-2012,23-Jun,7-Sep,Bell-Shimada Ricker F/V-Forum-Star,1.279,0.065,94
-2013,13-Jun,11-Sep,Bell-Shimada Ricker,1.929,0.062,67
-2015,15-Jun,14-Sep,Bell-Shimada Ricker,2.156,0.081,78
-2017,22-Jun,13-Sep,Bell-Shimada Nordic-Pearl,1.418,0.063,58
-2019,13-Jun,15-Sep,Bell-Shimada Nordic-Pearl,1.718,0.062,75
-2021,27-Jun,24-Sep,Bell-Shimada Nordic-Pearl,1.525,0.122,65
+year,start.date,end.date,vessels,hauls.with.samples
+1995,1-Jul,1-Sep,Miller-Freeman Ricker,69
+1998,6-Jul,27-Aug,Miller-Freeman Ricker,105
+2001,15-Jun,18-Aug,Miller-Freeman Ricker,57
+2003,29-Jun,1-Sep,Ricker,71
+2005,20-Jun,19-Aug,Miller-Freeman,47
+2007,20-Jun,21-Aug,Miller-Freeman,69
+2009,30-Jun,7-Sep,Miller-Freeman Ricker,72
+2011,26-Jun,10-Sep,Bell-Shimada Ricker,46
+2012,23-Jun,7-Sep,Bell-Shimada Ricker F/V-Forum-Star,94
+2013,13-Jun,11-Sep,Bell-Shimada Ricker,67
+2015,15-Jun,14-Sep,Bell-Shimada Ricker,78
+2017,22-Jun,13-Sep,Bell-Shimada Nordic-Pearl,58
+2019,13-Jun,15-Sep,Bell-Shimada Nordic-Pearl,75
+2021,27-Jun,24-Sep,Bell-Shimada Nordic-Pearl,65

@@ -599,31 +599,6 @@ decision_table(base_model,
 %% \end{columns}
 %% }
 
-%% Removing for 2021 assessment since not going to mention age-1 index here and
-%% retros cover essentially similar information
-%% \frame{\frametitle{****Age-1 index: correlation with base recruitment estimates}
-%% \begin{columns}
-%%   \begin{column}{0.38\textwidth}
-%%     \bi
-%%       \item Age-1 index appears to moderately follow estimates of recruitment
-%%       \item Estimated numbers of age-1 hake in \Sexpr{assess_yr-1} (\Sexpr{assess_yr-2} year class) lower than **2016
-%%       and **2014 year classes
-%%       \bi
-%%         %\item Survey and model estimates suggest decline in numbers of age-1 hake in 2019
-%%          %  relative to 2017
-%%         \item Numbers of age-1 hake caught in the \Sexpr{assess_yr-1} fishery **1--2\% of
-%%           what was caught in **2017 and **2018
-%%       \ei
-%%     \ei
-%%   \end{column}
-%%   \begin{column}{0.59\textwidth}
-%%     <<age.one.index, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
-%%       make.survey.age1.plot(base_model, age.1.index)
-%%     @
-%%   \end{column}
-%% \end{columns}
-%% }
-
 % -----------------------------------------------------------------------------%
 \section{Without Age-1 Index}
 \subsection{}

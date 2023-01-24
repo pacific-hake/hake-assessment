@@ -450,8 +450,7 @@ par <- oldpar
 <<age1.sensitivity.age1.fit.base, fig.height=3.5>>=
 oldpar <- par()
 par(mar = c(4, 5, 0, 1))
-make.survey.age1.plot(base_model,
-                      age.1.index)
+make.survey.age1.plot(base_model)
 par <- oldpar
 @
 \end{center}
@@ -466,8 +465,7 @@ par <- oldpar
 <<age1.sensitivity.age1.fit, fig.height=3.5>>=
 oldpar <- par()
 par(mar = c(4, 5, 0, 1))
-make.survey.age1.plot(sens_models_2[[1]],
-                      age.1.index)
+make.survey.age1.plot(sens_models_2[[1]])
 par <- oldpar
 @
 \end{center}

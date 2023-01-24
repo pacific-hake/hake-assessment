@@ -433,7 +433,9 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
    \begin{figure}
 \centering
   <<survey.compare.extrap.noextrap, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-    make.survey.biomass.extrap.plot(survey.comparison)
+    make.survey.biomass.extrap.plot(
+      dplyr::filter(base_model[["dat"]][["CPUE"]], index == 2)
+    )
   @
 \end{figure}
 }
@@ -445,7 +447,11 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
    \begin{figure}
 \centering
   <<survey.age1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-    make.survey.age1.plot.data(age.1.index, log.scale = FALSE, yLim = c(0, 16))
+    make.survey.age1.plot.data(
+      dplyr::filter(base_model[["dat"]][["CPUE"]], index == 3),
+      log.scale = FALSE,
+      yLim = c(0, 16)
+    )
   @
 \end{figure}
 }
