@@ -113,8 +113,8 @@ disaggregated form. The U.S. shore-based landings are
 from the Pacific Fishery Information Network (PacFIN). Foreign and Joint-Venture
 catches for 1981--\Sexpr{terminal.year.us.jvforeign} and U.S. domestic at-sea catches for
 1991--\Sexpr{last_data_yr} are
-calculated from the Alaska Fisheries Science Center (AFSC) North Pacific Groundfish and Halibut Observer (NORPAC) database,
-which also stores the NWFSC At-Sea Hake Observer Program data.
+calculated from the Alaska Fisheries Science Center's North Pacific Groundfish and Halibut Observer (NORPAC) database,
+which also stores the At-Sea Hake Observer Program data.
 Canadian
 Joint-Venture catches from 1989 are from the Groundfish Biological (GFBio)
 database. Canadian shore-based landings are from the Groundfish
