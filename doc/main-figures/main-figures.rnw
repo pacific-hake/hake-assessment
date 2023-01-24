@@ -1207,8 +1207,7 @@ make.assessment.history.plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-historical-dispersion, fig.height=4.5, fig.width=6.5, is.fig = TRUE, alt.text = "This figure shows the amount of absolute
-and scaled variability present with terminal year estimates of spawning biomass from assessments dating back to 2012">>=
+<<main-historical-dispersion, fig.height=4.5, fig.width=6.5, is.fig = TRUE, alt.text = "This figure shows the amount of absolute and scaled variability present with terminal year estimates of spawning biomass from assessments dating back to 2012">>=
 make.assessment.history.disp.plot(base_model,
                                   assessment.history.disp)
 @
