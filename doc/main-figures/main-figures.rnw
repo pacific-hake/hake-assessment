@@ -312,19 +312,19 @@ plist[[1]] <-
                    leg_pos = "none")
 plist[[2]] <-
   plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
-               rev_colors = TRUE,
-               leg_pos = "none")
+               leg_pos = "none",
+               line_width = 0.25)
 
 plist[[3]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
-                         rev_colors = TRUE,
+                         rev_colors = FALSE,
                          leg_pos = "none")
 
 plist[[4]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
                          xlim = c(1995, 2022),
                          ylim = c(0, 6.5),
-                         rev_colors = TRUE,
+                         rev_colors = FALSE,
                          leg_pos = "none")
 
 # Grid of 2 rows and 1 column with one plot at the top (biomass)
@@ -338,7 +338,7 @@ full_plist[[1]] <-
                leg_ncol = 2,
                leg_font_size = 7,
                wrap_y_label = TRUE,
-               leg_pos = c(0.74, 0.82)) # leg_pos set Jan 19 2023
+               leg_pos = c(0.74, 0.82))
 
 full_plist[[2]] <- quad_grid
 

@@ -61,13 +61,16 @@ plot_survey_index_fits <- function(
   }
 
   d <- d_obj[[1]]
-  colors <- c("black", plot_color(length(unique(d$model)) - 1))
+  colors <- plot_color(length(unique(d$model)) - 1)
   num_models <- length(unique(d$model)) - 1 # Minus 1 for observed
   linetypes <- c(rep("solid", num_models), "dashed")
   shapes <- c(rep(16, num_models), 17)
   if(rev_colors){
     colors <- rev(colors)
   }
+  # Add observed
+  colors <- c(colors, "black")
+
 
   g <- ggplot(d,
               aes(x = year,
