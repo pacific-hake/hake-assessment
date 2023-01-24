@@ -1127,9 +1127,8 @@ utilization rate (i.e., proportion of catch target removed) has been
 coast-wide targets (Table~\ref{tab:main-landings-tac}). From \Sexpr{end_yr-5} to
 \Sexpr{end_yr-1}, the mean utilization rates differed between the United States
 (\Sexpr{usa.last.5.years.attainment}\%) and Canada
-(\Sexpr{can.last.5.years.attainment}\%). However, country-specific
-quotas (or catch targets) in 2020 and 2021 were specified unilaterally, due to the lack of
-an agreement on a coast-wide 2020 and 2021 TAC.  In 2015, the utilization rate for the
+(\Sexpr{can.last.5.years.attainment}\%).
+In 2015, the utilization rate for the
 coast-wide fishery was the lowest of the previous decade
 (\Sexpr{tot.2015.attainment}\%) due, in part, to difficulties locating
 aggregations of fish and possibly economic reasons.
@@ -1142,7 +1141,7 @@ suggested that hake were less aggregated in Canada and availability had
 declined. In 2016, the utilization rate increased but remained below pre-2015
 levels, despite the total 2016 catch being one of the highest of the preceding years.
 This is in large part due to increasing catch targets as biomass continues to
-increase. While the total utilization rate between 2017--2021 has been relatively steady
+increase. While the total utilization rate between 2017--2021 was relatively steady
 and close to the average over the last decade (\Sexpr{tot.last.10.years.attainment}\%),
 it decreased in 2022 to \Sexpr{tot.last.year.attainment}\%. This is primarily due
 to the utilization rate in Canada declining since 2020
@@ -1157,16 +1156,14 @@ Agreement for \fishname, was once again implemented in 2022.
 %in both the United States (\Sexpr{usa.last.2.years.attainment}\%) and Canada
 %(about \Sexpr{can.last.2.years.attainment}\%).
 Total landings last exceeded the coast-wide quota in 2002 when utilization was 112\%.
-% Manual done 2020, including checking penultimate sentence numbers with table.
+% Manual done 2023 (double checked numbers).
 
-The median relative fishing intensity was below target in all years throughout the time series
+As noted above, the median relative fishing intensity was below target in all years.
 %the 1999 year used to be just above 1 but now estimated to be just below 1
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and
 % Manual 2017 done - comment out above line if only one year, include it if
 %  length(median.intensity.above.one.years) > 1
 %\Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
-(Table~\ref{tab:main-median-posterior} and
-Figures~\ref{fig:main-fishing-intensity} and~\ref{fig:main-phase}).
 The median relative spawning biomass was
 above the $\Bforty$ reference point in all years except 2007--2010
 (Table~\ref{tab:main-median-posterior} and Figure~\ref{fig:main-relative-spawning-biomass}).
@@ -1185,7 +1182,7 @@ and relative fishing intensity
 %between \Sexpr{median.relative.bio.2007.to.2011.min} and
 %\Sexpr{median.relative.bio.2007.to.2011.max}.
 Relative spawning biomass increased from the lows in 2007--2010 with above average
-recruitment in 2008, 2010, 2014, 2016, and 2020. Correspondingly, relative fishing
+recruitment in 2008, 2010, 2014, 2016, 2017, and 2020. Correspondingly, relative fishing
 intensity has remained well below target, and total catch has been declining since the
 time series high in 2017.
 % Relative spawning biomass has been
