@@ -368,23 +368,41 @@ load_extra_mcmc <- function(model,
     iter <- catage |>
       pull(Iter) |>
       unique()
-    wtatage <- model$wtatage |>
+
+    wt <- model$wtatage |>
       as_tibble() |>
-      filter(Yr > 0) |>
-      filter(Fleet == 1) |>
+      filter(Yr > 0)
+    actual_start_yr <- min(unique(extra_mcmc$catage$Yr))
+    start_yr_wtatage <- min(wt$Yr)
+    num_missing_yrs <- start_yr_wtatage - actual_start_yr
+    if(num_missing_yrs > 0){
+      # Need to fill in missing rows from actual_start_yr to start_yr_wtatage
+      row <- model$wtatage |>
+        as_tibble() |>
+        filter(Yr == min(Yr), Fleet == 2)
+
+      if(nrow(row) != 1){
+        stop("The biomass-at-age table failed to build. The `model$wtatage` ",
+             "table had ", nrow(row), " rows match the filter for minimum ",
+             "year and Fleet == 2, when it should only be one row",
+             call. = FALSE)
+      }
+      missing_yrs <- actual_start_yr:(start_yr_wtatage - 1)
+      for(yr in rev(missing_yrs)){
+        row$Yr <- yr
+        wt <- rbind(row, wt)
+      }
+    }
+    wtatage <- wt |>
+      filter(Fleet == 2) |>
       select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet))
 
-    start_yr_wtatage <- min(wtatage$Yr)
-    catage <- extra_mcmc$catage |>
-      filter(Yr >= start_yr_wtatage)
-
     wtatage <- map_df(iter, ~{wtatage})
-    yrs <- catage$Yr
     extra_mcmc$catage_biomass <- mapply(`*`,
-                                        select(catage, -Yr),
+                                        select(extra_mcmc$catage, -Yr),
                                         select(wtatage, -Yr)) |>
       as_tibble() |>
-      bind_cols(catage |> select(Yr)) |>
+      bind_cols(select(extra_mcmc$catage, Yr)) |>
       select(Yr, everything())
 
     extra_mcmc$catage_biomass_median <- extra_mcmc$catage_biomass |>
@@ -395,14 +413,22 @@ load_extra_mcmc <- function(model,
     if(verbose){
       message("Extracting Exploitation-rate-at-age...")
     }
-    yrs <- extra_mcmc$catage_biomass$Yr
-    batage <- extra_mcmc$batage |>
-      filter(Yr >= start_yr_wtatage)
-    extra_mcmc$expatage <- map2(extra_mcmc$catage_biomass,
-                                batage, ~{
-                                  .x / .y / 1e3 * 100}) |>
-      map_df(~{.x}) |>
-      mutate(Yr = yrs)
+
+    catage <- extra_mcmc$catage
+    batage <- extra_mcmc$batage
+
+    extra_mcmc$expatage <- mapply(`/`,
+                                  select(catage, -Yr),
+                                  select(batage, -Yr))
+
+    # Divide every cell by 1,000 to get thousands of tonnes,
+    # then multiply by 100 for
+    extra_mcmc$expatage <- extra_mcmc$expatage / 1000 * 100
+
+    extra_mcmc$expatage <- extra_mcmc$expatage |>
+      bind_cols(select(extra_mcmc$catage, Yr)) |>
+      select(Yr, everything())
+
     extra_mcmc$expatage_median <- extra_mcmc$expatage |>
       group_by(Yr) |>
       summarize_all(median)
