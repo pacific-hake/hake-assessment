@@ -596,7 +596,7 @@ base model and thus no effect on resulting time series (Figure~\ref{fig:main-bri
 % Changes relevant to the assessment of \fishname\ include changes to
 
 The update of pre-\Sexpr{last_data_yr} data occurs because databases are
-continually updated and
+continually updated; this
 yielded minor adjustments to the data.
 Samples that were recently aged but not available for the \Sexpr{last_assess_yr}
 assessment were included.
@@ -643,8 +643,6 @@ though slightly increases the estimated spawning biomass
 %median relative spawning stock biomass from
 % round(median(bridge_models_2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
 % round(median(base_model$mcmc$Bratio_2022),3)*100}\%.
-
-
 
 The final step added the fishery age-composition data for \Sexpr{last_data_yr}, which
 shifted the ending year of the deviations
