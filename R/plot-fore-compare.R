@@ -8,11 +8,13 @@
 #' @param shapes A vector of point shapes, one for each probability to be
 #' plotted
 #' @param leg_font_size The legend font size
+#' @param leg_ncol The number of columns that the legend should be split into
 #' @param leg_pos The position of the legend inside the plot. If `NULL`,
 #' `NA`, or `none`, the legend will not be shown
 #' @param remove_x_val A cevtor of values to remove from the x-axis due to
 #' overlapping. First run this function, then select the values and pass them
 #' to the function when plotting a second time
+#' @param show_50_line Logical. If `TRUE`, draw a horizontal line at 50% (0.5)
 #' @param short Logical. If `TRUE`, plot a version with only P(YR<0.4B0),
 #' P(YR<0.1B0), and P(YR<YR+1)
 #'
@@ -30,7 +32,9 @@ plot_fore_compare <- function(model,
                               shapes = c(16, 17, 17, 17, 15, 18),
                               leg_font_size = 8,
                               leg_pos = NULL,
+                              leg_ncol = 1,
                               remove_x_val = NULL,
+                              show_50_line = TRUE,
                               short = FALSE){
 
   prob_dat <- model$risks[fore_yr == forecast_yrs][[1]] |>
@@ -117,7 +121,7 @@ plot_fore_compare <- function(model,
                   color = Probability,
                   shape = Probability)) +
     geom_point(size = 3) +
-    geom_line(linetype = "dashed", linewidth = 1) +
+    geom_line(linetype = "dashed", linewidth = 0.5) +
     scale_color_manual(values = colors) +
     scale_shape_manual(values = shapes) +
     labs(y = "Probability") +
@@ -146,6 +150,10 @@ plot_fore_compare <- function(model,
                                       angle = 90,
                                       face = "plain"))
 
+  if(show_50_line){
+    g <- g +
+      geom_hline(yintercept = 0.5, linetype = "dotted", color = "black")
+  }
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
       theme(legend.position = "none")
