@@ -186,10 +186,10 @@ make.median.posterior.table <- function(model,
   ts <- model$timeseries
   tot_bm <- model$extra.mcmc$total_biomass_quants %>%
     filter(Yr %in% yrs) %>%
-    select(`0.5`)
+    select(`50%`)
   age2plus_bm <- model$extra.mcmc$total_age2_plus_biomass_quants %>%
     filter(Yr %in% yrs) %>%
-    select(`0.5`)
+    select(`50%`)
 
   tab.filt <- cbind(yrs,
                     f(df$smed * weight.factor),

@@ -455,8 +455,8 @@ make.ci.posterior.table(
   xlabel = "tab:main-ci-posterior",
   font.size = 8,
   space.size = 9,
-  lower_col = "0.025",
-  upper_col = "0.975")
+  lower_col = "2.5%",
+  upper_col = "97.5%")
 @
 
 <<main-parameter-estimates, results='asis', echo=FALSE>>=
