@@ -703,7 +703,8 @@ was between the 2014 and 2016 recruitment deviations. This continues to be likel
 caused by the relative proportion of these two cohorts being continually better informed by
 recent age-composition data.
 
-The estimate (median and 95\% credible interval) for $\log \theta_{\text{fish}}$ is
+Regarding the Dirichlet-multinomial parameter $\theta_{\text{fish}}$,
+the estimate (median and 95\% credible interval) for $\log \theta_{\text{fish}}$ is
 \Sexpr{log.theta.fishery.median}
 (\Sexpr{log.theta.fishery.025},
 \Sexpr{log.theta.fishery.975}),
@@ -713,8 +714,7 @@ of
 \Sexpr{DM.weight.fishery.median}
 (\Sexpr{DM.weight.fishery.025},
 \Sexpr{DM.weight.fishery.975}).
-The survey age-composition parameter is also well-sampled
-with
+The related survey age-composition parameter $\theta_{\text{surv}}$ has
 \protect{$\log \theta_{\text{surv}}$} estimated as
 \Sexpr{log.theta.survey.median}
 (\Sexpr{log.theta.survey.025},
@@ -730,12 +730,12 @@ The base model fit to the
 acoustic survey biomass index (Figure~\ref{fig:main-mcmc-survey-fit})
 remains similar to the \Sexpr{last_assess_yr} base model, which is not surprising
 given no new survey information is available for this assessment.
-The \Sexpr{survey_end_yr} survey biomass estimate resulted in a slight upward shift
+For the \Sexpr{last_assess_yr} base model the \Sexpr{survey_end_yr} survey biomass estimate resulted in a slight upward shift
 in the fit to the \Sexpr{penult.survey.year}
 survey data points, but the result of a relatively stable biomass trend from 2013--2019
-is the same (Figure~\ref{fig:main-mcmc-survey-fit}).
-At the time, the addition of 2021 fishery data
-was the main reason for this change in fit to the 2019 data point (Figure~\ref{fig:main-bridge-5-panel-1}).
+remained unchanged from the previous assessment.
+At the time, the addition of the 2021 fishery data
+was the main reason for this change in fit to the 2019 data point.
 The 2021 survey estimate was lower than in 2019 (second lowest since 2013),
 and the model fit indicates a slight decline in biomass from 2019 to 2021.
 The 2001 survey biomass index continues to be well below any model predictions that were evaluated,
@@ -853,7 +853,7 @@ given that there is considerable uncertainty associated with
 spatial changes in fish availability (due to movement) and recent
 variability in oceanographic conditions. Estimated selectivity deviations for
 age-3 and age-4 fish are larger from
-2010 to 2012 than in recent years until 2020 when the deviation for age-4 was large again (Figures~\ref{fig:main-tv-selex}
+2010 to 2012 than in subsequent years until 2020 when the deviation for age-4 was large again (Figures~\ref{fig:main-tv-selex}
 and~\ref{fig:main-tv-selex-uncertainty}). The median selectivity peaks at age-4
 in 2010, 2012 and 2020 and at age-3 in 2011 suggesting targeting (or generally higher
 availability) of the younger cohorts
@@ -867,7 +867,7 @@ pattern, where selectivity generally increased smoothly from age-3
 to a peak at age-6 and older ages
 (Figure~\ref{fig:main-tv-selex-uncertainty}). However, age-2 selectivity was slightly
 higher than for other younger fish, likely as a result of increased availability
-of this above average cohort. Even though the
+of the above-average 2020 cohort. Even though the
 survey selectivity is time invariant, the
 posterior shows a broad band of uncertainty between ages 2 and 5
 (Figure~\ref{fig:main-tv-selex-uncertainty-lines}). The decline in
