@@ -11,11 +11,11 @@
 #' @export
 create_group_df_index <- function(model_lst = NULL,
                                   model_names = NULL,
-                                  type = c("age1", "age2")){
+                                  survey_type = c("age1", "age2")){
 
-  type <- match.arg(type)
+  survey_type <- match.arg(survey_type)
 
-  fleet <- ifelse(type == "age2", 2, 3)
+  fleet <- ifelse(survey_type == "age2", 2, 3)
 
   obs <- model_lst[[1]]$dat$CPUE |>
     as_tibble() |>
@@ -30,16 +30,16 @@ create_group_df_index <- function(model_lst = NULL,
 
   d <- bind_cols(extract_survey_index_fits(model_lst,
                                            model_names,
-                                           type,
+                                           survey_type = survey_type,
                                            "index.025",
                                            TRUE),
                  extract_survey_index_fits(model_lst,
                                            model_names,
-                                           type,
+                                           survey_type = survey_type,
                                            "index.med"),
                  extract_survey_index_fits(model_lst,
                                            model_names,
-                                           type,
+                                           survey_type = survey_type,
                                            "index.975")) |>
     bind_rows(obs) |>
     mutate(model = factor(model,

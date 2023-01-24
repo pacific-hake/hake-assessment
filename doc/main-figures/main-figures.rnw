@@ -89,9 +89,11 @@ make.catches.plot(ct, leg.y.loc = 550)
 \caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
   the U.S. at-sea fleet from \Sexpr{last_data_yr-4}--\Sexpr{last_data_yr}.}
 \label{fig:main-us-catch-rates}
+%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}[H]
 \begin{center}
 %\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 %\includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
@@ -151,14 +153,7 @@ make.catches.plot(ct, leg.y.loc = 550)
 make.data.overview.plot(base_model)
 @
 \end{center}
-\caption{Overview of data used in this assessment.
-Circle areas are proportional to
-total catch for the fishery data, precision for the indices,
-and total sample size for
-the age compositions (and cannot be compared
-across data types).
-Additionally, mean weight-at-age data (not depicted here) are
-used to account for time-varying growth.}
+\caption{Overview of data used in this assessment. Circle areas are proportional to total catch for the fishery data, precision for the indices, and total sample size for the age compositions (and cannot be compared across data types). Additionally, mean weight-at-age data (not depicted here) are used to account for time-varying growth.}
 \label{fig:main-data-overview}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -172,14 +167,7 @@ make_age_comp_bubble_plot(base_model, subplot = 1, legend.position = "top", alph
 make_age_comp_bubble_plot(base_model, subplot = 2, alpha = 0.4)
 @
 \end{center}
-\caption{Age compositions for the aggregate fishery (top, all sectors combined) and acoustic survey (bottom)
-  for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}.
-  Proportions in each year sum to 1.0 and area of the bubbles are
-  proportional to the proportion and consistent in both panels (see key at top).
-  The largest bubble in the fishery data is \Sexpr{f(as.numeric(max.fishery.age.prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max.survey.age.prop[5])}
-  in \Sexpr{as.numeric(max.fishery.age.prop[4])}
-  and in the survey data is \Sexpr{f(as.numeric(max.survey.age.prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max.survey.age.prop[5])}
-  in \Sexpr{as.numeric(max.survey.age.prop[4])}. Red lines track cohorts from years of large recruitment events.}
+\caption{Age compositions for the aggregate fishery (top, all sectors combined) and acoustic survey (bottom) for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}. Proportions in each year sum to 1.0 and area of the bubbles are proportional to the proportion and consistent in both panels (see key at top). The largest bubble in the fishery data is \Sexpr{f(as.numeric(max.fishery.age.prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max.survey.age.prop[5])} in \Sexpr{as.numeric(max.fishery.age.prop[4])} and in the survey data is \Sexpr{f(as.numeric(max.survey.age.prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max.survey.age.prop[5])} in \Sexpr{as.numeric(max.survey.age.prop[4])}. Red lines track cohorts from years of large recruitment events.}
 \label{fig:main-age-comp-bubbles}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -191,10 +179,7 @@ make_age_comp_bubble_plot(base_model, subplot = 2, alpha = 0.4)
 make.survey.biomass.extrap.plot(survey.comparison)
 @
 \end{center}
-\caption{Acoustic survey biomass index of age-2+ fish (millions of tons,
-  Table~\ref{tab:main-survey-history}).
-  Approximate 95\% confidence intervals are based on sampling variability
-  (intervals without squid/hake apportionment uncertainty in 2009 are displayed in black).}
+\caption{Acoustic survey biomass index of age-2+ fish (millions of tons, Table~\ref{tab:main-survey-history}). Approximate 95\% confidence intervals are based on sampling variability (intervals without squid/hake apportionment uncertainty in 2009 are displayed in black).}
 \label{fig:main-survey-extrap-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -250,16 +235,7 @@ weight.at.age.heatmap(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Empirical weight-at-age (kg) values used for the base model. Colors
-  correspond to the values, with red being the lightest fish (across all years
-  and ages) and blue being the heaviest fish. For each age, the most transparent cells indicate
-  the lightest fish of that age.
-  Data are only available from \Sexpr{start_yr_age_comps}--\Sexpr{last_data_yr}.
-  Values based on assumptions for the pre-\Sexpr{start_yr_age_comps} and forecast years are shown
-  outside the blue lines.
-  Bold values between \Sexpr{start_yr_age_comps}--\Sexpr{max.fishery.age.prop[2]} represent
-  unavailable data such that weights were interpolated or extrapolated from adjacent ages or years.
-  The bottom row (mean) is the sample-weighted mean weight-at-age.}
+\caption{Empirical weight-at-age (kg) values used for the base model. Colors correspond to the values, with red being the lightest fish (across all years and ages) and blue being the heaviest fish. For each age, the most transparent cells indicate the lightest fish of that age. Data are only available from \Sexpr{start_yr_age_comps}--\Sexpr{last_data_yr}. Values based on assumptions for the pre-\Sexpr{start_yr_age_comps} and forecast years are shown outside the blue lines. Bold values between \Sexpr{start_yr_age_comps}--\Sexpr{max.fishery.age.prop[2]} represent unavailable data such that weights were interpolated or extrapolated from adjacent ages or years. The bottom row (mean) is the sample-weighted mean weight-at-age.}
 \label{fig:main-empirical-weight-at-age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -276,15 +252,7 @@ weight.at.age.heatmap(base_model,
 @
 \end{center}
 \vspace{0mm}
-\caption{Sample sizes of empirical weight-at-age measurements
-  used to calculate mean weight-at-age fit in the base model.
-  Colors and transparency are identical to Figure~\ref{fig:main-empirical-weight-at-age}
-  and based on mean values.
-  Sample sizes of zero highlight years for which data are not available, i.e.,
-  pre \Sexpr{start_yr_age_comps} and post \Sexpr{last_data_yr}.
-  The total sample sizes for each age used in the mean over all years are shown at the bottom and
-  year-specific sample sizes are shown to the right using the same color scale with red indicating
-  small sample sizes and blue indicating the large sample sizes.}
+\caption{Sample sizes of empirical weight-at-age measurements used to calculate mean weight-at-age fit in the base model. Colors and transparency are identical to Figure~\ref{fig:main-empirical-weight-at-age} and based on mean values. Sample sizes of zero highlight years for which data are not available, i.e., pre \Sexpr{start_yr_age_comps} and post \Sexpr{last_data_yr}. The total sample sizes for each age used in the mean over all years are shown at the bottom and year-specific sample sizes are shown to the right using the same color scale with red indicating small sample sizes and blue indicating the large sample sizes.}
 \label{fig:main-empirical-weight-at-age-numbers}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -296,11 +264,8 @@ weight.at.age.heatmap(base_model,
 make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1, highlight = 5)
 @
 \end{center}
-\caption{Empirical mean weight-at-age (kg) values for ages 2--10
-  used for the base model, as in Figure~\ref{fig:main-empirical-weight-at-age} but
-  shown as time series.
-  Blue lines are for the youngest ages and green lines are for the oldest ages
-  shown, with age-5 highlighted in bold as a visual aid.}
+\caption{Empirical mean weight-at-age (kg) values for ages 2--10 used for the base model, as in Figure~\ref{fig:main-empirical-weight-at-age} but
+  shown as time series. Blue lines are for the youngest ages and green lines are for the oldest ages shown, with age-5 highlighted in bold as a visual aid.}
 \label{fig:main-weight-at-age-lines}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -355,14 +320,7 @@ cowplot::plot_grid(plotlist = full_plist,
                    rel_heights = c(0.33, 0.67))
 @
 \end{center}
-\caption{Bridging models showing the sequential addition of updating
-  the Stock Synthesis model code version, adding \Sexpr{last_data_yr} catch,
-  adding \Sexpr{last_data_yr} weight-at-age, and adding \Sexpr{last_data_yr}
-  fishery age compositions. Panels are spawning biomass (upper panel),
-  relative spawning biomass (spawning biomass in each year
-  relative to the unfished equilibrium spawning biomass, middle left),
-  recruitment deviation (middle right), age 2+ survey biomass index
-  (lower left), and age 1 index (lower right).}
+\caption{Bridging models showing the sequential steps made to the base model from the \Sexpr{last_assess_yr} base model to the \Sexpr{assess_yr} base model. In order the steps are: update the Stock Synthesis model code version, add \Sexpr{last_data_yr} catch, add \Sexpr{last_data_yr} weight-at-age, and add \Sexpr{last_data_yr} fishery age compositions. The final model is the base model for \Sexpr{assess_yr}. Panels are spawning biomass (upper panel), relative spawning biomass (spawning biomass in each year relative to the unfished equilibrium spawning biomass, middle left), recruitment deviation (middle right), age 2+ survey biomass index (lower left), and age 1 index (lower right).}
 \label{fig:main-bridge-5-panel-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -379,12 +337,7 @@ make.mcmc.survey.fit.plot(base_model,
                           y.max = 5.5e6)
 @
 \end{center}
-\caption{Fits (colored lines) to the acoustic survey (points) with input 95\% intervals around the observations.
-  The thin blue lines are the results of a random subset of individual MCMC samples.
-  Thicker uncertainty intervals around observed survey points indicate 95\%
-  log-normal uncertainty intervals estimated by the kriging method and are used as input to the assessment model.
-  Thinner uncertainty intervals indicate estimated 95\% uncertainty intervals that account for the
-  model estimate of additional uncertainty.}
+\caption{Fits (colored lines) to the acoustic survey (points) with input 95\% intervals around the observations. The thin blue lines are the results of a random subset of individual MCMC samples. Thicker uncertainty intervals around observed survey points indicate 95\% log-normal uncertainty intervals estimated by the kriging method and are used as input to the assessment model. Thinner uncertainty intervals indicate estimated 95\% uncertainty intervals that account for the model estimate of additional uncertainty.}
 \label{fig:main-mcmc-survey-fit}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -403,14 +356,7 @@ make.mcmc.survey.fit.plot(base_model,
                           survey.col = "red")
 @
 \end{center}
-\caption{Fits (colored lines) to the relative age-1 index estimated from the
-  acoustic survey (points) with input 95\% intervals around the observations.
-  The thin blue lines are the results of a random subset of individual MCMC samples.
-  Thicker uncertainty intervals around observed survey points indicate 95\%
-  log-normal uncertainty intervals based on sampling variability
-  and are used as input to the assessment model.
-  Thinner uncertainty intervals indicate estimated 95\% uncertainty intervals that account for the
-  model estimate of additional uncertainty.}
+\caption{Fits (colored lines) to the relative age-1 index estimated from the acoustic survey (points) with input 95\% intervals around the observations. The thin blue lines are the results of a random subset of individual MCMC samples. Thicker uncertainty intervals around observed survey points indicate 95\% log-normal uncertainty intervals based on sampling variability and are used as input to the assessment model. Thinner uncertainty intervals indicate estimated 95\% uncertainty intervals that account for the model estimate of additional uncertainty.}
 \label{fig:main-mcmc-age1-fit}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -430,10 +376,7 @@ make.age.comp.fit.plot(base_model,
 par <- oldpar
 @
 \end{center}
-\caption{Base model fits to the observed fishery (top) and acoustic survey (bottom) age-composition data.
-  Colored bars show observed proportions with colors following each cohort across years.
-  Points with intervals indicate median expected proportions and 95\% credibility
-  intervals from the MCMC calculations.}
+\caption{Base model fits to the observed fishery (top) and acoustic survey (bottom) age-composition data. Colored bars show observed proportions with colors following each cohort across years. Points with intervals indicate median expected proportions and 95\% credibility intervals from the MCMC calculations.}
 \label{fig:main-age-comp-fits}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -447,10 +390,7 @@ plot_pearson_bubbles(base_model, type = 1, legend.position = "top", alpha = 0.7)
 plot_pearson_bubbles(base_model, type = 2, alpha = 0.7)
 @
 \end{center}
-\caption{Pearson residuals for base model fits to the age-composition data for
-  the medians of the MCMC posteriors. Closed bubbles are positive residuals
-  (observed > expected) and open bubbles are negative residuals (observed <
-  expected). Red lines track cohorts from years of large recruitment events.}
+\caption{Pearson residuals for base model fits to the age-composition data for the medians of the MCMC posteriors. Closed bubbles are positive residuals (observed > expected) and open bubbles are negative residuals (observed < expected). Red lines track cohorts from years of large recruitment events.}
 \label{fig:main-age-comp-pearson}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -473,17 +413,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
                                               show_median = TRUE)
 @
 \end{center}
-%\vspace{0mm}
-\caption{**[check key ones have not changed] Prior (black lines) and posterior (gray histograms) distributions for
-  key parameters in the base model. The parameters are: natural mortality ($M$),
-  equilibrium log recruitment ($\log R_0)$, steepness ($h$), the additional
-  process-error standard deviation for the acoustic survey and the age-1 biomass
-  index, and the Dirichlet-multinomial parameters for the fishery ($\theta_{\text{fish}}$) and
-  the survey ($\theta_{\text{surv}}$).}
-  % This didn't seem needed for 2022:
-  % There
-  % are 50 bins for each posterior except the two Dirichlet-multinomial parameters
-  % which are grouped into 500 bins.}
+\caption{Prior (black lines) and posterior (gray histograms) distributions for key parameters in the base model. The parameters are: natural mortality ($M$), equilibrium log recruitment ($\log R_0)$, steepness ($h$), the additional process-error standard deviation for the acoustic survey and the age-1 biomass index, and the Dirichlet-multinomial parameters for the fishery ($\theta_{\text{fish}}$) and the survey ($\theta_{\text{surv}}$).}
 \label{fig:main-prior-posterior}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -528,11 +458,7 @@ tv.selex.right <- calc.tv.selex(base_model,
 make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 @
 \end{center}
-\caption{Fishery selectivity sampled from posterior probability distribution by year for the base model.
-  Black dots and bars indicate the median and 95\% credibility interval, respectively. The shaded polygon
-  also shows the 95\% credibility interval. Range is from 0 to 1 within each year. Selectivity
-  for \Sexpr{tv.selex.start_yr} is shared for all years from \Sexpr{start_yr} to
-  \Sexpr{tv.selex.start_yr}.}
+\caption{Fishery selectivity sampled from posterior probability distribution by year for the base model. Black dots and bars indicate the median and 95\% credibility interval, respectively. The shaded polygon also shows the 95\% credibility interval. Range is from 0 to 1 within each year. Selectivity for \Sexpr{tv.selex.start_yr} is shared for all years from \Sexpr{start_yr} to \Sexpr{tv.selex.start_yr}.}
 \label{fig:main-tv-selex-uncertainty}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -555,12 +481,7 @@ make.selex.uncertainty.lines.plot(base_model,
 par <- oldpar
 @
 \end{center}
-\caption{Estimated selectivities for the biomass index (top -- for all years)
-  and fishery (bottom -- for \Sexpr{end_yr-1} only)
-  from the posterior distribution for the base model.
-  Selectivity for the biomass index is 0 at age-1 and
-  constant from age-6 onwards.
-}
+\caption{Estimated selectivities for the biomass index (top -- for all years) and fishery (bottom -- for \Sexpr{end_yr-1} only) from the posterior distribution for the base model. Selectivity for the biomass index is 0 at age-1 and constant from age-6 onwards.}
 \label{fig:main-tv-selex-uncertainty-lines}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -577,8 +498,7 @@ plot_biomass(list(base_model),
              leg_pos = "none")
 @
 \end{center}
-\caption{Median of the posterior distribution for female spawning biomass at the start of each year ($B_t$) for the base model up to \Sexpr{end_yr} (solid line)
-  with 95\% posterior credibility intervals (shaded area).}
+\caption{Median of the posterior distribution for female spawning biomass at the start of each year ($B_t$) for the base model up to \Sexpr{end_yr} (solid line) with 95\% posterior credibility intervals (shaded area).}
 \label{fig:main-female-spawning-biomass}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -596,8 +516,7 @@ plot_rel_biomass(list(base_model),
 @
 \end{center}
 %\vspace{0mm}
-\caption{Median (solid line) of the posterior distribution for relative spawning biomass ($B_t/B_0$) for the base model
-  through \Sexpr{end_yr} with 95\% posterior credibility intervals (shaded area). Dashed horizontal lines show 10\%, 40\% and 100\% levels.}
+\caption{Median (solid line) of the posterior distribution for relative spawning biomass ($B_t/B_0$) for the base model through \Sexpr{end_yr} with 95\% posterior credibility intervals (shaded area). Dashed horizontal lines show the values for 10\%, 40\% and 100\% of $B_0$.}
 \label{fig:main-relative-spawning-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -647,28 +566,10 @@ make.mcmc.recruitment.plot(base_model,
                            auto.xaxis = FALSE)
 @
 \end{center}
-\caption{Medians (solid circles) of the posterior distribution
-  of `recruitments divided by the 2010 recruitment',
-  with
-  95\% posterior credibility intervals (red lines);
-  the division is done for each MCMC sample.
-  This scales out the uncertainty due to uncertainty in unfished equilibrium
-  recruitment ($R_0$), and shows that, for example, the 2014 recruitment
-  is definitely smaller than the 2010 recruitment
-  (2010 was chosen as it is estimated to be one of the largest
-  recruitment events). However, intuition from
-  plots of absolute recruitment (Figure~\ref{fig:main-recruitment})
-  is that the 2014
-  is possibly (even probably) larger than the 2010 recruitment \citep{JTC2022}.
-  This figure gives a somewhat more intuitive y-axis
-  (people familiar with
-  \fishname\ know 2010 to be a very large recruitment year) than the
-  `billions of age-0 fish' necessarily used in Figure~\ref{fig:main-recruitment}.
-}
+\caption{Medians (solid circles) of the posterior distribution of `recruitments divided by the 2010 recruitment', with 95\% posterior credibility intervals (red lines); the division is done for each MCMC sample. This scales out the uncertainty due to uncertainty in unfished equilibrium recruitment ($R_0$), and shows that, for example, the 2014 recruitment  is definitely smaller than the 2010 recruitment (2010 was chosen as it is estimated to be one of the largest recruitment events). However, intuition from plots of absolute recruitment (Figure~\ref{fig:main-recruitment}) is that the 2014 is possibly (even probably) larger than the 2010 recruitment \citep{JTC2022}. This figure gives a somewhat more intuitive y-axis (people familiar with \fishname\ know 2010 to be a very large recruitment year) than the `billions of age-0 fish' necessarily used in Figure~\ref{fig:main-recruitment}.}
 \label{fig:main-recruitment-scale-all}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
@@ -683,13 +584,7 @@ make_numbers_at_age_plot(base_model,
                          xlim = c(1965, assess_yr))
 @
 \end{center}
-\caption{Bubble plot of the medians of the posterior distributions of population
-  numbers at age at the beginning of each year, where diagonals follow each
-  year-class through time. The red line represents the mean age. The scale of the bubbles is represented in the key where the units are
-  billions of fish; the largest overall bubble represents the
-  \Sexpr{max.median.nat}~billion
-  age-0 recruits in \Sexpr{year.of.max.median.nat}.
-  See Table~\ref{tab:main-est-numbers-at-age} for values.}
+\caption{Bubble plot of the medians of the posterior distributions of population numbers at age at the beginning of each year, where diagonals follow each year-class through time. The red line represents the mean age. The scale of the bubbles is represented in the key where the units are billions of fish; the largest overall bubble represents the \Sexpr{max.median.nat}~billion age-0 recruits in \Sexpr{year.of.max.median.nat}. See Table~\ref{tab:main-est-numbers-at-age} for values.}
 \label{fig:main-numbers-at-age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -706,13 +601,7 @@ make.mcmc.sr.variability.plot(base_model,
                               probs = c(0.025, 0.5, 0.975))
 @
 \end{center}
-\caption{Estimated stock-recruit relationship for the base model with median predicted recruitments
-  and 95\% posterior credibility intervals. Colors indicate time-period, with yellow colors in the
-  early years and blue colors in the recent years. The thick solid black line indicates the central
-  tendency (mean) and the red line indicates the central tendency after bias correcting for the log-normal
-  distribution (median). Shading around stock-recruit curves indicates uncertainty in shape associated
-  with distribution of the steepness parameter ($h$). The gray polygon on the right indicates the
-  expected distribution of absolute recruitments.}
+\caption{Estimated stock-recruit relationship for the base model with median predicted recruitments and 95\% posterior credibility intervals. Colors indicate time-period, with yellow colors in the early years and blue colors in the recent years. The thick solid black line indicates the central tendency (mean) and the red line indicates the central tendency after bias correcting for the log-normal distribution (median). Shading around stock-recruit curves indicates uncertainty in shape associated with distribution of the steepness parameter ($h$). The gray polygon on the right indicates the expected distribution of absolute recruitments.}
 \label{fig:main-mcmc-sr-variability}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -728,8 +617,7 @@ make.fishing.intensity.plot(base_model,
                             upper.lim = 1.5)
 @
 \end{center}
-\caption{Trend in median fishing intensity (relative to the SPR management target) through \Sexpr{end_yr-1}
-  with 95\% posterior credibility intervals. The management target defined in the Agreement is shown as a horizontal line at 1.0.}
+\caption{Trend in median fishing intensity (relative to the SPR management target) through \Sexpr{end_yr-1} with 95\% posterior credibility intervals. The management target defined in the Agreement is shown as a horizontal line at 1.0.}
 \label{fig:main-fishing-intensity}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -760,14 +648,7 @@ make.phase.plot(base_model,
                 end_yr = end_yr)
 @
 \end{center}
-\caption{Estimated historical path of median relative spawning biomass in
-         year $t$ and corresponding median relative fishing
-         intensity in year $t-1$. Labels show the
-         start year, end year and year of highest relative fishing
-         intensity; labels correspond to year $t$ (i.e., year of the relative
-         spawning biomass). Gray bars span the 95\% credibility
-         intervals for \Sexpr{end_yr} relative spawning biomass (horizontal) and
-         \Sexpr{end_yr-1} relative fishing intensity (vertical).
+\caption{Estimated historical path of median relative spawning biomass in year $t$ and corresponding median relative fishing intensity in year $t-1$. Labels show the start year, end year and year of highest relative fishing intensity; labels correspond to year $t$ (i.e., year of the relative spawning biomass). Gray bars span the 95\% credibility intervals for \Sexpr{end_yr} relative spawning biomass (horizontal) and \Sexpr{end_yr-1} relative fishing intensity (vertical).
          }
 \label{fig:main-phase}
 \end{figure}
@@ -781,8 +662,7 @@ make.forecast.catch.posterior.plot(base_model,
                                    fore.yr = end_yr)
 @
 \end{center}
-\caption{The posterior distribution of the default \Sexpr{end_yr} catch limit calculated using the default harvest
-  policy (\Ffortyten). The median is \Sexpr{catch.limit.quantiles["median"]}~t (vertical line), with the dark shaded area ranging from the 2.5\% quantile to the 97.5\% quantile, covering the range \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.}
+\caption{The posterior distribution of the default \Sexpr{end_yr} catch limit calculated using the default harvest policy (\Ffortyten). The median is \Sexpr{catch.limit.quantiles["median"]}~t (vertical line), with the dark shaded area ranging from the 2.5\% quantile to the 97.5\% quantile, covering the range \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.}
 \label{fig:main-projected-catch-density}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -798,12 +678,7 @@ plot_depl_fore_comparison(base_model,
                           forecast_yrs = forecast_yrs)
 @
 \end{center}
-\caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end_yr} as estimated from the base model, and forecast trajectories
-  to the start of \Sexpr{forecast_yrs[length(forecast_yrs)]} for several management options from the decision table (grey region), with 95\% posterior
-  credibility intervals. The default harvest policy catches are
-  \Sexpr{f(base_model$catch.default.policy[1])}~t in \Sexpr{end_yr},
-  \Sexpr{f(base_model$catch.default.policy[2])}~t in \Sexpr{end_yr+1}, and
-  \Sexpr{f(base_model$catch.default.policy[3])}~t in \Sexpr{end_yr+2}.}
+\caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end_yr} as estimated from the base model, and forecast trajectories to the start of \Sexpr{forecast_yrs[length(forecast_yrs)]} for several management options from the decision table (grey region), with 95\% posterior credibility intervals. The default harvest policy catches are \Sexpr{f(base_model$catch.default.policy[1])}~t in \Sexpr{end_yr}, \Sexpr{f(base_model$catch.default.policy[2])}~t in \Sexpr{end_yr+1}, and \Sexpr{f(base_model$catch.default.policy[3])}~t in \Sexpr{end_yr+2}.}
 \label{fig:main-forecast-depletion-comparison}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -818,12 +693,11 @@ make.forecast.risk.comparison.plot(base_model,
                                    fore.yr = forecast_yrs[1],
                                    colors = c("black","blue","green","orange","red","tan"),
                                    pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
+                                   legend.loc = c(0.1, 0.47),
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{Graphical representation of the base model results presented in Table \ref{tab:main-risk-year-1} for various catches in
-  \Sexpr{forecast_yrs[1]}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
+\caption{Graphical representation of the base model results presented in Table \ref{tab:main-risk-year-1} for various catches in \Sexpr{forecast_yrs[1]}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
 \label{fig:main-forecast-risk-comparison-year-1}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -837,12 +711,11 @@ make.forecast.risk.comparison.plot(base_model,
                                    fore.yr = forecast_yrs[2],
                                    colors = c("black","blue","green","orange","red","tan"),
                                    pch = c(16,17,17,17,15,18),
-                                   legend.loc = "topleft",
+                                   legend.loc = c(0.1, 0.47),
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{Graphical representation of the base model results presented in Table~\ref{tab:main-risk-year-2} for catch in
-  \Sexpr{forecast_yrs[2]}, given the \Sexpr{forecast_yrs[1]} catch level shown in Table \ref{tab:main-risk-year-1}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
+\caption{Graphical representation of the base model results presented in Table~\ref{tab:main-risk-year-2} for catch in \Sexpr{forecast_yrs[2]}, given the \Sexpr{forecast_yrs[1]} catch level shown in Table \ref{tab:main-risk-year-1}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
 \label{fig:main-forecast-risk-comparison-year-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -861,11 +734,7 @@ make.forecast.risk.comparison.plot(base_model,
                                    legend.cex = 0.7)
 @
 \end{center}
-\caption{Graphical representation of the base model results presented in Table \ref{tab:main-risk-year-3} for catch in
-  \Sexpr{forecast_yrs[3]}, given the \Sexpr{forecast_yrs[1]} and \Sexpr{forecast_yrs[2]}
-  catch levels shown in Tables~\ref{tab:main-risk-year-1} and~\ref{tab:main-risk-year-2}.
-  The symbols indicate points
-  that were computed directly from model output and lines interpolate between the points.}
+\caption{Graphical representation of the base model results presented in Table \ref{tab:main-risk-year-3} for catch in \Sexpr{forecast_yrs[3]}, given the \Sexpr{forecast_yrs[1]} and \Sexpr{forecast_yrs[2]} catch levels shown in Tables~\ref{tab:main-risk-year-1} and \ref{tab:main-risk-year-2}. The symbols indicate points that were computed directly from model output and lines interpolate between the points.}
 \label{fig:main-forecast-risk-comparison-year-3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -879,15 +748,7 @@ make.forecast.risk.comparison.plot(base_model,
 make.age.comp.forecast.plot(base_model)
 @
 \end{center}
-\caption{Forecast age compositions in numbers and in weight for the \Sexpr{end_yr} fishery catch
-  (combined across all sectors in both countries). Gray bars show median estimates.
-  Thick black lines show 50\% credibility intervals and thin black lines show 95\%
-  credibility intervals. These estimates are based on the posterior distribution for
-  selectivity averaged across the most recent five years, weight-at-age data averaged across the
-  most recent five years, and the distribution for expected
-  numbers at age at the start of \Sexpr{end_yr} (see Table~\ref{tab:main-est-numbers-at-age} for
-  the MCMC medians of numbers-at-age for all years). The panel on the right is scaled based on
-  the weight at each age averaged across the last five years.}
+\caption{Forecast age compositions in numbers and in weight for the \Sexpr{end_yr} fishery catch (combined across all sectors in both countries). Gray bars show median estimates. Thick black lines show 50\% credibility intervals and thin black lines show 95\% credibility intervals. These estimates are based on the posterior distribution for selectivity averaged across the most recent five years, weight-at-age data averaged across the most recent five years, and the distribution for expected numbers at age at the start of \Sexpr{end_yr} (see Table~\ref{tab:main-est-numbers-at-age} for the MCMC medians of numbers-at-age for all years). The panel on the right is scaled based on the weight at each age averaged across the last five years.}
 \label{fig:main-age-comp-forecast}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -897,20 +758,15 @@ make.age.comp.forecast.plot(base_model)
 \begin{center}
 <<main-biomass-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between the first set of sensitivity runs">>=
 plot_biomass(d_obj = d_obj_sens_biomass[[1]],
+             x_expansion = 4,
              ylim = c(0, 20),
              y_breaks = seq(0, 20, 2),
-             x_expansion = 2,
              leg_font_size = 9,
              leg_pos = c(0.8, 0.75),
              rev_colors = TRUE)
 @
 \end{center}
-\caption{**[if sens runs change] MCMC estimates of spawning biomass for the base
-  model and alternative sensitivity runs representing changing the mean of
-  the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher
-  (1.6) levels of variation assumed about the stock-recruitment relationship
-  ($\sigma_r$), and changing the standard deviation of the prior for natural mortality from
-  0.1 to 0.2 or 0.3.}
+\caption{MCMC estimates of spawning biomass for the base model and alternative sensitivity runs representing changing the mean of the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher (1.6) levels of variation assumed about the stock-recruitment relationship ($\sigma_r$), and changing the standard deviation of the prior for natural mortality.}
 \label{fig:main-biomass-base-alternative-1}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -927,10 +783,7 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
 @
 \end{center}
 %\vspace{0mm}
-\caption{** MCMC estimates of stock status (relative
-  spawning biomass) for the base model and alternative sensitivity runs
-  representing changing key parameters. See
-  Figure~\ref{fig:main-biomass-base-alternative-1} for sensitivity descriptions.}
+\caption{MCMC estimates of stock status (relative spawning biomass) for the base model and alternative sensitivity runs representing changes in key parameters. See Figure~\ref{fig:main-biomass-base-alternative-1} for sensitivity descriptions.}
 \label{fig:main-status-base-alternative-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -941,7 +794,7 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
 \begin{center}
 <<main-biomass-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between the second set of sensitivity runs">>=
 plot_biomass(d_obj = d_obj_sens_biomass[[2]],
-             x_expansion = 2,
+             x_expansion = 4,
              leg_pos = c(0.75, 0.9),
              rev_colors = TRUE)
 @
@@ -980,42 +833,31 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
 \end{center}
 \caption{MCMC estimates of recruitment deviations for the base model and alternative sensitivity runs that represent changes in data. See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-recruit-base-alternative-2}
-% \end{figure}
-%% \end{figure}
+%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{figure}[H]
-% \begin{figure}[H]
+%\begin{figure}[H]
 \begin{center}
 <<main-index-base-alternative-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the similarity between some sensitivity runs of the estimates of the fit to the biomass index">>=
-#TODO: Run extra mcmc for these models
-# plot_survey_index_fits(d_obj = d_obj_sens_index[[2]],
-#                        x_expansion = 2,
-#                        rev_colors = TRUE)
-# make.comparison.plot(sens_models[[2]],
-#                      subplots = 13,
-#                      model.names = sens_models_names[[2]],
-#                      legend = TRUE,
-#                      legend_loc = "topleft",
-#                      indexfleets= c(2),
-#                      end_yr = end_yr)
+plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp2[[1]],
+                       x_expansion = 2,
+                       leg_pos = c(0.82, 0.13),
+                       rev_colors = TRUE)
 @
 \end{center}
-\caption{** TODO: Run extra mcmc for these models...** MCMC estimates of the fit to the biomass index for the base
-  model and alternative sensitivity runs that represent changes in data.
-  See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
+\caption{MCMC estimates of the fit to the biomass index for the base model and alternative sensitivity runs that represent changes in data. See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-index-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-% \clearpage
+ \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
 <<main-biomass-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recent spawning biomass varies for some sensitivity runs">>=
 plot_biomass(d_obj = d_obj_sens_biomass[[3]],
-             x_expansion = 2,
+             x_expansion = 4,
              leg_font_size = 9,
              leg_pos = c(0.83, 0.88),
              rev_colors = TRUE)
@@ -1058,7 +900,7 @@ plot_recruitment(d_obj = d_obj_sens_recr[[3]],
 \end{center}
 \caption{MCMC estimates of recruitment for the base model and alternative sensitivity runs representing different standard deviations ($\Phi$) associated with time-varying selectivity. See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
 \label{fig:main-recruit-base-alternative-4}
-%% \end{figure}
+%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %% JOINED ON PAGE
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1080,47 +922,16 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
 \begin{figure}[H]
 \begin{center}
 <<main-index-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows differences in the fit to the biomass index for certain sensitivity runs">>=
-# TODO: run extra mcmc for sensitivity models
-# plot_survey_index_fits(d_obj = d_obj_sens_index[[3]],
-#                        x_expansion = 2,
-#                        rev_colors = TRUE)
+plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
+                       x_expansion = 2,
+                       leg_pos = c(0.84, 0.16),
+                       rev_colors = TRUE)
 @
 \end{center}
 %\vspace{0mm}
-\caption{** MCMC estimates of the fit to the survey index of age-2$+$ biomass
-  for the base model and alternative sensitivity runs representing different standard
-  deviations ($\Phi$) associated with time-varying selectivity.
-  See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
+\caption{MCMC estimates of the fit to the survey index of age-2$+$ biomass for the base model and alternative sensitivity runs representing different standard deviations ($\Phi$) associated with time-varying selectivity. See Figure~\ref{fig:main-biomass-base-alternative-4} for sensitivity descriptions.}
 \label{fig:main-index-base-alternative-4}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-% \clearpage
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{figure}[H]
-% \begin{center}
-% <<main-selectivity-illustration, fig.height=9, fig.width=8, is.fig = TRUE, alt.text = "This figure shows ******">>=
-% temp <- grep("tvSelect_sig", sapply(sens_models_4, "[[", "path"))[1]
-% make.selectivity.illustration(mod.old = base_model,
-%                               mod.alt = sens_models_4[[temp]],
-%                               yr1 = 1990, # baseline year
-%                               yr2 = 1991) # year to illustrate with deviations
-% rm(temp)
-% @
-% \end{center}
-% \caption{****[check - not using?] Illustration of parameterization of time-varying selectivity as
-%   represented in the base model (left) and the semi-parametric approach
-%   used in sensitivity analyses (right). Panels show transformation from
-%   estimated parameters (a) to cumulative sum up to each age (b) and the resulting
-%   selectivity after exponential transformation and rescaling to have maximum 1.0 (c),
-%   as described by equations (1-3).
-%   In the base model, the deviations (red lines) are applied to the
-%   baseline parameters, resulting
-%   in a new set of parameters which are transformed in the same way, as shown in the
-%   blue lines in (a) through (c). In the alternative approach, the deviations are
-%   applied as exponential offsets to the resulting selectivity (f).}
-% \label{fig:main-selectivity-illustration}
-% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1128,7 +939,7 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
 \begin{center}
 <<main-biomass-base-alternative-6, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass changes between further sensitivity runs">>=
 plot_biomass(d_obj = d_obj_sens_biomass[[4]],
-             x_expansion = 2,
+             x_expansion = 4,
              leg_font_size = 9,
              leg_pos = c(0.8, 0.85),
              rev_colors = TRUE)
@@ -1198,6 +1009,7 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[4]],
 plist <- list()
 plist[[1]] <- plot_biomass(d_obj = d_obj_retro_biomass,
                            leg_font_size = 9,
+                           x_expansion = 4,
                            leg_pos = c(0.6, 0.89),
                            leg_ncol = 2,
                            alpha = 0.1,
@@ -1228,25 +1040,7 @@ make_squid_plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{** Retrospective analysis of recruitment deviations from MCMC models over the last
-  \Sexpr{length(retro_cohorts) + 1} years. Recruitment deviations are
-  the median log-scale differences between recruitment estimated by the model
-  and expected recruitment from the spawner-recruit relationship.
-  Age-0 recruitment deviations are non-zero because MCMC allows for
-  sampling from the full log-normal distribution.
-  Lines represent estimated recruitment deviations for cohorts born from
-  \Sexpr{min(retro_cohorts)} to \Sexpr{max(retro_cohorts)}, with cohort
-  birth year marked at the right of each color-coded line.
-  For example, the right-most point for the \Sexpr{assess_yr - 8} cohort shows the
-  cohort at age-8 (i.e., at the start of \Sexpr{assess_yr}, which represents
-  the base model and includes data to \Sexpr{assess_yr - 1} because
-  data collection ends December~31). The next point
-  to the left is the \Sexpr{assess_yr - 8} cohort at age-7, calculated by
-  removing one year of data (so includes data up to \Sexpr{assess_yr - 2}).
-  Thus, models are fit to data available only up to the start of the year in which
-  each cohort became a given age, such that the last year of data
-  for a given point equals
-  cohort~birth~year~$+$~cohort~age~$-$1.}
+\caption{Retrospective analysis of recruitment deviations from MCMC models over the last \Sexpr{length(retro_cohorts) + 1} years. Recruitment deviations are the median log-scale differences between recruitment estimated by the model and expected recruitment from the spawner-recruit relationship. Age-0 recruitment deviations are non-zero because MCMC allows for sampling from the full log-normal distribution. Lines represent estimated recruitment deviations for cohorts born from \Sexpr{min(retro_cohorts)} to \Sexpr{max(retro_cohorts)}, with cohort birth year marked at the right of each color-coded line. For example, the right-most point for the \Sexpr{assess_yr - 8} cohort shows the cohort at age-8 (i.e., at the start of \Sexpr{assess_yr}, which represents the base model and includes data to \Sexpr{assess_yr - 1} because data collection ends December~31). The next point to the left is the \Sexpr{assess_yr - 8} cohort at age-7, calculated by removing one year of data (so includes data up to \Sexpr{assess_yr - 2}). Thus, models are fit to data available only up to the start of the year in which each cohort became a given age, such that the last year of data for a given point equals cohort~birth~year~$+$~cohort~age~$-$1.}
 \label{fig:main-retrospective-recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1262,9 +1056,7 @@ make_squid_plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Retrospective recruitment estimates shown in
-  Figure \ref{fig:main-retrospective-recruitment} scaled
-  relative to the most recent estimate of the strength of each cohort.}
+\caption{Retrospective recruitment estimates shown in Figure \ref{fig:main-retrospective-recruitment} scaled relative to the most recent estimate of the strength of each cohort.}
 \label{fig:main-relative-retrospective-recruitment}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1280,10 +1072,7 @@ make.assessment.history.plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{Summary of historical \fishname\ assessment estimates of spawning
-  biomass. Estimates are MLEs or MCMC medians depending on the model structure.
-  Shading represents the 95\% credible interval from the
-  \Sexpr{end_yr} base model.}
+\caption{Summary of historical \fishname\ assessment estimates of spawning biomass. Estimates are MLEs or MCMC medians depending on the model structure. Shading represents the 95\% credible interval from the \Sexpr{end_yr} base model.}
 \label{fig:main-historical-assessments}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1314,19 +1103,7 @@ make.historical.probs.plot(base_model,
                            add.projs = TRUE)
 @
 \end{center}
-\caption{For each year $t$, $P(B_{t+1} < B_t)$ is
-  the probability that the spawning biomass at the
-  start of $t+1$ is below that at the start of $t$. It is calculated in two ways.
-  Red circles: the probability is taken from year $t$'s stock assessment document, from
-  the row in the decision table corresponding to the consequent catch in year $t$
-(with interpolation if necessary). Blue squares: the probability is calculated using the
-current \Sexpr{assess_yr} base model. The grey horizontal line is the 50\% value. For each
-year except 2018 and 2021, both probabilities lie on the same side of the grey line, indicating that
-each year's assessment model has almost always
-`correctly` estimated an increase or decrease the
-subsequent year's biomass. For the \Sexpr{assess_yr} assessment the
-probabilities are shown for all catch alternatives for \Sexpr{assess_yr}, as
-described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
+\caption{For each year $t$, $P(B_{t+1} < B_t)$ is the probability that the spawning biomass at the start of $t+1$ is below that at the start of $t$. It is calculated in two ways. Red circles: the probability is taken from year $t$'s stock assessment document, from the row in the decision table corresponding to the consequent catch in year $t$ (with interpolation if necessary). Blue squares: the probability is calculated using the current \Sexpr{assess_yr} base model. The grey horizontal line is the 50\% value. For each year except 2018 and 2021, both probabilities lie on the same side of the grey line, indicating that each year's assessment model has almost always `correctly` estimated an increase or decrease the subsequent year's biomass. For the \Sexpr{assess_yr} assessment the probabilities are shown for all catch alternatives for \Sexpr{assess_yr}, as described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 \label{fig:main-historical-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1342,19 +1119,7 @@ make.historical.probs.plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{For each year $t$, $P(B_{t+1} < \Bforty)$ is
-the probability that the spawning biomass at the
-start of $t+1$ is below $\Bforty$.
-The red circles and blue squares represent probabilities calculated analagously
-to Figure~\ref{fig:main-historical-1}.
-The grey horizontal line is the 50\% value. For each
-year except 2012, both probabilities lie on the same side of the grey line, indicating that
-each year's assessment model almost always
-`correctly` estimated that the subsequent year's
-biomass will not fall below $\Bforty$.
-For the \Sexpr{assess_yr} assessment the
-probabilities are shown for all catch alternatives for \Sexpr{assess_yr}, as
-described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
+\caption{For each year $t$, $P(B_{t+1} < \Bforty)$ is the probability that the spawning biomass at the start of $t+1$ is below $\Bforty$. The red circles and blue squares represent probabilities calculated analagously to Figure~\ref{fig:main-historical-1}. The grey horizontal line is the 50\% value. For each year except 2012, both probabilities lie on the same side of the grey line, indicating that each year's assessment model almost always `correctly` estimated that the subsequent year's biomass will not fall below $\Bforty$. For the \Sexpr{assess_yr} assessment the probabilities are shown for all catch alternatives for \Sexpr{assess_yr}, as described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 \label{fig:main-historical-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1369,18 +1134,7 @@ make.historical.probs.retro.plot(base_model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{Retrospective versions of Figure~\ref{fig:main-historical-1}.
-  For each panel, the current base model is run using only data up to
-  (and including) the year
-  shown (i.e. a retrospective analysis) -- data to
-  \Sexpr{assess_yr - length(base_model$retros) - 1} would
-  equate to doing an assessment at the start of \Sexpr{assess_yr - length(base_model$retros)}.
-  Results are shown for further retrospective years in
-  Figures~\ref{fig:main-historical-retro-2},
-  ~\ref{fig:main-historical-retro-3}
-  and~\ref{fig:main-historical-retro-4}, and
-  in a single panel in
-  Figure~\ref{fig:main-historical-retro-all}.}
+\caption{Retrospective versions of Figure~\ref{fig:main-historical-1}. For each panel, the current base model is run using only data up to (and including) the year shown (i.e. a retrospective analysis) -- data to \Sexpr{assess_yr - length(base_model$retros) - 1} would  equate to doing an assessment at the start of \Sexpr{assess_yr - length(base_model$retros)}. Results are shown for further retrospective years in Figures~\ref{fig:main-historical-retro-2}, ~\ref{fig:main-historical-retro-3} and~\ref{fig:main-historical-retro-4}, and in a single panel in Figure~\ref{fig:main-historical-retro-all}.}
 \label{fig:main-historical-retro-1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1395,8 +1149,7 @@ make.historical.probs.retro.plot(base_model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{As for Figure~\ref{fig:main-historical-retro-1} for
-  further retrospective years.}
+\caption{As for Figure~\ref{fig:main-historical-retro-1} for further retrospective years.}
 \label{fig:main-historical-retro-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1411,8 +1164,7 @@ make.historical.probs.retro.plot(base_model,
                                  make.one.figure = FALSE)
 @
 \end{center}
-\caption{As for Figure~\ref{fig:main-historical-retro-1} for
-  further retrospective years.}
+\caption{As for Figure~\ref{fig:main-historical-retro-1} for further retrospective years.}
 \label{fig:main-historical-retro-3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1428,23 +1180,20 @@ make.historical.probs.retro.plot(base_model,
                                  legend.loc = "topright")
 @
 \end{center}
-\caption{As for Figure~\ref{fig:main-historical-retro-1} for
-  the final retrospective year.}
+\caption{As for Figure~\ref{fig:main-historical-retro-1} for the final retrospective year.}
 \label{fig:main-historical-retro-4}
 % \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % \begin{figure}[H]
-~ \\
+%~ \\
 \begin{center}
 <<main-historical-retro-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 make.historical.probs.retro.plot(base_model)
 @
 \end{center}
-\caption{Retrospective results of
-  Figures~\ref{fig:main-historical-retro-1}--\ref{fig:main-historical-retro-4}
-  shown in a single panel.}
+\caption{Retrospective results of Figures~\ref{fig:main-historical-retro-1}--\ref{fig:main-historical-retro-4} shown in a single panel.}
 \label{fig:main-historical-retro-all}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1458,8 +1207,7 @@ make.historical.probs.retro.plot(base_model,
                                  legend.loc = "topleft")
 @
 \end{center}
-\caption{Retrospective results of Figure~\ref{fig:main-historical-2} for
-  $P(B_{t+1} < \Bforty)$ for each year $t$.}
+\caption{Retrospective results of Figure~\ref{fig:main-historical-2} for $P(B_{t+1} < \Bforty)$ for each year $t$.}
 \label{fig:main-historical-retro-bforty-all}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

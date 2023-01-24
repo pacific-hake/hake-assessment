@@ -749,13 +749,13 @@ prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
  d_obj_bridge_age1_index <- map2(bridge_models, bridge_models_names, ~{
    iter <- iter + 1
    create_group_df_index(.x, .y,
-                         type = "age1")
+                         survey_type = "age1")
  })
  iter <- 0
  d_obj_bridge_age2_index <- map2(bridge_models, bridge_models_names, ~{
    iter <- iter + 1
    create_group_df_index(.x, .y,
-                         type = "age2")
+                         survey_type = "age2")
  })
 
  # Set up sensitivity model groups for plotting -------------------------------
@@ -772,10 +772,22 @@ prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
  d_obj_sens_recdev <- map2(sens_models, sens_models_names, ~{
    create_group_df_recr(.x, .y, devs = TRUE)
  })
- # Need to run the extra mcmc on the sensitivities for these to work
- # d_obj_sens_age1_index <- map2(sens_models, sens_models_names, ~{
- #   create_group_df_index(.x, .y, "age1")
- # })
- # d_obj_sens_age2_index <- map2(sens_models, sens_models_names, ~{
- #   create_group_df_index(.x, .y, "age2")
- # })
+ # extra mcmc required for these
+ d_obj_sens_age1_index_grp2 <- map2(sens_models[2], sens_models_names[2], ~{
+   create_group_df_index(.x, .y, "age1")
+ })
+ d_obj_sens_age1_index_grp3 <- map2(sens_models[3], sens_models_names[3], ~{
+   create_group_df_index(.x, .y, "age1")
+ })
+ d_obj_sens_age1_index_grp4 <- map2(sens_models[4], sens_models_names[4], ~{
+   create_group_df_index(.x, .y, "age1")
+ })
+ d_obj_sens_age2_index_grp2 <- map2(sens_models[2], sens_models_names[2], ~{
+   create_group_df_index(.x, .y, "age2")
+ })
+ d_obj_sens_age2_index_grp3 <- map2(sens_models[3], sens_models_names[3], ~{
+   create_group_df_index(.x, .y, "age2")
+ })
+ d_obj_sens_age2_index_grp4 <- map2(sens_models[4], sens_models_names[4], ~{
+   create_group_df_index(.x, .y, "age2")
+ })

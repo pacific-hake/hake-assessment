@@ -600,5 +600,6 @@ load_extra_mcmc <- function(model,
             f(as.numeric(object.size(extra_mcmc) / 1e6), 2),
             "MB\n")
   }
+
   extra_mcmc
 }
