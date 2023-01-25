@@ -1892,20 +1892,21 @@ assessments (Figure~\ref{fig:main-historical-dispersion}).
 
 \subsection{Performance of past projections}\label{sec:assessment-past-projections}
 
-It can be difficult to operationally assess the accuracy of projections in stock
-assessments used to inform management decisions without rigourous simulation experiments
-(e.g., decision analysis) because the truth is never known with 100\% certainty.
-Hindsight comparisons have been conducted since 2021 \citep{JTC2021} to evaluate
-how projections provided in decision tables
-(e.g., Tables~\ref{tab:main-risk-year-1} and~\ref{tab:main-risk-year-2})
-at the time perform relative to more updated assessments.
+Without rigourous simulation experiments
+it can be difficult to operationally assess the accuracy of projections in stock
+assessments
+because the truth is never known with 100\% certainty.
+For \fishname, hindsight comparisons have been conducted since 2021 \citep{JTC2021} to evaluate
+performance of projections provided in decision tables
+(such as Tables~\ref{tab:main-risk-year-1} and~\ref{tab:main-risk-year-2})
+of past assessments relative to updated assessments.
 Overall, results indicate that assessment model projections give
-a relatively good idea of general trends and status.
+a relatively good idea of general projected trends and status.
 
 % combine_historical_probs(model = base_model, end = assess_yr-1)
 % gives the probs if ever want a table
 
-Full methodological details can be found in \citet{JTC2022}. As an example,
+As an example,
 the 2019 assessment \citep{JTC2019} gave the estimated probability of the female spawning
 biomass declining in the subsequent year, i.e.,~P($B_{2020} < B_{2019}$),
 for several possible catches in 2019, such as 0~t, 180,000~t,
@@ -1914,23 +1915,23 @@ for several possible catches in 2019, such as 0~t, 180,000~t,
 % hardwiring to force manually checking if the value changes much from previous assessment
 we can select the 410,000~t row (close enough to 412,015~t) in the table from the 2019
 assessment to give that assessment's
-P$(B_{2020} < B_{2019}) = $\Sexpr{prob.decline.from.2019.to.2020.historic}\%
-(Figure~\ref{fig:main-historical-1}). We can also calculate this probability
-from the current assessment model (which implicitly includes the 412,015~t catch
-from 2019), giving
-(P$(B_{2020} < B_{2019})=$\Sexpr{prob.decline.from.2019.to.2020.curr}\%;
-Figure~\ref{fig:main-historical-1}).
+P$(B_{2020} < B_{2019}) = $\Sexpr{prob.decline.from.2019.to.2020.historic}\%;
+Figure~\ref{fig:main-historical-1}. We can also calculate this probability
+from the current assessment model, which implicitly includes the 412,015~t catch
+from 2019, giving
+P$(B_{2020} < B_{2019})=$\Sexpr{prob.decline.from.2019.to.2020.curr}\%;
+Figure~\ref{fig:main-historical-1}.
 We extracted similar probabilities
 from past assessment documents going back to 2012
 and calculate analogous probabilities,
 P$(B_{t+1} < B_{t})$, from the current base model
-(Figure~\ref{fig:main-historical-1}).
+(Figure~\ref{fig:main-historical-1}); see \citet{JTC2022} for full methods.
 
 Each assessment correctly predicted whether the stock would increase or
-decrease the following year (except for 2018 and 2021), and
-estimates from assessments further back in time are closer to 50\% compared to
-those from the current base model (Figure~\ref{fig:main-historical-1}).
-The current assessment model has more information and thus provides a more
+decrease the following year (except for 2018 and 2021; Figure~\ref{fig:main-historical-1}).
+Estimates from previous assessments are closer to 50\% than
+those from the current base model (except for 2021; Figure~\ref{fig:main-historical-1}),
+because the current assessment model has more information and thus provides a more
 definitive probability (closer to 0\% or to 100\%) than year $t$'s
 assessment model. It is desirable that the probabilities from the assessment
 documents are not too definitive (too close to 0\% or to 100\%), because they are
@@ -1953,17 +1954,21 @@ admitting a wide range of uncertainty given unknown recent recruitments.
 %(Figure~\ref{fig:main-historical-1}).
 
 The 2018 and 2021 assessments `incorrectly' projected the stock would likely
-decline the following year (given the catch that subsequently occurred), whereas
+decline the following year (given the catch that subsequently occurred), because
 the current assessment model estimates a likely increase (Figure~\ref{fig:main-historical-1}).
 In 2018, this occurred because the biomass trend was relatively flat
 (Figure~\ref{fig:main-female-spawning-biomass}) so even slight changes in biomass could influence
-categorical outcomes of an 'increase' or 'decrease' in biomass, despite the
+binomial outcomes of an `increase' or `decrease' in biomass, despite the
 overall change in biomass not being very substantial.
-In 2021, the assessment \citep{JTC2021} had no information on the 2020 cohort and predicted the
+The 2021 assessment \citep{JTC2021} had no information on the 2020 cohort and predicted the
 biomass would probably decline in 2022 even with zero catch in 2021. However, the current
 assessment estimates that the 2020 cohort was particularly large, which highlights how impactful
-a realized large deviation from average recruitment (rather than assuming average) can be on
+a realized large deviation from average recruitment (rather than assuming
+average recruitment) can be on
 forecasted outcomes.
+Similarly, the 2012 assessment had no information on the very large 2010
+recruitment, and so also over-estimated the probability of decline the following
+year (Figure~\ref{fig:main-historical-1}).
 % and that its total biomass increased by
 %1.4~million~t from 2021 to 2022 (Table~\ref{tab:main-est-biomass-at-age}), whereas for an average cohort such as
 %2017 (Figure~\ref{fig:main-recruitment}) the biomass would increase from age-1
@@ -1972,7 +1977,7 @@ forecasted outcomes.
 %assumed average 2020 recruitment (and also the 2019 recruitment appeared small) it
 %was expecting that the spawning biomass would probably decline.
 
-A range of catch alternatives are shown for this (\Sexpr{assess_yr}) assessment because
+A range of catch alternatives are shown for the current assessment because
 realized \Sexpr{assess_yr} catches are not yet known (Figure~\ref{fig:main-historical-1}).
 Catching zero fish in \Sexpr{assess_yr} gives
 the lowest probability that the stock will decline from \Sexpr{assess_yr} to
@@ -1981,11 +1986,12 @@ likely decline in spawning biomass given current information.
 
 A similar approach was used to calculate the
 probability of the biomass falling below
-$\Bforty$ in the subsequent year (Figure~\ref{fig:main-historical-2}),
-i.e.,~P$(B_{t+1} < \Bforty)$.
-The 2012 assessment was the only one evaluated that gave a $>50\%$ chance of the biomass falling below
-$\Bforty$ in the subsequent year, but later assessments determined that the 2010 year class was indeed
-substantial and in hindsight the probablity of going below $\Bforty$ was much lower.
+$\Bforty$ in the subsequent year,
+i.e.,~P$(B_{t+1} < \Bforty)$; Figure~\ref{fig:main-historical-2}.
+The 2012 assessment was the only one that gave a $>50\%$ chance of the biomass falling below
+$\Bforty$ in the subsequent year, but later data determined that the 2010 year class was indeed
+substantial and so in hindsight the probablity of going below $\Bforty$ was 0\%
+(based on the current assessment).
 %The 2013--2017 assessments had information on the 2010 year class
 %and so estimated low probabilities of falling below $\Bforty$. Again, these
 %estimates are closer to 50\% than those from the current base model (blue dots),
@@ -1995,7 +2001,7 @@ substantial and in hindsight the probablity of going below $\Bforty$ was much lo
 Since the 2018 assessment, the estimated probabilities
 of the biomass falling below $\Bforty$ were $>10\%$ and
 continued to rise (Figure~\ref{fig:main-historical-2}), until falling due to the
-incoming 2020 cohort. The biomass has been relatively high during the time period shown,
+incoming 2020 cohort. Note that the biomass has been relatively high during the time period shown,
 so `correctly expecting' the biomass to remain $>\Bforty$ may not be a particular high bar to
 attain.
 
@@ -2005,21 +2011,25 @@ attain.
 %or decreases in the stock or in the biomass not going below $\Bforty$ the following year, have almost always been `correct' (the most
 %probable direction has agreed with the latest base model and data).
 
-Using Bayesian results for the retrospective analyses,
-restrospective versions of Figures~\ref{fig:main-historical-1}
-and~\ref{fig:main-historical-2} can be calculated using the
-current base model formulations but data only up to a certain year (Figures~\ref{fig:main-historical-retro-1}--\ref{fig:main-historical-retro-bforty-all}).
+Restrospective versions of Figures~\ref{fig:main-historical-1}
+and~\ref{fig:main-historical-2} are calculated using the
+current base model but with data only up to a certain year (Figures~\ref{fig:main-historical-retro-1}--\ref{fig:main-historical-retro-bforty-all}).
 While there are some minor exceptions, the retrospective probabilities of decline
 (colored squares in
 Figures~\ref{fig:main-historical-retro-1}--\ref{fig:main-historical-retro-all}) are
 generally close to the probabilities currently estimated using all available
-data (blue triangles). The largest discrepency is due to the retrospective uncertainty
-with the 2014 cohort (i.e., rapid increase in the expected cohort size followed by a downward
-adjustment; see Figure~\ref{fig:main-retrospective-recruitment})
+data (blue triangles).
+An exception is P$(B_{2016} < B_{2015})$ which is underestimated (compared to
+the current base model) until data to 2017 are included (the 2015 values in each panel of
+Figure~\ref{fig:main-historical-retro-2}).
+This is due to the retrospective uncertainty
+of the 2014 cohort, seen as an increase and then decrease in expected cohort
+size in Figure~\ref{fig:main-retrospective-recruitment}.
 The retrospective calculations for P$(B_{t+1} < \Bforty)$ show little change as
 more data are added (Figure~\ref{fig:main-historical-retro-bforty-all}), except
 for 2015 and 2021 as information becomes available about the strong 2014 and
-2020 cohorts.
+2020 cohorts. Combined, these results enhance confidence in the projected
+outcomes from the assessment model.
 
 %This text below is all very hard and intracite to follow, so tried to briefly summarize above
 %Exceptions include during the relatively flat spawning biomass trajectory from
