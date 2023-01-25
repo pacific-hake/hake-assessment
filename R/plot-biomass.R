@@ -76,25 +76,22 @@ plot_biomass <- function(model_lst = NULL,
     ribbon_colors <- single_ribbon_color
   }
 
-  # Add "Unfished Equilibrium" to the x break labels
-  # with a newline between them
+  # Remove labels for the minor x-axis ticks
   x_labels <- NULL
   for(i in x_breaks){
-    if(i == x_breaks[1] ||
-       i == x_breaks[length(x_breaks)] ||
-       i %% x_labs_mod == 0){
+    if(i %% x_labs_mod == 0){
       x_labels <- c(x_labels, i)
     }else{
       x_labels <- c(x_labels, "")
     }
   }
 
+  # Add "Unfished Equilibrium" to the x break labels
+  # with a newline between them
   x_labels <- c(expression(atop("Unfished", "Equilibrium")), x_labels)
   x_breaks = c(bo$year[1], x_breaks)
   # Tick mark lengths adjusted here
-  x_breaks_nth <- c(x_breaks[2],
-                    x_breaks[x_breaks %% x_labs_mod == 0],
-                    x_breaks[length(x_breaks)])
+  x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
   top_y_pos = 0
   bot_y_pos = -0.1
   custom_ticks <- tibble(group = x_breaks_nth,
@@ -153,6 +150,7 @@ plot_biomass <- function(model_lst = NULL,
   g <- g +
     geom_point(data = bo,
                size = point_size,
+               shape = point_shape,
                position = position_dodge(1.5)) +
     geom_errorbar(data = bo,
                   linewidth = line_width,
