@@ -741,8 +741,8 @@ make.phase.plot(base_model,
 @
 \end{center}
 \caption{Estimated historical path of median relative spawning biomass in
-         year $t$ and corresponding median relative fishing
-         intensity in year $t-1$. Labels show the
+         at the beginning of year $t$ and corresponding median relative fishing
+         intensity in the fishing year ($t-1$) leading up to year $t$. Labels show the
          start year, end year and year of highest relative fishing
          intensity; labels correspond to year $t$ (i.e., year of the relative
          spawning biomass). Gray bars span the 95\% credibility
@@ -779,7 +779,7 @@ plot_depl_fore_comparison(base_model,
 @
 \end{center}
 \caption{Time series of relative spawning biomass at the start of each year until \Sexpr{end_yr} as estimated from the base model, and forecast trajectories
-  to the start of \Sexpr{forecast_yrs[length(forecast_yrs)]} for several management options from the decision table (grey region), with 95\% posterior
+  to the start of \Sexpr{forecast_yrs[length(forecast_yrs)]} for several management options from the decision table (grey rectangle), with 95\% posterior
   credibility intervals. The default harvest policy catches are
   \Sexpr{f(base_model$catch.default.policy[1])}~t in \Sexpr{end_yr},
   \Sexpr{f(base_model$catch.default.policy[2])}~t in \Sexpr{end_yr+1}, and
@@ -871,7 +871,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[1]],
              rev_colors = TRUE)
 @
 \end{center}
-\caption{MCMC estimates of spawning biomass for the base model and alternative sensitivity runs representing changing the mean of the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher (1.6) levels of variation assumed about the stock-recruitment relationship ($\sigma_r$), and changing the standard deviation of the prior for natural mortality.}
+\caption{MCMC estimates of spawning biomass for the base model and alternative sensitivity runs representing changing the mean of the prior for steepness from 1.0 to 0.5, fixing steepness at 1.0, lower (1.0) and higher (1.6) levels of variation assumed about the stock-recruitment relationship ($\sigma_r$), changing the standard deviation of the prior for natural mortality, and using the Hamel prior distribution for natural mortality.}
 \label{fig:main-biomass-base-alternative-1}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -887,7 +887,7 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
 @
 \end{center}
 %\vspace{0mm}
-\caption{** MCMC estimates of stock status (relative
+\caption{MCMC estimates of stock status (relative
   spawning biomass) for the base model and alternative sensitivity runs
   representing changing key parameters. See
   Figure~\ref{fig:main-biomass-base-alternative-1} for sensitivity descriptions.}
@@ -953,7 +953,7 @@ plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp2[[1]],
                        rev_colors = TRUE)
 @
 \end{center}
-\caption{MCMC estimates of the fit to the biomass index for the base model and alternative sensitivity runs that represent changes in data. See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
+\caption{MCMC estimates of the fit to the acoustic survey biomass time series for the base model and alternative sensitivity runs that represent changes in data. See Figure~\ref{fig:main-biomass-base-alternative-2} for sensitivity descriptions.}
 \label{fig:main-index-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -970,7 +970,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[3]],
              rev_colors = TRUE)
 @
 \end{center}
-\caption{MCMC estimates of spawning biomass for the base model and alternative sensitivity runs representing different standard deviations ($\Phi$) associated with time-varying selectivity.}
+\caption{MCMC estimates of spawning biomass for the base model and alternative sensitivity runs representing different standard deviations ($\Phi$) associated with time-varying selectivity. Standard deviations examined are below (0.21 and 0.70) and above (2.10) the base model value of 1.4.}
 \label{fig:main-biomass-base-alternative-4}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1052,7 +1052,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[4]],
              rev_colors = TRUE)
 @
 \end{center}
-\caption{MCMC estimates of spawning biomass for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6).}
+\caption{MCMC estimates of spawning biomass for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6), and constraining recruitment in the model such that recruitment deviations sum to zero.}
 \label{fig:main-biomass-base-alternative-6}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1069,7 +1069,7 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[4]],
 @
 \end{center}
 %\vspace{0mm}
-\caption{MCMC estimates of stock status for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6).}
+\caption{MCMC estimates of stock status for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6), and constraining recruitment in the model such that recruitment deviations sum to zero.}
 \label{fig:main-status-base-alternative-6}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1086,7 +1086,7 @@ plot_recruitment(d_obj = d_obj_sens_recr[[4]],
                  rev_colors = TRUE)
 @
 \end{center}
-\caption{MCMC estimates of recruitment for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6).}
+\caption{MCMC estimates of recruitment for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6), and constraining recruitment in the model such that recruitment deviations sum to zero.}
 \label{fig:main-recruit-base-alternative-6}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1102,7 +1102,7 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[4]],
              rev_colors = TRUE)
 @
 \end{center}
-\caption{MCMC estimates of recruitment deviations for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6).}
+\caption{MCMC estimates of recruitment deviations for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6), and constraining recruitment in the model such that recruitment deviations sum to zero.}
 \label{fig:main-recruit-devs-base-alternative-6}
 \end{figure}
 
@@ -1130,7 +1130,7 @@ cowplot::plot_grid(plotlist = plist,
                    ncol = 1)
 @
 \end{center}
-\caption{Estimates of spawning biomass at the start of each year (top) and recruitment (bottom) for the base model and retrospective runs (based on MCMC model runs).}
+\caption{Estimates of spawning biomass at the start of each year (top) and recruitment (bottom) for the base model and 5-year retrospective runs (based on MCMC model runs).}
 \label{fig:main-biomass-recruitment-retrospective}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1147,8 +1147,8 @@ make_squid_plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{** Retrospective analysis of recruitment deviations from MCMC models over the last
-  \Sexpr{length(retro_cohorts) + 1} years. Recruitment deviations are
+\caption{Retrospective analysis of recruitment deviations from MCMC models over the last
+  \Sexpr{length(retro_cohorts)} years. Recruitment deviations are
   the median log-scale differences between recruitment estimated by the model
   and expected recruitment from the spawner-recruit relationship.
   Age-0 recruitment deviations are non-zero because MCMC allows for
@@ -1158,8 +1158,7 @@ make_squid_plot(base_model,
   birth year marked at the right of each color-coded line.
   For example, the right-most point for the \Sexpr{assess_yr - 8} cohort shows the
   cohort at age-8 (i.e., at the start of \Sexpr{assess_yr}, which represents
-  the base model and includes data to \Sexpr{assess_yr - 1} because
-  data collection ends December~31). The next point
+  the base model and includes data through \Sexpr{assess_yr - 1}). The next point
   to the left is the \Sexpr{assess_yr - 8} cohort at age-7, calculated by
   removing one year of data (so includes data up to \Sexpr{assess_yr - 2}).
   Thus, models are fit to data available only up to the start of the year in which
@@ -1199,7 +1198,7 @@ make.assessment.history.plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{** Summary of historical \fishname\ assessment estimates of spawning
+\caption{Summary of historical \fishname\ assessment estimates of spawning
   biomass. Estimates are MLEs or MCMC medians depending on the model structure.
   Shading represents the 95\% credible interval from the
   \Sexpr{end_yr} base model.}

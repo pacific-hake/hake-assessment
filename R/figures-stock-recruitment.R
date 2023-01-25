@@ -31,7 +31,7 @@ make.mcmc.sr.variability.plot <- function(model,
   ymax <- 7
   r.vec <- seq(0, ymax, length=1000)
   sigma_R <- model$sigma_R_in
-  meanlog <- (-sigma_R ^ 2) / 2
+  meanlog <- (sigma_R ^ 2) / 2
   dlnorm.vec <- dlnorm(x = r.vec, meanlog = meanlog , sdlog = sigma_R)
 
   ## Note: to check that this parameterization seems right,
