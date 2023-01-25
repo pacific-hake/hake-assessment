@@ -12,6 +12,8 @@
 #' @param leg_pos The position of the legend inside the plot. If `NULL`,
 #' `NA`, or `none`, the legend will not be shown
 #' @param leg_font_size The legend font size
+#' @param axis_title_font_size Size of the font for the X and Y axis labels
+#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
 #' @param point_size Size of all points shownin plot
 #' @param line_width Width of all lines on the plot
 #' @param d_obj If not `NULL` this is a list which has been
@@ -25,18 +27,16 @@
 plot_rel_biomass <- function(model_lst = NULL,
                              model_names,
                              xlim = c(1966, year(Sys.time())),
-                             x_breaks = c(1966,
-                                          seq(1970,
-                                              # Current decade, i.e. 2020
-                                              round(year(Sys.time()), -1),
-                                              by = 5),
-                                          year(Sys.time())),
+                             x_breaks = xlim[1]:xlim[2],
+                             x_labs_mod = 5,
                              x_expansion = 3,
                              ylim = c(0, 3.5),
                              alpha = 0.1,
                              leg_pos = c(0.65, 0.83),
                              leg_ncol = 1,
                              leg_font_size = 12,
+                             axis_title_font_size = 14,
+                             axis_tick_font_size = 11,
                              point_size = 2,
                              point_shape = 16,
                              line_width = 1,
@@ -54,6 +54,22 @@ plot_rel_biomass <- function(model_lst = NULL,
     }
     d_obj <- create_group_df_biomass(model_lst, model_names, rel = TRUE)
   }
+
+  # Remove labels for the minor x-axis ticks
+  x_labels <- NULL
+  for(i in x_breaks){
+    if(i %% x_labs_mod == 0){
+      x_labels <- c(x_labels, i)
+    }else{
+      x_labels <- c(x_labels, "")
+    }
+  }
+  # X-axis tick mark lengths adjusted here
+  x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
+  top_y_pos = 0
+  bot_y_pos = - (ylim[2] - ylim[1]) / 50
+  custom_ticks <- tibble(group = x_breaks_nth,
+                         y_end = bot_y_pos)
 
   y_breaks <- c(0, 0.1, 0.4, 0.5, 1.0)
   y_labels <- expression("0", "0.1B"[0], "0.4B"[0], "0.5", "B"[0])
@@ -97,7 +113,8 @@ plot_rel_biomass <- function(model_lst = NULL,
     scale_fill_manual(values = ribbon_colors) +
     scale_color_manual(values = colors) +
     coord_cartesian(xlim = xlim,
-                    ylim = ylim) +
+                    ylim = ylim,
+                    clip = "off") +
     geom_ribbon(alpha = alpha,
                 linetype = "dotted") +
     geom_line(linewidth = line_width) +
@@ -117,7 +134,7 @@ plot_rel_biomass <- function(model_lst = NULL,
                linewidth = 0.52) +
     scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
-                       labels = x_breaks) +
+                       labels = x_labels) +
     scale_y_continuous(expand = c(0, 0),
                        breaks = y_breaks,
                        labels = y_labels) +
@@ -126,12 +143,43 @@ plot_rel_biomass <- function(model_lst = NULL,
           axis.text.y = element_text(color = y_colors),
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
-          plot.margin = margin(12, 12, 0, 0)) +
+          plot.margin = margin(12, 12, 7, 0)) +
     labs(x = "Year",
          y = ifelse(wrap_y_label,
                     expression(atop("Relative Spawning Biomass",
                                     paste("("~B[t]/B[0]~")"))),
                     expression(paste("Relative Spawning Biomass ("~B[t]/B[0]~")"))))
+
+  # Add major tick marks
+  g <- g +
+    geom_linerange(data = custom_ticks,
+                   aes(x = group,
+                       ymax = 0,
+                       ymin = y_end),
+                   size = 0.5,
+                   inherit.aes = FALSE)
+
+  g <- g +
+    theme(axis.text.x = element_text(color = "grey20",
+                                     size = axis_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = -3,
+                                     face = "plain"),
+          axis.text.y = element_text(color = "grey20",
+                                     size = axis_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = "grey20",
+                                      size = axis_title_font_size,
+                                      angle = 0,
+                                      vjust = -2,
+                                      face = "plain"),
+          axis.title.y = element_text(color = "grey20",
+                                      size = axis_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
 
   if(is.null(leg_pos) || is.na(leg_pos)){
     g <- g +
@@ -142,6 +190,16 @@ plot_rel_biomass <- function(model_lst = NULL,
       guides(fill = guide_legend(ncol = leg_ncol),
              color = guide_legend(ncol = leg_ncol))
   }
+
+  # Draw a white rectangle over the top of the plot, obscuring any
+  # unclipped plot parts. Clipping has to be off to allow different size
+  # tick marks. `grid` package used here
+  g <- g +
+    annotation_custom(grob = rectGrob(gp = gpar(col = NA, fill = "white")),
+                      xmin = xlim[1],
+                      xmax = xlim[2],
+                      ymin = ylim[2],
+                      ymax = ylim[2] + 2)
 
   g
 }
