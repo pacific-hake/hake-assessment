@@ -1109,33 +1109,6 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[4]],
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-biomass-recruitment-retrospective, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass and recruitment vary for retrospective runs">>=
-
-plist <- list()
-plist[[1]] <- plot_biomass(d_obj = d_obj_retro_biomass,
-                           leg_font_size = 9,
-                           x_expansion = 4,
-                           leg_pos = c(0.6, 0.89),
-                           leg_ncol = 2,
-                           alpha = 0.1,
-                           rev_colors = TRUE)
-plist[[2]] <- plot_recruitment(d_obj = d_obj_retro_recr,
-                               leg_pos = "none",
-                               rev_colors = TRUE)
-
-cowplot::plot_grid(plotlist = plist,
-                   nrow = 2,
-                   ncol = 1)
-@
-\end{center}
-\caption{Estimates of spawning biomass at the start of each year (top) and recruitment (bottom) for the base model and 5-year retrospective runs (based on MCMC model runs).}
-\label{fig:main-biomass-recruitment-retrospective}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
 <<main-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how recruitment estimates for age-0 fish tend to be small but positive to allow for forecasted landings and that information is not typically available to estimate recruitments until fish are of age three. Estimates of larger, in absolute terms, deviates take a longer time to stabilize.">>=
 retro_cohorts <- (end_yr - 11):(end_yr - 2)
 make_squid_plot(base_model,
@@ -1182,6 +1155,33 @@ make_squid_plot(base_model,
   Figure \ref{fig:main-retrospective-recruitment} scaled
   relative to the most recent estimate of the strength of each cohort.}
 \label{fig:main-relative-retrospective-recruitment}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main-biomass-recruitment-retrospective, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how spawning biomass and recruitment vary for retrospective runs">>=
+
+plist <- list()
+plist[[1]] <- plot_biomass(d_obj = d_obj_retro_biomass,
+                           leg_font_size = 9,
+                           x_expansion = 4,
+                           leg_pos = c(0.6, 0.89),
+                           leg_ncol = 2,
+                           alpha = 0.1,
+                           rev_colors = TRUE)
+plist[[2]] <- plot_recruitment(d_obj = d_obj_retro_recr,
+                               leg_pos = "none",
+                               rev_colors = TRUE)
+
+cowplot::plot_grid(plotlist = plist,
+                   nrow = 2,
+                   ncol = 1)
+@
+\end{center}
+\caption{Estimates of spawning biomass at the start of each year (top) and recruitment (bottom) for the base model and 5-year retrospective runs (based on MCMC model runs).}
+\label{fig:main-biomass-recruitment-retrospective}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
