@@ -61,6 +61,11 @@ plot_bubbles <- function(d,
                          legend.title = "Proportion",
                          ...){
 
+  if(!is.null(xlim[1])){
+    d <- d |>
+      filter(Year %in% xlim[1]:xlim[2])
+  }
+
   g <- ggplot(d, aes(x = Year, y = Age, size = Proportion)) +
     geom_point(alpha = alpha, ...) +
     scale_x_continuous(breaks = seq(from = xlim[1], to = xlim[2], by = by),
