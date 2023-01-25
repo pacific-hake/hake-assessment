@@ -1,7 +1,7 @@
 % main-tables.rnw
 
 \section{TABLES} \label{sec:tables}
-\vspace{10mm}
+\subsection{Data}
 <<catches-us, results='asis', echo=FALSE>>=
 make_catch_table(ct,
                  start_yr = start_yr,
@@ -266,6 +266,7 @@ make.maturity.samples.table(ovary.samples,
 @
 \clearpage
 
+\subsection{Base model}
 <<main-parameters-estimated-summary-table, results='asis', echo=FALSE>>=
 make.parameters.estimated.summary.table(
   base_model,
@@ -613,6 +614,7 @@ make.risk.table(base_model,
                 space.size = 13)
 @
 
+\subsection{Sensitivity models}
 \begin{landscape}
 \pagestyle{mylandscape}
 \centering
@@ -652,6 +654,7 @@ param_est_table(sens_models[[3]],
 
 \clearpage
 
+\subsection{Retrospective models}
 <<main-parameter-estimates-retro, results='asis', echo=FALSE>>=
 param_est_table(retro.list,
                 model.names = retro.model.names,
