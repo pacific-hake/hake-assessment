@@ -711,8 +711,9 @@ ages for selectivity were once again investigated this year as a sensitivity ana
 
 \subsubsection{Age composition likelihood}\label{sec:data-age-comp-likelihood}
 
-Since 2018, the assessment has used a Dirichlet-multinomial (D-M)
-likelihood \citep{ThorsonEtAl2017Dirichlet} to fit the age-composition data.
+Since 2018, the assessment has used the linear formulation of the
+Dirichlet-multinomial (D-M) likelihood \citep{ThorsonEtAl2017Dirichlet}
+to fit the age-composition data.
 Estimated parameters $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$ serve to
 automatically adjust the weight given to
 the fishery- and the survey-composition data, respectively.
@@ -729,7 +730,7 @@ age compositions be given the same weight as the base model.
 Note that the following description holds for both the survey data and the
 fishery data, with $\theta$ equal to $\theta_{\text{surv}}$ or $\theta_{\text{fish}}$.
 
-The likelihood function for the D-M likelihood (see Equation 10 of
+The likelihood function for the linear parameterization of teh D-M likelihood (see Equation 10 of
 \citet{ThorsonEtAl2017Dirichlet}) is
 \eb
 \text{L}(\bm{\pi},\theta|\bm{\tilde{\pi}},n) =
@@ -745,8 +746,12 @@ by the model,
 $\bm{\tilde{\pi}}$ and $\bm{\pi}$ designate the vectors of these proportions,
 $A_{\text{max}}$ is the maximum age in the model,
 and $n$ is the input sample size. The parameter $\theta$ is defined as a
-linear scaling parameter such that $\theta n$ is the variance-inflation parameter
-of the D-M distribution.
+linear scaling parameter such that $\theta n$ is the variance-inflation
+parameter of the D-M distribution. The linear parameterization has been shown to
+be superior over the saturation parameterization in simulation testing
+\citep{FischAhrensEtAl2022} and thus corraborates our decision to continue to
+use it even though the saturation parameterization is available in Stock
+Synthesis.
 
 The effective sample size associated with this likelihood is given by
 \eb
