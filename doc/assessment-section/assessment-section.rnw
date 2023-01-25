@@ -1543,12 +1543,11 @@ structural uncertainty of the base model by investigating how changes to the
 model affected the estimated values and derived quantities. All sensitivity analyses
 compared MCMC posteriors that were created using the {\tt adnuts} R package
 \citep{Monnahan2018, Monnahan2019} to implement the NUTS
-algorithm with a similar number of posterior samples as the base model. A comparison of the
-parameter estimates between the main sensitivity models and those from the base model are shown
+algorithm with a similar number of posterior samples as the base model. Comparisons of the
+parameter estimates between the main sensitivity models with those from the base model are shown
 in Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-2}.
 Many additional sensitivity runs were conducted when developing and testing the
-\Sexpr{assess_yr} base model. Here we focus on the main sensitivities which include
-the following:
+\Sexpr{assess_yr} base model. Here we focus on the main sensitivities which are:
 
 %**update list (and see earlier also I think)
 
