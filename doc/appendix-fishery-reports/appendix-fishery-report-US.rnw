@@ -8,7 +8,7 @@
 
 Total U.S. harvest in the 2022 whiting fishery was 290,900.38~t which is 78.3\% of the U.S. allocation
 of 371,433~t. This is a higher utilization rate than recent years, however, the utilization rate is
-consistent with the industry’s pre-season expectations for harvest in 2022.
+consistent with the industry's pre-season expectations for harvest in 2022.
 
 {\bf At-Sea Fishery}
 The U.S. at-sea fishery, comprised of the Mothership (MS) and Catcher Processor (CP) sectors,
@@ -24,14 +24,14 @@ in the spring and to start earlier in the fall.
 {\bf Shoreside (SS) and Mothership Catcher Vessels (CV)}
 Fishing in the U.S. shoreside sector got off to a slow start in 2022. The season was characterized
 as spotty throughout most of the year, and overall, shoreside catch was the lowest it's been
-in several years, harvesting only 66.9% of its available allocation. While this is a considerably
+in several years, harvesting only 66.9\% of its available allocation. While this is a considerably
 lower SS utilization rate than recent years, this lower catch is reflective of tradeoffs associated
 with increased effort in other sectors and the fishing conditions and locations of fish concentrations
 relative to markets, not coastwide fish abundance. There is significant overlap of catcher vessels
 between the MS and SS sectors and increased MS effort reduced SS effort resulting in a slower
-start to the SS season. In addition, the hake also seemed "slow to show up" near shoreside markets
+start to the SS season. In addition, the hake also seemed ``slow to show up'' near shoreside markets
 particularly to the north, possibly due to the environmental conditions reported earlier this
-year – cold (and often highly variable) surface temps, a poorly formed Pacific High, late wind
+year -- cold (and often highly variable) surface temps, a poorly formed Pacific High, late wind
 patterns, and late upwelling. The scratchy fishing at the start of the season for the SS catcher
 vessels improved by July as the hake appeared to move north. However, the fishing conditions did
 not improve off Washington until later in the summer.
@@ -44,7 +44,8 @@ their fall hake plans, while another MS breakdown down prevented completion of t
 remaining 1.5 trips.
 
 {\bf Tribal Fishery}
-Tribal effort was sporadic through the summer and fall. Fish abundance in the Makah Tribal U&A was
+Tribal effort was sporadic through the summer and fall. Fish abundance in the
+Makah Tribal usual and accustomed fishing grounds was
 better than past years and exhibited more normal patterns of abundance and movement through
 the area following the deep water and moving northward, often quickly, across the US-Canada border.
 Total Tribal harvest continued to be limited by catcher vessel availability and availability
@@ -58,9 +59,9 @@ was 450--550 grams, with smaller (less than 300 gram) and larger (more than 600 
 The SS sector reported a good size distribution of fish with most areas reporting average fish size
 of 550 grams or larger. Early in the spring, the fish were being found in larger concentrations
 further to the south. A few MS fleets made trips into federal waters off California in the early
-Spring (despite fuel costs), with their MS waiting at the OR/CA border – hake were reported
+Spring (despite fuel costs), with their MS waiting at the OR/CA border -- hake were reported
 to be abundant, catch per unit effort (CPUE) high, and fish size was on the smaller to moderate
-size. SS deliveries during this time were hampered by fuel costs and the vessels’ ability to
+size. SS deliveries during this time were hampered by fuel costs and the vessels' ability to
 run up and down the coast often great distances from their SS market.
 
 Throughout the season the SS sector reported over 90\% of fish were over 400 grams. As reported by
@@ -75,7 +76,7 @@ avoidance efforts on rockfish and Chinook salmon. Incidental catch of warmer wat
 and Pacific mackerels, were lower than amounts observed in 2021, but encounters were still higher
 than normal, especially given the colder water temperatures. Shad bycatch was also notably higher
 than in recent years.
- 
+
 Large concentrations of small sablefish were again reported by all sectors and had to be actively
 avoided, especially early in the season. There are a couple of young, very abundant year classes
 of sablefish up in the water column. There were many reports of vessels moving from productive
@@ -87,17 +88,16 @@ for cleaner fishing on larger fish for the vessels that were capable of doing so
  \centering
  \caption{Final allocations (after reallocation of tribal quota) and catch totals (metric tons, mt). Note that
    402,646 mt U.S. TAC is reduced by 750 mt for research and incidental catch set. Minor differences in catch
-   in this table compared to that used in the stock assessment can occur due to the timing of data extractions.
-   aside.} 
+   in this table compared to that used in the stock assessment can occur due to the timing of data extractions.}
  \label{tab:us-ap-catch}
  \begingroup\fontsize{12}{13}\selectfont
  \begin{tabular}{lrrrrr}
    \hline
-   & \textbf{U.S. TAC} & \textbf{Shoreside (SS)} & \textbf{Catcher Processor (CP)} & \textbf{Mothership (MS)} & \textbf{Tribal} \\ 
+   & \textbf{U.S. TAC} & \textbf{Shoreside (SS)} & \textbf{Catcher Processor (CP)} & \textbf{Mothership (MS)} & \textbf{Tribal} \\
    \hline
- \textbf{Allocation (mt)} & 401,896 & 156,002 & 126,287 & 89,144 & 30,463 \\ 
-   \textbf{Catch (mt)} & 290,901 & 104,323 & 126,247 & 59,157 & 1,174 \\ 
-   \textbf{\% Utilization} & 72.4\% & 66.9\% & 100\% & 66.4\% & 3.9\% \\ 
+ \textbf{Allocation (mt)} & 401,896 & 156,002 & 126,287 & 89,144 & 30,463 \\
+   \textbf{Catch (mt)} & 290,901 & 104,323 & 126,247 & 59,157 & 1,174 \\
+   \textbf{\% Utilization} & 72.4\% & 66.9\% & 100\% & 66.4\% & 3.9\% \\
     \hline
  \end{tabular}
  \endgroup
