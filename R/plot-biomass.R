@@ -20,6 +20,12 @@
 #' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
 #' @param point_size Size of all points shown in plot
 #' @param line_width Width of all lines on the plot
+#' @param clip_cover There is a white rectangle drawn on top of the plot
+#' to cover any of the plot that made it outside the plot area. `clip` has to
+#' be set to `off` for the major x-axis tick marks to work, So, this is required.
+#' If you make the plot in a grid, the rectangle may overwrite some of the plot
+#' above it, and this number will have to be changed through trial and error
+#' until you cannot see the white rectangle anymore.
 #' @param single_point_color Point color for the case where there is only
 #' one model to plot
 #' @param single_line_color Line color for the case where there is only
@@ -58,6 +64,7 @@ plot_biomass <- function(model_lst = NULL,
                          point_size = 2.5,
                          point_shape = 16,
                          line_width = 1,
+                         clip_cover = 2,
                          single_line_color = "black",
                          single_ribbon_color = "blue",
                          rev_colors = FALSE,
@@ -209,7 +216,7 @@ plot_biomass <- function(model_lst = NULL,
                       xmin = xlim[1],
                       xmax = xlim[2],
                       ymin = ylim[2],
-                      ymax = ylim[2] + 2)
+                      ymax = ylim[2] + clip_cover)
 
   g
 }

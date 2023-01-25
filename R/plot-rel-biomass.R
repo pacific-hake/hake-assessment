@@ -19,6 +19,7 @@ plot_rel_biomass <- function(model_lst = NULL,
                              point_size = 2,
                              point_shape = 16,
                              line_width = 1,
+                             clip_cover = 2,
                              single_line_color = "black",
                              single_ribbon_color = "blue",
                              rev_colors = FALSE,
@@ -179,7 +180,7 @@ plot_rel_biomass <- function(model_lst = NULL,
                       xmin = xlim[1],
                       xmax = xlim[2],
                       ymin = ylim[2],
-                      ymax = ylim[2] + 2)
+                      ymax = ylim[2] + clip_cover)
 
   g
 }

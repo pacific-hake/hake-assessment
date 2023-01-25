@@ -21,6 +21,7 @@ plot_recruitment <- function(model_lst = NULL,
                              axis_tick_font_size = 11,
                              point_size = 1.5,
                              line_width = 0.5,
+                             clip_cover = 2,
                              single_point_color = "black",
                              single_line_color = "black",
                              crossbar_width = 0,
@@ -219,7 +220,7 @@ plot_recruitment <- function(model_lst = NULL,
                       xmin = xlim[1],
                       xmax = xlim[2],
                       ymin = ylim[2],
-                      ymax = ylim[2] + 2)
+                      ymax = ylim[2] + clip_cover)
 
   g
 }

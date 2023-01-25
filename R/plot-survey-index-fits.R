@@ -1,31 +1,7 @@
 #' Plot survey index fits from MCMC output for one or more models,
 #' for one of the acoustic surveys
 #'
-#' @param model_lst A list of models, each created by [create_rds_file()]
-#' @param model_names A vector of model names,the same length as `models_lst`
-#' @param survey_type The type of survey, must be one of `age1` or `age2`.
-#' `age2` means age 2+ acoustic survey and `age1``is the age 1 acoustic survey
-#' @param xlim The year limits to plot
-#' @param x_breaks The year value tick marks to show for the x axis
-#' @param ylim The depletion limits to plot
-#' @param y_breaks The depletion value tick marks to show for the y axis
-#' @param y_labels The depletion labels to show for the y axis tick marks
-#' @param alpha The transparency for all ribbons
-#' @param leg_pos The position of the legend inside the plot. If `NULL`,
-#' `NA`, or `none`, the legend will not be shown
-#' @param leg_ncol The number of columns to show in the legend
-#' @param leg_font_size The legend font size
-#' @param point_size Size of all points shownin plot
-#' @param line_width Width of all lines on the plot
-#' @param dodge_val The amount to offset the lines from each other in the
-#' case of multiple models
-#' @param d_obj If not `NULL` this is a list which has been
-#' pre-processed to contain all models in a format that is ready to plot.
-#' Essentially the first steps of this function have been replicated
-#' outside the function (The code inside the `if(is.null(d_obj))`)
-#' is done to stop the Rmd process from taking forever
-#'
-#' @return a [ggplot2::ggplot()] object
+#' @rdname plot_biomass
 #' @export
 plot_survey_index_fits <- function(
     model_lst = NULL,
@@ -47,6 +23,7 @@ plot_survey_index_fits <- function(
     axis_tick_font_size = 11,
     point_size = 1.5,
     line_width = 0.5,
+    clip_cover = 2,
     rev_colors = FALSE,
     dodge_val = 0.5,
     d_obj = NULL){
@@ -175,7 +152,7 @@ plot_survey_index_fits <- function(
                       xmin = xlim[1],
                       xmax = xlim[2],
                       ymin = ylim[2],
-                      ymax = ylim[2] + 2)
+                      ymax = ylim[2] + clip_cover)
 
   g
 }

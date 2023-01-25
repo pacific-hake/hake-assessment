@@ -309,25 +309,28 @@ make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1, highlight = 5)
 plist <- list()
 plist[[1]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
-                   x_breaks = c(seq(1970,
-                                    round(year(Sys.time()), -1),
-                                    by = 10)),
                    ylim = c(0, 2.5),
+                   x_labs_mod = 10,
+                   clip_cover = 0.45,
                    leg_pos = "none")
 plist[[2]] <-
   plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
                leg_pos = "none",
+               x_labs_mod = 10,
+               clip_cover = 0.25,
                line_width = 0.25)
 
 plist[[3]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
                          rev_colors = FALSE,
+                         clip_cover = 0.25,
                          leg_pos = "none")
 
 plist[[4]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
                          xlim = c(1995, 2022),
-                         ylim = c(0, 6.5),
+                         ylim = c(0, 11),
+                         clip_cover = 0.25,
                          rev_colors = FALSE,
                          leg_pos = "none")
 
