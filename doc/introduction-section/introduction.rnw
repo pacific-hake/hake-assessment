@@ -141,7 +141,7 @@ data, which facilitates an `Ecosystem Approach to Fisheries Management'
 Nonetheless, ongoing research investigating spatiotemporal drivers of weight-at-age will
 provide more insights into the specific mechanisms affecting changes in growth,
 which will enable condition-specific prediction capabilities (e.g., assumptions of
-growth, or weight-at-age, during forecast years). 
+growth, or weight-at-age, during forecast years).
 
 \subsection{Management of \fishname\ }\label{sec:intro-management}
 
@@ -220,25 +220,26 @@ to avoid and reduce bycatch of salmon and rockfish.
 
 Canadian groundfish managers distribute their portion of the coast-wide TAC as quota to
 individual license holders. In \Sexpr{last_data_yr}, Canadian hake fishermen
-were allocated a TAC of \Sexpr{last.year.can.tac}~t, of which included
-\Sexpr{last.year.can.carryover}~t of uncaught carryover fish from
-\Sexpr{last_data_yr - 1}. Canadian priority lies with the domestic fishery, but
+were allocated a TAC of \Sexpr{last.year.can.tac}~t, which did not include any carryover
+quota.
+%of which included
+%\Sexpr{last.year.can.carryover}~t of uncaught carryover fish from
+%\Sexpr{last_data_yr - 1}.
+Canadian priority lies with the domestic fishery, but
 when there is determined to be an excess of fish for which there is not enough
 domestic processing capacity, fisheries managers give consideration to a
 Joint-Venture fishery in which foreign processor vessels are allowed to accept
 codends from Canadian catcher vessels while at sea.
 The last year a Joint-Venture fishery was conducted was in \Sexpr{latest.year.can.jv}.
 
-** In \Sexpr{last_data_yr}, all Canadian \fishname\ trips were subject to 100\%
-observer coverage, by electronic monitoring for the shoreside component
-of the domestic fishery or on-board observer for the freezer-trawler
-component. However, due to staffing issues, there were no observers available to
-board freezer-trawler vessels for the entirety of the fishing season. All
-shoreside landings are usually subject to 100\% verification by the groundfish
-Dockside Monitoring Program, but because of staffing
-issues only four samples were taken in 2021.
+In \Sexpr{last_data_yr}, all Canadian \fishname\ trips were subject to 100\%
+observer coverage, by electronic monitoring for both the shoreside component
+of the domestic fishery and the freezer-trawler component. There were once again
+no on-board observers available for the entirety of the fishing season. This
+is expected to be the situation moving forward, with no plans for observers
+to board any of the Canadian groundfish vessels.
 
-** Retention of all catch,
+Retention of all catch,
 with the exception of prohibited species, was mandatory. The retention of
 groundfish other than Sablefish, Mackerel, Walleye Pollock, and Pacific Halibut
 on dedicated \fishname\ trips using electronic monitoring was
