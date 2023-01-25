@@ -941,7 +941,7 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 %% \frame{\frametitle{Acoustic backscatter (red) attributed to age-1 Pacific Hake}
 %% \bc
 %%   \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-%%   \includegraphics[height=2.9in]{../../../doc/main-figures/age1hake_03-19_sA_squareroot_bin_narrow-panel_bluergray}
+%%   \includegraphics[height=2.9in]{../../../doc/main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_bluergray}
 %%  \ec
 %% }
 
