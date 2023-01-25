@@ -190,7 +190,7 @@ fishing fleets or the number of trawl sets in the research surveys (see Section~
 The {\tt adnuts} R package \citep{Monnahan2018} was used to apply the NUTS algorithm producing
 \Sexpr{f(num.mcmc.samples)} MCMC samples which describe posterior distributions for model
 parameters and derived quantities. This is a four-fold increase in samples from the
-2020 \citep{JTC2020} and earlier assessments. The number of samples used for bridging models, sensitivity models, retrospective models, and forecasting scenarios was also set to \Sexpr{f(num.mcmc.samples)}.
+2020 \citep{JTC2020} and earlier assessments. The number of samples used for bridging models, sensitivity models, and retrospective models were also set to \Sexpr{f(num.mcmc.samples)}.
 Medians (50\% quantiles) are reported together with the
 bounds of 95\% credibility intervals calculated as
 the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
@@ -216,9 +216,9 @@ The server was set up with user account for each JTC member, with a remote deskt
 
 The entire server is automatically backed up on a mirrored RAID device once per day, with model input files also backed up to a Google drive. If everything were lost the models could be re-run very quickly and the document regenerated in full.
 
-Scripts were written in the Bash shell scripting language to allow Operating system level control and monitoring over parallel model runs. Each run was also parallelized internally with 16 chains per model; that parallelism was controlled from within R using the {\tt future} and {\tt furrr} packages. With each model needing 16 CPUs, the JTC were able to run 4 models at a time, taking up 64 CPUs and leaving 16 available for use in writing and building the document. The total runtime for these models is now on the order of 1-3 hours, depending on the CPU and memory load on the server at the time.
+Scripts were written in the Bash shell scripting language to allow operating system level control and monitoring over parallel model runs. Each run was also parallelized internally with 16 chains per model; that parallelism was controlled from within R using the {\tt future} and {\tt furrr} packages. With each model needing 16 CPUs, the JTC were able to run 4 models at a time, taking up 64 CPUs and leaving 16 available for use in writing and building the document. The total runtime for these models is now on the order of 1-3 hours, depending on the CPU and memory load on the server at the time.
 
-The server setup allowed all JTC members to work together in a way not possible before. This integrated setup will ensure an ideal workflow, with a centralized system housing all model runs and document software.
+The server setup allowed all JTC members to work together in a way not possible before. This integrated setup will ensure an ideal workflow in the coming years, with a centralized system housing all model runs and document software.
 
 Calculations and figures from Stock Synthesis output were performed using
 \Sexpr{R.Version()$version.string} and many R \citep{R2021} packages (in
