@@ -267,20 +267,20 @@ processing industry in British Columbia in 2019, with an exported value of
 CA\$100~million in product mainly
 to Ukraine, China,  Lithuania, and South Africa \citep{DFO2021}.
 
-% Manual updated 2022; Email Erin Steiner
-In the US, over US\$80~million in wages is estimated to have been paid to employees in 2019
+% Manual updated 2023; Email Erin Steiner
+In the US, over \$75.2 million in wages was estimated to have been paid to employees in 2020
 % (\href{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}
 \href{https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/}{(www.noaa.gov)}.
-This includes wages paid to crew and captains fishing on catcher vessels that deliver shoreside
-and at-sea to motherships, workers in shore-based processing facilities, crew, captains, and workers
-on catcher-processor vessels, and workers on mothership vessels. The exported value of \fishname\ was
-US\$151~million in 2019, including to Ukraine, Nigeria, and Netherlands, which make up about 54\% of the total
-% (\href{https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321:::::}
+This includes wages paid to crew and captains fishing on catcher vessels that
+deliver shoreside and at-sea to motherships, workers in shore-based processing
+facilities, crew, captains, and workers on catcher-processor vessels, and
+workers on mothership vessels. The exported value of \fishname\ was U.S.
+\$127~million in 2020, including to Ukraine, Nigeria, and Italy, which make up
+about 57\% of the total exports
 \href{https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321}{(www.noaa.gov)}.
-The total economic impact of the \fishname\ fishery on the U.S. West Coast in 2019 was
-US\$311~million in income and 4,200 jobs.
+The total economic impacts of the \fishname\ fishery on the U.S. West Coast in
+2020 was U.S. \$289 million in income and 3,950 U.S. jobs.
 
-\subsubsection{Overview of the fisheries in \Sexpr{last_data_yr}}\label{sec:intro-fisheries-overview}
 The Joint Management Committee (JMC) determined an adjusted (for carryovers)
 coast-wide TAC of \Sexpr{last.year.tac}~t for \Sexpr{last_data_yr}. The U.S.
 catch target was set at \Sexpr{last.year.us.tac}~t and the Canadian catch target
@@ -296,7 +296,7 @@ reports (Appendicies~\ref{chap:us-fishery-report}--\ref{chap:canada-fishery-repo
 
 % \newpage % kludge to avoid dangling heading:
 
-\subsubsub{United States}
+\subsubsection{Fisheries for \fishname\ in the United States}\label{sec:intro-fisheries-us}
 
 The U.S. specified catch target
 %adjusted allocation
@@ -383,7 +383,7 @@ age-\Sexpr{us.age.4.prop.age.shore} (\Sexpr{us.age.4.prop.shore}\%)
 
 % \newpage % kludge to avoid dangling heading:
 
-\subsubsub{Canada}
+\subsubsection{Fisheries for \fishname\ in Canada}\label{sec:intro-fisheries-can}
 
 % Manual done 2023 KFJ
 The \Sexpr{last_data_yr} Canadian \fishname\ domestic fishery removed
