@@ -1635,7 +1635,7 @@ In addition to allowing a higher estimated value for
 natural mortality, these $M$ sensitivity models increased the overall scale of
 the population, the estimated stock status relative to $B_0$ prior to 1990, the
 uncertainty in spawning biomass on both absolute and relative scales, halved estimated relative
-fishing intensity in \Sexpr{end_yr-1}, and doubled equilibrium yield at $\BSPRforty$.
+fishing intensity in \Sexpr{end_yr-1}, and doubled equilibrium yield at $\BSPRforty$
 (Table~\ref{tab:main-parameter-estimates-sens-1} and Figures~\ref{fig:main-biomass-base-alternative-1}
 and~\ref{fig:main-status-base-alternative-1}).
 
@@ -1669,10 +1669,9 @@ However, the high $\sigma_r$ model had a larger difference between the
 spawning biomass at unfished
 equilibrium and the spawning biomass at the initial year of the model
 than the low $\sigma_r$ model
-(Table~\ref{tab:main-parameter-estimates-sens-1} and
-Figures~\ref{fig:main-biomass-base-alternative-1} and
-\ref{fig:main-status-base-alternative-1}). Similar to previous assessments,
-estimates of unfished recruitment ($\log R_0$) and relative spawning biomass are sensitive
+(Figure~\ref{fig:main-status-base-alternative-1}).
+Similar to previous assessments,
+estimates of unfished equilibrium recruitment and relative spawning biomass are sensitive
 to $\sigma_r$, whereas absolute estimates of spawning biomass are relatively insensitive.
 The method of \citet{MethotTaylor2011}
 considers a combination of the variability among the
@@ -1684,7 +1683,7 @@ where $\mbox{Var}(\hat{r})$ is the variance among deviations and
 $\mbox{SE}(\hat{r}_y)$ is the standard error of each estimate. It
 produced a suggested
 $\sigma_r$ of 1.68, which was more similar to the
-base-model value of 1.4 than the 1.77 estimated in the 2021 assessment.
+base-model value of 1.4 than the 1.77 estimated in the \Sexpr{assess_yr-1} assessment.
 %the sigma R calculated values were done by hand using the posteriors.sso file for each model
 %following the above equation using the Main period rec devs
 
@@ -1703,19 +1702,18 @@ for the base model (95\% credible interval
 of \Sexpr{f(100*bratio_curr[1], 1)}--\Sexpr{f(100*bratio_curr[3], 1)}\%) and
 \Sexpr{f(100*bratio_age1[2], 1)}\%
 for the removal of the age-1 index model (95\% credible interval
-of \Sexpr{f(100*bratio_age1[1], 1)}--\Sexpr{f(100*bratio_age1[3], 1)}\%)).
+of \Sexpr{f(100*bratio_age1[1], 1)}--\Sexpr{f(100*bratio_age1[3], 1)}\%).
 This differene is due to the age-1 index providing additonal information on recruitment for cohorts
-associated with recent age-1 indicies (i.e., 2018 and 2020 cohorts detected in the 2019 and 2021 age-1 index).
+associated with recent age-1 indices (i.e., 2018 and 2020 cohorts detected in the 2019 and 2021 age-1 indices).
 In particular, the base model with the age-1 index suggests that the 2020 year class is estimated to be large,
-but not as large as the 2021 and 2022 fishery data alone (i.e., removal of the age-1 index) would otherwise
+but not as large as the 2021 and 2022 fishery data alone (i.e., removing the age-1 index) would otherwise
 suggest (Figure~\ref{fig:main-biomass-base-alternative-2}).
 %The largest changes are for the most recent years where the model without the index
 %has less information about recruitment size.
-**Removing the age-1 index led to minor changes in fit to the acoustic survey estimates, with
-some years showing slight improvement and others a slight deterioration compared to the base
+Removing the age-1 index led to minor changes in fit to the age-2+ survey
+biomass index, with
+2019 showing a slight improvement and 2021 a deterioration compared to the base
 model (Figure~\ref{fig:main-index-base-alternative-2}).
-%For further details and results from the removal of the age-1 survey index sensitivity see
-%Appendix~\ref{chap:age1-survey}.
 
 % section below on composition weighting
 The base model includes a Dirichlet-multinomial likelihood component,
@@ -1756,7 +1754,8 @@ model with the smallest $\Phi$ (0.21) estimates the 2016 and 2020 recruitment de
 the highest of the $\Phi$ sensitivity models (Figure~\ref{fig:main-recruit-devs-base-alternative-4}),
 leading to a large increase in spawning biomass in recent years compared to the base model
 (Figure~\ref{fig:main-biomass-base-alternative-4}).
-**It also provides the worst fit to the most recent survey biomass estimate
+The value $\Phi = 0.21$ also provides the worst fit to the most recent
+age-2+ survey biomass index
 (Figure~\ref{fig:main-index-base-alternative-4}).
 
 The estimated population trends throughout the time series are similar, irrespective of maximum
@@ -1772,12 +1771,12 @@ fluctuations and related dynamics than the choice of age-5.
 
 Constraining deviations from the stock recruitment relationship (i.e., recruitment deviates)
 to sum to zero across the main recruitment period (an assumption used in pre-2020 stock assessments;
-Table~\ref{tab:main-assessment-changes}; \citet{JTC2020}), lead to a very similar spawning
+Table~\ref{tab:main-assessment-changes}; \citealt{JTC2020}), led to a very similar spawning
 biomass trend compared to the base model but increased the estimate of $B_0$ thereby creating
 a downward shift in stock status
 (Figures~\ref{fig:main-biomass-base-alternative-6}-\ref{fig:main-status-base-alternative-6}).
 Recruitment estimates were slightly higher and deviations from the stock recruitment relationship
-were ubiquitously more negative than in the base model
+were ubiquitously slightly more negative than in the base model
 (Figures~\ref{fig:main-recruit-base-alternative-6}-\ref{fig:main-recruit-devs-base-alternative-6}).
 
 % Ageing Error
