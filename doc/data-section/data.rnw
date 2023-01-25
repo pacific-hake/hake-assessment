@@ -1,5 +1,3 @@
-% data.rnw
-
 \section{DATA} \label{sec:data}
 
 Fishery-dependent and fishery-independent data used in this assessment
@@ -84,22 +82,30 @@ Vessels in the U.S. shore-based fishery carry
 observers and are required to retain all catch and bycatch for sampling by plant
 observers. All catches from U.S. at-sea vessels, Canadian Joint-Venture vessels,
 and Canadian freezer trawlers
-are monitored by at-sea observers.
-** This section needs updated by @cgrandin **
-The exception was during 2020 and 2021 when
-there were no observers on Canadian freezer trawlers due to a suite of staffing issues.
-Canadian observers use volume/density
-methods to estimate total catch in each codend and this is used for catch reporting.
-Canadian shoreside landings are monitored using
-at-sea observers or electronic monitoring and
-catch is recorded by
-dockside monitors within the Groundfish Trawl Dockside Monitoring Program
-using total catch weights provided by processing plants.
-Discards are negligible relative to the total fishery catch for all sectors.
+were monitored by at-sea observers from 1996--2019.
+
+In 2020 and 2021 there were no observers on Canadian freezer trawlers due to staffing issues.
+Due to the ongoing staffing issues, the decision was made to stop providing observers on board all Canadian vessels,
+for 2022 and all future groundfish trawl trips. This means there is not currently and will not be
+in the future, any at-sea sampling on board Canadian vessels.
+Canadian managers, scientists, and the sampling contractor,
+Archipelago Marine Research Ltd. (AMR) met in early 2022 to solidify a plan to ensure the ongoing
+sampling of \fishname\ for Canadian trips. The sampling plan which was agreed upon by all parties
+consisted of employees aboard Freezer trawlers freezing two bags of approximately
+50 whole fish from two tows per trip and delivering them to AMR on return to shore.
+The bags are stored by AMR until enough have accumulated to sample in bulk, and
+they sample them over the period of a day or two. This plan ensures that there are individual weights taken for fish from the freezer trawlers, something that was not happening during the at-sea sampling. These weight data give more Canadian input into the weight-at-age matrix.
+The shoreside vessels continue to make landings with sampling happening on shore at the
+time of landing.
+
+Canadian trawl catches are monitored autonomously at-sea by cameras on
+board vessels. Catch is recorded by dockside samplers within the Groundfish
+Trawl Dockside Monitoring Program using total catch weights provided by processing
+plants. Discards are negligible relative to the total fishery catch for all sectors.
 
 For recent catches with haul- or trip-level information,
 removals by month during the fishing season allowed for the estimation of
-monthly bycatch rates from observer information.
+monthly bycatch rates from observer or dockside information.
 This information has also allowed a detailed investigation of shifts in fishery
 timing (see Figure~5 in \citealt{JTC2014}).
 % TODO: in 2024 update this information on how bycatch rates are used to subtract
@@ -127,30 +133,28 @@ Westport. Port samplers routinely take one sample per offload (or trip)
 consisting of 100 randomly selected fish for individual length and weight, and,
 from these, typically 20 fish are randomly subsampled for otolith extraction.
 
-**@cgrandin needs to check these next three paragraphs**
+When there were observers (1996--2019) aboard Canadian freezer trawler vessels,
+they collected 50 otoliths and 300 lengths per sample, sampling once per day during
+trips that on average last approximately seven days. For 2022 and onwards, there
+are no longer observers on freezer trawlers (Section~\ref{sec:data-total-catch}),
+so the frozen samples that are delivered for each trip are all sampled for length,
+weight, sex, and otoliths are taken. There are approximately 100 fish per trip, in
+two bags of 50. There have been some exceptions to this; due to unforeseen circumstances
+while at sea some trips did not bring any samples back, and some only brought single bags.
 
-** Observers aboard Canadian freezer-trawler vessels
-collect 50 otoliths and 300 lengths per sample, sampling once per day during
-trips that on average last approximately seven days.
-The sampled weight from which
-biological information is collected must be inferred from length-weight
-relationships.
-
-** For electronically observed shoreside trips, port samplers obtain
-biological data from the landed catch.
-For each trip, 50 ages and 300 lengths are sampled from the catch.
-Observed domestic haul-level information
+For electronically observed Canadian shoreside trips, port samplers obtain
+biological data from the landed catch. For each sampled trip, 50 ages
+and 300 lengths are sampled from the catch. Observed domestic haul-level information
 is then aggregated to the trip level to be consistent with the unobserved trips
 that are sampled in ports.
 
-** When there is a Canadian Joint-Venture fishery,
+When there has been a Canadian Joint-Venture fishery,
 length samples are collected every second day of fishing operations, and
 otoliths are collected once a week. Length and age samples are taken randomly
-from a given codend.
-The sampled weight from which biological information is collected
+from a given codend. The sampled weight from which biological information is collected
 must be inferred from length-weight relationships.
 
-** The sampling unit for the shore-based fisheries is the trip, while the haul is
+The sampling unit for the shore-based fisheries is the trip, while the haul is
 the primary unit for the at-sea fisheries
 (Table~\ref{tab:main-sampling-history}).
 There is no least common denominator for aggregating at-sea and
@@ -178,7 +182,7 @@ as well as the large cohorts born since then
 Figure~\ref{fig:main-age-comp-bubbles}).
 Currently, the 2020 cohort is the largest observed cohort in the U.S. at-sea sector (Tables~\ref{tab:main-us-cp-age-data}--\ref{tab:main-us-ms-age-data}),
 the 2016 cohort is the largest observed cohort in the U.S. shore-based fleet (Table~\ref{tab:main-us-shore-age-data}), and
-the 2016 cohort is also the largest observed cohort in both Canadian fleets (Tables~\ref{tab:main-can-ft-age-data}--\ref{tab:main-can-shore-age-data}).
+the 2016 cohort is also the largest observed cohort in both Canadian fleets (Tables~\ref{tab:main-can-shore-age-data}--\ref{tab:main-can-ft-age-data}).
 Age-1 fish were observed by the fishery this year (Table~\ref{tab:main-all-age-data-fishery})
 in the U.S. at-sea sector and shore-based fleet.
 For the combined data in \Sexpr{last_data_yr}, \Sexpr{top.coh(base_model,
@@ -232,7 +236,7 @@ and Canada. The acoustic surveys performed in
 The acoustic survey samples transects that represent all waters
 off the coasts of the U.S.A. and Canada thought to contain all portions of the
 age-2$+$ \fishname\ stock.
-Observations of age-0 and age-1 \fishname\ are excluded from the age-2$+$ index 
+Observations of age-0 and age-1 \fishname\ are excluded from the age-2$+$ index
 due to largely different schooling behavior
 relative to older \fishname, concerns about their catchability by the trawl gear,
 and differences in expected location during the summer months when the survey
@@ -370,7 +374,7 @@ except the estimate of 2021 numbers of age-1 fish
 was scaled by a factor of 1.06 to account for differences between
 the EK~60 and EK~80 echosounders (the same approach used for the estimate of age-2$+$ biomass).
 The index is a relative index (of numbers) that indicates relative changes between years.
-The age-1 index confirms the large year classes 
+The age-1 index confirms the large year classes
 in 2008, 2010, 2014, 2016, and 2020 (Table~\ref{tab:main-survey-history} and Figure~\ref{fig:main-age-one-index}).
 In 2021, some age-1 fish were found
 in isolated homogeneous pockets but they were more so found to be mixed in with older fish.
