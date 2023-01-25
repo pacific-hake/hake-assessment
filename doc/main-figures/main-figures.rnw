@@ -1091,7 +1091,7 @@ plot_recruitment(d_obj = d_obj_sens_recr[[4]],
                  rev_colors = TRUE)
 @
 \end{center}
-\caption{MCMC estimates of recruitment for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6), and constraMCMC estimates of recruitment forining recruitment in the model such that recruitment deviations sum to zero.}
+\caption{MCMC estimates of recruitment for the base model and alternative sensitivity runs with maximum age-based selectivity decreased (age-5) or increased (age-7 and age-8) relative to the base model (age-6), and constraining recruitment in the model such that recruitment deviations sum to zero.}
 \label{fig:main-recruit-base-alternative-6}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
