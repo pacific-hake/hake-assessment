@@ -1195,7 +1195,7 @@ joint probability of being both above the target relative fishing intensity in
 start of \Sexpr{end_yr}.
 
 \subsection{Model uncertainty}\label{sec:assessment-model-uncertainty}
- % Manual 2020 done
+
 The base assessment model integrates over the substantial uncertainty associated
 with several important model parameters including: biomass index and age-1 index catchabilities
 ($q_b$ and $q_1$, respectively), the magnitude of the stock (via the $R_0$ parameter for equilibrium
@@ -1204,21 +1204,12 @@ the stock-recruitment relationship), the rate of natural mortality ($M$), annual
 selectivity for key ages, recruitment deviations, and survey and fishery data
 weights (via the Dirichlet-multinomial parameters
 $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
-The uncertainty portrayed
-by the posterior distribution is a better representation of uncertainty than
-asymptotic approximations about MLEs because it allows for asymmetry (Figure~\ref{fig:main-prior-posterior};
-also see \citealt{JTC2012} for further discussion and
-examples).
-%this is the first \fishname\ assessment to almost exclusively use
-%posterior distributions instead of MLEs.
-%Note that we use the term MLE even though the priors are involved in the likelihood
-%calculation and so the more accurate term would be the mode of the posterior density.
 
 The medians of the key parameters from the posterior distribution are similar to
 those in last year's base model (Table~\ref{tab:main-parameter-estimates}).
 The largest change was a doubling of the 2020 cohort size.
 Medians of some of the derived quantities also change somewhat; in particular,
-recruitment in 2019 and 2015 decreased (39/% and 11/%, respectively) from that
+recruitment in 2019 and 2015 decreased (39\% and 11\%, respectively) from those
 estimated in the \Sexpr{assess_yr - 1} assessment.
 
 The \fishname\ stock displays a very high degree of recruitment variability,
@@ -1228,13 +1219,11 @@ potentially targets strong cohorts (resulting in time-varying selectivity)
 will in most circumstances continue to result in highly uncertain
 estimates of current stock status and even less-certain projections of the stock
 trajectory. This is particularly true for spawning biomass estimates in \Sexpr{assess_yr}
-and througout the current forecast period, because there is considerable uncertainty
-associated with the size of the 2020 year class, now fully mature, that propogates into
-forecasts. Further observations of this year-class, including during the 2023 acoustic
+and throughout the current forecast period, because there is considerable uncertainty
+associated with the size of the 2020 year class, now mostly mature, that propogates into
+forecasts. Further observations of this year class, including during the 2023 acoustic
 survey, will help to refine these estimates and reduce uncertainty.
-The addition of the age-1 index in this assessment will, in some cases, help
-to reduce this uncertainty (as it currently does in this case;
-Figure~\ref{fig:main-recruit-base-alternative-2}).  However, further work is needed
+Further work is needed
 to improve upon the characterization of uncertainty in the age-1 index itself,
 which is based on a time invariant assumption about index observation error
 and catchability.
@@ -1295,16 +1284,17 @@ These would equate to the Agreement reference points of $\Bten$ and $\Bforty$
 equilibrium female spawning biomass).
 The probabilities of the female spawning biomass
 at the start of \Sexpr{assess_yr} being above each of these points
-are P$(B_{\Sexpr{assess_yr}} > \Bten) = approximately \Sexpr{probs.curr.bten}$\% and
+are P$(B_{\Sexpr{assess_yr}} > \Bten) = \Sexpr{probs.curr.bten}$\% and
 P$(B_{\Sexpr{assess_yr}} > \Bforty) = \Sexpr{probs.curr.bforty}$\%
 [in last year's assessment the equivalent calculation was
 P$(B_{\Sexpr{assess_yr-1}} > \Bforty) = 90.5\%$], % hardwired**
 such that the stock is estimated to be in the `healthy zone' (above the upper
-stock reference point of $\Bforty$).
+stock reference point of $\Bforty$). Note that a probability of `100\%' is based
+on the MCMC results, and is not meant to imply that something definitely occurs.
 
 With respect to DFO's provisional limit reference point
 of $0.4\Bmsy$ and provisional upper stock reference point of $0.8\Bmsy$, the probabilities
-are P$(B_{\Sexpr{assess_yr}} > 0.4\Bmsy) = approximately \Sexpr{f(dfo.probs.curr[1, 2], 0)}$\% and
+are P$(B_{\Sexpr{assess_yr}} > 0.4\Bmsy) = \Sexpr{f(dfo.probs.curr[1, 2], 0)}$\% and
 P$(B_{\Sexpr{assess_yr}} > 0.8\Bmsy) = \Sexpr{f(dfo.probs.curr[1, 3], 1)}$\%
 such that the stock is estimated to be in the provisional `healthy zone'.
 For completeness, we note that P$(B_{\Sexpr{assess_yr}} > \Bmsy) = \Sexpr{f(dfo.probs.curr[1, 1], 1)}$\%
