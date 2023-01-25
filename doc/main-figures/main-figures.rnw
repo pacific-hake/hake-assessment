@@ -883,7 +883,8 @@ plot_biomass(d_obj = d_obj_sens_biomass[[1]],
 <<main-status-base-alternative-1, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how relative spawning biomass changes between the first set of sensitivity runs">>=
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
                  x_expansion = 2,
-                 leg_pos = c(0.75, 0.9),
+                 leg_font_size = 9,
+                 leg_pos = c(0.8, 0.75),
                  rev_colors = TRUE)
 @
 \end{center}
