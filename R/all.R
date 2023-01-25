@@ -163,8 +163,8 @@ key_posteriors_titles <- c("Natural mortality",
                            "LN(R0)",
                            "Steepness",
                            "Survey extra SD",
-                           "Dirichlet-Multinomial fishery",
-                           "Dirichlet-Multinomial survey")
+                           "Dirichlet-multinomial fishery",
+                           "Dirichlet-multinomial survey")
 key_posteriors_file <- "keyposteriors.csv"
 nuisance_posteriors_file <- "nuisanceposteriors.csv"
 
