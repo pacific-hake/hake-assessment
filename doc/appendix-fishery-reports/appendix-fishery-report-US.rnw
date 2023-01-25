@@ -9,14 +9,23 @@
 **
 
 %**Table was used in 2020 assessment but not in 2021 or 2022 so commenting out
-%
-%<<catches.us.ap, results='asis', echo=FALSE>>=
-%make.catches.table.us.ap(us.ap.catch,
-%                         xcaption = "2019 allocations and catch totals (metric tons, mt). Note that 441,433 mt
-%                         U.S. TAC reduced by 1,500 mt for research and incidental catch set aside.",
-%                         xlabel = "tab:us-ap-catch",
-%                         font.size = 12,
-%                         space.size = 13)
-%@
+% \begin{table}[H]
+% \centering
+% \caption{2019 allocations and catch totals (metric tons, mt). Note that
+%   441,433 mt U.S. TAC reduced by 1,500 mt for research and incidental catch set
+%   aside.} 
+% \label{tab:us-ap-catch}
+% \begingroup\fontsize{12}{13}\selectfont
+% \begin{tabular}{lrrrrr}
+%   \hline
+%   & \textbf{U.S. TAC} & \textbf{Shoreside (SS)} & \textbf{Catcher Processor (CP)} & \textbf{Mothership (MS)} & \textbf{Tribal} \\ 
+%   \hline
+% \textbf{Allocation (mt)} & 423,310 & 146,567 & 118,649 & 83,752 & 74,342 \\ 
+%   \textbf{Catch (mt)} & 287,908 & 138,650 & 111,147 & 37,978 & 133 \\ 
+%   \textbf{\% Utilization} & 68.01\% & 94.60\% & 93.68\% & 45.35\% & 0.18\% \\ 
+%    \hline
+% \end{tabular}
+% \endgroup
+% \end{table}
 
 \clearpage
