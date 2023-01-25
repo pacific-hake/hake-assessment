@@ -1,51 +1,13 @@
 #' Plot recruitment from MCMC output for one or more models
 #'
-#' @param model_lst A list of models, each created by [create_rds_file()]
-#' @param model_names A vector of model names,the same length as `models_lst`
-#' @param inc_means Logical. If `TRUE`, include means for each year and
-#' model as an X
-#' @param xlim The year limits to plot
-#' @param x_breaks The year value tick marks to show for the x axis
-#' @param x_expansion Amount of space to leave either side on the x-axis
-#' @param ylim The depletion limits to plot
-#' @param y_breaks The depletion value tick marks to show for the y axis
-#' @param y_labels The depletion labels to show for the y axis tick marks
-#' @param y_colors The color vector for each label for the y axis tick marks
-#' @param alpha The transparency for all ribbons
-#' @param leg_pos The position of the legend inside the plot. If `NULL`,
-#' `NA`, or `none`, the legend will not be shown
-#' @param leg_ncol The number of columns to show in the legend
-#' @param leg_font_size The legend font size
-#' @param point_size Size of all points shownin plot
-#' @param line_width Width of all lines on the plot
-#' @param single_point_color Point color for the case where there is only
-#' one model to plot
-#' @param single_line_color Line color for the case where there is only
-#' one model to plot
-#' @param crossbar_width The width of the end bars (top and bottom) of the errorbar
-#' lines. Default of zero removes them
-#' @param dodge_val The amount to offset the lines from each other in the
-#' case of multiple models
-#' @param d_obj If not `NULL` this is a list which has been
-#' pre-processed to contain all models in a format that is ready to plot.
-#' Essentially the first steps of this function have been replicated
-#' outside the function (The code inside the `if(is.null(d_obj))`)
-#' is done to stop the Rmd process from taking forever
-#'
-#' @return a [ggplot2::ggplot()] object
+#' @rdname plot_biomass
 #' @export
 plot_recruitment <- function(model_lst = NULL,
                              model_names,
                              inc_means = FALSE,
-                             xlim = c(1966,
-                                      year(Sys.time())),
-                             x_breaks = c(1966,
-                                          seq(
-                                            round(1966 + 10, -1),
-                                            # Current decade, i.e. 2020
-                                            round(year(Sys.time()) - 10, -1),
-                                            by = 10),
-                                          year(Sys.time())),
+                             xlim = c(1966, year(Sys.time())),
+                             x_breaks = xlim[1]:xlim[2],
+                             x_labs_mod = 5,
                              x_expansion = 3,
                              ylim = c(0, 40),
                              y_breaks = seq(ylim[1], ylim[2], by = 10),
@@ -55,6 +17,8 @@ plot_recruitment <- function(model_lst = NULL,
                              leg_pos = c(0.65, 0.83),
                              leg_ncol = 1,
                              leg_font_size = 12,
+                             axis_title_font_size = 14,
+                             axis_tick_font_size = 11,
                              point_size = 1.5,
                              line_width = 0.5,
                              single_point_color = "black",
@@ -95,6 +59,23 @@ plot_recruitment <- function(model_lst = NULL,
       mutate(model = factor(model))
   }
 
+  # Remove labels for the minor x-axis ticks
+  x_labels <- NULL
+  for(i in x_breaks){
+    if(i %% x_labs_mod == 0){
+      x_labels <- c(x_labels, i)
+    }else{
+      x_labels <- c(x_labels, "")
+    }
+  }
+
+  # Tick mark lengths adjusted here
+  x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
+  top_y_pos = 0
+  bot_y_pos = - (ylim[2] - ylim[1]) / 50
+  custom_ticks <- tibble(group = x_breaks_nth,
+                         y_end = bot_y_pos)
+
   # Remove projection years
   d <- d |>
     filter(year <= xlim[2])
@@ -109,7 +90,8 @@ plot_recruitment <- function(model_lst = NULL,
                   fill = model)) +
     scale_color_manual(values = line_colors) +
     coord_cartesian(xlim = xlim,
-                    ylim = ylim)
+                    ylim = ylim,
+                    clip = "off")
 
   if(is_single_model){
     ro_val <- ro$rmed[1]
@@ -162,7 +144,7 @@ plot_recruitment <- function(model_lst = NULL,
                size = 0.5) +
     scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
-                       labels = x_breaks) +
+                       labels = x_labels) +
     scale_y_continuous(expand = c(0, 0),
                        breaks = y_breaks,
                        labels = y_labels) +
@@ -171,7 +153,7 @@ plot_recruitment <- function(model_lst = NULL,
           axis.text.y = element_text(color = y_colors),
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
-          plot.margin = margin(12, 12, 0, 0)) +
+          plot.margin = margin(12, 12, 7, 0)) +
     xlab("Year") +
     ylab("Age-0 recruits (billions)")
 
@@ -186,8 +168,39 @@ plot_recruitment <- function(model_lst = NULL,
         geom_point(aes(y = rmean),
                    shape = 4)
     }
-
   }
+
+  # Add major tick marks
+  g <- g +
+    geom_linerange(data = custom_ticks,
+                   aes(x = group,
+                       ymax = 0,
+                       ymin = y_end),
+                   size = 0.5,
+                   inherit.aes = FALSE)
+
+  g <- g +
+    theme(axis.text.x = element_text(color = "grey20",
+                                     size = axis_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = -3,
+                                     face = "plain"),
+          axis.text.y = element_text(color = "grey20",
+                                     size = axis_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = "grey20",
+                                      size = axis_title_font_size,
+                                      vjust = -2,
+                                      angle = 0,
+                                      face = "plain"),
+          axis.title.y = element_text(color = "grey20",
+                                      size = axis_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
+
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
       theme(legend.position = "none")
@@ -196,6 +209,16 @@ plot_recruitment <- function(model_lst = NULL,
       theme(legend.position = leg_pos) +
       guides(color = guide_legend(ncol = leg_ncol))
   }
+
+  # Draw a white rectangle over the top of the plot, obscuring any
+  # unclipped plot parts. Clipping has to be off to allow different size
+  # tick marks. `grid` package used here
+  g <- g +
+    annotation_custom(grob = rectGrob(gp = gpar(col = NA, fill = "white")),
+                      xmin = xlim[1],
+                      xmax = xlim[2],
+                      ymin = ylim[2],
+                      ymax = ylim[2] + 2)
 
   g
 }
