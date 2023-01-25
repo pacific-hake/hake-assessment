@@ -11,6 +11,8 @@
 #' `NA`, or `none`, the legend will not be shown
 #' @param leg_ncol The number of columns to show in the legend
 #' @param leg_font_size The legend font size
+#' @param axis_title_font_size Size of the font for the X and Y axis labels
+#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
 #' @param point_size Size of all points shownin plot
 #' @param line_width Width of all lines on the plot
 #' @param wrap_y_label Logical. If `TRUE`, adds a newline to the y axis
@@ -40,6 +42,8 @@ plot_biomass <- function(model_lst = NULL,
                          leg_pos = c(0.65, 0.83),
                          leg_ncol = 1,
                          leg_font_size = 12,
+                         axis_title_font_size = 14,
+                         axis_tick_font_size = 11,
                          point_size = 2.5,
                          point_shape = 16,
                          line_width = 1,
@@ -126,6 +130,27 @@ plot_biomass <- function(model_lst = NULL,
                   position = position_dodge(1.5),
                   color = ribbon_colors,
                   alpha = 0.5)
+
+  g <- g +
+    theme(axis.text.x = element_text(color = "grey20",
+                                     size = axis_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.text.y = element_text(color = "grey20",
+                                     size = axis_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = "grey20",
+                                      size = axis_title_font_size,
+                                      angle = 0,
+                                      face = "plain"),
+          axis.title.y = element_text(color = "grey20",
+                                      size = axis_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
