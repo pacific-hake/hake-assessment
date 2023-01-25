@@ -93,7 +93,7 @@ plot_biomass <- function(model_lst = NULL,
   # Tick mark lengths adjusted here
   x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
   top_y_pos = 0
-  bot_y_pos = -0.1
+  bot_y_pos = - (ylim[2] - ylim[1]) / 50
   custom_ticks <- tibble(group = x_breaks_nth,
                          y_end = bot_y_pos)
 
@@ -123,10 +123,8 @@ plot_biomass <- function(model_lst = NULL,
                        breaks = x_breaks,
                        labels = x_labels) +
     scale_y_continuous(expand = c(0, 0),
-                       #limits = ylim,
                        breaks = y_breaks,
                        labels = y_breaks) +
-                       #oob = scales::squish) +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           # plot.margin: top, right,bottom, left
@@ -137,7 +135,7 @@ plot_biomass <- function(model_lst = NULL,
                     add_newlines("Female Spawning Biomass+(million t)"),
                     "Female Spawning Biomass (million t)"))
 
-  # Add longer tick marks
+  # Add major tick marks
   g <- g +
     geom_linerange(data = custom_ticks,
                    aes(x = group,
