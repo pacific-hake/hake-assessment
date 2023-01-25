@@ -125,7 +125,7 @@ make.mcmc.diag.pairs.plot(this.model,
 @
 \end{center}
 \caption{Posterior correlations among recruitment deviations from recent years
-  and equilibrium recruitment. Numbers refer to the absolute correlation
+  and mean unfished equilibrium recruitment. Numbers refer to the absolute correlation
   coefficients, with font size proportional to the square root of the
   coefficient.}
 \label{fig:main-mcmc-pairs-recruit-devs}

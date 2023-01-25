@@ -213,26 +213,28 @@ make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
 
 #' Plot MCMC diagnostics
 #'
-#' @details Top left panel is traces of posteriors across iterations, top right is
-#' cumulative running mean with 5th and 95th percentiles, bottom left is
-#' autocorrelation present in the chain at different lag times (i.e., distance between samples in
-#' the chain), and bottom right is distribution of the values in the chain (i.e., the marginal
-#' density from a smoothed histogram of values in the trace plot).
+#' @details Panels are as follows:
+#' * Top left: traces of posteriors across iterations,
+#' * Top right: cumulative running mean with 5th and 95th percentiles
+#' * Bottom left: autocorrelation present in the chain at different lag times
+#'   (i.e., distance between samples in the chain), and
+#' * Bottom right: distribution of the values in the chain (i.e., the marginal
+#'   density from a smoothed histogram of values in the trace plot).
 #'
-#' @param model A model object as output by [load_ss_models()]
-#' @param posterior.regex  A regular experession represting a parameter as it appears in the SS output column
-#' @param posterior.name  A name to show for the poosterior on the plot
+#' @param model A model object as output by [load_ss_models()].
+#' @param posterior.regex  A regular expression representing a parameter as it
+#'   appears in the [r4ss::SS_output()] column.
+#' @param posterior.name  A name to show for the posterior on the plot, where
+#'   the name can be a string or an expression.
 #'
 #' @return A 4-panel plot of MCMC diagnostics
 #' @export
 #' @importFrom coda traceplot
 #' @importFrom gtools running
 make.mcmc.diag.plot <- function(model,
-                                posterior.regex = NULL,
-                                posterior.name = NULL){
-  stopifnot(!is.null(posterior.regex),
-            !is.null(posterior.name),
-            length(posterior.regex) == length(posterior.name == 1))
+                                posterior.regex,
+                                posterior.name){
+  stopifnot(length(posterior.regex) == length(posterior.name))
   oldpar <- par("ann", "mar", "oma", "mfrow")
   on.exit(par(oldpar))
 
@@ -240,7 +242,7 @@ make.mcmc.diag.plot <- function(model,
 
   mc_obj <- mcmc(select(m, matches(posterior.regex)) %>% as_tibble())
   label <- posterior.name
-  par(mar = c(5, 3.5, 0, 0.5),
+  par(mar = c(5, 3.5, 0.2, 0.5),
       oma = c(0, 3.0, 0.2, 0),
       mfrow = c(2, 2),
       ann = TRUE)
@@ -279,7 +281,7 @@ make.mcmc.diag.plot <- function(model,
                 width = draws),
         col = "GREY")
   ## Bottom left
-  par(ann = FALSE)
+  par(ann = FALSE, mar = c(5, 3.5, 0.0, 0.5))
   attr(mc_obj, "dimnames")[[2]] <- ""
   autocorr.plot(mc_obj,
                 auto.layout = FALSE,

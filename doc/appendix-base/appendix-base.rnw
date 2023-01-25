@@ -466,7 +466,7 @@ make.mcmc.diag.pairs.plot(base_model,
                           recr = (end_yr-10):(end_yr-1))
 @
 \end{center}
-\caption{Posterior correlations among recruitment deviations from recent years and equilibrium recruitment. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}
+\caption{Posterior correlations among recruitment deviations from recent years and mean unfished equilibrium recruitment. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}
 \label{fig:mcmc-pairs-recruit-devs-base-temp}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

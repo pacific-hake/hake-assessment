@@ -13,7 +13,7 @@ make.mcmc.diag.plot(base_model, key_posteriors[2], key_posteriors_titles[2])
 par <- oldpar
 @
 \end{center}
-\caption{Summary of MCMC diagnostics for natural mortality (upper panels) and the log of mean unfished equilibrium recruitment (log(\emph{R\subscr{0}}); lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
+\caption{Summary of Markov Chain Monte Carlo diagnostics for natural mortality (upper panels) and the natural log of mean unfished equilibrium recruitment (ln(\emph{R\subscr{0}}); lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
 \label{fig:main-mcmc-diag-m-r0}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -30,7 +30,7 @@ make.mcmc.diag.plot(base_model, key_posteriors[4], key_posteriors_titles[4])
 par <- oldpar
 @
 \end{center}
-\caption{Summary of MCMC diagnostics for steepness (upper panels) and the
+\caption{Summary of Markov Chain Monte Carlo diagnostics for steepness (upper panels) and the
   additional standard deviation (SD) in the biomass index (lower panels) in the
   base model. Sub-panel descriptions as in Figure~\ref{fig:main-mcmc-diag-m-r0}.}
 \label{fig:main-mcmc-diag-h-extra-sd}
@@ -49,7 +49,7 @@ make.mcmc.diag.plot(base_model, key_posteriors[6], key_posteriors_titles[6])
 par <- oldpar
 @
 \end{center}
-\caption{Summary of MCMC diagnostics for the Dirichlet-multinomial
+\caption{Summary of Markov Chain Monte Carlo diagnostics for the Dirichlet-multinomial
   age-composition parameters for the fishery ($\theta_{\text{fish}}$, upper
   panels) and the survey ($\theta_{\text{surv}}$, lower panels) in the base
   model. Sub-panel descriptions as in Figure~\ref{fig:main-mcmc-diag-m-r0}.}
@@ -82,7 +82,8 @@ make.mcmc.diag.pairs.plot(base_model,
                           forecatch = c(end_yr,end_yr+1,end_yr+2))
 @
 \end{center}
-\caption{Posterior correlations among key base-model parameters and derived
+\caption{Posterior correlations among the objective function which is minimized
+  during model fitting, key base-model parameters, and derived
   quantities. Numbers refer to the absolute correlation coefficients, with font
   size proportional to the square root of the coefficient.}
 \label{fig:main-mcmc-pairs}
@@ -98,7 +99,7 @@ make.mcmc.diag.pairs.plot(base_model,
                           recr = (end_yr-10):(end_yr-1))
 @
 \end{center}
-\caption{Posterior correlations among recruitment deviations from recent years and equilibrium recruitment. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}
+\caption{Posterior correlations among recruitment deviations from recent years and mean unfished equilibrium recruitment. Numbers refer to the absolute correlation coefficients, with font size proportional to the square root of the coefficient.}
 \label{fig:main-mcmc-pairs-recruit-devs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
