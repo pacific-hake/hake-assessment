@@ -1223,7 +1223,10 @@ and throughout the current forecast period, because there is considerable uncert
 associated with the size of the 2020 year class, now mostly mature, that propogates into
 forecasts. Further observations of this year class, including during the 2023 acoustic
 survey, will help to refine these estimates and reduce uncertainty.
-Further work is needed
+The addition of the age-1 index in this assessment will, in some cases, help
+to reduce this uncertainty (as it currently does in this case;
+see Figure~\ref{fig:main-recruit-base-alternative-2} discussed later). However,
+further work is needed
 to improve upon the characterization of uncertainty in the age-1 index itself,
 which is based on a time invariant assumption about index observation error
 and catchability.
@@ -1289,8 +1292,10 @@ P$(B_{\Sexpr{assess_yr}} > \Bforty) = \Sexpr{probs.curr.bforty}$\%
 [in last year's assessment the equivalent calculation was
 P$(B_{\Sexpr{assess_yr-1}} > \Bforty) = 90.5\%$], % hardwired**
 such that the stock is estimated to be in the `healthy zone' (above the upper
-stock reference point of $\Bforty$). Note that a probability of `100\%' is based
-on the MCMC results, and is not meant to imply that something definitely occurs.
+stock reference point of $\Bforty$). Note that a probability of `100\%' (or
+`0\%`) is based
+on the MCMC results, and is not meant to imply that something definitely occurs
+(or definitely does not occur).
 
 With respect to DFO's provisional limit reference point
 of $0.4\Bmsy$ and provisional upper stock reference point of $0.8\Bmsy$, the probabilities
@@ -1315,9 +1320,10 @@ P$(B_{\Sexpr{assess_yr}} > \Btwentyfive) = \Sexpr{probs.curr.btwentyfive}$\%.
 
 \subsection{Model projections}\label{sec:assessment-model-projections}
 
-The median catch limit for \Sexpr{min(forecast_yrs)} based on the default
-\Ffortyten{} harvest policy is \Sexpr{catch.limit.quantiles["median"]}~t, but
-has a wide range of uncertainty (Figure~\ref{fig:main-projected-catch-density}),
+The catch limit for \Sexpr{min(forecast_yrs)} based on the default
+\Ffortyten{} harvest policy has a median of
+\Sexpr{catch.limit.quantiles["median"]}~t and
+a wide range of uncertainty (Figure~\ref{fig:main-projected-catch-density}),
 with the 95\% credibility interval being
 \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
 
@@ -1414,7 +1420,7 @@ and Figure~\ref{fig:main-forecast-risk-comparison-year-3}).
 % Make consistent with Exec Summary (that has older text commented out for
 % possible future use)
 The probability of the spawning biomass decreasing from \Sexpr{end_yr} to
-\Sexpr{end_yr+1} is above 72\% for all catch levels examined
+\Sexpr{end_yr+1} is above 72\% for all non-zero catch levels examined
 (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}). It is 81\% for the
 \Sexpr{end_yr} catch level similar to that for \Sexpr{end_yr-1} (catch alternative~f).
@@ -1439,18 +1445,22 @@ stock biomass during the forecast years presented here.
 
 It should be noted
 that forecasted biomass is not only influenced by catch levels.
-As the large 2010 and 2014 cohorts continue to age, their biomass is
-will continue to decrease (Table~\ref{tab:main-cohort-effects})
+As the large 2010 and 2014 cohorts continue to age, their biomass
+will continue to decrease (Tables~\ref{tab:main-est-biomass-at-age} and~\ref{tab:main-cohort-effects})
 as losses from mortality outweigh increases from growth. The smaller
-above-average 2016 cohort has also entered this growth-mortality transition period
-(Table~\ref{tab:main-cohort-effects}).
+above-average 2016 cohort entered this growth-mortality transition period around 2019
+(Tables~\ref{tab:main-est-biomass-at-age} and~\ref{tab:main-cohort-effects}).
 The below-average 2015 and 2018 cohorts will contribute much less to forecasted spawning
-biomass than the larger cohorts. At age-3 during 2023, the 2020 cohort will likely continue to gain
-biomass through growth at a faster pace then declines from mortality.  The probability
-that the \Sexpr{forecast_yrs[2]} spawning biomass will be less than the
-\Sexpr{forecast_yrs[1]} spawning biomass ranges from \Sexpr{f(min(base_model$risks[[1]][,2]))}\% to \Sexpr{f(max(base_model$risks[[1]][,2]))}\%
-depending on the catch level (Table~\ref{tab:main-risk-year-1} and
-Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
+biomass than the larger cohorts. During 2023, the age-3 2020 cohort will likely
+move through the growth-mortality transition and thus no longer contribute to an
+increase in total biomass (note that fecundity will increase which will
+influence the exact change in spawning biomass, Figure~\ref{fig:main-maturity}).
+% Already said above:
+% The probability
+% that the \Sexpr{forecast_yrs[2]} spawning biomass will be less than the
+% \Sexpr{forecast_yrs[1]} spawning biomass ranges from \Sexpr{f(min(base_model$risks[[1]][,2]))}\% to \Sexpr{f(max(base_model$risks[[1]][,2]))}\%
+% depending on the catch level (Table~\ref{tab:main-risk-year-1} and
+% Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 
 
 % This needs to be somewhat manual so you can pick the cohorts to
@@ -1494,7 +1504,7 @@ Figure~\ref{fig:main-age-comp-forecast}).     % $
 With respect to the DFO reference points, with the largest
 \Sexpr{assess_yr} catch of \Sexpr{largest.next.catch}~t given in Table~\ref{tab:main-risk-year-1},
 at the start of \Sexpr{assess_yr+1} the stock is expected to be above the critical zone with a probability of
-P$(B_{\Sexpr{assess_yr+1}} > \Bten) = approximately
+P$(B_{\Sexpr{assess_yr+1}} > \Bten) =
 \Sexpr{prob.next.over.b10}$\%
 and in the healthy zone with a probability of
 P$(B_{\Sexpr{assess_yr+1}} > \Bforty) =
@@ -1502,7 +1512,7 @@ P$(B_{\Sexpr{assess_yr+1}} > \Bforty) =
 With respect to the DFO provisional reference points (based on $\Bmsy$),
 the stock is expected to be above the provisional critical zone with a
 probability of
-P$(B_{\Sexpr{assess_yr+1}} > 0.4\Bmsy) = approximately \Sexpr{dfo.prob.next.over.40bmsy}$\%,
+P$(B_{\Sexpr{assess_yr+1}} > 0.4\Bmsy) = \Sexpr{dfo.prob.next.over.40bmsy}$\%,
 in the healthy zone with a probability of
 P$(B_{\Sexpr{assess_yr+1}} > 0.8\Bmsy) = \Sexpr{dfo.prob.next.over.80bmsy}$\%,
 and above $\Bmsy$ with a probability of
