@@ -1,6 +1,6 @@
 \clearpage
 
-\chapter{Report of the \Sexpr{assess_yr} \fishname\ fishery in Canada} % from the Advisory Panel}
+\chapter{Report of the \Sexpr{assess_yr} \fishname\ fishery in Canada}
 \label{chap:canada-fishery-report}
 
 {\bf Prepared by the Canadian Advisory Panel and submitted

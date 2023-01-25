@@ -1,14 +1,10 @@
-%appendix-fishery-report-2021.rnw
-% Previous years' reports are saved in this folder
-
 \clearpage
 
-\chapter{Report of the \Sexpr{assess_yr} \fishname\ fishery in the United States} % from the Advisory Panel}
+\chapter{Report of the \Sexpr{assess_yr} \fishname\ fishery in the United States}
 \label{chap:us-fishery-report}
 
-{\bf Prepared by the United States Advisory Panel and submitted for the Canada/US
-  Joint Management Committee's and the Joint Technical Committee's consideration on
-  January **, \Sexpr{assess_yr}. **make text same as for Canadian?}
+{\bf Prepared by the United States Advisory Panel on 25 January 2023 for
+  inclusion in this assessment document.}
 
 **
 
