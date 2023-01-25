@@ -43,13 +43,11 @@ us_cp_catch_by_month_file <- "us-cp-catch-by-month.csv"
 us_ms_catch_by_month_file <- "us-ms-catch-by-month.csv"
 us_ti_catch_by_month_file <- "us-ti-catch-by-month.csv"
 us_research_catch_by_month_file <- "us-research-catch-by-month.csv"
-us_ap_catch_file <- "us-ap-catch.csv"
 us.shore.catch.by.month <- read.csv(file.path(rootd_data, us_shore_catch_by_month_file))
 us.cp.catch.by.month <- read.csv(file.path(rootd_data, us_cp_catch_by_month_file))
 us.ms.catch.by.month <- read.csv(file.path(rootd_data, us_ms_catch_by_month_file))
 us.ti.catch.by.month <- read.csv(file.path(rootd_data, us_ti_catch_by_month_file))
 us.research.catch.by.month <- read.csv(file.path(rootd_data, us_research_catch_by_month_file))
-us.ap.catch <- read.csv(file.path(rootd_data, us_ap_catch_file)) #, row.names = 1)
 
 # Sampling data ----
 sampling_history_file <- "fishery-sampling-history.csv"
