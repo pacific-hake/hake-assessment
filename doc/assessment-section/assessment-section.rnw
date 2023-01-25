@@ -1540,33 +1540,37 @@ then the probability of the biomass going below $\Bforty$ is
 
 Sensitivity analyses were conducted to investigate influence of data inputs and
 structural uncertainty of the base model by investigating how changes to the
-model affected the estimated values and derived quantities. All sensitivity analyses
+model affected the estimated values and derived quantities.
+All sensitivity analyses
 compared MCMC posteriors that were created using the {\tt adnuts} R package
 \citep{Monnahan2018, Monnahan2019} to implement the NUTS
-algorithm with a similar number of posterior samples as the base model. Comparisons of the
-parameter estimates between the main sensitivity models with those from the base model are shown
-in Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-2}.
+algorithm with a similar number of posterior samples as the base model.
+Several key underlying structural model assumptions were identified that have
+persisted across many previous hake assessments, and thus warrant revisiting
+annually as a set of reference sensitivity examinations to new base models.
 Many additional sensitivity runs were conducted when developing and testing the
-\Sexpr{assess_yr} base model. Here we focus on the main sensitivities which are:
+\Sexpr{assess_yr} base model. Here we focus on the main sensitivities which,
+relative to the base model, are:
 
 %**update list (and see earlier also I think)
 
 \begin{enumerate}
 
 \item Consideration of higher standard deviations on the prior distribution
-  used in the base model for natural mortality;
+  for natural mortality;
 
 \item Consideration of an alternative prior distribution (mean and standard deviation) for natural
   mortality based on the \citet{Hamel2015} life history meta-analytic method;
 
-\item Consideration of an alternative prior distribution and a fixed value for steepness;
+\item Consideration of an alternative prior distribution and a fixed value for
+  steepness, to change the resiliency of the stock;
 
 \item Assumption of higher and lower variation about the stock-recruitment curve
   ($\sigma_r$);
 
 \item Removal of the age-1 index as a data source;
 
-\item Downweighting fishery age-composition data;
+\item Downweighting the fishery age-composition data;
 
 \item Consideration of alternative standard deviations for time-varying
   selectivity;
@@ -1596,11 +1600,14 @@ Many additional sensitivity runs were conducted when developing and testing the
 %selectivity both yielded lower effective sample sizes; and all three maximum-age-selectivity
 %analyses led to a few failed Heidelberger and Welch statistics.
 
+Comparisons of the
+parameter estimates between the main sensitivity models with those from the base model are shown
+in Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-2}.
 None of the sensitivities resulted in any substantial departure from
 the main population dynamics of the base model. All sensitivity models showed large
 estimated increases in spawning biomass in the early- to mid-2010s that continues to be
-driven by the 2010, 2014, and 2016 cohorts followed by severl years of steady decline
-(2019--2021) before increasing again due to a strong 2020 cohort.
+driven by the 2010, 2014, and 2016 cohorts, followed by several years of steady decline
+(2019--2021) before increasing again due to the strong 2020 cohort.
 All sensitivity models indicate that \Sexpr{assess_yr}
 relative spawning stock biomass is above $\Bforty$. The overall scale of the
 population was impacted by various alternative assumptions, and the highly
@@ -1610,13 +1617,6 @@ than earlier cohorts which have been observed for more years.
 % Leaving as one long line as easier to comment back in if needed (lots of calcs
 % in here). May not be needed anyway.
 %%The results of this model relative to the base model are shown in Table~\ref{tab:main-parameter-estimates-sens-2} and Figures~\ref{fig:main-biomass-base-alternative-2} and \ref{fig:main-recruitment-base-alternative-2}. In general, the estimated population dynamics are similar, regardless of extrapolation, throughout most of the time series.  However, there is some divergence in recent year estimates; e.g., the estimated relative spawning biomass in \Sexpr{end_yr} is \Sexpr{f(100*sens.models.2.for.table[[1]]$derived_quants["Bratio_2016","Value"],1)}\% for the base model (with extrapolation) and \Sexpr{f(100*sens.models.2.for.table[[2]]$derived_quants["Bratio_2016","Value"],1)}\% for the model without extrapolation. The 2016 default harvest control catch limit coming from the base model is \Sexpr{f(sens.models.2.for.table[[1]]$derived_quants["ForeCatch_2016","Value"])}~t compared to \Sexpr{f(sens.models.2.for.table[[2]]$derived_quants["ForeCatch_2016","Value"])}~t for the model using no extrapolation (using MLE values).
-
-Several key underlying structural model assumptions were identified that have
-persisted across many previous hake assessments, and thus warrant revisiting
-annually as a set of reference sensitivity examinations to new base models.
-Those identified here (as noted above) include the specification of natural mortality, the level
-of variation assumed about the stock-recruitment relationship ($\sigma_r$), and
-the resiliency of the stock in terms of recruitment (steepness).
 
 % section below on natural mortality sensitivity
 The standard deviation of the prior distribution on natural mortality was
