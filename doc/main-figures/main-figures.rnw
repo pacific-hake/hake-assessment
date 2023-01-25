@@ -237,8 +237,6 @@ maturity.ogive.figure(model = base_model, useyears = 1975:(assess_yr - 1))
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-%\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-%\includegraphics[width=6.5in, height=8.5in]{main-figures/EWAforDoc}
 <<main-weight-at-age, fig.height=9, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how weight-at-age changes through time">>=
 weight.at.age.heatmap(base_model,
                       proj.line.yr = base_model$endyr,
