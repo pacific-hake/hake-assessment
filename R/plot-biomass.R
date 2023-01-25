@@ -4,6 +4,9 @@
 #' @param model_names A vector of model names,the same length as `models_lst`
 #' @param xlim The year limits to plot
 #' @param x_breaks The year value tick marks to show for the x axis
+#' @param x_labs_mod Value for major X-axis tick marks. Every Nth tick
+#' will be longer and have a label. The first and last will be shown
+#' regardless of what this number is
 #' @param ylim The depletion limits to plot
 #' @param y_breaks The depletion value tick marks to show for the y axis
 #' @param alpha The transparency for all ribbons
@@ -29,12 +32,8 @@ plot_biomass <- function(model_lst = NULL,
                          model_names,
                          xlim = c(1964,
                                   year(Sys.time())),
-                         x_breaks = c(1966,
-                                      seq(1970,
-                                          # Current decade, i.e. 2020
-                                          round(year(Sys.time()), -1),
-                                          by = 5)),
-                                      #year(Sys.time())),
+                         x_breaks = 1966:year(Sys.time()),
+                         x_labs_mod = 5,
                          x_expansion = 3,
                          ylim = c(0, 4.5),
                          y_breaks = seq(ylim[1], ylim[2], by = 0.5),
@@ -79,9 +78,27 @@ plot_biomass <- function(model_lst = NULL,
 
   # Add "Unfished Equilibrium" to the x break labels
   # with a newline between them
-  x_labels <- c(expression(atop("Unfished", "Equilibrium")),
-                parse(text = x_breaks))
+  x_labels <- NULL
+  for(i in x_breaks){
+    if(i == x_breaks[1] ||
+       i == x_breaks[length(x_breaks)] ||
+       i %% x_labs_mod == 0){
+      x_labels <- c(x_labels, i)
+    }else{
+      x_labels <- c(x_labels, "")
+    }
+  }
+
+  x_labels <- c(expression(atop("Unfished", "Equilibrium")), x_labels)
   x_breaks = c(bo$year[1], x_breaks)
+  # Tick mark lengths adjusted here
+  x_breaks_nth <- c(x_breaks[2],
+                    x_breaks[x_breaks %% x_labs_mod == 0],
+                    x_breaks[length(x_breaks)])
+  top_y_pos = 0
+  bot_y_pos = -0.1
+  custom_ticks <- tibble(group = x_breaks_nth,
+                         y_end = bot_y_pos)
 
   # Remove projection years
   d <- d |>
@@ -98,7 +115,8 @@ plot_biomass <- function(model_lst = NULL,
     scale_fill_manual(values = ribbon_colors) +
     scale_color_manual(values = colors) +
     coord_cartesian(xlim = xlim,
-                    ylim = ylim) +
+                    ylim = ylim,
+                    clip = "off") +
     geom_ribbon(alpha = alpha,
                 linetype = "dotted") +
     geom_line(linewidth = line_width) +
@@ -108,8 +126,10 @@ plot_biomass <- function(model_lst = NULL,
                        breaks = x_breaks,
                        labels = x_labels) +
     scale_y_continuous(expand = c(0, 0),
+                       #limits = ylim,
                        breaks = y_breaks,
                        labels = y_breaks) +
+                       #oob = scales::squish) +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           # plot.margin: top, right,bottom, left
@@ -119,6 +139,15 @@ plot_biomass <- function(model_lst = NULL,
          y = ifelse(wrap_y_label,
                     add_newlines("Female Spawning Biomass+(million t)"),
                     "Female Spawning Biomass (million t)"))
+
+  # Add longer tick marks
+  g <- g +
+    geom_linerange(data = custom_ticks,
+                   aes(x = group,
+                       ymax = 0,
+                       ymin = y_end),
+                   size = 0.5,
+                   inherit.aes = FALSE)
 
   # Add B0 to the plot
   g <- g +
