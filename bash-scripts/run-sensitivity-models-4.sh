@@ -14,7 +14,6 @@ type_path="03-sensitivity-models"
 
 run_extra_mcmc=TRUE
 adapt_delta=0.95
- # Create small RDS by only having a subset of the extra MCMC output
 small=TRUE
 verbose=FALSE
 

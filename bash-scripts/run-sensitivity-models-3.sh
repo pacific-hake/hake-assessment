@@ -12,7 +12,9 @@ project_path="/srv/hake"
 
 type_path="03-sensitivity-models"
 
-run_extra_mcmc=FALSE
+run_extra_mcmc=TRUE
 adapt_delta=0.95
+small=TRUE
+verbose=FALSE
 
 . ./generic-run-models.sh
