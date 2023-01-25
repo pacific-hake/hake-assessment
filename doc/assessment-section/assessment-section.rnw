@@ -1814,25 +1814,34 @@ were ubiquitously slightly more negative than in the base model
 Retrospective analyses were performed by iteratively removing the terminal
 years' data (going back 10 years) and estimating the posterior distribution of
 parameters under the assumptions of the base
-model. With the addition of the age-1 index time series, recruitment
-strength estimates now come closer to the long-term stable estimate by age-2 in some cases
-(Figure~\ref{fig:main-retrospective-recruitment}) compared to models without the age-1 index
-\citep{JTC2022}.
-However, some cohort recruitments still are over or under-estimated at age-2.
-Over-estimation can be seen most clearly with the 2014, 2015, 2017, and 2018 cohorts.  The 2014 cohort
+model.
+This year's base model shows similar retrospective results to last year's
+(Figure~\ref{fig:main-retrospective-recruitment}, \citealt{JTC2022}).
+The addition of the age-1 index in last year's base model found estimates
+of recruitment
+strength to come closer to the long-term stable estimate by age-2 in some cases
+compared to the model without the age-1 index \citep{JTC2022}.
+However, some cohort recruitments are still over or under-estimated at age-2.
+Over-estimation can be seen most clearly with the 2014, 2015, 2017, and 2018
+cohorts (Figures~\ref{fig:main-retrospective-recruitment} and~\ref{fig:main-relative-retrospective-recruitment}).
+The 2014 cohort
 reached a high deviation after two years, then even higher after three years only to drop back down
 to a lower value and then stabilize at around age-4 with the addition of more data. A similar pattern
-can be seen with the 2017 and 2018 cohorts. Even With the addition of new data, the size of the 2015
-cohort has not fully stabalized, with estimates suggesting it was a poor recruitment year.
+can be seen with the smaller 2017 and 2018 cohorts. Even with the addition of
+new data, the size of the very small 2015
+cohort has not fully stabilized.
 Under-estimation is slight, but apparent, for the 2016 cohort as recruitment estimates have risen
-since the estimate at age-2. Cohort strength is further informed once at least one year of biomass
-index (age-2+) age-composition data are available for the cohort, which for even year recruitment typically
-does not occur until the cohort reaches age-3 with odd year acoustic surveys.
+since the estimate at age-3. Cohort strength is further informed once at least
+one year of age-2+ survey biomass
+index age-composition data are available for a cohort, which for even-numbered
+recruitment years typically
+does not occur until the cohort reaches age-3, due to the acoustic survey
+occurring in odd years; though the age-1 index does provide some information.
 
 The stability of the recruitment estimates seen in this plot is also evident in the uncertainty estimates of
-each cohort. Uncertainty around the 2016--2019 cohort has been substantially reduced compared
-to previous models (Figure~\ref{fig:main-biomass-recruitment-retrospective}, bottom figure).
-Whereas the uncertainty around the 2020 cohort has actually increased with the addition of
+each cohort. Uncertainty of the 2016--2019 cohorts has been substantially reduced compared
+to removing five years of data (Figure~\ref{fig:main-biomass-recruitment-retrospective}, bottom figure).
+However, the uncertainty of the 2020 cohort has actually increased with the addition of
 another year of fishery data compared to last year's base model.
 Medians of various quantities of interest are given in Table~\ref{tab:main-parameter-estimates-retro}.
 
@@ -1874,11 +1883,10 @@ parameterization (Table~\ref{tab:main-assessment-changes}).
 The uncertainty interval associated with the \Sexpr{end_yr} assessment brackets the majority of the
 historical estimates.
 
-The level of uncertainty associated with estimates of current spawning biomass (i.e., the biomass
-in the current assessment year used to convey current stock status and inform management advice)
+The level of uncertainty associated with each assessment's estimate of that year's current spawning biomass (used to convey current stock status and inform management advice)
 changes from assessment to assessment given updates in data and \fishname\ population structure and
 dynamics. While uncertainty around the absolute amount of 2023 spawning biomass is the
-second largest (behing the 2017 assessment) since 2012, the relative amount of dispersion
+second largest (behind the 2017 assessment) since 2012, the relative amount of dispersion
 given the stock size (i.e., similar to a coefficient of variation) is not inconsistent with previous
 assessments (Figure~\ref{fig:main-historical-dispersion}).
 
