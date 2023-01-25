@@ -1362,7 +1362,7 @@ make.historical.probs.retro.plot(base_model,
 <<main-historical-retro-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 make.historical.probs.retro.plot(base_model,
                                  legend.cex = 0.6,
-                                 legend.loc = "topright"))
+                                 legend.loc = "topright")
 @
 \end{center}
 \caption{Retrospective results of
