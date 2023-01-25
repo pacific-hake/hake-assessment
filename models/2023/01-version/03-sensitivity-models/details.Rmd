@@ -32,7 +32,8 @@ df <- tribble(
   "13-max-sel-age-5",              "Chris",             "Maximum age of fishery selectivity is 5 (not 6)",
   "14-max-sel-age-7",              "Chris",             "Maximum age of fishery selectivity is 7 (not 6)",
   "15-max-sel-age-8",              "Chris",             "Maximum age of fishery selectivity is 8 (not 6)",
-  "16-zero-sum-constraint",        "Chris",             "Remove zero-sum constraint for recruitment deviations parameters")
+  "16-zero-sum-constraint",        "Chris",             "Remove zero-sum constraint for recruitment deviations parameters",
+  "17-m-hamel-prior-updated",      "Chris",             "Same as 07-m-hamel-prior but with mor recent prior SD of 0.31")
 
 described_dirs <- df$`Model Name`
 
@@ -98,7 +99,7 @@ walk(seq_along(df), ~{
 })
 
 if(length(grep("Uninit", df))){
-  # Find any Unitialized rows and color them
+  # Find any Uninitialized rows and color them
   iter <- 1
   pwalk(df, ~{
     if(length(grep("Uninitialized", list(...)))){
