@@ -15,6 +15,7 @@ plot_rel_biomass <- function(model_lst = NULL,
                              leg_font_size = 12,
                              axis_title_font_size = 14,
                              axis_tick_font_size = 11,
+                             minor_tick_length = 0.1, # centimeters
                              point_size = 2,
                              point_shape = 16,
                              line_width = 1,
@@ -44,8 +45,8 @@ plot_rel_biomass <- function(model_lst = NULL,
   }
   # X-axis tick mark lengths adjusted here
   x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
-  top_y_pos = 0
-  bot_y_pos = - (ylim[2] - ylim[1]) / 50
+  top_y_pos = ylim[1]
+  bot_y_pos = ylim[1] - (ylim[2] - ylim[1]) / 25
   custom_ticks <- tibble(group = x_breaks_nth,
                          y_end = bot_y_pos)
 
@@ -132,7 +133,7 @@ plot_rel_biomass <- function(model_lst = NULL,
   g <- g +
     geom_linerange(data = custom_ticks,
                    aes(x = group,
-                       ymax = 0,
+                       ymax = top_y_pos,
                        ymin = y_end),
                    size = 0.5,
                    inherit.aes = FALSE)
@@ -157,7 +158,8 @@ plot_rel_biomass <- function(model_lst = NULL,
           axis.title.y = element_text(color = "grey20",
                                       size = axis_title_font_size,
                                       angle = 90,
-                                      face = "plain"))
+                                      face = "plain"),
+          axis.ticks.length = unit(0.15, "cm"))
 
   if(is.null(leg_pos) || is.na(leg_pos)){
     g <- g +

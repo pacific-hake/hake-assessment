@@ -18,7 +18,7 @@
 #' @param leg_font_size The legend font size
 #' @param axis_title_font_size Size of the font for the X and Y axis labels
 #' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param point_size Size of all points shownin plot
+#' @param point_size Size of all points shown in plot
 #' @param line_width Width of all lines on the plot
 #' @param single_point_color Point color for the case where there is only
 #' one model to plot
@@ -100,12 +100,12 @@ plot_biomass <- function(model_lst = NULL,
 
   # Add "Unfished Equilibrium" to the x break labels
   # with a newline between them
-  x_labels <- c(expression(atop("Unfished", "Equilibrium")), x_labels)
+  x_labels <- c(expression(B[0]), x_labels)
   x_breaks = c(bo$year[1], x_breaks)
-  # Tick mark lengths adjusted here
+  # Major tick mark lengths adjusted here
   x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
-  top_y_pos = 0
-  bot_y_pos = - (ylim[2] - ylim[1]) / 50
+  top_y_pos = ylim[1]
+  bot_y_pos = ylim[1] - (ylim[2] - ylim[1]) / 25
   custom_ticks <- tibble(group = x_breaks_nth,
                          y_end = bot_y_pos)
 
@@ -147,15 +147,6 @@ plot_biomass <- function(model_lst = NULL,
                     add_newlines("Female Spawning Biomass+(million t)"),
                     "Female Spawning Biomass (million t)"))
 
-  # Add major tick marks
-  g <- g +
-    geom_linerange(data = custom_ticks,
-                   aes(x = group,
-                       ymax = 0,
-                       ymin = y_end),
-                   size = 0.5,
-                   inherit.aes = FALSE)
-
   # Add B0 to the plot
   g <- g +
     geom_point(data = bo,
@@ -168,12 +159,21 @@ plot_biomass <- function(model_lst = NULL,
                   color = ribbon_colors,
                   alpha = 0.5)
 
+  # Add major tick marks
+  g <- g +
+    geom_linerange(data = custom_ticks,
+                   aes(x = group,
+                       ymax = top_y_pos,
+                       ymin = y_end),
+                   size = 0.5,
+                   inherit.aes = FALSE)
+
   g <- g +
     theme(axis.text.x = element_text(color = "grey20",
                                      size = axis_tick_font_size,
                                      angle = 0,
                                      hjust = 0.5,
-                                     vjust = 0.5,
+                                     vjust = -0.25,
                                      face = "plain"),
           axis.text.y = element_text(color = "grey20",
                                      size = axis_tick_font_size,
@@ -183,11 +183,13 @@ plot_biomass <- function(model_lst = NULL,
           axis.title.x = element_text(color = "grey20",
                                       size = axis_title_font_size,
                                       angle = 0,
+                                      vjust = 0,
                                       face = "plain"),
           axis.title.y = element_text(color = "grey20",
                                       size = axis_title_font_size,
                                       angle = 90,
-                                      face = "plain"))
+                                      face = "plain"),
+          axis.ticks.length = unit(0.15, "cm"))
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +

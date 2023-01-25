@@ -66,7 +66,7 @@ plot_recdevs <- function(model_lst = NULL,
   # Tick mark lengths adjusted here
   x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
   top_y_pos = ylim[1]
-  bot_y_pos = ylim[1] - (ylim[2] + abs(ylim[1])) / 50
+  bot_y_pos = ylim[1] - (ylim[2] + abs(ylim[1])) / 25
   custom_ticks <- tibble(group = x_breaks_nth,
                          y_end = bot_y_pos)
 
@@ -151,7 +151,8 @@ plot_recdevs <- function(model_lst = NULL,
           axis.title.y = element_text(color = "grey20",
                                       size = axis_title_font_size,
                                       angle = 90,
-                                      face = "plain"))
+                                      face = "plain"),
+          axis.ticks.length = unit(0.15, "cm"))
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
