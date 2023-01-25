@@ -1,28 +1,6 @@
 #' Plot relative biomass from MCMC output for one or more models
 #'
-#' @param model_lst A list of models, each created by [create_rds_file()]
-#' @param model_names A vector of model names,the same length as `models_lst`
-#' @param xlim The year limits to plot
-#' @param x_breaks The year value tick marks to show for the x axis
-#' @param ylim The depletion limits to plot
-#' @param y_breaks The depletion value tick marks to show for the y axis
-#' @param y_labels The depletion labels to show for the y axis tick marks
-#' @param y_colors The color vector for each label for the y axis tick marks
-#' @param alpha The transparency for all ribbons
-#' @param leg_pos The position of the legend inside the plot. If `NULL`,
-#' `NA`, or `none`, the legend will not be shown
-#' @param leg_font_size The legend font size
-#' @param axis_title_font_size Size of the font for the X and Y axis labels
-#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param point_size Size of all points shownin plot
-#' @param line_width Width of all lines on the plot
-#' @param d_obj If not `NULL` this is a list which has been
-#' pre-processed to contain all models in a format that is ready to plot.
-#' Essentially the first steps of this function have been replicated
-#' outside the function (The code inside the `if(is.null(d_obj))`)
-#' is done to stop the Rmd process from taking forever
-#'
-#' @return a [ggplot2::ggplot()] object
+#' @rdname plot_biomass
 #' @export
 plot_rel_biomass <- function(model_lst = NULL,
                              model_names,

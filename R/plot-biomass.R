@@ -4,6 +4,8 @@
 #' @param model_names A vector of model names,the same length as `models_lst`
 #' @param xlim The year limits to plot
 #' @param x_breaks The year value tick marks to show for the x axis
+#' @param y_labels The depletion labels to show for the y axis tick marks
+#' @param y_colors The color vector for each label for the y axis tick marks
 #' @param x_labs_mod Value for major X-axis tick marks. Every Nth tick
 #' will be longer and have a label. The first and last will be shown
 #' regardless of what this number is
@@ -18,8 +20,18 @@
 #' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
 #' @param point_size Size of all points shownin plot
 #' @param line_width Width of all lines on the plot
+#' @param single_point_color Point color for the case where there is only
+#' one model to plot
+#' @param single_line_color Line color for the case where there is only
+#' one model to plot
+#' @param crossbar_width The width of the end bars (top and bottom) of the errorbar
+#' lines. Default of zero removes them
+#' @param dodge_val The amount to offset the lines from each other in the
+#' case of multiple models
 #' @param wrap_y_label Logical. If `TRUE`, adds a newline to the y axis
 #' label so that it doesn't get cut off
+#' @param rev_colors Logcial. If `TRUE`, reverse the order of the colors
+#' in the plot. Only applies if more than one model is plotted
 #' @param d_obj If not `NULL` this is a list which has been
 #' pre-processed to contain all models in a format that is ready to plot.
 #' Essentially the first steps of this function have been replicated
