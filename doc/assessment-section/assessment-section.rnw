@@ -419,11 +419,11 @@ encourages continued sampling and analysis to improve understanding of the
   indices of fish reproductive and metabolic status is expected to bolster the current
   practice of using gonadal histology alone for surveyed \fishname\ and provide important data to more accurately
   determine the reproductive cycle of females. Data generated to date indicate that two types of lipids,
-  triacylglycerols and phospholipids, in the livers of Pacific Hake are inversely related and predictive
+  triacylglycerols and phospholipids, in the livers of \fishname\ are inversely related and predictive
   of sexual maturity in females. Levels of these lipids are also considerably shifted when aborted, atretic
   ovarian follicles are observed, suggesting that lipid levels may be predictive of skipped spawning,
-  which can reduce the effective spawning stock biomass. Data analyses will continue in 2023.
-  New developments are expected to inform maturity in future Pacific Hake stock assessments.}
+  which can reduce the effective female spawning biomass. Data analyses will continue in 2023.
+  New developments are expected to inform maturity in future \fishname\ stock assessments.}
 
 
 5. {\bf The SRG also recommends continuing to conduct the following sensitivities:
@@ -640,8 +640,8 @@ though slightly increases the estimated spawning biomass
 %in a slight increase in estimated recent recruitment, most noticeably for the 2018 and 2020 year
 %classes (Figure~\ref{fig:main-bridge-5-panel-2}), and
 %increase in virgin recruitment. In turn, this results in a slightly higher
-%trajectory of spawning stock biomass from 2013--2022 and a change in 2022
-%median relative spawning stock biomass from
+%trajectory of female spawning biomass from 2013--2022 and a change in 2022
+%median relative spawning biomass from
 % round(median(bridge_models_2[[1]]$mcmc$Bratio_2022),3)*100}\%. to
 % round(median(base_model$mcmc$Bratio_2022),3)*100}\%.
 
@@ -1440,8 +1440,8 @@ at the start of \Sexpr{end_yr+2} is 24\%,
 and at the start of \Sexpr{end_yr+3} is 35\%.
 As the large 2010, 2014, and 2016 cohorts continue to age, their biomass is expected to decrease
 as losses from mortality continue to outweigh increases from growth.  The
-estimated above-average 2020 cohort has already begun to play a large role in determining spawning
-stock biomass during the forecast years presented here.
+estimated above-average 2020 cohort has already begun to play a large role in determining female spawning
+biomass during the forecast years presented here.
 
 It should be noted
 that forecasted biomass is not only influenced by catch levels.
@@ -1609,7 +1609,7 @@ estimated increases in spawning biomass in the early- to mid-2010s that continue
 driven by the 2010, 2014, and 2016 cohorts, followed by several years of steady decline
 (2019--2021) before increasing again due to the strong 2020 cohort.
 All sensitivity models indicate that \Sexpr{assess_yr}
-relative spawning stock biomass is above $\Bforty$. The overall scale of the
+relative spawning biomass is above $\Bforty$. The overall scale of the
 population was impacted by various alternative assumptions, and the highly
 uncertain size of the recent cohorts were more variable across sensitivity analyses
 than earlier cohorts which have been observed for more years.
@@ -1734,7 +1734,7 @@ used in the base model was \Sexpr{DM.weight.fishery.median} and
 \Sexpr{f(as.numeric(DM.weight.fishery.median) /
 as.numeric(DM.weight.survey.median),2)}).
 Downweighting fishery composition data using the McAllister-Ianelli method
-led to minor changes in relative spawning stock biomass, recruitment estimates, and increased uncertainty
+led to minor changes in relative spawning biomass, recruitment estimates, and increased uncertainty
 in estimates of early recruitments compared to the base model
 (Figures~\ref{fig:main-status-base-alternative-2} and~\ref{fig:main-recruit-base-alternative-2}).
 
@@ -1850,7 +1850,7 @@ trajectory up to the mid-2010s, and most retrospective change occurs in the
 final years of the retrospective model with the most years removed
 (Figure~\ref{fig:main-biomass-recruitment-retrospective}).
 In this assessment, there is very little retrospective bias. Present is
-slight year-specific positive and negative bias in spawning stock biomass, some minor adjustments to
+slight year-specific positive and negative bias in spawning biomass, some minor adjustments to
 recruitment deviates, and a slight trend in $B_0$ as the retrospective year increases. All of these
 retrospective differences are well within the range of estimation uncertainty across all retrospective years.
 There is no indication from retrospective
@@ -1906,7 +1906,7 @@ a relatively good idea of general trends and status.
 % gives the probs if ever want a table
 
 Full methodological details can be found in \citet{JTC2022}. As an example,
-the 2019 assessment \citep{JTC2019} gave the estimated probability of the spawning stock
+the 2019 assessment \citep{JTC2019} gave the estimated probability of the female spawning
 biomass declining in the subsequent year, i.e.,~P($B_{2020} < B_{2019}$),
 for several possible catches in 2019, such as 0~t, 180,000~t,
 350,000~t, 410,000~t etc. Now that we `know' the catch in 2019 was

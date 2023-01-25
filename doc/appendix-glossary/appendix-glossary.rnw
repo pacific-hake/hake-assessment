@@ -27,7 +27,7 @@
 
 ABC: Acceptable biological catch. See below.
 
-Acceptable biological catch (ABC): The acceptable biological catch is a scientific calculation of the sustainable harvest level of a fishery used historically to set the upper limit for fishery removals by the Pacific Fishery Management Council. It is calculated by applying the estimated (or proxy) harvest rate that produces maximum sustainable yield (MSY, see below) to the estimated exploitable stock biomass (the portion of the fish population that can be harvested). For \fishname, the calculation of the acceptable biological catch and application of the 40:10 adjustment is now replaced with the default harvest rate and the Total Allowable Catch.
+Acceptable biological catch (ABC): The acceptable biological catch is a scientific calculation of the sustainable harvest level of a fishery used historically to set the upper limit for fishery removals by the Pacific Fishery Management Council. It is calculated by applying the estimated (or proxy) harvest rate that produces maximum sustainable yield (MSY, see below) to the estimated exploitable biomass (the portion of the fish population that can be harvested). For \fishname, the calculation of the acceptable biological catch and application of the 40:10 adjustment is now replaced with the default harvest rate and the Total Allowable Catch.
 
 Adjusted: A term used to describe Total Allowable Catch or allocations that account for carryovers of uncaught catch from previous years (see Carryover below).
 
@@ -260,9 +260,6 @@ Spawning potential ratio (SPR): The ratio of the spawning biomass per recruit un
 \mbox{SPR}(F) = \frac{\mbox{spawning biomass per recruit with }F}{\mbox{spawning biomass per recruit with no fishing}}.
 \ee
 Often expressed as a percentage, it achieves a value of 100\% in the absence of fishing and declines toward zero as fishing intensity increases. See Figure~\ref{fig:glossary-SPR-illustration} for a graphical demonstration of the calculation of SPR.
-
-%Not found in text in 2017:
-%Spawning stock biomass (SSB): Alternative term for female spawning biomass (see above).
 
 SPR: Spawning potential ratio (see above).
 

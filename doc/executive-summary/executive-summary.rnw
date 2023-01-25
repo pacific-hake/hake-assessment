@@ -561,7 +561,7 @@ due to the appearance of the 1999 year class.
 %%%%%%%%%%%%%%%%%%%%%%%  % Figure g
 \begin{figure}[tbp]
 \begin{center}
-<<exploitation-fraction, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the stock biomass is approximately 0.1">>=
+<<exploitation-fraction, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the female spawning biomass is approximately 0.1">>=
 make.exploitation.fraction.plot(base_model,
                                 start_yr = start_yr,
                                 end_yr = end_yr-1,
@@ -719,7 +719,7 @@ helps inform recent recruitment, the survey is conducted every other year and do
 address current or future recruitment expectations.
 In particular, while the model expects the 2020 cohort to be above average, its absolute size remains
 highly uncertain.  This uncertainty propagates directly into current and forecasted estimates of
-spawning stock biomass. The upcoming 2023 acoustic survey will provide additional information on the
+female spawning biomass. The upcoming 2023 acoustic survey will provide additional information on the
 size of the 2020 year-class, which will lessen uncertainty of estimates of female spawning biomass.
 Further, the interactions
 among variance parameters that govern variability in fishery selectivity and recruitment

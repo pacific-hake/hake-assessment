@@ -1381,7 +1381,6 @@ year's assessment, the credible interval mostly overlaps that from last year's a
 \frame{\frametitle{Summary -- Biomass}
   \bi
   \item Model fits the age data particularly well
-  %\item The estimated spawning stock biomass has continually dropped since 2017
   \item The median estimate of \Sexpr{end_yr} relative spawning biomass is
     \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
     \Sexpr{curr.depl.upper}\%)
@@ -1435,7 +1434,7 @@ year's assessment, the credible interval mostly overlaps that from last year's a
   \item Low proportion of young fish (ages 1--3) in 2021 fishery
   \item Above average 2014 and 2016 cohort biomass: mortality outpacing growth (36\% and 34\%
     decline, respectively, from beginning of 2021)
-  \item Spawning stock biomass relatively high (65\% of $B_0$), but steady decline over recent years:
+  \item Female spawning biomass relatively high (65\% of $B_0$), but steady decline over recent years:
     \bi
       \item SSB(2019) to SSB(2020): -9\%
       \item SSB(2020) to SSB(2021): -12\%

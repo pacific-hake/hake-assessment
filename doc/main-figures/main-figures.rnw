@@ -717,7 +717,7 @@ make.fishing.intensity.plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-exploitation-fraction, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the stock biomass is approximately 0.1">>=
+<<main-exploitation-fraction, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the female spawning biomass is approximately 0.1">>=
 make.exploitation.fraction.plot(base_model,
                                 start_yr = start_yr,
                                 end_yr = end_yr-1,
