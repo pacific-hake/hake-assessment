@@ -157,7 +157,9 @@ total catch for the fishery data, precision for the indices,
 and total sample size for
 the age compositions (and cannot be compared
 across data types).
-Additionally, mean weight-at-age data (not depicted here) are
+Additionally, mean weight-at-age data (1975--\Sexpr{last_data_yr};
+not depicted here but see Figure~\ref{fig:main-empirical-weight-at-age-numbers}
+for sample sizes) are
 used to account for time-varying growth.}
 \label{fig:main-data-overview}
 \end{figure}
@@ -210,7 +212,7 @@ make.survey.age1.plot.data(dplyr::filter(base_model[["dat"]][["CPUE"]], index ==
   The index is relative because
   the survey does not attempt to catch all available
   age-1 fish and the analysis does not include kriging
-  unlike estimates of age-2$+$ biomass.}
+  unlike estimates of age-2$+$ survey biomass.}
 \label{fig:main-age-one-index}
 \end{figure}
 
@@ -471,11 +473,11 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
 @
 \end{center}
 %\vspace{0mm}
-\caption{**[check key ones have not changed] Prior (black lines) and posterior (gray histograms) distributions for
+\caption{Prior (black lines) and posterior (gray histograms) distributions for
   key parameters in the base model. The parameters are: natural mortality ($M$),
   equilibrium log recruitment ($\log R_0)$, steepness ($h$), the additional
-  process-error standard deviation for the acoustic survey and the age-1 biomass
-  index, and the Dirichlet-multinomial parameters for the fishery ($\theta_{\text{fish}}$) and
+  process-error standard deviation for the acoustic survey, and the
+  Dirichlet-multinomial parameters for the fishery ($\theta_{\text{fish}}$) and
   the survey ($\theta_{\text{surv}}$).}
   % This didn't seem needed for 2022:
   % There
@@ -500,7 +502,8 @@ tv.selex <- calc.tv.selex(base_model,
 make.tv.selex.plot(tv.selex)
 @
 \end{center}
-\caption{Mountains plot of median fishery selectivity in each year for the base model. Range of selectivity is 0 to 1 in each year.}
+\caption{Mountains plot of median fishery selectivity in each year for the base model. Range of selectivity is
+  scaled to be between 0 to 1 in each year.}
 \label{fig:main-tv-selex}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -552,10 +555,10 @@ make.selex.uncertainty.lines.plot(base_model,
 par <- oldpar
 @
 \end{center}
-\caption{Estimated selectivities for the biomass index (top -- for all years)
+\caption{Estimated selectivities for the acoustic survey (top -- for all years)
   and fishery (bottom -- for \Sexpr{end_yr-1} only)
   from the posterior distribution for the base model.
-  Selectivity for the biomass index is 0 at age-1 and
+  Selectivity for the acoustic survey is 0 at age-1 and
   constant from age-6 onwards.
 }
 \label{fig:main-tv-selex-uncertainty-lines}
@@ -666,7 +669,7 @@ make.mcmc.recruitment.plot(base_model,
                            auto.xaxis = FALSE)
 @
 \end{center}
-\caption{Medians (solid circles) of the posterior distribution of `recruitments divided by the 2010 recruitment', with 95\% posterior credibility intervals (red lines); the division is done for each MCMC sample. This scales out the uncertainty due to uncertainty in unfished equilibrium recruitment ($R_0$), and shows that, for example, the 2014 recruitment  is definitely smaller than the 2010 recruitment (2010 was chosen as it is estimated to be one of the largest recruitment events). However, intuition from plots of absolute recruitment (Figure~\ref{fig:main-recruitment}) is that the 2014 is possibly (even probably) larger than the 2010 recruitment \citep{JTC2022}. This figure gives a somewhat more intuitive y-axis (people familiar with \fishname\ know 2010 to be a very large recruitment year) than the `billions of age-0 fish' necessarily used in Figure~\ref{fig:main-recruitment}.}
+\caption{Medians (solid circles) of the posterior distribution of recruitment relative to that in 2010 (recruitment divided by the 2010 recruitment for every MCMC sample), with 95\% posterior credibility intervals (red lines). This procedure scales out the uncertainty due to uncertainty in unfished equilibrium recruitment ($R_0$), and better elicits comparisons of relative cohort size while retaining individual time series pairs within aggregated posterior distributions (for example, recruitment in 2014 is clearly smaller than in 2010). The year 2010 was chosen as the basis for comparison due to its well recognized size and the stability of cohort strength estimates over time.}
 \label{fig:main-recruitment-scale-all}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
