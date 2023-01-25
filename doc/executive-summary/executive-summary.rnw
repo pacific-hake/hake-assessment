@@ -856,7 +856,7 @@ actions. With zero catch for the next three years, the biomass has a
 \Sexpr{forecast_yrs[3]} to \Sexpr{forecast_yrs[4]} (Table~\ref{tab:es-risk-year-3}).
 
 The probability of the female spawning biomass decreasing from \Sexpr{end_yr} to
-\Sexpr{end_yr+1} is above 72\% for all catch levels
+\Sexpr{end_yr+1} is above 72\% for all non-zero catch levels examined
 (Table~\ref{tab:es-risk-year-1} and
 Figure~\ref{fig:es-forecast-risk-comparison-year-1}). It is 81\% for the
 \Sexpr{end_yr} catch level similar to that for \Sexpr{end_yr-1} (scenario f: \Sexpr{end_yr} catch).
