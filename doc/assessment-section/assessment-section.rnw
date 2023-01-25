@@ -568,33 +568,36 @@ Hake stock during the COVID-19 pandemic.}
 
 \subsubsection{Changes from \Sexpr{last_assess_yr} }\label{sec:assessment-changes}
 
+% manual 2023 KFJ
 A set of `bridging' models was constructed to evaluate the component-specific
 effects of the steps to change from the \Sexpr{last_assess_yr} base model to
 the \Sexpr{assess_yr} base model. The steps are:
 \begin{itemize}
+  % For 2024, check the order of these:
   \item Update to the latest version of Stock Synthesis, version
     \Sexpr{ss_version}, to follow current best practices;
-  \item Update catch, age-composition, and weight-at-age data from years prior to \Sexpr{last_data_yr};
-  \item Add new catch data for \Sexpr{last_data_yr};
-  % For 2024, check the order of these:
+  \item Add new catch data for \Sexpr{last_data_yr} and update historical catches;
+  \item Add weight-at-age data for \Sexpr{last_data_yr} and update historical weight-at-age data;
   %\item Update acoustic survey biomass and age-composition data from years prior to \Sexpr{last_data_yr};
-  %\item Add the \Sexpr{last_data_yr} acoustic survey biomass and age-composition estimates; and
-  \item Add weight-at-age data for \Sexpr{last_data_yr}.
-  \item Add fishery age-composition data for \Sexpr{last_data_yr}
-  %\item Add the age-1 index time series.
-  %\item Add \Sexpr{last_data_yr} survey biomass estimate;
-  %\item Add \Sexpr{last_data_yr} survey age-composition data; and
+  %\item Add the \Sexpr{last_data_yr} acoustic survey biomass and age-composition estimates;
+  %\item Add the age-1 index time series; and
+  \item Add fishery age-composition data for \Sexpr{last_data_yr} and update historical fishery age-composition data.
 \end{itemize}
 
-**Kelli to add to this paragraph if needed:
-
+% manual 2023 KFJ
 Stock Synthesis version \Sexpr{ss_version} includes
-a number of changes since the version used by \citet{JTC2022},
-mostly related to options not explicitly used in this assessment.
-Adaptations within the Stock Synthesis modeling framework itself had little effect
-on parameter estimates compared to the \Sexpr{last_assess_yr}
-base model and thus no effect on resulting time series (Figure~\ref{fig:main-bridge-5-panel-1}).
-% Changes relevant to the assessment of \fishname\ include changes to
+a number of changes since the version used by \citet{JTC2022}. Changes relevant
+to this assessment include a fix to the forecasting module that ensures
+weight-at-age information in the first year of the forecast is as specified
+rather than carried forward from the previous year. This fix was implemented and
+used in the \Sexpr{last_assess_yr} assessment for all forecasts provided to
+management. Additional changes were made to Stock Synthesis to ensure models
+that use empirical weight-at-age data do not report tables in the output that
+use growth parameters because even though growth parameters are not used they
+must still be provided as placeholders in the input files. Adaptations within
+the Stock Synthesis modeling framework itself had little effect on parameter
+estimates compared to the \Sexpr{last_assess_yr} base model and thus no effect
+on resulting time series (Figure~\ref{fig:main-bridge-5-panel-1}).
 
 The update of pre-\Sexpr{last_data_yr} data occurs because databases are
 continually updated; this
@@ -602,17 +605,18 @@ yielded minor adjustments to the data.
 Samples that were recently aged but not available for the \Sexpr{last_assess_yr}
 assessment were included.
 These changes to pre-\Sexpr{last_assess_yr} data were small enough that they had
-little impact on the model results (not shown).
+little impact on the model results and are thus combined with steps that add
+data from the \Sexpr{last_data_yr}.
 
 The addition of the \Sexpr{last_data_yr} catch data extends the model
 to the start of \Sexpr{assess_yr}.
 Recruitment estimates and historical stock
 trajectory were relatively unchanged, and the new data suggest
-a slight increase in spawning
+a slight increase in female spawning
 biomass from \Sexpr{assess_yr-1} to \Sexpr{assess_yr}
 (Figure~\ref{fig:main-bridge-5-panel-1}).
 Adding the weight-at-age data for \Sexpr{last_data_yr} makes little change,
-though slightly increases the estimated spawning biomass
+though slightly increases the estimated female spawning biomass
 (Figure~\ref{fig:main-bridge-5-panel-1}).
 
 %%Only include an updated version of the following paragraph during survey years
@@ -656,10 +660,10 @@ but did shift recent recruitment estimates (Figure~\ref{fig:main-bridge-5-panel-
 The estimated 2019 recruitment decreased, while the estimated large 2020 cohort
 was shifted even larger.
 The increase in 2020 recruitment contributes to a considerable increase
-in spawning biomass by the start of \Sexpr{assess_yr}, as these fish are
+in female spawning biomass by the start of \Sexpr{assess_yr}, as these fish are
 considered mostly mature at the start of \Sexpr{assess_yr}.
-Despite both fishery age compositions and the age-1 index pointing towards
-a strong 2020 cohort, estimates of \Sexpr{assess_yr} spawning biomass remain highly uncertain,
+Despite both fishery age compositions and the relative age-1 index pointing towards
+a strong 2020 cohort, estimates of \Sexpr{assess_yr} female spawning biomass remain highly uncertain,
 largely due to underlying uncertainty in recent recruitment
 (Figure~\ref{fig:main-bridge-5-panel-1}). Uncertainty related to the 2020 cohort should
 decrease once these fish have been observed by the acoustic survey and
@@ -978,11 +982,6 @@ year class (\Sexpr{top.coh(base_model, 2016, spec.yr=2014)}\% of the 2016 catch 
 2014 year class; this was larger than the proportion of age-2 fish,
 \Sexpr{top.coh(base_model, 2012, spec.yr=2010)}\%, from the 2010 year
 class in 2012).
-%The median estimate of the 2010 year class is
-%very slightly below the highest ever (for 1980), with a \Sexpr{prob.percent.2010.rec.gt.1980.rec}\%
-%probability that the 2010 year class is larger than the 1980 year class (this
-%probability was \Sexpr{prob.percent.2010.rec.gt.1980.rec.last.year.assess}\% for
-%last year's assessment).
 
 The current assessment also estimates a strong 2014 year class
 (Figure~\ref{fig:main-numbers-at-age}) comprising
