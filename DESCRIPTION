@@ -28,6 +28,7 @@ Imports:
     ggrepel,
     grDevices,
     graphics,
+    grid,
     gtools,
     here,
     knitr,

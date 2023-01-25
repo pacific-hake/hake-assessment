@@ -191,5 +191,15 @@ plot_biomass <- function(model_lst = NULL,
              color = guide_legend(ncol = leg_ncol))
   }
 
+  # Draw a white rectangle over the top of the plot, obscuring any
+  # unclipped plot parts. Clipping has to be off to allow different size
+  # tick marks. `grid` package used here
+  g <- g +
+    annotation_custom(grob = rectGrob(gp = gpar(col = NA, fill = "white")),
+                      xmin = xlim[1],
+                      xmax = xlim[2],
+                      ymin = ylim[2],
+                      ymax = ylim[2] + 2)
+
   g
 }
