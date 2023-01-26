@@ -68,6 +68,9 @@ plot_survey_index_fits <- function(
   custom_ticks <- tibble(group = x_breaks_nth,
                          y_end = bot_y_pos)
 
+  y_title <- ifelse(survey_type == "age1",
+                    "Numbers (billions)",
+                    "Biomass (million t)")
   g <- ggplot(d,
               aes(x = year,
                   y = index.med,
@@ -101,7 +104,7 @@ plot_survey_index_fits <- function(
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 7, 0)) +
     xlab("Year") +
-    ylab("Biomass (million t)")
+    ylab(y_title)
 
   # Add major tick marks
   g <- g +

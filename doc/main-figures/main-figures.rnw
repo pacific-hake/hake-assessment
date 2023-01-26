@@ -310,6 +310,7 @@ plist[[1]] <-
                    ylim = c(0, 2.5),
                    x_labs_mod = 10,
                    clip_cover = 0.45,
+                   wrap_y_label = TRUE,
                    leg_pos = "none")
 plist[[2]] <-
   plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
@@ -320,12 +321,14 @@ plist[[2]] <-
 
 plist[[3]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
+                         survey_type = "age2",
                          rev_colors = FALSE,
                          clip_cover = 0.25,
                          leg_pos = "none")
 
 plist[[4]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
+                         survey_type = "age1",
                          xlim = c(1995, 2022),
                          ylim = c(0, 11),
                          clip_cover = 0.25,
