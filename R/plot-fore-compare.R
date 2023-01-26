@@ -1,24 +1,6 @@
 #' Title
 #'
-#' @param model A model, created by [create_rds_file()] that has a
-#' `forecasts` object (forecasts have been run)
-#' @param forecast_yrs A vector of forecast years to use
-#' @param fore_yr Forecast year for the probabilities
-#' @param colors A vector of colors, one for each probability to be plotted
-#' @param shapes A vector of point shapes, one for each probability to be
-#' plotted
-#' @param leg_font_size The legend font size
-#' @param leg_ncol The number of columns that the legend should be split into
-#' @param leg_pos The position of the legend inside the plot. If `NULL`,
-#' `NA`, or `none`, the legend will not be shown
-#' @param remove_x_val A cevtor of values to remove from the x-axis due to
-#' overlapping. First run this function, then select the values and pass them
-#' to the function when plotting a second time
-#' @param show_50_line Logical. If `TRUE`, draw a horizontal line at 50% (0.5)
-#' @param short Logical. If `TRUE`, plot a version with only P(YR<0.4B0),
-#' P(YR<0.1B0), and P(YR<YR+1)
-#'
-#' @return A [ggplot2::ggplot()] object
+#' @rdname plot_biomass
 #' @export
 plot_fore_compare <- function(model,
                               forecast_yrs,
@@ -31,6 +13,8 @@ plot_fore_compare <- function(model,
                                          "tan"),
                               shapes = c(16, 17, 17, 17, 15, 18),
                               leg_font_size = 8,
+                              axis_title_font_size = 14,
+                              axis_tick_font_size = 11,
                               leg_pos = NULL,
                               leg_ncol = 1,
                               remove_x_val = NULL,
@@ -131,24 +115,26 @@ plot_fore_compare <- function(model,
                        labels = x_breaks) +
     theme(legend.title=element_blank(),
           axis.text.x = element_text(color = "grey20",
-                                     size = 10,
+                                     size = axis_tick_font_size,
                                      angle = 90,
-                                     hjust = 1,
-                                     vjust = 0.5,
+                                     hjust = 0.5,
+                                     vjust = -0.25,
                                      face = "plain"),
           axis.text.y = element_text(color = "grey20",
-                                     size = 10,
+                                     size = axis_tick_font_size,
                                      hjust = 1,
                                      vjust = 0.5,
                                      face = "plain"),
           axis.title.x = element_text(color = "grey20",
-                                      size = 14,
+                                      size = axis_title_font_size,
                                       angle = 0,
+                                      vjust = 0,
                                       face = "plain"),
           axis.title.y = element_text(color = "grey20",
-                                      size = 14,
+                                      size = axis_title_font_size,
                                       angle = 90,
-                                      face = "plain"))
+                                      face = "plain"),
+          axis.ticks.length = unit(0.15, "cm"))
 
   if(show_50_line){
     g <- g +

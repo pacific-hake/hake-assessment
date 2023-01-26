@@ -36,13 +36,27 @@
 #' case of multiple models
 #' @param wrap_y_label Logical. If `TRUE`, adds a newline to the y axis
 #' label so that it doesn't get cut off
-#' @param rev_colors Logcial. If `TRUE`, reverse the order of the colors
+#' @param rev_colors Logical. If `TRUE`, reverse the order of the colors
 #' in the plot. Only applies if more than one model is plotted
 #' @param d_obj If not `NULL` this is a list which has been
 #' pre-processed to contain all models in a format that is ready to plot.
 #' Essentially the first steps of this function have been replicated
 #' outside the function (The code inside the `if(is.null(d_obj))`)
 #' is done to stop the Rmd process from taking forever
+#' @param fore_inds The indices of the forecast lines and ribbons to show.
+#' See the file `forecast-catch-levels.R` which contains the list
+#' `catch-levels`. The indices match what is in this list
+#' @param forecast_yrs The `forecast_yrs` vector as defined in the file
+#' `all.R`
+#' @param forecast_yrs A vector of forecast years to use
+#' @param fore_yr Forecast year for the probabilities
+#' @param shapes A vector of point shapes, one for each probability to be
+#' @param remove_x_val A vector of values to remove from the x-axis due to
+#' overlapping. First run this function, then select the values and pass them
+#' to the function when plotting a second time
+#' @param show_50_line Logical. If `TRUE`, draw a horizontal line at 50% (0.5)
+#' @param short Logical. If `TRUE`, plot a version with only P(YR<0.4B0),
+#' P(YR<0.1B0), and P(YR<YR+1)
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export

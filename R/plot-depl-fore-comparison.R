@@ -1,23 +1,6 @@
 #' Plot the relative spawning biomass with several forecast trajectories
 #'
-#' @param model The model to plot as created by [create_rds_file()]
-#' @param fore_inds The indices of the forecast lines and ribbons to show.
-#' See the file `forecast-catch-levels.R` which contains the list
-#' `catch-levels`. The indices match what is in this list
-#' @param xlim The year limits to plot
-#' @param x_breaks The year value tick marks to show for the x axis
-#' @param ylim The depletion limits to plot
-#' @param y_breaks The depletion value tick marks to show for the y axis
-#' @param y_labels The depletion labels to show for the y axis tick marks
-#' @param y_colors The color vector for each label for the y axis tick marks
-#' @param alpha The transparency for all ribbons
-#' @param leg_pos The position of the legend inside the plot. If `NULL`,
-#' the legend will be in its default location outside the plot margin
-#' @param leg_font_size The legend font size
-#' @param forecast_yrs The `forecast_yrs` vector as defined in the file
-#' `all.R`
-
-#' @return a [ggplot2::ggplot()] object
+#' @rdname plot_biomass
 #' @export
 plot_depl_fore_comparison <- function(model,
                                       fore_inds = c(1, 2, 6, 12, 14),
@@ -150,6 +133,7 @@ plot_depl_fore_comparison <- function(model,
                        labels = y_labels) +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
+          # Uncomment this to have colors for B0 text labels
           #axis.text.y = element_text(color = y_colors),
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
