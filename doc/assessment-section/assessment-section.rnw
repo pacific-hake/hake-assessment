@@ -1071,8 +1071,7 @@ been produced throughout the range of observed spawning biomass
 (Figure~\ref{fig:main-mcmc-sr-variability}). The standard deviation of the time
 series of median recruitment deviation estimates for the years 1970--\Sexpr{last_data_yr - 1}, which
 are informed by the age compositions and the age-1 index, is
-\Sexpr{sd.med.recr.dev.estimates}. This value is higher than,
-but consistent with, the base model value of \Sexpr{base_model$sigma_R_in}.  % $
+\Sexpr{sd.med.recr.dev.estimates}.
 
 % \clearpage % To avoid dangling subheading
 
