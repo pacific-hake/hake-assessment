@@ -274,7 +274,7 @@ plot_rel_biomass(list(base_model),
 \caption{Median (solid line) of the posterior distribution for relative spawning
          biomass ($B_t / B_0$) through \Sexpr{end_yr} with 95\% posterior
          credibility intervals (shaded area). Dashed, horizontal lines are displayed for
-         10\%, 40\%, and 100\% $B_t / B_0$.}
+         10\%, 40\%, and 100\% of the unfished equilibrium ($B_0$).}
 \label{fig:es-relative-spawning-biomass}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
