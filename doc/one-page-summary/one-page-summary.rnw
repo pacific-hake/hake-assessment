@@ -36,15 +36,15 @@
 %\Sexpr{can.allotment.percent.last.year}\%, compared to the usual
 %\Sexpr{us.allotment.percent}\% and \Sexpr{can.allotment.percent}\%.
 
-  \item The median estimate of the \Sexpr{end_yr} relative female spawning biomass
+  \item The median estimate of the \Sexpr{end_yr} relative spawning biomass
     (female spawning biomass at the start of \Sexpr{end_yr} divided by that at
-    unfished equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but it is highly
+    unfished equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly
     uncertain (with 95\% credible interval from \Sexpr{curr.depl.lower}\% to
-    \Sexpr{curr.depl.upper}\%). The median relative female spawning biomass
-    has increased since 2021, due to the expected above average
-    2020 cohort entering maturity and the recent declining trend in catch. The large,
-    but uncertain, size of the 2020 year class is based on the 2021 age-1 index estimate and
-    2022 fishery age-composition data.
+    \Sexpr{curr.depl.upper}\%). The median relative spawning biomass
+    has increased since 2021, due to the estimated above average
+    2020 cohort entering maturity. The large,
+    but uncertain, size of the 2020 cohort is based on the 2021 age-1 index estimate and
+    the 2022 fishery age-composition data.
 %     Stock status increased relative to last year due to slightly higher estimates of
 %    recent recruitment than were previously expected.
 % That last sentence seemed a bit confusing. We'd have to compare the 2021 B/B0 with
@@ -66,9 +66,9 @@
   \item The estimated probability that female spawning biomass at the start of
     \Sexpr{assess_yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
     \Sexpr{probs.curr.below.bforty}\%, and the probability that the relative fishing
-    intensity exceeds its target in \Sexpr{end_yr-1} is
+    intensity exceeded its target in \Sexpr{end_yr-1} is
     \Sexpr{probs.curr.rel.fish.intens.above.one}\%. The joint
-    probability of both these occurring is \Sexpr{joint.percent.prob.above.below}\%.
+    probability of both these occurring is~\Sexpr{joint.percent.prob.above.below}\%.
 
   \item Based on the default harvest rule, the estimated median catch limit for
    \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with
@@ -86,8 +86,8 @@
    \Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end_yr+1} to
    \Sexpr{last.yr.tac.fore.3.biomass}\% in
    \Sexpr{end_yr+2},
-   %(due to natural mortality starting to
-   %outpace growth of the expected large 2020 cohort),
+   % (due to natural mortality likely
+   % outpacing growth of the expected large 2020 cohort),
    with a \Sexpr{last.yr.tac.risk.2.bforty}\% chance
    of the female spawning biomass falling below $\Bforty$ in \Sexpr{end_yr+2}. There is an
    estimated \Sexpr{last.yr.tac.risk.1.biomass.decline}\% chance of the female spawning biomass declining from \Sexpr{end_yr} to
