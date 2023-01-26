@@ -673,7 +673,16 @@ make.mcmc.recruitment.plot(base_model,
                            auto.xaxis = FALSE)
 @
 \end{center}
-\caption{Medians (solid circles) of the posterior distribution of recruitment relative to that in 2010 (recruitment divided by the 2010 recruitment for every MCMC sample), with 95\% posterior credibility intervals (red lines). This procedure scales out the uncertainty due to uncertainty in mean unfished equilibrium recruitment ($R_0$), and better elicits comparisons of relative cohort size while retaining individual time series pairs within aggregated posterior distributions (for example, recruitment in 2014 is clearly smaller than in 2010). The year 2010 was chosen as the basis for comparison due to its well recognized size and the stability of cohort strength estimates over time.}
+\caption{Medians (solid circles) of the posterior distribution of recruitment
+  relative to that in 2010 (recruitment divided by the 2010 recruitment for
+  every MCMC sample), with 95\% posterior credibility intervals (red
+  lines). This procedure scales out the uncertainty due to uncertainty in mean
+  unfished equilibrium recruitment ($R_0$), and better elicits comparisons of
+  relative cohort size while retaining individual time series pairs within
+  aggregated posterior distributions (for example, recruitment in 2014 is
+  clearly smaller than in 2010). The year 2010 was chosen as the basis for
+  comparison due to its well recognized size and the stability of cohort
+  strength estimates over time.}
 \label{fig:main-recruitment-scale-all}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
