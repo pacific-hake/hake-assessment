@@ -311,12 +311,14 @@ plist[[1]] <-
                    x_labs_mod = 10,
                    clip_cover = 0.45,
                    wrap_y_label = TRUE,
+                   axis_title_font_size = 12,
                    leg_pos = "none")
 plist[[2]] <-
   plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
                leg_pos = "none",
                x_labs_mod = 10,
                clip_cover = 0.25,
+               axis_title_font_size = 12,
                line_width = 0.25)
 
 plist[[3]] <-
@@ -324,6 +326,7 @@ plist[[3]] <-
                          survey_type = "age2",
                          rev_colors = FALSE,
                          clip_cover = 0.25,
+                         axis_title_font_size = 12,
                          leg_pos = "none")
 
 plist[[4]] <-
@@ -332,6 +335,7 @@ plist[[4]] <-
                          xlim = c(1995, 2022),
                          ylim = c(0, 11),
                          clip_cover = 0.25,
+                         axis_title_font_size = 12,
                          rev_colors = FALSE,
                          leg_pos = "none")
 
@@ -346,7 +350,8 @@ full_plist[[1]] <-
                leg_ncol = 2,
                leg_font_size = 7,
                wrap_y_label = TRUE,
-               leg_pos = c(0.74, 0.82))
+               axis_title_font_size = 12,
+               leg_pos = c(0.72, 0.82))
 
 full_plist[[2]] <- quad_grid
 
