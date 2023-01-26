@@ -202,24 +202,25 @@ decisions made for this assessment.
 
 This \Sexpr{assess_yr} assessment retained the same general population dynamics structure
 as the base assessment model from \Sexpr{last_assess_yr} and again is configured using Stock Synthesis.
+This includes the continued use (since 2014) of time-varying (rather than fixed) selectivity
+to maintain flexibility with fishing dynamics given variability in \fishname\ distribution patterns.
+%In closed-loop simulations,
+%management based upon models parameterized with time-varying fishery
+%selectivity led to higher median average catch, lower risk of falling below 10\%
+%of unfished biomass, smaller probability of fishery closures, and lower
+%inter-annual variability in catch compared to models parameterized with
+%time-invariant fishery selectivity.
+%Even a small degree of flexibility in the
+%fishery selectivity could reduce the effects of errors caused
+%by assuming selectivity is constant over time.
+The Dirichlet-multinomial estimation approach to weighting
+composition data was retained, and
+sensitivity to an alternative data-weighting
+approach was investigated. Time-varying fecundity, which was introduced in 2019, was retained.
+Assumptions for the forecast period for weight at age and selectivity continue to be based on
+conditions during the last five years, as for the \Sexpr{last_assess_yr} assessment.
 The main change from the \Sexpr{last_assess_yr} assessment is
 the addition of \Sexpr{last_data_yr} data.
-Analyses conducted in 2014
-showed that allowing for time-varying (rather than fixed) selectivity reduced
-the magnitude of estimates of the strength of extreme cohorts. In closed-loop simulations,
-management based upon models parameterized with time-varying fishery
-selectivity led to higher median average catch, lower risk of falling below 10\%
-of unfished biomass, smaller probability of fishery closures, and lower
-inter-annual variability in catch compared to models parameterized with
-time-invariant fishery selectivity. Even a small degree of flexibility in the
-fishery selectivity could reduce the effects of errors caused
-by assuming selectivity is constant over time.
-We retained the Dirichlet-multinomial estimation approach to weighting
-composition data and
-investigated sensitivity to an alternative data-weighting
-approach. Time-varying fecundity, which was introduced in 2019, is retained.
-Assumptions for the forecast period for weight at age and selectivity are based on
-conditions during the last five years, as for the \Sexpr{last_assess_yr} assessment.
 
 \subsection*{Stock biomass} \label{sec:es-stock-biomass} \phantomsection
 \addcontentsline{toc}{subsection}{Stock biomass}
@@ -431,9 +432,11 @@ and 2021 year classes (median recruitment well below the mean of all median recr
 %  spawning biomass was small enough that the S-R curve had an effect
 %  [keep this helpful explanation]
 
-The 2014 and 2016 year classes are likely both larger than average, with a
-high chance (\Sexpr{prob.percent.2014.rec.gt.2016.rec}\%) that 2014 is
-larger than 2016 but zero chance that it is larger than 2010. % prob.percent.2014.rec.gt.2010.rec
+The 2014 and 2016 year classes are likely both larger than average, with
+probabilities near certainty 
+%high chance (\Sexpr{prob.percent.2014.rec.gt.2016.rec}\%)
+that 2014 is
+larger than 2016 but smaller than 2010. % prob.percent.2014.rec.gt.2010.rec
 With the addition of the relative age-1 index, there is information beyond just fishery encounters in
 the data to estimate the size of the 2020 year class. Collectively, these data
 indicate that the 2020 year class is likely well above average. The much smaller 2019 year class is
@@ -719,7 +722,7 @@ they are (i.e., cohort strength is typically not well known until it is observed
 by the fishery and survey, typically at minimum age of three).  While the addition of the age-1 index
 helps inform recent recruitment, the survey is conducted every other year and does not directly
 address current or future recruitment expectations.
-In particular, while the model expects the 2020 cohort to be above average, its absolute size remains
+In particular, while the model estimates the 2020 cohort as above average in size, its absolute size remains
 highly uncertain.  This uncertainty propagates directly into current and forecasted estimates of
 female spawning biomass. The upcoming 2023 acoustic survey will provide additional information on the
 size of the 2020 year-class (as well as inform the 2021 and 2022 year classes), which will

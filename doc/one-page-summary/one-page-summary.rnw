@@ -85,8 +85,10 @@
    \Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end_yr} to
    \Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end_yr+1} to
    \Sexpr{last.yr.tac.fore.3.biomass}\% in
-   \Sexpr{end_yr+2} (due to natural mortality starting to
-   outpace growth of the expected large 2020 cohort), with a \Sexpr{last.yr.tac.risk.2.bforty}\% chance
+   \Sexpr{end_yr+2},
+   %(due to natural mortality starting to
+   %outpace growth of the expected large 2020 cohort),
+   with a \Sexpr{last.yr.tac.risk.2.bforty}\% chance
    of the female spawning biomass falling below $\Bforty$ in \Sexpr{end_yr+2}. There is an
    estimated \Sexpr{last.yr.tac.risk.1.biomass.decline}\% chance of the female spawning biomass declining from \Sexpr{end_yr} to
    \Sexpr{end_yr+1}, and an
