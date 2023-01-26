@@ -57,6 +57,8 @@ plot_depl_fore_comparison <- function(model,
                                       alpha = 0.2,
                                       leg_pos = c(0.15, 0.83),
                                       leg_font_size = 12,
+                                      axis_title_font_size = 14,
+                                      axis_tick_font_size = 11,
                                       forecast_yrs){
 
   nice_nms <- map_chr(model$catch.levels[fore_inds], ~{
@@ -148,12 +150,35 @@ plot_depl_fore_comparison <- function(model,
                        labels = y_labels) +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
-          axis.text.y = element_text(color = y_colors),
+          #axis.text.y = element_text(color = y_colors),
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 0, 0)) +
     xlab("Year") +
     ylab("Relative Spawning Biomass")
+
+  g <- g +
+    theme(axis.text.x = element_text(color = "grey20",
+                                     size = axis_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = -0.25,
+                                     face = "plain"),
+          axis.text.y = element_text(color = "grey20",
+                                     size = axis_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = "grey20",
+                                      size = axis_title_font_size,
+                                      angle = 0,
+                                      vjust = 0,
+                                      face = "plain"),
+          axis.title.y = element_text(color = "grey20",
+                                      size = axis_title_font_size,
+                                      angle = 90,
+                                      face = "plain"),
+          axis.ticks.length = unit(0.15, "cm"))
 
   if(!is.null(leg_pos)){
     g <- g +
