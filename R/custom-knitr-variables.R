@@ -165,6 +165,9 @@ last.factor.penult <- f(
   1
 )
 
+# Age-1 survey
+survey.age1.years <- base_model$dat$CPUE[base_model$dat$CPUE$index == 3, "year"]
+
 # Spawning Biomass and Depletion estimates ------------------------------------
 curr.depl.lower <- f(mc$dlower[names(mc$dlower) %in% end_yr] * 100, 0)
 curr.depl.median <- f(mc$dmed[names(mc$dmed) %in% end_yr] * 100, 0)

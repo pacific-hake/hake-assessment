@@ -21,15 +21,14 @@ Fishery-dependent and fishery-independent data used in this assessment
   (Table~\ref{tab:main-all-age-data-fishery} and Figure~\ref{fig:main-age-comp-bubbles}).
 
 \item Biomass index and age compositions from the \surveyname\
-  % use knitr::combine_words(survey.age.years) below
-  (\Sexpr{survey.age.years[-length(survey.age.years)]}, and
-  \Sexpr{survey.age.years[length(survey.age.years)]};
+  (\Sexpr{stringr::str_flatten_comma(survey.age.years)};
   Tables~\ref{tab:main-all-age-data-survey}, ~\ref{tab:main-survey-history},
   and~\ref{tab:main-survey-by-country};
   Figures~\ref{fig:main-age-comp-bubbles} and~\ref{fig:main-survey-extrap-biomass}).
 
 \item The relative age-1 index (billions of age-1 fish) derived from the \surveyname\
-  (Table~\ref{tab:main-survey-history} and Figure~\ref{fig:main-age-one-index}).
+  (\Sexpr{stringr::str_flatten_comma(survey.age1.years)};
+  Table~\ref{tab:main-survey-history}; Figure~\ref{fig:main-age-one-index}).
 
 \item Mean observed weight-at-age data from fishery and survey catches
   (1975--\Sexpr{max.fishery.age.prop[2]};
