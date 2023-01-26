@@ -2,7 +2,6 @@
 
 \section{FIGURES} \label{sec:figures}
 
-\subsection{Data}
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}    % Don't make any bigger as then previous page becomes blank
@@ -301,7 +300,6 @@ make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1, highlight = 5)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Base model}
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
@@ -861,7 +859,6 @@ make.age.comp.forecast.plot(base_model)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Sensitivity models}
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
@@ -1046,7 +1043,6 @@ plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Retrospective models}
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
