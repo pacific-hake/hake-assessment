@@ -185,7 +185,7 @@ A D-M likelihood was applied to age-composition data,
 with input sample sizes equal to the sum of the number of trips and hauls sampled across all
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
 
-Model results and statisticaal inference were based on
+Model results and statistical inference were based on
 \Sexpr{f(num.mcmc.samples)} MCMC samples (using the {\tt adnuts} R package; \citet{Monnahan2018})
 to describe posterior distributions for model
 parameters and derived quantities. The number of samples used for bridging models, sensitivity
@@ -514,8 +514,8 @@ provide complete and thorough assessment results in a timely manner.}
 \emph{Response -- Resources were made available for the JTC to use a new high-performance computing
    network server with 80 processors to complete all model runs (bridging, base, sensitivity, retrospectives, and
    forecasts).
-   Another high-preformance server unit and two high-performance laptops have also been aquired for
-   completing the \fishname\ assessment.  These resources are used for data preperation, diagnostic examination,
+   Another high-performance server unit and two high-performance laptops have also been acquired for
+   completing the \fishname\ assessment.  These resources are used for data preparation, diagnostic examination,
    running test models, and exploring alternative model configurations.}
 
 \emph{A new server was purchased and used to run all the models and for running the software that builds
@@ -995,7 +995,7 @@ The 2016 cohort also appears to be above average, comprising
 \Sexpr{top.coh(base_model, 2021, spec.yr=2016)}\% of the 2021 catch, and
 \Sexpr{top.coh(base_model, 2022, spec.yr=2016)}\% of the 2022 catch.
 The absolute size of the 2014 year
-class has now stabalized after observations across eight years of fishery observations
+class has now stabilized after observations across eight years of fishery observations
 and three acoustic surveys. The 2016 year class is
 estimated to be above average (similar in size to the 2008 year class) from six years
 of fishery data and two years of survey data.
@@ -1214,7 +1214,7 @@ will in most circumstances continue to result in highly uncertain
 estimates of current stock status and even less-certain projections of the stock
 trajectory. This is particularly true for spawning biomass estimates in \Sexpr{assess_yr}
 and throughout the current forecast period, because there is considerable uncertainty
-associated with the size of the 2020 year class, now mostly mature, that propogates into
+associated with the size of the 2020 year class, now mostly mature, that propagates into
 forecasts. Further observations of this year class, including during the 2023 acoustic
 survey, will help to refine these estimates and reduce uncertainty.
 The addition of the age-1 index in this assessment will, in some cases, help
@@ -1698,7 +1698,7 @@ of \Sexpr{f(100*bratio_curr[1], 1)}--\Sexpr{f(100*bratio_curr[3], 1)}\%) and
 \Sexpr{f(100*bratio_age1[2], 1)}\%
 for the removal of the age-1 index model (95\% credible interval
 of \Sexpr{f(100*bratio_age1[1], 1)}--\Sexpr{f(100*bratio_age1[3], 1)}\%).
-This differene is due to the age-1 index providing additonal information on recruitment for cohorts
+This difference is due to the age-1 index providing additional information on recruitment for cohorts
 associated with recent age-1 indices (i.e., 2018 and 2020 cohorts detected in the 2019 and 2021 age-1 indices).
 In particular, the base model with the age-1 index suggests that the 2020 year class is estimated to be large,
 but not as large as the 2021 and 2022 fishery data alone (i.e., removing the age-1 index) would otherwise
@@ -1888,7 +1888,7 @@ inconsistent with previous assessments (Figure~\ref{fig:main-historical-dispersi
 
 \subsection{Performance of past projections}\label{sec:assessment-past-projections}
 
-Without rigourous simulation experiments
+Without rigorous simulation experiments
 it can be difficult to operationally assess the accuracy of projections in stock
 assessments
 because the truth is never known with 100\% certainty.
@@ -1986,7 +1986,7 @@ $\Bforty$ in the subsequent year,
 i.e.,~P$(B_{t+1} < \Bforty)$; Figure~\ref{fig:main-historical-2}.
 The 2012 assessment was the only one that gave a $>50\%$ chance of the biomass falling below
 $\Bforty$ in the subsequent year, but later data determined that the 2010 year class was indeed
-substantial and so in hindsight the probablity of going below $\Bforty$ was 0\%
+substantial and so in hindsight the probability of going below $\Bforty$ was 0\%
 (based on the current assessment).
 %The 2013--2017 assessments had information on the 2010 year class
 %and so estimated low probabilities of falling below $\Bforty$. Again, these

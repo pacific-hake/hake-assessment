@@ -186,7 +186,7 @@ parameters provides probabilistic
 inferences about uncertain model parameters and forecasts derived from those
 parameters; this is done via Markov chain Monte Carlo sampling using the
 efficient No-U-Turn
-Sampler (NUTS) that was successfully tested in 2020 and used in subsquent assessments.
+Sampler (NUTS) that was successfully tested in 2020 and used in subsequent assessments.
 Sensitivity analyses are used to identify alternative model
 assumptions that may also be consistent with the data. All models,
 including bridging, sensitivity, and retrospective

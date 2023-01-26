@@ -1165,10 +1165,10 @@ make.assessment.history.disp.plot(base_model,
 %\vspace{0mm}
 \caption{Comparison of absolute (left panel) and relative (right panel) variability associated with terminal year estimates of spawning
 biomass from \fishname\ stock assessments dating back to 2012 (note: terminal year is the same as assessment year). The interquartile range
-specifies the width from quartile 1 (Q1: 25th percentile) to quartile 3 (Q3: 75th percentile) of terminal year spanwing biomass from
+specifies the width from quartile 1 (Q1: 25th percentile) to quartile 3 (Q3: 75th percentile) of terminal year spawning biomass from
 the posterior distribution and is a measure of absolute variability (similar to credible intervals). The quartile coefficient
 of dispersion is a relative measure of variability that can be compared across different data sets (similar to the coefficient
-of variation but less susceptable to outliers) and is calculated as $\protect{(Q3-Q1) / (Q1+Q3)}$.}
+of variation but less susceptible to outliers) and is calculated as $\protect{(Q3-Q1) / (Q1+Q3)}$.}
 \label{fig:main-historical-dispersion}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1212,7 +1212,7 @@ make.historical.probs.plot(base_model,
 \caption{For each year $t$, $P(B_{t+1} < \Bforty)$ is
 the probability that the spawning biomass at the
 start of $t+1$ is below $\Bforty$.
-The red circles and blue squares represent probabilities calculated analagously
+The red circles and blue squares represent probabilities calculated analogously
 to Figure~\ref{fig:main-historical-1}.
 The grey horizontal line is the 50\% value. For each
 year except 2012, both probabilities lie on the same side of the grey line, indicating that

@@ -395,7 +395,7 @@ estimates and related uncertainty.
 A model without the age-1
 index was explored as a sensitivity.
 
-\subsection{Other data not used in this assessessment}\label{sec:data-not-used}
+\subsection{Other data not used in this assessment}\label{sec:data-not-used}
 
 Some data sources were not included in the base model but have been explored,
 used for sensitivity analyses, or were included in previous stock assessments.
@@ -652,8 +652,8 @@ A normal distribution with a fixed standard deviation
 ($\Phi=$ \Sexpr{sel.Phi.val}; see \citealt{JTC2018} for justification) is used as a
 penalty function to keep deviations from straying far from zero.
 Selectivity for age-0 fish is fixed at 0.0 and parameters for ages that are estimated
-represent the change in selecivity from the next youngest age.
-Beyond the age of 6, age-specific parameters are fixed at zero giving 
+represent the change in selectivity from the next youngest age.
+Beyond the age of 6, age-specific parameters are fixed at zero giving
 constant selectivity beyond the last estimated
 value. The condition that maximum selectivity equals 1.0 results in one fewer
 degree of freedom than the number of estimated parameters.
@@ -682,7 +682,7 @@ age compositions be given the same weight as the base model.
 Note that the following description holds for both the survey data and the
 fishery data, with $\theta$ equal to $\theta_{\text{surv}}$ or $\theta_{\text{fish}}$.
 
-The likelihood function for the linear parameterization of teh D-M likelihood (see Equation 10 of
+The likelihood function for the linear parameterization of the D-M likelihood (see Equation 10 of
 \citet{ThorsonEtAl2017Dirichlet}) is
 \eb
 \text{L}(\bm{\pi},\theta|\bm{\tilde{\pi}},n) =
@@ -701,7 +701,7 @@ and $n$ is the input sample size. The parameter $\theta$ is defined as a
 linear scaling parameter such that $\theta n$ is the variance-inflation
 parameter of the D-M distribution. The linear parameterization has been shown to
 be superior over the saturation parameterization in simulation testing
-\citep{FischAhrensEtAl2022}, and thus corraborates our decision to continue to
+\citep{FischAhrensEtAl2022}, and thus corroborates our decision to continue to
 use it even though the saturation parameterization is available in Stock
 Synthesis.
 
