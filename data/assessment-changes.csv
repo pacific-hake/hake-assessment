@@ -1,17 +1,17 @@
 Year,Framework,Survey,Comp_Method,Comp_Fishery,Comp_Survey,MCMC,Change
 2008,"SS 2.00n, TINSS, VPA",yes,N/A,1,1,1000,Compared SS to TINSS and VPA; Estimated q;  Additional uncertainty in acoustic-survey selectivity; Additional uncertainty in M of older-fish
-2009,"SS 3.02b, TINSS",no,McAllister-Ianelli,1.7,3.27,1000,Included uncertainty in $\\sigma_R$; Increased allowable flexibility in time-varying fishery selectivity; Cohort-specific ageing error; California 1960s length-frequency distributions
-2010,"SS 3.10, TINSS",yes,McAllister-Ianelli,1.7,3.27,1000,Removed California 1960s length-frequency distributions
-2011,"SS 3.20, TINSS",yes,McAllister-Ianelli,0.1,0.89,999,"Increased compatibility of SS and TINSS, except for age-composition likelihood"
-2012,SS 3.23b,yes,McAllister-Ianelli,0.12,0.94,999,One framework for base model; TINSS changed to CCAM
-2013,SS 3.24j,no,McAllister-Ianelli,0.12,0.94,999,Developed MSE
-2014,SS 3.24s,yes,McAllister-Ianelli,0.12,0.94,999,Time-varying fishery selectivity
-2015,SS 3.24u,no,McAllister-Ianelli,0.12,0.94,999,No major changes
-2016,SS 3.24u,yes,McAllister-Ianelli,0.11,0.51,999,Re-analyzed 1998-2015 acoustic-survey data; Removed 1995 survey data
-2017,SS 3.24u,no,McAllister-Ianelli,0.14,0.41,999,Added 1995 survey data; Increased allowable selectivity variation to 0.20
-2018,SS 3.30.10.00,yes,Dirichlet-Multinomial,0.45,0.92,2000,Used D-M to weight age compositions; Updated maturity and fecundity; Stopped transforming selectivity parameters
-2019,SS 3.30.10.00,no,Dirichlet-Multinomial,0.363,0.919,2000,Change to time-varying fecundity
-2020,SS 3.30.14.08,yes,Dirichlet-Multinomial,0.364,0.912,2000,Add Normal prior for Dirichlet parameters; remove rec devs sum to zero restriction
-2021,SS 3.30.16.03,no,Dirichlet-Multinomial,0.361,0.911,8250,No U-turn MCMC Sampling (adnuts)
-2022,SS 3.30.16.03,yes,Dirichlet-Multinomial,0.363,0.93,12005,Add age-1 index
-2023,SS 3.30.20.00,no,Dirichlet-Multinomial,0.348,0.93,8000,No major changes
+2009,"SS3 3.02b, TINSS",no,McAllister-Ianelli,1.7,3.27,1000,Included uncertainty in $\\sigma_R$; Increased allowable flexibility in time-varying fishery selectivity; Cohort-specific ageing error; California 1960s length-frequency distributions
+2010,"SS3 3.10, TINSS",yes,McAllister-Ianelli,1.7,3.27,1000,Removed California 1960s length-frequency distributions
+2011,"SS3 3.20, TINSS",yes,McAllister-Ianelli,0.1,0.89,999,"Increased compatibility of SS and TINSS, except for age-composition likelihood"
+2012,SS3 3.23b,yes,McAllister-Ianelli,0.12,0.94,999,One framework for base model; TINSS changed to CCAM
+2013,SS3 3.24j,no,McAllister-Ianelli,0.12,0.94,999,Developed MSE
+2014,SS3 3.24s,yes,McAllister-Ianelli,0.12,0.94,999,Time-varying fishery selectivity
+2015,SS3 3.24u,no,McAllister-Ianelli,0.12,0.94,999,No major changes
+2016,SS3 3.24u,yes,McAllister-Ianelli,0.11,0.51,999,Re-analyzed 1998-2015 acoustic-survey data; Removed 1995 survey data
+2017,SS3 3.24u,no,McAllister-Ianelli,0.14,0.41,999,Added 1995 survey data; Increased allowable selectivity variation to 0.20
+2018,SS3 3.30.10.00,yes,Dirichlet-multinomial,0.45,0.92,2000,Used D-M to weight age compositions; Updated maturity and fecundity; Stopped transforming selectivity parameters
+2019,SS3 3.30.10.00,no,Dirichlet-multinomial,0.363,0.919,2000,Change to time-varying fecundity
+2020,SS3 3.30.14.08,yes,Dirichlet-multinomial,0.364,0.912,2000,Normal prior for D-M parameters; remove sum to zero constraint for recruitment deviations
+2021,SS3 3.30.16.03,no,Dirichlet-multinomial,0.361,0.911,8250,No U-turn MCMC Sampling (adnuts)
+2022,SS3 3.30.16.03,yes,Dirichlet-multinomial,0.363,0.93,12005,Add relative age-1 index
+2023,SS3 3.30.20.00,no,Dirichlet-multinomial,0.348,0.93,8000,No major changes
