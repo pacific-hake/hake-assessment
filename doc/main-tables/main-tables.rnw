@@ -668,22 +668,6 @@ param_est_table(sens_models[[3]],
                 getrecs = c(2010, 2014, 2016))
 @
 
-<<main-parameter-estimates-sens-4, results='asis', echo=FALSE>>=
-param_est_table(sens_models[[4]],
-                model.names = sens_models_names[[4]],
-                end_yr = end_yr,
-                digits = 3,
-                xcaption = paste0("Posterior medians for select parameters,
-                                   derived quantities, reference points, and negative log likelihoods
-                                   for the base model and further sensitivity runs (described in
-                                   Section~\\ref{sec:assessment-sensitivity-analyses}).
-                                   A dash (--) indicates that the parameter or derived quantity was not estimated in the model."),
-                xlabel = "tab:main-parameter-estimates-sens-4",
-                font.size = 9,
-                space.size = 11,
-                getrecs = c(2010, 2014, 2016))
-@
-
 \end{landscape}
 \pagestyle{fancy}
 
