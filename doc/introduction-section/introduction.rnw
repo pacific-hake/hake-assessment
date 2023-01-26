@@ -96,34 +96,33 @@ between years (Figure~\ref{fig:main-backscatter-map-age1}).
 
 \subsection{Ecosystem considerations}\label{sec:intro-ecosystem-considerations}
 
-\fishname\ are important to ecosystem dynamics in the Eastern Pacific Ocean due to
-their relatively large total biomass and potentially large role as both prey and
-predator \citep{JTC2013}. Previous research developed an index of abundance for
-Humboldt Squid (\emph{Dosidicus gigas}) and suggested that the abundance of
-\fishname\ decreased with increasing squid abundance \citep{StewartHazenEtAl2014},
-and has also evaluated distribution, recruitment, and growth patterns of \fishname\
-in relation to oceanographic conditions for assessment and
-management \citep{ResslerHolmesEtAl2007, HamelEtAl2015, MalickHunsickerEtAl2020,
-MalickSiedleckiEtAl2020}. The 2015 \fishname\
-stock assessment document presented a sensitivity analysis where the mortality
-of \fishname\ was linked to the Humboldt Squid index \citep{JTC2015} but
-further research on this topic is still needed. New research has developed a
-krill (i.e., euphausiids; \emph{Euphausiacea}) abundance time
-series \citep{Phillips2022} and suggests that temperature dynamically
-influences hake--krill co-occurrence \citep{Phillips2023}, which can influence
-annual \fishname\ growth and recruitment as the availability of key prey species shifts.
-Ongoing research investigating abiotic (environmental conditions) and biotic
-(e.g., maturity and diet) drivers of the distribution,
-recruitment, growth, and survival of \fishname\ could provide insight into how
-the population is linked with broader ecosystem considerations. For example,
-\citet{TurleyRykaczewski2019} found decreased survival of larval \fishname\
-as storm events increased, contrary to many other species in the southern
-California Current Ecosystem. An analysis of drivers of recruitment across the
-maternal preconditioning, egg, and larval phases of \fishname\ indicated
-recruitment is associated with eddy kinetic energy, the location of the North
-Pacific Current bifurcation, and upwelling during maternal preconditioning, as
-well as associated with northward long-shore transport and the number of days
-between storm events during larval stages (Vestfals et al., pers. comm.).
+\fishname\ are important to ecosystem dynamics in the Eastern Pacific Ocean due
+to their relatively large total biomass and potentially large role as both prey
+and predator \citep{JTC2013}. Ongoing research investigating abiotic
+(environmental conditions) and biotic (e.g., maturity and diet) drivers of the
+distribution, recruitment, growth, and survival of \fishname\ could provide
+insight into how the population is linked with broader ecosystem
+considerations. For example, \citet{TurleyRykaczewski2019} found decreased
+survival of larval \fishname\ as storm events increased, contrary to many other
+species in the southern California Current Ecosystem. An analysis of drivers of
+recruitment across the maternal preconditioning, egg, and larval phases of
+\fishname\ indicated recruitment is associated with eddy kinetic energy, the
+location of the North Pacific Current bifurcation, and upwelling during
+maternal preconditioning, as well as associated with northward long-shore
+transport and the number of days between storm events during larval stages
+(Vestfals et al., pers. comm.). \citet{Phillips2022} suggests temperature
+dynamically influences the co-occurrence of \fishname\ and krill (i.e.,
+euphausiids; \emph{Euphausiacea}), which can influence annual \fishname\ growth
+and recruitment as the availability of key prey species shifts. Previous
+research developed an index of abundance for Humboldt Squid (\emph{Dosidicus
+gigas}) and suggested that the abundance of \fishname\ decreased with
+increasing squid abundance \citep{StewartHazenEtAl2014, JTC2015}. Many
+additional research topics relevant to \fishname\ distribution, recruitment,
+and growth patterns in relation to oceanographic conditions have been
+investigated \citep{ResslerHolmesEtAl2007, HamelEtAl2015,
+MalickHunsickerEtAl2020, MalickSiedleckiEtAl2020} but further research on this
+topic is still needed.
+
 Fitting the assessment model to empirical weight-at-age data allows for
 time-varying growth without needing a mechanistic relationship or environmental
 data, which facilitates an `Ecosystem Approach to Fisheries Management'
