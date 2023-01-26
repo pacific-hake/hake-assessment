@@ -67,11 +67,8 @@ catches averaging \Sexpr{catch_us_mean_10yrs}~t and
 \Sexpr{catch_can_mean_10yrs}~t, respectively. Since 2017,
 the coast-wide catch has been declining annually through \Sexpr{end_yr - 1},
 when it was \Sexpr{last.year.landings}~t out of a
-total allowable catch (TAC, adjusted for carryovers) of
-\Sexpr{last.year.tac}~t. Attainment in the U.S.~was
-\Sexpr{last.year.us.attained}\% of its quota and in Canada it was
-\Sexpr{last.year.can.attained}\%.
-
+total allowable catch
+%
 <<total-catches-table, results='asis', echo=FALSE>>=
 make_catch_table(ct,
                  start_yr = assess_yr - 10,
@@ -87,6 +84,11 @@ make_catch_table(ct,
                  font_size = 9,
                  space_size = 10)
 @
+%
+(TAC, adjusted for carryovers) of
+\Sexpr{last.year.tac}~t. Attainment in the U.S.~was
+\Sexpr{last.year.us.attained}\% of its quota and in Canada it was
+\Sexpr{last.year.can.attained}\%.
 
 In this document, the terms catch and landings are used
 interchangeably. Estimates of discard within the target fishery are included,
