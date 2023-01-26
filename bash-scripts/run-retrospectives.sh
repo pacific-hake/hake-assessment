@@ -19,7 +19,7 @@ num_chains=16
 num_samples=8000
 num_warmup_samples=250
 adapt_delta=0.95
-run_extra_mcmc=FALSE
+run_extra_mcmc=TRUE
 
 model_path=$models_path/$year_path/$version_path/$type_path/$model_name
 [[ ! -d $model_path ]] && { echo "Error: Directory $model_path does not exist, bailing out." ; exit 1; }
