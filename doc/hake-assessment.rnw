@@ -272,14 +272,14 @@ Authors of this document are (all authors contribute extensively so the order ro
 %% Draft version
 This DRAFT document is non-citable.
 
-** - The double asterisks indicate a paragraph, or sentence that needs to be thought about this year
-and double checked (i.e. isn't fully automated, may just need someone to have a
-quick think). If at the start of a paragraph then need to look at the full
-paragraph.
+% ** - The double asterisks indicate a paragraph, or sentence that needs to be thought about this year
+% and double checked (i.e. isn't fully automated, may just need someone to have a
+% quick think). If at the start of a paragraph then need to look at the full
+% paragraph.
 
-** For figures and tables, only flagging captions that will need
-tweaking. Assume we will go through the figures and tables carefully anyway when
-new results are incorporated.
+% ** For figures and tables, only flagging captions that will need
+% weaking. Assume we will go through the figures and tables carefully anyway when
+% new results are incorporated.
 
 %% Final version (with standard author rotation)
 % This document should be cited as follows:\\
