@@ -112,7 +112,7 @@ plot_depl_fore_comparison <- function(model,
                   ymin = 0,
                   ymax = Inf),
               alpha = 0.01,
-              fill = "grey50") +
+              fill = "#D2D2D2") +
     geom_hline(yintercept = 0.1,
                linetype = "dotted",
                color = "red",
