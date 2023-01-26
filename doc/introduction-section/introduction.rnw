@@ -148,7 +148,7 @@ quotas summed to \Sexpr{tot.9192.attainment}\% of the coast-wide limit, while th
 quotas were an average of \Sexpr{tot.9399.attainment}\% of the limit. The Agreement
 establishes U.S. and Canadian shares of the coast-wide total allowable
  catch (TAC) at \Sexpr{us.allotment.percent}\% and
-\Sexpr{can.allotment.percent}\%, respectively, and this distribution has been
+\Sexpr{can.allotment.percent}\%, respectively, and this distribution has largely been
 adhered to since 2005. However, a bilateral
 agreement on the coast-wide TAC could not be reached in 2020 or 2021; so, catch targets were set unilaterally
 during these years for the first time since the inception of the
