@@ -1560,7 +1560,7 @@ relative to the base model, are:
   for natural mortality;
 
 \item Consideration of an alternative prior distribution (mean and standard deviation) for natural
-  mortality based on the \citet{Hamel2015} and \citet{HamelCope2015} life history meta-analytic method;
+  mortality based on the \citet{Hamel2015} and \citet{HamelCope2022} life history meta-analytic method;
 
 \item Consideration of an alternative prior distribution and a fixed value for
   steepness, to change the resiliency of the stock;
