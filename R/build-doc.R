@@ -28,7 +28,7 @@ build_doc <- function(doc_name = "hake-assessment",
   on.exit(setwd(curr_dir))
   setwd(doc_dir)
 
-  latex_command <- "pdflatex"
+  latex_command <- "lualatex"
 
   knit(paste0(doc_name, ".rnw"))
   # The knitting process creates the global `alt_fig_text`, but only if the figures were not cached
