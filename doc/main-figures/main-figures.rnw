@@ -972,7 +972,7 @@ plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp2[[1]],
 \label{fig:main-index-base-alternative-2}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
- \clearpage
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
