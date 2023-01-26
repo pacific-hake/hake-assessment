@@ -755,9 +755,8 @@ make.mcmc.depletion.plot <- function(model,         ## model is a model with an 
 
 ## adapting from make.mcmc.depletion.plot, and values for make.recruitment.plot
 ## Plot of MCMC samples of recruitment, to help for Issue #836.
-## just running as:
-##   make.mcmc.recruitment.plot(base_model, start_yr = start_yr, equil.yr = unfished_eq_yr)
-## and manually saving .png.
+##
+## make.mcmc.recruitment.plot(base_model, start_yr = start_yr, equil.yr = unfished_eq_yr)
 ## make.mcmc.recruitment.plot(base_model, start_yr = 2006, equil.yr = unfished_eq_yr, samples = 100)
 ## make.mcmc.recruitment.plot(base_model, start_yr = 2006, equil.yr = unfished_eq_yr, samples = 100, rescale = TRUE)
 ## make.mcmc.recruitment.plot(base_model, start_yr = 1966, equil.yr = unfished_eq_yr, samples = NULL, rescale = TRUE, traceplot = FALSE)
@@ -767,6 +766,8 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
                                        equil.yr,
                                        start_yr,      ## Year to start the plot
                                        end_yr = 2023, ## Year to end the plot
+                                       plot_R0 = TRUE,## Show R0 (only tested on
+                                                      ## 2023 fig)
                                        y.max = NULL,  ## maximum value for the y-axis
                                        samples = 1000,## how many lines to show
                                        rescale = FALSE, ## whether to rescale by
@@ -809,10 +810,12 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
                                        trace.col.rescale = rgb(1, 0, 0, 0.2)
                                        ){
   oldpar <- par()
+
   par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
 
   dat <- as_tibble(model$mcmc) %>%
-    select(paste0("Recr_", start_yr):paste0("Recr_", end_yr)) / 1e6  # convert
+    select(c("Recr_Virgin",
+             paste0("Recr_", start_yr):paste0("Recr_", end_yr))) / 1e6  # convert
                                         # from thousands to billions
 
   if(rescale){
@@ -821,6 +824,10 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
       y.max <- 1.2                    # so will miss some super high ones, but
                                       # easier to see others
     }
+
+    dat_R0 <- select(dat, "Recr_Virgin")  # Just R0
+    dat <- select(dat, -"Recr_Virgin")
+
     col.intervals <- col.intervals.rescale
     trace.col  <- trace.col.rescale
     yLab <- paste0("Age-0 recruits relative to those in ", rescale.yr)
@@ -883,6 +890,20 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
               lwd = highlight.lwd)
     }
   } else {        # medians and intervals
+    if(plot_R0){
+      R0_0.025 <- apply(dat_R0, 2, quantile, probs = 0.025)
+      R0_med <- apply(dat_R0, 2, median)
+      R0_0.975 <- apply(dat_R0, 2, quantile, probs = 0.975)
+      rect(start_yr - 5,
+           R0_0.025,
+           end_yr + 5,
+           R0_0.975,
+           col = "lightgrey",
+           border = NA)
+      abline(h = R0_0.025, lty = 3)
+      abline(h = R0_med, lty = 2)
+      abline(h = R0_0.975, lty = 3)
+    }
 
     lower <- apply(dat_sub, 2, quantile, probs = 0.025)
     medians <- apply(dat_sub, 2, median)
