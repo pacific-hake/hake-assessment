@@ -17,7 +17,7 @@ make.assessment.changes.table <- function(assessment.changes,
   tab$Comp_Method <- gsub("<NA>",
                           "NA",
                           gsub("Dir.+",
-                               "DM",
+                               "D-M",
                                gsub("McAl.+",
                                     "MI",
                                     tab$Comp_Method)))
