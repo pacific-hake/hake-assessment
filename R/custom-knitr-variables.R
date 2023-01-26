@@ -494,10 +494,10 @@ exploitation.med.2020 <- f(mc$fmed["2020"],2)
 exploitation.med.penult.yr <- f(mc$fmed[as.character(last_data_yr)], 2)
 
 # Priors settings from the control file ---------------------------------------
-param.details <- make.parameters.estimated.summary.table(base_model,
-                                                         start.rec.dev.yr = recruit_dev_start_yr,
-                                                         end.rec.dev.yr = end_yr - 1,
-                                                         return.xtable = FALSE)
+param.details <- table_param_est_bounds(base_model,
+                                        start.rec.dev.yr = recruit_dev_start_yr,
+                                        end.rec.dev.yr = end_yr - 1,
+                                        return.xtable = FALSE)
 m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals", ][4],
                             dec.points = 2,
                             first.to.lower = TRUE)

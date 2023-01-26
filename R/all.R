@@ -124,7 +124,8 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "create-group-df-index.R", "plot-biomass.R", "plot-rel-biomass.R",
              "plot-recruitment.R", "plot-recdevs.R", "plot-survey-index-fits.R",
              "plot-retro-recruits.R", "make-small-rds.R", "extract-rep-table.R",
-             "plot-fore-compare.R", "plot-spr-illustration.R")
+             "plot-fore-compare.R", "plot-spr-illustration.R",
+             "table-param-est-bounds.R")
 source_all(src_lst)
 
 theme_set(hake_theme())

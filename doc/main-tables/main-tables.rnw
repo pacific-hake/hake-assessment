@@ -266,7 +266,7 @@ make.maturity.samples.table(ovary.samples,
 \clearpage
 
 <<main-parameters-estimated-summary-table, results='asis', echo=FALSE>>=
-make.parameters.estimated.summary.table(
+table_param_est_bounds(
   base_model,
   start.rec.dev.yr = recruit_dev_start_yr,
   end.rec.dev.yr = end_yr - 1,
