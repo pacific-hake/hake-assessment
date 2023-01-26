@@ -667,6 +667,21 @@ joint probability of being both above the target relative fishing intensity
 in \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end_yr}.
 
+<<reference-points-table, results='asis', echo=FALSE>>=
+make.reference.points.table(base_model,
+                            xcaption = paste0("Summary of median and 95\\%
+                             credibility intervals of equilibrium conceptual reference points
+                             for the \\fishname\\ base assessment model.
+                             Equilibrium reference points were computed using 1975--",
+                             end_yr-1," averages for mean
+                             weight-at-age and baseline selectivity-at-age (1966--1990;
+                             prior to time-varying deviations)."),
+                            xlabel = "tab:es-reference-points",
+                            font.size = 12,
+                            space.size = 14,
+                            placement = "tbp")
+@
+
 \subsection*{Reference points} \label{sec:es-reference-points}
 \phantomsection \addcontentsline{toc}{subsection}{Reference points}
 
@@ -686,21 +701,6 @@ The probability that the relative fishing intensity was above its target of 1.0
 at the end of \Sexpr{end_yr-1} is~\Sexpr{probs.curr.rel.fish.intens.above.one}\%.
 
 \enlargethispage{\baselineskip}
-
-<<reference-points-table, results='asis', echo=FALSE>>=
-make.reference.points.table(base_model,
-                            xcaption = paste0("Summary of median and 95\\%
-                             credibility intervals of equilibrium conceptual reference points
-                             for the \\fishname\\ base assessment model.
-                             Equilibrium reference points were computed using 1975--",
-                             end_yr-1," averages for mean
-                             weight-at-age and baseline selectivity-at-age (1966--1990;
-                             prior to time-varying deviations)."),
-                            xlabel = "tab:es-reference-points",
-                            font.size = 12,
-                            space.size = 14,
-                            placement = "tbp")
-@
 
 \subsection*{Unresolved problems and major uncertainties}\label{sec:es-unresolved-problems}
 \phantomsection \addcontentsline{toc}{subsection}{Unresolved problems and major uncertainties}
