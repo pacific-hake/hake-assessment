@@ -149,7 +149,7 @@ Management Strategy Evaluation (MSE):  A formal process for evaluating Harvest S
 %Not found in text in 2017:
 %MAP: maximum \emph{a posteriori} probability. See below.
 
-Markov-Chain Monte-Carlo (MCMC): A numerical method used to sample from the posterior distribution (see below) of parameters and derived quantities in a Bayesian analysis. It is more computationally intensive than the maximum likelihood estimate (see below), but provides a more accurate depiction of parameter uncertainty.
+Markov chain Monte Carlo (MCMC): A numerical method used to sample from the posterior distribution (see below) of parameters and derived quantities in a Bayesian analysis. It is more computationally intensive than the maximum likelihood estimate (see below), but provides a more accurate depiction of parameter uncertainty.
 See \citet{StewartHicksEtAl2013} for a discussion of issues related to differences between MCMC and MLE.
 
 %Not found in text in 2017:
@@ -163,7 +163,7 @@ A method used to estimate a single value for each of the parameters and derived 
 
 Maximum sustainable yield (MSY): An estimate of the largest sustainable annual catch that can be continuously taken over a long period of time from a stock under equilibrium ecological and environmental conditions.
 
-MCMC: Markov-Chain Monte-Carlo (see above).
+MCMC: Markov chain Monte Carlo (see above).
 
 MLE: Maximum likelihood estimate (see above).
 
