@@ -1628,7 +1628,7 @@ deviation of 0.1) to \Sexpr{f(nat_m_03[2], 3)} with a 95\% credible interval
 of \Sexpr{f(nat_m_03[1], 3)}--\Sexpr{f(nat_m_03[3], 3)}
 for the sensitivity run with the prior standard
 deviation set to 0.3 (Table~\ref{tab:main-parameter-estimates-sens-1}).
-The Hamel prior model estimated natural mortality at \Sexpr{f(nat_m_hamel[2], 3)}
+The \citet{HamelCope2022} prior model estimated natural mortality at \Sexpr{f(nat_m_hamel[2], 3)}
 with a 95\% credible interval of \Sexpr{f(nat_m_hamel[1], 3)}--\Sexpr{f(nat_m_hamel[3], 3)}
 (Table~\ref{tab:main-parameter-estimates-sens-1}).
 In addition to allowing a higher estimated value for
@@ -1758,26 +1758,26 @@ The value $\Phi = 0.21$ also provides the worst fit to the most recent
 age-2+ survey biomass index
 (Figure~\ref{fig:main-index-base-alternative-4}).
 
-The estimated population trends throughout the time series are similar, irrespective of maximum
-selectivity age (Figures~\ref{fig:main-biomass-base-alternative-6}-\ref{fig:main-status-base-alternative-6}).
-The largest differences are in the mid-1980s when age-composition data was sparse, and then again
-over the last few years of the model. Estimates of recruitment were insensitive to the
-choice of maximum age for selectivity, despite the considerable increase in the number of model
-parameters for older maximum ages (Table~\ref{tab:main-parameter-estimates-sens-2}).  The choice of age-6 as the
-maximum was retained in the base model as it offered more flexibility given historical population structure
-fluctuations and related dynamics than the choice of age-5.
-%All three alternative runs had reduced
-%performance in terms of MCMC diagnostics when compared with the base model.
+%The estimated population trends throughout the time series are similar, irrespective of maximum
+%selectivity age (Figures~\ref{fig:main-biomass-base-alternative-6}-\ref{fig:main-status-base-alternative-6}).
+%The largest differences are in the mid-1980s when age-composition data was sparse, and then again
+%over the last few years of the model. Estimates of recruitment were insensitive to the
+%choice of maximum age for selectivity, despite the considerable increase in the number of model
+%parameters for older maximum ages (Table~\ref{tab:main-parameter-estimates-sens-2}).  The choice of age-6 as the
+%maximum was retained in the base model as it offered more flexibility given historical population structure
+%fluctuations and related dynamics than the choice of age-5.
+%%All three alternative runs had reduced
+%%performance in terms of MCMC diagnostics when compared with the base model.
 
-Constraining deviations from the stock recruitment relationship (i.e., recruitment deviates)
-to sum to zero across the main recruitment period (an assumption used in pre-2020 stock assessments;
-Table~\ref{tab:main-assessment-changes}; \citealt{JTC2020}), led to a very similar spawning
-biomass trend compared to the base model but increased the estimate of $B_0$ thereby creating
-a downward shift in stock status
-(Figures~\ref{fig:main-biomass-base-alternative-6}-\ref{fig:main-status-base-alternative-6}).
-Recruitment estimates were slightly higher and deviations from the stock recruitment relationship
-were ubiquitously slightly more negative than in the base model
-(Figures~\ref{fig:main-recruit-base-alternative-6}-\ref{fig:main-recruit-devs-base-alternative-6}).
+%Constraining deviations from the stock recruitment relationship (i.e., recruitment deviates)
+%to sum to zero across the main recruitment period (an assumption used in pre-2020 stock assessments;
+%Table~\ref{tab:main-assessment-changes}; \citealt{JTC2020}), led to a very similar spawning
+%biomass trend compared to the base model but increased the estimate of $B_0$ thereby creating
+%a downward shift in stock status
+%(Figures~\ref{fig:main-biomass-base-alternative-6}-\ref{fig:main-status-base-alternative-6}).
+%Recruitment estimates were slightly higher and deviations from the stock recruitment relationship
+%were ubiquitously slightly more negative than in the base model
+%(Figures~\ref{fig:main-recruit-base-alternative-6}-\ref{fig:main-recruit-devs-base-alternative-6}).
 
 % Ageing Error
 % Did not run this sensitivity in 2022
