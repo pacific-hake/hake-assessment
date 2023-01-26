@@ -68,8 +68,8 @@ create_rds_file <- function(model_dir = NULL,
   tic("Load retrospectives")
   model$retropath <- file.path(model_dir, retrospectives_path)
   if(dir.exists(model$retropath)){
-    model$retros <- fetch_retrospectives(model$retropath,
-                                         retrospective_yrs)
+    model$retros <- load_retrospectives(model$retropath,
+                                        retrospective_yrs)
   }else{
     model$retros <- NA
   }

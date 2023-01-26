@@ -8,7 +8,7 @@ append_retros <- function(rds_fn, retrospective_yrs = 1:10){
 
   stopifnot(file.exists(rds_fn))
   model <- readRDS(rds_fn)
-  model$retros <- fetch_retrospectives(model$retropath,
-                                       retrospective_yrs)
+  model$retros <- load_retrospectives(model$retropath,
+                                      retrospective_yrs)
   saveRDS(model, rds_fn)
 }

@@ -112,13 +112,6 @@ run_retrospectives <- function(model_path,
       unlink(covar_file)
     }
     if(retro_mcmc){
-      # Make a modification to the starter file so the extra MCMC
-      # files are not created
-      if(run_extra_mcmc){
-        modify_starter_mcmc_type(retro_subdir, 2)
-      }else{
-        modify_starter_mcmc_type(retro_subdir, 1)
-      }
       run_adnuts(retro_subdir,
                  run_extra_mcmc = run_extra_mcmc,
                  ...)
@@ -137,28 +130,4 @@ run_retrospectives <- function(model_path,
                                            "data_echo.ss_new"))
     }
   }, ...)
-}
-
-#' Fetch the retrospectives and return a list of each. If there are no retrospective
-#' directories or there is some other problem, the program will halt
-#'
-#' @param retro_path The path in which the retrospective directories reside
-#' @param retrospective_yrs A vector of years for the retrospectives
-#' @return The list of retrospective outputs
-#' @export
-fetch_retrospectives <- function(retro_path,
-                                 retrospective_yrs,
-                                 ...){
-
-  message("\nLoading retrospectives from ", retro_path)
-  #plan("multisession", workers = length(retrospective_yrs))
-  retros_list <- map(retrospective_yrs, function(x, ...){
-    retro_sub <- paste0("retro-", pad.num(x, 2))
-    retro_dir <- file.path(retro_path, retro_sub)
-    message("Loading from ", retro_dir)
-    load_ss_files(retro_dir, ...)
-  }, ...)
-  #plan()
-  message("Finished loading retrospectives")
-  retros_list
 }
