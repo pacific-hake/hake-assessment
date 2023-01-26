@@ -111,7 +111,7 @@ further research on this topic is still needed. New research has developed a
 krill (i.e., euphausiids; \emph{Euphausiacea}) abundance time
 series \citep{Phillips2022} and suggests that temperature dynamically
 influences hake--krill co-occurrence \citep{Phillips2023}, which can influence
-annual /fishname/ growth and recruitment as the availability of key prey species shifts.
+annual \fishname\ growth and recruitment as the availability of key prey species shifts.
 Ongoing research investigating abiotic (environmental conditions) and biotic
 (e.g., maturity and diet) drivers of the distribution,
 recruitment, growth, and survival of \fishname\ could provide insight into how
@@ -369,7 +369,7 @@ age-\Sexpr{us.age.1.prop.age.shore} (\Sexpr{us.age.1.prop.shore}\%),
 age-\Sexpr{us.age.2.prop.age.shore} (\Sexpr{us.age.2.prop.shore}\%),
 age-\Sexpr{us.age.3.prop.age.shore} (\Sexpr{us.age.3.prop.shore}\%), and
 age-\Sexpr{us.age.4.prop.age.shore} (\Sexpr{us.age.4.prop.shore}\%)
-(Table~\ref{tab:main-us-shore-age-data}). Age-composition differences 
+(Table~\ref{tab:main-us-shore-age-data}). Age-composition differences
 between at-sea and shoreside fleets during
 the 2022 fishing year were larger than usual due, in part, to
 seasonal spatiotemporal fleet dynamics. For example, the
