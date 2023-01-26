@@ -13,7 +13,7 @@ variety of age-structured models. Initially, a cohort analysis tuned to fishery
 CPUE was used \citep{FrancisSwartzmanEtAl1982}. Later, the cohort analysis was
 tuned to National Marine Fisheries Service (NMFS) triennial acoustic survey
 estimates of absolute biomass at age \citep{HollowedAdlersteinEtAl1988}.
-Since 1989, Stock Synthesis models fit to
+Since 1989, Stock Synthesis models (or base versions of it) fit to
 fishery catch-at-age data and acoustic survey estimates of population biomass
 and age composition have been the primary assessment method.
 
@@ -1560,7 +1560,7 @@ relative to the base model, are:
   for natural mortality;
 
 \item Consideration of an alternative prior distribution (mean and standard deviation) for natural
-  mortality based on the \citet{Hamel2015} life history meta-analytic method;
+  mortality based on the \citet{Hamel2015} and \citet{HamelCope2015} life history meta-analytic method;
 
 \item Consideration of an alternative prior distribution and a fixed value for
   steepness, to change the resiliency of the stock;

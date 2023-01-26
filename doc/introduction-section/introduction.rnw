@@ -379,7 +379,13 @@ age-\Sexpr{us.age.1.prop.age.shore} (\Sexpr{us.age.1.prop.shore}\%),
 age-\Sexpr{us.age.2.prop.age.shore} (\Sexpr{us.age.2.prop.shore}\%),
 age-\Sexpr{us.age.3.prop.age.shore} (\Sexpr{us.age.3.prop.shore}\%), and
 age-\Sexpr{us.age.4.prop.age.shore} (\Sexpr{us.age.4.prop.shore}\%)
-(Table~\ref{tab:main-us-shore-age-data}).
+(Table~\ref{tab:main-us-shore-age-data}). Age-composition differences between
+at-sea and shoreside fleets were larger than usual due, in part, to
+spatiotemporal fleet dynamics during the 2022 fishing year. For example, the
+timing of the at-sea \fishname\ fishery shifted due to low Bering Sea pollock
+quotas, and the fleet stayed south along the
+Oregon and California border longer than usual (see
+Appendix~\ref{chap:us-fishery-report} for more details).
 
 % \newpage % kludge to avoid dangling heading:
 
@@ -415,19 +421,19 @@ The fish caught in Canada appeared to be mostly from three age classes (ages 6,
 
 The most abundant year classes in the
 Canadian shoreside catch were
-age-\Sexpr{max.shoreside.age.prop.age} at \Sexpr{max.shoreside.age.prop}\%,
-age-\Sexpr{second.shoreside.age.prop.age} at \Sexpr{second.shoreside.age.prop}\%,
-age-\Sexpr{third.shoreside.age.prop.age} at \Sexpr{third.shoreside.age.prop}\%, and
-age-\Sexpr{fourth.shoreside.age.prop.age} at \Sexpr{fourth.shoreside.age.prop}\%
+age-\Sexpr{max.shoreside.age.prop.age} (\Sexpr{max.shoreside.age.prop}\%),
+age-\Sexpr{second.shoreside.age.prop.age} (\Sexpr{second.shoreside.age.prop}\%),
+age-\Sexpr{third.shoreside.age.prop.age} (\Sexpr{third.shoreside.age.prop}\%), and
+age-\Sexpr{fourth.shoreside.age.prop.age} (\Sexpr{fourth.shoreside.age.prop}\%)
 (Table~\ref{tab:main-can-shore-age-data}).
 The most abundant year classes (by numbers) in the Canadian freezer-trawler
 catch were age
-\Sexpr{max.freezer.trawler.age.prop.age} at
-\Sexpr{max.freezer.trawler.age.prop}\%, age
-\Sexpr{second.freezer.trawler.age.prop.age} at
-\Sexpr{second.freezer.trawler.age.prop}\%, age
-\Sexpr{third.freezer.trawler.age.prop.age} at
-\Sexpr{third.freezer.trawler.age.prop}\%, and age
-\Sexpr{fourth.freezer.trawler.age.prop.age} at
-\Sexpr{fourth.freezer.trawler.age.prop}\%
+\Sexpr{max.freezer.trawler.age.prop.age}
+(\Sexpr{max.freezer.trawler.age.prop}\%), age
+\Sexpr{second.freezer.trawler.age.prop.age}
+(\Sexpr{second.freezer.trawler.age.prop}\%), age
+\Sexpr{third.freezer.trawler.age.prop.age}
+(\Sexpr{third.freezer.trawler.age.prop}\%), and age
+\Sexpr{fourth.freezer.trawler.age.prop.age}
+(\Sexpr{fourth.freezer.trawler.age.prop}\%)
 (Table~\ref{tab:main-can-ft-age-data}).

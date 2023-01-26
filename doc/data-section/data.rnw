@@ -625,8 +625,8 @@ extensively in many previous assessments of \fishname\
 and is repeated here (see Section
 \ref{sec:assessment-sensitivity-analyses}), including increasing the prior standard deviation and
 using and alternative prior distribution altogether based on a life history meta-analysis
-\citep{Hamel2015}. The Hamel method used a lognormal prior distribution with a median of 0.22
-(based on a maximum age of 25 for \fishname) and a standard deviation (in log space) of 0.44.
+\citep{Hamel2015,HamelCope2022}. This method used a lognormal prior distribution with a median of 0.22
+(based on a maximum age of 25 for \fishname) and a standard deviation (in log space) of 0.31.
 Alternative prior distributions for
 natural mortality typically have a significant impact on the model results. But in the absence
 of new information on natural mortality there has been little option to update the prior.
