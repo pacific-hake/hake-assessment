@@ -38,7 +38,7 @@ structural uncertainty with respect to the base model
 The structural assumptions of this \Sexpr{assess_yr} base model,
 implemented using version \Sexpr{ss_version} of the Stock Synthesis software
 \citep{MethotWetzel2013},
-are the same as the \Sexpr{last_assess_yr} base model \citep{JTC2020}.
+are the same as the \Sexpr{last_assess_yr} base model \citep{JTC2022}.
 All model runs reported in this document are performed in a Bayesian context.
 Responses to \Sexpr{last_assess_yr} SRG requests are in
 Section~\ref{sec:assessment-response-review} and a
@@ -110,7 +110,7 @@ recruitment across the maternal preconditioning, egg, and larval phases of
 location of the North Pacific Current bifurcation, and upwelling during
 maternal preconditioning, as well as associated with northward long-shore
 transport and the number of days between storm events during larval stages
-(Vestfals et al., pers. comm.). \citet{Phillips2022} suggests temperature
+(Vestfals et al. In Review). \citet{Phillips2022} suggests temperature
 dynamically influences the co-occurrence of \fishname\ and krill (i.e.,
 euphausiids; \emph{Euphausiacea}), which can influence annual \fishname\ growth
 and recruitment as the availability of key prey species shifts. Previous
@@ -155,9 +155,9 @@ during these years for the first time since the inception of the
 Agreement. Catch shares distributions as specified in the Agreement were once
 again applied in 2022.
 
-Since 1999, catch
-targets have been calculated using an $\Fforty$ default harvest rate with a
-40:10 adjustment. This decreases the catch linearly from the catch target at a
+Since 1999, an upper limit on catch
+has been calculated using an $\Fforty$ default harvest rate with a
+40:10 adjustment. This decreases the catch linearly from the catch at a
 relative spawning biomass of 40\% to zero catch at a relative spawning
 biomass values of 10\% or less (called the default harvest policy in the
 Agreement); relative spawning biomass is the female spawning biomass divided by
