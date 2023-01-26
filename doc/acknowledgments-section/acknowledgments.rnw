@@ -7,8 +7,8 @@
 
 ** We thank the authors of previous assessments whose work remains an
 influential part of this assessment.
-In particular, we would like to extend our appreciation to Kiva Oken for
-assisting the JTC this year.
+%In particular, we would like to extend our appreciation to Kiva Oken for
+%assisting the JTC this year.
 We are grateful for the hard work of the
 U.S. and Canadian acoustics teams, including (in alphabetical order)
 Ethan Beyer,
@@ -26,7 +26,8 @@ Scott Buchanan, Cassandra Donavan, Mark Freeman, Joanne Groot,
 Marie Guldin, Owen Hamel (who gave insightful
 comments on a draft version), Jim Hastie, Melissa Head, Jason Jannot, William Jasper,
 Jerry Leonard, Kristin Marshall, Rick Methot, Patrick McDonald, Cole Monnahan,
-Kiva Oken, Elizabeth Phillips, Erin Steiner, Brad Stenberg, Ian Taylor, Jim Thorson,
+Kiva Oken, Elizabeth Phillips, Erin Steiner, Brad Stenberg, Ian Taylor (who gave insightful
+comments on a draft version), Jim Thorson,
 Vanessa Tuttle, Joe Watson, Steve Wischniowski, and contributions by many others that are
 too numerous to list here.
 We thank the Stock Synthesis, the {\tt r4ss} R package, and the {\tt adnuts}
@@ -35,15 +36,16 @@ improving stock assessment tools used in this assessment.
 We also thank the attendees at the official JTC meeting
 who provided valuable insight into the \Sexpr{end_yr-1} commercial fisheries in
 Canada and the U.S., as well as additional perspective on the acoustic
-survey. We appreciate the input from the AP (particularly for providing
+survey and \fishname\ related research. We appreciate the input from the AP (particularly for providing
 Appendices~\ref{chap:canada-fishery-report} and~\ref{chap:us-fishery-report})
-and other industry representatives including
-Shannon Mann, Mike Okoniewski, Brent Paine, Dave Smith, Dan
-Waldeck, and Teresa Williams.
+and other industry representatives as well as the JMC memebers.
+%%I don't feel a need this year to specifically call out the following industry representatives
+%including Shannon Mann, Mike Okoniewski, Brent Paine, Dave Smith, Dan
+%Waldeck, and Teresa Williams.
 % Add the following back in after SRG
 We thank all the members of the
 Scientific Review Group for their thoughtful review and smoothly run SRG
-meeting, including co-chairs John Holmes and Jim Hastie, panel members
+meeting, including co-chairs John Holmes and Owen Hamel, panel members
 Trevor Branch,
 Jaclyn Cleary,
 and Allan Hicks, and AP advisors
