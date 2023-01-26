@@ -371,7 +371,7 @@ top.coh <- function(model = NULL,
   if(num.cohorts > 1){
     for(i in 2:num.cohorts){
       txt <- paste0(txt,
-                    ifelse(i == 2, ", followed by the ", ", then the "),
+                    ifelse(i == 2, ", followed by the ", ", and then the "),
                     yr - as.numeric(names(x)[i]),
                     " cohort (",
                     f(x[i] * 100, decimals),
