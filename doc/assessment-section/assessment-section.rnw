@@ -704,9 +704,9 @@ recruitment values) from recent years
 (Figure~\ref{fig:main-mcmc-pairs-recruit-devs}) indicates the highest
 correlation
 (\Sexpr{round(cor(base_model$mcmc$Main_RecrDev_2014,base_model$mcmc$Main_RecrDev_2016),2)})
-was between the 2014 and 2016 recruitment deviations. This continues to be likely
-caused by the relative proportion of these two cohorts being continually better informed by
-recent age-composition data.
+was between the 2014 and 2016 recruitment deviations. This is an increase in correlation
+relative to the last assessment despite the fact that each cohort has been observed for
+an additional year.
 
 Regarding the Dirichlet-multinomial parameter $\theta_{\text{fish}}$,
 the estimate (median and 95\% credible interval) for $\log \theta_{\text{fish}}$ is
@@ -836,8 +836,8 @@ cohort.
 Posterior distributions for both steepness and natural mortality are
 influenced by priors (Figure~\ref{fig:main-prior-posterior}). The posterior for
 steepness is only slightly updated by the data, as expected given the low
-sensitivity to steepness values found in previous hake assessments. The natural
-mortality parameter, on the other hand, is shifted to the right of the prior
+level of information available to inform steepness as found in previous hake assessments.
+The posterior of natural mortality, on the other hand, is shifted to the right of the prior
 distribution and the prior may be constraining the posterior distribution from shifting
 further. Broadening
 the prior distribution by increasing the prior standard deviation for the natural mortality
@@ -868,8 +868,8 @@ from 2013 onward (Figure~\ref{fig:main-age-comp-fits}).
 Fishery selectivity on age-2 fish was at its highest
 in 2016.
 Fishery selectivity for the most recent year was characteristic by a logistic
-pattern, where selectivity generally increased smoothly from age-3
-to a peak at age-6 and older ages
+pattern, where selectivity generally increased smoothly from age 3
+to a peak at age 6 and older ages
 (Figure~\ref{fig:main-tv-selex-uncertainty}). However, age-2 selectivity was slightly
 higher than for other younger fish, likely as a result of increased availability
 of the above-average 2020 cohort. Even though the
@@ -878,7 +878,7 @@ posterior shows a broad band of uncertainty between ages 2 and 5
 (Figure~\ref{fig:main-tv-selex-uncertainty-lines}). The decline in
 survey selectivity between ages 3 and 4 may be an artifact of the interaction
 between large cohorts and the biennial timing of recent surveys, with the
-2010, 2014, and 2016 cohorts occurring in the survey at ages 3 and 5 but not age-4.
+2010, 2014, and 2016 cohorts occurring in the survey at ages 3 and 5 but not age 4.
 Fishery selectivity is
 likewise very uncertain (Figures~\ref{fig:main-tv-selex-uncertainty}
 and~\ref{fig:main-tv-selex-uncertainty-lines}), but in spite of this

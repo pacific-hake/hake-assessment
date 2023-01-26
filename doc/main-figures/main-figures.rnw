@@ -562,8 +562,8 @@ par <- oldpar
 \caption{Estimated selectivities for the acoustic survey (top -- for all years)
   and fishery (bottom -- for \Sexpr{end_yr-1} only)
   from the posterior distribution for the base model.
-  Selectivity for the acoustic survey is 0 at age-1 and
-  constant from age-6 onwards.
+  Selectivity for the acoustic survey is 0 for age-1 fish and
+  constant for age-6 fish and older.
 }
 \label{fig:main-tv-selex-uncertainty-lines}
 \end{figure}
