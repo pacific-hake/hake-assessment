@@ -572,6 +572,11 @@ fore.catch.prop.wt.age11.median <- median(extramc$natselwt.prop[, 12]) * 100
 
 # Sigma_r, standard deviation of recruitment variability ----------------------
 sigma_r <- f(base_model$sigma_R_in, 2)
+sigma_r_sens <- sens_models[[1]][
+  grep("Sigma R", sens_models_names[[1]])
+] %>%
+  purrr::map_dbl("sigma_R_in") %>%
+  f(dec.points = 2)
 
 # Alternative sigma_r based on all years of recdevs ---------------------------
 sigma_r_info <- extract_sigma_r(c(list(base_model), sens_models[[1]]),
@@ -589,6 +594,14 @@ sigma_r_lo_main <- sigma_r_info %>%
 sigma_r_alt_allyr <- sigma_r_info %>%
   filter(model == "base", period == "Early+Main+Late") %>%
   pull(alternative_sigma_R) %>%
+  f(2)
+sigma_r_this_year_main <- base_model$sigma_R_info %>%
+  dplyr::filter(period == "Main") %>%
+  dplyr::pull(SD_of_devs) %>%
+  f(2)
+sigma_r_last_year_main <- last_yr_base_model$sigma_R_info %>%
+  dplyr::filter(period == "Main") %>%
+  dplyr::pull(SD_of_devs) %>%
   f(2)
 
 # Range of "main" recdevs -----------------------------------------------------
