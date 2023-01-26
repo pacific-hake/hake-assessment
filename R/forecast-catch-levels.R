@@ -16,22 +16,23 @@
 #  by those two functions.
 
 # -----------------------------------------------------------------------------
+nf <- length(forecast_yrs)
 catch_levels <-
-  list(list(rep(0.01, length(forecast_yrs)), "No Fishing", "01-0"),
-       list(rep(180000, length(forecast_yrs)), "180,000 t", "02-180000"),
-       list(rep(225000, length(forecast_yrs)), "225,000 t", "03-225000"),
-       list(rep(270000, length(forecast_yrs)), "270,000 t", "04-270000"),
+  list(list(rep(0.01, nf), "No Fishing", "01-0"),
+       list(rep(180000, nf), "180,000 t", "02-180000"),
+       list(rep(225000, nf), "225,000 t", "03-225000"),
+       list(rep(270000, nf), "270,000 t", "04-270000"),
        list(c(320000, 288000, 259200, 233280), "320,000 t 10% red.", "05-320000-10"),
-       list(rep(325000, length(forecast_yrs)), "2021 catch: 325,000 t", "06-325000"),
-       list(rep(350000, length(forecast_yrs)), "350,000 t", "07-350000"),
+       list(rep(325000, nf), "2022 catch: 325,000 t", "06-325000"),
+       list(rep(350000, nf), "350,000 t", "07-350000"),
        list(c(350000, 315000, 283500, 255150), "350,000 t 10% red.", "08-350000-10"),
-       list(rep(380000, length(forecast_yrs)), "380,000 t", "09-380000"),
+       list(rep(380000, nf), "380,000 t", "09-380000"),
        list(c(380000, 342000, 307800, 277020), "380,000 t 10% red.", "10-380000-10"),
-       list(rep(430000, length(forecast_yrs)), "430,000 t", "11-430000"),
-       list(rep(545000, length(forecast_yrs)), "2022 TAC: 545,000 t", "12-545000"),
-       list(rep(NA, length(forecast_yrs)), "FI=100%", "13-spr-100"),
-       list(rep(NA, length(forecast_yrs)), "Default Harvest Policy", "14-default-hr"),
-       list(rep(NA, length(forecast_yrs)), "Stable Catch", "15-stable-catch"))
+       list(rep(430000, nf), "430,000 t", "11-430000"),
+       list(rep(545000, nf), "2022 TAC: 545,000 t", "12-545000"),
+       list(rep(NA, nf), "FI=100%", "13-spr-100"),
+       list(rep(NA, nf), "Default Harvest Policy", "14-default-hr"),
+       list(rep(NA, nf), "Stable Catch", "15-stable-catch"))
 
 # -----------------------------------------------------------------------------
 # Indices for the forecasts list, which list items above are the TAC case and
