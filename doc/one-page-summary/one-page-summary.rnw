@@ -80,7 +80,7 @@
    Projections setting the \Sexpr{forecast_yrs[1]} and
    \Sexpr{forecast_yrs[2]} catches equal to the \Sexpr{forecast_yrs[1]-1}
    coast-wide TAC of
-   \Sexpr{last.year.tac}~t show the estimated median relative female spawning biomass
+   \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
    decreasing from
    \Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end_yr} to
    \Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end_yr+1} to
