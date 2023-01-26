@@ -1883,12 +1883,13 @@ parameterization (Table~\ref{tab:main-assessment-changes}).
 The uncertainty interval associated with the \Sexpr{end_yr} assessment brackets the majority of the
 historical estimates.
 
-The level of uncertainty associated with each assessment's estimate of that year's current spawning biomass (used to convey current stock status and inform management advice)
+The level of uncertainty associated with each assessment's estimate of that year's current
+spawning biomass (i.e., that used to convey current stock status and inform management advice)
 changes from assessment to assessment given updates in data and \fishname\ population structure and
 dynamics. While uncertainty around the absolute amount of 2023 spawning biomass is the
 second largest (behind the 2017 assessment) since 2012, the relative amount of dispersion
-given the stock size (i.e., similar to a coefficient of variation) is not inconsistent with previous
-assessments (Figure~\ref{fig:main-historical-dispersion}).
+(or variability relative to the stock size; similar to a coefficient of variation) is not
+inconsistent with previous assessments (Figure~\ref{fig:main-historical-dispersion}).
 
 \subsection{Performance of past projections}\label{sec:assessment-past-projections}
 
