@@ -854,7 +854,27 @@ This explains why a few probabilities decline
 (rather than rise) with increased \Sexpr{assess_yr+1} and \Sexpr{assess_yr+2}
 catch levels (Tables~\ref{tab:es-risk-year-2} and~\ref{tab:es-risk-year-3}
 and Figures~\ref{fig:es-forecast-risk-comparison-year-2} and~\ref{fig:es-forecast-risk-comparison-year-3}).
-
+%
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tbp]
+\begin{center}
+<<forecast-depletion-comparison-plot, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to increase and then decline for all non-zero catch levels evaluated">>=
+# See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
+# `fore_inds` below are the indices of those forecast values in that list.
+plot_depl_fore_comparison(base_model,
+                          fore_inds = c(1, 2, 6, 12, 14),
+                          forecast_yrs = forecast_yrs)
+@
+\end{center}
+\caption{Time series of estimated relative spawning biomass to \Sexpr{end_yr}
+         from the base model, and forecast trajectories to
+         \Sexpr{forecast_yrs[length(forecast_yrs)]} for several management actions
+         defined in Table~\ref{tab:es-decisions-biomass}, with 95\%
+         posterior credibility intervals.}
+\label{fig:es-forecast-depletion-comparison}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+%
 The predicted relative spawning biomass trajectory through
 \Sexpr{forecast_yrs[length(forecast_yrs)]} is shown in
 Figure~\ref{fig:es-forecast-depletion-comparison} for several of the management
@@ -891,26 +911,6 @@ As the large 2010, 2014, and 2016 cohorts continue to age, their biomass is expe
 as losses from mortality outweigh increases from growth.  The
 estimated above-average (yet still highly uncertain) 2020 cohort will continue to play a large role
 in determining female spawning biomass during the forecast years presented here.
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbp]
-\begin{center}
-<<forecast-depletion-comparison-plot, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to increase and then decline for all non-zero catch levels evaluated">>=
-# See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
-# `fore_inds` below are the indices of those forecast values in that list.
-plot_depl_fore_comparison(base_model,
-                          fore_inds = c(1, 2, 6, 12, 14),
-                          forecast_yrs = forecast_yrs)
-@
-\end{center}
-\caption{Time series of estimated relative spawning biomass to \Sexpr{end_yr}
-         from the base model, and forecast trajectories to
-         \Sexpr{forecast_yrs[length(forecast_yrs)]} for several management actions
-         defined in Table~\ref{tab:es-decisions-biomass}, with 95\%
-         posterior credibility intervals.}
-\label{fig:es-forecast-depletion-comparison}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
 
 \clearpage
 
