@@ -748,7 +748,7 @@ and $n$ is the input sample size. The parameter $\theta$ is defined as a
 linear scaling parameter such that $\theta n$ is the variance-inflation
 parameter of the D-M distribution. The linear parameterization has been shown to
 be superior over the saturation parameterization in simulation testing
-\citep{FischAhrensEtAl2022} and thus corraborates our decision to continue to
+\citep{FischAhrensEtAl2022}, and thus corraborates our decision to continue to
 use it even though the saturation parameterization is available in Stock
 Synthesis.
 
@@ -774,7 +774,7 @@ the observed values. Typically, this process involves no more
 than four to five iterations.
 
 A uniform prior between $-5$ and $20$ for
-$\theta_{\text{fish}}$ and $\theta_{\text{surv}}$ tends to lead to
+$\log \theta_{\text{fish}}$ and $\log \theta_{\text{surv}}$ tends to lead to
 inefficient sampling of $\log \theta_{\text{surv}}$ because many
 samples occur in a part of the parameter space where the effective sample
 size multiplier, $\theta_{\text{surv}} / (1 + \theta_{\text{surv}})$, is between
@@ -786,7 +786,7 @@ can be associated with
 an approximately uniform prior of the weight $\theta_{\text{surv}} / (1 +
 \theta_{\text{surv}})$, where the parameters of the normal distribution
 were back-calculated from a uniform distribution with the bounds of 0 and 1 \citep{JTC2020}.
-The normal prior for both $\theta_{\text{fish}}$ and $\log \theta_{\text{surv}}$ has a mean of \Sexpr{effn.prior[2]}
+The normal prior for both $\log \theta_{\text{fish}}$ and $\log \theta_{\text{surv}}$ has a mean of \Sexpr{effn.prior[2]}
 and a standard deviation of \Sexpr{effn.prior[3]}.
 
 Composition data can also be weighted using the Francis method

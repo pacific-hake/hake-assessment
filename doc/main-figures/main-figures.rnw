@@ -254,7 +254,7 @@ weight.at.age.heatmap(base_model,
   outside the blue lines.
   Bold values between \Sexpr{start_yr_age_comps}--\Sexpr{max.fishery.age.prop[2]} represent
   unavailable data such that weights were interpolated or extrapolated from adjacent ages or years.
-  The bottom row (mean) is the sample-weighted mean weight-at-age.}
+  The bottom row (mean) is the sample-weighted mean weight-at-age over all years of data.}
 \label{fig:main-empirical-weight-at-age}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -277,7 +277,7 @@ weight.at.age.heatmap(base_model,
   and based on mean values.
   Sample sizes of zero highlight years for which data are not available, i.e.,
   pre \Sexpr{start_yr_age_comps} and post \Sexpr{last_data_yr}.
-  The total sample sizes for each age used in the mean over all years are shown at the bottom and
+  The total sample sizes for each age used in the mean over all data years are shown at the bottom and
   year-specific sample sizes are shown to the right using the same color scale with red indicating
   small sample sizes and blue indicating the large sample sizes.}
 \label{fig:main-empirical-weight-at-age-numbers}
