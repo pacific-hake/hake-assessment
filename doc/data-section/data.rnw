@@ -648,65 +648,18 @@ Section \ref{sec:assessment-sensitivity-analyses}).
 Time-varying selectivity was introduced in the 2014 assessment
 \citep{JTC2014} and is modeled using annual deviations since 1991 applied to the
 selectivity-at-age parameters for the fishery.
-A penalty function in the form of a normal
-distribution is applied to each deviation to keep it from straying
-far from zero, unless the data are overwhelming. The amount of deviation from
-zero is controlled by a fixed standard deviation, $\Phi$ \citep{JTC2018}.
-
-For each age $a \geq 1$
-there is an incremental selectivity parameter, $p_a$.
-The selectivity at age $a$ is computed as
-\eb
-S_a = \exp (S'_a - S'_{\text{max}}),
-\ee
-where
-\eb
-S'_a = \sum_{i = 1}^a p_i
-\ee
-and
-\eb
-S'_{\text{max}} = \mbox{max} \{S'_a\}.
-\ee
-For $a=0$ selectivity is fixed at $S_0 = 0$.
-
-This formulation has the properties that the maximum selectivity equals 1,
-positive values of $p_a$ are associated with increasing selectivity between ages $a-1$
-and $a$ and negative values are associated with decreasing selectivity between
-those ages. Beyond the maximum age for which selectivity is estimated (age 6 in the
-base model for both the fishery and the survey),
-$p_a = 0$ gives constant selectivity beyond the last estimated
-value. The condition that maximum selectivity equals 1 results in one fewer
-degree of freedom than the number of estimated $p_a$. Therefore we can set
-$p_1=0$.
-
-The implementation of time-varying selectivity uses a set of deviations
-to control annual changes to the fishery selectivity parameters.
-The standard deviation of the normal penalty function,
-$\Phi$, associated with these deviations has been fixed at \Sexpr{sel.Phi.val}
-since the 2018 assessment (see \citealt{JTC2018} for justification).
-The resulting changes in year-specific values controlling the changing
-selectivity from age $a-1$ to $a$ are
-\eb
-p_{ay} = p_a + \epsilon_{ay},
-\ee
-where $\epsilon_{ay}$ are the parameter deviations estimated in the model.
-For years with time-varying parameters,
-these deviations are included in an additional likelihood component
-with negative log-likelihood
-\eb
--\log(\text{L}) \propto \dfrac{1}{2} \sum_{a=1}^{6}
-  ~\sum_{y=1991}^{\Sexpr{last_data_yr}} \frac{\epsilon_{ay}^2}{\Phi^2}.
-% -\log(\text{L}) \propto \dfrac{1}{2} \sum_{a=A_{\text{min}}}^{6} ~\sum_{y=1991}^{\Sexpr{last_data_yr}} \left. \dfrac{\epsilon_{ay}^2}{\phi^2}{\vrule height 24pt width 0pt} \right. ,     % to try and make summations larger; can live with as is.
-\ee
-
+A normal distribution with a fixed standard deviation
+($\Phi=$ \Sexpr{sel.Phi.val}; see \citealt{JTC2018} for justification) is used as a
+penalty function to keep deviations from straying far from zero.
+Selectivity for age-0 fish is fixed at 0.0 and parameters for ages that are estimated
+represent the change in selecivity from the next youngest age.
+Beyond the age of 6, age-specific parameters are fixed at zero giving 
+constant selectivity beyond the last estimated
+value. The condition that maximum selectivity equals 1.0 results in one fewer
+degree of freedom than the number of estimated parameters.
 Further testing of alternative methods for parameterizing time-varying selectivity
 (e.g., \citealt{Xu2019}) should be investigated in conjunction with
 the estimation of additional time-varying parameters.
-In response to the \fishname\ population
-being comprised of several large cohorts over the past decade, alternative maximum
-ages for selectivity were once again investigated this year as a sensitivity analysis
-(see Section~\ref{sec:assessment-sensitivity-analyses}).
-% Manual 2022 KFJ
 
 \subsubsection{Age composition likelihood}\label{sec:data-age-comp-likelihood}
 
