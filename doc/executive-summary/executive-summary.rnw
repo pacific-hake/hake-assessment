@@ -796,9 +796,10 @@ parameters as constant.
 
 A relative fishing intensity of 1 should indicate fishing at the
 $\Fforty$ default harvest rate catch target but the projected median relative fishing intensity can
-be slightly different that the target because the $\Fforty$ default
-harvest-rate catch limit is calculated using baseline selectivity from all
-years, whereas the forecasted catches are removed using selectivity
+be slightly different than the target because the $\Fforty$ default
+harvest-rate catch limit is calculated using
+baseline selectivity-at-age (1966--1990; prior to time-varying deviations),
+whereas the forecasted catches are removed using selectivity
 averaged over the last five years. Recent changes in selectivity will thus be reflected
 in the determination of fishing relative to the default harvest
 policy. For example, fishing at the $\Fforty$ default harvest-rate catch limit

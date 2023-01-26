@@ -1348,8 +1348,9 @@ Relative fishing intensity exceeding 1 (or 100\% when shown as a percentage) ind
 $\Fforty$ default harvest rate limit. This can happen for the median
 relative fishing intensity in \Sexpr{forecast_yrs[1:(length(forecast_yrs)-2)]}
 and \Sexpr{forecast_yrs[(length(forecast_yrs)-1)]} because the $\Fforty$ default
-harvest-rate catch limit is calculated using baseline selectivity from all
-years, whereas the forecasted catches under the default
+harvest-rate catch limit is calculated using baseline
+selectivity-at-age (1966--1990; prior to time-varying deviations),
+whereas the forecasted catches under the default
 harvest-rate are removed using selectivity averaged
 over the last five years. Recent changes in selectivity could be reflected
 in the projection of over- or under-fishing relative to the desired $\Fforty$ rate.
