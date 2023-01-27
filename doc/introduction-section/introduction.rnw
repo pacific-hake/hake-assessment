@@ -68,8 +68,8 @@ later spawning \citep{Zamora-Garcia2020}.
 The coastal population of \fishname\ typically ranges from the waters off southern
 California to northern British Columbia and rarely into southern Alaska, with
 the northern boundary related to fluctuations in annual migration \citep{HamelEtAl2015}
-depending, in part, on water temperature (\citep{MalickHunsickerEtAl2020,
-MalickSiedleckiEtAl2020}). In spring,
+depending, in part, on water temperature \citep{MalickHunsickerEtAl2020,
+MalickSiedleckiEtAl2020}. In spring,
 adult \fishname\ migrate onshore and northward to feed along the continental
 shelf and slope from northern California to Vancouver Island. In summer,
 \fishname\ often form extensive mid-water aggregations in association with the
@@ -126,7 +126,7 @@ topic is still needed.
 Fitting the assessment model to empirical weight-at-age data allows for
 time-varying growth without needing a mechanistic relationship or environmental
 data, which facilitates an `Ecosystem Approach to Fisheries Management'
-(a priority for DFO and NOAA) (see Section~\ref{sec:data-weight-at-age}).
+(a priority for DFO and NOAA); see Section~\ref{sec:data-weight-at-age}.
 Nonetheless, ongoing research investigating spatiotemporal drivers of weight-at-age will
 provide more insights into the specific mechanisms affecting changes in growth,
 which will enable condition-specific prediction capabilities (e.g., assumptions of
@@ -175,11 +175,11 @@ In the U.S. zone, participants in the directed fishery are required to use
 pelagic trawls with a codend mesh of at least 7.5~cm. Regulations
 also restrict the area and season of fishing to reduce the bycatch of Chinook
 Salmon (\emph{Oncorhynchus tshawytscha}), depleted rockfish populations
-(though, all but Yelloweye Rockfish, \emph{Sebastes ruberrimus}, have
+(though all but Yelloweye Rockfish, \emph{Sebastes ruberrimus}, have
 rebuilt in recent years), and other species as related to their specific
 harvest specifications. The current allocation agreement,
 effective since 1997, divides the U.S. harvest into tribal (17.5\%) and non-tribal
-(82.5\%, with a small amount set aside for research) components.
+(82.5\%, including a small amount set aside for research) components.
 Starting in 1996, the Makah Tribe has conducted a fishery with the tribal
 allocation in its ``usual and accustomed fishing area''.
 The non-tribal harvest allocation is divided among
@@ -263,12 +263,12 @@ In the US, over \$75.2 million in wages was estimated to have been paid to emplo
 This includes wages paid to crew and captains fishing on catcher vessels that
 deliver shoreside and at-sea to motherships, workers in shore-based processing
 facilities, crew, captains, and workers on catcher-processor vessels, and
-workers on mothership vessels. The exported value of \fishname\ was U.S.
-\$127~million in 2020, including to Ukraine, Nigeria, and Italy, which make up
+workers on mothership vessels. The exported value of \fishname\ was
+US\$127~million in 2020, including to Ukraine, Nigeria, and Italy, which make up
 about 57\% of the total exports
 \href{https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321}{(www.noaa.gov)}.
 The total economic impacts of the \fishname\ fishery on the U.S. West Coast in
-2020 was U.S. \$289 million in income and 3,950 U.S. jobs.
+2020 was US\$289 million in income and 3,950 U.S. jobs.
 
 The Joint Management Committee (JMC) determined an adjusted (for carryovers)
 coast-wide TAC of \Sexpr{last.year.tac}~t for \Sexpr{last_data_yr}. The U.S.
@@ -367,8 +367,8 @@ The four most abundant age classes for highest occurrences being for \Sexpr{last
 age-\Sexpr{us.age.1.prop.age.shore} (\Sexpr{us.age.1.prop.shore}\%),
 age-\Sexpr{us.age.2.prop.age.shore} (\Sexpr{us.age.2.prop.shore}\%),
 age-\Sexpr{us.age.3.prop.age.shore} (\Sexpr{us.age.3.prop.shore}\%), and
-age-\Sexpr{us.age.4.prop.age.shore} (\Sexpr{us.age.4.prop.shore}\%)
-(Table~\ref{tab:main-us-shore-age-data}). Age-composition differences
+age-\Sexpr{us.age.4.prop.age.shore} (\Sexpr{us.age.4.prop.shore}\%);
+Table~\ref{tab:main-us-shore-age-data}. Age-composition differences
 between at-sea and shoreside fleets during
 the 2022 fishing year were larger than usual due, in part, to
 seasonal spatiotemporal fleet dynamics. For example, the
@@ -395,13 +395,14 @@ The shoreside component made up of vessels landing fresh round product onshore
 landed \Sexpr{last.year.can.shore}~t, the lowest on record since 1990.
 The freezer-trawler component,
 which freezes headed and gutted product while at sea, landed
-\Sexpr{last.year.can.freezer}~t. There was no Joint-Venture fishery this year.
+\Sexpr{last.year.can.freezer}~t. There was no Joint-Venture fishery in
+\Sexpr{assess_yr - 1}.
 
 % Manual done 2023 (Paraphrased Appendix B)
 Fishing started in early April and ended in November. The general view of
 the Canadian fleet is that abundance in Canadian-waters was down in 2022, including
 areas outside of Southwest Vancouver Island. The freezer trawlers fished in
-considerably shallower areas than last year and at shallower depths, where the shoreside
+considerably shallower areas than last year and at shallower depths, whereas the shoreside
 vessels fished their gear at deeper depths than in 2021
 (Figure~\ref{fig:main-can-at-sea-depths}). Reports of difficulties finding fish in 2022,
 and thus additional searching, is perhaps related to these standout
@@ -410,20 +411,20 @@ The fish caught in Canada appeared to be mostly from three age classes (ages 6,
 8, 12, and 5), with very few smaller fish (less than 500 grams) caught.
 
 The most abundant year classes in the
-Canadian shoreside catch were
+Canadian shoreside catch (by numbers) were
 age-\Sexpr{max.shoreside.age.prop.age} (\Sexpr{max.shoreside.age.prop}\%),
 age-\Sexpr{second.shoreside.age.prop.age} (\Sexpr{second.shoreside.age.prop}\%),
 age-\Sexpr{third.shoreside.age.prop.age} (\Sexpr{third.shoreside.age.prop}\%), and
-age-\Sexpr{fourth.shoreside.age.prop.age} (\Sexpr{fourth.shoreside.age.prop}\%)
-(Table~\ref{tab:main-can-shore-age-data}).
-The most abundant year classes (by numbers) in the Canadian freezer-trawler
-catch were age
+age-\Sexpr{fourth.shoreside.age.prop.age} (\Sexpr{fourth.shoreside.age.prop}\%);
+Table~\ref{tab:main-can-shore-age-data}.
+The most abundant year classes in the Canadian freezer-trawler
+catch were age-
 \Sexpr{max.freezer.trawler.age.prop.age}
-(\Sexpr{max.freezer.trawler.age.prop}\%), age
-\Sexpr{second.freezer.trawler.age.prop.age}
-(\Sexpr{second.freezer.trawler.age.prop}\%), age
-\Sexpr{third.freezer.trawler.age.prop.age}
-(\Sexpr{third.freezer.trawler.age.prop}\%), and age
-\Sexpr{fourth.freezer.trawler.age.prop.age}
-(\Sexpr{fourth.freezer.trawler.age.prop}\%)
-(Table~\ref{tab:main-can-ft-age-data}).
+(\Sexpr{max.freezer.trawler.age.prop}\%),
+age-\Sexpr{second.freezer.trawler.age.prop.age}
+(\Sexpr{second.freezer.trawler.age.prop}\%),
+age-\Sexpr{third.freezer.trawler.age.prop.age}
+(\Sexpr{third.freezer.trawler.age.prop}\%), and
+age-\Sexpr{fourth.freezer.trawler.age.prop.age}
+(\Sexpr{fourth.freezer.trawler.age.prop}\%);
+Table~\ref{tab:main-can-ft-age-data}.
