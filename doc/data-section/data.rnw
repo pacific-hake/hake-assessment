@@ -124,6 +124,8 @@ information from the foreign and Joint-Venture fisheries from
 1975--\Sexpr{terminal.year.us.jvforeign} and
 from the domestic at-sea fishery since \Sexpr{first.year.us.atsea}.
 Observers collect data by selecting fish randomly from each haul.
+The number of otoliths collected per haul has varied over time but is
+currently three fish every third haul.
 
 Biological samples from the U.S. shore-based fishery since
 1991 were collected by port samplers located where there

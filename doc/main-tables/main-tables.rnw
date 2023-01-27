@@ -7,11 +7,11 @@ make_catch_table(ct,
                  end_yr = end_yr,
                  country = 2,
                  xcaption = paste("Annual catches of \\fishname\\ (t) in
-                        U.S. waters by sector, ",
+                        U.S. waters by fleet, ",
                         start_yr,
                         "-",
                         last_data_yr,
-                        ". Tribal catches are included in the sector totals.
+                        ". Tribal catches are included in the fleet totals.
                         Research catch includes landed catch associated with
                         research-related activities. Catch associated with
                         surveys and discarded bycatch in fisheries not targeting
@@ -30,7 +30,7 @@ make_catch_table(ct,
                  end_yr = end_yr,
                  country = 1,
                  xcaption = paste("Annual catches of \\fishname\\ (t) in
-                         Canadian  waters by sector, ",
+                         Canadian  waters by fleet, ",
                          start_yr,
                          "-",
                          last_data_yr,
@@ -64,16 +64,13 @@ make.sampling.history.table(sampling.history,
                             xcaption =
                               "Annual summary of U.S. and Canadian
                               fishery sampling included in this stock
-                              assessment. Canadian, foreign, joint-venture and
-                              at-sea sectors are in number of hauls sampled for
-                              age-composition, the shore-based sector is in
+                              assessment by fleet. Majority of values are
+                              reported as number of hauls but U.S. shore-based
+                              and Canadian shoreside fleets are reported as the
                               number of trips. A dash (--) indicates there was
-                              no sampled catch. A number indicates how many
-                              samples from the catch were taken. The number of
+                              no sampled catch. The number of
                               fish with otoliths sampled per haul has varied
-                              over time but is typically small (current
-                              protocols for the U.S. At-Sea sectors is three fish
-                              every third haul).",
+                              over time but is typically small.",
                             xlabel = "tab:main-sampling-history",
                             font.size = 8,
                             space.size = 10)
@@ -88,7 +85,7 @@ make.us.age.data.table(us.cp.age,
                        fleet = 1,
                        start_yr = end_yr - num.recent.yrs,
                        end_yr = last_data_yr,
-                       xcaption = paste0("Recent age proportion data used in
+                       xcaption = paste0("Recent age-proportion data used in
                          the assessment for the U.S. Catcher-Processor fleet.
                          Proportions are calculated from numbers of individuals
                          in each age group. Age 15 is an accumulator group."),
@@ -103,7 +100,7 @@ make.us.age.data.table(us.ms.age,
                        fleet = 2,
                        start_yr = end_yr - num.recent.yrs,
                        end_yr = last_data_yr,
-                       xcaption = paste0("Recent age proportion data used in
+                       xcaption = paste0("Recent age-proportion data used in
                          the assessment for the U.S. Mothership fleet.
                          Proportions are calculated from numbers of
                          individuals in each age group. Age 15 is an
@@ -124,7 +121,7 @@ make.us.age.data.table(us.shore.age,
                        fleet = 3,
                        start_yr = end_yr - num.recent.yrs,
                        end_yr = last_data_yr,
-                       xcaption = paste0("Recent age proportion data used in the assessment for ",
+                       xcaption = paste0("Recent age-proportion data used in the assessment for ",
                                          "the U.S. Shore-Based fleet. Proportions are ",
                                          "calculated from numbers of individuals in each age group. ",
                                          "Age 15 is an accumulator group."),
@@ -140,7 +137,7 @@ make.can.age.data.table(can.ages,
                         fleet = 1,
                         start_yr = end_yr - num.recent.yrs,
                         end_yr = last_data_yr,
-                        xcaption = paste0("Recent age proportion data used in the assessment for ",
+                        xcaption = paste0("Recent age-proportion data used in the assessment for ",
                                           "the Canadian Shoreside fleet. Proportions are ",
                                           "calculated from numbers of individuals in each age group. ",
                                           "Age 15 is an accumulator group."),
@@ -161,7 +158,7 @@ make.can.age.data.table(can.ages,
                         fleet = 2,
                         start_yr = end_yr - num.recent.yrs,
                         end_yr = last_data_yr,
-                        xcaption = paste0("Recent age proportion data used in the assessment for ",
+                        xcaption = paste0("Recent age-proportion data used in the assessment for ",
                                           "the Canadian freezer-trawler fleet. Proportions are ",
                                           "calculated from numbers of individuals in each age group. ",
                                           "Age 15 is an accumulator group."),
@@ -179,10 +176,10 @@ make.input.age.data.table(base_model,
                           start_yr = start_yr_age_comps,
                           end_yr = last_data_yr,
                           csv.dir = output_csv_dir,
-                          xcaption = paste0("Aggregated fishery age proportion data used in the base model. Proportions are ",
+                          xcaption = paste0("Aggregated fishery age-proportion data used in the base model. Proportions are ",
                                             "calculated from numbers of individuals in each age group where the ",
-                                            "contributions from each sector are weighted by the catch in that sector. ",
-                                            "Sample sizes are sum of hauls and trips from individual sectors ",
+                                            "contributions from each fleet are weighted by the catch in that fleet. ",
+                                            "Sample sizes are sum of hauls and trips from individual fleets ",
                                             "(shown in preceding tables) as described in Section~\\ref{sec:data-fishery-biological-data}. ",
                                             "Age 15 is an accumulator group for comparing observed and expected proportions."),
                           xlabel = "tab:main-all-age-data-fishery",
@@ -203,7 +200,7 @@ make.input.age.data.table(base_model,
                           start_yr = survey_start_yr,
                           end_yr = survey_end_yr,
                           csv.dir = output_csv_dir,
-                          xcaption = paste0("Survey age proportion data used in the base model. Proportions are ",
+                          xcaption = paste0("Survey age-proportion data used in the base model. Proportions are ",
                                             "calculated from numbers of individuals in each age group. ",
                                             "Age 15 is an accumulator group."),
                           xlabel = "tab:main-all-age-data-survey",
@@ -242,7 +239,7 @@ make.maturity.ogives.table(maturity.ogives,
                                        to the subset of samples in Table~\\ref{tab:main-ovaries} for which
                                        age readings and histological estimates of maturity have been completed.
                                        The mean weight (kg) is based on a much larger set of samples. Mean
-                                       fecundity is the product of maturity and mean weight, but note that
+                                       fecundity is the product of maturity and mean weight but note that
                                        year-specific fecundities from ",
                                        start_yr_age_comps,
                                        "--",
