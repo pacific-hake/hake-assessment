@@ -14,7 +14,6 @@ plot_survey_index_fits <- function(
     x_expansion = 3,
     ylim = c(0, 3),
     y_breaks = seq(ylim[1], ylim[2], by = 0.5),
-    y_labels = expression("0", "0.5", "1", "1.5", "2", "2.5", "3"),
     alpha = 0.1,
     leg_pos = c(0.65, 0.83),
     leg_ncol = 1,
