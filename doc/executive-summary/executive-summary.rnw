@@ -70,7 +70,7 @@ catches averaging \Sexpr{catch_us_mean_10yrs}~t and
 the coast-wide
 %
 <<total-catches-table, results='asis', echo=FALSE>>=
-make_catch_table(ct,
+make_catch_table_es(ct,
                  start_yr = assess_yr - 10,
                  end_yr = assess_yr - 1,
                  xcaption =
@@ -82,7 +82,9 @@ make_catch_table(ct,
                     the table or model.",
                  xlabel = "tab:es-catches",
                  font_size = 9,
-                 space_size = 10)
+                 space_size = 10,
+                 table_placement = "tbp",
+                 tabular_environment = "tabular" )
 @
 %
 catch has been declining annually through \Sexpr{end_yr - 1},
