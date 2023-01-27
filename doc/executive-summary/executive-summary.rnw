@@ -65,7 +65,7 @@ total catch) while catch from Canadian waters averaged
 \Sexpr{catch_mean_10yrs}~t with U.S. and Canadian
 catches averaging \Sexpr{catch_us_mean_10yrs}~t and
 \Sexpr{catch_can_mean_10yrs}~t, respectively. Since 2017,
-the coast-wide catch
+the coast-wide
 %
 <<total-catches-table, results='asis', echo=FALSE>>=
 make_catch_table(ct,
@@ -83,7 +83,7 @@ make_catch_table(ct,
                  space_size = 10)
 @
 %
-has been declining annually through \Sexpr{end_yr - 1},
+catch has been declining annually through \Sexpr{end_yr - 1},
 when it was \Sexpr{last.year.landings}~t out of a
 total allowable
 catch (TAC, adjusted for carryovers) of
