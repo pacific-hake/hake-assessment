@@ -587,6 +587,14 @@ calc_SD_of_devs <- function(posteriors, pattern = "Main") {
     median() %>%
     f(2)
 }
+calc_sum_rec_devs <- function(posteriors, pattern = "Main") {
+  temp <- posteriors %>%
+    dplyr::select(dplyr::matches(pattern)) %>%
+    apply(MARGIN = 1, FUN = sum)
+  c(mean = mean(temp), median = median(temp), range = range(temp))
+}
+calc_sum_rec_devs(base_model$mcmc)
+calc_sum_rec_devs(last_yr_base_model$mcmc)
 sigma_r_alt_allyr <- calc_SD_of_devs(base_model$mcmc, pattern = "^[EML].+_RecrDev")
 sigma_r_this_year_main <- calc_SD_of_devs(base_model$mcmc)  
 sigma_r_last_year_main <- calc_SD_of_devs(last_yr_base_model$mcmc)
