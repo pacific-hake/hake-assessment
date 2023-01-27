@@ -738,15 +738,8 @@ randWalkSelex.fn <- function(pars,
     # transform parameters based on bounds
     for(a in 2:length(pars)) {
       if(!is.na(devs[a])) {
-        # transformation was present in 2014-2017 models but no longer used in 2018
-        if(transform){
-          tmp <- log((bounds[2] - bounds[1] + 0.0000002) / (pars[a] - bounds[1] + 0.0000001) - 1) / (-2)
-          tmp <- tmp + devs[a]
-          pars[a] <- bounds[1] + (bounds[2] - bounds[1]) / (1 + exp(-2 * tmp))
-        }else{
-          ## in 3.30, there's no transformation, but the devs are scaled by the SE (Phi)
-          pars[a] <- pars[a] + Phi * devs[a]
-        }
+        ## in 3.30, there's no transformation, but the devs are scaled by the SE (Phi)
+        pars[a] <- pars[a] + Phi * devs[a]
       }
     }
   }
