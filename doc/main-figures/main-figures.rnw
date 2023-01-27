@@ -989,7 +989,7 @@ plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp2[[1]],
 plot_biomass(d_obj = d_obj_sens_biomass[[3]],
              x_expansion = 4,
              leg_font_size = 9,
-             leg_pos = c(0.83, 0.88),
+             leg_pos = c(0.75, 0.88),
              rev_colors = TRUE)
 @
 \end{center}
@@ -1005,7 +1005,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[3]],
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
                  x_expansion = 2,
                  leg_font_size = 9,
-                 leg_pos = c(0.83, 0.88),
+                 leg_pos = c(0.75, 0.88),
                  rev_colors = TRUE)
 @
 \end{center}
