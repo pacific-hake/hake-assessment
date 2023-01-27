@@ -26,16 +26,6 @@ the major inlets of the northeast Pacific Ocean, including the Strait of
 Georgia, Puget Sound, and the Gulf of California, are not included in this
 analysis.
 
-\subsection*{Catches} \label{sec:es-catches} \phantomsection
-\addcontentsline{toc}{subsection}{Catches}
-Coast-wide fishery landings of \fishname\
-averaged \Sexpr{f(mean(ct$tot_catch))}~t from
-\Sexpr{min(ct$year)} to \Sexpr{max(ct$year)}, with a low of
-\Sexpr{f(min(ct$tot_catch))}~t in
-\Sexpr{ct$year[ct$tot_catch == min(ct$tot_catch)]} and a peak of
-\Sexpr{f(max(ct$tot_catch))}~t in
-\Sexpr{ct$year[ct$tot_catch == max(ct$tot_catch)]}
-(Figure~\ref{fig:es-catches}).
 %
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[!b]
@@ -53,6 +43,18 @@ make.catches.plot(ct,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 %
+
+
+\subsection*{Catches} \label{sec:es-catches} \phantomsection
+\addcontentsline{toc}{subsection}{Catches}
+Coast-wide fishery landings of \fishname\
+averaged \Sexpr{f(mean(ct$tot_catch))}~t from
+\Sexpr{min(ct$year)} to \Sexpr{max(ct$year)}, with a low of
+\Sexpr{f(min(ct$tot_catch))}~t in
+\Sexpr{ct$year[ct$tot_catch == min(ct$tot_catch)]} and a peak of
+\Sexpr{f(max(ct$tot_catch))}~t in
+\Sexpr{ct$year[ct$tot_catch == max(ct$tot_catch)]}
+(Figure~\ref{fig:es-catches}).
 Prior to \Sexpr{min(ct$year)}, total removals were negligible compared to
 the modern fishery. Over the early period (\Sexpr{min(ct$year)}--1990) most
 removals were from foreign or joint-venture fisheries.  Across the time series,
