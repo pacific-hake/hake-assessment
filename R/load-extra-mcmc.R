@@ -240,6 +240,38 @@ load_extra_mcmc <- function(model,
     filter(Yr == next_yr) |>
     select(-c(Iter, Yr))
 
+  # End year (last year of catch) selectivities
+  # Fishery
+  sel_ind <- grep(paste0(model$endyr, "_1Asel"), rep_example)
+  reps_sel <- map(reps, ~{.x[sel_ind]})
+  extra_mcmc$sel_endyr_fishery <-
+    extract_rep_table(reps_sel,
+                      sel_header,
+                      verbose = verbose,
+                      ...) |>
+    select(-c("Factor",
+              "Fleet",
+              "Seas",
+              "Sex",
+              "Morph",
+              "Label")) |>
+    select(-c(Iter, Yr))
+  # Acoustic survey
+  sel_ind <- grep(paste0(model$endyr, "_2Asel"), rep_example)
+  reps_sel <- map(reps, ~{.x[sel_ind]})
+  extra_mcmc$sel_endyr_survey <-
+    extract_rep_table(reps_sel,
+                      sel_header,
+                      verbose = verbose,
+                      ...) |>
+    select(-c("Factor",
+              "Fleet",
+              "Seas",
+              "Sex",
+              "Morph",
+              "Label")) |>
+    select(-c(Iter, Yr))
+
   # Selectivity * Weight ------------------------------------------------------
   # TODO: hack of subtracting 1 - See issue #856
   if(verbose){
