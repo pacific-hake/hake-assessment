@@ -569,12 +569,10 @@ plist[[2]] <- plot_selex_posteriors(base_model,
 cowplot::plot_grid(plotlist = plist, nrow = 2, ncol = 1)
 @
 \end{center}
-\caption{Estimated selectivities for the acoustic survey (top -- for all years)
-  and fishery (bottom -- for \Sexpr{end_yr-1} only)
-  from the posterior distribution for the base model.
-  Selectivity for the acoustic survey is 0 for age-1 fish and
-  constant at 1.0 for age-6 fish and older.
-}
+\caption{Estimated selectivities for the acoustic survey (top -- for
+ all years age-2 and older)
+  and fishery (bottom -- shown for \Sexpr{end_yr-1} only, age-1 and older)
+  from the posterior distribution for the base model.}
 \label{fig:main-tv-selex-uncertainty-lines}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
