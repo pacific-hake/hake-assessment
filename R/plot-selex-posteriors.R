@@ -52,6 +52,10 @@ plot_selex_posteriors <- function(model = NULL,
            "between ", min(ages), " and ", max(ages),
            call. = FALSE)
     }
+    sel <- sel |>
+      filter(age %in% age_range[1]:age_range[2])
+    quants <- quants |>
+      filter(age %in% age_range[1]:age_range[2])
   }
 
   g <- ggplot(sel,
@@ -70,8 +74,7 @@ plot_selex_posteriors <- function(model = NULL,
                   linewidth = line_thickness_unc,
                   width = 0.01) +
     xlab("Age") +
-    ylab("Selectivity") +
-    coord_cartesian(xlim = age_range)
+    ylab("Selectivity")
 
   g
 }

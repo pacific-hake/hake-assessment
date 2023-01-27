@@ -126,7 +126,7 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "plot-recruitment.R", "plot-recdevs.R", "plot-survey-index-fits.R",
              "plot-retro-recruits.R", "make-small-rds.R", "extract-rep-table.R",
              "plot-fore-compare.R", "plot-spr-illustration.R", "plot-selex-posteriors.R",
-             "table-param-est-bounds.R")
+             "table-param-est-bounds.R", "plot-multiple-tv-selex-unc.R")
 source_all(src_lst)
 
 theme_set(hake_theme())
