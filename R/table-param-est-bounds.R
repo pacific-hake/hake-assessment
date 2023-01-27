@@ -215,7 +215,7 @@ table_param_est_bounds <- function(model,
   # Dirichlet-Multinomial likelihood parameters
   dm_inds <- grep("DM", ctl)
   if(!length(dm_inds)){
-    stop("'DM' not found n the control file, cannot estract Dirichlet-Multinomial ",
+    stop("'DM' not found n the control file, cannot extract Dirichlet-multinomial ",
          "parameter settings",
          call. = FALSE)
   }
@@ -223,7 +223,7 @@ table_param_est_bounds <- function(model,
 
   dmf <- dm[[1]]
   dms <- dm[[2]]
-  dmf.vals <- c(paste0("Dirichlet-Multinomial fishery likelihood, ",
+  dmf.vals <- c(paste0("Dirichlet-multinomial fishery likelihood, ",
                       latex.italics("$\\log(\\theta_{fish})$")),
                2,
                paste0("(", dmf[lo], ", ", dmf[hi], ")"),
@@ -232,7 +232,7 @@ table_param_est_bounds <- function(model,
                       dmf[5],
                       ")"))
 
-  dms.vals <- c(paste0("Dirichlet-Multinomial survey likelihood, ",
+  dms.vals <- c(paste0("Dirichlet-multinomial survey likelihood, ",
                       latex.italics("$\\log(\\theta_{survey})$")),
                2,
                paste0("(", dms[lo], ", ", dms[hi], ")"),
