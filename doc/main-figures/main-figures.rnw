@@ -562,7 +562,7 @@ plist[[1]] <- plot_selex_posteriors(base_model,
 plist[[2]] <- plot_selex_posteriors(base_model,
                       type = "fishery",
                       probs = c(0.025, 0.975),
-                      age_range = c(2, 8),
+                      age_range = c(1, 8),
                       line_color_unc = "blue",
                       line_thickness_unc = 1,
                       point_size_unc = 3)
