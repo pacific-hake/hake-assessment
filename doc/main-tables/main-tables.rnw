@@ -478,13 +478,11 @@ param_est_table(list(base_model, last_yr_base_model),
 make.reference.points.table.old(base_model,
                             xcaption = paste0("Summary of median and 95\\% credibility
                                                intervals of equilibrium conceptual reference points for
-                                               the base assessment model. Equilibrium
-                                               reference points were computed using ",
-                                              end_yr - 5,
-                                               "--",
-                                              end_yr - 1,
-                                              " averages for mean weight-at-age and baseline selectivity
-                                              (1966--1990; prior to time-varying deviations.)"),
+                                               the base assessment model. Equilibrium reference
+                                               points were computed using 1975--",
+                                               end_yr-1," averages for mean
+                                               weight-at-age and baseline selectivity-at-age
+                                               (1966--1990; prior to time-varying deviations.)"),
                             xlabel = "tab:main-reference-points",
                             font.size = 10,
                             space.size = 11,
