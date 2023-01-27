@@ -331,8 +331,9 @@ atage_table <- function(model,
                         font_size = 9,
                         space_size = 10){
 
-  if(!dir.exists(csv_dir)){
-    dir.create(csv_dir)
+  csv_dir_full <- here::here("doc", csv_dir)
+  if(!dir.exists(csv_dir_full)){
+    dir.create(csv_dir_full)
   }
 
   tbl <- switch (table_type,
@@ -342,11 +343,11 @@ atage_table <- function(model,
                  model$extra.mcmc$catage_biomass_median,
                  model$extra.mcmc$batage_median)
   fn <- switch (table_type,
-                file.path(csv_dir, out_est_naa_file),
-                file.path(csv_dir, out_est_eaa_file),
-                file.path(csv_dir, out_est_caa_file),
-                file.path(csv_dir, out_est_caa_bio_file),
-                file.path(csv_dir, out_est_baa_file))
+                file.path(csv_dir_full, out_est_naa_file),
+                file.path(csv_dir_full, out_est_eaa_file),
+                file.path(csv_dir_full, out_est_caa_file),
+                file.path(csv_dir_full, out_est_caa_bio_file),
+                file.path(csv_dir_full, out_est_baa_file))
 
   yrs_in_table <- sort(unique(tbl$Yr))
   min_yr <- min(yrs_in_table)
