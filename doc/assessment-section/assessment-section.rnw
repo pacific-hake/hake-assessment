@@ -843,7 +843,7 @@ distributions, including $\theta_{\text{fish}}$ and  $\theta_{\text{surv}}$ (as 
 Section~\ref{sec:data-age-comp-likelihood}).
 
 The \Sexpr{assess_yr} base model specified the same level of variation (standard
-deviation of $\Phi = 1.4$) associated with time-varying fishery selectivity as
+deviation of $\Phi = \Sexpr{sel.Phi.val}$) associated with time-varying fishery selectivity as
 the \Sexpr{last_assess_yr} base model, effectively
 allowing the model flexibility (i.e., a lower penalty on the overall
 likelihood) to fit to data that suggests high variability among years for each
@@ -1651,36 +1651,25 @@ remained above levels where changes in steepness would appreciably influence
 stock-recruit dynamics (Figure~\ref{fig:main-mcmc-sr-variability}).
 
 % section below on sigma_r
-The value of $\sigma_r$ was changed from a value of 1.4 (base) to alternative
-high (1.6) and low (1.0) states. The low value, $\sigma_r = 1.0$,
-resulted in a model where the standard deviation of the MLEs of
-recruitment deviations in the period with the most informative data was
-1.52,
-suggesting that the data were inconsistent with the lower value of $\sigma_r$.
-The high value, $\sigma_r = 1.6$, resulted in a model with a more
-consistent standard deviation for the estimated recruitment deviations, at
-1.75.
-However, the high $\sigma_r$ model had a larger difference between the
-spawning biomass at unfished
-equilibrium and the spawning biomass at the initial year of the model
+The value of $\sigma_r$ was changed from a value of \Sexpr{sigma_r} (base) to
+alternative high (\Sexpr{sigma_r_sens[2]}) and low (\Sexpr{sigma_r_sens[1]})
+states. Both sensitivities resulted standard deviations of the estimates of
+recruitment deviations from the period with the most informative data that were
+higher than the input $\sigma_r$, i.e., \Sexpr{sigma_r_lo_main} and
+\Sexpr{sigma_r_hi_main} when $\sigma_r$ was \Sexpr{sigma_r_sens[1]} and
+\Sexpr{sigma_r_sens[2]}, respectively. However, the high $\sigma_r$ model had a
+larger difference between the female spawning biomass at unfished equilibrium
+and the female spawning biomass at the initial year of the model
 than the low $\sigma_r$ model
 (Figure~\ref{fig:main-status-base-alternative-1}).
 Similar to previous assessments,
 estimates of unfished equilibrium recruitment and relative spawning biomass are sensitive
-to $\sigma_r$, whereas absolute estimates of spawning biomass are relatively insensitive.
-The method of \citet{MethotTaylor2011}
-considers a combination of the variability among the
-estimated deviations and the uncertainty around the estimates using the formula
-\eb
-\sigma_r^2 = \mbox{Var}(\hat{r}) + \overline{\mbox{SE}({\hat r}_y)}^2,
-\ee
-where $\mbox{Var}(\hat{r})$ is the variance among deviations and
-$\mbox{SE}(\hat{r}_y)$ is the standard error of each estimate. It
-produced a suggested
-$\sigma_r$ of 1.68, which was more similar to the
-base-model value of 1.4 than the 1.77 estimated in the \Sexpr{assess_yr-1} assessment.
-%the sigma R calculated values were done by hand using the posteriors.sso file for each model
-%following the above equation using the Main period rec devs
+to $\sigma_r$, whereas absolute estimates of female spawning biomass are
+relatively insensitive. The method of \citet{MethotTaylor2011} proposed to tune
+$\sigma_r$ was developed in the context of maximum likelihood estimation and not
+Bayesian inference, where the latter potentially allows for estimating
+$\sigma_r$ using random effects, and thus, this proposed tuning method is not
+used here to tune the fixed input value.
 
 % Section below on removal of the age-1 index
 The sensitivity of the base model to the removal of the age-1 index

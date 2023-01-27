@@ -578,31 +578,28 @@ sigma_r_sens <- sens_models[[1]][
   purrr::map_dbl("sigma_R_in") %>%
   f(dec.points = 2)
 
-# Alternative sigma_r based on all years of recdevs ---------------------------
-sigma_r_info <- extract_sigma_r(c(list(base_model), sens_models[[1]]),
-                                c("base",
-                                  sens_models_names[[1]]),
-                                base_model$sigma_R_in)
-sigma_r_hi_main <- sigma_r_info %>%
-  filter(model == "Sigma R 1.6", period == "Main") %>%
-  pull(SD_of_devs) %>%
-  f(2)
-sigma_r_lo_main <- sigma_r_info %>%
-  filter(model == "Sigma R 1.0", period == "Main") %>%
-  pull(SD_of_devs) %>%
-  f(2)
-sigma_r_alt_allyr <- sigma_r_info %>%
-  filter(model == "base", period == "Early+Main+Late") %>%
-  pull(alternative_sigma_R) %>%
-  f(2)
-sigma_r_this_year_main <- base_model$sigma_R_info %>%
-  dplyr::filter(period == "Main") %>%
-  dplyr::pull(SD_of_devs) %>%
-  f(2)
-sigma_r_last_year_main <- last_yr_base_model$sigma_R_info %>%
-  dplyr::filter(period == "Main") %>%
-  dplyr::pull(SD_of_devs) %>%
-  f(2)
+# Alternative sigma_r based on posterior of recdevs ---------------------------
+# sigmar_R_info should not be used
+calc_SD_of_devs <- function(posteriors, pattern = "Main") {
+  posteriors %>%
+    dplyr::select(dplyr::matches(pattern)) %>%
+    apply(MARGIN = 1, FUN = sd) %>%
+    median() %>%
+    f(2)
+}
+sigma_r_alt_allyr <- calc_SD_of_devs(base_model$mcmc, pattern = "^[EML].+_RecrDev")
+sigma_r_this_year_main <- calc_SD_of_devs(base_model$mcmc)  
+sigma_r_last_year_main <- calc_SD_of_devs(last_yr_base_model$mcmc)
+sigma_r_sens1 <- sens_models[[1]] %>%
+  purrr::map("mcmc") %>%
+  purrr::map_chr(calc_SD_of_devs) %>%
+  `names<-`(sens_models_names[[1]])
+sigma_r_hi_main <- sigma_r_sens1[
+  grep("Sigma.+1.[5-9]", names(sigma_r_sens1), value = TRUE)
+]
+sigma_r_lo_main <- sigma_r_sens1[
+  grep("Sigma.+1.[0-4]", names(sigma_r_sens1), value = TRUE)
+]
 
 # Range of "main" recdevs -----------------------------------------------------
 main.recdev.start <- min(base_model$recruit$Yr[base_model$recruit$era == "Main"])
