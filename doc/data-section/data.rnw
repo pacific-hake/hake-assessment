@@ -88,17 +88,17 @@ Due to the ongoing staffing issues, the decision was made to stop providing obse
 for 2022 and all future groundfish trawl trips. This means there is not currently and will not be
 in the future, any at-sea sampling on board Canadian vessels.
 Canadian managers, scientists, and the sampling contractor,
-Archipelago Marine Research Ltd. (AMR) met in early 2022 to solidify a plan to ensure the ongoing
-sampling of \fishname\ for Canadian trips. The sampling plan which was agreed upon by all parties
-consisted of employees aboard Freezer trawlers freezing two bags of approximately
+Archipelago Marine Research Ltd.~(AMR) met in early 2022 to solidify a plan to ensure the ongoing
+sampling of \fishname\ for Canadian trips. The sampling plan was agreed upon by all parties
+and consisted of employees aboard Freezer trawlers freezing two bags of approximately
 50 whole fish from two tows per trip and delivering them to AMR on return to shore.
 The bags are stored by AMR until enough have accumulated to sample in bulk, and
 they sample them over the period of a day or two. This plan ensures that there are individual weights taken for fish from the freezer trawlers, something that was not happening during the at-sea sampling. These weight data give more Canadian input into the weight-at-age matrix.
 The shoreside vessels continue to make landings with sampling happening on shore at the
 time of landing.
 
-Canadian trawl catches are monitored autonomously at-sea by cameras on
-board vessels. Catch is recorded by dockside samplers within the Groundfish
+Canadian trawl catches are monitored autonomously at-sea by cameras
+onboard vessels. Catch is recorded by dockside samplers within the Groundfish
 Trawl Dockside Monitoring Program using total catch weights provided by processing
 plants. Discards are negligible relative to the total fishery catch for all sectors.
 
@@ -139,7 +139,7 @@ are no longer observers on freezer trawlers (Section~\ref{sec:data-total-catch})
 so the frozen samples that are delivered for each trip are all sampled for length,
 weight, sex, and otoliths are taken. There are approximately 100 fish per trip, in
 two bags of 50. There have been some exceptions to this; due to unforeseen circumstances
-while at sea some trips did not bring any samples back, and some only brought single bags.
+while at sea, some trips did not bring any samples back and some only brought single bags.
 
 For electronically observed Canadian shoreside trips, port samplers obtain
 biological data from the landed catch. For each sampled trip, 50 ages
@@ -149,7 +149,7 @@ that are sampled in ports.
 
 When there has been a Canadian Joint-Venture fishery,
 length samples are collected every second day of fishing operations, and
-otoliths are collected once a week. Length and age samples are taken randomly
+otoliths are collected once per week. Length and age samples are taken randomly
 from a given codend. The sampled weight from which biological information is collected
 must be inferred from length-weight relationships.
 
@@ -218,7 +218,7 @@ and the 2014 year class has been apparent since 2016.
 
 Calculation of a reliable fishery catch-per-unit-effort (CPUE) metric is
 particularly problematic for \fishname, and it has never been used as a tuning
-index for the assessment of this stock (see \citep{JTC2013} for more details).
+index for the assessment of this stock (see \citealt{JTC2013} for more details).
 % \enlargethispage{\baselineskip}
 
 \subsection{Fishery-independent data}\label{sec:data-fishery-independent}
@@ -364,9 +364,9 @@ Note that the estimate of biomass does not include age-1 fish and
 the age compositions used to estimate selectivity of the survey also exclude
 age-1 fish (Table~\ref{tab:main-all-age-data-survey}).
 
-A separate relative age-1 index (numbers of fish) has been included in the base
-model since 2022 and was previously explored as a sensitivity since 2013
-\citep{JTC2013, JTC2021} (see Figure 11 of \citealt{JTC2021}).
+A separate relative age-1 index (numbers of fish) was included in the base
+model in 2022 and was previously explored as a sensitivity since 2013
+\citep{JTC2013, JTC2021, JTC2022}. % (see Figure 11 of \citealt{JTC2021}).
 The relative index of age-1 fish in this assessment
 was estimated similarly to previous years,
 except the estimate of 2021 numbers of age-1 fish
@@ -387,7 +387,7 @@ suite of sensitivity models related to the relative age-1 index explored over
 the past decade indicate that its use typically provides the model with the
 correct direction of cohort strength (weak, strong, or neutral). The utility of
 an informed recruitment signal is far greater than an uninformed recruitment
-assumption. Where, the assumption for uniformed recruitment is currently limited
+assumption. Whereas the assumption for uniformed recruitment is currently limited
 to the mean estimated recruitment over a specified range of years. Finally, the
 \surveyname\ team supports its use for stock assessment, and the team is
 committed to continually evaluating and refining approaches to improve survey
