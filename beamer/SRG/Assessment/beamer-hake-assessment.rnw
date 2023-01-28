@@ -119,24 +119,18 @@ source(file.path(rootd_r, "custom-knitr-variables.R"))
 \frametitle{Changes from \Sexpr{last_assess_yr} assessment}
   \bi
     \item Update Stock Synthesis to version \Sexpr{ss_version}
-    \item  Update fishery catch and age composition data:
-      \bi
-      \item Years prior to \Sexpr{last_assess_yr}
-      \item Add new data for \Sexpr{last_assess_yr}
-      \ei
-    \item Update survey biomass estimate and age data:
-    \bi
-      \item Years prior to \Sexpr{last_assess_yr}
-      \item Add new data for \Sexpr{last_assess_yr}
-    \ei
-    \item Update and add new \Sexpr{last_assess_yr} weight-at-age data
-    \item Add the age-1 index time series
+    \item Add new catch data for \Sexpr{last_assess_yr} and update historical catches
+    \item Add new weight-at-age data for \Sexpr{last_assess_yr} and update historical weight-at-age data
+    %\item Add the \Sexpr{last_assess_yr} acoustic survey biomass estimate and age data
+    %\item Add the \Sexpr{last_assess_yr} age-1 index estimate
+    \item Add new fishery age composition data for \Sexpr{last_assess_yr} and update historical fishery age composition data
+    \item (No changes to acoustic survey biomass estimates or age-1 index estimates this year)
     \item All model runs in the assessment use MCMC (including bridging models)
   \ei
 \end{frame}
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: Update and Add Data}
+\frame{\frametitle{Bridging: Model Updates and Additions}
 \bc
 <<bridge.biomass.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
@@ -167,7 +161,7 @@ cowplot::plot_grid(plotlist = plist,
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Bridging: Update and Add Data}
+\frame{\frametitle{Bridging: Model Updates and Additions}
 \bc
 <<bridge.survey.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
 plist <- list()
@@ -201,12 +195,17 @@ cowplot::plot_grid(plotlist = plist,
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Summary}
 \bi
-  \item Updating Stock Synthesis software has no effect on results.
-  \item Updating fishery catch and age composition data to \Sexpr{last_assess_yr} has little effect on the stock trajectory.
-  \item Adding the \Sexpr{last_data_yr} survey biomass estimate and age compositions leads to slightly more optimistic estimates of biomass for the last few years and reduces uncertainty.
-  \item Small changes in recruitment with the addition of \Sexpr{last_assess_yr} fishery age composition data were largely offset with the addition of \Sexpr{last_assess_yr} survey age composition data.
-  \item Adding \Sexpr{last_data_yr} weight-at-age data resulted in a slight upward shift in current biomass, because the mean weights in \Sexpr{last_data_yr} were mostly above the recent 5-year average mean weights (which is the assumption before the addition of these data).
-  \item The addition of the age-1 index resulted in a small increase in $B_0$, an increase in relative spawning biomass from 2019--2022, and an increase in the estimated size of the 2018 and 2020 cohorts.
+  \item Updating Stock Synthesis software has no effect on results. Changes include:
+    \bi
+      \item Weight-at-age specified in first year fo forecast, rather than carried forward
+      \item Report files for empirical growth models do not have output that uses growth parameters
+      \item 
+    \ei
+  \item Updating data previous to \Sexpr{last_data_yr} had very little effect on the stock trajectory.
+  \item Adding \Sexpr{last_data_yr} catch and weight-at-age data resulted in a slight upward shift in current female spawning biomass, because the mean weights in \Sexpr{last_data_yr} were mostly above the recent 5-year average mean weights (assumption before the addition of these data).
+  %\item Adding the \Sexpr{last_data_yr} survey biomass estimate and age compositions leads to slightly more optimistic estimates of biomass %for the last few years and reduces uncertainty.
+  %\item The addition of the age-1 index resulted in a small increase in $B_0$, an increase in relative spawning biomass from 2019--2022, %and an increase in the estimated size of the 2018 and 2020 cohorts.
+  \item Adding \Sexpr{last_assess_yr} fishery age composition data had little impact on historical estimates, shifted recent recruitment estimates (esp. 2019--2021), and increased estimates of 2022 (slightly) and 2023 (considerably) female spawning biomass.
 \ei
 }
 
