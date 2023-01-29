@@ -405,7 +405,7 @@ cowplot::plot_grid(plotlist = plist,
      }
 
 %----------------------------------------------------------
-     \frame{\frametitle{Acoustic survey 2023 catchability (\emph{$q_b$}) posterior}
+     \frame{\frametitle{Acoustic survey catchability (\emph{$q_b$}) posterior for this assessment}
        \bc
        <<histQ, fig.height=2.25, fig.width=5.5>>=
          make.mcmc.catchability.plot(base_model, last_yr_base_model,type = "age2plus")
@@ -427,10 +427,10 @@ cowplot::plot_grid(plotlist = plist,
        \ec
      }
 %----------------------------------------------------------
-   \frame{\frametitle{Age-1 index 2023 catchability (\emph{$q_1$}) posterior}
+   \frame{\frametitle{Age-1 index catchability (\emph{$q_1$}) posterior for this assessment}
      \bc
      <<histQ.age1,fig.height=2.25, fig.width=5.5>>=
-       make.mcmc.catchability.plot(base_model, type = "age1")
+       make.mcmc.catchability.plot(base_model, last_yr_base_model, type = "age1")
      @
        \begin{table}
      \begin{tabular}{cccc} \hline
@@ -483,12 +483,51 @@ cowplot::plot_grid(plotlist = plist,
                                          end_yr = last_data_yr,
                                          ages = tv.selex.ages,
                                          probs = c(0.025, 0.975))
-%         make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
-          plot_multiple_tv_selex_unc(list(tv.selex.left, tv.selex.right))
+         plot_multiple_tv_selex_unc(list(tv.selex.left, tv.selex.right))
          @
            \ec
          \end{column}
          \end{columns}
+     }
+%----------------------------------------------------------
+\frame{\frametitle{Posterior distributions for survey (left) and fishery (right) selectivity}
+\bc
+<<main.post.selex, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+plist <- list()
+plist[[1]] <- plot_selex_posteriors(base_model,
+                      type = "survey",
+                      probs = c(0.025, 0.975),
+                      age_range = c(2, 8),
+                      line_color_unc = "red",
+                      line_thickness_unc = 1,
+                      point_size_unc = 3)
+plist[[2]] <- plot_selex_posteriors(base_model,
+                      type = "fishery",
+                      probs = c(0.025, 0.975),
+                      age_range = c(1, 8),
+                      line_color_unc = "blue",
+                      line_thickness_unc = 1,
+                      point_size_unc = 3)
+cowplot::plot_grid(plotlist = plist, nrow = 2, ncol = 1)
+@
+\ec
+}
+%----------------------------------------------------------
+     \frame{\frametitle{Key quantities}
+       \bc
+       <<main.parameter.estimates, results='asis', echo=FALSE>>=
+         param_est_table(list(base_model, last_yr_base_model),
+                         model.names = c(base_model_name, last_yr_base_model_name),
+                         end_yr = end_yr,
+                         digits = 3,
+                         getrecs = c(2010, 2014, 2016, 2020),
+                         show_like = FALSE,
+                         mle_table = FALSE,
+                         xcaption = NULL,
+                         font.size = 6.5,
+                         space.size = 6.5)
+       @
+         \ec
      }
 %----------------------------------------------------------
 %
@@ -498,7 +537,7 @@ cowplot::plot_grid(plotlist = plist,
 %----------------------------------------------------------
 %----------------------------------------------------------
 %----------------------------------------------------------
-
+make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 
 %Below is a bunch of old slides that could be deleted, but saving for now
 %----------------------------------------------------------
@@ -621,14 +660,7 @@ cowplot::plot_grid(plotlist = plist,
 %     %  \ec
 %     % }
 %
-%
 %----------------------------------------------------------
-%----------------------------------------------------------
-%----------------------------------------------------------
-%----------------------------------------------------------
-%
-
-
 %     % \frame{\frametitle{DM Weighting of age data: $\theta_{\text{surv}}$ and
 %       %     $\theta_{\text{fish}}$}
 %       %
@@ -653,25 +685,13 @@ cowplot::plot_grid(plotlist = plist,
 %       %   \ei
 %       % }
 %
-%   %----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
 %
-%     \frame{\frametitle{Key quantities}
-%       \bc
-%       <<main.parameter.estimates, results='asis', echo=FALSE>>=
-%         param_est_table(list(base_model, last_yr_base_model),
-%                         model.names = c(base_model_name, last_yr_base_model_name),
-%                         end_yr = end_yr,
-%                         digits = 3,
-%                         getrecs = c(2010, 2014, 2016),
-%                         show_like = FALSE,
-%                         mle_table = FALSE,
-%                         xcaption = NULL,
-%                         font.size = 6.5,
-%                         space.size = 6.5)
-%       @
-%         \ec
-%     }
-%
+
+
 %   %----------------------------------------------------------
 %     \frame{\frametitle{Recruitment Deviations}
 %       \vspace{-5pt}
