@@ -636,34 +636,37 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
          \ec
      }
 %----------------------------------------------------------
-%     \frame{\frametitle{Spawning Biomass (million~t)}
-%       <<biomass.calcs>>=
-%         lb <- last_yr_base_model
-%         lb.smed <- lb$mcmccalcs$smed
-%         lb.slower <- lb$mcmccalcs$slower
-%         lb.supper <- lb$mcmccalcs$supper
-%         last.slower <- f(lb.slower[names(lb.slower) == assess_yr - 1], 3)
-%         last.supper <- f(lb.supper[names(lb.supper) == assess_yr - 1], 3)
-%         last.smed <- f(lb.smed[names(lb.smed) == assess_yr - 1], 3)
-%         @
-%           \begin{table}
-%         \begin{tabular}{cccc} \hline
-%         Calculation & Low & Median & High \\
-%         \hline
-%         \Sexpr{assess_yr-1} assessment $B_{\Sexpr{end_yr-1}}$ &
-%           \Sexpr{last.slower} & \Sexpr{last.smed} & \Sexpr{last.supper} \\
-%         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr-1}}$ &
-%           \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} &
-%           \Sexpr{prev.bio.upper} \\
-%         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr}}$ & \Sexpr{curr.bio.lower} &
-%           \Sexpr{curr.bio.median} & \Sexpr{curr.bio.upper} \\
-%         \hline
-%         \end{tabular}
-%         \end{table}
-%         ~\\
-%         While the median estimate of $B_{\Sexpr{end_yr-1}}$ has increased from last
-%         year's assessment, the credible interval mostly overlaps that from last year's assessment.
-%     }
+     \frame{\frametitle{Spawning Biomass (million~t)}
+       <<biomass.calcs>>=
+         lb <- last_yr_base_model
+         lb.smed <- lb$mcmccalcs$smed
+         lb.slower <- lb$mcmccalcs$slower
+         lb.supper <- lb$mcmccalcs$supper
+         %last.slower <- f(lb.slower[names(lb.slower) == assess_yr - 1], 3)
+         %last.supper <- f(lb.supper[names(lb.supper) == assess_yr - 1], 3)
+         %last.smed <- f(lb.smed[names(lb.smed) == assess_yr - 1], 3)
+         @
+           \begin{table}
+         \begin{tabular}{cccc} \hline
+         Calculation & Low & Median & High \\
+         \hline
+         \Sexpr{assess_yr-1} assessment $B_{\Sexpr{end_yr-1}}$ &
+           \Sexpr{f(lb.slower[names(lb.slower) == assess_yr - 1], 3)} & 
+           \Sexpr{f(lb.smed[names(lb.smed) == assess_yr - 1], 3)} & 
+           \Sexpr{f(lb.supper[names(lb.supper) == assess_yr - 1], 3)} \\
+         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr-1}}$ &
+           \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} &
+           \Sexpr{prev.bio.upper} \\
+         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr}}$ & \Sexpr{curr.bio.lower} &
+           \Sexpr{curr.bio.median} & \Sexpr{curr.bio.upper} \\
+         \hline
+         \end{tabular}
+         \end{table}
+         ~\\
+         While the median estimate of $B_{\Sexpr{end_yr-1}}$ has increased from last
+         year's assessment, the credible interval mostly overlaps that from last year's assessment.
+     }
+{\Sexpr{f(median(base_model$extra.mcmc$Q_vector_age1), 2)}}
 %----------------------------------------------------------
      \frame{\frametitle{Relative Spawning Biomass}
        \bc
@@ -702,15 +705,280 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
          \ec
      }
 %----------------------------------------------------------
-%
+%----------------------------------------------------------
+%----------------------------------------------------------
+   \section{\Sexpr{last_assess_yr} SRG recommendations}
+   \begin{frame}[c]
+   \begin{center}
+   \Huge \Sexpr{last_assess_yr} SRG recommendations
+   \end{center}
+   \end{frame}
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Explore recruitment parameterizations}}
+       %\bi
+       {\bf The SRG notes that $\sigma_R$ is an influential parameter and that
+         determining the choice of $\sigma_R$ remains a challenge and encourages the JTC
+         to continue to work on the issue.}
+       %\ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Response:} \emph{Explore recruitment parameterizations}}
+       \bi
+       \item Medium-term: continuing research to treat recruitment deviations as a random effect and estimate $\sigma_R$
+         \bi
+       \item Woods Hole Assessment Model (WHAM) - a state-space age-structured assessment framework
+       developed at the Norteast Fisheries Science Center, facilitates estimation of process error rather than using fixed variances
+       \bi
+       \item Should be estimating age-specific $M$
+         \item Mean recruitment fits just as well as Beverton-Holt stock-recruit function
+       \item $q$ of the age-2$^+$ biomass index was 0.525
+       \item Age-specific autocorrelation in selectivity was 0.598
+       \ei
+       \item Hake MSE estimation model
+       \ei
+       \pause
+       \item Medium-term: conduct research, more broadly, to evaluate concurrent estimation of multiple variance parameters
+       in stock assessment and their interactions
+       \pause
+       \item Medium-term: explore how larval/juvenile survival and factors affecting recruitment can be linked
+       into stock assessment process (more on this Tuesday afternoon)
+       \pause
+       \item Long-term: continue monitoring ongoing development of recruitment priors through meta-analysis research
+       \ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Projecting recruitment}}
+       % \setbeamercovered{dynamic}   % need for \pause
+       %\bi
+       {\bf The SRG recommends exploring alternative methods to simulate recruitment in
+            the projections. Although Stock Synthesis currently does not have the capability
+            to characterize a different process other than the assumed lognormal distribution,
+            improvements such as drawing from past observations or using a mixture distribution
+            to simulate recruitment should be considered for modelling platforms in the future.}
+       %\ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Response:} \emph{Projecting recruitment}}
+       \bi
+       \item Exploring approaches to make informed decisions about current and
+       future recruitment, instead of default long-term averages or \emph{ad hoc}
+       bidirectional multipliers (i.e., plus or minus x\%)
+       \bi
+       \item Age-1 index
+       \item Oceanographic and environmental drivers of recruitment (previous and
+                                                                     ongoing work) as a recruitment index
+       \ei
+       \pause
+       \item Stock synthesis currently does not have capacity to draw from past
+       observations or use mixing distributions to simulate recruitment in the
+       projection period. Available options include:
+         \bi
+       \item stock-recruitment curve
+       \item stock-recruitment curve with a multiplier
+       \item mean recruitment across a user-defined time period
+       \ei
+       \pause
+       \item Appendix H presents new ideas for visualizing annual recruitment
+       \ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Dynamic reference points}}
+       % \setbeamercovered{dynamic}   % need for \pause
+       %\bi
+       {\bf The SRG applauds the efforts of the JTC and the MSEWorking Group to add
+            capabilities for specifying dynamic reference points within the assessment
+            and MSE platforms, and encourage those groups to work together and develop
+            a discussion of alternative reference points, including dynamic reference
+            points, for future SRG consideration.}
+       %\ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Response:} \emph{Dynamic reference points}}
+       \bi
+       \item Specifying projected recruitment as the median of a given year range
+       is not explicitly an option in Stock Synthesis.
+       \pause
+       \item To work around this, the JTC calculated the median of estimates
+       of recruitment from the main time period (1970-2020) and scaled this
+       value to the estimate of $R_0$. Scaled median recruitment was then used
+       as in input value to Stock Synthesis which does allow for scaling
+       recruitment forecasts in terms of virgin recruitment. Catch projections were
+       then conducted using mean recruitment from the main time
+       period and scaled virgin recruitment based on the median estimates of recruitment
+       relative to $R_0$. Brief example of results will be shown, if desired.
+       \ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Reproductive cycle}}
+       % \setbeamercovered{dynamic}   % need for \pause
+       %\bi
+       {\bf The SRG encourages continued sampling and analysis to improve understanding
+            of the Pacific Hake reproductive cycle.}
+       %\ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Response:} \emph{Reproductive cycle}}
+       \bi
+       \item No additional work investigating the usefulness of dynamic reference points over the
+       past year.
+       \pause
+       \item Instead, the JTC and MSE technical team have been working with Stock
+       Synthesis developers to incorporate dynamic reference point capabilities into
+       the stock assessment statistical (Bayesian) and MSE coding (full closed-loop simulation)
+       frameworks. Posterior distributions associated with dynamic reference points are now
+       possible within Stock Synthesis. Likewise, the MSE can now utilize dynamic reference
+       points in management procedure scenarios.
+       \pause
+       \item The JTC plans to continue engaging in
+       research related to dynamic reference points broadly, as well as specifically
+       for Pacific Hake.
+       \ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Project weight-at-age}}
+       % \setbeamercovered{dynamic}   % need for \pause
+       %\bi
+       {\bf The SRG requests that the JTC explore alternative methods for forecasting weight-at-age
+            and evaluate whether they can improve projections.}
+       %\ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Response:} \emph{Project weight-at-age}}
+       \bi
+       \item Recent, current, and future recruitment are perhaps the most influential
+       sources of uncertainty in stock assessment projections. Thus, the JTC has prioritized
+       research on recruitment, including supporting analyses
+       and the justification for using the age-1 index in the 2022 base model and other
+       related analyses.
+       \pause
+       \item The JTC is scoping plans to explicitly evaluate these relationships
+       using random effects models to partition the variance components (year and cohort) in
+       available weight-at-age data. The JTC also plans to explore new weight-at-age forecasting
+       capabilities in Stock Synthesis (once fully tested).
+       \pause
+       \item Simulation experiment that evaluates the influence of variable
+       weight-at-age data relative to other sources of variance in stock assessment
+       projections (e.g., recruitment) would also be useful. Until this work is completed,
+       the JTC continues to use a recent five-year average in the projection period because
+       it is consistent with recent data.
+       \ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf High-performance computing}}
+       % \setbeamercovered{dynamic}   % need for \pause
+       %\bi
+       {\bf The SRG recommends future use of high-performance computing to provide complete
+            and thorough assessment results in a timely manner.}
+       %\ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Response:} \emph{High-performance computing}}
+       \bi
+       \item Recent, current, and future recruitment are perhaps the most influential
+       sources of uncertainty in stock assessment projections. Thus, the JTC has prioritized
+       research on recruitment, including supporting analyses
+       and the justification for using the age-1 index in the 2022 base model and other
+       related analyses.
+       \pause
+       \item The JTC is scoping plans to explicitly evaluate these relationships
+       using random effects models to partition the variance components (year and cohort) in
+       available weight-at-age data. The JTC also plans to explore new weight-at-age forecasting
+       capabilities in Stock Synthesis (once fully tested).
+       \pause
+       \item Simulation experiment that evaluates the influence of variable
+       weight-at-age data relative to other sources of variance in stock assessment
+       projections (e.g., recruitment) would also be useful. Until this work is completed,
+       the JTC continues to use a recent five-year average in the projection period because
+       it is consistent with recent data.
+       \ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Other requests: see details in assessment document}}
+       \bi
+       \item Sensitivity models: the JTC has conducted all of the requested sensitivities (and many others).
+       \pause
+       \item Threshold probabilities of stock change: this endeavor is well suited for future
+             MSE-related performance metric discussions.
+       \pause
+       \item Ageing error: an ageing error study in conjunction with CARE has commenced, however
+       a full exchange is on hold due to difficulties with permits to send biological specimens across the border.
+       \pause
+       \item Historical weight-at-age data: currently working with the Burke Museum icthyology collections manager.
+       \pause
+       \item Input sample sizes: nothing explicit undertaken to date, but working with AFSC researchers working on
+             similar issues for a range of species.
+       \pause
+       \item Alternative model structures: explorations continue on the implementation of a hake-like assessment
+             in WHAM and SAM, in addition to the custom TMB estimation model used in the MSE, to evaluate the
+            impact of platform-specific configurations, assumptions, and capabilities.
+       \ei
+     }
+%----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
+   \section{Summary}
+   \begin{frame}[c]
+   \begin{center}
+   \Huge Summary
+   \end{center}
+   \end{frame}
+%----------------------------------------------------------
+     \frame{\frametitle{Summary -- Biomass}
+       \bi
+       \item Assessment model continues to fit the age data particularly well
+       \item The median estimate of \Sexpr{end_yr} relative spawning biomass is
+             \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
+             \Sexpr{curr.depl.upper}\%)
+       \item The median estimate of \Sexpr{end_yr} female spawning biomass is
+             \Sexpr{curr.bio.median}~million~t
+             (\Sexpr{curr.bio.lower}-\Sexpr{curr.bio.upper}~million~t)
+       \item Recruitment in 2020 is estimated to be well above average, but remains highly uncertain
+             translating to uncertain female spawning biomass in 2023 (and beyond)
+       \ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{Summary -- Key Points}
+       \bi
+       \item Coast-wide catch has declined since the time series high in 2017 (27/% by 2022)
+       \item High proportion of age-2, followed by age-6 and age-8 fish in 2022 fishery
+       \item Above average 2014 and 2016 cohort biomass: mortality outpacing growth (34\% and 35\%
+             decline, respectively, from beginning of 2022)
+       \item Above average 2020 cohort biomass: growth keeping pace with mortality from beginning of 2022 to 2023
+       \item Relative female spawning biomass is high at the start of 2023 (104\% of $B_0$), but large contributions
+             expected from the highly uncertain 2020 cohort:
+         \bi
+       \item Fishery age composition data from 2022 season suggests very large 2020 cohort
+       \item Age-1 index in 2021 suggests above average 2020 cohort, but not as large as fishery data alone indicate 
+       \item Anomolies to consider include low catches in Canada, differences in U.S. fleet catch-at-age, and
+             cohort not yet seen by acoustic survey
+       \ei
+       \item The model estimates a \Sexpr{joint.percent.prob.above.below}\%
+       joint probability of being both above the target relative fishing intensity in
+       \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at the
+       start of \Sexpr{end_yr}
+       \ei
+     }
+%----------------------------------------------------------
 \end{document}
 %
 %----------------------------------------------------------
 %----------------------------------------------------------
 %----------------------------------------------------------
 %----------------------------------------------------------
-make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
-
+%
 %Below is a bunch of old slides that could be deleted, but saving for now
 %----------------------------------------------------------
   % \begin{frame}
@@ -880,319 +1148,7 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 % % \end{columns}
 % %
 % % }
-%
-%----------------------------------------------------------
-%----------------------------------------------------------
-%----------------------------------------------------------
-%----------------------------------------------------------
-%
-%
-%   %----------------------------------------------------------
-%     \section{\Sexpr{last_assess_yr} SRG recommendations}
-%   \begin{frame}[c]
-%   \begin{center}
-%   \Huge \Sexpr{last_assess_yr} SRG recommendations
-%   \end{center}
-%   \end{frame}
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       {\bf Explore recruitment parameterizations}}
-%       %\bi
-%       {\bf The SRG notes that $\sigma_R$ is an influential parameter and that
-%         determining the choice of $\sigma_R$ remains a challenge and encourages the JTC
-%         to continue to work on the issue.}
-%       %\ei
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       {\bf Response:} \emph{Explore recruitment parameterizations}}
-%       \bi
-%       \item Medium-term: continuing research to treat recruitment deviations as a random effect and estimate $\sigma_R$
-%         \bi
-%       \item Woods Hole Assessment Model (WHAM) - a state-space age-structured assessment framework
-%       developed at the Norteast Fisheries Science Center, facilitates estimation of process error rather than using fixed variances
-%       \bi
-%       \item Should be estimating age-specific $M$
-%         \item Mean recruitment fits just as well as Beverton-Holt stock-recruit function
-%       \item $q$ of the age-2$^+$ biomass index was 0.525
-%       \item Age-specific autocorrelation in selectivity was 0.598
-%       \ei
-%       \item Hake MSE estimation model
-%       \ei
-%       \pause
-%       \item Medium-term: conduct research, more broadly, to evaluate concurrent estimation of multiple variance parameters
-%       in stock assessment and their interactions
-%       \pause
-%       \item Medium-term: explore how larval/juvenile survival and factors affecting recruitment can be linked
-%       into stock assessment process (more on this Tuesday afternoon)
-%       \pause
-%       \item Long-term: continue monitoring ongoing development of recruitment priors through meta-analysis research
-%       \ei
-%     }
-%
-%   %----------------------------------------------------------
-%     %\frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       %    {\bf Response:} \emph{Explore recruitment parameterizations (page 2)}}
-%       %  \bi
-%       %    \item The near completion of the Management Strategy Evaluation framework for \fishname\ creates
-%       %    considerable advantages for examining recruitment. For example, using the Template Model
-%       %    Builder (TMB) estimation code developed by Dr. Nis Jacobsen for the MSE, there is opportunity
-%       %    to explore random-effects treatment of recruitment variability.  The MSE
-%       %    framework can also be used to evaluated the robustness of recruitment modeling assumptions on
-%       %    management performance and uncertainty. Further, the MSE could be an additional option for
-%       %    estimating $\sigma_R$ in MCMC runs while further testing semi-parametric selectivity.
-%       %    \pause
-%       %    \item The JTC conducted an analysis looking into autocorrelation of recruitment deviations over
-%       %    time. Results showed no indication of autocorrelation, suggesting there is no need to
-%       %    add additional variance terms to account for temporally-related recruitment deviations. Along with
-%       %    no apparent retrospective pattern, this result suggests that the assessment model is not
-%       %    overly mis-specified. Given the lack of autocorrelation, the assessment model was not
-%       %    sensitive to the addition of an autocorrelation parameter.
-%       %  \ei
-%       %}
-%   %
-%   %----------------------------------------------------------
-%     %\frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       %    {\bf Response:} \emph{Explore recruitment parameterizations (page 3)}}
-%       %  \bi
-%       %    \item The JTC is following work being conducted by Dr. Cathleen Vestfals and colleagues at
-%       %    the Northwest Fisheries Science Center looking at identifying climate drivers of
-%       %    \fishname\ early life-history stages and recruitment. Possible outcomes from this work
-%       %    of direct use to the assessment include the development of an explicit recruitment index,
-%       %    an environmental index linked to recruitment, indicators of recruitment variation
-%       %    ($\sigma_R$), and indicators of current or forecasted levels of recruitment.
-%       %    Related work on making fisheries advice robust to time-varying productivity is
-%       %    being conducted at the Pacific Biological Station, as part of a national DFO
-%       %    initiative on an Ecosystem Approach to Fisheries Management.
-%       %    \pause
-%       %    \item The JTC is also following work being conducted by the International Council for
-%       %    the Exploration of the Sea (ICES) Methods Working Group which, among other things,
-%       %    is looking at meta-analytical approaches for estimating recruitment parameters.  Results
-%       %    from this work could be used to develop informative prior distributions on key
-%       %    recruitment parameters.
-%       %  \ei
-%       %}
-%   %
-%   %----------------------------------------------------------
-%     %\frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       %    {\bf Response:} \emph{Explore recruitment parameterizations (page 4)}}
-%       %  \bi
-%       %    \item The JTC plans to continue to work towards evaluating and testing best practices
-%       %    for modeling recruitment variability, including the use of multi-stage recruitment
-%       %    functions. In general, many of these issues are widespread
-%       %    in stock assessment, and scientific-based solutions are likely to be the result of medium
-%       %    to long-term research projects.
-%       %  \ei
-%       %}
-%   %
-%   %----------------------------------------------------------
-%     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       {\bf Projecting recruitment}}
-%       % \setbeamercovered{dynamic}   % need for \pause
-%       %\bi
-%       {\bf The SRG recommends exploring alternative methods to simulate recruitment in
-%         the projections.}
-%       %\ei
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       {\bf Response:} \emph{Projecting recruitment}}
-%       \bi
-%       \item Exploring approaches to make informed decisions about current and
-%       future recruitment, instead of default long-term averages or \emph{ad hoc}
-%       bidirectional multipliers (i.e., plus or minus x\%)
-%       \bi
-%       \item Age-1 index
-%       \item Oceanographic and environmental drivers of recruitment (previous and
-%                                                                     ongoing work) as a recruitment index
-%       \ei
-%       \pause
-%       \item Stock synthesis currently does not have capacity to draw from past
-%       observations or use mixing distributions to simulate recruitment in the
-%       projection period. Available options include:
-%         \bi
-%       \item stock-recruitment curve
-%       \item stock-recruitment curve with a multiplier
-%       \item mean recruitment across a user-defined time period
-%       \ei
-%       \pause
-%       \item Appendix H presents new ideas for visualizing annual recruitment
-%       \ei
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       {\bf Decison tables}}
-%       % \setbeamercovered{dynamic}   % need for \pause
-%       %\bi
-%       {\bf The SRG requests that the JTC consider developing a decision table
-%         in the next assessment with recruitment fixed at the median and mean levels
-%         to assess the resulting impact on stock depletion.}
-%       %\ei
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       {\bf Response:} \emph{Decision tables}}
-%       \bi
-%       \item Specifying projected recruitment as the median of a given year range
-%       is not explicitly an option in Stock Synthesis.
-%       \pause
-%       \item To work around this, the JTC calculated the median of estimates
-%       of recruitment from the main time period (1970-2020) and scaled this
-%       value to the estimate of $R_0$. Scaled median recruitment was then used
-%       as in input value to Stock Synthesis which does allow for scaling
-%       recruitment forecasts in terms of virgin recruitment. Catch projections were
-%       then conducted using mean recruitment from the main time
-%       period and scaled virgin recruitment based on the median estimates of recruitment
-%       relative to $R_0$. Brief example of results will be shown, if desired.
-%       \ei
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       {\bf Dynamic reference points}}
-%       % \setbeamercovered{dynamic}   % need for \pause
-%       %\bi
-%       {\bf The SRG encourages the JTC (and MSE technical team) to continue investigating
-%         the usefulness of dynamic reference points in the management of Pacific Hake.}
-%       %\ei
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       {\bf Response:} \emph{Dynamic reference points}}
-%       \bi
-%       \item No additional work investigating the usefulness of dynamic reference points over the
-%       past year.
-%       \pause
-%       \item Instead, the JTC and MSE technical team have been working with Stock
-%       Synthesis developers to incorporate dynamic reference point capabilities into
-%       the stock assessment statistical (Bayesian) and MSE coding (full closed-loop simulation)
-%       frameworks. Posterior distributions associated with dynamic reference points are now
-%       possible within Stock Synthesis. Likewise, the MSE can now utilize dynamic reference
-%       points in management procedure scenarios.
-%       \pause
-%       \item The JTC plans to continue engaging in
-%       research related to dynamic reference points broadly, as well as specifically
-%       for Pacific Hake.
-%       \ei
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       {\bf Forecasting weight-at-age}}
-%       % \setbeamercovered{dynamic}   % need for \pause
-%       %\bi
-%       {\bf The SRG requests that the JTC explore alternative methods for forecasting
-%         weight-at-age and evaluate whether they can improve projections.}
-%       %\ei
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       {\bf Response:} \emph{Forecasting weight-at-age}}
-%       \bi
-%       \item Recent, current, and future recruitment are perhaps the most influential
-%       sources of uncertainty in stock assessment projections. Thus, the JTC has prioritized
-%       research on recruitment, including supporting analyses
-%       and the justification for using the age-1 index in the 2022 base model and other
-%       related analyses.
-%       \pause
-%       \item The JTC is scoping plans to explicitly evaluate these relationships
-%       using random effects models to partition the variance components (year and cohort) in
-%       available weight-at-age data. The JTC also plans to explore new weight-at-age forecasting
-%       capabilities in Stock Synthesis (once fully tested).
-%       \pause
-%       \item Simulation experiment that evaluates the influence of variable
-%       weight-at-age data relative to other sources of variance in stock assessment
-%       projections (e.g., recruitment) would also be useful. Until this work is completed,
-%       the JTC continues to use a recent five-year average in the projection period because
-%       it is consistent with recent data.
-%       \ei
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       {\bf Other requests: see details in assessment document}}
-%       \bi
-%       \item Reproductive cycle: ovary samples collected in 2021; no new maturity analyses conducted;
-%       and ongoing liver lipid research towards improving predicting sexual maturity.
-%       \pause
-%       \item Genetic studies: evidence for some weak differentiation among some spatial-temporal grid
-%       locations, but overall genetic results corroborate the coastal single-stock hypothesis.
-%       \pause
-%       \item Sensitivity models: the JTC has conducted all of the requested sensitivities (and many others).
-%       \pause
-%       \item Executive summary: completed a reproduction of the executive summary
-%       excluding the age-1 index (Appendix G).
-%       \pause
-%       \item Recruitment performance: the JTC has extended this analysis (figures 58-65), including
-%       a retrospective component given that all retrospective model runs are performed using MCMC
-%       (this will be further discussed in the management presentation).
-%       \pause
-%       \item Ageing error: an ageing error study in conjunction with CARE has commenced, however
-%       a full exchange is on hold due to staffing issues.
-%       \ei
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       {\bf Other requests: see details in assessment document}}
-%       \bi
-%       \item Historical otoliths: restrictions related to COVID-19 have limited access to historical
-%       data. Previous analyses have shown that small changes in historical data have little
-%       relevance on current management quantities.
-%       \pause
-%       \item Biological sampling: already discussed in the data presentation.
-%       \pause
-%       \item Decision table format: decision tables have been reformatted as requested.
-%       \ei
-%     }
-%
-%   % %----------------------------------------------------------
-%     % \section{\Sexpr{last_assess_yr} SRG recommendations}
-%   % \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%     %   {\bf }}
-%     % % \setbeamercovered{dynamic}   % need for \pause
-%     %   \bi
-%     %   \item
-%     %   \ei
-%     % }
-%   %
-%   % %----------------------------------------------------------
-%     % \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
-%       %     {\bf Response:} \emph{}}
-%       %   \bi
-%       %     \item
-%       %   \ei
-%       % }
-%
-%   %----------------------------------------------------------
-%     \section{Summary}
-%   \begin{frame}[c]
-%   \begin{center}
-%   \Huge Summary
-%   \end{center}
-%   \end{frame}
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Summary -- Biomass}
-%       \bi
-%       \item Model fits the age data particularly well
-%       \item The median estimate of \Sexpr{end_yr} relative spawning biomass is
-%       \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
-%       \Sexpr{curr.depl.upper}\%)
-% \item The median estimate of \Sexpr{end_yr} female spawning biomass is
-% \Sexpr{curr.bio.median}~million~t
-% (\Sexpr{curr.bio.lower}-\Sexpr{curr.bio.upper}~million~t)
-% \ei
-%     }
-%
-%   %------------------------------------------------------------
+%------------------------------------------------------------
 %     %\frame{\frametitle{Summary -- Key Cohorts}
 %       %  %\bi
 %       %  <<main.cohort.table, results='asis', echo=FALSE>>=
@@ -1207,9 +1163,8 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 %         %  %\ei
 %       %}
 %   %
-%   %--------------------
-%
-%     %\frame{\frametitle{Summary -- Key Cohorts}
+%   
+%%     %\frame{\frametitle{Summary -- Key Cohorts}
 %       %  \bi
 %       %  \item The 2010 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) / (prev.assess.recruitment.med)["2010"]) * 100), 0)}\%)
 % %  \item The 2014 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) / (prev.assess.recruitment.med)["2014"]) * 100), 0)}\%)
@@ -1226,26 +1181,7 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 % %   large as the 2010 recruitment.
 % %  \ei
 % %}
-%
-%   %--------------------
-%
-%     \frame{\frametitle{Summary -- Key Points}
-%       \bi
-%       \item Catch has continually declined over last five years from a time
-%       series high in 2017
-%       \item Low proportion of young fish (ages 1--3) in 2021 fishery
-%       \item Above average 2014 and 2016 cohort biomass: mortality outpacing growth (36\% and 34\%
-%                                                                                       decline, respectively, from beginning of 2021)
-%       \item Female spawning biomass relatively high (65\% of $B_0$), but steady decline over recent years:
-%         \bi
-%       \item SSB(2019) to SSB(2020): -9\%
-%       \item SSB(2020) to SSB(2021): -12\%
-%       \item SSB(2021) to SSB(2022): -13\%
-%       \ei
-%       \item The model estimates a \Sexpr{joint.percent.prob.above.below}\%
-%       joint probability of being both above the target relative fishing intensity in
-%       \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at the
-%       start of \Sexpr{end_yr}
-%       \ei
-%     }
-%
+%----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
