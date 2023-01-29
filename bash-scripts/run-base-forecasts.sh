@@ -25,6 +25,6 @@ model_path=$models_path/$year_path/$version_path/$type_path/$model_name
 
 # Run the base models forecasts
 (trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); source('R/all.R'); \
-build_rds('$model_path', run_catch_levels = FALSE, run_forecasts = TRUE, build_file = FALSE)" \
+build_rds('$model_path', run_catch_levels = TRUE, run_forecasts = TRUE, build_file = FALSE)" \
   > /dev/null 2>&1; echo "Base model forecasts complete")
 
