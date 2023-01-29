@@ -125,7 +125,7 @@ source(file.path(rootd_r, "custom-knitr-variables.R"))
     %\item Add the \Sexpr{last_assess_yr} age-1 index estimate
     \item Add new fishery age composition data for \Sexpr{last_assess_yr} and update historical fishery age composition data
     \item (No changes to acoustic survey biomass estimates or age-1 index estimates this year)
-    \item All model runs in the assessment use MCMC (including bridging models)
+    \item All model runs in the assessment use MCMC
   \ei
 \end{frame}
 
@@ -195,11 +195,10 @@ cowplot::plot_grid(plotlist = plist,
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Summary}
 \bi
-  \item Updating Stock Synthesis software has no effect on results. Changes include:
+  \item Updating Stock Synthesis software has no effect on results. Relevent changes include:
     \bi
-      \item Weight-at-age specified in first year fo forecast, rather than carried forward
-      \item Report files for empirical growth models do not have output that uses growth parameters
-      \item 
+      \item Weight-at-age specified in first year of forecast, rather than carried forward
+      \item Report files for models usin gempirical weight-at-age for growth do not supply output that uses growth parameters 
     \ei
   \item Updating data previous to \Sexpr{last_data_yr} had very little effect on the stock trajectory.
   \item Adding \Sexpr{last_data_yr} catch and weight-at-age data resulted in a slight upward shift in current female spawning biomass, because the mean weights in \Sexpr{last_data_yr} were mostly above the recent 5-year average mean weights (assumption before the addition of these data).
@@ -210,9 +209,6 @@ cowplot::plot_grid(plotlist = plist,
 }
 
 \end{document}
-
-
-%% BRING EACH SLIDE IN ONE BY ONE AND COMPILE
 
 
 %----------------------------------------------------------
@@ -317,29 +313,29 @@ cowplot::plot_grid(plotlist = plist,
   %\end{frame}
   %
   %----------------------------------------------------------
-  %   \section{MCMC Diagnostics}
-  % \begin{frame}[c]
-  % \begin{center}
-  % \Huge MCMC Diagnostics
-  % \end{center}
-  % \end{frame}
+     \section{MCMC Diagnostics}
+   \begin{frame}[c]
+   \begin{center}
+   \Huge MCMC Diagnostics
+   \end{center}
+   \end{frame}
 
   %----------------------------------------------------------
-%     \frame{\frametitle{Diagnostics: Summary}
-%       \bi
-%       \item Summary diagnostics for key parameters are shown in Appendix A of the assessment document.
-%       \item Additional diagnostic evaluations were performed using the ShinySTAN application, an
-%       analysis and visualization GUI for MCMC, including:
-%         \bi
-%       \item Effective sample sizes for all parameters
-%       \item Number and location of divergent transitions in parameter space for all parameters
-%       \item Multiple chain comparison statistics (Rhat)
-%       \item Many others
-%       \ei
-%       \item Posterior correlations among key parameters and summary diagnostics for all chains
-%       combined are shown in Appendix A (no issues identified).
-%       \ei
-%     }
+     \frame{\frametitle{Diagnostics: Summary}
+       \bi
+       \item Summary diagnostics for key parameters are shown in Appendix A of the assessment document.
+       \item Additional diagnostic evaluations were performed using the ShinySTAN application, an
+       analysis and visualization GUI for MCMC, including:
+         \bi
+       \item Effective sample sizes for all parameters
+       \item Number and location of divergent transitions in parameter space for all parameters
+       \item Multiple chain comparison statistics (Rhat)
+       \item Many others
+       \ei
+       \item Posterior correlations among key parameters and summary diagnostics for all chains
+       combined are shown in Appendix A (no issues identified).
+       \ei
+     }
 %
 %   % ----------------------------------------------------------
 %     %\frame{\frametitle{MCMC trace plots (more in Appendix A, Figures A.1--A.3)}
@@ -350,22 +346,23 @@ cowplot::plot_grid(plotlist = plist,
 %         %   \ec
 %       %}
 %   %
-%   \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
-%     \bc
-%     <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%       oldpar <- par()
-%       par(mar = c(4.1, 4.1, 3.1, 0.1))
-%       plot_mcmc_param_stats(base_model,
-%                             effn_labels = TRUE,
-%                             ylim_mult = 1.2,
-%                             show_ro_loc = TRUE,
-%                             ro_yloc = 110,
-%                             ro_yloc_arr_start = 100,
-%                             ro_yloc_arr_end = 60)
-%       par <- oldpar
-%       @
-%         \ec
-%   }
+   \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
+     \bc
+     <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+       oldpar <- par()
+       par(mar = c(4.1, 4.1, 3.1, 0.1))
+       plot_mcmc_param_stats(base_model)
+       plot_mcmc_param_stats(base_model,
+                             effn_labels = TRUE,
+                             ylim_mult = 1.2,
+                             show_ro_loc = TRUE,
+                             ro_yloc = 110,
+                             ro_yloc_arr_start = 100,
+                             ro_yloc_arr_end = 60)
+       par <- oldpar
+       @
+         \ec
+   }
 %
 %   % \frame{\frametitle{MCMC diagnostics -- Gelman-Rubin plot for key parameters}
 %     %  \bc
@@ -374,15 +371,15 @@ cowplot::plot_grid(plotlist = plist,
 %     %  \ec
 %     % }
 %
-%   %----------------------------------------------------------
-%     \section{Fits to data}
-%   \begin{frame}[c]
-%   \begin{center}
-%   \Huge Model fits to data
-%   \end{center}
-%   \end{frame}
-%
-%   %----------------------------------------------------------
+  %----------------------------------------------------------
+     \section{Fits to data}
+   \begin{frame}[c]
+   \begin{center}
+   \Huge Model fits to data
+   \end{center}
+   \end{frame}
+
+  %----------------------------------------------------------
 %     \frame{\frametitle{Fit to the acoustic survey index of abundance}
 %       \bc
 %       <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
