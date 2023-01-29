@@ -245,8 +245,8 @@ cowplot::plot_grid(plotlist = plist,
                              effn_labels = TRUE,
                              ylim_mult = 1.2,
                              show_ro_loc = TRUE,
-                             ro_yloc = 80,
-                             ro_yloc_arr_start = 70,
+                             ro_yloc = 110,
+                             ro_yloc_arr_start = 100,
                              ro_yloc_arr_end = 40)
        par <- oldpar
        @
@@ -277,7 +277,7 @@ cowplot::plot_grid(plotlist = plist,
      }
 
 %----------------------------------------------------------
-     \frame{\frametitle{Fit to the age-1 index}
+     \frame{\frametitle{Fit to the age-1 relative index}
        \bc
        <<mcmc.age1.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
          make.mcmc.survey.fit.plot(base_model,
@@ -295,12 +295,11 @@ cowplot::plot_grid(plotlist = plist,
        \begin{columns}
        \begin{column}{0.38\textwidth}
        \bi
-       \item 1999 cohort often over--predicted relative to the survey
-       \item Young cohorts in 2003--2011 underfit
-       \item 2010 cohort over--predicted and 2014 cohort under--predicted in 2017
+       \item Relative cohort strength captured well, but some over- and under-fitting
+       \item Predicted higher: 1999 cohort often,  2010 cohort in 2017 survey
+       \item Predicted lower: some young cohorts in 2003--2011, 2014 cohort in 2017 survey
        \item Predictions for 2014 and 2016 cohorts are similar in the 2019 and 2021 surveys,
-       despite differences in survey estimates (although well within the range
-                                                of uncertainty)
+       despite differences in survey estimates (although well within the range of uncertainty)
        \ei
        \end{column}
        \begin{column}{0.59\textwidth}
@@ -322,8 +321,9 @@ cowplot::plot_grid(plotlist = plist,
        \bi
        \item Large 1999, 2010, and 2014 cohorts fit particularly well
        \item Some over- and under-fitting in 1980 and 1984 cohorts
-       \item Several cohorts in the mid-2000s were underfit (2005, 2006, 2008) when young
-       \item The 2014, 2016 and 2017 cohorts fit well
+       \item The 2016 cohort is slighly under-fit in recent years
+       \item Fishery data in 2022 imply a slightly larger size for the
+             2020 cohort than the model prediction 
        \ei
        \end{column}
        \begin{column}{0.59\textwidth}
@@ -370,6 +370,126 @@ cowplot::plot_grid(plotlist = plist,
    \Huge Estimated quantities
    \end{center}
    \end{frame}
+%----------------------------------------------------------
+     \frame{\frametitle{Key parameters}
+       \begin{columns}
+       \begin{column}{0.38\textwidth}
+       \bi
+       \item Prior for natural mortality looks to be influencing posterior
+       \item Posterior for steepness does not shift much from prior
+       \item DM for fishery has a relatively narrow posterior distribution
+       \item Prior for survey DM parameter looks to be influencing
+             posterior (discussed further in sensitivity section)
+       \ei
+       \end{column}
+       \begin{column}{0.59\textwidth}
+       \vspace{-15pt}
+       \bc
+       <<main.prior.posterior, fig.height=6, fig.width=8,out.width='0.95\\columnwidth'>>=
+         make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
+                                                       key_posteriors,
+                                                       hist_breaks = c(50, 50, 50, 50, 100, 100),
+                                                       ncol = 2,
+                                                       nrow = 3,
+                                                       show_legend = TRUE,
+                                                       legend_panel = 3,
+                                                       titles = key_posteriors_titles,
+                                                       show_mle = FALSE,
+                                                       show_prior = TRUE,
+                                                       show_init = TRUE,
+                                                       show_median = TRUE)
+       @
+         \ec
+       \end{column}
+       \end{columns}
+     }
+
+%----------------------------------------------------------
+     \frame{\frametitle{Acoustic survey 2023 catchability (\emph{$q_b$}) posterior}
+       \bc
+       <<histQ, fig.height=2.25, fig.width=5.5>>=
+         make.mcmc.catchability.plot(base_model, last_yr_base_model,type = "age2plus")
+       @
+         \begin{table}
+       \begin{tabular}{cccc} \hline
+       \textcolor{blue}{Median (\Sexpr{assess_yr})} &
+         \textcolor{red}{Median (\Sexpr{assess_yr - 1})} \\
+       %\textcolor{blue}{MLE (\Sexpr{assess_yr})} &
+         %\textcolor{red}{MLE (\Sexpr{assess_yr - 1})} \\
+       \hline
+       \textcolor{blue}{\Sexpr{f(median(base_model$extra.mcmc$Q_vector), 2)}} &
+         \textcolor{red}{\Sexpr{f(median(last_yr_base_model$extra.mcmc$Q_vector), 2)}} \\
+       %\textcolor{blue}{\Sexpr{f(base_model$cpue$Calc_Q[1],2)}}  &
+         %\textcolor{red}{\Sexpr{f(last_yr_base_model$cpue$Calc_Q[1],2)}} \\
+       \hline
+       \end{tabular}
+       \end{table}
+       \ec
+     }
+%----------------------------------------------------------
+   \frame{\frametitle{Age-1 index 2023 catchability (\emph{$q_1$}) posterior}
+     \bc
+     <<histQ.age1,fig.height=2.25, fig.width=5.5>>=
+       make.mcmc.catchability.plot(base_model, type = "age1")
+     @
+       \begin{table}
+     \begin{tabular}{cccc} \hline
+     \textcolor{blue}{Median (\Sexpr{assess_yr})} &
+       \textcolor{red}{Median (\Sexpr{assess_yr - 1})} \\
+     %\textcolor{blue}{MLE (\Sexpr{assess_yr})} &
+       %\textcolor{red}{MLE (\Sexpr{assess_yr - 1})} \\
+     \hline
+     \textcolor{blue}{\Sexpr{f(median(base_model$extra.mcmc$Q_vector_age1), 2)}} &
+       \textcolor{red}{\Sexpr{f(median(last_yr_base_model$extra.mcmc$Q_vector_age1), 2)}} \\
+     %\textcolor{blue}{\Sexpr{f(base_model$cpue$Calc_Q[1],2)}}  &
+       %\textcolor{red}{\Sexpr{f(last_yr_base_model$cpue$Calc_Q[1],2)}} \\
+     \hline
+     \end{tabular}
+     \end{table}
+     \ec
+   }
+%----------------------------------------------------------
+     \frame{\frametitle{Time-varying selectivity}
+       \begin{columns}
+       \begin{column}{0.48\textwidth}
+       \vspace{-10pt}
+       \bc
+       <<main.tv.selex, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
+         ## Extract TV selectivity fits by running the calculation function.
+         tv.selex.start_yr <- 1990
+         tv.selex.ages <- 1:8
+         tv.selex <- calc.tv.selex(base_model,
+                                   start_yr = tv.selex.start_yr,
+                                   end_yr = last_data_yr,
+                                   ages = tv.selex.ages,
+                                   probs = c(0.025, 0.975))
+         make.tv.selex.plot(tv.selex)
+         @
+           \ec
+         \end{column}
+         \begin{column}{0.48\textwidth}
+         \vspace{-10pt}
+         \bc
+         <<main.tv.selex.uncertainty, fig.height=12, fig.width=10, out.width='0.8\\columnwidth'>>=
+           ## Extract TV selectivity fits by running the calculation function, once for each year span,
+           ##  then call the plotting function with them as a list to make a multipanel plot.
+           tv.selex.left <- calc.tv.selex(base_model,
+                                          start_yr = tv.selex.start_yr,
+                                          end_yr = 2004,
+                                          ages = tv.selex.ages,
+                                          probs = c(0.025, 0.975))
+         tv.selex.right <- calc.tv.selex(base_model,
+                                         start_yr = 2005,
+                                         end_yr = last_data_yr,
+                                         ages = tv.selex.ages,
+                                         probs = c(0.025, 0.975))
+%         make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
+          plot_multiple_tv_selex_unc(list(tv.selex.left, tv.selex.right))
+         @
+           \ec
+         \end{column}
+         \end{columns}
+     }
 %----------------------------------------------------------
 %
 \end{document}
@@ -507,129 +627,8 @@ cowplot::plot_grid(plotlist = plist,
 %----------------------------------------------------------
 %----------------------------------------------------------
 %
-%----------------------------------------------------------
-%     \frame{\frametitle{Key parameters}
-%       \begin{columns}
-%       \begin{column}{0.38\textwidth}
-%       \bi
-%       \item Prior for natural mortality looks to be constraining posterior
-%       \item Posterior for steepness does not shift much from prior
-%       \item DM for fishery has a relatively narrow posterior distribution
-%       \ei
-%       \end{column}
-%       \begin{column}{0.59\textwidth}
-%       \vspace{-15pt}
-%       \bc
-%       <<main.prior.posterior, fig.height=6, fig.width=8,out.width='0.95\\columnwidth'>>=
-%         make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
-%                                                       key_posteriors,
-%                                                       hist_breaks = c(50, 50, 50, 50, 100, 100),
-%                                                       ncol = 2,
-%                                                       nrow = 3,
-%                                                       show_legend = TRUE,
-%                                                       legend_panel = 3,
-%                                                       titles = key_posteriors_titles,
-%                                                       show_mle = FALSE,
-%                                                       show_prior = TRUE,
-%                                                       show_init = TRUE,
-%                                                       show_median = TRUE)
-%       @
-%         \ec
-%       \end{column}
-%       \end{columns}
-%     }
-%
-%   %----------------------------------------------------------
-%
-%     \frame{\frametitle{Survey catchability (\emph{$q_b$}) posterior and values for recent assessments}
-%       \bc
-%       <<histQ, fig.height=2.25, fig.width=5.5>>=
-%         make.mcmc.catchability.plot(base_model, last_yr_base_model,type = "age2plus")
-%       @
-%         \begin{table}
-%       \begin{tabular}{cccc} \hline
-%       \textcolor{blue}{Median (\Sexpr{assess_yr})} &
-%         \textcolor{red}{Median (\Sexpr{assess_yr - 1})} \\
-%       %\textcolor{blue}{MLE (\Sexpr{assess_yr})} &
-%         %\textcolor{red}{MLE (\Sexpr{assess_yr - 1})} \\
-%       \hline
-%       \textcolor{blue}{\Sexpr{f(median(base_model$extra.mcmc$Q_vector), 2)}} &
-%         \textcolor{red}{\Sexpr{f(median(last_yr_base_model$extra.mcmc$Q_vector), 2)}} \\
-%       %\textcolor{blue}{\Sexpr{f(base_model$cpue$Calc_Q[1],2)}}  &
-%         %\textcolor{red}{\Sexpr{f(last_yr_base_model$cpue$Calc_Q[1],2)}} \\
-%       \hline
-%       \end{tabular}
-%       \end{table}
-%       \ec
-%     }
-%
-%   %----------------------------------------------------------
-%     %
-%   \frame{\frametitle{Catchability (\emph{$q_1$}) posterior for the age-1 index}
-%     \bc
-%     <<histQ.age1,fig.height=2.25, fig.width=5.5>>=
-%       make.mcmc.catchability.plot(base_model, type = "age1")
-%     @
-%       \begin{table}
-%     \begin{tabular}{cccc} \hline
-%     \textcolor{blue}{Median (\Sexpr{assess_yr})} &
-%       \textcolor{red}{Median (\Sexpr{assess_yr - 1})} \\
-%     %\textcolor{blue}{MLE (\Sexpr{assess_yr})} &
-%       %\textcolor{red}{MLE (\Sexpr{assess_yr - 1})} \\
-%     \hline
-%     \textcolor{blue}{\Sexpr{f(median(base_model$extra.mcmc$Q_vector_age1), 2)}} &
-%       \textcolor{red}{--} \\
-%     %\textcolor{blue}{\Sexpr{f(base_model$cpue$Calc_Q[1],2)}}  &
-%       %\textcolor{red}{\Sexpr{f(last_yr_base_model$cpue$Calc_Q[1],2)}} \\
-%     \hline
-%     \end{tabular}
-%     \end{table}
-%     \ec
-%   }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Time-varying selectivity}
-%       \begin{columns}
-%       \begin{column}{0.48\textwidth}
-%       \vspace{-10pt}
-%       \bc
-%       <<main.tv.selex, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
-%         ## Extract TV selectivity fits by running the calculation function.
-%         tv.selex.start_yr <- 1990
-%         tv.selex.ages <- 1:8
-%         tv.selex <- calc.tv.selex(base_model,
-%                                   start_yr = tv.selex.start_yr,
-%                                   end_yr = last_data_yr,
-%                                   ages = tv.selex.ages,
-%                                   probs = c(0.025, 0.975))
-%         make.tv.selex.plot(tv.selex)
-%         @
-%           \ec
-%         \end{column}
-%         \begin{column}{0.48\textwidth}
-%         \vspace{-10pt}
-%         \bc
-%         <<main.tv.selex.uncertainty, fig.height=12, fig.width=10, out.width='0.8\\columnwidth'>>=
-%           ## Extract TV selectivity fits by running the calculation function, once for each year span,
-%           ##  then call the plotting function with them as a list to make a multipanel plot.
-%           tv.selex.left <- calc.tv.selex(base_model,
-%                                          start_yr = tv.selex.start_yr,
-%                                          end_yr = 2001,
-%                                          ages = tv.selex.ages,
-%                                          probs = c(0.025, 0.975))
-%         tv.selex.right <- calc.tv.selex(base_model,
-%                                         start_yr = 2002,
-%                                         end_yr = last_data_yr,
-%                                         ages = tv.selex.ages,
-%                                         probs = c(0.025, 0.975))
-%         make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
-%         @
-%           \ec
-%         \end{column}
-%         \end{columns}
-%     }
-%
-%   %----------------------------------------------------------
+
+
 %     % \frame{\frametitle{DM Weighting of age data: $\theta_{\text{surv}}$ and
 %       %     $\theta_{\text{fish}}$}
 %       %
