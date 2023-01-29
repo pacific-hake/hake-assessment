@@ -636,34 +636,34 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
          \ec
      }
 %----------------------------------------------------------
-     \frame{\frametitle{Spawning Biomass (million~t)}
-       <<biomass.calcs>>=
-         lb <- last_yr_base_model
-         lb.smed <- lb$mcmccalcs$smed
-         lb.slower <- lb$mcmccalcs$slower
-         lb.supper <- lb$mcmccalcs$supper
-         last.slower <- f(lb.slower[names(lb.slower) == assess_yr - 1], 3)
-         last.supper <- f(lb.supper[names(lb.supper) == assess_yr - 1], 3)
-         last.smed <- f(lb.smed[names(lb.smed) == assess_yr - 1], 3)
-         @
-           \begin{table}
-         \begin{tabular}{cccc} \hline
-         Calculation & Low & Median & High \\
-         \hline
-         \Sexpr{assess_yr-1} assessment $B_{\Sexpr{end_yr-1}}$ &
-           \Sexpr{last.slower} & \Sexpr{last.smed} & \Sexpr{last.supper} \\
-         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr-1}}$ &
-           \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} &
-           \Sexpr{prev.bio.upper} \\
-         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr}}$ & \Sexpr{curr.bio.lower} &
-           \Sexpr{curr.bio.median} & \Sexpr{curr.bio.upper} \\
-         \hline
-         \end{tabular}
-         \end{table}
-         ~\\
-         While the median estimate of $B_{\Sexpr{end_yr-1}}$ has increased from last
-         year's assessment, the credible interval mostly overlaps that from last year's assessment.
-     }
+%     \frame{\frametitle{Spawning Biomass (million~t)}
+%       <<biomass.calcs>>=
+%         lb <- last_yr_base_model
+%         lb.smed <- lb$mcmccalcs$smed
+%         lb.slower <- lb$mcmccalcs$slower
+%         lb.supper <- lb$mcmccalcs$supper
+%         last.slower <- f(lb.slower[names(lb.slower) == assess_yr - 1], 3)
+%         last.supper <- f(lb.supper[names(lb.supper) == assess_yr - 1], 3)
+%         last.smed <- f(lb.smed[names(lb.smed) == assess_yr - 1], 3)
+%         @
+%           \begin{table}
+%         \begin{tabular}{cccc} \hline
+%         Calculation & Low & Median & High \\
+%         \hline
+%         \Sexpr{assess_yr-1} assessment $B_{\Sexpr{end_yr-1}}$ &
+%           \Sexpr{last.slower} & \Sexpr{last.smed} & \Sexpr{last.supper} \\
+%         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr-1}}$ &
+%           \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} &
+%           \Sexpr{prev.bio.upper} \\
+%         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr}}$ & \Sexpr{curr.bio.lower} &
+%           \Sexpr{curr.bio.median} & \Sexpr{curr.bio.upper} \\
+%         \hline
+%         \end{tabular}
+%         \end{table}
+%         ~\\
+%         While the median estimate of $B_{\Sexpr{end_yr-1}}$ has increased from last
+%         year's assessment, the credible interval mostly overlaps that from last year's assessment.
+%     }
 %----------------------------------------------------------
      \frame{\frametitle{Relative Spawning Biomass}
        \bc
