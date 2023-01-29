@@ -207,7 +207,58 @@ cowplot::plot_grid(plotlist = plist,
   \item Adding \Sexpr{last_assess_yr} fishery age composition data had little impact on historical estimates, shifted recent recruitment estimates (esp. 2019--2021), and increased estimates of 2022 (slightly) and 2023 (considerably) female spawning biomass.
 \ei
 }
+%----------------------------------------------------------
+     \section{MCMC Diagnostics}
+   \begin{frame}[c]
+   \begin{center}
+   \Huge MCMC Diagnostics
+   \end{center}
+   \end{frame}
 
+%----------------------------------------------------------
+     \frame{\frametitle{Diagnostics: Summary}
+       \bi
+       \item Summary diagnostics for key parameters are shown in Appendix A of the assessment document.
+       \item Additional diagnostic evaluations were performed using the ShinySTAN application, an
+       analysis and visualization GUI for MCMC, including:
+         \bi
+       \item Effective sample sizes for all parameters
+       \item Number and location of divergent transitions in parameter space for all parameters
+       \item Multiple chain comparison statistics (Rhat)
+       \item Many others
+       \ei
+       \item Posterior correlations among key parameters and summary diagnostics for all chains
+       combined are shown in Appendix A (no issues identified).
+       \ei
+     }
+%----------------------------------------------------------
+   \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
+     \bc
+     <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+       oldpar <- par()
+       par(mar = c(4.1, 4.1, 3.1, 0.1))
+       plot_mcmc_param_stats(base_model)
+       plot_mcmc_param_stats(base_model,
+                             effn_labels = TRUE,
+                             ylim_mult = 1.2,
+                             show_ro_loc = TRUE,
+                             ro_yloc = 110,
+                             ro_yloc_arr_start = 100,
+                             ro_yloc_arr_end = 60)
+       par <- oldpar
+       @
+         \ec
+   }
+%
+%----------------------------------------------------------
+     \section{Fits to data}
+   \begin{frame}[c]
+   \begin{center}
+   \Huge Model fits to data
+   \end{center}
+   \end{frame}
+
+%----------------------------------------------------------       
 \end{document}
 
 
@@ -312,30 +363,7 @@ cowplot::plot_grid(plotlist = plist,
     %    \ec
   %\end{frame}
   %
-  %----------------------------------------------------------
-     \section{MCMC Diagnostics}
-   \begin{frame}[c]
-   \begin{center}
-   \Huge MCMC Diagnostics
-   \end{center}
-   \end{frame}
-
-  %----------------------------------------------------------
-     \frame{\frametitle{Diagnostics: Summary}
-       \bi
-       \item Summary diagnostics for key parameters are shown in Appendix A of the assessment document.
-       \item Additional diagnostic evaluations were performed using the ShinySTAN application, an
-       analysis and visualization GUI for MCMC, including:
-         \bi
-       \item Effective sample sizes for all parameters
-       \item Number and location of divergent transitions in parameter space for all parameters
-       \item Multiple chain comparison statistics (Rhat)
-       \item Many others
-       \ei
-       \item Posterior correlations among key parameters and summary diagnostics for all chains
-       combined are shown in Appendix A (no issues identified).
-       \ei
-     }
+  
 %
 %   % ----------------------------------------------------------
 %     %\frame{\frametitle{MCMC trace plots (more in Appendix A, Figures A.1--A.3)}
@@ -346,23 +374,6 @@ cowplot::plot_grid(plotlist = plist,
 %         %   \ec
 %       %}
 %   %
-   \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
-     \bc
-     <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-       oldpar <- par()
-       par(mar = c(4.1, 4.1, 3.1, 0.1))
-       plot_mcmc_param_stats(base_model)
-       plot_mcmc_param_stats(base_model,
-                             effn_labels = TRUE,
-                             ylim_mult = 1.2,
-                             show_ro_loc = TRUE,
-                             ro_yloc = 110,
-                             ro_yloc_arr_start = 100,
-                             ro_yloc_arr_end = 60)
-       par <- oldpar
-       @
-         \ec
-   }
 %
 %   % \frame{\frametitle{MCMC diagnostics -- Gelman-Rubin plot for key parameters}
 %     %  \bc
@@ -371,15 +382,10 @@ cowplot::plot_grid(plotlist = plist,
 %     %  \ec
 %     % }
 %
-  %----------------------------------------------------------
-     \section{Fits to data}
-   \begin{frame}[c]
-   \begin{center}
-   \Huge Model fits to data
-   \end{center}
-   \end{frame}
 
-  %----------------------------------------------------------
+
+
+
 %     \frame{\frametitle{Fit to the acoustic survey index of abundance}
 %       \bc
 %       <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
