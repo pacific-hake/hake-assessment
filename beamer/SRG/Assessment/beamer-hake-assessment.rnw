@@ -245,9 +245,9 @@ cowplot::plot_grid(plotlist = plist,
                              effn_labels = TRUE,
                              ylim_mult = 1.2,
                              show_ro_loc = TRUE,
-                             ro_yloc = 110,
-                             ro_yloc_arr_start = 100,
-                             ro_yloc_arr_end = 40)
+                             ro_yloc = 150,
+                             ro_yloc_arr_start = 140,
+                             ro_yloc_arr_end = 80)
        par <- oldpar
        @
          \ec
@@ -508,7 +508,7 @@ plist[[2]] <- plot_selex_posteriors(base_model,
                       line_color_unc = "blue",
                       line_thickness_unc = 1,
                       point_size_unc = 3)
-cowplot::plot_grid(plotlist = plist, nrow = 2, ncol = 1)
+cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
 @
 \ec
 }
@@ -526,6 +526,178 @@ cowplot::plot_grid(plotlist = plist, nrow = 2, ncol = 1)
                          xcaption = NULL,
                          font.size = 6.5,
                          space.size = 6.5)
+       @
+         \ec
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{Recruitment Deviations}
+       \vspace{-5pt}
+       \bc
+       <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+         plot_recdevs(list(base_model),
+             list(base_model_name),
+             single_line_color = "blue",
+             leg_pos = "none")
+       @
+         \ec
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{Absolute Recruitment}
+       \bc
+       <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+         plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 single_line_color = "blue",
+                 leg_pos = "none")
+       @
+         \ec
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{Estimates of above average cohorts}
+       %\bi
+       %  \item The probability of the 2014 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2014.rec.gt.2010.rec}\%
+         %  \item The probability of the 2016 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2016.rec.gt.2010.rec}\%
+         %\ei
+       %~\\
+       %
+       %Addition of new data for this year's model decreases 2014 cohort uncertainty to \Sexpr{rec_2014[[3]]}\%
+         %and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{assess_yr - 1} assessment:
+
+         \begin{table}
+       \begin{tabular}{ccrcc} \hline
+       Calculation (billions) & Low (2.5\%) & Median & High (97.5\%) & Interval size\\
+       \hline
+       \Sexpr{assess_yr-1} assessment recruitment in 2010 & \Sexpr{rec_2010[[1]][1]} & \Sexpr{rec_2010[[1]][2]} & \Sexpr{rec_2010[[1]][3]} & \Sexpr{rec_2010[[1]][4]}\\
+       \Sexpr{assess_yr} assessment recruitment in 2010 & \Sexpr{rec_2010[[2]][1]} & \Sexpr{rec_2010[[2]][2]} & \Sexpr{rec_2010[[2]][3]} & \Sexpr{rec_2010[[2]][4]}\\
+       \hline
+       \Sexpr{assess_yr-1} assessment recruitment in 2014 & \Sexpr{rec_2014[[1]][1]} & \Sexpr{rec_2014[[1]][2]} & \Sexpr{rec_2014[[1]][3]} & \Sexpr{rec_2014[[1]][4]}\\
+       \Sexpr{assess_yr} assessment recruitment in 2014 & \Sexpr{rec_2014[[2]][1]} & \Sexpr{rec_2014[[2]][2]} & \Sexpr{rec_2014[[2]][3]} & \Sexpr{rec_2014[[2]][4]}\\
+       \hline
+       \Sexpr{assess_yr-1} assessment recruitment in 2016 & \Sexpr{rec_2016[[1]][1]} & \Sexpr{rec_2016[[1]][2]} & \Sexpr{rec_2016[[1]][3]} & \Sexpr{rec_2016[[1]][4]}\\
+       \Sexpr{assess_yr} assessment recruitment in 2016 & \Sexpr{rec_2016[[2]][1]} & \Sexpr{rec_2016[[2]][2]} & \Sexpr{rec_2016[[2]][3]} & \Sexpr{rec_2016[[2]][4]}\\
+       \hline
+       \Sexpr{assess_yr-1} assessment recruitment in 2017 & \Sexpr{rec_2017[[1]][1]} & \Sexpr{rec_2017[[1]][2]} & \Sexpr{rec_2017[[1]][3]} & \Sexpr{rec_2017[[1]][4]}\\
+       \Sexpr{assess_yr} assessment recruitment in 2017 & \Sexpr{rec_2017[[2]][1]} & \Sexpr{rec_2017[[2]][2]} & \Sexpr{rec_2017[[2]][3]} & \Sexpr{rec_2017[[2]][4]}\\
+       \hline
+       \Sexpr{assess_yr-1} assessment recruitment in 2020 & \Sexpr{rec_2020[[1]][1]} & \Sexpr{rec_2020[[1]][2]} & \Sexpr{rec_2020[[1]][3]} & \Sexpr{rec_2020[[1]][4]}\\
+       \Sexpr{assess_yr} assessment recruitment in 2020 & \Sexpr{rec_2020[[2]][1]} & \Sexpr{rec_2020[[2]][2]} & \Sexpr{rec_2020[[2]][3]} & \Sexpr{rec_2020[[2]][4]}\\
+       \hline
+       \end{tabular}
+       \end{table}
+       ~\\
+
+       %\bi
+       %  \item 2010 cohort is estimated to make up 6.8\% of the biomass
+       %  \item 2014 cohort is estimated to make up 12.8\% of the biomass
+       %  \item 2016 cohort is estimated to make up 18.3\% of the biomass
+       %  \item 2017 cohort is estimated to make up 11.4\% of the biomass
+       %  \item 2020 cohort is estimated to make up 32.1\% of the biomass
+       %\ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{Numbers-at-age (billions)}
+       \begin{columns}
+       \begin{column}{0.5\textwidth}
+       \bi
+       \item Median posterior distribution estimates
+       \item Red line is mean age for the year
+       \item Increasing trend in mean age since 2010
+       \item Mean age drops significantly in years with large age-0 cohorts,
+             including in 2020
+       \ei
+       \end{column}
+       \begin{column}{0.5\textwidth}
+       \vspace{-10pt}
+       \bc
+       <<main.numbers.at.age, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
+         make_numbers_at_age_plot(base_model,
+                                  mean_age_line_color = "red",
+                                  mean_age_line_size = 1.5,
+                                  mean_age_line_type = "solid",
+                                  legend.position = "top",
+                                  legend.title = "Numbers (billions)",
+                                  xlim = c(1965, assess_yr))
+       @
+         \ec
+       \end{column}
+       \end{columns}
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{Spawning Biomass}
+       \bc
+       <<female.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+         plot_biomass(list(base_model),
+             list(base_model_name),
+             ylim = c(0, 5),
+             point_shape = 1,
+             alpha = 0.2,
+             leg_pos = "none")
+       @
+         \ec
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{Spawning Biomass (million~t)}
+       <<biomass.calcs>>=
+         lb <- last_yr_base_model
+         lb.smed <- lb$mcmccalcs$smed
+         lb.slower <- lb$mcmccalcs$slower
+         lb.supper <- lb$mcmccalcs$supper
+         last.slower <- f(lb.slower[names(lb.slower) == assess_yr - 1], 3)
+         last.supper <- f(lb.supper[names(lb.supper) == assess_yr - 1], 3)
+         last.smed <- f(lb.smed[names(lb.smed) == assess_yr - 1], 3)
+         @
+           \begin{table}
+         \begin{tabular}{cccc} \hline
+         Calculation & Low & Median & High \\
+         \hline
+         \Sexpr{assess_yr-1} assessment $B_{\Sexpr{end_yr-1}}$ &
+           \Sexpr{last.slower} & \Sexpr{last.smed} & \Sexpr{last.supper} \\
+         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr-1}}$ &
+           \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} &
+           \Sexpr{prev.bio.upper} \\
+         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr}}$ & \Sexpr{curr.bio.lower} &
+           \Sexpr{curr.bio.median} & \Sexpr{curr.bio.upper} \\
+         \hline
+         \end{tabular}
+         \end{table}
+         ~\\
+         While the median estimate of $B_{\Sexpr{end_yr-1}}$ has increased from last
+         year's assessment, the credible interval mostly overlaps that from last year's assessment.
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{Relative Spawning Biomass}
+       \bc
+       <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+         plot_rel_biomass(list(base_model),
+                 list(base_model_name),
+                 point_shape = 1,
+                 ylim = c(0, 3),
+                 alpha = 0.2,
+                 leg_pos = "none")
+       @
+         \ec
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{Fishing Intensity}
+       \bc
+       <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+         make.fishing.intensity.plot(base_model,
+                            start_yr = start_yr,
+                            end_yr = end_yr-1,
+                            color = "blue",
+                            upper.lim = 1.5)
+       @
+         \ec
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{Exploitation Fraction (ages $2+$)}
+       \bc
+       <<exploitation, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+         make.exploitation.fraction.plot(base_model,
+                                start_yr = start_yr,
+                                end_yr = end_yr-1,
+                                color = "blue",
+                                upper.lim = 0.35)
        @
          \ec
      }
@@ -684,83 +856,7 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 %         %         \Sexpr{DM.weight.fishery.median}$.
 %       %   \ei
 %       % }
-%
 %----------------------------------------------------------
-%----------------------------------------------------------
-%----------------------------------------------------------
-%----------------------------------------------------------
-%
-
-
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Recruitment Deviations}
-%       \vspace{-5pt}
-%       \bc
-%       <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%         #oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-%         make.recruitment.dev.plot(base_model,
-%                                   end_yr = end_yr)
-%       #par(oldpar)
-%       @
-%         \ec
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Absolute Recruitment}
-%       \bc
-%       <<recruitment, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%         make.recruitment.plot(base_model,
-%                               equil.yr = unfished_eq_yr,
-%                               start_yr = start_yr,
-%                               end_yr = end_yr,
-%                               color = "blue",
-%                               add.mean = TRUE,
-%                               add.r0 = TRUE)
-%       @
-%         \ec
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Estimates of above average cohorts}
-%       %\bi
-%       %  \item The probability of the 2014 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2014.rec.gt.2010.rec}\%
-%         %  \item The probability of the 2016 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2016.rec.gt.2010.rec}\%
-%         %\ei
-%       %~\\
-%       %
-%       %Addition of new data for this year's model decreases 2014 cohort uncertainty to \Sexpr{rec_2014[[3]]}\%
-%         %and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{assess_yr - 1} assessment:
-%
-%         \begin{table}
-%       \begin{tabular}{ccrcc} \hline
-%       Calculation (billions) & Low (2.5\%) & Median & High (97.5\%) & Interval size\\
-%       \hline
-%       \Sexpr{assess_yr-1} assessment recruitment in 2010 & \Sexpr{rec_2010[[1]][1]} & \Sexpr{rec_2010[[1]][2]} & \Sexpr{rec_2010[[1]][3]} & \Sexpr{rec_2010[[1]][4]}\\
-%       \Sexpr{assess_yr} assessment recruitment in 2010 & \Sexpr{rec_2010[[2]][1]} & \Sexpr{rec_2010[[2]][2]} & \Sexpr{rec_2010[[2]][3]} & \Sexpr{rec_2010[[2]][4]}\\
-%       \hline
-%       \Sexpr{assess_yr-1} assessment recruitment in 2014 & \Sexpr{rec_2014[[1]][1]} & \Sexpr{rec_2014[[1]][2]} & \Sexpr{rec_2014[[1]][3]} & \Sexpr{rec_2014[[1]][4]}\\
-%       \Sexpr{assess_yr} assessment recruitment in 2014 & \Sexpr{rec_2014[[2]][1]} & \Sexpr{rec_2014[[2]][2]} & \Sexpr{rec_2014[[2]][3]} & \Sexpr{rec_2014[[2]][4]}\\
-%       \hline
-%       \Sexpr{assess_yr-1} assessment recruitment in 2016 & \Sexpr{rec_2016[[1]][1]} & \Sexpr{rec_2016[[1]][2]} & \Sexpr{rec_2016[[1]][3]} & \Sexpr{rec_2016[[1]][4]}\\
-%       \Sexpr{assess_yr} assessment recruitment in 2016 & \Sexpr{rec_2016[[2]][1]} & \Sexpr{rec_2016[[2]][2]} & \Sexpr{rec_2016[[2]][3]} & \Sexpr{rec_2016[[2]][4]}\\
-%       \hline
-%       \Sexpr{assess_yr-1} assessment recruitment in 2017 & \Sexpr{rec_2017[[1]][1]} & \Sexpr{rec_2017[[1]][2]} & \Sexpr{rec_2017[[1]][3]} & \Sexpr{rec_2017[[1]][4]}\\
-%       \Sexpr{assess_yr} assessment recruitment in 2017 & \Sexpr{rec_2017[[2]][1]} & \Sexpr{rec_2017[[2]][2]} & \Sexpr{rec_2017[[2]][3]} & \Sexpr{rec_2017[[2]][4]}\\
-%       \hline
-%       \end{tabular}
-%       \end{table}
-%       ~\\
-%
-%       %\bi
-%       %  \item 2010 cohort is estimated to make up 6.8\% of the biomass
-%       %  \item 2014 cohort is estimated to make up 12.8\% of the biomass
-%       %  \item 2016 cohort is estimated to make up 18.3\% of the biomass
-%       %  \item 2017 cohort is estimated to make up 11.4\% of the biomass
-%       %  \item 2020 cohort is estimated to make up 32.1\% of the biomass
-%       %\ei
-%     }
-%
-%   %----------------------------------------------------------
 %     % \frame{\frametitle{Proportions of biomass for cohorts in \Sexpr{assess_yr}}
 %       %
 %       % \begin{columns}
@@ -785,115 +881,11 @@ make.multiple.tv.selex.uncertainty.plots(list(tv.selex.left, tv.selex.right))
 % %
 % % }
 %
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Numbers-at-age (billions)}
-%       \begin{columns}
-%       \begin{column}{0.5\textwidth}
-%       \bi
-%       \item Median posterior distribution estimates
-%       \item Red line is mean age for the year
-%       \item Mean age drops significantly in years with large age-0 cohorts
-%       \item Mean age increasing over recent years until 2020 when it drops
-%       due to incoming year-class
-%       \ei
-%       \end{column}
-%       \begin{column}{0.5\textwidth}
-%       \vspace{-10pt}
-%       \bc
-%       <<main.numbers.at.age, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
-%         make_numbers_at_age_plot(base_model,
-%                                  mean_age_line_color = "red",
-%                                  mean_age_line_size = 1.5,
-%                                  mean_age_line_type = "solid",
-%                                  legend.position = "top",
-%                                  legend.title = "Numbers (billions)",
-%                                  xlim = c(1965, assess_yr))
-%       @
-%         \ec
-%       \end{column}
-%       \end{columns}
-%     }
+%----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
 %
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Spawning Biomass}
-%       \bc
-%       <<female.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%         make.biomass.plot(base_model,
-%                           equil.yr = unfished_eq_yr,
-%                           start_yr = start_yr,
-%                           end_yr = end_yr,
-%                           color = "blue")
-%       @
-%         \ec
-%     }
-%
-%   %----------------------------------------------------------
-%
-%     \frame{\frametitle{Spawning Biomass (million~t)}
-%       <<biomass.calcs>>=
-%         lb <- last_yr_base_model
-%         lb.smed <- lb$mcmccalcs$smed
-%         lb.slower <- lb$mcmccalcs$slower
-%         lb.supper <- lb$mcmccalcs$supper
-%         last.slower <- f(lb.slower[names(lb.slower) == assess_yr - 1], 3)
-%         last.supper <- f(lb.supper[names(lb.supper) == assess_yr - 1], 3)
-%         last.smed <- f(lb.smed[names(lb.smed) == assess_yr - 1], 3)
-%         @
-%           \begin{table}
-%         \begin{tabular}{cccc} \hline
-%         Calculation & Low & Median & High \\
-%         \hline
-%         \Sexpr{assess_yr-1} assessment $B_{\Sexpr{end_yr-1}}$ &
-%           \Sexpr{last.slower} & \Sexpr{last.smed} & \Sexpr{last.supper} \\
-%         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr-1}}$ &
-%           \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} &
-%           \Sexpr{prev.bio.upper} \\
-%         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr}}$ & \Sexpr{curr.bio.lower} &
-%           \Sexpr{curr.bio.median} & \Sexpr{curr.bio.upper} \\
-%         \hline
-%         \end{tabular}
-%         \end{table}
-%         ~\\
-%         While the median estimate of $B_{\Sexpr{end_yr-1}}$ has increased from last
-%         year's assessment, the credible interval mostly overlaps that from last year's assessment.
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Relative Spawning Biomass}
-%       \bc
-%       <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%         make.depletion.plot(base_model,
-%                             start_yr = start_yr,
-%                             end_yr = end_yr,
-%                             color = "blue")
-%       @
-%         \ec
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Fishing Intensity}
-%       \bc
-%       <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%         make.fishing.intensity.plot(base_model,
-%                                     start_yr = start_yr,
-%                                     end_yr = end_yr-1,
-%                                     color = "blue")
-%       @
-%         \ec
-%     }
-%
-%   %----------------------------------------------------------
-%
-%     \frame{\frametitle{Exploitation Fraction (ages $2+$)}
-%       \bc
-%       <<exploitation, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%         make.exploitation.fraction.plot(base_model,
-%                                         start_yr = start_yr,
-%                                         end_yr = end_yr-1,
-%                                         color = "blue")
-%       @
-%         \ec
-%     }
 %
 %   %----------------------------------------------------------
 %     \section{\Sexpr{last_assess_yr} SRG recommendations}
