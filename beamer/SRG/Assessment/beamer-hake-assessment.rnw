@@ -112,6 +112,8 @@ source(file.path(rootd_r, "custom-knitr-variables.R"))
 }
 
 %----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
 \section{Changes from \Sexpr{last_assess_yr}}
 \subsection{}
 
@@ -198,7 +200,7 @@ cowplot::plot_grid(plotlist = plist,
   \item Updating Stock Synthesis software has no effect on results. Relevent changes include:
     \bi
       \item Weight-at-age specified in first year of forecast, rather than carried forward
-      \item Report files for models usin gempirical weight-at-age for growth do not supply output that uses growth parameters 
+      \item Report files for models using empirical weight-at-age for growth do not supply output that uses growth parameters 
     \ei
   \item Updating data previous to \Sexpr{last_data_yr} had very little effect on the stock trajectory.
   \item Adding \Sexpr{last_data_yr} catch and weight-at-age data resulted in a slight upward shift in current female spawning biomass, because the mean weights in \Sexpr{last_data_yr} were mostly above the recent 5-year average mean weights (assumption before the addition of these data).
@@ -207,6 +209,8 @@ cowplot::plot_grid(plotlist = plist,
   \item Adding \Sexpr{last_assess_yr} fishery age composition data had little impact on historical estimates, shifted recent recruitment estimates (esp. 2019--2021), and increased estimates of 2022 (slightly) and 2023 (considerably) female spawning biomass.
 \ei
 }
+%----------------------------------------------------------
+%----------------------------------------------------------
 %----------------------------------------------------------
      \section{MCMC Diagnostics}
    \begin{frame}[c]
@@ -237,19 +241,20 @@ cowplot::plot_grid(plotlist = plist,
      <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
        oldpar <- par()
        par(mar = c(4.1, 4.1, 3.1, 0.1))
-       plot_mcmc_param_stats(base_model)
        plot_mcmc_param_stats(base_model,
                              effn_labels = TRUE,
                              ylim_mult = 1.2,
                              show_ro_loc = TRUE,
-                             ro_yloc = 110,
-                             ro_yloc_arr_start = 100,
-                             ro_yloc_arr_end = 60)
+                             ro_yloc = 80,
+                             ro_yloc_arr_start = 70,
+                             ro_yloc_arr_end = 40)
        par <- oldpar
        @
          \ec
    }
 %
+%----------------------------------------------------------
+%----------------------------------------------------------
 %----------------------------------------------------------
      \section{Fits to data}
    \begin{frame}[c]
@@ -258,10 +263,124 @@ cowplot::plot_grid(plotlist = plist,
    \end{center}
    \end{frame}
 
-%----------------------------------------------------------       
+%----------------------------------------------------------
+     \frame{\frametitle{Fit to the acoustic survey index of abundance}
+       \bc
+       <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+         make.mcmc.survey.fit.plot(base_model,
+                                   start_yr = survey_start_yr,
+                                   end_yr = survey_end_yr,
+                                   probs = c(0.025, 0.975),
+                                   y.max = 5.5e6)
+       @
+         \ec
+     }
+
+%----------------------------------------------------------
+     \frame{\frametitle{Fit to the age-1 index}
+       \bc
+       <<mcmc.age1.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+         make.mcmc.survey.fit.plot(base_model,
+                                   start_yr = survey_start_yr,
+                                   end_yr = survey_end_yr,
+                                   probs = c(0.025, 0.975),
+                                   y.max = 10e6,
+                                   survey.type = "age1",
+                                   survey.col = "red")
+       @
+         \ec
+     }       
+%----------------------------------------------------------
+     \frame{\frametitle{Fit to acoustic survey age comps}
+       \begin{columns}
+       \begin{column}{0.38\textwidth}
+       \bi
+       \item 1999 cohort often over--predicted relative to the survey
+       \item Young cohorts in 2003--2011 underfit
+       \item 2010 cohort over--predicted and 2014 cohort under--predicted in 2017
+       \item Predictions for 2014 and 2016 cohorts are similar in the 2019 and 2021 surveys,
+       despite differences in survey estimates (although well within the range
+                                                of uncertainty)
+       \ei
+       \end{column}
+       \begin{column}{0.59\textwidth}
+       %\vspace{-15pt}
+       \bc
+       <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
+         make.age.comp.fit.plot(base_model,
+                                subplot = 2)
+       @
+         \ec
+       \end{column}
+       \end{columns}
+     }
+
+%----------------------------------------------------------
+     \frame{\frametitle{Fit to fishery age comps}
+       \begin{columns}
+       \begin{column}{0.38\textwidth}
+       \bi
+       \item Large 1999, 2010, and 2014 cohorts fit particularly well
+       \item Some over- and under-fitting in 1980 and 1984 cohorts
+       \item Several cohorts in the mid-2000s were underfit (2005, 2006, 2008) when young
+       \item The 2014, 2016 and 2017 cohorts fit well
+       \ei
+       \end{column}
+       \begin{column}{0.59\textwidth}
+       \vspace{-5pt}
+       \bc
+       <<mcmc.fishery.age.comp.fits, fig.height=5.2, fig.width=6.5,out.width='1.0\\columnwidth'>>=
+         make.age.comp.fit.plot(base_model,
+                                subplot = 1)
+       @
+         \ec
+       \end{column}
+       \end{columns}
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{Pearson residual for fit to the age data}
+       \begin{columns}
+       \begin{column}{0.48\textwidth}
+       \vspace{-16pt}
+       \bc
+       Fishery
+       <<survey.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
+         plot_pearson_bubbles(base_model, type = 1, legend.position = "top", alpha = 0.7)
+       @
+         \ec
+       \end{column}
+       \begin{column}{0.48\textwidth}
+       \vspace{-16pt}
+       \bc
+       Survey
+       <<fishery.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
+         plot_pearson_bubbles(base_model, type = 2, alpha = 0.7)
+       @
+         \ec
+       \end{column}
+       \end{columns}
+       \bc {\scriptsize Dark bubbles are positive residuals (observed > expected) and white bubbles are negative residuals (observed < expected)} \ec
+     }
+%----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
+     \section{Estimated quantities}
+   \begin{frame}[c]
+   \begin{center}
+   \Huge Estimated quantities
+   \end{center}
+   \end{frame}
+%----------------------------------------------------------
+%
 \end{document}
+%
+%----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
 
 
+%Below is a bunch of old slides that could be deleted, but saving for now
 %----------------------------------------------------------
   % \begin{frame}
 % \frametitle{Time-varying fishery selectivity ($\Phi$)}
@@ -278,7 +397,7 @@ cowplot::plot_grid(plotlist = plist,
 %   \item See page 40-41 for equations and details.
 % \ei
 % \end{frame}
-
+%
 %----------------------------------------------------------
   %\begin{frame}
 %\frametitle{Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
@@ -382,118 +501,13 @@ cowplot::plot_grid(plotlist = plist,
 %     %  \ec
 %     % }
 %
-
-
-
-
-%     \frame{\frametitle{Fit to the acoustic survey index of abundance}
-%       \bc
-%       <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%         make.mcmc.survey.fit.plot(base_model,
-%                                   start_yr = survey_start_yr,
-%                                   end_yr = survey_end_yr,
-%                                   probs = c(0.025, 0.975),
-%                                   y.max = 5.5e6)
-%       @
-%         \ec
-%     }
 %
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Fit to the age-1 index}
-%       \bc
-%       <<mcmc.age1.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%         make.mcmc.survey.fit.plot(base_model,
-%                                   start_yr = survey_start_yr,
-%                                   end_yr = survey_end_yr,
-%                                   probs = c(0.025, 0.975),
-%                                   y.max = 10e6,
-%                                   survey.type = "age1",
-%                                   survey.col = "red")
-%       @
-%         \ec
-%     }
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Fit to acoustic survey age comps}
-%       \begin{columns}
-%       \begin{column}{0.38\textwidth}
-%       \bi
-%       \item 1999 cohort often over--predicted relative to the survey
-%       \item Young cohorts in 2003--2011 underfit
-%       \item 2010 cohort over--predicted and 2014 cohort under--predicted in 2017
-%       \item Predictions for 2014 and 2016 cohorts are similar in the 2019 and 2021 surveys,
-%       despite differences in survey estimates (although well within the range
-%                                                of uncertainty)
-%       \ei
-%       \end{column}
-%       \begin{column}{0.59\textwidth}
-%       %\vspace{-15pt}
-%       \bc
-%       <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
-%         make.age.comp.fit.plot(base_model,
-%                                subplot = 2)
-%       @
-%         \ec
-%       \end{column}
-%       \end{columns}
-%     }
+%----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
+%----------------------------------------------------------
 %
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Fit to fishery age comps}
-%       \begin{columns}
-%       \begin{column}{0.38\textwidth}
-%       \bi
-%       \item Large 1999, 2010, and 2014 cohorts fit particularly well
-%       \item Some over- and under-fitting in 1980 and 1984 cohorts
-%       \item Several cohorts in the mid-2000s were underfit (2005, 2006, 2008) when young
-%       \item The 2014, 2016 and 2017 cohorts fit well
-%       \ei
-%       \end{column}
-%       \begin{column}{0.59\textwidth}
-%       \vspace{-5pt}
-%       \bc
-%       <<mcmc.fishery.age.comp.fits, fig.height=5.2, fig.width=6.5,out.width='1.0\\columnwidth'>>=
-%         make.age.comp.fit.plot(base_model,
-%                                subplot = 1)
-%       @
-%         \ec
-%       \end{column}
-%       \end{columns}
-%     }
-%
-%   %----------------------------------------------------------
-%     \frame{\frametitle{Pearson residual for fit to the age data}
-%       \begin{columns}
-%       \begin{column}{0.48\textwidth}
-%       \vspace{-16pt}
-%       \bc
-%       Fishery
-%       <<survey.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
-%         plot_pearson_bubbles(base_model, type = 1, legend.position = "top", alpha = 0.7)
-%       @
-%         \ec
-%       \end{column}
-%       \begin{column}{0.48\textwidth}
-%       \vspace{-16pt}
-%       \bc
-%       Survey
-%       <<fishery.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
-%         plot_pearson_bubbles(base_model, type = 2, alpha = 0.7)
-%       @
-%         \ec
-%       \end{column}
-%       \end{columns}
-%       \bc {\scriptsize Dark bubbles are positive residuals (observed > expected) and white bubbles are negative residuals (observed < expected)} \ec
-%     }
-%
-%   %----------------------------------------------------------
-%     \section{Estimated quantities}
-%   \begin{frame}[c]
-%   \begin{center}
-%   \Huge Estimated quantities
-%   \end{center}
-%   \end{frame}
-%
-%   %----------------------------------------------------------
+%----------------------------------------------------------
 %     \frame{\frametitle{Key parameters}
 %       \begin{columns}
 %       \begin{column}{0.38\textwidth}
