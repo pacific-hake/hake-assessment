@@ -1,22 +1,12 @@
-%\documentclass[handout,xcolor=pdftex,dvipsnames,table]{beamer}
-%\documentclass[draft]{beamer}
-%\documentclass[notesonly]{beamer}
-%\documentclass[notes]{beamer}
 \documentclass[aspectratio=169]{beamer}
-%\documentclass{beamer}
 \mode<presentation>
 \usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
 
-%\usefonttheme{serif}
-% font themes: default, professionalfonts, serif, structurebold, structureitalicserif, structuresmallcapsserif
-
+\usepackage[outdir=./]{epstopdf}
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
-%\usepackage{beamerarticle}
-%\usepackage{enumitem}
-%\usepackage{beamerthemesplit}
 
 % pdf is displayed in full screen mode automatically
 %\hypersetup{pdfpagemode=FullScreen}
@@ -69,17 +59,19 @@ opts_chunk$set(dev = 'cairo_ps',
                message = FALSE,
                warning = FALSE,
                results = 'hide',
-               cache = TRUE,
-               cache.path = 'knitr-cache/')
+               fig.path = here::here("beamer",
+                                     "SRG",
+                                     "Assessment",
+                                     "knitr-cache", "/"),
+               cache.path = here::here("beamer",
+                                       "SRG",
+                                       "Assessment",
+                                       "knitr-cache", "/"),
+               cache = TRUE)
 
-source(file.path(here::here(), "R", "all.R"))
-
-if(!(exists("models_loaded") && models_loaded)){
-  load_models_rds()
-}
-models_loaded <- TRUE
-
-source(file.path(rootd.R, "custom-knitr-variables.R"))
+source(here::here("R/all.R"))
+source(file.path(rootd_doc, "load-models.R"))
+source(file.path(rootd_r, "custom-knitr-variables.R"))
 @
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
