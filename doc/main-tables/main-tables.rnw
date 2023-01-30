@@ -2,7 +2,7 @@
 
 \section{TABLES} \label{sec:tables}
 <<catches-us, results='asis', echo=FALSE>>=
-make_catch_table(ct,
+make_catch_table_es(ct,
                  start_yr = start_yr,
                  end_yr = end_yr,
                  country = 2,
@@ -25,7 +25,7 @@ make_catch_table(ct,
 \clearpage
 
 <<catches-can, results='asis', echo=FALSE>>=
-make_catch_table(ct,
+make_catch_table_es(ct,
                  start_yr = start_yr,
                  end_yr = end_yr,
                  country = 1,
