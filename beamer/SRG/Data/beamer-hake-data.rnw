@@ -3,7 +3,7 @@
 \usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
 %\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
 
-\usepackage[outdir=./]{epstopdf}
+\usepackage[outdir=./figures/]{epstopdf}
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
@@ -72,8 +72,12 @@ opts_chunk$set(dev = 'cairo_ps',
 source(here::here("R/all.R"))
 source(file.path(rootd_doc, "load-models.R"))
 source(file.path(rootd_r, "custom-knitr-variables.R"))
+
+fig_dir <- here::here("beamer", "SRG", "Data", "figures")
+if(!dir.exists(fig_dir)){
+  dir.create(fig_dir)
+}
 @
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Hake Data]{Fisheries, data, and inputs used in the \Sexpr{assess_yr} Pacific Hake stock assessment}
 \author[JTC]{\includegraphics[height=1in, width=4in]{../../images/hake-on-board.eps}\\Pacific Hake Joint Technical Committee}

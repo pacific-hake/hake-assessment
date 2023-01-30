@@ -1,7 +1,7 @@
 \documentclass[aspectratio=169]{beamer}
 \mode<presentation>
 \usetheme[compress]{Singapore}
-\usepackage[outdir=./]{epstopdf}
+\usepackage[outdir=./figures/]{epstopdf}
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
@@ -74,6 +74,11 @@ opts_chunk$set(dev = 'cairo_ps',
 source(here::here("R/all.R"))
 source(file.path(rootd_doc, "load-models.R"))
 source(file.path(rootd_r, "custom-knitr-variables.R"))
+
+fig_dir <- here::here("beamer", "SRG", "Sensitivities", "figures")
+if(!dir.exists(fig_dir)){
+  dir.create(fig_dir)
+}
 @
 
 % -----------------------------------------------------------------------------
