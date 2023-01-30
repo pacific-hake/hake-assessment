@@ -1,6 +1,7 @@
 \documentclass[aspectratio=169]{beamer}
 \mode<presentation>
 \usetheme[compress]{Singapore}
+\usepackage[outdir=./]{epstopdf}
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
@@ -28,10 +29,8 @@
 \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
 \vskip0pt plus 1filll
 }
-
 \definecolor{pageCol}{rgb}{0.5,0.5,1.0}
 \definecolor{red}{rgb}{1, 0, 0}
-
 \setbeamertemplate{footline}
 {
 \begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
@@ -39,7 +38,6 @@
 \end{beamercolorbox}%
 }
 \setbeamercolor{footline}{fg=pageCol}
-
 \newcounter{saveenumi}
 \input{../../hake-beamer.tex}
 % From https://tex.stackexchange.com/questions/44983/beamer-removing-headline-and-its-space-on-a-single-frame-for-plan-but-keepin
@@ -64,15 +62,19 @@ opts_chunk$set(dev = 'cairo_ps',
                message = FALSE,
                warning = FALSE,
                results = 'hide',
-               cache = TRUE,
-               cache.path = 'knitr-cache/')
+               fig.path = here::here("beamer",
+                                     "SRG",
+                                     "Sensitivities",
+                                     "knitr-cache", "/"),
+               cache.path = here::here("beamer",
+                                       "SRG",
+                                       "Sensitivities",
+                                       "knitr-cache", "/"),
+               cache = TRUE)
 
-source(file.path(here::here(), "R", "all.R"))
-if(!(exists("models_loaded") && models_loaded)){
-  load_models_rds()
-}
-models_loaded <- TRUE
-source(file.path(rootd.R, "custom-knitr-variables.R"))
+source(here::here("R/all.R"))
+source(file.path(rootd_doc, "load-models.R"))
+source(file.path(rootd_r, "custom-knitr-variables.R"))
 @
 
 % -----------------------------------------------------------------------------
@@ -109,7 +111,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
   \item Retrospectives
         \bi
         \item \Sexpr{length(retrospective_yrs)} years into the past
-        \item Cohort determination (`squid plot') for the base model and the age-1 exclusion sensitivity
+        \item Cohort determination (squid plot) for the base model and the age-1 exclusion sensitivity
         \item Historical assessments: \Sexpr{assess_yr - 1991 + 1} years
         \ei
 \end{enumerate}
@@ -140,7 +142,7 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \bi
   \item All 20 retrospective runs were done the same way
   \item 62 MCMC runs in total
-  \item Each model and retrospective has \Sexpr{f(nrow(sens_models_1[[1]]$mcmc))} samples except base model with \Sexpr{f(num.mcmc.samples)}
+  \item Each model and retrospective has \Sexpr{f(nrow(sens_models[[1]][[1]]$mcmc))} samples except base model with \Sexpr{f(num.mcmc.samples)}
   \item Cost for 2022 is approximately \$1,700 USD (so far)
   \item Over 1.25 million files generated as output. Over 99\% of those contribute values to the assessment document
   \item Bottleneck is now dealing with massive amounts of output (RAM and HD throughput limitations)
@@ -156,101 +158,48 @@ source(file.path(rootd.R, "custom-knitr-variables.R"))
 \frametitle{Sensitivities to steepness, $h$, and natural mortality, $M$}
 \begin{center}
 \vspace{5pt}
-%, fig.width=8>>=
 <<hm.biomass.fig>>=
-#oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base_model),
-                       sens_models_1[1],
-                       sens_models_1[2],
-                       sens_models_1[5],
-                       sens_models_1[6]),
-                     subplots = 2,
-                     model.names = c("Base model ",
-                                     sens_model_names_1[1],
-                                     sens_model_names_1[2],
-                                     sens_model_names_1[5],
-                                     sens_model_names_1[6]),
-                     end_yr = end_yr)
-par <- oldpar
+plot_biomass(d_obj = d_obj_sens_biomass[[1]],
+             x_expansion = 4,
+             ylim = c(0, 20),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 9,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE)
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Sensitivities to steepness, $h$, and natural mortality, $M$}
 \begin{center}
 <<hm.par.table, results='asis', echo=FALSE>>=
-param_est_table(c(list(base_model),
-                  sens_models_1[1],
-                  sens_models_1[2],
-                  sens_models_1[5],
-                  sens_models_1[6]),
-                model.names = c("Base model",
-                                sens_model_names_1[1],
-                                sens_model_names_1[2],
-                                sens_model_names_1[5],
-                                sens_model_names_1[6]),
+param_est_table(sens_models[[1]],
+                model.names = sens_models_names[[1]],
                 end_yr = end_yr,
                 digits = 3,
-                xcaption = NULL,
-                font.size = 6.5,
-                space.size = 6.5,
-                getrecs = c(2010, 2014, 2016),
-                show_like = FALSE)
+                xlabel = "tab:main-parameter-estimates-sens-1",
+                font.size = 9,
+                space.size = 10,
+                getrecs = c(2010, 2014, 2016,2020))
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
 \section{Sigma r}
 \subsection{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{frame}
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
-\vspace{5pt}
-%, fig.width=8>>=
 <<sigmar.biomass.fig>>=
-#oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base_model),
-                       sens_models_1[3],
-                       sens_models_1[4]),
-                     subplots = 2,
-                     model.names = c("Base model ",
-                                     sens_model_names_1[3],
-                                     sens_model_names_1[4]),
-                     end_yr = end_yr)
-par <- oldpar
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
-\vspace{5pt}
 <<sigmar.biomass.fig.rel>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base_model),
-                       sens_models_1[3],
-                       sens_models_1[4]),
-                     subplots = 4,
-                     model.names = c("Base model ",
-                                     sens_model_names_1[3],
-                                     sens_model_names_1[4]),
-                     end_yr = end_yr)
-par <- oldpar
 @
 \end{center}
 \end{frame}
@@ -261,26 +210,10 @@ par <- oldpar
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
 <<sigmar.par.table, results='asis', echo=FALSE>>=
-param_est_table(c(list(base_model),
-                  sens_models_1[3],
-                  sens_models_1[4]),
-                model.names = c("Base model",
-                                sens_model_names_1[3],
-                                sens_model_names_1[4]),
-                end_yr = end_yr,
-                digits = 3,
-                xcaption = NULL,
-                font.size = 6.5,
-                space.size = 7,
-                getrecs = c(2010, 2014, 2016),
-                show_like = FALSE)
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-
-% -----------------------------------------------------------------------------%
 \section{Weighting}
 \subsection{Downweight fishery age-composition data}
 \begin{frame}
@@ -288,41 +221,19 @@ param_est_table(c(list(base_model),
 \vspace{5pt}
 \begin{center}
 <<harmonicmean.sensitivity.biomass>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base_model),
-                       sens_models_2[2]),
-                     subplots = 2,
-                     model.names = c(paste0("Base model ", end_yr),
-                                     sens_model_names_2[2]),
-                     end_yr = end_yr)
-par <- oldpar
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Downweight fishery age-composition data}
 \vspace{5pt}
 \begin{center}
 <<harmonicmean.sensitivity.biomass.rel>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base_model),
-                       sens_models_2[2]),
-                     subplots = 4,
-                     model.names = c(paste0("Base model ", end_yr),
-                                     sens_model_names_2[2]),
-                     end_yr = end_yr)
-par <- oldpar
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
 \section{Selectivity}
 \subsection{Flexibility in time-varying selectivity -- $\Phi$}
 \begin{frame}
@@ -341,86 +252,35 @@ driven solely by fishery catch-at-age data
 Here we test alternative values of $\Phi$
 
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
 \subsection{Alternative deviations for selectivity, $\Phi$}
 \begin{frame}
 \frametitle{Alternative deviations for selectivity, $\Phi$}
 \begin{center}
 \vspace{5pt}
 <<phi.sensitivity.biomass>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base_model),
-                       sens_models_4[1],
-                       sens_models_4[2],
-                       sens_models_4[3]),
-                     subplots = 2,
-                     model.names = c(paste0("Base model ", end_yr),
-                                     sens_model_names_4[1],
-                                     sens_model_names_4[2],
-                                     sens_model_names_4[3]),
-                     end_yr = end_yr)
-par <- oldpar
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Alternative deviations for selectivity -- biomass index fit}
 \begin{center}
 \vspace{5pt}
 <<phi.sensitivity.survey, fig.height=3.5, fig.width=8>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base_model),
-                       sens_models_4[1],
-                       sens_models_4[2],
-                       sens_models_4[3]),
-                     subplots = 13,
-                     model.names = c(paste0("Base model ", end_yr),
-                                     sens_model_names_4[1],
-                                     sens_model_names_4[2],
-                                     sens_model_names_4[3]),
-                     end_yr = end_yr,
-                     indexfleets = 2,
-                     legend_loc = "topleft")
-par <- oldpar
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Alternative deviations for selectivity, $\Phi$}
 \begin{center}
 \vspace{-5pt}
 <<phi.sensitivity.table, results='asis', echo=FALSE>>=
-param_est_table(c(list(base_model),
-                  sens_models_4[1],
-                  sens_models_4[2],
-                  sens_models_4[3]),
-                model.names = c("Base model",
-                                sens_model_names_4[1],
-                                sens_model_names_4[2],
-                                sens_model_names_4[3]),
-                end_yr = end_yr,
-                digits = 3,
-                xcaption = NULL,
-                font.size = 6.5,
-                space.size = 6.5,
-                getrecs = c(2010, 2014, 2016),
-                show_like = FALSE)
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
 \section{Max. Age Selectivity}
 \subsection{Spawning biomass}
 \begin{frame}
@@ -428,205 +288,87 @@ param_est_table(c(list(base_model),
 \begin{center}
 \vspace{5pt}
 <<max-age-sel, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(c(list(base_model), sens_models_6),
-                     subplots = 4,
-                     model.names = c(base_model_name, sens_model_names_6),
-                     legend = TRUE,
-                     end_yr = end_yr)
-par <- oldpar
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
-\section{Age-1 index}
-\begin{frame}
-\frametitle{Base model age-1 estimates compared to age-1 index}
-\begin{center}
-\vspace{5pt}
-<<age1.sensitivity.age1.fit.base, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(4, 5, 0, 1))
-make.survey.age1.plot(base_model)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
-\begin{frame}
-\frametitle{Exclude age-1 index -- age-1 estimates compared to age-1 index}
-\begin{center}
-\vspace{5pt}
-<<age1.sensitivity.age1.fit, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(4, 5, 0, 1))
-make.survey.age1.plot(sens_models_2[[1]])
-par <- oldpar
-@
-\end{center}
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
 \subsection{Spawning biomass}
 \begin{frame}
 \frametitle{Excluding age-1 index -- Spawning biomass}
 \begin{center}
 \vspace{5pt}
 <<age1.sensitivity.biomass.a>>=
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(list(base_model, sens_models_2[[1]]),
-                     subplots = 2,
-                     model.names = c(base_model_name, sens_model_names_2[1]),
-                     end_yr = end_yr)
-par <- oldpar
+plot_biomass(d_obj = d_obj_sens_biomass[[2]],
+             x_expansion = 4,
+             leg_pos = c(0.75, 0.9),
+             rev_colors = TRUE)
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
-\begin{frame}
-\frametitle{Base model -- Recruitment}
-\begin{center}
-<<age1.sensitivity.recr.base, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(20, 4.1, 0, 1))
-make.recruitment.plot(base_model,
-                      equil.yr = unfished_eq_yr,
-                      start_yr = start_yr,
-                      end_yr = end_yr,
-                      color = "blue",
-                      add.mean = TRUE,
-                      add.r0 = TRUE,
-                      upper.lim = 35)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
-% \subsection{Recruitment}
-\begin{frame}
-\frametitle{Excluding age-1 index -- Recruitment}
-\begin{center}
-<<age1.sensitivity.recr, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(20, 4.1, 0, 1))
-make.recruitment.plot(sens_models_2[[1]],
-                      equil.yr = unfished_eq_yr,
-                      start_yr = start_yr,
-                      end_yr = end_yr,
-                      color = "blue",
-                      add.mean = TRUE,
-                      add.r0 = TRUE,
-                      upper.lim = 35)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
-% \subsection{$R_0$ and $B_0$ when excluding age-1 index}
-\begin{frame}
-\frametitle{$R_0$ and $B_0$ with and without age-1 index}
-<<main-parameter-estimates-sens-1, results='asis', echo=FALSE>>=
-probs <- c(0.025, 0.5, 0.975)
-base_bo <- f((quantile(base_model$mcmc$`SSB_Initial`, probs = probs)) / 2e3, 0)
-age1_bo <- f((quantile(sens_models_2[[1]]$mcmc$`SSB_Initial`, probs = probs)) / 2e3, 0)
-
-base_ro <- f((quantile(base_model$mcmc$`SR_LN(R0)`, probs = probs) %>% exp) / 1e3, 0)
-age1_ro <- f((quantile(sens_models_2[[1]]$mcmc$`SR_LN(R0)`, probs = probs) %>% exp) / 1e3, 0)
-@
-\begin{table}[tbp]
-\centering
-% \begingroup\fontsize{12}{14}\selectfont
-\begin{tabular}{lrrr}
-Quantity & 2.5\% & Median & 97.5\% \\
-\hline
-\color{blue}{Base model} & & & \\
-\alert<1>{$B_0$, thousand t} & \alert<1>{\Sexpr{base_bo[1]}} & \alert<1>{\Sexpr{base_bo[2]}} & \alert<1>{\Sexpr{base_bo[3]}} \\
-\alert<2>{$R_0$, millions} & \alert<2>{\Sexpr{base_ro[1]}} & \alert<2>{\Sexpr{base_ro[2]}} & \alert<2>{\Sexpr{base_ro[3]}} \\
-\hline
-\color{blue}{Without age-1 index} & & & \\
-\alert<1>{$B_0$, thousand t} & \alert<1>{\Sexpr{age1_bo[1]}} & \alert<1>{\Sexpr{age1_bo[2]}} & \alert<1>{\Sexpr{age1_bo[3]}} \\
-\alert<2>{$R_0$, millions} & \alert<2>{\Sexpr{age1_ro[1]}} & \alert<2>{\Sexpr{age1_ro[2]}} & \alert<2>{\Sexpr{age1_ro[3]}} \\
-\bottomrule
-\end{tabular}
-\end{table}
-\end{frame}
-% -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
 \subsection{Recruitment values}
 \begin{frame}
 \frametitle{Recruitment values}
 <<main-parameter-estimates-sens-1-rec, results='asis', echo=FALSE>>=
-yrs <- c(2014, 2017, 2018, 2020)
-make_rec_tbl <- function(mc, digits = 3){
-  rec <- map(yrs, ~{c(mc$rlower[[as.character(.x)]] * 1e3,
-                      mc$rmed[[as.character(.x)]] * 1e3,
-                      mc$rupper[[as.character(.x)]] * 1e3)}) %>%
-    `names<-`(yrs) %>%
-    bind_rows %>%
-    t %>%
-    as_tibble() %>%
-    mutate(Year = yrs) %>%
-    select(Year, everything()) %>%
-    mutate_at(.vars = vars(-Year), ~{f(.x, 0)})
-    dev <- map(yrs, ~{c(mc$devlower[[as.character(.x)]],
-                      mc$devmed[[as.character(.x)]],
-                      mc$devupper[[as.character(.x)]])}) %>%
-    `names<-`(yrs) %>%
-    bind_rows %>%
-    t %>%
-    as_tibble() %>%
-    mutate_all(~{f(.x, digits)})
-  bind_cols(rec, dev)
-}
-base <- make_rec_tbl(base_model$mcmccalcs) %>%
-  mutate(Year = as.character(Year))
-age1 <- make_rec_tbl(sens_models_2[[1]]$mcmccalcs) %>%
-  mutate(Year = as.character(Year))
-base_str <- data.frame(str = character())
-age1_str <- data.frame(str = character())
-for(i in seq_len(nrow(base))){
-  base_str[i, ] <- paste0("\\alert<", i, ">{", base[i, ], "}", collapse = " & ")
-  age1_str[i, ] <- paste0("\\alert<", i, ">{", age1[i, ], "}", collapse = " & ")
-
-  base_str[i, ] <- paste(base_str[i, ], "\\\\")
-  age1_str[i, ] <- paste(age1_str[i, ], "\\\\")
-}
-base_table <- paste(unlist(base_str, use.names = FALSE), collapse = "")
-age1_table <- paste(unlist(age1_str, use.names = FALSE), collapse = "")
+# yrs <- c(2014, 2017, 2018, 2020)
+# make_rec_tbl <- function(mc, digits = 3){
+#   rec <- map(yrs, ~{c(mc$rlower[[as.character(.x)]] * 1e3,
+#                       mc$rmed[[as.character(.x)]] * 1e3,
+#                       mc$rupper[[as.character(.x)]] * 1e3)}) %>%
+#     `names<-`(yrs) %>%
+#     bind_rows %>%
+#     t %>%
+#     as_tibble() %>%
+#     mutate(Year = yrs) %>%
+#     select(Year, everything()) %>%
+#     mutate_at(.vars = vars(-Year), ~{f(.x, 0)})
+#     dev <- map(yrs, ~{c(mc$devlower[[as.character(.x)]],
+#                       mc$devmed[[as.character(.x)]],
+#                       mc$devupper[[as.character(.x)]])}) %>%
+#     `names<-`(yrs) %>%
+#     bind_rows %>%
+#     t %>%
+#     as_tibble() %>%
+#     mutate_all(~{f(.x, digits)})
+#   bind_cols(rec, dev)
+# }
+# base <- make_rec_tbl(base_model$mcmccalcs) %>%
+#   mutate(Year = as.character(Year))
+# age1 <- make_rec_tbl(sens_models_2[[1]]$mcmccalcs) %>%
+#   mutate(Year = as.character(Year))
+# base_str <- data.frame(str = character())
+# age1_str <- data.frame(str = character())
+# for(i in seq_len(nrow(base))){
+#   base_str[i, ] <- paste0("\\alert<", i, ">{", base[i, ], "}", collapse = " & ")
+#   age1_str[i, ] <- paste0("\\alert<", i, ">{", age1[i, ], "}", collapse = " & ")
+#
+#   base_str[i, ] <- paste(base_str[i, ], "\\\\")
+#   age1_str[i, ] <- paste(age1_str[i, ], "\\\\")
+# }
+# base_table <- paste(unlist(base_str, use.names = FALSE), collapse = "")
+# age1_table <- paste(unlist(age1_str, use.names = FALSE), collapse = "")
 # In the table code below, Sexpr is used to inject strings containing  latex code
 # for the values in the base and age1 tables
 @
-\begin{table}[tbp]
-\centering
-\fontsize{13pt}{2}\selectfont
-\begin{tabular}{lrrrrrr}
-\toprule
-Year & \multicolumn{3}{c}{Absolute recruitment} & \multicolumn{3}{c}{Recruitment deviations} \\
-\cmidrule(r){2-4}\cmidrule(l){5-7}
-       & 2.5\%    & Median   & 97.5\%   & 2.5\%  & Median & 97.5\% \\
-\midrule
-\color{blue}{Base model} & & & & & & \\
-\Sexpr{base_table}
-\midrule
-\color{blue}{Exclude age-1 index} & & & & & & \\
-\Sexpr{age1_table}
-\bottomrule
-\end{tabular}
-\end{table}
+
+% \begin{table}[tbp]
+% \centering
+% \fontsize{13pt}{2}\selectfont
+% \begin{tabular}{lrrrrrr}
+% \toprule
+% Year & \multicolumn{3}{c}{Absolute recruitment} & \multicolumn{3}{c}{Recruitment deviations} \\
+% \cmidrule(r){2-4}\cmidrule(l){5-7}
+%        & 2.5\%    & Median   & 97.5\%   & 2.5\%  & Median & 97.5\% \\
+% \midrule
+% \color{blue}{Base model} & & & & & & \\
+% \Sexpr{base_table}
+% \midrule
+% \color{blue}{Exclude age-1 index} & & & & & & \\
+% \Sexpr{age1_table}
+% \bottomrule
+% \end{tabular}
+% \end{table}
 \end{frame}
 % -----------------------------------------------------------------------------%
 
@@ -661,25 +403,17 @@ Year & \multicolumn{3}{c}{Absolute recruitment} & \multicolumn{3}{c}{Recruitment
 \vspace{-5pt}
 % , fig.height=5, fig.width=10>>=
 <<retro.1>>=
-##oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
-#oldpar <- par(mfrow=c(1,2), mar=c(5,4,1,1),no.readonly = TRUE)
-#par(mar = c(4.5, 4.1, 1.5, 1.1))
-oldpar <- par()
-par(mar = c(7.1, 4.1, 0, 1))
-make.comparison.plot(retro.list,
-                     subplots = 2,
-                     model.names = retro.model.names,
-                     legend = TRUE,
-                     legend_loc = "topleft",
-                     is.retro = TRUE,
-                     ylimAdj = 0.95)
-par <- oldpar
+plot_biomass(d_obj = d_obj_retro_biomass,
+             leg_font_size = 9,
+             x_expansion = 4,
+             leg_pos = c(0.6, 0.89),
+             leg_ncol = 2,
+             alpha = 0.1,
+             rev_colors = TRUE)
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
 \subsection{Base model squid plot}
 \begin{frame}
 \frametitle{Base model retrospective -- squid plot}
@@ -688,37 +422,15 @@ par <- oldpar
 %, out.width='0.9\\columnwidth'>>=   Keep following values else
 %   years get too close to the tendrils
 <<retro.3, fig.height=3.5>>=
-oldpar <- par(mar = c(5, 4, 1, 1), no.readonly = TRUE)
-retro.cohorts <- (end_yr - 11):(end_yr - 2)
+retro_cohorts <- (end_yr - 11):(end_yr - 2)
 make_squid_plot(base_model,
                 subplot = 1,
-                cohorts = retro.cohorts)
-par <- oldpar
+                cohorts = retro_cohorts,
+                plot_mcmc = TRUE)
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
-\subsection{Age-1 model squid plot}
-\begin{frame}
-\frametitle{Exclude age-1 index retrospective -- squid plot}
-\begin{center}
-\vspace{-5pt}
-%, out.width='0.9\\columnwidth'>>=   Keep following values else
-%   years get too close to the tendrils
-<<retro.3.age1, fig.height=3.5>>=
-oldpar <- par(mar = c(5, 4, 1, 1), no.readonly = TRUE)
-make_squid_plot(sens_models_2[[1]],
-                subplot = 1,
-                cohorts = retro.cohorts)
-par <- oldpar
-@
-\end{center}
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
 \subsection{Historical assessments}
 \begin{frame}
 \frametitle{Historical assessments}
@@ -732,9 +444,7 @@ make.assessment.history.plot(base_model,
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
 \section{Summary}
 \subsection{Overview}
 \begin{frame}
@@ -754,6 +464,5 @@ make.assessment.history.plot(base_model,
   \ei
 \ei
 \end{frame}
-% -----------------------------------------------------------------------------%
 
 \end{document}
