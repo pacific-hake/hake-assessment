@@ -8,7 +8,7 @@
 #' @param doc_dir Directory the main document RNW file resides in
 #' @param alt_text The knitting process creates the global `alt_fig_text`, but only if the figures were not cached.
 #' This must only be set to `TRUE` when building from scratch, without any cached figures
-#' @param knit_only Only knit the code, do not run latex or pdflatex
+#' @param knit_only Only knit the code, do not run latex engine.
 #' @param make_pdf Logical. `TRUE` to make the pdf, if `FALSE` it will only go as far as postscript. If `png_figs`
 #' is set to `TRUE`, this argument will have no effect, a PDF will be built anyway
 #' @param make_bib Logical. Run bibtex
@@ -50,7 +50,7 @@ build_doc <- function(doc_name = "hake-assessment",
 
 #' Build a pared-down version of the assessment. Typically used to compile figures section or
 #' tables section only. Citations and other references will not be compiled properly since
-#' pdflatex is only called once
+#' the latex engine, e.g., `lualatex`, is only called once
 #'
 #' @param doc_name What to name the document (no extension needed)
 #'
@@ -64,7 +64,7 @@ build_test <- function(doc_name = "hake-assessment-test"){
   knit(paste0(doc_name, ".rnw"))
   # The knitting process creates the global `alt_fig_text`
   #add_alt_text(paste0(doc_name, ".tex"), alt_fig_text)
-  system(paste0("pdflatex ", doc_name, ".tex"), wait = TRUE)
+  system(paste0("lualatex ", doc_name, ".tex"), wait = TRUE)
   invisible()
 }
 
@@ -86,7 +86,7 @@ build_es <- function(){
 #' PNG option since EPS files produce a huge final PDF; no need for bibtex
 #'   since no references. If those are needed then just adapt `build_doc` again.
 #'
-#' @param knit_only Only knit the code, do not run latex or pdflatex
+#' @param knit_only Only knit the code, do not run latex engine
 #' @param doc_name What to name the document (no extension)
 #'
 #' @return [base::invisible()]
@@ -95,7 +95,7 @@ build_adnuts_doc <- function(knit_only = FALSE,
                              doc_name = "adnuts-diagnostics",
                              ...){
 
-  latex_command <- "pdflatex"
+  latex_command <- "lualatex"
   curr_path <- getwd()
   setwd(here::here("doc-adnuts-diagnostics"))
 
