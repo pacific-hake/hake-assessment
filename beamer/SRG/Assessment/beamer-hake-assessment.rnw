@@ -301,7 +301,7 @@ cowplot::plot_grid(plotlist = plist,
        \begin{column}{0.38\textwidth}
        \bi
        \item Relative cohort strength captured well, but some over- and under-fitting
-       \item Predicted higher: 1999 cohort often,  2010 cohort in 2017 survey
+       \item Predicted higher: 1999 cohort and 2010 cohort in 2017 survey
        \item Predicted lower: some young cohorts in 2003--2011, 2014 cohort in 2017 survey
        \item Predictions for 2014 and 2016 cohorts are similar in the 2019 and 2021 surveys,
        despite differences in survey estimates (although well within the range of uncertainty)
@@ -673,6 +673,15 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
          mostly overlaps that from last year's assessment.
      }
 %----------------------------------------------------------
+     \frame{\frametitle{Uncertainty in Spawning Biomass}
+       \bc
+       <<hist.dispersion.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+         make.assessment.history.disp.plot(base_model,
+                                  assessment.history.disp)
+       @
+         \ec
+     }
+%----------------------------------------------------------
      \frame{\frametitle{Relative Spawning Biomass}
        \bc
        <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
@@ -733,22 +742,20 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \bi
        \item Medium-term: continuing research to treat recruitment deviations as a random effect and estimate $\sigma_R$
          \bi
-       \item Woods Hole Assessment Model (WHAM) - a state-space age-structured assessment framework
-       developed at the Norteast Fisheries Science Center, facilitates estimation of process error rather than using fixed variances
-       \bi
-       \item Should be estimating age-specific $M$
-         \item Mean recruitment fits just as well as Beverton-Holt stock-recruit function
-       \item $q$ of the age-2$^+$ biomass index was 0.525
-       \item Age-specific autocorrelation in selectivity was 0.598
-       \ei
-       \item Hake MSE estimation model
-       \ei
+          \item Woods Hole Assessment Model (WHAM) and State-Space Assessment model (SAM) are age-structured assessment frameworks
+                that use Template Model Builder (TMB) to facilitate estimation of process error variances rather than using fixed variances
+          \bi
+          \item JTC has fit a WHAM model to \fishname\ data and is exploring variance estimates
+          \item Next steps include fitting data using SAM and using estimates from both to inform Stock Synthesis inputs
+          \item Hake MSE estimation model, also coded in TMB, is another tool being explored
+          \ei
+         \ei
+       \pause
+       \item Medium-term: Incorporate recent and new work on environmental drivers of recruitment into the MSE to explore linkages
+       to the stock assessment process (more on this later in the week)
        \pause
        \item Medium-term: conduct research, more broadly, to evaluate concurrent estimation of multiple variance parameters
        in stock assessment and their interactions
-       \pause
-       \item Medium-term: explore how larval/juvenile survival and factors affecting recruitment can be linked
-       into stock assessment process (more on this Tuesday afternoon)
        \pause
        \item Long-term: continue monitoring ongoing development of recruitment priors through meta-analysis research
        \ei
@@ -769,25 +776,19 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Response:} \emph{Projecting recruitment}}
        \bi
-       \item Exploring approaches to make informed decisions about current and
-       future recruitment, instead of default long-term averages or \emph{ad hoc}
-       bidirectional multipliers (i.e., plus or minus x\%)
-       \bi
-       \item Age-1 index
-       \item Oceanographic and environmental drivers of recruitment (previous and
-                                                                     ongoing work) as a recruitment index
-       \ei
-       \pause
-       \item Stock synthesis currently does not have capacity to draw from past
-       observations or use mixing distributions to simulate recruitment in the
-       projection period. Available options include:
+       \item The inclusion of the age-1 index into the base model is a step in the right direction
+       \item Extending oceanographic and environmental associations with \fishname\ helps with prediction
          \bi
-       \item stock-recruitment curve
-       \item stock-recruitment curve with a multiplier
-       \item mean recruitment across a user-defined time period
-       \ei
+         \item Distribution forecasts continue and will be provided again in 2023
+         \item Extending past historical (up to 2010) work on recruitment-environment relationships to current year 
+         \ei
        \pause
-       \item Appendix H presents new ideas for visualizing annual recruitment
+       \item Utilize the MSE to evaluate alternative recruitment distributional assumptions as time allows 
+       \pause
+       \item JTC is involved with the devolopment of next generation stock assessment model frameworks (e.g., FIMS)
+             and will be using \fishname\ as a test model
+       \item JTC is also submitting proposals to work on further evaluate recruitment potential from other
+             data sources (e.g, CalCOFI)  
        \ei
      }
 %----------------------------------------------------------
@@ -806,17 +807,24 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Response:} \emph{Dynamic reference points}}
        \bi
-       \item Specifying projected recruitment as the median of a given year range
-       is not explicitly an option in Stock Synthesis.
+       \item The MSE can now utilize dynamic reference points in management procedure
+             scenarios, and Stock Synthesis models can now incorporate dynamic reference point
+             capabilities into routine stock assessment output.
        \pause
-       \item To work around this, the JTC calculated the median of estimates
-       of recruitment from the main time period (1970-2020) and scaled this
-       value to the estimate of $R_0$. Scaled median recruitment was then used
-       as in input value to Stock Synthesis which does allow for scaling
-       recruitment forecasts in terms of virgin recruitment. Catch projections were
-       then conducted using mean recruitment from the main time
-       period and scaled virgin recruitment based on the median estimates of recruitment
-       relative to $R_0$. Brief example of results will be shown, if desired.
+       \item JTC continues to engage the science and management community on this topic:
+          \bi
+          \item Research activities and outreach related to dynamic reference points broadly,
+                as well as specifically for Pacific Hake.
+          \item Conducted a learning session at last summer JMC meeting.
+          \item Reached out to regional RFMO that operationalizes dynamic reference points.
+          \item Participating in and following DFO and NOAA national guidance documentation on
+                incorporating prevailing environmental conditions in to stock assessment 
+          \ei
+       \pause
+       \item The JTC plans to work with the MSE working group in the coming year examining simulations
+             that explore alternative dynamic F-based target reference points coupled with static
+             (equilibrium-based) biomass limit reference points in exploratory harvest control
+             rule scenarios (more on this in the MSE presentation).  
        \ei
      }
 %----------------------------------------------------------
@@ -832,19 +840,17 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Response:} \emph{Reproductive cycle}}
        \bi
-       \item No additional work investigating the usefulness of dynamic reference points over the
-       past year.
+       \item JTC encourages continued ovary sample collections in the coming years, including incorporating Canadian
+             samples into analyses.
        \pause
-       \item Instead, the JTC and MSE technical team have been working with Stock
-       Synthesis developers to incorporate dynamic reference point capabilities into
-       the stock assessment statistical (Bayesian) and MSE coding (full closed-loop simulation)
-       frameworks. Posterior distributions associated with dynamic reference points are now
-       possible within Stock Synthesis. Likewise, the MSE can now utilize dynamic reference
-       points in management procedure scenarios.
+       \item Follow (and engage with as needed) ongoing research looking at spatiotemporal
+             trends in \fishname\ reproduction (more later this week at research presentation).
        \pause
-       \item The JTC plans to continue engaging in
-       research related to dynamic reference points broadly, as well as specifically
-       for Pacific Hake.
+       \item Follow (and engage with as needed) ongoing research looking at physiological indices
+             of fish reproductive and metabolic status, which is expected to bolster the current
+             practice of using gonadal histology alone for surveyed Pacific Hake and provide important
+             data to more accurately determine the reproductive cycle of females (and hence maturity used
+             in stock assessment).
        \ei
      }
 %----------------------------------------------------------
@@ -860,22 +866,20 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Response:} \emph{Project weight-at-age}}
        \bi
-       \item Recent, current, and future recruitment are perhaps the most influential
-       sources of uncertainty in stock assessment projections. Thus, the JTC has prioritized
-       research on recruitment, including supporting analyses
-       and the justification for using the age-1 index in the 2022 base model and other
-       related analyses.
+       \item JTC plans to work with the MSE working group on a newly funded research project aimed
+             at incorporating environmentally-driven growth into the operating model and testing
+             consequences of climate-driven changes in recruitment, growth, and movement concomitantly.
        \pause
-       \item The JTC is scoping plans to explicitly evaluate these relationships
-       using random effects models to partition the variance components (year and cohort) in
-       available weight-at-age data. The JTC also plans to explore new weight-at-age forecasting
-       capabilities in Stock Synthesis (once fully tested).
-       \pause
-       \item Simulation experiment that evaluates the influence of variable
-       weight-at-age data relative to other sources of variance in stock assessment
-       projections (e.g., recruitment) would also be useful. Until this work is completed,
-       the JTC continues to use a recent five-year average in the projection period because
-       it is consistent with recent data.
+       \item Additonal research that is ongoing, planned or desired includes:
+         \bi
+           \item Plans to explicitly evaluate cohort effects using random effects models to partition
+                 the variance components (year and cohort) in available weight-at-age data and to explore
+                 spatial patterns.
+           \item Build upon research currently in progress by a graduate student looking at variation in
+                 Pacific Hake weight-at-age data.
+           \item A simulation experiment that evaluates the influence of variable weight-at-age data relative
+                 to other sources of variance in stock assessment projections (e.g., recruitment) would also be useful.
+         \ei
        \ei
      }
 %----------------------------------------------------------
@@ -891,22 +895,17 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Response:} \emph{High-performance computing}}
        \bi
-       \item Recent, current, and future recruitment are perhaps the most influential
-       sources of uncertainty in stock assessment projections. Thus, the JTC has prioritized
-       research on recruitment, including supporting analyses
-       and the justification for using the age-1 index in the 2022 base model and other
-       related analyses.
+       \item Resources were made available for the JTC to use a new high-performance computing network
+             server with 80 processors to complete all model runs (bridging, base, sensitivity,
+             retrospectives, and forecasts). This will also be available for MSE model runs.
        \pause
-       \item The JTC is scoping plans to explicitly evaluate these relationships
-       using random effects models to partition the variance components (year and cohort) in
-       available weight-at-age data. The JTC also plans to explore new weight-at-age forecasting
-       capabilities in Stock Synthesis (once fully tested).
+       \item Another high-performance server unit and two high-performance laptops have also been acquired
+             for completing data preperation, diagnostic examination, running test models, and exploring
+             alternative model configurations in support of the Pacific Hake assessment.
        \pause
-       \item Simulation experiment that evaluates the influence of variable
-       weight-at-age data relative to other sources of variance in stock assessment
-       projections (e.g., recruitment) would also be useful. Until this work is completed,
-       the JTC continues to use a recent five-year average in the projection period because
-       it is consistent with recent data.
+       \item Specific scripts and automation procedures using new high-performance computing workflow (including
+             computing capacity, model throughput, computing time-savings, and system back-ups) have greatly influenced
+             the efficacy of and improved collaboration among the JTC.
        \ei
      }
 %----------------------------------------------------------
@@ -916,19 +915,19 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \item Sensitivity models: the JTC has conducted all of the requested sensitivities (and many others).
        \pause
        \item Threshold probabilities of stock change: this endeavor is well suited for future
-             MSE-related performance metric discussions.
+             MSE-related performance metric discussions. No such discussions occurred in 2022.
        \pause
        \item Ageing error: an ageing error study in conjunction with CARE has commenced, however
        a full exchange is on hold due to difficulties with permits to send biological specimens across the border.
        \pause
        \item Historical weight-at-age data: currently working with the Burke Museum icthyology collections manager.
        \pause
-       \item Input sample sizes: nothing explicit undertaken to date, but working with AFSC researchers working on
+       \item Input sample sizes: nothing explicit undertaken to date, but working with AFSC researchers who are working on
              similar issues for a range of species.
        \pause
        \item Alternative model structures: explorations continue on the implementation of a hake-like assessment
              in WHAM and SAM, in addition to the custom TMB estimation model used in the MSE, to evaluate the
-            impact of platform-specific configurations, assumptions, and capabilities.
+             impact of platform-specific configurations, assumptions, and capabilities.
        \ei
      }
 %----------------------------------------------------------
@@ -966,10 +965,10 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
              expected from the highly uncertain 2020 cohort:
          \bi
        \item Fishery age composition data from 2022 season suggests very large 2020 cohort
-       \item Age-1 index in 2021 suggests above average 2020 cohort, but not as large as fishery data alone indicate
-       \item Anomolies to consider include low catches in Canada, differences in U.S. fleet catch-at-age, and
+       \item Age-1 index in 2021 suggests above average 2020 cohort, but not as large as fishery data alone indicate 
+       \item Additional considerations include low catches in Canada, differences in U.S. fleet catch-at-age, and
              cohort not yet seen by acoustic survey
-       \ei
+         \ei
        \item The model estimates a \Sexpr{joint.percent.prob.above.below}\%
        joint probability of being both above the target relative fishing intensity in
        \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at the
