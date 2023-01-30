@@ -208,6 +208,7 @@ cowplot::plot_grid(plotlist = plist,
       \item Report files for models using empirical weight-at-age for growth do not supply output that uses growth parameters
     \ei
   \item Updating data previous to \Sexpr{last_data_yr} had very little effect on the stock trajectory.
+  \pause
   \item Adding \Sexpr{last_data_yr} catch and weight-at-age data resulted in a slight upward shift in current female spawning biomass, because the mean weights in \Sexpr{last_data_yr} were mostly above the recent 5-year average mean weights (assumption before the addition of these data).
   %\item Adding the \Sexpr{last_data_yr} survey biomass estimate and age compositions leads to slightly more optimistic estimates of biomass %for the last few years and reduces uncertainty.
   %\item The addition of the age-1 index resulted in a small increase in $B_0$, an increase in relative spawning biomass from 2019--2022, %and an increase in the estimated size of the 2018 and 2020 cohorts.
@@ -747,13 +748,12 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
           \bi
           \item JTC has fit a WHAM model to \fishname\ data and is exploring variance estimates
           \item Next steps include fitting data using SAM and using estimates from both to inform Stock Synthesis inputs
-          \item Hake MSE estimation model, also coded in TMB, is another tool being explored
+          \item Hake MSE estimation model, also coded in TMB, is another tool to be explored further
           \ei
          \ei
        \pause
        \item Medium-term: Incorporate recent and new work on environmental drivers of recruitment into the MSE to explore linkages
        to the stock assessment process (more on this later in the week)
-       \pause
        \item Medium-term: conduct research, more broadly, to evaluate concurrent estimation of multiple variance parameters
        in stock assessment and their interactions
        \pause
@@ -780,14 +780,14 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \item Extending oceanographic and environmental associations with \fishname\ helps with prediction
          \bi
          \item Distribution forecasts continue and will be provided again in 2023
-         \item Extending past historical (up to 2010) work on recruitment-environment relationships to current year 
+         \item Extending past historical (up to 2010) work on recruitment-environment relationships to current year
+               (more on this later in the week) 
          \ei
-       \pause
        \item Utilize the MSE to evaluate alternative recruitment distributional assumptions as time allows 
        \pause
        \item JTC is involved with the devolopment of next generation stock assessment model frameworks (e.g., FIMS)
              and will be using \fishname\ as a test model
-       \item JTC is also submitting proposals to work on further evaluate recruitment potential from other
+       \item JTC is also looking to further evaluate recruitment potential from other
              data sources (e.g, CalCOFI)  
        \ei
      }
@@ -809,14 +809,14 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \bi
        \item The MSE can now utilize dynamic reference points in management procedure
              scenarios, and Stock Synthesis models can now incorporate dynamic reference point
-             capabilities into routine stock assessment output.
+             capabilities into routine stock assessment output
        \pause
        \item JTC continues to engage the science and management community on this topic:
           \bi
           \item Research activities and outreach related to dynamic reference points broadly,
-                as well as specifically for Pacific Hake.
-          \item Conducted a learning session at last summer JMC meeting.
-          \item Reached out to regional RFMO that operationalizes dynamic reference points.
+                as well as specifically for Pacific Hake
+          \item Conducted a learning session at the JMC meeting last summer
+          \item Reached out to a RFMO that operationalizes dynamic reference points.
           \item Participating in and following DFO and NOAA national guidance documentation on
                 incorporating prevailing environmental conditions in to stock assessment 
           \ei
@@ -824,7 +824,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \item The JTC plans to work with the MSE working group in the coming year examining simulations
              that explore alternative dynamic F-based target reference points coupled with static
              (equilibrium-based) biomass limit reference points in exploratory harvest control
-             rule scenarios (more on this in the MSE presentation).  
+             rule scenarios (more on this in the MSE presentation)  
        \ei
      }
 %----------------------------------------------------------
@@ -841,16 +841,14 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        {\bf Response:} \emph{Reproductive cycle}}
        \bi
        \item JTC encourages continued ovary sample collections in the coming years, including incorporating Canadian
-             samples into analyses.
-       \pause
+             samples into analyses
        \item Follow (and engage with as needed) ongoing research looking at spatiotemporal
-             trends in \fishname\ reproduction (more later this week at research presentation).
-       \pause
+             trends in \fishname\ reproduction (more on this later in the week)
        \item Follow (and engage with as needed) ongoing research looking at physiological indices
              of fish reproductive and metabolic status, which is expected to bolster the current
              practice of using gonadal histology alone for surveyed Pacific Hake and provide important
              data to more accurately determine the reproductive cycle of females (and hence maturity used
-             in stock assessment).
+             in stock assessment)
        \ei
      }
 %----------------------------------------------------------
@@ -868,17 +866,17 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \bi
        \item JTC plans to work with the MSE working group on a newly funded research project aimed
              at incorporating environmentally-driven growth into the operating model and testing
-             consequences of climate-driven changes in recruitment, growth, and movement concomitantly.
+             consequences of climate-driven changes in recruitment, growth, and movement concomitantly
        \pause
        \item Additonal research that is ongoing, planned or desired includes:
          \bi
            \item Plans to explicitly evaluate cohort effects using random effects models to partition
                  the variance components (year and cohort) in available weight-at-age data and to explore
-                 spatial patterns.
+                 spatial patterns
            \item Build upon research currently in progress by a graduate student looking at variation in
-                 Pacific Hake weight-at-age data.
+                 Pacific Hake weight-at-age data
            \item A simulation experiment that evaluates the influence of variable weight-at-age data relative
-                 to other sources of variance in stock assessment projections (e.g., recruitment) would also be useful.
+                 to other sources of variance in stock assessment projections (e.g., recruitment) would also be useful
          \ei
        \ei
      }
@@ -897,7 +895,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \bi
        \item Resources were made available for the JTC to use a new high-performance computing network
              server with 80 processors to complete all model runs (bridging, base, sensitivity,
-             retrospectives, and forecasts). This will also be available for MSE model runs.
+             retrospectives, and forecasts). This will also be available for future MSE model runs.
        \pause
        \item Another high-performance server unit and two high-performance laptops have also been acquired
              for completing data preperation, diagnostic examination, running test models, and exploring
@@ -921,7 +919,12 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        a full exchange is on hold due to difficulties with permits to send biological specimens across the border.
        \pause
        \item Historical weight-at-age data: currently working with the Burke Museum icthyology collections manager.
-       \pause
+       \ei
+     }
+%----------------------------------------------------------
+     \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
+       {\bf Other requests: see details in assessment document}}
+       \bi
        \item Input sample sizes: nothing explicit undertaken to date, but working with AFSC researchers who are working on
              similar issues for a range of species.
        \pause
@@ -961,6 +964,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \item Above average 2014 and 2016 cohort biomass: mortality outpacing growth (34\% and 35\%
              decline, respectively, from beginning of 2022)
        \item Above average 2020 cohort biomass: growth keeping pace with mortality from beginning of 2022
+       \pause
        \item Relative female spawning biomass is high at the start of 2023 (104\% of $B_0$), but large contributions
              expected from the highly uncertain 2020 cohort:
          \bi
@@ -969,6 +973,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \item Additional considerations include low catches in Canada, differences in U.S. fleet catch-at-age, and
              cohort not yet seen by acoustic survey
          \ei
+       \pause
        \item The model estimates a \Sexpr{joint.percent.prob.above.below}\%
        joint probability of being both above the target relative fishing intensity in
        \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at the
