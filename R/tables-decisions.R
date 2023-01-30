@@ -128,7 +128,7 @@ decision_table <- function(model,
                              quant.levels[i])
       quant.ampersands <- paste0(quant.ampersands,
                                  latex.amp())
-      quant.cell.defs <- c(quant.cell.defs, "Y")
+      quant.cell.defs <- c(quant.cell.defs, "C{1.5cm} ")
     }
     # Add the vertical bar to the edge of the last quant cell
     quant.cell.defs[length(quant.cell.defs)] <- paste0(quant.cell.defs[length(quant.cell.defs)], "|")
@@ -204,7 +204,7 @@ decision_table <- function(model,
                              quant.levels[i])
       quant.ampersands <- paste0(quant.ampersands,
                                  latex.amp())
-      quant.cell.defs <- c(quant.cell.defs, "Y")
+      quant.cell.defs <- c(quant.cell.defs, "C{1.5cm} ")
     }
     # Add the vertical bar to the edge of the last quant cell
     quant.cell.defs[length(quant.cell.defs)] <- paste0(quant.cell.defs[length(quant.cell.defs)], "|")
@@ -267,8 +267,7 @@ decision_table <- function(model,
         size = size.string,
         add.to.row = addtorow,
         table.placement = placement,
-        tabular.environment = "tabularx",
-        width = "\\textwidth",
+        tabular.environment = "tabular",
         hline.after = NULL)
 }
 
@@ -390,7 +389,7 @@ make.risk.table <- function(model,
 
   ## Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)
-  align <- get.align(ncol(risk), first.left = TRUE, just = "Y")
+  align <- get.align(ncol(risk), first.left = TRUE, just = "C{2cm} ")
   if (type == 2) {
     risk <- risk2
     addtorow <- addtorow2
@@ -410,7 +409,6 @@ make.risk.table <- function(model,
         add.to.row = addtorow,
         table.placement = placement,
         hline.after = NULL,
-        tabular.environment = "tabularx",
-        width = "\\textwidth",
+        tabular.environment = "tabular",
         booktabs = TRUE)
 }

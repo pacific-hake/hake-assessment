@@ -42,8 +42,6 @@
 \usepackage{multirow}
 %% Used in executive summary tables
 \usepackage{booktabs}
-%% Used in decision tables and others so vertical lines line up properly.
-\usepackage{tabularx}
 %% Allows the citation to reflect the number of pages in the document.
 \usepackage{lastpage}
 %% So paragraphs will have a blank line between them.
@@ -106,15 +104,16 @@
 \setlist[longitem,5]{label=\alph*)}
 
 \definecolor{rowclr}{RGB}{255, 192, 203}
-%% For centering or right cell values in a tabularx using stretched cells (X)
-\newcolumntype{Y}{>{\centering\arraybackslash}X}
-\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+%% For centering with fixed width column or right cell values in a tabular
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+
 \newcommand{\sQuote}[1]{`#1'}
 \newcommand{\dQuote}[1]{``#1''}
 \newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
 \newcommand{\gfrac}[2]{\genfrac{}{}{}{0}{#1}{#2}}
-%% For centered, even columns in a table. Use 'C' instead of 'c'
-\newcolumntype{C}{>{\centering\arraybackslash}p{2em}}
 
 \newenvironment{codefont}{\fontfamily{pcr}\selectfont}{\par}
 
