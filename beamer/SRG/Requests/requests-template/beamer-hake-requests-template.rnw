@@ -1,7 +1,7 @@
 \documentclass[aspectratio=169]{beamer}
 \mode<presentation>
 \usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
-\usepackage[outdir=./]{epstopdf}
+\usepackage[outdir=./figures/]{epstopdf}
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
@@ -54,16 +54,32 @@ opts_chunk$set(dev = 'cairo_ps',
                fig.path = here::here("beamer",
                                      "SRG",
                                      "Requests",
+                                     "requests-day1"
                                      "knitr-cache", "/"),
                cache.path = here::here("beamer",
                                        "SRG",
                                        "Requests",
+                                       "requests-day1"
                                        "knitr-cache", "/"),
                cache = TRUE)
 
 source(here::here("R/all.R"))
 source(file.path(rootd_doc, "load-models.R"))
 source(file.path(rootd_r, "custom-knitr-variables.R"))
+
+requests_dir <- here::here("beamer", "SRG", "Requests")
+req_dirs <- basename(list.dirs(requests_dir))
+req_day <- "requests-day1"
+if(!req_day %in% req_dirs){
+  stop("The directory `", file.path(requests_dir, req_day), "` does not ",
+       "exist but you have chosen `", requests_day,"` to compile. Check ",
+       "that you haven't forgotten to set up the folder or change the name",
+       call. = FALSE)
+}
+fig_dir <- file.path(requests_dir, req_day, "figures")
+if(!dir.exists(fig_dir)){
+  dir.create(fig_dir)
+}
 @
 
 \title[Hake Management]{SRG Assessment Requests}
