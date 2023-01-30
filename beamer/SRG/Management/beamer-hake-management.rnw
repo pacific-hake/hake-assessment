@@ -1,46 +1,23 @@
-%\documentclass[handout,xcolor=pdftex,dvipsnames,table]{beamer}
-%\documentclass[draft]{beamer}
-%\documentclass[notesonly]{beamer}
-%\documentclass[notes]{beamer}
-% Command line building in R (obviously repeat the latex step if running fresh):
-% knitr::knit("beamer-hake-management.rnw")
-% shell("latex beamer-hake-management"); shell("dvips beamer-hake-management");  shell("ps2pdf beamer-hake-management.ps")
-
 \documentclass[aspectratio=169]{beamer}
 \mode<presentation>
-\usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
-%\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
-
-%\usefonttheme{serif}
-% font themes: default, professionalfonts, serif, structurebold, structureitalicserif, structuresmallcapsserif
-
+\usetheme[compress]{Singapore}
+\usepackage[outdir=./]{epstopdf}
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
 \usepackage{tabularx}
-\usepackage{booktabs}          %% Used in risk tables
-\usepackage{multirow}          %% Used in decision tables
-\usepackage{xcolor}            %% Used in Historical performance section
-%\usepackage{beamerarticle}
-%\usepackage{enumitem}
-%\usepackage{beamerthemesplit}
-\usepackage[T1]{fontenc}  %to use < or > in tables
-
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc} % to use < or > in tables
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
-
-% pdf is displayed in full screen mode automatically
-%\hypersetup{pdfpagemode=FullScreen}
-
-%\setbeamersize{sidebar width left=0.05in}
 \setbeamersize{text margin left=0.1in}
 \setbeamersize{text margin right=0.1in}
-
 \setbeamertemplate{title page}
 {
 \includegraphics[height=0.5in]{../../images/NOAA.eps}
 \hfill
 \includegraphics[height=0.5in]{../../images/DFO.eps}
-
 \vskip0pt plus 1filll
 \begin{center}
 {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
@@ -53,9 +30,7 @@
 \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
 \vskip0pt plus 1filll
 }
-
 \definecolor{pageCol}{rgb}{0.5,0.5,1.0}
-
 \setbeamertemplate{footline}
 {
 \begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
@@ -63,15 +38,11 @@
 \end{beamercolorbox}%
 }
 \setbeamercolor{footline}{fg=pageCol}
-
 \newcounter{saveenumi}
 \input{../../hake-beamer.tex}
-%% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
-%% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
-%%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
-%%                results='show', cache=TRUE, cache.path='knitr-cache/')
+
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-library(knitr)  # need this else these options get ignored on first run
+library(knitr)
 opts_chunk$set(dev = 'cairo_ps',
                fig.path = 'knitr-cache/',
                fig.dpi = 96,
@@ -82,41 +53,36 @@ opts_chunk$set(dev = 'cairo_ps',
                message = FALSE,
                warning = FALSE,
                results = 'hide',
-               cache = TRUE,
-               cache.path = 'knitr-cache/')
+               fig.path = here::here("beamer",
+                                     "SRG",
+                                     "Assessment",
+                                     "knitr-cache", "/"),
+               cache.path = here::here("beamer",
+                                       "SRG",
+                                       "Assessment",
+                                       "knitr-cache", "/"),
+               cache = TRUE)
 
-source(file.path(here::here(), "R", "all.R"))
-if(!(exists("models_loaded") && models_loaded)){
-  load_models_rds()
-}
-models_loaded <- TRUE
-source(file.path(rootd.R, "custom-knitr-variables.R"))
+source(here::here("R/all.R"))
+source(file.path(rootd_doc, "load-models.R"))
+source(file.path(rootd_r, "custom-knitr-variables.R"))
 
 metric <- NULL
 forecasts <- base_model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
-## models.inds are the indices of those which will be plotted against each other
-## next 2 lines copied from executive-summary.rnw  (manual 2017)
 models.inds <- c(1, 2, 6, 12, catch.default.policy.ind)
-models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] ## pretty catch level name
-
+models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] # pretty catch level name
 @
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Hake Management]{Management outcomes of the \Sexpr{end_yr} Pacific Hake stock assessment}
 \author[JTC]{Pacific Hake Joint Technical Committee}
-%\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
 \subtitle{\tiny \disclaimer}
-
 \begin{document}
-
 \frame[plain]{
 \titlepage
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 \subsection{Background}
 \frame{\frametitle{Past management: Total Allowable Catch}
@@ -127,8 +93,6 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
                              curr_assess_biomass = base_model$catch.default.policy[1])
 @
 }
-
-%--------------------------------------------------------------
 
 \frame{\frametitle{Past management: Total Allowable Catch}
 \begin{columns}
@@ -145,15 +109,14 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 	  \ei
   \end{column}
   \begin{column}{0.6\textwidth}
-    <<tac.vs.realized.catch, fig.height = 6, out.width = '0.95\\columnwidth'>>=
-      management_catch_vs_tac_1_to_1(catch.targets, top_yrs = c(2004, 2006,2012, 2016, 2018), color_darken = 0.9)
-    @
-    %\bc \includegraphics[width=.9\columnwidth]{Figures/ManagementResponse.eps} \ec
+  <<tac.vs.realized.catch, fig.height = 6, out.width = '0.95\\columnwidth'>>=
+    management_catch_vs_tac_1_to_1(catch.targets,
+                                   top_yrs = c(2004, 2006,2012, 2016, 2018),
+                                   color_darken = 0.9)
+  @
   \end{column}
 \end{columns}
 }
-
-%---------------------------------------------------------------
 
 \frame{\frametitle{Past management: Performance}
   \begin{columns}
@@ -165,8 +128,6 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
         \item Joint probability of both is \Sexpr{joint.percent.prob.above.below}\%
         \item Fishing intensity has remained below target
         \item Biomass has mostly remained above target
-        % \item When biomass goes below target, the fishing intensity typically
-        % decreases % not true in 2021 assessment
       \ei
     \end{column}
     \begin{column}{0.75\textwidth}
@@ -179,7 +140,6 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
   \end{columns}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Projections}
 \subsection{Methods}
 \frame{\frametitle{Projection methods}
@@ -235,20 +195,17 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
-    <<main.forecast.depletion.comparison.plot, out.width='.95\\columnwidth'>>=
-# See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
-# `fore_inds` below are the indices of those forecast values in that list.
-plot_depl_fore_comparison(base_model,
-                          fore_inds = c(1, 2, 6, 12, 14),
-                          catch_levels = catch_levels,
-                          forecast_yrs = forecast_yrs)
+  <<main.forecast.depletion.comparison.plot, out.width='.95\\columnwidth'>>=
+  # See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
+  # `fore_inds` below are the indices of those forecast values in that list.
+  plot_depl_fore_comparison(base_model,
+                            fore_inds = c(1, 2, 6, 12, 14),
+                            forecast_yrs = forecast_yrs)
     @
   \end{column}
 \end{columns}
 }
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decision Tables}
 \subsection{Intro}
 \frame{\frametitle{Decision Tables}
@@ -256,12 +213,8 @@ plot_depl_fore_comparison(base_model,
     \item Decision table format (as improved last year)
     \bi
       \item Quantiles from the posterior distribution for relative spawning biomass and fishing intensity
-      % \item Tables provided for the base model as well as age-1 survey and adnuts sensitivity runs
     \ei
-    \item Catch alternatives % text manually updated 2022,
-                             %  used to use grey for ones not
-                             %  explicitly showing in next table
-                             %  but just showing first five now
+    \item Catch alternatives
     \bi
       \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
       \item b, c, d, g, i, k: Constant catches of \Sexpr{catch_levels[[2]][[2]]},
@@ -295,15 +248,6 @@ plot_depl_fore_comparison(base_model,
 
 \subsection{Spawning Biomass}
 \frame{\frametitle{Relative Spawning Biomass}
-%\begin{columns}
-%  \begin{column}{0.33\textwidth}
-%    \bi
-%      % \item Lower 5\% quantile below $B_{40\%}$ in \Sexpr{end_yr} (35\%)
-%      \item Median (50\%) decreases from \Sexpr{end_yr} to \Sexpr{end_yr+1} and \Sexpr{end_yr+2}
-%        for all non-zero catch levels (continued decline of large 2010 and 2014 cohorts)
-%    \ei
-%  \end{column}
-%  \begin{column}{0.65\textwidth}
 <<decisions.biomass.table, results='asis', echo=FALSE>>=
 decision_table(base_model,
                xcaption = NULL,
@@ -314,13 +258,8 @@ decision_table(base_model,
                placement = "h",
                presentation = TRUE)
 @
-%  \end{column}
-%\end{columns}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \section{Risk Tables}
-% \subsection{Risk}
 \frame{\frametitle{Probability table definitions}
   Probabilities associated with biomass and fishing-based metrics for different fixed catch levels
   (see Executive Summary: Tables i, j, and k; Figures k, l, and m)
@@ -334,121 +273,97 @@ decision_table(base_model,
       such as $B_{\Sexpr{assess_yr}}$ or $\Bforty$
     \item P(relative FI > 100\% target): Probability that relative fishing intensity in fixed catch
       year is greater than the target fishing intensity
-    %Only last column of table refers to catches, and is spelt out in words
-    %\item P($C_{y+1} < C_y$): Probability that the calculated catch in projection
-    %  year is less than the fixed catch
   \ei
 }
 
-%--------------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
-    <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
-      make.risk.table(base_model,
-                      forecast_yrs,
-                      index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                      xcaption = NULL,
-                      font.size = 9,
-                      space.size = 9)
-    @
+<<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
+make.risk.table(base_model,
+                forecast_yrs,
+                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                xcaption = NULL,
+                font.size = 9,
+                space.size = 9)
+  @
 }
 
-%--------------------------------------------------------------
-
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
-  \bc
-    <<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base_model,
-                                         forecast_yrs = forecast_yrs,
-                                         fore.yr = forecast_yrs[1],
-                                         colors = c("black","blue","green","orange","red","tan"),
-                                         pch = c(16,17,17,17,15,18),
-                                         legend.loc = "topleft",
-                                         legend.cex = 0.8)
-
-    @
-  \ec
+\bc
+<<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[1],
+                  leg_pos = c(0.2, 0.32),
+                  remove_x_val = 325)
+@
+\ec
 }
 
 %--------------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr+1} catches}
-    <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
-      make.risk.table(base_model,
-                      forecast_yrs,
-                      index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                      xcaption = NULL,
-                      font.size = 9,
-                      space.size = 9)
-    @
+<<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
+make.risk.table(base_model,
+                forecast_yrs,
+                index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                xcaption = NULL,
+                font.size = 9,
+                space.size = 9)
+@
 }
 
 %--------------------------------------------------------------
 
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr+1} catches}
-  \bc
-    <<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base_model,
-                                         forecast_yrs = forecast_yrs,
-                                         fore.yr = forecast_yrs[2],
-                                         colors = c("black","blue","green","orange","red","tan"),
-                                         pch = c(16,17,17,17,15,18),
-                                         legend.loc = "topleft",
-                                         legend.cex = 0.7)
-
-    @
-  \ec
+\bc
+<<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[2],
+                  leg_pos = c(0.2, 0.32),
+                  remove_x_val = 740)
+@
+\ec
 }
 
 %--------------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr}, \Sexpr{end_yr+1},
     and \Sexpr{end_yr+2} catches}
-    <<main.risk.forecast.year.3.table, results='asis', echo=FALSE>>=
-      make.risk.table(base_model,
-                      forecast_yrs,
-                      index = 3, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
-                      xcaption = NULL,
-                      font.size = 9,
-                      space.size = 9)
-    @
+<<main.risk.forecast.year.3.table, results='asis', echo=FALSE>>=
+make.risk.table(base_model,
+                forecast_yrs,
+                index = 3, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                xcaption = NULL,
+                font.size = 9,
+                space.size = 9)
+@
 }
-
-%--------------------------------------------------------------
 
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr}, \Sexpr{end_yr+1},
     and \Sexpr{end_yr+2} catches}
-  \bc
-    <<forecast.risk.comparison.plot.year.3, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
-      make.forecast.risk.comparison.plot(base_model,
-                                         forecast_yrs = forecast_yrs,
-                                         fore.yr = forecast_yrs[3],
-                                         colors = c("black","blue","green","orange","red","tan"),
-                                         pch = c(16,17,17,17,15,18),
-                                         legend.loc = "topleft",
-                                         legend.cex = 0.7)
-    @
-  \ec
+\bc
+<<forecast.risk.comparison.plot.year.3, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[3],
+                  leg_pos = c(0.2, 0.32),
+                  remove_x_val = 621)
+@
+\ec
 }
 
-
-%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{Projected age compositions for \Sexpr{end_yr} fishery catch}
 \begin{columns}
   \begin{column}{0.35\textwidth}
     Median proportions (by numbers) are:
     \bi
-    % From assessment-section.rnw using more automated code; check
-    %  that text to see which cohorts we highlighted
     \item \Sexpr{fore.catch.prop$Age6}\% age-6 fish, \Sexpr{forecast_yrs[1] - 6} cohort,
     \item \Sexpr{fore.catch.prop$Age2}\% age-2 fish, \Sexpr{forecast_yrs[1] - 2} cohort,
     \item \Sexpr{fore.catch.prop$Age8}\% age-8 fish, \Sexpr{forecast_yrs[1] - 8} cohort,
     \item \Sexpr{fore.catch.prop$Age5}\% age-5 fish, \Sexpr{forecast_yrs[1] - 5} cohort,
-    % \Sexpr{fore.catch.prop$Age4}\% age-4 fish from the \Sexpr{forecast_yrs[1] - 4} cohort,
-    % \Sexpr{fore.catch.prop$Age7}\% age-7 fish from the \Sexpr{forecast_yrs[1] - 7} cohort
     \item \Sexpr{fore.catch.prop$Age12}\% age-12 fish from the huge \Sexpr{forecast_yrs[1] - 12} cohort
-    % \Sexpr{fore.catch.prop$Age11}\% age-11 fish from the \Sexpr{forecast_yrs[1] - 11} cohort
   \ei
   \end{column}
   \begin{column}{0.65\textwidth}
-
     <<main.age.comp.forecast, fig.height=3.5, fig.width=5.5>>=
     make.age.comp.forecast.plot(base_model)
     @
@@ -456,150 +371,6 @@ decision_table(base_model,
 \end{columns}
 }
 
-%----------------------------------------------------------
-% Commenting out for 2021 for brevity since somewhat duplicates previous slide,
-%  and would need updating since baa_large contains only recent cohorts now)
-%\frame{\frametitle{Proportions of biomass for cohorts in \Sexpr{assess_yr} for default harvest rule catch}
-
-%\begin{columns}
-%  \begin{column}{0.5\textwidth}
-%    <<baa.table, results='asis', echo=FALSE>>=
-%      baa_table(baa_large, font.size = 9, space.size = 9)
-%    @
-% \end{column}
-%  \begin{column}{0.5\textwidth}
-%  \bc
-%   <<baa.plot, figure.width = 5, figure.height = 10>>=
-%    g <- ggplot(baa %>% arrange(Cohort), aes(x = Cohort, y = Median)) +
-%      geom_point(color = "black", shape = "o", size = 6) +
-%      geom_errorbar(aes(ymin = `Lower CI`, ymax = `Upper CI`), color = "royalblue", size = 1, width = 0.2) +
-%      labs(y = paste0("Proportion of Biomass in ", assess_yr,  " catch")) +
-%      scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = 1))
-%    g
-%    @
-%  \ec
-%  \end{column}
-%\end{columns}
-
-%}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%  \section{Recruitment}
-%% \subsection{}
-%% \frame{\frametitle{Investigating management options \& relationships with recent recruitment}
-%%   \begin{columns}
-%%     \begin{column}{0.48\textwidth}
-%%       \bi
-%%         \item **fix figure and update text
-%%         \item \Sexpr{end_yr} default catch limit (bottom row)
-%%         \bi
-%%           \item similarly high correlation for 2010, 2014, and 2016 recruitment
-%%             ( Sexpr{round(cor(base_model$mcmc[paste0("ForeCatch_",end_yr)],
-%%                 base_model$mcmc$Recr_2010),2)},
-%%              Sexpr{round(cor(base_model$mcmc[paste0("ForeCatch_",end_yr)],
-%%                 base_model$mcmc$Recr_2014),2)},
-%%             and
-%%              Sexpr{round(cor(base_model$mcmc[paste0("ForeCatch_",end_yr)],
-%%                 base_model$mcmc$Recr_2016),2)},
-%%             respectively)
-%%           \item increasing correlation with 2017 recruitment
-%%             ( Sexpr{round(cor(base_model$mcmc[paste0("ForeCatch_",end_yr)],
-%%               base_model$mcmc$Recr_2017),2)}, not shown)
-%%         \ei
-%%         \item Sexpr{end_yr+1} default catch limit (not shown) is more dependent on
-%%           2016 recruitment and the highly uncertain 2017 recruitment
-%%       \ei
-%%     \end{column}
-%%     \begin{column}{0.49\textwidth}
-%%     <<main.mcmc.pairs, fig.height=8, fig.width=8, out.width='0.92\\columnwidth'>>=
-%%       make.mcmc.diag.pairs.plot(base_model,
-%%                                 inc.key.params = TRUE,
-%%                                 recr = c(2010, 2014, 2016),
-%%                                 bratio = end_yr,
-%%                                forecatch = end_yr)
-%%     @
-%%     \end{column}
-%%   \end{columns}
-%% }
-
-
-%% \frame{\frametitle{Investigating management options for different options of recent recruitment}
-%%   \bi
-%%     \item Next are alternative investigations to help understand the outcomes of the base assessment model
-%%     \bi
-%%       \item They are not meant to replace the base model
-%%       \item They are not alternative models with an equal probability of representing reality
-%%     \ei
-%%   \ei
-%% }
-
-
-
-%% \frame{\frametitle{Model without 2015 fishery age compositions}
-%% \begin{columns}
-%%   \begin{column}{0.38\textwidth}
-%%     \bi
-%%       \item Forecast with default HR from base model
-%%       \bi \item 804,399; 889,918; 785,036 \ei
-%%       \item Without 2015 fishery ages
-%%       \bi
-%%         \item 2008, 2010 and 2012 recruitment is slightly higher
-%%         \item 2014 recruitment is much lower
-%%       \ei
-%%     \ei
-%%   \end{column}
-%%   \begin{column}{0.59\textwidth}
-%%   <<compare.no2015fishAge, fig.height=5, fig.width=5.5, out.width='0.95\\columnwidth'>>=
-%%     oldpar <- par(mfrow=c(2,1), mar=c(5,4,1,1),no.readonly = TRUE)
-%%     make.comparison.plot.mcmc(c(list(base_model), sens_models_5),
-%%                               subplots = 2,
-%%                               model.names = c(paste0("Base model ", end_yr), sens_model_names_5),
-%%                               end_yr = end_yr+2,
-%%                               xlims = c(2008,end_yr+2),
-%%                               legendloc = "topleft")
-%%     make.comparison.plot.mcmc(c(list(base_model), sens_models_5),
-%%                               subplots = 8,
-%%                               model.names = c(paste0("Base model ", end_yr), sens_model_names_5),
-%%                               end_yr = end_yr+2,
-%%                               xlims = c(2008,end_yr+2),
-%%                               legend = FALSE)
-%%     @
-%%   \end{column}
-%% \end{columns}
-%% }
-
-
-%% \frame{\frametitle{Model without 2015 fishery age compositions: predicted TAC}
-%% \begin{columns}
-%%   \begin{column}{0.38\textwidth}
-%%     \bi
-%%       \item Predicted TAC from the default harvest rule is higher without the 2015 fishery ages
-%%       \item Subsequent predicted TAC's are lower
-%%     \ei
-%%   \end{column}
-%%   \begin{column}{0.59\textwidth}
-%%     \begin{table}[h]
-%%     \centering
-%%     {\fontsize{9}{11}\selectfont
-%%     \begin{tabular}{|l|cc|}
-%%     \hline
-%%           & \multicolumn{2}{c|}{Forecast TAC} \\ \hline
-%%           & \multicolumn{2}{c|}{based on default HR} \\ \hline
-%%           &             & Without 2015\\
-%%      Year & Base        & fishery ages \\ \hline
-%%      2016 & 804,399     & 879,761 \\
-%%      2017 & 889,918     & 653,989 \\
-%%      2018 & 785,036     & 531,927 \\
-%%     \hline
-%%     \end{tabular}
-%%     }
-%%     \end{table}
-%%   \end{column}
-%% \end{columns}
-%% }
-
-% -----------------------------------------------------------------------------%
 \section{Without Age-1 Index}
 \subsection{}
 \begin{frame}
@@ -612,16 +383,13 @@ par(mar = c(20, 4.1, 0, 1))
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,
                           fore_inds = c(1, 2, 6, 12, 14),
-                          catch_levels = catch_levels,
                           forecast_yrs = forecast_yrs)
 
 par <- oldpar
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
 \begin{frame}
 \frametitle{Projections without age-1 index}
 \begin{center}
@@ -632,51 +400,13 @@ par(mar = c(20, 4.1, 0, 1))
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(sens_models[[2]][[1]],
                           fore_inds = c(1, 2, 6, 12, 14),
-                          catch_levels = catch_levels,
                           forecast_yrs = forecast_yrs)
 
-par <- oldpar
 @
 \end{center}
 \end{frame}
 % -----------------------------------------------------------------------------%
 
-% -----------------------------------------------------------------------------%
-\subsection{Probabilities change with exclusion of age-1 index}
-\begin{frame}
-\frametitle{Probabilities change with exclusion of age-1 index}
-\begin{table}[tbp]
-\centering
-\begin{tabular}{lrr}
-\hline
-Probability & Base model & Without age-1 index \\
-\hline
-With zero catch scenario: & & \\
-P$(B_{\Sexpr{assess_yr+1}} < \Bforty)$ &
-  \Sexpr{f( base_model$risks[[1]][1, paste0("Bratio_", end_yr + 1, "<0.40")])}\% &
-  \Sexpr{f( sens_models_2[[1]]$risks[[1]][1,paste0("Bratio_", end_yr + 1, "<0.40")])}\% \\
-P$(B_{\Sexpr{assess_yr+2}} < \Bforty)$ &
-  \Sexpr{f( base_model$risks[[2]][1, paste0("Bratio_", end_yr + 2, "<0.40")])}\% &
-  \Sexpr{f( sens_models_2[[1]]$risks[[2]][1, paste0("Bratio_", end_yr + 2, "<0.40")])}\% \\
-With \Sexpr{f(catch_levels[[catch.actual.ind]][[1]][1])}~t catch scenario: & & \\
-P$(B_{\Sexpr{assess_yr+1}} < \Bforty)$ &
-  \Sexpr{f( base_model$risks[[1]][catch.actual.ind, paste0("Bratio_", end_yr + 1, "<0.40")])}\% &
-  \Sexpr{f( sens_models_2[[1]]$risks[[1]][catch.actual.ind, paste0("Bratio_", end_yr + 1, "<0.40")])}\% \\
-P$(B_{\Sexpr{assess_yr+2}} < \Bforty)$ &
-  \Sexpr{f( base_model$risks[[2]][4, paste0("Bratio_", end_yr + 2, "<0.40")])}\% &
-  \Sexpr{f( sens_models_2[[1]]$risks[[2]][catch.actual.ind, paste0("Bratio_", end_yr + 2, "<0.40")])}\% \\
-\hline
-\end{tabular}
-\end{table}
-
-% Caution: Including age-1 index in some years (especially low biomass states in
-% 2011 and 2012) would have given misleadingly optimistic forecasts; see 2020 assessment.
-
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Historical performance}
 \subsection{}
 \frame{\frametitle{Historical performance of the Pacific Hake stock assessment}
@@ -709,8 +439,6 @@ P$(B_{\Sexpr{assess_yr+2}} < \Bforty)$ &
 \ei
 }
 
-%--------------------------------------------------------------
-
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
 <<historical.prob.plot.1a, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
@@ -721,8 +449,6 @@ make.historical.probs.plot(base_model,
 \ec
 }
 
-%--------------------------------------------------------------
-
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
 <<historical.prob.plot.1c, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
@@ -730,8 +456,6 @@ make.historical.probs.plot(base_model,
 @
 \ec
 }
-
-% ----------------------------------------------------------
 
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
@@ -741,8 +465,6 @@ make.historical.probs.plot(base_model,
 @
 \ec
 }
-
-%----------------------------------------------------------
 
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bi
@@ -755,27 +477,25 @@ make.historical.probs.plot(base_model,
 \ei
 }
 
-
-%----------------------------------------------------------
 \frame{\frametitle{Spawning Biomass}
-  \bc
-  <<spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-  make.biomass.plot(base_model,
-                    equil.yr = unfished_eq_yr,
-                    start_yr = start_yr,
-                    end_yr = end_yr,
-                    color = "blue")
-  @
-  \ec
+\bc
+<<spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+plot_biomass(list(base_model),
+             list(base_model_name),
+             ylim = c(0, 5),
+             point_shape = 1,
+             alpha = 0.2,
+             leg_pos = "none")
+@
+\ec
 }
 
-% --------------------------------------------------------------
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
 \bc
 <<historical.prob.plot.2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
-  make.historical.probs.plot(base_model,
-                             type = "bforty",
-                             legend.loc = "topright")
+make.historical.probs.plot(base_model,
+                           type = "bforty",
+                           legend.loc = "topright")
 @
 \ec
 }
@@ -792,8 +512,6 @@ make.historical.probs.plot(base_model,
 \ec
 }
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{}
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
   \bi
@@ -823,22 +541,6 @@ Current base model with data up to 2011 would have said very low chance of
 $B_{2013}$ falling below $\Bforty$.
 }
 
-\frame{\frametitle{Can also do retrospective calculations -- remove age-1 index}
-\bc
-<<historical.prob.plot.retro.age1, fig.height=3.6, fig.width=6, out.width='0.6\\columnwidth'>>=
-make.historical.probs.retro.plot(sens_models_2[[1]],
-                                 type = "bforty",
-                                 select.retros = 1,
-                                 make.one.figure = FALSE,
-                                 legend.text.model = "Current without age-1 index",
-                                 legend.loc = "topright")
-@
-\ec
-Omitting age-1 index and using data only to 2011 still gives a very low prob of
-$B_{2013}$ falling below $\Bforty$.
-Suggests other modelling changes over the years have helped performance.
-}
-
 \frame{\frametitle{Suggestion for further conveying recruitment variability (Appendix~H)}
 \bc
 <<rec.variability, fig.height=3.8, fig.width=6, out.width='0.6\\columnwidth'>>=
@@ -856,9 +558,6 @@ Plotting annual recruitment relative to huge 2010 recruitment shows that 2014
 was definitely not as large as 2010, in contrast to intuition from usual plot.
 }
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary}
 \subsection{}
 \frame{\frametitle{Summary of management outcomes}
@@ -876,7 +575,7 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
     \item But $>50\%$ chance that spawning biomass will decline from
       \Sexpr{assess_yr+1} to \Sexpr{assess_yr+2} for any catch $>0$~t.
     \item Maintaining a constant catch of 473,880~t (the 2021 TAC) gives a 11\%
-      chance of falling below $B_{40\%}$ in 1 year (21\% in 2 years' time).
+      chance of falling below $B_{40\%}$ in 1 year (21\% in 2 years time).
     \item Overall, we estimate probabilities of future events, and analyses
       give some idea of the confidence we can have in those probabilities.
   \ei
@@ -884,178 +583,3 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 
 \end{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Commenting out in 2021 to shorten and since covered in sensitivity talk.
-%%  We gave these details in 2020 and decision tables etc. are in Appendices for
-%%  2021 (see #812)
-%% \section{Appendix Models}
-%% \subsection{}
-%% \frame{\frametitle{**MAYBE JUST ONE SLIDE ON EACH APP Consideration of age-1 survey}
-%% \begin{columns}
-%%   \begin{column}{0.38\textwidth}
-%%     \bi
-%%       \item Age-1 survey model estimates slightly higher median spawning biomass relative
-%%         to the base model in recent years
-%%       \item Recent recruitment estimates are higher using age-1 survey
-%%       \bi
-%%         \item slightly higher for 2016 ($\approx$10\%) and 2017 ($\approx$20\%)
-%%         \item considerably higher for 2018 ($\approx$400\%)
-%%       \ei
-%%       \item Influences 2010--2022 forecasts (e.g., 2018 year class will be age-2 to
-%%         age-4, respectively)
-%%     \ei
-%%   \end{column}
-%%   \begin{column}{0.59\textwidth}
-%%     <<age.one.index.comp, fig.height=3.5, fig.width=6, out.width="0.95\\columnwidth">>=
-%%       make.comparison.plot(c(list(base_model), list(sens_models_2[[1]])),
-%%                      subplots = 2,
-%%                      model.names = c(base_model_name, sens_model_names_2[1]),
-%%                      end_yr = end_yr,
-%%                      legendloc = "topright")
-%%     @
-%%   \end{column}
-%% \end{columns}
-%% }
-
-%% %-------------------------------------------------------------------
-%% \frame{\frametitle{Consideration of age-1 survey}
-%%   \bi
-%%     \item Default harvest rule median catch limit for 2020 is \textcolor{red}{797,158~t (age-1 survey model)} compared to
-%%       \textbf{666,458~t (base model)}
-%%     \item Forecasts of spawning biomass using 2019 catch levels (410,000~t) result in higher stock levels
-%%       for \textcolor{red}{age-1 survey} relative to the \textbf{base} (2020: \textcolor{red}{72}
-%%        to \textbf{65}; 2021: \textcolor{red}{61} to \textbf{52}; 2022: \textcolor{red}{52} to \textbf{42})
-%%     \item Similarly, forecasts using 2019 TAC (597,500~t) levels for \textcolor{red}{age-1 survey} relative
-%%        to \textbf{base} (2020: \textcolor{red}{72} to \textbf{65}; 2021: \textcolor{red}{57} to \textbf{47};
-%%        2022: \textcolor{red}{44} to \textbf{34})
-%%     \item Both models estimate a high probability of stock decline from 2020 to 2021
-%%     \item If 2020 catch is the same as 2019 (410,000~t) then:
-%%       \bi
-%%         \item there is a \textcolor{red}{14\%} chance SSB is less than $B_{40\%}$ \textcolor{red}{(age-1 survey model)}
-%%         \item there is a \textbf{28\%} chance SSB is less than $B_{40\%}$ \textbf{(base model)}
-%%       \ei
-%%   \ei
-%% }
-
-%% %-------------------------------------------------------------------
-%% \frame{\frametitle{Acoustic backscatter (red) attributed to age-1 Pacific Hake}
-%% \bc
-%%   \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-%%   \includegraphics[height=2.9in]{../../../doc/main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_bluergray}
-%%  \ec
-%% }
-
-%% %-------------------------------------------------------------------
-%% \frame{\frametitle{Consideration of adnuts package}
-%%   \bi
-%%     \item Default harvest rule median catch limit for 2020 is \textcolor{blue}{682,111~t (adnuts model)} compared to
-%%       \textbf{666,458~t (base model)}
-%%     \item Forecasts of spawning biomass using 2019 catch levels (410,000~t) result in higher stock levels
-%%       for \textcolor{blue}{adnuts} relative to \textbf{base} (2020: \textcolor{blue}{73}
-%%        to \textbf{65}; 2021: \textcolor{blue}{57} to \textbf{52}; 2022: \textcolor{blue}{48} to \textbf{42})
-%%     \item Similarly, forecasts using 2019 TAC (597,500~t) levels for \textcolor{blue}{adnuts} relative
-%%        to \textbf{base} (2020: \textcolor{blue}{73} to \textbf{65}; 2021: \textcolor{blue}{52} to \textbf{47};
-%%        2022: \textcolor{blue}{39} to \textbf{34})
-%%     \item Both models estimate a high probability of stock decline from 2020 to 2021
-%%     \item If 2020 catch is the same as 2019 (410,000~t) then:
-%%       \bi
-%%         \item there is a \textcolor{blue}{21\%} chance SSB is less than $B_{40\%}$ \textcolor{blue}{(adnuts model)}
-%%         \item there is a \textbf{28\%} chance SSB is less than $B_{40\%}$ \textbf{(base model)}
-%%       \ei
-%%     \item Main difference is a slight change in estimate of $\log(R_0)$
-%%   \ei
-%% }
-
-%% %-------------------------------------------------------------------
-%% \frame{\frametitle{Base model equilibrium recruitment}
-%% \begin{columns}
-%%   \begin{column}{0.25\textwidth}
-%%     \bi
-%%       \item median $\log(R_0)$ = \Sexpr{round(median(base_model$mcmc$SR_LN),2)}
-%%       \item equilibrium recruitment is 2,505 millions of fish
-%%     \ei
-%%   \end{column}
-%%   \begin{column}{0.75\textwidth}
-%%    <<main.mcmc.diag.R0.base, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%%    make.mcmc.diag.plot(base_model, key_posteriors[2], key_posteriors_titles[2])
-%%    @
-%%   \end{column}
-%% \end{columns}
-%% }
-
-%% % %-------------------------------------------------------------------
-%% % \frame{\frametitle{adnuts model equilibrium recruitment}
-%% % \begin{columns}
-%% %   \begin{column}{0.25\textwidth}
-%% %     \bi
-%% %       \item median $\log(R_0)$ = \Sexpr{round(median(sens_models_6$mcmc$SR_LN),2)}
-%% %       \item equilibrium recruitment is 2,314 millions of fish
-%% %       \item adnuts 92\% of base model
-%% %     \ei
-%% %   \end{column}
-%% %   \begin{column}{0.75\textwidth}
-%% %    <<main.mcmc.diag.R0.adnuts, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%% %    make.mcmc.diag.plot(sens_models_6, key_posteriors[2], key_posteriors_titles[2])
-%% %    @
-%% %   \end{column}
-%% % \end{columns}
-%% % }
-
-%% %-----------------------------------------------------------------
-%% \frame{\frametitle{Decison Table - base model}
-%% <<decisions.biomass.table_base, results='asis', echo=FALSE>>=
-%%     make.decision.table.pres(base_model,
-%%                              models.inds,
-%%                              xcaption = NULL,
-%%                              xlabel = "tab:es-decisions-spr",
-%%                              font.size = 8,
-%%                              space.size = 10,
-%%                              type = "biomass",
-%%                              placement = "h")
-%% @
-%% }
-
-%% %-----------------------------------------------------------------
-%% \frame{\frametitle{Decison Table - age-1 survey model}
-%% <<decisions.biomass.table_age1, results='asis', echo=FALSE>>=
-%%     make.decision.table.pres(sens_models_2[[1]],
-%%                              models.inds,
-%%                              xcaption = NULL,
-%%                              xlabel = "tab:es-decisions-spr",
-%%                              font.size = 8,
-%%                              space.size = 10,
-%%                              type = "biomass",
-%%                              placement = "h")
-%% @
-%% }
-
-%% %-----------------------------------------------------------------
-%% % \frame{\frametitle{Decison Table - adnuts model}
-%% % <<decisions.biomass.table_adnuts, results='asis', echo=FALSE>>=
-%% %     make.decision.table.pres(sens_models_6,
-%% %                              models.inds,
-%% %                              xcaption = NULL,
-%% %                              xlabel = "tab:es-decisions-spr",
-%% %                              font.size = 8,
-%% %                              space.size = 10,
-%% %                              type = "biomass",
-%% %                              placement = "h")
-%% % @
-%% % }
-
-%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% %\frame{\frametitle{Trevor's request - 4 years forecast decision table}
-%% %<<decisions.biomass.base_model.with.4.yrs.forecasts, results = 'asis', echo = FALSE>>=
-%% %  base_model.4 <-  load.models(model.dir, "2019.03.00_base_forecast4")
-%% %  make.decision.table.pres(base_model.4,
-%% %                           model.inds = 1:8,
-%% %                           xcaption = NULL,
-%% %                           font.size = 4,
-%% %                           space.size = 5,
-%% %                           type = "biomass",
-%% %                           placement = "h")
-%% %@
-%% %}
