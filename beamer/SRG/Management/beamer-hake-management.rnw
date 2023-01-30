@@ -44,7 +44,6 @@
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 library(knitr)
 opts_chunk$set(dev = 'cairo_ps',
-               fig.path = 'knitr-cache/',
                fig.dpi = 96,
                fig.width = 7.5,
                fig.height = 4,
@@ -587,4 +586,3 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 }
 
 \end{document}
-
