@@ -61,11 +61,11 @@ opts_chunk$set(dev = 'cairo_ps',
                results = 'hide',
                fig.path = here::here("beamer",
                                      "SRG",
-                                     "Assessment",
+                                     "Data",
                                      "knitr-cache", "/"),
                cache.path = here::here("beamer",
                                        "SRG",
-                                       "Assessment",
+                                       "Data",
                                        "knitr-cache", "/"),
                cache = TRUE)
 
