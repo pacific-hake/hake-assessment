@@ -163,18 +163,19 @@ if(!dir.exists(fig_dir)){
 \vspace{5pt}
 <<h.biomass.fig, fig.height=3.0>>=
 plot_biomass(model_lst = list(base_model,
-                              sens_models[[1]][[1]],
-                              sens_models[[1]][[2]]),
+                              sens_models[[1]][[2]],  # [[1]] is base model
+                              sens_models[[1]][[3]]),
              model_names = c(base_model_name,
                              sens_models_desc[[1]][1],
                              sens_models_desc[[1]][2]),
              x_expansion = 4,
-             ylim = c(0, 8),
+             ylim = c(0, 6),
              y_breaks = seq(0, 20, 2),
              leg_font_size = 5,
              leg_pos = c(0.8, 0.75),
              rev_colors = TRUE,
-             axis_title_font_size = 10)
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
 @
 \end{center}
 \end{frame}
@@ -202,9 +203,9 @@ param_est_table(sens_models[[1]],
 \vspace{5pt}
 <<m.biomass.fig, fig.height=3.0>>=
 plot_biomass(model_lst = list(base_model,
-                              sens_models[[1]][[5]],
                               sens_models[[1]][[6]],
-                              sens_models[[1]][[7]]),
+                              sens_models[[1]][[7]],
+                              sens_models[[1]][[8]]),
              model_names = c(base_model_name,
                              sens_models_desc[[1]][5],
                              sens_models_desc[[1]][6],
@@ -215,7 +216,8 @@ plot_biomass(model_lst = list(base_model,
              leg_font_size = 5,
              leg_pos = c(0.8, 0.75),
              rev_colors = TRUE,
-             axis_title_font_size = 10)
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
 @
 \end{center}
 \end{frame}
@@ -241,20 +243,21 @@ param_est_table(sens_models[[1]],
 \begin{frame}
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
-<<sigmar.biomass.fig>>=
+<<sigmar.biomass.fig, fig.height=3.0>>=
 plot_biomass(model_lst = list(base_model,
-                              sens_models[[1]][[3]],
-                              sens_models[[1]][[4]]),
+                              sens_models[[1]][[4]],
+                              sens_models[[1]][[5]]),
              model_names = c(base_model_name,
                              sens_models_desc[[1]][3],
                              sens_models_desc[[1]][4]),
              x_expansion = 4,
-             ylim = c(0, 8),
+             ylim = c(0, 6),
              y_breaks = seq(0, 20, 2),
              leg_font_size = 5,
              leg_pos = c(0.8, 0.75),
              rev_colors = TRUE,
-             axis_title_font_size = 10)
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
 @
 \end{center}
 \end{frame}
@@ -262,7 +265,7 @@ plot_biomass(model_lst = list(base_model,
 \begin{frame}
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
-<<sigmar.biomass.fig.rel>>=
+<<sigmar.biomass.fig.rel, fig.height=3.0>>=
 @
 \end{center}
 \end{frame}
@@ -274,13 +277,13 @@ plot_biomass(model_lst = list(base_model,
 \begin{frame}
 \frametitle{Remove age-1 index}
 \begin{center}
-<<age1.biomass.fig>>=
+<<age1.biomass.fig, fig.height=3.0>>=
 plot_biomass(model_lst = list(base_model,
-                              sens_models[[2]][[1]]),
+                              sens_models[[2]][[2]]),
              model_names = c(base_model_name,
                              sens_models_desc[[2]][1]),
              x_expansion = 4,
-             ylim = c(0, 8),
+             ylim = c(0, 6),
              y_breaks = seq(0, 20, 2),
              leg_font_size = 5,
              leg_pos = c(0.8, 0.75),
@@ -308,7 +311,19 @@ plot_biomass(model_lst = list(base_model,
 \frametitle{Downweight fishery age-composition data}
 \vspace{5pt}
 \begin{center}
-<<harmonicmean.sensitivity.biomass>>=
+<<harmonicmean.biomass.fig, fig.height=3.0>>=
+plot_biomass(model_lst = list(base_model,
+                              sens_models[[2]][[3]]),
+             model_names = c(base_model_name,
+                             sens_models_desc[[2]][2]),
+             x_expansion = 4,
+             ylim = c(0, 6),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 5,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
 @
 \end{center}
 \end{frame}
@@ -344,9 +359,25 @@ Here we test alternative values of $\Phi$
 \subsection{Alternative deviations for selectivity, $\Phi$}
 \begin{frame}
 \frametitle{Alternative deviations for selectivity, $\Phi$}
-\begin{center}
 \vspace{5pt}
-<<phi.sensitivity.biomass>>=
+\begin{center}
+<<phi.biomass.fig, fig.height=3.0>>=
+plot_biomass(model_lst = list(base_model,
+                              sens_models[[3]][[2]],
+                              sens_models[[3]][[3]],
+                              sens_models[[3]][[4]]),
+             model_names = c(base_model_name,
+                             sens_models_desc[[3]][1],
+                             sens_models_desc[[3]][2],
+                             sens_models_desc[[3]][3]),
+             x_expansion = 4,
+             ylim = c(0, 6),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 5,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
 @
 \end{center}
 \end{frame}
@@ -376,20 +407,6 @@ Here we test alternative values of $\Phi$
 \begin{center}
 \vspace{5pt}
 <<max-age-sel, fig.height=3.5>>=
-@
-\end{center}
-\end{frame}
-
-\subsection{Spawning biomass}
-\begin{frame}
-\frametitle{Excluding age-1 index -- Spawning biomass}
-\begin{center}
-\vspace{5pt}
-<<age1.sensitivity.biomass.a>>=
-plot_biomass(d_obj = d_obj_sens_biomass[[2]],
-             x_expansion = 4,
-             leg_pos = c(0.75, 0.9),
-             rev_colors = TRUE)
 @
 \end{center}
 \end{frame}
