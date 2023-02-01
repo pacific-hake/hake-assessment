@@ -7,7 +7,7 @@
 %%  to the fourth table in the main-tables section
 \usepackage{chngcntr}
 
-\usepackage{hake}
+\usepackage{../hake}
 %% title gives 'Appendix A', not
 %% just 'A', but doesn't seem to work, may need article class,
 %% but need to see appendix manual.
@@ -244,7 +244,7 @@ source(here::here("R/all.R"))
   waters in \Sexpr{assess_yr}
 %% Uncomment for DRAFT:
 \\ ~\\ DRAFT for submission to Scientific Review Group\thanks{\noindent \disclaimer}
-\\ ~\\ ~\\ \pdftooltip{\includegraphics[width=4in]{hake-picture}}{Drawing of a \fishname}}
+\\ ~\\ ~\\ \pdftooltip{\includegraphics[width=4in]{../hake-picture}}{Drawing of a \fishname}}
 
 \author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
   the Governments of the United States and Canada}
@@ -288,7 +288,7 @@ This DRAFT document is non-citable.
 \newpage
 
 %% Table of contents, etc.
-\input{preamble}
+\input{../preamble}
 \setcounter{secnumdepth}{5} %% To number subsubheadings-ish
 
 %% Executive summary number Tables a,b,c.

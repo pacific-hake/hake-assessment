@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rm tester-launch.aux 2> /dev/null
+rm tester-launch.log 2> /dev/null
+rm tester-launch.pdf 2> /dev/null
+rm tester-launch.tex 2> /dev/null
+rm tester-launch.toc 2> /dev/null
+rm tester-launch.upa 2> /dev/null
+rm -rf knitr-cache 2> /dev/null
