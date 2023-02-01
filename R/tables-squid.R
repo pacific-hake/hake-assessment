@@ -67,7 +67,6 @@ make.recr.dev.uncertainty.table <- function(models,
         size = size.string,
         add.to.row = addtorow,
         table.placement = placement,
-        tabular.environment = "tabularx",
-        width = "\\textwidth",
+        tabular.environment = "tabular",
         hline.after = NULL)
 }

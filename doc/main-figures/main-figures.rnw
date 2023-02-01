@@ -18,9 +18,7 @@ make.overview.map.plot(path = rootd_map_data)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{landscape}
 \pagestyle{mylandscape}
-\centering
 \begin{figure}[p]
-% \begin{center}
 \hspace{-10mm}  % Each mm change shifts it by more than 1mm, changing
                 %  from -20 to -21 jumps it to the left when using center.
                 %  Commenting out {center} works better.
@@ -44,15 +42,12 @@ make.overview.map.plot(path = rootd_map_data)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{landscape}
 \pagestyle{mylandscape}
-\centering
 \begin{figure}[p]
-% \vspace{-5mm}
 \begin{center}
 \hspace{-10mm}
 \pdftooltip{\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]{main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue}}{This figure shows the assumed varying locations of age-1 \fishname}
    % Get pdf from Julia then convert with 'magick <name>.pdf <name>.png' and push to GitHub.
 \end{center}
-%\vspace{-5mm}
 \caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
   from the \surveyname\ 2003--\Sexpr{survey_end_yr}. Age-1 \fishname\ are not fully sampled
   during the acoustic survey and were not explicitly considered during establishment of the
@@ -117,7 +112,7 @@ make.catches.plot(ct, leg.y.loc = 550)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-can-fishery-depths, is.fig = TRUE, alt.text = "This figure shows that in Canada, freezer trawlers tend to fish deeper than the shoreside boats">>=
+<<main-can-fishery-depths, is.fig = TRUE, alt.text = "This figure shows that in Canada freezer trawlers tend to fish deeper than the shoreside boats">>=
   par(mfrow = c(2, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
   makebox(
     can.ft.gear.depth[can.ft.gear.depth$year >= max(can.ft.gear.depth$year) - 4, ],
@@ -147,7 +142,7 @@ make.catches.plot(ct, leg.y.loc = 550)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-data-overview-map, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "Catches span the whole time series, ages and weights-at-age are available from 1975 to present, and the survey started in 1995. Data are available in tabular form in hake_data.ss">>=
+<<main-data-overview-map, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "Catches span the whole time series ages and weights-at-age are available from 1975 to present and the survey started in 1995. Data are available in tabular form in hake_data.ss">>=
 make.data.overview.plot(base_model)
 @
 \end{center}
@@ -168,7 +163,7 @@ used to account for time-varying growth.}
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-age-comp-bubbles, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there are currently three large cohorts in the stock, 2010, 2014, and 2016">>=
+<<main-age-comp-bubbles, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there are currently three large cohorts in the stock 2010 2014 and 2016">>=
 layout(matrix(c(1, 1), nrow = 2, ncol = 1, byrow = TRUE))
 make_age_comp_bubble_plot(base_model, subplot = 1, legend.position = "top", alpha = 0.4)
 make_age_comp_bubble_plot(base_model, subplot = 2, alpha = 0.4)
@@ -616,7 +611,7 @@ plot_rel_biomass(list(base_model),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-recruitment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
+<<main-recruitment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows recruitment for 2010 2014 and 2016 cohorts which are the largest in the stock with 2020 possibly being large but highly uncertain">>=
 plot_recruitment(list(base_model),
                  list(base_model_name),
                  single_line_color = "blue",
@@ -631,7 +626,7 @@ plot_recruitment(list(base_model),
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-recruitment-devs, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
+<<main-recruitment-devs, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows recruitment deviations for 2010 2014 and 2016 cohorts which are the largest in the stock with 2020 possibly being large but highly uncertain">>=
 plot_recdevs(list(base_model),
              list(base_model_name),
              single_line_color = "blue",
@@ -831,7 +826,7 @@ plot_fore_compare(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-forecast-risk-comparison-plot-year-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably decline the year after next (except under zero catch)">>=
+<<main-forecast-risk-comparison-plot-year-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably decline the year after next except under zero catch">>=
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[2],
@@ -849,7 +844,7 @@ plot_fore_compare(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-forecast-risk-comparison-plot-year-3, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline in three years' time regardless of catch level">>=
+<<main-forecast-risk-comparison-plot-year-3, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there is a high probability that the stock will decline in three years time regardless of catch level">>=
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[3],
@@ -871,7 +866,7 @@ plot_fore_compare(base_model,
 %% new (2017-02-08) commands to run code to build figure dynamically
 \begin{figure}[H]
 \begin{center}
-<<main-age-comp-forecast, fig.height=4.5, fig.width=6.5, is.fig = TRUE, alt.text = "This figure shows how the few dominant cohorts are expected to make up most of the coming year's catch">>=
+<<main-age-comp-forecast, fig.height=4.5, fig.width=6.5, is.fig = TRUE, alt.text = "This figure shows how the few dominant cohorts are expected to make up most of the coming years catch">>=
 make.age.comp.forecast.plot(base_model)
 @
 \end{center}
@@ -1094,7 +1089,7 @@ cowplot::plot_grid(plotlist = plist,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how recruitment estimates for age-0 fish tend to be small but positive to allow for forecasted landings and that information is not typically available to estimate recruitments until fish are of age three. Estimates of larger, in absolute terms, deviates take a longer time to stabilize.">>=
+<<main-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how recruitment estimates for age-0 fish tend to be small but positive to allow for forecasted landings and that information is not typically available to estimate recruitments until fish are of age three. Estimates of larger in absolute terms deviates take a longer time to stabilize.">>=
 retro_cohorts <- (end_yr - 11):(end_yr - 2)
 make_squid_plot(base_model,
                 subplot = 1,
@@ -1128,7 +1123,7 @@ make_squid_plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-relative-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "The estimates of recruitment deviations scaled to the most recent estimate almost all trend towards zero by age three, except for the 2015 cohort, which was a strong negative recruitment deviation.">>=
+<<main-relative-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "The estimates of recruitment deviations scaled to the most recent estimate almost all trend towards zero by age three except for the 2015 cohort which was a strong negative recruitment deviation.">>=
 make_squid_plot(base_model,
                 subplot = 2,
                 cohorts = retro_cohorts,

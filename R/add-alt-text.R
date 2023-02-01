@@ -1,37 +1,28 @@
-#' Add alternative text to figures in a TEX document, overwriting the original file
+#' Add alternative text to figures in the document via the `tagpdf` LaTeX
+#' package
 #'
-#' @details Searches the given TEX file for the term `includegraphics` and inserts alternative
-#' text for each one from the given `alt_fig_text`
+#' @details Searches the given TEX file for the `includegraphics{}`,
+#' `\\begin{caption}`, `\\end{caption}`, `\\begin{knitrout}`,
+#' `\\end{knitrout}`, and `\\label{fig.*}` and manipulates the
+#' structure of those commands with the figure tagging commands
+#' injected. Alternative text comes from a data frame created
+#' during the knitting process via `knitr` hooks that read in the
+#' text from the `alt.text` knitr chunk tags in the figures. Those
+#' have to be manually changed each year
+#'
 #' @param tex_file The name of the TEX file
 #' @param alt_fig_text A character vector of alternative text to insert
-#' @param appendix_breaks The first figure number in the 'main' figures list in the given appendix.
-#' Appendices names are the vector element names, and the same as in the document. The easiest way to
-#' figure out these numbers is to build the full document with alternative text on and `appendix_breaks`
-#' set to NULL, then go through the document and match the text with the tooltips, and record the
-#' first figure number for each appendix in this vector. Use `NA` for appendices which have no
-#' figures in them or don't include them at all
-#' @param debug Show the matching `includegraphics` lines from the `tex_file` and their
-#' line numbers and the `alt_fig_text` data frame for comparison
 #'
-#' @return Nothing
+#' @return Nothing, overwrites the `tex_file`
 #' @export
 add_alt_text <- function(tex_file = "hake-assessment.tex",
-                         alt_fig_text,
-                         executive_summary_line_cutoff = 4000,
-                         appendix_breaks = c(A = 66, B = 72, C = 80,
-                                             G = 82, H = 96),
-                         debug = TRUE){
+                         alt_fig_text){
 
-  if(!is.null(appendix_breaks)){
-    if(is.null(names(appendix_breaks))){
-      stop("appendix_breaks must have names representing the appendices which it represents")
-    }
-    if(!all(names(appendix_breaks) %in% toupper(letters))){
-      stop("appendix_breaks must be a named vector with the names being uppercase appendix letters")
-    }
+  if(is.null(alt_fig_text) || !length(alt_fig_text)){
+    stop("`alt_fig_text` has not been populated. Did you remove the `knitr-cache` ",
+         "directory before building? This is a necessary step to cerate this list",
+         call. = FALSE)
   }
-  appendix_breaks <- appendix_breaks[!is.na(appendix_breaks)]
-
   # The match for knitr chunk figures looks like \\includegraphics[width=\\maxwidth]{Filename-1}
   # Some chunks may have more than one plot in them, in those cases only the first plot will
   # have a tooltip added, therefore the -1 at the end of the regular expression
@@ -41,101 +32,201 @@ add_alt_text <- function(tex_file = "hake-assessment.tex",
   # no manual newlines. These don't need processing (alt text added), they just need to be included in
   # the csv file output, in the correct order
   inc_graphics_pattern_manual <- "(^\\\\pdftooltip\\{\\\\includegraphics\\[.*\\]?\\{(.*?)\\}$)"
-  j <- readLines(tex_file)
-  g_knitr <- grep(inc_graphics_pattern_knitr, j)
-  g_manual <- grep(inc_graphics_pattern_manual, j)
-  g_all <- sort(c(g_knitr, g_manual))
+  lines <- readLines(tex_file)
+  # Strip whitespace from the beginning of all lines
+  lines <- gsub("^[[:space:]]+", "\\1", lines)
+  # Strip out lines that begin with comment character (after removing leading whitespace)
+  lines <- lines[!grepl("^%", lines)]
+
+  knitr_inds <- grep(inc_graphics_pattern_knitr, lines)
+  manual_inds <- grep(inc_graphics_pattern_manual, lines)
+  if(!length(knitr_inds) && !length(manual_inds)){
+    stop("There were no `includegraphics{} macros found in the file ",
+         "`", tex_file, "`")
+  }
+  all_inds <- sort(c(knitr_inds, manual_inds))
   alt_fig_text_knitr <- alt_fig_text
 
-  if(!length(g_knitr)){
-    stop("There were no knitr-created 'includegraphics' terms found in the TEX file")
-  }
-  if(length(g_manual)){
+  if(length(manual_inds)){
     # Modify alt_fig_text for the manually-placed figures
     insert_row <- function(df, new_row, ind) {
-      df[seq(ind + 1, nrow(df) + 1), ] <- df[seq(ind, nrow(df)), ]
-      df[ind, ] <- as.list(new_row)
+      if(ind > nrow(df)){
+        # Insert at the end of the table. This is needed or an extra `NA` will
+        # appear in the last row of the table
+        df[nrow(df) + 1, ] <- as.list(new_row)
+      }else{
+        # Insert at the beginning or middle of the table
+        df[seq(ind + 1, nrow(df) + 1), ] <- df[seq(ind, nrow(df)), ]
+        df[ind, ] <- as.list(new_row)
+      }
       df
     }
     # Get the row indices of where to place the manual figures in the alt_figs_text data frame
-    manual_ind <- map(g_manual, ~{.x == g_all}) %>%
-      Reduce("|", .) %>%
-      which
+    manual_row_inds <- map(manual_inds, ~{.x == all_inds}) %>%
+      Reduce("|", .) |>
+      which()
 
-    map2(manual_ind, g_manual, ~{
-      fig_text <- gsub(inc_graphics_pattern_manual, "\\2", j[.y])
+    map2(manual_row_inds, manual_inds, ~{
+      fig_text <- gsub(inc_graphics_pattern_manual, "\\2", lines[.y])
       new_row <- c("Manually added figure", fig_text)
       alt_fig_text <<- insert_row(alt_fig_text, new_row, .x)
     })
   }else{
-    warning("There were no manually-placed 'includegraphics' terms found in the TEX file")
+    warning("There were no manually-placed 'includegraphics' terms found ",
+            "in the TEX file")
     # Make sure this gets seen, if someone is watching
     Sys.sleep(5)
   }
-  # Figures before line 4000 in the TEX file are assumed to be in the executive summary
-  # After 4000 are grouped together
-  num_exec_summary_figs <- length(g_all[g_all < executive_summary_line_cutoff])
-  exec_summary_figs <- paste("Figure", letters[seq_len(num_exec_summary_figs)])
-  num_figure_section_figs <- length(g_all[g_all >= executive_summary_line_cutoff])
-  # Assumes the Executive summary is always present. The rest can be missing
-  if(num_figure_section_figs){
-    if(is.null(appendix_breaks)){
-      figure_section_figs <- paste("Figure", seq_len(num_figure_section_figs))
-    }else{
-      figure_section_figs <- NULL
-      # Main figures section
-      max_main_figs <- min(appendix_breaks) - 1
-      figure_section_figs[1:max_main_figs] <- paste("Figure", 1:max_main_figs)
-      # Appendix figures
-      br <- c(appendix_breaks, num_figure_section_figs)
-      names(br)[length(br)] <- names(br)[length(br) - 1]
-      br <- enframe(br) %>%
-        complete(value = min(value):max(value)) %>%
-        fill(everything()) %>%
-        group_by(name) %>%
-        mutate(fig_num = 1:n()) %>%
-        ungroup
-      app_figs <- pmap(br, ~{
-        paste0("Figure ", ..2, ".", ..3)
-      }) %>% map_chr(~{.x})
-      figure_section_figs <- c(figure_section_figs, app_figs)
-    }
-    figure_summary <- enframe(c(exec_summary_figs, figure_section_figs), name = NULL) %>%
-      bind_cols(alt_fig_text) %>%
-      select(value, text) %>%
-      rename(`Figure tag` = value, `Alternative text` = text)
-  }else{
-    figure_summary <- enframe(exec_summary_figs, name = NULL) %>%
-      bind_cols(alt_fig_text) %>%
-      select(value, text) %>%
-      rename(`Figure tag` = value, `Alternative text` = text)
+
+  if(length(all_inds) != length(alt_fig_text$text)){
+    browser()
+    stop("The number of lines containing the includegraphics{} macro does ",
+         "not match the number of entries in the alt text data frame. Make ",
+         " sure you have entered an alt.text chunk entry for all figures",
+         call. = FALSE)
   }
-  write_csv(figure_summary, "alternative_text.csv")
-  if(debug){
-    message("add_alt_text() matched the following lines in the file ", tex_file)
-    print(map2(1:length(g_knitr), j[g_knitr], ~{
-      sprintf("line %d: %s", g_knitr[.x], .y)
-    }) %>% map_chr(~{.x}))
-    message("\nadd_alt_text() has the following alt_fig_text descriptions (from knit_hooks): ")
-    print(alt_fig_text)
-    cat("\n\n")
-    if(length(g_all) != nrow(alt_fig_text)){
-      message("The alt_fig_text data frame does not have the same number of entries as ",
-              "the number of figures detected. Did you forget to add is.fig = TRUE to a figure chunk?")
+
+  # Number of figures. Some figures may be made up of more than one plot
+  begin_fig_inds <- grep("begin\\{figure\\}", lines)
+  end_fig_inds <- grep("end\\{figure\\}", lines)
+  if(length(begin_fig_inds) != length(end_fig_inds)){
+    stop("Number of \\begin{figure} and \\end{figure} are not the same",
+         call. = FALSE)
+  }
+  num_figs <- length(end_fig_inds)
+
+  # Split the lines into two lists of chunks, one is a list of chunks of
+  # individual figure tex lines and the other is a list of what is in between
+  # those chunks
+  fig_chunks <- map2(begin_fig_inds, end_fig_inds, ~{
+    lines[.x:.y]
+  })
+
+  prev_end_ind <- 0
+  non_fig_chunks <- map2(begin_fig_inds, end_fig_inds, ~{
+    if(.x == 1 || .y == length(lines)){
+      NULL
     }
-  }else{
-    if(length(g_all) != nrow(alt_fig_text)){
-      stop("The alt_fig_text data frame does not have the same number of entries as ",
-           "the number of knitr figures detected. Did you forget to add is.fig = TRUE to a figure chunk? ",
-           "To debug, call add_alt_text() with debug = TRUE",
+    out <- lines[(prev_end_ind + 1):(.x - 1)]
+    prev_end_ind <<- .y
+    out
+  })
+
+  if(end_fig_inds[length(end_fig_inds)] != length(lines)){
+    non_fig_chunks <- c(non_fig_chunks,
+                        list(lines[(prev_end_ind + 1):length(lines)]))
+  }
+
+
+  tag_fig_chunk <- function(chunk,
+                            knitr_pat,
+                            manual_pat,
+                            alt_text_df){
+
+    # Store figure beginning and end lines, and remove from the chunk
+    beg <- chunk[1]
+    end <- chunk[length(chunk)]
+    chunk <- chunk[-c(1, length(chunk))]
+
+    beg_cap_ind <- grep("caption\\{", chunk)
+    end_cap_ind <- grep("label\\{fig:", chunk)
+
+    if(length(beg_cap_ind) != length(end_cap_ind)){
+      stop("Number of caption beginnings and ends not equal. The caption ",
+           "ends are defined by a label line so if that is missing this can ",
+           "happen. The chunk is:\n\n",
+           paste(c(beg, chunk, end), collapse = "\n"), "\n",
            call. = FALSE)
     }
+
+    # Split the chunk into individual figures based on the ends of the captions
+    beg_next_chunk <- 1
+    fig_chunks <- map(end_cap_ind, ~{
+      ret <- chunk[beg_next_chunk:.x]
+      beg_next_chunk <<- .x + 1
+      ret
+    })
+
+    # Insert figure tagging elements
+    fig_chunks <- map(fig_chunks, function(subchunk){
+
+      is_knitr <- as.logical(length(grep("begin\\{knitrout\\}", subchunk)))
+
+      # Captions and labels must exist whether created by knitr or not
+      # Caption existence has been done prior to this loop so no checking here
+      beg_cap_ind <- grep("caption\\{", subchunk)
+      end_cap_ind <- grep("label\\{fig:", subchunk)
+
+      if(is_knitr){
+        # The figure was created by knitr
+        fig_ind <- grep(knitr_pat, subchunk)
+        beg_knitr_ind <- grep("begin\\{knitrout\\}", subchunk)
+        end_knitr_ind <- grep("end\\{knitrout\\}", subchunk)
+        end_total <- grep("end\\{center\\}", subchunk)
+        if(!length(end_total)){
+          # If center wasn't used, set the end to the `\\end{knitrout}` line
+          end_total <- end_knitr_ind
+        }
+
+        ret <- c(subchunk[1:(fig_ind - 1)],
+                 paste0("\\tagstructbegin{tag=Figure,alttext=",
+                        alt_text_df[1, ]$text,
+                        "}"),
+                 "\\tagmcbegin{tag=Figure}",
+                 subchunk[fig_ind],
+                 "\\tagmcend",
+                 "\\tagstructend",
+                 "\\tagpdfparaOn",
+                 "\\tagstructbegin{tag=Caption}",
+                 "\\tagmcbegin{tag=Caption}",
+                 subchunk[beg_cap_ind:end_cap_ind],
+                 "\\tagmcend",
+                 "\\tagstructend",
+                 subchunk[end_knitr_ind:end_total])
+      }else{
+        # The figure was inserted manually
+        fig_ind <- grep(manual_pat, subchunk)
+        # Check subchunk for center command and insert end if necessary
+        has_center <- any(grepl("begin\\{center\\}", subchunk))
+        ret <- c(subchunk[1:(fig_ind - 1)],
+                 paste0("\\tagstructbegin{tag=Figure,alttext=",
+                        alt_text_df[1, ]$text,
+                        "}"),
+                 "\\tagmcbegin{tag=Figure}",
+                 subchunk[fig_ind],
+                 ifelse(has_center, "\\end{center}", NA),
+                 "\\tagmcend",
+                 "\\tagstructend",
+                 "\\tagpdfparaOn",
+                 "\\tagstructbegin{tag=Caption}",
+                 "\\tagmcbegin{tag=Caption}",
+                 subchunk[beg_cap_ind:end_cap_ind],
+                 "\\tagmcend",
+                 "\\tagstructend")
+        ret <- ret[!is.na(ret)]
+      }
+      alt_text_df <<- alt_text_df[-1, ]
+      ret
+    })
+
+    list(c(beg, unlist(fig_chunks), end), alt_text_df)
   }
-  modified_lines <- map2(j[g_knitr], alt_fig_text_knitr$text, ~{
-    gsub(inc_graphics_pattern_knitr,
-         paste0("\\\\pdftooltip{\\1}{", .y, "}"),
-         .x)
-  }) %>% map_chr(~{.x})
-  j[g_knitr] <- modified_lines
-  writeLines(j, tex_file)
+
+  figure_chunks <- map(fig_chunks, ~{
+    ret <- tag_fig_chunk(.x,
+                         knitr_pat = inc_graphics_pattern_knitr,
+                         manual_pat = inc_graphics_pattern_manual,
+                         alt_fig_text)
+    alt_fig_text <<- ret[[2]]
+    ret[[1]]
+  })
+
+  lines_out <- lines[1:(begin_fig_inds[1] - 1)]
+  begin_fig_inds <- c(begin_fig_inds, length(lines) + 1)
+  for(i in seq_along(figure_chunks)){
+    lines_out <- c(lines_out,
+                   figure_chunks[[i]],
+                   lines[(end_fig_inds[i] + 1):(begin_fig_inds[i + 1] - 1)])
+  }
+  writeLines(lines_out, tex_file)
 }

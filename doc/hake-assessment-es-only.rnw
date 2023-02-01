@@ -1,7 +1,5 @@
-%% hake-assessment.Rnw
-%% Pacific Hake Joint technical committee.
-% \RequirePackage{pdfmanagement-testphase}
-% \DeclareDocumentMetadata{lang=en-US}
+\RequirePackage{pdfmanagement-testphase}
+\DocumentMetadata{testphase=phase-II, uncompress, pdfstandard=A-2U, lang=en-US}
 
 \documentclass[12pt]{book}
 %% Allows the numbering of figures/tables to be unique witin a section
@@ -205,8 +203,25 @@ alt_fig_text <- tibble::tibble()
 # This is called every time a chunk is evaluated with alt.text in the chunk options
 knit_hooks$set(alt.text = function(before, options, envir){
   if(before && options$is.fig){
-    # Add first line of code and the alt text to a data frame
-    alt_fig_text <<- bind_rows(alt_fig_text, c(code = options$code[1], text = options$alt.text))
+    # Add first line of non-comment code and the alt text to a data frame
+    code_chunk <- options$code
+    # Remove leading whitespace from all lines
+    code_chunk <- gsub("^[[:space:]]+", "\\1", code_chunk)
+    # Remove all comment lines
+    code_chunk <- code_chunk[!grepl("^#", code_chunk)]
+    # Select the first line that is a function call
+    code_chunk <- code_chunk[grepl("^[:a-zA-Z0-9_\\.]+\\(", code_chunk)]
+    # Remove all instances of par() as they always comes before the function call
+    code_chunk <- code_chunk[!grepl("^par\\(", code_chunk)]
+    code_chunk <- code_chunk[!grepl("^layout\\(", code_chunk)]
+    if(length(code_chunk)){
+      alt_text <- ifelse(is.null(options$alt.text),
+                         "Alt text not provided",
+                         options$alt.text)
+      alt_fig_text <<- bind_rows(alt_fig_text,
+                                 c(code = code_chunk[1],
+                                   text = alt_text))
+    }
   }
   # Return NULL because anything else output here will be written into the TEX output
   NULL

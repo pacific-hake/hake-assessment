@@ -394,7 +394,7 @@ have low to moderate recruitment with occasional large year classes
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<recruitment, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the last three large cohorts' recruitment: 2010, 2014, and 2016, with 2020 possibly large but highly uncertain">>=
+<<recruitment, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows recruitment for 2010 2014 and 2016 cohorts which are the largest in the stock with 2020 possibly being large but highly uncertain">>=
 plot_recruitment(list(base_model),
                  list(base_model_name),
                  single_line_color = "blue",
@@ -603,8 +603,7 @@ make_landings_tac_table(ct,
                         xlabel = "tab:es-landings-tac",
                         font_size = 7,
                         space_size = 8,
-                        placement = "tbp")  # longtable ignores anyway, R
-                                        # gives a warning
+                        placement = "tbp")
 @
 
 \clearpage
@@ -969,7 +968,7 @@ make.risk.table(base_model,
 \begin{center}
 
 
-<<forecast-risk-comparison-plot-year-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably decline the year after next (except under zero catch)">>=
+<<forecast-risk-comparison-plot-year-2, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the stock will probably decline the year after next except under zero catch">>=
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[2],
