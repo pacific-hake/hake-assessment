@@ -1,4 +1,0 @@
-call run_17_sigmaR_fix_low.bat
-call run_18_sigmaR_fix_high.bat
-call run_23_age1Survey.bat
-call run_30_noCohort_ageError.bat
