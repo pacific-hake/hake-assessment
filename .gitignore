@@ -1,3 +1,4 @@
+# root .gitignore
 # Files
 *~*
 *.7z
@@ -71,3 +72,7 @@ appendix-srg-requests-2019.rnw
 .bash_history
 .config/
 .local/
+
+# Whitelist
+!testing/
+!testing/*

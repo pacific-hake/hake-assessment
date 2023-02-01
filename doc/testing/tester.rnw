@@ -1,0 +1,15 @@
+\begin{figure}[H]
+\begin{center}
+<<main-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been increasing in size since 2021">>=
+plot_biomass(list(base_model),
+             list(base_model_name),
+             ylim = c(0, 5),
+             point_shape = 1,
+             alpha = 0.2,
+             leg_pos = "none")
+@
+\end{center}
+\caption{Median of the posterior distribution for female spawning biomass at the start of each year ($B_t$) for the base model up to \Sexpr{end_yr} (solid line) with 95\% posterior credibility intervals (shaded area).}
+\label{fig:main-female-spawning-biomass}
+\end{figure}
+
