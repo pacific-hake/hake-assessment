@@ -57,6 +57,7 @@
 #' @param show_50_line Logical. If `TRUE`, draw a horizontal line at 50% (0.5)
 #' @param short Logical. If `TRUE`, plot a version with only P(YR<0.4B0),
 #' P(YR<0.1B0), and P(YR<YR+1)
+#' @param ribbon_line_type Linetype for ribbon edges; use 0 for no line.
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
@@ -81,6 +82,7 @@ plot_biomass <- function(model_lst = NULL,
                          clip_cover = 2,
                          single_line_color = "black",
                          single_ribbon_color = "blue",
+                         ribbon_line_type = "dotted",
                          rev_colors = FALSE,
                          wrap_y_label = FALSE,
                          d_obj = NULL){
@@ -148,7 +150,7 @@ plot_biomass <- function(model_lst = NULL,
                     ylim = ylim,
                     clip = "off") +
     geom_ribbon(alpha = alpha,
-                linetype = "dotted") +
+                linetype = ribbon_line_type) +
     geom_line(linewidth = line_width) +
     geom_point(size = point_size,
                shape = point_shape) +

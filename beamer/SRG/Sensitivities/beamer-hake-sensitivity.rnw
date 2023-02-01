@@ -285,7 +285,8 @@ plot_biomass(model_lst = list(base_model,
              leg_font_size = 5,
              leg_pos = c(0.8, 0.75),
              rev_colors = TRUE,
-             axis_title_font_size = 10)
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
 @
 \end{center}
 \end{frame}
