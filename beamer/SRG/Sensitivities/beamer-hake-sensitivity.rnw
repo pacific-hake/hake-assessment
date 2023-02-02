@@ -98,25 +98,20 @@ if(!dir.exists(fig_dir)){
 \begin{frame}
 \frametitle{Overview}
 \fontsize{11pt}{2}\selectfont
-\textbf{All bridge, sensitivity, and retrospective models were run in MCMC mode on cloud computers}
+\textbf{All bridge, sensitivity, and retrospective models were run using MCMC.}
 \begin{enumerate}
-  \item Modeling on the cloud
-  \item Sensitivities
+  \item Sensitivity models:
         \bi
-        \item Higher standard deviation on prior for natural mortality
-        \item Alternative values for steepness ($h$)
-        \item Variation on recruitment ($\sigma_r$)
+        \item Alternative assumptions for steepness ($h$)
+        \item Alternative assumptions for natural mortality ($M$)
+        \item Alternative standard deviations for recruitment ($\sigma_r$)
         \item Remove the age-1 index
         \item Downweight fishery age-composition data
-        \item Alternative standard deviations on time-varying selectivity ($\Phi$)
-        \item Alternative maximum age of selectivity
+        \item Alternative standard deviations for time-varying selectivity ($\Phi$)
         \ei
-  \item Retrospectives
-        \bi
-        \item \Sexpr{length(retrospective_yrs)} years into the past
-        \item Cohort determination (squid plot) for the base model and the age-1 exclusion sensitivity
-        \item Historical assessments: \Sexpr{assess_yr - 1991 + 1} years
-        \ei
+  \item Retrospectives \Sexpr{length(retrospective_yrs)} years into the past
+  \item Spawning biomass estimates from \Sexpr{assess_yr - 1991 + 1} years of assessments
+  \item Historical performance of probabilities
 \end{enumerate}
 \end{frame}
 % -----------------------------------------------------------------------------
