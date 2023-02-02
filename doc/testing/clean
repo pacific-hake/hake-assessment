@@ -14,6 +14,7 @@ rm *.out 2> /dev/null
 rm *.upa 2> /dev/null
 rm *.upb 2> /dev/null
 rm tester-launch.tex 2> /dev/null
+rm tester-launch.pdf 2> /dev/null
 
 rm -rf knitr-cache 2> /dev/null
 rm -rf out-csv 2> /dev/null

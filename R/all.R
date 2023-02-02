@@ -113,7 +113,8 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "figures-R0-vs-meanRecruitment.R", "figures-makebox.R",
              "plotcolour.R", "plot-color.R", "plot-depl-fore-comparison.R",
              "s3.R", "tables-cohort.R", "tables-timeseries.R",
-             "tables-reference-points.R", "tables-decisions.R", "tables-age.R",
+             "tables-reference-points.R", "tables-decisions.R",
+             "tables-decisions-pres.R", "tables-age.R",
              "tables-assessmentchanges.R", "tables-parameters.R",
              "tables-sampling.R", "tables-squid.R", "tables-maturity.R",
              "theme.R", "model-setup.R", "forecast-catch-levels.R",
@@ -125,8 +126,9 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "create-group-df-index.R", "plot-biomass.R", "plot-rel-biomass.R",
              "plot-recruitment.R", "plot-recdevs.R", "plot-survey-index-fits.R",
              "plot-retro-recruits.R", "make-small-rds.R", "extract-rep-table.R",
-             "plot-fore-compare.R", "plot-spr-illustration.R", "plot-selex-posteriors.R",
-             "table-param-est-bounds.R", "plot-multiple-tv-selex-unc.R")
+             "plot-fore-compare.R", "plot-spr-illustration.R",
+             "plot-selex-posteriors.R", "table-param-est-bounds.R",
+             "plot-multiple-tv-selex-unc.R", "tables-risk.R")
 source_all(src_lst)
 
 theme_set(hake_theme())
