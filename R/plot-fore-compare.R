@@ -117,13 +117,21 @@ plot_fore_compare <- function(model,
           axis.text.x = element_text(color = "grey20",
                                      size = axis_tick_font_size,
                                      angle = 90,
-                                     hjust = 0.5,
-                                     vjust = -0.25,
+                                     # margin with first element set controls
+                                     # up/down position, positive for down
+                                     # Cannot use hjust, it has a bug and does
+                                     # not work
+                                     margin = unit(c(0.15, 0, 0, 0), "cm"),
+                                     # vjust controls left/right
+                                     # position, positive for right
+                                     vjust = 0.35,
                                      face = "plain"),
           axis.text.y = element_text(color = "grey20",
                                      size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
+                                     hjust = 0,
+                                     # vjust adjusts up/down, positive for
+                                     # down
+                                     vjust = 0.55,
                                      face = "plain"),
           axis.title.x = element_text(color = "grey20",
                                       size = axis_title_font_size,
@@ -147,8 +155,10 @@ plot_fore_compare <- function(model,
     g <- g +
       theme(legend.position = leg_pos,
             legend.text = element_text(size = leg_font_size)) +
-      guides(fill = guide_legend(ncol = leg_ncol),
-             color = guide_legend(ncol = leg_ncol))
+      guides(fill = guide_legend(ncol = leg_ncol,
+                                 label.hjust = 0),
+             color = guide_legend(ncol = leg_ncol,
+                                  label.hjust = 0))
   }else{
     g <- g +
       theme(legend.text = element_text(size = leg_font_size))
