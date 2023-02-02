@@ -23,6 +23,7 @@ decision_table <- function(model,
                            type = "biomass",
                            placement = "H",
                            forecast_inds = seq_along(model$forecasts[[length(model$forecasts)]]),
+                           rows_to_show = NULL,
                            rows_to_label = c("e", "f", "h", "j", "l", "m", "n", "o"),
                            row_labels = list(c("10\\%", "reduction"),
                                              c(assess_yr - 1, "catch"),
@@ -231,14 +232,6 @@ decision_table <- function(model,
 
   }
 
-  # Add the right number of horizontal lines to make the table break in the correct places
-  # A line is not needed at the bottom explains (length(forecast)-1) in the loop.
-  if(length(forecast_inds) > 1){
-    for(i in 1:(length(forecast_inds) - 1)){
-      addtorow$pos[[i + 2]] <- i * num.rows
-      addtorow$command <- c(addtorow$command, latex.hline)
-    }
-  }
   if(type == "biomass"){
     align <- c("c",
                "|c",
@@ -254,7 +247,45 @@ decision_table <- function(model,
                quant.cell.defs)
     forecast.tab <- forecast.tab %>% select(-start_yr)
   }
-  ## Make the size string for font and space size
+
+  if(is.null(rows_to_show[1])){
+    # Add the right number of horizontal lines to make the table break in the
+    # correct places. A line is not needed at the bottom explains
+    # (length(forecast)-1) in the loop
+    if(length(forecast_inds) > 1){
+      for(i in 1:(length(forecast_inds) - 1)){
+        addtorow$pos[[i + 2]] <- i * num.rows
+        addtorow$command <- c(addtorow$command, latex.hline)
+      }
+    }
+  }else{
+    root_rows <- map_dbl(rows_to_show, ~{
+      ind <- grep(paste0("^", .x, ":"), forecast.tab$labels)
+    })
+    if(!length(root_rows)){
+      stop("None of the rows you selected exist in the decision table",
+           call. = FALSE)
+    }
+    remove_inds <- (length(forecast_yrs) - 1):length(forecast_yrs)
+    rows <- map(seq_along(forecast_yrs)[-remove_inds], ~{
+      root_rows + .x
+    }) |>
+      unlist()
+    rows <- c(rows, root_rows) |>
+      sort()
+    forecast.tab <- forecast.tab[rows, ]
+
+    addtorow$pos <- list()
+    addtorow$pos[[1]] <- -1
+    addtorow$pos[[2]] <- nrow(forecast.tab)
+    if(length(root_rows) > 1){
+      for(i in 1:(length(root_rows) - 1)){
+        addtorow$pos[[i + 2]] <- i * (length(forecast_yrs) - 1)
+        addtorow$command <- c(addtorow$command, latex.hline)
+      }
+    }
+  }
+  # Make the size string for font and space size
   size.string <- latex.size.str(font.size, space.size)
   print(xtable(forecast.tab,
                caption = xcaption,
@@ -269,146 +300,4 @@ decision_table <- function(model,
         table.placement = placement,
         tabular.environment = "tabular",
         hline.after = NULL)
-}
-
-#' Creates LaTeX code to make a probability of risk table with various probabilities
-#' of things happening with the stock
-#'
-#' @param model A model from this project
-#' @param forecast.yrs A vector of forecast years
-#' @param index Index for which forecast year data to use. e.g. 1 = second forecast year
-#' compared to the first. If there were N forecast years, this can be from 1 to N-1.
-#' @param xcaption Caption to appear in the calling document
-#' @param xlabel Label used to reference the table in LaTeX
-#' @param font.size Point size of font in table
-#' @param space.size Vertical space between rows
-#' @param placement LaTeX code for placement of the table, e.g. "H" or "tbp"
-#' @param type If you want both columns of catch (i.e., type = 2),
-#' where the original doesn't and uses type = 1
-#'
-#' @return LaTeX code to render the table
-#' @export
-make.risk.table <- function(model,
-                            forecast.yrs,
-                            index = 1,
-                            xcaption   = "default",
-                            xlabel     = "default",
-                            font.size  = 9,
-                            space.size = 10,
-                            placement = "H",
-                            type = 1){
-
-  risk <- model$risks[[index]]
-  ## Remove last 3 columns which are DFO values
-  risk <- risk[,-((ncol(risk)-2):ncol(risk))]
-  ## Fix tiny catch of less than 0.49 to zero, only for first (catch) column
-  risk[risk[,1] < 0.49, 1] <- 0
-  ## Format all columns except catch (1) to be zero decimal points and have a
-  ##  percent sign
-  risk[,-1] <- apply(apply(risk[,-1],
-                           2,
-                           f),
-                     2,
-                     paste0,
-                     "\\%")
-  ## Format the catch column (1) to have no decimal points and the thousands
-  ##  separator
-  risk[,1] <- f(as.numeric(risk[,1]))
-  ## Add letters to the catch for reference with the decision tables
-  risk[,1] <- paste0(letters[1:nrow(risk)],
-                     ": ",
-                     risk[,1])
-  if (type == 2 && length(model$risks) > 2) stop("This function was",
-    "not written to work with more than two projections when you want",
-    "to display multiple years of catch in a single table.")
-  risk2 <- cbind(
-    f(sapply(model$risks, "[", 1:nrow(model$risks[[1]]))),
-    apply(model$risks[[index]][, 2:(ncol(model$risks[[index]])-3)],
-      1:2, function(x) paste0(f(x), "\\%")))
-  colnames(risk2) <- gsub("^(\\d{4}$)$", "Catch in \\1", colnames(risk2))
-  risk2[, 1] <- paste0(letters[1:nrow(risk2)], ": ", risk2[, 1])
-  addtorow2 <- list("pos" = list(-1, nrow(risk2)),
-    "command" = c(paste0("\\toprule \n",
-    paste(sapply(
-        gsub("1\\.00", "100\\\\%",
-        gsub("_(\\d{4})", "\\\\subscr{\\1}",
-        gsub("0\\.(\\d{2})", "B\\\\subscr{\\1\\\\%}",
-        gsub("ForeCatch_(\\d{4})", "\\1 catch",
-        gsub("SSB|Bratio", "B",
-        gsub("^Bratio(.+)<", "Prob. B\\1 <",
-        gsub("^SSB(.+)<", "Prob. B\\1 <",
-        gsub("^ForeCatch_(\\d{4})", "Prob. \\1 default harvest policy catch ",
-        gsub("SPRratio_(\\d{4})", "Prob. \\1 relative fishing intensity ",
-        colnames(risk2)))))))))), latex.bold),
-    collapse = latex.amp()), latex.nline,
-    "\\midrule \n"), "\\bottomrule \n"))
-
-  addtorow <- list()
-  addtorow$pos <- list()
-  addtorow$pos[[1]] <- -1
-  addtorow$pos[[2]] <- nrow(risk)
-  addtorow$command <-
-    c(paste0("\\toprule \n",
-             latex.mlc(c("Catch", paste("in",
-                                        forecast.yrs[index]))),
-             latex.amp(),
-             latex.mlc(c("Probability",
-                         paste0(latex.subscr("B", forecast.yrs[index+1]),
-                                " < ",
-                                latex.subscr("B", forecast.yrs[index])))),
-             latex.amp(),
-             latex.mlc(c("Probability",
-                         paste0(latex.subscr("B", forecast.yrs[index+1]),
-                                " < ",
-                                latex.subscr("B", "40\\%")))),
-             latex.amp(),
-             latex.mlc(c("Probability",
-                         paste0(latex.subscr("B", forecast.yrs[index+1]),
-                                " < ",
-                                latex.subscr("B", "25\\%")))),
-             latex.amp(),
-             latex.mlc(c("Probability",
-                         paste0(latex.subscr("B", forecast.yrs[index+1]),
-                                " < ",
-                                latex.subscr("B", "10\\%")))),
-             latex.amp(),
-             latex.mlc(c("Probability",
-                         paste(forecast.yrs[index], "relative"),
-                         "fishing",
-                         "intensity",
-                         " > 100\\%")),
-             latex.amp(),
-             latex.mlc(c("Probability",
-                         paste(forecast.yrs[index + 1], "default"),
-                         "harvest policy",
-                         "catch",
-                         paste0(" < ", forecast.yrs[index], " catch"))),
-             latex.nline,
-             "\\midrule \n"),
-      "\\bottomrule \n")
-
-  ## Make the size string for font and space size
-  size.string <- latex.size.str(font.size, space.size)
-  align <- get.align(ncol(risk), first.left = TRUE, just = "C{2cm} ")
-  if (type == 2) {
-    risk <- risk2
-    addtorow <- addtorow2
-    align <- c("l", "p{2cm}",
-      rep("p{1.4cm}", ncol(risk) - 3), rep("p{2.2cm}", 2))
-  }
-
-  print(xtable(risk,
-               caption = xcaption,
-               label = xlabel,
-               align = align),
-        caption.placement = "top",
-        include.rownames = FALSE,
-        include.colnames = FALSE,
-        sanitize.text.function = function(x){x},
-        size = size.string,
-        add.to.row = addtorow,
-        table.placement = placement,
-        hline.after = NULL,
-        tabular.environment = "tabular",
-        booktabs = TRUE)
 }
