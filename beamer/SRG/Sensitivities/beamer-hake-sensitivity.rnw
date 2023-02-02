@@ -422,10 +422,34 @@ plot_biomass(model_lst = list(base_model,
 \end{frame}
 
 \begin{frame}
+\frametitle{Alternative deviations for selectivity, $\Phi$}
+\vspace{5pt}
+\begin{center}
+<<phi.recr.fig, fig.height=3.0>>=
+plot_recruitment(d_obj = d_obj_sens_recr[[3]],
+                 x_expansion = 2,
+                 ylim = c(0,45),
+                 leg_font_size = 9,
+                 leg_pos = c(0.13, 0.80),
+                 inc_means = FALSE,
+                 rev_colors = TRUE,
+                 clip_cover = 3.5)
+@
+\end{center}
+\end{frame}
+
+
+\begin{frame}
 \frametitle{Alternative deviations for selectivity -- biomass index fit}
 \begin{center}
 \vspace{5pt}
-<<phi.sensitivity.survey, fig.height=3.5, fig.width=8>>=
+<<phi.survey.fig, fig.height=3>>=
+plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
+                       survey_type = "age2",
+                       x_expansion = 2,
+                       leg_pos = c(0.74, 0.25),
+                       rev_colors = TRUE,
+                       leg_font_size = 6)
 @
 \end{center}
 \end{frame}
