@@ -389,23 +389,6 @@ plot_fore_compare(base_model,
 \ec
 }
 
-\frame{\frametitle{Suggestion for further conveying recruitment variability (Appendix~H)}
-\bc
-<<rec.variability, fig.height=3.8, fig.width=6, out.width='0.6\\columnwidth'>>=
-make.mcmc.recruitment.plot(base_model,
-                           start_yr = 1966,
-                           equil.yr = unfished_eq_yr,
-                           samples = NULL,
-                           rescale = TRUE,
-                           traceplot = FALSE,
-                           end_yr = assess_yr + 2,
-                           auto.xaxis = FALSE)
-@
-\ec
-Plotting annual recruitment relative to huge 2010 recruitment shows that 2014
-was definitely not as large as 2010, in contrast to intuition from usual plot.
-}
-
 \section{Summary}
 \subsection{}
 \frame{\frametitle{Summary of management outcomes}
