@@ -109,9 +109,9 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "figures-overview-map.R", "figures-data.R",
              "figures-assessment-history.R", "figures-age-comp-forecast.R",
              "figures-selectivity-parameterizations.R", "figures-size-at-age.R",
-             "figures-maturity-ogive.R", "figures-management.R",
-             "figures-R0-vs-meanRecruitment.R", "figures-makebox.R",
-             "plotcolour.R", "plot-color.R", "plot-depl-fore-comparison.R",
+             "figures-maturity-ogive.R", "figures-R0-vs-meanRecruitment.R",
+             "figures-makebox.R", "plotcolour.R", "plot-color.R",
+             "plot-depl-fore-comparison.R",
              "s3.R", "tables-cohort.R", "tables-timeseries.R",
              "tables-reference-points.R", "tables-decisions.R",
              "tables-age.R", "tables-assessmentchanges.R", "tables-parameters.R",
@@ -127,7 +127,8 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "plot-retro-recruits.R", "make-small-rds.R", "extract-rep-table.R",
              "plot-fore-compare.R", "plot-spr-illustration.R",
              "plot-selex-posteriors.R", "table-param-est-bounds.R",
-             "plot-multiple-tv-selex-unc.R", "tables-risk.R")
+             "plot-multiple-tv-selex-unc.R", "tables-risk.R",
+             "plot-management-catch-vs-tac.R", "plot-management-catch-vs-tac-1-to-1.R")
 source_all(src_lst)
 
 theme_set(hake_theme())
