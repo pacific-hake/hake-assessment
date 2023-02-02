@@ -121,41 +121,8 @@ if(!dir.exists(fig_dir)){
 \end{frame}
 % -----------------------------------------------------------------------------
 
-% -----------------------------------------------------------------------------%
-\section{Cloud}
-\subsection{Modeling on the cloud}
-\begin{frame}
-\frametitle{Modeling on the cloud}
-\fontsize{11pt}{2}\selectfont
-\bi
-  \item All models used NUTS MCMC algorithm (no Metropolis-Hastings this year)
-  \item All models run on Amazon Web Services (AWS) Elastic Cloud Computing (EC2) instances
-  \item Instances are on-demand and cost XX \$ per/hour, depending on number of CPUs
-  \item Models run in parallel using multiple 96- and 48-CPU instances
-  \item Each model ran parallel NUTS using 16 CPUs. Each 96-CPU instance ran 6 models at once
-  \item In this doubly-parallel configuration, all models were run over the period of one day
-\ei
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
-\begin{frame}
-\frametitle{Modeling on the cloud}
-\fontsize{11pt}{2}\selectfont
-\bi
-  \item All 20 retrospective runs were done the same way
-  \item 62 MCMC runs in total
-  \item Each model and retrospective has \Sexpr{f(nrow(sens_models[[1]][[1]]$mcmc))} samples except base model with \Sexpr{f(num.mcmc.samples)}
-  \item Cost for 2022 is approximately \$1,700 USD (so far)
-  \item Over 1.25 million files generated as output. Over 99\% of those contribute values to the assessment document
-  \item Bottleneck is now dealing with massive amounts of output (RAM and HD throughput limitations)
-  \item Amazon Simple Storage Service (S3) has unlimited storage but takes time to transfer data to and from local machines
-\ei
-\end{frame}
-% -----------------------------------------------------------------------------% $
-
 % -----------------------------------------------------------------------------
-\section{$h$ and $M$}
+\section{$h, M, \sigma_r$}
 \subsection{Sensitivity to steepness, $h$}
 \begin{frame}
 \frametitle{Sensitivity to steepness, $h$}
@@ -253,7 +220,6 @@ param_est_table(models = list(base_model,
 \end{center}
 \end{frame}
 
-\section{Sigma r}
 \subsection{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{frame}
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
@@ -387,7 +353,7 @@ plot_rel_biomass(model_lst = list(base_model,
 \end{center}
 \end{frame}
 
-\section{Selectivity}
+\section{$\Phi$}
 \subsection{Flexibility in time-varying selectivity -- $\Phi$}
 \begin{frame}
 \frametitle{Flexibility in time-varying selectivity -- $\Phi$}
@@ -490,7 +456,7 @@ param_est_table(models = list(base_model,
 \end{frame}
 
 % -----------------------------------------------------------------------------%
-\section{Retrospectives}
+\section{Retros}
 \subsection{Spawning biomass}
 \begin{frame}
 \frametitle{Base model retrospectives - Spawning biomass}
@@ -638,7 +604,7 @@ make_squid_plot(base_model,
 \end{center}
 \end{frame}
 
-\subsection{Historical assessments}
+\section{Historical}
 \begin{frame}
 \frametitle{Historical assessments}
 \begin{center}
@@ -652,8 +618,6 @@ make.assessment.history.plot(base_model,
 \end{center}
 \end{frame}
 
-\section{Historical performance}
-\subsection{}
 \frame{\frametitle{Historical performance of the Pacific Hake stock assessment}
   \bi
   \item General question -- how `good' are projection probabilities? And why do
