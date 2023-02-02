@@ -1565,15 +1565,15 @@ relative to the base model, are:
 
 \item Removal of the age-1 index as a data source;
 
-\item Downweighting the fishery age-composition data;
+\item Downweighting the fishery age-composition data; and
 
 \item Consideration of alternative standard deviations for time-varying
-  selectivity;
+  selectivity.
 
-\item Consideration of an alternative maximum age for fishery and survey
-  selectivity; and
+%\item Consideration of an alternative maximum age for fishery and survey
+%  selectivity; and
 
-\item Add the constraint that recruitment deviates must sum to zero.
+% \item Add the constraint that recruitment deviates must sum to zero.
 
 %\item Removal of cohort-based ageing error from the model; and
 
