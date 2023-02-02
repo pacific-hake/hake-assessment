@@ -13,3 +13,13 @@ plot_biomass(list(base_model),
 \label{fig:main-female-spawning-biomass}
 \end{figure}
 
+\clearpage
+<<decisions.biomass.table, results='asis', echo=FALSE>>=
+decision_table(base_model,
+               type = "biomass",
+               xcaption = "None",
+               xlabel = "tab:junk",
+               #rows_to_show = c("a", "b", "f", "j", "k"),
+               font.size = 8,
+               space.size = 10)
+@
