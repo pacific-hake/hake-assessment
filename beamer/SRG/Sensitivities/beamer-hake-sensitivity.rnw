@@ -727,10 +727,15 @@ make.historical.probs.plot(base_model,
 <<spawning.biomass, fig.height=3>>=
 plot_biomass(list(base_model),
              list(base_model_name),
-             ylim = c(0, 5),
              point_shape = 1,
              alpha = 0.2,
-             leg_pos = "none")
+             leg_pos = "none",
+             x_expansion = 4,
+             ylim = c(0, 6),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 5,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
 @
 \ec
 }
@@ -783,6 +788,51 @@ make.historical.probs.plot(base_model,
 %% **Current base model with data up to 2011 would have said very low chance of
 %% $B_{2013}$ falling below $\Bforty$.
 %% }
+
+
+% --------------------------------------------------------------
+\section{Recruitment}
+\frame{\frametitle{Recruitment}
+\bc
+<<rec.fig, fig.height=2.8>>=
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 single_line_color = "blue",
+                 leg_pos = "none",
+                 axis_title_font_size = 10,
+                 clip_cover = 3.5,
+                 ylim = c(0, 35))
+@
+\ec
+}
+
+\frame{\frametitle{Scaled plot to further conveying recruitment variability}
+\bc
+<<rec.variability, fig.height=3.7>>=
+make.mcmc.recruitment.plot(base_model,
+                           start_yr = 1966,
+                           equil.yr = unfished_eq_yr,
+                           samples = NULL,
+                           rescale = TRUE,
+                           traceplot = FALSE,
+                           end_yr = assess_yr + 2,
+                           auto.xaxis = FALSE,
+                           plot_R0 = TRUE)
+@
+\ec
+Plotting annual recruitment relative to huge 2010 recruitment shows that 2014
+was definitely not as large as 2010, in contrast to intuition from usual plot.
+}
+% --------------------------------------------------------------
+
+\frame{\frametitle{Variability}
+\bc
+<<dispersion.fig, fig.height=3>>=
+make.assessment.history.disp.plot(base_model,
+                                  assessment.history.disp)
+@
+\ec
+}
 
 
 \section{Summary}
