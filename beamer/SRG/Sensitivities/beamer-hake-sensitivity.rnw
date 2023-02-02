@@ -496,7 +496,97 @@ param_est_table(models = list(base_model,
 \frametitle{Base model retrospectives - Spawning biomass}
 \begin{center}
 \vspace{-5pt}
-<<retro.biomass, fig.height=3>>=
+<<retro.biomass.1, fig.height=3>>=
+plot_biomass(d_obj = map(d_obj_retro_biomass,
+                         ~filter(.x,
+                                 model %in% c("Base model",
+                                              "-1 year"))),
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.6, 0.86),
+             leg_ncol = 1,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Base model retrospectives - Spawning biomass}
+\begin{center}
+\vspace{-5pt}
+<<retro.biomass.2, fig.height=3>>=
+plot_biomass(d_obj = map(d_obj_retro_biomass,
+                         ~filter(.x,
+                                 model %in% c("Base model",
+                                              "-1 year",
+                                              "-2 years"))),
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.6, 0.86),
+             leg_ncol = 1,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Base model retrospectives - Spawning biomass}
+\begin{center}
+\vspace{-5pt}
+<<retro.biomass.3, fig.height=3>>=
+plot_biomass(d_obj = map(d_obj_retro_biomass,
+                         ~filter(.x,
+                                 model %in% c("Base model",
+                                              "-1 year",
+                                              "-2 years",
+                                              "-3 years"))),
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.6, 0.86),
+             leg_ncol = 2,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Base model retrospectives - Spawning biomass}
+\begin{center}
+\vspace{-5pt}
+<<retro.biomass.4, fig.height=3>>=
+plot_biomass(d_obj = map(d_obj_retro_biomass,
+                         ~filter(.x,
+                                 model %in% c("Base model",
+                                              "-1 year",
+                                              "-2 years",
+                                              "-3 years",
+                                              "-4 years"))),
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.6, 0.86),
+             leg_ncol = 2,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Base model retrospectives - Spawning biomass}
+\begin{center}
+\vspace{-5pt}
+<<retro.biomass.5, fig.height=3>>=
 plot_biomass(d_obj = d_obj_retro_biomass,
              leg_font_size = 5,
              x_expansion = 4,
@@ -509,6 +599,8 @@ plot_biomass(d_obj = d_obj_retro_biomass,
 @
 \end{center}
 \end{frame}
+
+
 
 \begin{frame}
 \frametitle{Base model retrospectives - recruitment}
