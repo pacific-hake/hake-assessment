@@ -5,12 +5,16 @@
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
-\usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{xcolor}
 \usepackage[T1]{fontenc} % to use < or > in tables
-\newcolumntype{Y}{>{\centering\arraybackslash}X}
+%% For centering with fixed width column or right cell values in a tabular
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+
 \setbeamersize{text margin left=0.1in}
 \setbeamersize{text margin right=0.1in}
 \setbeamertemplate{title page}
@@ -95,6 +99,8 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
                              connect_vars_linetype = "solid",
                              connect_vars_alpha = 0.2,
                              curr_assess_biomass = base_model$catch.default.policy[1])
+def_med_hr_tac <- filter(catch.targets,
+                         Year == last_assess_yr)$`Default HCR TAC`
 @
 }
 
@@ -104,8 +110,8 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 	  \bi
 	    \item March \Sexpr{last_assess_yr}
       \bi
-        \item Default median HR TAC = \Sexpr{f((catch.targets %>% filter(Year == last_assess_yr))$`Default HCR TAC`)}~t
-        \item Sum of unilateral TACs = \Sexpr{last.year.tac}~t
+        \item Default median HR TAC is \Sexpr{f(def_med_hr_tac)}~t
+        \item Sum of unilateral TACs is \Sexpr{last.year.tac}~t
       \ei
       \item When default HR suggests a large catch, TAC is often set less
       \item Catches are often less than the TAC
@@ -115,7 +121,7 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
   \begin{column}{0.6\textwidth}
   <<tac.vs.realized.catch, fig.height = 6, out.width = '0.95\\columnwidth'>>=
     management_catch_vs_tac_1_to_1(catch.targets,
-                                   top_yrs = c(2004, 2006,2012, 2016, 2018),
+                                   top_yrs = c(2004, 2006, 2012, 2016, 2018),
                                    color_darken = 0.9)
   @
   \end{column}
@@ -149,10 +155,10 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 \frame{\frametitle{Projection methods}
   \bi
     \item Projections estimate the biomass at start
-      of \Sexpr{end_yr+1}, \Sexpr{end_yr+2}, and \Sexpr{end_yr+3}
+      of \Sexpr{end_yr + 1}, \Sexpr{end_yr + 2}, and \Sexpr{end_yr + 3}
     \bi
-      \item Mean of fishery selectivity from \Sexpr{end_yr-5}--\Sexpr{end_yr-1} used in projections
-      \item Mean of weight-at-age from \Sexpr{end_yr-5}--\Sexpr{end_yr-1} used in projections
+      \item Mean of fishery selectivity from \Sexpr{end_yr - 5}--\Sexpr{end_yr - 1} used in projections
+      \item Mean of weight-at-age from \Sexpr{end_yr - 5}--\Sexpr{end_yr - 1} used in projections
       \item Recruitment from stock-recruit relationship (with uncertain deviations)
       \item Used for default HR calculations
       \item Alternative future catch levels explored
@@ -181,7 +187,9 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
   \end{column}
   \begin{column}{0.65\textwidth}
     <<main.projected.catch.density, out.width='.99\\columnwidth'>>=
-      make.forecast.catch.posterior.plot(base_model, fore.yr = end_yr, xmax=3000)
+      make.forecast.catch.posterior.plot(base_model,
+                                         fore.yr = end_yr,
+                                         xmax = 3000)
       @
   \end{column}
 \end{columns}
@@ -191,11 +199,12 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 \begin{columns}
   \begin{column}{0.38\textwidth}
     \bi
-      \item No fishing results in increase in \emph{median} relative
-        spawning biomass from \Sexpr{assess_yr} to \Sexpr{assess_yr+2} then
-        levelling off
-      \item All others shown result in eventual declines in the median
-      \item Uncertainty is large and increases from \Sexpr{end_yr} to \Sexpr{end_yr+3}
+      \item No fishing results in flat \emph{median} relative
+        spawning biomass from \Sexpr{assess_yr} to \Sexpr{assess_yr + 3} then
+        leveling off
+      \item 180,000 t catch shows similar biomass in \Sexpr{end_yr + 1} followed by decline
+      \item All others shown result in immediate declines in the median
+      \item Uncertainty is large and increases from \Sexpr{end_yr} to \Sexpr{end_yr + 3}
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -227,8 +236,8 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
         \Sexpr{catch_levels[[7]][[2]]},
         \Sexpr{catch_levels[[9]][[2]]}, and
         \Sexpr{catch_levels[[11]][[2]]}.
-      \item f. Constant catch of \Sexpr{catch_levels[[6]][[2]]},
-      \item l. Constant catch of \Sexpr{catch_levels[[12]][[2]]},
+      \item f. Constant catch equal to \Sexpr{catch_levels[[6]][[2]]},
+      \item l. Constant catch equal to \Sexpr{catch_levels[[12]][[2]]},
       \item e, h, j: Annual reductions of 10\% from:
         \Sexpr{f(catch_levels[[5]][[1]][1])}~t,
         \Sexpr{f(catch_levels[[8]][[1]][1])}~t, and
@@ -255,12 +264,10 @@ management_catch_vs_tac_plot(catch.targets, connect_vars = TRUE,
 <<decisions.biomass.table, results='asis', echo=FALSE>>=
 decision_table(base_model,
                xcaption = NULL,
-               xlabel = "tab:es-decisions-spr",
-               font.size = 8,
-               space.size = 10,
                type = "biomass",
-               placement = "h",
-               presentation = TRUE)
+               rows_to_show = c("a", "b", "f", "j", "k"),
+               font.size = 8,
+               space.size = 10)
 @
 }
 
@@ -284,10 +291,10 @@ decision_table(base_model,
 <<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
 make.risk.table(base_model,
                 forecast_yrs,
-                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                index = 1,
                 xcaption = NULL,
                 font.size = 9,
-                space.size = 9)
+                space.size = 10)
   @
 }
 
@@ -297,7 +304,8 @@ make.risk.table(base_model,
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[1],
-                  leg_pos = c(0.2, 0.32),
+                  leg_pos = c(0.28, 0.36),
+                  leg_font_size = 7,
                   remove_x_val = 325)
 @
 \ec
@@ -308,10 +316,10 @@ plot_fore_compare(base_model,
 <<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
 make.risk.table(base_model,
                 forecast_yrs,
-                index = 2, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                index = 2,
                 xcaption = NULL,
                 font.size = 9,
-                space.size = 9)
+                space.size = 10)
 @
 }
 
@@ -323,8 +331,9 @@ make.risk.table(base_model,
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[2],
-                  leg_pos = c(0.2, 0.32),
-                  remove_x_val = 740)
+                  leg_pos = c(0.28, 0.44),
+                  leg_font_size = 7,
+                  remove_x_val = c(315, 342, 740))
 @
 \ec
 }
@@ -335,10 +344,10 @@ plot_fore_compare(base_model,
 <<main.risk.forecast.year.3.table, results='asis', echo=FALSE>>=
 make.risk.table(base_model,
                 forecast_yrs,
-                index = 3, ## Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                index = 3,
                 xcaption = NULL,
                 font.size = 9,
-                space.size = 9)
+                space.size = 10)
 @
 }
 
@@ -349,7 +358,8 @@ make.risk.table(base_model,
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[3],
-                  leg_pos = c(0.2, 0.32),
+                  leg_pos = c(0.28, 0.44),
+                  leg_font_size = 7,
                   remove_x_val = 621)
 @
 \ec
@@ -360,11 +370,15 @@ plot_fore_compare(base_model,
   \begin{column}{0.35\textwidth}
     Median proportions (by numbers) are:
     \bi
-    \item \Sexpr{fore.catch.prop$Age6}\% age-6 fish, \Sexpr{forecast_yrs[1] - 6} cohort,
-    \item \Sexpr{fore.catch.prop$Age2}\% age-2 fish, \Sexpr{forecast_yrs[1] - 2} cohort,
-    \item \Sexpr{fore.catch.prop$Age8}\% age-8 fish, \Sexpr{forecast_yrs[1] - 8} cohort,
-    \item \Sexpr{fore.catch.prop$Age5}\% age-5 fish, \Sexpr{forecast_yrs[1] - 5} cohort,
-    \item \Sexpr{fore.catch.prop$Age12}\% age-12 fish from the huge \Sexpr{forecast_yrs[1] - 12} cohort
+    \item \Sexpr{fore.catch.prop$Age13}\% age-13 fish, \Sexpr{forecast_yrs[1] - 13} cohort
+    \item \Sexpr{fore.catch.prop$Age9}\% age-9 fish, \Sexpr{forecast_yrs[1] - 9} cohort
+    \item \Sexpr{fore.catch.prop$Age8}\% age-8 fish, \Sexpr{forecast_yrs[1] - 8} cohort
+    \item \Sexpr{fore.catch.prop$Age7}\% age-7 fish, \Sexpr{forecast_yrs[1] - 7} cohort
+    \item \Sexpr{fore.catch.prop$Age6}\% age-6 fish, \Sexpr{forecast_yrs[1] - 6} cohort
+    \item \Sexpr{fore.catch.prop$Age5}\% age-5 fish, \Sexpr{forecast_yrs[1] - 5} cohort
+    \item \Sexpr{fore.catch.prop$Age4}\% age-4 fish, \Sexpr{forecast_yrs[1] - 4} cohort
+    \item \Sexpr{fore.catch.prop$Age3}\% age-3 fish, \Sexpr{forecast_yrs[1] - 3} cohort
+    \item \Sexpr{fore.catch.prop$Age2}\% age-2 fish, \Sexpr{forecast_yrs[1] - 2} cohort
   \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -375,80 +389,48 @@ plot_fore_compare(base_model,
 \end{columns}
 }
 
-\section{Without Age-1 Index}
+\section{Projected values}
 \subsection{}
-\begin{frame}
-\frametitle{Base model projections}
-\begin{center}
-<<age1.sensitivity.base.proj, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(20, 4.1, 0, 1))
-# See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
-# `fore_inds` below are the indices of those forecast values in that list.
-plot_depl_fore_comparison(base_model,
-                          fore_inds = c(1, 2, 6, 12, 14),
-                          forecast_yrs = forecast_yrs)
 
-par <- oldpar
-@
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Projections without age-1 index}
-\begin{center}
-<<age1.sensitivity.proj, fig.height=3.5>>=
-oldpar <- par()
-par(mar = c(20, 4.1, 0, 1))
-# See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
-# `fore_inds` below are the indices of those forecast values in that list.
-plot_depl_fore_comparison(sens_models[[2]][[1]],
-                          fore_inds = c(1, 2, 6, 12, 14),
-                          forecast_yrs = forecast_yrs)
-
-@
-\end{center}
-\end{frame}
 % -----------------------------------------------------------------------------%
 
-\section{Historical performance}
-\subsection{}
-\frame{\frametitle{Historical performance of the Pacific Hake stock assessment}
-  \bi
-  \item General question -- how `good' are projection probabilities? And why do
-    they seem to change over time?
-\pause
-  \item For example, 2019 assessment Table~i we had:
-  \ei
-\begin{table}[h]
-\begin{tabularx}{0.6\textwidth}{lYY}  %{\textwidth}{lYYYYYY}
-\toprule
-\mlc{\textbf{Catch} \\ \textbf{in 2019}} &
-\mlc{\textbf{Probability} \\ \textbf{B\subscr{2020} < B\subscr{2019}}} &
-\mlc{\textbf{Probability} \\ \textbf{B\subscr{2020} < B\subscr{40\%}}} \\
-\midrule
-  a:       0 & 17\% & 8\% \\
-  b: 180,000 & 40\% & 13\% \\
-  c: 350,000 & 57\% & 17\% \\
-  \textcolor{red}{d: 410,000} & \textcolor{red}{61\%} & \textcolor{red}{19\%} \\
-\bottomrule
-\end{tabularx}
-\end{table}
-\pause
-\bi
-  \item Now (since it's \Sexpr{assess_yr}) we `\emph{know}' the 2019 catch was 411,574~t, so row~d was close enough.
-\pause
-\item How do the probabilities in row~d compare to estimates of them from the
-    current base model?
-\ei
-}
+% \section{Historical performance}
+% \subsection{}
+% \frame{\frametitle{Historical performance of the Pacific Hake stock assessment}
+%   \bi
+%   \item General question -- how `good' are projection probabilities? And why do
+%     they seem to change over time?
+% \pause
+%   \item For example, 2019 assessment Table~i we had:
+%   \ei
+% \begin{table}[h]
+% \begin{tabular}{0.6\textwidth}{LC{1.5cm} C{1.5cm}}  %{\textwidth}{lYYYYYY}
+% \toprule
+% \mlc{\textbf{Catch} \\ \textbf{in 2019}} &
+% \mlc{\textbf{Probability} \\ \textbf{B\subscr{2020} < B\subscr{2019}}} &
+% \mlc{\textbf{Probability} \\ \textbf{B\subscr{2020} < B\subscr{40\%}}} \\
+% \midrule
+%   a:       0 & 17\% & 8\% \\
+%   b: 180,000 & 40\% & 13\% \\
+%   c: 350,000 & 57\% & 17\% \\
+%   \textcolor{red}{d: 410,000} & \textcolor{red}{61\%} & \textcolor{red}{19\%} \\
+% \bottomrule
+% \end{tabular}
+% \end{table}
+% \pause
+% \bi
+%   \item Now (since it's \Sexpr{assess_yr}) we `\emph{know}' the 2019 catch was 411,574~t, so row~d was close enough.
+% \pause
+% \item How do the probabilities in row~d compare to estimates of them from the
+%     current base model?
+% \ei
+% }
 
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
 <<historical.prob.plot.1a, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
 make.historical.probs.plot(base_model,
-                           type = "decline.one.year",
-                           add.50 = FALSE)
+                           add.projs = TRUE)
 @
 \ec
 }
