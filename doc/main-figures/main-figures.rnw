@@ -1048,6 +1048,7 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
 \begin{center}
 <<main-index-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows differences in the fit to the biomass index for certain sensitivity runs">>=
 plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
+                       survey_type = "age2",
                        x_expansion = 2,
                        leg_pos = c(0.84, 0.16),
                        rev_colors = TRUE)
