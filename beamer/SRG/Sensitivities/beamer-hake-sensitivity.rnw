@@ -470,18 +470,38 @@ plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
 \frametitle{Base model retrospectives - Spawning biomass}
 \begin{center}
 \vspace{-5pt}
-% , fig.height=5, fig.width=10>>=
-<<retro.1>>=
+<<retro.biomass, fig.height=3>>=
 plot_biomass(d_obj = d_obj_retro_biomass,
-             leg_font_size = 9,
+             leg_font_size = 5,
              x_expansion = 4,
-             leg_pos = c(0.6, 0.89),
+             leg_pos = c(0.6, 0.86),
              leg_ncol = 2,
              alpha = 0.1,
-             rev_colors = TRUE)
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
 @
 \end{center}
 \end{frame}
+
+\begin{frame}
+\frametitle{Base model retrospectives - recruitment}
+\begin{center}
+\vspace{-5pt}
+<<retro.recr, fig.height=3>>=
+plot_recruitment(d_obj = d_obj_retro_recr,
+                 leg_pos = c(0.6, 0.86),
+                 leg_font_size = 5,
+                 leg_ncol = 2,
+                 rev_colors = TRUE,
+                 axis_title_font_size = 10,
+                 clip_cover = 3.5)
+@
+\end{center}
+\end{frame}
+
+
+
 
 \subsection{Base model squid plot}
 \begin{frame}
