@@ -180,22 +180,6 @@ plot_biomass(model_lst = list(base_model,
 \end{center}
 \end{frame}
 
-\begin{frame}
-\frametitle{Sensitivity to steepness, $h$}
-\begin{center}
-<<h.par.table, results='asis', echo=FALSE>>=
-param_est_table(sens_models[[1]],
-                model.names = sens_models_names[[1]],
-                end_yr = end_yr,
-                digits = 3,
-                xlabel = "tab:main-parameter-estimates-sens-1",
-                font.size = 9,
-                space.size = 10,
-                getrecs = c(2010, 2014, 2016,2020))
-@
-\end{center}
-\end{frame}
-
 \subsection{Sensitivity to natural mortality, $M$}
 \begin{frame}
 \frametitle{Sensitivity to natural mortality, $M$}
@@ -250,14 +234,21 @@ plot_rel_biomass(model_lst = list(base_model,
 \frametitle{Sensitivity to natural mortality, $M$}
 \begin{center}
 <<m.par.table, results='asis', echo=FALSE>>=
-param_est_table(sens_models[[1]],
-                model.names = sens_models_names[[1]],
+param_est_table(models = list(base_model,
+                              sens_models[[1]][[6]],  # [[1]] is base model
+                              sens_models[[1]][[7]],
+                              sens_models[[1]][[8]]),
+                model.names = c(base_model_name,
+                                sens_models_desc[[1]][5],
+                                sens_models_desc[[1]][6],
+                                sens_models_desc[[1]][7]),
                 end_yr = end_yr,
                 digits = 3,
-                xlabel = "tab:main-parameter-estimates-sens-1",
-                font.size = 9,
-                space.size = 10,
-                getrecs = c(2010, 2014, 2016,2020))
+                xcaption = NULL,
+                font.size = 6.5,
+                space.size = 5.5,
+                getrecs = c(2010, 2014, 2016,2020),
+                show_like = FALSE)
 @
 \end{center}
 \end{frame}
@@ -331,6 +322,26 @@ plot_biomass(model_lst = list(base_model,
 @
 \end{center}
 \end{frame}
+
+\begin{frame}
+\frametitle{Remove age-1 index}
+\begin{center}
+<<age1.par.table, results='asis', echo=FALSE>>=
+param_est_table(models = list(base_model,
+                              sens_models[[2]][[2]]),
+                model.names = c(base_model_name,
+                                sens_models_desc[[2]][1]),
+                end_yr = end_yr,
+                digits = 3,
+                xcaption = NULL,
+                font.size = 6.5,
+                space.size = 5.5,
+                getrecs = c(2010, 2014, 2016,2020),
+                show_like = FALSE)
+@
+\end{center}
+\end{frame}
+
 % -----------------------------------------------------------------------------%
 
 \section{Weighting}
@@ -459,6 +470,21 @@ plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
 \begin{center}
 \vspace{-5pt}
 <<phi.sensitivity.table, results='asis', echo=FALSE>>=
+param_est_table(models = list(base_model,
+                              sens_models[[3]][[2]],
+                              sens_models[[3]][[3]],
+                              sens_models[[3]][[4]]),
+                model.names = c(base_model_name,
+                                sens_models_desc[[3]][1],
+                                sens_models_desc[[3]][2],
+                                sens_models_desc[[3]][3]),
+                end_yr = end_yr,
+                digits = 3,
+                xcaption = NULL,
+                font.size = 6.5,
+                space.size = 5.5,
+                getrecs = c(2010, 2014, 2016,2020),
+                show_like = FALSE)
 @
 \end{center}
 \end{frame}
