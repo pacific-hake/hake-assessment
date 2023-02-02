@@ -225,6 +225,30 @@ plot_biomass(model_lst = list(base_model,
 \begin{frame}
 \frametitle{Sensitivity to natural mortality, $M$}
 \begin{center}
+\vspace{5pt}
+<<m.biomass.fig.rel, fig.height=3.0>>=
+plot_rel_biomass(model_lst = list(base_model,
+                                  sens_models[[1]][[6]],
+                                  sens_models[[1]][[7]],
+                                  sens_models[[1]][[8]]),
+                 model_names = c(base_model_name,
+                                 sens_models_desc[[1]][5],
+                                 sens_models_desc[[1]][6],
+                                 sens_models_desc[[1]][7]),
+             x_expansion = 4,
+             ylim = c(0, 4),
+             leg_font_size = 5,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sensitivity to natural mortality, $M$}
+\begin{center}
 <<m.par.table, results='asis', echo=FALSE>>=
 param_est_table(sens_models[[1]],
                 model.names = sens_models_names[[1]],
@@ -265,7 +289,21 @@ plot_biomass(model_lst = list(base_model,
 \begin{frame}
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
 \begin{center}
+\vspace{5pt}
 <<sigmar.biomass.fig.rel, fig.height=3.0>>=
+plot_rel_biomass(model_lst = list(base_model,
+                                  sens_models[[1]][[4]],
+                                  sens_models[[1]][[5]]),
+                 model_names = c(base_model_name,
+                                 sens_models_desc[[1]][3],
+                                 sens_models_desc[[1]][4]),
+             x_expansion = 4,
+             ylim = c(0, 4),
+             leg_font_size = 5,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
 @
 \end{center}
 \end{frame}
@@ -293,17 +331,7 @@ plot_biomass(model_lst = list(base_model,
 @
 \end{center}
 \end{frame}
-
-\begin{frame}
-\frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
-\begin{center}
-<<sigmar.biomass.fig.rel>>=
-@
-\end{center}
-\end{frame}
 % -----------------------------------------------------------------------------%
-
-
 
 \section{Weighting}
 \subsection{Downweight fishery age-composition data}
@@ -311,7 +339,7 @@ plot_biomass(model_lst = list(base_model,
 \frametitle{Downweight fishery age-composition data}
 \vspace{5pt}
 \begin{center}
-<<harmonicmean.biomass.fig, fig.height=3.0>>=
+<<downweight.biomass.fig, fig.height=3.0>>=
 plot_biomass(model_lst = list(base_model,
                               sens_models[[2]][[3]]),
              model_names = c(base_model_name,
@@ -332,7 +360,18 @@ plot_biomass(model_lst = list(base_model,
 \frametitle{Downweight fishery age-composition data}
 \vspace{5pt}
 \begin{center}
-<<harmonicmean.sensitivity.biomass.rel>>=
+<<downweight.sensitivity.biomass.rel, fig.height=3.0>>=
+plot_rel_biomass(model_lst = list(base_model,
+                                  sens_models[[2]][[3]]),
+                 model_names = c(base_model_name,
+                                 sens_models_desc[[2]][2]),
+                 x_expansion = 4,
+                 ylim = c(0, 4),
+                 leg_font_size = 5,
+                 leg_pos = c(0.8, 0.75),
+                 rev_colors = TRUE,
+                 axis_title_font_size = 10,
+                 ribbon_line_type = 0)
 @
 \end{center}
 \end{frame}
@@ -399,105 +438,6 @@ plot_biomass(model_lst = list(base_model,
 @
 \end{center}
 \end{frame}
-
-\section{Max. Age Selectivity}
-\subsection{Spawning biomass}
-\begin{frame}
-\frametitle{Max. Age Selectivity -- Spawning biomass}
-\begin{center}
-\vspace{5pt}
-<<max-age-sel, fig.height=3.5>>=
-@
-\end{center}
-\end{frame}
-
-% -----------------------------------------------------------------------------%
-\subsection{Recruitment values}
-\begin{frame}
-\frametitle{Recruitment values}
-<<main-parameter-estimates-sens-1-rec, results='asis', echo=FALSE>>=
-# yrs <- c(2014, 2017, 2018, 2020)
-# make_rec_tbl <- function(mc, digits = 3){
-#   rec <- map(yrs, ~{c(mc$rlower[[as.character(.x)]] * 1e3,
-#                       mc$rmed[[as.character(.x)]] * 1e3,
-#                       mc$rupper[[as.character(.x)]] * 1e3)}) %>%
-#     `names<-`(yrs) %>%
-#     bind_rows %>%
-#     t %>%
-#     as_tibble() %>%
-#     mutate(Year = yrs) %>%
-#     select(Year, everything()) %>%
-#     mutate_at(.vars = vars(-Year), ~{f(.x, 0)})
-#     dev <- map(yrs, ~{c(mc$devlower[[as.character(.x)]],
-#                       mc$devmed[[as.character(.x)]],
-#                       mc$devupper[[as.character(.x)]])}) %>%
-#     `names<-`(yrs) %>%
-#     bind_rows %>%
-#     t %>%
-#     as_tibble() %>%
-#     mutate_all(~{f(.x, digits)})
-#   bind_cols(rec, dev)
-# }
-# base <- make_rec_tbl(base_model$mcmccalcs) %>%
-#   mutate(Year = as.character(Year))
-# age1 <- make_rec_tbl(sens_models_2[[1]]$mcmccalcs) %>%
-#   mutate(Year = as.character(Year))
-# base_str <- data.frame(str = character())
-# age1_str <- data.frame(str = character())
-# for(i in seq_len(nrow(base))){
-#   base_str[i, ] <- paste0("\\alert<", i, ">{", base[i, ], "}", collapse = " & ")
-#   age1_str[i, ] <- paste0("\\alert<", i, ">{", age1[i, ], "}", collapse = " & ")
-#
-#   base_str[i, ] <- paste(base_str[i, ], "\\\\")
-#   age1_str[i, ] <- paste(age1_str[i, ], "\\\\")
-# }
-# base_table <- paste(unlist(base_str, use.names = FALSE), collapse = "")
-# age1_table <- paste(unlist(age1_str, use.names = FALSE), collapse = "")
-# In the table code below, Sexpr is used to inject strings containing  latex code
-# for the values in the base and age1 tables
-@
-
-% \begin{table}[tbp]
-% \centering
-% \fontsize{13pt}{2}\selectfont
-% \begin{tabular}{lrrrrrr}
-% \toprule
-% Year & \multicolumn{3}{c}{Absolute recruitment} & \multicolumn{3}{c}{Recruitment deviations} \\
-% \cmidrule(r){2-4}\cmidrule(l){5-7}
-%        & 2.5\%    & Median   & 97.5\%   & 2.5\%  & Median & 97.5\% \\
-% \midrule
-% \color{blue}{Base model} & & & & & & \\
-% \Sexpr{base_table}
-% \midrule
-% \color{blue}{Exclude age-1 index} & & & & & & \\
-% \Sexpr{age1_table}
-% \bottomrule
-% \end{tabular}
-% \end{table}
-\end{frame}
-% -----------------------------------------------------------------------------%
-
-% -----------------------------------------------------------------------------%
-% \section{MCMC diagnostics}
-% \begin{frame}
-% \frametitle{Base model MCMC diagnostics}
-% \begin{center}
-% \vspace{5pt}
-% <<base.hists, fig.height=3.5>>=
-% oldpar <- par()
-% par(mar = c(4.1, 4.1, 3.1, 0.1))
-% plot_mcmc_param_stats(base_model,
-%                       effn_labels = TRUE,
-%                       ylim_mult = 1.2,
-%                       show_ro_loc = TRUE,
-%                       ro_yloc = 110,
-%                       ro_yloc_arr_start = 100,
-%                       ro_yloc_arr_end = 60)
-% par <- oldpar
-% @
-% \end{center}
-% \end{frame}
-% -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
 \section{Retrospectives}
