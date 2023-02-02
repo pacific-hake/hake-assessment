@@ -39,6 +39,7 @@ plot_depl_fore_comparison <- function(model,
                                                                        by = 0.5)))),
                                       alpha = 0.2,
                                       leg_pos = c(0.15, 0.83),
+                                      leg_ncol = 1,
                                       leg_font_size = 12,
                                       axis_title_font_size = 14,
                                       axis_tick_font_size = 11,
@@ -138,6 +139,10 @@ plot_depl_fore_comparison <- function(model,
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 0, 0)) +
+    guides(fill = guide_legend(ncol = leg_ncol,
+                               label.hjust = 0),
+           color = guide_legend(ncol = leg_ncol,
+                                label.hjust = 0)) +
     xlab("Year") +
     ylab("Relative Spawning Biomass")
 
