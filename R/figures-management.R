@@ -23,14 +23,14 @@ management_catch_vs_tac_plot <- function(d,
                                          connect_vars_linetype = "dashed",
                                          connect_vars_alpha = 0.5){
 
-  d <- d %>%
+  d <- d |>
     select(-c(Depletion, `Biomass estimate`))
   if(!is.null(curr_assess_biomass)){
     new_row <- c(max(d$Year) + 1, NA, NA, curr_assess_biomass)
     names(new_row) <- c("Year", "Realized catch", "TAC", "Default HCR TAC")
     d <- bind_rows(d, new_row)
   }
-  dd <- melt(d, id.vars = "Year") %>%
+  dd <- melt(d, id.vars = "Year") |>
     mutate(value = value / 1e3)
   g <- ggplot(dd, aes(x = Year, y = value, color = variable, shape = variable)) +
     geom_point(size = 3) +
@@ -40,11 +40,14 @@ management_catch_vs_tac_plot <- function(d,
               alpha = connect_vals_alpha) +
     labs(y = "Catch or TAC (1,000 t)") +
     theme(legend.title = element_blank(),
-          axis.text.x = element_text(angle=45, hjust=1)) +
+          axis.text.x = element_text(angle = 45, hjust = 1)) +
     scale_y_continuous(labels = comma,
                        limits = c(0, NA)) +
     scale_x_continuous(breaks = seq(0, 3000, 1)) +
-    guides(shape = guide_legend(reverse = TRUE), color = guide_legend(reverse = TRUE))
+    guides(shape = guide_legend(reverse = TRUE,
+                                label.hjust = 0),
+           color = guide_legend(reverse = TRUE,
+                                label.hjust = 0))
 
   if(connect_vars){
     g <- g +
