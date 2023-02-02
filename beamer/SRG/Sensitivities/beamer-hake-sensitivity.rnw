@@ -825,16 +825,6 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 }
 % --------------------------------------------------------------
 
-\frame{\frametitle{Variability}
-\bc
-<<dispersion.fig, fig.height=3>>=
-make.assessment.history.disp.plot(base_model,
-                                  assessment.history.disp)
-@
-\ec
-}
-
-
 \section{Summary}
 \subsection{Overview}
 \begin{frame}
