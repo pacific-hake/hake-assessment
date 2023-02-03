@@ -132,9 +132,10 @@ def_med_hr_tac <- filter(catch.targets,
   \begin{columns}
     \begin{column}{0.25\textwidth}
       \bi
-        \item \protect{P$(B_{\Sexpr{assess_yr}} / B_0 < 0.4)$} $~~=$\Sexpr{probs.curr.below.bforty}\%
+        \item \protect{P$(B_{\Sexpr{assess_yr}}/B_0 < 0.4)$}
+        $~~=\Sexpr{probs.curr.below.bforty}\%$
         \item P(relative fishing intensity at end of \Sexpr{assess_yr-1} $>$ 1.0)
-        $~~= \Sexpr{probs.curr.rel.fish.intens.above.one}\%$
+        $~~=\Sexpr{probs.curr.rel.fish.intens.above.one}\%$
         \item Joint probability of both is \Sexpr{joint.percent.prob.above.below}\%
         \item Fishing intensity has remained below target
         \item Biomass has mostly remained above target
@@ -396,19 +397,22 @@ plot_fore_compare(base_model,
     \item Uncertainty is large, but stock currently has \Sexpr{probs.curr.below.bforty}\%
       chance of being below $B_{40\%}$ and
       \Sexpr{probs.curr.rel.fish.intens.above.one}\% chance of relative fishing
-      intensity being above 100\%.
-    \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
+      intensity being above 100\% (slide 4)
+    \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t)
     \item Projections strongly influenced by size of above-average 2014 and 2016
-      cohorts, 2017 still looks to be average, 2018 and 2019 small, and
-      2020 large (but still highly uncertain).
-    \item There is $<50\%$ chance that spawning biomass will decline from
-      \Sexpr{assess_yr} to \Sexpr{assess_yr+1} for any catch $\leq 473,880$~t.
-    \item But $>50\%$ chance that spawning biomass will decline from
-      \Sexpr{assess_yr+1} to \Sexpr{assess_yr+2} for any catch $>0$~t.
-    \item Maintaining a constant catch of 473,880~t (the 2021 TAC) gives a 11\%
-      chance of falling below $B_{40\%}$ in 1 year (21\% in 2 years time).
+      cohorts, and the large but still highly uncertain 2020 cohort
+    \item There is \Sexpr{prob_decl_yr1_zero_catch}\% chance that spawning biomass will decline from
+      \Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]} with zero catch and
+      $>=$\Sexpr{prob_decl_yr1_other_catch}\% chance of decline for all other catch streams
+    \item There is \Sexpr{prob_decl_yr2_zero_catch}\% chance that spawning biomass will decline from
+      \Sexpr{forecast_yrs[2]} to \Sexpr{forecast_yrs[3]} with zero catch and
+      $>=$\Sexpr{prob_decl_yr2_other_catch}\% chance of decline for all other catch streams
+    \item Maintaining a constant catch of \Sexpr{f(last_yr_catch_fore)}~t (the approximate
+     \Sexpr{last_data_yr} catch) results in a \Sexpr{prob_below_b40_yr1_last_yr_catch}\%
+      chance of falling below $B_{40\%}$ in 1 year, and \Sexpr{prob_below_b40_yr2_last_yr_catch}\%
+      in 2 years
     \item Overall, we estimate probabilities of future events, and analyses
-      give some idea of the confidence we can have in those probabilities.
+      give some idea of the confidence we can have in those probabilities
   \ei
 }
 

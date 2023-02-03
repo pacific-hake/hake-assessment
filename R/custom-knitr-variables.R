@@ -596,7 +596,7 @@ calc_sum_rec_devs <- function(posteriors, pattern = "Main") {
 calc_sum_rec_devs(base_model$mcmc)
 calc_sum_rec_devs(last_yr_base_model$mcmc)
 sigma_r_alt_allyr <- calc_SD_of_devs(base_model$mcmc, pattern = "^[EML].+_RecrDev")
-sigma_r_this_year_main <- calc_SD_of_devs(base_model$mcmc)  
+sigma_r_this_year_main <- calc_SD_of_devs(base_model$mcmc)
 sigma_r_last_year_main <- calc_SD_of_devs(last_yr_base_model$mcmc)
 sigma_r_sens1 <- sens_models[[1]] %>%
   purrr::map("mcmc") %>%
@@ -812,3 +812,50 @@ prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
  d_obj_sens_age2_index_grp4 <- map2(sens_models[4], sens_models_names[4], ~{
    create_group_df_index(.x, .y, "age2")
  })
+
+ # Values used in management presentation
+last_yr_catch_fore <- base_model$catch.levels[[catch.actual.ind]][[1]][1]
+ct_col <- paste0("ForeCatch_", forecast_yrs[1])
+ct_col_sym <- sym(ct_col)
+decl_col <- paste0("SSB_", forecast_yrs[2], "<SSB_", forecast_yrs[1])
+decl_col_sym <- sym(decl_col)
+below40_col <- paste0("Bratio_", forecast_yrs[2], "<0.40")
+below40_col_sym <- sym(below40_col)
+prob_decl_yr1_zero_catch <- base_model$risks[[1]] |>
+  as_tibble() |>
+  filter(!!ct_col_sym < 1) |>
+  pull(!!decl_col_sym) |>
+  f()
+prob_decl_yr1_other_catch <- base_model$risks[[1]] |>
+  as_tibble() |>
+  slice(2) |>
+  pull(!!decl_col_sym) |>
+  f()
+prob_below_b40_yr1_last_yr_catch <- base_model$risks[[1]] |>
+  as_tibble() |>
+  filter(!!ct_col_sym == last_yr_catch_fore) |>
+  pull(!!below40_col) |>
+  f()
+
+ct_col <- paste0("ForeCatch_", forecast_yrs[2])
+ct_col_sym <- sym(ct_col)
+decl_col <- paste0("SSB_", forecast_yrs[3], "<SSB_", forecast_yrs[2])
+decl_col_sym <- sym(decl_col)
+below40_col <- paste0("Bratio_", forecast_yrs[3], "<0.40")
+below40_col_sym <- sym(below40_col)
+prob_decl_yr2_zero_catch <- base_model$risks[[2]] |>
+  as_tibble() |>
+  filter(!!ct_col_sym < 1) |>
+  pull(!!decl_col_sym) |>
+  f()
+prob_decl_yr2_other_catch <- base_model$risks[[2]] |>
+  as_tibble() |>
+  slice(2) |>
+  pull(!!decl_col_sym) |>
+  f()
+prob_below_b40_yr2_last_yr_catch <- base_model$risks[[2]] |>
+  as_tibble() |>
+  filter(!!ct_col_sym == last_yr_catch_fore) |>
+  pull(!!below40_col) |>
+  f()
+
