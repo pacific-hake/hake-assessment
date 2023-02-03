@@ -146,7 +146,7 @@ model_setup <- function(drs = NA,
             .x
           }
           }))
-      }else if(nm == "sens_models_dirs"){
+      }else if(nm == "sens_models_dirs" || nm == "test_models_dirs"){
         return(map(grp_descs, ~{
           c(lst$base_models_dirs[[1]], .x)
           }))
@@ -166,8 +166,8 @@ model_setup <- function(drs = NA,
     unique()
 
   # For each type (base, bridge, sens, request, test) extract unique groups,
-  # load them only once if duplicates (to save time) and match with where they
-  # belong in the list according to model_list
+  # load them only once if duplicates (to save time/memory) and match with
+  # where they belong in the list according to model_list
   map2(model_lst, model_desc_lst, function(type, type_nm, ...){
 
     if(!is.null(type[1]) && !is.na(type[1])){

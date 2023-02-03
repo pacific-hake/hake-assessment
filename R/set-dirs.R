@@ -200,6 +200,14 @@ set_dirs <- function(
     }
   })
 
+  # Prepend the base model to each of the test model groups
+  dirs[[5]] <- map(dirs[[5]], function(sns){
+    if(is.na(sns[1])){
+      NA
+    }else{
+      c(dirs[[1]][[1]], sns)
+    }
+  })
 
   # Remove `NA` entries
   dirs <- dirs |>

@@ -79,8 +79,8 @@ sens_models_desc <-
 request_models_dirs <- NA
 request_models_desc <- NA
 
-test_models_dirs <- NA
-test_models_desc <- NA
+test_models_dirs <- list(c("02-inflate-survey-n"))
+test_models_desc <- list(c("Inflate survey sample size by 100"))
 
 drs <- set_dirs(models_dir = models_dir,
                 last_yr_models_dir = last_yr_models_dir,
@@ -137,6 +137,6 @@ test_models <- models$test_models_dirs
 if(is.na(test_models)[1]){
   test_models_names <- NA
 }else{
-  test_models_names <- map(request_models, ~{map_chr(.x, ~{attr(.x, "desc")})})
+  test_models_names <- map(test_models, ~{map_chr(.x, ~{attr(.x, "desc")})})
 }
 
