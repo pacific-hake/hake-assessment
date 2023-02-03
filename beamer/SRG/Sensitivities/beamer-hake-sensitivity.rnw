@@ -111,7 +111,8 @@ if(!dir.exists(fig_dir)){
         \ei
   \item Retrospectives \Sexpr{length(retrospective_yrs)} years into the past
   \item Spawning biomass estimates from \Sexpr{assess_yr - 1991 + 1} years of assessments
-  \item Historical performance of probabilities
+  \item Hindsight performance of past projections
+  \item Conveying recruitment uncertainty
 \end{enumerate}
 \end{frame}
 % -----------------------------------------------------------------------------
@@ -142,9 +143,9 @@ plot_biomass(model_lst = list(base_model,
 \end{center}
 \end{frame}
 
-\subsection{Sensitivity to natural mortality, $M$}
+\subsection{Sensitivity to natural mortality, $M$ }
 \begin{frame}
-\frametitle{Sensitivity to natural mortality, $M$}
+\frametitle{Sensitivity to natural mortality, $M$ (base has prior median 0.2, sd 0.1)}
 \begin{center}
 \vspace{5pt}
 <<m.biomass.fig, fig.height=3.0>>=
@@ -169,7 +170,7 @@ plot_biomass(model_lst = list(base_model,
 \end{frame}
 
 \begin{frame}
-\frametitle{Sensitivity to natural mortality, $M$}
+\frametitle{Sensitivity to natural mortality, $M$ (base has prior median 0.2, sd 0.1)}
 \begin{center}
 \vspace{5pt}
 <<m.biomass.fig.rel, fig.height=3.0>>=
@@ -193,7 +194,7 @@ plot_rel_biomass(model_lst = list(base_model,
 \end{frame}
 
 \begin{frame}
-\frametitle{Sensitivity to natural mortality, $M$}
+\frametitle{Sensitivity to natural mortality, $M$ (base has prior median 0.2, sd 0.1)}
 \begin{center}
 <<m.par.table, results='asis', echo=FALSE>>=
 param_est_table(models = list(base_model,
@@ -215,9 +216,9 @@ param_est_table(models = list(base_model,
 \end{center}
 \end{frame}
 
-\subsection{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
+\subsection{Sensitivity to s.d.~of recruitment variability, $\sigma_r$; base \Sexpr{sigma_r}}
 \begin{frame}
-\frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
+\frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$ (base is \Sexpr{sigma_r})}
 \begin{center}
 <<sigmar.biomass.fig, fig.height=3.0>>=
 plot_biomass(model_lst = list(base_model,
@@ -239,7 +240,7 @@ plot_biomass(model_lst = list(base_model,
 \end{frame}
 
 \begin{frame}
-\frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$}
+\frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$ (base is \Sexpr{sigma_r})}
 \begin{center}
 \vspace{5pt}
 <<sigmar.biomass.fig.rel, fig.height=3.0>>=
@@ -412,7 +413,7 @@ plot_recruitment(d_obj = d_obj_sens_recr[[3]],
 
 
 \begin{frame}
-\frametitle{Alternative deviations for selectivity -- biomass index fit}
+\frametitle{Alternative deviations for selectivity -- age-2+ biomass index fit}
 \begin{center}
 \vspace{5pt}
 <<phi.survey.fig, fig.height=3>>=
@@ -673,11 +674,11 @@ make.historical.probs.plot(base_model,
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bi
   \item{Previous assessments have `correctly' projected an increase or decrease
-      in subsequent year (except 2018)}
-  \item{An assessment's projection is always less definitive than from
-      the current base model (except 2018), since current model has more information}
-  \item{Analysis gives some confidence in the current expectation of
-      unlikely decline next year (except for the highest catch alternatives)}
+      in subsequent year (except 2018 and 2021)}
+  \item{An assessment's projection is almost always less definitive than from
+      the current base model, since current model has more information}
+  \item{Analysis gives confidence in the current expectation of
+      the stock declining next year}
 \ei
 }
 
@@ -725,13 +726,14 @@ make.historical.probs.plot(base_model,
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
   \bi
   \item Previous assessments have `correctly' projected not falling below $\Bforty$ in
-      all years, except 2012 (presumably due to unknown huge 2010 recruitment)
+      all years, except 2012 (due to unknown huge 2010 recruitment)
   \item Caveat: that's not a particularly high bar to meet, given the stock was
       high from 2013 onwards
   \item Given uncertainty in most recent recruitments, assessments always give some small probability of
       falling below $\Bforty$; current model says that's (in hindsight) even more unlikely
-  \item Analysis gives some confidence in the current expectation of remaining
+  \item Analysis gives confidence in the current expectation of remaining
       above $\Bforty$
+  \item Retrospective versions also available (Figures~59--64).
   \ei
 }
 
@@ -792,15 +794,18 @@ was definitely not as large as 2010, in contrast to intuition from usual plot.
 \bi
   \item In general, sensitivities show no significant departure in population dynamics from base model
   \item Absolute scale changes for some sensitivities, mostly due to differing $R_0$ estimates
-  \item Overall relative pattern consistent -- large increases in biomass in early 2010s and currently biomass is declining
-  \item Removal of Age-1 index decreases recruitment estimates and increases recruitment uncertainty for 2020
+  \item Overall pattern is consistent -- large increases in biomass in
+    early 2010s and current increase in biomass due to 2020 recruitment
   \item Retrospective squid plots show that since \Sexpr{assess_yr - 11}, and
     based on medians:
   \bi
     \item 2014 cohort is the largest
-    \item 2016 cohort is the second largest
-    \item 2020 cohort currently looks as large as 2016 did at age-2
+    \item 2020 cohort is the second largest
+    \item 2020 cohort looked a little larger at age-2 than 2016 did, but
+      somewhat larger at age-3
   \ei
+  \item Current assessment is consistent with recent historical assessments
+  \item Analyses of past performance gives confidence in projections
 \ei
 \end{frame}
 

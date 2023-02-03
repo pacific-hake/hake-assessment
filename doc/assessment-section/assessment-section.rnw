@@ -1653,7 +1653,7 @@ stock-recruit dynamics (Figure~\ref{fig:main-mcmc-sr-variability}).
 % section below on sigma_r
 The value of $\sigma_r$ was changed from a value of \Sexpr{sigma_r} (base) to
 alternative high (\Sexpr{sigma_r_sens[2]}) and low (\Sexpr{sigma_r_sens[1]})
-states. Both sensitivities resulted standard deviations of the estimates of
+states. Both sensitivities resulted in standard deviations of the estimates of
 recruitment deviations from the period with the most informative data that were
 higher than the input $\sigma_r$, i.e., \Sexpr{sigma_r_lo_main} and
 \Sexpr{sigma_r_hi_main} when $\sigma_r$ was \Sexpr{sigma_r_sens[1]} and
