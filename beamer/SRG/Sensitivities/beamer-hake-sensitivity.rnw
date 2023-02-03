@@ -98,7 +98,6 @@ if(!dir.exists(fig_dir)){
 \begin{frame}
 \frametitle{Overview}
 \fontsize{11pt}{2}\selectfont
-\textbf{All bridge, sensitivity, and retrospective models were run using MCMC.}
 \begin{enumerate}
   \item Sensitivity models:
         \bi
@@ -114,6 +113,8 @@ if(!dir.exists(fig_dir)){
   \item Hindsight performance of past projections
   \item Conveying recruitment uncertainty
 \end{enumerate}
+~\\
+\textbf{All bridging, sensitivity, and retrospective models were run using MCMC.}
 \end{frame}
 % -----------------------------------------------------------------------------
 
