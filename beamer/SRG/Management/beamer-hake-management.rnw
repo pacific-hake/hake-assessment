@@ -94,7 +94,7 @@ models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] # pretty c
 \section{Introduction}
 \subsection{Background}
 \frame{\frametitle{Past management: Total Allowable Catch}
-<<tac.vs.realized.catch.ts, fig.height=3.5>>==
+<<tac-vs-realized-catch-ts, fig.height=3.5>>==
 plot_management_catch_vs_tac(catch.targets, connect_vars = TRUE,
                              connect_vars_linetype = "solid",
                              connect_vars_alpha = 0.2,
@@ -119,7 +119,7 @@ def_med_hr_tac <- filter(catch.targets,
 	  \ei
   \end{column}
   \begin{column}{0.6\textwidth}
-  <<tac.vs.realized.catch, fig.height = 6, out.width = '0.95\\columnwidth'>>=
+  <<tac-vs-realized-catch, fig.height = 6, out.width = '0.95\\columnwidth'>>=
   plot_management_catch_vs_tac_1_to_1(catch.targets,
                                       top_yrs = c(2004, 2006, 2012, 2016, 2018),
                                       color_darken = 0.9)
@@ -143,7 +143,7 @@ def_med_hr_tac <- filter(catch.targets,
     \end{column}
     \begin{column}{0.75\textwidth}
     \bc
-    <<main.phase, fig.height=5, fig.width=8,out.width='1.0\\columnwidth'>>=
+    <<main-phase, fig.height=5, fig.width=8,out.width='1.0\\columnwidth'>>=
       make.phase.plot(base_model, start_yr = start_yr, end_yr = end_yr)
     @
     \ec
@@ -187,7 +187,7 @@ def_med_hr_tac <- filter(catch.targets,
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
-    <<main.projected.catch.density, out.width='.99\\columnwidth'>>=
+    <<main-projected-catch-density, out.width='.99\\columnwidth'>>=
       make.forecast.catch.posterior.plot(base_model,
                                          fore.yr = end_yr,
                                          xmax = 3000)
@@ -209,7 +209,7 @@ def_med_hr_tac <- filter(catch.targets,
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
-  <<main.forecast.depletion.comparison.plot, out.width='.95\\columnwidth'>>=
+  <<main-forecast-depletion-comparison-plot, out.width='.95\\columnwidth'>>=
   # See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
   # `fore_inds` below are the indices of those forecast values in that list.
   plot_depl_fore_comparison(base_model,
@@ -237,7 +237,7 @@ def_med_hr_tac <- filter(catch.targets,
   \ei
   \end{column}
   \begin{column}{0.65\textwidth}
-    <<main.age.comp.forecast, fig.height=3.5, fig.width=5.5>>=
+    <<main-age-comp-forecast, fig.height=3.5, fig.width=5.5>>=
     make.age.comp.forecast.plot(base_model)
     @
   \end{column}
@@ -286,7 +286,7 @@ def_med_hr_tac <- filter(catch.targets,
 
 \subsection{Spawning Biomass}
 \frame{\frametitle{Relative Spawning Biomass}
-<<decisions.biomass.table, results='asis', echo=FALSE>>=
+<<decisions-biomass-table, results='asis', echo=FALSE>>=
 decision_table(base_model,
                xcaption = NULL,
                type = "biomass",
@@ -309,11 +309,12 @@ decision_table(base_model,
       such as $B_{\Sexpr{assess_yr}}$ or $\Bforty$
     \item P(relative FI > 100\% target): Probability that relative fishing intensity in fixed catch
       year is greater than the target fishing intensity
+    \item Probabilities are calculated as proportions of the MCMC samples meeting the criteria, e.g. 50\% probability of being under $\Bforty$ means that 4,000 of the 8,000 MCMC samples were under $\Bforty$
   \ei
 }
 
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
-<<main.risk.forecast.year.1.table, results='asis', echo=FALSE>>=
+<<main-risk-forecast-year-1-table, results='asis', echo=FALSE>>=
 make.risk.table(base_model,
                 forecast_yrs,
                 index = 1,
@@ -325,7 +326,7 @@ make.risk.table(base_model,
 
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
 \bc
-<<forecast.risk.comparison.plot.year.1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+<<forecast-risk-comparison-plot-year-1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[1],
@@ -338,7 +339,7 @@ plot_fore_compare(base_model,
 
 %--------------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr+1} catches}
-<<main.risk.forecast.year.2.table, results='asis', echo=FALSE>>=
+<<main-risk-forecast-year-2-table, results='asis', echo=FALSE>>=
 make.risk.table(base_model,
                 forecast_yrs,
                 index = 2,
@@ -352,7 +353,7 @@ make.risk.table(base_model,
 
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr+1} catches}
 \bc
-<<forecast.risk.comparison.plot.year.2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+<<forecast-risk-comparison-plot-year-2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[2],
@@ -366,7 +367,7 @@ plot_fore_compare(base_model,
 %--------------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr}, \Sexpr{end_yr+1},
     and \Sexpr{end_yr+2} catches}
-<<main.risk.forecast.year.3.table, results='asis', echo=FALSE>>=
+<<main-risk-forecast-year-3-table, results='asis', echo=FALSE>>=
 make.risk.table(base_model,
                 forecast_yrs,
                 index = 3,
@@ -379,7 +380,7 @@ make.risk.table(base_model,
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr}, \Sexpr{end_yr+1},
     and \Sexpr{end_yr+2} catches}
 \bc
-<<forecast.risk.comparison.plot.year.3, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+<<forecast-risk-comparison-plot-year-3, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[3],
