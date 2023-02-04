@@ -110,13 +110,14 @@ if(!dir.exists(fig_dir)){
         \item Age-\Sexpr{us.age.1.prop.age.cp} fish in U.S. catcher-processor sector,
         \item Age-\Sexpr{us.age.1.prop.age.ms} fish in U.S. mothership sector,
         \item Age-\Sexpr{us.age.1.prop.age.shore} fish in U.S. shore-based sector,
-%        \item Age-\Sexpr{max.freezer.trawler.age.prop.age} fish in Canadian freezer-trawler sector, and
+        \item Age-\Sexpr{max.freezer.trawler.age.prop.age} fish in Canadian freezer-trawler sector, and
         \item Age-\Sexpr{max.shoreside.age.prop.age} fish in Canadian shoreside sector.
       \ei
-    \item Canadians fished shallower than normal to avoid rockfish species.
-    \item Stakeholders reported good fishing in the U.S.A. and difficulty finding fish in Canada.
-%    \item No new information from the survey in \Sexpr{last_assess_yr}.
-    \item \Sexpr{last.survey.year} acoustic survey biomass estimate was \Sexpr{last.survey.year.biomass} million tons (\Sexpr{(type.convert(as.is = TRUE, last.factor.penult))*100}\% of \Sexpr{penult.survey.year}).
+  \ifodd \Sexpr{last_data_yr}
+    {\item \Sexpr{last.survey.year} acoustic survey biomass estimate was \Sexpr{last.survey.year.biomass} million tons (\Sexpr{(type.convert(as.is = TRUE, last.factor.penult))*100}\% of \Sexpr{penult.survey.year}).}
+  \else
+    {\item No survey was performed in \Sexpr{last_assess_yr}.}
+  \fi
   \ei
 }
 
@@ -348,17 +349,13 @@ if(!dir.exists(fig_dir)){
     us.shore.age.tmp <- conv.ages(us.shore.age, rm.cols = 3)
     us.cp.age.tmp <- conv.ages(us.cp.age, rm.cols = 3)
     us.ms.age.tmp <- conv.ages(us.ms.age, rm.cols = 3)
-    can.ft.age.tmp <- data.frame(can.ft.age, check.names = FALSE)
-    can.ft.age.tmp[as.character(
-      ((year(now())-6):(year(now())-1))[!((year(now())-6):(year(now())-1) %in% rownames(can.ft.age))]),
-       ] <- 0
     oldpar <- par
     par(mar=c(1.1, 1.1, 3.1, 1.1), oma=c(3.1, 3.1, 0, 0),
       mgp = c(1, 0.6, 0))
     layout(matrix(c(1,2,3,4,5), nrow = 1, ncol = 5, byrow=TRUE))
     make.age.comp.plot(can.shore.age, bg.col = "brown",
       title = "CAN\nShoreside", hide0 = TRUE, frange = 0.05)
-    make.age.comp.plot(can.ft.age.tmp, bg.col = "salmon",
+    make.age.comp.plot(can.ft.age, bg.col = "salmon",
       title = "CAN\nFreezer-Trawler", hide0 = TRUE, frange = 0.05)
     make.age.comp.plot(us.shore.age.tmp, bg.col = "blue",
       title = "U.S.\nShore-Based", hide0 = TRUE, frange = 0.05)
@@ -573,28 +570,5 @@ if(!dir.exists(fig_dir)){
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\frame{\frametitle{Removal of data sources used in the base model}
-%<<nocanagesfigure,fig.height=4.5, fig.width=8, out.width='0.85\\columnwidth'>>=
-%ghostmodelname <- file.path("..", "..", "..",
-%  "models", "2022.01.50_ghostfleets"
-%)
-%newpaths <- dir("../../../models", pattern = "no[FC]", full.names = TRUE)[c(2, 16, 26:28) - 1]
-%modlist <- mapply(r4ss::SS_output, c(ghostmodelname, newpaths),
-%  MoreArgs = list(verbose = FALSE, printstats = FALSE),
-%  SIMPLIFY = FALSE
-%)
-%make.comparison.plot(modlist, subplot = 1,
-%  model.names = gsub("[0-9\\.]+_", "", c("base", basename(newpaths))),
-%  plot_mcmc = FALSE, legend_pos = c(0.5, 0.9),
-%  end_yr = 2021
-%)
-%@
-\includegraphics[width=\maxwidth, height=2.8in]{../../images/nocanagesfigure-1.eps}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \end{document}
