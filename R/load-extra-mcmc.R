@@ -221,10 +221,75 @@ load_extra_mcmc <- function(model,
   if(verbose){
     message("Extracting selectivities...")
   }
-  next_yr <- model$endyr + 1
-  sel_header_ind <- grep("^AGE_SELEX", rep_example) + 5
+  # Get the age selectivity header row
+  sel_header_ind <- grep("^AGE_SELEX report:32", rep_example) + 5
   sel_header_line <- rep_example[sel_header_ind]
   sel_header <- str_split(sel_header_line, " +")[[1]]
+
+  # Extract all selectivities by age, and calculate medians and CIs for
+  # each year
+  end_sel_ind <-
+    grep("^Fecund ",
+         rep_example[(sel_header_ind + 1):length(rep_example)])[1] +
+    sel_header_ind - 1
+  # Extract fishery selectivities only
+  # `reps_sel_yrs` is a list of the number of years of fishery selectivity,
+  # each element of which is a list of three tibbles, with one row each for
+  # the lower quantile, median, and upper quantile from the `probs` argument
+  reps_sel_yrs <- map((sel_header_ind + 1):end_sel_ind, function(line){
+    reps_sel <- map(reps, ~{
+      .x[line]
+    })
+    yr_posts <- extract_rep_table(reps_sel,
+                                  sel_header,
+                                  verbose = verbose,
+                                  ...)
+    if(unique(yr_posts$Fleet) != 1){
+      return(NULL)
+    }
+    yr_posts <- yr_posts |>
+      select(-c("Iter",
+                "Factor",
+                "Fleet",
+                "Seas",
+                "Sex",
+                "Morph",
+                "Label"))
+    yr_lower <- yr_posts |>
+      mutate_at(vars(-Yr), ~{
+        quantile(.x, probs = probs[1])
+      }) |>
+      slice(1)
+    yr_med <- yr_posts |>
+      mutate_at(vars(-Yr), ~{
+        quantile(.x, probs = probs[2])
+      }) |>
+      slice(1)
+    yr_upper <- yr_posts |>
+      mutate_at(vars(-Yr), ~{
+        quantile(.x, probs = probs[3])
+      }) |>
+      slice(1)
+    list(lower = yr_lower, med = yr_med, upper = yr_upper)
+  })
+
+  # Combine the `reps_sel_yrs` list so that there are three data frames,
+  # One for each of lower, median and upper, with one row per year for age
+  # selectivity
+  extra_mcmc$sel_fishery_lower <- map(reps_sel_yrs, ~{
+    .x$lower
+  }) |>
+    map_df(~{.x})
+  extra_mcmc$sel_fishery_median <- map(reps_sel_yrs, ~{
+    .x$med
+  }) |>
+    map_df(~{.x})
+  extra_mcmc$sel_fishery_upper <- map(reps_sel_yrs, ~{
+    .x$upper
+  }) |>
+    map_df(~{.x})
+
+  next_yr <- model$endyr + 1
   sel_ind <- grep(paste0(next_yr, "_1Asel"), rep_example)
   reps_sel <- map(reps, ~{.x[sel_ind]})
   sel <- extract_rep_table(reps_sel,
