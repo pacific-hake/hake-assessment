@@ -87,8 +87,36 @@ models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] # pretty c
 \date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
 \subtitle{\tiny \disclaimer}
 \begin{document}
+
 \frame[plain]{
 \titlepage
+}
+
+\frame{\frametitle{Update on computation for the assessment}
+  \bi
+	  \item JTC Acquired 80-CPU computer this year
+	  \item Server is running Ubuntu Linux and has an account for each JTC member
+	  \item Login remotely through Secure Shell (SSH) with 4,096 bit encryption
+	  \item Models run in parallel through Bash scripting instead of R packages
+	    so that we can watch individual model runs as OS processes
+    \item One universal directory for all models which is accessed by all JTC
+      members when working on the document. This supports reproducibility and
+      minimizes possible versioning errors due to cutting/pasting models on
+      Google Drive
+	  \item Models run very quickly, ranging from 45 minutes to 2
+	    hours for a full NUTS MCMC run. This is more than twice as fast as running
+	    them on Amazon Web Server (AWS)
+	\ei
+}
+
+\frame{\frametitle{Update on web accessibility}
+  \bi
+	  \item Now using a leading-edge LaTeX package called \textbf{tagpdf}
+	    to automatically tag the document for accessibility
+	  \item Alternate text is part of the \textbf{tagpdf} routine and was set up to
+	    inserted by code during the document building routine
+	  \item This was done during and after the draft submission this year
+	\ei
 }
 
 \section{Introduction}
