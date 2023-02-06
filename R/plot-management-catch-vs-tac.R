@@ -27,7 +27,10 @@ plot_management_catch_vs_tac <- function(d,
                                          connect_vals_alpha = 0.5,
                                          connect_vars = FALSE,
                                          connect_vars_linetype = "dashed",
-                                         connect_vars_alpha = 0.5){
+                                         connect_vars_alpha = 0.5,
+                                         leg_pos = c(0.65, 0.83),
+                                         leg_ncol = 1,
+                                         leg_font_size = 12){
 
   d <- d |>
     select(-c(Depletion, `Biomass estimate`))
@@ -48,14 +51,11 @@ plot_management_catch_vs_tac <- function(d,
               alpha = connect_vals_alpha) +
     labs(y = "Catch or TAC (1,000 t)") +
     theme(legend.title = element_blank(),
-          axis.text.x = element_text(angle = 45, hjust = 1)) +
+          axis.text.x = element_text(angle = 45, hjust = 1),
+          legend.text = element_text(size = leg_font_size)) +
     scale_y_continuous(labels = comma,
                        limits = c(0, NA)) +
-    scale_x_continuous(breaks = seq(0, 3000, 1)) +
-    guides(shape = guide_legend(reverse = TRUE,
-                                label.hjust = 0),
-           color = guide_legend(reverse = TRUE,
-                                label.hjust = 0))
+    scale_x_continuous(breaks = seq(0, 3000, 1))
 
   if(connect_vars){
     g <- g +
@@ -63,5 +63,20 @@ plot_management_catch_vs_tac <- function(d,
                 linetype = connect_vars_linetype,
                 alpha = connect_vars_alpha)
   }
+
+  if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
+    g <- g +
+      theme(legend.position = "none")
+  }else{
+    g <- g +
+      theme(legend.position = leg_pos) +
+      guides(fill = guide_legend(ncol = leg_ncol),
+             color = guide_legend(ncol = leg_ncol,
+                                  reverse = TRUE,
+                                  label.hjust = 0),
+             shape = guide_legend(reverse = TRUE,
+                                  label.hjust = 0))
+  }
+
   g
 }
