@@ -1221,7 +1221,7 @@ to Figure~\ref{fig:main-historical-1}.
 The grey horizontal line is the 50\% value. For each
 year except 2012, both probabilities lie on the same side of the grey line, indicating that
 each year's assessment model almost always
-`correctly` estimated that the subsequent year's
+correctly estimated that the subsequent year's
 biomass will not fall below $\Bforty$.
 For the \Sexpr{assess_yr} assessment the
 probabilities are shown for all catch alternatives for \Sexpr{assess_yr}, as
