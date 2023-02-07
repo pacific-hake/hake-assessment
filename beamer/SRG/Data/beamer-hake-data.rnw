@@ -104,7 +104,7 @@ if(!dir.exists(fig_dir)){
     \item Canadian and U.S. fisheries predominantly started in April and May, respectively.
     \item \Sexpr{scales::ordinal(tail(rank(base_model$catch$Obs*-1),1))} highest coast-wide catch.
     \item \Sexpr{pchangecatch}\% decrease in catch from last year.
-    \item No Canadian Joint-Venture Fishery and no ages from Freezer-Trawlers in \Sexpr{last_assess_yr}.
+    \item No Canadian Joint-Venture Fishery.
     \item Highest proportion-at-age by sector
       \bi
         \item Age-\Sexpr{us.age.1.prop.age.cp} fish in U.S. catcher-processor sector,
