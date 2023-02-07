@@ -152,7 +152,7 @@ establishes U.S. and Canadian shares of the coast-wide total allowable
 adhered to since 2005. However, a bilateral
 agreement on the coast-wide TAC could not be reached in 2020 or 2021; so, catch targets were set unilaterally
 during these years for the first time since the inception of the
-Agreement. Catch shares distributions as specified in the Agreement were once
+Agreement. Catch allocations as specified in the Agreement were once
 again applied in 2022.
 
 Since 1999, an upper limit on catch
@@ -314,7 +314,7 @@ June 15 north of 42$^\circ$N latitude, but could fish for \fishname\ between
 40$^\circ$30'N and 42$^\circ$N latitudes starting on April 1. Since
 2015, the shore-based fishery has been allowed to fish north of 40$^\circ$30'N
 latitude starting May 15 and fish south of 40$^\circ$30'N latitude
-starting on April 15. Although, only a small amount of the shore-based
+starting on April 15, although only a small amount of the shore-based
 allocation is released for this early period prior to the main opening.
 Regulations do not allow at-sea processing or night fishing (midnight to one
 hour after official sunrise) south of 42$^\circ$N latitude (the
@@ -325,8 +325,7 @@ The total catch of \fishname\ in U.S. waters was the fourth highest value ever
 recorded (Table~\ref{tab:intro-catches-US}) and the U.S. utilization rate
 (\Sexpr{last.year.us.attained}\%) continued to be maintained close to what it
 has been in recent years (see Appendix~\ref{chap:us-fishery-report} for more
-details). There was \Sexpr{last.year.us.not.attained}\% of the total U.S.
-adjusted TAC that was not caught. The catcher-processor, mothership, and
+details). The catcher-processor, mothership, and
 shore-based fleets caught \Sexpr{catcher.processor.catch}\%,
 \Sexpr{mothership.catch}\%, and \Sexpr{shore.based.catch}\% of their final
 reallocated quotas, respectively. Tribal landings, which are included in the

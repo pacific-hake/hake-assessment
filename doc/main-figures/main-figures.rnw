@@ -386,7 +386,7 @@ make.mcmc.survey.fit.plot(base_model,
 \caption{Fits (colored lines) to the acoustic survey (points) with input 95\% intervals around the observations.
   The thin blue lines are the results of a random subset of individual MCMC samples.
   Thicker uncertainty intervals around observed survey points indicate 95\%
-  log-normal uncertainty intervals estimated by the kriging method and are used as input to the assessment model.
+  lognormal uncertainty intervals estimated by the kriging method and are used as input to the assessment model.
   Thinner uncertainty intervals indicate estimated 95\% uncertainty intervals that account for the
   model estimate of additional uncertainty.}
 \label{fig:main-mcmc-survey-fit}
@@ -411,7 +411,7 @@ make.mcmc.survey.fit.plot(base_model,
   acoustic survey (points) with input 95\% intervals around the observations.
   The thin blue lines are the results of a random subset of individual MCMC samples.
   Thicker uncertainty intervals around observed survey points indicate 95\%
-  log-normal uncertainty intervals based on sampling variability
+  lognormal uncertainty intervals based on sampling variability
   and are used as input to the assessment model.
   Thinner uncertainty intervals indicate estimated 95\% uncertainty intervals that account for the
   model estimate of additional uncertainty.}
@@ -706,7 +706,7 @@ make.mcmc.sr.variability.plot(base_model,
 \caption{Estimated stock-recruit relationship for the base model with median predicted recruitments
   and 95\% posterior credibility intervals. Colors indicate time-period, with yellow colors in the
   early years and blue colors in the recent years. The thick solid black line indicates the central
-  tendency (mean) and the red line indicates the central tendency after bias correcting for the log-normal
+  tendency (mean) and the red line indicates the central tendency after bias correcting for the lognormal
   distribution (median). Shading around stock-recruit curves indicates uncertainty in shape associated
   with distribution of the steepness parameter ($h$). The gray polygon on the right indicates the
   expected distribution of absolute recruitments.}
@@ -1104,7 +1104,7 @@ make_squid_plot(base_model,
   the median log-scale differences between recruitment estimated by the model
   and expected recruitment from the spawner-recruit relationship.
   Age-0 recruitment deviations are non-zero because MCMC allows for
-  sampling from the full log-normal distribution.
+  sampling from the full lognormal distribution.
   Lines represent estimated recruitment deviations for cohorts born from
   \Sexpr{min(retro_cohorts)} to \Sexpr{max(retro_cohorts)}, with cohort
   birth year marked at the right of each color-coded line.

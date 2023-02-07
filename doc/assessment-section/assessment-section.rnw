@@ -173,7 +173,7 @@ for each sample of posterior parameters, resulting in a distribution of catchabi
 for each.
 
 Statistical likelihood functions used for data fitting are typical of many stock
-assessments. The biomass index was fit via a log-normal
+assessments. The biomass index was fit via a lognormal
 likelihood function, using the observed (and extra 2009) sampling variability,
 estimated via kriging, as year-specific weighting. The age-1 index was also specified
 as having lognormal error structure. An additional constant and
@@ -362,7 +362,7 @@ reference points, including dynamic reference points, for future SRG considerati
 
 \emph{Over the past year, the JTC has continued to engage in research activities and outreach related to
   dynamic reference points broadly, as well as specifically for \fishname.  In particular, the JTC
-  conducted a learning session at the summer JMC meting to promote internal awareness
+  conducted a learning session at the summer JMC meeting to promote internal awareness
   and basic understanding of the key concepts, methods, and assumptions associated with dynamic reference
   point calculations. The JTC also engaged with external partners, the Western and Central Pacific Fisheries
   Commission science provider (Secretariat of the Pacific Community), to learn from their experience developing
@@ -381,7 +381,7 @@ encourages continued sampling and analysis to improve understanding of the
 
 \emph{Response -- \fishname\ ovary samples were not collected over the past year, but plans include more
   sample collections in the coming years. Including Canadian samples in subsequent maturity analyses still
-  remains a goal, but barriers (lab training, capacity, and moving bio-samples across the broader) still
+  remains a goal, but barriers (lab training, capacity, and moving bio-samples across the border) still
   remain. Research is in-progress by Melissa Head (NWFSC) focusing on temporal and spatial trends
   in hake reproduction. The analysis will include over a decade of maturity samples, spanning much of the U.S.
   West Coast.  The project aims to evaluate how interannual changes affect size and age at maturity across a latitudinal
@@ -412,7 +412,7 @@ data.}
   this document.}
 
 6. Based on the preliminary results shown, previous assessments have correctly predicted an
-increase or decrease in recruitment and spawning biomass in subsequent years, although
+increase or decrease in recruitment and female spawning biomass in subsequent years, although
 the projections are usually less definitive than the current base model results. Given that
 this analysis provides some confidence in the current expectations of continued stock
 decline, {\bf the SRG recommends that the JTC continue to explore and refine this
@@ -900,7 +900,7 @@ for several years due to relatively small recruitments between 2000 and
 2007. With the aging 1999 year class, median female spawning biomass declined
 throughout the late 2000s, reaching a time-series low of
 \Sexpr{median.bio.min}~million~t in \Sexpr{median.bio.min.year}. The assessment
-model estimates that median spawning biomass then peaked again in 2013 and 2014 due
+model estimates that median female spawning biomass then peaked again in 2013 and 2014 due
 to a very large 2010 year class and an
 above-average 2008 year class. The subsequent decline from 2014 to 2016 is primarily
 from the 2010 year class surpassing the age at which gains in weight from growth
@@ -909,7 +909,7 @@ The 2014 year class is estimated to be large, though not as large as the 1999
 and 2010 year classes, resulting in an increased biomass in 2017. The estimated
 biomass was relatively steady from 2017 to 2019, and then declined in 2020
 and 2021 due to the 2014 and 2016 year classes moving through the growth-mortality
-transition during a period of high catches. The increase in spawning biomass since 2021 is
+transition during a period of high catches. The increase in female spawning biomass since 2021 is
 due to the expected above average 2020 cohort entering maturity and
 the recent declining trend in catch.
 
@@ -923,7 +923,7 @@ posterior credibility interval from \Sexpr{curr.depl.lower}\% to
 of the 2020 cohort (e.g., not yet sampled by the acoustic survey).
 
 The median estimate of
-the \Sexpr{end_yr} spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
+the \Sexpr{end_yr} female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
 \Sexpr{curr.bio.upper}~million~t). The current estimate of the \Sexpr{end_yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
@@ -959,7 +959,7 @@ Similarly, estimates for 2019 and 2021 recruitments have changed by
 (\Sexpr{f(((recruitment.med.to.compare - prev.assess.recruitment.med)["2021"]), 1)}~billion fish),
 respectively, but the general notion remains that recent recruitment is highly uncertain.
 
-\fishname\ appear to have low average recruitment with occasional large year-classes
+\fishname\ have low average recruitment with occasional large year classes
 (Figures~\ref{fig:main-recruitment} and \ref{fig:main-recruitment-devs},
 Tables~\ref{tab:main-median-posterior} and \ref{tab:main-ci-posterior}).
 Very large year classes in 1980, 1984, and 1999 supported much of the commercial
@@ -1061,9 +1061,9 @@ Figure~\ref{fig:main-recruitment}.
 The estimated recruitments with uncertainty for each year and the
 overall stock recruit relationship are provided in
 Figure~\ref{fig:main-mcmc-sr-variability}. Extremely large variability about the
-expectation and about the joint uncertainty of individual recruitment and
+expectation and about the joint uncertainty of individual recruitment and female
 spawning biomass pairs are evident. High and low recruitments have
-been produced throughout the range of observed spawning biomass
+been produced throughout the range of observed female spawning biomass
 (Figure~\ref{fig:main-mcmc-sr-variability}). The standard deviation of the time
 series of median recruitment deviation estimates for the years 1970--\Sexpr{last_data_yr - 1}, which
 are informed by the age compositions and the age-1 index, is
@@ -1095,7 +1095,7 @@ the catch.
 Median relative fishing intensity is estimated to have declined from
 \Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
 in 2015, and then it leveled off around 70\% from 2016 to 2019 before declining to
-\Sexpr{median.intensity.2022}\% in 2022..
+\Sexpr{median.intensity.2022}\% in 2022.
 The median exploitation fraction has increased from a recent low of
 \Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2017} in 2017 where it
 remained relatively stable before dropping back to 2012--2015 levels in 2022.
@@ -1212,7 +1212,7 @@ rapid biomass changes. This volatility, coupled with a dynamic fishery that
 potentially targets strong cohorts (resulting in time-varying selectivity)
 will in most circumstances continue to result in highly uncertain
 estimates of current stock status and even less-certain projections of the stock
-trajectory. This is particularly true for spawning biomass estimates in \Sexpr{assess_yr}
+trajectory. This is particularly true for female spawning biomass estimates in \Sexpr{assess_yr}
 and throughout the current forecast period, because there is considerable uncertainty
 associated with the size of the 2020 year class, now mostly mature, that propagates into
 forecasts. Further observations of this year class, including during the 2023 acoustic
@@ -1296,15 +1296,15 @@ of $0.4\Bmsy$ and provisional upper stock reference point of $0.8\Bmsy$, the pro
 are P$(B_{\Sexpr{assess_yr}} > 0.4\Bmsy) = \Sexpr{f(dfo.probs.curr[1, 2], 0)}$\% and
 P$(B_{\Sexpr{assess_yr}} > 0.8\Bmsy) = \Sexpr{f(dfo.probs.curr[1, 3], 1)}$\%
 such that the stock is estimated to be in the provisional `healthy zone'.
-For completeness, we note that P$(B_{\Sexpr{assess_yr}} > \Bmsy) = \Sexpr{f(dfo.probs.curr[1, 1], 1)}$\%
+For completeness, we note that P$(B_{\Sexpr{assess_yr}} > \Bmsy) = \Sexpr{f(dfo.probs.curr[1, 1], 1)}$\%.
 
 %PFMC refrence points for hake/whiting are: Bmsy = 0.4B0; MSST = 0.25B0.  Will report these as well.
 Reference levels of stock status that are used by the U.S. Pacific Fisheries Management
 Council (PFMC) for \fishname\ include $\Bforty$ and a Minimum Stock Size
 Threshold (MSST) of $\Btwentyfive$. For \Sexpr{min(forecast_yrs)}, the estimated
 posterior median relative spawning biomass is \Sexpr{curr.depl.median}\%, such
-that the spawning biomass is well above $\Bforty$ and $\Btwentyfive$.
-The probability that spawning biomass at the beginning of \Sexpr{assess_yr}
+that the female spawning biomass is well above $\Bforty$ and $\Btwentyfive$.
+The probability that female spawning biomass at the beginning of \Sexpr{assess_yr}
 is above $\Bforty$ is
 P$(B_{\Sexpr{assess_yr}} > \Bforty) = \Sexpr{probs.curr.bforty}$\% (as noted above), and of being above $\Btwentyfive$
 is
@@ -1414,7 +1414,7 @@ and Figure~\ref{fig:main-forecast-risk-comparison-year-3}).
 
 % Make consistent with Exec Summary (that has older text commented out for
 % possible future use)
-The probability of the spawning biomass decreasing from \Sexpr{end_yr} to
+The probability of the female spawning biomass decreasing from \Sexpr{end_yr} to
 \Sexpr{end_yr+1} is above 72\% for all non-zero catch levels examined
 (Table~\ref{tab:main-risk-year-1} and
 Figure~\ref{fig:main-forecast-risk-comparison-year-1}). It is 81\% for the
@@ -1423,7 +1423,7 @@ Figure~\ref{fig:main-forecast-risk-comparison-year-1}). It is 81\% for the
 %decrease is 97\%, which is for the default harvest policy
 %(row~g in Table~\ref{tab:es-risk-year-1}).
 For all explored catches,
-the maximum probability of the spawning biomass dropping below $B_{10\%}$
+the maximum probability of the female spawning biomass dropping below $B_{10\%}$
 at the start of \Sexpr{end_yr+1} is near 0\%,
 at the start of \Sexpr{end_yr+2} is 1\%,
 and at the start of \Sexpr{end_yr+3} is 4\%
@@ -1449,11 +1449,11 @@ The below-average 2015 and 2018 cohorts will contribute much less to forecasted 
 biomass than the larger cohorts. During 2023, the age-3 2020 cohort will likely
 move through the growth-mortality transition and thus no longer contribute to an
 increase in total biomass (note that fecundity will increase which will
-influence the exact change in spawning biomass, Figure~\ref{fig:main-maturity}).
+influence the exact change in female spawning biomass, Figure~\ref{fig:main-maturity}).
 % Already said above:
 % The probability
-% that the \Sexpr{forecast_yrs[2]} spawning biomass will be less than the
-% \Sexpr{forecast_yrs[1]} spawning biomass ranges from \Sexpr{f(min(base_model$risks[[1]][,2]))}\% to \Sexpr{f(max(base_model$risks[[1]][,2]))}\%
+% that the \Sexpr{forecast_yrs[2]} female spawning biomass will be less than the
+% \Sexpr{forecast_yrs[1]} female spawning biomass ranges from \Sexpr{f(min(base_model$risks[[1]][,2]))}\% to \Sexpr{f(max(base_model$risks[[1]][,2]))}\%
 % depending on the catch level (Table~\ref{tab:main-risk-year-1} and
 % Figure~\ref{fig:main-forecast-risk-comparison-year-1}).
 
@@ -1600,7 +1600,7 @@ parameter estimates between the main sensitivity models with those from the base
 in Tables~\ref{tab:main-parameter-estimates-sens-1}--\ref{tab:main-parameter-estimates-sens-2}.
 None of the sensitivities resulted in any substantial departure from
 the main population dynamics of the base model. All sensitivity models showed large
-estimated increases in spawning biomass in the early- to mid-2010s that continues to be
+estimated increases in female spawning biomass in the early- to mid-2010s that continues to be
 driven by the 2010, 2014, and 2016 cohorts, followed by several years of steady decline
 (2019--2021) before increasing again due to the strong 2020 cohort.
 All sensitivity models indicate that \Sexpr{assess_yr}
@@ -1629,7 +1629,7 @@ with a 95\% credible interval of \Sexpr{f(nat_m_hamel[1], 3)}--\Sexpr{f(nat_m_ha
 In addition to allowing a higher estimated value for
 natural mortality, these $M$ sensitivity models increased the overall scale of
 the population, the estimated stock status relative to $B_0$ prior to 1990, the
-uncertainty in spawning biomass on both absolute and relative scales, halved estimated relative
+uncertainty in female spawning biomass on both absolute and relative scales, halved estimated relative
 fishing intensity in \Sexpr{end_yr-1}, and doubled equilibrium yield at $\BSPRforty$
 (Table~\ref{tab:main-parameter-estimates-sens-1} and Figures~\ref{fig:main-biomass-base-alternative-1}
 and~\ref{fig:main-status-base-alternative-1}).
@@ -1646,7 +1646,7 @@ of \Sexpr{f(steep_prior_05[1], 3)}--\Sexpr{f(steep_prior_05[3], 3)}
 However, neither steepness
 sensitivity analysis had a large impact on the overall model results
 (Figures~\ref{fig:main-biomass-base-alternative-1} and
-\ref{fig:main-status-base-alternative-1}), because \fishname\ spawning biomass has
+\ref{fig:main-status-base-alternative-1}), because \fishname\ female spawning biomass has
 remained above levels where changes in steepness would appreciably influence
 stock-recruit dynamics (Figure~\ref{fig:main-mcmc-sr-variability}).
 
@@ -1665,17 +1665,17 @@ than the low $\sigma_r$ model
 Similar to previous assessments,
 estimates of unfished equilibrium recruitment and relative spawning biomass are sensitive
 to $\sigma_r$, whereas absolute estimates of female spawning biomass are
-relatively insensitive. The method of \citet{MethotTaylor2011} proposed to tune
+relatively insensitive. The method \citet{MethotTaylor2011} proposed to tune
 $\sigma_r$ was developed in the context of maximum likelihood estimation and not
 Bayesian inference, where the latter potentially allows for estimating
-$\sigma_r$ using random effects, and thus, this proposed tuning method is not
+$\sigma_r$ using random effects, and thus, this proposed method is not
 used here to tune the fixed input value.
 
 % Section below on removal of the age-1 index
 The sensitivity of the base model to the removal of the age-1 index
 provides a comparative evaluation of how the base model incorporates information
 about juvenile fish. Compared to the base model, estimates
-of spawning biomass throughout most of the time series are similar, but do
+of female spawning biomass throughout most of the time series are similar, but do
 diverge near the end of the time series
 (Table~\ref{tab:main-parameter-estimates-sens-1},
 Figures~\ref{fig:main-biomass-base-alternative-2} and
@@ -1736,7 +1736,7 @@ in 2014, but it did impact more recent recruitments (Figure~\ref{fig:main-recrui
 In particular, recruitment estimates for 2016 and 2020 are linked to the choice of $\Phi$, where the
 model with the smallest $\Phi$ (0.21) estimates the 2016 and 2020 recruitment deviation as
 the highest of the $\Phi$ sensitivity models (Figure~\ref{fig:main-recruit-devs-base-alternative-4}),
-leading to a large increase in spawning biomass in recent years compared to the base model
+leading to a large increase in female spawning biomass in recent years compared to the base model
 (Figure~\ref{fig:main-biomass-base-alternative-4}).
 The value $\Phi = 0.21$ also provides the worst fit to the most recent
 age-2+ survey biomass index
@@ -1789,7 +1789,7 @@ age-2+ survey biomass index
 %meeting held from 25th February to 28nd February 2020 related to input sample size is documented
 %in Appendix~\ref{chap:srg-requests}.
 %Briefly, arbitrarily decreasing the weight of recent fishery age-composition data by taking the square root of the input %sample size led to
-%similar estimates of the recent trend in spawning biomass but differences in
+%similar estimates of the recent trend in female spawning biomass but differences in
 %stock status because of more optimistic estimates of the stock at unfished
 %equilibrium. Further responses to other SRG requests are also given in Appendix~\ref{chap:srg-requests}.
 
@@ -1833,8 +1833,8 @@ Overall, there is little retrospective change to the relative spawning biomass
 trajectory up to the mid-2010s, and most retrospective change occurs in the
 final years of the retrospective model with the most years removed
 (Figure~\ref{fig:main-biomass-recruitment-retrospective}).
-In this assessment, there is very little retrospective bias. Present is
-slight year-specific positive and negative bias in spawning biomass, some minor adjustments to
+In this assessment, there is very little retrospective bias, with only
+slight year-specific positive and negative bias in female spawning biomass, some minor adjustments to
 recruitment deviates, and a slight trend in $B_0$ as the retrospective year increases. All of these
 retrospective differences are well within the range of estimation uncertainty across all retrospective years.
 There is no indication from retrospective
@@ -1856,7 +1856,7 @@ The fixing of survey catchability had the effect
 of driving the estimate of initial biomass upward, which in turn scaled the
 entire biomass trajectory up, leading to higher estimates of relative spawning
 biomass than in more recent assessments. The median estimates of
-spawning biomass for recent years have remained similar to the previous
+female spawning biomass for recent years have remained similar to the previous
 assessment but declined relative to the 2015--2017 assessments.
 The difference is most likely related to the recent under-fitting of the 2017 survey estimate
 of biomass despite the consistency in the structure of the assessment model in
@@ -1868,9 +1868,9 @@ The uncertainty interval associated with the \Sexpr{end_yr} assessment brackets 
 historical estimates.
 
 The level of uncertainty associated with each assessment's estimate of that year's current
-spawning biomass (i.e., that used to convey current stock status and inform management advice)
+female spawning biomass (i.e., that used to convey current stock status and inform management advice)
 changes from assessment to assessment given updates in data and \fishname\ population structure and
-dynamics. While uncertainty around the absolute amount of 2023 spawning biomass is the
+dynamics. While uncertainty around the absolute amount of 2023 female spawning biomass is the
 second largest (behind the 2017 assessment) since 2012, the relative amount of dispersion
 (or variability relative to the stock size; similar to a coefficient of variation) is not
 inconsistent with previous assessments (Figure~\ref{fig:main-historical-dispersion}).
@@ -1931,7 +1931,7 @@ admitting a wide range of uncertainty given unknown recent recruitments.
 %(it did not include the age-1 index, which in 2011 did indicate a large 2010 recruitment,
 %Figure~\ref{fig:main-age-one-index}).
 %However, the current base model does have such information from many years of age
-%data. Hence, the current model confidently `expects' a large increase in spawning biomass
+%data. Hence, the current model confidently `expects' a large increase in female spawning biomass
 %from 2012 to 2013 as the individuals in the 2010 cohort grew in size. The 2013
 %assessment model had some information on the 2010 cohort, so the lower estimated
 %probability that the stock would decline from 2013 to 2014 better concurs with
@@ -1960,14 +1960,14 @@ year (Figure~\ref{fig:main-historical-1}).
 %to age-2 by around 70~thousand~t
 %(Table~\ref{tab:main-est-biomass-at-age}). Since the 2021 assessment would have
 %assumed average 2020 recruitment (and also the 2019 recruitment appeared small) it
-%was expecting that the spawning biomass would probably decline.
+%was expecting that the female spawning biomass would probably decline.
 
 A range of catch alternatives are shown for the current assessment because
 realized \Sexpr{assess_yr} catches are not yet known (Figure~\ref{fig:main-historical-1}).
 Catching zero fish in \Sexpr{assess_yr} gives
 the lowest probability that the stock will decline from \Sexpr{assess_yr} to
 \Sexpr{assess_yr+1}, with any realistic \Sexpr{assess_yr} catch leading to a
-likely decline in spawning biomass given current information.
+likely decline in female spawning biomass given current information.
 
 A similar approach was used to calculate the
 probability of the biomass falling below
@@ -1996,7 +1996,7 @@ attain.
 %or decreases in the stock or in the biomass not going below $\Bforty$ the following year, have almost always been `correct' (the most
 %probable direction has agreed with the latest base model and data).
 
-Restrospective versions of Figures~\ref{fig:main-historical-1}
+Retrospective versions of Figures~\ref{fig:main-historical-1}
 and~\ref{fig:main-historical-2} are calculated using the
 current base model but with data only up to a certain year (Figures~\ref{fig:main-historical-retro-1}--\ref{fig:main-historical-retro-bforty-all}).
 While there are some minor exceptions, the retrospective probabilities of decline
@@ -2017,7 +2017,7 @@ for 2015 and 2021 as information becomes available about the strong 2014 and
 outcomes from the assessment model.
 
 %This text below is all very hard and intracite to follow, so tried to briefly summarize above
-%Exceptions include during the relatively flat spawning biomass trajectory from
+%Exceptions include during the relatively flat female spawning biomass trajectory from
 %2018--2020 (see above). As expected, the estimate of P$(B_{2022} < B_{2021})$ gets closer to
 %the current assessment's estimate with the information provided by the age-1
 %index (2021 values of green square in bottom panel of Figure~\ref{fig:main-historical-retro-3}

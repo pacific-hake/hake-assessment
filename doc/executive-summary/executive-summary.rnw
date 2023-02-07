@@ -315,14 +315,14 @@ biomass at the start of \Sexpr{end_yr} divided by that at unfished equilibrium,
 $B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
 is particularly large this year, with a 95\%
 posterior credibility interval from \Sexpr{curr.depl.lower}\% to
-\Sexpr{curr.depl.upper}\% (Table~\ref{tab:es-biomass}), due to remaining unknowns about the size
-of the 2020 cohort (e.g., not yet sampled by the acoustic survey). The median estimate of
+\Sexpr{curr.depl.upper}\% (Table~\ref{tab:es-biomass}), due to high uncertainty about the size
+of the 2020 cohort, which has not been sampled by the acoustic survey. The median estimate of
 the \Sexpr{end_yr} female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
 \Sexpr{curr.bio.upper}~million~t). The current estimate of the \Sexpr{end_yr-1} female
 spawning biomass is \Sexpr{prev.bio.median}
-(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a
-higher median but similar credibility interval compared to the \Sexpr{prev.bio.median.last.assess}
+(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is
+higher than the \Sexpr{prev.bio.median.last.assess}
 (\Sexpr{prev.bio.lower.last.assess}--\Sexpr{prev.bio.upper.last.assess})~million~t estimated in the \Sexpr{end_yr-1}
 assessment.
 The increase appears to be due to the addition of 2022 fishery age-composition data, which suggests
@@ -367,10 +367,8 @@ make.recruitment.table(base_model,
 @
 %
 
-The addition of \Sexpr{last_data_yr} data for this assessment does not substantially change the
-pattern of recruitment estimated in recent assessments.
-However, estimates of absolute recruitment for the most recent years can change with
-new data.
+The addition of \Sexpr{last_data_yr} data does not substantially change
+estimates of historical recruitment but recent recruitment estimates have changed substantially.
 For example, this assessment's median estimate of the 2020 recruitment is
 % putting in - signs when it's a decrease, and saying 'lower'. So check
 %  carefully in 2022 (could put in an automatic switch for the text)
@@ -534,7 +532,7 @@ There is a
 considerable amount of uncertainty around estimates of relative fishing intensity,
 with the 95\% posterior credibility interval reaching above the SPR management
 target (of 1.0) in 2017 and 2018 over the past decade (Figure~\ref{fig:es-fishing-intensity}).
-Exploitation and fishing intensity rates do not always tract well due to a combination of
+Exploitation and fishing intensity rates do not always track well due to a combination of
 changing age distributions and changing selectivities over time.
 % 2016 assessment, leave as an explanation:
 % Note that exploitation.med.penult.yr comes out as 0.06, but in Table d
@@ -639,14 +637,11 @@ The median relative fishing intensity was below the target in all years
 (Figures~\ref{fig:es-fishing-intensity} and~\ref{fig:es-phase}).
 The median relative spawning biomass was above the $\Bforty$ reference point in
 all years except 2007--2010
-(Figures~\ref{fig:es-relative-spawning-biomass} and~\ref{fig:es-phase}), yet
+(Figures~\ref{fig:es-relative-spawning-biomass} and~\ref{fig:es-phase}), and
 % Andy summarising those years manually, based on:
 % median.relative.bio.below.target
 the median relative fishing
-intensity still remained below the target
-%when the female spawning biomass
-%is below the
-%reference point of $\Bforty$
+intensity was below the target
 (Figure~\ref{fig:es-phase}).
 The targets, $\Fforty$ and $\Bforty$,
 result in different median population sizes (see Table~\ref{tab:es-reference-points}),
@@ -725,7 +720,7 @@ in a high level of uncertainty in estimates of current stock status and stock
 projections because, with limited data to estimate incoming recruitment, the
 cohorts are fished before the assessment can accurately determine how big
 they are (i.e., cohort strength is typically not well known until it is observed
-by the fishery and survey, typically at minimum age of three).  While the addition of the age-1 index
+by the fishery and survey, typically at a minimum age of three).  While the addition of the age-1 index
 helps inform recent recruitment, the survey is conducted every other year and does not directly
 address current or future recruitment expectations.
 In particular, while the model estimates the 2020 cohort as above average in size, its absolute size remains
@@ -800,8 +795,8 @@ spawning biomass for several of the catch alternatives.
 Population dynamics and governing
 parameters assumed during the forecast period include random recruitment;
 selectivity, weight-at-age and fecundity averaged over
-the five most recent years (\Sexpr{assess_yr-5}--\Sexpr{assess_yr-1}); and all other
-parameters as constant.
+the five most recent years (\Sexpr{assess_yr-5}--\Sexpr{assess_yr-1}); and
+constant values for all other parameters.
 
 A relative fishing intensity of 1 should indicate fishing at the
 $\Fforty$ default harvest rate catch target but the projected median relative fishing intensity can

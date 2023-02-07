@@ -353,7 +353,7 @@ make.mcmc.survey.fit.plot(base_model,
 \caption{Fits (colored lines) to the acoustic survey (points) with input 95\% intervals around the observations.
   The thin blue lines are the results of a random subset of individual MCMC samples.
   Thicker uncertainty intervals around observed survey points indicate 95\%
-  log-normal uncertainty intervals estimated by the kriging method and are used as input to the assessment model.
+  lognormal uncertainty intervals estimated by the kriging method and are used as input to the assessment model.
   Thinner uncertainty intervals indicate estimated 95\% uncertainty intervals that account for the
   model estimate of additional uncertainty.}
 \label{fig:mcmc-survey-fit-base-temp}

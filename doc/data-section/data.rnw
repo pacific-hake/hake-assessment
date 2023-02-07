@@ -182,8 +182,8 @@ as well as the large cohorts born since then
 (Table~\ref{tab:main-all-age-data-fishery} and
 Figure~\ref{fig:main-age-comp-bubbles}).
 Currently, the 2020 cohort is the largest observed cohort in the U.S. at-sea sector (Tables~\ref{tab:main-us-cp-age-data}--\ref{tab:main-us-ms-age-data}),
-the 2016 cohort is the largest observed cohort in the U.S. shore-based fleet (Table~\ref{tab:main-us-shore-age-data}), and
-the 2016 cohort is also the largest observed cohort in both Canadian fleets (Tables~\ref{tab:main-can-shore-age-data}--\ref{tab:main-can-ft-age-data}).
+the 2016 cohort is the largest observed cohort in the U.S. shore-based fleet (Table~\ref{tab:main-us-shore-age-data}) and
+both Canadian fleets (Tables~\ref{tab:main-can-shore-age-data}--\ref{tab:main-can-ft-age-data}).
 Age-1 fish were observed by the fishery this year (Table~\ref{tab:main-all-age-data-fishery})
 in the U.S. at-sea sector and shore-based fleet.
 For the combined data in \Sexpr{last_data_yr}, \Sexpr{top.coh(base_model,
@@ -374,7 +374,7 @@ was estimated similarly to previous years,
 except the estimate of 2021 numbers of age-1 fish
 was scaled by a factor of 1.06 to account for differences between
 the EK~60 and EK~80 echosounders (the same approach used for the estimate of age-2$+$ biomass).
-The index is a relative index (of numbers) that indicates relative changes between years.
+The index (numbers of fish) indicates relative changes between years, not absolute values.
 The age-1 index confirms the large year classes
 in 2008, 2010, 2014, 2016, and 2020 (Table~\ref{tab:main-survey-history} and Figure~\ref{fig:main-age-one-index}).
 In 2021, some age-1 fish were found
@@ -389,7 +389,7 @@ suite of sensitivity models related to the relative age-1 index explored over
 the past decade indicate that its use typically provides the model with the
 correct direction of cohort strength (weak, strong, or neutral). The utility of
 an informed recruitment signal is far greater than an uninformed recruitment
-assumption. Whereas the assumption for uniformed recruitment is currently limited
+assumption. Whereas the assumption for uninformed recruitment is currently limited
 to the mean estimated recruitment over a specified range of years. Finally, the
 \surveyname\ team supports its use for stock assessment, and the team is
 committed to continually evaluating and refining approaches to improve survey
@@ -471,8 +471,7 @@ Time-varying fecundity-at-age was modeled using year-specific weight-at-age
 values in the calculation of fecundity \citep{JTC2019}.
 Samples from age-15$+$ fish were pooled for both the maturity and weight-at-age
 estimation due to limited sample sizes. Consequently, the age 15$+$ estimates were
-applied to ages 15-20 for purposes of modeling
-the population dynamics (Figure~\ref{fig:main-maturity}).
+applied to ages 15-20 in the population dynamics model (Figure~\ref{fig:main-maturity}).
 
 Some fish at almost every age were found to be functionally immature based
 on histological criteria.
