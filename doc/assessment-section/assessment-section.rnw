@@ -1283,11 +1283,12 @@ The probabilities of the female spawning biomass
 at the start of \Sexpr{assess_yr} being above each of these points
 are P$(B_{\Sexpr{assess_yr}} > \Bten) = \Sexpr{probs.curr.bten}$\% and
 P$(B_{\Sexpr{assess_yr}} > \Bforty) = \Sexpr{probs.curr.bforty}$\%
-[in last year's assessment the equivalent calculation was
-P$(B_{\Sexpr{assess_yr-1}} > \Bforty) = 90.5\%$], % hardwired**
 such that the stock is estimated to be in the `healthy zone' (above the upper
-stock reference point of $\Bforty$). Note that a probability of `100\%' (or
-`0\%`) is based
+stock reference point of $\Bforty$).
+This probability was higher than in last year’s assessment, where 
+the equivalent calculation was P$(B_{\Sexpr{assess_yr-1}} > \Bforty) = 90.5\%$], % hardwired**
+Note that a probability of `100\%' (or
+`0\%') is based
 on the MCMC results, and is not meant to imply that something definitely occurs
 (or definitely does not occur).
 
