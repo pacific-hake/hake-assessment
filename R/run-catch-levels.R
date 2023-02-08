@@ -223,9 +223,9 @@ run_catch_levels_spr_100 <- function(model,
 
       if(abs(spr - 1) < catch_levels_spr_tol |
          abs(upper - lower) < catch_levels_catch_tol){
-        ## Sometimes, upper and lower can end up close to equal,
-        ##  but the tolerance is still not met. In this case, assume
-        ##  the catch creates an SPR of 100% even though it is slightly off.
+        # Sometimes, upper and lower can end up close to equal,
+        #  but the tolerance is still not met. In this case, assume
+        #  the catch creates an SPR of 100% even though it is slightly off.
         break
       }
       if(iter == catch_levels_max_iter){
@@ -236,10 +236,17 @@ run_catch_levels_spr_100 <- function(model,
 
       if(spr - 1 > 0){
         upper <- spr_100_catch[i]
-        spr_100_catch[i] <- (lower + spr_100_catch[i]) / 2.0
-      }else{
+        lower <- (upper + lower) / 2.0
+        spr_100_catch[i] <- lower
+        message("spr greater than 1, upper set to ", upper, ", lower set to ", lower,"\n")
+      }else if(spr - 1 < 0){
         lower <- spr_100_catch[i]
-        spr_100_catch[i] <- (upper + spr_100_catch[i]) / 2.0
+        upper <- upper * 1.5
+        spr_100_catch[i] <- upper
+        message("spr less than 1, upper set to ", upper, ", lower set to ", lower,"\n")
+      }else{
+        message("spr exactly equal to 1, breaking\n")
+        break
       }
       iter <- iter + 1
     }
