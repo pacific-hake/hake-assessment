@@ -182,11 +182,59 @@ gg
 all ages at 6 and above. Repeat the assessment with this threshold greater than age 6
 (e.g., at age 7 and at age 8, or runs that may already be complete).''
 \bi
-    \item **
+    \item Done with the threshold at ages 7, 8 and, as a bonus, 5.
 \ei
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Request 3 -- selectivity}
+\begin{center}
+\vspace{5pt}
+<<selectivity.biomass.fig, fig.height=3.0, fig.width = 7.5>>=
+plot_biomass(model_lst = list(base_model,
+                              sens_models[[4]][[2]],
+                              sens_models[[4]][[3]],
+                              sens_models[[4]][[4]]),
+             model_names = c(base_model_name,
+                             sens_models_desc[[4]][1],
+                             sens_models_desc[[4]][2],
+                             sens_models_desc[[4]][3]),
+             x_expansion = 4,
+             ylim = c(0, 5),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 5,
+             leg_pos = c(0.7, 0.8),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Request 3 -- selectivity}
+\begin{center}
+\vspace{-5pt}
+<<selectivity.sensitivity.table, results='asis', echo=FALSE>>=
+param_est_table(models = list(base_model,
+                              sens_models[[4]][[2]],
+                              sens_models[[4]][[3]],
+                              sens_models[[4]][[4]]),
+                model.names = c(base_model_name,
+                                sens_models_desc[[4]][1],
+                                sens_models_desc[[4]][2],
+                                sens_models_desc[[4]][3]),
+                end_yr = end_yr,
+                digits = 3,
+                xcaption = NULL,
+                font.size = 6.5,
+                space.size = 5.5,
+                getrecs = c(2010, 2014, 2016,2020),
+                show_like = FALSE)
+@
+\end{center}
+\end{frame}
 
 \section[Request 4]{Request 4 -- FI=100\% calculations}
 \subsection{}
@@ -195,7 +243,8 @@ all ages at 6 and above. Repeat the assessment with this threshold greater than 
 ``Check row m of the decision table (FI=100\%) for correctness and update this row with a
 catch that results in a FI closer to 100\% (within reason).''
 \bi
-    \item Checked our code and re-ran allowing more iterations to hone in on the 100\% value.
+    \item Checked our code and re-ran allowing more iterations to hone in on the
+      100\% value. However, values came out the same.
     \item **
 \ei
 \end{frame}
