@@ -47,6 +47,8 @@ $\Bmsy$: The estimated female spawning biomass which theoretically would produce
 
 Backscatter: The scattering by a target back in the direction of an acoustic source. Specifically, the Nautical Area Scattering Coefficient (a measure of scattering per area) is frequently referred to as backscatter.
 
+Benchmark spawning potential ratio ($\mbox{SPR}_{40\%}$): The spawning potential ratio of 40\%, where the 40\% relates to the default harvest rate of $\Fforty$ specified in the Agreement. Even under equilibrium conditions, $\Fforty$ would not necessarily result in a female spawning biomass of $B_{40\%}$ because $\Fforty$ is defined in terms of the spawning potential ratio which depends on the female spawning biomass \emph{per recruit}.
+
 California Current Ecosystem: The waters of the continental shelf and slope off the west coast of North America, commonly referring to the area from central California to southern British Columbia.
 
 Carryover: If at the end of the year, there are unharvested allocations, then there are provisions for an amount of these fish to be carried over into the next year's allocation process. The Agreement states that ``[I]f, in any year, a Party's catch is less than its individual TAC, an amount equal to the shortfall shall be added to its individual TAC in the following year, unless otherwise recommended by the JMC. Adjustments under this sub-paragraph shall in no case exceed 15 percent of a Party's unadjusted individual TAC for the year in which the shortfall occurred.''
@@ -110,7 +112,7 @@ Fishing intensity: A measure of the magnitude of fishing, defined for a fishing 
 \eb
 \mbox {fishing intensity for }F & = & 1-\mbox{SPR}(F),
 \ee
-where SPR$(F)$ is the spawning potential ratio for the value of $F$ accumulated over the entire year. It is often given as a percentage. Relative fishing intensity is the fishing intensity relative to that at the SPR target fishing rate $\Fforty$, where $\Fforty$ is the $F$ that gives an SPR of 40\% such that, by definition, SPR$(\Fforty) = 40\%$ (the target spawning ratio). Therefore
+where SPR$(F)$ is the spawning potential ratio for the value of $F$ accumulated over the entire year. It is often given as a percentage. Relative fishing intensity is the fishing intensity relative to that at the SPR fishing rate $\Fforty$, where $\Fforty$ is the $F$ that gives an SPR of 40\% such that, by definition, SPR$(\Fforty) = 40\%$ (the benchmark spawning ratio). Therefore
 \eb
 \mbox{relative fishing intensity for }F & = & \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(\Fforty)}\\
  & = & \frac{1-\mbox{SPR}(F)}{1-0.4}\\
@@ -267,7 +269,7 @@ SPR: Spawning potential ratio (see above).
 %SPR$_{MSY}$: The estimated spawning potential ratio that produces the largest sustainable harvest (MSY).
 
 % Not found in text in 2017, but now defining 'target spawning potential ratio' below. It's not in text (yet) but is in figs and tables.
-$\mbox{SPR}_{40\%}$: See target spawning potential ratio.
+$\mbox{SPR}_{40\%}$: See benchmark spawning potential ratio.
 % , which is associated with the spawning biomass per recruit equal to 40\% of the spawning biomass per recruit that would occur in the absence of fishing. Even under equilibrium conditions, SPR$_{40\%}$ would not necessarily result in a relative spawning biomass of B$_{40\%}$.
 
 SS: Stock Synthesis (see below).
@@ -281,8 +283,6 @@ SS: Stock Synthesis (see below).
 Steepness ($h$): A stock-recruit relationship parameter representing the proportion of $R_0$ expected (on average) when the female spawning biomass is reduced to 20\% of $B_0$ (i.e.,~when relative spawning biomass is equal to 20\%). %This parameter can be thought of one important component to the productivity of the stock. **IGT--our sensitivity analyses show that it's not it's NOT actually that important.
 
 Stock Synthesis (SS): The age-structured stock assessment model applied in this stock assessment. % For a more detailed description of this model, see \citet{**Methot and Wetzel (2013).
-
-Target spawning potential ratio ($\mbox{SPR}_{40\%}$): The spawning potential ratio of 40\%, where the 40\% relates to the default harvest rate of $\Fforty$ specified in the Agreement. Even under equilibrium conditions, $\Fforty$ would not necessarily result in a female spawning biomass of $B_{40\%}$ because $\Fforty$ is defined in terms of the spawning potential ratio which depends on the female spawning biomass \emph{per recruit}.
 
 Target strength (TS): The amount of backscatter from an individual acoustic target.
 
@@ -351,7 +351,7 @@ intensity.plot = function(target = 0.4){
 intensity.plot()
 @
 \end{center}
-\caption{Fishing intensity as a function of SPR (top axis) and 1-SPR (bottom axis); given the target SPR of 40\%, the bold line is simply $1/0.6$, as shown in equation (\ref{appendix-glossary-spr}).}
+\caption{Fishing intensity as a function of SPR (top axis) and 1-SPR (bottom axis); given the benchmark SPR of 40\%, the bold line is simply $1/0.6$, as shown in equation (\ref{appendix-glossary-spr}).}
 %  **Need to make terminology the same as the fishing intensity definition.....
 \label{fig:glossary-fishing-intensity-illustration}
 \end{figure}

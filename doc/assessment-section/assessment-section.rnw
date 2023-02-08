@@ -1074,12 +1074,12 @@ are informed by the age compositions and the age-1 index, is
 \subsubsub{Exploitation status}
 
 The median estimated relative fishing intensity on the stock is below
-the SPR$_{40\%}$ target for all years
+$\Fforty$ for all years
 % sort(median.intensity)    % 2017 assessment 1999 was slightly over
 (Figure~\ref{fig:main-fishing-intensity} and
 Tables~\ref{tab:main-median-posterior} and \ref{tab:main-ci-posterior}).
 It was close
-to the target in 2008 and 2010, but harvest in those years did not exceed
+to $\Fforty$ in 2008 and 2010, but harvest in those years did not exceed
 the catch limits that were specified, based on the best available science and
 harvest control rules in place at the time.
 % Also close in 1999 but no TAC then according to landings.vs.tac[34,], so
@@ -1102,10 +1102,10 @@ remained relatively stable before dropping back to 2012--2015 levels in 2022.
 Although there is a considerable amount of imprecision
 around these recent estimates due to uncertainty in recruitment and spawning
 biomass, the 95\% posterior credibility interval of relative fishing intensity
-was below the SPR management target from 2012 through 2016 and again from 2019
+was below $\Fforty$ from 2012 through 2016 and again from 2019
 to 2022 (Figure~\ref{fig:main-fishing-intensity}). The median estimate
-for 2017 and 2018 is below the management target though the 95\% posterior
-credibility interval does include the target level.
+for 2017 and 2018 is below $\Fforty$ though the 95\% posterior
+credibility interval does include $\Fforty$.
 
 % Note that exploitation.med.penult.yr comes out as 0.06, but in Table d
 %  is 0.065, because the true value is 0.0648.... The text rounds to two decimal
@@ -1152,7 +1152,7 @@ Agreement for \fishname, was once again implemented in 2022.
 Total landings last exceeded the coast-wide quota in 2002 when utilization was 112\%.
 % Manual done 2023 (double checked numbers).
 
-As noted above, the median relative fishing intensity was below target in all years.
+As noted above, the median relative fishing intensity was below $\Fforty$ in all years.
 %the 1999 year used to be just above 1 but now estimated to be just below 1
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and
 % Manual 2017 done - comment out above line if only one year, include it if
@@ -1177,14 +1177,14 @@ and relative fishing intensity
 %\Sexpr{median.relative.bio.2007.to.2011.max}.
 Relative spawning biomass increased from the lows in 2007--2010 with above average
 recruitment in 2008, 2010, 2014, 2016, 2017, and 2020. Correspondingly, relative fishing
-intensity has remained well below target, and total catch has been declining since the
+intensity has remained well below $\Fforty$, and total catch has been declining since the
 time series high in 2017.
 % Relative spawning biomass has been
 % above the target since \Sexpr{median.relative.bio.above.target.since}.
 While
 there is large uncertainty in the \Sexpr{end_yr-1} estimates of relative fishing
 intensity and relative spawning biomass, the model estimates a \Sexpr{joint.percent.prob.above.below}\%
-joint probability of being both above the target relative fishing intensity in
+joint probability of being both above the $\Fforty$ relative fishing intensity in
 \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at the
 start of \Sexpr{end_yr}.
 
@@ -1331,7 +1331,7 @@ posterior distribution. The tables use the new format demonstrated by
 \citet{JTC2021} arising from discussions at the 2021 SRG meeting.
 Table~\ref{tab:main-decisions-biomass} shows projected
 relative spawning biomass outcomes, and Table~\ref{tab:main-decisions-spr} shows
-projected fishing intensity outcomes relative to the 100\% target (based on SPR;
+projected fishing intensity outcomes relative to $\Fforty$ (based on SPR;
 see table legend).
 
 Population dynamics and governing
