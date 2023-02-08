@@ -28,7 +28,7 @@ make.fishing.intensity.plot <- function(model,            ## model is an mcmc ru
   axis(1, at = big_ticks)
   axis(1, at = small_ticks, lab = rep("",length(small_ticks)), tcl = -0.3)
   abline(h = 1, col = rgb(0,0,0,0.4))
-  text(start_yr+4, 1.05, "Management Target", cex = 0.8, col = rgb(0,0,0,0.4))
+  text(start_yr+4, 1.05, labels=expression(paste(F[SPR==40],""["%"])), cex = 0.8, col = rgb(0,0,0,0.4))
   par <- oldpar
 }
 

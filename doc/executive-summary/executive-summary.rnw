@@ -464,8 +464,8 @@ of 40\%, meaning that the female spawning biomass per recruit with $\Fforty$ is 
 that without fishing. If female spawning biomass is below $\Bforty$ (40\% of $B_0$),
 the policy reduces the TAC linearly until it equals zero at $\Bten$ (10\% of
 $B_0$). Relative fishing intensity for fishing rate $F$ is
-$(1-\mbox{SPR}(F))/(1-\mbox{SPR}_{40\%})$, where $\mbox{SPR}_{40\%}$ is the
-target SPR of 40\%; it is reported here interchangeably as a proportion or a percentage.
+$(1-\mbox{SPR}(F))/(1-\mbox{SPR}_{40\%})$, where $\mbox{SPR}_{40\%}$ is specified in the
+Agreement; it is reported here interchangeably as a proportion or a percentage.
 
 \subsection*{Exploitation status} \label{sec:es-exploitation-status}
 \phantomsection  \addcontentsline{toc}{subsection}{Exploitation status}
@@ -488,7 +488,7 @@ make.fishing.intensity.table(base_model,
 @
 
 The median estimated relative fishing intensity on the stock is below
-the target of 1.0
+1.0
 \Sexpr{median.intensity.above.one.text}
 (see Table~\ref{tab:es-fishing-intensity} for recent
 years and Figure~\ref{fig:es-fishing-intensity}).
@@ -507,9 +507,9 @@ make.fishing.intensity.plot(base_model,
                             upper.lim = 1.5)
 @
 \end{center}
-\caption{Trend in median relative fishing intensity (relative to the SPR
-         management target) through \Sexpr{end_yr-1} with 95\% posterior
-         credibility intervals. The management target defined in the Joint U.S.-Canada Agreement for \fishname\ is
+\caption{Trend in median relative fishing intensity (relative to the $\Fforty$
+         management level) through \Sexpr{end_yr-1} with 95\% posterior
+         credibility intervals. The $\Fforty$ management level defined in the Joint U.S.-Canada Agreement for \fishname\ is
          shown as a horizontal line at 1.0.}
 \label{fig:es-fishing-intensity}
 \end{figure}
@@ -530,8 +530,8 @@ The median exploitation fraction has, on average, increased from a recent low of
 before dropping back to 2012--2015 levels in 2022.
 There is a
 considerable amount of uncertainty around estimates of relative fishing intensity,
-with the 95\% posterior credibility interval reaching above the SPR management
-target (of 1.0) in 2017 and 2018 over the past decade (Figure~\ref{fig:es-fishing-intensity}).
+with the 95\% posterior credibility interval reaching above $\Fforty$ management level
+(of 1.0) in 2017 and 2018 over the past decade (Figure~\ref{fig:es-fishing-intensity}).
 Exploitation and fishing intensity rates do not always track well due to a combination of
 changing age distributions and changing selectivities over time.
 % 2016 assessment, leave as an explanation:
@@ -628,7 +628,7 @@ make.phase.plot(base_model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-The median relative fishing intensity was below the target in all years
+The median relative fishing intensity was below $\Fforty$ in all years
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]}
 % and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 % Only one year for 2017 assessment, so:
@@ -641,9 +641,9 @@ all years except 2007--2010
 % Andy summarising those years manually, based on:
 % median.relative.bio.below.target
 the median relative fishing
-intensity was below the target
+intensity was below the $\Fforty$ management level
 (Figure~\ref{fig:es-phase}).
-The targets, $\Fforty$ and $\Bforty$,
+The benchmark quantities, $\Fforty$ and $\Bforty$,
 result in different median population sizes (see Table~\ref{tab:es-reference-points}),
 highlighting that there are subtle differences in these conceptual reference points.
 %
@@ -662,7 +662,7 @@ since \Sexpr{median.relative.bio.above.target.since}.
 While there is large uncertainty in the estimates of relative
 fishing intensity and relative spawning biomass, the model estimates a
 \Sexpr{joint.percent.prob.above.below}\%
-joint probability of being both above the target relative fishing intensity
+joint probability of being both above the $\Fforty$ relative fishing intensity
 in \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end_yr}.
 
@@ -696,7 +696,7 @@ is below $\Bforty$ is
 P$(B_{\Sexpr{assess_yr}} < \Bforty) = \Sexpr{probs.curr.below.bforty}$\%,
 and of being below $\Btwentyfive$ is
 P$(B_{\Sexpr{assess_yr}} < \Btwentyfive) = \Sexpr{probs.curr.below.btwentyfive}$\%.
-The probability that the relative fishing intensity was above its target of 1.0
+The probability that the relative fishing intensity was above the $\Fforty$ level of 1.0
 at the end of \Sexpr{end_yr-1} is~\Sexpr{probs.curr.rel.fish.intens.above.one}\%.
 
 \enlargethispage{\baselineskip}
