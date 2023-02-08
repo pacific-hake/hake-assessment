@@ -52,20 +52,20 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
          pch = 22,
          bg = d$color,
          col = "black",
-         cex = 1.1)
+         cex = 2)
   ## Add points for TAC
   points(d$`Default HCR TAC` / 1000,
          d$TAC / 1000,
          pch = 16,
          col = "black",
-         cex = 1.1)
+         cex = 2)
 
   text(x = bottom$`Default HCR TAC` / 1000,
        y = bottom$`Realized catch` / 1000,
        label = substring(bottom$Year, 3),
        pch = 0,
        col = bottom$color,
-       cex = 0.7,
+       cex = 0.9,
        srt = 0,
        adj = c(0.5, 2.0))
 
@@ -74,7 +74,7 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
        label = substring(top$Year, 3),
        pch = 0,
        col = top$color,
-       cex = 0.7,
+       cex = 0.9,
        srt = 0,
        adj = c(1.5, 0.5))
 
