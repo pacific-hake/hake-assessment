@@ -53,12 +53,12 @@ opts_chunk$set(dev = 'cairo_ps',
                fig.path = here::here("beamer",
                                      "SRG",
                                      "Requests",
-                                     "requests-day1"
+                                     "requests-day1",
                                      "knitr-cache", "/"),
                cache.path = here::here("beamer",
                                        "SRG",
                                        "Requests",
-                                       "requests-day1"
+                                       "requests-day1",
                                        "knitr-cache", "/"),
                cache = TRUE)
 
@@ -92,25 +92,65 @@ if(!dir.exists(fig_dir)){
 \titlepage
 }
 
-\section[Request 1 - name]{Title}
-\begin{frame}
-\frametitle{Request 1}
-Request 1 -- description.
-\end{frame}
+% \section[Request 1 - name]{Title}
+% \begin{frame}
+% \frametitle{Request 1}
+% Request 1 -- description.
+% \end{frame}
 
-\section[Request X - name]{Title}
+\section[Request 1]{Request 1 -- age-1 index}
 \subsection{}
 \begin{frame}
-\frametitle{Slide Title}
-Request X -- detailed description.
+\frametitle{Request 1 -- age-1 index}
+``Check whether 2001 age-1 index is included in the data for the 2023 assessment. Do a run including this (zero) value.''
 \bi
-    \item Some output
-    \item Some output
-    \bi
-      \item Some output
-      \item Some output
-    \ei
-   \ei
+    \item Age-1 index is not included in the 2023 base model.
+    \item Did a run including this value (set to 100 fish).
+    \item Did a bonus run removing the 1995 and 1998 (and 2001) age-1 index values.
+\ei
 \end{frame}
+
+
+
+\section[Request 2]{Request 2 -- residuals of age-1 index}
+\subsection{}
+\begin{frame}
+\frametitle{Request 2 -- residuals of age-1 index}
+``Plot residuals of age-1 index (compared to estimated recruitment) against the predicted
+age-1 index (or the magnitude of the (actual) recruitments). Could be based on absolute
+values or in log scale; preferably both.''
+\bi
+    \item Have created both plots.
+\ei
+\end{frame}
+
+\section[Request 3]{Request 3 -- max age of constant selecitvity}
+\subsection{}
+\begin{frame}
+\frametitle{Request 3 -- selectivity}
+``The model currently estimates selectivity at age 6 and assumes this value is constant for
+all ages at 6 and above. Repeat the assessment with this threshold greater than age 6
+(e.g., at age 7 and at age 8, or runs that may already be complete).''
+\bi
+    \item **
+\ei
+\end{frame}
+
+
+
+\section[Request 4]{Request 4 -- FI=100\% calculations}
+\subsection{}
+\begin{frame}
+\frametitle{Request 4 -- FI=100\% calculations}
+``Check row m of the decision table (FI=100\%) for correctness and update this row with a
+catch that results in a FI closer to 100\% (within reason).''
+\bi
+    \item Checked our code and re-ran allowing more iterations to hone in on the 100\% value.
+    \item **
+\ei
+\end{frame}
+
+
+
 
 \end{document}
