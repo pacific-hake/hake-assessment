@@ -43,8 +43,8 @@
 library(knitr)
 opts_chunk$set(dev = 'cairo_ps',
                fig.dpi = 300,
-               fig.width = 7.5,
-               fig.height = 4,
+               fig.width = 4,
+               fig.height = 2.5,
                echo = FALSE,
                results = FALSE,
                message = FALSE,
@@ -123,6 +123,56 @@ values or in log scale; preferably both.''
     \item Have created both plots.
 \ei
 \end{frame}
+
+<<residuals.calcs>>=
+joined <- dplyr::left_join(
+  base_model$dat$CPUE %>%
+    dplyr::filter(index == 3) %>%
+    dplyr::select(year, obs),
+  base_model$extra.mcmc$index.med %>%
+    dplyr::filter(Fleet == 3) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(Yr, value),
+  by = c(year = "Yr")
+) %>%
+  dplyr::mutate(
+    residual = value - obs,
+    log_predicted = log(value),
+    log_residual = log(value) - log(obs)
+  )
+@
+
+\begin{frame}
+\frametitle{Request 2 -- residuals of age-1 index}
+\centering
+<<residuals.fig.1>>=
+gg <- ggplot2::ggplot(
+  data = joined,
+  ggplot2::aes(value, residual)
+) +
+  ggplot2::geom_point() +
+  ggplot2::xlab("Predicted age-1 index") +
+  ggplot2::ylab("Residual = predicted - observed")
+gg
+@
+\end{frame}
+
+\begin{frame}
+\frametitle{Request 2 -- residuals of age-1 index}
+\centering
+<<residuals.fig.log>>=
+gg <- ggplot2::ggplot(
+  data = joined,
+  ggplot2::aes(log_predicted, log_residual)
+) +
+  ggplot2::geom_point() +
+  ggplot2::xlab("Log of predicted age-1 index") +
+  ggplot2::ylab("Log of predicted - log of observed")
+gg
+@
+\end{frame}
+
+
 
 \section[Request 3]{Request 3 -- max age of constant selecitvity}
 \subsection{}
