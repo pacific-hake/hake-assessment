@@ -75,7 +75,7 @@ compreport_file_name <- "CompReport.sso"
 catch_levels_spr_tol <- 0.001
 # The tolerance in tonnes. The iterations will stop if the difference between the
 #  projected biomass between the first and second years is less than this
-catch_levels_catch_tol <- 50
+catch_levels_catch_tol <- 100
 # The maximum number of iterations to do. If this is reached, then no catch value could
 #  be found within the tolerances above
 catch_levels_max_iter <- 20
