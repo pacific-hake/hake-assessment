@@ -920,7 +920,9 @@ is large, with a 95\%
 posterior credibility interval from \Sexpr{curr.depl.lower}\% to
 \Sexpr{curr.depl.upper}\% (Tables~\ref{tab:main-median-posterior} and
 \ref{tab:main-ci-posterior}), due to remaining unknowns about the size
-of the 2020 cohort (e.g., not yet sampled by the acoustic survey).
+of the 2020 cohort because the 
+acoustic survey only provided one year of age-1 information,
+which is more uncertain than the 2+ estimate.
 
 The median estimate of
 the \Sexpr{end_yr} female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
@@ -1654,11 +1656,13 @@ stock-recruit dynamics (Figure~\ref{fig:main-mcmc-sr-variability}).
 % section below on sigma_r
 The value of $\sigma_r$ was changed from a value of \Sexpr{sigma_r} (base) to
 alternative high (\Sexpr{sigma_r_sens[2]}) and low (\Sexpr{sigma_r_sens[1]})
-states. Both sensitivities resulted in standard deviations of the estimates of
-recruitment deviations from the period with the most informative data that were
+states. Both sensitivities were similar to the base model in that the calculated
+standard deviation of recruitment deviations (from the main period) was
 higher than the input $\sigma_r$, i.e., \Sexpr{sigma_r_lo_main} and
 \Sexpr{sigma_r_hi_main} when $\sigma_r$ was \Sexpr{sigma_r_sens[1]} and
-\Sexpr{sigma_r_sens[2]}, respectively. However, the high $\sigma_r$ model had a
+\Sexpr{sigma_r_sens[2]}, respectively. Where, in theory the cacluated standard
+deviation should match the input value used for $\sigma_r$.
+However, the high $\sigma_r$ model had a
 larger difference between the female spawning biomass at unfished equilibrium
 and the female spawning biomass at the initial year of the model
 than the low $\sigma_r$ model
@@ -1852,7 +1856,8 @@ any single model in recent years.
 Prior to 2004, survey catchability was fixed at 1.0 and this assumption was
 heavily investigated between 2004 and 2007, leading to variability in model results
 because of the use of several different, but fixed, values of survey
-catchability. Since 2008, catchability has been freely estimated by the model.
+catchability. Since 2008, catchability has been freely estimated by the model
+($q$ = \Sexpr{base_model$extra.mcmc$Q_vector %>% median() %>% f(2)}).
 The fixing of survey catchability had the effect
 of driving the estimate of initial biomass upward, which in turn scaled the
 entire biomass trajectory up, leading to higher estimates of relative spawning
