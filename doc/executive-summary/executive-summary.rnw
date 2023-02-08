@@ -865,11 +865,12 @@ plot_depl_fore_comparison(base_model,
                           forecast_yrs = forecast_yrs)
 @
 \end{center}
-\caption{Time series of estimated relative spawning biomass to \Sexpr{end_yr}
-         from the base model, and forecast trajectories to
-         \Sexpr{forecast_yrs[length(forecast_yrs)]} for several management actions
-         defined in Table~\ref{tab:es-decisions-biomass}, with 95\%
-         posterior credibility intervals.}
+\caption{Median and 95\% posterior credibility intervals of estimated
+         relative spawning biomass to the start of \Sexpr{end_yr} from the base model
+         (white rectangle)
+         and projections to the start of \Sexpr{forecast_yrs[length(forecast_yrs)]}
+         for several management actions, which are
+         defined in Table~\ref{tab:es-decisions-biomass}.}
 \label{fig:es-forecast-depletion-comparison}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
