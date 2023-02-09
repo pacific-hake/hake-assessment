@@ -78,12 +78,10 @@ decision_table <- function(model,
   tab.letters <- tab.letters %>%
     enframe(name = NULL, value = "labels")
 
-  c.levels <- map(model$catch.levels[forecast_inds], ~{
-    tmp <- .x[[1]]
-    tmp[tmp < 1] <- 0
-    head(tmp, -1)
-  }) %>%
-    unlist %>%
+  c.levels <- map(model$forecasts[[3]], ~{
+    .x$fore_catch$catch
+  }) |>
+    unlist() |>
     enframe(name = NULL, value = "Catch (t)")
 
   # Merge the list elements into a data frame
