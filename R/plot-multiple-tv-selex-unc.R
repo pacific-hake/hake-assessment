@@ -22,7 +22,9 @@ plot_multiple_tv_selex_unc <- function(model,
                                        yr_lim = c(1990, last_data_yr),
                                        ages = 1:8,
                                        n_col = 1,
-                                       rev = TRUE,
+                                       rev = FALSE,
+                                       point_size = 2,
+                                       point_fatten = 1,
                                        axis_title_font_size = 14,
                                        axis_tick_font_size = 12,
                                        label_loc = c(1.1, 0.8),
@@ -51,7 +53,9 @@ plot_multiple_tv_selex_unc <- function(model,
       select(Yr, all_of(as.character(ages)))
   }
 
-  yr_vec <- rev(yr_vec)
+  if(rev){
+    yr_vec <- rev(yr_vec)
+  }
   lower <- lower |>
     mutate(Yr = factor(Yr, levels = yr_vec)) |>
     mutate(quant = "lower")
@@ -76,9 +80,25 @@ plot_multiple_tv_selex_unc <- function(model,
                  lower = NA_real_,
                  upper = NA_real_)
 
+  brk <- length(yr_vec) %/% n_col
+  if(length(yr_vec) %% n_col != 0){
+    brk <- brk + (n_col - length(yr_vec) %% n_col)
+  }
+
+  yr_lst <- map(0:(n_col - 1), ~{
+    yr_vec[seq((.x * brk) + 1, ((.x + 1) * brk))]
+  })
+
+  yr_vec <- map(seq_along(yr_lst[[1]]), function(yr_ind){
+      map_dbl(yr_lst, function(lst_elem){
+        lst_elem[yr_ind]
+      })
+  }) |>
+    unlist()
+
   ggplot(d, aes(x = age, y = med, ymin = lower, ymax = upper, group = Yr)) +
     geom_line() +
-    geom_pointrange() +
+    geom_pointrange(size = point_size, fatten = point_fatten) +
     geom_ribbon(alpha = 0.2, fill = "blue", color = "black",
                 linetype = "dotted") +
     geom_label(data = labs,
@@ -87,7 +107,8 @@ plot_multiple_tv_selex_unc <- function(model,
                y = label_loc[2],
                size = label_font_size) +
     scale_x_discrete(expand = c(0, 0.5)) +
-    facet_wrap(~Yr, ncol = n_col) +
+    facet_wrap(~factor(Yr,  levels = yr_vec),
+               ncol = n_col) +
     theme(strip.background = element_blank(),
           strip.text.x = element_blank(),
           axis.text.y = element_blank(),
