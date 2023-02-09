@@ -496,7 +496,17 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
 \begin{figure}[H]
 \begin{center}
 <<main-tv-selex, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows individual selectivity plots for each year in a 3 D array">>=
-## Extract TV selectivity fits by running the calculation function.
+tv_selex_start_yr <- 1990
+tv_selex_end_yr <- last_data_yr
+tv_selex_ages <- 1:8
+#tv_selex_med <- base_model$extra.mcmc$sel_fishery_median
+#tv_selex_lower <- base_model$extra.mcmc$sel_fishery_lower
+#tv_selex_upper <- base_model$extra.mcmc$sel_fishery_upper
+plot_selex_mountains(tv_selex_med,
+#                      yrs = c(tv_selex_start_yr,
+#                              tv_selex_end_yr),
+#                      ages = tv_selex_ages)
+
 tv.selex.start_yr <- 1990
 tv.selex.ages <- 1:8
 tv.selex <- calc.tv.selex(base_model,
@@ -518,19 +528,7 @@ make.tv.selex.plot(tv.selex)
 \begin{figure}[H]
 \begin{center}
 <<main-tv-selex-uncertainty, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows selectivity by year plots with medians and 0.95 credible intervals">>=
-## Extract TV selectivity fits by running the calculation function, once for each year span,
-##  then call the plotting function with them as a list to make a multipanel plot.
-tv.selex.left <- calc.tv.selex(base_model,
-                               start_yr = tv.selex.start_yr,
-                               end_yr = 2004,
-                               ages = tv.selex.ages,
-                               probs = c(0.025, 0.975))
-tv.selex.right <- calc.tv.selex(base_model,
-                                start_yr = 2005,
-                                end_yr = last_data_yr,
-                                ages = tv.selex.ages,
-                                probs = c(0.025, 0.975))
-plot_multiple_tv_selex_unc(list(tv.selex.left, tv.selex.right))
+plot_multiple_tv_selex_unc(base_model, n_col = 2)
 @
 \end{center}
 \caption{Fishery selectivity sampled from posterior probability distribution by year for the base model.
