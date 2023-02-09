@@ -502,7 +502,7 @@ tv_selex_ages <- 1:8
 #tv_selex_med <- base_model$extra.mcmc$sel_fishery_median
 #tv_selex_lower <- base_model$extra.mcmc$sel_fishery_lower
 #tv_selex_upper <- base_model$extra.mcmc$sel_fishery_upper
-plot_selex_mountains(tv_selex_med,
+# plot_selex_mountains(tv_selex_med,
 #                      yrs = c(tv_selex_start_yr,
 #                              tv_selex_end_yr),
 #                      ages = tv_selex_ages)

@@ -1,0 +1,172 @@
+\documentclass[aspectratio=169]{beamer}
+\mode<presentation>
+\usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
+\usepackage[outdir=./figures/]{epstopdf}
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}          %% Used in risk tables
+\usepackage{multirow}          %% Used in decision tables
+\usepackage[T1]{fontenc}  %to use < or > in tables
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\setbeamersize{text margin left=0.1in}
+\setbeamersize{text margin right=0.1in}
+\setbeamertemplate{title page}
+{
+% \includegraphics[height=0.5in]{../../../images/NOAA.eps}
+\hfill
+% \includegraphics[height=0.5in]{../../../images/DFO.eps}
+\vskip0pt plus 1filll
+\begin{center}
+{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
+\vskip22pt
+\insertauthor
+\vskip22pt
+\insertdate
+\end{center}
+\vskip50pt
+\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+\vskip0pt plus 1filll
+}
+\definecolor{pageCol}{rgb}{0.5,0.5,1.0}
+\setbeamertemplate{footline}
+{
+\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+\insertframenumber/\inserttotalframenumber
+\end{beamercolorbox}%
+}
+\setbeamercolor{footline}{fg=pageCol}
+\newcounter{saveenumi}
+\input{../../../hake-beamer.tex}
+<<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+library(knitr)
+opts_chunk$set(dev = 'cairo_ps',
+               fig.dpi = 300,
+               fig.width = 4,
+               fig.height = 2.5,
+               echo = FALSE,
+               results = FALSE,
+               message = FALSE,
+               warning = FALSE,
+               results = 'hide',
+               fig.path = here::here("beamer",
+                                     "SRG",
+                                     "Requests",
+                                     "requests-day1",
+                                     "knitr-cache", "/"),
+               cache.path = here::here("beamer",
+                                       "SRG",
+                                       "Requests",
+                                       "requests-day1",
+                                       "knitr-cache", "/"),
+               cache = TRUE)
+
+source(here::here("R/all.R"))
+source(file.path(rootd_doc, "load-models.R"))
+source(file.path(rootd_r, "custom-knitr-variables.R"))
+
+requests_dir <- here::here("beamer", "SRG", "Requests")
+req_dirs <- basename(list.dirs(requests_dir))
+req_day <- "requests-day1"
+if(!req_day %in% req_dirs){
+  stop("The directory `", file.path(requests_dir, req_day), "` does not ",
+       "exist but you have chosen `", requests_day,"` to compile. Check ",
+       "that you haven't forgotten to set up the folder or change the name",
+       call. = FALSE)
+}
+fig_dir <- file.path(requests_dir, req_day, "figures")
+if(!dir.exists(fig_dir)){
+  dir.create(fig_dir)
+}
+@
+
+\title[Hake Management]{SRG Assessment Requests}
+\author[JTC]{JTC}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
+\subtitle{\tiny \disclaimer}
+
+\begin{document}
+
+\frame[plain]{
+\titlepage
+}
+
+% \section[Request 1 - name]{Title}
+% \begin{frame}
+% \frametitle{Request 1}
+% Request 1 -- description.
+% \end{frame}
+
+\section[Request 4]{Request 4 -- FI=100\% calculations}
+\subsection{}
+\begin{frame}
+\frametitle{Request 4 -- FI=100\% calculations}
+``Check row m of the decision table (FI=100\%) for correctness and update this row with a
+catch that results in a FI closer to 100\% (within reason).''
+\bi
+    \item Checked our code and re-ran allowing more iterations to hone in on the
+      100\% value. However, values came out the same.
+    \item Have fixed a tolerance limit.
+\ei
+\end{frame}
+
+\begin{frame}
+\frametitle{Updated table}
+<<decisions-intensity-table, results='asis', echo=FALSE>>=
+# Didn't quite work. Need to use the update base model when done.
+decision_table(base_model,
+                xcaption = NULL,
+                type = "spr",
+                rows_to_show = c("l", "m", "n", "o"),
+                font.size = 8,
+                space.size = 10)
+@
+\end{frame}
+
+\section[Request 5]{Request 5 -- selectivity curves for sensitivity runs}
+\begin{frame}
+\frametitle{Request 5 -- selectivity curves}
+``Present selectivity curves for the max age sensitivity runs.''
+\bi
+    \item Threshold was changed to ages 5, 7, and 8.
+\ei
+\end{frame}
+
+\begin{frame}
+\frametitle{Request 5 -- \Sexpr{sens_models_desc[[4]][1]}}
+\centering
+<<select-age5, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+plot_multiple_tv_selex_unc(sens_models[[4]][[2]],
+                           n_col = 2)
+@
+\end{frame}
+
+\begin{frame}
+\frametitle{Request 5 -- base model (max age = 6)}
+\centering
+<<select-base, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+plot_multiple_tv_selex_unc(base_model,
+                           n_col = 2)
+@
+\end{frame}
+
+\begin{frame}
+\frametitle{Request 5 -- \Sexpr{sens_models_desc[[4]][2]}}
+\centering
+<<select-age7, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+plot_multiple_tv_selex_unc(sens_models[[4]][[3]],
+                           n_col = 2)
+@
+\end{frame}
+
+\begin{frame}
+\frametitle{Request 5 -- \Sexpr{sens_models_desc[[4]][3]}}
+\centering
+<<select-age8, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+plot_multiple_tv_selex_unc(sens_models[[4]][[4]],
+                           n_col = 2)
+@
+\end{frame}
+
+\end{document}
