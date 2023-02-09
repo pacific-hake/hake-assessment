@@ -50,10 +50,16 @@ create_rds_file <- function(model_dir = NULL,
 
   # Load forecasts. If none are found or there is a problem, model$forecasts will be NA
   if(dir.exists(file.path(model_dir, forecasts_path))){
-    catch_levels_fullpath <- file.path(model_dir, catch_levels_path)
-    model$catch.levels <- fetch_catch_levels(catch_levels_fullpath, catch_levels)
+    catch_levels_fullpath <- file.path(model_dir,
+                                       catch_levels_path)
+    model$catch.levels <- fetch_catch_levels(catch_levels_fullpath,
+                                             catch_levels)
     model$catch.default.policy <- model$catch.levels[[catch.default.policy.ind]][[1]]
-    model$forecasts <- fetch_forecasts(model_dir, model$catch.levels, ...)
+    model$forecasts <- fetch_forecasts(file.path(model_dir,
+                                                 "forecasts"),
+                                       model$catch.levels,
+                                       forecast_yrs,
+                                       ...)
     model$risks <- calc_risk(forecast_outputs = model$forecasts,
                              catch_levels = model$catch.levels,
                              forecast_yrs)
