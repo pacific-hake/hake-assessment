@@ -9,7 +9,13 @@
 \usepackage{booktabs}          %% Used in risk tables
 \usepackage{multirow}          %% Used in decision tables
 \usepackage[T1]{fontenc}  %to use < or > in tables
-\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+%% For centering with fixed width column or right cell values in a tabular
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+
 \setbeamersize{text margin left=0.1in}
 \setbeamersize{text margin right=0.1in}
 \setbeamertemplate{title page}
@@ -53,22 +59,42 @@ opts_chunk$set(dev = 'cairo_ps',
                fig.path = here::here("beamer",
                                      "SRG",
                                      "Requests",
-                                     "requests-day1",
+                                     "requests-day2",
                                      "knitr-cache", "/"),
                cache.path = here::here("beamer",
                                        "SRG",
                                        "Requests",
-                                       "requests-day1",
+                                       "requests-day2",
                                        "knitr-cache", "/"),
                cache = TRUE)
 
 source(here::here("R/all.R"))
-source(file.path(rootd_doc, "load-models.R"))
-source(file.path(rootd_r, "custom-knitr-variables.R"))
+base_model_dir <- file.path(models_dir, "01-base-models/01-base")
+if(!exists("base_model")){
+  base_model <- readRDS(file.path(base_model_dir,
+                                  paste0(basename(base_model_dir), ".rds")))
+}
+sens_models_dirs <-
+  file.path(models_dir,
+            "03-sensitivity-models",
+            c("13-max-sel-age-5",
+              "14-max-sel-age-7",
+              "15-max-sel-age-8"))
+if(!exists("sens_req1")){
+  sens_req1 <- c(list(base_model),
+                 map(sens_models_dirs, ~(
+    readRDS(file.path(.x, paste0(basename(.x), ".rds")))
+  )))
+}
+sens_req1_names <-
+  c("base model",
+    "Max. age selectivity 5",
+    "Max. age selectivity 7",
+    "Max. age selectivity 8")
 
 requests_dir <- here::here("beamer", "SRG", "Requests")
 req_dirs <- basename(list.dirs(requests_dir))
-req_day <- "requests-day1"
+req_day <- "requests-day2"
 if(!req_day %in% req_dirs){
   stop("The directory `", file.path(requests_dir, req_day), "` does not ",
        "exist but you have chosen `", requests_day,"` to compile. Check ",
@@ -105,9 +131,7 @@ if(!dir.exists(fig_dir)){
 ``Check row m of the decision table (FI=100\%) for correctness and update this row with a
 catch that results in a FI closer to 100\% (within reason).''
 \bi
-    \item Checked our code and re-ran allowing more iterations to hone in on the
-      100\% value. However, values came out the same.
-    \item Have fixed a tolerance limit.
+    \item Checked our code and fixed an issue in loop where the initial value could not go above the default HR value. It is no longer constrained in this way and the forecast catch values in row m are now correct.
 \ei
 \end{frame}
 
@@ -116,11 +140,11 @@ catch that results in a FI closer to 100\% (within reason).''
 <<decisions-intensity-table, results='asis', echo=FALSE>>=
 # Didn't quite work. Need to use the update base model when done.
 decision_table(base_model,
-                xcaption = NULL,
-                type = "spr",
-                rows_to_show = c("l", "m", "n", "o"),
-                font.size = 8,
-                space.size = 10)
+               xcaption = NULL,
+               type = "spr",
+               rows_to_show = c("l", "m", "n", "o"),
+               font.size = 8,
+               space.size = 10)
 @
 \end{frame}
 
@@ -134,10 +158,18 @@ decision_table(base_model,
 \end{frame}
 
 \begin{frame}
-\frametitle{Request 5 -- \Sexpr{sens_models_desc[[4]][1]}}
+\frametitle{Request 5 -- \Sexpr{sens_req1_names[2]}}
 \centering
 <<select-age5, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-plot_multiple_tv_selex_unc(sens_models[[4]][[2]],
+lfs <- 2
+ps <- 0.5
+ll <- c(0.8, 0.6)
+pf <- 0.5
+plot_multiple_tv_selex_unc(sens_req1[[2]],
+                           label_font_size = lfs,
+                           point_size = ps,
+                           point_fatten = pf,
+                           label_loc = ll,
                            n_col = 2)
 @
 \end{frame}
@@ -147,24 +179,36 @@ plot_multiple_tv_selex_unc(sens_models[[4]][[2]],
 \centering
 <<select-base, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
 plot_multiple_tv_selex_unc(base_model,
+                           label_font_size = lfs,
+                           point_size = ps,
+                           point_fatten = pf,
+                           label_loc = ll,
                            n_col = 2)
 @
 \end{frame}
 
 \begin{frame}
-\frametitle{Request 5 -- \Sexpr{sens_models_desc[[4]][2]}}
+\frametitle{Request 5 -- \Sexpr{sens_req1_names[3]}}
 \centering
 <<select-age7, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-plot_multiple_tv_selex_unc(sens_models[[4]][[3]],
+plot_multiple_tv_selex_unc(sens_req1[[3]],
+                           label_font_size = lfs,
+                           point_size = ps,
+                           point_fatten = pf,
+                           label_loc = ll,
                            n_col = 2)
 @
 \end{frame}
 
 \begin{frame}
-\frametitle{Request 5 -- \Sexpr{sens_models_desc[[4]][3]}}
+\frametitle{Request 5 -- \Sexpr{sens_req1_names[4]}}
 \centering
 <<select-age8, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-plot_multiple_tv_selex_unc(sens_models[[4]][[4]],
+plot_multiple_tv_selex_unc(sens_req1[[4]],
+                           label_font_size = lfs,
+                           point_size = ps,
+                           point_fatten = pf,
+                           label_loc = ll,
                            n_col = 2)
 @
 \end{frame}
