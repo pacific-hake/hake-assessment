@@ -128,7 +128,8 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "plot-fore-compare.R", "plot-spr-illustration.R",
              "plot-selex-posteriors.R", "table-param-est-bounds.R",
              "plot-multiple-tv-selex-unc.R", "tables-risk.R",
-             "plot-management-catch-vs-tac.R", "plot-management-catch-vs-tac-1-to-1.R")
+             "plot-management-catch-vs-tac.R", "plot-management-catch-vs-tac-1-to-1.R",
+             "fetch-forecasts.R", "calc-risk.R")
 source_all(src_lst)
 
 theme_set(hake_theme())
