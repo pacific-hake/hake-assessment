@@ -77,9 +77,9 @@ if(!exists("base_model")){
 sens_models_dirs <-
   file.path(models_dir,
             "03-sensitivity-models",
-            c("13-max-sel-age-5",
-              "14-max-sel-age-7",
-              "15-max-sel-age-8"))
+            c(#"13-max-sel-age-5",
+              "14-max-sel-age-7"))
+              #"15-max-sel-age-8"))
 if(!exists("sens_req1")){
   sens_req1 <- c(list(base_model),
                  map(sens_models_dirs, ~(
@@ -88,9 +88,9 @@ if(!exists("sens_req1")){
 }
 sens_req1_names <-
   c("base model",
-    "Max. age selectivity 5",
-    "Max. age selectivity 7",
-    "Max. age selectivity 8")
+#    "Max. age selectivity 5",
+    "Max. age selectivity 7")
+#    "Max. age selectivity 8")
 
 requests_dir <- here::here("beamer", "SRG", "Requests")
 req_dirs <- basename(list.dirs(requests_dir))
@@ -158,26 +158,13 @@ decision_table(base_model,
 \end{frame}
 
 \begin{frame}
-\frametitle{Request 5 -- \Sexpr{sens_req1_names[2]}}
+\frametitle{Request 5 -- base model (max age = 6)}
 \centering
-<<select-age5, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+<<select-base, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
 lfs <- 2
 ps <- 0.5
 ll <- c(0.8, 0.6)
 pf <- 0.5
-plot_multiple_tv_selex_unc(sens_req1[[2]],
-                           label_font_size = lfs,
-                           point_size = ps,
-                           point_fatten = pf,
-                           label_loc = ll,
-                           n_col = 2)
-@
-\end{frame}
-
-\begin{frame}
-\frametitle{Request 5 -- base model (max age = 6)}
-\centering
-<<select-base, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
 plot_multiple_tv_selex_unc(base_model,
                            label_font_size = lfs,
                            point_size = ps,
@@ -188,10 +175,10 @@ plot_multiple_tv_selex_unc(base_model,
 \end{frame}
 
 \begin{frame}
-\frametitle{Request 5 -- \Sexpr{sens_req1_names[3]}}
+\frametitle{Request 5 -- \Sexpr{sens_req1_names[2]}}
 \centering
 <<select-age7, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-plot_multiple_tv_selex_unc(sens_req1[[3]],
+plot_multiple_tv_selex_unc(sens_req1[[2]],
                            label_font_size = lfs,
                            point_size = ps,
                            point_fatten = pf,
@@ -200,17 +187,36 @@ plot_multiple_tv_selex_unc(sens_req1[[3]],
 @
 \end{frame}
 
+
 \begin{frame}
-\frametitle{Request 5 -- \Sexpr{sens_req1_names[4]}}
+\frametitle{Request 5 -- \Sexpr{sens_req1_names[2]}}
 \centering
-<<select-age8, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-plot_multiple_tv_selex_unc(sens_req1[[4]],
-                           label_font_size = lfs,
-                           point_size = ps,
-                           point_fatten = pf,
-                           label_loc = ll,
-                           n_col = 2)
+<<select-age7-biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+plot_biomass(sens_req1,
+             sens_req1_names,
+             leg_ncol = 1,
+             x_labs_mod = 10,
+             wrap_y_label = TRUE,
+             leg_font_size = 8,
+             leg_pos = c(0.55, 0.85),
+             axis_title_font_size = 12)
 @
 \end{frame}
+
+\begin{frame}
+\frametitle{Request 5 -- \Sexpr{sens_req1_names[2]}}
+\centering
+<<select-age7-rel-biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+plot_rel_biomass(sens_req1,
+                 sens_req1_names,
+                 point_shape = 1,
+                 ylim = c(0, 3),
+                 alpha = 0.2,
+                 leg_pos = "none")
+@
+\end{frame}
+
+
+
 
 \end{document}
