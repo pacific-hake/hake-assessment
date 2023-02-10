@@ -2,7 +2,8 @@
 #'
 #' @details
 #' The panels show the medians and the credible interval as
-#' calculated in [load_extra_mcmc()]
+#' calculated in [load_extra_mcmc()]. The column borders only work
+#' right for `n_col` = 2 or 3
 #'
 #' @param model A model list, as created by [create_rds_file()]
 #' @param yr_lim A vector of two values representing the minimum and
@@ -27,7 +28,7 @@ plot_multiple_tv_selex_unc <- function(model,
                                        point_fatten = 1,
                                        axis_title_font_size = 14,
                                        axis_tick_font_size = 12,
-                                       label_loc = c(1.1, 0.8),
+                                       label_loc = c(0.8, 0.8),
                                        label_font_size = 4){
 
   yr_vec <- yr_lim[1]:yr_lim[2]
@@ -88,7 +89,7 @@ plot_multiple_tv_selex_unc <- function(model,
   yr_lst <- map(0:(n_col - 1), ~{
     yr_vec[seq((.x * brk) + 1, ((.x + 1) * brk))]
   })
-
+browser()
   yr_vec <- map(seq_along(yr_lst[[1]]), function(yr_ind){
       map_dbl(yr_lst, function(lst_elem){
         lst_elem[yr_ind]
@@ -96,7 +97,7 @@ plot_multiple_tv_selex_unc <- function(model,
   }) |>
     unlist()
 
-  ggplot(d, aes(x = age, y = med, ymin = lower, ymax = upper, group = Yr)) +
+  g <- ggplot(d, aes(x = age, y = med, ymin = lower, ymax = upper, group = Yr)) +
     geom_line() +
     geom_pointrange(size = point_size, fatten = point_fatten) +
     geom_ribbon(alpha = 0.2, fill = "blue", color = "black",
@@ -110,6 +111,7 @@ plot_multiple_tv_selex_unc <- function(model,
     facet_wrap(~factor(Yr,  levels = yr_vec),
                ncol = n_col) +
     theme(strip.background = element_blank(),
+          panel.spacing=unit(0, "cm"),
           strip.text.x = element_blank(),
           axis.text.y = element_blank(),
           axis.ticks.y = element_blank(),
@@ -120,8 +122,41 @@ plot_multiple_tv_selex_unc <- function(model,
                                       size = axis_title_font_size),
           axis.title.y = element_text(color = "grey20",
                                       size = axis_title_font_size),
-          axis.ticks.length = unit(0.15, "cm")) +
+          axis.ticks.length = unit(0.15, "cm"),
+          panel.border = element_blank()) +
     ylab("Selectivity by year") +
     xlab("Age")
+
+  gr <- ggplotGrob(g)
+
+  # Add basic black rectangle round the columns
+  g_lst <- map(seq_len(n_col), ~{
+    rectGrob(gp = gpar(col = "black",
+                       lwd = 3,
+                       fill = NA))
+  })
+
+  yr_col_lengths <- yr_lst |> map_dbl(~{length(!.x[!is.na(.x)])})
+  t_extent <- 7
+  l_extent <- map_dbl(seq_len(n_col), ~{
+    5 + (.x - 1) * 4
+  })
+
+  bot <- gr$layout |> filter(name == "ylab-l") |> pull(b)
+  b_extent <- bot
+  if(n_col > 1){
+    tmp <- map_dbl(seq_len(n_col - 1), ~{
+      bot - ifelse(yr_col_lengths[.x + 1] < yr_col_lengths[1], 1, 0)
+    })
+    b_extent <- c(b_extent, tmp)
+  }
+  gt <- gtable::gtable_add_grob(gr,
+                                grobs = g_lst,
+                                t = 7,
+                                b = b_extent,
+                                l = l_extent)
+  grid.newpage()
+  grid.draw(gt)
+
 }
 
