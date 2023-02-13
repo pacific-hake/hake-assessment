@@ -232,7 +232,8 @@ opts_chunk$set(alt.text = "")
 options(xtable.comment = FALSE)
 
 source(here::here("R/all.R"))
-
+if(!exists("base_model"))
+  base_model <- readRDS("/srv/hake/models/2023/01-version/01-base-models/01-base/01-base.rds")
 #source(file.path(rootd_doc, "load-models.R"))
 #source(file.path(rootd_r, "custom-knitr-variables.R"))
 @
