@@ -498,23 +498,32 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
 <<main-tv-selex, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows individual selectivity plots for each year in a 3 D array">>=
 tv_selex_start_yr <- 1990
 tv_selex_end_yr <- last_data_yr
-tv_selex_ages <- 1:8
-#tv_selex_med <- base_model$extra.mcmc$sel_fishery_median
-#tv_selex_lower <- base_model$extra.mcmc$sel_fishery_lower
-#tv_selex_upper <- base_model$extra.mcmc$sel_fishery_upper
+tv_selex_ages <- as.character(1:8)
+tv_selex_med_raw <- base_model$extra.mcmc$sel_fishery_median
+tv_selex_med_filt <- tv_selex_med_raw |>
+  filter(Yr %in% tv_selex_start_yr:tv_selex_end_yr)
+tv_selex_med_yrs <- tv_selex_med_filt |> pull(Yr)
+tv_selex_med_mat <- tv_selex_med_filt |>
+  select(!!!tv_selex_ages) |>
+  as.matrix()
+tv_selex_lower <- base_model$extra.mcmc$sel_fishery_lower
+tv_selex_upper <- base_model$extra.mcmc$sel_fishery_upper
 # plot_selex_mountains(tv_selex_med,
 #                      yrs = c(tv_selex_start_yr,
 #                              tv_selex_end_yr),
 #                      ages = tv_selex_ages)
 
-tv.selex.start_yr <- 1990
-tv.selex.ages <- 1:8
-tv.selex <- calc.tv.selex(base_model,
-                          start_yr = tv.selex.start_yr,
-                          end_yr = last_data_yr,
-                          ages = tv.selex.ages,
-                          probs = c(0.025, 0.975))
-make.tv.selex.plot(tv.selex)
+oldpar <- par()
+# padding left and right outer margins using oma to make plot less stretched out
+par(mar = c(4, 4, 1, 1),
+    oma = c(0, 8, 0, 8))
+mountains(tv_selex_med_mat,
+          yvec = tv_selex_med_yrs,
+          rev = TRUE,
+          cex.axis = 0.8)
+mtext(side = 1, line = 2, "Age")
+mtext(side = 2, line = 3, "Selectivity by year")
+par <- oldpar
 @
 \end{center}
 \caption{Mountains plot of median fishery selectivity in each year for the base model. Range of selectivity is
@@ -534,8 +543,8 @@ plot_multiple_tv_selex_unc(base_model, n_col = 2)
 \caption{Fishery selectivity sampled from posterior probability distribution by year for the base model.
   Black dots and bars indicate the median and 95\% credibility interval, respectively. The shaded polygon
   also shows the 95\% credibility interval. Range is from 0 to 1 within each year. Selectivity
-  for \Sexpr{tv.selex.start_yr} is shared for all years from \Sexpr{start_yr} to
-  \Sexpr{tv.selex.start_yr}.}
+  for \Sexpr{tv_selex_start_yr} is shared for all years from \Sexpr{start_yr} to
+  \Sexpr{tv_selex_start_yr}.}
 \label{fig:main-tv-selex-uncertainty}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
