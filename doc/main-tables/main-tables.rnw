@@ -429,7 +429,7 @@ make.median.posterior.table(
                      of ages 0 and above. Age-2+ biomass includes females and males ages 2 and
                      above. Exploitation fraction is total catch divided by total age-2+ biomass.
                      Relative fishing intensity is (1-SPR)/(1-SPR\\subscr{40\\%}) such that
-                     values below 100\\% are below $\Fforty$. A dash (--)
+                     values below 100\\% are below $\\Fforty$. A dash (--)
                      indicates a quantity requiring ", end_yr, " catch which has not taken place yet."),
   xlabel = "tab:main-median-posterior",
   font.size = 9,
