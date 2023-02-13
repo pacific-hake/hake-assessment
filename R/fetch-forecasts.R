@@ -95,10 +95,11 @@ fetch_forecasts <- function(forecasts_path = NULL,
         transmute(year = Year, catch = `Catch or F`) |>
         mutate(catch = ifelse(catch < 1, 0, catch))
 
+
       list(biomass = t(apply(sb_proj_cols, 2, quantile, probs = forecast_probs, na.rm = TRUE)),
            spr = t(apply(spr_proj_cols, 2, quantile, probs = forecast_probs, na.rm = TRUE)),
            mcmccalcs = calc.mcmc(mcmc_out),
-           outputs = mcmc_out,
+           #outputs = mcmc_out,
            fore_catch = fore_catch)
     })
     names(lvls_lst) <- catch_levels_names
