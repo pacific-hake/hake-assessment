@@ -48,12 +48,12 @@ make.overview.map.plot(path = rootd_map_data)
 \pdftooltip{\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]{main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue}}{This figure shows the assumed varying locations of age-1 \fishname}
    % Get pdf from Julia then convert with 'magick <name>.pdf <name>.png' and push to GitHub.
 \end{center}
-\caption{Spatial distribution of acoustic backscatter attributable to age-1 \fishname\
+\caption{Spatial distribution of acoustic backscatter attributable to aggregations of age-1 \fishname\
   from the \surveyname\ 2003--\Sexpr{survey_end_yr}. Age-1 \fishname\ are not fully sampled
   during the acoustic survey and were not explicitly considered during establishment of the
-  survey sampling design. Area of the circle is roughly
-  proportional to observed backscatter. Figure produced by Julia Clemons
-  (NOAA).}
+  survey sampling design. Additional backscatter from age-1 fish intermixed with older fish is not shown.
+  Area of the circle is roughly proportional to observed backscatter. Figure produced
+  by Julia Clemons (NOAA).}
 \label{fig:main-backscatter-map-age1}
 \end{figure}
 \end{landscape}
