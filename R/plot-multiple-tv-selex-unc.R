@@ -35,7 +35,7 @@ plot_multiple_tv_selex_unc <- function(model,
                                        border_color = "black",
                                        border_linetype = "solid",
                                        show_panel_borders = FALSE,
-                                       label_loc = c(0.8, 0.8),
+                                       label_loc = c(1, 0.75),
                                        label_font_size = 4){
 
   yr_vec <- yr_lim[1]:yr_lim[2]
