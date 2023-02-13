@@ -677,6 +677,8 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
                                        end_yr = 2023, ## Year to end the plot
                                        plot_R0 = TRUE,## Show R0 (only tested on
                                                       ## 2023 fig)
+                                       plot_rescale_yr = TRUE,  ## Line at 1.0
+                                       plot_rescale_yr_col = "darkgreen",
                                        y.max = NULL,  ## maximum value for the y-axis
                                        samples = 1000,## how many lines to show
                                        rescale = FALSE, ## whether to rescale by
@@ -814,9 +816,17 @@ make.mcmc.recruitment.plot <- function(model,         ## model is a model with a
       abline(h = R0_0.975, lty = 3)
     }
 
+    # Plot horizontal line at 1:
+    if(plot_rescale_yr){
+      abline(h = 1,
+             col = plot_rescale_yr_col,
+             lty = 2)
+    }
+
     lower <- apply(dat_sub, 2, quantile, probs = 0.025)
     medians <- apply(dat_sub, 2, median)
     upper <- apply(dat_sub, 2, quantile, probs = 0.975)
+
 
     yrs <- start_yr:end_yr
     points(yrs, medians, pch = 20)
