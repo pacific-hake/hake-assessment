@@ -49,7 +49,8 @@ make.overview.map.plot(path = rootd_map_data)
    % Get pdf from Julia then convert with 'magick <name>.pdf <name>.png' and push to GitHub.
 \end{center}
 \caption{Spatial distribution of acoustic backscatter attributable to aggregations of age-1 \fishname\
-  from the \surveyname\ 2003--\Sexpr{survey_end_yr}. Age-1 \fishname\ are not fully sampled
+  from the \surveyname\ 2003--\Sexpr{survey_end_yr} (spatial details are not available for survey years 1995, 1998,
+  and 2001). Age-1 \fishname\ are not fully sampled
   during the acoustic survey and were not explicitly considered during establishment of the
   survey sampling design. Additional backscatter from age-1 fish intermixed with older fish is not shown.
   Area of the circle is roughly proportional to observed backscatter. Figure produced
