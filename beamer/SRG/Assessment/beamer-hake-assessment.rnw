@@ -382,16 +382,10 @@ cowplot::plot_grid(plotlist = plist,
        <<main-prior-posterior, fig.height=6, fig.width=8,out.width='0.95\\columnwidth'>>=
          make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
                                                        key_posteriors,
-                                                       hist_breaks = c(50, 50, 50, 50, 100, 100),
                                                        ncol = 2,
                                                        nrow = 3,
-                                                       show_legend = TRUE,
-                                                       legend_panel = 3,
-                                                       titles = key_posteriors_titles,
-                                                       show_mle = FALSE,
-                                                       show_prior = TRUE,
-                                                       show_init = TRUE,
-                                                       show_median = TRUE)
+                                                       labeller = label_parsed_space,
+                                                       titles = key_posteriors_titles)
        @
          \ec
        \end{column}

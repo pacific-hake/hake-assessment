@@ -18,7 +18,7 @@ options(max.print = 999999)
 # devtools::install_github("pbs-assess/gfutilities")
 message("Loading R packages...")
 pacman::p_load(adnuts, cli, coda, crayon, coda, cowplot, data.tree, date, dplyr,
-               future, furrr, here, gfutilities, ggplot2, ggpubr, ggrepel,
+               future, furrr, here, gfutilities, ggh4x, ggplot2, ggpubr, ggrepel,
                grDevices, grid, gridExtra, gtools, here, kableExtra, knitr,
                lubridate, maps, maptools, matrixcalc, parallel, purrr, r4ss,
                RColorBrewer,

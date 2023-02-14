@@ -466,30 +466,45 @@ plot_pearson_bubbles(base_model, type = 2, alpha = 0.7)
 <<main-prior-posterior, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how the posteriors shift from the priors for key parameters">>=
 make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
                                               key_posteriors,
-                                              hist_breaks = rep(50, length(key_posteriors)),
+                                              titles = key_posteriors_titles,
+                                              x_range = "prior",
                                               ncol = 2,
                                               nrow = 3,
-                                              show_legend = TRUE,
-                                              legend_panel = 3,
-                                              titles = key_posteriors_titles,
-                                              show_mle = FALSE,
-                                              show_prior = TRUE,
-                                              show_init = TRUE,
-                                              show_median = TRUE)
+                                              labeller = label_parsed_space
+  )
 @
 \end{center}
 %\vspace{0mm}
 \caption{Prior (black lines) and posterior (gray histograms) distributions for
-  key parameters in the base model. The parameters are: natural mortality ($M$),
-  equilibrium log recruitment ($\log R_0)$, steepness ($h$), the additional
-  process-error standard deviation for the acoustic survey, and the
-  Dirichlet-multinomial parameters for the fishery ($\theta_{\text{fish}}$) and
-  the survey ($\theta_{\text{surv}}$).}
-  % This didn't seem needed for 2022:
-  % There
-  % are 50 bins for each posterior except the two Dirichlet-multinomial parameters
-  % which are grouped into 500 bins.}
+  natural mortality ($M$), equilibrium log recruitment ($\ln R_0)$, steepness
+  ($h$), the additional process-error standard deviation (SD) for the acoustic
+  survey, and the Dirichlet-multinomial parameters for the fishery
+  ($\theta_{\text{fish}}$) and the survey ($\theta_{\text{surv}}$). Red
+  triangles signify the initial value for each parameter.}
 \label{fig:main-prior-posterior}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\begin{center}
+<<main-prior-posterior-truncated, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how the posteriors shift from the priors for key parameters">>=
+make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
+                                              key_posteriors,
+                                              titles = key_posteriors_titles,
+                                              x_range = "posterior",
+                                              ncol = 2,
+                                              nrow = 3,
+                                              labeller = label_parsed_space
+  )
+@
+\end{center}
+%\vspace{0mm}
+\caption{As for Figure \ref{fig:main-prior-posterior} but the x axis of each
+  panel is truncated to the range of the posterior distribution, and thus, there
+  is the potential for the full range of the prior and the initial value to be
+  missing from individual panels.}
+\label{fig:main-prior-posterior-truncated}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 

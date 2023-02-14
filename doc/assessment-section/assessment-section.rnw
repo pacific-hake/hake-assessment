@@ -830,7 +830,9 @@ the 2014 cohort was approximately half of the surviving biomass of the 2010
 cohort.
 
 Posterior distributions for both steepness and natural mortality are
-influenced by priors (Figure~\ref{fig:main-prior-posterior}). The posterior for
+influenced by priors
+(Figures~\ref{fig:main-prior-posterior}--\ref{fig:main-prior-posterior-truncated}).
+The posterior for
 steepness is only slightly updated by the data, as expected given the low
 level of information available to inform steepness as found in previous hake assessments.
 The posterior of natural mortality, on the other hand, is shifted to the right of the prior

@@ -888,7 +888,10 @@ get_posterior_data <- function(model, param_regex){
 #'
 #' @param model The SS model output as loaded by [load_ss_files()]
 #' @param param_regex A vector of regular expressions used to extract data for parameter names.
-#' If there are no matches, or more than one for any regular expression, the program will stop
+#' If there are no matches, or more than one for any regular expression, the program will stop.
+#' @param n_points_prior An integer specifying the number of points you want to
+#'   be generated from the `r<distribution>()` function, e.g.,
+#'   `rnorm(n_points_prior)`.
 #'
 #' @return A list of prior and MLE data, one for each of the regular expressions in `param_regex`
 #' @export
@@ -897,7 +900,7 @@ get_posterior_data <- function(model, param_regex){
 #' get_prior_data(base_model, "e")
 #' get_prior_data(base_model, "asdfg")
 #' get_prior_data(base_model, c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"))
-get_prior_data <- function(model, param_regex){
+get_prior_data <- function(model, param_regex, n_points_prior = 3000000){
 
   stopifnot(class(param_regex) == "character")
 
@@ -963,6 +966,15 @@ get_prior_data <- function(model, param_regex){
       mle <- mle * mlescale
     }
 
+    random_points <- switch(
+      Ptype,
+      "Normal" = rnorm(n_points_prior, Pr, Psd),
+      "Log_Norm" = rlnorm(n_points_prior, Pr, Psd),
+      "Full_Beta" = rbeta_ab(n_points_prior, Pr, Psd, min = Pmin, max = Pmax),
+      "No_prior" = runif(n_points_prior, min = Pmin, Pmax)
+    )
+    random_points[random_points < Pmin | random_points > Pmax] <- NA
+
     priors_list[[i]] <- list(initval = initval,
                              finalval = finalval,
                              parsd = parsd,
@@ -973,13 +985,106 @@ get_prior_data <- function(model, param_regex){
                              Pr = Pr,
                              Pval = Pval,
                              prior = prior,
-                             mle = mle)
+                             mle = mle,
+                             prior_random = random_points)
 
   }
   # if(length(priors_list) == 1){
   #   priors_list <- priors_list[[1]]
   # }
   priors_list
+}
+
+#' The Beta distribution
+#'
+#' Random generation for the Beta distribution with parameters based on the
+#' mean and standard deviation as well as the ranges as implemented in
+#' CASAL. This formulation is also available on [Wikepedia](
+#' https://en.wikipedia.org/wiki/Beta_distribution#Mean_and_variance).
+#' This function is a direct copy of the code available from [Wetzel and Punt](
+#' https://github.com/chantelwetzel-noaa/XSSS/blob/4dce917ee06d52416b58dd9440796ba1f7357943/R/rbeta_ab_fn.R).
+#'
+#' @name beta
+#' @author Chantel R. Wetzel and Ian G. Taylor
+#' @export
+#' @return A vector of doubles, where the length of the vector depends on the
+#' length of `x` value passed to `n`.
+#' `dbeta_ab` returns density estimates for each input value and `rbeta_ab`
+#' provides random deviates from the Beta distribution.
+#'
+#' @param x Vector of quantiles.
+#' @param n The number of random values you want in the returned vector.
+#' @param prior,sd The mean and standard deviation of the prior as input into
+#'   Stock Synthesis.
+#' @param min,max The minimum and maximum bound on the parameter as input into
+#'   Stock Synthesis.
+#' @param force A logical specifying if the returned values should be forced to
+#'   the bounds defined by `[min,max]` or if they should just be soft bounds
+#'   used to characterize the shape of the distribution but not actually
+#'   limiting, i.e., force the likelihood to be zero for values beyond the
+#'   bounds.
+#' @examples
+#' # A histogram of the 2023 prior used for the base model
+#' hist(
+#'   rbeta_ab(prior = 0.777, sd = 0.113, min = 0.2, max = 1.0),
+#'   freq = FALSE,
+#'   breaks = seq(0.2, 1.0, 0.01)
+#' )
+#' dist <- dbeta_ab(
+#'   x = seq(0.2, 1.0, length = 1e6),
+#'   prior = 0.777,
+#'   sd = 0.113,
+#'   min = 0.20,
+#'   max = 1.0
+#' )
+#' lines(
+#'   x = seq(0.2, 1.0, length = 1e6),
+#' # rescale y-values by mean height * width
+#'   y = exp(-dist) / ((1.0 - 0.2) * mean(exp(dist))),
+#'   type = "l",
+#'   col = 2,
+#'   lwd = 3
+#' )
+NULL
+
+#' @rdname beta
+#' @export
+rbeta_ab <- function(n, prior, sd, min, max) {
+  # CASAL's Beta
+  mu    <- (prior - min) / (max - min)
+  tau   <- (prior - min) * (max - prior) / (sd^2) - 1.0
+  alpha <- tau * mu
+  beta <- tau * (1 - mu)
+  b.std <- rbeta(n, alpha, beta)
+  # linear transformation from beta(0,1) to beta(a,b)
+  b.out <- (max - min) * b.std + min
+  return(b.out)
+}
+#' @rdname beta
+#' @export
+dbeta_ab <- function(x, prior, sd, min, max) {
+  Pconst <- 0.0001
+  mu <- (prior - min) / (max - min) # CASAL's v
+  tau <- (prior - min) * (max - prior) / (sd^2) - 1.0
+  Bprior <- tau * mu
+  Aprior <- tau * (1 - mu) # CASAL's m and n
+  if (Bprior <= 1.0 | Aprior <= 1.0) {
+    warning("bad Beta prior")
+  }
+  Prior_Like <- (1.0 - Bprior) * log(Pconst + x - min) +
+    (1.0 - Aprior) * log(Pconst + max - x) -
+    (1.0 - Bprior) * log(Pconst + prior - min) -
+    (1.0 - Aprior) * log(Pconst + max - prior)
+  return(Prior_Like)
+}
+
+#' Updates [ggplot2::label_parsed()] to accommodate spaces 
+label_parsed_space <- function(labels) {
+  labels <- label_value(labels, multi_line = TRUE)
+  labels <- lapply(labels, function(y) gsub(" ", "~", y))
+  lapply(unname(labels), lapply, function(values) {
+    c(parse(text = as.character(values)))
+  })
 }
 
 #' Split the posteriors data frame in a list of N data frames based on `from_to`

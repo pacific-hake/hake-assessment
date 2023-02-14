@@ -1,214 +1,121 @@
-#' Make a Posterior plot with optional prior, MLE, and initial value
+#' Make a grid of posterior plots with priors and initial values
 #'
-#' @param prior_mle Output from [get_prior_data()]
-#' @param posterior Output from [get_posterior_data()]
-#' @param show_prior Logical. Show the prior on the plot
-#' @param show_init Logical. Show the initial value on the plot
-#' @param show_mle Logical. Show the MLE on the plot
-#' @param show_legend Logical. Show the legend on the plot
-#' @param title_text Title over the plot
-#' @param hist_breaks The length of the breaks vector for making the histogram
-#' (Number of bins)
+#' @param model The model output from Stock Synthesis as loaded by
+#'   [load_ss_files()].
+#' @param posterior_regex A vector of regular expressions that can be matched
+#'   to parameter names. Use [get_active_parameter_names()] to see all active
+#'   parameter names. Order the vector in the same order as you want the
+#'   figures to be plotted but make sure you also have `titles` ordered
+#'   appropriately as well otherwise the names will not line up.
+#' @param titles A vector of titles for the plots. The titles can be used as is
+#'   or they can be transformed via a labeller passed to
+#'   [ggplot2::facet_wrap()] via `...`. The default value of `NULL` leads to
+#'   each panel being labelled with a lower-case letter enclosed in open
+#'   brackets, e.g., `(a)`. If you truly do not want a label, just pass the
+#'   argument a vector of empty strings, e.g., `c("", "", ...)`, with the same
+#'   length as the result of parameters that are found via `posterior_regex`.
+#' @param x_range A string specifying the method to limit the range of each
+#'   x axis in the panels. Typically, all geoms used in the figure dictate the
+#'   range. But, with the use of [ggh4x::facetted_pos_scales()] we can specify
+#'   which data set should specify the range limits. Setting this argument to
+#'   `"posterior"`, instead of the default `"prior"`, will limit the ranges to
+#'   only the realized values in the posterior. This can be helpful when the
+#'   prior is quite vague and the posterior only covers a small range of the
+#'   parameter space.
+#' @param ... Parameters to be passed to [ggplot2::facet_wrap()]. For example,
+#'   `labeller = label_parsed_space`, which is available in this package, will
+#'   remove the spaces from the strings and implement
+#'   [ggplot2::label_parsed()]. And, `ncol` and `nrow` can be used to direct
+#'   the output or you can let {ggplot2} figure it out.
 #'
-#'
-#' @return Nothing
+#' @return A {ggplot2} object.
 #' @export
 #'
 #' @examples
-#' prior_mle <- get_prior_data(model, "BH_steep")
-#' post <- get_posterior_data(model, "BH_steep")
-#' make_mcmc_priors_vs_posts_plot(prior_mle, post)
-make_mcmc_priors_vs_posts_plot <- function(prior_mle,
-                                           posterior,
-                                           show_prior = TRUE,
-                                           show_init = TRUE,
-                                           show_mle = TRUE,
-                                           show_median = TRUE,
-                                           show_legend = FALSE,
-                                           title_text = "",
-                                           hist_breaks = 50){
-
-  dat <- posterior %>%
-    enframe() %>%
-    mutate(prior = prior_mle$prior) %>%
-    rename(post = value)
-
-  breakvec <- seq(prior_mle$Pmin, prior_mle$Pmax, length = hist_breaks)
-  if(min(breakvec) > min(dat$post)) breakvec <- c(min(dat$post), breakvec)
-  if(max(breakvec) < max(dat$post)) breakvec <- c(breakvec, max(dat$post))
-  posthist <- hist(dat$post, plot = FALSE, breaks = breakvec)
-  postmedian <- median(dat$post)
-
-  ymax <- max(posthist$density)
-  xmin <- min(posthist$mids)
-  xmax <- max(posthist$mids)
-
-  prior <- prior_mle$prior / (sum(prior_mle$prior) * mean(diff(prior_mle$Pval)))
-  ymax <- ifelse(show_prior, max(prior, ymax), ymax)
-  if(show_prior){
-    if(prior_mle$Ptype == "Normal"){
-      # This is a hack. The DM prior was set from -5 to 20 but are centered around 0
-      xmin <- prior_mle$Pmin
-      xmax <- abs(prior_mle$Pmin)
-    }else{
-      xmin <- min(prior_mle$Pval, xmin)
-      xmax <- max(prior_mle$Pval, xmin)
-    }
-  }
-
-  ymax <- ifelse(show_mle, max(prior_mle$mle, ymax), ymax)
-  xmin <- ifelse(show_mle, min(qnorm(0.001, prior_mle$finalval, prior_mle$parsd), xmin), min(prior_mle$finalval, xmin))
-  xmax <- ifelse(show_mle, max(qnorm(0.999, prior_mle$finalval, prior_mle$parsd), xmax), max(prior_mle$finalval, xmax))
-
-  xmin <- ifelse(show_init, min(prior_mle$initval, xmin), xmin)
-  xmax <- ifelse(show_init, max(prior_mle$initval, xmax), xmax)
-
-  plot(0,
-       type = "n",
-       xlim = c(xmin, xmax),
-       ylim = c(0, 1.1 * ymax),
-       xaxs = "i",
-       yaxs = "i",
-       xlab = "",
-       ylab = "",
-       main = title_text,
-       cex.main = 1,
-       axes = FALSE)
-  axis(1)
-
-  colvec <- c("blue", "red", "black", "gray60", rgb(0, 0, 0, 0.5))
-  ltyvec <- c(1, 1, 3, 4)
-
-  plot(posthist,
-       add = TRUE,
-       freq = FALSE,
-       col = colvec[4],
-       border = colvec[4])
-  if(show_median){
-    abline(v = postmedian,
-           col = colvec[5],
-           lwd = 2,
-           lty = ltyvec[3])
-  }
-
-  if(show_prior){
-    lines(prior_mle$Pval,
-          prior,
-          lwd = 2,
-          lty = ltyvec[2])
-  }
-
-  if(show_mle){
-    if(!is.na(prior_mle$parsd) && prior_mle$parsd > 0){
-      mle <- dnorm(prior_mle$Pval,
-                   prior_mle$finalval,
-                   prior_mle$parsd)
-      mlescale <- 1 / (sum(mle) * mean(diff(prior_mle$Pval)))
-      mle <- mle * mlescale
-      ymax <- max(ymax, max(mle))
-      lines(prior_mle$Pval,
-            mle,
-            col = colvec[1],
-            lwd = 1,
-            lty = ltyvec[1])
-      lines(rep(prior_mle$finalval, 2),
-            c(0,
-              dnorm(prior_mle$finalval,
-                    prior_mle$finalval,
-                    prior_mle$parsd) * mlescale),
-            col = colvec[1],
-            lty = ltyvec[1])
-    }
-  }
-
-  if(show_init){
-    par(xpd = NA) # stop clipping
-    points(prior_mle$initval, -0.02 * ymax, col = colvec[2], pch = 17, cex = 1.2)
-    par(xpd = FALSE)
-  }
-
-  box()
-
-  if(show_legend){
-    showvec <- c(show_prior, show_mle, show_median, show_init)
-    legend("topleft",
-           cex = 1.2,
-           bty = "n",
-           pch = c(NA, NA, 15, NA, 17)[showvec],
-           lty = c(ltyvec[2],
-                   ltyvec[1],
-                   NA,
-                   ltyvec[3],
-                   NA)[showvec],
-           lwd = c(2, 1, NA, 2, NA)[showvec],
-           col = c(colvec[3],
-                   colvec[1],
-                   colvec[4],
-                   colvec[5],
-                   colvec[2])[showvec],
-           pt.cex = c(1, 1, 2, 1, 1)[showvec],
-           legend = c("prior",
-                      "max. likelihood",
-                      "posterior",
-                      "posterior median",
-                      "initial value")[showvec])
-  }
-}
-
-#' Make a grid of key posterior plots
-#'
-#' @param model The SS model output as loaded by [load_ss_files()]
-#' @param posterior_regex A vector of regular expressions which can be matched to parameter names. Use
-#' [get_active_parameter_names()] to see all active parameter names
-#' @param ncol Number of columns for the grid of plots
-#' @param nrow Number of rows for the grid of plots
-#' @param byrow Logical. If TRUE, order the plots by row, then column
-#' @param show_legend Logical. Show the legend on the plot
-#' @param legend_panel Which panel to show the legend on if `show_legend` is TRUE
-#' @param titles A vector of titles for the plots
-#' @param ... Parameters to be passed to [make_mcmc_priors_vs_posts_plot()]
-#'
-#' @return Nothing
-#' @export
-#'
-#' @examples
-#' make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
-#'                                               key_posteriors,
-#'                                               ncol = 2,
-#'                                               nrow = 2,
-#'                                               show_legend = TRUE,
-#'                                               legend_panel = 3,
-#'                                               titles = key_posteriors_titles)
+#' make_key_posteriors_mcmc_priors_vs_posts_plot(
+#'   base_model,
+#'   key_posteriors,
+#'   titles = key_posteriors_titles,
+#'   labeller = label_parsed_space,
+#'   nrow = 3,
+#'   ncol = 3
+#' )
 make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
                                                           posterior_regex,
-                                                          hist_breaks = rep(50, length(posterior_regex)),
-                                                          ncol = 1,
-                                                          nrow = 1,
-                                                          byrow = TRUE,
-                                                          show_legend = FALSE,
-                                                          legend_panel = 1,
                                                           titles = NULL,
-                                                          ...){
-  stopifnot(length(hist_breaks) == length(posterior_regex))
-  if(ncol * nrow < length(posterior_regex)){
-    stop("The length of the posterior_regex vector (", length(posterior_regex),
-         ") is larger than nrow (", nrow, ") * ncol (", ncol, ")", call. = FALSE)
+                                                          x_range = c("posterior", "prior"),
+                                                          ...) {
+  x_range <- match.arg(x_range)
+  titles <- if (is.null(titles)) {
+    glue::glue("({letters[seq_along(posts)]})")
+  } else {
+    titles
   }
-  oldpar <- par("mar", "mfrow")
-  on.exit(par(oldpar))
 
-  priors_mle <- get_prior_data(model, posterior_regex)
+  priors <- get_prior_data(model, posterior_regex)
   posts <- get_posterior_data(model, posterior_regex)
+  names(posts) <- titles
+  names(priors) <- titles
 
-  par(mfrow = c(nrow, ncol), mar = c(3, 3, 1, 1))
-  for(i in seq_along(posterior_regex)){
-    make_mcmc_priors_vs_posts_plot(priors_mle[[i]],
-                                   posts[[i]],
-                                   show_legend = ifelse(i == legend_panel, TRUE, FALSE),
-                                   title_text = ifelse(is.null(titles), "", titles[i]),
-                                   hist_breaks = hist_breaks[i],
-                                   ...)
+  # Make long data frames for ggplot2
+  posteriors_long <- enframe(posts) %>%
+    unnest(cols = "value") %>%
+    dplyr::mutate(parameter = factor(name, levels = titles))
+  posteriors_ranges <- purrr::map(
+    posts, ~ scale_x_continuous(limits = range(.x))
+  )
+  priors_long <- purrr::map(priors, "prior_random") %>%
+    enframe() %>%
+    unnest(cols = "value") %>%
+    dplyr::mutate(parameter = factor(name, levels = titles)) %>%
+    dplyr::filter(!is.na(value))
+  priors_init <- purrr::map(priors, "initval") %>%
+    unlist() %>%
+    enframe() %>%
+    dplyr::mutate(parameter = factor(name, levels = titles))
+  gg <- ggplot() +
+    geom_histogram(
+      data = posteriors_long,
+      mapping = aes(value, after_stat(density)),
+      fill = "gray60",
+      bins = 30
+    ) +
+    geom_density(
+      data = priors_long,
+      mapping = aes(value, after_stat(density)),
+      col = "black",
+      linewidth = 1.2
+    ) +
+    geom_point(
+      data = priors_init,
+      mapping = aes(x = value, y = 0),
+      col = "red",
+      pch = 17
+    ) +
+    geom_vline(
+      data = group_by(posteriors_long, parameter) %>%
+        summarize(median = median(value)),
+      mapping = aes(xintercept = median),
+      linetype = 2,
+      col = rgb(0, 0, 0, 0.5)
+    ) +
+    facet_wrap("parameter", scales = "free", ...) +
+    theme(
+      axis.text.y = element_blank(),
+      axis.ticks.y = element_blank()
+    ) +
+    xlab("") +
+    ylab("")
+
+  # xlim for each panel will be based on both the posterior and the prior unless
+  # {ggh4x} is called b/c {ggplot2} doesn't allow for manipulation of the axes
+  # by panel only across all panels with scales
+  if (x_range == "posterior") {
+    gg <- gg +
+      ggh4x::facetted_pos_scales(x = posteriors_ranges)
   }
+
+  return(gg)
 }
 
 #' Plot MCMC diagnostics
