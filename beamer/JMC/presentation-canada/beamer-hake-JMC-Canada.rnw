@@ -443,7 +443,7 @@ oldpar <- par(mar=c(5,4,1,1),no.readonly = TRUE)
 #par(mar = c(4.5, 4.1, 1.5, 1.1))
 # plot_retro_yrs <- retro.yrs
 retro.cohorts <- (end_yr - 11):(end_yr - 2)
-make_squid_plot(base_model,
+plot_squid(base_model,
                 subplot = 1,
                 cohorts = retro.cohorts)
 par <- oldpar

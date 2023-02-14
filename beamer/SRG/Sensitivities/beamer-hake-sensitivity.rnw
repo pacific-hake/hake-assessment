@@ -593,7 +593,7 @@ plot_recruitment(d_obj = d_obj_retro_recr,
 %   years get too close to the tendrils
 <<retro.3, fig.height=3.5>>=
 retro_cohorts <- (end_yr - 11):(end_yr - 2)
-make_squid_plot(base_model,
+plot_squid(base_model,
                 subplot = 1,
                 cohorts = retro_cohorts,
                 plot_mcmc = TRUE)

@@ -1104,7 +1104,7 @@ cowplot::plot_grid(plotlist = plist,
 \begin{center}
 <<main-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how recruitment estimates for age-0 fish tend to be small but positive to allow for forecasted landings and that information is not typically available to estimate recruitments until fish are of age three. Estimates of larger in absolute terms deviates take a longer time to stabilize.">>=
 retro_cohorts <- (end_yr - 11):(end_yr - 2)
-make_squid_plot(base_model,
+plot_squid(base_model,
                 subplot = 1,
                 cohorts = retro_cohorts,
                 plot_mcmc = TRUE)
@@ -1137,7 +1137,7 @@ make_squid_plot(base_model,
 \begin{figure}[H]
 \begin{center}
 <<main-relative-retrospective-recruitment, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "The estimates of recruitment deviations scaled to the most recent estimate almost all trend towards zero by age three except for the 2015 cohort which was a strong negative recruitment deviation.">>=
-make_squid_plot(base_model,
+plot_squid(base_model,
                 subplot = 2,
                 cohorts = retro_cohorts,
                 plot_mcmc = TRUE)
