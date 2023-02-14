@@ -1,6 +1,5 @@
-% research-needs.rnw - gets called into Executive Summary and into
-%  research-section/research.rnw in main text. This is just the first three
-%  for the Exec Summary, that also get called into research.rnw.
+% First three only, the rest are in research-needs-remainder.rnw
+
 \begin{enumerate}
 
 \item Continue to conduct research to evaluate ways to improve recent,
