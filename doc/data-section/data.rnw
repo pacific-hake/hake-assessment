@@ -216,13 +216,6 @@ and the 2014 year class has been apparent since 2016.
 % ggplot(atsea.ages,aes(LENGTH,group=factor(YEAR),col=factor(YEAR)))+geom_density()+facet_grid(YEAR~.)
 % ggplot(page,aes(FISH_LENGTH,group=factor(SAMPLE_YEAR),col=factor(SAMPLE_YEAR)))+geom_density()+facet_grid(SAMPLE_YEAR~.)
 
-\subsubsection{Catch per unit effort}\label{sec:data-cpue}
-
-Calculation of a reliable fishery catch-per-unit-effort (CPUE) metric is
-particularly problematic for \fishname, and it has never been used as a tuning
-index for the assessment of this stock (see \citealt{JTC2013} for more details).
-% \enlargethispage{\baselineskip}
-
 \subsection{Fishery-independent data}\label{sec:data-fishery-independent}
 
 \subsubsection{Acoustic survey}\label{sec:data-acoustic-survey}
@@ -410,6 +403,10 @@ assessment document \citep{JTC2013}. A few are listed below.
 \item Fishery and survey length compositions.
 
 \item Fishery and survey age-at-length compositions.
+
+\item Calculation of a reliable fishery catch-per-unit-effort (CPUE) metric is
+  particularly problematic for \fishname, and it has never been used as a tuning
+  index for the assessment of this stock (see \citealt{JTC2013} for more details).
 
 \item Biomass index and age compositions from the following years of the
   \surveyname\, 1977, 1980, 1983, 1986, 1989, and 1992.
