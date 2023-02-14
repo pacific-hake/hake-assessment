@@ -519,17 +519,20 @@ cohort.catch.2010 <- sum(cohort.catch(base_model, 2010, trim.end.year = end_yr))
 cohort.catch.2014 <- sum(cohort.catch(base_model, 2014, trim.end.year = end_yr))
 cohort.catch.2016 <- sum(cohort.catch(base_model, 2016, trim.end.year = end_yr))
 cohort.catch.2017 <- sum(cohort.catch(base_model, 2017, trim.end.year = end_yr))
+cohort.catch.2020 <- sum(cohort.catch(base_model, 2020, trim.end.year = end_yr))
 # ... Cumulative sums of Cohorts for use in JMC presentation ------------------
 cohortCumSum1999 <- cumsum(cohort.catch(base_model, 1999, trim.end.year = end_yr))
 cohortCumSum2010 <- cumsum(cohort.catch(base_model, 2010, trim.end.year = end_yr))
 cohortCumSum2014 <- cumsum(cohort.catch(base_model, 2014, trim.end.year = end_yr))
 cohortCumSum2016 <- cumsum(cohort.catch(base_model, 2016, trim.end.year = end_yr))
 cohortCumSum2017 <- cumsum(cohort.catch(base_model, 2017, trim.end.year = end_yr))
+cohortCumSum2020 <- cumsum(cohort.catch(base_model, 2020, trim.end.year = end_yr))
 ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
 ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
 ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
 ages2016 <- as.numeric(names(cohortCumSum2016)) - 2016
 ages2017 <- as.numeric(names(cohortCumSum2017)) - 2017
+ages2020 <- as.numeric(names(cohortCumSum2020)) - 2020
 # ... Cohort medians, credible intervals --------------------------------------
 rec_2010 <- get_rec_ci(last_yr_base_model, base_model, 2010)
 rec_2014 <- get_rec_ci(last_yr_base_model, base_model, 2014)
