@@ -316,7 +316,8 @@ $B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
 is particularly large this year, with a 95\%
 posterior credibility interval from \Sexpr{curr.depl.lower}\% to
 \Sexpr{curr.depl.upper}\% (Table~\ref{tab:es-biomass}), due to high uncertainty about the size
-of the 2020 cohort, which has not been sampled by the acoustic survey. The median estimate of
+of the 2020 cohort, which has not yet been sampled in the acoustic survey
+biomass index of age-2+ fish. The median estimate of
 the \Sexpr{end_yr} female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
 95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
 \Sexpr{curr.bio.upper}~million~t). The current estimate of the \Sexpr{end_yr-1} female
@@ -464,8 +465,9 @@ of 40\%, meaning that the female spawning biomass per recruit with $\Fforty$ is 
 that without fishing. If female spawning biomass is below $\Bforty$ (40\% of $B_0$),
 the policy reduces the TAC linearly until it equals zero at $\Bten$ (10\% of
 $B_0$). Relative fishing intensity for fishing rate $F$ is
-$(1-\mbox{SPR}(F))/(1-\mbox{SPR}_{40\%})$, where $\mbox{SPR}_{40\%}$ is specified in the
-Agreement; it is reported here interchangeably as a proportion or a percentage.
+$(1-\mbox{SPR}(F))/(1-\mbox{SPR}_{40\%})$, where $\mbox{SPR}_{40\%}$ is an SPR
+of 40\%; it is reported here interchangeably as a proportion or a percentage.
+A relative fishing intensity above 1.0 means fishing at a rate above $\Fforty$.
 
 \subsection*{Exploitation status} \label{sec:es-exploitation-status}
 \phantomsection  \addcontentsline{toc}{subsection}{Exploitation status}
@@ -488,7 +490,7 @@ make.fishing.intensity.table(base_model,
 @
 
 The median estimated relative fishing intensity on the stock is below
-1.0
+the management level of 1.0
 \Sexpr{median.intensity.above.one.text}
 (see Table~\ref{tab:es-fishing-intensity} for recent
 years and Figure~\ref{fig:es-fishing-intensity}).
@@ -530,7 +532,7 @@ The median exploitation fraction has, on average, increased from a recent low of
 before dropping back to 2012--2015 levels in 2022.
 There is a
 considerable amount of uncertainty around estimates of relative fishing intensity,
-with the 95\% posterior credibility interval reaching above $\Fforty$ management level
+with the 95\% posterior credibility interval reaching above the $\Fforty$ management level
 (of 1.0) in 2017 and 2018 over the past decade (Figure~\ref{fig:es-fishing-intensity}).
 Exploitation and fishing intensity rates do not always track well due to a combination of
 changing age distributions and changing selectivities over time.
@@ -628,7 +630,7 @@ make.phase.plot(base_model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-The median relative fishing intensity was below $\Fforty$ in all years
+The median relative fishing intensity was below 1.0 in all years
 % \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]}
 % and \Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
 % Only one year for 2017 assessment, so:
@@ -641,7 +643,7 @@ all years except 2007--2010
 % Andy summarising those years manually, based on:
 % median.relative.bio.below.target
 the median relative fishing
-intensity was below the $\Fforty$ management level
+intensity was below 1.0
 (Figure~\ref{fig:es-phase}).
 The benchmark quantities, $\Fforty$ and $\Bforty$,
 result in different median population sizes (see Table~\ref{tab:es-reference-points}),
@@ -662,7 +664,7 @@ since \Sexpr{median.relative.bio.above.target.since}.
 While there is large uncertainty in the estimates of relative
 fishing intensity and relative spawning biomass, the model estimates a
 \Sexpr{joint.percent.prob.above.below}\%
-joint probability of being both above the $\Fforty$ relative fishing intensity
+joint probability of being both above a relative fishing intensity of 1.0
 in \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end_yr}.
 
@@ -867,7 +869,6 @@ plot_depl_fore_comparison(base_model,
 \end{center}
 \caption{Median and 95\% posterior credibility intervals of estimated
          relative spawning biomass to the start of \Sexpr{end_yr} from the base model
-         (white rectangle)
          and projections to the start of \Sexpr{forecast_yrs[length(forecast_yrs)]}
          for several management actions, which are
          defined in Table~\ref{tab:es-decisions-biomass}.}
