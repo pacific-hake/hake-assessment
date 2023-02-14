@@ -890,19 +890,25 @@ plot_fore_compare(base_model,
   \end{column}
   \begin{column}{0.5\textwidth}
     <<main-timing, fig.height=5, fig.width=5.5>>=
-    yrs <- seq(2017,2022,1)
-    Day <- c(17,26,23,25,23,18)
-    maxD <- round((Day/max(Day))*100,0)
-    plot(Day~yrs,ylim=c(0,30),xlim=c(2016.8,2022.2),ylab="Business Days to Complete Draft Assessment",xlab="Year",type="b")
-    abline(h=max(Day), col="black",lty=2)
-    text(2017.1,(Day[1]-2),paste(maxD[1],"%",sep=""),cex = 0.8)
-    text(2018.1,(Day[2]-2),paste(maxD[2],"%",sep=""),cex = 0.8,col="red")
-    text(2019.1,(Day[3]-2),paste(maxD[3],"%",sep=""),cex = 0.8)
-    text(2020.1,(Day[4]-2),paste(maxD[4],"%",sep=""),cex = 0.8,col="red")
-    text(2021.1,(Day[5]-2),paste(maxD[5],"%",sep=""),cex = 0.8)
-    text(2022.1,(Day[6]-2),paste(maxD[6],"%",sep=""),cex = 0.8,col="red")
-    text(2019.5,5,"Values indicate the percentage of the maximum",cex=0.9)
-    text(2019.4,3,"(years with new survey data)",cex=0.9,col="red")
+    yrs <- 2017:2023
+    Day <- c(17, 26, 23, 25, 23, 18, 36)
+    maxD <- round((Day / max(Day)) * 100, 0)
+    plot(Day ~ yrs,
+        ylim = c(0, 40),
+        xlim = c(2016.8, 2023.2),
+        ylab = "Business Days to Complete Draft Assessment",
+        xlab = "Year",
+        type = "b")
+    abline(h = max(Day), col = "black", lty = 2)
+    text(2017.1, (Day[1]-2), paste(maxD[1], "%", sep = ""), cex = 0.8)
+    text(2018.1, (Day[2]-2), paste(maxD[2], "%", sep = ""), cex = 0.8, col = "red")
+    text(2019.1, (Day[3]-2), paste(maxD[3], "%", sep = ""), cex = 0.8)
+    text(2020.1, (Day[4]-2), paste(maxD[4], "%", sep = ""), cex = 0.8, col = "red")
+    text(2021.1, (Day[5]-2), paste(maxD[5], "%", sep = ""), cex = 0.8)
+    text(2022.1, (Day[6]-2), paste(maxD[6], "%", sep = ""), cex = 0.8, col = "red")
+    text(2023.1, (Day[7]-2), paste(maxD[7], "%", sep = ""), cex = 0.8)
+    text(2019.5, 5, "Values indicate the percentage of the maximum", cex = 0.9)
+    text(2019.4, 3, "(years with new survey data)", cex = 0.9, col = "red")
     @
   \end{column}
 \end{columns}
