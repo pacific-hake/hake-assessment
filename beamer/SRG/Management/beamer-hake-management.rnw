@@ -9,7 +9,7 @@
 \usepackage{multirow}
 \usepackage{xcolor}
 \usepackage[T1]{fontenc} % to use < or > in tables
-%% For centering with fixed width column or right cell values in a tabular
+% For centering with fixed width column or right cell values in a tabular
 \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
 \newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
 \newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
@@ -82,6 +82,7 @@ models.inds <- c(1, 2, 6, 12, catch.default.policy.ind)
 models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] # pretty catch level name
 @
 
+%----------------------------------------------------------
 \title[Hake Management]{Management outcomes of the \Sexpr{end_yr} Pacific Hake stock assessment}
 \author[JTC]{Pacific Hake Joint Technical Committee}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
@@ -92,6 +93,7 @@ models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] # pretty c
 \titlepage
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Update on computation for the assessment}
   \bi
 	  \item JTC Acquired 80-CPU computer this year
@@ -109,6 +111,7 @@ models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] # pretty c
 	\ei
 }
 
+%----------------------------------------------------------
 \section{Introduction}
 \subsection{Background}
 \frame{\frametitle{Past management: Total Allowable Catch}
@@ -124,6 +127,7 @@ def_med_hr_tac <- filter(catch.targets,
 @
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Past management: Total Allowable Catch}
 \begin{columns}
   \begin{column}{0.45\textwidth}
@@ -148,6 +152,7 @@ def_med_hr_tac <- filter(catch.targets,
 \end{columns}
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Past management: Performance}
   \begin{columns}
     \begin{column}{0.25\textwidth}
@@ -171,6 +176,7 @@ def_med_hr_tac <- filter(catch.targets,
   \end{columns}
 }
 
+%----------------------------------------------------------
 \section{Projections}
 \subsection{Methods}
 \frame{\frametitle{Projection methods}
@@ -194,6 +200,7 @@ def_med_hr_tac <- filter(catch.targets,
   \ei
 }
 
+%----------------------------------------------------------
 \subsection{Two-year projections}
 \frame{\frametitle{Harvest-rule predicted catch for \Sexpr{assess_yr}}
 \begin{columns}
@@ -216,6 +223,7 @@ def_med_hr_tac <- filter(catch.targets,
 \end{columns}
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Three-year projections}
 \begin{columns}
   \begin{column}{0.38\textwidth}
@@ -240,6 +248,7 @@ def_med_hr_tac <- filter(catch.targets,
 \end{columns}
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Projected age compositions for \Sexpr{end_yr} fishery catch}
 \begin{columns}
   \begin{column}{0.35\textwidth}
@@ -264,6 +273,7 @@ def_med_hr_tac <- filter(catch.targets,
 \end{columns}
 }
 
+%----------------------------------------------------------
 \section{Decision Tables}
 \subsection{Intro}
 \frame{\frametitle{Decision Tables}
@@ -303,7 +313,7 @@ def_med_hr_tac <- filter(catch.targets,
   \ei
 }
 
-
+%----------------------------------------------------------
 \subsection{Spawning Biomass}
 \frame{\frametitle{Relative Spawning Biomass}
 <<decisions-biomass-table, results='asis', echo=FALSE>>=
@@ -316,6 +326,7 @@ decision_table(base_model,
 @
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Probability table definitions}
   Probabilities associated with biomass and fishing-based metrics for different fixed catch levels
   (see Executive Summary: Tables i, j, and k; Figures k, l, and m)
@@ -333,6 +344,7 @@ decision_table(base_model,
   \ei
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
 <<main-risk-forecast-year-1-table, results='asis', echo=FALSE>>=
 make.risk.table(base_model,
@@ -344,6 +356,7 @@ make.risk.table(base_model,
   @
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
 \bc
 <<forecast-risk-comparison-plot-year-1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
@@ -397,6 +410,7 @@ make.risk.table(base_model,
 @
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr}, \Sexpr{end_yr+1},
     and \Sexpr{end_yr+2} catches}
 \bc
@@ -411,6 +425,7 @@ plot_fore_compare(base_model,
 \ec
 }
 
+%----------------------------------------------------------
 \section{Summary}
 \subsection{}
 \frame{\frametitle{Summary of management outcomes}

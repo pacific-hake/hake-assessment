@@ -1,26 +1,18 @@
 \documentclass[aspectratio=169]{beamer}
 \mode<presentation>
-\usetheme{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
-%\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
+\usetheme{Singapore}
 
 \usepackage[outdir=./figures/]{epstopdf}
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
 \usepackage{tabularx}
-\usepackage{booktabs}          %% Used in risk tables
-\usepackage{multirow}          %% Used in decision tables
-%\usepackage{beamerarticle}
-%\usepackage{enumitem}
-%\usepackage{beamerthemesplit}
-\usepackage[T1]{fontenc}  %to use < or > in tables
+\usepackage{booktabs} % Used in risk tables
+\usepackage{multirow} % Used in decision tables
+\usepackage[T1]{fontenc} %to use < or > in tables
 
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
-% pdf is displayed in full screen mode automatically
-%\hypersetup{pdfpagemode=FullScreen}
-
-%\setbeamersize{sidebar width left=0.05in}
 \setbeamersize{text margin left=0.1in}
 \setbeamersize{text margin right=0.1in}
 
@@ -51,7 +43,6 @@
 \insertframenumber/\inserttotalframenumber
 \end{beamercolorbox}%
 }
-%% \setbeamercolor{footline}{fg=pageCol}
 
 \newcounter{saveenumi}
 \input{../../hake-beamer.tex}
@@ -91,10 +82,8 @@ if(!dir.exists(fig_dir)){
 \title[Hake Assessment]{\Sexpr{assess_yr} Pacific Hake Stock Assessment Methods
   and Results}
 \author[JTC]{Pacific Hake Joint Technical Committee}
-%\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
 \subtitle{\tiny \disclaimer}
-
 
 \begin{document}
 
@@ -117,8 +106,6 @@ if(!dir.exists(fig_dir)){
 }
 
 %----------------------------------------------------------
-%----------------------------------------------------------
-%----------------------------------------------------------
 \section{Changes from \Sexpr{last_assess_yr}}
 \subsection{}
 
@@ -139,7 +126,7 @@ if(!dir.exists(fig_dir)){
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Model Updates and Additions}
 \bc
-<<bridge.biomass.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+<<bridge-biomass-1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
   oldpar <- par(mfrow = c(1, 2),
                 mar =c(5, 4, 1, 1),
                 no.readonly = TRUE)
@@ -170,7 +157,7 @@ cowplot::plot_grid(plotlist = plist,
 %----------------------------------------------------------
 \frame{\frametitle{Bridging: Model Updates and Additions}
 \bc
-<<bridge.survey.1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+<<bridge-survey-1, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
 plist <- list()
 plist[[1]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
@@ -215,8 +202,7 @@ cowplot::plot_grid(plotlist = plist,
   \item Adding \Sexpr{last_assess_yr} fishery age composition data had little impact on historical estimates, shifted recent recruitment estimates (esp. 2019--2021), and increased estimates of 2022 (slightly) and 2023 (considerably) female spawning biomass.
 \ei
 }
-%----------------------------------------------------------
-%----------------------------------------------------------
+
 %----------------------------------------------------------
      \section{MCMC Diagnostics}
    \begin{frame}[c]
@@ -224,6 +210,7 @@ cowplot::plot_grid(plotlist = plist,
    \Huge MCMC Diagnostics
    \end{center}
    \end{frame}
+
 
 %----------------------------------------------------------
      \frame{\frametitle{Diagnostics: Summary}
@@ -241,10 +228,11 @@ cowplot::plot_grid(plotlist = plist,
        combined are shown in Appendix A (no issues identified).
        \ei
      }
+
 %----------------------------------------------------------
    \frame{\frametitle{MCMC diagnostics for all parameters and spawning biomass}
      \bc
-     <<main.mcmc.diag.hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+     <<main-mcmc-diag-hists, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
        oldpar <- par()
        par(mar = c(4.1, 4.1, 3.1, 0.1))
        plot_mcmc_param_stats(base_model,
@@ -258,9 +246,7 @@ cowplot::plot_grid(plotlist = plist,
        @
          \ec
    }
-%
-%----------------------------------------------------------
-%----------------------------------------------------------
+
 %----------------------------------------------------------
      \section{Fits to data}
    \begin{frame}[c]
@@ -272,7 +258,7 @@ cowplot::plot_grid(plotlist = plist,
 %----------------------------------------------------------
      \frame{\frametitle{Fit to the acoustic survey index of abundance}
        \bc
-       <<mcmc.survey.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+       <<mcmc-survey-fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
          make.mcmc.survey.fit.plot(base_model,
                                    start_yr = survey_start_yr,
                                    end_yr = survey_end_yr,
@@ -285,7 +271,7 @@ cowplot::plot_grid(plotlist = plist,
 %----------------------------------------------------------
      \frame{\frametitle{Fit to the age-1 relative index}
        \bc
-       <<mcmc.age1.fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+       <<mcmc-age1-fit, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
          make.mcmc.survey.fit.plot(base_model,
                                    start_yr = survey_start_yr,
                                    end_yr = survey_end_yr,
@@ -296,6 +282,7 @@ cowplot::plot_grid(plotlist = plist,
        @
          \ec
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Fit to acoustic survey age comps}
        \begin{columns}
@@ -311,7 +298,7 @@ cowplot::plot_grid(plotlist = plist,
        \begin{column}{0.59\textwidth}
        %\vspace{-15pt}
        \bc
-       <<mcmc.survey.age.comp.fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
+       <<mcmc-survey-age-comp-fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
          make.age.comp.fit.plot(base_model,
                                 subplot = 2)
        @
@@ -335,7 +322,7 @@ cowplot::plot_grid(plotlist = plist,
        \begin{column}{0.59\textwidth}
        \vspace{-5pt}
        \bc
-       <<mcmc.fishery.age.comp.fits, fig.height=5.2, fig.width=6.5,out.width='1.0\\columnwidth'>>=
+       <<mcmc-fishery-age-comp-fits, fig.height=5.2, fig.width=6.5,out.width='1.0\\columnwidth'>>=
          make.age.comp.fit.plot(base_model,
                                 subplot = 1)
        @
@@ -343,6 +330,7 @@ cowplot::plot_grid(plotlist = plist,
        \end{column}
        \end{columns}
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Pearson residual for fit to the age data}
        \begin{columns}
@@ -350,7 +338,7 @@ cowplot::plot_grid(plotlist = plist,
        \vspace{-16pt}
        \bc
        Fishery
-       <<survey.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
+       <<survey-age-comp-pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
          plot_pearson_bubbles(base_model, type = 1, legend.position = "top", alpha = 0.7)
        @
          \ec
@@ -359,7 +347,7 @@ cowplot::plot_grid(plotlist = plist,
        \vspace{-16pt}
        \bc
        Survey
-       <<fishery.age.comp.pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
+       <<fishery-age-comp-pearson, fig.height=8, fig.width=8, out.width='0.85\\columnwidth'>>=
          plot_pearson_bubbles(base_model, type = 2, alpha = 0.7)
        @
          \ec
@@ -367,8 +355,7 @@ cowplot::plot_grid(plotlist = plist,
        \end{columns}
        \bc {\scriptsize Dark bubbles are positive residuals (observed > expected) and white bubbles are negative residuals (observed < expected)} \ec
      }
-%----------------------------------------------------------
-%----------------------------------------------------------
+
 %----------------------------------------------------------
      \section{Estimated quantities}
    \begin{frame}[c]
@@ -376,6 +363,7 @@ cowplot::plot_grid(plotlist = plist,
    \Huge Estimated quantities
    \end{center}
    \end{frame}
+
 %----------------------------------------------------------
      \frame{\frametitle{Key parameters}
        \begin{columns}
@@ -391,7 +379,7 @@ cowplot::plot_grid(plotlist = plist,
        \begin{column}{0.59\textwidth}
        \vspace{-15pt}
        \bc
-       <<main.prior.posterior, fig.height=6, fig.width=8,out.width='0.95\\columnwidth'>>=
+       <<main-prior-posterior, fig.height=6, fig.width=8,out.width='0.95\\columnwidth'>>=
          make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
                                                        key_posteriors,
                                                        hist_breaks = c(50, 50, 50, 50, 100, 100),
@@ -420,8 +408,6 @@ cowplot::plot_grid(plotlist = plist,
        \begin{tabular}{cccc} \hline
        \textcolor{blue}{Median (\Sexpr{assess_yr})} &
          \textcolor{red}{Median (\Sexpr{assess_yr - 1})} \\
-       %\textcolor{blue}{MLE (\Sexpr{assess_yr})} &
-         %\textcolor{red}{MLE (\Sexpr{assess_yr - 1})} \\
        \hline
        \textcolor{blue}{\Sexpr{f(median(base_model$extra.mcmc$Q_vector), 2)}} &
          \textcolor{red}{\Sexpr{f(median(last_yr_base_model$extra.mcmc$Q_vector), 2)}} \\
@@ -432,18 +418,17 @@ cowplot::plot_grid(plotlist = plist,
        \end{table}
        \ec
      }
+
 %----------------------------------------------------------
    \frame{\frametitle{Age-1 index catchability (\emph{$q_1$}) posterior for this assessment}
      \bc
-     <<histQ.age1,fig.height=2.25, fig.width=5.5>>=
+     <<histQ-age1,fig.height=2.25, fig.width=5.5>>=
        make.mcmc.catchability.plot(base_model, last_yr_base_model, type = "age1")
      @
        \begin{table}
      \begin{tabular}{cccc} \hline
      \textcolor{blue}{Median (\Sexpr{assess_yr})} &
        \textcolor{red}{Median (\Sexpr{assess_yr - 1})} \\
-     %\textcolor{blue}{MLE (\Sexpr{assess_yr})} &
-       %\textcolor{red}{MLE (\Sexpr{assess_yr - 1})} \\
      \hline
      \textcolor{blue}{\Sexpr{f(median(base_model$extra.mcmc$Q_vector_age1), 2)}} &
        \textcolor{red}{\Sexpr{f(median(last_yr_base_model$extra.mcmc$Q_vector_age1), 2)}} \\
@@ -454,51 +439,56 @@ cowplot::plot_grid(plotlist = plist,
      \end{table}
      \ec
    }
+
 %----------------------------------------------------------
      \frame{\frametitle{Time-varying selectivity}
        \begin{columns}
        \begin{column}{0.48\textwidth}
        \vspace{-10pt}
        \bc
-       <<main.tv.selex, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
+       <<main-tv-selex, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
          ## Extract TV selectivity fits by running the calculation function.
-         tv.selex.start_yr <- 1990
-         tv.selex.ages <- 1:8
-         tv.selex <- calc.tv.selex(base_model,
-                                   start_yr = tv.selex.start_yr,
-                                   end_yr = last_data_yr,
-                                   ages = tv.selex.ages,
-                                   probs = c(0.025, 0.975))
-         make.tv.selex.plot(tv.selex)
+         tv_selex_start_yr <- 1990
+         tv_selex_end_yr <- last_data_yr
+         tv_selex_ages <- as.character(1:8)
+         tv_selex_med_raw <- base_model$extra.mcmc$sel_fishery_median
+         tv_selex_med_filt <- tv_selex_med_raw |>
+           filter(Yr %in% tv_selex_start_yr:tv_selex_end_yr)
+         tv_selex_med_yrs <- tv_selex_med_filt |> pull(Yr)
+         tv_selex_med_mat <- tv_selex_med_filt |>
+           select(!!!tv_selex_ages) |>
+           as.matrix()
+         tv_selex_lower <- base_model$extra.mcmc$sel_fishery_lower
+         tv_selex_upper <- base_model$extra.mcmc$sel_fishery_upper
+         oldpar <- par()
+         # padding left and right outer margins using oma to make plot less stretched out
+         par(mar = c(4, 4, 1, 1),
+             oma = c(0, 8, 0, 8))
+         mountains(tv_selex_med_mat,
+                   yvec = tv_selex_med_yrs,
+                   rev = TRUE,
+                   cex.axis = 0.8)
+         mtext(side = 1, line = 2, "Age")
+         mtext(side = 2, line = 3, "Selectivity by year")
+         par <- oldpar
          @
            \ec
          \end{column}
          \begin{column}{0.48\textwidth}
          \vspace{-10pt}
          \bc
-         <<main.tv.selex.uncertainty, fig.height=12, fig.width=10, out.width='0.8\\columnwidth'>>=
-           ## Extract TV selectivity fits by running the calculation function, once for each year span,
-           ##  then call the plotting function with them as a list to make a multipanel plot.
-           tv.selex.left <- calc.tv.selex(base_model,
-                                          start_yr = tv.selex.start_yr,
-                                          end_yr = 2004,
-                                          ages = tv.selex.ages,
-                                          probs = c(0.025, 0.975))
-         tv.selex.right <- calc.tv.selex(base_model,
-                                         start_yr = 2005,
-                                         end_yr = last_data_yr,
-                                         ages = tv.selex.ages,
-                                         probs = c(0.025, 0.975))
-         plot_multiple_tv_selex_unc(list(tv.selex.left, tv.selex.right))
+         <<main-tv-selex-uncertainty, fig.height=12, fig.width=10, out.width='0.8\\columnwidth'>>=
+         plot_multiple_tv_selex_unc(base_model, n_col = 2)
          @
            \ec
          \end{column}
          \end{columns}
      }
+
 %----------------------------------------------------------
 \frame{\frametitle{Posterior distributions for survey (left) and fishery (right) selectivity}
 \bc
-<<main.post.selex, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
+<<main-post-selex, fig.height=5, fig.width=10, out.width='0.95\\columnwidth'>>=
 plist <- list()
 plist[[1]] <- plot_selex_posteriors(base_model,
                       type = "survey",
@@ -518,10 +508,11 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
 @
 \ec
 }
+
 %----------------------------------------------------------
      \frame{\frametitle{Key quantities}
        \bc
-       <<main.parameter.estimates, results='asis', echo=FALSE>>=
+       <<main-parameter-estimates, results='asis', echo=FALSE>>=
          table_param_est(list(base_model, last_yr_base_model),
                          model.names = c(base_model_name, last_yr_base_model_name),
                          end_yr = end_yr,
@@ -535,11 +526,12 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        @
          \ec
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Recruitment Deviations}
        \vspace{-5pt}
        \bc
-       <<main.recruitment.devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+       <<main-recruitment-devs, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
          plot_recdevs(list(base_model),
              list(base_model_name),
              single_line_color = "blue",
@@ -547,6 +539,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        @
          \ec
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Absolute Recruitment}
        \bc
@@ -558,17 +551,9 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        @
          \ec
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Estimates of above average cohorts}
-       %\bi
-       %  \item The probability of the 2014 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2014.rec.gt.2010.rec}\%
-         %  \item The probability of the 2016 cohort being larger than the 2010 cohort is \Sexpr{prob.percent.2016.rec.gt.2010.rec}\%
-         %\ei
-       %~\\
-       %
-       %Addition of new data for this year's model decreases 2014 cohort uncertainty to \Sexpr{rec_2014[[3]]}\%
-         %and 2016 cohort uncertainty to \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{assess_yr - 1} assessment:
-
          \begin{table}
        \begin{tabular}{ccrcc} \hline
        Calculation (billions) & Low (2.5\%) & Median & High (97.5\%) & Interval size\\
@@ -600,6 +585,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        %  \item 2020 cohort is estimated to make up 32.1\% of the biomass
        %\ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Numbers-at-age (billions)}
        \begin{columns}
@@ -615,7 +601,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \begin{column}{0.5\textwidth}
        \vspace{-10pt}
        \bc
-       <<main.numbers.at.age, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
+       <<main-numbers-at-age, fig.height=12, fig.width=10,out.width='0.8\\columnwidth'>>=
          make_numbers_at_age_plot(base_model,
                                   mean_age_line_color = "red",
                                   mean_age_line_size = 1.5,
@@ -628,10 +614,11 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \end{column}
        \end{columns}
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Spawning Biomass}
        \bc
-       <<female.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+       <<female-spawning-biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
          plot_biomass(list(base_model),
              list(base_model_name),
              ylim = c(0, 5),
@@ -641,17 +628,9 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        @
          \ec
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Spawning Biomass (million~t)}
-       <<biomass.calcs>>=
-         #lb <- last_yr_base_model
-         #lb.smed <- lb$mcmccalcs$smed
-         #lb.slower <- lb$mcmccalcs$slower
-         #lb.supper <- lb$mcmccalcs$supper
-         #last.slower <- f(lb.slower[names(lb.slower) == assess_yr - 1], 3)
-         #last.supper <- f(lb.supper[names(lb.supper) == assess_yr - 1], 3)
-         #last.smed <- f(lb.smed[names(lb.smed) == assess_yr - 1], 3)
-         @
            \begin{table}
          \begin{tabular}{cccc} \hline
          Calculation & Low & Median & High \\
@@ -669,23 +648,25 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
          \end{tabular}
          \end{table}
          ~\\
-         While the median estimate of $B_{\Sexpr{end_yr-1}}$ has increased from last
-         year's assessment, partly due to increases in weight-at-age, the credible interval
-         mostly overlaps that from last year's assessment.
+         While the median estimate of $B_{\Sexpr{end_yr-1}}$ has increased from the last
+         assessment, partly due to increases in weight-at-age, the credible interval mostly
+         overlaps that from the last assessment.
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Uncertainty in Spawning Biomass}
        \bc
-       <<hist.dispersion.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+       <<hist-dispersion-spawning-biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
          make.assessment.history.disp.plot(base_model,
                                   assessment.history.disp)
        @
          \ec
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Relative Spawning Biomass}
        \bc
-       <<relative.spawning.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+       <<relative-spawning-biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
          plot_rel_biomass(list(base_model),
                  list(base_model_name),
                  point_shape = 1,
@@ -695,10 +676,11 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        @
          \ec
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Fishing Intensity}
        \bc
-       <<fishing.intensity, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
+       <<fishing-intensity, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
          make.fishing.intensity.plot(base_model,
                             start_yr = start_yr,
                             end_yr = end_yr-1,
@@ -707,6 +689,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        @
          \ec
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Exploitation Fraction (ages $2+$)}
        \bc
@@ -719,8 +702,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        @
          \ec
      }
-%----------------------------------------------------------
-%----------------------------------------------------------
+
 %----------------------------------------------------------
    \section{\Sexpr{last_assess_yr} SRG recommendations}
    \begin{frame}[c]
@@ -728,15 +710,15 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
    \Huge \Sexpr{last_assess_yr} SRG recommendations
    \end{center}
    \end{frame}
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Explore recruitment parameterizations}}
-       %\bi
        {\bf The SRG notes that $\sigma_R$ is an influential parameter and that
          determining the choice of $\sigma_R$ remains a challenge and encourages the JTC
          to continue to work on the issue.}
-       %\ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Response:} \emph{Explore recruitment parameterizations}}
@@ -760,18 +742,17 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \item Long-term: continue monitoring ongoing development of recruitment priors through meta-analysis research
        \ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Projecting recruitment}}
-       % \setbeamercovered{dynamic}   % need for \pause
-       %\bi
        {\bf The SRG recommends exploring alternative methods to simulate recruitment in
             the projections. Although Stock Synthesis currently does not have the capability
             to characterize a different process other than the assumed lognormal distribution,
             improvements such as drawing from past observations or using a mixture distribution
             to simulate recruitment should be considered for modelling platforms in the future.}
-       %\ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Response:} \emph{Projecting recruitment}}
@@ -781,28 +762,27 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
          \bi
          \item Distribution forecasts continue and will be provided again in 2023
          \item Extending past historical (up to 2010) work on recruitment-environment relationships to current year
-               (more on this later in the week) 
+               (more on this later in the week)
          \ei
-       \item Utilize the MSE to evaluate alternative recruitment distributional assumptions as time allows 
+       \item Utilize the MSE to evaluate alternative recruitment distributional assumptions as time allows
        \pause
        \item JTC is involved with the devolopment of next generation stock assessment model frameworks (e.g., FIMS)
              and will be using \fishname\ as a test model
        \item JTC is also looking to further evaluate recruitment potential from other
-             data sources (e.g, CalCOFI)  
+             data sources (e.g, CalCOFI)
        \ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Dynamic reference points}}
-       % \setbeamercovered{dynamic}   % need for \pause
-       %\bi
        {\bf The SRG applauds the efforts of the JTC and the MSE Working Group to add
             capabilities for specifying dynamic reference points within the assessment
             and MSE platforms, and encourage those groups to work together and develop
             a discussion of alternative reference points, including dynamic reference
             points, for future SRG consideration.}
-       %\ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Response:} \emph{Dynamic reference points}}
@@ -818,24 +798,23 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
           \item Conducted a learning session at the JMC meeting last summer
           \item Reached out to a RFMO that operationalizes dynamic reference points.
           \item Participating in and following DFO and NOAA national guidance documentation on
-                incorporating prevailing environmental conditions in to stock assessment 
+                incorporating prevailing environmental conditions in to stock assessment
           \ei
        \pause
        \item The JTC plans to work with the MSE working group in the coming year examining simulations
              that explore alternative dynamic F-based target reference points coupled with static
              (equilibrium-based) biomass limit reference points in exploratory harvest control
-             rule scenarios (more on this in the MSE presentation)  
+             rule scenarios (more on this in the MSE presentation)
        \ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Reproductive cycle}}
-       % \setbeamercovered{dynamic}   % need for \pause
-       %\bi
        {\bf The SRG encourages continued sampling and analysis to improve understanding
             of the Pacific Hake reproductive cycle.}
-       %\ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Response:} \emph{Reproductive cycle}}
@@ -851,15 +830,14 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
              in stock assessment)
        \ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Project weight-at-age}}
-       % \setbeamercovered{dynamic}   % need for \pause
-       %\bi
        {\bf The SRG requests that the JTC explore alternative methods for forecasting weight-at-age
             and evaluate whether they can improve projections.}
-       %\ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Response:} \emph{Project weight-at-age}}
@@ -880,6 +858,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
          \ei
        \ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf High-performance computing}}
@@ -889,6 +868,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
             and thorough assessment results in a timely manner.}
        %\ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Response:} \emph{High-performance computing}}
@@ -906,6 +886,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
              the efficacy of and improved collaboration among the JTC.
        \ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Other requests: see details in assessment document}}
@@ -921,6 +902,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \item Historical weight-at-age data: currently working with the Burke Museum icthyology collections manager.
        \ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{\Sexpr{last_assess_yr} SRG assessment recommendations\\
        {\bf Other requests: see details in assessment document}}
@@ -933,8 +915,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
              impact of platform-specific configurations, assumptions, and capabilities.
        \ei
      }
-%----------------------------------------------------------
-%----------------------------------------------------------
+
 %----------------------------------------------------------
    \section{Summary}
    \begin{frame}[c]
@@ -942,6 +923,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
    \Huge Summary
    \end{center}
    \end{frame}
+
 %----------------------------------------------------------
      \frame{\frametitle{Summary -- Biomass}
        \bi
@@ -956,6 +938,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
              translating to uncertain female spawning biomass in 2023 (and beyond)
        \ei
      }
+
 %----------------------------------------------------------
      \frame{\frametitle{Summary -- Key Points}
        \bi
@@ -969,7 +952,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
              expected from the highly uncertain 2020 cohort:
          \bi
        \item Fishery age composition data from 2022 season suggests very large 2020 cohort
-       \item Age-1 index in 2021 suggests above average 2020 cohort, but not as large as fishery data alone indicate 
+       \item Age-1 index in 2021 suggests above average 2020 cohort, but not as large as fishery data alone indicate
        \item Additional considerations include low catches in Canada, differences in U.S. fleet catch-at-age, and
              cohort not yet seen by acoustic survey
          \ei
@@ -980,217 +963,5 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        start of \Sexpr{end_yr}
        \ei
      }
-%----------------------------------------------------------
-\end{document}
-%
-%----------------------------------------------------------
-%----------------------------------------------------------
-%----------------------------------------------------------
-%----------------------------------------------------------
-%
-%Below is a bunch of old slides that could be deleted, but saving for now
-%----------------------------------------------------------
-  % \begin{frame}
-% \frametitle{Time-varying fishery selectivity ($\Phi$)}
-%
-% \bi
-%   \item Used since 2014 assessment.
-%   \item Deviations are applied to selectivity-at-age parameters.
-%   \item Normally-distributed penalty function applied to keep deviations
-%     straying too far from zero.
-%   \item Deviation is controlled by fixed standard deviation parameter $\Phi = 1.40$,
-%     (same value as in the \Sexpr{last_assess_yr} assessment).
-%   \item Maximum age for which selectivity is estimated is 6. Greater than this,
-%     selectivity is constant. Maximum selectivity is 1.
-%   \item See page 40-41 for equations and details.
-% \ei
-% \end{frame}
-%
-%----------------------------------------------------------
-  %\begin{frame}
-%\frametitle{Dirichlet-Multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
-%<<get.prior.values>>=
-  %  priors_mle <- get_prior_data(base_model, tail(key_posteriors, 2))
-  %@
-    %\bi
-  %  \item Used in the assessment since 2018. Prior to this, an iterative weighting scheme was used
-  %    (McAllister-Ianelli).
-  %  \item These parameters increase efficiency of assessment process (no manual work), removes subjective
-  %    choice of how many iterations to do, and automatically tunes each model as opposed to all having the
-  %    same tuning.
-  %  \item Uniform prior [-5, 20] was used in 2019 assessment.
-  %  \item In the \Sexpr{last_assess_yr} assessment, the DM survey parameter was stuck between 0.99--1.00 (at the upper bound).
-  %  \item A Normal (almost Uniform) prior with a mean of 0 and a standard deviation of \Sexpr{priors_mle[[1]]$Psd}
-  %    is used in \Sexpr{assess_yr} to improve MCMC convergence of these parameters.
-  %\ei
-  %\end{frame}
-  %
-  %----------------------------------------------------------
-    % \begin{frame}
-  % \frametitle{Weighting of priors on Dirichlet-multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
-  % \begin{columns}
-  %   \begin{column}{0.5\textwidth}
-  %     \bc
-  %       <<weight.assoc.uniform.dm, fig.height = 6>>=
-    %           # generating uniform values in the log(Theta) space (bounded -5 to 5)
-  %           dist_size <- 1000000
-  %           log_theta <- runif(n = dist_size,
-                                 %                              min = -5,
-                                 %                              max = 5)
-  %           # transforming into weights
-  %           theta <- exp(log_theta)
-  %           weight <- theta / (1 + theta)
-  %           hist(weight,
-                   %                breaks = 50,
-                   %                col = 'grey',
-                   %                main = "Weights associated with uniform prior: U(-5,5)",
-                   %                xlab = "Uniform prior weight")
-  %       @
-    %     \ec
-  %     \end{column}
-  %   \begin{column}{0.5\textwidth}
-  %     \bc
-  %       <<weight.assoc.normal.dm, fig.height = 6>>=
-    %           # generating uniform values in the weight space (bounded 0 to 1)
-  %           weight <- runif(n = dist_size,
-                              %                           min = 0,
-                              %                           max = 1)
-  %           # transforming back into log(Theta)
-  %           theta <- weight / (1 - weight)
-  %           log_theta <- log(theta)
-  %           # approximating result with normal N(0, 1.813) prior
-  %           norm_prior <- rnorm(n = dist_size,
-                                  %                               mean = 0,
-                                  %                               sd = 1.813)
-  %           norm_prior_weight <- exp(norm_prior) / (1 + exp(norm_prior))
-  %           hist(norm_prior_weight,
-                   %                breaks = 50,
-                   %                col='grey',
-                   %                main = "Weights associated with normal prior: N(0, 1.813)",
-                   %                xlab = "Normal prior weight")
-  %       @
-    %     \ec
-  %     \end{column}
-  %   \end{columns}
-  % \end{frame}
-  %
-  %----------------------------------------------------------
-    %\begin{frame}
-  %\frametitle{Priors on Dirichlet-multinomial parameters ($\theta_{fish}$ and $\theta_{surv}$)}
-  %    \bc
-  %    <<dm.prior.posterior, fig.height=3.5, fig.width=8,out.width='0.95\\columnwidth'>>=
-    %make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
-                                                   %                                              tail(key_posteriors, 2),
-                                                   %                                              ncol = 2,
-                                                   %                                              nrow = 1,
-                                                   %                                              show_legend = TRUE,
-                                                   %                                              legend_panel = 2,
-                                                   %                                              titles = tail(key_posteriors_titles, 2))
-  %    @
-    %    \ec
-  %\end{frame}
-  %
 
-%
-%   % ----------------------------------------------------------
-%     %\frame{\frametitle{MCMC trace plots (more in Appendix A, Figures A.1--A.3)}
-%       %   \bc
-%       %   <<main.mcmc.diag.m, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-%         %   make.mcmc.diag.plot(base_model, key_posteriors[5], key_posteriors_titles[5])
-%       %   @
-%         %   \ec
-%       %}
-%   %
-%
-%   % \frame{\frametitle{MCMC diagnostics -- Gelman-Rubin plot for key parameters}
-%     %  \bc
-%     %   \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-%     %   \includegraphics[height=2.9in]{../../../doc/main-figures/KeyParameterGelman_MultChain}
-%     %  \ec
-%     % }
-%
-%----------------------------------------------------------
-%     % \frame{\frametitle{DM Weighting of age data: $\theta_{\text{surv}}$ and
-%       %     $\theta_{\text{fish}}$}
-%       %
-%       %   \bi
-%       %     \item MCMC explorations in 2019 indicated $\log \theta_{\text{surv}}$
-%         %       not being sampled efficiently.
-%       %     \bi
-%       %       \item Was due to many samples occurring in a part of parameter space
-%       %         where the effective sample size multiplier,
-%       %         $\theta_{\text{surv}}/(1+\theta_{\text{surv}})$, is between 0.99 and 1.0.
-%       %       \item Likelihood surface (w.r.t. $\theta_{\text{surv}}$) is almost completely
-%       %         flat in this area, and input sample sizes given full weight.
-%       %       \item To improve MCMC convergence, $\log \theta_{\text{surv}}$
-%         %         was fixed at the MLE estimate of \Sexpr{log.theta.survey},
-%       %         corresponding to a weight of
-%       %         $\theta_{\text{surv}}/(1+\theta_{\text{surv}}) = \Sexpr{DM.weight.survey}$.
-%       %     \ei
-%       %     \item $\log \theta_{\text{fish}}$ well sampled with median estimate of
-%       %         \Sexpr{log.theta.fishery.median} and associated weight of
-%       %         $\theta_{\text{fish}}/(1+\theta_{\text{fish}}) =
-%         %         \Sexpr{DM.weight.fishery.median}$.
-%       %   \ei
-%       % }
-%----------------------------------------------------------
-%     % \frame{\frametitle{Proportions of biomass for cohorts in \Sexpr{assess_yr}}
-%       %
-%       % \begin{columns}
-%       %   \begin{column}{0.5\textwidth}
-%       %     <<baa.table, results='asis', echo=FALSE>>=
-%         %       baa_table(baa_large, font.size = 9, space.size = 9)
-%       %     @
-%         %   \end{column}
-%       %   \begin{column}{0.5\textwidth}
-%       %   \bc
-%       %     <<baa.plot, figure.width = 5, figure.height = 10>>=
-%         %     g <- ggplot(baa %>% arrange(Cohort), aes(x = Cohort, y = Median)) +
-%   %       geom_point(color = "black", shape = "o", size = 6) +
-%   %       geom_errorbar(aes(ymin = `Lower CI`, ymax = `Upper CI`), color = "royalblue", size = 1, width = 0.2) +
-%   %       labs(y = paste0("Proportion of Biomass beginning of ", assess_yr)) +
-%   %       scale_x_continuous(breaks = seq(from = 1900, to = 2100, by = 1))
-% %     g
-% %     @
-%   %   \ec
-% %   \end{column}
-% % \end{columns}
-% %
-% % }
-%------------------------------------------------------------
-%     %\frame{\frametitle{Summary -- Key Cohorts}
-%       %  %\bi
-%       %  <<main.cohort.table, results='asis', echo=FALSE>>=
-%         %    cohort_table(base_model,
-%                           %             end_yr = end_yr,
-%                           %             cohorts = c(1999, 2010, 2014, 2016),
-%                           %             csv_dir = output_csv_dir,
-%                           %             xcaption = paste0("Changes in biomass at each age"),
-%                           %             font_size = 4.5,
-%                           %             space_size = 4.5)
-%       %    @
-%         %  %\ei
-%       %}
-%   %
-%
-%%     %\frame{\frametitle{Summary -- Key Cohorts}
-%       %  \bi
-%       %  \item The 2010 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2010"]) / (prev.assess.recruitment.med)["2010"]) * 100), 0)}\%)
-% %  \item The 2014 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2014"]) / (prev.assess.recruitment.med)["2014"]) * 100), 0)}\%)
-% %  \item The 2016 cohort is estimated to have increased by \Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"], 1)}~billion fish over last year's estimate (\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2016"]) / (prev.assess.recruitment.med)["2016"]) * 100), 0)}\%)
-% %  \item The 2010 cohort uncertainty is \Sexpr{rec_2010[[3]]}\% of what it was in the \Sexpr{last_assess_yr} assessment.
-% %  \item The 2014 cohort uncertainty is \Sexpr{rec_2014[[3]]}\% of what it was in the \Sexpr{last_assess_yr} assessment.
-% %  \item The 2016 cohort uncertainty is \Sexpr{rec_2016[[3]]}\% of what it was in the \Sexpr{last_assess_yr} assessment.
-% %  \item 2010 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2010 * 100, 1)}\% of the biomass
-% %  \item 2014 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2014 * 100, 1)}\% of the biomass
-% %  \item 2016 cohort is estimated to make up \Sexpr{f(b_curr_prop_mle_2016 * 100, 1)}\% of the biomass
-% %
-% %  \item The four highest catches have occured in the last four years and we have ageing 2010 and 2014 cohorts such that biomass is trendinng downwards.
-% % \item The 2014 recruitment has \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance of being as
-% %   large as the 2010 recruitment.
-% %  \ei
-% %}
-%----------------------------------------------------------
-%----------------------------------------------------------
-%----------------------------------------------------------
-%----------------------------------------------------------
+\end{document}

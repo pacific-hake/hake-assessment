@@ -1,17 +1,12 @@
 \documentclass[aspectratio=169]{beamer}
 \mode<presentation>
-\usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
-%\usecolortheme{seagull}  %Beaver, dolphin, dove, lily, orchid, seagull, seahorse
+\usetheme[compress]{Singapore}
 
 \usepackage[outdir=./figures/]{epstopdf}
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
 
-% pdf is displayed in full screen mode automatically
-%\hypersetup{pdfpagemode=FullScreen}
-
-%\setbeamersize{sidebar width left=0.05in}
 \setbeamersize{text margin left=0.1in}
 \setbeamersize{text margin right=0.1in}
 
@@ -43,10 +38,6 @@
 \newcounter{saveenumi}
 \input{../../hake-beamer.tex}
 
-%% <<echo=TRUE,  message=TRUE, results='show', warning=TRUE>>=
-%% opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5,
-%%                fig.height=4, echo=TRUE, results=TRUE, message=TRUE, warning=TRUE,
-%%                results='show', cache=TRUE, cache.path='knitr-cache/')
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 library(knitr)  # need this else these options get ignored on first run
 opts_chunk$set(dev = 'cairo_ps',
@@ -78,12 +69,11 @@ if(!dir.exists(fig_dir)){
 }
 @
 
+%----------------------------------------------------------
 \title[Hake Data]{Fisheries, data, and inputs used in the \Sexpr{assess_yr} Pacific Hake stock assessment}
 \author[JTC]{\includegraphics[height=1in, width=4in]{../../images/hake-on-board.eps}\\Pacific Hake Joint Technical Committee}
-%\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
 \subtitle{\tiny \disclaimer}
-
 
 \begin{document}
 
@@ -91,6 +81,7 @@ if(!dir.exists(fig_dir)){
 \titlepage
 }
 
+%----------------------------------------------------------
 \section[Review]{Year in review}
 \subsection{Summary}
 \frame{\frametitle{Year in review}
@@ -121,8 +112,7 @@ if(!dir.exists(fig_dir)){
   \ei
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \subsection{Data sources}
 \frame{\frametitle{Summary of data sources used}
 \begin{columns}[t]
@@ -149,7 +139,7 @@ if(!dir.exists(fig_dir)){
   \ei
   \end{column}
   \begin{column}{0.65\linewidth}
-    <<data.overview.map, out.height = '3.4in',out.width='1\\columnwidth'>>=
+    <<data-overview-map, out.height = '3.4in',out.width='1\\columnwidth'>>=
       oldpar <- par()
       par(mgp = c(2, 0.5, 0))
       make.data.overview.plot(base_model,
@@ -161,8 +151,7 @@ if(!dir.exists(fig_dir)){
 \end{columns}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \section[Catches]{Catches}
 \subsection{Catch history}
 \frame[t]{\frametitle{Catches}
@@ -176,8 +165,7 @@ if(!dir.exists(fig_dir)){
 \end{figure}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \subsection{Fleets and allocations}
 \frame{\frametitle{Allocations of \Sexpr{end_yr-1} TAC of \Sexpr{last.year.tac} t}
   \begin{columns}
@@ -204,8 +192,7 @@ if(!dir.exists(fig_dir)){
   \end{columns}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \subsection{Catch by country}
 \frame{\frametitle{Catches of \Sexpr{end_yr-1} TAC of \Sexpr{last.year.tac} t}
   \begin{columns}
@@ -232,11 +219,10 @@ if(!dir.exists(fig_dir)){
   \end{columns}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \subsection{Cumulative catch}
 \frame{\frametitle{Cumulative catch by month}
-  <<cumulative.catches>>=
+  <<cumulative-catches>>=
     oldpar <- par(no.readonly = TRUE)
     par(mar = c(2.1, 3.1, 1.1, 0.5), oma = c(2.1, 2.1, 0, 0),
       mgp = c(0.4, 0.6, 0))
@@ -274,8 +260,7 @@ if(!dir.exists(fig_dir)){
   @
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \subsection{Canada FT depth}
 \frame{\frametitle{Canada freezer-trawler depth distribution}
   <<depthcaft>>=
@@ -293,14 +278,11 @@ if(!dir.exists(fig_dir)){
   mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
   @
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \subsection{Canada SS depth}
 \frame{\frametitle{Canada shoreside depth distribution}
   <<depthcass>>=
-
   par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
   makebox(
     can.ss.gear.depth[can.ss.gear.depth$year >= max(can.ss.gear.depth$year) - 4, ],
@@ -314,8 +296,8 @@ if(!dir.exists(fig_dir)){
   mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
   @
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%----------------------------------------------------------
 \subsection{U.S. At-Sea depth}
 \frame{\frametitle{U.S. at-sea depth distribution}
   <<depthus>>=
@@ -333,12 +315,11 @@ if(!dir.exists(fig_dir)){
   @
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \section[Age Comps]{Age Compositions}
 \subsection{Age composition by sector}
 \frame{\frametitle{Age composition by sector}
-  <<age.comp.comparison>>=
+  <<age-comp-comparison>>=
     ## Fix the US age matrices to look like Canada's
     conv.ages <- function(age.df, rm.cols = 1){
       rownames(age.df) <- age.df$year
@@ -369,12 +350,11 @@ if(!dir.exists(fig_dir)){
   @
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \subsection{Survey age compositions}
 \frame{\frametitle{Acoustic survey age compositions}
 \begin{center}
-  <<survey.age.comps, out.height='85%', out.width='85%'>>=
+  <<survey-age-comps, out.height='85%', out.width='85%'>>=
     make_age_comp_bubble_plot(base_model,
                               clines = c(1984, 1999, 2010, 2014, 2016),
                               subplot = 2,
@@ -383,12 +363,11 @@ if(!dir.exists(fig_dir)){
 \end{center}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \subsection{Age composition comparison}
 \frame{\frametitle{Survey and fishery age-composition comparison}
 \begin{center}
-  <<age.comp.comparison.fishery.survey, out.height='90%', out.width='90%'>>=
+  <<age-comp-comparison-fishery-survey, out.height='90%', out.width='90%'>>=
     oldpar <- par()
     par(mar=c(1.1, 1.1, 0, 1.1), oma=c(1.1, 2.1, 0, 0), las = 1)
     ## NOTE this function is not generalized and needs to be fixed
@@ -402,14 +381,14 @@ if(!dir.exists(fig_dir)){
 \end{center}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \section[Survey]{Survey}
 \subsection{Acoustic backscatter}
 \frame{\frametitle{Acoustic survey backscatter (age-2$^+$) and age composition}
 \includegraphics[width=\maxwidth, height=2.8in]{../../../doc/main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}
 }
 
+%----------------------------------------------------------
 \subsubsection{Age-1 acoustic backscatter}
 \frame{\frametitle{Acoustic survey backscatter of age-1 fish}
 \begin{center}
@@ -418,13 +397,12 @@ if(!dir.exists(fig_dir)){
 \end{center}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
  \subsection{Acoustic survey age-2$^+$ biomass estimates}
  \frame{\frametitle{Acoustic survey age-2$^+$ biomass estimates}
    \begin{figure}
 \centering
-  <<survey.compare.extrap.noextrap, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+  <<survey-compare-extrap-noextrap, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
     make.survey.biomass.extrap.plot(
       dplyr::filter(base_model[["dat"]][["CPUE"]], index == 2)
     )
@@ -432,13 +410,12 @@ if(!dir.exists(fig_dir)){
 \end{figure}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
  \subsection{Acoustic survey age-1 fish estimates}
  \frame{\frametitle{Acoustic survey age-1 fish estimates}
    \begin{figure}
 \centering
-  <<survey.age1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
+  <<survey-age1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
     make.survey.age1.plot.data(
       dplyr::filter(base_model[["dat"]][["CPUE"]], index == 3),
       log.scale = FALSE,
@@ -448,8 +425,7 @@ if(!dir.exists(fig_dir)){
 \end{figure}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \section[Weight-at-age]{Weight-at-age}
 \subsection{Weight-at-age data}
 \frame{\frametitle{Weight-at-age data}
@@ -460,11 +436,10 @@ if(!dir.exists(fig_dir)){
 \ei
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \subsection{Mean weight-at-age by year}
 \frame{\frametitle{Weight-at-age by year}
-  <<wt.at.age>>=
+  <<wt-at-age>>=
     oldpar <- par()
     par(mar=c(4.1, 4.1, 1.1, 1.1), oma=c(0, 0, 0, 0))
     make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1)
@@ -472,8 +447,7 @@ if(!dir.exists(fig_dir)){
   @
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \subsection{Weight-at-age sample sizes}
 \frame{\frametitle{Sample sizes of weight-at-age by year}
 \begin{center}
@@ -489,8 +463,7 @@ if(!dir.exists(fig_dir)){
 \end{center}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \section{Maturity}
 % \subsection{Ovary sampling}
 % \frame{\frametitle{Ovary sampling}
@@ -506,7 +479,7 @@ if(!dir.exists(fig_dir)){
 %         \item **What is the status of Canadian samples**
 %       \ei
 %       \vspace{-3mm}
-%       <<ovary.table, results='asis', echo=FALSE, out.width='0.9\\columnwidth'>>=
+%       <<ovary-table, results='asis', echo=FALSE, out.width='0.9\\columnwidth'>>=
 %         make.maturity.samples.table(ovary.samples,
 %                                     xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.",
 %                                     xlabel = "tab:beamer-ovaries",
@@ -515,8 +488,7 @@ if(!dir.exists(fig_dir)){
 %       @
 % }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \subsection{Maturity and fecundity estimates}
 \frame{\frametitle{Maturity and fecundity estimates}
 \begin{figure}
@@ -527,8 +499,7 @@ if(!dir.exists(fig_dir)){
 \end{figure}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 % \subsection{Fecundity}
 % \frame{\frametitle{Fecundity}
 %   \bi
@@ -543,10 +514,7 @@ if(!dir.exists(fig_dir)){
 %   \ei
 % }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%----------------------------------------------------------
 \section[Data not used]{Data not used}
 \frame{\frametitle{Data sources \textbf{NOT} used in the base model}
   \bi
@@ -568,7 +536,5 @@ if(!dir.exists(fig_dir)){
     \item Externally derived environmental / ecosystem covariates
   \ei
 }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}

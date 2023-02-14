@@ -1,15 +1,19 @@
 \documentclass[aspectratio=169]{beamer}
 \mode<presentation>
-\usetheme[compress]{Singapore} %Berkeley, Palo Alto, Singapore, Warsaw
+\usetheme[compress]{Singapore}
 \usepackage[outdir=./figures/]{epstopdf}
 \usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{array}
-\usepackage{tabularx}
-\usepackage{booktabs}          %% Used in risk tables
-\usepackage{multirow}          %% Used in decision tables
-\usepackage[T1]{fontenc}  %to use < or > in tables
-\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[T1]{fontenc}
+% For centering with fixed width column or right cell values in a tabular
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+
 \setbeamersize{text margin left=0.1in}
 \setbeamersize{text margin right=0.1in}
 \setbeamertemplate{title page}

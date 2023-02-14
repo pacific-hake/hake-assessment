@@ -83,7 +83,6 @@ if(!dir.exists(fig_dir)){
 % -----------------------------------------------------------------------------
 \title[Hake Sensitivities]{\Sexpr{assess_yr} Pacific Hake Assessment: Sensitivities and Retrospectives}
 \author[JTC]{Pacific Hake Joint Technical Committee}
-%\institute{}
 \date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
 \subtitle{\tiny \disclaimer}
 
@@ -116,7 +115,6 @@ if(!dir.exists(fig_dir)){
 ~\\
 \textbf{All bridging, sensitivity, and retrospective models were run using MCMC.}
 \end{frame}
-% -----------------------------------------------------------------------------
 
 % -----------------------------------------------------------------------------
 \section{$h, M, \sigma_r$}
@@ -125,7 +123,7 @@ if(!dir.exists(fig_dir)){
 \frametitle{Sensitivity to steepness, $h$}
 \begin{center}
 \vspace{5pt}
-<<h.biomass.fig, fig.height=3.0>>=
+<<h-biomass-fig, fig.height=3.0>>=
 plot_biomass(model_lst = list(base_model,
                               sens_models[[1]][[2]],  # [[1]] is base model
                               sens_models[[1]][[3]]),
@@ -144,12 +142,13 @@ plot_biomass(model_lst = list(base_model,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \subsection{Sensitivity to natural mortality, $M$ }
 \begin{frame}
 \frametitle{Sensitivity to natural mortality, $M$ (base has prior median 0.2, sd 0.1)}
 \begin{center}
 \vspace{5pt}
-<<m.biomass.fig, fig.height=3.0>>=
+<<m-biomass-fig, fig.height=3.0>>=
 plot_biomass(model_lst = list(base_model,
                               sens_models[[1]][[6]],
                               sens_models[[1]][[7]],
@@ -170,11 +169,12 @@ plot_biomass(model_lst = list(base_model,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Sensitivity to natural mortality, $M$ (base has prior median 0.2, sd 0.1)}
 \begin{center}
 \vspace{5pt}
-<<m.biomass.fig.rel, fig.height=3.0>>=
+<<m-biomass-fig-rel, fig.height=3.0>>=
 plot_rel_biomass(model_lst = list(base_model,
                                   sens_models[[1]][[6]],
                                   sens_models[[1]][[7]],
@@ -194,10 +194,11 @@ plot_rel_biomass(model_lst = list(base_model,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Sensitivity to natural mortality, $M$ (base has prior median 0.2, sd 0.1)}
 \begin{center}
-<<m.par.table, results='asis', echo=FALSE>>=
+<<m-par-table, results='asis', echo=FALSE>>=
 table_param_est(models = list(base_model,
                               sens_models[[1]][[6]],  # [[1]] is base model
                               sens_models[[1]][[7]],
@@ -217,11 +218,12 @@ table_param_est(models = list(base_model,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \subsection{Sensitivity to s.d.~of recruitment variability, $\sigma_r$; base \Sexpr{sigma_r}}
 \begin{frame}
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$ (base is \Sexpr{sigma_r})}
 \begin{center}
-<<sigmar.biomass.fig, fig.height=3.0>>=
+<<sigmar-biomass-fig, fig.height=3.0>>=
 plot_biomass(model_lst = list(base_model,
                               sens_models[[1]][[4]],
                               sens_models[[1]][[5]]),
@@ -240,11 +242,12 @@ plot_biomass(model_lst = list(base_model,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$ (base is \Sexpr{sigma_r})}
 \begin{center}
 \vspace{5pt}
-<<sigmar.biomass.fig.rel, fig.height=3.0>>=
+<<sigmar-biomass.fig.rel, fig.height=3.0>>=
 plot_rel_biomass(model_lst = list(base_model,
                                   sens_models[[1]][[4]],
                                   sens_models[[1]][[5]]),
@@ -261,7 +264,6 @@ plot_rel_biomass(model_lst = list(base_model,
 @
 \end{center}
 \end{frame}
-% -----------------------------------------------------------------------------%
 
 % -----------------------------------------------------------------------------%
 \section{Age-1 index}
@@ -269,7 +271,7 @@ plot_rel_biomass(model_lst = list(base_model,
 \begin{frame}
 \frametitle{Remove age-1 index}
 \begin{center}
-<<age1.biomass.fig, fig.height=3.0>>=
+<<age1-biomass-fig, fig.height=3.0>>=
 plot_biomass(model_lst = list(base_model,
                               sens_models[[2]][[2]]),
              model_names = c(base_model_name,
@@ -286,10 +288,11 @@ plot_biomass(model_lst = list(base_model,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Remove age-1 index}
 \begin{center}
-<<age1.par.table, results='asis', echo=FALSE>>=
+<<age1-par-table, results='asis', echo=FALSE>>=
 table_param_est(models = list(base_model,
                               sens_models[[2]][[2]]),
                 model.names = c(base_model_name,
@@ -306,14 +309,13 @@ table_param_est(models = list(base_model,
 \end{frame}
 
 % -----------------------------------------------------------------------------%
-
 \section{Weighting}
 \subsection{Downweight fishery age-composition data}
 \begin{frame}
 \frametitle{Downweight fishery age-composition data}
 \vspace{5pt}
 \begin{center}
-<<downweight.biomass.fig, fig.height=3.0>>=
+<<downweight-biomass-fig, fig.height=3.0>>=
 plot_biomass(model_lst = list(base_model,
                               sens_models[[2]][[3]]),
              model_names = c(base_model_name,
@@ -330,11 +332,12 @@ plot_biomass(model_lst = list(base_model,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Downweight fishery age-composition data}
 \vspace{5pt}
 \begin{center}
-<<downweight.sensitivity.biomass.rel, fig.height=3.0>>=
+<<downweight-sensitivity-biomass-rel, fig.height=3.0>>=
 plot_rel_biomass(model_lst = list(base_model,
                                   sens_models[[2]][[3]]),
                  model_names = c(base_model_name,
@@ -350,6 +353,7 @@ plot_rel_biomass(model_lst = list(base_model,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \section{$\Phi$}
 \subsection{Flexibility in time-varying selectivity -- $\Phi$}
 \begin{frame}
@@ -369,12 +373,13 @@ Here we test alternative values of $\Phi$
 
 \end{frame}
 
+%----------------------------------------------------------
 \subsection{Alternative deviations for selectivity, $\Phi$}
 \begin{frame}
 \frametitle{Alternative deviations for selectivity, $\Phi$}
 \vspace{5pt}
 \begin{center}
-<<phi.biomass.fig, fig.height=3.0>>=
+<<phi-biomass-fig, fig.height=3.0>>=
 plot_biomass(model_lst = list(base_model,
                               sens_models[[3]][[2]],
                               sens_models[[3]][[3]],
@@ -395,11 +400,12 @@ plot_biomass(model_lst = list(base_model,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Alternative deviations for selectivity, $\Phi$}
 \vspace{5pt}
 \begin{center}
-<<phi.recr.fig, fig.height=3.0>>=
+<<phi-recr-fig, fig.height=3.0>>=
 plot_recruitment(d_obj = d_obj_sens_recr[[3]],
                  x_expansion = 2,
                  ylim = c(0,45),
@@ -412,12 +418,12 @@ plot_recruitment(d_obj = d_obj_sens_recr[[3]],
 \end{center}
 \end{frame}
 
-
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Alternative deviations for selectivity -- age-2+ biomass index fit}
 \begin{center}
 \vspace{5pt}
-<<phi.survey.fig, fig.height=3>>=
+<<phi-survey-fig, fig.height=3>>=
 plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
                        survey_type = "age2",
                        x_expansion = 2,
@@ -428,11 +434,12 @@ plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Alternative deviations for selectivity, $\Phi$}
 \begin{center}
 \vspace{-5pt}
-<<phi.sensitivity.table, results='asis', echo=FALSE>>=
+<<phi-sensitivity-table, results='asis', echo=FALSE>>=
 table_param_est(models = list(base_model,
                               sens_models[[3]][[2]],
                               sens_models[[3]][[3]],
@@ -459,7 +466,7 @@ table_param_est(models = list(base_model,
 \frametitle{Base model retrospectives - Spawning biomass}
 \begin{center}
 \vspace{-5pt}
-<<retro.biomass.1, fig.height=3>>=
+<<retro-biomass-1, fig.height=3>>=
 plot_biomass(d_obj = map(d_obj_retro_biomass,
                          ~filter(.x,
                                  model %in% c("Base model",
@@ -476,11 +483,12 @@ plot_biomass(d_obj = map(d_obj_retro_biomass,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Base model retrospectives - Spawning biomass}
 \begin{center}
 \vspace{-5pt}
-<<retro.biomass.2, fig.height=3>>=
+<<retro-biomass-2, fig.height=3>>=
 plot_biomass(d_obj = map(d_obj_retro_biomass,
                          ~filter(.x,
                                  model %in% c("Base model",
@@ -498,11 +506,12 @@ plot_biomass(d_obj = map(d_obj_retro_biomass,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Base model retrospectives - Spawning biomass}
 \begin{center}
 \vspace{-5pt}
-<<retro.biomass.3, fig.height=3>>=
+<<retro-biomass-3, fig.height=3>>=
 plot_biomass(d_obj = map(d_obj_retro_biomass,
                          ~filter(.x,
                                  model %in% c("Base model",
@@ -521,11 +530,12 @@ plot_biomass(d_obj = map(d_obj_retro_biomass,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Base model retrospectives - Spawning biomass}
 \begin{center}
 \vspace{-5pt}
-<<retro.biomass.4, fig.height=3>>=
+<<retro-biomass-4, fig.height=3>>=
 plot_biomass(d_obj = map(d_obj_retro_biomass,
                          ~filter(.x,
                                  model %in% c("Base model",
@@ -545,11 +555,12 @@ plot_biomass(d_obj = map(d_obj_retro_biomass,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Base model retrospectives - Spawning biomass}
 \begin{center}
 \vspace{-5pt}
-<<retro.biomass.5, fig.height=3>>=
+<<retro-biomass-5, fig.height=3>>=
 plot_biomass(d_obj = d_obj_retro_biomass,
              leg_font_size = 5,
              x_expansion = 4,
@@ -563,13 +574,12 @@ plot_biomass(d_obj = d_obj_retro_biomass,
 \end{center}
 \end{frame}
 
-
-
+%----------------------------------------------------------
 \begin{frame}
 \frametitle{Base model retrospectives - recruitment}
 \begin{center}
 \vspace{-5pt}
-<<retro.recr, fig.height=3>>=
+<<retro-recr, fig.height=3>>=
 plot_recruitment(d_obj = d_obj_retro_recr,
                  leg_pos = c(0.6, 0.86),
                  leg_font_size = 5,
@@ -581,17 +591,13 @@ plot_recruitment(d_obj = d_obj_retro_recr,
 \end{center}
 \end{frame}
 
-
-
-
+%----------------------------------------------------------
 \subsection{Base model squid plot}
 \begin{frame}
 \frametitle{Base model retrospective -- squid plot}
 \begin{center}
 \vspace{-5pt}
-%, out.width='0.9\\columnwidth'>>=   Keep following values else
-%   years get too close to the tendrils
-<<retro.3, fig.height=3.5>>=
+<<retro-3, fig.height=3.5>>=
 retro_cohorts <- (end_yr - 11):(end_yr - 2)
 plot_squid(base_model,
                 subplot = 1,
@@ -601,12 +607,13 @@ plot_squid(base_model,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \section{Historical}
 \begin{frame}
 \frametitle{Historical assessments}
 \begin{center}
 \vspace{-5pt}
-<<retro.4, out.width='.88\\columnwidth', out.height='.8\\textheight'>>=
+<<retro-4, out.width='.88\\columnwidth', out.height='.8\\textheight'>>=
 make.assessment.history.plot(base_model,
                              assessment.history,
                              cex.legend = 0.48 * 38 / (38 + assess_yr - 2022))
@@ -615,6 +622,7 @@ make.assessment.history.plot(base_model,
 \end{center}
 \end{frame}
 
+%----------------------------------------------------------
 \frame{\frametitle{Historical performance of the Pacific Hake stock assessment}
   \bi
   \item General question -- how `good' are projection probabilities? And why do
@@ -645,9 +653,10 @@ make.assessment.history.plot(base_model,
 \ei
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
-<<historical.prob.plot.1a, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+<<historical-prob-plot-1a, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
 make.historical.probs.plot(base_model,
                            type = "decline.one.year",
                            add.50 = FALSE)
@@ -655,23 +664,26 @@ make.historical.probs.plot(base_model,
 \ec
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
-<<historical.prob.plot.1c, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+<<historical-prob-plot-1c, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
   make.historical.probs.plot(base_model)
 @
 \ec
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
-<<historical.prob.plot.1d, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+<<historical-prob-plot-1d, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
   make.historical.probs.plot(base_model,
                              add.projs = TRUE)
 @
 \ec
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bi
   \item{Previous assessments have `correctly' projected an increase or decrease
@@ -683,9 +695,10 @@ make.historical.probs.plot(base_model,
 \ei
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Spawning Biomass}
 \bc
-<<spawning.biomass, fig.height=3>>=
+<<spawning-biomass, fig.height=3>>=
 plot_biomass(list(base_model),
              list(base_model_name),
              point_shape = 1,
@@ -701,9 +714,10 @@ plot_biomass(list(base_model),
 \ec
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
 \bc
-<<historical.prob.plot.2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+<<historical-prob-plot-2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
 make.historical.probs.plot(base_model,
                            type = "bforty",
                            legend.loc = "topright")
@@ -714,7 +728,7 @@ make.historical.probs.plot(base_model,
 % --------------------------------------------------------------
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
 \bc
-<<historical.prob.plot.2b, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+<<historical-prob-plot-2b, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
 make.historical.probs.plot(base_model,
                            type = "bforty",
                            add.projs = TRUE,
@@ -723,6 +737,7 @@ make.historical.probs.plot(base_model,
 \ec
 }
 
+%----------------------------------------------------------
 \subsection{}
 \frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
   \bi
@@ -739,24 +754,10 @@ make.historical.probs.plot(base_model,
 }
 
 % --------------------------------------------------------------
-%% \frame{\frametitle{Can also do retrospective calculations -- base model}
-%% \bc
-%% <<historical.prob.plot.retro, fig.height=2.7, fig.width=5.5>>=
-%% make.historical.probs.retro.plot(base_model,
-%%                                  legend.loc = "topright",
-%%                                  legend.cex = 0.4)
-%% @
-%% \ec
-%% **Current base model with data up to 2011 would have said very low chance of
-%% $B_{2013}$ falling below $\Bforty$.
-%% }
-
-
-% --------------------------------------------------------------
 \section{Recruitment}
 \frame{\frametitle{Recruitment}
 \bc
-<<rec.fig, fig.height=2.8>>=
+<<rec-fig, fig.height=2.8>>=
 plot_recruitment(list(base_model),
                  list(base_model_name),
                  single_line_color = "blue",
@@ -768,9 +769,10 @@ plot_recruitment(list(base_model),
 \ec
 }
 
+%----------------------------------------------------------
 \frame{\frametitle{Scaled plot to further conveying recruitment variability}
 \bc
-<<rec.variability, fig.height=3.7>>=
+<<rec-variability, fig.height=3.7>>=
 make.mcmc.recruitment.plot(base_model,
                            start_yr = 1966,
                            equil.yr = unfished_eq_yr,
@@ -785,8 +787,8 @@ make.mcmc.recruitment.plot(base_model,
 Plotting annual recruitment relative to huge 2010 recruitment shows that 2014
 was definitely not as large as 2010, in contrast to intuition from usual plot.
 }
-% --------------------------------------------------------------
 
+% --------------------------------------------------------------
 \section{Summary}
 \subsection{Overview}
 \begin{frame}
