@@ -206,7 +206,7 @@ if(!dir.exists(fig_dir)){
 % \begin{center}
 % \vspace{-5pt}
 % <<age1-sensitivity-table, results='asis', echo=FALSE>>=
-% param_est_table(request_models,
+% table_param_est(request_models,
 %                 request_models_names,
 %                 end_yr = end_yr,
 %                 digits = 3,
@@ -318,7 +318,7 @@ plot_biomass(sens_req1,
 \begin{center}
 \vspace{-5pt}
 <<selectivity-sensitivity-table, results='asis', echo=FALSE>>=
-param_est_table(sens_req1,
+table_param_est(sens_req1,
                 sens_req1_names,
                 end_yr = end_yr,
                 digits = 3,

@@ -455,13 +455,12 @@ make.ci.posterior.table(
 @
 
 <<main-parameter-estimates, results='asis', echo=FALSE>>=
-param_est_table(list(base_model, last_yr_base_model),
-                model.names = c(base_model_name, last_yr_base_model_name),
+table_param_est(list(base_model, last_yr_base_model),
+                model_nms = c(base_model_name, last_yr_base_model_name),
                 end_yr = end_yr,
                 digits = 3,
-                getrecs = c(2010, 2014, 2016, 2020),
+                rec_yrs = c(2010, 2014, 2016, 2020),
                 show_like = FALSE,
-                mle_table = FALSE,
                 xcaption =
                   paste0("Select parameters, derived quantities, ",
                          "and reference point posterior median ",
@@ -470,8 +469,8 @@ param_est_table(list(base_model, last_yr_base_model),
                          "compared to the previous assessment's (",
                          end_yr - 1, ") base model."),
                 xlabel = "tab:main-parameter-estimates",
-                font.size = 10,
-                space.size = 11)
+                font_size = 10,
+                space_size = 11)
 @
 
 <<main-reference-points-table, results='asis', echo=FALSE>>=
@@ -612,8 +611,8 @@ make.risk.table(base_model,
 \pagestyle{mylandscape}
 \centering
 <<main-parameter-estimates-sens-1, results='asis', echo=FALSE>>=
-param_est_table(sens_models[[1]],
-                model.names = sens_models_names[[1]],
+table_param_est(sens_models[[1]],
+                model_nms = sens_models_names[[1]],
                 end_yr = end_yr,
                 digits = 3,
                 xcaption = paste0("Posterior medians for select parameters, derived quantities,
@@ -622,14 +621,14 @@ param_est_table(sens_models[[1]],
                                    Section~\\ref{sec:assessment-sensitivity-analyses}).
                                   A dash (--) indicates that the parameter or derived quantity was not estimated in the model."),
                 xlabel = "tab:main-parameter-estimates-sens-1",
-                font.size = 9,
-                space.size = 10,
-                getrecs = c(2010, 2014, 2016,2020))
+                font_size = 9,
+                space_size = 10,
+                rec_yrs = c(2010, 2014, 2016, 2020))
 @
 
 <<main-parameter-estimates-sens-2, results='asis', echo=FALSE>>=
-param_est_table(sens_models[[2]],
-                model.names = sens_models_names[[2]],
+table_param_est(sens_models[[2]],
+                model_nms = sens_models_names[[2]],
                 end_yr = end_yr,
                 digits = 3,
                 xcaption = paste0("Posterior medians for select parameters,
@@ -638,14 +637,14 @@ param_est_table(sens_models[[2]],
                                    Section~\\ref{sec:assessment-sensitivity-analyses}).
                                    A dash (--) indicates that the parameter or derived quantity was not estimated in the model."),
                 xlabel = "tab:main-parameter-estimates-sens-2",
-                font.size = 9,
-                space.size = 11,
-                getrecs = c(2010, 2014, 2016,2020))
+                font_size = 9,
+                space_size = 11,
+                rec_yrs = c(2010, 2014, 2016, 2020))
 @
 
 <<main-parameter-estimates-sens-3, results='asis', echo=FALSE>>=
-param_est_table(sens_models[[3]],
-                model.names = sens_models_names[[3]],
+table_param_est(sens_models[[3]],
+                model_nms = sens_models_names[[3]],
                 end_yr = end_yr,
                 digits = 3,
                 xcaption = paste0("Posterior medians for select parameters,
@@ -654,9 +653,9 @@ param_est_table(sens_models[[3]],
                                    Section~\\ref{sec:assessment-sensitivity-analyses}).
                                    A dash (--) indicates that the parameter or derived quantity was not estimated in the model."),
                 xlabel = "tab:main-parameter-estimates-sens-3",
-                font.size = 9,
-                space.size = 11,
-                getrecs = c(2010, 2014, 2016,2020))
+                font_size = 9,
+                space_size = 11,
+                rec_yrs = c(2010, 2014, 2016, 2020))
 @
 
 \end{landscape}
@@ -665,12 +664,12 @@ param_est_table(sens_models[[3]],
 \clearpage
 
 <<main-parameter-estimates-retro, results='asis', echo=FALSE>>=
-param_est_table(retro.list,
+table_param_est(retro.list,
                 model.names = retro.model.names,
                 end_yr = end_yr,
                 digits = 3,
                 show_like = FALSE,
-                getrecs = c(2010, 2014, 2016),
+                getrecs = c(2010, 2014, 2016, 2020),
                 xcaption = "Posterior medians from the base model for
                             select parameters, derived quantities,
                             reference point estimates, and negative
