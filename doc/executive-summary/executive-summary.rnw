@@ -955,7 +955,8 @@ make.risk.table(base_model,
                 xlabel = "tab:es-risk-year-1",
                 font.size = 11,
                 space.size = 12,
-                placement = "tbp")
+                placement = "tbp",
+                catch_col_width_cm = 1.9)
 @
 \clearpage
 
@@ -997,7 +998,8 @@ make.risk.table(base_model,
                 xlabel = "tab:es-risk-year-2",
                 font.size = 11,
                 space.size = 11,
-                placement = "tbp")
+                placement = "tbp",
+                catch_col_width_cm = 1.9)
 @
 
 \clearpage
@@ -1047,7 +1049,8 @@ make.risk.table(base_model,
                 xlabel = "tab:es-risk-year-3",
                 font.size = 11,
                 space.size = 11,
-                placement = "tbp")
+                placement = "tbp",
+                catch_col_width_cm = 1.9)
 @
 \clearpage
 
