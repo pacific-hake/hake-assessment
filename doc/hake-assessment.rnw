@@ -2,7 +2,7 @@
 \DocumentMetadata{testphase=phase-II, uncompress, pdfstandard=A-2U, lang=en-US}
 
 \documentclass[12pt]{book}
-%% Allows the numbering of figures/tables to be unique witin a section
+%% Allows the numbering of figures/tables to be unique within a section
 %%  so that clicking table d in the executive summary takes you there, and not
 %%  to the fourth table in the main-tables section
 \usepackage{chngcntr}
