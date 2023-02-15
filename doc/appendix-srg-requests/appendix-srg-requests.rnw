@@ -73,32 +73,20 @@ joined <- dplyr::left_join(
   dplyr::mutate(
     residual = value - obs,
     log_predicted = log(value),
-    log_residual = log(value) - log(obs)
-  )
-
-gg <- ggplot2::ggplot(
-  data = joined,
-  ggplot2::aes(value, residual)
-) +
-  ggplot2::geom_point() +
-  ggplot2::xlab("Predicted age-1 index") +
-  ggplot2::ylab("Residual = predicted - observed")
-
-gg2 <- ggplot2::ggplot(
-  data = joined,
-  ggplot2::aes(log_predicted, log_residual)
-) +
-  ggplot2::geom_point() +
-  ggplot2::xlab("Log of predicted age-1 index") +
-  ggplot2::ylab("Log of predicted - log of observed")
+    log_residual = log(value) - log(obs))
 @
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<srg-requests-age1, fig.height=4, is.fig = TRUE, alt.text = "This figure that there is no trend in the residuals of the fits to the age-1 index">>=
-gg
+<<srg-requests-age1, fig.height=4, is.fig = TRUE, alt.text = "This figure shows that there is no trend in the residuals of the fits to the age-1 index.">>=
+ggplot2::ggplot(
+  data = joined,
+  ggplot2::aes(value, residual)) +
+  ggplot2::geom_point() +
+  ggplot2::xlab("Predicted age-1 index") +
+  ggplot2::ylab("Residual = predicted - observed")
 @
 \end{center}
 \caption{Residuals of the age-1 index fits against the predicted values.}
@@ -108,8 +96,13 @@ gg
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<srg-requests-age1-log, fig.height=4, is.fig = TRUE, alt.text = "This figure shows that there is no trend in the residuals of the fits to the age-1 index when plotted on a log scale">>=
-gg2
+<<srg-requests-age1-log, fig.height=4, is.fig = TRUE, alt.text = "This figure shows that there is no trend in the residuals of the fits to the age-1 index when plotted on a log scale.">>=
+ggplot2::ggplot(
+  data = joined,
+  ggplot2::aes(log_predicted, log_residual)) +
+  ggplot2::geom_point() +
+  ggplot2::xlab("Log of predicted age-1 index") +
+  ggplot2::ylab("Log of predicted - log of observed")
 @
 \end{center}
 \caption{As for Figure~\ref{fig:srg-age1-residuals} but on logarithmic axes.}
@@ -143,7 +136,7 @@ sens_req1_names <-
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<srg-requests-selectivity-biomass-fig, fig.height=4, is.fig = TRUE, alt.text = "This figure shows that changing the maximum age of estimated selectivity changes the historical spawning biomass estimates but not the recent estimates">>=
+<<srg-requests-selectivity-biomass-fig, fig.height=4, is.fig = TRUE, alt.text = "This figure shows that changing the maximum age of estimated selectivity changes the historical spawning biomass estimates but not the recent estimates.">>=
 plot_biomass(model_lst = list(sens_models[[4]][[1]],
                               sens_models[[4]][[2]],
                               sens_models[[4]][[3]],
@@ -203,7 +196,7 @@ compared to the base model value of 6 (Figure~\ref{fig:main-tv-selex-uncertainty
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<srg-requests-tv-selex-uncertainty-1, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows selectivity by year plots with medians and 0.95 credible intervals with maximum age of estimated selectivity set to 5">>=
+<<srg-requests-tv-selex-uncertainty-1, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows selectivity by year plots with medians and 0.95 credible intervals with maximum age of estimated selectivity set to 5.">>=
 plot_multiple_tv_selex_unc(sens_models[[4]][[2]], n_col = 2)
 @
 \end{center}
@@ -220,7 +213,7 @@ plot_multiple_tv_selex_unc(sens_models[[4]][[2]], n_col = 2)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<srg-requests-tv-selex-uncertainty-2, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows selectivity by year plots with medians and 0.95 credible intervals with maximum age of estimated selectivity set to 7">>=
+<<srg-requests-tv-selex-uncertainty-2, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows selectivity by year plots with medians and 0.95 credible intervals with maximum age of estimated selectivity set to 7.">>=
 plot_multiple_tv_selex_unc(sens_models[[4]][[3]], n_col = 2)
 @
 \end{center}
@@ -233,7 +226,7 @@ plot_multiple_tv_selex_unc(sens_models[[4]][[3]], n_col = 2)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<srg-requests-tv-selex-uncertainty-3, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows selectivity by year plots with medians and 0.95 credible intervals with maximum age of estimated selectivity set to 8">>=
+<<srg-requests-tv-selex-uncertainty-3, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows selectivity by year plots with medians and 0.95 credible intervals with maximum age of estimated selectivity set to 8.">>=
 plot_multiple_tv_selex_unc(sens_models[[4]][[4]], n_col = 2)
 @
 \end{center}
@@ -243,4 +236,4 @@ plot_multiple_tv_selex_unc(sens_models[[4]][[4]], n_col = 2)
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\clearpage % Needed to make footers correct
+\clearpage
