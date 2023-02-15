@@ -66,7 +66,7 @@ add_alt_text <- function(tex_file = "hake-assessment.tex",
       Reduce("|", .) |>
       which()
 
-    map2(manual_row_inds, manual_inds, ~{
+    walk2(manual_row_inds, manual_inds, ~{
       fig_text <- gsub(inc_graphics_pattern_manual, "\\2", lines[.y])
       new_row <- c("Manually added figure", fig_text)
       alt_fig_text <<- insert_row(alt_fig_text, new_row, .x)
@@ -79,7 +79,12 @@ add_alt_text <- function(tex_file = "hake-assessment.tex",
   }
 
   if(length(all_inds) != length(alt_fig_text$text)){
-    browser()
+    # If this trips, check the chunks against the alt text list by using this
+    # code. Do ten at a time (1:10 then 11:20, etc) and look at the last one
+    # of the ten for a match to narrow it down:
+    # k <- alt_fig_text$text
+    # kk <- basename(lines[all_inds])
+    # a <- 1:10;k[a];message();kk[a];
     stop("The number of lines containing the includegraphics{} macro does ",
          "not match the number of entries in the alt text data frame. Make ",
          " sure you have entered an alt.text chunk entry for all figures",
