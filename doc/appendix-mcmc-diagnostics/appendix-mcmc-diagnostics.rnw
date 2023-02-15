@@ -4,7 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-diag-m-r0, fig.height=4, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for two key parameters">>=
+<<main-mcmc-diag-m-r0, fig.height=4, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for natural mortality and log R0 parameters.">>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -21,7 +21,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-diag-h-extra-sd, fig.height=4.8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for two more key parameters">>=
+<<main-mcmc-diag-h-extra-sd, fig.height=4.8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for steepness and the survey extra standard deviation parameters.">>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -40,7 +40,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-diag-dm, fig.height=4.8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for another two key parameters">>=
+<<main-mcmc-diag-dm, fig.height=4.8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for the two Dirichlet-multinomial parameters for the fishery and survey.">>=
 oldpar <- par(no.readonly=TRUE)
 par(mar=c(4.1, 4.1, 3.1, 0.1))
 layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
@@ -60,7 +60,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-diag-hists, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good summary MCMC diagnostics for all base model parameters">>=
+<<main-mcmc-diag-hists, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good summary MCMC diagnostics for all base model parameters.">>=
 plot_mcmc_param_stats(base_model)
 @
 \end{center}
@@ -72,7 +72,7 @@ plot_mcmc_param_stats(base_model)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-pairs, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many parameters and derived quantities. There is little correlation between values">>=
+<<main-mcmc-pairs, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many parameters and derived quantities. Natural mortality and log R0 show positive correlation as do 2014 and 2016 recruitment.">>=
 make.mcmc.diag.pairs.plot(base_model,
                           inc.key.params = TRUE,
                           key_posteriors_regex = key_posteriors,
@@ -93,7 +93,7 @@ make.mcmc.diag.pairs.plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-pairs-recruit-devs, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many derived quantities. There is little correlation between values">>=
+<<main-mcmc-pairs-recruit-devs, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many derived quantities. There is some positive correlation between 2014 and 2016 recruitment deviations.">>=
 make.mcmc.diag.pairs.plot(base_model,
                           inc.key.params = FALSE,
                           recr = (end_yr-10):(end_yr-1))
@@ -104,4 +104,4 @@ make.mcmc.diag.pairs.plot(base_model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\clearpage        % needed for footer to be correct
+\clearpage
