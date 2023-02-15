@@ -6,8 +6,7 @@ Authors@R: c(
     person(c("Aaron", "M."), "Berger", role = "aut", email = "aaron.berger@noaa.gov"),
     person(c("Andrew"), "Edwards", role = "aut", email = "Andrew.Edwards@dfo-mpo.gc.ca"),
     person(c("Chris"), "Grandin", role = c("aut", "cre"), email = "Chris.Grandin@dfo-mpo.gc.ca"),
-    person(c("Kelli", "F."), "Johnson", role = "aut", email = "kelli.johnson@noaa.gov")
-    )
+    person(c("Kelli", "F."), "Johnson", role = "aut", email = "kelli.johnson@noaa.gov"))
 Description: Code to compile the stock assessment for Pacific Hake.
 License: 
 URL: https://github.com/pacific-hake/hake-assessment
@@ -18,8 +17,9 @@ Suggests:
     testthat
 VignetteBuilder: knitr
 Depends:
-    R (>= 3.3)
+    R (>= 4.2.2)
 Imports:
+    adnuts,
     cli,
     cowplot,
     crayon,
@@ -35,23 +35,19 @@ Imports:
     here,
     knitr,
     lubridate,
-    nwfscMapping,
-    PBSmapping,
-    PBSmodelling,
+    matrixcalc,
     RColorBrewer,
     reshape2,
-    rnaturalearthhires
+    rnaturalearthhires,
     r4ss (>= 1.35.3),
     rgeos,
+    rstan,
+    shinystan,
     stats,
     tictoc,
     tidyverse,
-    utils,
-    adnuts,
-    matrixcalc,
-    rstan,
-    shinystan,
-    snowfall
+    tools,
+    utils
 Remotes: 
     github::cgrandin/adnuts,
     github::pbs-assess/gfutilities,
