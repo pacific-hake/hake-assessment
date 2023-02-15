@@ -17,13 +17,15 @@ from 7th to 10th February \Sexpr{assess_yr}.
 
 \subsection*{Request 1 -- age-1 index inputs}
 
-``Check whether 2001 age-1 index is included in the data for the 2023 assessment. Do a run including this (zero) value.''
+``Check whether the 2001 age-1 index is included in the data for the 2023 assessment. Do a run including this (zero) value.''
 
-The JTC confirmed that the age-1 index for 2001 is not included in the base
-model. A run was tried with a low value of 100, since a zero cannot be included
-(due to the assumption of a lognormal distribution), but there were convergence
-issues. This will be looked into further for next year, perhaps trying
-alternative distributions that can account for zeros.
+The JTC confirmed that the observed value of zero for the age-1 index in 2001 is not included in the base
+model. A model run was examined using an arbitrarily low value of 100, since a zero is undefined when using
+a lognormal distribution, but there were convergence
+issues. The exclusion of the 2001 value has negligible effect on model results or performance, because
+the model already estimates a very low abundance of age-1 fish in 2001 (i.e., the inclusion of the 2021 value will
+only be confirmatory). Alternative distributions could be explored that can readily handle zero's, but these are currently not
+available in Stock Synthesis for survey inputs.
 
 \subsection*{Request 2 --  residuals of age-1 index}
 
@@ -35,16 +37,17 @@ Plotting the residuals on linear and logarithmic axes shows no apparent trend in
 the residuals with the predicted age-1 index values
 (Figures~\ref{fig:srg-age1-residuals} and~\ref{fig:srg-age1-residuals-log}).
 
-\subsection*{Request 3 -- max age of constant selectivity}
+\subsection*{Request 3 -- max age of constant fishery selectivity}
 
 ``The model currently estimates selectivity at age 6 and assumes this value is constant for
 all ages at 6 and above. Repeat the assessment with this threshold greater than age 6
 (e.g., at age 7 and at age 8, or runs that may already be complete).''
 
-The model was re-run with the maximum ages set to ages 7, 8, and also 5 (to
-bracket the base model value of 6). The estimates of historical spawning biomass
-before 1990 change somewhat, but later estimates are somewhat similar (Figure~\ref{fig:srg-max-age-select}). Associated
-estimates of key parameters and derived quantities are shown in
+The model was re-run with the maximum age for fishery selectivity set to age 7, 8, and also 5 (to
+bracket the base model value of 6). The estimates of historical female spawning biomass
+before 1990 change by scaling up or down somewhat, but estimates since that time
+are very similar among model runs (Figure~\ref{fig:srg-max-age-select}). There are only minor
+differences in the estimates of key parameters and derived quantities among models, as shown in
 Table~\ref{tab:srg-requests-parameter-estimates}. Note that the equivalent
 figure in the 2021 assessment (Figure~49 of \citealt{JTC2021}) looks similar to
 Figure~\ref{fig:srg-max-age-select}, but that the equivalent figure in the 2022
@@ -157,7 +160,7 @@ plot_biomass(model_lst = list(sens_models[[4]][[1]],
 \end{center}
 \caption{Estimates of female spawning biomass for the base model and alternative
   sensitivity runs representing changing the maximum age of estimated
-  selectivity from the base model value of 6 to 5, 7, and 8.}
+  fishery selectivity from the base model value of 6 to 5, 7, and 8.}
 \label{fig:srg-max-age-select}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -177,7 +180,7 @@ table_param_est(list(sens_models[[4]][[1]],
                             select parameters, derived quantities,
                             reference point estimates, and negative
                             log likelihoods for sensitivity runs with alternative
-                            maximum ages at selectivity.",
+                            maximum ages for fishery selectivity.",
                 xlabel = "tab:srg-requests-parameter-estimates",
                 font_size = 10,
                 space_size = 11,
@@ -188,9 +191,11 @@ table_param_est(list(sens_models[[4]][[1]],
 
 ``Present selectivity curves for the [earlier] maximum age sensitivity runs.''
 
-These are for changing the maximum age of estimated selectivity to 5, 7, and 8
+These are for changing the maximum age of estimated fishery selectivity to 5, 7, and 8
 (Figures~\ref{fig:srg-requests-tv-selex-uncertainty-1}-\ref{fig:srg-requests-tv-selex-uncertainty-3}),
-compared to the base model value of 6 (Figure~\ref{fig:main-tv-selex-uncertainty}).
+compared to the base model value of 6 (Figure~\ref{fig:main-tv-selex-uncertainty}). The number of model parameters
+decreases by 33 for the maximum age of 5 model run relative to the base model, and increases by 33 and 66
+relative to the base model for the maximum age of 7 and 8, respectively, model runs.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
