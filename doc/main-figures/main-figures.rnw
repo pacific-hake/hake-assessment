@@ -4,8 +4,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
-\begin{center}    % Don't make any bigger as then previous page becomes blank
-<<main-overview-map, fig.height=9, is.fig = TRUE, alt.text = "This figure shows many ports and cities of interest for the hake fishery">>=
+\begin{center}
+<<main-overview-map, fig.height=9, is.fig = TRUE, alt.text = "This figure shows many ports and cities of interest for the hake fishery.">>=
 make.overview.map.plot(path = rootd_map_data)
 @
 \end{center}
@@ -24,7 +24,8 @@ make.overview.map.plot(path = rootd_map_data)
 % Commenting out {center} works better.
 \hspace{-10mm}
 % Get pdf from Julia then convert with 'magick <name>.pdf <name>.png' and push to GitHub.
-\pdftooltip{\includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]{main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}}{This figure shows that \fishname\ migrate further north in some years}
+% Cannot use fishname in the tooltip (alt text)
+\pdftooltip{\includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]{main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}}{This figure shows that Pacific hake migrate further north in some years.}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from the \surveyname\
   \Sexpr{survey_start_yr}--\Sexpr{survey_end_yr}. Area of the circle is roughly
@@ -45,7 +46,8 @@ make.overview.map.plot(path = rootd_map_data)
 \begin{center}
 \hspace{-10mm}
 % Get pdf from Julia then convert with 'magick <name>.pdf <name>.png' and push to GitHub.
-\pdftooltip{\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]{main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue}}{This figure shows the assumed varying locations of age-1 \fishname}
+% Cannot use fishname in the tooltip (alt text)
+\pdftooltip{\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]{main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue}}{This figure shows the assumed varying locations of age-1 Pacific hake.}
 \end{center}
 \caption{Spatial distribution of acoustic backscatter attributable to aggregations of age-1 \fishname\
   from the \surveyname\ 2003--\Sexpr{survey_end_yr} (spatial details are not available for survey years 1995, 1998,
@@ -63,7 +65,7 @@ make.overview.map.plot(path = rootd_map_data)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-total-catches, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that catches in four of the last six years have been the largest in the time series">>=
+<<main-total-catches, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that catches in four of the last six years have been the largest in the time series.">>=
 ## leg.y.loc is y-coord to place legend at
 make.catches.plot(ct, leg.y.loc = 550)
 @
@@ -78,7 +80,8 @@ make.catches.plot(ct, leg.y.loc = 550)
 \begin{figure}[H]
 \begin{center}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\pdftooltip{\includegraphics[width=0.75\paperwidth]{main-figures/fishCatchRatesUS}}{This figure shows changes in catch rates for the U.S. fleet}
+% Cannot use fishname in the tooltip (alt text)
+\pdftooltip{\includegraphics[width=0.75\paperwidth]{main-figures/fishCatchRatesUS}}{This figure shows changes in catch rates for the U.S. fleet. The rates are highest in September followed by May and June.}
 \end{center}
 \caption{Unstandardized (raw) catch-rates (t/hr) of \fishname\ catches by tow in
   the U.S. at-sea fleet from \Sexpr{last_data_yr-4}--\Sexpr{last_data_yr}.}
@@ -88,7 +91,7 @@ make.catches.plot(ct, leg.y.loc = 550)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
 %\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-<<main-us-fishery-depths, fig.height=3.5, is.fig = TRUE, alt.text = "This figure shows that bottom depths have been approximately 500 meters and fishing depths approximately 300 meters on average in the last 5 years for United States fleets. It also shows that catch rates for the United States fleets are highest in September.">>=
+<<main-us-fishery-depths, fig.height=3.5, is.fig = TRUE, alt.text = "This figure shows that bottom depths have been approximately 500 meters and fishing depths approximately 300 meters on average in the last 5 years for United States fleets.">>=
   par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
   makebox(
     us.atsea.fishing.depth[us.atsea.fishing.depth$year >= max(us.atsea.fishing.depth$year) - 4, ],
@@ -110,7 +113,7 @@ make.catches.plot(ct, leg.y.loc = 550)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-can-fishery-depths, is.fig = TRUE, alt.text = "This figure shows that for the last five years in Canada freezer trawlers fished at an approximate bottom depth of 400 meters and shoreside vessels fished at an approximate bottom depth of 200 meters. Freezer trawlers fished at a gear depth of approximately 200 meters and shoreside vessels at a depth of approximately 150 meters. In 2023 this changed somewhat with both fleets fishing closer to the bottom.">>=
+<<main-can-fishery-depths, is.fig = TRUE, alt.text = "This figure shows that for the last five years in Canada freezer trawlers fished at an approximate bottom depth of 400 meters and shoreside vessels fished at an approximate bottom depth of 200 meters. Freezer trawlers fished at a gear depth of approximately 200 meters and shoreside vessels at a depth of approximately 150 meters. In 2023 this changed somewhat with both fleets fishing closer to the bottom and in shallower water.">>=
   par(mfrow = c(2, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
   makebox(
     can.ft.gear.depth[can.ft.gear.depth$year >= max(can.ft.gear.depth$year) - 4, ],
@@ -161,7 +164,7 @@ used to account for time-varying growth.}
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-age-comp-bubbles, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there are currently three large cohorts making their way through the stock. The 2010 cohort is the largest followed by the 2014 cohort and the 2016 cohort.">>=
+<<main-age-comp-bubbles, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there are currently three large cohorts making their way through the stock. The 2010 cohort is the largest followed by the 2014 cohort and the 2016 cohort. The 2020 cohort is large but highly uncertain.">>=
 layout(matrix(c(1, 1), nrow = 2, ncol = 1, byrow = TRUE))
 make_age_comp_bubble_plot(base_model, subplot = 1, legend.position = "top", alpha = 0.4)
 make_age_comp_bubble_plot(base_model, subplot = 2, alpha = 0.4)
@@ -175,7 +178,7 @@ make_age_comp_bubble_plot(base_model, subplot = 2, alpha = 0.4)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-survey-extrap-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has decreased from 2019 to 2021.">>=
+<<main-survey-extrap-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey biomass estimate has decreased from 2019 to 2021.">>=
 make.survey.biomass.extrap.plot(
   dplyr::filter(base_model[["dat"]][["CPUE"]], index == 2)
 )
@@ -255,7 +258,7 @@ weight.at.age.heatmap(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-weight-at-age-numbers, fig.height=9, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the sample sizes of weight-at-age vary between years and ages with the most samples occurring in age-bins three through seven.">>=
+<<main-weight-at-age-numbers, fig.height=9, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the sample sizes of weight-at-age vary between years and ages with the most samples occurring for ages 3 through 7.">>=
 weight.at.age.heatmap(base_model,
                       proj.line.yr = base_model$endyr,
                       extrap.mask = weight_age_extrapolation_mask,
@@ -280,7 +283,7 @@ weight.at.age.heatmap(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-weight-at-age-lines, fig.height = 9, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the annual mean weight-at-age is lower for most ages in the most recent years than for years prior to 1980. There is a trend of increasing weight-at-age for the last six to seven years.">>=
+<<main-weight-at-age-lines, fig.height = 9, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the annual mean weight-at-age is lower for most ages in the most recent years than for years prior to 1980. There is a trend of increasing weight-at-age for the last 6 to 7 years.">>=
 make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1, highlight = 5)
 @
 \end{center}
@@ -422,8 +425,7 @@ make.mcmc.survey.fit.plot(base_model,
 \begin{center}
 <<main-age-comp-fits, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the age composition fits for the fishery and acoustic survey against the data. There is some slight over and under-fitting in the early part of the fishery time series from 1975 to 1995. The survey shows some over fitting from 2001 to 2005.">>=
 oldpar <- par(no.readonly = TRUE)
-## par(mar=c(4.1, 4.1, 3.1, 0.1))
-layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
+layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow = TRUE))
 make.age.comp.fit.plot(base_model,
                        subplot = 1)
 make.age.comp.fit.plot(base_model,
@@ -507,7 +509,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-tv-selex, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows individual selectivity plots for each year. ">>=
+<<main-tv-selex, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows individual median selectivity plots for each year in a mountain range configuration.">>=
 tv_selex_start_yr <- 1990
 tv_selex_end_yr <- last_data_yr
 tv_selex_ages <- as.character(1:8)
@@ -548,7 +550,7 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-tv-selex-uncertainty, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows selectivity by year plots with medians and 0.95 credible intervals">>=
+<<main-tv-selex-uncertainty, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows individual panels for each year with selectivity medians and 0.95 credible intervals.">>=
 plot_multiple_tv_selex_unc(base_model, n_col = 2)
 @
 \end{center}
@@ -564,7 +566,7 @@ plot_multiple_tv_selex_unc(base_model, n_col = 2)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-tv-selex-uncertainty-lines, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This plot shows individual selectivity trajectories for all samples from the posteriors of fishery and survey selectivity parameters with 0.95 credible intervals. The age 1 index has more and larger outliers than the age 2 plus survey.">>=
+<<main-tv-selex-uncertainty-lines, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This plot shows individual median selectivity trajectories for all samples from the posteriors of fishery and survey selectivity parameters with 0.95 credible intervals. The age 1 index has more and larger outliers than the age 2 plus survey.">>=
 plist <- list()
 plist[[1]] <- plot_selex_posteriors(base_model,
                       type = "survey",
@@ -611,7 +613,7 @@ plot_biomass(list(base_model),
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-relative-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the relative spawning biomass has been increasing since 2021.">>=
+<<main-relative-spawning-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the relative spawning biomass has been increasing since 2021. The value for 2023 is just above B0.">>=
 plot_rel_biomass(list(base_model),
                  list(base_model_name),
                  point_shape = 1,
@@ -629,7 +631,7 @@ plot_rel_biomass(list(base_model),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-recruitment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recruitment for each cohort. There are currently three above-average cohorts in the stock with 2020 being the fourth. The 2020 cohort is highly uncertain as the size of the credible interval is very large in this figure.">>=
+<<main-recruitment, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recruitment for each cohort. There are currently three above-average cohorts in the stock with 2020 being the fourth. The 2020 cohort is highly uncertain which can be seen in the size of the credible interval.">>=
 plot_recruitment(list(base_model),
                  list(base_model_name),
                  single_line_color = "blue",
@@ -644,7 +646,7 @@ plot_recruitment(list(base_model),
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-recruitment-devs, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows recruitment deviations for each cohort. The same above-average cohorts seen in the recruitment figure can be also seen here.">>=
+<<main-recruitment-devs, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows recruitment deviations for each cohort. The same above-average cohorts seen in the recruitment figure are also seen here.">>=
 plot_recdevs(list(base_model),
              list(base_model_name),
              single_line_color = "blue",
@@ -659,7 +661,7 @@ plot_recdevs(list(base_model),
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-numbers-at-age, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure clearly shows the strong cohorts decreasing in numbers as they pass through the stock from one year to the next.">>=
+<<main-numbers-at-age, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure clearly shows the strong cohorts decreasing in numbers as they pass through the stock from one year to the next. The mean age has fluctuated over time and is currently rising and at approximately age 3.">>=
 make_numbers_at_age_plot(base_model,
                          mean_age_line_color = "red",
                          mean_age_line_size = 1.5,
@@ -736,7 +738,7 @@ make.mcmc.sr.variability.plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-fishing-intensity, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management value of FSPR 40 percent equal to 1 throughout the entire time series.">>=
+<<main-fishing-intensity, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management value of 1 for FSPR 40 percent throughout the entire time series.">>=
 make.fishing.intensity.plot(base_model,
                             start_yr = start_yr,
                             end_yr = end_yr-1,
@@ -1001,7 +1003,7 @@ plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp2[[1]],
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-biomass-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recent spawning biomass varies for some sensitivity runs. Reducing the $Phi$ selectivity parameter results in a large increase in current biomass while increasing it results in a decrease.">>=
+<<main-biomass-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recent spawning biomass varies for some sensitivity runs. Reducing the Phi selectivity parameter results in a large increase in current biomass while increasing it results in a decrease.">>=
 plot_biomass(d_obj = d_obj_sens_biomass[[3]],
              x_expansion = 4,
              leg_font_size = 9,
@@ -1052,7 +1054,7 @@ plot_recruitment(d_obj = d_obj_sens_recr[[3]],
 %%%%%%%%%%%%%%%%%%%%%%%
 %% \begin{figure}[H]
 \begin{center}
-<<main-recruitment-devs-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows differences in recruitment deviations between certain sensitivity runs. As with the absolute recruitment figure, the recruitment estimate for the large cohorts is highly sensitive to the change in the Phi parameter.">>=
+<<main-recruitment-devs-base-alternative-4, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows differences in recruitment deviations between certain sensitivity runs. As with the absolute recruitment figure the recruitment estimate for the large cohorts is highly sensitive to the change in the Phi parameter.">>=
 plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
              x_expansion = 2,
              leg_font_size = 9,

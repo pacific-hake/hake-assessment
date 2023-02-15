@@ -263,7 +263,7 @@ assessment period, due to lower than average recruitment.
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<relative-spawning-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the relative spawning biomass has been increasing since 2021.">>=
+<<relative-spawning-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the relative spawning biomass has been increasing since 2021. The value for 2023 is just above B0.">>=
 plot_rel_biomass(list(base_model),
                  list(base_model_name),
                  point_shape = 1,
@@ -384,7 +384,7 @@ have low to moderate recruitment with occasional large year classes
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<recruitment, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recruitment for each cohort. There are currently three above-average cohorts in the stock with 2020 being the fourth. The 2020 cohort is highly uncertain as the size of the credible interval is very large in this figure.">>=
+<<recruitment, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that recruitment for each cohort. There are currently three above-average cohorts in the stock with 2020 being the fourth. The 2020 cohort is highly uncertain which can be seen in the size of the credible interval.">>=
 plot_recruitment(list(base_model),
                  list(base_model_name),
                  single_line_color = "blue",
@@ -487,7 +487,7 @@ years and Figure~\ref{fig:es-fishing-intensity}).
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbp]
 \begin{center}
-<<fishing-intensity, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management value of FSPR 40 percent equal to 1 throughout the entire time series.">>=
+<<fishing-intensity, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management value of 1 for FSPR 40 percent throughout the entire time series.">>=
 make.fishing.intensity.plot(base_model,
                             start_yr = start_yr,
                             end_yr = end_yr-1,
