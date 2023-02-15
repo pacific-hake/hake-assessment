@@ -346,19 +346,17 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \renewcommand{\thefigure}{\arabic{figure}}
 \setcounter{figure}{0}
 
-\rfoot{Section~\ref{sec:introduction} -- Introduction}
+\renewcommand{\sectionmark}[1]{\markright{\thesection~- ~#1}}
+\rfoot{Section~\rightmark}
 <<introduction-sec, child='introduction-section/introduction.rnw'>>=
 @
 
-\rfoot{Section~\ref{sec:data} -- Data}
 <<data-sec, child='data-section/data.rnw'>>=
 @
 
-\rfoot{Section~\ref{sec:assessment} -- Assessment}
 <<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
 @
 
-\rfoot{Section~\ref{sec:research} -- Research and data needs}
 <<research-sec, child='research-section/research.rnw'>>=
 @
 
@@ -367,17 +365,14 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 @
 
 \clearpage
-\rfoot{Section~\ref{sec:references} -- References}
 \bibliographystyle{hake}
 \bibliography{all}
 
 \newpage
-\rfoot{Section~\ref{sec:tables} -- Tables}
 <<main-tables, child='main-tables/main-tables.rnw'>>=
 @
 
 \clearpage
-\rfoot{Section~\ref{sec:figures} -- Figures}
 <<main-figures, child='main-figures/main-figures.rnw'>>=
 @
 \clearpage
@@ -393,34 +388,30 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 % correctly in sections.
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
+\renewcommand{\sectionmark}[1]{\markright{\thechapter~- ~#1}}
+\rfoot{Appendix~\thechapter}
 
-\rfoot{Appendix~\ref{chap:mcmc-diagnostics} -- Base model diagnostics}
 <<appendix-mcmc-diagnostics, child='appendix-mcmc-diagnostics/appendix-mcmc-diagnostics.rnw'>>=
 @
 
 % Make figures appear numbered correctly in sections
 % \renewcommand{\thefigure}{\thechapter.\arabic{section}.\arabic{figure}}
 
-\rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
 <<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests.rnw'>>=
 @
 
 % Set figure numbering back to what it was
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 
-\rfoot{Appendix~\ref{chap:glossary} -- Glossary}
 <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
 @
 
-\rfoot{Appendix~\ref{chap:canada-fishery-report} -- Canada fishery report}
 <<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada.rnw'>>=
 @
 
-\rfoot{Appendix~\ref{chap:us-fishery-report} -- United States fishery report}
 <<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US.rnw'>>=
 @
 
-\rfoot{Appendix~\ref{chap:parameters} -- Estimated parameters}
 <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
 @
 
