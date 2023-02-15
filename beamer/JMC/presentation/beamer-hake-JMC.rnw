@@ -393,18 +393,12 @@ plot_squid(base_model,
       lines(ages2010, cohortCumSum2010/1e3, lwd=5, col=2)
       lines(ages2014, cohortCumSum2014/1e3, lwd=5, col=4)
       lines(ages2016, cohortCumSum2016/1e3, lwd=5, col="green")
-      lines(ages2017, cohortCumSum2017/1e3, lwd=5, col="orange")
       lines(ages2020, cohortCumSum2020/1e3, lwd=5, col="red")
       box()
       text('2020 cohort',
            x = last_data_yr - 2020 + 1,
            y = max(cohortCumSum2020 / 1e3),
            col = "red",
-           pos = 4)
-      text('2017 cohort',
-           x = last_data_yr - 2017 + 1,
-           y = max(cohortCumSum2017 / 1e3),
-           col = "orange",
            pos = 4)
       text('2016 cohort',
            x = last_data_yr - 2016 + 1,
