@@ -399,7 +399,8 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 @
 
 % Make figures appear numbered correctly in sections
-\renewcommand{\thefigure}{\thechapter.\arabic{section}.\arabic{figure}}
+% \renewcommand{\thefigure}{\thechapter.\arabic{section}.\arabic{figure}}
+
 \rfoot{Appendix~\ref{chap:srg-requests} -- SRG requests}
 <<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests.rnw'>>=
 @
