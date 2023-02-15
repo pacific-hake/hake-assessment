@@ -88,7 +88,6 @@ make.catches.plot(ct, leg.y.loc = 550)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
 %\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-%\includegraphics[width=\maxwidth, height=3.5in]{main-figures/fishDepthsUS}
 <<main-us-fishery-depths, fig.height=3.5, is.fig = TRUE, alt.text = "This figure shows that bottom depths have been approximately 500 meters and fishing depths approximately 300 meters on average in the last 5 years for United States fleets. It also shows that catch rates for the United States fleets are highest in September.">>=
   par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
   makebox(
@@ -621,7 +620,6 @@ plot_rel_biomass(list(base_model),
                  leg_pos = "none")
 @
 \end{center}
-%\vspace{0mm}
 \caption{Median (solid line) of the posterior distribution for relative spawning biomass ($B_t/B_0$) for the base model through \Sexpr{end_yr} with 95\% posterior credibility intervals (shaded area). Dashed horizontal lines show the values for 10\%, 40\% and 100\% of $B_0$.}
 \label{fig:main-relative-spawning-biomass}
 \end{figure}
