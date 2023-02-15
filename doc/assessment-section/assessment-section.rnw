@@ -922,7 +922,7 @@ is large, with a 95\%
 posterior credibility interval from \Sexpr{curr.depl.lower}\% to
 \Sexpr{curr.depl.upper}\% (Tables~\ref{tab:main-median-posterior} and
 \ref{tab:main-ci-posterior}), due to remaining unknowns about the size
-of the 2020 cohort because the 
+of the 2020 cohort because the
 acoustic survey only provided one year of age-1 information,
 which is more uncertain than the 2+ estimate.
 
@@ -1073,7 +1073,7 @@ series of median recruitment deviation estimates for the years 1970--\Sexpr{last
 are informed by the age compositions and the age-1 index, is
 \Sexpr{sd.med.recr.dev.estimates}.
 
-% \clearpage % To avoid dangling subheading
+\clearpage % To avoid dangling subheading
 
 \subsubsub{Exploitation status}
 
@@ -1289,7 +1289,7 @@ are P$(B_{\Sexpr{assess_yr}} > \Bten) = \Sexpr{probs.curr.bten}$\% and
 P$(B_{\Sexpr{assess_yr}} > \Bforty) = \Sexpr{probs.curr.bforty}$\%
 such that the stock is estimated to be in the `healthy zone' (above the upper
 stock reference point of $\Bforty$).
-This probability was higher than in last year’s assessment, where 
+This probability was higher than in last year’s assessment, where
 the equivalent calculation was P$(B_{\Sexpr{assess_yr-1}} > \Bforty) = 90.5\%$], % hardwired**
 Note that a probability of `100\%' (or
 `0\%') is based
