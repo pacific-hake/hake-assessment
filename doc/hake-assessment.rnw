@@ -243,14 +243,12 @@ source(file.path(rootd_r, "custom-knitr-variables.R"))
 %% Title page and author references page
 \thispagestyle{empty}
 
-\title{\TitleFont Status of the \fishname\ (whiting) stock in U.S. and Canadian
-  waters in \Sexpr{assess_yr}
+\title{\TitleFont \mypdftitle~in \Sexpr{assess_yr}
 %% Uncomment for DRAFT:
 % \\ ~\\ DRAFT for submission to Scientific Review Group\thanks{\noindent \disclaimer}
 \\ ~\\ ~\\ \pdftooltip{\includegraphics[width=4in]{main-figures/hake-picture}}{Drawing of a \fishname}}
 
-\author{Joint Technical Committee of the \fishname/Whiting Agreement \\ Between
-  the Governments of the United States and Canada}
+\author{\mypdfauthor}
 
 \date{\usvardate \today}
 
