@@ -17,14 +17,22 @@ options(max.print = 999999)
 # devtools::install_github("ropensci/rnaturalearthhires")
 # devtools::install_github("pbs-assess/gfutilities")
 message("Loading R packages...")
-pacman::p_load(adnuts, cli, coda, crayon, coda, cowplot, data.tree, date, dplyr,
-               future, furrr, here, gfutilities, ggh4x, ggplot2, ggpubr, ggrepel,
-               grDevices, grid, gridExtra, gtools, here, kableExtra, knitr,
-               lubridate, maps, maptools, matrixcalc, parallel, purrr, r4ss,
-               RColorBrewer,
-               reshape2, rgeos, rnaturalearth, rnaturalearthhires, rstan,
-               scales, shinystan, sf, snowfall, stringr, testthat, tictoc,
-               tidyverse, xtable)
+pacman::p_load(
+  # Alphabetical order
+  adnuts,
+  cli, coda, cowplot, crayon,
+  data.tree, date, dplyr,
+  future, furrr,
+  gfutilities, ggh4x, ggplot2, ggpubr, ggrepel, grDevices, grid, gridExtra, gtools,
+  here,
+  kableExtra, knitr,
+  lubridate,
+  maps, maptools, matrixcalc,
+  parallel, purrr,
+  r4ss, RColorBrewer, reshape2, rgeos, rnaturalearth, rnaturalearthhires, rstan,
+  scales, shinystan, sf, stringr,
+  testthat, tictoc, tidyverse, tools,
+  xtable)
 message("Finished loading R packages...")
 
 sys_info <- Sys.info()
