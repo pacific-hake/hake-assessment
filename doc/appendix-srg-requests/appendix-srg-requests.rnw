@@ -23,7 +23,7 @@ The JTC confirmed that the observed value of zero for the age-1 index in 2001 is
 model. A model run was examined using an arbitrarily low value of 100, since a zero is undefined when using
 a lognormal distribution, but there were convergence
 issues. The exclusion of the 2001 value has negligible effect on model results or performance, because
-the model already estimates a very low abundance of age-1 fish in 2001 (i.e., the inclusion of the 2021 value will
+the model already estimates a very low abundance of age-1 fish in 2001 (i.e., the inclusion of the 2001 value will
 only be confirmatory). Alternative distributions could be explored that can readily handle zero's, but these are currently not
 available in Stock Synthesis for survey inputs.
 
