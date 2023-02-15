@@ -316,7 +316,7 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\theequation}{\arabic{equation}}
 
-\renewcommand{\bibsection}{\section{REFERENCES}\label{sec:references}}
+\renewcommand{\bibsection}{\section{References}\label{sec:references}}
 
 %% Add line numbers
 %% \linenumbers
@@ -344,7 +344,7 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \renewcommand{\thefigure}{\arabic{figure}}
 \setcounter{figure}{0}
 
-\renewcommand{\sectionmark}[1]{\markright{\thesection~- ~#1}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection ~-- #1}}
 \rfoot{Section~\rightmark}
 <<introduction-sec, child='introduction-section/introduction.rnw'>>=
 @
@@ -386,7 +386,7 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 % correctly in sections.
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
-\renewcommand{\sectionmark}[1]{\markright{\thechapter~- ~#1}}
+\renewcommand{\sectionmark}[1]{\markright{\thechapter ~-- #1}}
 \rfoot{Appendix~\thechapter}
 
 <<appendix-mcmc-diagnostics, child='appendix-mcmc-diagnostics/appendix-mcmc-diagnostics.rnw'>>=

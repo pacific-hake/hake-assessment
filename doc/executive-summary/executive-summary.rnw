@@ -2,8 +2,8 @@
 %% Note some variables are global from the calling file (hake-assessent.Rnw)
 
 \clearpage
-\section*{Executive Summary}
-\phantomsection \addcontentsline{toc}{section}{EXECUTIVE SUMMARY}
+\section*{Executive summary}
+\phantomsection \addcontentsline{toc}{section}{Executive summary}
 
 % To enable pdf link from table of contents to work for an unnumbered section:
 %  https://en.wikibooks.org/wiki/LaTeX/Document_Structure. Putting it after

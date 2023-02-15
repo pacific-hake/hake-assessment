@@ -3,7 +3,7 @@
 
 \clearpage
 \section*{One-page summary}
-\phantomsection \addcontentsline{toc}{section}{ONE-PAGE SUMMARY}
+\phantomsection \addcontentsline{toc}{section}{One-page summary}
 
 \begin{itemize}
   \item The stock assessment model for \Sexpr{assess_yr} has the same

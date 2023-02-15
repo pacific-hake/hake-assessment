@@ -1,6 +1,6 @@
 % main-tables.rnw
 
-\section{TABLES} \label{sec:tables}
+\section{Tables} \label{sec:tables}
 <<catches-us, results='asis', echo=FALSE>>=
 make_catch_table(ct,
                  start_yr = start_yr,
