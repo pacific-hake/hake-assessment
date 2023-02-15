@@ -14,6 +14,7 @@
 #' @param alt_fig_text A character vector of alternative text to insert
 #'
 #' @return Nothing, overwrites the `tex_file`
+#' @importFrom tools file_path_sans_ext file_ext
 #' @export
 add_alt_text <- function(tex_file = "hake-assessment.tex",
                          alt_fig_text){
@@ -23,6 +24,22 @@ add_alt_text <- function(tex_file = "hake-assessment.tex",
          "directory before building? This is a necessary step to cerate this list",
          call. = FALSE)
   }
+  if(!file.exists(tex_file)){
+    stop("File `", tex_file, "` does not exist",
+         call. = FALSE)
+  }
+
+  # Make a backup of the tex file, in case there is an error we can try
+  # again without having to rebuild the whole file using knitr
+  backup_fn <- paste0(file_path_sans_ext(tex_file),
+                      "-bck.",
+                      file_ext(tex_file))
+
+  if(!file.copy(tex_file, backup_fn, overwrite = TRUE, copy.mode = TRUE)){
+    stop("Could not make a backup of the file `", text_file, "`",
+         call. = FALSE)
+  }
+
   # The match for knitr chunk figures looks like \\includegraphics[width=\\maxwidth]{Filename-1}
   # Some chunks may have more than one plot in them, in those cases only the first plot will
   # have a tooltip added, therefore the -1 at the end of the regular expression
