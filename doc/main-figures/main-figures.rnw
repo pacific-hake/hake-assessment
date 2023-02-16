@@ -164,10 +164,18 @@ used to account for time-varying growth.}
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-age-comp-bubbles, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there are currently three large cohorts making their way through the stock. The 2010 cohort is the largest followed by the 2014 cohort and the 2016 cohort. The 2020 cohort is large but highly uncertain.">>=
-layout(matrix(c(1, 1), nrow = 2, ncol = 1, byrow = TRUE))
-make_age_comp_bubble_plot(base_model, subplot = 1, legend.position = "top", alpha = 0.4)
-make_age_comp_bubble_plot(base_model, subplot = 2, alpha = 0.4)
+<<main-age-comp-bubbles, fig.height = 10, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that there are currently three large cohorts making their way through the stock. The 2010 cohort is the largest followed by the 2014 cohort and the 2016 cohort. The 2020 cohort is large but highly uncertain.">>=
+plist <- NULL
+plist[[1]] <-
+  make_age_comp_bubble_plot(base_model,
+                            subplot = 1,
+                            legend.position = "top",
+                            alpha = 0.4)
+plist[[2]] <-
+  make_age_comp_bubble_plot(base_model,
+                            subplot = 2,
+                            alpha = 0.4)
+cowplot::plot_grid(plotlist = plist, nrow = 2)
 @
 \end{center}
 \caption{Age compositions for the aggregate fishery (top, all sectors combined) and acoustic survey (bottom) for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}. Proportions in each year sum to 1.0 and area of the bubbles are proportional to the proportion and consistent in both panels (see key at top). The largest bubble in the fishery data is \Sexpr{f(as.numeric(max.fishery.age.prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max.survey.age.prop[5])} in \Sexpr{as.numeric(max.fishery.age.prop[4])} and in the survey data is \Sexpr{f(as.numeric(max.survey.age.prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max.survey.age.prop[5])} in \Sexpr{as.numeric(max.survey.age.prop[4])}. Red lines track large cohorts.}
@@ -423,15 +431,17 @@ make.mcmc.survey.fit.plot(base_model,
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-age-comp-fits, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows the age composition fits for the fishery and acoustic survey against the data. There is some slight over and under-fitting in the early part of the fishery time series from 1975 to 1995. The survey shows some over fitting from 2001 to 2005.">>=
-oldpar <- par(no.readonly = TRUE)
-layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow = TRUE))
-make.age.comp.fit.plot(base_model,
-                       subplot = 1)
-make.age.comp.fit.plot(base_model,
-                       subplot = 2,
-                       fill = FALSE)
-par <- oldpar
+<<main-age-comp-fits, fig.height = 10, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows the age composition fits for the fishery and acoustic survey against the data. There is some slight over and under-fitting in the early part of the fishery time series from 1975 to 1995. The survey shows some over fitting from 2001 to 2005.">>=
+plist <- NULL
+plist[[1]] <-
+  plot_age_comp_fit(base_model,
+                    n_col = 4)
+plist[[2]] <-
+  plot_age_comp_fit(base_model,
+                    n_col = 1,
+                    type = "survey",
+                    label_loc = c(14, 0.45))
+cowplot::plot_grid(plotlist = plist, nrow = 2)
 @
 \end{center}
 \caption{Base model fits to the observed fishery (top) and acoustic survey (bottom) age-composition data.

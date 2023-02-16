@@ -299,10 +299,10 @@ cowplot::plot_grid(plotlist = plist,
        %\vspace{-15pt}
        \bc
        <<mcmc-survey-age-comp-fits, fig.height=4.4, fig.width=5.5,out.width='1.0\\columnwidth'>>=
-         make.age.comp.fit.plot(base_model,
-                                subplot = 2)
+       plot_age_comp_fit(base_model,
+                         n_col = 4)
        @
-         \ec
+       \ec
        \end{column}
        \end{columns}
      }
@@ -323,10 +323,10 @@ cowplot::plot_grid(plotlist = plist,
        \vspace{-5pt}
        \bc
        <<mcmc-fishery-age-comp-fits, fig.height=5.2, fig.width=6.5,out.width='1.0\\columnwidth'>>=
-         make.age.comp.fit.plot(base_model,
-                                subplot = 1)
+       plot_age_comp_fit(base_model,
+                         n_col = 4)
        @
-         \ec
+       \ec
        \end{column}
        \end{columns}
      }
