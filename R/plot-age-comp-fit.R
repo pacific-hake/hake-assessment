@@ -1,9 +1,14 @@
-#' @param model A model list with MCMC output included. This is typically
-#' `base_model` for the hake assessment. Information included in the list
-#' will be typical information and output from [r4ss::SSgetMCMC].
-#' @param subplot An integer specifying which fishery include in the figure.
-#' @param fill A logical specifying if missing years should be
-#' included in the figure such that the time series is a complete one.
+#' Create a set of barplots by year with the bars being observed
+#' age comps and errorbars being the MCMC fits with 95% credible
+#' interval
+#'
+#' @param type The type of fits/observations to plot. Must be either
+#' `fishery` or `survey`
+#' @param n_col The number of columns for the facets (years)
+#' @param whisker_width The width (size) of the top and bottom bars on the
+#' ends of the errorbar
+#' @rdname plot_biomass
+#' @export
 plot_age_comp_fit <- function(model,
                               type = c("fishery", "survey"),
                               ages = `if`(type == "fishery", 1:15, 2:15),
@@ -28,6 +33,12 @@ plot_age_comp_fit <- function(model,
 
   colors <- rev(plot_color(length(ages)))
 
+  # `yr_vec` is used to set up downward column order for the facets instead
+  # of the default left to right row order. This is done by putting the
+  # years out of order and setting the facet year as a factor with levels
+  # ordered this way. So `yr_vec` ends up being in an order where, when
+  # ggplot draws the facets from left to right row by row, they appear
+  # in a downward column order
   yr_vec <- sort(unique(d$Yr))
 
   if(length(yr_vec) %% n_col != 0){
@@ -60,16 +71,26 @@ plot_age_comp_fit <- function(model,
   }) |>
     unlist()
 
+  # `rot_vec` rotated the last element of a vector around to the beginning
+  #  of the vector.
+  # @param v A vector to be rotated
+  # @param num_rot The number of rotations to do
   rot_vec <- function(v, num_rot = 1){
     for(i in seq_len(num_rot)){
       v <- c(v[length(v)], v[-length(v)])
     }
     v
   }
+
+  # `cols` holds the colors of all the bars, 'rotated' so that
+  # the same color is present for any given cohort between facets
+  # (years). `yr_diffs` contains the number of years between
+  # subsequent facets. For the survey, this can be 1, 2, or 3 years
+  # and for the fishery it is always 1 but this allows for any
+  # possibility
   x <- sort(unique(d$Yr))
   yr_diffs <- x[-1] - x[-length(x)]
   cols <- colors
-  #for(i in 1:(nrow(d) / length(ages))){
   for(i in seq_along(yr_diffs)){
     colors <- rot_vec(colors, yr_diffs[i])
     cols <- c(cols, colors)
