@@ -25,7 +25,7 @@ make.overview.map.plot(path = rootd_map_data)
 \hspace{-10mm}
 % Get pdf from Julia then convert with 'magick <name>.pdf <name>.png' and push to GitHub.
 % Cannot use fishname in the tooltip (alt text)
-\pdftooltip{\includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]{main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}}{This figure shows that Pacific hake migrate further north in some years.}
+\pdftooltip{\includegraphics[max size={1.15\paperwidth}{1.15\paperheight}]{main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue}}{This figure shows that Pacific Hake migrate further north in some years.}
 \caption{Spatial distribution of acoustic backscatter attributable to age-2 and older \fishname\
   from the \surveyname\
   \Sexpr{survey_start_yr}--\Sexpr{survey_end_yr}. Area of the circle is roughly
@@ -47,7 +47,7 @@ make.overview.map.plot(path = rootd_map_data)
 \hspace{-10mm}
 % Get pdf from Julia then convert with 'magick <name>.pdf <name>.png' and push to GitHub.
 % Cannot use fishname in the tooltip (alt text)
-\pdftooltip{\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]{main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue}}{This figure shows the assumed varying locations of age-1 Pacific hake.}
+\pdftooltip{\includegraphics[max size={1.10\paperwidth}{1.10\paperheight}]{main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue}}{This figure shows the assumed varying locations of age-1 Pacific Hake.}
 \end{center}
 \caption{Spatial distribution of acoustic backscatter attributable to aggregations of age-1 \fishname\
   from the \surveyname\ 2003--\Sexpr{survey_end_yr} (spatial details are not available for survey years 1995, 1998,
