@@ -100,8 +100,6 @@ plot_age_comp_fit <- function(model,
     theme(strip.background = element_blank(),
           panel.spacing=unit(0, "cm"),
           strip.text.x = element_blank(),
-          #axis.text.y = element_blank(),
-          #axis.ticks.y = element_blank(),
           plot.margin = margin(12, 12, 0, 0),
           axis.text.x = element_text(color = "grey20",
                                      size = axis_tick_font_size),
@@ -115,5 +113,4 @@ plot_age_comp_fit <- function(model,
     xlab("Age")
 
   g
-#browser()
 }
