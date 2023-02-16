@@ -876,7 +876,7 @@ plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[2],
                   leg_pos = c(0.2, 0.32),
-                  remove_x_val = 740)
+                  remove_x_val = c(325, 342, 740))
 @
 \end{center}
 \caption{Graphical representation of the base model results presented in Table~\ref{tab:main-risk-year-2} for catch in
@@ -894,7 +894,7 @@ plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[3],
                   leg_pos = c(0.2, 0.32),
-                  remove_x_val = 621)
+                  remove_x_val = c(259, 621))
 @
 \end{center}
 \caption{Graphical representation of the base model results presented in Table \ref{tab:main-risk-year-3} for catch in
