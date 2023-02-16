@@ -4,7 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-diag-m-r0, fig.height = 9, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for natural mortality and log R0 parameters.">>=
+<<main-mcmc-diag-m-r0, fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for natural mortality and log R0 parameters.">>=
 plist <- NULL
 plist[[1]] <-
   plot_mcmc_diagnostics(base_model,
@@ -25,7 +25,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 2)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-diag-h-extra-sd, fig.height = 9, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for steepness and the survey extra standard deviation parameters.">>=
+<<main-mcmc-diag-h-extra-sd, fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for steepness and the survey extra standard deviation parameters.">>=
 plist <- NULL
 plist[[1]] <-
   plot_mcmc_diagnostics(base_model,
@@ -48,7 +48,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 2)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-diag-dm, fig.height = 9, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for the two Dirichlet-multinomial parameters for the fishery and survey.">>=
+<<main-mcmc-diag-dm, fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for the two Dirichlet-multinomial parameters for the fishery and survey.">>=
 plist <- NULL
 plist[[1]] <-
   plot_mcmc_diagnostics(base_model,
