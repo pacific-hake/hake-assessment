@@ -12,9 +12,6 @@
 #' @param space_size Size of the vertical spaces for the table
 #' @param rec_yrs A vector of integers supplying the years for which you
 #' want estimates of recruitment
-#' @param is_retro Logical. If `TRUE`, change the text for the final year rel.
-#' biomass and fishing intensity to be generalized. If `FALSE`, use the year
-#' itself in the label
 #' @param show_like If `TRUE`, include the negative log-likelihoods (set to
 #' `FALSE` for presentations)
 #'
@@ -30,7 +27,6 @@ table_param_est <- function(models,
                             font_size = 9,
                             space_size = 10,
                             rec_yrs = NA,
-                            is_retro = FALSE,
                             show_like = TRUE){
 
   if(is.na(rec_yrs[1])){
@@ -74,7 +70,7 @@ table_param_est <- function(models,
       q_acoustic <- NA
       q_age1 <- NA
     }
-#browser()
+
     df <- enframe(
       c(nat_m =
           ifelse("NatM_uniform_Fem_GP_1" %in% names(mdl$mcmc),
@@ -111,11 +107,13 @@ table_param_est <- function(models,
         ssb_2009 = paste0(f(median(mdl$mcmc$`SSB_2009` /
                                      mdl$mcmc$SSB_Initial) * 100, 1),
                           "\\%"),
-        ssb_curr = paste0(f(median(mdl$mcmc[[paste0("SSB_", end_yr)]] /
-                                     mdl$mcmc$SSB_Initial) * 100, 1),
-                          "\\%"),
-        spr_last = paste0(f(median(mdl$mcmc[[paste0("SPRratio_", end_yr - 1)]]) * 100, 1),
-                          "\\%"),
+        ssb_curr = ifelse(mdl$endyr <= end_yr - 2,
+                          "--",
+                          paste0(f(median(mdl$mcmc[[paste0("SSB_", end_yr)]] /
+                                            mdl$mcmc$SSB_Initial) * 100, 1), "\\%")),
+        spr_last = ifelse(mdl$endyr <= end_yr - 2,
+                          "--",
+                          paste0(f(median(mdl$mcmc[[paste0("SPRratio_", end_yr - 1)]]) * 100, 1), "\\%")),
         ssb_curr_fem = f(median(mdl$mcmc$`SSB_SPR`) / 1e3, 0),
         spr_msy = "40.0\\%",
         exp_frac = mdl$mcmccalcs$exp.frac.spr[2],
@@ -160,17 +158,14 @@ table_param_est <- function(models,
       paste0("Catchability: biomass index (", latex.italics("$q_b$"), ")"),
       "Additional age-1 index SD",
       paste0("Catchability: age-1 index (", latex.italics("$q_1$"), ")"),
-      #paste0("Catchability: age-1 index (", latex.italics("q_1"), ")"),
       "Dirichlet-multinomial fishery (log~$\\theta_{\\text{fish}}$)",
       "Dirichlet-multinomial survey (log~$\\theta_{\\text{surv}}$)",
       paste(rec_yrs, "recruitment (millions)"),
       paste0("Unfished female spawning biomass (",
              latex.subscr(latex.italics("B"), "0"), ", thousand t)"),
       "2009 relative spawning biomass",
-      paste0(ifelse(is_retro, "End year", end_yr),
-             " relative spawning biomass"),
-      paste0(ifelse(is_retro, "End year - 1", end_yr - 1),
-             " rel. fishing intensity: (1-SPR)/(1-",
+      paste0(end_yr, " relative spawning biomass"),
+      paste0(end_yr - 1, " rel. fishing intensity: (1-SPR)/(1-",
              latex.subscr("SPR", "40\\%"), ")"),
       paste0("Female spawning biomass at ",
              latex.subscr(latex.italics("F"), "SPR=40\\%"),
