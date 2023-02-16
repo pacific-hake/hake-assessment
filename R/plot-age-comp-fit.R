@@ -13,6 +13,7 @@ plot_age_comp_fit <- function(model,
                               type = c("fishery", "survey"),
                               ages = `if`(type == "fishery", 1:15, 2:15),
                               n_col = 4,
+                              x_breaks = seq(2, max(ages), by = 2),
                               axis_title_font_size = 14,
                               axis_tick_font_size = 12,
                               label_loc = c(ages[length(ages)] - 2, 0.45),
@@ -111,6 +112,8 @@ plot_age_comp_fit <- function(model,
                       ymax = Exp_upper),
                   width = whisker_width,
                   inherit.aes = FALSE) +
+    scale_x_discrete(breaks = x_breaks,
+                     labels = x_breaks) +
     facet_wrap(~factor(Yr, levels = yr_vec),
                ncol = n_col) +
     geom_label(aes(label = Yr),
