@@ -23,7 +23,8 @@ pacman::p_load(
   cli, coda, cowplot, crayon,
   data.tree, date, dplyr,
   future, furrr,
-  gfutilities, ggh4x, ggplot2, ggpubr, ggrepel, grDevices, grid, gridExtra, gtools,
+  gfutilities, ggh4x, ggplot2, ggpubr, ggrepel, grDevices, grid,
+    gridGraphics, gridExtra, gtools,
   here,
   kableExtra, knitr,
   lubridate,
@@ -138,7 +139,9 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "plot-multiple-tv-selex-unc.R", "tables-risk.R",
              "plot-management-catch-vs-tac.R", "plot-management-catch-vs-tac-1-to-1.R",
              "plot-squid.R", "fetch-forecasts.R", "calc-risk.R", "table-param-est.R",
-             "plot-age-comp-fit.R")
+             "plot-age-comp-fit.R", "plot-pearson-bubbles.R", "plot-mcmc-diagnostics.R",
+             "plot-trace.R", "plot-running-quants.R", "plot-autocor.R",
+             "plot-density.R")
 source_all(src_lst)
 
 theme_set(hake_theme())

@@ -4,16 +4,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-diag-m-r0, fig.height=4, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for natural mortality and log R0 parameters.">>=
-oldpar <- par(no.readonly=TRUE)
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(base_model, key_posteriors[1], key_posteriors_titles[1])
-make.mcmc.diag.plot(base_model, key_posteriors[2], key_posteriors_titles[2])
-par <- oldpar
+<<main-mcmc-diag-m-r0, fig.height = 9, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for natural mortality and log R0 parameters.">>=
+plist <- NULL
+plist[[1]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[1],
+                        key_posteriors_titles[1])
+plist[[2]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[2],
+                        key_posteriors_titles[2])
+cowplot::plot_grid(plotlist = plist, nrow = 2)
 @
 \end{center}
-\caption{Summary of Markov chain Monte Carlo diagnostics for natural mortality (upper panels) and the natural log of mean unfished equilibrium recruitment (ln(\emph{R\subscr{0}}); lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running mean with 5th and 95th percentiles, top right). The lower left sub-panel indicates the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
+\caption{Summary of Markov chain Monte Carlo diagnostics for natural mortality (upper panels) and the natural log of mean unfished equilibrium recruitment (ln(\emph{R\subscr{0}}); lower panels) in the base model. Top sub-panels show the trace of the sampled values across iterations (absolute values, top left; cumulative running median with 2.5th and 97.5th percentiles, top right). The lower left sub-panel indicate the autocorrelation present in the chain at different lag times (i.e., distance between samples in the chain), and the lower right sub-panel shows the distribution of the values in the chain (i.e., the marginal density from a smoothed histogram of values in the trace plot).}
 \label{fig:main-mcmc-diag-m-r0}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -21,13 +25,17 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-diag-h-extra-sd, fig.height=4.8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for steepness and the survey extra standard deviation parameters.">>=
-oldpar <- par(no.readonly=TRUE)
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(base_model, key_posteriors[3], key_posteriors_titles[3])
-make.mcmc.diag.plot(base_model, key_posteriors[4], key_posteriors_titles[4])
-par <- oldpar
+<<main-mcmc-diag-h-extra-sd, fig.height = 9, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for steepness and the survey extra standard deviation parameters.">>=
+plist <- NULL
+plist[[1]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[3],
+                        key_posteriors_titles[3])
+plist[[2]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[4],
+                        key_posteriors_titles[4])
+cowplot::plot_grid(plotlist = plist, nrow = 2)
 @
 \end{center}
 \caption{Summary of Markov chain Monte Carlo diagnostics for steepness (upper panels) and the
@@ -40,13 +48,17 @@ par <- oldpar
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-mcmc-diag-dm, fig.height=4.8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for the two Dirichlet-multinomial parameters for the fishery and survey.">>=
-oldpar <- par(no.readonly=TRUE)
-par(mar=c(4.1, 4.1, 3.1, 0.1))
-layout(matrix(c(1,2), nrow = 2, ncol = 1, byrow=TRUE))
-make.mcmc.diag.plot(base_model, key_posteriors[5], key_posteriors_titles[5])
-make.mcmc.diag.plot(base_model, key_posteriors[6], key_posteriors_titles[6])
-par <- oldpar
+<<main-mcmc-diag-dm, fig.height = 9, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows good MCMC diagnostics for the base model for the two Dirichlet-multinomial parameters for the fishery and survey.">>=
+plist <- NULL
+plist[[1]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[5],
+                        key_posteriors_titles[5])
+plist[[2]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[6],
+                        key_posteriors_titles[6])
+cowplot::plot_grid(plotlist = plist, nrow = 2)
 @
 \end{center}
 \caption{Summary of Markov chain Monte Carlo diagnostics for the Dirichlet-multinomial

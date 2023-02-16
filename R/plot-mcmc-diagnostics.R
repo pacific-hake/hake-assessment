@@ -1,0 +1,49 @@
+#' Plot MCMC diagnostics
+#'
+#' @details Panels are as follows:
+#' * Top left: traces of posteriors across iterations,
+#' * Top right: cumulative running median with 2.5th and 97.5th percentiles
+#' * Bottom left: autocorrelation present in the chain at different lag times
+#'   (i.e., distance between samples in the chain), and
+#' * Bottom right: distribution of the values in the chain (i.e., the marginal
+#'   density from a smoothed histogram of values in the trace plot).
+#'
+#' @param model A model object as output by [load_ss_models()].
+#' @param post_regex  A regular expression representing a parameter as it
+#'   appears in the [r4ss::SS_output()] column.
+#' @param post_name  A name to show for the posterior on the plot, where
+#'   the name can be a string or an expression.
+#' @param probs A vector of 3 values for the lower, median, and upper
+#' quantiles
+#' @param all_alpha Alpha value for density and running mean plots
+#'
+#' @return A 4-panel plot of MCMC diagnostics
+#' @export
+plot_mcmc_diagnostics <- function(model,
+                                  post_regex,
+                                  post_name,
+                                  probs = c(0.025, 0.5, 0.975),
+                                  all_alpha = 0.2,
+                                  ...){
+
+
+  plist <- NULL
+  plist[[1]] <- plot_trace(model, post_regex)
+  plist[[2]] <- plot_running_quants(model, post_regex, probs, rib_alpha = all_alpha)
+  plist[[3]] <- plot_autocor(model, post_regex, ...)
+  plist[[4]] <- plot_density(model, post_regex, den_alpha = all_alpha)
+
+  p <- cowplot::plot_grid(plotlist = plist,
+                          ncol = 2,
+                          nrow = 2,
+                          byrow = TRUE) +
+    theme(plot.background = element_rect(color = "black"))
+  y_grob <- textGrob(post_name,
+                     gp = gpar(fontface = "bold",
+                               col = "black",
+                               fontsize = 15),
+                     rot = 90)
+  g <- gridExtra::arrangeGrob(p, left = y_grob)
+
+  g
+}

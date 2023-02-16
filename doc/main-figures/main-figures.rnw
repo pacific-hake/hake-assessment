@@ -455,10 +455,18 @@ cowplot::plot_grid(plotlist = plist, nrow = 2)
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-age-comp-pearson, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that there are no obvious patterns in the Pearson residuals for the fishery and the survey.">>=
-layout(matrix(c(1, 2), nrow = 2, ncol = 1, byrow = TRUE))
-plot_pearson_bubbles(base_model, type = 1, legend.position = "top", alpha = 0.7)
-plot_pearson_bubbles(base_model, type = 2, alpha = 0.7)
+<<main-age-comp-pearson, fig.height = 10, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that there are no obvious patterns in the Pearson residuals for the fishery and the survey.">>=
+plist <- NULL
+plist[[1]] <-
+  plot_pearson_bubbles(base_model,
+                       type = 1,
+                       legend.position = "top",
+                       alpha = 0.7)
+plist[[2]] <-
+  plot_pearson_bubbles(base_model,
+                       type = 2,
+                       alpha = 0.7)
+cowplot::plot_grid(plotlist = plist, ncol = 1)
 @
 \end{center}
 \caption{Pearson residuals for base model fits to the age-composition data for
