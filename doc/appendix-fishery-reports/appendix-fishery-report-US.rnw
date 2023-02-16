@@ -1,6 +1,6 @@
 \clearpage
 
-\chapter{Report of the \Sexpr{assess_yr} \fishname\ fishery in the United States}
+\chapter{Report of the \Sexpr{assess_yr-1} \fishname\ fishery in the United States}
 \label{chap:us-fishery-report}
 
 {\bf Prepared by the United States Advisory Panel on 25 January 2023 for
