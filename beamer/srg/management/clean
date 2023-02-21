@@ -1,0 +1,14 @@
+#!/bin/bash
+
+rm beamer-hake-management.log 2> /dev/null
+rm beamer-hake-management.out 2> /dev/null
+rm beamer-hake-management.tex 2> /dev/null
+rm beamer-hake-management.aux 2> /dev/null
+rm beamer-hake-management.aux 2> /dev/null
+rm beamer-hake-management.snm 2> /dev/null
+rm beamer-hake-management.nav 2> /dev/null
+rm beamer-hake-management.toc 2> /dev/null
+rm beamer-hake-management.pdf 2> /dev/null
+
+rm -rf figures
+rm -rf knitr-cache

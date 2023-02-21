@@ -1,0 +1,815 @@
+\documentclass[aspectratio=169]{beamer}
+\mode<presentation>
+\usetheme[compress]{Singapore}
+\usepackage[outdir=./figures/]{epstopdf}
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[T1]{fontenc} % to use < or > in tables
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\setbeamersize{text margin left=0.1in}
+\setbeamersize{text margin right=0.1in}
+\setbeamertemplate{title page}
+{
+\includegraphics[height=0.5in]{../../images/NOAA.eps}
+\hfill
+\includegraphics[height=0.5in]{../../images/DFO.eps}
+\vskip0pt plus 1filll
+\begin{center}
+{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
+\vskip22pt
+\insertauthor
+\vskip22pt
+\insertdate
+\end{center}
+\vskip50pt
+\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+\vskip0pt plus 1filll
+}
+\definecolor{pageCol}{rgb}{0.5,0.5,1.0}
+\definecolor{red}{rgb}{1, 0, 0}
+\setbeamertemplate{footline}
+{
+\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+\insertframenumber/\inserttotalframenumber
+\end{beamercolorbox}%
+}
+\setbeamercolor{footline}{fg=pageCol}
+\newcounter{saveenumi}
+\input{../../hake-beamer.tex}
+% From https://tex.stackexchange.com/questions/44983/beamer-removing-headline-and-its-space-on-a-single-frame-for-plan-but-keepin
+% to remove header from a slide (to get more space)
+\makeatletter
+\newenvironment{noheadline}{
+    \setbeamertemplate{headline}{}
+    \addtobeamertemplate{frametitle}{\vspace*{-0.9\baselineskip}}{}
+}{}
+\makeatother
+
+<<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+library(knitr)
+opts_chunk$set(dev = 'cairo_ps',
+               fig.dpi = 300,
+               fig.width = 7.5,
+               fig.height = 4,
+               echo = FALSE,
+               results = FALSE,
+               message = FALSE,
+               warning = FALSE,
+               results = 'hide',
+               fig.path = here::here("beamer",
+                                     "SRG",
+                                     "Sensitivities",
+                                     "knitr-cache", "/"),
+               cache.path = here::here("beamer",
+                                       "SRG",
+                                       "Sensitivities",
+                                       "knitr-cache", "/"),
+               cache = TRUE)
+
+source(here::here("R/all.R"))
+source(file.path(rootd_doc, "load-models.R"))
+source(file.path(rootd_r, "custom-knitr-variables.R"))
+
+fig_dir <- here::here("beamer", "SRG", "Sensitivities", "figures")
+if(!dir.exists(fig_dir)){
+  dir.create(fig_dir)
+}
+@
+
+% -----------------------------------------------------------------------------
+\title[Hake Sensitivities]{\Sexpr{assess_yr} Pacific Hake Assessment: Sensitivities and Retrospectives}
+\author[JTC]{Pacific Hake Joint Technical Committee}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
+\subtitle{\tiny \disclaimer}
+
+\begin{document}
+
+\frame[plain]{
+\titlepage
+}
+
+% -----------------------------------------------------------------------------
+\section{Overview}
+\begin{frame}
+\frametitle{Overview}
+\fontsize{11pt}{2}\selectfont
+\begin{enumerate}
+  \item Sensitivity models:
+        \bi
+        \item Alternative assumptions for steepness ($h$)
+        \item Alternative assumptions for natural mortality ($M$)
+        \item Alternative standard deviations for recruitment ($\sigma_r$)
+        \item Remove the age-1 index
+        \item Downweight fishery age-composition data
+        \item Alternative standard deviations for time-varying selectivity ($\Phi$)
+        \ei
+  \item Retrospectives \Sexpr{length(retrospective_yrs)} years into the past
+  \item Spawning biomass estimates from \Sexpr{assess_yr - 1991 + 1} years of assessments
+  \item Hindsight performance of past projections
+  \item Conveying recruitment uncertainty
+\end{enumerate}
+~\\
+\textbf{All bridging, sensitivity, and retrospective models were run using MCMC.}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+\section{$h, M, \sigma_r$}
+\subsection{Sensitivity to steepness, $h$}
+\begin{frame}
+\frametitle{Sensitivity to steepness, $h$}
+\begin{center}
+\vspace{5pt}
+<<h-biomass-fig, fig.height=3.0>>=
+plot_biomass(model_lst = list(base_model,
+                              sens_models[[1]][[2]],  # [[1]] is base model
+                              sens_models[[1]][[3]]),
+             model_names = c(base_model_name,
+                             sens_models_desc[[1]][1],
+                             sens_models_desc[[1]][2]),
+             x_expansion = 4,
+             ylim = c(0, 6),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 5,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\subsection{Sensitivity to natural mortality, $M$ }
+\begin{frame}
+\frametitle{Sensitivity to natural mortality, $M$ (base has prior median 0.2, sd 0.1)}
+\begin{center}
+\vspace{5pt}
+<<m-biomass-fig, fig.height=3.0>>=
+plot_biomass(model_lst = list(base_model,
+                              sens_models[[1]][[6]],
+                              sens_models[[1]][[7]],
+                              sens_models[[1]][[8]]),
+             model_names = c(base_model_name,
+                             sens_models_desc[[1]][5],
+                             sens_models_desc[[1]][6],
+                             sens_models_desc[[1]][7]),
+             x_expansion = 4,
+             ylim = c(0, 20),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 5,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Sensitivity to natural mortality, $M$ (base has prior median 0.2, sd 0.1)}
+\begin{center}
+\vspace{5pt}
+<<m-biomass-fig-rel, fig.height=3.0>>=
+plot_rel_biomass(model_lst = list(base_model,
+                                  sens_models[[1]][[6]],
+                                  sens_models[[1]][[7]],
+                                  sens_models[[1]][[8]]),
+                 model_names = c(base_model_name,
+                                 sens_models_desc[[1]][5],
+                                 sens_models_desc[[1]][6],
+                                 sens_models_desc[[1]][7]),
+             x_expansion = 4,
+             ylim = c(0, 4),
+             leg_font_size = 5,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Sensitivity to natural mortality, $M$ (base has prior median 0.2, sd 0.1)}
+\begin{center}
+<<m-par-table, results='asis', echo=FALSE>>=
+table_param_est(models = list(base_model,
+                              sens_models[[1]][[6]],  # [[1]] is base model
+                              sens_models[[1]][[7]],
+                              sens_models[[1]][[8]]),
+                model.names = c(base_model_name,
+                                sens_models_desc[[1]][5],
+                                sens_models_desc[[1]][6],
+                                sens_models_desc[[1]][7]),
+                end_yr = end_yr,
+                digits = 3,
+                xcaption = NULL,
+                font.size = 6.5,
+                space.size = 5.5,
+                getrecs = c(2010, 2014, 2016,2020),
+                show_like = FALSE)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\subsection{Sensitivity to s.d.~of recruitment variability, $\sigma_r$; base \Sexpr{sigma_r}}
+\begin{frame}
+\frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$ (base is \Sexpr{sigma_r})}
+\begin{center}
+<<sigmar-biomass-fig, fig.height=3.0>>=
+plot_biomass(model_lst = list(base_model,
+                              sens_models[[1]][[4]],
+                              sens_models[[1]][[5]]),
+             model_names = c(base_model_name,
+                             sens_models_desc[[1]][3],
+                             sens_models_desc[[1]][4]),
+             x_expansion = 4,
+             ylim = c(0, 6),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 5,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Sensitivity to s.d.~of recruitment variability, $\sigma_r$ (base is \Sexpr{sigma_r})}
+\begin{center}
+\vspace{5pt}
+<<sigmar-biomass.fig.rel, fig.height=3.0>>=
+plot_rel_biomass(model_lst = list(base_model,
+                                  sens_models[[1]][[4]],
+                                  sens_models[[1]][[5]]),
+                 model_names = c(base_model_name,
+                                 sens_models_desc[[1]][3],
+                                 sens_models_desc[[1]][4]),
+             x_expansion = 4,
+             ylim = c(0, 4),
+             leg_font_size = 5,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+% -----------------------------------------------------------------------------%
+\section{Age-1 index}
+\subsection{Remove age-1 index}
+\begin{frame}
+\frametitle{Remove age-1 index}
+\begin{center}
+<<age1-biomass-fig, fig.height=3.0>>=
+plot_biomass(model_lst = list(base_model,
+                              sens_models[[2]][[2]]),
+             model_names = c(base_model_name,
+                             sens_models_desc[[2]][1]),
+             x_expansion = 4,
+             ylim = c(0, 6),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 5,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Remove age-1 index}
+\begin{center}
+<<age1-par-table, results='asis', echo=FALSE>>=
+table_param_est(models = list(base_model,
+                              sens_models[[2]][[2]]),
+                model.names = c(base_model_name,
+                                sens_models_desc[[2]][1]),
+                end_yr = end_yr,
+                digits = 3,
+                xcaption = NULL,
+                font.size = 6.5,
+                space.size = 5.5,
+                getrecs = c(2010, 2014, 2016,2020),
+                show_like = FALSE)
+@
+\end{center}
+\end{frame}
+
+% -----------------------------------------------------------------------------%
+\section{Weighting}
+\subsection{Downweight fishery age-composition data}
+\begin{frame}
+\frametitle{Downweight fishery age-composition data}
+\vspace{5pt}
+\begin{center}
+<<downweight-biomass-fig, fig.height=3.0>>=
+plot_biomass(model_lst = list(base_model,
+                              sens_models[[2]][[3]]),
+             model_names = c(base_model_name,
+                             sens_models_desc[[2]][2]),
+             x_expansion = 4,
+             ylim = c(0, 6),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 5,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Downweight fishery age-composition data}
+\vspace{5pt}
+\begin{center}
+<<downweight-sensitivity-biomass-rel, fig.height=3.0>>=
+plot_rel_biomass(model_lst = list(base_model,
+                                  sens_models[[2]][[3]]),
+                 model_names = c(base_model_name,
+                                 sens_models_desc[[2]][2]),
+                 x_expansion = 4,
+                 ylim = c(0, 4),
+                 leg_font_size = 5,
+                 leg_pos = c(0.8, 0.75),
+                 rev_colors = TRUE,
+                 axis_title_font_size = 10,
+                 ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\section{$\Phi$}
+\subsection{Flexibility in time-varying selectivity -- $\Phi$}
+\begin{frame}
+\frametitle{Flexibility in time-varying selectivity -- $\Phi$}
+\fontsize{11pt}{2}\selectfont
+\bi
+\item \red{2017 assessment} -- deviation of time-varying fishery selectivity was increased
+from $\phi=0.03$ to $\phi=0.20$, to reduce an anomalously high estimate of 2014 recruitment
+driven solely by fishery catch-at-age data
+
+\item \red{2018 assessment} -- changed from logistic space ($\phi=0.20$) to standard space ($\Phi=1.40$)
+
+\item \red{2019-\Sexpr{assess_yr} assessments} -- retained the 2018 value of $\Phi=1.40$
+\ei
+\vspace{20pt}
+Here we test alternative values of $\Phi$
+
+\end{frame}
+
+%----------------------------------------------------------
+\subsection{Alternative deviations for selectivity, $\Phi$}
+\begin{frame}
+\frametitle{Alternative deviations for selectivity, $\Phi$}
+\vspace{5pt}
+\begin{center}
+<<phi-biomass-fig, fig.height=3.0>>=
+plot_biomass(model_lst = list(base_model,
+                              sens_models[[3]][[2]],
+                              sens_models[[3]][[3]],
+                              sens_models[[3]][[4]]),
+             model_names = c(base_model_name,
+                             sens_models_desc[[3]][1],
+                             sens_models_desc[[3]][2],
+                             sens_models_desc[[3]][3]),
+             x_expansion = 4,
+             ylim = c(0, 6),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 5,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Alternative deviations for selectivity, $\Phi$}
+\vspace{5pt}
+\begin{center}
+<<phi-recr-fig, fig.height=3.0>>=
+plot_recruitment(d_obj = d_obj_sens_recr[[3]],
+                 x_expansion = 2,
+                 ylim = c(0,45),
+                 leg_font_size = 9,
+                 leg_pos = c(0.13, 0.80),
+                 inc_means = FALSE,
+                 rev_colors = TRUE,
+                 clip_cover = 3.5)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Alternative deviations for selectivity -- age-2+ biomass index fit}
+\begin{center}
+\vspace{5pt}
+<<phi-survey-fig, fig.height=3>>=
+plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
+                       survey_type = "age2",
+                       x_expansion = 2,
+                       leg_pos = c(0.74, 0.25),
+                       rev_colors = TRUE,
+                       leg_font_size = 6)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Alternative deviations for selectivity, $\Phi$}
+\begin{center}
+\vspace{-5pt}
+<<phi-sensitivity-table, results='asis', echo=FALSE>>=
+table_param_est(models = list(base_model,
+                              sens_models[[3]][[2]],
+                              sens_models[[3]][[3]],
+                              sens_models[[3]][[4]]),
+                model.names = c(base_model_name,
+                                sens_models_desc[[3]][1],
+                                sens_models_desc[[3]][2],
+                                sens_models_desc[[3]][3]),
+                end_yr = end_yr,
+                digits = 3,
+                xcaption = NULL,
+                font.size = 6.5,
+                space.size = 5.5,
+                getrecs = c(2010, 2014, 2016,2020),
+                show_like = FALSE)
+@
+\end{center}
+\end{frame}
+
+% -----------------------------------------------------------------------------%
+\section{Retros}
+\subsection{Spawning biomass}
+\begin{frame}
+\frametitle{Base model retrospectives - Spawning biomass}
+\begin{center}
+\vspace{-5pt}
+<<retro-biomass-1, fig.height=3>>=
+plot_biomass(d_obj = map(d_obj_retro_biomass,
+                         ~filter(.x,
+                                 model %in% c("Base model",
+                                              "-1 year"))),
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.6, 0.86),
+             leg_ncol = 1,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Base model retrospectives - Spawning biomass}
+\begin{center}
+\vspace{-5pt}
+<<retro-biomass-2, fig.height=3>>=
+plot_biomass(d_obj = map(d_obj_retro_biomass,
+                         ~filter(.x,
+                                 model %in% c("Base model",
+                                              "-1 year",
+                                              "-2 years"))),
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.6, 0.86),
+             leg_ncol = 1,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Base model retrospectives - Spawning biomass}
+\begin{center}
+\vspace{-5pt}
+<<retro-biomass-3, fig.height=3>>=
+plot_biomass(d_obj = map(d_obj_retro_biomass,
+                         ~filter(.x,
+                                 model %in% c("Base model",
+                                              "-1 year",
+                                              "-2 years",
+                                              "-3 years"))),
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.6, 0.86),
+             leg_ncol = 2,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Base model retrospectives - Spawning biomass}
+\begin{center}
+\vspace{-5pt}
+<<retro-biomass-4, fig.height=3>>=
+plot_biomass(d_obj = map(d_obj_retro_biomass,
+                         ~filter(.x,
+                                 model %in% c("Base model",
+                                              "-1 year",
+                                              "-2 years",
+                                              "-3 years",
+                                              "-4 years"))),
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.6, 0.86),
+             leg_ncol = 2,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Base model retrospectives - Spawning biomass}
+\begin{center}
+\vspace{-5pt}
+<<retro-biomass-5, fig.height=3>>=
+plot_biomass(d_obj = d_obj_retro_biomass,
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.6, 0.86),
+             leg_ncol = 2,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\begin{frame}
+\frametitle{Base model retrospectives - recruitment}
+\begin{center}
+\vspace{-5pt}
+<<retro-recr, fig.height=3>>=
+plot_recruitment(d_obj = d_obj_retro_recr,
+                 leg_pos = c(0.6, 0.86),
+                 leg_font_size = 5,
+                 leg_ncol = 2,
+                 rev_colors = TRUE,
+                 axis_title_font_size = 10,
+                 clip_cover = 3.5)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\subsection{Base model squid plot}
+\begin{frame}
+\frametitle{Base model retrospective -- squid plot}
+\begin{center}
+\vspace{-5pt}
+<<retro-3, fig.height=3.5>>=
+retro_cohorts <- (end_yr - 11):(end_yr - 2)
+plot_squid(base_model,
+                subplot = 1,
+                cohorts = retro_cohorts,
+                plot_mcmc = TRUE)
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\section{Historical}
+\begin{frame}
+\frametitle{Historical assessments}
+\begin{center}
+\vspace{-5pt}
+<<retro-4, out.width='.88\\columnwidth', out.height='.8\\textheight'>>=
+make.assessment.history.plot(base_model,
+                             assessment.history,
+                             cex.legend = 0.48 * 38 / (38 + assess_yr - 2022))
+                             # automatically shrink font size each year to fit.
+@
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------
+\frame{\frametitle{Historical performance of the Pacific Hake stock assessment}
+  \bi
+  \item General question -- how `good' are projection probabilities? And why do
+    they seem to change over time?
+  \item For example, 2019 assessment Table~i we had:
+  \ei
+\begin{table}[h]
+\begin{tabularx}{0.6\textwidth}{lYY}  %{\textwidth}{lYYYYYY}
+\toprule
+\mlc{\textbf{Catch} \\ \textbf{in 2019}} &
+\mlc{\textbf{Probability} \\ \textbf{B\subscr{2020} < B\subscr{2019}}} &
+\mlc{\textbf{Probability} \\ \textbf{B\subscr{2020} < B\subscr{40\%}}} \\
+\midrule
+  a:       0 & 17\% & 8\% \\
+  b: 180,000 & 40\% & 13\% \\
+  c: 350,000 & 57\% & 17\% \\
+  \textcolor{red}{d: 410,000} & \textcolor{red}{61\%} & \textcolor{red}{19\%} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\pause
+\bi
+  \item Now (since it's \Sexpr{assess_yr}) we `\emph{know}' the 2019 catch was
+    \Sexpr{f(filter(catch_last_10yrs, year == 2019)$tot_catch)}~t, so row~d was close enough.
+\pause
+\item How do the probabilities in row~d compare to estimates of them from the
+    current base model?
+\ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bc
+<<historical-prob-plot-1a, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+make.historical.probs.plot(base_model,
+                           type = "decline.one.year",
+                           add.50 = FALSE)
+@
+\ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bc
+<<historical-prob-plot-1c, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+  make.historical.probs.plot(base_model)
+@
+\ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bc
+<<historical-prob-plot-1d, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+  make.historical.probs.plot(base_model,
+                             add.projs = TRUE)
+@
+\ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Probabilities of decline in subsequent year}
+\bi
+  \item{Previous assessments have `correctly' projected an increase or decrease
+      in subsequent year (except 2018 and 2021)}
+  \item{An assessment's projection is almost always less definitive than from
+      the current base model, since current model has more information}
+  \item{Analysis gives confidence in the current expectation of
+      the stock declining next year}
+\ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Spawning Biomass}
+\bc
+<<spawning-biomass, fig.height=3>>=
+plot_biomass(list(base_model),
+             list(base_model_name),
+             point_shape = 1,
+             alpha = 0.2,
+             leg_pos = "none",
+             x_expansion = 4,
+             ylim = c(0, 6),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 5,
+             axis_title_font_size = 10,
+             ribbon_line_type = 0)
+@
+\ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
+\bc
+<<historical-prob-plot-2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+make.historical.probs.plot(base_model,
+                           type = "bforty",
+                           legend.loc = "topright")
+@
+\ec
+}
+
+% --------------------------------------------------------------
+\frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
+\bc
+<<historical-prob-plot-2b, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
+make.historical.probs.plot(base_model,
+                           type = "bforty",
+                           add.projs = TRUE,
+                           legend.loc = "topright")
+@
+\ec
+}
+
+%----------------------------------------------------------
+\subsection{}
+\frame{\frametitle{Probabilities of being below $\Bforty$ in subsequent year}
+  \bi
+  \item Previous assessments have `correctly' projected not falling below $\Bforty$ in
+      all years, except 2012 (due to unknown huge 2010 recruitment)
+  \item Caveat: that's not a particularly high bar to meet, given the stock was
+      high from 2013 onwards
+  \item Given uncertainty in most recent recruitments, assessments always give some small probability of
+      falling below $\Bforty$; current model says that's (in hindsight) even more unlikely
+  \item Analysis gives confidence in the current expectation of remaining
+      above $\Bforty$
+  \item Retrospective versions also available (Figures~59--64).
+  \ei
+}
+
+% --------------------------------------------------------------
+\section{Recruitment}
+\frame{\frametitle{Recruitment}
+\bc
+<<rec-fig, fig.height=2.8>>=
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 single_line_color = "blue",
+                 leg_pos = "none",
+                 axis_title_font_size = 10,
+                 clip_cover = 3.5,
+                 ylim = c(0, 35))
+@
+\ec
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Scaled plot to further conveying recruitment variability}
+\bc
+<<rec-variability, fig.height=3.7>>=
+make.mcmc.recruitment.plot(base_model,
+                           start_yr = 1966,
+                           equil.yr = unfished_eq_yr,
+                           samples = NULL,
+                           rescale = TRUE,
+                           traceplot = FALSE,
+                           end_yr = assess_yr + 2,
+                           auto.xaxis = FALSE,
+                           plot_R0 = TRUE)
+@
+\ec
+Plotting annual recruitment relative to huge 2010 recruitment shows that 2014
+was definitely not as large as 2010, in contrast to intuition from usual plot.
+}
+
+% --------------------------------------------------------------
+\section{Summary}
+\subsection{Overview}
+\begin{frame}
+\frametitle{Summary}
+\vspace{-1cm}
+\bi
+  \item In general, sensitivities show no significant departure in population dynamics from base model
+  \item Absolute scale changes for some sensitivities, mostly due to differing $R_0$ estimates
+  \item Overall pattern is consistent -- large increases in biomass in
+    early 2010s and current increase in biomass due to 2020 recruitment
+  \item Retrospective squid plots show that since \Sexpr{assess_yr - 11}, and
+    based on medians:
+  \bi
+    \item 2014 cohort is the largest
+    \item 2020 cohort is the second largest
+    \item 2020 cohort looked a little larger at age-2 than 2016 did, but
+      somewhat larger at age-3
+  \ei
+  \item Current assessment is consistent with recent historical assessments
+  \item Analyses of past performance gives confidence in projections
+\ei
+\end{frame}
+
+\end{document}

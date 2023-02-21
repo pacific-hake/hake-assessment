@@ -1,0 +1,455 @@
+\documentclass[aspectratio=169]{beamer}
+\mode<presentation>
+\usetheme[compress]{Singapore}
+\usepackage[outdir=./figures/]{epstopdf}
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc} % to use < or > in tables
+% For centering with fixed width column or right cell values in a tabular
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+
+\setbeamersize{text margin left=0.1in}
+\setbeamersize{text margin right=0.1in}
+\setbeamertemplate{title page}
+{
+\includegraphics[height=0.5in]{../../images/NOAA.eps}
+\hfill
+\includegraphics[height=0.5in]{../../images/DFO.eps}
+\vskip0pt plus 1filll
+\begin{center}
+{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
+\vskip22pt
+\insertauthor
+\vskip22pt
+\insertdate
+\end{center}
+\vskip50pt
+\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+\vskip0pt plus 1filll
+}
+\definecolor{pageCol}{rgb}{0.5,0.5,1.0}
+\setbeamertemplate{footline}
+{
+\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+\insertframenumber/\inserttotalframenumber
+\end{beamercolorbox}%
+}
+\setbeamercolor{footline}{fg=pageCol}
+\newcounter{saveenumi}
+\input{../../hake-beamer.tex}
+
+<<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+library(knitr)
+opts_chunk$set(dev = 'cairo_ps',
+               fig.dpi = 96,
+               fig.width = 7.5,
+               fig.height = 4,
+               echo = FALSE,
+               results = FALSE,
+               message = FALSE,
+               warning = FALSE,
+               results = 'hide',
+               fig.path = here::here("beamer",
+                                     "SRG",
+                                     "Management",
+                                     "knitr-cache", "/"),
+               cache.path = here::here("beamer",
+                                       "SRG",
+                                       "Management",
+                                       "knitr-cache", "/"),
+               cache = TRUE)
+
+source(here::here("R/all.R"))
+source(file.path(rootd_doc, "load-models.R"))
+source(file.path(rootd_r, "custom-knitr-variables.R"))
+
+fig_dir <- here::here("beamer", "SRG", "Management", "figures")
+if(!dir.exists(fig_dir)){
+  dir.create(fig_dir)
+}
+
+metric <- NULL
+forecasts <- base_model$forecasts[[1]]
+metric$mcmc <- forecasts[[7]]$outputs
+models.inds <- c(1, 2, 6, 12, catch.default.policy.ind)
+models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] # pretty catch level name
+@
+
+%----------------------------------------------------------
+\title[Hake Management]{Management outcomes of the \Sexpr{end_yr} Pacific Hake stock assessment}
+\author[JTC]{Pacific Hake Joint Technical Committee}
+\date{{\footnotesize SRG meeting -- \Sexpr{assess_yr}}}
+\subtitle{\tiny \disclaimer}
+\begin{document}
+
+\frame[plain]{
+\titlepage
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Update on computation for the assessment}
+  \bi
+	  \item JTC Acquired 80-CPU computer this year
+	  \item Server is running Ubuntu Linux and has an account for each JTC member
+	  \item Login remotely through Secure Shell (SSH) with 4,096 bit encryption
+	  \item Models run in parallel through Bash scripting instead of R packages
+	    so that we can watch individual model runs as OS processes
+    \item One universal directory for all models which is accessed by all JTC
+      members when working on the document. This supports reproducibility and
+      minimizes possible versioning errors due to cutting/pasting models on
+      Google Drive
+	  \item Models run very quickly, ranging from 45 minutes to 2
+	    hours for a full NUTS MCMC run. This is more than twice as fast as running
+	    them on Amazon Web Server (AWS)
+	\ei
+}
+
+%----------------------------------------------------------
+\section{Introduction}
+\subsection{Background}
+\frame{\frametitle{Past management: Total Allowable Catch}
+<<tac-vs-realized-catch-ts, fig.height=3.5>>==
+plot_management_catch_vs_tac(catch.targets, connect_vars = TRUE,
+                             connect_vars_linetype = "solid",
+                             connect_vars_alpha = 0.2,
+                             curr_assess_biomass = base_model$catch.default.policy[1],
+                             leg_pos = c(0.12, 0.87),
+                             leg_font_size = 10)
+def_med_hr_tac <- filter(catch.targets,
+                         Year == last_assess_yr)$`Default HCR TAC`
+@
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Past management: Total Allowable Catch}
+\begin{columns}
+  \begin{column}{0.45\textwidth}
+	  \bi
+	    \item March \Sexpr{last_assess_yr}
+      \bi
+        \item Default median HR TAC is \Sexpr{f(def_med_hr_tac)}~t
+        \item Sum of unilateral TACs is \Sexpr{last.year.tac}~t
+      \ei
+      \item When default HR suggests a large catch, TAC is often set less
+      \item Catches are often less than the TAC
+      \item Box colors correspond to year in the time series (darker are more recent)
+	  \ei
+  \end{column}
+  \begin{column}{0.6\textwidth}
+  <<tac-vs-realized-catch, fig.height = 6, out.width = '0.95\\columnwidth'>>=
+  plot_management_catch_vs_tac_1_to_1(catch.targets,
+                                      top_yrs = c(2004, 2006, 2012, 2016, 2018),
+                                      color_darken = 0.9)
+  @
+  \end{column}
+\end{columns}
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Past management: Performance}
+  \begin{columns}
+    \begin{column}{0.25\textwidth}
+      \bi
+        \item \protect{P$(B_{\Sexpr{assess_yr}}/B_0 < 0.4)$}
+        $~~=\Sexpr{probs.curr.below.bforty}\%$
+        \item P(relative fishing intensity at end of \Sexpr{assess_yr-1} $>$ 1.0)
+        $~~=\Sexpr{probs.curr.rel.fish.intens.above.one}\%$
+        \item Joint probability of both is \Sexpr{joint.percent.prob.above.below}\%
+        \item Fishing intensity has remained below target
+        \item Biomass has mostly remained above target
+      \ei
+    \end{column}
+    \begin{column}{0.75\textwidth}
+    \bc
+    <<main-phase, fig.height=5, fig.width=8,out.width='1.0\\columnwidth'>>=
+      make.phase.plot(base_model, start_yr = start_yr, end_yr = end_yr)
+    @
+    \ec
+    \end{column}
+  \end{columns}
+}
+
+%----------------------------------------------------------
+\section{Projections}
+\subsection{Methods}
+\frame{\frametitle{Projection methods}
+  \bi
+    \item Projections estimate the biomass at start
+      of \Sexpr{end_yr + 1}, \Sexpr{end_yr + 2}, and \Sexpr{end_yr + 3}
+    \bi
+      \item Mean of fishery selectivity from \Sexpr{end_yr - 5}--\Sexpr{end_yr - 1} used in projections
+      \item Mean of weight-at-age from \Sexpr{end_yr - 5}--\Sexpr{end_yr - 1} used in projections
+      \item Recruitment from stock-recruit relationship (with uncertain deviations)
+      \item Used for default HR calculations
+      \item Alternative future catch levels explored
+    \ei
+    \item Equilibrium calculations (\emph{B}\subscr{0}, \emph{F}\subscr{SPR}, MSY, etc.)
+    \bi
+      \item Base selectivity (used for years before 1991 as well)
+      \item Mean of weight-at-age across 1975-\Sexpr{last_data_yr}
+      \item Recruitment at estimated \emph{R}\subscr{0} or from stock-recruit relationship
+    \ei
+    \item Catch alternatives presented for some specific cases
+  \ei
+}
+
+%----------------------------------------------------------
+\subsection{Two-year projections}
+\frame{\frametitle{Harvest-rule predicted catch for \Sexpr{assess_yr}}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median projected \Sexpr{end_yr} TAC is
+      \smallskip
+      \bc {\bf \Sexpr{catch.limit.quantiles["median"]} t} \ec
+      \smallskip
+      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{catch.limit.quantiles["lower"]} and \Sexpr{catch.limit.quantiles["upper"]}~t
+    \ei
+  \end{column}
+  \begin{column}{0.65\textwidth}
+    <<main-projected-catch-density, out.width='.99\\columnwidth'>>=
+      make.forecast.catch.posterior.plot(base_model,
+                                         fore.yr = end_yr,
+                                         xmax = 3000)
+      @
+  \end{column}
+\end{columns}
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Three-year projections}
+\begin{columns}
+  \begin{column}{0.38\textwidth}
+    \bi
+      \item No fishing results in flat \emph{median} relative
+        spawning biomass from \Sexpr{assess_yr} to \Sexpr{assess_yr + 3} then
+        leveling off
+      \item 180,000 t catch shows similar biomass in \Sexpr{end_yr + 1} followed by decline
+      \item All others shown result in immediate declines in the median
+      \item Uncertainty is large and increases from \Sexpr{end_yr} to \Sexpr{end_yr + 3}
+    \ei
+  \end{column}
+  \begin{column}{0.59\textwidth}
+  <<main-forecast-depletion-comparison-plot, out.width='.95\\columnwidth'>>=
+  # See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
+  # `fore_inds` below are the indices of those forecast values in that list.
+  plot_depl_fore_comparison(base_model,
+                            fore_inds = c(1, 2, 6, 12, 14),
+                            forecast_yrs = forecast_yrs)
+    @
+  \end{column}
+\end{columns}
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Projected age compositions for \Sexpr{end_yr} fishery catch}
+\begin{columns}
+  \begin{column}{0.35\textwidth}
+    Median proportions (by numbers) are:
+    \bi
+    \item \Sexpr{fore.catch.prop$Age13}\% age-13 fish, \Sexpr{forecast_yrs[1] - 13} cohort
+    \item \Sexpr{fore.catch.prop$Age9}\% age-9 fish, \Sexpr{forecast_yrs[1] - 9} cohort
+    \item \Sexpr{fore.catch.prop$Age8}\% age-8 fish, \Sexpr{forecast_yrs[1] - 8} cohort
+    \item \Sexpr{fore.catch.prop$Age7}\% age-7 fish, \Sexpr{forecast_yrs[1] - 7} cohort
+    \item \Sexpr{fore.catch.prop$Age6}\% age-6 fish, \Sexpr{forecast_yrs[1] - 6} cohort
+    \item \Sexpr{fore.catch.prop$Age5}\% age-5 fish, \Sexpr{forecast_yrs[1] - 5} cohort
+    \item \Sexpr{fore.catch.prop$Age4}\% age-4 fish, \Sexpr{forecast_yrs[1] - 4} cohort
+    \item \Sexpr{fore.catch.prop$Age3}\% age-3 fish, \Sexpr{forecast_yrs[1] - 3} cohort
+    \item \Sexpr{fore.catch.prop$Age2}\% age-2 fish, \Sexpr{forecast_yrs[1] - 2} cohort
+  \ei
+  \end{column}
+  \begin{column}{0.65\textwidth}
+    <<main-age-comp-forecast, fig.height=3.5, fig.width=5.5>>=
+    make.age.comp.forecast.plot(base_model)
+    @
+  \end{column}
+\end{columns}
+}
+
+%----------------------------------------------------------
+\section{Decision Tables}
+\subsection{Intro}
+\frame{\frametitle{Decision Tables}
+  \bi
+    \item Decision table format (as improved last year)
+    \bi
+      \item Quantiles from the posterior distribution for relative spawning biomass and fishing intensity
+    \ei
+    \item Catch alternatives
+    \bi
+      \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
+      \item b, c, d, g, i, k: Constant catches of \Sexpr{catch_levels[[2]][[2]]},
+        \Sexpr{catch_levels[[3]][[2]]},
+        \Sexpr{catch_levels[[4]][[2]]},
+        \Sexpr{catch_levels[[7]][[2]]},
+        \Sexpr{catch_levels[[9]][[2]]}, and
+        \Sexpr{catch_levels[[11]][[2]]}.
+      \item f. Constant catch equal to \Sexpr{catch_levels[[6]][[2]]},
+      \item l. Constant catch equal to \Sexpr{catch_levels[[12]][[2]]},
+      \item e, h, j: Annual reductions of 10\% from:
+        \Sexpr{f(catch_levels[[5]][[1]][1])}~t,
+        \Sexpr{f(catch_levels[[8]][[1]][1])}~t, and
+        \Sexpr{f(catch_levels[[10]][[1]][1])}~t.
+%      \item \textcolor{gray}{c. Constant catch of \Sexpr{catch_levels[[3]][[2]]}}
+%      \item d. Constant catch (\Sexpr{catch_levels[[4]][[2]]})
+%      \item e. Constant catch (\Sexpr{catch_levels[[5]][[2]]})
+%      \item \textcolor{gray}{f. Constant catch (\Sexpr{catch_levels[[6]][[2]]})}
+%      \item \textcolor{gray}{m. Constant catch (\Sexpr{catch_levels[[7]][[2]]})}
+      \item m. Fishing Intensity = 100\% in each year
+        conditioned on fixed catch in previous year
+      \item n. Median default Harvest Rule in each year conditioned on
+        fixed catch in previous year
+      \item o. Fishing intensity giving 50\% prob.~that the
+          median \Sexpr{assess_yr} catch equals median  \Sexpr{assess_yr+1} catch
+    \ei
+    % \item More catch alternatives can be added as determined by SRG/AP/JMC
+  \ei
+}
+
+%----------------------------------------------------------
+\subsection{Spawning Biomass}
+\frame{\frametitle{Relative Spawning Biomass}
+<<decisions-biomass-table, results='asis', echo=FALSE>>=
+decision_table(base_model,
+               xcaption = NULL,
+               type = "biomass",
+               rows_to_show = c("a", "b", "f", "j", "k"),
+               font.size = 8,
+               space.size = 10)
+@
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Probability table definitions}
+  Probabilities associated with biomass and fishing-based metrics for different fixed catch levels
+  (see Executive Summary: Tables i, j, and k; Figures k, l, and m)
+  \bi
+    \item Fix the catch in \Sexpr{assess_yr} to estimate $B_{\Sexpr{assess_yr + 1}}$
+    \item Fix the catches in \Sexpr{assess_yr} and \Sexpr{assess_yr + 1} to estimate $B_{\Sexpr{assess_yr + 2}}$
+    \item Fix the catches in \Sexpr{assess_yr}, \Sexpr{assess_yr + 1},
+      and \Sexpr{assess_yr + 2} to estimate $B_{\Sexpr{assess_yr + 3}}$
+    \item P($B_{\Sexpr{assess_yr + 1}} < B_y$): Probability that biomass in \Sexpr{assess_yr + 1}
+      is less a specified biomass\\
+      such as $B_{\Sexpr{assess_yr}}$ or $\Bforty$
+    \item P(relative FI > 100\% target): Probability that relative fishing intensity in fixed catch
+      year is greater than the target fishing intensity
+    \item Probabilities are calculated as proportions of the MCMC samples meeting the criteria, e.g. 50\% probability of being under $\Bforty$ means that 4,000 of the 8,000 MCMC samples were under $\Bforty$
+  \ei
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
+<<main-risk-forecast-year-1-table, results='asis', echo=FALSE>>=
+make.risk.table(base_model,
+                forecast_yrs,
+                index = 1,
+                xcaption = NULL,
+                font.size = 9,
+                space.size = 10)
+  @
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
+\bc
+<<forecast-risk-comparison-plot-year-1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[1],
+                  leg_pos = c(0.28, 0.36),
+                  leg_font_size = 7,
+                  remove_x_val = 325)
+@
+\ec
+}
+
+%--------------------------------------------------------------
+\frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr+1} catches}
+<<main-risk-forecast-year-2-table, results='asis', echo=FALSE>>=
+make.risk.table(base_model,
+                forecast_yrs,
+                index = 2,
+                xcaption = NULL,
+                font.size = 9,
+                space.size = 10)
+@
+}
+
+%--------------------------------------------------------------
+
+\frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr+1} catches}
+\bc
+<<forecast-risk-comparison-plot-year-2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[2],
+                  leg_pos = c(0.28, 0.44),
+                  leg_font_size = 7,
+                  remove_x_val = c(315, 342, 740))
+@
+\ec
+}
+
+%--------------------------------------------------------------
+\frame{\frametitle{Probabilities based on \Sexpr{end_yr}, \Sexpr{end_yr+1},
+    and \Sexpr{end_yr+2} catches}
+<<main-risk-forecast-year-3-table, results='asis', echo=FALSE>>=
+make.risk.table(base_model,
+                forecast_yrs,
+                index = 3,
+                xcaption = NULL,
+                font.size = 9,
+                space.size = 10)
+@
+}
+
+%----------------------------------------------------------
+\frame{\frametitle{Probabilities based on \Sexpr{end_yr}, \Sexpr{end_yr+1},
+    and \Sexpr{end_yr+2} catches}
+\bc
+<<forecast-risk-comparison-plot-year-3, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[3],
+                  leg_pos = c(0.28, 0.44),
+                  leg_font_size = 7,
+                  remove_x_val = 621)
+@
+\ec
+}
+
+%----------------------------------------------------------
+\section{Summary}
+\subsection{}
+\frame{\frametitle{Summary of management outcomes}
+  \bi
+    \item Uncertainty is large, but stock currently has \Sexpr{probs.curr.below.bforty}\%
+      chance of being below $B_{40\%}$ and
+      \Sexpr{probs.curr.rel.fish.intens.above.one}\% chance of relative fishing
+      intensity being above 100\% (slide 4)
+    \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t)
+    \item Projections strongly influenced by size of above-average 2014 and 2016
+      cohorts, and the large but still highly uncertain 2020 cohort
+    \item There is \Sexpr{prob_decl_yr1_zero_catch}\% chance that spawning biomass will decline from
+      \Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]} with zero catch and
+      $>=$\Sexpr{prob_decl_yr1_other_catch}\% chance of decline for all other catch streams
+    \item There is \Sexpr{prob_decl_yr2_zero_catch}\% chance that spawning biomass will decline from
+      \Sexpr{forecast_yrs[2]} to \Sexpr{forecast_yrs[3]} with zero catch and
+      $>=$\Sexpr{prob_decl_yr2_other_catch}\% chance of decline for all other catch streams
+    \item Maintaining a constant catch of \Sexpr{f(last_yr_catch_fore)}~t (the approximate
+     \Sexpr{last_data_yr} catch) results in a \Sexpr{prob_below_b40_yr1_last_yr_catch}\%
+      chance of falling below $B_{40\%}$ in 1 year, and \Sexpr{prob_below_b40_yr2_last_yr_catch}\%
+      in 2 years
+    \item Overall, we estimate probabilities of future events, and analyses
+      give some idea of the confidence we can have in those probabilities
+  \ei
+}
+
+\end{document}

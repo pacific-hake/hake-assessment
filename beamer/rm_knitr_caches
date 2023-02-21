@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Remove all knitr-cache and figures directories recursively to avoid
+# failing the path length > 100 chars error in devtools::check(cran = FALSE)
+
+echo "Directories to be deleted: "
+find . -type d -name "knitr-cache"
+find . -type d -name "figures"
+
+find . -type d -name "knitr-cache" -exec rm -rf {} +
+find . -type d -name "figures" -exec rm -rf {} +
