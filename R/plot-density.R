@@ -1,6 +1,6 @@
 #' Create a density plot for a particular parameter
 #'
-#' @param model A model list, created by [create_rds_file()]
+#' @param model A model object, created by [create_rds_file()]
 #' @param post_regex A regular expression that matches one parameter name
 #' and nothing else
 #' @param den_alpha The alpha value for under the density curve

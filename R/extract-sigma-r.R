@@ -1,42 +1,43 @@
-#' @description Extract the `sigma_R_info` table from a data frame of recruitment parameters
+#' Extract the `sigma_R_info` table from a data frame of recruitment parameters
 #'
-#' @details Extract the `sigma_R_info` table that is available in the object returned from
-#' [r4ss::SS_output()]. Typically, this table is determined from MLE results, but this
-#' function also offers the capability to calculate this info from the table of
-#' MCMC results as well.
+#' @details Extract the `sigma_R_info` table that is available in the object
+#' returned from [r4ss::SS_output()]. Typically, this table is determined from
+#' MLE results, but this function also offers the capability to calculate this
+#' info from the table of MCMC results as well.
 #'
-#' Based on [r4ss:::extract_sigma_R_info()], but with a wrapper for more than one
-#' model
+#' Based on [r4ss:::extract_sigma_R_info()], but with a wrapper for more
+#' than one model
 #'
-#' @param models A list of models extracted using [r4ss::SS_output()]. If only one model,
-#' it must be a list with one element containing the model
-#' @param model_names A vector of names, one for each model in `models`. This vector must be the same
-#' length as `models`
-#' @param sigma_r_in The input value used for sigma_R, this is also available in
-#' the list output by [r4ss::SS_output()] and is used to scale the results.
+#' @param models A list of models extracted using [r4ss::SS_output()]. If
+#' only one model,it must be a list with one element containing the model
+#' @param model_names A vector of names, one for each model in `models`.
+#' This vector must be the same length as `models`
+#' @param sigma_r_in The input value used for sigma_R, this is also available
+#' in the list output by [r4ss::SS_output()] and is used to scale the results
 #'
 #' @export
-#' @return A data frame is returned with three rows for each model in the `models` list
-#' and 11 columns. Rows provide summary statistics for a given group of recruitments, where the
-#' rows are additive in their inclusiveness, i.e., the data frames used to calculate
-#' rows two and three include all data used in the calculations that led to the
-#' results displayed in the first row. Columns include the following variables:
+#' @return A data frame is returned with three rows for each model in the
+#' `models` list and 11 columns. Rows provide summary statistics for a
+#' given group of recruitments, where the rows are additive in their
+#' inclusiveness, i.e., the data frames used to calculate rows two and three
+#' include all data used in the calculations that led to the results
+#' displayed in the first row. Columns include the following variables:
 #' * `period`: Categories that specify which recruitments were included in the
-#' subset used to calculate the summary.
-#' * `N_devs`: The number of recruitment estimates used in the summary.
+#' subset used to calculate the summary
+#' * `N_devs`: The number of recruitment estimates used in the summary
 #' * `SD_of_devs`: The standard deviation (sd) of the recruitment deviations.
-#' * `Var_of_devs`: The variance (var) of the recruitment deviations.
-#' * `mean_SE`: The mean of the estimated standard error (se) of the recruitment
-#' deviations, or more precisely, the mean of the `Parm_StDev` column of your data.
-#' * `mean_SEsquared`: The mean of the squared estimates of standard error of the
-#' recruitment deviations, i.e., `mean(Parm_StDev^2)`.
-#' * `sqrt_sum_of_components`: The square root of the sum of the deviation and the
-#' standard error.
-#' * `SD_of_devs_over_sigma_R`: The scaled version of `SD_of_devs`.
-#' * `sqrt_sum_over_sigma_R`: The scaled version of `sqrt_sum_of_components`.
-#' * `alternative_sigma_R`: The suggested value for a new input sigma_R, which is
-#' just a repeat of the sum of components column.
-#'
+#' * `Var_of_devs`: The variance (var) of the recruitment deviations
+#' * `mean_SE`: The mean of the estimated standard error (se) of the
+#'    recruitment deviations, or more precisely, the mean of the `Parm_StDev`
+#'    column of your data
+#' * `mean_SEsquared`: The mean of the squared estimates of standard error of
+#'    the recruitment deviations, i.e., `mean(Parm_StDev^2)`
+#' * `sqrt_sum_of_components`: The square root of the sum of the deviation and
+#'    the standard error
+#' * `SD_of_devs_over_sigma_R`: The scaled version of `SD_of_devs`
+#' * `sqrt_sum_over_sigma_R`: The scaled version of `sqrt_sum_of_components`
+#' * `alternative_sigma_R`: The suggested value for a new input sigma_R, which
+#'    is just a repeat of the sum of components column
 extract_sigma_r <- function(models = NA,
                             model_names = NA,
                             sigma_r_in = NA) {

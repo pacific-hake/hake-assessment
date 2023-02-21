@@ -1,0 +1,1727 @@
+<<globals-chunk, echo = FALSE>>=
+# Press CTRL-SHIFT-O in Rstudio for outline view
+
+# `henv` stands for hake environment and is intentionally short as it will be
+# typed a lot in document files
+henv <- new.env(parent = emptyenv())
+
+henv$op <- options(max.print = 999999,
+                   warnPartialMatchDollar = TRUE,
+                   dplyr.summarise.inform = FALSE)
+on.exit(options(henv$op), add = TRUE)
+
+# Data file names and loading -------------------------------------------------
+#message("Loading all data tables (csv files) from `", rootd_data, "`")
+
+# Assessment history and changes ----
+henv$pkg <- "hake"
+henv$assessment.history <-
+  read.csv(system.file("data/assessment-history.csv",
+                       package = henv$pkg))
+henv$assessment.changes <-
+  read.csv(system.file("data/assessment-changes.csv",
+                       package = henv$pkg))
+henv$assessment.history.disp <-
+  read.csv(system.file("data/assessment-history-SSBdispersion.csv",
+                       package = henv$pkg))
+# Maturity and weight-at-age ----
+henv$ovary.samples <-
+  read.csv(system.file("data/ovary-samples.csv",
+                       package = henv$pkg))
+henv$maturity.ogives <-
+  read.csv(system.file("data/maturity-table.csv",
+                       package = henv$pkg))
+henv$maturity.samples <-
+  read.csv(system.file("data/hake-maturity-data.csv",
+                       package = henv$pkg))
+henv$weight_age_extrapolation_mask <-
+  read.csv(system.file("data/wtatage_all_samplesize.csv",
+                       package = henv$pkg))
+
+# Catch and TAC ----
+henv$ct <-
+  load_catches(system.file("data/landings-tac-history.csv",
+                           package = henv$pkg))
+henv$catch.targets <-
+  read_csv(system.file("data/catch-targets-biomass.csv",
+                       package = henv$pkg))
+henv$further.tac <-
+  further.tac.details(system.file("data/further-tac-details.csv",
+                                  package = henv$pkg))
+
+# * Canadian catch ----
+henv$can.ft.catch.by.month <-
+  read.csv(system.file("data/can-ft-catch-by-month.csv",
+                       package = henv$pkg))
+henv$can.shore.catch.by.month <-
+  read.csv(system.file("data/can-ss-catch-by-month.csv",
+                       package = henv$pkg))
+henv$can.jv.catch.by.month <-
+  read.csv(system.file("data/can-jv-catch-by-month.csv",
+                       package = henv$pkg))
+
+# * US catch ----
+henv$us.shore.catch.by.month <-
+  read.csv(system.file("data/us-shore-catch-by-month.csv",
+                       package = henv$pkg))
+henv$us.cp.catch.by.month <-
+  read.csv(system.file("data/us-cp-catch-by-month.csv",
+                       package = henv$pkg))
+henv$us.ms.catch.by.month <-
+  read.csv(system.file("data/us-ms-catch-by-month.csv",
+                       package = henv$pkg))
+henv$us.ti.catch.by.month <-
+  read.csv(system.file("data/us-ti-catch-by-month.csv",
+                       package = henv$pkg))
+henv$us.research.catch.by.month <-
+  read.csv(system.file("data/us-research-catch-by-month.csv",
+                       package = henv$pkg))
+
+# Sampling data ----
+henv$sampling.history <-
+  load.sampling.history(system.file("data/fishery-sampling-history.csv",
+                                    package = henv$pkg))
+# * Canada sampling ----
+henv$can.ages <-
+  load.can.age.data(system.file("data/can-age-data.csv",
+                                package = henv$pkg))
+henv$can.ft.num.fish <-
+  read.csv(system.file("data/can-ft-num-fish-aged.csv",
+                       package = henv$pkg))
+henv$can.ss.num.fish <-
+  read.csv(system.file("data/can-ss-num-fish-aged.csv",
+                       package = henv$pkg))
+henv$can.jv.num.fish <-
+  read.csv(system.file("data/can-jv-num-fish-aged.csv",
+                       package = henv$pkg))
+henv$can.shore.age <- can.ages[[1]]
+henv$can.ft.age <- can.ages[[2]]
+# * US age samples ----
+henv$us.shore.age <-
+  load.us.age.data(system.file("data/us-shore-age-data.csv",
+                               package = henv$pkg))
+henv$us.cp.age <-
+  load.us.age.data(system.file("data/us-cp-age-data.csv",
+                               package = henv$pkg))
+henv$us.ms.age <-
+  load.us.age.data(system.file("data/us-ms-age-data.csv",
+                               package = henv$pkg))
+
+# Survey data ----
+henv$kriging.pars <-
+  read.csv(system.file("data/kriging-parameters.csv",
+                       package = henv$pkg),
+           comment.char = "#")
+henv$survey.history <-
+  load.survey.history(system.file("data/survey-history.csv",
+                                  package = henv$pkg))
+henv$survey.by.country <-
+  load.survey.by.country(system.file("data/survey-by-country.csv",
+                                     package = henv$pkg))
+
+# Depth data filenames ----
+# * Canada depths ----
+henv$can.ft.bottom.depth <-
+  read.csv(system.file("data/depth-can-ft-bottom.csv",
+                       package = henv$pkg))
+henv$can.ss.bottom.depth <-
+  read.csv(system.file("data/depth-can-ss-bottom.csv",
+                       package = henv$pkg))
+henv$can.ft.gear.depth <-
+  read.csv(system.file("data/depth-can-ft-gear.csv",
+                       package = henv$pkg))
+henv$can.ss.gear.depth <-
+  read.csv(system.file("data/depth-can-ss-gear.csv",
+                       package = henv$pkg))
+# * US depths ----
+henv$us.atsea.fishing.depth <-
+  read.csv(system.file("data/depth-us-atsea-fishing.csv",
+                       package = henv$pkg))
+henv$us.atsea.bottom.depth <-
+  read.csv(system.file("data/depth-us-atsea-bottom.csv",
+                       package = henv$pkg))
+
+# At-age output data tables ----
+henv$out_est_naa_file <- "estimated-numbers-at-age.csv"
+henv$out_est_eaa_file <- "estimated-exploitation-at-age.csv"
+henv$out_est_caa_file <- "estimated-catch-at-age.csv"
+henv$out_est_caa_bio_file <- "estimated-catch-at-age-biomass.csv"
+henv$out_est_baa_file <- "estimated-biomass-at-age.csv"
+
+# assess_yr etc  --------------------------------------------------------------
+henv$assess_yr <- 2023
+henv$last_assess_yr <- assess_yr - 1
+henv$model_version <- "01"
+henv$last_yr_model_version <- "01"
+# -----------------------------------------------------------------------------
+# Data start and endpoint variables
+# -----------------------------------------------------------------------------
+henv$recruit_dev_start_yr <- 1946
+henv$unfished_eq_yr <- 1964
+henv$start_yr <- 1966
+henv$start_yr_age_comps <- 1975
+henv$end_yr <- henv$assess_yr
+henv$last_data_yr <- henv$end_yr - 1
+henv$survey_start_yr <- 1995
+henv$survey_end_yr <- 2021
+henv$surv_yrs <- c(1995, 1998, 2001, 2003, 2005, 2007,
+                   2009, 2011, 2012, 2013, 2015, 2017,
+                   2019, 2021)
+# tick marks for time series plot (not catch time series though)
+henv$big_ticks <- seq(1970, henv$end_yr + 4, 5)
+henv$small_ticks <- henv$start_yr:max(henv$big_ticks)
+# -----------------------------------------------------------------------------
+# Key posteriors used in the assessment
+# -----------------------------------------------------------------------------
+henv$key_posteriors <- c("NatM",
+                         "SR_LN",
+                         "SR_BH_steep",
+                         "Q_extraSD_Acoustic_Survey",
+                         "ln\\(DM_theta\\)_Age_P1",
+                         "ln\\(DM_theta\\)_Age_P2")
+henv$key_posteriors_titles <- c("Natural mortality",
+                                expression(ln(R[0])),
+                                "Steepness",
+                                "Survey extra SD",
+                                "Dirichlet-multinomial fishery",
+                                "Dirichlet-multinomial survey")
+henv$key_posteriors_file <- "keyposteriors.csv"
+henv$nuisance_posteriors_file <- "nuisanceposteriors.csv"
+
+# Base model directory name and description. these can be a lists of vectors
+# like the other types if necessary
+henv$base_models_dirs <- "01-base"
+henv$base_models_desc <- "Base model"
+# This is a list of vectors of bridge groups (bridge models that will be
+# plotted against each other). It can be `NA` if you want it to be ignored.
+# `prepend_to_bridge` is the same length as the number of groups in
+# `bridge_models_dirs` and for those groups set to `TRUE`, last year's base
+# model will be prepended to the group.
+# See `set_dirs()`
+henv$bridge_models_dirs <-
+  list(c("01-updated-ss-exe",
+         "02-add-new-catch",
+         "03-add-new-weight-at-age",
+         #"04-add-survey-age-2-plus", # Uncomment in survey years
+         #"05-add-survey-age-1", # Uncomment in survey years
+         "06-add-fishery-ages"))
+henv$bridge_models_desc <-
+  list(c("Update Stock Synthesis version to 3.30.20",
+         paste0("Add ", henv$last_data_yr, " catch"),
+         paste0("Add ", henv$last_data_yr, " weight-at-age"),
+         #"Add age-2+ acoustic survey", # Uncomment in survey years
+         #"Add age-1 index", # Uncomment in survey years
+         paste0("Add ", henv$last_data_yr, " fishery age comps")))
+henv$prepend_to_bridge <- TRUE
+# Subtract the following number of years of the end of the models
+# when plotting. Should only be 1 for the first one or two, then zeroes.
+# This vector must be 1 longer than the above lists, because last year's
+# base model is prepended to those lists
+henv$bridge_model_end_yr <- list(henv$end_yr - c(1, 1, 0, 0, 0))
+
+# This is a list of vectors of sensitivity groups (sensitivity models that
+# will be plotted against each other). It can be `NA` if you want it to be
+# ignored.
+# The base mode will be prepended to each group by the function.
+# See `set_dirs()`
+henv$sens_models_dirs <-
+  list(c("01-h-prior-mean-low",
+         "02-h-fix-high",
+         "03-sigma-r-fix-low",
+         "04-sigma-r-fix-high",
+         "05-m-02-sd",
+         "06-m-03-sd",
+         "17-m-hamel-prior-updated"),
+       c("08-age-1-survey",
+         "09-comp-weight-harmonic-mean"),
+       c("10-tv-select-phi-extra-low",
+         "11-tv-select-phi-low",
+         "12-tv-select-phi-high"),
+       c("13-max-sel-age-5",
+         "14-max-sel-age-7",
+         "15-max-sel-age-8",
+         "16-zero-sum-constraint"))
+henv$sens_models_desc <-
+  list(c("Steepness Mean Prior Low (0.5)",
+         "Steepness Fix 1.0",
+         "Sigma R 1.0",
+         "Sigma R 1.6",
+         "Natural Mortality (SD=0.2)",
+         "Natural Mortality (SD=0.3)",
+         "Natural Mortality (Hamel/Cope prior)"),
+       c("Remove Age 1 Index",
+         "Downweight Fishery Comps"),
+       c("Phi t.v. selectivity (0.21)",
+         "Phi t.v. selectivity (0.70)",
+         "Phi t.v. selectivity (2.10)"),
+       c("Max. age selectivity 5",
+         "Max. age selectivity 7",
+         "Max. age selectivity 8",
+         "Recdevs sum to zero"))
+
+#henv$bridge_models_dirs <- NA
+#henv$bridge_models_desc <- NA
+#henv$prepend_to_bridge <- NA
+
+#henv$sens_models_dirs <- NA
+#henv$sens_models_desc <- NA
+
+henv$request_models_dirs <- NA
+henv$request_models_desc <- NA
+
+henv$test_models_dirs <- list(c("02-inflate-survey-n"))
+henv$test_models_desc <- list(c("Inflate survey sample size by 100"))
+
+henv$drs <- set_dirs(models_dir = henv$models_dir,
+                     last_yr_models_dir = henv$last_yr_models_dir,
+                     base_models_dirs = henv$base_models_dirs,
+                     bridge_models_dirs = henv$bridge_models_dirs,
+                     sens_models_dirs = henv$sens_models_dirs,
+                     request_models_dirs = henv$request_models_dirs,
+                     test_models_dirs = henv$test_models_dirs,
+                     prepend_to_bridge = henv$prepend_to_bridge)
+
+if(!exists("models", envir = "henv")){
+  henv$models <- model_setup(drs = henv$drs,
+                             base_models_desc = henv$base_models_desc,
+                             bridge_models_desc = henv$bridge_models_desc,
+                             sens_models_desc = henv$sens_models_desc,
+                             request_models_desc = henv$request_models_desc,
+                             test_models_desc = henv$test_models_desc,
+                             prepend_to_bridge = henv$prepend_to_bridge)
+}
+
+if(!exists("last_yr_base_model", envir = "henv")){
+  henv$last_yr_base_model <-
+    readRDS(file.path(henv$drs$last_yr_base_model_dir,
+                      paste0(basename(henv$drs$last_yr_base_model_dir), ".rds")))
+}
+henv$last_yr_base_model_name <- paste0(henv$assess_yr - 1, " Base model")
+
+henv$base_model <- henv$models$base_models_dirs[[1]][[1]]
+henv$base_model$ctl <- gsub("\t", " ", henv$base_model$ctl)
+henv$base_model_name <- attr(henv$base_model, "desc")
+
+henv$bridge_models <- henv$models$bridge_models_dirs
+if(is.na(henv$bridge_models)[1]){
+  henv$bridge_models_names <- NA
+}else{
+  henv$bridge_models_names <- map(henv$bridge_models, ~{map_chr(.x, ~{attr(.x, "desc")})})
+}
+
+henv$sens_models <- henv$models$sens_models_dirs
+if(is.na(henv$sens_models)[1]){
+  henv$sens_models_names <- NA
+}else{
+  henv$sens_models_names <- map(henv$sens_models, ~{map_chr(.x, ~{attr(.x, "desc")})})
+}
+
+henv$request_models <- henv$models$request_models_dirs
+if(is.na(henv$request_models)[1]){
+  henv$request_models_names <- NA
+}else{
+  henv$request_models_names <- map(henv$request_models, ~{map_chr(.x, ~{attr(.x, "desc")})})
+}
+
+henv$test_models <- henv$models$test_models_dirs
+if(is.na(henv$test_models)[1]){
+  henv$test_models_names <- NA
+}else{
+  henv$test_models_names <- map(henv$test_models, ~{map_chr(.x, ~{attr(.x, "desc")})})
+}
+
+# Put any variables you intend to use in the text here.
+# The function f() is for formatting and is defined in
+# r-functions/utilities.r
+
+# Could probably extract automatically from bridge_models_desc[[1]][1]
+henv$ss_version <- "3.30.20"
+
+# Credible interval -----------------------------------------------------------
+henv$cred_int <- c(0.025, 0.5, 0.975)
+
+# Shortened names -------------------------------------------------------------
+henv$mc <- base_model$mcmccalcs
+henv$extramc <- base_model$extra.mcmc
+
+# Attainment in the past ------------------------------------------------------
+henv$ct_last10 <- ct |>
+  filter(year %in% (end_yr - 10):(end_yr - 1))
+henv$ct_last5 <- ct |>
+  filter(year %in% (end_yr - 5):(end_yr - 1))
+henv$ct_last2 <- ct |>
+  filter(year %in% (end_yr - 2):(end_yr - 1))
+henv$ct_last1 <- ct |>
+  filter(year == end_yr - 1)
+henv$ct_secondlast <- ct |>
+  filter(year == end_yr - 2)
+henv$usa.last.5.years.attainment <- henv$ct_last5 |>
+  pull(us_attain) |>
+  mean() |>
+  f(1)
+henv$usa.last.2.years.attainment <- henv$ct_last2 |>
+  pull(us_attain) |> mean |> f(0)
+henv$can.last.5.years.attainment <- henv$ct_last5 |>
+  pull(can_attain) |>
+  mean() |> f(1)
+henv$can.last.2.years.attainment <- henv$ct_last2 |>
+  pull(can_attain) |>
+  mean() |>
+  f(0)
+henv$tot.last.5.years.attainment <- henv$ct_last5 |>
+  pull(tot_attain) |>
+  mean() |>
+  f(1)
+henv$tot.last.10.years.attainment <- henv$ct_last10 |>
+  pull(tot_attain) |>
+  mean() |>
+  f(1)
+henv$tot.last.year.attainment <- henv$ct_last1 |>
+  pull(tot_attain) |>
+  mean() |>
+  f(1)
+henv$tot.2015.attainment <- henv$ct |>
+  filter(year == 2015) |>
+  pull(tot_attain) |>
+  mean() |>
+  f(1)
+henv$tot.9192.attainment <- henv$ct |>
+  filter(year %in% 1991:1992) |>
+  pull(tot_attain) |>
+  mean() |>
+  f(0)
+henv$tot.9399.attainment <- henv$ct |>
+  filter(year %in% 1993:1999) |>
+  pull(tot_attain) |>
+  mean() |>
+  f(0)
+
+# Allotments ------------------------------------------------------------------
+henv$can.allotment.percent <- 26.12
+henv$us.allotment.percent <- 73.88
+# ... allotments in catch -----------------------------------------------------
+henv$can.allotment.percent.last.year <- f(pull(henv$ct_last1, can_tac) /
+                                            pull(henv$ct_last1, tot_tac) * 100, 2)
+henv$us.allotment.percent.last.year <- f(pull(henv$ct_last1, us_tac) /
+                                           pull(henv$ct_last1, tot_tac) * 100, 2)
+
+# Further TAC sources ---------------------------------------------------------
+# further.tac is defined in R/data-tables.R
+henv$ft <- henv$further.tac
+henv$last.year.us.tribal <- henv$ft |>
+  filter(Year == henv$last_data_yr) |>
+  pull(us.tribal.quota)
+henv$last.year.us.research <- henv$ft |>
+  filter(Year == henv$last_data_yr) |>
+  pull(us.research.quota)
+henv$last.year.us.non.tribal <- henv$ft |>
+  filter(Year == henv$last_data_yr) |>
+  pull(us.nontribal.quota)
+henv$last.year.us.tribal.quota.reallocated <- henv$ft |>
+  filter(Year == henv$last_data_yr) |>
+  pull(us.tribal.quota.reallocated)
+henv$last.year.us.tribal.reallocate.dates <- henv$ft |>
+  filter(Year == henv$last_data_yr) |>
+  pull(us.tribal.reallocate.dates)
+henv$last.year.us.tribal.reallocate.dates.f <-
+  format(as.Date(as.character(henv$last.year.us.tribal.reallocate.dates),
+                 "%d-%b"),
+         "%B %d")
+henv$last.year.us.tribal.max.landed <- henv$ft |>
+  filter(Year == henv$last_data_yr) |>
+  pull(us.tribal.max.landed)
+henv$last.year.us.shore.quota.reallocated <- henv$ft |>
+  filter(Year == henv$last_data_yr) |>
+  pull(us.shore.reallocated)
+henv$last.year.us.cp.quota.reallocated <- henv$ft |>
+  filter(Year == henv$last_data_yr) |>
+  pull(us.cp.reallocated)
+henv$last.year.us.ms.quota.reallocated <- henv$ft |>
+  filter(Year == henv$last_data_yr) |>
+  pull(us.ms.reallocated)
+# Catch -----------------------------------------------------------------------
+# ... recent catch ------------------------------------------------------------
+henv$last.5.years.of.catch.data <- (max(henv$ct$year) - 4):max(henv$ct$year)
+henv$last.5.years.total.catch <- henv$ct_last5 |>
+  pull(tot_catch)
+henv$long.term.avge.catch <- mean(henv$ct$tot_catch)
+henv$last.5.years.above.avge <-
+  henv$last.5.years.of.catch.data[henv$last.5.years.total.catch >
+                                    henv$long.term.avge.catch]
+henv$last.5.years.below.avge <-
+  henv$last.5.years.of.catch.data[henv$last.5.years.total.catch <
+                                    henv$long.term.avge.catch]
+henv$catch.limit.quantiles <-
+  f(as.numeric(quantile(base_model$mcmc[[paste0("ForeCatch_", end_yr)]],
+                        probs = henv$cred_int)))
+names(henv$catch.limit.quantiles) <- c("lower", "median", "upper")
+# ... recent catch, last year -------------------------------------------------
+henv$last.year.landings <- henv$ct_last1 |>
+  pull(tot_catch) |>
+  f(0)
+henv$last.year.tac <- henv$ct_last1 |>
+  pull(tot_tac) |>
+  f(0)
+henv$last.year.attained <- henv$ct_last1 |>
+  pull(tot_attain) |>
+  f(1)
+# ... catch over the last 10 years --------------------------------------------
+henv$catch_last_10yrs <- henv$ct |>
+  slice_tail(n = 10)
+henv$catch_mean_10yrs <- f(mean(henv$catch_last_10yrs$tot_catch))
+henv$catch_us_mean_10yrs <- f(mean(henv$catch_last_10yrs$us_catch))
+henv$catch_can_mean_10yrs <- f(mean(henv$catch_last_10yrs$can_catch))
+# ... US Catch by fleet, last year --------------------------------------------
+# The following ct object with columns *_xx comes from the load_catches()
+# function in R/catches.R
+henv$last.year.us.research.catch <- henv$ct |>
+  filter(year == henv$last_data_yr) |>
+  pull(us_research_xx)
+henv$last.year.us.cp.catch <- henv$ct |>
+  filter(year == henv$last_data_yr) |>
+  pull(us_cp_xx)
+henv$last.year.us.ms.catch <- henv$ct |>
+  filter(year == henv$last_data_yr) |>
+  pull(us_ms_xx)
+henv$last.year.us.shore.catch <- henv$ct |>
+  filter(year == henv$last_data_yr) |>
+  pull(us_shore_xx)
+henv$last.year.us.ti.catch <- henv$us.ti.catch.by.month |>
+  filter(year == henv$last_data_yr) |>
+  pull(catch) |>
+  sum()
+henv$catcher.processor.catch <- ((henv$ct_last1 |>
+                                    select(us_cp_xx) |>
+                                    pull()) /
+                                   (henv$last.year.us.cp.quota.reallocated) * 100) |>
+  f(1)
+henv$mothership.catch <- ((henv$ct_last1 |>
+                             select(us_ms_xx) |>
+                             pull()) /
+                            (henv$last.year.us.ms.quota.reallocated) * 100) |>
+  f(1)
+henv$shore.based.catch <- ((henv$ct_last1 |>
+                              select(us_shore_xx) |> pull() -
+                              henv$last.year.us.ti.catch) /
+                             (henv$last.year.us.shore.quota.reallocated) * 100) |>
+  f(1)
+# Attainment ------------------------------------------------------------------
+# ... US Attainment, catch, and TAC -------------------------------------------
+henv$last.year.us.landings <- henv$ct_last1 |>
+  pull(us_catch) |>
+  f(0)
+henv$last.year.us.attained <- henv$ct_last1 |>
+  pull(us_attain) |>
+  f(1)
+henv$last.2year.us.attained.diff <- (henv$ct_last1 |>
+                                       pull(us_attain) -
+                                       henv$ct_secondlast |>
+                                       pull(us_attain)) |>
+  f(1)
+henv$last.year.us.not.attained <- (100 - henv$ct_last1 |>
+                                     pull(us_attain)) |>
+  f(1)
+henv$last.year.us.not.attained.tonnes <- abs(henv$ct_last1 |>
+                                               pull(us_attain) -
+                                               henv$ct_last1 |>
+                                               pull(us_catch))
+henv$last.year.us.tac <- henv$ct_last1 |>
+  pull(us_tac) |>
+  f(0)
+# ... US Attainment by fleet, last year ---------------------------------------
+henv$last.year.us.research.catch.percent <-
+  f(henv$last.year.us.research.catch /
+      henv$last.year.us.research * 100, 1)
+henv$last.year.us.cp.catch.percent <-
+  f(henv$last.year.us.cp.catch /
+      henv$last.year.us.cp.quota.reallocated * 100, 1)
+henv$last.year.us.ms.catch.percent <-
+  f(henv$last.year.us.ms.catch /
+      henv$last.year.us.ms.quota.reallocated * 100, 1)
+henv$last.year.us.shore.catch.percent <-
+  f(henv$last.year.us.shore.catch /
+      henv$last.year.us.shore.quota.reallocated * 100, 1)
+henv$last.year.us.tribal.catch.percent <-
+  f(henv$last.year.us.tribal.max.landed /
+      henv$last.year.us.tribal.quota.reallocated * 100, 1)
+# ... Canada Attainment, catch, and TAC ---------------------------------------
+henv$can.vessels <- c("Viking Enterprise",
+                      "Northern Alliance",
+                      "Osprey #1",
+                      "Raw Spirit",
+                      "Pacific Legacy #1",
+                      "Sunderoey",
+                      "Viking Alliance")
+henv$last.year.can.carryover <- henv$ft |>
+  filter(Year == henv$last_data_yr) |>
+  pull(can.carried.over) |>
+  f(0)
+henv$last.year.can.attained <- henv$ct_last1 |>
+  pull(can_attain) |>
+  f(1)
+henv$last.2year.can.attained.diff <- ((henv$ct_last1 |>
+                                         pull(can_attain)) -
+                                        (henv$ct_secondlast |>
+                                           pull(can_attain))) |>
+  f(1)
+henv$last.year.can.landings <- henv$ct_last1 |>
+  pull(can_catch) |>
+  f(0)
+henv$last.year.can.tac <- henv$ct_last1 |>
+  pull(can_tac) |>
+  f(0)
+henv$last.year.can.tac.jv <- henv$ft |>
+  filter(Year == last_data_yr) |>
+  pull(can.jv.tac) |>
+  f(0)
+henv$last.year.can.shoreside.tac <- ((henv$ct_last1 |>
+                                        pull(can_tac)) -
+                                       (ft |>
+                                          filter(Year == henv$last_data_yr) |>
+                                          pull(can.jv.tac))) |>
+  f(0)
+henv$latest.year.can.jv <- henv$ct |>
+  filter(can_jv_xx > 0) |>
+  pull(year) |>
+  max()
+henv$last.year.can.shore <- henv$ct_last1 |>
+  pull(can_shore_xx) |>
+  f(0)
+henv$last.year.can.freezer <- henv$ct_last1 |>
+  pull(can_freeze_xx) |>
+  f(0)
+henv$last.year.can.jv <- henv$ct_last1 |>
+  pull(can_jv_xx) |>
+  f(0)
+henv$last.year.can.shore.percent <- ((henv$ct_last1 |>
+                                        pull(can_shore_xx)) /
+                                  (henv$ct_last1 |>
+                                     pull(can_catch)) * 100) |>
+  f(1)
+henv$last.year.can.freezer.percent <- ((henv$ct_last1 |>
+                                          pull(can_freeze_xx)) /
+                                    (henv$ct_last1 |>
+                                       pull(can_catch)) * 100) |>
+  f(1)
+henv$last.year.can.jv.percent <- ((henv$ct_last1 |>
+                                     select(can_jv_xx) |>
+                                     pull()) /
+                               (henv$ct_last1 |>
+                                  select(can_catch) |>
+                                  pull()) * 100) |>
+  f(1)
+# Years since 2000 (including 2000) that JV catch has been zero
+henv$ch.eq.0.recent <- henv$ct |>
+  filter(year > 1999) |>
+  select(year, can_jv_xx) |>
+  filter(can_jv_xx == 0) |>
+  nrow()
+henv$terminal.year.us.jvforeign <- henv$ct |>
+  select(year, matches("us_[fj]")) |>
+  rowwise() |>
+  mutate(sumV = sum(c_across(matches("us")))) |>
+  filter(sumV > 0) |>
+  select(year) |>
+  max()
+henv$first.year.us.atsea <- henv$ct |>
+  select(year, matches("us_cp|us_ms")) |>
+  rowwise() |>
+  mutate(sumV = sum(c_across(matches("us")))) |>
+  filter(sumV > 0) |>
+  select(year) |>
+  min()
+# Survey values ---------------------------------------------------------------
+henv$survey.biomass <- base_model$dat$CPUE |>
+  filter(index == 2) |>
+  pull(var = obs, name = year) / 1e6
+
+henv$survey.comps <- base_model$dat$agecomp |>
+  filter(FltSvy == 2)
+rownames(henv$survey.comps) <- henv$survey.comps$Yr
+henv$survey.last.year <- henv$survey.comps[nrow(henv$survey.comps), ]
+#TODO: check for accuracy and code improvement
+henv$survey.last.year.age <- sort(decreasing = TRUE, round(unlist(prop.table(
+  henv$survey.last.year[grep("^a",
+                             colnames(henv$survey.last.year))])), 4))
+names(henv$survey.last.year.age) <- gsub("^a",
+                                         "",
+                                         names(henv$survey.last.year.age))
+henv$survey.1.prop.age <- as.numeric(gsub("^a",
+                                          "",
+                                          names(henv$survey.last.year.age)[1]))
+henv$survey.1.prop <- f(henv$survey.last.year.age[1] * 100, 1)
+henv$survey.2.prop.age <- as.numeric(gsub("^a",
+                                          "",
+                                          names(henv$survey.last.year.age)[2]))
+henv$survey.2.prop <- f(henv$survey.last.year.age[2] * 100, 1)
+henv$survey.3.prop.age <- as.numeric(gsub("^a",
+                                          "",
+                                          names(henv$survey.last.year.age)[3]))
+henv$survey.3.prop <- f(henv$survey.last.year.age[3] * 100, 1)
+henv$survey.4.prop.age <- as.numeric(gsub("^a",
+                                          "",
+                                          names(henv$survey.last.year.age)[4]))
+henv$survey.4.prop <- f(henv$survey.last.year.age[4] * 100, 1)
+henv$survey.a2.prop <- f(henv$survey.last.year["a2"], 1)
+henv$last.survey.year <- max(as.numeric(names(henv$survey.biomass)))
+# Millions of tonnes
+henv$last.survey.year.biomass <- f(base_model$dat$CPUE |>
+                                     filter(index == 2,
+                                            year == max(year)) |>
+                                     pull(var = obs) / 1e6,
+                                   dec.points = 2)
+#TODO: check for accuracy and code improvement
+henv$penult.survey.year <- base_model$dat$CPUE |>
+  filter(index == 2) |>
+  mutate(rank = rank(year * -1, ties.method = "first")) |>
+  filter(rank == 2) |>
+  pull(year)
+# How many times higher is the last survey than the one before it?
+henv$last.factor.penult <- f(base_model$dat$CPUE |>
+                               dplyr::filter(index == 2) |>
+                               dplyr::mutate(new = obs / lag(obs)) |>
+                               dplyr::filter(year %in% c(last.survey.year)) |>
+                               dplyr::pull(new),
+                             1)
+# Age-1 survey
+henv$survey.age1.years <- base_model$dat$CPUE |>
+  filter(index == 3) |>
+  pull(year)
+# Spawning Biomass and Depletion estimates ------------------------------------
+henv$curr.depl.lower <-
+  f(henv$mc$dlower[names(henv$mc$dlower) %in% henv$end_yr] * 100, 0)
+henv$curr.depl.median <-
+  f(henv$mc$dmed[names(henv$mc$dmed) %in% henv$end_yr] * 100, 0)
+henv$curr.depl.upper <-
+  f(henv$mc$dupper[names(henv$mc$dupper) %in% henv$end_yr] * 100, 0)
+# These are millions of tons:
+henv$curr.bio.lower <-
+  f(henv$mc$slower[names(henv$mc$slower) %in% henv$end_yr], 3)
+henv$curr.bio.median <-
+  f(henv$mc$smed[names(henv$mc$smed) %in% henv$end_yr], 3)
+henv$curr.bio.upper <-
+  f(henv$mc$supper[names(henv$mc$supper) %in% henv$end_yr], 3)
+# These are metric tonnes:
+henv$curr.bio.lower.tonnes <-
+  f(henv$mc$slower[names(henv$mc$slower) %in% henv$end_yr] * 1e6, 0)
+henv$curr.bio.median.tonnes <-
+  f(henv$mc$smed[names(henv$mc$smed) %in% henv$end_yr] * 1e6, 0)
+henv$curr.bio.upper.tonnes <-
+  f(henv$mc$supper[names(henv$mc$supper) %in% henv$end_yr] * 1e6, 0)
+# ... spawning biomass for previous year --------------------------------------
+# (calculated in this assessment) in millions of tonnes and then tonnes
+henv$prev.bio.lower <-
+  f(henv$mc$slower[names(henv$mc$slower) %in% henv$last_data_yr], 3)
+henv$prev.bio.median <-
+  f(henv$mc$smed[names(henv$mc$smed) %in% henv$last_data_yr], 3)
+henv$prev.bio.upper <-
+  f(henv$mc$supper[names(henv$mc$supper) %in% henv$last_data_yr], 3)
+henv$prev.bio.lower.tonnes <-
+  f(henv$mc$slower[names(henv$mc$slower) %in% henv$last_data_yr] * 1e6, 0)
+henv$prev.bio.median.tonnes <-
+  f(henv$mc$smed[names(henv$mc$smed) %in% henv$last_data_yr] * 1e6, 0)
+henv$ratio.bio.median.curr.last <-
+  henv$mc$smed[names(henv$mc$smed) %in% henv$end_yr] /
+  henv$mc$smed[names(henv$mc$smed) %in% henv$last_data_yr]
+if(henv$ratio.bio.median.curr.last > 1){
+  henv$diff.bio.median.last.curr <-
+    f((henv$mc$smed[names(henv$mc$smed) %in% henv$end_yr] /
+         henv$mc$smed[names(henv$mc$smed) %in% henv$last_data_yr] - 1) * 100)
+  henv$diff.bio.median.last.curr.text <- "higher than"
+}else{
+  henv$diff.bio.median.last.curr <-
+    f((henv$mc$smed[names(henv$mc$smed) %in% henv$end_yr] /
+         henv$mc$smed[names(henv$mc$smed) %in% henv$last_data_yr]) * 100)
+  henv$diff.bio.median.last.curr.text <- "of"
+}
+henv$prev.bio.upper.tonnes <-
+  f(henv$mc$supper[names(henv$mc$supper) %in% henv$last_data_yr] * 1e6, 0)
+# ... spawning biomass for previous year (last year's assessment) -------------
+henv$prev.bio.lower.last.assess <-
+  f(henv$last_yr_base_model$mcmccalcs$slower[names(henv$mc$slower) %in%
+                                               henv$last_data_yr], 3)
+henv$prev.bio.median.last.assess <-
+  f(henv$last_yr_base_model$mcmccalcs$smed[names(henv$mc$smed) %in%
+                                             henv$last_data_yr], 3)
+henv$prev.bio.upper.last.assess <-
+  f(henv$last_yr_base_model$mcmccalcs$supper[names(henv$mc$supper) %in%
+                                               henv$last_data_yr], 3)
+# Forecasting -----------------------------------------------------------------
+# ... first forecast year depletion and spawning biomass estimates ------------
+henv$fore.tac.mcmc.yr1 <- henv$base_model$forecasts[[1]][[catch.tac.ind]]$mcmccalcs
+henv$next.depl.lower.tac.based <-
+  f(henv$fore.tac.mcmc.yr1$dlower[names(henv$fore.tac.mcmc.yr1$dlower) %in%
+                                    (henv$end_yr + 1)] * 100, 1)
+henv$next.depl.median.tac.based <-
+  f(henv$fore.tac.mcmc.yr1$dmed[names(henv$fore.tac.mcmc.yr1$dmed) %in%
+                                  (henv$end_yr + 1)] * 100, 1)
+henv$next.depl.upper.tac.based <-
+  f(henv$fore.tac.mcmc.yr1$dupper[names(henv$fore.tac.mcmc.yr1$dupper) %in%
+                                    (henv$end_yr + 1)] * 100, 1)
+henv$next.bio.lower.tac.based <-
+  f(henv$fore.tac.mcmc.yr1$slower[names(henv$fore.tac.mcmc.yr1$slower) %in%
+                                    (henv$end_yr + 1)] * 100, 1)
+henv$next.bio.median.tac.based <-
+  f(henv$fore.tac.mcmc.yr1$smed[names(henv$fore.tac.mcmc.yr1$smed) %in%
+                                  (henv$end_yr + 1)] * 100, 1)
+henv$next.bio.upper.tac.based <-
+  f(henv$fore.tac.mcmc.yr1$supper[names(henv$fore.tac.mcmc.yr1$supper) %in%
+                                    (henv$end_yr + 1)] * 100, 1)
+# ... second forecast year depletion and spawning biomass estimates -----------
+henv$fore.tac.mcmc.yr2 <- henv$base_model$forecasts[[2]][[catch.tac.ind]]$mcmccalcs
+henv$next2.depl.lower.tac.based <-
+  f(henv$fore.tac.mcmc.yr2$dlower[names(henv$fore.tac.mcmc.yr2$dlower) %in%
+                                    (henv$end_yr + 2)] * 100, 1)
+henv$next2.depl.median.tac.based <-
+  f(henv$fore.tac.mcmc.yr2$dmed[names(henv$fore.tac.mcmc.yr2$dmed) %in%
+                                  (henv$end_yr + 2)] * 100, 1)
+henv$next2.depl.upper.tac.based <-
+  f(henv$fore.tac.mcmc.yr2$dupper[names(henv$fore.tac.mcmc.yr2$dupper) %in%
+                                    (henv$end_yr + 2)] * 100, 1)
+henv$next2.bio.lower.tac.based <-
+  f(henv$fore.tac.mcmc.yr2$slower[names(henv$fore.tac.mcmc.yr2$slower) %in%
+                                    (henv$end_yr + 2)] * 100, 1)
+henv$next2.bio.median.tac.based <-
+  f(henv$fore.tac.mcmc.yr2$smed[names(henv$fore.tac.mcmc.yr2$smed) %in%
+                                  (henv$end_yr + 2)] * 100, 1)
+henv$next2.bio.upper.tac.based <-
+  f(henv$fore.tac.mcmc.yr2$supper[names(henv$fore.tac.mcmc.yr2$supper) %in%
+                                    (henv$end_yr + 2)] * 100, 1)
+# Biomass medians for last year's TAC catch level -----------------------------
+henv$endyr_plus_3_fore <-
+  henv$base_model$forecasts[[as.character(henv$end_yr + 3)]]
+henv$endyr_plus_3_fore_tac_catch <-
+  henv$endyr_plus_3_fore[[catch.tac.ind]]$biomass |>
+  as_tibble(rownames = "year")
+henv$last.yr.tac.fore.1.biomass <-
+  henv$endyr_plus_3_fore_tac_catch |>
+  filter(year == end_yr) |>
+  pull(`50%`)
+henv$last.yr.tac.fore.1.biomass <- f(henv$last.yr.tac.fore.1.biomass * 100)
+
+henv$last.yr.tac.fore.2.biomass <-
+  henv$endyr_plus_3_fore_tac_catch |>
+  filter(year == end_yr + 1) |>
+  pull(`50%`)
+henv$last.yr.tac.fore.2.biomass <- f(henv$last.yr.tac.fore.2.biomass * 100)
+
+henv$last.yr.tac.fore.3.biomass <-
+  henv$endyr_plus_3_fore_tac_catch |>
+  filter(year == end_yr + 2) |>
+  pull(`50%`)
+henv$last.yr.tac.fore.3.biomass <- f(henv$last.yr.tac.fore.3.biomass * 100)
+
+henv$curr_catch_tac_value <- henv$catch_levels[[henv$catch.tac.ind]][[1]][1]
+henv$catch_col <- sym(paste0("ForeCatch_", henv$end_yr))
+henv$yr_prob_col <- paste0("SSB_", henv$end_yr + 1, "<SSB_", henv$end_yr)
+henv$last.yr.tac.risk.1.biomass.decline <-
+  henv$base_model$risks[[as.character(henv$end_yr)]] |>
+  as_tibble() |>
+  filter(!!henv$catch_col == henv$curr_catch_tac_value) |>
+  pull(henv$yr_prob_col) |>
+  f()
+
+henv$catch_col <- sym(paste0("ForeCatch_", henv$end_yr + 1))
+henv$yr_prob_col <- paste0("SSB_", henv$end_yr + 2, "<SSB_", henv$end_yr + 1)
+henv$last.yr.tac.risk.2.biomass.decline <-
+  henv$base_model$risks[[as.character(henv$end_yr + 1)]] |>
+  as_tibble() |>
+  filter(!!henv$catch_col == henv$curr_catch_tac_value) |>
+  pull(henv$yr_prob_col) |>
+  f()
+
+yr_prob_col <- paste0("Bratio_", end_yr + 2, "<0.40")
+last.yr.tac.risk.2.bforty <-
+  base_model$risks[[as.character(end_yr + 1)]] |>
+  as_tibble() |>
+  filter(!!henv$catch_col == curr_catch_tac_value) |>
+  pull(henv$yr_prob_col) |>
+  f()
+
+henv$catch_col <- sym(paste0("ForeCatch_", henv$end_yr + 2))
+henv$yr_prob_col <- paste0("SSB_", henv$end_yr + 3, "<SSB_", henv$end_yr + 2)
+henv$last.yr.tac.risk.3.biomass.decline <-
+  henv$base_model$risks[[as.character(henv$end_yr + 2)]] |>
+  as_tibble() |>
+  filter(!!henv$catch_col == henv$curr_catch_tac_value) |>
+  pull(henv$yr_prob_col) |>
+  f()
+# Numbers at age calculations for bubble plot caption -------------------------
+henv$median.nat.no.year <- select(henv$extramc$natage_median, -c("Yr"))
+# Billions of fish
+henv$max.median.nat <- f(max(henv$median.nat.no.year) / 1e3, 1)
+henv$year.of.max.median.nat.ind <-
+  which(median.nat.no.year == max(henv$median.nat.no.year), arr.ind = TRUE)[1]
+henv$year.of.max.median.nat <-
+  henv$extramc$natage_median[henv$year.of.max.median.nat.ind, "Yr"]
+
+# Executive Summary and Assessment section ------------------------------------
+henv$num.mcmc.samples <- dim(henv$base_model$mcmc)[1]
+henv$median.bio.min <-
+  f(min(henv$mc$smed[names(henv$mc$smed) %in% henv$start_yr:henv$end_yr]), 3)
+henv$median.bio.min.year <-
+  names(which.min(henv$mc$smed[names(henv$mc$smed) %in% henv$start_yr:henv$end_yr]))
+henv$median.intensity <- henv$mc$pmed
+henv$median.intensity.2007.to.2010 <-
+  henv$median.intensity[c("2007", "2008", "2009", "2010")]
+henv$median.intensity.2007.to.2010.min <-
+  f(min(henv$median.intensity.2007.to.2010) * 100, 0)
+henv$median.intensity.2007.to.2010.max <-
+  f(max(henv$median.intensity.2007.to.2010) * 100, 0)
+henv$median.intensity.2007.to.2011 <-
+  henv$median.intensity[c("2007", "2008", "2009", "2010", "2011")]
+henv$median.intensity.2007.to.2011.min <-
+  f(min(henv$median.intensity.2007.to.2011) * 100, 0)
+henv$median.intensity.2007.to.2011.max <-
+  f(max(henv$median.intensity.2007.to.2011) * 100, 0)
+# Includes > end_yr
+henv$median.intensity.above.one.all.years <- names(which(henv$mc$pmed > 1))
+henv$median.intensity.above.one.years <-
+  henv$median.intensity.above.one.all.years[
+    henv$median.intensity.above.one.all.years < henv$end_yr]
+henv$median.intensity.above.one.text <- paste(
+  ifelse(
+    test = length(henv$median.intensity.above.one.all.years) == 0,
+    "for all years",
+    "except for the years "
+  ),
+  stringr::str_flatten(
+    henv$median.intensity.above.one.all.years,
+    collapse = ", ",
+    last = ", and "
+  ),
+  sep = ""
+)
+henv$median.intensity.2010 <- f(henv$mc$pmed["2010"] * 100, 1)
+henv$median.intensity.2015 <- f(henv$mc$pmed["2015"] * 100, 1)
+henv$median.intensity.2017 <- f(henv$mc$pmed["2017"] * 100, 1)
+henv$median.intensity.2018 <- f(henv$mc$pmed["2018"] * 100, 1)
+henv$median.intensity.2019 <- f(henv$mc$pmed["2019"] * 100, 1)
+henv$median.intensity.2020 <- f(henv$mc$pmed["2020"] * 100, 1)
+henv$median.intensity.2021 <- f(henv$mc$pmed["2021"] * 100, 1)
+henv$median.intensity.2022 <- f(henv$mc$pmed["2022"] * 100, 1)
+henv$median.intensity.penult.yr <-
+  f(henv$mc$pmed[as.character(henv$end_yr - 1)] * 100, 1)
+henv$median.relative.bio <- henv$mc$dmed
+# Remove extra non-year columns to avoid warnings below
+henv$median.relative.bio <-
+  henv$median.relative.bio[grepl("^[0-9]+$", names(henv$median.relative.bio))]
+henv$median.relative.bio <-
+  henv$median.relative.bio[names(henv$median.relative.bio) %in%
+                             henv$start_yr:henv$end_yr]
+henv$median.relative.bio.2007.to.2010 <-
+  henv$median.relative.bio[c("2007", "2008", "2009", "2010")]
+henv$median.relative.bio.2007.to.2010.min <-
+  f(min(henv$median.relative.bio.2007.to.2010), 2)
+henv$median.relative.bio.2007.to.2010.max <-
+  f(max(henv$median.relative.bio.2007.to.2010), 2)
+henv$median.relative.bio.2007.to.2011 <-
+  henv$median.relative.bio[c("2007", "2008", "2009", "2010", "2011")]
+henv$median.relative.bio.2007.to.2011.min <-
+  f(min(henv$median.relative.bio.2007.to.2011), 2)
+henv$median.relative.bio.2007.to.2011.max <-
+  f(max(henv$median.relative.bio.2007.to.2011), 2)
+# When below target, 0.4
+henv$median.relative.bio.below.target <-
+  henv$median.relative.bio[henv$median.relative.bio < 0.4]
+# Has been above target since
+henv$median.relative.bio.above.target.since <-
+  max(as.numeric(names(henv$median.relative.bio.below.target)),
+      na.rm = TRUE) + 1
+henv$median.relative.bio.2017 <- f(henv$mc$dmed["2017"] * 100, 1)
+# Recruitments in current assessment vs last assessment -----------------------
+henv$prev.assess.recruitment.lower  <- henv$last_yr_base_model$mcmccalcs$rlower
+henv$prev.assess.recruitment.med  <- henv$last_yr_base_model$mcmccalcs$rmed
+henv$prev.assess.recruitment.upper <- henv$last_yr_base_model$mcmccalcs$rupper
+
+# Current assessment w/o final projection year --------------------------------
+# since not in previous assessment)
+henv$compareablenames <- names(henv$mc$rlower) %in%
+  names(henv$prev.assess.recruitment.lower)
+henv$recruitment.lower.to.compare <- henv$mc$rlower[henv$compareablenames]
+henv$recruitment.med.to.compare <- henv$mc$rmed[henv$compareablenames]
+henv$recruitment.upper.to.compare <- henv$mc$rupper[henv$compareablenames]
+# Biomass probabilities -------------------------------------------------------
+# ... biomass declines next year to year after with zero catch ----------------
+henv$zero.catch.prob.bio.down.1 <- f(henv$base_model$risks[[1]][1, 2])
+# ... biomass declines year after next to year after that with 0 catch --------
+henv$zero.catch.prob.bio.down.2 <- f(henv$base_model$risks[[2]][1, 2])
+# ... biomass declines 2 years after next to year after that with 0 catch -----
+henv$zero.catch.prob.bio.down.3 <- f(henv$base_model$risks[[3]][1, 2])
+# ... current biomass being above/below B40%, B25%, and B10% ------------------
+henv$probs.curr.bforty <-
+  f(mean(henv$base_model$mcmc[[paste0("Bratio_",
+                                      henv$assess_yr)]] > 0.40) * 100, 1)
+henv$probs.curr.btwentyfive <-
+  f(mean(base_model$mcmc[[paste0("Bratio_",
+                                 henv$assess_yr)]] > 0.25) * 100, 1)
+henv$probs.curr.bten <-
+  f(mean(base_model$mcmc[[paste0("Bratio_",
+                                 henv$assess_yr)]] > 0.10) * 100, 0)
+henv$probs.curr.below.bforty <-
+  f(mean(base_model$mcmc[[paste0("Bratio_",
+                                 henv$assess_yr)]] < 0.40) * 100, 1)
+henv$probs.curr.below.btwentyfive <-
+  f(mean(base_model$mcmc[[paste0("Bratio_",
+                                 henv$assess_yr)]] < 0.25) * 100, 1)
+henv$probs.curr.below.bten <-
+  f(mean(base_model$mcmc[[paste0("Bratio_",
+                                 henv$assess_yr)]] < 0.10) * 100, 1)
+# Reference point probabilities -----------------------------------------------
+# ... reference points next year given largest catch this year ----------------
+henv$largest.next.catch.index <-
+  which.max(henv$base_model$risks[[1]][, paste0("ForeCatch_", henv$assess_yr)])
+henv$largest.next.catch <-
+  f(henv$base_model$risks[[1]][henv$largest.next.catch.index,
+                               paste0("ForeCatch_",
+                                      assess_yr)], 0)
+henv$prob.next.over.b10 <-
+  f(100 - as.numeric(henv$base_model$risks[[1]][henv$largest.next.catch.index,
+                                                paste0("Bratio_",
+                                                       henv$assess_yr + 1,
+                                                       "<0.10")]), 0)
+henv$prob.next.over.b40 <-
+  f(100 - as.numeric(henv$base_model$risks[[1]][henv$largest.next.catch.index,
+                                                paste0("Bratio_",
+                                                       henv$assess_yr + 1,
+                                                       "<0.40")]), 0)
+# ... Canadian (DFO) provisional reference points -----------------------------
+henv$dfo.probs.curr <-
+  henv$base_model$risks[[1]][,
+   (ncol(henv$base_model$risks[[1]])-2):ncol(henv$base_model$risks[[1]])]
+henv$dfo.probs.fore <-
+  henv$base_model$risks[[2]][,
+   (ncol(henv$base_model$risks[[2]])-2):ncol(henv$base_model$risks[[2]])]
+# ... next year DFO probs given largest catch this year -----------------------
+henv$dfo.prob.next.over.40bmsy <-
+  f(henv$dfo.probs.fore[henv$largest.next.catch.index,
+                        paste0("SSB_",
+                               henv$assess_yr + 1,
+                               ">0.4SSB_MSY")])
+henv$dfo.prob.next.over.80bmsy <-
+  f(henv$dfo.probs.fore[henv$largest.next.catch.index,
+                        paste0("SSB_",
+                               henv$assess_yr + 1,
+                               ">0.8SSB_MSY")])
+henv$dfo.prob.next.over.bmsy <-
+  f(henv$dfo.probs.fore[henv$largest.next.catch.index,
+                        paste0("SSB_",
+                               henv$assess_yr + 1,
+                               ">SSB_MSY")])
+# ... US (PFMC) stock size reference points based on default Treaty HCR -------
+henv$next.treaty.catch <-
+  f(henv$base_model$catch.levels[[henv$catch.default.policy.ind]][[1]][1], 0)
+henv$pfmc.prob.next.year.below.b40 <-
+  f(henv$base_model$risks[[1]][henv$catch.default.policy.ind,
+                               paste0("Bratio_",
+                                      henv$assess_yr + 1,
+                                      "<0.40")], 0)
+henv$pfmc.prob.next.year.below.b25 <-
+  f(henv$base_model$risks[[1]][henv$catch.default.policy.ind,
+                               paste0("Bratio_",
+                                      henv$assess_yr + 1,
+                                      "<0.25")], 0)
+henv$same.catch.as.last.year <-
+  f(henv$base_model$catch.levels[[henv$catch.actual.ind]][[1]][1], 0)
+henv$same.catch.prob.next.year.below.b40 <-
+  f(henv$base_model$risks[[1]][henv$catch.actual.ind,
+                               paste0("Bratio_",
+                                      henv$assess_yr + 1,
+                                      "<0.40")], 0)
+henv$same.catch.prob.year.after.next.below.b40 <-
+  f(henv$base_model$risks[[2]][henv$catch.actual.ind,
+                               paste0("Bratio_",
+                                      henv$assess_yr + 2,
+                                      "<0.40")], 0)
+# ... Prob most recent relative fishing intensity is above target of 1 --------
+henv$probs.curr.rel.fish.intens.above.one <-
+  f(sum(henv$base_model$mcmc[[paste0("SPRratio_",
+                                     henv$end_yr - 1)]] > 1) /
+      nrow(henv$base_model$mcmc) * 100,
+    1)
+henv$catches.below.200000.since.1986 <-
+  number.to.word(length(filter(henv$ct, tot_catch <= 200000, year > 1986)$year))
+# Age compositions ------------------------------------------------------------
+# ... age composition data for data section -----------------------------------
+henv$survey.age.years <-
+  henv$base_model$dat$agecomp |> filter(FltSvy == 2) |>
+  pull(Yr)
+henv$max.fishery.age.prop <- get_age_comp_limits(henv$base_model, type = 1)
+henv$max.survey.age.prop <- get_age_comp_limits(henv$base_model, type = 2)
+# ... Canadian Freezer trawlers age data --------------------------------------
+henv$last.year.can.ages.ft <-
+  henv$can.ages[[2]][rownames(henv$can.ages[[2]]) == henv$last_data_yr, ]
+henv$ft.age.prop.holder <- get.age.prop(henv$last.year.can.ages.ft, 1)
+henv$max.freezer.trawler.age.prop.age <- henv$ft.age.prop.holder[1]
+henv$max.freezer.trawler.age.prop <- f(henv$ft.age.prop.holder[2] * 100, 1)
+henv$ft.age.prop.holder <- get.age.prop(henv$last.year.can.ages.ft, 2)
+henv$second.freezer.trawler.age.prop.age <- henv$ft.age.prop.holder[1]
+henv$second.freezer.trawler.age.prop <- f(henv$ft.age.prop.holder[2] * 100, 1)
+henv$ft.age.prop.holder <- get.age.prop(henv$last.year.can.ages.ft, 3)
+henv$third.freezer.trawler.age.prop.age <- henv$ft.age.prop.holder[1]
+henv$third.freezer.trawler.age.prop <- f(henv$ft.age.prop.holder[2] * 100, 1)
+henv$ft.age.prop.holder <- get.age.prop(henv$last.year.can.ages.ft, 4)
+henv$fourth.freezer.trawler.age.prop.age <- henv$ft.age.prop.holder[1]
+henv$fourth.freezer.trawler.age.prop <- f(henv$ft.age.prop.holder[2] * 100, 1)
+# ... Canadian Shoreside age data ---------------------------------------------
+henv$last.year.can.ages.ss <-
+  henv$can.ages[[1]][rownames(henv$can.ages[[1]]) == henv$last_data_yr, ]
+henv$ss.age.prop.holder <- get.age.prop(henv$last.year.can.ages.ss, 1)
+henv$max.shoreside.age.prop.age <- henv$ss.age.prop.holder[1]
+henv$max.shoreside.age.prop <- f(henv$ss.age.prop.holder[2] * 100, 1)
+henv$ss.age.prop.holder <- get.age.prop(henv$last.year.can.ages.ss, 2)
+henv$second.shoreside.age.prop.age <- henv$ss.age.prop.holder[1]
+henv$second.shoreside.age.prop <- f(henv$ss.age.prop.holder[2] * 100, 1)
+henv$ss.age.prop.holder <- get.age.prop(henv$last.year.can.ages.ss, 3)
+henv$third.shoreside.age.prop.age <- henv$ss.age.prop.holder[1]
+henv$third.shoreside.age.prop <- f(henv$ss.age.prop.holder[2] * 100, 1)
+henv$ss.age.prop.holder <- get.age.prop(henv$last.year.can.ages.ss, 4)
+henv$fourth.shoreside.age.prop.age <- henv$ss.age.prop.holder[1]
+henv$fourth.shoreside.age.prop <- f(henv$ss.age.prop.holder[2] * 100, 1)
+# ... US age data -------------------------------------------------------------
+henv$us.age.n.cp <-
+  henv$us.cp.age[henv$us.cp.age$year == henv$last_data_yr, "n.hauls"]
+henv$us.age.n.ms <-
+  henv$us.ms.age[henv$us.ms.age$year == henv$last_data_yr, "n.hauls"]
+henv$us.last.year.age.cp <-
+  henv$us.cp.age[henv$us.cp.age$year == henv$last_data_yr,
+                 grep("^a",
+                      colnames(henv$us.cp.age))]
+henv$us.last.year.age.cp <-
+  henv$us.last.year.age.cp[order(unlist(henv$us.last.year.age.cp[1, , drop = TRUE]),
+                                 decreasing = TRUE)]
+henv$us.age.1.prop.age.cp <-
+  as.numeric(gsub("^a", "", names(henv$us.last.year.age.cp)[1]))
+henv$us.age.1.prop.cp <- f(henv$us.last.year.age.cp[1] * 100, 1)
+henv$us.age.2.prop.age.cp <-
+  as.numeric(gsub("^a", "", names(henv$us.last.year.age.cp)[2]))
+henv$us.age.2.prop.cp <- f(henv$us.last.year.age.cp[2] * 100, 1)
+henv$us.age.3.prop.age.cp <-
+  as.numeric(gsub("^a", "", names(henv$us.last.year.age.cp)[3]))
+henv$us.age.3.prop.cp <- f(henv$us.last.year.age.cp[3] * 100, 1)
+henv$us.age.4.prop.age.cp <-
+  as.numeric(gsub("^a", "", names(henv$us.last.year.age.cp)[4]))
+henv$us.age.4.prop.cp <- f(henv$us.last.year.age.cp[4] * 100, 1)
+henv$us.last.year.age.ms <-
+  henv$us.ms.age[henv$us.ms.age$year == henv$last_data_yr,
+                 grep("^a",
+                      colnames(henv$us.ms.age))]
+henv$us.last.year.age.ms <-
+  henv$us.last.year.age.ms[order(unlist(henv$us.last.year.age.ms[1, , drop = TRUE]),
+                                 decreasing = TRUE)]
+henv$us.age.1.prop.age.ms <-
+  as.numeric(gsub("^a", "", names(henv$us.last.year.age.ms)[1]))
+henv$us.age.1.prop.ms <- f(henv$us.last.year.age.ms[1] * 100, 1)
+henv$us.age.2.prop.age.ms <-
+  as.numeric(gsub("^a", "", names(henv$us.last.year.age.ms)[2]))
+henv$us.age.2.prop.ms <- f(henv$us.last.year.age.ms[2] * 100, 1)
+henv$us.age.3.prop.age.ms <-
+  as.numeric(gsub("^a", "", names(henv$us.last.year.age.ms)[3]))
+henv$us.age.3.prop.ms <- f(henv$us.last.year.age.ms[3] * 100, 1)
+henv$us.age.4.prop.age.ms <-
+  as.numeric(gsub("^a", "", names(henv$us.last.year.age.ms)[4]))
+henv$us.age.4.prop.ms <- f(henv$us.last.year.age.ms[4] * 100, 1)
+henv$us.last.year.age.shore <-
+  henv$us.shore.age[henv$us.shore.age$year == henv$last_data_yr,
+                    grep("^a",
+                         colnames(henv$us.shore.age))]
+henv$us.last.year.age.shore <-
+  henv$us.last.year.age.shore[order(unlist(henv$us.last.year.age.shore[1, , drop = TRUE]),
+                                    decreasing = TRUE)]
+henv$us.age.1.prop.age.shore <-
+  as.numeric(gsub("^a", "", names(henv$us.last.year.age.shore)[1]))
+henv$us.age.1.prop.shore <- f(henv$us.last.year.age.shore[1] * 100, 1)
+henv$us.age.2.prop.age.shore <-
+  as.numeric(gsub("^a", "", names(henv$us.last.year.age.shore)[2]))
+henv$us.age.2.prop.shore <- f(henv$us.last.year.age.shore[2] * 100, 1)
+henv$us.age.3.prop.age.shore <-
+  as.numeric(gsub("^a", "", names(henv$us.last.year.age.shore)[3]))
+henv$us.age.3.prop.shore <- f(henv$us.last.year.age.shore[3] * 100, 1)
+henv$us.age.4.prop.age.shore <-
+  as.numeric(gsub("^a", "", names(henv$us.last.year.age.shore)[4]))
+henv$us.age.4.prop.shore <- f(henv$us.last.year.age.shore[4] * 100, 1)
+# Recruitment -----------------------------------------------------------------
+#  ... years median recruitment is below the mean of the median ---------------
+# recruitments for years > 2010 and < (end_yr - 1) ; end_yr - 1 won't be well estimated
+henv$recruitment.med.since.2010 <-
+  henv$mc$rmed[which(names(henv$mc$rmed) %in% 2010:henv$end_yr &
+                       names(henv$mc$rmed) %in% henv$start_yr:(henv$end_yr - 1))]
+henv$years.since.2010.recruitment.med.below.mean <-
+  names(henv$recruitment.med.since.2010[recruitment.med.since.2010  <
+                                          mean(henv$mc$rmed)])
+# ... est, recruitment in 2014 and 2016 in billions ---------------------------
+henv$recruitment.med.in.2014 <- f(henv$mc$rmed["2014"], 3)
+henv$last.assess.recruitment.med.in.2014 <-
+  f(henv$last_yr_base_model$mcmccalcs$rmed["2014"], 3)
+henv$prob.percent.2014.rec.gt.2010.rec <-
+  f(mean(henv$base_model$mcmc$Recr_2014 > henv$base_model$mcmc$Recr_2010) * 100, 0)
+henv$prob.percent.2016.rec.gt.2010.rec <-
+  f(mean(henv$base_model$mcmc$Recr_2016 > henv$base_model$mcmc$Recr_2010) * 100, 1)
+henv$prob.percent.2020.rec.gt.2010.rec <-
+  f(mean(henv$base_model$mcmc$Recr_2020 > henv$base_model$mcmc$Recr_2010) * 100, 0)
+henv$prob.percent.2014.rec.gt.2016.rec <-
+  f(mean(henv$base_model$mcmc$Recr_2014 > henv$base_model$mcmc$Recr_2016) * 100, 0)
+henv$recruitment.lower.in.2016 <- f(henv$mc$rlower["2016"], 3)
+henv$recruitment.med.in.2016 <- f(henv$mc$rmed["2016"], 3)
+henv$recruitment.upper.in.2016 <- f(henv$mc$rupper["2016"], 3)
+henv$prob.percent.2016.rec.gt.2010.rec <-
+  f(mean(henv$base_model$mcmc$Recr_2016 > henv$base_model$mcmc$Recr_2010) * 100, 1)
+henv$sd.med.recr.dev.estimates <-
+  f(sd(henv$mc$devmed[names(henv$mc$devmed) >= 1970 &
+                        names(henv$mc$devmed) <= (henv$last_data_yr - 2)]), 2)
+henv$prob.percent.2010.rec.gt.1980.rec <-
+  f(mean(henv$base_model$mcmc$Recr_2010 > henv$base_model$mcmc$Recr_1980) * 100, 0)
+henv$prob.percent.2010.rec.gt.1980.rec.last.year.assess <-
+  f(mean(henv$last_yr_base_model$mcmc$Recr_2010 >
+           henv$last_yr_base_model$mcmc$Recr_1980) * 100, 0)
+# Exploitation ----------------------------------------------------------------
+henv$exploitation.med.2010 <- f(henv$mc$fmed["2010"],2)
+henv$exploitation.med.2012 <- f(henv$mc$fmed["2012"],2)
+henv$exploitation.med.2011 <- f(henv$mc$fmed["2011"],2)
+henv$exploitation.med.2015 <- f(henv$mc$fmed["2015"],2)
+henv$exploitation.med.2017 <- f(henv$mc$fmed["2017"],2)
+henv$exploitation.med.2018 <- f(henv$mc$fmed["2018"],2)
+henv$exploitation.med.2019 <- f(henv$mc$fmed["2019"],2)
+henv$exploitation.med.2020 <- f(henv$mc$fmed["2020"],2)
+henv$exploitation.med.penult.yr <-
+  f(henv$mc$fmed[as.character(henv$last_data_yr)], 2)
+# Priors settings from the control file ---------------------------------------
+henv$param.details <- table_param_est_bounds(
+  henv$base_model,
+  start.rec.dev.yr = henv$recruit_dev_start_yr,
+  end.rec.dev.yr = henv$end_yr - 1,
+  return.xtable = FALSE)
+henv$m.prior <- split.prior.info(
+  henv$param.details[rownames(henv$param.details) == "m.vals", ][4],
+  dec.points = 2,
+  first.to.lower = TRUE)
+# ... Dirichlet Multinomial priors --------------------------------------------
+henv$effn.priors <- henv$base_model$parameters |>
+  as_tibble() |>
+  select(Label, Prior, Pr_SD) |>
+  filter(grepl("DM_theta", Label))
+henv$effn.prior <- unlist(henv$effn.priors[1, ])
+henv$sel.Phi.val <- henv$base_model$parameters |>
+  as_tibble() |>
+  filter(Label == "AgeSel_P3_Fishery(1)_dev_se") |>
+  pull(Value)
+
+# Cohort specifics ------------------------------------------------------------
+# ... Cohort catch ------------------------------------------------------------
+henv$cohort.catch.1999 <- sum(cohort.catch(henv$base_model, 1999,
+                                           trim.end.year = henv$end_yr))
+henv$cohort.catch.2010 <- sum(cohort.catch(henv$base_model, 2010,
+                                           trim.end.year = henv$end_yr))
+henv$cohort.catch.2014 <- sum(cohort.catch(henv$base_model, 2014,
+                                           trim.end.year = henv$end_yr))
+henv$cohort.catch.2016 <- sum(cohort.catch(henv$base_model, 2016,
+                                           trim.end.year = henv$end_yr))
+henv$cohort.catch.2017 <- sum(cohort.catch(henv$base_model, 2017,
+                                           trim.end.year = henv$end_yr))
+henv$cohort.catch.2020 <- sum(cohort.catch(henv$base_model, 2020,
+                                           trim.end.year = henv$end_yr))
+# ... Cumulative sums of Cohorts for use in JMC presentation ------------------
+henv$cohortCumSum1999 <- cumsum(cohort.catch(henv$base_model, 1999,
+                                             trim.end.year = henv$end_yr))
+henv$cohortCumSum2010 <- cumsum(cohort.catch(henv$base_model, 2010,
+                                             trim.end.year = henv$end_yr))
+henv$cohortCumSum2014 <- cumsum(cohort.catch(henv$base_model, 2014,
+                                             trim.end.year = henv$end_yr))
+henv$cohortCumSum2016 <- cumsum(cohort.catch(henv$base_model, 2016,
+                                             trim.end.year = henv$end_yr))
+henv$cohortCumSum2017 <- cumsum(cohort.catch(henv$base_model, 2017,
+                                             trim.end.year = henv$end_yr))
+henv$cohortCumSum2020 <- cumsum(cohort.catch(henv$base_model, 2020,
+                                             trim.end.year = henv$end_yr))
+henv$ages1999 <- as.numeric(names(henv$cohortCumSum1999)) - 1999
+henv$ages2010 <- as.numeric(names(henv$cohortCumSum2010)) - 2010
+henv$ages2014 <- as.numeric(names(henv$cohortCumSum2014)) - 2014
+henv$ages2016 <- as.numeric(names(henv$cohortCumSum2016)) - 2016
+henv$ages2017 <- as.numeric(names(henv$cohortCumSum2017)) - 2017
+henv$ages2020 <- as.numeric(names(henv$cohortCumSum2020)) - 2020
+# ... Cohort medians, credible intervals --------------------------------------
+henv$rec_2010 <- get_rec_ci(henv$last_yr_base_model, henv$base_model, 2010)
+henv$rec_2014 <- get_rec_ci(henv$last_yr_base_model, henv$base_model, 2014)
+henv$rec_2016 <- get_rec_ci(henv$last_yr_base_model, henv$base_model, 2016)
+henv$rec_2017 <- get_rec_ci(henv$last_yr_base_model, henv$base_model, 2017)
+henv$rec_2020 <- get_rec_ci(henv$last_yr_base_model, henv$base_model, 2020)
+# ... Cohort biomass-at-age ---------------------------------------------------
+# TODO - uncomment these ines - Jan 13, 2023
+#baa <- get_baa(base_model, assess_yr)
+#baa_large <- baa %>% arrange(desc(Median))
+#baa_2010 <- baa %>% filter(Cohort == 2010) %>% pull(Median) * 100
+#baa_2014 <- baa %>% filter(Cohort == 2014) %>% pull(Median) * 100
+#baa_2016 <- baa %>% filter(Cohort == 2016) %>% pull(Median) * 100
+# Estimated prop at age (numbers) of the catch in first forecast year ---------
+henv$fore.catch.prop <-
+  as.data.frame(t(as.numeric(f(apply(henv$extramc$natsel.prop,
+                                     2,
+                                     median) * 100))))
+names(henv$fore.catch.prop) <- paste0("Age", 0:20)
+
+# Credible intervals for age5 -------------------------------------------------
+# (pick the biggest cohort from fore.catch.prop; note natsel.prop columns start with age-0).
+henv$fore.catch.prop.age3.lower <-
+  quantile(henv$extramc$natsel.prop[, 4], 0.025) * 100
+henv$fore.catch.prop.age3.upper <-
+  quantile(henv$extramc$natsel.prop[, 4], 0.975) * 100
+henv$fore.catch.prop.age6.lower <-
+  quantile(henv$extramc$natsel.prop[, 7], 0.025) * 100
+henv$fore.catch.prop.age6.upper <-
+  quantile(henv$extramc$natsel.prop[, 7], 0.975) * 100
+henv$fore.catch.prop.age7.lower <-
+  quantile(henv$extramc$natsel.prop[, 8], 0.025) * 100
+henv$fore.catch.prop.age7.upper <-
+  quantile(henv$extramc$natsel.prop[, 8], 0.975) * 100
+# Estimated prop at age (catch) of catch in first forecast year ---------------
+henv$fore.catch.prop.wt.age2.median <-
+  median(henv$extramc$natselwt.prop[, 3]) * 100
+henv$fore.catch.prop.wt.age3.median <-
+  median(henv$extramc$natselwt.prop[, 4]) * 100
+henv$fore.catch.prop.wt.age4.median <-
+  median(henv$extramc$natselwt.prop[, 5]) * 100
+henv$fore.catch.prop.wt.age5.median <-
+  median(henv$extramc$natselwt.prop[, 6]) * 100
+henv$fore.catch.prop.wt.age6.median <-
+  median(henv$extramc$natselwt.prop[, 7]) * 100
+henv$fore.catch.prop.wt.age7.median <-
+  median(henv$extramc$natselwt.prop[, 8]) * 100
+henv$fore.catch.prop.wt.age10.median <-
+  median(henv$extramc$natselwt.prop[, 11]) * 100
+henv$fore.catch.prop.wt.age11.median <-
+  median(henv$extramc$natselwt.prop[, 12]) * 100
+# Sigma_r, standard deviation of recruitment variability ----------------------
+henv$sigma_r <- f(henv$base_model$sigma_R_in, 2)
+henv$sigma_r_sens <- sens_models[[1]][
+  grep("Sigma R", henv$sens_models_names[[1]])] |>
+  map_dbl("sigma_R_in") |>
+  f(dec.points = 2)
+# Alternative sigma_r based on posterior of recdevs ---------------------------
+# sigma_R_info should not be used
+henv$calc_SD_of_devs <- function(posteriors, pattern = "Main"){
+  posteriors |>
+    select(matches(pattern)) |>
+    apply(MARGIN = 1, FUN = sd) |>
+    median() |>
+    f(2)
+}
+henv$calc_sum_rec_devs <- function(posteriors, pattern = "Main"){
+  temp <- posteriors |>
+    select(matches(pattern)) |>
+    apply(MARGIN = 1, FUN = sum)
+  c(mean = mean(temp),
+    median = median(temp),
+    range = range(temp))
+}
+#calc_sum_rec_devs(henv$base_model$mcmc)
+#calc_sum_rec_devs(henv$last_yr_base_model$mcmc)
+henv$sigma_r_alt_allyr <- calc_SD_of_devs(henv$base_model$mcmc,
+                                          pattern = "^[EML].+_RecrDev")
+henv$sigma_r_this_year_main <- calc_SD_of_devs(henv$base_model$mcmc)
+henv$sigma_r_last_year_main <- calc_SD_of_devs(henv$last_yr_base_model$mcmc)
+henv$sigma_r_sens1 <- henv$sens_models[[1]] |>
+  map("mcmc") |>
+  map_chr(henv$calc_SD_of_devs) |>
+  setNames(henv$sens_models_names[[1]])
+henv$sigma_r_hi_main <- henv$sigma_r_sens1[grep("Sigma.+1.[5-9]",
+                                                names(henv$sigma_r_sens1),
+                                                value = TRUE)]
+henv$sigma_r_lo_main <- sigma_r_sens1[grep("Sigma.+1.[0-4]",
+                                           names(henv$sigma_r_sens1),
+                                           value = TRUE)]
+# Range of "main" recdevs -----------------------------------------------------
+henv$main.recdev.start <-
+  min(henv$base_model$recruit$Yr[henv$base_model$recruit$era == "Main"])
+henv$main.recdev.end <-
+  max(henv$base_model$recruit$Yr[henv$base_model$recruit$era == "Main"])
+henv$main.recdev.early <-
+  min(henv$base_model$recruit$Yr[henv$base_model$recruit$era == "Early"])
+# Range of "main" bias adjustement period for recdevs -------------------------
+henv$main.recdevbias.start <-
+  min(henv$base_model$recruit$Yr[henv$base_model$recruit$biasadjuster ==
+                                   max(henv$base_model$recruit$biasadjuster)])
+henv$main.recdevbias.end <-
+  max(henv$base_model$recruit$Yr[henv$base_model$recruit$biasadjuster ==
+                                   max(henv$base_model$recruit$biasadjuster)])
+# Weight-at-age for the base model --------------------------------------------
+henv$wt.at.age <-
+  henv$base_model$wtatage[, !grepl("comment",
+                                   colnames(henv$base_model$wtatage))] |>
+  filter(Yr %in% henv$start_yr_age_comps:(henv$end_yr - 1),
+         Fleet == 2) %>%
+  select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet)) %>%
+  rename(year = Yr)
+# Define number of 'recent' years for several tables --------------------------
+henv$num.recent.yrs <- 10
+# Dirichlet-Multinomial data weighting parameters MLE -------------------------
+henv$log.theta.fishery <-
+  round(henv$base_model$parameters["ln(EffN_mult)_1", "Value"], 3)
+henv$log.theta.survey <-
+  round(henv$base_model$parameters["ln(EffN_mult)_2", "Value"], 3)
+henv$theta.fishery <-
+  exp(henv$base_model$parameters["ln(EffN_mult)_1", "Value"])
+henv$theta.survey <-
+  exp(henv$base_model$parameters["ln(EffN_mult)_2", "Value"])
+# Approximate MLE weights
+henv$DM.weight.fishery <-
+  round(henv$theta.fishery / (1 + henv$theta.fishery), 3)
+henv$DM.weight.survey <-
+  round(henv$theta.survey / (1 + henv$theta.survey), 3)
+# MCMC medians for the fishery and survey, and quantiles (and low and high)
+henv$col.effn <-
+  grep("^.*\\(DM_theta\\)_Age_P1$", colnames(henv$base_model$mcmc))
+# Probably shouldn't really round these values before then using them in the
+#  weight calculations. Should use f() for values to be in document not round.
+#  No time to look into now (Andy).
+henv$log.theta.fishery.median <-
+  round(median(henv$base_model$mcmc[, henv$col.effn]), 3)
+henv$log.theta.fishery.025 <-
+  round(quantile(henv$base_model$mcmc[, henv$col.effn], probs = 0.025), 3)
+henv$log.theta.fishery.975 <-
+  round(quantile(henv$base_model$mcmc[, henv$col.effn], probs = 0.975), 3)
+henv$DM.weight.fishery.median <-
+  f(median(exp(henv$base_model$mcmc[, henv$col.effn]) /
+             (1 + exp(henv$base_model$mcmc[, henv$col.effn]))), 3)
+henv$DM.weight.fishery.025 <-
+  f(exp(henv$log.theta.fishery.025) /
+      (1 + exp(henv$log.theta.fishery.025)), 3)
+henv$DM.weight.fishery.975 <-
+  f(exp(henv$log.theta.fishery.975) /
+      ( 1 + exp(henv$log.theta.fishery.975)), 3)
+henv$col.effn <-
+  grep("^.*\\(DM_theta\\)_Age_P2$", colnames(henv$base_model$mcmc))
+henv$log.theta.survey.median <-
+  round(median(henv$base_model$mcmc[, henv$col.effn]), 3)
+henv$log.theta.survey.025 <-
+  round(quantile(henv$base_model$mcmc[, henv$col.effn],
+                 probs = 0.025), 3)
+henv$log.theta.survey.975 <-
+  round(quantile(henv$base_model$mcmc[, henv$col.effn],
+                 probs = 0.975), 3)
+henv$DM.weight.survey.median <-
+  f(median(exp(henv$base_model$mcmc[, henv$col.effn]) /
+             (1 + exp(henv$base_model$mcmc[, henv$col.effn]))), 3)
+henv$DM.weight.survey.025 <-
+  f(exp(henv$log.theta.survey.025) /
+      (1 + exp(henv$log.theta.survey.025)), 3)
+henv$DM.weight.survey.975 <-
+  f(exp(henv$log.theta.survey.975) /
+      (1 + exp(henv$log.theta.survey.975)), 3)
+henv$DM.weight.survey.median <-
+  f(median(exp(henv$base_model$mcmc[, henv$col.effn]) /
+             (1 + exp(henv$base_model$mcmc[, henv$col.effn]))), 3)
+henv$DM.weight.survey.low <-
+  f(min(exp(henv$base_model$mcmc[, henv$col.effn]) /
+          (1 + exp(henv$base_model$mcmc[, henv$col.effn + 1]))), 2)
+henv$DM.weight.survey.high <-
+  f(max(exp(henv$base_model$mcmc[, henv$col.effn]) /
+          (1 + exp(henv$base_model$mcmc[, henv$col.effn + 1]))), 2)
+
+# MCMC parameter estimates for base model -------------------------------------
+# Need to change indexing if sensitivity models order changes in model-setup.R
+# ... natural mortality -------------------------------------------------------
+henv$nat_m <-
+  quantile(henv$base_model$mcmc$NatM_uniform_Fem_GP_1,
+           probs = henv$cred_int)
+henv$nat_m_02 <-
+  quantile(henv$sens_models[[1]][[6]]$mcmc$NatM_uniform_Fem_GP_1,
+           probs = henv$cred_int)
+henv$nat_m_03 <-
+  quantile(henv$sens_models[[1]][[7]]$mcmc$NatM_uniform_Fem_GP_1,
+           probs = henv$cred_int)
+henv$nat_m_hamel <-
+  quantile(henv$sens_models[[1]][[8]]$mcmc$NatM_uniform_Fem_GP_1,
+           probs = henv$cred_int)
+# ... steepness ---------------------------------------------------------------
+henv$steep <-
+  quantile(henv$base_model$mcmc$SR_BH_steep,
+           probs = henv$cred_int)
+henv$steep_prior_05 <-
+  quantile(henv$sens_models[[1]][[2]]$mcmc$SR_BH_steep,
+           probs = cred_int)
+# ... bratio ------------------------------------------------------------------
+henv$bratio_curr <-
+  quantile(henv$base_model$mcmc[[paste0("Bratio_", henv$assess_yr)]],
+           probs = henv$cred_int)
+henv$bratio_age1 <-
+  quantile(henv$sens_models[[2]][[2]]$mcmc[[paste0("Bratio_", henv$assess_yr)]],
+           probs = henv$cred_int)
+# ... depletion ---------------------------------------------------------------
+henv$depl_curr <- henv$mc$dmed[names(henv$mc$dmed) == henv$assess_yr]
+# depl_no_ageerr <- sens_models_5$mcmccalcs$dmed[names(mc$dmed) == assess_yr]
+# ... joint probability -------------------------------------------------------
+# (%age) of being being both above the target relative fishing intensity in \Sexpr{end_yr-1}
+# and below the $\Bforty$ (40\% of $B_0$) reference point at the start of \Sexpr{end_yr}
+henv$joint.percent.prob.above.below <-
+  f(sum(henv$base_model$mcmc[[paste0("Bratio_", henv$end_yr)]] < 0.4 &
+          henv$base_model$mcmc[[paste0("SPRratio_", henv$end_yr - 1)]] > 1) /
+      nrow(henv$base_model$mcmc) * 100,
+    1)
+
+# Probabilities for historical performance analyses ---------------------------
+henv$historical.probs.tibble <-
+  combine_historical_probs(model = henv$base_model,
+                           end = henv$assess_yr - 1) |>
+  as_tibble()
+henv$prob.decline.from.2019.to.2020.historic <-
+  filter(henv$historical.probs.tibble,
+         Year == 2019) |>
+  select("P_decline") |>
+  as.numeric() |>
+  f()
+henv$prob.decline.from.2019.to.2020.curr <-
+  filter(henv$historical.probs.tibble,
+         Year == 2019) |>
+  select("P_decline_curr") |>
+  as.numeric() |>
+  f()
+henv$prob.decline.from.2012.to.2013.historic <-
+  filter(henv$historical.probs.tibble,
+         Year == 2012) |>
+  select("P_decline") |>
+  as.numeric() |>
+  f()
+henv$prob.decline.from.2012.to.2013.curr <-
+  filter(historical.probs.tibble,
+         Year == 2012) |>
+  select("P_decline_curr") |>
+  as.numeric() |>
+  f()
+# Retrospective setup for the document ----------------------------------------
+henv$retro.model.names <-
+  c(henv$base_model_name,
+    map_chr(henv$plot_retro_yrs, ~{
+      paste0("-", .x, ifelse(.x == 1, " year", " years"))
+    }))
+henv$retro.list <- list(henv$base_model)
+for(i in henv$plot_retro_yrs){
+  henv$retro.list[[i + 1]] <- henv$base_model$retros[[i]]
+}
+henv$retro_models_end_yr <- c(henv$end_yr, henv$end_yr - henv$plot_retro_yrs)
+# Assemble the retrospective list with the base as the first element
+henv$d_obj_retro_biomass <-
+  create_group_df_biomass(henv$retro.list,
+                          henv$retro.model.names,
+                          end_yrs = henv$retro_models_end_yr)
+henv$d_obj_retro_rel_biomass <-
+  create_group_df_biomass(henv$retro.list,
+                          henv$retro.model.names,
+                          rel = TRUE,
+                          end_yrs = henv$retro_models_end_yr)
+henv$d_obj_retro_recr <-
+  create_group_df_recr(henv$retro.list,
+                       henv$retro.model.names,
+                       end_yrs = henv$retro_models_end_yr)
+# Set up bridge model groups for plotting ------------------------------------
+henv$iter <- 0
+henv$d_obj_bridge_biomass <-
+  map2(henv$bridge_models,
+       henv$bridge_models_names, ~{
+         henv$iter <<- henv$iter + 1
+         create_group_df_biomass(.x, .y,
+                                 end_yrs = henv$bridge_model_end_yr[[iter]])
+       })
+henv$iter <- 0
+henv$d_obj_bridge_rel_biomass <-
+  map2(henv$bridge_models,
+       henv$bridge_models_names, ~{
+         henv$iter <<- henv$iter + 1
+         create_group_df_biomass(.x, .y,
+                                 rel = TRUE,
+                                 end_yrs = henv$bridge_model_end_yr[[iter]])
+       })
+henv$iter <- 0
+henv$d_obj_bridge_recdev <-
+  map2(henv$bridge_models,
+       henv$bridge_models_names, ~{
+         henv$iter <<- henv$iter + 1
+         create_group_df_recr(.x, .y,
+                              devs = TRUE,
+                              end_yrs = henv$bridge_model_end_yr[[iter]])
+       })
+henv$d_obj_bridge_age1_index <-
+  map2(henv$bridge_models,
+       henv$bridge_models_names, ~{
+         create_group_df_index(.x, .y,
+                               survey_type = "age1")
+       })
+henv$d_obj_bridge_age2_index <-
+  map2(henv$bridge_models,
+       henv$bridge_models_names, ~{
+         create_group_df_index(.x, .y,
+                               survey_type = "age2")
+       })
+# Set up sensitivity model groups for plotting -------------------------------
+# Biomass  -------------------------------------------------------------------
+henv$d_obj_sens_biomass <-
+  map2(henv$sens_models,
+       henv$sens_models_names, ~{
+         create_group_df_biomass(.x, .y)
+       })
+henv$d_obj_sens_rel_biomass <-
+  map2(henv$sens_models,
+       henv$sens_models_names, ~{
+         create_group_df_biomass(.x, .y, rel = TRUE)
+       })
+henv$d_obj_sens_recr <-
+  map2(henv$sens_models,
+       henv$sens_models_names, ~{
+         create_group_df_recr(.x, .y)
+       })
+henv$d_obj_sens_recdev <-
+  map2(henv$sens_models,
+       henv$sens_models_names, ~{
+         create_group_df_recr(.x, .y, devs = TRUE)
+       })
+# extra mcmc required for these
+henv$d_obj_sens_age1_index_grp2 <-
+  map2(henv$sens_models[2],
+       henv$sens_models_names[2], ~{
+         create_group_df_index(.x, .y, "age1")
+       })
+henv$d_obj_sens_age1_index_grp3 <-
+  map2(henv$sens_models[3],
+       henv$sens_models_names[3], ~{
+         create_group_df_index(.x, .y, "age1")
+       })
+henv$d_obj_sens_age1_index_grp4 <-
+  map2(henv$sens_models[4],
+       henv$sens_models_names[4], ~{
+         create_group_df_index(.x, .y, "age1")
+       })
+henv$d_obj_sens_age2_index_grp2 <-
+  map2(henv$sens_models[2],
+       henv$sens_models_names[2], ~{
+         create_group_df_index(.x, .y, "age2")
+       })
+henv$d_obj_sens_age2_index_grp3 <-
+  map2(henv$sens_models[3],
+       henv$sens_models_names[3], ~{
+         create_group_df_index(.x, .y, "age2")
+       })
+henv$d_obj_sens_age2_index_grp4 <-
+  map2(henv$sens_models[4],
+       henv$sens_models_names[4], ~{
+         create_group_df_index(.x, .y, "age2")
+       })
+# Values used in management presentation
+henv$last_yr_catch_fore <-
+  henv$base_model$catch.levels[[catch.actual.ind]][[1]][1]
+henv$ct_col <- paste0("ForeCatch_",
+                      forecast_yrs[1])
+henv$ct_col_sym <- sym(henv$ct_col)
+henv$decl_col <- paste0("SSB_",
+                        henv$forecast_yrs[2],
+                        "<SSB_",
+                        henv$forecast_yrs[1])
+henv$decl_col_sym <- sym(henv$decl_col)
+henv$below40_col <- paste0("Bratio_",
+                           henv$forecast_yrs[2],
+                           "<0.40")
+henv$below40_col_sym <- sym(henv$below40_col)
+henv$prob_decl_yr1_zero_catch <-
+  henv$base_model$risks[[1]] |>
+  as_tibble() |>
+  filter(!!henv$ct_col_sym < 1) |>
+  pull(!!henv$decl_col_sym) |>
+  f()
+henv$prob_decl_yr1_other_catch <-
+  henv$base_model$risks[[1]] |>
+  as_tibble() |>
+  slice(2) |>
+  pull(!!henv$decl_col_sym) |>
+  f()
+henv$prob_below_b40_yr1_last_yr_catch <-
+  henv$base_model$risks[[1]] |>
+  as_tibble() |>
+  filter(!!henv$ct_col_sym == henv$last_yr_catch_fore) |>
+  pull(!!henv$below40_col) |>
+  f()
+henv$ct_col <- paste0("ForeCatch_",
+                      henv$forecast_yrs[2])
+henv$ct_col_sym <- sym(henv$ct_col)
+henv$decl_col <- paste0("SSB_",
+                        henv$forecast_yrs[3],
+                        "<SSB_",
+                        henv$forecast_yrs[2])
+henv$decl_col_sym <- sym(henv$decl_col)
+henv$below40_col <- paste0("Bratio_",
+                           henv$forecast_yrs[3],
+                           "<0.40")
+henv$below40_col_sym <- sym(henv$below40_col)
+henv$prob_decl_yr2_zero_catch <-
+  henv$base_model$risks[[2]] |>
+  as_tibble() |>
+  filter(!!henv$ct_col_sym < 1) |>
+  pull(!!henv$decl_col_sym) |>
+  f()
+henv$prob_decl_yr2_other_catch <-
+  henv$base_model$risks[[2]] |>
+  as_tibble() |>
+  slice(2) |>
+  pull(!!henv$decl_col_sym) |>
+  f()
+henv$prob_below_b40_yr2_last_yr_catch <-
+  henv$base_model$risks[[2]] |>
+  as_tibble() |>
+  filter(!!henv$ct_col_sym == henv$last_yr_catch_fore) |>
+  pull(!!henv$below40_col) |>
+  f()
+
+
+
+# -----------------------------------------------------------------------------
+# The forecasting yrs and probabilities can be set to whatever is required, the
+#  code is set up to automatically accommodate changes
+#  Change them in all.R
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# catch_levels is a list of N 3-item lists of catch levels with values:
+#  1. values for catch to forecast
+#  2. their pretty names to appear in the document
+#  3. their directory names
+# Each element of the list is a list of length equal to the
+# number of elements in forecast_yrs.
+# See the calc.catch.levels() and fetch.catch.levels() functions
+#  is load-models.R for details. The NA's below will be populated in each model
+#  by those two functions.
+
+# -----------------------------------------------------------------------------
+henv$nf <- length(henv$forecast_yrs)
+henv$catch_levels <-
+  list(list(rep(0.01, henv$nf), "No Fishing", "01-0"),
+       list(rep(180000, henv$nf), "180,000 t", "02-180000"),
+       list(rep(225000, henv$nf), "225,000 t", "03-225000"),
+       list(rep(270000, henv$nf), "270,000 t", "04-270000"),
+       list(c(320000, 288000, 259200, 233280), "320,000 t 10% red.", "05-320000-10"),
+       list(rep(325000, henv$nf), "2022 catch: 325,000 t", "06-325000"),
+       list(rep(350000, henv$nf), "350,000 t", "07-350000"),
+       list(c(350000, 315000, 283500, 255150), "350,000 t 10% red.", "08-350000-10"),
+       list(rep(380000, henv$nf), "380,000 t", "09-380000"),
+       list(c(380000, 342000, 307800, 277020), "380,000 t 10% red.", "10-380000-10"),
+       list(rep(430000, henv$nf), "430,000 t", "11-430000"),
+       list(rep(545000, henv$nf), "2022 TAC: 545,000 t", "12-545000"),
+       list(rep(NA, henv$nf), "FI=100%", "13-spr-100"),
+       list(rep(NA, henv$nf), "Default Harvest Policy", "14-default-hr"),
+       list(rep(NA, henv$nf), "Stable Catch", "15-stable-catch"))
+
+# -----------------------------------------------------------------------------
+# Indices for the forecasts list, which list items above are the TAC case and
+#  default policy case
+# This is used in the one-page summary and a plot comparing several catch cases,
+#  and elsewhere
+# -----------------------------------------------------------------------------
+henv$catch.levels.num <- length(henv$catch_levels)
+henv$catch.actual.ind <- 6
+henv$catch.tac.ind <- 12
+henv$catch.spr100.ind <- 13
+henv$catch.default.policy.ind <- 14
+henv$catch.stable.ind <- 15
+henv$catch.reduction.rows <- c(5, 8, 10)
+henv$catch.constant.rows <- c(1, 2, 3, 4, 6, 7, 9, 11, 12)
+henv$catch.constant.str <- paste(letters[henv$catch.constant.rows],
+                                 collapse = ", ")
+henv$catch.reduction.str <- paste(letters[henv$catch.reduction.rows],
+                                  collapse = ", ")
+@

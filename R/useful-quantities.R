@@ -4,13 +4,15 @@
 #' @param model1 A model, typically last year's model
 #' @param model2 A model, typically this year's model
 #' @param year The cohort to extract
-#' @param probs The 3-vector of probabilities to be passes to the [quantile()] function.
+#' @param probs The 3-vector of probabilities to be passes to the
+#' [quantile()] function.
 #' @param scale Scaling factor
 #'
-#' @return A list of length 3: Item 1 is a vector of the `model1` recruitment lower,
-#' median, upper, and size of credible interval (`env_diff` column). Item 2 is the same type object
-#' for `model2`, and item 3 is the ratio of the `model2` `env_diff` divided by that of `model1`
-#' as a percentage.
+#' @return A list of length 3: Item 1 is a vector of the `model1`
+#' recruitment lower, median, upper, and size of credible interval
+#' (`env_diff` column). Item 2 is the same type object for `model2`,
+#' and item 3 is the ratio of the `model2` `env_diff` divided by that
+#' of `model1` as a percentage.
 #' @export
 get_rec_ci <- function(model1,
                        model2,
@@ -32,12 +34,15 @@ get_rec_ci <- function(model1,
   list(f(rec1, decimals), f(rec2, decimals), f(rec.diff.perc, perc.decimals))
 }
 
-#' Get the median proportions of biomass-at-ages for the final year (MCMC) for all cohorts
+#' Get the median proportions of biomass-at-ages for the final year (MCMC)
+#' for all cohorts
 #'
 #' @param model A model as loaded by [load_ss_files()]
-#' @param curr_yr is the current year. The years will decrease from this to give the cohorts year values
+#' @param curr_yr is the current year. The years will decrease from this to
+#' give the cohorts year values
 #'
-#' @return A single-column tibble representing the proportion of biomass-at-ages for the terminal year
+#' @return A single-column tibble representing the proportion of biomass-at
+#' ages for the terminal year
 #' @export
 get_baa <- function(model, curr_yr, probs = c(0.025, 0.5, 0.975)){
   model$extra.mcmc$natselwt.prop %>%
@@ -82,8 +87,9 @@ baa_table <- function(d,
 
 #' Calculate Biomass-at-age for the years given for the given model
 #'
-#' @details Uses numbers-at-age multiplied by weight-at-age. If any years are missing
-#' the weight-at-age, the average will be used (Assumed to be in the 1966 year slot for SS input)
+#' @details Uses numbers-at-age multiplied by weight-at-age. If any years
+#' are missing the weight-at-age, the average will be used (Assumed to be
+#' in the 1966 year slot for SS input)
 #'
 #' @param model A model as loaded by [load_ss_files()]
 #' @param yrs The years to return the values for
@@ -105,9 +111,11 @@ get_baa_mle <- function(model, yrs = NULL, scale = 1e3){
     yrs <- unique(naa$Yr)
   }
 
-  n.age.b <- naa[naa$"Beg/Mid" == "B", names(naa) %in% c("Yr", as.character(0:max.age))]
+  n.age.b <- naa[naa$"Beg/Mid" == "B", names(naa) %in%
+                   c("Yr", as.character(0:max.age))]
   n.age.b <- n.age.b[n.age.b$Yr %in% yrs,]
-  n.age.m <- naa[naa$"Beg/Mid" == "M", names(naa) %in% c("Yr", as.character(0:max.age))]
+  n.age.m <- naa[naa$"Beg/Mid" == "M", names(naa) %in%
+                   c("Yr", as.character(0:max.age))]
   n.age.m <- n.age.m[n.age.m$Yr %in% yrs,]
 
   dat <- n.age.b
@@ -138,15 +146,13 @@ get_baa_mle <- function(model, yrs = NULL, scale = 1e3){
 
 #' Plot cohort recruitment MLE estimates with retrospectives
 #'
-#' @param model A model as loaded by [load_ss_files()] with MLE retrospective runs
+#' @param model A model as loaded by [load_ss_files()] with MLE retrospective
+#' runs
 #' @param end_yr End year for the plot
 #' @param cohorts The cohort years to show
 #'
 #' @return A [ggplot2] object
 #' @export
-#'
-#' @examples
-#' get_rec_ci_mle(base_model, end_yr = 2019, cohorts = c(1999, 2010, 2014, 2016))
 get_rec_ci_mle <- function(model,
                            end_yr = NULL,
                            cohorts = NULL){
@@ -225,10 +231,4 @@ get_rec_ci_mle <- function(model,
     geom_line(size = 1.5) +
     scale_color_manual(values = get_palette(color_count))
   g
-}
-
-function(){
-  get_rec_ci_mle(base_model, end_yr = 2019, cohorts = c(1999, 2010, 2014, 2016))
-  get_rec_ci_mle(base_model, end_yr = 2019, cohorts = c(2000:2009, 2011:2013, 2015, 2017:2019))
-  get_rec_ci_mle(base_model, end_yr = 2019, cohorts = 1999:2019)
 }

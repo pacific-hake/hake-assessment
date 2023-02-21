@@ -122,47 +122,6 @@ make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
 ##'
 ##' Needed in `adnuts-diagnostics-one-model.rnw` to not generate an error when
 ##' the file is applied to a model for which `.posterior.name` is not estimated
-##' (e.g. for the sensitivities in which steepness is fixed, obviously steepness
-##' is not estimated).
-##'
-##' @param .model A model object as output by [load_ss_models()]
-##' @param .posterior.regex  A regular experession represting a parameter as it appears in the SS output column
-##' @param .posterior.name  A name to show for the poosterior on the plot
-##'
-##' @return Either NULL if the parameter is not estimated, or the 4-panel
-##'   plot of MCMC diagnostics from `make.mcmc.diag.plot()`
-##' @export
-##' @author Andrew Edwards
-##' @examples
-##' @donttest{
-##' # See adnuts-diagnostics-one-model.rnw
-##' }
-make.mcmc.diag.plot.if.exists <- function(.model,
-                                          .posterior.regex,
-                                          .posterior.name){
-  posterior_check <- select(.model$mcmc,
-                            matches(.posterior.regex))
-  if(ncol(posterior_check) == 0){
-    return()
-  }
-
-  # Can have two matches, have to manually decide here
-  if(ncol(posterior_check) > 1){
-    if("Q_extraSD_Age1_Survey(3)" %in% names(posterior_check)){
-      .posterior.regex <- "Q_extraSD_Age1_Survey"
-      .posterior.name <- "Age-1 survey extra SD"
-    } else {
-      stop(paste0("Need to decide which posterior to show in
-             make.mcmc.diag.plot.if.exists() for model run ",
-             .model$path))
-    }
-  }
-
-  make.mcmc.diag.plot(model = .model,
-                      posterior.regex = .posterior.regex,
-                      posterior.name = .posterior.name)
-}
-
 panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...){
   ## From ?pairs, to add correlation values to pairs plot, AME changing final
   ##  term from r to sqrt(r):

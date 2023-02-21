@@ -1,24 +1,22 @@
-##' Calculate probabilities from an MCMC model to compare with estimates from past assessments
-##'
-##' Calculate a model's estimate of P(B_t+1 < B_t) and P(B_t+1 < B_40%)
-##'  to then compare with the estimates of those quantities in year t's
-##'  assessment, in combine_historical_probs().
-##'
-##' @param model A model as loaded by [load_ss_files()]
-##' @param start First assessment year to do comparisons
-##' @param end Final assessment year to do comparisons
-##' @return Data frame with columns
-##'   * `year` - year (lower case to check when cbinding in `combine_historical_probs()`
-##'   * `P_decline_curr` - current estimate (from `model`) of the probability that
-##'   the spawning biomass declined from year to year+1
-##'   * `P_below_B40_curr` - current estimate (from `model`) of the probability that
-##'   the spawning biomass was below B_40 in year+1
-##' @export
-##' @author Andrew Edwards
-##' @examples
-##' @donttest{
-##' calc_historical_probs(base_model, end = assess_yr-1)
-##' @}
+#' Calculate probabilities from an MCMC model to compare with estimates
+#' from past assessments
+#'
+#' @details
+#' Calculate a model's estimate of P(B_t+1 < B_t) and P(B_t+1 < B_40%)
+#' to then compare with the estimates of those quantities in year t's
+#' assessment, in [combine_historical_probs()].
+#'
+#' @param model A model as loaded by [load_ss_files()]
+#' @param start First assessment year to do comparisons
+#' @param end Final assessment year to do comparisons
+#' @return Data frame with columns
+#' * `year` - year (lower case to check when binding columnsin
+#'   [combine_historical_probs()]
+#' * `P_decline_curr` - current estimate (from `model`) of the probability that
+#'   the spawning biomass declined from year to year + 1
+#' * `P_below_B40_curr` - current estimate (from `model`) of the probability that
+#'   the spawning biomass was below B_40 in year + 1
+#' @export
 calc_historical_probs <- function(model,
                                   start = 2012,
                                   end
@@ -40,33 +38,25 @@ calc_historical_probs <- function(model,
         P_below_B40_curr)
 }
 
-
-
-##' Calculate a model's probability of stock decline in a year and
-##'  combine with past assessment estimates
-##'
-##' @param model A model as loaded by [load_ss_files()]
-##' @param file Filename (.csv) of historical values from past assessments
-##' @param ... Further arguments to pass to `calc_historical_probs()`
-##' @return Data frame with columns
-##'   * `year` - year of assessment
-##'   * `P_decline` - estimate from `year' assessment model of the probability that
-##'   the spawning biomass will decline from `year` to `year`+1 for a catch that
-##'   turned out to be the catch in `year'
-##'   * `P_below_B40` - estimate from `year' assessment model of the probability that
-##'   the spawning biomass will be below B_40 in `year`+1 for a catch that
-##'   turned out to be the catch in `year'
-##'   * `P_decline_curr` - current estimate (from `model`) of the probability that
-##'   the spawning biomass declined from year to year+1
-##'   * `P_below_B40_curr` - current estimate (from `model`) of the probability that
-##'   the spawning biomass was below B_40 in year+1
-##' @return
-##' @export
-##' @author Andrew Edwards
-##' @examples
-##' @donttest{
-##' combine_historical_probs(model = base_model, end = assess_yr-1)
-##' @}
+#' Calculate a model's probability of stock decline in a year and
+#' combine with past assessment estimates
+#'
+#' @param model A model as loaded by [load_ss_files()]
+#' @param file Filename (.csv) of historical values from past assessments
+#' @param ... Further arguments to pass to [calc_historical_probs()[]
+#' @return Data frame with columns
+#' * `year` - year of assessment
+#' * `P_decline` - estimate from `year' assessment model of the probability
+#'    that the spawning biomass will decline from `year` to `year` + 1 for a
+#'    catch that turned out to be the catch in `year'
+#' * `P_below_B40` - estimate from `year' assessment model of the probability
+#'    that the spawning biomass will be below B_40 in `year`+1 for a catch that
+#'   turned out to be the catch in `year'
+#' * `P_decline_curr` - current estimate (from `model`) of the probability that
+#'   the spawning biomass declined from year to year+1
+#' * `P_below_B40_curr` - current estimate (from `model`) of the probability
+#'    that the spawning biomass was below B_40 in year+1
+#' @export
 combine_historical_probs <- function(
     model,
     fn = file.path(rootd_data,
@@ -88,43 +78,41 @@ combine_historical_probs <- function(
   res <- res[ , !(names(res) %in% c("year"))]
 }
 
-
-##' Plots to compare historical and current probabilities
-##'
-##' Plot either:
-##' (a) base model's estimate of P(B_t+1 < B_t) and compare with the estimate of
-##' that from the year t assessment (using the known catch in year t)
-##' (b) base model's estimate of P(B_t+1 < B_40%) and compare with the estimates
-##' of that from the year t assessment (using the known catch in year
-##' t).
-##' Included in management presentation.
-##' @param model
-##' @param type "decline" to show probs of spawning biomass declining in year
-##'   after historical assessment year, "decline.one.year" to show that for just
-##'   one year (to explain in a talk), "bforty" to show prob of being below
-##'   `B_40\%` in the year after ther historical assessment year
-##' @param end final year for calculations
-##' @param xLim range of x (years) axis
-##' @param add.50 Whether to add horizontal line at 50%
-##' @param add.50.col Colour for 50% line
-##' @param one.year A single year to plot (may automatically work for more years)
-##' @param add.projs Whether to add future projections from current base model
-##' @param num.projs Num of projection catch levels to show
-##' @param colors
-##' @param pch change legend call also if change this
-##' @param lwd.val
-##' @param legend.cex
-##' @param legend.loc
-##' @param main.title
-##' @param legend.text
-##' @param add.to.plot whether to add to an existing plot
-##' @param ...
-##' @return
-##' @export
-##' @author Andrew Edwards
-##' @examples
-##' make.historical.probs.plot(base_model)
-##'
+#' Plots to compare historical and current probabilities
+#'
+#' Plot either:
+#' (a) base model's estimate of P(B_t+1 < B_t) and compare with the estimate of
+#' that from the year t assessment (using the known catch in year t)
+#' (b) base model's estimate of P(B_t+1 < B_40%) and compare with the estimates
+#' of that from the year t assessment (using the known catch in year
+#' t).
+#' Included in management presentation.
+#'
+#' @param model A model object, created by [create_rds_file()]
+#' @param type "decline" to show probs of spawning biomass declining in year
+#'   after historical assessment year, "decline.one.year" to show that for just
+#'   one year (to explain in a talk), "bforty" to show prob of being below
+#'   `B_40\%` in the year after ther historical assessment year
+#' @param end final year for calculations
+#' @param xLim range of x (years) axis
+#' @param add.50 Whether to add horizontal line at 50%
+#' @param add.50.col Colour for 50% line
+#' @param one.year A single year to plot (may automatically work for more
+#' years)
+#' @param add.projs Whether to add future projections from current base model
+#' @param num.projs Number of projection catch levels to show
+#' @param colors The colors to use for the lines in the plot
+#' @param pch change legend call also if change this
+#' @param lwd.val Line width
+#' @param legend.cex Legend font size
+#' @param legend.loc Legend location
+#' @param main.title Main title text
+#' @param legend.text Legent title text
+#' @param add.to.plot whether to add to an existing plot
+#' @param ... Arguments passed to [combine_historical_probs()]
+#'
+#' @return A base R plot
+#' @export
 make.historical.probs.plot <- function(model,
                                        type = "decline",
                                        end = assess_yr - 1,
@@ -145,6 +133,7 @@ make.historical.probs.plot <- function(model,
                                            "From current base model"),
                                        add.to.plot = FALSE,
                                        ...){
+
   res <- combine_historical_probs(model = model,
                                   end = end,
                                   ...)
@@ -345,38 +334,28 @@ make.historical.probs.plot <- function(model,
   }
 }
 
-
-
-#' Make individual plots or one overlaid historical probability calculations that uses
-#'  retrospective runs (given we have them). Calls
-#'  `make.historical.probs.plot()` for each retrospective.
+#' Make individual plots or one overlaid historical probability calculations
+#' that uses retrospective runs (given we have them). Calls
+#' `make.historical.probs.plot()` for each retrospective
 #'
 #' @param model Model with retrospectives
-#'
-#' @param type "decline" or "bforty" as needed for
-#'   `make.historical.probs.plot()`
-#' @param xLim range of x (years) axis
-#' @param make.one.figure whether to plot everything on one figure or new figure
-#'   for each retro.
-#' @param cols vector colors to use
-#' @param time.sleep seconds to pause between plots
-#' @param omit.current omit current base model plot when doing individual plots
-#'   (e.g. for panel plot don't need it, probably already shown it -- see example).
-#' @param select.retros vector of retrospective runs to use, where 1:4 would be
-#'   the earliest four retrospective runs (for not doing all plots to be able to
-#'   spread them out over multiple pages).
-#' @param lwd.val.for.retros lwd for retro lines, default of 1 is for one.figure
+#' @param type One of `decline` or `bforty` as needed for
+#' [make.historical.probs.plot()]
+#' @param xLim Range of x (years) axis
+#' @param make.one.figure Whether to plot everything on one figure or new
+#' figure for each retro.
+#' @param cols Vector colors to use
+#' @param time.sleep Seconds to pause between plots
+#' @param omit.current Omit current base model plot when doing individual plots
+#' (e.g. for panel plot don't need it, probably already shown it)
+#' @param select.retros Vector of retrospective runs to use, where 1:4 would be
+#' the earliest four retrospective runs (for not doing all plots to be able to
+#' spread them out over multiple pages)
+#' @param lwd.val.for.retros lwd for retro lines, default of 1 is for one
+#' figure
 #' @param legend.text.model text to describe `model` in the legend
-#' @param ... arguments to pass to `make.historical.probs.plot()`
+#' @param ... Arguments to pass to [make.historical.probs.plot()]
 #' @export
-#' @examples
-#' @donttest{
-#' make.historical.probs.retro.plot(base_model)
-#'
-#' par(mfrow = c(3,3))
-#' make.historical.probs.retro.plot(base_model, make.one.figure = FALSE,
-#'  time.sleep = 2)
-#' @}
 make.historical.probs.retro.plot <- function(model,
                                              type = "decline",
                                              xLim = c(2012, assess_yr),
@@ -467,7 +446,4 @@ make.historical.probs.retro.plot <- function(model,
                                ...)
   Sys.sleep(time.sleep)
   }
-  # From squid plot, but don't think needed
-  # oldpar <- par()
-  # on.exit(par(oldpar))
 }

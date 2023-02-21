@@ -18,8 +18,6 @@
 #'
 #' @return [base::invisible()]
 #' @export
-#'
-#' @examples
 run_retrospectives <- function(model_path,
                                retrospective_yrs = NA,
                                remove_blocks = FALSE,

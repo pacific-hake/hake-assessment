@@ -176,10 +176,8 @@ make_catch_table <- function(ct,
 #' @param space.size Size of spaces between letters
 #' @param placement Latex table placement character
 #'
-#' @return
+#' @return An [xtable::xtable()]
 #' @export
-#'
-#' @examples
 make_landings_tac_table <- function(d,
                                     start_yr,
                                     end_yr,

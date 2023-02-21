@@ -148,7 +148,7 @@ load_ss_files <- function(model_path = NA,
 #' @param recruitment.scale Scale the recruitment by this amount. The default is 1e6
 #' because recruitment will be shown in millions of tonnes
 #'
-#' @return
+#' @return A named list of MCMC outputs
 #' @export
 calc.mcmc <- function(mcmc,
                       lower = 0.025,

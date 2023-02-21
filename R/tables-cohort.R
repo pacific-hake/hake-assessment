@@ -42,10 +42,11 @@ cohort_table <- function(model,
     select(-(2:6)) %>%
     filter(Yr <= max_yr)
 
-  #' Get the cohort data (diagonals) from the data frame `d`
-  #' @param d Data frame with the -at-age data
-  #' @param cohorts A vector of cohorts (years) to extract
-  #' @return A list of length of cohort vector with a vector of the cohort data for each one
+  # Get the diagonals of the cohort data from the data frame
+  #
+  # @param d Data frame with the -at-age data
+  # @param cohorts A vector of cohorts (years) to extract
+  # @return A list of length of cohort vector with a vector of the cohort data for each one
   get_coh <- function(d, cohorts){
     yrs <- d %>% pull(Yr)
     d_noyr <- d %>% select(-Yr)
@@ -79,9 +80,9 @@ cohort_table <- function(model,
     ba[[.x]] - surv[[.x]] - ca[[.x]]
   }, ba = coh_baa, ca = coh_caa_b, surv = coh_survive_b)
 
-  #' Pad all vectors in the list with `NA`s so that they are all `num` long
-  #' @param lst A list of vectors
-  #' @param num The length to make all vectors
+  # Pad all vectors in the list with `NA`s so that they are all `num` long
+  # @param lst A list of vectors
+  # @param num The length to make all vectors
   pad_vects <- function(lst, num){
     map(lst, ~{.x[1:num]})
   }

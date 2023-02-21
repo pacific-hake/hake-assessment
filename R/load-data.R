@@ -40,13 +40,13 @@ load.can.age.data <- function(fn ## fn is the filename with relative path
   ## Add the last sections line range in
   l.list[[length(l.list) + 1]] <- (header.line.nums[length(header.line.nums)] + 1):length(dat)
   names(l.list) <- headers
-  ## Now, change these line ranges to actual data frames of the data
+  # Now, change these line ranges to actual data frames of the data
   for(i in 1:length(l.list)){
     l.list[[i]] <- dat[l.list[[i]]]
   }
-  ## Get ages from first line of the first data frame in the list and remove it from the data
+  # Get ages from first line of the first data frame in the list and remove it from the data
   ages <- l.list[[1]][1]
-  ## Get rid of the preceeding comma
+  # Get rid of the preceeding comma
   ages <- strsplit(ages, ",")[[1]][-1]
   l.list[[1]] <- l.list[[1]][-1]
   l.list <- lapply(l.list, strsplit, ",")

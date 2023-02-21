@@ -64,14 +64,14 @@
 #' and max color specific for each age without transparency.
 #'
 #' @export
-#' @importfrom dplyr filter select bind_rows
+#' @importFrom dplyr filter select bind_rows
 #' @importFrom tibble as_tibble
 #' @importFrom reshape2 melt
 #' @importFrom grDevices colorRampPalette
 #' @importFrom stats reshape
 #' @importFrom utils type.convert
-#' @import ggplot2
 #'
+#' @return A [ggplot2::ggplot()] object
 weight.at.age.heatmap <- function(model,
                                   fleet = 1,
                                   proj.line.color = "royalblue",

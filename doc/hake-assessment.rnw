@@ -235,9 +235,13 @@ opts_chunk$set(alt.text = "")
 
 options(xtable.comment = FALSE)
 
-source(here::here("R/all.R"))
-source(file.path(rootd_doc, "load-models.R"))
-source(file.path(rootd_r, "custom-knitr-variables.R"))
+#source(here::here("R/all.R"))
+#source(file.path(rootd_doc, "load-models.R"))
+#source(file.path(rootd_r, "custom-knitr-variables.R"))
+
+@
+
+<<load-globals, child='globals/globals.rnw'>>=
 @
 
 %% Title page and author references page

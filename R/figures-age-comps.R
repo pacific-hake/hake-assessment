@@ -106,7 +106,8 @@ plot_bubbles <- function(d,
   g
 }
 
-#' Get the start and end year of the age comp data, and maximum proportion overall with its year and age
+#' Get the start and end year of the age comp data, and maximum proportion
+#' overall with its year and age
 #'
 #' @param model A model as returnded by [load.ss.files()]
 #' @param type 1 for Fishery and 2 for Survey
@@ -145,7 +146,7 @@ get_age_comp_limits <- function(model, type = 1){
 #' @return A [ggplot2::ggplot()] object
 #' @export
 #' @importFrom tibble as_tibble
-#' @importFrom dplyr select rename filter mutate mutate_at pull do rowwise rowSums vars
+#' @importFrom dplyr select rename filter mutate mutate_at pull do rowwise vars
 #' @importFrom reshape2 melt
 #' @importFrom purrr map2_dfc
 make_numbers_at_age_plot <- function(model,
@@ -226,7 +227,7 @@ make.age.comp.compare.bubble.plot <- function(model,                  ## model i
     ages <- as.numeric(gsub("a", "", ages.str))
     min.age <- min(ages)
     max.age <- max(ages)
-    ## Get the maximum proportion and its location within the data
+    # Get the maximum proportion and its location within the data
     age.df <- dat[,names(dat) %in% ages.str]
     max.prop <- max(age.df)
     which.max.prop <- which(age.df == max(age.df), arr.ind = TRUE)
