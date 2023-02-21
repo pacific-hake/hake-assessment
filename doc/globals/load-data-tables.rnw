@@ -26,6 +26,7 @@ assessment.changes <-
   read.csv(file.path(load_dir, "assessment-changes.csv"))
 assessment.history.disp <-
   read.csv(file.path(load_dir, "assessment-history-SSBdispersion.csv"))
+
 # Maturity and weight-at-age ----
 ovary.samples <-
   read.csv(file.path(load_dir, "ovary-samples.csv"))
@@ -43,7 +44,6 @@ catch.targets <-
   read_csv(file.path(load_dir, "catch-targets-biomass.csv"))
 further.tac <-
   further.tac.details(file.path(load_dir, "further-tac-details.csv"))
-
 # * Canadian catch ----
 can.ft.catch.by.month <-
   read.csv(file.path(load_dir, "can-ft-catch-by-month.csv"))
@@ -51,7 +51,6 @@ can.shore.catch.by.month <-
   read.csv(file.path(load_dir, "can-ss-catch-by-month.csv"))
 can.jv.catch.by.month <-
   read.csv(file.path(load_dir, "can-jv-catch-by-month.csv"))
-
 # * US catch ----
 us.shore.catch.by.month <-
   read.csv(file.path(load_dir, "us-shore-catch-by-month.csv"))
@@ -78,7 +77,7 @@ can.jv.num.fish <-
   read.csv(file.path(load_dir, "can-jv-num-fish-aged.csv"))
 can.shore.age <- can.ages[[1]]
 can.ft.age <- can.ages[[2]]
-# * US age samples ----
+# * US sampling ----
 us.shore.age <-
   load.us.age.data(file.path(load_dir, "us-shore-age-data.csv"))
 us.cp.age <-
@@ -95,7 +94,7 @@ survey.history <-
 survey.by.country <-
   load.survey.by.country(file.path(load_dir, "survey-by-country.csv"))
 
-# Depth data filenames ----
+# Depth data ----
 # * Canada depths ----
 can.ft.bottom.depth <-
   read.csv(file.path(load_dir, "depth-can-ft-bottom.csv"))
@@ -111,7 +110,7 @@ us.atsea.fishing.depth <-
 us.atsea.bottom.depth <-
   read.csv(file.path(load_dir, "depth-us-atsea-bottom.csv"))
 
-# At-age output data tables ----
+# At-age output data table file names ----
 out_est_naa_file <- "estimated-numbers-at-age.csv"
 out_est_eaa_file <- "estimated-exploitation-at-age.csv"
 out_est_caa_file <- "estimated-catch-at-age.csv"
