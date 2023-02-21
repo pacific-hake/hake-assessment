@@ -31,7 +31,7 @@ make.historical.probs.plot(
 \item{type}{"decline" to show probs of spawning biomass declining in year
 after historical assessment year, "decline.one.year" to show that for just
 one year (to explain in a talk), "bforty" to show prob of being below
-\verb{B_40\\\%} in the year after ther historical assessment year}
+\verb{B_40\\\\\%} in the year after the historical assessment year}
 
 \item{end}{final year for calculations}
 
@@ -39,7 +39,7 @@ one year (to explain in a talk), "bforty" to show prob of being below
 
 \item{add.50}{Whether to add horizontal line at 50\%}
 
-\item{add.50.col}{Colour for 50\% line}
+\item{add.50.col}{Color for 50\% line}
 
 \item{one.year}{A single year to plot (may automatically work for more
 years)}
