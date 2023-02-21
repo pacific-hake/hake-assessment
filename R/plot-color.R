@@ -12,34 +12,34 @@
 #' @param num_colors The number of colors to return
 #' @param palette A palette found in [RColorBrewwer::brewer.pal.info]
 #'
-#' @export
-#'
 #' @return A vector of HEX colours
 #'
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
 #' @importFrom grDevices colorRampPalette
+#' @export
 #' @examples
 #' n <-18
 #' plot(data.frame(1:n, 1), col= plot_color(n), pch = 19, cex = 5)
 plot_color <- function(num_colors = 10,
                        palette = "Set1"){
 
-  palette_table <- RColorBrewer::brewer.pal.info |> as_tibble(rownames = "palette")
+  palette_table <- brewer.pal.info |>
+    as_tibble(rownames = "palette")
 
   if(!palette %in% palette_table$palette){
     stop("`", palette, "` is not a valid palette. Valid palettes are:\n\n",
          paste(palette_table$palette, collapse = ", "))
   }
 
-  palette_info <- brewer.pal.info[rownames(RColorBrewer::brewer.pal.info) == palette, ]
+  palette_info <- brewer.pal.info[palette_table$palette == palette, ]
   if(num_colors <= palette_info$maxcolors){
-    base <- RColorBrewer::brewer.pal(name = palette, n = num_colors)
+    base <- brewer.pal(name = palette, n = num_colors)
     colors <- c(base[(num_colors - 1):1], "#000000")
   }else{
-    base <- RColorBrewer::brewer.pal(name = palette, n = palette_info$maxcolors)
+    base <- brewer.pal(name = palette, n = palette_info$maxcolors)
     colors <- c(base[(palette_info$maxcolors - 1):1], "#000000")
 
-    palette_func <- grDevices::colorRampPalette(RColorBrewer::brewer.pal(palette_info$maxcolors, palette))
+    palette_func <- colorRampPalette(brewer.pal(palette_info$maxcolors, palette))
     palette_colors <- palette_func(n = num_colors - palette_info$maxcolors + 3)
 
     # Get rid of the last few colors by creating 3 more color than needed and
