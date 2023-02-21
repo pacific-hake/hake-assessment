@@ -3,7 +3,7 @@
 \name{create_group_df_biomass}
 \alias{create_group_df_biomass}
 \title{Create a data frame containing model output of biomass from a
-model list which is in long format ready for [ggplot2::ggplot()]}
+model list which is in long format ready for \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}}
 \usage{
 create_group_df_biomass(
   model_lst = NULL,
@@ -14,11 +14,11 @@ create_group_df_biomass(
 )
 }
 \arguments{
-\item{model_lst}{A list of models, each created by [create_rds_file()]}
+\item{model_lst}{A list of models, each created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{model_names}{A vector of model names,the same length as `model_lst`}
+\item{model_names}{A vector of model names,the same length as \code{model_lst}}
 
-\item{rel}{Logical. If `TRUE` return a list of one element, the relative
+\item{rel}{Logical. If \code{TRUE} return a list of one element, the relative
 biomass (no B0 element)}
 
 \item{bo_yr}{The number of years prior to the start of the time series
@@ -28,10 +28,10 @@ that you want to use as a plot point for B0 on biomass plots.}
 If one value, it will apply to all models}
 }
 \value{
-A list or one or two [tibble::tibble()]. If `rel` is `TRUE`, one
-(biomass) If `rel` is `FALSE`, two (biomass and B0)
+A list or one or two \code{\link[tibble:tibble]{tibble::tibble()}}. If \code{rel} is \code{TRUE}, one
+(biomass) If \code{rel} is \code{FALSE}, two (biomass and B0)
 }
 \description{
 Create a data frame containing model output of biomass from a
-model list which is in long format ready for [ggplot2::ggplot()]
+model list which is in long format ready for \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}
 }

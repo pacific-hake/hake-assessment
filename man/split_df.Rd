@@ -3,21 +3,21 @@
 \name{split_df}
 \alias{split_df}
 \title{Split the posteriors data frame in a list of N data frames based on
-`from_to`}
+\code{from_to}}
 \usage{
 split_df(df, from_to)
 }
 \arguments{
 \item{df}{A data frame containing rows to split}
 
-\item{from_to}{A data frame with the columns `from` and `to` which
+\item{from_to}{A data frame with the columns \code{from} and \code{to} which
 indicate the rows from and to for each data frame}
 }
 \value{
 A list of data frames of the same length as the number of
-rows in `from_to`
+rows in \code{from_to}
 }
 \description{
 Split the posteriors data frame in a list of N data frames based on
-`from_to`
+\code{from_to}
 }

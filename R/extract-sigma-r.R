@@ -5,8 +5,8 @@
 #' MLE results, but this function also offers the capability to calculate this
 #' info from the table of MCMC results as well.
 #'
-#' Based on [r4ss:::extract_sigma_R_info()], but with a wrapper for more
-#' than one model
+#' Based on the non-exported function `extract_sigma_R_info()` in [r4ss],
+#' but with a wrapper for more than one model
 #'
 #' @param models A list of models extracted using [r4ss::SS_output()]. If
 #' only one model,it must be a list with one element containing the model

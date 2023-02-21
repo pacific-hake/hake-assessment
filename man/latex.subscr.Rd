@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{latex.subscr}
 \alias{latex.subscr}
-\title{Creates a latex string with `main.txt` subscripted by `subscr.txt`}
+\title{Creates a latex string with \code{main.txt} subscripted by \code{subscr.txt}}
 \usage{
 latex.subscr(main.txt, subscr.txt)
 }
@@ -12,8 +12,8 @@ latex.subscr(main.txt, subscr.txt)
 \item{subscr.txt}{The subscript text}
 }
 \value{
-A latex string with `main.txt` subscripted by `subscr.txt`
+A latex string with \code{main.txt} subscripted by \code{subscr.txt}
 }
 \description{
-Creates a latex string with `main.txt` subscripted by `subscr.txt`
+Creates a latex string with \code{main.txt} subscripted by \code{subscr.txt}
 }

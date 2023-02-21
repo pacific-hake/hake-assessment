@@ -75,7 +75,7 @@ and max values of all ages without transparency. \code{"age"} colors the min
 and max color specific for each age without transparency.}
 }
 \value{
-A [ggplot2::ggplot()] object
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Produce a matrix of colors and values of weight-at-age information

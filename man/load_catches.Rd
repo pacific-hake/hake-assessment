@@ -2,7 +2,7 @@
 % Please edit documentation in R/load-catches.R
 \name{load_catches}
 \alias{load_catches}
-\title{Load a CSV file with landings and TACS and create a nice [tibble::tibbble]
+\title{Load a CSV file with landings and TACS and create a nice \code{\link[tibble:tibble]{tibble::tibble()}}
 containing output}
 \usage{
 load_catches(fn = NA)
@@ -11,10 +11,10 @@ load_catches(fn = NA)
 \item{fn}{The name of the landings/TAC CSV file}
 }
 \value{
-A [tibble::tibble] with the formatted output. names ending in
+A \link[tibble:tibble]{tibble::tibble} with the formatted output. names ending in
 '_xx' are not to be shown in the landings/TAC table.
 }
 \description{
-Load a CSV file with landings and TACS and create a nice [tibble::tibbble]
+Load a CSV file with landings and TACS and create a nice \code{\link[tibble:tibble]{tibble::tibble()}}
 containing output
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/figures-mcmc-param-stats.R
 \name{plot_mcmc_param_stats_makecaption}
 \alias{plot_mcmc_param_stats_makecaption}
-\title{Make the caption for [plot_mcmc_param_stats]}
+\title{Make the caption for \link{plot_mcmc_param_stats}}
 \usage{
 plot_mcmc_param_stats_makecaption(modelname)
 }
@@ -11,5 +11,5 @@ plot_mcmc_param_stats_makecaption(modelname)
 will be pasted into the caption.}
 }
 \description{
-Make the caption for [plot_mcmc_param_stats]
+Make the caption for \link{plot_mcmc_param_stats}
 }

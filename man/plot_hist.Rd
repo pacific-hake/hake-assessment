@@ -13,7 +13,7 @@ plot_hist(
 )
 }
 \arguments{
-\item{model}{The SS model output as loaded by [load_ss_files()] or a list of models (see examples)}
+\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}} or a list of models (see examples)}
 
 \item{model.name}{model name or set of model names}
 

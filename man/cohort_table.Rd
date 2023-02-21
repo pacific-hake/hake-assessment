@@ -17,14 +17,14 @@ cohort_table(
 )
 }
 \arguments{
-\item{model}{A model as output by [load_models()]}
+\item{model}{A model as output by \code{\link[=load_models]{load_models()}}}
 
 \item{end_yr}{The last year to use}
 
 \item{cohorts}{A vector of cohorts (years) to use}
 }
 \value{
-An [xtable::xtable()]
+An \code{\link[xtable:xtable]{xtable::xtable()}}
 }
 \description{
 Make a table of values for cohorts as they pass through their life

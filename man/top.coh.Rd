@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{top.coh}
 \alias{top.coh}
-\title{Create text describing the top `num.cohorts` cohorts by year and
+\title{Create text describing the top \code{num.cohorts} cohorts by year and
 percentage as a sentence}
 \usage{
 top.coh(
@@ -17,7 +17,7 @@ top.coh(
 )
 }
 \arguments{
-\item{model}{The model as returned from [load_ss_files()]}
+\item{model}{The model as returned from \code{\link[=load_ss_files]{load_ss_files()}}}
 
 \item{yr}{The year the cohort was born}
 
@@ -28,25 +28,24 @@ top.coh(
 \item{cap}{Logical. Capitalize the first word in the sentence?}
 
 \item{spec.yr}{If supplied, the percentage of catch that this cohort made
-to the `yr` catch will be returned}
+to the \code{yr} catch will be returned}
 
-\item{use.catage}{If TRUE, use the `model$catage`` object which are the
-estimates. If `FALSE`, use the `model$dat$agecomp` object which are the
+\item{use.catage}{If TRUE, use the \verb{model$catage`` object which are the estimates. If }FALSE\verb{, use the }model$dat$agecomp` object which are the
 input data}
 
 \item{fleet}{A integer value allowing the selection of a given fleet, where
-for Pacific hake, `fleet = 1`, the default, selects the fishery data.}
+for Pacific hake, \code{fleet = 1}, the default, selects the fishery data.}
 }
 \value{
-Text describing the top `num.cohorts` cohorts by year and
+Text describing the top \code{num.cohorts} cohorts by year and
 percentage as a sentence
 }
 \description{
-Create text describing the top `num.cohorts` cohorts by year and
+Create text describing the top \code{num.cohorts} cohorts by year and
 percentage as a sentence
 }
 \details{
 top.coh(base_model, 2018, 2) produces:
-"The 2018 cohort was the largest (29\\%), followed by the 2010
- cohort (27\\%)"
+"The 2018 cohort was the largest (29\\\%), followed by the 2010
+cohort (27\\\%)"
 }

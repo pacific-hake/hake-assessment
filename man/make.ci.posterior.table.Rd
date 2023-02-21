@@ -21,7 +21,7 @@ make.ci.posterior.table(
 )
 }
 \arguments{
-\item{model}{A model list as output by [load_models()]}
+\item{model}{A model list as output by \code{\link[=load_models]{load_models()}}}
 
 \item{start_yr}{Start year in the table}
 
@@ -44,7 +44,7 @@ make.ci.posterior.table(
 \item{upper_col}{Character string name of the column containing the upper credible interval values}
 }
 \value{
-An [xtable::xtable()]
+An \code{\link[xtable:xtable]{xtable::xtable()}}
 }
 \description{
 Make a latex table of credible intervals with columns for female spawning biomass,

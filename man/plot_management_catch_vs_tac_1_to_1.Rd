@@ -13,15 +13,15 @@ plot_management_catch_vs_tac_1_to_1(
 )
 }
 \arguments{
-\item{d}{The data as read in using [readr::read_csv()] from the file
+\item{d}{The data as read in using \code{\link[readr:read_delim]{readr::read_csv()}} from the file
 "catch-targets.csv"}
 
 \item{top_yrs}{Year to place labels on top for (remainder will be labels
 below points)}
 
-\item{xlim}{See [base::plot()]}
+\item{xlim}{See \code{\link[base:plot]{base::plot()}}}
 
-\item{ylim}{See [base::plot()]}
+\item{ylim}{See \code{\link[base:plot]{base::plot()}}}
 
 \item{color_darken}{A value between 0 and 1 for darkening of points and
 text. Smaller values will make it darker}

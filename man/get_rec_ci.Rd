@@ -3,7 +3,7 @@
 \name{get_rec_ci}
 \alias{get_rec_ci}
 \title{Get recruitment information for a cohort from two models with
-an CI envelope % difference calculation}
+an CI envelope \% difference calculation}
 \usage{
 get_rec_ci(
   model1,
@@ -23,18 +23,18 @@ get_rec_ci(
 \item{year}{The cohort to extract}
 
 \item{probs}{The 3-vector of probabilities to be passes to the
-[quantile()] function.}
+\code{\link[=quantile]{quantile()}} function.}
 
 \item{scale}{Scaling factor}
 }
 \value{
-A list of length 3: Item 1 is a vector of the `model1`
+A list of length 3: Item 1 is a vector of the \code{model1}
 recruitment lower, median, upper, and size of credible interval
-(`env_diff` column). Item 2 is the same type object for `model2`,
-and item 3 is the ratio of the `model2` `env_diff` divided by that
-of `model1` as a percentage.
+(\code{env_diff} column). Item 2 is the same type object for \code{model2},
+and item 3 is the ratio of the \code{model2} \code{env_diff} divided by that
+of \code{model1} as a percentage.
 }
 \description{
 Get recruitment information for a cohort from two models with
-an CI envelope % difference calculation
+an CI envelope \% difference calculation
 }

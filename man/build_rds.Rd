@@ -10,7 +10,7 @@ build_rds(model_dirs = model_list, build_file = TRUE, ...)
 \arguments{
 \item{model_dirs}{A vector of model directory names (not full paths)}
 
-\item{build_file}{If `TRUE`, create the RDS file. If `FALSE`, do not create it (used for running retros, etc)}
+\item{build_file}{If \code{TRUE}, create the RDS file. If \code{FALSE}, do not create it (used for running retros, etc)}
 
 \item{run_forecasts}{Logical. TRUE to run forecasts on the models (when an mcmc directory is present)}
 

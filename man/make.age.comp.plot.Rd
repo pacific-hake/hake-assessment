@@ -17,19 +17,19 @@ make.age.comp.plot(
 \item{d}{The data, with years in the rows and ages in the columns.}
 
 \item{yrs}{A vector of years that you want to include. This vector will be used to subset the
-data in `d` based on rownames.}
+data in \code{d} based on rownames.}
 
-\item{title}{The title to pass to [PBSmodelling::plotBubbles] `main` parameter.}
+\item{title}{The title to pass to \link[PBSmodelling:plotBubbles]{PBSmodelling::plotBubbles} \code{main} parameter.}
 
 \item{title.cex}{A numeric value specifying the size of the text for the title.}
 
-\item{bg.col}{A color for the `fill` of the bubbles.}
+\item{bg.col}{A color for the \code{fill} of the bubbles.}
 
-\item{...}{Arguments to pass to [PBSmodelling::plotBubbles] such as `hide0`.}
+\item{...}{Arguments to pass to \link[PBSmodelling:plotBubbles]{PBSmodelling::plotBubbles} such as \code{hide0}.}
 }
 \description{
 A bubble plot of age compositions by year that
 facilitates tracking cohorts through time.
-The function is a wrapper for [PBSmodelling::plotBubbles] that subsets the
+The function is a wrapper for \link[PBSmodelling:plotBubbles]{PBSmodelling::plotBubbles} that subsets the
 data and sets the color scheme.
 }

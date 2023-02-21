@@ -14,10 +14,10 @@ plot_mcmc_diagnostics(
 )
 }
 \arguments{
-\item{model}{A model object as output by [load_ss_models()].}
+\item{model}{A model object as output by \code{\link[=load_ss_models]{load_ss_models()}}.}
 
 \item{post_regex}{A regular expression representing a parameter as it
-appears in the [r4ss::SS_output()] column.}
+appears in the \code{\link[r4ss:SS_output]{r4ss::SS_output()}} column.}
 
 \item{post_name}{A name to show for the posterior on the plot, where
 the name can be a string or an expression.}
@@ -35,10 +35,12 @@ Plot MCMC diagnostics
 }
 \details{
 Panels are as follows:
-* Top left: traces of posteriors across iterations,
-* Top right: cumulative running median with 2.5th and 97.5th percentiles
-* Bottom left: autocorrelation present in the chain at different lag times
-  (i.e., distance between samples in the chain), and
-* Bottom right: distribution of the values in the chain (i.e., the marginal
-  density from a smoothed histogram of values in the trace plot).
+\itemize{
+\item Top left: traces of posteriors across iterations,
+\item Top right: cumulative running median with 2.5th and 97.5th percentiles
+\item Bottom left: autocorrelation present in the chain at different lag times
+(i.e., distance between samples in the chain), and
+\item Bottom right: distribution of the values in the chain (i.e., the marginal
+density from a smoothed histogram of values in the trace plot).
+}
 }

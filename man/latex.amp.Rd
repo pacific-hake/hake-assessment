@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{latex.amp}
 \alias{latex.amp}
-\title{Create a string with `n` ampersands separated by spaces}
+\title{Create a string with \code{n} ampersands separated by spaces}
 \usage{
 latex.amp(n = 1)
 }
@@ -10,10 +10,10 @@ latex.amp(n = 1)
 \item{n}{}
 }
 \value{
-A string with `n` ampersands seperated by spaces
+A string with \code{n} ampersands seperated by spaces
 }
 \description{
-Create a string with `n` ampersands separated by spaces
+Create a string with \code{n} ampersands separated by spaces
 }
 \details{
 The string will have one leading and one trailing space

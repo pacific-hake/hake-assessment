@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{label_parsed_space}
 \alias{label_parsed_space}
-\title{Updates [ggplot2::label_parsed()] to accommodate spaces}
+\title{Updates \code{\link[ggplot2:labellers]{ggplot2::label_parsed()}} to accommodate spaces}
 \usage{
 label_parsed_space(labels)
 }
@@ -10,5 +10,5 @@ label_parsed_space(labels)
 \item{labels}{Labels to use}
 }
 \description{
-Updates [ggplot2::label_parsed()] to accommodate spaces
+Updates \code{\link[ggplot2:labellers]{ggplot2::label_parsed()}} to accommodate spaces
 }

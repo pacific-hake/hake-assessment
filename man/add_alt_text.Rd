@@ -2,7 +2,7 @@
 % Please edit documentation in R/add-alt-text.R
 \name{add_alt_text}
 \alias{add_alt_text}
-\title{Add alternative text to figures in the document via the `tagpdf` LaTeX
+\title{Add alternative text to figures in the document via the \code{tagpdf} LaTeX
 package}
 \usage{
 add_alt_text(tex_file = "hake-assessment.tex", alt_fig_text)
@@ -13,19 +13,19 @@ add_alt_text(tex_file = "hake-assessment.tex", alt_fig_text)
 \item{alt_fig_text}{A character vector of alternative text to insert}
 }
 \value{
-Nothing, overwrites the `tex_file`
+Nothing, overwrites the \code{tex_file}
 }
 \description{
-Add alternative text to figures in the document via the `tagpdf` LaTeX
+Add alternative text to figures in the document via the \code{tagpdf} LaTeX
 package
 }
 \details{
-Searches the given TEX file for the `includegraphics{}`,
-`\\begin{caption}`, `\\end{caption}`, `\\begin{knitrout}`,
-`\\end{knitrout}`, and `\\label{fig.*}` and manipulates the
+Searches the given TEX file for the \verb{includegraphics\{\}},
+\verb{\\\\begin\{caption\}}, \verb{\\\\end\{caption\}}, \verb{\\\\begin\{knitrout\}},
+\verb{\\\\end\{knitrout\}}, and \verb{\\\\label\{fig.*\}} and manipulates the
 structure of those commands with the figure tagging commands
 injected. Alternative text comes from a data frame created
-during the knitting process via `knitr` hooks that read in the
-text from the `alt.text` knitr chunk tags in the figures. Those
+during the knitting process via \code{knitr} hooks that read in the
+text from the \code{alt.text} knitr chunk tags in the figures. Those
 have to be manually changed each year
 }

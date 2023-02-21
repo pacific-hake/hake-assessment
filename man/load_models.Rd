@@ -2,7 +2,7 @@
 % Please edit documentation in R/load-models.R
 \name{load_models}
 \alias{load_models}
-\title{Load models from files created using [create_rds_file()]}
+\title{Load models from files created using \code{\link[=create_rds_file]{create_rds_file()}}}
 \usage{
 load_models(model_dirs, ret_single_list = FALSE)
 }
@@ -15,11 +15,11 @@ load_models(model_dirs, ret_single_list = FALSE)
 A list of model objects
 }
 \description{
-Load models from files created using [create_rds_file()]
+Load models from files created using \code{\link[=create_rds_file]{create_rds_file()}}
 }
 \details{
 Load model(s) and return as a list if more than one. If only one,
- return that object or if ret.single.list is TRUE, return a 1-element list.
+return that object or if ret.single.list is TRUE, return a 1-element list.
 }
 \examples{
 base <- load_models("base")

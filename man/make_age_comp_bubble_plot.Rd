@@ -7,14 +7,14 @@
 make_age_comp_bubble_plot(model, subplot = 1, ...)
 }
 \arguments{
-\item{model}{A model object as returned from [load.ss.files()]}
+\item{model}{A model object as returned from \code{\link[=load.ss.files]{load.ss.files()}}}
 
 \item{subplot}{1 for fishery, 2 for survey}
 
-\item{...}{Additional parameters passed to [plot_bubbles()]}
+\item{...}{Additional parameters passed to \code{\link[=plot_bubbles]{plot_bubbles()}}}
 }
 \value{
-A [ggplot2::ggplot()] object
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Make an age composition bubble plot

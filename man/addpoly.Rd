@@ -18,7 +18,7 @@ addpoly(yrvec, lower, upper, color = 1, shade.col = NA)
 \item{shade.col}{The shade color to fill in the polygon with}
 }
 \value{
-[base::invisible()]
+\code{\link[base:invisible]{base::invisible()}}
 }
 \description{
 Add a polygon to a plot

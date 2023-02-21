@@ -3,7 +3,7 @@
 \name{get.align}
 \alias{get.align}
 \title{Create a character vector used in the align argument of the
-[xtable::xtable()] command}
+\code{\link[xtable:xtable]{xtable::xtable()}} command}
 \usage{
 get.align(num, first.left = TRUE, just = "r")
 }
@@ -11,17 +11,17 @@ get.align(num, first.left = TRUE, just = "r")
 \item{num}{The number of columns in the table}
 
 \item{first.left}{Logical. Keep the first column left-justified. If
-`FALSE`, it will be justified according to the `just` argument}
+\code{FALSE}, it will be justified according to the \code{just} argument}
 
 \item{just}{The justification to use for the columns,
 i.e. "r", "l", or "c"}
 }
 \value{
-A character vector used in the align argument of the [xtable::xtable()] command
+A character vector used in the align argument of the \code{\link[xtable:xtable]{xtable::xtable()}} command
 }
 \description{
 Create a character vector used in the align argument of the
-[xtable::xtable()] command
+\code{\link[xtable:xtable]{xtable::xtable()}} command
 }
 \details{
 e.g. posterior output tables, reference point tables.

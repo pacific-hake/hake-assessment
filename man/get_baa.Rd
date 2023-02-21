@@ -8,7 +8,7 @@ for all cohorts}
 get_baa(model, curr_yr, probs = c(0.025, 0.5, 0.975))
 }
 \arguments{
-\item{model}{A model as loaded by [load_ss_files()]}
+\item{model}{A model as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
 
 \item{curr_yr}{is the current year. The years will decrease from this to
 give the cohorts year values}

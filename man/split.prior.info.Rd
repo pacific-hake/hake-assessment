@@ -7,7 +7,7 @@
 \method{split}{prior.info}(prior.str, dec.points = 1, first.to.lower = FALSE)
 }
 \arguments{
-\item{prior.str}{A string with the format `Lognormal(2.0,1.01)`}
+\item{prior.str}{A string with the format \code{Lognormal(2.0,1.01)}}
 
 \item{dec.points}{The number of decimal points to use}
 
@@ -15,7 +15,7 @@
 }
 \value{
 A vector of length 3 with the following format:
-`c("Lognormal", 2.0, 1.01)`
+\code{c("Lognormal", 2.0, 1.01)}
 }
 \description{
 Extract priors information from `prior.str``

@@ -23,12 +23,12 @@ calc_quantiles_by_group(
 )
 }
 \arguments{
-\item{df}{A [data.frame] with columns with names given by `grp_col`
-and `col`}
+\item{df}{A \link{data.frame} with columns with names given by \code{grp_col}
+and \code{col}}
 
 \item{col}{The column name to use as values to calculate quantiles for}
 
-\item{probs}{A vector of quantiles to pass to [stats::quantile()]}
+\item{probs}{A vector of quantiles to pass to \code{\link[stats:quantile]{stats::quantile()}}}
 
 \item{include_mean}{If TRUE, include the mean in the output}
 
@@ -36,14 +36,14 @@ and `col`}
 
 \item{grp_names}{The column name to use for labeling the grouped column. By
 default it is the same as the
-grouping column (`grp_col`).}
+grouping column (\code{grp_col}).}
 }
 \value{
-A [data.frame()] with a new column for each value in the `probs`
+A \code{\link[=data.frame]{data.frame()}} with a new column for each value in the \code{probs}
 vector
 
-A [data.frame()] containing the quantile values with one row per
-group represented by `grp_col`
+A \code{\link[=data.frame]{data.frame()}} containing the quantile values with one row per
+group represented by \code{grp_col}
 }
 \description{
 Calculate and insert columns containing arbitrary quantiles for a

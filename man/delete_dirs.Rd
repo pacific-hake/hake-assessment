@@ -12,7 +12,7 @@ delete_dirs(models_dir, sub_dir = NULL)
 \item{sub_dir}{The subdirectory to delete recursively}
 }
 \value{
-[base::invisible()]
+\code{\link[base:invisible]{base::invisible()}}
 }
 \description{
 Delete all directories and files of `sub_dir``

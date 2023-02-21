@@ -8,32 +8,34 @@ create_sens_dirs(dir_version, sens_dir_name = "03-sensitivity-models")
 }
 \arguments{
 \item{dir_version}{A file path to the current model version of interest. For
-example, `/srv/hake/models/2023/01-version`. This directory will contain
+example, \verb{/srv/hake/models/2023/01-version}. This directory will contain
 subdirectories that store folders for the base model and a separate folder
 for sensitivities.}
 
-\item{sens_dir_name}{Name of the sensitivity directory found in the `dir_version`
+\item{sens_dir_name}{Name of the sensitivity directory found in the \code{dir_version}
 directory}
 }
 \value{
 A string is returned providing the path to the sensitivity directory.
 Files are written to the disk inside the following directories:
-* 01-h-prior-mean-low
-* 02-h-fix-high
-* 03-sigma-r-fix-low
-* 04-sigma-r-fix-high
-* 05-m-02-sd
-* 06-m-03-sd
-* 07-m-hamel-prior
-* 08-age-1-survey,
-* 09-comp-weight-harmonic-mean
-* 10-tv-select-phi-extra-low
-* 11-tv-select-phi-low
-* 12-tv-select-phi-high
-* 13-max-sel-age-'5
-* 14-max-sel-age-7
-* 15-max-sel-age-8
-* 16-zero-sum-constraint
+\itemize{
+\item 01-h-prior-mean-low
+\item 02-h-fix-high
+\item 03-sigma-r-fix-low
+\item 04-sigma-r-fix-high
+\item 05-m-02-sd
+\item 06-m-03-sd
+\item 07-m-hamel-prior
+\item 08-age-1-survey,
+\item 09-comp-weight-harmonic-mean
+\item 10-tv-select-phi-extra-low
+\item 11-tv-select-phi-low
+\item 12-tv-select-phi-high
+\item 13-max-sel-age-'5
+\item 14-max-sel-age-7
+\item 15-max-sel-age-8
+\item 16-zero-sum-constraint
+}
 }
 \description{
 The SRG requests that the following sensitivities are run as standard

@@ -21,15 +21,15 @@ Stock Synthesis.}
 \item{x}{Vector of quantiles.}
 
 \item{force}{A logical specifying if the returned values should be forced to
-the bounds defined by `[min,max]` or if they should just be soft bounds
+the bounds defined by \verb{[min,max]} or if they should just be soft bounds
 used to characterize the shape of the distribution but not actually
 limiting, i.e., force the likelihood to be zero for values beyond the
 bounds.}
 }
 \value{
 A vector of doubles, where the length of the vector depends on the
-length of `x` value passed to `n`.
-`dbeta_ab` returns density estimates for each input value and `rbeta_ab`
+length of \code{x} value passed to \code{n}.
+\code{dbeta_ab} returns density estimates for each input value and \code{rbeta_ab}
 provides random deviates from the Beta distribution.
 }
 \description{
@@ -38,10 +38,8 @@ The Beta distribution
 \details{
 Random generation for the Beta distribution with parameters based on the
 mean and standard deviation as well as the ranges as implemented in
-CASAL. This formulation is also available on [Wikipedia](
-https://en.wikipedia.org/wiki/Beta_distribution#Mean_and_variance).
-This function is a direct copy of the code available from [Wetzel and Punt](
-https://github.com/chantelwetzel-noaa/XSSS/blob/4dce917ee06d52416b58dd9440796ba1f7357943/R/rbeta_ab_fn.R).
+CASAL. This formulation is also available on \href{https://en.wikipedia.org/wiki/Beta_distribution#Mean_and_variance}{Wikipedia}.
+This function is a direct copy of the code available from \href{https://github.com/chantelwetzel-noaa/XSSS/blob/4dce917ee06d52416b58dd9440796ba1f7357943/R/rbeta_ab_fn.R}{Wetzel and Punt}.
 }
 \examples{
 # A histogram of the 2023 prior used for the base model

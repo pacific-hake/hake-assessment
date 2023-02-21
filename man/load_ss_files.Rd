@@ -21,7 +21,7 @@ load_ss_files(
 
 \item{nuisance_posts_fn}{Name of the nuisance posteriors file}
 
-\item{printstats}{Print info on each model loaded via [r4ss::SS_output()]}
+\item{printstats}{Print info on each model loaded via \code{\link[r4ss:SS_output]{r4ss::SS_output()}}}
 
 \item{model.dir}{Directory the model reesides in}
 }

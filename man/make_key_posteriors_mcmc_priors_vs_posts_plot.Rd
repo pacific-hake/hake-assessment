@@ -14,35 +14,35 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(
 }
 \arguments{
 \item{model}{The model output from Stock Synthesis as loaded by
-[load_ss_files()].}
+\code{\link[=load_ss_files]{load_ss_files()}}.}
 
 \item{posterior_regex}{A vector of regular expressions that can be matched
-to parameter names. Use [get_active_parameter_names()] to see all active
+to parameter names. Use \code{\link[=get_active_parameter_names]{get_active_parameter_names()}} to see all active
 parameter names. Order the vector in the same order as you want the
-figures to be plotted but make sure you also have `titles` ordered
+figures to be plotted but make sure you also have \code{titles} ordered
 appropriately as well otherwise the names will not line up.}
 
 \item{titles}{A vector of titles for the plots. The titles can be used as is
 or they can be transformed via a labeller passed to
-[ggplot2::facet_wrap()] via `...`. The default value of `NULL` leads to
+\code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}} via \code{...}. The default value of \code{NULL} leads to
 each panel being labelled with a lower-case letter enclosed in open
-brackets, e.g., `(a)`. If you truly do not want a label, just pass the
-argument a vector of empty strings, e.g., `c("", "", ...)`, with the same
-length as the result of parameters that are found via `posterior_regex`.}
+brackets, e.g., \code{(a)}. If you truly do not want a label, just pass the
+argument a vector of empty strings, e.g., \code{c("", "", ...)}, with the same
+length as the result of parameters that are found via \code{posterior_regex}.}
 
 \item{x_range}{A string specifying the method to limit the range of each
 x axis in the panels. Typically, all geoms used in the figure dictate the
-range. But, with the use of [ggh4x::facetted_pos_scales()] we can specify
+range. But, with the use of \code{\link[ggh4x:facetted_pos_scales]{ggh4x::facetted_pos_scales()}} we can specify
 which data set should specify the range limits. Setting this argument to
-`"posterior"`, instead of the default `"prior"`, will limit the ranges to
+\code{"posterior"}, instead of the default \code{"prior"}, will limit the ranges to
 only the realized values in the posterior. This can be helpful when the
 prior is quite vague and the posterior only covers a small range of the
 parameter space.}
 
-\item{...}{Parameters to be passed to [ggplot2::facet_wrap()]. For example,
-`labeller = label_parsed_space`, which is available in this package, will
+\item{...}{Parameters to be passed to \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}. For example,
+\code{labeller = label_parsed_space}, which is available in this package, will
 remove the spaces from the strings and implement
-[ggplot2::label_parsed()]. And, `ncol` and `nrow` can be used to direct
+\code{\link[ggplot2:labellers]{ggplot2::label_parsed()}}. And, \code{ncol} and \code{nrow} can be used to direct
 the output or you can let {ggplot2} figure it out.}
 }
 \value{

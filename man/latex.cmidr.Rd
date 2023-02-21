@@ -11,7 +11,7 @@ latex.cmidr(cols, trim = "r")
 across columns 1 to 3}
 
 \item{trim}{Can be l, r, or lr and tells it to trim the line a bit so that
-if there are two lines they don't touch in the middle. See `booktabs`}
+if there are two lines they don't touch in the middle. See \code{booktabs}}
 }
 \value{
 As string of latex code to draw a horizontal line across the columns specified

@@ -7,9 +7,9 @@
 make.survey.age1.plot(model, legendloc = "topleft", ylim = c(0.015, 50))
 }
 \arguments{
-\item{model}{A model as output by [load_models()].}
+\item{model}{A model as output by \code{\link[=load_models]{load_models()}}.}
 
-\item{legendloc}{See [legend()].}
+\item{legendloc}{See \code{\link[=legend]{legend()}}.}
 
 \item{ylim}{The limits of the y axis as a range.}
 }

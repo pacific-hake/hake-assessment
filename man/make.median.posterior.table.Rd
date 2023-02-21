@@ -20,7 +20,7 @@ make.median.posterior.table(
 )
 }
 \arguments{
-\item{model}{A model list as output by [load_models()]}
+\item{model}{A model list as output by \code{\link[=load_models]{load_models()}}}
 
 \item{start_yr}{Start year in the table}
 
@@ -41,7 +41,7 @@ make.median.posterior.table(
 \item{digits}{Number of decimal points to round to}
 }
 \value{
-An [xtable::xtable()]
+An \code{\link[xtable:xtable]{xtable::xtable()}}
 }
 \description{
 Make a latex table of medians with columns for female spawning biomass,

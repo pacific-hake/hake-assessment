@@ -176,13 +176,11 @@
 \counterwithin{table}{section}
 
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-knitr::render_latex()
+render_latex()
 fig_width <- 7.5
 fig_dpi <- 200
 fig_align <- "center"
 fig_pos <- "htb"
-library(knitr)   # Needed else next line gives hidden error for the first run
-                 # using knitr::knit("hake-assessment.rnw")
 opts_chunk$set(dev = "png",
                dpi = fig_dpi,
                fig.width = fig_width,
@@ -199,7 +197,7 @@ opts_chunk$set(dev = "png",
                cache = TRUE)
 
 # Data frame of alternative figure text to be populated by a knitr hook
-alt_fig_text <- tibble::tibble()
+alt_fig_text <- tibble()
 # This is called every time a chunk is evaluated with alt.text in the chunk options
 knit_hooks$set(alt.text = function(before, options, envir){
   if(before && options$is.fig){

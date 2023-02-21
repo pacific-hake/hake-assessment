@@ -16,11 +16,11 @@ make_landings_tac_table(
 )
 }
 \arguments{
-\item{d}{Data frame as output from [load_catches()]}
+\item{d}{Data frame as output from \code{\link[=load_catches]{load_catches()}}}
 
 \item{start_yr}{Start year for the table}
 
-\item{end_yr}{End year for the table. If past data range, the last year in `d` will be used}
+\item{end_yr}{End year for the table. If past data range, the last year in \code{d} will be used}
 
 \item{xcaption}{Caption for the table}
 
@@ -33,7 +33,7 @@ make_landings_tac_table(
 \item{space.size}{Size of spaces between letters}
 }
 \value{
-An [xtable::xtable()]
+An \code{\link[xtable:xtable]{xtable::xtable()}}
 }
 \description{
 Make a summary table of landings and TACS

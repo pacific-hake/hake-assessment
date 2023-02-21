@@ -10,7 +10,7 @@ panel.letter(letter)
 \item{letter}{The letter to add}
 }
 \value{
-[base::invisible()]
+\code{\link[base:invisible]{base::invisible()}}
 }
 \description{
 Add a letter to the plot

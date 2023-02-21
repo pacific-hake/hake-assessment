@@ -21,13 +21,13 @@ plot_bubbles(
 )
 }
 \arguments{
-\item{d}{a [tibble::tibble()] of the data in long format with column
-names `Year`, `Age`, and `Proportion`}
+\item{d}{a \code{\link[tibble:tibble]{tibble::tibble()}} of the data in long format with column
+names \code{Year}, \code{Age}, and \code{Proportion}}
 
 \item{clines}{An optional vector of years to draw cohort lines through}
 
-\item{mean_age}{A two-column tibble with columnn names `Year` and `Age` where
-each row containns a year and `Age` represents the mean age for each year}
+\item{mean_age}{A two-column tibble with columnn names \code{Year} and \code{Age} where
+each row containns a year and \code{Age} represents the mean age for each year}
 
 \item{mean_age_line_color}{The line color for the mean age line}
 
@@ -39,17 +39,18 @@ each row containns a year and `Age` represents the mean age for each year}
 
 \item{by}{How many years between year labels on the x-axis}
 
-\item{legend.position}{See [ggplot2::theme(legend.position)]}
+\item{legend.position}{See the \code{legend.position} parameter in
+\code{\link[ggplot2:theme]{ggplot2::theme()}}}
 
-\item{alpha}{See [ggplot2::geom_point()]}
+\item{alpha}{See \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}}
 
 \item{xlim}{Limits for the x-axis}
 
-\item{...}{Additional parameters passed to [ggplot2::geom_point()],
-[ggplot2::geom_segment()] and [ggplot2::theme()]}
+\item{...}{Additional parameters passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}},
+\code{\link[ggplot2:geom_segment]{ggplot2::geom_segment()}} and \code{\link[ggplot2:theme]{ggplot2::theme()}}}
 }
 \value{
-A [ggplot2::ggplot()] object
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Make a bubble plot from the given data

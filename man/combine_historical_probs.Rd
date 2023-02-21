@@ -14,7 +14,7 @@ combine_historical_probs(
 )
 }
 \arguments{
-\item{model}{A model as loaded by [load_ss_files()]}
+\item{model}{A model as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
 
 \item{...}{Further arguments to pass to [calc_historical_probs()[]}
 
@@ -22,17 +22,15 @@ combine_historical_probs(
 }
 \value{
 Data frame with columns
-* `year` - year of assessment
-* `P_decline` - estimate from `year' assessment model of the probability
-   that the spawning biomass will decline from `year` to `year` + 1 for a
-   catch that turned out to be the catch in `year'
-* `P_below_B40` - estimate from `year' assessment model of the probability
-   that the spawning biomass will be below B_40 in `year`+1 for a catch that
-  turned out to be the catch in `year'
-* `P_decline_curr` - current estimate (from `model`) of the probability that
-  the spawning biomass declined from year to year+1
-* `P_below_B40_curr` - current estimate (from `model`) of the probability
-   that the spawning biomass was below B_40 in year+1
+\itemize{
+\item \code{year} - year of assessment
+\item \code{P_decline} - estimate from \verb{year' assessment model of the probability that the spawning biomass will decline from }year\code{to}year\verb{+ 1 for a catch that turned out to be the catch in}year'
+\item \code{P_below_B40} - estimate from \verb{year' assessment model of the probability that the spawning biomass will be below B_40 in }year\verb{+1 for a catch that turned out to be the catch in }year'
+\item \code{P_decline_curr} - current estimate (from \code{model}) of the probability that
+the spawning biomass declined from year to year+1
+\item \code{P_below_B40_curr} - current estimate (from \code{model}) of the probability
+that the spawning biomass was below B_40 in year+1
+}
 }
 \description{
 Calculate a model's probability of stock decline in a year and

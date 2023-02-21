@@ -14,7 +14,7 @@ make.maturity.samples.table(
 }
 \arguments{
 \item{ovary.samples}{The values as read in from the ovary samples CSV file ("ovary-samples.csv")
-using [readr::read_csv()]}
+using \code{\link[readr:read_delim]{readr::read_csv()}}}
 
 \item{xcaption}{The caption}
 
@@ -25,7 +25,7 @@ using [readr::read_csv()]}
 \item{space.size}{Size of the vertical spaces for the table}
 }
 \value{
-An [xtable] object
+An \link{xtable} object
 }
 \description{
 Make the ovary collection table

@@ -23,7 +23,7 @@ plot_multiple_tv_selex_unc(
 )
 }
 \arguments{
-\item{model}{A model list, as created by [create_rds_file()]}
+\item{model}{A model list, as created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{yr_lim}{A vector of two values representing the minimum and
 maximum years to plot panels for}
@@ -32,13 +32,13 @@ maximum years to plot panels for}
 
 \item{n_col}{The number of columns to hold panels}
 
-\item{rev}{Logical. If `TRUE`, reverse the order of the years}
+\item{rev}{Logical. If \code{TRUE}, reverse the order of the years}
 
 \item{axis_title_font_size}{Size of the font for the X and Y axis labels}
 
 \item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
 
-\item{border_width}{Thickness of the border line. If `NULL` no border will
+\item{border_width}{Thickness of the border line. If \code{NULL} no border will
 be shown}
 
 \item{border_color}{Color of the column borders}
@@ -51,12 +51,12 @@ the panels}
 \item{label_font_size}{The labels font size}
 }
 \value{
-A [ggplot2::ggplot()] object
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Create a plot of time-varying selectivity panels
 }
 \details{
 The panels show the medians and the credible interval as
-calculated in [load_extra_mcmc()].
+calculated in \code{\link[=load_extra_mcmc]{load_extra_mcmc()}}.
 }

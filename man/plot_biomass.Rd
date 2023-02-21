@@ -12,7 +12,7 @@
 \alias{plot_rel_biomass}
 \alias{plot_survey_index_fits}
 \title{Create a set of barplots by year with the bars being observed
-age comps and errorbars being the MCMC fits with 95% credible
+age comps and errorbars being the MCMC fits with 95\% credible
 interval}
 \usage{
 plot_age_comp_fit(
@@ -203,7 +203,7 @@ plot_survey_index_fits(
 }
 \arguments{
 \item{type}{The type of fits/observations to plot. Must be either
-`fishery` or `survey`}
+\code{fishery} or \code{survey}}
 
 \item{n_col}{The number of columns for the facets (years)}
 
@@ -218,9 +218,9 @@ plot_survey_index_fits(
 \item{whisker_width}{The width (size) of the top and bottom bars on the
 ends of the errorbar}
 
-\item{model_lst}{A list of models, each created by [create_rds_file()]}
+\item{model_lst}{A list of models, each created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{model_names}{A vector of model names,the same length as `models_lst`}
+\item{model_names}{A vector of model names,the same length as \code{models_lst}}
 
 \item{xlim}{The year limits to plot}
 
@@ -234,8 +234,8 @@ regardless of what this number is}
 
 \item{alpha}{The transparency for all ribbons}
 
-\item{leg_pos}{The position of the legend inside the plot. If `NULL`,
-`NA`, or `none`, the legend will not be shown}
+\item{leg_pos}{The position of the legend inside the plot. If \code{NULL},
+\code{NA}, or \code{none}, the legend will not be shown}
 
 \item{leg_ncol}{The number of columns to show in the legend}
 
@@ -244,8 +244,8 @@ regardless of what this number is}
 \item{line_width}{Width of all lines on the plot}
 
 \item{clip_cover}{There is a white rectangle drawn on top of the plot
-to cover any of the plot that made it outside the plot area. `clip` has to
-be set to `off` for the major x-axis tick marks to work, So, this is required.
+to cover any of the plot that made it outside the plot area. \code{clip} has to
+be set to \code{off} for the major x-axis tick marks to work, So, this is required.
 If you make the plot in a grid, the rectangle may overwrite some of the plot
 above it, and this number will have to be changed through trial and error
 until you cannot see the white rectangle anymore.}
@@ -255,21 +255,21 @@ one model to plot}
 
 \item{ribbon_line_type}{Linetype for ribbon edges; use 0 for no line.}
 
-\item{rev_colors}{Logical. If `TRUE`, reverse the order of the colors
+\item{rev_colors}{Logical. If \code{TRUE}, reverse the order of the colors
 in the plot. Only applies if more than one model is plotted}
 
-\item{wrap_y_label}{Logical. If `TRUE`, adds a newline to the y axis
+\item{wrap_y_label}{Logical. If \code{TRUE}, adds a newline to the y axis
 label so that it doesn't get cut off}
 
-\item{d_obj}{If not `NULL` this is a list which has been
+\item{d_obj}{If not \code{NULL} this is a list which has been
 pre-processed to contain all models in a format that is ready to plot.
 Essentially the first steps of this function have been replicated
-outside the function (The code inside the `if(is.null(d_obj))`)
+outside the function (The code inside the \verb{if(is.null(d_obj))})
 is done to stop the Rmd process from taking forever}
 
 \item{fore_inds}{The indices of the forecast lines and ribbons to show.
-See the file `forecast-catch-levels.R` which contains the list
-`catch-levels`. The indices match what is in this list}
+See the file \code{forecast-catch-levels.R} which contains the list
+\code{catch-levels}. The indices match what is in this list}
 
 \item{y_labels}{The depletion labels to show for the y axis tick marks}
 
@@ -285,9 +285,9 @@ See the file `forecast-catch-levels.R` which contains the list
 overlapping. First run this function, then select the values and pass them
 to the function when plotting a second time}
 
-\item{show_50_line}{Logical. If `TRUE`, draw a horizontal line at 50% (0.5)}
+\item{show_50_line}{Logical. If \code{TRUE}, draw a horizontal line at 50\% (0.5)}
 
-\item{short}{Logical. If `TRUE`, plot a version with only P(YR<0.4B0),
+\item{short}{Logical. If \code{TRUE}, plot a version with only P(YR<0.4B0),
 P(YR<0.1B0), and P(YR<YR+1)}
 
 \item{single_point_color}{Point color for the case where there is only
@@ -300,11 +300,11 @@ lines. Default of zero removes them}
 case of multiple models}
 }
 \value{
-a [ggplot2::ggplot()] object
+a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Create a set of barplots by year with the bars being observed
-age comps and errorbars being the MCMC fits with 95% credible
+age comps and errorbars being the MCMC fits with 95\% credible
 interval
 
 Plot biomass from MCMC output for one or more models

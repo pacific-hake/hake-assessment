@@ -15,7 +15,7 @@
 #' @param seed The random seed used to draw the random seeds for each chain
 #' @param num_samples The number of samples to output
 #' @param num_warmup_samples The warmup samples (equivalent of burnin)
-#' @param adapt_delta The target acceptance rate. See [adnuts::sample_nuts()]
+#' @param adapt_delta The target acceptance rate. See [adnuts::sample_admb()]
 #' @param check_issues Run [adnuts::launch_shinyadmb()] after initial short
 #' run to discover issues. This will stop the function before the main
 #' iterations are done, so you will have to re-run the function again

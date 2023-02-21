@@ -18,6 +18,9 @@
 #' @param all_alpha Alpha value for density and running mean plots
 #'
 #' @return A 4-panel plot of MCMC diagnostics
+#' @importFrom cowplot plot_grid
+#' @importFrom grid gpar textGrob
+#' @importFrom gridExtra arrangeGrob
 #' @export
 plot_mcmc_diagnostics <- function(model,
                                   post_regex,
@@ -26,24 +29,23 @@ plot_mcmc_diagnostics <- function(model,
                                   all_alpha = 0.2,
                                   ...){
 
-
   plist <- NULL
   plist[[1]] <- plot_trace(model, post_regex)
   plist[[2]] <- plot_running_quants(model, post_regex, probs, rib_alpha = all_alpha)
   plist[[3]] <- plot_autocor(model, post_regex, ...)
   plist[[4]] <- plot_density(model, post_regex, den_alpha = all_alpha)
 
-  p <- cowplot::plot_grid(plotlist = plist,
-                          ncol = 2,
-                          nrow = 2,
-                          byrow = TRUE) +
+  p <- plot_grid(plotlist = plist,
+                 ncol = 2,
+                 nrow = 2,
+                 byrow = TRUE) +
     theme(plot.background = element_rect(color = "black"))
   y_grob <- textGrob(post_name,
                      gp = gpar(fontface = "bold",
                                col = "black",
                                fontsize = 15),
                      rot = 90)
-  g <- gridExtra::arrangeGrob(p, left = y_grob)
+  g <- arrangeGrob(p, left = y_grob)
 
   g
 }

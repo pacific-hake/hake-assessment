@@ -7,7 +7,7 @@
 plot_density(model, post_regex, den_alpha = 0.2)
 }
 \arguments{
-\item{model}{A model object, created by [create_rds_file()]}
+\item{model}{A model object, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{post_regex}{A regular expression that matches one parameter name
 and nothing else}
@@ -15,7 +15,7 @@ and nothing else}
 \item{den_alpha}{The alpha value for under the density curve}
 }
 \value{
-A [ggplot2::ggplot()] object
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Create a density plot for a particular parameter

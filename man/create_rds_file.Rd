@@ -9,10 +9,10 @@ create_rds_file(model_dir = NULL, verbose = TRUE, overwrite = TRUE, ...)
 \arguments{
 \item{model_dir}{Directory name of model to be loaded}
 
-\item{...}{Arguments to pass to [load_extra_mcmc()]}
+\item{...}{Arguments to pass to \code{\link[=load_extra_mcmc]{load_extra_mcmc()}}}
 }
 \value{
-[base::invisible()]
+\code{\link[base:invisible]{base::invisible()}}
 }
 \description{
 Create an rds file to hold the model's data and outputs.

@@ -22,21 +22,23 @@ plot_pearson_bubbles(
 
 \item{by}{How many years between year labels on the x-axis}
 
-\item{legend.position}{See [ggplot2::theme(legend.position)]}
+\item{legend.position}{See the \code{legend.position} parameter of
+\code{\link[ggplot2:theme]{ggplot2::theme()}}}
 
-\item{alpha}{See [ggplot2::geom_point()]}
+\item{alpha}{See \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}}
 
 \item{xlim}{Limits for the x-axis}
 
-\item{...}{Additional parameters passed to [ggplot2::geom_point()],
-[ggplot2::geom_segment()] and [ggplot2::theme()]}
+\item{...}{Additional parameters passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}},
+\code{\link[ggplot2:geom_segment]{ggplot2::geom_segment()}} and \code{\link[ggplot2:theme]{ggplot2::theme()}}}
 
-\item{d}{a [tibble::tibble()] of the data in long format with column names `Year`, `Age`, and `Proportion`}
+\item{d}{a \code{\link[tibble:tibble]{tibble::tibble()}} of the data in long format with column
+names \code{Year}, \code{Age}, and \code{Proportion}}
 
 \item{yrs}{A vector of 2, for the years to show on the plot}
 }
 \value{
-A [ggplot2::ggplot()] object
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Make a bubble plot from the given data

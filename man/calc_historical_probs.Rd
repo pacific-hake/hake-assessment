@@ -8,7 +8,7 @@ from past assessments}
 calc_historical_probs(model, start = 2012, end)
 }
 \arguments{
-\item{model}{A model as loaded by [load_ss_files()]}
+\item{model}{A model as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
 
 \item{start}{First assessment year to do comparisons}
 
@@ -16,19 +16,21 @@ calc_historical_probs(model, start = 2012, end)
 }
 \value{
 Data frame with columns
-* `year` - year (lower case to check when binding columnsin
-  [combine_historical_probs()]
-* `P_decline_curr` - current estimate (from `model`) of the probability that
-  the spawning biomass declined from year to year + 1
-* `P_below_B40_curr` - current estimate (from `model`) of the probability that
-  the spawning biomass was below B_40 in year + 1
+\itemize{
+\item \code{year} - year (lower case to check when binding columnsin
+\code{\link[=combine_historical_probs]{combine_historical_probs()}}
+\item \code{P_decline_curr} - current estimate (from \code{model}) of the probability that
+the spawning biomass declined from year to year + 1
+\item \code{P_below_B40_curr} - current estimate (from \code{model}) of the probability that
+the spawning biomass was below B_40 in year + 1
+}
 }
 \description{
 Calculate probabilities from an MCMC model to compare with estimates
 from past assessments
 }
 \details{
-Calculate a model's estimate of P(B_t+1 < B_t) and P(B_t+1 < B_40%)
+Calculate a model's estimate of P(B_t+1 < B_t) and P(B_t+1 < B_40\%)
 to then compare with the estimates of those quantities in year t's
-assessment, in [combine_historical_probs()].
+assessment, in \code{\link[=combine_historical_probs]{combine_historical_probs()}}.
 }

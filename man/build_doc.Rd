@@ -19,26 +19,26 @@ build_doc(
 
 \item{doc_dir}{Directory the main document RNW file resides in}
 
-\item{alt_text}{The knitting process creates the global `alt_fig_text`, but only if the figures were not cached.
-This must only be set to `TRUE` when building from scratch, without any cached figures}
+\item{alt_text}{The knitting process creates the global \code{alt_fig_text}, but only if the figures were not cached.
+This must only be set to \code{TRUE} when building from scratch, without any cached figures}
 
 \item{knit_only}{Only knit the code, do not run latex engine.}
 
-\item{make_pdf}{Logical. `TRUE` to make the pdf, if `FALSE` it will only go as far as postscript. If `png_figs`
-is set to `TRUE`, this argument will have no effect, a PDF will be built anyway}
+\item{make_pdf}{Logical. \code{TRUE} to make the pdf, if \code{FALSE} it will only go as far as postscript. If \code{png_figs}
+is set to \code{TRUE}, this argument will have no effect, a PDF will be built anyway}
 
 \item{make_bib}{Logical. Run bibtex}
 
-\item{...}{Arguments to pass to [add_alt_text()]}
+\item{...}{Arguments to pass to \code{\link[=add_alt_text]{add_alt_text()}}}
 }
 \value{
-[base::invisible()]
+\code{\link[base:invisible]{base::invisible()}}
 }
 \description{
 Build the assessment document entirely from within an R session
 }
 \details{
-Make sure you have created the .rds files by running [build_rds()] in the appropriate manner.
+Make sure you have created the .rds files by running \code{\link[=build_rds]{build_rds()}} in the appropriate manner.
 Once you have done that and run this function once within an R session, it will be a little quicker since the RDS
 file contents will have already been loaded into the R session.
 }

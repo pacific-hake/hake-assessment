@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{latex.paste}
 \alias{latex.paste}
-\title{Create a string comprised of each element in the vector `vec` with an
+\title{Create a string comprised of each element in the vector \code{vec} with an
 ampersand in between}
 \usage{
 latex.paste(vec)
@@ -11,11 +11,11 @@ latex.paste(vec)
 \item{vec}{A vector of characters}
 }
 \value{
-A string comprised of each element in the vector `vec` with an
+A string comprised of each element in the vector \code{vec} with an
 ampersand in between
 }
 \description{
-Create a string comprised of each element in the vector `vec` with an
+Create a string comprised of each element in the vector \code{vec} with an
 ampersand in between
 }
 \details{

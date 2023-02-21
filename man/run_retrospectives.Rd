@@ -20,28 +20,28 @@ run_retrospectives(
 \item{retrospective_yrs}{The years (e.g. 1:6) to run so each of these numbers means that many
 years of data removed from the model}
 
-\item{remove_blocks}{If `TRUE`, remove block designs from control file prior to running}
+\item{remove_blocks}{If \code{TRUE}, remove block designs from control file prior to running}
 
-\item{retro_mcmc}{If `TRUE`, run the ADNUTS MCMC in the *mcmc* subdirectory for each
+\item{retro_mcmc}{If \code{TRUE}, run the ADNUTS MCMC in the \emph{mcmc} subdirectory for each
 retrospective in addition to the MLE run}
 
-\item{...}{Arguments passed to [load_ss_files()]}
+\item{...}{Arguments passed to \code{\link[=load_ss_files]{load_ss_files()}}}
 
-\item{num_samples}{Same as in [run_adnuts()]}
+\item{num_samples}{Same as in \code{\link[=run_adnuts]{run_adnuts()}}}
 
-\item{num_warmup_samples}{Same as in [run_adnuts()]}
+\item{num_warmup_samples}{Same as in \code{\link[=run_adnuts]{run_adnuts()}}}
 
-\item{num_chains}{Same as in [run_adnuts()]}
+\item{num_chains}{Same as in \code{\link[=run_adnuts]{run_adnuts()}}}
 }
 \value{
-[base::invisible()]
+\code{\link[base:invisible]{base::invisible()}}
 }
 \description{
 Runs retrospectives for the given model and for the vector of years given
 }
 \details{
-This will create a *retrospectives* directory in the same directory as the model resides,
+This will create a \emph{retrospectives} directory in the same directory as the model resides,
 create a directory for each retrospective year, copy all model files into each directory,
-run the retrospectives, and make a list of the [r4ss::SS_output()] call to each
+run the retrospectives, and make a list of the \code{\link[r4ss:SS_output]{r4ss::SS_output()}} call to each
 Warning - This function will completely delete all previous retrospectives that have been run without notice.
 }

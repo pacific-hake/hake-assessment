@@ -42,7 +42,7 @@ make.input.age.data.table(
 \item{decimals}{Number if decimal points to show}
 }
 \value{
-an [xtable::xtable()]
+an \code{\link[xtable:xtable]{xtable::xtable()}}
 }
 \description{
 Make an at-age table showing percentage of each age by year

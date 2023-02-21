@@ -60,6 +60,7 @@
 #' @param ribbon_line_type Linetype for ribbon edges; use 0 for no line.
 #'
 #' @return a [ggplot2::ggplot()] object
+#' @importFrom grid gpar rectGrob
 #' @export
 plot_biomass <- function(model_lst = NULL,
                          model_names,

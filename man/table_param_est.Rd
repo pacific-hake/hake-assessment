@@ -2,7 +2,7 @@
 % Please edit documentation in R/table-param-est.R
 \name{table_param_est}
 \alias{table_param_est}
-\title{Returns an [xtable::xtable()] in the proper format for the MCMC posterior
+\title{Returns an \code{\link[xtable:xtable]{xtable::xtable()}} in the proper format for the MCMC posterior
 parameter estimates for all the models in the list, one for each column}
 \usage{
 table_param_est(
@@ -39,13 +39,13 @@ models in the models list}
 \item{rec_yrs}{A vector of integers supplying the years for which you
 want estimates of recruitment}
 
-\item{show_like}{If `TRUE`, include the negative log-likelihoods (set to
-`FALSE` for presentations)}
+\item{show_like}{If \code{TRUE}, include the negative log-likelihoods (set to
+\code{FALSE} for presentations)}
 }
 \value{
-as [xtable::xtable()]
+as \code{\link[xtable:xtable]{xtable::xtable()}}
 }
 \description{
-Returns an [xtable::xtable()] in the proper format for the MCMC posterior
+Returns an \code{\link[xtable:xtable]{xtable::xtable()}} in the proper format for the MCMC posterior
 parameter estimates for all the models in the list, one for each column
 }

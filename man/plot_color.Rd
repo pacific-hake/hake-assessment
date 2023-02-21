@@ -9,7 +9,7 @@ plot_color(num_colors = 10, palette = "Set1")
 \arguments{
 \item{num_colors}{The number of colors to return}
 
-\item{palette}{A palette found in [RColorBrewwer::brewer.pal.info]}
+\item{palette}{A palette found in \link[RColorBrewer:ColorBrewer]{RColorBrewer::brewer.pal.info}}
 }
 \value{
 A vector of HEX colours
@@ -20,9 +20,9 @@ such that as more years of historical data are added on
 that the more recent years are still the same color.
 For example, the most recent year of data will always be
 black and the second most recent year will always be red.
-If more than the maximum number of color for the `palette`
+If more than the maximum number of color for the \code{palette}
 are requested, a color ramp will be constructed for the
-remaining colors, based on the `palette`.
+remaining colors, based on the \code{palette}.
 }
 \examples{
 n <-18

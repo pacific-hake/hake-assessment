@@ -27,12 +27,12 @@ run(
 \item{...}{Passed to the subroutines}
 }
 \value{
-[base::invisible()]
+\code{\link[base:invisible]{base::invisible()}}
 }
 \description{
 Run extra models for forecasting, retrospectives, and extra MCMC (one report file per posterior)
 }
 \details{
-This is a wrapper function for calling [run_catch_levels()], [run_forecasts()],
-[run_retrospectives()], and [run_extra_mcmc()] functions.
+This is a wrapper function for calling \code{\link[=run_catch_levels]{run_catch_levels()}}, \code{\link[=run_forecasts]{run_forecasts()}},
+\code{\link[=run_retrospectives]{run_retrospectives()}}, and \code{\link[=run_extra_mcmc]{run_extra_mcmc()}} functions.
 }

@@ -28,7 +28,7 @@ hi: higher CI}
 
 \item{gap}{Gap size for the segments}
 
-\item{add}{Logical. If `TRUE`, add to the current plot, if `FALSE`,
+\item{add}{Logical. If \code{TRUE}, add to the current plot, if \code{FALSE},
 create a new plot}
 
 \item{ciCol}{Credible interval color}
@@ -40,7 +40,7 @@ create a new plot}
 \item{...}{Absorbs arguments meant for other functions}
 }
 \value{
-[base::invisible()]
+\code{\link[base:invisible]{base::invisible()}}
 }
 \description{
 Plot bars

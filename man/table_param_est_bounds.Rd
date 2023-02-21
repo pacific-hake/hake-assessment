@@ -33,11 +33,11 @@ table_param_est_bounds(
 
 \item{space.size}{Vertical size between rows in the table}
 
-\item{return.xtable}{If `TRUE`, return the latex-formatted table code. If `FALSE`
+\item{return.xtable}{If \code{TRUE}, return the latex-formatted table code. If \code{FALSE}
 return the data frame instead}
 }
 \value{
-Either a data frame or [xtable::xtable()] object
+Either a data frame or \code{\link[xtable:xtable]{xtable::xtable()}} object
 }
 \description{
 Creates a table summarizing lead parameters

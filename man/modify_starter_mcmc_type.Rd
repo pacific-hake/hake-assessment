@@ -8,7 +8,7 @@ not created}
 modify_starter_mcmc_type(path, value)
 }
 \arguments{
-\item{path}{The path where `starter.ss` resides}
+\item{path}{The path where \code{starter.ss} resides}
 
 \item{value}{Value to change the MCMC setting to. 1 = Do not create extra
 MCMC files, 2 or 3 - create extra MCMC files}

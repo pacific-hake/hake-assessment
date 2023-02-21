@@ -19,5 +19,5 @@ Format x to have supplied number of decimal points
 }
 \details{
 Make thousands separated by commas and the number of decimal
-points given by `dec.points`
+points given by \code{dec.points}
 }

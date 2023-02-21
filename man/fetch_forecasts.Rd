@@ -2,7 +2,7 @@
 % Please edit documentation in R/fetch-forecasts.R
 \name{fetch_forecasts}
 \alias{fetch_forecasts}
-\title{Fetch the output from previously-run forecasting using [run_forecasts()]}
+\title{Fetch the output from previously-run forecasting using \code{\link[=run_forecasts]{run_forecasts()}}}
 \usage{
 fetch_forecasts(
   forecasts_path = NULL,
@@ -15,19 +15,19 @@ fetch_forecasts(
 \item{forecasts_path}{Path of the forecasts}
 
 \item{my_catch_levels}{The table of catch levels with same structure as
-found in `forecast-catch-levels.R`}
+found in \code{forecast-catch-levels.R}}
 
 \item{forecast_yrs}{A vector of the forecast years}
 
 \item{...}{}
 }
 \value{
-A list of forecast outputs as read in by [r4ss::SSgetMCMC()]
+A list of forecast outputs as read in by \code{\link[r4ss:SSgetMCMC]{r4ss::SSgetMCMC()}}
 }
 \description{
-Fetch the output from previously-run forecasting using [run_forecasts()]
+Fetch the output from previously-run forecasting using \code{\link[=run_forecasts]{run_forecasts()}}
 }
 \details{
 If the forecasts directory does not exist or there is a problem
-loading the forecasts, return `NA`
+loading the forecasts, return \code{NA}
 }

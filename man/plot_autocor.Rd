@@ -13,15 +13,15 @@ plot_autocor(
 )
 }
 \arguments{
-\item{model}{A model list, created by [create_rds_file()]}
+\item{model}{A model list, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{post_regex}{A regular expression that matches one parameter name
 and nothing else}
 
-\item{lag_max}{See [coda::autocorr.plot()]}
+\item{lag_max}{See \code{\link[coda:autocorr.plot]{coda::autocorr.plot()}}}
 }
 \value{
-A [ggplot2::ggplot()] object
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Create an autocorelation plot for a particular parameter

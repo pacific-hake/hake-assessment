@@ -18,7 +18,7 @@ model_setup(
 )
 }
 \arguments{
-\item{drs}{Output list from [set_dirs()]}
+\item{drs}{Output list from \code{\link[=set_dirs]{set_dirs()}}}
 
 \item{bridge_models_desc}{A list of vectors of text strings to show in
 the legends for bridge model plots, one name for each model, where the
@@ -40,7 +40,7 @@ elements represent a group of models}
 the legends for retrospective model plots, one name for each model,
 where the list elements represent a group of models}
 
-\item{...}{Arguments to pass to [create_rds_file()]}
+\item{...}{Arguments to pass to \code{\link[=create_rds_file]{create_rds_file()}}}
 }
 \value{
 A list of items, the base_model inside a single-element
@@ -54,7 +54,7 @@ Load models and set up lists and classes for the base model, bridge
 model groups, and sensitivity model groups
 }
 \details{
-If any of the text lists are `NULL`, default description text will be
+If any of the text lists are \code{NULL}, default description text will be
 assigned and a warning given.
 }
 \examples{

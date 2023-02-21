@@ -1,4 +1,4 @@
-#' Load a CSV file with landings and TACS and create a nice [tibble::tibbble]
+#' Load a CSV file with landings and TACS and create a nice [tibble::tibble()]
 #' containing output
 #'
 #' @param fn The name of the landings/TAC CSV file

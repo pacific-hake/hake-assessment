@@ -8,7 +8,7 @@ overall with its year and age}
 get_age_comp_limits(model, type = 1)
 }
 \arguments{
-\item{model}{A model as returnded by [load.ss.files()]}
+\item{model}{A model as returnded by \code{\link[=load.ss.files]{load.ss.files()}}}
 
 \item{type}{1 for Fishery and 2 for Survey}
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{copy_dirfiles}
 \alias{copy_dirfiles}
-\title{Call [shell()] or [system()] depending on the Operating System}
+\title{Call \code{\link[=shell]{shell()}} or \code{\link[=system]{system()}} depending on the Operating System}
 \usage{
 copy_dirfiles(
   fromdir = getwd(),
@@ -13,28 +13,28 @@ copy_dirfiles(
 )
 }
 \arguments{
-\item{fromdir}{The directory to copy subdirectories and their `files` from}
+\item{fromdir}{The directory to copy subdirectories and their \code{files} from}
 
-\item{todir}{The directory to copy subdirectories and their `files` to}
+\item{todir}{The directory to copy subdirectories and their \code{files} to}
 
 \item{files}{A character vector of file names to include in the copy}
 
-\item{overwrite}{If `todir` exists then overwrite its subdirs if they exist.
-Everything else in `todir` not pertaining to the copy will remain after the
+\item{overwrite}{If \code{todir} exists then overwrite its subdirs if they exist.
+Everything else in \code{todir} not pertaining to the copy will remain after the
 overwrite}
 
-\item{ignore_missing_files}{If `FALSE` and any of `files` are missing in
-subdirectories of `fromdir`, code execution will stop and an error will
-be shown. If `TRUE`, missing files will be ignored}
+\item{ignore_missing_files}{If \code{FALSE} and any of \code{files} are missing in
+subdirectories of \code{fromdir}, code execution will stop and an error will
+be shown. If \code{TRUE}, missing files will be ignored}
 }
 \value{
 Nothing
 }
 \description{
-Call [shell()] or [system()] depending on the Operating System
+Call \code{\link[=shell]{shell()}} or \code{\link[=system]{system()}} depending on the Operating System
 }
 \details{
-Copy `files` and their containing directories from all subdirectories
-of `fromdir` to `todir`. Only subdirs of `fromdir` are searched for
-`files`, not `fromdir` itself, and there is no recursion.
+Copy \code{files} and their containing directories from all subdirectories
+of \code{fromdir} to \code{todir}. Only subdirs of \code{fromdir} are searched for
+\code{files}, not \code{fromdir} itself, and there is no recursion.
 }

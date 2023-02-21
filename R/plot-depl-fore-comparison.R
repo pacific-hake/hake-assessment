@@ -1,6 +1,7 @@
 #' Plot the relative spawning biomass with several forecast trajectories
 #'
 #' @rdname plot_biomass
+#' @importFrom purrr map map_chr map_dbl map_lgl map2 walk walk2
 #' @export
 plot_depl_fore_comparison <- function(model,
                                       fore_inds = c(1, 2, 6, 12, 14),

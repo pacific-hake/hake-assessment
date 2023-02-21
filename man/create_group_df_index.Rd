@@ -3,7 +3,7 @@
 \name{create_group_df_index}
 \alias{create_group_df_index}
 \title{Create a data frame containing model output index fits from a
-model list which is in long format ready for [ggplot2::ggplot()]}
+model list which is in long format ready for \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}}
 \usage{
 create_group_df_index(
   model_lst = NULL,
@@ -12,17 +12,17 @@ create_group_df_index(
 )
 }
 \arguments{
-\item{model_lst}{A list of models, each created by [create_rds_file()]}
+\item{model_lst}{A list of models, each created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{model_names}{A vector of model names,the same length as `model_lst`}
+\item{model_names}{A vector of model names,the same length as \code{model_lst}}
 
-\item{type}{The type of survey, must be one of `age1` or `age2`.
-`age2` means age 2+ acoustic survey and `age1``is the age 1 acoustic survey}
+\item{type}{The type of survey, must be one of \code{age1} or \code{age2}.
+\code{age2} means age 2+ acoustic survey and `age1``is the age 1 acoustic survey}
 }
 \value{
-A list containing a [tibble::tibble()]
+A list containing a \code{\link[tibble:tibble]{tibble::tibble()}}
 }
 \description{
 Create a data frame containing model output index fits from a
-model list which is in long format ready for [ggplot2::ggplot()]
+model list which is in long format ready for \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}
 }

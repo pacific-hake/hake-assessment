@@ -13,7 +13,7 @@ load_retrospectives(retro_path, retro_yrs, ...)
 \item{retrospective_yrs}{A vector of years for the retrospectives}
 
 \item{end_yr}{The end year of the model. Retrospectives will have
-their `endyr` element set to this minus the numbers of years of the
+their \code{endyr} element set to this minus the numbers of years of the
 retorspective}
 }
 \value{

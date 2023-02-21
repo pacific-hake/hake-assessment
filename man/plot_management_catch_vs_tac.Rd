@@ -20,11 +20,11 @@ plot_management_catch_vs_tac(
 )
 }
 \arguments{
-\item{d}{The data as read in using [readr::read_csv()] from the file
+\item{d}{The data as read in using \code{\link[readr:read_delim]{readr::read_csv()}} from the file
 "catch-targets.csv"}
 
 \item{curr_assess_biomass}{Current year's assessment-estimated biomass
-(or any value). If `NULL` it will not be shown}
+(or any value). If \code{NULL} it will not be shown}
 
 \item{connect_vals_linetype}{Which linetype to use for connecting the
 values with vertical lines}
@@ -35,14 +35,14 @@ the values with vertical lines}
 \item{connect_vars}{Logical. Connent the TACs and realized catches to
 each other}
 
-\item{connect_vars_linetype}{If `connect_vars` is TRUE, which line type
+\item{connect_vars_linetype}{If \code{connect_vars} is TRUE, which line type
 to use}
 
-\item{connect_vars_alpha}{If `connect_vars` is TRUE, which alpha level
+\item{connect_vars_alpha}{If \code{connect_vars} is TRUE, which alpha level
 (0-1) to use}
 }
 \value{
-A [ggplot2::ggplot()] object
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Make a time series plot of the management-chosen TAC, assessment

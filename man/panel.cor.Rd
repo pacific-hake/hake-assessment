@@ -2,11 +2,11 @@
 % Please edit documentation in R/figures-mcmc-diagnostics.R
 \name{panel.cor}
 \alias{panel.cor}
-\title{Wrapper to call `make.mcmc.diag.plot()` but first check if parameter is estimated}
+\title{Wrapper to call \code{make.mcmc.diag.plot()} but first check if parameter is estimated}
 \usage{
 panel.cor(x, y, digits = 2, prefix = "", cex.cor, ...)
 }
 \description{
-Needed in `adnuts-diagnostics-one-model.rnw` to not generate an error when
-the file is applied to a model for which `.posterior.name` is not estimated
+Needed in \code{adnuts-diagnostics-one-model.rnw} to not generate an error when
+the file is applied to a model for which \code{.posterior.name} is not estimated
 }

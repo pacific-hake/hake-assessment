@@ -7,14 +7,14 @@
 calc_risk(forecast_outputs = NA, catch_levels, ...)
 }
 \arguments{
-\item{forecast_outputs}{A list as output by [fetch_forecasts()]}
+\item{forecast_outputs}{A list as output by \code{\link[=fetch_forecasts]{fetch_forecasts()}}}
 }
 \value{
 A list of length 1 less than the number of forecast years. Each element
 is a data.frame of catch levels holding the probabilities. For example, list element 1 will hold the
- probabilities for each catch.level of being under several reference points for the first two years
- in the forecast_yrs vector. If forecast.outputs is NA, NA will be returned, otherwise the risk.list
- will be returned
+probabilities for each catch.level of being under several reference points for the first two years
+in the forecast_yrs vector. If forecast.outputs is NA, NA will be returned, otherwise the risk.list
+will be returned
 }
 \description{
 Calculate the probablities of being under several reference points from one forecast year to the next

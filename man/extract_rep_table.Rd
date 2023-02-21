@@ -2,7 +2,7 @@
 % Please edit documentation in R/extract-rep-table.R
 \name{extract_rep_table}
 \alias{extract_rep_table}
-\title{Extract the vectors from a list into a [tibble::tibble()]}
+\title{Extract the vectors from a list into a \code{\link[tibble:tibble]{tibble::tibble()}}}
 \usage{
 extract_rep_table(reps_lst, header, verbose = TRUE)
 }
@@ -12,15 +12,15 @@ typically extracted as a portion of a Report.sso file}
 
 \item{header}{A vector of column names for the new table}
 
-\item{verbose}{Logical. If `TRUE`, show message about which iteration
+\item{verbose}{Logical. If \code{TRUE}, show message about which iteration
 and row range is being populated from the loop}
 }
 \value{
-A [tibble::tibble()] representing one row for each of the list
- elements found in `reps_lst`. A new column called `Iter` is prepended and
- represents the list element number that the data for each row came from.
- List elements that are NA will not be included in the table.
+A \code{\link[tibble:tibble]{tibble::tibble()}} representing one row for each of the list
+elements found in \code{reps_lst}. A new column called \code{Iter} is prepended and
+represents the list element number that the data for each row came from.
+List elements that are NA will not be included in the table.
 }
 \description{
-Extract the vectors from a list into a [tibble::tibble()]
+Extract the vectors from a list into a \code{\link[tibble:tibble]{tibble::tibble()}}
 }

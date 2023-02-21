@@ -9,11 +9,11 @@ run_catch_levels(model_path, catch_levels_path = catch_levels_path, ...)
 \arguments{
 \item{model_path}{The model directory name}
 
-\item{...}{Passed to [run_catch_levels_default_hr()], [run_catch_levels_spr_100()],
-and [run_catch_levels_stable_catch()]}
+\item{...}{Passed to \code{\link[=run_catch_levels_default_hr]{run_catch_levels_default_hr()}}, \code{\link[=run_catch_levels_spr_100]{run_catch_levels_spr_100()}},
+and \code{\link[=run_catch_levels_stable_catch]{run_catch_levels_stable_catch()}}}
 }
 \value{
-[base::invisible()]
+\code{\link[base:invisible]{base::invisible()}}
 }
 \description{
 A wrapper to run the catch levels determination routines

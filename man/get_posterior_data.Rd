@@ -8,7 +8,7 @@ parameter names}
 get_posterior_data(model, param_regex)
 }
 \arguments{
-\item{model}{The SS model output as loaded by [load_ss_files()]}
+\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
 
 \item{param_regex}{A vector of regular expressions used to extract data
 for parameter names. If there are no matches, or more than one for any
@@ -16,7 +16,7 @@ regular expression, the program will stop}
 }
 \value{
 A list of posterior vectors, one for each of the regular
-expressions in `param_regex`
+expressions in \code{param_regex}
 }
 \description{
 Get the posterior values for the given regular expressions of

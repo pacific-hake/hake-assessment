@@ -3,7 +3,7 @@
 \name{extract_mcmc_quant}
 \alias{extract_mcmc_quant}
 \title{Extract MCMC quantiles from models and return them
-in a [ggplot2::ggplot()]-ready data frame}
+in a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}-ready data frame}
 \usage{
 extract_mcmc_quant(
   model_lst,
@@ -14,24 +14,24 @@ extract_mcmc_quant(
 )
 }
 \arguments{
-\item{model_lst}{A list of models, each created by [create_rds_file()]}
+\item{model_lst}{A list of models, each created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{model_names}{A vector of model names,the same length as `models_lst`}
+\item{model_names}{A vector of model names,the same length as \code{models_lst}}
 
-\item{type}{A name as found in an `mcmccalcs` object of a model object,
-for example extraction of: `base_model$mcmccalcs$smed` would require
-`type` = "smed"}
+\item{type}{A name as found in an \code{mcmccalcs} object of a model object,
+for example extraction of: \code{base_model$mcmccalcs$smed} would require
+\code{type} = "smed"}
 
 \item{end_yrs}{A vector of the end years for each model.
 If one value, it will apply to all models}
 
-\item{inc_models_yr}{Logical. If `TRUE`, include the `model` and `year`
+\item{inc_models_yr}{Logical. If \code{TRUE}, include the \code{model} and \code{year}
 columns in the data frame}
 }
 \value{
-A [tibble::tibble()]
+A \code{\link[tibble:tibble]{tibble::tibble()}}
 }
 \description{
 Extract MCMC quantiles from models and return them
-in a [ggplot2::ggplot()]-ready data frame
+in a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}-ready data frame
 }

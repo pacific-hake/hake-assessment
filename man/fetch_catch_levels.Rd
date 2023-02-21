@@ -3,7 +3,7 @@
 \name{fetch_catch_levels}
 \alias{fetch_catch_levels}
 \title{Fetch catch levels from SS forecast files. This is used to retrieve ending values
-after running the [run_catch_levels()] function for default HR, SPR 100, and stable catch}
+after running the \code{\link[=run_catch_levels]{run_catch_levels()}} function for default HR, SPR 100, and stable catch}
 \usage{
 fetch_catch_levels(catch_levels_path, catch_levels = NULL, ...)
 }
@@ -12,7 +12,7 @@ fetch_catch_levels(catch_levels_path, catch_levels = NULL, ...)
 
 \item{catch_levels}{The catch levels list as defined in forecast-catch-levels.R}
 
-\item{model}{The SS model output as loaded by [load_ss_files()]}
+\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
 
 \item{spr_100_path}{The path for the spr-100 output}
 
@@ -22,16 +22,16 @@ fetch_catch_levels(catch_levels_path, catch_levels = NULL, ...)
 }
 \value{
 A list of 3-element lists of vectors of 3 catch levels corresponding to:
-a) SPR-100%
+a) SPR-100\%
 b) Default harvest policy
 c) Stable catch
-Return object looks the same as the `catch_levels` object but with three more elements
+Return object looks the same as the \code{catch_levels} object but with three more elements
 }
 \description{
 Fetch catch levels from SS forecast files. This is used to retrieve ending values
-after running the [run_catch_levels()] function for default HR, SPR 100, and stable catch
+after running the \code{\link[=run_catch_levels]{run_catch_levels()}} function for default HR, SPR 100, and stable catch
 }
 \details{
-Assumes [run_catch_levels()] function has been run and the forecast files
+Assumes \code{\link[=run_catch_levels]{run_catch_levels()}} function has been run and the forecast files
 are populated with 3 forecast years
 }

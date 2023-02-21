@@ -7,7 +7,7 @@
 get_baa_mle(model, yrs = NULL, scale = 1000)
 }
 \arguments{
-\item{model}{A model as loaded by [load_ss_files()]}
+\item{model}{A model as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
 
 \item{yrs}{The years to return the values for}
 

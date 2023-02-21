@@ -3,22 +3,22 @@
 \name{create_group_df_recr}
 \alias{create_group_df_recr}
 \title{Create a data frame containing model output recruitment from a
-model list which is in long format ready for [ggplot2::ggplot()]}
+model list which is in long format ready for \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}}
 \usage{
 create_group_df_recr(model_lst = NULL, model_names = NULL, devs = FALSE, ...)
 }
 \arguments{
-\item{model_lst}{A list of models, each created by [create_rds_file()]}
+\item{model_lst}{A list of models, each created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{model_names}{A vector of model names,the same length as `model_lst`}
+\item{model_names}{A vector of model names,the same length as \code{model_lst}}
 
-\item{devs}{Logical. If `TRUE` return recruitment deviations, if `FALSE`,
+\item{devs}{Logical. If \code{TRUE} return recruitment deviations, if \code{FALSE},
 return absolute recruitment}
 }
 \value{
-A list containing a [tibble::tibble()]
+A list containing a \code{\link[tibble:tibble]{tibble::tibble()}}
 }
 \description{
 Create a data frame containing model output recruitment from a
-model list which is in long format ready for [ggplot2::ggplot()]
+model list which is in long format ready for \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}
 }

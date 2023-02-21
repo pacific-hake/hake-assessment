@@ -7,14 +7,14 @@
 make_numbers_at_age_plot(model, scale = 1000, ...)
 }
 \arguments{
-\item{model}{A model object as output from [load_ss_files()]}
+\item{model}{A model object as output from \code{\link[=load_ss_files]{load_ss_files()}}}
 
 \item{scale}{Number to scale the numbers-at-age by so the legend values are nicer}
 
-\item{...}{Additional parameters passed to [plot_bubbles()]}
+\item{...}{Additional parameters passed to \code{\link[=plot_bubbles]{plot_bubbles()}}}
 }
 \value{
-A [ggplot2::ggplot()] object
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Plot the numbers-at-age bubble plot with mean age line

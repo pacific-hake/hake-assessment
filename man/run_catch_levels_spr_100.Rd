@@ -3,7 +3,7 @@
 \name{run_catch_levels_spr_100}
 \alias{run_catch_levels_spr_100}
 \title{Run the model iteratively zoning in on a catch value that reduces the SPR to 1, within the tolerance given
-(`catch_levels_spr_tol`)}
+(\code{catch_levels_spr_tol})}
 \usage{
 run_catch_levels_spr_100(
   model,
@@ -16,7 +16,7 @@ run_catch_levels_spr_100(
 )
 }
 \arguments{
-\item{model}{The SS model output as loaded by [load_ss_files()]}
+\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
 
 \item{spr_100_path}{Path where the SPR model files are found}
 
@@ -33,5 +33,5 @@ it is assumed that the SPR is close enough}
 }
 \description{
 Run the model iteratively zoning in on a catch value that reduces the SPR to 1, within the tolerance given
-(`catch_levels_spr_tol`)
+(\code{catch_levels_spr_tol})
 }

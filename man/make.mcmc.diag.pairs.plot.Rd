@@ -15,19 +15,19 @@ make.mcmc.diag.pairs.plot(
 )
 }
 \arguments{
-\item{model}{A model object as output by [load_ss_models()]}
+\item{model}{A model object as output by \code{\link[=load_ss_models]{load_ss_models()}}}
 
-\item{inc.key.params}{If TRUE, use the arguments `key_posteriors_regex` and `key_posteriors_names`}
+\item{inc.key.params}{If TRUE, use the arguments \code{key_posteriors_regex} and \code{key_posteriors_names}}
 
 \item{key_posteriors_regex}{A vector of regular experessions represting key posteriors}
 
 \item{key_posteriors_names}{A vector of names to show for the key posteriors}
 
-\item{recr}{A vector of recruitment deviation years to include if `inc.key.params` is FALSE}
+\item{recr}{A vector of recruitment deviation years to include if \code{inc.key.params} is FALSE}
 
-\item{bratio}{A vector of Bratio years to include if `inc.key.params` is FALSE}
+\item{bratio}{A vector of Bratio years to include if \code{inc.key.params} is FALSE}
 
-\item{forecatch}{A vector of forecast catch years to include if `inc.key.params` is FALSE}
+\item{forecatch}{A vector of forecast catch years to include if \code{inc.key.params} is FALSE}
 }
 \value{
 A pairs plot

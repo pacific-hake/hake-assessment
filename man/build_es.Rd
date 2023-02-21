@@ -10,7 +10,7 @@ build_es()
 \item{doc_name}{What to name the document (no extension needed)}
 }
 \value{
-[base::invisible()]
+\code{\link[base:invisible]{base::invisible()}}
 }
 \description{
 Build the executive summary section only

@@ -8,7 +8,7 @@ find a stable catch within the the given tolerance}
 run_catch_levels_default_hr(model, default_hr_path, forecast_yrs, ...)
 }
 \arguments{
-\item{model}{The SS model output as loaded by [load_ss_files()]}
+\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
 
 \item{...}{}
 }

@@ -7,7 +7,7 @@
 get_rec_ci_mle(model, end_yr = NULL, cohorts = NULL)
 }
 \arguments{
-\item{model}{A model as loaded by [load_ss_files()] with MLE retrospective
+\item{model}{A model as loaded by \code{\link[=load_ss_files]{load_ss_files()}} with MLE retrospective
 runs}
 
 \item{end_yr}{End year for the plot}
@@ -15,7 +15,7 @@ runs}
 \item{cohorts}{The cohort years to show}
 }
 \value{
-A [ggplot2] object
+A \link{ggplot2} object
 }
 \description{
 Plot cohort recruitment MLE estimates with retrospectives

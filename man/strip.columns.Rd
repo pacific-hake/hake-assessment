@@ -9,10 +9,10 @@ strip.columns(vec, names)
 \arguments{
 \item{vec}{A named vector}
 
-\item{names}{A vector of names to remove from the vector `vec`}
+\item{names}{A vector of names to remove from the vector \code{vec}}
 }
 \value{
-The vector `vec` with items removed
+The vector \code{vec} with items removed
 }
 \description{
 Remove values from a named vector based on names

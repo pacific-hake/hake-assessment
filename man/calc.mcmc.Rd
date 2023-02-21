@@ -13,7 +13,7 @@ calc.mcmc(
 )
 }
 \arguments{
-\item{mcmc}{The output of the [r4ss::SS_getMCMC()] function as a data.frame}
+\item{mcmc}{The output of the \code{\link[r4ss:SSgetMCMC]{r4ss::SSgetMCMC()}} function as a data.frame}
 
 \item{lower}{Lower quantile value}
 
@@ -21,10 +21,10 @@ calc.mcmc(
 
 \item{biomass.scale}{Scale the biomass by this amount. The default for
 2021 and before was 2e6, but is not 1e6 due to changes in SS3 (hake Issue
- #866). Biomass will be shown in the millions of tonnes (and is females only).}
+#866). Biomass will be shown in the millions of tonnes (and is females only)}
 
-\item{recruitment.scale}{Scale the recruitment by this amount. The default is 1e6
-because recruitment will be shown in millions of tonnes}
+\item{recruitment.scale}{Scale the recruitment by this amount. The default
+is 1e6 because recruitment will be shown in millions of tonnes}
 }
 \value{
 A named list of MCMC outputs

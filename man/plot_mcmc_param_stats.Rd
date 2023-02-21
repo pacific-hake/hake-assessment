@@ -18,26 +18,26 @@ plot_mcmc_param_stats(
 )
 }
 \arguments{
-\item{model}{A model as output by [load_models()]}
+\item{model}{A model as output by \code{\link[=load_models]{load_models()}}}
 
 \item{col}{A color to shade the bars}
 
 \item{effn_labels}{If TRUE, add labels to the top of the bars on the effective sample size plot}
 
-\item{ylim_mult}{Multiply the maximum ylim value by this (to show labels on bars better if `effn_labels` is `TRUE`)}
+\item{ylim_mult}{Multiply the maximum ylim value by this (to show labels on bars better if \code{effn_labels} is \code{TRUE})}
 
 \item{show_ro_loc}{If TRUE, place the text "R0" over the bar in which the R0 parameter falls}
 
-\item{ro_yloc}{If `show_ro_loc` is `TRUE`, use this value as a y value for the text}
+\item{ro_yloc}{If \code{show_ro_loc} is \code{TRUE}, use this value as a y value for the text}
 
-\item{ro_yloc_arr_start}{If `show_ro_loc` is `TRUE`, use this value as a y value for the start of the arrow
+\item{ro_yloc_arr_start}{If \code{show_ro_loc} is \code{TRUE}, use this value as a y value for the start of the arrow
 pointing to the bar where R0 is}
 
-\item{ro_yloc_arr_end}{If `show_ro_loc` is `TRUE`, use this value as a y value for the end of the arrow
+\item{ro_yloc_arr_end}{If \code{show_ro_loc} is \code{TRUE}, use this value as a y value for the end of the arrow
 pointing to the bar where R0 is}
 }
 \value{
-A [barplot()]
+A \code{\link[=barplot]{barplot()}}
 }
 \description{
 Plot Autocorrelation, Effective sample size, Geweke statistic, and

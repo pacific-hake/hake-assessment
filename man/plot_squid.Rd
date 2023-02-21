@@ -13,10 +13,10 @@ plot_squid(model, subplot = 1, cohorts, plot_mcmc = TRUE, getdevs = TRUE)
 
 \item{cohorts}{Vector of cohort years to plot (for labels)}
 
-\item{plot_mcmc}{If `TRUE` plot the MCMC version based on medians. If `FALSE` plot MLE version.}
+\item{plot_mcmc}{If \code{TRUE} plot the MCMC version based on medians. If \code{FALSE} plot MLE version.}
 
 \item{getdevs}{A logical value specifying if the plot should be of
-recruitment deviations, which is the default. If `FALSE`, then
+recruitment deviations, which is the default. If \code{FALSE}, then
 the squid plot will be made using absolute recruitment instead of
 deviations.}
 }

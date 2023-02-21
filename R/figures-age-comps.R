@@ -39,7 +39,8 @@ make_age_comp_bubble_plot <- function(model,
 #' @param mean_age_line_type The line type for the mean age line
 #' @param yrs A vector of 2, for the years to show on the plot
 #' @param by How many years between year labels on the x-axis
-#' @param legend.position See [ggplot2::theme(legend.position)]
+#' @param legend.position See the `legend.position` parameter in
+#' [ggplot2::theme()]
 #' @param alpha See [ggplot2::geom_point()]
 #' @param xlim Limits for the x-axis
 #' @param ... Additional parameters passed to [ggplot2::geom_point()],

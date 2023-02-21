@@ -12,7 +12,7 @@ delete_rds_files(models_dir, dont_del = last_yr_base_model_dir_name)
 \item{dont_del}{A vector of directory names to keep}
 }
 \value{
-[base::invisible()]
+\code{\link[base:invisible]{base::invisible()}}
 }
 \description{
 Delete all model rds files found in the subdirectories of the `models_dir`` directory

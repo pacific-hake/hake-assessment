@@ -26,7 +26,7 @@ run_adnuts(
 \arguments{
 \item{path}{Directory where the model files reside}
 
-\item{num_chains}{The number of chains to run in parallel. If `NULL`,
+\item{num_chains}{The number of chains to run in parallel. If \code{NULL},
 1 less than the number of cores on the machine will be used
 1 less than the number of cores on the machine will be used}
 
@@ -36,24 +36,24 @@ run_adnuts(
 
 \item{num_warmup_samples}{The warmup samples (equivalent of burnin)}
 
-\item{adapt_delta}{The target acceptance rate. See [adnuts::sample_nuts()]}
+\item{adapt_delta}{The target acceptance rate. See \code{\link[adnuts:samplers]{adnuts::sample_admb()}}}
 
-\item{run_extra_mcmc}{If `TRUE`, run SS extra mcmc option which outputs
-files into the `sso` subdirectory. If `FALSE`, those files will not be
-created and the `posteriors.sso` and `dervied_posteriors.sso` files
+\item{run_extra_mcmc}{If \code{TRUE}, run SS extra mcmc option which outputs
+files into the \code{sso} subdirectory. If \code{FALSE}, those files will not be
+created and the \code{posteriors.sso} and \code{dervied_posteriors.sso} files
 will be in the running directory}
 
 \item{fn_exe}{The name of the executable which was built using ADMB}
 
-\item{overwrite}{Logical. If `TRUE`, don't ask user if they want to
+\item{overwrite}{Logical. If \code{TRUE}, don't ask user if they want to
 overwrite if the directory already exists, just do it}
 
 \item{input_files}{The input files for SS}
 
-\item{check_issues}{Run [adnuts::launch_shinyadmb()] after initial short
+\item{check_issues}{Run \code{\link[adnuts:launch_shinyadmb]{adnuts::launch_shinyadmb()}} after initial short
 run to discover issues. This will stop the function before the main
 iterations are done, so you will have to re-run the function again
-with this set to `FALSE`.}
+with this set to \code{FALSE}.}
 }
 \value{
 Nothing
@@ -62,10 +62,10 @@ Nothing
 Run the adnuts MCMC for the model found in the directory given
 }
 \details{
-`path` is the directory in which the MLE will be run, a subdirectory of
-this called `mcmc` is where the MCMC will be run using the `NUTS`
-algorithm. Inside the `mcmc` directory, several temporary subdirectories
-will be created, one for each MCMC chain labeled `chain_*`, AkA CPU
+\code{path} is the directory in which the MLE will be run, a subdirectory of
+this called \code{mcmc} is where the MCMC will be run using the \code{NUTS}
+algorithm. Inside the \code{mcmc} directory, several temporary subdirectories
+will be created, one for each MCMC chain labeled \verb{chain_*}, AkA CPU
 number used in the parallel execution. These will disappear once the
 run has completed and the output has been merged.
 }

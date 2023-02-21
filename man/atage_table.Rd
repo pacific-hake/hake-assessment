@@ -42,7 +42,7 @@ atage_table(
 \item{space_size}{Size of the vertical spaces for the table}
 }
 \value{
-An [xtable::xtable()]
+An \code{\link[xtable:xtable]{xtable::xtable()}}
 }
 \description{
 Makes a table of the estimated -at-age values for 5 different values:

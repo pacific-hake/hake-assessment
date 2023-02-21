@@ -4,7 +4,7 @@
 \alias{make.historical.probs.retro.plot}
 \title{Make individual plots or one overlaid historical probability calculations
 that uses retrospective runs (given we have them). Calls
-`make.historical.probs.plot()` for each retrospective}
+\code{make.historical.probs.plot()} for each retrospective}
 \usage{
 make.historical.probs.retro.plot(
   model,
@@ -24,8 +24,8 @@ make.historical.probs.retro.plot(
 \arguments{
 \item{model}{Model with retrospectives}
 
-\item{type}{One of `decline` or `bforty` as needed for
-[make.historical.probs.plot()]}
+\item{type}{One of \code{decline} or \code{bforty} as needed for
+\code{\link[=make.historical.probs.plot]{make.historical.probs.plot()}}}
 
 \item{xLim}{Range of x (years) axis}
 
@@ -46,12 +46,12 @@ spread them out over multiple pages)}
 \item{lwd.val.for.retros}{lwd for retro lines, default of 1 is for one
 figure}
 
-\item{legend.text.model}{text to describe `model` in the legend}
+\item{legend.text.model}{text to describe \code{model} in the legend}
 
-\item{...}{Arguments to pass to [make.historical.probs.plot()]}
+\item{...}{Arguments to pass to \code{\link[=make.historical.probs.plot]{make.historical.probs.plot()}}}
 }
 \description{
 Make individual plots or one overlaid historical probability calculations
 that uses retrospective runs (given we have them). Calls
-`make.historical.probs.plot()` for each retrospective
+\code{make.historical.probs.plot()} for each retrospective
 }

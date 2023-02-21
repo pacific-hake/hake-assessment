@@ -8,19 +8,19 @@ parameter names}
 get_prior_data(model, param_regex, n_points_prior = 3e+06)
 }
 \arguments{
-\item{model}{The SS model output as loaded by [load_ss_files()]}
+\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
 
 \item{param_regex}{A vector of regular expressions used to extract data
 for parameter names. If there are no matches, or more than one for any
 regular expression, the program will stop.}
 
 \item{n_points_prior}{An integer specifying the number of points you want to
-be generated from the `r<distribution>()` function, e.g.,
-`rnorm(n_points_prior)`.}
+be generated from the \verb{r<distribution>()} function, e.g.,
+\code{rnorm(n_points_prior)}.}
 }
 \value{
 A list of prior and MLE data, one for each of the regular
-expressions in `param_regex`
+expressions in \code{param_regex}
 }
 \description{
 Get the prior and MLE values for the given regular expressions of

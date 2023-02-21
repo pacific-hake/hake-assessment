@@ -10,7 +10,7 @@
 #' remaining colors, based on the `palette`.
 #'
 #' @param num_colors The number of colors to return
-#' @param palette A palette found in [RColorBrewwer::brewer.pal.info]
+#' @param palette A palette found in [RColorBrewer::brewer.pal.info]
 #'
 #' @return A vector of HEX colours
 #'

@@ -15,7 +15,7 @@ run_catch_levels_stable_catch(
 )
 }
 \arguments{
-\item{model}{The SS model output as loaded by [load_ss_files()]}
+\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
 }
 \description{
 Run the model iteratively reducing the difference between the first and second year projections to

@@ -139,14 +139,14 @@ load_ss_files <- function(model_path = NA,
 
 #' Return a list of mcmc calculations, e.g. quantiles for various values
 #'
-#' @param mcmc The output of the [r4ss::SS_getMCMC()] function as a data.frame
+#' @param mcmc The output of the [r4ss::SSgetMCMC()] function as a data.frame
 #' @param lower Lower quantile value
 #' @param upper Upper quantile value
 #' @param biomass.scale Scale the biomass by this amount. The default for
-#'  2021 and before was 2e6, but is not 1e6 due to changes in SS3 (hake Issue
-#'   #866). Biomass will be shown in the millions of tonnes (and is females only).
-#' @param recruitment.scale Scale the recruitment by this amount. The default is 1e6
-#' because recruitment will be shown in millions of tonnes
+#' 2021 and before was 2e6, but is not 1e6 due to changes in SS3 (hake Issue
+#' #866). Biomass will be shown in the millions of tonnes (and is females only)
+#' @param recruitment.scale Scale the recruitment by this amount. The default
+#' is 1e6 because recruitment will be shown in millions of tonnes
 #'
 #' @return A named list of MCMC outputs
 #' @export

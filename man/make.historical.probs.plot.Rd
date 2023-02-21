@@ -26,20 +26,20 @@ make.historical.probs.plot(
 )
 }
 \arguments{
-\item{model}{A model object, created by [create_rds_file()]}
+\item{model}{A model object, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{type}{"decline" to show probs of spawning biomass declining in year
 after historical assessment year, "decline.one.year" to show that for just
 one year (to explain in a talk), "bforty" to show prob of being below
-`B_40\%` in the year after ther historical assessment year}
+\verb{B_40\\\%} in the year after ther historical assessment year}
 
 \item{end}{final year for calculations}
 
 \item{xLim}{range of x (years) axis}
 
-\item{add.50}{Whether to add horizontal line at 50%}
+\item{add.50}{Whether to add horizontal line at 50\%}
 
-\item{add.50.col}{Colour for 50% line}
+\item{add.50.col}{Colour for 50\% line}
 
 \item{one.year}{A single year to plot (may automatically work for more
 years)}
@@ -64,7 +64,7 @@ years)}
 
 \item{add.to.plot}{whether to add to an existing plot}
 
-\item{...}{Arguments passed to [combine_historical_probs()]}
+\item{...}{Arguments passed to \code{\link[=combine_historical_probs]{combine_historical_probs()}}}
 }
 \value{
 A base R plot
@@ -73,7 +73,7 @@ A base R plot
 Plot either:
 (a) base model's estimate of P(B_t+1 < B_t) and compare with the estimate of
 that from the year t assessment (using the known catch in year t)
-(b) base model's estimate of P(B_t+1 < B_40%) and compare with the estimates
+(b) base model's estimate of P(B_t+1 < B_40\%) and compare with the estimates
 of that from the year t assessment (using the known catch in year
 t).
 Included in management presentation.

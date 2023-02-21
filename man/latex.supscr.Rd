@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{latex.supscr}
 \alias{latex.supscr}
-\title{Creates a latex string with `main.txt` superscripted by `supscr.txt`}
+\title{Creates a latex string with \code{main.txt} superscripted by \code{supscr.txt}}
 \usage{
 latex.supscr(main.txt, supscr.txt)
 }
@@ -12,8 +12,8 @@ latex.supscr(main.txt, supscr.txt)
 \item{supscr.txt}{The superscript text}
 }
 \value{
-A latex string with `main.txt` superscripted by `supscr.txt`
+A latex string with \code{main.txt} superscripted by \code{supscr.txt}
 }
 \description{
-Creates a latex string with `main.txt` superscripted by `supscr.txt`
+Creates a latex string with \code{main.txt} superscripted by \code{supscr.txt}
 }

@@ -7,7 +7,7 @@
 make_small_rds(drs)
 }
 \arguments{
-\item{drs}{Output from [set_dirs()]}
+\item{drs}{Output from \code{\link[=set_dirs]{set_dirs()}}}
 }
 \description{
 Make RDS files smaller by removing unnecessary objects

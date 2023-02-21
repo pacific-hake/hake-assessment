@@ -3,7 +3,7 @@
 \name{extract_survey_index_fits}
 \alias{extract_survey_index_fits}
 \title{Extract index fit MCMC quantiles from models and return them
-in a [ggplot2::ggplot()]-ready data frame}
+in a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}-ready data frame}
 \usage{
 extract_survey_index_fits(
   model_lst,
@@ -14,24 +14,24 @@ extract_survey_index_fits(
 )
 }
 \arguments{
-\item{model_lst}{A list of models, each created by [create_rds_file()]}
+\item{model_lst}{A list of models, each created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{model_names}{A vector of model names,the same length as `models_lst`}
+\item{model_names}{A vector of model names,the same length as \code{models_lst}}
 
-\item{survey_type}{The type of survey, must be one of `age1` or `age2`.
-`age2` means age 2+ acoustic survey and `age1``is the age 1 acoustic survey}
+\item{survey_type}{The type of survey, must be one of \code{age1} or \code{age2}.
+\code{age2} means age 2+ acoustic survey and `age1``is the age 1 acoustic survey}
 
-\item{type}{A name as found in the `extra.mcmc[[type]]` object of a model
-objects, for example if `type == index.med`, it is a table of index fit
+\item{type}{A name as found in the \code{extra.mcmc[[type]]} object of a model
+objects, for example if \code{type == index.med}, it is a table of index fit
 medians}
 
-\item{inc_models_yr}{Logical. If `TRUE`, include the `model` and `year`
+\item{inc_models_yr}{Logical. If \code{TRUE}, include the \code{model} and \code{year}
 columns in the data frame}
 }
 \value{
-A [tibble::tibble()]
+A \code{\link[tibble:tibble]{tibble::tibble()}}
 }
 \description{
 Extract index fit MCMC quantiles from models and return them
-in a [ggplot2::ggplot()]-ready data frame
+in a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}-ready data frame
 }

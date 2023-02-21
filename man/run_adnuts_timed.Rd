@@ -2,16 +2,16 @@
 % Please edit documentation in R/run-adnuts-timed.R
 \name{run_adnuts_timed}
 \alias{run_adnuts_timed}
-\title{Run [run_adnuts()] with a timer}
+\title{Run \code{\link[=run_adnuts]{run_adnuts()}} with a timer}
 \usage{
 run_adnuts_timed(...)
 }
 \arguments{
-\item{...}{Arguments to pass to [run_adnuts()]}
+\item{...}{Arguments to pass to \code{\link[=run_adnuts]{run_adnuts()}}}
 }
 \value{
 Nothing
 }
 \description{
-Run [run_adnuts()] with a timer
+Run \code{\link[=run_adnuts]{run_adnuts()}} with a timer
 }

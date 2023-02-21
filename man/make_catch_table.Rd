@@ -21,7 +21,7 @@ make_catch_table(
 )
 }
 \arguments{
-\item{ct}{Output from [load_catches()]}
+\item{ct}{Output from \code{\link[=load_catches]{load_catches()}}}
 
 \item{country}{1 for Canada, 2 for US, anything else for both}
 
@@ -44,7 +44,7 @@ make_catch_table(
 \item{hline_after}{Default NULL is for longtable, gets changed for tabluar}
 }
 \value{
-An [xtable::xtable()]
+An \code{\link[xtable:xtable]{xtable::xtable()}}
 }
 \description{
 Make summary of catch for given country (US, Canada, or both).

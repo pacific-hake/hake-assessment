@@ -22,7 +22,7 @@ plot_retro_recruits(
 )
 }
 \arguments{
-\item{retroSummary}{List object created by [r4ss::SSsummarize()]}
+\item{retroSummary}{List object created by \code{\link[r4ss:SSsummarize]{r4ss::SSsummarize()}}}
 
 \item{endyrvec}{Vector of years representing the final year of values to
 show for each model}
@@ -31,13 +31,13 @@ show for each model}
 
 \item{ylim}{Limits of y-axis}
 
-\item{uncertainty}{Logical. If `TRUE`, show uncertainty intervals around lines}
+\item{uncertainty}{Logical. If \code{TRUE}, show uncertainty intervals around lines}
 
 \item{labels}{Vector of plot labels}
 
 \item{main}{Title for plot}
 
-\item{mcmcVec}{Either vector of `TRUE`/`FALSE` values indicating which models
+\item{mcmcVec}{Either vector of \code{TRUE}/\code{FALSE} values indicating which models
 use MCMC.  Or single value applied to all models}
 
 \item{devs}{Plot deviations instead of absolute recruitment values?}
@@ -48,7 +48,7 @@ to 0}
 \item{labelyears}{Label cohorts with text at the end of each line?}
 
 \item{legend}{Add a legend showing which color goes with which line (as
-alternative to `labelyears`).}
+alternative to \code{labelyears}).}
 
 \item{leg.ncols}{Number of columns for the legend.}
 }
@@ -56,7 +56,7 @@ alternative to `labelyears`).}
 Make squid plot of retrospectives of recruitment deviations.
 }
 \details{
-Based on [r4ss::SSplotRetroRecruits()]
+Based on \code{\link[r4ss:SSplotRetroRecruits]{r4ss::SSplotRetroRecruits()}}
 Inspired by Jim Ianelli and named by Sean Cox, the squid plot is a way to
 examine retrospective patterns in estimation of recruitment deviations.
 }

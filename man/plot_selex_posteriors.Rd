@@ -18,13 +18,13 @@ plot_selex_posteriors(
 )
 }
 \arguments{
-\item{model}{A model list, created by [create_rds_file()]}
+\item{model}{A model list, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{type}{One of 1 or 2 where 1 = Fishery and 2 = Acoustic age 2+ survey}
 
 \item{probs}{A vector of two quantiles to include for the uncertainty}
 
-\item{age_range}{A vector of two for the min and max ages to plot. If `NULL`,
+\item{age_range}{A vector of two for the min and max ages to plot. If \code{NULL},
 all ages in the data will be plotted}
 
 \item{line_color}{Color of the posterior lines}
@@ -38,7 +38,7 @@ all ages in the data will be plotted}
 \item{point_size_unc}{Size of the points}
 }
 \value{
-A [ggplot2::ggplot()] object
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Plot the selectivity parameter estimates from all posteriors

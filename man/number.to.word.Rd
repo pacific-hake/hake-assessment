@@ -9,7 +9,7 @@ number.to.word(x = NA, th = FALSE, cap.first = FALSE)
 \arguments{
 \item{x}{The number to convert}
 
-\item{th}{Logical. If TRUE the *th* versions will be returned,
+\item{th}{Logical. If TRUE the \emph{th} versions will be returned,
 e.g. 4 = fourth}
 
 \item{cap.first}{Logical. Capitalize the first letter of the returned
@@ -23,9 +23,9 @@ Change a number into an English word
 }
 \details{
 See
- https://github.com/ateucher/useful_code/blob/master/R/numbers2words.r
+https://github.com/ateucher/useful_code/blob/master/R/numbers2words.r
 See Function by John Fox found here:
- http://tolstoy.newcastle.edu.au/R/help/05/04/2715.html
+http://tolstoy.newcastle.edu.au/R/help/05/04/2715.html
 }
 \examples{
 number.to.word(c(1000,2,3,10000001), th = TRUE, cap.first = TRUE)

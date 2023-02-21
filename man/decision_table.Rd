@@ -2,7 +2,7 @@
 % Please edit documentation in R/tables-decisions.R
 \name{decision_table}
 \alias{decision_table}
-\title{Create the Executive Summary decision tables. `rows_to_label` and `row_labels`
+\title{Create the Executive Summary decision tables. \code{rows_to_label} and \code{row_labels}
 need changing each year.}
 \usage{
 decision_table(
@@ -23,7 +23,7 @@ decision_table(
 )
 }
 \arguments{
-\item{model}{An mcmc run, `model$forecasts` must be populated from [run_forecasts()]}
+\item{model}{An mcmc run, \code{model$forecasts} must be populated from \code{\link[=run_forecasts]{run_forecasts()}}}
 
 \item{xcaption}{Caption to appear in the calling document}
 
@@ -33,7 +33,7 @@ decision_table(
 
 \item{space.size}{Size of the vertical spaces for the table}
 
-\item{type}{Type to build. `biomass` or `spr`}
+\item{type}{Type to build. \code{biomass} or \code{spr}}
 
 \item{placement}{Latex code for placement of table}
 
@@ -43,12 +43,12 @@ catch levels will be shown}
 \item{rows_to_label}{A vector of letters representing rows to add custom labels to}
 
 \item{row_labels}{A list of length two vectors with text to place in the empty
-two rows under the letter for the letters given in `rows_to_label`}
+two rows under the letter for the letters given in \code{rows_to_label}}
 }
 \value{
 The latex code needed to build the table
 }
 \description{
-Create the Executive Summary decision tables. `rows_to_label` and `row_labels`
+Create the Executive Summary decision tables. \code{rows_to_label} and \code{row_labels}
 need changing each year.
 }

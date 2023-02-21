@@ -12,15 +12,15 @@ build_adnuts_doc(knit_only = FALSE, doc_name = "adnuts-diagnostics", ...)
 \item{doc_name}{What to name the document (no extension)}
 }
 \value{
-[base::invisible()]
+\code{\link[base:invisible]{base::invisible()}}
 }
 \description{
 Build the ADNUT diagnostics document entirely from within an R session
 }
 \details{
-Make sure you have created the .rds files by running [build_rds()] in the appropriate manner.
+Make sure you have created the .rds files by running \code{\link[=build_rds]{build_rds()}} in the appropriate manner.
 Once you have done that and run this function once within an R session, it will be a little quicker since the RDS
 file contents will have already been loaded into the R session. Only has the
 PNG option since EPS files produce a huge final PDF; no need for bibtex
-  since no references. If those are needed then just adapt `build_doc` again.
+since no references. If those are needed then just adapt \code{build_doc} again.
 }
