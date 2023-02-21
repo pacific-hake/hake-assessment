@@ -234,16 +234,22 @@ opts_chunk$set(is.fig = FALSE)
 opts_chunk$set(alt.text = "")
 @
 
-<<load-globals, child='globals/load-globals.rnw'>>=
+% Load important starting globals required by other scripts
+<<load-globals, child='load-document-variables/01-load-globals.rnw'>>=
 @
 
-<<load-data-tables, child='globals/load-data-tables.rnw'>>=
+% Load all data tables into global variables
+<<load-data-tables, child='load-document-variables/02-load-data-tables.rnw'>>=
 @
 
-<<load-models, child='globals/load-models.rnw'>>=
+% Load all models here
+<<load-models, child='load-document-variables/03-load-models.rnw'>>=
 @
 
-<<load-custom-knitr-variables, child='globals/load-custom-knitr-variables.rnw'>>=
+% Load/create all R variables used in the document text
+% any of these are based on the base model, sensitivity models, and bridge models
+% so those must be loaded first (see previous chunk)
+<<load-knitr-variables, child='load-document-variables/04-load-knitr-variables.rnw'>>=
 @
 
 % Title page and author references page

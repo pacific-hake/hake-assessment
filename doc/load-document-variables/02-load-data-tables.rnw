@@ -1,4 +1,6 @@
 % Load all data tables into global variables
+% The files are loaded from the package installation, so you must build and
+% install the package before trying to run this code or build the document
 
 <<load-data-tables-chunk, echo = FALSE>>=
 
