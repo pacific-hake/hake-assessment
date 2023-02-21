@@ -90,13 +90,13 @@ combine_historical_probs <- function(
 #'
 #' @param model A model object, created by [create_rds_file()]
 #' @param type "decline" to show probs of spawning biomass declining in year
-#'   after historical assessment year, "decline.one.year" to show that for just
-#'   one year (to explain in a talk), "bforty" to show prob of being below
-#'   `B_40\%` in the year after ther historical assessment year
+#' after historical assessment year, "decline.one.year" to show that for just
+#' one year (to explain in a talk), "bforty" to show prob of being below
+#' `B_40\\%` in the year after the historical assessment year
 #' @param end final year for calculations
 #' @param xLim range of x (years) axis
 #' @param add.50 Whether to add horizontal line at 50%
-#' @param add.50.col Colour for 50% line
+#' @param add.50.col Color for 50% line
 #' @param one.year A single year to plot (may automatically work for more
 #' years)
 #' @param add.projs Whether to add future projections from current base model
