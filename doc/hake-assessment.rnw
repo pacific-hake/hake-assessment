@@ -229,16 +229,9 @@ knit_hooks$set(alt.text = function(before, options, envir){
   NULL
 })
 
-# Default chunk options
+# Default chunk options needed for the alt-text routine to work right
 opts_chunk$set(is.fig = FALSE)
 opts_chunk$set(alt.text = "")
-
-options(xtable.comment = FALSE)
-
-#source(here::here("R/all.R"))
-#source(file.path(rootd_doc, "load-models.R"))
-#source(file.path(rootd_r, "custom-knitr-variables.R"))
-
 @
 
 <<load-globals, child='globals/globals.rnw'>>=
