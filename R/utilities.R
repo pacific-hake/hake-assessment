@@ -37,38 +37,6 @@ f <- function(x, dec.points = 0){
   format(round(x,dec.points), big.mark = ",", nsmall = dec.points)
 }
 
-#' Take a data frame that has at least two columns called year and fdep,
-#' convert to meters and calculate boxplot stats on each year write a
-#' csv file to current directory
-#'
-#' @details Use spatial data frame (Canada) output to this function
-#'
-#' @param x The data frame
-#' @param fleet
-#'
-#' @return [base::invis]
-#' @export
-#'
-#' @examples
-#' export.depth(d.ft, "freezer-trawlers")
-#' export.depth(d.ss, "shoreside")
-export.depth <- function(x, fleet = ""){
-
-  x %>%
-    transmute(year = as.factor(year), depth = fdep * 1.8288) %>%
-    group_by(year) %>%
-    do(as.data.frame(t(boxplot.stats(.$depth)$`stats`))) %>%
-    ungroup() %>%
-    transmute(year,
-              lower95 = V1,
-              lowerhinge = V2,
-              median = V3,
-              upperhinge = V4,
-              upper95 = V5) %>%
-    write.csv(file.path(rootd_data, paste0("depth-can-", fleet, ".csv")),
-              row.names = FALSE)
-}
-
 # Functions to make table generation easier -----------------------------------
 # Latex newline
 latex.nline <- " \\\\ "

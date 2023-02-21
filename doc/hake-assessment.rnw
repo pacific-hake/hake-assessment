@@ -234,10 +234,19 @@ opts_chunk$set(is.fig = FALSE)
 opts_chunk$set(alt.text = "")
 @
 
-<<load-globals, child='globals/globals.rnw'>>=
+<<load-globals, child='globals/load-globals.rnw'>>=
 @
 
-%% Title page and author references page
+<<load-data-tables, child='globals/load-data-tables.rnw'>>=
+@
+
+<<load-models, child='globals/load-models.rnw'>>=
+@
+
+<<load-custom-knitr-variables, child='globals/load-custom-knitr-variables.rnw'>>=
+@
+
+% Title page and author references page
 \thispagestyle{empty}
 
 \title{\TitleFont \mypdftitle~in \Sexpr{assess_yr}

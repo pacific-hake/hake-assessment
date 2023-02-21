@@ -1,0 +1,120 @@
+% Load all data tables into global variables
+
+<<load-data-tables-chunk, echo = FALSE>>=
+
+# Data file names and loading ----
+load_dir <- system.file("data", package = "hake")
+if(load_dir == ""){
+  stop("The directory containing the data tables does not exist. Install the ",
+       "`hake` package and try again",
+       call. = FALSE)
+}
+if(!dir.exists(load_dir)){
+  stop("The directory `", load_dir, "` does not exist. Install the `hake` ",
+       "package and try again",
+       call. = FALSE)
+}
+message("Loading all data tables (csv files) from `",
+        load_dir,
+        "`")
+
+# Assessment history and changes ----
+pkg <- "hake"
+assessment.history <-
+  read.csv(file.path(load_dir, "assessment-history.csv"))
+assessment.changes <-
+  read.csv(file.path(load_dir, "assessment-changes.csv"))
+assessment.history.disp <-
+  read.csv(file.path(load_dir, "assessment-history-SSBdispersion.csv"))
+# Maturity and weight-at-age ----
+ovary.samples <-
+  read.csv(file.path(load_dir, "ovary-samples.csv"))
+maturity.ogives <-
+  read.csv(file.path(load_dir, "maturity-table.csv"))
+maturity.samples <-
+  read.csv(file.path(load_dir, "hake-maturity-data.csv"))
+weight_age_extrapolation_mask <-
+  read.csv(file.path(load_dir, "wtatage_all_samplesize.csv"))
+
+# Catch and TAC ----
+ct <-
+  load_catches(file.path(load_dir, "landings-tac-history.csv"))
+catch.targets <-
+  read_csv(file.path(load_dir, "catch-targets-biomass.csv"))
+further.tac <-
+  further.tac.details(file.path(load_dir, "further-tac-details.csv"))
+
+# * Canadian catch ----
+can.ft.catch.by.month <-
+  read.csv(file.path(load_dir, "can-ft-catch-by-month.csv"))
+can.shore.catch.by.month <-
+  read.csv(file.path(load_dir, "can-ss-catch-by-month.csv"))
+can.jv.catch.by.month <-
+  read.csv(file.path(load_dir, "can-jv-catch-by-month.csv"))
+
+# * US catch ----
+us.shore.catch.by.month <-
+  read.csv(file.path(load_dir, "us-shore-catch-by-month.csv"))
+us.cp.catch.by.month <-
+  read.csv(file.path(load_dir, "us-cp-catch-by-month.csv"))
+us.ms.catch.by.month <-
+  read.csv(file.path(load_dir, "us-ms-catch-by-month.csv"))
+us.ti.catch.by.month <-
+  read.csv(file.path(load_dir, "us-ti-catch-by-month.csv"))
+us.research.catch.by.month <-
+  read.csv(file.path(load_dir, "us-research-catch-by-month.csv"))
+
+# Sampling data ----
+sampling.history <-
+  load.sampling.history(file.path(load_dir, "fishery-sampling-history.csv"))
+# * Canada sampling ----
+can.ages <-
+  load.can.age.data(file.path(load_dir, "can-age-data.csv"))
+can.ft.num.fish <-
+  read.csv(file.path(load_dir, "can-ft-num-fish-aged.csv"))
+can.ss.num.fish <-
+  read.csv(file.path(load_dir, "can-ss-num-fish-aged.csv"))
+can.jv.num.fish <-
+  read.csv(file.path(load_dir, "can-jv-num-fish-aged.csv"))
+can.shore.age <- can.ages[[1]]
+can.ft.age <- can.ages[[2]]
+# * US age samples ----
+us.shore.age <-
+  load.us.age.data(file.path(load_dir, "us-shore-age-data.csv"))
+us.cp.age <-
+  load.us.age.data(file.path(load_dir, "us-cp-age-data.csv"))
+us.ms.age <-
+  load.us.age.data(file.path(load_dir, "us-ms-age-data.csv"))
+
+# Survey data ----
+kriging.pars <-
+  read.csv(file.path(load_dir, "kriging-parameters.csv"),
+           comment.char = "#")
+survey.history <-
+  load.survey.history(file.path(load_dir, "survey-history.csv"))
+survey.by.country <-
+  load.survey.by.country(file.path(load_dir, "survey-by-country.csv"))
+
+# Depth data filenames ----
+# * Canada depths ----
+can.ft.bottom.depth <-
+  read.csv(file.path(load_dir, "depth-can-ft-bottom.csv"))
+can.ss.bottom.depth <-
+  read.csv(file.path(load_dir, "depth-can-ss-bottom.csv"))
+can.ft.gear.depth <-
+  read.csv(file.path(load_dir, "depth-can-ft-gear.csv"))
+can.ss.gear.depth <-
+  read.csv(file.path(load_dir, "depth-can-ss-gear.csv"))
+# * US depths ----
+us.atsea.fishing.depth <-
+  read.csv(file.path(load_dir, "depth-us-atsea-fishing.csv"))
+us.atsea.bottom.depth <-
+  read.csv(file.path(load_dir, "depth-us-atsea-bottom.csv"))
+
+# At-age output data tables ----
+out_est_naa_file <- "estimated-numbers-at-age.csv"
+out_est_eaa_file <- "estimated-exploitation-at-age.csv"
+out_est_caa_file <- "estimated-catch-at-age.csv"
+out_est_caa_bio_file <- "estimated-catch-at-age-biomass.csv"
+out_est_baa_file <- "estimated-biomass-at-age.csv"
+@

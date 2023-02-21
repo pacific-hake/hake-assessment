@@ -1,0 +1,121 @@
+% Load important starting globals required by other scripts
+
+<<load-globals-chunk, echo = FALSE>>=
+
+# Options, to be set back on exit
+# max.print - Stop tibbles from showing 1e3 and 1e6
+# warnPartialMatchDollar - Don't allow partial matches using the
+#   dollar operator
+#`dplyr.summarise.inform - Stop messages like the following:
+#  `summarize()` has grouped output by 'Fleet'. You can override using
+#   the `.groups` argument.
+henv$op <- options(max.print = 999999,
+                   warnPartialMatchDollar = TRUE,
+                   dplyr.summarise.inform = FALSE,
+                   xtable.comment = FALSE)
+on.exit(options(henv$op), add = TRUE)
+
+curr_month <- month(Sys.Date())
+curr_year <- year(Sys.Date())
+
+# If in September 01 to December 31, the assess_yr will be set to the year
+# that  begins in January. If in January 01 to August 31 the assess_yr will
+# be the current year
+assess_yr <- ifelse(curr_month %in% 9:12, curr_year + 1, curr_year)
+last_assess_yr <- assess_yr - 1
+model_version <- "01"
+last_yr_model_version <- "01"
+
+sys_info <- Sys.info()
+computer_name <- sys_info[["nodename"]]
+os_name <- sys_info[["sysname"]]
+user_name <- sys_info[["user"]]
+
+rootd_doc <- here::here("doc")
+rootd_models <- ifelse(computer_name == "hake-precision",
+                       "/srv/hake/models",
+                       here::here("models"))
+models_dir <- file.path(rootd_models,
+                        assess_yr,
+                        paste0(model_version, "-version"))
+last_yr_models_dir <- file.path(rootd_models,
+                                last_assess_yr,
+                                paste0(last_yr_model_version, "-version"))
+
+output_csv_dir <- here::here(rootd_doc, "out-csv")
+
+catch_levels_path <- "catch-levels"
+default_hr_path <- "default-hr"
+stable_catch_path <- "stable-catch"
+spr_100_path <- "spr-100"
+forecasts_path <- "forecasts"
+retrospectives_path <- "retrospectives"
+
+ss_executable <- "ss3"
+starter_file_name <- "starter.ss"
+par_file_name <- "ss.par"
+forecast_file_name <- "forecast.ss"
+weight_at_age_file_name <- "wtatage.ss"
+posts_file_name <- "posteriors.sso"
+derposts_file_name <- "derived_posteriors.sso"
+report_file_name <- "Report.sso"
+compreport_file_name <- "CompReport.sso"
+
+# Custom catch levels calculations
+# The tolerance in the spr away from 1 for the calculation of catch for SPR = 1
+catch_levels_spr_tol <- 0.001
+# The tolerance in tonnes. The iterations will stop if the difference between the
+#  projected biomass between the first and second years is less than this
+catch_levels_catch_tol <- 100
+# The maximum number of iterations to do. If this is reached, then no catch value could
+#  be found within the tolerances above
+catch_levels_max_iter <- 20
+
+forecast_yrs <- assess_yr:(assess_yr + 3)
+forecast_yrs_extra <- assess_yr:(assess_yr + 3)
+forecast_probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
+
+retrospective_yrs <- 1:10
+plot_retro_yrs <- 1:5
+
+show_ss_output <- FALSE
+
+theme_set(hake_theme())
+
+# -----------------------------------------------------------------------------
+# Data start and endpoint variables
+# -----------------------------------------------------------------------------
+recruit_dev_start_yr <- 1946
+unfished_eq_yr <- 1964
+start_yr <- 1966
+start_yr_age_comps <- 1975
+end_yr <- assess_yr
+last_data_yr <- end_yr - 1
+survey_start_yr <- 1995
+survey_end_yr <- 2021
+surv_yrs <- c(1995, 1998, 2001, 2003, 2005, 2007,
+              2009, 2011, 2012, 2013, 2015, 2017,
+              2019, 2021)
+
+# tick marks for time series plot (not catch time series though)
+big_ticks <- seq(1970, end_yr + 4, 5)
+small_ticks <- start_yr:max(big_ticks)
+
+# -----------------------------------------------------------------------------
+# Key posteriors used in the assessment
+# -----------------------------------------------------------------------------
+key_posteriors <- c("NatM",
+                    "SR_LN",
+                    "SR_BH_steep",
+                    "Q_extraSD_Acoustic_Survey",
+                    "ln\\(DM_theta\\)_Age_P1",
+                    "ln\\(DM_theta\\)_Age_P2")
+key_posteriors_titles <- c("Natural mortality",
+                           expression(ln(R[0])),
+                           "Steepness",
+                           "Survey extra SD",
+                           "Dirichlet-multinomial fishery",
+                           "Dirichlet-multinomial survey")
+key_posteriors_file <- "keyposteriors.csv"
+nuisance_posteriors_file <- "nuisanceposteriors.csv"
+@
