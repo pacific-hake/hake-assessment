@@ -60,7 +60,7 @@ make_landings_tac_table(ct,
 \pagestyle{fancy}
 
 <<main-sampling-history-table, results='asis', echo=FALSE>>=
-make.sampling.history.table(sampling.history,
+make.sampling.history.table(sampling_history_df,
                             xcaption =
                               "Annual summary of U.S. and Canadian
                               fishery sampling included in this stock
@@ -81,7 +81,7 @@ make.sampling.history.table(sampling.history,
 \pagestyle{mylandscape}
 \centering
 <<main-us-cp-age-data-table, results='asis', echo=FALSE>>=
-make.us.age.data.table(us.cp.age,
+make.us.age.data.table(us_cp_age_df,
                        fleet = 1,
                        start_yr = end_yr - num.recent.yrs,
                        end_yr = last_data_yr,
@@ -96,7 +96,7 @@ make.us.age.data.table(us.cp.age,
 @
 
 <<main-us-ms-data-table, results='asis', echo=FALSE>>=
-make.us.age.data.table(us.ms.age,
+make.us.age.data.table(us_ms_age_df,
                        fleet = 2,
                        start_yr = end_yr - num.recent.yrs,
                        end_yr = last_data_yr,
@@ -117,7 +117,7 @@ make.us.age.data.table(us.ms.age,
 \pagestyle{mylandscape}
 \centering
 <<main-us-shore-age-data-table, results='asis', echo=FALSE>>=
-make.us.age.data.table(us.shore.age,
+make.us.age.data.table(us_ss_age_df,
                        fleet = 3,
                        start_yr = end_yr - num.recent.yrs,
                        end_yr = last_data_yr,
@@ -132,7 +132,7 @@ make.us.age.data.table(us.shore.age,
 @
 
 <<main-can-shore-age-data-table, results='asis', echo=FALSE>>=
-make.can.age.data.table(can.ages,
+make.can.age.data.table(can_ages_lst,
                         can.ss.num.fish,
                         fleet = 1,
                         start_yr = end_yr - num.recent.yrs,
@@ -153,7 +153,7 @@ make.can.age.data.table(can.ages,
 \pagestyle{mylandscape}
 \centering
 <<main-can-ft-age-data-table, results='asis', echo=FALSE>>=
-make.can.age.data.table(can.ages,
+make.can.age.data.table(can_ages_lst,
                         can.ft.num.fish,
                         fleet = 2,
                         start_yr = end_yr - num.recent.yrs,
@@ -213,7 +213,7 @@ make.input.age.data.table(base_model,
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 <<main-survey-history-table, results='asis', echo=FALSE>>=
-make.survey.history.table(survey.history,
+make.survey.history.table(survey_history_df,
                           base_model[["dat"]][["CPUE"]],
                           digits = 3,
                           xcaption = paste0("Summary of the acoustic surveys from ", survey_start_yr, " to ", survey_end_yr, "."),
@@ -223,7 +223,7 @@ make.survey.history.table(survey.history,
 @
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 <<main-survey-by-country-table, results='asis', echo=FALSE>>=
-make.survey.by.country.table(survey.by.country,
+make.survey.by.country.table(survey_by_country_df,
                              digits = 3,
                              xcaption = paste0("Summary of the acoustic survey age-2+ biomass attributed to each country."),
                              xlabel = "tab:main-survey-by-country",
@@ -252,7 +252,7 @@ make.maturity.ogives.table(maturity.ogives,
 @
 
 <<main-ovaries-table, results='asis', echo=FALSE>>=
-make.maturity.samples.table(ovary.samples,
+make.maturity.samples.table(ovary_samples_df,
                             xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.
                                         The maturity ogive was determined from a subset of these samples
                                         (up to and including 2017; see \\citealt{JTC2018}).",
@@ -280,7 +280,7 @@ table_param_est_bounds(
 \clearpage
 
 <<main-assessment-changes-table, results='asis', echo=FALSE>>=
-make.assessment.changes.table(assessment.changes,
+make.assessment.changes.table(assess_changes_df,
                               xcaption = paste0("Annual changes in the modeling framework used to assess ",
                                                 "\\fishname\\ since 2011. ",
                                                 "Methods used to weight the age-composition data (Comp Method), i.e., ",

@@ -116,13 +116,13 @@ models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] # pretty c
 \subsection{Background}
 \frame{\frametitle{Past management: Total Allowable Catch}
 <<tac-vs-realized-catch-ts, fig.height=3.5>>==
-plot_management_catch_vs_tac(catch.targets, connect_vars = TRUE,
+plot_management_catch_vs_tac(catch_targets_df, connect_vars = TRUE,
                              connect_vars_linetype = "solid",
                              connect_vars_alpha = 0.2,
                              curr_assess_biomass = base_model$catch.default.policy[1],
                              leg_pos = c(0.12, 0.87),
                              leg_font_size = 10)
-def_med_hr_tac <- filter(catch.targets,
+def_med_hr_tac <- filter(catch_targets_df,
                          Year == last_assess_yr)$`Default HCR TAC`
 @
 }
@@ -144,7 +144,7 @@ def_med_hr_tac <- filter(catch.targets,
   \end{column}
   \begin{column}{0.6\textwidth}
   <<tac-vs-realized-catch, fig.height = 6, out.width = '0.95\\columnwidth'>>=
-  plot_management_catch_vs_tac_1_to_1(catch.targets,
+  plot_management_catch_vs_tac_1_to_1(catch_targets_df,
                                       top_yrs = c(2004, 2006, 2012, 2016, 2018),
                                       color_darken = 0.9)
   @

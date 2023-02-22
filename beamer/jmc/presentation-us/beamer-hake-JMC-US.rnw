@@ -220,7 +220,7 @@ from last year)
 %--------------------------------------------------------------
 \frame{\frametitle{Total Allowable Catch (time series)}
     <<tac-vs-realized-catch-ts, fig.height=3.5>>==
-    plot_management_catch_vs_tac(catch.targets, connect_vars = TRUE,
+    plot_management_catch_vs_tac(catch_targets_df, connect_vars = TRUE,
                                  connect_vars_linetype = "solid",
                                  connect_vars_alpha = 0.2,
                                  curr_assess_biomass = base_model$catch.default.policy[1],

@@ -25,7 +25,7 @@ make.survey.history.table <- function(dat,
       # Put vessels in the right format
       dplyr::mutate(
         vessels = purrr::map(
-          .x = strsplit(survey.history$vessels," +"),
+          .x = strsplit(survey_history_df$vessels," +"),
           .f = ~ latex.mlc(
             gsub(pattern = "-", replacement = " ", x = .),
             FALSE

@@ -40,8 +40,9 @@ can.allotment.percent.last.year <- f(pull(ct_last1, can_tac) / pull(ct_last1, to
 us.allotment.percent.last.year <- f(pull(ct_last1, us_tac) / pull(ct_last1, tot_tac) * 100, 2)
 
 # Further TAC sources ---------------------------------------------------------
-# further.tac is defined in R/data-tables.R
-ft <- further.tac
+# further_tac_df is defined in:
+# doc/load-document-variables/02-load-data-tables.rnw
+ft <- further_tac_df
 last.year.us.tribal <- ft %>% filter(Year == last_data_yr) %>% pull(us.tribal.quota)
 last.year.us.research <- ft %>% filter(Year == last_data_yr) %>% pull(us.research.quota)
 last.year.us.non.tribal <- ft %>% filter(Year == last_data_yr) %>% pull(us.nontribal.quota)
@@ -78,7 +79,7 @@ last.year.us.research.catch <- ct %>% filter(year == last_data_yr) %>% pull(us_r
 last.year.us.cp.catch <- ct %>% filter(year == last_data_yr) %>% pull(us_cp_xx)
 last.year.us.ms.catch <- ct %>% filter(year == last_data_yr) %>% pull(us_ms_xx)
 last.year.us.shore.catch <- ct %>% filter(year == last_data_yr) %>% pull(us_shore_xx)
-last.year.us.ti.catch <- us.ti.catch.by.month %>% filter(year == last_data_yr) %>% pull(catch) %>% sum
+last.year.us.ti.catch <- us_ti_catch_by_month_df %>% filter(year == last_data_yr) %>% pull(catch) %>% sum
 catcher.processor.catch <- ((ct_last1 %>% select(us_cp_xx) %>% pull) / (last.year.us.cp.quota.reallocated) * 100) %>% f(1)
 mothership.catch <- ((ct_last1 %>% select(us_ms_xx) %>% pull) / (last.year.us.ms.quota.reallocated) * 100) %>% f(1)
 shore.based.catch <- ((ct_last1 %>% select(us_shore_xx) %>% pull - last.year.us.ti.catch) / (last.year.us.shore.quota.reallocated) * 100) %>% f(1)
@@ -431,10 +432,14 @@ ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 4)
 fourth.shoreside.age.prop.age <- ss.age.prop.holder[1]
 fourth.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
 # ... US age data -------------------------------------------------------------
-us.age.n.cp <- us.cp.age[us.cp.age$year == last_data_yr, "n.hauls"]
-us.age.n.ms <- us.ms.age[us.ms.age$year == last_data_yr, "n.hauls"]
-us.last.year.age.cp <- us.cp.age[us.cp.age$year == last_data_yr, grep("^a", colnames(us.cp.age))]
-us.last.year.age.cp <- us.last.year.age.cp[order(unlist(us.last.year.age.cp[1, , drop = TRUE]), decreasing = TRUE)]
+us.age.n.cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr, "n.hauls"]
+us.age.n.ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr, "n.hauls"]
+us.last.year.age.cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr,
+                                 grep("^a",
+                                      colnames(us_cp_age_df))]
+us.last.year.age.cp <-
+  us.last.year.age.cp[order(unlist(us.last.year.age.cp[1, , drop = TRUE]),
+                            decreasing = TRUE)]
 us.age.1.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[1]))
 us.age.1.prop.cp <- f(us.last.year.age.cp[1] * 100, 1)
 us.age.2.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[2]))
@@ -443,8 +448,12 @@ us.age.3.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[3])
 us.age.3.prop.cp <- f(us.last.year.age.cp[3] * 100, 1)
 us.age.4.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[4]))
 us.age.4.prop.cp <- f(us.last.year.age.cp[4] * 100, 1)
-us.last.year.age.ms <- us.ms.age[us.ms.age$year == last_data_yr, grep("^a", colnames(us.ms.age))]
-us.last.year.age.ms <- us.last.year.age.ms[order(unlist(us.last.year.age.ms[1, , drop = TRUE]), decreasing = TRUE)]
+us.last.year.age.ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr,
+                                    grep("^a",
+                                         colnames(us_ms_age_df))]
+us.last.year.age.ms <-
+  us.last.year.age.ms[order(unlist(us.last.year.age.ms[1, , drop = TRUE]),
+                            decreasing = TRUE)]
 us.age.1.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[1]))
 us.age.1.prop.ms <- f(us.last.year.age.ms[1] * 100, 1)
 us.age.2.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[2]))
@@ -453,7 +462,9 @@ us.age.3.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[3])
 us.age.3.prop.ms <- f(us.last.year.age.ms[3] * 100, 1)
 us.age.4.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[4]))
 us.age.4.prop.ms <- f(us.last.year.age.ms[4] * 100, 1)
-us.last.year.age.shore <- us.shore.age[us.shore.age$year == last_data_yr, grep("^a", colnames(us.shore.age))]
+us.last.year.age.shore <- us_ss_age_df[us_ss_age_df$year == last_data_yr,
+                                       grep("^a",
+                                            colnames(us_ss_age_df))]
 us.last.year.age.shore <- us.last.year.age.shore[order(unlist(us.last.year.age.shore[1, , drop = TRUE]), decreasing = TRUE)]
 us.age.1.prop.age.shore <- as.numeric(gsub("^a", "", names(us.last.year.age.shore)[1]))
 us.age.1.prop.shore <- f(us.last.year.age.shore[1] * 100, 1)

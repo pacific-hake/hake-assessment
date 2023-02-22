@@ -43,7 +43,7 @@ utils::globalVariables(
   "hauls.with.samples", "index", "index.025", "index.975",
   "index.med", "iter", "knit", "label_value", "labs", "last_data_yr",
   "last_yr_base_model_dir_name", "lat", "let", "lon",
-  "lower", "Lower CI", "maturity.samples", "med",
+  "lower", "Lower CI", "med",
   "menu", "model", "model_list", "models", "n", "name",
   "ne_states", "north_south", "now", "obs", "obs_2", "obs_cat:_1", "out",
   "out_est_baa_file", "out_est_caa_bio_file", "out_est_caa_file",
@@ -56,8 +56,7 @@ utils::globalVariables(
   "show_ss_output", "slower", "small_ticks", "smed", "spr_100_path",
   "ss_executable", "stable_catch_path",
   "start_yr", "starter_file_name",
-  "supper", "survey.history",
-  "system_", "text_file", "theme_half_open",
+  "supper", "system_", "text_file", "theme_half_open",
   "toc", "tot_catch", "tot_tac", "upper", "Upper CI", "us_catch", "us_cp_xx",
   "us_foreign_xx", "us_jv_xx", "us_ms_xx", "us_research_xx", "us_shore_xx", "us_tac",
   "value", "variable", "weight_at_age_file_name"))

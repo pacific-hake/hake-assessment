@@ -5,7 +5,7 @@
 \title{Make the ovary collection table}
 \usage{
 make.maturity.samples.table(
-  ovary.samples,
+  ovary_samples_df,
   xcaption = "default",
   xlabel = "default",
   font.size = 10,
@@ -13,7 +13,7 @@ make.maturity.samples.table(
 )
 }
 \arguments{
-\item{ovary.samples}{The values as read in from the ovary samples CSV file ("ovary-samples.csv")
+\item{ovary_samples_df}{The values as read in from the ovary samples CSV file ("ovary-samples.csv")
 using \code{\link[readr:read_delim]{readr::read_csv()}}}
 
 \item{xcaption}{The caption}

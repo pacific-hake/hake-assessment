@@ -154,7 +154,7 @@ make.assessment.history.plot <- function(base,
 make.assessment.history.disp.plot <- function(base,
                                               assessment.history.disp){
 
-  xx <- assessment.history.disp
+  xx <- assess_history_disp_df
 
   par(mfrow = c(1, 2),
       mar=c(4, 4, 1, 1),

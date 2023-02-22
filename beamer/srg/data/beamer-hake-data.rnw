@@ -213,7 +213,7 @@ if(!dir.exists(fig_dir)){
           \bi
             \item Catcher Processor  -- \Sexpr{f(last.year.us.cp.catch)} t, \Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")} of US CP allocation
             \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t, \Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")} of US MS allocation
-            \item Shore-Based         -- \Sexpr{f(last.year.us.shore.catch)} t, \Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")} of shore-based allocation, includes \Sexpr{f(round(sum(subset(us.ti.catch.by.month,year == last_assess_yr)$catch), 0))} t of tribal catches
+            \item Shore-Based         -- \Sexpr{f(last.year.us.shore.catch)} t, \Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")} of shore-based allocation, includes \Sexpr{f(round(sum(subset(us_ti_catch_by_month_df,year == last_assess_yr)$catch), 0))} t of tribal catches
           \ei
     \end{column}
   \end{columns}
@@ -228,28 +228,28 @@ if(!dir.exists(fig_dir)){
       mgp = c(0.4, 0.6, 0))
     #par(mar = c(2.1, 5.1, 1.1, 1.1), oma = c(2.1, 2.1, 0, 0))
     layout(matrix(c(1,3,2,4,0,5), nrow = 3, ncol = 2, byrow = TRUE))
-    make.cumulative.catch.plot(can.shore.catch.by.month,
+    make.cumulative.catch.plot(can_ss_catch_by_month_df,
                                title = "Canadian Shoreside Catches",
                                leg.cex = 0.7,
                                title.cex = 0.7,
                                cex.axis = 0.7)
-    make.cumulative.catch.plot(can.ft.catch.by.month,
+    make.cumulative.catch.plot(can_ft_catch_by_month_df,
                                title = " Canadian Freezer-Trawler Catches",
                                leg.cex = 1e-100,
                                title.cex = 0.7,
                                cex.axis = 0.7)
     mtext(side = 1, line = 2, text = "Month")
-    make.cumulative.catch.plot(us.shore.catch.by.month,
+    make.cumulative.catch.plot(us_ss_catch_by_month_df,
                                title = "U.S. Shore-Based Catches",
                                leg.cex = 1e-100,
                                title.cex = 0.7,
                                cex.axis = 0.7)
-    make.cumulative.catch.plot(us.cp.catch.by.month,
+    make.cumulative.catch.plot(us_cp_catch_by_month_df,
                                title = "U.S. Catcher-Processor Catches",
                                leg.cex = 1e-100,
                                title.cex = 0.7,
                                cex.axis = 0.7)
-    make.cumulative.catch.plot(us.ms.catch.by.month,
+    make.cumulative.catch.plot(us_ms_catch_by_month_df,
                                title = "U.S. Mothership Catches",
                                leg.cex = 1e-100,
                                title.cex = 0.7,
@@ -267,11 +267,11 @@ if(!dir.exists(fig_dir)){
 
   par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
   makebox(
-    can.ft.gear.depth[can.ft.gear.depth$year >= max(can.ft.gear.depth$year) - 4, ],
+    can_ft_gear_depth_df[can_ft_gear_depth_df$year >= max(can_ft_gear_depth_df$year) - 4, ],
     main = "Fishing depth", col = "colour",
     labels = c("", ""))
   makebox(
-    can.ft.bottom.depth[can.ft.bottom.depth$year >= max(can.ft.bottom.depth$year) - 4, ],
+    can_ft_bottom_depth_df[can_ft_bottom_depth_df$year >= max(can_ft_bottom_depth_df$year) - 4, ],
     main = "Bottom depth", col = "colour",
     labels = c("", ""))
   mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
@@ -289,7 +289,7 @@ if(!dir.exists(fig_dir)){
     main = "Fishing depth", col = "colour",
     labels = c("", ""))
   makebox(
-    can.ss.bottom.depth[can.ss.bottom.depth$year >= max(can.ss.bottom.depth$year) - 4, ],
+    can_ss_bottom_depth_df[can_ss_bottom_depth_df$year >= max(can_ss_bottom_depth_df$year) - 4, ],
     main = "Bottom depth", col = "colour",
     labels = c("", ""))
   mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
@@ -303,11 +303,11 @@ if(!dir.exists(fig_dir)){
   <<depthus>>=
   par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
   makebox(
-    us.atsea.fishing.depth[us.atsea.fishing.depth$year >= max(us.atsea.fishing.depth$year) - 4, ],
+    us_atsea_fishing_depth_df[us_atsea_fishing_depth_df$year >= max(us_atsea_fishing_depth_df$year) - 4, ],
     main = "Fishing depth", col = "colour",
     labels = c("", ""))
   makebox(
-    us.atsea.bottom.depth[us.atsea.bottom.depth$year >= max(us.atsea.bottom.depth$year) - 4, ],
+    us_atsea_bottom_depth_df[us_atsea_bottom_depth_df$year >= max(us_atsea_bottom_depth_df$year) - 4, ],
     main = "Bottom depth", col = "colour",
     labels = c("", ""))
   mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
@@ -327,16 +327,16 @@ if(!dir.exists(fig_dir)){
       colnames(age.df) <- gsub("a", "", colnames(age.df))
       age.df
     }
-    us.shore.age.tmp <- conv.ages(us.shore.age, rm.cols = 3)
-    us.cp.age.tmp <- conv.ages(us.cp.age, rm.cols = 3)
-    us.ms.age.tmp <- conv.ages(us.ms.age, rm.cols = 3)
+    us.shore.age.tmp <- conv.ages(us_ss_age_df, rm.cols = 3)
+    us.cp.age.tmp <- conv.ages(us_cp_age_df, rm.cols = 3)
+    us.ms.age.tmp <- conv.ages(us_ms_age_df, rm.cols = 3)
     oldpar <- par
     par(mar=c(1.1, 1.1, 3.1, 1.1), oma=c(3.1, 3.1, 0, 0),
       mgp = c(1, 0.6, 0))
     layout(matrix(c(1,2,3,4,5), nrow = 1, ncol = 5, byrow=TRUE))
-    make.age.comp.plot(can.shore.age, bg.col = "brown",
+    make.age.comp.plot(can_ss_age_df, bg.col = "brown",
       title = "CAN\nShoreside", hide0 = TRUE, frange = 0.05)
-    make.age.comp.plot(can.ft.age, bg.col = "salmon",
+    make.age.comp.plot(can_ft_age_df, bg.col = "salmon",
       title = "CAN\nFreezer-Trawler", hide0 = TRUE, frange = 0.05)
     make.age.comp.plot(us.shore.age.tmp, bg.col = "blue",
       title = "U.S.\nShore-Based", hide0 = TRUE, frange = 0.05)
@@ -480,7 +480,7 @@ if(!dir.exists(fig_dir)){
 %       \ei
 %       \vspace{-3mm}
 %       <<ovary-table, results='asis', echo=FALSE, out.width='0.9\\columnwidth'>>=
-%         make.maturity.samples.table(ovary.samples,
+%         make.maturity.samples.table(ovary_samples_df,
 %                                     xcaption = "Number of \\fishname\\ ovaries collected for histological analysis.",
 %                                     xlabel = "tab:beamer-ovaries",
 %                                     font.size = 6,

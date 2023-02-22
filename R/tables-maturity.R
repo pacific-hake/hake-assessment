@@ -2,7 +2,7 @@
 #'
 #' @details The header in the file is used as the header in the table. If you wish to place a newline
 #' in any header label, insert a '\n' in the label
-#' @param ovary.samples The values as read in from the ovary samples CSV file ("ovary-samples.csv")
+#' @param ovary_samples_df The values as read in from the ovary samples CSV file ("ovary-samples.csv")
 #'  using [readr::read_csv()]
 #' @param xcaption The caption
 #' @param xlabel The latex label to use
@@ -11,13 +11,13 @@
 #'
 #' @return An [xtable] object
 #' @export
-make.maturity.samples.table <- function(ovary.samples,
+make.maturity.samples.table <- function(ovary_samples_df,
                                         xcaption = "default",
                                         xlabel   = "default",
                                         font.size = 10,
                                         space.size = 10){
 
-  tab <- ovary.samples %>% as.data.frame
+  tab <- ovary_samples_df %>% as.data.frame
 
   tabnew <- tab %>%
     select(-Year) %>%
@@ -66,7 +66,7 @@ make.maturity.ogives.table <- function(maturity.ogives,
   ## font.size - size of the font for the table
   ## space.size - size of the vertical spaces for the table
 
-  tab <- maturity.ogives
+  tab <- maturity_ogives_df
   corder <- sapply(c("age", "n.ovaries", "maturity", "avg.wt",
     "new.fecundity"), grep, x = colnames(tab), ignore.case = TRUE)
   tab <- tab[, corder]

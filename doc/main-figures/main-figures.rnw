@@ -94,11 +94,11 @@ make.catches.plot(ct, leg.y.loc = 550)
 <<main-us-fishery-depths, fig.height=3.5, is.fig = TRUE, alt.text = "This figure shows that bottom depths have been approximately 500 meters and fishing depths approximately 300 meters on average in the last 5 years for United States fleets.">>=
   par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
   makebox(
-    us.atsea.fishing.depth[us.atsea.fishing.depth$year >= max(us.atsea.fishing.depth$year) - 4, ],
+    us_atsea_fishing_depth_df[us_atsea_fishing_depth_df$year >= max(us_atsea_fishing_depth_df$year) - 4, ],
     main = "Fishing depth", col = "colour",
     labels = c("", ""))
   makebox(
-    us.atsea.bottom.depth[us.atsea.bottom.depth$year >= max(us.atsea.bottom.depth$year) - 4, ],
+    us_atsea_bottom_depth_df[us_atsea_bottom_depth_df$year >= max(us_atsea_bottom_depth_df$year) - 4, ],
     main = "Bottom depth", col = "colour",
     labels = c("", ""))
   mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
@@ -116,11 +116,11 @@ make.catches.plot(ct, leg.y.loc = 550)
 <<main-can-fishery-depths, is.fig = TRUE, alt.text = "This figure shows that for the last five years in Canada freezer trawlers fished at an approximate bottom depth of 400 meters and shoreside vessels fished at an approximate bottom depth of 200 meters. Freezer trawlers fished at a gear depth of approximately 200 meters and shoreside vessels at a depth of approximately 150 meters. In 2023 this changed somewhat with both fleets fishing closer to the bottom and in shallower water.">>=
   par(mfrow = c(2, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
   makebox(
-    can.ft.gear.depth[can.ft.gear.depth$year >= max(can.ft.gear.depth$year) - 4, ],
+    can_ft_gear_depth_df[can_ft_gear_depth_df$year >= max(can_ft_gear_depth_df$year) - 4, ],
     main = "Fishing depth - Freezer trawlers", col = "colour",
     labels = c("", ""))
   makebox(
-    can.ft.bottom.depth[can.ft.bottom.depth$year >= max(can.ft.bottom.depth$year) - 4, ],
+    can_ft_bottom_depth_df[can_ft_bottom_depth_df$year >= max(can_ft_bottom_depth_df$year) - 4, ],
     main = "Bottom depth - Freezer trawlers", col = "colour",
     labels = c("", ""))
   makebox(
@@ -128,7 +128,7 @@ make.catches.plot(ct, leg.y.loc = 550)
     main = "Fishing depth - Shoreside", col = "colour",
     labels = c("", ""))
   makebox(
-    can.ss.bottom.depth[can.ss.bottom.depth$year >= max(can.ss.bottom.depth$year) - 4, ],
+    can_ss_bottom_depth_df[can_ss_bottom_depth_df$year >= max(can_ss_bottom_depth_df$year) - 4, ],
     main = "Bottom depth - Shoreside", col = "colour",
     labels = c("", ""))
   mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
@@ -1188,7 +1188,7 @@ plot_squid(base_model,
 \begin{center}
 <<historical-assessments, fig.height=4.5, fig.width=6.5, is.fig = TRUE, alt.text = "This figure shows the varying historical estimates of spawning biomass from the annual assessments.">>=
 make.assessment.history.plot(base_model,
-                             assessment.history,
+                             assess_history_df,
                              cex.legend = 0.5 * 38 / (38 + assess_yr - 2022))
 @
 \end{center}
