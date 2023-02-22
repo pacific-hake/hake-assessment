@@ -7,18 +7,28 @@ numbers and weight for the first forecast year (\code{endyr} + 1)}
 \usage{
 plot_fore_age_comps(
   model,
+  probs = c(0.025, 0.5, 0.975),
   x_lim = c(1, 15),
   x_breaks = seq(x_lim[1], x_lim[2], 2),
-  bar_alpha = 0.3
+  bar_alpha = 0.3,
+  whisker_width = 0.5
 )
 }
 \arguments{
 \item{model}{A model object, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
+\item{probs}{A vector of three quantiles for the lower CI,
+median, and upper CI. The second value must be 0.5}
+
 \item{x_lim}{A vector of 2 representing the minimum and maximum x-axis
 values to plot}
 
-\item{bar_alpha}{The transparency of the bars}
+\item{x_breaks}{A vector of ages to show labels for on the x-axis}
+
+\item{bar_alpha}{The transparency of the bars from 0 to 1}
+
+\item{whisker_width}{The width of the top and bottom crossbars
+(whiskers) on the error bars}
 }
 \value{
 A \code{\link[cowplot:plot_grid]{cowplot::plot_grid()}} object
