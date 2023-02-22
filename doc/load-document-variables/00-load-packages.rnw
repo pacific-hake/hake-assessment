@@ -1,0 +1,27 @@
+% Load packages needed for the document to build
+
+<<load-packages-chunk, echo = FALSE>>=
+
+# To install rnaturalearthhires (it was hard to find with Google):
+# devtools::install_github("ropensci/rnaturalearthhires")
+# devtools::install_github("pbs-assess/gfutilities")
+message("Loading R packages...")
+pacman::p_load(
+  # Alphabetical order
+  adnuts,
+  cli, coda, cowplot, crayon,
+  data.tree, date, dplyr,
+  future, furrr,
+  gfutilities, ggh4x, ggplot2, ggpubr, ggrepel, grDevices, grid,
+  gridGraphics, gridExtra, gtools,
+  here,
+  kableExtra, knitr,
+  lubridate,
+  maps, maptools, matrixcalc,
+  parallel, purrr,
+  r4ss, RColorBrewer, readr, reshape2, rgeos, rnaturalearth, rnaturalearthhires, rstan,
+  scales, shinystan, sf, stringr,
+  testthat, tictoc, tidyr, tools,
+  xtable)
+message("Finished loading R packages...")
+@

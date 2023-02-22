@@ -4,7 +4,13 @@
 #' of the stock assessment document. Aldo included are beamer presentation
 #' templates for the various meetings required.
 #'
-#' @import adnuts dplyr furrr ggplot2 r4ss readr tibble tidyr
+#' @import adnuts cli coda cowplot crayon dplyr future furrr
+#' @import gfutilities ggh4x ggplot2 ggrepel glue graphics
+#' @import grDevices grid gridExtra gridGraphics gtools here
+#' @import knitr lubridate maps maptools matrixcalc microbenchmark
+#' @import purrr RColorBrewer readr reshape2 rnaturalearth
+#' @import rnaturalearthhires r4ss rgeos rlang rstan sf
+#' @import stats stringr tibble tictoc tidyr tools utils withr xtable
 #'
 #' @docType package
 #' @name hake

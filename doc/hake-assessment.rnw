@@ -232,6 +232,10 @@ opts_chunk$set(is.fig = FALSE)
 opts_chunk$set(alt.text = "")
 @
 
+% Load packages needed by the document code
+<<load-globals, child='load-document-variables/00-load-packages.rnw'>>=
+@
+
 % Load important starting globals required by other scripts
 <<load-globals, child='load-document-variables/01-load-globals.rnw'>>=
 @
