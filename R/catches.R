@@ -238,13 +238,6 @@ make_landings_tac_table <- function(d,
         hline.after = NULL)
 }
 
-further.tac.details <- function(fn){
-  ## Reads in the further.tac.details file and returns it as a data.frame
-  ##
-  ## fn - the filename with relative path
-  read.csv(fn, header = TRUE, sep = ",", comment.char = "#")
-}
-
 make.catches.plot <- function(ct,
                               mar = c(4, 4, 6, 2) + 0.1,
                               leg.y.loc = 430,

@@ -3,9 +3,9 @@
 % install the package before trying to run this code or build the document
 
 <<load-data-tables-chunk, echo = FALSE>>=
-
+library(readr)
 # Data file names and loading ----
-load_dir <- system.file("data", package = "hake")
+load_dir <- system.file("extdata", "data", package = "hake")
 if(load_dir == ""){
   stop("The directory containing the data tables does not exist. Install the ",
        "`hake` package and try again",
@@ -23,7 +23,8 @@ message("Loading all data tables (csv files) from `",
 # Assessment history and changes ----
 pkg <- "hake"
 assessment.history <-
-  read.csv(file.path(load_dir, "assessment-history.csv"))
+  read_csv(file.path(load_dir, "assessment-history.csv"),
+           col_types = cols())
 assessment.changes <-
   read.csv(file.path(load_dir, "assessment-changes.csv"))
 assessment.history.disp <-
@@ -43,9 +44,12 @@ weight_age_extrapolation_mask <-
 ct <-
   load_catches(file.path(load_dir, "landings-tac-history.csv"))
 catch.targets <-
-  read_csv(file.path(load_dir, "catch-targets-biomass.csv"))
+  read.csv(file.path(load_dir, "catch-targets-biomass.csv"))
 further.tac <-
-  further.tac.details(file.path(load_dir, "further-tac-details.csv"))
+  read.csv(file.path(load_dir, "further-tac-details.csv"),
+           header = TRUE,
+           sep = ",",
+           comment.char = "#")
 # * Canadian catch ----
 can.ft.catch.by.month <-
   read.csv(file.path(load_dir, "can-ft-catch-by-month.csv"))
@@ -67,10 +71,10 @@ us.research.catch.by.month <-
 
 # Sampling data ----
 sampling.history <-
-  load.sampling.history(file.path(load_dir, "fishery-sampling-history.csv"))
+  read.csv(file.path(load_dir, "fishery-sampling-history.csv"))
 # * Canada sampling ----
 can.ages <-
-  load.can.age.data(file.path(load_dir, "can-age-data.csv"))
+  load_can_age_data(file.path(load_dir, "can-age-data.csv"))
 can.ft.num.fish <-
   read.csv(file.path(load_dir, "can-ft-num-fish-aged.csv"))
 can.ss.num.fish <-

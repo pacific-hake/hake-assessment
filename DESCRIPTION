@@ -1,20 +1,24 @@
 Package: hake
 Type: Package
 Title: Stock Assessment for Pacific Hake
-Version: 1.0.4
+Version: 1.1.0
 Authors@R: c(
-    person(c("Aaron", "M."), "Berger", role = "aut", email = "aaron.berger@noaa.gov"),
-    person(c("Andrew"), "Edwards", role = "aut", email = "Andrew.Edwards@dfo-mpo.gc.ca"),
-    person(c("Chris"), "Grandin", role = c("aut", "cre"), email = "Chris.Grandin@dfo-mpo.gc.ca"),
-    person(c("Kelli", "F."), "Johnson", role = "aut", email = "kelli.johnson@noaa.gov"))
+    person(c("Chris", "J."), "Grandin",
+           role = c("aut", "cre"),
+           email = "chris.grandin@gmail.com"),
+    person(c("Kelli", "F."), "Johnson",
+           role = "aut",
+           email = "kelli.johnson@noaa.gov"),
+    person(c("Andrew M."), "Edwards",
+           role = "aut",
+           email = "andrew.edwards@dfo-mpo.gc.ca"),
+    person(c("Aaron", "M."), "Berger",
+           role = "aut",
+           email = "aaron.berger@noaa.gov"))
 Description: Code to compile the stock assessment for Pacific Hake.
 License: MIT + file LICENSE
 URL: https://github.com/pacific-hake/hake-assessment
 BugReports: https://github.com/pacific-hake/hake-assessment/issues
-LazyData: true
-Suggests:
-    rmarkdown,
-    testthat
 VignetteBuilder: knitr
 Depends:
     R (>= 4.2.2)
@@ -39,6 +43,7 @@ Imports:
     knitr,
     lubridate,
     matrixcalc,
+    microbenchmark,
     purrr,
     RColorBrewer,
     readr,
@@ -56,12 +61,19 @@ Imports:
     tools,
     utils,
     withr
+Suggests:
+    rmarkdown,
+    testthat
 Remotes: 
     cgrandin/adnuts,
     pbs-assess/gfutilities,
     r4ss/r4ss@bioscale,
     ropensci/rnaturalearthhires
+ByteCompile: true
+Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
-Encoding: UTF-8
 SystemRequirements: luahbtex (>= 1.15.0) - https://www.luatex.org/
+Config/testthat/parallel: true
+Config/testthat/edition: 2
