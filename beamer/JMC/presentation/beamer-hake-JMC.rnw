@@ -699,7 +699,7 @@ plot_fore_compare(base_model,
       $>=$\Sexpr{prob_decl_yr2_other_catch}\% chance of decline for all other catch streams evaluated.
     \item Maintaining a constant catch of \Sexpr{f(last_yr_catch_fore)}~t (the approximate
      \Sexpr{last_data_yr} catch) results in a \Sexpr{prob_below_b40_yr1_last_yr_catch}\%
-      chance of falling below $B_{40\%}$ in 1 year, and \Sexpr{prob_below_b40_yr2_last_yr_catch}\%
+      chance of falling below $B_{40\%}$ in 1 year and \Sexpr{prob_below_b40_yr2_last_yr_catch}\%
       in 2 years.
     \item Overall, we estimate probabilities of future events, and analyses
       give some idea of the confidence we can have in those probabilities.
@@ -716,9 +716,9 @@ plot_fore_compare(base_model,
              \Sexpr{curr.depl.upper}\%).
          \bi
        \item Large contributions expected from the highly uncertain 2020 cohort.  
-       \item Fishery age composition data from 2022 season suggests very large 2020 cohort.
-       \item Age-1 index in 2021 suggests above average 2020 cohort, but not as large as fishery data alone indicate.
-       \item Additional considerations include low catches in Canada, differences in U.S. fleet catch-at-age,
+       \item Fishery age-composition data from 2022 season suggests very large 2020 cohort.
+       \item Relative age-1 index in 2021 suggests above average 2020 cohort but not as large as fishery data alone indicate.
+       \item Additional considerations include low catches in Canada, differences in U.S. fleet catch-at-age data,
              cohort not yet seen by acoustic survey, and ecosystem conditions.
          \ei
        \item The median estimate of \Sexpr{end_yr} female spawning biomass is
