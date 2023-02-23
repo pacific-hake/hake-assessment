@@ -170,7 +170,7 @@ fi.names <- sapply(base_model$catch.levels, "[[", 2)[fi.inds]
       for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t \\
       (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]}
       to \Sexpr{catch.limit.quantiles["upper"]}~t)
-    \item New \Sexpr{last_data_yr} age data from fishery fit well by the model
+    \item New \Sexpr{last_data_yr} age data from fishery are fit well by the model
     \item Coastwide catch in \Sexpr{end_yr-1} was \Sexpr{last.year.landings}~t,
       out of a TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t
     \item Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota
