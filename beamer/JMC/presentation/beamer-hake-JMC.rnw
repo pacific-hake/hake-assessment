@@ -157,7 +157,7 @@ fi.names <- sapply(base_model$catch.levels, "[[", 2)[fi.inds]
       \item Years prior to \Sexpr{last_assess_yr}
       \item Add new data for \Sexpr{last_assess_yr}
       \ei
-    \item Retain survey biomass estimate and age data:
+    \item Retain survey biomass estimate and age data
     %\bi
     %  \item Years prior to \Sexpr{last_assess_yr}
     %  \item Add new data for \Sexpr{last_assess_yr}
@@ -456,7 +456,7 @@ plot_squid(base_model,
         spawning biomass from \Sexpr{assess_yr} to \Sexpr{assess_yr + 3} then
         leveling off
       \item 180,000 t catch shows similar biomass in \Sexpr{end_yr + 1} followed by slow decline
-      \item All others shown result in declines in the median, but above $\BfortyB$ by the start of \Sexpr{assess_yr + 3}
+      \item All others shown result in declines in the median, but remain above $\BfortyB$ by the start of \Sexpr{assess_yr + 3}
       \item Uncertainty is large and increases from \Sexpr{end_yr} to \Sexpr{end_yr + 3}
     \ei
   \end{column}
@@ -580,7 +580,7 @@ decision_table(base_model,
       and \Sexpr{assess_yr + 2} to estimate $B_{\Sexpr{assess_yr + 3}}$
     \item P($B_{\Sexpr{assess_yr + 1}} < B_y$): Probability that biomass in \Sexpr{assess_yr + 1}
       is less a specified biomass\\
-      such as $B_{\Sexpr{assess_yr}}$ or $\Bforty$
+      such as $B_{\Sexpr{assess_yr}}$ or $\BfortyB$
     \item P(relative FI > 100\% target): Probability that relative fishing intensity in the catch
       year is greater than the $\Fforty$ fishing intensity rate
   \ei
@@ -705,6 +705,7 @@ plot_fore_compare(base_model,
     \item Projections influenced by size of above-average 2014 and 2016
       cohorts, and strongly influenced by the large but still highly
       uncertain 2020 cohort.
+    \pause
     \item There is \Sexpr{prob_decl_yr1_zero_catch}\% chance that spawning biomass will decline from
       \Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]} with zero catch and
       $>=$\Sexpr{prob_decl_yr1_other_catch}\% chance of decline for all other catch streams evaluated.
