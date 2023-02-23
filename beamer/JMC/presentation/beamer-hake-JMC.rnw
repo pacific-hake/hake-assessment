@@ -206,7 +206,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Spawning biomass}
+\frame{\frametitle{Female spawning biomass}
   \bc
   <<female-spawning-biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
   plot_biomass(list(base_model),
@@ -234,7 +234,7 @@ from last year)
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Fishing intensity and exploitation rate}
+\frame{\frametitle{Relative fishing intensity and exploitation rate}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       <<fishing-intensity, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
