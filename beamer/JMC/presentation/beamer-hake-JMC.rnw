@@ -131,21 +131,6 @@ fi.names <- sapply(base_model$catch.levels, "[[", 2)[fi.inds]
 %{\tiny Disclaimer: This information is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It does not represent and should not be construed to represent any agency determination or policy}
 }
 
-
-%----------------------------------------------------------
-%\section{Overview}
-%\subsection{}
-
-%% \begin{frame}
-%% \frametitle{Overview of JTC membership}
-%%   \bi
-%%     \item Ian Taylor was on leave, temporarily replaced by Aaron Berger
-%%     \item Nathan Taylor stepped down to be replaced by Andy Edwards
-%%     \item Allan Hicks stepping down to be replaced by Aaron Berger
-%%     \item JTC represented at this meeting by Nathan Taylor and Ian Taylor
-%%   \ei
-%% \end{frame}
-
 %----------------------------------------------------------
 \section{Overview}
 \begin{frame}
