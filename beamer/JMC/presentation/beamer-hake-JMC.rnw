@@ -163,7 +163,7 @@ fi.names <- sapply(base_model$catch.levels, "[[", 2)[fi.inds]
     \item The 2014, 2016, and 2020 cohorts make up a large fraction of catches in 2022
     \bi
       \item 2017 cohort estimated to be average
-      \item 2018, 2019, and 2020 cohort estimated to be below average
+      \item 2018, 2019, and 2021 cohort estimated to be below average
       \item 2020 cohort estimated to be above average
     \ei
     \item Default harvest rule estimated median catch limit
@@ -356,7 +356,7 @@ plot_squid(base_model,
 	    \item March \Sexpr{last_assess_yr}
       \bi
         \item Default harvest rule TAC = \Sexpr{f((catch.targets %>% filter(Year == last_assess_yr))$`Default HCR TAC`)} t
-        \item Sum of unilateral TACs = \Sexpr{last.year.tac} t
+        \item JMC TAC = \Sexpr{last.year.tac} t
       \ei
       \item When default HR suggests a large catch, TAC is often set less
       \item Catches are often less than the TAC
@@ -566,8 +566,8 @@ decision_table(base_model,
     \item P($B_{\Sexpr{assess_yr + 1}} < B_y$): Probability that biomass in \Sexpr{assess_yr + 1}
       is less a specified biomass\\
       such as $B_{\Sexpr{assess_yr}}$ or $\BfortyB$
-    \item P(relative FI > 100\% target): Probability that relative fishing intensity in the catch
-      year is greater than the $\Fforty$ fishing intensity rate
+    \item P(relative FI > 100\%): Probability that relative fishing intensity in the catch
+      year is greater than $\Fforty$
   \ei
 }
 
