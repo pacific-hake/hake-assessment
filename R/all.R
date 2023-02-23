@@ -141,7 +141,7 @@ src_lst <- c("utilities.R", "add-alt-text.R", "catches.R",
              "plot-squid.R", "fetch-forecasts.R", "calc-risk.R", "table-param-est.R",
              "plot-age-comp-fit.R", "plot-pearson-bubbles.R", "plot-mcmc-diagnostics.R",
              "plot-trace.R", "plot-running-quants.R", "plot-autocor.R",
-             "plot-density.R")
+             "plot-density.R", "plot-cohort-catch.R")
 source_all(src_lst)
 
 theme_set(hake_theme())
