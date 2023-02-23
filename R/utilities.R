@@ -1,3 +1,39 @@
+#' Create a one-row data.frame from a vector of values
+#'
+#' @details
+#' This function should not be used for massive amounts of conversions in
+#' a loop as it has a bad time complexity
+#'
+#' @param vec A vector
+#' @param nms Optional column names for the new data frame
+#'
+#' @return A [tibble::tibble()] with one row
+#' @export
+vec2df <- function(vec, nms = NULL){
+
+  if(!is.null(nms) && length(vec) != length(nms)){
+    stop("The number of names supplied does not match the number ",
+         "of elements in `vec`", call. = FALSE)
+    names(df) <- nms
+  }
+
+  df <- vec |>
+    enframe(name = NULL) |>
+    t() |>
+    as_tibble()
+
+  if(is.null(nms)){
+    if(!is.null(names(vec))){
+      names(df) <- names(vec)
+    }
+    return(df)
+  }else{
+    names(df) <- nms
+  }
+
+  df
+}
+
 #' Replace '+' with a newline in the given string
 #'
 #' @details
@@ -1078,7 +1114,7 @@ dbeta_ab <- function(x, prior, sd, min, max) {
   return(Prior_Like)
 }
 
-#' Updates [ggplot2::label_parsed()] to accommodate spaces 
+#' Updates [ggplot2::label_parsed()] to accommodate spaces
 label_parsed_space <- function(labels) {
   labels <- label_value(labels, multi_line = TRUE)
   labels <- lapply(labels, function(y) gsub(" ", "~", y))
