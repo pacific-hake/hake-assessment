@@ -137,7 +137,7 @@ fi.names <- sapply(base_model$catch.levels, "[[", 2)[fi.inds]
 \frametitle{Overview of stock assessment (1/2)}
   \bi
     \item Update Stock Synthesis software
-    \item  Update fishery catch and age composition data:
+    \item  Update fishery catch and age-composition data:
       \bi
       \item Years prior to \Sexpr{last_assess_yr}
       \item Add new data for \Sexpr{last_assess_yr}
@@ -148,7 +148,7 @@ fi.names <- sapply(base_model$catch.levels, "[[", 2)[fi.inds]
     %  \item Add new data for \Sexpr{last_assess_yr}
     %\ei
     \item Update and add new \Sexpr{last_assess_yr} weight-at-age data
-    \item Retain the age-1 index time series
+    \item Retain the relative age-1 index time series
     \item All model runs in the assessment use MCMC
   \ei
 \end{frame}
