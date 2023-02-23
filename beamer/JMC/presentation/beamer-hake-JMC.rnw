@@ -586,7 +586,7 @@ make.risk.table(base_model,
 %--------------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
 \bc
-<<forecast-risk-comparison-plot-year-1, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+<<forecast-risk-comparison-plot-year-1, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[1],
@@ -612,7 +612,7 @@ make.risk.table(base_model,
 %--------------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr+1} catch}
 \bc
-<<forecast-risk-comparison-plot-year-2, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+<<forecast-risk-comparison-plot-year-2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[2],
@@ -715,7 +715,7 @@ plot_fore_compare(base_model,
              \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
              \Sexpr{curr.depl.upper}\%).
          \bi
-       \item Large contributions expected from the highly uncertain 2020 cohort.  
+       \item Large contributions expected from the highly uncertain 2020 cohort.
        \item Fishery age-composition data from 2022 season suggests very large 2020 cohort.
        \item Relative age-1 index in 2021 suggests above average 2020 cohort but not as large as fishery data alone indicate.
        \item Additional considerations include low catches in Canada, differences in U.S. fleet catch-at-age data,
