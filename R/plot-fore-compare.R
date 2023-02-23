@@ -113,7 +113,7 @@ plot_fore_compare <- function(model,
     scale_x_continuous(expand = c(0, 2),
                        breaks = x_breaks,
                        labels = x_breaks) +
-    theme(legend.title=element_blank(),
+    theme(legend.title = element_blank(),
           axis.text.x = element_text(color = "grey20",
                                      size = axis_tick_font_size,
                                      angle = 90,
