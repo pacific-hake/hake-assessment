@@ -641,7 +641,7 @@ make.risk.table(base_model,
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr}, \Sexpr{end_yr+1},
     and \Sexpr{end_yr+2} catches}
 \bc
-<<forecast-risk-comparison-plot-year-3, fig.height=3.8, fig.width=7, out.width='0.9\\columnwidth'>>=
+<<forecast-risk-comparison-plot-year-3, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[3],
