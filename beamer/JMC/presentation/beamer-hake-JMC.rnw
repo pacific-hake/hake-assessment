@@ -696,7 +696,7 @@ plot_fore_compare(base_model,
       $>=$\Sexpr{prob_decl_yr1_other_catch}\% chance of decline for all other catch streams evaluated.
     \item There is \Sexpr{prob_decl_yr2_zero_catch}\% chance that spawning biomass will decline from
       \Sexpr{forecast_yrs[2]} to \Sexpr{forecast_yrs[3]} with zero catch and
-      $>=$\Sexpr{prob_decl_yr2_other_catch}\% chance of decline for all other catch stream evaluated.
+      $>=$\Sexpr{prob_decl_yr2_other_catch}\% chance of decline for all other catch streams evaluated.
     \item Maintaining a constant catch of \Sexpr{f(last_yr_catch_fore)}~t (the approximate
      \Sexpr{last_data_yr} catch) results in a \Sexpr{prob_below_b40_yr1_last_yr_catch}\%
       chance of falling below $B_{40\%}$ in 1 year, and \Sexpr{prob_below_b40_yr2_last_yr_catch}\%
