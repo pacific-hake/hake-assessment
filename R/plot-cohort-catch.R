@@ -5,6 +5,8 @@
 #' @param ages A vector of ages to show
 #' @param arrow_size size of the arrow heads, `npc` units. See [grid::unit()]
 #' For description of `npc`
+#' @param show_arrowheads Logical. If `TRUE` show arrowheads on the ends of
+#' the lines
 #'
 #' @rdname plot_biomass
 #' @export
@@ -15,12 +17,14 @@ plot_cohort_catch <- function(model,
                                           2016,
                                           2020),
                               ages = 0:20,
+                              y_breaks = seq(0, 1250, 250),
                               leg_pos = c(0.85, 0.5),
                               leg_ncol = 1,
                               leg_font_size = 12,
                               axis_title_font_size = 14,
                               axis_tick_font_size = 11,
                               line_width = 1,
+                              show_arrowheads = TRUE,
                               arrow_size = 0.03){
 
   retro_yrs <- seq(1, length(cohorts))
@@ -47,15 +51,26 @@ plot_cohort_catch <- function(model,
               aes(x = Age,
                   y = `Cumulative catch (kt)`,
                   group = Cohort,
-                  color = Cohort)) +
-    geom_line(linewidth = line_width,
-              lineend = "round",
-              linejoin = "round",
-              arrow = arrow(length = unit(arrow_size,
-                                          "npc"),
-                            type = "closed")) +
+                  color = Cohort))
+  if(show_arrowheads){
+    g <- g +
+      geom_line(linewidth = line_width,
+                lineend = "round",
+                linejoin = "round",
+                arrow = arrow(length = unit(arrow_size,
+                                            "npc"),
+                              type = "closed"))
+  }else{
+    g <- g +
+      geom_line(linewidth = line_width,
+                lineend = "round",
+                linejoin = "round")
+  }
+
+  g <- g +
     scale_color_manual(values = colors) +
-    scale_y_continuous(label = scales::comma) +
+    scale_y_continuous(breaks = y_breaks,
+                       labels = scales::comma) +
     theme(legend.text = element_text(size = leg_font_size),
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 10, 0))
