@@ -1,4 +1,13 @@
 \documentclass[aspectratio=169]{beamer}
+
+% To shade a row for a table, just follow this method and add \rowcolor{Salmon}
+% before each row in the TEX file tables prior to running lualatex on it
+% https://texblog.org/2011/04/19/highlight-table-rowscolumns-with-color/
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+\definecolor{Cyan}{rgb}{0.88,1,1}
+\definecolor{Salmon}{rgb}{0.88,0.5,0.5}
+
 \mode<presentation>
 \usetheme[compress]{Singapore}
 \usepackage[outdir=./figures/]{epstopdf}
@@ -104,7 +113,7 @@ fore.names <- cmodels.names <- sapply(base_model$catch.levels, "[[", 2)[fore.ind
 %------------------------------------------------------------------------------
 \title[Hake Summary]{Results of the \Sexpr{end_yr} Pacific Hake stock assessment}
 \author[JTC]{Pacific Hake Joint Technical Committee}
-\date{{\footnotesize Canadian AP/JMC March meeting -- \Sexpr{assess_yr}}}
+\date{{\footnotesize Canadian AP/JMC pre-season meeting -- February 23, \Sexpr{assess_yr}}}
 
 \begin{document}
 
@@ -116,13 +125,11 @@ fore.names <- cmodels.names <- sapply(base_model$catch.levels, "[[", 2)[fore.ind
 \begin{frame}
   \frametitle{Overview of stock assessment}
   \bi
+    \item Identical model structure to \Sexpr{last_assess_yr} assessment model
     \item The median estimate of \Sexpr{end_yr} relative spawning biomass is
       \Sexpr{curr.depl.median}\% \\
       (with 95\% interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%)
-    \item Large 2010, 2014, and 2016 cohorts continue to make up large fraction of catches
-    \item 2017 cohort estimated to be average
-    \item 2018 cohort estimated to be below average
-    \item 2019 and 2020 have no data for estimating size of cohort
+    \item Large 2010, 2014, and 2016 cohorts make up large fraction of catches, with 2020 large but with high uncertainty
     \item Default harvest rule estimated median catch limit
       for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t \\
       (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]}
@@ -218,9 +225,9 @@ from last year)
 %--------------------------------------------------------------
 \frame{\frametitle{Total Allowable Catch (time series)}
     <<tac-vs-realized-catch-ts, fig.height=3.5>>==
-    plot_management_catch_vs_tac(catch.targets, connect_vars = TRUE,
-                                 connect_vars_linetype = "solid",
-                                 connect_vars_alpha = 0.2,
+    plot_management_catch_vs_tac(catch.targets,
+                                 line_type = "solid",
+                                 line_alpha = 0.2,
                                  curr_assess_biomass = base_model$catch.default.policy[1],
                                  leg_pos = c(0.12, 0.87),
                                  leg_font_size = 10)
@@ -253,15 +260,13 @@ from last year)
 %----------------------------------------------------------
 \frame{\frametitle{Decision Tables}
   \bi
-    \item Catch streams
+    \item Projected catch streams for \Sexpr{assess_yr}:
     \bi
-      \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
-      \item b. Constant catch of \Sexpr{catch_levels[[2]][[2]]}
-      \item c. Constant catch of \Sexpr{catch_levels[[3]][[2]]}
-      \item d. Constant catch (\Sexpr{catch_levels[[4]][[2]]})
-      \item e. Constant catch (\Sexpr{catch_levels[[5]][[2]]})
-      \item f. Constant catch (\Sexpr{catch_levels[[6]][[2]]})
-      \item g. Constant catch (\Sexpr{catch_levels[[7]][[2]]})
+      \item No fishing (catch = 0 t)
+      \item Constant catches (\Sexpr{catch_levels[[2]][[2]]}, \Sexpr{catch_levels[[3]][[2]]}, \Sexpr{catch_levels[[4]][[2]]}, \Sexpr{catch_levels[[7]][[2]]}, \Sexpr{catch_levels[[9]][[2]]}, \Sexpr{catch_levels[[11]][[2]]})
+      \item Last year's TAC (\Sexpr{catch_levels[[12]][[2]]})
+      \item Last year's catch (\Sexpr{catch_levels[[6]][[2]]})
+      \item Catch reduced by 10\% each year (starting at \Sexpr{gsub("^([0-9]+,[0-9]+ t).*$", "\\1", catch_levels[[5]][[2]])}, \Sexpr{gsub("^([0-9]+,[0-9]+ t).*$", "\\1", catch_levels[[8]][[2]])}, \Sexpr{gsub("^([0-9]+,[0-9]+ t).*$", "\\1", catch_levels[[10]][[2]])})
       \item h. Fishing Intensity = 100\% in each year
         conditioned on fixed catch in previous year
       \item i. Median default Harvest Rule in each year conditioned on
@@ -280,8 +285,8 @@ from last year)
       \item No fishing results in relatively constant \emph{median} relative
         spawning biomass from \Sexpr{assess_yr} to \Sexpr{assess_yr+1} then
         slight increase
-      \item All other catch streams result in decreases in the median
-      \item Uncertainty is large and increases from \Sexpr{end_yr} to \Sexpr{end_yr+2}
+      \item All other catch streams result in a decrease in biomass
+      \item Uncertainty is large and increases from \Sexpr{end_yr} to \Sexpr{end_yr + 3}
     \ei
   \end{column}
   \begin{column}{0.59\textwidth}
@@ -353,24 +358,14 @@ plot_fore_compare(base_model,
 %----------------------------------------------------------
 \subsection{Spawning Biomass (excerpt)}
 \frame{\frametitle{Relative Spawning Biomass (excerpt)}
-\begin{columns}
-  \begin{column}{0.33\textwidth}
-    \bi
-      \item Median (50\%) decreases from \Sexpr{end_yr} to \Sexpr{end_yr+1} and \Sexpr{end_yr+2}
-        for all non-zero catch levels examined (continued decline of large 2010 and 2014 cohorts)
-    \ei
-  \end{column}
-  \begin{column}{0.65\textwidth}
-  <<decisions-biomass-table, results='asis', echo=FALSE>>=
-  decision_table(base_model,
-                 xcaption = NULL,
-                 type = "biomass",
-                 rows_to_show = c("a", "b", "f", "j", "k"),
-                 font.size = 8,
-                 space.size = 10)
-  @
-  \end{column}
-\end{columns}
+<<decisions-biomass-table, results='asis', echo=FALSE>>=
+decision_table(base_model,
+               xcaption = NULL,
+               type = "biomass",
+               rows_to_show = c("a", "b", "f", "j", "k"),
+               font.size = 8,
+               space.size = 10)
+@
 }
 
 %----------------------------------------------------------
@@ -450,102 +445,10 @@ plot_squid(base_model,
     \end{column}
     \begin{column}{0.48\textwidth}
       <<cum.catch, fig.height=5, fig.width=5, out.width="0.85\\columnwidth">>=
-      par(mar=c(5,4,1,1), cex=1.2)
-      plot(ages1999, cohortCumSum1999/1e3, type='l', lwd=5, col=1, las=1,
-      xlab='Age', ylab='Cumulative catch (thousands of t)', ylim=c(0,1.45e3),
-      yaxs='i')
-      lines(ages2010, cohortCumSum2010/1e3, lwd=5, col=2)
-      lines(ages2014, cohortCumSum2014/1e3, lwd=5, col=4)
-      lines(ages2016, cohortCumSum2016/1e3, lwd=5, col="green")
-      lines(ages2020, cohortCumSum2017/1e3, lwd=5, col="red")
-      text('2020 cohort',
-           x = last_data_yr - 2020 + 1,
-           y = max(cohortCumSum2020 / 1e3),
-           col = "red",
-           pos = 4)
-      text('2016 cohort',
-           x = last_data_yr - 2016 + 1,
-           y = max(cohortCumSum2016 / 1e3),
-           col = "green",
-           pos = 4)
-      text('2014 cohort',
-           x = last_data_yr - 2014 + 1,
-           y = max(cohortCumSum2014 / 1e3),
-           col = 4,
-           pos = 4)
-      text('2010 cohort',
-           x = last_data_yr - 2010 + 1,
-           y = max(cohortCumSum2010 / 1e3),
-           col = 2,
-           pos = 4)
-      text('1999 cohort',
-           x = 17,
-           y = max(cohortCumSum1999 / 1e3)+150,
-           col = 1,
-           pos = 1)
+      plot_cohort_catch(base_model, arrow_size = 0.02)
       @
     \end{column}
   \end{columns}
-}
-
-%----------------------------------------------------------
-\frame{\frametitle{Estimated cumulative catch for select cohorts}
-      <<cum-catch-large, fig.height=4, fig.width=8>>=
-      par(mar=c(5,4,1,1), cex=1.2)
-      plot(ages1999, cohortCumSum1999 / 1e3, type='l', lwd=5, col=1, las=1,
-      xlab='Age', ylab='Cumulative catch (thousands of t)', ylim=c(0,1.45e3), yaxs = 'i', axes = FALSE)
-      axis(1, at = seq(0, 20, by = 1), cex.axis = 0.7)
-      axis(2, at = seq(0, 1200, by = 200), cex.axis = 0.7)
-      lines(ages2010, cohortCumSum2010/1e3, lwd=5, col=2)
-      lines(ages2014, cohortCumSum2014/1e3, lwd=5, col=4)
-      lines(ages2016, cohortCumSum2016/1e3, lwd=5, col="green")
-      lines(ages2020, cohortCumSum2020/1e3, lwd=5, col="red")
-      box()
-      text('2020 cohort',
-           x = last_data_yr - 2020 + 1,
-           y = max(cohortCumSum2020 / 1e3),
-           col = "red",
-           pos = 4)
-      text('2016 cohort',
-           x = last_data_yr - 2016 + 1,
-           y = max(cohortCumSum2016 / 1e3),
-           col = "green",
-           pos = 4)
-      text('2014 cohort',
-           x = last_data_yr - 2014 + 1,
-           y = max(cohortCumSum2014 / 1e3),
-           col = 4,
-           pos = 4)
-      text('2010 cohort',
-           x = last_data_yr - 2010 + 1,
-           y = max(cohortCumSum2010 / 1e3),
-           col = 2,
-           pos = 4)
-      text('1999 cohort',
-           x = 17,
-           y = max(cohortCumSum1999 / 1e3)+150,
-           col = 1,
-           pos = 1)
-      @
-}
-
-%----------------------------------------------------------
-\section{Compare recent biomass estimates}
-\subsection{Biomass}
-\frame{\frametitle{Compare biomass for last three assessments}
-\bc
-<<compare.3.yr.models.biomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-@
-\ec
-}
-
-%----------------------------------------------------------
-\subsection{Relative biomass}
-\frame{\frametitle{Compare relative biomass for last three assessments (2010--2021)}
-\bc
-<<compare.3.yr.models.relbiomass, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-@
-\ec
 }
 
 %------------------------------------------------------------------------------
