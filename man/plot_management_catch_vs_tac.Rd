@@ -8,15 +8,13 @@ estimated TAC, and realized catch}
 plot_management_catch_vs_tac(
   d,
   curr_assess_biomass = NULL,
-  connect_vals_linetype = "dashed",
-  connect_vals_color = "darkgrey",
-  connect_vals_alpha = 0.5,
-  connect_vars = FALSE,
-  connect_vars_linetype = "dashed",
-  connect_vars_alpha = 0.5,
+  line_type = "solid",
+  line_width = 1,
+  line_alpha = 0.5,
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
-  leg_font_size = 12
+  leg_font_size = 12,
+  point_size = 3
 )
 }
 \arguments{
@@ -26,20 +24,13 @@ plot_management_catch_vs_tac(
 \item{curr_assess_biomass}{Current year's assessment-estimated biomass
 (or any value). If \code{NULL} it will not be shown}
 
-\item{connect_vals_linetype}{Which linetype to use for connecting the
+\item{line_type}{Which linetype to use for connecting the
 values with vertical lines}
 
-\item{connect_vals_color}{Which alpha level (0-1) to use for connecting
+\item{line_width}{Width of the connecting lines}
+
+\item{line_alpha}{Which alpha level (0-1) to use for connecting
 the values with vertical lines}
-
-\item{connect_vars}{Logical. Connent the TACs and realized catches to
-each other}
-
-\item{connect_vars_linetype}{If \code{connect_vars} is TRUE, which line type
-to use}
-
-\item{connect_vars_alpha}{If \code{connect_vars} is TRUE, which alpha level
-(0-1) to use}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
