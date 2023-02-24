@@ -5,8 +5,6 @@
 #'
 #' @return A [tibble::tibble] with the formatted output. names ending in
 #' '_xx' are not to be shown in the landings/TAC table.
-#' @importFrom readr read_csv cols
-#' @importFrom dplyr transmute
 #' @export
 load_catches <- function(fn = NA){
 

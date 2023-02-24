@@ -1,3 +1,24 @@
+#' Coerce an MCMC object to a time series
+#'
+#' @details
+#' Copied from the [coda] package, it is the un-exported function
+#' `as.ts.mcmc()``
+#'
+#' @param x An MCMC object [coda::mcmc()]
+#' @param ... Unused arguments for compatibility with generic `as.ts`
+#'
+#' @return
+as_ts_mcmc <- function(x, ...){
+
+  x <- as.mcmc(x)
+  y <- ts(x,
+          start = start(x),
+          end = end(x),
+          deltat = thin(x))
+  attr(y, "mcpar") <- NULL
+  return(y)
+}
+
 #' Create a one-row data.frame from a vector of values
 #'
 #' @details
@@ -261,31 +282,34 @@ latex_continue <- function(n_col = 1, header = "Default"){
          "\\endlastfoot \n")
 }
 
-#' Extract priors information from `prior.str``
+#' Extract priors information from a string with a particular format into
+#' a vector
 #'
-#' @param prior.str A string with the format `Lognormal(2.0,1.01)`
-#' @param dec.points The number of decimal points to use
-#' @param first.to.lower Make the first letter of the prior name lower case
+#' @param prior_str A string with the format `Lognormal(2.0,1.01)`
+#' @param dec_points The number of decimal points to use
+#' @param first_to_lower Make the first letter of the prior name lower case
 #'
 #' @return A vector of length 3 with the following format:
 #' `c("Lognormal", 2.0, 1.01)`
 #' @export
-split.prior.info <- function(prior.str,
-                             dec.points = 1,
-                             first.to.lower = FALSE){
-  p <- strsplit(prior.str, "\\(")[[1]]
-  if(first.to.lower){
-    ## Make the name of the prior lower case
+split_prior_info <- function(prior_str,
+                             dec_points = 1,
+                             first_to_lower = FALSE){
+
+  p <- strsplit(prior_str, "\\(")[[1]]
+
+  if(first_to_lower){
     p[1] <- paste0(tolower(substr(p[1], 1, 1)),
                    substr(p[1],
                           2,
                           nchar(p[1])))
   }
-  p.type <- p[1]
+  p_type <- p[1]
   p <- strsplit(p[2], ",")[[1]]
-  p.mean <- f(as.numeric(p[1]), dec.points)
-  p.sd <- f(as.numeric(gsub(")", "", p[2])), dec.points)
-  c(p.type, p.mean, p.sd)
+  p_mean <- f(as.numeric(p[1]), dec_points)
+  p_sd <- f(as.numeric(gsub(")", "", p[2])), dec_points)
+
+  c(p_type, p_mean, p_sd)
 }
 
 #' Calculate the total catch taken for a given cohort

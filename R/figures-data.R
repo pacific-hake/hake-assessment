@@ -4,15 +4,26 @@ make.data.overview.plot <- function(model,               ## model contains the o
   SSplotData(model, subplot = 2, ...) #, both = FALSE#, datasize = TRUE) #TRUE for scaled to sample size bubbles
 }
 
-make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.by.month.csv files
-                                       yrs = (year(now())-4):(year(now())-1), ## The years to show on the plot
+#' Create a plot of cumulative catch
+#'
+#' @param d The data as found in the catch-by-month CSV files
+#' @param yrs A vector of years to include
+#' @param title The plot title
+#' @param scale A value to divide the catch by
+#' @param title.cex The font size for the title
+#' @param cex.axis The font size for the axis titles
+#' @param leg.cex The font size for the legend
+#'
+#' @return A base R plot
+#' @export
+make.cumulative.catch.plot <- function(d,
+                                       yrs = (year(now())-4):(year(now())-1),
                                        title = NULL,
-                                       scale = 1000,  ## the catch data will be divided by this
-                                       title.cex = 1, ## Title text size
+                                       scale = 1000,
+                                       title.cex = 1,
                                        cex.axis = 1,
-                                       leg.cex = 1){  ## Legend text size
-  ## Cumulative catch plot for years given
-  ## Remove any data with years not within limits
+                                       leg.cex = 1){
+
   if (!"month" %in% colnames(d)) {
     colnames(d) <- gsub("Year", "year", colnames(d))
     d <- reshape(d, direction = "long",
@@ -23,12 +34,8 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
 
   d <- d %>%
     dplyr::filter(year %in% yrs)
-## TODO: Fix this to work on new file structure of can-ft-catch-by-month.csv.
-## See hakedata package (canada) as it has this function already built in.
 
   catch.plot <- function(x, y, plot.type = c("default", "proportion", "cumulative")){
-    ## x is period
-    ## y is catch
     if(plot.type[1] == "proportion"){
         y <- cumsum(y) / sum(y)
     }
@@ -38,7 +45,7 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
     xx <- 1:12
     yy <- rep(NA, 12)
     for(i in xx){
-      if(any(x==i)){ #is the month present in the data
+      if(any(x==i)){
         yy[i] <- y[which(x==i)]
       }else{
         if(i == 1){
@@ -55,14 +62,12 @@ make.cumulative.catch.plot <- function(d,   ## Data as found in the xxxx.catch.b
     return(cbind(xx,yy))
   }
   d <- split(d, d$year)
-  cols <- plotcolour(4)
+  cols <- plot_color(4)
   xx <- lapply(d, function(x) catch.plot(x$month, x$catch/scale, plot.type = "cumulative"))
   plot(1,
        1,
        xlab = "",
        ylab = "",
-       ##xlab = "Month",
-       ##ylab = paste0("Cumulative Catch\n(", scale," t)"),
        xlim = c(1, 12),
        ylim = c(0, max(do.call("rbind", xx)[,"yy"])),
        type = "n",

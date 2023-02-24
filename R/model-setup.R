@@ -32,8 +32,6 @@
 #' model groups, test model groups, and retrospective model groups. These
 #' groups are lists of models which are to be compared with each other in
 #' the document. This simplifies plotting and table functions
-#' @importFrom purrr map_chr flatten
-#' @importFrom furrr future_walk
 #' @export
 #' @examples
 #' \dontrun{

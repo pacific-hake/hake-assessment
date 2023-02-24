@@ -145,15 +145,21 @@ panel.cor <- function(x,
 
 #' Plot pairs for MCMC posteriors
 #'
-#' @param model A model object as output by [load_ss_models()]
-#' @param inc.key.params If TRUE, use the arguments `key_posteriors_regex` and `key_posteriors_names`
-#' @param key_posteriors_regex  A vector of regular experessions represting key posteriors
-#' @param key_posteriors_names  A vector of names to show for the key posteriors
-#' @param recr A vector of recruitment deviation years to include if `inc.key.params` is FALSE
-#' @param bratio A vector of Bratio years to include if `inc.key.params` is FALSE
-#' @param forecatch A vector of forecast catch years to include if `inc.key.params` is FALSE
+#' @param model A model object as output by [load_ss_files()]
+#' @param inc.key.params If TRUE, use the arguments `key_posteriors_regex`
+#' and `key_posteriors_names`
+#' @param key_posteriors_regex  A vector of regular expressions representing
+#' key posteriors
+#' @param key_posteriors_names  A vector of names to show for the key
+#' posteriors
+#' @param recr A vector of recruitment deviation years to include if
+#' `inc.key.params` is `FALSE`
+#' @param bratio A vector of Bratio years to include if `inc.key.params` is
+#' `FALSE`
+#' @param forecatch A vector of forecast catch years to include if
+#' `inc.key.params` is `FALSE`
 #'
-#' @return A pairs plot
+#' @return A base R plot
 #' @export
 make.mcmc.diag.pairs.plot <- function(model,
                                       inc.key.params = TRUE,

@@ -7,7 +7,7 @@
 #'
 #' @return The list of retrospective outputs
 #' @export
-load_retrosepctives <- function(retro_path,
+load_retrospectives <- function(retro_path,
                                 retro_yrs,
                                 ...){
 

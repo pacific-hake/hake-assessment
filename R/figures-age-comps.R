@@ -1,26 +1,33 @@
 #' Make an age composition bubble plot
 #'
 #' @param model A model object as returned from [create_rds_file()]
-#' @param subplot 1 for fishery, 2 for survey
+#' @param type Either `fishery` or `survey`
 #' @param ... Additional parameters passed to [plot_bubbles()]
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 make_age_comp_bubble_plot <- function(model,
-                                      subplot = 1,
+                                      type = c("fishery", "survey"),
                                       ...){
 
-  dat <- model$dat$agecomp %>%
-    dplyr::filter(FltSvy == subplot) %>%
+  type <- match.arg(type)
+  if(type == "fishery"){
+    type <- 1
+  }else if(type == "survey"){
+    type <- 2
+  }
+
+  dat <- model$dat$agecomp |>
+    filter(FltSvy == type) |>
     select(Yr, starts_with("a", ignore.case = FALSE)) %>%
-    setNames(gsub("a", "", names(.))) %>%
+    setNames(gsub("a", "", names(.))) |>
     rename(Year = Yr) %>%
     mutate(n = rowSums(.[-1])) %>%
-    mutate_at(vars(-Year), ~(./n)) %>%
-    select(-n) %>%
-    melt(id.var = "Year") %>%
-    as_tibble() %>%
-    rename(Age = variable, Proportion = value)
+    mutate_at(vars(-Year), ~(./n)) |>
+    select(-n) |>
+    pivot_longer(-Year, names_to = "Age", values_to = "Proportion") |>
+    mutate(Age = as.numeric(Age)) |>
+    mutate(Age = factor(Age))
 
   g <- plot_bubbles(dat, ...)
 
@@ -147,22 +154,17 @@ get_age_comp_limits <- function(model, type = 1){
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
-#' @importFrom tibble as_tibble
-#' @importFrom dplyr select rename filter mutate mutate_at pull do rowwise vars
-#' @importFrom reshape2 melt
-#' @importFrom purrr map2_dfc
 make_numbers_at_age_plot <- function(model,
                                      scale = 1e3,
                                      ...){
-  natage <- model$extra.mcmc$natage_median %>%
-    as_tibble() %>%
+  natage <- model$extra.mcmc$natage_median |>
+    as_tibble() |>
     rename(Year = Yr)
 
-  dat <- natage %>%
-    melt(id.var = "Year") %>%
-    as_tibble() %>%
-    rename(Age = variable, Proportion = value) %>%
-    mutate(Proportion = Proportion / scale)
+  dat <- natage |>
+    pivot_longer(-Year, names_to = "Age", values_to = "Proportion") |>
+    mutate(Age = factor(Age),
+           Proportion = Proportion / scale)
 
   # Mean age algorithm (from [r4ss::SSplotNumbers()])
   # For each year, multiply the numbers-at-age by the age then
@@ -170,21 +172,22 @@ make_numbers_at_age_plot <- function(model,
   # divide that by the sum of the numbers-at-age for the year
   ages <- as.numeric(names(natage)[-1])
   years <- natage$Year
-  natage <- natage %>% select(-Year)
-  sums <- natage %>%
+  natage <- natage |>
+    select(-Year)
+  sums <- natage |>
     rowwise() %>%
-    do( (.) %>% as.data.frame %>% mutate(sum = sum(.))) %>%
+    do( (.) %>% as.data.frame %>% mutate(sum = sum(.))) |>
     pull(sum)
   natage <- map2_dfc(natage, ages, `*`)
   natage <- natage %>%
     mutate(sumprod = rowSums(.))
-  natage <- cbind(years, natage, sums) %>%
-    as_tibble() %>%
-    mutate(Age = sumprod / sums) %>%
+  natage <- cbind(years, natage, sums) |>
+    as_tibble() |>
+    mutate(Age = sumprod / sums) |>
     rename(Year = years)
 
-  mean_age <- natage %>%
-    select(Year, Age) %>%
+  mean_age <- natage |>
+    select(Year, Age) |>
     mutate(Age = Age + 1) # To offset the 0 in the plot
 
   g <- plot_bubbles(dat, mean_age = mean_age, clines = NULL, ...)

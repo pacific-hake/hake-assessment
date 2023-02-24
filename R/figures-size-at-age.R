@@ -123,8 +123,10 @@ weight.at.age.heatmap <- function(model,
   }
 
   last.yr <- max(wa$Yr)
-
-  w <- melt(wa, id.vars = "Yr")
+  w <- wa |>
+    pivot_longer(-Yr, names_to = "variable" ) |>
+    mutate(variable = as.numeric(variable)) |>
+    mutate(variable = factor(variable))
 
   ages <- as.numeric(levels(unique(w$variable)))
   nage <- length(ages)

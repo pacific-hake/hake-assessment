@@ -12,7 +12,6 @@
 #' (whiskers) on the error bars
 #'
 #' @return A [cowplot::plot_grid()] object
-#' @importFrom cowplot plot_grid
 #' @export
 plot_fore_age_comps <- function(model,
                                 probs = c(0.025, 0.5, 0.975),

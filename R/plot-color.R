@@ -13,9 +13,6 @@
 #' @param palette A palette found in [RColorBrewer::brewer.pal.info]
 #'
 #' @return A vector of HEX colours
-#'
-#' @importFrom RColorBrewer brewer.pal.info brewer.pal
-#' @importFrom grDevices colorRampPalette
 #' @export
 #' @examples
 #' n <-18

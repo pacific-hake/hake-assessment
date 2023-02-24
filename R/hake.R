@@ -21,15 +21,15 @@
 #' @importFrom grid gpar grid.draw grid.newpage rectGrob textGrob
 #' @importFrom gridExtra arrangeGrob
 #' @importFrom here here
-#' @importFrom lubridate hour minute month second year
+#' @importFrom lubridate hour minute month second seconds_to_period year
 #' @importFrom purrr map imap map2 map_chr map_dbl map_lgl walk walk2 flatten
 #' @importFrom purrr map_df map_dfr map_dfc map2_df map2_dfc map2_dfr pmap
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
-#' @importFrom readr read_csv read_table2 write_csv
+#' @importFrom readr cols read_csv read_table2 write_csv
 #' @importFrom rlang sym
 #' @importFrom scales comma rescale
 #' @importFrom sf st_as_sf st_crs<- st_coordinates
-#' @importFrom stats median na.omit quantile rbeta rlnorm rnorm runif setNames
+#' @importFrom stats end median na.omit quantile rbeta reshape rlnorm rnorm runif setNames start
 #' @importFrom stringr str_split
 #' @importFrom tools file_path_sans_ext file_ext
 #' @importFrom tibble as_tibble enframe

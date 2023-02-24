@@ -4,12 +4,12 @@
 \alias{make_age_comp_bubble_plot}
 \title{Make an age composition bubble plot}
 \usage{
-make_age_comp_bubble_plot(model, subplot = 1, ...)
+make_age_comp_bubble_plot(model, type = c("fishery", "survey"), ...)
 }
 \arguments{
 \item{model}{A model object as returned from \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{subplot}{1 for fishery, 2 for survey}
+\item{type}{Either \code{fishery} or \code{survey}}
 
 \item{...}{Additional parameters passed to \code{\link[=plot_bubbles]{plot_bubbles()}}}
 }

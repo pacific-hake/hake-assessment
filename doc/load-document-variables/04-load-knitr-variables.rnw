@@ -512,7 +512,7 @@ param.details <- table_param_est_bounds(base_model,
                                         start.rec.dev.yr = recruit_dev_start_yr,
                                         end.rec.dev.yr = end_yr - 1,
                                         return.xtable = FALSE)
-m.prior <- split.prior.info(param.details[rownames(param.details) == "m.vals", ][4],
+m.prior <- split_prior_info(param.details[rownames(param.details) == "m.vals", ][4],
                             dec.points = 2,
                             first.to.lower = TRUE)
 # ... Dirichlet Multinomial priors --------------------------------------------
