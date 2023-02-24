@@ -5,6 +5,7 @@
 #' @param model_names A vector of model names,the same length as `model_lst`
 #' @param devs Logical. If `TRUE` return recruitment deviations, if `FALSE`,
 #' return absolute recruitment
+#' @param ... Arguments passed to [extract_mcmc_quant()]
 #'
 #' @return A list containing a [tibble::tibble()]
 #'

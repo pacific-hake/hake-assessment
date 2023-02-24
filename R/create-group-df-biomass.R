@@ -5,10 +5,9 @@
 #' @param model_names A vector of model names,the same length as `model_lst`
 #' @param rel Logical. If `TRUE` return a list of one element, the relative
 #' biomass (no B0 element)
-#' @param end_yrs A vector of the end years for each model.
-#' If one value, it will apply to all models
 #' @param bo_yr The number of years prior to the start of the time series
 #' that you want to use as a plot point for B0 on biomass plots.
+#' @param ... Arguments passed to [extract_mcmc_quant()]
 #'
 #' @return A list or one or two [tibble::tibble()]. If `rel` is `TRUE`, one
 #' (biomass) If `rel` is `FALSE`, two (biomass and B0)

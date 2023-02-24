@@ -3,6 +3,12 @@
 #' @param model A model as output by [load_models()]
 #' @param end_yr The last year to use
 #' @param cohorts A vector of cohorts (years) to use
+#' @param csv_dir Directory for output of a file containing the table data
+#' @param xcaption The table caption
+#' @param xlabel The TeX label for the table
+#' @param digits The number of decimal point digits to use in the table
+#' @param font_size Size of text in the table
+#' @param space_size Amount of vertical space betwen text in the table
 #'
 #' @return An [xtable::xtable()]
 #' @export

@@ -16,6 +16,8 @@ plot_pearson_bubbles(
 )
 }
 \arguments{
+\item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
+
 \item{type}{1 = Fishery, any other value = Survey}
 
 \item{clines}{An optional vector of years to draw cohort lines through}
@@ -31,11 +33,6 @@ plot_pearson_bubbles(
 
 \item{...}{Additional parameters passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}},
 \code{\link[ggplot2:geom_segment]{ggplot2::geom_segment()}} and \code{\link[ggplot2:theme]{ggplot2::theme()}}}
-
-\item{d}{a \code{\link[tibble:tibble]{tibble::tibble()}} of the data in long format with column
-names \code{Year}, \code{Age}, and \code{Proportion}}
-
-\item{yrs}{A vector of 2, for the years to show on the plot}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

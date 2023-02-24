@@ -1,15 +1,16 @@
 #' Runs retrospectives for the given model and for the vector of years given
 #'
 #' @param model_path The path of the model run
-#' @param remove_blocks If `TRUE`, remove block designs from control file prior to running
-#' @param retro_mcmc If `TRUE`, run the ADNUTS MCMC in the *mcmc* subdirectory for each
-#' retrospective in addition to the MLE run
-#' @param num_samples Same as in [run_adnuts()]
-#' @param num_warmup_samples Same as in [run_adnuts()]
-#' @param num_chains Same as in [run_adnuts()]
-#' @param retrospective_yrs The years (e.g. 1:6) to run so each of these numbers means that many
-#' years of data removed from the model
-#' @param ... Arguments passed to [load_ss_files()]
+#' @param remove_blocks If `TRUE`, remove block designs from control file
+#' prior to running
+#' @param retro_mcmc If `TRUE`, run the ADNUTS MCMC in the *mcmc*
+#' subdirectory for each retrospective in addition to the MLE run
+#' @param retrospective_yrs The years (e.g. 1:6) to run so each of these
+#' numbers means that many years of data removed from the model
+#' @param run_extra_mcmc Logical. If `TRUE`, run the model with extra-mcmc
+#' turned on
+#' @param fn_exe The filename of the executable for running the model
+#' @param ... Arguments passed to [create_rds_file()]
 #'
 #' @details This will create a *retrospectives* directory in the same directory as the model resides,
 #' create a directory for each retrospective year, copy all model files into each directory,
@@ -115,7 +116,7 @@ run_retrospectives <- function(model_path,
                  ...)
     }else{
       command <- paste0("cd ", retro_subdir, " && ", fn_exe, " -nox")
-      system_(command, wait = FALSE, intern = !show_ss_outpu)
+      system_(command, wait = FALSE, intern = !show_ss_output)
     }
     data_new <- readLines(file.path(retro_subdir, "data_echo.ss_new"))
     df_for_meanbody <- grep("DF_for_meanbodysize", data_new)

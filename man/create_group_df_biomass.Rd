@@ -24,8 +24,7 @@ biomass (no B0 element)}
 \item{bo_yr}{The number of years prior to the start of the time series
 that you want to use as a plot point for B0 on biomass plots.}
 
-\item{end_yrs}{A vector of the end years for each model.
-If one value, it will apply to all models}
+\item{...}{Arguments passed to \code{\link[=extract_mcmc_quant]{extract_mcmc_quant()}}}
 }
 \value{
 A list or one or two \code{\link[tibble:tibble]{tibble::tibble()}}. If \code{rel} is \code{TRUE}, one

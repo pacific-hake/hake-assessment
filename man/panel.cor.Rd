@@ -2,11 +2,22 @@
 % Please edit documentation in R/figures-mcmc-diagnostics.R
 \name{panel.cor}
 \alias{panel.cor}
-\title{Wrapper to call \code{make.mcmc.diag.plot()} but first check if parameter is estimated}
+\title{Generate the correlation values as text for the panels}
 \usage{
-panel.cor(x, y, digits = 2, prefix = "", cex.cor, ...)
+panel.cor(x, y, digits = 2, prefix = "", cex.cor)
+}
+\arguments{
+\item{x}{The x values for the correlations}
+
+\item{y}{The y values for the correlations}
+
+\item{digits}{The number of decimal places to round to in the panels}
+
+\item{prefix}{A vector of text to paste to the beginning of the
+correlation values}
+
+\item{cex.cor}{the font size for the correlation text}
 }
 \description{
-Needed in \code{adnuts-diagnostics-one-model.rnw} to not generate an error when
-the file is applied to a model for which \code{.posterior.name} is not estimated
+Generate the correlation values as text for the panels
 }

@@ -2,8 +2,9 @@
 % Please edit documentation in R/run-catch-levels.R
 \name{run_catch_levels_stable_catch}
 \alias{run_catch_levels_stable_catch}
-\title{Run the model iteratively reducing the difference between the first and second year projections to
-find a stable catch within the the given tolerance}
+\title{Run the model iteratively reducing the difference between the first and
+second year projections to find a stable catch within the the given
+tolerance}
 \usage{
 run_catch_levels_stable_catch(
   model,
@@ -15,9 +16,21 @@ run_catch_levels_stable_catch(
 )
 }
 \arguments{
-\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
+\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
+
+\item{stable_catch_path}{The path of the stable catch scenario}
+
+\item{forecast_yrs}{A vector of forecast years}
+
+\item{catch_levels_catch_tol}{The tolerance for stopping based on catch
+difference}
+
+\item{catch_levels_max_iter}{The maximum number of iterations}
+
+\item{...}{Absorbs other arguments intended for other functions}
 }
 \description{
-Run the model iteratively reducing the difference between the first and second year projections to
-find a stable catch within the the given tolerance
+Run the model iteratively reducing the difference between the first and
+second year projections to find a stable catch within the the given
+tolerance
 }

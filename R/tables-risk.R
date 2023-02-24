@@ -10,6 +10,10 @@
 #' @param font.size Point size of font in table
 #' @param space.size Vertical space between rows
 #' @param placement LaTeX code for placement of the table, e.g. "H" or "tbp"
+#' @param digits Number of decimal places to round to for values in table
+#' @param let_col_width_cm Column width in cm for the letters column
+#' @param catch_col_width_cm Column width in cm for the catch column
+#' @param col_width_cm  Column width in cm for all other columns
 #'
 #' @return LaTeX code to render the table
 #' @export
@@ -24,8 +28,7 @@ make.risk.table <- function(model,
                             let_col_width_cm = 0.2,
                             catch_col_width_cm = 1.6,
                             col_width_cm = 1.6,
-                            placement = "H",
-                            type = 1){
+                            placement = "H"){
 
   risk <- model$risks[[index]] |>
                         as_tibble()

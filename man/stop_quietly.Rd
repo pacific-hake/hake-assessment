@@ -6,6 +6,9 @@
 \usage{
 stop_quietly(...)
 }
+\arguments{
+\item{...}{Arguments passed in to be written out as a message}
+}
 \value{
 Nothing
 }

@@ -6,7 +6,7 @@
 #' to then compare with the estimates of those quantities in year t's
 #' assessment, in [combine_historical_probs()].
 #'
-#' @param model A model as loaded by [load_ss_files()]
+#' @param model A model as loaded by [create_rds_file()]
 #' @param start First assessment year to do comparisons
 #' @param end Final assessment year to do comparisons
 #' @return Data frame with columns
@@ -41,9 +41,12 @@ calc_historical_probs <- function(model,
 #' Calculate a model's probability of stock decline in a year and
 #' combine with past assessment estimates
 #'
-#' @param model A model as loaded by [load_ss_files()]
-#' @param file Filename (.csv) of historical values from past assessments
-#' @param ... Further arguments to pass to [calc_historical_probs()[]
+#' @param model A model as loaded by [create_rds_file()]
+#' @param fn The file name
+#' @param start First assessment year to do comparisons
+#' @param end Last assessment year to do comparisons
+#' @param ... Further arguments to pass to [calc_historical_probs()]
+#'
 #' @return Data frame with columns
 #' * `year` - year of assessment
 #' * `P_decline` - estimate from `year' assessment model of the probability

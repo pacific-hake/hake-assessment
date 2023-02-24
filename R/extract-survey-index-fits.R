@@ -7,9 +7,8 @@
 #' `age2` means age 2+ acoustic survey and `age1``is the age 1 acoustic survey
 #' @param type A name as found in the `extra.mcmc[[type]]` object of a model
 #' objects, for example if `type == index.med`, it is a table of index fit
-#' medians
-#' @param inc_models_yr Logical. If `TRUE`, include the `model` and `year`
-#' columns in the data frame
+#' @param inc_model_year Logical. If `TRUE`, include the model and year columns
+#' in the output data frame
 #'
 #' @return A [tibble::tibble()]
 #' @export

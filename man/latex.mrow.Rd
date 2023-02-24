@@ -2,20 +2,20 @@
 % Please edit documentation in R/utilities.R
 \name{latex.mrow}
 \alias{latex.mrow}
-\title{Wrap the given text with the latex \\multirow{} macro around it}
+\title{Wrap the given text with the latex \\multirow{} macro}
 \usage{
 latex.mrow(nrow, just, txt)
 }
 \arguments{
+\item{nrow}{The number of rows in the multirow cell}
+
 \item{just}{Justification, e.g. "l", "c", or "r" for left, center, right}
 
 \item{txt}{The text}
-
-\item{ncol}{The number of columns}
 }
 \value{
-The given text with the latex \\multirow{} macro around it
+The given text wrapped in the latex \\multirow{} macro
 }
 \description{
-Wrap the given text with the latex \\multirow{} macro around it
+Wrap the given text with the latex \\multirow{} macro
 }

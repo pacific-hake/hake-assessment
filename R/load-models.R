@@ -28,11 +28,12 @@ fix.posteriors <- function(dir){
 #'
 #' @details If MCMC directory is present, load that and perform calculations for mcmc parameters.
 #'
-#' @param model.dir Directory the model reesides in
+#' @param model_path The directory that the model is in
 #' @param key_posts Vector of key posteriors used to create key posteriors file
 #' @param key_posts_fn Name of the key posteriors file
 #' @param nuisance_posts_fn Name of the nuisance posteriors file
 #' @param printstats Print info on each model loaded via [r4ss::SS_output()]
+#' @param ... Absorbs arguments intended for other functions
 #'
 #' @return A model object representing the output from the SS model
 #' @export

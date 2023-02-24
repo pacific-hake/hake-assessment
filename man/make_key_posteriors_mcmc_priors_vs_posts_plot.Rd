@@ -14,7 +14,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(
 }
 \arguments{
 \item{model}{The model output from Stock Synthesis as loaded by
-\code{\link[=load_ss_files]{load_ss_files()}}.}
+\code{\link[=create_rds_file]{create_rds_file()}}.}
 
 \item{posterior_regex}{A vector of regular expressions that can be matched
 to parameter names. Use \code{\link[=get_active_parameter_names]{get_active_parameter_names()}} to see all active

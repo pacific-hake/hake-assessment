@@ -31,6 +31,14 @@ values with vertical lines}
 
 \item{line_alpha}{Which alpha level (0-1) to use for connecting
 the values with vertical lines}
+
+\item{leg_pos}{The legend position as x-y coordinates (vector of 2)}
+
+\item{leg_ncol}{The number of columns to split the legend into}
+
+\item{leg_font_size}{The legend font size}
+
+\item{point_size}{The point size}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

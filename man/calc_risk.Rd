@@ -2,20 +2,28 @@
 % Please edit documentation in R/calc-risk.R
 \name{calc_risk}
 \alias{calc_risk}
-\title{Calculate the probablities of being under several reference points from one forecast year to the next}
+\title{Calculate the probabilities of being under several reference points from
+one forecast year to the next}
 \usage{
 calc_risk(forecast_outputs = NA, catch_levels, ...)
 }
 \arguments{
 \item{forecast_outputs}{A list as output by \code{\link[=fetch_forecasts]{fetch_forecasts()}}}
+
+\item{catch_levels}{A ist of catch levels which are represented by lists
+of length 3}
+
+\item{...}{}
 }
 \value{
-A list of length 1 less than the number of forecast years. Each element
-is a data.frame of catch levels holding the probabilities. For example, list element 1 will hold the
-probabilities for each catch.level of being under several reference points for the first two years
-in the forecast_yrs vector. If forecast.outputs is NA, NA will be returned, otherwise the risk.list
-will be returned
+A list of length 1 less than the number of forecast years. Each
+element is a data.frame of catch levels holding the probabilities. For
+example, list element 1 will hold the probabilities for each catch.level
+of being under several reference points for the first two years in the
+forecast_yrs vector. If forecast.outputs is NA, NA will be returned,
+otherwise the risk.list will be returned
 }
 \description{
-Calculate the probablities of being under several reference points from one forecast year to the next
+Calculate the probabilities of being under several reference points from
+one forecast year to the next
 }

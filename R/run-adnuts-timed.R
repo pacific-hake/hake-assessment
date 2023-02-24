@@ -10,7 +10,7 @@ run_adnuts_timed <- function(...){
   # Determine if the caller is calling from an Rstudio session
   is_rstudio <- Sys.getenv("RSTUDIO") == "1"
 
-  tm <- system.time(out <<- run_adnuts(...))
+  tm <- system.time(out <- run_adnuts(...))
 
   td <- seconds_to_period(tm["elapsed"])
   hrs_text <- ifelse(hour(td) == 1, " hour, ", " hours, ")

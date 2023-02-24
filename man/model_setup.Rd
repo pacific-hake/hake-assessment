@@ -20,6 +20,8 @@ model_setup(
 \arguments{
 \item{drs}{Output list from \code{\link[=set_dirs]{set_dirs()}}}
 
+\item{base_models_desc}{A list of descriptions for the base models}
+
 \item{bridge_models_desc}{A list of vectors of text strings to show in
 the legends for bridge model plots, one name for each model, where the
 list elements represent a group of models}
@@ -39,6 +41,10 @@ elements represent a group of models}
 \item{retro_models_desc}{A list of vectors of text strings to show in
 the legends for retrospective model plots, one name for each model,
 where the list elements represent a group of models}
+
+\item{prepend_to_bridge}{A logical vector of length the same as
+\code{bridge_models_desc}. If \code{TRUE}, the base model will be prepended to the
+group at that index}
 
 \item{...}{Arguments to pass to \code{\link[=create_rds_file]{create_rds_file()}}}
 }

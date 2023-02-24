@@ -62,16 +62,11 @@
 #' have the largest age-0 fish. \code{"all"} specifies colors based on the min
 #' and max values of all ages without transparency. \code{"age"} colors the min
 #' and max color specific for each age without transparency.
-#'
-#' @export
-#' @importFrom dplyr filter select bind_rows
-#' @importFrom tibble as_tibble
-#' @importFrom reshape2 melt
-#' @importFrom grDevices colorRampPalette
-#' @importFrom stats reshape
-#' @importFrom utils type.convert
+#' @param start_yr Start year
+#' @param end_yr End year
 #'
 #' @return A [ggplot2::ggplot()] object
+#' @export
 weight.at.age.heatmap <- function(model,
                                   fleet = 1,
                                   proj.line.color = "royalblue",
@@ -177,9 +172,6 @@ weight.at.age.heatmap <- function(model,
         geom_tile(aes(alpha = rescale, fill = value))
     }
 
-  # theme(
-    # axis.text.x = element_text(
-    # color = scales::hue_pal()(length(levels(valswithmask$variable)))))
   if (colour == "all") {
   g <- ggplot(valswithmask,
     aes(y = Yr, fontface = ifelse(a > 0, "plain", "bold")))+

@@ -22,11 +22,10 @@ extract_survey_index_fits(
 \code{age2} means age 2+ acoustic survey and `age1``is the age 1 acoustic survey}
 
 \item{type}{A name as found in the \code{extra.mcmc[[type]]} object of a model
-objects, for example if \code{type == index.med}, it is a table of index fit
-medians}
+objects, for example if \code{type == index.med}, it is a table of index fit}
 
-\item{inc_models_yr}{Logical. If \code{TRUE}, include the \code{model} and \code{year}
-columns in the data frame}
+\item{inc_model_year}{Logical. If \code{TRUE}, include the model and year columns
+in the output data frame}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble::tibble()}}

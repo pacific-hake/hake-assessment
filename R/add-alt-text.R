@@ -14,7 +14,6 @@
 #' @param alt_fig_text A character vector of alternative text to insert
 #'
 #' @return Nothing, overwrites the `tex_file`
-#' @importFrom tools file_path_sans_ext file_ext
 #' @export
 add_alt_text <- function(tex_file = "hake-assessment.tex",
                          alt_fig_text){

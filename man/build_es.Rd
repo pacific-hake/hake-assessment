@@ -6,9 +6,6 @@
 \usage{
 build_es()
 }
-\arguments{
-\item{doc_name}{What to name the document (no extension needed)}
-}
 \value{
 \code{\link[base:invisible]{base::invisible()}}
 }

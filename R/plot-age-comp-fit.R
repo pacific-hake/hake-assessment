@@ -2,12 +2,20 @@
 #' age comps and errorbars being the MCMC fits with 95% credible
 #' interval
 #'
+#' @param model A model, created by [create_rds_file()]
 #' @param type The type of fits/observations to plot. Must be either
 #' `fishery` or `survey`
 #' @param n_col The number of columns for the facets (years)
 #' @param whisker_width The width (size) of the top and bottom bars on the
-#' ends of the errorbar
-#' @rdname plot_biomass
+#' @param ages A vector of ages to show on the x-axis
+#' @param x_breaks The x-axis breaks passed to [ggplot2::scale_x_discrete()]
+#' @param axis_title_font_size The font size for the axis titles
+#' @param axis_tick_font_size The font size for the axis tick labels
+#' @param label_loc The x-y location of the labels in each panel (vector of 2)
+#' @param label_font_size The label font size
+#' @param point_size The point size. Passed to [ggplot2::geom_point()]ends of
+#' the errorbar
+#'
 #' @export
 plot_age_comp_fit <- function(model,
                               type = c("fishery", "survey"),

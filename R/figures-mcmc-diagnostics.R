@@ -1,7 +1,7 @@
 #' Make a grid of posterior plots with priors and initial values
 #'
 #' @param model The model output from Stock Synthesis as loaded by
-#'   [load_ss_files()].
+#'   [create_rds_file()].
 #' @param posterior_regex A vector of regular expressions that can be matched
 #'   to parameter names. Use [get_active_parameter_names()] to see all active
 #'   parameter names. Order the vector in the same order as you want the
@@ -118,13 +118,20 @@ make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
   return(gg)
 }
 
-##' Wrapper to call `make.mcmc.diag.plot()` but first check if parameter is estimated
-##'
-##' Needed in `adnuts-diagnostics-one-model.rnw` to not generate an error when
-##' the file is applied to a model for which `.posterior.name` is not estimated
-panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...){
-  ## From ?pairs, to add correlation values to pairs plot, AME changing final
-  ##  term from r to sqrt(r):
+#' Generate the correlation values as text for the panels
+#'
+#' @param x The x values for the correlations
+#' @param y The y values for the correlations
+#' @param digits The number of decimal places to round to in the panels
+#' @param prefix A vector of text to paste to the beginning of the
+#' correlation values
+#' @param cex.cor the font size for the correlation text
+panel.cor <- function(x,
+                      y,
+                      digits = 2,
+                      prefix = "",
+                      cex.cor){
+
   usr <- par("usr")
   on.exit(par(usr))
 

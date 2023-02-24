@@ -19,6 +19,10 @@
 #' @param label_loc A vector of two (x, y) describing the label location inside
 #' the panels
 #' @param label_font_size The labels font size
+#' @param point_size The point size
+#' @param point_fatten The fatness of the point. Needed when using
+#' [ggplot2::geom_errorbar()]
+#' @param show_panel_borders Logical. If `TRUE`, show borders around the panels
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export

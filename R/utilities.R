@@ -50,6 +50,8 @@ add_newlines <- function(x, ...){
 
 #' Stop the program without issuing an error message
 #'
+#' @param ... Arguments passed in to be written out as a message
+#'
 #' @return Nothing
 #' @export
 stop_quietly <- function(...) {
@@ -83,9 +85,9 @@ latex.hline <- " \\hline "
 #'
 #' @details The string will have one leading and one trailing space
 #'
-#' @param n
+#' @param n The number of space-ampersands to return
 #'
-#' @return A string with `n` ampersands seperated by spaces
+#' @return A string with `n` ampersands separated by spaces
 #' @export
 latex.amp <- function(n = 1){
   paste0(rep(" &", n), " ", collapse = "")
@@ -164,13 +166,13 @@ latex.mcol <- function(ncol, just, txt){
   paste0("\\multicolumn{", ncol, "}{", just, "}{", txt, "}")
 }
 
-#' Wrap the given text with the latex \\multirow{} macro around it
+#' Wrap the given text with the latex \\multirow{} macro
 #'
-#' @param ncol The number of columns
 #' @param just Justification, e.g. "l", "c", or "r" for left, center, right
 #' @param txt The text
+#' @param nrow The number of rows in the multirow cell
 #'
-#' @return The given text with the latex \\multirow{} macro around it
+#' @return The given text wrapped in the latex \\multirow{} macro
 #' @export
 latex.mrow <- function(nrow, just, txt){
   paste0("\\multirow{", nrow, "}{", just, "}{", txt, "}")
@@ -235,6 +237,9 @@ latex.supscr <- function(main.txt, supscr.txt){
 }
 
 #' Return the necessary latex to repeat longtable headers for continuing pages
+#'
+#' @param n_col The number of columns in the table
+#' @param header The table header, needed for subsequent pages
 #'
 #' @return vector of strings needed to repeat the header of a longtable
 #' and a footer which says 'Continued on next page ...'
@@ -326,7 +331,7 @@ cohort.catch <- function(model,
 #' "The 2018 cohort was the largest (29\\%), followed by the 2010
 #'  cohort (27\\%)"
 #'
-#' @param model The model as returned from [load_ss_files()]
+#' @param model The model as returned from [create_rds_file()]
 #' @param yr The year the cohort was born
 #' @param num.cohorts The number of cohorts to include in the sentence
 #' @param decimals The number of decimal points to use
@@ -759,7 +764,7 @@ addpoly <- function(yrvec,
 
 #' Get a vector of the active parameter names for a model
 #'
-#' @param model A model object as returned from [load.ss.files()]
+#' @param model A model object as returned from [create_rds_file()]
 #'
 #' @return A vector of the active parameter names for a model
 #' @export
@@ -771,7 +776,7 @@ get_active_parameter_names <- function(model){
 #' Get the posterior values for the given regular expressions of
 #' parameter names
 #'
-#' @param model The SS model output as loaded by [load_ss_files()]
+#' @param model The SS model output as loaded by [create_rds_file()]
 #' @param param_regex A vector of regular expressions used to extract data
 #' for parameter names. If there are no matches, or more than one for any
 #' regular expression, the program will stop
@@ -780,11 +785,13 @@ get_active_parameter_names <- function(model){
 #' expressions in `param_regex`
 #' @export
 #' @examples
+#' \dontrun{
 #' get_posterior_data(base_model, "BH_steep")
 #' get_posterior_data(base_model, "e")
 #' get_posterior_data(base_model, "asdfg")
 #' get_posterior_data(base_model, c("NatM", "SR_LN", "SR_BH_steep",
 #'  "Q_extraSD"))
+#' }
 get_posterior_data <- function(model, param_regex){
 
   mcmc <- model$mcmc
@@ -828,7 +835,7 @@ get_posterior_data <- function(model, param_regex){
 #' Get the prior and MLE values for the given regular expressions of
 #' parameter names
 #'
-#' @param model The SS model output as loaded by [load_ss_files()]
+#' @param model The SS model output as loaded by [create_rds_file()]
 #' @param param_regex A vector of regular expressions used to extract data
 #' for parameter names. If there are no matches, or more than one for any
 #' regular expression, the program will stop.
@@ -949,17 +956,11 @@ get_prior_data <- function(model, param_regex, n_points_prior = 3000000){
 #' This function is a direct copy of the code available from [Wetzel and Punt](
 #' https://github.com/chantelwetzel-noaa/XSSS/blob/4dce917ee06d52416b58dd9440796ba1f7357943/R/rbeta_ab_fn.R).
 #'
-#' @param x Vector of quantiles.
+#' @param prior Prior value
+#' @param sd Standard deviation
+#' @param min Minimum value
+#' @param max Maximum value
 #' @param n The number of random values you want in the returned vector.
-#' @param prior,sd The mean and standard deviation of the prior as input into
-#'   Stock Synthesis.
-#' @param min,max The minimum and maximum bound on the parameter as input into
-#'   Stock Synthesis.
-#' @param force A logical specifying if the returned values should be forced to
-#'   the bounds defined by `[min,max]` or if they should just be soft bounds
-#'   used to characterize the shape of the distribution but not actually
-#'   limiting, i.e., force the likelihood to be zero for values beyond the
-#'   bounds.
 #'
 #' @return A vector of doubles, where the length of the vector depends on the
 #' length of `x` value passed to `n`.
@@ -1001,6 +1002,7 @@ rbeta_ab <- function(n, prior, sd, min, max) {
   return(b.out)
 }
 
+#' @param x X value for distribution
 #' @rdname rbeta_ab
 #' @export
 dbeta_ab <- function(x, prior, sd, min, max) {
@@ -1229,7 +1231,7 @@ copy_dirfiles <- function(fromdir = getwd(),
     stop("You must provide a vector of filenames to copy (files)",
          call. = FALSE)
   }
-  if(class(files) != "character"){
+  if(as.character(class(files)) != "character"){
     stop("Your files vector must be a character vector", call. = FALSE)
   }
   if(dir.exists(todir)){

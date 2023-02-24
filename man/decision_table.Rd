@@ -2,8 +2,8 @@
 % Please edit documentation in R/tables-decisions.R
 \name{decision_table}
 \alias{decision_table}
-\title{Create the Executive Summary decision tables. \code{rows_to_label} and \code{row_labels}
-need changing each year.}
+\title{Create the Executive Summary decision tables. \code{rows_to_label} and
+\code{row_labels} need changing each year.}
 \usage{
 decision_table(
   model,
@@ -23,7 +23,8 @@ decision_table(
 )
 }
 \arguments{
-\item{model}{An mcmc run, \code{model$forecasts} must be populated from \code{\link[=run_forecasts]{run_forecasts()}}}
+\item{model}{An mcmc run, \code{model$forecasts} must be populated from
+\code{\link[=run_forecasts]{run_forecasts()}}}
 
 \item{xcaption}{Caption to appear in the calling document}
 
@@ -37,18 +38,22 @@ decision_table(
 
 \item{placement}{Latex code for placement of table}
 
-\item{forecast_inds}{Indices of forecast catch levels to show. By default all
-catch levels will be shown}
+\item{forecast_inds}{Indices of forecast catch levels to show. By
+default all catch levels will be shown}
 
-\item{rows_to_label}{A vector of letters representing rows to add custom labels to}
+\item{rows_to_show}{A vector of letters of rows to show. If \code{NULL}, show
+all rows}
 
-\item{row_labels}{A list of length two vectors with text to place in the empty
-two rows under the letter for the letters given in \code{rows_to_label}}
+\item{rows_to_label}{A vector of letters representing rows to add
+custom labels to}
+
+\item{row_labels}{A list of length two vectors with text to place in the
+empty}
 }
 \value{
 The latex code needed to build the table
 }
 \description{
-Create the Executive Summary decision tables. \code{rows_to_label} and \code{row_labels}
-need changing each year.
+Create the Executive Summary decision tables. \code{rows_to_label} and
+\code{row_labels} need changing each year.
 }

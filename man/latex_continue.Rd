@@ -6,6 +6,11 @@
 \usage{
 latex_continue(n_col = 1, header = "Default")
 }
+\arguments{
+\item{n_col}{The number of columns in the table}
+
+\item{header}{The table header, needed for subsequent pages}
+}
 \value{
 vector of strings needed to repeat the header of a longtable
 and a footer which says 'Continued on next page ...'

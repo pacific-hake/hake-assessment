@@ -8,7 +8,7 @@ parameter names}
 get_posterior_data(model, param_regex)
 }
 \arguments{
-\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
+\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{param_regex}{A vector of regular expressions used to extract data
 for parameter names. If there are no matches, or more than one for any
@@ -23,9 +23,11 @@ Get the posterior values for the given regular expressions of
 parameter names
 }
 \examples{
+\dontrun{
 get_posterior_data(base_model, "BH_steep")
 get_posterior_data(base_model, "e")
 get_posterior_data(base_model, "asdfg")
 get_posterior_data(base_model, c("NatM", "SR_LN", "SR_BH_steep",
  "Q_extraSD"))
+}
 }

@@ -1,7 +1,7 @@
 #' Make the ovary collection table
 #'
 #' @details The header in the file is used as the header in the table. If you wish to place a newline
-#' in any header label, insert a '\n' in the label
+#' in any header label, insert a `\\n` in the label
 #' @param ovary_samples_df The values as read in from the ovary samples CSV file ("ovary-samples.csv")
 #'  using [readr::read_csv()]
 #' @param xcaption The caption

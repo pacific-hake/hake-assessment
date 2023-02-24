@@ -12,19 +12,15 @@ dbeta_ab(x, prior, sd, min, max)
 \arguments{
 \item{n}{The number of random values you want in the returned vector.}
 
-\item{prior, sd}{The mean and standard deviation of the prior as input into
-Stock Synthesis.}
+\item{prior}{Prior value}
 
-\item{min, max}{The minimum and maximum bound on the parameter as input into
-Stock Synthesis.}
+\item{sd}{Standard deviation}
 
-\item{x}{Vector of quantiles.}
+\item{min}{Minimum value}
 
-\item{force}{A logical specifying if the returned values should be forced to
-the bounds defined by \verb{[min,max]} or if they should just be soft bounds
-used to characterize the shape of the distribution but not actually
-limiting, i.e., force the likelihood to be zero for values beyond the
-bounds.}
+\item{max}{Maximum value}
+
+\item{x}{X value for distribution}
 }
 \value{
 A vector of doubles, where the length of the vector depends on the

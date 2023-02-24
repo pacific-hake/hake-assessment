@@ -7,10 +7,10 @@
 latex.amp(n = 1)
 }
 \arguments{
-\item{n}{}
+\item{n}{The number of space-ampersands to return}
 }
 \value{
-A string with \code{n} ampersands seperated by spaces
+A string with \code{n} ampersands separated by spaces
 }
 \description{
 Create a string with \code{n} ampersands separated by spaces

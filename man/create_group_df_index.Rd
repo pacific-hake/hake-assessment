@@ -16,8 +16,7 @@ create_group_df_index(
 
 \item{model_names}{A vector of model names,the same length as \code{model_lst}}
 
-\item{type}{The type of survey, must be one of \code{age1} or \code{age2}.
-\code{age2} means age 2+ acoustic survey and `age1``is the age 1 acoustic survey}
+\item{survey_type}{Either \code{age1} or \code{age2}}
 }
 \value{
 A list containing a \code{\link[tibble:tibble]{tibble::tibble()}}

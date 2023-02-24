@@ -8,7 +8,7 @@ parameter names}
 get_prior_data(model, param_regex, n_points_prior = 3e+06)
 }
 \arguments{
-\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
+\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{param_regex}{A vector of regular expressions used to extract data
 for parameter names. If there are no matches, or more than one for any

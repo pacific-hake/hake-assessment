@@ -1,39 +1,45 @@
-#' Create the Executive Summary decision tables. `rows_to_label` and `row_labels`
-#' need changing each year.
+#' Create the Executive Summary decision tables. `rows_to_label` and
+#' `row_labels` need changing each year.
 #'
-#' @param model An mcmc run, `model$forecasts` must be populated from [run_forecasts()]
+#' @param model An mcmc run, `model$forecasts` must be populated from
+#' [run_forecasts()]
 #' @param xcaption Caption to appear in the calling document
 #' @param xlabel The label used to reference the table in latex
 #' @param font.size Size of the font for the table
 #' @param space.size Size of the vertical spaces for the table
 #' @param type Type to build. `biomass` or `spr`
 #' @param placement Latex code for placement of table
-#' @param forecast_inds Indices of forecast catch levels to show. By default all
-#' catch levels will be shown
-#' @param rows_to_label A vector of letters representing rows to add custom labels to
-#' @param row_labels A list of length two vectors with text to place in the empty
-#' two rows under the letter for the letters given in `rows_to_label`
+#' @param forecast_inds Indices of forecast catch levels to show. By
+#' default all catch levels will be shown
+#' @param rows_to_label A vector of letters representing rows to add
+#' custom labels to
+#' @param row_labels A list of length two vectors with text to place in the
+#' empty
+#' @param rows_to_show A vector of letters of rows to show. If `NULL`, show
+#' all rows
+#'
 #' @return The latex code needed to build the table
 #' @export
-decision_table <- function(model,
-                           xcaption = "default",
-                           xlabel = "default",
-                           font.size = 9,
-                           space.size = 10,
-                           type = "biomass",
-                           placement = "H",
-                           forecast_inds = seq_along(model$forecasts[[length(model$forecasts)]]),
-                           rows_to_show = NULL,
-                           rows_to_label = c("e", "f", "h", "j", "l", "m", "n", "o"),
-                           row_labels = list(c("10\\%", "reduction"),
-                                             c(assess_yr - 1, "catch"),
-                                             c("10\\%", "reduction"),
-                                             c("10\\%", "reduction"),
-                                             c(assess_yr - 1, "TAC"),
-                                             c("FI=", "100\\%"),
-                                             c("default", "HR"),
-                                             c(paste0("C", assess_yr, "="),
-                                               paste0("C", assess_yr + 1)))){
+decision_table <- function(
+    model,
+    xcaption = "default",
+    xlabel = "default",
+    font.size = 9,
+    space.size = 10,
+    type = "biomass",
+    placement = "H",
+    forecast_inds = seq_along(model$forecasts[[length(model$forecasts)]]),
+    rows_to_show = NULL,
+    rows_to_label = c("e", "f", "h", "j", "l", "m", "n", "o"),
+    row_labels = list(c("10\\%", "reduction"),
+                      c(assess_yr - 1, "catch"),
+                      c("10\\%", "reduction"),
+                      c("10\\%", "reduction"),
+                      c(assess_yr - 1, "TAC"),
+                      c("FI=", "100\\%"),
+                      c("default", "HR"),
+                      c(paste0("C", assess_yr, "="),
+                        paste0("C", assess_yr + 1)))){
 
   if(length(rows_to_label) != length(row_labels)){
     stop("rows_to_label vector must be the same length as row_labels list")

@@ -7,7 +7,7 @@
 make_age_comp_bubble_plot(model, subplot = 1, ...)
 }
 \arguments{
-\item{model}{A model object as returned from \code{\link[=load.ss.files]{load.ss.files()}}}
+\item{model}{A model object as returned from \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{subplot}{1 for fishery, 2 for survey}
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot-autocor.R
 \name{plot_autocor}
 \alias{plot_autocor}
-\title{Create an autocorelation plot for a particular parameter}
+\title{Create an autocorrelation plot for a particular parameter}
 \usage{
 plot_autocor(
   model,
@@ -19,10 +19,14 @@ plot_autocor(
 and nothing else}
 
 \item{lag_max}{See \code{\link[coda:autocorr.plot]{coda::autocorr.plot()}}}
+
+\item{y_lim}{A vector of start and end limits for the y-axis}
+
+\item{bar_width}{The width of the bars}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
-Create an autocorelation plot for a particular parameter
+Create an autocorrelation plot for a particular parameter
 }

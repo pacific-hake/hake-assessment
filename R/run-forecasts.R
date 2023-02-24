@@ -1,8 +1,12 @@
 #' Run forecasting for the model supplied
 #'
-#' @details If there is no mcmc component to the model, an error will be given and the program will be stopped
+#' @param model_path The directory containing the model
+#' @param catch_levels_path The directory containing the output of
+#' [run_catch_levels()]
+#' @param ... Arguments passed to [fetch_catch_levels()]
 #'
-#' @param model The SS model output as loaded by [load_ss_files()]
+#' @details If there is no mcmc component to the model, an error will be
+#' given and the program will be stopped
 #'
 #' @return [base::invisible()]
 #' @export

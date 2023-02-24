@@ -14,17 +14,19 @@ load_extra_mcmc(
 )
 }
 \arguments{
-\item{model}{A model list as created by \code{\link[=load_ss_files]{load_ss_files()}}}
+\item{model}{A model list as created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{probs}{The quantile values to use on the MCMC posterior data}
 
 \item{small}{Logical. If \code{TRUE}, only load a small set of things
 that are required for the assessment (index fits and catchability
-estimates) in order to reduce the memory takenup by loading all the
+estimates) in order to reduce the memory taken up by loading all the
 output into R for the document build.If \code{FALSE}, load everything that
 the base model needs, which will make a huge RDS file}
 
 \item{verbose}{Logical. If \code{TRUE}, show progress messages}
+
+\item{...}{Arguments passed to \code{\link[=extract_rep_table]{extract_rep_table()}}}
 }
 \value{
 The extra MCMC list

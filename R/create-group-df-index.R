@@ -2,9 +2,8 @@
 #' model list which is in long format ready for [ggplot2::ggplot()]
 #'
 #' @param model_lst A list of models, each created by [create_rds_file()]
+#' @param survey_type Either `age1` or `age2`
 #' @param model_names A vector of model names,the same length as `model_lst`
-#' @param type The type of survey, must be one of `age1` or `age2`.
-#' `age2` means age 2+ acoustic survey and `age1``is the age 1 acoustic survey
 #'
 #' @return A list containing a [tibble::tibble()]
 #'

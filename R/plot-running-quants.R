@@ -6,6 +6,7 @@
 #' @param probs A vector of 3 values for the lower, median, and upper
 #' quantiles
 #' @param rib_alpha The alpha value for the credible interval ribbon
+#' @param y_lim The limits for the y-axis. A vector of 2
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export

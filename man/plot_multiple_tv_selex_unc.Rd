@@ -34,6 +34,11 @@ maximum years to plot panels for}
 
 \item{rev}{Logical. If \code{TRUE}, reverse the order of the years}
 
+\item{point_size}{The point size}
+
+\item{point_fatten}{The fatness of the point. Needed when using
+\code{\link[ggplot2:geom_linerange]{ggplot2::geom_errorbar()}}}
+
 \item{axis_title_font_size}{Size of the font for the X and Y axis labels}
 
 \item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
@@ -44,6 +49,8 @@ be shown}
 \item{border_color}{Color of the column borders}
 
 \item{border_linetype}{Line type of the column borders}
+
+\item{show_panel_borders}{Logical. If \code{TRUE}, show borders around the panels}
 
 \item{label_loc}{A vector of two (x, y) describing the label location inside
 the panels}

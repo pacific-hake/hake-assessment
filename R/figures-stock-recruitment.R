@@ -87,7 +87,7 @@ make.mcmc.sr.variability.plot <- function(model,
   abline(h = adj, lty = 2, col = 2)
 
   addpoly(b, r.quants[1,], r.quants[3,])
-  addpoly(b, adj * r.quants[1,], adj * r.quants[3,], shade.col = rgb(1, 0, 0, 0.1), col = 2)
+  addpoly(b, adj * r.quants[1,], adj * r.quants[3,], shade.col = rgb(1, 0, 0, 0.1), color = 2)
   lines(b, r.quants[2,], lwd = 3)
   lines(b, adj * r.quants[2,], lwd = 3, col = 2)
 

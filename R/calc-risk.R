@@ -1,12 +1,17 @@
-#' Calculate the probablities of being under several reference points from one forecast year to the next
+#' Calculate the probabilities of being under several reference points from
+#' one forecast year to the next
 #'
 #' @param forecast_outputs A list as output by [fetch_forecasts()]
+#' @param catch_levels A ist of catch levels which are represented by lists
+#' of length 3
+#' @param ...
 #'
-#' @return A list of length 1 less than the number of forecast years. Each element
-#' is a data.frame of catch levels holding the probabilities. For example, list element 1 will hold the
-#'  probabilities for each catch.level of being under several reference points for the first two years
-#'  in the forecast_yrs vector. If forecast.outputs is NA, NA will be returned, otherwise the risk.list
-#'  will be returned
+#' @return A list of length 1 less than the number of forecast years. Each
+#' element is a data.frame of catch levels holding the probabilities. For
+#' example, list element 1 will hold the probabilities for each catch.level
+#' of being under several reference points for the first two years in the
+#' forecast_yrs vector. If forecast.outputs is NA, NA will be returned,
+#' otherwise the risk.list will be returned
 #' @export
 calc_risk <- function(forecast_outputs = NA,
                       catch_levels,
@@ -14,7 +19,8 @@ calc_risk <- function(forecast_outputs = NA,
 
   stopifnot(!is.na(forecast_outputs))
 
-  # Make the catch level values a matrix where the columns represent the cases in catch_names
+  # Make the catch level values a matrix where the columns represent the
+  # cases in catch_names
   catch_levels <- sapply(catch_levels, "[[", 1)
 
   if(is.na(forecast_outputs)[1]){

@@ -1,9 +1,11 @@
-#' Create an autocorelation plot for a particular parameter
+#' Create an autocorrelation plot for a particular parameter
 #'
 #' @param model A model list, created by [create_rds_file()]
 #' @param post_regex A regular expression that matches one parameter name
 #' and nothing else
 #' @param lag_max See [coda::autocorr.plot()]
+#' @param y_lim A vector of start and end limits for the y-axis
+#' @param bar_width The width of the bars
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export

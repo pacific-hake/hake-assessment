@@ -7,7 +7,7 @@
 #' @param my_catch_levels The table of catch levels with same structure as
 #' found in `forecast-catch-levels.R`
 #' @param forecast_yrs A vector of the forecast years
-#' @param ...
+#' @param ... Absorbs arguments intended for other functions
 #'
 #' @return A list of forecast outputs as read in by [r4ss::SSgetMCMC()]
 #' @export

@@ -4,12 +4,9 @@
 #' @details Assumes [run_catch_levels()] function has been run and the forecast files
 #' are populated with 3 forecast years
 #'
-#' @param model The SS model output as loaded by [load_ss_files()]
 #' @param catch_levels The catch levels list as defined in forecast-catch-levels.R
 #' @param catch_levels_path The path for the catch-levels output
-#' @param spr_100_path The path for the spr-100 output
-#' @param default_hr_path The path for the default hr output
-#' @param stable_catch_path The path for the stable-catch output
+#' @param ... Absorbs arguments intended for other functions
 #'
 #' @return A list of 3-element lists of vectors of 3 catch levels corresponding to:
 #' a) SPR-100%
@@ -88,8 +85,10 @@ fetch_catch_levels <- function(catch_levels_path,
 #' Run the model iteratively reducing the difference between the first and second year projections to
 #' find a stable catch within the the given tolerance
 #'
-#' @param model The SS model output as loaded by [load_ss_files()]
-#' @param ...
+#' @param model The SS model output as loaded by [create_rds_file()]
+#' @param default_hr_path The path in which the default hr forecast resides
+#' @param forecast_yrs A vector of forecast years
+#' @param ... Absorbs arguments intended for other functions
 #'
 #' @export
 run_catch_levels_default_hr <- function(model,
@@ -148,7 +147,7 @@ run_catch_levels_default_hr <- function(model,
 #' Run the model iteratively zoning in on a catch value that reduces the SPR to 1, within the tolerance given
 #' (`catch_levels_spr_tol`)
 #'
-#' @param model The SS model output as loaded by [load_ss_files()]
+#' @param model The SS model output as loaded by [create_rds_file()]
 #' @param spr_100_path Path where the SPR model files are found
 #' @param forecast_yrs A vector if the years to forecast for
 #' @param catch_levels_spr_tol The tolerance to be within 1 for the SPR
@@ -253,10 +252,17 @@ run_catch_levels_spr_100 <- function(model,
   }
 }
 
-#' Run the model iteratively reducing the difference between the first and second year projections to
-#' find a stable catch within the the given tolerance
+#' Run the model iteratively reducing the difference between the first and
+#' second year projections to find a stable catch within the the given
+#' tolerance
 #'
-#' @param model The SS model output as loaded by [load_ss_files()]
+#' @param model The SS model output as loaded by [create_rds_file()]
+#' @param stable_catch_path The path of the stable catch scenario
+#' @param forecast_yrs A vector of forecast years
+#' @param catch_levels_catch_tol The tolerance for stopping based on catch
+#' difference
+#' @param catch_levels_max_iter The maximum number of iterations
+#' @param ... Absorbs other arguments intended for other functions
 #'
 #' @export
 run_catch_levels_stable_catch <- function(model,
@@ -358,8 +364,9 @@ run_catch_levels_stable_catch <- function(model,
 #' A wrapper to run the catch levels determination routines
 #'
 #' @param model_path The model directory name
-#' @param ... Passed to [run_catch_levels_default_hr()], [run_catch_levels_spr_100()],
-#' and [run_catch_levels_stable_catch()]
+#' @param catch_levels_path The catch levels list, which is a list of lists
+#' of length 3
+#' @param ... Absorbs arguments intended for other functions
 #'
 #' @return [base::invisible()]
 #' @export

@@ -25,7 +25,7 @@ for example extraction of: \code{base_model$mcmccalcs$smed} would require
 \item{end_yrs}{A vector of the end years for each model.
 If one value, it will apply to all models}
 
-\item{inc_models_yr}{Logical. If \code{TRUE}, include the \code{model} and \code{year}
+\item{inc_model_yr}{Logical. If \code{TRUE}, include the \code{model} and \code{year}
 columns in the data frame}
 }
 \value{

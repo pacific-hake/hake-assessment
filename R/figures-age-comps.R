@@ -1,6 +1,6 @@
 #' Make an age composition bubble plot
 #'
-#' @param model A model object as returned from [load.ss.files()]
+#' @param model A model object as returned from [create_rds_file()]
 #' @param subplot 1 for fishery, 2 for survey
 #' @param ... Additional parameters passed to [plot_bubbles()]
 #'
@@ -43,6 +43,7 @@ make_age_comp_bubble_plot <- function(model,
 #' [ggplot2::theme()]
 #' @param alpha See [ggplot2::geom_point()]
 #' @param xlim Limits for the x-axis
+#' @param legend.title The legend title text
 #' @param ... Additional parameters passed to [ggplot2::geom_point()],
 #' [ggplot2::geom_segment()] and [ggplot2::theme()]
 #'
@@ -110,7 +111,7 @@ plot_bubbles <- function(d,
 #' Get the start and end year of the age comp data, and maximum proportion
 #' overall with its year and age
 #'
-#' @param model A model as returnded by [load.ss.files()]
+#' @param model A model as returnded by [create_rds_file()]
 #' @param type 1 for Fishery and 2 for Survey
 #'
 #' @return A vector of 5 elements as described above
@@ -140,7 +141,7 @@ get_age_comp_limits <- function(model, type = 1){
 
 #' Plot the numbers-at-age bubble plot with mean age line
 #'
-#' @param model A model object as output from [load_ss_files()]
+#' @param model A model object as output from [create_rds_file()]
 #' @param scale Number to scale the numbers-at-age by so the legend values are nicer
 #' @param ... Additional parameters passed to [plot_bubbles()]
 #'

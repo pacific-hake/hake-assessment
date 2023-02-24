@@ -14,11 +14,15 @@ combine_historical_probs(
 )
 }
 \arguments{
-\item{model}{A model as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
+\item{model}{A model as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{...}{Further arguments to pass to [calc_historical_probs()[]}
+\item{fn}{The file name}
 
-\item{file}{Filename (.csv) of historical values from past assessments}
+\item{start}{First assessment year to do comparisons}
+
+\item{end}{Last assessment year to do comparisons}
+
+\item{...}{Further arguments to pass to \code{\link[=calc_historical_probs]{calc_historical_probs()}}}
 }
 \value{
 Data frame with columns

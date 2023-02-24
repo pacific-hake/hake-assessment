@@ -22,6 +22,8 @@ and nothing else}
 quantiles}
 
 \item{rib_alpha}{The alpha value for the credible interval ribbon}
+
+\item{y_lim}{The limits for the y-axis. A vector of 2}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

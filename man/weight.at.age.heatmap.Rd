@@ -44,6 +44,10 @@ be used to specify when the data end and projections begin.}
 the data to only years for which were informed by data and not all years
 in the weight-at-age file.}
 
+\item{start_yr}{Start year}
+
+\item{end_yr}{End year}
+
 \item{extrap.mask}{A list of vectors of which years are extrapolations so
 that they can be colored accordingly. 1's means they are extrapolations
 and 0's means they are not.}

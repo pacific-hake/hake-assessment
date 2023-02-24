@@ -1,10 +1,16 @@
-#' Plot the history of assessments spawning biomass estimaed trajectory
+#' Plot the history of assessments spawning biomass estimated trajectory
 #'
-#' @details The csv file should be set up with blanks for SSB in the most recent year
-#' it is read in data-tables.r which is sourced in all.R
-##' @param base This year's base model
-##' @param assessment.history A data frame read in from the assessment history file
-##' @param par.mar par(mar = c(x, x, x, x)) values; default is for doc
+#' @details
+#' The csv file should be set up with blanks for SSB in the most
+#' recent year
+#'
+#' @param base This year's base model
+#' @param assessment.history A data frame read in from the assessment
+#' history file
+#' @param par.mar par(mar = c(x, x, x, x)) values; default is for doc
+#' @param cex.legend The text size for the legend
+#'
+#' @export
 make.assessment.history.plot <- function(base,
                                          assessment.history,
                                          par.mar = c(3.1, 3.1, 1.1, 6.1),
@@ -26,7 +32,8 @@ make.assessment.history.plot <- function(base,
   # Change last row only. New model year's median
   yr.colnames <- paste0("X", years[years %in% latestYrs])
   yr.ssb.colnames <- paste0("SSB_", years[years %in% latestYrs])
-  xx[nrow(xx), yr.colnames] <- apply(latestAssess, 2, median)[yr.ssb.colnames] / 1e6
+  xx[nrow(xx), yr.colnames] <-
+    apply(latestAssess, 2, median)[yr.ssb.colnames] / 1e6
   end_yr <- xx[nrow(xx),]$Year
 
   slower <- base$mcmccalcs$slower
@@ -66,7 +73,8 @@ make.assessment.history.plot <- function(base,
 
   # set line widths and plot characters
   lwds <- c(rep(1,nrow(xx) - 1), 3)
-  pchs <- rep(c(18, 15, 17, 4, 20, 3), 4) ## repeat it more than necessary
+  # repeat it more than necessary
+  pchs <- rep(c(18, 15, 17, 4, 20, 3), 4)
   legCol <- legPch <- rep(NA, nrow(xx))
 
   # set parameters for margins and axes
@@ -103,10 +111,6 @@ make.assessment.history.plot <- function(base,
           type = "o",
           cex = 0.7)
   }
-  # OLD: add x-axis mark for final year (without label if too close to nearest decade mark)
-  # axis(1, at=max(years), label=ifelse(max(years)%%10 %in% c(0:2,8:9), "", max(years)))
-  # NEW: add little tick marks for wide range of years
-  #      to avoid gap at end (e.g. ticks up to 2018, then gap at 2019)
   axis(1, at = 1950:2030, labels = rep("", length(1950:2030)), tcl = -0.3)
 
   # add values for base model
@@ -118,7 +122,6 @@ make.assessment.history.plot <- function(base,
   tmpCol <- rgb(t(col2rgb(legCol[i])),
                 alpha = 0.6 * 255,
                 maxColorValue = 255)
-  # add line
   lines(years,
         xx[i, yearInd],
         col = tmpCol,
@@ -126,12 +129,11 @@ make.assessment.history.plot <- function(base,
   yrs <- years[years %in% latestYrs]
   # make polygon showing uncertainty around base model
   # addpoly function is defined in utilities.r
-
   addpoly(yrs,
           slower[names(slower) %in% yrs],
           supper[names(supper) %in% yrs],
           "black")
-  # add legend
+
   legend(par("usr")[2],
          par("usr")[4],
          paste(xx$Year, xx$Model),

@@ -2,7 +2,7 @@
 % Please edit documentation in R/figures-assessment-history.R
 \name{make.assessment.history.plot}
 \alias{make.assessment.history.plot}
-\title{Plot the history of assessments spawning biomass estimaed trajectory}
+\title{Plot the history of assessments spawning biomass estimated trajectory}
 \usage{
 make.assessment.history.plot(
   base,
@@ -14,14 +14,17 @@ make.assessment.history.plot(
 \arguments{
 \item{base}{This year's base model}
 
-\item{assessment.history}{A data frame read in from the assessment history file}
+\item{assessment.history}{A data frame read in from the assessment
+history file}
 
 \item{par.mar}{par(mar = c(x, x, x, x)) values; default is for doc}
+
+\item{cex.legend}{The text size for the legend}
 }
 \description{
-Plot the history of assessments spawning biomass estimaed trajectory
+Plot the history of assessments spawning biomass estimated trajectory
 }
 \details{
-The csv file should be set up with blanks for SSB in the most recent year
-it is read in data-tables.r which is sourced in all.R
+The csv file should be set up with blanks for SSB in the most
+recent year
 }

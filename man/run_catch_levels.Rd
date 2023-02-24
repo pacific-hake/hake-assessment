@@ -9,8 +9,10 @@ run_catch_levels(model_path, catch_levels_path = catch_levels_path, ...)
 \arguments{
 \item{model_path}{The model directory name}
 
-\item{...}{Passed to \code{\link[=run_catch_levels_default_hr]{run_catch_levels_default_hr()}}, \code{\link[=run_catch_levels_spr_100]{run_catch_levels_spr_100()}},
-and \code{\link[=run_catch_levels_stable_catch]{run_catch_levels_stable_catch()}}}
+\item{catch_levels_path}{The catch levels list, which is a list of lists
+of length 3}
+
+\item{...}{Absorbs arguments intended for other functions}
 }
 \value{
 \code{\link[base:invisible]{base::invisible()}}

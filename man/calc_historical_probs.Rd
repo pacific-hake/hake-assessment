@@ -8,7 +8,7 @@ from past assessments}
 calc_historical_probs(model, start = 2012, end)
 }
 \arguments{
-\item{model}{A model as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
+\item{model}{A model as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{start}{First assessment year to do comparisons}
 

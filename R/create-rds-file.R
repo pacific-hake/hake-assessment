@@ -1,7 +1,9 @@
 #' Create an rds file to hold the model's data and outputs.
 #'
 #' @param model_dir Directory name of model to be loaded
-#' @param ... Arguments to pass to [load_extra_mcmc()]
+#' @param verbose Logical. If `TRUE`, write more output to the console
+#' @param overwrite Logical. If `TRUE`, overwrite the file if it exists
+#' @param ... Arguments to pass to [load_ss_files()]
 #'
 #' @return [base::invisible()]
 #' @export
@@ -33,9 +35,7 @@ create_rds_file <- function(model_dir = NULL,
     message("Loading SS3 model input and output files in:\n",
             "`", model_dir, "`\n")
   }
-  tic("Load SS3 files")
   model <- load_ss_files(model_dir, ...)
-  toc()
   if(verbose){
     message("SS3 input and output files loaded successfully from ",
             "model output in:\n`",
@@ -44,9 +44,7 @@ create_rds_file <- function(model_dir = NULL,
   # Try loading extra mcmc output. If none are found or there is a problem,
   # model$extra.mcmc will be NA
   # `small` is an argument needed, passed through `...`
-  tic("Load extra MCMC")
   model$extra.mcmc <- load_extra_mcmc(model, verbose = verbose, ...)
-  toc()
 
   # Load forecasts. If none are found or there is a problem, model$forecasts will be NA
   if(dir.exists(file.path(model_dir, forecasts_path))){
@@ -71,7 +69,6 @@ create_rds_file <- function(model_dir = NULL,
   }
 
   # Load retrospectives. If none are found or there is a problem, model$retros will be NA
-  tic("Load retrospectives")
   model$retropath <- file.path(model_dir, retrospectives_path)
   if(dir.exists(model$retropath)){
     model$retros <- load_retrospectives(model$retropath,
@@ -79,9 +76,7 @@ create_rds_file <- function(model_dir = NULL,
   }else{
     model$retros <- NA
   }
-  toc()
 
-  tic("Saving the RDS file")
   saveRDS(model, file = rds_file)
   if(file.exists(rds_file)){
     dt <- now() - file.info(rds_file)$mtime
@@ -91,7 +86,6 @@ create_rds_file <- function(model_dir = NULL,
     stop("File was not created during the `saveRDS()` call",
          call. = FALSE)
   }
-  toc()
 
   invisible()
 }

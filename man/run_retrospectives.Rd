@@ -17,21 +17,21 @@ run_retrospectives(
 \arguments{
 \item{model_path}{The path of the model run}
 
-\item{retrospective_yrs}{The years (e.g. 1:6) to run so each of these numbers means that many
-years of data removed from the model}
+\item{retrospective_yrs}{The years (e.g. 1:6) to run so each of these
+numbers means that many years of data removed from the model}
 
-\item{remove_blocks}{If \code{TRUE}, remove block designs from control file prior to running}
+\item{remove_blocks}{If \code{TRUE}, remove block designs from control file
+prior to running}
 
-\item{retro_mcmc}{If \code{TRUE}, run the ADNUTS MCMC in the \emph{mcmc} subdirectory for each
-retrospective in addition to the MLE run}
+\item{retro_mcmc}{If \code{TRUE}, run the ADNUTS MCMC in the \emph{mcmc}
+subdirectory for each retrospective in addition to the MLE run}
 
-\item{...}{Arguments passed to \code{\link[=load_ss_files]{load_ss_files()}}}
+\item{run_extra_mcmc}{Logical. If \code{TRUE}, run the model with extra-mcmc
+turned on}
 
-\item{num_samples}{Same as in \code{\link[=run_adnuts]{run_adnuts()}}}
+\item{fn_exe}{The filename of the executable for running the model}
 
-\item{num_warmup_samples}{Same as in \code{\link[=run_adnuts]{run_adnuts()}}}
-
-\item{num_chains}{Same as in \code{\link[=run_adnuts]{run_adnuts()}}}
+\item{...}{Arguments passed to \code{\link[=create_rds_file]{create_rds_file()}}}
 }
 \value{
 \code{\link[base:invisible]{base::invisible()}}

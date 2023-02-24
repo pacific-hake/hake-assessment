@@ -1,10 +1,8 @@
 #' Make a bubble plot from the given data
 #'
-#' @param d a [tibble::tibble()] of the data in long format with column
-#' names `Year`, `Age`, and `Proportion`
+#' @param model A model, created by [create_rds_file()]
 #' @param type 1 = Fishery, any other value = Survey
 #' @param clines An optional vector of years to draw cohort lines through
-#' @param yrs A vector of 2, for the years to show on the plot
 #' @param by How many years between year labels on the x-axis
 #' @param legend.position See the `legend.position` parameter of
 #' [ggplot2::theme()]

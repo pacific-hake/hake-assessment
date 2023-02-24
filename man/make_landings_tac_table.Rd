@@ -20,17 +20,18 @@ make_landings_tac_table(
 
 \item{start_yr}{Start year for the table}
 
-\item{end_yr}{End year for the table. If past data range, the last year in \code{d} will be used}
+\item{end_yr}{End year for the table. If past data range, the last year
+in \code{d} will be used}
 
 \item{xcaption}{Caption for the table}
 
 \item{xlabel}{Latex label to use}
 
+\item{font_size}{Size of font in table}
+
+\item{space_size}{Vertica spacing between text in table}
+
 \item{placement}{Latex table placement character}
-
-\item{font.size}{Size of the font}
-
-\item{space.size}{Size of spaces between letters}
 }
 \value{
 An \code{\link[xtable:xtable]{xtable::xtable()}}

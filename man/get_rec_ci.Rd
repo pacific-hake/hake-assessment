@@ -26,6 +26,10 @@ get_rec_ci(
 \code{\link[=quantile]{quantile()}} function.}
 
 \item{scale}{Scaling factor}
+
+\item{decimals}{Number of decimal points to round values to}
+
+\item{perc.decimals}{Number of decimal points to round percentages to}
 }
 \value{
 A list of length 3: Item 1 is a vector of the \code{model1}

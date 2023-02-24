@@ -14,6 +14,8 @@ create_group_df_recr(model_lst = NULL, model_names = NULL, devs = FALSE, ...)
 
 \item{devs}{Logical. If \code{TRUE} return recruitment deviations, if \code{FALSE},
 return absolute recruitment}
+
+\item{...}{Arguments passed to \code{\link[=extract_mcmc_quant]{extract_mcmc_quant()}}}
 }
 \value{
 A list containing a \code{\link[tibble:tibble]{tibble::tibble()}}

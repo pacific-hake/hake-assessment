@@ -7,7 +7,12 @@
 run_forecasts(model_path, catch_levels_path, ...)
 }
 \arguments{
-\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
+\item{model_path}{The directory containing the model}
+
+\item{catch_levels_path}{The directory containing the output of
+\code{\link[=run_catch_levels]{run_catch_levels()}}}
+
+\item{...}{Arguments passed to \code{\link[=fetch_catch_levels]{fetch_catch_levels()}}}
 }
 \value{
 \code{\link[base:invisible]{base::invisible()}}
@@ -16,5 +21,6 @@ run_forecasts(model_path, catch_levels_path, ...)
 Run forecasting for the model supplied
 }
 \details{
-If there is no mcmc component to the model, an error will be given and the program will be stopped
+If there is no mcmc component to the model, an error will be
+given and the program will be stopped
 }

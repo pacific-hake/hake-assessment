@@ -9,7 +9,11 @@ create_rds_file(model_dir = NULL, verbose = TRUE, overwrite = TRUE, ...)
 \arguments{
 \item{model_dir}{Directory name of model to be loaded}
 
-\item{...}{Arguments to pass to \code{\link[=load_extra_mcmc]{load_extra_mcmc()}}}
+\item{verbose}{Logical. If \code{TRUE}, write more output to the console}
+
+\item{overwrite}{Logical. If \code{TRUE}, overwrite the file if it exists}
+
+\item{...}{Arguments to pass to \code{\link[=load_ss_files]{load_ss_files()}}}
 }
 \value{
 \code{\link[base:invisible]{base::invisible()}}

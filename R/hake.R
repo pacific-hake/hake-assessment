@@ -4,14 +4,39 @@
 #' of the stock assessment document. Aldo included are beamer presentation
 #' templates for the various meetings required.
 #'
-#' @import adnuts cli coda cowplot crayon dplyr future furrr
-#' @import gfutilities ggh4x ggplot2 ggrepel glue graphics
-#' @import grDevices grid gridExtra gridGraphics gtools here
-#' @import knitr lubridate maps maptools matrixcalc microbenchmark
-#' @import purrr RColorBrewer readr reshape2 rnaturalearth
-#' @import rnaturalearthhires r4ss rgeos rlang rstan sf
-#' @import stats stringr tibble tictoc tidyr tools utils withr xtable
+#' @import adnuts coda dplyr
+#' @import ggh4x ggplot2 ggrepel
+#' @import rnaturalearthhires r4ss
 #'
+#' @importFrom cli symbol
+#' @importFrom crayon green
+#' @importFrom cowplot plot_grid
+#' @importFrom future plan
+#' @importFrom furrr future_map future_imap furrr_options
+#' @importFrom glue glue
+#' @importFrom graphics arrows grid hist layout legend lines matplot
+#' @importFrom graphics mtext par points polygon rect segments
+#' @importFrom graphics strwidth symbols text title
+#' @importFrom grDevices colorRampPalette gray rgb
+#' @importFrom grid gpar grid.draw grid.newpage rectGrob textGrob
+#' @importFrom gridExtra arrangeGrob
+#' @importFrom here here
+#' @importFrom lubridate hour minute month second year
+#' @importFrom purrr map imap map2 map_chr map_dbl map_lgl walk walk2 flatten
+#' @importFrom purrr map_df map_dfr map_dfc map2_df map2_dfc map2_dfr pmap
+#' @importFrom RColorBrewer brewer.pal.info brewer.pal
+#' @importFrom readr read_csv read_table2 write_csv
+#' @importFrom rlang sym
+#' @importFrom scales comma rescale
+#' @importFrom sf st_as_sf st_crs<- st_coordinates
+#' @importFrom stats median na.omit quantile rbeta rlnorm rnorm runif setNames
+#' @importFrom stringr str_split
+#' @importFrom tools file_path_sans_ext file_ext
+#' @importFrom tibble as_tibble enframe
+#' @importFrom tidyr all_of any_of pivot_longer pivot_wider unnest
+#' @importFrom utils  head object.size read.csv read.table tail type.convert write.csv write.table
+#' @importFrom xtable xtable
+
 #' @docType package
 #' @name hake
 NULL

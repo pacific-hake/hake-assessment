@@ -15,6 +15,8 @@ load_ss_files(
 )
 }
 \arguments{
+\item{model_path}{The directory that the model is in}
+
 \item{key_posts}{Vector of key posteriors used to create key posteriors file}
 
 \item{key_posts_fn}{Name of the key posteriors file}
@@ -23,7 +25,7 @@ load_ss_files(
 
 \item{printstats}{Print info on each model loaded via \code{\link[r4ss:SS_output]{r4ss::SS_output()}}}
 
-\item{model.dir}{Directory the model reesides in}
+\item{...}{Absorbs arguments intended for other functions}
 }
 \value{
 A model object representing the output from the SS model

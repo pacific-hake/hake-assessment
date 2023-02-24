@@ -7,7 +7,7 @@
 get_active_parameter_names(model)
 }
 \arguments{
-\item{model}{A model object as returned from \code{\link[=load.ss.files]{load.ss.files()}}}
+\item{model}{A model object as returned from \code{\link[=create_rds_file]{create_rds_file()}}}
 }
 \value{
 A vector of the active parameter names for a model

@@ -128,12 +128,13 @@ make_catch_table <- function(ct,
 #'
 #' @param d Data frame as output from [load_catches()]
 #' @param start_yr Start year for the table
-#' @param end_yr End year for the table. If past data range, the last year in `d` will be used
+#' @param end_yr End year for the table. If past data range, the last year
+#' in `d` will be used
 #' @param xcaption Caption for the table
 #' @param xlabel Latex label to use
-#' @param font.size Size of the font
-#' @param space.size Size of spaces between letters
 #' @param placement Latex table placement character
+#' @param font_size Size of font in table
+#' @param space_size Vertica spacing between text in table
 #'
 #' @return An [xtable::xtable()]
 #' @export

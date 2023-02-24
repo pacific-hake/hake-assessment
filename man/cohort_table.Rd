@@ -22,6 +22,18 @@ cohort_table(
 \item{end_yr}{The last year to use}
 
 \item{cohorts}{A vector of cohorts (years) to use}
+
+\item{csv_dir}{Directory for output of a file containing the table data}
+
+\item{xcaption}{The table caption}
+
+\item{xlabel}{The TeX label for the table}
+
+\item{digits}{The number of decimal point digits to use in the table}
+
+\item{font_size}{Size of text in the table}
+
+\item{space_size}{Amount of vertical space betwen text in the table}
 }
 \value{
 An \code{\link[xtable:xtable]{xtable::xtable()}}

@@ -12,13 +12,7 @@ fetch_catch_levels(catch_levels_path, catch_levels = NULL, ...)
 
 \item{catch_levels}{The catch levels list as defined in forecast-catch-levels.R}
 
-\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
-
-\item{spr_100_path}{The path for the spr-100 output}
-
-\item{default_hr_path}{The path for the default hr output}
-
-\item{stable_catch_path}{The path for the stable-catch output}
+\item{...}{Absorbs arguments intended for other functions}
 }
 \value{
 A list of 3-element lists of vectors of 3 catch levels corresponding to:

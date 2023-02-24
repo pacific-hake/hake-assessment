@@ -1,14 +1,15 @@
 #' Create and return a list of output stats to attach to the main model
 #' by looking in the model's path for the report files.
 #'
-#' @param model A model list as created by [load_ss_files()]
+#' @param model A model list as created by [create_rds_file()]
 #' @param probs The quantile values to use on the MCMC posterior data
 #' @param small Logical. If `TRUE`, only load a small set of things
 #' that are required for the assessment (index fits and catchability
-#' estimates) in order to reduce the memory takenup by loading all the
+#' estimates) in order to reduce the memory taken up by loading all the
 #' output into R for the document build.If `FALSE`, load everything that
 #' the base model needs, which will make a huge RDS file
 #' @param verbose Logical. If `TRUE`, show progress messages
+#' @param ... Arguments passed to [extract_rep_table()]
 #'
 #' @return The extra MCMC list
 #' @export
@@ -88,7 +89,6 @@ load_extra_mcmc <- function(model,
   # *Note that lapply and for loops were tested for speed and imap is
   # fastest for this application
 
-  tic("Load Extra MCMC Report files")
   if(verbose){
     message("Loading ", length(repfile_list), " Report files from:\n`",
             model$extra_mcmc_path, "`\nProgress:")
@@ -102,12 +102,10 @@ load_extra_mcmc <- function(model,
     }
     readLines(.x)
   })
-  toc()
 
   # Load all compreport files into a list, 1 element for each compreport file.
   # Elements that are NA had no file found
 
-  tic("Load Extra MCMC CompReport files")
   if(verbose){
     message("Loading ", length(repfile_list), " CompReport files from:\n`",
             model$extra_mcmc_path, "`\nProgress:")
@@ -121,7 +119,6 @@ load_extra_mcmc <- function(model,
     }
     readLines(.x)
   })
-  toc()
   if(verbose){
     message("\n")
   }
@@ -153,13 +150,11 @@ load_extra_mcmc <- function(model,
     bio_end_ind <- grep("^SPR_SERIES", rep_example) - 2
     reps <- reps[!is.na(reps)]
     reps_bio <- map(reps, ~{.x[bio_start_ind:bio_end_ind]})
-    tic()
     timeseries <- extract_rep_table(reps_bio,
                                     bio_header,
                                     verbose = verbose,
                                     ...) |>
       select(Iter, Bio_all, Bio_smry)
-    toc()
     iter <- unique(timeseries$Iter)
     bio_yrs <- enframe(model$timeseries$Yr, name = NULL, value = "Yr")
     ts <- split(timeseries, timeseries$Iter) |>

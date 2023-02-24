@@ -17,7 +17,7 @@ top.coh(
 )
 }
 \arguments{
-\item{model}{The model as returned from \code{\link[=load_ss_files]{load_ss_files()}}}
+\item{model}{The model as returned from \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{yr}{The year the cohort was born}
 

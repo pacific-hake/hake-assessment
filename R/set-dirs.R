@@ -16,7 +16,6 @@
 #' @param sens_models_dir Name of the sensitivity models directory
 #' @param request_models_dir Name of the request models directory
 #' @param test_models_dir Name of the test models directory
-#' @param retro_models_dir Name of the retrospective models directory
 #' @param base_models_dirs A vector of subdirectory names in
 #' `base_models_dir` that each contain an individual SS3 base model
 #' @param bridge_models_dirs A vector of subdirectory names in
@@ -51,8 +50,6 @@
 #' 11. A vector of the request model directories
 #' 12. A vector of the test model directories
 #'
-#' @importFrom purrr map map_lgl
-#' @importFrom lubridate year month
 #' @export
 set_dirs <- function(
     models_dir = NA,

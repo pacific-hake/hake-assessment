@@ -17,8 +17,7 @@ make.risk.table(
   let_col_width_cm = 0.2,
   catch_col_width_cm = 1.6,
   col_width_cm = 1.6,
-  placement = "H",
-  type = 1
+  placement = "H"
 )
 }
 \arguments{
@@ -29,6 +28,8 @@ make.risk.table(
 \item{index}{Index for which forecast year data to use. e.g. 1 = second forecast year
 compared to the first. If there were N forecast years, this can be from 1 to N-1.}
 
+\item{digits}{Number of decimal places to round to for values in table}
+
 \item{xcaption}{Caption to appear in the calling document}
 
 \item{xlabel}{Label used to reference the table in LaTeX}
@@ -36,6 +37,12 @@ compared to the first. If there were N forecast years, this can be from 1 to N-1
 \item{font.size}{Point size of font in table}
 
 \item{space.size}{Vertical space between rows}
+
+\item{let_col_width_cm}{Column width in cm for the letters column}
+
+\item{catch_col_width_cm}{Column width in cm for the catch column}
+
+\item{col_width_cm}{Column width in cm for all other columns}
 
 \item{placement}{LaTeX code for placement of the table, e.g. "H" or "tbp"}
 }

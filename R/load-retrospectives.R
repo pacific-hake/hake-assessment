@@ -2,13 +2,12 @@
 #' directories or there is some other problem, the program will halt
 #'
 #' @param retro_path The path in which the retrospective directories reside
-#' @param retrospective_yrs A vector of years for the retrospectives
-#' @param end_yr The end year of the model. Retrospectives will have
-#' their `endyr` element set to this minus the numbers of years of the
-#' retorspective
+#' @param retro_yrs A vector of the years to run retrospectives for
+#' @param ... Arguments passed to [load_ss_files()] and [load_extra_mcmc()]
+#'
 #' @return The list of retrospective outputs
 #' @export
-load_retrospectives <- function(retro_path,
+load_retrosepctives <- function(retro_path,
                                 retro_yrs,
                                 ...){
 

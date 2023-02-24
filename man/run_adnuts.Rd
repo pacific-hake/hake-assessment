@@ -43,17 +43,16 @@ files into the \code{sso} subdirectory. If \code{FALSE}, those files will not be
 created and the \code{posteriors.sso} and \code{dervied_posteriors.sso} files
 will be in the running directory}
 
+\item{hess_step}{Logical. If \code{TRUE}, use the \code{hess_step} algorithm`}
+
 \item{fn_exe}{The name of the executable which was built using ADMB}
 
 \item{overwrite}{Logical. If \code{TRUE}, don't ask user if they want to
 overwrite if the directory already exists, just do it}
 
-\item{input_files}{The input files for SS}
+\item{fn_logfile}{The filename of the logfile}
 
-\item{check_issues}{Run \code{\link[adnuts:launch_shinyadmb]{adnuts::launch_shinyadmb()}} after initial short
-run to discover issues. This will stop the function before the main
-iterations are done, so you will have to re-run the function again
-with this set to \code{FALSE}.}
+\item{input_files}{The input files for SS}
 }
 \value{
 Nothing

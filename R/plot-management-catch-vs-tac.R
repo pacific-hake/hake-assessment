@@ -10,6 +10,10 @@
 #' @param line_width Width of the connecting lines
 #' @param line_alpha Which alpha level (0-1) to use for connecting
 #' the values with vertical lines
+#' @param leg_pos The legend position as x-y coordinates (vector of 2)
+#' @param leg_ncol The number of columns to split the legend into
+#' @param leg_font_size The legend font size
+#' @param point_size The point size
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export

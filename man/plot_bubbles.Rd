@@ -46,6 +46,8 @@ each row containns a year and \code{Age} represents the mean age for each year}
 
 \item{xlim}{Limits for the x-axis}
 
+\item{legend.title}{The legend title text}
+
 \item{...}{Additional parameters passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}},
 \code{\link[ggplot2:geom_segment]{ggplot2::geom_segment()}} and \code{\link[ggplot2:theme]{ggplot2::theme()}}}
 }

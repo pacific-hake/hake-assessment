@@ -12,7 +12,7 @@ make.assessment.changes.table <- function(assessment.changes,
   ## xlabel - the label used to reference the table in latex
   ## font.size - size of the font for the table
   ## space.size - size of the vertical spaces for the table
-  tab <- assess_changes
+  tab <- assess_changes_df
 
   tab$Comp_Method <- gsub("<NA>",
                           "NA",

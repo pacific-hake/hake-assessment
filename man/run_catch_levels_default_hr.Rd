@@ -8,9 +8,13 @@ find a stable catch within the the given tolerance}
 run_catch_levels_default_hr(model, default_hr_path, forecast_yrs, ...)
 }
 \arguments{
-\item{model}{The SS model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
+\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{...}{}
+\item{default_hr_path}{The path in which the default hr forecast resides}
+
+\item{forecast_yrs}{A vector of forecast years}
+
+\item{...}{Absorbs arguments intended for other functions}
 }
 \description{
 Run the model iteratively reducing the difference between the first and second year projections to

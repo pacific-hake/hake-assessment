@@ -19,7 +19,7 @@ found in \code{forecast-catch-levels.R}}
 
 \item{forecast_yrs}{A vector of the forecast years}
 
-\item{...}{}
+\item{...}{Absorbs arguments intended for other functions}
 }
 \value{
 A list of forecast outputs as read in by \code{\link[r4ss:SSgetMCMC]{r4ss::SSgetMCMC()}}

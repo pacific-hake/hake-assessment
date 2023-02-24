@@ -14,7 +14,7 @@ plot_mcmc_diagnostics(
 )
 }
 \arguments{
-\item{model}{A model object as output by \code{\link[=load_ss_models]{load_ss_models()}}.}
+\item{model}{A model object as output by \code{\link[=create_rds_file]{create_rds_file()}}.}
 
 \item{post_regex}{A regular expression representing a parameter as it
 appears in the \code{\link[r4ss:SS_output]{r4ss::SS_output()}} column.}
@@ -26,6 +26,8 @@ the name can be a string or an expression.}
 quantiles}
 
 \item{all_alpha}{Alpha value for density and running mean plots}
+
+\item{...}{Arguments passed to \code{\link[=plot_autocor]{plot_autocor()}}}
 }
 \value{
 A 4-panel plot of MCMC diagnostics

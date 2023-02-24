@@ -4,7 +4,7 @@
 \alias{build_adnuts_doc}
 \title{Build the ADNUT diagnostics document entirely from within an R session}
 \usage{
-build_adnuts_doc(knit_only = FALSE, doc_name = "adnuts-diagnostics", ...)
+build_adnuts_doc(knit_only = FALSE, doc_name = "adnuts-diagnostics")
 }
 \arguments{
 \item{knit_only}{Only knit the code, do not run latex engine}

@@ -1,12 +1,11 @@
 #' Run extra models for forecasting, retrospectives, and extra MCMC (one report file per posterior)
 #'
 #' @details This is a wrapper function for calling [run_catch_levels()], [run_forecasts()],
-#' [run_retrospectives()], and [run_extra_mcmc()] functions.
+#' and [run_retrospectives()] functions.
 #'
 #' @param model_dir The directory the models are located in
 #' @param run_forecasts Logical. Run forecasting?
-#' @param run_retrospectives Logical. Run restrospectives?
-#' @param run_extra_mcmc Logical. Run extra-mcmc calculations?
+#' @param run_retrospectives Logical. If `TRUE`, run retrospectives?
 #' @param run_catch_levels Logical. Run catch levels estimation routines?
 #' @param ... Passed to the subroutines
 #'
@@ -15,7 +14,6 @@
 run <- function(model_dir = NULL,
                 run_forecasts = FALSE,
                 run_retrospectives = FALSE,
-                run_extra_mcmc = FALSE,
                 run_catch_levels = FALSE,
                 ...){
 
@@ -38,9 +36,6 @@ run <- function(model_dir = NULL,
     }
     if(run_retrospectives){
       run_retrospectives(model_dir, ...)
-    }
-    if(run_extra_mcmc){
-      run_extra_mcmc(model_dir, ...)
     }
   }
 }

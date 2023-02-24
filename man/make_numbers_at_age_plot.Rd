@@ -7,7 +7,7 @@
 make_numbers_at_age_plot(model, scale = 1000, ...)
 }
 \arguments{
-\item{model}{A model object as output from \code{\link[=load_ss_files]{load_ss_files()}}}
+\item{model}{A model object as output from \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{scale}{Number to scale the numbers-at-age by so the legend values are nicer}
 

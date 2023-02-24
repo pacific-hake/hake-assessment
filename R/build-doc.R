@@ -70,8 +70,6 @@ build_test <- function(doc_name = "hake-assessment-test"){
 
 #' Build the executive summary section only
 #'
-#' @param doc_name What to name the document (no extension needed)
-#'
 #' @return [base::invisible()]
 #' @export
 build_es <- function(){
@@ -92,8 +90,7 @@ build_es <- function(){
 #' @return [base::invisible()]
 #' @export
 build_adnuts_doc <- function(knit_only = FALSE,
-                             doc_name = "adnuts-diagnostics",
-                             ...){
+                             doc_name = "adnuts-diagnostics"){
 
   latex_command <- "lualatex"
   curr_path <- getwd()

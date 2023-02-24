@@ -61,8 +61,6 @@ take place}
 
 \item{suppress_warnings}{If \code{TRUE}, warnings about directories not existing
 will not be shown}
-
-\item{retro_models_dir}{Name of the retrospective models directory}
 }
 \value{
 A list of twelve vectors of full paths, which will have \code{NA}

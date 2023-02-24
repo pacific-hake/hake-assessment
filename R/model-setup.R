@@ -22,6 +22,10 @@
 #' the legends for retrospective model plots, one name for each model,
 #' where the list elements represent a group of models
 #' @param ... Arguments to pass to [create_rds_file()]
+#' @param base_models_desc A list of descriptions for the base models
+#' @param prepend_to_bridge A logical vector of length the same as
+#' `bridge_models_desc`. If `TRUE`, the base model will be prepended to the
+#' group at that index
 #'
 #' @return A list of items, the base_model inside a single-element
 #' list, the list of bridge model groups, sensitivity model groups, request

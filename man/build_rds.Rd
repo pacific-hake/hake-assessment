@@ -12,18 +12,7 @@ build_rds(model_dirs = model_list, build_file = TRUE, ...)
 
 \item{build_file}{If \code{TRUE}, create the RDS file. If \code{FALSE}, do not create it (used for running retros, etc)}
 
-\item{run_forecasts}{Logical. TRUE to run forecasts on the models (when an mcmc directory is present)}
-
-\item{run_retrospectives}{Logical. TRUE to run retrospectives on the models (when an mcmc directory is present)}
-
-\item{run_extra_mcmc}{Logical. TRUE to run extra-mcmc routine on the models (when an mcmc directory is present)}
-
-\item{run_catch_levels}{Logical. If TRUE, the catch levels calculations routine will run, overwriting any previous}
-
-\item{catch_levels}{A list of lists for the forecast catch levels to run forecasts for. See
-catch levels runs. If FALSE, catch levels will not be run if the catch-levels directory exists, but they will be run
-if the directory does not exist and run_forecasts is TRUE because it is required for the forecasting step
-forecast-catch-levels.R}
+\item{...}{Arguments passed to \code{\link[=run]{run()}} and \code{\link[=create_rds_file]{create_rds_file()}}}
 }
 \value{
 Nothing

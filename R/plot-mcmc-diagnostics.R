@@ -8,7 +8,7 @@
 #' * Bottom right: distribution of the values in the chain (i.e., the marginal
 #'   density from a smoothed histogram of values in the trace plot).
 #'
-#' @param model A model object as output by [load_ss_models()].
+#' @param model A model object as output by [create_rds_file()].
 #' @param post_regex  A regular expression representing a parameter as it
 #'   appears in the [r4ss::SS_output()] column.
 #' @param post_name  A name to show for the posterior on the plot, where
@@ -16,11 +16,9 @@
 #' @param probs A vector of 3 values for the lower, median, and upper
 #' quantiles
 #' @param all_alpha Alpha value for density and running mean plots
+#' @param ... Arguments passed to [plot_autocor()]
 #'
 #' @return A 4-panel plot of MCMC diagnostics
-#' @importFrom cowplot plot_grid
-#' @importFrom grid gpar textGrob
-#' @importFrom gridExtra arrangeGrob
 #' @export
 plot_mcmc_diagnostics <- function(model,
                                   post_regex,

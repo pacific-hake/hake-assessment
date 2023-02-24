@@ -8,7 +8,6 @@ run(
   model_dir = NULL,
   run_forecasts = FALSE,
   run_retrospectives = FALSE,
-  run_extra_mcmc = FALSE,
   run_catch_levels = FALSE,
   ...
 )
@@ -18,9 +17,7 @@ run(
 
 \item{run_forecasts}{Logical. Run forecasting?}
 
-\item{run_retrospectives}{Logical. Run restrospectives?}
-
-\item{run_extra_mcmc}{Logical. Run extra-mcmc calculations?}
+\item{run_retrospectives}{Logical. If \code{TRUE}, run retrospectives?}
 
 \item{run_catch_levels}{Logical. Run catch levels estimation routines?}
 
@@ -34,5 +31,5 @@ Run extra models for forecasting, retrospectives, and extra MCMC (one report fil
 }
 \details{
 This is a wrapper function for calling \code{\link[=run_catch_levels]{run_catch_levels()}}, \code{\link[=run_forecasts]{run_forecasts()}},
-\code{\link[=run_retrospectives]{run_retrospectives()}}, and \code{\link[=run_extra_mcmc]{run_extra_mcmc()}} functions.
+and \code{\link[=run_retrospectives]{run_retrospectives()}} functions.
 }
