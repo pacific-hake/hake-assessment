@@ -39,6 +39,7 @@ plot_management_catch_vs_tac <- function(d,
     mutate(name = factor(name, levels = group_ord)) |>
     mutate(value = value / 1e3)
 
+
   g <- ggplot(d, aes(x = Year,
                      y = value,
                      color = name,
