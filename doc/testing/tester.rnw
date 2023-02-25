@@ -1,6 +1,17 @@
 <<decisions-biomass-table, results='asis', echo=FALSE>>=
+# Run the extra forecasts by editing catch_levels in the run-forecasts-extra.R file
+# and then calling:
+# run_extra_forecasts(base_model$path, forecast_yrs)
+# Then load them in:
+# fore <- fetch_forecasts_extra(file.path(base_model$path,"forecasts"), forecast_yrs)
+# Then save the RDS:
+# saveRDS(fore, file.path(base_model$path, "extra-forecasts.rds"))
+# Then:
+# knitr::knit("tester-launch.rnw")
+# Then to make the PDF, run this in bash:
+# lualatex tester-launch.tex
 if(!exists("fore")){
-  fore <- readRDS(file.path(base_model$path), "extra-forecasts.rds")
+  fore <- readRDS(file.path(base_model$path, "extra-forecasts.rds"))
 }
 risk <- calc_risk(fore, list(list(rep(470000, length(forecast_yrs)), "470,000 t", "16-470000"),
                              list(rep(510000, length(forecast_yrs)), "510,000 t", "17-510000"),
