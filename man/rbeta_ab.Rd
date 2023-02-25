@@ -37,26 +37,3 @@ mean and standard deviation as well as the ranges as implemented in
 CASAL. This formulation is also available on \href{https://en.wikipedia.org/wiki/Beta_distribution#Mean_and_variance}{Wikipedia}.
 This function is a direct copy of the code available from \href{https://github.com/chantelwetzel-noaa/XSSS/blob/4dce917ee06d52416b58dd9440796ba1f7357943/R/rbeta_ab_fn.R}{Wetzel and Punt}.
 }
-\examples{
-# A histogram of the 2023 prior used for the base model
-hist(
-  rbeta_ab(prior = 0.777, sd = 0.113, min = 0.2, max = 1.0),
-  freq = FALSE,
-  breaks = seq(0.2, 1.0, 0.01)
-)
-dist <- dbeta_ab(
-  x = seq(0.2, 1.0, length = 1e6),
-  prior = 0.777,
-  sd = 0.113,
-  min = 0.20,
-  max = 1.0
-)
-lines(
-  x = seq(0.2, 1.0, length = 1e6),
-# rescale y-values by mean height * width
-  y = exp(-dist) / ((1.0 - 0.2) * mean(exp(dist))),
-  type = "l",
-  col = 2,
-  lwd = 3
-)
-}

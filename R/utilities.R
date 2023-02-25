@@ -7,7 +7,7 @@
 #' @param x An MCMC object [coda::mcmc()]
 #' @param ... Unused arguments for compatibility with generic `as.ts`
 #'
-#' @return
+#' @return A [`stats::ts`] object
 as_ts_mcmc <- function(x, ...){
 
   x <- as.mcmc(x)
@@ -16,7 +16,8 @@ as_ts_mcmc <- function(x, ...){
           end = end(x),
           deltat = thin(x))
   attr(y, "mcpar") <- NULL
-  return(y)
+
+  y
 }
 
 #' Create a one-row data.frame from a vector of values

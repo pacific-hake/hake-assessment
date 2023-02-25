@@ -1,5 +1,6 @@
 # root .gitignore
 # Files
+..Rcheck/
 *~*
 *.7z
 *.aux

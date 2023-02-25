@@ -11,6 +11,9 @@ as_ts_mcmc(x, ...)
 
 \item{...}{Unused arguments for compatibility with generic \code{as.ts}}
 }
+\value{
+A \code{\link[stats:ts]{stats::ts}} object
+}
 \description{
 Coerce an MCMC object to a time series
 }

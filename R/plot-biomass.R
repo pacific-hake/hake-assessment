@@ -45,7 +45,7 @@
 #' @param inc_means Logical. If `TRUE` include the mean values in the plot
 #' @param minor_tick_length The length of the small x-axis ticks
 #' @param survey_type Either `age1` or `age2`
-#' @params colors The colors to use for the plot
+#' @param colors The colors to use for the plot
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export

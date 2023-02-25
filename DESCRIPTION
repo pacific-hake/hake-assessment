@@ -3,16 +3,16 @@ Type: Package
 Title: Stock Assessment for Pacific Hake
 Version: 1.1.0
 Authors@R: c(
-    person(c("Chris", "J."), "Grandin",
+    person("Chris", "Grandin",
            role = c("aut", "cre"),
            email = "chris.grandin@gmail.com"),
-    person(c("Kelli", "F."), "Johnson",
+    person("Kelli", "Johnson",
            role = "aut",
            email = "kelli.johnson@noaa.gov"),
-    person(c("Andrew M."), "Edwards",
+    person("Andrew", "Edwards",
            role = "aut",
            email = "andrew.edwards@dfo-mpo.gc.ca"),
-    person(c("Aaron", "M."), "Berger",
+    person("Aaron", "Berger",
            role = "aut",
            email = "aaron.berger@noaa.gov"))
 Description: Code to compile the stock assessment for Pacific Hake.
