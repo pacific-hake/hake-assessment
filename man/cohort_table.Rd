@@ -17,7 +17,7 @@ cohort_table(
 )
 }
 \arguments{
-\item{model}{A model as output by \code{\link[=load_models]{load_models()}}}
+\item{model}{A model as output by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{end_yr}{The last year to use}
 

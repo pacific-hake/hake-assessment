@@ -35,7 +35,7 @@ plot_autocor <- function(model,
     transmute(Value = .[[1]])
 
 
-  xacf <- acf(coda:::as.ts.mcmc(mc),
+  xacf <- acf(as_ts_mcmc(mc),
               lag.max = lag_max,
               plot = FALSE)
 

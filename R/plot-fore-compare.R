@@ -1,6 +1,18 @@
 #' Title
 #'
 #' @rdname plot_biomass
+#' @param fore_yr The forecast year to use in the plot. Must be in
+#' `forecast_yrs`
+#' @param colors Colors to use for the lines in the plot
+#' @param shapes Shapes to use for the points in the plot. Must be the same
+#' length as `colors`
+#' @param remove_x_val A vector of values to remove labels for on the x axis.
+#' Plot first leaving this as `NULL`, then add values to this that overlap
+#' others
+#' @param show_50_line Logical. If `TRUE`, draw a horizontal line at 50\\%
+#' @param short Logical. If `TRUE`, draw only 3 lines (decline, under B40,
+#' under B10)
+#'
 #' @export
 plot_fore_compare <- function(model,
                               forecast_yrs,

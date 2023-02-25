@@ -180,7 +180,7 @@ plot_multiple_tv_selex_unc <- function(model,
       })
       b_extent <- c(b_extent, tmp)
     }
-    gt <- gtable::gtable_add_grob(gr,
+    gt <- gtable_add_grob(gr,
                                   grobs = g_lst,
                                   t = 7,
                                   b = b_extent,

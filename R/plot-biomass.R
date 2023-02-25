@@ -4,13 +4,13 @@
 #' @param model_names A vector of model names,the same length as `models_lst`
 #' @param xlim The year limits to plot
 #' @param x_breaks The year value tick marks to show for the x axis
-#' @param y_labels The depletion labels to show for the y axis tick marks
-#' @param y_colors The color vector for each label for the y axis tick marks
 #' @param x_labs_mod Value for major X-axis tick marks. Every Nth tick
 #' will be longer and have a label. The first and last will be shown
 #' regardless of what this number is
 #' @param ylim The depletion limits to plot
 #' @param y_breaks The depletion value tick marks to show for the y axis
+#' @param y_labels Labels for the tick marks on the Y axis
+#' @param y_colors Colors for the tick labels on the Y axis
 #' @param alpha The transparency for all ribbons
 #' @param leg_pos The position of the legend inside the plot. If `NULL`,
 #' `NA`, or `none`, the legend will not be shown
@@ -26,14 +26,8 @@
 #' If you make the plot in a grid, the rectangle may overwrite some of the plot
 #' above it, and this number will have to be changed through trial and error
 #' until you cannot see the white rectangle anymore.
-#' @param single_point_color Point color for the case where there is only
-#' one model to plot
 #' @param single_line_color Line color for the case where there is only
 #' one model to plot
-#' @param crossbar_width The width of the end bars (top and bottom) of the errorbar
-#' lines. Default of zero removes them
-#' @param dodge_val The amount to offset the lines from each other in the
-#' case of multiple models
 #' @param wrap_y_label Logical. If `TRUE`, adds a newline to the y axis
 #' label so that it doesn't get cut off
 #' @param rev_colors Logical. If `TRUE`, reverse the order of the colors
@@ -43,21 +37,15 @@
 #' Essentially the first steps of this function have been replicated
 #' outside the function (The code inside the `if(is.null(d_obj))`)
 #' is done to stop the Rmd process from taking forever
-#' @param fore_inds The indices of the forecast lines and ribbons to show.
-#' See the file `forecast-catch-levels.R` which contains the list
-#' `catch-levels`. The indices match what is in this list
-#' @param forecast_yrs The `forecast_yrs` vector as defined in the file
-#' `all.R`
-#' @param forecast_yrs A vector of forecast years to use
-#' @param fore_yr Forecast year for the probabilities
-#' @param shapes A vector of point shapes, one for each probability to be
-#' @param remove_x_val A vector of values to remove from the x-axis due to
-#' overlapping. First run this function, then select the values and pass them
-#' to the function when plotting a second time
-#' @param show_50_line Logical. If `TRUE`, draw a horizontal line at 50% (0.5)
-#' @param short Logical. If `TRUE`, plot a version with only P(YR<0.4B0),
-#' P(YR<0.1B0), and P(YR<YR+1)
 #' @param ribbon_line_type Linetype for ribbon edges; use 0 for no line.
+#' @param x_expansion Amount to expand the x axis. See the `expand` argument in
+#' [ggplot2::scale_x_continuous()]
+#' @param point_shape The R shape number for the points
+#' @param single_ribbon_color The ribbon color if there is only a single model
+#' @param inc_means Logical. If `TRUE` include the mean values in the plot
+#' @param minor_tick_length The length of the small x-axis ticks
+#' @param survey_type Either `age1` or `age2`
+#' @params colors The colors to use for the plot
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export

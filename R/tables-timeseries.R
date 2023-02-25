@@ -2,7 +2,7 @@
 #' relative spawning biomass, total biomass, age 2+ biomass, age-0 recruits, relative
 #' fishing intensity, and exploitation fraction. Also output a CSV file with the table contents.
 #'
-#' @param model A model list as output by [load_models()]
+#' @param model A model list as output by [create_rds_file()]
 #' @param start_yr Start year in the table
 #' @param end_yr End year in the table
 #' @param weight.factor Factor to divide biomass values by and multiply the recruitment by
@@ -151,7 +151,7 @@ make.ci.posterior.table <- function(model,
 #' relative spawning biomass, total biomass, age 2+ biomass, age-0 recruits, relative
 #' fishing intensity, and exploitation fraction. Also output a CSV file with the table contents.
 #'
-#' @param model A model list as output by [load_models()]
+#' @param model A model list as output by [create_rds_file()]
 #' @param start_yr Start year in the table
 #' @param end_yr End year in the table
 #' @param weight.factor Factor to divide biomass values by and multiply the recruitment by

@@ -1,6 +1,6 @@
 #' Make a table of values for cohorts as they pass through their life
 #'
-#' @param model A model as output by [load_models()]
+#' @param model A model as output by [create_rds_file()]
 #' @param end_yr The last year to use
 #' @param cohorts A vector of cohorts (years) to use
 #' @param csv_dir Directory for output of a file containing the table data

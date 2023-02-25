@@ -15,6 +15,6 @@ as_ts_mcmc(x, ...)
 Coerce an MCMC object to a time series
 }
 \details{
-Copied from the \link{coda} package, it is the un-exported function
+Copied from the \code{coda} package, it is the un-exported function
 `as.ts.mcmc()``
 }

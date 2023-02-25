@@ -6,7 +6,7 @@
 #' @param type A name as found in an `mcmccalcs` object of a model object,
 #' for example extraction of: `base_model$mcmccalcs$smed` would require
 #' `type` = "smed"
-#' @param inc_model_yr Logical. If `TRUE`, include the `model` and `year`
+#' @param inc_model_year Logical. If `TRUE`, include the `model` and `year`
 #' columns in the data frame
 #' @param end_yrs A vector of the end years for each model.
 #' If one value, it will apply to all models

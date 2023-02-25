@@ -3,7 +3,6 @@
 #' @param ... Arguments to pass to [run_adnuts()]
 #'
 #' @return Nothing
-#' @importFrom lubridate hour minute second
 #' @export
 run_adnuts_timed <- function(...){
 

@@ -11,6 +11,7 @@
 #' @importFrom cli symbol
 #' @importFrom crayon green
 #' @importFrom cowplot plot_grid
+#' @importFrom fs dir_ls path
 #' @importFrom future plan
 #' @importFrom furrr future_map future_imap furrr_options
 #' @importFrom glue glue
@@ -20,21 +21,26 @@
 #' @importFrom grDevices colorRampPalette gray rgb
 #' @importFrom grid gpar grid.draw grid.newpage rectGrob textGrob
 #' @importFrom gridExtra arrangeGrob
+#' @importFrom gtable gtable_add_grob
 #' @importFrom here here
 #' @importFrom lubridate hour minute month second seconds_to_period year
 #' @importFrom purrr map imap map2 map_chr map_dbl map_lgl walk walk2 flatten
-#' @importFrom purrr map_df map_dfr map_dfc map2_df map2_dfc map2_dfr pmap
+#' @importFrom purrr map_df map_dfr map_dfc map2_df map2_dfc map2_dfr partial pmap
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
 #' @importFrom readr cols read_csv read_table2 write_csv
-#' @importFrom rlang sym
+#' @importFrom rlang set_names sym
 #' @importFrom scales comma rescale
 #' @importFrom sf st_as_sf st_crs<- st_coordinates
-#' @importFrom stats end median na.omit quantile rbeta reshape rlnorm rnorm runif setNames start
+#' @importFrom stats end median na.omit quantile rbeta reshape rlnorm rnorm
+#' @importFrom stats runif setNames start ts
 #' @importFrom stringr str_split
 #' @importFrom tools file_path_sans_ext file_ext
 #' @importFrom tibble as_tibble enframe
-#' @importFrom tidyr all_of any_of pivot_longer pivot_wider unnest
-#' @importFrom utils  head object.size read.csv read.table tail type.convert write.csv write.table
+#' @importFrom tidyselect all_of any_of starts_with
+#' @importFrom tidyr pivot_longer pivot_wider unnest
+#' @importFrom utils  head globalVariables object.size read.csv read.table
+#' @importFrom utils tail type.convert write.csv write.table
+#' @importFrom withr defer
 #' @importFrom xtable xtable
 
 #' @docType package

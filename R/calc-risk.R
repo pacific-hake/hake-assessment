@@ -2,9 +2,9 @@
 #' one forecast year to the next
 #'
 #' @param forecast_outputs A list as output by [fetch_forecasts()]
-#' @param catch_levels A ist of catch levels which are represented by lists
+#' @param catch_levels A list of catch levels which are represented by lists
 #' of length 3
-#' @param ...
+#' @param ... Absorb arguments intended for other functions
 #'
 #' @return A list of length 1 less than the number of forecast years. Each
 #' element is a data.frame of catch levels holding the probabilities. For

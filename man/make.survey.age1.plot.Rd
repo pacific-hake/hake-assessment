@@ -7,7 +7,7 @@
 make.survey.age1.plot(model, legendloc = "topleft", ylim = c(0.015, 50))
 }
 \arguments{
-\item{model}{A model as output by \code{\link[=load_models]{load_models()}}.}
+\item{model}{A model as output by \code{\link[=create_rds_file]{create_rds_file()}}.}
 
 \item{legendloc}{See \code{\link[=legend]{legend()}}.}
 

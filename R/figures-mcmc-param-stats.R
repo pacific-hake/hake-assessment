@@ -2,7 +2,7 @@
 #' Heidelberger & Welch statistic histograms. This is a re-coded version of
 #' https://github.com/r4ss/r4ss/blob/bioscale/R/mcmc.nuisance.R
 #'
-#' @param model A model as output by [load_models()]
+#' @param model A model as output by [create_rds_file()]
 #' @param col A color to shade the bars
 #' @param effn_labels If TRUE, add labels to the top of the bars on the effective sample size plot
 #' @param ylim_mult Multiply the maximum ylim value by this (to show labels on bars better if `effn_labels` is `TRUE`)
@@ -32,14 +32,14 @@ plot_mcmc_param_stats <- function(model,
   parm_nm <- model$post_names
   parm_nm <- parm_nm[parm_nm != ""]
   mc <- model$mcmc %>%
-    select(tidyselect::all_of(parm_nm))
+    select(all_of(parm_nm))
 
   draws <- nrow(mc)
-  stats <- dplyr::bind_cols(tibble::enframe(rep(0, length(parm_nm)), name = NULL, value = "autocor"),
-                 enframe(rep(0, length(parm_nm)), name = NULL, value = "geweke"),
-                 enframe(rep(0, length(parm_nm)), name = NULL, value = "effn"),
-                 enframe(rep(0, length(parm_nm)), name = NULL, value = "heidelwelsch"),
-                 enframe(parm_nm, name = NULL, value = "label"))
+  stats <- bind_cols(enframe(rep(0, length(parm_nm)), name = NULL, value = "autocor"),
+                     enframe(rep(0, length(parm_nm)), name = NULL, value = "geweke"),
+                     enframe(rep(0, length(parm_nm)), name = NULL, value = "effn"),
+                     enframe(rep(0, length(parm_nm)), name = NULL, value = "heidelwelsch"),
+                     enframe(parm_nm, name = NULL, value = "label"))
 
   hwsums <- c(0, 0, 0)
 

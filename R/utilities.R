@@ -1,7 +1,7 @@
 #' Coerce an MCMC object to a time series
 #'
 #' @details
-#' Copied from the [coda] package, it is the un-exported function
+#' Copied from the `coda` package, it is the un-exported function
 #' `as.ts.mcmc()``
 #'
 #' @param x An MCMC object [coda::mcmc()]
@@ -871,10 +871,12 @@ get_posterior_data <- function(model, param_regex){
 #' expressions in `param_regex`
 #' @export
 #' @examples
+#' \dontrun{
 #' get_prior_data(base_model, "BH_steep")
 #' get_prior_data(base_model, "e")
 #' get_prior_data(base_model, "asdfg")
 #' get_prior_data(base_model, c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"))
+#' }
 get_prior_data <- function(model, param_regex, n_points_prior = 3000000){
 
   stopifnot(class(param_regex) == "character")
@@ -990,65 +992,46 @@ get_prior_data <- function(model, param_regex, n_points_prior = 3000000){
 #' length of `x` value passed to `n`.
 #' `dbeta_ab` returns density estimates for each input value and `rbeta_ab`
 #' provides random deviates from the Beta distribution.
-#' @export
 #'
-#' @examples
-#' # A histogram of the 2023 prior used for the base model
-#' hist(
-#'   rbeta_ab(prior = 0.777, sd = 0.113, min = 0.2, max = 1.0),
-#'   freq = FALSE,
-#'   breaks = seq(0.2, 1.0, 0.01)
-#' )
-#' dist <- dbeta_ab(
-#'   x = seq(0.2, 1.0, length = 1e6),
-#'   prior = 0.777,
-#'   sd = 0.113,
-#'   min = 0.20,
-#'   max = 1.0
-#' )
-#' lines(
-#'   x = seq(0.2, 1.0, length = 1e6),
-#' # rescale y-values by mean height * width
-#'   y = exp(-dist) / ((1.0 - 0.2) * mean(exp(dist))),
-#'   type = "l",
-#'   col = 2,
-#'   lwd = 3
-#' )
+#' @export
 rbeta_ab <- function(n, prior, sd, min, max) {
   # CASAL's Beta
-  mu    <- (prior - min) / (max - min)
-  tau   <- (prior - min) * (max - prior) / (sd^2) - 1.0
+  mu <- (prior - min) / (max - min)
+  tau <- (prior - min) * (max - prior) / (sd ^ 2) - 1.0
   alpha <- tau * mu
   beta <- tau * (1 - mu)
-  b.std <- rbeta(n, alpha, beta)
-  # linear transformation from beta(0,1) to beta(a,b)
-  b.out <- (max - min) * b.std + min
-  return(b.out)
+  b_std <- rbeta(n, alpha, beta)
+
+  # linear transformation from beta(0, 1) to beta(a, b)
+  (max - min) * b_std + min
 }
 
 #' @param x X value for distribution
 #' @rdname rbeta_ab
 #' @export
 dbeta_ab <- function(x, prior, sd, min, max) {
-  Pconst <- 0.0001
+
+  p_const <- 0.0001
   mu <- (prior - min) / (max - min) # CASAL's v
   tau <- (prior - min) * (max - prior) / (sd^2) - 1.0
-  Bprior <- tau * mu
-  Aprior <- tau * (1 - mu) # CASAL's m and n
-  if (Bprior <= 1.0 | Aprior <= 1.0) {
-    warning("bad Beta prior")
+  b_prior <- tau * mu
+  # CASAL's m and n
+  a_prior <- tau * (1 - mu)
+  if(b_prior <= 1.0 | a_prior <= 1.0){
+    warning("Bad Beta prior")
   }
-  Prior_Like <- (1.0 - Bprior) * log(Pconst + x - min) +
-    (1.0 - Aprior) * log(Pconst + max - x) -
-    (1.0 - Bprior) * log(Pconst + prior - min) -
-    (1.0 - Aprior) * log(Pconst + max - prior)
-  return(Prior_Like)
+
+  (1.0 - b_prior) * log(p_const + x - min) +
+    (1.0 - a_prior) * log(p_const + max - x) -
+    (1.0 - b_prior) * log(p_const + prior - min) -
+    (1.0 - a_prior) * log(p_const + max - prior)
 }
 
 #' Updates [ggplot2::label_parsed()] to accommodate spaces
 #'
 #' @param labels Labels to use
 label_parsed_space <- function(labels) {
+
   labels <- label_value(labels, multi_line = TRUE)
   labels <- lapply(labels, function(y) gsub(" ", "~", y))
   lapply(unname(labels), lapply, function(values) {
@@ -1083,7 +1066,6 @@ split_df <- function(df, from_to){
 #'
 #' @return A [data.frame()] with a new column for each value in the `probs`
 #' vector
-#' @importFrom purrr set_names
 #' @export
 #' @examples
 #' library(tibble)
@@ -1153,7 +1135,6 @@ calc_quantiles <- function(df = NULL,
 #'
 #' @return A [data.frame()] containing the quantile values with one row per
 #' group represented by `grp_col`
-#' @importFrom rlang sym
 #' @export
 #'
 #' @examples

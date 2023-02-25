@@ -22,11 +22,11 @@ extract_mcmc_quant(
 for example extraction of: \code{base_model$mcmccalcs$smed} would require
 \code{type} = "smed"}
 
+\item{inc_model_year}{Logical. If \code{TRUE}, include the \code{model} and \code{year}
+columns in the data frame}
+
 \item{end_yrs}{A vector of the end years for each model.
 If one value, it will apply to all models}
-
-\item{inc_model_yr}{Logical. If \code{TRUE}, include the \code{model} and \code{year}
-columns in the data frame}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble::tibble()}}

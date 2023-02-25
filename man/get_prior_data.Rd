@@ -27,8 +27,10 @@ Get the prior and MLE values for the given regular expressions of
 parameter names
 }
 \examples{
+\dontrun{
 get_prior_data(base_model, "BH_steep")
 get_prior_data(base_model, "e")
 get_prior_data(base_model, "asdfg")
 get_prior_data(base_model, c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"))
+}
 }

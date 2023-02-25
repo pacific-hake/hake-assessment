@@ -1,6 +1,9 @@
 #' Plot the relative spawning biomass with several forecast trajectories
 #'
 #' @rdname plot_biomass
+#' @param fore_inds Indices of the `model$catch.levels` list to include as
+#' forecast catch streams in the plot
+#' @param forecast_yrs A vector of the forecast years
 #' @export
 plot_depl_fore_comparison <- function(model,
                                       fore_inds = c(1, 2, 6, 12, 14),

@@ -170,7 +170,7 @@ make.survey.by.country.table <- function(dat,
 
 #' Make a plot of the age-1 index overlaid with model fit to that index
 #'
-#' @param model A model as output by [load_models()].
+#' @param model A model as output by [create_rds_file()].
 #' @param legendloc See [legend()].
 #' @param ylim The limits of the y axis as a range.
 #'

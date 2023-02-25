@@ -1,6 +1,13 @@
 #' Plot recruitment deviations from MCMC output for one or more models
 #'
 #' @rdname plot_biomass
+#' @param single_point_color Color to use for the points if there is only
+#' one model
+#' @param crossbar_width The width of the crossbar ends in
+#' [ggplot2::geom_errorbar()]
+#' @param dodge_val The amount to separate lines between unique models
+#' multiple model plots
+#'
 #' @export
 plot_recdevs <- function(model_lst = NULL,
                          model_names,

@@ -484,7 +484,7 @@ cowplot::plot_grid(plotlist = plist, ncol = 1)
 \begin{figure}[H]
 \begin{center}
 <<main-prior-posterior, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how the posteriors shift from the priors for key parameters. The steepness parameter appears to have an almost identical prior and posterior distribution.">>=
-make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
+plot_priors_vs_posts(base_model,
                                               key_posteriors,
                                               titles = key_posteriors_titles,
                                               x_range = "prior",
@@ -510,7 +510,7 @@ make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
 \begin{figure}[H]
 \begin{center}
 <<main-prior-posterior-truncated, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows how the posteriors shift from the priors for key parameters. The steepness parameter appears to have an almost identical prior and posterior distribution.">>=
-make_key_posteriors_mcmc_priors_vs_posts_plot(base_model,
+plot_priors_vs_posts(base_model,
                                               key_posteriors,
                                               titles = key_posteriors_titles,
                                               x_range = "posterior",

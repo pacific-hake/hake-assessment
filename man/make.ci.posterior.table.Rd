@@ -21,7 +21,7 @@ make.ci.posterior.table(
 )
 }
 \arguments{
-\item{model}{A model list as output by \code{\link[=load_models]{load_models()}}}
+\item{model}{A model list as output by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{start_yr}{Start year in the table}
 

@@ -213,6 +213,9 @@ plot_survey_index_fits(
 will be longer and have a label. The first and last will be shown
 regardless of what this number is}
 
+\item{x_expansion}{Amount to expand the x axis. See the \code{expand} argument in
+\code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}}
+
 \item{ylim}{The depletion limits to plot}
 
 \item{y_breaks}{The depletion value tick marks to show for the y axis}
@@ -232,6 +235,8 @@ regardless of what this number is}
 
 \item{point_size}{Size of all points shown in plot}
 
+\item{point_shape}{The R shape number for the points}
+
 \item{line_width}{Width of all lines on the plot}
 
 \item{clip_cover}{There is a white rectangle drawn on top of the plot
@@ -243,6 +248,8 @@ until you cannot see the white rectangle anymore.}
 
 \item{single_line_color}{Line color for the case where there is only
 one model to plot}
+
+\item{single_ribbon_color}{The ribbon color if there is only a single model}
 
 \item{ribbon_line_type}{Linetype for ribbon edges; use 0 for no line.}
 
@@ -270,37 +277,46 @@ the lines}
 \item{arrow_size}{size of the arrow heads, \code{npc} units. See \code{\link[grid:unit]{grid::unit()}}
 For description of \code{npc}}
 
-\item{fore_inds}{The indices of the forecast lines and ribbons to show.
-See the file \code{forecast-catch-levels.R} which contains the list
-\code{catch-levels}. The indices match what is in this list}
+\item{fore_inds}{Indices of the \code{model$catch.levels} list to include as
+forecast catch streams in the plot}
 
-\item{y_labels}{The depletion labels to show for the y axis tick marks}
+\item{y_labels}{Labels for the tick marks on the Y axis}
 
-\item{y_colors}{The color vector for each label for the y axis tick marks}
+\item{y_colors}{Colors for the tick labels on the Y axis}
 
-\item{forecast_yrs}{A vector of forecast years to use}
+\item{forecast_yrs}{A vector of the forecast years}
 
-\item{fore_yr}{Forecast year for the probabilities}
+\item{fore_yr}{The forecast year to use in the plot. Must be in
+\code{forecast_yrs}}
 
-\item{shapes}{A vector of point shapes, one for each probability to be}
+\item{colors}{Colors to use for the lines in the plot}
 
-\item{remove_x_val}{A vector of values to remove from the x-axis due to
-overlapping. First run this function, then select the values and pass them
-to the function when plotting a second time}
+\item{shapes}{Shapes to use for the points in the plot. Must be the same
+length as \code{colors}}
 
-\item{show_50_line}{Logical. If \code{TRUE}, draw a horizontal line at 50\% (0.5)}
+\item{remove_x_val}{A vector of values to remove labels for on the x axis.
+Plot first leaving this as \code{NULL}, then add values to this that overlap
+others}
 
-\item{short}{Logical. If \code{TRUE}, plot a version with only P(YR<0.4B0),
-P(YR<0.1B0), and P(YR<YR+1)}
+\item{show_50_line}{Logical. If \code{TRUE}, draw a horizontal line at 50\\\%}
 
-\item{single_point_color}{Point color for the case where there is only
-one model to plot}
+\item{short}{Logical. If \code{TRUE}, draw only 3 lines (decline, under B40,
+under B10)}
 
-\item{crossbar_width}{The width of the end bars (top and bottom) of the errorbar
-lines. Default of zero removes them}
+\item{single_point_color}{Color to use for the points if there is only
+one model}
 
-\item{dodge_val}{The amount to offset the lines from each other in the
-case of multiple models}
+\item{crossbar_width}{The width of the crossbar ends in
+\code{\link[ggplot2:geom_linerange]{ggplot2::geom_errorbar()}}}
+
+\item{dodge_val}{The amount to separate lines between unique models
+multiple model plots}
+
+\item{inc_means}{Logical. If \code{TRUE} include the mean values in the plot}
+
+\item{minor_tick_length}{The length of the small x-axis ticks}
+
+\item{survey_type}{Either \code{age1} or \code{age2}}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

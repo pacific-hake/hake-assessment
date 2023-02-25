@@ -18,7 +18,7 @@ plot_mcmc_param_stats(
 )
 }
 \arguments{
-\item{model}{A model as output by \code{\link[=load_models]{load_models()}}}
+\item{model}{A model as output by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{col}{A color to shade the bars}
 

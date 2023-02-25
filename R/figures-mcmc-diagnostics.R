@@ -30,25 +30,15 @@
 #'
 #' @return A {ggplot2} object.
 #' @export
-#'
-#' @examples
-#' make_key_posteriors_mcmc_priors_vs_posts_plot(
-#'   base_model,
-#'   key_posteriors,
-#'   titles = key_posteriors_titles,
-#'   labeller = label_parsed_space,
-#'   nrow = 3,
-#'   ncol = 3
-#' )
-make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
-                                                          posterior_regex,
-                                                          titles = NULL,
-                                                          x_range = c("posterior", "prior"),
-                                                          ...) {
+plot_priors_vs_posts <- function(model,
+                                 posterior_regex,
+                                 titles = NULL,
+                                 x_range = c("posterior", "prior"),
+                                 ...){
   x_range <- match.arg(x_range)
-  titles <- if (is.null(titles)) {
-    glue::glue("({letters[seq_along(posts)]})")
-  } else {
+  titles <- if(is.null(titles)){
+    glue("({letters[seq_along(posts)]})")
+  }else{
     titles
   }
 
@@ -58,58 +48,47 @@ make_key_posteriors_mcmc_priors_vs_posts_plot <- function(model,
   names(priors) <- titles
 
   # Make long data frames for ggplot2
-  posteriors_long <- enframe(posts) %>%
-    unnest(cols = "value") %>%
-    dplyr::mutate(parameter = factor(name, levels = titles))
-  posteriors_ranges <- purrr::map(
-    posts, ~ scale_x_continuous(limits = range(.x))
-  )
-  priors_long <- purrr::map(priors, "prior_random") %>%
-    enframe() %>%
-    unnest(cols = "value") %>%
-    dplyr::mutate(parameter = factor(name, levels = titles)) %>%
-    dplyr::filter(!is.na(value))
-  priors_init <- purrr::map(priors, "initval") %>%
-    unlist() %>%
-    enframe() %>%
-    dplyr::mutate(parameter = factor(name, levels = titles))
+  posteriors_long <- enframe(posts) |>
+    unnest(cols = "value") |>
+    mutate(parameter = factor(name, levels = titles))
+  posteriors_ranges <- map(
+    posts, ~ scale_x_continuous(limits = range(.x)))
+  priors_long <- map(priors, "prior_random") |>
+    enframe() |>
+    unnest(cols = "value") |>
+    mutate(parameter = factor(name, levels = titles)) |>
+    filter(!is.na(value))
+  priors_init <- map(priors, "initval") |>
+    unlist() |>
+    enframe() |>
+    mutate(parameter = factor(name, levels = titles))
   gg <- ggplot() +
-    geom_histogram(
-      data = posteriors_long,
-      mapping = aes(value, after_stat(density)),
-      fill = "gray60",
-      bins = 30
-    ) +
-    geom_density(
-      data = priors_long,
-      mapping = aes(value, after_stat(density)),
-      col = "black",
-      linewidth = 1.2
-    ) +
-    geom_point(
-      data = priors_init,
-      mapping = aes(x = value, y = 0),
-      col = "red",
-      pch = 17
-    ) +
-    geom_vline(
-      data = group_by(posteriors_long, parameter) %>%
-        summarize(median = median(value)),
-      mapping = aes(xintercept = median),
-      linetype = 2,
-      col = rgb(0, 0, 0, 0.5)
-    ) +
+    geom_histogram(data = posteriors_long,
+                   mapping = aes(value, after_stat(density)),
+                   fill = "gray60",
+                   bins = 30) +
+    geom_density(data = priors_long,
+                 mapping = aes(value, after_stat(density)),
+                 col = "black",
+                 linewidth = 1.2) +
+    geom_point(data = priors_init,
+               mapping = aes(x = value, y = 0),
+               col = "red",
+               pch = 17) +
+    geom_vline(data = group_by(posteriors_long, parameter) |>
+                 summarize(median = median(value)),
+               mapping = aes(xintercept = median),
+               linetype = 2,
+               col = rgb(0, 0, 0, 0.5)) +
     facet_wrap("parameter", scales = "free", ...) +
-    theme(
-      axis.text.y = element_blank(),
-      axis.ticks.y = element_blank()
-    ) +
+    theme(axis.text.y = element_blank(),
+          axis.ticks.y = element_blank()) +
     xlab("") +
     ylab("")
 
-  # xlim for each panel will be based on both the posterior and the prior unless
-  # {ggh4x} is called b/c {ggplot2} doesn't allow for manipulation of the axes
-  # by panel only across all panels with scales
+  # xlim for each panel will be based on both the posterior and the prior
+  # unless `ggh4x` is called b/c `ggplot2` doesn't allow for manipulation
+  # of the axes by panel only across all panels with scales
   if (x_range == "posterior") {
     gg <- gg +
       ggh4x::facetted_pos_scales(x = posteriors_ranges)

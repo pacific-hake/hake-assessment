@@ -10,10 +10,10 @@ calc_risk(forecast_outputs = NA, catch_levels, ...)
 \arguments{
 \item{forecast_outputs}{A list as output by \code{\link[=fetch_forecasts]{fetch_forecasts()}}}
 
-\item{catch_levels}{A ist of catch levels which are represented by lists
+\item{catch_levels}{A list of catch levels which are represented by lists
 of length 3}
 
-\item{...}{}
+\item{...}{Absorb arguments intended for other functions}
 }
 \value{
 A list of length 1 less than the number of forecast years. Each
