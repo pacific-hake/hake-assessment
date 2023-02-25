@@ -1,14 +1,25 @@
+<<decisions-biomass-table, results='asis', echo=FALSE>>=
+if(!exists("fore")){
+  fore <- readRDS(file.path(base_model$path), "extra-forecasts.rds")
+}
+risk <- calc_risk(fore, list(list(rep(470000, length(forecast_yrs)), "470,000 t", "16-470000"),
+                             list(rep(510000, length(forecast_yrs)), "510,000 t", "17-510000"),
+                             list(rep(600000, length(forecast_yrs)), "600,000 t", "18-600000"),
+                             list(rep(650000, length(forecast_yrs)), "650,000 t", "19-650000")))
+base_model$forecasts <- fore
+base_model$risks <- risk
+decision_table(base_model,
+               xcaption = "Decision table for selected extra catch streams, relative biomass",
+               xlabel = "tab:es-decisions-biomass",
+               font.size = 11,
+               space.size = 12,
+               type = "biomass",
+               placement = "tbp")
+@
+
 <<decisions-spr-table, results='asis', echo=FALSE>>=
 decision_table(base_model,
-               xcaption = paste0("Forecast quantiles of \\fishname\\ ",
-                                 "relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}), ",
-                                 "expressed as a proportion, ",
-                                 "for the ",min(forecast_yrs),"--",max(forecast_yrs)-1," catch ",
-                                 "alternatives presented in ",
-                                 "Table~\\ref{tab:es-decisions-biomass}. Values greater than ",
-                                 "1 indicate relative fishing intensities greater than ",
-                                 "the $\\Fforty$ harvest policy calculated using baseline ",
-                                 "selectivity."),
+               xcaption = "Decision table for selected extra catch streams, relative fishing intensity",
                xlabel = "tab:es-decisions-spr",
                font.size = 11,
                space.size = 12,
@@ -16,6 +27,66 @@ decision_table(base_model,
                placement = "tbp")
 @
 
-<<main-tv-selex-uncertainty, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows selectivity by year plots with medians and 0.95 credible intervals">>=
-plot_multiple_tv_selex_unc(base_model, n_col = 2)
+<<risk-forecast-year-1-table, results='asis', echo=FALSE>>=
+make.risk.table(base_model,
+                forecast_yrs,
+                index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
+                           ##  forecast year 2 compared to forecast year 1
+                xcaption = paste0("Probabilities related to female spawning biomass,
+                             relative fishing intensity, and the ",end_yr+1,
+                             " default harvest policy catch for alternative ",
+                             end_yr," catch options (explained in
+                             Table~\\ref{tab:es-decisions-biomass})."),
+                xlabel = "tab:es-risk-year-1",
+                font.size = 11,
+                space.size = 12,
+                placement = "tbp",
+                catch_col_width_cm = 1.9)
 @
+\clearpage
+
+<<risk-forecast-year-2-table, results='asis', echo=FALSE>>=
+make.risk.table(base_model,
+                forecast_yrs,
+                index = 2, ## Index in models[[]]$risks to use, e.g.
+                           ##  1 means forecast year 2 compared to forecast year 1
+                xcaption = paste0("Probabilities related to female spawning biomass,
+                 relative fishing intensity, and the ",end_yr+2," default harvest
+                 policy catch for alternative ",end_yr+1," catch options, given
+                 the ",end_yr," catch shown in
+                 Table~\\ref{tab:es-risk-year-1} (catch options explained in
+                 Table~\\ref{tab:es-decisions-biomass})."),
+                xlabel = "tab:es-risk-year-2",
+                font.size = 11,
+                space.size = 11,
+                placement = "tbp",
+                catch_col_width_cm = 1.9)
+@
+
+\clearpage
+
+<<risk-forecast-year-3-table, results='asis', echo=FALSE>>=
+make.risk.table(base_model,
+                forecast_yrs,
+                index = 3, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
+                xcaption = paste0("Probabilities related to female spawning biomass,
+                                 relative fishing intensity, and the ",
+                                  end_yr+3,
+                                  " default harvest policy catch for alternative ",
+                                  end_yr+2,
+                                  " catch options, given the ",
+                                  end_yr,
+                                  " and ",
+                                  end_yr+1,
+                                  " catches shown in
+                                  Tables~\\ref{tab:es-risk-year-1}
+                                  and~\\ref{tab:es-risk-year-2}  (catch options
+                                  explained in Table
+                                  \\ref{tab:es-decisions-biomass})."),
+                xlabel = "tab:es-risk-year-3",
+                font.size = 11,
+                space.size = 11,
+                placement = "tbp",
+                catch_col_width_cm = 1.9)
+@
+\clearpage
