@@ -186,11 +186,9 @@ the 2016 cohort is the largest observed cohort in the U.S. shore-based fleet (Ta
 both Canadian fleets (Tables~\ref{tab:main-can-shore-age-data}--\ref{tab:main-can-ft-age-data}).
 Age-1 fish were observed by the fishery this year (Table~\ref{tab:main-all-age-data-fishery})
 in the U.S. at-sea sector and shore-based fleet.
-For the combined data in \Sexpr{last_data_yr}, \Sexpr{top.coh(base_model,
+For the combined data in \Sexpr{last_data_yr}, \Sexpr{top_coh(base_model,
   last_data_yr, 3, cap = FALSE)}. For the combined data in \Sexpr{last_data_yr - 1},
-\Sexpr{top.coh(base_model, last_data_yr - 1, 3, cap = FALSE)}.
-% Manual 2022 KFJ. Andy just switching order there as just been talking about
-%  the latest results.
+\Sexpr{top_coh(base_model, last_data_yr - 1, 3, cap = FALSE)}.
 
 We caution that proportion-at-age data contain information about the relative
 numbers-at-age, and these can be affected by changing recruitment, selectivity,

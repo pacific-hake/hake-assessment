@@ -112,7 +112,7 @@ cumulative catch of the 2010, 2014, and 2016 year classes is estimated to be abo
 \Sexpr{f(cohort_catch.2016/1e6,2)}~million~t,
 respectively.
 In the \Sexpr{end_yr-1} catch,
-\Sexpr{top.coh(base_model, last_data_yr, 3, cap = FALSE)}.
+\Sexpr{top_coh(base_model, last_data_yr, 3, cap = FALSE)}.
 % Can check that manually from final row of Table 10 showing the proportions at age
 
 \subsection*{Data and assessment} \label{sec:es-data-and-assessment}
@@ -405,17 +405,17 @@ Large year classes in 1980, 1984, and 1999 supported much of the commercial
 catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment
 was at some of the lowest values in the time series but this was followed by an above average
 2008 year class. The strong
-2010 year class comprised \Sexpr{top.coh(base_model, 2014, spec.yr=2010)}\% of the coast-wide
+2010 year class comprised \Sexpr{top_coh(base_model, 2014, ret_cohort = 2010)}\% of the coast-wide
 commercial catch in 2014,
-\Sexpr{top.coh(base_model, 2016, spec.yr=2010)}\% of the 2016 catch,
-\Sexpr{top.coh(base_model, 2018, spec.yr=2010)}\% of the 2018 catch,
-\Sexpr{top.coh(base_model, 2020, spec.yr=2010)}\% of the 2020 catch, and
-\Sexpr{top.coh(base_model, 2022, spec.yr=2010)}\% of the 2022 catch.
+\Sexpr{top_coh(base_model, 2016, ret_cohort = 2010)}\% of the 2016 catch,
+\Sexpr{top_coh(base_model, 2018, ret_cohort = 2010)}\% of the 2018 catch,
+\Sexpr{top_coh(base_model, 2020, ret_cohort = 2010)}\% of the 2020 catch, and
+\Sexpr{top_coh(base_model, 2022, ret_cohort = 2010)}\% of the 2022 catch.
 The decline from 2014 to 2016
 was partly due to the large influx of the 2014
-year class (\Sexpr{top.coh(base_model, 2016, spec.yr=2014)}\% of the 2016 catch was age-2 fish from the
+year class (\Sexpr{top_coh(base_model, 2016, ret_cohort = 2014)}\% of the 2016 catch was age-2 fish from the
 2014 year class; this was larger than the proportion of age-2 fish,
-\Sexpr{top.coh(base_model, 2012, spec.yr=2010)}\%, from the 2010 year
+\Sexpr{top_coh(base_model, 2012, ret_cohort = 2010)}\%, from the 2010 year
 class in 2012).
 Since 2010, the model currently estimates small 2011, 2012, 2013, 2015, 2018, 2019
 and 2021 year classes (median recruitment well below the mean of all median recruitments).

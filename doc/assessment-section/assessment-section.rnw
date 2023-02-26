@@ -794,10 +794,9 @@ when the data give a consistent signal
 selectivity, the fit to commercial age-composition data is particularly good,
 although models with time-invariant selectivity used in previous years also fit
 the age compositions well.
-In the \Sexpr{last_data_yr} fishery, \Sexpr{top.coh(base_model, last_data_yr, 3, cap = FALSE)}.
+In the \Sexpr{last_data_yr} fishery, \Sexpr{topcoh(base_model, last_data_yr, 3, cap = FALSE)}.
 Age compositions from the \Sexpr{survey_end_yr} acoustic survey suggest a similar age
 structure
-%i.e., \Sexpr{top.coh(base_model, survey_end_yr, 3, cap = FALSE, fleet = 2)}
 for older fish. The 2020 cohort has not yet been observed by the acoustic survey.
 Combined, the 2015--\Sexpr{last_data_yr} fishery age-composition data and the
 2017--\Sexpr{survey_end_yr} acoustic survey age-composition data
@@ -970,34 +969,34 @@ Very large year classes in 1980, 1984, and 1999 supported much of the commercial
 catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated recruitment
 was at some of the lowest values in the time series, but this was followed by an above average
 2008 year class. The very strong
-2010 year class comprised \Sexpr{top.coh(base_model, 2014, spec.yr=2010)}\% of the coast-wide
+2010 year class comprised \Sexpr{top_coh(base_model, 2014, ret_cohort = 2010)}\% of the coast-wide
 commercial catch in 2014,
-\Sexpr{top.coh(base_model, 2016, spec.yr=2010)}\% of the 2016 catch,
-\Sexpr{top.coh(base_model, 2018, spec.yr=2010)}\% of the 2018 catch,
-\Sexpr{top.coh(base_model, 2020, spec.yr=2010)}\% of the 2020 catch, and
-\Sexpr{top.coh(base_model, 2022, spec.yr=2010)}\% of the 2022 catch.
+\Sexpr{top_coh(base_model, 2016, ret_cohort = 2010)}\% of the 2016 catch,
+\Sexpr{top_coh(base_model, 2018, ret_cohort = 2010)}\% of the 2018 catch,
+\Sexpr{top_coh(base_model, 2020, ret_cohort = 2010)}\% of the 2020 catch, and
+\Sexpr{top_coh(base_model, 2022, ret_cohort = 2010)}\% of the 2022 catch.
 The decline from 2014 to 2016
 was partly due to the large influx of the 2014
-year class (\Sexpr{top.coh(base_model, 2016, spec.yr=2014)}\% of the 2016 catch was age-2 fish from the
+year class (\Sexpr{top_coh(base_model, 2016, ret_cohort = 2014)}\% of the 2016 catch was age-2 fish from the
 2014 year class; this was larger than the proportion of age-2 fish,
-\Sexpr{top.coh(base_model, 2012, spec.yr=2010)}\%, from the 2010 year
+\Sexpr{top_coh(base_model, 2012, ret_cohort = 2010)}\%, from the 2010 year
 class in 2012).
 
 The current assessment also estimates a strong 2014 year class
 (Figure~\ref{fig:main-numbers-at-age}) comprising
-\Sexpr{top.coh(base_model, 2016, spec.yr=2014)}\% of the 2016 catch,
-\Sexpr{top.coh(base_model, 2017, spec.yr=2014)}\% of the 2017 catch,
-\Sexpr{top.coh(base_model, 2018, spec.yr=2014)}\% of the 2018 catch,
-\Sexpr{top.coh(base_model, 2019, spec.yr=2014)}\% of the 2019 catch,
-\Sexpr{top.coh(base_model, 2020, spec.yr=2014)}\% of the 2020 catch
-\Sexpr{top.coh(base_model, 2021, spec.yr=2014)}\% of the 2021 catch, and
-\Sexpr{top.coh(base_model, 2022, spec.yr=2014)}\% of the 2022 catch.
+\Sexpr{top_coh(base_model, 2016, ret_cohort = 2014)}\% of the 2016 catch,
+\Sexpr{top_coh(base_model, 2017, ret_cohort = 2014)}\% of the 2017 catch,
+\Sexpr{top_coh(base_model, 2018, ret_cohort = 2014)}\% of the 2018 catch,
+\Sexpr{top_coh(base_model, 2019, ret_cohort = 2014)}\% of the 2019 catch,
+\Sexpr{top_coh(base_model, 2020, ret_cohort = 2014)}\% of the 2020 catch
+\Sexpr{top_coh(base_model, 2021, ret_cohort = 2014)}\% of the 2021 catch, and
+\Sexpr{top_coh(base_model, 2022, ret_cohort = 2014)}\% of the 2022 catch.
 The 2016 cohort also appears to be above average, comprising
-\Sexpr{top.coh(base_model, 2018, spec.yr=2016)}\% of the 2018 catch,
-\Sexpr{top.coh(base_model, 2019, spec.yr=2016)}\% of the 2019 catch,
-\Sexpr{top.coh(base_model, 2020, spec.yr=2016)}\% of the 2020 catch, and
-\Sexpr{top.coh(base_model, 2021, spec.yr=2016)}\% of the 2021 catch, and
-\Sexpr{top.coh(base_model, 2022, spec.yr=2016)}\% of the 2022 catch.
+\Sexpr{top_coh(base_model, 2018, ret_cohort = 2016)}\% of the 2018 catch,
+\Sexpr{top_coh(base_model, 2019, ret_cohort = 2016)}\% of the 2019 catch,
+\Sexpr{top_coh(base_model, 2020, ret_cohort = 2016)}\% of the 2020 catch, and
+\Sexpr{top_coh(base_model, 2021, ret_cohort = 2016)}\% of the 2021 catch, and
+\Sexpr{top_coh(base_model, 2022, ret_cohort = 2016)}\% of the 2022 catch.
 The absolute size of the 2014 year
 class has now stabilized after observations across eight years of fishery observations
 and three acoustic surveys. The 2016 year class is
