@@ -313,42 +313,6 @@ split_prior_info <- function(prior_str,
   c(p_type, p_mean, p_sd)
 }
 
-#' Calculate the total catch taken for a given cohort
-#'
-#' @param model The model to extract from
-#' @param cohort The year the cohort was born
-#' @param ages The ages to include in the summation calculation
-#' @param trim.end.year Remove all years after this including this year
-#'
-#' @return The total catch for a given cohort
-#' @export
-cohort.catch <- function(model,
-                         cohort,
-                         ages = 0:20,
-                         trim.end.year = NA) {
-
-  catage <- model$catage
-  w <- model$wtatage
-  cohort.yrs <- cohort + ages
-  waa <- w[w$Fleet == 1 & w$Yr %in% cohort.yrs, ]
-  tmp_caa <- catage[catage$Yr %in% cohort.yrs, ]
-  tmp_caa <- tmp_caa[tmp_caa$Yr %in% waa$Yr, ]
-  caa <- as.matrix(tmp_caa[, as.character(ages)])
-  waa <- waa[, names(waa) %in% ages]
-  catch.waa <- as.matrix(caa * waa)
-
-  ind <- 1:(nrow(caa) + 1)
-  if(length(ind) > length(ages)){
-    ind <- 1:nrow(caa)
-  }
-  cohort.catch <- diag(catch.waa[,ind])
-  names(cohort.catch) <- cohort.yrs[1:(nrow(caa))]
-  if(!is.na(trim.end.year)){
-    cohort.catch <- cohort.catch[names(cohort.catch) < trim.end.year]
-  }
-  cohort.catch
-}
-
 #' Create text describing the top `num.cohorts` cohorts by year and
 #' percentage as a sentence
 #'
