@@ -176,7 +176,9 @@
 \counterwithin{table}{section}
 
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
-render_latex()
+# Load all `hake` package data
+devtools::load_all(here::here())
+knitr::render_latex()
 fig_width <- 7.5
 fig_dpi <- 200
 fig_align <- "center"
@@ -233,8 +235,8 @@ opts_chunk$set(alt.text = "")
 @
 
 % Load packages needed by the document code
-<<load-globals, child='load-document-variables/00-load-packages.rnw'>>=
-@
+% <<load-globals, child='load-document-variables/00-load-packages.rnw'>>=
+% @
 
 % Load important starting globals required by other scripts
 <<load-globals, child='load-document-variables/01-load-globals.rnw'>>=

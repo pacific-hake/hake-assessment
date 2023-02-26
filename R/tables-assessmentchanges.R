@@ -27,24 +27,24 @@ make.assessment.changes.table <- function(assessment.changes,
   tab <- tab[tab$Year >= start_yr, ]
   #tab$Bias_Adjust <- format(tab$Bias_Adjust, digits = 2)
   tab$MCMC <- f(tab$MCMC)
-  #tab$Change <- sapply(strsplit(tab$Change, "; |, "), latex.mlc, make.bold = FALSE)
+  #tab$Change <- sapply(strsplit(tab$Change, "; |, "), latex_mlc, make.bold = FALSE)
 
-  colnames(tab) <- sapply(strsplit(colnames(tab), "_"), latex.mlc)
+  colnames(tab) <- sapply(strsplit(colnames(tab), "_"), latex_mlc)
 
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
 
   addtorow$command <-
-    paste0(latex.hline,
-           paste(colnames(tab), collapse = latex.amp()),
-           latex.nline,
-           latex.hline)
+    paste0(latex_hline,
+           paste(colnames(tab), collapse = latex_amp()),
+           latex_nline,
+           latex_hline)
 
   addtorow$command <- paste0(addtorow$command,
                              latex_continue(ncol(tab), addtorow$command))
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   # Cannot have multiple periods in a number (software version must be separated by dashes
   # instead to satisfy accessibility requirements)
   tab[,2] <- gsub("\\.", "-", tab[,2])

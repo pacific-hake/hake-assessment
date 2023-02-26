@@ -48,11 +48,11 @@ make.reference.points.table <- function(model,
              "Exploitation fraction corresponding to SPR at MSY",
              "MSY (thousand t)")
   tab <- cbind(descr, tab)
-  colnames(tab) <- c(latex.bold("Quantity"),
-                     latex.mlc(c(latex.supscr("2.5", "th"),
+  colnames(tab) <- c(latex_bold("Quantity"),
+                     latex_mlc(c(latex_supscr("2.5", "th"),
                                  "percentile")),
-                     latex.bold("Median"),
-                     latex.mlc(c(latex.supscr("97.5", "th"),
+                     latex_bold("Median"),
+                     latex_mlc(c(latex_supscr("97.5", "th"),
                                  "percentile")))
   addtorow <- list()
   addtorow$pos <- list()
@@ -61,30 +61,30 @@ make.reference.points.table <- function(model,
   addtorow$pos[[3]] <- 6
   addtorow$pos[[4]] <- 10
 
-  header_code <- paste0(latex.hline,
-                        paste(colnames(tab), collapse = latex.amp()),
-                        latex.nline,
-                        latex.hline)
+  header_code <- paste0(latex_hline,
+                        paste(colnames(tab), collapse = latex_amp()),
+                        latex_nline,
+                        latex_hline)
 
   header_code <- paste0(header_code,
                         latex_continue(ncol(tab), header_code))
   addtorow$command <-
     c(header_code,
-      paste0(latex.nline,
-             latex.bold(latex.under(paste0("Reference points (equilibrium) ",
+      paste0(latex_nline,
+             latex_bold(latex_under(paste0("Reference points (equilibrium) ",
                                            "based on $\\Fforty$"))),
-             latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under(paste0("Reference points (equilibrium) ",
+             latex_nline),
+      paste0(latex_nline,
+             latex_bold(latex_under(paste0("Reference points (equilibrium) ",
                                            "based on $B_{40\\%}$ (40\\% of ",
                                            "$B_0$)"))),
-             latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under(paste0("Reference points (equilibrium) ",
+             latex_nline),
+      paste0(latex_nline,
+             latex_bold(latex_under(paste0("Reference points (equilibrium) ",
                                            "based on estimated MSY"))),
-             latex.nline))
+             latex_nline))
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(tab,
                caption = xcaption,
                label = xlabel,
@@ -150,11 +150,11 @@ make.reference.points.table.old <- function(model,
              "Exploitation fraction corresponding to SPR at MSY",
              "MSY (thousand t)")
   tab <- cbind(descr, tab)
-  colnames(tab) <- c(latex.bold("Quantity"),
-                     latex.mlc(c(latex.supscr("2.5", "th"),
+  colnames(tab) <- c(latex_bold("Quantity"),
+                     latex_mlc(c(latex_supscr("2.5", "th"),
                                  "percentile")),
-                     latex.bold("Median"),
-                     latex.mlc(c(latex.supscr("97.5", "th"),
+                     latex_bold("Median"),
+                     latex_mlc(c(latex_supscr("97.5", "th"),
                                  "percentile")))
   addtorow <- list()
   addtorow$pos <- list()
@@ -162,21 +162,21 @@ make.reference.points.table.old <- function(model,
   addtorow$pos[[2]] <- 6
   addtorow$pos[[3]] <- 10
   addtorow$command <-
-    c(paste0(latex.nline,
-             latex.bold(latex.under(paste0("Reference points (equilibrium) ",
+    c(paste0(latex_nline,
+             latex_bold(latex_under(paste0("Reference points (equilibrium) ",
                                            "based on $\\Fforty$"))),
-      latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under(paste0("Reference points (equilibrium) ",
+      latex_nline),
+      paste0(latex_nline,
+             latex_bold(latex_under(paste0("Reference points (equilibrium) ",
                                            "based on $B_{40\\%}$ (40\\% of ",
                                            "$B_0$)"))),
-      latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under(paste0("Reference points (equilibrium) ",
+      latex_nline),
+      paste0(latex_nline,
+             latex_bold(latex_under(paste0("Reference points (equilibrium) ",
                                            "based on estimated MSY"))),
-      latex.nline))
+      latex_nline))
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(tab,
                caption = xcaption,
                label = xlabel,

@@ -43,9 +43,9 @@ make.input.age.data.table <- function(model,
   ages.num <- gsub("^a([[:digit:]]+)$", "\\1", nm[ages.ind])
   ages.num[length(ages.num)] <- paste0(ages.num[length(ages.num)], "+")
   # Make all bold
-  ages <- latex.bold(ages.num)
+  ages <- latex_bold(ages.num)
   # Put ampersands in between each item and add newline to end
-  ages.tex <-latex.paste(ages)
+  ages.tex <-latex_paste(ages)
 
   # Construct age data frame
   age.df <- age.df[, ages.ind]
@@ -54,7 +54,7 @@ make.input.age.data.table <- function(model,
                     function(x){
                       as.numeric(x) / sum(as.numeric(x))
                     }))
-  #age.headers <- paste0(latex.mcol(1, "c", ages), latex.amp())
+  #age.headers <- paste0(latex_mcol(1, "c", ages), latex_amp())
   age.df <- cbind(yr, n.samp, flt, age.df)
 
   # Fishery or survey?
@@ -76,25 +76,25 @@ make.input.age.data.table <- function(model,
   addtorow$pos[[1]] <- -1
 
   addtorow$command <-
-    paste0(latex.hline,
-           latex.bold("Year"),
-           latex.amp(),
-           latex.mlc(c("Number",
+    paste0(latex_hline,
+           latex_bold("Year"),
+           latex_amp(),
+           latex_mlc(c("Number",
                        "of samples")),
-           latex.amp(),
-           latex.mcol(length(ages),
+           latex_amp(),
+           latex_mcol(length(ages),
                       "c",
-                      latex.bold("Age (\\% of total for each year)")),
-           latex.nline,
-           latex.amp(2),
+                      latex_bold("Age (\\% of total for each year)")),
+           latex_nline,
+           latex_amp(2),
            ages.tex,
-           latex.nline,
-           latex.hline)
+           latex_nline,
+           latex_hline)
 
   addtorow$command <- paste0(addtorow$command,
                              latex_continue(ncol(age.df), addtorow$command))
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   # Write the CSV
   cnames <- colnames(age.df)
   cnames[3:length(cnames)] <- ages.num
@@ -174,39 +174,39 @@ make.can.age.data.table <- function(dat,
   age.headers <- names(dat)[grep("^[[:digit:]].*", names(dat))]
   ages <- 1:length(age.headers)
   ages[length(ages)] <- paste0(ages[length(ages)], "+")
-  ages.tex <- latex.paste(latex.bold(ages))
+  ages.tex <- latex_paste(latex_bold(ages))
 
   if(fleet == 2 | fleet == 3){
-    mlc <- latex.mlc(c("Number",
+    mlc <- latex_mlc(c("Number",
                        "of hauls"))
   }else{
-    mlc <- latex.mlc(c("Number",
+    mlc <- latex_mlc(c("Number",
                        "of trips"))
   }
-  num_fish <- latex.mlc(c("Number",
+  num_fish <- latex_mlc(c("Number",
                           "of fish"))
 
   addtorow$command <-
-    paste0(latex.hline,
-           latex.bold("Year"),
-           latex.amp(),
+    paste0(latex_hline,
+           latex_bold("Year"),
+           latex_amp(),
            num_fish,
-           latex.amp(),
+           latex_amp(),
            mlc,
-           latex.amp(),
-           latex.mcol(length(age.headers),
+           latex_amp(),
+           latex_mcol(length(age.headers),
                       "c",
-                      latex.bold("Age (\\% of total for each year)")),
-           latex.nline,
-           latex.amp(3),
+                      latex_bold("Age (\\% of total for each year)")),
+           latex_nline,
+           latex_amp(3),
            ages.tex,
-           latex.nline,
-           latex.hline)
+           latex_nline,
+           latex_hline)
 
   addtorow$command <- paste0(addtorow$command,
                              latex_continue(ncol(dat), addtorow$command))
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(dat,
                caption = xcaption,
                label = xlabel,
@@ -257,36 +257,36 @@ make.us.age.data.table <- function(dat,
   age.headers <- colnames(dat)[grep("^a.*", colnames(dat))]
   ages <- 1:length(age.headers)
   ages[length(ages)] <- paste0(ages[length(ages)], "+")
-  ages.tex <- latex.paste(latex.bold(ages))
+  ages.tex <- latex_paste(latex_bold(ages))
 
   if(fleet == 1 | fleet == 2){
-    mlc <- latex.mlc(c("Number",
+    mlc <- latex_mlc(c("Number",
                        "of hauls"))
   }else{
-    mlc <- latex.mlc(c("Number",
+    mlc <- latex_mlc(c("Number",
                        "of trips"))
   }
   addtorow$command <-
-    paste0(latex.hline,
-           latex.bold("Year"),
-           latex.amp(),
-           latex.mlc(c("Number", "of fish")),
-           latex.amp(),
+    paste0(latex_hline,
+           latex_bold("Year"),
+           latex_amp(),
+           latex_mlc(c("Number", "of fish")),
+           latex_amp(),
            mlc,
-           latex.amp(),
-           latex.mcol(length(age.headers),
+           latex_amp(),
+           latex_mcol(length(age.headers),
                       "c",
-                      latex.bold("Age (\\% of total for each year)")),
-           latex.nline,
-           latex.amp(3),
+                      latex_bold("Age (\\% of total for each year)")),
+           latex_nline,
+           latex_amp(3),
            ages.tex,
-           latex.nline,
-           latex.hline)
+           latex_nline,
+           latex_hline)
 
   addtorow$command <- paste0(addtorow$command,
                              latex_continue(ncol(dat), addtorow$command))
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(dat,
                caption = xcaption,
                label = xlabel,
@@ -373,8 +373,8 @@ atage_table <- function(model,
 
   # Add latex headers
   ages <- colnames(dat)[-1]
-  ages_tex <- map_chr(ages, latex.bold)
-  ages_tex <- paste0(latex.paste(ages_tex), latex.nline)
+  ages_tex <- map_chr(ages, latex_bold)
+  ages_tex <- paste0(latex_paste(ages_tex), latex_nline)
 
   # Add the extra header spanning multiple columns
   addtorow <- list()
@@ -382,22 +382,22 @@ atage_table <- function(model,
   addtorow$pos[[1]] <- -1
 
   addtorow$command <-
-    paste0(latex.hline,
-           latex.bold("Year"),
-           latex.amp(),
-           latex.mcol(ncol(dat) - 1,
+    paste0(latex_hline,
+           latex_bold("Year"),
+           latex_amp(),
+           latex_mcol(ncol(dat) - 1,
                       "c",
-                      latex.bold("Age")),
-           latex.nline,
-           latex.amp(),
+                      latex_bold("Age")),
+           latex_nline,
+           latex_amp(),
            ages_tex,
-           latex.hline)
+           latex_hline)
 
   addtorow$command <- paste0(addtorow$command,
                              latex_continue(ncol(dat), addtorow$command))
 
   # Make the size string for font and space size
-  size_string <- latex.size.str(font_size, space_size)
+  size_string <- latex_size_str(font_size, space_size)
   return(print(xtable(dat,
                       caption = xcaption,
                       label = xlabel,

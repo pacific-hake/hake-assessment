@@ -88,7 +88,7 @@ table_param_est_bounds <- function(model,
   #  be indexed by the variables defined above
   r0 <- fetch.and.split(ctl, 43)
   r0.vals <- c(paste0("Log (",
-                      latex.subscr(latex.italics("R"),
+                      latex_subscr(latex_italics("R"),
                                    "0"),
                       ")"),
                1,
@@ -98,7 +98,7 @@ table_param_est_bounds <- function(model,
   ## Steepness is at line 44 of comment-stripped dataframe
   h <- fetch.and.split(ctl, 44)
   h.vals <- c(paste0("Steepness (",
-                     latex.italics("h"),
+                     latex_italics("h"),
                      ")"),
               1,
               paste0("(", h[lo], ", ", h[hi], ")"),
@@ -107,7 +107,7 @@ table_param_est_bounds <- function(model,
   ## Recruitment variability (sigma_r) is at line 45 of comment-stripped dataframe
   sig.r <- fetch.and.split(ctl, 45)
   sig.r.vals <- c(paste0("Recruitment variability (",
-                         latex.italics("$\\sigma_r$"),
+                         latex_italics("$\\sigma_r$"),
                          ")"),
                   if(sig.r[p.type] < 0 & sig.r[phase] > 0)
                     1
@@ -136,13 +136,13 @@ table_param_est_bounds <- function(model,
                            rec.dev.ub,
                            ")"),
                     paste0("Lognormal (0, ",
-                           latex.italics("$\\sigma_r$"),
+                           latex_italics("$\\sigma_r$"),
                            ")"))
 
   # Natural mortality
   m <- fetch.and.split(ctl, 25)
   m.vals <- c(paste0("Natural mortality (",
-                     latex.italics("M"),
+                     latex_italics("M"),
                      ")"),
               if(prior.type[m[p.type]] == "Fixed")
                 "--"
@@ -224,7 +224,7 @@ table_param_est_bounds <- function(model,
   dmf <- dm[[1]]
   dms <- dm[[2]]
   dmf.vals <- c(paste0("Dirichlet-multinomial fishery likelihood, ",
-                      latex.italics("$\\log(\\theta_{fish})$")),
+                      latex_italics("$\\log(\\theta_{fish})$")),
                2,
                paste0("(", dmf[lo], ", ", dmf[hi], ")"),
                paste0("Normal (",
@@ -233,7 +233,7 @@ table_param_est_bounds <- function(model,
                       ")"))
 
   dms.vals <- c(paste0("Dirichlet-multinomial survey likelihood, ",
-                      latex.italics("$\\log(\\theta_{survey})$")),
+                      latex_italics("$\\log(\\theta_{survey})$")),
                2,
                paste0("(", dms[lo], ", ", dms[hi], ")"),
                paste0("Normal (",
@@ -262,12 +262,12 @@ table_param_est_bounds <- function(model,
   #  horizontal line
   tab <- rbind(c("", "", "", ""), tab)
 
-  colnames(tab) <- c(latex.bold("Parameter"),
-                     latex.mlc(c("Number of",
+  colnames(tab) <- c(latex_bold("Parameter"),
+                     latex_mlc(c("Number of",
                                  "parameters")),
-                     latex.mlc(c("Bounds",
+                     latex_mlc(c("Bounds",
                                  "(low, high)")),
-                     latex.mlc(c("Prior (Mean, SD)",
+                     latex_mlc(c("Prior (Mean, SD)",
                                  "single value = fixed")))
 
   addtorow <- list()
@@ -279,29 +279,29 @@ table_param_est_bounds <- function(model,
   addtorow$pos[[5]] <- 8
   addtorow$pos[[6]] <- 9
   addtorow$pos[[7]] <- 11
-  header_code <- paste0(latex.hline,
-                        paste(colnames(tab), collapse = latex.amp()),
-                        latex.nline,
-                        latex.hline)
+  header_code <- paste0(latex_hline,
+                        paste(colnames(tab), collapse = latex_amp()),
+                        latex_nline,
+                        latex_hline)
 
   header_code <- paste0(header_code,
                         latex_continue(ncol(tab), header_code))
   addtorow$command <-
     c(header_code,
-      paste0(latex.bold(latex.under("Stock Dynamics")),
-             latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under("Data Source")),
-             latex.nline),
-      paste0(latex.bold(latex.italics("Acoustic Survey")),
-             latex.nline),
-      paste0(latex.bold(latex.italics("Age-1 Survey")),
-             latex.nline),
-      paste0(latex.bold(latex.italics("Fishery")),
-             latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under("Data weighting")),
-             latex.nline))
+      paste0(latex_bold(latex_under("Stock Dynamics")),
+             latex_nline),
+      paste0(latex_nline,
+             latex_bold(latex_under("Data Source")),
+             latex_nline),
+      paste0(latex_bold(latex_italics("Acoustic Survey")),
+             latex_nline),
+      paste0(latex_bold(latex_italics("Age-1 Survey")),
+             latex_nline),
+      paste0(latex_bold(latex_italics("Fishery")),
+             latex_nline),
+      paste0(latex_nline,
+             latex_bold(latex_under("Data weighting")),
+             latex_nline))
   # Add spaces after commas and before opening parentheses
   tab <- map_df(as_tibble(tab), ~{gsub(",", ", ", .x)}) |>
     as.data.frame()
@@ -309,7 +309,7 @@ table_param_est_bounds <- function(model,
     as.data.frame()
 
   ## Make the size string for font and space size
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(tab,
                caption = xcaption,
                label = xlabel,

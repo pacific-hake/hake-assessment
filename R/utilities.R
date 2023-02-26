@@ -99,9 +99,9 @@ f <- function(x, dec.points = 0){
 
 # Functions to make table generation easier -----------------------------------
 # Latex newline
-latex.nline <- " \\\\ "
+latex_nline <- " \\\\ "
 # Horizontal line
-latex.hline <- " \\hline "
+latex_hline <- " \\hline "
 
 #' Create a string with `n` ampersands separated by spaces
 #'
@@ -111,7 +111,7 @@ latex.hline <- " \\hline "
 #'
 #' @return A string with `n` ampersands separated by spaces
 #' @export
-latex.amp <- function(n = 1){
+latex_amp <- function(n = 1){
   paste0(rep(" &", n), " ", collapse = "")
 }
 
@@ -125,7 +125,7 @@ latex.amp <- function(n = 1){
 #' @return A string comprised of each element in the vector `vec` with an
 #' ampersand in between
 #' @export
-latex.paste <- function(vec){
+latex_paste <- function(vec){
   paste(" ", vec, " ", collapse = " & ")
 }
 
@@ -135,7 +135,7 @@ latex.paste <- function(vec){
 #'
 #' @return The given text with the latex \\textbf{} macro around it
 #' @export
-latex.bold <- function(txt){
+latex_bold <- function(txt){
   paste0("\\textbf{", txt, "}")
 }
 
@@ -145,7 +145,7 @@ latex.bold <- function(txt){
 #'
 #' @return The given text with the latex \\emph{} macro around it
 #' @export
-latex.italics <- function(txt){
+latex_italics <- function(txt){
   paste0("\\emph{", txt, "}")
 }
 
@@ -155,25 +155,25 @@ latex.italics <- function(txt){
 #'
 #' @return The given text with the latex \\underline{} macro around it
 #' @export
-latex.under <- function(txt){
+latex_under <- function(txt){
   paste0("\\underline{", txt, "}")
 }
 
 #' Returns a string which has been glued together using multi-line-cell
 #' macro for latex
 #'
-#' @param latex.vec A vector of the strings to glue together
-#' @param make.bold Logical. If TRUE, make the text bold by inserting
+#' @param latex_vec A vector of the strings to glue together
+#' @param make_bold Logical. If TRUE, make the text bold by inserting
 #' a \\textbf{} macro
 #'
 #' @return A string
 #' @export
-latex.mlc <- function(latex.vec, make.bold = TRUE){
-  if(make.bold){
-    latex.vec <- sapply(latex.vec, latex.bold)
+latex_mlc <- function(latex_vec, make_bold = TRUE){
+  if(make_bold){
+    latex_vec <- sapply(latex_vec, latex_bold)
   }
-  latex.str <- paste(latex.vec, collapse = latex.nline)
-  paste0("\\mlc{", latex.str, "}")
+  latex_str <- paste(latex_vec, collapse = latex_nline)
+  paste0("\\mlc{", latex_str, "}")
 }
 
 #' Wrap the given text with the latex \\multicolumnn{} macro around it
@@ -184,7 +184,7 @@ latex.mlc <- function(latex.vec, make.bold = TRUE){
 #'
 #' @return The given text with the latex \\multicolumn{} macro around it
 #' @export
-latex.mcol <- function(ncol, just, txt){
+latex_mcol <- function(ncol, just, txt){
   paste0("\\multicolumn{", ncol, "}{", just, "}{", txt, "}")
 }
 
@@ -196,7 +196,7 @@ latex.mcol <- function(ncol, just, txt){
 #'
 #' @return The given text wrapped in the latex \\multirow{} macro
 #' @export
-latex.mrow <- function(nrow, just, txt){
+latex_mrow <- function(nrow, just, txt){
   paste0("\\multirow{", nrow, "}{", just, "}{", txt, "}")
 }
 
@@ -207,8 +207,8 @@ latex.mrow <- function(nrow, just, txt){
 #'
 #' @return A string which has the given font size and space size applied
 #' @export
-latex.size.str <- function(fnt.size, spc.size){
-  paste0("\\fontsize{", fnt.size, "}{", spc.size, "}\\selectfont")
+latex_size_str <- function(fnt_size, spc_size){
+  paste0("\\fontsize{", fnt_size, "}{", spc_size, "}\\selectfont")
 }
 
 #' Provide latex code to draw a horizontal line across the columns specified
@@ -219,7 +219,7 @@ latex.size.str <- function(fnt.size, spc.size){
 #' @return A string of latex code to draw a horizontal line across the
 #' columns specified
 #' @export
-latex.cline <- function(cols){
+latex_cline <- function(cols){
   paste0("\\cline{", cols, "}")
 }
 
@@ -232,30 +232,30 @@ latex.cline <- function(cols){
 #'
 #' @return As string of latex code to draw a horizontal line across the columns specified
 #' @export
-latex.cmidr <- function(cols, trim = "r"){
+latex_cmidr <- function(cols, trim = "r"){
   paste0("\\cmidrule(", trim, "){", cols, "}")
 }
 
-#' Creates a latex string with `main.txt` subscripted by `subscr.txt`
+#' Creates a latex string with `main_txt` subscripted by `subscr_txt`
 #'
-#' @param main.txt The main text to subscript
-#' @param subscr.txt The subscript text
+#' @param main_txt The main text to subscript
+#' @param subscr_txt The subscript text
 #'
-#' @return A latex string with `main.txt` subscripted by `subscr.txt`
+#' @return A latex string with `main_txt` subscripted by `subscr_txt`
 #' @export
-latex.subscr <- function(main.txt, subscr.txt){
-  paste0(main.txt, "\\subscr{", subscr.txt, "}")
+latex_subscr <- function(main_txt, subscr_txt){
+  paste0(main_txt, "\\subscr{", subscr_txt, "}")
 }
 
-#' Creates a latex string with `main.txt` superscripted by `supscr.txt`
+#' Creates a latex string with `main_txt` superscripted by `supscr_txt`
 #'
-#' @param main.txt The main text to superscript
-#' @param supscr.txt The superscript text
+#' @param main_txt The main text to superscript
+#' @param supscr_txt The superscript text
 #'
-#' @return A latex string with `main.txt` superscripted by `supscr.txt`
+#' @return A latex string with `main_txt` superscripted by `supscr_txt`
 #' @export
-latex.supscr <- function(main.txt, supscr.txt){
-  paste0(main.txt, "\\supscr{", supscr.txt, "}")
+latex_supscr <- function(main_txt, supscr_txt){
+  paste0(main_txt, "\\supscr{", supscr_txt, "}")
 }
 
 #' Return the necessary latex to repeat longtable headers for continuing pages
@@ -271,11 +271,11 @@ latex_continue <- function(n_col = 1, header = "Default"){
          "\\multicolumn{",
          n_col,
          "}{l}{\\textit{... Continued from previous page}} \n",
-         latex.nline,
+         latex_nline,
          header,
          "\\endhead \n",
-         latex.nline,
-         latex.hline,
+         latex_nline,
+         latex_hline,
          "\\multicolumn{",
          n_col,
          "}{l}{\\textit{Continued on next page ...}} \n",

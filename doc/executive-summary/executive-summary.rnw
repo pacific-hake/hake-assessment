@@ -105,11 +105,11 @@ Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
 1999 year class, with the cumulative removal (through \Sexpr{end_yr-1}) from
 that cohort estimated at approximately
-\Sexpr{f(cohort.catch.1999/1e6,2)}~million~t. Through \Sexpr{last_data_yr}, the
+\Sexpr{f(cohort_catch.1999/1e6,2)}~million~t. Through \Sexpr{last_data_yr}, the
 cumulative catch of the 2010, 2014, and 2016 year classes is estimated to be about
-\Sexpr{f(cohort.catch.2010/1e6,2)}~million~t,
-\Sexpr{f(cohort.catch.2014/1e6,2)}~million~t, and
-\Sexpr{f(cohort.catch.2016/1e6,2)}~million~t,
+\Sexpr{f(cohort_catch.2010/1e6,2)}~million~t,
+\Sexpr{f(cohort_catch.2014/1e6,2)}~million~t, and
+\Sexpr{f(cohort_catch.2016/1e6,2)}~million~t,
 respectively.
 In the \Sexpr{end_yr-1} catch,
 \Sexpr{top.coh(base_model, last_data_yr, 3, cap = FALSE)}.

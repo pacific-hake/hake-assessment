@@ -59,10 +59,10 @@ decision_table <- function(
   forecast <- model$forecasts[[length(model$forecasts)]][forecast_inds]
   if(type == "biomass"){
     num.rows <- nrow(forecast[[1]]$biomass) - 1
-    table.header <- latex.bold("Resulting relative spawning biomass")
+    table.header <- latex_bold("Resulting relative spawning biomass")
   }else{
     num.rows <- nrow(forecast[[1]]$spr) - 1
-    table.header <- latex.bold("Relative fishing intensity")
+    table.header <- latex_bold("Relative fishing intensity")
   }
 
   tab.letters <- NULL
@@ -129,46 +129,46 @@ decision_table <- function(
     quant.cell.defs <- NULL
     for(i in 1:length(quant.levels)){
       quant.string <- paste0(quant.string,
-                             latex.amp(),
+                             latex_amp(),
                              quant.levels[i])
       quant.ampersands <- paste0(quant.ampersands,
-                                 latex.amp())
+                                 latex_amp())
       quant.cell.defs <- c(quant.cell.defs, "C{1.5cm} ")
     }
     # Add the vertical bar to the edge of the last quant cell
     quant.cell.defs[length(quant.cell.defs)] <- paste0(quant.cell.defs[length(quant.cell.defs)], "|")
 
     addtorow$command <- c(
-      paste0(latex.cline("1-7"),
-             latex.mcol(3,
+      paste0(latex_cline("1-7"),
+             latex_mcol(3,
                         "|c|",
                         ""),
-             latex.amp(),
-             latex.bold("Biomass at"),
-             latex.amp(),
-             latex.mcol(3,
+             latex_amp(),
+             latex_bold("Biomass at"),
+             latex_amp(),
+             latex_mcol(3,
                         "c|",
                         table.header),
-             latex.nline,
-             latex.cline("1-3"),
-             latex.mcol(3,
+             latex_nline,
+             latex_cline("1-3"),
+             latex_mcol(3,
                         "|c|",
-                        latex.bold("Catch Alternative")),
-             latex.amp(),
-             latex.bold("start of year"),
-             latex.amp(),
-             paste(latex.bold(quant.levels), collapse = latex.amp()),
-             latex.nline,
-             latex.hline,
-             latex.amp(),
-             latex.bold("Catch year"),
-             latex.amp(),
-             latex.bold("Catch (t)"),
-             latex.amp(),
-             paste(first_biomass_yr[1, ], collapse = latex.amp()),
-             latex.nline,
-             latex.hline),
-      latex.hline)
+                        latex_bold("Catch Alternative")),
+             latex_amp(),
+             latex_bold("start of year"),
+             latex_amp(),
+             paste(latex_bold(quant.levels), collapse = latex_amp()),
+             latex_nline,
+             latex_hline,
+             latex_amp(),
+             latex_bold("Catch year"),
+             latex_amp(),
+             latex_bold("Catch (t)"),
+             latex_amp(),
+             paste(first_biomass_yr[1, ], collapse = latex_amp()),
+             latex_nline,
+             latex_hline),
+      latex_hline)
 
   }else if(type == "spr"){
     forecast.tab <- map(forecast, ~{
@@ -205,34 +205,34 @@ decision_table <- function(
     quant.cell.defs <- NULL
     for(i in 1:length(quant.levels)){
       quant.string <- paste0(quant.string,
-                             latex.amp(),
+                             latex_amp(),
                              quant.levels[i])
       quant.ampersands <- paste0(quant.ampersands,
-                                 latex.amp())
+                                 latex_amp())
       quant.cell.defs <- c(quant.cell.defs, "C{1.5cm} ")
     }
     # Add the vertical bar to the edge of the last quant cell
     quant.cell.defs[length(quant.cell.defs)] <- paste0(quant.cell.defs[length(quant.cell.defs)], "|")
 
-    addtorow$command <- c(paste0(latex.cline("1-6"),
-                                 latex.mcol(3,
+    addtorow$command <- c(paste0(latex_cline("1-6"),
+                                 latex_mcol(3,
                                             "|c|",
-                                            latex.bold("Catch Alternative")),
-                                 latex.amp(),
-                                 latex.mcol(3,
+                                            latex_bold("Catch Alternative")),
+                                 latex_amp(),
+                                 latex_mcol(3,
                                             "c|",
                                             table.header),
-                                 latex.nline,
-                                 latex.cline("1-3"),
-                                 latex.amp(),
-                                 latex.bold("Catch year"),
-                                 latex.amp(),
-                                 latex.bold("Catch (t)"),
-                                 latex.amp(),
-                                 paste(latex.bold(quant.levels), collapse = latex.amp()),
-                                 latex.nline,
-                                 latex.hline),
-                          latex.hline)
+                                 latex_nline,
+                                 latex_cline("1-3"),
+                                 latex_amp(),
+                                 latex_bold("Catch year"),
+                                 latex_amp(),
+                                 latex_bold("Catch (t)"),
+                                 latex_amp(),
+                                 paste(latex_bold(quant.levels), collapse = latex_amp()),
+                                 latex_nline,
+                                 latex_hline),
+                          latex_hline)
 
   }
 
@@ -259,7 +259,7 @@ decision_table <- function(
     if(length(forecast_inds) > 1){
       for(i in 1:(length(forecast_inds) - 1)){
         addtorow$pos[[i + 2]] <- i * num.rows
-        addtorow$command <- c(addtorow$command, latex.hline)
+        addtorow$command <- c(addtorow$command, latex_hline)
       }
     }
   }else{
@@ -285,12 +285,12 @@ decision_table <- function(
     if(length(root_rows) > 1){
       for(i in 1:(length(root_rows) - 1)){
         addtorow$pos[[i + 2]] <- i * (length(forecast_yrs) - 1)
-        addtorow$command <- c(addtorow$command, latex.hline)
+        addtorow$command <- c(addtorow$command, latex_hline)
       }
     }
   }
   # Make the size string for font and space size
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(forecast.tab,
                caption = xcaption,
                label = xlabel,

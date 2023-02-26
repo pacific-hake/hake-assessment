@@ -528,19 +528,19 @@ sel.Phi.val <- base_model$parameters %>%
 
 # Cohort specifics ------------------------------------------------------------
 # ... Cohort catch ------------------------------------------------------------
-cohort.catch.1999 <- sum(cohort.catch(base_model, 1999, trim.end.year = end_yr))
-cohort.catch.2010 <- sum(cohort.catch(base_model, 2010, trim.end.year = end_yr))
-cohort.catch.2014 <- sum(cohort.catch(base_model, 2014, trim.end.year = end_yr))
-cohort.catch.2016 <- sum(cohort.catch(base_model, 2016, trim.end.year = end_yr))
-cohort.catch.2017 <- sum(cohort.catch(base_model, 2017, trim.end.year = end_yr))
-cohort.catch.2020 <- sum(cohort.catch(base_model, 2020, trim.end.year = end_yr))
+cohort_catch.1999 <- sum(cohort_catch(base_model, 1999, trim.end.year = end_yr))
+cohort_catch.2010 <- sum(cohort_catch(base_model, 2010, trim.end.year = end_yr))
+cohort_catch.2014 <- sum(cohort_catch(base_model, 2014, trim.end.year = end_yr))
+cohort_catch.2016 <- sum(cohort_catch(base_model, 2016, trim.end.year = end_yr))
+cohort_catch.2017 <- sum(cohort_catch(base_model, 2017, trim.end.year = end_yr))
+cohort_catch.2020 <- sum(cohort_catch(base_model, 2020, trim.end.year = end_yr))
 # ... Cumulative sums of Cohorts for use in JMC presentation ------------------
-cohortCumSum1999 <- cumsum(cohort.catch(base_model, 1999, trim.end.year = end_yr))
-cohortCumSum2010 <- cumsum(cohort.catch(base_model, 2010, trim.end.year = end_yr))
-cohortCumSum2014 <- cumsum(cohort.catch(base_model, 2014, trim.end.year = end_yr))
-cohortCumSum2016 <- cumsum(cohort.catch(base_model, 2016, trim.end.year = end_yr))
-cohortCumSum2017 <- cumsum(cohort.catch(base_model, 2017, trim.end.year = end_yr))
-cohortCumSum2020 <- cumsum(cohort.catch(base_model, 2020, trim.end.year = end_yr))
+cohortCumSum1999 <- cumsum(cohort_catch(base_model, 1999, trim.end.year = end_yr))
+cohortCumSum2010 <- cumsum(cohort_catch(base_model, 2010, trim.end.year = end_yr))
+cohortCumSum2014 <- cumsum(cohort_catch(base_model, 2014, trim.end.year = end_yr))
+cohortCumSum2016 <- cumsum(cohort_catch(base_model, 2016, trim.end.year = end_yr))
+cohortCumSum2017 <- cumsum(cohort_catch(base_model, 2017, trim.end.year = end_yr))
+cohortCumSum2020 <- cumsum(cohort_catch(base_model, 2020, trim.end.year = end_yr))
 ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
 ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
 ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014

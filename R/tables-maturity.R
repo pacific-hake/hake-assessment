@@ -30,15 +30,15 @@ make.maturity.samples.table <- function(ovary_samples_df,
     enframe %>%
     select(-name) %>%
     rename(Year = value)
-  names(yr_col) <- latex.bold(names(yr_col))
+  names(yr_col) <- latex_bold(names(yr_col))
   tab <- bind_rows(tabnew, tabsums)
-  names(tab) <- map_chr(names(tab), ~{latex.mlc(str_split(.x, "\\\\n")[[1]])})
+  names(tab) <- map_chr(names(tab), ~{latex_mlc(str_split(.x, "\\\\n")[[1]])})
   tab <- bind_cols(yr_col, map_dfr(tab, function(x) f(x)))
-  tab[nrow(tab),] <- as.list(latex.bold(tab[nrow(tab),]))
-  tab[-nrow(tab), ncol(tab)] <- latex.bold(tab[-nrow(tab), ncol(tab)] %>%
+  tab[nrow(tab),] <- as.list(latex_bold(tab[nrow(tab),]))
+  tab[-nrow(tab), ncol(tab)] <- latex_bold(tab[-nrow(tab), ncol(tab)] %>%
                                              pull())
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(tab, caption = xcaption,
                label = xlabel,
                align = get.align(ncol(tab),
@@ -72,17 +72,17 @@ make.maturity.ogives.table <- function(maturity.ogives,
   tab <- tab[, corder]
   ## format all non-year-column values with a thousands seperator
   colnames(tab) <-
-    c(latex.bold("Age"),
-      latex.mlc(c("Number of",
+    c(latex_bold("Age"),
+      latex_mlc(c("Number of",
                   "samples")),
-      latex.mlc(c("Maturity",
+      latex_mlc(c("Maturity",
                   "ogive")),
-      latex.mlc(c("Mean",
+      latex_mlc(c("Mean",
                   "weight")),
-      latex.mlc(c("Mean",
+      latex_mlc(c("Mean",
                   "fecundity")))
   ## Make the size string for font and space size
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
 
   print(xtable(tab,
                caption = xcaption,

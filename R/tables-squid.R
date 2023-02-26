@@ -24,7 +24,7 @@ make.recr.dev.uncertainty.table <- function(models,
                                 Value,
                                 `Log(SD)` = Parm_StDev)
                     j[-1] <- f(j[-1], digits)
-                    names(j) <- latex.bold(names(j))
+                    names(j) <- latex_bold(names(j))
                     j
                   })
                   kk <- do.call(rbind, k)
@@ -41,22 +41,22 @@ make.recr.dev.uncertainty.table <- function(models,
   addtorow$pos[[1]] <- -1
   addtorow$pos[[2]] <- 0
 
-  addtorow$command <- paste0(latex.cline(paste0("1-", ncol(tab))),
-                             latex.mcol(3,
+  addtorow$command <- paste0(latex_cline(paste0("1-", ncol(tab))),
+                             latex_mcol(3,
                                         "c",
-                                        latex.bold(model.names[1])))
+                                        latex_bold(model.names[1])))
   for(i in 1:(length(models) - 1)){
     addtorow$command <- paste0(addtorow$command,
-                               latex.amp(),
-                               latex.mcol(2,
+                               latex_amp(),
+                               latex_mcol(2,
                                           "|c",
-                                          latex.bold(model.names[i + 1])))
+                                          latex_bold(model.names[i + 1])))
   }
   addtorow$command <- paste0(addtorow$command,
-                             latex.nline,
-                             latex.cline(paste0("1-", ncol(tab))))
-  addtorow$command <- c(addtorow$command, latex.cline(paste0("1-", ncol(tab))))
-  size.string <- latex.size.str(font.size, space.size)
+                             latex_nline,
+                             latex_cline(paste0("1-", ncol(tab))))
+  addtorow$command <- c(addtorow$command, latex_cline(paste0("1-", ncol(tab))))
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(tab,
                caption = xcaption,
                label = xlabel,

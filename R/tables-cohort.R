@@ -144,16 +144,16 @@ cohort_table <- function(model,
     map_df(~{gsub("NA", "", .x)})
 
   # Apply LaTeX
-  colnames(df) <- c(latex.bold("Age"),
-                    rep(c(latex.mlc(c("Start",
+  colnames(df) <- c(latex_bold("Age"),
+                    rep(c(latex_mlc(c("Start",
                                       "Biomass",
                                       "000s t")),
-                          latex.mlc(c("Catch",
+                          latex_mlc(c("Catch",
                                       "Weight",
                                       "000s t")),
-                          latex.mlc(c("M",
+                          latex_mlc(c("M",
                                       "000s t")),
-                          latex.mlc(c("Surviving",
+                          latex_mlc(c("Surviving",
                                       "Biomass",
                                       "000s t"))),
                         length(cohorts)))
@@ -161,18 +161,18 @@ cohort_table <- function(model,
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$command <- latex.hline
+  addtorow$command <- latex_hline
   for(i in 1:length(cohorts)){
     addtorow$command <-
       paste0(addtorow$command,
-             latex.amp(),
-             latex.mcol(4,
+             latex_amp(),
+             latex_mcol(4,
                         "c|",
-                        latex.bold(paste(cohorts[i],
+                        latex_bold(paste(cohorts[i],
                                          " cohort"))))
   }
-  addtorow$command <- paste0(addtorow$command, latex.nline)
-  size_string <- latex.size.str(font_size, space_size)
+  addtorow$command <- paste0(addtorow$command, latex_nline)
+  size_string <- latex_size_str(font_size, space_size)
   al <- get.align(ncol(df))
   al[2] <- paste0("|", al[2], "|")
   for(i in 3:length(al)){

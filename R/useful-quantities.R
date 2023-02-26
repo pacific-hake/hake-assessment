@@ -79,7 +79,7 @@ baa_table <- function(d,
   tab <- d %>%
     mutate_at(vars(-Cohort), ~{f(.x, decimals)})
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(tab, caption = xcaption,
                label = xlabel,
                align = get.align(ncol(tab),

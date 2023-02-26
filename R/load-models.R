@@ -250,9 +250,9 @@ calc.mcmc <- function(mcmc,
     f(round(quantile(mcmc$SSB_SPR,
                      prob = probs) / biomass.scale, 3) * 1000,
       0)
-  spr.msy.proxy <- c(latex.bold("--"),
+  spr.msy.proxy <- c(latex_bold("--"),
                      "40\\%",
-                     latex.bold("--"))
+                     latex_bold("--"))
   exp.frac.spr <-
     paste0(f(100 * quantile(mcmc$annF_SPR,
                             prob = probs),

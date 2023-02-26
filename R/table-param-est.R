@@ -151,28 +151,28 @@ table_param_est <- function(models,
 
   tab_labels <- enframe(
     c("", # For blank line at top
-      paste0("Natural mortality (", latex.italics("M"), ")"),
-      paste0("Unfished recruitment (", latex.subscr(latex.italics("R"), "0"), ", millions)"),
-      paste0("Steepness (", latex.italics("h"), ")"),
+      paste0("Natural mortality (", latex_italics("M"), ")"),
+      paste0("Unfished recruitment (", latex_subscr(latex_italics("R"), "0"), ", millions)"),
+      paste0("Steepness (", latex_italics("h"), ")"),
       "Additional biomass index SD",
-      paste0("Catchability: biomass index (", latex.italics("$q_b$"), ")"),
+      paste0("Catchability: biomass index (", latex_italics("$q_b$"), ")"),
       "Additional age-1 index SD",
-      paste0("Catchability: age-1 index (", latex.italics("$q_1$"), ")"),
+      paste0("Catchability: age-1 index (", latex_italics("$q_1$"), ")"),
       "Dirichlet-multinomial fishery (log~$\\theta_{\\text{fish}}$)",
       "Dirichlet-multinomial survey (log~$\\theta_{\\text{surv}}$)",
       paste(rec_yrs, "recruitment (millions)"),
       paste0("Unfished female spawning biomass (",
-             latex.subscr(latex.italics("B"), "0"), ", thousand t)"),
+             latex_subscr(latex_italics("B"), "0"), ", thousand t)"),
       "2009 relative spawning biomass",
       paste0(end_yr, " relative spawning biomass"),
       paste0(end_yr - 1, " rel. fishing intensity: (1-SPR)/(1-",
-             latex.subscr("SPR", "40\\%"), ")"),
+             latex_subscr("SPR", "40\\%"), ")"),
       paste0("Female spawning biomass at ",
-             latex.subscr(latex.italics("F"), "SPR=40\\%"),
+             latex_subscr(latex_italics("F"), "SPR=40\\%"),
              " (",
-             latex.subscr(latex.italics("B"), "SPR=40\\%"), ", thousand t)"),
-      paste0("SPR at ", latex.subscr(latex.italics("F"), "SPR=40\\%")), "Exploitation fraction corresponding to SPR",
-      paste0("Yield at ", latex.subscr(latex.italics("B"), "SPR=40\\%"), " (thousand t)")),
+             latex_subscr(latex_italics("B"), "SPR=40\\%"), ", thousand t)"),
+      paste0("SPR at ", latex_subscr(latex_italics("F"), "SPR=40\\%")), "Exploitation fraction corresponding to SPR",
+      paste0("Yield at ", latex_subscr(latex_italics("B"), "SPR=40\\%"), " (thousand t)")),
     name = NULL)
   if(!age_1){
     tab_labels <- tab_labels |>
@@ -202,7 +202,7 @@ table_param_est <- function(models,
   # Split up the headers (model names) by words and let them stack on
   # top of each other to reduce width of table
   model_nms_str <- map_chr(model_nms, function(model_nm){
-    latex.mlc(gsub(" ", "\\\\\\\\", model_nm), make.bold = FALSE)
+    latex_mlc(gsub(" ", "\\\\\\\\", model_nm), make.bold = FALSE)
     })
   colnames(tab) <- c("", model_nms_str)
 
@@ -217,24 +217,24 @@ table_param_est <- function(models,
                               14 + length(rec_yrs),
                               13 + length(rec_yrs))
   addtorow$command <-
-    c(paste0(latex.bold(latex.under("Parameters")),
-             latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under("Derived Quantities")),
-             latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under("Reference Points based on $\\Fforty$")),
-             latex.nline))
+    c(paste0(latex_bold(latex_under("Parameters")),
+             latex_nline),
+      paste0(latex_nline,
+             latex_bold(latex_under("Derived Quantities")),
+             latex_nline),
+      paste0(latex_nline,
+             latex_bold(latex_under("Reference Points based on $\\Fforty$")),
+             latex_nline))
   if(show_like){
     addtorow$pos[[4]] <- ifelse(age_1, 21, 20)
     addtorow$command <- c(addtorow$command,
-                          paste0(latex.nline,
-                                 latex.bold(latex.under("Negative log likelihoods")),
-                                 latex.nline))
+                          paste0(latex_nline,
+                                 latex_bold(latex_under("Negative log likelihoods")),
+                                 latex_nline))
   }
 
   # Make the size string for font and space size
-  size.string <- latex.size.str(font_size, space_size)
+  size.string <- latex_size_str(font_size, space_size)
   print(xtable(tab,
                caption = xcaption,
                label = xlabel,

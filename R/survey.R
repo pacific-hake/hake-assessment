@@ -26,7 +26,7 @@ make.survey.history.table <- function(dat,
       dplyr::mutate(
         vessels = purrr::map(
           .x = strsplit(survey_history_df$vessels," +"),
-          .f = ~ latex.mlc(
+          .f = ~ latex_mlc(
             gsub(pattern = "-", replacement = " ", x = .),
             FALSE
           )
@@ -49,28 +49,28 @@ make.survey.history.table <- function(dat,
   ) %>%
   dplyr::relocate(se_log_2, hauls.with.samples, .after = obs_2)
 
-  colnames(dat) <- c(latex.bold("Year"),
-                     latex.mlc(c("Start",
+  colnames(dat) <- c(latex_bold("Year"),
+                     latex_mlc(c("Start",
                                  "date")),
-                     latex.mlc(c("End",
+                     latex_mlc(c("End",
                                  "date")),
-                     latex.bold("Vessels"),
-                     latex.mlc(c("Age-2+ biomass",
+                     latex_bold("Vessels"),
+                     latex_mlc(c("Age-2+ biomass",
                                  "index",
                                  "(million t)")),
-                     latex.mlc(c("Sampling",
+                     latex_mlc(c("Sampling",
                                  "CV age-2+")),
-                     latex.mlc(c("Number of",
+                     latex_mlc(c("Number of",
                                  "hauls with",
                                  "age samples")),
-                     latex.mlc(c("Age-1 index",
+                     latex_mlc(c("Age-1 index",
                                  "(billions of",
                                  "fish)")),
-                     latex.mlc(c("Sampling",
+                     latex_mlc(c("Sampling",
                                  "CV age-1"))
                     )
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(dat,
                caption = xcaption,
                label = xlabel,
@@ -127,7 +127,7 @@ make.survey.by.country.table <- function(dat,
 #  lst <- lapply(dat$vessels,
 #              function(x){p <- strsplit(as.character(x), " +")[[1]]
 #                q <- sapply(p, function(y){gsub("-", " ", y)})})
-#  dat$vessels <- sapply(lst, function(x){latex.mlc(x, FALSE)})
+#  dat$vessels <- sapply(lst, function(x){latex_mlc(x, FALSE)})
 
 #  dat <- dplyr::left_join(dat, dat.age1, by = c("year" = "Year"))
 #  dat$Index <- dat$Index/1e6     # Convert thousands to billions
@@ -135,25 +135,25 @@ make.survey.by.country.table <- function(dat,
 
 #  dat[is.na(dat)] <- "--"
 
-  colnames(dat) <- c(latex.bold("Year"),
-                     latex.mlc(c("U.S. Age-2+",
+  colnames(dat) <- c(latex_bold("Year"),
+                     latex_mlc(c("U.S. Age-2+",
                                  "biomass",
                                  "(million t)")),
-                     latex.mlc(c("U.S. sampling",
+                     latex_mlc(c("U.S. sampling",
                                  "CV age-2+")),
-                     latex.mlc(c("U.S. percentage",
+                     latex_mlc(c("U.S. percentage",
                                  "of biomass")),
-                     latex.mlc(c("Canada Age-2+",
+                     latex_mlc(c("Canada Age-2+",
                                  "biomass",
                                  "(million t)")),
-                     latex.mlc(c("Canada sampling",
+                     latex_mlc(c("Canada sampling",
                                  "CV age-2+")),
-                     latex.mlc(c("Canada",
+                     latex_mlc(c("Canada",
                                  "percentage",
                                  "of biomass"))
                     )
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(dat,
                caption = xcaption,
                label = xlabel,

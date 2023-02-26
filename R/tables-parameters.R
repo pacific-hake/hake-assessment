@@ -70,21 +70,21 @@ make.long.parameter.estimates.table <- function(model,
   df[,1] <- gsub("\\_", "\\\\_", param.names)
 
   ## Latex column names
-  names(df) <- c(latex.bold("Parameter"), latex.bold("Posterior median"))
+  names(df) <- c(latex_bold("Parameter"), latex_bold("Posterior median"))
 
   addtorow          <- list()
   addtorow$pos      <- list()
   addtorow$pos[[1]] <- c(0)
-  addtorow$command  <- c(paste0(latex.hline,
+  addtorow$command  <- c(paste0(latex_hline,
                                 "\n",
                                 "\\endhead \n",
-                                latex.hline,
+                                latex_hline,
                                 "\n",
                                 "{\\footnotesize Continued on next page} \n",
                                 "\\endfoot \n",
                                 "\\endlastfoot \n"))
   ## Make the size string for font and space size
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(df,
                caption = xcaption,
                label = xlabel,

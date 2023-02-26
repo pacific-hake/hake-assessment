@@ -81,36 +81,36 @@ make.ci.posterior.table <- function(model,
                            "\\%"))
 
   ## Make current year have dashes for exploitation rate and fishing intensity
-  tab.filt[nrow(tab.filt), ncol(tab.filt)] <- latex.bold("--")
-  tab.filt[nrow(tab.filt), ncol(tab.filt) - 1] <- latex.bold("--")
+  tab.filt[nrow(tab.filt), ncol(tab.filt)] <- latex_bold("--")
+  tab.filt[nrow(tab.filt), ncol(tab.filt) - 1] <- latex_bold("--")
 
   ## Add latex headers
-  colnames(tab.filt) <- c(latex.bold("Year"),
-                          latex.mlc(c("Female",
+  colnames(tab.filt) <- c(latex_bold("Year"),
+                          latex_mlc(c("Female",
                                       "spawning",
                                       "biomass",
                                       "(thousand t)")),
-                          latex.mlc(c("Relative",
+                          latex_mlc(c("Relative",
                                       "spawning",
                                       "biomass")),
-                          latex.mlc(c("Total",
+                          latex_mlc(c("Total",
                                       "biomass",
                                       "(thousand t)")),
-                          latex.mlc(c("Age-2+",
+                          latex_mlc(c("Age-2+",
                                       "biomass",
                                       "(thousand t)")),
-                          latex.mlc(c("Age-0",
+                          latex_mlc(c("Age-0",
                                       "recruits",
                                       "(millions)")),
-                          latex.mlc(c("(1-SPR)",
+                          latex_mlc(c("(1-SPR)",
                                       "/",
                                       paste0("(1-",
-                                             latex.subscr("SPR", "40\\%"),
+                                             latex_subscr("SPR", "40\\%"),
                                              ")"))),
-                          latex.mlc(c("Exploitation",
+                          latex_mlc(c("Exploitation",
                                       "fraction")))
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   last_row <- tab.filt[nrow(tab.filt),]
   last_row <- gsub("-", " - ", last_row)
   last_row <- gsub(" -  - ", "--", last_row)
@@ -123,10 +123,10 @@ make.ci.posterior.table <- function(model,
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
   addtorow$command <-
-    paste0(latex.hline,
-           paste(colnames(tab.filt), collapse = latex.amp()),
-           latex.nline,
-           latex.hline)
+    paste0(latex_hline,
+           paste(colnames(tab.filt), collapse = latex_amp()),
+           latex_nline,
+           latex_hline)
 
   addtorow$command <- paste0(addtorow$command,
                              latex_continue(ncol(tab.filt), addtorow$command))
@@ -201,34 +201,34 @@ make.median.posterior.table <- function(model,
                     paste0(f(df$fmed * 100, digits), "\\%"))
 
   ## Make current year have dashes for exploitation rate and fishing intensity
-  tab.filt[nrow(tab.filt), ncol(tab.filt)] <- latex.bold("--")
-  tab.filt[nrow(tab.filt), ncol(tab.filt) - 1] <- latex.bold("--")
+  tab.filt[nrow(tab.filt), ncol(tab.filt)] <- latex_bold("--")
+  tab.filt[nrow(tab.filt), ncol(tab.filt) - 1] <- latex_bold("--")
 
   ## Add latex headers
-  colnames(tab.filt) <- c(latex.bold("Year"),
-                          latex.mlc(c("Female",
+  colnames(tab.filt) <- c(latex_bold("Year"),
+                          latex_mlc(c("Female",
                                       "spawning",
                                       "biomass",
                                       "(thousand t)")),
-                          latex.mlc(c("Relative",
+                          latex_mlc(c("Relative",
                                       "spawning",
                                       "biomass")),
-                          latex.mlc(c("Total",
+                          latex_mlc(c("Total",
                                       "biomass",
                                       "(thousand t)")),
-                          latex.mlc(c("Age-2+",
+                          latex_mlc(c("Age-2+",
                                       "biomass",
                                       "(thousand t)")),
-                          latex.mlc(c("Age-0",
+                          latex_mlc(c("Age-0",
                                       "recruits",
                                       "(millions)")),
-                          latex.mlc(c("Relative",
+                          latex_mlc(c("Relative",
                                       "fishing",
                                       "intensity")),
-                          latex.mlc(c("Exploitation",
+                          latex_mlc(c("Exploitation",
                                       "fraction")))
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
 
   # Write the median posteriors CSV file --------------------------------------
   if(!is.null(csv.dir)){
@@ -261,10 +261,10 @@ make.median.posterior.table <- function(model,
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
   addtorow$command <-
-    paste0(latex.hline,
-           paste(colnames(tab.filt), collapse = latex.amp()),
-           latex.nline,
-           latex.hline)
+    paste0(latex_hline,
+           paste(colnames(tab.filt), collapse = latex_amp()),
+           latex_nline,
+           latex_hline)
 
   addtorow$command <- paste0(addtorow$command,
                              latex_continue(ncol(tab.filt), addtorow$command))
@@ -335,15 +335,15 @@ make.biomass.table <- function(model,
   names(tab.filt)[1] <- "year"
 
   colnames(tab.filt) <- c("",
-                          latex.mlc(c(latex.supscr("2.5", "th"),
+                          latex_mlc(c(latex_supscr("2.5", "th"),
                                       "percentile")),
-                          latex.bold("Median"),
-                          latex.mlc(c(latex.supscr("97.5", "th"),
+                          latex_bold("Median"),
+                          latex_mlc(c(latex_supscr("97.5", "th"),
                                       "percentile")),
-                          latex.mlc(c(latex.supscr("2.5", "th"),
+                          latex_mlc(c(latex_supscr("2.5", "th"),
                                       "percentile")),
-                          latex.bold("Median"),
-                          latex.mlc(c(latex.supscr("97.5", "th"),
+                          latex_bold("Median"),
+                          latex_mlc(c(latex_supscr("97.5", "th"),
                                       "percentile")))
   addtorow <- list()
   addtorow$pos <- list()
@@ -351,23 +351,23 @@ make.biomass.table <- function(model,
   addtorow$pos[[2]] <- nrow(tab.filt)
   addtorow$command <-
     c(paste0("\\toprule ",
-             latex.mrow(3, "*", latex.bold("Year")),
-             latex.amp(),
-             latex.mcol(3, "c", latex.mlc(c("Spawning biomass",
+             latex_mrow(3, "*", latex_bold("Year")),
+             latex_amp(),
+             latex_mcol(3, "c", latex_mlc(c("Spawning biomass",
                                             "(thousand t)"))),
-             latex.amp(),
-             latex.mcol(3, "c", latex.mlc(c("Relative spawning biomass",
+             latex_amp(),
+             latex_mcol(3, "c", latex_mlc(c("Relative spawning biomass",
                                             paste0("(",
-                                                   latex.subscr("B", "t"),
+                                                   latex_subscr("B", "t"),
                                                    "/",
-                                                   latex.subscr("B", "0"),
+                                                   latex_subscr("B", "0"),
                                                    ")")))),
-             latex.nline,
-             latex.cmidr("2-4", "r"),
-             latex.cmidr("5-7", "l")),
+             latex_nline,
+             latex_cmidr("2-4", "r"),
+             latex_cmidr("5-7", "l")),
       "\\bottomrule")
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(tab.filt,
                caption = xcaption,
                label = xlabel,
@@ -447,15 +447,15 @@ make.recruitment.table <- function(model,
   names(tab.filt)[1] <- "year"
 
   colnames(tab.filt) <- c("",
-                          latex.mlc(c(latex.supscr("2.5", "th"),
+                          latex_mlc(c(latex_supscr("2.5", "th"),
                                       "percentile")),
-                          latex.bold("Median"),
-                          latex.mlc(c(latex.supscr("97.5", "th"),
+                          latex_bold("Median"),
+                          latex_mlc(c(latex_supscr("97.5", "th"),
                                       "percentile")),
-                          latex.mlc(c(latex.supscr("2.5", "th"),
+                          latex_mlc(c(latex_supscr("2.5", "th"),
                                       "percentile")),
-                          latex.bold("Median"),
-                          latex.mlc(c(latex.supscr("97.5", "th"),
+                          latex_bold("Median"),
+                          latex_mlc(c(latex_supscr("97.5", "th"),
                                       "percentile")))
 
   addtorow <- list()
@@ -464,18 +464,18 @@ make.recruitment.table <- function(model,
   addtorow$pos[[2]] <- nrow(tab.filt)
   addtorow$command <-
     c(paste0("\\toprule ",
-             latex.mrow(3, "*", latex.bold("Year")),
-             latex.amp(),
-             latex.mcol(3, "c", latex.mlc(c("Absolute recruitment",
+             latex_mrow(3, "*", latex_bold("Year")),
+             latex_amp(),
+             latex_mcol(3, "c", latex_mlc(c("Absolute recruitment",
                                             "(millions)"))),
-             latex.amp(),
-             latex.mcol(3, "c", latex.bold("Recruitment deviations")),
-             latex.nline,
-             latex.cmidr("2-4", "r"),
-             latex.cmidr("5-7", "l")),
+             latex_amp(),
+             latex_mcol(3, "c", latex_bold("Recruitment deviations")),
+             latex_nline,
+             latex_cmidr("2-4", "r"),
+             latex_cmidr("5-7", "l")),
       "\\bottomrule")
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(tab.filt,
                caption = xcaption,
                label = xlabel,
@@ -562,15 +562,15 @@ make.fishing.intensity.table <- function(model,
   names(tab.filt)[1] <- "year"
 
   colnames(tab.filt) <- c("",
-                          latex.mlc(c(latex.supscr("2.5", "th"),
+                          latex_mlc(c(latex_supscr("2.5", "th"),
                                       "percentile")),
-                          latex.bold("Median"),
-                          latex.mlc(c(latex.supscr("97.5", "th"),
+                          latex_bold("Median"),
+                          latex_mlc(c(latex_supscr("97.5", "th"),
                                       "percentile")),
-                          latex.mlc(c(latex.supscr("2.5", "th"),
+                          latex_mlc(c(latex_supscr("2.5", "th"),
                                       "percentile")),
-                          latex.bold("Median"),
-                          latex.mlc(c(latex.supscr("97.5", "th"),
+                          latex_bold("Median"),
+                          latex_mlc(c(latex_supscr("97.5", "th"),
                                       "percentile")))
 
   addtorow <- list()
@@ -579,17 +579,17 @@ make.fishing.intensity.table <- function(model,
   addtorow$pos[[2]] <- nrow(tab.filt)
   addtorow$command <-
     c(paste0("\\toprule ",
-             latex.mrow(3, "*", latex.bold("Year")),
-             latex.amp(),
-             latex.mcol(3, "c", latex.bold("Relative fishing intensity")),
-             latex.amp(),
-             latex.mcol(3, "c", latex.bold("Exploitation fraction")),
-             latex.nline,
-             latex.cmidr("2-4", "r"),
-             latex.cmidr("5-7", "l")),
+             latex_mrow(3, "*", latex_bold("Year")),
+             latex_amp(),
+             latex_mcol(3, "c", latex_bold("Relative fishing intensity")),
+             latex_amp(),
+             latex_mcol(3, "c", latex_bold("Exploitation fraction")),
+             latex_nline,
+             latex_cmidr("2-4", "r"),
+             latex_cmidr("5-7", "l")),
       "\\bottomrule")
 
-  size.string <- latex.size.str(font.size, space.size)
+  size.string <- latex_size_str(font.size, space.size)
   print(xtable(tab.filt,
                caption = xcaption,
                label = xlabel,
