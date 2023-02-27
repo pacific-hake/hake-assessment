@@ -494,23 +494,22 @@ plot_depl_fore_comparison(base_model,
 %----------------------------------------------------------
 \subsection{Spawning Biomass}
 \frame{\frametitle{Relative spawning biomass, zero catch}
-<<decisions-biomass.table.0, results='asis', echo=FALSE>>=
+<<decisions-biomass-table-zero, results='asis', echo=FALSE>>=
 decision_table(base_model,
                xcaption = NULL,
                type = "biomass",
-               rows_to_show = c("a", "b", "f", "h", "l"),
+               rows_to_show = c("a"),
                font.size = 8,
                space.size = 10)
 @
 }
 
-%----------------------------------------------------------
 \frame{\frametitle{Relative spawning biomass, constant catch}
 <<decisions-biomass-table-const, results='asis', echo=FALSE>>=
 decision_table(base_model,
                xcaption = NULL,
                type = "biomass",
-               rows_to_show = c("a", "b", "f", "h", "l"),
+               rows_to_show = c("b", "c", "d", "g", "i", "k"),
                font.size = 8,
                space.size = 10)
 @
@@ -522,7 +521,7 @@ decision_table(base_model,
 decision_table(base_model,
                xcaption = NULL,
                type = "biomass",
-               rows_to_show = c("a", "b", "f", "h", "l"),
+               rows_to_show = c("f", "l"),
                font.size = 8,
                space.size = 10)
 @
@@ -534,14 +533,14 @@ decision_table(base_model,
 decision_table(base_model,
                xcaption = NULL,
                type = "biomass",
-               rows_to_show = c("a", "b", "f", "h", "l"),
+               rows_to_show = c("e", "h", "j"),
                font.size = 8,
                space.size = 10)
 @
 }
 
 %----------------------------------------------------------
-\frame{\frametitle{Fishing intensity}
+\frame{\frametitle{Fishing intensity (selected streams)}
 <<decisions-spr-table, results='asis', echo=FALSE>>=
   decision_table(base_model,
                  xcaption = NULL,
