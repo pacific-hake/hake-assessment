@@ -1,0 +1,187 @@
+\documentclass[aspectratio=169]{beamer}
+\mode<presentation>
+\usetheme[compress]{Singapore}
+\usepackage[outdir=./figures/]{epstopdf}
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[T1]{fontenc}
+% For centering with fixed width column or right cell values in a tabular
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+
+\setbeamersize{text margin left=0.1in}
+\setbeamersize{text margin right=0.1in}
+\setbeamertemplate{title page}
+{
+\includegraphics[height=0.5in]{../../images/NOAA.eps}
+\hfill
+\includegraphics[height=0.5in]{../../images/DFO.eps}
+\vskip0pt plus 1filll
+\begin{center}
+{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
+\vskip22pt
+\insertauthor
+\vskip22pt
+\insertdate
+\end{center}
+\vskip50pt
+\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+\vskip0pt plus 1filll
+}
+\definecolor{pageCol}{rgb}{0.5,0.5,1.0}
+\setbeamertemplate{footline}
+{
+\begin{beamercolorbox}[wd=.05\paperwidth,ht=0ex,dp=0ex,left]{framenumber in head/foot}%
+\insertframenumber/\inserttotalframenumber
+\end{beamercolorbox}%
+}
+\setbeamercolor{footline}{fg=pageCol}
+\newcounter{saveenumi}
+\input{../../hake-beamer.tex}
+<<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+library(knitr)
+opts_chunk$set(dev = 'cairo_ps',
+               fig.dpi = 300,
+               fig.width = 7.5,
+               fig.height = 4,
+               echo = FALSE,
+               results = FALSE,
+               message = FALSE,
+               warning = FALSE,
+               results = 'hide',
+               fig.path = here::here("beamer",
+                                     "JMC",
+                                     "requests",
+                                     "knitr-cache", "/"),
+               cache.path = here::here("beamer",
+                                       "JMC",
+                                       "requests",
+                                       "knitr-cache", "/"),
+               cache = TRUE)
+
+source(here::here("R/all.R"))
+# source(file.path(rootd_doc, "load-models.R"))
+# source(file.path(rootd_r, "custom-knitr-variables.R"))
+
+requests_dir <- here::here("beamer", "JMC", "requests")
+fig_dir <- file.path(requests_dir, "figures")
+if(!dir.exists(fig_dir)){
+  dir.create(fig_dir)
+}
+@
+
+\title[Hake Management]{JMC Requests 2023}
+\author[JTC]{Presented by JTC}
+\date{{\footnotesize JMC meeting -- Feb 28, 2023}}
+\subtitle{\tiny \disclaimer}
+
+\begin{document}
+
+\frame[plain]{
+\titlepage
+}
+
+\section[Request 1 - Additional catch streams]{Additional catch streams}
+\begin{frame}
+\frametitle{Request 1}
+Request 1 -- Provide additional catch steams between the values shown in the decision table.
+\end{frame}
+
+
+\subsection{}
+\begin{frame}
+\frametitle{Decision table - relative spawning biomass}
+<<decisions-biomass-table, results='asis', echo=FALSE, error=FALSE>>=
+# Run the extra forecasts by editing catch_levels in the run-forecasts-extra.R file
+# and then calling:
+# run_extra_forecasts(base_model$path, forecast_yrs)
+# Then load them in:
+# fore <- fetch_forecasts_extra(file.path(base_model$path,"forecasts"), forecast_yrs)
+# Then save the RDS:
+# saveRDS(fore, file.path(base_model$path, "extra-forecasts.rds"))
+# Then:
+# knitr::knit("tester-launch.rnw")
+# Then to make the PDF, run this in bash:
+# lualatex tester-launch.tex
+if(!exists("base_model")){
+  base_model <- readRDS("/srv/hake/models/2023/01-version/01-base-models/01-base/01-base.rds")
+}
+if(!exists("fore")){
+  fore <- readRDS(file.path(base_model$path, "extra-forecasts.rds"))
+}
+risk <- calc_risk(fore,
+                  list(list(rep(470000, length(forecast_yrs)), "470,000 t", "16-470000"),
+                       list(rep(510000, length(forecast_yrs)), "510,000 t", "17-510000"),
+                       list(rep(600000, length(forecast_yrs)), "600,000 t", "18-600000"),
+                       list(rep(650000, length(forecast_yrs)), "650,000 t", "19-650000")))
+base_model$forecasts <- fore
+base_model$risks <- risk
+decision_table(base_model,
+               xcaption = "Decision table for extra catch streams, relative biomass",
+               xlabel = "tab:es-decisions-biomass",
+               font.size = 11,
+               space.size = 12,
+               type = "biomass",
+               placement = "tbp")
+@
+\end{frame}
+
+\begin{frame}
+\frametitle{Decision table - fishing intensity}
+<<decisions-spr-table, results='asis', echo=FALSE>>=
+decision_table(base_model,
+               xcaption = "Decision table for extra catch streams, relative fishing intensity",
+               xlabel = "tab:es-decisions-spr",
+               font.size = 11,
+               space.size = 12,
+               type = "spr",
+               placement = "tbp")
+@
+\end{frame}
+
+\begin{frame}
+\frametitle{Probability table - year 1}
+<<risk-forecast-year-1-table, results='asis', echo=FALSE>>=
+make.risk.table(base_model,
+                forecast_yrs,
+                index = 1,
+                xcaption = paste0("Probabilities for extra catch streams for alternative ",
+                                  end_yr, " catch options."),
+                font.size = 9,
+                space.size = 10)
+@
+\end{frame}
+
+\begin{frame}
+\frametitle{Probability table - year 2}
+<<risk-forecast-year-2-table, results='asis', echo=FALSE>>=
+make.risk.table(base_model,
+                forecast_yrs,
+                index = 2,
+                xcaption = paste0("Probabilities for extra catch streams for alternative ",
+                                  end_yr + 1, " catch options."),
+                font.size = 9,
+                space.size = 10)
+@
+\end{frame}
+
+\begin{frame}
+\frametitle{Probability table - year 3}
+<<risk-forecast-year-3-table, results='asis', echo=FALSE>>=
+make.risk.table(base_model,
+                forecast_yrs,
+                index = 3,
+                xcaption = paste0("Probabilities for extra catch streams for alternative ",
+                                  end_yr + 2, " catch options."),
+                font.size = 9,
+                space.size = 10)
+@
+\end{frame}
+
+\end{document}
+
