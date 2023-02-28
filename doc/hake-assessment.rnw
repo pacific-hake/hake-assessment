@@ -177,8 +177,8 @@
 
 <<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
 # Load all `hake` package data
-devtools::load_all(here::here())
-knitr::render_latex()
+library(knitr)
+render_latex()
 fig_width <- 7.5
 fig_dpi <- 200
 fig_align <- "center"
@@ -190,6 +190,7 @@ opts_chunk$set(dev = "png",
                collapse = TRUE,
                echo = FALSE,
                results = FALSE,
+               error = FALSE,
                message = FALSE,
                warning = FALSE,
                comment = "#>",
@@ -232,6 +233,8 @@ knit_hooks$set(alt.text = function(before, options, envir){
 # Default chunk options needed for the alt-text routine to work right
 opts_chunk$set(is.fig = FALSE)
 opts_chunk$set(alt.text = "")
+
+devtools::load_all(here::here())
 @
 
 % Load packages needed by the document code
@@ -360,75 +363,75 @@ Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 \renewcommand{\thefigure}{\arabic{figure}}
 \setcounter{figure}{0}
 
-\renewcommand{\sectionmark}[1]{\markright{\thesection ~-- #1}}
-\rfoot{Section~\rightmark}
-<<introduction-sec, child='introduction-section/introduction.rnw'>>=
-@
-
-<<data-sec, child='data-section/data.rnw'>>=
-@
-
-<<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
-@
-
-<<research-sec, child='research-section/research.rnw'>>=
-@
-
-\clearpage
-<<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
-@
-
-\clearpage
-\bibliographystyle{hake}
-\bibliography{all}
-
-\newpage
-<<main-tables, child='main-tables/main-tables.rnw'>>=
-@
-
-\clearpage
-<<main-figures, child='main-figures/main-figures.rnw'>>=
-@
-\clearpage
-
-\addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
-\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
-
-\begin{appendices}
-
-\renewcommand{\thesection}{\thechapter.\arabic{section}}
-\renewcommand{\thetable}{\thechapter.\arabic{table}}
-% Note this is redefined at the top of appendix-srg-requests to allow for figures to appear numbered
-% correctly in sections.
-\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
-\renewcommand{\theequation}{\thechapter.\arabic{equation}}
-\renewcommand{\sectionmark}[1]{\markright{\thechapter ~-- #1}}
-\rfoot{Appendix~\thechapter}
-
-<<appendix-mcmc-diagnostics, child='appendix-mcmc-diagnostics/appendix-mcmc-diagnostics.rnw'>>=
-@
-
-% Make figures appear numbered correctly in sections
-% \renewcommand{\thefigure}{\thechapter.\arabic{section}.\arabic{figure}}
-
-<<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests.rnw'>>=
-@
-
-% Set figure numbering back to what it was
-\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
-
-<<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
-@
-
-<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada.rnw'>>=
-@
-
-<<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US.rnw'>>=
-@
-
-<<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
-@
-
-\end{appendices}
+% \renewcommand{\sectionmark}[1]{\markright{\thesection ~-- #1}}
+% \rfoot{Section~\rightmark}
+% <<introduction-sec, child='introduction-section/introduction.rnw'>>=
+% @
+%
+% <<data-sec, child='data-section/data.rnw'>>=
+% @
+%
+% <<assessment-sec, child='assessment-section/assessment-section.rnw'>>=
+% @
+%
+% <<research-sec, child='research-section/research.rnw'>>=
+% @
+%
+% \clearpage
+% <<acknowledgments-sec, child='acknowledgments-section/acknowledgments.rnw'>>=
+% @
+%
+% \clearpage
+% \bibliographystyle{hake}
+% \bibliography{all}
+%
+% \newpage
+% <<main-tables, child='main-tables/main-tables.rnw'>>=
+% @
+%
+% \clearpage
+% <<main-figures, child='main-figures/main-figures.rnw'>>=
+% @
+% \clearpage
+%
+% \addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
+% \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+%
+% \begin{appendices}
+%
+% \renewcommand{\thesection}{\thechapter.\arabic{section}}
+% \renewcommand{\thetable}{\thechapter.\arabic{table}}
+% % Note this is redefined at the top of appendix-srg-requests to allow for figures to appear numbered
+% % correctly in sections.
+% \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+% \renewcommand{\theequation}{\thechapter.\arabic{equation}}
+% \renewcommand{\sectionmark}[1]{\markright{\thechapter ~-- #1}}
+% \rfoot{Appendix~\thechapter}
+%
+% <<appendix-mcmc-diagnostics, child='appendix-mcmc-diagnostics/appendix-mcmc-diagnostics.rnw'>>=
+% @
+%
+% % Make figures appear numbered correctly in sections
+% % \renewcommand{\thefigure}{\thechapter.\arabic{section}.\arabic{figure}}
+%
+% <<appendix-srg-requests, child='appendix-srg-requests/appendix-srg-requests.rnw'>>=
+% @
+%
+% % Set figure numbering back to what it was
+% \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+%
+% <<appendix-glossary, child='appendix-glossary/appendix-glossary.rnw'>>=
+% @
+%
+% <<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-Canada.rnw'>>=
+% @
+%
+% <<appendix-fishery-reports, child='appendix-fishery-reports/appendix-fishery-report-US.rnw'>>=
+% @
+%
+% <<appendix-parameters, child='appendix-parameters/appendix-parameters.rnw'>>=
+% @
+%
+% \end{appendices}
 
 \end{document}

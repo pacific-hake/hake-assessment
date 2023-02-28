@@ -29,7 +29,6 @@ plot_selex_mountains <- function(selex_by_yr,
   xlist1 <- seq(0, 1 * scale, by = 0.02)
   #xlist1 <- sort(c(max(d$prop),tail(d$prop, 1),
   #                 pretty(c(0,min(d$prop)),n = 20, min.n = 20)))
-  browser()
   ggplot(d, aes(x = age, y = prop, group = Yr)) +
     geom_line() +
     mapply(function(ylow, yhigh, col, a = 0.1){

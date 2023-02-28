@@ -5,6 +5,59 @@
 # The function f() is for formatting and is defined in
 # r-functions/utilities.r
 
+# -----------------------------------------------------------------------------
+# The forecasting yrs and probabilities can be set to whatever is required, the
+#  code is set up to automatically accommodate changes
+#  Change them in all.R
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# catch_levels is a list of N 3-item lists of catch levels with values:
+#  1. values for catch to forecast
+#  2. their pretty names to appear in the document
+#  3. their directory names
+# Each element of the list is a list of length equal to the
+# number of elements in forecast_yrs.
+# See the calc.catch.levels() and fetch.catch.levels() functions
+#  is load-models.R for details. The NA's below will be populated in each model
+#  by those two functions.
+
+# -----------------------------------------------------------------------------
+nf <- length(forecast_yrs)
+catch_levels <-
+  list(list(rep(0.01, nf), "No Fishing", "01-0"),
+       list(rep(180000, nf), "180,000 t", "02-180000"),
+       list(rep(225000, nf), "225,000 t", "03-225000"),
+       list(rep(270000, nf), "270,000 t", "04-270000"),
+       list(c(320000, 288000, 259200, 233280), "320,000 t 10% red.", "05-320000-10"),
+       list(rep(325000, nf), "2022 catch: 325,000 t", "06-325000"),
+       list(rep(350000, nf), "350,000 t", "07-350000"),
+       list(c(350000, 315000, 283500, 255150), "350,000 t 10% red.", "08-350000-10"),
+       list(rep(380000, nf), "380,000 t", "09-380000"),
+       list(c(380000, 342000, 307800, 277020), "380,000 t 10% red.", "10-380000-10"),
+       list(rep(430000, nf), "430,000 t", "11-430000"),
+       list(rep(545000, nf), "2022 TAC: 545,000 t", "12-545000"),
+       list(rep(NA, nf), "FI=100%", "13-spr-100"),
+       list(rep(NA, nf), "Default Harvest Policy", "14-default-hr"),
+       list(rep(NA, nf), "Stable Catch", "15-stable-catch"))
+
+# -----------------------------------------------------------------------------
+# Indices for the forecasts list, which list items above are the TAC case and
+#  default policy case
+# This is used in the one-page summary and a plot comparing several catch cases,
+#  and elsewhere
+# -----------------------------------------------------------------------------
+catch.levels.num <- length(catch_levels)
+catch.actual.ind <- 6
+catch.tac.ind <- 12
+catch.spr100.ind <- 13
+catch.default.policy.ind <- 14
+catch.stable.ind <- 15
+catch.reduction.rows <- c(5, 8, 10)
+catch.constant.rows <- c(1, 2, 3, 4, 6, 7, 9, 11, 12)
+catch.constant.str <- paste(letters[catch.constant.rows], collapse = ", ")
+catch.reduction.str <- paste(letters[catch.reduction.rows], collapse = ", ")
+
 # Could probably extract automatically from bridge_models_desc[[1]][1]
 ss_version <- "3.30.20"
 
@@ -127,8 +180,8 @@ first.year.us.atsea <- ct %>% select(year, matches("us_cp|us_ms")) %>%
 
 # Survey values ---------------------------------------------------------------
 survey.biomass <- base_model[["dat"]][["CPUE"]] %>%
-  dplyr::filter(index == 2) %>%
-  dplyr::pull(var = obs, name = year) / 1e6
+  filter(index == 2) %>%
+  pull(var = obs, name = year) / 1e6
 
 survey.comps <- base_model$dat$agecomp[base_model$dat$agecomp$FltSvy == 2, ]
 rownames(survey.comps) <- survey.comps$Yr
@@ -149,23 +202,23 @@ last.survey.year <- max(as.numeric(names(survey.biomass)))
 # Millions of tonnes
 last.survey.year.biomass <- f(
   base_model[["dat"]][["CPUE"]] %>%
-    dplyr::filter(index == 2, year == max(year)) %>%
-    dplyr::pull(var = obs) / 1e6,
+    filter(index == 2, year == max(year)) %>%
+    pull(var = obs) / 1e6,
   dec.points = 2
 )
 penult.survey.year <- base_model[["dat"]][["CPUE"]] %>%
-  dplyr::filter(index == 2) %>%
-  dplyr::mutate(rank = rank(year * -1, ties.method = "first")) %>%
-  dplyr::filter(rank == 2) %>%
-  dplyr::pull(year)
+  filter(index == 2) %>%
+  mutate(rank = rank(year * -1, ties.method = "first")) %>%
+  filter(rank == 2) %>%
+  pull(year)
 
 # How many times higher is the last survey than the one before it?
 last.factor.penult <- f(
   base_model[["dat"]][["CPUE"]] %>%
-    dplyr::filter(index == 2) %>%
-    dplyr::mutate(new = obs / lag(obs)) %>%
-    dplyr::filter(year %in% c(last.survey.year)) %>%
-    dplyr::pull(new),
+    filter(index == 2) %>%
+    mutate(new = obs / lag(obs)) %>%
+    filter(year %in% c(last.survey.year)) %>%
+    pull(new),
   1
 )
 
@@ -528,19 +581,19 @@ sel.Phi.val <- base_model$parameters %>%
 
 # Cohort specifics ------------------------------------------------------------
 # ... Cohort catch ------------------------------------------------------------
-cohort_catch.1999 <- sum(cohort_catch(base_model, 1999, trim.end.year = end_yr))
-cohort_catch.2010 <- sum(cohort_catch(base_model, 2010, trim.end.year = end_yr))
-cohort_catch.2014 <- sum(cohort_catch(base_model, 2014, trim.end.year = end_yr))
-cohort_catch.2016 <- sum(cohort_catch(base_model, 2016, trim.end.year = end_yr))
-cohort_catch.2017 <- sum(cohort_catch(base_model, 2017, trim.end.year = end_yr))
-cohort_catch.2020 <- sum(cohort_catch(base_model, 2020, trim.end.year = end_yr))
+cohort_catch.1999 <- sum(cohort_catch(base_model, 1999))
+cohort_catch.2010 <- sum(cohort_catch(base_model, 2010))
+cohort_catch.2014 <- sum(cohort_catch(base_model, 2014))
+cohort_catch.2016 <- sum(cohort_catch(base_model, 2016))
+cohort_catch.2017 <- sum(cohort_catch(base_model, 2017))
+cohort_catch.2020 <- sum(cohort_catch(base_model, 2020))
 # ... Cumulative sums of Cohorts for use in JMC presentation ------------------
-cohortCumSum1999 <- cumsum(cohort_catch(base_model, 1999, trim.end.year = end_yr))
-cohortCumSum2010 <- cumsum(cohort_catch(base_model, 2010, trim.end.year = end_yr))
-cohortCumSum2014 <- cumsum(cohort_catch(base_model, 2014, trim.end.year = end_yr))
-cohortCumSum2016 <- cumsum(cohort_catch(base_model, 2016, trim.end.year = end_yr))
-cohortCumSum2017 <- cumsum(cohort_catch(base_model, 2017, trim.end.year = end_yr))
-cohortCumSum2020 <- cumsum(cohort_catch(base_model, 2020, trim.end.year = end_yr))
+cohortCumSum1999 <- cumsum(cohort_catch(base_model, 1999))
+cohortCumSum2010 <- cumsum(cohort_catch(base_model, 2010))
+cohortCumSum2014 <- cumsum(cohort_catch(base_model, 2014))
+cohortCumSum2016 <- cumsum(cohort_catch(base_model, 2016))
+cohortCumSum2017 <- cumsum(cohort_catch(base_model, 2017))
+cohortCumSum2020 <- cumsum(cohort_catch(base_model, 2020))
 ages1999 <- as.numeric(names(cohortCumSum1999)) - 1999
 ages2010 <- as.numeric(names(cohortCumSum2010)) - 2010
 ages2014 <- as.numeric(names(cohortCumSum2014)) - 2014
@@ -599,14 +652,14 @@ sigma_r_sens <- sens_models[[1]][
 # sigmar_R_info should not be used
 calc_SD_of_devs <- function(posteriors, pattern = "Main") {
   posteriors %>%
-    dplyr::select(dplyr::matches(pattern)) %>%
+    select(matches(pattern)) %>%
     apply(MARGIN = 1, FUN = sd) %>%
     median() %>%
     f(2)
 }
 calc_sum_rec_devs <- function(posteriors, pattern = "Main") {
   temp <- posteriors %>%
-    dplyr::select(dplyr::matches(pattern)) %>%
+    select(matches(pattern)) %>%
     apply(MARGIN = 1, FUN = sum)
   c(mean = mean(temp), median = median(temp), range = range(temp))
 }
@@ -712,32 +765,39 @@ joint.percent.prob.above.below <-
     1)
 
 # Probabilities for historical performance analyses ---------------------------
-historical.probs.tibble <- combine_historical_probs(model = base_model,
-                                                    end = assess_yr - 1) %>%
+historical.probs.tibble <-
+  combine_historical_probs(model = base_model,
+                           fn =  = file.path(rootd_data,
+                                             "assessment-history-probs.csv"),
+                           end = assess_yr - 1) |>
   as_tibble()
 
-prob.decline.from.2019.to.2020.historic <- filter(historical.probs.tibble,
-                                                         Year == 2019) %>%
-  select("P_decline") %>%
-  as.numeric() %>%
+prob.decline.from.2019.to.2020.historic <-
+  historical.probs.tibble |>
+  filter(Year == 2019) |>
+  select("P_decline") |>
+  as.numeric() |>
   f()
 
-prob.decline.from.2019.to.2020.curr <- filter(historical.probs.tibble,
-                                                     Year == 2019) %>%
-  select("P_decline_curr") %>%
-  as.numeric() %>%
+prob.decline.from.2019.to.2020.curr <-
+  historical.probs.tibble |>
+  filter(Year == 2019) |>
+  select("P_decline_curr") |>
+  as.numeric() |>
   f()
 
-prob.decline.from.2012.to.2013.historic <- filter(historical.probs.tibble,
-                                                         Year == 2012) %>%
-  select("P_decline") %>%
-  as.numeric() %>%
+prob.decline.from.2012.to.2013.historic <-
+  historical.probs.tibble |>
+  filter(Year == 2012) |>
+  select("P_decline") |>
+  as.numeric() |>
   f()
 
- prob.decline.from.2012.to.2013.curr <- filter(historical.probs.tibble,
-                                                      Year == 2012) %>%
-   select("P_decline_curr") %>%
-   as.numeric() %>%
+ prob.decline.from.2012.to.2013.curr <-
+   historical.probs.tibble |>
+   filter(Year == 2012) |>
+   select("P_decline_curr") |>
+   as.numeric() |>
    f()
 
  # Retrospective setup for the document ----------------------------------------
