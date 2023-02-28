@@ -24,129 +24,161 @@ message("Loading all data tables (csv files) from `",
 pkg <- "hake"
 assess_history_df <-
   read_csv(file.path(load_dir, "assessment-history.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 assess_changes_df <-
   read_csv(file.path(load_dir, "assessment-changes.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 assess_history_disp_df <-
   read_csv(file.path(load_dir, "assessment-history-SSBdispersion.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 
 # Maturity and weight-at-age ----
 ovary_samples_df <-
   read_csv(file.path(load_dir, "ovary-samples.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 maturity_ogives_df <-
   read_csv(file.path(load_dir, "maturity-table.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 maturity_samples_df <-
   read_csv(file.path(load_dir, "hake-maturity-data.csv"),
-           col_types = cols())
+           guess_max = Inf,
+           show_col_types = FALSE)
 weight_age_extrapolation_mask <-
   read_csv(file.path(load_dir, "wtatage_all_samplesize.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 
 # Catch and TAC ----
 ct <-
   load_catches(file.path(load_dir, "landings-tac-history.csv"))
 catch_targets_df <-
   read_csv(file.path(load_dir, "catch-targets-biomass.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 further_tac_df <-
   read_csv(file.path(load_dir, "further-tac-details.csv"),
            col_types = cols(),
            comment = "#",
-           col_names = TRUE)
+           show_col_types = FALSE)
 # * Canadian catch ----
 can_ft_catch_by_month_df <-
   read_csv(file.path(load_dir, "can-ft-catch-by-month.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 can_ss_catch_by_month_df <-
   read_csv(file.path(load_dir, "can-ss-catch-by-month.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 can_jv_catch_by_month_df <-
   read_csv(file.path(load_dir, "can-jv-catch-by-month.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 # * US catch ----
 us_ss_catch_by_month_df <-
   read_csv(file.path(load_dir, "us-shore-catch-by-month.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 us_cp_catch_by_month_df <-
   read_csv(file.path(load_dir, "us-cp-catch-by-month.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 us_ms_catch_by_month_df <-
   read_csv(file.path(load_dir, "us-ms-catch-by-month.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 us_ti_catch_by_month_df <-
   read_csv(file.path(load_dir, "us-ti-catch-by-month.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 us_research_catch_by_month_df <-
   read_csv(file.path(load_dir, "us-research-catch-by-month.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 
 # Sampling data ----
 sampling_history_df <-
   read_csv(file.path(load_dir, "fishery-sampling-history.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 # * Canada sampling ----
 can_ages_lst <-
   load_can_age_data(file.path(load_dir, "can-age-data.csv"))
-can.ft.num.fish <-
+can_ft_num_fish <-
   read_csv(file.path(load_dir, "can-ft-num-fish-aged.csv"),
-           col_types = cols())
-can.ss.num.fish <-
+           col_types = cols(),
+           show_col_types = FALSE)
+can_ss_num_fish <-
   read_csv(file.path(load_dir, "can-ss-num-fish-aged.csv"),
-           col_types = cols())
-can.jv.num.fish <-
-  read.csv(file.path(load_dir, "can-jv-num-fish-aged.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
+can_jv_num_fish <-
+  read_csv(file.path(load_dir, "can-jv-num-fish-aged.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
 can_ss_age_df <- can_ages_lst[[1]]
 can_ft_age_df <- can_ages_lst[[2]]
 # * US sampling ----
 us_ss_age_df <-
   read_csv(file.path(load_dir, "us-shore-age-data.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 us_cp_age_df <-
   read_csv(file.path(load_dir, "us-cp-age-data.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 us_ms_age_df <-
   read_csv(file.path(load_dir, "us-ms-age-data.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 
 # Survey data ----
 kriging_pars_df <-
   read_csv(file.path(load_dir, "kriging-parameters.csv"),
            col_types = cols(),
-           comment = "#")
+           comment = "#",
+           show_col_types = FALSE)
 survey_history_df <-
   read_csv(file.path(load_dir, "survey-history.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 survey_by_country_df <-
   read_csv(file.path(load_dir, "survey-by-country.csv"),
            col_types = cols(),
-           comment = "#")
+           comment = "#",
+           show_col_types = FALSE)
 
 # Depth data ----
 # * Canada depths ----
 can_ft_bottom_depth_df <-
   read_csv(file.path(load_dir, "depth-can-ft-bottom.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 can_ss_bottom_depth_df <-
   read_csv(file.path(load_dir, "depth-can-ss-bottom.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 can_ft_gear_depth_df <-
   read_csv(file.path(load_dir, "depth-can-ft-gear.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 can_ss_gear_depth_df <-
   read_csv(file.path(load_dir, "depth-can-ss-gear.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 # * US depths ----
 us_atsea_fishing_depth_df <-
   read_csv(file.path(load_dir, "depth-us-atsea-fishing.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 us_atsea_bottom_depth_df <-
   read_csv(file.path(load_dir, "depth-us-atsea-bottom.csv"),
-           col_types = cols())
+           col_types = cols(),
+           show_col_types = FALSE)
 
 # At-age output data table file names ----
 out_est_naa_file <- "estimated-numbers-at-age.csv"
