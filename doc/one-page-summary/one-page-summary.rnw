@@ -19,22 +19,22 @@
     %the \Sexpr{survey_end_yr} age-1 index estimate,
     and minor changes to pre-\Sexpr{end_yr-1} data.
 
-  \item Coast-wide catch in \Sexpr{end_yr-1} was \Sexpr{last.year.landings}~t
+  \item Coast-wide catch in \Sexpr{end_yr-1} was \Sexpr{last_yr_landings}~t
     [t represents metric tons], 6\% below the average over the most recent 10 years
     (\Sexpr{ct |> tail(10) |> pull(tot_catch) |> mean() |> f()}~t),
-    out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last.year.tac}~t.
-    The U.S. caught \Sexpr{last.year.us.landings}~t (\Sexpr{last.year.us.attained}\%
+    out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last_yr_tac}~t.
+    The U.S. caught \Sexpr{last_yr_us_landings}~t (\Sexpr{last_yr_us_attained}\%
     of their quota) and Canada caught \Sexpr{last.year.can.landings}~t
-    (\Sexpr{last.year.can.attained}\% of their quota).
-%Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota
-%(\Sexpr{paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.us.attained.diff))}\%
+    (\Sexpr{last_yr_can_attained}\% of their quota).
+%Attainment in the U.S. was \Sexpr{last_yr_us_attained}\% of its quota
+%(\Sexpr{paste0(ifelse(last_2yr_us_attained_diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last_2yr_us_attained_diff))}\%
 %from last year); attainment in Canada was
-%\Sexpr{last.year.can.attained}\%
-%(\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
+%\Sexpr{last_yr_can_attained}\%
+%(\Sexpr{paste0(ifelse(last_2yr_can_attained_diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last_2yr_can_attained_diff))}\%
 %from last year).
-%\Sexpr{us.allotment.percent.last.year}\% of the TAC and the Canada allotment was
-%\Sexpr{can.allotment.percent.last.year}\%, compared to the usual
-%\Sexpr{us.allotment.percent}\% and \Sexpr{can.allotment.percent}\%.
+%\Sexpr{us_allotment_percent_last_yr}\% of the TAC and the Canada allotment was
+%\Sexpr{can_allotment_percent_last_yr}\%, compared to the usual
+%\Sexpr{us_allotment_percent}\% and \Sexpr{can_allotment_percent}\%.
 
   \item The median estimate of the \Sexpr{end_yr} relative spawning biomass
     (female spawning biomass at the start of \Sexpr{end_yr} divided by that at
@@ -71,16 +71,16 @@
     probability of both these occurring is~\Sexpr{joint.percent.prob.above.below}\%.
 
   \item Based on the default harvest rule, the estimated median catch limit for
-   \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with
-   95\% credible interval from \Sexpr{catch.limit.quantiles["lower"]} to
-   \Sexpr{catch.limit.quantiles["upper"]}~t).
+   \Sexpr{min(forecast_yrs)} is \Sexpr{ct_limit_quantiles["median"]}~t (with
+   95\% credible interval from \Sexpr{ct_limit_quantiles["lower"]} to
+   \Sexpr{ct_limit_quantiles["upper"]}~t).
 
   \item Projections were conducted across a wide-range of catch levels due to
    high uncertainty in estimates of recent and forecasted recruitment.
    Projections setting the \Sexpr{forecast_yrs[1]} and
    \Sexpr{forecast_yrs[2]} catches equal to the \Sexpr{forecast_yrs[1]-1}
    coast-wide TAC of
-   \Sexpr{last.year.tac}~t show the estimated median relative spawning biomass
+   \Sexpr{last_yr_tac}~t show the estimated median relative spawning biomass
    decreasing from
    \Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end_yr} to
    \Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end_yr+1} to

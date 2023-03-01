@@ -104,7 +104,7 @@ forecasts <- base_model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
 models.inds <- c(1, 4, 8, 12)
 models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds]
-fi.inds <- c(1, 2, 4, 5, catch.default.policy.ind)
+fi.inds <- c(1, 2, 4, 5, ct_default_policy_ind)
 fi.names <- sapply(base_model$catch.levels, "[[", 2)[fi.inds]
 @
 
@@ -173,16 +173,16 @@ fi.names <- sapply(base_model$catch.levels, "[[", 2)[fi.inds]
       \item 2020 cohort estimated to be above average
     \ei
     \item Default harvest rule estimated median catch limit
-      for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t \\
-      (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]}
-      to \Sexpr{catch.limit.quantiles["upper"]}~t)
+      for \Sexpr{min(forecast_yrs)} is \Sexpr{ct_limit_quantiles["median"]}~t \\
+      (with 95\% interval from \Sexpr{ct_limit_quantiles["lower"]}
+      to \Sexpr{ct_limit_quantiles["upper"]}~t)
     \item New \Sexpr{last_data_yr} age data from fishery and survey are fit well by the model
-    \item Coastwide catch in \Sexpr{end_yr-1} was \Sexpr{last.year.landings}~t,
-      out of a TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t
-    \item Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota
-      (\Sexpr{paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.us.attained.diff))}\%
+    \item Coastwide catch in \Sexpr{end_yr-1} was \Sexpr{last_yr_landings}~t,
+      out of a TAC (adjusted for carryovers) of \Sexpr{last_yr_tac}~t
+    \item Attainment in the U.S. was \Sexpr{last_yr_us_attained}\% of its quota
+      (\Sexpr{paste0(ifelse(last_2yr_us_attained_diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last_2yr_us_attained_diff))}\%
 from last year);
-      in Canada it was \Sexpr{last.year.can.attained}\% (\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
+      in Canada it was \Sexpr{last_yr_can_attained}\% (\Sexpr{paste0(ifelse(last_2yr_can_attained_diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last_2yr_can_attained_diff))}\%
 from last year)
   \ei
 \end{frame}
@@ -435,7 +435,7 @@ plot_squid(base_model,
 	    \item March \Sexpr{last_assess_yr}
       \bi
         \item Default harvest rule TAC = \Sexpr{f((catch_targets_df %>% filter(Year == last_assess_yr))$`Default HCR TAC`)} t
-        \item Sum of unilateral TACs = \Sexpr{last.year.tac} t
+        \item Sum of unilateral TACs = \Sexpr{last_yr_tac} t
       \ei
       \item When default HR suggests a large catch, TAC is often set less
       \item Catches are often less than the TAC
@@ -475,10 +475,10 @@ plot_squid(base_model,
     \bi
       \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median projected \Sexpr{end_yr} TAC is
       \smallskip
-      \bc {\bf \Sexpr{catch.limit.quantiles["median"]} t} \ec
+      \bc {\bf \Sexpr{ct_limit_quantiles["median"]} t} \ec
       \smallskip
       \item 2.5\% and 97.5\% quantiles:\\
-      \Sexpr{catch.limit.quantiles["lower"]} and \Sexpr{catch.limit.quantiles["upper"]}~t
+      \Sexpr{ct_limit_quantiles["lower"]} and \Sexpr{ct_limit_quantiles["upper"]}~t
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -525,7 +525,7 @@ plot_squid(base_model,
   \end{column}
   \begin{column}{0.59\textwidth}
     <<main-forecast-depletion-comparison.plot, out.width='.95\\columnwidth'>>=
-# See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
+# See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,
                           fore_inds = c(1, 2, 6, 12, 14),
@@ -546,19 +546,19 @@ plot_depl_fore_comparison(base_model,
     \ei
     \item Catch alternatives
     \bi
-      \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
-      \item b, c, d, g, i, k: Constant catches of \Sexpr{catch_levels[[2]][[2]]},
-        \Sexpr{catch_levels[[3]][[2]]},
-        \Sexpr{catch_levels[[4]][[2]]},
-        \Sexpr{catch_levels[[7]][[2]]},
-        \Sexpr{catch_levels[[9]][[2]]}, and
-        \Sexpr{catch_levels[[11]][[2]]}.
-      \item f. Constant catch of \Sexpr{catch_levels[[6]][[2]]},
-      \item l. Constant catch of \Sexpr{catch_levels[[12]][[2]]},
+      \item a. \Sexpr{ct_levels[[1]][[2]]} (zero catch)
+      \item b, c, d, g, i, k: Constant catches of \Sexpr{ct_levels[[2]][[2]]},
+        \Sexpr{ct_levels[[3]][[2]]},
+        \Sexpr{ct_levels[[4]][[2]]},
+        \Sexpr{ct_levels[[7]][[2]]},
+        \Sexpr{ct_levels[[9]][[2]]}, and
+        \Sexpr{ct_levels[[11]][[2]]}.
+      \item f. Constant catch of \Sexpr{ct_levels[[6]][[2]]},
+      \item l. Constant catch of \Sexpr{ct_levels[[12]][[2]]},
       \item e, h, j: Annual reductions of 10\% from:
-        \Sexpr{f(catch_levels[[5]][[1]][1])}~t,
-        \Sexpr{f(catch_levels[[8]][[1]][1])}~t, and
-        \Sexpr{f(catch_levels[[10]][[1]][1])}~t.
+        \Sexpr{f(ct_levels[[5]][[1]][1])}~t,
+        \Sexpr{f(ct_levels[[8]][[1]][1])}~t, and
+        \Sexpr{f(ct_levels[[10]][[1]][1])}~t.
       \item m. Fishing Intensity = 100\% in each year
         conditioned on fixed catch in previous year
       \item n. Median default Harvest Rule in each year conditioned on
@@ -778,7 +778,7 @@ plot_fore_compare(base_model,
       chance of being below $B_{40\%}$ and
       \Sexpr{probs.curr.rel.fish.intens.above.one}\% chance of relative fishing
       intensity being above 100\%.
-    \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t).
+    \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast_yrs)} is \Sexpr{ct_limit_quantiles["median"]}~t (with 95\% interval from \Sexpr{ct_limit_quantiles["lower"]} to \Sexpr{ct_limit_quantiles["upper"]}~t).
     \item Projections strongly influenced by size of above-average 2014 and 2016
       cohorts, 2017 still looks to be average, 2018 and 2019 small, and
       2020 large (but still highly uncertain).

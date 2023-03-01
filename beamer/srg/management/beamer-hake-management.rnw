@@ -78,7 +78,7 @@ if(!dir.exists(fig_dir)){
 metric <- NULL
 forecasts <- base_model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
-models.inds <- c(1, 2, 6, 12, catch.default.policy.ind)
+models.inds <- c(1, 2, 6, 12, ct_default_policy_ind)
 models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] # pretty catch level name
 @
 
@@ -135,7 +135,7 @@ def_med_hr_tac <- filter(catch_targets_df,
 	    \item March \Sexpr{last_assess_yr}
       \bi
         \item Default median HR TAC is \Sexpr{f(def_med_hr_tac)}~t
-        \item Sum of unilateral TACs is \Sexpr{last.year.tac}~t
+        \item Sum of unilateral TACs is \Sexpr{last_yr_tac}~t
       \ei
       \item When default HR suggests a large catch, TAC is often set less
       \item Catches are often less than the TAC
@@ -208,9 +208,9 @@ def_med_hr_tac <- filter(catch_targets_df,
     \bi
       \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median projected \Sexpr{end_yr} TAC is
       \smallskip
-      \bc {\bf \Sexpr{catch.limit.quantiles["median"]} t} \ec
+      \bc {\bf \Sexpr{ct_limit_quantiles["median"]} t} \ec
       \smallskip
-      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{catch.limit.quantiles["lower"]} and \Sexpr{catch.limit.quantiles["upper"]}~t
+      \item 2.5\% and 97.5\% quantiles:\\ \Sexpr{ct_limit_quantiles["lower"]} and \Sexpr{ct_limit_quantiles["upper"]}~t
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -238,7 +238,7 @@ def_med_hr_tac <- filter(catch_targets_df,
   \end{column}
   \begin{column}{0.59\textwidth}
   <<main-forecast-depletion-comparison-plot, out.width='.95\\columnwidth'>>=
-  # See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
+  # See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
   # `fore_inds` below are the indices of those forecast values in that list.
   plot_depl_fore_comparison(base_model,
                             fore_inds = c(1, 2, 6, 12, 14),
@@ -284,24 +284,24 @@ def_med_hr_tac <- filter(catch_targets_df,
     \ei
     \item Catch alternatives
     \bi
-      \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
-      \item b, c, d, g, i, k: Constant catches of \Sexpr{catch_levels[[2]][[2]]},
-        \Sexpr{catch_levels[[3]][[2]]},
-        \Sexpr{catch_levels[[4]][[2]]},
-        \Sexpr{catch_levels[[7]][[2]]},
-        \Sexpr{catch_levels[[9]][[2]]}, and
-        \Sexpr{catch_levels[[11]][[2]]}.
-      \item f. Constant catch equal to \Sexpr{catch_levels[[6]][[2]]},
-      \item l. Constant catch equal to \Sexpr{catch_levels[[12]][[2]]},
+      \item a. \Sexpr{ct_levels[[1]][[2]]} (zero catch)
+      \item b, c, d, g, i, k: Constant catches of \Sexpr{ct_levels[[2]][[2]]},
+        \Sexpr{ct_levels[[3]][[2]]},
+        \Sexpr{ct_levels[[4]][[2]]},
+        \Sexpr{ct_levels[[7]][[2]]},
+        \Sexpr{ct_levels[[9]][[2]]}, and
+        \Sexpr{ct_levels[[11]][[2]]}.
+      \item f. Constant catch equal to \Sexpr{ct_levels[[6]][[2]]},
+      \item l. Constant catch equal to \Sexpr{ct_levels[[12]][[2]]},
       \item e, h, j: Annual reductions of 10\% from:
-        \Sexpr{f(catch_levels[[5]][[1]][1])}~t,
-        \Sexpr{f(catch_levels[[8]][[1]][1])}~t, and
-        \Sexpr{f(catch_levels[[10]][[1]][1])}~t.
-%      \item \textcolor{gray}{c. Constant catch of \Sexpr{catch_levels[[3]][[2]]}}
-%      \item d. Constant catch (\Sexpr{catch_levels[[4]][[2]]})
-%      \item e. Constant catch (\Sexpr{catch_levels[[5]][[2]]})
-%      \item \textcolor{gray}{f. Constant catch (\Sexpr{catch_levels[[6]][[2]]})}
-%      \item \textcolor{gray}{m. Constant catch (\Sexpr{catch_levels[[7]][[2]]})}
+        \Sexpr{f(ct_levels[[5]][[1]][1])}~t,
+        \Sexpr{f(ct_levels[[8]][[1]][1])}~t, and
+        \Sexpr{f(ct_levels[[10]][[1]][1])}~t.
+%      \item \textcolor{gray}{c. Constant catch of \Sexpr{ct_levels[[3]][[2]]}}
+%      \item d. Constant catch (\Sexpr{ct_levels[[4]][[2]]})
+%      \item e. Constant catch (\Sexpr{ct_levels[[5]][[2]]})
+%      \item \textcolor{gray}{f. Constant catch (\Sexpr{ct_levels[[6]][[2]]})}
+%      \item \textcolor{gray}{m. Constant catch (\Sexpr{ct_levels[[7]][[2]]})}
       \item m. Fishing Intensity = 100\% in each year
         conditioned on fixed catch in previous year
       \item n. Median default Harvest Rule in each year conditioned on
@@ -434,7 +434,7 @@ plot_fore_compare(base_model,
       chance of being below $B_{40\%}$ and
       \Sexpr{probs.curr.rel.fish.intens.above.one}\% chance of relative fishing
       intensity being above 100\% (slide 4)
-    \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to \Sexpr{catch.limit.quantiles["upper"]}~t)
+    \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast_yrs)} is \Sexpr{ct_limit_quantiles["median"]}~t (with 95\% interval from \Sexpr{ct_limit_quantiles["lower"]} to \Sexpr{ct_limit_quantiles["upper"]}~t)
     \item Projections strongly influenced by size of above-average 2014 and 2016
       cohorts, and the large but still highly uncertain 2020 cohort
     \item There is \Sexpr{prob_decl_yr1_zero_catch}\% chance that spawning biomass will decline from

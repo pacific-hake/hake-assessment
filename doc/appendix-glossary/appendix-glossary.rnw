@@ -205,7 +205,7 @@ TAC: Total allowable catch (see below).
 
 Total allowable catch (TAC): The maximum fishery removal under the terms of the Agreement.
 
-U.S./Canadian allocation: The division of the total allowable catch of \Sexpr{us.allotment.percent}\% as for the U.S. share and \Sexpr{can.allotment.percent}\% for the Canadian share.
+U.S./Canadian allocation: The division of the total allowable catch of \Sexpr{us_allotment_percent}\% as for the U.S. share and \Sexpr{can_allotment_percent}\% for the Canadian share.
 
 Vulnerable biomass: The demographic portion of the stock available for harvest by the fishery.
 

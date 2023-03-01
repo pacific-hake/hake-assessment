@@ -62,9 +62,9 @@ total catch) while catch from Canadian waters averaged
 \Sexpr{f(mean(ct$can_catch))}~t. Over the last 10 years,
 \Sexpr{max(ct$year) - 9}--\Sexpr{max(ct$year)}
 (Table~\ref{tab:es-catches}), the average coast-wide catch was
-\Sexpr{catch_mean_10yrs}~t with U.S. and Canadian
-catches averaging \Sexpr{catch_us_mean_10yrs}~t and
-\Sexpr{catch_can_mean_10yrs}~t, respectively. Since 2017,
+\Sexpr{ct_mean_10yrs}~t with U.S. and Canadian
+catches averaging \Sexpr{ct_us_mean_10yrs}~t and
+\Sexpr{ct_can_mean_10yrs}~t, respectively. Since 2017,
 the coast-wide
 
 <<total-catches-table, results='asis', echo=FALSE>>=
@@ -86,12 +86,12 @@ make_catch_table(ct,
 @
 %
 catch has been declining annually through \Sexpr{end_yr - 1},
-when it was \Sexpr{last.year.landings}~t out of a
+when it was \Sexpr{last_yr_landings}~t out of a
 total allowable
 catch (TAC, adjusted for carryovers) of
-\Sexpr{last.year.tac}~t. Attainment in the U.S.~was
-\Sexpr{last.year.us.attained}\% of its quota and in Canada it was
-\Sexpr{last.year.can.attained}\%.
+\Sexpr{last_yr_tac}~t. Attainment in the U.S.~was
+\Sexpr{last_yr_us_attained}\% of its quota and in Canada it was
+\Sexpr{last_yr_can_attained}\%.
 
 In this document, the terms catch and landings are used
 interchangeably. Estimates of discard within the target fishery are included,
@@ -99,7 +99,7 @@ but discarding of \fishname\ in non-target fisheries is not. Discard from all
 fisheries, including those that do not target hake, is estimated to be less
 than 1\% of landings in recent years. During
 the last five years, catches were considerably above the long-term average catch
-(\Sexpr{f(long.term.avge.catch)}~t),
+(\Sexpr{f(long_term_avge_ct)}~t),
 but have been in decline over that period (especially in Canada).
 Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
@@ -528,16 +528,16 @@ changing age distributions and changing selectivities over time.
 
 Over the last decade (\Sexpr{end_yr-10}--\Sexpr{end_yr-1}), the mean coast-wide
 utilization rate (proportion of catch target removed) has been
-\Sexpr{tot.last.10.years.attainment}\% (Table~\ref{tab:es-landings-tac}). Over
+\Sexpr{tot_last_10_yrs_attainment}\% (Table~\ref{tab:es-landings-tac}). Over
 the last five years (\Sexpr{end_yr-5} to \Sexpr{end_yr-1}), the mean utilization
-rates were \Sexpr{usa.last.5.years.attainment}\% for the United States
-and \Sexpr{can.last.5.years.attainment}\% for Canada. While relatively stable during this
+rates were \Sexpr{usa_last_5_yrs_attainment}\% for the United States
+and \Sexpr{can_last_5_yrs_attainment}\% for Canada. While relatively stable during this
 time in the United States, the utilization rate in Canada has been declining since 2020
 to a time-series low of 20.3\% in 2022. Country-specific
 quotas (or catch targets) in 2020 and 2021 were specified unilaterally, due to the lack of
 an agreement on coast-wide 2020 and 2021 TACs. The usual
-\Sexpr{us.allotment.percent}\% and
-\Sexpr{can.allotment.percent}\% allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
+\Sexpr{us_allotment_percent}\% and
+\Sexpr{can_allotment_percent}\% allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
 Agreement for \fishname, was once again implemented in 2022.
 
 Total landings last exceeded
@@ -710,9 +710,9 @@ understood and could propagate uncertainty beyond what is presented in this asse
 \phantomsection \addcontentsline{toc}{subsection}{Forecast decision tables}
 
 The catch limit for \Sexpr{min(forecast_yrs)} based on the default \Ffortyten{}
-harvest policy has a median of \Sexpr{catch.limit.quantiles["median"]}~t with a
+harvest policy has a median of \Sexpr{ct_limit_quantiles["median"]}~t with a
 wide range of uncertainty, the 95\% credibility interval being
-\Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
+\Sexpr{ct_limit_quantiles["lower"]}--\Sexpr{ct_limit_quantiles["upper"]}~t.
 
 <<decisions-biomass-table, results='asis', echo=FALSE>>=
 decision_table(base_model,
@@ -721,22 +721,22 @@ decision_table(base_model,
                         "relative spawning biomass at the beginning of the year. ",
                         "Catch alternatives are based on: constant ",
                         "catches (rows ",
-                        catch.constant.str,
+                        ct_constant_str,
                         "), including catch similar to ",
                         min(forecast_yrs_extra)-1," (row~",
-                        letters[catch.actual.ind],
+                        letters[ct_actual_ind],
                         ") and to the TAC from ",
                         min(forecast_yrs_extra)-1," (row~",
-                        letters[catch.tac.ind],
+                        letters[ct_tac_ind],
                         "); and non-constant catches that result in ",
                         "annual 10\\% declines in catch (rows ",
-                        catch.reduction.str,
+                        ct_reduction_str,
                         "), median relative fishing intensity of 100\\% (row ",
-                        letters[catch.spr100.ind],
+                        letters[ct_spr100_ind],
                         "), median catch estimated ",
                         "via the default harvest policy ",
                         "(\\Ffortyten, row~",
-                        letters[catch.default.policy.ind],
+                        letters[ct_default_policy_ind],
                         "), and the fishing intensity that results in ",
                         "the median ",
                         "projected catch remaining the same in ",
@@ -744,7 +744,7 @@ decision_table(base_model,
                         " and ",
                         min(forecast_yrs_extra) + 1,
                         " (row~",
-                        letters[catch.stable.ind],
+                        letters[ct_stable_ind],
                         ")."),
                xlabel = "tab:es-decisions-biomass",
                font.size = 11,
@@ -830,7 +830,7 @@ and Figures~\ref{fig:es-forecast-risk-comparison-year-2} and~\ref{fig:es-forecas
 \begin{figure}[tbp]
 \begin{center}
 <<forecast-depletion-comparison-plot, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to remain flat for the next 3 years with zero catch and to decline for all non-zero catch levels evaluated.">>=
-# See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
+# See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,
                           fore_inds = c(1, 2, 6, 12, 14),

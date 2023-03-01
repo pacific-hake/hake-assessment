@@ -2,7 +2,7 @@
 #' one forecast year to the next
 #'
 #' @param forecast_outputs A list as output by [fetch_forecasts()]
-#' @param catch_levels A list of catch levels which are represented by lists
+#' @param ct_levels A list of catch levels which are represented by lists
 #' of length 3
 #' @param ... Absorb arguments intended for other functions
 #'
@@ -14,14 +14,14 @@
 #' otherwise the risk.list will be returned
 #' @export
 calc_risk <- function(forecast_outputs = NA,
-                      catch_levels,
+                      ct_levels,
                       ...){
 
   stopifnot(!is.na(forecast_outputs))
 
   # Make the catch level values a matrix where the columns represent the
   # cases in catch_names
-  catch_levels <- sapply(catch_levels, "[[", 1)
+  ct_levels <- sapply(ct_levels, "[[", 1)
 
   if(is.na(forecast_outputs)[1]){
     return(NA)
@@ -29,7 +29,7 @@ calc_risk <- function(forecast_outputs = NA,
 
   metric <- function(case_ind, x, yr, yr_ind){
     out <- NULL
-    out[1] <- catch_levels[yr_ind, case_ind]
+    out[1] <- ct_levels[yr_ind, case_ind]
     out[2] <- sum(x[, paste0("SSB_", yr + 1)] < x[, paste0("SSB_", yr)], na.rm = TRUE) / nrow(x) * 100.0
     out[3] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.40, na.rm = TRUE) / nrow(x) * 100.0
     out[4] <- sum(x[, paste0("Bratio_", yr + 1)] < 0.25, na.rm = TRUE) / nrow(x) * 100.0

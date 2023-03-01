@@ -1,9 +1,9 @@
 #' Run forecasting for the model supplied
 #'
 #' @param model_path The directory containing the model
-#' @param catch_levels_path The directory containing the output of
-#' [run_catch_levels()]
-#' @param ... Arguments passed to [fetch_catch_levels()]
+#' @param ct_levels_path The directory containing the output of
+#' [run_ct_levels()]
+#' @param ... Arguments passed to [fetch_ct_levels()]
 #'
 #' @details If there is no mcmc component to the model, an error will be
 #' given and the program will be stopped
@@ -11,7 +11,7 @@
 #' @return [base::invisible()]
 #' @export
 run_forecasts <- function(model_path,
-                          catch_levels_path,
+                          ct_levels_path,
                           ...){
 
   model <- load_ss_files(model_path, ...)
@@ -19,10 +19,10 @@ run_forecasts <- function(model_path,
   dir.create(forecasts_path, showWarnings = FALSE)
   unlink(file.path(forecasts_path, "*"), recursive = TRUE)
 
-  catch_levels_path <- file.path(model_path, catch_levels_path)
+  ct_levels_path <- file.path(model_path, ct_levels_path)
 
   # Calculate and add on model-custom catch levels
-  catch_levels <- fetch_catch_levels(catch_levels_path, ...)
+  ct_levels <- fetch_ct_levels(ct_levels_path, ...)
 
   message("Running forecasts for model located in ", model_path, "\n")
   dir.create(forecasts_path, showWarnings = FALSE)
@@ -31,8 +31,8 @@ run_forecasts <- function(model_path,
     # In this outer loop .x is the forecast year
     fore_path <- file.path(forecasts_path, paste0("forecast-year-", .x))
     dir.create(fore_path, showWarnings = FALSE)
-    future_map2(catch_levels, .x, ~{
-      # In this inner loop .y is the forecast year and .x is the list element of catch_levels
+    future_map2(ct_levels, .x, ~{
+      # In this inner loop .y is the forecast year and .x is the list element of ct_levels
       name <- .x[[3]]
       catch_ind <- which(forecast_yrs == .y)
       new_forecast_dir <- file.path(fore_path, name)

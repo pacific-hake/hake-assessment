@@ -1,17 +1,4 @@
-# AME creating to put further details of TAC's that are not in,,,,,,,,,,,
-#  Hake_Landings_TAC_History.csv,,,,,,,,,,,
-# us.tribal.quota.reallocated - how much tribal quota got reallocated,,,,,,,,,,,
-#  in that Year (2014 value from 2015 assessment, 2015 value repeated for,,,,,,,,,,
-#  now).,,,,,,,,,,,
-# us.tribal.reallocate.dates - dates when the tribal quota got reallocated;,,,,,,,,,,,
-#  text will include them.,,,,,,,,,,,
-# us.tribal.max.landed - the introduction will say that 'tribal fisheries,,,,,,,,,,,
-#  landed less than <value> t', where <value> is for the final year of ,,,,,,,,,,
-#  data.,,,,,,,,,,,
-#,,,,,,,,,,,
-# can.carried.over - how much Canadian quota got carried over from previous,,,,,,,,,,,
-#  year (2014 value from 2015 assessment, 2015 value from Barry Ackerman, DFO).,,,,,,,,,
-Year, us.tribal.quota,us.research.quota,us.nontribal.quota, us.tribal.quota.reallocated, us.tribal.reallocate.dates, us.tribal.max.landed, can.carried.over,us.shore.reallocated,us.cp.reallocated,us.ms.reallocated,can.jv.tac
+Year,us_tribal_quota,us_research_quota,us_nontribal_quota,us_tribal_quota_reallocated,us_tribal_reallocate_dates,us_tribal_max_landed,can_carried_over,us_shore_reallocated,us_cp_reallocated,us_ms_reallocated,can_jv_tac
 2014,55336,1500,,45000,September 11 and October 23,1000,13172,,,,
 2015,56888,1500,266684,30000,21-Sep,0,14793,124607,100873,71204,30000
 2016,64322,1500,301731,34000,15-Sep,0,15020,141007,114149,80575,15000

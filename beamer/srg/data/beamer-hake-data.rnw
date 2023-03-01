@@ -87,11 +87,11 @@ if(!dir.exists(fig_dir)){
 \frame{\frametitle{Year in review}
   <<pchangecatch>>=
     pchangecatch <- f(abs(diff(
-      tail(last.5.years.total.catch,2)) /
-      tail(last.5.years.total.catch,2)[1] * 100))
+      tail(last_5_yrs_total_ct,2)) /
+      tail(last_5_yrs_total_ct,2)[1] * 100))
   @
   \bi
-    \item \Sexpr{last_assess_yr} TAC, adjusted for carryovers, was \Sexpr{last.year.tac} t.
+    \item \Sexpr{last_assess_yr} TAC, adjusted for carryovers, was \Sexpr{last_yr_tac} t.
     \item Canadian and U.S. fisheries predominantly started in April and May, respectively.
     \item \Sexpr{scales::ordinal(tail(rank(base_model$catch$Obs*-1),1))} highest coast-wide catch.
     \item \Sexpr{pchangecatch}\% decrease in catch from last year.
@@ -101,7 +101,7 @@ if(!dir.exists(fig_dir)){
         \item Age-\Sexpr{us.age.1.prop.age.cp} fish in U.S. catcher-processor sector,
         \item Age-\Sexpr{us.age.1.prop.age.ms} fish in U.S. mothership sector,
         \item Age-\Sexpr{us.age.1.prop.age.shore} fish in U.S. shore-based sector,
-        \item Age-\Sexpr{max.freezer.trawler.age.prop.age} fish in Canadian freezer-trawler sector, and
+        \item Age-\Sexpr{max_freezer_trawler_age_prop_age} fish in Canadian freezer-trawler sector, and
         \item Age-\Sexpr{max.shoreside.age.prop.age} fish in Canadian shoreside sector.
       \ei
   \ifodd \Sexpr{last_data_yr}
@@ -167,26 +167,26 @@ if(!dir.exists(fig_dir)){
 
 %----------------------------------------------------------
 \subsection{Fleets and allocations}
-\frame{\frametitle{Allocations of \Sexpr{end_yr-1} TAC of \Sexpr{last.year.tac} t}
+\frame{\frametitle{Allocations of \Sexpr{end_yr-1} TAC of \Sexpr{last_yr_tac} t}
   \begin{columns}
     \begin{column}[t]{0.5\linewidth}
     \center{\textbf{\textcolor{blue}{Canada}}} \\
     \center{\textbf{TAC was \Sexpr{last.year.can.tac} t}} \\
     \bi
-      \item TAC includes \Sexpr{last.year.can.carryover} t of carryover
+      \item TAC includes \Sexpr{last_yr_can_carryover} t of carryover
       \item Freezer Trawlers and Shoreside -- \Sexpr{last.year.can.shoreside.tac} t
       \item Joint Venture                  -- \Sexpr{last.year.can.tac.jv} t
     \ei
   \end{column}
     \begin{column}[t]{0.5\linewidth}
     \center{\textbf{\textcolor{blue}{United States}}} \\
-    \center{\textbf{TAC was \Sexpr{last.year.us.tac} t}} \\
+    \center{\textbf{TAC was \Sexpr{last_yr_us_tac} t}} \\
     \bi
-      \item Research and bycatch -- \Sexpr{f(last.year.us.research)} t
-      \item Tribal  -- \Sexpr{f(last.year.us.tribal)} t - \Sexpr{f(last.year.us.tribal.quota.reallocated)} t reallocated on \Sexpr{last.year.us.tribal.reallocate.dates}
-      \item Catcher Processor    -- \Sexpr{f(last.year.us.cp.quota.reallocated)} t
-      \item Mothership           -- \Sexpr{f(last.year.us.ms.quota.reallocated)} t
-      \item Shore-Based           -- \Sexpr{f(last.year.us.shore.quota.reallocated)} t
+      \item Research and bycatch -- \Sexpr{f(last_yr_us_research)} t
+      \item Tribal  -- \Sexpr{f(last_yr_us_tribal)} t - \Sexpr{f(last_yr_us_tribal_quota_reallocated)} t reallocated on \Sexpr{last_yr_us_tribal_reallocate_dates}
+      \item Catcher Processor    -- \Sexpr{f(last_yr_us_cp_quota_reallocated)} t
+      \item Mothership           -- \Sexpr{f(last_yr_us_ms_quota_reallocated)} t
+      \item Shore-Based           -- \Sexpr{f(last_yr_us_shore_quota_reallocated)} t
   \ei
     \end{column}
   \end{columns}
@@ -194,12 +194,12 @@ if(!dir.exists(fig_dir)){
 
 %----------------------------------------------------------
 \subsection{Catch by country}
-\frame{\frametitle{Catches of \Sexpr{end_yr-1} TAC of \Sexpr{last.year.tac} t}
+\frame{\frametitle{Catches of \Sexpr{end_yr-1} TAC of \Sexpr{last_yr_tac} t}
   \begin{columns}
     \begin{column}[t]{0.5\linewidth}
       \center{\textbf{\textcolor{blue}{Canada}}} \\
     \center{\textbf{TAC was \Sexpr{last.year.can.tac} t}} \\
-\Sexpr{last.year.can.landings} t, \Sexpr{paste0(last.year.can.attained, "\\%")} of the Canadian TAC
+\Sexpr{last.year.can.landings} t, \Sexpr{paste0(last_yr_can_attained, "\\%")} of the Canadian TAC
         \bi
           \item Freezer Trawlers -- \Sexpr{last.year.can.freezer} t, \Sexpr{paste0(last.year.can.freezer.percent, "\\%")} of Canadian catch
           \item Shoreside        -- \Sexpr{last.year.can.shore} t, \Sexpr{paste0(last.year.can.shore.percent, "\\%")} of Canadian catch
@@ -208,12 +208,12 @@ if(!dir.exists(fig_dir)){
     \end{column}
     \begin{column}[t]{0.5\linewidth}
       \center{\textbf{\textcolor{blue}{United States}}} \\
-    \center{\textbf{TAC was \Sexpr{last.year.us.tac} t}} \\
-    \Sexpr{last.year.us.landings} t, \Sexpr{paste0(last.year.us.attained, "\\%")} of the U.S. TAC
+    \center{\textbf{TAC was \Sexpr{last_yr_us_tac} t}} \\
+    \Sexpr{last_yr_us_landings} t, \Sexpr{paste0(last_yr_us_attained, "\\%")} of the U.S. TAC
           \bi
-            \item Catcher Processor  -- \Sexpr{f(last.year.us.cp.catch)} t, \Sexpr{paste0(last.year.us.cp.catch.percent, "\\%")} of US CP allocation
-            \item Mothership          -- \Sexpr{f(last.year.us.ms.catch)} t, \Sexpr{paste0(last.year.us.ms.catch.percent, "\\%")} of US MS allocation
-            \item Shore-Based         -- \Sexpr{f(last.year.us.shore.catch)} t, \Sexpr{paste0(last.year.us.shore.catch.percent, "\\%")} of shore-based allocation, includes \Sexpr{f(round(sum(subset(us_ti_catch_by_month_df,year == last_assess_yr)$catch), 0))} t of tribal catches
+            \item Catcher Processor  -- \Sexpr{f(last_yr_us_cp_ct)} t, \Sexpr{paste0(last_yr_us_cp_ct_percent, "\\%")} of US CP allocation
+            \item Mothership          -- \Sexpr{f(last_yr_us_ms_ct)} t, \Sexpr{paste0(last_yr_us_ms_ct_percent, "\\%")} of US MS allocation
+            \item Shore-Based         -- \Sexpr{f(last_yr_us_shore_ct)} t, \Sexpr{paste0(last_yr_us_shore_ct_percent, "\\%")} of shore-based allocation, includes \Sexpr{f(round(sum(subset(us_ti_ct_by_month_df,year == last_assess_yr)$catch), 0))} t of tribal catches
           \ei
     \end{column}
   \end{columns}

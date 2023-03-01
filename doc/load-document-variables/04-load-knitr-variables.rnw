@@ -12,19 +12,19 @@
 # -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
-# catch_levels is a list of N 3-item lists of catch levels with values:
+# ct_levels is a list of N 3-item lists of catch levels with values:
 #  1. values for catch to forecast
 #  2. their pretty names to appear in the document
 #  3. their directory names
 # Each element of the list is a list of length equal to the
 # number of elements in forecast_yrs.
-# See the calc.catch.levels() and fetch.catch.levels() functions
+# See the calc.ct.levels() and fetch.ct.levels() functions
 #  is load-models.R for details. The NA's below will be populated in each model
 #  by those two functions.
 
 # -----------------------------------------------------------------------------
 nf <- length(forecast_yrs)
-catch_levels <-
+ct_levels <-
   list(list(rep(0.01, nf), "No Fishing", "01-0"),
        list(rep(180000, nf), "180,000 t", "02-180000"),
        list(rep(225000, nf), "225,000 t", "03-225000"),
@@ -47,16 +47,16 @@ catch_levels <-
 # This is used in the one-page summary and a plot comparing several catch cases,
 #  and elsewhere
 # -----------------------------------------------------------------------------
-catch.levels.num <- length(catch_levels)
-catch.actual.ind <- 6
-catch.tac.ind <- 12
-catch.spr100.ind <- 13
-catch.default.policy.ind <- 14
-catch.stable.ind <- 15
-catch.reduction.rows <- c(5, 8, 10)
-catch.constant.rows <- c(1, 2, 3, 4, 6, 7, 9, 11, 12)
-catch.constant.str <- paste(letters[catch.constant.rows], collapse = ", ")
-catch.reduction.str <- paste(letters[catch.reduction.rows], collapse = ", ")
+ct_levels_num <- length(ct_levels)
+ct_actual_ind <- 6
+ct_tac_ind <- 12
+ct_spr100_ind <- 13
+ct_default_policy_ind <- 14
+ct_stable_ind <- 15
+ct_reduction_rows <- c(5, 8, 10)
+ct_constant_rows <- c(1, 2, 3, 4, 6, 7, 9, 11, 12)
+ct_constant_str <- paste(letters[ct_constant_rows], collapse = ", ")
+ct_reduction_str <- paste(letters[ct_reduction_rows], collapse = ", ")
 
 # Could probably extract automatically from bridge_models_desc[[1]][1]
 ss_version <- "3.30.20"
@@ -69,99 +69,215 @@ mc <- base_model$mcmccalcs
 extramc <- base_model$extra.mcmc
 
 # Attainment in the past ------------------------------------------------------
-ct_last10 <- ct %>% filter(year %in% (end_yr - 10):(end_yr - 1))
-ct_last5 <- ct %>% filter(year %in% (end_yr - 5):(end_yr - 1))
-ct_last2 <- ct %>% filter(year %in% (end_yr - 2):(end_yr - 1))
-ct_last1 <- ct %>% filter(year == end_yr - 1)
-ct_secondlast <- ct %>% filter(year == end_yr - 2)
-usa.last.5.years.attainment <- ct_last5 %>% pull(us_attain) %>%  mean %>% f(1)
-usa.last.2.years.attainment <- ct_last2 %>% pull(us_attain) %>% mean %>% f(0)
-can.last.5.years.attainment <- ct_last5 %>% pull(can_attain) %>% mean %>% f(1)
-can.last.2.years.attainment <- ct_last2 %>% pull(can_attain) %>% mean %>% f(0)
-tot.last.5.years.attainment <- ct_last5 %>% pull(tot_attain)  %>% mean %>% f(1)
-tot.last.10.years.attainment <- ct_last10 %>% pull(tot_attain) %>% mean %>% f(1)
-tot.last.year.attainment <- ct_last1 %>% pull(tot_attain) %>% mean %>% f(1)
-tot.2015.attainment <- ct %>% filter(year == 2015) %>% pull(tot_attain) %>% mean %>% f(1)
-tot.9192.attainment <- ct %>% filter(year %in% 1991:1992) %>% pull(tot_attain) %>% mean %>% f(0)
-tot.9399.attainment <- ct %>% filter(year %in% 1993:1999) %>% pull(tot_attain) %>% mean %>% f(0)
+ct_last10 <- ct |>
+  filter(year %in% (end_yr - 10):(end_yr - 1))
+ct_last5 <- ct |>
+  filter(year %in% (end_yr - 5):(end_yr - 1))
+ct_last2 <- ct |>
+  filter(year %in% (end_yr - 2):(end_yr - 1))
+ct_last1 <- ct |>
+  filter(year == end_yr - 1)
+ct_secondlast <- ct |>
+  filter(year == end_yr - 2)
+usa_last_5_yrs_attainment <- ct_last5 |>
+  pull(us_attain) |>
+  mean() |>
+  f(1)
+usa_last_2_yrs_attainment <- ct_last2 |>
+  pull(us_attain) |>
+  mean() |>
+  f(0)
+can_last_5_yrs_attainment <- ct_last5 |>
+  pull(can_attain) |>
+  mean() |>
+  f(1)
+can_last_2_yrs_attainment <- ct_last2 |>
+  pull(can_attain) |>
+  mean() |>
+  f(0)
+tot_last_5_yrs_attainment <- ct_last5 |>
+  pull(tot_attain) |>
+  mean() |>
+  f(1)
+tot_last_10_yrs_attainment <- ct_last10 |>
+  pull(tot_attain) |>
+  mean() |>
+  f(1)
+tot_last_yr_attainment <- ct_last1 |>
+  pull(tot_attain) |>
+  mean() |>
+  f(1)
+tot_2015_attainment <- ct |>
+  filter(year == 2015) |>
+  pull(tot_attain) |>
+  mean() |>
+  f(1)
+tot_9192_attainment <- ct |>
+  filter(year %in% 1991:1992) |>
+  pull(tot_attain) |>
+  mean() |>
+  f(0)
+tot_9399_attainment <- ct |>
+  filter(year %in% 1993:1999) |>
+  pull(tot_attain) |>
+  mean() |>
+  f(0)
 
 # Allotments ------------------------------------------------------------------
-can.allotment.percent <- 26.12
-us.allotment.percent <- 73.88
+can_allotment_percent <- 26.12
+us_allotment_percent <- 73.88
 # ... allotments in catch -----------------------------------------------------
-can.allotment.percent.last.year <- f(pull(ct_last1, can_tac) / pull(ct_last1, tot_tac) * 100, 2)
-us.allotment.percent.last.year <- f(pull(ct_last1, us_tac) / pull(ct_last1, tot_tac) * 100, 2)
-
+can_allotment_percent_last_yr <- f(pull(ct_last1, can_tac) /
+                                     pull(ct_last1, tot_tac) * 100, 2)
+us_allotment_percent_last_yr <- f(pull(ct_last1, us_tac) /
+                                    pull(ct_last1, tot_tac) * 100, 2)
 # Further TAC sources ---------------------------------------------------------
-# further_tac_df is defined in:
-# doc/load-document-variables/02-load-data-tables.rnw
-ft <- further_tac_df
-last.year.us.tribal <- ft %>% filter(Year == last_data_yr) %>% pull(us.tribal.quota)
-last.year.us.research <- ft %>% filter(Year == last_data_yr) %>% pull(us.research.quota)
-last.year.us.non.tribal <- ft %>% filter(Year == last_data_yr) %>% pull(us.nontribal.quota)
-last.year.us.tribal.quota.reallocated <- ft %>% filter(Year == last_data_yr) %>% pull(us.tribal.quota.reallocated)
-last.year.us.tribal.reallocate.dates <- ft %>% filter(Year == last_data_yr) %>% pull(us.tribal.reallocate.dates)
-last.year.us.tribal.reallocate.dates.f <- format(as.Date(as.character(last.year.us.tribal.reallocate.dates),"%d-%b"),"%B %d")
-last.year.us.tribal.max.landed <- ft %>% filter(Year == last_data_yr) %>% pull(us.tribal.max.landed)
-last.year.us.shore.quota.reallocated <- ft %>% filter(Year == last_data_yr) %>% pull(us.shore.reallocated)
-last.year.us.cp.quota.reallocated <- ft %>% filter(Year == last_data_yr) %>% pull(us.cp.reallocated)
-last.year.us.ms.quota.reallocated <- ft %>% filter(Year == last_data_yr) %>% pull(us.ms.reallocated)
+ft <- further_tac_df # (defined in inst/extdata/data/02-load-data-tables.rnw)
+last_yr_us_tribal <- ft |>
+  filter(Year == last_data_yr) |>
+  pull(us_tribal_quota)
+last_yr_us_research <- ft |>
+  filter(Year == last_data_yr) |>
+  pull(us_research_quota)
+last_yr_us_non_tribal <- ft |>
+  filter(Year == last_data_yr) |>
+  pull(us_nontribal_quota)
+last_yr_us_tribal_quota_reallocated <- ft |>
+  filter(Year == last_data_yr) |>
+  pull(us_tribal_quota_reallocated)
+last_yr_us_tribal_reallocate_dates <- ft |>
+  filter(Year == last_data_yr) |>
+  pull(us_tribal_reallocate_dates)
+last_yr_us_tribal_reallocate_dates_f <-
+  format(as.Date(as.character(last_yr_us_tribal_reallocate_dates),
+                 "%d-%b"),
+         "%B %d")
+last_yr_us_tribal_max_landed <- ft |>
+  filter(Year == last_data_yr) |>
+  pull(us_tribal_max_landed)
+last_yr_us_shore_quota_reallocated <- ft |>
+  filter(Year == last_data_yr) |>
+  pull(us_shore_reallocated)
+last_yr_us_cp_quota_reallocated <- ft |>
+  filter(Year == last_data_yr) |>
+  pull(us_cp_reallocated)
+last_yr_us_ms_quota_reallocated <- ft |>
+  filter(Year == last_data_yr) |>
+  pull(us_ms_reallocated)
 
 # Catch -----------------------------------------------------------------------
 # ... recent catch ------------------------------------------------------------
-last.5.years.of.catch.data <- (max(ct$year) - 4):max(ct$year)
-last.5.years.total.catch <- ct_last5 %>% pull(tot_catch)
-long.term.avge.catch <- mean(ct$tot_catch)
-last.5.years.above.avge <- last.5.years.of.catch.data[last.5.years.total.catch > long.term.avge.catch]
-last.5.years.below.avge <- last.5.years.of.catch.data[last.5.years.total.catch < long.term.avge.catch]
-catch.limit.quantiles <- f(as.numeric(quantile(base_model$mcmc[[paste0("ForeCatch_", end_yr)]],
-                                               probs = cred_int)))
-names(catch.limit.quantiles) <- c("lower", "median", "upper")
+last_5_yrs_total_ct <- ct_last5 |>
+  pull(tot_catch)
+long_term_avge_ct <- mean(ct$tot_catch)
+ct_limit_quantiles <-
+  f(as.numeric(quantile(base_model$mcmc[[paste0("ForeCatch_",
+                                                end_yr)]],
+                        probs = cred_int)))
+names(ct_limit_quantiles) <- c("lower", "median", "upper")
 # ... recent catch, last year -------------------------------------------------
-last.year.landings <- ct_last1 %>% pull(tot_catch) %>% f(0)
-last.year.tac <- ct_last1 %>% pull(tot_tac) %>% f(0)
-last.year.attained <- ct_last1 %>% pull(tot_attain) %>% f(1)
+last_yr_landings <- ct_last1 |>
+  pull(tot_catch) |>
+  f(0)
+last_yr_tac <- ct_last1 |>
+  pull(tot_tac) |>
+  f(0)
 # ... catch over the last 10 years --------------------------------------------
-catch_last_10yrs <- ct %>% slice_tail(n = 10)
-catch_mean_10yrs <- f(mean(catch_last_10yrs$tot_catch))
-catch_us_mean_10yrs <- f(mean(catch_last_10yrs$us_catch))
-catch_can_mean_10yrs <- f(mean(catch_last_10yrs$can_catch))
+ct_last_10yrs <- ct |>
+  slice_tail(n = 10)
+ct_mean_10yrs <- f(mean(ct_last_10yrs$tot_catch))
+ct_us_mean_10yrs <- f(mean(ct_last_10yrs$us_catch))
+ct_can_mean_10yrs <- f(mean(ct_last_10yrs$can_catch))
 # ... US Catch by fleet, last year --------------------------------------------
-# The following ct object with columns *_xx comes from the load_catches() function in R/catches.R
-last.year.us.research.catch <- ct %>% filter(year == last_data_yr) %>% pull(us_research_xx)
-last.year.us.cp.catch <- ct %>% filter(year == last_data_yr) %>% pull(us_cp_xx)
-last.year.us.ms.catch <- ct %>% filter(year == last_data_yr) %>% pull(us_ms_xx)
-last.year.us.shore.catch <- ct %>% filter(year == last_data_yr) %>% pull(us_shore_xx)
-last.year.us.ti.catch <- us_ti_catch_by_month_df %>% filter(year == last_data_yr) %>% pull(catch) %>% sum
-catcher.processor.catch <- ((ct_last1 %>% select(us_cp_xx) %>% pull) / (last.year.us.cp.quota.reallocated) * 100) %>% f(1)
-mothership.catch <- ((ct_last1 %>% select(us_ms_xx) %>% pull) / (last.year.us.ms.quota.reallocated) * 100) %>% f(1)
-shore.based.catch <- ((ct_last1 %>% select(us_shore_xx) %>% pull - last.year.us.ti.catch) / (last.year.us.shore.quota.reallocated) * 100) %>% f(1)
+last_yr_us_research_ct <- ct |>
+  filter(year == last_data_yr) |>
+  pull(us_research_xx)
+last_yr_us_cp_ct <- ct |>
+  filter(year == last_data_yr) |>
+  pull(us_cp_xx)
+last_yr_us_ms_ct <- ct |>
+  filter(year == last_data_yr) |>
+  pull(us_ms_xx)
+last_yr_us_shore_ct <- ct |>
+  filter(year == last_data_yr) |>
+  pull(us_shore_xx)
+last_yr_us_ti_ct <- us_ti_ct_by_month_df |>
+  filter(year == last_data_yr) |>
+  pull(catch) |>
+  sum()
+catcher_processor_ct <- ((ct_last1 |>
+                            pull(us_cp_xx)) /
+                           (last_yr_us_cp_quota_reallocated) * 100) |>
+  f(1)
+mothership_ct <- ((ct_last1 |>
+                     pull(us_ms_xx)pull) /
+                    (last_yr_us_ms_quota_reallocated) * 100) |>
+  f(1)
+shore_based_ct <- ((ct_last1 |>
+                      pull(us_shore_xx) -
+                      last_yr_us_ti_ct) /
+                     (last_yr_us_shore_quota_reallocated) * 100) |>
+  f(1)
 
 # Attainment ------------------------------------------------------------------
 # ... US Attainment, catch, and TAC -------------------------------------------
-last.year.us.landings <- ct_last1 %>% pull(us_catch) %>% f(0)
-last.year.us.attained <- ct_last1 %>% pull(us_attain) %>% f(1)
-last.2year.us.attained.diff <- (ct_last1 %>% pull(us_attain) - ct_secondlast %>% pull(us_attain)) %>% f(1)
-last.year.us.not.attained <- (100 - ct_last1 %>% pull(us_attain)) %>% f(1)
-last.year.us.not.attained.tonnes <- abs(ct_last1 %>% pull(us_attain) - ct_last1 %>% pull(us_catch))
-last.year.us.tac <- ct_last1 %>% pull(us_tac) %>% f(0)
+last_yr_us_landings <- ct_last1 |>
+  pull(us_catch) |>
+  f(0)
+last_yr_us_attained <- ct_last1 |>
+  pull(us_attain) |>
+  f(1)
+last_2yr_us_attained_diff <- (ct_last1 |>
+                                pull(us_attain) -
+                                ct_secondlast |>
+                                pull(us_attain)) |>
+  f(1)
+last_yr_us_tac <- ct_last1 |>
+  pull(us_tac) |>
+  f(0)
 # ... US Attainment by fleet, last year ---------------------------------------
-last.year.us.research.catch.percent <- f(last.year.us.research.catch / last.year.us.research * 100, 1)
-last.year.us.cp.catch.percent <- f(last.year.us.cp.catch / last.year.us.cp.quota.reallocated * 100, 1)
-last.year.us.ms.catch.percent <- f(last.year.us.ms.catch / last.year.us.ms.quota.reallocated * 100, 1)
-last.year.us.shore.catch.percent <- f(last.year.us.shore.catch / last.year.us.shore.quota.reallocated * 100, 1)
-last.year.us.tribal.catch.percent <- f(last.year.us.tribal.max.landed / last.year.us.tribal.quota.reallocated * 100, 1)
+last_yr_us_cp_ct_percent <- f(last_yr_us_cp_ct /
+                                   last_yr_us_cp_quota_reallocated * 100,
+                                 1)
+last_yr_us_ms_ct_percent <- f(last_yr_us_ms_ct /
+                                   last_yr_us_ms_quota_reallocated * 100,
+                                 1)
+last_yr_us_shore_ct_percent <- f(last_yr_us_shore_ct /
+                                      last_yr_us_shore_quota_reallocated * 100,
+                                    1)
+
 # ... Canada Attainment, catch, and TAC ---------------------------------------
-can.vessels <- c("Viking Enterprise", "Northern Alliance", "Osprey #1", "Raw Spirit",
-                 "Pacific Legacy #1", "Sunderoey", "Viking Alliance")
-last.year.can.carryover <- ft %>% filter(Year == last_data_yr) %>% pull(can.carried.over) %>% f(0)
-last.year.can.attained <- ct_last1 %>% pull(can_attain) %>% f(1)
-last.2year.can.attained.diff <- ((ct_last1 %>% pull(can_attain)) - (ct_secondlast %>% pull(can_attain))) %>% f(1)
-last.year.can.landings <- ct_last1 %>% pull(can_catch) %>% f(0)
-last.year.can.tac <- ct_last1 %>% pull(can_tac) %>% f
-last.year.can.tac.jv <- ft %>% filter(Year == last_data_yr) %>% pull(can.jv.tac) %>% f
-last.year.can.shoreside.tac <- ((ct_last1 %>% pull(can_tac)) - (ft %>% filter(Year == last_data_yr) %>% pull(can.jv.tac))) %>% f(0)
-latest.year.can.jv <- ct %>% filter(can_jv_xx > 0) %>% pull(year) %>% max
+last_yr_can_carryover <- ft |>
+  filter(Year == last_data_yr) |>
+  pull(can.carried.over) |>
+  f(0)
+last_yr_can_attained <- ct_last1 |>
+  pull(can_attain) |>
+  f(1)
+last_2yr_can_attained_diff <- ((ct_last1 |>
+                                  pull(can_attain)) -
+                                 (ct_secondlast |>
+                                    pull(can_attain))) |>
+  f(1)
+last.year.can.landings <- ct_last1 |>
+  pull(can_catch) |>
+  f(0)
+last.year.can.tac <- ct_last1 |>
+  pull(can_tac) f(0)
+last.year.can.tac.jv <- ft |>
+  filter(Year == last_data_yr) |>
+  pull(can.jv.tac) |>
+  f(0)
+last.year.can.shoreside.tac <- ((ct_last1 |>
+                                   pull(can_tac)) -
+                                  (ft |>
+                                     filter(Year == last_data_yr) |>
+                                     pull(can.jv.tac))) |>
+  f(0)
+latest.year.can.jv <- ct |>
+  filter(can_jv_xx > 0) |>
+  pull(year) |>
+  max()
 last.year.can.shore <- ct_last1 %>% pull(can_shore_xx) %>% f(0)
 last.year.can.freezer <- ct_last1 %>% pull(can_freeze_xx) %>% f(0)
 last.year.can.jv <- ct_last1 %>% pull(can_jv_xx) %>% f(0)
@@ -264,7 +380,7 @@ prev.bio.upper.last.assess <- f(last_yr_base_model$mcmccalcs$supper[names(mc$sup
 
 # Forecasting -----------------------------------------------------------------
 # ... first forecast year depletion and spawning biomass estimates ------------
-fore.tac.mcmc.yr1 <- base_model$forecasts[[1]][[catch.tac.ind]]$mcmccalcs
+fore.tac.mcmc.yr1 <- base_model$forecasts[[1]][[ct_tac_ind]]$mcmccalcs
 next.depl.lower.tac.based <- f(fore.tac.mcmc.yr1$dlower[names(fore.tac.mcmc.yr1$dlower) %in% (end_yr + 1)] * 100, 1)
 next.depl.median.tac.based <- f(fore.tac.mcmc.yr1$dmed[names(fore.tac.mcmc.yr1$dmed) %in% (end_yr + 1)] * 100, 1)
 next.depl.upper.tac.based <- f(fore.tac.mcmc.yr1$dupper[names(fore.tac.mcmc.yr1$dupper) %in% (end_yr + 1)] * 100, 1)
@@ -272,7 +388,7 @@ next.bio.lower.tac.based <- f(fore.tac.mcmc.yr1$slower[names(fore.tac.mcmc.yr1$s
 next.bio.median.tac.based <- f(fore.tac.mcmc.yr1$smed[names(fore.tac.mcmc.yr1$smed) %in% (end_yr + 1)] * 100, 1)
 next.bio.upper.tac.based <- f(fore.tac.mcmc.yr1$supper[names(fore.tac.mcmc.yr1$supper) %in% (end_yr + 1)] * 100, 1)
 # ... second forecast year depletion and spawning biomass estimates -----------
-fore.tac.mcmc.yr2 <- base_model$forecasts[[2]][[catch.tac.ind]]$mcmccalcs
+fore.tac.mcmc.yr2 <- base_model$forecasts[[2]][[ct_tac_ind]]$mcmccalcs
 next2.depl.lower.tac.based <- f(fore.tac.mcmc.yr2$dlower[names(fore.tac.mcmc.yr2$dlower) %in% (end_yr + 2)] * 100, 1)
 next2.depl.median.tac.based <- f(fore.tac.mcmc.yr2$dmed[names(fore.tac.mcmc.yr2$dmed) %in% (end_yr + 2)] * 100, 1)
 next2.depl.upper.tac.based <- f(fore.tac.mcmc.yr2$dupper[names(fore.tac.mcmc.yr2$dupper) %in% (end_yr + 2)] * 100, 1)
@@ -282,7 +398,7 @@ next2.bio.upper.tac.based <- f(fore.tac.mcmc.yr2$supper[names(fore.tac.mcmc.yr2$
 
 # Biomass medians for last year's TAC catch level -----------------------------
 endyr_plus_3_fore <- base_model$forecasts[[as.character(end_yr + 3)]]
-endyr_plus_3_fore_tac_catch <- endyr_plus_3_fore[[catch.tac.ind]]$biomass |>
+endyr_plus_3_fore_tac_catch <- endyr_plus_3_fore[[ct_tac_ind]]$biomass |>
   as_tibble(rownames = "year")
 last.yr.tac.fore.1.biomass <- endyr_plus_3_fore_tac_catch |>
   filter(year == end_yr) |>
@@ -299,7 +415,7 @@ last.yr.tac.fore.3.biomass <- endyr_plus_3_fore_tac_catch |>
   pull(`50%`)
 last.yr.tac.fore.3.biomass <- f(last.yr.tac.fore.3.biomass * 100)
 
-curr_catch_tac_value <- catch_levels[[catch.tac.ind]][[1]][1]
+curr_catch_tac_value <- ct_levels[[ct_tac_ind]][[1]][1]
 catch_col <- sym(paste0("ForeCatch_", end_yr))
 yr_prob_col <- paste0("SSB_", end_yr + 1, "<SSB_", end_yr)
 last.yr.tac.risk.1.biomass.decline <-
@@ -438,12 +554,12 @@ dfo.prob.next.over.40bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("
 dfo.prob.next.over.80bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess_yr + 1, ">0.8SSB_MSY")])
 dfo.prob.next.over.bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess_yr + 1, ">SSB_MSY")])
 # ... US (PFMC) stock size reference points based on default Treaty HCR -------
-next.treaty.catch <- f(base_model$catch.levels[[catch.default.policy.ind]][[1]][1], 0)
-pfmc.prob.next.year.below.b40 <- f(base_model$risks[[1]][catch.default.policy.ind, paste0("Bratio_", assess_yr + 1, "<0.40")], 0)
-pfmc.prob.next.year.below.b25 <- f(base_model$risks[[1]][catch.default.policy.ind, paste0("Bratio_", assess_yr + 1, "<0.25")], 0)
-same.catch.as.last.year <- f(base_model$catch.levels[[catch.actual.ind]][[1]][1], 0)
-same.catch.prob.next.year.below.b40 <- f(base_model$risks[[1]][catch.actual.ind, paste0("Bratio_", assess_yr + 1, "<0.40")], 0)
-same.catch.prob.year.after.next.below.b40 <- f(base_model$risks[[2]][catch.actual.ind, paste0("Bratio_", assess_yr + 2, "<0.40")], 0)
+next.treaty.catch <- f(base_model$catch.levels[[ct_default_policy_ind]][[1]][1], 0)
+pfmc.prob.next.year.below.b40 <- f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_", assess_yr + 1, "<0.40")], 0)
+pfmc.prob.next.year.below.b25 <- f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_", assess_yr + 1, "<0.25")], 0)
+same.catch.as.last.year <- f(base_model$catch.levels[[ct_actual_ind]][[1]][1], 0)
+same.catch.prob.next.year.below.b40 <- f(base_model$risks[[1]][ct_actual_ind, paste0("Bratio_", assess_yr + 1, "<0.40")], 0)
+same.catch.prob.year.after.next.below.b40 <- f(base_model$risks[[2]][ct_actual_ind, paste0("Bratio_", assess_yr + 2, "<0.40")], 0)
 # ... Prob most recent relative fishing intensity is above target of 1 --------
 probs.curr.rel.fish.intens.above.one <-
   f(sum(base_model$mcmc[[paste0("SPRratio_", end_yr-1)]] > 1) /
@@ -457,21 +573,21 @@ survey.age.years <- base_model$dat$agecomp[base_model$dat$agecomp$FltSvy == 2, ]
 max.fishery.age.prop <- get_age_comp_limits(base_model, type = 1)
 max.survey.age.prop <- get_age_comp_limits(base_model, type = 2)
 # ... Canadian Freezer trawlers age data --------------------------------------
-last.year.can.ages.ft <- can.ages[[2]][rownames(can.ages[[2]]) == last_data_yr, ]
-ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 1)
-max.freezer.trawler.age.prop.age <- ft.age.prop.holder[1]
-max.freezer.trawler.age.prop <- f(ft.age.prop.holder[2] * 100, 1)
-ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 2)
-second.freezer.trawler.age.prop.age <- ft.age.prop.holder[1]
-second.freezer.trawler.age.prop <- f(ft.age.prop.holder[2] * 100, 1)
-ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 3)
-third.freezer.trawler.age.prop.age <- ft.age.prop.holder[1]
-third.freezer.trawler.age.prop <- f(ft.age.prop.holder[2] * 100, 1)
-ft.age.prop.holder <- get.age.prop(last.year.can.ages.ft, 4)
-fourth.freezer.trawler.age.prop.age <- ft.age.prop.holder[1]
-fourth.freezer.trawler.age.prop <- f(ft.age.prop.holder[2] * 100, 1)
+last_year_can_ages_ft <- can_ages_lst[[2]][rownames(can_ages_lst[[2]]) == last_data_yr, ]
+ft_age_prop_holder <- get.age.prop(last_year_can_ages_ft, 1)
+max_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
+max_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
+ft_age_prop_holder <- get.age.prop(last_year_can_ages_ft, 2)
+second_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
+second_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
+ft_age_prop_holder <- get.age.prop(last_year_can_ages_ft, 3)
+third_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
+third_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
+ft_age_prop_holder <- get.age.prop(last_year_can_ages_ft, 4)
+fourth_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
+fourth_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
 # ... Canadian Shoreside age data ---------------------------------------------
-last.year.can.ages.ss <- can.ages[[1]][rownames(can.ages[[1]]) == last_data_yr, ]
+last.year.can.ages.ss <- can_ages_lst[[1]][rownames(can_ages_lst[[1]]) == last_data_yr, ]
 ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 1)
 max.shoreside.age.prop.age <- ss.age.prop.holder[1]
 max.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
@@ -767,8 +883,6 @@ joint.percent.prob.above.below <-
 # Probabilities for historical performance analyses ---------------------------
 historical.probs.tibble <-
   combine_historical_probs(model = base_model,
-                           fn =  = file.path(rootd_data,
-                                             "assessment-history-probs.csv"),
                            end = assess_yr - 1) |>
   as_tibble()
 
@@ -891,7 +1005,7 @@ prob.decline.from.2012.to.2013.historic <-
  })
 
  # Values used in management presentation
-last_yr_catch_fore <- base_model$catch.levels[[catch.actual.ind]][[1]][1]
+last_yr_catch_fore <- base_model$catch.levels[[ct_actual_ind]][[1]][1]
 ct_col <- paste0("ForeCatch_", forecast_yrs[1])
 ct_col_sym <- sym(ct_col)
 decl_col <- paste0("SSB_", forecast_yrs[2], "<SSB_", forecast_yrs[1])

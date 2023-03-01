@@ -821,7 +821,7 @@ make.forecast.catch.posterior.plot(base_model,
 @
 \end{center}
 \caption{The posterior distribution of the default \Sexpr{end_yr} catch limit calculated using the default harvest
-  policy (\Ffortyten). The median is \Sexpr{catch.limit.quantiles["median"]}~t (vertical line), with the dark shaded area ranging from the 2.5\% quantile to the 97.5\% quantile, covering the range \Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.}
+  policy (\Ffortyten). The median is \Sexpr{ct_limit_quantiles["median"]}~t (vertical line), with the dark shaded area ranging from the 2.5\% quantile to the 97.5\% quantile, covering the range \Sexpr{ct_limit_quantiles["lower"]}--\Sexpr{ct_limit_quantiles["upper"]}~t.}
 \label{fig:main-projected-catch-density}
 %% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -830,7 +830,7 @@ make.forecast.catch.posterior.plot(base_model,
 %% \begin{figure}[H]
 \begin{center}
 <<main-forecast-depletion-comparison-plot, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to remain flat for the next 3 years with zero catch and to decline for all non-zero catch levels evaluated.">>=
-# See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
+# See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,
                           fore_inds = c(1, 2, 6, 12, 14),

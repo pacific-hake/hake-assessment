@@ -95,9 +95,9 @@ if(!dir.exists(fig_dir)){
 metric <- NULL
 forecasts <- base_model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
-models.inds <- c(1, 2, 4, 5, catch.default.policy.ind)
+models.inds <- c(1, 2, 4, 5, ct_default_policy_ind)
 models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds]
-fore.inds <- c(1, 2, 3, 4, 5, catch.tac.ind)
+fore.inds <- c(1, 2, 3, 4, 5, ct_tac_ind)
 fore.names <- cmodels.names <- sapply(base_model$catch.levels, "[[", 2)[fore.inds]
 @
 
@@ -124,16 +124,16 @@ fore.names <- cmodels.names <- sapply(base_model$catch.levels, "[[", 2)[fore.ind
     \item 2018 cohort estimated to be below average
     \item 2019 and 2020 have no data for estimating size of cohort
     \item Default harvest rule estimated median catch limit
-      for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t \\
-      (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]}
-      to \Sexpr{catch.limit.quantiles["upper"]}~t)
+      for \Sexpr{min(forecast_yrs)} is \Sexpr{ct_limit_quantiles["median"]}~t \\
+      (with 95\% interval from \Sexpr{ct_limit_quantiles["lower"]}
+      to \Sexpr{ct_limit_quantiles["upper"]}~t)
     \item New \Sexpr{last_data_yr} age data from fishery is fit well by the model
-    \item Coastwide catch in \Sexpr{end_yr-1} was \Sexpr{last.year.landings}~t,
-      out of a TAC (adjusted for carryovers) of \Sexpr{last.year.tac}~t
-    \item Attainment in the U.S. was \Sexpr{last.year.us.attained}\% of its quota
-      (\Sexpr{paste0(ifelse(last.2year.us.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.us.attained.diff))}\%
+    \item Coastwide catch in \Sexpr{end_yr-1} was \Sexpr{last_yr_landings}~t,
+      out of a TAC (adjusted for carryovers) of \Sexpr{last_yr_tac}~t
+    \item Attainment in the U.S. was \Sexpr{last_yr_us_attained}\% of its quota
+      (\Sexpr{paste0(ifelse(last_2yr_us_attained_diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last_2yr_us_attained_diff))}\%
 from last year);
-      in Canada it was \Sexpr{last.year.can.attained}\% (\Sexpr{paste0(ifelse(last.2year.can.attained.diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last.2year.can.attained.diff))}\%
+      in Canada it was \Sexpr{last_yr_can_attained}\% (\Sexpr{paste0(ifelse(last_2yr_can_attained_diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last_2yr_can_attained_diff))}\%
 from last year)
   \ei
 \end{frame}
@@ -236,10 +236,10 @@ from last year)
     \bi
       \item Using the defined \emph{F}\subscr{SPR=40\%} harvest rate with a 40:10 adjustment, the median forecasted \Sexpr{end_yr} TAC is
       \smallskip
-      \bc {\bf \Sexpr{catch.limit.quantiles["median"]} t} \ec
+      \bc {\bf \Sexpr{ct_limit_quantiles["median"]} t} \ec
       \smallskip
       \item 2.5\% and 97.5\% quantiles:\\
-      \Sexpr{catch.limit.quantiles["lower"]} and \Sexpr{catch.limit.quantiles["upper"]}~t
+      \Sexpr{ct_limit_quantiles["lower"]} and \Sexpr{ct_limit_quantiles["upper"]}~t
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -255,13 +255,13 @@ from last year)
   \bi
     \item Catch streams
     \bi
-      \item a. \Sexpr{catch_levels[[1]][[2]]} (zero catch)
-      \item b. Constant catch of \Sexpr{catch_levels[[2]][[2]]}
-      \item c. Constant catch of \Sexpr{catch_levels[[3]][[2]]}
-      \item d. Constant catch (\Sexpr{catch_levels[[4]][[2]]})
-      \item e. Constant catch (\Sexpr{catch_levels[[5]][[2]]})
-      \item f. Constant catch (\Sexpr{catch_levels[[6]][[2]]})
-      \item g. Constant catch (\Sexpr{catch_levels[[7]][[2]]})
+      \item a. \Sexpr{ct_levels[[1]][[2]]} (zero catch)
+      \item b. Constant catch of \Sexpr{ct_levels[[2]][[2]]}
+      \item c. Constant catch of \Sexpr{ct_levels[[3]][[2]]}
+      \item d. Constant catch (\Sexpr{ct_levels[[4]][[2]]})
+      \item e. Constant catch (\Sexpr{ct_levels[[5]][[2]]})
+      \item f. Constant catch (\Sexpr{ct_levels[[6]][[2]]})
+      \item g. Constant catch (\Sexpr{ct_levels[[7]][[2]]})
       \item h. Fishing Intensity = 100\% in each year
         conditioned on fixed catch in previous year
       \item i. Median default Harvest Rule in each year conditioned on
@@ -286,7 +286,7 @@ from last year)
   \end{column}
   \begin{column}{0.59\textwidth}
     <<main.forecast.depletion.comparison.plot, out.width='.95\\columnwidth'>>=
-# See the file `forecast-catch-levels.R` at the list called `catch_levels`. The values in
+# See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,
                           fore_inds = c(1, 2, 6, 12, 14),
@@ -558,9 +558,9 @@ plot_squid(base_model,
       \Sexpr{probs.curr.rel.fish.intens.above.one}\% chance of relative fishing
       intensity being above 100\%
     \item Based on the default harvest rule, the estimated median catch limit
-      for \Sexpr{min(forecast_yrs)} is \Sexpr{catch.limit.quantiles["median"]}~t
-      (with 95\% interval from \Sexpr{catch.limit.quantiles["lower"]} to
-      \Sexpr{catch.limit.quantiles["upper"]}~t)
+      for \Sexpr{min(forecast_yrs)} is \Sexpr{ct_limit_quantiles["median"]}~t
+      (with 95\% interval from \Sexpr{ct_limit_quantiles["lower"]} to
+      \Sexpr{ct_limit_quantiles["upper"]}~t)
     \item Forecasts strongly influenced by size of above-average 2014 and 2016
       cohorts; 2017 now looks to be average and 2018 is small.
     \item There is a \Sexpr{f(base_model$risks[[1]][4, 2])}\% chance that spawning biomass will decline from \Sexpr{assess_yr} to \Sexpr{assess_yr + 1} at a catch level of \Sexpr{f(base_model$risks[[1]][4, 1])}~t (i.e., 2020 catch), partly due to mortality on ageing large cohorts (Figure j)

@@ -1120,14 +1120,14 @@ credibility interval does include $\Fforty$.
 
 Over the last decade (\Sexpr{end_yr-10}--\Sexpr{end_yr-1}), the mean coast-wide
 utilization rate (i.e., proportion of catch target removed) has been
-\Sexpr{tot.last.10.years.attainment}\% and catches have been below
+\Sexpr{tot_last_10_yrs_attainment}\% and catches have been below
 coast-wide targets (Table~\ref{tab:main-landings-tac}). From \Sexpr{end_yr-5} to
 \Sexpr{end_yr-1}, the mean utilization rates differed between the United States
-(\Sexpr{usa.last.5.years.attainment}\%) and Canada
-(\Sexpr{can.last.5.years.attainment}\%).
+(\Sexpr{usa_last_5_yrs_attainment}\%) and Canada
+(\Sexpr{can_last_5_yrs_attainment}\%).
 In 2015, the utilization rate for the
 coast-wide fishery was the lowest of the previous decade
-(\Sexpr{tot.2015.attainment}\%) due, in part, to difficulties locating
+(\Sexpr{tot_2015_attainment}\%) due, in part, to difficulties locating
 aggregations of fish and possibly economic reasons.
 % Manual done 2020 - check above sentence with
 %  landings.vs.tac[landings.vs.tac$Year %in% (end_yr-10):(end_yr-1),10].  % $
@@ -1139,19 +1139,19 @@ declined. In 2016, the utilization rate increased but remained below pre-2015
 levels, despite the total 2016 catch being one of the highest of the preceding years.
 This is in large part due to increasing catch targets as biomass continues to
 increase. While the total utilization rate between 2017--2021 was relatively steady
-and close to the average over the last decade (\Sexpr{tot.last.10.years.attainment}\%),
-it decreased in 2022 to \Sexpr{tot.last.year.attainment}\%. This is primarily due
+and close to the average over the last decade (\Sexpr{tot_last_10_yrs_attainment}\%),
+it decreased in 2022 to \Sexpr{tot_last_yr_attainment}\%. This is primarily due
 to the utilization rate in Canada declining since 2020
 to a time-series low of 20.3\% in 2022.
 Country-specific
 quotas (or catch targets) in 2020 and 2021 were specified unilaterally, due to the lack of
 an agreement on coast-wide 2020 and 2021 TACs. The usual
-\Sexpr{us.allotment.percent}\% and
-\Sexpr{can.allotment.percent}\% allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
+\Sexpr{us_allotment_percent}\% and
+\Sexpr{can_allotment_percent}\% allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
 Agreement for \fishname, was once again implemented in 2022.
 %During the last two years, utilization rates have been stable
-%in both the United States (\Sexpr{usa.last.2.years.attainment}\%) and Canada
-%(about \Sexpr{can.last.2.years.attainment}\%).
+%in both the United States (\Sexpr{usa_last_2_yrs_attainment}\%) and Canada
+%(about \Sexpr{can_last_2_yrs_attainment}\%).
 Total landings last exceeded the coast-wide quota in 2002 when utilization was 112\%.
 % Manual done 2023 (double checked numbers).
 
@@ -1320,10 +1320,10 @@ P$(B_{\Sexpr{assess_yr}} > \Btwentyfive) = \Sexpr{probs.curr.btwentyfive}$\%.
 
 The catch limit for \Sexpr{min(forecast_yrs)} based on the default
 \Ffortyten{} harvest policy has a median of
-\Sexpr{catch.limit.quantiles["median"]}~t and
+\Sexpr{ct_limit_quantiles["median"]}~t and
 a wide range of uncertainty (Figure~\ref{fig:main-projected-catch-density}),
 with the 95\% credibility interval being
-\Sexpr{catch.limit.quantiles["lower"]}--\Sexpr{catch.limit.quantiles["upper"]}~t.
+\Sexpr{ct_limit_quantiles["lower"]}--\Sexpr{ct_limit_quantiles["upper"]}~t.
 
 Decision tables give projected population status (relative spawning biomass) and
 relative fishing intensity under different catch alternatives for the base model
@@ -1355,7 +1355,7 @@ over the last five years. Recent changes in selectivity could be reflected
 in the projection of over- or under-fishing relative to the desired $\Fforty$ rate.
 %An alternative catch level where median
 %relative fishing intensity is 100\% is provided for comparison (catch
-%alternative~\Sexpr{letters[catch.spr100.ind]}: FI=100\%).
+%alternative~\Sexpr{letters[ct_spr100_ind]}: FI=100\%).
 
 Key management metrics are presented for
 \Sexpr{forecast_yrs[2:(length(forecast_yrs)-1)]} and
@@ -1374,10 +1374,10 @@ be applicable for all catches in
 they are conditional on previous year(s) catch levels.
 %catch alternatives~h and~i have catches
 %that are larger than 430,000~t
-% \Sexpr{catch_levels[[5]][[1]][1]}
+% \Sexpr{ct_levels[[5]][[1]][1]}
 %(the constant catch for alternative~\Sexpr{letters[5]}) in \Sexpr{assess_yr} but smaller% than
 % 430,000~t
-% \Sexpr{catch_levels[[5]][[1]][1]}
+% \Sexpr{ct_levels[[5]][[1]][1]}
 %in \Sexpr{assess_yr+1} (Table~\ref{tab:main-decisions-spr});
 This explains why a few probabilities decline
 (rather than rise) with increased \Sexpr{assess_yr+1} and \Sexpr{assess_yr+2}
@@ -1526,7 +1526,7 @@ going below $\Bforty$ at the start of \Sexpr{assess_yr + 1} (and
 \Sexpr{pfmc.prob.next.year.below.b25}\% probability of going below
 $\Btwentyfive$; Table~\ref{tab:main-risk-year-1}).
 If catches in \Sexpr{assess_yr} and \Sexpr{assess_yr + 1} are the same as in
-\Sexpr{assess_yr - 1} (\Sexpr{same.catch.as.last.year}~t, catch scenario~\Sexpr{letters[catch.actual.ind]})
+\Sexpr{assess_yr - 1} (\Sexpr{same.catch.as.last.year}~t, catch scenario~\Sexpr{letters[ct_actual_ind]})
 then the probability of the biomass going below $\Bforty$ is
 \Sexpr{same.catch.prob.next.year.below.b40}\% for the start of
 \Sexpr{assess_yr + 1} and

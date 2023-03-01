@@ -13,7 +13,7 @@ make.historical.probs.plot(
   add.50.col = "darkgrey",
   one.year = 2019,
   add.projs = FALSE,
-  num.projs = catch.levels.num,
+  num.projs = catch_levels_num,
   colors = c("red", "blue"),
   pch = c(16, 17),
   lwd.val = 1,

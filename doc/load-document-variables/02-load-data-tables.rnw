@@ -91,7 +91,7 @@ us_ms_catch_by_month_df <-
   read_csv(file.path(load_dir, "us-ms-catch-by-month.csv"),
            col_types = cols(),
            show_col_types = FALSE)
-us_ti_catch_by_month_df <-
+us_ti_ct_by_month_df <-
   read_csv(file.path(load_dir, "us-ti-catch-by-month.csv"),
            col_types = cols(),
            show_col_types = FALSE)
@@ -186,4 +186,5 @@ out_est_eaa_file <- "estimated-exploitation-at-age.csv"
 out_est_caa_file <- "estimated-catch-at-age.csv"
 out_est_caa_bio_file <- "estimated-catch-at-age-biomass.csv"
 out_est_baa_file <- "estimated-biomass-at-age.csv"
+browser()
 @

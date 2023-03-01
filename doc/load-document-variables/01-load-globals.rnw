@@ -32,7 +32,7 @@ last_yr_models_dir <- file.path(rootd_models,
 
 output_csv_dir <- here::here(rootd_doc, "out-csv")
 
-catch_levels_path <- "catch-levels"
+ct_levels_path <- "catch-levels"
 default_hr_path <- "default-hr"
 stable_catch_path <- "stable-catch"
 spr_100_path <- "spr-100"
@@ -51,13 +51,13 @@ compreport_file_name <- "CompReport.sso"
 
 # Custom catch levels calculations
 # The tolerance in the spr away from 1 for the calculation of catch for SPR = 1
-catch_levels_spr_tol <- 0.001
+ct_levels_spr_tol <- 0.001
 # The tolerance in tonnes. The iterations will stop if the difference between the
 #  projected biomass between the first and second years is less than this
-catch_levels_catch_tol <- 100
+ct_levels_catch_tol <- 100
 # The maximum number of iterations to do. If this is reached, then no catch value could
 #  be found within the tolerances above
-catch_levels_max_iter <- 20
+ct_levels_max_iter <- 20
 
 forecast_yrs <- assess_yr:(assess_yr + 3)
 forecast_yrs_extra <- assess_yr:(assess_yr + 3)

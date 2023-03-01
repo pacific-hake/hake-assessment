@@ -202,7 +202,8 @@ table_param_est <- function(models,
   # Split up the headers (model names) by words and let them stack on
   # top of each other to reduce width of table
   model_nms_str <- map_chr(model_nms, function(model_nm){
-    latex_mlc(gsub(" ", "\\\\\\\\", model_nm), make.bold = FALSE)
+    latex_mlc(gsub(" ", "\\\\\\\\", model_nm),
+              make_bold = FALSE)
     })
   colnames(tab) <- c("", model_nms_str)
 
