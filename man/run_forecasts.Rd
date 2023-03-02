@@ -4,15 +4,15 @@
 \alias{run_forecasts}
 \title{Run forecasting for the model supplied}
 \usage{
-run_forecasts(model_path, catch_levels_path, ...)
+run_forecasts(model_path, ct_levels_path, ...)
 }
 \arguments{
 \item{model_path}{The directory containing the model}
 
-\item{catch_levels_path}{The directory containing the output of
-\code{\link[=run_catch_levels]{run_catch_levels()}}}
+\item{ct_levels_path}{The directory containing the output of
+\code{\link[=run_ct_levels]{run_ct_levels()}}}
 
-\item{...}{Arguments passed to \code{\link[=fetch_catch_levels]{fetch_catch_levels()}}}
+\item{...}{Arguments passed to \code{\link[=fetch_ct_levels]{fetch_ct_levels()}}}
 }
 \value{
 \code{\link[base:invisible]{base::invisible()}}

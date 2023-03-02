@@ -122,7 +122,7 @@ In the \Sexpr{end_yr-1} catch,
 \begin{figure}[tbp]
 \begin{center}
 <<survey-biomass, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has decreased from 2019 to 2021.">>=
-make.survey.biomass.extrap.plot(
+make.survey_biomass.extrap.plot(
   dplyr::filter(base_model[["dat"]][["CPUE"]], index == 2)
 )
 @
@@ -305,19 +305,19 @@ the recent declining trend in catch.
 
 The median estimate of the \Sexpr{end_yr} relative spawning biomass (female spawning
 biomass at the start of \Sexpr{end_yr} divided by that at unfished equilibrium,
-$B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
+$B_0$) is \Sexpr{curr_depl_median}\%. However, the uncertainty
 is particularly large this year, with a 95\%
-posterior credibility interval from \Sexpr{curr.depl.lower}\% to
-\Sexpr{curr.depl.upper}\% (Table~\ref{tab:es-biomass}), due to high uncertainty about the size
+posterior credibility interval from \Sexpr{curr_depl_lower}\% to
+\Sexpr{curr_depl_upper}\% (Table~\ref{tab:es-biomass}), due to high uncertainty about the size
 of the 2020 cohort, which has not yet been sampled in the acoustic survey
 biomass index of age-2+ fish. The median estimate of
-the \Sexpr{end_yr} female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
-95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
-\Sexpr{curr.bio.upper}~million~t). The current estimate of the \Sexpr{end_yr-1} female
-spawning biomass is \Sexpr{prev.bio.median}
-(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is
-higher than the \Sexpr{prev.bio.median.last.assess}
-(\Sexpr{prev.bio.lower.last.assess}--\Sexpr{prev.bio.upper.last.assess})~million~t estimated in the \Sexpr{end_yr-1}
+the \Sexpr{end_yr} female spawning biomass is \Sexpr{curr_bio_median}~million~t (with a
+95\% posterior credibility interval from \Sexpr{curr_bio_lower} to
+\Sexpr{curr_bio_upper}~million~t). The current estimate of the \Sexpr{end_yr-1} female
+spawning biomass is \Sexpr{prev_bio_median}
+(\Sexpr{prev_bio_lower}--\Sexpr{prev_bio_upper})~million~t. This is
+higher than the \Sexpr{prev_bio_median_last_assess}
+(\Sexpr{prev_bio_lower_last_assess}--\Sexpr{prev_bio_upper_last_assess})~million~t estimated in the \Sexpr{end_yr-1}
 assessment.
 The increase appears to be due to the addition of 2022 fishery age-composition data, which suggests
 the 2020 cohort may be larger than the age-1 index alone was indicating in the last assessment.
@@ -436,7 +436,7 @@ larger than 2016 but smaller than 2010. % prob.percent.2014.rec.gt.2010.rec
 With the inclusion of the relative age-1 index, there is information beyond just fishery encounters in
 the data to estimate the size of the 2020 year class. Collectively, these data
 indicate that the 2020 year class is likely well above average. The much smaller 2019 year class is
-informed by the \Sexpr{last.survey.year} biomass index and fishery data but
+informed by the \Sexpr{last_survey_yr} biomass index and fishery data but
 is not informed by the relative age-1 index,
 and the 2021 year class is informed only by 2022 fishery data.
 There is no information in the data to estimate the sizes of the

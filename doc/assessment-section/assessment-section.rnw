@@ -116,7 +116,7 @@ fishery data
 into the base model.
 
 The \Sexpr{assess_yr} base model includes a time series (1995 to
-\Sexpr{last.survey.year}) of acoustic age-2$+$ biomass
+\Sexpr{last_survey_yr}) of acoustic age-2$+$ biomass
 estimates and acoustic estimates of age-1 fish (see
 Section~\ref{sec:data-acoustic-survey} for more details on the age-1 index).
 Maturity is assumed to be time-invariant and the
@@ -732,7 +732,7 @@ acoustic survey biomass index (Figure~\ref{fig:main-mcmc-survey-fit})
 remains similar to the \Sexpr{last_assess_yr} base model, which is not surprising
 given no new survey information is available for this assessment.
 For the \Sexpr{last_assess_yr} base model the \Sexpr{survey_end_yr} survey biomass estimate resulted in a slight upward shift
-in the fit to the \Sexpr{penult.survey.year}
+in the fit to the \Sexpr{penult_survey_yr}
 survey data points, but the result of a relatively stable biomass trend from 2013--2019
 remained unchanged from the previous assessment.
 At the time, the addition of the 2021 fishery data
@@ -810,7 +810,7 @@ the 2014 cohort.
 The \Sexpr{survey_end_yr} survey was the first to sample the
 \Sexpr{survey_end_yr-2} cohort, confirming that
 it
-was not large (\Sexpr{survey.a2.prop}\% of the \Sexpr{survey_end_yr} survey catch).
+was not large (\Sexpr{survey_a2_prop}\% of the \Sexpr{survey_end_yr} survey catch).
 The 2020 cohort, which has been observed twice by the fishery, once by the age-1 index, but
 not the acoustic survey is currently expected to be above average in size. Residual
 patterns to the fishery and survey age data do not show patterns that would
@@ -916,23 +916,23 @@ the recent declining trend in catch.
 
 The median estimate of the \Sexpr{end_yr} relative spawning biomass (spawning
 biomass at the start of \Sexpr{end_yr} divided by that at unfished equilibrium,
-$B_0$) is \Sexpr{curr.depl.median}\%. However, the uncertainty
+$B_0$) is \Sexpr{curr_depl_median}\%. However, the uncertainty
 is large, with a 95\%
-posterior credibility interval from \Sexpr{curr.depl.lower}\% to
-\Sexpr{curr.depl.upper}\% (Tables~\ref{tab:main-median-posterior} and
+posterior credibility interval from \Sexpr{curr_depl_lower}\% to
+\Sexpr{curr_depl_upper}\% (Tables~\ref{tab:main-median-posterior} and
 \ref{tab:main-ci-posterior}), due to remaining unknowns about the size
 of the 2020 cohort because the
 acoustic survey only provided one year of age-1 information,
 which is more uncertain than the 2+ estimate.
 
 The median estimate of
-the \Sexpr{end_yr} female spawning biomass is \Sexpr{curr.bio.median}~million~t (with a
-95\% posterior credibility interval from \Sexpr{curr.bio.lower} to
-\Sexpr{curr.bio.upper}~million~t). The current estimate of the \Sexpr{end_yr-1} female
-spawning biomass is \Sexpr{prev.bio.median}
-(\Sexpr{prev.bio.lower}--\Sexpr{prev.bio.upper})~million~t. This is a somewhat higher
-median and broader credibility interval than the \Sexpr{prev.bio.median.last.assess}
-(\Sexpr{prev.bio.lower.last.assess}--\Sexpr{prev.bio.upper.last.assess})~million~t estimated
+the \Sexpr{end_yr} female spawning biomass is \Sexpr{curr_bio_median}~million~t (with a
+95\% posterior credibility interval from \Sexpr{curr_bio_lower} to
+\Sexpr{curr_bio_upper}~million~t). The current estimate of the \Sexpr{end_yr-1} female
+spawning biomass is \Sexpr{prev_bio_median}
+(\Sexpr{prev_bio_lower}--\Sexpr{prev_bio_upper})~million~t. This is a somewhat higher
+median and broader credibility interval than the \Sexpr{prev_bio_median_last_assess}
+(\Sexpr{prev_bio_lower_last_assess}--\Sexpr{prev_bio_upper_last_assess})~million~t estimated
 in the \Sexpr{end_yr-1} assessment, but there is considerable overlap of the credibility
 intervals.
 The increase appears to be due to the addition of 2022 fishery age composition data, which suggests
@@ -1010,7 +1010,7 @@ average 2012 and 2017 year class.
 With the addition of the age-1 index, there is information beyond just fishery encounters in
 the data to estimate the size of the 2020 year class. Collectively, these data
 indicate that the 2020 year class is likely well above average. The much smaller 2019 year class is
-informed by the \Sexpr{last.survey.year} biomass index and fishery data, but has no age-1 index,
+informed by the \Sexpr{last_survey_yr} biomass index and fishery data, but has no age-1 index,
 and the 2021 year class is only informed by fishery data.
 There is no information in the data to estimate the sizes of the
 \Sexpr{end_yr-1} and \Sexpr{end_yr} year classes. Retrospective analyses of year
@@ -1306,7 +1306,7 @@ For completeness, we note that P$(B_{\Sexpr{assess_yr}} > \Bmsy) = \Sexpr{f(dfo.
 Reference levels of stock status that are used by the U.S. Pacific Fisheries Management
 Council (PFMC) for \fishname\ include $\Bforty$ and a Minimum Stock Size
 Threshold (MSST) of $\Btwentyfive$. For \Sexpr{min(forecast_yrs)}, the estimated
-posterior median relative spawning biomass is \Sexpr{curr.depl.median}\%, such
+posterior median relative spawning biomass is \Sexpr{curr_depl_median}\%, such
 that the female spawning biomass is well above $\Bforty$ and $\Btwentyfive$.
 The probability that female spawning biomass at the beginning of \Sexpr{assess_yr}
 is above $\Bforty$ is

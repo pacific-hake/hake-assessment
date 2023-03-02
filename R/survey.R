@@ -236,7 +236,7 @@ make.survey.age1.plot <- function(model,
          bty = "o")
 }
 
-make.survey.biomass.extrap.plot <- function(dat){
+make.survey_biomass.extrap.plot <- function(dat){
   ## dat - data.frame of different indices
   ## show - vector of which values to show
   oldpar <- par("mar", "las", "cex.axis")

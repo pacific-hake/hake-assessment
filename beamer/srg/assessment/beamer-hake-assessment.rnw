@@ -634,10 +634,10 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
            \Sexpr{f(last_yr_base_model$mcmccalcs$smed[names(last_yr_base_model$mcmccalcs$smed) == assess_yr - 1], 3)} &
            \Sexpr{f(last_yr_base_model$mcmccalcs$supper[names(last_yr_base_model$mcmccalcs$supper) == assess_yr - 1], 3)} \\
          \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr-1}}$ &
-           \Sexpr{prev.bio.lower} & \Sexpr{prev.bio.median} &
-           \Sexpr{prev.bio.upper} \\
-         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr}}$ & \Sexpr{curr.bio.lower} &
-           \Sexpr{curr.bio.median} & \Sexpr{curr.bio.upper} \\
+           \Sexpr{prev_bio_lower} & \Sexpr{prev_bio_median} &
+           \Sexpr{prev_bio_upper} \\
+         \Sexpr{assess_yr} assessment $B_{\Sexpr{end_yr}}$ & \Sexpr{curr_bio_lower} &
+           \Sexpr{curr_bio_median} & \Sexpr{curr_bio_upper} \\
          \hline
          \end{tabular}
          \end{table}
@@ -923,11 +923,11 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
        \bi
        \item Assessment model continues to fit the age data particularly well
        \item The median estimate of \Sexpr{end_yr} relative spawning biomass is
-             \Sexpr{curr.depl.median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr.depl.lower}\% to
-             \Sexpr{curr.depl.upper}\%)
+             \Sexpr{curr_depl_median}\% but is highly uncertain (with 95\% interval from \Sexpr{curr_depl_lower}\% to
+             \Sexpr{curr_depl_upper}\%)
        \item The median estimate of \Sexpr{end_yr} female spawning biomass is
-             \Sexpr{curr.bio.median}~million~t
-             (\Sexpr{curr.bio.lower}-\Sexpr{curr.bio.upper}~million~t)
+             \Sexpr{curr_bio_median}~million~t
+             (\Sexpr{curr_bio_lower}-\Sexpr{curr_bio_upper}~million~t)
        \item Recruitment in 2020 is estimated to be well above average, but remains highly uncertain
              translating to uncertain female spawning biomass in 2023 (and beyond)
        \ei

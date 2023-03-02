@@ -186,5 +186,4 @@ out_est_eaa_file <- "estimated-exploitation-at-age.csv"
 out_est_caa_file <- "estimated-catch-at-age.csv"
 out_est_caa_bio_file <- "estimated-catch-at-age-biomass.csv"
 out_est_baa_file <- "estimated-biomass-at-age.csv"
-browser()
 @

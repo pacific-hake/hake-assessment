@@ -117,8 +117,8 @@ fore.names <- cmodels.names <- sapply(base_model$catch.levels, "[[", 2)[fore.ind
   \frametitle{Overview of stock assessment}
   \bi
     \item The median estimate of \Sexpr{end_yr} relative spawning biomass is
-      \Sexpr{curr.depl.median}\% \\
-      (with 95\% interval from \Sexpr{curr.depl.lower}\% to \Sexpr{curr.depl.upper}\%)
+      \Sexpr{curr_depl_median}\% \\
+      (with 95\% interval from \Sexpr{curr_depl_lower}\% to \Sexpr{curr_depl_upper}\%)
     \item Large 2010, 2014, and 2016 cohorts continue to make up large fraction of catches
     \item 2017 cohort estimated to be average
     \item 2018 cohort estimated to be below average

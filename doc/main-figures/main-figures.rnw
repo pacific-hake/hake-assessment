@@ -187,7 +187,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 2)
 \begin{figure}[H]
 \begin{center}
 <<main-survey-extrap-biomass, fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey biomass estimate has decreased from 2019 to 2021.">>=
-make.survey.biomass.extrap.plot(
+make.survey_biomass.extrap.plot(
   dplyr::filter(base_model[["dat"]][["CPUE"]], index == 2)
 )
 @

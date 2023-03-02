@@ -209,7 +209,7 @@ to avoid and reduce bycatch of salmon and rockfish.
 
 Canadian groundfish managers distribute their portion of the coast-wide TAC as quota to
 individual license holders. In \Sexpr{last_data_yr}, Canadian hake fishermen
-were allocated a TAC of \Sexpr{last.year.can.tac}~t, which did not include any carryover
+were allocated a TAC of \Sexpr{last_yr_can_tac}~t, which did not include any carryover
 quota.
 %of which included
 %\Sexpr{last_yr_can_carryover}~t of uncaught carryover fish from
@@ -219,7 +219,7 @@ when there is determined to be an excess of fish for which there is not enough
 domestic processing capacity, fisheries managers give consideration to a
 Joint-Venture fishery in which foreign processor vessels are allowed to accept
 codends from Canadian catcher vessels while at sea.
-The last year a Joint-Venture fishery was conducted was in \Sexpr{latest.year.can.jv}.
+The last year a Joint-Venture fishery was conducted was in \Sexpr{latest_yr_can_jv}.
 
 In \Sexpr{last_data_yr}, all Canadian \fishname\ trips were subject to 100\%
 observer coverage, by electronic monitoring for both the shoreside component
@@ -273,7 +273,7 @@ The total economic impacts of the \fishname\ fishery on the U.S. West Coast in
 The Joint Management Committee (JMC) determined an adjusted (for carryovers)
 coast-wide TAC of \Sexpr{last_yr_tac}~t for \Sexpr{last_data_yr}. The U.S.
 catch target was set at \Sexpr{last_yr_us_tac}~t and the Canadian catch target
-at \Sexpr{last.year.can.tac}~t. The historical catch of \fishname\ for
+at \Sexpr{last_yr_can_tac}~t. The historical catch of \fishname\ for
 \Sexpr{start_yr}--\Sexpr{last_data_yr} by nation and fishery sector is shown in
 Tables~\ref{tab:intro-catches-US}--\ref{tab:main-landings-tac} and
 Figure~\ref{fig:main-catches}. Table~\ref{tab:main-landings-tac} also shows
@@ -382,9 +382,9 @@ Appendix~\ref{chap:us-fishery-report} for more details).
 
 % Manual done 2023 KFJ
 The \Sexpr{last_data_yr} Canadian \fishname\ domestic fishery removed
-\Sexpr{last.year.can.landings}~t from Canadian waters
+\Sexpr{last_yr_can_landings}~t from Canadian waters
 (Table~\ref{tab:intro-catches-Can}), which was \Sexpr{last_yr_can_attained}\%
-of the Canadian TAC of \Sexpr{last.year.can.tac}~t. The attainment for Canada
+of the Canadian TAC of \Sexpr{last_yr_can_tac}~t. The attainment for Canada
 was much lower than usual, due to the fishing vessels having a difficult
 time finding fish in Canadian waters (see
 Appendix~\ref{chap:canada-fishery-report} for more details).

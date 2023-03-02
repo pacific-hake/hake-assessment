@@ -27,7 +27,7 @@ Fishery-dependent and fishery-independent data used in this assessment
   Figures~\ref{fig:main-age-comp-bubbles} and~\ref{fig:main-survey-extrap-biomass}).
 
 \item The relative age-1 index (billions of age-1 fish) derived from the \surveyname\
-  (\Sexpr{stringr::str_flatten_comma(survey.age1.years)};
+  (\Sexpr{stringr::str_flatten_comma(survey_age1_yrs)};
   Table~\ref{tab:main-survey-history}; Figure~\ref{fig:main-age-one-index}).
 
 \item Mean observed weight-at-age data from fishery and survey catches
@@ -66,7 +66,7 @@ available only by year from \citet{BaileyFrancisEtAl1982} and historical
 assessment documents. Canadian catches prior to 1989 are also unavailable in
 disaggregated form. The U.S. shore-based landings are
 from the Pacific Fishery Information Network (PacFIN) database. Foreign and Joint-Venture
-catches for 1981--\Sexpr{terminal.year.us.jvforeign} and U.S. domestic at-sea catches for
+catches for 1981--\Sexpr{terminal_yr_us_jv_foreign} and U.S. domestic at-sea catches for
 1991--\Sexpr{last_data_yr} are
 calculated from the Alaska Fisheries Science Center's North Pacific Groundfish and Halibut Observer (NORPAC) database,
 which also stores data from the At-Sea Hake Observer Program.
@@ -121,8 +121,8 @@ The Makah Tribe is also working on providing historical catches such that shore-
 Biological information from the U.S. at-sea fishery was
 extracted from the NORPAC database. This included sex, length, weight, and age
 information from the foreign and Joint-Venture fisheries from
-1975--\Sexpr{terminal.year.us.jvforeign} and
-from the domestic at-sea fishery since \Sexpr{first.year.us.atsea}.
+1975--\Sexpr{terminal_yr_us_jv_foreign} and
+from the domestic at-sea fishery since \Sexpr{first_yr_us_atsea}.
 Observers collect data by selecting fish randomly from each haul.
 The number of otoliths collected per haul has varied over time but is
 currently three fish every third haul.
@@ -345,13 +345,13 @@ Estimates of country-specific age-2$+$ biomass are also provided
 Estimated age-2$+$ biomass in the survey increased steadily over the four
 surveys conducted in 2011-2013 and 2015 (Table~\ref{tab:main-survey-history} and
 Figure~\ref{fig:main-survey-extrap-biomass}). It decreased in 2017
-to \Sexpr{f(survey.biomass["2017"], 2)}~million~t and then increased to
-1.72 million~t in 2019 before decreasing again to \Sexpr{last.survey.year.biomass}~million~t in \Sexpr{last.survey.year}.
+to \Sexpr{f(survey_biomass["2017"], 2)}~million~t and then increased to
+1.72 million~t in 2019 before decreasing again to \Sexpr{last_survey_yr_biomass}~million~t in \Sexpr{last_survey_yr}.
 % Manual 2022 KFJ: add new survey
-The \Sexpr{last.survey.year} survey age composition was made up of
-\Sexpr{combine_words(paste0(f(survey.last.year.age[1:5]*100), "\\%"))}
+The \Sexpr{last_survey_yr} survey age composition was made up of
+\Sexpr{combine_words(paste0(f(survey_last_yr_age[1:5]*100), "\\%"))}
 from the
-\Sexpr{combine_words(last.survey.year-type.convert(as.is=TRUE,names(survey.last.year.age[1:5])))}
+\Sexpr{combine_words(last_survey_yr-type.convert(as.is=TRUE,names(survey_last_yr_age[1:5])))}
 year classes, respectively.
 Note that the estimate of biomass does not include age-1 fish and
 the age compositions used to estimate selectivity of the survey also exclude

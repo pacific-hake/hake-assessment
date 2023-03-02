@@ -5,12 +5,12 @@
 \title{Calculate the probabilities of being under several reference points from
 one forecast year to the next}
 \usage{
-calc_risk(forecast_outputs = NA, catch_levels, ...)
+calc_risk(forecast_outputs = NA, ct_levels, ...)
 }
 \arguments{
 \item{forecast_outputs}{A list as output by \code{\link[=fetch_forecasts]{fetch_forecasts()}}}
 
-\item{catch_levels}{A list of catch levels which are represented by lists
+\item{ct_levels}{A list of catch levels which are represented by lists
 of length 3}
 
 \item{...}{Absorb arguments intended for other functions}

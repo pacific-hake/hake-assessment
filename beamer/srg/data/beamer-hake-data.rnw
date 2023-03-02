@@ -105,7 +105,7 @@ if(!dir.exists(fig_dir)){
         \item Age-\Sexpr{max.shoreside.age.prop.age} fish in Canadian shoreside sector.
       \ei
   \ifodd \Sexpr{last_data_yr}
-    {\item \Sexpr{last.survey.year} acoustic survey biomass estimate was \Sexpr{last.survey.year.biomass} million tons (\Sexpr{(type.convert(as.is = TRUE, last.factor.penult))*100}\% of \Sexpr{penult.survey.year}).}
+    {\item \Sexpr{last_survey_yr} acoustic survey biomass estimate was \Sexpr{last_survey_yr_biomass} million tons (\Sexpr{(type.convert(as.is = TRUE, last_factor_penult))*100}\% of \Sexpr{penult_survey_yr}).}
   \else
     {\item No survey was performed in \Sexpr{last_assess_yr}.}
   \fi
@@ -171,11 +171,11 @@ if(!dir.exists(fig_dir)){
   \begin{columns}
     \begin{column}[t]{0.5\linewidth}
     \center{\textbf{\textcolor{blue}{Canada}}} \\
-    \center{\textbf{TAC was \Sexpr{last.year.can.tac} t}} \\
+    \center{\textbf{TAC was \Sexpr{last_yr_can_tac} t}} \\
     \bi
       \item TAC includes \Sexpr{last_yr_can_carryover} t of carryover
-      \item Freezer Trawlers and Shoreside -- \Sexpr{last.year.can.shoreside.tac} t
-      \item Joint Venture                  -- \Sexpr{last.year.can.tac.jv} t
+      \item Freezer Trawlers and Shoreside -- \Sexpr{last_yr_can_shoreside_tac} t
+      \item Joint Venture                  -- \Sexpr{last_yr_can_tac.jv} t
     \ei
   \end{column}
     \begin{column}[t]{0.5\linewidth}
@@ -198,12 +198,12 @@ if(!dir.exists(fig_dir)){
   \begin{columns}
     \begin{column}[t]{0.5\linewidth}
       \center{\textbf{\textcolor{blue}{Canada}}} \\
-    \center{\textbf{TAC was \Sexpr{last.year.can.tac} t}} \\
-\Sexpr{last.year.can.landings} t, \Sexpr{paste0(last_yr_can_attained, "\\%")} of the Canadian TAC
+    \center{\textbf{TAC was \Sexpr{last_yr_can_tac} t}} \\
+\Sexpr{last_yr_can_landings} t, \Sexpr{paste0(last_yr_can_attained, "\\%")} of the Canadian TAC
         \bi
-          \item Freezer Trawlers -- \Sexpr{last.year.can.freezer} t, \Sexpr{paste0(last.year.can.freezer.percent, "\\%")} of Canadian catch
-          \item Shoreside        -- \Sexpr{last.year.can.shore} t, \Sexpr{paste0(last.year.can.shore.percent, "\\%")} of Canadian catch
-          \item Joint Venture    -- \Sexpr{last.year.can.jv} t, \Sexpr{paste0(last.year.can.jv.percent, "\\%")} of Canadian catch
+          \item Freezer Trawlers -- \Sexpr{last.year.can.freezer} t, \Sexpr{paste0(last_yr_can_freezer_percent, "\\%")} of Canadian catch
+          \item Shoreside        -- \Sexpr{last.year.can.shore} t, \Sexpr{paste0(last_yr_can_shore_percent, "\\%")} of Canadian catch
+          \item Joint Venture    -- \Sexpr{last.year.can.jv} t, \Sexpr{paste0(last_yr_can_jv_percent, "\\%")} of Canadian catch
         \ei
     \end{column}
     \begin{column}[t]{0.5\linewidth}
@@ -403,7 +403,7 @@ if(!dir.exists(fig_dir)){
    \begin{figure}
 \centering
   <<survey-compare-extrap-noextrap, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-    make.survey.biomass.extrap.plot(
+    make.survey_biomass.extrap.plot(
       dplyr::filter(base_model[["dat"]][["CPUE"]], index == 2)
     )
   @

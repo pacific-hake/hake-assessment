@@ -6,7 +6,7 @@
 \usage{
 fetch_forecasts(
   forecasts_path = NULL,
-  my_catch_levels = NULL,
+  my_ct_levels = NULL,
   forecast_yrs = NULL,
   ...
 )
@@ -14,7 +14,7 @@ fetch_forecasts(
 \arguments{
 \item{forecasts_path}{Path of the forecasts}
 
-\item{my_catch_levels}{The table of catch levels with same structure as
+\item{my_ct_levels}{The table of catch levels with same structure as
 found in \code{forecast-catch-levels.R}}
 
 \item{forecast_yrs}{A vector of the forecast years}

@@ -24,7 +24,7 @@
     (\Sexpr{ct |> tail(10) |> pull(tot_catch) |> mean() |> f()}~t),
     out of a total allowable catch (TAC), adjusted for carryovers, of \Sexpr{last_yr_tac}~t.
     The U.S. caught \Sexpr{last_yr_us_landings}~t (\Sexpr{last_yr_us_attained}\%
-    of their quota) and Canada caught \Sexpr{last.year.can.landings}~t
+    of their quota) and Canada caught \Sexpr{last_yr_can_landings}~t
     (\Sexpr{last_yr_can_attained}\% of their quota).
 %Attainment in the U.S. was \Sexpr{last_yr_us_attained}\% of its quota
 %(\Sexpr{paste0(ifelse(last_2yr_us_attained_diff < 0, "down", "up"))}~\Sexpr{abs(as.numeric(last_2yr_us_attained_diff))}\%
@@ -38,9 +38,9 @@
 
   \item The median estimate of the \Sexpr{end_yr} relative spawning biomass
     (female spawning biomass at the start of \Sexpr{end_yr} divided by that at
-    unfished equilibrium, $B_0$) is \Sexpr{curr.depl.median}\% but is highly
-    uncertain (with 95\% credible interval from \Sexpr{curr.depl.lower}\% to
-    \Sexpr{curr.depl.upper}\%). The median relative spawning biomass
+    unfished equilibrium, $B_0$) is \Sexpr{curr_depl_median}\% but is highly
+    uncertain (with 95\% credible interval from \Sexpr{curr_depl_lower}\% to
+    \Sexpr{curr_depl_upper}\%). The median relative spawning biomass
     has increased since 2021, due to the estimated above average
     2020 cohort entering maturity. The large,
     but uncertain, size of the 2020 cohort is based on the 2021 age-1 index estimate and
@@ -51,12 +51,12 @@
 %  2021 assessment's value (which we kind of do in the Exec Summary).
 
   \item The median estimate of female spawning biomass at the start
-    of \Sexpr{end_yr} is \Sexpr{curr.bio.median.tonnes}~t (with 95\% credible
-    interval from \Sexpr{curr.bio.lower.tonnes} to \Sexpr{curr.bio.upper.tonnes}~t).
-    This is \Sexpr{diff.bio.median.last.curr}\% \Sexpr{diff.bio.median.last.curr.text}
+    of \Sexpr{end_yr} is \Sexpr{curr_bio_median_tonnes}~t (with 95\% credible
+    interval from \Sexpr{curr_bio_lower_tonnes} to \Sexpr{curr_bio_upper_tonnes}~t).
+    This is \Sexpr{diff_bio_median_last_curr}\% \Sexpr{diff_bio_median_last_curr_text}
     this assessment's median estimate for the \Sexpr{end_yr-1} female spawning
-    biomass of \Sexpr{prev.bio.median.tonnes}~t (with 95\% credible interval
-    \Sexpr{prev.bio.lower.tonnes}--\Sexpr{prev.bio.upper.tonnes}~t).
+    biomass of \Sexpr{prev_bio_median_tonnes}~t (with 95\% credible interval
+    \Sexpr{prev_bio_lower_tonnes}--\Sexpr{prev_bio_upper_tonnes}~t).
 
 %  \item The estimated joint probability of being both
 %    above the target relative fishing intensity in \Sexpr{end_yr-1}
@@ -82,17 +82,17 @@
    coast-wide TAC of
    \Sexpr{last_yr_tac}~t show the estimated median relative spawning biomass
    decreasing from
-   \Sexpr{last.yr.tac.fore.1.biomass}\% in \Sexpr{end_yr} to
-   \Sexpr{last.yr.tac.fore.2.biomass}\% in \Sexpr{end_yr+1} to
-   \Sexpr{last.yr.tac.fore.3.biomass}\% in
+   \Sexpr{last_yr_tac_fore_1_biomass}\% in \Sexpr{end_yr} to
+   \Sexpr{last_yr_tac_fore_2_biomass}\% in \Sexpr{end_yr+1} to
+   \Sexpr{last_yr_tac_fore_3_biomass}\% in
    \Sexpr{end_yr+2},
    % (due to natural mortality likely
    % outpacing growth of the expected large 2020 cohort),
-   with a \Sexpr{last.yr.tac.risk.2.bforty}\% chance
+   with a \Sexpr{last_yr_tac_risk_2_bforty}\% chance
    of the female spawning biomass falling below $\Bforty$ in \Sexpr{end_yr+2}. There is an
-   estimated \Sexpr{last.yr.tac.risk.1.biomass.decline}\% chance of the female spawning biomass declining from \Sexpr{end_yr} to
+   estimated \Sexpr{last_yr_tac_risk_1_biomass_decline}\% chance of the female spawning biomass declining from \Sexpr{end_yr} to
    \Sexpr{end_yr+1}, and an
-   \Sexpr{last.yr.tac.risk.2.biomass.decline}\% chance of it declining from \Sexpr{end_yr+1} to
+   \Sexpr{last_yr_tac_risk_2_biomass_decline}\% chance of it declining from \Sexpr{end_yr+1} to
    \Sexpr{end_yr+2}
 % , and a \Sexpr{last.yr.tac.risk.3.biomass.decline}\% chance of it declining
 % from \Sexpr{end_yr+2} to \Sexpr{end_yr+3}

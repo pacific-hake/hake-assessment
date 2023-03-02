@@ -210,7 +210,7 @@ catcher_processor_ct <- ((ct_last1 |>
                            (last_yr_us_cp_quota_reallocated) * 100) |>
   f(1)
 mothership_ct <- ((ct_last1 |>
-                     pull(us_ms_xx)pull) /
+                     pull(us_ms_xx)) /
                     (last_yr_us_ms_quota_reallocated) * 100) |>
   f(1)
 shore_based_ct <- ((ct_last1 |>
@@ -249,7 +249,7 @@ last_yr_us_shore_ct_percent <- f(last_yr_us_shore_ct /
 # ... Canada Attainment, catch, and TAC ---------------------------------------
 last_yr_can_carryover <- ft |>
   filter(Year == last_data_yr) |>
-  pull(can.carried.over) |>
+  pull(can_carried_over) |>
   f(0)
 last_yr_can_attained <- ct_last1 |>
   pull(can_attain) |>
@@ -259,166 +259,174 @@ last_2yr_can_attained_diff <- ((ct_last1 |>
                                  (ct_secondlast |>
                                     pull(can_attain))) |>
   f(1)
-last.year.can.landings <- ct_last1 |>
+last_yr_can_landings <- ct_last1 |>
   pull(can_catch) |>
   f(0)
-last.year.can.tac <- ct_last1 |>
-  pull(can_tac) f(0)
-last.year.can.tac.jv <- ft |>
-  filter(Year == last_data_yr) |>
-  pull(can.jv.tac) |>
+last_yr_can_tac <- ct_last1 |>
+  pull(can_tac) |>
   f(0)
-last.year.can.shoreside.tac <- ((ct_last1 |>
+last_yr_can_tac.jv <- ft |>
+  filter(Year == last_data_yr) |>
+  pull(can_jv_tac) |>
+  f(0)
+last_yr_can_shoreside_tac <- ((ct_last1 |>
                                    pull(can_tac)) -
                                   (ft |>
                                      filter(Year == last_data_yr) |>
-                                     pull(can.jv.tac))) |>
+                                     pull(can_jv_tac))) |>
   f(0)
-latest.year.can.jv <- ct |>
+latest_yr_can_jv <- ct |>
   filter(can_jv_xx > 0) |>
   pull(year) |>
   max()
-last.year.can.shore <- ct_last1 %>% pull(can_shore_xx) %>% f(0)
-last.year.can.freezer <- ct_last1 %>% pull(can_freeze_xx) %>% f(0)
-last.year.can.jv <- ct_last1 %>% pull(can_jv_xx) %>% f(0)
-last.year.can.shore.percent <- ((ct_last1 %>% pull(can_shore_xx)) /
-                                  (ct_last1 %>% pull(can_catch)) * 100) %>% f(1)
-last.year.can.freezer.percent <- ((ct_last1 %>% pull(can_freeze_xx)) /
-                                    (ct_last1 %>% pull(can_catch)) * 100) %>% f(1)
-last.year.can.jv.percent <- ((ct_last1 %>% select(can_jv_xx) %>% pull) /
-                               (ct_last1 %>% select(can_catch) %>% pull) * 100) %>% f(1)
+last.year.can.shore <- ct_last1 |>
+  pull(can_shore_xx) |>
+  f(0)
+last.year.can.freezer <- ct_last1 |>
+  pull(can_freeze_xx) |>
+  f(0)
+last.year.can.jv <- ct_last1 |>
+  pull(can_jv_xx) |>
+  f(0)
+last_yr_can_shore_percent <- ((ct_last1 |>
+                                 pull(can_shore_xx)) /
+                                (ct_last1 |>
+                                   pull(can_catch)) * 100) |>
+  f(1)
+last_yr_can_freezer_percent <- ((ct_last1 |>
+                                   pull(can_freeze_xx)) /
+                                  (ct_last1 |>
+                                     pull(can_catch)) * 100) |>
+  f(1)
+last_yr_can_jv_percent <- ((ct_last1 |>
+                              pull(can_jv_xx)) /
+                             (ct_last1 |>
+                                pull(can_catch)) * 100) |>
+  f(1)
 # Years since 2000 (including 2000) that JV catch has been zero
-ch.eq.0.recent <- ct %>% filter(year > 1999) %>% select(year, can_jv_xx) %>% filter(can_jv_xx == 0) %>% nrow
-terminal.year.us.jvforeign <- ct %>% select(year, matches("us_[fj]")) %>%
-  rowwise() %>% mutate(sumV = sum(c_across(matches("us")))) %>% filter(sumV > 0) %>% select(year) %>% max
-first.year.us.atsea <- ct %>% select(year, matches("us_cp|us_ms")) %>%
-  rowwise() %>% mutate(sumV = sum(c_across(matches("us")))) %>% filter(sumV > 0) %>% select(year) %>% min
-
-# Survey values ---------------------------------------------------------------
-survey.biomass <- base_model[["dat"]][["CPUE"]] %>%
-  filter(index == 2) %>%
-  pull(var = obs, name = year) / 1e6
-
-survey.comps <- base_model$dat$agecomp[base_model$dat$agecomp$FltSvy == 2, ]
-rownames(survey.comps) <- survey.comps$Yr
-survey.last.year <- survey.comps[nrow(survey.comps),]
-survey.last.year.age <- sort(decreasing = TRUE, round(unlist(prop.table(
-  survey.last.year[grep("^a", colnames(survey.last.year))])), 4))
-names(survey.last.year.age) <- gsub("^a", "", names(survey.last.year.age))
-survey.1.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[1]))
-survey.1.prop <- f(survey.last.year.age[1] * 100, 1)
-survey.2.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[2]))
-survey.2.prop <- f(survey.last.year.age[2] * 100, 1)
-survey.3.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[3]))
-survey.3.prop <- f(survey.last.year.age[3] * 100, 1)
-survey.4.prop.age <- as.numeric(gsub("^a", "", names(survey.last.year.age)[4]))
-survey.4.prop <- f(survey.last.year.age[4] * 100, 1)
-survey.a2.prop <- f(survey.last.year["a2"], 1)
-last.survey.year <- max(as.numeric(names(survey.biomass)))
-# Millions of tonnes
-last.survey.year.biomass <- f(
-  base_model[["dat"]][["CPUE"]] %>%
-    filter(index == 2, year == max(year)) %>%
-    pull(var = obs) / 1e6,
-  dec.points = 2
-)
-penult.survey.year <- base_model[["dat"]][["CPUE"]] %>%
-  filter(index == 2) %>%
-  mutate(rank = rank(year * -1, ties.method = "first")) %>%
-  filter(rank == 2) %>%
+terminal_yr_us_jv_foreign <- ct |>
+  filter(us_foreign_xx > 0 | us_jv_xx > 0) %>%
+  slice(nrow(.)) |>
+  pull(year)
+first_yr_us_atsea <- ct |>
+  filter(us_cp_xx > 0 | us_ms_xx > 0) |>
+  slice(1) |>
   pull(year)
 
+# Survey values ---------------------------------------------------------------
+survey_biomass <- base_model$dat$CPUE |>
+  filter(index == 2) |>
+  pull(var = obs, name = year) / 1e6
+
+survey_comps <- base_model$dat$agecomp |>
+  filter(FltSvy == 2)
+rownames(survey_comps) <- survey_comps$Yr
+
+survey_last_yr <- survey_comps %>%
+  slice(nrow(.))
+
+survey_last_yr_age <- survey_last_yr |>
+  select(matches("^a", ignore.case = FALSE)) |>
+  unlist(1) |>
+  sort(decreasing = TRUE)
+names(survey_last_yr_age) <- gsub("^a", "", names(survey_last_yr_age))
+
+survey_a2_prop <- f(survey_last_yr_age[names(survey_last_yr_age) == 2], 1)
+last_survey_yr <- max(as.numeric(names(survey_biomass)))
+# Millions of tonnes
+last_survey_yr_biomass <- base_model$dat$CPUE |>
+  filter(index == 2, year == max(year)) |>
+  mutate(obs = obs / 1e6) |>
+  pull(obs) |>
+  f(2)
+penult_survey_yr <- base_model$dat$CPUE |>
+  filter(index == 2) |>
+  pull(year) |>
+  sort() %>%
+  `[`(length(.) - 1)
+
 # How many times higher is the last survey than the one before it?
-last.factor.penult <- f(
-  base_model[["dat"]][["CPUE"]] %>%
-    filter(index == 2) %>%
-    mutate(new = obs / lag(obs)) %>%
-    filter(year %in% c(last.survey.year)) %>%
-    pull(new),
-  1
-)
+last_factor_penult <- base_model$dat$CPUE |>
+  filter(index == 2) |>
+  mutate(new = obs / lag(obs)) |>
+  filter(year %in% c(last_survey_yr)) |>
+  pull(new) |>
+  f(1)
 
 # Age-1 survey
-survey.age1.years <- base_model$dat$CPUE[base_model$dat$CPUE$index == 3, "year"]
-
+survey_age1_yrs <- base_model$dat$CPUE |>
+  filter(index == 3) |>
+  pull(year)
 # Spawning Biomass and Depletion estimates ------------------------------------
-curr.depl.lower <- f(mc$dlower[names(mc$dlower) %in% end_yr] * 100, 0)
-curr.depl.median <- f(mc$dmed[names(mc$dmed) %in% end_yr] * 100, 0)
-curr.depl.upper <- f(mc$dupper[names(mc$dupper) %in% end_yr] * 100, 0)
+curr_depl_lower <- f(mc$dlower[names(mc$dlower) == end_yr] * 100, 0)
+curr_depl_median <- f(mc$dmed[names(mc$dmed) == end_yr] * 100, 0)
+curr_depl_upper <- f(mc$dupper[names(mc$dupper) == end_yr] * 100, 0)
 # These are millions of tons:
-curr.bio.lower <- f(mc$slower[names(mc$slower) %in% end_yr], 3)
-curr.bio.median <- f(mc$smed[names(mc$smed) %in% end_yr], 3)
-curr.bio.upper <- f(mc$supper[names(mc$supper) %in% end_yr], 3)
+curr_bio_lower <- f(mc$slower[names(mc$slower) == end_yr], 3)
+curr_bio_median <- f(mc$smed[names(mc$smed) == end_yr], 3)
+curr_bio_upper <- f(mc$supper[names(mc$supper) == end_yr], 3)
 # These are metric tonnes:
-curr.bio.lower.tonnes <- f(mc$slower[names(mc$slower) %in% end_yr] * 1e6, 0)
-curr.bio.median.tonnes <- f(mc$smed[names(mc$smed) %in% end_yr] * 1e6, 0)
-curr.bio.upper.tonnes <- f(mc$supper[names(mc$supper) %in% end_yr] * 1e6, 0)
+curr_bio_lower_tonnes <- f(mc$slower[names(mc$slower) == end_yr] * 1e6, 0)
+curr_bio_median_tonnes <- f(mc$smed[names(mc$smed) == end_yr] * 1e6, 0)
+curr_bio_upper_tonnes <- f(mc$supper[names(mc$supper) == end_yr] * 1e6, 0)
 # ... spawning biomass for previous year --------------------------------------
 # (calculated in this assessment) in millions of tonnes and then tonnes
-prev.bio.lower <- f(mc$slower[names(mc$slower) %in% last_data_yr], 3)
-prev.bio.median <- f(mc$smed[names(mc$smed) %in% last_data_yr], 3)
-prev.bio.upper <- f(mc$supper[names(mc$supper) %in% last_data_yr], 3)
-prev.bio.lower.tonnes <- f(mc$slower[names(mc$slower) %in% last_data_yr] * 1e6, 0)
-prev.bio.median.tonnes <- f(mc$smed[names(mc$smed) %in% last_data_yr] * 1e6, 0)
-ratio.bio.median.curr.last <- mc$smed[names(mc$smed) %in% end_yr] / mc$smed[names(mc$smed) %in% last_data_yr]
-if(ratio.bio.median.curr.last > 1){
-  diff.bio.median.last.curr <-
-    f((mc$smed[names(mc$smed) %in% end_yr] /
-                mc$smed[names(mc$smed) %in% last_data_yr] - 1) * 100)
-  diff.bio.median.last.curr.text <- "higher than"
+prev_bio_lower <- f(mc$slower[names(mc$slower) == last_data_yr], 3)
+prev_bio_median <- f(mc$smed[names(mc$smed) == last_data_yr], 3)
+prev_bio_upper <- f(mc$supper[names(mc$supper) == last_data_yr], 3)
+prev_bio_lower_tonnes <- f(mc$slower[names(mc$slower) == last_data_yr] * 1e6, 0)
+prev_bio_median_tonnes <- f(mc$smed[names(mc$smed) == last_data_yr] * 1e6, 0)
+
+ratio_bio_median_curr_last <- mc$smed[names(mc$smed) == end_yr] /
+  mc$smed[names(mc$smed) == last_data_yr]
+if(ratio_bio_median_curr_last > 1){
+  diff_bio_median_last_curr <-
+    f((mc$smed[names(mc$smed) == end_yr] /
+                mc$smed[names(mc$smed) == last_data_yr] - 1) * 100)
+  diff_bio_median_last_curr_text <- "higher than"
 }else{
-  diff.bio.median.last.curr <-
-    f((mc$smed[names(mc$smed) %in% end_yr] /
-         mc$smed[names(mc$smed) %in% last_data_yr]) * 100)
-  diff.bio.median.last.curr.text <- "of"
+  diff_bio_median_last_curr <-
+    f((mc$smed[names(mc$smed) == end_yr] /
+         mc$smed[names(mc$smed) == last_data_yr]) * 100)
+  diff_bio_median_last_curr_text <- "of"
 }
-prev.bio.upper.tonnes <- f(mc$supper[names(mc$supper) %in% last_data_yr] * 1e6, 0)
+prev_bio_upper_tonnes <- f(mc$supper[names(mc$supper) == last_data_yr] * 1e6, 0)
 # ... spawning biomass for previous year (last year's assessment) -------------
-prev.bio.lower.last.assess <- f(last_yr_base_model$mcmccalcs$slower[names(mc$slower) %in% last_data_yr], 3)
-prev.bio.median.last.assess <- f(last_yr_base_model$mcmccalcs$smed[names(mc$smed) %in% last_data_yr], 3)
-prev.bio.upper.last.assess <- f(last_yr_base_model$mcmccalcs$supper[names(mc$supper) %in% last_data_yr], 3)
+prev_bio_lower_last_assess <-
+  f(last_yr_base_model$mcmccalcs$slower[names(mc$slower) == last_data_yr], 3)
+prev_bio_median_last_assess <-
+  f(last_yr_base_model$mcmccalcs$smed[names(mc$smed) == last_data_yr], 3)
+prev_bio_upper_last_assess <-
+  f(last_yr_base_model$mcmccalcs$supper[names(mc$supper) == last_data_yr], 3)
 
 # Forecasting -----------------------------------------------------------------
 # ... first forecast year depletion and spawning biomass estimates ------------
-fore.tac.mcmc.yr1 <- base_model$forecasts[[1]][[ct_tac_ind]]$mcmccalcs
-next.depl.lower.tac.based <- f(fore.tac.mcmc.yr1$dlower[names(fore.tac.mcmc.yr1$dlower) %in% (end_yr + 1)] * 100, 1)
-next.depl.median.tac.based <- f(fore.tac.mcmc.yr1$dmed[names(fore.tac.mcmc.yr1$dmed) %in% (end_yr + 1)] * 100, 1)
-next.depl.upper.tac.based <- f(fore.tac.mcmc.yr1$dupper[names(fore.tac.mcmc.yr1$dupper) %in% (end_yr + 1)] * 100, 1)
-next.bio.lower.tac.based <- f(fore.tac.mcmc.yr1$slower[names(fore.tac.mcmc.yr1$slower) %in% (end_yr + 1)] * 100, 1)
-next.bio.median.tac.based <- f(fore.tac.mcmc.yr1$smed[names(fore.tac.mcmc.yr1$smed) %in% (end_yr + 1)] * 100, 1)
-next.bio.upper.tac.based <- f(fore.tac.mcmc.yr1$supper[names(fore.tac.mcmc.yr1$supper) %in% (end_yr + 1)] * 100, 1)
+fore_tac_mcmc_yr1 <- base_model$forecasts[[1]][[ct_tac_ind]]$mcmccalcs
 # ... second forecast year depletion and spawning biomass estimates -----------
-fore.tac.mcmc.yr2 <- base_model$forecasts[[2]][[ct_tac_ind]]$mcmccalcs
-next2.depl.lower.tac.based <- f(fore.tac.mcmc.yr2$dlower[names(fore.tac.mcmc.yr2$dlower) %in% (end_yr + 2)] * 100, 1)
-next2.depl.median.tac.based <- f(fore.tac.mcmc.yr2$dmed[names(fore.tac.mcmc.yr2$dmed) %in% (end_yr + 2)] * 100, 1)
-next2.depl.upper.tac.based <- f(fore.tac.mcmc.yr2$dupper[names(fore.tac.mcmc.yr2$dupper) %in% (end_yr + 2)] * 100, 1)
-next2.bio.lower.tac.based <- f(fore.tac.mcmc.yr2$slower[names(fore.tac.mcmc.yr2$slower) %in% (end_yr + 2)] * 100, 1)
-next2.bio.median.tac.based <- f(fore.tac.mcmc.yr2$smed[names(fore.tac.mcmc.yr2$smed) %in% (end_yr + 2)] * 100, 1)
-next2.bio.upper.tac.based <- f(fore.tac.mcmc.yr2$supper[names(fore.tac.mcmc.yr2$supper) %in% (end_yr + 2)] * 100, 1)
-
+fore_tac_mcmc_yr2 <- base_model$forecasts[[2]][[ct_tac_ind]]$mcmccalcs
 # Biomass medians for last year's TAC catch level -----------------------------
 endyr_plus_3_fore <- base_model$forecasts[[as.character(end_yr + 3)]]
 endyr_plus_3_fore_tac_catch <- endyr_plus_3_fore[[ct_tac_ind]]$biomass |>
   as_tibble(rownames = "year")
-last.yr.tac.fore.1.biomass <- endyr_plus_3_fore_tac_catch |>
+last_yr_tac_fore_1_biomass <- endyr_plus_3_fore_tac_catch |>
   filter(year == end_yr) |>
+  mutate(`50%` = `50%` * 100) |>
   pull(`50%`)
-last.yr.tac.fore.1.biomass <- f(last.yr.tac.fore.1.biomass * 100)
 
-last.yr.tac.fore.2.biomass <- endyr_plus_3_fore_tac_catch |>
+last_yr_tac_fore_2_biomass <- endyr_plus_3_fore_tac_catch |>
   filter(year == end_yr + 1) |>
+  mutate(`50%` = `50%` * 100) |>
   pull(`50%`)
-last.yr.tac.fore.2.biomass <- f(last.yr.tac.fore.2.biomass * 100)
 
-last.yr.tac.fore.3.biomass <- endyr_plus_3_fore_tac_catch |>
+last_yr_tac_fore_3_biomass <- endyr_plus_3_fore_tac_catch |>
   filter(year == end_yr + 2) |>
+  mutate(`50%` = `50%` * 100) |>
   pull(`50%`)
-last.yr.tac.fore.3.biomass <- f(last.yr.tac.fore.3.biomass * 100)
 
 curr_catch_tac_value <- ct_levels[[ct_tac_ind]][[1]][1]
 catch_col <- sym(paste0("ForeCatch_", end_yr))
 yr_prob_col <- paste0("SSB_", end_yr + 1, "<SSB_", end_yr)
-last.yr.tac.risk.1.biomass.decline <-
+last_yr_tac_risk_1_biomass_decline <-
   base_model$risks[[as.character(end_yr)]] |>
   as_tibble() |>
   filter(!!catch_col == curr_catch_tac_value) |>
@@ -427,7 +435,7 @@ last.yr.tac.risk.1.biomass.decline <-
 
 catch_col <- sym(paste0("ForeCatch_", end_yr + 1))
 yr_prob_col <- paste0("SSB_", end_yr + 2, "<SSB_", end_yr + 1)
-last.yr.tac.risk.2.biomass.decline <-
+last_yr_tac_risk_2_biomass_decline <-
   base_model$risks[[as.character(end_yr + 1)]] |>
   as_tibble() |>
   filter(!!catch_col == curr_catch_tac_value) |>
@@ -435,7 +443,7 @@ last.yr.tac.risk.2.biomass.decline <-
   f()
 
 yr_prob_col <- paste0("Bratio_", end_yr + 2, "<0.40")
-last.yr.tac.risk.2.bforty <-
+last_yr_tac_risk_2_bforty <-
   base_model$risks[[as.character(end_yr + 1)]] |>
   as_tibble() |>
   filter(!!catch_col == curr_catch_tac_value) |>
