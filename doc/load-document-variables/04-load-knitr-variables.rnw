@@ -452,136 +452,200 @@ last_yr_tac_risk_2_bforty <-
 
 catch_col <- sym(paste0("ForeCatch_", end_yr + 2))
 yr_prob_col <- paste0("SSB_", end_yr + 3, "<SSB_", end_yr + 2)
-last.yr.tac.risk.3.biomass.decline <-
+last_yr_tac_risk_3_biomass_decline <-
   base_model$risks[[as.character(end_yr + 2)]] |>
   as_tibble() |>
   filter(!!catch_col == curr_catch_tac_value) |>
   pull(yr_prob_col) |>
   f()
 
-
 # Numbers at age calculations for bubble plot caption -------------------------
-median.nat.no.year <- select(extramc$natage_median, -c("Yr"))
+median_nat_no_yr <- extramc$natage_median |>
+  select(-Yr)
 # Billions of fish
-max.median.nat <- f(max(median.nat.no.year)/1e3, 1)
-year.of.max.median.nat.ind <- which(median.nat.no.year == max(median.nat.no.year), arr.ind = TRUE)[1]
-year.of.max.median.nat <- extramc$natage_median[year.of.max.median.nat.ind, "Yr"]
+max_median_nat <- f(max(median_nat_no_yr) / 1e3, 1)
+yr_of_max_median_nat_ind <- which(median_nat_no_yr == max(median_nat_no_yr))
+yr_of_max_median_nat <- extramc$natage_median[yr_of_max_median_nat_ind, "Yr"]
 
 # Executive Summary and Assessment section ------------------------------------
-num.mcmc.samples <- dim(base_model$mcmc)[1]
-median.bio.min <- f(min(mc$smed[names(mc$smed) %in% start_yr:end_yr]), 3)
-median.bio.min.year <- names(which.min(mc$smed[names(mc$smed) %in% start_yr:end_yr]))
-median.intensity <- mc$pmed
-median.intensity.2007.to.2010 <- median.intensity[c("2007", "2008", "2009", "2010")]
-median.intensity.2007.to.2010.min <- f(min(median.intensity.2007.to.2010) * 100, 0)
-median.intensity.2007.to.2010.max <- f(max(median.intensity.2007.to.2010) * 100, 0)
-median.intensity.2007.to.2011 <- median.intensity[c("2007", "2008", "2009", "2010", "2011")]
-median.intensity.2007.to.2011.min <- f(min(median.intensity.2007.to.2011) * 100, 0)
-median.intensity.2007.to.2011.max <- f(max(median.intensity.2007.to.2011) * 100, 0)
+num_mcmc_samples <- dim(base_model$mcmc)[1]
+median_bio_min <- f(min(mc$smed[names(mc$smed) %in% start_yr:end_yr]), 3)
+median_bio_min_yr <- names(which.min(mc$smed[names(mc$smed) %in% start_yr:end_yr]))
+median_intensity <- mc$pmed
+median_intensity_2007_to_2010 <- median_intensity[c("2007", "2008", "2009", "2010")]
+median_intensity_2007_to_2010_min <- f(min(median_intensity_2007_to_2010) * 100, 0)
+median_intensity_2007_to_2010_max <- f(max(median_intensity_2007_to_2010) * 100, 0)
+median_intensity_2007_to_2011 <- median_intensity[c("2007", "2008", "2009", "2010", "2011")]
+median_intensity_2007_to_2011_min <- f(min(median_intensity_2007_to_2011) * 100, 0)
+median_intensity_2007_to_2011_max <- f(max(median_intensity_2007_to_2011) * 100, 0)
 # Includes > end_yr
-median.intensity.above.one.all.years <- names(which(mc$pmed > 1))
-median.intensity.above.one.years <- median.intensity.above.one.all.years[
-         median.intensity.above.one.all.years < end_yr]
-median.intensity.above.one.text <- paste(
+median_intensity_above_one_all_yrs <- names(which(mc$pmed > 1))
+median_intensity_above_one_yrs <- median_intensity_above_one_all_yrs[
+         median_intensity_above_one_all_yrs < end_yr]
+median_intensity_above_1_text <- paste(
   ifelse(
-    test = length(median.intensity.above.one.all.years) == 0,
+    test = !length(median_intensity_above_one_all_yrs),
     "for all years",
     "except for the years "
   ),
-  stringr::str_flatten(
-    median.intensity.above.one.all.years,
+  str_flatten(
+    median_intensity_above_one_all_yrs,
     collapse = ", ",
     last = ", and "
   ),
   sep = ""
 )
-median.intensity.2010 <- f(mc$pmed["2010"] * 100, 1)
-median.intensity.2015 <- f(mc$pmed["2015"] * 100, 1)
-median.intensity.2017 <- f(mc$pmed["2017"] * 100, 1)
-median.intensity.2018 <- f(mc$pmed["2018"] * 100, 1)
-median.intensity.2019 <- f(mc$pmed["2019"] * 100, 1)
-median.intensity.2020 <- f(mc$pmed["2020"] * 100, 1)
-median.intensity.2021 <- f(mc$pmed["2021"] * 100, 1)
-median.intensity.2022 <- f(mc$pmed["2022"] * 100, 1)
-median.intensity.penult.yr <- f(mc$pmed[as.character(end_yr - 1)] * 100, 1)
-median.relative.bio <- mc$dmed
+median_intensity_2010 <- f(mc$pmed["2010"] * 100, 1)
+median_intensity_2015 <- f(mc$pmed["2015"] * 100, 1)
+median_intensity_2017 <- f(mc$pmed["2017"] * 100, 1)
+median_intensity_2018 <- f(mc$pmed["2018"] * 100, 1)
+median_intensity_2019 <- f(mc$pmed["2019"] * 100, 1)
+median_intensity_2020 <- f(mc$pmed["2020"] * 100, 1)
+median_intensity_2021 <- f(mc$pmed["2021"] * 100, 1)
+median_intensity_2022 <- f(mc$pmed["2022"] * 100, 1)
+median_intensity_penult_yr <- f(mc$pmed[as.character(end_yr - 1)] * 100, 1)
+median_relative_bio <- mc$dmed
 # Remove extra non-year columns to avoid warnings below
-median.relative.bio <- median.relative.bio[grepl("^[0-9]+$", names(median.relative.bio))]
-median.relative.bio <- median.relative.bio[names(median.relative.bio) %in% start_yr:end_yr]
-median.relative.bio.2007.to.2010 <- median.relative.bio[c("2007", "2008", "2009", "2010")]
-median.relative.bio.2007.to.2010.min <- f(min(median.relative.bio.2007.to.2010), 2)
-median.relative.bio.2007.to.2010.max <- f(max(median.relative.bio.2007.to.2010), 2)
-median.relative.bio.2007.to.2011 <- median.relative.bio[c("2007", "2008", "2009", "2010", "2011")]
-median.relative.bio.2007.to.2011.min <- f(min(median.relative.bio.2007.to.2011), 2)
-median.relative.bio.2007.to.2011.max <- f(max(median.relative.bio.2007.to.2011), 2)
+median_relative_bio <-
+  median_relative_bio[grepl("^[0-9]+$",
+                            names(median_relative_bio))]
+median_relative_bio <-
+  median_relative_bio[names(median_relative_bio) %in% start_yr:end_yr]
+median_relative_bio_2007_to_2010 <-
+  median_relative_bio[c("2007", "2008", "2009", "2010")]
+median_relative_bio_2007_to_2010_min <-
+  f(min(median_relative_bio_2007_to_2010), 2)
+median_relative_bio_2007_to_2010_max <-
+  f(max(median_relative_bio_2007_to_2010), 2)
+median_relative_bio_2007_to_2011 <-
+  median_relative_bio[c("2007", "2008", "2009", "2010", "2011")]
+median_relative_bio_2007_to_2011_min <-
+  f(min(median_relative_bio_2007_to_2011), 2)
+median_relative_bio_2007_to_2011_max <-
+  f(max(median_relative_bio_2007_to_2011), 2)
 # When below target, 0.4
-median.relative.bio.below.target <- median.relative.bio[median.relative.bio < 0.4]
+median_relative_bio_below_target <-
+  median_relative_bio[median_relative_bio < 0.4]
 # Has been above target since
-median.relative.bio.above.target.since <- max(as.numeric(names(median.relative.bio.below.target)), na.rm = TRUE) + 1
-median.relative.bio.2017 <- f(mc$dmed["2017"] * 100, 1)
+median_relative_bio_above_target_since <-
+  max(as.numeric(names(median_relative_bio_below_target)), na.rm = TRUE) + 1
+median_relative_bio_2017 <- f(mc$dmed["2017"] * 100, 1)
 
 # Recruitments in current assessment vs last assessment -----------------------
-prev.assess.recruitment.lower  <- last_yr_base_model$mcmccalcs$rlower
-prev.assess.recruitment.med  <- last_yr_base_model$mcmccalcs$rmed
-prev.assess.recruitment.upper <- last_yr_base_model$mcmccalcs$rupper
+prev_assess_recruitment_lower  <- last_yr_base_model$mcmccalcs$rlower
+prev_assess_recruitment_med  <- last_yr_base_model$mcmccalcs$rmed
+prev_assess_recruitment_upper <- last_yr_base_model$mcmccalcs$rupper
 
 # Current assessment w/o final projection year --------------------------------
 # since not in previous assessment)
-compareablenames <- names(mc$rlower) %in%
-  names(prev.assess.recruitment.lower)
-recruitment.lower.to.compare <- mc$rlower[compareablenames]
-recruitment.med.to.compare <- mc$rmed[compareablenames]
-recruitment.upper.to.compare <- mc$rupper[compareablenames]
+compareable_names <- names(mc$rlower) %in%
+  names(prev_assess_recruitment_lower)
+recruitment_med_to_compare <- mc$rmed[compareable_names]
 
 # Biomass probabilities -------------------------------------------------------
 # ... biomass declines next year to year after with zero catch ----------------
-zero.catch.prob.bio.down.1 <- f(base_model$risks[[1]][1, 2])
+zero_catch_prob_bio_down_1 <- f(base_model$risks[[1]][1, 2])
 # ... biomass declines year after next to year after that with 0 catch --------
-zero.catch.prob.bio.down.2 <- f(base_model$risks[[2]][1, 2])
+zero_catch_prob_bio_down_2 <- f(base_model$risks[[2]][1, 2])
 # ... biomass declines 2 years after next to year after that with 0 catch -----
-zero.catch.prob.bio.down.3 <- f(base_model$risks[[3]][1,2])
+zero_catch_prob_bio_down_3 <- f(base_model$risks[[3]][1,2])
 # ... current biomass being above/below B40%, B25%, and B10% ------------------
-probs.curr.bforty <- f(mean(base_model$mcmc[[paste0("Bratio_", assess_yr)]] > 0.40) * 100, 1)
-probs.curr.btwentyfive <- f(mean(base_model$mcmc[[paste0("Bratio_", assess_yr)]] > 0.25) * 100, 1)
-probs.curr.bten <- f(mean(base_model$mcmc[[paste0("Bratio_", assess_yr)]] > 0.10) * 100, 0)
-probs.curr.below.bforty <- f(mean(base_model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.40) * 100, 1)
-probs.curr.below.btwentyfive <- f(mean(base_model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.25) * 100, 1)
-probs.curr.below.bten <- f(mean(base_model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.10) * 100, 1)
+probs_curr_b40 <-
+  f(mean(base_model$mcmc[[paste0("Bratio_",
+                                 assess_yr)]] > 0.40) * 100,
+    1)
+probs_curr_b25 <-
+  f(mean(base_model$mcmc[[paste0("Bratio_",
+                                 assess_yr)]] > 0.25) * 100,
+    1)
+probs_curr_b10 <-
+  f(mean(base_model$mcmc[[paste0("Bratio_",
+                                 assess_yr)]] > 0.10) * 100,
+    0)
+probs_curr_below_b40 <-
+  f(mean(base_model$mcmc[[paste0("Bratio_",
+                                 assess_yr)]] < 0.40) * 100,
+    1)
+probs_curr_below_b25 <-
+  f(mean(base_model$mcmc[[paste0("Bratio_",
+                                 assess_yr)]] < 0.25) * 100,
+    1)
 
 # Reference point probabilities -----------------------------------------------
 # ... reference points next year given largest catch this year ----------------
-largest.next.catch.index <- which.max(base_model$risks[[1]][, paste0("ForeCatch_", assess_yr)])
-largest.next.catch <- f(base_model$risks[[1]][largest.next.catch.index, paste0("ForeCatch_", assess_yr)], 0)
-prob.next.over.b10 <- f(100 - as.numeric(base_model$risks[[1]][largest.next.catch.index, paste0("Bratio_", assess_yr + 1, "<0.10")]), 0)
-prob.next.over.b40 <- f(100 - as.numeric(base_model$risks[[1]][largest.next.catch.index, paste0("Bratio_", assess_yr + 1, "<0.40")]), 0)
+largest_next_catch_index <-
+  which.max(base_model$risks[[1]][, paste0("ForeCatch_", assess_yr)])
+largest_next_catch <-
+  f(base_model$risks[[1]][largest_next_catch_index, paste0("ForeCatch_",
+                                                           assess_yr)],
+    0)
+prob_next_over_b10 <-
+  f(100 - as.numeric(base_model$risks[[1]][largest_next_catch_index,
+                                           paste0("Bratio_",
+                                                  assess_yr + 1,
+                                                  "<0.10")]),
+    0)
+prob_next_over_b40 <-
+  f(100 - as.numeric(base_model$risks[[1]][largest_next_catch_index,
+                                           paste0("Bratio_",
+                                                  assess_yr + 1, "<0.40")]),
+    0)
 # ... Canadian (DFO) provisional reference points -----------------------------
-dfo.probs.curr <- base_model$risks[[1]][,(ncol(base_model$risks[[1]])-2):ncol(base_model$risks[[1]])]
-dfo.probs.fore <- base_model$risks[[2]][,(ncol(base_model$risks[[2]])-2):ncol(base_model$risks[[2]])]
+dfo_probs_curr <-
+  base_model$risks[[1]][ ,(ncol(base_model$risks[[1]])-2):ncol(base_model$risks[[1]])]
+dfo_probs_fore <- base_model$risks[[2]][,(ncol(base_model$risks[[2]])-2):ncol(base_model$risks[[2]])]
 # ... next year DFO probs given largest catch this year -----------------------
-dfo.prob.next.over.40bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess_yr + 1, ">0.4SSB_MSY")])
-dfo.prob.next.over.80bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess_yr + 1, ">0.8SSB_MSY")])
-dfo.prob.next.over.bmsy <- f(dfo.probs.fore[largest.next.catch.index, paste0("SSB_", assess_yr + 1, ">SSB_MSY")])
+dfo_prob_next_over_40bmsy <-
+  f(dfo_probs_fore[largest_next_catch_index, paste0("SSB_",
+                                                    assess_yr + 1,
+                                                    ">0.4SSB_MSY")])
+dfo_prob_next_over_80bmsy <-
+  f(dfo_probs_fore[largest_next_catch_index, paste0("SSB_",
+                                                    assess_yr + 1,
+                                                    ">0.8SSB_MSY")])
+dfo_prob_next_over_bmsy <-
+  f(dfo_probs_fore[largest_next_catch_index, paste0("SSB_",
+                                                    assess_yr + 1,
+                                                    ">SSB_MSY")])
 # ... US (PFMC) stock size reference points based on default Treaty HCR -------
-next.treaty.catch <- f(base_model$catch.levels[[ct_default_policy_ind]][[1]][1], 0)
-pfmc.prob.next.year.below.b40 <- f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_", assess_yr + 1, "<0.40")], 0)
-pfmc.prob.next.year.below.b25 <- f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_", assess_yr + 1, "<0.25")], 0)
-same.catch.as.last.year <- f(base_model$catch.levels[[ct_actual_ind]][[1]][1], 0)
-same.catch.prob.next.year.below.b40 <- f(base_model$risks[[1]][ct_actual_ind, paste0("Bratio_", assess_yr + 1, "<0.40")], 0)
-same.catch.prob.year.after.next.below.b40 <- f(base_model$risks[[2]][ct_actual_ind, paste0("Bratio_", assess_yr + 2, "<0.40")], 0)
+next_treaty_catch <-
+  f(base_model$catch.levels[[ct_default_policy_ind]][[1]][1], 0)
+pfmc_prob_next_yr_below_b40 <-
+  f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
+                                                        assess_yr + 1,
+                                                        "<0.40")], 0)
+pfmc_prob_next_yr_below_b25 <-
+  f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
+                                                        assess_yr + 1,
+                                                        "<0.25")], 0)
+same_catch_as_last_yr <-
+  f(base_model$catch.levels[[ct_actual_ind]][[1]][1], 0)
+same_catch_prob_next_year_below_b40 <-
+  f(base_model$risks[[1]][ct_actual_ind, paste0("Bratio_",
+                                                assess_yr + 1,
+                                                "<0.40")], 0)
+same_catch_prob_yr_after_next_below_b40 <-
+  f(base_model$risks[[2]][ct_actual_ind, paste0("Bratio_",
+                                                assess_yr + 2,
+                                                "<0.40")], 0)
 # ... Prob most recent relative fishing intensity is above target of 1 --------
-probs.curr.rel.fish.intens.above.one <-
-  f(sum(base_model$mcmc[[paste0("SPRratio_", end_yr-1)]] > 1) /
+probs_curr_rel_fish_intens_above_1 <-
+  f(sum(base_model$mcmc[[paste0("SPRratio_", end_yr - 1)]] > 1) /
     nrow(base_model$mcmc) * 100,
     1)
-catches.below.200000.since.1986 <- number.to.word(length(filter(ct, tot_catch <= 200000, year > 1986)$year))
+catches_below_200000_since_1986 <-
+  number.to.word(length(filter(ct, tot_catch <= 200000,
+                               year > 1986)$year))
 
 # Age compositions ------------------------------------------------------------
 # ... age composition data for data section -----------------------------------
-survey.age.years <- base_model$dat$agecomp[base_model$dat$agecomp$FltSvy == 2, ]$Yr
-max.fishery.age.prop <- get_age_comp_limits(base_model, type = 1)
-max.survey.age.prop <- get_age_comp_limits(base_model, type = 2)
+survey.age.years <-
+  base_model$dat$agecomp[base_model$dat$agecomp$FltSvy == 2, ]$Yr
+max_fishery_age_prop <- get_age_comp_limits(base_model, type = 1)
+max_survey_age_prop <- get_age_comp_limits(base_model, type = 2)
 # ... Canadian Freezer trawlers age data --------------------------------------
-last_year_can_ages_ft <- can_ages_lst[[2]][rownames(can_ages_lst[[2]]) == last_data_yr, ]
+last_year_can_ages_ft <-
+  can_ages_lst[[2]][rownames(can_ages_lst[[2]]) == last_data_yr, ]
 ft_age_prop_holder <- get.age.prop(last_year_can_ages_ft, 1)
 max_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
 max_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
@@ -595,62 +659,67 @@ ft_age_prop_holder <- get.age.prop(last_year_can_ages_ft, 4)
 fourth_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
 fourth_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
 # ... Canadian Shoreside age data ---------------------------------------------
-last.year.can.ages.ss <- can_ages_lst[[1]][rownames(can_ages_lst[[1]]) == last_data_yr, ]
-ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 1)
-max.shoreside.age.prop.age <- ss.age.prop.holder[1]
-max.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
-ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 2)
-second.shoreside.age.prop.age <- ss.age.prop.holder[1]
-second.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
-ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 3)
-third.shoreside.age.prop.age <- ss.age.prop.holder[1]
-third.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
-ss.age.prop.holder <- get.age.prop(last.year.can.ages.ss, 4)
-fourth.shoreside.age.prop.age <- ss.age.prop.holder[1]
-fourth.shoreside.age.prop <- f(ss.age.prop.holder[2] * 100, 1)
+last_yr_can_ages_ss <-
+  can_ages_lst[[1]][rownames(can_ages_lst[[1]]) == last_data_yr, ]
+ss_age_prop_holder <- get.age.prop(last_yr_can_ages_ss, 1)
+max_shoreside_age_prop_age <- ss_age_prop_holder[1]
+max_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
+ss_age_prop_holder <- get.age.prop(last_yr_can_ages_ss, 2)
+second_shoreside_age_prop_age <- ss_age_prop_holder[1]
+second_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
+ss_age_prop_holder <- get.age.prop(last_yr_can_ages_ss, 3)
+third_shoreside_age_prop_age <- ss_age_prop_holder[1]
+third_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
+ss_age_prop_holder <- get.age.prop(last_yr_can_ages_ss, 4)
+fourth_shoreside_age_prop_age <- ss_age_prop_holder[1]
+fourth_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
 # ... US age data -------------------------------------------------------------
-us.age.n.cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr, "n.hauls"]
-us.age.n.ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr, "n.hauls"]
-us.last.year.age.cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr,
+us_age_n_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr, "n.hauls"]
+us_age_n_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr, "n.hauls"]
+us_last_yr_age_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr,
                                  grep("^a",
                                       colnames(us_cp_age_df))]
-us.last.year.age.cp <-
-  us.last.year.age.cp[order(unlist(us.last.year.age.cp[1, , drop = TRUE]),
+us_last_yr_age_cp <-
+  us_last_yr_age_cp[order(unlist(us_last_yr_age_cp[1, , drop = TRUE]),
                             decreasing = TRUE)]
-us.age.1.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[1]))
-us.age.1.prop.cp <- f(us.last.year.age.cp[1] * 100, 1)
-us.age.2.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[2]))
-us.age.2.prop.cp <- f(us.last.year.age.cp[2] * 100, 1)
-us.age.3.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[3]))
-us.age.3.prop.cp <- f(us.last.year.age.cp[3] * 100, 1)
-us.age.4.prop.age.cp <- as.numeric(gsub("^a", "", names(us.last.year.age.cp)[4]))
-us.age.4.prop.cp <- f(us.last.year.age.cp[4] * 100, 1)
-us.last.year.age.ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr,
+us_age_1_prop_age_cp <- as.numeric(gsub("^a", "", names(us_last_yr_age_cp)[1]))
+us_age_1_prop_cp <- f(us_last_yr_age_cp[1] * 100, 1)
+us_age_2_prop_age_cp <- as.numeric(gsub("^a", "", names(us_last_yr_age_cp)[2]))
+us_age_2_prop_cp <- f(us_last_yr_age_cp[2] * 100, 1)
+us_age_3_prop_age_cp <- as.numeric(gsub("^a", "", names(us_last_yr_age_cp)[3]))
+us_age_3_prop_cp <- f(us_last_yr_age_cp[3] * 100, 1)
+us_age_4_prop_age_cp <- as.numeric(gsub("^a", "", names(us_last_yr_age_cp)[4]))
+us_age_4_prop_cp <- f(us_last_yr_age_cp[4] * 100, 1)
+us_last_yr_age_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr,
                                     grep("^a",
                                          colnames(us_ms_age_df))]
-us.last.year.age.ms <-
-  us.last.year.age.ms[order(unlist(us.last.year.age.ms[1, , drop = TRUE]),
+us_last_yr_age_ms <-
+  us_last_yr_age_ms[order(unlist(us_last_yr_age_ms[1, , drop = TRUE]),
                             decreasing = TRUE)]
-us.age.1.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[1]))
-us.age.1.prop.ms <- f(us.last.year.age.ms[1] * 100, 1)
-us.age.2.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[2]))
-us.age.2.prop.ms <- f(us.last.year.age.ms[2] * 100, 1)
-us.age.3.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[3]))
-us.age.3.prop.ms <- f(us.last.year.age.ms[3] * 100, 1)
-us.age.4.prop.age.ms <- as.numeric(gsub("^a", "", names(us.last.year.age.ms)[4]))
-us.age.4.prop.ms <- f(us.last.year.age.ms[4] * 100, 1)
-us.last.year.age.shore <- us_ss_age_df[us_ss_age_df$year == last_data_yr,
+us_age_1_prop_age_ms <- as.numeric(gsub("^a", "", names(us_last_yr_age_ms)[1]))
+us_age_1_prop_ms <- f(us_last_yr_age_ms[1] * 100, 1)
+us_age_2_prop_age_ms <- as.numeric(gsub("^a", "", names(us_last_yr_age_ms)[2]))
+us_age_2_prop_ms <- f(us_last_yr_age_ms[2] * 100, 1)
+us_age_3_prop_age_ms <- as.numeric(gsub("^a", "", names(us_last_yr_age_ms)[3]))
+us_age_3_prop_ms <- f(us_last_yr_age_ms[3] * 100, 1)
+us_age_4_prop_age_ms <- as.numeric(gsub("^a", "", names(us_last_yr_age_ms)[4]))
+us_age_4_prop_ms <- f(us_last_yr_age_ms[4] * 100, 1)
+us_last_yr_age_shore <- us_ss_age_df[us_ss_age_df$year == last_data_yr,
                                        grep("^a",
                                             colnames(us_ss_age_df))]
-us.last.year.age.shore <- us.last.year.age.shore[order(unlist(us.last.year.age.shore[1, , drop = TRUE]), decreasing = TRUE)]
-us.age.1.prop.age.shore <- as.numeric(gsub("^a", "", names(us.last.year.age.shore)[1]))
-us.age.1.prop.shore <- f(us.last.year.age.shore[1] * 100, 1)
-us.age.2.prop.age.shore <- as.numeric(gsub("^a", "", names(us.last.year.age.shore)[2]))
-us.age.2.prop.shore <- f(us.last.year.age.shore[2] * 100, 1)
-us.age.3.prop.age.shore <- as.numeric(gsub("^a", "", names(us.last.year.age.shore)[3]))
-us.age.3.prop.shore <- f(us.last.year.age.shore[3] * 100, 1)
-us.age.4.prop.age.shore <- as.numeric(gsub("^a", "", names(us.last.year.age.shore)[4]))
-us.age.4.prop.shore <- f(us.last.year.age.shore[4] * 100, 1)
+
+### TODO: HERE ---
+
+us_last_yr_age_shore <-
+  us_last_yr_age_shore[order(unlist(us_last_yr_age_shore[1, , drop = TRUE]), decreasing = TRUE)]
+us.age.1.prop.age.shore <- as.numeric(gsub("^a", "", names(us_last_yr_age_shore)[1]))
+us.age.1.prop.shore <- f(us_last_yr_age_shore[1] * 100, 1)
+us.age.2.prop.age.shore <- as.numeric(gsub("^a", "", names(us_last_yr_age_shore)[2]))
+us.age.2.prop.shore <- f(us_last_yr_age_shore[2] * 100, 1)
+us.age.3.prop.age.shore <- as.numeric(gsub("^a", "", names(us_last_yr_age_shore)[3]))
+us.age.3.prop.shore <- f(us_last_yr_age_shore[3] * 100, 1)
+us.age.4.prop.age.shore <- as.numeric(gsub("^a", "", names(us_last_yr_age_shore)[4]))
+us.age.4.prop.shore <- f(us_last_yr_age_shore[4] * 100, 1)
 
 # Recruitment -----------------------------------------------------------------
 #  ... years median recruitment is below the mean of the median ---------------

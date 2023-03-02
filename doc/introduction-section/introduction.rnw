@@ -245,7 +245,7 @@ fishing benchmarks since 2009. Foreign fleets
 dominated the fishery until 1991, when domestic fleets began taking the majority
 of the catch. Catches were occasionally greater than 200,000~t prior to 1986,
 and since then they have been greater than 200,000~t for all except
-\Sexpr{catches.below.200000.since.1986} years.
+\Sexpr{catches_below_200000_since_1986} years.
 
 According to 2020 statistics, the \fishname\ fishery was Canada's largest commercial
 wild fishery (species with the largest catch),
@@ -343,19 +343,19 @@ In both U.S. at-sea sectors, age-2, age-6, and age-8 fish, associated with the
 2020, 2016, and 2014 year classes, were the most common ages. Unlike last year,
 age-2 fish were seen in appreciable numbers in the catch this year.
 The reported proportions at age summarize sampling efforts on
-\Sexpr{us.age.n.cp} catcher-processor hauls and \Sexpr{us.age.n.ms} mothership
+\Sexpr{us_age_n_cp} catcher-processor hauls and \Sexpr{us_age_n_ms} mothership
 hauls (Table~\ref{tab:main-sampling-history}).
 For the catcher-processor sector, the four most abundant age classes (by numbers) seen in \Sexpr{last_data_yr} were
-age-\Sexpr{us.age.1.prop.age.cp} (\Sexpr{us.age.1.prop.cp}\%),
-age-\Sexpr{us.age.2.prop.age.cp} (\Sexpr{us.age.2.prop.cp}\%),
-age-\Sexpr{us.age.3.prop.age.cp} (\Sexpr{us.age.3.prop.cp}\%), and
-age-\Sexpr{us.age.4.prop.age.cp} (\Sexpr{us.age.4.prop.cp}\%;
+age-\Sexpr{us_age_1_prop_age_cp} (\Sexpr{us_age_1_prop_cp}\%),
+age-\Sexpr{us_age_2_prop_age_cp} (\Sexpr{us_age_2_prop_cp}\%),
+age-\Sexpr{us_age_3_prop_age_cp} (\Sexpr{us_age_3_prop_cp}\%), and
+age-\Sexpr{us_age_4_prop_age_cp} (\Sexpr{us_age_4_prop_cp}\%;
 Table~\ref{tab:main-us-cp-age-data}).
 For the mothership sector, the four most abundant age classes for \Sexpr{last_data_yr} were
-age-\Sexpr{us.age.1.prop.age.ms} (\Sexpr{us.age.1.prop.ms}\%),
-age-\Sexpr{us.age.2.prop.age.ms} (\Sexpr{us.age.2.prop.ms}\%),
-age-\Sexpr{us.age.3.prop.age.ms} (\Sexpr{us.age.3.prop.ms}\%), and
-age-\Sexpr{us.age.4.prop.age.ms} (\Sexpr{us.age.4.prop.ms}\%;
+age-\Sexpr{us_age_1_prop_age_ms} (\Sexpr{us_age_1_prop_ms}\%),
+age-\Sexpr{us_age_2_prop_age_ms} (\Sexpr{us_age_2_prop_ms}\%),
+age-\Sexpr{us_age_3_prop_age_ms} (\Sexpr{us_age_3_prop_ms}\%), and
+age-\Sexpr{us_age_4_prop_age_ms} (\Sexpr{us_age_4_prop_ms}\%;
 Table~\ref{tab:main-us-ms-age-data}).
 
 % Manual done 2023 KFJ
@@ -411,10 +411,10 @@ The fish caught in Canada appeared to be mostly from three age classes (ages 6,
 
 The most abundant year classes in the
 Canadian shoreside catch (by numbers) were
-age-\Sexpr{max.shoreside.age.prop.age} (\Sexpr{max.shoreside.age.prop}\%),
-age-\Sexpr{second.shoreside.age.prop.age} (\Sexpr{second.shoreside.age.prop}\%),
-age-\Sexpr{third.shoreside.age.prop.age} (\Sexpr{third.shoreside.age.prop}\%), and
-age-\Sexpr{fourth.shoreside.age.prop.age} (\Sexpr{fourth.shoreside.age.prop}\%);
+age-\Sexpr{max_shoreside_age_prop_age} (\Sexpr{max_shoreside_age_prop}\%),
+age-\Sexpr{second_shoreside_age_prop_age} (\Sexpr{second_shoreside_age_prop}\%),
+age-\Sexpr{third_shoreside_age_prop_age} (\Sexpr{third_shoreside_age_prop}\%), and
+age-\Sexpr{fourth_shoreside_age_prop_age} (\Sexpr{fourth_shoreside_age_prop}\%);
 Table~\ref{tab:main-can-shore-age-data}.
 The most abundant year classes in the Canadian freezer-trawler
 catch were age-

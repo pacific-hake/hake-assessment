@@ -158,9 +158,9 @@ def_med_hr_tac <- filter(catch_targets_df,
     \begin{column}{0.25\textwidth}
       \bi
         \item \protect{P$(B_{\Sexpr{assess_yr}}/B_0 < 0.4)$}
-        $~~=\Sexpr{probs.curr.below.bforty}\%$
+        $~~=\Sexpr{probs_curr_below_b40}\%$
         \item P(relative fishing intensity at end of \Sexpr{assess_yr-1} $>$ 1.0)
-        $~~=\Sexpr{probs.curr.rel.fish.intens.above.one}\%$
+        $~~=\Sexpr{probs_curr_rel_fish_intens_above_1}\%$
         \item Joint probability of both is \Sexpr{joint.percent.prob.above.below}\%
         \item Fishing intensity has remained below target
         \item Biomass has mostly remained above target
@@ -430,9 +430,9 @@ plot_fore_compare(base_model,
 \subsection{}
 \frame{\frametitle{Summary of management outcomes}
   \bi
-    \item Uncertainty is large, but stock currently has \Sexpr{probs.curr.below.bforty}\%
+    \item Uncertainty is large, but stock currently has \Sexpr{probs_curr_below_b40}\%
       chance of being below $B_{40\%}$ and
-      \Sexpr{probs.curr.rel.fish.intens.above.one}\% chance of relative fishing
+      \Sexpr{probs_curr_rel_fish_intens_above_1}\% chance of relative fishing
       intensity being above 100\% (slide 4)
     \item Based on the default harvest rule, the estimated median catch limit for \Sexpr{min(forecast_yrs)} is \Sexpr{ct_limit_quantiles["median"]}~t (with 95\% interval from \Sexpr{ct_limit_quantiles["lower"]} to \Sexpr{ct_limit_quantiles["upper"]}~t)
     \item Projections strongly influenced by size of above-average 2014 and 2016

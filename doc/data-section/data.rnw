@@ -14,7 +14,7 @@ Fishery-dependent and fishery-independent data used in this assessment
   (Tables~\ref{tab:main-us-cp-age-data}--\ref{tab:main-can-ft-age-data})
   to investigate region-specific trends;
   age compositions aggregated by year, composed of data from the U.S. fishery
-  (\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}) and the
+  (\Sexpr{max_fishery_age_prop[1]}--\Sexpr{max_fishery_age_prop[2]}) and the
   Canadian fishery
   (\Sexpr{paste(range(unlist(lapply(can.ages[1:3], row.names))), collapse = "--")}),
   are used to fit the model
@@ -31,7 +31,7 @@ Fishery-dependent and fishery-independent data used in this assessment
   Table~\ref{tab:main-survey-history}; Figure~\ref{fig:main-age-one-index}).
 
 \item Mean observed weight-at-age data from fishery and survey catches
-  (1975--\Sexpr{max.fishery.age.prop[2]};
+  (1975--\Sexpr{max_fishery_age_prop[2]};
   Figures~\ref{fig:main-empirical-weight-at-age}--\ref{fig:main-weight-at-age-lines})
   and, thus, derived fecundity-at-age as well (Figure~\ref{fig:main-maturity}).
 
@@ -172,7 +172,7 @@ analytical steps for expanding the age compositions can be found in earlier stoc
 assessment documents \citep{JTC2013, JTC2014}.
 
 The aggregate fishery age-composition data
-(\Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]})
+(\Sexpr{max_fishery_age_prop[1]}--\Sexpr{max_fishery_age_prop[2]})
 confirm the well-known pattern of large cohorts born in
 1973, 1977, 1980, 1984, 1987, 1999, 2008, 2010, 2014 and 2016
 (Table~\ref{tab:main-all-age-data-fishery} and
@@ -532,7 +532,7 @@ A matrix of empirically derived population weight-at-age means by year
 current assessment model to translate numbers-at-age directly to biomass-at-age.
 Annual mean weight-at-age was
 calculated from year-specific samples pooled from all fisheries and the acoustic survey for
-the years 1975 to \Sexpr{max.fishery.age.prop[2]}
+the years 1975 to \Sexpr{max_fishery_age_prop[2]}
 (Figures~\ref{fig:main-empirical-weight-at-age}--\ref{fig:main-weight-at-age-lines}).
 Past investigations into
 calculating weight-at-age for the fishery and survey independently showed little

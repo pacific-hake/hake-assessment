@@ -186,10 +186,10 @@ with input sample sizes equal to the sum of the number of trips and hauls sample
 fishing fleets or the number of trawl sets in the research surveys (see Section~\ref{sec:data-age-comp-likelihood}).
 
 Model results and statistical inference were based on
-\Sexpr{f(num.mcmc.samples)} MCMC samples (using the {\tt adnuts} R package; \citet{Monnahan2018})
+\Sexpr{f(num_mcmc_samples)} MCMC samples (using the {\tt adnuts} R package; \citet{Monnahan2018})
 to describe posterior distributions for model
 parameters and derived quantities. The number of samples used for bridging models, sensitivity
-models, and retrospective models was also \Sexpr{f(num.mcmc.samples)}.
+models, and retrospective models was also \Sexpr{f(num_mcmc_samples)}.
 Medians (50\% quantiles) are reported together with the
 bounds of 95\% credibility intervals calculated as
 the 2.5\% quantile and the 97.5\% quantile of posterior distributions from the
@@ -900,7 +900,7 @@ very large 1999 year class matured. The 1999 year class largely supported the fi
 for several years due to relatively small recruitments between 2000 and
 2007. With the aging 1999 year class, median female spawning biomass declined
 throughout the late 2000s, reaching a time-series low of
-\Sexpr{median.bio.min}~million~t in \Sexpr{median.bio.min.year}. The assessment
+\Sexpr{median_bio_min}~million~t in \Sexpr{median_bio_min_yr}. The assessment
 model estimates that median female spawning biomass then peaked again in 2013 and 2014 due
 to a very large 2010 year class and an
 above-average 2008 year class. The subsequent decline from 2014 to 2016 is primarily
@@ -949,17 +949,17 @@ significantly change the pattern of recruitment estimated in recent assessments.
 However, estimates of absolute recruitment for the most recent years can change with
 new data.
 For example, this assessment's median estimate of the 2020 recruitment is
-\Sexpr{f(((recruitment.med.to.compare - prev.assess.recruitment.med)["2020"]), 1)}~billion
+\Sexpr{f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]), 1)}~billion
 fish higher than in the last assessment
-(a \Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2020"]) /
-(prev.assess.recruitment.med)["2020"]) * 100), 0)}\% increase).
+(a \Sexpr{f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
+(prev_assess_recruitment_med)["2020"]) * 100), 0)}\% increase).
 Similarly, estimates for 2019 and 2021 recruitments have changed by
-\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2019"]) /
-(prev.assess.recruitment.med)["2019"]) * 100), 0)}\%
-(\Sexpr{f((recruitment.med.to.compare - prev.assess.recruitment.med)["2019"], 1)}~billion fish) and
-\Sexpr{f(((((recruitment.med.to.compare - prev.assess.recruitment.med)["2021"]) /
-(prev.assess.recruitment.med)["2021"]) * 100), 0)}\%
-(\Sexpr{f(((recruitment.med.to.compare - prev.assess.recruitment.med)["2021"]), 1)}~billion fish),
+\Sexpr{f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]) /
+(prev_assess_recruitment_med)["2019"]) * 100), 0)}\%
+(\Sexpr{f((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"], 1)}~billion fish) and
+\Sexpr{f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]) /
+(prev_assess_recruitment_med)["2021"]) * 100), 0)}\%
+(\Sexpr{f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]), 1)}~billion fish),
 respectively, but the general notion remains that recent recruitment is highly uncertain.
 
 \fishname\ have low average recruitment with occasional large year classes
@@ -1078,7 +1078,7 @@ are informed by the age compositions and the age-1 index, is
 
 The median estimated relative fishing intensity on the stock is below
 $\Fforty$ for all years
-% sort(median.intensity)    % 2017 assessment 1999 was slightly over
+% sort(median_intensity)    % 2017 assessment 1999 was slightly over
 (Figure~\ref{fig:main-fishing-intensity} and
 Tables~\ref{tab:main-median-posterior} and \ref{tab:main-ci-posterior}).
 It was close
@@ -1096,9 +1096,9 @@ fraction does not necessarily correspond to fishing intensity because fishing
 intensity more directly accounts for the age-structure of both the population and
 the catch.
 Median relative fishing intensity is estimated to have declined from
-\Sexpr{median.intensity.2010}\% in 2010 to \Sexpr{median.intensity.2015}\%
+\Sexpr{median_intensity_2010}\% in 2010 to \Sexpr{median_intensity_2015}\%
 in 2015, and then it leveled off around 70\% from 2016 to 2019 before declining to
-\Sexpr{median.intensity.2022}\% in 2022.
+\Sexpr{median_intensity_2022}\% in 2022.
 The median exploitation fraction has increased from a recent low of
 \Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2017} in 2017 where it
 remained relatively stable before dropping back to 2012--2015 levels in 2022.
@@ -1157,33 +1157,33 @@ Total landings last exceeded the coast-wide quota in 2002 when utilization was 1
 
 As noted above, the median relative fishing intensity was below $\Fforty$ in all years.
 %the 1999 year used to be just above 1 but now estimated to be just below 1
-% \Sexpr{median.intensity.above.one.years[-length(median.intensity.above.one.years)]} and
+% \Sexpr{median_intensity_above_one_yrs[-length(median_intensity_above_one_yrs)]} and
 % Manual 2017 done - comment out above line if only one year, include it if
-%  length(median.intensity.above.one.years) > 1
-%\Sexpr{median.intensity.above.one.years[length(median.intensity.above.one.years)]}
+%  length(median_intensity_above_one_yrs) > 1
+%\Sexpr{median_intensity_above_one_yrs[length(median_intensity_above_one_yrs)]}
 The median relative spawning biomass was
 above the $\Bforty$ reference point in all years except 2007--2010
 (Table~\ref{tab:main-median-posterior} and Figure~\ref{fig:main-relative-spawning-biomass}).
 % 2017 assessment: all years except 1968, 1998-2000 and 2007-2011
 % 2019 assessment: all years except 1999-2000 and 2007-2011
 % Andy summarising those years manually, based on:
-% median.relative.bio.below.target
+% median_relative_bio_below_target
 % Manual done 2020. Interesting that years are becoming fewer.
 These are also shown on a phase plot of the joint history of relative spawning biomass
 and relative fishing intensity
 (Figure~\ref{fig:main-phase}).
 %Between 2007 and 2011, however, median relative
-%fishing intensity ranged from \Sexpr{median.intensity.2007.to.2011.min}\% to
-%\Sexpr{median.intensity.2007.to.2011.max}\% and
+%fishing intensity ranged from \Sexpr{median_intensity_2007_to_2011_min}\% to
+%\Sexpr{median_intensity_2007_to_2011_max}\% and
 %median relative spawning biomass
-%between \Sexpr{median.relative.bio.2007.to.2011.min} and
-%\Sexpr{median.relative.bio.2007.to.2011.max}.
+%between \Sexpr{median_relative_bio_2007_to_2011_min} and
+%\Sexpr{median_relative_bio_2007_to_2011_max}.
 Relative spawning biomass increased from the lows in 2007--2010 with above average
 recruitment in 2008, 2010, 2014, 2016, 2017, and 2020. Correspondingly, relative fishing
 intensity has remained well below $\Fforty$, and total catch has been declining since the
 time series high in 2017.
 % Relative spawning biomass has been
-% above the target since \Sexpr{median.relative.bio.above.target.since}.
+% above the target since \Sexpr{median_relative_bio_above_target_since}.
 While
 there is large uncertainty in the \Sexpr{end_yr-1} estimates of relative fishing
 intensity and relative spawning biomass, the model estimates a \Sexpr{joint.percent.prob.above.below}\%
@@ -1272,7 +1272,7 @@ the median yield at $\Fforty$ have remained about the same as estimates in the
 \Sexpr{last_assess_yr} assessment (Table~\ref{tab:main-parameter-estimates}).
 % Manual 2021 done
 
-% Look at dfo.probs.curr and decide what to write. Check that
+% Look at dfo_probs_curr and decide what to write. Check that
 %   ncol(base_model$risks[[1]]) == 10   (i.e. no new columns added) % $
 % ***Have to update custom-knitr-variables (see UNHARDWIRE in that, when have time).
 As part of the DFO Sustainable Fisheries Framework, \citet{DFO2009} defined
@@ -1284,8 +1284,8 @@ These would equate to the Agreement reference points of $\Bten$ and $\Bforty$
 equilibrium female spawning biomass).
 The probabilities of the female spawning biomass
 at the start of \Sexpr{assess_yr} being above each of these points
-are P$(B_{\Sexpr{assess_yr}} > \Bten) = \Sexpr{probs.curr.bten}$\% and
-P$(B_{\Sexpr{assess_yr}} > \Bforty) = \Sexpr{probs.curr.bforty}$\%
+are P$(B_{\Sexpr{assess_yr}} > \Bten) = \Sexpr{probs_curr_b10}$\% and
+P$(B_{\Sexpr{assess_yr}} > \Bforty) = \Sexpr{probs_curr_b40}$\%
 such that the stock is estimated to be in the `healthy zone' (above the upper
 stock reference point of $\Bforty$).
 This probability was higher than in last year’s assessment, where
@@ -1297,10 +1297,10 @@ on the MCMC results, and is not meant to imply that something definitely occurs
 
 With respect to DFO's provisional limit reference point
 of $0.4\Bmsy$ and provisional upper stock reference point of $0.8\Bmsy$, the probabilities
-are P$(B_{\Sexpr{assess_yr}} > 0.4\Bmsy) = \Sexpr{f(dfo.probs.curr[1, 2], 0)}$\% and
-P$(B_{\Sexpr{assess_yr}} > 0.8\Bmsy) = \Sexpr{f(dfo.probs.curr[1, 3], 1)}$\%
+are P$(B_{\Sexpr{assess_yr}} > 0.4\Bmsy) = \Sexpr{f(dfo_probs_curr[1, 2], 0)}$\% and
+P$(B_{\Sexpr{assess_yr}} > 0.8\Bmsy) = \Sexpr{f(dfo_probs_curr[1, 3], 1)}$\%
 such that the stock is estimated to be in the provisional `healthy zone'.
-For completeness, we note that P$(B_{\Sexpr{assess_yr}} > \Bmsy) = \Sexpr{f(dfo.probs.curr[1, 1], 1)}$\%.
+For completeness, we note that P$(B_{\Sexpr{assess_yr}} > \Bmsy) = \Sexpr{f(dfo_probs_curr[1, 1], 1)}$\%.
 
 %PFMC refrence points for hake/whiting are: Bmsy = 0.4B0; MSST = 0.25B0.  Will report these as well.
 Reference levels of stock status that are used by the U.S. Pacific Fisheries Management
@@ -1310,10 +1310,10 @@ posterior median relative spawning biomass is \Sexpr{curr_depl_median}\%, such
 that the female spawning biomass is well above $\Bforty$ and $\Btwentyfive$.
 The probability that female spawning biomass at the beginning of \Sexpr{assess_yr}
 is above $\Bforty$ is
-P$(B_{\Sexpr{assess_yr}} > \Bforty) = \Sexpr{probs.curr.bforty}$\% (as noted above), and of being above $\Btwentyfive$
+P$(B_{\Sexpr{assess_yr}} > \Bforty) = \Sexpr{probs_curr_b40}$\% (as noted above), and of being above $\Btwentyfive$
 is
-P$(B_{\Sexpr{assess_yr}} > \Btwentyfive) = \Sexpr{probs.curr.btwentyfive}$\%.
-% $>\Btwentyfive$ = \Sexpr{probs.curr.btwentyfive}\%.
+P$(B_{\Sexpr{assess_yr}} > \Btwentyfive) = \Sexpr{probs_curr_b25}$\%.
+% $>\Btwentyfive$ = \Sexpr{probs_curr_b25}\%.
 
 
 \subsection{Model projections}\label{sec:assessment-model-projections}
@@ -1390,14 +1390,14 @@ Figure~\ref{fig:main-forecast-depletion-comparison} shows the projected
 relative spawning biomass trajectory through
 \Sexpr{forecast_yrs[length(forecast_yrs)]} for several of these management
 actions. With zero catch for the next three years, the biomass has a
-\Sexpr{zero.catch.prob.bio.down.1}\% probability of decreasing from
+\Sexpr{zero_catch_prob_bio_down_1}\% probability of decreasing from
 \Sexpr{forecast_yrs[1]} to \Sexpr{forecast_yrs[2]} (Table~\ref{tab:main-risk-year-1}
 and Figure~\ref{fig:main-forecast-risk-comparison-year-1}), a
-\Sexpr{zero.catch.prob.bio.down.2}\% probability of decreasing from
+\Sexpr{zero_catch_prob_bio_down_2}\% probability of decreasing from
 \Sexpr{forecast_yrs[2]} to \Sexpr{forecast_yrs[3]} (Table~\ref{tab:main-risk-year-2}
 and Figure~\ref{fig:main-forecast-risk-comparison-year-2}),
 and a
-\Sexpr{zero.catch.prob.bio.down.3}\% probability of decreasing from
+\Sexpr{zero_catch_prob_bio_down_3}\% probability of decreasing from
 \Sexpr{forecast_yrs[3]} to \Sexpr{forecast_yrs[4]} (Table~\ref{tab:main-risk-year-3}
 and Figure~\ref{fig:main-forecast-risk-comparison-year-3}).
 
@@ -1493,44 +1493,44 @@ for the age-7 \Sexpr{forecast_yrs[1] - 7} cohort
 Figure~\ref{fig:main-age-comp-forecast}).     % $
 
 % Manual done 2020.
-% Look at dfo.probs.fore (though that's not the one used here) and decide what to write. Check which row has the
+% Look at dfo_probs_fore (though that's not the one used here) and decide what to write. Check which row has the
 %  largest catch level (it should be the min prob - look at a decision
-%  table to check the catch and then look at dfo.probs.fore). Need to change
+%  table to check the catch and then look at dfo_probs_fore). Need to change
 %  column heading calls here because years will change.
 % Calculations could do with standardising maybe, though can be helpful to be
 %  forced to think about them.
 % 2022 - all updated automatically.
 With respect to the DFO reference points, with the largest
-\Sexpr{assess_yr} catch of \Sexpr{largest.next.catch}~t given in Table~\ref{tab:main-risk-year-1},
+\Sexpr{assess_yr} catch of \Sexpr{largest_next_catch}~t given in Table~\ref{tab:main-risk-year-1},
 at the start of \Sexpr{assess_yr+1} the stock is expected to be above the critical zone with a probability of
 P$(B_{\Sexpr{assess_yr+1}} > \Bten) =
-\Sexpr{prob.next.over.b10}$\%
+\Sexpr{prob_next_over_b10}$\%
 and in the healthy zone with a probability of
 P$(B_{\Sexpr{assess_yr+1}} > \Bforty) =
-\Sexpr{prob.next.over.b40}$\%.
+\Sexpr{prob_next_over_b40}$\%.
 With respect to the DFO provisional reference points (based on $\Bmsy$),
 the stock is expected to be above the provisional critical zone with a
 probability of
-P$(B_{\Sexpr{assess_yr+1}} > 0.4\Bmsy) = \Sexpr{dfo.prob.next.over.40bmsy}$\%,
+P$(B_{\Sexpr{assess_yr+1}} > 0.4\Bmsy) = \Sexpr{dfo_prob_next_over_40bmsy}$\%,
 in the healthy zone with a probability of
-P$(B_{\Sexpr{assess_yr+1}} > 0.8\Bmsy) = \Sexpr{dfo.prob.next.over.80bmsy}$\%,
+P$(B_{\Sexpr{assess_yr+1}} > 0.8\Bmsy) = \Sexpr{dfo_prob_next_over_80bmsy}$\%,
 and above $\Bmsy$ with a probability of
-P$(B_{\Sexpr{assess_yr+1}} > \Bmsy) = \Sexpr{dfo.prob.next.over.bmsy}$\% for
+P$(B_{\Sexpr{assess_yr+1}} > \Bmsy) = \Sexpr{dfo_prob_next_over_bmsy}$\% for
 this catch.
 
 %PFMC refrence points for hake/whiting are: Bmsy = 0.4B0; MSST = 0.25B0.  Will report these as well.
 With respect to PFMC stock size reference points, a level of \Sexpr{assess_yr} catch consistent with the Agreement
-default harvest control rule (\Sexpr{next.treaty.catch}~t) has a
-\Sexpr{pfmc.prob.next.year.below.b40}\% estimated probability of resulting in the biomass
+default harvest control rule (\Sexpr{next_treaty_catch}~t) has a
+\Sexpr{pfmc_prob_next_yr_below_b40}\% estimated probability of resulting in the biomass
 going below $\Bforty$ at the start of \Sexpr{assess_yr + 1} (and
-\Sexpr{pfmc.prob.next.year.below.b25}\% probability of going below
+\Sexpr{pfmc_prob_next_yr_below_b25}\% probability of going below
 $\Btwentyfive$; Table~\ref{tab:main-risk-year-1}).
 If catches in \Sexpr{assess_yr} and \Sexpr{assess_yr + 1} are the same as in
-\Sexpr{assess_yr - 1} (\Sexpr{same.catch.as.last.year}~t, catch scenario~\Sexpr{letters[ct_actual_ind]})
+\Sexpr{assess_yr - 1} (\Sexpr{same_catch_as_last_yr}~t, catch scenario~\Sexpr{letters[ct_actual_ind]})
 then the probability of the biomass going below $\Bforty$ is
-\Sexpr{same.catch.prob.next.year.below.b40}\% for the start of
+\Sexpr{same_catch_prob_next_year_below_b40}\% for the start of
 \Sexpr{assess_yr + 1} and
-\Sexpr{same.catch.prob.year.after.next.below.b40}\% for the start of
+\Sexpr{same_catch_prob_yr_after_next_below_b40}\% for the start of
 \Sexpr{assess_yr + 2}.
 %Manual done 2022, and put some as custom variables
 % \enlargethispage{\baselineskip}

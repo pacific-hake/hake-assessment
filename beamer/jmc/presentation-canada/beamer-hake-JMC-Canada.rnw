@@ -207,10 +207,10 @@ from last year)
     $\frac{1-SPR_{\Sexpr{assess_yr - 1}}}{1 - SPR_{40\%}} = \Sexpr{f(base_model$mcmccalcs$pmed[names(base_model$mcmccalcs$pmed) == assess_yr - 1], 2)}$
     \item The estimated probability that spawning biomass at the start of
     \Sexpr{assess_yr} is below the $\BfortyB$ (40\% of $B_0$) reference point is
-    \Sexpr{probs.curr.below.bforty}\%
+    \Sexpr{probs_curr_below_b40}\%
     \item The probability that the relative fishing
     intensity is above $\Fforty$ at the end of \Sexpr{end_yr-1} is
-    \Sexpr{probs.curr.rel.fish.intens.above.one}\%
+    \Sexpr{probs_curr_rel_fish_intens_above_1}\%
     \item The probability of both of these things occurring is \Sexpr{joint.percent.prob.above.below}\%
   \ei
 }
@@ -553,9 +553,9 @@ plot_squid(base_model,
 \subsection{Summary}
 \frame{\frametitle{Summary}
   \bi
-    \item Uncertainty is large, but stock currently has \Sexpr{probs.curr.below.bforty}\%
+    \item Uncertainty is large, but stock currently has \Sexpr{probs_curr_below_b40}\%
       chance of being below $B_{40\%}$ and
-      \Sexpr{probs.curr.rel.fish.intens.above.one}\% chance of relative fishing
+      \Sexpr{probs_curr_rel_fish_intens_above_1}\% chance of relative fishing
       intensity being above 100\%
     \item Based on the default harvest rule, the estimated median catch limit
       for \Sexpr{min(forecast_yrs)} is \Sexpr{ct_limit_quantiles["median"]}~t

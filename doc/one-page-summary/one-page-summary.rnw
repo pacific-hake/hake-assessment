@@ -65,9 +65,9 @@
 
   \item The estimated probability that female spawning biomass at the start of
     \Sexpr{assess_yr} is below the $\Bforty$ (40\% of $B_0$) reference point is
-    \Sexpr{probs.curr.below.bforty}\%, and the probability that the relative fishing
+    \Sexpr{probs_curr_below_b40}\%, and the probability that the relative fishing
     intensity exceeded $\Fforty$ in \Sexpr{end_yr-1} is
-    \Sexpr{probs.curr.rel.fish.intens.above.one}\%. The joint
+    \Sexpr{probs_curr_rel_fish_intens_above_1}\%. The joint
     probability of both these occurring is~\Sexpr{joint.percent.prob.above.below}\%.
 
   \item Based on the default harvest rule, the estimated median catch limit for
@@ -94,7 +94,7 @@
    \Sexpr{end_yr+1}, and an
    \Sexpr{last_yr_tac_risk_2_biomass_decline}\% chance of it declining from \Sexpr{end_yr+1} to
    \Sexpr{end_yr+2}
-% , and a \Sexpr{last.yr.tac.risk.3.biomass.decline}\% chance of it declining
+% , and a \Sexpr{last_yr_tac_risk_3_biomass_decline}\% chance of it declining
 % from \Sexpr{end_yr+2} to \Sexpr{end_yr+3}
    for these constant catches.
  % Always good to check those numbers manually from the tables. Done 2023.

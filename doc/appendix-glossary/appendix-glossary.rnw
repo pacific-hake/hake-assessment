@@ -177,7 +177,7 @@ Scientific and Statistical Committee (SSC): The scientific advisory committee to
 
 SD: Standard deviation. A measure of variability within a sample.
 
-Simulation: A model evaluation under a particular state of nature, including combinations of parameters controlling stock productivity, stock status, and the time series of recruitment deviations. In this assessment, there are \Sexpr{f(num.mcmc.samples)} simulations used to characterize alternative states of nature, each of which are based on a sample from the posterior distribution of the parameters, as calculated using MCMC, for a particular model (e.g., the base model).
+Simulation: A model evaluation under a particular state of nature, including combinations of parameters controlling stock productivity, stock status, and the time series of recruitment deviations. In this assessment, there are \Sexpr{f(num_mcmc_samples)} simulations used to characterize alternative states of nature, each of which are based on a sample from the posterior distribution of the parameters, as calculated using MCMC, for a particular model (e.g., the base model).
 
 Spawning biomass: Abbreviated term for female spawning biomass (see above).
 

@@ -98,11 +98,11 @@ if(!dir.exists(fig_dir)){
     \item No Canadian Joint-Venture Fishery.
     \item Highest proportion-at-age by sector
       \bi
-        \item Age-\Sexpr{us.age.1.prop.age.cp} fish in U.S. catcher-processor sector,
-        \item Age-\Sexpr{us.age.1.prop.age.ms} fish in U.S. mothership sector,
+        \item Age-\Sexpr{us_age_1_prop_age_cp} fish in U.S. catcher-processor sector,
+        \item Age-\Sexpr{us_age_1_prop_age_ms} fish in U.S. mothership sector,
         \item Age-\Sexpr{us.age.1.prop.age.shore} fish in U.S. shore-based sector,
         \item Age-\Sexpr{max_freezer_trawler_age_prop_age} fish in Canadian freezer-trawler sector, and
-        \item Age-\Sexpr{max.shoreside.age.prop.age} fish in Canadian shoreside sector.
+        \item Age-\Sexpr{max_shoreside_age_prop_age} fish in Canadian shoreside sector.
       \ei
   \ifodd \Sexpr{last_data_yr}
     {\item \Sexpr{last_survey_yr} acoustic survey biomass estimate was \Sexpr{last_survey_yr_biomass} million tons (\Sexpr{(type.convert(as.is = TRUE, last_factor_penult))*100}\% of \Sexpr{penult_survey_yr}).}

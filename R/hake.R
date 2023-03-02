@@ -33,7 +33,7 @@
 #' @importFrom sf st_as_sf st_crs<- st_coordinates
 #' @importFrom stats end median na.omit quantile rbeta reshape rlnorm rnorm
 #' @importFrom stats runif setNames start ts
-#' @importFrom stringr str_split
+#' @importFrom stringr str_flatten str_split
 #' @importFrom tools file_path_sans_ext file_ext
 #' @importFrom tibble as_tibble enframe
 #' @importFrom tidyselect all_of any_of starts_with

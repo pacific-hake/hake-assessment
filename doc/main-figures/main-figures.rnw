@@ -178,7 +178,7 @@ plist[[2]] <-
 cowplot::plot_grid(plotlist = plist, nrow = 2)
 @
 \end{center}
-\caption{Age compositions for the aggregate fishery (top, all sectors combined) and acoustic survey (bottom) for the years \Sexpr{max.fishery.age.prop[1]}--\Sexpr{max.fishery.age.prop[2]}. Proportions in each year sum to 1.0 and area of the bubbles are proportional to the proportion and consistent in both panels (see key at top). The largest bubble in the fishery data is \Sexpr{f(as.numeric(max.fishery.age.prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max.survey.age.prop[5])} in \Sexpr{as.numeric(max.fishery.age.prop[4])} and in the survey data is \Sexpr{f(as.numeric(max.survey.age.prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max.survey.age.prop[5])} in \Sexpr{as.numeric(max.survey.age.prop[4])}. Red lines track large cohorts.}
+\caption{Age compositions for the aggregate fishery (top, all sectors combined) and acoustic survey (bottom) for the years \Sexpr{max_fishery_age_prop[1]}--\Sexpr{max_fishery_age_prop[2]}. Proportions in each year sum to 1.0 and area of the bubbles are proportional to the proportion and consistent in both panels (see key at top). The largest bubble in the fishery data is \Sexpr{f(as.numeric(max_fishery_age_prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max_survey_age_prop[5])} in \Sexpr{as.numeric(max_fishery_age_prop[4])} and in the survey data is \Sexpr{f(as.numeric(max_survey_age_prop[3]) / 100, 2)} for age \Sexpr{as.numeric(max_survey_age_prop[5])} in \Sexpr{as.numeric(max_survey_age_prop[4])}. Red lines track large cohorts.}
 \label{fig:main-age-comp-bubbles}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -256,7 +256,7 @@ weight.at.age.heatmap(base_model,
   Data are only available from \Sexpr{start_yr_age_comps}--\Sexpr{last_data_yr}.
   Values based on assumptions for the pre-\Sexpr{start_yr_age_comps} and forecast years are shown
   outside the blue lines.
-  Bold values between \Sexpr{start_yr_age_comps}--\Sexpr{max.fishery.age.prop[2]} represent
+  Bold values between \Sexpr{start_yr_age_comps}--\Sexpr{max_fishery_age_prop[2]} represent
   unavailable data such that weights were interpolated or extrapolated from adjacent ages or years.
   The bottom row (mean) is the sample-weighted mean weight-at-age over all years of data.}
 \label{fig:main-empirical-weight-at-age}
@@ -696,8 +696,8 @@ make_numbers_at_age_plot(base_model,
   numbers at age at the beginning of each year, where diagonals follow each
   year-class through time. The red line represents the mean age. The scale of the bubbles is represented in the key where the units are
   billions of fish; the largest overall bubble represents the
-  \Sexpr{max.median.nat}~billion
-  age-0 recruits in \Sexpr{year.of.max.median.nat}.
+  \Sexpr{max_median_nat}~billion
+  age-0 recruits in \Sexpr{yr_of_max_median_nat}.
   See Table~\ref{tab:main-est-numbers-at-age} for values.}
 \label{fig:main-numbers-at-age}
 \end{figure}
