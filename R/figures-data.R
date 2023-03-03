@@ -118,7 +118,7 @@ make.age.comp.plot <- function(d,
               ...)
 }
 
-make.wt.at.age.plot <- function(d,
+make.wt_at_age.plot <- function(d,
                                 ages,
                                 lwd = 3,
                                 lty = 1,

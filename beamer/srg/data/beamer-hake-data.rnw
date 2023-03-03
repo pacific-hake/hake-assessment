@@ -100,7 +100,7 @@ if(!dir.exists(fig_dir)){
       \bi
         \item Age-\Sexpr{us_age_1_prop_age_cp} fish in U.S. catcher-processor sector,
         \item Age-\Sexpr{us_age_1_prop_age_ms} fish in U.S. mothership sector,
-        \item Age-\Sexpr{us.age.1.prop.age.shore} fish in U.S. shore-based sector,
+        \item Age-\Sexpr{us_age_1_prop_age_shore} fish in U.S. shore-based sector,
         \item Age-\Sexpr{max_freezer_trawler_age_prop_age} fish in Canadian freezer-trawler sector, and
         \item Age-\Sexpr{max_shoreside_age_prop_age} fish in Canadian shoreside sector.
       \ei
@@ -442,7 +442,7 @@ if(!dir.exists(fig_dir)){
   <<wt-at-age>>=
     oldpar <- par()
     par(mar=c(4.1, 4.1, 1.1, 1.1), oma=c(0, 0, 0, 0))
-    make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1)
+    make.wt_at_age.plot(wt_at_age, ages = 2:10, lwd = 1)
     par <- oldpar
   @
 }

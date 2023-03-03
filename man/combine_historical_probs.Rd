@@ -5,18 +5,13 @@
 \title{Calculate a model's probability of stock decline in a year and
 combine with past assessment estimates}
 \usage{
-combine_historical_probs(
-  model,
-  fn = file.path(rootd_data, "assessment-history-probs.csv"),
-  start = 2012,
-  end,
-  ...
-)
+combine_historical_probs(model, hist_probs, start = 2012, end, ...)
 }
 \arguments{
 \item{model}{A model as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{fn}{The file name}
+\item{hist_probs}{A data frame containing the data found in
+\code{assessment-history-probs.csv}}
 
 \item{start}{First assessment year to do comparisons}
 

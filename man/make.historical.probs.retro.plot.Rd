@@ -8,6 +8,7 @@ that uses retrospective runs (given we have them). Calls
 \usage{
 make.historical.probs.retro.plot(
   model,
+  hist_probs,
   type = "decline",
   xLim = c(2012, assess_yr),
   make.one.figure = TRUE,
@@ -23,6 +24,9 @@ make.historical.probs.retro.plot(
 }
 \arguments{
 \item{model}{Model with retrospectives}
+
+\item{hist_probs}{A data frame containing the data found in
+\code{assessment-history-probs.csv}}
 
 \item{type}{One of \code{decline} or \code{bforty} as needed for
 \code{\link[=make.historical.probs.plot]{make.historical.probs.plot()}}}

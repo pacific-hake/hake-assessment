@@ -19,7 +19,7 @@ os_name <- sys_info[["sysname"]]
 user_name <- sys_info[["user"]]
 
 rootd_doc <- here::here("doc")
-rootd_data <- here::here("data")
+rootd_data <- here::here("inst/extdata/data")
 rootd_models <- ifelse(computer_name == "hake-precision",
                        "/srv/hake/models",
                        here::here("models"))

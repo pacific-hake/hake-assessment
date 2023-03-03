@@ -93,7 +93,7 @@ drs <- set_dirs(models_dir = models_dir,
                 request_models_dirs = request_models_dirs,
                 test_models_dirs = test_models_dirs,
                 prepend_to_bridge = prepend_to_bridge)
-browser()
+
 if(!exists("models")){
   models <- model_setup(drs = drs,
                         base_models_desc = base_models_desc,

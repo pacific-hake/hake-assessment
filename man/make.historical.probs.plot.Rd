@@ -6,6 +6,7 @@
 \usage{
 make.historical.probs.plot(
   model,
+  hist_probs,
   type = "decline",
   end = assess_yr - 1,
   xLim = NULL,
@@ -27,6 +28,9 @@ make.historical.probs.plot(
 }
 \arguments{
 \item{model}{A model object, created by \code{\link[=create_rds_file]{create_rds_file()}}}
+
+\item{hist_probs}{A data frame containing the data found in
+\code{assessment-history-probs.csv}}
 
 \item{type}{"decline" to show probs of spawning biomass declining in year
 after historical assessment year, "decline.one.year" to show that for just

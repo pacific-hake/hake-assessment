@@ -611,10 +611,10 @@ Since the 2011 assessment, a combination of the informative
 prior for natural mortality
 used in previous Canadian assessments and results from analyses using
 \citeauthor{Hoenig1983}'s (\citeyear{Hoenig1983}) method support the use of a
-\Sexpr{m.prior[1]} distribution with a median of
-\Sexpr{f(exp(as.numeric(m.prior[2])), 2)} and a standard deviation (in log
+\Sexpr{m_prior[1]} distribution with a median of
+\Sexpr{f(exp(as.numeric(m_prior[2])), 2)} and a standard deviation (in log
 space) of
-\Sexpr{m.prior[3]}. Sensitivity to this prior has been evaluated
+\Sexpr{m_prior[3]}. Sensitivity to this prior has been evaluated
 extensively in many previous assessments of \fishname\
 (see \citealt{JTC2013} for a discussion of the historical treatment of natural mortality and its prior)
 and is repeated here (see Section
@@ -645,7 +645,7 @@ Time-varying selectivity was introduced in the 2014 assessment
 \citep{JTC2014} and is modeled using annual deviations since 1991 applied to the
 selectivity-at-age parameters for the fishery.
 A normal distribution with a fixed standard deviation
-($\Phi=$ \Sexpr{sel.Phi.val}; see \citealt{JTC2018} for justification) is used as a
+($\Phi=$ \Sexpr{sel_phi_val}; see \citealt{JTC2018} for justification) is used as a
 penalty function to keep deviations from straying far from zero.
 Selectivity for age-0 fish is fixed at 0.0 and parameters for ages that are estimated
 represent the change in selectivity from the next youngest age.
@@ -735,8 +735,8 @@ can be associated with
 an approximately uniform prior of the weight $\theta_{\text{surv}} / (1 +
 \theta_{\text{surv}})$, where the parameters of the normal distribution
 were back-calculated from a uniform distribution with the bounds of 0 and 1 \citep{JTC2020}.
-The normal prior for both $\log \theta_{\text{fish}}$ and $\log \theta_{\text{surv}}$ has a mean of \Sexpr{effn.prior[2]}
-and a standard deviation of \Sexpr{effn.prior[3]}.
+The normal prior for both $\log \theta_{\text{fish}}$ and $\log \theta_{\text{surv}}$ has a mean of \Sexpr{effn_prior[2]}
+and a standard deviation of \Sexpr{effn_prior[3]}.
 
 Composition data can also be weighted using the Francis method
 (T2.6 in Table 2 of \citealp{Francis2011}),

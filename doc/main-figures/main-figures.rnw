@@ -292,7 +292,7 @@ weight.at.age.heatmap(base_model,
 \begin{figure}[H]
 \begin{center}
 <<main-weight-at-age-lines, fig.height = 9, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the annual mean weight-at-age is lower for most ages in the most recent years than for years prior to 1980. There is a trend of increasing weight-at-age for the last 6 to 7 years.">>=
-make.wt.at.age.plot(wt.at.age, ages = 2:10, lwd = 1, highlight = 5)
+make.wt_at_age.plot(wt_at_age, ages = 2:10, lwd = 1, highlight = 5)
 @
 \end{center}
 \caption{Empirical mean weight-at-age (kg) values for ages 2--10
@@ -1223,6 +1223,7 @@ of variation but less susceptible to outliers) and is calculated as $\protect{(Q
 \begin{center}
 <<historical-1, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model.">>=
 make.historical.probs.plot(base_model,
+                           hist_probs = assess_history_probs_df,
                            add.projs = TRUE)
 @
 \end{center}
@@ -1248,6 +1249,7 @@ described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 \begin{center}
 <<main-historical-2, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock going below B40.">>=
 make.historical.probs.plot(base_model,
+                           hist_probs = assess_history_probs_df,
                            add.projs = TRUE,
                            type = "bforty",
                            legend.loc = "topleft")
@@ -1276,6 +1278,7 @@ described in Table~\ref{tab:main-decisions-biomass}, with 0~t shown in pink.}
 <<main-historical-retro-1, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 par(mfrow = c(3, 1))
 make.historical.probs.retro.plot(base_model,
+                                 hist_probs = assess_history_probs_df,
                                  select.retros = 1:3,
                                  make.one.figure = FALSE)
 @
@@ -1302,6 +1305,7 @@ make.historical.probs.retro.plot(base_model,
 <<main-historical-retro-2, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 par(mfrow = c(3,1))
 make.historical.probs.retro.plot(base_model,
+                                 hist_probs = assess_history_probs_df,
                                  select.retros = 4:6,
                                  make.one.figure = FALSE)
 @
@@ -1318,6 +1322,7 @@ make.historical.probs.retro.plot(base_model,
 <<main-historical-retro-3, fig.height=10, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 par(mfrow = c(3, 1))
 make.historical.probs.retro.plot(base_model,
+                                 hist_probs = assess_history_probs_df,
                                  select.retros = 7:9,
                                  make.one.figure = FALSE)
 @
@@ -1333,6 +1338,7 @@ make.historical.probs.retro.plot(base_model,
 \begin{center}
 <<main-historical-retro-4, fig.height=3, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 make.historical.probs.retro.plot(base_model,
+                                 hist_probs = assess_history_probs_df,
                                  select.retros = 10,
                                  make.one.figure = FALSE,
                                  legend.cex = 0.6,
@@ -1351,6 +1357,7 @@ make.historical.probs.retro.plot(base_model,
 \begin{center}
 <<main-historical-retro-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining with those from the current base model and for retrospective analyses.">>=
 make.historical.probs.retro.plot(base_model,
+                                 hist_probs = assess_history_probs_df,
                                  legend.cex = 0.6,
                                  legend.loc = "topright")
 @
@@ -1367,6 +1374,7 @@ make.historical.probs.retro.plot(base_model,
 \begin{center}
 <<main-historical-retro-bforty-all, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure compares historical estimates of probabilities of the stock declining below B40 with those from the current base model and for retrospective analyses.">>=
 make.historical.probs.retro.plot(base_model,
+                                 hist_probs = assess_history_probs_df,
                                  type = "bforty",
                                  legend.loc = "topleft")
 @

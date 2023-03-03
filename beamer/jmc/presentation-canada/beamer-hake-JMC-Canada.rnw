@@ -211,7 +211,7 @@ from last year)
     \item The probability that the relative fishing
     intensity is above $\Fforty$ at the end of \Sexpr{end_yr-1} is
     \Sexpr{probs_curr_rel_fish_intens_above_1}\%
-    \item The probability of both of these things occurring is \Sexpr{joint.percent.prob.above.below}\%
+    \item The probability of both of these things occurring is \Sexpr{joint_percent_prob_above_below}\%
   \ei
 }
 
@@ -381,10 +381,10 @@ plot_fore_compare(base_model,
       \item Default Harvest Rule catch
       \item Dependent on selectivity and wt-at-age assumptions
       \item Median proportions (by numbers) are:
-      \item \Sexpr{fore.catch.prop$Age7}\% age-7 fish, 2014 cohort
-      \item \Sexpr{fore.catch.prop$Age5}\% age-5 fish, 2016 cohort
-      \item \Sexpr{fore.catch.prop$Age4}\% age-4 fish, 2017 cohort
-      \item \Sexpr{fore.catch.prop$Age11}\% age-11 fish, 2010 cohort
+      \item \Sexpr{fore_catch_prop$Age7}\% age-7 fish, 2014 cohort
+      \item \Sexpr{fore_catch_prop$Age5}\% age-5 fish, 2016 cohort
+      \item \Sexpr{fore_catch_prop$Age4}\% age-4 fish, 2017 cohort
+      \item \Sexpr{fore_catch_prop$Age11}\% age-11 fish, 2010 cohort
     \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -441,46 +441,46 @@ plot_squid(base_model,
     \begin{column}{0.48\textwidth}
       Estimated total catch from each cohort
       \bi
-    \item 1999 cohort (ages 1--\Sexpr{last_data_yr - 1999}): \Sexpr{f(max(cohortCumSum1999))} t
-    \item 2010 cohort (ages 1--\Sexpr{last_data_yr - 2010}): \Sexpr{f(max(cohortCumSum2010))} t
-    \item 2014 cohort (ages 1--\Sexpr{last_data_yr - 2014}): \Sexpr{f(max(cohortCumSum2014))} t
-    \item 2016 cohort (ages 1--\Sexpr{last_data_yr - 2016}): \Sexpr{f(max(cohortCumSum2016))} t
-    \item 2020 cohort (ages 1--\Sexpr{last_data_yr - 2020}): \Sexpr{f(max(cohortCumSum2020))} t
+    \item 1999 cohort (ages 1--\Sexpr{last_data_yr - 1999}): \Sexpr{f(max(cohort_cum_sum_1999))} t
+    \item 2010 cohort (ages 1--\Sexpr{last_data_yr - 2010}): \Sexpr{f(max(cohort_cum_sum_2010))} t
+    \item 2014 cohort (ages 1--\Sexpr{last_data_yr - 2014}): \Sexpr{f(max(cohort_cum_sum_2014))} t
+    \item 2016 cohort (ages 1--\Sexpr{last_data_yr - 2016}): \Sexpr{f(max(cohort_cum_sum_2016))} t
+    \item 2020 cohort (ages 1--\Sexpr{last_data_yr - 2020}): \Sexpr{f(max(cohort_cum_sum_2020))} t
       \ei
     \end{column}
     \begin{column}{0.48\textwidth}
       <<cum.catch, fig.height=5, fig.width=5, out.width="0.85\\columnwidth">>=
       par(mar=c(5,4,1,1), cex=1.2)
-      plot(ages1999, cohortCumSum1999/1e3, type='l', lwd=5, col=1, las=1,
+      plot(ages_1999, cohort_cum_sum_1999/1e3, type='l', lwd=5, col=1, las=1,
       xlab='Age', ylab='Cumulative catch (thousands of t)', ylim=c(0,1.45e3),
       yaxs='i')
-      lines(ages2010, cohortCumSum2010/1e3, lwd=5, col=2)
-      lines(ages2014, cohortCumSum2014/1e3, lwd=5, col=4)
-      lines(ages2016, cohortCumSum2016/1e3, lwd=5, col="green")
-      lines(ages2020, cohortCumSum2017/1e3, lwd=5, col="red")
+      lines(ages_2010, cohort_cum_sum_2010/1e3, lwd=5, col=2)
+      lines(ages_2014, cohort_cum_sum_2014/1e3, lwd=5, col=4)
+      lines(ages_2016, cohort_cum_sum_2016/1e3, lwd=5, col="green")
+      lines(ages_2020, cohort_cum_sum_2017/1e3, lwd=5, col="red")
       text('2020 cohort',
            x = last_data_yr - 2020 + 1,
-           y = max(cohortCumSum2020 / 1e3),
+           y = max(cohort_cum_sum_2020 / 1e3),
            col = "red",
            pos = 4)
       text('2016 cohort',
            x = last_data_yr - 2016 + 1,
-           y = max(cohortCumSum2016 / 1e3),
+           y = max(cohort_cum_sum_2016 / 1e3),
            col = "green",
            pos = 4)
       text('2014 cohort',
            x = last_data_yr - 2014 + 1,
-           y = max(cohortCumSum2014 / 1e3),
+           y = max(cohort_cum_sum_2014 / 1e3),
            col = 4,
            pos = 4)
       text('2010 cohort',
            x = last_data_yr - 2010 + 1,
-           y = max(cohortCumSum2010 / 1e3),
+           y = max(cohort_cum_sum_2010 / 1e3),
            col = 2,
            pos = 4)
       text('1999 cohort',
            x = 17,
-           y = max(cohortCumSum1999 / 1e3)+150,
+           y = max(cohort_cum_sum_1999 / 1e3)+150,
            col = 1,
            pos = 1)
       @
@@ -492,38 +492,38 @@ plot_squid(base_model,
 \frame{\frametitle{Estimated cumulative catch for select cohorts}
       <<cum-catch-large, fig.height=4, fig.width=8>>=
       par(mar=c(5,4,1,1), cex=1.2)
-      plot(ages1999, cohortCumSum1999 / 1e3, type='l', lwd=5, col=1, las=1,
+      plot(ages_1999, cohort_cum_sum_1999 / 1e3, type='l', lwd=5, col=1, las=1,
       xlab='Age', ylab='Cumulative catch (thousands of t)', ylim=c(0,1.45e3), yaxs = 'i', axes = FALSE)
       axis(1, at = seq(0, 20, by = 1), cex.axis = 0.7)
       axis(2, at = seq(0, 1200, by = 200), cex.axis = 0.7)
-      lines(ages2010, cohortCumSum2010/1e3, lwd=5, col=2)
-      lines(ages2014, cohortCumSum2014/1e3, lwd=5, col=4)
-      lines(ages2016, cohortCumSum2016/1e3, lwd=5, col="green")
-      lines(ages2020, cohortCumSum2020/1e3, lwd=5, col="red")
+      lines(ages_2010, cohort_cum_sum_2010/1e3, lwd=5, col=2)
+      lines(ages_2014, cohort_cum_sum_2014/1e3, lwd=5, col=4)
+      lines(ages_2016, cohort_cum_sum_2016/1e3, lwd=5, col="green")
+      lines(ages_2020, cohort_cum_sum_2020/1e3, lwd=5, col="red")
       box()
       text('2020 cohort',
            x = last_data_yr - 2020 + 1,
-           y = max(cohortCumSum2020 / 1e3),
+           y = max(cohort_cum_sum_2020 / 1e3),
            col = "red",
            pos = 4)
       text('2016 cohort',
            x = last_data_yr - 2016 + 1,
-           y = max(cohortCumSum2016 / 1e3),
+           y = max(cohort_cum_sum_2016 / 1e3),
            col = "green",
            pos = 4)
       text('2014 cohort',
            x = last_data_yr - 2014 + 1,
-           y = max(cohortCumSum2014 / 1e3),
+           y = max(cohort_cum_sum_2014 / 1e3),
            col = 4,
            pos = 4)
       text('2010 cohort',
            x = last_data_yr - 2010 + 1,
-           y = max(cohortCumSum2010 / 1e3),
+           y = max(cohort_cum_sum_2010 / 1e3),
            col = 2,
            pos = 4)
       text('1999 cohort',
            x = 17,
-           y = max(cohortCumSum1999 / 1e3)+150,
+           y = max(cohort_cum_sum_1999 / 1e3)+150,
            col = 1,
            pos = 1)
       @

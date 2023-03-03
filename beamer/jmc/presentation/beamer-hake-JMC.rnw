@@ -274,7 +274,7 @@ from last year)
     \item The probability that the relative fishing
     intensity is above $\Fforty$ at the end of \Sexpr{end_yr-1} is
     \Sexpr{probs_curr_rel_fish_intens_above_1}\%
-    \item The probability of both of these things occurring is \Sexpr{joint.percent.prob.above.below}\%
+    \item The probability of both of these things occurring is \Sexpr{joint_percent_prob_above_below}\%
   \ei
 }
 
@@ -335,46 +335,46 @@ plot_squid(base_model,
     \begin{column}{0.48\textwidth}
       Estimated total catch from each cohort
       \bi
-    \item 1999 cohort (ages 1--\Sexpr{last_data_yr - 1999}): \Sexpr{f(max(cohortCumSum1999))} t
-    \item 2010 cohort (ages 1--\Sexpr{last_data_yr - 2010}): \Sexpr{f(max(cohortCumSum2010))} t
-    \item 2014 cohort (ages 1--\Sexpr{last_data_yr - 2014}): \Sexpr{f(max(cohortCumSum2014))} t
-    \item 2016 cohort (ages 1--\Sexpr{last_data_yr - 2016}): \Sexpr{f(max(cohortCumSum2016))} t
-    \item 2020 cohort (ages 1--\Sexpr{last_data_yr - 2020}): \Sexpr{f(max(cohortCumSum2020))} t
+    \item 1999 cohort (ages 1--\Sexpr{last_data_yr - 1999}): \Sexpr{f(max(cohort_cum_sum_1999))} t
+    \item 2010 cohort (ages 1--\Sexpr{last_data_yr - 2010}): \Sexpr{f(max(cohort_cum_sum_2010))} t
+    \item 2014 cohort (ages 1--\Sexpr{last_data_yr - 2014}): \Sexpr{f(max(cohort_cum_sum_2014))} t
+    \item 2016 cohort (ages 1--\Sexpr{last_data_yr - 2016}): \Sexpr{f(max(cohort_cum_sum_2016))} t
+    \item 2020 cohort (ages 1--\Sexpr{last_data_yr - 2020}): \Sexpr{f(max(cohort_cum_sum_2020))} t
       \ei
     \end{column}
     \begin{column}{0.48\textwidth}
       <<cum.catch, fig.height=5, fig.width=5, out.width="0.85\\columnwidth">>=
       par(mar=c(5,4,1,1), cex=1.2)
-      plot(ages1999, cohortCumSum1999/1e3, type='l', lwd=5, col=1, las=1,
+      plot(ages_1999, cohort_cum_sum_1999/1e3, type='l', lwd=5, col=1, las=1,
       xlab='Age', ylab='Cumulative catch (thousands of t)', ylim=c(0,1.45e3),
       yaxs='i')
-      lines(ages2010, cohortCumSum2010/1e3, lwd=5, col=2)
-      lines(ages2014, cohortCumSum2014/1e3, lwd=5, col=4)
-      lines(ages2016, cohortCumSum2016/1e3, lwd=5, col="green")
-      lines(ages2020, cohortCumSum2017/1e3, lwd=5, col="red")
+      lines(ages_2010, cohort_cum_sum_2010/1e3, lwd=5, col=2)
+      lines(ages_2014, cohort_cum_sum_2014/1e3, lwd=5, col=4)
+      lines(ages_2016, cohort_cum_sum_2016/1e3, lwd=5, col="green")
+      lines(ages_2020, cohort_cum_sum_2017/1e3, lwd=5, col="red")
       text('2020 cohort',
            x = last_data_yr - 2020 + 1,
-           y = max(cohortCumSum2020 / 1e3),
+           y = max(cohort_cum_sum_2020 / 1e3),
            col = "red",
            pos = 4)
       text('2016 cohort',
            x = last_data_yr - 2016 + 1,
-           y = max(cohortCumSum2016 / 1e3),
+           y = max(cohort_cum_sum_2016 / 1e3),
            col = "green",
            pos = 4)
       text('2014 cohort',
            x = last_data_yr - 2014 + 1,
-           y = max(cohortCumSum2014 / 1e3),
+           y = max(cohort_cum_sum_2014 / 1e3),
            col = 4,
            pos = 4)
       text('2010 cohort',
            x = last_data_yr - 2010 + 1,
-           y = max(cohortCumSum2010 / 1e3),
+           y = max(cohort_cum_sum_2010 / 1e3),
            col = 2,
            pos = 4)
       text('1999 cohort',
            x = 17,
-           y = max(cohortCumSum1999 / 1e3)+150,
+           y = max(cohort_cum_sum_1999 / 1e3)+150,
            col = 1,
            pos = 1)
       @
@@ -386,38 +386,38 @@ plot_squid(base_model,
 \frame{\frametitle{Estimated cumulative catch for select cohorts}
       <<cum-catch-large, fig.height=4, fig.width=8>>=
       par(mar=c(5,4,1,1), cex=1.2)
-      plot(ages1999, cohortCumSum1999/1e3, type='l', lwd=5, col=1, las=1,
+      plot(ages_1999, cohort_cum_sum_1999/1e3, type='l', lwd=5, col=1, las=1,
       xlab='Age', ylab='Cumulative catch (thousands of t)', ylim=c(0,1.45e3), yaxs = 'i', axes = FALSE)
       axis(1, at = seq(0, 20, by = 1), cex.axis = 0.7)
       axis(2, at = seq(0, 1200, by = 200), cex.axis = 0.7)
-      lines(ages2010, cohortCumSum2010/1e3, lwd=5, col=2)
-      lines(ages2014, cohortCumSum2014/1e3, lwd=5, col=4)
-      lines(ages2016, cohortCumSum2016/1e3, lwd=5, col="green")
-      lines(ages2020, cohortCumSum2020/1e3, lwd=5, col="red")
+      lines(ages_2010, cohort_cum_sum_2010/1e3, lwd=5, col=2)
+      lines(ages_2014, cohort_cum_sum_2014/1e3, lwd=5, col=4)
+      lines(ages_2016, cohort_cum_sum_2016/1e3, lwd=5, col="green")
+      lines(ages_2020, cohort_cum_sum_2020/1e3, lwd=5, col="red")
       box()
       text('2020 cohort',
            x = last_data_yr - 2020 + 1,
-           y = max(cohortCumSum2020 / 1e3),
+           y = max(cohort_cum_sum_2020 / 1e3),
            col = "red",
            pos = 4)
       text('2016 cohort',
            x = last_data_yr - 2016 + 1,
-           y = max(cohortCumSum2016 / 1e3),
+           y = max(cohort_cum_sum_2016 / 1e3),
            col = "green",
            pos = 4)
       text('2014 cohort',
            x = last_data_yr - 2014 + 1,
-           y = max(cohortCumSum2014 / 1e3),
+           y = max(cohort_cum_sum_2014 / 1e3),
            col = 4,
            pos = 4)
       text('2010 cohort',
            x = last_data_yr - 2010 + 1,
-           y = max(cohortCumSum2010 / 1e3),
+           y = max(cohort_cum_sum_2010 / 1e3),
            col = 2,
            pos = 4)
       text('1999 cohort',
            x = 17,
-           y = max(cohortCumSum1999 / 1e3)+150,
+           y = max(cohort_cum_sum_1999 / 1e3)+150,
            col = 1,
            pos = 1)
       @
@@ -751,14 +751,14 @@ plot_fore_compare(base_model,
   \begin{column}{0.35\textwidth}
     Median proportions (by numbers) are:
     \bi
-    \item \Sexpr{fore.catch.prop$Age6}\% age-6 fish, \Sexpr{forecast_yrs[1] - 6} cohort,
-    \item \Sexpr{fore.catch.prop$Age2}\% age-2 fish, \Sexpr{forecast_yrs[1] - 2} cohort,
-    \item \Sexpr{fore.catch.prop$Age8}\% age-8 fish, \Sexpr{forecast_yrs[1] - 8} cohort,
-    \item \Sexpr{fore.catch.prop$Age5}\% age-5 fish, \Sexpr{forecast_yrs[1] - 5} cohort,
-    % \Sexpr{fore.catch.prop$Age4}\% age-4 fish from the \Sexpr{forecast_yrs[1] - 4} cohort,
-    % \Sexpr{fore.catch.prop$Age7}\% age-7 fish from the \Sexpr{forecast_yrs[1] - 7} cohort
-    \item \Sexpr{fore.catch.prop$Age12}\% age-12 fish from the huge \Sexpr{forecast_yrs[1] - 12} cohort
-    % \Sexpr{fore.catch.prop$Age11}\% age-11 fish from the \Sexpr{forecast_yrs[1] - 11} cohort
+    \item \Sexpr{fore_catch_prop$Age6}\% age-6 fish, \Sexpr{forecast_yrs[1] - 6} cohort,
+    \item \Sexpr{fore_catch_prop$Age2}\% age-2 fish, \Sexpr{forecast_yrs[1] - 2} cohort,
+    \item \Sexpr{fore_catch_prop$Age8}\% age-8 fish, \Sexpr{forecast_yrs[1] - 8} cohort,
+    \item \Sexpr{fore_catch_prop$Age5}\% age-5 fish, \Sexpr{forecast_yrs[1] - 5} cohort,
+    % \Sexpr{fore_catch_prop$Age4}\% age-4 fish from the \Sexpr{forecast_yrs[1] - 4} cohort,
+    % \Sexpr{fore_catch_prop$Age7}\% age-7 fish from the \Sexpr{forecast_yrs[1] - 7} cohort
+    \item \Sexpr{fore_catch_prop$Age12}\% age-12 fish from the huge \Sexpr{forecast_yrs[1] - 12} cohort
+    % \Sexpr{fore_catch_prop$Age11}\% age-11 fish from the \Sexpr{forecast_yrs[1] - 11} cohort
   \ei
   \end{column}
   \begin{column}{0.65\textwidth}
@@ -812,7 +812,7 @@ plot_fore_compare(base_model,
       \item $B_{2021}$ to $B_{2022}$: -13\%
     \ei
   \item The 2020 year class currently estimated to be above average
-  \item The model estimates a \Sexpr{joint.percent.prob.above.below}\%
+  \item The model estimates a \Sexpr{joint_percent_prob_above_below}\%
     joint probability of being both above the target relative fishing intensity in
     \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at the
     start of \Sexpr{end_yr}
@@ -902,6 +902,7 @@ plot_fore_compare(base_model,
 \bc
 <<historical-prob-plot-1a, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
 make.historical.probs.plot(base_model,
+                           hist_probs = assess_history_probs_df,
                            type = "decline.one.year",
                            add.50 = FALSE)
 @
@@ -912,7 +913,8 @@ make.historical.probs.plot(base_model,
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
 <<historical-prob-plot-1c, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
-  make.historical.probs.plot(base_model)
+  make.historical.probs.plot(base_model,
+                             hist_probs = assess_history_probs_df)
 @
 \ec
 }
@@ -922,6 +924,7 @@ make.historical.probs.plot(base_model,
 \bc
 <<historical-prob-plot-1d, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
   make.historical.probs.plot(base_model,
+                             hist_probs = assess_history_probs_df,
                              add.projs = TRUE)
 @
 \ec
@@ -959,6 +962,7 @@ plot_biomass(list(base_model),
 \bc
 <<historical-prob-plot-2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
   make.historical.probs.plot(base_model,
+                             hist_probs = assess_history_probs_df,
                              type = "bforty",
                              legend.loc = "topright")
 @
@@ -970,6 +974,7 @@ plot_biomass(list(base_model),
 \bc
 <<historical-prob-plot-2b, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
 make.historical.probs.plot(base_model,
+                           hist_probs = assess_history_probs_df,
                            type = "bforty",
                            add.projs = TRUE,
                            legend.loc = "topright")
@@ -997,6 +1002,7 @@ make.historical.probs.plot(base_model,
 \bc
 <<historical-prob-plot-retro, fig.height=3.6, fig.width=6, out.width='0.6\\columnwidth'>>=
 make.historical.probs.retro.plot(base_model,
+                                 hist_probs = assess_history_probs_df,
                                  type = "bforty",
                                  select.retros = 1,
                                  make.one.figure = FALSE,
@@ -1012,6 +1018,7 @@ $B_{2013}$ falling below $\Bforty$.
 \bc
 <<historical-prob-plot-retro-age1, fig.height=3.6, fig.width=6, out.width='0.6\\columnwidth'>>=
 make.historical.probs.retro.plot(sens_models[[2]][[1]],
+                                 hist_probs = assess_history_probs_df,
                                  type = "bforty",
                                  select.retros = 1,
                                  make.one.figure = FALSE,

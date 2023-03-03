@@ -951,7 +951,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
              cohort not yet seen by acoustic survey
          \ei
        \pause
-       \item The model estimates a \Sexpr{joint.percent.prob.above.below}\%
+       \item The model estimates a \Sexpr{joint_percent_prob_above_below}\%
        joint probability of being both above the target relative fishing intensity in
        \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at the
        start of \Sexpr{end_yr}

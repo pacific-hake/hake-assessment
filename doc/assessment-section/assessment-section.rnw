@@ -147,8 +147,8 @@ and zero for all other ages.
 Prior probability distributions are used for a select few parameters
 and fixed values are used for several parameters. For the base model, the
 instantaneous rate of natural mortality ($M$) is estimated with a
-\Sexpr{m.prior[1]} prior having a median of
-\Sexpr{f(exp(as.numeric(m.prior[2])), 2)}
+\Sexpr{m_prior[1]} prior having a median of
+\Sexpr{f(exp(as.numeric(m_prior[2])), 2)}
 and a standard
 deviation (in log-space) of 0.1 (see
 Section~\ref{sec:data-natural-mortality}). The stock-recruitment function is a
@@ -706,26 +706,26 @@ an additional year.
 
 Regarding the Dirichlet-multinomial parameter $\theta_{\text{fish}}$,
 the estimate (median and 95\% credible interval) for $\log \theta_{\text{fish}}$ is
-\Sexpr{log.theta.fishery.median}
-(\Sexpr{log.theta.fishery.025},
-\Sexpr{log.theta.fishery.975}),
+\Sexpr{log_theta_fishery_median}
+(\Sexpr{log_theta_fishery_lower},
+\Sexpr{log_theta_fishery_upper}),
 giving an effective sample
 size multiplier $\theta_{\text{fish}} / (1 + \theta_{\text{fish}})$
 of
-\Sexpr{DM.weight.fishery.median}
-(\Sexpr{DM.weight.fishery.025},
-\Sexpr{DM.weight.fishery.975}).
+\Sexpr{dm_weight_fishery_median}
+(\Sexpr{dm_weight_fishery_lower},
+\Sexpr{dm_weight_fishery_upper}).
 The related survey age-composition parameter $\theta_{\text{surv}}$ has
 \protect{$\log \theta_{\text{surv}}$} estimated as
-\Sexpr{log.theta.survey.median}
-(\Sexpr{log.theta.survey.025},
-\Sexpr{log.theta.survey.975}),
+\Sexpr{log_theta_survey_median}
+(\Sexpr{log_theta_survey_lower},
+\Sexpr{log_theta_survey_upper}),
 and the resulting effective sample
 size multiplier $\theta_{\text{surv}} / (1 + \theta_{\text{surv}})$
 of
-\Sexpr{DM.weight.survey.median}
-(\Sexpr{DM.weight.survey.025},
-\Sexpr{DM.weight.survey.975}).
+\Sexpr{dm_weight_survey_median}
+(\Sexpr{dm_weight_survey_lower},
+\Sexpr{dm_weight_survey_upper}).
 
 The base model fit to the
 acoustic survey biomass index (Figure~\ref{fig:main-mcmc-survey-fit})
@@ -844,7 +844,7 @@ distributions, including $\theta_{\text{fish}}$ and  $\theta_{\text{surv}}$ (as 
 Section~\ref{sec:data-age-comp-likelihood}).
 
 The \Sexpr{assess_yr} base model specified the same level of variation (standard
-deviation of $\Phi = \Sexpr{sel.Phi.val}$) associated with time-varying fishery selectivity as
+deviation of $\Phi = \Sexpr{sel_phi_val}$) associated with time-varying fishery selectivity as
 the \Sexpr{last_assess_yr} base model, effectively
 allowing the model flexibility (i.e., a lower penalty on the overall
 likelihood) to fit to data that suggests high variability among years for each
@@ -1002,7 +1002,7 @@ class has now stabilized after observations across eight years of fishery observ
 and three acoustic surveys. The 2016 year class is
 estimated to be above average (similar in size to the 2008 year class) from six years
 of fishery data and two years of survey data.
-% years.since.2010.recruitment.med.below.mean  to see all years, then see figure
+% yrs_since_2010_recruitment_med_below_mean  to see all years, then see figure
 % for 'well below':
 Since 2020, the model currently estimates small 2011, 2013, 2015, 2018, 2019,
 and 2021 year classes (median recruitment well below the mean of all median recruitments) and near
@@ -1021,13 +1021,13 @@ by the age-1 index in 2021, it will not be observed by the acoustic survey until
 
 %The additional data in the 2020 assessment has decreased the median estimate of the
 %2014 year class to
-%\Sexpr{recruitment.med.in.2014}~billion fish (Table~\ref{tab:main-median-posterior}),
-%from the \Sexpr{last.assess.recruitment.med.in.2014}~billion estimated in the 2020 assessment (Table~25 of \citealt{JTC2020}).
+%\Sexpr{recruitment_med_in_2014}~billion fish (Table~\ref{tab:main-median-posterior}),
+%from the \Sexpr{last_assess_recruitment_med_in_2014}~billion estimated in the 2020 assessment (Table~25 of \citealt{JTC2020}).
 %The 2014 year class remains the fifth largest estimated recruitment, albeit
 %with large uncertainty (Table~\ref{tab:main-ci-posterior} and
 %Figure~\ref{fig:main-recruitment}).  The median estimate for the 2016 year class
-%is \Sexpr{recruitment.med.in.2016}~billion fish
-%(\Sexpr{recruitment.lower.in.2016}--\Sexpr{recruitment.upper.in.2016}~billion fish; Tables~\ref{tab:main-median-posterior} and
+%is \Sexpr{recruitment_med_in_2016}~billion fish
+%(\Sexpr{recruitment_lower_in_2016}--\Sexpr{recruitment_upper_in_2016}~billion fish; Tables~\ref{tab:main-median-posterior} and
 %\ref{tab:main-ci-posterior}).
 
 %The proportion of the fishery catch that was age-1 fish
@@ -1039,7 +1039,7 @@ by the age-1 index in 2021, it will not be observed by the acoustic survey until
 From Figure~\ref{fig:main-recruitment} it looks
 as though the 2014 recruitment could be as large as the 2010 recruitment.
 However, the assessment model
-estimates a \Sexpr{prob.percent.2014.rec.gt.2010.rec}\% chance that this
+estimates a \Sexpr{prob_percent_2014_rec_gt_2010_rec}\% chance that this
 could be the case.
 The overlapping of the credible intervals in Figure~\ref{fig:main-recruitment} is because large
 MCMC estimates of 2010 recruitment are associated with large estimates of 2014
@@ -1053,7 +1053,7 @@ might be as large as in 2010, whereas Figure~\ref{fig:main-recruitment}
 suggests that 1970, 1999 and 2014  could also possibly be larger than in 2010, giving an
 over-optimistic impression of how often we can expect cohorts the size of the
 2010 cohort to occur. The 2020 cohort is still very uncertain but has a
-\Sexpr{prob.percent.2020.rec.gt.2010.rec}\% chance of exceeding the 2010 cohort, while the
+\Sexpr{prob_percent_2020_rec_gt_2010_rec}\% chance of exceeding the 2010 cohort, while the
 2021 cohort is definitely smaller than the 2010 cohort (Figure~\ref{fig:main-recruitment-scale-all}).
 Participants in the \fishname\ process have an
 intuition that the 2010 is a very large recruitment event --
@@ -1070,7 +1070,7 @@ been produced throughout the range of observed female spawning biomass
 (Figure~\ref{fig:main-mcmc-sr-variability}). The standard deviation of the time
 series of median recruitment deviation estimates for the years 1970--\Sexpr{last_data_yr - 1}, which
 are informed by the age compositions and the age-1 index, is
-\Sexpr{sd.med.recr.dev.estimates}.
+\Sexpr{sd_med_recr_dev_estimates}.
 
 \clearpage % To avoid dangling subheading
 
@@ -1100,7 +1100,7 @@ Median relative fishing intensity is estimated to have declined from
 in 2015, and then it leveled off around 70\% from 2016 to 2019 before declining to
 \Sexpr{median_intensity_2022}\% in 2022.
 The median exploitation fraction has increased from a recent low of
-\Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2017} in 2017 where it
+\Sexpr{exploitation_med_2012} in 2012 to \Sexpr{exploitation_med_2017} in 2017 where it
 remained relatively stable before dropping back to 2012--2015 levels in 2022.
 Although there is a considerable amount of imprecision
 around these recent estimates due to uncertainty in recruitment and spawning
@@ -1110,7 +1110,7 @@ to 2022 (Figure~\ref{fig:main-fishing-intensity}). The median estimate
 for 2017 and 2018 is below $\Fforty$ though the 95\% posterior
 credibility interval does include $\Fforty$.
 
-% Note that exploitation.med.penult.yr comes out as 0.06, but in Table d
+% Note that exploitation_med_penult_yr comes out as 0.06, but in Table d
 %  is 0.065, because the true value is 0.0648.... The text rounds to two decimal
 %  places but Table rounds to three, but rounding is done correctly because of
 %  the automation; i.e. we haven't incorrectly rounded up to 0.07, which we
@@ -1186,7 +1186,7 @@ time series high in 2017.
 % above the target since \Sexpr{median_relative_bio_above_target_since}.
 While
 there is large uncertainty in the \Sexpr{end_yr-1} estimates of relative fishing
-intensity and relative spawning biomass, the model estimates a \Sexpr{joint.percent.prob.above.below}\%
+intensity and relative spawning biomass, the model estimates a \Sexpr{joint_percent_prob_above_below}\%
 joint probability of being both above the $\Fforty$ relative fishing intensity in
 \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at the
 start of \Sexpr{end_yr}.
@@ -1463,33 +1463,33 @@ influence the exact change in female spawning biomass, Figure~\ref{fig:main-matu
 
 
 % This needs to be somewhat manual so you can pick the cohorts to
-% specify - look at fore.catch.prop and pick the highest and
+% specify - look at fore_catch_prop and pick the highest and
 % put them in order. Comment out un-needed ones.
 % Ages and years are now automated.
 
 The age composition (in numbers) of the catch in \Sexpr{forecast_yrs[1]} is
 projected to be (using MCMC medians)
-\Sexpr{fore.catch.prop$Age3}\% age-3 fish from the \Sexpr{forecast_yrs[1] - 3} cohort,
-\Sexpr{fore.catch.prop$Age7}\% age-7 fish from the \Sexpr{forecast_yrs[1] - 7} cohort,
-\Sexpr{fore.catch.prop$Age6}\% age-6 fish from the \Sexpr{forecast_yrs[1] - 6} cohort,
-\Sexpr{fore.catch.prop$Age9}\% age-9 fish from the \Sexpr{forecast_yrs[1] - 9} cohort,
+\Sexpr{fore_catch_prop$Age3}\% age-3 fish from the \Sexpr{forecast_yrs[1] - 3} cohort,
+\Sexpr{fore_catch_prop$Age7}\% age-7 fish from the \Sexpr{forecast_yrs[1] - 7} cohort,
+\Sexpr{fore_catch_prop$Age6}\% age-6 fish from the \Sexpr{forecast_yrs[1] - 6} cohort,
+\Sexpr{fore_catch_prop$Age9}\% age-9 fish from the \Sexpr{forecast_yrs[1] - 9} cohort,
 and only
-\Sexpr{fore.catch.prop$Age13}\% age-13 fish from the large \Sexpr{forecast_yrs[1] - 13} cohort
-% \Sexpr{fore.catch.prop$Age11}\% age-11 fish from the \Sexpr{forecast_yrs[1] - 11} cohort
+\Sexpr{fore_catch_prop$Age13}\% age-13 fish from the large \Sexpr{forecast_yrs[1] - 13} cohort
+% \Sexpr{fore_catch_prop$Age11}\% age-11 fish from the \Sexpr{forecast_yrs[1] - 11} cohort
 (Figure~\ref{fig:main-age-comp-forecast}).
 However, those estimates are highly
 uncertain with the 95\% credibility interval for the age-3 fraction spanning
-\Sexpr{f(fore.catch.prop.age3.lower)}\%--\Sexpr{f(fore.catch.prop.age3.upper)}\%.
+\Sexpr{f(fore_catch_prop_age3_lower)}\%--\Sexpr{f(fore_catch_prop_age3_upper)}\%.
 %and for the very young and highly uncertain age-2 fraction spanning
-%\Sexpr{f(fore.catch.prop.age2.lower)}\%--\Sexpr{f(fore.catch.prop.age2.upper)}\%.
+%\Sexpr{f(fore_catch_prop.age2.lower)}\%--\Sexpr{f(fore_catch_prop.age2.upper)}\%.
 
 Due to the higher average weight of older fish compared to younger fish, the median expected
 proportion of the \Sexpr{forecast_yrs[1]} catch by weight
-is \Sexpr{f(fore.catch.prop.wt.age3.median)}\% for the age-3 \Sexpr{forecast_yrs[1] - 3} cohort
-(compared to \Sexpr{fore.catch.prop$Age3}\% by numbers)
-and \Sexpr{f(fore.catch.prop.wt.age7.median)}\%      % $
+is \Sexpr{f(fore_catch_prop_wt_age3_median)}\% for the age-3 \Sexpr{forecast_yrs[1] - 3} cohort
+(compared to \Sexpr{fore_catch_prop$Age3}\% by numbers)
+and \Sexpr{f(fore_catch_prop_wt_age7_median)}\%      % $
 for the age-7 \Sexpr{forecast_yrs[1] - 7} cohort
-(compared to \Sexpr{fore.catch.prop$Age7}\% by numbers;
+(compared to \Sexpr{fore_catch_prop$Age7}\% by numbers;
 Figure~\ref{fig:main-age-comp-forecast}).     % $
 
 % Manual done 2020.
@@ -1719,10 +1719,10 @@ sample size approximately equal to the harmonic mean of the effective
 sample size. The McAllister-Ianelli method
 suggested a weighting factor of 0.14 and 0.46 (ratio of 0.30) for fishery and survey
 age compositions, respectively. The median estimate from Dirichlet-multinomial method
-used in the base model was \Sexpr{DM.weight.fishery.median} and
-\Sexpr{DM.weight.survey.median} (ratio of
-\Sexpr{f(as.numeric(DM.weight.fishery.median) /
-as.numeric(DM.weight.survey.median),2)}).
+used in the base model was \Sexpr{dm_weight_fishery_median} and
+\Sexpr{dm_weight_survey_median} (ratio of
+\Sexpr{f(as.numeric(dm_weight_fishery_median) /
+as.numeric(dm_weight_survey_median),2)}).
 Downweighting fishery composition data using the McAllister-Ianelli method
 led to minor changes in relative spawning biomass, recruitment estimates, and increased uncertainty
 in estimates of early recruitments compared to the base model
@@ -1907,11 +1907,11 @@ for several possible catches in 2019, such as 0~t, 180,000~t,
 % hardwiring to force manually checking if the value changes much from previous assessment
 we can select the 410,000~t row (close enough to 412,015~t) in the table from the 2019
 assessment to give that assessment's
-P$(B_{2020} < B_{2019}) = $\Sexpr{prob.decline.from.2019.to.2020.historic}\%;
+P$(B_{2020} < B_{2019}) = $\Sexpr{prob_decline_from_2019_to_2020_historic}\%;
 Figure~\ref{fig:main-historical-1}. We can also calculate this probability
 from the current assessment model, which implicitly includes the 412,015~t catch
 from 2019, giving
-P$(B_{2020} < B_{2019})=$\Sexpr{prob.decline.from.2019.to.2020.curr}\%;
+P$(B_{2020} < B_{2019})=$\Sexpr{prob_decline_from_2019_to_2020_curr}\%;
 Figure~\ref{fig:main-historical-1}.
 We extracted similar probabilities
 from past assessment documents going back to 2012
@@ -1930,9 +1930,9 @@ documents are not too definitive (too close to 0\% or to 100\%), because they ar
 admitting a wide range of uncertainty given unknown recent recruitments.
 
 % I think we could cut this as it is an example of what is already describe above
-%The historical probability of P$(B_{2013} < B_{2012}) = $\Sexpr{prob.decline.from.2012.to.2013.historic}\%
+%The historical probability of P$(B_{2013} < B_{2012}) = $\Sexpr{prob_decline_from_2012_to_2013_historic}\%
 %from the 2012 assessment is
-%quite a lot higher than the \Sexpr{prob.decline.from.2012.to.2013.curr}\% calculated using the current assessment model
+%quite a lot higher than the \Sexpr{prob_decline_from_2012_to_2013_curr}\% calculated using the current assessment model
 %(Figure~\ref{fig:main-historical-1}). But this makes sense because the
 %2012 assessment model had no information that the 2010 recruitment was going to be very large
 %(it did not include the age-1 index, which in 2011 did indicate a large 2010 recruitment,

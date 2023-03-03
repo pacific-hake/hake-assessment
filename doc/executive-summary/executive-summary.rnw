@@ -105,11 +105,11 @@ Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
 1999 year class, with the cumulative removal (through \Sexpr{end_yr-1}) from
 that cohort estimated at approximately
-\Sexpr{f(cohort_catch.1999/1e6,2)}~million~t. Through \Sexpr{last_data_yr}, the
+\Sexpr{f(cohort_catch_1999/1e6,2)}~million~t. Through \Sexpr{last_data_yr}, the
 cumulative catch of the 2010, 2014, and 2016 year classes is estimated to be about
-\Sexpr{f(cohort_catch.2010/1e6,2)}~million~t,
-\Sexpr{f(cohort_catch.2014/1e6,2)}~million~t, and
-\Sexpr{f(cohort_catch.2016/1e6,2)}~million~t,
+\Sexpr{f(cohort_catch_2010/1e6,2)}~million~t,
+\Sexpr{f(cohort_catch_2014/1e6,2)}~million~t, and
+\Sexpr{f(cohort_catch_2016/1e6,2)}~million~t,
 respectively.
 In the \Sexpr{end_yr-1} catch,
 \Sexpr{top_coh(base_model, last_data_yr, 3, cap = FALSE)}.
@@ -421,7 +421,7 @@ Since 2010, the model currently estimates small 2011, 2012, 2013, 2015, 2018, 20
 and 2021 year classes (median recruitment well below the mean of all median recruitments).
 % Done for for 2023 assessment
 % This gives all years, but some are close to average so do manually:
-%  years.since.2010.recruitment.med.below.mean  # ignore assess_yr-1
+%  yrs_since_2010_recruitment_med_below_mean  # ignore assess_yr-1
 % AME put in definition of below-average, else it looks like it contradicts the
 %  median deviations in the table.
 % Allan agrees. Even though the deviation is slightly above average, the 2011
@@ -430,9 +430,9 @@ and 2021 year classes (median recruitment well below the mean of all median recr
 
 The 2014 and 2016 year classes are both larger than average, with
 % probabilities near certainty
-%high chance (\Sexpr{prob.percent.2014.rec.gt.2016.rec}\%)
+%high chance (\Sexpr{prob_percent_2014_rec_gt_2016_rec}\%)
 2014
-larger than 2016 but smaller than 2010. % prob.percent.2014.rec.gt.2010.rec
+larger than 2016 but smaller than 2010. % prob_percent_2014_rec_gt_2010_rec
 With the inclusion of the relative age-1 index, there is information beyond just fishery encounters in
 the data to estimate the size of the 2020 year class. Collectively, these data
 indicate that the 2020 year class is likely well above average. The much smaller 2019 year class is
@@ -514,7 +514,7 @@ Median relative fishing intensity is estimated to have declined from
 in 2015. It then leveled off around 70\% from 2016 to 2019 before declining to
 \Sexpr{median_intensity_2022}\% in 2022.
 The median exploitation fraction has, on average, increased from a recent low of
-\Sexpr{exploitation.med.2012} in 2012 to \Sexpr{exploitation.med.2020} in 2020
+\Sexpr{exploitation_med_2012} in 2012 to \Sexpr{exploitation_med_2020} in 2020
 before dropping back to 2012--2015 levels in 2022.
 There is a
 considerable amount of uncertainty around estimates of relative fishing intensity,
@@ -635,7 +635,7 @@ since \Sexpr{median_relative_bio_above_target_since}.
 
 While there is large uncertainty in the estimates of relative
 fishing intensity and relative spawning biomass, the model estimates a
-\Sexpr{joint.percent.prob.above.below}\%
+\Sexpr{joint_percent_prob_above_below}\%
 joint probability of being both above a relative fishing intensity of 1.0
 in \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end_yr}.

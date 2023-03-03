@@ -363,10 +363,10 @@ Age-samples from \Sexpr{us.shore.age[us.shore.age$year == last_data_yr,
 "n.trips"]} shoreside trips showed similar age compositions in the catch
 compared to the at-sea fisheries, though not nearly as many age-2 fish.
 The four most abundant age classes for highest occurrences being for \Sexpr{last_data_yr} were
-age-\Sexpr{us.age.1.prop.age.shore} (\Sexpr{us.age.1.prop.shore}\%),
-age-\Sexpr{us.age.2.prop.age.shore} (\Sexpr{us.age.2.prop.shore}\%),
-age-\Sexpr{us.age.3.prop.age.shore} (\Sexpr{us.age.3.prop.shore}\%), and
-age-\Sexpr{us.age.4.prop.age.shore} (\Sexpr{us.age.4.prop.shore}\%);
+age-\Sexpr{us_age_1_prop_age_shore} (\Sexpr{us_age_1_prop_shore}\%),
+age-\Sexpr{us_age_2_prop_age_shore} (\Sexpr{us_age_2_prop_shore}\%),
+age-\Sexpr{us_age_3_prop_age_shore} (\Sexpr{us_age_3_prop_shore}\%), and
+age-\Sexpr{us_age_4_prop_age_shore} (\Sexpr{us_age_4_prop_shore}\%);
 Table~\ref{tab:main-us-shore-age-data}. Age-composition differences
 between at-sea and shoreside fleets during
 the 2022 fishing year were larger than usual due, in part, to

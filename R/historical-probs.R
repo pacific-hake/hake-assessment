@@ -42,7 +42,8 @@ calc_historical_probs <- function(model,
 #' combine with past assessment estimates
 #'
 #' @param model A model as loaded by [create_rds_file()]
-#' @param fn The file name
+#' @param hist_probs A data frame containing the data found in
+#' `assessment-history-probs.csv`
 #' @param start First assessment year to do comparisons
 #' @param end Last assessment year to do comparisons
 #' @param ... Further arguments to pass to [calc_historical_probs()]
@@ -60,15 +61,11 @@ calc_historical_probs <- function(model,
 #' * `P_below_B40_curr` - current estimate (from `model`) of the probability
 #'    that the spawning biomass was below B_40 in year+1
 #' @export
-combine_historical_probs <- function(
-    model,
-    fn = file.path(rootd_data,
-                   "assessment-history-probs.csv"),
-    start = 2012,
-    end,
-    ...){
-
-  hist_probs <- read_csv(fn, comment = "#", col_names = cols())
+combine_historical_probs <- function(model,
+                                     hist_probs,
+                                     start = 2012,
+                                     end,
+                                     ...){
 
   res <- cbind(hist_probs[hist_probs$Year %in% start:end, ],
                calc_historical_probs(model,
@@ -91,6 +88,8 @@ combine_historical_probs <- function(
 #' Included in management presentation.
 #'
 #' @param model A model object, created by [create_rds_file()]
+#' @param hist_probs A data frame containing the data found in
+#' `assessment-history-probs.csv`
 #' @param type "decline" to show probs of spawning biomass declining in year
 #' after historical assessment year, "decline.one.year" to show that for just
 #' one year (to explain in a talk), "bforty" to show prob of being below
@@ -116,6 +115,7 @@ combine_historical_probs <- function(
 #' @return A base R plot
 #' @export
 make.historical.probs.plot <- function(model,
+                                       hist_probs,
                                        type = "decline",
                                        end = assess_yr - 1,
                                        xLim = NULL,
@@ -137,6 +137,7 @@ make.historical.probs.plot <- function(model,
                                        ...){
 
   res <- combine_historical_probs(model = model,
+                                  hist_probs = hist_probs,
                                   end = end,
                                   ...)
 
@@ -341,6 +342,8 @@ make.historical.probs.plot <- function(model,
 #' `make.historical.probs.plot()` for each retrospective
 #'
 #' @param model Model with retrospectives
+#' @param hist_probs A data frame containing the data found in
+#' `assessment-history-probs.csv`
 #' @param type One of `decline` or `bforty` as needed for
 #' [make.historical.probs.plot()]
 #' @param xLim Range of x (years) axis
@@ -359,6 +362,7 @@ make.historical.probs.plot <- function(model,
 #' @param ... Arguments to pass to [make.historical.probs.plot()]
 #' @export
 make.historical.probs.retro.plot <- function(model,
+                                             hist_probs,
                                              type = "decline",
                                              xLim = c(2012, assess_yr),
                                              make.one.figure = TRUE,
@@ -378,31 +382,32 @@ make.historical.probs.retro.plot <- function(model,
                                              lwd.val.for.retros = 1,
                                              legend.text.model = "From current base model",
                                              ...){
-  if(!make.one.figure){   # override default for multiple figures
+
+  # Override default for multiple figures
+  if(!make.one.figure){
     lwd.val.for.retros = 3
   }
 
-  earliest.retro.available = length(model$retros)  # For 2021 base.case: 10
+  # For 2021 base.case: 10
+  earliest.retro.available = length(model$retros)
   earliest.retro.to.use = min(assess_yr - xLim[1],
                               earliest.retro.available)
-                                        # Any further is before
-                                        # xLim[1], want first retro year of data
-                                        # to be 2011 (for 2012 calcs to compare
-                                        # with 2012 assessment), which is retros[[9]].
-                                        # Now for 2023 assessment, we can't got
-                                        # back to data up to 2011 because first
-                                        # 10th retro year back is data up to 2012.
+
+  # Any further is before xLim[1], want first retro year of data to be 2011
+  # (for 2012 calcs to compare with 2012 assessment), which is retros[[9]].
+  # Now for 2023 assessment, we can't got back to data up to 2011 because first
+  # 10th retro year back is data up to 2012
 
   retros.to.use = rev(1:earliest.retro.to.use)
   if(!is.null(select.retros)){
     retros.to.use = retros.to.use[select.retros]
   }
 
-
-  # Always do the current base model first, since want it when make.one.figure =
-  # TRUE, but don't (for multiple plots) if omit.current = FALSE
+  # Always do the current base model first, since want it when make.one
+  #.figure = `TRUE`, but don't (for multiple plots) if omit.current = `FALSE`
   if(make.one.figure | !omit.current){
       make.historical.probs.plot(model,
+                                 hist_probs = hist_probs,
                                  type = type,
                                  end = assess_yr - 1,
                                  xLim = xLim,
@@ -420,8 +425,10 @@ make.historical.probs.retro.plot <- function(model,
 
   for(i in retros.to.use){
     if(!make.one.figure){
-      # Still want current base model results and full legend for individual plots
+      # Still want current base model results and full legend for
+      # individual plots
       make.historical.probs.plot(model,
+                                 hist_probs = hist_probs,
                                  type = type,
                                  end = assess_yr - i,
                                  xLim = xLim,
@@ -438,6 +445,7 @@ make.historical.probs.retro.plot <- function(model,
     }
 
     make.historical.probs.plot(model$retros[[i]],
+                               hist_probs = hist_probs,
                                type = type,
                                end = assess_yr - i,
                                xLim = xLim,

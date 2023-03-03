@@ -658,6 +658,7 @@ make.assessment.history.plot(base_model,
 \bc
 <<historical-prob-plot-1a, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
 make.historical.probs.plot(base_model,
+                           hist_probs = assess_history_probs_df,
                            type = "decline.one.year",
                            add.50 = FALSE)
 @
@@ -668,7 +669,8 @@ make.historical.probs.plot(base_model,
 \frame{\frametitle{Probabilities of decline in subsequent year}
 \bc
 <<historical-prob-plot-1c, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
-  make.historical.probs.plot(base_model)
+  make.historical.probs.plot(base_model,
+                             hist_probs = assess_history_probs_df)
 @
 \ec
 }
@@ -678,6 +680,7 @@ make.historical.probs.plot(base_model,
 \bc
 <<historical-prob-plot-1d, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
   make.historical.probs.plot(base_model,
+                             hist_probs = assess_history_probs_df,
                              add.projs = TRUE)
 @
 \ec
@@ -719,6 +722,7 @@ plot_biomass(list(base_model),
 \bc
 <<historical-prob-plot-2, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
 make.historical.probs.plot(base_model,
+                           hist_probs = assess_history_probs_df,
                            type = "bforty",
                            legend.loc = "topright")
 @
@@ -730,6 +734,7 @@ make.historical.probs.plot(base_model,
 \bc
 <<historical-prob-plot-2b, fig.height=3.5, fig.width=7, out.width='0.9\\columnwidth'>>=
 make.historical.probs.plot(base_model,
+                           hist_probs = assess_history_probs_df,
                            type = "bforty",
                            add.projs = TRUE,
                            legend.loc = "topright")
