@@ -6,7 +6,7 @@ make.reference.points.table <- function(model,
                                         placement = "tbp",
                                         tabular.envt = "longtable"){
   ## Returns an xtable in the proper format for the executive summary
-  ##  reference points. The values are calculated previously in the calc.mcmc
+  ##  reference points. The values are calculated previously in the calc_mcmc
   ##  function in load-models.r.
   ##
   ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
@@ -19,19 +19,19 @@ make.reference.points.table <- function(model,
   ## tabular.envt - "longtable" or "table"
 
   m <- model$mcmccalcs
-  tab <- rbind(m$unfish.fem.bio,
-               m$unfish.recr,
-               m$f.spawn.bio.bf40,
-               m$spr.msy.proxy,
-               m$exp.frac.spr,
-               m$yield.bf40,
-               m$fem.spawn.bio.b40,
-               m$spr.b40,
-               m$exp.frac.b40,
-               m$yield.b40,
-               m$fem.spawn.bio.bmsy,
-               m$spr.msy,
-               m$exp.frac.sprmsy,
+  tab <- rbind(m$unfish_fem_bio,
+               m$unfish_recr,
+               m$f_spawn_bio_bf40,
+               m$spr_msy_proxy,
+               m$exp_frac_spr,
+               m$yield_bf40,
+               m$fem_spawn_bio_b40,
+               m$spr_b40,
+               m$exp_frac_b40,
+               m$yield_b40,
+               m$fem_spawn_bio_bmsy,
+               m$spr_msy,
+               m$exp_frac_sprmsy,
                m$msy)
   descr <- c("Unfished female spawning biomass ($B_0$, thousand t)",
              "Unfished recruitment ($R_0$, millions)",
@@ -110,7 +110,7 @@ make.reference.points.table.old <- function(model,
                                         space.size = 10,
                                         placement = "H"){
   ## Returns an xtable in the proper format for the executive summary
-  ##  reference points. The values are calculated previously in the calc.mcmc
+  ##  reference points. The values are calculated previously in the calc_mcmc
   ##  function in load-models.r.
   ##
   ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
@@ -121,19 +121,19 @@ make.reference.points.table.old <- function(model,
   ## space.size - size of the vertical spaces for the table
 
   m <- model$mcmccalcs
-  tab <- rbind(m$unfish.fem.bio,
-               m$unfish.recr,
-               m$f.spawn.bio.bf40,
-               m$spr.msy.proxy,
-               m$exp.frac.spr,
-               m$yield.bf40,
-               m$fem.spawn.bio.b40,
-               m$spr.b40,
-               m$exp.frac.b40,
-               m$yield.b40,
-               m$fem.spawn.bio.bmsy,
-               m$spr.msy,
-               m$exp.frac.sprmsy,
+  tab <- rbind(m$unfish_fem_bio,
+               m$unfish_recr,
+               m$f_spawn_bio_bf40,
+               m$spr_msy_proxy,
+               m$exp_frac_spr,
+               m$yield_bf40,
+               m$fem_spawn_bio_b40,
+               m$spr_b40,
+               m$exp_frac_b40,
+               m$yield_b40,
+               m$fem_spawn_bio_bmsy,
+               m$spr_msy,
+               m$exp_frac_sprmsy,
                m$msy)
   descr <- c("Unfished female spawning biomass ($B_0$, thousand t)",
              "Unfished recruitment ($R_0$, millions)",
