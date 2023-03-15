@@ -157,7 +157,7 @@ get_age_comp_limits <- function(model, type = 1){
 make_numbers_at_age_plot <- function(model,
                                      scale = 1e3,
                                      ...){
-  natage <- model$extra.mcmc$natage_median |>
+  natage <- model$extra_mcmc$natage_median |>
     as_tibble() |>
     rename(Year = Yr)
 

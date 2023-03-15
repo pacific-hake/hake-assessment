@@ -244,7 +244,7 @@ make.mcmc.diag.pairs.plot <- function(model,
 
 # MCMC trace plots for either age-2+ biomass or age-1 index
 make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
-                                                     ##  r4ss package's function SSgetMCMC and has the extra.mcmc member
+                                                     ##  r4ss package's function SSgetMCMC and has the extra_mcmc member
                                       start_yr,      ## Year to start the plot
                                       end_yr,        ## Year to end the plot
                                       surv_yrs,      ## Years in which the survey took place
@@ -294,22 +294,22 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
            col = survey.col)
 
   # subsamble to help the lines be more visible
-  nsamp <- ncol(model$extra.mcmc$cpue.table) # total samples
+  nsamp <- ncol(model$extra_mcmc$cpue.table) # total samples
   subsample <- floor(seq(1, nsamp, length.out=samples)) # subset (floor to get integers)
 
   # Need to do biomass and age1 surveys, this was what it was when only biomass,
   #  but the first rows happend to be that index:
-  # y = model$extra.mcmc$cpue.table[1:length(start_yr:end_yr), subsample],
-  # model$extra.mcmc$cpue.table is 54x8015, each row presumably corresponding to
+  # y = model$extra_mcmc$cpue.table[1:length(start_yr:end_yr), subsample],
+  # model$extra_mcmc$cpue.table is 54x8015, each row presumably corresponding to
   #  a row of model$dat$CPUE. -survey.index here corresponds to non-survey years:
-  y.vals.to.plot <- model$extra.mcmc$cpue.table[model$dat$CPUE$index %in%
+  y.vals.to.plot <- model$extra_mcmc$cpue.table[model$dat$CPUE$index %in%
                                                 c(survey.index, -survey.index) &
                                                 model$dat$CPUE$year %in%
                                                 start_yr:end_yr,
                                                 subsample]
 
   # If doesn't work then try results from (may have to transpose, or reshape):
-  #  recr1 <- model$extra.mcmc$natage %>% dplyr::select("Yr", "1") %>%
+  #  recr1 <- model$extra_mcmc$natage %>% dplyr::select("Yr", "1") %>%
   #    dplyr::filter(Yr %in% 1995:2021)
 
   # lines showing expected survey values include in-between years
@@ -321,8 +321,8 @@ make.mcmc.survey.fit.plot <- function(model,         ## model is a model with an
           add=TRUE,
           lty = 1)
   lines(x = start_yr:end_yr,
-        # y = model$extra.mcmc$cpue.median[1:length(start_yr:end_yr)],
-        y = model$extra.mcmc$cpue.median[model$dat$CPUE$index %in%
+        # y = model$extra_mcmc$cpue.median[1:length(start_yr:end_yr)],
+        y = model$extra_mcmc$cpue.median[model$dat$CPUE$index %in%
                                          c(survey.index, -survey.index) &
                                          model$dat$CPUE$year %in%
                                          start_yr:end_yr],
@@ -388,14 +388,14 @@ make.mcmc.catchability.plot <- function(model,
   hist_color <- get.shade(hist_color, (1 - hist_alpha) * 100)
   par(mar = c(3, 3, 1, 1))
   if(type == "age2plus"){
-    vec <- model$extra.mcmc$Q_vector
+    vec <- model$extra_mcmc$Q_vector
     if(!is.null(model2)){
-      vec2 <- model2$extra.mcmc$Q_vector
+      vec2 <- model2$extra_mcmc$Q_vector
     }
   }else if(type == "age1"){
-    vec <- model$extra.mcmc$Q_vector_age1
+    vec <- model$extra_mcmc$Q_vector_age1
     if(!is.null(model2)){
-      vec2 <- model2$extra.mcmc$Q_vector_age1
+      vec2 <- model2$extra_mcmc$Q_vector_age1
     }
   }else{
     stop("type must be either 'age2plus' or 'age1'")
@@ -438,7 +438,7 @@ make.mcmc.catchability.plot <- function(model,
 ## make.mcmc.recruitment.plot(base_model, start_yr = 1966, equil.yr = unfished_eq_yr, samples = NULL, rescale = TRUE, traceplot = FALSE)
 make.mcmc.recruitment.plot <- function(model,         ## model is a model with an mcmc run which has the output of the
                                                     ##  r4ss package's function
-                                                    ##  SSgetMCMC and has the extra.mcmc member
+                                                    ##  SSgetMCMC and has the extra_mcmc member
                                        equil.yr,
                                        start_yr,      ## Year to start the plot
                                        end_yr = 2023, ## Year to end the plot

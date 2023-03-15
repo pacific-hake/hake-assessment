@@ -190,10 +190,10 @@ make.survey.age1.plot <- function(model,
   )
   yrs <- x$year
 
-  recr1 <- model$extra.mcmc$natage_median %>%
+  recr1 <- model$extra_mcmc$natage_median %>%
     filter(Yr %in% yrs) %>%
     pull(`1`)
-  recrAll <- model$extra.mcmc$natage_median %>%
+  recrAll <- model$extra_mcmc$natage_median %>%
     filter(Yr %in% min(yrs):max(yrs)) %>%
     pull(`1`)
 

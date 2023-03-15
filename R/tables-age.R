@@ -337,11 +337,11 @@ atage_table <- function(model,
   }
 
   tbl <- switch (table_type,
-                 model$extra.mcmc$natage_median,
-                 model$extra.mcmc$expatage_median,
-                 model$extra.mcmc$catage_median,
-                 model$extra.mcmc$catage_biomass_median,
-                 model$extra.mcmc$batage_median)
+                 model$extra_mcmc$natage_median,
+                 model$extra_mcmc$expatage_median,
+                 model$extra_mcmc$catage_median,
+                 model$extra_mcmc$catage_biomass_median,
+                 model$extra_mcmc$batage_median)
   fn <- switch (table_type,
                 file.path(csv_dir_full, out_est_naa_file),
                 file.path(csv_dir_full, out_est_eaa_file),

@@ -1,6 +1,372 @@
-% Load/create all R variables used in the document text
+## ----setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE-------------------
+library(knitr)
+devtools::load_all(here::here())
+if (is_latex_output()) {
+  knitr_figs_dir <- "knitr-figs-pdf/"
+  knitr_cache_dir <- "knitr-cache-pdf/"
+  fig_out_type <- "png"
+} else {
+  knitr_figs_dir <- "knitr-figs-docx/"
+  knitr_cache_dir <- "knitr-cache-docx/"
+  fig_out_type <- "png"
+}
+fig_asp <- 0.618
+fig_width <- 9
+fig_out_width <- "6in"
+fig_dpi <- 180
+fig_align <- "center"
+fig_pos <- "htb"
+opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  comment = "#>",
+  fig.path = knitr_figs_dir,
+  cache.path = knitr_cache_dir,
+  fig.asp = fig_asp,
+  fig.width = fig_width,
+  out.width = fig_out_width,
+  echo = FALSE,
+  #  autodep = TRUE,
+  #  cache = TRUE,
+  cache.comments = FALSE,
+  dev = fig_out_type,
+  dpi = fig_dpi,
+  fig.align = fig_align,
+  fig.pos = fig_pos
+)
 
-<<load-custom-knitr-variables-chunk, echo = FALSE>>=
+
+## ----load-packages-chunk, echo = FALSE--------------------------------------------------------------
+
+# To install rnaturalearthhires (it was hard to find with Google):
+# devtools::install_github("ropensci/rnaturalearthhires")
+# devtools::install_github("pbs-assess/gfutilities")
+message("Loading R packages...")
+pacman::p_load(
+  # Alphabetical order
+  adnuts,
+  cli, coda, cowplot, crayon,
+  data.tree, date, dplyr,
+  future, furrr,
+  gfutilities, ggh4x, ggplot2, ggpubr, ggrepel, grDevices, grid,
+  gridGraphics, gridExtra, gtools,
+  here,
+  kableExtra, knitr,
+  lubridate,
+  maps, maptools, matrixcalc,
+  parallel, purrr,
+  r4ss, RColorBrewer, readr, reshape2, rgeos, rnaturalearth, rnaturalearthhires, rstan,
+  scales, shinystan, sf, stringr,
+  testthat, tictoc, tidyr, tools,
+  xtable)
+message("Finished loading R packages...")
+
+
+## ----load-globals-chunk, echo = FALSE---------------------------------------------------------------
+
+curr_month <- month(Sys.Date())
+curr_year <- year(Sys.Date())
+
+# If in September 01 to December 31, the assess_yr will be set to the year
+# that  begins in January. If in January 01 to August 31 the assess_yr will
+# be the current year
+assess_yr <- ifelse(curr_month %in% 9:12, curr_year + 1, curr_year)
+last_assess_yr <- assess_yr - 1
+model_version <- "01"
+last_yr_model_version <- "01"
+
+sys_info <- Sys.info()
+computer_name <- sys_info[["nodename"]]
+os_name <- sys_info[["sysname"]]
+user_name <- sys_info[["user"]]
+
+rootd_doc <- here::here("doc")
+rootd_data <- here::here("inst/extdata/data")
+rootd_models <- ifelse(computer_name == "hake-precision",
+                       "/srv/hake/models",
+                       here::here("models"))
+models_dir <- file.path(rootd_models,
+                        assess_yr,
+                        paste0(model_version, "-version"))
+last_yr_models_dir <- file.path(rootd_models,
+                                last_assess_yr,
+                                paste0(last_yr_model_version, "-version"))
+
+output_csv_dir <- here::here(rootd_doc, "out-csv")
+
+ct_levels_path <- "catch-levels"
+default_hr_path <- "default-hr"
+stable_catch_path <- "stable-catch"
+spr_100_path <- "spr-100"
+forecasts_path <- "forecasts"
+retrospectives_path <- "retrospectives"
+
+ss_executable <- "ss3"
+starter_file_name <- "starter.ss"
+par_file_name <- "ss.par"
+forecast_file_name <- "forecast.ss"
+weight_at_age_file_name <- "wtatage.ss"
+posts_file_name <- "posteriors.sso"
+derposts_file_name <- "derived_posteriors.sso"
+report_file_name <- "Report.sso"
+compreport_file_name <- "CompReport.sso"
+
+# Custom catch levels calculations
+# The tolerance in the spr away from 1 for the calculation of catch for SPR = 1
+ct_levels_spr_tol <- 0.001
+# The tolerance in tonnes. The iterations will stop if the difference between the
+#  projected biomass between the first and second years is less than this
+ct_levels_catch_tol <- 100
+# The maximum number of iterations to do. If this is reached, then no catch value could
+#  be found within the tolerances above
+ct_levels_max_iter <- 20
+
+forecast_yrs <- assess_yr:(assess_yr + 3)
+forecast_yrs_extra <- assess_yr:(assess_yr + 3)
+forecast_probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
+
+retrospective_yrs <- 1:10
+plot_retro_yrs <- 1:5
+
+show_ss_output <- FALSE
+
+theme_set(hake_theme())
+
+# -----------------------------------------------------------------------------
+# Data start and endpoint variables
+# -----------------------------------------------------------------------------
+recruit_dev_start_yr <- 1946
+unfished_eq_yr <- 1964
+start_yr <- 1966
+start_yr_age_comps <- 1975
+end_yr <- assess_yr
+last_data_yr <- end_yr - 1
+survey_start_yr <- 1995
+survey_end_yr <- 2021
+surv_yrs <- c(1995, 1998, 2001, 2003, 2005, 2007,
+              2009, 2011, 2012, 2013, 2015, 2017,
+              2019, 2021)
+
+# tick marks for time series plot (not catch time series though)
+big_ticks <- seq(1970, end_yr + 4, 5)
+small_ticks <- start_yr:max(big_ticks)
+
+# -----------------------------------------------------------------------------
+# Key posteriors used in the assessment
+# -----------------------------------------------------------------------------
+key_posteriors <- c("NatM",
+                    "SR_LN",
+                    "SR_BH_steep",
+                    "Q_extraSD_Acoustic_Survey",
+                    "ln\\(DM_theta\\)_Age_P1",
+                    "ln\\(DM_theta\\)_Age_P2")
+key_posteriors_titles <- c("Natural mortality",
+                           expression(ln(R[0])),
+                           "Steepness",
+                           "Survey extra SD",
+                           "Dirichlet-multinomial fishery",
+                           "Dirichlet-multinomial survey")
+key_posteriors_file <- "keyposteriors.csv"
+nuisance_posteriors_file <- "nuisanceposteriors.csv"
+
+
+## ----load-data-tables-chunk, echo = FALSE-----------------------------------------------------------
+library(readr)
+# Data file names and loading ----
+load_dir <- system.file("extdata", "data", package = "hake")
+if(load_dir == ""){
+  stop("The directory containing the data tables does not exist. Install the ",
+       "`hake` package and try again",
+       call. = FALSE)
+}
+if(!dir.exists(load_dir)){
+  stop("The directory `", load_dir, "` does not exist. Install the `hake` ",
+       "package and try again",
+       call. = FALSE)
+}
+message("Loading all data tables (csv files) from `",
+        load_dir,
+        "`")
+
+# Assessment history and changes ----
+pkg <- "hake"
+assess_history_df <-
+  read_csv(file.path(load_dir, "assessment-history.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+assess_history_probs_df <-
+  read_csv(file.path(load_dir, "assessment-history-probs.csv"),
+           col_types = cols(),
+           comment = "#",
+           show_col_types = FALSE)
+assess_changes_df <-
+  read_csv(file.path(load_dir, "assessment-changes.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+assess_history_disp_df <-
+  read_csv(file.path(load_dir, "assessment-history-SSBdispersion.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+
+# Maturity and weight-at-age ----
+ovary_samples_df <-
+  read_csv(file.path(load_dir, "ovary-samples.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+maturity_ogives_df <-
+  read_csv(file.path(load_dir, "maturity-table.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+maturity_samples_df <-
+  read_csv(file.path(load_dir, "hake-maturity-data.csv"),
+           guess_max = Inf,
+           show_col_types = FALSE)
+weight_age_extrapolation_mask <-
+  read_csv(file.path(load_dir, "wtatage_all_samplesize.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+
+# Catch and TAC ----
+ct <-
+  load_catches(file.path(load_dir, "landings-tac-history.csv"))
+catch_targets_df <-
+  read_csv(file.path(load_dir, "catch-targets-biomass.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+further_tac_df <-
+  read_csv(file.path(load_dir, "further-tac-details.csv"),
+           col_types = cols(),
+           comment = "#",
+           show_col_types = FALSE)
+# * Canadian catch ----
+can_ft_catch_by_month_df <-
+  read_csv(file.path(load_dir, "can-ft-catch-by-month.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+can_ss_catch_by_month_df <-
+  read_csv(file.path(load_dir, "can-ss-catch-by-month.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+can_jv_catch_by_month_df <-
+  read_csv(file.path(load_dir, "can-jv-catch-by-month.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+# * US catch ----
+us_ss_catch_by_month_df <-
+  read_csv(file.path(load_dir, "us-shore-catch-by-month.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+us_cp_catch_by_month_df <-
+  read_csv(file.path(load_dir, "us-cp-catch-by-month.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+us_ms_catch_by_month_df <-
+  read_csv(file.path(load_dir, "us-ms-catch-by-month.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+us_ti_ct_by_month_df <-
+  read_csv(file.path(load_dir, "us-ti-catch-by-month.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+us_research_catch_by_month_df <-
+  read_csv(file.path(load_dir, "us-research-catch-by-month.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+
+# Sampling data ----
+sampling_history_df <-
+  read_csv(file.path(load_dir, "fishery-sampling-history.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+# * Canada sampling ----
+can_ages_lst <-
+  load_can_age_data(file.path(load_dir, "can-age-data.csv"))
+can_ft_num_fish <-
+  read_csv(file.path(load_dir, "can-ft-num-fish-aged.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+can_ss_num_fish <-
+  read_csv(file.path(load_dir, "can-ss-num-fish-aged.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+can_jv_num_fish <-
+  read_csv(file.path(load_dir, "can-jv-num-fish-aged.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+can_ss_age_df <- can_ages_lst[[1]]
+can_ft_age_df <- can_ages_lst[[2]]
+# * US sampling ----
+us_ss_age_df <-
+  read_csv(file.path(load_dir, "us-shore-age-data.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+us_cp_age_df <-
+  read_csv(file.path(load_dir, "us-cp-age-data.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+us_ms_age_df <-
+  read_csv(file.path(load_dir, "us-ms-age-data.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+
+# Survey data ----
+kriging_pars_df <-
+  read_csv(file.path(load_dir, "kriging-parameters.csv"),
+           col_types = cols(),
+           comment = "#",
+           show_col_types = FALSE)
+survey_history_df <-
+  read_csv(file.path(load_dir, "survey-history.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+survey_by_country_df <-
+  read_csv(file.path(load_dir, "survey-by-country.csv"),
+           col_types = cols(),
+           comment = "#",
+           show_col_types = FALSE)
+
+# Depth data ----
+# * Canada depths ----
+can_ft_bottom_depth_df <-
+  read_csv(file.path(load_dir, "depth-can-ft-bottom.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+can_ss_bottom_depth_df <-
+  read_csv(file.path(load_dir, "depth-can-ss-bottom.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+can_ft_gear_depth_df <-
+  read_csv(file.path(load_dir, "depth-can-ft-gear.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+can_ss_gear_depth_df <-
+  read_csv(file.path(load_dir, "depth-can-ss-gear.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+# * US depths ----
+us_atsea_fishing_depth_df <-
+  read_csv(file.path(load_dir, "depth-us-atsea-fishing.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+us_atsea_bottom_depth_df <-
+  read_csv(file.path(load_dir, "depth-us-atsea-bottom.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+
+# At-age output data table file names ----
+out_est_naa_file <- "estimated-numbers-at-age.csv"
+out_est_eaa_file <- "estimated-exploitation-at-age.csv"
+out_est_caa_file <- "estimated-catch-at-age.csv"
+out_est_caa_bio_file <- "estimated-catch-at-age-biomass.csv"
+out_est_baa_file <- "estimated-biomass-at-age.csv"
+
+
+## ----source-load-models, echo = FALSE---------------------------------------------------------------
+source(here::here("doc/load-document-variables/03-load-models.R"))
+
+
+## ----load-custom-knitr-variables-chunk, echo = FALSE------------------------------------------------
 # Put any variables you intend to use in the text here.
 # The function f() is for formatting and is defined in
 # r-functions/utilities.r
@@ -66,7 +432,7 @@ cred_int <- c(0.025, 0.5, 0.975)
 
 # Shortened names -------------------------------------------------------------
 mc <- base_model$mcmccalcs
-extramc <- base_model$extra.mcmc
+extramc <- base_model$extra_mcmc
 
 # Attainment in the past ------------------------------------------------------
 ct_last10 <- ct |>
@@ -1153,4 +1519,4 @@ prob_below_b40_yr2_last_yr_catch <- base_model$risks[[2]] |>
   filter(!!ct_col_sym == last_yr_catch_fore) |>
   pull(!!below40_col) |>
   f()
-@
+

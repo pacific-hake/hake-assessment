@@ -1,0 +1,113 @@
+---
+title: "**\\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r assess_yr`}**"
+author: |
+  Joint Technical Committee of the Pacific Hake/Whiting Agreement \
+  Between the Governments of the United States and Canada \
+  \
+  \
+date: "`r format(Sys.time(), '%B %d')`\\textsuperscript{th}, `r format(Sys.time(), '%Y')`"
+author_list: "Last, F.M. and Smith, A.B."
+address: |
+  ^1^Pacific Biological Station\
+     Fisheries and Oceans Canada, 3190 Hammond Bay Road\
+     Nanaimo, British Columbia, V9T 6N7, Canada\
+  \smallskip
+  ^2^Far, far away\
+     Another Galaxy
+month: "Month"
+year: 2022
+report_number: nnn
+region: "Pacific Region"
+isbn: "978-0-660-38322-4"
+cat_no: "Fs70-6/2021-012E-PDF"
+citation_other_language: "Last, F.M. et Smith, A.B. Title Here (*Latin Species Name*). DFO Secr. can. des avis sci. du MPO. Doc. de rech 2019/nnn. iv + 13 p."
+header: "Draft working paper --- Do not cite or circulate" # or "" to omit
+output:
+ pdf_document:
+   latex_engine: pdflatex
+   includes:
+     in_header: "preamble.tex"
+fontsize: 12pt
+header-includes:
+  - \usepackage{titling}
+  - \pagenumbering{gobble}
+  - \pretitle{\begin{center}}
+  - \posttitle{\end{center}\begin{center}\LARGE\includegraphics[width=12cm]{main-figures/hake-picture.png}\\[\bigskipamount]\end{center}}
+  - \pagenumbering{arabic}
+  - \lfoot{DRAFT -- `r sp` assessment `r assess_yr`}
+link-citations: true
+bibliography: bib/refs.bib
+---
+
+
+```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
+library(knitr)
+devtools::load_all(here::here())
+if (is_latex_output()) {
+  knitr_figs_dir <- "knitr-figs-pdf/"
+  knitr_cache_dir <- "knitr-cache-pdf/"
+  fig_out_type <- "png"
+} else {
+  knitr_figs_dir <- "knitr-figs-docx/"
+  knitr_cache_dir <- "knitr-cache-docx/"
+  fig_out_type <- "png"
+}
+fig_asp <- 0.618
+fig_width <- 9
+fig_out_width <- "6in"
+fig_dpi <- 180
+fig_align <- "center"
+fig_pos <- "htb"
+opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  comment = "#>",
+  fig.path = knitr_figs_dir,
+  cache.path = knitr_cache_dir,
+  fig.asp = fig_asp,
+  fig.width = fig_width,
+  out.width = fig_out_width,
+  echo = FALSE,
+  #  autodep = TRUE,
+  #  cache = TRUE,
+  cache.comments = FALSE,
+  dev = fig_out_type,
+  dpi = fig_dpi,
+  fig.align = fig_align,
+  fig.pos = fig_pos
+)
+```
+
+\newpage
+
+This document reports the collaborative efforts of the official U.S. and
+Canadian members of the Joint Technical Committee, and others that
+contributed significantly.
+
+\
+
+Authors of this document are (all authors contribute extensively so the order rotates annually):
+
+Aaron M. Berger^1^
+
+Chris J. Grandin^2^
+
+Kelli F. Johnson^3^
+
+Andrew M. Edwards^2^
+
+\
+
+^1^ *Northwest Fisheries Science Center, National Marine
+  Fisheries Service, National Oceanic and Atmospheric Administration,
+  U.S. Department of Commerce, 2032 SE OSU Dr. Bldg. 955, Newport, OR
+  97365-5275, USA*
+
+^2^ *Pacific Biological Station, Fisheries and Oceans Canada,
+  3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada*
+
+^3^ *Northwest Fisheries Science Center, National Marine Fisheries
+  Service, National Oceanic and Atmospheric Administration, U.S. Department of
+  Commerce, 2725 Montlake Blvd. East, Seattle, WA 98112-2097, USA*
+

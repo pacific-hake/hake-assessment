@@ -42,9 +42,9 @@ create_rds_file <- function(model_dir = NULL,
             model_dir, "`\n")
   }
   # Try loading extra mcmc output. If none are found or there is a problem,
-  # model$extra.mcmc will be NA
+  # model$extra_mcmc will be NA
   # `small` is an argument needed, passed through `...`
-  model$extra.mcmc <- load_extra_mcmc(model, verbose = verbose, ...)
+  model$extra_mcmc <- load_extra_mcmc(model, verbose = verbose, ...)
 
   # Load forecasts. If none are found or there is a problem, model$forecasts will be NA
   if(dir.exists(file.path(model_dir, forecasts_path))){

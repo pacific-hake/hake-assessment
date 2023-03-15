@@ -32,18 +32,18 @@ make_small_rds <- function(drs){
     fn <- file.path("models", models[i], paste0(models[i], ".rds"))
     x <- readRDS(fn)
     browser()
-    ex <- x$extra.mcmc
+    ex <- x$extra_mcmc
     if(!is.na(ex[1])){
-      x$extra.mcmc <- NULL
+      x$extra_mcmc <- NULL
 
-      x$extra.mcmc$Q_vector <- ex$Q_vector
-      x$extra.mcmc$cpue.median <- ex$cpue.median
-      x$extra.mcmc$cpue.0.025 <- ex$cpue.0.025
-      x$extra.mcmc$cpue.0.975 <- ex$cpue.0.975
-      x$extra.mcmc$q.med <- ex$q.med
-      x$extra.mcmc$index.med <- ex$index.025
-      x$extra.mcmc$index.025 <- ex$index.025
-      x$extra.mcmc$index.975 <- ex$index.975
+      x$extra_mcmc$Q_vector <- ex$Q_vector
+      x$extra_mcmc$cpue.median <- ex$cpue.median
+      x$extra_mcmc$cpue.0.025 <- ex$cpue.0.025
+      x$extra_mcmc$cpue.0.975 <- ex$cpue.0.975
+      x$extra_mcmc$q.med <- ex$q.med
+      x$extra_mcmc$index.med <- ex$index.025
+      x$extra_mcmc$index.025 <- ex$index.025
+      x$extra_mcmc$index.975 <- ex$index.975
 
       fn_split <- strsplit(fn, "/")[[1]]
       fn_split[3] <- paste0("small_", fn_split[3])

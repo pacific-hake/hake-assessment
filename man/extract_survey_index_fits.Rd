@@ -21,7 +21,7 @@ extract_survey_index_fits(
 \item{survey_type}{The type of survey, must be one of \code{age1} or \code{age2}.
 \code{age2} means age 2+ acoustic survey and `age1``is the age 1 acoustic survey}
 
-\item{type}{A name as found in the \code{extra.mcmc[[type]]} object of a model
+\item{type}{A name as found in the \code{extra_mcmc[[type]]} object of a model
 objects, for example if \code{type == index.med}, it is a table of index fit}
 
 \item{inc_model_year}{Logical. If \code{TRUE}, include the model and year columns

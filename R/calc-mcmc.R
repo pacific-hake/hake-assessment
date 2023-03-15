@@ -1,23 +1,24 @@
 #' Return a list of mcmc calculations, e.g. quantiles for various values
 #'
 #' @param mcmc The output of the [r4ss::SSgetMCMC()] function as a data.frame
-#' @param lower Lower quantile value
-#' @param upper Upper quantile value
-#' @param recr_scale Scale the recruitment by this amount. The default
-#' is 1e6 because recruitment will be shown in millions of tonnes
+#' @param probs A vector of 3 values, the lower CI, median, and upper CI
+#' @param biomass_scale A scale factor to divide biomass values by
+#' @param recr_scale A scale factor to divide recruitment values by
 #'
 #' @return A named list of MCMC outputs
 #' @export
 calc_mcmc <- function(mcmc,
                       probs = c(0.025, 0.5, 0.975),
-                      biomass_scale = 1e3,
+                      biomass_scale = 1e6,
                       recr_scale = 1e6){
 
-  cols_par <- function(pat){
+  # Extract time series columns for a given parameter and change the column
+  # names to years. Divide all values by the biomass_scale
+  cols_par <- function(pat, scale = 1){
     mcmc |>
       select(matches(paste0("^", pat, "_[0-9]{4}$"))) %>%
       setNames(gsub(paste0("^", pat, "_([0-9]{4})$"), "\\1", names(.))) %>%
-      mutate_all(~ . / biomass_scale)
+      mutate_all(~ . / scale)
   }
 
   out <- list()
@@ -25,20 +26,22 @@ calc_mcmc <- function(mcmc,
     as_tibble()
 
   # Spawning biomass ----
-  ssb <- cols_par("SSB")
-  svirg <- mcmc |>
-    select(matches("^SSB_Virgin$")) |>
-    setNames("value")
-  sinit <- mcmc |>
-    select(matches("^SSB_Initial$")) |>
-    setNames("value")
-  out$svirg <- svirg |>
-    unlist() |>
-    quantile(probs)
-  out$sinit <- sinit |>
-    unlist() |>
-    quantile(probs)
-
+  ssb <- cols_par("SSB", biomass_scale)
+  # svirg <- mcmc |>
+  #   select(matches("^SSB_Virgin$")) |>
+  #   setNames("value") |>
+  #   mutate(value = value / biomass_scale)
+  # sinit <- mcmc |>
+  #   select(matches("^SSB_Initial$")) |>
+  #   setNames("value") |>
+  #   mutate(value = value / biomass_scale)
+  # out$svirg <- svirg |>
+  #   unlist() |>
+  #   quantile(probs)
+  # out$sinit <- sinit |>
+  #   unlist() |>
+  #   quantile(probs)
+browser()
   out$slower <- apply(ssb, 2, quantile, prob = probs[1], na.rm = TRUE)
   out$smed <- apply(ssb, 2, quantile, prob = probs[2], na.rm = TRUE)
   out$supper <- apply(ssb, 2, quantile, prob = probs[3], na.rm = TRUE)
@@ -53,7 +56,7 @@ calc_mcmc <- function(mcmc,
   out$dupper <- apply(depl, 2, quantile, prob = probs[3], na.rm = TRUE)
 
   # Recruitment ----
-  recr <- cols_par("Recr")
+  recr <- cols_par("Recr", recr_scale)
   rvirg <- mcmc |>
     select(matches("^Recr_Virgin$")) |>
     setNames("value")
@@ -127,20 +130,21 @@ calc_mcmc <- function(mcmc,
     }
     tmp
   }
-  out$unfish_fem_bio <- refpt_quants("SSB_Virgin", biomass_scale, 0)
-  out$unfish_recr <- refpt_quants("Recr_Virgin", biomass_scale, 0)
-  out$f_spawn_bio_bf40 <- refpt_quants("SSB_SPR", biomass_scale, 0)
-  out$spr_msy_proxy <- c(latex_bold("--"), "40\\%", latex_bold("--"))
-  out$exp_frac_spr <- refpt_quants("annF_SPR", 1, 1, TRUE)
-  out$yield_bf40 <- refpt_quants("Dead_Catch_SPR", biomass_scale, 0)
-  out$fem_spawn_bio_b40 <- refpt_quants("SSB_Btgt", biomass_scale, 0)
-  out$spr_b40 <- refpt_quants("SPR_Btgt", 1, 1, TRUE)
-  out$exp_frac_b40 <- refpt_quants("annF_Btgt", 1, 1, TRUE)
-  out$yield_b40 <- refpt_quants("Dead_Catch_Btgt", 1000, 0)
-  out$fem_spawn_bio_bmsy <- refpt_quants("SSB_MSY", 1000, 0)
-  out$spr_msy <- refpt_quants("SPR_MSY", 1, 1, TRUE)
-  out$exp_frac_sprmsy <- refpt_quants("annF_MSY", 1, 1, TRUE)
-  out$msy <- refpt_quants("Dead_Catch_MSY", 1000, 0)
+  out$refpts <- list()
+  out$refpts$unfish_fem_bio <- refpt_quants("SSB_Virgin", biomass_scale, 0)
+  out$refpts$unfish_recr <- refpt_quants("Recr_Virgin", biomass_scale, 0)
+  out$refpts$f_spawn_bio_bf40 <- refpt_quants("SSB_SPR", biomass_scale, 0)
+  out$refpts$spr_msy_proxy <- c(latex_bold("--"), "40\\%", latex_bold("--"))
+  out$refpts$exp_frac_spr <- refpt_quants("annF_SPR", 1, 1, TRUE)
+  out$refpts$yield_bf40 <- refpt_quants("Dead_Catch_SPR", biomass_scale, 0)
+  out$refpts$fem_spawn_bio_b40 <- refpt_quants("SSB_Btgt", biomass_scale, 0)
+  out$refpts$spr_b40 <- refpt_quants("SPR_Btgt", 1, 1, TRUE)
+  out$refpts$exp_frac_b40 <- refpt_quants("annF_Btgt", 1, 1, TRUE)
+  out$refpts$yield_b40 <- refpt_quants("Dead_Catch_Btgt", 1000, 0)
+  out$refpts$fem_spawn_bio_bmsy <- refpt_quants("SSB_MSY", 1000, 0)
+  out$refpts$spr_msy <- refpt_quants("SPR_MSY", 1, 1, TRUE)
+  out$refpts$exp_frac_spr_msy <- refpt_quants("annF_MSY", 1, 1, TRUE)
+  out$refpts$msy <- refpt_quants("Dead_Catch_MSY", 1000, 0)
 
   out
 }

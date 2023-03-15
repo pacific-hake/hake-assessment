@@ -25,7 +25,7 @@ cohort_catch <- function(model,
          call. = FALSE)
   }
 
-  catage <- model$extra.mcmc$catage_median
+  catage <- model$extra_mcmc$catage_median
   w <- model$wtatage |>
     as_tibble()
   cohort_yrs <- cohort + ages

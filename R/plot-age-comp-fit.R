@@ -32,9 +32,9 @@ plot_age_comp_fit <- function(model,
   type <- match.arg(type)
 
   if(type == "fishery"){
-    d <- model$extra.mcmc$comp_fishery
+    d <- model$extra_mcmc$comp_fishery
   }else if(type == "survey"){
-    d <- model$extra.mcmc$comp_survey
+    d <- model$extra_mcmc$comp_survey
   }
   d <- d |>
     select(-c(Pearson_lower, Pearson_med, Pearson_upper)) |>

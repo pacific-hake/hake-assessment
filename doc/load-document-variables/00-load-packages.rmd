@@ -1,6 +1,4 @@
-% Load packages needed for the document to build
-
-<<load-packages-chunk, echo = FALSE>>=
+```{r load-packages-chunk, echo = FALSE}
 
 # To install rnaturalearthhires (it was hard to find with Google):
 # devtools::install_github("ropensci/rnaturalearthhires")
@@ -24,4 +22,4 @@ pacman::p_load(
   testthat, tictoc, tidyr, tools,
   xtable)
 message("Finished loading R packages...")
-@
+```

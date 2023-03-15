@@ -534,15 +534,15 @@ plot_priors_vs_posts(base_model,
 tv_selex_start_yr <- 1990
 tv_selex_end_yr <- last_data_yr
 tv_selex_ages <- as.character(1:8)
-tv_selex_med_raw <- base_model$extra.mcmc$sel_fishery_median
+tv_selex_med_raw <- base_model$extra_mcmc$sel_fishery_median
 tv_selex_med_filt <- tv_selex_med_raw |>
   filter(Yr %in% tv_selex_start_yr:tv_selex_end_yr)
 tv_selex_med_yrs <- tv_selex_med_filt |> pull(Yr)
 tv_selex_med_mat <- tv_selex_med_filt |>
   select(!!!tv_selex_ages) |>
   as.matrix()
-tv_selex_lower <- base_model$extra.mcmc$sel_fishery_lower
-tv_selex_upper <- base_model$extra.mcmc$sel_fishery_upper
+tv_selex_lower <- base_model$extra_mcmc$sel_fishery_lower
+tv_selex_upper <- base_model$extra_mcmc$sel_fishery_upper
 # plot_selex_mountains(tv_selex_med,
 #                      yrs = c(tv_selex_start_yr,
 #                              tv_selex_end_yr),

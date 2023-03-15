@@ -1,6 +1,4 @@
-% Load important starting globals required by other scripts
-
-<<load-globals-chunk, echo = FALSE>>=
+```{r load-globals-chunk, echo = FALSE}
 
 curr_month <- month(Sys.Date())
 curr_year <- year(Sys.Date())
@@ -106,4 +104,4 @@ key_posteriors_titles <- c("Natural mortality",
                            "Dirichlet-multinomial survey")
 key_posteriors_file <- "keyposteriors.csv"
 nuisance_posteriors_file <- "nuisanceposteriors.csv"
-@
+```

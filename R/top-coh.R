@@ -13,7 +13,7 @@
 #' @param decimals The number of decimal points to use
 #' @param cap Logical. Capitalize the first word in the sentence?
 #' @param use_catage Logical. If `TRUE`, use the
-#' `model$extra.mcmc$catage_median` object which are the estimates. If
+#' `model$extra_mcmc$catage_median` object which are the estimates. If
 #' `FALSE`, use the `model$dat$agecomp` object which are the input data
 #' @param fleet A integer value allowing the selection of a given fleet, where
 #' `fleet = 1`, the default, selects the fishery data. This is only used for
@@ -42,7 +42,7 @@ top_coh <- function(model = NULL,
     num_cohorts = 1
   }
   if(use_catage){
-    tmp <- model$extra.mcmc$catage_median
+    tmp <- model$extra_mcmc$catage_median
   }else{
     tmp <- model$dat$agecomp |>
       select(matches("^a|Yr|FltSvy", ignore.case = FALSE)) |>

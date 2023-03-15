@@ -44,9 +44,9 @@ plot_multiple_tv_selex_unc <- function(model,
 
   yr_vec <- yr_lim[1]:yr_lim[2]
 
-  lower <- model$extra.mcmc$sel_fishery_lower
-  med <- model$extra.mcmc$sel_fishery_median
-  upper <- model$extra.mcmc$sel_fishery_upper
+  lower <- model$extra_mcmc$sel_fishery_lower
+  med <- model$extra_mcmc$sel_fishery_median
+  upper <- model$extra_mcmc$sel_fishery_upper
 
   if(!is.null(yr_lim[1])){
     lower <- lower |>

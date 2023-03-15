@@ -44,7 +44,7 @@ table_param_est <- function(models,
 
     # Catchabilities
     if(mdl$extra_mcmc_exists){
-      q_med <- mdl$extra.mcmc$q.med
+      q_med <- mdl$extra_mcmc$q.med
       # Filter for last year in the series, since q's are not time varying
       q_acoustic <- q_med |>
         filter(Fleet == 2)
@@ -116,7 +116,7 @@ table_param_est <- function(models,
                           paste0(f(median(mdl$mcmc[[paste0("SPRratio_", end_yr - 1)]]) * 100, 1), "\\%")),
         ssb_curr_fem = f(median(mdl$mcmc$`SSB_SPR`) / 1e3, 0),
         spr_msy = "40.0\\%",
-        exp_frac = mdl$mcmccalcs$exp_frac_spr[2],
+        exp_frac = mdl$mcmccalcs$refpts$exp_frac_spr[2],
         yield_f40 = f(median(mdl$mcmc$`Dead_Catch_SPR`) / 1e3, 0),
         total_like = f(filter(mdl$likelihoods_used,
                               rownames(mdl$likelihoods_used) == "TOTAL")$values, 2),

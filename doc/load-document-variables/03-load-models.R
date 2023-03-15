@@ -1,6 +1,4 @@
-% Load all models here
 
-<<load-models-chunk, echo = FALSE>>=
 # Base model directory name and description. these can be a lists of vectors
 # like the other types if necessary
 base_models_dirs <- "01-base"
@@ -142,4 +140,3 @@ if(is.na(test_models)[1]){
 }else{
   test_models_names <- map(test_models, ~{map_chr(.x, ~{attr(.x, "desc")})})
 }
-@

@@ -4,7 +4,7 @@
 \alias{obj_sizes}
 \title{Return a data frame of the names and sizes of the objects in a list}
 \usage{
-obj_sizes(lst, scale = c(1, 1000, 1e+06, 1e+09, 1e+12), desc = TRUE)
+obj_sizes(lst, scale = c("b", "kb", "mb", "gb", "tb"), desc = TRUE)
 }
 \arguments{
 \item{lst}{The list}

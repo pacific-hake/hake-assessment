@@ -37,7 +37,7 @@ make.ci.posterior.table <- function(model,
   df <- map(model$mcmccalcs, ~{.x[names(.x) %in% yrs]})
   ts <- model$timeseries
 
-  tot_bm <- model$extra.mcmc$total_biomass_quants %>%
+  tot_bm <- model$extra_mcmc$total_biomass_quants %>%
     filter(Yr %in% yrs)
   stopifnot(lower_col %in% names(tot_bm))
   stopifnot(upper_col %in% names(tot_bm))
@@ -46,7 +46,7 @@ make.ci.posterior.table <- function(model,
   tot_bm_upper <- tot_bm %>%
     pull(!!upper_col_sym)
 
-  age2plus_bm <- model$extra.mcmc$total_age2_plus_biomass_quants %>%
+  age2plus_bm <- model$extra_mcmc$total_age2_plus_biomass_quants %>%
     filter(Yr %in% yrs)
   stopifnot(lower_col %in% names(age2plus_bm))
   stopifnot(upper_col %in% names(age2plus_bm))
@@ -184,10 +184,10 @@ make.median.posterior.table <- function(model,
   yrs <- start_yr:end_yr
   df <- map(model$mcmccalcs, ~{.x[names(.x) %in% yrs]})
   ts <- model$timeseries
-  tot_bm <- model$extra.mcmc$total_biomass_quants %>%
+  tot_bm <- model$extra_mcmc$total_biomass_quants %>%
     filter(Yr %in% yrs) %>%
     select(`50%`)
-  age2plus_bm <- model$extra.mcmc$total_age2_plus_biomass_quants %>%
+  age2plus_bm <- model$extra_mcmc$total_age2_plus_biomass_quants %>%
     filter(Yr %in% yrs) %>%
     select(`50%`)
 

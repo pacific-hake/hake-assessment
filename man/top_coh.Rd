@@ -29,7 +29,7 @@ the sentence}
 \item{cap}{Logical. Capitalize the first word in the sentence?}
 
 \item{use_catage}{Logical. If \code{TRUE}, use the
-\code{model$extra.mcmc$catage_median} object which are the estimates. If
+\code{model$extra_mcmc$catage_median} object which are the estimates. If
 \code{FALSE}, use the \code{model$dat$agecomp} object which are the input data}
 
 \item{fleet}{A integer value allowing the selection of a given fleet, where

@@ -1,0 +1,10 @@
+book_filename: "hake"
+rmd_files: ["index.Rmd",
+            "load-document-variables/00-load-packages.rmd",
+            "load-document-variables/01-load-globals.rmd",
+            "load-document-variables/02-load-data-tables.rmd",
+            "load-document-variables/03-load-models.rmd",
+            "load-document-variables/04-load-knitr-variables.rmd",
+            "one-page-summary/one-page-summary.rmd"]
+            #"01-chap1.Rmd"]
+delete_merged_file: true

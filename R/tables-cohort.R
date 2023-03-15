@@ -22,25 +22,25 @@ cohort_table <- function(model,
                          font_size = 9,
                          space_size = 10){
 
-  caa <- model$extra.mcmc$catage_median
+  caa <- model$extra_mcmc$catage_median
   # All data have the same start and end year, the exact same dimensions.
   # They were built that way in extra-mcmc.R
   min_yr <- min(caa$Yr)
   max_yr <- max(caa$Yr)
   max_yr <- ifelse(end_yr > max_yr, max_yr, end_yr)
 
-  caa <- model$extra.mcmc$catage_median %>%
+  caa <- model$extra_mcmc$catage_median %>%
     filter(Yr <= max_yr)
-  naa <- model$extra.mcmc$natage_median %>%
+  naa <- model$extra_mcmc$natage_median %>%
     mutate_at(.vars = vars(-Yr), ~{.x * 1e3}) %>%
     filter(Yr <= max_yr)
-  naa_next <- model$extra.mcmc$natage_median %>%
+  naa_next <- model$extra_mcmc$natage_median %>%
     mutate_at(.vars = vars(-Yr), ~{.x * 1e3}) %>%
     filter(Yr %in% (min_yr + 1):(max_yr + 1)) %>%
     mutate(Yr = Yr - 1)
-  caa_b <- model$extra.mcmc$catage_biomass_median %>%
+  caa_b <- model$extra_mcmc$catage_biomass_median %>%
     filter(Yr <= max_yr)
-  baa <- model$extra.mcmc$batage_median %>%
+  baa <- model$extra_mcmc$batage_median %>%
     filter(Yr <= max_yr)
   waa <- model$wtatage %>%
     as_tibble() %>%

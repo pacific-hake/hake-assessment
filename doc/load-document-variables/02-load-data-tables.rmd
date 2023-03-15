@@ -1,8 +1,9 @@
-% Load all data tables into global variables
-% The files are loaded from the package installation, so you must build and
-% install the package before trying to run this code or build the document
+<!-- Load all data tables into global variables
+     The files are loaded from the package installation, so you must
+     build and install the package before trying to run this code or
+     build the document -->
 
-<<load-data-tables-chunk, echo = FALSE>>=
+```{r load-data-tables-chunk, echo = FALSE}
 library(readr)
 # Data file names and loading ----
 load_dir <- system.file("extdata", "data", package = "hake")
@@ -191,4 +192,4 @@ out_est_eaa_file <- "estimated-exploitation-at-age.csv"
 out_est_caa_file <- "estimated-catch-at-age.csv"
 out_est_caa_bio_file <- "estimated-catch-at-age-biomass.csv"
 out_est_baa_file <- "estimated-biomass-at-age.csv"
-@
+```

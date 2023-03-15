@@ -67,7 +67,7 @@ joined <- dplyr::left_join(
   base_model$dat$CPUE %>%
     dplyr::filter(index == 3) %>%
     dplyr::select(year, obs),
-  base_model$extra.mcmc$index.med %>%
+  base_model$extra_mcmc$index.med %>%
     dplyr::filter(Fleet == 3) %>%
     dplyr::ungroup() %>%
     dplyr::select(Yr, value),

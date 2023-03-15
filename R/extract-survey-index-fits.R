@@ -5,7 +5,7 @@
 #' @param model_names A vector of model names,the same length as `models_lst`
 #' @param survey_type The type of survey, must be one of `age1` or `age2`.
 #' `age2` means age 2+ acoustic survey and `age1``is the age 1 acoustic survey
-#' @param type A name as found in the `extra.mcmc[[type]]` object of a model
+#' @param type A name as found in the `extra_mcmc[[type]]` object of a model
 #' objects, for example if `type == index.med`, it is a table of index fit
 #' @param inc_model_year Logical. If `TRUE`, include the model and year columns
 #' in the output data frame
@@ -27,7 +27,7 @@ extract_survey_index_fits <- function(model_lst,
   type <- match.arg(type)
 
   out <- map2(model_lst, model_names, ~{
-    .x$extra.mcmc[[type]] |>
+    .x$extra_mcmc[[type]] |>
       filter(Fleet == fleet) |>
       ungroup() |>
       mutate(model = .y) |>

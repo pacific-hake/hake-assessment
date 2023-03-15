@@ -1,13 +1,24 @@
-% preamble.tex
+% Add header line. To inludee footer line, see \renewcommand{\footrulewidth}
+% below, after fancyhdr is loaded
+\PassOptionsToPackage{includehead}{geometry}
 
-\thispagestyle{fancyplain}
-\input{glyphtounicode}
-\pdfgentounicode=1
+\usepackage{fancyhdr}
+\renewcommand{\footrulewidth}{0.4pt}
+\pagestyle{fancy}
+% center of header
+% \fancyhead[CO,CE]{Your Document Header}
+% center of footer
 
-\renewcommand{\contentsname}{\bf \large \vspace{-25mm} TABLE OF CONTENTS}
-\addtocontents{toc}{\protect\thispagestyle{fancy}}
+% page number on the left of even pages and right of odd pages
+\fancyfoot[CO,RE]{\thepage}
 
-\begin{center}
-\tableofcontents
-\end{center}
-\newpage
+\newcommand*{\TitleFont}{
+      \usefont{\encodingdefault}{\rmdefault}{b}{n}
+      \fontsize{20}{24}
+      \selectfont}
+
+\newcommand*{\RegularFont}{
+      \usefont{\encodingdefault}{\rmdefault}{b}{n}
+      \fontsize{12}{14}
+      \selectfont}
+

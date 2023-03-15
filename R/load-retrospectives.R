@@ -18,7 +18,7 @@ load_retrospectives <- function(retro_path,
     retro_dir <- file.path(retro_path, retro_sub)
     message("Loading from ", retro_dir)
     model <- load_ss_files(retro_dir, ...)
-    model$extra.mcmc <- load_extra_mcmc(model, small = TRUE, ...)
+    model$extra_mcmc <- load_extra_mcmc(model, small = TRUE, ...)
     model$endyr <- model$endyr - y
     model
   }, ...)

@@ -26,9 +26,9 @@ plot_selex_posteriors <- function(model = NULL,
 
   type <- match.arg(type)
   if(type == "fishery"){
-    selex <- model$extra.mcmc$sel_endyr_fishery
+    selex <- model$extra_mcmc$sel_endyr_fishery
   }else if(type == "survey"){
-    selex <- model$extra.mcmc$sel_endyr_survey
+    selex <- model$extra_mcmc$sel_endyr_survey
   }
   ages <- as.numeric(names(selex))
 

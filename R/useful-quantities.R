@@ -53,7 +53,7 @@ get_rec_ci <- function(model1,
 get_baa <- function(model,
                     curr_yr,
                     probs = c(0.025, 0.5, 0.975)){
-  model$extra.mcmc$natselwt.prop %>%
+  model$extra_mcmc$natselwt.prop %>%
     map_df(function(x){
       quantile(x, probs = probs)
     }) %>%

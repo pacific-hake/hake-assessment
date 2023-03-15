@@ -23,9 +23,9 @@ plot_pearson_bubbles <- function(model,
                                  ...){
 
   if(type == 1){
-    d <- model$extra.mcmc$comp_fishery_median
+    d <- model$extra_mcmc$comp_fishery_median
   }else{
-    d <- model$extra.mcmc$comp_survey_median
+    d <- model$extra_mcmc$comp_survey_median
   }
 
   g <- ggplot(d, aes(x = Yr,

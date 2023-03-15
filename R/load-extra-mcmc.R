@@ -48,7 +48,7 @@ load_extra_mcmc <- function(model,
   if(!length(repfile_list)){
     if(verbose){
       message("There are no report files in the `", model$extra_mcmc_path,
-              "` directory. `model$extra.mcmc` will be NA for the model ",
+              "` directory. `model$extra_mcmc` will be NA for the model ",
               "located at:\n`", model$path, "`\n")
     }
     return(NA)
@@ -57,7 +57,7 @@ load_extra_mcmc <- function(model,
   if(!length(compfile_list)){
     if(verbose){
       message("There are no Compreport files in the `", model$extra_mcmc_path,
-              "` directory. `model$extra.mcmc` will be NA for the model ",
+              "` directory. `model$extra_mcmc` will be NA for the model ",
               "located at:\n`", model$path, "`\n")
     }
     return(NA)
