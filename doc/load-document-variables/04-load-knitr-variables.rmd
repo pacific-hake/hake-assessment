@@ -15,7 +15,6 @@
 # The function f() is for formatting and is defined in
 # r-functions/utilities.r
 
-sp <- "Pacific Hake"
 # -----------------------------------------------------------------------------
 # The forecasting yrs and probabilities can be set to whatever is required, the
 #  code is set up to automatically accommodate changes

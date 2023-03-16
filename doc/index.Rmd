@@ -1,5 +1,8 @@
 ---
-title: "**\\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r assess_yr`}**"
+title: "**\\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r params$assess_yr`}**"
+params:
+  sp: "Pacific Hake"
+  assess_yr: 2023
 author: |
   Joint Technical Committee of the Pacific Hake/Whiting Agreement \
   Between the Governments of the United States and Canada \
@@ -34,7 +37,7 @@ header-includes:
   - \pretitle{\begin{center}}
   - \posttitle{\end{center}\begin{center}\LARGE\includegraphics[width=12cm]{main-figures/hake-picture.png}\\[\bigskipamount]\end{center}}
   - \pagenumbering{arabic}
-  - \lfoot{DRAFT -- `r sp` assessment `r assess_yr`}
+  - \lfoot{DRAFT -- `r params$sp` assessment `r params$assess_yr`}
 link-citations: true
 bibliography: bib/refs.bib
 ---
