@@ -3,27 +3,15 @@ title: "**\\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Can
 params:
   sp: "Pacific Hake"
   assess_yr: 2023
+  last_assess_yr: 2022
+  model_version: "01"
+  last_yr_model_version: "01"
 author: |
   Joint Technical Committee of the Pacific Hake/Whiting Agreement \
   Between the Governments of the United States and Canada \
   \
   \
 date: "`r format(Sys.time(), '%B %d')`\\textsuperscript{th}, `r format(Sys.time(), '%Y')`"
-author_list: "Last, F.M. and Smith, A.B."
-address: |
-  ^1^Pacific Biological Station\
-     Fisheries and Oceans Canada, 3190 Hammond Bay Road\
-     Nanaimo, British Columbia, V9T 6N7, Canada\
-  \smallskip
-  ^2^Far, far away\
-     Another Galaxy
-month: "Month"
-year: 2022
-report_number: nnn
-region: "Pacific Region"
-isbn: "978-0-660-38322-4"
-cat_no: "Fs70-6/2021-012E-PDF"
-citation_other_language: "Last, F.M. et Smith, A.B. Title Here (*Latin Species Name*). DFO Secr. can. des avis sci. du MPO. Doc. de rech 2019/nnn. iv + 13 p."
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
  pdf_document:
@@ -41,7 +29,6 @@ header-includes:
 link-citations: true
 bibliography: bib/refs.bib
 ---
-
 
 ```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
 library(knitr)
@@ -91,14 +78,11 @@ contributed significantly.
 \
 
 Authors of this document are (all authors contribute extensively so the order rotates annually):
-
-Aaron M. Berger^1^
-
-Chris J. Grandin^2^
-
-Kelli F. Johnson^3^
-
-Andrew M. Edwards^2^
+<!-- Note that there are two spaces at the end of the following four author lines -->
+Aaron M. Berger^1^  
+Chris J. Grandin^2^  
+Kelli F. Johnson^3^  
+Andrew M. Edwards^2^  
 
 \
 

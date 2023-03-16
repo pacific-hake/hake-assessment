@@ -1,18 +1,10 @@
 ```{r load-globals-chunk, echo = FALSE}
 
 sp <- rmarkdown::metadata$`params`$sp
-
-curr_month <- month(Sys.Date())
-curr_year <- year(Sys.Date())
-
-# If in September 01 to December 31, the assess_yr will be set to the year
-# that  begins in January. If in January 01 to August 31 the assess_yr will
-# be the current year
 assess_yr <- rmarkdown::metadata$`params`$assess_yr
-#assess_yr <- ifelse(curr_month %in% 9:12, curr_year + 1, curr_year)
-last_assess_yr <- assess_yr - 1
-model_version <- "01"
-last_yr_model_version <- "01"
+last_assess_yr <- rmarkdown::metadata$`params`$last_assess_yr
+model_version <- rmarkdown::metadata$`params`$model_version
+last_yr_model_version <- rmarkdown::metadata$`params`$last_yr_model_version
 
 sys_info <- Sys.info()
 computer_name <- sys_info[["nodename"]]
