@@ -3,22 +3,43 @@
 \PassOptionsToPackage{includehead}{geometry}
 
 \usepackage{fancyhdr}
-\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0.25pt}
+\renewcommand{\footrulewidth}{0.25pt}
 \pagestyle{fancy}
-% center of header
-% \fancyhead[CO,CE]{Your Document Header}
-% center of footer
+\fancyhf{}
 
-% page number on the left of even pages and right of odd pages
-\fancyfoot[CO,RE]{\thepage}
+% Page number in the bottom center of page
+\fancyfoot[C]{\thepage}
 
 \newcommand*{\TitleFont}{
       \usefont{\encodingdefault}{\rmdefault}{b}{n}
       \fontsize{20}{24}
       \selectfont}
 
-\newcommand*{\RegularFont}{
-      \usefont{\encodingdefault}{\rmdefault}{b}{n}
-      \fontsize{12}{14}
-      \selectfont}
+% \newcommand*{\RegularFont}{
+%       \usefont{\encodingdefault}{\rmdefault}{b}{n}
+%       \fontsize{12}{14}
+%       \selectfont}
 
+\usepackage{graphicx}
+\usepackage{tocloft}
+\setcounter{secnumdepth}{3}
+
+\usepackage[breaklinks=true,bookmarksopen,bookmarksdepth=3]{hyperref}
+\hypersetup{
+  colorlinks,
+  plainpages=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black,
+  pdflang={en-US},
+  pdftitle = {Status of the Pacific Hake (whiting) stock in U.S. and Canadian
+  waters},
+  pdfauthor = {Joint Technical Committee of the Pacific Hake/Whiting Agreement
+  \\ Between the Governments of the United States and Canada}
+}
+% \edef\mypdftitle{\GetDocumentProperties{hyperref/pdftitle}}
+% \edef\mypdfauthor{\GetDocumentProperties{hyperref/pdfauthor}}
+% \urlstyle{same}
+
+\usepackage{sectsty}

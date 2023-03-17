@@ -1,0 +1,37 @@
+\newpage
+
+\rfoot{Executive summary}
+
+# Executive summary {-}
+
+## Stock {-}
+
+### Stock try {-}
+
+This assessment reports the status of the coastal `r sp` (or `r common_name`,
+*`r science_name`*) stock off the west coast of the United States and Canada
+at the start of `r `assess_yr`. This stock exhibits seasonal migratory
+behavior, ranging from offshore and generally southern waters during the
+winter spawning season to coastal areas between northern California and
+northern British Columbia during the spring, summer, and fall when the
+fishery is conducted. In years with warmer water the stock tends to move
+farther to the north during the summer. Older `r simple_name` tend to migrate
+farther north than younger fish in all years, with catches in the Canadian
+zone typically consisting of fish greater than four years old. Separate, and
+much smaller, populations of `r simple_name` occurring in the major inlets
+of the Northeast Pacific Ocean, including the Strait of Georgia, Puget Sound,
+and the Gulf of California, are not included in this analysis.
+
+## Test {-}
+
+```{r total-catches, fig.height=4, fig.width=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that catches in four of the last six years have been the largest in the time series."}
+make.catches.plot(ct, leg.y.loc = 650)
+```
+
+
+# Introduction {#sec:intro}
+
+Text here!
+rv',v,;lrv;ldr
+
+

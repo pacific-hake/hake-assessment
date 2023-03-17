@@ -2,8 +2,7 @@
 
 \rfoot{One-page summary}
 
-\centering
-# ONE-PAGE SUMMARY {-}
+# One-page summary {-}
 
 - The stock assessment model for `r assess_yr` has the same
 population dynamics structure as the `r last_assess_yr` model.

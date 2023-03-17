@@ -2,6 +2,10 @@
 title: "**\\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r params$assess_yr`}**"
 params:
   sp: "Pacific Hake"
+  common_name: "Pacific whiting"
+  science_name: "Merluccius productus"
+  simple_name: "hake"
+  survey_name: "Joint U.S. and Canadian Integrated Acoustic and Trawl Survey"
   assess_yr: 2023
   last_assess_yr: 2022
   model_version: "01"
@@ -16,10 +20,12 @@ header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
  pdf_document:
    latex_engine: pdflatex
+   keep_tex: true
    includes:
      in_header: "preamble.tex"
 fontsize: 12pt
 header-includes:
+  - \usepackage{sectsty}
   - \usepackage{titling}
   - \pagenumbering{gobble}
   - \pretitle{\begin{center}}
@@ -97,4 +103,7 @@ Andrew M. Edwards^2^
 ^3^ *Northwest Fisheries Science Center, National Marine Fisheries
   Service, National Oceanic and Atmospheric Administration, U.S. Department of
   Commerce, 2725 Montlake Blvd. East, Seattle, WA 98112-2097, USA*
+
+
+TABLE OF CONTENTS GOES HERE - DO NOT DELETE OR MODIFY THIS LINE
 
