@@ -143,7 +143,7 @@ from last year)
 \frame{\frametitle{Catches}
   \bc
   <<catches, fig.height=3.9, fig.width=7, out.width='0.85\\columnwidth'>>=
-  make.catches.plot(ct, mar = c(4, 4, 2, 2) + 0.1,
+    plot_catches(ct, mar = c(4, 4, 2, 2) + 0.1,
                     leg.y.loc = 510, leg.cex = 0.7)
   @
   \ec

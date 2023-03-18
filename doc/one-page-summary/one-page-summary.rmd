@@ -17,11 +17,11 @@ fishery catch and age-composition data from `r end_yr-1`, weight-at-age data for
 <!-- the `r survey_end_yr` age-1 index estimate, -->
 and minor changes to pre-`r end_yr-1` data.
 
-- Coast-wide catch in `r end_yr-1` was `r last_yr_landings` t
+- Coast-wide catch in `r end_yr-1` was `r last_yr_landings`~t
 [t represents metric tons], 6% below the average over the most recent 10 years
-(`r ct |> tail(10) |> pull(tot_catch) |> mean() |> f()` t),
+(`r ct |> tail(10) |> pull(Total) |> mean() |> f()`~t),
 out of a total allowable catch (TAC), adjusted for carryovers, of `r last_yr_tac` t.
-The U.S. caught `r last_yr_us_landings` t (`r last_yr_us_attained`% of their quota) and Canada caught `r last_yr_can_landings` t
+The U.S. caught `r last_yr_us_landings`~t (`r last_yr_us_attained`% of their quota) and Canada caught `r last_yr_can_landings`~t
 (`r last_yr_can_attained`% of their quota).
 
 - The median estimate of the `r end_yr` relative spawning biomass
@@ -35,12 +35,12 @@ but uncertain, size of the 2020 cohort is based on the 2021 age-1 index
 estimate and the `r last_assess_yr` fishery age-composition data.
 
 - The median estimate of female spawning biomass at the start
-of `r end_yr` is `r curr_bio_median_tonnes` t (with 95% credible
-interval from `r curr_bio_lower_tonnes` to `r curr_bio_upper_tonnes` t).
+of `r end_yr` is `r curr_bio_median_tonnes`~t (with 95% credible
+interval from `r curr_bio_lower_tonnes` to `r curr_bio_upper_tonnes`~t).
 This is `r diff_bio_median_last_curr`% `r diff_bio_median_last_curr_text`
 this assessment's median estimate for the `r end_yr-1` female spawning
-biomass of `r prev_bio_median_tonnes` t (with 95% credible interval
-`r prev_bio_lower_tonnes`--`r prev_bio_upper_tonnes` t).
+biomass of `r prev_bio_median_tonnes`~t (with 95% credible interval
+`r prev_bio_lower_tonnes`--`r prev_bio_upper_tonnes`~t).
 
 - The estimated probability that female spawning biomass at the start of
 `r assess_yr` is below the `r `$\Bforty$ (40% of $B_0$) reference point is
@@ -50,22 +50,23 @@ intensity exceeded $\Fforty$ in `r end_yr-1` is
 probability of both these occurring is `r joint_percent_prob_above_below`%.
 
 - Based on the default harvest rule, the estimated median catch limit for
-`r min(forecast_yrs)` is `r ct_limit_quantiles["median"]` t (with
+`r min(forecast_yrs)` is `r ct_limit_quantiles["median"]`~t (with
 95% credible interval from `r ct_limit_quantiles["lower"]` to
-`r ct_limit_quantiles["upper"]` t).
+`r ct_limit_quantiles["upper"]`~t).
 
 - Projections were conducted across a wide-range of catch levels due to
 high uncertainty in estimates of recent and forecasted recruitment.
 Projections setting the `r forecast_yrs[1]` and
 `r forecast_yrs[2]` catches equal to the `r forecast_yrs[1] - 1`
 coast-wide TAC of `r last_yr_tac` t show the estimated median relative
-spawning biomass decreasing from `r f(last_yr_tac_fore_1_biomass)`% in `r end_yr`
-to `r f(last_yr_tac_fore_2_biomass)`% in `r end_yr + 1` to
+spawning biomass decreasing from `r f(last_yr_tac_fore_1_biomass)`% in
+`r end_yr` to `r f(last_yr_tac_fore_2_biomass)`% in `r end_yr + 1` to
 `r f(last_yr_tac_fore_3_biomass)`% in `r end_yr + 2`,
 with a `r last_yr_tac_risk_2_bforty`% chance
-of the female spawning biomass falling below $\Bforty$ in `r end_yr+2`. There
-is an estimated `r last_yr_tac_risk_1_biomass_decline`% chance of the female
-spawning biomass declining from `r end_yr` to `r end_yr+1`, and an
+of the female spawning biomass falling below $\Bforty$ in `r end_yr + 2`.
+There is an estimated `r last_yr_tac_risk_1_biomass_decline`% chance of the
+female spawning biomass declining from `r end_yr` to `r end_yr + 1`, an
 `r last_yr_tac_risk_2_biomass_decline`% chance of it declining from
-`r end_yr+1` to `r end_yr+2`% , and a `r last_yr_tac_risk_3_biomass_decline`%
-chance of it declining for these constant catches.
+`r end_yr + 1` to `r end_yr + 2`, and an
+`r last_yr_tac_risk_3_biomass_decline`% chance of it declining for these
+constant catches.

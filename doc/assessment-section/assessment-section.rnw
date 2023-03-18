@@ -1123,7 +1123,7 @@ utilization rate (i.e., proportion of catch target removed) has been
 \Sexpr{tot_last_10_yrs_attainment}\% and catches have been below
 coast-wide targets (Table~\ref{tab:main-landings-tac}). From \Sexpr{end_yr-5} to
 \Sexpr{end_yr-1}, the mean utilization rates differed between the United States
-(\Sexpr{usa_last_5_yrs_attainment}\%) and Canada
+(\Sexpr{us_last_5_yrs_attainment}\%) and Canada
 (\Sexpr{can_last_5_yrs_attainment}\%).
 In 2015, the utilization rate for the
 coast-wide fishery was the lowest of the previous decade
@@ -1150,7 +1150,7 @@ an agreement on coast-wide 2020 and 2021 TACs. The usual
 \Sexpr{can_allotment_percent}\% allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
 Agreement for \fishname, was once again implemented in 2022.
 %During the last two years, utilization rates have been stable
-%in both the United States (\Sexpr{usa_last_2_yrs_attainment}\%) and Canada
+%in both the United States (\Sexpr{us_last_2_yrs_attainment}\%) and Canada
 %(about \Sexpr{can_last_2_yrs_attainment}\%).
 Total landings last exceeded the coast-wide quota in 2002 when utilization was 112\%.
 % Manual done 2023 (double checked numbers).

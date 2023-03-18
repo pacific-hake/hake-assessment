@@ -73,28 +73,28 @@ post_process <- function(fn,
   #   })
   #   x[inds] <- sec_hdrs
   # }
-  #
-  # # Make section headers uppercase and centered ----
-  # section_inds <- grep("\\\\section\\*?\\{.*(})?", x)
-  # if(length(section_inds)){
-  #   beg <- x[1:(section_inds[1] - 1)]
-  #
-  #   chunks <- map2(section_inds[1:(length(section_inds) - 1)],
-  #                  section_inds[2:length(section_inds)], \(st, en){
-  #                    c("\\begin{center}",
-  #                      "\\sectionfont{\\MakeUppercase}",
-  #                      x[st],
-  #                      "\\end{center}",
-  #                      x[(st + 1):(en - 1)])
-  #                  })
-  #   end <- c("\\begin{center}",
-  #            "\\sectionfont{\\MakeUppercase}",
-  #            x[section_inds[length(section_inds)]],
-  #            "\\end{center}",
-  #            x[(section_inds[length(section_inds)] + 1):length(x)])
-  #
-  #   x <- c(beg, unlist(chunks), end)
-  # }
+
+  # Make section headers uppercase and centered ----
+  section_inds <- grep("\\\\section\\*?\\{.*(})?", x)
+  if(length(section_inds)){
+    beg <- x[1:(section_inds[1] - 1)]
+
+    chunks <- map2(section_inds[1:(length(section_inds) - 1)],
+                   section_inds[2:length(section_inds)], \(st, en){
+                     c("\\begin{center}",
+                       "\\sectionfont{\\MakeUppercase}",
+                       x[st],
+                       "\\end{center}",
+                       x[(st + 1):(en - 1)])
+                   })
+    end <- c("\\begin{center}",
+             "\\sectionfont{\\MakeUppercase}",
+             x[section_inds[length(section_inds)]],
+             "\\end{center}",
+             x[(section_inds[length(section_inds)] + 1):length(x)])
+
+    x <- c(beg, unlist(chunks), end)
+  }
 
   # Make subsections uppercase ----
   section_inds <- grep("\\\\(sub){1}section\\*?\\{.*(})?", x)
@@ -184,6 +184,9 @@ post_process <- function(fn,
          "\\thispagestyle{fancy}",
          x[(toc_ind + 1):length(x)])
 
+  # Fix line binders (~) ----
+  # bookdown turns ~ into "\\textasciitilde " in the TEX, so we change it back
+  x <- gsub("\\\\textasciitilde ", "~", x)
 
   writeLines(x, fn)
 

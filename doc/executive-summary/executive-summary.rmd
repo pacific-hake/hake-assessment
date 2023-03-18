@@ -6,8 +6,6 @@
 
 ## Stock {-}
 
-### Stock try {-}
-
 This assessment reports the status of the coastal `r sp` (or `r common_name`,
 *`r science_name`*) stock off the west coast of the United States and Canada
 at the start of `r `assess_yr`. This stock exhibits seasonal migratory
@@ -22,16 +20,49 @@ much smaller, populations of `r simple_name` occurring in the major inlets
 of the Northeast Pacific Ocean, including the Strait of Georgia, Puget Sound,
 and the Gulf of California, are not included in this analysis.
 
-## Test {-}
+(ref:es-catches-cap) Total `r sp` catch used in the assessment by sector, `r start_yr`--`r last_data_yr`. U.S. tribal catches are included in the sectors where they are represented.
 
-```{r total-catches, fig.height=4, fig.width=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that catches in four of the last six years have been the largest in the time series."}
-make.catches.plot(ct, leg.y.loc = 650)
+```{r es-catches, fig.cap = "(ref:es-catches-cap)", fig.height = 4, fig.width = 8, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that catches in four of the last six years have been the largest in the time series."}
+plot_catches(ct, leg.y.loc = 650)
 ```
 
+## Catches {-}
 
-# Introduction {#sec:intro}
+Coast-wide fishery landings of `r sp` averaged `r f(mean(ct$Total))`~t
+from `r min(ct$Year)` to `r max(ct$Year)`, with a low of
+`r f(min(ct$Total))`~t in
+`r ct$year[ct$Total == min(ct$Total)]` and a peak of
+`r f(max(ct$Total))`~t in
+`r ct$Year[ct$Total == max(ct$Total)]`
+(Figure \@ref(fig:es-catches)).
+Prior to `r min(ct$Year)`, total removals were negligible compared to the
+modern fishery. Over the early period (`r min(ct$Year)`--1990) most removals
+were from foreign or joint-venture fisheries. Across the time series, annual
+catch in U.S. waters averaged `r f(mean(ct[["U.S. Total"]]))`~t
+(`r f(sum(ct[["U.S. Total"]]) / sum(ct$Total) * 100, 1)`% of the total catch),
+while catch from Canadian waters averaged `r f(mean(ct[["Canada Total"]]))`~t.
+Over the last 10 years, `r max(ct$Year) - 9`--`r max(ct$Year)`
+(Table \@ref(tab:es-catches)), the average coast-wide catch was
+`r ct_mean_10yrs`~t with U.S. and Canadian catches averaging
+`r ct_us_mean_10yrs`~t and `r ct_can_mean_10yrs`~t, respectively. Since 2017,
+the coast-wide catch has been declining annually through `r end_yr - 1`,
+when it was `r last_yr_landings`~t out of a total allowable catch (TAC,
+adjusted for carryovers) of `r last_yr_tac`~t. Attainment in the U.S. was
+`r last_yr_us_attained`% of its quota and in Canada it was
+`r last_yr_can_attained`%.
 
-Text here!
-rv',v,;lrv;ldr
+```{r total-catches-table, results = "asis", echo = FALSE}
+table_catch(ct,
+            start_yr = assess_yr - 10,
+            end_yr = assess_yr - 1,
+            caption = paste0(
+              "Recent commercial fishery catch (t). Tribal catches are",
+              "included in the sector totals. Research catch includes landed",
+              "catch associated with certain research-related activities.",
+              "Catch associated with surveys and discarded bycatch in",
+              "fisheries not targeting hake is relatively small and not included in",
+              "the table or model."))
+```
+
 
 

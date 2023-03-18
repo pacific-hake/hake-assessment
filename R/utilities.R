@@ -461,19 +461,19 @@ t.pn <- function(){
 #' @export
 #'
 #' @examples
-#' number.to.word(c(1000,2,3,10000001), th = TRUE, cap.first = TRUE)
-number.to.word <- function(x = NA, th = FALSE, cap.first = FALSE){
+#' number_to_word(c(1000,2,3,10000001), th = TRUE, cap.first = TRUE)
+number_to_word <- function(x = NA, th = FALSE, cap.first = FALSE){
 
-    stopifnot(!is.na(x))
+  stopifnot(!is.na(x))
 
-    helper <- function(x){
+  helper <- function(x){
     digits <- rev(strsplit(as.character(x), "")[[1]])
     nDigits <- length(digits)
     if(nDigits == 1) as.vector(ones[digits])
     else if(nDigits == 2)
       if(x <= 19) as.vector(teens[digits[1]])
-      else trim(paste(tens[digits[2]],
-                      Recall(as.numeric(digits[1]))))
+    else trim(paste(tens[digits[2]],
+                    Recall(as.numeric(digits[1]))))
     else if (nDigits == 3) trim(paste(ones[digits[3]], "hundred and",
                                       Recall(makeNumber(digits[2:1]))))
     else {

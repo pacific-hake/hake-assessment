@@ -80,56 +80,56 @@ extramc <- base_model$extra_mcmc
 
 # Attainment in the past ------------------------------------------------------
 ct_last10 <- ct |>
-  filter(year %in% (end_yr - 10):(end_yr - 1))
+  filter(Year %in% (end_yr - 10):(end_yr - 1))
 ct_last5 <- ct |>
-  filter(year %in% (end_yr - 5):(end_yr - 1))
+  filter(Year %in% (end_yr - 5):(end_yr - 1))
 ct_last2 <- ct |>
-  filter(year %in% (end_yr - 2):(end_yr - 1))
+  filter(Year %in% (end_yr - 2):(end_yr - 1))
 ct_last1 <- ct |>
-  filter(year == end_yr - 1)
+  filter(Year == end_yr - 1)
 ct_secondlast <- ct |>
-  filter(year == end_yr - 2)
-usa_last_5_yrs_attainment <- ct_last5 |>
-  pull(us_attain) |>
+  filter(Year == end_yr - 2)
+us_last_5_yrs_attainment <- ct_last5 |>
+  pull(`U.S. TAC`) |>
   mean() |>
   f(1)
-usa_last_2_yrs_attainment <- ct_last2 |>
-  pull(us_attain) |>
+us_last_2_yrs_attainment <- ct_last2 |>
+  pull(`U.S. TAC`) |>
   mean() |>
   f(0)
 can_last_5_yrs_attainment <- ct_last5 |>
-  pull(can_attain) |>
+  pull(`Canada TAC`) |>
   mean() |>
   f(1)
 can_last_2_yrs_attainment <- ct_last2 |>
-  pull(can_attain) |>
+  pull(`Canada TAC`) |>
   mean() |>
   f(0)
 tot_last_5_yrs_attainment <- ct_last5 |>
-  pull(tot_attain) |>
+  pull(`Total TAC`) |>
   mean() |>
   f(1)
 tot_last_10_yrs_attainment <- ct_last10 |>
-  pull(tot_attain) |>
+  pull(`Total TAC`) |>
   mean() |>
   f(1)
 tot_last_yr_attainment <- ct_last1 |>
-  pull(tot_attain) |>
+  pull(`Total TAC`) |>
   mean() |>
   f(1)
 tot_2015_attainment <- ct |>
-  filter(year == 2015) |>
-  pull(tot_attain) |>
+  filter(Year == 2015) |>
+  pull(`Total TAC`) |>
   mean() |>
   f(1)
 tot_9192_attainment <- ct |>
-  filter(year %in% 1991:1992) |>
-  pull(tot_attain) |>
+  filter(Year %in% 1991:1992) |>
+  pull(`Total TAC`) |>
   mean() |>
   f(0)
 tot_9399_attainment <- ct |>
-  filter(year %in% 1993:1999) |>
-  pull(tot_attain) |>
+  filter(Year %in% 1993:1999) |>
+  pull(`Total TAC`) |>
   mean() |>
   f(0)
 
@@ -137,10 +137,10 @@ tot_9399_attainment <- ct |>
 can_allotment_percent <- 26.12
 us_allotment_percent <- 73.88
 # ... allotments in catch -----------------------------------------------------
-can_allotment_percent_last_yr <- f(pull(ct_last1, can_tac) /
-                                     pull(ct_last1, tot_tac) * 100, 2)
-us_allotment_percent_last_yr <- f(pull(ct_last1, us_tac) /
-                                    pull(ct_last1, tot_tac) * 100, 2)
+can_allotment_percent_last_yr <- f(pull(ct_last1, `Canada TAC`) /
+                                     pull(ct_last1, `Total TAC`) * 100, 2)
+us_allotment_percent_last_yr <- f(pull(ct_last1, `U.S. TAC`) /
+                                    pull(ct_last1, `Total TAC`) * 100, 2)
 # Further TAC sources ---------------------------------------------------------
 ft <- further_tac_df # (defined in inst/extdata/data/02-load-data-tables.rnw)
 last_yr_us_tribal <- ft |>
@@ -178,8 +178,8 @@ last_yr_us_ms_quota_reallocated <- ft |>
 # Catch -----------------------------------------------------------------------
 # ... recent catch ------------------------------------------------------------
 last_5_yrs_total_ct <- ct_last5 |>
-  pull(tot_catch)
-long_term_avge_ct <- mean(ct$tot_catch)
+  pull(Total)
+long_term_avge_ct <- mean(ct$Total)
 ct_limit_quantiles <-
   f(as.numeric(quantile(base_model$mcmc[[paste0("ForeCatch_",
                                                 end_yr)]],
@@ -187,44 +187,44 @@ ct_limit_quantiles <-
 names(ct_limit_quantiles) <- c("lower", "median", "upper")
 # ... recent catch, last year -------------------------------------------------
 last_yr_landings <- ct_last1 |>
-  pull(tot_catch) |>
+  pull(Total) |>
   f(0)
 last_yr_tac <- ct_last1 |>
-  pull(tot_tac) |>
+  pull(`Total TAC`) |>
   f(0)
 # ... catch over the last 10 years --------------------------------------------
 ct_last_10yrs <- ct |>
   slice_tail(n = 10)
-ct_mean_10yrs <- f(mean(ct_last_10yrs$tot_catch))
-ct_us_mean_10yrs <- f(mean(ct_last_10yrs$us_catch))
-ct_can_mean_10yrs <- f(mean(ct_last_10yrs$can_catch))
+ct_mean_10yrs <- f(mean(ct_last_10yrs$Total))
+ct_us_mean_10yrs <- f(mean(ct_last_10yrs$`U.S. Total`))
+ct_can_mean_10yrs <- f(mean(ct_last_10yrs$`Canada Total`))
 # ... US Catch by fleet, last year --------------------------------------------
 last_yr_us_research_ct <- ct |>
-  filter(year == last_data_yr) |>
-  pull(us_research_xx)
+  filter(Year == last_data_yr) |>
+  pull(`U.S. Research`)
 last_yr_us_cp_ct <- ct |>
-  filter(year == last_data_yr) |>
-  pull(us_cp_xx)
+  filter(Year == last_data_yr) |>
+  pull(`U.S. Catcher-processor`)
 last_yr_us_ms_ct <- ct |>
-  filter(year == last_data_yr) |>
-  pull(us_ms_xx)
+  filter(Year == last_data_yr) |>
+  pull(`U.S. Mothership`)
 last_yr_us_shore_ct <- ct |>
-  filter(year == last_data_yr) |>
-  pull(us_shore_xx)
+  filter(Year == last_data_yr) |>
+  pull(`U.S. Shore-based`)
 last_yr_us_ti_ct <- us_ti_ct_by_month_df |>
   filter(year == last_data_yr) |>
   pull(catch) |>
   sum()
 catcher_processor_ct <- ((ct_last1 |>
-                            pull(us_cp_xx)) /
+                            pull(`U.S. Catcher-processor`)) /
                            (last_yr_us_cp_quota_reallocated) * 100) |>
   f(1)
 mothership_ct <- ((ct_last1 |>
-                     pull(us_ms_xx)) /
+                     pull(`U.S. Mothership`)) /
                     (last_yr_us_ms_quota_reallocated) * 100) |>
   f(1)
 shore_based_ct <- ((ct_last1 |>
-                      pull(us_shore_xx) -
+                      pull(`U.S. Shore-based`) -
                       last_yr_us_ti_ct) /
                      (last_yr_us_shore_quota_reallocated) * 100) |>
   f(1)
@@ -232,7 +232,7 @@ shore_based_ct <- ((ct_last1 |>
 # Attainment ------------------------------------------------------------------
 # ... US Attainment, catch, and TAC -------------------------------------------
 last_yr_us_landings <- ct_last1 |>
-  pull(us_catch) |>
+  pull(`U.S. Total`) |>
   f(0)
 last_yr_us_attained <- ct_last1 |>
   pull(us_attain) |>
@@ -243,7 +243,7 @@ last_2yr_us_attained_diff <- (ct_last1 |>
                                 pull(us_attain)) |>
   f(1)
 last_yr_us_tac <- ct_last1 |>
-  pull(us_tac) |>
+  pull(`U.S. TAC`) |>
   f(0)
 # ... US Attainment by fleet, last year ---------------------------------------
 last_yr_us_cp_ct_percent <- f(last_yr_us_cp_ct /
@@ -270,58 +270,58 @@ last_2yr_can_attained_diff <- ((ct_last1 |>
                                     pull(can_attain))) |>
   f(1)
 last_yr_can_landings <- ct_last1 |>
-  pull(can_catch) |>
+  pull(`Canada Total`) |>
   f(0)
 last_yr_can_tac <- ct_last1 |>
-  pull(can_tac) |>
+  pull(`Canada TAC`) |>
   f(0)
 last_yr_can_tac.jv <- ft |>
   filter(Year == last_data_yr) |>
   pull(can_jv_tac) |>
   f(0)
 last_yr_can_shoreside_tac <- ((ct_last1 |>
-                                   pull(can_tac)) -
+                                   pull(`Canada TAC`)) -
                                   (ft |>
                                      filter(Year == last_data_yr) |>
                                      pull(can_jv_tac))) |>
   f(0)
 latest_yr_can_jv <- ct |>
-  filter(can_jv_xx > 0) |>
-  pull(year) |>
+  filter(`Canada Joint-venture` > 0) |>
+  pull(Year) |>
   max()
-last.year.can.shore <- ct_last1 |>
-  pull(can_shore_xx) |>
+last_yr_can_shore <- ct_last1 |>
+  pull(`Canada Shoreside`) |>
   f(0)
-last.year.can.freezer <- ct_last1 |>
-  pull(can_freeze_xx) |>
+last_yr_can_freezer <- ct_last1 |>
+  pull(`Canada Freezer-trawler`) |>
   f(0)
-last.year.can.jv <- ct_last1 |>
-  pull(can_jv_xx) |>
+last_yr_can_jv <- ct_last1 |>
+  pull(`Canada Joint-venture`) |>
   f(0)
 last_yr_can_shore_percent <- ((ct_last1 |>
-                                 pull(can_shore_xx)) /
+                                 pull(`Canada Shoreside`)) /
                                 (ct_last1 |>
-                                   pull(can_catch)) * 100) |>
+                                   pull(`Canada Total`)) * 100) |>
   f(1)
 last_yr_can_freezer_percent <- ((ct_last1 |>
-                                   pull(can_freeze_xx)) /
+                                   pull(`Canada Freezer-trawler`)) /
                                   (ct_last1 |>
-                                     pull(can_catch)) * 100) |>
+                                     pull(`Canada Total`)) * 100) |>
   f(1)
 last_yr_can_jv_percent <- ((ct_last1 |>
-                              pull(can_jv_xx)) /
+                              pull(`Canada Joint-venture`)) /
                              (ct_last1 |>
-                                pull(can_catch)) * 100) |>
+                                pull(`Canada Total`)) * 100) |>
   f(1)
 # Years since 2000 (including 2000) that JV catch has been zero
 terminal_yr_us_jv_foreign <- ct |>
-  filter(us_foreign_xx > 0 | us_jv_xx > 0) %>%
+  filter(`U.S. Foreign` > 0 | `U.S. Joint-venture` > 0) %>%
   slice(nrow(.)) |>
-  pull(year)
+  pull(Year)
 first_yr_us_atsea <- ct |>
-  filter(us_cp_xx > 0 | us_ms_xx > 0) |>
+  filter(`U.S. Catcher-processor` > 0 | `U.S. Mothership` > 0) |>
   slice(1) |>
-  pull(year)
+  pull(Year)
 
 # Survey values ---------------------------------------------------------------
 survey_biomass <- base_model$dat$CPUE |>
@@ -644,8 +644,8 @@ probs_curr_rel_fish_intens_above_1 <-
     nrow(base_model$mcmc) * 100,
     1)
 catches_below_200000_since_1986 <-
-  number.to.word(length(filter(ct, tot_catch <= 200000,
-                               year > 1986)$year))
+  number_to_word(length(filter(ct, `Total` <= 200000,
+                               Year > 1986)$Year))
 
 # Age compositions ------------------------------------------------------------
 # ... age composition data for data section -----------------------------------
@@ -1164,4 +1164,3 @@ prob_below_b40_yr2_last_yr_catch <- base_model$risks[[2]] |>
   pull(!!below40_col) |>
   f()
 ```
-

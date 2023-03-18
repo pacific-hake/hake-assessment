@@ -31,7 +31,7 @@ analysis.
 \begin{figure}[!b]
 \begin{center}
 <<total-catches, fig.height=4, fig.width=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that catches in four of the last six years have been the largest in the time series.">>=
-make.catches.plot(ct,
+plot_catches(ct,
                   leg.y.loc = 650) ## leg.y.loc is y-coord to place legend at
 @
 \end{center}
@@ -530,7 +530,7 @@ Over the last decade (\Sexpr{end_yr-10}--\Sexpr{end_yr-1}), the mean coast-wide
 utilization rate (proportion of catch target removed) has been
 \Sexpr{tot_last_10_yrs_attainment}\% (Table~\ref{tab:es-landings-tac}). Over
 the last five years (\Sexpr{end_yr-5} to \Sexpr{end_yr-1}), the mean utilization
-rates were \Sexpr{usa_last_5_yrs_attainment}\% for the United States
+rates were \Sexpr{us_last_5_yrs_attainment}\% for the United States
 and \Sexpr{can_last_5_yrs_attainment}\% for Canada. While relatively stable during this
 time in the United States, the utilization rate in Canada has been declining since 2020
 to a time-series low of 20.3\% in 2022. Country-specific

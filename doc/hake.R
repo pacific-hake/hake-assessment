@@ -445,11 +445,11 @@ ct_last1 <- ct |>
   filter(year == end_yr - 1)
 ct_secondlast <- ct |>
   filter(year == end_yr - 2)
-usa_last_5_yrs_attainment <- ct_last5 |>
+us_last_5_yrs_attainment <- ct_last5 |>
   pull(us_attain) |>
   mean() |>
   f(1)
-usa_last_2_yrs_attainment <- ct_last2 |>
+us_last_2_yrs_attainment <- ct_last2 |>
   pull(us_attain) |>
   mean() |>
   f(0)
@@ -645,13 +645,13 @@ latest_yr_can_jv <- ct |>
   filter(can_jv_xx > 0) |>
   pull(year) |>
   max()
-last.year.can.shore <- ct_last1 |>
+last_yr_can_shore <- ct_last1 |>
   pull(can_shore_xx) |>
   f(0)
-last.year.can.freezer <- ct_last1 |>
+last_yr_can_freezer <- ct_last1 |>
   pull(can_freeze_xx) |>
   f(0)
-last.year.can.jv <- ct_last1 |>
+last_yr_can_jv <- ct_last1 |>
   pull(can_jv_xx) |>
   f(0)
 last_yr_can_shore_percent <- ((ct_last1 |>
@@ -1000,7 +1000,7 @@ probs_curr_rel_fish_intens_above_1 <-
     nrow(base_model$mcmc) * 100,
     1)
 catches_below_200000_since_1986 <-
-  number.to.word(length(filter(ct, tot_catch <= 200000,
+  number_to_word(length(filter(ct, tot_catch <= 200000,
                                year > 1986)$year))
 
 # Age compositions ------------------------------------------------------------

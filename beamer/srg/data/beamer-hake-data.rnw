@@ -159,7 +159,7 @@ if(!dir.exists(fig_dir)){
  \begin{figure}
  \centering
   <<catches, fig.height=4.8, fig.width=8, out.width='0.9\\columnwidth'>>=
-    make.catches.plot(ct, leg.y.loc = 550, leg.cex = 0.7,
+    plot_catches(ct, leg.y.loc = 550, leg.cex = 0.7,
       mar = c(4, 4, 3.25, 0.5))
   @
 \end{figure}
@@ -201,9 +201,9 @@ if(!dir.exists(fig_dir)){
     \center{\textbf{TAC was \Sexpr{last_yr_can_tac} t}} \\
 \Sexpr{last_yr_can_landings} t, \Sexpr{paste0(last_yr_can_attained, "\\%")} of the Canadian TAC
         \bi
-          \item Freezer Trawlers -- \Sexpr{last.year.can.freezer} t, \Sexpr{paste0(last_yr_can_freezer_percent, "\\%")} of Canadian catch
-          \item Shoreside        -- \Sexpr{last.year.can.shore} t, \Sexpr{paste0(last_yr_can_shore_percent, "\\%")} of Canadian catch
-          \item Joint Venture    -- \Sexpr{last.year.can.jv} t, \Sexpr{paste0(last_yr_can_jv_percent, "\\%")} of Canadian catch
+          \item Freezer Trawlers -- \Sexpr{last_yr_can_freezer} t, \Sexpr{paste0(last_yr_can_freezer_percent, "\\%")} of Canadian catch
+          \item Shoreside        -- \Sexpr{last_yr_can_shore} t, \Sexpr{paste0(last_yr_can_shore_percent, "\\%")} of Canadian catch
+          \item Joint Venture    -- \Sexpr{last_yr_can_jv} t, \Sexpr{paste0(last_yr_can_jv_percent, "\\%")} of Canadian catch
         \ei
     \end{column}
     \begin{column}[t]{0.5\linewidth}

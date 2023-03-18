@@ -6,7 +6,7 @@ in 2003, went into force in 2008, and was implemented in 2010.  The committees
 defined by the Agreement were first formed in 2011, and 2012 was the first year
 for which the process defined by the Agreement was followed, including stock
 assessment. This is the
-\Sexpr{number.to.word(assess_yr - 2011, th = TRUE)} annual stock assessment
+\Sexpr{number_to_word(assess_yr - 2011, th = TRUE)} annual stock assessment
 conducted under the Agreement process.
 
 Under the Agreement, \fishname\ (\emph{\sciencename}, also referred to as
@@ -391,10 +391,10 @@ Appendix~\ref{chap:canada-fishery-report} for more details).
 
 % Manual done 2023 KFJ
 The shoreside component made up of vessels landing fresh round product onshore
-landed \Sexpr{last.year.can.shore}~t, the lowest on record since 1990.
+landed \Sexpr{last_yr_can_shore}~t, the lowest on record since 1990.
 The freezer-trawler component,
 which freezes headed and gutted product while at sea, landed
-\Sexpr{last.year.can.freezer}~t. There was no Joint-Venture fishery in
+\Sexpr{last_yr_can_freezer}~t. There was no Joint-Venture fishery in
 \Sexpr{assess_yr - 1}.
 
 % Manual done 2023 (Paraphrased Appendix B)

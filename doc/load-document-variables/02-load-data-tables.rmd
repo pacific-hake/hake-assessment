@@ -61,7 +61,26 @@ weight_age_extrapolation_mask <-
 
 # Catch and TAC ----
 ct <-
-  load_catches(file.path(load_dir, "landings-tac-history.csv"))
+  read_csv(file.path(load_dir, "landings-tac-history.csv"),
+           col_types = cols(),
+           show_col_types = FALSE) |> 
+  mutate(`U.S. Total` =
+           `U.S. Foreign` +
+           `U.S. Joint-venture` +
+           `U.S. Mothership` +
+           `U.S. Catcher-processor` +
+           `U.S. Shore-based` +
+           `U.S. Research`,
+         `Canada Total` =
+           `Canada Foreign` +
+           `Canada Joint-venture` +
+           `Canada Shoreside` +
+           `Canada Freezer-trawler`,
+         Total = `U.S. Total` + `Canada Total`,
+         us_attain = `U.S. Total` / `U.S. TAC` * 100,
+         can_attain = `Canada Total` / `Canada TAC` * 100,
+         tot_attain = `Total` / `Total TAC` * 100)
+
 catch_targets_df <-
   read_csv(file.path(load_dir, "catch-targets-biomass.csv"),
            col_types = cols(),

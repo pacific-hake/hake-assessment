@@ -18,9 +18,11 @@ author: |
 date: "`r format(Sys.time(), '%B %d')`\\textsuperscript{th}, `r format(Sys.time(), '%Y')`"
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
- pdf_document:
+ bookdown::pdf_document2:
    latex_engine: pdflatex
    keep_tex: true
+   toc: false
+   fig_caption: yes
    includes:
      in_header: "preamble.tex"
 fontsize: 12pt

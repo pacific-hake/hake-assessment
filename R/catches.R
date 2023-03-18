@@ -15,7 +15,7 @@
 #' @param hline_after Default NULL is for longtable, gets changed for tabluar
 #' @return An [xtable::xtable()]
 #' @export
-make_catch_table <- function(ct,
+make_catch_table_latex <- function(ct,
                              country = 3,
                              start_yr,
                              end_yr,
@@ -239,101 +239,3 @@ make_landings_tac_table <- function(d,
         hline.after = NULL)
 }
 
-make.catches.plot <- function(ct,
-                              mar = c(4, 4, 6, 2) + 0.1,
-                              leg.y.loc = 430,
-                              leg.cex = 1){
-  ## Plot the catches in a stacked-barplot with legend
-  ##
-  ## leg.y.loc - y-based location to place the legend
-  ## leg.cex - text size for legend
-
-  yrs <- ct$year
-  ct[is.na(ct)] <- 0
-  ct <- ct %>%
-    select(can_foreign_xx,
-           can_jv_xx,
-           can_shore_xx,
-           can_freeze_xx,
-           us_foreign_xx,
-           us_jv_xx,
-           us_ms_xx,
-           us_cp_xx,
-           us_shore_xx)
-
-  cols <- c(rgb(0, 0.8, 0),
-            rgb(0, 0.6, 0),
-            rgb(0.8, 0, 0),
-            rgb(0.4, 0, 0),
-            rgb(0, 0.2, 0),
-            rgb(0, 0.4, 0),
-            rgb(0, 0, 0.7),
-            rgb(0, 0, 0.4),
-            rgb(0, 0, 1))
-
-  legOrder <- c(6, 5, 2, 1, 4, 3, NA, NA, 9, 8, 7)
-
-  oldpar <- par()
-  on.exit(par(oldpar))
-
-  par(las = 1,
-      mar = mar,
-      cex.axis = 0.9)
-
-  # Gives x-values for tick marks (since years not in ct)
-  tmp <- barplot(t(as.matrix(ct)) / 1000,
-                 beside = FALSE,
-                 names = ct$year,
-                 col = cols,
-                 xlab = "Year",
-                 ylab = "",
-                 cex.lab = 1,
-                 xaxt = "n",
-                 xaxs = "i",
-                 mgp = c(2.2, 1, 0),
-                 ylim = c(0, 475))
-
-  grid(NA, NULL, lty = 1, lwd = 1)
-  mtext("Catch (thousand t)",
-        side = 2,
-        line = 2.8,
-        las = 0,
-        cex = 1.3)
-  barplot(t(as.matrix(ct)) / 1000,
-          beside = FALSE,
-          names = ct$year,
-          col = cols,
-          xlab = "Year",
-          ylab = "",
-          cex.lab = 1,
-          xaxt = "n",
-          xaxs = "i",
-          add = TRUE,
-          mgp = c(2.2, 1, 0))
-  # Big tick every five years:
-  axis(1,
-       at = tmp[(yrs %% 5) == 0],
-       lab = yrs[(yrs %% 5) == 0])
-  axis(1,
-       at = tmp,
-       lab = rep("",length(tmp)), tcl = -0.3)
-
-  legend(x = 0, y = leg.y.loc,
-         c("Canada Foreign",
-           "Canada Joint-Venture",
-           "Canada Shoreside",
-           "Canada Freezer-Trawler",
-           "U.S. Foreign",
-           "U.S. Joint-Venture",
-           "U.S. Mothership",
-           "U.S. Catcher-Processor",
-           "U.S. Shore-Based")[legOrder],
-         bg = "white",
-         horiz = FALSE,
-         xpd = NA,
-         cex = leg.cex,
-         ncol = 3,
-         fill = cols[legOrder],
-         border = cols[legOrder],
-         bty = "n")
-}
