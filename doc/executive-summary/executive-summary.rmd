@@ -64,5 +64,22 @@ table_catch(ct,
               "the table or model."))
 ```
 
+In this document, the terms catch and landings are used interchangeably.
+Estimates of discard within the target fishery are included, but discarding
+of `r sp` in non-target fisheries is not. Discard from all fisheries, 
+including those that do not target hake, is estimated to be less than 1% of
+landings in recent years. During the last five years, catches were
+considerably above the long-term average catch (`r f(long_term_avge_ct)`~t),
+but have been in decline over that period (especially in Canada). Landings
+between 2001 and 2008 were predominantly comprised of fish from the very large
+1999 year class, with the cumulative removal (through `r end_yr - 1`) from
+that cohort estimated at approximately
+`r f(cohort_catch_1999 / 1e6, 2)` million~t. Through `r last_data_yr`, the
+cumulative catch of the 2010, 2014, and 2016 year classes is estimated to be
+about `r f(cohort_catch_2010 / 1e6, 2)` million~t,
+`r f(cohort_catch_2014 / 1e6, 2)` million~t, and
+`r f(cohort_catch_2016 / 1e6, 2)` million~t, respectively. In the
+`r end_yr - 1` catch, `r top_coh(base_model, last_data_yr, 3, cap = FALSE)`.
+
 
 

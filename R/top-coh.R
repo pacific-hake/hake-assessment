@@ -65,7 +65,7 @@ top_coh <- function(model = NULL,
                 yr - as.numeric(x$name[1]),
                 " cohort was the largest (",
                 f(x$value[1] * 100, decimals),
-                "\\%)")
+                "%)")
   if(num_cohorts > 1){
     for(i in 2:num_cohorts){
       txt <- paste0(txt,
@@ -73,7 +73,7 @@ top_coh <- function(model = NULL,
                     yr - as.numeric(x$name[i]),
                     " cohort (",
                     f(x$value[i] * 100, decimals),
-                    "\\%)")
+                    "%)")
     }
   }
 
