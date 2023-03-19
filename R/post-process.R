@@ -4,6 +4,10 @@
 #' Add centering for section names,
 #'
 #' @param fn The TEX filename
+#' @param accessibility Logical. If `TRUE`, include lines for LaTeX `tagpdf`
+#' package to make a more web-accessible document. This will make the compile
+#' time much longer and is typically used when done the document and doing the
+#' final compile for government web distribution
 #' @param section_indent_inch Indent value in inches for section headers in
 #' the TOC
 #' @param section_num_width_inch Width of section numbers in inches in
@@ -20,6 +24,7 @@
 #' @return Nothing, overwrite the file `fn` with the modified TEX
 #' @export
 post_process <- function(fn,
+                         accessibility = FALSE,
                          section_indent_inch = 0,
                          section_num_width_inch = 0.1,
                          subsection_indent_inch = 0.2,
@@ -73,6 +78,19 @@ post_process <- function(fn,
   #   })
   #   x[inds] <- sec_hdrs
   # }
+
+  if(accessibility){
+    x <- c(
+      "\\RequirePackage{pdfmanagement-testphase}",
+      "\\DocumentMetadata{testphase=phase-II, uncompress, pdfstandard=A-2U, lang=en-US}",
+      x)
+  }
+
+  dc_ind <- grep("documentclass", x)
+  if(!length(dc_ind)){
+    stop("\\documentclass not found, document cannot be built",
+         call. = FALSE)
+  }
 
   # Make section headers uppercase and centered ----
   section_inds <- grep("\\\\section\\*?\\{.*(})?", x)
@@ -188,6 +206,9 @@ post_process <- function(fn,
   # bookdown turns ~ into "\\textasciitilde " in the TEX, so we change it back
   x <- gsub("\\\\textasciitilde ", "~", x)
 
-  writeLines(x, fn)
+  # Change double-dashes to en-dashes ----
+  x <- gsub("-- ", "\\\\textendash\\\\ ", x)
+  x <- gsub("--", "\\\\textendash", x)
 
+  writeLines(x, fn)
 }
