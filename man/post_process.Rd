@@ -7,6 +7,7 @@
 post_process(
   fn,
   accessibility = FALSE,
+  figs_dir = ifelse(exists("knitr_figs_dir"), knitr_figs_dir, NULL),
   section_indent_inch = 0,
   section_num_width_inch = 0.1,
   subsection_indent_inch = 0.2,
@@ -22,6 +23,10 @@ post_process(
 package to make a more web-accessible document. This will make the compile
 time much longer and is typically used when done the document and doing the
 final compile for government web distribution}
+
+\item{figs_dir}{The name of the directory in which the knitr-built
+figures reside. Used for matching figure import locations inside the tex
+file}
 
 \item{section_indent_inch}{Indent value in inches for section headers in
 the TOC}
