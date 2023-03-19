@@ -6,6 +6,7 @@
 \usage{
 post_process(
   fn,
+  accessibility = FALSE,
   section_indent_inch = 0,
   section_num_width_inch = 0.1,
   subsection_indent_inch = 0.2,
@@ -16,6 +17,11 @@ post_process(
 }
 \arguments{
 \item{fn}{The TEX filename}
+
+\item{accessibility}{Logical. If \code{TRUE}, include lines for LaTeX \code{tagpdf}
+package to make a more web-accessible document. This will make the compile
+time much longer and is typically used when done the document and doing the
+final compile for government web distribution}
 
 \item{section_indent_inch}{Indent value in inches for section headers in
 the TOC}

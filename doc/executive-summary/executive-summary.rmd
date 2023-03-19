@@ -8,7 +8,7 @@
 
 This assessment reports the status of the coastal `r sp` (or `r common_name`,
 *`r science_name`*) stock off the west coast of the United States and Canada
-at the start of `r `assess_yr`. This stock exhibits seasonal migratory
+at the start of `r assess_yr`. This stock exhibits seasonal migratory
 behavior, ranging from offshore and generally southern waters during the
 winter spawning season to coastal areas between northern California and
 northern British Columbia during the spring, summer, and fall when the
@@ -31,7 +31,7 @@ plot_catches(ct, leg.y.loc = 650)
 Coast-wide fishery landings of `r sp` averaged `r f(mean(ct$Total))`~t
 from `r min(ct$Year)` to `r max(ct$Year)`, with a low of
 `r f(min(ct$Total))`~t in
-`r ct$year[ct$Total == min(ct$Total)]` and a peak of
+`r ct$Year[ct$Total == min(ct$Total)]` and a peak of
 `r f(max(ct$Total))`~t in
 `r ct$Year[ct$Total == max(ct$Total)]`
 (Figure \@ref(fig:es-catches)).
@@ -51,7 +51,7 @@ adjusted for carryovers) of `r last_yr_tac`~t. Attainment in the U.S. was
 `r last_yr_us_attained`% of its quota and in Canada it was
 `r last_yr_can_attained`%.
 
-```{r total-catches-table, results = "asis", echo = FALSE}
+```{r es-catch-table, results = "asis", echo = FALSE}
 table_catch(ct,
             start_yr = assess_yr - 10,
             end_yr = assess_yr - 1,

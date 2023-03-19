@@ -10,8 +10,7 @@ table_catch(
   start_yr,
   end_yr,
   inc_foreign_jv = FALSE,
-  col_width = 0.35,
-  font_size = 9,
+  font_size = 8,
   ...
 )
 }
@@ -24,9 +23,10 @@ table_catch(
 
 \item{end_yr}{End year in table}
 
-\item{col_width}{Width in inches for all the columns}
+\item{inc_foreign_jv}{Logical. If \code{TRUE}, include columns for the U.S.
+foreign fleets and Canadian foreign fleet}
 
-\item{font_size}{The table data and geader font size in points}
+\item{font_size}{The table data and header font size in points}
 
 \item{...}{Arguments passed to \code{\link[knitr:kable]{knitr::kable()}}}
 }

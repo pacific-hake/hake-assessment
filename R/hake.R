@@ -22,7 +22,7 @@
 #' @importFrom grid gpar grid.draw grid.newpage rectGrob textGrob
 #' @importFrom gridExtra arrangeGrob
 #' @importFrom gtable gtable_add_grob
-#' @importFrom kableExtra column_spec kable_styling
+#' @importFrom kableExtra column_spec kable_styling linebreak
 #' @importFrom here here
 #' @importFrom lubridate hour minute month second seconds_to_period year
 #' @importFrom purrr map imap map2 map_chr map_dbl map_lgl walk walk2 flatten

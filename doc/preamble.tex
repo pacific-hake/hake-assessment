@@ -2,6 +2,25 @@
 % below, after fancyhdr is loaded
 \PassOptionsToPackage{includehead}{geometry}
 
+\usepackage[utf8]{inputenc}
+% http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+\usepackage[T1]{fontenc}
+
+% Font selection, here we use the monospace Bera font
+\usepackage{bera}
+
+% Used to make the headers in tables via the kableExtra::linebreak() function
+\usepackage{makecell}
+\usepackage{multirow}
+
+% Caption indentation and style
+\usepackage[format = plain,
+            indention = 3mm,
+            labelsep = period,
+            font={small},
+            singlelinecheck = false,
+            labelfont = bf]{caption}
+
 \usepackage{fancyhdr}
 \renewcommand{\headrulewidth}{0.25pt}
 \renewcommand{\footrulewidth}{0.25pt}
