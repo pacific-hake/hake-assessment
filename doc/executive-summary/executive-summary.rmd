@@ -257,7 +257,6 @@ through the growth-mortality transition during a period of high catches. The
 increase in female spawning biomass since 2021 is due to the expected above
 average 2020 cohort entering maturity and the recent declining trend in catch.
 
-
 The median estimate of the `r end_yr` relative spawning biomass (female
 spawning biomass at the start of `r end_yr` divided by that at unfished
 equilibrium, $B_0$) is `r curr_depl_median`%. However, the uncertainty is
@@ -288,7 +287,7 @@ table_biomass(base_model,
                 "relative to estimated unfished equilibrium (Rel. SSB; \\%)."))
 ```
 
-## Recruitment
+## Recruitment {-}
 
 ```{r es-recruitment-table, results = "asis", echo = FALSE}
 table_recruitment(base_model,
@@ -301,4 +300,102 @@ table_recruitment(base_model,
                     "below (above) zero indicate recruitment below ",
                     "(above) that estimated from the stock-recruit ",
                     "relationship."))
+```
+
+The addition of `r last_data_yr` data does not substantially change estimates
+of historical recruitment but recent recruitment estimates have changed
+substantially. For example, this assessment's median estimate of the 2020
+recruitment is
+`r f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]), 1)`~billion
+fish higher than in the last assessment (a 
+`r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
+(prev_assess_recruitment_med)["2020"]) * 100), 0)`% increase). Similarly,
+estimates for 2019 and 2021 recruitments have changed by
+`r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]) /
+(prev_assess_recruitment_med)["2019"]) * 100), 0)`%
+(`r f((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"], 1)`~billion
+fish) and
+`r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]) /
+(prev_assess_recruitment_med)["2021"]) * 100), 0)`%
+(`r f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]), 1)`~billion
+fish), respectively, but the general notion remains that recent recruitment is
+highly uncertain.
+
+`r sp` have low to moderate recruitment with occasional large year classes
+(Table~\@ref(tab:es-recruitment) and Figure~\@ref(fig:es-recruitment)).
+
+(ref:es-recruitment) Medians (solid circles) and means ($\mathrm{X}$) of the
+posterior distribution for recruitment (billions of age-0 fish) with 95%
+posterior credibility intervals (blue, vertical lines). The median of the
+posterior distribution for mean unfished equilibrium recruitment ($R_0$) is
+shown as the horizontal dashed line with the 95% posterior credibility
+interval shaded between the dotted lines.
+
+```{r recruitment, fig.cap = "(ref:es-recruitment)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that recruitment for each cohort. There are currently three above-average cohorts in the stock with 2020 being the fourth. The 2020 cohort is highly uncertain which can be seen in the size of the credible interval."}
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 single_line_color = "blue",
+                 inc_means = TRUE,
+                 leg_pos = "none")
+```
+
+Large year classes in 1980, 1984, and 1999 supported much of the commercial
+catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated
+recruitment was at some of the lowest values in the time series but this
+was followed by an above average 2008 year class. The strong 2010 year class
+comprised `r top_coh(base_model, 2014, ret_cohort = 2010)`% of the
+coast-wide commercial catch in 2014,
+`r top_coh(base_model, 2016, ret_cohort = 2010)`% of the 2016 catch,
+`r top_coh(base_model, 2018, ret_cohort = 2010)`% of the 2018 catch,
+`r top_coh(base_model, 2020, ret_cohort = 2010)`% of the 2020 catch, and
+`r top_coh(base_model, 2022, ret_cohort = 2010)`% of the 2022 catch.
+The decline from 2014 to 2016 was partly due to the large influx of the 2014
+year class (`r top_coh(base_model, 2016, ret_cohort = 2014)`% of the 2016
+catch was age-2 fish from the 2014 year class; this was larger than the
+proportion of age-2 fish, `r top_coh(base_model, 2012, ret_cohort = 2010)`%,
+from the 2010 year class in 2012). Since 2010, the model currently
+estimates small 2011, 2012, 2013, 2015, 2018, 2019 and 2021 year classes
+(median recruitment well below the mean of all median recruitments).
+
+The 2014 and 2016 year classes are both larger than average, with 2014
+larger than 2016 but smaller than 2010. With the inclusion of the
+relative age-1 index, there is information beyond just fishery encounters in
+the data to estimate the size of the 2020 year class. Collectively, these
+data indicate that the 2020 year class is likely well above average. The
+much smaller 2019 year class is informed by the `r last_survey_yr`
+biomass index and fishery data but is not informed by the relative age-1
+index, and the 2021 year class is informed only by 2022 fishery data.
+There is no information in the data to estimate the sizes of the
+`r end_yr - 1` and `r end_yr` year classes. Retrospective analyses of
+year-class strength for young fish have shown the estimates of recent
+recruitment to be unreliable prior to at least a model age of three (i.e.,
+fish observed at age two) without a survey in the most recent year and
+two (i.e., fish observed at age one) with a survey. While the 2020 cohort
+was observed by the relative age-1 index in 2021, it will not be observed
+by the acoustic survey until 2023.
+
+## Default harvest policy {-}
+
+The default \Ffortyten harvest policy prescribes the maximum rate of fishing
+mortality to equal $\Fforty$. This rate gives a spawning potential ratio (SPR)
+of 40%, meaning that the female spawning biomass per recruit with $\Fforty$ is
+40% of that without fishing. If female spawning biomass is below $\Bforty$
+(40% of $B_0$), the policy reduces the TAC linearly until it equals zero at
+$\Bten$ (10% of $B_0$). Relative fishing intensity for fishing rate
+$\mathrm{F}$ is \FishingRate, where $\mathrm{SPR_{40\%}}$ is an SPR of 40%;
+it is reported here interchangeably as a proportion or a percentage. A
+relative fishing intensity above 1.0 means fishing at a rate above $\Fforty$.
+
+## Exploitation status {-}
+
+```{r es-fishing-intensity-table, results = "asis", echo = FALSE}
+table_fishing_intensity(base_model,
+                        start_yr = end_yr - 10,
+                        end_yr = end_yr - 1,
+                        digits = 3,
+                        font_size = 12,
+                        caption = paste0(
+                          "Recent estimates of relative fishing intensity, ",
+                          "\\FishingRate, and exploitation ",
+                          "fraction (catch divided by age-2+ biomass)."))
 ```
