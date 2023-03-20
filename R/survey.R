@@ -236,53 +236,6 @@ make.survey.age1.plot <- function(model,
          bty = "o")
 }
 
-make.survey_biomass.extrap.plot <- function(dat){
-  ## dat - data.frame of different indices
-  ## show - vector of which values to show
-  oldpar <- par("mar", "las", "cex.axis")
-  on.exit(par(oldpar))
-
-  # values with extrapolation used in base model
-  ests <- data.frame(year = dat$year,
-                     obs = dat$obs / 1000,
-                     se_log = dat$se_log)
-  ests$lo <- exp(log(ests$obs) - 1.96 * ests$se_log)
-  ests$hi <- exp(log(ests$obs) + 1.96 * ests$se_log)
-  ests$value <- ests$obs
-
-  # 2009 w/o squid inflation
-  ests_squid <- ests[ests$year == 2009, ]
-  ests_squid[, "se_log"] <- 0.0682 ## se without squid inflation
-  ests_squid[, c("lo", "hi")] <- exp(log(ests_squid$obs) + c(-1.96, 1.96) * ests_squid$se_log)
-  par(las = 1, mar = c(5, 4, 1, 1) + 0.1, cex.axis = 0.9)
-
-  plotBars.fn(ests$year,
-              ests,
-              scale = 1e3,
-              ylim = c(0, 3),
-              yaxs = 'i',
-              pch = 20,
-              xlab="Year",
-              ylab = "Biomass index (million t)",
-              cex = 1.5,
-              las = 1,
-              gap = 0.05,
-              xaxt = "n",
-              ciLwd = 3,
-              ciCol = rgb(0, 0, 0, 0.5))
-  plotBars.fn(ests_squid$year,
-              ests_squid,
-              scale = 1e3,
-              pch = 20,
-              add = TRUE,
-              cex = 1.5,
-              las = 1,
-              gap = 0.05,
-              ciLwd = 3.25,
-              ciCol = rgb(0, 0, 0, 1))
-  axis(1, at = ests$year, cex.axis = 0.8)
-}
-
 # Plot the age-1 index data only (see make.survey.age1.plot for results)
 make.survey.age1.plot.data <- function(dat,
                                        log.scale = TRUE,

@@ -81,5 +81,24 @@ about `r f(cohort_catch_2010 / 1e6, 2)` million~t,
 `r f(cohort_catch_2016 / 1e6, 2)` million~t, respectively. In the
 `r end_yr - 1` catch, `r top_coh(base_model, last_data_yr, 3, cap = FALSE)`.
 
+## Data and assessment {-}
 
+(ref:es-survey-biomass-cap) Acoustic survey biomass index of age-2+ fish
+(millions of tons). Approximate 95% confidence intervals are based on
+sampling variability (intervals without squid/hake apportionment
+uncertainty in 2009 are displayed in black).
+  
+```{r es-survey-biomass, fig.cap = "(ref:es-survey-biomass-cap)", fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has decreased from 2019 to 2021."}
+plot_survey_biomass(base_model, index = "age2")
+```
+
+(ref:es-survey-age1-cap) Relative index of age-1 fish (numbers of fish) and
+approximate 95% confidence intervals based on sampling variability. The index
+is relative because the survey does not attempt to sample all available age-1
+fish and the analysis does not include kriging as is done to estimate age-2+
+biomass.
+
+```{r es-survey-age1, fig.cap = "(ref:es-survey-age1-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the age-1 survey estimate has increased from 2019 to 2021."}
+plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
+```
 

@@ -403,7 +403,7 @@ if(!dir.exists(fig_dir)){
    \begin{figure}
 \centering
   <<survey-compare-extrap-noextrap, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-    make.survey_biomass.extrap.plot(
+    plot_survey_biomass(
       dplyr::filter(base_model[["dat"]][["CPUE"]], index == 2)
     )
   @
