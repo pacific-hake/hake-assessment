@@ -217,7 +217,9 @@ post_process <- function(fn,
 
   # Fix line binders (~) ----
   # bookdown turns ~ into "\\textasciitilde " in the TEX, so we change it back
-  x <- gsub("\\\\textasciitilde ", "~", x)
+  # Don't remove the space-* at the end of the pattern, some cases
+  # eg. (million~t) have a space and some don't eg. (Fig~\@ref{})
+  x <- gsub("\\\\textasciitilde *", "~", x)
 
   # Change double-dashes to en-dashes ----
   x <- gsub("-- ", "\\\\textendash\\\\ ", x)
