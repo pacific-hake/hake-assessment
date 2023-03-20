@@ -399,3 +399,18 @@ table_fishing_intensity(base_model,
                           "\\FishingRate, and exploitation ",
                           "fraction (catch divided by age-2+ biomass)."))
 ```
+
+The median estimated relative fishing intensity on the stock is below the
+management level of 1.0 `r median_intensity_above_1_text` (see 
+Table~\@ref(tab:es-fishing-intensity) for recent years and
+Figure~\@ref(fig:es-fishing-intensity)).
+
+(ref:es-fishing-intensity-cap) Trend in median relative fishing intensity
+(relative to the $\Fforty$ management level) through `r end_yr - 1`} with
+95% posterior credibility intervals. The $\Fforty$ management level defined
+in the Joint U.S.-Canada Agreement for `r sp` is shown as a horizontal line
+at 1.0.
+
+```{r es-fishing-intensity, fig.cap = "(ref:es-fishing-intensity-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management value of 1 for FSPR 40 percent throughout the entire time series."}
+plot_fishing_intensity(base_model)
+```
