@@ -159,3 +159,146 @@ selectivity continue to be based on conditions during the last five years,
 as done since the 2020 assessment. The main change from the `r last_assess_yr`
 assessment is the addition of `r last_data_yr` data.
 
+## Stock Biomass {-}
+
+Results from the base model
+indicate that since the 1960s, `r sp` female spawning biomass has ranged from
+well below to above unfished equilibrium (Figures~\@ref(fig:es-spawning-biomass)
+and~\@ref(fig:es-relative-spawning-biomass)). Model estimates suggest
+that it was below the unfished equilibrium in the 1960s, at the start of the
+assessment period, due to lower than average recruitment.
+
+(ref:es-spawning-biomass-cap) Median (solid line) of the posterior
+distribution for beginning of the year female spawning biomass
+($B_t$ in year $t$; million t) through `r end_yr` (solid line) with 95%
+posterior credibility intervals (shaded area). The left-most circle with a 95%
+posterior credibility interval is the estimated unfished equilibrium biomass,
+$B_0$.
+
+```{r es-spawning-biomass, fig.cap = "(ref:es-spawning-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been increasing in size since 2021."}
+plot_biomass(list(base_model),
+             list(base_model_name),
+             ylim = c(0, 5),
+             point_shape = 1,
+             leg_pos = "none")
+```
+
+(ref:es-relative-spawning-biomass-cap) Median (solid line) of the posterior
+distribution for relative spawning biomass ($B_t / B_0$) through `r end_yr`
+with 95% posterior credibility intervals (shaded area). Dashed horizontal
+lines show 10%, 40%, and 100% of the unfished equilibrium ($B_0$).
+
+```{r es-relative-spawning-biomass, fig.cap = "(ref:es-relative-spawning-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the relative spawning biomass has been increasing since 2021. The value for 2023 is just above B0."}
+plot_rel_biomass(list(base_model),
+                 list(base_model_name),
+                 point_shape = 1,
+                 ylim = c(0, 3),
+                 alpha = 0.2,
+                 leg_pos = "none")
+```
+
+The stock is estimated to have increased rapidly and was above unfished
+equilibrium in the mid-1970s and mid-1980s (after two large recruitment
+events in the early 1980s). It then declined steadily to a low in 1999. This
+was followed by a brief increase to a peak in 2002 as the very large 1999 year
+class matured. The 1999 year class largely supported the fishery for several
+years due to relatively small recruitment events between 2000 and 2007. With
+the aging 1999 year class, median female spawning biomass declined throughout
+the late 2000s, reaching a time-series low of `r median_bio_min` million~t in
+`r median_bio_min_yr`. Median female spawning biomass is estimated to have
+peaked again in 2013 and 2014 due to a very large 2010 year class and an
+above-average 2008 year class. The subsequent decline from 2014 to 2016 is
+primarily from the 2010 year class surpassing the age at which the gains in
+weight from growth are greater than the losses in weight from mortality
+(growth-mortality transition). The 2014 year class is estimated to be large,
+though not as large as the 1999 and 2010 year classes, increasing the biomass
+in 2017. The estimated biomass was relatively steady from 2017 to 2019 and then
+declined in 2020 and 2021 due to the 2014 and 2016 year classes moving through
+the growth-mortality transition during a period of high catches. The increase
+in female spawning biomass since 2021 is due to the expected above average
+2020 cohort entering maturity and the recent declining trend in catch.
+
+The median estimate of the `r end_yr` relative spawning biomass (female
+spawning biomass at the start of `r end_yr` divided by that at unfished
+equilibrium, $B_0$) is `r curr_depl_median`%. However, the uncertainty
+is particularly large this year, with a 95% posterior credibility interval
+from `r curr_depl_lower`% to `r curr_depl_upper`% (Table~\@ref(tab:es-biomass),
+due to high uncertainty about the size of the 2020 cohort, which has not yet
+been sampled in the acoustic survey biomass index of age-2+ fish. The median
+estimate of the `r end_yr` female spawning biomass is
+`r curr_bio_median` million~t (with a 95% posterior credibility interval from
+`r curr_bio_lower` to `r curr_bio_upper` million~t. The current estimate of the
+`r end_yr - 1` female spawning biomass is `r prev_bio_median`
+(`r prev_bio_lower`--`r prev_bio_upper`) million~t. This is higher than the
+`r prev_bio_median_last_assess` (`r prev_bio_lower_last_assess`--
+`r prev_bio_upper_last_assess`) million~t estimated in the `r end_yr - 1`
+assessment. The increase appears to be due to the addition of 2022 fishery
+age-composition data, which suggests the 2020 cohort may be larger than the
+age-1 index alone was indicating in the last assessment.
+
+The stock is estimated to have increased rapidly and was above unfished
+equilibrium in the mid-1970s and mid-1980s (after two large recruitment events
+in the early 1980s). It then declined steadily to a low in 1999. This was
+followed by a brief increase to a peak in 2002 as the very large 1999 year
+class matured. The 1999 year class largely supported the fishery for several
+years due to relatively small recruitment events between 2000 and 2007. With
+the aging 1999 year class, median female spawning biomass declined throughout
+the late 2000s, reaching a time-series low of `r median_bio_min` million~t in
+`r median_bio_min_yr`. Median female spawning biomass is estimated to have
+peaked again in 2013 and 2014 due to a very large 2010 year class and an
+above-average 2008 year class. The subsequent decline from 2014 to 2016 is
+primarily from the 2010 year class surpassing the age at which the gains in
+weight from growth are greater than the losses in weight from mortality
+(growth-mortality transition). The 2014 year class is estimated to be large,
+though not as large as the 1999 and 2010 year classes, increasing the biomass
+in 2017. The estimated biomass was relatively steady from 2017 to 2019 and
+then declined in 2020 and 2021 due to the 2014 and 2016 year classes moving
+through the growth-mortality transition during a period of high catches. The
+increase in female spawning biomass since 2021 is due to the expected above
+average 2020 cohort entering maturity and the recent declining trend in catch.
+
+
+The median estimate of the `r end_yr` relative spawning biomass (female
+spawning biomass at the start of `r end_yr` divided by that at unfished
+equilibrium, $B_0$) is `r curr_depl_median`%. However, the uncertainty is
+particularly large this year, with a 95% posterior credibility interval from
+`r curr_depl_lower`% to `r curr_depl_upper`%
+(Table~\@ref(tab:es-biomass-table), due to high uncertainty about the size of
+the 2020 cohort, which has not yet been sampled in the acoustic survey
+biomass index of age-2+ fish. The median estimate of the `r end_yr` female
+spawning biomass is `r curr_bio_median` million~t (with a 95% posterior
+credibility interval from `r curr_bio_lower` to 
+`r curr_bio_upper` million~t). The current estimate of the `r end_yr - 1`
+female spawning biomass is `r prev_bio_median`
+(`r prev_bio_lower`--`r prev_bio_upper`) million~t. This is higher than the
+`r prev_bio_median_last_assess` (`r prev_bio_lower_last_assess`--
+`r prev_bio_upper_last_assess`) million~t estimated in the `r end_yr - 1`
+assessment. The increase appears to be due to the addition of 2022 fishery
+age-composition data, which suggests the 2020 cohort may be larger than the
+age-1 index alone was indicating in the last assessment.
+
+```{r es-biomass-table, results = "asis", echo = FALSE}
+table_biomass(base_model,
+              start_yr = end_yr - 9,
+              end_yr = end_yr,
+              font_size = 12,
+              caption = paste0(
+                "Recent trends in estimated beginning of the year female ",
+                "spawning biomass (SSB; thousand~t) and spawning biomass ",
+                "relative to estimated unfished equilibrium (Rel. SSB; \\%)."))
+```
+
+## Recruitment
+
+```{r es-recruitment-table, results = "asis", echo = FALSE}
+table_recruitment(base_model,
+                  start_yr = end_yr - 10,
+                  end_yr = end_yr - 1,
+                  font_size = 12,
+                  caption = paste0(
+                    "Estimates of recent recruitment (millions of age-0 ",
+                    "fish) and recruitment deviations, where deviations ",
+                    "below (above) zero indicate recruitment below ",
+                    "(above) that estimated from the stock-recruit ",
+                    "relationship."))
+```

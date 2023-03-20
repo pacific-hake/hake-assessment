@@ -4,11 +4,7 @@
 \alias{plot_survey_biomass}
 \title{Create a plot of survey biomass as points with errorbars}
 \usage{
-plot_survey_biomass(
-  model,
-  index = c("age1", "age2"),
-  y_lim = if (index == "age2") c(0, 3) else c(0, 16)
-)
+plot_survey_biomass(model, index = c("age1", "age2"), y_lim = c(0, 3))
 }
 \arguments{
 \item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
