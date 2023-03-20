@@ -675,11 +675,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
      \frame{\frametitle{Fishing Intensity}
        \bc
        <<fishing-intensity, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-         make.fishing.intensity.plot(base_model,
-                            start_yr = start_yr,
-                            end_yr = end_yr-1,
-                            color = "blue",
-                            upper.lim = 1.5)
+         plot_fishing_intensity(base_model)
        @
          \ec
      }

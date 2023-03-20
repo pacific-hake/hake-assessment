@@ -483,11 +483,7 @@ years and Figure~\ref{fig:es-fishing-intensity}).
 \begin{figure}[tbp]
 \begin{center}
 <<fishing-intensity, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management value of 1 for FSPR 40 percent throughout the entire time series.">>=
-make.fishing.intensity.plot(base_model,
-                            start_yr = start_yr,
-                            end_yr = end_yr-1,
-                            color = "blue",
-                            upper.lim = 1.5)
+plot_fishing_intensity(base_model)
 @
 \end{center}
 \caption{Trend in median relative fishing intensity (relative to the $\Fforty$

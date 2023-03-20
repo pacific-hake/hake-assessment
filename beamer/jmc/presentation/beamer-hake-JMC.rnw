@@ -244,10 +244,7 @@ from last year)
   \begin{columns}
     \begin{column}{0.5\textwidth}
       <<fishing-intensity, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
-      make.fishing.intensity.plot(base_model,
-                                  start_yr = start_yr,
-                                  end_yr = end_yr-1,
-                                  color = "blue")
+      plot_fishing_intensity(base_model)
       @
     \end{column}
     \begin{column}{0.5\textwidth}
