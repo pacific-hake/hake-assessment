@@ -102,3 +102,60 @@ biomass.
 plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
 ```
 
+This Joint Technical Committee (JTC) assessment depends on the fishery
+landings (`r start_yr`--`r last_data_yr`), an acoustic survey biomass index
+of age-2+ fish (Figure~\@ref(fig:es-survey-biomass) and age compositions
+(`r survey_start_yr`--`r survey_end_yr`), a relative index of age-1 fish (Figure~\@ref(fig:es-survey-age1); `r survey_start_yr`--`r survey_end_yr`),
+fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`), and
+mean weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011
+the survey biomass index was the lowest in the time series and was followed
+by the index increasing in 2012, 2013, and again in 2015 before decreasing to
+near the time series average in 2017. The 2019 estimate is the fourth highest
+of the series, and the 2021 estimate is near the time series average.
+Age-composition data from the aggregated fisheries and the acoustic survey,
+along with the age-1 index, provide data that facilitates estimating relative
+cohort strength, i.e., strong and weak cohorts. The age-1 index suggests
+particularly large numbers of age-1 fish in 2009, 2011, 2015, and 2021 (2008,
+2010, 2014, and 2020 year classes, respectively), and is not available for
+most even years (odd year classes). There is not data to inform the size of
+the `r last_data_yr` year class.
+
+The assessment uses a Bayesian estimation approach, sensitivity analyses, and
+retrospective investigations to evaluate the potential consequences of
+parameter uncertainty, alternative structural models, and historical
+performance of the assessment model, respectively. The Bayesian approach
+combines prior knowledge about natural mortality, stock-recruitment steepness
+(a parameter for stock productivity), and several other parameters, with
+likelihoods for the acoustic survey biomass index, acoustic survey
+age-composition data, the relative age-1 index, and fishery age-composition
+data. Integrating the joint posterior distribution over model parameters
+provides probabilistic inferences about uncertain model parameters and
+forecasts derived from those parameters; this is done via Markov chain Monte
+Carlo sampling using the efficient No-U-Turn Sampler (NUTS) that was
+successfully tested in 2020 and used in subsequent assessments. Sensitivity
+analyses are used to identify alternative model assumptions that may also
+be consistent with the data. All models, including bridging, sensitivity,
+and retrospective models, use a Bayesian framework for estimation.
+Retrospective analyses identify possible poor performance of the assessment
+model with respect to future predictions. Past assessments have conducted
+closed-loop simulations that provide insights into how alternative
+combinations of survey frequency, assessment model selectivity assumptions,
+changes in hake distribution, and harvest control rules affect expected
+management outcomes given repeated application of these procedures over
+the long-term. The results of past (and ongoing) closed-loop simulations
+help inform decisions made for this assessment.
+
+This `r assess_yr` assessment retained the same general population dynamics
+structure as the base assessment model from `r last_assess_yr` and again is
+configured using Stock Synthesis. This includes the continued use (since 2014)
+of time-varying (rather than fixed) selectivity to maintain flexibility with
+fishing dynamics given variability in `r sp` distribution patterns.
+
+The Dirichlet-multinomial estimation approach to weighting composition data
+was retained, and sensitivity to an alternative data-weighting approach was
+investigated. Time-varying fecundity, which was introduced in 2019, was
+retained. Assumptions for the forecast period for weight at age and
+selectivity continue to be based on conditions during the last five years,
+as done since the 2020 assessment. The main change from the `r last_assess_yr`
+assessment is the addition of `r last_data_yr` data.
+
