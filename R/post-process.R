@@ -48,9 +48,26 @@ post_process <- function(fn,
   fn_base <- tools::file_path_sans_ext(fn)
   fn_ext <- tools::file_ext(fn)
   fn_bck <- paste0(fn_base, "-bck.", fn_ext)
-  file.copy(fn, fn_bck, overwrite = TRUE)
 
   x <- readLines(fn)
+
+  modification_text <- "% This file has been modified by hake::post_process()"
+  hasbeen_modified <- grep(modification_text, x)
+  if(length(hasbeen_modified)){
+    if(file.exists(fn_bck)){
+      # Copy from the backup, erasing the previous post processing changes
+      file.copy(fn_bck, fn, overwrite = TRUE)
+      x <- readLines(fn)
+    }else{
+      stop("The file `", fn, "` has already been modified by the ",
+           "hake::post_process() function, and the backup file `", fn_bck,
+           "` was not found. Re-run the bookdown command to create `", fn, "`",
+           call. = FALSE)
+    }
+  }else{
+    file.copy(fn, fn_bck, overwrite = TRUE)
+  }
+
 
   # Allow unnumbered headers with custom labels in format {-, #label_name}
   # inds <- grep("\\{-, *\\\\#.*\\}", x)
@@ -286,6 +303,10 @@ post_process <- function(fn,
 
   # Executive summary catch plot placement----
   set_figure_placement("es-catches-1", "!b")
+
+  # Mark file with modification text ----
+  x <- c(modification_text,
+         x)
 
   writeLines(x, fn)
 }
