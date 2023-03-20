@@ -188,11 +188,7 @@ from last year)
     \end{column}
     \begin{column}{0.5\textwidth}
       <<exploitation, fig.height=4, fig.width=6, out.width='0.99\\columnwidth'>>=
-      make.exploitation.fraction.plot(base_model,
-      start_yr = start_yr,
-      end_yr = end_yr-1,
-      upper.lim = 0.3,
-      color = "blue")
+      plot_exploitation_fraction(base_model)
       @
     \end{column}
   \end{columns}

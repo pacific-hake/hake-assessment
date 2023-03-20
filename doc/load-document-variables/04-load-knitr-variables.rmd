@@ -91,46 +91,46 @@ ct_last1 <- ct |>
 ct_secondlast <- ct |>
   filter(Year == end_yr - 2)
 us_last_5_yrs_attainment <- ct_last5 |>
-  pull(`U.S. TAC`) |>
+  pull(`us_attain`) |>
   mean() |>
   f(1)
 us_last_2_yrs_attainment <- ct_last2 |>
-  pull(`U.S. TAC`) |>
+  pull(`us_attain`) |>
   mean() |>
   f(0)
 can_last_5_yrs_attainment <- ct_last5 |>
-  pull(`Canada TAC`) |>
+  pull(`can_attain`) |>
   mean() |>
   f(1)
 can_last_2_yrs_attainment <- ct_last2 |>
-  pull(`Canada TAC`) |>
+  pull(`can_attain`) |>
   mean() |>
   f(0)
 tot_last_5_yrs_attainment <- ct_last5 |>
-  pull(`Total TAC`) |>
+  pull(`tot_attain`) |>
   mean() |>
   f(1)
 tot_last_10_yrs_attainment <- ct_last10 |>
-  pull(`Total TAC`) |>
+  pull(`tot_attain`) |>
   mean() |>
   f(1)
 tot_last_yr_attainment <- ct_last1 |>
-  pull(`Total TAC`) |>
+  pull(`tot_attain`) |>
   mean() |>
   f(1)
 tot_2015_attainment <- ct |>
   filter(Year == 2015) |>
-  pull(`Total TAC`) |>
+  pull(`tot_attain`) |>
   mean() |>
   f(1)
 tot_9192_attainment <- ct |>
   filter(Year %in% 1991:1992) |>
-  pull(`Total TAC`) |>
+  pull(`tot_attain`) |>
   mean() |>
   f(0)
 tot_9399_attainment <- ct |>
   filter(Year %in% 1993:1999) |>
-  pull(`Total TAC`) |>
+  pull(`tot_attain`) |>
   mean() |>
   f(0)
 

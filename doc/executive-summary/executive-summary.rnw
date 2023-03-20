@@ -545,11 +545,7 @@ due to the appearance of the 1999 year class.
 \begin{figure}[tbp]
 \begin{center}
 <<exploitation-fraction, fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the female spawning biomass is approximately 0.05. This is a drop from the last five years which have been approximately 0.1.">>=
-make.exploitation.fraction.plot(base_model,
-                                start_yr = start_yr,
-                                end_yr = end_yr-1,
-                                color = "blue",
-                                upper.lim = 0.35)
+plot_exploitation_fraction(base_model)
 @
 \end{center}
 \caption{Trend in median exploitation fraction (catch divided by age-2+ biomass)

@@ -684,11 +684,7 @@ cowplot::plot_grid(plotlist = plist, nrow = 1, ncol = 2)
      \frame{\frametitle{Exploitation Fraction (ages $2+$)}
        \bc
        <<exploitation, fig.height=4, fig.width=8, out.width='0.95\\columnwidth'>>=
-         make.exploitation.fraction.plot(base_model,
-                                start_yr = start_yr,
-                                end_yr = end_yr-1,
-                                color = "blue",
-                                upper.lim = 0.35)
+         plot_exploitation_fraction(base_model)
        @
          \ec
      }
