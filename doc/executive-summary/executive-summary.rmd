@@ -490,3 +490,41 @@ plot_phase(base_model,
            final_lbl_x_off = 0.04,
            final_lbl_y_off = 0.04)
 ```
+
+The median relative fishing intensity was below 1.0 in all years
+(Figures~\@ref(fig:es-fishing-intensity) and~\@ref(fig:es-phase)). The median
+relative spawning biomass was above the $\Bforty$ reference point in all
+years except 2007--2010 (Figures~\@ref(fig:es-relative-spawning-biomass)
+and~\@ref(fig:es-phase), and the median relative fishing intensity was below
+1.0 (Figure~\@ref(fig:es-phase)).
+The benchmark quantities, $\Fforty$ and $\Bforty$, result in different median
+population sizes (see Table~\@ref(tab:es-reference-points)), highlighting
+that there are subtle differences in these conceptual reference points.
+Between 2007 and 2010, median relative fishing intensity ranged from
+`r median_intensity_2007_to_2010_min`% to
+`r median_intensity_2007_to_2010_max`% and median relative spawning biomass
+between `r median_relative_bio_2007_to_2010_min` and
+`r median_relative_bio_2007_to_2010_max`. Biomass has risen from the 2010 low
+with the 2008, 2010, 2014, 2016, and 2020 recruitments, and median relative
+spawning biomass has been above the reference point of 40% since
+`r median_relative_bio_above_target_since`.
+
+While there is large uncertainty in the estimates of relative fishing
+intensity and relative spawning biomass, the model estimates a
+`r joint_percent_prob_above_below`% joint probability of being both
+above a relative fishing intensity of 1.0 in `r end_yr - 1` and below the
+$\Bforty$ relative spawning biomass level at the start of `r end_yr`.
+
+```{r reference-points-table, results = "asis", echo = FALSE}
+make.reference.points.table(base_model,
+                            font_size = 12
+                            caption = paste0(
+                              "Summary of median and 95\\% credibility ",
+                              "intervals of equilibrium conceptual reference ",
+                              "points for the ", sp, " base assessment model. ",
+                              "Equilibrium reference points were computed ",
+                              "using 1975--", end_yr - 1, " averages for mean ",
+                              "weight-at-age and baseline selectivity-at-age ",
+                              "(1966--1990; prior to time-varying ",
+                              "deviations)."))
+```
