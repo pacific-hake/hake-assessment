@@ -169,7 +169,13 @@ def_med_hr_tac <- filter(catch_targets_df,
     \begin{column}{0.75\textwidth}
     \bc
     <<main-phase, fig.height=5, fig.width=8,out.width='1.0\\columnwidth'>>=
-      make.phase.plot(base_model, start_yr = start_yr, end_yr = end_yr)
+      plot_phase(base_model,
+           start_yr,
+           end_yr,
+           init_lbl_x_off = -0.04,
+           init_lbl_y_off = -0.04,
+           final_lbl_x_off = 0.04,
+           final_lbl_y_off = 0.04)
     @
     \ec
     \end{column}

@@ -102,7 +102,7 @@ plot_fishing_intensity(
   x_expansion = 1,
   ylim = c(0, 1.4),
   y_breaks = seq(ylim[1], ylim[2], by = 0.2),
-  axis_title_font_size = 14,
+  axis_title_font_size = 12,
   axis_tick_font_size = 11,
   point_size = 1,
   point_shape = 16,

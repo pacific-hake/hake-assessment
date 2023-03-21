@@ -472,3 +472,21 @@ table_landings_tac(ct,
                      "specified unilaterally. All landings and catch ",
                      "targets are given in tonnes."))
 ```
+
+(ref:es-phase-plot-cap) Estimated historical path of median relative spawning
+biomass in year $t$ and corresponding median relative fishing intensity in
+year $t - 1$. Labels show the time series start and end years and the year
+after the highest relative fishing intensity; labels correspond to year $t$
+(i.e., year of the relative spawning biomass). Gray bars span the 95%
+credibility intervals for `r end_yr` relative spawning biomass (horizontal)
+and `r end_yr - 1` relative fishing intensity (vertical).
+         
+```{r es-phase-plot, fig.cap = "(ref:es-phase-plot-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state."}
+plot_phase(base_model,
+           1966,
+           2023,
+           init_lbl_x_off = -0.04,
+           init_lbl_y_off = -0.04,
+           final_lbl_x_off = 0.04,
+           final_lbl_y_off = 0.04)
+```

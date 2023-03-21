@@ -38,11 +38,10 @@ plot_survey_biomass <- function(model,
   g <- ggplot(ests,
               aes(x = year,
                   xend = year,
-                  #y = obs,
                   y = lo,
                   yend = hi,)) +
     geom_segment(col = "grey",
-                              linewidth = 1.5,
+                 linewidth = 1.5,
                  lineend = "round")
 
   if(index == 2){

@@ -786,9 +786,13 @@ plot_exploitation_fraction(base_model)
 \begin{figure}[H]
 \begin{center}
 <<main-phase, fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state.">>=
-make.phase.plot(base_model,
-                start_yr = start_yr,
-                end_yr = end_yr)
+plot_phase(base_model,
+           start_yr,
+           end_yr,
+           init_lbl_x_off = -0.04,
+           init_lbl_y_off = -0.04,
+           final_lbl_x_off = 0.04,
+           final_lbl_y_off = 0.04)
 @
 \end{center}
 \caption{Estimated historical path of median relative spawning biomass in

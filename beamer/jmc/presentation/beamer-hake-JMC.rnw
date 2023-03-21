@@ -276,11 +276,14 @@ from last year)
 \begin{figure}[tbp]
 \begin{center}
 <<phase-plot, fig.height=2.8, fig.width=5.5>>=
-      make.phase.plot(base_model,
-                      start_yr = start_yr,
-                      end_yr = end_yr,
-                      cex.lab = 0.5)
-  @
+plot_phase(base_model,
+           start_yr,
+           end_yr,
+           init_lbl_x_off = -0.04,
+           init_lbl_y_off = -0.04,
+           final_lbl_x_off = 0.04,
+           final_lbl_y_off = 0.04)
+@
 \end{center}
 \end{figure}
 }
