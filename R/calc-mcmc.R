@@ -103,12 +103,9 @@ calc_mcmc <- function(mcmc,
 
   # Spawning potential ratio ----
   spr <- cols_par("SPRratio")
-  out$plower <- apply(spr, 2, quantile, prob = probs[1], na.rm = TRUE) *
-    biomass_scale
-  out$pmed <- apply(spr, 2, quantile, prob = probs[2], na.rm = TRUE) *
-    biomass_scale
-  out$pupper <- apply(spr, 2, quantile, prob = probs[3], na.rm = TRUE) *
-    biomass_scale
+  out$plower <- apply(spr, 2, quantile, prob = probs[1], na.rm = TRUE)
+  out$pmed <- apply(spr, 2, quantile, prob = probs[2], na.rm = TRUE)
+  out$pupper <- apply(spr, 2, quantile, prob = probs[3], na.rm = TRUE)
 
   # Fishing mortality ----
   f_mort <- cols_par("F")

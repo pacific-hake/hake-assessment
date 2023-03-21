@@ -5,6 +5,12 @@
 % For bold math symbols
 \usepackage{bm}
 
+%% For centering with fixed width column or right cell values in a tabular
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+
 \usepackage[utf8]{inputenc}
 
 % http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
