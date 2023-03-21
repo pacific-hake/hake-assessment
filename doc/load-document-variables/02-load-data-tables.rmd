@@ -77,6 +77,8 @@ ct <-
            `Canada Shoreside` +
            `Canada Freezer-trawler`,
          Total = `U.S. Total` + `Canada Total`,
+         us_prop = `U.S. Total` / Total * 100,
+         can_prop = `Canada Total` / Total * 100,
          us_attain = `U.S. Total` / `U.S. TAC` * 100,
          can_attain = `Canada Total` / `Canada TAC` * 100,
          tot_attain = `Total` / `Total TAC` * 100)

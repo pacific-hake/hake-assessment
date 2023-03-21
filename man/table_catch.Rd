@@ -15,7 +15,7 @@ table_catch(
 )
 }
 \arguments{
-\item{ct}{Output from \code{\link[=load_catches]{load_catches()}}}
+\item{ct}{Data frame as in the file \code{landing-tac-histroy.csv}}
 
 \item{country}{One of "both", "can", or "us"}
 

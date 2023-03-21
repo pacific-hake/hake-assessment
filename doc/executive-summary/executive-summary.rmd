@@ -53,8 +53,8 @@ adjusted for carryovers) of `r last_yr_tac`~t. Attainment in the U.S. was
 
 ```{r es-catch-table, results = "asis", echo = FALSE}
 table_catch(ct,
-            start_yr = assess_yr - 10,
-            end_yr = assess_yr - 1,
+            start_yr = end_yr - 10,
+            end_yr = end_yr - 1,
             caption = paste0(
               "Recent commercial fishery catch (t). Tribal catches are",
               "included in the sector totals. Research catch includes landed",
@@ -463,14 +463,12 @@ plot_exploitation_fraction(base_model)
 ```
 
 ```{r landings-tac-table, results = "asis", echo = FALSE}
-make_landings_tac_table(ct,
-                        start_yr = end_yr - 10,
-                        end_yr = end_yr - 1,
-                        xcaption = "Recent trends in \\fishname\\ landings and
-                                     management decisions. Catch targets in 2020 and 2021 were
-                                     specified unilaterally.",
-                        xlabel = "tab:es-landings-tac",
-                        font_size = 7,
-                        space_size = 8,
-                        placement = "tbp")
+table_landings_tac(ct,
+                   start_yr = end_yr - 10,
+                   end_yr = end_yr - 1,
+                   caption = paste0(
+                     "Recent trends in ", sp, " landings and management ",
+                     "decisions. Catch targets in 2020 and 2021 were ",
+                     "specified unilaterally. All landings and catch ",
+                     "targets are given in tonnes."))
 ```
