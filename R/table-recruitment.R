@@ -23,20 +23,26 @@ table_recruitment <- function(model,
                               ...){
 
   calcs <- model$mcmccalcs
+  yrs <- start_yr:end_yr
 
   # Recruitment quantiles
   inds <- grep("^20[0-9]{2}$", names(calcs$rlower))
   rlower <- calcs$rlower[inds] * scale
+  rlower <- rlower[names(rlower) %in% yrs]
   rmed <- calcs$rmed[inds] * scale
+  rmed <- rmed[names(rmed) %in% yrs]
   rupper <- calcs$rupper[inds] * scale
+  rupper<- rupper[names(rupper) %in% yrs]
 
   # Recruitment deviation quantiles
   inds <- grep("^20[0-9]{2}$", names(calcs$devlower))
   devlower <- calcs$devlower[inds]
+  devlower <- devlower[names(devlower) %in% yrs]
   devmed <- calcs$devmed[inds]
+  devmed <- devmed[names(devmed) %in% yrs]
   devupper <- calcs$devupper[inds]
+  devupper<- devupper[names(devupper) %in% yrs]
 
-  yrs <- as.numeric(names(rlower))
   df <- tibble(yrs,
                f(rlower, digits),
                f(rmed, digits),

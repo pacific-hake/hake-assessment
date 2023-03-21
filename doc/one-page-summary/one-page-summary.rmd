@@ -43,9 +43,9 @@ biomass of `r prev_bio_median_tonnes`~t (with 95% credible interval
 `r prev_bio_lower_tonnes`--`r prev_bio_upper_tonnes`~t).
 
 - The estimated probability that female spawning biomass at the start of
-`r assess_yr` is below the `r `$\Bforty$ (40% of $B_0$) reference point is
+`r assess_yr` is below the `r `$\Bforty$ (40% of $\Bzero$) reference point is
 `r probs_curr_below_b40`%, and the probability that the relative fishing
-intensity exceeded $\Fforty$ in `r end_yr-1` is
+intensity exceeded $\FSPRforty$ in `r end_yr-1` is
 `r probs_curr_rel_fish_intens_above_1`%. The joint
 probability of both these occurring is `r joint_percent_prob_above_below`%.
 

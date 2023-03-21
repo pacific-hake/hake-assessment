@@ -31,17 +31,17 @@ calc_mcmc <- function(mcmc,
   #   select(matches("^SSB_Virgin$")) |>
   #   setNames("value") |>
   #   mutate(value = value / biomass_scale)
-  # sinit <- mcmc |>
-  #   select(matches("^SSB_Initial$")) |>
-  #   setNames("value") |>
-  #   mutate(value = value / biomass_scale)
+  sinit <- mcmc |>
+    select(matches("^SSB_Initial$")) |>
+    setNames("value") |>
+    mutate(value = value / biomass_scale)
   # out$svirg <- svirg |>
   #   unlist() |>
   #   quantile(probs)
-  # out$sinit <- sinit |>
-  #   unlist() |>
-  #   quantile(probs)
-browser()
+  out$sinit <- sinit |>
+    unlist() |>
+    quantile(probs)
+
   out$slower <- apply(ssb, 2, quantile, prob = probs[1], na.rm = TRUE)
   out$smed <- apply(ssb, 2, quantile, prob = probs[2], na.rm = TRUE)
   out$supper <- apply(ssb, 2, quantile, prob = probs[3], na.rm = TRUE)
@@ -57,18 +57,18 @@ browser()
 
   # Recruitment ----
   recr <- cols_par("Recr", recr_scale)
-  rvirg <- mcmc |>
-    select(matches("^Recr_Virgin$")) |>
-    setNames("value")
+  # rvirg <- mcmc |>
+  #   select(matches("^Recr_Virgin$")) |>
+  #   setNames("value")
   rinit <- mcmc |>
     select(matches("^Recr_Initial$")) |>
     setNames("value")
   runfished <- mcmc |>
     select(matches("^Recr_unfished$")) |>
     setNames("value")
-  out$rvirg <- rvirg |>
-    unlist() |>
-    quantile(probs)
+  # out$rvirg <- rvirg |>
+  #   unlist() |>
+  #   quantile(probs)
   out$rinit <- rinit |>
     unlist() |>
     quantile(probs)
@@ -83,7 +83,7 @@ browser()
 
   # Recruitment deviations ----
   pat_early <- "^Early_InitAge_([0-9]{1,2})$"
-  pat_ts <- "^(Early_RecrDev_|Main_RecrDev_)([0-9]{4})$"
+  pat_ts <- "^(Early_RecrDev_|Main_RecrDev_|Late_RecrDev_)([0-9]{4})$"
 
   recdev_early <- mcmc |>
     select(matches(pat_early)) %>%
@@ -131,20 +131,20 @@ browser()
     tmp
   }
   out$refpts <- list()
-  out$refpts$unfish_fem_bio <- refpt_quants("SSB_Virgin", biomass_scale, 0)
-  out$refpts$unfish_recr <- refpt_quants("Recr_Virgin", biomass_scale, 0)
-  out$refpts$f_spawn_bio_bf40 <- refpt_quants("SSB_SPR", biomass_scale, 0)
+  out$refpts$unfish_fem_bio <- refpt_quants("SSB_Virgin", 1e3, 0)
+  out$refpts$unfish_recr <- refpt_quants("Recr_Virgin", 1e3, 0)
+  out$refpts$f_spawn_bio_bf40 <- refpt_quants("SSB_SPR", 1e3, 0)
   out$refpts$spr_msy_proxy <- c(latex_bold("--"), "40\\%", latex_bold("--"))
   out$refpts$exp_frac_spr <- refpt_quants("annF_SPR", 1, 1, TRUE)
-  out$refpts$yield_bf40 <- refpt_quants("Dead_Catch_SPR", biomass_scale, 0)
-  out$refpts$fem_spawn_bio_b40 <- refpt_quants("SSB_Btgt", biomass_scale, 0)
+  out$refpts$yield_bf40 <- refpt_quants("Dead_Catch_SPR", 1e3, 0)
+  out$refpts$fem_spawn_bio_b40 <- refpt_quants("SSB_Btgt", 1e3, 0)
   out$refpts$spr_b40 <- refpt_quants("SPR_Btgt", 1, 1, TRUE)
   out$refpts$exp_frac_b40 <- refpt_quants("annF_Btgt", 1, 1, TRUE)
-  out$refpts$yield_b40 <- refpt_quants("Dead_Catch_Btgt", 1000, 0)
-  out$refpts$fem_spawn_bio_bmsy <- refpt_quants("SSB_MSY", 1000, 0)
+  out$refpts$yield_b40 <- refpt_quants("Dead_Catch_Btgt", 1e3, 0)
+  out$refpts$fem_spawn_bio_bmsy <- refpt_quants("SSB_MSY", 1e3, 0)
   out$refpts$spr_msy <- refpt_quants("SPR_MSY", 1, 1, TRUE)
   out$refpts$exp_frac_spr_msy <- refpt_quants("annF_MSY", 1, 1, TRUE)
-  out$refpts$msy <- refpt_quants("Dead_Catch_MSY", 1000, 0)
+  out$refpts$msy <- refpt_quants("Dead_Catch_MSY", 1e3, 0)
 
   out
 }

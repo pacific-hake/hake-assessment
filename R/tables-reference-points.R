@@ -1,191 +1,80 @@
-make.reference.points.table <- function(model,
-                                        xcaption = "default",
-                                        xlabel   = "default",
-                                        font.size = 9,
-                                        space.size = 10,
-                                        placement = "tbp",
-                                        tabular.envt = "longtable"){
-  ## Returns an xtable in the proper format for the executive summary
-  ##  reference points. The values are calculated previously in the calc_mcmc
-  ##  function in load-models.r.
-  ##
-  ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
-  ## probs - values to use for the quantile funcstion
-  ## xcaption - caption to appear in the calling document
-  ## xlabel - the label used to reference the table in latex
-  ## font.size - size of the font for the table
-  ## space.size - size of the vertical spaces for the table
-  ## placement - where to put table
-  ## tabular.envt - "longtable" or "table"
+#' Creates a table containing reference point estimates
+#'
+#' @param model A model, created by [create_rds_file()]
+#' @param font_size Size of the font in points for the table data
+#' @param ... Arguments passed to [knitr::kable()]
+#'
+#' @return a [knitr::kable()] object
+#' @export
+table_reference_points <- function(model,
+                                   font_size = 10,
+                                   ...){
 
-  m <- model$mcmccalcs
-  tab <- rbind(m$refpts$unfish_fem_bio,
-               m$refpts$unfish_recr,
-               m$refpts$f_spawn_bio_bf40,
-               m$refpts$spr_msy_proxy,
-               m$refpts$exp_frac_spr,
-               m$refpts$yield_bf40,
-               m$refpts$fem_spawn_bio_b40,
-               m$refpts$spr_b40,
-               m$refpts$exp_frac_b40,
-               m$refpts$yield_b40,
-               m$refpts$fem_spawn_bio_bmsy,
-               m$refpts$spr_msy,
-               m$refpts$exp_frac_spr_msy,
-               m$refpts$msy)
-  descr <- c("Unfished female spawning biomass ($B_0$, thousand t)",
-             "Unfished recruitment ($R_0$, millions)",
-             "Female spawning biomass at $\\Fforty$ ($B_{\\text{SPR}=40\\%}$, thousand t)",
-             "SPR at $\\Fforty$",
-             "Exploitation fraction corresponding to $\\Fforty$",
-             "Yield associated with $\\Fforty$ (thousand t)",
-             "Female spawning biomass ($B_{40\\%}$, thousand t)",
-             "SPR at $B_{40\\%}$",
-             "Exploitation fraction resulting in $B_{40\\%}$",
-             "Yield at $B_{40\\%}$ (thousand t)",
-             "Female spawning biomass ($B_{\\text{MSY}}$, thousand t)",
+  df <- model$mcmccalcs$refpts |>
+    map_df(~{.x}) |>
+    t() |>
+    as_tibble(rownames = "Quantity")
+
+  names(df) <- c("Quantity",
+                 "2.5\\textsuperscript{th}\npercentile",
+                 "Median",
+                 "97.5\\textsuperscript{th}\npercentile")
+
+  descr <- c("Unfished female spawning biomass ($\\Bzero$, thousand t)",
+             "Unfished recruitment ($\\Rzero$, millions)",
+             "Female spawning biomass at $\\FSPRforty$ ($\\BSPRforty$, thousand t)",
+             "SPR at $\\FSPRforty$",
+             "Exploitation fraction corresponding to $\\FSPRforty$",
+             "Yield associated with $\\FSPRforty$ (thousand t)",
+             "Female spawning biomass ($\\Bforty$, thousand t)",
+             "SPR at $\\Bforty$",
+             "Exploitation fraction resulting in $\\Bforty$",
+             "Yield at $\\Bforty$ (thousand t)",
+             "Female spawning biomass ($\\Bmsy$, thousand t)",
              "SPR at MSY",
              "Exploitation fraction corresponding to SPR at MSY",
              "MSY (thousand t)")
-  tab <- cbind(descr, tab)
-  colnames(tab) <- c(latex_bold("Quantity"),
-                     latex_mlc(c(latex_supscr("2.5", "th"),
-                                 "percentile")),
-                     latex_bold("Median"),
-                     latex_mlc(c(latex_supscr("97.5", "th"),
-                                 "percentile")))
-  addtorow <- list()
-  addtorow$pos <- list()
-  addtorow$pos[[1]] <- -1
-  addtorow$pos[[2]] <- 2
-  addtorow$pos[[3]] <- 6
-  addtorow$pos[[4]] <- 10
 
-  header_code <- paste0(latex_hline,
-                        paste(colnames(tab), collapse = latex_amp()),
-                        latex_nline,
-                        latex_hline)
+  df <- df |>
+    mutate(Quantity = descr)
+  col_names <- linebreak(names(df), align = "c")
+  col_names[col_names == "Quantity"] <- "\\makecell[l]{Quantity}"
 
-  header_code <- paste0(header_code,
-                        latex_continue(ncol(tab), header_code))
-  addtorow$command <-
-    c(header_code,
-      paste0(latex_nline,
-             latex_bold(latex_under(paste0("Reference points (equilibrium) ",
-                                           "based on $\\Fforty$"))),
-             latex_nline),
-      paste0(latex_nline,
-             latex_bold(latex_under(paste0("Reference points (equilibrium) ",
-                                           "based on $B_{40\\%}$ (40\\% of ",
-                                           "$B_0$)"))),
-             latex_nline),
-      paste0(latex_nline,
-             latex_bold(latex_under(paste0("Reference points (equilibrium) ",
-                                           "based on estimated MSY"))),
-             latex_nline))
+  # Insert a new row made up of the vector `row_vec` at row `row_ind` in
+  # data frame `d`
+  insert_row <- function(d, row_vec, row_ind) {
+    d[seq(row_ind + 1, nrow(d) + 1), ] <- d[seq(row_ind, nrow(d)),]
+    d[row_ind, ] <- vec2df(row_vec)
+    d
+  }
 
-  size.string <- latex_size_str(font.size, space.size)
-  print(xtable(tab,
-               caption = xcaption,
-               label = xlabel,
-               align = get.align(ncol(tab),
-                                 just="c")),
-        caption.placement = "top",
-        include.rownames = FALSE,
-        include.colnames = FALSE,
-        sanitize.text.function = function(x){x},
-        size = size.string,
-        add.to.row = addtorow,
-        tabular.environment = tabular.envt,
-        table.placement = placement,
-        hline.after = NULL)
-}
+  df <- insert_row(df, c("", "", "", ""), 3)
+  df <- insert_row(df,
+                   c(paste0("\\textbf{\\underline{Reference points ",
+                            "(equilibrium) based on $\\bm{\\FSPRforty}$}}"),
+                     "", "", ""), 4)
 
-# older version from commit 8908923 that has no longtable option but works for Exec Summary (and
-#  added in $B_{\\text{SPR}=40\\%}$):
-make.reference.points.table.old <- function(model,
-                                        xcaption = "default",
-                                        xlabel   = "default",
-                                        font.size = 9,
-                                        space.size = 10,
-                                        placement = "H"){
-  ## Returns an xtable in the proper format for the executive summary
-  ##  reference points. The values are calculated previously in the calc_mcmc
-  ##  function in load-models.r.
-  ##
-  ## model - an mcmc run, output of the r4ss package's function SSgetMCMC()
-  ## probs - values to use for the quantile funcstion
-  ## xcaption - caption to appear in the calling document
-  ## xlabel - the label used to reference the table in latex
-  ## font.size - size of the font for the table
-  ## space.size - size of the vertical spaces for the table
+  df <- insert_row(df, c("", "", "", ""), 9)
+  df <- insert_row(df,
+                   c(paste0("\\textbf{\\underline{Reference points ",
+                            "(equilibrium) based on $\\bm{\\Bforty}$ ",
+                            "(40\\% of $\\bm{\\Bzero}$)}}"),
+                     "", "", ""), 10)
 
-  m <- model$mcmccalcs
-  tab <- rbind(m$refpts$unfish_fem_bio,
-               m$refpts$unfish_recr,
-               m$refpts$f_spawn_bio_bf40,
-               m$refpts$spr_msy_proxy,
-               m$refpts$exp_frac_spr,
-               m$refpts$yield_bf40,
-               m$refpts$fem_spawn_bio_b40,
-               m$refpts$spr_b40,
-               m$refpts$exp_frac_b40,
-               m$refpts$yield_b40,
-               m$refpts$fem_spawn_bio_bmsy,
-               m$refpts$spr_msy,
-               m$refpts$exp_frac_spr_msy,
-               m$refpts$msy)
-  descr <- c("Unfished female spawning biomass ($B_0$, thousand t)",
-             "Unfished recruitment ($R_0$, millions)",
-             "Female spawning biomass at $\\Fforty$ ($B_{\\text{SPR}=40\\%}$, thousand t)",
-             "SPR at $\\Fforty$",
-             "Exploitation fraction corresponding to $\\Fforty$",
-             "Yield associated with $\\Fforty$ (thousand t)",
-             "Female spawning biomass ($B_{40\\%}$, thousand t)",
-             "SPR at $B_{40\\%}$",
-             "Exploitation fraction resulting in $B_{40\\%}$",
-             "Yield at $B_{40\\%}$ (thousand t)",
-             "Female spawning biomass ($B_{\\text{MSY}}$, thousand t)",
-             "SPR at MSY",
-             "Exploitation fraction corresponding to SPR at MSY",
-             "MSY (thousand t)")
-  tab <- cbind(descr, tab)
-  colnames(tab) <- c(latex_bold("Quantity"),
-                     latex_mlc(c(latex_supscr("2.5", "th"),
-                                 "percentile")),
-                     latex_bold("Median"),
-                     latex_mlc(c(latex_supscr("97.5", "th"),
-                                 "percentile")))
-  addtorow <- list()
-  addtorow$pos <- list()
-  addtorow$pos[[1]] <- 2
-  addtorow$pos[[2]] <- 6
-  addtorow$pos[[3]] <- 10
-  addtorow$command <-
-    c(paste0(latex_nline,
-             latex_bold(latex_under(paste0("Reference points (equilibrium) ",
-                                           "based on $\\Fforty$"))),
-      latex_nline),
-      paste0(latex_nline,
-             latex_bold(latex_under(paste0("Reference points (equilibrium) ",
-                                           "based on $B_{40\\%}$ (40\\% of ",
-                                           "$B_0$)"))),
-      latex_nline),
-      paste0(latex_nline,
-             latex_bold(latex_under(paste0("Reference points (equilibrium) ",
-                                           "based on estimated MSY"))),
-      latex_nline))
+  df <- insert_row(df, c("", "", "", ""), 15)
+  df <- insert_row(df,
+                   c(paste0("\\textbf{\\underline{Reference points ",
+                            "(equilibrium) based on estimated MSY}}"),
+                     "", "", ""), 16)
 
-  size.string <- latex_size_str(font.size, space.size)
-  print(xtable(tab,
-               caption = xcaption,
-               label = xlabel,
-               align = get.align(ncol(tab),
-                                 just="c")),
-        caption.placement = "top",
-        include.rownames = FALSE,
-        sanitize.text.function = function(x){x},
-        size = size.string,
-        add.to.row = addtorow,
-        table.placement = placement)
+  kable(df,
+        format = "latex",
+        booktabs = TRUE,
+        align = c("l", "c", "c", "c"),
+        linesep = "",
+        col.names = col_names,
+        escape = FALSE,
+        ...) |>
+    row_spec(0, bold = TRUE) |>
+    kable_styling(font_size = font_size)
 }

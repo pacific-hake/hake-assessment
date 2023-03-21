@@ -377,14 +377,14 @@ by the acoustic survey until 2023.
 ## Default harvest policy {-}
 
 The default \Ffortyten harvest policy prescribes the maximum rate of fishing
-mortality to equal $\Fforty$. This rate gives a spawning potential ratio (SPR)
-of 40%, meaning that the female spawning biomass per recruit with $\Fforty$ is
+mortality to equal $\FSPRforty$. This rate gives a spawning potential ratio (SPR)
+of 40%, meaning that the female spawning biomass per recruit with $\FSPRforty$ is
 40% of that without fishing. If female spawning biomass is below $\Bforty$
 (40% of $B_0$), the policy reduces the TAC linearly until it equals zero at
 $\Bten$ (10% of $B_0$). Relative fishing intensity for fishing rate
-$\mathrm{F}$ is \FishingRate, where $\mathrm{SPR_{40\%}}$ is an SPR of 40%;
+$\mathrm{F}$ is \FishingRate, where $\SPRforty$ is an SPR of 40%;
 it is reported here interchangeably as a proportion or a percentage. A
-relative fishing intensity above 1.0 means fishing at a rate above $\Fforty$.
+relative fishing intensity above 1.0 means fishing at a rate above $\FSPRforty$.
 
 ## Exploitation status {-}
 
@@ -400,14 +400,15 @@ table_fishing_intensity(base_model,
                           "fraction (catch divided by age-2+ biomass)."))
 ```
 
+
 The median estimated relative fishing intensity on the stock is below the
 management level of 1.0 `r median_intensity_above_1_text` (see 
 Table~\@ref(tab:es-fishing-intensity) for recent years and
 Figure~\@ref(fig:es-fishing-intensity)).
 
 (ref:es-fishing-intensity-cap) Trend in median relative fishing intensity
-(relative to the $\Fforty$ management level) through `r end_yr - 1`} with
-95% posterior credibility intervals. The $\Fforty$ management level defined
+(relative to the $\FSPRforty$ management level) through `r end_yr - 1`} with
+95% posterior credibility intervals. The $\FSPRforty$ management level defined
 in the Joint U.S.-Canada Agreement for `r sp` is shown as a horizontal line
 at 1.0.
 
@@ -428,7 +429,7 @@ exploitation fraction has, on average, increased from a recent low of
 `r exploitation_med_2012` in 2012 to `r exploitation_med_2020` in 2020
 before dropping back to 2012--2015 levels in 2022. There is a considerable
 amount of uncertainty around estimates of relative fishing intensity, with
-the 95% posterior credibility interval reaching above the $\Fforty$ management
+the 95% posterior credibility interval reaching above the $\FSPRforty$ management
 level (of 1.0) in 2017 and 2018 over the past decade
 (Figure~\@ref(fig:es-fishing-intensity). Exploitation and fishing intensity
 rates do not always track well due to a combination of changing age
@@ -497,7 +498,7 @@ relative spawning biomass was above the $\Bforty$ reference point in all
 years except 2007--2010 (Figures~\@ref(fig:es-relative-spawning-biomass)
 and~\@ref(fig:es-phase), and the median relative fishing intensity was below
 1.0 (Figure~\@ref(fig:es-phase)).
-The benchmark quantities, $\Fforty$ and $\Bforty$, result in different median
+The benchmark quantities, $\FSPRforty$ and $\Bforty$, result in different median
 population sizes (see Table~\@ref(tab:es-reference-points)), highlighting
 that there are subtle differences in these conceptual reference points.
 Between 2007 and 2010, median relative fishing intensity ranged from
@@ -516,15 +517,14 @@ above a relative fishing intensity of 1.0 in `r end_yr - 1` and below the
 $\Bforty$ relative spawning biomass level at the start of `r end_yr`.
 
 ```{r reference-points-table, results = "asis", echo = FALSE}
-make.reference.points.table(base_model,
-                            font_size = 12
-                            caption = paste0(
-                              "Summary of median and 95\\% credibility ",
-                              "intervals of equilibrium conceptual reference ",
-                              "points for the ", sp, " base assessment model. ",
-                              "Equilibrium reference points were computed ",
-                              "using 1975--", end_yr - 1, " averages for mean ",
-                              "weight-at-age and baseline selectivity-at-age ",
-                              "(1966--1990; prior to time-varying ",
-                              "deviations)."))
+table_reference_points(base_model,
+                       caption = paste0(
+                         "Summary of median and 95\\% credibility ",
+                         "intervals of equilibrium conceptual reference ",
+                         "points for the ", sp, " base assessment model. ",
+                         "Equilibrium reference points were computed ",
+                         "using 1975--", end_yr - 1, " averages for mean ",
+                         "weight-at-age and baseline selectivity-at-age ",
+                         "(1966--1990; prior to time-varying ",
+                         "deviations)."))
 ```

@@ -632,7 +632,7 @@ in \Sexpr{end_yr-1} and below the $\Bforty$ relative spawning biomass level at
 the start of \Sexpr{end_yr}.
 
 <<reference-points-table, results='asis', echo=FALSE>>=
-make.reference.points.table(base_model,
+table_reference_points(base_model,
                             xcaption = paste0("Summary of median and 95\\%
                              credibility intervals of equilibrium conceptual reference points
                              for the \\fishname\\ base assessment model.

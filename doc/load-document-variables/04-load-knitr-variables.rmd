@@ -1,15 +1,18 @@
 <!-- Place LaTeX macros here, and R variables in the knitr chunk below -->
-\newcommand{\Fforty}{\mathrm{F}_{\text{SPR}=40\%}}
-\newcommand{\BSPRforty}{\mathrm{B}_{\text{SPR}=40\%}}
+\newcommand{\FSPRforty}{\mathrm{F_{SPR=40\%}}}
+\newcommand{\BSPRforty}{\mathrm{B_{SPR=40\%}}}
+\newcommand{\SPRforty}{\mathrm{SPR_{40\%}}}
 \newcommand{\Ffortyten}{$\Fforty$--40:10}
-\newcommand{\FishingRate}{(1 - $\mathrm{SPR(F)}$)/(1 - $\mathrm{SPR_{40\%}}$)}
-\newcommand{\Bforty}{\mathrm{B}_{40\%}}
-\newcommand{\Btwentyfive}{\mathrm{B}_{25\%}}
-\newcommand{\Bten}{\mathrm{B}_{10\%}}
-\newcommand{\Bzero}{\mathrm{B}_{0}}
-\newcommand{\Bmsy}{\mathrm{B}_{\text{MSY}}}
-\newcommand{\Fmsy}{\mathrm{F}_{\text{MSY}}}
-\newcommand{\Fspr}{\mathrm{F}_{\text{SPR}}}
+\newcommand{\FishingRate}{(1 - $\mathrm{SPR(F)}$)/(1 - $\SPRforty$)}
+\newcommand{\Fforty}{\mathrm{F_{40\%}}}
+\newcommand{\Bforty}{\mathrm{B_{40\%}}}
+\newcommand{\Btwentyfive}{\mathrm{B_{25\%}}}
+\newcommand{\Bten}{\mathrm{B_{10\%}}}
+\newcommand{\Bzero}{\mathrm{B_{0}}}
+\newcommand{\Rzero}{\mathrm{R_{0}}}
+\newcommand{\Bmsy}{\mathrm{B_{MSY}}}
+\newcommand{\Fmsy}{\mathrm{F_{MSY}}}
+\newcommand{\Fspr}{\mathrm{F_{SPR}}}
 
 ```{r load-custom-knitr-variables-chunk, echo = FALSE}
 # Put any variables you intend to use in the text here.

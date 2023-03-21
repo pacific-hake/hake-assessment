@@ -474,7 +474,7 @@ table_param_est(list(base_model, last_yr_base_model),
 @
 
 <<main-reference-points-table, results='asis', echo=FALSE>>=
-make.reference.points.table.old(base_model,
+table_reference_points.old(base_model,
                             xcaption = paste0("Summary of median and 95\\% credibility
                                                intervals of equilibrium conceptual reference points for
                                                the base assessment model. Equilibrium reference
