@@ -7,6 +7,7 @@ rmd_files: ["index.Rmd",
             "load-document-variables/04-load-knitr-variables.rmd",
             "one-page-summary/one-page-summary.rmd",
             #"executive-summary/executive-summary.rmd",
-            "introduction-section/introduction.rmd"]
-            #"01-chap1.Rmd"]
+            #"introduction-section/introduction.rmd",
+            #"data-section/data.rmd",
+            "assessment-section/assessment.rmd"]
 delete_merged_file: true

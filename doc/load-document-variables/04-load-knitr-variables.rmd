@@ -1,11 +1,16 @@
 <!-- Place LaTeX macros here, and R variables in the knitr chunk below -->
+\newcommand{\FSPRthirtyfive}{\mathrm{F_{SPR=35\%}}}
 \newcommand{\FSPRforty}{\mathrm{F_{SPR=40\%}}}
+\newcommand{\FSPRfortyfive}{\mathrm{F_{SPR=45\%}}}
+\newcommand{\FSPRfifty}{\mathrm{F_{SPR=50\%}}}
 \newcommand{\BSPRforty}{\mathrm{B_{SPR=40\%}}}
 \newcommand{\SPRforty}{\mathrm{SPR_{40\%}}}
 \newcommand{\Ffortyten}{$\Fforty$--40:10}
+\newcommand{\Ffortyfivefortyten}{$\Ffortyfive$--40:10}
 \newcommand{\FishingRate}{(1 - $\mathrm{SPR(F)}$)/(1 - $\SPRforty$)}
 \newcommand{\Fforty}{\mathrm{F_{40\%}}}
 \newcommand{\Bforty}{\mathrm{B_{40\%}}}
+\newcommand{\Ffortyfive}{\mathrm{F_{45\%}}}
 \newcommand{\Btwentyfive}{\mathrm{B_{25\%}}}
 \newcommand{\Bten}{\mathrm{B_{10\%}}}
 \newcommand{\Bzero}{\mathrm{B_{0}}}
