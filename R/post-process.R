@@ -245,7 +245,7 @@ post_process <- function(fn,
 
   # Change double-dashes to en-dashes ----
   x <- gsub("-- ", "\\\\textendash\\\\ ", x)
-  x <- gsub("--", "\\\\textendash", x)
+  x <- gsub("--", "\\\\textendash ", x)
 
   # Set manual figure placements ----
   check_ind <- function(ind, label){
