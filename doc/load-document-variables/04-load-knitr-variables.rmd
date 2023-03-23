@@ -688,14 +688,17 @@ ss_age_prop_holder <- get.age.prop(last_yr_can_ages_ss, 4)
 fourth_shoreside_age_prop_age <- ss_age_prop_holder[1]
 fourth_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
 # ... US age data -------------------------------------------------------------
-us_age_n_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr, "n.hauls"]
-us_age_n_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr, "n.hauls"]
+us_age_n_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr, "n.hauls"] |> 
+  pull()
+us_age_n_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr, "n.hauls"] |> 
+  pull()
 us_last_yr_age_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr,
                                  grep("^a",
                                       colnames(us_cp_age_df))]
 us_last_yr_age_cp <-
   us_last_yr_age_cp[order(unlist(us_last_yr_age_cp[1, , drop = TRUE]),
-                            decreasing = TRUE)]
+                            decreasing = TRUE)] |> 
+  unlist()
 us_age_1_prop_age_cp <- as.numeric(gsub("^a", "", names(us_last_yr_age_cp)[1]))
 us_age_1_prop_cp <- f(us_last_yr_age_cp[1] * 100, 1)
 us_age_2_prop_age_cp <- as.numeric(gsub("^a", "", names(us_last_yr_age_cp)[2]))
@@ -709,7 +712,8 @@ us_last_yr_age_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr,
                                          colnames(us_ms_age_df))]
 us_last_yr_age_ms <-
   us_last_yr_age_ms[order(unlist(us_last_yr_age_ms[1, , drop = TRUE]),
-                            decreasing = TRUE)]
+                            decreasing = TRUE)] |> 
+  unlist()
 us_age_1_prop_age_ms <- as.numeric(gsub("^a", "", names(us_last_yr_age_ms)[1]))
 us_age_1_prop_ms <- f(us_last_yr_age_ms[1] * 100, 1)
 us_age_2_prop_age_ms <- as.numeric(gsub("^a", "", names(us_last_yr_age_ms)[2]))
@@ -726,7 +730,8 @@ us_last_yr_age_shore <- us_ss_age_df[us_ss_age_df$year == last_data_yr,
 
 us_last_yr_age_shore <-
   us_last_yr_age_shore[order(unlist(us_last_yr_age_shore[1, , drop = TRUE]),
-                             decreasing = TRUE)]
+                             decreasing = TRUE)] |> 
+  unlist()
 us_age_1_prop_age_shore <-
   as.numeric(gsub("^a", "", names(us_last_yr_age_shore)[1]))
 us_age_1_prop_shore <-
