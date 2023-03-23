@@ -1,5 +1,5 @@
 <<decisions-spr-table, results='asis', echo=FALSE>>=
-decision_table(base_model,
+table_decision(base_model,
                xcaption = paste0("Forecast quantiles of \\fishname\\ ",
                                  "relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}), ",
                                  "expressed as a proportion, ",

@@ -491,7 +491,7 @@ table_reference_points.old(base_model,
 \clearpage
 
 <<main-biomass-table, results='asis', echo=FALSE>>=
-decision_table(base_model,
+table_decision(base_model,
                xcaption =
                  paste0("Forecast quantiles of \\fishname\\ ",
                         "relative spawning biomass at the beginning of the year. ",
@@ -532,7 +532,7 @@ decision_table(base_model,
 \clearpage
 
 <<main-decisions-spr-table, results='asis', echo=FALSE>>=
-decision_table(base_model,
+table_decision(base_model,
                xcaption = paste0("Forecast quantiles of \\fishname\\ ",
                                  "relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}), ",
                                  "expressed as a proportion, ",
@@ -552,7 +552,7 @@ decision_table(base_model,
 \clearpage
 
 <<main-risk-forecast-year-1-table, results='asis', echo=FALSE>>=
-make.risk.table(base_model,
+table_risk(base_model,
                 forecast_yrs,
                 index = 1, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                 xcaption = paste0("Probabilities related to spawning biomass, relative fishing intensity,
@@ -566,7 +566,7 @@ make.risk.table(base_model,
 @
 
 <<main-risk-forecast-year-2-table, results='asis', echo=FALSE>>=
-make.risk.table(base_model,
+table_risk(base_model,
                 forecast_yrs,
                 index = 2, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                 xcaption = paste0("Probabilities related to spawning biomass, relative fishing intensity,
@@ -585,7 +585,7 @@ make.risk.table(base_model,
 @
 
 <<main-risk-forecast-year-3-table, results='asis', echo=FALSE>>=
-make.risk.table(base_model,
+table_risk(base_model,
                 forecast_yrs,
                 index = 3, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                 xcaption = paste0("Probabilities related to spawning biomass,

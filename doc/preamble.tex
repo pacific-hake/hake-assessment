@@ -1,11 +1,23 @@
-% Add header line. To inlude footer line, see \renewcommand{\footrulewidth}
+% Add header line. \PassOptionsToPackage is used to pass optioins to a package
+% that has already been loaded. Bookdown creates code to loads the geometry
+% package before this preamble is loaded, so this is needed to add options
+% after the fact.
+% To include footer line, see \renewcommand{\footrulewidth}
 % below, after fancyhdr is loaded
 \PassOptionsToPackage{includehead}{geometry}
+\usepackage{fancyhdr}
+% Make header nd footer the same line width
+\renewcommand{\headrulewidth}{0.25pt}
+\renewcommand{\footrulewidth}{0.25pt}
+\pagestyle{fancy}
+\fancyhf{}
+
 
 % For bold math symbols
 \usepackage{bm}
 
-%% For centering with fixed width column or right cell values in a tabular
+% For centering with fixed width column or right cell values in a tabular
+% Use 'C' instead of 'c' in latex table code
 \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
 \newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
 \newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
@@ -34,12 +46,6 @@
             singlelinecheck = false,
             labelfont = bf]{caption}
 
-\usepackage{fancyhdr}
-\renewcommand{\headrulewidth}{0.25pt}
-\renewcommand{\footrulewidth}{0.25pt}
-\pagestyle{fancy}
-\fancyhf{}
-
 % Page number in the bottom center of page
 \fancyfoot[C]{\thepage}
 
@@ -47,11 +53,6 @@
       \usefont{\encodingdefault}{\rmdefault}{b}{n}
       \fontsize{20}{24}
       \selectfont}
-
-% \newcommand*{\RegularFont}{
-%       \usefont{\encodingdefault}{\rmdefault}{b}{n}
-%       \fontsize{12}{14}
-%       \selectfont}
 
 \usepackage{graphicx}
 \usepackage{tocloft}

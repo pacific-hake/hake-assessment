@@ -25,7 +25,7 @@ output:
    fig_caption: yes
    includes:
      in_header: "preamble.tex"
-fontsize: 12pt
+fontsize: 11pt
 header-includes:
   - \usepackage{sectsty}
   - \usepackage{titling}
@@ -73,8 +73,11 @@ opts_chunk$set(
   dev = fig_out_type,
   dpi = fig_dpi,
   fig.align = fig_align,
-  fig.pos = fig_pos
-)
+  fig.pos = fig_pos)
+
+if(file.exists("hake.tex")){
+  system("./clean")
+}
 ```
 
 \newpage
@@ -87,6 +90,7 @@ contributed significantly.
 
 Authors of this document are (all authors contribute extensively so the order rotates annually):
 <!-- Note that there are two spaces at the end of the following four author lines -->
+
 Aaron M. Berger^1^  
 Chris J. Grandin^2^  
 Kelli F. Johnson^3^  

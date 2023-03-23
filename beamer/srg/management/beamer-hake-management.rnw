@@ -323,7 +323,7 @@ def_med_hr_tac <- filter(catch_targets_df,
 \subsection{Spawning Biomass}
 \frame{\frametitle{Relative Spawning Biomass}
 <<decisions-biomass-table, results='asis', echo=FALSE>>=
-decision_table(base_model,
+table_decision(base_model,
                xcaption = NULL,
                type = "biomass",
                rows_to_show = c("a", "b", "f", "j", "k"),
@@ -353,7 +353,7 @@ decision_table(base_model,
 %----------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} catch}
 <<main-risk-forecast-year-1-table, results='asis', echo=FALSE>>=
-make.risk.table(base_model,
+table_risk(base_model,
                 forecast_yrs,
                 index = 1,
                 xcaption = NULL,
@@ -379,7 +379,7 @@ plot_fore_compare(base_model,
 %--------------------------------------------------------------
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr} and \Sexpr{end_yr+1} catches}
 <<main-risk-forecast-year-2-table, results='asis', echo=FALSE>>=
-make.risk.table(base_model,
+table_risk(base_model,
                 forecast_yrs,
                 index = 2,
                 xcaption = NULL,
@@ -407,7 +407,7 @@ plot_fore_compare(base_model,
 \frame{\frametitle{Probabilities based on \Sexpr{end_yr}, \Sexpr{end_yr+1},
     and \Sexpr{end_yr+2} catches}
 <<main-risk-forecast-year-3-table, results='asis', echo=FALSE>>=
-make.risk.table(base_model,
+table_risk(base_model,
                 forecast_yrs,
                 index = 3,
                 xcaption = NULL,

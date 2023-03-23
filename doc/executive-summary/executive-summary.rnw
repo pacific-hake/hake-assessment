@@ -706,7 +706,7 @@ wide range of uncertainty, the 95\% credibility interval being
 \Sexpr{ct_limit_quantiles["lower"]}--\Sexpr{ct_limit_quantiles["upper"]}~t.
 
 <<decisions-biomass-table, results='asis', echo=FALSE>>=
-decision_table(base_model,
+table_decision(base_model,
                xcaption =
                  paste0("Forecast quantiles of \\fishname\\ ",
                         "relative spawning biomass at the beginning of the year. ",
@@ -773,7 +773,7 @@ policy. For example, fishing at the $\Fforty$ default harvest-rate catch limit
 (scenario n: default HR) in 2023 results in a median relative fishing intensity of
 0.91 (Table~\ref{tab:es-decisions-spr}).
 <<decisions-spr-table, results='asis', echo=FALSE>>=
-decision_table(base_model,
+table_decision(base_model,
                xcaption = paste0("Forecast quantiles of \\fishname\\ ",
                                  "relative fishing intensity (1-SPR)/(1-SPR\\subscr{40\\%}), ",
                                  "expressed as a proportion, ",
@@ -893,7 +893,7 @@ plot_fore_compare(base_model,
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 <<risk-forecast-year-1-table, results='asis', echo=FALSE>>=
-make.risk.table(base_model,
+table_risk(base_model,
                 forecast_yrs,
                 index = 1, ## Index in models[[]]$risks to use, e.g. 1 means
                            ##  forecast year 2 compared to forecast year 1
@@ -933,7 +933,7 @@ directly from model output and lines interpolate between the points.}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 <<risk-forecast-year-2-table, results='asis', echo=FALSE>>=
-make.risk.table(base_model,
+table_risk(base_model,
                 forecast_yrs,
                 index = 2, ## Index in models[[]]$risks to use, e.g.
                            ##  1 means forecast year 2 compared to forecast year 1
@@ -977,7 +977,7 @@ that were computed directly from model output and lines interpolate between the 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 <<risk-forecast-year-3-table, results='asis', echo=FALSE>>=
-make.risk.table(base_model,
+table_risk(base_model,
                 forecast_yrs,
                 index = 3, ## Index in model$risks to use, e.g. 1 means forecast year 2 compared to forecast year 1
                 xcaption = paste0("Probabilities related to female spawning biomass,

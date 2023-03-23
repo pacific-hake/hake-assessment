@@ -42,7 +42,7 @@ catch in U.S. waters averaged `r f(mean(ct[["U.S. Total"]]))`~t
 (`r f(sum(ct[["U.S. Total"]]) / sum(ct$Total) * 100, 1)`% of the total catch),
 while catch from Canadian waters averaged `r f(mean(ct[["Canada Total"]]))`~t.
 Over the last 10 years, `r max(ct$Year) - 9`--`r max(ct$Year)`
-(Table \@ref(tab:es-catches)), the average coast-wide catch was
+(Table \@ref(tab:es-catches-tab)), the average coast-wide catch was
 `r ct_mean_10yrs`~t with U.S. and Canadian catches averaging
 `r ct_us_mean_10yrs`~t and `r ct_can_mean_10yrs`~t, respectively. Since 2017,
 the coast-wide catch has been declining annually through `r end_yr - 1`,
@@ -51,7 +51,7 @@ adjusted for carryovers) of `r last_yr_tac`~t. Attainment in the U.S. was
 `r last_yr_us_attained`% of its quota and in Canada it was
 `r last_yr_can_attained`%.
 
-```{r es-catch-table, results = "asis", echo = FALSE}
+```{r es-catches-tab, results = "asis", echo = FALSE}
 table_catch(ct,
             start_yr = end_yr - 10,
             end_yr = end_yr - 1,
@@ -163,19 +163,19 @@ assessment is the addition of `r last_data_yr` data.
 
 Results from the base model
 indicate that since the 1960s, `r sp` female spawning biomass has ranged from
-well below to above unfished equilibrium (Figures~\@ref(fig:es-spawning-biomass)
-and~\@ref(fig:es-relative-spawning-biomass)). Model estimates suggest
+well below to above unfished equilibrium (Figures~\@ref(fig:es-biomass)
+and~\@ref(fig:es-relative-biomass)). Model estimates suggest
 that it was below the unfished equilibrium in the 1960s, at the start of the
 assessment period, due to lower than average recruitment.
 
-(ref:es-spawning-biomass-cap) Median (solid line) of the posterior
+(ref:es-biomass-cap) Median (solid line) of the posterior
 distribution for beginning of the year female spawning biomass
 ($B_t$ in year $t$; million t) through `r end_yr` (solid line) with 95%
 posterior credibility intervals (shaded area). The left-most circle with a 95%
 posterior credibility interval is the estimated unfished equilibrium biomass,
 $B_0$.
 
-```{r es-spawning-biomass, fig.cap = "(ref:es-spawning-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been increasing in size since 2021."}
+```{r es-biomass, fig.cap = "(ref:es-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been increasing in size since 2021."}
 plot_biomass(list(base_model),
              list(base_model_name),
              ylim = c(0, 5),
@@ -183,12 +183,12 @@ plot_biomass(list(base_model),
              leg_pos = "none")
 ```
 
-(ref:es-relative-spawning-biomass-cap) Median (solid line) of the posterior
+(ref:es-relative-biomass-cap) Median (solid line) of the posterior
 distribution for relative spawning biomass ($B_t / B_0$) through `r end_yr`
 with 95% posterior credibility intervals (shaded area). Dashed horizontal
 lines show 10%, 40%, and 100% of the unfished equilibrium ($B_0$).
 
-```{r es-relative-spawning-biomass, fig.cap = "(ref:es-relative-spawning-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the relative spawning biomass has been increasing since 2021. The value for 2023 is just above B0."}
+```{r es-relative-biomass, fig.cap = "(ref:es-relative-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the relative spawning biomass has been increasing since 2021. The value for 2023 is just above B0."}
 plot_rel_biomass(list(base_model),
                  list(base_model_name),
                  point_shape = 1,
@@ -222,11 +222,11 @@ The median estimate of the `r end_yr` relative spawning biomass (female
 spawning biomass at the start of `r end_yr` divided by that at unfished
 equilibrium, $B_0$) is `r curr_depl_median`%. However, the uncertainty
 is particularly large this year, with a 95% posterior credibility interval
-from `r curr_depl_lower`% to `r curr_depl_upper`% (Table~\@ref(tab:es-biomass),
-due to high uncertainty about the size of the 2020 cohort, which has not yet
-been sampled in the acoustic survey biomass index of age-2+ fish. The median
-estimate of the `r end_yr` female spawning biomass is
-`r curr_bio_median` million~t (with a 95% posterior credibility interval from
+from `r curr_depl_lower`% to `r curr_depl_upper`%
+(Table~\@ref(tab:es-biomass-tab), due to high uncertainty about the size of
+the 2020 cohort, which has not yet been sampled in the acoustic survey
+biomass index of age-2+ fish. The median estimate of the `r end_yr` female
+spawning biomass is `r curr_bio_median` million~t (with a 95% posterior credibility interval from
 `r curr_bio_lower` to `r curr_bio_upper` million~t. The current estimate of the
 `r end_yr - 1` female spawning biomass is `r prev_bio_median`
 (`r prev_bio_lower`--`r prev_bio_upper`) million~t. This is higher than the
@@ -236,47 +236,7 @@ assessment. The increase appears to be due to the addition of 2022 fishery
 age-composition data, which suggests the 2020 cohort may be larger than the
 age-1 index alone was indicating in the last assessment.
 
-The stock is estimated to have increased rapidly and was above unfished
-equilibrium in the mid-1970s and mid-1980s (after two large recruitment events
-in the early 1980s). It then declined steadily to a low in 1999. This was
-followed by a brief increase to a peak in 2002 as the very large 1999 year
-class matured. The 1999 year class largely supported the fishery for several
-years due to relatively small recruitment events between 2000 and 2007. With
-the aging 1999 year class, median female spawning biomass declined throughout
-the late 2000s, reaching a time-series low of `r median_bio_min` million~t in
-`r median_bio_min_yr`. Median female spawning biomass is estimated to have
-peaked again in 2013 and 2014 due to a very large 2010 year class and an
-above-average 2008 year class. The subsequent decline from 2014 to 2016 is
-primarily from the 2010 year class surpassing the age at which the gains in
-weight from growth are greater than the losses in weight from mortality
-(growth-mortality transition). The 2014 year class is estimated to be large,
-though not as large as the 1999 and 2010 year classes, increasing the biomass
-in 2017. The estimated biomass was relatively steady from 2017 to 2019 and
-then declined in 2020 and 2021 due to the 2014 and 2016 year classes moving
-through the growth-mortality transition during a period of high catches. The
-increase in female spawning biomass since 2021 is due to the expected above
-average 2020 cohort entering maturity and the recent declining trend in catch.
-
-The median estimate of the `r end_yr` relative spawning biomass (female
-spawning biomass at the start of `r end_yr` divided by that at unfished
-equilibrium, $B_0$) is `r curr_depl_median`%. However, the uncertainty is
-particularly large this year, with a 95% posterior credibility interval from
-`r curr_depl_lower`% to `r curr_depl_upper`%
-(Table~\@ref(tab:es-biomass-table), due to high uncertainty about the size of
-the 2020 cohort, which has not yet been sampled in the acoustic survey
-biomass index of age-2+ fish. The median estimate of the `r end_yr` female
-spawning biomass is `r curr_bio_median` million~t (with a 95% posterior
-credibility interval from `r curr_bio_lower` to 
-`r curr_bio_upper` million~t). The current estimate of the `r end_yr - 1`
-female spawning biomass is `r prev_bio_median`
-(`r prev_bio_lower`--`r prev_bio_upper`) million~t. This is higher than the
-`r prev_bio_median_last_assess` (`r prev_bio_lower_last_assess`--
-`r prev_bio_upper_last_assess`) million~t estimated in the `r end_yr - 1`
-assessment. The increase appears to be due to the addition of 2022 fishery
-age-composition data, which suggests the 2020 cohort may be larger than the
-age-1 index alone was indicating in the last assessment.
-
-```{r es-biomass-table, results = "asis", echo = FALSE}
+```{r es-biomass-tab, results = "asis", echo = FALSE}
 table_biomass(base_model,
               start_yr = end_yr - 9,
               end_yr = end_yr,
@@ -289,7 +249,7 @@ table_biomass(base_model,
 
 ## Recruitment {-}
 
-```{r es-recruitment-table, results = "asis", echo = FALSE}
+```{r es-recruitment-tab, results = "asis", echo = FALSE}
 table_recruitment(base_model,
                   start_yr = end_yr - 10,
                   end_yr = end_yr - 1,
@@ -322,16 +282,16 @@ fish), respectively, but the general notion remains that recent recruitment is
 highly uncertain.
 
 `r sp` have low to moderate recruitment with occasional large year classes
-(Table~\@ref(tab:es-recruitment) and Figure~\@ref(fig:es-recruitment)).
+(Table~\@ref(tab:es-recruitment-tab) and Figure~\@ref(fig:es-recruitment)).
 
-(ref:es-recruitment) Medians (solid circles) and means ($\mathrm{X}$) of the
+(ref:es-recruitment-cap) Medians (solid circles) and means ($\mathrm{X}$) of the
 posterior distribution for recruitment (billions of age-0 fish) with 95%
 posterior credibility intervals (blue, vertical lines). The median of the
 posterior distribution for mean unfished equilibrium recruitment ($R_0$) is
 shown as the horizontal dashed line with the 95% posterior credibility
 interval shaded between the dotted lines.
 
-```{r recruitment, fig.cap = "(ref:es-recruitment)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that recruitment for each cohort. There are currently three above-average cohorts in the stock with 2020 being the fourth. The 2020 cohort is highly uncertain which can be seen in the size of the credible interval."}
+```{r es-recruitment, fig.cap = "(ref:es-recruitment-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that recruitment for each cohort. There are currently three above-average cohorts in the stock with 2020 being the fourth. The 2020 cohort is highly uncertain which can be seen in the size of the credible interval."}
 plot_recruitment(list(base_model),
                  list(base_model_name),
                  single_line_color = "blue",
@@ -388,7 +348,7 @@ relative fishing intensity above 1.0 means fishing at a rate above $\FSPRforty$.
 
 ## Exploitation status {-}
 
-```{r es-fishing-intensity-table, results = "asis", echo = FALSE}
+```{r es-fishing-intensity-tab, results = "asis", echo = FALSE}
 table_fishing_intensity(base_model,
                         start_yr = end_yr - 10,
                         end_yr = end_yr - 1,
@@ -402,7 +362,7 @@ table_fishing_intensity(base_model,
 
 The median estimated relative fishing intensity on the stock is below the
 management level of 1.0 `r median_intensity_above_1_text` (see 
-Table~\@ref(tab:es-fishing-intensity) for recent years and
+Table~\@ref(tab:es-fishing-intensity-tab) for recent years and
 Figure~\@ref(fig:es-fishing-intensity)).
 
 (ref:es-fishing-intensity-cap) Trend in median relative fishing intensity
@@ -420,7 +380,7 @@ above) peaked in 2006 and reached similar levels in 1999 and 2008
 (Figure~\@ref(fig:es-exploitation-fraction). Over the last five years, the
 median estimated exploitation fraction was the highest in 2020 followed
 closely by 2021 before dropping by nearly half in 2022
-(Table~\@ref(tab:es-fishing-intensity). Median relative fishing intensity is
+(Table~\@ref(tab:es-fishing-intensity-tab). Median relative fishing intensity is
 estimated to have declined from `r median_intensity_2010`% in 2010 to 
 `r median_intensity_2015`% in 2015. It then leveled off around 70% from 2016
 to 2019 before declining to `r median_intensity_2022`% in 2022. The median
@@ -438,7 +398,7 @@ distributions and changing selectivities over time.
 
 Over the last decade (`r end_yr-10`--`r end_yr - 1`), the mean coast-wide
 utilization rate (proportion of catch target removed) has been
-`r tot_last_10_yrs_attainment`% (Table~\@ref(tab:es-landings-tac). Over
+`r tot_last_10_yrs_attainment`% (Table~\@ref(tab:es-landings-tac-tab). Over
 the last five years (`r end_yr - 5` to `r end_yr - 1`), the mean utilization
 rates were `r us_last_5_yrs_attainment`% for the United States
 and `r can_last_5_yrs_attainment`% for Canada. While relatively stable during
@@ -462,7 +422,7 @@ credibility intervals.
 plot_exploitation_fraction(base_model)
 ```
 
-```{r landings-tac-table, results = "asis", echo = FALSE}
+```{r es-landings-tac-tab, results = "asis", echo = FALSE}
 table_landings_tac(ct,
                    start_yr = end_yr - 10,
                    end_yr = end_yr - 1,
@@ -473,7 +433,7 @@ table_landings_tac(ct,
                      "targets are given in tonnes."))
 ```
 
-(ref:es-phase-plot-cap) Estimated historical path of median relative spawning
+(ref:es-phase-cap) Estimated historical path of median relative spawning
 biomass in year $t$ and corresponding median relative fishing intensity in
 year $t - 1$. Labels show the time series start and end years and the year
 after the highest relative fishing intensity; labels correspond to year $t$
@@ -481,7 +441,7 @@ after the highest relative fishing intensity; labels correspond to year $t$
 credibility intervals for `r end_yr` relative spawning biomass (horizontal)
 and `r end_yr - 1` relative fishing intensity (vertical).
          
-```{r es-phase-plot, fig.cap = "(ref:es-phase-plot-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state."}
+```{r es-phase, fig.cap = "(ref:es-phase-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state."}
 plot_phase(base_model,
            1966,
            2023,
@@ -494,11 +454,11 @@ plot_phase(base_model,
 The median relative fishing intensity was below 1.0 in all years
 (Figures~\@ref(fig:es-fishing-intensity) and~\@ref(fig:es-phase)). The median
 relative spawning biomass was above the $\Bforty$ reference point in all
-years except 2007--2010 (Figures~\@ref(fig:es-relative-spawning-biomass)
+years except 2007--2010 (Figures~\@ref(fig:es-relative-biomass)
 and~\@ref(fig:es-phase), and the median relative fishing intensity was below
 1.0 (Figure~\@ref(fig:es-phase)).
 The benchmark quantities, $\FSPRforty$ and $\Bforty$, result in different median
-population sizes (see Table~\@ref(tab:es-reference-points)), highlighting
+population sizes (see Table~\@ref(tab:es-reference-points-tab)), highlighting
 that there are subtle differences in these conceptual reference points.
 Between 2007 and 2010, median relative fishing intensity ranged from
 `r median_intensity_2007_to_2010_min`% to
@@ -515,7 +475,7 @@ intensity and relative spawning biomass, the model estimates a
 above a relative fishing intensity of 1.0 in `r end_yr - 1` and below the
 $\Bforty$ relative spawning biomass level at the start of `r end_yr`.
 
-```{r es-reference-points-table, results = "asis", echo = FALSE}
+```{r es-reference-points-tab, results = "asis", echo = FALSE}
 table_reference_points(base_model,
                        caption = paste0(
                          "Summary of median and 95\\% credibility ",
@@ -531,7 +491,7 @@ table_reference_points(base_model,
 ## Reference points {-}
 
 The term `reference points' is used throughout this document to describe common
-conceptual summary metrics (Table~\@ref(tab:es-reference-points)).
+conceptual summary metrics (Table~\@ref(tab:es-reference-points-tab)).
 The Agreement specifically identifies $\Fforty$ as the default harvest rate
 and $\Bforty$ as a point where the 40:10 TAC adjustment is triggered
 (see the Glossary in Appendix~\@ref(chap:glossary)).
@@ -584,9 +544,10 @@ harvest policy has a median of `r ct_limit_quantiles["median"]`~t with a
 wide range of uncertainty, the 95% credibility interval being
 `r ct_limit_quantiles["lower"]`--`r ct_limit_quantiles["upper"]`~t.
 
-````{r es-decisions-biomass-table, results = "asis", echo = FALSE}
-decision_table(base_model,
-               xcaption =
+````{r es-decisions-biomass, results = "asis", echo = FALSE}
+table_decision(base_model,
+               #label = "tab:es-decisions-biomass-tab",
+               caption =
                  paste0("Forecast quantiles of ", sp, " ",
                         "relative spawning biomass at the beginning of ",
                         "the year. Catch alternatives are based on: constant ",
@@ -616,17 +577,16 @@ decision_table(base_model,
                         " (row~",
                         letters[ct_stable_ind],
                         ")."),
-               xlabel = "tab:es-decisions-biomass",
-               font.size = 9,
-               space.size = 10,
+               font_size = 9,
+               space_size = 10,
                type = "biomass",
                placement = "tbp")
 ```
 
 Decision tables give the projected population status (relative spawning
 biomass) and fishing intensity relative to the target under different
-catch alternatives for the base model (Tables~\@ref(tab:es-decisions-biomass)
-and~\@ref(tab:es-decisions-spr)). The tables are organized to show the
+catch alternatives for the base model (Tables~\@ref(tab:es-decisions-biomass-tab)
+and~\@ref(tab:es-decisions-spr-tab)). The tables are organized to show the
 projected outcome for each potential catch level and year (row) across the
 quantiles (columns) of the posterior distribution. Tables show results for up
 to three years of future catch levels based on subsequent estimates of stock
@@ -647,22 +607,22 @@ forecasted catches are removed using selectivity averaged over the last five
 years. Recent changes in selectivity will thus be reflected in the
 determination of fishing relative to the default harvest policy. For example,
 fishing at the $\Fforty$ default harvest-rate catch limit (scenario n: default
-HR) in 2023 results in a median relative fishing intensity of 0.91 (Table~\@ref(tab:es-decisions-spr)).
+HR) in 2023 results in a median relative fishing intensity of 0.91 (Table~\@ref(tab:es-decisions-spr-tab)).
 
-```{r es-decisions-spr-table, results = "asis", echo = FALSE}
-decision_table(base_model,
-               xcaption = paste0(
+```{r es-decisions-spr, results = "asis", echo = FALSE}
+table_decision(base_model,
+               label = "tab:es-decisions-spr-tab",
+               caption = paste0(
                  "Forecast quantiles of ", sp, " relative fishing intensity ",
                  "\\FishingRate, expressed as a ",
                  "proportion, for the ", min(forecast_yrs), "--",
                  max(forecast_yrs) - 1, " catch alternatives presented in ",
-                 "Table~\\@ref(tab:es-decisions-biomass). Values greater ",
+                 "Table~\\@ref(tab:es-decisions-biomass-tab). Values greater ",
                  "than 1 indicate relative fishing intensities greater than ",
                  "the $\\Fforty$ harvest policy calculated using baseline ",
                  "selectivity."),
-               xlabel = "tab:es-decisions-spr",
-               font.size = 9,
-               space.size = 10,
+               font_size = 9,
+               space_size = 10,
                type = "spr",
                placement = "tbp")
 ```
@@ -670,19 +630,217 @@ decision_table(base_model,
 Management metrics that were identified as important to the Joint Management
 Committee and the Advisory Panel in 2012 are presented for
 `r str_flatten_comma(forecast_yrs[-1], last = ", and ")` projections
-(Tables~\@ref(tab:es-risk-year-1), \@ref(tab:es-risk-year-2),
-and~\@ref(tab:es-risk-year-3);
-Figures~\@ref(fig:es-forecast-risk-comparison-year-1),
-\@ref(fig:es-forecast-risk-comparison-year-2),
-and~\@ref(fig:es-forecast-risk-comparison-year-3)).
+(Tables~\@ref(tab:es-risk-year-1-tab), \@ref(tab:es-risk-year-2-tab),
+and~\@ref(tab:es-risk-year-3-tab);
+Figures~\@ref(fig:es-risk-year-1),
+\@ref(fig:es-risk-year-2),
+and~\@ref(fig:es-risk-year-3)).
 These metrics summarize the probability of various outcomes from the base model
 given each potential management action. Although not linear, probabilities can
 be interpolated from these results for intermediate catch values in
-`r assess_yr` (Table~\@ref(tab:es-risk-year-1) and
-Figure~\@ref(fig:es-forecast-risk-comparison-year-1)).
+`r assess_yr` (Table~\@ref(tab:es-risk-year-1-tab) and
+Figure~\@ref(fig:es-risk-year-1)).
 However, interpolation is not appropriate for all catches in `r assess_yr + 1`
 or `r assess_yr + 2` because they are conditional on previous year(s) catch
 levels. This explains why a few probabilities decline (rather than rise) with
 increased `r assess_yr + 1` and `r assess_yr + 2` catch levels
-(Tables~\@ref(tab:es-risk-year-2) and~\@ref(tab:es-risk-year-3)
-and Figures~\@ref(fig:es-forecast-risk-comparison-year-2) and~\@ref(fig:es-forecast-risk-comparison-year-3)).
+(Tables~\@ref(tab:es-risk-year-2-tab) and~\@ref(tab:es-risk-year-3-tab)
+and Figures~\@ref(fig:es-risk-year-2) and~\@ref(fig:es-risk-year-3)).
+
+(ref:es-forecast-depletion-comparison-cap) Median and 95 posterior
+credibility intervals of estimated relative spawning biomass to the start
+of `r end_yr` from the base model and projections to the start of `r forecast_yrs[length(forecast_yrs)]` for several management actions, which
+are defined in Table~\@ref(tab:es-decisions-biomass-tab).
+         
+```{r es-forecast-depletion-comparison, fig.cap = "(ref:es-forecast-depletion-comparison-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to remain flat for the next 3 years with zero catch and to decline for all non-zero catch levels evaluated."}
+# See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
+# `fore_inds` below are the indices of those forecast values in that list.
+plot_depl_fore_comparison(base_model,
+                          fore_inds = c(1, 2, 6, 12, 14),
+                          forecast_yrs = forecast_yrs)
+```
+
+The predicted relative spawning biomass trajectory through
+`r forecast_yrs[length(forecast_yrs)]` is shown in
+Figure~\@ref(fig:es-forecast-depletion-comparison) for several of the
+management actions. With zero catch for the next three years, the biomass has
+a `r zero_catch_prob_bio_down_1`% probability of decreasing from
+`r forecast_yrs[1]` to `r forecast_yrs[2]` (Table~\@ref(tab:es-risk-year-1-tab)), a
+`r zero_catch_prob_bio_down_2`% probability of decreasing from
+`r forecast_yrs[2]` to `r forecast_yrs[3]` (Table~\@ref(tab:es-risk-year-2-tab)),
+and a `r zero_catch_prob_bio_down_3`% probability of decreasing from
+`r forecast_yrs[3]` to `r forecast_yrs[4]` (Table~\@ref(tab:es-risk-year-3-tab)).
+
+The probability of the female spawning biomass decreasing from `r end_yr` to
+`r end_yr + 1` is above 72% for all non-zero catch levels examined
+(Table~\@ref(tab:es-risk-year-1-tab) and
+Figure~\@ref(fig:es-risk-year-1)). This probability is
+81% for a `r end_yr` catch level similar to that for `r end_yr - 1`
+(scenario f: `r end_yr` catch). For all explored catches, the maximum
+probability of female spawning biomass at the start of `r end_yr + 1` dropping
+below $\Bten$ is 0%, and of dropping below $\Bforty$ is 10%
+(Table~\@ref(tab:es-risk-year-1-tab) and
+Figure~\@ref(fig:es-risk-year-1)).
+As the large 2010, 2014, and 2016 cohorts continue to age, their biomass is
+expected to decrease as losses from mortality outweigh increases from growth.
+The estimated above-average (yet still highly uncertain) 2020 cohort will
+continue to play a large role in determining female spawning biomass during
+the forecast years presented here.
+
+(ref:es-risk-year-1-cap) Graphical representation of
+the probabilities related to spawning biomass, relative fishing intensity, and
+the `r end_yr + 1` default harvest policy catch for alternative `r end_yr`
+catch options (explained in Table~\@ref(tab:es-decisions-biomass-tab)) as listed in
+Table~\@ref(tab:es-risk-year-1-tab). The symbols indicate points that were computed
+directly from model output and lines interpolate between the points.
+         
+```{r es-risk-year-1, fig.cap = "(ref:es-risk-year-1-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the probability that the stock declines in 2024 is 50 percent or greater for all catch levels including zero. The probability that the stock falls under B40 is almost zero for catches up to approximately 350 thousand tonnes."}
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[1],
+                  leg_pos = c(0.2, 0.32),
+                  remove_x_val = 325)
+```
+
+```{r es-risk-year-1-tab, results = "asis", echo = FALSE}
+# Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared
+# to forecast year 1
+table_risk(base_model,
+           forecast_yrs,
+           index = 1,
+           caption = paste0(
+             "Probabilities related to female spawning biomass, ",
+             "relative fishing intensity, and the ", end_yr + 1,
+             " default harvest policy catch for alternative ",
+             end_yr," catch options (explained in ",
+             "Table~\\@ref(tab:es-decisions-biomass))."))
+```
+
+(ref:es-risk-year-2-cap) Graphical representation
+of the probabilities related to spawning biomass, relative fishing intensity,
+and the `r end_yr + 2` default harvest policy catch for alternative
+`r end_yr + 1` catch options (including associated `r end_yr` catch; catch
+options explained in Table~\@ref(tab:es-decisions-biomass-tab)) as listed in
+Table~\@ref(tab:es-risk-year-2-tab). The symbols indicate points that were
+computed directly from model output and lines interpolate between the points.
+
+```{r es-risk-year-2, fig.cap = "(ref:es-risk-year-2-cap)", fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the probability that the stock declines in 2025 is 74 percent or greater for all catch levels including zero. The probability that the stock falls under B40 is below 0.1 for catches up to approximately 380 thousand tonnes."}
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[2],
+                  leg_pos = c(0.2, 0.32),
+                  remove_x_val = c(325, 342, 740))
+```
+
+```{r es-risk-year-2-tab, results = "asis", echo = FALSE}
+table_risk(base_model,
+           forecast_yrs,
+           index = 2,
+           caption = paste0(
+             "Probabilities related to female spawning biomass, relative ",
+             "fishing intensity, and the ", end_yr + 2, " default harvest ",
+             "policy catch for alternative ", end_yr + 1, " catch options, ",
+             "given the ", end_yr, " catch shown in ",
+             "Table~\\@ref(tab:es-risk-year-1) (catch options explained in ",
+             "Table~\\@ref(tab:es-decisions-biomass))."))
+```
+
+(ref:es-risk-year-3-cap) Graphical representation of
+the probabilities related to spawning biomass, relative fishing intensity, and
+the `r end_yr + 3` default harvest policy catch for alternative `r end_yr + 2`
+catch options (including associated `r end_yr` and `r end_yr + 1` catches;
+catch options explained in Table~\@ref(tab:es-decisions-biomass-tab)) as listed in
+Table~\@ref(tab:es-risk-year-3-tab). The symbols indicate points that were computed
+directly from model output and lines interpolate between the points.
+
+```{r es-risk-year-3, fig.cap = "(ref:es-risk-year-3-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the probability that the stock declines in 2026 is approximately 65 percent or greater for all catch levels including zero. The probability that the stock falls under B40 is below 0.1 for catches up to approximately 350 thousand tonnes."}
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[3],
+                  leg_pos = c(0.2, 0.32),
+                  remove_x_val = c(259, 621))
+```
+
+```{r es-risk-year-3-tab, results = "asis", echo = FALSE}
+table_risk(base_model,
+           forecast_yrs,
+           index = 3,
+           caption = paste0(
+             "Probabilities related to female spawning biomass, relative ",
+             "fishing intensity, and the ", end_yr + 3, " default harvest ",
+             "policy catch for alternative ", end_yr + 2, " catch options, ",
+             "given the ", end_yr, " and ", end_yr + 1, " catches shown in ",
+             "Tables~\\@ref(tab:es-risk-year-1-tab) ",
+             "and~\\@ref(tab:es-risk-year-2-tab) (catch options explained in ",
+             "Table~\\@ref(tab:es-decisions-biomass-tab))."))
+```
+
+\clearpage
+
+## Research and data needs {-}
+
+There are many research projects that could improve the stock assessment for
+`r sp` and lead to improved biological understanding and decision-making. The
+top three are:
+
+1. Continue to conduct research to evaluate ways to improve recent, current,
+and future recruitment estimates for use in stock assessment. This could
+include the development of time series of recruitment indices, time series of
+informative environmental or ecosystem variables, and models that have
+predictive skill (e.g., Vestfals et al, under review). Explorations should
+also consider options for incorporating information on recruitment into the
+stock assessment model and the `r sp` management framework. For example,
+time series could be included in the stock assessment as a standalone data
+source (similar to acoustic survey biomass estimates) or the estimation
+procedure that was used to generate the time series itself could be integrated
+directly into the stock assessment model. Results from such work should be
+connected to or in cooperation with ongoing research related to recruitment
+variability as discussed in Section~\@ref{sec:assessment-response-review}.
+Related, there is a need to streamline and broaden the availability of
+products from oceanographic models (e.g., Regional Ocean Modeling System)
+so that they are available stock-wide (spanning the international boundary)
+and updated on a recurring basis so they can be used as informative links in
+operational stock assessments. A successful example of this has been the
+annual production of `r sp` distribution forecasts that depend on short-term
+(i.e., 6--9 month) forecasts of subsurface (i.e., 100 m depth) temperature
+from J-SCOPE (\href{http://www.nanoos.org/products/j-scope/home.php}
+{http://www.nanoos.org/products/j-scope/home.php}). The existing management
+strategy evaluation framework should be used, or further developed, to
+examine how information on recruitment can inform robust management decisions.
+
+1. Document the existing survey methodologies, protocols, and adaptive
+survey-design decisions that lead to the development of `r sp` biomass and
+age-composition estimates and the relative age-1 index used in the stock
+assessment. Such documentation will ensure transparency, enable repeatability,
+and provide a record of changes in procedures over time. Also, continue to
+conduct research to improve the estimation of age composition and abundance
+from data collected during the acoustic survey. This includes, but is not
+limited to, research on species identification, target verification, target
+strength, implications of the south-to-north directionality of the survey,
+alternative technologies to assist in the survey (e.g., artificial intelligence
+and machine learning), and efficient analysis methods. The latter should
+include bootstrapping of the acoustic survey time series or related methods
+that can incorporate relevant uncertainties into the calculations of survey
+variance. Relevant uncertainties include topics such as the target-strength
+relationship, subjective scoring of echograms, thresholding methods, and
+methods to estimate the species-mix that are used to interpret the acoustic
+backscatter. Continue to work with acousticians and survey personnel from the
+Northwest Fisheries Science Center (and, more broadly, those involved with the
+U.S. Re-Envisioning West Coast Surveys Initiative) and Fisheries and Oceans
+Canada to determine optimal survey designs given constraints, including
+designs that incorporate ecosystem-based factors and other potential target
+species (e.g., rockfish, euphausiids, and mesopelagics) for the
+`r survey_name`. The existing management strategy evaluation framework should
+be used, or further developed, to examine how changes in survey methods can be
+used to inform robust management decisions.
+
+1. Work with regional partners to develop an annual workflow that provides key
+metrics, indicators, or other summaries of general ecosystem conditions
+relevant to the `r sp` coast-wide stock.  In particular, include those that are
+potentially associated with `r sp` biology and ecology (e.g., recruitment,
+distribution, predation, prey, and communities). Such information can broaden
+the context within which a single species stock assessment is interpreted, be
+used to support model development, refine uncertain assessment conclusions
+(e.g., productivity), and provide other non-assessment indicators of the
+system's state to management.
+

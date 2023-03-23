@@ -237,6 +237,11 @@ post_process <- function(fn,
   # Don't remove the space-* at the end of the pattern, some cases
   # eg. (million~t) have a space and some don't eg. (Fig~\@ref{})
   x <- gsub("\\\\textasciitilde *", "~", x)
+  # In captions, the two escape characters are not correctly dealt with,
+  # because it is technically not Rmarkdown code inside the caption text in
+  # R function calls. this makes it so we can use \\@ref() inside those
+  # captions
+  x <- gsub("\\\\\\\\ref", "\\\\ref", x)
 
   # Change double-dashes to en-dashes ----
   x <- gsub("-- ", "\\\\textendash\\\\ ", x)
