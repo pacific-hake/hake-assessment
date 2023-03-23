@@ -546,7 +546,7 @@ wide range of uncertainty, the 95% credibility interval being
 
 ````{r es-decisions-biomass, results = "asis", echo = FALSE}
 table_decision(base_model,
-               #label = "tab:es-decisions-biomass-tab",
+               label = "tab:es-decisions-biomass-tab",
                caption =
                  paste0("Forecast quantiles of ", sp, " ",
                         "relative spawning biomass at the beginning of ",
@@ -713,7 +713,7 @@ table_risk(base_model,
              "relative fishing intensity, and the ", end_yr + 1,
              " default harvest policy catch for alternative ",
              end_yr," catch options (explained in ",
-             "Table~\\@ref(tab:es-decisions-biomass))."))
+             "Table~\\@ref(tab:es-decisions-biomass-tab))."))
 ```
 
 (ref:es-risk-year-2-cap) Graphical representation
@@ -741,8 +741,8 @@ table_risk(base_model,
              "fishing intensity, and the ", end_yr + 2, " default harvest ",
              "policy catch for alternative ", end_yr + 1, " catch options, ",
              "given the ", end_yr, " catch shown in ",
-             "Table~\\@ref(tab:es-risk-year-1) (catch options explained in ",
-             "Table~\\@ref(tab:es-decisions-biomass))."))
+             "Table~\\@ref(tab:es-risk-year-1-tab) (catch options explained in ",
+             "Table~\\@ref(tab:es-decisions-biomass-tab))."))
 ```
 
 (ref:es-risk-year-3-cap) Graphical representation of
