@@ -1,0 +1,136 @@
+\newpage
+
+\rfoot{Introduction}
+
+# Introduction {#sec:introduction}
+
+The Joint U.S.-Canada Agreement for `r sp` (called the Agreement) was signed
+in 2003, went into force in 2008, and was implemented in 2010.  The committees
+defined by the Agreement were first formed in 2011, and 2012 was the first year
+for which the process defined by the Agreement was followed, including stock
+assessment. This is the
+`r number_to_word(assess_yr - 2011, th = TRUE)` annual stock assessment
+conducted under the Agreement process.
+
+Under the Agreement, `r sp` (*`r science_name`*, also referred to as
+`r common_name`) stock assessments are to be prepared by the Joint Technical
+Committee (JTC) comprised of both U.S. and Canadian scientists and reviewed by
+the Scientific Review Group (SRG) that consists of representatives from both
+nations. Additionally, the Agreement calls for both of these bodies to include
+scientists nominated by an Advisory Panel (AP) of fishery stakeholders.
+
+The primary data sources for this assessment include an acoustic survey,
+annual fishery catch, mean weight-at-age data, as well as survey and fishery
+age-composition data. The assessment depends primarily upon an acoustic survey
+index of biomass time series for information on the scale of the current
+population. Age-composition data from the aggregated fishery and the acoustic
+survey provide additional information allowing the model to resolve strong and
+weak cohorts. The catch is an important source of information regarding changes
+in abundance and places a lower bound on the available population biomass in
+each year.
+
+This assessment is fully Bayesian, with the base model incorporating prior
+information on several key parameters (including informative priors
+on natural mortality, $M$, and steepness of the stock-recruit relationship,
+$h$) and integrating over parameter uncertainty to provide results that can be
+probabilistically interpreted. From a range of alternate models investigated
+by the JTC, a subset of sensitivity analyses are also reported to provide a
+broad qualitative comparison of structural uncertainty with respect to the
+base model (Section~\@ref(sec:assessment-sensitivity-analyses)). The
+structural assumptions of this `r assess_yr` base model, implemented using
+version `r ss_version` of the Stock Synthesis software
+@MethotWetzel2013, are the same as the `r last_assess_yr` base model
+[@JTC2022]. All model runs reported in this document are performed in a
+Bayesian context. Responses to `r last_assess_yr` SRG requests are in
+Section~\@ref(sec:assessment-response-review) and a Glossary of terms appears
+in Appendix~\@ref(chap:glossary).
+
+## Stock structure and life history {#sec:intro-stock-structure}
+
+`r sp` is a semi-pelagic schooling species distributed along the west coast
+of North America, generally ranging in latitude from 25$^\circ$N~to 55$^\circ$N
+(see Figure~\@ref(fig:main-overview-map) for an overview map). It is among 18
+species of hake from four genera (being the majority of the family
+*Merluccidae*), which are found in both hemispheres of the Atlantic and Pacific
+Oceans [@AlheitPitcher1995; @LlorisMatallanasEtAl2005].
+The coastal population of `r sp` is currently the most abundant groundfish
+population in the California Current system. Smaller populations of this species
+occur in the major inlets of the Northeast Pacific Ocean, including the Strait
+of Georgia, the Puget Sound, and the Gulf of California. Each of these smaller
+populations are genetically distinct from the coastal population
+[@VroomanPaloma1977; @IwamotoFordEtAl2004; @KingMcFarlaneEtAl2012;
+@GarciaEtAl2018]. The coastal population is also distinguished from the inshore
+populations by larger size-at-age and seasonal migratory behavior and from fish
+off the west coast of Baja California by smaller size-at-age and later spawning
+[@Zamora-Garcia2020].
+
+The coastal population of `r sp` typically ranges from the waters off southern
+California to northern British Columbia and rarely into southern Alaska, with
+the northern boundary related to fluctuations in annual migration
+[@HamelEtAl2015] depending, in part, on water temperature
+[@MalickHunsickerEtAl2020; @MalickSiedleckiEtAl2020]. In spring, adult
+`r sp` migrate onshore and northward to feed along the continental shelf and
+slope from northern California to Vancouver Island. In summer, `r sp` often
+form extensive mid-water aggregations in association with the continental
+shelf break, with the highest densities located over bottom depths of
+200--300~m [@DornMethot1991; @DornMethot1992].
+
+Older `r sp` exhibit the greatest northern migration each season, with two-
+and three-year old fish rarely observed in Canadian waters north of southern
+Vancouver Island. During El Ni\~no events (warm ocean conditions such as in
+1998 and 2016), a larger proportion of the population migrates into Canadian
+waters (Figure~\@ref(fig:main-backscatter-map)), due to temperature effects
+[@MalickHunsickerEtAl2020] and possibly intensified northward transport
+during the period of active migration [@Dorn1995b; @AgostiniFrancisEtAl2006].
+In contrast, La Ni\~na conditions (colder water, such as in 2001, 2011, and
+2021) result in a southward shift in their distribution, with a much smaller
+proportion of the population found in Canadian waters, as seen in those
+surveys (Figure~\@ref(fig:main-backscatter-map)). In general, warmer than
+average thermal habitat conditions for mature `r sp` leads to relatively
+higher biomass further north and relatively lower biomass around the
+U.S.-Canadian border, while cooler than average conditions leads to relatively
+higher biomass of immature `r sp` generally spread evenly across their
+distribution [@MalickHunsickerEtAl2020]. The distribution of age-1 fish also
+changes between years (Figure~\@ref(fig:main-backscatter-map-age1)).
+
+## Ecosystem considerations} {#sec:intro-ecosystem-considerations}
+
+`r sp` are important to ecosystem dynamics in the Eastern Pacific Ocean due
+to their relatively large total biomass and potentially large role as both prey
+and predator [@JTC2013]. Ongoing research investigating abiotic
+(environmental conditions) and biotic (e.g., maturity and diet) drivers of the
+distribution, recruitment, growth, and survival of `r sp` could provide
+insight into how the population is linked with broader ecosystem
+considerations. For example, @TurleyRykaczewski2019 found decreased
+survival of larval `r sp` as storm events increased, contrary to many other
+species in the southern California Current Ecosystem. An analysis of drivers of
+recruitment across the maternal preconditioning, egg, and larval phases of
+`r sp` indicated recruitment is associated with eddy kinetic energy, the
+location of the North Pacific Current bifurcation, and upwelling during
+maternal preconditioning, as well as associated with northward long-shore
+transport and the number of days between storm events during larval stages
+(Vestfals et al., under review). @Phillips2022 suggests temperature
+dynamically influences the co-occurrence of `r sp` and krill (i.e.,
+euphausiids; *Euphausiacea*), which can influence annual `r sp` growth
+and recruitment as the availability of key prey species shifts. Previous
+research developed an index of abundance for Humboldt Squid
+(*Dosidicus gigas*) and suggested that the abundance of `r sp` decreased
+with increasing squid abundance [@StewartHazenEtAl2014, JTC2015]. Many
+additional research topics relevant to `r sp` distribution, recruitment,
+and growth patterns in relation to oceanographic conditions have been
+investigated [@ResslerHolmesEtAl2007; @HamelEtAl2015;
+@MalickHunsickerEtAl2020; @MalickSiedleckiEtAl2020] but further research on
+this topic is still needed.
+
+Fitting the assessment model to empirical weight-at-age data allows for
+time-varying growth without needing a mechanistic relationship or environmental
+data, which facilitates an `Ecosystem Approach to Fisheries Management'
+(a priority for DFO and NOAA); see Section~\@ref(sec:data-weight-at-age).
+Nonetheless, ongoing research investigating spatiotemporal drivers of
+weight-at-age will provide more insights into the specific mechanisms
+affecting changes in growth, which will enable condition-specific prediction
+capabilities (e.g., assumptions of growth, or weight-at-age, during forecast
+years).
+
+
+
