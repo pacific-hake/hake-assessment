@@ -12,13 +12,6 @@
 \pagestyle{fancy}
 \fancyhf{}
 
-
-% For bold math symbols
-\usepackage{bm}
-
-% For degree symbol
-\usepackage{gensymb}
-
 % For centering with fixed width column or right cell values in a tabular
 % Use 'C' instead of 'c' in latex table code
 \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
@@ -26,13 +19,43 @@
 \newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
 \newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
 
-\usepackage[utf8]{inputenc}
-
 % http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
-\usepackage[T1]{fontenc}
+%\usepackage[T1]{fontenc}
+
+% Math packages
+\usepackage{mathptmx}
+\usepackage{nccmath}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% For bold math symbols
+\usepackage{bm}
+
+\ifPDFTeX
+  \usepackage{lmodern}
+\else
+  % Lualatex
+  \usepackage{fontspec}
+  % Needed by lualatex to print unicode symbols
+  \PassOptionsToPackage{math-style=ISO,bold-style=ISO}{unicode-math}
+  % Create an alias for bm->symbf when using lualatex to avoid
+  % missing font errors
+  \let\bm\symbf
+\fi
+
+% For degree symbol
+\usepackage{gensymb}
+
+% Don't use eqnarray, it's old and buggy with newer packages
+% align is from amsmath package
+\newcommand{\eb}{\begin{align}}
+\newcommand{\ee}{\end{align}}
+
+% Keep whole paragraph on one page instead of a single line on the next page.
+\usepackage[all]{nowidow}
 
 % Font selection, here we use the monospace Bera font
-\usepackage{bera}
+%\usepackage{bera}
 
 % Used to make the headers in tables via the kableExtra::linebreak() function
 \usepackage{makecell}
