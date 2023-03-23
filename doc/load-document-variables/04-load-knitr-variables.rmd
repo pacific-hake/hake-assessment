@@ -652,6 +652,10 @@ catches_below_200000_since_1986 <-
                                Year > 1986)$Year))
 
 # Age compositions ------------------------------------------------------------
+# Canadian year range for ages
+can_age_yrs <- can_ages_lst |> map(~{rownames(.x)}) |> unlist() |> unique() |> sort()
+can_age_yrs_min <- min(can_age_yrs)
+can_age_yrs_max <- max(can_age_yrs)
 # ... age composition data for data section -----------------------------------
 survey.age.years <-
   base_model$dat$agecomp[base_model$dat$agecomp$FltSvy == 2, ]$Yr
@@ -725,8 +729,6 @@ us_age_4_prop_ms <- f(us_last_yr_age_ms[4] * 100, 1)
 us_last_yr_age_shore <- us_ss_age_df[us_ss_age_df$year == last_data_yr,
                                        grep("^a",
                                             colnames(us_ss_age_df))]
-
-### TODO: HERE ---
 
 us_last_yr_age_shore <-
   us_last_yr_age_shore[order(unlist(us_last_yr_age_shore[1, , drop = TRUE]),
