@@ -860,6 +860,10 @@ names(fore_catch_prop) <- paste0("Age", 0:20)
 # Credible intervals for age5 -------------------------------------------------
 # (pick the biggest cohort from fore_catch_prop; note natsel.prop columns
 # start with age-0).
+fore_catch_prop_age2_lower <- quantile(extramc$natsel.prop[, 3],
+                                       cred_int[1]) * 100
+fore_catch_prop_age2_upper <- quantile(extramc$natsel.prop[, 3],
+                                       cred_int[3]) * 100
 fore_catch_prop_age3_lower <- quantile(extramc$natsel.prop[, 4],
                                        cred_int[1]) * 100
 fore_catch_prop_age3_upper <- quantile(extramc$natsel.prop[, 4],
@@ -888,6 +892,36 @@ sigma_r <- f(base_model$sigma_R_in, 2)
 sigma_r_sens <- sens_models[[1]][grep("Sigma R", sens_models_names[[1]])] |>
   map_dbl("sigma_R_in") |>
   f(2)
+# Alternative sigma_r based on posterior of recdevs ---------------------------
+# sigmar_R_info should not be used
+calc_SD_of_devs <- function(posteriors, pattern = "Main") {
+  posteriors %>%
+    dplyr::select(dplyr::matches(pattern)) %>%
+    apply(MARGIN = 1, FUN = sd) %>%
+    median() %>%
+    f(2)
+}
+calc_sum_rec_devs <- function(posteriors, pattern = "Main") {
+  temp <- posteriors %>%
+    dplyr::select(dplyr::matches(pattern)) %>%
+    apply(MARGIN = 1, FUN = sum)
+  c(mean = mean(temp), median = median(temp), range = range(temp))
+}
+calc_sum_rec_devs(base_model$mcmc)
+calc_sum_rec_devs(last_yr_base_model$mcmc)
+sigma_r_alt_allyr <- calc_SD_of_devs(base_model$mcmc, pattern = "^[EML].+_RecrDev")
+sigma_r_this_year_main <- calc_SD_of_devs(base_model$mcmc)
+sigma_r_last_year_main <- calc_SD_of_devs(last_yr_base_model$mcmc)
+sigma_r_sens1 <- sens_models[[1]] |> 
+  map("mcmc") |> 
+  map_chr(calc_SD_of_devs) |> 
+  `names<-`(sens_models_names[[1]])
+sigma_r_hi_main <- sigma_r_sens1[
+  grep("Sigma.+1.[5-9]", names(sigma_r_sens1), value = TRUE)
+]
+sigma_r_lo_main <- sigma_r_sens1[
+  grep("Sigma.+1.[0-4]", names(sigma_r_sens1), value = TRUE)
+]
 
 # Range of "main" recdevs -----------------------------------------------------
 recr_era_main_tmp <- base_model$recruit$era == "Main"
