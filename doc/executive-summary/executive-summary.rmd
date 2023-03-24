@@ -795,7 +795,7 @@ source (similar to acoustic survey biomass estimates) or the estimation
 procedure that was used to generate the time series itself could be integrated
 directly into the stock assessment model. Results from such work should be
 connected to or in cooperation with ongoing research related to recruitment
-variability as discussed in Section~\@ref{sec:assessment-response-review}.
+variability as discussed in Section~\@ref(sec:assessment-response-review).
 Related, there is a need to streamline and broaden the availability of
 products from oceanographic models (e.g., Regional Ocean Modeling System)
 so that they are available stock-wide (spanning the international boundary)
@@ -803,10 +803,10 @@ and updated on a recurring basis so they can be used as informative links in
 operational stock assessments. A successful example of this has been the
 annual production of `r sp` distribution forecasts that depend on short-term
 (i.e., 6--9 month) forecasts of subsurface (i.e., 100 m depth) temperature
-from J-SCOPE (\href{http://www.nanoos.org/products/j-scope/home.php}
-{http://www.nanoos.org/products/j-scope/home.php}). The existing management
-strategy evaluation framework should be used, or further developed, to
-examine how information on recruitment can inform robust management decisions.
+from [J-SCOPE](http://www.nanoos.org/products/j-scope/home.php). The existing
+management strategy evaluation framework should be used, or further developed,
+to examine how information on recruitment can inform robust management
+decisions.
 
 1. Document the existing survey methodologies, protocols, and adaptive
 survey-design decisions that lead to the development of `r sp` biomass and
