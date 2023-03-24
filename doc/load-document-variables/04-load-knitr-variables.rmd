@@ -553,6 +553,9 @@ median_relative_bio_2017 <- f(mc$dmed["2017"] * 100, 1)
 # Recruitments in current assessment vs last assessment -----------------------
 prev_assess_recruitment_lower  <- last_yr_base_model$mcmccalcs$rlower
 prev_assess_recruitment_med  <- last_yr_base_model$mcmccalcs$rmed
+# Want years onlt
+prev_assess_recruitment_med <- 
+  prev_assess_recruitment_med[grepl("^[0-9]{4}$", names(prev_assess_recruitment_med))]
 prev_assess_recruitment_upper <- last_yr_base_model$mcmccalcs$rupper
 
 # Current assessment w/o final projection year --------------------------------
