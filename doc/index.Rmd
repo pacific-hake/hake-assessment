@@ -26,6 +26,7 @@ output:
    includes:
      in_header: "preamble.tex"
 fontsize: 11pt
+urlcolor: blue
 header-includes:
   - \usepackage{sectsty}
   - \usepackage{titling}
