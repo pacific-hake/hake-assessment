@@ -30,15 +30,14 @@
 
 \usepackage{bm}
 
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{textcomp}
-
 \ifPDFTeX
   \usepackage{lmodern}
 \else
   % Lualatex
   \usepackage{fontspec}
+  \setsansfont{CMU Sans Serif} %{Arial}
+  \setmainfont{CMU Serif} %{Times New Roman}
+  \setmonofont{CMU Typewriter Text} %{Consolas}
   % Needed by lualatex to print unicode symbols
   \PassOptionsToPackage{math-style=ISO,bold-style=ISO}{unicode-math}
   % Create an alias for bm->symbf when using lualatex to avoid
