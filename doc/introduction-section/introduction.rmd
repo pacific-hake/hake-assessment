@@ -132,7 +132,7 @@ affecting changes in growth, which will enable condition-specific prediction
 capabilities (e.g., assumptions of growth, or weight-at-age, during forecast
 years).
 
-## Management of `r sp` } {#sec:intro-management}
+## Management of `r sp` {#sec:intro-management}
 
 Since the implementation of the Magnuson-Stevens Fishery Conservation and
 Management Act in the U.S. and the declaration of a 200-mile
@@ -195,7 +195,7 @@ vessels with U.S. west coast groundfish permits established the Pacific Whiting
 Conservation Cooperative (PWCC). The primary role of the PWCC is to distribute
 the catcher-processor allocation among its members to achieve greater efficiency and
 product quality, as well as promoting reductions in waste and bycatch rates
-relative to the former ``derby'' fishery in which all vessels competed for a
+relative to the former 'derby' fishery in which all vessels competed for a
 fleet-wide quota. The mothership fleet has also formed a cooperative where
 bycatch allocations are pooled and shared among the vessels. The individual
 cooperatives have internal systems of in-season monitoring and spatial closures
@@ -270,7 +270,7 @@ Section~\@ref(sec:assessment-model-results)). A brief review of the
 `r last_data_yr` fishery is presented here by country.  Additional
 information is available in annual United States and Canada Advisory Panel
 reports
-(Appendices~\@ref(chap:us-fishery-report)--\@ref(chap:canada-fishery-report).
+(Appendices~\@ref(chap:us-fishery-report)--\@ref(chap:canada-fishery-report)).
 
 ### Fisheries for `r sp` in the United States {#sec:intro-fisheries-us}
 

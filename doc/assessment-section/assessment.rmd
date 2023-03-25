@@ -1074,7 +1074,7 @@ $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
 
 The medians of the key parameters from the posterior distribution are
 similar to those in last year's base model
-(Table~\@ref(tab:main-parameter-estimates}). The largest change was a doubling
+(Table~\@ref(tab:main-parameter-estimates)). The largest change was a doubling
 of the 2020 cohort size. Medians of some of the derived quantities also change
 somewhat; in particular, recruitment in 2019 and 2015 decreased
 (39% and 11%, respectively) from those estimated in the `r assess_yr - 1`
@@ -1224,17 +1224,17 @@ Key management metrics are presented for
 `r forecast_yrs[2:(length(forecast_yrs) - 1)]` and
 `r forecast_yrs[length(forecast_yrs)]`
 projections (Tables~\@ref(tab:main-risk-year-1)--
-\@ref(tab:main-risk-year - 3) and
+\@ref(tab:main-risk-year-3) and
 Figures~\@ref(fig:main-forecast-depletion-comparison)--
 \@ref(fig:main-forecast-risk-comparison-year-3)). These metrics summarize the
 probability of various outcomes from the base model given each potential
 management action. Although not linear, probabilities can be interpolated from
 this table for intermediate catch values in `r assess_yr`
 (Table~\@ref(tab:main-risk-year-1) and
-Figure~\@ref(fig:main-forecast-risk-comparison-year-1)). However, interpolation may not
-be applicable for all catches in `r assess_yr + 1` and `r assess_yr + 2`
-because they are conditional on previous year(s) catch levels.
-This explains why a few probabilities decline (rather than rise) with
+Figure~\@ref(fig:main-forecast-risk-comparison-year-1)). However,
+interpolation may not be applicable for all catches in `r assess_yr + 1` and
+`r assess_yr + 2` because they are conditional on previous year(s) catch
+levels. This explains why a few probabilities decline (rather than rise) with
 increased `r assess_yr + 1` and `r assess_yr + 2` catch levels in
 Tables~\@ref(tab:main-risk-year-2) and~\@ref(tab:main-risk-year-3) and
 Figures~\@ref(fig:main-forecast-risk-comparison-year-2)
@@ -1245,8 +1245,8 @@ relative spawning biomass trajectory through
 `r forecast_yrs[length(forecast_yrs)]` for several of these management
 actions. With zero catch for the next three years, the biomass has a
 `r zero_catch_prob_bio_down_1`% probability of decreasing from
-`r forecast_yrs[1]` to `r forecast_yrs[2]` (Table~\@ref(tab:main-risk-year-)}
-and Figure~\@ref(fig:main-forecast-risk-comparison-year-1), a
+`r forecast_yrs[1]` to `r forecast_yrs[2]` (Table~\@ref(tab:main-risk-year-)
+and Figure~\@ref(fig:main-forecast-risk-comparison-year-1)), a
 `r zero_catch_prob_bio_down_2`% probability of decreasing from
 `r forecast_yrs[2]` to `r forecast_yrs[3]` (Table~\@ref(tab:main-risk-year-2)
 and Figure~\@ref(fig:main-forecast-risk-comparison-year-2)), and a
@@ -1367,12 +1367,12 @@ life history meta-analytic method;
 1. Consideration of an alternative prior distribution and a fixed value for
 steepness, to change the resiliency of the stock;
 
-1.Assumption of higher and lower variation about the stock-recruitment curve
+1. Assumption of higher and lower variation about the stock-recruitment curve
 ($\sigma_r$);
 
 1. Removal of the age-1 index as a data source;
 
-1.Downweighting the fishery age-composition data; and
+1. Downweighting the fishery age-composition data; and
 
 1. Consideration of alternative standard deviations for time-varying
 selectivity.
@@ -1623,8 +1623,6 @@ provided in decision tables (such as Tables~\@ref(tab:main-risk-year-1) and~\@re
 assessments. Overall, results indicate that assessment model projections give
 a relatively good idea of general projected trends and status.
 
-P$(\mathrm{B}_{2020} < \mathrm{B}_{2019}) =$ `r prob_decline_from_2019_to_2020_historic`%;
-
 As an example, the 2019 assessment [@JTC2019] gave the estimated probability
 of the female spawning biomass declining in the subsequent year,
 i.e.,~P($\mathrm{B}_{2020} < \mathrm{B}_{2019}$), for several possible catches
@@ -1641,7 +1639,7 @@ Figure~\@ref(fig:main-historical-1). We extracted similar probabilities
 from past assessment documents going back to 2012 and calculate analogous
 probabilities,
 P$(\mathrm{B}_{t+1} < \mathrm{B}_{t})$, from the current base model
-(Figure~\@ref(fig:main-historical-1); see @JTC2022 for full methods.
+(Figure~\@ref(fig:main-historical-1); see @JTC2022 for full methods).
 
 Each assessment correctly predicted whether the stock would increase or
 decrease the following year (except for 2018 and 2021;
