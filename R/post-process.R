@@ -32,11 +32,11 @@ post_process <- function(fn,
                                            knitr_figs_dir,
                                            NULL),
                          section_indent_inch = 0,
-                         section_num_width_inch = 0.1,
+                         section_num_width_inch = 0.2,
                          subsection_indent_inch = 0.2,
-                         subsection_num_width_inch = 0.1,
+                         subsection_num_width_inch = 0.3,
                          subsubsection_indent_inch = 0.4,
-                         subsubsection_num_width_inch = 0.1){
+                         subsubsection_num_width_inch = 0.4){
 
   if(is.null(figs_dir)){
     stop("`figs_dir` is `NULL`. You must provide the directory name ",
@@ -68,47 +68,6 @@ post_process <- function(fn,
     file.copy(fn, fn_bck, overwrite = TRUE)
   }
 
-
-  # Allow unnumbered headers with custom labels in format {-, #label_name}
-  # inds <- grep("\\{-, *\\\\#.*\\}", x)
-  # preinds <- inds - 1
-  # if(length(inds)){
-  #   labels <- gsub("^.*section\\{.*?\\{ *-, *\\\\#([a-zA-Z:-]+).*",
-  #                  "\\1",
-  #                  x[inds])
-  #   # Fix hyperlink references 1 line above sections
-  #   hyperlinks <- map2_chr(x[preinds], labels, ~{
-  #     sub("^(\\\\hypertarget\\{).*(\\}.*)$",
-  #         paste0("\\1",
-  #                .y,
-  #                "\\2"),
-  #         .x)
-  #   })
-  #   x[preinds] <- hyperlinks
-  #
-  #   # Fix labels on the actual lines of the sections
-  #   pat <- paste0("^(.*section\\{.*?\\{ *-, *\\\\#[a-zA-Z:-]+",
-  #                 "\\\\}\\}\\\\label\\{)[a-zA-Z-]+(\\}\\})$")
-  #   sec_hdrs <- map2_chr(x[inds], labels, ~{
-  #     sub(pat,
-  #         paste0("\\1",
-  #                .y,
-  #                "\\2"),
-  #         .x)
-  #   })
-  #
-  #   # Remove the {-,#label} par
-  #   pat <- paste0("^(.*section\\{[a-zA-Z0-9 ]+).*$")
-  #   sec_hdrs <- map2_chr(sec_hdrs, labels, ~{
-  #     sub(pat,
-  #         paste0("\\1}\\\\label{",
-  #                .y,
-  #                "}}"),
-  #         .x)
-  #   })
-  #   x[inds] <- sec_hdrs
-  # }
-
   if(accessibility){
     x <- c(
       "\\RequirePackage{pdfmanagement-testphase}",
@@ -126,30 +85,41 @@ post_process <- function(fn,
   section_inds <- grep("\\\\section\\*?\\{.*(})?", x)
   if(length(section_inds)){
     beg <- x[1:(section_inds[1] - 1)]
-
-    chunks <- map2(section_inds[1:(length(section_inds) - 1)],
-                   section_inds[2:length(section_inds)], \(st, en){
-                     c("\\begin{center}",
-                       "\\sectionfont{\\MakeUppercase}",
-                       x[st],
-                       "\\end{center}",
-                       x[(st + 1):(en - 1)])
-                   })
-    end <- c("\\begin{center}",
+    if(length(section_inds) == 1){
+      x <- c(beg,
+             "\\begin{center}",
              "\\sectionfont{\\MakeUppercase}",
-             x[section_inds[length(section_inds)]],
+             x[section_inds[1]],
              "\\end{center}",
-             x[(section_inds[length(section_inds)] + 1):length(x)])
+             x[(section_inds[1] + 1):length(x)])
+    }else{
+      chunks <- map2(section_inds[1:(length(section_inds) - 1)],
+                     section_inds[2:length(section_inds)], \(st, en){
+                       c("\\begin{center}",
+                         "\\sectionfont{\\MakeUppercase}",
+                         x[st],
+                         "\\end{center}",
+                         x[(st + 1):(en - 1)])
+                     })
+      end <- c("\\begin{center}",
+               "\\sectionfont{\\MakeUppercase}",
+               x[section_inds[length(section_inds)]],
+               "\\end{center}",
+               x[(section_inds[length(section_inds)] + 1):length(x)])
 
-    x <- c(beg, unlist(chunks), end)
+      x <- c(beg, unlist(chunks), end)
+    }
   }
 
   # Make subsections uppercase ----
   section_inds <- grep("\\\\(sub){1}section\\*?\\{.*(})?", x)
   if(length(section_inds)){
     beg <- x[1:(section_inds[1] - 1)]
-
-    if(length(section_inds) > 1){
+    if(length(section_inds) == 1){
+      x <- c(beg,
+             "\\subsectionfont{\\MakeUppercase}",
+             x[section_inds[1]:length(x)])
+    }else{
       chunks <- map2(section_inds[1:(length(section_inds) - 1)],
                      section_inds[2:length(section_inds)], \(st, en){
                        c("\\subsectionfont{\\MakeUppercase}",
@@ -161,10 +131,6 @@ post_process <- function(fn,
                x[(section_inds[length(section_inds)] + 1):length(x)])
 
       x <- c(beg, unlist(chunks), end)
-    }else{
-      x <- c(beg,
-             "\\subsectionfont{\\MakeUppercase}",
-             x[section_inds[1]:length(x)])
     }
   }
 
@@ -172,8 +138,11 @@ post_process <- function(fn,
   section_inds <- grep("\\\\(sub){2}section\\*?\\{.*(})?", x)
   if(length(section_inds)){
     beg <- x[1:(section_inds[1] - 1)]
-
-    if(length(section_inds) > 1){
+    if(length(section_inds) == 1){
+      x <- c(beg,
+             "\\subsubsectionfont{\\MakeUppercase}",
+             x[section_inds[1]:length(x)])
+    }else{
       chunks <- map2(section_inds[1:(length(section_inds) - 1)],
                      section_inds[2:length(section_inds)], \(st, en){
                        c("\\subsubsectionfont{\\MakeUppercase}",
@@ -185,10 +154,6 @@ post_process <- function(fn,
                x[(section_inds[length(section_inds)] + 1):length(x)])
 
       x <- c(beg, unlist(chunks), end)
-    }else{
-      x <- c(beg,
-             "\\subsubsectionfont{\\MakeUppercase}",
-             x[section_inds[1]:length(x)])
     }
   }
 
@@ -299,6 +264,10 @@ post_process <- function(fn,
   set_figure_placement <- function(knitr_label, place){
     fig_label <- paste0(figs_dir, knitr_label)
     fig_ind <- grep(fig_label, x)
+    if(!length(fig_ind)){
+      warning("Figure label `", knitr_label, "` not found. Bypassing...")
+      return(invisible())
+    }
     check_ind(fig_ind, fig_label)
     beg_fig_ind <- get_beg_fig_ind(fig_ind)
     # Replace any placement values

@@ -9,5 +9,7 @@ rmd_files: ["index.Rmd",
             "executive-summary/executive-summary.rmd",
             "introduction-section/introduction.rmd",
             "data-section/data.rmd",
-            "assessment-section/assessment.rmd"]
+            "assessment-section/assessment.rmd",
+            "research-needs-section/research-needs-loader.rmd",
+            "references.rmd"]
 delete_merged_file: true
