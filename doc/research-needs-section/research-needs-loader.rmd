@@ -1,9 +1,0 @@
-\rfoot{Research and data needs}
-
-## Research and data needs {#sec:research}
-
-```{r child = "research-needs-section/research-needs.rmd"}
-```
-
-```{r child = "research-needs-section/research-needs-extra.rmd"}
-```

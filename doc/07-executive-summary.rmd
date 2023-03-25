@@ -20,9 +20,14 @@ much smaller, populations of `r simple_name` occurring in the major inlets
 of the Northeast Pacific Ocean, including the Strait of Georgia, Puget Sound,
 and the Gulf of California, are not included in this analysis.
 
-(ref:es-catches-cap) Total `r sp` catch used in the assessment by sector, `r start_yr`--`r last_data_yr`. U.S. tribal catches are included in the sectors where they are represented.
+(ref:es-catches-cap) Total `r sp` catch used in the assessment by sector,
+`r start_yr`--`r last_data_yr`. U.S. tribal catches are included in the
+sectors where they are represented.
 
-```{r es-catches, fig.cap = "(ref:es-catches-cap)", fig.height = 4, fig.width = 8, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that catches in four of the last six years have been the largest in the time series."}
+(ref:es-catches-alt) This figure shows that catches in four of the last six
+years have been the largest in the time series.
+
+```{r es-catches, fig.cap = "(ref:es-catches-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:es-catches-alt)"}
 plot_catches(ct, leg.y.loc = 650)
 ```
 
@@ -544,7 +549,7 @@ harvest policy has a median of `r ct_limit_quantiles["median"]`~t with a
 wide range of uncertainty, the 95% credibility interval being
 `r ct_limit_quantiles["lower"]`--`r ct_limit_quantiles["upper"]`~t.
 
-````{r es-decisions-biomass, results = "asis", echo = FALSE}
+```{r es-decisions-biomass, results = "asis", echo = FALSE}
 table_decision(base_model,
                label = "tab:es-decisions-biomass-tab",
                caption =
@@ -777,7 +782,7 @@ table_risk(base_model,
 \clearpage
 
 ## Research and data needs {-}
-```{r child = "research-needs-section/research-needs.rmd"}
+```{r child = "11-research-needs/research-needs.rmd"}
 ```
 
 \clearpage
