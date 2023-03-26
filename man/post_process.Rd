@@ -9,11 +9,11 @@ post_process(
   accessibility = FALSE,
   figs_dir = ifelse(exists("knitr_figs_dir"), knitr_figs_dir, NULL),
   section_indent_inch = 0,
-  section_num_width_inch = 0.1,
+  section_num_width_inch = 0.2,
   subsection_indent_inch = 0.2,
-  subsection_num_width_inch = 0.1,
+  subsection_num_width_inch = 0.3,
   subsubsection_indent_inch = 0.4,
-  subsubsection_num_width_inch = 0.1
+  subsubsection_num_width_inch = 0.4
 )
 }
 \arguments{

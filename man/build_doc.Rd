@@ -2,43 +2,19 @@
 % Please edit documentation in R/build-doc.R
 \name{build_doc}
 \alias{build_doc}
-\title{Build the assessment document entirely from within an R session}
+\title{Build the Hake assessment document}
 \usage{
-build_doc(
-  doc_name = "hake-assessment",
-  doc_dir = here::here("doc"),
-  alt_text = FALSE,
-  knit_only = FALSE,
-  make_pdf = TRUE,
-  make_bib = TRUE,
-  ...
-)
+build_doc(tag = FALSE, ...)
 }
 \arguments{
-\item{doc_name}{What to name the document (no extension)}
-
-\item{doc_dir}{Directory the main document RNW file resides in}
-
-\item{alt_text}{The knitting process creates the global \code{alt_fig_text}, but only if the figures were not cached.
-This must only be set to \code{TRUE} when building from scratch, without any cached figures}
-
-\item{knit_only}{Only knit the code, do not run latex engine.}
-
-\item{make_pdf}{Logical. \code{TRUE} to make the pdf, if \code{FALSE} it will only go as far as postscript. If \code{png_figs}
-is set to \code{TRUE}, this argument will have no effect, a PDF will be built anyway}
-
-\item{make_bib}{Logical. Run bibtex}
-
-\item{...}{Arguments to pass to \code{\link[=add_alt_text]{add_alt_text()}}}
+\item{tag}{Logical. If \code{TRUE}, add tagging commands to the
+tex file so that a tagged, web-accessible document is built.
+If \code{TRUE}, it takes longer for the \code{lualatex} step so typically this
+is only use for the final build (or testing along the way)}
 }
 \value{
-\code{\link[base:invisible]{base::invisible()}}
+Nothing
 }
 \description{
-Build the assessment document entirely from within an R session
-}
-\details{
-Make sure you have created the .rds files by running \code{\link[=build_rds]{build_rds()}} in the appropriate manner.
-Once you have done that and run this function once within an R session, it will be a little quicker since the RDS
-file contents will have already been loaded into the R session.
+Build the Hake assessment document
 }

@@ -24,6 +24,7 @@ Depends:
   R (>= 4.2.0)
 Imports:
   adnuts,
+  bookdown,
   cli,
   coda,
   cowplot,
@@ -42,6 +43,7 @@ Imports:
   gtable,
   here,
   kableExtra,
+  knitr,
   lubridate,
   microbenchmark,
   purrr,
@@ -65,9 +67,7 @@ Suggests:
   date,
   ggpubr,
   kableExtra,
-  knitr,
   pacman,
-  PBSmodelling,
   rmarkdown,
   shinystan,
   testthat
@@ -79,6 +79,6 @@ ByteCompile: true
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
-SystemRequirements: luahbtex (>= 1.15.0) - https://www.luatex.org/
+SystemRequirements: luahbtex (>= 1.16.0) - https://www.luatex.org/
 Config/testthat/parallel: true
 Config/testthat/edition: 2

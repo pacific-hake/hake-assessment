@@ -68,8 +68,9 @@ opts_chunk$set(
   fig.width = fig_width,
   out.width = fig_out_width,
   echo = FALSE,
-  #  autodep = TRUE,
-  #  cache = TRUE,
+  autodep = FALSE,
+  cache = TRUE,
+  cache.lazy = FALSE,
   cache.comments = FALSE,
   dev = fig_out_type,
   dpi = fig_dpi,
@@ -115,7 +116,7 @@ Andrew M. Edwards^2^
 TABLE OF CONTENTS GOES HERE - DO NOT DELETE OR MODIFY THIS LINE
 
 
-<!--chapter:end:00-launcher.rmd-->
+<!--chapter:end:000-launcher.rmd-->
 
 ```{r load-packages-chunk, echo = FALSE}
 
@@ -143,7 +144,7 @@ pacman::p_load(
 message("Finished loading R packages...")
 ```
 
-<!--chapter:end:01-load-packages.rmd-->
+<!--chapter:end:001-load-packages.rmd-->
 
 ```{r load-globals-chunk, echo = FALSE}
 
@@ -254,7 +255,7 @@ key_posteriors_file <- "keyposteriors.csv"
 nuisance_posteriors_file <- "nuisanceposteriors.csv"
 ```
 
-<!--chapter:end:02-load-globals.rmd-->
+<!--chapter:end:002-load-globals.rmd-->
 
 <!-- Load all data tables into global variables
      The files are loaded from the package installation, so you must
@@ -473,13 +474,13 @@ out_est_caa_bio_file <- "estimated-catch-at-age-biomass.csv"
 out_est_baa_file <- "estimated-biomass-at-age.csv"
 ```
 
-<!--chapter:end:03-load-data-tables.rmd-->
+<!--chapter:end:003-load-data-tables.rmd-->
 
 ```{r source-load-models, echo = FALSE}
-source(here::here("doc/04-load-models.R"))
+source(here::here("doc/004-load-models.R"))
 ```
 
-<!--chapter:end:04-load-models.rmd-->
+<!--chapter:end:004-load-models.rmd-->
 
 <!-- Place LaTeX macros here, and R variables in the knitr chunk below -->
 \newcommand{\FSPRthirtyfive}{\mathrm{F_{SPR=35\%}}}
@@ -1699,7 +1700,7 @@ prob_below_b40_yr2_last_yr_catch <- base_model$risks[[2]] |>
   f()
 ```
 
-<!--chapter:end:05-load-knitr-variables.rmd-->
+<!--chapter:end:005-load-knitr-variables.rmd-->
 
 \newpage
 
@@ -1774,7 +1775,7 @@ female spawning biomass declining from `r end_yr` to `r end_yr + 1`, an
 `r last_yr_tac_risk_3_biomass_decline`% chance of it declining for these
 constant catches.
 
-<!--chapter:end:06-one-page-summary.rmd-->
+<!--chapter:end:006-one-page-summary.rmd-->
 
 \newpage
 
@@ -2327,7 +2328,7 @@ harvest policy has a median of `r ct_limit_quantiles["median"]`~t with a
 wide range of uncertainty, the 95% credibility interval being
 `r ct_limit_quantiles["lower"]`--`r ct_limit_quantiles["upper"]`~t.
 
-````{r es-decisions-biomass, results = "asis", echo = FALSE}
+```{r es-decisions-biomass, results = "asis", echo = FALSE}
 table_decision(base_model,
                label = "tab:es-decisions-biomass-tab",
                caption =
@@ -2560,12 +2561,12 @@ table_risk(base_model,
 \clearpage
 
 ## Research and data needs {-}
-```{r child = "11-research-needs/research-needs.rmd"}
+```{r child = "011-research-needs/research-needs.rmd"}
 ```
 
 \clearpage
 
-<!--chapter:end:07-executive-summary.rmd-->
+<!--chapter:end:007-executive-summary.rmd-->
 
 \newpage
 
@@ -2972,7 +2973,7 @@ Table~\@ref(tab:main-can-ft-age-data).
 
 
 
-<!--chapter:end:08-introduction.rmd-->
+<!--chapter:end:008-introduction.rmd-->
 
 \newpage
 
@@ -3694,7 +3695,7 @@ is known to be sensitive to outliers and prone to convergence issues when
 selectivity varies with time. As a result, the Francis method was not
 included as a sensitivity.
 
-<!--chapter:end:09-data.rmd-->
+<!--chapter:end:009-data.rmd-->
 
 \rfoot{Assessment}
 
@@ -5412,23 +5413,23 @@ assessment model.
 
 \newpage
 
-<!--chapter:end:10-assessment.rmd-->
+<!--chapter:end:010-assessment.rmd-->
 
 \rfoot{Research and data needs}
 
 ## Research and data needs {#sec:research}
 
-```{r child = "11-research-needs/research-needs.rmd"}
+```{r child = "011-research-needs/research-needs.rmd"}
 ```
 
-```{r child = "11-research-needs/research-needs-extra.rmd"}
+```{r child = "011-research-needs/research-needs-extra.rmd"}
 ```
 
-<!--chapter:end:11-research-needs-loader.rmd-->
+<!--chapter:end:011-research-needs-loader.rmd-->
 
 \clearpage
 
 # REFERENCES {-}
 
-<!--chapter:end:99-references.rmd-->
+<!--chapter:end:099-references.rmd-->
 
