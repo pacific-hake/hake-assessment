@@ -51,8 +51,12 @@ post_process <- function(fn,
 
   x <- readLines(fn)
 
-  modification_text <- "% This file has been modified by hake::post_process()"
-  hasbeen_modified <- grep(modification_text, x)
+  modification_pre_text <- "% This file was modified by hake::post_process()"
+  modification_text <- c(modification_pre_text,
+                         paste0("% at ", Sys.time()),
+                         "",
+                         "")
+  hasbeen_modified <- grep(modification_pre_text, x)
   if(length(hasbeen_modified)){
     if(file.exists(fn_bck)){
       # Copy from the backup, erasing the previous post processing changes
@@ -278,9 +282,11 @@ post_process <- function(fn,
   # Executive summary catch plot placement----
   set_figure_placement("es-catches-1", "!b")
 
-  # Mark file with modification text ----
-  x <- c(modification_text,
-         x)
+  # Add more latex to longtables ----
+  x <- post_process_longtables(x)
+
+ # Mark file with modification text ----
+  x <- c(modification_text, x)
 
   writeLines(x, fn)
 }

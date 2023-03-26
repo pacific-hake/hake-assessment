@@ -10,7 +10,7 @@ table_catch(
   start_yr,
   end_yr,
   inc_foreign_jv = FALSE,
-  font_size = 8,
+  font_size = 10,
   ...
 )
 }

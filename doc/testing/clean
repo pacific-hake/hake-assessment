@@ -13,8 +13,17 @@ rm *.txt 2> /dev/null
 rm *.out 2> /dev/null
 rm *.upa 2> /dev/null
 rm *.upb 2> /dev/null
-rm tester-launch.tex 2> /dev/null
-rm tester-launch.pdf 2> /dev/null
+rm index.pdf 2> /dev/null
+rm index.tex 2> /dev/null
+rm index.md 2> /dev/null
 
-rm -rf knitr-cache 2> /dev/null
+rm hake-assessment.tex 2> /dev/null
+rm hake.Rmd 2> /dev/null
+rm hake.pdf 2> /dev/null
+rm hake.tex 2> /dev/null
+rm hake-bck.tex 2> /dev/null
+
+rm -rf knitr-cache-pdf 2> /dev/null
+rm -rf knitr-figs-pdf 2> /dev/null
 rm -rf out-csv 2> /dev/null
+

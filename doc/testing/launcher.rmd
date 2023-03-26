@@ -1,5 +1,5 @@
 ---
-title: "**\\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r params$assess_yr`}**"
+title: "**TEST**"
 params:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
@@ -24,19 +24,17 @@ output:
    toc: false
    fig_caption: yes
    includes:
-     in_header: "preamble.tex"
+     in_header: "../preamble.tex"
 fontsize: 11pt
 urlcolor: blue
 header-includes:
   - \usepackage{sectsty}
   - \usepackage{titling}
   - \pagenumbering{gobble}
-  - \pretitle{\begin{center}}
-  - \posttitle{\end{center}\begin{center}\LARGE\includegraphics[width=12cm]{main-figures/hake-picture.png}\\[\bigskipamount]\end{center}}
   - \pagenumbering{arabic}
-  - \lfoot{DRAFT -- `r params$sp` assessment `r params$assess_yr`}
+  - \lfoot{TEST document}
 link-citations: true
-bibliography: bib/refs.bib
+bibliography: ../bib/refs.bib
 ---
 
 ```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
@@ -83,35 +81,6 @@ if(file.exists("hake.tex")){
 ```
 
 \newpage
-
-This document reports the collaborative efforts of the official U.S. and
-Canadian members of the Joint Technical Committee, and others that
-contributed significantly.
-
-\
-
-Authors of this document are (all authors contribute extensively so the order rotates annually):
-<!-- Note that there are two spaces at the end of the following four author lines -->
-
-Aaron M. Berger^1^  
-Chris J. Grandin^2^  
-Kelli F. Johnson^3^  
-Andrew M. Edwards^2^  
-
-\
-
-^1^ *Northwest Fisheries Science Center, National Marine
-  Fisheries Service, National Oceanic and Atmospheric Administration,
-  U.S. Department of Commerce, 2032 SE OSU Dr. Bldg. 955, Newport, OR
-  97365-5275, USA*
-
-^2^ *Pacific Biological Station, Fisheries and Oceans Canada,
-  3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada*
-
-^3^ *Northwest Fisheries Science Center, National Marine Fisheries
-  Service, National Oceanic and Atmospheric Administration, U.S. Department of
-  Commerce, 2725 Montlake Blvd. East, Seattle, WA 98112-2097, USA*
-
 
 TABLE OF CONTENTS GOES HERE - DO NOT DELETE OR MODIFY THIS LINE
 

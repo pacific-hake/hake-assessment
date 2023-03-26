@@ -35,9 +35,9 @@
 \else
   % Lualatex
   \usepackage{fontspec}
-  \setsansfont{CMU Sans Serif} %{Arial}
-  \setmainfont{CMU Serif} %{Times New Roman}
-  \setmonofont{CMU Typewriter Text} %{Consolas}
+  \setsansfont{CMU Sans Serif} % Arial
+  \setmainfont{CMU Serif} % Times New Roman
+  \setmonofont{CMU Typewriter Text} % Consolas
   % Needed by lualatex to print unicode symbols
   \PassOptionsToPackage{math-style=ISO,bold-style=ISO}{unicode-math}
   % Create an alias for bm->symbf when using lualatex to avoid
@@ -65,6 +65,13 @@
 
 % Needed for `H` placement option for plots
 \usepackage{float}
+
+% To make a float on its own page appear at the top instead of vertically
+% centered. From:
+% http://stackoverflow.com/questions/2009420/how-to-put-a-figure-on-the-top-of-a-page-on-its-own-in-latex
+\makeatletter
+\setlength\@fptop{0pt}
+\makeatother
 
 % Caption indentation and style
 \usepackage[format = plain,
@@ -106,3 +113,18 @@
 % \urlstyle{same}
 
 \usepackage{sectsty}
+
+\usepackage{pdflscape}
+\fancypagestyle{mylandscape}{
+\fancyhf{} % Clears the header/footer
+\fancyfoot{ % Footer
+\makebox[\textwidth][r]{ % Right
+  \rlap{\hspace{.75cm} % Push out of margin by \footskip
+    \smash{ % Remove vertical height
+      \raisebox{4.87in}{ % Raise vertically
+        \rotatebox{90}{
+        \thepage
+        }}}}}} % Rotate counter-clockwise
+\renewcommand{\headrulewidth}{0pt} % No header rule
+\renewcommand{\footrulewidth}{0pt} % No footer rule
+}
