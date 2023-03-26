@@ -1,4 +1,3 @@
-
 # Base model directory name and description. these can be a lists of vectors
 # like the other types if necessary
 base_models_dirs <- "01-base"
