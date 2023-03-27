@@ -30,6 +30,7 @@ ct <-
 
 table_catch(
   ct,
+  inc_foreign_jv = TRUE,
   start_yr = start_yr,
   end_yr = end_yr - 1,
   country = "us",
@@ -48,6 +49,7 @@ table_catch(
 ```{r catches-can, results = "asis", echo = FALSE}
 table_catch(
   ct,
+  inc_foreign_jv = TRUE,
   start_yr = start_yr,
   end_yr = end_yr - 1,
   country = "can",
