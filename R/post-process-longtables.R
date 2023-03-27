@@ -1,4 +1,9 @@
-#' Post-process the longtables in TEX code
+#' Post-process LaTeX longtables in TEX code
+#'
+#' @details
+#' Injects some LaTeX code which adds 'Continued on next page ...' and
+#' '... Continued from previous page' to the longtables that split pages.
+#' Removes the caption for the subsequent pages, but leaves the header row
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
@@ -23,39 +28,44 @@ post_process_longtables <- function(x){
          call. = FALSE)
   }
   j <- extract_chunks(x, beg_inds, end_inds)
-  # get the first row starting with a year (table data)
-  k <- grep("^[0-9]{4}", j$between[[1]], value = TRUE)[1]
-  # Extract the number of columns in the table
-  n_col <- str_count(k, "&") + 1
-  # Get location of `\\endfirsthead` and paste "Continued from" line after it
-  kk <- j$between[[1]]
-  efh <- grep("endfirsthead", kk)
-  pre <- kk[1:(efh)]
-  post <- kk[(efh + 1):length(kk)]
-  kk <- c(pre,
-          paste0(
-            "\\multicolumn{",
-            n_col,
-            "}{l}{\\textit{... Continued from previous page}} \\\\ \\hline"),
-          post)
-  # Get location of `\\endhead` and paste "Continued on" line after it
-  efh <- grep("endhead", kk)
-  pre <- kk[1:(efh)]
-  post <- kk[(efh + 1):length(kk)]
-  kk <- c(pre,
-          paste0(
-            "\\hline \\multicolumn{",
-            n_col,
-            "}{l}{\\textit{Continued on next page ...}} \\\\"),
-          post)
+  n_col <- map(j$between, function(tbl){
+    # Get the first line starting with a year (first row in table)
+    first_yr_line <- tbl[grep("^\\\\endlastfoot$", tbl) + 1]
+    # Extract the number of columns in the table
+    str_count(first_yr_line, "&") + 1
+  })
+  # Get location of `\\endfirsthead` and paste "Continued from" line
+  j$between <- map2(j$between, n_col, function(tbl, nc){
+    efh <- grep("endfirsthead", tbl)
+    pre <-tbl[1:(efh)]
+    post <- tbl[(efh + 1):length(tbl)]
+    c(pre,
+      paste0(
+        "\\multicolumn{",
+        nc,
+        "}{l}{\\textit{... Continued from previous page}} \\\\ \\hline"),
+      post)
+  })
+  # Get location of `\\endhead` and paste "... Continued on" line
+  j$between <- map2(j$between, n_col, function(tbl, nc){
+    efh <- grep("endhead", tbl)
+    pre <-tbl[1:(efh)]
+    post <- tbl[(efh + 1):length(tbl)]
+    c(pre,
+      paste0(
+        "\\hline \\multicolumn{",
+        nc,
+        "}{l}{\\textit{Continued on next page ...}} \\\\"),
+      post)
+  })
   # Remove caption and toprule from second page
-  cap2 <- grep("caption\\[\\]", kk)
-  pre <- kk[1:(cap2 - 1)]
-  # Assumes `\\toprule` follows `\\caption[]` directly
-  post <- kk[(cap2 + 2):length(kk)]
-  kk <- c(pre, post)
-
-  j$between[[1]] <- kk
+  j$between <- map(j$between, function(tbl){
+    cap <- grep("caption\\[\\]", tbl)
+    pre <- tbl[1:(cap - 1)]
+    # Assumes `\\toprule` follows `\\caption[]` directly (+ 2)
+    post <- tbl[(cap + 2):length(tbl)]
+    c(pre, post)
+  })
 
   interlace_chunks(j)
 }
