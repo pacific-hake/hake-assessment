@@ -102,81 +102,8 @@ post_process <- function(fn,
          call. = FALSE)
   }
 
-  # Make section headers uppercase and centered ----
-  section_inds <- grep("\\\\section\\*?\\{.*(})?", x)
-  if(length(section_inds)){
-    beg <- x[1:(section_inds[1] - 1)]
-    if(length(section_inds) == 1){
-      x <- c(beg,
-             "\\begin{center}",
-             "\\sectionfont{\\MakeUppercase}",
-             x[section_inds[1]],
-             "\\end{center}",
-             x[(section_inds[1] + 1):length(x)])
-    }else{
-      chunks <- map2(section_inds[1:(length(section_inds) - 1)],
-                     section_inds[2:length(section_inds)], \(st, en){
-                       c("\\begin{center}",
-                         "\\sectionfont{\\MakeUppercase}",
-                         x[st],
-                         "\\end{center}",
-                         x[(st + 1):(en - 1)])
-                     })
-      end <- c("\\begin{center}",
-               "\\sectionfont{\\MakeUppercase}",
-               x[section_inds[length(section_inds)]],
-               "\\end{center}",
-               x[(section_inds[length(section_inds)] + 1):length(x)])
-
-      x <- c(beg, unlist(chunks), end)
-    }
-  }
-
-  # Make subsections uppercase ----
-  section_inds <- grep("\\\\(sub){1}section\\*?\\{.*(})?", x)
-  if(length(section_inds)){
-    beg <- x[1:(section_inds[1] - 1)]
-    if(length(section_inds) == 1){
-      x <- c(beg,
-             "\\subsectionfont{\\MakeUppercase}",
-             x[section_inds[1]:length(x)])
-    }else{
-      chunks <- map2(section_inds[1:(length(section_inds) - 1)],
-                     section_inds[2:length(section_inds)], \(st, en){
-                       c("\\subsectionfont{\\MakeUppercase}",
-                         x[st],
-                         x[(st + 1):(en - 1)])
-                     })
-      end <- c("\\subsectionfont{\\MakeUppercase}",
-               x[section_inds[length(section_inds)]],
-               x[(section_inds[length(section_inds)] + 1):length(x)])
-
-      x <- c(beg, unlist(chunks), end)
-    }
-  }
-
-  # Make subsubsections uppercase ----
-  section_inds <- grep("\\\\(sub){2}section\\*?\\{.*(})?", x)
-  if(length(section_inds)){
-    beg <- x[1:(section_inds[1] - 1)]
-    if(length(section_inds) == 1){
-      x <- c(beg,
-             "\\subsubsectionfont{\\MakeUppercase}",
-             x[section_inds[1]:length(x)])
-    }else{
-      chunks <- map2(section_inds[1:(length(section_inds) - 1)],
-                     section_inds[2:length(section_inds)], \(st, en){
-                       c("\\subsubsectionfont{\\MakeUppercase}",
-                         x[st],
-                         x[(st + 1):(en - 1)])
-                     })
-      end <- c("\\subsubsectionfont{\\MakeUppercase}",
-               x[section_inds[length(section_inds)]],
-               x[(section_inds[length(section_inds)] + 1):length(x)])
-
-      x <- c(beg, unlist(chunks), end)
-    }
-  }
+  # Make sections/subsections uppercase/centered ----
+  x <- post_process_section_headers(x)
 
   # Insert the Table of contents ----
   toc_indicator_line <- paste0("TABLE OF CONTENTS GOES HERE - ",
