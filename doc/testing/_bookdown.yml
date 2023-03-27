@@ -1,5 +1,5 @@
 book_filename: "hake"
-rmd_files: ["launcher.rmd",
+rmd_files: ["000-launcher.rmd",
             "tester.rmd"]
 # `delete_merged_file` - If true, the hake.Rmd file will be kept after the
 # hake.pdf file is created
