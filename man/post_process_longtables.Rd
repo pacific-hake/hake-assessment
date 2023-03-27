@@ -2,7 +2,7 @@
 % Please edit documentation in R/post-process-longtables.R
 \name{post_process_longtables}
 \alias{post_process_longtables}
-\title{Post-process the longtables in TEX code}
+\title{Post-process LaTeX longtables in TEX code}
 \usage{
 post_process_longtables(x)
 }
@@ -14,5 +14,10 @@ post_process_longtables(x)
 The modified Tex code, as a vector
 }
 \description{
-Post-process the longtables in TEX code
+Post-process LaTeX longtables in TEX code
+}
+\details{
+Injects some LaTeX code which adds 'Continued on next page ...' and
+'... Continued from previous page' to the longtables that split pages.
+Removes the caption for the subsequent pages, but leaves the header row
 }

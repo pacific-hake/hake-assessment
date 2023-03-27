@@ -71,6 +71,8 @@ post_process <- function(fn,
   }else{
     file.copy(fn, fn_bck, overwrite = TRUE)
   }
+  # Add more latex to longtables ----
+  x <- post_process_longtables(x)
 
   if(accessibility){
     x <- c(
@@ -281,9 +283,6 @@ post_process <- function(fn,
 
   # Executive summary catch plot placement----
   set_figure_placement("es-catches-1", "!b")
-
-  # Add more latex to longtables ----
-  x <- post_process_longtables(x)
 
  # Mark file with modification text ----
   x <- c(modification_text, x)

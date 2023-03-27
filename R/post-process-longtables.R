@@ -14,28 +14,33 @@ post_process_longtables <- function(x){
 
   beg_inds <- grep("\\\\begin\\{longtable\\}", x)
   end_inds <- grep("\\\\end\\{longtable\\}", x)
+  if(length(beg_inds) != length(end_inds)){
+    len_beg <- ifelse(
+      length(beg_inds) == 1,
+      "There was 1 `\\begin{longtable}` command ",
+      paste0("There ", length(beg_inds), "  `\\begin{longtable}` commands "))
+    len_end <- ifelse(
+      length(end_inds) == 1,
+      "and 1 `\\begin{longtable}` command. ",
+      paste0("and ", length(end_inds), " `\\end{longtable}` commands. "))
+    stop(len_beg, len_end, "There must be the same number of each",
+         call. = FALSE)
+  }
   if(!length(beg_inds)){
+    message("There were no `\\begin{longtable}` macros found in the TeX ",
+            "code.\n")
     return(x)
   }
-  if(length(beg_inds) > length(end_inds)){
-    stop("There were more `\\begin{longtable}` commands than ",
-         "`\\end{longtable}` commands.",
-         call. = FALSE)
-  }
-  if(length(beg_inds) < length(end_inds)){
-    stop("There were less `\\begin{longtable}` commands than ",
-         "`\\end{longtable}` commands.",
-         call. = FALSE)
-  }
-  j <- extract_chunks(x, beg_inds, end_inds)
-  n_col <- map(j$between, function(tbl){
+
+  lst <- post_process_extract_chunks(x, beg_inds, end_inds)
+  n_col <- map(lst$between, function(tbl){
     # Get the first line starting with a year (first row in table)
     first_yr_line <- tbl[grep("^\\\\endlastfoot$", tbl) + 1]
     # Extract the number of columns in the table
     str_count(first_yr_line, "&") + 1
   })
   # Get location of `\\endfirsthead` and paste "Continued from" line
-  j$between <- map2(j$between, n_col, function(tbl, nc){
+  lst$between <- map2(lst$between, n_col, function(tbl, nc){
     efh <- grep("endfirsthead", tbl)
     pre <-tbl[1:(efh)]
     post <- tbl[(efh + 1):length(tbl)]
@@ -47,7 +52,7 @@ post_process_longtables <- function(x){
       post)
   })
   # Get location of `\\endhead` and paste "... Continued on" line
-  j$between <- map2(j$between, n_col, function(tbl, nc){
+  lst$between <- map2(lst$between, n_col, function(tbl, nc){
     efh <- grep("endhead", tbl)
     pre <-tbl[1:(efh)]
     post <- tbl[(efh + 1):length(tbl)]
@@ -59,7 +64,7 @@ post_process_longtables <- function(x){
       post)
   })
   # Remove caption and toprule from second page
-  j$between <- map(j$between, function(tbl){
+  lst$between <- map(lst$between, function(tbl){
     cap <- grep("caption\\[\\]", tbl)
     pre <- tbl[1:(cap - 1)]
     # Assumes `\\toprule` follows `\\caption[]` directly (+ 2)
@@ -67,5 +72,5 @@ post_process_longtables <- function(x){
     c(pre, post)
   })
 
-  interlace_chunks(j)
+  post_process_interlace_chunks(lst)
 }
