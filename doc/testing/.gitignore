@@ -1,3 +1,9 @@
 # testing/.gitignore
 
-!*
+doc/testing/*.aux
+doc/testing/*.log
+doc/testing/*.pdf
+doc/testing/*.tex
+doc/testing/*.toc
+doc/testing/knitr-cache-pdf/
+doc/testing/knitr-figs-pdf/
