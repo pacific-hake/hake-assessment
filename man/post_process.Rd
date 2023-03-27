@@ -6,20 +6,15 @@
 \usage{
 post_process(
   fn,
-  accessibility = FALSE,
+  tag = FALSE,
   figs_dir = ifelse(exists("knitr_figs_dir"), knitr_figs_dir, NULL),
-  section_indent_inch = 0,
-  section_num_width_inch = 0.2,
-  subsection_indent_inch = 0.2,
-  subsection_num_width_inch = 0.3,
-  subsubsection_indent_inch = 0.4,
-  subsubsection_num_width_inch = 0.4
+  ...
 )
 }
 \arguments{
 \item{fn}{The TEX filename}
 
-\item{accessibility}{Logical. If \code{TRUE}, include lines for LaTeX \code{tagpdf}
+\item{tag}{Logical. If \code{TRUE}, include lines for LaTeX \code{tagpdf}
 package to make a more web-accessible document. This will make the compile
 time much longer and is typically used when done the document and doing the
 final compile for government web distribution}
@@ -28,23 +23,7 @@ final compile for government web distribution}
 figures reside. Used for matching figure import locations inside the tex
 file}
 
-\item{section_indent_inch}{Indent value in inches for section headers in
-the TOC}
-
-\item{section_num_width_inch}{Width of section numbers in inches in
-the TOC}
-
-\item{subsection_indent_inch}{Indent value in inches for subsection headers
-in the TOC}
-
-\item{subsection_num_width_inch}{Width of subsection numbers in inches in
-the TOC}
-
-\item{subsubsection_indent_inch}{Indent value in inches for subsubsection
-headers in the TOC}
-
-\item{subsubsection_num_width_inch}{Width of subsubsection numbers in inches
-in the TOC}
+\item{...}{Arguments passed to \code{\link[=post_process_table_of_contents]{post_process_table_of_contents()}}}
 }
 \value{
 Nothing, overwrite the file \code{fn} with the modified TEX

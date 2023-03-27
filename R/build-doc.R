@@ -36,7 +36,7 @@ build_doc <- function(tag = FALSE, ...){
   }
   # Add table of contents, center section headers, modify figure placements
   # and many other things to make the document presentable
-  post_process(fn, accessibility = tag)
+  post_process(fn, tag = tag)
   # Run lualatex twice to ensure references are populated correctly
   system(paste0("lualatex -interaction=nonstopmode ", fn),
          intern = TRUE,
