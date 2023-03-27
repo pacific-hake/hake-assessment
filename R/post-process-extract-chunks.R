@@ -47,6 +47,12 @@ post_process_extract_chunks <- function(x, beg_inds, end_inds){
     # Extract the chunk before the first chunk defined by beg/end starts
     out$inbetween[[1]] <- x[1:(beg_inds[1] - 1)]
   }
+  if(length(beg_inds) == 1){
+    out$between[[1]] <- x[beg_inds[1]:end_inds[1]]
+    out$inbetween[[1 + !out$first]] <-
+      x[(end_inds[1] + 1):length(x)]
+    return(out)
+  }
 
   for(i in 1:(length(beg_inds) - 1)){
     out$between[[i]] <- x[beg_inds[i]:end_inds[i]]
