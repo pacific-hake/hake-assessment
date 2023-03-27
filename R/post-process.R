@@ -45,9 +45,26 @@ post_process <- function(fn,
          call. = FALSE)
   }
 
-  fn_base <- tools::file_path_sans_ext(fn)
-  fn_ext <- tools::file_ext(fn)
+  fn_base <- file_path_sans_ext(fn)
+  fn_ext <- file_ext(fn)
   fn_bck <- paste0(fn_base, "-bck.", fn_ext)
+
+  if(!file.exists(fn)){
+    message("The TeX file `", fn, "` does not exist. Trying to copy it ",
+            "from backup...\n")
+    Sys.sleep(2)
+    if(!file.exists(fn_bck)){
+      stop("The backup file `", fn_bck, "` does not exist. Re-run the ",
+           "bookdown command to create `", fn, "`",
+           call. = FALSE)
+    }
+    file.copy(fn_bck, fn)
+    if(file.exists(fn)){
+      message("File copied successfully. Running post-processing on ",
+              "`", fn, "`\n")
+      Sys.sleep(2)
+    }
+  }
 
   x <- readLines(fn)
 
@@ -71,8 +88,6 @@ post_process <- function(fn,
   }else{
     file.copy(fn, fn_bck, overwrite = TRUE)
   }
-  # Add more latex to longtables ----
-  x <- post_process_longtables(x)
 
   if(accessibility){
     x <- c(
@@ -284,8 +299,23 @@ post_process <- function(fn,
   # Executive summary catch plot placement----
   set_figure_placement("es-catches-1", "!b")
 
+  # Add more latex to longtables ----
+  x <- post_process_longtables(x)
+
  # Mark file with modification text ----
   x <- c(modification_text, x)
 
   writeLines(x, fn)
+  if(!file.exists(fn)){
+    stop("The post processing step failed to create the file `", fn, "`.",
+         call. = FALSE)
+  }
+  info <- file.info(fn)
+  tm <- as.numeric(info$mtime)
+  if(Sys.time() - tm > 1){
+    stop("The post processing step failed to overwrite the file `", fn, "`. ",
+         "The file's timestamp is not recent enough (< 3 seconds ago)",
+         call. = FALSE)
+  }
+  message("Post-processing successfuly completed.\n")
 }
