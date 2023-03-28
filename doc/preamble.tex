@@ -61,6 +61,12 @@
 
 % Used to make the headers in tables via the kableExtra::linebreak() function
 \usepackage{makecell}
+% Makes the table header cells set up by `linebreaker()` have their text closer
+% together vertically
+\usepackage{array}
+\renewcommand\cellset{\renewcommand\arraystretch{0.5}
+\setlength\extrarowheight{1pt}}
+
 \usepackage{multirow}
 
 % Needed for `H` placement option for plots

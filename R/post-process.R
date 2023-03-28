@@ -101,7 +101,7 @@ post_process <- function(fn,
                                          place = "!b")
 
   # Add more latex to longtables ----
-  x <- post_process_longtables(x)
+  x <- post_process_longtables(x, ...)
 
   x <- post_process_landscape_tables(x)
 

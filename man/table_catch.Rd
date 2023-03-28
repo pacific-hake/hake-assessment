@@ -15,7 +15,7 @@ table_catch(
 )
 }
 \arguments{
-\item{ct}{Data frame as in the file \code{landing-tac-histroy.csv}}
+\item{ct}{Data frame as in the file \code{landing-tac-history.csv}}
 
 \item{country}{One of "both", "can", or "us"}
 

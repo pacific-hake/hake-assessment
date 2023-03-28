@@ -14,6 +14,7 @@ post_process_landscape_tables <- function(x){
     return(x)
   }
   lst <- post_process_extract_chunks(x, lscape_inds, lscape_inds)
+  # Place the fancylandscape pagestyle before the landscape tables
   lst$between <- map(lst$between, \(lscape_line){
     c("\\pagestyle{fancylandscape}", lscape_line)
   })
@@ -26,6 +27,15 @@ post_process_landscape_tables <- function(x){
       chunk <- c(chunk, "\\newpage")
     }
     chunk
+  })
+
+  x <- post_process_interlace_chunks(lst)
+
+  # Place the fancy pagestyle after the landscape tables
+  lscape_inds <- grep("\\\\end\\{landscape\\}", x)
+  lst <- post_process_extract_chunks(x, lscape_inds, lscape_inds)
+  lst$between <- map(lst$between, \(lscape_line){
+    c(lscape_line, "\\pagestyle{fancy}")
   })
 
   post_process_interlace_chunks(lst)

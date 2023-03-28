@@ -4,16 +4,19 @@
 #' @param start_yr Start year in table
 #' @param end_yr End year in table
 #' @param font_size The table data and header font size in points
+#' @param header_font_size The font size for the headers only. If `NULL`,
+#' the headers will have the same font size as the table cell data
 #' @param ... Arguments passed to [knitr::kable()]
 #'
-#' @return
+#' @return A [knitr::kable()] object
 #' @export
-#'
-#' @examples
 table_sampling_history <- function(d,
                                    start_yr,
                                    end_yr,
                                    font_size = 10,
+                                   header_font_size = 10,
+                                   header_vert_spacing = 12,
+                                   header_vert_scale = 1.2,
                                    ...){
 
   yrs <- d$Year
@@ -30,23 +33,31 @@ table_sampling_history <- function(d,
              .x)})
 
   col_names <- gsub(" ", "\n", names(d))
+  # Insert custom header fontsize before linebreaker
+  if(is.null(header_font_size)){
+    header_font_size <- font_size
+  }
+  hdr_font_str <- create_fontsize_str(header_font_size,
+                                      header_vert_spacing,
+                                      header_vert_scale)
+
+  # Insert header font size after every newline
   col_names <- gsub("-", "-\n", col_names)
   col_names <- gsub("Shoreside", "Shore-\nside", col_names)
   col_names <- gsub("Mothership", "Mother-\nship", col_names)
+  col_names <- gsub("\\n", paste0("\n", hdr_font_str$quad), col_names)
+  col_names <- paste0(hdr_font_str$dbl, col_names)
   # Add \\makecell{} latex macro to headers with newlines
-  col_names <- linebreak(col_names, align = "c")
-  # Center header names which don't have newlines, they are ignored by
-  # linebreak(), so add \\makecell manually
-  col_names[col_names == "Year"] <- "\\makecell[c]{Year}"
+  col_names <- linebreaker(col_names, align = "c")
 
-  kable(d,
-        format = "latex",
-        booktabs = TRUE,
-        align = "r",
-        linesep = "",
-        col.names = col_names,
-        escape = FALSE,
-        ...) |>
+  kbl(d,
+      format = "latex",
+      booktabs = TRUE,
+      align = "r",
+      linesep = "",
+      col.names = col_names,
+      escape = FALSE,
+      ...) |>
     row_spec(0, bold = TRUE) |>
     kable_styling(font_size = font_size,
                   latex_options = c("repeat_header"))

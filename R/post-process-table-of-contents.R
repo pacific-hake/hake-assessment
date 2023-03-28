@@ -14,6 +14,7 @@
 #' headers in the TOC
 #' @param subsubsection_num_width_inch Width of subsubsection numbers in inches
 #' in the TOC
+#' @param ... Absorb arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
 #' @export
@@ -23,7 +24,8 @@ post_process_table_of_contents <- function(x,
                                            subsection_indent_inch = 0.2,
                                            subsection_num_width_inch = 0.3,
                                            subsubsection_indent_inch = 0.4,
-                                           subsubsection_num_width_inch = 0.4){
+                                           subsubsection_num_width_inch = 0.4,
+                                           ...){
 
   toc_indicator_line <- paste0("TABLE OF CONTENTS GOES HERE - ",
                                "DO NOT DELETE OR MODIFY THIS LINE")

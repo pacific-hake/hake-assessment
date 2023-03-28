@@ -82,6 +82,7 @@ table_landings_tac <- function(ct,
         escape = FALSE,
         ...) |>
     row_spec(0, bold = TRUE) |>
-    kable_styling(font_size = font_size)
+    kable_styling(font_size = font_size,
+                  latex_options = c("repeat_header"))
 
 }

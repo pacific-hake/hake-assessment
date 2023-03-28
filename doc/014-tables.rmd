@@ -55,7 +55,7 @@ table_landings_tac(
 ```
 
 <!-- ```{r main-sampling-history-table, results = "asis", echo = FALSE} -->
-<!-- make.sampling.history.table( -->
+<!-- table_sampling_history( -->
 <!--   sampling_history_df, -->
 <!--   xcaption = paste0( -->
 <!--     "Annual summary of U.S. and Canadian fishery sampling included in this ", -->

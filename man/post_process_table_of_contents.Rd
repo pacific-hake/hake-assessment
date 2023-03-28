@@ -11,7 +11,8 @@ post_process_table_of_contents(
   subsection_indent_inch = 0.2,
   subsection_num_width_inch = 0.3,
   subsubsection_indent_inch = 0.4,
-  subsubsection_num_width_inch = 0.4
+  subsubsection_num_width_inch = 0.4,
+  ...
 )
 }
 \arguments{
@@ -35,6 +36,8 @@ headers in the TOC}
 
 \item{subsubsection_num_width_inch}{Width of subsubsection numbers in inches
 in the TOC}
+
+\item{...}{Absorb arguments meant for other functions}
 }
 \value{
 The modified Tex code, as a vector
