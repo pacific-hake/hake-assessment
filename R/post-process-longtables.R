@@ -118,7 +118,9 @@ post_process_longtables <- function(x){
   if(length(longend_inds)){
     longend_prev_inds <- longend_inds - 1
     longend_has_bottomrule <- grepl("\\\\bottomrule", x[longend_prev_inds])
-    x <- x[-longend_prev_inds[longend_has_bottomrule]]
+    if(any(longend_has_bottomrule)){
+      x <- x[-longend_prev_inds[longend_has_bottomrule]]
+    }
   }
 
   x

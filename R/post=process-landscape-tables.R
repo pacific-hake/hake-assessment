@@ -10,6 +10,9 @@ post_process_landscape_tables <- function(x){
   # Add fancy landscape page type to landscape pages to remove the sideways
   # headers and footers, and add a page number at the bottom
   lscape_inds <- grep("\\\\begin\\{landscape\\}", x)
+  if(!length(lscape_inds)){
+    return(x)
+  }
   lst <- post_process_extract_chunks(x, lscape_inds, lscape_inds)
   lst$between <- map(lst$between, \(lscape_line){
     c("\\pagestyle{fancylandscape}", lscape_line)

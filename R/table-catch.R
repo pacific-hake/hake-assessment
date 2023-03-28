@@ -1,6 +1,6 @@
 #' Create a table of total catch
 #'
-#' @param ct Data frame as in the file `landing-tac-histroy.csv`
+#' @param ct Data frame as in the file `landing-tac-history.csv`
 #' @param country One of "both", "can", or "us"
 #' @param start_yr Start year in table
 #' @param end_yr End year in table
