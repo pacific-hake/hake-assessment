@@ -1,6 +1,6 @@
 #' Create a summary table of landings and TACS
 #'
-#' @param d Data frame as in the file `landing-tac-histroy.csv`
+#' @param ct Data frame as in the file `landing-tac-histroy.csv`
 #' @param start_yr Start year for the table
 #' @param end_yr End year for the table. If past data range, the last year
 #' in `d` will be used
@@ -10,7 +10,7 @@
 #'
 #' @return A [knitr::kable()] object
 #' @export
-table_landings_tac <- function(d,
+table_landings_tac <- function(ct,
                                start_yr,
                                end_yr,
                                font_size = 8,

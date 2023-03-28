@@ -4,10 +4,10 @@
 \alias{table_landings_tac}
 \title{Create a summary table of landings and TACS}
 \usage{
-table_landings_tac(d, start_yr, end_yr, font_size = 8, ...)
+table_landings_tac(ct, start_yr, end_yr, font_size = 8, ...)
 }
 \arguments{
-\item{d}{Data frame as in the file \code{landing-tac-histroy.csv}}
+\item{ct}{Data frame as in the file \code{landing-tac-histroy.csv}}
 
 \item{start_yr}{Start year for the table}
 
