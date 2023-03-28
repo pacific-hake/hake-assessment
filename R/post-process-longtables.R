@@ -33,43 +33,82 @@ post_process_longtables <- function(x){
   }
 
   lst <- post_process_extract_chunks(x, beg_inds, end_inds)
-  n_col <- map(lst$between, function(tbl){
-    # Get the first line starting with a year (first row in table)
-    first_yr_line <- tbl[grep("^\\\\endlastfoot$", tbl) + 1]
-    # Extract the number of columns in the table
+  # Check to see if landscape. If so, copy label and header and the
+  # `\\endhead` lines in (More complex method than portrait mode)
+  # `is_landscape_lst` is a vector of indices in the between list which are
+  # landscape longtables
+  is_landscape_lst <- map_lgl(beg_inds, \(ind){
+    as.logical(length(grep("landscape", x[ind - 2])))
+  })
+
+  n_col <- map2(lst$between, is_landscape_lst, function(tbl, is_landscape){
+    if(is_landscape){
+      # Get the first line starting with a year (first row in table)
+      first_yr_line <- tbl[grep("^\\\\midrule$", tbl) + 1]
+    }else{
+      # Get the first line starting with a year (first row in table)
+      first_yr_line <- tbl[grep("^\\\\endlastfoot$", tbl) + 1]
+      # Extract the number of columns in the table
+    }
     str_count(first_yr_line, "&") + 1
   })
+
   # Get location of `\\endfirsthead` and paste "Continued from" line
-  lst$between <- map2(lst$between, n_col, function(tbl, nc){
-    efh <- grep("endfirsthead", tbl)
-    pre <-tbl[1:(efh)]
-    post <- tbl[(efh + 1):length(tbl)]
-    c(pre,
-      paste0(
-        "\\multicolumn{",
-        nc,
-        "}{l}{\\textit{... Continued from previous page}} \\\\ \\hline"),
-      post)
-  })
-  # Get location of `\\endhead` and paste "... Continued on" line
-  lst$between <- map2(lst$between, n_col, function(tbl, nc){
-    efh <- grep("endhead", tbl)
-    pre <-tbl[1:(efh)]
-    post <- tbl[(efh + 1):length(tbl)]
-    c(pre,
-      paste0(
-        "\\hline \\multicolumn{",
-        nc,
-        "}{l}{\\textit{Continued on next page ...}} \\\\"),
-      post)
-  })
-  # Remove caption and toprule from second page
-  lst$between <- map(lst$between, function(tbl){
-    cap <- grep("caption\\[\\]", tbl)
-    pre <- tbl[1:(cap - 1)]
-    # Assumes `\\toprule` follows `\\caption[]` directly (+ 2)
-    post <- tbl[(cap + 2):length(tbl)]
-    c(pre, post)
+  lst$between <- imap(lst$between, function(tbl, i){
+    if(is_landscape_lst[i]){
+      # Landscape table
+      hdr_beg <- grep("\\\\toprule", tbl)
+      hdr_end <- grep("\\\\midrule", tbl)
+      hdr_names <- tbl[hdr_beg:(hdr_end - 1)]
+      pre <- tbl[1:hdr_end]
+      post <- tbl[(hdr_end + 1):length(tbl)]
+      c(pre,
+        "\\endfirsthead",
+             paste0(
+               "\\multicolumn{",
+               n_col[i],
+               "}{l}{\\textit{... Continued from previous page}} \\\\"),
+        hdr_names,
+        "\\midrule",
+        "\\endhead",
+        paste0("\\hline \\multicolumn{",
+               n_col[i],
+               "}{l}{\\textit{Continued on next page ...}} \\\\"),
+        "\\endfoot",
+        "\\bottomrule",
+        "\\endlastfoot",
+        post)
+    }else{
+      # Portrait longtable
+      efh <- grep("endfirsthead", tbl)
+      pre <-tbl[1:(efh)]
+      post <- tbl[(efh + 1):length(tbl)]
+      tmp <-
+        c(pre,
+          paste0(
+            "\\multicolumn{",
+            n_col[i],
+            "}{l}{\\textit{... Continued from previous page}} \\\\ \\hline"),
+          post)
+
+      efh <- grep("endhead", tmp)
+      pre <-tmp[1:(efh)]
+      post <- tmp[(efh + 1):length(tmp)]
+      tmp <- c(pre,
+               paste0(
+                 "\\hline \\multicolumn{",
+                 n_col[i],
+                 "}{l}{\\textit{Continued on next page ...}} \\\\"),
+               post)
+
+      cap <- grep("caption\\[\\]", tmp)
+      pre <- tmp[1:(cap - 1)]
+      # Assumes `\\toprule` follows `\\caption[]` directly (+ 2)
+      post <- tmp[(cap + 2):length(tmp)]
+      tmp <- c(pre, post)
+
+      tmp
+    }
   })
 
   post_process_interlace_chunks(lst)
