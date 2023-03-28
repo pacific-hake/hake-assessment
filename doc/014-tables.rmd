@@ -18,6 +18,7 @@ table_catch(
     "activities. Catch associated with surveys and discarded bycatch in ",
     "fisheries not targeting hake is not currently included in the table or ",
     "model."),
+  font_size = 12,
   longtable = TRUE)
 ```
 
@@ -32,27 +33,26 @@ table_catch(
   country = "can",
   caption = paste0(
     "Annual catches of ", sp, " (t) in Canadian  waters by fleet, ", start_yr,
-    "-", last_data_yr, "."))
+    "-", last_data_yr, "."),
+  font_size = 12,
+  longtable = TRUE)
 ```
 
-\clearpage
 
-<!-- \begin{landscape} -->
-<!-- \pagestyle{mylandscape} -->
-<!-- \centering -->
-<!-- ```{r main-landings-tac-table, results = "asis", echo = FALSE} -->
-<!-- table_catch( -->
-<!--   ct, -->
-<!--   start_yr = start_yr, -->
-<!--   end_yr = end_yr - 1, -->
-<!--   caption = paste0( -->
-<!--     sp, -->
-<!--     "landings and management decisions. A dash (--)  indicates the ", -->
-<!--     "management decision was either not specified or was unknown to the ", -->
-<!--     "authors at the time of this assessment.")) -->
-<!-- ``` -->
-<!-- \end{landscape} -->
-<!-- \pagestyle{fancy} -->
+```{r main-landings-tac-table, results = "asis", echo = FALSE}
+table_landings_tac(
+  ct,
+  start_yr = start_yr,
+  end_yr = end_yr - 1,
+  caption = paste0(
+    sp,
+    "landings and management decisions. A dash (--)  indicates the ",
+    "management decision was either not specified or was unknown to the ",
+    "authors at the time of this assessment."),
+  font_size = 12,
+  longtable = TRUE) |> 
+  landscape()
+```
 
 <!-- ```{r main-sampling-history-table, results = "asis", echo = FALSE} -->
 <!-- make.sampling.history.table( -->

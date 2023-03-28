@@ -59,11 +59,9 @@ table_catch(
   longtable = TRUE)
 ```
 
-\begin{landscape}
-\pagestyle{mylandscape}
-\centering
+
 ```{r main-landings-tac-table, results = "asis", echo = FALSE}
-table_catch(
+table_landings_tac(
   ct,
   start_yr = start_yr,
   end_yr = end_yr - 1,
@@ -71,6 +69,8 @@ table_catch(
     sp,
     "landings and management decisions. A dash (--)  indicates the ",
     "management decision was either not specified or was unknown to the ",
-    "authors at the time of this assessment."))
+    "authors at the time of this assessment."),
+  font_size = 12,
+  longtable = TRUE) |> 
+  landscape()
 ```
-\end{landscape}

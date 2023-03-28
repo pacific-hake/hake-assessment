@@ -21,10 +21,10 @@
 #'      requires the float package
 #' @return The modified Tex code, as a vector
 #' @export
-set_figure_placement <- function(x,
-                                 figs_dir,
-                                 knitr_label,
-                                 place){
+post_process_set_figure_placement <- function(x,
+                                              figs_dir,
+                                              knitr_label,
+                                              place){
 
   get_beg_fig_ind <- function(fig_ind, n_lines = 5){
 

@@ -95,13 +95,15 @@ post_process <- function(fn,
   x <- post_process_table_of_contents(x, ...)
 
   # Executive summary catch plot placement----
-  x <- set_figure_placement(x,
-                            figs_dir,
-                            knitr_label = "es-catches-1",
-                            place = "!b")
+  x <- post_process_set_figure_placement(x,
+                                         figs_dir,
+                                         knitr_label = "es-catches-1",
+                                         place = "!b")
 
   # Add more latex to longtables ----
   x <- post_process_longtables(x)
+
+  x <- post_process_landscape_tables(x)
 
  # Mark file with modification text ----
   x <- c(modification_text, x)

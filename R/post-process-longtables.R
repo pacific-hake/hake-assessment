@@ -111,5 +111,15 @@ post_process_longtables <- function(x){
     }
   })
 
-  post_process_interlace_chunks(lst)
+  x <- post_process_interlace_chunks(lst)
+
+  # Remove extra bottom line of landscape longtables
+  longend_inds <- grep("\\\\end\\{longtable\\}", x)
+  if(length(longend_inds)){
+    longend_prev_inds <- longend_inds - 1
+    longend_has_bottomrule <- grepl("\\\\bottomrule", x[longend_prev_inds])
+    x <- x[-longend_prev_inds[longend_has_bottomrule]]
+  }
+
+  x
 }
