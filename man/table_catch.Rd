@@ -11,6 +11,9 @@ table_catch(
   end_yr,
   inc_foreign_jv = FALSE,
   font_size = 10,
+  header_font_size = 10,
+  header_vert_spacing = 12,
+  header_vert_scale = 1.2,
   ...
 )
 }
@@ -28,7 +31,16 @@ foreign fleets and Canadian foreign fleet}
 
 \item{font_size}{The table data and header font size in points}
 
+\item{header_font_size}{The font size for the headers only. If \code{NULL},
+the headers will have the same font size as the table cell data}
+
+\item{header_vert_scale}{Scale factor to create the vertical spacing value.
+See \code{header_vert_spacing}}
+
 \item{...}{Arguments passed to \code{\link[knitr:kable]{knitr::kable()}}}
+
+\item{vert_spacing}{The vertical spacing between newlines for this font.
+If \code{NULL} this will be calculated as \code{header_font_size * header_vert_scale}}
 }
 \value{
 A \code{\link[knitr:kable]{knitr::kable()}} object

@@ -2,11 +2,11 @@
 #' table header cells to make [knitr::kable()] tables have headers with
 #' a different font size than the table cells have
 #'
-#' @param font_size Size of font, in pts
+#' @param header_font_size Size of font, in pts
 #' @param vert_spacing The vertical spacing between newlines for this font.
-#' If `NULL` this will be calculated as `font_size * vert_scale`
-#' @param vert_scale Scale factor to create the vertical spacing value.
-#' See `vert_spacing`
+#' If `NULL` this will be calculated as `header_font_size * header_vert_scale`
+#' @param header_vert_scale Scale factor to create the vertical spacing value.
+#' See `header_vert_spacing`
 #' @param ... Absorbs arguments meant for other functions
 #'
 #' @return A list of two character strings, one having double-backslashes

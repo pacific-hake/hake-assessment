@@ -28,10 +28,6 @@ output:
 fontsize: 11pt
 urlcolor: blue
 header-includes:
-  - \usepackage{sectsty}
-  - \usepackage{titling}
-  - \pagenumbering{gobble}
-  - \pagenumbering{arabic}
   - \lfoot{TEST document}
 link-citations: true
 bibliography: ../bib/refs.bib
