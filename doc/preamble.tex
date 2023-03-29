@@ -28,6 +28,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+% For bold math symbols in equations
 \usepackage{bm}
 
 \ifPDFTeX
@@ -48,33 +49,30 @@
 % For degree symbol
 \usepackage{gensymb}
 
-% Don't use eqnarray, it's old and buggy with newer packages
-% align is from amsmath package
+% Don't use eqnarray, it's old and buggy when combined with many newer
+% packages. `\align` is from amsmath package
 \newcommand{\eb}{\begin{align}}
 \newcommand{\ee}{\end{align}}
 
-% Keep whole paragraph on one page instead of a single line on the next page.
+% Keep whole paragraph on one page instead of a single line on the next page
 \usepackage[all]{nowidow}
-
-% Font selection, here we use the monospace Bera font
-%\usepackage{bera}
 
 % Used to make the headers in tables via the kableExtra::linebreak() function
 \usepackage{makecell}
-% Makes the table header cells set up by `linebreaker()` have their text closer
-% together vertically
+% These two commands make the table header cells set up by `linebreaker()
+% have their text closer together vertically. They work inconjunction with
+% \makecell
 \usepackage{array}
 \renewcommand\cellset{\renewcommand\arraystretch{0.5}
 \setlength\extrarowheight{1pt}}
-
-\usepackage{multirow}
 
 % Needed for `H` placement option for plots
 \usepackage{float}
 
 % To make a float on its own page appear at the top instead of vertically
 % centered. From:
-% http://stackoverflow.com/questions/2009420/how-to-put-a-figure-on-the-top-of-a-page-on-its-own-in-latex
+% http://stackoverflow.com/questions/2009420/how-to-put-a-figure-on-the-
+% top-of-a-page-on-its-own-in-latex
 \makeatletter
 \setlength\@fptop{0pt}
 \makeatother
@@ -90,15 +88,19 @@
 % Page number in the bottom center of page
 \fancyfoot[C]{\thepage}
 
+% Font settings for the title page
 \newcommand*{\TitleFont}{
       \usefont{\encodingdefault}{\rmdefault}{b}{n}
       \fontsize{20}{24}
       \selectfont}
 
 \usepackage{graphicx}
+
+% For the table of contents, `\secnumdepth` is the depth to show in the TOC
 \usepackage{tocloft}
 \setcounter{secnumdepth}{3}
 
+% Setup hyperlink attributes here
 \usepackage[breaklinks=true,bookmarksopen,bookmarksdepth=3]{hyperref}
 \hypersetup{
   colorlinks=false,
@@ -118,20 +120,26 @@
 % \edef\mypdfauthor{\GetDocumentProperties{hyperref/pdfauthor}}
 % \urlstyle{same}
 
+% This provides `\sectionfont{}` which we use to make section fonts uppercase
+% with this command: \sectionfont{\makeUpperCase}`
 \usepackage{sectsty}
 
+% Provides `\landscape`
 \usepackage{pdflscape}
 
+% This is the pagestyle for landscape pages in the document
 \fancypagestyle{fancylandscape}{
-\fancyhf{} % Clears the header/footer
-\fancyfoot{ % Footer
-\makebox[\textwidth][r]{ % Right
-  \rlap{\hspace{.75cm} % Push out of margin by \footskip
-    \smash{ % Remove vertical height
-      \raisebox{4.87in}{ % Raise vertically
+\fancyhf{}
+\fancyfoot{
+\makebox[\textwidth][r]{
+  \rlap{\hspace{.75cm}
+    \smash{
+      \raisebox{4.87in}{
         \rotatebox{90}{
         \thepage
-        }}}}}} % Rotate counter-clockwise
-\renewcommand{\headrulewidth}{0pt} % No header rule
-\renewcommand{\footrulewidth}{0pt} % No footer rule
+        }}}}}}
+% Cannot figure out how to place the header/footer lines on the long side
+% so we just remove them altogether
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 }
