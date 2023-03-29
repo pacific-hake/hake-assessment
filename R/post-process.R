@@ -88,6 +88,17 @@ post_process <- function(fn,
          call. = FALSE)
   }
 
+  # Remove page number from title page
+  title_ind <- grep("\\\\maketitle", x)
+  if(!length(title_ind)){
+    stop("`\\maketitle` not found. You must be using the `\\maketitle` ",
+         "method to produce the title page for this document",
+         call. = FALSE)
+  }
+  pre <- x[1:(title_ind)]
+  post <- x[(title_ind + 1):length(x)]
+  x <- c(pre, "\\thispagestyle{empty}", post)
+
   # Make sections/subsections uppercase/centered ----
   x <- post_process_section_headers(x)
 
