@@ -2,15 +2,27 @@
 
 meta <- rmarkdown::metadata
 
-sp <- meta$`params`$sp
-common_name <- meta$`params`$common_name
-science_name <- meta$`params`$science_name
-simple_name <- meta$`params`$simple_name
-survey_name <- meta$`params`$survey_name
-assess_yr <- meta$`params`$assess_yr
-last_assess_yr <- meta$`params`$last_assess_yr
-model_version <- meta$`params`$model_version
-last_yr_model_version <- meta$`params`$last_yr_model_version
+if(length(meta)){
+  sp <- meta$`params`$sp
+  common_name <- meta$`params`$common_name
+  science_name <- meta$`params`$science_name
+  simple_name <- meta$`params`$simple_name
+  survey_name <- meta$`params`$survey_name
+  assess_yr <- meta$`params`$assess_yr
+  last_assess_yr <- meta$`params`$last_assess_yr
+  model_version <- meta$`params`$model_version
+  last_yr_model_version <- meta$`params`$last_yr_model_version
+}else{
+  sp <- "hake"
+  common_name <- "hake"
+  science_name <- "hake"
+  simple_name <- "hake"
+  survey_name <- "survey"
+  assess_yr <- year(Sys.time())
+  last_assess_yr <- year(Sys.time()) - 1
+  model_version <- "01"
+  last_yr_model_version <- "01"
+}
 
 sys_info <- Sys.info()
 computer_name <- sys_info[["nodename"]]

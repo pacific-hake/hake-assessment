@@ -19,6 +19,7 @@ table_catch(
     "fisheries not targeting hake is not currently included in the table or ",
     "model."),
   font_size = 12,
+  header_font_size = 10,
   longtable = TRUE)
 ```
 
@@ -50,7 +51,6 @@ table_landings_tac(
     "landings and management decisions. A dash (--)  indicates the ",
     "management decision was either not specified or was unknown to the ",
     "authors at the time of this assessment."),
-  font_size = 12,
   font_size = 10,
   header_font_size = 8,
   longtable = TRUE) |> 

@@ -9,7 +9,9 @@ load_extra_mcmc(
   model,
   probs = c(0.025, 0.5, 0.975),
   small = TRUE,
+  progress_n = 500,
   verbose = TRUE,
+  first = NULL,
   ...
 )
 }
@@ -24,7 +26,15 @@ estimates) in order to reduce the memory taken up by loading all the
 output into R for the document build.If \code{FALSE}, load everything that
 the base model needs, which will make a huge RDS file}
 
+\item{progress_n}{Report every time this many files are processed. Consider
+how many posteriors there are, this should be a fairly large proportion of
+that (around 1/8th) or there will be too much output and it will run really
+slow}
+
 \item{verbose}{Logical. If \code{TRUE}, show progress messages}
+
+\item{first}{Load this many of the files. If \code{NULL}, load them all. Used
+for debugging purposes to cut down the size of the lists used}
 
 \item{...}{Arguments passed to \code{\link[=extract_rep_table]{extract_rep_table()}}}
 }

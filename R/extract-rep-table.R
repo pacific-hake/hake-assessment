@@ -3,8 +3,13 @@
 #' @param reps_lst A list of vectors, all the same length and structure,
 #' typically extracted as a portion of a Report.sso file
 #' @param header A vector of column names for the new table
+#' @param progress_n Report every time this many data frames are processed.
+#' Consider how many posteriors there are, this should be a fairly large
+#'  proportion of that (around 1/8th) or there will be too much output and it
+#'   will run really slow
 #' @param verbose Logical. If `TRUE`, show message about which iteration
 #' and row range is being populated from the loop
+#' @param ... Absorb arguments meant for other functions
 #'
 #' @return A [tibble::tibble()] representing one row for each of the list
 #'  elements found in `reps_lst`. A new column called `Iter` is prepended and
@@ -12,51 +17,56 @@
 #'  List elements that are NA will not be included in the table.
 extract_rep_table <- function(reps_lst,
                               header,
-                              verbose = TRUE){
+                              progress_n = 500,
+                              verbose = TRUE,
+                              ...){
 
   num_iters <- length(reps_lst)
   nrow_per_iter <- map_dbl(reps_lst, ~{length(.x)})
   tot_num_rows <- sum(nrow_per_iter)
-
-  mat <- matrix(, nrow = tot_num_rows, ncol = length(header) + 1)
+  mat <- matrix(nrow = tot_num_rows, ncol = length(header) + 1)
   row_ind_start <- 1
   row_ind_end <- nrow_per_iter[1]
   for(i in seq_along(reps_lst)){
-    vecs <- map(str_split(reps_lst[[i]], " +"), ~{
+    vecs <- map(str_split(reps_lst[[i]], " +"), \(cell_val){
       # Convert 'Era' VIRG, INIT, TIME, and FORE to numbers
       # 1, 2, 3, and 4 respectively
       # Biomass table
-      .x[.x == "VIRG"] <- 1
-      .x[.x == "INIT"] <- 2
-      .x[.x == "TIME"] <- 3
-      .x[.x == "FORE"] <- 4
-      .x[.x == "_"] <- 9999
-      .x[.x == "NA"] <- 9999
+      cell_val[cell_val == "VIRG"] <- 1
+      cell_val[cell_val == "INIT"] <- 2
+      cell_val[cell_val == "TIME"] <- 3
+      cell_val[cell_val == "FORE"] <- 4
+      cell_val[cell_val == "_"] <- 9999
+      cell_val[cell_val == "NA"] <- 9999
       # Selectivity table
-      .x[.x == "Asel"] <- 9999
-      asel_ind <- grep("Asel", .x)
+      cell_val[cell_val == "Asel"] <- 9999
+      asel_ind <- grep("Asel", cell_val)
       if(length(asel_ind)){
-        .x[asel_ind] <- 9999
+        cell_val[asel_ind] <- 9999
       }
       # Vulnerable bioimass table
-      .x[.x == "sel*wt"] <- 8888
-      lbl_ind <- grep("sel", .x)
+      cell_val[cell_val == "sel*wt"] <- 8888
+      lbl_ind <- grep("sel", cell_val)
       if(length(lbl_ind)){
-        .x[lbl_ind] <- 9999
+        cell_val[lbl_ind] <- 9999
       }
       # Numbers at age table (also has time period FOR, TIME etc
       # Which is taken care of already
-      .x[.x == "B"] <- 9999
-      .x[.x == "M"] <- 8888
+      cell_val[cell_val == "B"] <- 9999
+      cell_val[cell_val == "M"] <- 8888
       # Catch-at-age table (also has time period FOR, TIME etc
-      .x[.x == "dead"] <- 9999
+      cell_val[cell_val == "dead"] <- 9999
       # Pearson Residuals table
-      .x[.x == "AGE"] <- 9999
-      as.numeric(.x)
+      cell_val[cell_val == "AGE"] <- 9999
+      as.numeric(cell_val)
     })
+
     mtch_end <- i * nrow_per_iter[1]
-    if(i %% 500 == 0 && verbose)
-      cat("Iter: ", i, " -> Matrix rows: ", row_ind_start, "--", row_ind_end, "\n")
+    if(i %% progress_n == 0 && verbose)
+      cat("Iter: ", i, " -> Matrix rows: ",
+          row_ind_start,
+          "--",
+          row_ind_end, "\n")
     vecs <- map(vecs, ~{c(i, .x)})
     iter <- 1
     for(j in row_ind_start:row_ind_end){

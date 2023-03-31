@@ -57,16 +57,18 @@ adjusted for carryovers) of `r last_yr_tac`~t. Attainment in the U.S. was
 `r last_yr_can_attained`%.
 
 ```{r es-catches-tab, results = "asis", echo = FALSE}
-table_catch(ct,
-            start_yr = end_yr - 10,
-            end_yr = end_yr - 1,
-            caption = paste0(
-              "Recent commercial fishery catch (t). Tribal catches are",
-              "included in the sector totals. Research catch includes landed",
-              "catch associated with certain research-related activities.",
-              "Catch associated with surveys and discarded bycatch in",
-              "fisheries not targeting hake is relatively small and not included in",
-              "the table or model."))
+table_catch(
+  ct,
+  start_yr = end_yr - 10,
+  end_yr = end_yr - 1,
+  caption = paste0(
+    "Recent commercial fishery catch (t). Tribal catches are included in ",
+    "the sector totals. Research catch includes landed catch associated with ",
+    "certain research-related activities. Catch associated with surveys and ",
+    "discarded bycatch in fisheries not targeting hake is relatively small ",
+    "and not included in the table or model."),
+  font_size = 9,
+  header_font_size = 8)
 ```
 
 In this document, the terms catch and landings are used interchangeably.
@@ -231,25 +233,28 @@ from `r curr_depl_lower`% to `r curr_depl_upper`%
 (Table~\@ref(tab:es-biomass-tab), due to high uncertainty about the size of
 the 2020 cohort, which has not yet been sampled in the acoustic survey
 biomass index of age-2+ fish. The median estimate of the `r end_yr` female
-spawning biomass is `r curr_bio_median` million~t (with a 95% posterior credibility interval from
-`r curr_bio_lower` to `r curr_bio_upper` million~t. The current estimate of the
-`r end_yr - 1` female spawning biomass is `r prev_bio_median`
-(`r prev_bio_lower`--`r prev_bio_upper`) million~t. This is higher than the
-`r prev_bio_median_last_assess` (`r prev_bio_lower_last_assess`--
-`r prev_bio_upper_last_assess`) million~t estimated in the `r end_yr - 1`
+spawning biomass is `r curr_bio_median` million~t (with a 95% posterior
+credibility interval from `r curr_bio_lower` to `r curr_bio_upper` million~t.
+The current estimate of the `r end_yr - 1` female spawning biomass is
+`r prev_bio_median` (`r prev_bio_lower`--`r prev_bio_upper`) million~t. This is
+higher than the `r prev_bio_median_last_assess` (`r prev_bio_lower_last_assess`
+--`r prev_bio_upper_last_assess`) million~t estimated in the `r end_yr - 1`
 assessment. The increase appears to be due to the addition of 2022 fishery
 age-composition data, which suggests the 2020 cohort may be larger than the
 age-1 index alone was indicating in the last assessment.
 
 ```{r es-biomass-tab, results = "asis", echo = FALSE}
-table_biomass(base_model,
-              start_yr = end_yr - 9,
-              end_yr = end_yr,
-              font_size = 12,
-              caption = paste0(
-                "Recent trends in estimated beginning of the year female ",
-                "spawning biomass (SSB; thousand~t) and spawning biomass ",
-                "relative to estimated unfished equilibrium (Rel. SSB; \\%)."))
+table_biomass(
+  base_model,
+  start_yr = end_yr - 9,
+  end_yr = end_yr,
+  caption = paste0(
+    "Recent trends in estimated beginning of the year female spawning ",
+    "biomass (SSB; thousand~t) and spawning biomass relative to estimated ",
+    "unfished equilibrium (Rel. SSB; \\%)."),
+  font_size = 10,
+  header_font_size = 8)
+)
 ```
 
 ## Recruitment {-}

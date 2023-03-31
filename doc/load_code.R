@@ -1,0 +1,6 @@
+dr <- here::here("doc")
+knitr::knit(file.path(dr, "001-load-packages.rmd"))
+knitr::knit(file.path(dr, "002-load-globals.rmd"))
+knitr::knit(file.path(dr, "003-load-data-tables.rmd"))
+if(!exists("base_model"))
+  base_model <- readRDS("/srv/hake/models/2023/01-version/01-base-models/01-base/01-base.rds")

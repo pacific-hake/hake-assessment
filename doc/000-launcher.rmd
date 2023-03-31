@@ -28,12 +28,8 @@ output:
 fontsize: 11pt
 urlcolor: blue
 header-includes:
-  - \usepackage{sectsty}
-  - \usepackage{titling}
-  - \pagenumbering{gobble}
   - \pretitle{\begin{center}}
   - \posttitle{\end{center}\begin{center}\LARGE\includegraphics[width=12cm]{main-figures/hake-picture.png}\\[\bigskipamount]\end{center}}
-  - \pagenumbering{arabic}
   - \lfoot{DRAFT -- `r params$sp` assessment `r params$assess_yr`}
 link-citations: true
 bibliography: bib/refs.bib

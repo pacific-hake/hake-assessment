@@ -59,6 +59,7 @@ remote-desktop-scripts*
 temp-keep*
 data/extractedData*
 doc/old-pdfs*
+doc/hake.Rmd
 
 # Other
 appendix-srg-requests-2017.rnw

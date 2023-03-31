@@ -7,6 +7,12 @@
 #' @param digits Number of decimal places to round to
 #' @param scale A scale factor to divide the biomass by
 #' @param font_size The table data and header font size in points
+#' @param header_font_size The font size for the headers only. If `NULL`,
+#' the headers will have the same font size as the table cell data
+#' @param vert_spacing The vertical spacing between newlines for this font.
+#' If `NULL` this will be calculated as `header_font_size * header_vert_scale`
+#' @param header_vert_scale Scale factor to create the vertical spacing value.
+#' See `header_vert_spacing`
 #' @param ... Arguments passed to [knitr::kable()]
 #'
 #' @return A [knitr::kable()] object
@@ -17,6 +23,9 @@ table_biomass <- function(model,
                           digits = 1,
                           scale = 1000,
                           font_size = 8,
+                          header_font_size = 10,
+                          header_vert_spacing = 12,
+                          header_vert_scale = 1.2,
                           ...){
 
   calcs <- model$mcmccalcs
@@ -50,18 +59,28 @@ table_biomass <- function(model,
                  "Rel.\nSSB ($B_t/B_0$)\nMedian",
                  "Rel.\nSSB ($B_t/B_0$)\n97.5\\textsuperscript{th}\npercentile")
 
-  col_names <- names(df)
-  col_names <- linebreak(col_names, align = "c")
-  col_names[col_names == "Year"] <- "\\makecell[c]{Year}"
+  # Insert custom header fontsize before linebreaker
+  if(is.null(header_font_size)){
+    header_font_size <- font_size
+  }
+  hdr_font_str <- create_fontsize_str(header_font_size,
+                                      header_vert_spacing,
+                                      header_vert_scale)
 
-  kable(df,
-        format = "latex",
-        booktabs = TRUE,
-        align = "r",
-        linesep = "",
-        col.names = col_names,
-        escape = FALSE,
-        ...) |>
+  col_names <- names(df)
+  col_names <- gsub("\\n", paste0("\n", hdr_font_str$quad), col_names)
+  col_names <- paste0(hdr_font_str$dbl, col_names)
+  # Add \\makecell{} latex command to headers with newlines
+  col_names <- linebreak(col_names, align = "c")
+
+  kbl(df,
+      format = "latex",
+      booktabs = TRUE,
+      align = "r",
+      linesep = "",
+      col.names = col_names,
+      escape = FALSE,
+      ...) |>
     row_spec(0, bold = TRUE) |>
     kable_styling(font_size = font_size,
                   latex_options = c("repeat_header"))

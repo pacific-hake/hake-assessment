@@ -4,7 +4,7 @@
 \alias{extract_rep_table}
 \title{Extract the vectors from a list into a \code{\link[tibble:tibble]{tibble::tibble()}}}
 \usage{
-extract_rep_table(reps_lst, header, verbose = TRUE)
+extract_rep_table(reps_lst, header, progress_n = 500, verbose = TRUE, ...)
 }
 \arguments{
 \item{reps_lst}{A list of vectors, all the same length and structure,
@@ -12,8 +12,15 @@ typically extracted as a portion of a Report.sso file}
 
 \item{header}{A vector of column names for the new table}
 
+\item{progress_n}{Report every time this many data frames are processed.
+Consider how many posteriors there are, this should be a fairly large
+proportion of that (around 1/8th) or there will be too much output and it
+will run really slow}
+
 \item{verbose}{Logical. If \code{TRUE}, show message about which iteration
 and row range is being populated from the loop}
+
+\item{...}{Absorb arguments meant for other functions}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble::tibble()}} representing one row for each of the list
