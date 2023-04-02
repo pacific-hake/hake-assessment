@@ -16,7 +16,7 @@ load_extra_mcmc_sel <- function(reps,
   fleet <- ifelse(type == "fishery", 1, 2)
 
   if(verbose){
-    message("Extracting selectivities...")
+    message(paste0("Extracting ", type, " selectivities..."))
   }
   x <- load_extra_mcmc_get_chunk(reps, ...)
   ts <- extract_rep_table(reps_lst = x$lst,
@@ -32,6 +32,7 @@ load_extra_mcmc_sel <- function(reps,
     select(yr, iter, all_of(ages))
 
   out <- list()
+  out$sel <- ts
   out$sel_lo <- ts |>
     mutate_at(vars(-yr), ~{
       quantile(.x, probs = probs[1])
