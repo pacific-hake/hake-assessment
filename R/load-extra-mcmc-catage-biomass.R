@@ -50,26 +50,29 @@ load_extra_mcmc_catage_biomass <- function(reps,
     select(yr, all_of(ages))
 
   yrs <- sort(unique(catage$yr))
-  iters <- map(sort(unique(catage$iter)), ~{
-    rep(.x, length(yrs))
-  })
+  # iters <- map(sort(unique(catage$iter)), ~{
+  #   rep(.x, length(yrs))
+  # })
 
   # Make a list of data frames, each with a unique iter value
-  tmp <- catage |>
+  catage_lst <- catage |>
     split(~ iter)
 
   # Multiply catage data frame, from each posterior with wtatage
   # Note that the yr and iter columns are removed
-  map2(tmp, iters, \(df, iter){
-    k <- as_tibble(select(df, -yr, -iter) *
-                as.vector(select(wtatage, -yr)))
-    k |> mutate(yr = !!yrs,
-                iter = !!iter) |>
-      select(yr, iter, everything())
-    }) |>
+  wtatage <- wtatage |>
+    filter(yr %in% unique(catage$yr))
+
+  map(catage_lst, \(df){
+    yr_iter <- df |>
+      select(yr, iter)
+    k <- as_tibble(select(df, -c(yr, iter)) *
+                   as.vector(select(wtatage, -yr)))
+    bind_cols(yr_iter, k)
+
+  }) |>
     map_df(~{.x}) |>
     group_by(yr) |>
     summarize_all(median) |>
     select(-iter)
-
 }

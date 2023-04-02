@@ -141,6 +141,8 @@ load_extra_mcmc <- function(model,
   natage_lst <- load_extra_mcmc_atage(
     reps = reps,
     verbose = verbose,
+    start_yr = model$startyr,
+    end_yr = model$endyr + 1,
     txt = "Numbers-at-age",
     beg_pat = "^NUMBERS_AT_AGE report",
     end_pat = "^BIOMASS_AT_AGE",
@@ -154,11 +156,12 @@ load_extra_mcmc <- function(model,
     batage_lst <- load_extra_mcmc_atage(
       reps = reps,
       verbose = verbose,
+      start_yr = model$startyr,
+      end_yr = model$endyr + 1,
       txt = "Biomass-at-age",
       beg_pat = "^BIOMASS_AT_AGE",
       end_pat = "^NUMBERS_AT_LENGTH",
       scale = 1e3,
-      start_yr = model$startyr,
       progress_n = progress_n,
       ...)
     extra_mcmc$batage_med <- batage_lst$med
@@ -167,11 +170,12 @@ load_extra_mcmc <- function(model,
     catage_lst <- load_extra_mcmc_atage(
       reps = reps,
       verbose = verbose,
+      start_yr = model$startyr,
+      end_yr = model$endyr,
       txt = "Catch-at-age",
       beg_pat = "^CATCH_AT_AGE",
       end_pat = "^DISCARD_AT_AGE",
       scale = 1,
-      start_yr = model$startyr,
       progress_n = progress_n,
       ...)
     extra_mcmc$catage_med <- catage_lst$med
