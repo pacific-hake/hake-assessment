@@ -3,6 +3,10 @@
 #' @param reps A list of vectors representing one element per report file
 #' @param probs The quantile values to use on the MCMC posterior data
 #' @param verbose Logical. Show messages
+#' @param start_yr Filter years earlier than this out of the results. If
+#' `NULL`, no filtering will occur for the start year
+#' @param end_yr Filter years greater than this out of the results. If
+#' `NULL`, no filtering will occur for the end year
 #' @param progress_n Report every time this many list items are processed.
 #'  Consider how many posteriors there are, this should be a fairly large
 #'  proportion of that (around 1/8th) or there will be too much output and
@@ -14,6 +18,8 @@
 load_extra_mcmc_biomass <- function(reps,
                                     probs,
                                     verbose = TRUE,
+                                    start_yr = NULL,
+                                    end_yr = NULL,
                                     progress_n,
                                     ...){
 
@@ -28,6 +34,7 @@ load_extra_mcmc_biomass <- function(reps,
                           verbose = verbose,
                           ...) |>
     select(Iter, Yr, Bio_all, Bio_smry)
+
   names(ts) <- tolower(names(ts))
 
   calc_quants_by_group <- function(d, col){
@@ -52,8 +59,19 @@ load_extra_mcmc_biomass <- function(reps,
               ts_mean |> select(mean))
   }
 
-  list(total_biomass_quants =
-    calc_quants_by_group(ts, "bio_all"),
-  total_age2_plus_biomass_quants =
-    calc_quants_by_group(ts, "bio_smry"))
+  if(!is.null(start_yr)){
+    ts <- ts |>
+      filter(yr >= start_yr)
+  }
+  if(!is.null(end_yr)){
+    ts <- ts |>
+      filter(yr <= end_yr)
+  }
+  total_biomass_quants <- calc_quants_by_group(ts, "bio_all")
+  total_age2_plus_biomass_quants <- calc_quants_by_group(ts, "bio_smry")
+
+  out <- list(total_biomass_quants = total_biomass_quants,
+              total_age2_plus_biomass_quants = total_age2_plus_biomass_quants)
+
+  out
 }

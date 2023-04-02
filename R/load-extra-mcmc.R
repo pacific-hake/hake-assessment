@@ -21,6 +21,8 @@
 #' @export
 load_extra_mcmc <- function(model,
                             probs = c(0.025, 0.5, 0.975),
+                            start_yr = NULL,
+                            end_yr = NULL,
                             small = TRUE,
                             progress_n = 500,
                             verbose = TRUE,
@@ -51,66 +53,46 @@ load_extra_mcmc <- function(model,
   }
 
   if(!exists("reps"))
-  reps <-
-    load_extra_mcmc_repfiles(model$extra_mcmc_path,
-                             file_pat = "Report_mce_[0-9]+\\.sso$",
-                             progress_n = progress_n,
-                             verbose = verbose,
-                             first = first)
+    reps <-
+      load_extra_mcmc_repfiles(
+        model$extra_mcmc_path,
+        file_pat = "Report_mce_[0-9]+\\.sso$",
+        progress_n = progress_n,
+        verbose = verbose,
+        first = first)
 
   if(!exists("compreps"))
     compreps <-
-    load_extra_mcmc_repfiles(model$extra_mcmc_path,
-                             file_pat = "CompReport_mce_[0-9]+\\.sso$",
-                             progress_n = progress_n,
-                             verbose = verbose,
-                             first = first)
+      load_extra_mcmc_repfiles(
+        model$extra_mcmc_path,
+        file_pat = "CompReport_mce_[0-9]+\\.sso$",
+        progress_n = progress_n,
+        verbose = verbose,
+        first = first)
 
   # For debugging, save these as global
   reps <<- reps
-  compreps <<-compreps
-
-  # Use the first report file as a template for the regular expressions used
-  # to find the locations of the tings we need to extract (speeds up the
-  # map2() calls comping later)
-  rep_example <- reps[[which(!is.na(reps))[1]]]
-  comprep_example <- compreps[[which(!is.na(compreps))[1]]]
-
-  posteriors_fn <- file.path(model$extra_mcmc_path, posts_file_name)
-  if(!file.exists(posteriors_fn)){
-    if(verbose){
-      message("File `", posteriors_fn, "` does not exist.\n")
-    }
-    return(NA)
-  }
-  if(verbose){
-    message("Loading posteriors file:\n`", posteriors_fn, "`")
-  }
-  # Suppress warnings because there is an extra whitespace at the end of
-  # the header line in the file.
-  suppressWarnings(
-    posts <- read_table2(posteriors_fn, col_types = cols())
-  )
-  # Remove extra MLE run outputs. SS appends a new header followed by a
-  # 0-Iter row for an MLE run. Sometimes MLEs are run by accident or on
-  # purpose at another time and forgotten about, and left in the file.
-  posts <- posts |>
-    filter(Iter != "Iter", Iter != 0)
+  compreps <<- compreps
 
   extra_mcmc <- list()
 
   if(!small){
     # Biomass -----------------------------------------------------------------
-    b <- load_extra_mcmc_biomass(reps = reps,
-                                 probs = probs,
-                                 progress_n = progress_n,
-                                 verbose = verbose,
-                                 beg_pat = "^TIME_SERIES",
-                                 end_pat = "^SPR_SERIES",
-                                 ...)
-    extra_mcmc$total_biomass_quants <- b$total_biomass_quants
+    biomass_lst <- load_extra_mcmc_biomass(
+      reps = reps,
+      probs = probs,
+      start_yr = start_yr,
+      end_yr = end_yr,
+      progress_n = progress_n,
+      verbose = verbose,
+      beg_pat = "^TIME_SERIES",
+      end_pat = "^SPR_SERIES",
+      ...)
+    extra_mcmc$total_biomass_quants <-
+      biomass_lst$total_biomass_quants
+
     extra_mcmc$total_age2_plus_biomass_quants <-
-      b$total_age2_plus_biomass_quants
+      biomass_lst$total_age2_plus_biomass_quants
 
     # Selectivity -------------------------------------------------------------
     sel_fishery_lst <- load_extra_mcmc_sel(
@@ -133,7 +115,7 @@ load_extra_mcmc <- function(model,
       progress_n = progress_n,
       verbose = verbose,
       beg_pat = "^COMBINED_ALK",
-      end_pat = "^Fecund ",
+      end_pat = "^Fecund +NA +1963",
       model$endyr,
       type = "survey",
       ...)
@@ -141,18 +123,19 @@ load_extra_mcmc <- function(model,
     extra_mcmc$sel_survey_med <- sel_survey_lst$sel_med
     extra_mcmc$sel_survey_hi <- sel_survey_lst$sel_hi
     extra_mcmc$sel_survey_endyr <- sel_survey_lst$sel_endyr
-
-    browser()
   }
-# HERE
+
   # Selectivity * Weight ------------------------------------------------------
-  extra_mcmc$selwt <- load_extra_mcmc_vuln(
-    reps,
-    probs,
-    progress_n,
-    verbose,
-    model$endyr,
+  selwt_pat <- paste0(model$endyr + 1, "_1_sel\\*wt")
+  selwt_lst <- load_extra_mcmc_selwt(
+    reps = reps,
+    verbose = verbose,
+    head_beg_pat = "^COMBINED_ALK",
+    head_end_pat = "^Fecund +NA +1963",
+    beg_pat = selwt_pat,
+    end_pat = selwt_pat,
     ...)
+  extra_mcmc$selwt_med <- selwt_lst$selwt_med
 
   # Numbers-at-age ------------------------------------------------------------
   natage_lst <- load_extra_mcmc_atage(
@@ -165,7 +148,7 @@ load_extra_mcmc <- function(model,
     progress_n = progress_n,
     ...)
   extra_mcmc$natage_med <- natage_lst$med
-browser()
+
   if(!small){
     # Biomass-at-age ----------------------------------------------------------
     batage_lst <- load_extra_mcmc_atage(
@@ -201,13 +184,10 @@ browser()
       verbose)
 
     # Exploitation-rate-at-age ------------------------------------------------
-    # Divide catch-at-age-biomass by 1000 to make the same units, multiply by
-    # 100 to make percentage
     if(verbose){
       message("Extracting Exploitation-rate-at-age...")
     }
-    browser()
-    # Divide each catcge value by its corresponding batage value
+    # Divide each catage value by its corresponding batage value
     expatage <- (select(catage_lst$atage, -c(yr, iter)) /
       as.vector(select(batage_lst$atage, -c(yr, iter)))) |>
       as_tibble() |>
@@ -222,102 +202,108 @@ browser()
       summarize_all(median)
 
   }
-  # Catchability --------------------------------------------------------------
-  if(verbose){
-    message("Extracting Survey indices...")
-  }
-  q_header_ind <- grep("^INDEX_2", rep_example) + 1
-  q_header <- str_split(rep_example[q_header_ind], " +")[[1]]
-  q_start_ind <- q_header_ind + 1
-  ncpue <- nrow(model$dat$CPUE)
-  q_end_ind <- q_start_ind + ncpue - 1
-  reps_q <- map(reps, ~{.x[q_start_ind:q_end_ind]})
-
-  # Composition tables --------------------------------------------------------
-  if(verbose){
-    message("Extracting Age composition tables...")
-  }
-  comp_header_ind <- grep("^Composition_Database", comprep_example) + 1
-  comp_header <- str_split(comprep_example[comp_header_ind], " +")[[1]]
-  comp_start_ind <- comp_header_ind + 1
-  comp_end_ind <- grep("End_comp_data", comprep_example) - 1
-  compreps <- compreps[!is.na(compreps)]
-  reps_comp <- map(compreps, ~{.x[comp_start_ind:comp_end_ind]})
 
   # Apply selectivity to numbers-at-age ---------------------------------------
-  # TODO: hack of subtracting 1 - See issue #859
   if(verbose){
     message("Applying selectivity to numbers-at-age...")
   }
 
   next_yr <- model$endyr + 1
-  natage <- natage |>
-    filter(Yr == next_yr) |>
-    select(-Yr)
+  natage <- natage_lst$atage |>
+    #filter(yr %in% unique(sel_fishery_lst$sel$yr)) |>
+    filter(yr == next_yr) |>
+    select(-c(yr, iter))
+
+  sel <- sel_fishery_lst$sel |>
+    filter(yr == next_yr) |>
+    select(-c(yr, iter))
+
+  selwt <- selwt_lst$selwt |>
+    filter(yr == next_yr) |>
+    select(-c(yr, iter))
 
   natsel <- natage * sel
   natselwt <- natage * selwt
   extra_mcmc$natsel_prop <- natsel %>%
     mutate(rsum = rowSums(.)) |>
     mutate_at(vars(-rsum), ~{.x / rsum}) |>
-    select(-rsum)
+    select(-rsum) |>
+    as_tibble()
 
   extra_mcmc$natselwt_prop <- natselwt %>%
     mutate(rsum = rowSums(.)) |>
     mutate_at(vars(-rsum), ~{.x / rsum}) |>
-    select(-rsum)
+    select(-rsum) |>
+    as_tibble()
+
+  # Catchability --------------------------------------------------------------
+  if(verbose){
+    message("Extracting Survey indices...")
+  }
+  x <- load_extra_mcmc_get_chunk(reps,
+                                 beg_pat = "^INDEX_2",
+                                 end_pat = "^INDEX_1")
+
+  # This is just to get the header, x$lst is not used in this function
+  # Remove survey name so that conversion to numeric does not produce a ton
+  # of warnings
+  x$header <- x$header[x$header != "Fleet_name"]
+  x$lst <- map(x$lst, ~{
+    gsub("(Age1|Acoustic)_Survey", "", .x)
+  })
+  ts_q <- extract_rep_table(reps_lst = x$lst,
+                            header = x$header,
+                            verbose = verbose,
+                            ...)
+  names(ts_q) <- tolower(names(ts_q))
 
   # CPUE table and values (Q) -------------------------------------------------
   if(verbose){
     message("Extracting index fits and catchabilities...")
   }
-  index_table <- extract_rep_table(reps_q,
-                                   q_header,
-                                   verbose = verbose,
-                                   ...)
   # Separate by fleet, 2 is acoustic survey 2+, 3 is Age-1 survey
-  index_table_age2plus <- index_table |>
-    filter(Fleet == 2)
-  index_table_age1 <- index_table |>
-    filter(Fleet == 3)
+  index_table_age2plus <- ts_q |>
+    filter(fleet == 2)
+  index_table_age1 <- ts_q |>
+    filter(fleet == 3)
 
-  extra_mcmc$q_med <- index_table |>
-    mutate(Calc_Q = as.numeric(Calc_Q)) |>
-    group_by(Fleet, Yr) |>
-    summarize(value = median(Calc_Q), .groups = )
+  extra_mcmc$q_med <- ts_q |>
+    mutate(calc_q = as.numeric(calc_q)) |>
+    group_by(fleet, yr) |>
+    summarize(value = median(calc_q))
 
-  extra_mcmc$q_lo <- index_table |>
-    mutate(Calc_Q = as.numeric(Calc_Q)) |>
-    group_by(Fleet, Yr) |>
-    summarize(value = quantile(Calc_Q, probs = probs[1]))
+  extra_mcmc$q_lo <- ts_q |>
+    mutate(calc_q = as.numeric(calc_q)) |>
+    group_by(fleet, yr) |>
+    summarize(value = quantile(calc_q, probs = probs[1]))
 
-  extra_mcmc$q_hi <- index_table |>
-    mutate(Calc_Q = as.numeric(Calc_Q)) |>
-    group_by(Fleet, Yr) |>
-    summarize(value = quantile(Calc_Q, probs = probs[3]))
+  extra_mcmc$q_hi <- ts_q |>
+    mutate(calc_q = as.numeric(calc_q)) |>
+    group_by(fleet, yr) |>
+    summarize(value = quantile(calc_q, probs = probs[3]))
 
-  extra_mcmc$index_med <- index_table |>
-    mutate(Exp = as.numeric(Exp)) |>
-    group_by(Fleet, Yr) |>
-    summarize(value = median(Exp))
+  extra_mcmc$index_med <- ts_q |>
+    mutate(exp = as.numeric(exp)) |>
+    group_by(fleet, yr) |>
+    summarize(value = median(exp))
 
-  extra_mcmc$index_lo <- index_table |>
-    mutate(Exp = as.numeric(Exp)) |>
-    group_by(Fleet, Yr) |>
-    summarize(value = quantile(Exp, probs[1]))
+  extra_mcmc$index_lo <- ts_q |>
+    mutate(exp = as.numeric(exp)) |>
+    group_by(fleet, yr) |>
+    summarize(value = quantile(exp, probs[1]))
 
-  extra_mcmc$index_hi <- index_table |>
-    mutate(Exp = as.numeric(Exp)) |>
-    group_by(Fleet, Yr) |>
-    summarize(value = quantile(Exp, probs[3]))
+  extra_mcmc$index_hi <- ts_q |>
+    mutate(exp = as.numeric(exp)) |>
+    group_by(fleet, yr) |>
+    summarize(value = quantile(exp, probs[3]))
 
-  q <- index_table |>
-    select(Iter, Exp, Calc_Q)
-  iter <- unique(q$Iter)
+  q <- ts_q |>
+    select(iter, exp, calc_q)
+  iter <- unique(q$iter)
 
   cpue <- q |>
-    select(-Calc_Q) |>
-    group_by(Iter) |>
+    select(-calc_q) |>
+    group_by(iter) |>
     group_nest()
   cpue <- do.call(cbind, cpue$data)
   names(cpue) <- iter
@@ -326,17 +312,17 @@ browser()
     as_tibble() |>
     map_df(~{as.numeric(.x)})
 
-  extra_mcmc$Q_vector <- index_table_age2plus |>
-    group_by(Iter) |>
+  extra_mcmc$q_vector <- index_table_age2plus |>
+    group_by(iter) |>
     slice(1) |>
-    pull(Calc_Q) |>
+    pull(calc_q) |>
     as.numeric()
 
   # Was Q_vector_age1
   extra_mcmc$q_age1 <- index_table_age1 |>
-    group_by(Iter) |>
+    group_by(iter) |>
     slice(1) |>
-    pull(Calc_Q) |>
+    pull(calc_q) |>
     as.numeric()
 
   cpue <- apply(extra_mcmc$cpue_table,
@@ -351,58 +337,63 @@ browser()
   if(!small){
     # Median and quantiles of expected values and Pearson ---------------------
     if(verbose){
+      message("Extracting Age composition tables...")
+    }
+    x <- load_extra_mcmc_get_chunk(compreps,
+                                   beg_pat = "^Composition_Database",
+                                   end_pat = "End_comp_data")
+
+    # This is just to get the header, x$lst is not used in this function
+    ts <- extract_rep_table(reps_lst = x$lst,
+                            header = x$header,
+                            verbose = verbose,
+                            ...)
+    names(ts) <- tolower(names(ts))
+
+    if(verbose){
       message("Calculating Pearson residuals (takes about 5 minutes)...")
     }
-    comp <- extract_rep_table(reps_comp,
-                              comp_header,
-                              verbose = verbose,
-                              ...)
-    iter <- unique(comp$Iter)
-    comp <- comp |>
-      filter(!is.na(Nsamp_adj), Nsamp_adj > 0) |>
-      select(c(Iter, Yr, Fleet, Bin, Obs, Exp, Pearson)) |>
-      rename(Age = Bin)
-    extra_mcmc$comp_fishery <- comp |>
-      filter(Fleet == 1) |>
-      select(-Fleet) |>
-      mutate_all(as.numeric) |>
-      group_by(Yr, Age) |>
-      summarize(exp_lo = quantile(Exp, probs = probs[1]),
-                exp_med = quantile(Exp, probs = probs[2]),
-                exp_hi = quantile(Exp, probs = probs[3]),
-                obs_lo = quantile(Obs, probs = probs[1]),
-                obs_med = quantile(Obs, probs = probs[2]),
-                obs_hi = quantile(Obs, probs = probs[3]),
-                pearson_lo = quantile(Pearson, probs = probs[1]),
-                pearson_med = quantile(Pearson, probs = probs[2]),
-                pearson_hi = quantile(Pearson, probs = probs[3])) |>
-      ungroup() |>
-      rename(yr = Yr, age = Age)
-    extra_mcmc$comp_fishery_median <- extra_mcmc$comp_fishery |>
+    comp <- ts |>
+      filter(!is.na(nsamp_adj), nsamp_adj > 0) |>
+      select(c(iter, yr, fleet, bin, obs, exp, pearson)) |>
+      rename(age = bin)
+    extra_mcmc$residuals_fishery <- comp |>
+      filter(fleet == 1) |>
+      select(-fleet) |>
+      group_by(yr, age) |>
+      summarize(exp_lo = quantile(exp, probs = probs[1]),
+                exp_med = quantile(exp, probs = probs[2]),
+                exp_hi = quantile(exp, probs = probs[3]),
+                obs_lo = quantile(obs, probs = probs[1]),
+                obs_med = quantile(obs, probs = probs[2]),
+                obs_hi = quantile(obs, probs = probs[3]),
+                pearson_lo = quantile(pearson, probs = probs[1]),
+                pearson_med = quantile(pearson, probs = probs[2]),
+                pearson_hi = quantile(pearson, probs = probs[3])) |>
+      ungroup()
+    extra_mcmc$residuals_fishery_med <- extra_mcmc$residuals_fishery |>
       select(yr,
              age,
              obs = obs_med,
              exp = exp_med,
              pearson = pearson_med)
 
-    extra_mcmc$comp_survey <- comp |>
-      filter(Fleet == 2) |>
-      select(-Fleet) |>
-      mutate_all(as.numeric) |>
-      group_by(Yr, Age) |>
-      summarize(exp_lo = quantile(Exp, probs = probs[1]),
-                exp_med = quantile(Exp, probs = probs[2]),
-                exp_hi = quantile(Exp, probs = probs[3]),
-                obs_lo = quantile(Obs, probs = probs[1]),
-                obs_med = quantile(Obs, probs = probs[2]),
-                obs_hi = quantile(Obs, probs = probs[3]),
-                pearson_lo = quantile(Pearson, probs = probs[1]),
-                pearson_med = quantile(Pearson, probs = probs[2]),
-                pearson_hi = quantile(Pearson, probs = probs[3])) |>
-      ungroup() |>
-      rename(yr = Yr, age = Age)
+    extra_mcmc$residuals_survey <- comp |>
+      filter(fleet == 2) |>
+      select(-fleet) |>
+      group_by(yr, age) |>
+      summarize(exp_lo = quantile(exp, probs = probs[1]),
+                exp_med = quantile(exp, probs = probs[2]),
+                exp_hi = quantile(exp, probs = probs[3]),
+                obs_lo = quantile(obs, probs = probs[1]),
+                obs_med = quantile(obs, probs = probs[2]),
+                obs_hi = quantile(obs, probs = probs[3]),
+                pearson_lo = quantile(pearson, probs = probs[1]),
+                pearson_med = quantile(pearson, probs = probs[2]),
+                pearson_hi = quantile(pearson, probs = probs[3])) |>
+      ungroup()
 
-    extra_mcmc$comp_survey_median <- extra_mcmc$comp_survey |>
+    extra_mcmc$residuals_survey_median <- extra_mcmc$residuals_survey |>
       select(yr,
              age,
              obs = obs_med,
@@ -418,8 +409,8 @@ browser()
     # Frees a load of memory up
     extra_mcmc$natage <- NULL
     extra_mcmc$natage_median <- NULL
-    extra_mcmc$natsel.prop <- NULL
-    extra_mcmc$natselwt.prop <- NULL
+    extra_mcmc$natsel_prop <- NULL
+    extra_mcmc$natselwt_prop <- NULL
   }
 
   if(verbose){
