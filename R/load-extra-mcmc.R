@@ -136,7 +136,7 @@ load_extra_mcmc <- function(model,
     end_pat = selwt_pat,
     ...)
   extra_mcmc$selwt_med <- selwt_lst$selwt_med
-browser()
+
   # Numbers-at-age ------------------------------------------------------------
   natage_lst <- load_extra_mcmc_atage(
     reps = reps,

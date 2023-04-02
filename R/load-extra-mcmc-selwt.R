@@ -38,7 +38,7 @@ load_extra_mcmc_selwt <- function(reps,
     select(yr, iter, all_of(ages))
 
   out$selwt_med <- map_df(out$selwt |>
-                           select(-c(yr, iter)), ~{median(.x)})
+                            select(-c(yr, iter)), ~{median(.x)})
 
   out
 }
