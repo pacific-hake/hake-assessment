@@ -192,8 +192,10 @@ load_extra_mcmc <- function(model,
       message("Extracting Exploitation-rate-at-age...")
     }
     # Divide each catage value by its corresponding batage value
+    batage_len_catage <- batage_lst$atage |>
+      filter(yr %in% catage_lst$atage$yr)
     expatage <- (select(catage_lst$atage, -c(yr, iter)) /
-      as.vector(select(batage_lst$atage, -c(yr, iter)))) |>
+      as.vector(select(batage_len_catage, -c(yr, iter)))) |>
       as_tibble() |>
       # Divide every cell by 1,000 to get thousands of tonnes,
       # then multiply by 100 for
@@ -204,7 +206,6 @@ load_extra_mcmc <- function(model,
     extra_mcmc$expatage_med <- expatage |>
       group_by(yr) |>
       summarize_all(median)
-
   }
 
   # Apply selectivity to numbers-at-age ---------------------------------------
