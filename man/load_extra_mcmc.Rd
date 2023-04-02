@@ -8,8 +8,6 @@ by looking in the model's path for the report files.}
 load_extra_mcmc(
   model,
   probs = c(0.025, 0.5, 0.975),
-  start_yr = NULL,
-  end_yr = NULL,
   small = TRUE,
   progress_n = 500,
   verbose = TRUE,

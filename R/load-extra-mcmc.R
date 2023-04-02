@@ -21,8 +21,6 @@
 #' @export
 load_extra_mcmc <- function(model,
                             probs = c(0.025, 0.5, 0.975),
-                            start_yr = NULL,
-                            end_yr = NULL,
                             small = TRUE,
                             progress_n = 500,
                             verbose = TRUE,
@@ -81,8 +79,8 @@ load_extra_mcmc <- function(model,
     biomass_lst <- load_extra_mcmc_biomass(
       reps = reps,
       probs = probs,
-      start_yr = start_yr,
-      end_yr = end_yr,
+      start_yr = model$startyr,
+      end_yr = model$endyr + 1,
       progress_n = progress_n,
       verbose = verbose,
       beg_pat = "^TIME_SERIES",
@@ -98,8 +96,8 @@ load_extra_mcmc <- function(model,
     sel_fishery_lst <- load_extra_mcmc_sel(
       reps = reps,
       probs = probs,
-      start_yr = start_yr,
-      end_yr = end_yr - 1,
+      start_yr = model$startyr,
+      end_yr = model$endyr,
       progress_n = progress_n,
       verbose = verbose,
       beg_pat = "^COMBINED_ALK",
@@ -113,8 +111,8 @@ load_extra_mcmc <- function(model,
     sel_survey_lst <- load_extra_mcmc_sel(
       reps = reps,
       probs = probs,
-      start_yr = start_yr,
-      end_yr = end_yr - 1,
+      start_yr = model$startyr,
+      end_yr = model$endyr,
       progress_n = progress_n,
       verbose = verbose,
       beg_pat = "^COMBINED_ALK",
@@ -138,7 +136,7 @@ load_extra_mcmc <- function(model,
     end_pat = selwt_pat,
     ...)
   extra_mcmc$selwt_med <- selwt_lst$selwt_med
-
+browser()
   # Numbers-at-age ------------------------------------------------------------
   natage_lst <- load_extra_mcmc_atage(
     reps = reps,
