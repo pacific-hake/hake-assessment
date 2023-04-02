@@ -98,6 +98,8 @@ load_extra_mcmc <- function(model,
     sel_fishery_lst <- load_extra_mcmc_sel(
       reps = reps,
       probs = probs,
+      start_yr = start_yr,
+      end_yr = end_yr - 1,
       progress_n = progress_n,
       verbose = verbose,
       beg_pat = "^COMBINED_ALK",
@@ -108,10 +110,11 @@ load_extra_mcmc <- function(model,
     extra_mcmc$sel_fishery_lo <- sel_fishery_lst$sel_lo
     extra_mcmc$sel_fishery_med <- sel_fishery_lst$sel_med
     extra_mcmc$sel_fishery_hi <- sel_fishery_lst$sel_hi
-    extra_mcmc$sel_fishery_endyr <- sel_fishery_lst$sel_endyr
     sel_survey_lst <- load_extra_mcmc_sel(
       reps = reps,
       probs = probs,
+      start_yr = start_yr,
+      end_yr = end_yr - 1,
       progress_n = progress_n,
       verbose = verbose,
       beg_pat = "^COMBINED_ALK",
@@ -122,7 +125,6 @@ load_extra_mcmc <- function(model,
     extra_mcmc$sel_survey_lo <- sel_survey_lst$sel_lo
     extra_mcmc$sel_survey_med <- sel_survey_lst$sel_med
     extra_mcmc$sel_survey_hi <- sel_survey_lst$sel_hi
-    extra_mcmc$sel_survey_endyr <- sel_survey_lst$sel_endyr
   }
 
   # Selectivity * Weight ------------------------------------------------------

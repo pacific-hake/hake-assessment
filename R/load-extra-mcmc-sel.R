@@ -8,7 +8,8 @@ load_extra_mcmc_sel <- function(reps,
                                 probs,
                                 progress_n,
                                 verbose = TRUE,
-                                end_yr,
+                                start_yr = NULL,
+                                end_yr = NULL,
                                 type = c("fishery", "survey"),
                                 ...){
 
@@ -31,35 +32,37 @@ load_extra_mcmc_sel <- function(reps,
   ts <- ts |>
     select(yr, iter, all_of(ages))
 
+  if(!is.null(start_yr)){
+    ts <- ts |>
+      filter(yr >= start_yr)
+  }
+  if(!is.null(end_yr)){
+    ts <- ts |>
+      filter(yr <= end_yr)
+  }
+
   out <- list()
   out$sel <- ts
   out$sel_lo <- ts |>
-    mutate_at(vars(-yr), ~{
+    group_by(yr) |>
+    summarize_all(~{
       quantile(.x, probs = probs[1])
     }) |>
-    slice(1)
+    ungroup()
 
   out$sel_med <- ts |>
-    mutate_at(vars(-yr), ~{
+    group_by(yr) |>
+    summarize_all(~{
       quantile(.x, probs = probs[2])
     }) |>
-    slice(1)
+    ungroup()
 
   out$sel_hi <- ts |>
-    mutate_at(vars(-yr), ~{
+    group_by(yr) |>
+    summarize_all(~{
       quantile(.x, probs = probs[3])
     }) |>
-    slice(1)
-
-  # End year (last year of catch) selectivities
-  pat <- paste0(end_yr, "_", fleet, "Asel")
-  y <- load_extra_mcmc_get_chunk(reps, beg_pat = pat, end_pat = pat)
-  out$sel_endyr <- extract_rep_table(reps_lst = y$lst,
-                                     header = x$header,
-                                     verbose = verbose,
-                                     ...) |>
-    select(all_of(ages)) |>
-    map_df(~{median(.x)})
+    ungroup()
 
     out
 }

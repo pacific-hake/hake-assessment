@@ -26,7 +26,8 @@ load_extra_mcmc_sel(
   probs,
   progress_n,
   verbose = TRUE,
-  end_yr,
+  start_yr = NULL,
+  end_yr = NULL,
   type = c("fishery", "survey"),
   ...
 )
