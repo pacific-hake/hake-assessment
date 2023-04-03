@@ -24,8 +24,9 @@ load_extra_mcmc_sel <- function(reps,
                           header = x$header,
                           verbose = verbose,
                           ...) |>
-    filter(Fleet == fleet) |>
-    rename(yr = Yr, iter = Iter)
+    filter(Fleet == fleet)
+
+  names(ts) <- tolower(names(ts))
 
   ages <- grep("[0-9]+", names(ts), value = TRUE)
 

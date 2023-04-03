@@ -29,8 +29,8 @@ plot_fore_age_comps <- function(model,
     stop("The middle value in `probs` must be 0.5 (median)",
          call. = FALSE)
   }
-  natsel_prop <- model$extra_mcmc$natsel.prop
-  natselwt_prop <- model$extra_mcmc$natselwt.prop
+  natsel_prop <- model$extra_mcmc$natsel_prop
+  natselwt_prop <- model$extra_mcmc$natselwt_prop
 
   perc <- paste0(probs[c(1, 3)] * 100, "%")
 

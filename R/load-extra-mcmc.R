@@ -213,18 +213,17 @@ load_extra_mcmc <- function(model,
     message("Applying selectivity to numbers-at-age...")
   }
 
-  next_yr <- model$endyr + 1
+  browser()
   natage <- natage_lst$atage |>
     #filter(yr %in% unique(sel_fishery_lst$sel$yr)) |>
-    filter(yr == next_yr) |>
+    filter(yr == model$endyr) |>
     select(-c(yr, iter))
 
   sel <- sel_fishery_lst$sel |>
-    filter(yr == next_yr) |>
+    filter(yr == model$endyr) |>
     select(-c(yr, iter))
 
   selwt <- selwt_lst$selwt |>
-    filter(yr == next_yr) |>
     select(-c(yr, iter))
 
   natsel <- natage * sel
