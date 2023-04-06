@@ -1,19 +1,28 @@
 #' Return a list of mcmc calculations, e.g. quantiles for various values
 #'
+#' @details
+#' The values calculated in this function are used in the tables and plots in
+#' the hake document. If a new value is needed, add that calculation here
+#' and re-run the [create_rds_file()] function to re-build the RDS file
+#' for the model.
+#'
 #' @param mcmc The output of the [r4ss::SSgetMCMC()] function as a data.frame
 #' @param probs A vector of 3 values, the lower CI, median, and upper CI
 #' @param biomass_scale A scale factor to divide biomass values by
 #' @param recr_scale A scale factor to divide recruitment values by
+#' @param ... Absorb arguments meant for other functions
 #'
 #' @return A named list of MCMC outputs
 #' @export
 calc_mcmc <- function(mcmc,
                       probs = c(0.025, 0.5, 0.975),
                       biomass_scale = 1e6,
-                      recr_scale = 1e6){
+                      recr_scale = 1e6,
+                      ...){
 
   # Extract time series columns for a given parameter and change the column
   # names to years. Divide all values by the biomass_scale
+  # @param pat Pattern to match
   cols_par <- function(pat, scale = 1){
     mcmc |>
       select(matches(paste0("^", pat, "_[0-9]{4}$"))) %>%
@@ -127,6 +136,10 @@ calc_mcmc <- function(mcmc,
     }
     tmp
   }
+
+  # The following are used for a single table, the reference points table.
+  # They are formatted nicely here to avoid running that code during the
+  # document build
   out$refpts <- list()
   out$refpts$unfish_fem_bio <- refpt_quants("SSB_Virgin", 1e3, 0)
   out$refpts$unfish_recr <- refpt_quants("Recr_Virgin", 1e3, 0)

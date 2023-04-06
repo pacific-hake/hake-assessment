@@ -839,9 +839,9 @@ plot_depl_fore_comparison(base_model,
          and projections to the start of \Sexpr{forecast_yrs[length(forecast_yrs)]}
          for several management actions, which are defined in the decision tables.
          The default harvest policy catches are
-  \Sexpr{f(base_model$catch.default.policy[1])}~t in \Sexpr{end_yr},
-  \Sexpr{f(base_model$catch.default.policy[2])}~t in \Sexpr{end_yr+1}, and
-  \Sexpr{f(base_model$catch.default.policy[3])}~t in \Sexpr{end_yr+2}.}
+  \Sexpr{f(base_model$catch_default_policy[1])}~t in \Sexpr{end_yr},
+  \Sexpr{f(base_model$catch_default_policy[2])}~t in \Sexpr{end_yr+1}, and
+  \Sexpr{f(base_model$catch_default_policy[3])}~t in \Sexpr{end_yr+2}.}
 \label{fig:main-forecast-depletion-comparison}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%

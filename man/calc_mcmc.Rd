@@ -8,7 +8,8 @@ calc_mcmc(
   mcmc,
   probs = c(0.025, 0.5, 0.975),
   biomass_scale = 1e+06,
-  recr_scale = 1e+06
+  recr_scale = 1e+06,
+  ...
 )
 }
 \arguments{
@@ -19,10 +20,18 @@ calc_mcmc(
 \item{biomass_scale}{A scale factor to divide biomass values by}
 
 \item{recr_scale}{A scale factor to divide recruitment values by}
+
+\item{...}{Absorb arguments meant for other functions}
 }
 \value{
 A named list of MCMC outputs
 }
 \description{
 Return a list of mcmc calculations, e.g. quantiles for various values
+}
+\details{
+The values calculated in this function are used in the tables and plots in
+the hake document. If a new value is needed, add that calculation here
+and re-run the \code{\link[=create_rds_file]{create_rds_file()}} function to re-build the RDS file
+for the model.
 }

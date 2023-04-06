@@ -43,13 +43,6 @@ last_yr_models_dir <- file.path(rootd_models,
 
 output_csv_dir <- here::here(rootd_doc, "out-csv")
 
-ct_levels_path <- "catch-levels"
-default_hr_path <- "default-hr"
-stable_catch_path <- "stable-catch"
-spr_100_path <- "spr-100"
-forecasts_path <- "forecasts"
-retrospectives_path <- "retrospectives"
-
 ss_executable <- "ss3"
 starter_file_name <- "starter.ss"
 par_file_name <- "ss.par"

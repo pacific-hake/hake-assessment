@@ -103,9 +103,9 @@ metric <- NULL
 forecasts <- base_model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
 models.inds <- c(1, 4, 8, 12)
-models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds]
+models.names <- sapply(base_model$catch_levels, "[[", 2)[models.inds]
 fi.inds <- c(1, 2, 4, 5, ct_default_policy_ind)
-fi.names <- sapply(base_model$catch.levels, "[[", 2)[fi.inds]
+fi.names <- sapply(base_model$catch_levels, "[[", 2)[fi.inds]
 @
 
 %----------------------------------------------------------
@@ -456,7 +456,7 @@ plot_squid(base_model,
     plot_management_catch_vs_tac(catch_targets_df, connect_vars = TRUE,
                                  connect_vars_linetype = "solid",
                                  connect_vars_alpha = 0.2,
-                                 curr_assess_biomass = base_model$catch.default.policy[1],
+                                 curr_assess_biomass = base_model$catch_default_policy[1],
                                  leg_pos = c(0.12, 0.87),
                                  leg_font_size = 10)
     @

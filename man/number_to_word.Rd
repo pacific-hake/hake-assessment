@@ -4,15 +4,15 @@
 \alias{number_to_word}
 \title{Change a number into an English word}
 \usage{
-number_to_word(x = NA, th = FALSE, cap.first = FALSE)
+number_to_word(x = NA, th = FALSE, cap_first = FALSE)
 }
 \arguments{
 \item{x}{The number to convert}
 
-\item{th}{Logical. If TRUE the \emph{th} versions will be returned,
+\item{th}{Logical. If TRUE the \code{th} versions will be returned,
 e.g. 4 = fourth}
 
-\item{cap.first}{Logical. Capitalize the first letter of the returned
+\item{cap_first}{Logical. Capitalize the first letter of the returned
 string?}
 }
 \value{
@@ -28,5 +28,5 @@ See Function by John Fox found here:
 http://tolstoy.newcastle.edu.au/R/help/05/04/2715.html
 }
 \examples{
-number_to_word(c(1000,2,3,10000001), th = TRUE, cap.first = TRUE)
+number_to_word(c(1000,2,3,10000001), th = TRUE, cap_first = TRUE)
 }

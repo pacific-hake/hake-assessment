@@ -5,15 +5,12 @@
 \title{Calculate the probabilities of being under several reference points from
 one forecast year to the next}
 \usage{
-calc_risk(forecast_outputs = NA, ct_levels, ...)
+calc_risk(model, ...)
 }
 \arguments{
-\item{forecast_outputs}{A list as output by \code{\link[=fetch_forecasts]{fetch_forecasts()}}}
+\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{ct_levels}{A list of catch levels which are represented by lists
-of length 3}
-
-\item{...}{Absorb arguments intended for other functions}
+\item{...}{Absorbs arguments intended for other functions}
 }
 \value{
 A list of length 1 less than the number of forecast years. Each

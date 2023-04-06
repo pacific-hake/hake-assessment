@@ -1,87 +1,3 @@
-#' Fetch catch levels from SS forecast files. This is used to retrieve ending values
-#' after running the [run_ct_levels()] function for default HR, SPR 100, and stable catch
-#'
-#' @details Assumes [run_ct_levels()] function has been run and the forecast files
-#' are populated with 3 forecast years
-#'
-#' @param ct_levels The catch levels list as defined in forecast-catch-levels.R
-#' @param ct_levels_path The path for the catch-levels output
-#' @param ... Absorbs arguments intended for other functions
-#'
-#' @return A list of 3-element lists of vectors of 3 catch levels corresponding to:
-#' a) SPR-100%
-#' b) Default harvest policy
-#' c) Stable catch
-#' Return object looks the same as the `ct_levels` object but with three more elements
-#' @export
-fetch_ct_levels <- function(ct_levels_path,
-                               ct_levels = NULL,
-                               ...){
-  stopifnot(!is.null(ct_levels))
-
-  message("\nLoading catch levels from ", ct_levels_path)
-
-  spr_100_path <- file.path(ct_levels_path, spr_100_path)
-  default_hr_path <- file.path(ct_levels_path, default_hr_path)
-  stable_catch_path <- file.path(ct_levels_path, stable_catch_path)
-
-  plan("multisession")
-  cust_ct_levels <- future_map(1:3, ~{
-    if(.x == 1){
-      message("Loading 'SPR 100' catch level from ", spr_100_path)
-      forecast_file <- file.path(spr_100_path, forecast_file_name)
-      fore <- SS_readforecast(forecast_file,
-                              Nfleets = 1,
-                              Nareas = 1,
-                              nseas = 1,
-                              verbose = FALSE)
-
-      tryCatch({
-        col_catch <- fore$ForeCatch %>% select(`Catch or F`)
-      }, error = function(e){
-        stop("The column 'Catch or F' was not found in the forecast file Catch matrix.")
-      })
-      col_catch
-    }else if(.x == 2){
-      message("Loading 'Default HR' catch level from ", default_hr_path)
-      forecast_file <- file.path(default_hr_path, "forecast.ss")
-      fore <- SS_readforecast(forecast_file,
-                              Nfleets = 1,
-                              Nareas = 1,
-                              nseas = 1,
-                              verbose = FALSE)
-      tryCatch({
-        col_catch <- fore$ForeCatch %>% select(`Catch or F`)
-      }, error = function(e){
-        stop("The column 'Catch or F' was not found in the forecast file Catch matrix.")
-      })
-      col_catch
-    }else{
-      message("Loading 'Stable Catch' catch level from ", stable_catch_path)
-      forecast_file <- file.path(stable_catch_path, "forecast.ss")
-      fore <- SS_readforecast(forecast_file,
-                              Nfleets = 1,
-                              Nareas = 1,
-                              nseas = 1,
-                              verbose = FALSE)
-      tryCatch({
-        col_catch <- fore$ForeCatch %>% select(`Catch or F`)
-      }, error = function(e){
-        stop("The column 'Catch or F' was not found in the forecast file Catch matrix.")
-      })
-      message("Finished loading catch levels")
-      col_catch
-    }
-  })
-  plan()
-  # Replace the NA values for the custom catch levels with the values read in
-  inds <- (length(ct_levels) - length(cust_ct_levels) + 1):length(ct_levels)
-  map2(inds, 1:length(cust_ct_levels), ~{
-    ct_levels[[.x]][[1]] <<- cust_ct_levels[[.y]] %>% pull()
-  }, furrr_options(globals = c("pull")))
-  ct_levels
-}
-
 #' Run the model iteratively reducing the difference between the first and second year projections to
 #' find a stable catch within the the given tolerance
 #'
@@ -432,7 +348,7 @@ run_ct_levels <- function(model_path,
                                        fix.posteriors = fix.posteriors,
                                        posts_file_name = posts_file_name,
                                        derposts_file_name = derposts_file_name,
-                                       create.key.nuisance_posteriors_files = create.key.nuisance_posteriors_files,
+                                       create_kn_files = create_kn_files,
                                        calc_mcmc = calc_mcmc,
                                        get_os = get_os,
                                        run_ct_levels_default_hr = run_ct_levels_default_hr,

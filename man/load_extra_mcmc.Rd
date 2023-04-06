@@ -8,7 +8,6 @@ by looking in the model's path for the report files.}
 load_extra_mcmc(
   model,
   probs = c(0.025, 0.5, 0.975),
-  small = TRUE,
   progress_n = 500,
   verbose = TRUE,
   first = NULL,
@@ -18,13 +17,7 @@ load_extra_mcmc(
 \arguments{
 \item{model}{A model list as created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{probs}{The quantile values to use on the MCMC posterior data}
-
-\item{small}{Logical. If \code{TRUE}, only load a small set of things
-that are required for the assessment (index fits and catchability
-estimates) in order to reduce the memory taken up by loading all the
-output into R for the document build.If \code{FALSE}, load everything that
-the base model needs, which will make a huge RDS file}
+\item{probs}{A vector of 3 values, the lower CI, median, and upper CI}
 
 \item{progress_n}{Report every time this many files are processed. Consider
 how many posteriors there are, this should be a fairly large proportion of

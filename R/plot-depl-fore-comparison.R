@@ -1,7 +1,7 @@
 #' Plot the relative spawning biomass with several forecast trajectories
 #'
 #' @rdname plot_biomass
-#' @param fore_inds Indices of the `model$catch.levels` list to include as
+#' @param fore_inds Indices of the `model$catch_levels` list to include as
 #' forecast catch streams in the plot
 #' @param forecast_yrs A vector of the forecast years
 #' @export
@@ -48,7 +48,7 @@ plot_depl_fore_comparison <- function(model,
                                       axis_tick_font_size = 11,
                                       forecast_yrs){
 
-  nice_nms <- map_chr(model$catch.levels[fore_inds], ~{
+  nice_nms <- map_chr(model$catch_levels[fore_inds], ~{
     .x[[2]]
   })
 

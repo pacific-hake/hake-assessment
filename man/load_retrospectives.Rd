@@ -5,12 +5,10 @@
 \title{Fetch the retrospectives and return a list of each. If there are no retrospective
 directories or there is some other problem, the program will halt}
 \usage{
-load_retrospectives(retro_path, retro_yrs, ...)
+load_retrospectives(retro_path, ...)
 }
 \arguments{
 \item{retro_path}{The path in which the retrospective directories reside}
-
-\item{retro_yrs}{A vector of the years to run retrospectives for}
 
 \item{...}{Arguments passed to \code{\link[=load_ss_files]{load_ss_files()}} and \code{\link[=load_extra_mcmc]{load_extra_mcmc()}}}
 }

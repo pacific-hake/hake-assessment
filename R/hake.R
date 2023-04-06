@@ -6,6 +6,7 @@
 #'
 #' @import adnuts coda dplyr
 #' @import ggh4x ggplot2 ggrepel
+#' @import purrr
 #' @import rnaturalearthhires r4ss
 #'
 #' @importFrom cli symbol
@@ -24,9 +25,7 @@
 #' @importFrom gtable gtable_add_grob
 #' @importFrom kableExtra column_spec kable_styling kbl linebreak
 #' @importFrom here here
-#' @importFrom lubridate hour minute month second seconds_to_period year
-#' @importFrom purrr map imap map2 map_chr map_dbl map_lgl walk walk2 flatten
-#' @importFrom purrr map_df map_dfr map_dfc map2_df map2_dfc map2_dfr partial pmap
+#' @importFrom lubridate hour minute month now second seconds_to_period year
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
 #' @importFrom readr cols read_csv read_table2 write_csv
 #' @importFrom rlang set_names sym
@@ -37,7 +36,7 @@
 #' @importFrom stringr str_flatten str_split
 #' @importFrom tools file_path_sans_ext file_ext
 #' @importFrom tibble as_tibble enframe
-#' @importFrom tidyselect all_of any_of starts_with
+#' @importFrom tidyselect all_of any_of matches one_of starts_with
 #' @importFrom tidyr pivot_longer pivot_wider unnest
 #' @importFrom utils  head globalVariables object.size read.csv read.table
 #' @importFrom utils tail type.convert write.csv write.table

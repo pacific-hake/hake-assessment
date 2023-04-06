@@ -4,10 +4,26 @@
 \alias{create_rds_file}
 \title{Create an rds file to hold the model's data and outputs.}
 \usage{
-create_rds_file(model_dir = NULL, verbose = TRUE, overwrite = TRUE, ...)
+create_rds_file(
+  model_dir = NULL,
+  probs = c(0.025, 0.5, 0.975),
+  forecast_probs = c(0.05, 0.25, 0.5, 0.75, 0.95),
+  ct_levels_lst = set_ct_levels(4),
+  forecasts_path = file.path(model_dir, "forecasts"),
+  ct_levels_path = file.path(model_dir, "catch-levels"),
+  retrospectives_path = file.path(model_dir, "retrospectives"),
+  default_hr_path = file.path(ct_levels_path, "default-hr"),
+  stable_catch_path = file.path(ct_levels_path, "stable-catch"),
+  spr_100_path = file.path(ct_levels_path, "spr-100"),
+  verbose = TRUE,
+  overwrite = TRUE,
+  ...
+)
 }
 \arguments{
 \item{model_dir}{Directory name of model to be loaded}
+
+\item{probs}{A vector of 3 values, the lower CI, median, and upper CI}
 
 \item{verbose}{Logical. If \code{TRUE}, write more output to the console}
 

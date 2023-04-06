@@ -42,23 +42,11 @@
 #  by those two functions.
 
 # -----------------------------------------------------------------------------
+# source `doc/002-load-globals.Rmd` to get forecast_yrs defined
 nf <- length(forecast_yrs)
-ct_levels <-
-  list(list(rep(0.01, nf), "No Fishing", "01-0"),
-       list(rep(180000, nf), "180,000 t", "02-180000"),
-       list(rep(225000, nf), "225,000 t", "03-225000"),
-       list(rep(270000, nf), "270,000 t", "04-270000"),
-       list(c(320000, 288000, 259200, 233280), "320,000 t 10% red.", "05-320000-10"),
-       list(rep(325000, nf), "2022 catch: 325,000 t", "06-325000"),
-       list(rep(350000, nf), "350,000 t", "07-350000"),
-       list(c(350000, 315000, 283500, 255150), "350,000 t 10% red.", "08-350000-10"),
-       list(rep(380000, nf), "380,000 t", "09-380000"),
-       list(c(380000, 342000, 307800, 277020), "380,000 t 10% red.", "10-380000-10"),
-       list(rep(430000, nf), "430,000 t", "11-430000"),
-       list(rep(545000, nf), "2022 TAC: 545,000 t", "12-545000"),
-       list(rep(NA, nf), "FI=100%", "13-spr-100"),
-       list(rep(NA, nf), "Default Harvest Policy", "14-default-hr"),
-       list(rep(NA, nf), "Stable Catch", "15-stable-catch"))
+ct_level_lst <- set_ct_levels(nf)
+ct_levels <- ct_level_lst$ct_levels
+ct_levels_vals <- ct_level_lst$ct_levels_vals
 
 # -----------------------------------------------------------------------------
 # Indices for the forecasts list, which list items above are the TAC case and
@@ -631,7 +619,7 @@ dfo_prob_next_over_bmsy <-
                                                     ">SSB_MSY")])
 # ... US (PFMC) stock size reference points based on default Treaty HCR -------
 next_treaty_catch <-
-  f(base_model$catch.levels[[ct_default_policy_ind]][[1]][1], 0)
+  f(base_model$catch_levels[[ct_default_policy_ind]][[1]][1], 0)
 pfmc_prob_next_yr_below_b40 <-
   f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
                                                         assess_yr + 1,
@@ -641,7 +629,7 @@ pfmc_prob_next_yr_below_b25 <-
                                                         assess_yr + 1,
                                                         "<0.25")], 0)
 same_catch_as_last_yr <-
-  f(base_model$catch.levels[[ct_actual_ind]][[1]][1], 0)
+  f(base_model$catch_levels[[ct_actual_ind]][[1]][1], 0)
 same_catch_prob_next_year_below_b40 <-
   f(base_model$risks[[1]][ct_actual_ind, paste0("Bratio_",
                                                 assess_yr + 1,
@@ -1170,7 +1158,7 @@ prob_decline_from_2012_to_2013_historic <-
  })
 
  # Values used in management presentation
-last_yr_catch_fore <- base_model$catch.levels[[ct_actual_ind]][[1]][1]
+last_yr_catch_fore <- base_model$catch_levels[[ct_actual_ind]][[1]][1]
 ct_col <- paste0("ForeCatch_", forecast_yrs[1])
 ct_col_sym <- sym(ct_col)
 decl_col <- paste0("SSB_", forecast_yrs[2], "<SSB_", forecast_yrs[1])

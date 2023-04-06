@@ -35,7 +35,7 @@ load_extra_mcmc_atage <- function(reps,
                                   ...){
 
   if(verbose){
-    message(paste0("Extracting ", txt, " ..."))
+    message(paste0("Extracting ", txt, "..."))
   }
   x <- load_extra_mcmc_get_chunk(reps, ...)
 

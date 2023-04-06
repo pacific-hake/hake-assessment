@@ -975,7 +975,7 @@ dfo_prob_next_over_bmsy <-
                                                     ">SSB_MSY")])
 # ... US (PFMC) stock size reference points based on default Treaty HCR -------
 next_treaty_catch <-
-  f(base_model$catch.levels[[ct_default_policy_ind]][[1]][1], 0)
+  f(base_model$catch_levels[[ct_default_policy_ind]][[1]][1], 0)
 pfmc_prob_next_yr_below_b40 <-
   f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
                                                         assess_yr + 1,
@@ -985,7 +985,7 @@ pfmc_prob_next_yr_below_b25 <-
                                                         assess_yr + 1,
                                                         "<0.25")], 0)
 same_catch_as_last_yr <-
-  f(base_model$catch.levels[[ct_actual_ind]][[1]][1], 0)
+  f(base_model$catch_levels[[ct_actual_ind]][[1]][1], 0)
 same_catch_prob_next_year_below_b40 <-
   f(base_model$risks[[1]][ct_actual_ind, paste0("Bratio_",
                                                 assess_yr + 1,
@@ -1475,7 +1475,7 @@ prob_decline_from_2012_to_2013_historic <-
  })
 
  # Values used in management presentation
-last_yr_catch_fore <- base_model$catch.levels[[ct_actual_ind]][[1]][1]
+last_yr_catch_fore <- base_model$catch_levels[[ct_actual_ind]][[1]][1]
 ct_col <- paste0("ForeCatch_", forecast_yrs[1])
 ct_col_sym <- sym(ct_col)
 decl_col <- paste0("SSB_", forecast_yrs[2], "<SSB_", forecast_yrs[1])

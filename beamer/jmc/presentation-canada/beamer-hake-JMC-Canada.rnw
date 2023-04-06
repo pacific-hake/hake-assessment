@@ -96,9 +96,9 @@ metric <- NULL
 forecasts <- base_model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
 models.inds <- c(1, 2, 4, 5, ct_default_policy_ind)
-models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds]
+models.names <- sapply(base_model$catch_levels, "[[", 2)[models.inds]
 fore.inds <- c(1, 2, 3, 4, 5, ct_tac_ind)
-fore.names <- cmodels.names <- sapply(base_model$catch.levels, "[[", 2)[fore.inds]
+fore.names <- cmodels.names <- sapply(base_model$catch_levels, "[[", 2)[fore.inds]
 @
 
 %------------------------------------------------------------------------------
@@ -214,7 +214,7 @@ from last year)
     plot_management_catch_vs_tac(catch_targets_df, connect_vars = TRUE,
                                  connect_vars_linetype = "solid",
                                  connect_vars_alpha = 0.2,
-                                 curr_assess_biomass = base_model$catch.default.policy[1],
+                                 curr_assess_biomass = base_model$catch_default_policy[1],
                                  leg_pos = c(0.12, 0.87),
                                  leg_font_size = 10)
     @

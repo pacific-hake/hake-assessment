@@ -79,7 +79,7 @@ metric <- NULL
 forecasts <- base_model$forecasts[[1]]
 metric$mcmc <- forecasts[[7]]$outputs
 models.inds <- c(1, 2, 6, 12, ct_default_policy_ind)
-models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] # pretty catch level name
+models.names <- sapply(base_model$catch_levels, "[[", 2)[models.inds] # pretty catch level name
 @
 
 %----------------------------------------------------------
@@ -119,7 +119,7 @@ models.names <- sapply(base_model$catch.levels, "[[", 2)[models.inds] # pretty c
 plot_management_catch_vs_tac(catch_targets_df, connect_vars = TRUE,
                              connect_vars_linetype = "solid",
                              connect_vars_alpha = 0.2,
-                             curr_assess_biomass = base_model$catch.default.policy[1],
+                             curr_assess_biomass = base_model$catch_default_policy[1],
                              leg_pos = c(0.12, 0.87),
                              leg_font_size = 10)
 def_med_hr_tac <- filter(catch_targets_df,

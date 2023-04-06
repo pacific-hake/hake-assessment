@@ -49,7 +49,7 @@ run_retrospectives <- function(model_path,
 
     retro_subdir <- file.path(retro_path,
                               paste0("retro-",
-                                     pad.num(.x, 2)))
+                                     pad_num(.x, 2)))
     dir.create(retro_subdir, showWarnings = FALSE)
     file.copy(files_to_copy, retro_subdir)
     starter_file <- file.path(retro_subdir, starter_file_name)

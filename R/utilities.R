@@ -470,7 +470,7 @@ get.shade <- function(color, opacity){
 #'
 #' @return A vector of strings of the padded numbers
 #' @export
-pad.num <- function(num, digits = 1){
+pad_num <- function(num, digits = 1){
   stopifnot(digits >= 1, !any(nchar(num) > digits))
   sapply(num,
          function(x){
@@ -480,13 +480,13 @@ pad.num <- function(num, digits = 1){
                   as.character(x))})
 }
 
-t.pn <- function(){
-  ## test pad.num
-  cat("pad.num(0, 1) = ", pad.num(0, 1), "\n")
-  cat("pad.num(1, 2) = ", pad.num(1, 2), "\n")
-  cat("pad.num(10, 2) = ", pad.num(10, 2), "\n")
-  cat("pad.num(10, 3) = ", pad.num(10, 3), "\n")
-  cat("pad.num(10, 0) = ", pad.num(10, 0), "\n")
+t_pn <- function(){
+  ## test pad_num
+  cat("pad_num(0, 1) = ", pad_num(0, 1), "\n")
+  cat("pad_num(1, 2) = ", pad_num(1, 2), "\n")
+  cat("pad_num(10, 2) = ", pad_num(10, 2), "\n")
+  cat("pad_num(10, 3) = ", pad_num(10, 3), "\n")
+  cat("pad_num(10, 0) = ", pad_num(10, 0), "\n")
 }
 
 #' Change a number into an English word
@@ -496,17 +496,17 @@ t.pn <- function(){
 #' See Function by John Fox found here:
 #'  http://tolstoy.newcastle.edu.au/R/help/05/04/2715.html
 #' @param x The number to convert
-#' @param th Logical. If TRUE the *th* versions will be returned,
+#' @param th Logical. If TRUE the `th` versions will be returned,
 #' e.g. 4 = fourth
-#' @param cap.first Logical. Capitalize the first letter of the returned
+#' @param cap_first Logical. Capitalize the first letter of the returned
 #' string?
 #'
 #' @return The English word representing the number
 #' @export
 #'
 #' @examples
-#' number_to_word(c(1000,2,3,10000001), th = TRUE, cap.first = TRUE)
-number_to_word <- function(x = NA, th = FALSE, cap.first = FALSE){
+#' number_to_word(c(1000,2,3,10000001), th = TRUE, cap_first = TRUE)
+number_to_word <- function(x = NA, th = FALSE, cap_first = FALSE){
 
   stopifnot(!is.na(x))
 
@@ -593,7 +593,7 @@ number_to_word <- function(x = NA, th = FALSE, cap.first = FALSE){
         last <- paste0(last, "th")
       }
       tmp <- paste(c(first, last), collapse = " ")
-      if(cap.first){
+      if(cap_first){
         tmp <- paste0(toupper(substr(tmp, 1, 1)), substr(tmp, 2, nchar(tmp)))
       }
       tmp

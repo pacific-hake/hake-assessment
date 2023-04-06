@@ -312,7 +312,7 @@ the lines}
 \item{arrow_size}{size of the arrow heads, \code{npc} units. See \code{\link[grid:unit]{grid::unit()}}
 For description of \code{npc}}
 
-\item{fore_inds}{Indices of the \code{model$catch.levels} list to include as
+\item{fore_inds}{Indices of the \code{model$catch_levels} list to include as
 forecast catch streams in the plot}
 
 \item{y_labels}{Labels for the tick marks on the Y axis}
