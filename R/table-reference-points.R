@@ -37,8 +37,7 @@ table_reference_points <- function(model,
 
   df <- df |>
     mutate(Quantity = descr)
-  col_names <- linebreak(names(df), align = "c")
-  col_names[col_names == "Quantity"] <- "\\makecell[l]{Quantity}"
+  col_names <- linebreaker(names(df), align = "c")
 
   # Insert a new row made up of the vector `row_vec` at row `row_ind` in
   # data frame `d`

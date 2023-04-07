@@ -3,7 +3,7 @@
 #'
 #' @param model1 A model, typically last year's model
 #' @param model2 A model, typically this year's model
-#' @param year The cohort to extract
+#' @param yr The cohort to extract
 #' @param probs The 3-vector of probabilities to be passes to the
 #' [quantile()] function.
 #' @param scale Scaling factor
@@ -18,25 +18,28 @@
 #' @export
 get_rec_ci <- function(model1,
                        model2,
-                       year,
-                       probs = c(0.025, 0.5, 0.975),
+                       yr,
                        scale = 1e6,
                        decimals = 3,
-                       perc.decimals = 0){
-  col <- paste0("Recr_", year)
-  rec1 <- quantile(model1$mcmc[[col]] / scale, probs)
-  rec2 <- quantile(model2$mcmc[[col]] / scale, probs)
-  rec1.env <- rec1[3] - rec1[1]
-  rec2.env <- rec2[3] - rec2[1]
-  rec.diff.perc <- rec2.env / rec1.env * 100
-  rec1 <- c(rec1, rec1.env)
-  names(rec1)[4] <- "env_diff"
-  rec2 <- c(rec2, rec2.env)
-  names(rec2)[4] <- "env_diff"
+                       perc_decimals = 0){
+
+  rec1 <- c(model1$mcmccalcs$rlower[names(model1$mcmccalcs$rlower) == yr],
+            model1$mcmccalcs$rmed[names(model1$mcmccalcs$rmed) == yr],
+            model1$mcmccalcs$rupper[names(model1$mcmccalcs$rupper) == yr])
+
+  rec2 <- c(model2$mcmccalcs$rlower[names(model2$mcmccalcs$rlower) == yr],
+            model2$mcmccalcs$rmed[names(model2$mcmccalcs$rmed) == yr],
+            model2$mcmccalcs$rupper[names(model2$mcmccalcs$rupper) == yr])
+  rec1_env <- rec1[3] - rec1[1]
+  rec2_env <- rec2[3] - rec2[1]
+  rec_diff_perc <- rec2_env / rec1_env * 100
+  rec1 <- c(rec1, rec1_env)
+  names(rec1) <-c("lo", "med", "hi", "env_diff")
+  rec2 <- c(rec2, rec2_env)
+  names(rec2) <-c("lo", "med", "hi", "env_diff")
   list(f(rec1, decimals),
        f(rec2, decimals),
-       f(rec.diff.perc,
-         perc.decimals))
+       f(rec_diff_perc, perc_decimals))
 }
 
 #' Get the median proportions of biomass-at-ages for the final year (MCMC)

@@ -22,13 +22,13 @@ vec2df <- function(vec, nms = NULL){
   df <- vec |>
     enframe(name = NULL) |>
     t() |>
+    as.data.frame() |>
     as_tibble()
 
   if(is.null(nms)){
-    if(!is.null(names(vec))){
+    if(!is.null(names(vec)[1])){
       names(df) <- names(vec)
     }
-    return(df)
   }else{
     names(df) <- nms
   }

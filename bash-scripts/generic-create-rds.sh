@@ -4,8 +4,8 @@
 [[ -z $project_path ]] && { echo "Variable 'project_path' has not been set, bailing out." ; exit 1; }
 [[ -z $type_path ]] && { echo "Variable 'type_path' has not been set, bailing out." ; exit 1; }
 [[ -z $models ]] &&{ echo "Variable 'models' has not been set, bailing out." ; exit 1; }
-[[ -z $small ]] &&{ echo "Variable 'small' has not been set, bailing out." ; exit 1; }
 [[ -z $verbose ]] &&{ echo "Variable 'verbose' has not been set, bailing out." ; exit 1; }
+[[ -z $overwrite ]] &&{ echo "Variable 'overwrite' has not been set, bailing out." ; exit 1; }
 
 repo_path=`Rscript -e "cat(here::here())"`
 models_path="models"
@@ -20,8 +20,9 @@ for model in ${models[@]}; do
   echo; \
   Rscript -e " \
   setwd('$repo_path'); \
-  source('R/all.R'); \
-  create_rds_file('$model_path', small = $small, verbose = $verbose)"; \
+  devtools::load_all(); \
+  create_rds_file('$model_path', verbose = $verbose, overwrite = $overwrite)"; \
   echo; \
-  echo "$model RDS complete") &
+  echo "$model RDS complete"; \
+  echo "") &
 done

@@ -81,6 +81,21 @@ create_rds_file <- function(
     message("Loading extra MCMC output for model in:\n",
             "`", model$extra_mcmc_path, "`\n")
   }
+
+  # Add values to be used in the document that require the MCMC data frame to
+  # calculate, because the MCMC data frame will not be stored in the RDS file
+  # due to its size
+  model$mcmcvals <- load_mcmc_vals(model,
+                                   model$dat$endyr + 1,
+                                   probs = probs)
+
+  # Add values to be used in the document that require the `parameters` data
+  # frame to calculate, because the `parameters` data frame will not be
+  # stored in the RDS file due to its size
+  model$mcmcparams <- load_parameter_priors(model)
+
+  # Add values extracted from the extra MCMC output which includes index
+  # estimates, catchability estimates, and at-age data frames
   model$extra_mcmc <- load_extra_mcmc(model,
                                       probs = probs,
                                       verbose = verbose,
@@ -105,10 +120,13 @@ create_rds_file <- function(
     # populates them with the values from the catch levels runs which were
     # run using reduction search type algorithms and have their results
     # located in forecast files in their respective run directories
-    model$ct_levels <-
-      load_ct_levels(model,
-                     ct_levels = ct_levels_lst$ct_levels,
-                     ...)
+    ct_levels_lst <- load_ct_levels(model,
+                                    ct_levels_lst = ct_levels_lst,
+                                    ...)
+
+    model$ct_levels <- ct_levels_lst$ct_levels
+    model$ct_levels_vals <- ct_levels_lst$ct_levels_vals
+
     default_policy_ind <- ct_levels_lst$ct_levels_vals$ct_default_policy_ind
     model$ct_default_policy <-
       model$ct_levels[[default_policy_ind]][[1]]
@@ -129,11 +147,16 @@ create_rds_file <- function(
                                       probs = probs,
                                       ...)
 
+  # These are too large and after the calculations above in `load_mcmc_vals()`
+  # and `load_parameter_priors()`, they are not needed any longer
+  model$mcmc <- NA
+  model$parameters <- NA
+
   saveRDS(model, file = rds_file)
   if(file.exists(rds_file)){
     dt <- now() - file.info(rds_file)$mtime
     message("RDS file `", rds_file, "` was created ",
-            f(dt[[1]], 2), " ", units(dt), " ago\n")
+            f(dt[[1]], 2), " ", units(dt), " ago\n\n")
   }else{
     stop("File was not created during the `saveRDS()` call",
          call. = FALSE)

@@ -6,15 +6,15 @@
 values after running the \code{\link[=run_ct_levels]{run_ct_levels()}} function for default HR, SPR 100,
 and stable catch}
 \usage{
-load_ct_levels(model, ct_levels = NULL, ...)
+load_ct_levels(model, ct_levels_lst = NULL, ...)
 }
 \arguments{
-\item{ct_levels}{The catch levels list as defined in
-\code{forecast-catch-levels.R}}
+\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
+
+\item{ct_levels_lst}{The catch levels list as returned by
+\code{set_ct_levels()}}
 
 \item{...}{Absorbs arguments intended for other functions}
-
-\item{ct_levels_path}{The path for the catch-levels output}
 }
 \value{
 A list of 3-element lists of vectors of 3 catch levels

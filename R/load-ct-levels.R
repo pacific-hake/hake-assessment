@@ -6,9 +6,9 @@
 #' Assumes [run_ct_levels()] function has been run and the forecast
 #' files are populated with 3 forecast years.
 #'
-#' @param ct_levels The catch levels list as defined in
-#' `forecast-catch-levels.R`
-#' @param ct_levels_path The path for the catch-levels output
+#' @param model The SS model output as loaded by [create_rds_file()]
+#' @param ct_levels_lst The catch levels list as returned by
+#' `set_ct_levels()`
 #' @param ... Absorbs arguments intended for other functions
 #'
 #' @return A list of 3-element lists of vectors of 3 catch levels
@@ -20,10 +20,10 @@
 #' elements
 #' @export
 load_ct_levels <- function(model,
-                           ct_levels = NULL,
+                           ct_levels_lst = NULL,
                            ...){
 
-  stopifnot(!is.null(ct_levels))
+  stopifnot(!is.null(ct_levels_lst))
 
   message("\nLoading catch levels from ", model$ct_levels_path)
 
@@ -50,6 +50,7 @@ load_ct_levels <- function(model,
       select(`Catch or F`) |>
       pull()
   })
+  ct_levels <- ct_levels_lst$ct_levels
 
   # Replace the NA values for the custom catch levels with the values read in
   inds <- (length(ct_levels) - length(cust_ct_levels) + 1):length(ct_levels)
@@ -58,5 +59,6 @@ load_ct_levels <- function(model,
     ct_levels[inds][[.x]]
   })
 
-  ct_levels
+  list(ct_levels = ct_levels,
+       ct_levels_vals = ct_levels_lst$ct_levels_vals)
 }

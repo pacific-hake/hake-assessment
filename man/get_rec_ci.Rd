@@ -5,29 +5,21 @@
 \title{Get recruitment information for a cohort from two models with
 an CI envelope \% difference calculation}
 \usage{
-get_rec_ci(
-  model1,
-  model2,
-  year,
-  probs = c(0.025, 0.5, 0.975),
-  scale = 1e+06,
-  decimals = 3,
-  perc.decimals = 0
-)
+get_rec_ci(model1, model2, yr, scale = 1e+06, decimals = 3, perc_decimals = 0)
 }
 \arguments{
 \item{model1}{A model, typically last year's model}
 
 \item{model2}{A model, typically this year's model}
 
-\item{year}{The cohort to extract}
-
-\item{probs}{The 3-vector of probabilities to be passes to the
-\code{\link[=quantile]{quantile()}} function.}
+\item{yr}{The cohort to extract}
 
 \item{scale}{Scaling factor}
 
 \item{decimals}{Number of decimal points to round values to}
+
+\item{probs}{The 3-vector of probabilities to be passes to the
+\code{\link[=quantile]{quantile()}} function.}
 
 \item{perc.decimals}{Number of decimal points to round percentages to}
 }

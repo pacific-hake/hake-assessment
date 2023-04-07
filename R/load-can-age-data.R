@@ -36,7 +36,7 @@ load_can_age_data <- function(fn){
       map(~{
         vec2df(.x)
       }) |>
-      purrr::map_dfr(~{.x}) %>%
+      purrr::map_df(~{.x}) %>%
       mutate_all(~{as.numeric(.)})
     if(ncol(j) == 2){
       # Sample data

@@ -25,24 +25,14 @@ cohort_catch <- function(model,
          call. = FALSE)
   }
 
-  catage <- model$extra_mcmc$catage_median
-  w <- model$wtatage |>
-    as_tibble()
+  catage <- model$extra_mcmc$catage_med
   cohort_yrs <- cohort + ages
-  waa <- w |>
-    filter(Fleet == 1 & Yr %in% cohort_yrs)
   tmp_caa <- catage |>
-    filter(Yr %in% cohort_yrs) |>
-    filter(Yr %in% waa$Yr)
-  caa <- tmp_caa |>
+    filter(yr %in% cohort_yrs) |>
     select(all_of(as.character(ages))) |>
     as.matrix()
-  waa <- waa |>
-    select(all_of(as.character(ages))) |>
-    as.matrix()
-  cwaa <- caa * waa
-  cohort_catch <- diag(cwaa)
-  names(cohort_catch) <- cohort_yrs[seq_len(nrow(cwaa))]
+  cohort_catch <- diag(tmp_caa)
+  names(cohort_catch) <- cohort_yrs[seq_len(nrow(tmp_caa))]
   if(!is.na(trim_end_year)){
     cohort_catch <- cohort_catch[names(cohort_catch) < trim_end_year]
   }
