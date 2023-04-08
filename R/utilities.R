@@ -176,7 +176,7 @@ stop_quietly <- function(...) {
 #' @return A formatted string representing the number
 #' @export
 f <- function(x, dec.points = 0){
-  format(round(x,dec.points), big.mark = ",", nsmall = dec.points)
+  format(round(x, dec.points), big.mark = ",", nsmall = dec.points)
 }
 
 # Functions to make table generation easier -----------------------------------
