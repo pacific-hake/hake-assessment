@@ -658,8 +658,7 @@ quantities (Figure~\@ref(fig:main-mcmc-pairs)). An examination of deviations
 in recruitment (log-scale differences between estimated and expected
 recruitment values) from recent years
 (Figure~\@ref(fig:main-mcmc-pairs-recruit-devs)) indicates the highest
-correlation
-(`r round(cor(base_model$mcmc$Main_RecrDev_2014,base_model$mcmc$Main_RecrDev_2016),2)`)
+correlation (`r f(base_model$mcmcvals$rec_cor_2014_2016, 2)`)
 was between the 2014 and 2016 recruitment deviations. This is an increase in
 correlation relative to the last assessment despite the fact that each cohort
 has been observed for an additional year.
@@ -1163,12 +1162,12 @@ that something definitely occurs (or definitely does not occur).
 
 With respect to DFO's provisional limit reference point of $0.4\Bmsy$ and
 provisional upper stock reference point of $0.8\Bmsy$, the probabilities are
-P$(\mathrm{B}_{`r assess_yr`} > 0.4\Bmsy) = `r f(dfo_probs_curr[1, 2], 0)`$%
+P$(\mathrm{B}_{`r assess_yr`} > 0.4\Bmsy) = `r f(dfo_probs_curr[1, 2] |> pull(), 0)`$%
 and
-P$(\mathrm{B}_{`r assess_yr`} > 0.8\Bmsy) = `r f(dfo_probs_curr[1, 3], 1)`$%
+P$(\mathrm{B}_{`r assess_yr`} > 0.8\Bmsy) = `r f(dfo_probs_curr[1, 3] |> pull(), 1)`$%
 such that the stock is estimated to be in the provisional `healthy zone'.
 For completeness, we note that
-P$(\mathrm{B}_{`r assess_yr`} > \Bmsy) = `r f(dfo_probs_curr[1, 1], 1)`$%.
+P$(\mathrm{B}_{`r assess_yr`} > \Bmsy) = `r f(dfo_probs_curr[1, 1] |> pull(), 1)`$%.
 
 Reference levels of stock status that are used by the U.S. Pacific Fisheries
 Management Council (PFMC) for `r sp` include $\Bforty$ and a Minimum Stock
@@ -1471,10 +1470,10 @@ the end of the time series
 Figures~\@ref(fig:main-biomass-base-alternative-2) and
 \@ref(fig:main-status-base-alternative-2)). The `r end_yr` estimates of
 relative spawning biomass are `r f(100 * bratio_curr[2], 1)`% for the base model
-(95% credible interval of `r f(100*bratio_curr[1], 1)`--
+(95% credible interval of `r f(100 * bratio_curr[1], 1)`--
 `r f(100 * bratio_curr[3], 1)`%) and `r f(100 * bratio_age1[2], 1)`%
 for the removal of the age-1 index model (95% credible interval of
-`r f(100 * bratio_age1[1], 1)`--`r f(100*bratio_age1[3], 1)`%). This
+`r f(100 * bratio_age1[1], 1)`--`r f(100 * bratio_age1[3], 1)`%). This
 difference is due to the age-1 index providing additional information on
 recruitment for cohorts associated with recent age-1 indices (i.e., 2018 and
 2020 cohorts detected in the 2019 and 2021 age-1 indices). In particular, the
@@ -1501,7 +1500,7 @@ factor of 0.14 and 0.46 (ratio of 0.30) for fishery and survey age
 compositions, respectively. The median estimate from Dirichlet-multinomial
 method used in the base model was `r dm_weight_fishery_median` and
 `r dm_weight_survey_median` (ratio of
-`r f(as.numeric(dm_weight_fishery_median) / as.numeric(dm_weight_survey_median),2)`).
+`r f(as.numeric(dm_weight_fishery_median) / as.numeric(dm_weight_survey_median), 2)`).
 Downweighting fishery composition data using the McAllister-Ianelli method
 led to minor changes in relative spawning biomass, recruitment estimates, and
 increased uncertainty in estimates of early recruitments compared to the base
@@ -1587,7 +1586,7 @@ to 2004, survey catchability was fixed at 1.0 and this assumption was
 heavily investigated between 2004 and 2007, leading to variability in model
 results because of the use of several different, but fixed, values of survey
 catchability. Since 2008, catchability has been freely estimated by the model
-($q$ = `r base_model$extra_mcmc$Q_vector %>% median() %>% f(2)`). The fixing
+($q$ = `r f(median(base_model$extra_mcmc$q_vector), 2)`). The fixing
 of survey catchability had the effect of driving the estimate of initial
 biomass upward, which in turn scaled the entire biomass trajectory up,
 leading to higher estimates of relative spawning biomass than in more recent
