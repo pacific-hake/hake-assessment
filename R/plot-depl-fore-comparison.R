@@ -48,7 +48,7 @@ plot_depl_fore_comparison <- function(model,
                                       axis_tick_font_size = 11,
                                       forecast_yrs){
 
-  nice_nms <- map_chr(model$catch_levels[fore_inds], ~{
+  nice_nms <- map_chr(model$ct_levels[fore_inds], ~{
     .x[[2]]
   })
 

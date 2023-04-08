@@ -9,7 +9,7 @@ extract_survey_index_fits(
   model_lst,
   model_names,
   survey_type = c("age1", "age2"),
-  type = c("index.med", "index.025", "index.975"),
+  type = c("index_med", "index_lo", "index_hi"),
   inc_model_year = FALSE
 )
 }

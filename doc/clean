@@ -8,6 +8,7 @@ rm *.log 2> /dev/null
 rm *.lof 2> /dev/null
 rm *.lot 2> /dev/null
 rm *.ps 2> /dev/null
+rm *.md 2> /dev/null
 rm *.toc 2> /dev/null
 rm *.txt 2> /dev/null
 rm *.out 2> /dev/null

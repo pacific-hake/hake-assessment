@@ -170,18 +170,20 @@ model_setup <- function(drs = NA,
   # For each type (base, bridge, sens, request, test) extract unique groups,
   # load them only once if duplicates (to save time/memory) and match with
   # where they belong in the list according to model_list
-  map2(model_lst, model_desc_lst, function(type, type_nm, ...){
+  map2(model_lst, model_desc_lst, \(type, type_nm, ...){
 
     if(!is.null(type[1]) && !is.na(type[1])){
-      # Check that the RDS files exists for these models. If they don't, create them
-      walk(unique_models_dirs, function(path, ...){
+      # Check that the RDS files exists for these models. If they don't, stop
+      walk(unique_models_dirs, \(path){
         fn <- file.path(path, paste0(basename(path), ".rds"))
         if(!file.exists(fn)){
-          create_rds_file(path, ...)
-        }}, ...)
+          stop("RDS file `", fn, "` does not exist. Create it using ",
+               "the `create_rds_file()` function",
+               call. = FALSE)
+        }})
 
       # Load the models in from the RDS files
-      unique_models <- map(unique_models_dirs, function(path){
+      unique_models <- map(unique_models_dirs, \(path){
         fn <- file.path(path, paste0(basename(path), ".rds"))
         readRDS(fn)
       })

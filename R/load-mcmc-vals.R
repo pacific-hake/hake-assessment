@@ -63,29 +63,48 @@ load_mcmc_vals <- function(model,
   out$sigma_r_this_year_main <- calc_sd_of_devs(model$mcmc)
 
   # MCMC quantiles for the fishery DM parameter
-  col_effn <- grep("^.*\\(DM_theta\\)_Age_P1$",
-                   colnames(model$mcmc))
-  out$log_theta_fishery_median <- median(model$mcmc[, col_effn])
-  out$log_theta_fishery_lower <- quantile(model$mcmc[, col_effn],
-                                      probs = probs[1])
-  out$log_theta_fishery_upper <- quantile(model$mcmc[, col_effn],
-                                      probs = probs[3])
-  out$dm_weight_fishery_median <- median(exp(model$mcmc[, col_effn]) /
-                                       (1 + exp(model$mcmc[, col_effn])))
+  pat <- "^.*\\(DM_theta\\)_(Age_P)?1$"
+  col_effn <- grep(pat, colnames(model$mcmc))
+  if(!length(col_effn)){
+    stop("Fishery DM parameter not found in `model$mcmc` using regular ",
+         "expression ", pat,
+         call. = FALSE)
+  }
+  if(length(col_effn) > 1){
+    stop("More than one fishery DM parameter found in `model$mcmc` using ",
+         "regular expression ", pat,
+         call. = FALSE)
+  }
+  effn <- model$mcmc |>
+    pull(col_effn)
+  out$log_theta_fishery_median <- median(effn)
+  out$log_theta_fishery_lower <- quantile(effn, probs = probs[1])
+  out$log_theta_fishery_upper <- quantile(effn, probs = probs[3])
+  out$dm_weight_fishery_median <- median(exp(effn) / (1 + exp(effn)))
   out$dm_weight_fishery_lower <- exp(out$log_theta_fishery_lower) /
                                        (1 + exp(out$log_theta_fishery_lower))
   out$dm_weight_fishery_upper <- exp(out$log_theta_fishery_upper) /
                                        (1 + exp(out$log_theta_fishery_upper))
 
   # MCMC quantiles for the survey DM parameter
-  col_effn <- grep("^.*\\(DM_theta\\)_Age_P2$", colnames(model$mcmc))
-  out$log_theta_survey_median <- median(model$mcmc[, col_effn])
-  out$log_theta_survey_lower <- quantile(model$mcmc[, col_effn],
-                                     probs = probs[1])
-  out$log_theta_survey_upper <- quantile(model$mcmc[, col_effn],
-                                     probs = probs[3])
-  out$dm_weight_survey_median <- median(exp(model$mcmc[, col_effn]) /
-                                      (1 + exp(model$mcmc[, col_effn])))
+  pat <- "^.*\\(DM_theta\\)_(Age_P)?2$"
+  col_effn <- grep(pat, colnames(model$mcmc))
+  if(!length(col_effn)){
+    stop("Survey DM parameter not found in `model$mcmc` using regular ",
+         "expression ", pat,
+         call. = FALSE)
+  }
+  if(length(col_effn) > 1){
+    stop("More than one survey DM parameter found in `model$mcmc` using ",
+         "regular expression ", pat,
+         call. = FALSE)
+  }
+  effn <- model$mcmc |>
+    pull(col_effn)
+  out$log_theta_survey_median <- median(effn)
+  out$log_theta_survey_lower <- quantile(effn, probs = probs[1])
+  out$log_theta_survey_upper <- quantile(effn, probs = probs[3])
+  out$dm_weight_survey_median <- median(exp(effn) / (1 + exp(effn)))
   out$dm_weight_survey_lower <- exp(out$log_theta_survey_lower) /
                                       (1 + exp(out$log_theta_survey_lower))
   out$dm_weight_survey_upper <- exp(out$log_theta_survey_upper) /

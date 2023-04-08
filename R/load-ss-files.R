@@ -132,5 +132,6 @@ load_ss_files <- function(model_path = NA,
     # posteriors first though
     model$nposts <- nrow(model$mcmc)
   }
+
   model
 }

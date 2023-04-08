@@ -21,7 +21,7 @@ for model in ${models[@]}; do
   Rscript -e " \
   setwd('$repo_path'); \
   devtools::load_all(); \
-  create_rds_file('$model_path', verbose = $verbose, overwrite = $overwrite)"; \
+  create_rds_file('$model_path', verbose = $verbose, overwrite = $overwrite, first = 2000)"; \
   echo; \
   echo "$model RDS complete"; \
   echo "") &

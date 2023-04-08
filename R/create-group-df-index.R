@@ -30,22 +30,22 @@ create_group_df_index <- function(model_lst = NULL,
   d <- bind_cols(extract_survey_index_fits(model_lst,
                                            model_names,
                                            survey_type = survey_type,
-                                           "index.025",
+                                           "index_lo",
                                            TRUE),
                  extract_survey_index_fits(model_lst,
                                            model_names,
                                            survey_type = survey_type,
-                                           "index.med"),
+                                           "index_med"),
                  extract_survey_index_fits(model_lst,
                                            model_names,
                                            survey_type = survey_type,
-                                           "index.975")) |>
+                                           "index_hi")) |>
     bind_rows(obs) |>
     mutate(model = factor(model,
                           levels = c(model_names,
                                      "Observed")),
            year = as.numeric(year)) |>
-    mutate_at(vars(index.025, index.med, index.975),
+    mutate_at(vars(index_lo, index_med, index_hi),
               ~{.x / 1e6})
 
   list(d)

@@ -254,7 +254,6 @@ table_biomass(
     "unfished equilibrium (Rel. SSB; \\%)."),
   font_size = 10,
   header_font_size = 8)
-)
 ```
 
 ## Recruitment {-}
@@ -671,7 +670,7 @@ plot_depl_fore_comparison(base_model,
 ```
 
 The predicted relative spawning biomass trajectory through
-`r forecast_yrs[length(forecast_yrs)]` is shown in
+  `r forecast_yrs[length(forecast_yrs)]` is shown in
 Figure~\@ref(fig:es-forecast-depletion-comparison) for several of the
 management actions. With zero catch for the next three years, the biomass has
 a `r zero_catch_prob_bio_down_1`% probability of decreasing from

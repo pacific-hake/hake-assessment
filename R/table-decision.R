@@ -40,18 +40,24 @@ table_decision <- function(
     ...){
 
   if(length(rows_to_label) != length(row_labels)){
-    stop("rows_to_label vector must be the same length as row_labels list")
+    stop("rows_to_label vector must be the same length as row_labels list",
+         call. = FALSE)
   }
 
   if(!all(rows_to_label %in% letters)){
-    stop("All characters in rows_to_label must be a single letter of the alphabet")
+    stop("All characters in rows_to_label must be a single letter ",
+         "of the alphabet",
+         call. = FALSE)
   }
 
   if(type != "biomass" & type != "spr"){
-    stop("type '", type, "' is not implemented")
+    stop("type `", type, "` is not implemented",
+         call. = FALSE)
   }
   if(any(forecast_inds > length(model$forecasts[[length(model$forecasts)]]))){
-    stop("forecast_inds contains values greater than the length of the forecast catch levels list")
+    stop("forecast_inds contains values greater than the length of the ",
+         "forecast catch levels list",
+         call. = FALSE)
   }
 
   forecast <- model$forecasts[[length(model$forecasts)]][forecast_inds]
@@ -92,8 +98,8 @@ table_decision <- function(
   if(type == "biomass"){
     forecast_tab <- map(forecast, ~{
       tmp <- .x$biomass
-      tmp <- tmp %>%
-        as_tibble(rownames = "Year") %>%
+      tmp <- tmp |>
+        as_tibble() |>
         select(-c("25%", "75%"))
       names(tmp) <- gsub("%", "\\\\%", names(tmp))
       first_biomass_yr <<- slice(tmp, 1)
@@ -103,10 +109,10 @@ table_decision <- function(
 
     forecast_tab <- forecast_tab |>
       bind_cols(c_levels, tab_letters) %>%
-      mutate(Year = as.numeric(Year) - 1,
-             start_yr = paste("Start of", as.character(Year + 1))) %>%
-      select(labels, Year, `Catch (t)`, start_yr, everything()) %>%
-      mutate(Year = as.character(Year),
+      mutate(yr = as.numeric(yr) - 1,
+             start_yr = paste("Start of", as.character(yr + 1))) %>%
+      select(labels, yr, `Catch (t)`, start_yr, everything()) %>%
+      mutate(yr = as.character(yr),
              `Catch (t)` = f(`Catch (t)`),
              `5\\%` = f(`5\\%`, 2),
              `50\\%` = f(`50\\%`, 2),
@@ -174,7 +180,7 @@ table_decision <- function(
     forecast_tab <- map(forecast, ~{
       tmp <- .x$spr
       tmp <- tmp |>
-        as_tibble(rownames = "Year") |>
+        as_tibble() |>
         select(-c("25%", "75%"))
       names(tmp) <- gsub("%", "\\\\%", names(tmp))
       slice(tmp, -nrow(tmp))
@@ -183,15 +189,14 @@ table_decision <- function(
 
     forecast_tab <- forecast_tab |>
       bind_cols(c_levels, tab_letters) |>
-      mutate(Year = as.numeric(Year),
-             start_yr = paste("Start of", as.character(Year + 1))) |>
-      select(labels, Year, `Catch (t)`, start_yr, everything()) |>
-      mutate(Year = as.character(Year),
+      mutate(yr = as.numeric(yr),
+             start_yr = paste("Start of", as.character(yr + 1))) |>
+      select(labels, yr, `Catch (t)`, start_yr, everything()) |>
+      mutate(yr = as.character(yr),
              `Catch (t)` = f(`Catch (t)`),
              `5\\%` = f(`5\\%`, 2),
              `50\\%` = f(`50\\%`, 2),
              `95\\%` = f(`95\\%`, 2))
-
 
     quant_levels <- grep("%", names(forecast_tab), value = TRUE)
 

@@ -408,19 +408,19 @@ fore_tac_mcmc_yr2 <- base_model$forecasts[[2]][[ct_tac_ind]]$mcmccalcs
 # Biomass medians for last year's TAC catch level -----------------------------
 endyr_plus_3_fore <- base_model$forecasts[[as.character(end_yr + 3)]]
 endyr_plus_3_fore_tac_catch <- endyr_plus_3_fore[[ct_tac_ind]]$biomass |>
-  as_tibble(rownames = "year")
+  as_tibble()
 last_yr_tac_fore_1_biomass <- endyr_plus_3_fore_tac_catch |>
-  filter(year == end_yr) |>
+  filter(yr == end_yr) |>
   mutate(`50%` = `50%` * 100) |>
   pull(`50%`)
 
 last_yr_tac_fore_2_biomass <- endyr_plus_3_fore_tac_catch |>
-  filter(year == end_yr + 1) |>
+  filter(yr == end_yr + 1) |>
   mutate(`50%` = `50%` * 100) |>
   pull(`50%`)
 
 last_yr_tac_fore_3_biomass <- endyr_plus_3_fore_tac_catch |>
-  filter(year == end_yr + 2) |>
+  filter(yr == end_yr + 2) |>
   mutate(`50%` = `50%` * 100) |>
   pull(`50%`)
 
@@ -548,11 +548,11 @@ recruitment_med_to_compare <- mc$rmed[compareable_names]
 
 # Biomass probabilities -------------------------------------------------------
 # ... biomass declines next year to year after with zero catch ----------------
-zero_catch_prob_bio_down_1 <- f(base_model$risks[[1]][1, 2])
+zero_catch_prob_bio_down_1 <- f(base_model$risks[[1]][1, 2] |> pull())
 # ... biomass declines year after next to year after that with 0 catch --------
-zero_catch_prob_bio_down_2 <- f(base_model$risks[[2]][1, 2])
+zero_catch_prob_bio_down_2 <- f(base_model$risks[[2]][1, 2] |> pull())
 # ... biomass declines 2 years after next to year after that with 0 catch -----
-zero_catch_prob_bio_down_3 <- f(base_model$risks[[3]][1, 2])
+zero_catch_prob_bio_down_3 <- f(base_model$risks[[3]][1, 2] |> pull())
 # ... current biomass being above/below B40%, B25%, and B10% ------------------
 probs_curr_b40 <- base_model$mcmcvals$probs_curr_b40
 probs_curr_b25 <- base_model$mcmcvals$probs_curr_b25
@@ -857,11 +857,10 @@ sigma_r_alt_allyr <- base_model$mcmcvals$sigma_r_alt_allyr
 sigma_r_this_year_main <- base_model$mcmcvals$sigma_r_this_year_main
 sigma_r_last_year_main <- last_yr_base_model$mcmcvals$sigma_r_this_year_main
 
-# TODO: HERE
 sigma_r_sens1 <- sens_models[[1]] |> 
-  map("mcmc") |> 
-  map_chr(calc_sd_of_devs) |> 
-  `names<-`(sens_models_names[[1]])
+  map_chr(~{.x$mcmcvals$sigma_r_this_year_main}) |> 
+  set_names(sens_models_names[[1]])
+
 sigma_r_hi_main <- sigma_r_sens1[grep("Sigma.+1.[5-9]",
                                       names(sigma_r_sens1),
                                       value = TRUE)]
@@ -981,6 +980,7 @@ prob_decline_from_2012_to_2013_historic <-
  }
  retro_models_end_yr <- c(end_yr, end_yr - plot_retro_yrs)
  # Assemble the retrospective list with the base as the first element
+
  d_obj_retro_biomass <-
    create_group_df_biomass(retro_lst,
                            retro_model_nms,

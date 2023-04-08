@@ -16,9 +16,9 @@ extract_survey_index_fits <- function(model_lst,
                                       model_names,
                                       survey_type = c("age1",
                                                       "age2"),
-                                      type = c("index.med",
-                                               "index.025",
-                                               "index.975"),
+                                      type = c("index_med",
+                                               "index_lo",
+                                               "index_hi"),
                                       inc_model_year = FALSE){
 
   survey_type <- match.arg(survey_type)
@@ -28,10 +28,10 @@ extract_survey_index_fits <- function(model_lst,
 
   out <- map2(model_lst, model_names, ~{
     .x$extra_mcmc[[type]] |>
-      filter(Fleet == fleet) |>
+      filter(fleet == fleet) |>
       ungroup() |>
       mutate(model = .y) |>
-      select(-Fleet) |>
+      select(-fleet) |>
       select(model, everything()) |>
       setNames(c("model", "year", type)) |>
       mutate(year = as.numeric(year))
