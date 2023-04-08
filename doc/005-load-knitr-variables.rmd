@@ -581,42 +581,43 @@ prob_next_over_b40 <-
     0)
 # ... Canadian (DFO) provisional reference points -----------------------------
 dfo_probs_curr <-
-  base_model$risks[[1]][ ,(ncol(base_model$risks[[1]])-2):ncol(base_model$risks[[1]])]
-dfo_probs_fore <- base_model$risks[[2]][,(ncol(base_model$risks[[2]])-2):ncol(base_model$risks[[2]])]
+  base_model$risks[[1]][ ,(ncol(base_model$risks[[1]]) - 2):ncol(base_model$risks[[1]])]
+dfo_probs_fore <-
+  base_model$risks[[2]][,(ncol(base_model$risks[[2]]) - 2):ncol(base_model$risks[[2]])]
 # ... next year DFO probs given largest catch this year -----------------------
 dfo_prob_next_over_40bmsy <-
   f(dfo_probs_fore[largest_next_catch_index, paste0("SSB_",
                                                     assess_yr + 1,
-                                                    ">0.4SSB_MSY")])
+                                                    ">0.4SSB_MSY")] |> pull())
 dfo_prob_next_over_80bmsy <-
   f(dfo_probs_fore[largest_next_catch_index, paste0("SSB_",
                                                     assess_yr + 1,
-                                                    ">0.8SSB_MSY")])
+                                                    ">0.8SSB_MSY")] |> pull())
 dfo_prob_next_over_bmsy <-
   f(dfo_probs_fore[largest_next_catch_index, paste0("SSB_",
                                                     assess_yr + 1,
-                                                    ">SSB_MSY")])
+                                                    ">SSB_MSY")] |> pull())
 # ... US (PFMC) stock size reference points based on default Treaty HCR -------
 next_treaty_catch <-
   f(base_model$ct_levels[[ct_default_policy_ind]][[1]][1], 0)
 pfmc_prob_next_yr_below_b40 <-
-  f(pull(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
+  f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
                                                         assess_yr + 1,
-                                                        "<0.40")]), 0)
+                                                        "<0.40")] |> pull())
 pfmc_prob_next_yr_below_b25 <-
-  f(pull(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
+  f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
                                                         assess_yr + 1,
-                                                        "<0.25")]), 0)
+                                                        "<0.25")] |> pull())
 same_catch_as_last_yr <-
   f(base_model$ct_levels[[ct_actual_ind]][[1]][1], 0)
 same_catch_prob_next_year_below_b40 <-
-  f(pull(base_model$risks[[1]][ct_actual_ind, paste0("Bratio_",
+  f(base_model$risks[[1]][ct_actual_ind, paste0("Bratio_",
                                                 assess_yr + 1,
-                                                "<0.40")]), 0)
+                                                "<0.40")] |> pull())
 same_catch_prob_yr_after_next_below_b40 <-
-  f(pull(base_model$risks[[2]][ct_actual_ind, paste0("Bratio_",
+  f(base_model$risks[[2]][ct_actual_ind, paste0("Bratio_",
                                                 assess_yr + 2,
-                                                "<0.40")]), 0)
+                                                "<0.40")] |> pull())
 # ... Prob most recent relative fishing intensity is above target of 1 --------
 probs_curr_rel_fish_intens_above_1 <-
   base_model$mcmcvals$probs_curr_rel_fish_intens_above_1
@@ -626,7 +627,11 @@ catches_below_200000_since_1986 <-
 
 # Age compositions ------------------------------------------------------------
 # Canadian year range for ages
-can_age_yrs <- can_ages_lst |> map(~{rownames(.x)}) |> unlist() |> unique() |> sort()
+can_age_yrs <- can_ages_lst |>
+  map(~{rownames(.x)}) |>
+  unlist() |>
+  unique() |>
+  sort()
 can_age_yrs_min <- min(can_age_yrs)
 can_age_yrs_max <- max(can_age_yrs)
 # ... age composition data for data section -----------------------------------
@@ -904,17 +909,20 @@ dm_weight_fishery <- round(theta_fishery / (1 + theta_fishery), 3)
 dm_weight_survey <- round(theta_survey / (1 + theta_survey), 3)
 
   # MCMC quantiles for the fishery DM parameter
+log_theta_fishery_lower <- base_model$mcmcvals$log_theta_fishery_lower
 log_theta_fishery_median <- base_model$mcmcvals$log_theta_fishery_median
 log_theta_fishery_upper <- base_model$mcmcvals$log_theta_fishery_upper
-dm_weight_fishery_median <- base_model$mcmcvals$dm_weight_fishery_median
+
 dm_weight_fishery_lower <- base_model$mcmcvals$dm_weight_fishery_lower
+dm_weight_fishery_median <- base_model$mcmcvals$dm_weight_fishery_median
 dm_weight_fishery_upper <- base_model$mcmcvals$dm_weight_fishery_upper
 # MCMC quantiles for the survey DM parameter
-log_theta_survey_median <- base_model$mcmcvals$log_theta_survey_median
 log_theta_survey_lower <- base_model$mcmcvals$log_theta_survey_lower
+log_theta_survey_median <- base_model$mcmcvals$log_theta_survey_median
 log_theta_survey_upper <- base_model$mcmcvals$log_theta_survey_upper
-dm_weight_survey_median <- base_model$mcmcvals$dm_weight_survey_median
+
 dm_weight_survey_lower <- base_model$mcmcvals$dm_weight_survey_lower
+dm_weight_survey_median <- base_model$mcmcvals$dm_weight_survey_median
 dm_weight_survey_upper <- base_model$mcmcvals$dm_weight_survey_upper
 
 # MCMC parameter estimates for base model -------------------------------------
