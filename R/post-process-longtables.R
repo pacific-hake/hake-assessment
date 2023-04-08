@@ -76,7 +76,7 @@ post_process_longtables <- function(x,
           n_col[i],
           "}{",
           cont_page_just,
-          "}{\\textit{... Continued from previous page}} \\\\ \\hline"),
+          "}{\\textit{... Continued from previous page}} \\\\ \\midrule"),
         post)
 
     efh <- grep("endhead", tmp)
