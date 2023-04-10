@@ -20,7 +20,8 @@ table_catch(
     "model."),
   font_size = 12,
   header_font_size = 10,
-  longtable = TRUE)
+  longtable = TRUE) |> 
+  landscape()
 ```
 
 \clearpage
@@ -71,7 +72,8 @@ table_sampling_history(
     "over time but is typically small."),
   font_size = 10,
   header_font_size = 8,
-  longtable = TRUE)
+  longtable = TRUE) |> 
+  landscape()
 ```
 
 \clearpage

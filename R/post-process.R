@@ -89,7 +89,7 @@ post_process <- function(fn,
   }
 
   # Remove page number from title page
-  title_ind <- grep("\\\\maketitle", x)
+  title_ind <- grep("^\\\\maketitle", x)
   if(!length(title_ind)){
     stop("`\\maketitle` not found. You must be using the `\\maketitle` ",
          "method to produce the title page for this document",
