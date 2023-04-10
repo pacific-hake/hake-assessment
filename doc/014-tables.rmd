@@ -19,7 +19,7 @@ table_catch(
     "fisheries not targeting hake is not currently included in the table or ",
     "model."),
   font_size = 12,
-  header_font_size = 10,
+  header_font_size = 12,
   longtable = TRUE) |> 
   landscape()
 ```
@@ -36,8 +36,8 @@ table_catch(
   caption = paste0(
     "Annual catches of ", sp, " (t) in Canadian  waters by fleet, ",
     start_yr, "-", last_data_yr, "."),
-  font_size = 10,
-  header_font_size = 8,
+  font_size = 12,
+  header_font_size = 12,
   longtable = TRUE)
 ```
 
@@ -49,11 +49,11 @@ table_landings_tac(
   end_yr = end_yr - 1,
   caption = paste0(
     sp,
-    "landings and management decisions. A dash (--)  indicates the ",
+    " landings and management decisions. A dash (--)  indicates the ",
     "management decision was either not specified or was unknown to the ",
     "authors at the time of this assessment."),
-  font_size = 10,
-  header_font_size = 8,
+  font_size = 12,
+  header_font_size = 12,
   longtable = TRUE) |> 
   landscape()
 ```
@@ -70,8 +70,8 @@ table_sampling_history(
     "as the number of trips. A dash (--) indicates there was no sampled ",
     "catch. The number of fish with otoliths sampled per haul has varied ",
     "over time but is typically small."),
-  font_size = 10,
-  header_font_size = 8,
+  font_size = 12,
+  header_font_size = 12,
   longtable = TRUE) |> 
   landscape()
 ```

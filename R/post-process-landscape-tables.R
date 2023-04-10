@@ -60,5 +60,46 @@ post_process_landscape_tables <- function(x){
     ""
   })
 
-  post_process_interlace_chunks(lst)
+  x <- post_process_interlace_chunks(lst)
+
+  # Rotate section page if the first table is a landscape table
+  lscape_koma_inds <- grep(
+    "^\\\\KOMAoptions\\{paper = landscape, DIV \\= last\\}", x)
+  lscape_section_inds <- grep(paste0("^\\\\section\\{"), x)
+  wch <- which((lscape_koma_inds - 3) %in% lscape_section_inds)
+  lscape_koma_inds <- lscape_koma_inds[wch]
+  lscape_section_inds <- lscape_koma_inds - 3
+  if(length(lscape_section_inds)){
+    # There is at least one section page that needs rotating because a
+    # landscape table is the first table of the section
+    # Search 20 lines above to find the closest \\newpage and put
+    # landscape code above it
+    newpage_inds <- map_dbl(lscape_section_inds, ~{
+      .x + grep("^\\\\newpage", x[(.x - 20):(.x)]) - 20 - 1
+    })
+    lst <- post_process_extract_chunks(x, newpage_inds, newpage_inds)
+    lst$between <- map(lst$between, \(lscape_line){
+      c("\\KOMAoptions{paper = landscape, DIV = last}",
+        paste0("\\newgeometry{",
+               "hmargin = 1in, ",
+               "bottom = 1in, ",
+               "height = 7in, ",
+               "includehead}"),
+        "\\fancyheadoffset{0pt}",
+        "\\newpage")
+    })
+    x <- post_process_interlace_chunks(lst)
+
+    # Remove the `\KOMAoptions` lines that add landscape from above the table
+    # since it was just placed above the `\newpage` command
+    lst <- post_process_extract_chunks(x,
+                                       lscape_koma_inds + 3,
+                                       lscape_koma_inds + 5)
+    lst$between <- map(lst$between, \(lscape_line){
+      ""
+    })
+    x <- post_process_interlace_chunks(lst)
+  }
+
+  x
 }
