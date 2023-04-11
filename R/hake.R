@@ -23,7 +23,7 @@
 #' @importFrom grid gpar grid.draw grid.newpage rectGrob textGrob
 #' @importFrom gridExtra arrangeGrob
 #' @importFrom gtable gtable_add_grob
-#' @importFrom kableExtra column_spec kable_styling kbl linebreak
+#' @importFrom kableExtra column_spec kable_styling kbl landscape linebreak
 #' @importFrom here here
 #' @importFrom lubridate hour minute month now second seconds_to_period year
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
