@@ -182,40 +182,18 @@ table_input_age_data(
   landscape()
 ```
 
-<!-- \begin{landscape} -->
-<!-- \pagestyle{mylandscape} -->
-<!-- \centering -->
-<!-- ```{r main-all-age-survey-table, results = "asis", echo = FALSE} -->
-<!-- make.input.age.data.table( -->
-<!--   base_model, -->
-<!--   fleet = 2, -->
-<!--   start_yr = survey_start_yr, -->
-<!--   end_yr = survey_end_yr, -->
-<!--   csv.dir = output_csv_dir, -->
-<!--   xcaption = paste0( -->
-<!--     "Survey age-proportion data used in the base model. Proportions are ", -->
-<!--     "calculated from numbers of individuals in each age group. Age 15 is an ", -->
-<!--     "accumulator group."), -->
-<!--   xlabel = "tab:main-all-age-data-survey", -->
-<!--   font.size = 10, -->
-<!--   space.size = 11, -->
-<!--   decimals = 2) -->
-<!-- ``` -->
-<!-- \end{landscape} -->
-<!-- \pagestyle{fancy} -->
-
-<!-- ```{r main-survey-history-table, results = "asis", echo = FALSE} -->
-<!-- make.survey.history.table( -->
-<!--   survey_history_df, -->
-<!--   base_model$dat$CPUE, -->
-<!--   digits = 3, -->
-<!--   xcaption = paste0( -->
-<!--     "Summary of the acoustic surveys from ", survey_start_yr, " to ", -->
-<!--     survey_end_yr, "."), -->
-<!--   xlabel = "tab:main-survey-history", -->
-<!--   font.size = 10, -->
-<!--   space.size = 11) -->
-<!-- ``` -->
+```{r main-survey-history-table, results = "asis", echo = FALSE}
+table_survey_history(
+  base_model,
+  survey_history_df,
+  digits = 3,
+  caption = paste0(
+    "Summary of the acoustic surveys from ", survey_start_yr, " to ",
+    survey_end_yr, "."),
+  font_size = 9,
+  header_font_size = 8,
+  longtable = TRUE)
+```
 
 <!-- ```{r main-survey-by-country-table, results = "asis", echo = FALSE} -->
 <!-- make.survey.by.country.table( -->
