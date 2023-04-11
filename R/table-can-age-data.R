@@ -112,9 +112,9 @@ table_can_age_data <- function(lst,
       escape = FALSE,
       ...) |>
     row_spec(0, bold = TRUE) |>
-    kable_styling(font_size = font_size,
-                  latex_options = c("repeat_header")) |>
     add_header_above(header,
                      bold = TRUE,
-                     line = FALSE)
+                     line = FALSE) |>
+    kable_styling(font_size = font_size,
+                  latex_options = c("repeat_header"))
 }

@@ -4,39 +4,39 @@
 
 # Tables {#sec:tables}
 
-<!-- ```{r catches-us, results = "asis", echo = FALSE} -->
-<!-- table_catch( -->
-<!--   ct, -->
-<!--   inc_foreign_jv = TRUE, -->
-<!--   start_yr = start_yr, -->
-<!--   end_yr = end_yr - 1, -->
-<!--   country = "us", -->
-<!--   caption = paste0( -->
-<!--     "Annual catches of ", sp, " (t) in U.S. waters by fleet, ", start_yr, -->
-<!--     "-", last_data_yr, ". Tribal catches are included in the fleet totals. ", -->
-<!--     "Research catch includes landed catch associated with research-related ", -->
-<!--     "activities. Catch associated with surveys and discarded bycatch in ", -->
-<!--     "fisheries not targeting hake is not currently included in the table or ", -->
-<!--     "model."), -->
-<!--   font_size = 10, -->
-<!--   header_font_size = 11, -->
-<!--   longtable = TRUE) -->
-<!-- ``` -->
+```{r catches-us, results = "asis", echo = FALSE}
+table_catch(
+  ct,
+  inc_foreign_jv = TRUE,
+  start_yr = start_yr,
+  end_yr = end_yr - 1,
+  country = "us",
+  caption = paste0(
+    "Annual catches of ", sp, " (t) in U.S. waters by fleet, ", start_yr,
+    "-", last_data_yr, ". Tribal catches are included in the fleet totals. ",
+    "Research catch includes landed catch associated with research-related ",
+    "activities. Catch associated with surveys and discarded bycatch in ",
+    "fisheries not targeting hake is not currently included in the table or ",
+    "model."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
 
-<!-- ```{r catches-can, results = "asis", echo = FALSE} -->
-<!-- table_catch( -->
-<!--   ct, -->
-<!--   inc_foreign_jv = TRUE, -->
-<!--   start_yr = start_yr, -->
-<!--   end_yr = end_yr - 1, -->
-<!--   country = "can", -->
-<!--   caption = paste0( -->
-<!--     "Annual catches of ", sp, " (t) in Canadian  waters by fleet, ", -->
-<!--     start_yr, "-", last_data_yr, "."), -->
-<!--   font_size = 10, -->
-<!--   header_font_size = 11, -->
-<!--   longtable = TRUE) -->
-<!-- ``` -->
+```{r catches-can, results = "asis", echo = FALSE}
+table_catch(
+  ct,
+  inc_foreign_jv = TRUE,
+  start_yr = start_yr,
+  end_yr = end_yr - 1,
+  country = "can",
+  caption = paste0(
+    "Annual catches of ", sp, " (t) in Canadian  waters by fleet, ",
+    start_yr, "-", last_data_yr, "."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
 
 ```{r main-landings-tac-table, results = "asis", echo = FALSE}
 table_landings_tac(
