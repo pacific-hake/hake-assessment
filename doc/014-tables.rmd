@@ -161,51 +161,26 @@ table_can_age_data(
   landscape()
 ```
 
-<!-- \begin{landscape} -->
-<!-- \pagestyle{mylandscape} -->
-<!-- \centering -->
-<!-- ```{r main-can-ft-age-data-table, results = "asis", echo = FALSE} -->
-<!-- make.can.age.data.table( -->
-<!--   can_ages_lst, -->
-<!--   can_ft_num_fish, -->
-<!--   fleet = 2, -->
-<!--   start_yr = end_yr - num_recent_yrs, -->
-<!--   end_yr = last_data_yr, -->
-<!--   xcaption = paste0( -->
-<!--     "Recent age-proportion data used in the assessment for the Canadian ", -->
-<!--     "freezer-trawler fleet. Proportions are calculated from numbers of ", -->
-<!--     "individuals in each age group. Age 15 is an accumulator group."), -->
-<!--   xlabel = "tab:main-can-ft-age-data", -->
-<!--   font.size = 10, -->
-<!--   space.size = 11, -->
-<!--   decimals = 2) -->
-<!-- ``` -->
-
-<!-- \clearpage -->
-
-<!-- ```{r main-all-age-data-fishery-table, results = "asis", echo = FALSE} -->
-<!-- make.input.age.data.table( -->
-<!--   base_model, -->
-<!--   fleet = 1, -->
-<!--   start_yr = start_yr_age_comps, -->
-<!--   end_yr = last_data_yr, -->
-<!--   csv.dir = output_csv_dir, -->
-<!--   xcaption = paste0( -->
-<!--     "Aggregated fishery age-proportion data used in the base model. ", -->
-<!--     "Proportions are calculated from numbers of individuals in each age ", -->
-<!--     "group where the contributions from each fleet are weighted by the ", -->
-<!--     "catch in that fleet. Sample sizes are sum of hauls and trips from ", -->
-<!--     "individual fleets (shown in preceding tables) as described in ", -->
-<!--     "Section~\\@ref(sec:data-fishery-biological-data). Age 15 is an ", -->
-<!--     "accumulator group for comparing observed and expected proportions."), -->
-<!--   xlabel = "tab:main-all-age-data-fishery", -->
-<!--   font.size = 10, -->
-<!--   space.size = 11, -->
-<!--   decimals = 2) -->
-<!-- ``` -->
-<!-- \end{landscape} -->
-<!-- \pagestyle{fancy} -->
-<!-- \clearpage -->
+```{r main-input-age-data-table, results = "asis", echo = FALSE}
+table_input_age_data(
+  base_model,
+  fleet = "fishery",
+  start_yr = start_yr_age_comps,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Aggregated fishery age-proportion data used in the base model. ",
+    "Proportions are calculated from numbers of individuals in each age ",
+    "group where the contributions from each fleet are weighted by the ",
+    "catch in that fleet. Sample sizes are sum of hauls and trips from ",
+    "individual fleets (shown in preceding tables) as described in ",
+    "Section~\\@ref(sec:data-fishery-biological-data). Age 15 is an ",
+    "accumulator group for comparing observed and expected proportions."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
 
 <!-- \begin{landscape} -->
 <!-- \pagestyle{mylandscape} -->
