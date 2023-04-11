@@ -66,32 +66,28 @@ table_sampling_history(
     "as the number of trips. A dash (--) indicates there was no sampled ",
     "catch. The number of fish with otoliths sampled per haul has varied ",
     "over time but is typically small."),
-  font_size = 12,
-  header_font_size = 12,
+  font_size = 10,
+  header_font_size = 11,
   longtable = TRUE) |> 
   landscape()
 ```
 
-\clearpage
-
-<!-- \begin{landscape} -->
-<!-- \pagestyle{mylandscape} -->
-<!-- \centering -->
-<!-- ```{r main-us-cp-age-data-table, results = "asis", echo = FALSE} -->
-<!-- make.us.age.data.table( -->
-<!--   us_cp_age_df, -->
-<!--   fleet = 1, -->
-<!--   start_yr = end_yr - num_recent_yrs, -->
-<!--   end_yr = last_data_yr, -->
-<!--   xcaption = paste0( -->
-<!--     "Recent age-proportion data used in the assessment for the U.S. ", -->
-<!--     "Catcher-Processor fleet. Proportions are calculated from numbers of ", -->
-<!--     "individuals in each age group. Age 15 is an accumulator group."), -->
-<!--   xlabel = "tab:main-us-cp-age-data", -->
-<!--   font.size = 10, -->
-<!--   space.size = 11, -->
-<!--   decimals = 2) -->
-<!-- ``` -->
+```{r main-us-cp-age-data-table, results = "asis", echo = FALSE}
+table_us_age_data(
+  us_cp_age_df,
+  fleet = "cp",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the U.S. ",
+    "Catcher-Processor fleet. Proportions are calculated from numbers of ",
+    "individuals in each age group. Age 15 is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |> 
+  landscape()
+```
 
 <!-- ```{r main-us-ms-data-table, results = "asis", echo = FALSE} -->
 <!-- make.us.age.data.table( -->
