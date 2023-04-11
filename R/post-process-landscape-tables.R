@@ -62,35 +62,40 @@ post_process_landscape_tables <- function(x){
   lscape_koma_inds2 <- grep(
     "^\\\\restoregeometry$", x)
   wch <- which((lscape_koma_inds1 + 1) %in% lscape_koma_inds2)
-  inds_so_far <- lscape_koma_inds2[wch] - 1
-  # At this point `inds_so_far` holds the indices of the
+  beg_inds <- lscape_koma_inds2[wch] - 1
+  # At this point `beg_inds` holds the indices of the
   # `\KOMAoptions{paper = portrait...` lines which are followed by a
   # `\restoregeometry` line
   # Now we check to see if these are followed later by a
   # `\KOMAoptions{paper = landscape...` line
-  walk(inds_so_far + 3, ~{
-    iter <- .x
+  end_inds <- imap_dbl(beg_inds + 3, ~{
+    ind <- .x
     # Skip lines containing an empty string, `\clearpage`, or `\newpage`
-    while(length(grep("^$", x[iter])) |
-          length(grep("^\\\\clearpage$", x[iter])) |
-          length(grep("^\\\\newpage$", x[iter]))){
-      iter <- iter + 1
+    while(length(grep("^$", x[ind])) |
+          length(grep("^\\\\clearpage$", x[ind]))){
+          #length(grep("^\\\\newpage$", x[ind]))){
+      ind <- ind + 1
     }
     # Check that the next lines are landscape declarations
     ind1 <- grep(
-      "^\\\\KOMAoptions\\{paper \\= landscape, DIV \\= last\\}$", x[iter])
+      "^\\\\KOMAoptions\\{paper \\= landscape, DIV \\= last\\}$", x[ind])
     ind2 <- grep(
-      "^\\\\newgeometry\\{hmargin = ", x[iter + 1])
+      "^\\\\newgeometry\\{hmargin = ", x[ind + 1])
     if(length(ind1) &&
        length(ind2)){
-      # Here is where the two page declarations are removed
-      lst <- post_process_extract_chunks(x, .x - 3, iter + 2)
-      lst$between <- map(lst$between, \(lscape_line){
-        ""
-      })
-      x <<- post_process_interlace_chunks(lst)
+      return(ind + ind1 + 1)
     }
+    NA_real_
   })
+  beg_inds <- beg_inds[!is.na(end_inds)]
+  end_inds <- end_inds[!is.na(end_inds)]
+
+  # Here is where the two page declarations are removed
+  lst <- post_process_extract_chunks(x, beg_inds, end_inds)
+  lst$between <- map(lst$between, \(lscape_line){
+    ""
+  })
+  x <- post_process_interlace_chunks(lst)
 
   # Rotate section page if the first table is a landscape table
   lscape_koma_inds <- grep(
