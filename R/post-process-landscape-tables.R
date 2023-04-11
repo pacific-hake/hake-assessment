@@ -16,13 +16,18 @@ post_process_landscape_tables <- function(x){
   lst <- post_process_extract_chunks(x, lscape_inds, lscape_inds)
   # Replace the begin landscape line with the KOMA options lines
   lst$between <- map(lst$between, \(lscape_line){
+    # Extract font information
+    fnt_line <- gsub("^\\\\begin\\{landscape\\}\\\\begingroup(.*)$",
+                     "\\1",
+                     lscape_line)
     c("\\KOMAoptions{paper = landscape, DIV = last}",
       paste0("\\newgeometry{",
              "hmargin = 1in, ",
              "bottom = 1in, ",
              "height = 7in, ",
              "includehead}"),
-      "\\fancyheadoffset{0pt}")
+      "\\fancyheadoffset{0pt}",
+      fnt_line)
   })
 
   x <- post_process_interlace_chunks(lst)

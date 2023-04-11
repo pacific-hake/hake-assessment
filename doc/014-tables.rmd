@@ -18,8 +18,8 @@ table_catch(
     "activities. Catch associated with surveys and discarded bycatch in ",
     "fisheries not targeting hake is not currently included in the table or ",
     "model."),
-  font_size = 12,
-  header_font_size = 12,
+  font_size = 18,
+  header_font_size = 20,
   longtable = TRUE) |> 
   landscape()
 ```
@@ -36,7 +36,7 @@ table_catch(
   caption = paste0(
     "Annual catches of ", sp, " (t) in Canadian  waters by fleet, ",
     start_yr, "-", last_data_yr, "."),
-  font_size = 12,
+  font_size = 16,
   header_font_size = 12,
   longtable = TRUE)
 ```
