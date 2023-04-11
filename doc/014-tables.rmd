@@ -4,39 +4,39 @@
 
 # Tables {#sec:tables}
 
-```{r catches-us, results = "asis", echo = FALSE}
-table_catch(
-  ct,
-  inc_foreign_jv = TRUE,
-  start_yr = start_yr,
-  end_yr = end_yr - 1,
-  country = "us",
-  caption = paste0(
-    "Annual catches of ", sp, " (t) in U.S. waters by fleet, ", start_yr,
-    "-", last_data_yr, ". Tribal catches are included in the fleet totals. ",
-    "Research catch includes landed catch associated with research-related ",
-    "activities. Catch associated with surveys and discarded bycatch in ",
-    "fisheries not targeting hake is not currently included in the table or ",
-    "model."),
-  font_size = 10,
-  header_font_size = 11,
-  longtable = TRUE)
-```
+<!-- ```{r catches-us, results = "asis", echo = FALSE} -->
+<!-- table_catch( -->
+<!--   ct, -->
+<!--   inc_foreign_jv = TRUE, -->
+<!--   start_yr = start_yr, -->
+<!--   end_yr = end_yr - 1, -->
+<!--   country = "us", -->
+<!--   caption = paste0( -->
+<!--     "Annual catches of ", sp, " (t) in U.S. waters by fleet, ", start_yr, -->
+<!--     "-", last_data_yr, ". Tribal catches are included in the fleet totals. ", -->
+<!--     "Research catch includes landed catch associated with research-related ", -->
+<!--     "activities. Catch associated with surveys and discarded bycatch in ", -->
+<!--     "fisheries not targeting hake is not currently included in the table or ", -->
+<!--     "model."), -->
+<!--   font_size = 10, -->
+<!--   header_font_size = 11, -->
+<!--   longtable = TRUE) -->
+<!-- ``` -->
 
-```{r catches-can, results = "asis", echo = FALSE}
-table_catch(
-  ct,
-  inc_foreign_jv = TRUE,
-  start_yr = start_yr,
-  end_yr = end_yr - 1,
-  country = "can",
-  caption = paste0(
-    "Annual catches of ", sp, " (t) in Canadian  waters by fleet, ",
-    start_yr, "-", last_data_yr, "."),
-  font_size = 10,
-  header_font_size = 11,
-  longtable = TRUE)
-```
+<!-- ```{r catches-can, results = "asis", echo = FALSE} -->
+<!-- table_catch( -->
+<!--   ct, -->
+<!--   inc_foreign_jv = TRUE, -->
+<!--   start_yr = start_yr, -->
+<!--   end_yr = end_yr - 1, -->
+<!--   country = "can", -->
+<!--   caption = paste0( -->
+<!--     "Annual catches of ", sp, " (t) in Canadian  waters by fleet, ", -->
+<!--     start_yr, "-", last_data_yr, "."), -->
+<!--   font_size = 10, -->
+<!--   header_font_size = 11, -->
+<!--   longtable = TRUE) -->
+<!-- ``` -->
 
 ```{r main-landings-tac-table, results = "asis", echo = FALSE}
 table_landings_tac(
@@ -50,7 +50,7 @@ table_landings_tac(
     "authors at the time of this assessment."),
   font_size = 10,
   header_font_size = 11,
-  longtable = TRUE) |> 
+  longtable = TRUE) |>
   landscape()
 ```
 
@@ -89,61 +89,77 @@ table_us_age_data(
   landscape()
 ```
 
-<!-- ```{r main-us-ms-data-table, results = "asis", echo = FALSE} -->
-<!-- make.us.age.data.table( -->
-<!--   us_ms_age_df, -->
-<!--   fleet = 2, -->
-<!--   start_yr = end_yr - num_recent_yrs, -->
-<!--   end_yr = last_data_yr, -->
-<!--   xcaption = paste0( -->
-<!--     "Recent age-proportion data used in the assessment for the U.S. ", -->
-<!--     "Mothership fleet. Proportions are calculated from numbers of ", -->
-<!--     "individuals in each age group. Age 15 is an accumulator group."), -->
-<!--   xlabel = "tab:main-us-ms-age-data", -->
-<!--   font.size = 10, -->
-<!--   space.size = 11, -->
-<!--   decimals = 2) -->
-<!-- ``` -->
-<!-- \end{landscape} -->
-<!-- \pagestyle{fancy} -->
+\newpage
 
-<!-- \begin{landscape} -->
-<!-- \pagestyle{mylandscape} -->
-<!-- \centering -->
-<!-- ```{r main-us-shore-age-data-table, results = "asis", echo = FALSE} -->
-<!-- make.us.age.data.table( -->
-<!--   us_ss_age_df, -->
-<!--   fleet = 3, -->
-<!--   start_yr = end_yr - num_recent_yrs, -->
-<!--   end_yr = last_data_yr, -->
-<!--   xcaption = paste0( -->
-<!--     "Recent age-proportion data used in the assessment for the U.S. ", -->
-<!--     "Shore-Based fleet. Proportions are calculated from numbers of ", -->
-<!--     "individuals in each age group. Age 15 is an accumulator group."), -->
-<!--   xlabel = "tab:main-us-shore-age-data", -->
-<!--   font.size = 10, -->
-<!--   space.size = 11, -->
-<!--   decimals = 2) -->
-<!-- ``` -->
+```{r main-us-ms-age-data-table, results = "asis", echo = FALSE}
+table_us_age_data(
+  us_ms_age_df,
+  fleet = "ms",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the U.S. ",
+    "Mothership fleet. Proportions are calculated from numbers of ",
+    "individuals in each age group. Age 15 is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |> 
+  landscape()
+```
 
-<!-- ```{r main-can-shore-age-data-table, results = "asis", echo = FALSE} -->
-<!-- make.can.age.data.table( -->
-<!--   can_ages_lst, -->
-<!--   can_ss_num_fish, -->
-<!--   fleet = 1, -->
-<!--   start_yr = end_yr - num_recent_yrs, -->
-<!--   end_yr = last_data_yr, -->
-<!--   xcaption = paste0( -->
-<!--     "Recent age-proportion data used in the assessment for the Canadian ", -->
-<!--     "Shoreside fleet. Proportions are calculated from numbers of individuals ", -->
-<!--     "in each age group. Age 15 is an accumulator group."), -->
-<!--   xlabel = "tab:main-can-shore-age-data", -->
-<!--   font.size = 10, -->
-<!--   space.size = 11, -->
-<!--   decimals = 2) -->
-<!-- ``` -->
-<!-- \end{landscape} -->
-<!-- \pagestyle{fancy} -->
+```{r main-us-sb-age-data-table, results = "asis", echo = FALSE}
+table_us_age_data(
+  us_cp_age_df,
+  fleet = "sb",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the U.S. ",
+    "Shore-based fleet. Proportions are calculated from numbers of ",
+    "individuals in each age group. Age 15 is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+```{r main-can-ss-age-data-table, results = "asis", echo = FALSE}
+table_can_age_data(
+  can_ages_lst,
+  can_ss_num_fish,
+  fleet = "ss",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the Canadian ",
+    "Shoreside fleet. Proportions are calculated from numbers of individuals ",
+    "in each age group. Age 15 is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-can-ft-age-data-table, results = "asis", echo = FALSE}
+table_can_age_data(
+  can_ages_lst,
+  can_ft_num_fish,
+  fleet = "ft",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the Canadian ",
+    "Freezer trawler fleet. Proportions are calculated from numbers of ",
+    "individuals in each age group. Age 15 is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
 
 <!-- \begin{landscape} -->
 <!-- \pagestyle{mylandscape} -->
