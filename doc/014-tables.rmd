@@ -18,13 +18,10 @@ table_catch(
     "activities. Catch associated with surveys and discarded bycatch in ",
     "fisheries not targeting hake is not currently included in the table or ",
     "model."),
-  font_size = 18,
-  header_font_size = 20,
-  longtable = TRUE) |> 
-  landscape()
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
 ```
-
-\clearpage
 
 ```{r catches-can, results = "asis", echo = FALSE}
 table_catch(
@@ -36,11 +33,10 @@ table_catch(
   caption = paste0(
     "Annual catches of ", sp, " (t) in Canadian  waters by fleet, ",
     start_yr, "-", last_data_yr, "."),
-  font_size = 16,
-  header_font_size = 12,
+  font_size = 10,
+  header_font_size = 11,
   longtable = TRUE)
 ```
-
 
 ```{r main-landings-tac-table, results = "asis", echo = FALSE}
 table_landings_tac(
@@ -52,8 +48,8 @@ table_landings_tac(
     " landings and management decisions. A dash (--)  indicates the ",
     "management decision was either not specified or was unknown to the ",
     "authors at the time of this assessment."),
-  font_size = 12,
-  header_font_size = 12,
+  font_size = 10,
+  header_font_size = 11,
   longtable = TRUE) |> 
   landscape()
 ```
