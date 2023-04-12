@@ -273,23 +273,22 @@ table_param_est_bounds(
   longtable = TRUE)
 ```
 
-<!-- \clearpage -->
-
-<!-- ```{r main-assessment-changes-table, results = "asis", echo = FALSE} -->
-<!-- make.assessment.changes.table( -->
-<!--   assess_changes_df, -->
-<!--   xcaption = paste0( -->
-<!--     "Annual changes in the modeling framework used to assess ", sp, " since ", -->
-<!--     "2011. Methods used to weight the age-composition data (Comp Method), ", -->
-<!--     "i.e., McAllister-Ianelli (MI) and Dirichlet-multinomial (D-M) ", -->
-<!--     "approaches, are explained in the main text. The MCMC column gives the ", -->
-<!--     "number of Markov chain Monte Carlo samples used to describe model ", -->
-<!--     "results and produce statistical inference."), -->
-<!--   xlabel = "tab:main-assessment-changes", -->
-<!--   font.size = 10, -->
-<!--   space.size = 11) -->
-<!-- ``` -->
-<!-- \clearpage -->
+```{r main-assessment-changes-table, results = "asis", echo = FALSE}
+table_assessment_changes(
+  assess_changes_df,
+  start_yr = 2011,
+  end_yr = end_yr,
+  caption = paste0(
+    "Annual changes in the modeling framework used to assess ", sp, " since ",
+    "2011. Methods used to weight the age-composition data (Comp Method), ",
+    "i.e., McAllister-Ianelli (MI) and Dirichlet-multinomial (D-M) ",
+    "approaches, are explained in the main text. The MCMC column gives the ",
+    "number of Markov chain Monte Carlo samples used to describe model ",
+    "results and produce statistical inference."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
 
 <!-- \begin{landscape} -->
 <!-- \pagestyle{mylandscape} -->
