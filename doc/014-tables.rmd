@@ -190,22 +190,24 @@ table_survey_history(
   caption = paste0(
     "Summary of the acoustic surveys from ", survey_start_yr, " to ",
     survey_end_yr, "."),
-  font_size = 9,
-  header_font_size = 8,
-  longtable = TRUE)
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE) |>
+  landscape()
 ```
 
-<!-- ```{r main-survey-by-country-table, results = "asis", echo = FALSE} -->
-<!-- make.survey.by.country.table( -->
-<!--   survey_by_country_df, -->
-<!--   digits = 3, -->
-<!--   xcaption = paste0( -->
-<!--     "Summary of the acoustic survey age-2+ biomass attributed to each ", -->
-<!--     "country."), -->
-<!--   xlabel = "tab:main-survey-by-country", -->
-<!--   font.size = 10, -->
-<!--   space.size = 12) -->
-<!-- ``` -->
+```{r main-survey-by-country-table, results = "asis", echo = FALSE}
+table_survey_by_country(
+  survey_by_country_df,
+  digits = 3,
+  caption = paste0(
+    "Summary of the acoustic survey age-2+ biomass attributed to each ",
+    "country."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE) |>
+  landscape()
+```
 
 
 <!-- ```{r main-maturity-ogives-table, results = "asis", echo = FALSE} -->
