@@ -227,18 +227,18 @@ table_maturity_ogive(
   longtable = TRUE)
 ```
 
-<!-- ```{r main-ovaries-table, results = "asis", echo = FALSE} -->
-<!-- make.maturity.samples.table( -->
-<!--   ovary_samples_df, -->
-<!--   xcaption = paste0( -->
-<!--     "Number of ", sp, " ovaries collected for histological analysis. The ", -->
-<!--     "maturity ogive was determined from a subset of these samples (up to ", -->
-<!--     "and including 2017; @JTC2018).", -->
-<!--   xlabel = "tab:main-ovaries", -->
-<!--   font.size = 10, -->
-<!--   space.size = 11) -->
-<!-- ``` -->
-<!-- \clearpage -->
+```{r main-ovaries-table, results = "asis", echo = FALSE}
+table_ovary_samples(
+  ovary_samples_df,
+  caption = paste0(
+    "Number of ", sp, " ovaries collected for histological analysis. The ",
+    "maturity ogive was determined from a subset of these samples (up to ",
+    "and including 2017; @JTC2018)."),
+  font_size = 9,
+  header_font_size = 8,
+  longtable = TRUE)
+```
+\clearpage
 
 <!-- ```{r main-parameters-estimated-summary-table, results = "asis", echo = FALSE} -->
 <!-- table_param_est_bounds( -->
