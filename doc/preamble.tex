@@ -101,9 +101,10 @@
 
 % Caption indentation and style.
 \usepackage[format = plain,
+            %justification = justified,
             indention = 3mm,
             labelsep = period,
-            font={small},
+            font = {small},
             singlelinecheck = false,
             labelfont = bf]{caption}
 
@@ -145,3 +146,7 @@
 % pre-post-processed build to work without error (during the
 % `bookdown::render_book()` call)
 \usepackage{pdflscape}
+
+% Makes TeX faster by loading more longtable rows (100) at a time into memory
+\setcounter{LTchunksize}{400}
+

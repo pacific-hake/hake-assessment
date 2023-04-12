@@ -116,7 +116,11 @@ post_process <- function(fn,
 
   x <- post_process_landscape_tables(x)
 
- # Mark file with modification text ----
+  # Fix table caption alignment. Add single tables to this function if their
+  # captions are not aligned to the left properly
+  x <- post_process_move_table_captions(x)
+
+  # Mark file with modification text ----
   x <- c(modification_text, x)
 
   writeLines(x, fn)

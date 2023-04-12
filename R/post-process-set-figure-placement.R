@@ -54,7 +54,7 @@ post_process_set_figure_placement <- function(x,
   fig_label <- paste0(figs_dir, knitr_label)
   fig_ind <- grep(fig_label, x)
   if(!length(fig_ind)){
-    warning("Figure label `", knitr_label, "` not found. Bypassing...")
+    #warning("Figure label `", knitr_label, "` not found. Bypassing...")
     return(x)
   }
 
