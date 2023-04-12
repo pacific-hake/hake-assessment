@@ -325,13 +325,13 @@ table_param_est_bounds <- function(model,
                    c(paste0("\\textbf{\\underline{Data Source}}"),
                      "", "", ""), 8)
   df <- insert_row(df,
-                   c(paste0("\\emph{Acoustic Survey}"),
+                   c(paste0("\\textbf{\\emph{Acoustic Survey}}"),
                      "", "", ""), 9)
   df <- insert_row(df,
-                   c(paste0("\\emph{Age-1 Survey}"),
+                   c(paste0("\\textbf{\\emph{Age-1 Survey}}"),
                      "", "", ""), 12)
   df <- insert_row(df,
-                   c(paste0("\\emph{Fishery Survey}"),
+                   c(paste0("\\textbf{\\emph{Fishery Survey}}"),
                      "", "", ""), 14)
   df <- insert_row(df, c("", "", "", ""), 17)
   df <- insert_row(df,
@@ -364,5 +364,6 @@ table_param_est_bounds <- function(model,
         escape = FALSE,
         ...) |>
     row_spec(0, bold = TRUE) |>
-    kable_styling(font_size = font_size)
+    kable_styling(font_size = font_size,
+                  latex_options = c("repeat_header"))
 }

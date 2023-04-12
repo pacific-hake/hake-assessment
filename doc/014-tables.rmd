@@ -161,7 +161,7 @@ table_can_age_data(
   landscape()
 ```
 
-```{r main-input-age-data-table, results = "asis", echo = FALSE}
+```{r main-input-age-data-fishery-table, results = "asis", echo = FALSE}
 table_input_age_data(
   base_model,
   fleet = "fishery",
@@ -175,6 +175,23 @@ table_input_age_data(
     "individual fleets (shown in preceding tables) as described in ",
     "Section~\\@ref(sec:data-fishery-biological-data). Age 15 is an ",
     "accumulator group for comparing observed and expected proportions."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-input-age-data-survey-table, results = "asis", echo = FALSE}
+table_input_age_data(
+  base_model,
+  fleet = "survey",
+  start_yr = start_yr_age_comps,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Survey age-proportion data used in the base model. Proportions are ",
+    "calculated from numbers of individuals in each age group. Age 15 is ",
+    "an accumulator group."),
   font_size = 10,
   header_font_size = 11,
   digits = 2,
@@ -240,21 +257,21 @@ table_ovary_samples(
 ```
 \clearpage
 
-<!-- ```{r main-parameters-estimated-summary-table, results = "asis", echo = FALSE} -->
-<!-- table_param_est_bounds( -->
-<!--   base_model, -->
-<!--   start.rec.dev.yr = recruit_dev_start_yr, -->
-<!--   end.rec.dev.yr = end_yr - 1, -->
-<!--   digits = 2, -->
-<!--   xcaption = paste0( -->
-<!--     "Summary of estimated model parameters and priors in the base model. ", -->
-<!--     "The beta prior is parameterized with a mean and standard deviation. ", -->
-<!--     "The lognormal prior is parameterized with the median and standard ", -->
-<!--     "deviation in log space."), -->
-<!--   xlabel = "tab:main-params-est-summary", -->
-<!--   font.size = 10, -->
-<!--   space.size = 11) -->
-<!-- ``` -->
+```{r main-parameters-estimated-summary-table, results = "asis", echo = FALSE}
+table_param_est_bounds(
+  base_model,
+  start_rec_dev_yr = recruit_dev_start_yr,
+  end_rec_dev_yr = end_yr - 1,
+  digits = 2,
+  caption = paste0(
+    "Summary of estimated model parameters and priors in the base model. ",
+    "The beta prior is parameterized with a mean and standard deviation. ",
+    "The lognormal prior is parameterized with the median and standard ",
+    "deviation in log space."),
+  font_size = 9,
+  header_font_size = 9,
+  longtable = TRUE)
+```
 
 <!-- \clearpage -->
 

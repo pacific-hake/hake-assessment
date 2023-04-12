@@ -326,7 +326,7 @@ latex_cmidr <- function(cols, trim = "r"){
 #' @return A latex string with `main_txt` subscripted by `subscr_txt`
 #' @export
 latex_subscr <- function(main_txt, subscr_txt){
-  paste0(main_txt, "\\subscr{", subscr_txt, "}")
+  paste0(main_txt, "\\textsubscript{", subscr_txt, "}")
 }
 
 #' Creates a latex string with `main_txt` superscripted by `supscr_txt`
@@ -337,7 +337,7 @@ latex_subscr <- function(main_txt, subscr_txt){
 #' @return A latex string with `main_txt` superscripted by `supscr_txt`
 #' @export
 latex_supscr <- function(main_txt, supscr_txt){
-  paste0(main_txt, "\\supscr{", supscr_txt, "}")
+  paste0(main_txt, "\\testsuperscript{", supscr_txt, "}")
 }
 
 #' Return the necessary latex to repeat longtable headers for continuing pages
