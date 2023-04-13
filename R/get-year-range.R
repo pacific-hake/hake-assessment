@@ -8,10 +8,10 @@
 #'
 #' @return A vector of two, the start and end year that is best
 #' @export
-get_year_range <- function(start_yr = NA,
-                           end_yr = NA,
-                           min_yr = NA,
-                           max_yr = NA){
+get_year_range <- \(start_yr = NA,
+                    end_yr = NA,
+                    min_yr = NA,
+                    max_yr = NA){
   if(is.null(min_yr[1]) ||
      is.null(max_yr[1]) ||
      is.na(min_yr[1]) ||
