@@ -363,31 +363,24 @@ table_at_age(
   landscape()
 ```
 
-<!-- \begin{landscape} -->
-<!-- \pagestyle{mylandscape} -->
-<!-- \centering -->
-<!-- ```{r main-cohort-effects-table, results = "asis", echo = FALSE} -->
-<!-- cohort_table( -->
-<!--   base_model, -->
-<!--   end_yr = end_yr, -->
-<!--   cohorts = c(1999, 2010, 2014, 2016), -->
-<!--   # csv_dir = output_csv_dir, -->
-<!--   xcaption = paste0( -->
-<!--     "Calculations showing changes in biomass at each age due to natural ", -->
-<!--     "mortality and fishing for recent strong cohorts. Start Biomass is the ", -->
-<!--     "biomass at the beginning of the year, Catch Weight is the catch for ", -->
-<!--     "the cohort for the year, M is the biomass attributed to natural ", -->
-<!--     "mortality, and Surviving Biomass is what survives to the end of the ", -->
-<!--     "year. Surviving Biomass does not equal the Start Biomass in the ", -->
-<!--     "following year because the empirical weights-at-age change ", -->
-<!--     "between years. Estimated quantities are posterior medians."), -->
-<!--   xlabel = "tab:main-cohort-effects", -->
-<!--   font_size = 7, -->
-<!--   space_size = 8) -->
-<!-- ``` -->
-<!-- \end{landscape} -->
-<!-- \pagestyle{fancy} -->
-<!-- \clearpage -->
+```{r main-cohort-effects-table, results = "asis", echo = FALSE}
+table_cohort(
+  base_model,
+  cohorts = c(2010, 2014, 2016, 2020),
+  caption = paste0(
+    "Calculations showing changes in biomass at each age due to natural ",
+    "mortality and fishing for recent strong cohorts. Start Biomass is the ",
+    "biomass at the beginning of the year, Catch Weight is the catch for ",
+    "the cohort for the year, M is the biomass attributed to natural ",
+    "mortality, and Surviving Biomass is what survives to the end of the ",
+    "year. Surviving Biomass does not equal the Start Biomass in the ",
+    "following year because the empirical weights-at-age change ",
+    "between years. Estimated quantities are posterior medians."),
+  font_size = 7,
+  header_font_size = 8,
+  longtable = TRUE) |> 
+  landscape()
+```
 
 <!-- ```{r main-median-posterior-table, results = "asis", echo = FALSE} -->
 <!-- make.median.posterior.table( -->

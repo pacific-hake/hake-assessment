@@ -19,7 +19,7 @@
 #' See `header_vert_spacing`
 #' @param ... Arguments passed to [knitr::kable()]
 #'
-#' @return An [xtable::xtable()]
+#' @return An [knitr::kable()] object
 #' @export
 table_at_age <- function(model,
                          start_yr = NA,
