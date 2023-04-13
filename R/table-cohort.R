@@ -3,9 +3,17 @@
 #'
 #' @param model A model, created by [create_rds_file()]
 #' @param cohorts A vector of cohorts (years of birth) to use
+#' @param cohort_italics Logical. If `TRUE`, make the cohort header lines
+#' italicized
+#' @param cohort_bold Logical. If `TRUE`, make the cohort header lines
+#' boldface
+#' @param cohort_line_above Logical. If `TRUE`, place a horizontal line above
+#' cohort header lines
+#' @param cohort_line_below Logical. If `TRUE`, place a horizontal line below
+#' cohort header lines
+#' @param reverse_cohorts Logical. If `TRUE`, show the cohorts in the table in
+#' descending order, with the most recent cohort at the top of the table
 #' @param csv_dir Directory for CSV output
-#' @param start_yr Start year in table
-#' @param end_yr End year in table
 #' @param digits Number of decimal points to show in values in the table
 #' @param font_size The table data and header font size in points
 #' @param header_font_size The font size for the headers only. If `NULL`,
@@ -18,15 +26,23 @@
 #'
 #' @return An [knitr::kable()] object
 #' @export
-table_cohort <- function(model,
-                         cohorts,
-                         digits = 0,
-                         csv_dir = here::here("doc", "out-csv"),
-                         font_size = 10,
-                         header_font_size = 10,
-                         header_vert_spacing = 12,
-                         header_vert_scale = 1.2,
-                         ...){
+table_cohort <- \(model,
+                  cohorts,
+                  cohort_italics = TRUE,
+                  cohort_bold = TRUE,
+                  cohort_line_above = TRUE,
+                  cohort_line_below = TRUE,
+                  reverse_cohorts = FALSE,
+                  digits = 1,
+                  csv_dir = here::here("doc", "out-csv"),
+                  font_size = 10,
+                  header_font_size = 10,
+                  header_vert_spacing = 12,
+                  header_vert_scale = 1.2,
+                  ...){
+
+  stopifnot(is.numeric(cohorts))
+  cohorts <- sort(cohorts)
 
   caa <- model$extra_mcmc$catage_med
   # All data have the same start and end year, the exact same dimensions.
@@ -59,13 +75,15 @@ table_cohort <- function(model,
   #
   # @param d Data frame with the -at-age data
   # @param cohorts A vector of cohorts (years) to extract
-  # @return A list of length of cohort vector with a vector of the cohort data for each one
-  get_coh <- function(d, cohorts){
+  # @return A list of length of cohort vector with a vector of the cohort
+  # data for each one
+  get_coh <- \(d, cohorts){
     yrs <- d |>
       pull(yr)
     d_noyr <- d |>
       select(-yr)
     coh_inds <- as.character(which(yrs %in% cohorts) - 1)
+    # The magic is here
     delta <- row(d_noyr) - col(d_noyr)
     coh_lst <- split(as.matrix(d_noyr), delta)
     map(coh_inds, ~{get(.x, coh_lst)})
@@ -76,7 +94,7 @@ table_cohort <- function(model,
     map(~{
       tmp <- .x / 1e3
       tmp[-length(.x)]
-      })
+    })
 
   coh_naa <- get_coh(naa, cohorts)
 
@@ -112,67 +130,86 @@ table_cohort <- function(model,
     map(lst, ~{.x[1:num]})
   }
 
-  # Make a list of length 4, one list for each element which contains one of the four value types
-  coh_lst <- list(coh_baa, coh_caa_b, coh_m, coh_survive_b)
-  lst <- map2(coh_lst, c("baa", "caa", "m", "surv"), ~{
-    pad_vects(.x, length(coh_baa[[1]])) |>
-      `names<-`(paste0(.y, "_", cohorts))
+  # Make a list with one sublist for each element which contains one of the
+  # value types (columns in the table)
+  value_lst <- list(coh_baa, coh_caa_b, coh_m, coh_survive_b)
+  value_nms <- c("baa", "caa", "m", "surv")
+  value_lst <- map2(value_lst, value_nms, \(value, nm){
+    pad_vects(value, length(coh_baa[[1]])) |>
+      set_names(paste0(nm, "_", cohorts))
   }) |>
-    `names<-`(c("baa", "caa", "m", "surv"))
+    set_names(value_nms)
 
-  # Make a list of length of number of cohorts, each with a list of 4 value types. This is getting the
-  # list into the correct structure for the table
-  d <- map(seq_along(cohorts), ~{
-    map_df(lst, ~{
-      .x[[.y]]
-    }, .y = .x)
+  # Make a list of length of number of cohorts, each with a list value types.
+  # Add the age column. This is getting the list into the correct structure
+  # for the table
+  d <- map(seq_along(cohorts), \(cohort_ind){
+    tmp <- map_df(value_lst, \(value){
+      value[[cohort_ind]]
+    }) %>%
+      filter_all(any_vars(!is.na(.))) %>%
+      mutate(age = seq(0, nrow(.) - 1)) |>
+      select(age, everything()) |>
+      mutate_at(vars(-age), ~{f(.x, digits)}) |>
+      map_df(~{gsub(" *NA *", "", .x)})
   }) |>
-    `names<-`(cohorts)
+    set_names(cohorts)
 
-  # Make unique names for the cohort baa, caa, m, and surv columns and bind the data frames into one
-  d <- map2(d, cohorts, ~{
-    names(.x) <- paste0(names(.x), "_", .y)
-    .x
-  }) |>
-    bind_cols()
+  if(reverse_cohorts){
+    d <- rev(d)
+  }
 
-  # Add the Age column
-  age_df <- enframe(0:(nrow(d) - 1), name = NULL, value = "Age")
-  d <- bind_cols(age_df, d)
+  # Need this for later, to add bold/italics and horizontal lines to the
+  # table to section off cohorts
+  num_rows_per_section <- d |> map_dbl(~{nrow(.x)})
 
   # Table constructed, write to a CSV
-  csv_headers <- c("Age", map(seq_along(cohorts), ~{
-    c(paste(cohorts[.x], "Start Biomass"),
-      paste(cohorts[.x], "Catch Weight"),
-      paste(cohorts[.x], "M Weight"),
-      paste(cohorts[.x], "Surviving Biomass"))
+  # Need special data frame for CSV, csv_d
+  d <- imap(d, \(tbl, nm){
+    vec2df(c(paste0(nm, " cohort"), rep("", ncol(tbl) - 1)),
+           nms = names(tbl)) |>
+      bind_rows(tbl)
   }) |>
-    unlist())
-  csv_out <- d |>
-    mutate_all(~{as.character(.x)})
-  colnames(csv_out) <- csv_headers
-  csv_out[is.na(csv_out)] <- ""
+    bind_rows()
+
+  csv_d <- d
+  names(csv_d) <- c("Age",
+                    "Start Biomass",
+                    "Catch Weight",
+                    "M Weight",
+                    "Surviving Biomass")
 
   if(!dir.exists(csv_dir)){
     dir.create(csv_dir)
   }
-  write_csv(csv_out,
+  write_csv(csv_d,
             file.path(csv_dir, "cohort-effects.csv"))
 
-  # Change the number of decimal points displayed and remove NAs
-  d <- d |>
-    mutate_at(vars(-Age), ~{f(.x, digits)}) |>
-    map_df(~{gsub("NA", "", .x)})
+  # Back to table construction for the document
+  col_names <- c("Age",
+                 "Start\nBiomass\n(kt)",
+                 "Catch\nWeight\n(kt)",
+                 "Natural\nMortality\n(kt)",
+                 "Surviving\nBiomass\n(kt)")
 
-  nm_vec <- c("Start\nBiomass\n(kt)",
-              "Catch\nWeight\n(kt)",
-              "M\n(kt)",
-              "Surviving\nBiomass\n(kt)")
-  col_names <- map(cohorts, ~{
-    paste0(.x, "\ncohort\n", nm_vec)
-  }) |>
-    unlist()
-  col_names <- c("Age", col_names)
+  # Find the actual row indices for the cohort header lines
+  cohort_row_inds <-
+    cumsum(num_rows_per_section) +
+    seq_along(num_rows_per_section) + 1
+  cohort_row_inds <- c(1, cohort_row_inds[-length(cohort_row_inds)])
+
+  if(cohort_italics){
+    # Add bold and italics to the cohort headers
+    d[cohort_row_inds, 1] <- map(d[cohort_row_inds, 1], ~{
+      latex_italics(.x)
+    })
+  }
+  if(cohort_bold){
+    # Add bold and italics to the cohort headers
+    d[cohort_row_inds, 1] <- map(d[cohort_row_inds, 1], ~{
+      latex_bold(.x)
+    })
+  }
 
   # Insert custom header fontsize before linebreaker
   if(is.null(header_font_size)){
@@ -187,16 +224,36 @@ table_cohort <- function(model,
   # Add \\makecell{} latex command to headers with newlines
   col_names <- linebreaker(col_names, align = "c")
 
-  kbl(d,
-      format = "latex",
-      booktabs = TRUE,
-      align = "c",
-      linesep = "",
-      col.names = col_names,
-      escape = FALSE,
-      ...) |>
-    row_spec(0, bold = TRUE) |>
+  k <- kbl(d,
+           format = "latex",
+           booktabs = TRUE,
+           align = "r",
+           linesep = "",
+           col.names = col_names,
+           escape = FALSE,
+           ...) |>
+    row_spec(0, bold = TRUE)
+
+  if(cohort_line_above){
+    k <- k |>
+      row_spec(cohort_row_inds - 1,
+               extra_latex_after = paste0("\\cline{",
+                                          1,
+                                          "-",
+                                          length(col_names),
+                                          "}"))
+  }
+  if(cohort_line_below){
+    k <- k |>
+      row_spec(cohort_row_inds,
+               extra_latex_after = paste0("\\cline{",
+                                          1,
+                                          "-",
+                                          length(col_names),
+                                          "}"))
+  }
+
+  k |>
     kable_styling(font_size = font_size,
                   latex_options = c("repeat_header"))
-
 }

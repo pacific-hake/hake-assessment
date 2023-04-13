@@ -366,7 +366,12 @@ table_at_age(
 ```{r main-cohort-effects-table, results = "asis", echo = FALSE}
 table_cohort(
   base_model,
-  cohorts = c(2010, 2014, 2016, 2020),
+  cohorts = c(1999, 2010, 2014, 2016, 2020),
+  cohort_bold = TRUE,
+  cohort_italics = TRUE,
+  cohort_line_above = FALSE,
+  cohort_line_below = TRUE,
+  reverse_cohorts = TRUE,
   caption = paste0(
     "Calculations showing changes in biomass at each age due to natural ",
     "mortality and fishing for recent strong cohorts. Start Biomass is the ",
@@ -376,10 +381,9 @@ table_cohort(
     "year. Surviving Biomass does not equal the Start Biomass in the ",
     "following year because the empirical weights-at-age change ",
     "between years. Estimated quantities are posterior medians."),
-  font_size = 7,
-  header_font_size = 8,
-  longtable = TRUE) |> 
-  landscape()
+  font_size = 11,
+  header_font_size = 12,
+  longtable = TRUE)
 ```
 
 <!-- ```{r main-median-posterior-table, results = "asis", echo = FALSE} -->

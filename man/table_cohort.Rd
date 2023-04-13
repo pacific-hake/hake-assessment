@@ -8,7 +8,12 @@ through their life from year to year}
 table_cohort(
   model,
   cohorts,
-  digits = 0,
+  cohort_italics = TRUE,
+  cohort_bold = TRUE,
+  cohort_line_above = TRUE,
+  cohort_line_below = TRUE,
+  reverse_cohorts = FALSE,
+  digits = 1,
   csv_dir = here::here("doc", "out-csv"),
   font_size = 10,
   header_font_size = 10,
@@ -21,6 +26,21 @@ table_cohort(
 \item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{cohorts}{A vector of cohorts (years of birth) to use}
+
+\item{cohort_italics}{Logical. If \code{TRUE}, make the cohort header lines
+italicized}
+
+\item{cohort_bold}{Logical. If \code{TRUE}, make the cohort header lines
+boldface}
+
+\item{cohort_line_above}{Logical. If \code{TRUE}, place a horizontal line above
+cohort header lines}
+
+\item{cohort_line_below}{Logical. If \code{TRUE}, place a horizontal line below
+cohort header lines}
+
+\item{reverse_cohorts}{Logical. If \code{TRUE}, show the cohorts in the table in
+descending order, with the most recent cohort at the top of the table}
 
 \item{digits}{Number of decimal points to show in values in the table}
 
@@ -35,10 +55,6 @@ the headers will have the same font size as the table cell data}
 See \code{header_vert_spacing}}
 
 \item{...}{Arguments passed to \code{\link[knitr:kable]{knitr::kable()}}}
-
-\item{start_yr}{Start year in table}
-
-\item{end_yr}{End year in table}
 
 \item{vert_spacing}{The vertical spacing between newlines for this font.
 If \code{NULL} this will be calculated as \code{header_font_size * header_vert_scale}}
