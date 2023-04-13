@@ -207,10 +207,4 @@ us_atsea_bottom_depth_df <-
            col_types = cols(),
            show_col_types = FALSE)
 
-# At-age output data table file names ----
-out_est_naa_file <- "estimated-numbers-at-age.csv"
-out_est_eaa_file <- "estimated-exploitation-at-age.csv"
-out_est_caa_file <- "estimated-catch-at-age.csv"
-out_est_caa_bio_file <- "estimated-catch-at-age-biomass.csv"
-out_est_baa_file <- "estimated-biomass-at-age.csv"
 ```

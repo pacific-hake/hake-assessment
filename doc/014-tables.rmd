@@ -290,99 +290,78 @@ table_assessment_changes(
   longtable = TRUE)
 ```
 
-<!-- \begin{landscape} -->
-<!-- \pagestyle{mylandscape} -->
-<!-- \centering -->
-<!-- ```{r main-est-numbers-at-age-table, results = "asis", echo = FALSE} -->
-<!-- atage_table( -->
-<!--   base_model, -->
-<!--   table_type = 1, -->
-<!--   end_yr = end_yr, -->
-<!--   xcaption = paste0( -->
-<!--     "Estimated numbers-at-age at the beginning of the year from the base ", -->
-<!--     "model (posterior medians; million)."), -->
-<!--   xlabel = "tab:main-est-numbers-at-age", -->
-<!--   font_size = 9, -->
-<!--   space_size = 10) -->
-<!-- ``` -->
-<!-- \end{landscape} -->
-<!-- \pagestyle{fancy} -->
-<!-- \clearpage -->
+```{r main-est-numbers-at-age-table, results = "asis", echo = FALSE}
+table_at_age(
+  base_model,
+  type = "naa",
+  end_yr = end_yr,
+  caption = paste0(
+    "Estimated numbers-at-age at the beginning of the year from the base ",
+    "model (posterior medians; million)."),
+  font_size = 9,
+  header_font_size = 10,
+  longtable = TRUE) |> 
+  landscape()
+```
 
-<!-- \begin{landscape} -->
-<!-- \pagestyle{mylandscape} -->
-<!-- \centering -->
-<!-- ```{r main-est-biomass-at-age-table, results = "asis", echo = FALSE} -->
-<!-- atage_table( -->
-<!--   base_model, -->
-<!--   table_type = 5, -->
-<!--   end_yr = end_yr, -->
-<!--   xcaption = paste0( -->
-<!--     "Estimated total biomass-at-age at the beginning of the year from the ", -->
-<!--     "base model (posterior medians; thousand t)."), -->
-<!--   xlabel = "tab:main-est-biomass-at-age", -->
-<!--   font_size = 9, -->
-<!--   space_size = 10) -->
-<!-- ``` -->
-<!-- \end{landscape} -->
-<!-- \pagestyle{fancy} -->
+```{r main-est-biomass-at-age-table, results = "asis", echo = FALSE}
+table_at_age(
+  base_model,
+  type = "baa",
+  end_yr = end_yr,
+  caption = paste0(
+    "Estimated total biomass-at-age at the beginning of the year from the ",
+    "base model (posterior medians; thousand t)."),
+  font_size = 9,
+  header_font_size = 10,
+  longtable = TRUE) |> 
+  landscape()
+```
 
-<!-- \begin{landscape} -->
-<!-- \pagestyle{mylandscape} -->
-<!-- \centering -->
-<!-- ```{r main-est-exp-rate-at-age-table, results = "asis", echo = FALSE} -->
-<!-- atage_table( -->
-<!--   base_model, -->
-<!--   table_type = 2, -->
-<!--   end_yr = end_yr - 1, -->
-<!--   digits = 2, -->
-<!--   xcaption = paste0( -->
-<!--     "Estimated exploitation-fraction-at-age (catch-at-age divided by ", -->
-<!--     "biomass-at-age at the beginning of the year) presented as a percentage ", -->
-<!--     "for each year from the base model (posterior medians; percentage of ", -->
-<!--     "age class removed by fishing)."), -->
-<!--   xlabel = "tab:main-est-exp-rate-at-age", -->
-<!--   font_size = 9, -->
-<!--   space_size = 10) -->
-<!-- ``` -->
-<!-- \end{landscape} -->
-<!-- \pagestyle{fancy} -->
+```{r main-est-exp-rate-at-age-table, results = "asis", echo = FALSE}
+table_at_age(
+  base_model,
+  type = "eraa",
+  end_yr = end_yr - 1,
+  digits = 2,
+  caption = paste0(
+    "Estimated exploitation-fraction-at-age (catch-at-age divided by ",
+    "biomass-at-age at the beginning of the year) presented as a percentage ",
+    "for each year from the base model (posterior medians; percentage of ",
+    "age class removed by fishing)."),
+  font_size = 9,
+  header_font_size = 10,
+  longtable = TRUE) |> 
+  landscape()
+```
 
-<!-- \begin{landscape} -->
-<!-- \pagestyle{mylandscape} -->
-<!-- \centering -->
-<!-- ```{r main-est-catch-at-age-table, results = "asis", echo = FALSE} -->
-<!-- atage_table( -->
-<!--   base_model, -->
-<!--   table_type = 3, -->
-<!--   end_yr = end_yr - 1, -->
-<!--   xcaption = paste0( -->
-<!--     "Estimated catch-at-age in numbers for each year from the base model ", -->
-<!--     "(posterior medians; thousands)."), -->
-<!--   xlabel = "tab:main-est-catch-at-age", -->
-<!--   font_size = 6, -->
-<!--   space_size = 7) -->
-<!-- ``` -->
-<!-- \end{landscape} -->
-<!-- \pagestyle{fancy} -->
+```{r main-est-catch-at-age-table, results = "asis", echo = FALSE}
+table_at_age(
+  base_model,
+  type = "caan",
+  end_yr = end_yr - 1,
+  caption = paste0(
+    "Estimated catch-at-age in numbers for each year from the base model ",
+    "(posterior medians; thousands)."),
+  font_size = 7,
+  header_font_size = 8,
+  longtable = TRUE) |> 
+  landscape()
+```
 
-<!-- \begin{landscape} -->
-<!-- \pagestyle{mylandscape} -->
-<!-- \centering -->
-<!-- ```{r main-est-catch-at-age-biomass-table, results = "asis", echo = FALSE} -->
-<!-- atage_table( -->
-<!--   base_model, -->
-<!--   table_type = 4, -->
-<!--   end_yr = end_yr - 1, -->
-<!--   xcaption = paste0( -->
-<!--     "Estimated catch-at-age in total biomass for each year from the base ", -->
-<!--     "model (posterior medians; t)."), -->
-<!--   xlabel = "tab:main-est-catch-at-age-biomass", -->
-<!--   font_size = 6, -->
-<!--   space_size = 7) -->
-<!-- ``` -->
-<!-- \end{landscape} -->
-<!-- \pagestyle{fancy} -->
+```{r main-est-catch-at-age-biomass-table, results = "asis", echo = FALSE}
+table_at_age(
+  base_model,
+  type = "caab",
+  end_yr = end_yr - 1,
+  caption = paste0(
+    "Estimated catch-at-age in total biomass for each year from the base ",
+    "model (posterior medians; t)."),
+  font_size = 7,
+  header_font_size = 8,
+  longtable = TRUE) |> 
+  landscape()
+```
 
 <!-- \begin{landscape} -->
 <!-- \pagestyle{mylandscape} -->
