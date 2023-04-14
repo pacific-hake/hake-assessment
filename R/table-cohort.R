@@ -26,20 +26,20 @@
 #'
 #' @return An [knitr::kable()] object
 #' @export
-table_cohort <- \(model,
-                  cohorts,
-                  cohort_italics = TRUE,
-                  cohort_bold = TRUE,
-                  cohort_line_above = TRUE,
-                  cohort_line_below = TRUE,
-                  reverse_cohorts = FALSE,
-                  digits = 1,
-                  csv_dir = here::here("doc", "out-csv"),
-                  font_size = 10,
-                  header_font_size = 10,
-                  header_vert_spacing = 12,
-                  header_vert_scale = 1.2,
-                  ...){
+table_cohort <- function(model,
+                         cohorts,
+                         cohort_italics = TRUE,
+                         cohort_bold = TRUE,
+                         cohort_line_above = TRUE,
+                         cohort_line_below = TRUE,
+                         reverse_cohorts = FALSE,
+                         digits = 1,
+                         csv_dir = here::here("doc", "out-csv"),
+                         font_size = 10,
+                         header_font_size = 10,
+                         header_vert_spacing = 12,
+                         header_vert_scale = 1.2,
+                         ...){
 
   stopifnot(is.numeric(cohorts))
   cohorts <- sort(cohorts)
