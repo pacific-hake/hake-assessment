@@ -6,7 +6,7 @@
 #' @param min_yr The data's minimum year
 #' @param max_yr The data's maximum year
 #'
-#' @return A vector of two, the start and end year that is best
+#' @return A named list of two, the start and end year that is best
 #' @export
 get_year_range <- \(start_yr = NA,
                     end_yr = NA,
@@ -46,5 +46,5 @@ get_year_range <- \(start_yr = NA,
     stop("End year occurs before start year",
          call. = FALSE)
   }
-  c(start_yr = s_yr, end_yr = e_yr)
+  list(start_yr = s_yr, end_yr = e_yr)
 }

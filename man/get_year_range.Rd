@@ -17,7 +17,7 @@ get_year_range(start_yr = NA, end_yr = NA, min_yr = NA, max_yr = NA)
 \item{max_yr}{The data's maximum year}
 }
 \value{
-A vector of two, the start and end year that is best
+A named list of two, the start and end year that is best
 }
 \description{
 Get best start year and end year values given the data minimum and maximum

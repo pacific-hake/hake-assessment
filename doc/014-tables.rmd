@@ -386,27 +386,26 @@ table_cohort(
   longtable = TRUE)
 ```
 
-<!-- ```{r main-median-posterior-table, results = "asis", echo = FALSE} -->
-<!-- make.median.posterior.table( -->
-<!--   base_model, -->
-<!--   start_yr = start_yr, -->
-<!--   end_yr = end_yr, -->
-<!--   digits = 1, -->
-<!--   csv.dir = output_csv_dir, -->
-<!--   xcaption = paste0( -->
-<!--     "Time series of median posterior population estimates from the base ", -->
-<!--     "model. Relative spawning biomass is spawning biomass relative to the ", -->
-<!--     "unfished equilibrium ($\\Bzero$). Total biomass includes females and ", -->
-<!--     "males of ages 0 and above. Age-2+ biomass includes females and males ", -->
-<!--     "ages 2 and above. Exploitation fraction is total catch divided by ", -->
-<!--     "total age-2+ biomass. Relative fishing intensity is ", -->
-<!--     "(1-SPR)/(1-SPR\\subscr{40\\%}) such that values below 100\\% ", -->
-<!--     "represent fishing below $\\Fforty$. A dash (--) indicates a quantity ", -->
-<!--     "requiring ", end_yr, " catch which has not taken place yet."), -->
-<!--   xlabel = "tab:main-median-posterior", -->
-<!--   font.size = 9, -->
-<!--   space.size = 10) -->
-<!-- ``` -->
+```{r main-median-posterior-table, results = "asis", echo = FALSE}
+table_median_posteriors(
+  base_model,
+  start_yr = start_yr,
+  end_yr = end_yr,
+  digits = 1,
+  caption = paste0(
+    "Time series of median posterior population estimates from the base ",
+    "model. Relative spawning biomass is spawning biomass relative to the ",
+    "unfished equilibrium ($\\Bzero$). Total biomass includes females and ",
+    "males of ages 0 and above. Age-2+ biomass includes females and males ",
+    "ages 2 and above. Exploitation fraction is total catch divided by ",
+    "total age-2+ biomass. Relative fishing intensity is ",
+    "(1-SPR)/(1-SPR\\textsubscript{40\\%}) such that values below 100\\% ",
+    "represent fishing below $\\Fforty$. A dash (--) indicates a quantity ",
+    "requiring ", end_yr, " catch which has not taken place yet."),
+  font_size = 9,
+  header_font_size = 10,
+  longtable = TRUE)
+```
 
 <!-- \clearpage -->
 
