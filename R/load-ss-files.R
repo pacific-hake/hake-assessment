@@ -126,6 +126,7 @@ load_ss_files <- function(model_path = NA,
     # Do the mcmc calculations, e.g. quantiles for SB, SSB, DEPL, RECR, RECRDEVS
     model$mcmccalcs <- calc_mcmc(model$mcmc,
                                  ...)
+
     # The MCMC object itself is huge and should not be included in the list,
     # as the loading of it in the document is prohibitive. It was used to
     # populate `mcmccalcs` but is no longer needed. Save the number of

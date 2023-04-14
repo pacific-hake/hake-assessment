@@ -10,6 +10,7 @@ table_cohort(
   cohorts,
   cohort_italics = TRUE,
   cohort_bold = TRUE,
+  cohort_underline = TRUE,
   cohort_line_above = TRUE,
   cohort_line_below = TRUE,
   reverse_cohorts = FALSE,
@@ -32,6 +33,9 @@ italicized}
 
 \item{cohort_bold}{Logical. If \code{TRUE}, make the cohort header lines
 boldface}
+
+\item{cohort_underline}{Logical. If \code{TRUE}, make the cohort header lines
+underlined}
 
 \item{cohort_line_above}{Logical. If \code{TRUE}, place a horizontal line above
 cohort header lines}

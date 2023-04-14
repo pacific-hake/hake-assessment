@@ -33,6 +33,8 @@ load_retrospectives <- function(retro_path,
     model <- load_ss_files(retro_dir, ...)
     model$extra_mcmc <- load_extra_mcmc(model, ...)
     model$endyr <- model$endyr - y
+    model$mcmc <- NA
+    model$parameters <- NA
     model
   }, ...,
   .options = furrr_options(globals = c("hake::pad_num")))

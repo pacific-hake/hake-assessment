@@ -4,10 +4,10 @@
 #'
 #' @export
 load_extra_mcmc_selwt <- function(reps,
-                                 verbose = TRUE,
-                                 head_beg_pat,
-                                 head_end_pat,
-                                 ...){
+                                  verbose = TRUE,
+                                  head_beg_pat,
+                                  head_end_pat,
+                                  ...){
 
   if(verbose){
     message("Extracting vulnerable biomass...")

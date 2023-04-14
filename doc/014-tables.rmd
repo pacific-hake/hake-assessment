@@ -369,8 +369,9 @@ table_cohort(
   cohorts = c(1999, 2010, 2014, 2016, 2020),
   cohort_bold = TRUE,
   cohort_italics = TRUE,
+  cohort_underline = TRUE,
   cohort_line_above = FALSE,
-  cohort_line_below = TRUE,
+  cohort_line_below = FALSE,
   reverse_cohorts = TRUE,
   caption = paste0(
     "Calculations showing changes in biomass at each age due to natural ",
@@ -400,49 +401,50 @@ table_median_posteriors(
     "ages 2 and above. Exploitation fraction is total catch divided by ",
     "total age-2+ biomass. Relative fishing intensity is ",
     "(1-SPR)/(1-SPR\\textsubscript{40\\%}) such that values below 100\\% ",
-    "represent fishing below $\\Fforty$. A dash (--) indicates a quantity ",
+    "represent fishing below $\\Fforty$. Cells containing only a dash (--) ",
+    "indicate a quantity requiring A dash (--) indicates a quantity ",
     "requiring ", end_yr, " catch which has not taken place yet."),
-  font_size = 9,
-  header_font_size = 10,
+  font_size = 8,
+  header_font_size = 9,
   longtable = TRUE)
 ```
 
-<!-- \clearpage -->
+```{r main-ci-posterior-table, results = "asis", echo = FALSE}
+table_ci_posteriors(
+  base_model,
+  start_yr = start_yr,
+  end_yr = end_yr,
+  digits = 1,
+  caption = paste0(
+    "Time-series of 95\\% posterior credibility intervals for the quantities ",
+    "shown in Table \\@ref(tab:main-median-posterior-table). Cells ",
+    "containing only a dash (--) indicate a quantity requiring ", end_yr,
+    " catch which has not taken place yet."),
+  font_size = 8,
+  header_font_size = 9,
+  longtable = TRUE)
+```
 
-<!-- ```{r main-ci-posterior-table, results = "asis", echo = FALSE} -->
-<!-- make.ci.posterior.table( -->
-<!--   base_model, -->
-<!--   start_yr = start_yr, -->
-<!--   end_yr = end_yr, -->
-<!--   digits = 1, -->
-<!--   xcaption = paste0( -->
-<!--     "Time-series of 95\\% posterior credibility intervals for the quantities ", -->
-<!--     "shown in Table \\@ref(tab:main-median-posterior). A dash (--) indicates ", -->
-<!--     "a quantity requiring ", end_yr, " catch which has not taken place yet."), -->
-<!--   xlabel = "tab:main-ci-posterior", -->
-<!--   font.size = 8, -->
-<!--   space.size = 9, -->
-<!--   lower_col = "2.5%", -->
-<!--   upper_col = "97.5%") -->
-<!-- ``` -->
-
-<!-- ```{r main-parameter-estimates, results = "asis", echo = FALSE} -->
-<!-- table_param_est( -->
-<!--   list(base_model, last_yr_base_model), -->
-<!--   model_nms = c(base_model_name, last_yr_base_model_name), -->
-<!--   end_yr = end_yr, -->
-<!--   digits = 3, -->
-<!--   rec_yrs = c(2010, 2014, 2016, 2020), -->
-<!--   show_like = FALSE, -->
-<!--   xcaption = -->
-<!--     paste0( -->
-<!--       "Select parameters, derived quantities, and reference point posterior ", -->
-<!--       "median estimates for the (", end_yr, ") base model compared to the ", -->
-<!--       "previous assessment's (", end_yr - 1, ") base model."), -->
-<!--   xlabel = "tab:main-parameter-estimates", -->
-<!--   font_size = 10, -->
-<!--   space_size = 11) -->
-<!-- ``` -->
+```{r main-parameter-estimates, results = "asis", echo = FALSE}
+table_param_est(
+  list(base_model, last_yr_base_model),
+  model_nms = c(base_model_name, last_yr_base_model_name),
+  end_yr = end_yr,
+  section_bold = TRUE,
+  section_italics = TRUE,
+  section_underline = TRUE,
+  section_line_above = FALSE,
+  section_line_below = FALSE,
+  digits = 3,
+  rec_yrs = c(2010, 2014, 2016, 2020),
+  caption = paste0(
+      "Select parameters, derived quantities, and reference point posterior ",
+      "median estimates for the (", end_yr, ") base model compared to the ",
+      "previous assessment's (", end_yr - 1, ") base model."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
 
 <!-- ```{r main-reference-points-table, results = "asis", echo = FALSE} -->
 <!-- table_reference_points.old( -->

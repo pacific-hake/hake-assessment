@@ -9,13 +9,18 @@ table_param_est(
   models,
   model_nms,
   end_yr,
+  section_italics = TRUE,
+  section_bold = TRUE,
+  section_underline = TRUE,
+  section_line_above = FALSE,
+  section_line_below = TRUE,
   digits = 3,
-  xcaption = "default",
-  xlabel = "default",
-  font_size = 9,
-  space_size = 10,
   rec_yrs = NA,
-  show_like = TRUE
+  font_size = 10,
+  header_font_size = 10,
+  header_vert_spacing = 12,
+  header_vert_scale = 1.2,
+  ...
 )
 }
 \arguments{
@@ -26,24 +31,41 @@ models in the models list}
 
 \item{end_yr}{The last year to include}
 
+\item{section_italics}{Logical. If \code{TRUE}, make the section header lines
+italicized}
+
+\item{section_bold}{Logical. If \code{TRUE}, make the section header lines
+boldface}
+
+\item{section_underline}{Logical. If \code{TRUE}, make the section header lines
+underlined}
+
+\item{section_line_above}{Logical. If \code{TRUE}, place a horizontal line above
+section header lines}
+
+\item{section_line_below}{Logical. If \code{TRUE}, place a horizontal line below
+section header lines}
+
 \item{digits}{Number of decimal points for the estimates}
-
-\item{xcaption}{Caption to appear in the calling document}
-
-\item{xlabel}{The label used to reference the table in latex}
-
-\item{font_size}{Size of the font for the table}
-
-\item{space_size}{Size of the vertical spaces for the table}
 
 \item{rec_yrs}{A vector of integers supplying the years for which you
 want estimates of recruitment}
 
-\item{show_like}{If \code{TRUE}, include the negative log-likelihoods (set to
-\code{FALSE} for presentations)}
+\item{font_size}{The table data and header font size in points}
+
+\item{header_font_size}{The font size for the headers only. If \code{NULL},
+the headers will have the same font size as the table cell data}
+
+\item{header_vert_scale}{Scale factor to create the vertical spacing value.
+See \code{header_vert_spacing}}
+
+\item{...}{Arguments passed to \code{\link[knitr:kable]{knitr::kable()}}}
+
+\item{vert_spacing}{The vertical spacing between newlines for this font.
+If \code{NULL} this will be calculated as \code{header_font_size * header_vert_scale}}
 }
 \value{
-as \code{\link[xtable:xtable]{xtable::xtable()}}
+An \code{\link[knitr:kable]{knitr::kable()}} object
 }
 \description{
 Returns an \code{\link[xtable:xtable]{xtable::xtable()}} in the proper format for the MCMC posterior

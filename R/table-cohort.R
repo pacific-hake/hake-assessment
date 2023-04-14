@@ -7,6 +7,8 @@
 #' italicized
 #' @param cohort_bold Logical. If `TRUE`, make the cohort header lines
 #' boldface
+#' @param cohort_underline Logical. If `TRUE`, make the cohort header lines
+#' underlined
 #' @param cohort_line_above Logical. If `TRUE`, place a horizontal line above
 #' cohort header lines
 #' @param cohort_line_below Logical. If `TRUE`, place a horizontal line below
@@ -30,6 +32,7 @@ table_cohort <- function(model,
                          cohorts,
                          cohort_italics = TRUE,
                          cohort_bold = TRUE,
+                         cohort_underline = TRUE,
                          cohort_line_above = TRUE,
                          cohort_line_below = TRUE,
                          reverse_cohorts = FALSE,
@@ -198,6 +201,12 @@ table_cohort <- function(model,
     seq_along(num_rows_per_section) + 1
   cohort_row_inds <- c(1, cohort_row_inds[-length(cohort_row_inds)])
 
+  if(cohort_underline){
+    # Add bold and italics to the cohort headers
+    d[cohort_row_inds, 1] <- map(d[cohort_row_inds, 1], ~{
+      latex_under(.x)
+    })
+  }
   if(cohort_italics){
     # Add bold and italics to the cohort headers
     d[cohort_row_inds, 1] <- map(d[cohort_row_inds, 1], ~{

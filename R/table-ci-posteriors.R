@@ -1,4 +1,4 @@
-#' Make a latex table of medians with columns for female spawning biomass,
+#' Make a latex table of credible intervals with columns for female spawning biomass,
 #' relative spawning biomass, total biomass, age 2+ biomass, age-0 recruits, relative
 #' fishing intensity, and exploitation fraction. Also output a CSV file with the table contents.
 #'
@@ -7,6 +7,8 @@
 #' @param end_yr End year in table
 #' @param csv_dir Directory for CSV output
 #' @param digits Number of decimal points to show in values in the table
+#' @param lower_col Column name in the data frames for the lower ci value
+#' @param upper_col Column name in the data frames for the upper ci value
 #' @param scale Scale factor for biomasses and recruitments
 #' @param font_size The table data and header font size in points
 #' @param header_font_size The font size for the headers only. If `NULL`,
@@ -19,22 +21,21 @@
 #'
 #' @return An [knitr::kable()] object
 #' @export
-table_median_posteriors <- function(model,
-                                    start_yr = NULL,
-                                    end_yr = NULL,
-                                    digits = 1,
-                                    scale = 1000,
-                                    csv_dir = here::here("doc", "out-csv"),
-                                    font_size = 10,
-                                    header_font_size = 10,
-                                    header_vert_spacing = 12,
-                                    header_vert_scale = 1.2,
-                                    ...){
-  if(!is.null(csv_dir)){
-    if(!dir.exists(csv_dir)){
-      dir.create(csv_dir)
-    }
-  }
+table_ci_posteriors <- function(model,
+                                start_yr,
+                                end_yr,
+                                scale = 1000,
+                                digits = 1,
+                                lower_col = "2.5%",
+                                upper_col = "97.5%",
+                                font_size = 10,
+                                header_font_size = 10,
+                                header_vert_spacing = 12,
+                                header_vert_scale = 1.2,
+                                ...){
+
+  lower_col_sym <- sym(lower_col)
+  upper_col_sym <- sym(upper_col)
 
   yr_range <- get_year_range(start_yr,
                              end_yr,
@@ -44,21 +45,50 @@ table_median_posteriors <- function(model,
   df <- map(model$mcmccalcs, ~{.x[names(.x) %in% yrs]})
   ts <- model$timeseries |>
     as_tibble()
+
   tot_bm <- model$extra_mcmc$total_biomass_quants |>
-    filter(yr %in% yrs) |>
-    select(`50%`)
+    filter(yr %in% yrs)
+  stopifnot(lower_col %in% names(tot_bm))
+  stopifnot(upper_col %in% names(tot_bm))
+  tot_bm_lower <- tot_bm |>
+    pull(!!lower_col_sym)
+  tot_bm_upper <- tot_bm |>
+    pull(!!upper_col_sym)
+
   age2plus_bm <- model$extra_mcmc$total_age2_plus_biomass_quants |>
-    filter(yr %in% yrs) |>
-    select(`50%`)
+    filter(yr %in% yrs)
+  stopifnot(lower_col %in% names(age2plus_bm))
+  stopifnot(upper_col %in% names(age2plus_bm))
+  age2plus_bm_lower <- age2plus_bm |>
+    pull(!!lower_col_sym)
+  age2plus_bm_upper <- age2plus_bm |>
+    pull(!!upper_col_sym)
 
   d <- cbind(yrs,
-             f(df$smed * scale),
-             paste0(f(df$dmed * 100, digits), "\\%"),
-             f(tot_bm / scale),
-             f(age2plus_bm / scale),
-             f(df$rmed * scale),
-             paste0(f(df$pmed * 100, digits), "\\%"),
-             paste0(f(df$fmed * 100, digits), "\\%")) |>
+             paste0(trimws(f(df$slower * scale)),
+                    "-",
+                    trimws(f(df$supper * scale))),
+             paste0(f(df$dlower * 100, digits),
+                    "-",
+                    trimws(f(df$dupper * 100, digits)),
+                    "\\%"),
+             paste0(trimws(f(tot_bm_lower / scale)),
+                    "-",
+                    trimws(f(tot_bm_upper / scale))),
+             paste0(f(age2plus_bm_lower / scale),
+                    "-",
+                    trimws(f(age2plus_bm_upper / scale))),
+             paste0(trimws(f(df$rlower * scale)),
+                    "-",
+                    trimws(f(df$rupper * scale))),
+             paste0(trimws(f(df$plower * 100, digits)),
+                    "-",
+                    trimws(f(df$pupper * 100, digits)),
+                    "\\%"),
+             paste0(trimws(f(df$flower * 100, digits)),
+                    "-",
+                    trimws(f(df$fupper * 100, digits)),
+                    "\\%")) |>
     as.data.frame() |>
     set_names(c("Year",
                 "Female spawning biomass (kt)",
@@ -73,15 +103,6 @@ table_median_posteriors <- function(model,
   # Make current year have dashes for exploitation rate and fishing intensity
   d[nrow(d), ncol(d)] <- latex_bold("--")
   d[nrow(d), ncol(d) - 1] <- latex_bold("--")
-
-  # Write the median posteriors CSV file --------------------------------------
-  csv_d <- d
-  csv_d <- map_df(csv_d, ~{
-    gsub("\\\\%", "%", .x)
-  })
-  csv_d[nrow(csv_d), ncol(csv_d)] <- ""
-  csv_d[nrow(csv_d), ncol(csv_d) - 1] <- ""
-  write_csv(csv_d, file.path(csv_dir, "median-population-estimates.csv"))
 
   col_names <- c("Year",
                  "Female\nspawning\nbiomass\n(kt)",

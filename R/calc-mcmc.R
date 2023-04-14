@@ -34,8 +34,79 @@ calc_mcmc <- function(mcmc,
   mcmc <- mcmc |>
     as_tibble()
 
+  # Natural mortality ----
+  m_col <- "NatM_uniform_Fem_GP_1"
+  if(!m_col %in% names(mcmc)){
+    m_col <- "NatM_p_1_Fem_GP_1"
+    if(!m_col %in% names(mcmc)){
+      stop("Neither `NatM_uniform_Fem_GP_1` nor `NatM_p_1_Fem_GP_1` were ",
+           "found in the `mcmc` data frame",
+           call. = FALSE)
+    }
+  }
+  out$m <- mcmc |>
+    select({{m_col}}) |>
+    unlist() |>
+    quantile(probs)
+
+  # R0 ----
+  out$ro <- mcmc |>
+    transmute(ro = `SR_LN(R0)`) |>
+    mutate(ro = exp(ro) / 1e3) |>
+    unlist() |>
+    quantile(probs)
+
+  # Steepness ----
+  out$steep <- mcmc |>
+    select("SR_BH_steep") |>
+    unlist() |>
+    quantile(probs)
+
+  # Acoustic survey SD ----
+  out$survey_sd <- mcmc |>
+    select("Q_extraSD_Acoustic_Survey(2)") |>
+    unlist() |>
+    quantile(probs)
+
+  # Age 1 index ----
+  out$age1_index_sd <- mcmc |>
+    select("Q_extraSD_Age1_Survey(3)") |>
+    unlist() |>
+    quantile(probs)
+
+  # DM fishery parameter ----
+  dm_col <- "ln(DM_theta)_Age_P1"
+  if(!dm_col %in% names(mcmc)){
+    dm_col <- "ln(DM_theta)_1"
+    if(!dm_col %in% names(mcmc)){
+      stop("Neither `ln(DM_theta)_Age_P1` nor `ln(DM_theta)_1` were ",
+           "found in the `mcmc` data frame",
+           call. = FALSE)
+    }
+  }
+  out$dm_fishery <- mcmc |>
+    select({{dm_col}}) |>
+    unlist() |>
+    quantile(probs)
+
+  # DM survey parameter ----
+  dm_col <- "ln(DM_theta)_Age_P2"
+  if(!dm_col %in% names(mcmc)){
+    dm_col <- "ln(DM_theta)_2"
+    if(!dm_col %in% names(mcmc)){
+      stop("Neither `ln(DM_theta)_Age_P2` nor `ln(DM_theta)_2` were ",
+           "found in the `mcmc` data frame",
+           call. = FALSE)
+    }
+  }
+  out$dm_survey <- mcmc |>
+    select({{dm_col}}) |>
+    unlist() |>
+    quantile(probs)
+
   # Spawning biomass ----
   ssb <- cols_par("SSB", biomass_scale)
+
   # svirg <- mcmc |>
   #   select(matches("^SSB_Virgin$")) |>
   #   setNames("value") |>

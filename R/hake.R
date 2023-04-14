@@ -40,6 +40,7 @@
 #' @importFrom tidyr pivot_longer pivot_wider unnest
 #' @importFrom utils  head globalVariables object.size read.csv read.table
 #' @importFrom utils tail type.convert write.csv write.table
+#' @importFrom vctrs vec_as_names
 #' @importFrom withr defer
 #' @importFrom xtable xtable
 

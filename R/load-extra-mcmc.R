@@ -67,7 +67,20 @@ load_extra_mcmc <- function(model,
 
   extra_mcmc <- list()
 
-  # Biomass -----------------------------------------------------------------
+  # Cohort recruitments --------------------------------------------------------
+  extra_mcmc$recr_cohorts <- load_extra_mcmc_recr_cohorts(
+    reps = reps,
+    probs = probs,
+    cohorts = c(2010, 2014, 2016, 2020),
+    start_yr = model$startyr,
+    end_yr = model$endyr + 1,
+    progress_n = progress_n,
+    verbose = verbose,
+    beg_pat = "^Recr_Initial",
+    end_pat = "^SPRratio_1966",
+    ...)
+
+  # Biomass --------------------------------------------------------------------
   biomass_lst <- load_extra_mcmc_biomass(
     reps = reps,
     probs = probs,

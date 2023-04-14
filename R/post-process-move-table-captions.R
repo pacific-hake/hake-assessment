@@ -33,5 +33,13 @@ post_process_move_table_captions <- function(x){
     x <- post_process_interlace_chunks(lst)
   }
 
+  pat <- "\\\\caption\\{\\\\label\\{tab:main-ci-posterior-table\\}"
+  ind <- grep(pat, x)
+  if(length(ind)){
+    lst <- post_process_extract_chunks(x, ind, ind)
+    lst$inbetween[[1]] <- c(lst$inbetween[[1]], "\\captionsetup{margin=-4pt}")
+    x <- post_process_interlace_chunks(lst)
+  }
+
   x
 }
