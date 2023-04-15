@@ -185,14 +185,6 @@ table_param_est <- function(models,
 
    sec_inds <- c(1, 11, 20)
 
-   # Insert a new row made up of the vector `row_vec` at row `row_ind` in
-   # data frame `d`
-   insert_row <- function(d, row_vec, row_ind) {
-     d[seq(row_ind + 1, nrow(d) + 1), ] <- d[seq(row_ind, nrow(d)),]
-     d[row_ind, ] <- vec2df(row_vec)
-     d
-   }
-
    # Insert empty rows at the row indices where the section headers are
    row_vec <- rep("", length(models) + 1)
    walk(sec_inds, ~{

@@ -446,20 +446,19 @@ table_param_est(
   longtable = TRUE)
 ```
 
-<!-- ```{r main-reference-points-table, results = "asis", echo = FALSE} -->
-<!-- table_reference_points.old( -->
-<!--   base_model, -->
-<!--   xcaption = paste0( -->
-<!--     "Summary of median and 95\\% credibility intervals of equilibrium ", -->
-<!--     "conceptual reference points for the base assessment model. ", -->
-<!--     "Equilibrium reference points were computed using 1975--", end_yr - 1, -->
-<!--     " averages for mean weight-at-age and baseline selectivity-at-age ", -->
-<!--     "(1966--1990; prior to time-varying deviations.)"), -->
-<!--   xlabel = "tab:main-reference-points", -->
-<!--   font.size = 10, -->
-<!--   space.size = 11, -->
-<!--   placement = "h") -->
-<!-- ``` -->
+```{r main-reference-points-table, results = "asis", echo = FALSE}
+table_reference_points(
+  base_model,
+  caption = paste0(
+    "Summary of median and 95\\% credibility intervals of equilibrium ",
+    "conceptual reference points for the base assessment model. ",
+    "Equilibrium reference points were computed using 1975--", end_yr - 1,
+    " averages for mean weight-at-age and baseline selectivity-at-age ",
+    "(1966--1990; prior to time-varying deviations.)"),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
 
 <!-- \clearpage -->
 

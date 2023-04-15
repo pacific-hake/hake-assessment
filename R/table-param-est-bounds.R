@@ -308,14 +308,6 @@ table_param_est_bounds <- function(model,
                  "Bounds\n(low, high)",
                  "Prior (Mean, SD)\nsingle value = fixed")
 
-  # Insert a new row made up of the vector `row_vec` at row `row_ind` in
-  # data frame `d`
-  insert_row <- function(d, row_vec, row_ind) {
-    d[seq(row_ind + 1, nrow(d) + 1), ] <- d[seq(row_ind, nrow(d)),]
-    d[row_ind, ] <- vec2df(row_vec)
-    d
-  }
-
   df <- insert_row(df,
                    c(paste0("\\textbf{\\underline{Stock Dynamics}}"),
                      "", "", ""), 1)

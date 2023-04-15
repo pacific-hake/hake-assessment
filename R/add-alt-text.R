@@ -65,18 +65,21 @@ add_alt_text <- function(tex_file = "hake-assessment.tex",
 
   if(length(manual_inds)){
     # Modify alt_fig_text for the manually-placed figures
-    insert_row <- function(df, new_row, ind) {
-      if(ind > nrow(df)){
-        # Insert at the end of the table. This is needed or an extra `NA` will
-        # appear in the last row of the table
-        df[nrow(df) + 1, ] <- as.list(new_row)
-      }else{
-        # Insert at the beginning or middle of the table
-        df[seq(ind + 1, nrow(df) + 1), ] <- df[seq(ind, nrow(df)), ]
-        df[ind, ] <- as.list(new_row)
-      }
-      df
-    }
+    # Replaced this function with the one in insert-row.R on April 14, 2023
+    # Delete this if working correctly
+    #
+    # insert_row <- function(df, new_row, ind) {
+    #   if(ind > nrow(df)){
+    #     # Insert at the end of the table. This is needed or an extra `NA` will
+    #     # appear in the last row of the table
+    #     df[nrow(df) + 1, ] <- as.list(new_row)
+    #   }else{
+    #     # Insert at the beginning or middle of the table
+    #     df[seq(ind + 1, nrow(df) + 1), ] <- df[seq(ind, nrow(df)), ]
+    #     df[ind, ] <- as.list(new_row)
+    #   }
+    #   df
+    # }
     # Get the row indices of where to place the manual figures in the alt_figs_text data frame
     manual_row_inds <- map(manual_inds, ~{.x == all_inds}) %>%
       Reduce("|", .) |>
