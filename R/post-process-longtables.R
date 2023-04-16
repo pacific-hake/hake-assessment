@@ -55,7 +55,8 @@ post_process_longtables <- function(x,
            "with it.\nThis was likely caused by missing the `repeat_header` ",
            "part in the call:\n\n",
            "`kable(longtable = TRUE) |> kable_styling(latex_options = ",
-           "c('repeat_header'))`\n\nThe chunk with the error is:\n",
+           "c('repeat_header'))`\nIn addition, booktabs must be set to ",
+           "`TRUE`.\n\nThe chunk with the error is:\n",
            paste(tbl, collapse = "\n"), "\n",
            call. = FALSE)
     }

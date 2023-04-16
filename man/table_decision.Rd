@@ -7,48 +7,66 @@
 \usage{
 table_decision(
   model,
-  font_size = 9,
-  space_size = 10,
-  type = "biomass",
-  placement = "H",
+  type = c("biomass", "spr"),
   forecast_inds = seq_along(model$forecasts[[length(model$forecasts)]]),
   rows_to_show = NULL,
-  rows_to_label = c("e", "f", "h", "j", "l", "m", "n", "o"),
-  row_labels = list(c("10\\\\\%", "reduction"), c(assess_yr - 1, "catch"), c("10\\\\\%",
-    "reduction"), c("10\\\\\%", "reduction"), c(assess_yr - 1, "TAC"), c("FI=",
-    "100\\\\\%"), c("default", "HR"), c(paste0("C", assess_yr, "="), paste0("C",
-    assess_yr + 1))),
+  letter_df = tribble(~let, ~row1_text, ~row2_text, "a", "", "", "b", "", "", "c", "",
+    "", "d", "", "", "e", "10\\\\\%", "reduction", "f", as.character(model$endyr),
+    "catch", "g", "", "", "h", "10\\\\\%", "reduction", "i", "", "", "j", "10\\\\\%",
+    "reduction", "k", "", "", "l", as.character(model$endyr), "TAC", "m", "FI=",
+    "100\\\\\%", "n", "default", "HR", "o", paste0("C", model$endyr + 1, "="),
+    paste0("C", model$endyr + 2)),
+  digits = 2,
+  left_col_cm = 1,
+  right_cols_cm = 1,
+  font_size = 10,
+  header_font_size = 10,
+  header_vert_spacing = 12,
+  header_vert_scale = 1.2,
   ...
 )
 }
 \arguments{
-\item{model}{An mcmc run, \code{model$forecasts} must be populated from
-\code{\link[=run_forecasts]{run_forecasts()}}}
+\item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{font_size}{Size of the font for the table}
+\item{type}{One of \code{biomass} or \code{spr}}
 
-\item{space_size}{Size of the vertical spaces for the table}
-
-\item{type}{Type to build. \code{biomass} or \code{spr}}
-
-\item{placement}{Latex code for placement of table}
-
-\item{forecast_inds}{Indices of forecast catch levels to show. By
-default all catch levels will be shown}
+\item{forecast_inds}{The indices to use in the \code{forecasts} object which
+itself is an object of the \code{model} list}
 
 \item{rows_to_show}{A vector of letters of rows to show. If \code{NULL}, show
 all rows}
 
-\item{rows_to_label}{A vector of letters representing rows to add
-custom labels to}
+\item{letter_df}{A data frame with three columns called \code{let}, \code{row1_text},
+and \code{row2_text} where \code{let} contains the letter shown in the table for
+each row, \code{row1_text} is the first line of text directly beneath the
+letter, and \code{row2_text} is the second line of text directly below the
+first line of text. \code{row1_text} and \code{row2_text} can be empty strings, in
+that case no text will be shown in the cell, only the letter}
 
-\item{row_labels}{A list of length two vectors with text to place in the
-empty}
+\item{digits}{The number of decimal points to show in the table}
 
-\item{...}{arguments passed to \code{\link[xtable:xtable]{xtable::xtable()}}}
+\item{left_col_cm}{Number of centimeters wide to make the leftmost column.
+This needs to be changed when the font size is changed}
+
+\item{right_cols_cm}{Number of centimeters wide to make the 3 rightmost
+columns wide. This needs to be changed when the font size is changed}
+
+\item{font_size}{The table data and header font size in points}
+
+\item{header_font_size}{The font size for the headers only. If \code{NULL},
+the headers will have the same font size as the table cell data}
+
+\item{header_vert_scale}{Scale factor to create the vertical spacing value.
+See \code{header_vert_spacing}}
+
+\item{...}{Arguments passed to \code{\link[knitr:kable]{knitr::kable()}}}
+
+\item{vert_spacing}{The vertical spacing between newlines for this font.
+If \code{NULL} this will be calculated as \code{header_font_size * header_vert_scale}}
 }
 \value{
-The latex code needed to build the table
+An \code{\link[knitr:kable]{knitr::kable()}} object
 }
 \description{
 Create the Executive Summary decision tables. \code{rows_to_label} and

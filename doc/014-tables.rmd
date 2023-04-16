@@ -470,8 +470,9 @@ table_reference_points(
 ```{r main-biomass-table, results = "asis", echo = FALSE}
 table_decision(
   base_model,
-  xcaption = paste0(
-      "Forecast quantiles of ", sp, "relative spawning biomass at the ",
+  type = "biomass",
+  caption = paste0(
+      "Forecast quantiles of ", sp, " relative spawning biomass at the ",
       "beginning of the year. Catch alternatives are based on: constant ",
       "catches (rows ", ct_constant_str, "), including catch similar to ",
       min(forecast_yrs_extra) - 1," (row~", letters[ct_actual_ind],
@@ -484,14 +485,38 @@ table_decision(
       "), and the fishing intensity that results in the median projected ",
       "catch remaining the same in ", min(forecast_yrs_extra), " and ",
       min(forecast_yrs_extra) + 1, " (row~", letters[ct_stable_ind], ")."),
-  xlabel = "tab:main-decisions-biomass",
-  font.size = 11,
-  space.size = 12,
-  type = "biomass",
-  placement = "tbp")
+  font_size = 10,
+  header_font_size = 10,
+  left_col_cm = 1.5,
+  right_cols_cm = 1.2,
+  longtable = TRUE)
 ```
 
 \clearpage
+
+<!-- ```{r main-biomass-table, results = "asis", echo = FALSE} -->
+<!-- table_decision( -->
+<!--   base_model, -->
+<!--   xcaption = paste0( -->
+<!--       "Forecast quantiles of ", sp, "relative spawning biomass at the ", -->
+<!--       "beginning of the year. Catch alternatives are based on: constant ", -->
+<!--       "catches (rows ", ct_constant_str, "), including catch similar to ", -->
+<!--       min(forecast_yrs_extra) - 1," (row~", letters[ct_actual_ind], -->
+<!--       ") and to the TAC from ", min(forecast_yrs_extra) - 1," (row~", -->
+<!--       letters[ct_tac_ind], "); and non-constant catches that result in ", -->
+<!--       "annual 10\\% declines in catch (rows ", ct_reduction_str, -->
+<!--       "), median relative fishing intensity of 100\\% (row ", -->
+<!--       letters[ct_spr100_ind], "), median catch estimated via the default ", -->
+<!--       "harvest policy (\\Ffortyten, row~", letters[ct_default_policy_ind], -->
+<!--       "), and the fishing intensity that results in the median projected ", -->
+<!--       "catch remaining the same in ", min(forecast_yrs_extra), " and ", -->
+<!--       min(forecast_yrs_extra) + 1, " (row~", letters[ct_stable_ind], ")."), -->
+<!--   xlabel = "tab:main-decisions-biomass", -->
+<!--   font.size = 11, -->
+<!--   space.size = 12, -->
+<!--   type = "biomass", -->
+<!--   placement = "tbp") -->
+<!-- ``` -->
 
 <!-- ```{r main-decisions-spr-table, results = "asis", echo = FALSE} -->
 <!-- table_decision( -->
