@@ -65,50 +65,58 @@ load_mcmc_vals <- function(model,
   # MCMC quantiles for the fishery DM parameter
   pat <- "^.*\\(DM_theta\\)_(Age_P)?1$"
   col_effn <- grep(pat, colnames(model$mcmc))
-  if(!length(col_effn)){
-    stop("Fishery DM parameter not found in `model$mcmc` using regular ",
-         "expression ", pat,
-         call. = FALSE)
+  if(length(col_effn)){
+    if(length(col_effn) > 1){
+      stop("More than one fishery DM parameter found in `model$mcmc` using ",
+           "regular expression ", pat,
+           call. = FALSE)
+    }
+    effn <- model$mcmc |>
+      pull(col_effn)
+    out$log_theta_fishery_median <- median(effn)
+    out$log_theta_fishery_lower <- quantile(effn, probs = probs[1])
+    out$log_theta_fishery_upper <- quantile(effn, probs = probs[3])
+    out$dm_weight_fishery_median <- median(exp(effn) / (1 + exp(effn)))
+    out$dm_weight_fishery_lower <- exp(out$log_theta_fishery_lower) /
+      (1 + exp(out$log_theta_fishery_lower))
+    out$dm_weight_fishery_upper <- exp(out$log_theta_fishery_upper) /
+      (1 + exp(out$log_theta_fishery_upper))
+  }else{
+    out$log_theta_fishery_median <- NA
+      out$log_theta_fishery_lower <- NA
+      out$log_theta_fishery_upper <- NA
+      out$dm_weight_fishery_median <- NA
+      out$dm_weight_fishery_lower <- NA
+      out$dm_weight_fishery_upper <- NA
   }
-  if(length(col_effn) > 1){
-    stop("More than one fishery DM parameter found in `model$mcmc` using ",
-         "regular expression ", pat,
-         call. = FALSE)
-  }
-  effn <- model$mcmc |>
-    pull(col_effn)
-  out$log_theta_fishery_median <- median(effn)
-  out$log_theta_fishery_lower <- quantile(effn, probs = probs[1])
-  out$log_theta_fishery_upper <- quantile(effn, probs = probs[3])
-  out$dm_weight_fishery_median <- median(exp(effn) / (1 + exp(effn)))
-  out$dm_weight_fishery_lower <- exp(out$log_theta_fishery_lower) /
-                                       (1 + exp(out$log_theta_fishery_lower))
-  out$dm_weight_fishery_upper <- exp(out$log_theta_fishery_upper) /
-                                       (1 + exp(out$log_theta_fishery_upper))
 
   # MCMC quantiles for the survey DM parameter
   pat <- "^.*\\(DM_theta\\)_(Age_P)?2$"
   col_effn <- grep(pat, colnames(model$mcmc))
-  if(!length(col_effn)){
-    stop("Survey DM parameter not found in `model$mcmc` using regular ",
-         "expression ", pat,
-         call. = FALSE)
+  if(length(col_effn)){
+    if(length(col_effn) > 1){
+      stop("More than one survey DM parameter found in `model$mcmc` using ",
+           "regular expression ", pat,
+           call. = FALSE)
+    }
+    effn <- model$mcmc |>
+      pull(col_effn)
+    out$log_theta_survey_median <- median(effn)
+    out$log_theta_survey_lower <- quantile(effn, probs = probs[1])
+    out$log_theta_survey_upper <- quantile(effn, probs = probs[3])
+    out$dm_weight_survey_median <- median(exp(effn) / (1 + exp(effn)))
+    out$dm_weight_survey_lower <- exp(out$log_theta_survey_lower) /
+      (1 + exp(out$log_theta_survey_lower))
+    out$dm_weight_survey_upper <- exp(out$log_theta_survey_upper) /
+      (1 + exp(out$log_theta_survey_upper))
+  }else{
+    out$log_theta_survey_median <- NA
+      out$log_theta_survey_lower <- NA
+      out$log_theta_survey_upper <- NA
+      out$dm_weight_survey_median <- NA
+      out$dm_weight_survey_lower <- NA
+      out$dm_weight_survey_upper <- NA
   }
-  if(length(col_effn) > 1){
-    stop("More than one survey DM parameter found in `model$mcmc` using ",
-         "regular expression ", pat,
-         call. = FALSE)
-  }
-  effn <- model$mcmc |>
-    pull(col_effn)
-  out$log_theta_survey_median <- median(effn)
-  out$log_theta_survey_lower <- quantile(effn, probs = probs[1])
-  out$log_theta_survey_upper <- quantile(effn, probs = probs[3])
-  out$dm_weight_survey_median <- median(exp(effn) / (1 + exp(effn)))
-  out$dm_weight_survey_lower <- exp(out$log_theta_survey_lower) /
-                                      (1 + exp(out$log_theta_survey_lower))
-  out$dm_weight_survey_upper <- exp(out$log_theta_survey_upper) /
-                                      (1 + exp(out$log_theta_survey_upper))
 
   # MCMC parameter estimates for model ----------------------------------------
   # ... natural mortality -----------------------------------------------------

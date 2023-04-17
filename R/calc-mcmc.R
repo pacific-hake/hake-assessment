@@ -39,15 +39,17 @@ calc_mcmc <- function(mcmc,
   if(!m_col %in% names(mcmc)){
     m_col <- "NatM_p_1_Fem_GP_1"
     if(!m_col %in% names(mcmc)){
-      stop("Neither `NatM_uniform_Fem_GP_1` nor `NatM_p_1_Fem_GP_1` were ",
-           "found in the `mcmc` data frame",
-           call. = FALSE)
+      m_col <- NULL
     }
   }
-  out$m <- mcmc |>
-    select({{m_col}}) |>
-    unlist() |>
-    quantile(probs)
+  if(is.null(m_col)){
+    out$m <- NA
+  }else{
+    out$m <- mcmc |>
+      select({{m_col}}) |>
+      unlist() |>
+      quantile(probs)
+  }
 
   # R0 ----
   if("SR_LN(R0)" %in% names(mcmc)){
@@ -94,30 +96,34 @@ calc_mcmc <- function(mcmc,
   if(!dm_col %in% names(mcmc)){
     dm_col <- "ln(DM_theta)_1"
     if(!dm_col %in% names(mcmc)){
-      stop("Neither `ln(DM_theta)_Age_P1` nor `ln(DM_theta)_1` were ",
-           "found in the `mcmc` data frame",
-           call. = FALSE)
+      dm_col <- NULL
     }
   }
-  out$dm_fishery <- mcmc |>
-    select({{dm_col}}) |>
-    unlist() |>
-    quantile(probs)
+  if(is.null(dm_col)){
+    out$dm_fishery <- NA
+  }else{
+    out$dm_fishery <- mcmc |>
+      select({{dm_col}}) |>
+      unlist() |>
+      quantile(probs)
+  }
 
   # DM survey parameter ----
   dm_col <- "ln(DM_theta)_Age_P2"
   if(!dm_col %in% names(mcmc)){
     dm_col <- "ln(DM_theta)_2"
     if(!dm_col %in% names(mcmc)){
-      stop("Neither `ln(DM_theta)_Age_P2` nor `ln(DM_theta)_2` were ",
-           "found in the `mcmc` data frame",
-           call. = FALSE)
+      dm_col <- NULL
     }
   }
-  out$dm_survey <- mcmc |>
-    select({{dm_col}}) |>
-    unlist() |>
-    quantile(probs)
+  if(is.null(dm_col)){
+    out$dm_survey <- NA
+  }else{
+    out$dm_survey <- mcmc |>
+      select({{dm_col}}) |>
+      unlist() |>
+      quantile(probs)
+  }
 
   # Spawning biomass ----
   ssb <- cols_par("SSB", biomass_scale)
