@@ -542,44 +542,42 @@ table_risk(
   longtable = TRUE)
 ```
 
-<!-- ```{r main-risk-forecast-year-2-table, results = "asis", echo = FALSE} -->
-<!-- # Index in model$risks to use, e.g. 1 means forecast year 2 compared to -->
-<!-- # forecast year 1 -->
-<!-- table_risk( -->
-<!--   base_model, -->
-<!--   forecast_yrs, -->
-<!--   index = 2, -->
-<!--   xcaption = paste0( -->
-<!--     "Probabilities related to spawning biomass, relative fishing intensity, ", -->
-<!--     "and the ", end_yr + 2, " default harvest policy catch for alternative ", -->
-<!--     end_yr + 1, " catch options, given the ", end_yr, " catch level shown ", -->
-<!--     "in Table~\\@ref(tab:main-risk-year-1) (catch options explained in ", -->
-<!--     "Table~\\@ref(tab:main-decisions-biomass))."), -->
-<!--   xlabel = "tab:main-risk-year-2", -->
-<!--   font.size = 11, -->
-<!--   space.size = 13, -->
-<!--   catch_col_width_cm = 1.9) -->
-<!-- ``` -->
+```{r main-risk-forecast-year-2-table, results = "asis", echo = FALSE}
+# Index in model$risks to use, e.g. 1 means forecast year 2 compared to
+# forecast year 1
+table_risk(
+  base_model,
+  forecast_yrs,
+  index = 2,
+  caption = paste0(
+    "Probabilities related to spawning biomass, relative fishing intensity, ",
+    "and the ", end_yr + 2, " default harvest policy catch for alternative ",
+    end_yr + 1, " catch options, given the ", end_yr, " catch level shown ",
+    "in Table~\\@ref(tab:main-risk-year-1) (catch options explained in ",
+    "Table~\\@ref(tab:main-decisions-biomass))."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
 
-<!-- ```{r main-risk-forecast-year-3-table, results = "asis", echo = FALSE} -->
-<!-- # Index in model$risks to use, e.g. 1 means forecast year 2 compared to -->
-<!-- # forecast year 1 -->
-<!-- table_risk( -->
-<!--   base_model, -->
-<!--   forecast_yrs, -->
-<!--   index = 3, -->
-<!--   xcaption = paste0( -->
-<!--     "Probabilities related to spawning biomass, relative fishing intensity, ", -->
-<!--     "and the ", end_yr + 3, " default harvest policy catch for alternative ", -->
-<!--     end_yr + 2, " catch options, given the ", end_yr, " and ", end_yr + 1, -->
-<!--     " catch levels shown in Tables~\\@ref(tab:main-risk-year-1) and~", -->
-<!--     "\\@ref(tab:main-risk-year-2) (catch options explained in Table~", -->
-<!--     "\\@ref(tab:main-decisions-biomass))."), -->
-<!--   xlabel = "tab:main-risk-year-3", -->
-<!--   font.size = 11, -->
-<!--   space.size = 13, -->
-<!--   catch_col_width_cm = 1.9) -->
-<!-- ``` -->
+```{r main-risk-forecast-year-3-table, results = "asis", echo = FALSE}
+# Index in model$risks to use, e.g. 1 means forecast year 2 compared to
+# forecast year 1
+table_risk(
+  base_model,
+  forecast_yrs,
+  index = 3,
+  caption = paste0(
+    "Probabilities related to spawning biomass, relative fishing intensity, ",
+    "and the ", end_yr + 3, " default harvest policy catch for alternative ",
+    end_yr + 2, " catch options, given the ", end_yr, " and ", end_yr + 1,
+    " catch levels shown in Tables~\\@ref(tab:main-risk-year-1) and~",
+    "\\@ref(tab:main-risk-year-2) (catch options explained in Table~",
+    "\\@ref(tab:main-decisions-biomass))."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
 
 <!-- \clearpage -->
 

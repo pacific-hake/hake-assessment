@@ -47,7 +47,7 @@ table_risk <- function(model,
     mutate(!!ct_col_sym := ifelse(!!ct_col_sym < 0.49,
                                   0,
                                   !!ct_col_sym))
-  browser()
+
   # Format all columns except catch to be zero decimal points and have a
   # percent sign and the catch to have a comma separator
   risk <- risk |>
