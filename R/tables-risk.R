@@ -7,6 +7,14 @@
 #' forecast year compared to the first. If there were N forecast years, this
 #' can be from 1 to N-1
 #' @param digits The number of decimal places to print in the table output
+#' @param font_size The table data and header font size in points
+#' @param header_font_size The font size for the headers only. If `NULL`,
+#' the headers will have the same font size as the table cell data
+#' @param vert_spacing The vertical spacing between newlines for this font.
+#' If `NULL` this will be calculated as `header_font_size * header_vert_scale`
+#' @param header_vert_scale Scale factor to create the vertical spacing value.
+#' See `header_vert_spacing`
+#' @param ... Arguments passed to [knitr::kable()]
 #'
 #' @return LaTeX code to render the table
 #' @export
@@ -14,7 +22,10 @@ table_risk <- function(model,
                        forecast_yrs,
                        index = 1,
                        digits = 0,
-                       font_size = 9,
+                       font_size = 10,
+                       header_font_size = 10,
+                       header_vert_spacing = 12,
+                       header_vert_scale = 1.2,
                        ...){
 
   if(index > length(model$risks)){
@@ -36,6 +47,7 @@ table_risk <- function(model,
     mutate(!!ct_col_sym := ifelse(!!ct_col_sym < 0.49,
                                   0,
                                   !!ct_col_sym))
+  browser()
   # Format all columns except catch to be zero decimal points and have a
   # percent sign and the catch to have a comma separator
   risk <- risk |>
@@ -48,36 +60,48 @@ table_risk <- function(model,
   # Add nice header names
   col_names <- c("",
                  paste0("Catch (t)\nin ", forecast_yrs[index]),
-                 paste0("Probability\n",
+                 paste0("Prob.\n",
                         "$\\bm{\\mathrm{B}_{",
                         forecast_yrs[index + 1],
-                        "}}$ < $\\bm{\\mathrm{B}_{",
+                        "}}$\n< $\\bm{\\mathrm{B}_{",
                         forecast_yrs[index],
                         "}}$"),
-                 paste0("Probability\n",
+                 paste0("Prob.\n",
                         "$\\bm{\\mathrm{B}_{",
                         forecast_yrs[index + 1],
-                        "}}$ < $\\bm{\\Bforty}$"),
-                 paste0("Probability\n",
+                        "}}$\n< $\\bm{\\Bforty}$"),
+                 paste0("Prob.\n",
                         "$\\bm{\\mathrm{B}_{",
                         forecast_yrs[index + 1],
-                        "}}$ < $\\bm{\\Btwentyfive}$"),
-                 paste0("Probability\n",
+                        "}}$\n< $\\bm{\\Btwentyfive}$"),
+                 paste0("Prob.\n",
                         "$\\bm{\\mathrm{B}_{",
                         forecast_yrs[index + 1],
-                        "}}$ < $\\bm{\\Bten}$"),
-                 paste0("Probability\n",
+                        "}}$\n< $\\bm{\\Bten}$"),
+                 paste0("Prob.\n",
                         forecast_yrs[index],
-                        " relative\nfishing\nintensity\n",
+                        "\nrelative\nfishing\nintensity\n",
                         "> 100\\%"),
-                 paste0("Probability\n",
+                 paste0("Prob.\n",
                         forecast_yrs[index + 1],
-                        " default\nharvest policy\ncatch\n",
+                        "\ndefault\nharvest policy\ncatch\n",
                         "> ",
                         forecast_yrs[index],
-                        " catch"))
+                        "\ncatch"))
 
-  col_names <- linebreak(col_names, align = "c")
+  # Insert header fontsize if it wasn't supplied
+  if(is.null(header_font_size)){
+    header_font_size <- font_size
+  }
+  hdr_font_str <- create_fontsize_str(header_font_size,
+                                      header_vert_spacing,
+                                      header_vert_scale)
+
+  # Insert font specs around all column headers
+  col_names <- gsub("\\n", paste0("\n", hdr_font_str$quad), col_names)
+  col_names <- paste0(hdr_font_str$dbl, col_names)
+  # Add \\makecell{} latex command to headers with newlines (\n)
+  col_names <- linebreaker(col_names, align = "c")
 
   kable(risk,
         format = "latex",
@@ -88,5 +112,6 @@ table_risk <- function(model,
         escape = FALSE,
         ...) |>
     row_spec(0, bold = TRUE) |>
-    kable_styling(font_size = font_size)
+    kable_styling(font_size = font_size,
+                  latex_options = c("repeat_header"))
 }
