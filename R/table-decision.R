@@ -134,13 +134,21 @@ table_decision <- \(
   # go along with it for later (`first_biomass_yr`). A `<<-` is used here to
   # make the variable available outside the `map()` function
   forecast_tab <- map(forecast, ~{
-    tmp <- .x$biomass |>
-      mutate(yr = paste0("Start of ", yr)) |>
-      select(-c("25%", "75%"))
-    names(tmp)[1] <- "start of year"
-    names(tmp) <- gsub("%", "\\\\%", names(tmp))
-    first_biomass_yr <<- slice(tmp, 1)
-    slice(tmp, -1)
+    if(type == "biomass"){
+      tmp <- .x$biomass |>
+        mutate(yr = paste0("Start of ", yr))|>
+        select(-c("25%", "75%"))
+      names(tmp)[1] <- "start of year"
+      names(tmp) <- gsub("%", "\\\\%", names(tmp))
+      first_biomass_yr <<- slice(tmp, 1)
+      slice(tmp, -1)
+    }else if(type == "spr"){
+      tmp <- .x$spr|>
+        filter(yr %in% forecast_yrs[-length(forecast_yrs)]) |>
+        select(-c("25%", "75%"))
+      names(tmp) <- gsub("%", "\\\\%", names(tmp))
+      tmp
+    }
   }) |>
     map_df(~{.x}) |>
     mutate_at(vars(-1), ~{f(.x, digits)})
@@ -173,27 +181,32 @@ table_decision <- \(
 
   # First row, with the initial year only, with rounded and formatted values
   # and with the column headers added for catch year and weight
-  first_biomass_yr <- first_biomass_yr |>
-    mutate_at(vars(-1), ~{f(.x, 2)}) |>
-    mutate_all(~{as.character(.x)}) |>
-    mutate(value = "",
-           `Catch year` = latex_bold("Catch year"),
-           `Catch (t)` = latex_bold("Catch (t)")) |>
-    select(value,
-           `Catch year`,
-           `Catch (t)`,
-           `start of year`,
-           everything())
+  # `mutsel` is in this package and just combines
+  # [dplyr::mutate()] and [dplyr::select()]
+  if(type == "biomass"){
+    first_biomass_yr <- first_biomass_yr |>
+      mutate_at(vars(-1), ~{f(.x, 2)}) |>
+      mutate_all(~{as.character(.x)}) |>
+      mutsel(value = "",
+             `Catch year` = latex_bold("Catch year"),
+             `Catch (t)` = latex_bold("Catch (t)"))
+  }
 
+  # If the relative biomass table:
   # Continue building the table data frame by adding the first row
   # to the previously-constructed data frame (with letters, catch
   # forecast quantiles of the values columns, and catch year)
-  d <- bind_rows(first_biomass_yr, d)
+  if(type == "biomass"){
+    d <- bind_rows(first_biomass_yr, d)
+  }else{
+    d <- d |>
+      select(-yr)
+  }
 
   # Remove the first three column headers, because there will be a
   # three-column spanning header above them for `Catch Alternative`
   col_names <- names(d)
-  col_names[1:3] <- ""
+  #col_names[1:3] <- ""
 
   # Insert header fontsize if it wasn't supplied
   if(is.null(header_font_size)){
@@ -210,7 +223,11 @@ table_decision <- \(
   col_names <- linebreaker(col_names, align = "c")
   # Remove the first three column names again, see above about 12 lines where
   # it was done previously for more info
-  col_names[1:3] <- ""
+  if(type == "biomass"){
+    col_names[1:3] <- ""
+  }else if(type == "spr"){
+    col_names[1] <- ""
+  }
 
   # Create extra header vector with fontsize changes to match the header font
   ca <- latex_bold(linebreaker(paste0(hdr_font_str$dbl,
@@ -220,9 +237,18 @@ table_decision <- \(
                                       "Biomass at"),
                                align = "c"))
   rsb <- latex_bold(linebreaker(paste0(hdr_font_str$dbl,
-                                       "Relative spawning biomass"),
+                                       ifelse(type == "biomass",
+                                              "Relative spawning biomass",
+                                              "Relative fishing intensity")),
                                 align = "c"))
-  extra_header <- c(setNames(3, ca), setNames(1, ba), setNames(3, rsb))
+  if(type == "biomass"){
+    extra_header <- c(set_names(3, ca),
+                      set_names(1, ba),
+                      set_names(3, rsb))
+  }else if(type == "spr"){
+    extra_header <- c(set_names(3, ca),
+                      set_names(3, rsb))
+  }
   # Need to change the backslashes to quadruple-backslashes here
   names(extra_header) <- gsub("\\\\", "\\\\\\\\", names(extra_header))
 
@@ -234,7 +260,9 @@ table_decision <- \(
            align = c(paste0("C{",
                             left_col_cm,
                             "cm} "),
-                     rep("r", 3),
+                     rep("r", ifelse(type == "biomass",
+                                     3,
+                                     2)),
                      rep(paste0(" C{",
                                 right_cols_cm,
                                 "cm}"), 3)),
@@ -252,15 +280,20 @@ table_decision <- \(
     kable_styling(font_size = font_size,
                   latex_options = c("repeat_header"))
 
-  # Horizontal line after the first row
-  k <- k |>
-    row_spec(1, hline_after = TRUE)
+  # Horizontal line after the first row if table type is "biomass"
+  if(type == "biomass"){
+    k <- k |>
+      row_spec(1, hline_after = TRUE)
+  }
   # Horizontal line after every letter group of forecast years
   for(i in 1:(num_letters - 1)){
     # The 1 + here is to account for the first row being an extra
-    # add-on to the rest of the lettered groups
+    # add-on to the rest of the lettered groups for the relative biomass
+    # table. For the relative fishing intensity table, this does not occur and
+    # every nth row has a line under it without the special case
+    spec <- ifelse(type == "biomass", 1, 0)
     k <- k |>
-      row_spec(1 + i * length(forecast_yrs[-length(forecast_yrs)]),
+      row_spec(spec + i * length(forecast_yrs[-length(forecast_yrs)]),
                hline_after = TRUE)
   }
 
