@@ -83,12 +83,6 @@ table_at_age <- function(model,
     mutate_at(vars(-Year), ~{f(.x, digits)})
   names(d)[length(names(d))] <- paste0(names(d)[length(names(d))], "+")
 
-  # Extra header
-  ages <- grep("[0-9]+", names(d), value = TRUE)
-  header <-
-    c("Year",
-      "Age" = length(ages))
-
   # Insert custom header fontsize before linebreaker
   if(is.null(header_font_size)){
     header_font_size <- font_size
@@ -104,6 +98,22 @@ table_at_age <- function(model,
   # Add \\makecell{} latex command to headers with newlines
   col_names <- linebreaker(col_names, align = "c")
 
+  # Create extra header vector with fontsize changes to match the header font
+  ages <- grep("[0-9]+", names(d), value = TRUE)
+  header <-
+    c("Year",
+      "Age" = length(ages))
+  yr_extra_hdr <- latex_bold(linebreaker(paste0(hdr_font_str$dbl,
+                                                "Year"),
+                                         align = "c"))
+  age_extra_hdr <- latex_bold(linebreaker(paste0(hdr_font_str$dbl,
+                                                 "Age"),
+                                          align = "c"))
+  extra_header <- c(set_names(1, yr_extra_hdr),
+                    set_names(length(ages), age_extra_hdr))
+  # Need to change the backslashes to quadruple-backslashes here
+  names(extra_header) <- gsub("\\\\", "\\\\\\\\", names(extra_header))
+
   kbl(d,
       format = "latex",
       booktabs = TRUE,
@@ -113,8 +123,8 @@ table_at_age <- function(model,
       escape = FALSE,
       ...) |>
     row_spec(0, bold = TRUE) |>
-    add_header_above(header,
-                     bold = TRUE,
+    add_header_above(header = extra_header,
+                     escape = FALSE,
                      line = FALSE) |>
     kable_styling(font_size = font_size,
                   latex_options = c("repeat_header"))
