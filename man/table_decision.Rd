@@ -14,8 +14,9 @@ table_decision(
     "", "d", "", "", "e", "10\\\\\%", "reduction", "f", as.character(model$endyr),
     "catch", "g", "", "", "h", "10\\\\\%", "reduction", "i", "", "", "j", "10\\\\\%",
     "reduction", "k", "", "", "l", as.character(model$endyr), "TAC", "m", "FI=",
-    "100\\\\\%", "n", "default", "HR", "o", paste0("C", model$endyr + 1, "="),
-    paste0("C", model$endyr + 2)),
+    "100\\\\\%", "n", "default", "HR", "o", "Catch in", paste0(model$endyr + 1, "=",
+    model$endyr + 2)),
+  bold_letters = TRUE,
   digits = 2,
   left_col_cm = 1,
   right_cols_cm = 1,
@@ -43,6 +44,9 @@ each row, \code{row1_text} is the first line of text directly beneath the
 letter, and \code{row2_text} is the second line of text directly below the
 first line of text. \code{row1_text} and \code{row2_text} can be empty strings, in
 that case no text will be shown in the cell, only the letter}
+
+\item{bold_letters}{Logical. If \code{TRUE}, the letters labelling each row
+will be boldface}
 
 \item{digits}{The number of decimal points to show in the table}
 

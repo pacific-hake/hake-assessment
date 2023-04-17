@@ -471,6 +471,8 @@ table_reference_points(
 table_decision(
   base_model,
   type = "biomass",
+  forecast_inds =
+    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
   caption = paste0(
       "Forecast quantiles of ", sp, " relative spawning biomass at the ",
       "beginning of the year. Catch alternatives are based on: constant ",
@@ -485,8 +487,13 @@ table_decision(
       "), and the fishing intensity that results in the median projected ",
       "catch remaining the same in ", min(forecast_yrs_extra), " and ",
       min(forecast_yrs_extra) + 1, " (row~", letters[ct_stable_ind], ")."),
+  bold_letters = TRUE,
+  digits = 2,
   font_size = 10,
   header_font_size = 10,
+  # If the font is changed it is almost guaranteed that `left_col_cm` and
+  # `right_cols_cm` will have to be changed, especially if the font is made
+  # larger
   left_col_cm = 1.5,
   right_cols_cm = 1.2,
   longtable = TRUE)

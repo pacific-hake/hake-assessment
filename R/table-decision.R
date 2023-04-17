@@ -17,6 +17,8 @@
 #' This needs to be changed when the font size is changed
 #' @param right_cols_cm Number of centimeters wide to make the 3 rightmost
 #' columns wide. This needs to be changed when the font size is changed
+#' @param bold_letters Logical. If `TRUE`, the letters labelling each row
+#' will be boldface
 #' @param digits The number of decimal points to show in the table
 #' @param font_size The table data and header font size in points
 #' @param header_font_size The font size for the headers only. If `NULL`,
@@ -51,8 +53,8 @@ table_decision <- \(
     "m",  "FI=",                             "100\\%",
     "n",  "default",                         "HR",
     "o",  "Catch in",         paste0(model$endyr + 1, "=", model$endyr + 2)),
-  #"o",  paste0("C", model$endyr + 1, "="), paste0("C", model$endyr + 2)),
-digits = 2,
+  bold_letters = TRUE,
+  digits = 2,
   left_col_cm = 1,
   right_cols_cm = 1,
   font_size = 10,
@@ -71,15 +73,20 @@ digits = 2,
     stop("`letter_df` must have three columns",
          call. = FALSE)
   }
+  if(bold_letters){
+    letter_df <- letter_df |>
+      mutate(let = latex_bold(paste0(let, ":")))
+  }else{
+    letter_df <- letter_df |>
+      mutate(let = paste0(let, ":"))
+  }
   num_letters <- nrow(letter_df)
   # Extract `letter_df` into a simple vector and enframe it so that it is
   # a single column data frame
   letter_col <- letter_df |>
-    pmap(~{c(paste0(..1, ":"), ..2, ..3)
-  }) |>
+    pmap(~{c(..1, ..2, ..3)}) |>
     unlist() |>
     enframe(name = NULL)
-
 
   fore_lst <- model$forecasts
   if(is.null(fore_lst[1]) || is.na(fore_lst[1])){
@@ -92,6 +99,12 @@ digits = 2,
          "forecast catch levels list (`model$forecasts`)",
          call. = FALSE)
   }
+  if(length(forecast_inds) != nrow(letter_df)){
+    stop("The data frame describing the rows of the table (`letter_df`) ",
+         "does ot have the same number of rows as the number of forecast ",
+         "streams you have provided (`forecast_inds`)",
+         call. = FALSE)
+  }
 
   forecast <- fore_lst[[length(fore_lst)]][forecast_inds]
   if(type == "biomass"){
@@ -102,14 +115,24 @@ digits = 2,
     table_header <- latex_bold("Relative fishing intensity")
   }
 
+  # Extract th catch levels for the three years shown in the table (3)
   ct_levels <- map(model$forecasts[[3]], ~{
     .x$fore_catch$catch
   }) |>
     unlist() |>
     enframe(name = NULL, value = "Catch (t)")
+
+  # Start building the table data frame by connecting the letters column and
+  # the catch forecast column
   d <- bind_cols(letter_col, ct_levels) |>
     mutate(`Catch (t)` = f(`Catch (t)`))
 
+  # Extract the quantiles for the table values (either biomass or fishing
+  # intensity). For biomass, also add a column for the biomass at the start
+  # of the year
+  # Also, extract the first forecast year and the quantiles of the values to
+  # go along with it for later (`first_biomass_yr`). A `<<-` is used here to
+  # make the variable available outside the `map()` function
   forecast_tab <- map(forecast, ~{
     tmp <- .x$biomass |>
       mutate(yr = paste0("Start of ", yr)) |>
@@ -122,24 +145,37 @@ digits = 2,
     map_df(~{.x}) |>
     mutate_at(vars(-1), ~{f(.x, digits)})
 
+  # Continue building the table data frame by connecting the value columns to
+  # the previously-constructed data frame (with letters and catch forecast
+  # columns)
   d <- bind_cols(d, forecast_tab)
 
+  # Extract a vector of the forecast years,
   forecast_yrs <- forecast[[1]]$fore_catch$year
+  if(length(forecast_yrs) != 4){
+    stop("The number of forecast years in the model is not 4. The decision ",
+         "function is currently designed for 4 years only",
+         call. = FALSE)
+  }
+  # Create a data frame column containing the forecast years (minus 1)
+  # to prepare for addition to the table data frame
   catch_yrs <- rep(forecast_yrs[-length(forecast_yrs)], num_letters) |>
     enframe(name = NULL,
             value = "Catch year")
 
+  # Continue building the table data frame by connecting the catch year
+  # columns to the previously-constructed data frame (with letters, catch
+  # forecast, and quantiles of the values columns)
+  # Also, change all columns to character data type
   d <- bind_cols(d, catch_yrs) |>
     mutate_all(~{as.character(.x)}) |>
     select(value, `Catch year`, everything())
 
-  # First row, with the initial year only
+  # First row, with the initial year only, with rounded and formatted values
+  # and with the column headers added for catch year and weight
   first_biomass_yr <- first_biomass_yr |>
     mutate_at(vars(-1), ~{f(.x, 2)}) |>
-    mutate_all(~{as.character(.x)})
-
-  #first_biomass_yr[1] <- paste("Start of", first_biomass_yr[1])
-  first_biomass_yr <- first_biomass_yr |>
+    mutate_all(~{as.character(.x)}) |>
     mutate(value = "",
            `Catch year` = latex_bold("Catch year"),
            `Catch (t)` = latex_bold("Catch (t)")) |>
@@ -149,12 +185,17 @@ digits = 2,
            `start of year`,
            everything())
 
+  # Continue building the table data frame by adding the first row
+  # to the previously-constructed data frame (with letters, catch
+  # forecast quantiles of the values columns, and catch year)
   d <- bind_rows(first_biomass_yr, d)
 
+  # Remove the first three column headers, because there will be a
+  # three-column spanning header above them for `Catch Alternative`
   col_names <- names(d)
   col_names[1:3] <- ""
 
-  # Insert custom header fontsize before linebreaker
+  # Insert header fontsize if it wasn't supplied
   if(is.null(header_font_size)){
     header_font_size <- font_size
   }
@@ -162,12 +203,31 @@ digits = 2,
                                       header_vert_spacing,
                                       header_vert_scale)
 
+  # Insert font specs around all column headers
   col_names <- gsub("\\n", paste0("\n", hdr_font_str$quad), col_names)
   col_names <- paste0(hdr_font_str$dbl, col_names)
-  # Add \\makecell{} latex command to headers with newlines
+  # Add \\makecell{} latex command to headers with newlines (\n)
   col_names <- linebreaker(col_names, align = "c")
+  # Remove the first three column names again, see above about 12 lines where
+  # it was done previously for more info
   col_names[1:3] <- ""
 
+  # Create extra header vector with fontsize changes to match the header font
+  ca <- latex_bold(linebreaker(paste0(hdr_font_str$dbl,
+                                      "Catch alternative"),
+                               align = "c"))
+  ba <- latex_bold(linebreaker(paste0(hdr_font_str$dbl,
+                                      "Biomass at"),
+                               align = "c"))
+  rsb <- latex_bold(linebreaker(paste0(hdr_font_str$dbl,
+                                       "Relative spawning biomass"),
+                                align = "c"))
+  extra_header <- c(setNames(3, ca), setNames(1, ba), setNames(3, rsb))
+  # Need to change the backslashes to quadruple-backslashes here
+  names(extra_header) <- gsub("\\\\", "\\\\\\\\", names(extra_header))
+
+  # Create the decision table, note the column widths are changed here for
+  # the first (leftmost) column and the last 3 (rightmost) columns
   k <- kbl(d,
            format = "latex",
            booktabs = TRUE,
@@ -183,17 +243,14 @@ digits = 2,
            escape = FALSE,
            ...) |>
     row_spec(0, bold = TRUE) |>
-    add_header_above(c("Catch alternative" = 3,
-                       "Biomass at",
-                       "Relative spawning biomass" = 3),
-                     line = FALSE,
-                     bold = TRUE) |>
+    # Add the extra upper header with `Catch alternative` and
+    # `Relative spawning biomass` spanning three columns each, and `Biomass at`
+    # spanning one column
+    add_header_above(header = extra_header,
+                     escape = FALSE,
+                     line = FALSE) |>
     kable_styling(font_size = font_size,
                   latex_options = c("repeat_header"))
-    #column_spec(1, border_left = TRUE) |>
-    #column_spec(ncol(d), border_right = TRUE)
-
-  #column_spec(1:ncol(d), latex_column_spec = "|c|r|r|r|r|r|r|")
 
   # Horizontal line after the first row
   k <- k |>
@@ -206,13 +263,6 @@ digits = 2,
       row_spec(1 + i * length(forecast_yrs[-length(forecast_yrs)]),
                hline_after = TRUE)
   }
-
-  # Add another header line on top to contain "Catch alternative" and
-  # "Relative spawning biomass"
-  # k <- k |>
-  #   add_header_above(c("Catch alternative" = 3,
-  #                      "",
-  #                      "Relative spawning biomass" = 3))
 
   k
 }
