@@ -16,6 +16,7 @@ table_param_est(
   section_line_below = TRUE,
   digits = 3,
   rec_yrs = NA,
+  right_cols_cm = 1.8,
   font_size = 10,
   header_font_size = 10,
   header_vert_spacing = 12,
@@ -50,6 +51,9 @@ section header lines}
 
 \item{rec_yrs}{A vector of integers supplying the years for which you
 want estimates of recruitment}
+
+\item{right_cols_cm}{The number of centimeters wide to make all of the
+rightmost columns (all the value columns)}
 
 \item{font_size}{The table data and header font size in points}
 

@@ -18,6 +18,8 @@
 #' @param digits Number of decimal points for the estimates
 #' @param rec_yrs A vector of integers supplying the years for which you
 #' want estimates of recruitment
+#' @param right_cols_cm The number of centimeters wide to make all of the
+#' rightmost columns (all the value columns)
 #' @param font_size The table data and header font size in points
 #' @param header_font_size The font size for the headers only. If `NULL`,
 #' the headers will have the same font size as the table cell data
@@ -39,6 +41,7 @@ table_param_est <- function(models,
                             section_line_below = TRUE,
                             digits = 3,
                             rec_yrs = NA,
+                            right_cols_cm = 1.8,
                             font_size = 10,
                             header_font_size = 10,
                             header_vert_spacing = 12,
@@ -213,10 +216,11 @@ table_param_est <- function(models,
      })
    }
 
-   # Replace "NA" with "--"
+   # Replace NA and "NA" with "--"
    d <- map_df(d, ~{
      gsub(" *NA *", "--", .x)
    })
+   d[is.na(d)] <- "--"
 
   col_names <- c("Parameter, Quantity, or Reference point",
                  gsub(" +", "\n", model_nms))
@@ -242,7 +246,11 @@ table_param_est <- function(models,
   k <- kbl(d,
            format = "latex",
            booktabs = TRUE,
-           align = c("l", rep("R{1.8cm}", length(models))),
+           align = c("l",
+                     rep(paste0("R{",
+                                right_cols_cm,
+                                "cm}"),
+                         length(models))),
            linesep = "",
            col.names = col_names,
            escape = FALSE,
