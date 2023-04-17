@@ -329,7 +329,7 @@ table_at_age(
     "biomass-at-age at the beginning of the year) presented as a percentage ",
     "for each year from the base model (posterior medians; percentage of ",
     "age class removed by fishing)."),
-  font_size = 9,
+  font_size = 8,
   header_font_size = 10,
   longtable = TRUE) |> 
   landscape()
@@ -343,8 +343,8 @@ table_at_age(
   caption = paste0(
     "Estimated catch-at-age in numbers for each year from the base model ",
     "(posterior medians; thousands)."),
-  font_size = 7,
-  header_font_size = 8,
+  font_size = 6,
+  header_font_size = 10,
   longtable = TRUE) |> 
   landscape()
 ```
@@ -357,8 +357,8 @@ table_at_age(
   caption = paste0(
     "Estimated catch-at-age in total biomass for each year from the base ",
     "model (posterior medians; t)."),
-  font_size = 7,
-  header_font_size = 8,
+  font_size = 6,
+  header_font_size = 10,
   longtable = TRUE) |> 
   landscape()
 ```
@@ -579,29 +579,30 @@ table_risk(
   longtable = TRUE)
 ```
 
-<!-- \clearpage -->
-
-<!-- \begin{landscape} -->
-<!-- \pagestyle{mylandscape} -->
-<!-- \centering -->
-<!-- ```{r main-parameter-estimates-sens-1, results = "asis", echo = FALSE} -->
-<!-- table_param_est( -->
-<!--   sens_models[[1]], -->
-<!--   model_nms = sens_models_names[[1]], -->
-<!--   end_yr = end_yr, -->
-<!--   digits = 3, -->
-<!--   xcaption = paste0( -->
-<!--     "Posterior medians for select parameters, derived quantities, reference ", -->
-<!--     "points, and negative log likelihoods for the base model and some ", -->
-<!--     "sensitivity runs (described in ", -->
-<!--     "Section~\\@ref(sec:assessment-sensitivity-analyses)). A dash (--) ", -->
-<!--     "indicates that the parameter or derived quantity was not estimated in ", -->
-<!--     "the model."), -->
-<!--   xlabel = "tab:main-parameter-estimates-sens-1", -->
-<!--   font_size = 9, -->
-<!--   space_size = 10, -->
-<!--   rec_yrs = c(2010, 2014, 2016, 2020)) -->
-<!-- ``` -->
+```{r main-parameter-estimates-sens-1, results = "asis", echo = FALSE}
+table_param_est(
+  sens_models[[1]],
+  model_nms = sens_models_names[[1]],
+  end_yr = end_yr,
+  section_bold = TRUE,
+  section_italics = TRUE,
+  section_underline = TRUE,
+  section_line_above = FALSE,
+  section_line_below = FALSE,
+  digits = 3,
+  rec_yrs = c(2010, 2014, 2016, 2020),
+  caption = paste0(
+    "Posterior medians for select parameters, derived quantities, reference ",
+    "points, and negative log likelihoods for the base model and some ",
+    "sensitivity runs (described in ",
+    "Section~\\@ref(sec:assessment-sensitivity-analyses)). A dash (--) ",
+    "indicates that the parameter or derived quantity was not estimated in ",
+    "the model."),
+  font_size = 10,
+  header_font_size = 9,
+  longtable = TRUE) |> 
+  landscape()
+```
 
 <!-- ```{r main-parameter-estimates-sens-2, results = "asis", echo = FALSE} -->
 <!-- table_param_est( -->
