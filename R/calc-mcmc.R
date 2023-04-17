@@ -50,30 +50,45 @@ calc_mcmc <- function(mcmc,
     quantile(probs)
 
   # R0 ----
-  out$ro <- mcmc |>
-    transmute(ro = `SR_LN(R0)`) |>
-    mutate(ro = exp(ro) / 1e3) |>
-    unlist() |>
-    quantile(probs)
+  if("SR_LN(R0)" %in% names(mcmc)){
+    out$ro <- mcmc |>
+      transmute(ro = `SR_LN(R0)`) |>
+      mutate(ro = exp(ro) / 1e3) |>
+      unlist() |>
+      quantile(probs)
+  }else{
+    out$ro <- NA
+  }
 
   # Steepness ----
-  out$steep <- mcmc |>
-    select("SR_BH_steep") |>
-    unlist() |>
-    quantile(probs)
+  if("SR_BH_steep" %in% names(mcmc)){
+    out$steep <- mcmc |>
+      select("SR_BH_steep") |>
+      unlist() |>
+      quantile(probs)
+  }else{
+    out$steep <- NA
+  }
 
   # Acoustic survey SD ----
-  out$survey_sd <- mcmc |>
-    select("Q_extraSD_Acoustic_Survey(2)") |>
-    unlist() |>
-    quantile(probs)
+  if("Q_extraSD_Acoustic_Survey(2)" %in% names(mcmc)){
+    out$survey_sd <- mcmc |>
+      select("Q_extraSD_Acoustic_Survey(2)") |>
+      unlist() |>
+      quantile(probs)
+  }else{
+    out$survey_sd <- NA
+  }
 
   # Age 1 index ----
-  out$age1_index_sd <- mcmc |>
-    select("Q_extraSD_Age1_Survey(3)") |>
-    unlist() |>
-    quantile(probs)
-
+  if("Q_extraSD_Age1_Survey(3)" %in% names(mcmc)){
+    out$age1_index_sd <- mcmc |>
+      select("Q_extraSD_Age1_Survey(3)") |>
+      unlist() |>
+      quantile(probs)
+  }else{
+    out$age1_index_sd <- NA
+  }
   # DM fishery parameter ----
   dm_col <- "ln(DM_theta)_Age_P1"
   if(!dm_col %in% names(mcmc)){
