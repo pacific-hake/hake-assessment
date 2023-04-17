@@ -213,8 +213,18 @@ table_param_est <- function(models,
      })
    }
 
+   # Replace "NA" with "--"
+   d <- map_df(d, ~{
+     gsub(" *NA *", "--", .x)
+   })
+
   col_names <- c("Parameter, Quantity, or Reference point",
                  gsub(" +", "\n", model_nms))
+
+  # Introduce newline at a slash seperator
+  col_names <- gsub("\\/", "\\\\/\n", col_names)
+  # Break up "steepness" across two lines
+  #col_names <- gsub("Steepness", "Steep-\nness", col_names)
 
   # Insert custom header fontsize before linebreaker
   if(is.null(header_font_size)){
@@ -232,7 +242,7 @@ table_param_est <- function(models,
   k <- kbl(d,
            format = "latex",
            booktabs = TRUE,
-           align = c("l", rep("c", length(models))),
+           align = c("l", rep("R{1.8cm}", length(models))),
            linesep = "",
            col.names = col_names,
            escape = FALSE,
