@@ -51,14 +51,23 @@ table_median_posteriors <- function(model,
     filter(yr %in% yrs) |>
     select(`50%`)
 
+# d <- cbind(yrs,
+#            f(df$smed * scale),
+#            paste0(f(df$dmed * 100, digits), "\\%"),
+#            f(tot_bm / scale),
+#            f(age2plus_bm / scale),
+#            f(df$rmed * scale),
+#            paste0(f(df$pmed * 100, digits), "\\%"),
+#            paste0(f(df$fmed * 100, digits), "\\%")) |>
+#
   d <- cbind(yrs,
              f(df$smed * scale),
-             paste0(f(df$dmed * 100, digits), "\\%"),
+             f(df$dmed * 100, digits),
              f(tot_bm / scale),
              f(age2plus_bm / scale),
              f(df$rmed * scale),
-             paste0(f(df$pmed * 100, digits), "\\%"),
-             paste0(f(df$fmed * 100, digits), "\\%")) |>
+             f(df$pmed * 100, digits),
+             f(df$fmed * 100, digits)) |>
     as.data.frame() |>
     set_names(c("Year",
                 "Female spawning biomass (kt)",
@@ -76,21 +85,21 @@ table_median_posteriors <- function(model,
 
   # Write the median posteriors CSV file --------------------------------------
   csv_d <- d
-  csv_d <- map_df(csv_d, ~{
-    gsub("\\\\%", "%", .x)
-  })
+  #csv_d <- map_df(csv_d, ~{
+  #  gsub("\\\\%", "%", .x)
+  #})
   csv_d[nrow(csv_d), ncol(csv_d)] <- ""
   csv_d[nrow(csv_d), ncol(csv_d) - 1] <- ""
   write_csv(csv_d, file.path(csv_dir, "median-population-estimates.csv"))
 
   col_names <- c("Year",
                  "Female\nspawning\nbiomass\n(kt)",
-                 "Relative\nspawning\nbiomass",
+                 "Relative\nspawning\nbiomass\n(\\%)",
                  "Total\nbiomass\n(kt)",
                  "Age-2+\nbiomass\n(kt)",
                  "Age-0\nrecruits\n(millions)",
-                 "Relative\nfishing\nintensity",
-                 "Exploitation\nfraction")
+                 "Relative\nfishing\nintensity\n(\\%)",
+                 "Exploitation\nfraction\n(\\%)")
 
   # Insert custom header fontsize before linebreaker
   if(is.null(header_font_size)){

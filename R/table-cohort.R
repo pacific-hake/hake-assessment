@@ -244,8 +244,10 @@ table_cohort <- function(model,
     row_spec(0, bold = TRUE)
 
   if(cohort_line_above){
+    cohort_row_above_inds <- cohort_row_inds[cohort_row_inds != 1]
+    cohort_row_above_inds <- cohort_row_above_inds - 1
     k <- k |>
-      row_spec(cohort_row_inds - 1,
+      row_spec(cohort_row_above_inds,
                extra_latex_after = paste0("\\cline{",
                                           1,
                                           "-",

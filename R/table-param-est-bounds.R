@@ -3,6 +3,9 @@
 #' @rdname table_biomass
 #' @param start_rec_dev_yr First year of estimated recruitment devs
 #' @param end_rec_dev_yr Last year of estimated recruitment devs
+#' @param section_sep_lines Logical. If `TRUE`, place a line under the
+#' sections in each cell as a way to separate them vertically from the
+#' years above and below
 #' @param ret_df If `TRUE`, return a data frame of the results, if `FALSE`,
 #' return a [kableExtra::kbl()] table
 #'
@@ -11,6 +14,7 @@
 table_param_est_bounds <- function(model,
                                    start_rec_dev_yr,
                                    end_rec_dev_yr,
+                                   section_sep_lines = FALSE,
                                    digits = 3,
                                    font_size = 8,
                                    header_font_size = 10,
@@ -284,55 +288,53 @@ table_param_est_bounds <- function(model,
                        dms[5],
                        ")"))
 
-  df <- rbind(r0_vals,
-              h_vals,
-              sig_r_vals,
-              rec_dev_vals,
-              m.vals,
-              se_vals,
-              age_sel_vals,
-              se_age1_vals,
-              f_age_sel_vals,
-              f_age_sel_dev_vals,
-              dmf_vals,
-              dms_vals) |>
+  d <- rbind(r0_vals,
+             h_vals,
+             sig_r_vals,
+             rec_dev_vals,
+             m.vals,
+             se_vals,
+             age_sel_vals,
+             se_age1_vals,
+             f_age_sel_vals,
+             f_age_sel_dev_vals,
+             dmf_vals,
+             dms_vals) |>
     as.data.frame() |>
     as_tibble()
 
   if(ret_df){
-    return(df)
+    return(d)
   }
 
-  names(df) <- c("Parameter",
-                 "Number of\nparameters",
-                 "Bounds\n(low, high)",
-                 "Prior (Mean, SD)\nsingle value = fixed")
-
-  df <- insert_row(df,
-                   c(paste0("\\textbf{\\underline{Stock Dynamics}}"),
-                     "", "", ""), 1)
-
-  df <- insert_row(df, c("", "", "", ""), 7)
-  df <- insert_row(df,
+  names(d) <- c("Parameter",
+                "Number of\nparameters",
+                "Bounds\n(low, high)",
+                "Prior (Mean, SD)\nsingle value = fixed")
+ sec_inds <- c(1, 11, 16)
+ data_src_inds <- c(sec_inds[2] + 1, sec_inds[2] + 4, sec_inds[2] + 6)
+  d <- insert_row(d,
+                  c(paste0("\\textbf{\\underline{Stock Dynamics}}"),
+                    "", "", ""), sec_inds[1])
+  d <- insert_row(d,
                    c(paste0("\\textbf{\\underline{Data Source}}"),
-                     "", "", ""), 8)
-  df <- insert_row(df,
+                     "", "", ""), sec_inds[2])
+  d <- insert_row(d,
                    c(paste0("\\textbf{\\emph{Acoustic Survey}}"),
-                     "", "", ""), 9)
-  df <- insert_row(df,
+                     "", "", ""), data_src_inds[1])
+  d <- insert_row(d,
                    c(paste0("\\textbf{\\emph{Age-1 Survey}}"),
-                     "", "", ""), 12)
-  df <- insert_row(df,
+                     "", "", ""), data_src_inds[1])
+  d <- insert_row(d,
                    c(paste0("\\textbf{\\emph{Fishery Survey}}"),
-                     "", "", ""), 14)
-  df <- insert_row(df, c("", "", "", ""), 17)
-  df <- insert_row(df,
+                     "", "", ""), data_src_inds[1])
+  d <- insert_row(d,
                    c(paste0("\\textbf{\\underline{Data Weighting}}"),
-                     "", "", ""), 18)
+                     "", "", ""), sec_inds[3])
 
   # Add spaces after commas and before opening parentheses
-  df <- map_df(df, ~{gsub(",", ", ", .x)})
-  df <- map_df(df, ~{gsub("\\(", " \\(", .x)})
+  d <- map_df(d, ~{gsub(",", ", ", .x)})
+  d <- map_df(d, ~{gsub("\\(", " \\(", .x)})
 
   # Insert custom header fontsize before linebreaker
   if(is.null(header_font_size)){
@@ -341,22 +343,42 @@ table_param_est_bounds <- function(model,
   hdr_font_str <- create_fontsize_str(header_font_size,
                                       header_vert_spacing,
                                       header_vert_scale)
-  col_names <- names(df)
+  col_names <- names(d)
   col_names <- gsub("\\n", paste0("\n", hdr_font_str$quad), col_names)
   col_names <- paste0(hdr_font_str$dbl, col_names)
   # Add \\makecell{} latex command to headers with newlines
   col_names <- linebreaker(col_names, align = "c")
 
-  kable(df,
-        format = "latex",
-        booktabs = TRUE,
-        align = c("l", "c", "c", "c"),
-        linesep = "",
-        col.names = col_names,
-        escape = FALSE,
-        ...) |>
+  k <- kbl(d,
+           format = "latex",
+           booktabs = TRUE,
+           align = c("l", "c", "c", "c"),
+           linesep = "",
+           col.names = col_names,
+           escape = FALSE,
+           ...) |>
     row_spec(0, bold = TRUE) |>
     kable_styling(font_size = font_size,
                   latex_options = c("repeat_header", "hold_position"),
                   position = "left")
+
+  # Place a line under the sections as a way to separate them  vertically
+  # from the sections above and below
+  if(section_sep_lines){
+    # Don't place a line before the first position as it will create a double
+    # line at the top of the table
+    sec_inds_above <- sec_inds[sec_inds != 1]
+    # Place the lines above the section headers, so subtract one from those
+    # because we are using `extra_latex_after`
+    sec_inds_above <- sec_inds_above - 1
+    k <- k |>
+      row_spec(sec_inds_above,
+               extra_latex_after = paste0("\\cline{",
+                                          1,
+                                          "-",
+                                          ncol(d),
+                                          "}"))
+  }
+
+  k
 }

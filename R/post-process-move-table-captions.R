@@ -43,9 +43,9 @@ post_process_move_table_captions <- function(x){
   x <- move_cap(x, "tab:main-est-exp-rate-at-age-table", -14)
   x <- move_cap(x, "tab:main-est-catch-at-age-table", -6)
   x <- move_cap(x, "tab:main-ci-posterior-table", -16)
-  x <- move_cap(x, "tab:main-risk-forecast-year-1-table", -4)
-  x <- move_cap(x, "tab:main-risk-forecast-year-2-table", -4)
-  x <- move_cap(x, "tab:main-risk-forecast-year-3-table", -4)
+  x <- move_cap(x, "tab:main-risk-year-1-table", -4)
+  x <- move_cap(x, "tab:main-risk-year-2-table", -4)
+  x <- move_cap(x, "tab:main-risk-year-3-table", -4)
   x <- move_cap(x, "tab:main-parameter-estimates-sens-1", -26)
 
   x

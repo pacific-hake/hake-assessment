@@ -23,6 +23,7 @@ table_param_est_bounds(
   model,
   start_rec_dev_yr,
   end_rec_dev_yr,
+  section_sep_lines = FALSE,
   digits = 3,
   font_size = 8,
   header_font_size = 10,
@@ -56,6 +57,10 @@ See \code{header_vert_spacing}}
 \item{start_rec_dev_yr}{First year of estimated recruitment devs}
 
 \item{end_rec_dev_yr}{Last year of estimated recruitment devs}
+
+\item{section_sep_lines}{Logical. If \code{TRUE}, place a line under the
+sections in each cell as a way to separate them vertically from the
+years above and below}
 
 \item{ret_df}{If \code{TRUE}, return a data frame of the results, if \code{FALSE},
 return a \code{\link[kableExtra:kbl]{kableExtra::kbl()}} table}

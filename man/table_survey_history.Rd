@@ -7,6 +7,7 @@
 table_survey_history(
   model,
   d,
+  vessel_sep_lines = FALSE,
   digits = 3,
   font_size = 10,
   header_font_size = 10,
@@ -20,6 +21,10 @@ table_survey_history(
 
 \item{d}{A data frame containing the survey history as read in from
 the file \code{survey-history.csv}}
+
+\item{vessel_sep_lines}{Logical. If \code{TRUE}, place a line under the
+vessels in each cell as a way to separate them vertically from the
+years above and below}
 
 \item{digits}{Number of decimal places}
 

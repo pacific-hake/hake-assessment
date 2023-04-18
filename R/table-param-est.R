@@ -258,8 +258,12 @@ table_param_est <- function(models,
     row_spec(0, bold = TRUE)
 
   if(section_line_above){
+    # Do not show a line above if a section starts on the first line
+    # as it creates a double line at the top of the table
+    sec_inds_above <- sec_inds
+    sec_inds_above <- sec_inds_above[sec_inds_above != 1]
     k <- k |>
-      row_spec(sec_inds - 1,
+      row_spec(sec_inds_above - 1,
                extra_latex_after = paste0("\\cline{",
                                           1,
                                           "-",

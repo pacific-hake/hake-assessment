@@ -8,6 +8,9 @@
 #' @param model A model, created by [create_rds_file()]
 #' @param d A data frame containing the survey history as read in from
 #' the file `survey-history.csv`
+#' @param vessel_sep_lines Logical. If `TRUE`, place a line under the
+#' vessels in each cell as a way to separate them vertically from the
+#' years above and below
 #' @param digits Number of decimal places
 #' @param font_size The table data and header font size in points
 #' @param header_font_size The font size for the headers only. If `NULL`,
@@ -22,6 +25,7 @@
 #' @export
 table_survey_history <- function(model,
                                  d,
+                                 vessel_sep_lines = FALSE,
                                  digits = 3,
                                  font_size = 10,
                                  header_font_size = 10,
@@ -85,15 +89,35 @@ table_survey_history <- function(model,
   # Add \\makecell{} latex command to headers with newlines
   col_names <- linebreaker(col_names, align = "c")
 
-  kbl(d,
-      format = "latex",
-      booktabs = TRUE,
-      align = "r",
-      linesep = "",
-      col.names = col_names,
-      escape = FALSE,
-      ...) |>
+  k <- kbl(d,
+           format = "latex",
+           booktabs = TRUE,
+           align = "r",
+           linesep = "",
+           col.names = col_names,
+           escape = FALSE,
+           ...) |>
     row_spec(0, bold = TRUE) |>
     kable_styling(font_size = font_size,
                   latex_options = c("repeat_header"))
+
+    # Place a line under the vessels in each cell as a way to separate them
+    # vertically from the years above and below
+    if(vessel_sep_lines){
+      vessel_ind <- which(names(d) == "vessels")
+      if(length(vessel_ind)){
+        k <- k |>
+          row_spec(seq_len(nrow(d) - 1),
+                   extra_latex_after = paste0("\\cline{",
+                                              vessel_ind,
+                                              "-",
+                                              vessel_ind,
+                                              "}"))
+      }else{
+        warning("There is no column named `vessels` in the data frame, ",
+                "cannot add vessel separator lines to the table")
+      }
+    }
+
+    k
 }
