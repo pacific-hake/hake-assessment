@@ -101,11 +101,13 @@
 
 % Caption indentation and style.
 \usepackage[format = plain,
-            %justification = justified,
+            justification = justified,
             indention = 3mm,
             labelsep = period,
             font = {small},
-            %singlelinecheck = false,
+            % `singlelinecheck = false` is required for the post processing
+            % for moving captions to work
+            singlelinecheck = false,
             labelfont = bf]{caption}
 
 % Page number in the bottom center of page.
