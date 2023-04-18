@@ -39,12 +39,12 @@ load_extra_mcmc_recr_cohorts <- function(reps,
         enframe(name = NULL)
     })
    }) |>
-    # All this name repair stuff just silences the New names.... messages
-    # caused duting the binding of columns
+    # The name repair stuff just silences the New names.... messages
+    # caused during the binding of columns
     bind_cols(.name_repair = ~vec_as_names(..., quiet = TRUE)) |>
     set_names(cohorts)
 
-  calc_quants_by_group <- function(d, col){
+  calc_quants_by_group <- \(d, col){
     p_names <- map_chr(probs, ~paste0(.x * 100, "%"))
     p_funs <- map(probs,
                   ~partial(quantile, probs = .x, na.rm = TRUE)) |>

@@ -4,7 +4,7 @@
 
 # Tables {#sec:tables}
 
-```{r catches-us, results = "asis", echo = FALSE}
+```{r main-catches-us, results = "asis", echo = FALSE}
 table_catch(
   ct,
   inc_foreign_jv = TRUE,
@@ -23,7 +23,7 @@ table_catch(
   longtable = TRUE)
 ```
 
-```{r catches-can, results = "asis", echo = FALSE}
+```{r main-catches-can, results = "asis", echo = FALSE}
 table_catch(
   ct,
   inc_foreign_jv = TRUE,
@@ -657,23 +657,30 @@ table_param_est(
   landscape()
 ```
 
-<!-- ```{r main-parameter-estimates-retro, results = "asis", echo = FALSE} -->
-<!-- table_param_est( -->
-<!--   retro_lst, -->
-<!--   model_nms = retro_model_nms, -->
-<!--   end_yr = end_yr, -->
-<!--   digits = 3, -->
-<!--   rec_yrs = c(2010, 2014, 2016, 2020), -->
-<!--   xcaption = paste0( -->
-<!--     "Posterior medians from the base model for select parameters, derived ", -->
-<!--     "quantities, reference point estimates, and negative log likelihoods ", -->
-<!--     "for retrospective analyses. Some values are implied since they occur ", -->
-<!--     "after the ending year of the respective retrospective analysis. A ", -->
-<!--     "dash (--) indicates that the parameter or derived quantity was not ", -->
-<!--     "output by the model."), -->
-<!--   xlabel = "tab:main-parameter-estimates-retro", -->
-<!--   font_size = 10, -->
-<!--   space_size = 11) -->
-<!-- ``` -->
+```{r main-parameter-estimates-retro, results = "asis", echo = FALSE}
+table_param_est(
+  retro_lst,
+  model_nms = retro_model_nms,
+  end_yr = end_yr,
+  section_bold = TRUE,
+  section_italics = TRUE,
+  section_underline = TRUE,
+  section_line_above = FALSE,
+  section_line_below = FALSE,
+  digits = 3,
+  rec_yrs = c(2010, 2014, 2016, 2020),
+  caption = paste0(
+    "Posterior medians from the base model for select parameters, derived ",
+    "quantities, reference point estimates, and negative log likelihoods ",
+    "for retrospective analyses. Some values are implied since they occur ",
+    "after the ending year of the respective retrospective analysis. A ",
+    "dash (--) indicates that the parameter or derived quantity was not ",
+    "output by the model."),
+  right_cols_cm = 1.8,
+  font_size = 10,
+  header_font_size = 9,
+  longtable = TRUE) |> 
+  landscape()
+```
 
-<!-- \clearpage -->
+\clearpage

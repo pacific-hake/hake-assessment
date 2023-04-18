@@ -37,7 +37,7 @@ load_extra_mcmc_biomass <- function(reps,
 
   names(ts) <- tolower(names(ts))
 
-  calc_quants_by_group <- function(d, col){
+  calc_quants_by_group <- \(d, col){
     p_names <- map_chr(probs, ~paste0(.x * 100, "%"))
     p_funs <- map(probs,
                   ~partial(quantile, probs = .x, na.rm = TRUE)) |>

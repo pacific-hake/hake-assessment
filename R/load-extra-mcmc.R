@@ -130,6 +130,7 @@ load_extra_mcmc <- function(model,
   extra_mcmc$sel_survey_hi <- sel_survey_lst$sel_hi
 
   # Selectivity * Weight ------------------------------------------------------
+  # AKA vulnerable biomass ----------------------------------------------------
   selwt_pat <- paste0(model$endyr + 1, "_1_sel\\*wt")
   selwt_lst <- load_extra_mcmc_selwt(
     reps = reps,
@@ -139,7 +140,11 @@ load_extra_mcmc <- function(model,
     beg_pat = selwt_pat,
     end_pat = selwt_pat,
     ...)
-  extra_mcmc$selwt_med <- selwt_lst$selwt_med
+  if(is.na(selwt_lst[1])){
+    extra_mcmc$selwt_med <- NA
+  }else{
+    extra_mcmc$selwt_med <- selwt_lst$selwt_med
+  }
 
   # Numbers-at-age ------------------------------------------------------------
   natage_lst <- load_extra_mcmc_atage(
@@ -225,22 +230,27 @@ load_extra_mcmc <- function(model,
     filter(yr == model$endyr) |>
     select(-c(yr, iter))
 
-  selwt <- selwt_lst$selwt |>
-    select(-c(yr, iter))
-
   natsel <- natage * sel
-  natselwt <- natage * selwt
   extra_mcmc$natsel_prop <- natsel %>%
     mutate(rsum = rowSums(.)) |>
     mutate_at(vars(-rsum), ~{.x / rsum}) |>
     select(-rsum) |>
     as_tibble()
 
-  extra_mcmc$natselwt_prop <- natselwt %>%
-    mutate(rsum = rowSums(.)) |>
-    mutate_at(vars(-rsum), ~{.x / rsum}) |>
-    select(-rsum) |>
-    as_tibble()
+  if(is.na(selwt_lst[1])){
+    selwt <- NA
+    natselwt <- NA
+    extra_mcmc$natselwt_prop <- NA
+  }else{
+    selwt <- selwt_lst$selwt |>
+      select(-c(yr, iter))
+    natselwt <- natage * selwt
+    extra_mcmc$natselwt_prop <- natselwt %>%
+      mutate(rsum = rowSums(.)) |>
+      mutate_at(vars(-rsum), ~{.x / rsum}) |>
+      select(-rsum) |>
+      as_tibble()
+  }
 
   # Catchability --------------------------------------------------------------
   if(verbose){

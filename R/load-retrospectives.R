@@ -25,9 +25,19 @@ load_retrospectives <- function(retro_path,
   retro_yrs <- sort(as.numeric(gsub(pat, "\\1", fns)))
 
   message("Loading retrospectives from ", retro_path)
-  plan("multisession", workers = length(retro_yrs))
-  retros_list <- future_imap(retro_yrs, function(x, y, ...){
-    retro_sub <- paste0("retro-", pad_num(x, 2))
+  # Cannot use parallel here because some list items are missing
+  #plan("multisession", workers = length(retro_yrs))
+  retros_lst <- imap(retro_yrs, function(x, y, ...){
+    # Pad the beginning of a digit with a zero
+    pad_zero <- \(num){
+      num <- as.character(num)
+      if(nchar(num) == 1){
+        paste0("0", num)
+      }else{
+        num
+      }
+    }
+    retro_sub <- paste0("retro-", pad_zero(x))
     retro_dir <- file.path(retro_path, retro_sub)
     message("Loading from ", retro_dir)
     model <- load_ss_files(retro_dir, ...)
@@ -36,9 +46,8 @@ load_retrospectives <- function(retro_path,
     model$mcmc <- NA
     model$parameters <- NA
     model
-  }, ...,
-  .options = furrr_options(globals = c("hake::pad_num")))
-  plan()
+  }, ...)
+  #plan()
   message("Finished loading retrospectives")
-  retros_list
+  retros_lst
 }

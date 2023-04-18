@@ -25,6 +25,9 @@ load_extra_mcmc_selwt <- function(reps,
                           ...)
 
   y <- load_extra_mcmc_get_chunk(reps, ...)
+  if(is.na(y[1])){
+    return(NA)
+  }
   selwt <- extract_rep_table(reps_lst = y$lst,
                              header = x$header,
                              verbose = verbose,

@@ -7,8 +7,6 @@ element of a list of identically-formatted vectors, typically read
 in from files with identical formats (SS3 Report files)}
 \usage{
 load_extra_mcmc_get_chunk(lst, beg_pat, end_pat, ...)
-
-load_extra_mcmc_get_chunk(lst, beg_pat, end_pat, ...)
 }
 \arguments{
 \item{lst}{A list of identically-formatted vectors, typically from a
@@ -22,15 +20,8 @@ of data}
 \value{
 A list of vectors of output or data, each list element will have
 the exact same number of lines and the same structure within those lines
-
-A list of vectors of output or data, each list element will have
-the exact same number of lines and the same structure within those lines
 }
 \description{
-Extracts a vector of lines of data or output (a chunk) from each
-element of a list of identically-formatted vectors, typically read
-in from files with identical formats (SS3 Report files)
-
 Extracts a vector of lines of data or output (a chunk) from each
 element of a list of identically-formatted vectors, typically read
 in from files with identical formats (SS3 Report files)
