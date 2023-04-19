@@ -59,7 +59,7 @@ plot_catches <- function(ct,
                  ylim = c(0, 475))
 
   grid(NA, NULL, lty = 1, lwd = 1)
-  mtext("Catch (thousand t)",
+  mtext("Catch (kt)",
         side = 2,
         line = 2.8,
         las = 0,

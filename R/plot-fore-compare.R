@@ -58,7 +58,7 @@ plot_fore_compare <- function(model,
          call. = FALSE)
   }
 
-  ct_colname <- paste0("Catch in ", fore_yr, " (1,000 t)")
+  ct_colname <- paste0("Catch in ", fore_yr, " (kt)")
   ct_sym <- sym(ct_colname)
   names(prob_dat) <- c(
     ct_colname,

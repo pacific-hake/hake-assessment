@@ -155,8 +155,8 @@ plot_biomass <- function(model_lst = NULL,
           plot.margin = margin(12, 12, 0, 0)) +
     labs(x = "Year",
          y = ifelse(wrap_y_label,
-                    add_newlines("Female Spawning Biomass+(million t)"),
-                    "Female Spawning Biomass (million t)"))
+                    add_newlines("Female Spawning Biomass+(Mt)"),
+                    "Female Spawning Biomass (Mt)"))
 
   # Add B0 to the plot
   g <- g +

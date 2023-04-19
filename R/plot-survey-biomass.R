@@ -34,7 +34,7 @@ plot_survey_biomass <- function(model,
 
   y_label <- ifelse(index == "age1",
                     "Relative age-1 index (billions of fish)",
-                    "Biomass index (million t)")
+                    "Biomass index (Mt)")
   g <- ggplot(ests,
               aes(x = year,
                   xend = year,
