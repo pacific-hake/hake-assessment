@@ -546,13 +546,15 @@ table_risk(
   base_model,
   forecast_yrs,
   index = 1,
+  type = "probability",
+  digits = 2,
   caption = paste0(
     "Probabilities related to spawning biomass, relative fishing intensity, ",
     "and the ", end_yr + 1, " default harvest policy catch for alternative ",
     end_yr, " catch options (catch options explained in ",
     "Table~\\@ref(tab:main-decisions-biomass-table))."),
   font_size = 10,
-  header_font_size = 11,
+  header_font_size = 10,
   longtable = TRUE)
 ```
 
@@ -563,6 +565,8 @@ table_risk(
   base_model,
   forecast_yrs,
   index = 2,
+  type = "probability",
+  digits = 2,
   caption = paste0(
     "Probabilities related to spawning biomass, relative fishing intensity, ",
     "and the ", end_yr + 2, " default harvest policy catch for alternative ",
@@ -570,7 +574,7 @@ table_risk(
     "in Table~\\@ref(tab:main-risk-year-1-table) (catch options explained in ",
     "Table~\\@ref(tab:main-decisions-biomass-table))."),
   font_size = 10,
-  header_font_size = 11,
+  header_font_size = 10,
   longtable = TRUE)
 ```
 
@@ -581,6 +585,8 @@ table_risk(
   base_model,
   forecast_yrs,
   index = 3,
+  type = "probability",
+  digits = 2,
   caption = paste0(
     "Probabilities related to spawning biomass, relative fishing intensity, ",
     "and the ", end_yr + 3, " default harvest policy catch for alternative ",
@@ -589,7 +595,7 @@ table_risk(
     "\\@ref(tab:main-risk-year-2-table) (catch options explained in Table~",
     "\\@ref(tab:main-decisions-biomass-table))."),
   font_size = 10,
-  header_font_size = 11,
+  header_font_size = 10,
   longtable = TRUE)
 ```
 

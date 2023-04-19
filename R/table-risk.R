@@ -7,6 +7,9 @@
 #' forecast year compared to the first. If there were N forecast years, this
 #' can be from 1 to N-1
 #' @param digits The number of decimal places to print in the table output
+#' @param type One of `probability` or `percent`. If `probability`, the table
+#' columns will be decimal probabilities, if `percent` they will be expressed
+#' as percentages and a percent symbol (%) will be added to the column headers
 #' @param font_size The table data and header font size in points
 #' @param header_font_size The font size for the headers only. If `NULL`,
 #' the headers will have the same font size as the table cell data
@@ -21,12 +24,15 @@
 table_risk <- function(model,
                        forecast_yrs,
                        index = 1,
-                       digits = 0,
+                       digits = 2,
+                       type = c("probability", "percent"),
                        font_size = 10,
                        header_font_size = 10,
                        header_vert_spacing = 12,
                        header_vert_scale = 1.2,
                        ...){
+
+  type <- match.arg(type)
 
   if(index > length(model$risks)){
     stop("`index` must be less than or equal to ", length(model$risks),
@@ -50,44 +56,48 @@ table_risk <- function(model,
 
   # Format all columns except catch to be zero decimal points and have a
   # percent sign and the catch to have a comma separator
-  risk <- risk |>
-    mutate_at(vars(-(!!ct_col_sym)), ~{paste0(f(.x, digits), "\\%")}) |>
-    mutate(!!ct_col_sym := f(!!ct_col_sym)) |>
-    mutate(let = paste0(letters[seq_len(nrow(risk))], ":")) |>
-    select(let, everything()) %>%
-    setNames(c("", names(.)[-1]))
+  if(type == "probability"){
+    risk <- risk |>
+      mutate_at(vars(-(!!ct_col_sym)), ~{f(.x / 100, digits)})
+  }else{
+    risk <- risk |>
+      mutate_at(vars(-(!!ct_col_sym)), ~{paste0(f(.x, digits), "\\%")})
+  }
+risk <- risk |>
+  mutate(!!ct_col_sym := f(!!ct_col_sym)) |>
+  mutate(let = paste0(letters[seq_len(nrow(risk))], ":")) |>
+  select(let, everything()) %>%
+  setNames(c("", names(.)[-1]))
 
   # Add nice header names
   col_names <- c("",
                  paste0("Catch (t)\nin ", forecast_yrs[index]),
-                 paste0("Prob.\n",
-                        "$\\bm{\\mathrm{B}_{",
+                 paste0("$\\bm{\\mathrm{B}_{",
                         forecast_yrs[index + 1],
                         "}}$\n< $\\bm{\\mathrm{B}_{",
                         forecast_yrs[index],
                         "}}$"),
-                 paste0("Prob.\n",
-                        "$\\bm{\\mathrm{B}_{",
+                 paste0("$\\bm{\\mathrm{B}_{",
                         forecast_yrs[index + 1],
                         "}}$\n< $\\bm{\\Bforty}$"),
-                 paste0("Prob.\n",
-                        "$\\bm{\\mathrm{B}_{",
+                 paste0("$\\bm{\\mathrm{B}_{",
                         forecast_yrs[index + 1],
                         "}}$\n< $\\bm{\\Btwentyfive}$"),
-                 paste0("Prob.\n",
-                        "$\\bm{\\mathrm{B}_{",
+                 paste0("$\\bm{\\mathrm{B}_{",
                         forecast_yrs[index + 1],
                         "}}$\n< $\\bm{\\Bten}$"),
-                 paste0("Prob.\n",
-                        forecast_yrs[index],
-                        "\nrelative\nfishing\nintensity\n",
+                 paste0(forecast_yrs[index],
+                        "\nFishing\nintensity\n",
                         "> 100\\%"),
-                 paste0("Prob.\n",
-                        forecast_yrs[index + 1],
-                        "\ndefault\nharvest policy\ncatch\n",
+                 paste0(forecast_yrs[index + 1],
+                        "\nDefault HR\ncatch\n",
                         "> ",
                         forecast_yrs[index],
                         "\ncatch"))
+
+  if(type == "percent"){
+    col_names[-1] <- paste0(col_names[-1], "\n(\\%)")
+  }
 
   # Insert header fontsize if it wasn't supplied
   if(is.null(header_font_size)){
