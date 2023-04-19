@@ -69,7 +69,7 @@ return a \code{\link[kableExtra:kbl]{kableExtra::kbl()}} table}
 If \code{NULL} this will be calculated as \code{header_font_size * header_vert_scale}}
 }
 \value{
-A \code{\link[knitr:kable]{knitr::kable()}} object
+An \code{\link[knitr:kable]{knitr::kable()}} object
 
 Either a data frame or \code{\link[kableExtra:kbl]{kableExtra::kbl()}} object
 }

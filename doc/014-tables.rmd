@@ -451,8 +451,8 @@ table_param_est(
       "previous assessment's (", end_yr - 1, ") base model. Dashes (--) in ",
       "column for the previous assessment indicate quantities that were ",
       " not available in that assessment"),
-  font_size = 10,
-  header_font_size = 11,
+  font_size = 9,
+  header_font_size = 9,
   longtable = TRUE)
 ```
 

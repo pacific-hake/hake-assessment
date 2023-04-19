@@ -15,7 +15,7 @@
 #' See `header_vert_spacing`
 #' @param ... Arguments passed to [knitr::kable()]
 #'
-#' @return A [knitr::kable()] object
+#' @return An [knitr::kable()] object
 #' @export
 table_biomass <- function(model,
                           start_yr,
@@ -42,22 +42,25 @@ table_biomass <- function(model,
   dupper <- calcs$dupper[inds] * 100
 
   yrs <- as.numeric(names(slower))
-  df <- tibble(yrs,
-               f(slower, digits),
-               f(smed, digits),
-               f(supper, digits),
-               paste0(f(dlower, digits), "\\%"),
-               paste0(f(dmed, digits), "\\%"),
-               paste0(f(dupper, digits), "\\%")) |>
+  d <- tibble(yrs,
+              f(slower, digits),
+              f(smed, digits),
+              f(supper, digits),
+              paste0(f(dlower, digits), "\\%"),
+              paste0(f(dmed, digits), "\\%"),
+              paste0(f(dupper, digits), "\\%")) |>
     filter(yrs %in% start_yr:end_yr)
 
-  names(df) <- c("Year",
-                 "SSB ($B_t$)\n2.5\\textsuperscript{th}\npercentile",
-                 "SSB ($B_t$)\nMedian",
-                 "SSB ($B_t$)\n97.5\\textsuperscript{th}\npercentile",
-                 "Rel.\nSSB ($B_t/B_0$)\n2.5\\textsuperscript{th}\npercentile",
-                 "Rel.\nSSB ($B_t/B_0$)\nMedian",
-                 "Rel.\nSSB ($B_t/B_0$)\n97.5\\textsuperscript{th}\npercentile")
+  names(d) <- c("Year",
+                paste0("SSB ($\\bm{B_t}$)\n2.5\\textsuperscript{th}",
+                       "\npercentile"),
+                "SSB ($\\bm{B_t}$)\nMedian",
+                "SSB ($\\bm{B_t}$)\n97.5\\textsuperscript{th}\npercentile",
+                paste0("Rel.\nSSB ($\\bm{B_t/B_0}$)\n2.5\\textsuperscript",
+                       "{th}\npercentile"),
+                "Rel.\nSSB ($\\bm{B_t/B_0}$)\nMedian",
+                paste0("Rel.\nSSB ($\\bm{B_t/B_0}$)\n97.5\\textsuperscript",
+                       "{th}\npercentile"))
 
   # Insert custom header fontsize before linebreaker
   if(is.null(header_font_size)){
@@ -67,13 +70,13 @@ table_biomass <- function(model,
                                       header_vert_spacing,
                                       header_vert_scale)
 
-  col_names <- names(df)
+  col_names <- names(d)
   col_names <- gsub("\\n", paste0("\n", hdr_font_str$quad), col_names)
   col_names <- paste0(hdr_font_str$dbl, col_names)
   # Add \\makecell{} latex command to headers with newlines
   col_names <- linebreak(col_names, align = "c")
 
-  kbl(df,
+  kbl(d,
       format = "latex",
       booktabs = TRUE,
       align = "r",

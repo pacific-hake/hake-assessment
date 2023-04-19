@@ -56,19 +56,20 @@ adjusted for carryovers) of `r last_yr_tac`~t. Attainment in the U.S. was
 `r last_yr_us_attained`% of its quota and in Canada it was
 `r last_yr_can_attained`%.
 
+
 ```{r es-catches-tab, results = "asis", echo = FALSE}
 table_catch(
   ct,
+  inc_foreign_jv = FALSE,
   start_yr = end_yr - 10,
   end_yr = end_yr - 1,
   caption = paste0(
-    "Recent commercial fishery catch (t). Tribal catches are included in ",
-    "the sector totals. Research catch includes landed catch associated with ",
-    "certain research-related activities. Catch associated with surveys and ",
-    "discarded bycatch in fisheries not targeting hake is relatively small ",
-    "and not included in the table or model."),
-  font_size = 9,
-  header_font_size = 8)
+    "Total ", sp, " catch used in the assessment by sector, ", start_yr,
+    "--", last_data_yr, ". U.S. tribal catches are included in the sectors ",
+    "where they are represented."),
+  font_size = 7,
+  header_font_size = 7,
+  longtable = TRUE)
 ```
 
 In this document, the terms catch and landings are used interchangeably.
@@ -259,16 +260,17 @@ table_biomass(
 ## Recruitment {-}
 
 ```{r es-recruitment-tab, results = "asis", echo = FALSE}
-table_recruitment(base_model,
-                  start_yr = end_yr - 10,
-                  end_yr = end_yr - 1,
-                  font_size = 12,
-                  caption = paste0(
-                    "Estimates of recent recruitment (millions of age-0 ",
-                    "fish) and recruitment deviations, where deviations ",
-                    "below (above) zero indicate recruitment below ",
-                    "(above) that estimated from the stock-recruit ",
-                    "relationship."))
+table_recruitment(
+  base_model,
+  start_yr = end_yr - 10,
+  end_yr = end_yr - 1,
+  caption = paste0(
+    "Estimates of recent recruitment (millions of age-0 fish) and ",
+    "recruitment, deviations, where deviations below (above) zero indicate ",
+    "recruitment below (above) that estimated from the stock-recruit ",
+    "relationship."),
+  font_size = 10,
+  header_font_size = 9)
 ```
 
 The addition of `r last_data_yr` data does not substantially change estimates
@@ -358,15 +360,18 @@ relative fishing intensity above 1.0 means fishing at a rate above $\FSPRforty$.
 ## Exploitation status {-}
 
 ```{r es-fishing-intensity-tab, results = "asis", echo = FALSE}
-table_fishing_intensity(base_model,
-                        start_yr = end_yr - 10,
-                        end_yr = end_yr - 1,
-                        digits = 3,
-                        font_size = 12,
-                        caption = paste0(
-                          "Recent estimates of relative fishing intensity, ",
-                          "\\FishingRate, and exploitation ",
-                          "fraction (catch divided by age-2+ biomass)."))
+table_fishing_intensity(
+  base_model,
+  start_yr = end_yr - 10,
+  end_yr = end_yr - 1,
+  digits = 3,
+  caption = paste0(
+    "Recent estimates of relative fishing intensity, ",
+    "\\FishingRate, and exploitation ",
+    "fraction (catch divided by age-2+ biomass)."),
+  font_size = 10,
+  header_font_size = 9)
+
 ```
 
 The median estimated relative fishing intensity on the stock is below the
@@ -432,14 +437,17 @@ plot_exploitation_fraction(base_model)
 ```
 
 ```{r es-landings-tac-tab, results = "asis", echo = FALSE}
-table_landings_tac(ct,
-                   start_yr = end_yr - 10,
-                   end_yr = end_yr - 1,
-                   caption = paste0(
-                     "Recent trends in ", sp, " landings and management ",
-                     "decisions. Catch targets in 2020 and 2021 were ",
-                     "specified unilaterally. All landings and catch ",
-                     "targets are given in tonnes."))
+table_landings_tac(
+  ct,
+  start_yr = end_yr - 10,
+  end_yr = end_yr - 1,
+  caption = paste0(
+    "Recent trends in ", sp, " landings and management decisions. Catch ",
+    "targets in 2020 and 2021 were specified unilaterally. All landings ",
+    "and catch targets are given in tonnes."),
+  font_size = 7,
+  header_font_size = 7,
+  longtable = TRUE)
 ```
 
 (ref:es-phase-cap) Estimated historical path of median relative spawning
@@ -485,16 +493,24 @@ above a relative fishing intensity of 1.0 in `r end_yr - 1` and below the
 $\Bforty$ relative spawning biomass level at the start of `r end_yr`.
 
 ```{r es-reference-points-tab, results = "asis", echo = FALSE}
-table_reference_points(base_model,
-                       caption = paste0(
-                         "Summary of median and 95\\% credibility ",
-                         "intervals of equilibrium conceptual reference ",
-                         "points for the ", sp, " base assessment model. ",
-                         "Equilibrium reference points were computed ",
-                         "using 1975--", end_yr - 1, " averages for mean ",
-                         "weight-at-age and baseline selectivity-at-age ",
-                         "(1966--1990; prior to time-varying ",
-                         "deviations)."))
+table_reference_points(
+  base_model,
+  category_bold = TRUE,
+  category_italics = TRUE,
+  category_underline = TRUE,
+  category_line_above = FALSE,
+  category_line_below = FALSE,
+  caption = paste0(
+    "Summary of median and 95\\% credibility intervals of equilibrium ",
+    "conceptual reference points for the base assessment model. ",
+    "Equilibrium reference points were computed using ", start_yr_age_comps,
+    "--", end_yr - 1, " averages for mean weight-at-age and baseline ",
+    "selectivity-at-age (1966--1990; prior to time-varying deviations). ",
+    "Dashes (--) indicate values that are static at one value and do not ",
+    "have a credible interval associated with them."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
 ```
 
 ## Reference points {-}
@@ -554,42 +570,37 @@ wide range of uncertainty, the 95% credibility interval being
 `r ct_limit_quantiles["lower"]`--`r ct_limit_quantiles["upper"]`~t.
 
 ```{r es-decisions-biomass, results = "asis", echo = FALSE}
-table_decision(base_model,
-               label = "tab:es-decisions-biomass-tab",
-               caption =
-                 paste0("Forecast quantiles of ", sp, " ",
-                        "relative spawning biomass at the beginning of ",
-                        "the year. Catch alternatives are based on: constant ",
-                        "catches (rows ",
-                        ct_constant_str,
-                        "), including catch similar to ",
-                        min(forecast_yrs_extra)-1," (row~",
-                        letters[ct_actual_ind],
-                        ") and to the TAC from ",
-                        min(forecast_yrs_extra)-1," (row~",
-                        letters[ct_tac_ind],
-                        "); and non-constant catches that result in ",
-                        "annual 10\\% declines in catch (rows ",
-                        ct_reduction_str,
-                        "), median relative fishing intensity of 100\\% (row ",
-                        letters[ct_spr100_ind],
-                        "), median catch estimated ",
-                        "via the default harvest policy ",
-                        "(\\Ffortyten, row~",
-                        letters[ct_default_policy_ind],
-                        "), and the fishing intensity that results in ",
-                        "the median ",
-                        "projected catch remaining the same in ",
-                        min(forecast_yrs_extra),
-                        " and ",
-                        min(forecast_yrs_extra) + 1,
-                        " (row~",
-                        letters[ct_stable_ind],
-                        ")."),
-               font_size = 9,
-               space_size = 10,
-               type = "biomass",
-               placement = "tbp")
+table_decision(
+  base_model,
+  type = "biomass",
+  forecast_inds =
+    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
+  caption = paste0(
+      "Forecast quantiles of ", sp, " relative spawning biomass at the ",
+      "beginning of the year. Catch alternatives are based on: constant ",
+      "catches (rows ", ct_constant_str, "), including catch similar to ",
+      min(forecast_yrs) - 1," (row~", letters[ct_actual_ind],
+      ") and to the TAC from ", min(forecast_yrs) - 1," (row~",
+      letters[ct_tac_ind], "); and non-constant catches that result in ",
+      "annual 10\\% declines in catch (rows ", ct_reduction_str,
+      "), median relative fishing intensity of 100\\% (row ",
+      letters[ct_spr100_ind], "), median catch estimated via the default ",
+      "harvest policy (\\Ffortyten, row~", letters[ct_default_policy_ind],
+      "), and the fishing intensity that results in the median projected ",
+      "catch remaining the same in ", min(forecast_yrs), " and ",
+      min(forecast_yrs) + 1, " (row~", letters[ct_stable_ind], ")."),
+  bold_letters = TRUE,
+  digits = 2,
+  font_size = 10,
+  header_font_size = 10,
+  # If the font is changed it is almost guaranteed that `left_col_cm` and
+  # `right_cols_cm` will have to be changed, especially if the font is made
+  # larger. You will have to check this with trial-and-error, building the
+  # document, checking the table and adjusting, over and over until it looks
+  # right
+  left_col_cm = 3,
+  right_cols_cm = 1.2,
+  longtable = TRUE)
 ```
 
 Decision tables give the projected population status (relative spawning
@@ -619,21 +630,29 @@ fishing at the $\Fforty$ default harvest-rate catch limit (scenario n: default
 HR) in 2023 results in a median relative fishing intensity of 0.91 (Table~\@ref(tab:es-decisions-spr-tab)).
 
 ```{r es-decisions-spr, results = "asis", echo = FALSE}
-table_decision(base_model,
-               label = "tab:es-decisions-spr-tab",
-               caption = paste0(
-                 "Forecast quantiles of ", sp, " relative fishing intensity ",
-                 "\\FishingRate, expressed as a ",
-                 "proportion, for the ", min(forecast_yrs), "--",
-                 max(forecast_yrs) - 1, " catch alternatives presented in ",
-                 "Table~\\@ref(tab:es-decisions-biomass-tab). Values greater ",
-                 "than 1 indicate relative fishing intensities greater than ",
-                 "the $\\Fforty$ harvest policy calculated using baseline ",
-                 "selectivity."),
-               font_size = 9,
-               space_size = 10,
-               type = "spr",
-               placement = "tbp")
+table_decision(
+  base_model,
+  type = "spr",
+  forecast_inds =
+    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
+  caption = paste0(
+    "Forecast quantiles of ", sp, " relative fishing intensity ",
+    "(1-SPR)/(1-SPR\\textsubscript{40\\%}), expressed as a proportion, for ",
+    "the ", min(forecast_yrs), "--", max(forecast_yrs) - 1, " catch ",
+    "alternatives presented in Table~\\@ref(tab:main-decisions-biomass-table). ",
+    "Values greater than 1 indicate relative fishing intensities greater ",
+    "than the $\\Fforty$ harvest policy calculated using baseline ",
+    "selectivity."),
+  bold_letters = TRUE,
+  digits = 2,
+  font_size = 10,
+  header_font_size = 10,
+  # If the font is changed it is almost guaranteed that `left_col_cm` and
+  # `right_cols_cm` will have to be changed, especially if the font is made
+  # larger
+  left_col_cm = 3,
+  right_cols_cm = 1.2,
+  longtable = TRUE)
 ```
 
 Management metrics that were identified as important to the Joint Management
@@ -714,15 +733,20 @@ plot_fore_compare(base_model,
 ```{r es-risk-year-1-tab, results = "asis", echo = FALSE}
 # Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared
 # to forecast year 1
-table_risk(base_model,
-           forecast_yrs,
-           index = 1,
-           caption = paste0(
-             "Probabilities related to female spawning biomass, ",
-             "relative fishing intensity, and the ", end_yr + 1,
-             " default harvest policy catch for alternative ",
-             end_yr," catch options (explained in ",
-             "Table~\\@ref(tab:es-decisions-biomass-tab))."))
+table_risk(
+  base_model,
+  forecast_yrs,
+  index = 1,
+  type = "probability",
+  digits = 2,
+  caption = paste0(
+    "Probabilities related to spawning biomass, relative fishing intensity, ",
+    "and the ", end_yr + 1, " default harvest policy catch for alternative ",
+    end_yr, " catch options (catch options explained in ",
+    "Table~\\@ref(tab:main-decisions-biomass-table))."),
+  font_size = 10,
+  header_font_size = 10,
+  longtable = TRUE)
 ```
 
 (ref:es-risk-year-2-cap) Graphical representation
@@ -742,16 +766,21 @@ plot_fore_compare(base_model,
 ```
 
 ```{r es-risk-year-2-tab, results = "asis", echo = FALSE}
-table_risk(base_model,
-           forecast_yrs,
-           index = 2,
-           caption = paste0(
-             "Probabilities related to female spawning biomass, relative ",
-             "fishing intensity, and the ", end_yr + 2, " default harvest ",
-             "policy catch for alternative ", end_yr + 1, " catch options, ",
-             "given the ", end_yr, " catch shown in ",
-             "Table~\\@ref(tab:es-risk-year-1-tab) (catch options explained in ",
-             "Table~\\@ref(tab:es-decisions-biomass-tab))."))
+table_risk(
+  base_model,
+  forecast_yrs,
+  index = 2,
+  type = "probability",
+  digits = 2,
+  caption = paste0(
+    "Probabilities related to spawning biomass, relative fishing intensity, ",
+    "and the ", end_yr + 2, " default harvest policy catch for alternative ",
+    end_yr + 1, " catch options, given the ", end_yr, " catch level shown ",
+    "in Table~\\@ref(tab:main-risk-year-1-table) (catch options explained in ",
+    "Table~\\@ref(tab:main-decisions-biomass-table))."),
+  font_size = 10,
+  header_font_size = 10,
+  longtable = TRUE)
 ```
 
 (ref:es-risk-year-3-cap) Graphical representation of
@@ -771,17 +800,22 @@ plot_fore_compare(base_model,
 ```
 
 ```{r es-risk-year-3-tab, results = "asis", echo = FALSE}
-table_risk(base_model,
-           forecast_yrs,
-           index = 3,
-           caption = paste0(
-             "Probabilities related to female spawning biomass, relative ",
-             "fishing intensity, and the ", end_yr + 3, " default harvest ",
-             "policy catch for alternative ", end_yr + 2, " catch options, ",
-             "given the ", end_yr, " and ", end_yr + 1, " catches shown in ",
-             "Tables~\\@ref(tab:es-risk-year-1-tab) ",
-             "and~\\@ref(tab:es-risk-year-2-tab) (catch options explained in ",
-             "Table~\\@ref(tab:es-decisions-biomass-tab))."))
+table_risk(
+  base_model,
+  forecast_yrs,
+  index = 3,
+  type = "probability",
+  digits = 2,
+  caption = paste0(
+    "Probabilities related to spawning biomass, relative fishing intensity, ",
+    "and the ", end_yr + 3, " default harvest policy catch for alternative ",
+    end_yr + 2, " catch options, given the ", end_yr, " and ", end_yr + 1,
+    " catch levels shown in Tables~\\@ref(tab:main-risk-year-1-table) and~",
+    "\\@ref(tab:main-risk-year-2-table) (catch options explained in Table~",
+    "\\@ref(tab:main-decisions-biomass-table))."),
+  font_size = 10,
+  header_font_size = 10,
+  longtable = TRUE)
 ```
 \clearpage
 
@@ -789,4 +823,5 @@ table_risk(base_model,
 ```{r child = "011-research-needs/research-needs.rmd"}
 ```
 
+Executive summary EOF - do not remove - required by the post-processor
 \clearpage
