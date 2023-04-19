@@ -120,6 +120,10 @@ post_process <- function(fn,
   # captions are not aligned to the left properly
   x <- post_process_move_table_captions(x)
 
+  # Insert LaTeX code to have tables and figures be labelled with letters,
+  # and the rest of the doc have numbers for them
+  x <- post_process_add_counters(x)
+
   # Mark file with modification text ----
   x <- c(modification_text, x)
 
