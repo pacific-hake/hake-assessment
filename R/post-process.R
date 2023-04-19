@@ -99,29 +99,25 @@ post_process <- function(fn,
   post <- x[(title_ind + 1):length(x)]
   x <- c(pre, "\\thispagestyle{empty}", post)
 
-  # Make sections/subsections uppercase/centered ----
+  # Sections uppercase/centered ----
   x <- post_process_section_headers(x)
 
-  # Insert the Table of contents ----
+  # Table of contents injection ----
   x <- post_process_table_of_contents(x, ...)
 
-  # Executive summary catch plot placement----
-  x <- post_process_set_figure_placement(x,
-                                         figs_dir,
-                                         knitr_label = "es-catches-1",
-                                         place = "!b")
+  # Placements for figures and tables ----
+  x <- post_process_set_object_placement(x, figs_dir = figs_dir)
 
-  # Add more latex to longtables ----
+  # Longtable customization ----
   x <- post_process_longtables(x, ...)
 
+  # Landscape table customization
   x <- post_process_landscape_tables(x)
 
-  # Fix table caption alignment. Add single tables to this function if their
-  # captions are not aligned to the left properly
+  # Table caption alignment ----
   x <- post_process_move_table_captions(x)
 
-  # Insert LaTeX code to have tables and figures be labelled with letters,
-  # and the rest of the doc have numbers for them
+  # Figure/table lettering/numbering ----
   x <- post_process_add_counters(x)
 
   # Mark file with modification text ----

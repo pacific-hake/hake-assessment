@@ -27,7 +27,7 @@ sectors where they are represented.
 (ref:es-catches-alt) This figure shows that catches in four of the last six
 years have been the largest in the time series.
 
-```{r es-catches, fig.cap = "(ref:es-catches-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:es-catches-alt)"}
+```{r es-catches-fig, fig.cap = "(ref:es-catches-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:es-catches-alt)"}
 plot_catches(ct, leg.y.loc = 650)
 ```
 
@@ -82,33 +82,14 @@ but have been in decline over that period (especially in Canada). Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
 1999 year class, with the cumulative removal (through `r end_yr - 1`) from
 that cohort estimated at approximately
-`r f(cohort_catch_1999 / 1e6, 2)` million~t. Through `r last_data_yr`, the
+`r f(cohort_catch_1999 / 1e6, 2)` Mt. Through `r last_data_yr`, the
 cumulative catch of the 2010, 2014, and 2016 year classes is estimated to be
-about `r f(cohort_catch_2010 / 1e6, 2)` million~t,
-`r f(cohort_catch_2014 / 1e6, 2)` million~t, and
-`r f(cohort_catch_2016 / 1e6, 2)` million~t, respectively. In the
+about `r f(cohort_catch_2010 / 1e6, 2)` Mt,
+`r f(cohort_catch_2014 / 1e6, 2)` Mt, and
+`r f(cohort_catch_2016 / 1e6, 2)` Mt, respectively. In the
 `r end_yr - 1` catch, `r top_coh(base_model, last_data_yr, 3, cap = FALSE)`.
 
 ## Data and assessment {-}
-
-(ref:es-survey-biomass-cap) Acoustic survey biomass index of age-2+ fish
-(millions of tons). Approximate 95% confidence intervals are based on
-sampling variability (intervals without squid/hake apportionment
-uncertainty in 2009 are displayed in black).
-  
-```{r es-survey-biomass, fig.cap = "(ref:es-survey-biomass-cap)", fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has decreased from 2019 to 2021."}
-plot_survey_biomass(base_model, index = "age2")
-```
-
-(ref:es-survey-age1-cap) Relative index of age-1 fish (numbers of fish) and
-approximate 95% confidence intervals based on sampling variability. The index
-is relative because the survey does not attempt to sample all available age-1
-fish and the analysis does not include kriging as is done to estimate age-2+
-biomass.
-
-```{r es-survey-age1, fig.cap = "(ref:es-survey-age1-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the age-1 survey estimate has increased from 2019 to 2021."}
-plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
-```
 
 This Joint Technical Committee (JTC) assessment depends on the fishery
 landings (`r start_yr`--`r last_data_yr`), an acoustic survey biomass index
@@ -127,6 +108,15 @@ particularly large numbers of age-1 fish in 2009, 2011, 2015, and 2021 (2008,
 2010, 2014, and 2020 year classes, respectively), and is not available for
 most even years (odd year classes). There is not data to inform the size of
 the `r last_data_yr` year class.
+
+(ref:es-survey-biomass-cap) Acoustic survey biomass index of age-2+ fish
+(Mt). Approximate 95% confidence intervals are based on
+sampling variability (intervals without squid/hake apportionment
+uncertainty in 2009 are displayed in black).
+  
+```{r es-survey-biomass-fig, fig.cap = "(ref:es-survey-biomass-cap)", fig.height=5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the survey estimate has decreased from 2019 to 2021."}
+plot_survey_biomass(base_model, index = "age2")
+```
 
 The assessment uses a Bayesian estimation approach, sensitivity analyses, and
 retrospective investigations to evaluate the potential consequences of
@@ -153,6 +143,16 @@ management outcomes given repeated application of these procedures over
 the long-term. The results of past (and ongoing) closed-loop simulations
 help inform decisions made for this assessment.
 
+(ref:es-survey-age1-cap) Relative index of age-1 fish (numbers of fish) and
+approximate 95% confidence intervals based on sampling variability. The index
+is relative because the survey does not attempt to sample all available age-1
+fish and the analysis does not include kriging as is done to estimate age-2+
+biomass.
+
+```{r es-survey-age1-fig, fig.cap = "(ref:es-survey-age1-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the age-1 survey estimate has increased from 2019 to 2021."}
+plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
+```
+
 This `r assess_yr` assessment retained the same general population dynamics
 structure as the base assessment model from `r last_assess_yr` and again is
 configured using Stock Synthesis. This includes the continued use (since 2014)
@@ -167,6 +167,8 @@ selectivity continue to be based on conditions during the last five years,
 as done since the 2020 assessment. The main change from the `r last_assess_yr`
 assessment is the addition of `r last_data_yr` data.
 
+\clearpage
+
 ## Stock Biomass {-}
 
 Results from the base model
@@ -178,12 +180,12 @@ assessment period, due to lower than average recruitment.
 
 (ref:es-biomass-cap) Median (solid line) of the posterior
 distribution for beginning of the year female spawning biomass
-($B_t$ in year $t$; million t) through `r end_yr` (solid line) with 95%
+($B_t$ in year $t$; Mt) through `r end_yr` (solid line) with 95%
 posterior credibility intervals (shaded area). The left-most circle with a 95%
 posterior credibility interval is the estimated unfished equilibrium biomass,
 $B_0$.
 
-```{r es-biomass, fig.cap = "(ref:es-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been increasing in size since 2021."}
+```{r es-biomass-fig, fig.cap = "(ref:es-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the median spawning biomass has been increasing in size since 2021."}
 plot_biomass(list(base_model),
              list(base_model_name),
              ylim = c(0, 5),
@@ -196,15 +198,6 @@ distribution for relative spawning biomass ($B_t / B_0$) through `r end_yr`
 with 95% posterior credibility intervals (shaded area). Dashed horizontal
 lines show 10%, 40%, and 100% of the unfished equilibrium ($B_0$).
 
-```{r es-relative-biomass, fig.cap = "(ref:es-relative-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the relative spawning biomass has been increasing since 2021. The value for 2023 is just above B0."}
-plot_rel_biomass(list(base_model),
-                 list(base_model_name),
-                 point_shape = 1,
-                 ylim = c(0, 3),
-                 alpha = 0.2,
-                 leg_pos = "none")
-```
-
 The stock is estimated to have increased rapidly and was above unfished
 equilibrium in the mid-1970s and mid-1980s (after two large recruitment
 events in the early 1980s). It then declined steadily to a low in 1999. This
@@ -212,7 +205,7 @@ was followed by a brief increase to a peak in 2002 as the very large 1999 year
 class matured. The 1999 year class largely supported the fishery for several
 years due to relatively small recruitment events between 2000 and 2007. With
 the aging 1999 year class, median female spawning biomass declined throughout
-the late 2000s, reaching a time-series low of `r median_bio_min` million~t in
+the late 2000s, reaching a time-series low of `r median_bio_min` Mt in
 `r median_bio_min_yr`. Median female spawning biomass is estimated to have
 peaked again in 2013 and 2014 due to a very large 2010 year class and an
 above-average 2008 year class. The subsequent decline from 2014 to 2016 is
@@ -234,15 +227,24 @@ from `r curr_depl_lower`% to `r curr_depl_upper`%
 (Table~\@ref(tab:es-biomass-tab), due to high uncertainty about the size of
 the 2020 cohort, which has not yet been sampled in the acoustic survey
 biomass index of age-2+ fish. The median estimate of the `r end_yr` female
-spawning biomass is `r curr_bio_median` million~t (with a 95% posterior
-credibility interval from `r curr_bio_lower` to `r curr_bio_upper` million~t.
+spawning biomass is `r curr_bio_median` Mt (with a 95% posterior
+credibility interval from `r curr_bio_lower` to `r curr_bio_upper` Mt.
 The current estimate of the `r end_yr - 1` female spawning biomass is
-`r prev_bio_median` (`r prev_bio_lower`--`r prev_bio_upper`) million~t. This is
+`r prev_bio_median` (`r prev_bio_lower`--`r prev_bio_upper`) Mt. This is
 higher than the `r prev_bio_median_last_assess` (`r prev_bio_lower_last_assess`
---`r prev_bio_upper_last_assess`) million~t estimated in the `r end_yr - 1`
+--`r prev_bio_upper_last_assess`) Mt estimated in the `r end_yr - 1`
 assessment. The increase appears to be due to the addition of 2022 fishery
 age-composition data, which suggests the 2020 cohort may be larger than the
 age-1 index alone was indicating in the last assessment.
+
+```{r es-relative-biomass-fig, fig.cap = "(ref:es-relative-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the relative spawning biomass has been increasing since 2021. The value for 2023 is just above B0."}
+plot_rel_biomass(list(base_model),
+                 list(base_model_name),
+                 point_shape = 1,
+                 ylim = c(0, 3),
+                 alpha = 0.2,
+                 leg_pos = "none")
+```
 
 ```{r es-biomass-tab, results = "asis", echo = FALSE}
 table_biomass(
@@ -251,7 +253,7 @@ table_biomass(
   end_yr = end_yr,
   caption = paste0(
     "Recent trends in estimated beginning of the year female spawning ",
-    "biomass (SSB; thousand~t) and spawning biomass relative to estimated ",
+    "biomass (SSB; kt) and spawning biomass relative to estimated ",
     "unfished equilibrium (Rel. SSB; \\%)."),
   font_size = 10,
   header_font_size = 8)
@@ -302,7 +304,7 @@ posterior distribution for mean unfished equilibrium recruitment ($R_0$) is
 shown as the horizontal dashed line with the 95% posterior credibility
 interval shaded between the dotted lines.
 
-```{r es-recruitment, fig.cap = "(ref:es-recruitment-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that recruitment for each cohort. There are currently three above-average cohorts in the stock with 2020 being the fourth. The 2020 cohort is highly uncertain which can be seen in the size of the credible interval."}
+```{r es-recruitment-fig, fig.cap = "(ref:es-recruitment-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that recruitment for each cohort. There are currently three above-average cohorts in the stock with 2020 being the fourth. The 2020 cohort is highly uncertain which can be seen in the size of the credible interval."}
 plot_recruitment(list(base_model),
                  list(base_model_name),
                  single_line_color = "blue",
@@ -385,7 +387,7 @@ Figure~\@ref(fig:es-fishing-intensity)).
 in the Joint U.S.-Canada Agreement for `r sp` is shown as a horizontal line
 at 1.0.
 
-```{r es-fishing-intensity, fig.cap = "(ref:es-fishing-intensity-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management value of 1 for FSPR 40 percent throughout the entire time series."}
+```{r es-fishing-intensity-fig, fig.cap = "(ref:es-fishing-intensity-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management value of 1 for FSPR 40 percent throughout the entire time series."}
 plot_fishing_intensity(base_model)
 ```
 
@@ -432,7 +434,7 @@ the appearance of the 1999 year class.
 (catch divided by age-2+ biomass) through `r end_yr - 1` with 95% posterior
 credibility intervals.
          
-```{r es-exploitation-fraction, fig.cap = "(ref:es-exploitation-fraction-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the female spawning biomass is approximately 0.05. This is a drop from the last five years which have been approximately 0.1."}
+```{r es-exploitation-fraction-fig, fig.cap = "(ref:es-exploitation-fraction-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the female spawning biomass is approximately 0.05. This is a drop from the last five years which have been approximately 0.1."}
 plot_exploitation_fraction(base_model)
 ```
 
@@ -458,7 +460,7 @@ after the highest relative fishing intensity; labels correspond to year $t$
 credibility intervals for `r end_yr` relative spawning biomass (horizontal)
 and `r end_yr - 1` relative fishing intensity (vertical).
          
-```{r es-phase, fig.cap = "(ref:es-phase-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state."}
+```{r es-phase-fig, fig.cap = "(ref:es-phase-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that we are currently not overfishing nor in an overfished state."}
 plot_phase(base_model,
            1966,
            2023,
@@ -569,7 +571,7 @@ harvest policy has a median of `r ct_limit_quantiles["median"]`~t with a
 wide range of uncertainty, the 95% credibility interval being
 `r ct_limit_quantiles["lower"]`--`r ct_limit_quantiles["upper"]`~t.
 
-```{r es-decisions-biomass, results = "asis", echo = FALSE}
+```{r es-decisions-biomass-tab, results = "asis", echo = FALSE}
 table_decision(
   base_model,
   type = "biomass",
@@ -629,7 +631,7 @@ determination of fishing relative to the default harvest policy. For example,
 fishing at the $\Fforty$ default harvest-rate catch limit (scenario n: default
 HR) in 2023 results in a median relative fishing intensity of 0.91 (Table~\@ref(tab:es-decisions-spr-tab)).
 
-```{r es-decisions-spr, results = "asis", echo = FALSE}
+```{r es-decisions-spr-tab, results = "asis", echo = FALSE}
 table_decision(
   base_model,
   type = "spr",
@@ -680,7 +682,7 @@ credibility intervals of estimated relative spawning biomass to the start
 of `r end_yr` from the base model and projections to the start of `r forecast_yrs[length(forecast_yrs)]` for several management actions, which
 are defined in Table~\@ref(tab:es-decisions-biomass-tab).
          
-```{r es-forecast-depletion-comparison, fig.cap = "(ref:es-forecast-depletion-comparison-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to remain flat for the next 3 years with zero catch and to decline for all non-zero catch levels evaluated."}
+```{r es-depletion-comparison-fig, fig.cap = "(ref:es-forecast-depletion-comparison-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the median relative spawning biomass is projected to remain flat for the next 3 years with zero catch and to decline for all non-zero catch levels evaluated."}
 # See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,
@@ -722,7 +724,7 @@ catch options (explained in Table~\@ref(tab:es-decisions-biomass-tab)) as listed
 Table~\@ref(tab:es-risk-year-1-tab). The symbols indicate points that were computed
 directly from model output and lines interpolate between the points.
          
-```{r es-risk-year-1, fig.cap = "(ref:es-risk-year-1-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the probability that the stock declines in 2024 is 50 percent or greater for all catch levels including zero. The probability that the stock falls under B40 is almost zero for catches up to approximately 350 thousand tonnes."}
+```{r es-risk-year-1-fig, fig.cap = "(ref:es-risk-year-1-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the probability that the stock declines in 2024 is 50 percent or greater for all catch levels including zero. The probability that the stock falls under B40 is almost zero for catches up to approximately 350 kilotonnes."}
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[1],
@@ -757,7 +759,7 @@ options explained in Table~\@ref(tab:es-decisions-biomass-tab)) as listed in
 Table~\@ref(tab:es-risk-year-2-tab). The symbols indicate points that were
 computed directly from model output and lines interpolate between the points.
 
-```{r es-risk-year-2, fig.cap = "(ref:es-risk-year-2-cap)", fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the probability that the stock declines in 2025 is 74 percent or greater for all catch levels including zero. The probability that the stock falls under B40 is below 0.1 for catches up to approximately 380 thousand tonnes."}
+```{r es-risk-year-2-fig, fig.cap = "(ref:es-risk-year-2-cap)", fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "This figure shows that the probability that the stock declines in 2025 is 74 percent or greater for all catch levels including zero. The probability that the stock falls under B40 is below 0.1 for catches up to approximately 380 kilotonnes."}
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[2],
@@ -791,7 +793,7 @@ catch options explained in Table~\@ref(tab:es-decisions-biomass-tab)) as listed 
 Table~\@ref(tab:es-risk-year-3-tab). The symbols indicate points that were computed
 directly from model output and lines interpolate between the points.
 
-```{r es-risk-year-3, fig.cap = "(ref:es-risk-year-3-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the probability that the stock declines in 2026 is approximately 65 percent or greater for all catch levels including zero. The probability that the stock falls under B40 is below 0.1 for catches up to approximately 350 thousand tonnes."}
+```{r es-risk-year-3-fig, fig.cap = "(ref:es-risk-year-3-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the probability that the stock declines in 2026 is approximately 65 percent or greater for all catch levels including zero. The probability that the stock falls under B40 is below 0.1 for catches up to approximately 350 kilotonnes."}
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[3],
