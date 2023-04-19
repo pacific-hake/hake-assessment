@@ -619,7 +619,7 @@ table_param_est(
     "indicates that the parameter or derived quantity was not estimated in ",
     "the model."),
   right_cols_cm = 1.8,
-  font_size = 10,
+  font_size = 9,
   header_font_size = 9,
   longtable = TRUE) |> 
   landscape()
@@ -645,7 +645,7 @@ table_param_est(
     "indicates that the parameter or derived quantity was not estimated in ",
     "the model."),
   right_cols_cm = 2,
-  font_size = 10,
+  font_size = 9,
   header_font_size = 9,
   longtable = TRUE) |> 
   landscape()
@@ -671,7 +671,7 @@ table_param_est(
     "indicates that the parameter or derived quantity was not estimated in ",
     "the model."),
   right_cols_cm = 1.8,
-  font_size = 10,
+  font_size = 9,
   header_font_size = 9,
   longtable = TRUE) |> 
   landscape()
@@ -697,7 +697,7 @@ table_param_est(
     "dash (--) indicates that the parameter or derived quantity was not ",
     "output by the model."),
   right_cols_cm = 1.8,
-  font_size = 10,
+  font_size = 9,
   header_font_size = 9,
   longtable = TRUE) |> 
   landscape()

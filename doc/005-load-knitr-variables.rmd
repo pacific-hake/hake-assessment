@@ -1,9 +1,11 @@
 <!-- Place LaTeX macros here, and R variables in the knitr chunk below -->
 \newcommand{\FSPRthirtyfive}{\mathrm{F}_{SPR=35\%}}
 \newcommand{\FSPRforty}{\mathrm{F}_{SPR=40\%}}
+\newcommand{\FSPRfortynoit}{\mathrm{F_{SPR=40\%}}}
 \newcommand{\FSPRfortyfive}{\mathrm{F}_{SPR=45\%}}
 \newcommand{\FSPRfifty}{\mathrm{F}_{SPR=50\%}}
 \newcommand{\BSPRforty}{\mathrm{B}_{SPR=40\%}}
+\newcommand{\BSPRfortynoit}{\mathrm{B_{SPR=40\%}}}
 \newcommand{\SPRforty}{\mathrm{SPR}_{40\%}}
 \newcommand{\Ffortyten}{$\Fforty$--40:10}
 \newcommand{\Ffortyfivefortyten}{$\Ffortyfive$--40:10}

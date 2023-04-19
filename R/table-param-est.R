@@ -92,6 +92,22 @@ table_param_est <- function(models,
       }
     }
 
+    like <- mdl$likelihoods_used |>
+      as_tibble(rownames = "type") |>
+      mutate(type = tolower(type)) |>
+      select(-lambdas)
+
+    like_fleet <- mdl$likelihoods_by_fleet |>
+      as_tibble() |>
+      mutate(Label = tolower(Label)) |>
+      rename_all(~{tolower(.x)})
+    age_like <- like_fleet |>
+      filter(label == "age_like")
+    survey_age_like <- age_like |>
+      pull(acoustic_survey)
+    fishery_age_like <- age_like |>
+      pull(fishery)
+
     df <- enframe(
       c(nat_m = f(mdl$mcmccalcs$m[2], digits),
         ro = f(mdl$mcmccalcs$ro[2]),
@@ -123,14 +139,23 @@ table_param_est <- function(models,
         ssb_curr_fem = mdl$mcmccalcs$refpts$f_spawn_bio_bf40[2],
         spr_msy = "40.0\\%",
         exp_frac = mdl$mcmccalcs$refpts$exp_frac_spr[2],
-        yield_f40 = mdl$mcmccalcs$refpts$yield_b40[2]))
+        yield_f40 = mdl$mcmccalcs$refpts$yield_b40[2],
+        total_like = f(pull(filter(like, type == "total")), 2),
+        survey_like = f(pull(filter(like, type == "survey")), 2),
+        survey_age_like = f(survey_age_like, 2),
+        fishery_age_like = f(fishery_age_like, 2),
+        recr_like = f(pull(filter(like, type == "recruitment")), 2),
+        priors_like = f(pull(filter(like, type == "parm_priors")), 2),
+        parmdev_like = f(pull(filter(like, type == "parm_devs")), 2)),
+      value = mdl_nm)
   })
 
   # Remove parameter name column from all but first model then bind them all together,
   # make a variable that records if there are any age-1 index parameter values,
   # replace NAs with double-dashes, and add a blank row at the top for aesthetic purposes
-  d[-1] <- map(d[-1], function(mdl_d){
-    mdl_d |> select(value)
+  d[-1] <- map(d[-1], \(mdl_d){
+    mdl_d |>
+      select(-name)
   })
   d <- d |>
     # All this name repair stuff just silences the New names.... messages
@@ -168,25 +193,22 @@ table_param_est <- function(models,
       paste0(end_yr, " relative spawning biomass"),
       paste0(end_yr - 1, " rel. fishing intensity: (1-SPR)/(1-",
              latex_subscr("SPR", "40\\%"), ")"),
-      "Reference Points based on $\\Fforty$",
-      paste0("Female spawning biomass at ",
-             latex_subscr(latex_italics("F"),
-                          "SPR=40\\%"),
-             " (",
-             latex_subscr(latex_italics("B"),
-                          "SPR=40\\%"),
-             ", kt)"),
-      paste0("SPR at ",
-             latex_subscr(latex_italics("F"),
-                          "SPR=40\\%")),
+      "Reference Points based on $\\bm{\\Fforty}$",
+      "Female spawning biomass at $\\FSPRfortynoit$ ($\\BSPRfortynoit$, kt)",
+      "SPR at $\\FSPRfortynoit$ (kt)",
       "Exploitation fraction corresponding to SPR",
-      paste0("Yield at ",
-             latex_subscr(latex_italics("B"),
-                          "SPR=40\\%"),
-             " (kt)")),
+      "Yield at $\\BSPRfortynoit$ (kt)",
+      "Negative log likelihoods",
+      "Total",
+      "Survey index",
+      "Survey age compositions",
+      "Fishery age compositions",
+      "Recruitment",
+      "Parameter priors",
+      "parameter deviations"),
     name = NULL)
 
-   sec_inds <- c(1, 11, 20)
+   sec_inds <- c(1, 11, 20, 25)
 
    # Insert empty rows at the row indices where the section headers are
    row_vec <- rep("", length(models) + 1)
@@ -227,8 +249,6 @@ table_param_est <- function(models,
 
   # Introduce newline at a slash seperator
   col_names <- gsub("\\/", "\\\\/\n", col_names)
-  # Break up "steepness" across two lines
-  #col_names <- gsub("Steepness", "Steep-\nness", col_names)
 
   # Insert custom header fontsize before linebreaker
   if(is.null(header_font_size)){
