@@ -140,7 +140,7 @@ table_decision <- \(
   forecast_tab <- map(forecast, ~{
     if(type == "biomass"){
       tmp <- .x$biomass |>
-        mutate(yr = paste0("Start of ", yr))|>
+        mutate(yr = paste0("Start of ", yr)) |>
         select(-c("25%", "75%"))
       names(tmp)[1] <- "start of year"
       names(tmp) <- gsub("%", "\\\\%", names(tmp))
@@ -192,8 +192,10 @@ table_decision <- \(
       mutate_at(vars(-1), ~{f(.x, 2)}) |>
       mutate_all(~{as.character(.x)}) |>
       mutsel(value = "",
-             `Catch year` = latex_bold("Catch year"),
-             `Catch (t)` = latex_bold("Catch (t)"))
+             `Catch year` = "",
+             `Catch (t)` = "")
+    # `Catch year` = latex_bold("Catch year"),
+    # `Catch (t)` = latex_bold("Catch (t)"))
   }
 
   # If the relative biomass table:
@@ -210,7 +212,6 @@ table_decision <- \(
   # Remove the first three column headers, because there will be a
   # three-column spanning header above them for `Catch Alternative`
   col_names <- names(d)
-  #col_names[1:3] <- ""
 
   # Insert header fontsize if it wasn't supplied
   if(is.null(header_font_size)){
@@ -225,13 +226,9 @@ table_decision <- \(
   col_names <- paste0(hdr_font_str$dbl, col_names)
   # Add \\makecell{} latex command to headers with newlines (\n)
   col_names <- linebreaker(col_names, align = "c")
-  # Remove the first three column names again, see above about 12 lines where
-  # it was done previously for more info
-  if(type == "biomass"){
-    col_names[1:3] <- ""
-  }else if(type == "spr"){
-    col_names[1] <- ""
-  }
+  # Remove the first column name, since the letters column doesn't need
+  # a description or name
+  col_names[1] <- ""
 
   # Create extra header vector with fontsize changes to match the header font
   ca <- latex_bold(linebreaker(paste0(hdr_font_str$dbl,
