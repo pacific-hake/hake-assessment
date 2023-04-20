@@ -13,9 +13,10 @@ post_process_add_counters <- function(x){
   pat <- "\\\\rfoot\\{Executive summary\\}"
   ind <- grep(pat, x)
   if(!length(ind)){
-   stop("Could not find the Executive summary right footer line to insert ",
+   warning("Could not find the Executive summary right footer line to insert ",
         "the letter numbering information for tables and figures",
         call. = FALSE)
+    return(x)
   }
   if(length(ind) > 1){
     stop("Multiple lines matched the Executive summary right footer regular ",
