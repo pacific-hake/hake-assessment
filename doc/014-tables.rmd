@@ -4,7 +4,7 @@
 
 # Tables {#sec:tables}
 
-```{r main-catches-us, results = "asis", echo = FALSE}
+```{r main-catches-us-tab, results = "asis", echo = FALSE}
 table_catch(
   ct,
   inc_foreign_jv = TRUE,
@@ -23,7 +23,7 @@ table_catch(
   longtable = TRUE)
 ```
 
-```{r main-catches-can, results = "asis", echo = FALSE}
+```{r main-catches-can-tab, results = "asis", echo = FALSE}
 table_catch(
   ct,
   inc_foreign_jv = TRUE,
@@ -38,7 +38,7 @@ table_catch(
   longtable = TRUE)
 ```
 
-```{r main-landings-tac-table, results = "asis", echo = FALSE}
+```{r main-landings-tac-tab, results = "asis", echo = FALSE}
 table_landings_tac(
   ct,
   start_yr = start_yr,
@@ -55,7 +55,7 @@ table_landings_tac(
   landscape()
 ```
 
-```{r main-sampling-history-table, results = "asis", echo = FALSE}
+```{r main-sampling-history-tab, results = "asis", echo = FALSE}
 table_sampling_history(
   sampling_history_df,
   start_yr = start_yr_age_comps,
@@ -74,7 +74,7 @@ table_sampling_history(
   landscape()
 ```
 
-```{r main-us-cp-age-data-table, results = "asis", echo = FALSE}
+```{r main-us-cp-age-data-tab, results = "asis", echo = FALSE}
 table_us_age_data(
   us_cp_age_df,
   fleet = "cp",
@@ -93,7 +93,7 @@ table_us_age_data(
 
 \newpage
 
-```{r main-us-ms-age-data-table, results = "asis", echo = FALSE}
+```{r main-us-ms-age-data-tab, results = "asis", echo = FALSE}
 table_us_age_data(
   us_ms_age_df,
   fleet = "ms",
@@ -110,7 +110,7 @@ table_us_age_data(
   landscape()
 ```
 
-```{r main-us-sb-age-data-table, results = "asis", echo = FALSE}
+```{r main-us-sb-age-data-tab, results = "asis", echo = FALSE}
 table_us_age_data(
   us_cp_age_df,
   fleet = "sb",
@@ -127,7 +127,7 @@ table_us_age_data(
   landscape()
 ```
 
-```{r main-can-ss-age-data-table, results = "asis", echo = FALSE}
+```{r main-can-ss-age-data-tab, results = "asis", echo = FALSE}
 table_can_age_data(
   can_ages_lst,
   can_ss_num_fish,
@@ -145,7 +145,7 @@ table_can_age_data(
   landscape()
 ```
 
-```{r main-can-ft-age-data-table, results = "asis", echo = FALSE}
+```{r main-can-ft-age-data-tab, results = "asis", echo = FALSE}
 table_can_age_data(
   can_ages_lst,
   can_ft_num_fish,
@@ -163,7 +163,7 @@ table_can_age_data(
   landscape()
 ```
 
-```{r main-input-age-data-fishery-table, results = "asis", echo = FALSE}
+```{r main-input-age-data-fishery-tab, results = "asis", echo = FALSE}
 table_input_age_data(
   base_model,
   fleet = "fishery",
@@ -184,7 +184,7 @@ table_input_age_data(
   landscape()
 ```
 
-```{r main-input-age-data-survey-table, results = "asis", echo = FALSE}
+```{r main-input-age-data-survey-tab, results = "asis", echo = FALSE}
 table_input_age_data(
   base_model,
   fleet = "survey",
@@ -201,7 +201,7 @@ table_input_age_data(
   landscape()
 ```
 
-```{r main-survey-history-table, results = "asis", echo = FALSE}
+```{r main-survey-history-tab, results = "asis", echo = FALSE}
 table_survey_history(
   base_model,
   survey_history_df,
@@ -216,7 +216,7 @@ table_survey_history(
   landscape()
 ```
 
-```{r main-survey-by-country-table, results = "asis", echo = FALSE}
+```{r main-survey-by-country-tab, results = "asis", echo = FALSE}
 table_survey_by_country(
   survey_by_country_df,
   digits = 3,
@@ -229,13 +229,13 @@ table_survey_by_country(
   landscape()
 ```
 
-```{r main-maturity-ogives-table, results = "asis", echo = FALSE}
+```{r main-maturity-ogives-tab, results = "asis", echo = FALSE}
 table_maturity_ogive(
   maturity_ogives_df,
   caption = paste0(
     "Information on maturity and fecundity used in this assessment as shown ",
     "in Figure~\\@ref(fig:main-maturity). The sample sizes refer to the ",
-    "subset of samples in Table~\\@ref(tab:main-ovaries-table) for which age ",
+    "subset of samples in Table~\\@ref(tab:main-ovaries-tab) for which age ",
     "readings and histological estimates of maturity have been completed. ",
     "The mean weight (kg) is based on a much larger set of samples. Mean ",
     "fecundity is the product of maturity and mean weight but note that ",
@@ -251,7 +251,7 @@ table_maturity_ogive(
 the caption below. Note it is OUTSIDE of a knitr chunk. -->
 (ref:cite-jtc2018) @JTC2018
 
-```{r main-ovaries-table, results = "asis", echo = FALSE}
+```{r main-ovaries-tab, results = "asis", echo = FALSE}
 table_ovary_samples(
   ovary_samples_df,
   caption = paste0(
@@ -264,7 +264,7 @@ table_ovary_samples(
 ```
 \clearpage
 
-```{r main-parameters-estimated-summary-table, results = "asis", echo = FALSE}
+```{r main-parameters-estimated-summary-tab, results = "asis", echo = FALSE}
 table_param_est_bounds(
   base_model,
   start_rec_dev_yr = recruit_dev_start_yr,
@@ -281,7 +281,7 @@ table_param_est_bounds(
   longtable = TRUE)
 ```
 
-```{r main-assessment-changes-table, results = "asis", echo = FALSE}
+```{r main-assessment-changes-tab, results = "asis", echo = FALSE}
 table_assessment_changes(
   assess_changes_df,
   start_yr = 2011,
@@ -298,7 +298,7 @@ table_assessment_changes(
   longtable = TRUE)
 ```
 
-```{r main-est-numbers-at-age-table, results = "asis", echo = FALSE}
+```{r main-est-numbers-at-age-tab, results = "asis", echo = FALSE}
 table_at_age(
   base_model,
   type = "naa",
@@ -312,7 +312,7 @@ table_at_age(
   landscape()
 ```
 
-```{r main-est-biomass-at-age-table, results = "asis", echo = FALSE}
+```{r main-est-biomass-at-age-tab, results = "asis", echo = FALSE}
 table_at_age(
   base_model,
   type = "baa",
@@ -326,7 +326,7 @@ table_at_age(
   landscape()
 ```
 
-```{r main-est-exp-rate-at-age-table, results = "asis", echo = FALSE}
+```{r main-est-exp-rate-at-age-tab, results = "asis", echo = FALSE}
 table_at_age(
   base_model,
   type = "eraa",
@@ -343,7 +343,7 @@ table_at_age(
   landscape()
 ```
 
-```{r main-est-catch-at-age-table, results = "asis", echo = FALSE}
+```{r main-est-catch-at-age-tab, results = "asis", echo = FALSE}
 table_at_age(
   base_model,
   type = "caan",
@@ -357,7 +357,7 @@ table_at_age(
   landscape()
 ```
 
-```{r main-est-catch-at-age-biomass-table, results = "asis", echo = FALSE}
+```{r main-est-catch-at-age-biomass-tab, results = "asis", echo = FALSE}
 table_at_age(
   base_model,
   type = "caab",
@@ -371,7 +371,7 @@ table_at_age(
   landscape()
 ```
 
-```{r main-cohort-effects-table, results = "asis", echo = FALSE}
+```{r main-cohort-effects-tab, results = "asis", echo = FALSE}
 table_cohort(
   base_model,
   cohorts = c(1999, 2010, 2014, 2016, 2020),
@@ -395,7 +395,7 @@ table_cohort(
   longtable = TRUE)
 ```
 
-```{r main-median-posterior-table, results = "asis", echo = FALSE}
+```{r main-median-posterior-tab, results = "asis", echo = FALSE}
 table_median_posteriors(
   base_model,
   start_yr = start_yr,
@@ -417,7 +417,7 @@ table_median_posteriors(
   longtable = TRUE)
 ```
 
-```{r main-ci-posterior-table, results = "asis", echo = FALSE}
+```{r main-ci-posterior-tab, results = "asis", echo = FALSE}
 table_ci_posteriors(
   base_model,
   start_yr = start_yr,
@@ -425,7 +425,7 @@ table_ci_posteriors(
   digits = 1,
   caption = paste0(
     "Time-series of 95\\% posterior credibility intervals for the quantities ",
-    "shown in Table \\@ref(tab:main-median-posterior-table). In the last ",
+    "shown in Table \\@ref(tab:main-median-posterior-tab). In the last ",
     "row, dashes (--) indicate quanties requiring ", end_yr, " catch which ",
     "has not taken place yet."),
   font_size = 8,
@@ -433,7 +433,7 @@ table_ci_posteriors(
   longtable = TRUE)
 ```
 
-```{r main-parameter-estimates, results = "asis", echo = FALSE}
+```{r main-parameter-estimates-tab, results = "asis", echo = FALSE}
 table_param_est(
   list(base_model, last_yr_base_model),
   model_nms = c(base_model_name, last_yr_base_model_name),
@@ -456,7 +456,7 @@ table_param_est(
   longtable = TRUE)
 ```
 
-```{r main-reference-points-table, results = "asis", echo = FALSE}
+```{r main-reference-points-tab, results = "asis", echo = FALSE}
 table_reference_points(
   base_model,
   category_bold = TRUE,
@@ -479,7 +479,7 @@ table_reference_points(
 
 \clearpage
 
-```{r main-decisions-biomass-table, results = "asis", echo = FALSE}
+```{r main-decisions-biomass-tab, results = "asis", echo = FALSE}
 table_decision(
   base_model,
   type = "biomass",
@@ -513,7 +513,7 @@ table_decision(
   longtable = TRUE)
 ```
 
-```{r main-decisions-spr-table, results = "asis", echo = FALSE}
+```{r main-decisions-spr-tab, results = "asis", echo = FALSE}
 table_decision(
   base_model,
   type = "spr",
@@ -523,7 +523,7 @@ table_decision(
     "Forecast quantiles of ", sp, " relative fishing intensity ",
     "(1-SPR)/(1-SPR\\textsubscript{40\\%}), expressed as a proportion, for ",
     "the ", min(forecast_yrs), "--", max(forecast_yrs) - 1, " catch ",
-    "alternatives presented in Table~\\@ref(tab:main-decisions-biomass-table). ",
+    "alternatives presented in Table~\\@ref(tab:main-decisions-biomass-tab). ",
     "Values greater than 1 indicate relative fishing intensities greater ",
     "than the $\\Fforty$ harvest policy calculated using baseline ",
     "selectivity."),
@@ -539,7 +539,7 @@ table_decision(
   longtable = TRUE)
 ```
 
-```{r main-risk-year-1-table, results = "asis", echo = FALSE}
+```{r main-risk-year-1-tab, results = "asis", echo = FALSE}
 # Index in model$risks to use, e.g. 1 means forecast year 2 compared to
 # forecast year 1
 table_risk(
@@ -552,13 +552,13 @@ table_risk(
     "Probabilities related to spawning biomass, relative fishing intensity, ",
     "and the ", end_yr + 1, " default harvest policy catch for alternative ",
     end_yr, " catch options (catch options explained in ",
-    "Table~\\@ref(tab:main-decisions-biomass-table))."),
+    "Table~\\@ref(tab:main-decisions-biomass-tab))."),
   font_size = 10,
   header_font_size = 10,
   longtable = TRUE)
 ```
 
-```{r main-risk-year-2-table, results = "asis", echo = FALSE}
+```{r main-risk-year-2-tab, results = "asis", echo = FALSE}
 # Index in model$risks to use, e.g. 1 means forecast year 2 compared to
 # forecast year 1
 table_risk(
@@ -571,14 +571,14 @@ table_risk(
     "Probabilities related to spawning biomass, relative fishing intensity, ",
     "and the ", end_yr + 2, " default harvest policy catch for alternative ",
     end_yr + 1, " catch options, given the ", end_yr, " catch level shown ",
-    "in Table~\\@ref(tab:main-risk-year-1-table) (catch options explained in ",
-    "Table~\\@ref(tab:main-decisions-biomass-table))."),
+    "in Table~\\@ref(tab:main-risk-year-1-tab) (catch options explained in ",
+    "Table~\\@ref(tab:main-decisions-biomass-tab))."),
   font_size = 10,
   header_font_size = 10,
   longtable = TRUE)
 ```
 
-```{r main-risk-year-3-table, results = "asis", echo = FALSE}
+```{r main-risk-year-3-tab, results = "asis", echo = FALSE}
 # Index in model$risks to use, e.g. 1 means forecast year 2 compared to
 # forecast year 1
 table_risk(
@@ -591,15 +591,15 @@ table_risk(
     "Probabilities related to spawning biomass, relative fishing intensity, ",
     "and the ", end_yr + 3, " default harvest policy catch for alternative ",
     end_yr + 2, " catch options, given the ", end_yr, " and ", end_yr + 1,
-    " catch levels shown in Tables~\\@ref(tab:main-risk-year-1-table) and~",
-    "\\@ref(tab:main-risk-year-2-table) (catch options explained in Table~",
-    "\\@ref(tab:main-decisions-biomass-table))."),
+    " catch levels shown in Tables~\\@ref(tab:main-risk-year-1-tab) and~",
+    "\\@ref(tab:main-risk-year-2-tab) (catch options explained in Table~",
+    "\\@ref(tab:main-decisions-biomass-tab))."),
   font_size = 10,
   header_font_size = 10,
   longtable = TRUE)
 ```
 
-```{r main-parameter-estimates-sens-1, results = "asis", echo = FALSE}
+```{r main-parameter-estimates-sens-1-tab, results = "asis", echo = FALSE}
 table_param_est(
   sens_models[[1]],
   model_nms = sens_models_names[[1]],
@@ -625,7 +625,7 @@ table_param_est(
   landscape()
 ```
 
-```{r main-parameter-estimates-sens-2, results = "asis", echo = FALSE}
+```{r main-parameter-estimates-sens-2-tab, results = "asis", echo = FALSE}
 table_param_est(
   sens_models[[2]],
   model_nms = sens_models_names[[2]],
@@ -651,7 +651,7 @@ table_param_est(
   landscape()
 ```
 
-```{r main-parameter-estimates-sens-3, results = "asis", echo = FALSE}
+```{r main-parameter-estimates-sens-3-tab, results = "asis", echo = FALSE}
 table_param_est(
   sens_models[[3]],
   model_nms = sens_models_names[[3]],
@@ -677,7 +677,7 @@ table_param_est(
   landscape()
 ```
 
-```{r main-parameter-estimates-retro, results = "asis", echo = FALSE}
+```{r main-parameter-estimates-retro-tab, results = "asis", echo = FALSE}
 table_param_est(
   retro_lst,
   model_nms = retro_model_nms,
