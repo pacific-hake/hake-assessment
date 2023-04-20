@@ -77,4 +77,11 @@ post_process_set_object_placement <- function(x, figs_dir){
     knitr_label = "es-decisions-spr-tab",
     place = "H")
 
+  x <- post_process_set_tab_fig_placement(
+    x,
+    type = "figure",
+    knitr_label = "main-overview-map-fig",
+    place = "H")
+
+
 }
