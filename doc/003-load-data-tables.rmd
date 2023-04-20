@@ -1,7 +1,7 @@
 <!-- Load all data tables into global variables
      The files are loaded from the package installation, so you must
      build and install the package before trying to run this code or
-     build the document -->
+     build the document if you add a new data file  -->
 
 ```{r load-data-tables-chunk, echo = FALSE}
 library(readr)
@@ -204,6 +204,16 @@ us_atsea_fishing_depth_df <-
            show_col_types = FALSE)
 us_atsea_bottom_depth_df <-
   read_csv(file.path(load_dir, "depth-us-atsea-bottom.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+
+# Overview map data ----
+ports_df <-
+  read_csv(file.path(load_dir, "map-data", "port-locations.csv"),
+           col_types = cols(),
+           show_col_types = FALSE)
+states_df <- 
+  read_csv(file.path(load_dir, "map-data", "state-locations.csv"),
            col_types = cols(),
            show_col_types = FALSE)
 

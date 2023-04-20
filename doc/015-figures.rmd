@@ -1,16 +1,27 @@
-%% main-figures.rnw
+\newpage
 
-\section{Figures} \label{sec:figures}
+\rfoot{Figures}
+
+# Figures {#sec:figures}
+(ref:main-overview-map-cap) Overview map of the area in the Northeast Pacific
+Ocean occupied by `r sp`. Common areas referred to in this document are shown.
+
+(ref:main-overview-map-alt) This figure shows many ports and cities of
+interest for the hake fishery.
+
+```{r main-overview-map-fig, fig.cap = "(ref:main-overview-map-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-overview-map-alt)"}
+plot_overview_map(ports_df, states_df)
+```
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
 \begin{center}
-<<main-overview-map, fig.height=9, is.fig = TRUE, alt.text = "This figure shows many ports and cities of interest for the hake fishery.">>=
-make.overview.map.plot(path = rootd_map_data)
+<<main-overview-map, fig.height=9, is.fig = TRUE, alt.text = "">>=
+
 @
 \end{center}
-\caption{Overview map of the area in the Northeast Pacific Ocean occupied by \fishname.
-  Common areas referred to in this document are shown.}
+\caption{}
 \label{fig:main-overview-map}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
