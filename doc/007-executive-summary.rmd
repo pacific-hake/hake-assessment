@@ -642,7 +642,7 @@ table_decision(
     "Forecast quantiles of ", sp, " relative fishing intensity ",
     "(1-SPR)/(1-SPR\\textsubscript{40\\%}), expressed as a proportion, for ",
     "the ", min(forecast_yrs), "--", max(forecast_yrs) - 1, " catch ",
-    "alternatives presented in Table~\\@ref(tab:main-decisions-biomass-table). ",
+    "alternatives presented in Table~\\@ref(tab:es-decisions-biomass-tab). ",
     "Values greater than 1 indicate relative fishing intensities greater ",
     "than the $\\Fforty$ harvest policy calculated using baseline ",
     "selectivity."),
@@ -746,11 +746,13 @@ table_risk(
     "Probabilities related to spawning biomass, relative fishing intensity, ",
     "and the ", end_yr + 1, " default harvest policy catch for alternative ",
     end_yr, " catch options (catch options explained in ",
-    "Table~\\@ref(tab:main-decisions-biomass-table))."),
+    "Table~\\@ref(tab:es-decisions-biomass-tab))."),
   font_size = 10,
   header_font_size = 10,
   longtable = TRUE)
 ```
+
+\newpage
 
 (ref:es-risk-year-2-cap) Graphical representation
 of the probabilities related to spawning biomass, relative fishing intensity,
@@ -779,8 +781,8 @@ table_risk(
     "Probabilities related to spawning biomass, relative fishing intensity, ",
     "and the ", end_yr + 2, " default harvest policy catch for alternative ",
     end_yr + 1, " catch options, given the ", end_yr, " catch level shown ",
-    "in Table~\\@ref(tab:main-risk-year-1-table) (catch options explained in ",
-    "Table~\\@ref(tab:main-decisions-biomass-table))."),
+    "in Table~\\@ref(tab:es-risk-year-1-tab) (catch options explained in ",
+    "Table~\\@ref(tab:es-decisions-biomass-tab))."),
   font_size = 10,
   header_font_size = 10,
   longtable = TRUE)
@@ -813,9 +815,9 @@ table_risk(
     "Probabilities related to spawning biomass, relative fishing intensity, ",
     "and the ", end_yr + 3, " default harvest policy catch for alternative ",
     end_yr + 2, " catch options, given the ", end_yr, " and ", end_yr + 1,
-    " catch levels shown in Tables~\\@ref(tab:main-risk-year-1-table) and~",
-    "\\@ref(tab:main-risk-year-2-table) (catch options explained in Table~",
-    "\\@ref(tab:main-decisions-biomass-table))."),
+    " catch levels shown in Tables~\\@ref(tab:es-risk-year-1-tab) and~",
+    "\\@ref(tab:es-risk-year-2-tab) (catch options explained in Table~",
+    "\\@ref(tab:es-decisions-biomass-tab))."),
   font_size = 10,
   header_font_size = 10,
   longtable = TRUE)
