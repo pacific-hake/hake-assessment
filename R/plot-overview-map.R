@@ -38,6 +38,9 @@ plot_overview_map <- function(
   ports_right_south <- ports |>
     filter(pos == "right",
            north_south == "south")
+  ports_left_far_south <- ports |>
+    filter(pos == "left",
+           north_south == "far_south")
 
   ports_left_north_sf <- ports_left_north |>
     st_as_sf(coords = c("lon", "lat"), crs = crs) |>
@@ -49,6 +52,9 @@ plot_overview_map <- function(
     st_as_sf(coords = c("lon", "lat"), crs = crs) |>
     `st_crs<-`(crs)
   ports_right_south_sf <- ports_right_south |>
+    st_as_sf(coords = c("lon", "lat"), crs = crs) |>
+    `st_crs<-`(crs)
+  ports_left_far_south_sf <- ports_left_far_south |>
     st_as_sf(coords = c("lon", "lat"), crs = crs) |>
     `st_crs<-`(crs)
 
@@ -80,6 +86,10 @@ plot_overview_map <- function(
             size = 2,
             show.legend = FALSE) +
     geom_sf(data = ports_right_south_sf,
+            color = "red",
+            size = 2,
+            show.legend = FALSE) +
+    geom_sf(data = ports_left_far_south_sf,
             color = "red",
             size = 2,
             show.legend = FALSE) +
@@ -127,6 +137,14 @@ plot_overview_map <- function(
                         y = lat,
                         label = name),
                     xlim = c(-122, NA),
+                    size = 4.5,
+                    segment.size = 0.8,
+                    arrow = arrow(length = unit(0.01, "npc"))) +
+    geom_text_repel(data = ports_left_far_south,
+                    aes(x = lon,
+                        y = lat,
+                        label = name),
+                    xlim = c(NA, -121),
                     size = 4.5,
                     segment.size = 0.8,
                     arrow = arrow(length = unit(0.01, "npc"))) +
