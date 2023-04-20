@@ -151,8 +151,8 @@ load_mcmc_vals <- function(model,
     as_tibble()
 
   # Random values relying directly on MCMC posteriors in the document text
-  rec_cor_2014_2016 <- cor(model$mcmc$Main_RecrDev_2014,
-                           model$mcmc$Main_RecrDev_2016)
+  out$rec_cor_2014_2016 <- cor(model$mcmc$Main_RecrDev_2014,
+                               model$mcmc$Main_RecrDev_2016)
 
   out
 }
