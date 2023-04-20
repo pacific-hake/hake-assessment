@@ -73,8 +73,9 @@ post_process_section_headers <- function(tex_vec){
   tex_vec <- sec(tex_vec, inds, type = "section", center = TRUE)
   inds <- grep("\\\\(sub){1}section\\*?\\{.*(})?", tex_vec)
   tex_vec <- sec(tex_vec, inds, type = "subsection")
-  section_inds <- grep("\\\\(sub){2}section\\*?\\{.*(})?", tex_vec)
-  tex_vec <- sec(tex_vec, inds, type = "subsubsection")
+  # subsubsection headers should not be uppercase
+  #section_inds <- grep("\\\\(sub){2}section\\*?\\{.*(})?", tex_vec)
+  #tex_vec <- sec(tex_vec, inds, type = "subsubsection")
 
   tex_vec
 }
