@@ -21,10 +21,10 @@
 post_process_table_of_contents <- function(x,
                                            section_indent_inch = 0,
                                            section_num_width_inch = 0.2,
-                                           subsection_indent_inch = 0.2,
-                                           subsection_num_width_inch = 0.3,
-                                           subsubsection_indent_inch = 0.4,
-                                           subsubsection_num_width_inch = 0.4,
+                                           subsection_indent_inch = 0.3,
+                                           subsection_num_width_inch = 0.35,
+                                           subsubsection_indent_inch = 0.5,
+                                           subsubsection_num_width_inch = 0.45,
                                            ...){
 
   toc_indicator_line <- paste0("TABLE OF CONTENTS GOES HERE - ",
