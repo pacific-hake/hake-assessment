@@ -120,6 +120,9 @@ post_process <- function(fn,
   # Figure/table lettering/numbering ----
   x <- post_process_add_counters(x)
 
+  # Subtract vertical space before section headers ----
+  x <- post_process_subtract_section_space(x)
+
   # Mark file with modification text ----
   x <- c(modification_text, x)
 

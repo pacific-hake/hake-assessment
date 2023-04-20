@@ -29,7 +29,7 @@ post_process_move_table_captions <- function(x){
       post_process_interlace_chunks(lst)
     }else{
       warning("Did not match the table tag `", tag, "` in the TeX file. ",
-              "The table caption was not set be moved as intended")
+              "The table caption could not be adjusted since it doesn't exist")
       x
     }
   }

@@ -10,11 +10,24 @@
 #' @export
 post_process_set_object_placement <- function(x, figs_dir){
 
+  # x <- post_process_set_tab_fig_placement(
+  #   x,
+  #   type = "table",
+  #   knitr_label = "es-catches-tab",
+  #   place = "!tbp")
+
   x <- post_process_set_tab_fig_placement(
     x,
     type = "table",
-    knitr_label = "es-catches-tab",
-    place = "!tbp")
+    knitr_label = "es-recruitment-tab",
+    place = "H")
+
+  x <- post_process_set_tab_fig_placement(
+    x,
+    type = "table",
+    knitr_label = "es-reference-points-tab",
+    place = "H")
+
   x <- post_process_set_tab_fig_placement(
     x,
     type = "table",
@@ -45,6 +58,23 @@ post_process_set_object_placement <- function(x, figs_dir){
     x,
     type = "figure",
     knitr_label = "es-relative-biomass-fig",
+    place = "H")
+  x <- post_process_set_tab_fig_placement(
+    x,
+    type = "figure",
+    knitr_label = "es-exploitation-fraction-fig",
+    place = "H")
+
+  x <- post_process_set_tab_fig_placement(
+    x,
+    type = "table",
+    knitr_label = "es-decisions-biomass-tab",
+    place = "H")
+
+  x <- post_process_set_tab_fig_placement(
+    x,
+    type = "table",
+    knitr_label = "es-decisions-spr-tab",
     place = "H")
 
 }
