@@ -30,10 +30,16 @@ post_process_subtract_section_space <- function(x){
                                    tolower(x[inds[i]])))
     maturity_sec <-  length(grep("data-maturity",
                                  tolower(x[inds[i]])))
+    modeling_hist_sec <-  length(grep("assessment-modeling-history",
+                                      tolower(x[inds[i]])))
+    assess_changes_sec <-  length(grep("assessment-changes",
+                                       tolower(x[inds[i]])))
     if(stock_struct_sec ||
        total_catch_sec ||
        acoustic_survey_sec ||
-       maturity_sec){
+       maturity_sec ||
+       modeling_hist_sec ||
+       assess_changes_sec){
       next
     }
 
