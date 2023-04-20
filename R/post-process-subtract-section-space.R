@@ -24,9 +24,19 @@ post_process_subtract_section_space <- function(x){
     # is added
     stock_struct_sec <- length(grep("intro-stock-structure",
                                     tolower(x[inds[i]])))
-    if(stock_struct_sec){
+    total_catch_sec <- length(grep("data-total-catch",
+                                   tolower(x[inds[i]])))
+    acoustic_survey_sec <- length(grep("data-acoustic-survey",
+                                   tolower(x[inds[i]])))
+    maturity_sec <-  length(grep("data-maturity",
+                                 tolower(x[inds[i]])))
+    if(stock_struct_sec ||
+       total_catch_sec ||
+       acoustic_survey_sec ||
+       maturity_sec){
       next
     }
+
     lst <- post_process_extract_chunks(x, inds[i], inds[i])
     lst$between[[1]] <- c("\\vspace{-4mm}",
                           lst$between[[1]])
