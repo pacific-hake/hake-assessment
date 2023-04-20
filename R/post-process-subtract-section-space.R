@@ -20,6 +20,13 @@ post_process_subtract_section_space <- function(x){
 
   for(i in seq_along(inds)){
     inds <- grep("^\\\\hypertarget\\{", x)
+    # Special cases - some sections start overlapping if tnegative space
+    # is added
+    stock_struct_sec <- length(grep("intro-stock-structure",
+                                    tolower(x[inds[i]])))
+    if(stock_struct_sec){
+      next
+    }
     lst <- post_process_extract_chunks(x, inds[i], inds[i])
     lst$between[[1]] <- c("\\vspace{-4mm}",
                           lst$between[[1]])
