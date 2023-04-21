@@ -15,24 +15,6 @@ interest for the hake fishery.
 plot_overview_map(ports_df, states_df)
 ```
 
-
-```{r main-landings-tac-tab, results = "asis", echo = FALSE}
-table_landings_tac(
-  ct,
-  start_yr = start_yr,
-  end_yr = last_data_yr,
-  caption = paste0(
-    sp,
-    " landings and management decisions, ", start_yr, "--", last_data_yr, ". ", 
-    "A dash (--)  indicates the management decision was either not ",
-    "specified or was unknown to the authors at the time of this ",
-    "assessment."),
-  font_size = 10,
-  header_font_size = 11,
-  longtable = TRUE) |>
-  landscape()
-```
-
 (ref:main-acoustic-age2-bs-cap) Spatial distribution of acoustic backscatter
 attributable to age-2 and older `r sp` from the `r survey_name`
 (`r survey_start_yr`--`r survey_end_yr`). Area of the circle is roughly
@@ -67,3 +49,13 @@ BEGIN LANDSCAPE - must have blank line below separating this from figure code
 
 END LANDSCAPE - must have blank line above separating this from figure code
 
+(ref:main-catches-cap) Total `r sp` catch used in the assessment by sector,
+`r start_yr`--`r last_data_yr`. U.S. tribal catches are included in the
+sectors where they are represented.
+
+(ref:main-catches-alt) This figure shows that catches in four of the last six
+years have been the largest in the time series.
+
+```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-catches-alt)"}
+plot_catches(ct, leg.y.loc = 650)
+```
