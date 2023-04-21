@@ -5,15 +5,13 @@
 \title{Inject LaTeX float placement codes for figure and tables, based on their
 knitr chunk label names}
 \usage{
-post_process_set_object_placement(x, figs_dir)
+post_process_set_object_placement(x, ...)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
 
-\item{figs_dir}{The name of the directory in which the knitr-built
-figures reside. Used for matching figure import locations inside the tex
-file}
+\item{...}{Absorbs arguments meant for other functions}
 }
 \value{
 The modified Tex code, as a vector

@@ -43,11 +43,11 @@ proportional to observed backscatter. Figure produced by Julia Clemons (NOAA).
 (ref:main-acoustic-age1-bs-alt) This figure shows the assumed varying
 locations of age-1 `r sp`
 
-BEGIN LANDSCAPE - must have blank line below separating this from figure code
+BEGIN LANDSCAPE
 
 ![(ref:main-acoustic-age1-bs-cap)](`r here::here("doc", "main-figures", "age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue.png")`)
 
-END LANDSCAPE - must have blank line above separating this from figure code
+END LANDSCAPE
 
 (ref:main-catches-cap) Total `r sp` catch used in the assessment by sector,
 `r start_yr`--`r last_data_yr`. U.S. tribal catches are included in the
@@ -56,6 +56,55 @@ sectors where they are represented.
 (ref:main-catches-alt) This figure shows that catches in four of the last six
 years have been the largest in the time series.
 
+BEGIN LANDSCAPE
+
 ```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-catches-alt)"}
 plot_catches(ct, leg.y.loc = 650)
+```
+END LANDSCAPE
+
+(ref:main-us-catch-rates-cap) Unstandardized (raw) catch-rates (t/hr) of 
+`r sp` catches by tow in the U.S. at-sea fleet from
+`r last_data_yr - 4`--`r last_data_yr`.
+
+(ref:main-us-catch-rates-alt) This figure shows changes in catch rates for
+the U.S. fleet. The rates are highest in September followed by May and June
+
+![(ref:main-us-catch-rates-cap)](`r here::here("doc", "main-figures", "fishCatchRatesUS.png")`)
+
+(ref:main-us-depths-cap) Distribution of fishing depths (left) and bottom
+depths (right), in meters, of hauls targeting `r sp` in the U.S.
+Catcher-Processor and Mothership sectors from
+`r last_data_yr - 4`--`r last_data_yr`. Horizontal lines in each box
+represent the median depth and boxes encompass the middle 50% of the
+data. Whiskers encompass the 95% quantiles.
+
+(ref:main-us-depths-alt) This figure shows that bottom depths have been
+approximately 500 meters and fishing depths approximately 300 meters on
+average in the last 5 years for United States fleets
+
+```{r main-us-depths-fig, fig.cap = "(ref:main-us-depths-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-us-depths-alt)"}
+plot_depth_2_panel(us_atsea_fishing_depth_df,
+                   us_atsea_bottom_depth_df,
+                   yrs = (last_data_yr - 4):last_data_yr)
+
+```
+
+(ref:main-can-depths-cap) Distribution of fishing depths (left) and bottom
+depths (right), in meters, of hauls targeting `r sp` in the Canadian
+fleets from `r last_data_yr - 4`--`r last_data_yr`. Horizontal lines in each
+box represent the median depth and boxes encompass the middle 50% of the
+data. Whiskers encompass the 95% quantiles.
+
+(ref:main-can-depths-alt) This figure shows that for the last five years in Canada freezer trawlers fished at an approximate bottom depth of 400 meters and shoreside vessels fished at an approximate bottom depth of 200 meters. Freezer trawlers fished at a gear depth of approximately 200 meters and shoreside vessels at a depth of approximately 150 meters. In 2023 this changed somewhat with both fleets fishing closer to the bottom and in shallower water
+
+```{r main-can-depths-fig, fig.cap = "(ref:main-can-depths-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-can-depths-alt)"}
+plot_depth_4_panel(can_ft_gear_depth_df,
+                   can_ft_bottom_depth_df,
+                   can_ss_gear_depth_df,
+                   can_ss_bottom_depth_df,
+                   fleet_1_name = "Freezer trawlers",
+                   fleet_2_name = "Shoreside",
+                   yrs = (last_data_yr - 4):last_data_yr)
+
 ```

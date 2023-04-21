@@ -3,12 +3,11 @@
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
-#' @param figs_dir The name of the directory in which the knitr-built
-#' figures reside. Used for matching figure import locations inside the tex
-#' file
+#' @param ... Absorbs arguments meant for other functions
+#'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_set_object_placement <- function(x, figs_dir){
+post_process_set_object_placement <- function(x, ...){
 
   # x <- post_process_set_tab_fig_placement(
   #   x,
@@ -83,5 +82,10 @@ post_process_set_object_placement <- function(x, figs_dir){
     knitr_label = "main-overview-map-fig",
     place = "H")
 
+  x <- post_process_set_tab_fig_placement(
+    x,
+    type = "figure",
+    knitr_label = "main-us-depths-fig",
+    place = "H")
 
 }

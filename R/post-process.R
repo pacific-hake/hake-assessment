@@ -106,7 +106,7 @@ post_process <- function(fn,
   x <- post_process_table_of_contents(x, ...)
 
   # Placements for figures and tables ----
-  x <- post_process_set_object_placement(x, figs_dir = figs_dir)
+  x <- post_process_set_object_placement(x, ...)
 
   # Longtable customization ----
   x <- post_process_longtables(x, ...)
