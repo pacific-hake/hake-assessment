@@ -31,7 +31,7 @@ post_process_extract_chunks <- function(x, beg_inds, end_inds){
 
   if(!length(beg_inds)){
     stop("`beg_inds` is zero length. You must have at least one set of ",
-         "indices to exract",
+         "indices to extract",
          call. = FALSE)
   }
   if(length(beg_inds) != length(end_inds)){

@@ -111,8 +111,10 @@ post_process <- function(fn,
   # Longtable customization ----
   x <- post_process_longtables(x, ...)
 
-  # Landscape table customization
+  # Landscape figures and table customization
+  x <- post_process_landscape_figures(x)
   x <- post_process_landscape_tables(x)
+  x <- post_process_fix_landscape_issues(x)
 
   # Table caption alignment ----
   x <- post_process_move_table_captions(x)
