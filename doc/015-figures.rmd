@@ -108,3 +108,21 @@ plot_depth_4_panel(can_ft_gear_depth_df,
                    yrs = (last_data_yr - 4):last_data_yr)
 
 ```
+
+(ref:main-data-overview-cap) Overview of data used in this assessment. Circle
+areas are proportional to total catch for the fishery data, precision for
+the indices, and total sample size for the age compositions (and cannot be
+compared across data types). Additionally, mean weight-at-age data
+(`r start_yr_age_comps`--`r last_data_yr`; not depicted here but see
+Figure~\@ref(fig:main-empirical-weight-at-age-numbers-fig) for sample sizes)
+are used to account for time-varying growth.
+
+(ref:main-data-overview-alt) This figure gives an overview of the data used
+in this assessment. Fishery catches span the whole time series from 1966 to
+present. Fishery age compositions from 1975 to present were used and all data
+from the age 2 plus acoustic survey were included. This includes the index of
+abundance and age compositions from 1995 to present for odd years
+
+```{r main-data-overview-fig,  fig.cap = "(ref:main-data-overview-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-data-overview-alt)"}
+plot_data_summary(base_model)
+```
