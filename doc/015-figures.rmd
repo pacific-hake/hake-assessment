@@ -123,6 +123,36 @@ present. Fishery age compositions from 1975 to present were used and all data
 from the age 2 plus acoustic survey were included. This includes the index of
 abundance and age compositions from 1995 to present for odd years
 
-```{r main-data-overview-fig,  fig.cap = "(ref:main-data-overview-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-data-overview-alt)"}
+```{r main-data-overview-fig, fig.cap = "(ref:main-data-overview-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-data-overview-alt)"}
 plot_data_summary(base_model)
+```
+
+(ref:main-age-comp-bubbles-cap) Age compositions for the aggregate fishery
+(top, all sectors combined) and acoustic survey (bottom) for the years
+`r max_fishery_age_prop[1]`--`r max_fishery_age_prop[2]`. Proportions in
+each year sum to 1.0 and area of the bubbles are proportional to the
+proportion and consistent in both panels (see key at top). The largest
+bubble in the fishery data is
+`r f(as.numeric(max_fishery_age_prop[3]) / 100, 2)` for age
+`r as.numeric(max_survey_age_prop[5])` in
+`r as.numeric(max_fishery_age_prop[4])` and in the survey data is
+`r f(as.numeric(max_survey_age_prop[3]) / 100, 2)` for age
+`r as.numeric(max_survey_age_prop[5])` in
+`r as.numeric(max_survey_age_prop[4])`. Red lines track large cohorts.
+
+(ref:main-age-comp-bubbles-alt) This figure shows that there are currently
+three large cohorts making their way through the stock. The 2010 cohort is
+the largest followed by the 2014 cohort and the 2016 cohort. The 2020 cohort
+is large but highly uncertain
+
+```{r main-age-comp-bubbles-fig, fig.cap = "(ref:main-age-comp-bubbles-cap)", fig.height = 8, fig.width = 6, is.fig = TRUE, alt.text = "(ref:main-age-comp-bubbles-alt)", out.height = "\\textheight",  out.width = "\\textwidth"}
+p_lst <- NULL
+p_lst[[1]] <-plot_age_comp_bubbles(base_model,
+                                   type = "fishery",
+                                   leg_pos = "top",
+                                   alpha = 0.4)
+p_lst[[2]] <- plot_age_comp_bubbles(base_model,
+                                    type = "survey",
+                                    alpha = 0.4)
+suppressWarnings(plot_grid(plotlist = p_lst, nrow = 2))
 ```
