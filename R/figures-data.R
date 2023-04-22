@@ -1,9 +1,3 @@
-make.data.overview.plot <- function(model,               ## model contains the output of SS_output
-                                    show.title = FALSE, ...){ ## Show the title?
-  ## Make a plot of the data used in the assessment
-  SSplotData(model, subplot = 2, ...) #, both = FALSE#, datasize = TRUE) #TRUE for scaled to sample size bubbles
-}
-
 #' Create a plot of cumulative catch
 #'
 #' @param d The data as found in the catch-by-month CSV files
@@ -160,5 +154,3 @@ make.wt_at_age.plot <- function(d,
   text(year[length(year)] + 1, df[nrow(df),], ages, col = cols)
 }
 
-make.age.comp.compare.plot <- function(){
-}
