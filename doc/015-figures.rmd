@@ -156,3 +156,29 @@ p_lst[[2]] <- plot_age_comp_bubbles(base_model,
                                     alpha = 0.4)
 suppressWarnings(plot_grid(plotlist = p_lst, nrow = 2))
 ```
+
+(ref:main-survey-extrap-biomass-cap) Acoustic survey biomass index of age-2+
+fish (Mt, Table~\@ref(tab:main-survey-history-tab)). Approximate 95 confidence
+intervals are based on sampling variability (intervals without squid/hake
+apportionment uncertainty in 2009 are displayed in black).
+
+(ref:main-survey-extrap-biomass-alt) This figure shows that the survey biomass
+estimate has decreased from 2019 to 2021
+
+```{r main-survey-extrap-biomass-fig,  fig.cap = "(ref:main-survey-extrap-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-survey-extrap-biomass-alt)"}
+  plot_survey_biomass(base_model, index = "age2")
+```
+
+(ref:main-survey-age1-cap) Relative index of age-1 fish (numbers of fish,
+Table~\@ref(tab:main-survey-history-tab)) and approximate 95% confidence
+intervals based on sampling variability. The index is relative because
+the survey does not attempt to sample all available age-1 fish and the
+analysis does not include kriging as is done to estimate age-2+ biomass.
+
+(ref:main-survey-age1-alt) This figure shows that the age-1 survey estimate
+has increased from 2019 to 2021
+
+```{r main-survey-age1-fig, fig.cap = "(ref:main-survey-age1-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-survey-extrap-biomass-alt)"}
+plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
+```
+

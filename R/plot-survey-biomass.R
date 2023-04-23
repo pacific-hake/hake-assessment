@@ -1,4 +1,4 @@
-#' Create a plot of survey biomass as points with errorbars
+#' Create a plot of survey biomass as points with error   bars
 #'
 #' @details
 #' Extra SD is shown for the 2009 "squid year"
@@ -15,6 +15,9 @@ plot_survey_biomass <- function(model,
                                 y_lim = c(0, 3)){
 
   index <- match.arg(index)
+  y_label <- ifelse(index == "age1",
+                    "Relative age-1 index (billions of fish)",
+                    "Biomass index (Mt)")
   brk_interval <- `if`(index == "age2", 0.5, 2)
   index <- `if`(index == "age2", 2, 3)
 
@@ -32,9 +35,6 @@ plot_survey_biomass <- function(model,
     mutate(lo = exp(log(obs) - 1.96 * se_log),
            hi = exp(log(obs) + 1.96 * se_log))
 
-  y_label <- ifelse(index == "age1",
-                    "Relative age-1 index (billions of fish)",
-                    "Biomass index (Mt)")
   g <- ggplot(ests,
               aes(x = year,
                   xend = year,
