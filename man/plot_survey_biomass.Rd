@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot-survey-biomass.R
 \name{plot_survey_biomass}
 \alias{plot_survey_biomass}
-\title{Create a plot of survey biomass as points with errorbars}
+\title{Create a plot of survey biomass as points with error   bars}
 \usage{
 plot_survey_biomass(model, index = c("age1", "age2"), y_lim = c(0, 3))
 }
@@ -18,7 +18,7 @@ for the y-axis on the plot}
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
-Create a plot of survey biomass as points with errorbars
+Create a plot of survey biomass as points with error   bars
 }
 \details{
 Extra SD is shown for the 2009 "squid year"

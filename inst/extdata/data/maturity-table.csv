@@ -1,4 +1,4 @@
-age,N.ovaries,old.fecundity,new.fecundity,maturity,avg.wt
+age,n_ovaries,old_fecundity,new_fecundity,maturity,avg_wt
 0,0,0,0,0,0.0169
 1,122,0,0,0,0.0942
 2,276,0.1,0.0669726,0.261,0.2566

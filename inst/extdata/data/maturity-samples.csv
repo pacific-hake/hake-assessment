@@ -1,4 +1,4 @@
-Sampling_platform,Year,Primary reader,Haul Date,Month,Rounded_latitude,N_or_S_of_34.44,Season,Visual Maturity Code,Weight_kg,Length_cm,Age,Certainty ,o_1,o_2,o_3,o_4_1,o_4_2,o_5,o_6,o_7,o_8,o_9,highest_matstage,Biological_maturity,Prop_atresia,Functional_maturity,Spent,Batch_spent,Spawning,POFs Present Y/N,Histology Notes,Data Notes
+sampling_platform,yr,primary_reader,haul_date,month,rounded_latitude,n_or_s_of_34_44,season,visual_maturity_code,weight_kg,length_cm,age,certainty ,o_1,o_2,o_3,o_4_1,o_4_2,o_5,o_6,o_7,o_8,o_9,highest_matstage,biological_maturity,prop_atresia,functional_maturity,spent,batch_spent,spawning,pofs_present,histology_notes,data_notes
 WCGBT,2014,MH,9/25/2014,9,37,N,fall,NA,3.54,79,NA,1,Y,Y,Y,Y,Y,Y,Y,N,N,N,5,1,0.01,1,0,0,0,0,,
 WCGBT,2009,MH,9/13/2009,9,43,N,fall,NA,2.8,77,11,1,Y,Y,Y,Y,N,N,N,N,N,N,7,1,0.2,1,0,1,0,1,"Hydrated atresia, and 1 POF present",
 WCGBT,2013,MH,6/25/2013,6,40,N,summer,NA,3.14,77,12,1,Y,Y,Y,Y,Y,Y,Y,Y,N,N,5,1,0.15,1,0,0,0,0,,
@@ -2131,7 +2131,7 @@ Acoustics,2012,MH,7/30/2012,7,44,N,summer,1,0.23,34,2,1,Y,Y,Y,N,N,N,N,N,N,N,2,0,
 Acoustics,2012,MH,7/24/2012,7,44,N,summer,1,0.25,34,2,1,Y,Y,Y,N,N,N,N,N,N,N,2,0,0.01,0,0,0,0,0,,
 Acoustics,2015,MH,7/14/2015,7,40,N,summer,2,0.24,34,2,1,Y,Y,Y,N,N,N,N,N,N,N,2,0,0.01,0,0,0,0,0,"mainly stage 2s, thin ovarian wall, did not appear to have spawned previously",
 Acoustics,2012,MH,7/30/2012,7,44,N,summer,1,0.255,34,3,1,Y,Y,Y,N,N,N,N,N,N,N,2,0,0.01,0,0,0,0,0,,
-Acoustics,2013,MH,6/15/2013,6,36,N,summer,1,0.24,34,3,1,Y,Y,Y,N,N,N,N,N,N,N,2,0,0.01,0,0,0,0,0,Thin ovarian wall doesn’t appear to have spawned before,
+Acoustics,2013,MH,6/15/2013,6,36,N,summer,1,0.24,34,3,1,Y,Y,Y,N,N,N,N,N,N,N,2,0,0.01,0,0,0,0,0,Thin ovarian wall doesn?t appear to have spawned before,
 Acoustics,2013,MH,6/15/2013,6,35,N,summer,1,0.27,34,3,1,Y,Y,Y,N,N,N,N,N,N,N,2,0,0.01,0,0,0,0,0,,
 WCGBT,2015,MH,7/5/2015,7,35,N,summer,NA,0.26,34,NA,0,Y,Y,Y,N,N,N,N,N,N,N,2,0,0.01,0,0,0,0,0,"Possibly a few drops of yolk in one oocyte, thin ovarian wall",
 Acoustics,2012,MH,6/29/2012,6,36,N,summer,2,0.22,34,2,1,Y,Y,N,N,N,N,N,N,N,N,2,0,0.01,0,0,0,0,0,,

@@ -51,7 +51,7 @@ maturity_ogives_df <-
            col_types = cols(),
            show_col_types = FALSE)
 maturity_samples_df <-
-  read_csv(file.path(load_dir, "hake-maturity-data.csv"),
+  read_csv(file.path(load_dir, "maturity-samples.csv"),
            guess_max = Inf,
            show_col_types = FALSE)
 weight_age_extrapolation_mask <-
