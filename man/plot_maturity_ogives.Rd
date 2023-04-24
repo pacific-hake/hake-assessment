@@ -10,7 +10,7 @@ plot_maturity_ogives(
   model,
   d,
   alpha = 0.1,
-  leg_pos = c(0.85, 0.12),
+  leg_pos = c(0.85, 0.15),
   leg_ncol = 1,
   leg_font_size = 16,
   axis_title_font_size = 18,
@@ -38,7 +38,7 @@ plot_maturity_ogives(
 \item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
 
 \item{ret_df}{Logical. If \code{TRUE}, don't plot, instead return the
-calculation of \code{d} which may be needed as part of the fecundiy calculation
+calculation of \code{d} which may be needed as part of the fecundity calculation
 elsewhere}
 }
 \value{

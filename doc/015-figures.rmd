@@ -194,6 +194,12 @@ age. Fish appear to reach full maturity between the age of 3 and 4. South
 of Point Conception which is at a latitude of 34.4 degrees they appear to
 reach maturity between the age of 2 and 3
 
-```{r main-maturity-ogive-fig, fig.cap = "(ref:main-maturity-ogive-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-maturity-ogive-alt)"}
-plot_maturity_ogives(base_model, maturity_samples_df)
+```{r main-maturity-ogive-fig, fig.cap = "(ref:main-maturity-ogive-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-maturity-ogive-alt)"}
+p_lst <- list()
+p_lst[[1]] <- plot_maturity_ogives(base_model, maturity_samples_df)
+p_lst[[2]] <- plot_fecundity(base_model,
+               d = maturity_samples_df,
+               yrs = start_yr_age_comps:(end_yr - 1))
+plot_grid(plotlist = p_lst, ncol = 1)
 ```
+

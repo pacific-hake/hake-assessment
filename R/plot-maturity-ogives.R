@@ -13,7 +13,7 @@
 #' @param axis_title_font_size Size of the font for the X and Y axis labels
 #' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
 #' @param ret_df Logical. If `TRUE`, don't plot, instead return the
-#' calculation of `d` which may be needed as part of the fecundiy calculation
+#' calculation of `d` which may be needed as part of the fecundity calculation
 #' elsewhere
 #'
 #' @return A [ggplot2::ggplot()] object
@@ -21,7 +21,7 @@
 plot_maturity_ogives <- function(model,
                                  d,
                                  alpha = 0.1,
-                                 leg_pos = c(0.85, 0.12),
+                                 leg_pos = c(0.85, 0.15),
                                  leg_ncol = 1,
                                  leg_font_size = 16,
                                  axis_title_font_size = 18,
@@ -87,21 +87,46 @@ plot_maturity_ogives <- function(model,
       if(ind == "S"){
         ar <- ar |>
           mutate(text_place = ifelse(num_samp < 70,
-                                     frac_mature + 0.03,
+                                     frac_mature + 0.05,
                                      frac_mature))
 
       }else if(ind == "N"){
         ar <- ar |>
           mutate(text_place = ifelse(num_samp < 70,
-                                     frac_mature - 0.03,
+                                     frac_mature - 0.05,
                                      frac_mature))
       }
       ar
     }) |>
     map_df(~{.x}) |>
     mutate(area = ifelse(area == "N",
-                         paste0("North of 34.44", intToUtf8(176)),
-                         paste0("South of 34.44", intToUtf8(176)))) |>
+                         "North of 34.44°",
+                         "South of 34.44°"))
+
+  # Inflate to plot to the max age in the model (not the max age of the
+  # maturity samples which may be less than that
+  age_max_model <- model$wtatage |>
+    names() %>%
+    grep("^\\d", ., value = TRUE) |>
+    as.numeric() |>
+    max()
+  if(age_max_model > age_max){
+    num_yrs_to_add <- age_max_model - age_max
+    end_rows <- mat_d |>
+      split(~area) |>
+      map_df(\(ar){
+        ar %>%
+          slice((nrow(.) - num_yrs_to_add + 1):nrow(.)) |>
+          mutate(frac_mature = last(frac_mature)) |>
+          mutate_at(vars(-area, -frac_mature), ~{NA}) |>
+          mutate(age = seq(age_max + 1, age_max_model))
+      })
+
+    mat_d <- mat_d |>
+      bind_rows(end_rows)
+  }
+
+  d <- d |>
     mutate(area = factor(area, levels = unique(area)))
 
   x_breaks <- seq_len(age_max)
@@ -129,10 +154,10 @@ plot_maturity_ogives <- function(model,
     scale_y_continuous(breaks = y_breaks) +
     geom_text(aes(x = age,
                   y = text_place,
-                  label = num_samp),
+                  label = num_samp,
+                  color = area),
               inherit.aes = FALSE,
-              size = 5,
-              color = "black") +
+              size = 5) +
     guides(size = "none",
            color = "none",
            fill = guide_legend("")) +
@@ -164,13 +189,14 @@ plot_maturity_ogives <- function(model,
                                       angle = 90,
                                       face = "plain"))
 
-  if(is.null(leg_pos) || is.na(leg_pos)){
+  if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
       theme(legend.position = "none")
   }else{
     g <- g +
       theme(legend.position = leg_pos) +
-      guides(fill = guide_legend(ncol = leg_ncol),
+      guides(fill = guide_legend(ncol = leg_ncol,
+                                 override.aes = list(size = 5)),
              color = guide_legend(ncol = leg_ncol))
   }
   g
