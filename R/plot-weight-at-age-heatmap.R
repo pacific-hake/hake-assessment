@@ -38,26 +38,8 @@
 #' @param extrap_mask A data frame where ages are columns (and start with
 #' the letter 'a'). If the values are zero, the weight-at-age was
 #' extrapolated/interpolated. If there is a value, the weight-at-age is data
-#' @param longterm_mean_ages A vector of mean weight-at-age values
-#' per ages zero to the maximum age of fish in the data.
-#' If `NULL`, the first year will be assumed to be the mean  of all years.
 #' @param font_size Font size of the values printed in each box.
 #' @param axis_font_size Font size for axis labels.
-#' @param samplesize A logical value specifying if the heat map should be of
-#' input sample size used to generate the data rather than the weights-at-age.
-#' @param print_yrs A vector of years that will be included in the output,
-#' but users should note that all data from `first_yr` to the terminal
-#' year of the data in the model will be used to calculate means and colors.
-#' This parameter facilitates splitting the plot into two separate plots when
-#' there are a number of years.
-#' @param colour A character string of `both`, `all`, or `age`. If the
-#' default of `both`, then the colors of the boxes will be based on all of
-#' the data and the transparency of the colors will strictly be a function
-#' of each individual age in turn. That is, the darkness of the colors
-#' used across years for age zero specifies which years have the largest
-#' age-0 fish. `all` specifies colors based on the min and max values of
-#' all ages without transparency. `age` colors the min and max color
-#' specific for each age without transparency
 #' @param start_yr Start year
 #' @param end_yr End year
 #'
@@ -73,12 +55,7 @@ plot_weight_at_age_heatmap <- function(
     extrap_mask = NULL,
     font_size = 4,
     axis_font_size = 10,
-    samplesize = FALSE,
-    print_yrs = NULL,
-    colour = c("all", "age", "both"),
     ...){
-
-  colour <- match.arg(colour)
 
   stopifnot(!is.null(extrap_mask))
 
@@ -92,27 +69,26 @@ plot_weight_at_age_heatmap <- function(
     pull(Yr) |>
     min()
 
-  # Years greater than `proj_line_yr` are projected, a line will appear on
-  # the plot showing this
-  input_yrs <- first_yr:end_yr
-  if(is.null(proj_line_yr[1])){
-    proj_line_yr <- end_yr
-  }
-
   # Configure weight-at-age data frame ----
   wa <- heatmap_extract_wa(model, fleet, ...)
 
   # Configure boldface mask data frame (projected years) ----
   bf <- heatmap_extract_bf(extrap_mask, fleet, wa)
 
-
   # At this point, `bf`and `wa` have identical dimensions, and the `bf`
   # data frame will contain only `TRUE` or `FALSE` in each cell (except the
   # `yr` column) signifying whether or not the text should be boldface in the
   # respective cell
 
-  min_val <- min(wa[,-1])
-  max_val <- max(wa[,-1])
+  # Calculate the mean row for the bottom of the heatmap, overwrite the
+  # row that is there already
+  mean_row <- heatmap_extract_wa(model,
+                                 fleet,
+                                 ret_vec = TRUE)
+  mean_row <- mean_row |>
+    mutate(yr = min(wa$yr))
+  wa <- wa |>
+    rows_update(mean_row)
 
   # Move weight-at-age data into `ggplot` (long) format ----
   w <- wa |>
@@ -141,23 +117,29 @@ plot_weight_at_age_heatmap <- function(
   colors <- col_func(nage - 1)
 
   y_breaks <- wa$yr
+  y_labels <- y_breaks
+  # Set up the bottom row, which contains the mean of the values
+  y_labels[1] <- "mean"
+  y_labels[2] <- ""
 
-  # Set 1965 to colorless
+  # Set 1965 to colorless. Need a second value column, for a character version
+  # to make the plot work right (avoids Error: Discrete value supplied to
+  # continuous scale)
   w <- w |>
-    mutate(value = ifelse(yr == 1965, NA, value),
-           rescale = ifelse(yr == 1965, NA, rescale),
-           isbold = ifelse(yr == 1965, FALSE, isbold))
-browser()
+    mutate(value_text = ifelse(yr == 1965, "", f(value, 2)),
+           rescale = ifelse(yr == 1965, 0, rescale))
+
   g <- ggplot(w,
               aes(x = age,
                   y = yr,
                   fontface = ifelse(isbold, "bold", "plain"))) +
-    scale_y_continuous(breaks = y_breaks) +
-    geom_tile(aes(alpha = ifelse(is.na(rescale), 0, rescale),
-                  fill = ifelse(is.na(value), NA, value))) +
+    scale_y_continuous(breaks = y_breaks,
+                       labels = y_labels) +
+    geom_tile(aes(alpha = rescale,
+                  fill = value)) +
     scale_fill_gradientn(colors = colors,
                          guide = FALSE) +
-    geom_text(aes(label = f(value, 2)), size = 4) +
+    geom_text(aes(label = value_text), size = 4) +
     scale_alpha(range = c(0.1, 1)) +
     theme(legend.position = "none") +
     geom_hline(yintercept = c(first_yr - 0.5,

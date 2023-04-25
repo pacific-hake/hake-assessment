@@ -14,9 +14,6 @@ plot_weight_at_age_heatmap(
   extrap_mask = NULL,
   font_size = 4,
   axis_font_size = 10,
-  samplesize = FALSE,
-  print_yrs = NULL,
-  colour = c("all", "age", "both"),
   ...
 )
 }
@@ -44,28 +41,6 @@ extrapolated/interpolated. If there is a value, the weight-at-age is data}
 \item{font_size}{Font size of the values printed in each box.}
 
 \item{axis_font_size}{Font size for axis labels.}
-
-\item{samplesize}{A logical value specifying if the heat map should be of
-input sample size used to generate the data rather than the weights-at-age.}
-
-\item{print_yrs}{A vector of years that will be included in the output,
-but users should note that all data from \code{first_yr} to the terminal
-year of the data in the model will be used to calculate means and colors.
-This parameter facilitates splitting the plot into two separate plots when
-there are a number of years.}
-
-\item{colour}{A character string of \code{both}, \code{all}, or \code{age}. If the
-default of \code{both}, then the colors of the boxes will be based on all of
-the data and the transparency of the colors will strictly be a function
-of each individual age in turn. That is, the darkness of the colors
-used across years for age zero specifies which years have the largest
-age-0 fish. \code{all} specifies colors based on the min and max values of
-all ages without transparency. \code{age} colors the min and max color
-specific for each age without transparency}
-
-\item{longterm_mean_ages}{A vector of mean weight-at-age values
-per ages zero to the maximum age of fish in the data.
-If \code{NULL}, the first year will be assumed to be the mean  of all years.}
 
 \item{start_yr}{Start year}
 

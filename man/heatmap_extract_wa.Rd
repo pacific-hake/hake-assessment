@@ -14,6 +14,7 @@ heatmap_extract_wa(
   apply_post_func = mean,
   pre_wa_vals = NULL,
   post_wa_vals = NULL,
+  ret_vec = FALSE,
   ...
 )
 }
@@ -52,6 +53,11 @@ function \code{apply_post_func()} on the data found in the years defined by
 \code{apply_post_yrs}. If this is not \code{NULL}, this vector will be used for all
 projection years instead of the output of \code{apply_post_func()}  Note this
 starts at age 0, so it may be one more than you think}
+
+\item{ret_vec}{Logical. If \code{TRUE}, return a vector representing the
+a row of at-age values which are the calculation using \code{apply_pre_yrs}
+and \code{apply_pre_func}. The year in the row will be 9999 which must be
+overwritten by the caller}
 
 \item{...}{Absorb arguments meant for other functions}
 }

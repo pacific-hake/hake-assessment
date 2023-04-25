@@ -28,6 +28,10 @@
 #' `apply_post_yrs`. If this is not `NULL`, this vector will be used for all
 #' projection years instead of the output of `apply_post_func()`  Note this
 #' starts at age 0, so it may be one more than you think
+#' @param ret_vec Logical. If `TRUE`, return a vector representing the
+#' a row of at-age values which are the calculation using `apply_pre_yrs`
+#' and `apply_pre_func`. The year in the row will be 9999 which must be
+#' overwritten by the caller
 #' @param ... Absorb arguments meant for other functions
 #'
 #' @return A data frame containing years (`yr`) column and columns for age,
@@ -46,6 +50,7 @@ heatmap_extract_wa <- function(
     apply_post_func = mean,
     pre_wa_vals = NULL,
     post_wa_vals = NULL,
+    ret_vec = FALSE,
     ...){
 
   stopifnot(!is.null(model))
@@ -112,6 +117,18 @@ heatmap_extract_wa <- function(
   first_yr <- min(wa$yr)
   start_yr <- model$startyr
   end_yr <- model$endyr
+
+  # Return a vector of the means-at-age of the requested years
+  if(ret_vec){
+    mean_dat <- wa |>
+      filter(yr %in% apply_pre_yrs) |>
+      select(-yr) |>
+      apply(2, apply_pre_func)
+      # Setting year to 9999 here so if you see it somewhere in an error
+      # it's easy to search the code for
+      return(vec2df(c(9999, mean_dat), names(wa)))
+  }
+
   if(first_yr > start_yr){
 
     # Need to fill in the missing years at the start of the model with values.
