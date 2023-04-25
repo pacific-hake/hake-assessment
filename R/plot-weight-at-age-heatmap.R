@@ -38,10 +38,11 @@
 #' @param extrap_mask A data frame where ages are columns (and start with
 #' the letter 'a'). If the values are zero, the weight-at-age was
 #' extrapolated/interpolated. If there is a value, the weight-at-age is data
-#' @param font_size Font size of the values printed in each box.
-#' @param axis_font_size Font size for axis labels.
-#' @param start_yr Start year
-#' @param end_yr End year
+#' @param cell_font_size Font size of the values printed in each cell of
+#' the table
+#' @param axis_title_font_size Size of the font for the X and Y axis labels
+#' @param axis_tick_font_size Size of the font for the X and Y axis tick
+#' labels
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -53,8 +54,9 @@ plot_weight_at_age_heatmap <- function(
     proj_line_yr = NULL,
     yrs = NULL,
     extrap_mask = NULL,
-    font_size = 4,
-    axis_font_size = 10,
+    cell_font_size = 4,
+    axis_title_font_size = 14,
+    axis_tick_font_size = 11,
     ...){
 
   stopifnot(!is.null(extrap_mask))
@@ -120,6 +122,7 @@ plot_weight_at_age_heatmap <- function(
   y_labels <- y_breaks
   # Set up the bottom row, which contains the mean of the values
   y_labels[1] <- "mean"
+  y_breaks[2] <- NA
   y_labels[2] <- ""
 
   # Set 1965 to colorless. Need a second value column, for a character version
@@ -134,18 +137,42 @@ plot_weight_at_age_heatmap <- function(
                   y = yr,
                   fontface = ifelse(isbold, "bold", "plain"))) +
     scale_y_continuous(breaks = y_breaks,
-                       labels = y_labels) +
+                       labels = y_labels,
+                       expand = c(0, 0)) +
     geom_tile(aes(alpha = rescale,
                   fill = value)) +
     scale_fill_gradientn(colors = colors,
                          guide = FALSE) +
-    geom_text(aes(label = value_text), size = 4) +
+    geom_text(aes(label = value_text), size = cell_font_size) +
     scale_alpha(range = c(0.1, 1)) +
-    theme(legend.position = "none") +
+    theme(legend.position = "none",
+          plot.margin = margin(12, 12, 10, 0)) +
     geom_hline(yintercept = c(first_yr - 0.5,
                               end_yr + 0.5),
                color = proj_line_color,
-               size = proj_line_width)
+               size = proj_line_width) +
+    xlab("Age") +
+    ylab("Year") +
+    theme(axis.text.x = element_text(color = "grey20",
+                                     size = axis_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = -0.25,
+                                     face = "plain"),
+          axis.text.y = element_text(color = "grey20",
+                                     size = axis_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = "grey20",
+                                      size = axis_title_font_size,
+                                      angle = 0,
+                                      vjust = 0,
+                                      face = "plain"),
+          axis.title.y = element_text(color = "grey20",
+                                      size = axis_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
 
   g
 }

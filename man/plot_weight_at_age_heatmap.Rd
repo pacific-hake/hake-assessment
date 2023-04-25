@@ -12,8 +12,9 @@ plot_weight_at_age_heatmap(
   proj_line_yr = NULL,
   yrs = NULL,
   extrap_mask = NULL,
-  font_size = 4,
-  axis_font_size = 10,
+  cell_font_size = 4,
+  axis_title_font_size = 14,
+  axis_tick_font_size = 11,
   ...
 )
 }
@@ -38,13 +39,13 @@ years will be included}
 the letter 'a'). If the values are zero, the weight-at-age was
 extrapolated/interpolated. If there is a value, the weight-at-age is data}
 
-\item{font_size}{Font size of the values printed in each box.}
+\item{cell_font_size}{Font size of the values printed in each cell of
+the table}
 
-\item{axis_font_size}{Font size for axis labels.}
+\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
 
-\item{start_yr}{Start year}
-
-\item{end_yr}{End year}
+\item{axis_tick_font_size}{Size of the font for the X and Y axis tick
+labels}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
