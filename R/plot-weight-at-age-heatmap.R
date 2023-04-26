@@ -86,8 +86,7 @@ plot_weight_at_age_heatmap <- function(
   # row that is there already
   mean_row <- heatmap_extract_wa(model,
                                  fleet,
-                                 ret_vec = TRUE)
-  mean_row <- mean_row |>
+                                 ret_vec = TRUE) |>
     mutate(yr = min(wa$yr))
   wa <- wa |>
     rows_update(mean_row)
@@ -110,13 +109,8 @@ plot_weight_at_age_heatmap <- function(
     mutate(age = factor(age,
                         levels = sort(unique(as.numeric(age)))))
 
-  # Set colors for the heatmap cells
-  ages <- as.numeric(levels(unique(w$age)))
-  nage <- length(ages)
-  seed_cols <- c("red", "yellow", "green", "dodgerblue")
-  ncols <- nage - 1
-  col_func <- colorRampPalette(seed_cols)
-  colors <- col_func(nage - 1)
+  # Set colors for the heatmap cells, 1 for each age
+  colors <- heatmap_set_colors(w, ...)
 
   y_breaks <- wa$yr
   y_labels <- y_breaks
