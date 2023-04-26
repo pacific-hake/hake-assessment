@@ -6,12 +6,12 @@
 \usage{
 plot_weight_at_age_heatmap(
   model,
+  sample_size_df = NULL,
   fleet = 1,
   proj_line_color = "royalblue",
   proj_line_width = 1,
   proj_line_yr = NULL,
   yrs = NULL,
-  extrap_mask = NULL,
   cell_font_size = 4,
   axis_title_font_size = 14,
   axis_tick_font_size = 11,
@@ -21,6 +21,10 @@ plot_weight_at_age_heatmap(
 \arguments{
 \item{model}{An list of results read in from an SS model using
 \code{\link[=load_ss_files]{load_ss_files()}}}
+
+\item{sample_size_df}{A data frame where ages are columns (and start with
+the letter 'a'). If the values are zero, the weight-at-age was
+extrapolated/interpolated. If there is a value, the weight-at-age is data}
 
 \item{fleet}{An integer value specifying which fleet you want plotted.
 Fleet -2 will plot fecundity information.
@@ -34,10 +38,6 @@ Positive values for fleet will link to a modeled fleet.}
 
 \item{yrs}{A vector of the years to include in the table. If \code{NULL}, all
 years will be included}
-
-\item{extrap_mask}{A data frame where ages are columns (and start with
-the letter 'a'). If the values are zero, the weight-at-age was
-extrapolated/interpolated. If there is a value, the weight-at-age is data}
 
 \item{cell_font_size}{Font size of the values printed in each cell of
 the table}

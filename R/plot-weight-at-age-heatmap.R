@@ -35,7 +35,7 @@
 #' @param proj_line_width Line width to separate projection years.
 #' @param yrs A vector of the years to include in the table. If `NULL`, all
 #' years will be included
-#' @param extrap_mask A data frame where ages are columns (and start with
+#' @param sample_size_df A data frame where ages are columns (and start with
 #' the letter 'a'). If the values are zero, the weight-at-age was
 #' extrapolated/interpolated. If there is a value, the weight-at-age is data
 #' @param cell_font_size Font size of the values printed in each cell of
@@ -48,18 +48,18 @@
 #' @export
 plot_weight_at_age_heatmap <- function(
     model,
+    sample_size_df = NULL,
     fleet = 1,
     proj_line_color = "royalblue",
     proj_line_width = 1,
     proj_line_yr = NULL,
     yrs = NULL,
-    extrap_mask = NULL,
     cell_font_size = 4,
     axis_title_font_size = 14,
     axis_tick_font_size = 11,
     ...){
 
-  stopifnot(!is.null(extrap_mask))
+  stopifnot(!is.null(sample_size_df))
 
   # Set up years ----
   start_yr <- model$startyr
@@ -74,8 +74,11 @@ plot_weight_at_age_heatmap <- function(
   # Configure weight-at-age data frame ----
   wa <- heatmap_extract_wa(model, fleet, ...)
 
-  # Configure boldface mask data frame (projected years) ----
-  bf <- heatmap_extract_bf(extrap_mask, fleet, wa)
+  # Configure boldface mask data frame ----
+  bf <- heatmap_extract_sample_size(sample_size_df,
+                                    fleet,
+                                    wa,
+                                    ret_mask = TRUE)
 
   # At this point, `bf`and `wa` have identical dimensions, and the `bf`
   # data frame will contain only `TRUE` or `FALSE` in each cell (except the

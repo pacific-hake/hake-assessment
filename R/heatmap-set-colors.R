@@ -19,11 +19,11 @@ heatmap_set_colors <- function(w = NULL,
   stopifnot("age" %in% names(w))
 
   ages <- as.numeric(levels(unique(w$age)))
+  offset <- ifelse(any(is.na(ages)), 2, 1)
   nage <- length(ages)
-  seed_cols <- cols
-  ncols <- nage - 1
-  col_func <- colorRampPalette(seed_cols)
-  colors <- col_func(nage - 1)
+  ncols <- nage - offset
+  col_func <- colorRampPalette(cols)
+  colors <- col_func(nage - offset)
 
   colors
 }
