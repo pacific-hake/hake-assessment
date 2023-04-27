@@ -56,7 +56,7 @@ heatmap_extract_sample_size <- function(sample_size_df = NULL,
   bf <- bf |>
     bind_rows(df) |>
     arrange(yr) |>
-    mutate(yr = as.integer(yr))
+    mutate(yr = as.numeric(yr))
 
   if(ret_mask){
     bf <- bf |>
@@ -76,8 +76,8 @@ heatmap_extract_sample_size <- function(sample_size_df = NULL,
       sum()
   }) |>
     enframe(name = NULL, value = "sum")
-  row_sums[1, 1] <- NA
-  row_sums[2, 1] <- NA
+  row_sums[1, 1] <- NA_real_
+  row_sums[2, 1] <- NA_real_
 
   # Add column totals ----
   # Add the sample size totals by age as a bottom row, and a blank row

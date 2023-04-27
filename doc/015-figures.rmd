@@ -224,7 +224,7 @@ to present
   plot_weight_at_age_heatmap(
     base_model,
     sample_size_df = weight_age_sample_sizes,
-    apply_pre_yrs = (base_model$endyr - 4):base_model$endyr,
+    apply_pre_yrs = start_yr_age_comps:base_model$endyr,
     apply_pre_func = mean,
     apply_post_yrs = (base_model$endyr - 4):base_model$endyr,
     apply_post_func = mean)
@@ -236,7 +236,7 @@ to present
   plot_sample_size_weight_at_age_heatmap(
     base_model,
     sample_size_df = weight_age_sample_sizes,
-    apply_pre_yrs = (base_model$endyr - 4):base_model$endyr,
+    apply_pre_yrs = start_yr_age_comps:base_model$endyr,
     apply_pre_func = sum,
     apply_post_yrs = (base_model$endyr - 4):base_model$endyr,
     apply_post_func = sum)

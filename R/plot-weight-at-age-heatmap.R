@@ -72,7 +72,9 @@ plot_weight_at_age_heatmap <- function(
     min()
 
   # Configure weight-at-age data frame ----
-  wa <- heatmap_extract_wa(model, fleet, ...)
+  wa <- heatmap_extract_wa(model,
+                           fleet,
+                           ...)
 
   # Configure boldface mask data frame ----
   bf <- heatmap_extract_sample_size(sample_size_df,
