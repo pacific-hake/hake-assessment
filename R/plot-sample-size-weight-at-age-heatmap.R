@@ -59,14 +59,14 @@ plot_sample_size_weight_at_age_heatmap <- function(
     axis_tick_font_size = 11,
     ...){
 
-  p <- plot_weight_at_age_heatmap(model = model,
-                                  sample_size_df = sample_size_df)
+  g0 <- plot_weight_at_age_heatmap(model = model,
+                                   sample_size_df = sample_size_df)
 
-  g <- ggplot_build(p)
-  # `fill_cols` is a vector of all the colors in the
-  fill_cols <- g$data[[1]]$fill
+  g1 <- ggplot_build(g0)
+  # `fill_cols` is a vector of all the colors in the heatmap tiles
+  fill_cols <- g1$data[[1]]$fill
 
-  ggplot_map_pos_data <- g$layout$map_position(g$data)
+  ggplot_map_pos_data <- g1$layout$map_position(g1$data)
   # `mappos` contains the color, x (age), and y (yr) columns `ggplot`
   # used to build the plot`
 
@@ -88,22 +88,67 @@ plot_sample_size_weight_at_age_heatmap <- function(
               alpha_col = alpha,
               age = as.numeric(x),
               yr = y) |>
-    # Offset the ages if they starts with zero
+    # Offset the ages if they start with zero
     mutate(age = ifelse(is.na(age), "sum", ages[age])) |>
     mutate(age = factor(as.numeric(age),
-                        levels = levels(p$data$age)))
+                        levels = levels(g0$data$age)))
 
-  # Configure boldface mask data frame ----
+  # Configure sample size data frame ----
   s_size <- heatmap_extract_sample_size(sample_size_df,
                                         fleet,
-                                        wa)
+                                        wa) |>
+    # Rename the `sum` column to a number so that the `as.numeric(age)`
+    # performed on the call below (`ss <- s_size ...`)` does not fail
+    # due to the character string `sum`
+    # The number is renamed back to `sum` later in the plotting
+    rename(`999` = sum)
+
+  # Convert to long form for `ggplot` plotting.
   ss <- s_size |>
-    pivot_longer(-yr, names_to = "age", values_to = "sample_size")
+    pivot_longer(-yr,
+                 names_to = "age",
+                 values_to = "sample_size") |>
+    mutate(age = as.numeric(age)) |>
+    mutate(age = factor(age)) |>
+    full_join(mappos, by = c("yr", "age")) |>
+    mutate(sample_size = f(sample_size))
 
-  # `mappos` has the ages as indices, they need to be converted to real ages
+  # Set colors for the sum text colors
+  cols = c("red",
+           "yellow",
+           "green",
+           "dodgerblue")
+  col_func <- colorRampPalette(cols)
+  sum_colors <- col_func(num_ages- 1)
   browser()
+  gt <- ggplot(ss |> filter(age == 999),
+               aes(x = age,
+                   y = yr)) +
+    geom_tile() +
+    geom_text(aes(label = sample_size), size = 4) +
+    scale_color_gradientn(colors = sum_colors)
 
-  j <- ss |>
-    full_join(mappos, by = c("yr", "age"))
 
+
+  ss <- ss |>
+    # Make new column for the two types, age columns and the sum column
+    mutate(fill_col = ifelse(age == 999, "black", fill_col)) |>
+    mutate(color_col = ifelse(age == 999, sum_colors, "black")) |>
+    mutate(alpha_col = ifelse(age == 999, 1, alpha_col))
+
+
+  g <- ggplot(ss,
+              aes(x = age,
+                  y = yr,
+                  color = color_col,
+                  fill = fill_col)) +
+    geom_raster(aes(alpha = alpha_col), hjust = 0) +
+    scale_alpha(range = c(0.1, 1)) +
+    geom_text(aes(label = sample_size),
+              size = 4,
+              hjust = "right") +
+    scale_color_identity() +
+    scale_fill_identity()
+
+g
 }

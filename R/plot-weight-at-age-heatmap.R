@@ -138,11 +138,12 @@ plot_weight_at_age_heatmap <- function(
     scale_y_continuous(breaks = y_breaks,
                        labels = y_labels,
                        expand = c(0, 0)) +
-    geom_tile(aes(alpha = rescale,
-                  fill = value)) +
+    geom_raster(aes(alpha = rescale,
+                    fill = value)) +
     scale_fill_gradientn(colors = colors,
                          guide = FALSE) +
-    geom_text(aes(label = value_text), size = cell_font_size) +
+    geom_text(aes(label = value_text),
+              size = cell_font_size) +
     scale_alpha(range = c(0.1, 1)) +
     theme(legend.position = "none",
           plot.margin = margin(12, 12, 10, 0)) +
