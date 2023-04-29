@@ -110,32 +110,67 @@ plot_sample_size_weight_at_age_heatmap <- function(
                  values_to = "sample_size") |>
     mutate(age = as.numeric(age)) |>
     mutate(age = factor(age)) |>
-    full_join(mappos, by = c("yr", "age")) |>
-    mutate(sample_size = f(sample_size))
+    full_join(mappos, by = c("yr", "age"))
 
   # Set colors for the sum text colors
-  cols = c("red",
-           "yellow",
-           "green",
-           "dodgerblue")
+  cols <-  c("red",
+             "yellow",
+             "green",
+             "dodgerblue")
   col_func <- colorRampPalette(cols)
   sum_colors <- col_func(num_ages- 1)
-  browser()
-  gt <- ggplot(ss |> filter(age == 999),
-               aes(x = age,
-                   y = yr)) +
-    geom_tile() +
-    geom_text(aes(label = sample_size), size = 4) +
-    scale_color_gradientn(colors = sum_colors)
+  ss_train <- ss |>
+    filter(age == 999) |>
+    group_by(age) |>
+    mutate(rescale = rescale(sample_size)) |>
+    ungroup()
 
+  gt0 <- ggplot(ss_train,
+                aes(x = age,
+                    y = yr)) +
+    geom_raster(aes(alpha = rescale), fill = "transparent") +
+    geom_text(aes(label = sample_size,
+                  col = rescale(sample_size)),
+              size = 4) +
+    scale_color_gradientn(colors = sum_colors, guide = FALSE)
+  gt1 <- ggplot_build(gt0)
+  # `fill_cols` is a vector of all the colors in the heatmap tiles
+  color_vals <- gt1$data[[2]]$colour
 
-
-  ss <- ss |>
+  ss <- ss  |>
+    mutate(sample_size = f(sample_size)) |>
     # Make new column for the two types, age columns and the sum column
-    mutate(fill_col = ifelse(age == 999, "black", fill_col)) |>
-    mutate(color_col = ifelse(age == 999, sum_colors, "black")) |>
+    mutate(fill_col = ifelse(age == 999, "grey90", fill_col)) |>
+    mutate(color_col = "black") |>
     mutate(alpha_col = ifelse(age == 999, 1, alpha_col))
 
+  sum_col_df <- ss |>
+    filter(age == 999) |>
+    select(-color_col) |>
+    mutate(color_col = color_vals)
+
+  ss <- ss |>
+    bind_rows(sum_col_df)
+
+  ss <- ss |>
+    mutate(sample_size = ifelse(grepl("^\\s*NA$", sample_size),
+                                "",
+                                sample_size))
+
+  # ss <- ss |>
+  #   mutate(age = ifelse(age == 999, "Sum", age))
+browser()
+
+  x_breaks <- levels(ss$age)
+  x_labels <- x_breaks
+  x_labels[x_breaks == "999"] <- "Sum"
+
+  y_breaks <- sort(unique(ss$yr))
+  y_labels <- y_breaks
+  # Set up the bottom row, which contains the mean of the values
+  y_labels[1] <- "Sum"
+  y_breaks[2] <- NA
+  y_labels[2] <- ""
 
   g <- ggplot(ss,
               aes(x = age,
@@ -148,7 +183,12 @@ plot_sample_size_weight_at_age_heatmap <- function(
               size = 4,
               hjust = "right") +
     scale_color_identity() +
-    scale_fill_identity()
+    scale_fill_identity() +
+    scale_x_discrete(breaks = x_breaks,
+                     labels = x_labels) +
+    scale_y_continuous(breaks = y_breaks,
+                       labels = y_labels) +
+    theme(legend.position = "none")
 
 g
 }
