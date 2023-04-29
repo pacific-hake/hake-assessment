@@ -59,49 +59,33 @@ plot_sample_size_weight_at_age_heatmap <- function(
     axis_tick_font_size = 11,
     ...){
 
-  g0 <- plot_weight_at_age_heatmap(model = model,
-                                   sample_size_df = sample_size_df)
-
-  g1 <- ggplot_build(g0)
-  # `fill_cols` is a vector of all the colors in the heatmap tiles
-  fill_cols <- g1$data[[1]]$fill
-
-  ggplot_map_pos_data <- g1$layout$map_position(g1$data)
-  # `mappos` contains the color, x (age), and y (yr) columns `ggplot`
-  # used to build the plot`
-
-  # Configure weight-at-age data frame ----
+  # This `wa` data frame is used here to get the ages and to set up the
+  # dimensions of the sample size data frame, so they are both the same.
+  # That ensures that there are the right number of fill colors extracted
+  # below to fill in the sample size heatmap
   wa <- heatmap_extract_wa(model,
                            fleet,
                            ...)
-
   ages <- names(wa) %>%
     grep("^\\d+$", ., value = TRUE) |>
     as.numeric()
-
-  max_age <- max(ages)
   num_ages <- length(ages)
 
-  mappos <- ggplot_map_pos_data[[1]] |>
-    as_tibble() |>
-    transmute(fill_col = fill,
-              alpha_col = alpha,
-              age = as.numeric(x),
-              yr = y) |>
-    # Offset the ages if they start with zero
-    mutate(age = ifelse(is.na(age), "sum", ages[age])) |>
-    mutate(age = factor(as.numeric(age),
-                        levels = levels(g0$data$age)))
+  # Extract the actual plotting values used by `ggplot` which include the
+  # `fill` and `alpha` values for every cell. Those values will be used to
+  # color the sample size heatmap tiles
+  map_pos <- heatmap_get_wa_ggplot_vals(model = model,
+                                        sample_size_df = sample_size_df,
+                                        fleet = fleet,
+                                        col_nms = c("alpha", "fill"))
 
   # Configure sample size data frame ----
+  # `wa` is an argument and is used to make sure the sample size data frame
+  # `s_size` has the same dimensions as `wa` so the fill colors fit in
+  #  properly
   s_size <- heatmap_extract_sample_size(sample_size_df,
                                         fleet,
-                                        wa) |>
-    # Rename the `sum` column to a number so that the `as.numeric(age)`
-    # performed on the call below (`ss <- s_size ...`)` does not fail
-    # due to the character string `sum`
-    # The number is renamed back to `sum` later in the plotting
-    rename(`999` = sum)
+                                        wa)
 
   # Convert to long form for `ggplot` plotting.
   ss <- s_size |>
@@ -110,7 +94,7 @@ plot_sample_size_weight_at_age_heatmap <- function(
                  values_to = "sample_size") |>
     mutate(age = as.numeric(age)) |>
     mutate(age = factor(age)) |>
-    full_join(mappos, by = c("yr", "age"))
+    full_join(map_pos, by = c("yr", "age"))
 
   # Set colors for the sum text colors
   cols <-  c("red",
@@ -134,7 +118,6 @@ plot_sample_size_weight_at_age_heatmap <- function(
               size = 4) +
     scale_color_gradientn(colors = sum_colors, guide = FALSE)
   gt1 <- ggplot_build(gt0)
-  # `fill_cols` is a vector of all the colors in the heatmap tiles
   color_vals <- gt1$data[[2]]$colour
 
   ss <- ss  |>
@@ -156,10 +139,6 @@ plot_sample_size_weight_at_age_heatmap <- function(
     mutate(sample_size = ifelse(grepl("^\\s*NA$", sample_size),
                                 "",
                                 sample_size))
-
-  # ss <- ss |>
-  #   mutate(age = ifelse(age == 999, "Sum", age))
-browser()
 
   x_breaks <- levels(ss$age)
   x_labels <- x_breaks

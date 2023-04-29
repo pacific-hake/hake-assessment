@@ -75,7 +75,7 @@ heatmap_extract_sample_size <- function(sample_size_df = NULL,
       as.numeric() |>
       sum()
   }) |>
-    enframe(name = NULL, value = "sum")
+    enframe(name = NULL, value = "999")
   row_sums[1, 1] <- NA_real_
   row_sums[2, 1] <- NA_real_
 
