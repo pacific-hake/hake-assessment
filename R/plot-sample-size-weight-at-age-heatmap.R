@@ -40,6 +40,7 @@
 #' extrapolated/interpolated. If there is a value, the weight-at-age is data
 #' @param cell_font_size Font size of the values printed in each cell of
 #' the table
+#' @param sum_col_fill_color The fill color for the row sum column
 #' @param axis_title_font_size Size of the font for the X and Y axis labels
 #' @param axis_tick_font_size Size of the font for the X and Y axis tick
 #' labels
@@ -55,14 +56,16 @@ plot_sample_size_weight_at_age_heatmap <- function(
     proj_line_yr = NULL,
     yrs = NULL,
     cell_font_size = 4,
+    sum_col_fill_color = "white",
     axis_title_font_size = 14,
     axis_tick_font_size = 11,
     ...){
 
   # This `wa` data frame is used here to get the ages and to set up the
   # dimensions of the sample size data frame, so they are both the same.
-  # That ensures that there are the right number of fill colors extracted
-  # below to fill in the sample size heatmap
+  # That ensures that there are exactly the right number of fill colors
+  # extracted from the `wa` data frame below to fill in the sample size
+  # heatmap withour error
   wa <- heatmap_extract_wa(model,
                            fleet,
                            ...)
@@ -96,20 +99,25 @@ plot_sample_size_weight_at_age_heatmap <- function(
     mutate(age = factor(age)) |>
     full_join(map_pos, by = c("yr", "age"))
 
-  # Set colors for the sum text colors
+  # Set colors for the sum column text colors ----
   cols <-  c("red",
              "yellow",
              "green",
              "dodgerblue")
   col_func <- colorRampPalette(cols)
   sum_colors <- col_func(num_ages- 1)
-  ss_train <- ss |>
+
+  # Extract the sum column from the sample size data frame ----
+  ss_sum_col <- ss |>
     filter(age == 999) |>
     group_by(age) |>
     mutate(rescale = rescale(sample_size)) |>
     ungroup()
 
-  gt0 <- ggplot(ss_train,
+  # Create a simple `ggplot` of only the sum text column, and extract the
+  # colors that were created to color the text
+
+  gt0 <- ggplot(ss_sum_col,
                 aes(x = age,
                     y = yr)) +
     geom_raster(aes(alpha = rescale), fill = "transparent") +
@@ -123,7 +131,7 @@ plot_sample_size_weight_at_age_heatmap <- function(
   ss <- ss  |>
     mutate(sample_size = f(sample_size)) |>
     # Make new column for the two types, age columns and the sum column
-    mutate(fill_col = ifelse(age == 999, "grey90", fill_col)) |>
+    mutate(fill_col = ifelse(age == 999, sum_col_fill_color, fill_col)) |>
     mutate(color_col = "black") |>
     mutate(alpha_col = ifelse(age == 999, 1, alpha_col))
 
@@ -159,15 +167,39 @@ plot_sample_size_weight_at_age_heatmap <- function(
     geom_raster(aes(alpha = alpha_col), hjust = 0) +
     scale_alpha(range = c(0.1, 1)) +
     geom_text(aes(label = sample_size),
-              size = 4,
+              size = cell_font_size,
               hjust = "right") +
     scale_color_identity() +
     scale_fill_identity() +
     scale_x_discrete(breaks = x_breaks,
                      labels = x_labels) +
     scale_y_continuous(breaks = y_breaks,
-                       labels = y_labels) +
-    theme(legend.position = "none")
+                       labels = y_labels,
+                       expand = c(0, 0)) +
+    theme(legend.position = "none",
+          plot.margin = margin(12, 12, 10, 0)) +
+    xlab("Age") +
+    ylab("Year") +
+    theme(axis.text.x = element_text(color = "grey20",
+                                     size = axis_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = -0.25,
+                                     face = "plain"),
+          axis.text.y = element_text(color = "grey20",
+                                     size = axis_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = "grey20",
+                                      size = axis_title_font_size,
+                                      angle = 0,
+                                      vjust = 0,
+                                      face = "plain"),
+          axis.title.y = element_text(color = "grey20",
+                                      size = axis_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
 
-g
+  g
 }

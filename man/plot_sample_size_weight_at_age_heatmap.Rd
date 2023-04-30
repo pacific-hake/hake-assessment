@@ -13,6 +13,7 @@ plot_sample_size_weight_at_age_heatmap(
   proj_line_yr = NULL,
   yrs = NULL,
   cell_font_size = 4,
+  sum_col_fill_color = "white",
   axis_title_font_size = 14,
   axis_tick_font_size = 11,
   ...
@@ -41,6 +42,8 @@ years will be included}
 
 \item{cell_font_size}{Font size of the values printed in each cell of
 the table}
+
+\item{sum_col_fill_color}{The fill color for the row sum column}
 
 \item{axis_title_font_size}{Size of the font for the X and Y axis labels}
 

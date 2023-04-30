@@ -120,7 +120,7 @@ plot_weight_at_age_heatmap <- function(
   y_breaks <- wa$yr
   y_labels <- y_breaks
   # Set up the bottom row, which contains the mean of the values
-  y_labels[1] <- "mean"
+  y_labels[1] <- "Mean"
   y_breaks[2] <- NA
   y_labels[2] <- ""
 

@@ -8,6 +8,7 @@
 #' @import ggh4x ggplot2 ggrepel
 #' @import purrr
 #' @import rnaturalearthhires r4ss
+#' @import shadowtext
 #'
 #' @importFrom cli symbol
 #' @importFrom crayon green

@@ -223,6 +223,7 @@ to present
 # from `plot_weight_at_age_heatmap()`
   plot_weight_at_age_heatmap(
     base_model,
+    cell_font_size = 3,
     sample_size_df = weight_age_sample_sizes,
     apply_pre_yrs = start_yr_age_comps:base_model$endyr,
     apply_pre_func = mean,
@@ -235,6 +236,7 @@ to present
 # from `plot_weight_at_age_heatmap()`
   plot_sample_size_weight_at_age_heatmap(
     base_model,
+    cell_font_size = 3,
     sample_size_df = weight_age_sample_sizes,
     apply_pre_yrs = start_yr_age_comps:base_model$endyr,
     apply_pre_func = sum,
