@@ -3,7 +3,7 @@
 \name{heatmap_extract_sample_size}
 \alias{heatmap_extract_sample_size}
 \title{Extract the sample size data frame, or a data frame of logical values
-if \code{ret_mask} is \code{TRUE}}
+for presence/absence of sample sizes if \code{ret_mask} is \code{TRUE}}
 \usage{
 heatmap_extract_sample_size(
   sample_size_df = NULL,
@@ -34,17 +34,18 @@ values in the table cells}
 }
 \value{
 A data frame containing years (\code{yr}) column and columns for age,
-represented as numbers (no text appended to them). The number of age
-columns is the same as the number in \code{model$wtatage}. If \code{ret_mask} is
-\code{TRUE} then each cell is either \code{TRUE}or \code{FALSE} representing if text in
-that cell will be boldface or not, and the dimensions of the returned
-data frame will be identical to the dimensions of \code{wa}. If \code{ret_mask} is
-\code{FALSE}, the data frame returned will be the same dimensions as \code{wa} plus
-two more rows and one more column. The two rows are one row of the year
-and all \code{NA}s (a blank row for the table) and a row of the column totals,
-The extra column is the row sums
+represented as numbers (no text appended to them). If \code{ret_mask} is
+\code{TRUE} then each cell is either \code{TRUE}or \code{FALSE} representing presence
+or absence of samples for that year/age combination.The dimensions of the
+returned data frame will be identical to the dimensions of \code{wa}.
+If \code{ret_mask} is \code{FALSE}, the data frame returned will be the same
+dimensions as \code{wa} plus two more rows and one more column. The two rows
+are one row containing the year and all \code{NA}s (a blank row for the table)
+and a row of the column totals, The extra column contains the row sums
+Set the first and second elements to \code{NA} so that nothing appears in
+row sums column for the first two cells
 }
 \description{
 Extract the sample size data frame, or a data frame of logical values
-if \code{ret_mask} is \code{TRUE}
+for presence/absence of sample sizes if \code{ret_mask} is \code{TRUE}
 }

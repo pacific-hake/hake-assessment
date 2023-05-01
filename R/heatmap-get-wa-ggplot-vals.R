@@ -15,31 +15,30 @@
 #' @return A data frame containing `age`, `yr`, and the columns listed
 #' in `col_nms` if they exist in layer `layer_ind`
 #' @export
-heatmap_get_wa_ggplot_vals <- function(...,
-                                       wa,
+heatmap_get_wa_ggplot_vals <- function(wa,
                                        col_nms,
-                                       layer_ind = 1){
+                                       layer_ind = 1,
+                                       ...){
 
   # Extract the mapping position data used in the weight-at-age heatmap plot
   g0 <- plot_weight_at_age_heatmap(...)
   g1 <- ggplot_build(g0)
   ggplot_map_pos_data <- g1$data
 
-
   ages <- names(wa) %>%
     grep("^\\d+$", ., value = TRUE) |>
     as.numeric()
 
-  map_pos <- ggplot_map_pos_data[[1]] |>
+  map_dat <- ggplot_map_pos_data[[layer_ind]] |>
     as_tibble() |>
     transmute(fill_col = fill,
               alpha_col = alpha,
               age = as.numeric(x),
               yr = y) |>
     # Offset the ages (in case they start at zero)
-    mutate(age = ifelse(is.na(age), "sum", ages[age])) |>
+    mutate(age = ages[age]) |>
     mutate(age = factor(as.numeric(age),
                         levels = levels(g0$data$age)))
 
-  map_pos
+  map_dat
 }

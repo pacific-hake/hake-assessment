@@ -43,6 +43,9 @@
 #' @param axis_title_font_size Size of the font for the X and Y axis labels
 #' @param axis_tick_font_size Size of the font for the X and Y axis tick
 #' labels
+#' @param axis_text_color Color for the axis ticks and labels
+#' @param ... Arguments passed to `[heatmap_add_extrap_yrs_wa()] and
+#' [heatmap_calc_function()]
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -57,6 +60,7 @@ plot_weight_at_age_heatmap <- function(
     cell_font_size = 4,
     axis_title_font_size = 14,
     axis_tick_font_size = 11,
+    axis_text_color = "black",
     ...){
 
   stopifnot(!is.null(sample_size_df))
@@ -76,8 +80,8 @@ plot_weight_at_age_heatmap <- function(
   first_yr <- min(wa$yr)
 
   # Complete the weight-at-age data frame with pre- and post- years ----
-  wa <- heatmap_add_extrap_yrs_wa(model,
-                                  wa,
+  wa <- heatmap_add_extrap_yrs_wa(model = model,
+                                  wa = wa,
                                   ...)
 
   # Extract boldface mask data frame ----
@@ -95,7 +99,8 @@ plot_weight_at_age_heatmap <- function(
   # row that is there already
   mean_row <- heatmap_calc_function(wa |>
                                       filter(yr %in% start_yr:end_yr),
-                                    func = mean, ...) |>
+                                    func = mean,
+                                    ...) |>
     vec2df() |>
     mutate(yr = min(wa$yr)) |>
     select(yr, everything())
@@ -167,23 +172,23 @@ plot_weight_at_age_heatmap <- function(
                size = proj_line_width) +
     xlab("Age") +
     ylab("Year") +
-    theme(axis.text.x = element_text(color = "grey20",
+    theme(axis.text.x = element_text(color = axis_text_color,
                                      size = axis_tick_font_size,
                                      angle = 0,
                                      hjust = 0.5,
                                      vjust = -0.25,
                                      face = "plain"),
-          axis.text.y = element_text(color = "grey20",
+          axis.text.y = element_text(color = axis_text_color,
                                      size = axis_tick_font_size,
                                      hjust = 1,
                                      vjust = 0.5,
                                      face = "plain"),
-          axis.title.x = element_text(color = "grey20",
+          axis.title.x = element_text(color = axis_text_color,
                                       size = axis_title_font_size,
                                       angle = 0,
                                       vjust = 0,
                                       face = "plain"),
-          axis.title.y = element_text(color = "grey20",
+          axis.title.y = element_text(color = axis_text_color,
                                       size = axis_title_font_size,
                                       angle = 90,
                                       face = "plain"))

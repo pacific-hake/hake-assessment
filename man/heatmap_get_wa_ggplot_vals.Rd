@@ -8,18 +8,18 @@ will contain useful things like the fill colors and text colors for
 each tile which can be used to create another heatmap with different
 values}
 \usage{
-heatmap_get_wa_ggplot_vals(..., col_nms, layer_ind = 1)
+heatmap_get_wa_ggplot_vals(wa, col_nms, layer_ind = 1, ...)
 }
 \arguments{
-\item{...}{Arguments to pass to \code{\link[=plot_weight_at_age_heatmap]{plot_weight_at_age_heatmap()}} and
-\code{\link[=heatmap_extract_wa]{heatmap_extract_wa()}}}
-
 \item{col_nms}{A vector of the name of the columns to return in the data
 frame along with \code{age} and \code{yr}}
 
 \item{layer_ind}{A number identifying which layer to look for \code{col_nms} in.
 If the wrong layer is chosen, the data frame will contain only \code{age}
 and \code{yr} because the column names were not found}
+
+\item{...}{Arguments to pass to \code{\link[=plot_weight_at_age_heatmap]{plot_weight_at_age_heatmap()}} and
+\code{\link[=heatmap_extract_wa]{heatmap_extract_wa()}}}
 }
 \value{
 A data frame containing \code{age}, \code{yr}, and the columns listed

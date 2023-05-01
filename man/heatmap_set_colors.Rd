@@ -5,13 +5,13 @@
 \title{Ramp colors given to the length of the number of ages in the data frame \code{w}}
 \usage{
 heatmap_set_colors(
-  w = NULL,
+  wa = NULL,
   cols = c("red", "yellow", "green", "dodgerblue"),
   ...
 )
 }
 \arguments{
-\item{w}{A data frame containing a column named \code{age} which is numeric}
+\item{wa}{A data frame containing columns named by numbers which are ages}
 
 \item{cols}{A vector of the colors to use to build the color ramp}
 
@@ -19,9 +19,8 @@ heatmap_set_colors(
 }
 \value{
 A vector of the colors ramped by the function. The vector will
-be the number of ages minus 1 found in the \code{age} column of the \code{w} data
-frame
-\code{\link[grDevices:colorRamp]{grDevices::colorRampPalette()}}
+be the number of ages minus 1 found in the \code{wa} data frame. The color
+ramp is provided by \code{\link[grDevices:colorRamp]{grDevices::colorRampPalette()}}
 }
 \description{
 Ramp colors given to the length of the number of ages in the data frame \code{w}

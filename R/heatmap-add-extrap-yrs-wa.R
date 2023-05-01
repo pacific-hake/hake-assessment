@@ -108,9 +108,9 @@ heatmap_add_extrap_yrs_wa <- function(
       names(pre_dat) <- names(wa)[-1]
     }else{
       pre_dat <- heatmap_calc_function(
-        wa |>
+        wa = wa |>
           filter(yr %in% pre_yrs),
-        pre_func,
+        func = pre_func,
         ...)
     }
 
@@ -143,9 +143,9 @@ heatmap_add_extrap_yrs_wa <- function(
     names(post_dat) <- names(wa)[-1]
   }else{
     post_dat <- heatmap_calc_function(
-      wa |>
+      wa = wa |>
         filter(yr %in% post_yrs),
-      post_func,
+      func = post_func,
       ...)
   }
 
