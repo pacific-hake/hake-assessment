@@ -231,6 +231,21 @@ to present
     apply_post_func = mean)
 ```
 
+(ref:main-sample-size-weight-at-age-cap) Sample sizes of empirical
+weight-at-age measurements used to calculate mean weight-at-age fit in
+the base model. Colors and transparency are identical to
+Figure~\@ref(fig:main-weight-at-age-fig) and based on mean values.
+Sample sizes of zero highlight years for which data are not available, i.e.,
+pre `r start_yr_age_comps` and post `r last_data_yr`. The total sample
+sizes for each age used in the mean over all data years are shown at the
+bottom and year-specific sample sizes are shown to the right using the same
+color scale with red indicating small sample sizes and blue indicating the
+large sample sizes.
+
+(ref:main-sample-size-weight-at-age-alt) This figure shows the sample sizes
+of weight-at-age vary between years and ages with the most samples occurring
+for ages 3 through 7
+
 ```{r main-sample-size-weight-at-age-fig, fig.cap = "(ref:main-sample-size-weight-at-age-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-sample-size-weight-at-age-alt)"}
 # See `heatmap_extract_wa()` for argument choices, many are passed in `...`
 # from `plot_weight_at_age_heatmap()`

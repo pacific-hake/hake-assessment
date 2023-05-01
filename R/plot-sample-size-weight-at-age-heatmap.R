@@ -61,8 +61,19 @@ plot_sample_size_weight_at_age_heatmap <- function(
     axis_tick_font_size = 11,
     ...){
 
+  # Set up years ----
+  start_yr <- model$startyr
+  end_yr <- model$endyr
+  # First year in the weight-at-age data
+  first_yr <- model$wtatage |>
+    as_tibble() |>
+    filter(Yr > 0) |>
+    pull(Yr) |>
+    min()
+
   # This `wa` data frame is used here to get the ages and to set up the
-  # dimensions of the sample size data frame, so they are both the same.
+  # dimensions of the sample size data frame, so the `wa` and `sample_size`
+  # data frames both have the same dimensions.
   # That ensures that there are exactly the right number of fill colors
   # extracted from the `wa` data frame below to fill in the sample size
   # heatmap withour error
@@ -115,12 +126,12 @@ plot_sample_size_weight_at_age_heatmap <- function(
     ungroup()
 
   # Create a simple `ggplot` of only the sum text column, and extract the
-  # colors that were created to color the text
-
+  # colors that were created to color the text in the main plot
   gt0 <- ggplot(ss_sum_col,
                 aes(x = age,
                     y = yr)) +
-    geom_raster(aes(alpha = rescale), fill = "transparent") +
+    geom_raster(aes(alpha = rescale),
+                fill = "transparent") +
     geom_text(aes(label = sample_size,
                   col = rescale(sample_size)),
               size = 4) +
@@ -164,11 +175,10 @@ plot_sample_size_weight_at_age_heatmap <- function(
                   y = yr,
                   color = color_col,
                   fill = fill_col)) +
-    geom_raster(aes(alpha = alpha_col), hjust = 0) +
+    geom_raster(aes(alpha = alpha_col)) +
     scale_alpha(range = c(0.1, 1)) +
     geom_text(aes(label = sample_size),
-              size = cell_font_size,
-              hjust = "right") +
+              size = cell_font_size) +
     scale_color_identity() +
     scale_fill_identity() +
     scale_x_discrete(breaks = x_breaks,
@@ -178,6 +188,10 @@ plot_sample_size_weight_at_age_heatmap <- function(
                        expand = c(0, 0)) +
     theme(legend.position = "none",
           plot.margin = margin(12, 12, 10, 0)) +
+    geom_hline(yintercept = c(first_yr - 0.5,
+                              end_yr + 0.5),
+               color = proj_line_color,
+               size = proj_line_width) +
     xlab("Age") +
     ylab("Year") +
     theme(axis.text.x = element_text(color = "grey20",
