@@ -225,10 +225,10 @@ to present
     base_model,
     cell_font_size = 3,
     sample_size_df = weight_age_sample_sizes,
-    apply_pre_yrs = start_yr_age_comps:base_model$endyr,
-    apply_pre_func = mean,
-    apply_post_yrs = (base_model$endyr - 4):base_model$endyr,
-    apply_post_func = mean)
+    pre_yrs = start_yr_age_comps:base_model$endyr,
+    pre_func = mean,
+    post_yrs = (base_model$endyr - 4):base_model$endyr,
+    post_func = mean)
 ```
 
 (ref:main-sample-size-weight-at-age-cap) Sample sizes of empirical
@@ -253,8 +253,8 @@ for ages 3 through 7
     base_model,
     cell_font_size = 3,
     sample_size_df = weight_age_sample_sizes,
-    apply_pre_yrs = start_yr_age_comps:base_model$endyr,
-    apply_pre_func = sum,
-    apply_post_yrs = (base_model$endyr - 4):base_model$endyr,
-    apply_post_func = sum)
+    pre_yrs = start_yr_age_comps:base_model$endyr,
+    pre_func = sum,
+    post_yrs = (base_model$endyr - 4):base_model$endyr,
+    post_func = sum)
 ```

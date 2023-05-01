@@ -61,35 +61,38 @@ plot_sample_size_weight_at_age_heatmap <- function(
     axis_tick_font_size = 11,
     ...){
 
-  # Set up years ----
+  # Extract valid waa for given fleet ----
+  wa <- model$wtatage |>
+    as_tibble() |>
+    filter(Fleet == fleet) %>%
+    select(Yr, matches("^\\d", .)) |>
+    rename(yr = Yr) |>
+    filter(yr > 0)
+
+  # Model start and end years ----
   start_yr <- model$startyr
   end_yr <- model$endyr
   # First year in the weight-at-age data
-  first_yr <- model$wtatage |>
-    as_tibble() |>
-    filter(Yr > 0) |>
-    pull(Yr) |>
-    min()
+  first_yr <- min(wa$yr)
 
+  # Complete the weight-at-age data frame with pre- and post- years ----
+  #
   # This `wa` data frame is used here to get the ages and to set up the
   # dimensions of the sample size data frame, so the `wa` and `sample_size`
   # data frames both have the same dimensions.
   # That ensures that there are exactly the right number of fill colors
   # extracted from the `wa` data frame below to fill in the sample size
-  # heatmap withour error
-  wa <- heatmap_extract_wa(model,
-                           fleet,
-                           ...)
-  ages <- names(wa) %>%
-    grep("^\\d+$", ., value = TRUE) |>
-    as.numeric()
-  num_ages <- length(ages)
+  # heatmap without error
+  wa <- heatmap_add_extrap_yrs_wa(model,
+                                  wa,
+                                  ...)
 
   # Extract the actual plotting values used by `ggplot` which include the
   # `fill` and `alpha` values for every cell. Those values will be used to
   # color the sample size heatmap tiles
   map_pos <- heatmap_get_wa_ggplot_vals(model = model,
                                         sample_size_df = sample_size_df,
+                                        wa = wa,
                                         fleet = fleet,
                                         col_nms = c("alpha", "fill"))
 
@@ -110,13 +113,8 @@ plot_sample_size_weight_at_age_heatmap <- function(
     mutate(age = factor(age)) |>
     full_join(map_pos, by = c("yr", "age"))
 
-  # Set colors for the sum column text colors ----
-  cols <-  c("red",
-             "yellow",
-             "green",
-             "dodgerblue")
-  col_func <- colorRampPalette(cols)
-  sum_colors <- col_func(num_ages- 1)
+  # Set colors for the sum column text
+  sum_colors <- heatmap_set_colors(wa, ...)
 
   # Extract the sum column from the sample size data frame ----
   ss_sum_col <- ss |>

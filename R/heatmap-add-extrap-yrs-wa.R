@@ -1,77 +1,57 @@
-#' Extract the weight-at-age data frame for the heatmap plot
-#' ([plot_weight_at_age_heatmap()])
+#' Add extrapolated years before and after the weight-at-age time
+#' series data in `model$wtatage`
 #'
 #' @param model An list of results read in from an SS model using
 #' [load_ss_files()]
-#' @param fleet An integer value specifying which fleet you want plotted.
-#' Fleet -2 will plot fecundity information.
-#' Fleet -1 will plot population weight-at-age for the middle of the year.
-#' Fleet 0 will plot population weight-at-age for the beginning of the year.
-#' Positive values for fleet will link to a modeled fleet.
-#' @param apply_pre_yrs A vector of the years to use for the `apply_pre_func`
+#' @param wa The weight-at-age data frame found in `model$wtatage`
+#' @param pre_yrs A vector of the years to use for the `pre_func`
 #' function to fill in missing years before the weight-at-age data starts
-#' @param apply_pre_func The function to use on the data filtered by the years
-#' given by `apply_pre_yrs`
-#' @param apply_post_yrs A vector of the years to use for the `apply_post_func`
+#' @param pre_func The function to use on the data filtered by the years
+#' given by `pre_yrs`
+#' @param post_yrs A vector of the years to use for the `post_func`
 #' function to fill in missing years after the weight-at-age data ends
 #' (projection years)
-#' @param apply_post_func The function to use on the data filtered by the years
-#' given by `apply_post_yrs`
+#' @param post_func The function to use on the data filtered by the years
+#' given by `post_yrs`
 #' @param pre_wa_vals A vector of weight-at-age values to use instead of the
-#' function `apply_pre_func()` on the data found in the years defined by
-#' `apply_pre_yrs`. If this is not `NULL`, this vector will be used for all
+#' function `pre_func()` on the data found in the years defined by
+#' `pre_yrs`. If this is not `NULL`, this vector will be used for all
 #' years prior to the start of the weight-at-age data instead of the output
-#' of `apply_pre_func()`. Note this starts at age 0, so it may be one more
+#' of `pre_func()`. Note this starts at age 0, so it may be one more
 #' than you think
 #' @param post_wa_vals A vector of weight-at-age values to use instead of the
-#' function `apply_post_func()` on the data found in the years defined by
-#' `apply_post_yrs`. If this is not `NULL`, this vector will be used for all
-#' projection years instead of the output of `apply_post_func()`  Note this
+#' function `post_func()` on the data found in the years defined by
+#' `post_yrs`. If this is not `NULL`, this vector will be used for all
+#' projection years instead of the output of `post_func()`  Note this
 #' starts at age 0, so it may be one more than you think
-#' @param ret_vec Logical. If `TRUE`, return a vector representing the
-#' a row of at-age values which are the calculation using `apply_pre_yrs`
-#' and `apply_pre_func`. The year in the row will be 9999 which must be
-#' overwritten by the caller
-#' @param ... Absorb arguments meant for other functions
+#' @param ... Absorbs arguments meant for other functions
 #'
 #' @return A data frame containing years (`yr`) column and columns for age,
 #' represented as numbers (no text appended to them). The number of age
 #' columns is the same as the number in `model$wtatage`
-heatmap_extract_wa <- function(
+heatmap_add_extrap_yrs_wa <- function(
     model = NULL,
-    fleet = NULL,
-    apply_pre_yrs = min(model$wtatage |>
-                          filter(Yr > 0) |>
-                          pull(Yr)):model$endyr,
-    apply_pre_func = mean,
-    apply_post_yrs = min(model$wtatage |>
-                           filter(Yr > 0) |>
-                           pull(Yr)):model$endyr,
-    apply_post_func = mean,
+    wa = NULL,
+    pre_yrs = min(model$wtatage |>
+                    filter(Yr > 0) |>
+                    pull(Yr)):model$endyr,
+    pre_func = mean,
+    post_yrs = min(model$wtatage |>
+                     filter(Yr > 0) |>
+                     pull(Yr)):model$endyr,
+    post_func = mean,
     pre_wa_vals = NULL,
     post_wa_vals = NULL,
-    ret_vec = FALSE,
     ...){
 
   stopifnot(!is.null(model))
-  stopifnot(!is.null(fleet))
-  stopifnot(is.numeric(fleet))
-  stopifnot(length(fleet) == 1)
-  stopifnot(is.numeric(apply_pre_yrs))
-  stopifnot(length(apply_pre_yrs) > 1)
-  stopifnot(length(apply_post_yrs) > 1)
-  stopifnot(is.numeric(apply_post_yrs))
-  stopifnot(is.function(apply_pre_func))
-  stopifnot(is.function(apply_post_func))
-
-  # Extract valid waa for given fleet ----
-  wa <- model$wtatage |>
-    as_tibble() |>
-    filter(Fleet == fleet) %>%
-    select(Yr, matches("^\\d", .)) |>
-    rename(yr = Yr) |>
-    filter(yr > 0)
-  nms <- names(wa)
+  stopifnot(!is.null(wa))
+  stopifnot(is.numeric(pre_yrs))
+  stopifnot(length(pre_yrs) > 1)
+  stopifnot(length(post_yrs) > 1)
+  stopifnot(is.numeric(post_yrs))
+  stopifnot(is.function(pre_func))
+  stopifnot(is.function(post_func))
 
   # Extract unique columns ----
   # If there is a plus group in the waa data, and there are ages larger than
@@ -86,11 +66,12 @@ heatmap_extract_wa <- function(
     `!`()
 
   # Remove duplicated columns (typically plus group) ----
+  nms <- names(wa)
   wa <- wa |>
     select(all_of(which(unq_cols))) |>
     set_names(nms[unq_cols])
 
-  # These checks are exactly here because `wa` has been truncated to the
+  # These checks are here because `wa` has been truncated to the
   # length of the plus group and `pre_wa_vals` and `post_wa_vals` must be
   # the same length
   if(!is.null(pre_wa_vals[1])){
@@ -118,19 +99,7 @@ heatmap_extract_wa <- function(
   start_yr <- model$startyr
   end_yr <- model$endyr
 
-  # Return a vector of the means-at-age of the requested years
-  if(ret_vec){
-    mean_dat <- wa |>
-      filter(yr %in% apply_pre_yrs) |>
-      select(-yr) |>
-      apply(2, apply_pre_func)
-      # Setting year to 9999 here so if you see it somewhere in an error
-      # it's easy to search the code for
-      return(vec2df(c(9999, mean_dat), names(wa)))
-  }
-
   if(first_yr > start_yr){
-
     # Need to fill in the missing years at the start of the model with values.
     # Copy first row, modify it with the means of all years and go to the next
     # step to make a little data frame with several of these rows
@@ -138,10 +107,11 @@ heatmap_extract_wa <- function(
       pre_dat <- pre_wa_vals
       names(pre_dat) <- names(wa)[-1]
     }else{
-      pre_dat <- wa |>
-        filter(yr %in% apply_pre_yrs) |>
-        select(-yr) |>
-        apply(2, apply_pre_func)
+      pre_dat <- heatmap_calc_function(
+        wa |>
+          filter(yr %in% pre_yrs),
+        pre_func,
+        ...)
     }
 
     # Make new data frame containing values for the missing years before the
@@ -150,6 +120,7 @@ heatmap_extract_wa <- function(
     # on the plot that can be modified later for the `mean` at the bottom and
     # the blank row above it
     missing_yrs <- (start_yr - 2):(start_yr + (first_yr - start_yr) - 1)
+
     d <- map_df(missing_yrs, \(yr){
       vec2df(c(yr, pre_dat), names(wa))
     })
@@ -171,10 +142,11 @@ heatmap_extract_wa <- function(
     post_dat <- post_wa_vals
     names(post_dat) <- names(wa)[-1]
   }else{
-    post_dat <- wa |>
-      filter(yr %in% apply_post_yrs) |>
-      select(-yr) |>
-      apply(2, apply_post_func)
+    post_dat <- heatmap_calc_function(
+      wa |>
+        filter(yr %in% post_yrs),
+      post_func,
+      ...)
   }
 
   d <- map_df(proj_yrs, \(yr){

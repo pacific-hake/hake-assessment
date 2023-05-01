@@ -16,15 +16,15 @@
 #' in `col_nms` if they exist in layer `layer_ind`
 #' @export
 heatmap_get_wa_ggplot_vals <- function(...,
+                                       wa,
                                        col_nms,
                                        layer_ind = 1){
 
   # Extract the mapping position data used in the weight-at-age heatmap plot
   g0 <- plot_weight_at_age_heatmap(...)
   g1 <- ggplot_build(g0)
-  ggplot_map_pos_data <- g1$layout$map_position(g1$data)
-  # Configure weight-at-age data frame ----
-  wa <- heatmap_extract_wa(...)
+  ggplot_map_pos_data <- g1$data
+
 
   ages <- names(wa) %>%
     grep("^\\d+$", ., value = TRUE) |>

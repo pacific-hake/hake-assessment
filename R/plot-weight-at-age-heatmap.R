@@ -61,22 +61,26 @@ plot_weight_at_age_heatmap <- function(
 
   stopifnot(!is.null(sample_size_df))
 
-  # Set up years ----
+  # Extract valid weight-at-age data frame for given fleet ----
+  wa <- model$wtatage |>
+    as_tibble() |>
+    filter(Fleet == fleet) %>%
+    select(Yr, matches("^\\d", .)) |>
+    rename(yr = Yr) |>
+    filter(yr > 0)
+
+  # Model start and end years ----
   start_yr <- model$startyr
   end_yr <- model$endyr
-  # First year in the weight-at-age data
-  first_yr <- model$wtatage |>
-    as_tibble() |>
-    filter(Yr > 0) |>
-    pull(Yr) |>
-    min()
+  # First year in the weight-at-age data ----
+  first_yr <- min(wa$yr)
 
-  # Configure weight-at-age data frame ----
-  wa <- heatmap_extract_wa(model,
-                           fleet,
-                           ...)
+  # Complete the weight-at-age data frame with pre- and post- years ----
+  wa <- heatmap_add_extrap_yrs_wa(model,
+                                  wa,
+                                  ...)
 
-  # Configure boldface mask data frame ----
+  # Extract boldface mask data frame ----
   bf <- heatmap_extract_sample_size(sample_size_df,
                                     fleet,
                                     wa,
@@ -89,14 +93,23 @@ plot_weight_at_age_heatmap <- function(
 
   # Calculate the mean row for the bottom of the heatmap, overwrite the
   # row that is there already
-  mean_row <- heatmap_extract_wa(model,
-                                 fleet,
-                                 ret_vec = TRUE) |>
-    mutate(yr = min(wa$yr))
+  mean_row <- heatmap_calc_function(wa |>
+                                      filter(yr %in% start_yr:end_yr),
+                                    func = mean, ...) |>
+    vec2df() |>
+    mutate(yr = min(wa$yr)) |>
+    select(yr, everything())
+  # `rows_update` matches the first element (`yr`) by default and
+  #  overwrites that row with the `mean` row
   wa <- wa |>
     rows_update(mean_row)
 
+  # Set colors for the heatmap cells, 1 for each age
+  colors <- heatmap_set_colors(wa, ...)
+
   # Move weight-at-age data into `ggplot` (long) format ----
+  # Rescale the value column so it is between 0 and 1, which is required
+  # to create a color gradient using `scale_fill_gradientn()``
   w <- wa |>
     pivot_longer(-yr, names_to = "age" ) |>
     mutate(age = as.numeric(age)) |>
@@ -114,22 +127,22 @@ plot_weight_at_age_heatmap <- function(
     mutate(age = factor(age,
                         levels = sort(unique(as.numeric(age)))))
 
-  # Set colors for the heatmap cells, 1 for each age
-  colors <- heatmap_set_colors(w, ...)
-
+  # Set up the y-axis tick mark frequency (one for every year)
   y_breaks <- wa$yr
   y_labels <- y_breaks
-  # Set up the bottom row, which contains the mean of the values
+  # Set up the bottom row, which contains the mean of the values and
+  # remove tick and label from the line above it for the blank line
   y_labels[1] <- "Mean"
   y_breaks[2] <- NA
   y_labels[2] <- ""
 
-  # Set 1965 to colorless. Need a second value column, for a character version
-  # to make the plot work right (avoids Error: Discrete value supplied to
-  # continuous scale)
+  # Set second year to colorless. Need a second value column,
+  # which is a character column instead of numeric to make the plot
+  # work right (avoids Error: Discrete value supplied to continuous scale)
+  second_yr <- min(wa$yr) + 1
   w <- w |>
-    mutate(value_text = ifelse(yr == 1965, "", f(value, 2)),
-           rescale = ifelse(yr == 1965, 0, rescale))
+    mutate(value_text = ifelse(yr == second_yr, "", f(value, 2)),
+           rescale = ifelse(yr == second_yr, 0, rescale))
 
   g <- ggplot(w,
               aes(x = age,
@@ -138,6 +151,7 @@ plot_weight_at_age_heatmap <- function(
     scale_y_continuous(breaks = y_breaks,
                        labels = y_labels,
                        expand = c(0, 0)) +
+    # `geom_raster()` is about 4 times faster than `geom_tile()`
     geom_raster(aes(alpha = rescale,
                     fill = value)) +
     scale_fill_gradientn(colors = colors,
