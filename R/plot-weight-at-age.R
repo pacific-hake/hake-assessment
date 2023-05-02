@@ -83,26 +83,25 @@ plot_weight_at_age <- function(wa,
                  filter(yr %in% c(min_yr, max_yr))) +
     geom_point(data = w |>
                  filter(yr %in% x_breaks)) +
+    geom_point(data = w |>
+                 filter(age %in% bold_ages),
+               size = 3) +
     scale_color_manual(values = colors) +
     scale_linewidth_manual(values = c(0.5, 1.5)) +
     scale_x_continuous(breaks = x_breaks,
-                       labels = x_labels) +
-                       #expand = c(0.1, 0.11)) +
+                       labels = x_labels,
+                       expand = c(0.05, 0.05)) +
     scale_y_continuous(breaks = y_breaks,
                        labels = y_labels,
                        expand = c(0, 0),
                        limits = c(0, max_value)) +
-    geom_vline(xintercept = c(min_yr, max_yr),
-               linetype = "dashed",
-               linewidth = 0.25,
-               color = "black") +
     geom_label_repel(data = w |> filter(yr == min_yr),
                      aes(label = age),
-                     nudge_x = -2,
+                     nudge_x = -3.5,
                      size = age_label_font_size) +
     geom_label_repel(data = w |> filter(yr == max_yr),
                      aes(label = age),
-                     nudge_x = 2,
+                     nudge_x = 3.5,
                      size = age_label_font_size) +
     xlab("Year") +
     ylab("Mean weight-at-age (kg)") +

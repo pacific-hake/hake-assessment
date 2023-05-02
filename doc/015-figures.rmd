@@ -221,7 +221,7 @@ to present
 ```{r main-weight-at-age-fig, fig.cap = "(ref:main-weight-at-age-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-weight-at-age-alt)"}
 # See `heatmap_extract_wa()` for argument choices, many are passed in `...`
 # from `plot_weight_at_age_heatmap()`
-  plot_weight_at_age_heatmap(
+  plot_heatmap_weight_at_age(
     base_model,
     cell_font_size = 3,
     sample_size_df = weight_age_sample_sizes,
@@ -253,7 +253,7 @@ for ages 3 through 7
 ```{r main-sample-size-weight-at-age-fig, fig.cap = "(ref:main-sample-size-weight-at-age-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-sample-size-weight-at-age-alt)"}
 # See `heatmap_extract_wa()` for argument choices, many are passed in `...`
 # from `plot_weight_at_age_heatmap()`
-  plot_sample_size_weight_at_age_heatmap(
+  plot_heatmap_sample_size_weight_at_age(
     base_model,
     cell_font_size = 3,
     sample_size_df = weight_age_sample_sizes,
@@ -271,7 +271,7 @@ for ages 3 through 7
 for ages 2--10 used for the base model, as in
 Figure~\@ref(fig:main-weight-at-age-fig) but shown as time series. Blue
 lines are for the youngest ages and green lines are for the oldest ages
-shown, with age-5 highlighted in bold as a visual aid.
+shown, with age-5 having a thicker line and larger points as a visual aid.
 
 (ref:main-weight-at-age-lines-alt) This figure shows that the annual mean
 weight-at-age is lower for most ages in the most recent years than for years

@@ -49,7 +49,7 @@
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
-plot_weight_at_age_heatmap <- function(
+plot_heatmap_weight_at_age <- function(
     model,
     sample_size_df = NULL,
     fleet = 1,
