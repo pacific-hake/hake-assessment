@@ -69,12 +69,12 @@ plot_survey_index_fits <- function(
 
   y_title <- ifelse(survey_type == "age1",
                     "Numbers (billions)",
-                    "Biomass (million t)")
+                    "Biomass (Mt)")
   g <- ggplot(d,
               aes(x = year,
-                  y = index.med,
-                  ymin = index.025,
-                  ymax = index.975,
+                  y = index_med,
+                  ymin = index_lo,
+                  ymax = index_hi,
                   group = model,
                   color = model,
                   linetype = model,

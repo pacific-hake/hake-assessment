@@ -28,7 +28,7 @@ extract_survey_index_fits <- function(model_lst,
 
   out <- map2(model_lst, model_names, ~{
     .x$extra_mcmc[[type]] |>
-      filter(fleet == fleet) |>
+      filter(fleet == !!fleet) |>
       ungroup() |>
       mutate(model = .y) |>
       select(-fleet) |>

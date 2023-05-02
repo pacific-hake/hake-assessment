@@ -20,12 +20,12 @@ create_group_df_index <- function(model_lst = NULL,
     as_tibble() |>
     filter(index == fleet) |>
     select(-seas, -se_log, -index) |>
-    setNames(c("year", "index.med")) |>
+    setNames(c("year", "index_med")) |>
     mutate(year = as.numeric(year)) |>
     mutate(model = "Observed") |>
-    mutate(index.025 = index.med,
-           index.975 = index.med) |>
-    select(model, year, index.025, index.med, index.975)
+    mutate(index_lo = index_med,
+           index_hi = index_med) |>
+    select(model, year, index_lo, index_med, index_hi)
 
   d <- bind_cols(extract_survey_index_fits(model_lst,
                                            model_names,

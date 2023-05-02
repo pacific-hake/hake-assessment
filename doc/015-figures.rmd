@@ -287,3 +287,80 @@ plot_weight_at_age(wt_at_age,
                             "yellow",
                             "darkgreen"))
 ```
+
+(ref:main-bridge-summary-cap) Bridging models showing the sequential steps
+made to the base model from the `r last_assess_yr` base model to the
+`r assess_yr` base model. In order the steps are: update the Stock Synthesis
+model code version, add `r last_data_yr` catch, add `r last_data_yr`
+weight-at-age, and add `r last_data_yr` fishery age compositions. The
+final model is the base model for `r assess_yr`. Panels are spawning
+biomass (upper panel), relative spawning biomass (spawning biomass in
+each year relative to the unfished equilibrium spawning biomass, middle
+left), recruitment deviation (middle right), age-2+ survey biomass index
+(lower left), and age-1 index (lower right), with triangles representing
+the observed survey indices.
+
+(ref:main-bridge-summary-alt) This figure shows the differences between
+the first bridging models for various model outputs. The only notable
+difference is in the recruitment deviation estimates for 2020 to 2022 for
+the bridging model where the 2022 catch is added.
+
+```{r main-bridge-summary-fig, fig.cap = "(ref:main-bridge-summary-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-bridge-summary-alt)"}
+plist <- list()
+plist[[1]] <-
+  plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
+                   ylim = c(0, 2.5),
+                   x_labs_mod = 10,
+                   clip_cover = 0.35,
+                   wrap_y_label = TRUE,
+                   axis_title_font_size = 12,
+                   leg_pos = "none")
+plist[[2]] <-
+  plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
+               leg_pos = "none",
+               x_labs_mod = 10,
+               clip_cover = 0.25,
+               axis_title_font_size = 12,
+               line_width = 0.25)
+
+plist[[3]] <-
+  plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
+                         survey_type = "age2",
+                         rev_colors = FALSE,
+                         clip_cover = 0.25,
+                         axis_title_font_size = 12,
+                         leg_pos = "none")
+
+plist[[4]] <-
+  plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
+                         survey_type = "age1",
+                         xlim = c(1995, 2022),
+                         ylim = c(0, 11),
+                         y_breaks = seq(0, 11, by = 2),
+                         clip_cover = 0.25,
+                         axis_title_font_size = 12,
+                         rev_colors = FALSE,
+                         leg_pos = "none")
+
+# Grid of 2 rows and 1 column with one plot at the top (biomass)
+# and 4 plots embedded in another grid (quad_grid) at the bottom
+quad_grid <- cowplot::plot_grid(plotlist = plist,
+                                nrow = 2,
+                                ncol = 2)
+full_plist <- list()
+full_plist[[1]] <-
+  plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
+               leg_ncol = 2,
+               leg_font_size = 7,
+               wrap_y_label = TRUE,
+               axis_title_font_size = 12,
+               leg_pos = c(0.72, 0.82))
+
+full_plist[[2]] <- quad_grid
+
+cowplot::plot_grid(plotlist = full_plist,
+                   nrow = 2,
+                   ncol = 1,
+                   rel_heights = c(0.33, 0.67))
+
+```

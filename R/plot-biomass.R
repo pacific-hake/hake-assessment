@@ -150,6 +150,7 @@ plot_biomass <- function(model_lst = NULL,
                        labels = y_breaks) +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
+          legend.text.align = 0,
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 0, 0)) +
