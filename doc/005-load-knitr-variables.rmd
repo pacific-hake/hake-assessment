@@ -891,12 +891,14 @@ main.recdevbias.end <-
   max(base_model$recruit$Yr[biasadjust_tmp])
 
 # Weight-at-age for the base model --------------------------------------------
+# Fleets 1 and 2 are the same in the hake model
 wt_at_age <-
-  base_model$wtatage[, !grepl("comment", colnames(base_model$wtatage))] |>
-  filter(Yr %in% start_yr_age_comps:(end_yr - 1),
-         Fleet == 2) |>
-  select(-c(Seas, Sex, Bio_Pattern, BirthSeas, Fleet)) |>
-  rename(year = Yr)
+  base_model$wtatage |> 
+  as_tibble() %>% 
+  set_names(tolower(names(.))) |> 
+  filter(yr %in% start_yr_age_comps:(end_yr - 1)) |> 
+  filter(fleet == 1) |>
+  select(yr, matches("^\\d+$"))
 
 # Define number of 'recent' years for several tables --------------------------
 num_recent_yrs <- 10
