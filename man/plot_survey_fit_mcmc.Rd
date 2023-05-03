@@ -10,7 +10,7 @@ plot_survey_fit_mcmc(
   type = c("age1", "acoustic"),
   n_posts = 1000,
   probs = c(0.025, 0.975),
-  leg_pos = c(0.65, 0.83),
+  show_legend = TRUE,
   leg_ncol = 1,
   leg_font_size = 12,
   axis_title_font_size = 14,
@@ -29,12 +29,7 @@ of posteriors, all posterior lines will be shown}
 
 \item{probs}{A vector of probabilities for the credible interval}
 
-\item{leg_pos}{The position of the legend inside the plot. If \code{NULL},
-\code{NA}, or \code{none}, the legend will not be shown}
-
-\item{leg_ncol}{The number of columns to show in the legend}
-
-\item{leg_font_size}{The legend font size}
+\item{show_legend}{Logical. If \code{TRUE}, show the legend}
 
 \item{axis_title_font_size}{Size of the font for the X and Y axis labels}
 

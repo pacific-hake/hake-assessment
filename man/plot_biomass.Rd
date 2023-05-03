@@ -31,6 +31,7 @@ plot_biomass(
   leg_font_size = 12,
   axis_title_font_size = 14,
   axis_tick_font_size = 11,
+  axis_label_color = "black",
   point_size = 2.5,
   point_shape = 16,
   line_width = 1,
@@ -268,6 +269,8 @@ regardless of what this number is}
 
 \item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
 
+\item{axis_label_color}{Color for the axis labels and tick labels}
+
 \item{point_size}{Size of all points shown in plot}
 
 \item{point_shape}{The R shape number for the points}
@@ -352,8 +355,6 @@ multiple model plots}
 \item{minor_tick_length}{The length of the small x-axis ticks}
 
 \item{survey_type}{Either \code{age1} or \code{age2}}
-
-\item{axis_label_color}{Color for the axis labels and tick labels}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

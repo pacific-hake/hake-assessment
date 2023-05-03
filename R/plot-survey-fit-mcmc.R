@@ -7,10 +7,7 @@
 #' randomly drawn from all posteriors. if this is larger than the number
 #' of posteriors, all posterior lines will be shown
 #' @param probs A vector of probabilities for the credible interval
-#' @param leg_pos The position of the legend inside the plot. If `NULL`,
-#' `NA`, or `none`, the legend will not be shown
-#' @param leg_ncol The number of columns to show in the legend
-#' @param leg_font_size The legend font size
+#' @param show_legend Logical. If `TRUE`, show the legend
 #' @param axis_title_font_size Size of the font for the X and Y axis labels
 #' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
 #' @param axis_label_color Color for the axis labels and tick labels
@@ -21,7 +18,7 @@ plot_survey_fit_mcmc <- function(model,
                                  type = c("age1", "acoustic"),
                                  n_posts = 1000,
                                  probs = c(0.025, 0.975),
-                                 leg_pos = c(0.65, 0.83),
+                                 show_legend = TRUE,
                                  leg_ncol = 1,
                                  leg_font_size = 12,
                                  axis_title_font_size = 14,
@@ -107,7 +104,8 @@ plot_survey_fit_mcmc <- function(model,
   #   select(-fleet)
 
   x_breaks <- obs$yr
-
+  x_labels <- obs$yr
+  x_labels[x_labels == 2012] <- ""
   g <- ggplot(obs,
               aes(x = yr,
                   y = med,
@@ -133,7 +131,8 @@ plot_survey_fit_mcmc <- function(model,
                   linewidth = 1.5) +
     geom_point(shape = 1,
                size = 3) +
-    scale_x_continuous(breaks = x_breaks) +
+    scale_x_continuous(breaks = x_breaks,
+                       labels = x_labels) +
     scale_y_continuous(limits = c(0, 5),
                        expand = c(0, 0)) +
     xlab("Year") +
@@ -161,85 +160,76 @@ plot_survey_fit_mcmc <- function(model,
           axis.ticks.length = unit(0.15, "cm"),
           plot.margin = margin(12, 12, 12, 5))
 
-  if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
+  if(show_legend){
+    symbol_x <- 1995
+    symbol_x_start <- 1994
+    symbol_x_end <- 1996
+    text_x <- 1996.25
+    symbol_y <- 4.8
     g <- g +
-      theme(legend.position = "none")
+      annotate("segment",
+               x = symbol_x_start + 0.5,
+               xend = symbol_x_end - 0.5,
+               y = symbol_y,
+               yend = symbol_y,
+               colour = "black",
+               linewidth = 1) +
+      annotate("point",
+               x = symbol_x,
+               y = symbol_y,
+               shape = 1,
+               size = 3) +
+      annotate("segment",
+               x = symbol_x_start,
+               xend = symbol_x_end,
+               y = symbol_y - 0.2,
+               yend = symbol_y - 0.2,
+               colour = "darkblue",
+               linewidth = 1.5) +
+      annotate("segment",
+               x = symbol_x_start,
+               xend = symbol_x_end,
+               y = symbol_y - 0.4,
+               yend = symbol_y - 0.4,
+               colour = "blue",
+               linewidth = 0.5) +
+      annotate("segment",
+               x = symbol_x_start,
+               xend = symbol_x_end,
+               y = symbol_y - 0.3,
+               yend = symbol_y - 0.45,
+               colour = "blue",
+               linewidth = 0.5) +
+      annotate("segment",
+               x = symbol_x_start,
+               xend = symbol_x_end,
+               y = symbol_y - 0.42,
+               yend = symbol_y - 0.33,
+               colour = "blue",
+               linewidth = 0.5) +
+      annotate("text",
+               x = text_x,
+               y = symbol_y,
+               label = paste0("Observed survey biomass with input (wide) ",
+                              "and estimated (narrow) 95% intervals"),
+               hjust = 0) +
+      annotate("text",
+               x = text_x,
+               y = symbol_y - 0.2,
+               label = "Median MCMC estimate of expected survey biomass",
+               hjust = 0) +
+      annotate("text",
+               x = text_x,
+               y = symbol_y - 0.4,
+               label = paste0("A subset (",
+                              n_samp,
+                              ") of the MCMC estimates of expected survey ",
+                              "biomass"),
+               hjust = 0)
   }else{
     g <- g +
-      theme(legend.position = leg_pos) +
-      guides(fill = guide_legend(ncol = leg_ncol),
-             color = guide_legend(ncol = leg_ncol))
-  }
-
-  symbol_x <- 1995
-  symbol_x_start <- 1994
-  symbol_x_end <- 1996
-  text_x <- 1996.25
-
-  symbol_y <- 4.8
-
-  g <- g +
-    annotate("segment",
-             x = symbol_x_start + 0.5,
-             xend = symbol_x_end - 0.5,
-             y = symbol_y,
-             yend = symbol_y,
-             colour = "black",
-             linewidth = 1) +
-    annotate("point",
-             x = symbol_x,
-             y = symbol_y,
-             shape = 1,
-             size = 3) +
-    annotate("segment",
-             x = symbol_x_start,
-             xend = symbol_x_end,
-             y = symbol_y - 0.2,
-             yend = symbol_y - 0.2,
-             colour = "darkblue",
-             linewidth = 1.5) +
-    annotate("segment",
-             x = symbol_x_start,
-             xend = symbol_x_end,
-             y = symbol_y - 0.4,
-             yend = symbol_y - 0.4,
-             colour = "blue",
-             linewidth = 0.5) +
-    annotate("segment",
-             x = symbol_x_start,
-             xend = symbol_x_end,
-             y = symbol_y - 0.3,
-             yend = symbol_y - 0.45,
-             colour = "blue",
-             linewidth = 0.5) +
-    annotate("segment",
-             x = symbol_x_start,
-             xend = symbol_x_end,
-             y = symbol_y - 0.42,
-             yend = symbol_y - 0.33,
-             colour = "blue",
-             linewidth = 0.5) +
-
-
-    annotate("text",
-             x = text_x,
-             y = symbol_y,
-             label = paste0("Observed survey biomass with input (wide) ",
-                            "and estimated (narrow) 95% intervals"),
-             hjust = 0) +
-    annotate("text",
-             x = text_x,
-             y = symbol_y - 0.2,
-             label = "Median MCMC estimate of expected survey biomass",
-             hjust = 0) +
-    annotate("text",
-             x = text_x,
-             y = symbol_y - 0.4,
-             label = paste0("A subset (",
-                            n_samp,
-                            ") of the MCMC estimates of expected survey ",
-                            "biomass"),
-             hjust = 0)
+      theme(legend.position = "none")
+ }
 
   g
 }
