@@ -364,3 +364,22 @@ cowplot::plot_grid(plotlist = full_plist,
                    rel_heights = c(0.33, 0.67))
 
 ```
+
+(ref:main-survey-index-fit-mcmc-cap) Fits (colored lines) to the acoustic
+survey (points) with input 95% intervals around the observations. The
+thin blue lines are the results of a random subset of individual MCMC samples.
+Thicker uncertainty intervals around observed survey points indicate 95%
+lognormal uncertainty intervals estimated by the kriging method and are
+used as input to the assessment model. Thinner uncertainty intervals
+indicate estimated 95% uncertainty intervals that account for the model
+estimate of additional uncertainty.
+
+(ref:main-survey-index-fit-mcmc-alt) This figure shows 1000 posterior
+trajectories of the expected survey biomass fitting well to the observed
+biomass. The lines are very tightly packed together for most of the time
+series but diverge a little near the end of the time series from about 2017
+to 2021.
+
+```{r main-survey-index-fit-mcmc-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-cap)", fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-survey-index-fit-mcmc-alt)"}
+plot_survey_fit_mcmc(base_model, type = "acoustic")
+```

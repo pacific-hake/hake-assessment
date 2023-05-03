@@ -18,6 +18,7 @@
 #' @param leg_font_size The legend font size
 #' @param axis_title_font_size Size of the font for the X and Y axis labels
 #' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
+#' @param axis_label_color Color for the axis labels and tick labels
 #' @param point_size Size of all points shown in plot
 #' @param line_width Width of all lines on the plot
 #' @param clip_cover There is a white rectangle drawn on top of the plot
@@ -181,23 +182,23 @@ plot_biomass <- function(model_lst = NULL,
                    inherit.aes = FALSE)
 
   g <- g +
-    theme(axis.text.x = element_text(color = "grey20",
+    theme(axis.text.x = element_text(color = axis_label_color,
                                      size = axis_tick_font_size,
                                      angle = 0,
                                      hjust = 0.5,
                                      vjust = -0.25,
                                      face = "plain"),
-          axis.text.y = element_text(color = "grey20",
+          axis.text.y = element_text(color = axis_label_color,
                                      size = axis_tick_font_size,
                                      hjust = 1,
                                      vjust = 0.5,
                                      face = "plain"),
-          axis.title.x = element_text(color = "grey20",
+          axis.title.x = element_text(color = axis_label_color,
                                       size = axis_title_font_size,
                                       angle = 0,
                                       vjust = 0,
                                       face = "plain"),
-          axis.title.y = element_text(color = "grey20",
+          axis.title.y = element_text(color = axis_label_color,
                                       size = axis_title_font_size,
                                       angle = 90,
                                       face = "plain"),

@@ -352,6 +352,8 @@ multiple model plots}
 \item{minor_tick_length}{The length of the small x-axis ticks}
 
 \item{survey_type}{Either \code{age1} or \code{age2}}
+
+\item{axis_label_color}{Color for the axis labels and tick labels}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

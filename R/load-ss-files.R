@@ -132,6 +132,7 @@ load_ss_files <- function(model_path = NA,
     # populate `mcmccalcs` but is no longer needed. Save the number of
     # posteriors first though
     model$nposts <- nrow(model$mcmc)
+
   }
 
   model

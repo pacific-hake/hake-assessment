@@ -273,82 +273,103 @@ load_extra_mcmc <- function(model,
                             ...)
   names(ts_q) <- tolower(names(ts_q))
 
-  # CPUE table and values (Q) -------------------------------------------------
+  extra_mcmc$num_posts <- length(unique(ts_q$iter))
+
+  # Index fits and catchability (q) -------------------------------------------------
   if(verbose){
     message("Extracting index fits and catchabilities...")
   }
-  # Separate by fleet, 2 is acoustic survey 2+, 3 is Age-1 survey
-  index_table_age2plus <- ts_q |>
-    filter(fleet == 2)
-  index_table_age1 <- ts_q |>
-    filter(fleet == 3)
-
   extra_mcmc$q_med <- ts_q |>
     mutate(calc_q = as.numeric(calc_q)) |>
     group_by(fleet, yr) |>
-    summarize(value = median(calc_q))
+    summarize(value = median(calc_q)) |>
+    ungroup()
 
   extra_mcmc$q_lo <- ts_q |>
     mutate(calc_q = as.numeric(calc_q)) |>
     group_by(fleet, yr) |>
-    summarize(value = quantile(calc_q, probs = probs[1]))
+    summarize(value = quantile(calc_q, probs = probs[1])) |>
+    ungroup()
 
   extra_mcmc$q_hi <- ts_q |>
     mutate(calc_q = as.numeric(calc_q)) |>
     group_by(fleet, yr) |>
-    summarize(value = quantile(calc_q, probs = probs[3]))
-
-  extra_mcmc$index_med <- ts_q |>
-    mutate(exp = as.numeric(exp)) |>
-    group_by(fleet, yr) |>
-    summarize(value = median(exp))
+    summarize(value = quantile(calc_q, probs = probs[3])) |>
+    ungroup()
 
   extra_mcmc$index_lo <- ts_q |>
     mutate(exp = as.numeric(exp)) |>
     group_by(fleet, yr) |>
-    summarize(value = quantile(exp, probs[1]))
+    summarize(value = quantile(exp, probs[1])) |>
+    ungroup() |>
+    mutate(across(-c(yr, fleet), ~{.x <- .x / 1e6}))
+
+  extra_mcmc$index_med <- ts_q |>
+    mutate(exp = as.numeric(exp)) |>
+    group_by(fleet, yr) |>
+    summarize(value = median(exp)) |>
+    ungroup() |>
+    mutate(across(-c(yr, fleet), ~{.x <- .x / 1e6}))
 
   extra_mcmc$index_hi <- ts_q |>
     mutate(exp = as.numeric(exp)) |>
     group_by(fleet, yr) |>
-    summarize(value = quantile(exp, probs[3]))
+    summarize(value = quantile(exp, probs[3])) |>
+    ungroup() |>
+    mutate(across(-c(yr, fleet), ~{.x <- .x / 1e6}))
 
-  q <- ts_q |>
-    select(iter, exp, calc_q)
-  iter <- unique(q$iter)
-
-  cpue <- q |>
-    select(-calc_q) |>
-    group_by(iter) |>
-    group_nest()
-  cpue <- do.call(cbind, cpue$data)
-  names(cpue) <- iter
-
-  extra_mcmc$cpue_table <- cpue |>
-    as_tibble() |>
-    map_df(~{as.numeric(.x)})
-
-  extra_mcmc$q_vector <- index_table_age2plus |>
+  extra_mcmc$q_vector <- ts_q |>
+    filter(fleet == 2) |>
+    select(iter, calc_q) |>
     group_by(iter) |>
     slice(1) |>
     pull(calc_q) |>
     as.numeric()
 
-  # Was Q_vector_age1
-  extra_mcmc$q_age1 <- index_table_age1 |>
+  extra_mcmc$q_vector_age1 <- ts_q |>
+    filter(fleet == 2) |>
+    select(iter, calc_q) |>
     group_by(iter) |>
     slice(1) |>
     pull(calc_q) |>
     as.numeric()
 
-  cpue <- apply(extra_mcmc$cpue_table,
-                MARGIN = 1,
-                FUN = function(x){quantile(as.numeric(x),
-                                           probs = probs)
-                })
-  extra_mcmc$cpue_lo <- as.numeric(cpue[1, ])
-  extra_mcmc$cpue_med <- as.numeric(cpue[2, ])
-  extra_mcmc$cpue_hi <- as.numeric(cpue[3, ])
+  # `extra_mcmc$index_fit_posts` is needed for the survey fit plot with
+  # many individual MCMC posteriors. It should be deleted after, inside the
+  # `create_rds_file()` function
+  iter <- unique(ts_q$iter)
+  fleets <- unique(ts_q$fleet)
+  index_fit_posts <- ts_q |>
+    select(iter, yr, fleet, exp)
+  yr_df_lst <- index_fit_posts |>
+    select(yr, fleet) |>
+    split(~fleet) |>
+    map(~{.x |>
+        select(-fleet) |>
+        distinct()})
+
+  index_fit_df_lst <- index_fit_posts |>
+    split(~fleet) |>
+    map(~{
+      .x <- .x |>
+        select(-c(yr, fleet)) |>
+        group_by(iter) |>
+        group_nest()
+      do.call(cbind, .x$data)
+    })
+
+  extra_mcmc$index_fit_posts <- map2(yr_df_lst, index_fit_df_lst, ~{
+    .y <- .y |>
+      set_names(iter)
+    # The `.name_repair` bit below silences the New names... messages
+    bind_cols_quiet(.x, .y)
+  }) |>
+    map2_df(fleets, ~{
+      .x |>
+        mutate(fleet = .y) |>
+        select(yr, fleet, everything())
+    }) |>
+    mutate(across(-c(yr, fleet), ~{.x <- .x / 1e6}))
 
   # Median and quantiles of expected values and Pearson ---------------------
   if(verbose){
