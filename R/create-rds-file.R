@@ -103,8 +103,8 @@ create_rds_file <- function(
 
   # Plot the survey fit with many MCMC posterior lines
   # This is done here because the MCMC object is not stored in the RDS files
-  # It needs the extra_mcmc, so it is right after that is loaded
-  #
+  # It needs `extra_mcmc$index_fit_posts`, so it is right after `extra_mcmc`
+  # is loaded and it is removed right after (set to `NULL` below)
   model$mcmcplots$survey_fit <- plot_survey_fit_mcmc(model,
                                                      type = "acoustic",
                                                      n_posts = 1000,
