@@ -101,16 +101,6 @@ create_rds_file <- function(
                                       verbose = verbose,
                                       ...)
 
-  # Plot the survey fit with many MCMC posterior lines
-  # This is done here because the MCMC object is not stored in the RDS files
-  # It needs `extra_mcmc$index_fit_posts`, so it is right after `extra_mcmc`
-  # is loaded and it is removed right after (set to `NULL` below)
-  model$mcmcplots$survey_fit <- plot_survey_fit_mcmc(model,
-                                                     type = "acoustic",
-                                                     n_posts = 1000,
-                                                     probs = probs)
-  model$extra_mcmc$index_fit_posts <- NULL
-
   # Set all important forecast directories here
   model$forecast_fn <- "forecast.ss"
   model$forecasts_path <- forecasts_path
@@ -157,10 +147,17 @@ create_rds_file <- function(
                                       probs = probs,
                                       ...)
 
+  # Pre-make plots (optional) ----
+  model$plots <- plot_during_loading(model, probs = probs)
+  # Remove `extra_mcmc$index_fit_posts`, (set to `NULL`) because it is
+  # large. It is needed for the call to `plot_during_loading()` above so
+  # DO NOT move it up in the function
+  model$extra_mcmc$index_fit_posts <- NULL
+
   # These are too large and after the calculations above in `load_mcmc_vals()`
   # and `load_parameter_priors()`, they are not needed any longer
-  model$mcmc <- NA
-  model$parameters <- NA
+  model$mcmc <- NULL
+  model$parameters <- NULL
 
   saveRDS(model, file = rds_file)
   if(file.exists(rds_file)){

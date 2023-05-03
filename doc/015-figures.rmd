@@ -12,7 +12,11 @@ document or past assessment documents are shown.
 interest for the hake fishery.
 
 ```{r main-overview-map-fig, fig.cap = "(ref:main-overview-map-cap)", is.fig = TRUE, alt.text = "(ref:main-overview-map-alt)", fig.height = 8, fig.width = 6, out.height = "\\textheight",  out.width = "\\textwidth"}
-plot_overview_map(ports_df, states_df)
+if(is.null(base_model$plots$overview_map)){
+  plot_overview_map(ports_df, states_df)
+}else{
+  base_model$plots$overview_map
+}
 ```
 
 (ref:main-acoustic-age2-bs-cap) Spatial distribution of acoustic backscatter
@@ -23,7 +27,7 @@ for ages 2 to 20, with major cohorts highlighted in color. Figure produced
 by Julia Clemons (NOAA).
 
 (ref:main-acoustic-age2-bs-alt) This figure shows that `r sp`  migrate further
-north in some years
+north in some years.
 
 BEGIN LANDSCAPE - must have blank line below separating this from figure code
 
@@ -41,7 +45,7 @@ intermixed with older fish is not shown. Area of the circle is roughly
 proportional to observed backscatter. Figure produced by Julia Clemons (NOAA).
 
 (ref:main-acoustic-age1-bs-alt) This figure shows the assumed varying
-locations of age-1 `r sp`
+locations of age-1 `r sp`.
 
 BEGIN LANDSCAPE
 
@@ -59,7 +63,14 @@ years have been the largest in the time series.
 BEGIN LANDSCAPE
 
 ```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-catches-alt)"}
-plot_catches(ct, leg.y.loc = 650)
+
+# This needs to be made into a ggplot to store it as an object
+
+#if(is.null(base_model$plots$catches)){
+  plot_catches(ct, leg.y.loc = 650)
+#}else{
+#  base_model$plots$catches
+#}
 ```
 END LANDSCAPE
 
@@ -68,7 +79,7 @@ END LANDSCAPE
 `r last_data_yr - 4`--`r last_data_yr`.
 
 (ref:main-us-catch-rates-alt) This figure shows changes in catch rates for
-the U.S. fleet. The rates are highest in September followed by May and June
+the U.S. fleet. The rates are highest in September followed by May and June.
 
 ![(ref:main-us-catch-rates-cap)](`r here::here("doc", "main-figures", "fishCatchRatesUS.png")`)
 
@@ -81,13 +92,16 @@ data. Whiskers encompass the 95% quantiles.
 
 (ref:main-us-depths-alt) This figure shows that bottom depths have been
 approximately 500 meters and fishing depths approximately 300 meters on
-average in the last 5 years for United States fleets
+average in the last 5 years for United States fleets.
 
 ```{r main-us-depths-fig, fig.cap = "(ref:main-us-depths-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-us-depths-alt)"}
-plot_depth_2_panel(us_atsea_fishing_depth_df,
-                   us_atsea_bottom_depth_df,
-                   yrs = (last_data_yr - 4):last_data_yr)
-
+if(is.null(base_model$plots$us_depths)){
+  plot_depth_2_panel(us_atsea_fishing_depth_df,
+                     us_atsea_bottom_depth_df,
+                     yrs = (last_data_yr - 4):last_data_yr)
+}else{
+  base_model$plots$us_depths  
+}
 ```
 
 (ref:main-can-depths-cap) Distribution of fishing depths (left) and bottom
@@ -96,17 +110,26 @@ fleets from `r last_data_yr - 4`--`r last_data_yr`. Horizontal lines in each
 box represent the median depth and boxes encompass the middle 50% of the
 data. Whiskers encompass the 95% quantiles.
 
-(ref:main-can-depths-alt) This figure shows that for the last five years in Canada freezer trawlers fished at an approximate bottom depth of 400 meters and shoreside vessels fished at an approximate bottom depth of 200 meters. Freezer trawlers fished at a gear depth of approximately 200 meters and shoreside vessels at a depth of approximately 150 meters. In 2023 this changed somewhat with both fleets fishing closer to the bottom and in shallower water
+(ref:main-can-depths-alt) This figure shows that for the last five years in
+Canada freezer trawlers fished at an approximate bottom depth of 400 meters
+and shoreside vessels fished at an approximate bottom depth of 200 meters.
+Freezer trawlers fished at a gear depth of approximately 200 meters and
+shoreside vessels at a depth of approximately 150 meters. In 2023 this
+changed somewhat with both fleets fishing closer to the bottom and in
+shallower water.
 
 ```{r main-can-depths-fig, fig.cap = "(ref:main-can-depths-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-can-depths-alt)"}
-plot_depth_4_panel(can_ft_gear_depth_df,
+if(is.null(base_model$plots$can_depths)){
+ plot_depth_4_panel(can_ft_gear_depth_df,
                    can_ft_bottom_depth_df,
                    can_ss_gear_depth_df,
                    can_ss_bottom_depth_df,
                    fleet_1_name = "Freezer trawlers",
                    fleet_2_name = "Shoreside",
                    yrs = (last_data_yr - 4):last_data_yr)
-
+}else{
+  base_model$plots$can_depths
+}
 ```
 
 (ref:main-data-overview-cap) Overview of data used in this assessment. Circle
@@ -121,10 +144,14 @@ are used to account for time-varying growth.
 in this assessment. Fishery catches span the whole time series from 1966 to
 present. Fishery age compositions from 1975 to present were used and all data
 from the age 2 plus acoustic survey were included. This includes the index of
-abundance and age compositions from 1995 to present for odd years
+abundance and age compositions from 1995 to present for odd years.
 
 ```{r main-data-overview-fig, fig.cap = "(ref:main-data-overview-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-data-overview-alt)"}
-plot_data_summary(base_model)
+if(is.null(base_model$plots$data_overview )){
+ plot_data_summary(base_model) 
+}else{
+ base_model$plots$data_overview 
+}
 ```
 
 (ref:main-age-comp-bubbles-cap) Age compositions for the aggregate fishery
@@ -143,18 +170,22 @@ bubble in the fishery data is
 (ref:main-age-comp-bubbles-alt) This figure shows that there are currently
 three large cohorts making their way through the stock. The 2010 cohort is
 the largest followed by the 2014 cohort and the 2016 cohort. The 2020 cohort
-is large but highly uncertain
+is large but highly uncertain.
 
 ```{r main-age-comp-bubbles-fig, fig.cap = "(ref:main-age-comp-bubbles-cap)", fig.height = 8, fig.width = 6, is.fig = TRUE, alt.text = "(ref:main-age-comp-bubbles-alt)", out.height = "\\textheight",  out.width = "\\textwidth"}
-p_lst <- NULL
-p_lst[[1]] <- plot_age_comp_bubbles(base_model,
-                                    type = "fishery",
-                                    leg_pos = "top",
-                                    alpha = 0.4)
-p_lst[[2]] <- plot_age_comp_bubbles(base_model,
-                                    type = "survey",
-                                    alpha = 0.4)
-suppressWarnings(plot_grid(plotlist = p_lst, nrow = 2))
+if(is.null(base_model$plots$age_comp_bubbles)){
+  p_lst <- NULL
+  p_lst[[1]] <- plot_age_comp_bubbles(base_model,
+                                      type = "fishery",
+                                      leg_pos = "top",
+                                      alpha = 0.4)
+  p_lst[[2]] <- plot_age_comp_bubbles(base_model,
+                                      type = "survey",
+                                      alpha = 0.4)
+  suppressWarnings(plot_grid(plotlist = p_lst, nrow = 2))
+}else{
+  base_model$plots$age_comp_bubbles
+}
 ```
 
 (ref:main-survey-extrap-biomass-cap) Acoustic survey biomass index of age-2+
@@ -163,10 +194,15 @@ intervals are based on sampling variability (intervals without squid/hake
 apportionment uncertainty in 2009 are displayed in black).
 
 (ref:main-survey-extrap-biomass-alt) This figure shows that the survey biomass
-estimate has decreased from 2019 to 2021
+estimate has decreased from 2019 to 2021.
 
 ```{r main-survey-extrap-biomass-fig,  fig.cap = "(ref:main-survey-extrap-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-survey-extrap-biomass-alt)"}
+if(is.null(base_model$plots$survey_extrap_biomass)){
   plot_survey_biomass(base_model, index = "age2")
+}else{
+  base_model$plots$survey_extrap_biomass
+}
+
 ```
 
 (ref:main-survey-age1-cap) Relative index of age-1 fish (numbers of fish,
@@ -176,10 +212,14 @@ the survey does not attempt to sample all available age-1 fish and the
 analysis does not include kriging as is done to estimate age-2+ biomass.
 
 (ref:main-survey-age1-alt) This figure shows that the age-1 survey estimate
-has increased from 2019 to 2021
+has increased from 2019 to 2021.
 
 ```{r main-survey-age1-fig, fig.cap = "(ref:main-survey-age1-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-survey-age1-alt)"}
-plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
+if(is.null(base_model$plots$survey_age1)){
+  plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
+}else{
+  base_model$plots$survey_age1
+}
 ```
 
 (ref:main-maturity-ogive-cap) Fraction of fish that are mature at each age
@@ -192,15 +232,19 @@ across `r start_yr_age_comps` to `r last_data_yr`.
 (ref:main-maturity-ogive-alt) This figure shows how maturity increases with
 age. Fish appear to reach full maturity between the age of 3 and 4. South
 of Point Conception which is at a latitude of 34.4 degrees they appear to
-reach maturity between the age of 2 and 3
+reach maturity between the age of 2 and 3.
 
 ```{r main-maturity-ogive-fig, fig.cap = "(ref:main-maturity-ogive-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-maturity-ogive-alt)"}
-p_lst <- list()
-p_lst[[1]] <- plot_maturity_ogives(base_model, maturity_samples_df)
-p_lst[[2]] <- plot_fecundity(base_model,
-               d = maturity_samples_df,
-               yrs = start_yr_age_comps:(end_yr - 1))
-plot_grid(plotlist = p_lst, ncol = 1)
+if(is.null(base_model$plots$maturity_ogive)){
+  p_lst <- list()
+  p_lst[[1]] <- plot_maturity_ogives(base_model, maturity_samples_df)
+  p_lst[[2]] <- plot_fecundity(base_model,
+                               d = maturity_samples_df,
+                               yrs = start_yr_age_comps:(end_yr - 1))
+  plot_grid(plotlist = p_lst, ncol = 1)
+}else{
+  base_model$plots$maturity_ogive
+}
 ```
 (ref:main-weight-at-age-cap) Empirical weight-at-age (kg) values used for
 the base model. Colors correspond to the values, with red being the lightest
@@ -216,11 +260,12 @@ over all years of data.
 
 (ref:main-weight-at-age-alt) This figure shows how weight-at-age changes
 through time. The weight-at-age appears to have decreased overall from 1975
-to present
+to present.
 
 ```{r main-weight-at-age-fig, fig.cap = "(ref:main-weight-at-age-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-weight-at-age-alt)"}
 # See `heatmap_extract_wa()` for argument choices, many are passed in `...`
 # from `plot_weight_at_age_heatmap()`
+if(is.null(base_model$plots$weight_at_age)){
   plot_heatmap_weight_at_age(
     base_model,
     cell_font_size = 3,
@@ -233,6 +278,9 @@ to present
              "yellow",
              "green",
              "dodgerblue"))
+}else{
+  base_model$plots$weight_at_age
+}
 ```
 
 (ref:main-sample-size-weight-at-age-cap) Sample sizes of empirical
@@ -248,11 +296,12 @@ large sample sizes.
 
 (ref:main-sample-size-weight-at-age-alt) This figure shows the sample sizes
 of weight-at-age vary between years and ages with the most samples occurring
-for ages 3 through 7
+for ages 3 through 7.
 
 ```{r main-sample-size-weight-at-age-fig, fig.cap = "(ref:main-sample-size-weight-at-age-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-sample-size-weight-at-age-alt)"}
 # See `heatmap_extract_wa()` for argument choices, many are passed in `...`
 # from `plot_weight_at_age_heatmap()`
+if(is.null(base_model$plots$sample_size_weight_at_age)){
   plot_heatmap_sample_size_weight_at_age(
     base_model,
     cell_font_size = 3,
@@ -265,6 +314,10 @@ for ages 3 through 7
              "lightgreen",
              "yellow",
              "dodgerblue"))
+  
+}else{
+  base_model$plots$sample_size_weight_at_age
+}
 ```
 
 (ref:main-weight-at-age-lines-cap) Empirical mean weight-at-age (kg) values
@@ -279,6 +332,7 @@ prior to 1980. There is a trend of increasing weight-at-age for the last
 6 to 7 years.
 
 ```{r main-weight-at-age-lines-fig, fig.cap = "(ref:main-weight-at-age-lines-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-weight-at-age-lines-alt)"}
+if(is.null(base_model$plots$weight_at_age_lines)){
 plot_weight_at_age(wt_at_age,
                    ages = 2:10,
                    bold_ages = 5,
@@ -286,6 +340,10 @@ plot_weight_at_age(wt_at_age,
                             "darkblue",
                             "yellow",
                             "darkgreen"))
+  
+}else{
+  base_model$plots$weight_at_age_lines
+}
 ```
 
 (ref:main-bridge-summary-cap) Bridging models showing the sequential steps
@@ -306,63 +364,66 @@ difference is in the recruitment deviation estimates for 2020 to 2022 for
 the bridging model where the 2022 catch is added.
 
 ```{r main-bridge-summary-fig, fig.cap = "(ref:main-bridge-summary-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-bridge-summary-alt)"}
-plist <- list()
-plist[[1]] <-
-  plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
-                   ylim = c(0, 2.5),
-                   x_labs_mod = 10,
-                   clip_cover = 0.35,
-                   wrap_y_label = TRUE,
-                   axis_title_font_size = 12,
-                   leg_pos = "none")
-plist[[2]] <-
-  plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
-               leg_pos = "none",
-               x_labs_mod = 10,
-               clip_cover = 0.25,
-               axis_title_font_size = 12,
-               line_width = 0.25)
-
-plist[[3]] <-
-  plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
-                         survey_type = "age2",
-                         rev_colors = FALSE,
-                         clip_cover = 0.25,
-                         axis_title_font_size = 12,
-                         leg_pos = "none")
-
-plist[[4]] <-
-  plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
-                         survey_type = "age1",
-                         xlim = c(1995, 2022),
-                         ylim = c(0, 11),
-                         y_breaks = seq(0, 11, by = 2),
-                         clip_cover = 0.25,
-                         axis_title_font_size = 12,
-                         rev_colors = FALSE,
-                         leg_pos = "none")
-
-# Grid of 2 rows and 1 column with one plot at the top (biomass)
-# and 4 plots embedded in another grid (quad_grid) at the bottom
-quad_grid <- cowplot::plot_grid(plotlist = plist,
-                                nrow = 2,
-                                ncol = 2)
-full_plist <- list()
-full_plist[[1]] <-
-  plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
-               leg_ncol = 2,
-               leg_font_size = 7,
-               wrap_y_label = TRUE,
-               axis_title_font_size = 12,
-               leg_pos = c(0.72, 0.82))
-
-full_plist[[2]] <- quad_grid
-
-cowplot::plot_grid(plotlist = full_plist,
-                   nrow = 2,
-                   ncol = 1,
-                   rel_heights = c(0.33, 0.67))
-
+if(is.null(base_model$plots$bridge_summary)){
+  plist <- list()
+  plist[[1]] <-
+    plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
+                     ylim = c(0, 2.5),
+                     x_labs_mod = 10,
+                     clip_cover = 0.35,
+                     wrap_y_label = TRUE,
+                     axis_title_font_size = 12,
+                     leg_pos = "none")
+  plist[[2]] <-
+    plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
+                 leg_pos = "none",
+                 x_labs_mod = 10,
+                 clip_cover = 0.25,
+                 axis_title_font_size = 12,
+                 line_width = 0.25)
+  
+  plist[[3]] <-
+    plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
+                           survey_type = "age2",
+                           rev_colors = FALSE,
+                           clip_cover = 0.25,
+                           axis_title_font_size = 12,
+                           leg_pos = "none")
+  
+  plist[[4]] <-
+    plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
+                           survey_type = "age1",
+                           xlim = c(1995, 2022),
+                           ylim = c(0, 11),
+                           y_breaks = seq(0, 11, by = 2),
+                           clip_cover = 0.25,
+                           axis_title_font_size = 12,
+                           rev_colors = FALSE,
+                           leg_pos = "none")
+  
+  # Grid of 2 rows and 1 column with one plot at the top (biomass)
+  # and 4 plots embedded in another grid (quad_grid) at the bottom
+  quad_grid <- cowplot::plot_grid(plotlist = plist,
+                                  nrow = 2,
+                                  ncol = 2)
+  full_plist <- list()
+  full_plist[[1]] <-
+    plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
+                 leg_ncol = 2,
+                 leg_font_size = 7,
+                 wrap_y_label = TRUE,
+                 axis_title_font_size = 12,
+                 leg_pos = c(0.72, 0.82))
+  
+  full_plist[[2]] <- quad_grid
+  
+  cowplot::plot_grid(plotlist = full_plist,
+                     nrow = 2,
+                     ncol = 1,
+                     rel_heights = c(0.33, 0.67))
+}else{
+  base_model$plots$bridge_summary
+}
 ```
 
 (ref:main-survey-index-fit-mcmc-cap) Fits (colored lines) to the acoustic
@@ -381,5 +442,5 @@ series but diverge a little near the end of the time series from about 2017
 to 2021.
 
 ```{r main-survey-index-fit-mcmc-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-cap)", fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-survey-index-fit-mcmc-alt)"}
-plot_survey_fit_mcmc(base_model, type = "acoustic")
+base_model$mcmcplots$survey_fit
 ```

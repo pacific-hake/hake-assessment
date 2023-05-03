@@ -9,7 +9,7 @@ plot_survey_fit_mcmc(
   model,
   type = c("age1", "acoustic"),
   n_posts = 1000,
-  probs = c(0.025, 0.975),
+  probs = c(0.025, 0.5, 0.975),
   show_legend = TRUE,
   leg_ncol = 1,
   leg_font_size = 12,
@@ -27,7 +27,8 @@ plot_survey_fit_mcmc(
 randomly drawn from all posteriors. if this is larger than the number
 of posteriors, all posterior lines will be shown}
 
-\item{probs}{A vector of probabilities for the credible interval}
+\item{probs}{A vector of three probabilities for the credible interval,
+with the middle one being the median (0.5)}
 
 \item{show_legend}{Logical. If \code{TRUE}, show the legend}
 

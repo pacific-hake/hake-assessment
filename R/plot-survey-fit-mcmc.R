@@ -6,7 +6,8 @@
 #' @param n_posts The number of posterior lines to plot. The lines are
 #' randomly drawn from all posteriors. if this is larger than the number
 #' of posteriors, all posterior lines will be shown
-#' @param probs A vector of probabilities for the credible interval
+#' @param probs A vector of three probabilities for the credible interval,
+#' with the middle one being the median (0.5)
 #' @param show_legend Logical. If `TRUE`, show the legend
 #' @param axis_title_font_size Size of the font for the X and Y axis labels
 #' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
@@ -17,7 +18,7 @@
 plot_survey_fit_mcmc <- function(model,
                                  type = c("age1", "acoustic"),
                                  n_posts = 1000,
-                                 probs = c(0.025, 0.975),
+                                 probs = c(0.025, 0.5, 0.975),
                                  show_legend = TRUE,
                                  leg_ncol = 1,
                                  leg_font_size = 12,
@@ -25,17 +26,18 @@ plot_survey_fit_mcmc <- function(model,
                                  axis_tick_font_size = 11,
                                  axis_label_color = "black"){
 
+  stopifnot(length(probs) == 3)
+  stopifnot(probs[2] == 0.5)
+
   type <- match.arg(type)
 
-  start_yr <- model$startyr
-  end_yr <- model$endyr
   surv_index <- ifelse(type == "age1", 3, 2)
 
   # Total number of samples available
   n_samp <- model$extra_mcmc$num_posts
-  n_posts <- ifelse(n_samp < n_posts, n_samp)
+  n_posts <- ifelse(n_samp < n_posts, n_samp, n_posts)
   # A random sub-sample of those
-  subsample <- sample(n_posts, n_samp)
+  subsample <- sample(n_samp, n_posts)
 
   # Extract observed index values (thick errorbars) ----
   obs <- model$dat$CPUE |>
@@ -44,7 +46,7 @@ plot_survey_fit_mcmc <- function(model,
   lo <- qlnorm(probs[1],
                meanlog = log(as.numeric(obs$obs)),
                sdlog = as.numeric(obs$se_log))
-  hi <- qlnorm(probs[2],
+  hi <- qlnorm(probs[3],
                meanlog = log(as.numeric(obs$obs)),
                sdlog = as.numeric(obs$se_log))
   obs <- obs |>
@@ -53,7 +55,7 @@ plot_survey_fit_mcmc <- function(model,
     mutate(lo = !!lo,
            hi = !!hi) |>
     mutate(across(-yr, ~{.x / 1e6}))
-
+browser()
   # Extract the extra SD value for the given survey `type`
   pat <- "Q_extraSD_(Age1|Acoustic)_Survey\\(\\d+\\)"
   extra_sd <- model$mcmc |>
@@ -73,7 +75,7 @@ plot_survey_fit_mcmc <- function(model,
   lo <- qlnorm(probs[1],
                meanlog = log(as.numeric(obs_extra_sd$obs)),
                sdlog = as.numeric(obs_extra_sd$se_log) + extra_sd)
-  hi <- qlnorm(probs[2],
+  hi <- qlnorm(probs[3],
                meanlog = log(as.numeric(obs_extra_sd$obs)),
                sdlog = as.numeric(obs_extra_sd$se_log) + extra_sd)
   obs_extra_sd <- obs_extra_sd |>
@@ -133,8 +135,8 @@ plot_survey_fit_mcmc <- function(model,
                size = 3) +
     scale_x_continuous(breaks = x_breaks,
                        labels = x_labels) +
-    scale_y_continuous(limits = c(0, 5),
-                       expand = c(0, 0)) +
+    scale_y_continuous(expand = c(0, 0)) +
+    coord_cartesian(ylim = c(0, 5)) +
     xlab("Year") +
     ylab("Biomass index (Mt)") +
     theme(axis.text.x = element_text(color = axis_label_color,
@@ -222,7 +224,7 @@ plot_survey_fit_mcmc <- function(model,
                x = text_x,
                y = symbol_y - 0.4,
                label = paste0("A subset (",
-                              n_samp,
+                              f(n_samp),
                               ") of the MCMC estimates of expected survey ",
                               "biomass"),
                hjust = 0)
