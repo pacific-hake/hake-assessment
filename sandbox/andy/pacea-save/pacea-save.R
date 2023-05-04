@@ -3,7 +3,7 @@
 #  a year. Then copy over results files into pacea/data-raw/groundfish and run
 #  hake.R there.
 
-# From hake-assessment.Rnw (loads in all models, which I don't need, but is quick now)
+# From hake-assessment.Rnw (loads in all models, which I don't need (just need base), but is quick now)
 source(here::here("R/all.R"))
 source(file.path(rootd_doc, "load-models.R"))
 source(file.path(rootd_r, "custom-knitr-variables.R"))
@@ -63,13 +63,76 @@ hake_biomass_new <- biomass           # Call it new for consistency in pacea cod
 save(hake_biomass_new,
      file = "hake_biomass_new.rda")
 
-# Might need some of this to get scaled version
+# Recruitment scaled by 2010 recruitment
+# Need to do from the full mcmc's
 
-#dat <- as_tibble(base_model$mcmc) %>%
-#    select(c("Recr_Virgin",
-#             paste0("Recr_", start_yr):paste0("Recr_", end_yr))) / 1e6  # convert
+dat <- as_tibble(base_model$mcmc) %>%
+  select(c("Recr_Virgin",
+           paste0("Recr_", start_yr):paste0("Recr_", end_yr))) / 1e6  # convert
                                         # from thousands to billions
+dat <- dat / dat$"Recr_2010"
 
+dat <- select(dat, -"Recr_Virgin")
 
-#  if(rescale){
-#    dat <- dat / dat$"Recr_2010"      # generalise ***
+names(dat) = gsub(pattern = "Recr_",
+                  replacement = "",
+                  x = names(dat))
+
+low <- apply(dat,
+             2,
+             quantile,
+             probs = 0.025)
+
+median <- apply(dat,
+                2,
+                median)
+
+high <- apply(dat,
+              2,
+              quantile,
+              probs = 0.975)
+
+hake_recruitment_over_2010_new <- tibble("year" = as.numeric(names(dat)),
+                                         "low" = low,
+                                         "median" = median,
+                                         "high" = high)
+
+save(hake_recruitment_over_2010_new,
+     file = "hake_recruitment_over_2010_new.rda")
+
+# Recruitment scaled by R0 recruitment
+# Need to do from the full mcmc's
+
+dat <- as_tibble(base_model$mcmc) %>%
+  select(c("Recr_Virgin",
+           paste0("Recr_", start_yr):paste0("Recr_", end_yr))) / 1e6  # convert
+                                        # from thousands to billions
+dat <- dat / dat$"Recr_Virgin"
+
+dat <- select(dat, -"Recr_Virgin")
+
+names(dat) = gsub(pattern = "Recr_",
+                  replacement = "",
+                  x = names(dat))
+
+low <- apply(dat,
+             2,
+             quantile,
+             probs = 0.025)
+
+median <- apply(dat,
+                2,
+                median)
+
+high <- apply(dat,
+              2,
+              quantile,
+              probs = 0.975)
+
+hake_recruitment_over_R0_new <- tibble("year" = as.numeric(names(dat)),
+                                         "low" = low,
+                                         "median" = median,
+                                         "high" = high)
+
+save(hake_recruitment_over_R0_new,
+     file = "hake_recruitment_over_R0_new.rda")
