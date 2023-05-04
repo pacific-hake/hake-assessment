@@ -11,7 +11,7 @@
 #'
 #' @importFrom cli symbol
 #' @importFrom crayon green
-#' @importFrom cowplot plot_grid
+#' @importFrom cowplot draw_grob get_legend plot_grid
 #' @importFrom fs dir_ls path
 #' @importFrom future plan
 #' @importFrom furrr future_map future_imap furrr_options

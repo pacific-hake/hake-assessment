@@ -26,7 +26,7 @@ plot_during_loading <- function(model,
 
   out$overview_map <- plot_overview_map(ports_df, states_df)
 
-  out$catches <- plot_catches(ct, leg.y.loc = 650)
+  out$catches <- plot_catches(ct, xlim = c(start_yr, last_data_yr))
 
   out$us_depths <- plot_depth_2_panel(us_atsea_fishing_depth_df,
                                       us_atsea_bottom_depth_df,

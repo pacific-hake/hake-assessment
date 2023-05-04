@@ -8,7 +8,7 @@
 get_obj_sizes <- function(lst){
 
   j <- lst |>
-    purrr::map_dbl(~{object.size(.x)}) |>
+    map_dbl(~{object.size(.x)}) |>
     sort() |>
     rev()
   k <- names(j)

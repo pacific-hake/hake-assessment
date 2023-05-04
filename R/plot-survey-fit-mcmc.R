@@ -55,7 +55,7 @@ plot_survey_fit_mcmc <- function(model,
     mutate(lo = !!lo,
            hi = !!hi) |>
     mutate(across(-yr, ~{.x / 1e6}))
-browser()
+
   # Extract the extra SD value for the given survey `type`
   pat <- "Q_extraSD_(Age1|Acoustic)_Survey\\(\\d+\\)"
   extra_sd <- model$mcmc |>

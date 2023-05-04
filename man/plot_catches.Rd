@@ -4,17 +4,56 @@
 \alias{plot_catches}
 \title{Plot catch data as a stacked barplot}
 \usage{
-plot_catches(ct, mar = c(4, 4, 6, 2) + 0.1, leg.y.loc = 430, leg.cex = 1)
+plot_catches(
+  ct,
+  leg_font_size = 12,
+  axis_title_font_size = 14,
+  axis_tick_font_size = 11,
+  axis_label_color = "black",
+  minor_tick_length = 0.1,
+  clip_cover = 2,
+  xlim = c(1966, year(Sys.time())),
+  x_breaks = xlim[1]:xlim[2],
+  x_expansion = 1,
+  x_labs_mod = 5,
+  ylim = c(0, 450)
+)
 }
 \arguments{
 \item{ct}{The data frame which is read in from
 \code{inst/extdata/data/landings-tac-history.csv}}
 
-\item{mar}{See \code{\link[=par]{par()}}}
+\item{leg_font_size}{The legend font size}
 
-\item{leg.y.loc}{Y-position for legend}
+\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
 
-\item{leg.cex}{Text size for legend}
+\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{axis_label_color}{Color for the axis labels and tick labels}
+
+\item{minor_tick_length}{The length of the small x-axis ticks}
+
+\item{clip_cover}{There is a white rectangle drawn on top of the plot
+to cover any of the plot that made it outside the plot area. \code{clip} has to
+be set to \code{off} for the major x-axis tick marks to work, So, this is required.
+If you make the plot in a grid, the rectangle may overwrite some of the plot
+above it, and this number will have to be changed through trial and error
+until you cannot see the white rectangle anymore.}
+
+\item{xlim}{The year limits to plot}
+
+\item{x_breaks}{The year value tick marks to show for the x axis}
+
+\item{x_expansion}{Amount to expand the x axis. See the \code{expand} argument
+in \code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}}
+
+\item{x_labs_mod}{Value for major X-axis tick marks. Every Nth tick
+will be longer and have a label. The first and last will be shown
+regardless of what this number is}
+
+\item{ylim}{The depletion limits to plot}
+
+\item{y_breaks}{The depletion value tick marks to show for the y axis}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

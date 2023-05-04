@@ -62,15 +62,15 @@ years have been the largest in the time series.
 
 BEGIN LANDSCAPE
 
-```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-catches-alt)"}
+```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-catches-alt)"}
 
 # This needs to be made into a ggplot to store it as an object
 
-#if(is.null(base_model$plots$catches)){
-  plot_catches(ct, leg.y.loc = 650)
-#}else{
-#  base_model$plots$catches
-#}
+if(is.null(base_model$plots$catches)){
+  plot_catches(ct, xlim = c(start_yr, last_data_yr))
+}else{
+  base_model$plots$catches
+}
 ```
 END LANDSCAPE
 
