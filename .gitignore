@@ -28,7 +28,7 @@ key_pair.R
 *.rdx
 .RHistory
 .Rhistory
-.Rproj.user
+.Rproj.user/
 *.snm
 *.ss_new
 *.sso
