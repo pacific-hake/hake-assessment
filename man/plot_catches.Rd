@@ -20,8 +20,7 @@ plot_catches(
 )
 }
 \arguments{
-\item{ct}{The data frame which is read in from
-\code{inst/extdata/data/landings-tac-history.csv}}
+\item{ct}{The data frame which is read in from \code{landings-tac-history.csv}}
 
 \item{leg_font_size}{The legend font size}
 

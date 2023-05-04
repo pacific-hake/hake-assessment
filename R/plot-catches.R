@@ -1,7 +1,6 @@
 #' Plot catch data as a stacked barplot
 #'
-#' @param ct The data frame which is read in from
-#' `inst/extdata/data/landings-tac-history.csv`
+#' @param ct The data frame which is read in from `landings-tac-history.csv`
 #' @param leg_font_size The legend font size
 #' @param axis_title_font_size Size of the font for the X and Y axis labels
 #' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
@@ -60,6 +59,9 @@ plot_catches <- function(ct,
     rgb(0, 0, 0.4),
     rgb(0, 0, 0.7))
 
+  # The quoted spaces here are to create fake factors so that when the legend
+  # is constructed, there will be blank spaces in it. That way there are
+  # three columns, each with a different number of items
   fishery_nms_f <- c(fishery_nms[1:6],
                      " ",
                      "  ",
@@ -172,7 +174,8 @@ plot_catches <- function(ct,
   # unclipped plot parts. Clipping has to be off to allow different size
   # tick marks. `grid` package used here
   g <- g +
-    annotation_custom(grob = rectGrob(gp = gpar(col = NA, fill = "white")),
+    annotation_custom(grob = rectGrob(gp = gpar(col = NA,
+                                                fill = "white")),
                       xmin = xlim[1],
                       xmax = xlim[2],
                       ymin = ylim[2],
