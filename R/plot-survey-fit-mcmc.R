@@ -20,6 +20,7 @@ plot_survey_fit_mcmc <- function(model,
                                  n_posts = 1000,
                                  probs = c(0.025, 0.5, 0.975),
                                  show_legend = TRUE,
+                                 ylim = c(0, 5),
                                  leg_ncol = 1,
                                  leg_font_size = 12,
                                  axis_title_font_size = 14,
@@ -108,6 +109,7 @@ plot_survey_fit_mcmc <- function(model,
   x_breaks <- obs$yr
   x_labels <- obs$yr
   x_labels[x_labels == 2012] <- ""
+  y_breaks <- seq(min(ylim), max(ylim), by = 1)
   g <- ggplot(obs,
               aes(x = yr,
                   y = med,
@@ -119,12 +121,13 @@ plot_survey_fit_mcmc <- function(model,
                   group = post),
               color = "blue",
               linewidth = 0.1,
+              alpha = 0.5,
               inherit.aes = FALSE) +
     geom_line(data = index_med,
               aes(x = yr,
                   y = med),
               color = "darkblue",
-              linewidth = 2.5,
+              linewidth = 2,
               inherit.aes = FALSE) +
     geom_errorbar(data = obs_extra_sd,
                   linewidth = 0.5,
@@ -135,10 +138,13 @@ plot_survey_fit_mcmc <- function(model,
                size = 3) +
     scale_x_continuous(breaks = x_breaks,
                        labels = x_labels) +
-    scale_y_continuous(expand = c(0, 0)) +
-    coord_cartesian(ylim = c(0, 5)) +
+    scale_y_continuous(breaks = y_breaks,
+                       expand = c(0, 0)) +
+    coord_cartesian(ylim = ylim) +
     xlab("Year") +
-    ylab("Biomass index (Mt)") +
+    ylab(ifelse(type == "acoustic",
+                "Biomass index (Mt)",
+                "Relative Age-1 index (billions of fish)")) +
     theme(axis.text.x = element_text(color = axis_label_color,
                                      size = axis_tick_font_size,
                                      angle = 0,
@@ -167,7 +173,7 @@ plot_survey_fit_mcmc <- function(model,
     symbol_x_start <- 1994
     symbol_x_end <- 1996
     text_x <- 1996.25
-    symbol_y <- 4.8
+    symbol_y <- max(ylim) - 0.2
     g <- g +
       annotate("segment",
                x = symbol_x_start + 0.5,
@@ -212,21 +218,30 @@ plot_survey_fit_mcmc <- function(model,
       annotate("text",
                x = text_x,
                y = symbol_y,
-               label = paste0("Observed survey biomass with input (wide) ",
+               label = paste0("Observed ",
+                              ifelse(type == "acoustic",
+                                     "survey biomass",
+                                     "age-1 index"),
+                              " with input (wide) ",
                               "and estimated (narrow) 95% intervals"),
                hjust = 0) +
       annotate("text",
                x = text_x,
                y = symbol_y - 0.2,
-               label = "Median MCMC estimate of expected survey biomass",
+               label = paste0("Median MCMC estimate of ",
+                              ifelse(type == "acoustic",
+                                     "expected survey biomass",
+                                     "scaled age-1 numbers")),
                hjust = 0) +
       annotate("text",
                x = text_x,
                y = symbol_y - 0.4,
                label = paste0("A subset (",
                               f(n_samp),
-                              ") of the MCMC estimates of expected survey ",
-                              "biomass"),
+                              ") of the MCMC estimates of ",
+                              ifelse(type == "acoustic",
+                                     "expected survey biomass",
+                                     "scaled age-1 numbers")),
                hjust = 0)
   }else{
     g <- g +

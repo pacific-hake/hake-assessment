@@ -11,6 +11,7 @@ plot_survey_fit_mcmc(
   n_posts = 1000,
   probs = c(0.025, 0.5, 0.975),
   show_legend = TRUE,
+  ylim = c(0, 5),
   leg_ncol = 1,
   leg_font_size = 12,
   axis_title_font_size = 14,

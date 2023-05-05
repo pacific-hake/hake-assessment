@@ -24,6 +24,12 @@ plot_during_loading <- function(model,
                                          n_posts = 1000,
                                          probs = probs)
 
+  out$age1_index_fit <- plot_survey_fit_mcmc(model,
+                                             type = "age1",
+                                             n_posts = 1000,
+                                             ylim = c(0, 10),
+                                             probs = probs)
+
   out$overview_map <- plot_overview_map(ports_df, states_df)
 
   out$catches <- plot_catches(ct, xlim = c(start_yr, last_data_yr))

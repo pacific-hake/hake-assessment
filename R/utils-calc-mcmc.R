@@ -220,9 +220,8 @@ calc_mcmc <- function(mcmc,
       select(matches(paste0("^", param,"$"))) |>
       pull()
     vec <- vec / scale
-    tmp <- f(ifelse(perc, 100, 1) *
-        quantile(vec, probs = probs),
-      dec.points = digits)
+    tmp <- f(ifelse(perc, 100, 1) * quantile(vec, probs = probs),
+             digits)
     if(perc){
       return(paste0(tmp, "\\%"))
     }
