@@ -9,11 +9,12 @@ interval}
 plot_age_comp_fit(
   model,
   type = c("fishery", "survey"),
-  ages = if (type == "fishery") 1:15 else 2:15,
+  ages = NULL,
   n_col = 4,
   x_breaks = seq(2, max(ages), by = 2),
   axis_title_font_size = 14,
   axis_tick_font_size = 12,
+  axis_label_color = "black",
   label_loc = c(ages[length(ages)] - 2, 0.45),
   label_font_size = 4,
   point_size = 1.5,
@@ -35,6 +36,8 @@ plot_age_comp_fit(
 \item{axis_title_font_size}{The font size for the axis titles}
 
 \item{axis_tick_font_size}{The font size for the axis tick labels}
+
+\item{axis_label_color}{Color for the axis labels and tick labels}
 
 \item{label_loc}{The x-y location of the labels in each panel (vector of 2)}
 

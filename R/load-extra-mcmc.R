@@ -429,7 +429,7 @@ load_extra_mcmc <- function(model,
               pearson_hi = quantile(pearson, probs = probs[3])) |>
     ungroup()
 
-  extra_mcmc$residuals_survey_median <- extra_mcmc$residuals_survey |>
+  extra_mcmc$residuals_survey_med <- extra_mcmc$residuals_survey |>
     select(yr,
            age,
            obs = obs_med,

@@ -49,7 +49,7 @@ plot_during_loading <- function(model,
 
   out$data_overview <- plot_data_summary(model)
 
-  out$plots$age_comp_bubbles <-
+  out$age_comp_bubbles <-
     {
       p_lst <- NULL
       p_lst[[1]] <- plot_age_comp_bubbles(model,
@@ -188,6 +188,20 @@ out$age_comp_fits <-
     plot_grid(plotlist = plist, nrow = 2)
   }
 
+out$age_comp_pearson <-
+  {
+    plist <- NULL
+    plist[[1]] <-
+      plot_pearson_bubbles(base_model,
+                           type = "fishery",
+                           legend.position = "top",
+                           alpha = 0.7)
+    plist[[2]] <-
+      plot_pearson_bubbles(base_model,
+                           type = "survey",
+                           alpha = 0.7)
+    plot_grid(plotlist = plist, ncol = 1)
+  }
 
 out
 }

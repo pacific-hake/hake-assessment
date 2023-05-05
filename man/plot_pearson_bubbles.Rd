@@ -6,7 +6,7 @@
 \usage{
 plot_pearson_bubbles(
   model,
-  type = 1,
+  type = c("fishery", "survey"),
   clines = c(1980, 1984, 1999, 2010, 2014, 2016),
   by = 5,
   legend.position = "none",
