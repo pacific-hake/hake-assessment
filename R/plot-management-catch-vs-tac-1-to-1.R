@@ -18,7 +18,7 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
   on.exit(par(oldpar))
   # location is bottom unless points overlap too much
   d <- d %>%
-    mutate(color = rev(rich.colors.short(n = nrow(d), alpha = 1)))
+    mutate(color = rev(rich_colors_short(n = nrow(d), alpha = 1)))
 
   d$color <- d$color %>%
     map_chr(function(x){

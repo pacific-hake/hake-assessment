@@ -98,7 +98,7 @@ make.mcmc.sr.variability.plot <- function(model,
   # standardize relative to equilibrium
   b.ratio <- b.ratio / b.ratio[, 1]
   r.ratio <- r.ratio / r.ratio[, 1]
-  colvec <- rev(rich.colors.short(length(yrs) + 10, alpha = 0.8))[-(1:10)]
+  colvec <- rev(rich_colors_short(length(yrs) + 10, alpha = 0.8))[-(1:10)]
 
   for(iyr in 1:length(yrs)){
     y <- yrs[iyr]

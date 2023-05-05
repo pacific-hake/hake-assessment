@@ -644,31 +644,31 @@ max_survey_age_prop <- get_age_comp_limits(base_model, type = 2)
 # ... Canadian Freezer trawlers age data --------------------------------------
 last_year_can_ages_ft <-
   can_ages_lst[[2]][rownames(can_ages_lst[[2]]) == last_data_yr, ]
-ft_age_prop_holder <- get.age.prop(last_year_can_ages_ft, 1)
+ft_age_prop_holder <- get_age_prop(last_year_can_ages_ft, 1)
 max_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
 max_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
-ft_age_prop_holder <- get.age.prop(last_year_can_ages_ft, 2)
+ft_age_prop_holder <- get_age_prop(last_year_can_ages_ft, 2)
 second_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
 second_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
-ft_age_prop_holder <- get.age.prop(last_year_can_ages_ft, 3)
+ft_age_prop_holder <- get_age_prop(last_year_can_ages_ft, 3)
 third_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
 third_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
-ft_age_prop_holder <- get.age.prop(last_year_can_ages_ft, 4)
+ft_age_prop_holder <- get_age_prop(last_year_can_ages_ft, 4)
 fourth_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
 fourth_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
 # ... Canadian Shoreside age data ---------------------------------------------
 last_yr_can_ages_ss <-
   can_ages_lst[[1]][rownames(can_ages_lst[[1]]) == last_data_yr, ]
-ss_age_prop_holder <- get.age.prop(last_yr_can_ages_ss, 1)
+ss_age_prop_holder <- get_age_prop(last_yr_can_ages_ss, 1)
 max_shoreside_age_prop_age <- ss_age_prop_holder[1]
 max_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
-ss_age_prop_holder <- get.age.prop(last_yr_can_ages_ss, 2)
+ss_age_prop_holder <- get_age_prop(last_yr_can_ages_ss, 2)
 second_shoreside_age_prop_age <- ss_age_prop_holder[1]
 second_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
-ss_age_prop_holder <- get.age.prop(last_yr_can_ages_ss, 3)
+ss_age_prop_holder <- get_age_prop(last_yr_can_ages_ss, 3)
 third_shoreside_age_prop_age <- ss_age_prop_holder[1]
 third_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
-ss_age_prop_holder <- get.age.prop(last_yr_can_ages_ss, 4)
+ss_age_prop_holder <- get_age_prop(last_yr_can_ages_ss, 4)
 fourth_shoreside_age_prop_age <- ss_age_prop_holder[1]
 fourth_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
 # ... US age data -------------------------------------------------------------

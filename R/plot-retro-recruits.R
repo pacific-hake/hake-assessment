@@ -79,8 +79,8 @@ plot_retro_recruits <- function(
   upperCI <- retroSummary[["upperCI"]]
 
   # figure out colors (using the r4ss adaptation of Arni's function)
-  colvec <- rich.colors.short(length(cohorts), alpha = 0.7)
-  shadecolvec <- rich.colors.short(length(cohorts), alpha = 0.1)
+  colvec <- rich_colors_short(length(cohorts), alpha = 0.7)
+  shadecolvec <- rich_colors_short(length(cohorts), alpha = 0.1)
   colvec <- rainbow(length(cohorts), alpha = 0.7)
   shadecolvec <- rainbow(length(cohorts), alpha = 0.1)
   colvec.txt <- colvec

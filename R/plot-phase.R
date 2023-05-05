@@ -53,7 +53,7 @@ plot_phase <- function(model,
   plower <- plower[(names(plower) %in% yrs[-length(yrs)])]
   pupper <- pupper[(names(pupper) %in% yrs[-length(yrs)])]
 
-  col_vec <- rev(rich.colors.short(n = length(dmed)))
+  col_vec <- rev(rich_colors_short(n = length(dmed)))
   d <- tibble(dmed,
               pmed,
               col = col_vec)

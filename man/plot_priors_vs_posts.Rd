@@ -17,8 +17,7 @@ plot_priors_vs_posts(
 \code{\link[=create_rds_file]{create_rds_file()}}.}
 
 \item{posterior_regex}{A vector of regular expressions that can be matched
-to parameter names. Use \code{\link[=get_active_parameter_names]{get_active_parameter_names()}} to see all active
-parameter names. Order the vector in the same order as you want the
+to parameter names. Order the vector in the same order as you want the
 figures to be plotted but make sure you also have \code{titles} ordered
 appropriately as well otherwise the names will not line up.}
 
