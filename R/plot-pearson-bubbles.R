@@ -14,7 +14,7 @@
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_pearson_bubbles <- function(model,
-                                 type = 1,
+                                 type = c("fishery", "survey"),
                                  clines = c(1980, 1984, 1999, 2010, 2014, 2016),
                                  by = 5,
                                  legend.position = "none",
@@ -22,31 +22,41 @@ plot_pearson_bubbles <- function(model,
                                  xlim = c(1975, year(Sys.Date())),
                                  ...){
 
-  if(type == 1){
-    d <- model$extra_mcmc$comp_fishery_median
+  type <- match.arg(type)
+
+  if(type == "fishery"){
+    d <- model$extra_mcmc$residuals_fishery_med
   }else{
-    d <- model$extra_mcmc$comp_survey_median
+    d <- model$extra_mcmc$residuals_survey_med
   }
 
-  g <- ggplot(d, aes(x = Yr,
-                     y = Age,
-                     size = abs(Pearson),
-                     fill = factor(sign(as.numeric(Pearson))))) +
-    geom_point(pch = 21, alpha = alpha, ...) +
-    scale_x_continuous(breaks = seq(from = xlim[1], to = xlim[2], by = by),
+  g <- ggplot(d, aes(x =yr,
+                     y = age,
+                     size = abs(pearson),
+                     fill = factor(sign(as.numeric(pearson))))) +
+    geom_point(pch = 21,
+               alpha = alpha,
+               ...) +
+    scale_x_continuous(breaks = seq(from = xlim[1],
+                                    to = xlim[2],
+                                    by = by),
                        expand = c(0.025, 0)) +
     coord_cartesian(xlim) +
     expand_limits(x = xlim[1]:xlim[2]) +
-    scale_fill_manual(values = c("white", "black"), guide = FALSE) +
+    scale_fill_manual(values = c("white",
+                                 "black"),
+                      guide = FALSE) +
     scale_size_continuous(breaks = c(1, 1, 2, 2, 3, 3),
                           labels = c(-8, -4, -0.1, 0.1, 4, 8),
-                          range = c(0.1, 8))
+                          range = c(0.1, 8)) +
+    ylab("Age") +
+    xlab("Year")
 
   if(!is.null(clines)){
     clines <- tibble(year = clines,
                      y = 0,
-                     xend = clines + max(as.numeric(d$Age)),
-                     yend = max(as.numeric(d$Age)))
+                     xend = clines + max(as.numeric(d$age)),
+                     yend = max(as.numeric(d$age)))
     g <- g +
       geom_segment(data = clines,
                    x = clines$year,
@@ -60,14 +70,15 @@ plot_pearson_bubbles <- function(model,
   }
   g <- g +
     theme(legend.position = legend.position, ...) +
-    guides(size = guide_legend(title = "Residuals",
-                               nrow = ifelse(legend.position == "right" |
-                                               legend.position == "left", 10, 1),
-                               override.aes =
-                                 list(fill = c("white", "white", "white",
-                                                      "black", "black", "black"),
-                                                      size = c(8, 4, 0.1,
-                                                               0.1, 4, 8))))
+    guides(size =
+             guide_legend(title = "Residuals",
+                          nrow = ifelse(legend.position == "right" |
+                                          legend.position == "left", 10, 1),
+                          override.aes =
+                            list(fill = c("white", "white", "white",
+                                          "black", "black", "black"),
+                                 size = c(8, 4, 0.1,
+                                          0.1, 4, 8))))
 
   g
 }

@@ -495,3 +495,30 @@ if(is.null(base_model$plots$age_comp_fits)){
   base_model$plots$age_comp_fits
 }
 ```
+
+(ref:main-age-comp-pearson-cap) Pearson residuals for base model fits to
+the age-composition data for the medians of the MCMC posteriors. Closed
+bubbles are positive residuals (observed > expected) and open bubbles are
+negative residuals (observed < expected). Red lines track cohorts from years
+of large recruitment events.
+
+(ref:main-age-comp-pearson-alt) This figure shows that there are no obvious
+patterns in the Pearson residuals for the fishery and the survey.
+
+```{r main-age-comp-pearson-fig, fig.cap = "(ref:main-age-comp-pearson-cap)", fig.height = 11, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-age-comp-pearson-alt)"}
+if(is.null(base_model$plots$age_comp_pearson)){
+  plist <- NULL
+  plist[[1]] <-
+    plot_pearson_bubbles(base_model,
+                         type = "fishery",
+                         legend.position = "top",
+                         alpha = 0.7)
+  plist[[2]] <-
+    plot_pearson_bubbles(base_model,
+                         type = "survey",
+                         alpha = 0.7)
+  plot_grid(plotlist = plist, ncol = 1)
+}else{
+  base_model$plots$age_comp_pearson
+}
+```
