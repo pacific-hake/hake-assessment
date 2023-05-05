@@ -19,7 +19,7 @@
 #' @export
 plot_age_comp_fit <- function(model,
                               type = c("fishery", "survey"),
-                              ages = `if`(type == "fishery", 1:15, 2:15),
+                              ages = NULL,
                               n_col = 4,
                               x_breaks = seq(2, max(ages), by = 2),
                               axis_title_font_size = 14,
@@ -32,10 +32,17 @@ plot_age_comp_fit <- function(model,
   type <- match.arg(type)
 
   if(type == "fishery"){
+    if(is.null(ages)){
+      ages <- 1:15
+    }
     d <- model$extra_mcmc$comp_fishery
   }else if(type == "survey"){
+    if(is.null(ages)){
+      ages <- 2:15
+    }
     d <- model$extra_mcmc$comp_survey
   }
+  browser()
   d <- d |>
     select(-c(Pearson_lower, Pearson_med, Pearson_upper)) |>
     mutate(Age = factor(Age))

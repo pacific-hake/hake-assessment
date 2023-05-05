@@ -465,3 +465,23 @@ time series but diverge a little at the end of the time series for the
 base_model$mcmcplots$age1_index_fit
 ```
 
+```{r main-age-comp-fits-fig, fig.cap = "(ref:main-age-comp-fits-cap)", fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-age-comp-fits-alt)"}
+if(is.null(base_model$plots$age_comp_fits)){
+  plist <- NULL
+  plist[[1]] <-
+    plot_age_comp_fit(base_model,
+                      label_font_size = 3,
+                      type = "fishery",
+                      n_col = 4)
+  plist[[2]] <-
+    plot_age_comp_fit(base_model,
+                      n_col = 1,
+                      type = "survey",
+                      x_breaks = 2:15,
+                      label_font_size = 3,
+                      label_loc = c(14, 0.45))
+  plot_grid(plotlist = plist, nrow = 2)
+}else{
+  base_model$plots$age_comp_fits
+}
+```

@@ -171,5 +171,23 @@ out$bridge_summary <-
                        rel_heights = c(0.33, 0.67))
   }
 
+out$age_comp_fits <-
+  {
+    plist <- NULL
+    plist[[1]] <-
+      plot_age_comp_fit(base_model,
+                        label_font_size = 3,
+                        n_col = 4)
+    plist[[2]] <-
+      plot_age_comp_fit(base_model,
+                        n_col = 1,
+                        type = "survey",
+                        x_breaks = 2:15,
+                        label_font_size = 3,
+                        label_loc = c(14, 0.45))
+    plot_grid(plotlist = plist, nrow = 2)
+  }
+
+
 out
 }
