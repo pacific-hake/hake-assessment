@@ -445,6 +445,23 @@ to 2021.
 base_model$mcmcplots$survey_fit
 ```
 
+(ref:main-age1-index-fit-mcmc-cap) Fits (colored lines) to the relative
+age-1 index estimated from the acoustic survey (points) with input 95%
+intervals around the observations. The thin blue lines are the results
+of a random subset of individual MCMC samples. Thicker uncertainty
+intervals around observed survey points indicate 95% lognormal uncertainty
+intervals based on sampling variability and are used as input to the
+assessment model. Thinner uncertainty intervals indicate estimated 95%
+uncertainty intervals that account for the model estimate of additional
+uncertainty.
+
+(ref:main-age1-index-fit-mcmc-alt) This figure shows many posterior
+trajectories of the expected numbers of age-1 fish fitting well to the
+age-1 index.The lines are very tightly packed together for most of the
+time series but diverge a little at the end of the time series for the
+2021 index point.
+
 ```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-age1-index-fit-mcmc-alt)"}
 base_model$mcmcplots$age1_index_fit
 ```
+
