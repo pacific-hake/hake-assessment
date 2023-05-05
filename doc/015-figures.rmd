@@ -464,8 +464,18 @@ time series but diverge a little at the end of the time series for the
 ```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-age1-index-fit-mcmc-alt)"}
 base_model$mcmcplots$age1_index_fit
 ```
+(ref:main-age-comp-fits-cap) Base model fits to the observed fishery (top)
+and acoustic survey (bottom) age-composition data. Colored bars show
+observed proportions with colors following each cohort across years. Points
+with intervals indicate median expected proportions and 95% credibility
+intervals from the MCMC calculations.
 
-```{r main-age-comp-fits-fig, fig.cap = "(ref:main-age-comp-fits-cap)", fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-age-comp-fits-alt)"}
+(ref:main-age-comp-fits-alt) This figure shows the age composition fits for
+the fishery and acoustic survey against the data. There is some slight over
+and under-fitting in the early part of the fishery time series from 1975 to
+1995. The survey shows some over fitting from 2001 to 2005.
+
+```{r main-age-comp-fits-fig, fig.cap = "(ref:main-age-comp-fits-cap)", fig.height = 11, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-age-comp-fits-alt)"}
 if(is.null(base_model$plots$age_comp_fits)){
   plist <- NULL
   plist[[1]] <-

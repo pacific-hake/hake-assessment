@@ -2,7 +2,6 @@
 #' If this is not done, there will be a blank portrait page between
 #' sequential landscape pages
 #'
-#'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
 #'
@@ -29,8 +28,7 @@ post_process_fix_landscape_issues <- function(x){
     # to portrait.
     # If the `lst$inbetween` for this list are all `""` or `clearpage`,
     # then the portrait setting on the end of the previous `lst$between` list
-    # can be removed and the list interlaced again
-
+    # must be removed and the list interlaced again
     inbetween_inds <- seq(ifelse(lst$first, 1, 2), length(lst$inbetween))
     between_inds <- seq_along(lst$between)
 
