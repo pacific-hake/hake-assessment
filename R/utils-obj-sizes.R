@@ -35,5 +35,6 @@ obj_sizes <- function(lst,
     map_dbl(~as.numeric(object.size(.x)) / scale) |>
     sort(decreasing = desc) |>
     enframe() |>
-    setNames(c("List element", paste0("Size (", sc, ")")))
+    setNames(c("List element", paste0("Size (", sc, ")"))) |>
+    mutate(`Size (B)` = f(`Size (B)`))
 }
