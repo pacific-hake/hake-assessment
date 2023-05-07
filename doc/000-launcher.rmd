@@ -37,12 +37,13 @@ bibliography: bib/refs.bib
 
 ```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
 library(knitr)
-devtools::load_all(here::here())
-if (is_latex_output()) {
+devtools::load_all("~/github/pacific-hake/hake")  
+
+if(is_latex_output()){
   knitr_figs_dir <- "knitr-figs-pdf/"
   knitr_cache_dir <- "knitr-cache-pdf/"
   fig_out_type <- "png"
-} else {
+}else{
   knitr_figs_dir <- "knitr-figs-docx/"
   knitr_cache_dir <- "knitr-cache-docx/"
   fig_out_type <- "png"
