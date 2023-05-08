@@ -6,6 +6,7 @@
 #'
 #' @import adnuts coda dplyr
 #' @import ggh4x ggplot2 ggrepel
+#' @import knitr
 #' @import purrr
 #' @import rnaturalearth rnaturalearthhires r4ss
 #'
@@ -24,7 +25,7 @@
 #' @importFrom gridExtra arrangeGrob
 #' @importFrom gtable gtable_add_grob
 #' @importFrom kableExtra column_spec kable_styling kbl landscape linebreak
-#' @importFrom here here
+#' @importFrom here here i_am
 #' @importFrom lubridate hour minute month now second seconds_to_period year
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
 #' @importFrom readr cols read_csv read_table2 write_csv

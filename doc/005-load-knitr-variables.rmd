@@ -67,9 +67,6 @@ ct_reduction_str <- base_model$ct_levels_vals$ct_reduction_str
 # Could probably extract automatically from bridge_models_desc[[1]][1]
 ss_version <- "3.30.20"
 
-# Credible interval -----------------------------------------------------------
-cred_int <- c(0.025, 0.5, 0.975)
-
 # Shortened names -------------------------------------------------------------
 mc <- base_model$mcmccalcs
 last_yr_mc <- last_yr_base_model$mcmccalcs
@@ -828,21 +825,21 @@ names(fore_catch_prop) <- paste0("Age", 0:20)
 # (pick the biggest cohort from fore_catch_prop; note natsel_prop columns
 # start with age-0).
 fore_catch_prop_age2_lower <- quantile(extramc$natsel_prop |> pull(3),
-                                       cred_int[1]) * 100
+                                       probs[1]) * 100
 fore_catch_prop_age2_upper <- quantile(extramc$natsel_prop |> pull(3),
-                                       cred_int[3]) * 100
+                                       probs[3]) * 100
 fore_catch_prop_age3_lower <- quantile(extramc$natsel_prop |> pull(4),
-                                       cred_int[1]) * 100
+                                       probs[1]) * 100
 fore_catch_prop_age3_upper <- quantile(extramc$natsel_prop |> pull(4),
-                                       cred_int[3]) * 100
+                                       probs[3]) * 100
 fore_catch_prop_age6_lower <- quantile(extramc$natsel_prop |> pull(7),
-                                       cred_int[1]) * 100
+                                       probs[1]) * 100
 fore_catch_prop_age6_upper <- quantile(extramc$natsel_prop |> pull(7),
-                                       cred_int[3]) * 100
+                                       probs[3]) * 100
 fore_catch_prop_age7_lower <- quantile(extramc$natsel_prop |> pull(8),
-                                       cred_int[1]) * 100
+                                       probs[1]) * 100
 fore_catch_prop_age7_upper <- quantile(extramc$natsel_prop |> pull(8),
-                                       cred_int[3]) * 100
+                                       probs[3]) * 100
 
 # Estimated prop at age (catch) of catch in first forecast year ---------------
 fore_catch_prop_wt_age2_median <- median(extramc$natselwt_prop |> pull(3)) * 100

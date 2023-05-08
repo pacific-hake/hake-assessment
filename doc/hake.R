@@ -103,14 +103,14 @@ forecasts_path <- "forecasts"
 retrospectives_path <- "retrospectives"
 
 ss_executable <- "ss3"
-starter_file_name <- "starter.ss"
-par_file_name <- "ss.par"
-forecast_file_name <- "forecast.ss"
-weight_at_age_file_name <- "wtatage.ss"
-posts_file_name <- "posteriors.sso"
-derposts_file_name <- "derived_posteriors.sso"
-report_file_name <- "Report.sso"
-compreport_file_name <- "CompReport.sso"
+starter_fn <- "starter.ss"
+par_fn <- "ss.par"
+forecast_fn <- "forecast.ss"
+weight_at_age_fn <- "wtatage.ss"
+derposts_fn <- "posteriors.sso"
+derderposts_fn <- "derived_posteriors.sso"
+report_fn <- "Report.sso"
+comp_report_fn <- "CompReport.sso"
 
 # Custom catch levels calculations
 # The tolerance in the spr away from 1 for the calculation of catch for SPR = 1
@@ -428,7 +428,7 @@ ct_reduction_str <- paste(letters[ct_reduction_rows], collapse = ", ")
 ss_version <- "3.30.20"
 
 # Credible interval -----------------------------------------------------------
-cred_int <- c(0.025, 0.5, 0.975)
+probs <- c(0.025, 0.5, 0.975)
 
 # Shortened names -------------------------------------------------------------
 mc <- base_model$mcmccalcs
@@ -539,7 +539,7 @@ long_term_avge_ct <- mean(ct$tot_catch)
 ct_limit_quantiles <-
   f(as.numeric(quantile(base_model$mcmc[[paste0("ForeCatch_",
                                                 end_yr)]],
-                        probs = cred_int)))
+                        probs = probs)))
 names(ct_limit_quantiles) <- c("lower", "median", "upper")
 # ... recent catch, last year -------------------------------------------------
 last_yr_landings <- ct_last1 |>
@@ -1198,17 +1198,17 @@ names(fore_catch_prop) <- paste0("Age", 0:20)
 # (pick the biggest cohort from fore_catch_prop; note natsel.prop columns
 # start with age-0).
 fore_catch_prop_age3_lower <- quantile(extramc$natsel.prop[, 4],
-                                       cred_int[1]) * 100
+                                       probs[1]) * 100
 fore_catch_prop_age3_upper <- quantile(extramc$natsel.prop[, 4],
-                                       cred_int[3]) * 100
+                                       probs[3]) * 100
 fore_catch_prop_age6_lower <- quantile(extramc$natsel.prop[, 7],
-                                       cred_int[1]) * 100
+                                       probs[1]) * 100
 fore_catch_prop_age6_upper <- quantile(extramc$natsel.prop[, 7],
-                                       cred_int[3]) * 100
+                                       probs[3]) * 100
 fore_catch_prop_age7_lower <- quantile(extramc$natsel.prop[, 8],
-                                       cred_int[1]) * 100
+                                       probs[1]) * 100
 fore_catch_prop_age7_upper <- quantile(extramc$natsel.prop[, 8],
-                                       cred_int[3]) * 100
+                                       probs[3]) * 100
 
 # Estimated prop at age (catch) of catch in first forecast year ---------------
 fore_catch_prop_wt_age2_median <- median(extramc$natselwt.prop[, 3]) * 100
@@ -1272,9 +1272,9 @@ col_effn <- grep("^.*\\(DM_theta\\)_Age_P1$", colnames(base_model$mcmc))
 log_theta_fishery_median <-
   round(median(base_model$mcmc[, col_effn]), 3)
 log_theta_fishery_lower <-
-  round(quantile(base_model$mcmc[, col_effn], probs = cred_int[1]), 3)
+  round(quantile(base_model$mcmc[, col_effn], probs = probs[1]), 3)
 log_theta_fishery_upper <-
-  round(quantile(base_model$mcmc[, col_effn], probs = cred_int[3]), 3)
+  round(quantile(base_model$mcmc[, col_effn], probs = probs[3]), 3)
 dm_weight_fishery_median <-
   f(median(exp(base_model$mcmc[, col_effn]) /
              (1 + exp(base_model$mcmc[, col_effn]))), 3)
@@ -1289,10 +1289,10 @@ log_theta_survey_median <-
   round(median(base_model$mcmc[, col_effn]), 3)
 log_theta_survey_lower <-
   round(quantile(base_model$mcmc[, col_effn],
-                 probs = cred_int[1]), 3)
+                 probs = probs[1]), 3)
 log_theta_survey_upper <-
   round(quantile(base_model$mcmc[, col_effn],
-                 probs = cred_int[3]), 3)
+                 probs = probs[3]), 3)
 dm_weight_survey_median <-
   f(median(exp(base_model$mcmc[, col_effn]) /
              (1 + exp(base_model$mcmc[, col_effn]))), 3)
@@ -1308,32 +1308,32 @@ dm_weight_survey_upper <-
 # ... natural mortality -------------------------------------------------------
 nat_m <-
   quantile(base_model$mcmc$NatM_uniform_Fem_GP_1,
-           probs = cred_int)
+           probs = probs)
 nat_m_02 <-
   quantile(sens_models[[1]][[6]]$mcmc$NatM_uniform_Fem_GP_1,
-           probs = cred_int)
+           probs = probs)
 nat_m_03 <-
   quantile(sens_models[[1]][[7]]$mcmc$NatM_uniform_Fem_GP_1,
-           probs = cred_int)
+           probs = probs)
 nat_m_hamel <-
   quantile(sens_models[[1]][[8]]$mcmc$NatM_uniform_Fem_GP_1,
-           probs = cred_int)
+           probs = probs)
 
 # ... steepness ---------------------------------------------------------------
 steep <-
   quantile(base_model$mcmc$SR_BH_steep,
-           probs = cred_int)
+           probs = probs)
 steep_prior_05 <-
   quantile(sens_models[[1]][[2]]$mcmc$SR_BH_steep,
-           probs = cred_int)
+           probs = probs)
 
 # ... bratio ------------------------------------------------------------------
 bratio_curr <-
   quantile(base_model$mcmc[[paste0("Bratio_", assess_yr)]],
-           probs = cred_int)
+           probs = probs)
 bratio_age1 <-
   quantile(sens_models[[2]][[2]]$mcmc[[paste0("Bratio_", assess_yr)]],
-           probs = cred_int)
+           probs = probs)
 # ... depletion ---------------------------------------------------------------
 depl_curr <- mc$dmed[names(mc$dmed) == assess_yr]
 # depl_no_ageerr <- sens_models_5$mcmccalcs$dmed[names(mc$dmed) == assess_yr]

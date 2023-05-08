@@ -22,15 +22,15 @@ run_ct_levels_default_hr <- function(model,
 
   # Copy derived posteriors from the applicable directory
   file.copy(file.path(ifelse(model$extra_mcmc_exists, model$extra_mcmc_path, model$mcmc_path),
-                      derposts_file_name),
+                      derposts_fn),
             file.path(default_hr_path,
-                      derposts_file_name))
+                      derposts_fn))
 
-  forecast_file <- file.path(default_hr_path, forecast_file_name)
+  forecast_file <- file.path(default_hr_path, forecast_fn)
   default_hr_catch <- vector(length = length(forecast_yrs), mode = "numeric")
   for(i in 1:length(forecast_yrs)){
     out <- read.table(file.path(default_hr_path,
-                                derposts_file_name),
+                                derposts_fn),
                       header = TRUE)
     default_hr_catch[i] <- median(as.numeric(out[paste0("ForeCatch_",
                                                         forecast_yrs[i])][[1]]))
@@ -48,7 +48,7 @@ run_ct_levels_default_hr <- function(model,
                      dir = default_hr_path,
                      overwrite = TRUE,
                      verbose = FALSE)
-    unlink(file.path(default_hr_path, derposts_file_name),
+    unlink(file.path(default_hr_path, derposts_fn),
            force = TRUE)
     message("Default HR - for forecast year: ", forecast_yrs[i], " of ", tail(forecast_yrs, 1))
 
@@ -90,9 +90,9 @@ run_ct_levels_spr_100 <- function(model,
 
   # Copy derived posteriors from the applicable directory
   file.copy(file.path(ifelse(model$extra_mcmc_exists, model$extra_mcmc_path, model$mcmc_path),
-                      derposts_file_name),
+                      derposts_fn),
             file.path(spr_100_path,
-                      derposts_file_name))
+                      derposts_fn))
 
   forecast_file <- file.path(spr_100_path, "forecast.ss")
 
@@ -117,7 +117,7 @@ run_ct_levels_spr_100 <- function(model,
                        dir = spr_100_path,
                        overwrite = TRUE,
                        verbose = FALSE)
-      unlink(file.path(spr_100_path, derposts_file_name),
+      unlink(file.path(spr_100_path, derposts_fn),
              force = TRUE)
 
       # Make a modification to the starter file so the extra MCMC files are not created
@@ -126,7 +126,7 @@ run_ct_levels_spr_100 <- function(model,
       shell_command <- paste0("cd ", spr_100_path, " && ", ss_executable, " -mceval")
       system_(shell_command, wait = TRUE, intern = !show_ss_output)
       out <- read.table(file.path(spr_100_path,
-                                  derposts_file_name),
+                                  derposts_fn),
                         header = TRUE)
       spr <- median(as.numeric(out[paste0("SPRratio_", forecast_yrs[i])][[1]]))
       message("SPR 100, for forecast year: ", forecast_yrs[i], " of ", tail(forecast_yrs, 1))
@@ -198,19 +198,19 @@ run_ct_levels_stable_catch <- function(model,
 
   # Copy derived posteriors from the applicable directory
   file.copy(file.path(ifelse(model$extra_mcmc_exists, model$extra_mcmc_path, model$mcmc_path),
-                      derposts_file_name),
+                      derposts_fn),
             file.path(stable_catch_path,
-                      derposts_file_name))
+                      derposts_fn))
 
-  forecast_file <- file.path(stable_catch_path, forecast_file_name)
+  forecast_file <- file.path(stable_catch_path, forecast_fn)
   stable_catch <- vector(length = length(forecast_yrs), mode = "numeric")
   out <- read.table(file.path(stable_catch_path,
-                              derposts_file_name),
+                              derposts_fn),
                     header = TRUE)
   iter <- 1
   repeat{
     out <- read.table(file.path(stable_catch_path,
-                                derposts_file_name),
+                                derposts_fn),
                       header = TRUE)
     stable_catch[1] <- median(as.numeric(out[paste0("ForeCatch_",
                                                     forecast_yrs[1])][[1]]))
@@ -247,7 +247,7 @@ run_ct_levels_stable_catch <- function(model,
                      dir = stable_catch_path,
                      overwrite = TRUE,
                      verbose = FALSE)
-    unlink(file.path(stable_catch_path, derposts_file_name),
+    unlink(file.path(stable_catch_path, derposts_fn),
            force = TRUE)
 
     # Make a modification to the starter file so the extra MCMC files are not created
@@ -271,7 +271,7 @@ run_ct_levels_stable_catch <- function(model,
                    dir = stable_catch_path,
                    overwrite = TRUE,
                    verbose = FALSE)
-  unlink(file.path(stable_catch_path, derposts_file_name),
+  unlink(file.path(stable_catch_path, derposts_fn),
          force = TRUE)
   shell_command <- paste0("cd ", stable_catch_path, " && ", ss_executable, " -mceval")
   system_(shell_command, wait = FALSE, intern = !show_ss_output)
@@ -346,8 +346,8 @@ run_ct_levels <- function(model_path,
                                        load_ss_files = load_ss_files,
                                        SS_output = SS_output,
                                        fix.posteriors = fix.posteriors,
-                                       posts_file_name = posts_file_name,
-                                       derposts_file_name = derposts_file_name,
+                                       posts_fn = posts_fn,
+                                       derposts_fn = derposts_fn,
                                        create_kn_files = create_kn_files,
                                        calc_mcmc = calc_mcmc,
                                        get_os = get_os,
@@ -355,10 +355,10 @@ run_ct_levels <- function(model_path,
                                        run_ct_levels_spr_100 = run_ct_levels_spr_100,
                                        run_ct_levels_stable_catch = run_ct_levels_stable_catch,
                                        latex_bold = latex_bold,
-                                       forecast_file_name = forecast_file_name,
+                                       forecast_fn = forecast_fn,
                                        ss_executable = ss_executable,
                                        show_ss_output = show_ss_output,
-                                       starter_file_name = starter_file_name,
+                                       starter_fn = starter_fn,
                                        modify_starter_mcmc_type = modify_starter_mcmc_type,
                                        system_ = system_)))
   plan()

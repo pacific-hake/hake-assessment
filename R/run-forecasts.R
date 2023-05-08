@@ -46,7 +46,7 @@ run_forecasts <- function(model_path,
       modify_starter_mcmc_type(new_forecast_dir, 1)
 
       # Insert fixed catches into forecast file
-      forecast_file <- file.path(new_forecast_dir, forecast_file_name)
+      forecast_file <- file.path(new_forecast_dir, forecast_fn)
       fore <- SS_readforecast(forecast_file,
                               Nfleets = 1,
                               Nareas = 1,
@@ -61,8 +61,8 @@ run_forecasts <- function(model_path,
       SS_writeforecast(fore, dir = new_forecast_dir, overwrite = TRUE, verbose = FALSE)
 
       # Evaluate the model using mceval option of ADMB, and retrieve the output
-      unlink(file.path(new_forecast_dir, derposts_file_name), force = TRUE)
-      unlink(file.path(new_forecast_dir, posts_file_name), force = TRUE)
+      unlink(file.path(new_forecast_dir, derposts_fn), force = TRUE)
+      unlink(file.path(new_forecast_dir, posts_fn), force = TRUE)
       unlink(file.path(new_forecast_dir, "sso"), force = TRUE)
       shell_command <- paste0("cd ", new_forecast_dir, " && ", ss_executable, " -mceval")
       system_(shell_command, wait = TRUE, intern = !show_ss_output)

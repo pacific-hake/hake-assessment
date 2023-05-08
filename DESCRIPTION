@@ -82,3 +82,4 @@ RoxygenNote: 7.2.3
 SystemRequirements: luahbtex (>= 1.16.0) - https://www.luatex.org/
 Config/testthat/parallel: true
 Config/testthat/edition: 2
+LazyData: true

@@ -16,9 +16,9 @@ run_adnuts(
   fn_exe = ifelse(exists("ss_executable"), ss_executable, "ss3"),
   overwrite = FALSE,
   fn_logfile = "model_output.log",
-  input_files = c(ifelse(exists("starter_file_name"), starter_file_name, "starter.ss"),
-    ifelse(exists("starter_file_name"), forecast_file_name, "forecast.ss"),
-    ifelse(exists("weight_at_age_file_name"), weight_at_age_file_name, "wtatage.ss"),
+  input_files = c(ifelse(exists("starter_fn"), starter_fn, "starter.ss"),
+    ifelse(exists("starter_fn"), forecast_fn, "forecast.ss"),
+    ifelse(exists("weight_at_age_fn"), weight_at_age_fn, "wtatage.ss"),
     ifelse(exists("control_file_name"), control_file_name, "hake_control.ss"),
     ifelse(exists("data_file_name"), data_file_name, "hake_data.ss"))
 )

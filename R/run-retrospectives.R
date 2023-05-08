@@ -37,9 +37,9 @@ run_retrospectives <- function(model_path,
 
   # Copy all required model files into the retrospective directory
   files_to_copy <- c(file.path(model_path,
-                               c(starter_file_name,
-                                 forecast_file_name,
-                                 weight_at_age_file_name)),
+                               c(starter_fn,
+                                 forecast_fn,
+                                 weight_at_age_fn)),
                      model$ctl_file,
                      model$dat_file)
 
@@ -52,7 +52,7 @@ run_retrospectives <- function(model_path,
                                      pad_num(.x, 2)))
     dir.create(retro_subdir, showWarnings = FALSE)
     file.copy(files_to_copy, retro_subdir)
-    starter_file <- file.path(retro_subdir, starter_file_name)
+    starter_file <- file.path(retro_subdir, starter_fn)
     starter <- SS_readstarter(starter_file, verbose = FALSE)
     starter$retro_yr <- -.x
     starter$init_values_src <- 0
