@@ -8,7 +8,8 @@ code for the \code{knitr_label} to the value of \code{place}}
 post_process_set_tab_fig_placement(
   x,
   type = c("table", "figure"),
-  knitr_label,
+  knitr_label = NULL,
+  file_name = NULL,
   place,
   n_lines = 5
 )
@@ -20,7 +21,10 @@ post_process_set_tab_fig_placement(
 \code{\link[=readLines]{readLines()}}}
 
 \item{knitr_label}{The knitr chunk label for the chunk which creates the
-figure}
+figure. If \code{NULL}, \code{file_name} will be used}
+
+\item{file_name}{The file name for an image file inserted using rmarkdown
+code. If \code{NULL}, \code{knitr_label} will be used}
 
 \item{place}{One of the following LaTeX placement strings (or a
 combination of them):

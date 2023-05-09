@@ -2,23 +2,20 @@ book_filename: "hake"
 rmd_files: ["000-launcher.rmd",
             "001-load-packages.rmd",
             "002-load-globals.rmd",
-            "003-load-data-tables.rmd",
-            "004-load-models.rmd",
-            "005-load-knitr-variables.rmd",
-            # Always leave the above (00-05) uncommented,
-            # Comment out sections below only. If you leave 99-references.rmd
-            # uncommented, you won't have to move the closing brace around
-            # every time you comment out sections
-            #"006-one-page-summary.rmd",
-            #"007-executive-summary.rmd",
-            #"008-introduction.rmd",
-            #"009-data.rmd",
-            #"010-assessment.rmd",
-            #"011-research-needs-loader.rmd",
-            #"012-acknowledgements.rmd",
-            #"013-references.rmd"]
-            #"014-tables.rmd"]
-            "015-figures.rmd"]
+            "003-load-models.rmd",
+            "004-load-knitr-variables.rmd",
+            # Always leave the above (000-004) uncommented,
+            # Comment out sections below only.
+            #"005-one-page-summary.rmd",
+            #"006-executive-summary.rmd",
+            #"007-introduction.rmd",
+            #"008-data.rmd",
+            #"009-assessment.rmd",
+            #"010-research-needs-loader.rmd",
+            #"011-acknowledgements.rmd",
+            #"012-references.rmd"]
+            #"013-tables.rmd"]
+            "014-figures.rmd"]
 # `delete_merged_file` - If true, the hake.Rmd file will be kept after the
 # hake.pdf file is created
 delete_merged_file: false

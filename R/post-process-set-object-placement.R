@@ -88,4 +88,10 @@ post_process_set_object_placement <- function(x, ...){
     knitr_label = "main-us-depths-fig",
     place = "H")
 
+  x <- post_process_set_tab_fig_placement(
+    x,
+    type = "figure",
+    file_name = "fishCatchRatesUS.png",
+    place = "H")
+
 }

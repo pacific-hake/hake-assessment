@@ -8,7 +8,9 @@
 #' figures reside. Used for matching figure import locations inside the tex
 #' file
 #' @param knitr_label The knitr chunk label for the chunk which creates the
-#' figure
+#' figure. If `NULL`, `file_name` will be used
+#' @param file_name The file name for an image file inserted using rmarkdown
+#' code. If `NULL`, `knitr_label` will be used
 #' @param place One of the following LaTeX placement strings (or a
 #' combination of them):
 #' - h: Place the float here, i.e., approximately at the same point it occurs
@@ -24,16 +26,31 @@
 #' @export
 post_process_set_tab_fig_placement <- function(x,
                                                type = c("table", "figure"),
-                                               knitr_label,
+                                               knitr_label = NULL,
+                                               file_name = NULL,
                                                place,
                                                n_lines = 5){
 
   type <- match.arg(type)
-
   if(type == "table"){
     label <- paste0("\\\\caption\\{\\\\label\\{tab:", knitr_label)
   }else if(type == "figure"){
-    label <- paste0("\\/", knitr_label)
+    if(is.null(knitr_label)){
+      label <- file_name
+    }else{
+      label <- paste0("\\/", knitr_label)
+    }
+  }
+
+  if(is.null(knitr_label) && is.null(file_name)){
+    stop("Both `knitr_label` and `file_name` are `NULL`. One must be used ",
+         "to find the table/figure you want to move",
+         call. = FALSE)
+  }
+  if(!is.null(knitr_label) && !is.null(file_name)){
+    stop("Both `knitr_label` and `file_name` are set to a value. Only one ",
+         "can be used at a time to find the table/figure you want to move",
+         call. = FALSE)
   }
 
   ind <- grep(label, x)
@@ -76,8 +93,8 @@ post_process_set_tab_fig_placement <- function(x,
       x[beg_ind] <- paste0(x[beg_ind], "[", place, "]")
     }
   }else if(type == "figure"){
-    x[beg_ind] <- gsub("(\\[[a-zA-Z\\!]+\\])(.*)$",
-                       paste0("[", place, "]\\2"), x[beg_ind])
+    x[beg_ind] <- gsub("^(\\\\begin\\{figure\\})(\\[[a-zA-Z\\!]+\\])?(.*)$",
+                       paste0("\\\\begin{figure}[", place, "]"), x[beg_ind])
   }
 
   x
