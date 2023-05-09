@@ -2,19 +2,8 @@
 #' and calculate the medians at-age by year
 #'
 #' @param reps A list of vectors representing one element per report file
-#' @param probs The quantile values to use on the MCMC posterior data
 #' @param verbose Logical. Show messages
-#' @param progress_n Report every time this many list items are processed.
-#'  Consider how many posteriors there are, this should be a fairly large
-#'  proportion of that (around 1/8th) or there will be too much output and
-#'  it will run really slow
 #' @param txt Text to write to the screen while processing
-#' @param beg_pat A regular expression that marks the beginning of the chunk
-#' of data
-#' @param end_pat A regular expression that marks the end of the chunk of data
-#' @param beg_off Offset from the beginning marker to the start of the data
-#' @param end_off Offset from the beginning marker to the end of the data.
-#' Should be a negative number
 #' @param scale Value to divide the values by in the output table
 #' @param start_yr Filter years earlier than this out of the results. If
 #' `NULL`, no filtering will occur for the start year

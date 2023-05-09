@@ -9,19 +9,21 @@
 #' in the doc by adding it to the blank "006-test.rmd" file and then running
 #' bookdown as above.
 #'
+#' @param doc_dr The directory that holds all the RMD files for building the
+#' document. Note: due to `tempdir()` issues, we cannot use `here()` for this,
+#' it must be a full path
+#'
 #' @return Nothing
-workspace <- function(){
+workspace <- function(doc_dr = "~/github/pacific-hake/hake/doc"){
 
   cdr <<- getwd()
 
-  doc_dr <- here("doc")
   raw_fns <- c("000-launcher.rmd",
                "001-load-packages.rmd",
                "002-load-globals.rmd",
-               "003-load-data-tables.rmd",
-               "004-load-models.rmd",
-               "004-load-models.R",
-               "005-load-knitr-variables.rmd",
+               "003-load-models.rmd",
+               "003-load-models.R",
+               "004-load-knitr-variables.rmd",
                "preamble.tex",
                "clean")
 
@@ -29,15 +31,17 @@ workspace <- function(){
 
   work_dr <- tempdir()
   setwd(work_dr)
+  unlink("*", recursive = TRUE, force = TRUE)
   dir.create("doc")
 
   # Needed for `here::here()` to rowk right
   writeLines("", ".here")
 
   dest_fns <- file.path("doc", raw_fns)
-  walk2(src_fns, dest_fns, ~{
-    file.copy(.x, .y, overwrite = FALSE)
+  map2(src_fns, dest_fns, ~{
+    file.copy(.x, .y, overwrite = TRUE, copy.mode = TRUE)
   })
+
   # Needed to set `here:here()` correctly
   i_am("./doc/clean")
 
@@ -48,14 +52,13 @@ workspace <- function(){
     'rmd_files: ["000-launcher.rmd",',
     '            "001-load-packages.rmd",',
     '            "002-load-globals.rmd",',
-    '            "003-load-data-tables.rmd",',
-    '            "004-load-models.rmd",',
-    '            "005-load-knitr-variables.rmd",',
-    '            "006-test.rmd"]',
+    '            "003-load-models.rmd",',
+    '            "004-load-knitr-variables.rmd",',
+    '            "005-test.rmd"]',
     '',
     'delete_merged_file: false')
   writeLines(bd_lines, "_bookdown.yml")
-  writeLines("", "006-test.rmd")
+  writeLines("", "005-test.rmd")
 
   message("\nAll variables and models loaded, in a temporary directory.",
           "\n\nRun bookdown::render_book('000-launcher.rmd', output_dir = '.')",

@@ -1,7 +1,6 @@
 #' Load the biomass outputs from the extra MCMC output
 #'
 #' @param reps A list of vectors representing one element per report file
-#' @param probs The quantile values to use on the MCMC posterior data
 #' @param verbose Logical. Show messages
 #' @param start_yr Filter years earlier than this out of the results. If
 #' `NULL`, no filtering will occur for the start year
@@ -16,7 +15,6 @@
 #' @return A list of outputs
 #' @export
 load_extra_mcmc_biomass <- function(reps,
-                                    probs,
                                     verbose = TRUE,
                                     start_yr = NULL,
                                     end_yr = NULL,

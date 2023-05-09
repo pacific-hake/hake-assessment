@@ -4,12 +4,10 @@
 \alias{load_extra_mcmc_recr_cohorts}
 \title{Load the recruitment outputs from the extra MCMC output for certain cohorts}
 \usage{
-load_extra_mcmc_recr_cohorts(reps, probs, cohorts = NULL, verbose = TRUE, ...)
+load_extra_mcmc_recr_cohorts(reps, cohorts = NULL, verbose = TRUE, ...)
 }
 \arguments{
 \item{reps}{A list of vectors representing one element per report file}
-
-\item{probs}{The quantile values to use on the MCMC posterior data}
 
 \item{cohorts}{A vector of years of birth for cohorts to extract
 recruitment quantiles for}

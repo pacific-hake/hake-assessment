@@ -6,19 +6,13 @@
 \title{Calculate and insert columns containing arbitrary quantiles for a
 particular column}
 \usage{
-calc_quantiles(
-  df = NULL,
-  col = NULL,
-  probs = c(0.05, 0.25, 0.5, 0.75, 0.95),
-  include_mean = TRUE
-)
+calc_quantiles(df = NULL, col = NULL, include_mean = TRUE)
 
 calc_quantiles_by_group(
   df = NULL,
   grp_col = NULL,
   col = NULL,
   grp_names = grp_col,
-  probs = c(0.05, 0.25, 0.5, 0.75, 0.95),
   include_mean = TRUE
 )
 }
@@ -27,8 +21,6 @@ calc_quantiles_by_group(
 and \code{col}}
 
 \item{col}{The column name to use as values to calculate quantiles for}
-
-\item{probs}{A vector of quantiles to pass to \code{\link[stats:quantile]{stats::quantile()}}}
 
 \item{include_mean}{If TRUE, include the mean in the output}
 
@@ -50,6 +42,10 @@ Calculate and insert columns containing arbitrary quantiles for a
 particular column
 
 Calculate quantiles across groups for a given column
+}
+\details{
+Uses the \link{probs} vector which is included in the package data for
+this package
 }
 \examples{
 library(tibble)

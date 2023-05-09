@@ -7,21 +7,26 @@ parameter names}
 \usage{
 get_prior_data(
   model,
-  params_regex = NULL,
-  param_titles = NULL,
-  n_points_prior = 1000
+  params_regex = key_posteriors,
+  params_titles = key_posteriors_titles,
+  n_points_prior = 1000,
+  ...
 )
 }
 \arguments{
 \item{model}{A model object as created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{params_regex}{A vector of regular expressions used to extract data
-for parameter names. If there are no matches, or more than one for any
-regular expression, the program will stop.}
+for parameter names. Default value is \link{key_posteriors}}
+
+\item{params_titles}{A list of names for the given elements of
+\code{params_regex}. Default value is \link{key_posteriors_titles}}
 
 \item{n_points_prior}{An integer specifying the number of points you want to
 be generated from the \verb{r<distribution>()} function, e.g.,
 \code{rnorm(n_points_prior)}.}
+
+\item{...}{Absorbs arguments intended for other functions}
 }
 \value{
 A list of prior and MLE data, one for each of the regular

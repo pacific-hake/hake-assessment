@@ -2,7 +2,6 @@
 #' by looking in the model's path for the report files.
 #'
 #' @param model A model list as created by [create_rds_file()]
-#' @param probs A vector of 3 values, the lower CI, median, and upper CI
 #' @param progress_n Report every time this many files are processed. Consider
 #' how many posteriors there are, this should be a fairly large proportion of
 #' that (around 1/8th) or there will be too much output and it will run really
@@ -15,7 +14,6 @@
 #' @return The extra MCMC list
 #' @export
 load_extra_mcmc <- function(model,
-                            probs = c(0.025, 0.5, 0.975),
                             progress_n = 500,
                             verbose = TRUE,
                             first = NULL,
@@ -70,7 +68,6 @@ load_extra_mcmc <- function(model,
   # Cohort recruitments --------------------------------------------------------
   extra_mcmc$recr_cohorts <- load_extra_mcmc_recr_cohorts(
     reps = reps,
-    probs = probs,
     cohorts = c(2010, 2014, 2016, 2020),
     start_yr = model$startyr,
     end_yr = model$endyr + 1,
@@ -83,7 +80,6 @@ load_extra_mcmc <- function(model,
   # Biomass --------------------------------------------------------------------
   biomass_lst <- load_extra_mcmc_biomass(
     reps = reps,
-    probs = probs,
     start_yr = model$startyr,
     end_yr = model$endyr + 1,
     progress_n = progress_n,
@@ -100,7 +96,6 @@ load_extra_mcmc <- function(model,
   # Selectivity -------------------------------------------------------------
   sel_fishery_lst <- load_extra_mcmc_sel(
     reps = reps,
-    probs = probs,
     start_yr = model$startyr,
     end_yr = model$endyr,
     progress_n = progress_n,
@@ -115,7 +110,6 @@ load_extra_mcmc <- function(model,
   extra_mcmc$sel_fishery_hi <- sel_fishery_lst$sel_hi
   sel_survey_lst <- load_extra_mcmc_sel(
     reps = reps,
-    probs = probs,
     start_yr = model$startyr,
     end_yr = model$endyr,
     progress_n = progress_n,
@@ -214,7 +208,6 @@ load_extra_mcmc <- function(model,
   extra_mcmc$expatage_med <- expatage |>
     group_by(yr) |>
     summarize_all(median)
-
 
   # Apply selectivity to numbers-at-age ---------------------------------------
   if(verbose){

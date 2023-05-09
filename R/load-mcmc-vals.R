@@ -1,14 +1,16 @@
 #' Load some values from the MCMC output and store in a list
 #'
+#' @details
+#' Uses the [probs] vector which is included in the package data for
+#' this package
+#'
 #' @param model A model list as created by [create_rds_file()]
 #' @param assess_yr The current assessment year
-#' @param probs A vector of 3 values, the lower CI, median, and upper CI
 #'
 #' @return A list of values extracted from the MCMC data frame of a model
 #' @export
 load_mcmc_vals <- function(model,
-                           assess_yr,
-                           probs = c(0.025, 0.5, 0.975)){
+                           assess_yr){
 
   out <- list()
   out$probs_curr_b40 <-
@@ -135,15 +137,6 @@ load_mcmc_vals <- function(model,
       1)
 
   # Probabilities for historical performance analyses -------------------------
-  assess_history_probs_df <-
-    read_csv(here::here("inst",
-                        "extdata",
-                        "data",
-                        "assessment-history-probs.csv"),
-             col_types = cols(),
-             comment = "#",
-             show_col_types = FALSE)
-
   out$historical_probs_df <-
     combine_historical_probs(model = model,
                              hist_probs = assess_history_probs_df,

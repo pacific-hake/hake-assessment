@@ -4,21 +4,13 @@
 \alias{load_forecasts}
 \title{Fetch the output from previously-run forecasting using \code{\link[=run_forecasts]{run_forecasts()}}}
 \usage{
-load_forecasts(
-  model,
-  first = model$nposts,
-  forecast_probs = c(0.05, 0.25, 0.5, 0.75, 0.95),
-  ...
-)
+load_forecasts(model, first = model$nposts, ...)
 }
 \arguments{
 \item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{first}{Load this many of the files. If \code{NULL}, load them all. Used
 for debugging purposes to cut down the size of the lists used}
-
-\item{forecast_probs}{A vector of probabilities to use for calculations
-on forecast outputs}
 
 \item{...}{Absorbs arguments intended for other functions}
 }

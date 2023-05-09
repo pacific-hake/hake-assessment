@@ -31,23 +31,6 @@ load_extra_mcmc_atage(
 \code{NULL}, no filtering will occur for the end year}
 
 \item{...}{Absorbs arguments meant for other functions}
-
-\item{probs}{The quantile values to use on the MCMC posterior data}
-
-\item{progress_n}{Report every time this many list items are processed.
-Consider how many posteriors there are, this should be a fairly large
-proportion of that (around 1/8th) or there will be too much output and
-it will run really slow}
-
-\item{beg_pat}{A regular expression that marks the beginning of the chunk
-of data}
-
-\item{end_pat}{A regular expression that marks the end of the chunk of data}
-
-\item{beg_off}{Offset from the beginning marker to the start of the data}
-
-\item{end_off}{Offset from the beginning marker to the end of the data.
-Should be a negative number}
 }
 \value{
 A list with one element being the data frame of values by year with

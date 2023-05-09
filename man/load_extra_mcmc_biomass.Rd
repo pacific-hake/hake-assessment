@@ -11,7 +11,6 @@
 \usage{
 load_extra_mcmc_biomass(
   reps,
-  probs,
   verbose = TRUE,
   start_yr = NULL,
   end_yr = NULL,
@@ -23,7 +22,6 @@ load_extra_mcmc_catage_biomass(reps, catage, wtatage, verbose)
 
 load_extra_mcmc_sel(
   reps,
-  probs,
   progress_n,
   verbose = TRUE,
   start_yr = NULL,
@@ -36,8 +34,6 @@ load_extra_mcmc_selwt(reps, verbose = TRUE, head_beg_pat, head_end_pat, ...)
 }
 \arguments{
 \item{reps}{A list of vectors representing one element per report file}
-
-\item{probs}{The quantile values to use on the MCMC posterior data}
 
 \item{verbose}{Logical. Show messages}
 

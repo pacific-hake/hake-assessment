@@ -38,7 +38,7 @@ utils::globalVariables(
   "data_file_name", "default_hr_path", "density", "derposts_fn", "detectCores",
   "dev_maxyr", "dev_minyr", "devlower", "devmed", "devupper", "dlnorm", "dlower", "dmed", "dnorm",
   "draw_plot", "dupper",
-  "expansion", "forecast_fn", "forecast_probs",
+  "expansion", "forecast_fn", "probs_forecast",
   "forecast_yrs", "forecasts_path",
   "hauls.with.samples", "index", "index.025", "index.975",
   "index.med", "iter", "knit", "label_value", "labs", "last_data_yr",

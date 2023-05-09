@@ -84,10 +84,10 @@
 #'A vector of the probabilities to use for uncertainty calculations in the
 #'forecasting part of the assessment document
 #'
-#' @format A vector of three values, for the lower credible interval limit,
+#' @format A vector of five values, for the lower credible interval limit,
 #' a lower-middle value, the median, a middle-upper value, and the upper
 #' credible interval limit
-"forecast_probs"
+"probs_forecast"
 #' The years previous to the end of the time series to strip off for
 #' retrospective analysis
 #'

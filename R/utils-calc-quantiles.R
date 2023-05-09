@@ -1,11 +1,13 @@
 #' Calculate and insert columns containing arbitrary quantiles for a
 #' particular column
 #'
+#' @details
+#' Uses the [probs] vector which is included in the package data for
+#' this package
+#'
 #' @param df A [data.frame()]
 #' @param col A column name on which to perform the calculations. Must
 #' be in `df` or an error will be thrown
-#' @param probs A vector of quantile probabilities to pass to
-#' [stats::quantile()]
 #' @param include_mean Logical. If `TRUE`, include the mean in the output
 #'
 #' @return A [data.frame()] with a new column for each value in the `probs`
@@ -44,7 +46,6 @@
 #'   select(year, everything())
 calc_quantiles <- function(df = NULL,
                            col = NULL,
-                           probs = c(0.05, 0.25, 0.5, 0.75, 0.95),
                            include_mean = TRUE){
 
   stopifnot(col %in% names(df))
@@ -53,11 +54,11 @@ calc_quantiles <- function(df = NULL,
   out <- summarize_at(df,
                       vars(!!col_sym),
                       map(probs,
-                          ~partial(quantile, probs = .x, na.rm = TRUE)) %>%
+                          ~partial(quantile, probs = .x, na.rm = TRUE)) |>
                         set_names(probs))
 
   if(include_mean){
-    out <- out %>%
+    out <- out |>
       mutate(avg = mean(df[[col]]))
   }
   out
@@ -71,7 +72,6 @@ calc_quantiles <- function(df = NULL,
 #' and `col`
 #' @param grp_col The column name to use for grouping the data
 #' @param col The column name to use as values to calculate quantiles for
-#' @param probs A vector of quantiles to pass to [stats::quantile()]
 #' @param include_mean If TRUE, include the mean in the output
 #' @param grp_names The column name to use for labeling the grouped column. By
 #' default it is the same as the
@@ -113,7 +113,6 @@ calc_quantiles_by_group <- function(df = NULL,
                                     grp_col = NULL,
                                     col = NULL,
                                     grp_names = grp_col,
-                                    probs = c(0.05, 0.25, 0.5, 0.75, 0.95),
                                     include_mean = TRUE){
 
   stopifnot(grp_col %in% names(df))
@@ -124,13 +123,12 @@ calc_quantiles_by_group <- function(df = NULL,
   col_sym <- sym(col)
   grp_vals <- unique(df[[grp_names]])
 
-  df %>%
-    group_by(!!grp_col_sym) %>%
+  df |>
+    group_by(!!grp_col_sym) |>
     group_map(~ calc_quantiles(.x, col = col,
-                               probs = probs,
-                               include_mean = include_mean)) %>%
-    map_df(~{.x}) %>%
-    mutate(!!grp_names_sym := grp_vals) %>%
-    select(!!grp_names_sym, everything()) %>%
+                               include_mean = include_mean)) |>
+    map_df(~{.x}) |>
+    mutate(!!grp_names_sym := grp_vals) |>
+    select(!!grp_names_sym, everything()) |>
     ungroup()
 }

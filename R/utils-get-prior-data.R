@@ -3,11 +3,13 @@
 #'
 #' @param model A model object as created by [create_rds_file()]
 #' @param params_regex A vector of regular expressions used to extract data
-#' for parameter names. If there are no matches, or more than one for any
-#' regular expression, the program will stop.
+#' for parameter names. Default value is [key_posteriors]
+#' @param params_titles A list of names for the given elements of
+#' `params_regex`. Default value is [key_posteriors_titles]
 #' @param n_points_prior An integer specifying the number of points you want to
-#'   be generated from the `r<distribution>()` function, e.g.,
-#'   `rnorm(n_points_prior)`.
+#' be generated from the `r<distribution>()` function, e.g.,
+#' `rnorm(n_points_prior)`.
+#' @param ... Absorbs arguments intended for other functions
 #'
 #' @return A list of prior and MLE data, one for each of the regular
 #' expressions in `params_regex`
@@ -20,12 +22,16 @@
 #' get_prior_data(base_model, c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD"))
 #' }
 get_prior_data <- function(model,
-                           params_regex = NULL,
-                           param_titles = NULL,
-                           n_points_prior = 1000){
+                           params_regex = key_posteriors,
+                           params_titles = key_posteriors_titles,
+                           n_points_prior = 1000,
+                           ...){
 
-  browser()
-  stopifnot(class(params_regex) == "character")
+  stopifnot(class(params_regex) == "list")
+  walk(params_regex, ~{
+    stopifnot(class(.x) == "character")
+  })
+  stopifnot(length(params_regex) == length(params_titles))
 
   params <- model$parameters |>
     as_tibble() %>%
@@ -121,6 +127,7 @@ get_prior_data <- function(model,
                              prior_random = random_points)
 
   }
+  names(priors_list) <- params_titles
 
   priors_list
 }

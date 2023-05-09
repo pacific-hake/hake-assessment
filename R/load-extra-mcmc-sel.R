@@ -5,7 +5,6 @@
 #'
 #' @export
 load_extra_mcmc_sel <- function(reps,
-                                probs,
                                 progress_n,
                                 verbose = TRUE,
                                 start_yr = NULL,

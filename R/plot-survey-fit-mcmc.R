@@ -1,6 +1,10 @@
 #' Creates a plot of fits to survey biomass including individual posterior
 #' lines and the median posterior line
 #'
+#' @details
+#' Uses the [probs] vector which is included in the package data for
+#' this package
+#'
 #' @param model A model object, , created by [create_rds_file()]
 #' @param type One of the surveys, either `age1` or `acoustic`
 #' @param n_posts The number of posterior lines to plot. The lines are
@@ -18,7 +22,6 @@
 plot_survey_fit_mcmc <- function(model,
                                  type = c("age1", "acoustic"),
                                  n_posts = 1000,
-                                 probs = c(0.025, 0.5, 0.975),
                                  show_legend = TRUE,
                                  ylim = c(0, 5),
                                  leg_ncol = 1,
@@ -26,9 +29,6 @@ plot_survey_fit_mcmc <- function(model,
                                  axis_title_font_size = 14,
                                  axis_tick_font_size = 11,
                                  axis_label_color = "black"){
-
-  stopifnot(length(probs) == 3)
-  stopifnot(probs[2] == 0.5)
 
   type <- match.arg(type)
 

@@ -6,15 +6,12 @@
 #' @param model The SS model output as loaded by [create_rds_file()]
 #' @param first Load this many of the files. If `NULL`, load them all. Used
 #' for debugging purposes to cut down the size of the lists used
-#' @param forecast_probs A vector of probabilities to use for calculations
-#' on forecast outputs
 #' @param ... Absorbs arguments intended for other functions
 #'
 #' @return A list of forecast outputs as read in by [r4ss::SSgetMCMC()]
 #' @export
 load_forecasts <- function(model,
                            first = model$nposts,
-                           forecast_probs = c(0.05, 0.25, 0.5, 0.75, 0.95),
                            ...){
 
   if(!dir.exists(model$forecasts_path)){
@@ -109,7 +106,7 @@ load_forecasts <- function(model,
       list(biomass = apply(sb_proj_cols,
                            2,
                            quantile,
-                           probs = forecast_probs,
+                           probs = probs_forecast,
                            na.rm = TRUE) |>
              t() |>
              as_tibble(rownames = "yr") |>
@@ -117,7 +114,7 @@ load_forecasts <- function(model,
            spr = apply(spr_proj_cols,
                        2,
                        quantile,
-                       probs = forecast_probs,
+                       probs = probs_forecast,
                        na.rm = TRUE) |>
              t() |>
              as_tibble(rownames = "yr") |>

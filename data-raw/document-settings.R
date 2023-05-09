@@ -2,7 +2,7 @@ ct_levels_spr_tol <- 0.001
 ct_levels_catch_tol <- 100
 ct_levels_max_iter <- 20
 probs <- c(0.025, 0.5, 0.975)
-forecast_probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
+probs_forecast <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 retrospective_yrs <- 1:10
 plot_retro_yrs <- 1:5
 show_ss_output <- FALSE
@@ -23,7 +23,7 @@ usethis::use_data(ct_levels_spr_tol, overwrite = TRUE)
 usethis::use_data(ct_levels_catch_tol, overwrite = TRUE)
 usethis::use_data(ct_levels_max_iter, overwrite = TRUE)
 usethis::use_data(probs, overwrite = TRUE)
-usethis::use_data(forecast_probs, overwrite = TRUE)
+usethis::use_data(probs_forecast, overwrite = TRUE)
 usethis::use_data(retrospective_yrs, overwrite = TRUE)
 usethis::use_data(plot_retro_yrs, overwrite = TRUE)
 usethis::use_data(show_ss_output, overwrite = TRUE)

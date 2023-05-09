@@ -5,7 +5,12 @@
 \title{Create and change to a temporary directory where the loading files have
 been copied to}
 \usage{
-workspace()
+workspace(doc_dr = "~/github/pacific-hake/hake/doc")
+}
+\arguments{
+\item{doc_dr}{The directory that holds all the RMD files for building the
+document. Note: due to \code{tempdir()} issues, we cannot use \code{here()} for this,
+it must be a full path}
 }
 \value{
 Nothing

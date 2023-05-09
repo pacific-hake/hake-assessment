@@ -9,7 +9,6 @@ plot_survey_fit_mcmc(
   model,
   type = c("age1", "acoustic"),
   n_posts = 1000,
-  probs = c(0.025, 0.5, 0.975),
   show_legend = TRUE,
   ylim = c(0, 5),
   leg_ncol = 1,
@@ -28,9 +27,6 @@ plot_survey_fit_mcmc(
 randomly drawn from all posteriors. if this is larger than the number
 of posteriors, all posterior lines will be shown}
 
-\item{probs}{A vector of three probabilities for the credible interval,
-with the middle one being the median (0.5)}
-
 \item{show_legend}{Logical. If \code{TRUE}, show the legend}
 
 \item{axis_title_font_size}{Size of the font for the X and Y axis labels}
@@ -38,6 +34,9 @@ with the middle one being the median (0.5)}
 \item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
 
 \item{axis_label_color}{Color for the axis labels and tick labels}
+
+\item{probs}{A vector of three probabilities for the credible interval,
+with the middle one being the median (0.5)}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
@@ -45,4 +44,8 @@ a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 \description{
 Creates a plot of fits to survey biomass including individual posterior
 lines and the median posterior line
+}
+\details{
+Uses the \link{probs} vector which is included in the package data for
+this package
 }

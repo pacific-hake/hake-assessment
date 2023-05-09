@@ -5,13 +5,23 @@
 \title{Get the posterior values for the given regular expressions of
 parameter names}
 \usage{
-get_posterior_data(model, params_regex = NULL)
+get_posterior_data(
+  model,
+  params_regex = key_posteriors,
+  params_titles = key_posteriors_titles,
+  ...
+)
 }
 \arguments{
 \item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{params_regex}{A vector of regular expressions used to extract data
-for parameter names}
+for parameter names. Default value is \link{key_posteriors}}
+
+\item{params_titles}{A list of names for the given elements of
+\code{params_regex}. Default value is \link{key_posteriors_titles}}
+
+\item{...}{Absorbs arguments intended for other functions}
 }
 \value{
 A data frame of posterior vectors, one column for each of

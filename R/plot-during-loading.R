@@ -6,13 +6,15 @@
 #' this one function is only to be called from within [create_rds_file()]
 #' at a point when all those variables exist. If they do not, the Rmd files
 #' doc/002- through 005-* must be sourced prior to calling this.
+#' Uses the [probs] vector which is included in the package data for
+#' this package
+#'
+
 #'
 #' @param model A model, created by [create_rds_file()]
-#' @param probs A vector of 3 values, the lower CI, median, and upper CI
 #'
 #' @return A list of [ggplot2::ggplot()] objects
-plot_during_loading <- function(model,
-                                probs){
+plot_during_loading <- function(model){
 
   out <- list()
 
@@ -21,14 +23,12 @@ plot_during_loading <- function(model,
   # in the RDS files
   out$survey_fit <- plot_survey_fit_mcmc(model,
                                          type = "acoustic",
-                                         n_posts = 1000,
-                                         probs = probs)
+                                         n_posts = 1000)
 
   out$age1_index_fit <- plot_survey_fit_mcmc(model,
                                              type = "age1",
                                              n_posts = 1000,
-                                             ylim = c(0, 10),
-                                             probs = probs)
+                                             ylim = c(0, 10))
 
   out$overview_map <- plot_overview_map(ports_df, states_df)
 
@@ -45,7 +45,6 @@ plot_during_loading <- function(model,
                                        fleet_1_name = "Freezer trawlers",
                                        fleet_2_name = "Shoreside",
                                        yrs = (last_data_yr - 4):last_data_yr)
-
 
   out$data_overview <- plot_data_summary(model)
 

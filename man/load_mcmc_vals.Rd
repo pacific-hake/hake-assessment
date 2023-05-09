@@ -4,18 +4,20 @@
 \alias{load_mcmc_vals}
 \title{Load some values from the MCMC output and store in a list}
 \usage{
-load_mcmc_vals(model, assess_yr, probs = c(0.025, 0.5, 0.975))
+load_mcmc_vals(model, assess_yr)
 }
 \arguments{
 \item{model}{A model list as created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{assess_yr}{The current assessment year}
-
-\item{probs}{A vector of 3 values, the lower CI, median, and upper CI}
 }
 \value{
 A list of values extracted from the MCMC data frame of a model
 }
 \description{
 Load some values from the MCMC output and store in a list
+}
+\details{
+Uses the \link{probs} vector which is included in the package data for
+this package
 }

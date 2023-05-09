@@ -1,7 +1,6 @@
 #' Load the recruitment outputs from the extra MCMC output for certain cohorts
 #'
 #' @param reps A list of vectors representing one element per report file
-#' @param probs The quantile values to use on the MCMC posterior data
 #' @param cohorts A vector of years of birth for cohorts to extract
 #' recruitment quantiles for
 #' @param verbose Logical. Show messages
@@ -14,7 +13,6 @@
 #' @return A list of outputs
 #' @export
 load_extra_mcmc_recr_cohorts <- function(reps,
-                                         probs,
                                          cohorts = NULL,
                                          verbose = TRUE,
                                          ...){
@@ -41,7 +39,7 @@ load_extra_mcmc_recr_cohorts <- function(reps,
    }) |>
     # The name repair stuff just silences the New names.... messages
     # caused during the binding of columns
-    bind_cols(.name_repair = ~vec_as_names(..., quiet = TRUE)) |>
+    bind_cols_quiet() |>
     set_names(cohorts)
 
   calc_quants_by_group <- \(d, col){

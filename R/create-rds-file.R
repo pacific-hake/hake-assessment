@@ -1,7 +1,6 @@
 #' Create an rds file to hold the model's data and outputs.
 #'
 #' @param model_dir Directory name of model to be loaded
-#' @param probs A vector of 3 values, the lower CI, median, and upper CI
 #' @param verbose Logical. If `TRUE`, write more output to the console
 #' @param overwrite Logical. If `TRUE`, overwrite the file if it exists
 #' @param ... Arguments to pass to [load_ss_files()]
@@ -10,8 +9,6 @@
 #' @export
 create_rds_file <- function(
     model_dir = NULL,
-    probs = c(0.025, 0.5, 0.975),
-    forecast_probs = c(0.05, 0.25, 0.5, 0.75, 0.95),
     ct_levels_lst = set_ct_levels(4),
     forecasts_path = file.path(model_dir, "forecasts"),
     ct_levels_path = file.path(model_dir, "catch-levels"),
@@ -34,23 +31,10 @@ create_rds_file <- function(
          call. = FALSE)
   }
 
-  if(length(probs) != 3){
-    stop("`probs` must be a vector of three numeric values",
-         call. = FALSE)
-  }
-  if(probs[2] != 0.5){
-    stop("The second element of `probs` must be 0.5",
-         call. = FALSE)
-  }
-  if(is.unsorted(probs)){
-    stop("The elements of `probs` must be numerically increasing",
-         call. = FALSE)
-  }
-
   if(is.null(ct_levels_lst$ct_levels)){
     stop("`ct_levels_lstct_levels` is `NULL` but requires a value. It is a ",
-         "list of lists of vectors of length 3. Use `set_ct_levels()` to ",
-         "set this",
+         "list of lists of vectors of length 3. Use ",
+         "`hake::set_ct_levels()` to set this",
          call. = FALSE)
   }
   # The RDS file will have the same name as the directory it is in
@@ -86,20 +70,15 @@ create_rds_file <- function(
   # calculate, because the MCMC data frame will not be stored in the RDS file
   # due to its size
   model$mcmcvals <- load_mcmc_vals(model,
-                                   model$dat$endyr + 1,
-                                   probs = probs)
+                                   model$dat$endyr + 1)
 
   # Add prior and posterior extractions/calculations/formatting
-  model$parameter_priors <- get_prior_data(model,
-                                           key_posteriors,
-                                           key_posteriors_titles)
-  model$parameter_posts <- get_posterior_data(model,
-                                              key_posteriors)
+  model$parameter_priors <- get_prior_data(model, ...)
+  model$parameter_posts <- get_posterior_data(model, ...)
 browser()
   # Add values extracted from the extra MCMC output which includes index
   # estimates, catchability estimates, and at-age data frames
   model$extra_mcmc <- load_extra_mcmc(model,
-                                      probs = probs,
                                       verbose = verbose,
                                       ...)
 
@@ -144,13 +123,12 @@ browser()
   }
 
   # Load retrospectives. If none are found or there is a problem,
-  # `model$retros` will be NA
+  # `model$retros` will be set to `NA`
   model$retros <- load_retrospectives(model$retrospectives_path,
-                                      probs = probs,
                                       ...)
 
   # Pre-make plots (optional) ----
-  model$plots <- plot_during_loading(model, probs = probs)
+  model$plots <- plot_during_loading(model)
   # Remove `extra_mcmc$index_fit_posts`, (set to `NULL`) because it is
   # large. It is needed for the call to `plot_during_loading()` above so
   # DO NOT move it up in the function

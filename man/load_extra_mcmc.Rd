@@ -5,19 +5,10 @@
 \title{Create and return a list of output stats to attach to the main model
 by looking in the model's path for the report files.}
 \usage{
-load_extra_mcmc(
-  model,
-  probs = c(0.025, 0.5, 0.975),
-  progress_n = 500,
-  verbose = TRUE,
-  first = NULL,
-  ...
-)
+load_extra_mcmc(model, progress_n = 500, verbose = TRUE, first = NULL, ...)
 }
 \arguments{
 \item{model}{A model list as created by \code{\link[=create_rds_file]{create_rds_file()}}}
-
-\item{probs}{A vector of 3 values, the lower CI, median, and upper CI}
 
 \item{progress_n}{Report every time this many files are processed. Consider
 how many posteriors there are, this should be a fairly large proportion of
