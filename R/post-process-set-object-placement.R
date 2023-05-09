@@ -9,89 +9,39 @@
 #' @export
 post_process_set_object_placement <- function(x, ...){
 
-  # x <- post_process_set_tab_fig_placement(
-  #   x,
-  #   type = "table",
-  #   knitr_label = "es-catches-tab",
-  #   place = "!tbp")
+  settings_fn <- "object-placement.csv"
+  doc_dr <- here("doc")
+  if(!dir.exists(doc_dr)){
+    stop("The `doc` directory which contains the file `", settings_fn, " ",
+         "does not exist",
+         call. = FALSE)
+  }
+  settings_fn <- here("doc", settings_fn)
+  if(!file.exists(settings_fn)){
+    stop("The figure/table placement CSV file does not exist. Ths file ",
+         "should be here:\n", settings_fn,
+         call. = FALSE)
+  }
 
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "table",
-    knitr_label = "es-recruitment-tab",
-    place = "H")
+  settings_df <- read_csv(settings_fn,
+                          col_types = cols(),
+                          comment = "#",
+                          show_col_types = FALSE)
 
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "table",
-    knitr_label = "es-reference-points-tab",
-    place = "H")
+  if(nrow(settings_df) < 1){
+    return(invisible())
+  }
 
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "table",
-    knitr_label = "es-biomass-tab",
-    place = "!b")
+  pwalk(settings_df, ~{
+    row <- list(...)
+    x <<- post_process_set_tab_fig_placement(
+      x,
+      type = row$type,
+      knitr_label = ifelse(is.na(row$knitr_label),
+                           row$file_name,
+                           row$knitr_label),
+      place = row$placement)
+  })
 
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "figure",
-    knitr_label = "es-catches-fig",
-    place = "!b")
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "figure",
-    knitr_label = "es-survey-biomass-fig",
-    place = "H")
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "figure",
-    knitr_label = "es-survey-age1-fig",
-    place = "H")
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "figure",
-    knitr_label = "es-biomass-fig",
-    place = "H")
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "figure",
-    knitr_label = "es-relative-biomass-fig",
-    place = "H")
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "figure",
-    knitr_label = "es-exploitation-fraction-fig",
-    place = "H")
-
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "table",
-    knitr_label = "es-decisions-biomass-tab",
-    place = "H")
-
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "table",
-    knitr_label = "es-decisions-spr-tab",
-    place = "H")
-
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "figure",
-    knitr_label = "main-overview-map-fig",
-    place = "H")
-
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "figure",
-    knitr_label = "main-us-depths-fig",
-    place = "H")
-
-  x <- post_process_set_tab_fig_placement(
-    x,
-    type = "figure",
-    file_name = "fishCatchRatesUS.png",
-    place = "H")
-
+  x
 }
