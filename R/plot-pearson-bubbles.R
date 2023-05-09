@@ -45,7 +45,7 @@ plot_pearson_bubbles <- function(model,
     expand_limits(x = xlim[1]:xlim[2]) +
     scale_fill_manual(values = c("white",
                                  "black"),
-                      guide = FALSE) +
+                      guide = "none") +
     scale_size_continuous(breaks = c(1, 1, 2, 2, 3, 3),
                           labels = c(-8, -4, -0.1, 0.1, 4, 8),
                           range = c(0.1, 8)) +

@@ -89,11 +89,13 @@ create_rds_file <- function(
                                    model$dat$endyr + 1,
                                    probs = probs)
 
-  # Add values to be used in the document that require the `parameters` data
-  # frame to calculate, because the `parameters` data frame will not be
-  # stored in the RDS file due to its size
-  model$mcmcparams <- load_parameter_priors(model)
-
+  # Add prior and posterior extractions/calculations/formatting
+  model$parameter_priors <- get_prior_data(model,
+                                           key_posteriors,
+                                           key_posteriors_titles)
+  model$parameter_posts <- get_posterior_data(model,
+                                              key_posteriors)
+browser()
   # Add values extracted from the extra MCMC output which includes index
   # estimates, catchability estimates, and at-age data frames
   model$extra_mcmc <- load_extra_mcmc(model,
@@ -157,7 +159,7 @@ create_rds_file <- function(
   # These are too large and after the calculations above in `load_mcmc_vals()`
   # and `load_parameter_priors()`, they are not needed any longer
   model$mcmc <- NULL
-  model$parameters <- NULL
+  #model$parameters <- NULL
 
   saveRDS(model, file = rds_file)
   if(file.exists(rds_file)){

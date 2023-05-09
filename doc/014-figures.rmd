@@ -60,8 +60,6 @@ sectors where they are represented.
 (ref:main-catches-alt) This figure shows that catches in four of the last six
 years have been the largest in the time series.
 
-BEGIN LANDSCAPE
-
 ```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-catches-alt)"}
 
 # This needs to be made into a ggplot to store it as an object
@@ -72,7 +70,6 @@ if(is.null(base_model$plots$catches)){
   base_model$plots$catches
 }
 ```
-END LANDSCAPE
 
 (ref:main-us-catch-rates-cap) Unstandardized (raw) catch-rates (t/hr) of 
 `r sp` catches by tow in the U.S. at-sea fleet from

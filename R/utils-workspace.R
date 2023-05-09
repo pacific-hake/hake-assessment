@@ -14,7 +14,7 @@ workspace <- function(){
 
   cdr <<- getwd()
 
-  doc_dr <- here::here("doc")
+  doc_dr <- here("doc")
   raw_fns <- c("000-launcher.rmd",
                "001-load-packages.rmd",
                "002-load-globals.rmd",
@@ -39,10 +39,10 @@ workspace <- function(){
     file.copy(.x, .y, overwrite = FALSE)
   })
   # Needed to set `here:here()` correctly
-  here::i_am("./doc/clean")
+  i_am("./doc/clean")
 
   setwd("doc")
-  # Make a bookdown file
+  # Make the bookdown YAML file
   bd_lines <- c(
     'book_filename: "hake"',
     'rmd_files: ["000-launcher.rmd",',
@@ -58,8 +58,8 @@ workspace <- function(){
   writeLines("", "006-test.rmd")
 
   message("\nAll variables and models loaded, in a temporary directory.",
-          "\n\nRun `bookdown::render_book('000-launcher.rmd', output_dir = '.'')`",
-          "\nWhen finished, run `setwd(cdr)` to go back to the directory ",
+          "\n\nRun bookdown::render_book('000-launcher.rmd', output_dir = '.')",
+          "\nWhen finished, run setwd(cdr) to go back to the directory ",
           "you came from.")
 
   invisible()

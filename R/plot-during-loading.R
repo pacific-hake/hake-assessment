@@ -81,7 +81,7 @@ plot_during_loading <- function(model,
   out$weight_at_age <- plot_heatmap_weight_at_age(
     model,
     cell_font_size = 3,
-    sample_size_df = weight_age_sample_sizes,
+    sample_size_df = weight_age_sample_sizes_df,
     pre_yrs = start_yr_age_comps:model$endyr,
     pre_func = mean,
     post_yrs = (model$endyr - 4):model$endyr,
@@ -94,7 +94,7 @@ plot_during_loading <- function(model,
   out$sample_size_weight_at_age <- plot_heatmap_sample_size_weight_at_age(
     model,
     cell_font_size = 3,
-    sample_size_df = weight_age_sample_sizes,
+    sample_size_df = weight_age_sample_sizes_df,
     pre_yrs = start_yr_age_comps:model$endyr,
     pre_func = mean,
     post_yrs = (model$endyr - 4):model$endyr,
@@ -111,97 +111,106 @@ plot_during_loading <- function(model,
                                                          "darkblue",
                                                          "yellow",
                                                          "darkgreen"))
-out$bridge_summary <-
-  {
-    plist <- list()
-    plist[[1]] <-
-      plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
-                       ylim = c(0, 2.5),
-                       x_labs_mod = 10,
-                       clip_cover = 0.35,
-                       wrap_y_label = TRUE,
-                       axis_title_font_size = 12,
-                       leg_pos = "none")
-    plist[[2]] <-
-      plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
-                   leg_pos = "none",
-                   x_labs_mod = 10,
-                   clip_cover = 0.25,
-                   axis_title_font_size = 12,
-                   line_width = 0.25)
+  out$bridge_summary <-
+    {
+      plist <- list()
+      plist[[1]] <-
+        plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
+                         ylim = c(0, 2.5),
+                         x_labs_mod = 10,
+                         clip_cover = 0.35,
+                         wrap_y_label = TRUE,
+                         axis_title_font_size = 12,
+                         leg_pos = "none")
+      plist[[2]] <-
+        plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
+                     leg_pos = "none",
+                     x_labs_mod = 10,
+                     clip_cover = 0.25,
+                     axis_title_font_size = 12,
+                     line_width = 0.25)
 
-    plist[[3]] <-
-      plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
-                             survey_type = "age2",
-                             rev_colors = FALSE,
-                             clip_cover = 0.25,
-                             axis_title_font_size = 12,
-                             leg_pos = "none")
+      plist[[3]] <-
+        plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
+                               survey_type = "age2",
+                               rev_colors = FALSE,
+                               clip_cover = 0.25,
+                               axis_title_font_size = 12,
+                               leg_pos = "none")
 
-    plist[[4]] <-
-      plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
-                             survey_type = "age1",
-                             xlim = c(1995, 2022),
-                             ylim = c(0, 11),
-                             y_breaks = seq(0, 11, by = 2),
-                             clip_cover = 0.25,
-                             axis_title_font_size = 12,
-                             rev_colors = FALSE,
-                             leg_pos = "none")
+      plist[[4]] <-
+        plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
+                               survey_type = "age1",
+                               xlim = c(1995, 2022),
+                               ylim = c(0, 11),
+                               y_breaks = seq(0, 11, by = 2),
+                               clip_cover = 0.25,
+                               axis_title_font_size = 12,
+                               rev_colors = FALSE,
+                               leg_pos = "none")
 
-    # Grid of 2 rows and 1 column with one plot at the top (biomass)
-    # and 4 plots embedded in another grid (quad_grid) at the bottom
-    quad_grid <- cowplot::plot_grid(plotlist = plist,
-                                    nrow = 2,
-                                    ncol = 2)
-    full_plist <- list()
-    full_plist[[1]] <-
-      plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
-                   leg_ncol = 2,
-                   leg_font_size = 7,
-                   wrap_y_label = TRUE,
-                   axis_title_font_size = 12,
-                   leg_pos = c(0.72, 0.82))
+      # Grid of 2 rows and 1 column with one plot at the top (biomass)
+      # and 4 plots embedded in another grid (quad_grid) at the bottom
+      quad_grid <- cowplot::plot_grid(plotlist = plist,
+                                      nrow = 2,
+                                      ncol = 2)
+      full_plist <- list()
+      full_plist[[1]] <-
+        plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
+                     leg_ncol = 2,
+                     leg_font_size = 7,
+                     wrap_y_label = TRUE,
+                     axis_title_font_size = 12,
+                     leg_pos = c(0.72, 0.82))
 
-    full_plist[[2]] <- quad_grid
+      full_plist[[2]] <- quad_grid
 
-    cowplot::plot_grid(plotlist = full_plist,
-                       nrow = 2,
-                       ncol = 1,
-                       rel_heights = c(0.33, 0.67))
-  }
+      cowplot::plot_grid(plotlist = full_plist,
+                         nrow = 2,
+                         ncol = 1,
+                         rel_heights = c(0.33, 0.67))
+    }
 
-out$age_comp_fits <-
-  {
-    plist <- NULL
-    plist[[1]] <-
-      plot_age_comp_fit(base_model,
-                        label_font_size = 3,
-                        n_col = 4)
-    plist[[2]] <-
-      plot_age_comp_fit(base_model,
-                        n_col = 1,
-                        type = "survey",
-                        x_breaks = 2:15,
-                        label_font_size = 3,
-                        label_loc = c(14, 0.45))
-    plot_grid(plotlist = plist, nrow = 2)
-  }
+  out$age_comp_fits <-
+    {
+      plist <- NULL
+      plist[[1]] <-
+        plot_age_comp_fit(base_model,
+                          label_font_size = 3,
+                          n_col = 4)
+      plist[[2]] <-
+        plot_age_comp_fit(base_model,
+                          n_col = 1,
+                          type = "survey",
+                          x_breaks = 2:15,
+                          label_font_size = 3,
+                          label_loc = c(14, 0.45))
+      plot_grid(plotlist = plist, nrow = 2)
+    }
 
-out$age_comp_pearson <-
-  {
-    plist <- NULL
-    plist[[1]] <-
-      plot_pearson_bubbles(base_model,
-                           type = "fishery",
-                           legend.position = "top",
-                           alpha = 0.7)
-    plist[[2]] <-
-      plot_pearson_bubbles(base_model,
-                           type = "survey",
-                           alpha = 0.7)
-    plot_grid(plotlist = plist, ncol = 1)
-  }
+  out$age_comp_pearson <-
+    {
+      plist <- NULL
+      plist[[1]] <-
+        plot_pearson_bubbles(base_model,
+                             type = "fishery",
+                             legend.position = "top",
+                             alpha = 0.7)
+      plist[[2]] <-
+        plot_pearson_bubbles(base_model,
+                             type = "survey",
+                             alpha = 0.7)
+      plot_grid(plotlist = plist, ncol = 1)
+    }
 
-out
+  # out$prior_posterior <- plot_priors_vs_posts(base_model,
+  #                                             key_posteriors,
+  #                                             titles = key_posteriors_titles,
+  #                                             x_range = "prior",
+  #                                             ncol = 2,
+  #                                             nrow = 3,
+  #                                             labeller = label_parsed_space)
+
+
+  out
 }
