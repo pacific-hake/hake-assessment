@@ -4,24 +4,11 @@
 \alias{plot_priors_vs_posts}
 \title{Make a grid of posterior plots with priors and initial values}
 \usage{
-plot_priors_vs_posts(
-  model,
-  titles = NULL,
-  x_range = c("posterior", "prior"),
-  ...
-)
+plot_priors_vs_posts(model, x_range = c("posterior", "prior"), ...)
 }
 \arguments{
 \item{model}{The model output from Stock Synthesis as loaded by
 \code{\link[=create_rds_file]{create_rds_file()}}.}
-
-\item{titles}{A vector of titles for the plots. The titles can be used as is
-or they can be transformed via a labeller passed to
-\code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}} via \code{...}. The default value of \code{NULL} leads to
-each panel being labelled with a lower-case letter enclosed in open
-brackets, e.g., \code{(a)}. If you truly do not want a label, just pass the
-argument a vector of empty strings, e.g., \code{c("", "", ...)}, with the same
-length as the result of parameters that are found via \code{posterior_regex}.}
 
 \item{x_range}{A string specifying the method to limit the range of each
 x axis in the panels. Typically, all geoms used in the figure dictate the
@@ -37,11 +24,6 @@ parameter space.}
 remove the spaces from the strings and implement
 \code{\link[ggplot2:labellers]{ggplot2::label_parsed()}}. And, \code{ncol} and \code{nrow} can be used to direct
 the output or you can let {ggplot2} figure it out.}
-
-\item{posterior_regex}{A vector of regular expressions that can be matched
-to parameter names. Order the vector in the same order as you want the
-figures to be plotted but make sure you also have \code{titles} ordered
-appropriately as well otherwise the names will not line up.}
 }
 \value{
 A {ggplot2} object.

@@ -52,3 +52,30 @@ dbeta_ab <- function(x, prior, sd, min, max) {
     (1.0 - b_prior) * log(p_const + prior - min) -
     (1.0 - a_prior) * log(p_const + max - prior)
 }
+
+
+#' Calculate the two shape parameters from the mean (`mu`) and `cv`
+#' which is what is in the SS files.
+#'
+#' @details
+#' To make a plot of the Beta function based on values from SS3 which are
+#' labelled `prior` and `pr_sd` in the control file, do this:
+#' `s1 <- beta_get_shape_params(prior, pr_sd)[1]`
+#' `s2 <- beta_get_shape_params(prior, pr_sd)[2]`
+#' `ggplot() +`
+#' `geom_function(fun = stats::dbeta,`
+#'               `args = list(shape1 = s1, shape2 = s2, log = FALSE))`
+#'
+#' @param mu The mean of the Beta distribution
+#' @param cv The CV of the Beta distribution
+#'
+#' @return A vector of two values, the two shape parameters, also know as
+#' `shape1` and `shape2` by the `stats::dbeta()` function
+#' @export
+beta_get_shape_params <- function(mu, cv) {
+  sd <- mu * cv
+  alpha <- ((1 - mu) / sd ^ 2 - 1 / mu) * mu ^ 2
+  beta <- alpha * (1 / mu - 1)
+  c(alpha = alpha, beta = beta)
+}
+

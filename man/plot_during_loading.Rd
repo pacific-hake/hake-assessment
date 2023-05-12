@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot-during-loading.R
 \name{plot_during_loading}
 \alias{plot_during_loading}
-\title{Create plots suring the loading phase, and return a list of them to be
+\title{Create plots during the loading phase, and return a list of them to be
 attached to the model object for saving in a model RDS file}
 \usage{
 plot_during_loading(model)
@@ -14,14 +14,10 @@ plot_during_loading(model)
 A list of \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} objects
 }
 \description{
-Create plots suring the loading phase, and return a list of them to be
+Create plots during the loading phase, and return a list of them to be
 attached to the model object for saving in a model RDS file
 }
 \details{
-Assumes that many global variables exist. While this is usually bad form,
-this one function is only to be called from within \code{\link[=create_rds_file]{create_rds_file()}}
-at a point when all those variables exist. If they do not, the Rmd files
-doc/002- through 005-* must be sourced prior to calling this.
 Uses the \link{probs} vector which is included in the package data for
 this package
 }

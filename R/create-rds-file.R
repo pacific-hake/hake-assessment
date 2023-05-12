@@ -75,7 +75,7 @@ create_rds_file <- function(
   # Add prior and posterior extractions/calculations/formatting
   model$parameter_priors <- get_prior_data(model, ...)
   model$parameter_posts <- get_posterior_data(model, ...)
-browser()
+
   # Add values extracted from the extra MCMC output which includes index
   # estimates, catchability estimates, and at-age data frames
   model$extra_mcmc <- load_extra_mcmc(model,

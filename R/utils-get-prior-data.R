@@ -37,19 +37,19 @@ get_prior_data <- function(model,
     as_tibble() %>%
     set_names(tolower(names(.)))
 
-  priors_list <- list()
   pconst <- 0.0001
 
-  for(i in seq_along(params_regex)){
-    parind <- grep(params_regex[i], params$label)
+  priors_lst <- map(params_regex, \(pat){
+
+    parind <- grep(pat, params$label)
     if(length(parind) < 1){
-      stop("The regular expression ", params_regex[i],
-           " matched no parameter names", call. = FALSE)
+      stop("The regular expression ", pat, " matched no parameter names",
+           call. = FALSE)
     }
     if(length(parind) > 1){
-      stop("The regular expression ", params_regex[i],
-           " matched more than one (", length(parind),
-           ") parameter names", call. = FALSE)
+      stop("The regular expression ", pat, " matched more than one (",
+           length(parind), ") parameter names",
+           call. = FALSE)
     }
     parline <- params[parind, ]
     message("The regular expression matched ", parline$label)
@@ -69,29 +69,34 @@ get_prior_data <- function(model,
                 pmax,
                 length = ncol(model$mcmc))
 
-    if(ptype == "Log_Norm"){
-      prior_like <- 0.5 * ((log(pval) - pr) / psd) ^ 2
-    }else if(ptype == "Full_Beta"){
-      mu <- (pr - pmin) / (pmax - pmin);  # CASAL's v
-      tau <- (pr - pmin) * (pmax - pr) / (psd ^ 2) - 1.0
-      aprior <- tau * (1 - mu)  # CASAL's m and n
-      bprior <- tau * mu
-      if(aprior <= 1.0 | bprior <= 1.0) {
-        warning("Bad Beta prior for parameter ", parline$label)
-      }
-      prior_like <- (1.0 - bprior) * log(pconst + pval - pmin) +
-        (1.0 - aprior) * log(pconst + pmax - pval) -
-        (1.0 - bprior) * log(pconst + pr - pmin) -
-        (1.0 - aprior) * log(pconst + pmax - pr)
-    }else if(ptype == "No_prior"){
-      prior_like <- rep(0.0, length(pval))
-    }else if(ptype == "Normal"){
-      prior_like <- 0.5*((pval - pr) / psd) ^ 2
-    }else{
-      warning("No prior found for parameter ", parline$Label)
-      prior_like <- NA
-    }
-
+    prior_like <- switch(ptype,
+           "Log_Norm" = {
+             0.5 * ((log(pval) - pr) / psd) ^ 2
+           },
+           "Full_Beta" = {
+             mu <- (pr - pmin) / (pmax - pmin);  # CASAL's v
+             tau <- (pr - pmin) * (pmax - pr) / (psd ^ 2) - 1.0
+             aprior <- tau * (1 - mu)  # CASAL's m and n
+             bprior <- tau * mu
+             if(aprior <= 1.0 | bprior <= 1.0) {
+               warning("Bad Beta prior for parameter ", parline$label)
+             }
+             (1.0 - bprior) * log(pconst + pval - pmin) +
+               (1.0 - aprior) * log(pconst + pmax - pval) -
+               (1.0 - bprior) * log(pconst + pr - pmin) -
+               (1.0 - aprior) * log(pconst + pmax - pr)
+           },
+           "No_prior" = {
+             rep(0.0, length(pval))
+           },
+           "Normal" = {
+             0.5 * ((pval - pr) / psd) ^ 2
+           },
+           {
+             warning("No prior found for parameter ", parline$Label)
+             NA
+           }
+           )
     prior <- NA
     if(!is.na(prior_like[1])){
       prior <- exp(-1 * prior_like)
@@ -104,30 +109,37 @@ get_prior_data <- function(model,
       mle <- mle * mlescale
     }
 
-    random_points <- switch(
+    distribution_pts <- switch(
       ptype,
       "Normal" = rnorm(n_points_prior, pr, psd),
       "Log_Norm" = rlnorm(n_points_prior, pr, psd),
       "Full_Beta" = rbeta_ab(n_points_prior, pr, psd, min = pmin, max = pmax),
       "No_prior" = runif(n_points_prior, min = pmin, pmax)
     )
-    random_points[random_points < pmin | random_points > pmax] <- NA
+    distribution_pts[distribution_pts < pmin |
+                    distribution_pts > pmax] <- NA
+    list(initval = initval,
+         finalval = finalval,
+         parsd = parsd,
+         pmin = pmin,
+         pmax = pmax,
+         ptype = ptype,
+         psd = psd,
+         pr = pr,
+         pval = pval,
+         prior = prior,
+         mle = mle,
+         prior_random = distribution_pts)
+  })
 
-    priors_list[[i]] <- list(initval = initval,
-                             finalval = finalval,
-                             parsd = parsd,
-                             pmin = pmin,
-                             pmax = pmax,
-                             ptype = ptype,
-                             psd = psd,
-                             pr = pr,
-                             pval = pval,
-                             prior = prior,
-                             mle = mle,
-                             prior_random = random_points)
+  param_recdevs <- params |>
+    filter(grepl("AgeSel.*Fishery.*DEV", label))
+  priors_lst <- c(priors_lst,
+                  list(param_recdevs))
+  params_titles <- c(params_titles,
+                     "Fishery recruitment deviations")
 
-  }
-  names(priors_list) <- params_titles
+  names(priors_lst) <- params_titles
 
-  priors_list
+  priors_lst
 }

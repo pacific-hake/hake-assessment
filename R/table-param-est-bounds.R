@@ -231,11 +231,12 @@ table_param_est_bounds <- function(model,
                             start_yr_sel:end_yr_sel][1, 1:2])) + 1
 
   # Selectivity deviations for fishery
-  sel_devs <- model$mcmcparams$param_recdevs
+  sel_devs <- model$parameter_priors$`Fishery recruitment deviations`
+
   sel_dev_bounds <- paste0("(",
-                           first(sel_devs$Min),
+                           first(sel_devs$min),
                            ", ",
-                           first(sel_devs$Max),
+                           first(sel_devs$max),
                            ")")
 
   f_age_sel_dev_vals <-
