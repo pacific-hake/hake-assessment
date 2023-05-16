@@ -7,7 +7,7 @@ key_posteriors <- list("NatM",
                        "ln\\(DM_theta\\)_Age_P2")
 
 key_posteriors_titles <- list("Natural mortality",
-                              expression(ln(R[0])),
+                              "ln(R[0])",
                               "Steepness",
                               "Survey extra SD",
                               "Dirichlet-multinomial fishery",

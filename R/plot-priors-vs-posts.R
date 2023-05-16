@@ -44,6 +44,14 @@ plot_priors_vs_posts <- function(model,
     enframe(name = "param") |>
     mutate(param = factor(param, levels = titles))
 
+  # `ggplot2::label_parsed()` does not work with spaces in the labels,
+  # so we replace them with tildes. These are converted to spaces by
+  # the labeller function `ggplot2::label_parsed()`
+  titles <- gsub(" ", "~", titles)
+  # This line is necessary to make `ggplot2::label_parsed()` work properly.
+  # If you leave it out, all lables will be `NA`
+  names(titles) <- levels(posts_long$param)
+
   g <- ggplot() +
     geom_histogram(data = posts_long,
                    mapping = aes(value, after_stat(density)),
@@ -64,6 +72,8 @@ plot_priors_vs_posts <- function(model,
                col = rgb(0, 0, 0, 0.5)) +
     facet_wrap(~param,
                scales = "free",
+               labeller = labeller(param = titles,
+                                   .default = label_parsed),
                ...) +
     theme(axis.text.y = element_blank(),
           axis.ticks.y = element_blank()) +

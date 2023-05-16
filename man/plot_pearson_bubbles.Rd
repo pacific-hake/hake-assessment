@@ -9,7 +9,7 @@ plot_pearson_bubbles(
   type = c("fishery", "survey"),
   clines = c(1980, 1984, 1999, 2010, 2014, 2016),
   by = 5,
-  legend.position = "none",
+  leg_pos = "none",
   alpha = 0.3,
   xlim = c(1975, year(Sys.Date())),
   ...
@@ -24,7 +24,7 @@ plot_pearson_bubbles(
 
 \item{by}{How many years between year labels on the x-axis}
 
-\item{legend.position}{See the \code{legend.position} parameter of
+\item{leg_pos}{See the \code{leg_pos} parameter of
 \code{\link[ggplot2:theme]{ggplot2::theme()}}}
 
 \item{alpha}{See \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}}

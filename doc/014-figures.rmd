@@ -539,9 +539,30 @@ if(is.null(base_model$plots$prior_posterior)){
 plot_priors_vs_posts(base_model,
                      x_range = "prior",
                      ncol = 2,
-                     nrow = 3,
-                     labeller = label_parsed_space)
+                     nrow = 3)
 }else{
   base_model$plots$prior_posterior
 }
 ```
+
+(ref:main-prior-posterior-truncated-cap) As for Figure
+\@ref(fig:main-prior-posterior-fig) but the x axis of each panel is truncated
+to the range of the posterior distribution, and thus, there is the potential
+for the full range of the prior and the initial value to be missing from
+individual panels.
+
+(ref:main-prior-posterior-truncated-alt) This figure shows how the posteriors
+shift from the priors for key parameters. The steepness parameter appears to
+have an almost identical prior and posterior distribution.
+
+```{r main-prior-posterior-truncated-fig, fig.cap = "(ref:main-prior-posterior-truncated-cap)", fig.height = 10, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-prior-posterior-truncated-alt)"}
+if(is.null(base_model$plots$prior_posterior)){
+plot_priors_vs_posts(base_model,
+                     x_range = "posterior",
+                     ncol = 2,
+                     nrow = 3)
+}else{
+  base_model$plots$prior_posterior
+}
+```
+
