@@ -386,6 +386,7 @@ load_extra_mcmc <- function(model,
     filter(!is.na(nsamp_adj), nsamp_adj > 0) |>
     select(c(iter, yr, fleet, bin, obs, exp, pearson)) |>
     rename(age = bin)
+
   extra_mcmc$residuals_fishery <- comp |>
     filter(fleet == 1) |>
     select(-fleet) |>
@@ -393,19 +394,11 @@ load_extra_mcmc <- function(model,
     summarize(exp_lo = quantile(exp, probs = probs[1]),
               exp_med = quantile(exp, probs = probs[2]),
               exp_hi = quantile(exp, probs = probs[3]),
-              obs_lo = quantile(obs, probs = probs[1]),
               obs_med = quantile(obs, probs = probs[2]),
-              obs_hi = quantile(obs, probs = probs[3]),
               pearson_lo = quantile(pearson, probs = probs[1]),
               pearson_med = quantile(pearson, probs = probs[2]),
               pearson_hi = quantile(pearson, probs = probs[3])) |>
     ungroup()
-  extra_mcmc$residuals_fishery_med <- extra_mcmc$residuals_fishery |>
-    select(yr,
-           age,
-           obs = obs_med,
-           exp = exp_med,
-           pearson = pearson_med)
 
   extra_mcmc$residuals_survey <- comp |>
     filter(fleet == 2) |>
@@ -414,20 +407,11 @@ load_extra_mcmc <- function(model,
     summarize(exp_lo = quantile(exp, probs = probs[1]),
               exp_med = quantile(exp, probs = probs[2]),
               exp_hi = quantile(exp, probs = probs[3]),
-              obs_lo = quantile(obs, probs = probs[1]),
               obs_med = quantile(obs, probs = probs[2]),
-              obs_hi = quantile(obs, probs = probs[3]),
               pearson_lo = quantile(pearson, probs = probs[1]),
               pearson_med = quantile(pearson, probs = probs[2]),
               pearson_hi = quantile(pearson, probs = probs[3])) |>
     ungroup()
-
-  extra_mcmc$residuals_survey_med <- extra_mcmc$residuals_survey |>
-    select(yr,
-           age,
-           obs = obs_med,
-           exp = exp_med,
-           pearson = pearson_med)
 
   if(verbose){
     message("\nFinished loading Extra MCMC output")

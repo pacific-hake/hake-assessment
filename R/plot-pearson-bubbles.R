@@ -4,7 +4,7 @@
 #' @param type 1 = Fishery, any other value = Survey
 #' @param clines An optional vector of years to draw cohort lines through
 #' @param by How many years between year labels on the x-axis
-#' @param legend.position See the `legend.position` parameter of
+#' @param leg_pos See the `leg_pos` parameter of
 #' [ggplot2::theme()]
 #' @param alpha See [ggplot2::geom_point()]
 #' @param xlim Limits for the x-axis
@@ -17,7 +17,7 @@ plot_pearson_bubbles <- function(model,
                                  type = c("fishery", "survey"),
                                  clines = c(1980, 1984, 1999, 2010, 2014, 2016),
                                  by = 5,
-                                 legend.position = "none",
+                                 leg_pos = "none",
                                  alpha = 0.3,
                                  xlim = c(1975, year(Sys.Date())),
                                  ...){
@@ -25,15 +25,15 @@ plot_pearson_bubbles <- function(model,
   type <- match.arg(type)
 
   if(type == "fishery"){
-    d <- model$extra_mcmc$residuals_fishery_med
+    d <- model$extra_mcmc$residuals_fishery
   }else{
-    d <- model$extra_mcmc$residuals_survey_med
+    d <- model$extra_mcmc$residuals_survey
   }
 
   g <- ggplot(d, aes(x =yr,
                      y = age,
-                     size = abs(pearson),
-                     fill = factor(sign(as.numeric(pearson))))) +
+                     size = abs(pearson_med),
+                     fill = factor(sign(as.numeric(pearson_med))))) +
     geom_point(pch = 21,
                alpha = alpha,
                ...) +
@@ -68,12 +68,14 @@ plot_pearson_bubbles <- function(model,
                    inherit.aes = FALSE,
                    ...)
   }
+
   g <- g +
-    theme(legend.position = legend.position, ...) +
+    theme(legend.position = leg_pos,
+          ...) +
     guides(size =
              guide_legend(title = "Residuals",
-                          nrow = ifelse(legend.position == "right" |
-                                          legend.position == "left", 10, 1),
+                          nrow = ifelse(leg_pos == "right" |
+                                          leg_pos == "left", 10, 1),
                           override.aes =
                             list(fill = c("white", "white", "white",
                                           "black", "black", "black"),

@@ -508,7 +508,7 @@ if(is.null(base_model$plots$age_comp_pearson)){
   plist[[1]] <-
     plot_pearson_bubbles(base_model,
                          type = "fishery",
-                         legend.position = "top",
+                         leg_pos = "top",
                          alpha = 0.7)
   plist[[2]] <-
     plot_pearson_bubbles(base_model,
