@@ -16,6 +16,7 @@
 #' @importFrom fs dir_ls path
 #' @importFrom future plan
 #' @importFrom furrr future_map future_imap furrr_options
+#' @importFrom ggridges geom_ridgeline
 #' @importFrom glue glue
 #' @importFrom graphics arrows grid hist layout legend lines matplot
 #' @importFrom graphics mtext par points polygon rect segments

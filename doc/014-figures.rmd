@@ -566,3 +566,18 @@ plot_priors_vs_posts(base_model,
 }
 ```
 
+(ref:main-tv-selex-cap) Mountains plot of median fishery selectivity in each
+year for the base model. Range of selectivity is scaled to be between 0 to 1
+in each year.
+
+(ref:main-tv-selex-alt) This figure shows individual median selectivity
+plots for each year in a mountain range configuration.
+
+```{r main-tv-selex-fig, fig.cap = "(ref:main-tv-selex-cap)", fig.height = 8, fig.width = 4, is.fig = TRUE, alt.text = "(ref:main-tv-selex-alt)"}
+
+plot_selex_mountains(base_model,
+                     yrs = 1990:last_data_yr,
+                     ages = 1:8,
+                     scale = 2)
+```
+
