@@ -2,9 +2,9 @@ plot_selex_mountains <- function(model,
                                  yrs = NULL,
                                  ages = 1:8,
                                  scale = 1,
-                                 fill_num_colors = 10,
-                                 fill_col1 = "white",
-                                 fill_col2 = "royalblue"){
+                                 fill_num_colors = 20,
+                                 fill_col1 = "darkblue",
+                                 fill_col2 = "lightblue"){
 
   color_func <- colorRampPalette(colors = c(fill_col1, fill_col2))
   gradient_cols <- color_func(n = fill_num_colors)
@@ -51,7 +51,6 @@ plot_selex_mountains <- function(model,
                   height = prop * scale,
                   group = yr,
                   fill = prop)) +
-    #geom_ridgeline(fill = "#0072B250") +
     geom_ridgeline(fill = "transparent",
                    size = 0)
 
@@ -64,8 +63,9 @@ plot_selex_mountains <- function(model,
 
   gr <- add_extra_ribbon_data(gr_data, prop_seq) |>
     mutate(ymax = ymin + ymax) |>
-    mutate(yr = as.character(yr))
-
+    mutate(ribbon_color = gradient_cols[which_ribbon]) |>
+    mutate(yr = factor(yr, levels = rev(sort(unique(yr)))))
+browser()
   ggplot(gr,
          aes(x = age,
              y = yr,
@@ -75,16 +75,19 @@ plot_selex_mountains <- function(model,
                     ymax = ymax,
                     ymin = ymin,
                     group = which_ribbon,
-                    fill = which_ribbon),
+                    fill = ribbon_color),
                 alpha = 0.5,
                 inherit.aes = FALSE) +
-    facet_wrap(~ymin, ncol = 1) +
-    theme(strip.background = element_blank(),
+    scale_fill_identity() +
+    facet_grid(yr ~ ., switch = "y", space = "free") +
+    theme(#strip.background = element_blank(),
           panel.spacing = unit(-2, "cm"),
-          strip.text.x = element_blank(),
-          #axis.text.y = element_blank(),
-          #axis.ticks.y = element_blank(),
-          plot.margin = margin(12, 12, 0, 0),
+          strip.text.y.left = element_text(angle = 0),
+          strip.placement = "outside",
+          #strip.text.x = element_blank(),
+          axis.text.y = element_blank(),
+          axis.ticks.y = element_blank(),
+          plot.margin = margin(0, 12, 0, 12),
           panel.border = element_blank(),
           panel.background = element_rect(fill = "transparent"),
           plot.background = element_rect(fill = "transparent", color = NA),
@@ -96,8 +99,7 @@ plot_selex_mountains <- function(model,
     scale_x_continuous(expand = c(0, 0),
                        breaks = ages) +
     xlab("Age") +
-    ylab("Selectivity by year") #+
-    #gginnards::geom_debug()
+    ylab("Selectivity by year")
 
  }
 
