@@ -2,12 +2,14 @@ plot_selex_mountains <- function(model,
                                  yrs = NULL,
                                  ages = 1:8,
                                  scale = 1,
-                                 fill_granularity = 0.001,
+                                 fill_num_colors = 10,
                                  fill_col1 = "white",
                                  fill_col2 = "royalblue"){
 
   color_func <- colorRampPalette(colors = c(fill_col1, fill_col2))
-  seg_cols <- color_func(n = ceiling(1 / fill_granularity * (length(ages) - 1)))
+  gradient_cols <- color_func(n = fill_num_colors)
+  fill_reduc_prop <- 1 - (1 / fill_num_colors)
+  prop_seq <- seq(0, fill_reduc_prop, 1 / fill_num_colors)
 
   sel_med <- model$extra_mcmc$sel_fishery_med |>
     select(-iter)
@@ -51,114 +53,71 @@ plot_selex_mountains <- function(model,
                   fill = prop)) +
     #geom_ridgeline(fill = "#0072B250") +
     geom_ridgeline(fill = "transparent",
-                   size = 0) +
-    scale_x_continuous(breaks = ages) +
+                   size = 0)
+
+  gr_data <- ggplot_build(g)$data[[1]] |>
+    as_tibble() |>
+    transmute(age = x, yr = y, ymin, ymax) |>
+    mutate(across(everything(), ~{as.numeric(.x)})) |>
+    mutate(yr = d$yr) |>
+    mutate(which_ribbon = 1)
+
+  gr <- add_extra_ribbon_data(gr_data, prop_seq) |>
+    mutate(ymax = ymin + ymax) |>
+    mutate(yr = as.character(yr))
+
+  ggplot(gr,
+         aes(x = age,
+             y = yr,
+             group = yr,
+             color = yr)) +
+    geom_ribbon(aes(x = age,
+                    ymax = ymax,
+                    ymin = ymin,
+                    group = which_ribbon,
+                    fill = which_ribbon),
+                alpha = 0.5,
+                inherit.aes = FALSE) +
+    facet_wrap(~ymin, ncol = 1) +
+    theme(strip.background = element_blank(),
+          panel.spacing = unit(-2, "cm"),
+          strip.text.x = element_blank(),
+          #axis.text.y = element_blank(),
+          #axis.ticks.y = element_blank(),
+          plot.margin = margin(12, 12, 0, 0),
+          panel.border = element_blank(),
+          panel.background = element_rect(fill = "transparent"),
+          plot.background = element_rect(fill = "transparent", color = NA),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          legend.background = element_rect(fill = "transparent"),
+          legend.box.background = element_rect(fill = "transparent"),
+          legend.position = "none") +
+    scale_x_continuous(expand = c(0, 0),
+                       breaks = ages) +
     xlab("Age") +
     ylab("Selectivity by year") #+
     #gginnards::geom_debug()
 
-  k <- ggplot(data.frame(x = 1, y = 1, xend = 2, yend = 2),
-              aes(x = x, y = y, xend = xend, yend = yend)) + geom_segment()
-  kr_data <- ggplot_build(k)$data[[1]] |>
-    as_tibble()
+ }
 
-  gr_data <- ggplot_build(g)$data[[1]] |>
-    as_tibble()
-  ymax <- max(gr_data$height)
+add_extra_ribbon_data <- function(gr_data, prop_seq){
 
-  browser()
+  prop_seq <- prop_seq[prop_seq != 0]
+  prop_seq <- rev(sort(prop_seq))
 
-  gr_maxage <- gr_data |>
-    split(~y) |>
-    map_df(~{
-      j <- .x |>
-        # Remove final ages as there will be no colored segments after them
-        filter(x == max(ages))
-    })
-
-  gr_data <- gr_data |>
-    # Rename these columns so the code that follows is not so confusing
-    rename(age = x,
-           yr = y)
-
-  gr_maxage <- gr_data |>
-    # Split up the data frame by year to get a list of data frames by maximum
-    # age for each year.
+  gr_data |>
     split(~yr) |>
-    map_df(\(yr_df){
-      j <- yr_df |>
-        # Remove final ages as there will be no colored segments after them
-        filter(age == max(ages))
-    })
-
-  gr <- gr_data |>
-    # Split up the data frame by year to get a list of data frames by age for
-    # each year. The data frames will have `length(ages)` rows, one row for
-    # each age
-    split(~yr) |>
-    imap(\(yr_df, yr_ind){
-      #browser()
-      j <- yr_df |>
-        # Remove final ages as there will be no colored segments after them
-        filter(age != max(ages)) |>
-        # Split up the data frame of age rows into individual 1-row
-        # data frames, one for each age except the last
-        split(~age) |>
-        map(\(age_df){
-          # Add a bunch of rows for segments, based on the slope of the line
-          # between the current age and the next one
-          #browser()
-          height_at_age <- age_df$height + age_df$ymin
-          height_at_next_age <- gr_data |>
-            filter(yr == age_df$yr) |>
-            filter(age == age_df$age + 1) |>
-            pull(height)
-          height_at_next_age <- height_at_next_age + age_df$ymin
-          xvals <- seq(age_df$age,
-                       #max(ages) - 0.001,
-                       age_df$age + 1 - fill_granularity,
-                       fill_granularity)
-          #browser()
-          yvals <- seq(height_at_age,
-                       height_at_next_age,
-                       length = length(xvals))
-          for(i in seq_along(yvals)){
-            # Add a new row for each interval
-            row <- kr_data
-            # Horizontal line from the new x value to ...
-            row$x <- xvals[i]
-            # .. the next age
-            #row$xend <- age_df$age + 1
-            row$xend <- max(ages)
-            row$y <- yvals[i]
-            row$yend <- yvals[i]
-            row$group <- yr_ind
-            if(i == 1){
-              out <- row
-            }else{
-              out <- out |>
-                bind_rows(row)
-            }
-          }
-          out
-        }) |> map_df(~{.x}) |>
-        mutate(colour = seg_cols)
+    map(~{
+      out <- .x
+      for(i in seq_along(prop_seq)){
+        tmp <- .x |>
+          mutate(ymax = ymax * prop_seq[i]) |>
+          mutate(which_ribbon = i + 1)
+        out <- out |>
+          bind_rows(tmp)
+      }
+      out
     }) |>
     map_df(~{.x})
-browser()
-
-  g <- g + geom_segment(data = gr,
-               aes(x = x,
-                   xend = xend,
-                   y = y,
-                   yend = yend,
-                   colour = colour,
-                   group = group),
-               alpha = 0.3,
-               inherit.aes = FALSE) +
-    scale_color_identity() #+
-    # geom_ridgeline(fill = "transparent",
-    #                size = 1.5)
-
-  g
 }
