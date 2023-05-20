@@ -578,6 +578,7 @@ plots for each year in a mountain range configuration.
 plot_selex_mountains(base_model,
                      yrs = 1990:last_data_yr,
                      ages = 1:8,
-                     scale = 2)
+                     fill_num_colors = 50,
+                     scale = 6)
 ```
 

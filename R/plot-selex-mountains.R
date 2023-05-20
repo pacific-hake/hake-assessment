@@ -3,10 +3,10 @@ plot_selex_mountains <- function(model,
                                  ages = 1:8,
                                  scale = 1,
                                  fill_num_colors = 20,
-                                 fill_col1 = "darkblue",
-                                 fill_col2 = "lightblue"){
+                                 fill_col_upper = "darkblue",
+                                 fill_col_lower = "lightblue"){
 
-  color_func <- colorRampPalette(colors = c(fill_col1, fill_col2))
+  color_func <- colorRampPalette(colors = c(fill_col_upper, fill_col_lower))
   gradient_cols <- color_func(n = fill_num_colors)
   fill_reduc_prop <- 1 - (1 / fill_num_colors)
   prop_seq <- seq(0, fill_reduc_prop, 1 / fill_num_colors)
@@ -66,11 +66,11 @@ plot_selex_mountains <- function(model,
     mutate(ribbon_color = gradient_cols[which_ribbon]) |>
     mutate(yr = factor(yr, levels = rev(sort(unique(yr)))))
 browser()
-  ggplot(gr,
-         aes(x = age,
-             y = yr,
-             group = yr,
-             color = yr)) +
+  g <- ggplot(gr,
+              aes(x = age,
+                  y = yr,
+                  group = yr,
+                  color = yr)) +
     geom_ribbon(aes(x = age,
                     ymax = ymax,
                     ymin = ymin,
@@ -79,15 +79,23 @@ browser()
                 alpha = 0.5,
                 inherit.aes = FALSE) +
     scale_fill_identity() +
-    facet_grid(yr ~ ., switch = "y", space = "free") +
-    theme(#strip.background = element_blank(),
+    scale_x_continuous(expand = c(0, 0),
+                       breaks = ages) +
+    coord_cartesian(xlim = c(0, max(ages))) +
+    geom_text(aes(x = 0.75,
+                  y = ymin + 0.5,
+                  hjust = 0.75,
+                  vjust = -0.5,
+                  label = yr),
+              inherit.aes = FALSE) +
+    facet_grid(yr ~ ., switch = "y") +
+    theme(strip.background = element_blank(),
           panel.spacing = unit(-2, "cm"),
-          strip.text.y.left = element_text(angle = 0),
-          strip.placement = "outside",
-          #strip.text.x = element_blank(),
+          strip.text.x = element_blank(),
+          strip.text.y = element_blank(),
           axis.text.y = element_blank(),
           axis.ticks.y = element_blank(),
-          plot.margin = margin(0, 12, 0, 12),
+          plot.margin = margin(0, 6, 0, 12),
           panel.border = element_blank(),
           panel.background = element_rect(fill = "transparent"),
           plot.background = element_rect(fill = "transparent", color = NA),
@@ -96,12 +104,11 @@ browser()
           legend.background = element_rect(fill = "transparent"),
           legend.box.background = element_rect(fill = "transparent"),
           legend.position = "none") +
-    scale_x_continuous(expand = c(0, 0),
-                       breaks = ages) +
     xlab("Age") +
     ylab("Selectivity by year")
 
- }
+  g
+}
 
 add_extra_ribbon_data <- function(gr_data, prop_seq){
 

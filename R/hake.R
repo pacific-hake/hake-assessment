@@ -24,7 +24,7 @@
 #' @importFrom grDevices colorRampPalette gray rgb
 #' @importFrom grid gpar grid.draw grid.newpage rectGrob textGrob
 #' @importFrom gridExtra arrangeGrob
-#' @importFrom gtable gtable_add_grob
+#' @importFrom gtable gtable_add_grob gtable_add_rows
 #' @importFrom kableExtra column_spec kable_styling kbl landscape linebreak
 #' @importFrom here here i_am
 #' @importFrom lubridate hour minute month now second seconds_to_period year
