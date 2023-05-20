@@ -1,3 +1,20 @@
+#' Create a plot of median selectivity as a set of overlapping "mountains"
+#' which are shaded top-down for visual appeal
+#'
+#' @param model The model output from Stock Synthesis as loaded by
+#'   [create_rds_file()].
+#' @param yrs A vector of years to include in the plot. If `NULL`, all years
+#' found in the data will be included
+#' @param ages A vector of ages to include in the plot
+#' @param scale A scaling factor to increase or decrease the height of the
+#' selectivity plots
+#' @param fill_num_colors The number of colors for the gradient of colors
+#' between `fill_col_upper` and `fill_col_lower`
+#' @param fill_col_upper The top color for the gradient color scheme
+#' @param fill_col_lower  The bottom color for the gradient color scheme
+#'
+#' @return A [ggplot2::ggplot()] object
+#' @export
 plot_selex_mountains <- function(model,
                                  yrs = NULL,
                                  ages = 1:8,
@@ -8,8 +25,8 @@ plot_selex_mountains <- function(model,
 
   color_func <- colorRampPalette(colors = c(fill_col_upper, fill_col_lower))
   gradient_cols <- color_func(n = fill_num_colors)
-  fill_reduc_prop <- 1 - (1 / fill_num_colors)
-  prop_seq <- seq(0, fill_reduc_prop, 1 / fill_num_colors)
+  fill_reduction_prop <- 1 - (1 / fill_num_colors)
+  prop_seq <- seq(0, fill_reduction_prop, 1 / fill_num_colors)
 
   sel_med <- model$extra_mcmc$sel_fishery_med |>
     select(-iter)
@@ -28,45 +45,23 @@ plot_selex_mountains <- function(model,
     pivot_longer(-yr, names_to = "age", values_to = "prop") |>
     mutate(prop = prop * scale) |>
     mutate(age = as.numeric(age)) |>
-    mutate(yr = factor(yr, levels = rev(sort(unique(yr)))))
-
-  # Needed for adding a second y-axis
-  guide_axis_label_trans <- function(label_trans = identity, ...) {
-    axis_guide <- guide_axis(...)
-    axis_guide$label_trans <- rlang::as_function(label_trans)
-    class(axis_guide) <- c("guide_axis_trans", class(axis_guide))
-    axis_guide
-  }
-
-  # Needed for adding a second y-axis
-  guide_train.guide_axis_trans <- function(x, ...) {
-    trained <- NextMethod()
-    trained$key$.label <- x$label_trans(trained$key$.label)
-    trained
-  }
-
-  g <- ggplot(d,
-              aes(x = age,
-                  y = yr,
-                  height = prop * scale,
-                  group = yr,
-                  fill = prop)) +
-    geom_ridgeline(fill = "transparent",
-                   size = 0)
-
-  gr_data <- ggplot_build(g)$data[[1]] |>
-    as_tibble() |>
-    transmute(age = x, yr = y, ymin, ymax) |>
+    arrange(-yr, age) |>
+    rename(ymax = prop) |>
+    split(~yr) |>
+    rev() |>
+    set_names(NULL) |>
+    imap(~{.x |>
+        mutate(ymin = .y)}) |>
+    map_df(~{.x}) |>
     mutate(across(everything(), ~{as.numeric(.x)})) |>
-    mutate(yr = d$yr) |>
-    mutate(which_ribbon = 1)
-
-  gr <- add_extra_ribbon_data(gr_data, prop_seq) |>
+    mutate(which_ribbon = 1) |>
+    # The `add_extra_ribbon_data()` function is found in this file, below
+    add_extra_ribbon_data(prop_seq) |>
     mutate(ymax = ymin + ymax) |>
     mutate(ribbon_color = gradient_cols[which_ribbon]) |>
-    mutate(yr = factor(yr, levels = rev(sort(unique(yr)))))
-browser()
-  g <- ggplot(gr,
+    arrange(-yr, age)
+
+  g <- ggplot(d,
               aes(x = age,
                   y = yr,
                   group = yr,
@@ -110,12 +105,22 @@ browser()
   g
 }
 
-add_extra_ribbon_data <- function(gr_data, prop_seq){
+#' Add extra data for decreasing-sized polygons which will be used to make
+#' ribbons, one inside the other. See [plot_selex_mountains()]
+#'
+#' @param d The data frame to add ribbon data to
+#' @param prop_seq A sequence of decreasing proportion values which
+#' will be applied to the height data iteratively to create smaller
+#' polygon data
+#'
+#' @return A modified data frame with the same structure as `d`, but with
+#' many more rows which contain the extra ribbon polygon data
+add_extra_ribbon_data <- function(d, prop_seq){
 
   prop_seq <- prop_seq[prop_seq != 0]
   prop_seq <- rev(sort(prop_seq))
 
-  gr_data |>
+  d |>
     split(~yr) |>
     map(~{
       out <- .x

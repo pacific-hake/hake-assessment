@@ -579,6 +579,6 @@ plot_selex_mountains(base_model,
                      yrs = 1990:last_data_yr,
                      ages = 1:8,
                      fill_num_colors = 50,
-                     scale = 6)
+                     scale = 20)
 ```
 
