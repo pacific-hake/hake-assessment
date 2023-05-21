@@ -77,6 +77,23 @@ plot_selex_mountains <- function(model,
     scale_x_continuous(expand = c(0, 0),
                        breaks = ages) +
     coord_cartesian(xlim = c(0, max(ages))) +
+    geom_line(data = d |>
+                filter(which_ribbon == 1),
+              aes(x = age,
+                  y = ymax,
+                  group = yr),
+              color = "white",
+              linewidth = 0.75,
+              alpha = 0.5,
+              inherit.aes = FALSE) +
+    geom_line(data = d |>
+                filter(which_ribbon == 1),
+              aes(x = age,
+                  y = ymax,
+                  group = yr),
+              color = "black",
+              linewidth = 0.5,
+              inherit.aes = FALSE) +
     geom_text(aes(x = 0.75,
                   y = ymin + 0.5,
                   hjust = 0.75,
