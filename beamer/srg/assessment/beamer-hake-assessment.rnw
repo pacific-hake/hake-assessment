@@ -472,7 +472,7 @@ cowplot::plot_grid(plotlist = plist,
          \vspace{-10pt}
          \bc
          <<main-tv-selex-uncertainty, fig.height=12, fig.width=10, out.width='0.8\\columnwidth'>>=
-         plot_multiple_tv_selex_unc(base_model, n_col = 2)
+         plot_selex_uncertainty(base_model, n_col = 2)
          @
            \ec
          \end{column}

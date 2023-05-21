@@ -202,7 +202,7 @@ relative to the base model for the maximum age of 7 and 8, respectively, model r
 \begin{figure}[H]
 \begin{center}
 <<srg-requests-tv-selex-uncertainty-1, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows selectivity by year plots with medians and 0.95 credible intervals with maximum age of estimated selectivity set to 5.">>=
-plot_multiple_tv_selex_unc(sens_models[[4]][[2]], n_col = 2)
+plot_selex_uncertainty(sens_models[[4]][[2]], n_col = 2)
 @
 \end{center}
 \caption{Fishery selectivity sampled from posterior probability distribution by year for the
@@ -219,7 +219,7 @@ plot_multiple_tv_selex_unc(sens_models[[4]][[2]], n_col = 2)
 \begin{figure}[H]
 \begin{center}
 <<srg-requests-tv-selex-uncertainty-2, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows selectivity by year plots with medians and 0.95 credible intervals with maximum age of estimated selectivity set to 7.">>=
-plot_multiple_tv_selex_unc(sens_models[[4]][[3]], n_col = 2)
+plot_selex_uncertainty(sens_models[[4]][[3]], n_col = 2)
 @
 \end{center}
 \caption{As for Figure~\ref{fig:srg-requests-tv-selex-uncertainty-1} but with
@@ -232,7 +232,7 @@ plot_multiple_tv_selex_unc(sens_models[[4]][[3]], n_col = 2)
 \begin{figure}[H]
 \begin{center}
 <<srg-requests-tv-selex-uncertainty-3, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows selectivity by year plots with medians and 0.95 credible intervals with maximum age of estimated selectivity set to 8.">>=
-plot_multiple_tv_selex_unc(sens_models[[4]][[4]], n_col = 2)
+plot_selex_uncertainty(sens_models[[4]][[4]], n_col = 2)
 @
 \end{center}
 \caption{As for Figure~\ref{fig:srg-requests-tv-selex-uncertainty-1} but with
