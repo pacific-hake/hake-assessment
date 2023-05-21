@@ -50,43 +50,43 @@ plot_multiple_tv_selex_unc <- function(model,
 
   if(!is.null(yr_lim[1])){
     lower <- lower |>
-      filter(Yr %in% yr_vec)
+      filter(yr %in% yr_vec)
     med <- med |>
-      filter(Yr %in% yr_vec)
+      filter(yr %in% yr_vec)
     upper <- upper |>
-      filter(Yr %in% yr_vec)
+      filter(yr %in% yr_vec)
   }
   if(!is.null(ages)){
     lower <- lower |>
-      select(Yr, all_of(as.character(ages)))
+      select(yr, all_of(as.character(ages)))
     med <- med |>
-      select(Yr, all_of(as.character(ages)))
+      select(yr, all_of(as.character(ages)))
     upper <- upper |>
-      select(Yr, all_of(as.character(ages)))
+      select(yr, all_of(as.character(ages)))
   }
 
   if(rev){
     yr_vec <- rev(yr_vec)
   }
   lower <- lower |>
-    mutate(Yr = factor(Yr, levels = yr_vec)) |>
+    mutate(yr = factor(yr, levels = yr_vec)) |>
     mutate(quant = "lower")
   med <- med |>
-    mutate(Yr = factor(Yr, levels = yr_vec)) |>
+    mutate(yr = factor(yr, levels = yr_vec)) |>
     mutate(quant = "med")
   upper <- upper |>
-    mutate(Yr = factor(Yr, levels = yr_vec)) |>
+    mutate(yr = factor(yr, levels = yr_vec)) |>
     mutate(quant = "upper")
 
   d <- lower |>
     bind_rows(med) |>
     bind_rows(upper) |>
-    select(quant, Yr, everything()) |>
-    pivot_longer(-c(quant, Yr), names_to = "age", values_to = "prop") |>
+    select(quant, yr, everything()) |>
+    pivot_longer(-c(quant, yr), names_to = "age", values_to = "prop") |>
     pivot_wider(names_from = "quant", values_from = "prop")
 
   # For Annotating each panel with the year
-  labs <- tibble(Yr = unique(as.character(d$Yr)),
+  labs <- tibble(yr = unique(as.character(d$yr)),
                  age = NA_character_,
                  med = NA_real_,
                  lower = NA_real_,
@@ -122,21 +122,30 @@ plot_multiple_tv_selex_unc <- function(model,
   }) |>
     unlist()
 
-  g <- ggplot(d, aes(x = age, y = med, ymin = lower, ymax = upper, group = Yr)) +
+  g <- ggplot(d,
+              aes(x = age,
+                  y = med,
+                  ymin = lower,
+                  ymax = upper,
+                  group = yr)) +
     geom_line() +
-    geom_pointrange(size = point_size, fatten = point_fatten) +
-    geom_ribbon(alpha = 0.2, fill = "blue", color = "black",
+    geom_pointrange(size = point_size,
+                    fatten = point_fatten) +
+    geom_ribbon(alpha = 0.2,
+                fill = "blue",
+                color = "black",
                 linetype = "dotted") +
-    geom_label(data = labs,
-               aes(label = Yr),
-               x = label_loc[1],
-               y = label_loc[2],
-               size = label_font_size) +
+    geom_text(data = labs,
+              aes(label = yr),
+              x = label_loc[1],
+              y = label_loc[2],
+              hjust = 0.3,
+              size = label_font_size) +
     scale_x_discrete(expand = c(0, 0.5)) +
-    facet_wrap(~factor(Yr,  levels = yr_vec),
+    facet_wrap(~factor(yr,  levels = yr_vec),
                ncol = n_col) +
     theme(strip.background = element_blank(),
-          panel.spacing=unit(0, "cm"),
+          panel.spacing = unit(0, "cm"),
           strip.text.x = element_blank(),
           axis.text.y = element_blank(),
           axis.ticks.y = element_blank(),
@@ -166,13 +175,16 @@ plot_multiple_tv_selex_unc <- function(model,
                          fill = NA))
     })
 
-    yr_col_lengths <- yr_lst |> map_dbl(~{length(!.x[!is.na(.x)])})
+    yr_col_lengths <- yr_lst |>
+      map_dbl(~{length(!.x[!is.na(.x)])})
     t_extent <- 7
     l_extent <- map_dbl(seq_len(n_col), ~{
       5 + (.x - 1) * 4
     })
 
-    bot <- gr$layout |> filter(name == "ylab-l") |> pull(b)
+    bot <- gr$layout |>
+      filter(name == "ylab-l") |>
+      pull(b)
     b_extent <- bot
     if(n_col > 1){
       tmp <- map_dbl(seq_len(n_col - 1), ~{
@@ -181,10 +193,10 @@ plot_multiple_tv_selex_unc <- function(model,
       b_extent <- c(b_extent, tmp)
     }
     gt <- gtable_add_grob(gr,
-                                  grobs = g_lst,
-                                  t = 7,
-                                  b = b_extent,
-                                  l = l_extent)
+                          grobs = g_lst,
+                          t = 7,
+                          b = b_extent,
+                          l = l_extent)
     grid.newpage()
     return(grid.draw(gt))
   }

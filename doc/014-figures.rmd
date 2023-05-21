@@ -575,10 +575,27 @@ plots for each year in a mountain range configuration.
 
 ```{r main-tv-selex-fig, fig.cap = "(ref:main-tv-selex-cap)", fig.height = 8, fig.width = 4, is.fig = TRUE, alt.text = "(ref:main-tv-selex-alt)"}
 
+tv_selex_start_yr <- 1990
+
 plot_selex_mountains(base_model,
-                     yrs = 1990:last_data_yr,
+                     yrs = tv_selex_start_yr:last_data_yr,
                      ages = 1:8,
                      fill_num_colors = 50,
                      scale = 20)
+
 ```
 
+(ref:main-tv-selex-uncertainty-cap) Fishery selectivity sampled from
+posterior probability distribution by year for the base model. Black dots
+and bars indicate the median and 95% credibility interval, respectively.
+The shaded polygon also shows the 95% credibility interval. Range is from
+0 to 1 within each year. Selectivity for `r tv_selex_start_yr` is shared
+for all years from `r start_yr` to `r tv_selex_start_yr`.
+
+(ref:main-tv-selex-uncertainty-alt) This figure shows individual panels for
+each year with selectivity medians and 0.95 credible intervals.
+
+```{r main-tv-selex-uncertainty-fig, fig.cap = "(ref:main-tv-selex-uncertainty-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-tv-selex-uncertainty-alt)"}
+
+plot_multiple_tv_selex_unc(base_model, n_col = 2)
+```
