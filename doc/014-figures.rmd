@@ -599,3 +599,18 @@ each year with selectivity medians and 0.95 credible intervals.
 
 plot_selex_uncertainty(base_model, n_col = 2)
 ```
+
+(ref:main-tv-selex-posteriors-cap) Estimated selectivities for the acoustic
+survey age-2+ biomass index (top, with selectivity of zero for age-1 fish)
+and fishery (bottom -- shown for `r end_yr - 1` only, age-1 and older) from
+the posterior distribution for the base model.
+
+(ref:main-tv-selex-posteriors-alt) This plot shows individual median
+selectivity trajectories for all samples from the posteriors of fishery and
+survey selectivity parameters with 0.95 credible intervals. The age 1 index
+has more and larger outliers than the age 2 plus survey.
+
+```{r main-tv-selex-posteriors-fig, fig.cap = "(ref:main-tv-selex-posteriors-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-tv-selex-posteriors-alt)"}
+
+base_model$plots$selex_posteriors
+```

@@ -108,6 +108,7 @@ load_extra_mcmc <- function(model,
   extra_mcmc$sel_fishery_lo <- sel_fishery_lst$sel_lo
   extra_mcmc$sel_fishery_med <- sel_fishery_lst$sel_med
   extra_mcmc$sel_fishery_hi <- sel_fishery_lst$sel_hi
+  extra_mcmc$sel_fishery_end_yr <- sel_fishery_lst$sel_end_yr
   sel_survey_lst <- load_extra_mcmc_sel(
     reps = reps,
     start_yr = model$startyr,
@@ -122,6 +123,7 @@ load_extra_mcmc <- function(model,
   extra_mcmc$sel_survey_lo <- sel_survey_lst$sel_lo
   extra_mcmc$sel_survey_med <- sel_survey_lst$sel_med
   extra_mcmc$sel_survey_hi <- sel_survey_lst$sel_hi
+  extra_mcmc$sel_survey_end_yr <- sel_survey_lst$sel_end_yr
 
   # Selectivity * Weight ------------------------------------------------------
   # AKA vulnerable biomass ----------------------------------------------------
@@ -221,7 +223,7 @@ load_extra_mcmc <- function(model,
 
   sel <- sel_fishery_lst$sel |>
     filter(yr == model$endyr) |>
-    select(-c(yr, iter))
+    select(-c(yr))
 
   natsel <- natage * sel
   extra_mcmc$natsel_prop <- natsel %>%

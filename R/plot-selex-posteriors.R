@@ -16,7 +16,7 @@
 #' @export
 plot_selex_posteriors <- function(model = NULL,
                                   type = c("fishery", "survey"),
-                                  probs = c(0.025, 0.975),
+                                  probs = c(0.025, 0.5, 0.975),
                                   age_range = NULL,
                                   line_color = "black",
                                   line_thickness = 0.05,
@@ -26,22 +26,21 @@ plot_selex_posteriors <- function(model = NULL,
 
   type <- match.arg(type)
   if(type == "fishery"){
-    selex <- model$extra_mcmc$sel_endyr_fishery
+    selex <- model$extra_mcmc$sel_fishery_end_yr
   }else if(type == "survey"){
-    selex <- model$extra_mcmc$sel_endyr_survey
+    selex <- model$extra_mcmc$sel_survey_end_yr
   }
   ages <- as.numeric(names(selex))
 
   quants <- tibble(iter = 1,
                    age = factor(ages, levels = ages),
                    lower = apply(selex, 2, quantile, prob = probs[1]),
-                   med = apply(selex, 2, median),
-                   upper = apply(selex, 2, quantile, prob = probs[2]))
+                   med = apply(selex, 2, quantile, prob = probs[2]),
+                   upper = apply(selex, 2, quantile, prob = probs[3]))
 
   selex <- selex |>
     mutate(iter = row_number()) |>
     select(iter, everything())
-
   sel <- selex |>
     pivot_longer(-iter, names_to = "age", values_to = "med") |>
     mutate(age = factor(age, ages))

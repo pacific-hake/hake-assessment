@@ -30,7 +30,7 @@ load_extra_mcmc_sel <- function(reps,
   ages <- grep("[0-9]+", names(ts), value = TRUE)
 
   ts <- ts |>
-    select(yr, iter, all_of(ages))
+    select(yr, all_of(ages))
 
   if(!is.null(start_yr)){
     ts <- ts |>
@@ -63,6 +63,10 @@ load_extra_mcmc_sel <- function(reps,
       quantile(.x, probs = probs[3])
     }) |>
     ungroup()
+
+  out$sel_end_yr <- ts |>
+    filter(yr == max(yr)) |>
+    select(-yr)
 
     out
 }
