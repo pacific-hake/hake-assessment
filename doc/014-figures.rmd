@@ -614,3 +614,95 @@ has more and larger outliers than the age 2 plus survey.
 
 base_model$plots$selex_posteriors
 ```
+
+(ref:main-biomass-cap) Median (solid line) of the posterior distribution for
+beginning of the year female spawning biomass ($B_t$ in year $t$; Mt)
+through `r end_yr` (solid line) with 95% posterior credibility intervals
+(shaded area). The left-most circle with a 95% posterior credibility interval
+is the estimated unfished equilibrium biomass, $B_0$.
+
+(ref:main-biomass-alt) This figure shows that the median spawning biomass has
+been increasing in size since 2021.
+
+```{r main-biomass-fig, fig.cap = "(ref:main-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-biomass-alt)"}
+plot_biomass(list(base_model),
+             list(base_model_name),
+             ylim = c(0, 5),
+             point_shape = 1,
+             leg_pos = "none") |>
+  suppressWarnings()
+```
+
+(ref:main-relative-biomass-cap) Median (solid line) of the posterior
+distribution for relative spawning biomass ($B_t / B_0$) through `r end_yr`
+with 95% posterior credibility intervals (shaded area). Dashed horizontal
+lines show 10%, 40%, and 100% of the unfished equilibrium ($B_0$).
+
+(ref:main-relative-biomass-alt) This figure shows that the relative spawning
+biomass has been increasing since 2021. The value for 2023 is just above B0.
+
+```{r main-relative-biomass-fig, fig.cap = "(ref:main-relative-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-relative-biomass-alt)"}
+plot_rel_biomass(list(base_model),
+                 list(base_model_name),
+                 point_shape = 1,
+                 ylim = c(0, 3),
+                 alpha = 0.2,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
+(ref:main-recruitment-cap) Medians (solid circles) and means ($\mathrm{X}$)
+of the posterior distribution for recruitment (billions of age-0 fish) with
+95% posterior credibility intervals (blue, vertical lines). The median of the
+posterior distribution for mean unfished equilibrium recruitment ($R_0$) is
+shown as the horizontal dashed line with the 95% posterior credibility
+interval shaded between the dotted lines.
+
+(ref:main-recruitment-alt) This figure shows that recruitment for each cohort.
+There are currently three above-average cohorts in the stock with 2020 being
+the fourth. The 2020 cohort is highly uncertain which can be seen in the size
+of the credible interval.
+
+```{r main-recruitment-fig, fig.cap = "(ref:main-recruitment-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-alt)"}
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 single_line_color = "blue",
+                 inc_means = TRUE,
+                 leg_pos = "none")
+```
+
+(ref:main-recruitment-devs-cap) Medians (solid circles) of the posterior
+distribution for log-scale recruitment deviations with 95% posterior
+credibility intervals (blue lines). Recruitment deviations for the years
+`r recruit_dev_start_yr`--`r start_yr - 1` are used to calculate the numbers
+at age in `r start_yr`, the initial year of the model.
+
+(ref:main-recruitment-devs-alt) This figure shows recruitment deviations for
+each cohort. The same above-average cohorts seen in the recruitment figure
+are also seen here.
+
+```{r main-recruitment-devs-fig, fig.cap = "(ref:main-recruitment-devs-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-devs-alt)"}
+  plot_recdevs(list(base_model),
+               list(base_model_name),
+               single_line_color = "blue",
+               leg_pos = "none")
+```
+
+(ref:main-numbers-at-age-cap) Bubble plot of the medians of the posterior
+distributions of population numbers at age at the beginning of each year,
+where diagonals follow each year-class through time. The red line represents
+the mean age. The scale of the bubbles is represented in the key where the
+units are billions of fish; the largest overall bubble represents the
+`r max_median_nat`~billion age-0 recruits in `r yr_of_max_median_nat`. See
+Table~\@ref(tab:main-est-numbers-at-age-tab) for values.
+
+(ref:main-numbers-at-age-alt) This figure clearly shows the strong cohorts
+decreasing in numbers as they pass through the stock from one year to the
+next. The mean age has fluctuated over time and is currently rising and at
+approximately age 3.
+
+```{r main-numbers-at-age-fig, fig.cap = "(ref:main-numbers-at-age-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-numbers-at-age-alt)"}
+
+plot_age_comp_bubbles(base_model, type = "fishery", leg_pos = "top")
+```
+
+
