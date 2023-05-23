@@ -173,14 +173,30 @@ calc_mcmc <- function(mcmc,
   out$rinit <- rinit |>
     unlist() |>
     quantile(probs)
+  out$rinit <- out$rinit / recr_scale
   out$runfished <- runfished |>
     unlist() |>
     quantile(probs)
+  out$runfished <- out$runfished / recr_scale
 
   out$rlower <- apply(recr, 2, quantile,prob = probs[1], na.rm = TRUE)
   out$rmed <- apply(recr, 2, quantile, prob = probs[2], na.rm = TRUE)
   out$rupper <- apply(recr, 2, quantile,prob = probs[3], na.rm = TRUE)
   out$rmean <- apply(recr, 2, mean, na.rm = TRUE)
+
+  # Relative recruitment ----
+  # Divide all posterior value by the corresponding posterior value in
+  # 2010
+  rel_recr <- recr |> mutate(across(everything(), ~{.x / `2010`}))
+  out$r_rel_lower <- apply(rel_recr, 2, quantile,prob = probs[1], na.rm = TRUE)
+  out$r_rel_med <- apply(rel_recr, 2, quantile, prob = probs[2], na.rm = TRUE)
+  out$r_rel_upper <- apply(rel_recr, 2, quantile,prob = probs[3], na.rm = TRUE)
+  out$r_rel_mean <- apply(rel_recr, 2, mean, na.rm = TRUE)
+  out$r_rel_init <- rinit / (recr |> pull(`2010`))
+  out$r_rel_init <- out$r_rel_init |>
+    unlist() |>
+    quantile(probs)
+  out$r_rel_init <- out$r_rel_init / recr_scale
 
   # Recruitment deviations ----
   pat_early <- "^Early_InitAge_([0-9]{1,2})$"

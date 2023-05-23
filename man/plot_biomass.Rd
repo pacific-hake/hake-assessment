@@ -2,7 +2,8 @@
 % Please edit documentation in R/plot-biomass.R, R/plot-cohort-catch.R,
 %   R/plot-depl-fore-comparison.R, R/plot-exploitation-fraction.R,
 %   R/plot-fishing-intensity.R, R/plot-fore-compare.R, R/plot-recdevs.R,
-%   R/plot-recruitment.R, R/plot-rel-biomass.R, R/plot-survey-index-fits.R
+%   R/plot-recruitment.R, R/plot-rel-biomass.R, R/plot-rel-recruitment.R,
+%   R/plot-survey-index-fits.R
 \name{plot_biomass}
 \alias{plot_biomass}
 \alias{plot_cohort_catch}
@@ -13,6 +14,7 @@
 \alias{plot_recdevs}
 \alias{plot_recruitment}
 \alias{plot_rel_biomass}
+\alias{plot_rel_recruitment}
 \alias{plot_survey_index_fits}
 \title{Plot biomass from MCMC output for one or more models}
 \usage{
@@ -160,6 +162,7 @@ plot_recruitment(
   model_lst = NULL,
   model_names,
   inc_means = FALSE,
+  relative = FALSE,
   xlim = c(1966, year(Sys.time())),
   x_breaks = xlim[1]:xlim[2],
   x_labs_mod = 5,
@@ -209,6 +212,36 @@ plot_rel_biomass(
   ribbon_line_type = "dotted",
   rev_colors = FALSE,
   wrap_y_label = FALSE,
+  d_obj = NULL
+)
+
+plot_rel_recruitment(
+  model_lst = NULL,
+  model_names,
+  rel_yr = 2010,
+  inc_means = FALSE,
+  xlim = c(1966, year(Sys.time())),
+  x_breaks = xlim[1]:xlim[2],
+  x_labs_mod = 5,
+  x_expansion = 3,
+  ylim = c(0, 1.2),
+  y_breaks = seq(ylim[1], ylim[2], by = 0.1),
+  y_labels = y_breaks,
+  y_colors = rep("black", length(y_breaks)),
+  alpha = 0.2,
+  leg_pos = c(0.65, 0.83),
+  leg_ncol = 1,
+  leg_font_size = 12,
+  axis_title_font_size = 14,
+  axis_tick_font_size = 11,
+  point_size = 1.5,
+  line_width = 0.5,
+  clip_cover = 2,
+  single_point_color = "black",
+  single_line_color = "black",
+  crossbar_width = 0,
+  dodge_val = 0.5,
+  rev_colors = FALSE,
   d_obj = NULL
 )
 
@@ -352,6 +385,14 @@ multiple model plots}
 
 \item{inc_means}{Logical. If \code{TRUE} include the mean values in the plot}
 
+\item{relative}{Logical. If \code{TRUE}, create a relative recruitment plot using
+the \code{r_rel_lower}, \code{r_rel_med}, \code{r_rel_upper}, \code{r_rel_mean}, and
+\code{r_rel_init} elements of \code{mcmccalcs} which are created in the function
+\code{\link[=calc_mcmc]{calc_mcmc()}}. In that function, the relative year is set. It is 2010 by
+default. To change it, edit the year in the \code{\link[=calc_mcmc]{calc_mcmc()}} function, and
+then \code{\link[=create_rds_file]{create_rds_file()}} needs to be run again to create the RDS file for
+the model}
+
 \item{minor_tick_length}{The length of the small x-axis ticks}
 
 \item{survey_type}{Either \code{age1} or \code{age2}}
@@ -377,6 +418,9 @@ Plot recruitment deviations from MCMC output for one or more models
 Plot recruitment from MCMC output for one or more models
 
 Plot relative biomass from MCMC output for one or more models
+
+Plot recruitment from MCMC output for one or more models, relative to
+a particular year
 
 Plot survey index fits from MCMC output for one or more models,
 for one of the acoustic surveys

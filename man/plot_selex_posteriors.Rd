@@ -8,7 +8,7 @@ as many lines with an overlaid errorbar for each age}
 plot_selex_posteriors(
   model = NULL,
   type = c("fishery", "survey"),
-  probs = c(0.025, 0.975),
+  probs = c(0.025, 0.5, 0.975),
   age_range = NULL,
   line_color = "black",
   line_thickness = 0.05,

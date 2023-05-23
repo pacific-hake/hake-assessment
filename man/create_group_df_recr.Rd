@@ -5,7 +5,13 @@
 \title{Create a data frame containing model output recruitment from a
 model list which is in long format ready for \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}}
 \usage{
-create_group_df_recr(model_lst = NULL, model_names = NULL, devs = FALSE, ...)
+create_group_df_recr(
+  model_lst = NULL,
+  model_names = NULL,
+  devs = FALSE,
+  relative = FALSE,
+  ...
+)
 }
 \arguments{
 \item{model_lst}{A list of models, each created by \code{\link[=create_rds_file]{create_rds_file()}}}

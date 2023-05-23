@@ -1,41 +1,35 @@
-#' Plot recruitment from MCMC output for one or more models
+#' Plot recruitment from MCMC output for one or more models, relative to
+#' a particular year
 #'
 #' @rdname plot_biomass
-#' @param relative Logical. If `TRUE`, create a relative recruitment plot using
-#' the `r_rel_lower`, `r_rel_med`, `r_rel_upper`, `r_rel_mean`, and
-#' `r_rel_init` elements of `mcmccalcs` which are created in the function
-#' [calc_mcmc()]. In that function, the relative year is set. It is 2010 by
-#' default. To change it, edit the year in the [calc_mcmc()] function, and
-#' then [create_rds_file()] needs to be run again to create the RDS file for
-#' the model
 #' @export
-plot_recruitment <- function(model_lst = NULL,
-                             model_names,
-                             inc_means = FALSE,
-                             relative = FALSE,
-                             xlim = c(1966, year(Sys.time())),
-                             x_breaks = xlim[1]:xlim[2],
-                             x_labs_mod = 5,
-                             x_expansion = 3,
-                             ylim = c(0, 40),
-                             y_breaks = seq(ylim[1], ylim[2], by = 10),
-                             y_labels = y_breaks,
-                             y_colors = rep("black", length(y_breaks)),
-                             alpha = 0.2,
-                             leg_pos = c(0.65, 0.83),
-                             leg_ncol = 1,
-                             leg_font_size = 12,
-                             axis_title_font_size = 14,
-                             axis_tick_font_size = 11,
-                             point_size = 1.5,
-                             line_width = 0.5,
-                             clip_cover = 2,
-                             single_point_color = "black",
-                             single_line_color = "black",
-                             crossbar_width = 0,
-                             dodge_val = 0.5,
-                             rev_colors = FALSE,
-                             d_obj = NULL){
+plot_rel_recruitment <-  function(model_lst = NULL,
+                                  model_names,
+                                  rel_yr = 2010,
+                                  inc_means = FALSE,
+                                  xlim = c(1966, year(Sys.time())),
+                                  x_breaks = xlim[1]:xlim[2],
+                                  x_labs_mod = 5,
+                                  x_expansion = 3,
+                                  ylim = c(0, 1.2),
+                                  y_breaks = seq(ylim[1], ylim[2], by = 0.1),
+                                  y_labels = y_breaks,
+                                  y_colors = rep("black", length(y_breaks)),
+                                  alpha = 0.2,
+                                  leg_pos = c(0.65, 0.83),
+                                  leg_ncol = 1,
+                                  leg_font_size = 12,
+                                  axis_title_font_size = 14,
+                                  axis_tick_font_size = 11,
+                                  point_size = 1.5,
+                                  line_width = 0.5,
+                                  clip_cover = 2,
+                                  single_point_color = "black",
+                                  single_line_color = "black",
+                                  crossbar_width = 0,
+                                  dodge_val = 0.5,
+                                  rev_colors = FALSE,
+                                  d_obj = NULL){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -43,23 +37,7 @@ plot_recruitment <- function(model_lst = NULL,
            "must be supplied. Both are `NULL`",
            call. = FALSE)
     }
-    d_obj <- create_group_df_recr(model_lst,
-                                  model_names,
-                                  relative = relative)
-  }
-
-  if(relative){
-    rlower_sym <- sym("r_rel_lower")
-    rmed_sym <- sym("r_rel_med")
-    rupper_sym <- sym("r_rel_upper")
-    rmean_sym <- sym("r_rel_mean")
-    rinit_sym <- "r_rel_init"
-  }else{
-    rlower_sym <- sym("rlower")
-    rmed_sym <- sym("rmed")
-    rupper_sym <- sym("rupper")
-    rmean_sym <- sym("rmean")
-    rinit_sym <- "rinit"
+    d_obj <- create_group_df_recr(model_lst, model_names)
   }
 
   d <- d_obj[[1]]
@@ -70,18 +48,41 @@ plot_recruitment <- function(model_lst = NULL,
     line_colors <- rev(line_colors)
   }
 
+  rel_row <- d |>
+    filter(year == rel_yr)
+browser()
+  # Make all rows relative to the chosen year (`rel_yr`)
+  d <- d |>
+    pmap(~{
+      cols <- list(...)
+      cols$rlower <- cols$rlower / rel_row$rlower
+      cols$rmed <- cols$rmed / rel_row$rmed
+      cols$rupper <- cols$rupper / rel_row$rupper
+      cols$rmean <- cols$rmean / rel_row$rmean
+      vec2df(c(as.character(cols$model),
+               cols$year,
+               cols$rlower,
+               cols$rmed,
+               cols$rupper,
+               cols$rmean),
+             nms = names(cols))
+    }) |>
+    map_df(~{.x}) |>
+    mutate(across(-model, as.numeric)) |>
+    mutate(model = factor(model))
+
   is_single_model <- length(unique(d$model)) == 1
   if(is_single_model){
     colors <- single_point_color
     line_colors <- single_line_color
-    ro_vec <- model_lst[[1]]$mcmccalcs[[rinit_sym]]
+    ro_vec <- model_lst[[1]]$mcmccalcs$rinit
     yrs <- c(seq(min(d$year) - x_expansion,
                  min(d$year) - 1), d$year)
     ro <- tibble(model = model_names[[1]],
                  year = yrs,
-                 !!rlower_sym := ro_vec[1],
-                 !!rmed_sym := ro_vec[2],
-                 !!rupper_sym := ro_vec[3]) |>
+                 rlower = ro_vec[1],
+                 rmed = ro_vec[2],
+                 rupper = ro_vec[3]) |>
       mutate(model = factor(model))
   }
 
@@ -108,9 +109,9 @@ plot_recruitment <- function(model_lst = NULL,
 
   g <- ggplot(d,
               aes(x = year,
-                  y = !!rmed_sym,
-                  ymin = !!rlower_sym,
-                  ymax = !!rupper_sym,
+                  y = rmed,
+                  ymin = rlower,
+                  ymax = rupper,
                   group = model,
                   color = model,
                   fill = model)) +
@@ -120,7 +121,7 @@ plot_recruitment <- function(model_lst = NULL,
                     clip = "off")
 
   if(is_single_model){
-    ro_val <- ro[[rmed_sym]][1]
+    ro_val <- ro$rmed[1]
     below <- which(ro_val > y_breaks)
     above <- which(ro_val < y_breaks)
     tmp <- y_breaks
@@ -128,7 +129,7 @@ plot_recruitment <- function(model_lst = NULL,
     y_labels <- c(tmp[below], expression(R[0]), tmp[above])
 
     # Expand right side of ro so that ribbon covers whole plot
-    ro_row <- ro[nrow(ro), ]
+    ro_row <- ro[nrow(ro),]
     ro_next_yr <- ro_row$year
     for(yr in ro_next_yr:(ro_next_yr + x_expansion)){
       ro_row$year <- yr
@@ -139,11 +140,11 @@ plot_recruitment <- function(model_lst = NULL,
       geom_point(size = point_size,
                  color = colors) +
       geom_hline(data = ro,
-                 aes(yintercept = !!rmed_sym),
+                 aes(yintercept = rmed),
                  linetype = "dashed") +
       geom_ribbon(data = ro,
-                  aes(ymin = !!rlower_sym,
-                      ymax = !!rupper_sym),
+                  aes(ymin = rlower,
+                      ymax = rupper),
                   alpha = alpha,
                   linetype = "dotted") +
       geom_errorbar(size = line_width,
@@ -181,17 +182,17 @@ plot_recruitment <- function(model_lst = NULL,
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 7, 0)) +
     xlab("Year") +
-    ylab("Age-0 recruits (billions) relative to those in 2010")
+    ylab("Age-0 recruits (billions)")
 
   if(inc_means){
     if(is_single_model){
       g <- g +
-        geom_point(aes(y = !!rmean_sym),
+        geom_point(aes(y = rmean),
                    shape = 4,
                    color = colors)
     }else{
       g <- g +
-        geom_point(aes(y = !!rmean_sym),
+        geom_point(aes(y = rmean),
                    shape = 4)
     }
   }
