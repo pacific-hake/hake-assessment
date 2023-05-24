@@ -43,6 +43,11 @@ plot_during_loading <- function(model){
     cowplot::plot_grid(plotlist = plist, nrow = 2, ncol = 1)
   }
 
+
+  out$stock_recr <- plot_stock_recruitment(model,
+                                           probs = probs)
+
+
   # out$prior_posterior <- plot_priors_vs_posts(base_model,
   #                                             key_posteriors,
   #                                             titles = key_posteriors_titles,
