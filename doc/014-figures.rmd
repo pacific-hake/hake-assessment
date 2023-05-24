@@ -1120,3 +1120,86 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
              rev_colors = TRUE)
 ```
 
+(ref:main-index-base-alternative-4-cap) MCMC estimates of the fit to the
+survey index of age-2$+$ biomass for the base model and alternative
+sensitivity runs representing different standard deviations ($\Phi$)
+associated with time-varying selectivity. See
+Figure~\@ref(fig:main-biomass-base-alternative-4-fig) for sensitivity
+descriptions.
+
+(ref:main-index-base-alternative-4-alt) This figure shows differences in the
+fit to the biomass index for certain sensitivity runs. There is a large
+scaling upward of the last six index estimates when the Phi parameter is
+set to 0.21.
+
+```{r main-index-base-alternative-4-fig, fig.cap = "(ref:main-index-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-index-base-alternative-4-alt)"}
+
+plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
+                       survey_type = "age2",
+                       x_expansion = 2,
+                       leg_pos = c(0.84, 0.16),
+                       rev_colors = TRUE)
+```
+
+(ref:main-biomass-recruitment-retrospective-cap) MCMC Estimates of spawning
+biomass at the start of each year (top) and recruitment (bottom) for the
+base model and 5-year retrospective runs.
+
+(ref:main-biomass-recruitment-retrospective-alt) This figure shows how
+spawning biomass and recruitment vary for retrospective runs. The
+retrospectives all follow the same biomass trajectory and have similar
+recruitment estimates for all but the most recent years indicating a
+stable model.
+
+```{r main-biomass-recruitment-retrospective-fig, fig.cap = "(ref:main-biomass-recruitment-retrospective-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-biomass-recruitment-retrospective-alt) "}
+
+plist <- list()
+plist[[1]] <- plot_biomass(d_obj = d_obj_retro_biomass,
+                           leg_font_size = 9,
+                           x_expansion = 4,
+                           leg_pos = c(0.6, 0.89),
+                           leg_ncol = 2,
+                           alpha = 0.1,
+                           rev_colors = TRUE)
+plist[[2]] <- plot_recruitment(d_obj = d_obj_retro_recr,
+                               leg_pos = "none",
+                               rev_colors = TRUE)
+
+plot_grid(plotlist = plist,
+          nrow = 2,
+          ncol = 1)
+```
+
+(ref:main-retrospective-recruitment-cap) Retrospective analysis of
+recruitment deviations from MCMC models over the last
+`r length(retro_cohorts)` years. Recruitment deviations are the median
+log-scale differences between recruitment estimated by the model and expected
+recruitment from the spawner-recruit relationship. Age-0 recruitment
+deviations are non-zero because MCMC allows for sampling from the full
+lognormal distribution. Lines represent estimated recruitment deviations
+for cohorts born from `r min(retro_cohorts)` to `r max(retro_cohorts)`, with
+cohort birth year marked at the right of each color-coded line. For example,
+the right-most point for the `r assess_yr - 8` cohort shows the cohort at
+age-8 (i.e., at the start of `r assess_yr`, which represents the base model
+and includes data through `r assess_yr - 1`). The next point to the left
+is the `r assess_yr - 8` cohort at age-7, calculated by removing one year of
+data (so includes data up to `r assess_yr - 2`). Thus, models are fit to
+data available only up to the start of the year in which each cohort became
+a given age, such that the last year of data for a given point equals
+cohort~birth~year~$+$~cohort~age~$-$1.
+
+(ref:main-retrospective-recruitment-alt) This figure shows how recruitment
+estimates for age-0 fish tend to be small but positive to allow for
+forecasted landings and that information is not typically available to
+estimate recruitments until fish are of age three. Estimates of larger
+deviates take a longer time to stabilize.
+
+```{r main-retrospective-recruitment-fig, fig.cap = "(ref:main-retrospective-recruitment-cap)", fig.height = 6, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-retrospective-recruitment-alt)"}
+
+retro_cohorts <- (end_yr - 11):(end_yr - 2)
+plot_squid(base_model,
+           subplot = 1,
+           cohorts = retro_cohorts,
+           plot_mcmc = TRUE)
+```
+
