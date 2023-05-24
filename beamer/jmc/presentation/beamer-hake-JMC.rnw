@@ -479,7 +479,9 @@ plot_squid(base_model,
   \end{column}
   \begin{column}{0.65\textwidth}
     <<main-projected-catch-density, out.width='.99\\columnwidth'>>=
-      make.forecast.catch.posterior.plot(base_model, fore.yr = end_yr, xmax=2500)
+      plot_catch_forecast_density(base_model,
+                                  yr = end_yr,
+                                  xlim = c(0, 2.5))
       @
   \end{column}
 \end{columns}

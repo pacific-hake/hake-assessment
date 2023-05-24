@@ -136,7 +136,7 @@ create_rds_file <- function(
 
   # These are too large and after the calculations above in `load_mcmc_vals()`
   # and `load_parameter_priors()`, they are not needed any longer
-  model$mcmc <- NULL
+  #model$mcmc <- NULL
   #model$parameters <- NULL
 
   saveRDS(model, file = rds_file)

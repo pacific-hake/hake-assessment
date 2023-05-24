@@ -237,7 +237,9 @@ from last year)
   \end{column}
   \begin{column}{0.65\textwidth}
     <<main.projected.catch.density, out.width='.99\\columnwidth'>>=
-      make.forecast.catch.posterior.plot(base_model, fore.yr = end_yr, xmax=2000)
+      plot_catch_forecast_density(base_model,
+                                  yr = end_yr,
+                                  xlim = c(0, 2))
       @
   \end{column}
 \end{columns}

@@ -40,13 +40,15 @@ plot_during_loading <- function(model){
                                         line_color_unc = "blue",
                                         line_thickness_unc = 1,
                                         point_size_unc = 3)
-    cowplot::plot_grid(plotlist = plist, nrow = 2, ncol = 1)
+    plot_grid(plotlist = plist, nrow = 2, ncol = 1)
   }
 
 
   out$stock_recr <- plot_stock_recruitment(model,
                                            probs = probs)
 
+  out$catch_fore_density <- plot_catch_forecast_density(base_model,
+                                                        yr = end_yr)
 
   # out$prior_posterior <- plot_priors_vs_posts(base_model,
   #                                             key_posteriors,

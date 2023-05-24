@@ -750,3 +750,157 @@ curve does not fit the estimated recruitments very well for this stock.
 base_model$plots$stock_recr
 ```
 
+(ref:main-fishing-intensity-cap) Trend in median relative fishing intensity
+(relative to the $\FSPRforty$ management level) through `r end_yr - 1`} with
+95% posterior credibility intervals. The $\FSPRforty$ management level defined
+in the Joint U.S.-Canada Agreement for `r sp` is shown as a horizontal line
+at 1.0.
+
+(ref:main-fishing-intensity-alt) This figure shows that we have been below
+the management value of 1 for FSPR 40 percent throughout the entire time
+series.
+
+```{r main-fishing-intensity-fig, fig.cap = "(ref:main-fishing-intensity-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-fishing-intensity-alt)"}
+
+plot_fishing_intensity(base_model)
+```
+
+(ref:main-exploitation-fraction-cap) Trend in median exploitation fraction
+(catch divided by age-2+ biomass) through `r end_yr - 1` with 95% posterior
+credibility intervals.
+
+(ref:main-exploitation-fraction-alt) This figure shows that the current
+exploitation fraction of the female spawning biomass is approximately 0.05.
+This is a drop from the last five years which have been approximately 0.1.
+         
+```{r main-exploitation-fraction-fig, fig.cap = "(ref:main-exploitation-fraction-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-exploitation-fraction-alt)"}
+
+plot_exploitation_fraction(base_model)
+```
+
+(ref:main-phase-cap) Estimated historical path of median relative spawning
+biomass in at the beginning of year $t$ and corresponding median relative
+fishing intensity in the fishing year ($t-1$) leading up to year $t$. Labels
+show the start year, end year and year of highest relative fishing intensity;
+labels correspond to year $t$ (i.e., year of the relative spawning biomass).
+Gray bars span the 95% credibility intervals for `r end_yr` relative
+spawning biomass (horizontal) and `r end_yr - 1` relative fishing intensity
+(vertical).
+
+(ref:main-phase-alt) This figure shows that we are currently not overfishing
+nor in an overfished state.
+
+```{r main-phase-fig, fig.cap = "(ref:main-phase-cap)", fig.height=6, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-phase-alt)"}
+  plot_phase(base_model,
+             start_yr,
+             end_yr,
+             init_lbl_x_off = -0.04,
+             init_lbl_y_off = -0.04,
+             final_lbl_x_off = 0.04,
+             final_lbl_y_off = 0.04)
+```
+
+(ref:main-projected-catch-density-cap) The posterior distribution of the
+default `r end_yr` catch limit calculated using the default harvest policy
+(\Ffortyten). The median is `r ct_limit_quantiles["median"]`~t
+(vertical line), with the dark shaded area ranging from the 2.5%
+quantile to the 97.5% quantile, covering the range
+`r ct_limit_quantiles["lower"]`--`r ct_limit_quantiles["upper"]`~t.
+
+(ref:main-projected-catch-density-alt) This figure shows the wide posterior
+distribution of the default catch limit using the default harvest policy.
+
+```{r main-projected-catch-density-fig, fig.cap = "(ref:main-projected-catch-density-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-projected-catch-density-alt)"}
+
+base_model$plots$catch_fore_density
+```
+
+(ref:main-forecast-depletion-comparison-cap) Median and 95% posterior
+credibility intervals of estimated relative spawning biomass to the start
+of `r end_yr` from the base model (white rectangle) and projections to the
+start of `r forecast_yrs[length(forecast_yrs)]` for several management
+actions, which are defined in the decision tables. The default harvest
+policy catches are
+`r `f(base_model$catch_default_policy[1])`~t in `r `end_yr`,
+`r (base_model$catch_default_policy[2])`~t in `end_yr + 1`, and
+`r (base_model$catch_default_policy[3])`~t in `end_yr + 2`.
+
+(ref:main-forecast-depletion-comparison-alt) This figure shows that the
+median relative spawning biomass is projected to remain flat for the next
+3 years with zero catch and to decline for all non-zero catch levels
+evaluated.
+
+```{r main-depletion-comparison-fig, fig.cap = "(ref:main-forecast-depletion-comparison-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-forecast-depletion-comparison-alt)"}
+
+# See the file `000-set-ct-levels.R`. The values for `fore_inds` below are
+# the indices of the forecast values in the list `ct_levels_vals`
+plot_depl_fore_comparison(base_model,
+                          fore_inds = c(1, 2, 6, 12, 14),
+                          forecast_yrs = forecast_yrs)
+```
+
+(ref:main-risk-year-1-cap) Graphical representation of the probabilities
+related to spawning biomass, relative fishing intensity, and the
+`r end_yr + 1` default harvest policy catch for alternative `r end_yr` catch
+options (explained in Table~\@ref(tab:main-decisions-biomass-tab)) as listed in
+Table~\@ref(tab:main-risk-year-1-tab). The symbols indicate points that were
+computed directly from model output and lines interpolate between the points.
+
+(ref:main-risk-year-1-alt) This figure shows that the probability that the
+stock declines in 2024 is 50 percent or greater for all catch levels
+including zero. The probability that the stock falls under B40 is almost
+zero for catches up to approximately 350 kilotonnes.
+         
+```{r main-risk-year-1-fig, fig.cap = "(ref:main-risk-year-1-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-risk-year-1-alt)"}
+
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[1],
+                  leg_pos = c(0.2, 0.32),
+                  remove_x_val = 325)
+```
+
+(ref:main-risk-year-2-cap) Graphical representation of the probabilities
+related to spawning biomass, relative fishing intensity, and the
+`r end_yr + 2` default harvest policy catch for alternative `r end_yr + 1`
+catch options (including associated `r end_yr` catch; catch options
+explained in Table~\@ref(tab:main-decisions-biomass-tab)) as listed in
+Table~\@ref(tab:main-risk-year-2-tab). The symbols indicate points that were
+computed directly from model output and lines interpolate between the points.
+
+(ref:main-risk-year-2-alt) This figure shows that the probability that the
+stock declines in 2025 is 74 percent or greater for all catch levels
+including zero. The probability that the stock falls under B40 is below 0.1
+for catches up to approximately 380 kilotonnes.
+
+```{r main-risk-year-2-fig, fig.cap = "(ref:main-risk-year-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-risk-year-2-alt)"}
+
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[2],
+                  leg_pos = c(0.2, 0.32),
+                  remove_x_val = c(325, 342, 740))
+```
+
+(ref:main-risk-year-3-cap) Graphical representation of the probabilities
+related to spawning biomass, relative fishing intensity, and the
+`r end_yr + 3` default harvest policy catch for alternative `r end_yr + 2`
+catch options (including associated `r end_yr` and `r end_yr + 1` catches;
+catch options explained in Table~\@ref(tab:main-decisions-biomass-tab)) as
+listed in Table~\@ref(tab:main-risk-year-3-tab). The symbols indicate points
+that were computed directly from model output and lines interpolate between
+the points.
+
+(ref:main-risk-year-3-alt) This figure shows that the probability that the
+stock declines in 2026 is approximately 65 percent or greater for all catch
+levels including zero. The probability that the stock falls under B40 is
+below 0.1 for catches up to approximately 350 kilotonnes.
+
+```{r main-risk-year-3-fig, fig.cap = "(ref:main-risk-year-3-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-risk-year-3-alt)"}
+
+plot_fore_compare(base_model,
+                  forecast_yrs = forecast_yrs,
+                  fore_yr = forecast_yrs[3],
+                  leg_pos = c(0.2, 0.32),
+                  remove_x_val = c(259, 621))
+```

@@ -221,9 +221,9 @@ def_med_hr_tac <- filter(catch_targets_df,
   \end{column}
   \begin{column}{0.65\textwidth}
     <<main-projected-catch-density, out.width='.99\\columnwidth'>>=
-      make.forecast.catch.posterior.plot(base_model,
-                                         fore.yr = end_yr,
-                                         xmax = 3000)
+      plot_catch_forecast_density(base_model,
+                                  yr = end_yr,
+                                  xlim = c(0, 3))
       @
   \end{column}
 \end{columns}
