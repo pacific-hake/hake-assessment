@@ -164,7 +164,7 @@ plot_rel_biomass <- function(model_lst = NULL,
                                       face = "plain"),
           axis.ticks.length = unit(0.15, "cm"))
 
-  if(is.null(leg_pos) || is.na(leg_pos)){
+  if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
       theme(legend.position = "none")
   }else{

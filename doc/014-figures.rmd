@@ -927,3 +927,196 @@ prediction has high uncertainty when compared to the other cohorts.
 plot_fore_age_comps(base_model)
 ```
 
+(ref:main-biomass-base-alternative-1-cap) MCMC estimates of spawning
+biomass for the base model and alternative sensitivity runs representing
+changing the mean of the prior for steepness from 1.0 to 0.5, fixing steepness
+at 1.0, lower (1.0) and higher (1.6) levels of variation assumed about the
+stock-recruitment relationship ($\sigma_r$), changing the standard deviation
+of the prior for natural mortality, and using the Hamel prior distribution
+for natural mortality.
+
+(ref:main-biomass-base-alternative-1-alt) This figure shows how spawning
+biomass changes between the first set of sensitivity runs. Changing the
+standard deviation of the natural mortality parameter has the most notable
+effect and scales the population up with an increase in its size.
+
+```{r main-biomass-base-alternative-1-fig, fig.cap = "(ref:main-biomass-base-alternative-1-cap)", fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-biomass-base-alternative-1-alt)"}
+  
+plot_biomass(d_obj = d_obj_sens_biomass[[1]],
+             x_expansion = 4,
+             ylim = c(0, 20),
+             y_breaks = seq(0, 20, 2),
+             leg_font_size = 9,
+             leg_pos = c(0.8, 0.75),
+             rev_colors = TRUE)
+```
+
+(ref:main-status-base-alternative-1-cap) MCMC estimates of stock status
+(relative spawning biomass) for the base model and alternative sensitivity
+runs representing changing key parameters. See
+Figure~\@ref(fig:main-biomass-base-alternative-1-fig) for
+sensitivity descriptions.
+  
+(ref:main-status-base-alternative-1-alt)This figure shows how relative spawning biomass changes between the first set of sensitivity runs. As in the absolute biomass figure changing the standard deviation of the natural mortality parameter has the most notable effect and scales the population up with an increase in its size.
+
+```{r main-status-base-alternative-1-fig, fig.cap = "(ref:main-status-base-alternative-1-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-status-base-alternative-1-alt)"}
+
+plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
+                 x_expansion = 2,
+                 leg_font_size = 9,
+                 leg_pos = c(0.8, 0.75),
+                 rev_colors = TRUE)
+```
+
+(ref:main-biomass-base-alternative-2-cap) MCMC estimates of spawning biomass
+for the base model and alternative sensitivity models that represent the
+following changes in data: removing the index of age-1 fish and down-weighting
+fishery composition data using the McAllister-Ianelli method.
+
+(ref:main-biomass-base-alternative-2-alt) This figure shows how spawning
+biomass changes between the second set of sensitivity runs. The biomass
+estimate increases with the removal of the age-1 index from the model.
+
+```{r main-biomass-base-alternative-2-fig, fig.cap = "(ref:main-biomass-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-biomass-base-alternative-2-alt)"}
+
+plot_biomass(d_obj = d_obj_sens_biomass[[2]],
+             x_expansion = 4,
+             leg_pos = c(0.75, 0.9),
+             rev_colors = TRUE)
+```
+
+(ref:main-status-base-alternative-2-cap) MCMC estimates of stock status
+(relative spawning biomass) for the base model and alternative sensitivity
+models that represent changes in data. See
+Figure~\@ref(fig:main-biomass-base-alternative-2-fig) for sensitivity
+descriptions.
+
+(ref:main-status-base-alternative-2-alt) This figure shows how relative
+spawning biomass changes between the second set of sensitivity runs. As in
+the absolute biomass figure the relative biomass estimate increases with the
+removal of the age-1 index from the model.
+
+```{r main-status-base-alternative-2-fig, fig.cap = "(ref:main-status-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-status-base-alternative-2-alt)"}
+
+plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[2]],
+                 x_expansion = 2,
+                 leg_pos = c(0.75, 0.9),
+                 rev_colors = TRUE)
+```
+
+(ref:main-recruit-base-alternative-2-cap) MCMC estimates of recruitment
+deviations for the base model and alternative sensitivity runs that represent
+changes in data. See Figure~\@ref(fig:main-biomass-base-alternative-2-fig)
+for sensitivity descriptions.
+
+(ref:main-recruit-base-alternative-2-alt) This figure shows the occasional
+changes in recruitment deviations for some of the sensitivity runs. Changing
+the age weighting to be down-weighted by the McAllister Ianelli method has
+the largest effect here.
+
+```{r main-recruit-base-alternative-2-fig, fig.caption = "(ref:main-recruit-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruit-base-alternative-2-alt)"}
+
+plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
+             x_expansion = 2,
+             leg_pos = c(0.75, 0.9),
+             rev_colors = TRUE)
+```
+
+(ref:main-index-base-alternative-2-cap) MCMC estimates of the fit to the
+acoustic survey biomass time series for the base model and alternative
+sensitivity runs that represent changes in data. See Figure~\@ref(fig:main-biomass-base-alternative-2-fig) for sensitivity
+descriptions.
+
+(ref:main-index-base-alternative-2-alt) This figure shows the similarity
+between some sensitivity runs of the estimates of the fit to the biomass
+index. Removal of the age-1 index results in a drop in recent survey index
+fits while changing the age composition method to the McAllister Ianelli
+method increases it.
+```{r main-index-base-alternative-2-fig, fig.cap = "(ref:main-index-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = ""}
+
+plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp2[[1]],
+                       x_expansion = 2,
+                       leg_pos = c(0.82, 0.13),
+                       rev_colors = TRUE)
+```
+
+(ref:main-biomass-base-alternative-4-cap) MCMC estimates of spawning biomass
+for the base model and alternative sensitivity runs representing different
+standard deviations ($\Phi$) associated with time-varying selectivity.
+Standard deviations examined are below (0.21 and 0.70) and above (2.10)
+the base model value of 1.4.
+
+(ref:main-biomass-base-alternative-4-alt) This figure shows that recent
+spawning biomass varies for some sensitivity runs. Reducing the Phi
+selectivity parameter results in a large increase in current biomass while
+increasing it results in a decrease.
+
+```{r main-biomass-base-alternative-4-fig, fig.cap = "(ref:main-biomass-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = ""}
+
+plot_biomass(d_obj = d_obj_sens_biomass[[3]],
+             x_expansion = 4,
+             leg_font_size = 9,
+             leg_pos = c(0.75, 0.88),
+             rev_colors = TRUE)
+```
+
+(ref:main-status-base-alternative-4-cap) MCMC estimates of stock status
+(relative spawning biomass) for the base model and alternative sensitivity
+runs representing different standard deviations ($\Phi$) associated with
+time-varying selectivity. See
+Figure~\@ref(fig:main-biomass-base-alternative-4-fig) for sensitivity
+descriptions.
+
+(ref:main-status-base-alternative-4-alt) This figure shows that recent
+relative spawning biomass varies for some sensitivity runs. As in the
+absolute biomass figure reducing the Phi selectivity parameter results in
+a large increase in current biomass while increasing it results in a decrease.
+```{r main-status-base-alternative-4-fig, fig.cap = "(ref:main-status-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = ""}
+
+plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
+                 x_expansion = 2,
+                 leg_font_size = 9,
+                 leg_pos = c(0.75, 0.88),
+                 rev_colors = TRUE)
+```
+
+(ref:main-recruitment-base-alternative-4-cap) MCMC estimates of recruitment
+for the base model and alternative sensitivity runs representing different
+standard deviations ($\Phi$) associated with time-varying selectivity. See Figure~\@ref(fig:main-biomass-base-alternative-4-fig) for sensitivity
+descriptions.
+
+(ref:main-recruitment-base-alternative-4-alt) This figure shows differences
+in recruitment between certain sensitivity runs. The recruitment estimate
+for the large cohorts is highly sensitive to the change in the Phi parameter.
+
+```{r main-recruitment-base-alternative-4-fig, fig.cap = "(ref:main-recruitment-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-base-alternative-4-alt)"}
+
+plot_recruitment(d_obj = d_obj_sens_recr[[3]],
+                 x_expansion = 2,
+                 leg_font_size = 9,
+                 leg_pos = c(0.13, 0.88),
+                 inc_means = FALSE,
+                 rev_colors = TRUE)
+```
+
+(ref:main-recruitment-devs-base-alternative-4-cap) MCMC estimates of
+recruitment deviations for the base model and alternative sensitivity runs
+representing different standard deviations ($\Phi$) associated with
+time-varying selectivity. See
+Figure~\@ref(fig:main-biomass-base-alternative-4-fig) for sensitivity
+descriptions.
+
+(ref:main-recruitment-devs-base-alternative-4-alt) This figure shows
+differences in recruitment deviations between certain sensitivity runs. As
+with the absolute recruitment figure the recruitment estimate for the large
+cohorts is highly sensitive to the change in the Phi parameter.
+
+```{r main-recruitment-devs-base-alternative-4-fig, fig.cap = "(ref:main-recruitment-devs-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-devs-base-alternative-4-alt)"}
+
+plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
+             x_expansion = 2,
+             leg_font_size = 9,
+             leg_pos = c(0.13, 0.88),
+             rev_colors = TRUE)
+```
+
