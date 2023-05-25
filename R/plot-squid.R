@@ -25,37 +25,34 @@ plot_squid <- function(model,
                                 "cyan",
                                 "red")){
 
-  model_lst <- map(model$retros, ~{.x})
+  model_lst <- c(list(model), map(model$retros, ~{.x}))
   end_yr <- model$endyr
-
-  # End years are different for all the models, which messes up the plot
-  # so set them all to the base model end year
-  # end_yr <- model_lst[[1]]$endyr
-  # model_lst <- map(model_lst, function(mdl){
-  #   mdl$endyr <- end_yr
-  #   mdl
-  # })
 
   cohorts <- map_dbl(model_lst, \(mdl){
     mdl$endyr
   }) |>
     sort()
-  model_yrs <- seq(end_yr, end_yr - length(cohorts) + 1)
+
+  model_nms <- rev(cohorts + 1)
 
   d_obj <- create_group_df_recr(model_lst,
-                                model_yrs,
+                                model_nms,
                                 devs = TRUE)
+
   d <- d_obj$d |>
     mutate(model = as.numeric(as.character(model))) |>
-    filter(year >= min(cohorts)) |>
-    filter(year <= model) |>
-    mutate(age = model - year) |>
-    select(model, year, age, everything())
+    filter(year %in% cohorts) |>
+    split(~year) |>
+    map(~{
+      .x |>
+        filter(year <= model) |>
+        mutate(age = model - year)
+    }) |>
+    map_df(~{.x})
 
   # col_func <- colorRampPalette(cols)
   # colors <- col_func(length(unique(d$year)))
 
-browser()
   g <- ggplot(d,
               aes(x = age,
                   y = devmed,
@@ -93,9 +90,11 @@ browser()
   }
 
   g <- g +
-    geom_line(linewidth = 1.5) +
-    geom_point(size = 3) +
-    scale_x_continuous(breaks = 0:11)
+    geom_line(linewidth = 1.5,
+              alpha = 0.7) +
+    geom_point(size = 3,
+               alpha = 0.7) +
+    scale_x_continuous(breaks = c(seq_along(cohorts), length(cohorts) + 1) - 1)
 
   g
 }
