@@ -50,7 +50,7 @@ plot_rel_recruitment <-  function(model_lst = NULL,
 
   rel_row <- d |>
     filter(year == rel_yr)
-browser()
+
   # Make all rows relative to the chosen year (`rel_yr`)
   d <- d |>
     pmap(~{
