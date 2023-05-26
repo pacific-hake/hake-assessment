@@ -2,24 +2,39 @@
 % Please edit documentation in R/plot-squid.R
 \name{plot_squid}
 \alias{plot_squid}
-\title{Make the retrospective recruitment deviations plot (AKA 'squid plot')}
+\title{Make the retrospective recruitment deviations plot (squid plot)}
 \usage{
-plot_squid(model, subplot = 1, cohorts, plot_mcmc = TRUE, getdevs = TRUE)
+plot_squid(
+  model,
+  show_ci = FALSE,
+  ci_alpha = 0.2,
+  ci_yrs = NULL,
+  axis_title_font_size = 14,
+  axis_tick_font_size = 11,
+  axis_label_color = "black",
+  year_label_font_size = 4
+)
 }
 \arguments{
 \item{model}{Model with retrospectives}
 
-\item{subplot}{1 = Recruitment deviations, 2 = Rec dev strength relative to most recent estimate}
+\item{show_ci}{Logical. If \code{TRUE}, plot the credible interval ribbons
+around the median lines}
 
-\item{cohorts}{Vector of cohort years to plot (for labels)}
+\item{ci_alpha}{The a transparency value for the credible interval
+ribbon fill}
 
-\item{plot_mcmc}{If \code{TRUE} plot the MCMC version based on medians. If \code{FALSE} plot MLE version.}
+\item{ci_yrs}{A vector of years to include credible intervals for.
+If \code{NULL}, all will be shown. Only used if \code{show_ci} is \code{TRUE}}
 
-\item{getdevs}{A logical value specifying if the plot should be of
-recruitment deviations, which is the default. If \code{FALSE}, then
-the squid plot will be made using absolute recruitment instead of
-deviations.}
+\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
+
+\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{axis_label_color}{Color for the axis labels and tick labels}
+
+\item{year_label_font_size}{Size of the font for the year labels}
 }
 \description{
-Make the retrospective recruitment deviations plot (AKA 'squid plot')
+Make the retrospective recruitment deviations plot (squid plot)
 }

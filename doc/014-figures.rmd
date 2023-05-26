@@ -1168,6 +1168,8 @@ plist[[2]] <- plot_recruitment(d_obj = d_obj_retro_recr,
 plot_grid(plotlist = plist,
           nrow = 2,
           ncol = 1)
+
+retro_cohorts <- (end_yr - 11):(end_yr - 2)
 ```
 
 (ref:main-retrospective-recruitment-cap) Retrospective analysis of
@@ -1186,7 +1188,7 @@ is the `r assess_yr - 8` cohort at age-7, calculated by removing one year of
 data (so includes data up to `r assess_yr - 2`). Thus, models are fit to
 data available only up to the start of the year in which each cohort became
 a given age, such that the last year of data for a given point equals
-cohort~birth~year~$+$~cohort~age~$-$1.
+$cohort\ birth\ year + cohort\ age - 1$.
 
 (ref:main-retrospective-recruitment-alt) This figure shows how recruitment
 estimates for age-0 fish tend to be small but positive to allow for
@@ -1196,10 +1198,6 @@ deviates take a longer time to stabilize.
 
 ```{r main-retrospective-recruitment-fig, fig.cap = "(ref:main-retrospective-recruitment-cap)", fig.height = 6, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-retrospective-recruitment-alt)"}
 
-retro_cohorts <- (end_yr - 11):(end_yr - 2)
-plot_squid(base_model,
-           subplot = 1,
-           cohorts = retro_cohorts,
-           plot_mcmc = TRUE)
+plot_squid(base_model)
 ```
 

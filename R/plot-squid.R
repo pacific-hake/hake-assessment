@@ -1,29 +1,26 @@
-#' Make the retrospective recruitment deviations plot (AKA 'squid plot')
+#' Make the retrospective recruitment deviations plot (squid plot)
 #'
 #' @param model Model with retrospectives
-#' @param model_nms A vector of the model names for the retrospectives. This
-#' must be the same length as the number of retrospectives found in the
-#' `model$retros` list
-#' @param subplot 1 = Recruitment deviations, 2 = Rec dev strength relative
-#' to most recent estimate
-#' @param cohorts Vector of cohort years to plot (for labels)
-#' @param plot_mcmc If `TRUE` plot the MCMC version based on medians. If
-#' `FALSE` plot MLE version.
-#' @param getdevs A logical value specifying if the plot should be of
-#' recruitment deviations, which is the default. If `FALSE`, then
-#' the squid plot will be made using absolute recruitment instead of
-#' deviations.
+#' @param show_ci Logical. If `TRUE`, plot the credible interval ribbons
+#' around the median lines
+#' @param ci_alpha The a transparency value for the credible interval
+#' ribbon fill
+#' @param ci_yrs A vector of years to include credible intervals for.
+#' If `NULL`, all will be shown. Only used if `show_ci` is `TRUE`
+#' @param axis_title_font_size Size of the font for the X and Y axis labels
+#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
+#' @param axis_label_color Color for the axis labels and tick labels
+#' @param year_label_font_size Size of the font for the year labels
 #'
 #' @export
 plot_squid <- function(model,
                        show_ci = FALSE,
                        ci_alpha = 0.2,
                        ci_yrs = NULL,
-                       cols = c("blue",
-                                "green",
-                                "orange",
-                                "cyan",
-                                "red")){
+                       axis_title_font_size = 14,
+                       axis_tick_font_size = 11,
+                       axis_label_color = "black",
+                       year_label_font_size = 4){
 
   model_lst <- c(list(model), map(model$retros, ~{.x}))
   end_yr <- model$endyr
@@ -50,15 +47,10 @@ plot_squid <- function(model,
     }) |>
     map_df(~{.x})
 
-  # col_func <- colorRampPalette(cols)
-  # colors <- col_func(length(unique(d$year)))
-
   g <- ggplot(d,
               aes(x = age,
                   y = devmed,
-                  color = factor(year))) #+
-    # scale_color_manual(values = colors) +
-    # scale_fill_manual(values = colors)
+                  color = factor(year)))
 
   if(show_ci){
     dat <- d
@@ -76,7 +68,7 @@ plot_squid <- function(model,
                   linetype = "dotted",
                   linewidth = 0.5) +
       geom_segment(data = dat |>
-                     filter(model == end_yr) |>
+                     filter(model == end_yr + 1) |>
                      mutate(year = factor(year)) |>
                      mutate(model = factor(model)),
                    aes(x = age,
@@ -90,11 +82,53 @@ plot_squid <- function(model,
   }
 
   g <- g +
-    geom_line(linewidth = 1.5,
-              alpha = 0.7) +
-    geom_point(size = 3,
-               alpha = 0.7) +
-    scale_x_continuous(breaks = c(seq_along(cohorts), length(cohorts) + 1) - 1)
+    geom_hline(yintercept = 0,
+               linewidth = 0.25) +
+    geom_hline(yintercept = c(-2, 2),
+               linetype = "dashed",
+               linewidth = 0.1) +
+    geom_line(linewidth = 1.5) +
+    geom_point(size = 3) +
+    geom_text_repel(data = d |>
+                      filter(model == end_yr + 1) |>
+                      mutate(year = factor(year)) |>
+                      mutate(model = factor(model)),
+                    aes(x = age,
+                        y = devmed,
+                        label = year),
+                    seed = 1,
+                    size = year_label_font_size,
+                    nudge_x = 0.5,
+                    nudge_y = -0.25,
+                    direction = "both") +
+    scale_x_continuous(breaks = c(seq_along(cohorts),
+                                  length(cohorts) + 1) - 1) +
+    scale_y_continuous(breaks = seq(-3, 3)) +
+    xlab("Age") +
+    ylab("Recruitment deviation") +
+  theme(legend.position = "none",
+          axis.text.x = element_text(color = axis_label_color,
+                                     size = axis_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = -0.25,
+                                     face = "plain"),
+          axis.text.y = element_text(color = axis_label_color,
+                                     size = axis_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = axis_label_color,
+                                      size = axis_title_font_size,
+                                      angle = 0,
+                                      vjust = 0,
+                                      face = "plain"),
+          axis.title.y = element_text(color = axis_label_color,
+                                      size = axis_title_font_size,
+                                      angle = 90,
+                                      face = "plain"),
+        # plot.margin: top, right,bottom, left
+        plot.margin = margin(0, 6, 6, 6))
 
   g
 }
