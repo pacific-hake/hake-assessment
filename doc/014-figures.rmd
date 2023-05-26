@@ -1198,7 +1198,9 @@ deviates take a longer time to stabilize.
 
 ```{r main-retrospective-recruitment-fig, fig.cap = "(ref:main-retrospective-recruitment-cap)", fig.height = 6, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-retrospective-recruitment-alt)"}
 
-plot_squid(base_model)
+plot_squid(base_model,
+           show_ci = TRUE,
+           ci_yrs = 2012:2015)
 ```
 
 (ref:main-relative-retrospective-recruitment-cap) Retrospective recruitment
