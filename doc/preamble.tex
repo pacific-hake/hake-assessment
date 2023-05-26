@@ -151,3 +151,6 @@
 
 % Makes TeX faster by loading more longtable rows (100) at a time into memory
 \setcounter{LTchunksize}{400}
+
+% Necessary to avoid "over 100 dead cycles" error from pdflatex
+\maxdeadcycles=200
