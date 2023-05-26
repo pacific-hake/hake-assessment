@@ -36,6 +36,10 @@ plot_squid <- function(model,
   }) |>
     sort()
 
+  # Colors of lines and fill - add black to the beginning and remove end color
+  colors <- c("#000000B3",
+              rev(rich_colors_short(length(cohorts))[-1]))
+
   # A vector of the year of the assessment (retrospective year)
   model_nms <- rev(cohorts + 1)
 
@@ -53,10 +57,13 @@ plot_squid <- function(model,
     filter(year %in% cohorts) |>
     # Create a list of data frames, one for each cohort
     split(~year) |>
+    set_names(NULL) |>
     # For each cohort, add the ages to the data frame based on the
     # year of assessment and the estimated year
-    map(~{
+    imap(~{
       .x |>
+        # Add color column
+        bind_cols(tibble(clr = colors[.y])) |>
         filter(year <= model) |>
         mutate(age = model - year)
     }) |>
@@ -90,7 +97,7 @@ plot_squid <- function(model,
   g <- ggplot(d,
               aes(x = age,
                   y = devmed,
-                  color = factor(year)))
+                  color = clr))
 
   # Show the credible interval ribbons if requested
   if(show_ci){
@@ -104,7 +111,7 @@ plot_squid <- function(model,
                   aes(ymin = devlower,
                       ymax = devupper,
                       x = age,
-                      fill = factor(year)),
+                      fill = clr),
                   alpha = ci_alpha,
                   linetype = "dotted",
                   linewidth = 0.5) +
@@ -120,7 +127,7 @@ plot_squid <- function(model,
                        color = year),
                    linetype = "dotted",
                    linewidth = 0.5,
-                   inherit.aes = FALSE)
+                   inherit.aes = FALSE) +scale_fill_identity()
   }
 
   # A data frame of the text labels showing the year.
@@ -154,6 +161,7 @@ plot_squid <- function(model,
     scale_x_continuous(breaks = c(seq_along(cohorts),
                                   length(cohorts) + 1) - 1) +
     scale_y_continuous(breaks = seq(-3, 3)) +
+    scale_color_identity() +
     xlab("Age") +
     ylab(ifelse(relative,
                 "Recruitment deviation relative to recent estimate",
