@@ -101,13 +101,18 @@ plot_squid <- function(model,
 
   # Show the credible interval ribbons if requested
   if(show_ci){
-    dat <- d
+    ribbon_dat <- d
     if(!is.null(ci_yrs[1])){
-      dat <- dat |>
+      ribbon_dat <- ribbon_dat |>
         filter(year %in% ci_yrs)
     }
+    vert_lines_dat <- ribbon_dat |>
+      filter(model %in% c(min(model), max(model))) |>
+      mutate(year = factor(year)) |>
+      mutate(model = factor(model))
+
     g <- g +
-      geom_ribbon(data = dat,
+      geom_ribbon(data = ribbon_dat,
                   aes(ymin = devlower,
                       ymax = devupper,
                       x = age,
@@ -115,19 +120,18 @@ plot_squid <- function(model,
                   alpha = ci_alpha,
                   linetype = "dotted",
                   linewidth = 0.5) +
-      # Add a vertical line at the end to close the ribbon nicely
-      geom_segment(data = dat |>
-                     filter(model == end_yr + 1) |>
-                     mutate(year = factor(year)) |>
-                     mutate(model = factor(model)),
+      # Add a vertical line at the ends to close the ribbon nicely
+      geom_segment(data = vert_lines_dat,
                    aes(x = age,
                        xend = age,
                        y = devlower,
                        yend = devupper,
-                       color = year),
+                       color = clr),
                    linetype = "dotted",
                    linewidth = 0.5,
-                   inherit.aes = FALSE) +scale_fill_identity()
+                   inherit.aes = FALSE) +
+      scale_fill_identity()
+
   }
 
   # A data frame of the text labels showing the year.
