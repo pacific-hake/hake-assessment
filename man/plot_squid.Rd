@@ -6,6 +6,7 @@
 \usage{
 plot_squid(
   model,
+  relative = FALSE,
   show_ci = FALSE,
   ci_alpha = 0.2,
   ci_yrs = NULL,
@@ -17,6 +18,9 @@ plot_squid(
 }
 \arguments{
 \item{model}{Model with retrospectives}
+
+\item{relative}{Logical. If \code{TRUE}, plot the deviaitons relative to the
+most recent estimate for each cohort}
 
 \item{show_ci}{Logical. If \code{TRUE}, plot the credible interval ribbons
 around the median lines}
