@@ -1,31 +1,43 @@
 #' Title
 #'
-#' @param base_model
-#' @param history_df
+#' @param base_model A model object, created by [create_rds_file()]
+#' @param history_df A data frame, previously read in from the file
+#' `assessment-history.csv`
 #' @param x_labs_mod Value for major X-axis tick marks. Every Nth tick
 #' will be longer and have a label. The first and last will be shown
 #' regardless of what this number is
+#' @param ylim A vector of two representing the minimum and maximum values to
+#' show on the y-axis
 #' @param y_breaks A vector of the values to show on the y-axis
+#' @param y_major_lab_adj A value to move the major tick abels closer/further
+#' away from the major tick marks. Reducing this moves them closer, increasing
+#' it moves them further away
 #' @param clip_cover There is a white rectangle drawn on top of the plot
 #' to cover any of the plot that made it outside the plot area. `clip` has to
 #' be set to `off` for the major x-axis tick marks to work, So, this is required.
 #' If you make the plot in a grid, the rectangle may overwrite some of the plot
 #' above it, and this number will have to be changed through trial and error
 #' until you cannot see the white rectangle anymore.
+#' @param leg_pos The position of the legend inside the plot. If `NULL`,
+#' `NA`, or `none`, the legend will not be shown
+#' @param leg_ncol The number of columns to show in the legend
+#' @param leg_font_size The legend font size
 #' @param axis_title_font_size Size of the font for the X and Y axis labels
 #' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
 #' @param axis_label_color Color for the axis labels and tick labels
 #'
-#' @return
+#' @return a [ggplot2::ggplot()] object
 #' @export
-#'
-#' @examples
 plot_assessment_history_biomass <- function(base_model,
                                             history_df,
-                                            x_labs_mod = 5,
+                                            x_labs_mod = 10,
                                             ylim = c(0, 7),
                                             y_breaks = ylim[1]:ylim[2],
+                                            y_major_lab_adj = 45,
                                             clip_cover = 5,
+                                            leg_pos = c(0.75, 0.8),
+                                            leg_ncol = 3,
+                                            leg_font_size = 8,
                                             axis_title_font_size = 14,
                                             axis_tick_font_size = 11,
                                             axis_label_color = "black"){
@@ -89,8 +101,14 @@ plot_assessment_history_biomass <- function(base_model,
   vert_lines_dat <- base_ssb_df |>
     filter(yr %in% c(min(yr), max(yr)))
 
+  # Change `label`to `Assessment` for the legend title
+  j <- j |>
+    rename(Assessment = label)
+  scale_map <- scale_map |>
+    rename(Assessment = label)
+
   # X-axis breaks and tick placement ----
-  xlim <- c(min(j$yr), max(j$yr))
+  xlim <- c(min(j$yr) - 2, max(j$yr) + 2)
   x_breaks <-  xlim[1]:xlim[2]
   # Remove labels for the minor x-axis ticks
   x_labels <- NULL
@@ -105,10 +123,10 @@ plot_assessment_history_biomass <- function(base_model,
   # Major tick mark lengths adjusted here
   x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
   top_y_pos <- ylim[1]
-  bot_y_pos <- ylim[1] - (ylim[2] - ylim[1]) / 25
+  bot_y_pos <- ylim[1] - (ylim[2] - ylim[1]) / y_major_lab_adj
   custom_ticks <- tibble(group = x_breaks_nth,
                          y_end = bot_y_pos)
-browser()
+
   g <- ggplot(j,
               aes(x = yr,
                   y = value)) +
@@ -124,7 +142,7 @@ browser()
     geom_line(data = base_ssb_df,
               aes(x = yr,
                   y = med),
-              linewidth = 2,
+              linewidth = 1,
               color = "black",
               inherit.aes = FALSE) +
     # Add a vertical line at the ends to close the ribbon nicely
@@ -135,10 +153,10 @@ browser()
                      yend = hi),
                  linetype = "dotted",
                  inherit.aes = FALSE) +
-    geom_point(aes(color = label,
-                   shape = label),
-               size = 3) +
-    geom_line(aes(color = label),
+    geom_point(aes(color = Assessment,
+                   shape = Assessment),
+               size = 1) +
+    geom_line(aes(color = Assessment),
               linewidth = 0.5) +
     scale_y_continuous(expand = c(0, 0),
                        breaks = y_breaks) +
@@ -146,17 +164,20 @@ browser()
                        breaks = x_breaks,
                        labels = x_labels) +
     scale_color_manual(values = scale_map$color,
-                       labels = scale_map$label,
-                       name = "label") +
+                       labels = scale_map$Assessment,
+                       name = "Assessment") +
     scale_shape_manual(values = scale_map$shape,
-                       labels = scale_map$label,
-                       name = "label") +
+                       labels = scale_map$Assessment,
+                       name = "Assessment") +
     coord_cartesian(xlim = xlim,
                     ylim = ylim,
                     clip = "off") +
     xlab("Year") +
     ylab("Female spawning biomass (Mt)") +
-    theme(axis.text.x = element_text(color = axis_label_color,
+    theme(legend.key.size = unit(0.2, 'cm'),
+          legend.text = element_text(size = leg_font_size),
+          legend.text.align = 0,
+          axis.text.x = element_text(color = axis_label_color,
                                      size = axis_tick_font_size,
                                      angle = 0,
                                      hjust = 0.5,
@@ -177,7 +198,7 @@ browser()
                                       angle = 90,
                                       face = "plain"),
           # plot.margin: top, right,bottom, left
-          plot.margin = margin(12, 6, 6, 6)) +
+          plot.margin = margin(12, 14, 6, 6)) +
     # Add major tick marks
     geom_linerange(data = custom_ticks,
                    aes(x = group,
@@ -186,6 +207,15 @@ browser()
                    size = 0.5,
                    inherit.aes = FALSE)
 
+  if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
+    g <- g +
+      theme(legend.position = "none")
+  }else{
+    g <- g +
+      theme(legend.position = leg_pos) +
+      guides(fill = guide_legend(ncol = leg_ncol),
+             color = guide_legend(ncol = leg_ncol))
+  }
 
   # Draw a white rectangle over the top of the plot, obscuring any
   # unclipped plot parts. Clipping has to be off to allow different size
@@ -199,4 +229,3 @@ browser()
 
   g
 }
-
