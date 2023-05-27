@@ -10,6 +10,11 @@ assess_history_probs_df <-
            col_types = cols(),
            comment = "#",
            show_col_types = FALSE)
+assess_history_disp_df <-
+  read_csv(file.path(load_dir, "assessment-history-dispersion.csv"),
+           col_types = cols(),
+           comment = "#",
+           show_col_types = FALSE)
 assess_changes_df <-
   read_csv(file.path(load_dir, "assessment-changes.csv"),
            col_types = cols(),

@@ -1203,6 +1203,10 @@ plot_squid(base_model,
            ci_yrs = 2012:2015)
 ```
 
+<!-- Don't remove the clearpage here, you will get a 'to many
+unprocessed floats' -->
+\clearpage
+
 (ref:main-relative-retrospective-recruitment-cap) Retrospective recruitment
 estimates shown in Figure \@ref(fig:main-retrospective-recruitment-fig)
 scaled relative to the most recent estimate of the strength of each cohort.
@@ -1228,4 +1232,30 @@ historical estimates of spawning biomass from the annual assessments.
 ```{r main-historical-assessments-fig, fig.cap = "(ref:main-historical-assessments-cap)", fig.height = 4.5, fig.width = 6.5, is.fig = TRUE, alt.text = "(ref:main-historical-assessments-alt)"}
 plot_assessment_history_biomass(base_model, assess_history_df)
 ```
+(ref:main-historical-dispersion-cap) Comparison of absolute (left panel)
+and relative (right panel) variability associated with terminal year
+estimates of spawning biomass from `r sp` stock assessments dating back to
+2012 (note: terminal year is the same as assessment year). The interquartile
+range specifies the width from quartile 1 (Q1: 25th percentile) to quartile
+3 (Q3: 75th percentile) of terminal year spawning biomass from the posterior
+distribution and is a measure of absolute variability (similar to credible
+intervals). The quartile coefficient of dispersion is a relative measure
+of variability that can be compared across different data sets (similar to
+the coefficient of variation but less susceptible to outliers) and is
+calculated as $(Q3 - Q1) / (Q1 + Q3)$.
 
+(ref:main-historical-dispersion-alt) This figure shows the amount of
+absolute and scaled variability present with terminal year estimates of
+spawning biomass from assessments dating back to 2012.
+
+```{r main-historical-dispersion-fig, fig.cap = "(ref:main-historical-dispersion-cap)", fig.height = 4.5, fig.width = 6.5, is.fig = TRUE, alt.text = "(ref:main-historical-dispersion-alt)"}
+
+p <- list()
+p[[1]] <- plot_assessment_history_disp(base_model,
+                                       assess_history_disp_df)
+p[[2]] <- plot_assessment_history_disp(base_model,
+                                       assess_history_disp_df,
+                                       type = "coeff",
+                                       y_lim = c(0, 0.6))
+plot_grid(plotlist = p, nrow = 1)
+```
