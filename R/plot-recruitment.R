@@ -174,14 +174,18 @@ plot_recruitment <- function(model_lst = NULL,
     scale_y_continuous(expand = c(0, 0),
                        breaks = y_breaks,
                        labels = y_labels) +
-    theme(legend.title = element_blank(),
+    theme(legend.key.size = unit(0.2, 'cm'),
+          legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
+          legend.text.align = 0,
           axis.text.y = element_text(color = y_colors),
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
-          plot.margin = margin(12, 12, 7, 0)) +
+          plot.margin = margin(12, 12, 12, 12)) +
     xlab("Year") +
-    ylab("Age-0 recruits (billions) relative to those in 2010")
+    ylab(ifelse(relative,
+                "Age-0 recruits (billions) relative to 2010 values",
+                "Age-0 recruits (billions)"))
 
   if(inc_means){
     if(is_single_model){

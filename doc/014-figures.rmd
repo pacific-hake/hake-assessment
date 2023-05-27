@@ -663,6 +663,7 @@ the fourth. The 2020 cohort is highly uncertain which can be seen in the size
 of the credible interval.
 
 ```{r main-recruitment-fig, fig.cap = "(ref:main-recruitment-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-alt)"}
+
 plot_recruitment(list(base_model),
                  list(base_model_name),
                  single_line_color = "blue",
@@ -722,6 +723,7 @@ dotted lines.
 recruitment estimates relative to those in 2010 for all years.
 
 ```{r main-recruitment-scale-all-fig, fig.cap = "(ref:main-recruitment-scale-all-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-scale-all-alt)"}
+
 plot_recruitment(list(base_model),
                  list(base_model_name),
                  inc_means = TRUE,
@@ -1094,7 +1096,7 @@ for the large cohorts is highly sensitive to the change in the Phi parameter.
 plot_recruitment(d_obj = d_obj_sens_recr[[3]],
                  x_expansion = 2,
                  leg_font_size = 9,
-                 leg_pos = c(0.13, 0.88),
+                 leg_pos = c(0.11, 0.94),
                  inc_means = FALSE,
                  rev_colors = TRUE)
 ```
@@ -1161,16 +1163,25 @@ plist[[1]] <- plot_biomass(d_obj = d_obj_retro_biomass,
                            leg_ncol = 2,
                            alpha = 0.1,
                            rev_colors = TRUE)
-plist[[2]] <- plot_recruitment(d_obj = d_obj_retro_recr,
+# This extra panel with no plot in it is to allow clipping of the huge
+# recruitment from the plot below it to happen without cutting off the
+# biomass panel above. It's acting as a spacer
+plist[[2]] <- NA
+plist[[3]] <- plot_recruitment(d_obj = d_obj_retro_recr,
                                leg_pos = "none",
-                               rev_colors = TRUE)
+                               rev_colors = TRUE,
+                               clip_cover = 8)
 
 plot_grid(plotlist = plist,
-          nrow = 2,
-          ncol = 1)
+          nrow = 3,
+          ncol = 1,
+          align = "v",
+          rel_heights = c(1, 0.12, 1))
 
 retro_cohorts <- (end_yr - 11):(end_yr - 2)
 ```
+
+\clearpage
 
 (ref:main-retrospective-recruitment-cap) Retrospective analysis of
 recruitment deviations from MCMC models over the last
@@ -1217,69 +1228,84 @@ towards zero by age three except for the 2015 cohort which was a strong
 negative recruitment deviation.
 
 ```{r main-relative-retrospective-recruitment-fig, fig.cap = "(ref:main-relative-retrospective-recruitment-cap)", fig.height = 6, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-relative-retrospective-recruitment-alt)"}
+
 plot_squid(base_model,
            relative = TRUE)
 ```
 
+\clearpage
+
 (ref:main-historical-assessments-cap) Summary of historical `r sp`
 assessment estimates of spawning biomass. Estimates are MLEs or MCMC
 medians depending on the model structure. Shading represents the 95%
-credible interval from the `r end_yr` base model.
+credible interval from the `r assess_yr` base model.
 
 (ref:main-historical-assessments-alt) This figure shows the varying
 historical estimates of spawning biomass from the annual assessments.
 
 ```{r main-historical-assessments-fig, fig.cap = "(ref:main-historical-assessments-cap)", fig.height = 4.5, fig.width = 6.5, is.fig = TRUE, alt.text = "(ref:main-historical-assessments-alt)"}
+
 plot_assessment_history_biomass(base_model, assess_history_df)
 ```
+
 (ref:main-historical-dispersion-cap) Comparison of absolute (left panel)
 and relative (right panel) variability associated with terminal year
 estimates of spawning biomass from `r sp` stock assessments dating back to
 2012 (note: terminal year is the same as assessment year). The interquartile
-range specifies the width from quartile 1 (Q1: 25th percentile) to quartile
-3 (Q3: 75th percentile) of terminal year spawning biomass from the posterior
+range specifies the width from quartile 1 ($Q_1$: 25th percentile) to quartile
+3 ($Q_3$: 75th percentile) of terminal year spawning biomass from the posterior
 distribution and is a measure of absolute variability (similar to credible
 intervals). The quartile coefficient of dispersion is a relative measure
 of variability that can be compared across different data sets (similar to
 the coefficient of variation but less susceptible to outliers) and is
-calculated as $(Q3 - Q1) / (Q1 + Q3)$.
+calculated as $(Q_3 - Q_1) / (Q_1 + Q_3)$.
 
 (ref:main-historical-dispersion-alt) This figure shows the amount of
 absolute and scaled variability present with terminal year estimates of
 spawning biomass from assessments dating back to 2012.
 
+<!-- Don't remove the clearpage here, you will get a 'to many
+unprocessed floats' -->
+\clearpage
+
 ```{r main-historical-dispersion-fig, fig.cap = "(ref:main-historical-dispersion-cap)", fig.height = 4.5, fig.width = 6.5, is.fig = TRUE, alt.text = "(ref:main-historical-dispersion-alt)"}
 
 p <- list()
-p[[1]] <- plot_assessment_history_disp(base_model,
-                                       assess_history_disp_df)
-p[[2]] <- plot_assessment_history_disp(base_model,
-                                       assess_history_disp_df,
-                                       type = "coeff",
-                                       y_lim = c(0, 0.6))
+p[[1]] <-
+  plot_assessment_history_disp(base_model,
+                               assess_history_disp_df)
+p[[2]] <-
+  plot_assessment_history_disp(base_model,
+                               assess_history_disp_df,
+                               type = "coeff",
+                               y_lim = c(0, 0.6))
 plot_grid(plotlist = p, nrow = 1)
 ```
-(ref:main-historical-1-cap) For each year $t$, $P(B_{t+1} < B_t)$ is the
-probability that the spawning biomass at the start of $t+1$ is below that
-at the start of $t$. It is calculated in two ways. Red circles: the
-probability is taken from year $t$'s stock assessment document, from the
-row in the decision table corresponding to the consequent catch in year $t$
-(with interpolation if necessary). Blue squares: the probability is
-calculated using the current `r assess_yr` base model. The grey horizontal
-line is the 50% value. For each year except 2018 and 2021, both
-probabilities lie on the same side of the grey line, indicating that each
-year's assessment model has almost always 'correctly' estimated an increase
-or decrease the subsequent year's biomass. For the `r assess_yr`
-assessment the probabilities are shown for all catch alternatives for
-`r assess_yr`, as described in Table~\@ref(tab:main-decisions-biomass-tab),
-with 0~t shown in pink.
 
-(ref:main-historical-1-alt) This figure compares historical estimates
-of probabilities of the stock declining with those from the current base
-model.
+<!-- (ref:main-historical-1-cap) For each year $t$, $P(B_{t+1} < B_t)$ is the -->
+<!-- probability that the spawning biomass at the start of $t+1$ is below that -->
+<!-- at the start of $t$. It is calculated in two ways. Red circles: the -->
+<!-- probability is taken from year $t$'s stock assessment document, from the -->
+<!-- row in the decision table corresponding to the consequent catch in year $t$ -->
+<!-- (with interpolation if necessary). Blue squares: the probability is -->
+<!-- calculated using the current `r assess_yr` base model. The grey horizontal -->
+<!-- line is the 50% value. For each year except 2018 and 2021, both -->
+<!-- probabilities lie on the same side of the grey line, indicating that each -->
+<!-- year's assessment model has almost always 'correctly' estimated an increase -->
+<!-- or decrease the subsequent year's biomass. For the `r assess_yr` -->
+<!-- assessment the probabilities are shown for all catch alternatives for -->
+<!-- `r assess_yr`, as described in Table~\@ref(tab:main-decisions-biomass-tab), -->
+<!-- with 0~t shown in pink. -->
 
-```{r main-historical-1-fig, fig.cap = "(ref:main-historical-1-cap)", fig.height = 6, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-historical-1-alt)"}
-plot_historical_probs(base_model,
-                      hist_probs = assess_history_probs_df,
-                      add.projs = TRUE)
-```
+<!-- (ref:main-historical-1-alt) This figure compares historical estimates -->
+<!-- of probabilities of the stock declining with those from the current base -->
+<!-- model. -->
+
+<!-- ```{r main-historical-1-fig, fig.cap = "(ref:main-historical-1-cap)", fig.height = 6, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-historical-1-alt)"} -->
+
+<!-- plot_historical_probs(base_model, -->
+<!--                       hist_probs = assess_history_probs_df, -->
+<!--                       add.projs = TRUE) -->
+<!-- ``` -->
+
+\clearpage
