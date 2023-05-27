@@ -141,11 +141,10 @@ plot_age_comp_fit <- function(model,
     facet_wrap(~factor(yr,
                        levels = yr_vec),
                ncol = n_col) +
-    geom_label(aes(label = yr),
-               x = label_loc[1],
-               y = label_loc[2],
-               size = label_font_size,
-               fill = "transparent") +
+    geom_text(aes(label = yr),
+              x = label_loc[1],
+              y = label_loc[2],
+              size = label_font_size) +
     theme(strip.background = element_blank(),
           panel.spacing = unit(0, "cm"),
           strip.text.x = element_blank(),
