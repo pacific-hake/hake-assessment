@@ -1216,3 +1216,16 @@ negative recruitment deviation.
 plot_squid(base_model,
            relative = TRUE)
 ```
+
+(ref:main-historical-assessments-cap) Summary of historical `r sp`
+assessment estimates of spawning biomass. Estimates are MLEs or MCMC
+medians depending on the model structure. Shading represents the 95%
+credible interval from the `r end_yr` base model.
+
+(ref:main-historical-assessments-alt) This figure shows the varying
+historical estimates of spawning biomass from the annual assessments.
+
+```{r main-historical-assessments-fig, fig.cap = "(ref:main-historical-assessments-cap)", fig.height = 4.5, fig.width = 6.5, is.fig = TRUE, alt.text = "(ref:main-historical-assessments-alt)"}
+plot_assessment_history_biomass(base_model, assess_history_df)
+```
+
