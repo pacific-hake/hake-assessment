@@ -17,12 +17,14 @@ plot_during_loading <- function(model){
   # in the RDS files
   out$survey_fit <- plot_survey_fit_mcmc(model,
                                          type = "acoustic",
-                                         n_posts = 1000)
+                                         n_posts = 1000,
+                                         glow = TRUE)
 
   out$age1_index_fit <- plot_survey_fit_mcmc(model,
                                              type = "age1",
                                              n_posts = 1000,
-                                             ylim = c(0, 10))
+                                             ylim = c(0, 10),
+                                             glow = TRUE)
 
   out$selex_posteriors <- {
     plist <- list()
