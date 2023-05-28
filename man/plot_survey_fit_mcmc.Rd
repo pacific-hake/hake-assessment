@@ -3,19 +3,31 @@
 \name{plot_survey_fit_mcmc}
 \alias{plot_survey_fit_mcmc}
 \title{Creates a plot of fits to survey biomass including individual posterior
-lines and the median posterior line}
+lines, median posterior line, observed values, and estimated values}
 \usage{
 plot_survey_fit_mcmc(
   model,
   type = c("age1", "acoustic"),
-  n_posts = 1000,
+  n_posts = NULL,
   show_legend = TRUE,
   ylim = c(0, 5),
-  leg_ncol = 1,
-  leg_font_size = 12,
   axis_title_font_size = 14,
   axis_tick_font_size = 11,
-  axis_label_color = "black"
+  axis_label_color = "black",
+  post_line_col = "gray40",
+  post_line_alpha = 1,
+  post_med_color = "darkblue",
+  post_med_line_width = 2,
+  post_med_point_size = 3,
+  err_col = "blue",
+  err_obs_line_width = 2,
+  err_est_line_width = 0.5,
+  err_obs_point_size = 3,
+  glow = TRUE,
+  glow_col_err = "white",
+  glow_col_med = "white",
+  glow_alpha_err = 0.7,
+  glow_alpha_med = 0.7
 )
 }
 \arguments{
@@ -29,21 +41,55 @@ of posteriors, all posterior lines will be shown}
 
 \item{show_legend}{Logical. If \code{TRUE}, show the legend}
 
+\item{ylim}{A vector of two values representing the minimum and maximum
+values to appear on the y-axis}
+
 \item{axis_title_font_size}{Size of the font for the X and Y axis labels}
 
 \item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
 
 \item{axis_label_color}{Color for the axis labels and tick labels}
 
-\item{probs}{A vector of three probabilities for the credible interval,
-with the middle one being the median (0.5)}
+\item{post_line_col}{The color of the thinner individual posterior lines}
+
+\item{post_line_alpha}{The transparency of the thinner individual
+posterior lines}
+
+\item{post_med_color}{The color of the posterior median line and points}
+
+\item{post_med_line_width}{The width of the posterior median line}
+
+\item{post_med_point_size}{The size of the posterior median points}
+
+\item{err_col}{The color of the error bars (both narrow and thick)}
+
+\item{err_obs_line_width}{The width of the error bar lines for observed
+values}
+
+\item{err_est_line_width}{The width of the error bar lines for estimated
+values}
+
+\item{err_obs_point_size}{The size of the points on the error bars}
+
+\item{glow}{Logical. If \code{TRUE}, add a white glow around the lines so that
+they can more easily be seen in contrast to the background posterior lines}
+
+\item{glow_col_err}{The color of the 'glow' on the error bar lines}
+
+\item{glow_col_med}{The color of the 'glow' on the posterior median line}
+
+\item{glow_alpha_err}{The transparency of the 'glow' on the error bars
+and points}
+
+\item{glow_alpha_med}{The transparency of the 'glow' on the posterior
+median line}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Creates a plot of fits to survey biomass including individual posterior
-lines and the median posterior line
+lines, median posterior line, observed values, and estimated values
 }
 \details{
 Uses the \link{probs} vector which is included in the package data for
