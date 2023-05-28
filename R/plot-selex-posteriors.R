@@ -11,6 +11,11 @@
 #' @param line_color_unc Color of the uncertainty lines and points
 #' @param line_thickness_unc Thickness of the uncertainty lines
 #' @param point_size_unc Size of the points
+#' @param line_alpha Transparency of the posterior lines
+#' @param glow Logical. If `TRUE`, add a white glow around the lines so that
+#' they can more easily be seen in contrast to the background posterior lines
+#' @param glow_color Color of the glow effect
+#' @param glow_alpha Transparency of the glow effect
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -19,10 +24,14 @@ plot_selex_posteriors <- function(model = NULL,
                                   probs = c(0.025, 0.5, 0.975),
                                   age_range = NULL,
                                   line_color = "black",
-                                  line_thickness = 0.05,
+                                  line_alpha = 0.1,
+                                  line_thickness = 0.1,
                                   line_color_unc = "red",
                                   line_thickness_unc = 1,
-                                  point_size_unc = 3){
+                                  point_size_unc = 3,
+                                  glow = TRUE,
+                                  glow_color = "white",
+                                  glow_alpha = 1){
 
   type <- match.arg(type)
   if(type == "fishery"){
@@ -60,18 +69,36 @@ plot_selex_posteriors <- function(model = NULL,
   g <- ggplot(sel,
               aes(x = age, y = med, group = iter)) +
     geom_line(linewidth = line_thickness,
-              color = line_color) +
+              color = line_color,
+              alpha = line_alpha) +
+    geom_errorbar(data = quants, aes(ymin = lower,
+                                     ymax = upper),
+                  color = glow_color,
+                  alpha = glow_alpha,
+                  lineend = "round",
+                  linewidth = line_thickness_unc + 0.5,
+                  width = 0) +
+    geom_errorbar(data = quants, aes(ymin = lower,
+                                     ymax = upper),
+                  color = line_color_unc,
+                  lineend = "round",
+                  linewidth = line_thickness_unc,
+                  width = 0) +
+    geom_line(data = quants,
+              color = glow_color,
+              alpha = glow_alpha,
+              lineend = "round",
+              linewidth = line_thickness_unc + 0.5) +
     geom_line(data = quants,
               color = line_color_unc,
               linewidth = line_thickness_unc) +
     geom_point(data = quants,
+               color = glow_color,
+               alpha = glow_alpha,
+               size = point_size_unc + 1) +
+    geom_point(data = quants,
                color = line_color_unc,
                size = point_size_unc) +
-    geom_errorbar(data = quants, aes(ymin = lower,
-                                     ymax = upper),
-                  color = line_color_unc,
-                  linewidth = line_thickness_unc,
-                  width = 0.01) +
     xlab("Age") +
     ylab("Selectivity")
 

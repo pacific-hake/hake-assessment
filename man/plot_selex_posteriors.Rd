@@ -11,10 +11,14 @@ plot_selex_posteriors(
   probs = c(0.025, 0.5, 0.975),
   age_range = NULL,
   line_color = "black",
-  line_thickness = 0.05,
+  line_alpha = 0.1,
+  line_thickness = 0.1,
   line_color_unc = "red",
   line_thickness_unc = 1,
-  point_size_unc = 3
+  point_size_unc = 3,
+  glow = TRUE,
+  glow_color = "white",
+  glow_alpha = 1
 )
 }
 \arguments{
@@ -29,6 +33,8 @@ all ages in the data will be plotted}
 
 \item{line_color}{Color of the posterior lines}
 
+\item{line_alpha}{Transparency of the posterior lines}
+
 \item{line_thickness}{Thickness of the posterior lines}
 
 \item{line_color_unc}{Color of the uncertainty lines and points}
@@ -36,6 +42,13 @@ all ages in the data will be plotted}
 \item{line_thickness_unc}{Thickness of the uncertainty lines}
 
 \item{point_size_unc}{Size of the points}
+
+\item{glow}{Logical. If \code{TRUE}, add a white glow around the lines so that
+they can more easily be seen in contrast to the background posterior lines}
+
+\item{glow_color}{Color of the glow effect}
+
+\item{glow_alpha}{Transparency of the glow effect}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
