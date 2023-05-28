@@ -31,7 +31,7 @@ plot_selex_posteriors <- function(model = NULL,
                                   point_size_unc = 3,
                                   glow = TRUE,
                                   glow_color = "white",
-                                  glow_alpha = 1){
+                                  glow_alpha = 0.5){
 
   type <- match.arg(type)
   if(type == "fishery"){
