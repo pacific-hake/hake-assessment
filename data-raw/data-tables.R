@@ -21,6 +21,7 @@ assess_changes_df <-
            show_col_types = FALSE)
 usethis::use_data(assess_history_df, overwrite = TRUE)
 usethis::use_data(assess_history_probs_df, overwrite = TRUE)
+usethis::use_data(assess_history_disp_df, overwrite = TRUE)
 usethis::use_data(assess_changes_df, overwrite = TRUE)
 # Maturity and weight-at-age ----
 ovary_samples_df <-
