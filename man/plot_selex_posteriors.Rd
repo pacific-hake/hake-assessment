@@ -10,13 +10,20 @@ plot_selex_posteriors(
   type = c("fishery", "survey"),
   probs = c(0.025, 0.5, 0.975),
   age_range = NULL,
-  line_color = "black",
-  line_alpha = 0.1,
-  line_thickness = 0.1,
-  line_color_unc = "red",
-  line_thickness_unc = 1,
-  point_size_unc = 3,
+  show_xlab = TRUE,
+  post_line_width = 0.1,
+  post_line_color = "black",
+  post_line_alpha = 0.1,
+  post_med_line_width = 1,
+  post_med_line_color = "red3",
+  post_med_line_alpha = 1,
+  post_med_point_size = 3,
+  unc_line_width = 1,
+  unc_line_color = "red3",
+  unc_line_alpha = 1,
+  unc_point_size = 3,
   glow = TRUE,
+  glow_offset = 0.5,
   glow_color = "white",
   glow_alpha = 1
 )
@@ -31,20 +38,36 @@ plot_selex_posteriors(
 \item{age_range}{A vector of two for the min and max ages to plot. If \code{NULL},
 all ages in the data will be plotted}
 
-\item{line_color}{Color of the posterior lines}
+\item{show_xlab}{Logical. If \code{TRUE}, show the X-axis label. If \code{FALSE},
+omit it}
 
-\item{line_alpha}{Transparency of the posterior lines}
+\item{post_line_width}{Thickness of the posterior lines}
 
-\item{line_thickness}{Thickness of the posterior lines}
+\item{post_line_color}{Color of the posterior lines}
 
-\item{line_color_unc}{Color of the uncertainty lines and points}
+\item{post_line_alpha}{Transparency of the posterior lines}
 
-\item{line_thickness_unc}{Thickness of the uncertainty lines}
+\item{post_med_line_width}{Thickness of the median posterior line}
 
-\item{point_size_unc}{Size of the points}
+\item{post_med_line_color}{Color of the median posterior line}
+
+\item{post_med_line_alpha}{Transparency of the median posterior line}
+
+\item{post_med_point_size}{Size of the points on the median posterior line}
+
+\item{unc_line_width}{Thickness of the uncertainty lines}
+
+\item{unc_line_color}{Color of the uncertainty lines and points}
+
+\item{unc_line_alpha}{Transparency for the uncertainty lines and points}
+
+\item{unc_point_size}{Size of the points}
 
 \item{glow}{Logical. If \code{TRUE}, add a white glow around the lines so that
 they can more easily be seen in contrast to the background posterior lines}
+
+\item{glow_offset}{The amount to add to the thickness of the lines and
+diameter of the points to create the glow effect}
 
 \item{glow_color}{Color of the glow effect}
 

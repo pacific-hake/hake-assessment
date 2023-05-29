@@ -6,32 +6,49 @@
 #' @param probs A vector of two quantiles to include for the uncertainty
 #' @param age_range A vector of two for the min and max ages to plot. If `NULL`,
 #' all ages in the data will be plotted
-#' @param line_color Color of the posterior lines
-#' @param line_thickness Thickness of the posterior lines
-#' @param line_color_unc Color of the uncertainty lines and points
-#' @param line_thickness_unc Thickness of the uncertainty lines
-#' @param point_size_unc Size of the points
-#' @param line_alpha Transparency of the posterior lines
+#' @param show_xlab Logical. If `TRUE`, show the X-axis label. If `FALSE`,
+#' omit it
+#' @param post_line_width Thickness of the posterior lines
+#' @param post_line_color Color of the posterior lines
+#' @param post_line_alpha Transparency of the posterior lines
+#' @param post_med_line_width Thickness of the median posterior line
+#' @param post_med_line_color Color of the median posterior line
+#' @param post_med_line_alpha Transparency of the median posterior line
+#' @param post_med_point_size Size of the points on the median posterior line
+#' @param unc_line_width Thickness of the uncertainty lines
+#' @param unc_line_color Color of the uncertainty lines and points
+#' @param unc_line_alpha Transparency for the uncertainty lines and points
+#' @param unc_point_size Size of the points
 #' @param glow Logical. If `TRUE`, add a white glow around the lines so that
 #' they can more easily be seen in contrast to the background posterior lines
+#' @param glow_offset The amount to add to the thickness of the lines and
+#' diameter of the points to create the glow effect
 #' @param glow_color Color of the glow effect
 #' @param glow_alpha Transparency of the glow effect
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
-plot_selex_posteriors <- function(model = NULL,
-                                  type = c("fishery", "survey"),
-                                  probs = c(0.025, 0.5, 0.975),
-                                  age_range = NULL,
-                                  line_color = "black",
-                                  line_alpha = 0.1,
-                                  line_thickness = 0.1,
-                                  line_color_unc = "red",
-                                  line_thickness_unc = 1,
-                                  point_size_unc = 3,
-                                  glow = TRUE,
-                                  glow_color = "white",
-                                  glow_alpha = 0.5){
+plot_selex_posteriors <- function(
+    model = NULL,
+    type = c("fishery", "survey"),
+    probs = c(0.025, 0.5, 0.975),
+    age_range = NULL,
+    show_xlab = TRUE,
+    post_line_width = 0.1,
+    post_line_color = "black",
+    post_line_alpha = 0.1,
+    post_med_line_width = 1,
+    post_med_line_color = "red3",
+    post_med_line_alpha = 1,
+    post_med_point_size = 3,
+    unc_line_width = 1,
+    unc_line_color = "red3",
+    unc_line_alpha = 1,
+    unc_point_size = 3,
+    glow = TRUE,
+    glow_offset = 0.5,
+    glow_color = "white",
+    glow_alpha = 1){
 
   type <- match.arg(type)
   if(type == "fishery"){
@@ -68,38 +85,63 @@ plot_selex_posteriors <- function(model = NULL,
 
   g <- ggplot(sel,
               aes(x = age, y = med, group = iter)) +
-    geom_line(linewidth = line_thickness,
-              color = line_color,
-              alpha = line_alpha) +
+    # Thin posterior lines (no glow for these)
+    geom_line(linewidth = post_line_width,
+              color = post_line_color,
+              alpha = post_line_alpha)
+
+  if(glow){
+    # Glow - Error bars only - no points here
+    g <- g +
+      geom_errorbar(data = quants,
+                    aes(ymin = lower,
+                        ymax = upper),
+                    linewidth = unc_line_width + glow_offset,
+                    color = glow_color,
+                    alpha = glow_alpha,
+                    lineend = "round",
+                    size = unc_point_size + glow_offset,
+                    width = 0)
+  }
+
+  g <- g +
+    # Error bars only - no points here
     geom_errorbar(data = quants, aes(ymin = lower,
                                      ymax = upper),
-                  color = glow_color,
-                  alpha = glow_alpha,
+                  linewidth = unc_line_width,
+                  color = unc_line_color,
+                  alpha = unc_line_alpha,
                   lineend = "round",
-                  linewidth = line_thickness_unc + 0.5,
-                  width = 0) +
-    geom_errorbar(data = quants, aes(ymin = lower,
-                                     ymax = upper),
-                  color = line_color_unc,
-                  lineend = "round",
-                  linewidth = line_thickness_unc,
-                  width = 0) +
-    geom_line(data = quants,
-              color = glow_color,
-              alpha = glow_alpha,
-              lineend = "round",
-              linewidth = line_thickness_unc + 0.5) +
-    geom_line(data = quants,
-              color = line_color_unc,
-              linewidth = line_thickness_unc) +
-    geom_point(data = quants,
-               color = glow_color,
-               alpha = glow_alpha,
-               size = point_size_unc + 1) +
-    geom_point(data = quants,
-               color = line_color_unc,
-               size = point_size_unc) +
-    xlab("Age") +
+                  size = unc_point_size,
+                  width = 0)
+
+  if(glow){
+    g <- g +
+      # Glow 1 - Median posterior point size the same as the "real" point size.
+      # This is needed because the lines connecting the points become shorter
+      # when the points are larger for the glow effect, so the glow layer
+      # will not fully encapsulate the ends on the in-between lines. This
+      # fixes the glow at those line ends
+      geom_pointpath(data = quants,
+                     linewidth = post_med_line_width + glow_offset,
+                     color = glow_color,
+                     alpha = glow_alpha,
+                     size = post_med_point_size) +
+      # Glow 2 - Median posterior line and points
+      geom_pointpath(data = quants,
+                     linewidth = post_med_line_width + glow_offset,
+                     color = glow_color,
+                     alpha = glow_alpha,
+                     size = post_med_point_size + glow_offset)
+  }
+
+  g <- g +
+    # Median posterior line and points
+    geom_pointpath(data = quants,
+                   linewidth = post_med_line_width,
+                   color = post_med_line_color,
+                   size = post_med_point_size) +
+    xlab(ifelse(show_xlab, "Age", "")) +
     ylab("Selectivity")
 
   g
