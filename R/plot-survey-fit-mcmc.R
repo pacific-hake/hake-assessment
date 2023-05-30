@@ -14,29 +14,40 @@
 #' @param axis_title_font_size Size of the font for the X and Y axis labels
 #' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
 #' @param axis_label_color Color for the axis labels and tick labels
-#' @param glow Logical. If `TRUE`, add a white glow around the lines so that
-#' they can more easily be seen in contrast to the background posterior lines
 #' @param ylim A vector of two values representing the minimum and maximum
 #' values to appear on the y-axis
 #' @param post_line_col The color of the thinner individual posterior lines
 #' @param post_line_alpha The transparency of the thinner individual
 #' posterior lines
-#' @param post_med_color The color of the posterior median line and points
 #' @param post_med_line_width The width of the posterior median line
 #' @param post_med_point_size The size of the posterior median points
-#' @param err_col The color of the error bars (both narrow and thick)
-#' @param err_obs_line_width The width of the error bar lines for observed
+#' @param obs_line_color the color for the uncertainty bars for the observed
 #' values
-#' @param err_est_line_width The width of the error bar lines for estimated
+#' @param obs_point_color the color for the uncertainty median points for
+#' the observed values
+#' @param obs_line_width The width of the error bar lines for observed
 #' values
-#' @param err_obs_point_size The size of the points on the error bars
-#' @param glow_col_err The color of the 'glow' on the error bar lines
-#' @param glow_col_med The color of the 'glow' on the posterior median line
-#' @param glow_alpha_err The transparency of the 'glow' on the error bars
-#' and points
-#' @param glow_alpha_med The transparency of the 'glow' on the posterior
-#' median line
-#'
+#' @param obs_point_size The size of the points on the error bars for the
+#' observed values
+#' @param extrasd_line_color The color of the error bars for the
+#'  extra SD parameter estimates
+#' @param extrasd_point_color The color of the median points for the
+#'  extra SD parameter estimates
+#' @param extrasd_line_width The width of the error bar lines for the
+#'  extra SD parameter estimates
+#' @param extrasd_point_size The sizeof the median points for the
+#' extra SD parameter estimates
+#' @param glow Logical. If `TRUE`, add a white glow around the lines so that
+#' they can more easily be seen in contrast to the background posterior lines
+#' @param glow_offset The amount to add to the lines and points to create the
+#' @param post_line_width
+#' @param post_med_line_color
+#' @param post_med_line_alpha
+#' @param obs_alpha
+#' @param extrasd_alpha
+#' @param glow_color
+#' @param glow_alpha
+#' glow effect
 #' @return a [ggplot2::ggplot()] object
 #' @export
 plot_survey_fit_mcmc <- function(model,
@@ -47,34 +58,37 @@ plot_survey_fit_mcmc <- function(model,
                                  axis_title_font_size = 14,
                                  axis_tick_font_size = 11,
                                  axis_label_color = "black",
-                                 post_line_col = "gray40",
-                                 post_line_alpha = 1,
-                                 post_med_color = "darkblue",
-                                 post_med_line_width = 2,
+                                 post_line_width = 0.1,
+                                 post_line_col = "black",
+                                 post_line_alpha = 0.1,
+                                 post_med_line_width = 1,
+                                 post_med_line_color = "blue",
+                                 post_med_line_alpha = 1,
                                  post_med_point_size = 3,
-                                 err_col = "blue",
-                                 err_obs_line_width = 2,
-                                 err_est_line_width = 0.5,
-                                 err_obs_point_size = 3,
+                                 obs_line_width = 2,
+                                 obs_line_color = "blue",
+                                 obs_point_color = "black",
+                                 obs_point_size = 3,
+                                 obs_alpha = 1,
+                                 extrasd_line_width = 0.5,
+                                 extrasd_line_color = "blue",
+                                 extrasd_point_color = "blue",
+                                 extrasd_point_size = 3,
+                                 extrasd_alpha = 1,
                                  glow = TRUE,
-                                 glow_col_err = "white",
-                                 glow_col_med = "white",
-                                 glow_alpha_err = 0.7,
-                                 glow_alpha_med = 0.7){
+                                 glow_offset = 0.25,
+                                 glow_color = "white",
+                                 glow_alpha = 1){
 
   type <- match.arg(type)
 
   surv_index <- ifelse(type == "age1", 3, 2)
 
-  # Total number of samples available
+  # Total number of samples available, and the number of posteriors requested
+  # which, if `NULL` becomes the number of samples
   n_samp <- model$extra_mcmc$num_posts
-  n_posts <- ifelse(n_samp < n_posts, n_samp, n_posts)
-  # A random sub-sample of those
-  if(is.null(n_posts)){
-    subsample <- seq_len(n_samp)
-  }else{
-    subsample <- sample(n_samp, n_posts)
-  }
+  n_posts <- n_posts %||% n_samp
+  subsample <- sample(n_samp, n_posts)
 
   # Extract observed index values (thick errorbars) ----
   obs <- model$dat$CPUE |>
@@ -154,6 +168,7 @@ plot_survey_fit_mcmc <- function(model,
                   y = med,
                   ymin = lo,
                   ymax = hi)) +
+    #Add posteriors lines ----
     geom_line(data = index_posts,
               aes(x = yr,
                   y = med,
@@ -164,84 +179,94 @@ plot_survey_fit_mcmc <- function(model,
               inherit.aes = FALSE)
 
   if(glow){
+    # Glow 1 - Median posterior point size the same as the "real" point size.
+    # This is needed because the lines connecting the points become shorter
+    # when the points are larger for the glow effect, so the glow layer
+    # will not fully encapsulate the ends on the in-between lines. This
+    # fixes the glow at those line ends
     g <- g +
-      geom_line(data = index_med,
-                aes(x = yr,
-                    y = med),
-                color = glow_col_med,
-                alpha = glow_alpha_med,
-                linewidth = post_med_line_width + 0.5,
-                inherit.aes = FALSE)
+      geom_pointpath(data = index_med,
+                     aes(x = yr,
+                         y = med),
+                     linewidth = post_med_line_width + glow_offset,
+                     color = glow_color,
+                     alpha = glow_alpha,
+                     size = post_med_point_size,
+                     inherit.aes = FALSE) +
+      # Glow 2 - Add posterior median points and line
+      geom_pointpath(data = index_med,
+                     aes(x = yr,
+                         y = med),
+                     linewidth = post_med_line_width + glow_offset,
+                     color = glow_color,
+                     alpha = glow_alpha,
+                     size = post_med_point_size + glow_offset,
+                     inherit.aes = FALSE)
   }
 
+  # Median posterior line and points
   g <- g +
-    geom_line(data = index_med,
-              aes(x = yr,
-                  y = med),
-              color = post_med_color,
-              linewidth = post_med_line_width,
-              inherit.aes = FALSE)
+    geom_pointpath(data = index_med,
+                   aes(x = yr,
+                       y = med),
+                   color = post_med_line_color,
+                   size = post_med_point_size,
+                   linewidth = post_med_line_width,
+                   inherit.aes = FALSE)
 
   if(glow){
-    g <- g +
-      geom_point(data = index_med,
-               aes(x = yr,
-                   y = med),
-               color = glow_col_med,
-               alpha = glow_alpha_med,
-               size = post_med_point_size + 1,
-               inherit.aes = FALSE)
-  }
-
-  g <- g +
-    geom_point(data = index_med,
-               aes(x = yr,
-                   y = med),
-               color = post_med_color,
-               size = post_med_point_size,
-               inherit.aes = FALSE)
-
-  if(glow){
+    # Glow - Extra SD line (Longer than obs)
     g <- g +
       geom_errorbar(data = obs_extra_sd,
-                    linewidth = err_est_line_width + 0.5,
+                    linewidth = extrasd_line_width + 0.5,
                     width = 0,
-                    color = glow_col_err,
-                    alpha = glow_alpha_err,
+                    color = glow_color,
+                    alpha = glow_alpha,
                     lineend = "round")
   }
 
+  # Extra SD line (Longer than obs)
   g <- g +
     geom_errorbar(data = obs_extra_sd,
-                  linewidth = err_est_line_width,
-                  color = err_col,
+                  linewidth = extrasd_line_width,
+                  color = extrasd_line_color,
                   width = 0,
                   lineend = "round")
 
   if(glow){
+    # Glow - Obs line (observed)
     g <- g +
-      geom_errorbar(width = 0,
-                    linewidth = err_obs_line_width + 0.5,
-                    color = glow_col_err,
-                    alpha = glow_alpha_err,
+      geom_errorbar(data = obs,
+                    width = 0,
+                    linewidth = obs_line_width + 0.5,
+                    color = glow_color,
+                    alpha = glow_alpha,
                     lineend = "round")
   }
 
+  # Obs line (observed)
   g <- g +
-    geom_errorbar(width = 0,
-                  color = err_col,
-                  linewidth = err_obs_line_width,
+    geom_errorbar(data = obs,
+                  width = 0,
+                  linewidth = obs_line_width,
+                  color = obs_line_color,
                   lineend = "round")
 
   if(glow){
+    # Glow - Obs median point
     g <- g +
-      geom_point(size = err_obs_point_size + 0.5,
-                 color = glow_col_err,
-                 alpha = glow_alpha_err)
+      geom_point(data = obs,
+                 size = obs_point_size + 0.5,
+                 color = glow_color,
+                 alpha = glow_alpha)
   }
 
+  # Obs median point
   g <- g +
-    geom_point(size = err_obs_point_size) +
+    geom_point(data = obs,
+               color = obs_point_color,
+               alpha = obs_alpha,
+               size = obs_point_size) +
     scale_x_continuous(breaks = x_breaks,
                        labels = x_labels) +
     scale_y_continuous(breaks = y_breaks,
@@ -275,12 +300,14 @@ plot_survey_fit_mcmc <- function(model,
           plot.margin = margin(12, 12, 12, 5))
 
   if(show_legend){
-    symbol_x <- 1995
-    symbol_x_start <- 1994
-    symbol_x_end <- 1996
-    text_x <- 1996.25
-    type_off <- ifelse(type == "age1", 2, 1)
+    x_rng <- layer_scales(g)$x$range$range
+    symbol_x <- x_rng[1]
+    symbol_x_start <- symbol_x - 1
+    symbol_x_end <- symbol_x + 1
+    text_x <- symbol_x_end + 0.25
+    type_off <- diff(ylim) / 5
     symbol_y <- max(ylim) - 0.2 * type_off
+
     g <- g +
       # Error bar symbol construction
       annotate("segment",
@@ -288,53 +315,53 @@ plot_survey_fit_mcmc <- function(model,
                xend = symbol_x_end,
                y = symbol_y,
                yend = symbol_y,
-               colour = err_col,
-               linewidth = err_est_line_width) +
+               colour = extrasd_line_color,
+               linewidth = extrasd_line_width) +
       annotate("segment",
                x = symbol_x_start + 0.5,
                xend = symbol_x_end - 0.5,
                y = symbol_y,
                yend = symbol_y,
-               colour = err_col,
-               linewidth = err_obs_line_width) +
+               colour = extrasd_line_color,
+               linewidth = obs_line_width) +
       annotate("point",
                x = symbol_x,
                y = symbol_y,
                shape = 19,
-               colour = glow_col_err,
-               size = err_obs_point_size + 0.5) +
+               colour = "white",
+               size = obs_point_size + glow_offset) +
       annotate("point",
                x = symbol_x,
                y = symbol_y,
                shape = 19,
-               colour = "black",
-               size = err_obs_point_size) +
+               colour = obs_point_color,
+               size = obs_point_size) +
       # Median posterior survey fit construction
       annotate("segment",
                x = symbol_x_start,
                xend = symbol_x_end,
                y = symbol_y - 0.2 * type_off,
                yend = symbol_y - 0.2 * type_off,
-               colour = post_med_color,
+               colour = post_med_line_color,
                linewidth = post_med_line_width + 0.5) +
       annotate("segment",
                x = symbol_x_start,
                xend = symbol_x_end,
                y = symbol_y - 0.2 * type_off,
                yend = symbol_y - 0.2 * type_off,
-               colour = post_med_color,
+               colour = post_med_line_color,
                linewidth = post_med_line_width) +
       annotate("point",
                x = symbol_x,
                y = symbol_y - 0.2 * type_off,
                shape = 19,
-               colour = glow_col_med,
-               size = post_med_point_size + 1) +
+               colour = "white",
+               size = post_med_point_size + 2) +
       annotate("point",
                x = symbol_x,
                y = symbol_y - 0.2 * type_off,
                shape = 19,
-               colour = post_med_color,
+               colour = post_med_line_color,
                size = post_med_point_size) +
       # Posterior survey fit individual lines construction
       annotate("segment",

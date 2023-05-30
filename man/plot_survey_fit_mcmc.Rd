@@ -14,20 +14,24 @@ plot_survey_fit_mcmc(
   axis_title_font_size = 14,
   axis_tick_font_size = 11,
   axis_label_color = "black",
-  post_line_col = "gray40",
-  post_line_alpha = 1,
+  post_line_col = "black",
+  post_line_alpha = 0.1,
   post_med_color = "darkblue",
-  post_med_line_width = 2,
-  post_med_point_size = 3,
-  err_col = "blue",
-  err_obs_line_width = 2,
-  err_est_line_width = 0.5,
-  err_obs_point_size = 3,
+  post_med_line_width = 1,
+  post_med_point_size = 1,
+  obs_color = "blue",
+  obs_line_width = 1,
+  obs_point_size = 3,
+  extrasd_line_color = "blue",
+  extrasd_point_color = "blue",
+  extrasd_point_size = 3,
+  extrasd_line_width = 1,
   glow = TRUE,
+  glow_offset = 0.5,
   glow_col_err = "white",
   glow_col_med = "white",
-  glow_alpha_err = 0.7,
-  glow_alpha_med = 0.7
+  glow_alpha_err = 1,
+  glow_alpha_med = 1
 )
 }
 \arguments{
@@ -61,18 +65,32 @@ posterior lines}
 
 \item{post_med_point_size}{The size of the posterior median points}
 
-\item{err_col}{The color of the error bars (both narrow and thick)}
-
-\item{err_obs_line_width}{The width of the error bar lines for observed
+\item{obs_color}{the color for the uncertainty bars for the observed
 values}
 
-\item{err_est_line_width}{The width of the error bar lines for estimated
+\item{obs_line_width}{The width of the error bar lines for observed
 values}
 
-\item{err_obs_point_size}{The size of the points on the error bars}
+\item{obs_point_size}{The size of the points on the error bars for the
+observed values}
+
+\item{extrasd_line_color}{The color of the error bars for the
+extra SD parameter estimates}
+
+\item{extrasd_point_color}{The color of the median points for the
+extra SD parameter estimates}
+
+\item{extrasd_point_size}{The sizeof the median points for the
+extra SD parameter estimates}
+
+\item{extrasd_line_width}{The width of the error bar lines for the
+extra SD parameter estimates}
 
 \item{glow}{Logical. If \code{TRUE}, add a white glow around the lines so that
 they can more easily be seen in contrast to the background posterior lines}
+
+\item{glow_offset}{The amount to add to the lines and points to create the
+glow effect}
 
 \item{glow_col_err}{The color of the 'glow' on the error bar lines}
 
