@@ -68,6 +68,7 @@ plot_running_quants <- function(model,
                       ymax = upper)) +
     geom_line() +
     geom_ribbon(alpha = rib_alpha) +
+    scale_x_continuous(labels = comma) +
     ylab("")
 
   if(is.null(y_lim)){

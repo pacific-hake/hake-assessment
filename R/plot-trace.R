@@ -29,5 +29,6 @@ plot_trace <- function(model,
     transmute(Iteration = as.numeric(Iteration),
               Value = .[[2]]) |>
     ggplot(aes(x = Iteration, y = Value)) +
-    geom_path()
+    geom_path() +
+    scale_x_continuous(labels = comma)
 }

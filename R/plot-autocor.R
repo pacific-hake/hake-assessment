@@ -44,6 +44,7 @@ plot_autocor <- function(model,
 
   g <- ggplot(lag_df, aes(x = Lag, y = Autocorrelation)) +
     geom_col(width = bar_width) +
+    scale_x_continuous(labels = comma) +
     ylim(y_lim)
 
   g
