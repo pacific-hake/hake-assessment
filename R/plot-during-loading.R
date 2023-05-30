@@ -33,14 +33,13 @@ plot_during_loading <- function(model){
                                         probs = probs,
                                         age_range = c(1, 8),
                                         show_xlab = FALSE,
-                                        unc_line_color = "red",
+                                        post_med_line_color = "red3",
+                                        unc_line_color = "red3",
                                         glow = TRUE)
     plist[[2]] <- plot_selex_posteriors(model,
                                         type = "fishery",
                                         probs = probs,
                                         age_range = c(1, 8),
-                                        post_med_line_color = "blue",
-                                        unc_line_color = "blue",
                                         glow = TRUE)
     plot_grid(plotlist = plist, nrow = 2, ncol = 1)
   }
