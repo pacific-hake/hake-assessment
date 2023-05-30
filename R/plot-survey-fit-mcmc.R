@@ -89,6 +89,19 @@ plot_survey_fit_mcmc <- function(model,
   n_samp <- model$extra_mcmc$num_posts
   n_posts <- n_posts %||% n_samp
   subsample <- sample(n_samp, n_posts)
+  legend_text <- ifelse(n_posts == n_samp,
+                        paste0("All (",
+                               f(n_posts),
+                               ") of the MCMC estimates of ",
+                               ifelse(type == "acoustic",
+                                      "expected survey biomass",
+                                      "scaled age-1 numbers")),
+                        paste0("A subset (",
+                               f(n_posts),
+                               ") of the MCMC estimates of ",
+                               ifelse(type == "acoustic",
+                                      "expected survey biomass",
+                                      "scaled age-1 numbers")))
 
   # Extract observed index values (thick errorbars) ----
   obs <- model$dat$CPUE |>
@@ -406,12 +419,7 @@ plot_survey_fit_mcmc <- function(model,
       annotate("text",
                x = text_x,
                y = symbol_y - 0.4 * type_off,
-               label = paste0("A subset (",
-                              f(n_posts),
-                              ") of the MCMC estimates of ",
-                              ifelse(type == "acoustic",
-                                     "expected survey biomass",
-                                     "scaled age-1 numbers")),
+               label = legend_text,
                hjust = 0)
   }else{
     g <- g +
