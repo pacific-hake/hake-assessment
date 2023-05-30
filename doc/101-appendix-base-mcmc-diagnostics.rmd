@@ -1,0 +1,108 @@
+\newpage
+
+\rfoot{Base model MCMC diagnostics}
+
+# Base model MCMC diagnostics
+
+(ref:app-mcmc-diag-m-r0-cap) Summary of Markov chain Monte Carlo diagnostics
+for natural mortality (upper panels) and the natural log of mean unfished
+equilibrium recruitment (ln($R_0$); lower panels) in the base
+model. Top sub-panels show the trace of the sampled values across iterations
+(absolute values, top left; cumulative running median with 2.5^th^ and
+97.5^th^ percentiles, top right). The lower left sub-panel indicate the
+autocorrelation present in the chain at different lag times (i.e., distance
+between samples in the chain), and the lower right sub-panel shows the
+distribution of the values in the chain (i.e., the marginal density from a
+smoothed histogram of values in the trace plot).
+
+(ref:app-mcmc-diag-m-r0-alt) This figure shows good MCMC diagnostics for the
+base model for natural mortality and log R0 parameters.
+
+```{r app-mcmc-diag-m-r0-fig, fig.cap = "(ref:app-mcmc-diag-m-r0-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:app-mcmc-diag-m-r0-alt)"}
+plist <- NULL
+plist[[1]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[[1]],
+                        key_posteriors_titles[[1]])
+plist[[2]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[[2]],
+                        key_posteriors_titles[[2]])
+plot_grid(plotlist = plist, nrow = 2)
+```
+
+(ref:app-mcmc-diag-h-extra-sd-cap) Summary of Markov chain Monte Carlo
+diagnostics for steepness (upper panels) and the additional standard
+deviation (SD) in the biomass index (lower panels) in the base model.
+Sub-panel descriptions as in Figure~\@ref{fig:app-mcmc-diag-m-r0-fig}.
+
+(ref:app-mcmc-diag-h-extra-sd-alt) This figure shows good MCMC diagnostics
+for the base model for steepness and the survey extra standard deviation
+parameters.
+
+```{r app-mcmc-diag-h-extra-sd-fig, fig.cap = "(ref:app-mcmc-diag-h-extra-sd-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:app-mcmc-diag-h-extra-sd-alt)"}
+
+plist <- NULL
+plist[[1]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[[3]],
+                        key_posteriors_titles[[3]])
+plist[[2]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[[4]],
+                        key_posteriors_titles[[4]])
+plot_grid(plotlist = plist, nrow = 2)
+```
+(ref:app-mcmc-diag-dm-cap) Summary of Markov chain Monte Carlo diagnostics
+for the Dirichlet-multinomial age-composition parameters for the fishery ($\theta_{\text{fish}}$, upper panels) and the survey ($\theta_{\text{surv}}$,
+lower panels) in the base model. Sub-panel descriptions as in Figure~\@ref{fig:app-mcmc-diag-m-r0-fig}.
+
+(ref:app-mcmc-diag-dm-alt) This figure shows good MCMC diagnostics for the
+base model for the two Dirichlet-multinomial parameters for the fishery and
+survey.
+```{r app-mcmc-diag-dm-fig, fig.cap = "(ref:app-mcmc-diag-dm-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = ""}
+
+plist <- NULL
+plist[[1]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[[5]],
+                        key_posteriors_titles[[5]])
+plist[[2]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[[6]],
+                        key_posteriors_titles[[6]])
+plot_grid(plotlist = plist, nrow = 2)
+```
+(ref:app-mcmc-diag-hists-cap) Summary histograms of MCMC diagnostics for all
+base model parameters. The level of autocorrelation in the chain
+(distribution across lag times, i.e., distance between samples in the chain,
+shown in the top left panel) influences the effective sample size (top right
+panel) used to estimate posterior distributions. The Geweke statistic (lower
+left panel) tests for equality between means located in the first part of
+the chain against means in the last part of the chain. The Heidelberger and
+Welch statistic (lower right panel) tests if the sampled values come from
+a stationary distribution by comparing different sections of the chain.
+
+(ref:app-mcmc-diag-hists-alt) This figure shows good summary MCMC
+diagnostics for all base model parameters.
+
+```{r app-mcmc-diag-hists-fig, fig.cap = "(ref:app-mcmc-diag-hists-cap)", fig.height = 6, fig.width = 8, is.fig = TRUE, alt.text = ""}
+
+d <- calc_mcmc_param_stats(base_model)
+diag_fill <- "royalblue"
+diag_alpha <- 0.3
+
+p <- list()
+p[[1]] <- plot_mcmc_autocor(d,
+                            "autocor",
+                            color = "black",
+                            fill = diag_fill,
+                            alpha = diag_alpha,
+                            y_lim = NULL,
+                            x_lim = c(-1, 1),
+                            x_breaks = seq(-1, 1, 0.5))
+
+plot_grid(plotlist = p, nrow = 2)
+```
+
+
