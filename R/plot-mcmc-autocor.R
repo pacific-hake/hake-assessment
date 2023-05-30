@@ -15,7 +15,8 @@
 #' values will be calculated from the input values
 #' @param x_brk A value to use to create the `x_breaks` values if it is
 #' `NULL`. This value is used as the `by` argument like this:
-#' `seq(xlim[1], xlim[2], by = x_brk)`
+#' `seq(xlim[1], xlim[2], by = x_brk)`. This is also used as the `binwidth`
+#' in the [ggplot2::geom_histogram()] call
 #' @param y_brk A value to use to create the `y_breaks` values if it is
 #' `NULL`. This value is used as the `by` argument like this:
 #' `seq(ylim[1], ylim[2], by = y_brk)`
@@ -48,7 +49,7 @@ plot_mcmc_autocor <- function(d,
 
   g <- ggplot(d) +
     geom_histogram(aes(x = x),
-                   binwidth = 0.1,
+                   binwidth = x_brk,
                    ...)
 
   # Set up limits and breaks
@@ -57,7 +58,7 @@ plot_mcmc_autocor <- function(d,
     x_lim <- c(min(gx$x), max(gx$x))
   }
   if(is.null(x_breaks[1])){
-    x_breaks <- seq(x_lim[1], x_lim[2], by = 0.1)
+    x_breaks <- seq(x_lim[1], x_lim[2], by = x_brk)
   }
   if(is.null(y_lim[1])){
     # Make the upper y limit evenly divisible by the `y_brk` sequence value

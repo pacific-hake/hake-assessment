@@ -38,7 +38,8 @@ values will be calculated from the input values}
 
 \item{x_brk}{A value to use to create the \code{x_breaks} values if it is
 \code{NULL}. This value is used as the \code{by} argument like this:
-\code{seq(xlim[1], xlim[2], by = x_brk)}}
+\code{seq(xlim[1], xlim[2], by = x_brk)}. This is also used as the \code{binwidth}
+in the \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} call}
 
 \item{y_brk}{A value to use to create the \code{y_breaks} values if it is
 \code{NULL}. This value is used as the \code{by} argument like this:
