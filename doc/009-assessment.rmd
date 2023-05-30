@@ -787,7 +787,7 @@ $\theta_{\text{fish}}$ and  $\theta_{\text{surv}}$ (as outlined in
 Section~\@ref(sec:data-age-comp-likelihood-fig)).
 
 The `r assess_yr` base model specified the same level of variation (standard
-deviation of $\Phi = `r sel_phi_val`$) associated with time-varying fishery
+deviation of $\Phi =$ `r sel_phi_val`) associated with time-varying fishery
 selectivity as the `r last_assess_yr` base model, effectively allowing the
 model flexibility (i.e., a lower penalty on the overall likelihood) to fit to
 data that suggests high variability among years for each age. This level of
