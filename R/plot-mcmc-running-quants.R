@@ -12,7 +12,6 @@
 #' @export
 plot_running_quants <- function(model,
                                 post_regex,
-                                probs = c(0.025, 0.5, 0.975),
                                 rib_alpha = 0.2,
                                 y_lim = NULL){
 
