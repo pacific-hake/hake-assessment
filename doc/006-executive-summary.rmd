@@ -28,7 +28,8 @@ sectors where they are represented.
 years have been the largest in the time series.
 
 ```{r es-catches-fig, fig.cap = "(ref:es-catches-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:es-catches-alt)"}
-plot_catches(ct, leg.y.loc = 650)
+
+plot_catches(ct, xlim = c(start_yr, last_data_yr))
 ```
 
 ## Catches {-}
@@ -825,7 +826,7 @@ table_risk(
 \clearpage
 
 ## Research and data needs {-}
-```{r child = "011-research-needs/research-needs.rmd"}
+```{r child = "010-research-needs/research-needs.rmd"}
 ```
 
 Executive summary EOF - do not remove - required by the post-processor
