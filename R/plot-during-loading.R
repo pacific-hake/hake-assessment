@@ -4,6 +4,8 @@
 #' @details
 #' Uses the [probs] vector which is included in the package data for
 #' this package
+#' Primarily used for plots that directly access the `mcmc` output because
+#' that is not included in the model object to reduce model object size
 #'
 #' @param model A model, created by [create_rds_file()]
 #'

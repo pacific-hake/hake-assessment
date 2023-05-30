@@ -20,4 +20,6 @@ attached to the model object for saving in a model RDS file
 \details{
 Uses the \link{probs} vector which is included in the package data for
 this package
+Primarily used for plots that directly access the \code{mcmc} output because
+that is not included in the model object to reduce model object size
 }

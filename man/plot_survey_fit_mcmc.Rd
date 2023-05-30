@@ -14,24 +14,27 @@ plot_survey_fit_mcmc(
   axis_title_font_size = 14,
   axis_tick_font_size = 11,
   axis_label_color = "black",
+  post_line_width = 0.1,
   post_line_col = "black",
   post_line_alpha = 0.1,
-  post_med_color = "darkblue",
   post_med_line_width = 1,
-  post_med_point_size = 1,
-  obs_color = "blue",
-  obs_line_width = 1,
+  post_med_line_color = "blue",
+  post_med_line_alpha = 1,
+  post_med_point_size = 3,
+  obs_line_width = 2,
+  obs_line_color = "blue",
+  obs_point_color = "black",
   obs_point_size = 3,
+  obs_alpha = 1,
+  extrasd_line_width = 0.5,
   extrasd_line_color = "blue",
   extrasd_point_color = "blue",
   extrasd_point_size = 3,
-  extrasd_line_width = 1,
+  extrasd_alpha = 1,
   glow = TRUE,
   glow_offset = 0.5,
-  glow_col_err = "white",
-  glow_col_med = "white",
-  glow_alpha_err = 1,
-  glow_alpha_med = 1
+  glow_color = "white",
+  glow_alpha = 1
 )
 }
 \arguments{
@@ -59,20 +62,24 @@ values to appear on the y-axis}
 \item{post_line_alpha}{The transparency of the thinner individual
 posterior lines}
 
-\item{post_med_color}{The color of the posterior median line and points}
-
 \item{post_med_line_width}{The width of the posterior median line}
 
 \item{post_med_point_size}{The size of the posterior median points}
 
-\item{obs_color}{the color for the uncertainty bars for the observed
-values}
-
 \item{obs_line_width}{The width of the error bar lines for observed
 values}
 
+\item{obs_line_color}{the color for the uncertainty bars for the observed
+values}
+
+\item{obs_point_color}{the color for the uncertainty median points for
+the observed values}
+
 \item{obs_point_size}{The size of the points on the error bars for the
 observed values}
+
+\item{extrasd_line_width}{The width of the error bar lines for the
+extra SD parameter estimates}
 
 \item{extrasd_line_color}{The color of the error bars for the
 extra SD parameter estimates}
@@ -83,24 +90,12 @@ extra SD parameter estimates}
 \item{extrasd_point_size}{The sizeof the median points for the
 extra SD parameter estimates}
 
-\item{extrasd_line_width}{The width of the error bar lines for the
-extra SD parameter estimates}
-
 \item{glow}{Logical. If \code{TRUE}, add a white glow around the lines so that
 they can more easily be seen in contrast to the background posterior lines}
 
-\item{glow_offset}{The amount to add to the lines and points to create the
-glow effect}
+\item{glow_offset}{The amount to add to the lines and points to create the}
 
-\item{glow_col_err}{The color of the 'glow' on the error bar lines}
-
-\item{glow_col_med}{The color of the 'glow' on the posterior median line}
-
-\item{glow_alpha_err}{The transparency of the 'glow' on the error bars
-and points}
-
-\item{glow_alpha_med}{The transparency of the 'glow' on the posterior
-median line}
+\item{glow_alpha}{glow effect}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
