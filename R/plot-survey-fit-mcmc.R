@@ -76,7 +76,7 @@ plot_survey_fit_mcmc <- function(model,
                                  extrasd_point_size = 3,
                                  extrasd_alpha = 1,
                                  glow = TRUE,
-                                 glow_offset = 0.25,
+                                 glow_offset = 0.5,
                                  glow_color = "white",
                                  glow_alpha = 1){
 
