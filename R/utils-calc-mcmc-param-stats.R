@@ -63,7 +63,10 @@ calc_mcmc_param_stats <- function(model){
                             "heidelwelsch",
                             "label"))
   }) |>
-    map_df(~{.x})
+    map_df(~{.x}) |>
+    mutate(across(c("autocor",
+                    "geweke",
+                    "effn"), ~{as.numeric(.x)}))
 
   #ro_loc <- grep("^SR_LN\\(R0\\)$", param_nms)
 
