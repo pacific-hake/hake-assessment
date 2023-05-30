@@ -99,6 +99,7 @@ plot_survey_index_fits <- function(
                        labels = y_breaks) +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
+          legend.text.align = 0,
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 7, 0)) +
