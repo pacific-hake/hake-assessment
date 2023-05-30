@@ -38,7 +38,9 @@ plot_mcmc_diagnostics <- function(model,
                  nrow = 2,
                  byrow = TRUE) +
     theme(plot.background = element_rect(color = "black"))
-  y_grob <- textGrob(post_name,
+  post_name <- gsub(" +", "~", post_name)
+
+  y_grob <- textGrob(parse(text = post_name),
                      gp = gpar(fontface = "bold",
                                col = "black",
                                fontsize = 15),
