@@ -6,10 +6,15 @@
 Heidelberger & Welch statistic histograms. This is a re-coded version of
 https://github.com/r4ss/r4ss/blob/bioscale/R/mcmc.nuisance.R}
 \usage{
-calc_mcmc_param_stats(model)
+calc_mcmc_param_stats(model, scale_effn = 1000, ...)
 }
 \arguments{
 \item{model}{A model as output by \code{\link[=create_rds_file]{create_rds_file()}}}
+
+\item{scale_effn}{A value to divide the effective sample sizes by,
+mainly for plotting purposes}
+
+\item{...}{Absorbs arguments intended for other functions}
 }
 \value{
 A data frame with the 4 values as columns, with the same number

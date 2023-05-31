@@ -6,7 +6,7 @@ rmd_files: ["000-launcher.rmd",
             "004-load-knitr-variables.rmd",
             # Always leave the above (000-004) uncommented,
             # Comment out sections below only.
-            #"005-one-page-summary.rmd",
+            "005-one-page-summary.rmd",
             #"006-executive-summary.rmd",
             #"007-introduction.rmd",
             #"008-data.rmd",
@@ -15,7 +15,9 @@ rmd_files: ["000-launcher.rmd",
             #"011-acknowledgements.rmd",
             #"012-references.rmd"]
             #"013-tables.rmd"]
-            "014-figures.rmd"]
+            #"014-figures.rmd",
+            "100-start-appendices.rmd",
+            "101-appendix-base-mcmc-diagnostics.rmd"]
 # `delete_merged_file` - If true, the hake.Rmd file will be kept after the
 # hake.pdf file is created
 delete_merged_file: false

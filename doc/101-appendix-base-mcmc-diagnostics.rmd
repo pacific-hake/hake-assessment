@@ -88,21 +88,7 @@ diagnostics for all base model parameters.
 
 ```{r app-mcmc-diag-hists-fig, fig.cap = "(ref:app-mcmc-diag-hists-cap)", fig.height = 6, fig.width = 8, is.fig = TRUE, alt.text = ""}
 
-d <- calc_mcmc_param_stats(base_model)
-diag_fill <- "royalblue"
-diag_alpha <- 0.3
-
-p <- list()
-p[[1]] <- plot_mcmc_autocor(d,
-                            "autocor",
-                            color = "black",
-                            fill = diag_fill,
-                            alpha = diag_alpha,
-                            y_lim = NULL,
-                            x_lim = c(-1, 1),
-                            x_breaks = seq(-1, 1, 0.5))
-
-plot_grid(plotlist = p, nrow = 2)
+plot_mcmc_diagnostics_all_params(base_model, scale_effn = 1e3)
 ```
 
 
