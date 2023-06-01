@@ -13,6 +13,9 @@ plot_mcmc_histogram(
   lvls = NULL,
   scale_effn = 1000,
   show_ro = FALSE,
+  ro_arrow_length = 20,
+  bar_label_limit = 10,
+  bar_text_color = "navyblue",
   x_lim = NULL,
   y_lim = NULL,
   x_breaks = NULL,
@@ -42,6 +45,16 @@ is used for character columns (discrete data). If \code{FALSE}, return a
 
 \item{show_ro}{Logical. If \code{TRUE}, make a label with arrow showing which
 bin the R0 parameter is in}
+
+\item{ro_arrow_length}{The length in count units (y-axis units) of the
+arrow pointing to the bin that the R0 parameter is in. Only used if
+\code{show_ro} is \code{TRUE}}
+
+\item{bar_label_limit}{The number in a bin (count - y-axis), above which
+the label of the count for the bar is in white in the middle of the bar
+vertically. Below this value, the bar value will be above the bar. To
+have all value labels above the bars, set this to a value larger than the
+highest count bin}
 
 \item{x_lim}{A vector of two values. The min and max to show on the
 x-axis. If \code{NULL}, values will be calculated from the input values}
