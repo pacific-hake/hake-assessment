@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils-vec2df.R
 \name{vec2df}
 \alias{vec2df}
-\title{Create a one-row data.frame from a vector of values}
+\title{Create a one-row data frame from a vector of values}
 \usage{
 vec2df(vec, nms = NULL)
 }
@@ -12,14 +12,12 @@ vec2df(vec, nms = NULL)
 \item{nms}{Optional column names for the new data frame}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble::tibble()}} with one row
+A one row \code{\link[tibble:tibble]{tibble::tibble()}}
 }
 \description{
-Create a one-row data.frame from a vector of values
+Create a one-row data frame from a vector of values
 }
 \details{
 If \code{nms} is not given, the names of the vector (if \code{vec} is a named vector)
 will be used for the column names
-This function should not be used for massive amounts of conversions in
-a loop as it has a bad time complexity
 }
