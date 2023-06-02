@@ -11,7 +11,7 @@ plot_mcmc_histogram(
   y_lab = "Count",
   barplot = FALSE,
   lvls = NULL,
-  scale_effn = 1000,
+  scale_effn = 1,
   show_ro = FALSE,
   ro_arrow_length = 20,
   bar_label_limit = 10,

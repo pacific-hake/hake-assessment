@@ -29,7 +29,7 @@ plot_mcmc_diagnostics <- function(model,
 
   plist <- NULL
   plist[[1]] <- plot_trace(model, post_regex)
-  plist[[2]] <- plot_running_quants(model, post_regex, rib_alpha = all_alpha)
+  plist[[2]] <- plot_running_quants(model, post_regex, probs, rib_alpha = all_alpha)
   plist[[3]] <- plot_autocor(model, post_regex, ...)
   plist[[4]] <- plot_density(model, post_regex, den_alpha = all_alpha)
 

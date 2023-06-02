@@ -47,7 +47,7 @@ plot_mcmc_histogram <- function(d,
                                 y_lab = "Count",
                                 barplot = FALSE,
                                 lvls = NULL,
-                                scale_effn = 1e3,
+                                scale_effn = 1,
                                 show_ro = FALSE,
                                 ro_arrow_length = 20,
                                 bar_label_limit = 10,
@@ -72,6 +72,9 @@ plot_mcmc_histogram <- function(d,
   d <- d |>
     select(!!col_sym) |>
     rename(x = !!col_sym)
+
+  ro_val <- d |>
+    slice(ro_ind) |> pull()
 
   if(barplot){
     # This is the count data frame, which we use directly to plot instead of
@@ -98,11 +101,31 @@ plot_mcmc_histogram <- function(d,
         mutate(x = factor(x, levels = lvls))
     }
 
+    # Replace NA with zero for count labels
+    d <- d |>
+      mutate(count = ifelse(is.na(count), 0, count))
+
     g <- ggplot(d) +
-      geom_bar(aes(x = x,
+      geom_bar(data = d,
+               aes(x = x,
                    y = count),
                stat = "identity",
-               ...)
+               ...) +
+      geom_text(data = d |>
+                  filter(count > bar_label_limit),
+                aes(x = x,
+                    y = count,
+                    label = count),
+                color = bar_text_color,
+                position = position_stack(vjust = 0.5)) +
+      geom_text(data = d |>
+                  filter(count <= bar_label_limit),
+                aes(x = x,
+                    y = count,
+                    label = count),
+                color = bar_text_color,
+                vjust = -0.5)
+
     # Set up limits and breaks
     gx <- layer_data(g)
     if(is.null(y_lim[1])){
@@ -121,11 +144,49 @@ plot_mcmc_histogram <- function(d,
       xlab(x_lab) +
       ylab(y_lab)
 
+    if(show_ro){
+      # The levels of the x-axis variable
+      grps_data <- levels(g$data$x)
+      # The group number for the group containing the R0 value
+      ro_grp <- which(grps_data == ro_val)
+      # `gr` is the table with the plotting data details in it, linking group
+      # number to plotting coordinates
+      gr <- ggplot_build(g)$data[[1]]
+
+      y_scale <- 1 / (y_lim[2] - y_lim[1]) * 100
+      extra_text_space <- 4 / y_scale
+
+      ro_grp_row <- gr[gr$group == ro_grp, ]
+      ro_x <- ro_grp_row |>
+        pull(x)
+      ro_y0 <-  ro_grp_row |>
+        pull(y)
+      ro_y1 <- ro_y0 + ro_arrow_length
+      # Arrow data frame
+      lbl <- tibble(x = ro_x,
+                    xend = ro_x,
+                    y = ro_y0,
+                    yend = ro_y1,
+                    label = paste0("R[0] (", ro_val, ")"))
+
+      g <- g +
+        geom_segment(data = lbl,
+                     aes(x = x,
+                         xend = xend,
+                         y = y,
+                         yend = yend),
+                     arrow = arrow(type = "closed",
+                                   ends = "first",
+                                   length = unit(2.5, 'mm'))) +
+        geom_text(data = lbl,
+                  aes(x = x,
+                      y = yend + extra_text_space,
+                      label = label),
+                  parse = TRUE)
+    }
     return(g)
   }
 
-  ro_val <- d |>
-    slice(ro_ind) |> pull()
   ro_val <- ro_val * scale_effn
 
   # Histograms only, barplots returned above
@@ -152,30 +213,6 @@ plot_mcmc_histogram <- function(d,
   if(is.null(y_breaks[1])){
     y_breaks <- seq(y_lim[1], y_lim[2], by = y_brk)
   }
-  gr <- ggplot_build(g)$data[[1]]
-  wch_less <- which(gr$xmin < ro_val / scale_effn)
-  wch_more <- which(gr$xmin >= ro_val / scale_effn)
-  if(tail(wch_less, 1) + 1 != head(wch_more, 1)){
-    stop("The R0 value does not seem to fit into a bin on the histogram",
-         call. = FALSE)
-  }
-  ro_xmin <- gr |>
-    slice(tail(wch_less, 1)) |>
-    pull(xmin)
-  ro_xmax <- gr |>
-    slice(head(wch_more, 1)) |>
-    pull(xmin)
-  ro_x <- (ro_xmin + ro_xmax) / 2
-  ro_y0 <- (gr |>
-             slice(tail(wch_less, 1)) |>
-             pull(y))
-  ro_y1 <- ro_y0 + ro_arrow_length
-  # Arrow data frame
-  lbl <- tibble(x = ro_x,
-                xend = ro_x,
-                y = ro_y0,
-                yend = ro_y1,
-                label = paste0("R0 (", ro_val, ")"))
 
   g <- g +
     scale_x_continuous(breaks = x_breaks,
@@ -203,24 +240,52 @@ plot_mcmc_histogram <- function(d,
              color = bar_text_color,
              binwidth = x_brk,
              geom = "text",
-             vjust = -0.5) +
-    geom_segment(data = lbl,
-              aes(x = x,
-                  xend = xend,
-                  y = y,
-                  yend = yend),
-              arrow = arrow(type = "closed",
-                            ends = "first",
-                            length = unit(2.5, 'mm'))) +
-    geom_text(data = lbl,
-              aes(x = x,
-                  y = yend + 0.1 * yend,
-                  label = label))
+             vjust = -0.5)
 
-    # annotate("text",
-    #          x = ro_x,
-    #          y = ro_y1,
-    #          label = paste0("R0 (", ro_val, ")"))
+  if(show_ro){
+    y_scale <- 1 / (y_lim[2] - y_lim[1]) * 100
+    extra_text_space <- 4 / y_scale
+
+    gr <- ggplot_build(g)$data[[1]]
+    wch_less <- which(gr$xmin < ro_val / scale_effn)
+    wch_more <- which(gr$xmin >= ro_val / scale_effn)
+    if(tail(wch_less, 1) + 1 != head(wch_more, 1)){
+      stop("The R0 value does not seem to fit into a bin on the histogram",
+           call. = FALSE)
+    }
+    ro_xmin <- gr |>
+      slice(tail(wch_less, 1)) |>
+      pull(xmin)
+    ro_xmax <- gr |>
+      slice(head(wch_more, 1)) |>
+      pull(xmin)
+    ro_x <- (ro_xmin + ro_xmax) / 2
+    ro_y0 <- (gr |>
+                slice(tail(wch_less, 1)) |>
+                pull(y))
+    ro_y1 <- ro_y0 + ro_arrow_length
+    # Arrow data frame
+    lbl <- tibble(x = ro_x,
+                  xend = ro_x,
+                  y = ro_y0,
+                  yend = ro_y1,
+                  label = paste0("R[0] (", ro_val, ")"))
+
+    g <- g +
+      geom_segment(data = lbl,
+                   aes(x = x,
+                       xend = xend,
+                       y = y,
+                       yend = yend),
+                   arrow = arrow(type = "closed",
+                                 ends = "first",
+                                 length = unit(2.5, 'mm'))) +
+      geom_text(data = lbl,
+                aes(x = x,
+                    y = yend + extra_text_space,
+                    label = label),
+                parse = TRUE)
+  }
 
   g
 }
