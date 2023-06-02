@@ -88,7 +88,10 @@ diagnostics for all base model parameters.
 
 ```{r app-mcmc-diag-hists-fig, fig.cap = "(ref:app-mcmc-diag-hists-cap)", fig.height = 6, fig.width = 8, is.fig = TRUE, alt.text = ""}
 
-plot_mcmc_diagnostics_all_params(base_model, show_ro = TRUE)
+plot_mcmc_diagnostics_all_params(base_model,
+                                 show_ro = TRUE,
+                                 ro_arrow_lengths = c(10, 20, 7, 20),
+                                 ro_text_nudges = c(0.15, 0, -0.55, 0))
 ```
 
 

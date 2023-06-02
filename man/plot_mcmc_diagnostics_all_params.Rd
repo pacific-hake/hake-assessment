@@ -10,6 +10,8 @@ plot_mcmc_diagnostics_all_params(
   diag_fill = "royalblue",
   diag_alpha = 0.3,
   diag_outline_color = "black",
+  ro_arrow_lengths = rep(20, 4),
+  ro_text_nudges = rep(0, 4),
   ...
 )
 }
@@ -21,6 +23,10 @@ plot_mcmc_diagnostics_all_params(
 \item{diag_alpha}{The transparency for the bars in the plots}
 
 \item{diag_outline_color}{The bar outline color for the bars in the plots}
+
+\item{ro_arrow_lengths}{A vector of 4 values to use for the arrow lengths
+in the 4 plots. Note the plot orders in this vector is:
+top left, top right bottom left bottom right}
 
 \item{...}{Arguments passed to \code{\link[=calc_mcmc_param_stats]{calc_mcmc_param_stats()}} and
 \code{\link[=plot_mcmc_histogram]{plot_mcmc_histogram()}}}

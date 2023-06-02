@@ -13,9 +13,12 @@ plot_mcmc_histogram(
   lvls = NULL,
   scale_effn = 1,
   show_ro = FALSE,
+  show_bar_values = TRUE,
   ro_arrow_length = 20,
+  ro_text_nudge = 0,
   bar_label_limit = 10,
   bar_text_color = "navyblue",
+  bar_text_size = 2,
   x_lim = NULL,
   y_lim = NULL,
   x_breaks = NULL,
@@ -43,6 +46,8 @@ is used for character columns (discrete data). If \code{FALSE}, return a
 \item{lvls}{A vector of levels that should appear in the data if
 \code{barplot} is \code{TRUE}. If \code{NULL}, the data will be plotted as-is}
 
+\item{scale_effn}{}
+
 \item{show_ro}{Logical. If \code{TRUE}, make a label with arrow showing which
 bin the R0 parameter is in}
 
@@ -50,11 +55,20 @@ bin the R0 parameter is in}
 arrow pointing to the bin that the R0 parameter is in. Only used if
 \code{show_ro} is \code{TRUE}}
 
+\item{ro_text_nudge}{Amount to nudge to the left(negative) or right
+(positive) the R0 location label}
+
 \item{bar_label_limit}{The number in a bin (count - y-axis), above which
 the label of the count for the bar is in white in the middle of the bar
 vertically. Below this value, the bar value will be above the bar. To
 have all value labels above the bars, set this to a value larger than the
 highest count bin}
+
+\item{bar_text_color}{The color of the count labels for each bar. Only
+used if \code{show_bar_values} is \code{TRUE}}
+
+\item{bar_text_size}{The font size of the count labels for each bar. Only
+used if \code{show_bar_values} is \code{TRUE}}
 
 \item{x_lim}{A vector of two values. The min and max to show on the
 x-axis. If \code{NULL}, values will be calculated from the input values}

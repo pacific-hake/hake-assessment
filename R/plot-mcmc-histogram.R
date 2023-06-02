@@ -16,11 +16,17 @@
 #' @param ro_arrow_length The length in count units (y-axis units) of the
 #' arrow pointing to the bin that the R0 parameter is in. Only used if
 #' `show_ro` is `TRUE`
+#' @param ro_text_nudge Amount to nudge to the left(negative) or right
+#' (positive) the R0 location label
 #' @param bar_label_limit The number in a bin (count - y-axis), above which
 #' the label of the count for the bar is in white in the middle of the bar
 #' vertically. Below this value, the bar value will be above the bar. To
 #' have all value labels above the bars, set this to a value larger than the
 #' highest count bin
+#' @param bar_text_color The color of the count labels for each bar. Only
+#' used if `show_bar_values` is `TRUE`
+#' @param bar_text_size The font size of the count labels for each bar. Only
+#' used if `show_bar_values` is `TRUE`
 #' @param x_lim A vector of two values. The min and max to show on the
 #' x-axis. If `NULL`, values will be calculated from the input values
 #' @param y_lim A vector of two values. The min and max to show on the
@@ -38,6 +44,7 @@
 #' `seq(ylim[1], ylim[2], by = y_brk)`
 #' @param ... Additional arguments to pass to the plotting functions
 #' [ggplot2::geom_histogram()] and [ggplot2::geom_bar()]
+#' @param scale_effn
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -49,9 +56,12 @@ plot_mcmc_histogram <- function(d,
                                 lvls = NULL,
                                 scale_effn = 1,
                                 show_ro = FALSE,
+                                show_bar_values = TRUE,
                                 ro_arrow_length = 20,
+                                ro_text_nudge = 0,
                                 bar_label_limit = 10,
                                 bar_text_color = "navyblue",
+                                bar_text_size = 2,
                                 x_lim = NULL,
                                 y_lim = NULL,
                                 x_breaks = NULL,
@@ -110,21 +120,27 @@ plot_mcmc_histogram <- function(d,
                aes(x = x,
                    y = count),
                stat = "identity",
-               ...) +
-      geom_text(data = d |>
-                  filter(count > bar_label_limit),
-                aes(x = x,
-                    y = count,
-                    label = count),
-                color = bar_text_color,
-                position = position_stack(vjust = 0.5)) +
-      geom_text(data = d |>
-                  filter(count <= bar_label_limit),
-                aes(x = x,
-                    y = count,
-                    label = count),
-                color = bar_text_color,
-                vjust = -0.5)
+               ...)
+
+    if(show_bar_values){
+      g <- g +
+        geom_text(data = d |>
+                    filter(count > bar_label_limit),
+                  aes(x = x,
+                      y = count,
+                      label = count),
+                  color = bar_text_color,
+                  size = bar_text_size,
+                  position = position_stack(vjust = 0.5)) +
+        geom_text(data = d |>
+                    filter(count <= bar_label_limit),
+                  aes(x = x,
+                      y = count,
+                      label = count),
+                  color = bar_text_color,
+                  size = bar_text_size,
+                  vjust = -0.5)
+    }
 
     # Set up limits and breaks
     gx <- layer_data(g)
@@ -179,7 +195,7 @@ plot_mcmc_histogram <- function(d,
                                    ends = "first",
                                    length = unit(2.5, 'mm'))) +
         geom_text(data = lbl,
-                  aes(x = x,
+                  aes(x = x + ro_text_nudge,
                       y = yend + extra_text_space,
                       label = label),
                   parse = TRUE)
@@ -224,23 +240,29 @@ plot_mcmc_histogram <- function(d,
     coord_cartesian(xlim = x_lim,
                     ylim = y_lim) +
     xlab(x_lab) +
-    ylab(y_lab) +
-    stat_bin(aes(x = x,
-                 label = after_stat(ifelse(count > bar_label_limit,
-                                           count,
-                                           NA))),
-             color = bar_text_color,
-             binwidth = x_brk,
-             geom = "text",
-             position = position_stack(vjust = 0.5)) +
-    stat_bin(aes(x = x,
-                 label = after_stat(ifelse(count <= bar_label_limit,
-                                           count,
-                                           NA))),
-             color = bar_text_color,
-             binwidth = x_brk,
-             geom = "text",
-             vjust = -0.5)
+    ylab(y_lab)
+
+  if(show_bar_values){
+    g <- g +
+      stat_bin(aes(x = x,
+                   label = after_stat(ifelse(count > bar_label_limit,
+                                             count,
+                                             NA))),
+               color = bar_text_color,
+               binwidth = x_brk,
+               geom = "text",
+               size = bar_text_size,
+               position = position_stack(vjust = 0.5)) +
+      stat_bin(aes(x = x,
+                   label = after_stat(ifelse(count <= bar_label_limit,
+                                             count,
+                                             NA))),
+               color = bar_text_color,
+               binwidth = x_brk,
+               geom = "text",
+               size = bar_text_size,
+               vjust = -0.5)
+  }
 
   if(show_ro){
     y_scale <- 1 / (y_lim[2] - y_lim[1]) * 100
@@ -281,7 +303,7 @@ plot_mcmc_histogram <- function(d,
                                  ends = "first",
                                  length = unit(2.5, 'mm'))) +
       geom_text(data = lbl,
-                aes(x = x,
+                aes(x = x + ro_text_nudge,
                     y = yend + extra_text_space,
                     label = label),
                 parse = TRUE)

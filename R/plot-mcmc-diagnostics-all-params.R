@@ -5,6 +5,9 @@
 #' @param diag_fill The fill color for the bars in the plots
 #' @param diag_alpha The transparency for the bars in the plots
 #' @param diag_outline_color The bar outline color for the bars in the plots
+#' @param ro_arrow_lengths A vector of 4 values to use for the arrow lengths
+#' in the 4 plots. Note the plot orders in this vector is:
+#' top left, top right bottom left bottom right
 #' @param ... Arguments passed to [calc_mcmc_param_stats()] and
 #' [plot_mcmc_histogram()]
 #'
@@ -14,6 +17,8 @@ plot_mcmc_diagnostics_all_params <- function(model,
                                              diag_fill = "royalblue",
                                              diag_alpha = 0.3,
                                              diag_outline_color = "black",
+                                             ro_arrow_lengths = rep(20, 4),
+                                             ro_text_nudges = rep(0, 4),
                                              ...){
 
   d <- calc_mcmc_param_stats(model, ...)
@@ -24,7 +29,8 @@ plot_mcmc_diagnostics_all_params <- function(model,
                                 color = diag_outline_color,
                                 x_lab = "Autocorrelation, lag = 1",
                                 y_lab = "",
-                                ro_arrow_length = 10,
+                                ro_arrow_length = ro_arrow_lengths[1],
+                                ro_text_nudge = ro_text_nudges[1],
                                 fill = diag_fill,
                                 alpha = diag_alpha,
                                 y_lim = NULL,
@@ -40,7 +46,8 @@ plot_mcmc_diagnostics_all_params <- function(model,
                                 color = diag_outline_color,
                                 fill = diag_fill,
                                 alpha = diag_alpha,
-                                ro_arrow_length = 20,
+                                ro_arrow_length = ro_arrow_lengths[2],
+                                ro_text_nudge = ro_text_nudges[2],
                                 x_lim = c(0, max(d$effn)),
                                 x_brk = 1,
                                 y_brk = 50,
@@ -54,7 +61,8 @@ plot_mcmc_diagnostics_all_params <- function(model,
                                 fill = diag_fill,
                                 alpha = diag_alpha,
                                 bar_label_limit = 2,
-                                ro_arrow_length = 5,
+                                ro_arrow_length =  ro_arrow_lengths[3],
+                                ro_text_nudge = ro_text_nudges[3],
                                 x_lim = c(-3, 3),
                                 x_breaks = seq(-3, 3, by = 1),
                                 x_brk = 0.25,
@@ -70,6 +78,8 @@ plot_mcmc_diagnostics_all_params <- function(model,
                                 color = diag_outline_color,
                                 fill = diag_fill,
                                 alpha = diag_alpha,
+                                ro_arrow_length =  ro_arrow_lengths[4],
+                                ro_text_nudge = ro_text_nudges[4],
                                 y_brk = 50,
                                 ...)
 
