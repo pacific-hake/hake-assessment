@@ -14,9 +14,10 @@
 #' it must be a full path
 #'
 #' @return Nothing
-gotest <- function(doc_dr = "~/github/pacific-hake/hake/doc"){
+gotest <- function(repo_dr = "~/github/pacific-hake/hake"){
 
-  cdr <<- getwd()
+  # Set global dir name to return back to with `goback()`
+  cdr <<- repo_dr
 
   raw_fns <- c("000-launcher.rmd",
                "001-load-packages.rmd",
@@ -27,6 +28,8 @@ gotest <- function(doc_dr = "~/github/pacific-hake/hake/doc"){
                "preamble.tex",
                "clean")
 
+  doc_dr <- file.path(repo_dr, "doc")
+
   src_fns <- file.path(doc_dr, raw_fns)
 
   work_dr <- tempdir()
@@ -34,7 +37,7 @@ gotest <- function(doc_dr = "~/github/pacific-hake/hake/doc"){
   unlink("*", recursive = TRUE, force = TRUE)
   dir.create("doc")
 
-  # Needed for `here::here()` to rowk right
+  # Needed for `here::here()` to work right
   writeLines("", ".here")
 
   dest_fns <- file.path("doc", raw_fns)
@@ -95,5 +98,7 @@ goback <- function(){
   }
 
   setwd(cdr)
-  i_am("../.here")
+  #set_here(".")
+  i_am(".here")
+  setwd("doc")
 }

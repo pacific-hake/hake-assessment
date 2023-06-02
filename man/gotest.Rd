@@ -5,7 +5,7 @@
 \title{Create and change to a temporary directory where the loading files have
 been copied to}
 \usage{
-gotest(doc_dr = "~/github/pacific-hake/hake/doc")
+gotest(repo_dr = "~/github/pacific-hake/hake")
 }
 \arguments{
 \item{doc_dr}{The directory that holds all the RMD files for building the
