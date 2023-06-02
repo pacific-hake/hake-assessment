@@ -17,8 +17,8 @@ plot_autocor <- function(model,
                          lag_max = 20,
                          y_lim = c(-1, 1),
                          bar_width = 0.5,
-                         fill = "blue",
-                         alpha = 1,
+                         fill = "royalblue",
+                         alpha = 0.3,
                          ...){
 
   mtch <- grep(post_regex, names(model$mcmc))

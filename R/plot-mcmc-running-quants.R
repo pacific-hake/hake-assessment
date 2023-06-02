@@ -14,8 +14,8 @@
 plot_running_quants <- function(model,
                                 post_regex,
                                 y_lim = NULL,
-                                fill = "blue",
-                                alpha = 0.2){
+                                fill = "royalblue",
+                                alpha = 0.3){
 
   mtch <- grep(post_regex, names(model$mcmc))
 

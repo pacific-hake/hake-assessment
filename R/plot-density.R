@@ -10,8 +10,8 @@
 #' @export
 plot_density <- function(model,
                          post_regex,
-                         fill = "blue",
-                         alpha = 0.2){
+                         fill = "royalblue",
+                         alpha = 0.3){
 
   mtch <- grep(post_regex, names(model$mcmc))
 

@@ -23,11 +23,27 @@ plist <- NULL
 plist[[1]] <-
   plot_mcmc_diagnostics(base_model,
                         key_posteriors[[1]],
-                        key_posteriors_titles[[1]])
+                        key_posteriors_titles[[1]],
+                        # Trace lines and autocorrelation bar color
+                        color = "royalblue",
+                        # Iteration and density fill color
+                        fill = "royalblue",
+                        # Iteration and density transparency
+                        rib_alpha = 0.3,
+                        #Trace lines and autocorrelation bar transparency
+                        line_bar_alpha = 0.8)
 plist[[2]] <-
   plot_mcmc_diagnostics(base_model,
                         key_posteriors[[2]],
-                        key_posteriors_titles[[2]])
+                        key_posteriors_titles[[2]],
+                        # Trace lines and autocorrelation bar color
+                        color = "royalblue",
+                        # Iteration and density fill color
+                        fill = "royalblue",
+                        # Iteration and density transparency
+                        rib_alpha = 0.3,
+                        #Trace lines and autocorrelation bar transparency
+                        line_bar_alpha = 0.8)
 plot_grid(plotlist = plist, nrow = 2)
 ```
 
@@ -46,11 +62,27 @@ plist <- NULL
 plist[[1]] <-
   plot_mcmc_diagnostics(base_model,
                         key_posteriors[[3]],
-                        key_posteriors_titles[[3]])
+                        key_posteriors_titles[[3]],
+                        # Trace lines and autocorrelation bar color
+                        color = "royalblue",
+                        # Iteration and density fill color
+                        fill = "royalblue",
+                        # Iteration and density transparency
+                        rib_alpha = 0.3,
+                        #Trace lines and autocorrelation bar transparency
+                        line_bar_alpha = 0.8)
 plist[[2]] <-
   plot_mcmc_diagnostics(base_model,
                         key_posteriors[[4]],
-                        key_posteriors_titles[[4]])
+                        key_posteriors_titles[[4]],
+                        # Trace lines and autocorrelation bar color
+                        color = "royalblue",
+                        # Iteration and density fill color
+                        fill = "royalblue",
+                        # Iteration and density transparency
+                        rib_alpha = 0.3,
+                        #Trace lines and autocorrelation bar transparency
+                        line_bar_alpha = 0.8)
 plot_grid(plotlist = plist, nrow = 2)
 ```
 (ref:app-mcmc-diag-dm-cap) Summary of Markov chain Monte Carlo diagnostics
@@ -59,7 +91,7 @@ lower panels) in the base model. Sub-panel descriptions as in Figure~\@ref{fig:a
 
 (ref:app-mcmc-diag-dm-alt) This figure shows good MCMC diagnostics for the
 base model for the two Dirichlet-multinomial parameters for the fishery and
-survey.
+survey.http://127.0.0.1:16727/graphics/plot_zoom_png?width=1536&height=813
 ```{r app-mcmc-diag-dm-fig, fig.cap = "(ref:app-mcmc-diag-dm-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = ""}
 
 plist <- NULL
@@ -68,21 +100,25 @@ plist[[1]] <-
                         key_posteriors[[5]],
                         key_posteriors_titles[[5]],
                         # Trace lines and autocorrelation bar color
-                        color = "blue",
+                        color = "royalblue",
                         # Iteration and density fill color
-                        fill = "blue",
+                        fill = "royalblue",
                         # Iteration and density transparency
-                        rib_alpha = 0.2,
+                        rib_alpha = 0.3,
                         #Trace lines and autocorrelation bar transparency
-                        line_bar_alpha = 1)
+                        line_bar_alpha = 0.8)
 plist[[2]] <-
   plot_mcmc_diagnostics(base_model,
                         key_posteriors[[6]],
                         key_posteriors_titles[[6]],
-                        color = "blue",
-                        fill = "blue",
-                        rib_alpha = 0.2,
-                        line_bar_alpha = 1)
+                        # Trace lines and autocorrelation bar color
+                        color = "royalblue",
+                        # Iteration and density fill color
+                        fill = "royalblue",
+                        # Iteration and density transparency
+                        rib_alpha = 0.3,
+                        #Trace lines and autocorrelation bar transparency
+                        line_bar_alpha = 0.8)
 plot_grid(plotlist = plist, nrow = 2)
 ```
 (ref:app-mcmc-diag-hists-cap) Summary histograms of MCMC diagnostics for all
