@@ -14,7 +14,7 @@
 #' it must be a full path
 #'
 #' @return Nothing
-workspace <- function(doc_dr = "~/github/pacific-hake/hake/doc"){
+gotest <- function(doc_dr = "~/github/pacific-hake/hake/doc"){
 
   cdr <<- getwd()
 
@@ -61,9 +61,39 @@ workspace <- function(doc_dr = "~/github/pacific-hake/hake/doc"){
   writeLines("", "005-test.rmd")
 
   message("\nAll variables and models loaded, in a temporary directory.",
-          "\n\nRun bookdown::render_book('000-launcher.rmd', output_dir = '.')",
-          "\nWhen finished, run setwd(cdr) to go back to the directory ",
-          "you came from.")
+          "\n\nRun bookdown::render_book('000-launcher.rmd', ",
+          "output_dir = '.')\nWhen finished, run goback() to go back to ",
+          "the directory you came from.")
 
   invisible()
+}
+
+#' Navigate back to the directory you were in before calling [gotest()]
+#'
+#' @details
+#' After running [gotest()], you will be in a temporary directory,
+#' and you'll be able to build a test document with arbitrary
+#' knitr code chunks. Once you're done testing and checking your output,
+#' run this function to return to the real document directory, and
+#' to reset the [here::here()] command so that it references the real
+#' project again.
+#'
+#' Assumes you're going back to the hake `doc` directory and that the file
+#' `.here` exists in the directory above that (the hake repository root
+#' directory)
+#'
+#' @return Nothing
+goback <- function(){
+
+  if(!exists("cdr")){
+    stop("The variable `cdr` does not exist. You need to set this to the ",
+         "directory name you want to go back to, then re-run this ",
+         "function. In future, make sure you enter a temporary directory ",
+         "for testing using the `hake::gotest()` function, which ",
+         "automatically sets `cdr` for you",
+         call. = FALSE)
+  }
+
+  setwd(cdr)
+  i_am("../.here")
 }
