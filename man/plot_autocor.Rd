@@ -9,7 +9,10 @@ plot_autocor(
   post_regex,
   lag_max = 20,
   y_lim = c(-1, 1),
-  bar_width = 0.5
+  bar_width = 0.5,
+  fill = "blue",
+  alpha = 1,
+  ...
 )
 }
 \arguments{
@@ -23,6 +26,12 @@ and nothing else}
 \item{y_lim}{A vector of start and end limits for the y-axis}
 
 \item{bar_width}{The width of the bars}
+
+\item{fill}{The fill color for the bars}
+
+\item{alpha}{The transparency for the bar fill}
+
+\item{...}{Absorbs arguments intended for other functions}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

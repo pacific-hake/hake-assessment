@@ -24,20 +24,42 @@ plot_mcmc_diagnostics <- function(model,
                                   post_regex,
                                   post_name,
                                   probs = c(0.025, 0.5, 0.975),
-                                  all_alpha = 0.2,
+                                  color = "blue",
+                                  fill = "blue",
+                                  rib_alpha = 0.2,
+                                  line_bar_alpha = 1,
                                   ...){
 
   plist <- NULL
-  plist[[1]] <- plot_trace(model, post_regex)
-  plist[[2]] <- plot_running_quants(model, post_regex, rib_alpha = all_alpha)
-  plist[[3]] <- plot_autocor(model, post_regex, ...)
-  plist[[4]] <- plot_density(model, post_regex, den_alpha = all_alpha)
+  plist[[1]] <- plot_trace(model,
+                           post_regex,
+                           color = color,
+                           alpha = line_bar_alpha,
+                           ...)
+
+  plist[[2]] <- plot_running_quants(model,
+                                    post_regex,
+                                    fill = fill,
+                                    alpha = rib_alpha,
+                                    ...)
+
+  plist[[3]] <- plot_autocor(model,
+                             post_regex,
+                             fill = fill,,
+                             alpha = line_bar_alpha,
+                             ...)
+
+  plist[[4]] <- plot_density(model,
+                             post_regex,
+                             fill = fill,
+                             alpha = rib_alpha,
+                             ...)
 
   p <- plot_grid(plotlist = plist,
                  ncol = 2,
                  nrow = 2,
-                 byrow = TRUE) +
-    theme(plot.background = element_rect(color = "black"))
+                 byrow = TRUE) #+
+    #theme(plot.background = element_rect(color = "black"))
   post_name <- gsub(" +", "~", post_name)
 
   y_grob <- textGrob(parse(text = post_name),

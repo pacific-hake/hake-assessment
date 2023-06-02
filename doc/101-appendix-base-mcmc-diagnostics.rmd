@@ -66,11 +66,23 @@ plist <- NULL
 plist[[1]] <-
   plot_mcmc_diagnostics(base_model,
                         key_posteriors[[5]],
-                        key_posteriors_titles[[5]])
+                        key_posteriors_titles[[5]],
+                        # Trace lines and autocorrelation bar color
+                        color = "blue",
+                        # Iteration and density fill color
+                        fill = "blue",
+                        # Iteration and density transparency
+                        rib_alpha = 0.2,
+                        #Trace lines and autocorrelation bar transparency
+                        line_bar_alpha = 1)
 plist[[2]] <-
   plot_mcmc_diagnostics(base_model,
                         key_posteriors[[6]],
-                        key_posteriors_titles[[6]])
+                        key_posteriors_titles[[6]],
+                        color = "blue",
+                        fill = "blue",
+                        rib_alpha = 0.2,
+                        line_bar_alpha = 1)
 plot_grid(plotlist = plist, nrow = 2)
 ```
 (ref:app-mcmc-diag-hists-cap) Summary histograms of MCMC diagnostics for all

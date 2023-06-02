@@ -95,13 +95,13 @@ plot_mcmc_histogram <- function(d,
     if(!is.null(lvls[1])){
       # One or more levels might be missing from the data frame. If so,
       # we still want to see it in the plot so have to figure out which are
-      # missing and add NAs for them to the count data frame
+      # missing and add zeroes for them to the count data frame
       vals <- unique(d$x)
       wch <- which(!lvls %in% vals)
       if(length(wch)){
         # Need to add one or more values to the table
         for(i in seq_along(wch)){
-          row <- vec2df(c(lvls[i], NA), nms = names(d)) |>
+          row <- vec2df(c(lvls[i], 0), nms = names(d)) |>
             mutate(count = as.integer(count))
           d <- d |>
             bind_rows(row)
@@ -110,10 +110,6 @@ plot_mcmc_histogram <- function(d,
       d <- d |>
         mutate(x = factor(x, levels = lvls))
     }
-
-    # Replace NA with zero for count labels
-    d <- d |>
-      mutate(count = ifelse(is.na(count), 0, count))
 
     g <- ggplot(d) +
       geom_bar(data = d,

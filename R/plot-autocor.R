@@ -6,6 +6,9 @@
 #' @param lag_max See [coda::autocorr.plot()]
 #' @param y_lim A vector of start and end limits for the y-axis
 #' @param bar_width The width of the bars
+#' @param fill The fill color for the bars
+#' @param alpha The transparency for the bar fill
+#' @param ... Absorbs arguments intended for other functions
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -13,7 +16,10 @@ plot_autocor <- function(model,
                          post_regex,
                          lag_max = 20,
                          y_lim = c(-1, 1),
-                         bar_width = 0.5){
+                         bar_width = 0.5,
+                         fill = "blue",
+                         alpha = 1,
+                         ...){
 
   mtch <- grep(post_regex, names(model$mcmc))
 
@@ -43,7 +49,9 @@ plot_autocor <- function(model,
                    Autocorrelation = xacf$acf[, 1, 1])
 
   g <- ggplot(lag_df, aes(x = Lag, y = Autocorrelation)) +
-    geom_col(width = bar_width) +
+    geom_col(width = bar_width,
+             fill = fill,
+             alpha = alpha) +
     scale_x_continuous(labels = comma) +
     ylim(y_lim)
 

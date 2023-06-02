@@ -5,15 +5,17 @@
 #' and nothing else
 #' @param probs A vector of 3 values for the lower, median, and upper
 #' quantiles
-#' @param rib_alpha The alpha value for the credible interval ribbon
+#' @param fill The fill color for the credible interval ribbon
+#' @param alpha The alpha value for the credible interval ribbon
 #' @param y_lim The limits for the y-axis. A vector of 2
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_running_quants <- function(model,
                                 post_regex,
-                                rib_alpha = 0.2,
-                                y_lim = NULL){
+                                y_lim = NULL,
+                                fill = "blue",
+                                alpha = 0.2){
 
   mtch <- grep(post_regex, names(model$mcmc))
 
@@ -66,7 +68,8 @@ plot_running_quants <- function(model,
                       ymin = lower,
                       ymax = upper)) +
     geom_line() +
-    geom_ribbon(alpha = rib_alpha) +
+    geom_ribbon(fill = fill,
+                alpha = alpha) +
     scale_x_continuous(labels = comma) +
     ylab("")
 

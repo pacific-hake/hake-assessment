@@ -3,13 +3,15 @@
 #' @param model A model object, created by [create_rds_file()]
 #' @param post_regex A regular expression that matches one parameter name
 #' and nothing else
-#' @param den_alpha The alpha value for under the density curve
+#' @param fill The fill color under the density curve
+#' @param alpha The alpha value for under the density curve
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_density <- function(model,
                          post_regex,
-                         den_alpha = 0.2){
+                         fill = "blue",
+                         alpha = 0.2){
 
   mtch <- grep(post_regex, names(model$mcmc))
 
@@ -31,7 +33,8 @@ plot_density <- function(model,
     transmute(Value = .[[1]])
 
   g <- ggplot(mc, aes(x = Value)) +
-    geom_density(fill = "black", alpha = den_alpha) +
+    geom_density(fill = fill,
+                 alpha = alpha) +
     ylab("Density")
 
   g

@@ -9,7 +9,10 @@ plot_mcmc_diagnostics(
   post_regex,
   post_name,
   probs = c(0.025, 0.5, 0.975),
-  all_alpha = 0.2,
+  color = "blue",
+  fill = "blue",
+  rib_alpha = 0.2,
+  line_bar_alpha = 1,
   ...
 )
 }
@@ -25,9 +28,9 @@ the name can be a string or an expression.}
 \item{probs}{A vector of 3 values for the lower, median, and upper
 quantiles}
 
-\item{all_alpha}{Alpha value for density and running mean plots}
-
 \item{...}{Arguments passed to \code{\link[=plot_autocor]{plot_autocor()}}}
+
+\item{all_alpha}{Alpha value for density and running mean plots}
 }
 \value{
 A 4-panel plot of MCMC diagnostics

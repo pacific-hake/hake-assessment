@@ -4,7 +4,13 @@
 \alias{plot_running_quants}
 \title{Create a plot with running quantiles across the posterior for a parameter}
 \usage{
-plot_running_quants(model, post_regex, rib_alpha = 0.2, y_lim = NULL)
+plot_running_quants(
+  model,
+  post_regex,
+  y_lim = NULL,
+  fill = "blue",
+  alpha = 0.2
+)
 }
 \arguments{
 \item{model}{A model list, created by \code{\link[=create_rds_file]{create_rds_file()}}}
@@ -12,9 +18,11 @@ plot_running_quants(model, post_regex, rib_alpha = 0.2, y_lim = NULL)
 \item{post_regex}{A regular expression that matches one parameter name
 and nothing else}
 
-\item{rib_alpha}{The alpha value for the credible interval ribbon}
-
 \item{y_lim}{The limits for the y-axis. A vector of 2}
+
+\item{fill}{The fill color for the credible interval ribbon}
+
+\item{alpha}{The alpha value for the credible interval ribbon}
 
 \item{probs}{A vector of 3 values for the lower, median, and upper
 quantiles}
