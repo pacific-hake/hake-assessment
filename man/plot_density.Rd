@@ -4,7 +4,7 @@
 \alias{plot_density}
 \title{Create a density plot for a particular parameter}
 \usage{
-plot_density(model, post_regex, fill = "blue", alpha = 0.2)
+plot_density(model, post_regex, fill = "royalblue", alpha = 0.3)
 }
 \arguments{
 \item{model}{A model object, created by \code{\link[=create_rds_file]{create_rds_file()}}}

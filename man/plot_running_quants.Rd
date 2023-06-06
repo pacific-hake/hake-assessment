@@ -8,8 +8,8 @@ plot_running_quants(
   model,
   post_regex,
   y_lim = NULL,
-  fill = "blue",
-  alpha = 0.2
+  fill = "royalblue",
+  alpha = 0.3
 )
 }
 \arguments{

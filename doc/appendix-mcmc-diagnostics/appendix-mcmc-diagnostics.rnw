@@ -1,24 +1,3 @@
-<<main-mcmc-pairs, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many parameters and derived quantities. Natural mortality and log R0 show positive correlation as do 2014 and 2016 recruitment.">>=
-make.mcmc.diag.pairs.plot(base_model,
-                          inc.key.params = TRUE,
-                          key_posteriors_regex = key_posteriors,
-                          key_posteriors_names = key_posteriors_titles,
-                          recr = c(2014, 2016),
-                          bratio = end_yr,
-                          forecatch = c(end_yr,end_yr+1,end_yr+2))
-@
-\end{center}
-\caption{Posterior correlations among the objective function which is minimized
-  during model fitting, key base-model parameters, and derived
-  quantities. Numbers refer to the absolute correlation coefficients, with font
-  size proportional to the square root of the coefficient.}
-\label{fig:main-mcmc-pairs}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
 <<main-mcmc-pairs-recruit-devs, fig.height=8, fig.width=8, is.fig = TRUE, alt.text = "This figure shows pairs plots for many derived quantities. There is some positive correlation between 2014 and 2016 recruitment deviations.">>=
 make.mcmc.diag.pairs.plot(base_model,
                           inc.key.params = FALSE,

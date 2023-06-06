@@ -142,4 +142,44 @@ plot_mcmc_diagnostics_all_params(base_model,
                                  ro_text_nudges = c(0.15, 0, -0.55, 0))
 ```
 
+(ref:main-mcmc-pairs-cap) Posterior correlations among the objective
+function which is minimized during model fitting, key base-model parameters,
+and derived quantities. Numbers refer to the absolute correlation
+coefficients, with font size proportional to the square root of the
+coefficient.
 
+(ref:main-mcmc-pairs-alt) "This figure shows pairs plots for many parameters
+and derived quantities. Natural mortality and log R0 show positive
+correlation as do 2014 and 2016 recruitment.
+
+```{r main-mcmc-pairs-fig, fig.cap = "(ref:main-mcmc-pairs-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-mcmc-pairs-alt)"}
+
+plot_pairs(base_model,
+           type = "key",
+           key_posteriors = key_posteriors,
+           key_posteriors_titles = key_posteriors_titles,
+           recr = c(2014, 2016),
+           bratio = end_yr,
+           point_size = 0.05,
+           forecatch = c(end_yr,
+                         end_yr + 1,
+                         end_yr + 2))
+```
+
+(ref:main-mcmc-pairs-recruit-devs-cap) Posterior correlations among
+recruitment deviations from recent years and mean unfished equilibrium
+recruitment. Numbers refer to the absolute correlation coefficients, with
+font size proportional to the square root of the coefficient.
+
+(ref:main-mcmc-pairs-recruit-devs-alt) This figure shows pairs plots for
+many derived quantities. There is some positive correlation between 2014
+and 2016 recruitment deviations.
+
+```{r main-mcmc-pairs-recruit-devs-fig, fig.cap = "(ref:main-mcmc-pairs-recruit-devs-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-mcmc-pairs-recruit-devs-alt)"}
+
+plot_pairs(base_model,
+           type = "devs",
+           key_posteriors = key_posteriors,
+           key_posteriors_titles = key_posteriors_titles,
+           recr = (end_yr - 10):(end_yr - 1))
+```

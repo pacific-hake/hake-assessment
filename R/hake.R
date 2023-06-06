@@ -5,7 +5,7 @@
 #' templates for the various meetings required.
 #'
 #' @import adnuts coda dplyr
-#' @import ggh4x ggplot2 ggrepel
+#' @import GGally ggh4x ggplot2 ggrepel
 #' @import knitr
 #' @import purrr
 #' @import rnaturalearth rnaturalearthhires r4ss
