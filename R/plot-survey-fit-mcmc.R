@@ -40,14 +40,15 @@
 #' @param glow Logical. If `TRUE`, add a white glow around the lines so that
 #' they can more easily be seen in contrast to the background posterior lines
 #' @param glow_offset The amount to add to the lines and points to create the
-#' @param post_line_width
-#' @param post_med_line_color
-#' @param post_med_line_alpha
-#' @param obs_alpha
-#' @param extrasd_alpha
-#' @param glow_color
-#' @param glow_alpha
-#' glow effect
+#' @param post_line_width The width of the posterior lines
+#' @param post_med_line_color The color of the posterior median line
+#' @param post_med_line_alpha The transparency of the posterior median line
+#' @param obs_alpha The transparency of the observed lines
+#' @param extrasd_alpha The transparency of the extra SD lines
+#' @param glow_color The color to use for the "glow" effect around lines
+#' @param glow_alpha The transparency to use for the "glow" effect around
+#' lines
+#'
 #' @return a [ggplot2::ggplot()] object
 #' @export
 plot_survey_fit_mcmc <- function(model,

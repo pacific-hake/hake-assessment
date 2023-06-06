@@ -57,12 +57,18 @@ values to appear on the y-axis}
 
 \item{axis_label_color}{Color for the axis labels and tick labels}
 
+\item{post_line_width}{The width of the posterior lines}
+
 \item{post_line_col}{The color of the thinner individual posterior lines}
 
 \item{post_line_alpha}{The transparency of the thinner individual
 posterior lines}
 
 \item{post_med_line_width}{The width of the posterior median line}
+
+\item{post_med_line_color}{The color of the posterior median line}
+
+\item{post_med_line_alpha}{The transparency of the posterior median line}
 
 \item{post_med_point_size}{The size of the posterior median points}
 
@@ -78,6 +84,8 @@ the observed values}
 \item{obs_point_size}{The size of the points on the error bars for the
 observed values}
 
+\item{obs_alpha}{The transparency of the observed lines}
+
 \item{extrasd_line_width}{The width of the error bar lines for the
 extra SD parameter estimates}
 
@@ -90,12 +98,17 @@ extra SD parameter estimates}
 \item{extrasd_point_size}{The sizeof the median points for the
 extra SD parameter estimates}
 
+\item{extrasd_alpha}{The transparency of the extra SD lines}
+
 \item{glow}{Logical. If \code{TRUE}, add a white glow around the lines so that
 they can more easily be seen in contrast to the background posterior lines}
 
 \item{glow_offset}{The amount to add to the lines and points to create the}
 
-\item{glow_alpha}{glow effect}
+\item{glow_color}{The color to use for the "glow" effect around lines}
+
+\item{glow_alpha}{The transparency to use for the "glow" effect around
+lines}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
