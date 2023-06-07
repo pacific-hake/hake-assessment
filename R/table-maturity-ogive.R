@@ -25,11 +25,11 @@ table_maturity_ogive <- function(d,
 
   d <- d |>
     select(age,
-           N.ovaries,
+           n_ovaries,
            maturity,
-           avg.wt,
-           new.fecundity) |>
-    mutate_at(vars(-c(age, N.ovaries)), ~{f(.x, digits)})
+           avg_wt,
+           new_fecundity) |>
+    mutate_at(vars(-c(age, n_ovaries)), ~{f(.x, digits)})
 
   col_names <- c("Age",
                  "Number of\nsamples",

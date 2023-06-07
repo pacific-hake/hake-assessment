@@ -2,8 +2,8 @@
 
 ## Research and data needs {#sec:research}
 
-```{r child = "011-research-needs/research-needs.rmd"}
+```{r child = "010-research-needs/research-needs.rmd"}
 ```
 
-```{r child = "011-research-needs/research-needs-extra.rmd"}
+```{r child = "010-research-needs/research-needs-extra.rmd"}
 ```
