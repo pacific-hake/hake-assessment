@@ -26,6 +26,12 @@ gotest <- function(repo_dr = "~/github/pacific-hake/hake"){
                "003-load-models.R",
                "004-load-knitr-variables.rmd",
                "preamble.tex",
+               "bib/refs.bib",
+               "main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue.png",
+               "main-figures/fishCatchRatesUS.png",
+               "main-figures/hake-picture.eps",
+               "main-figures/hake-picture.png",
+               "main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue.png",
                "clean")
 
   doc_dr <- file.path(repo_dr, "doc")
@@ -36,6 +42,8 @@ gotest <- function(repo_dr = "~/github/pacific-hake/hake"){
   setwd(work_dr)
   unlink("*", recursive = TRUE, force = TRUE)
   dir.create("doc")
+  dir.create("doc/bib")
+  dir.create("doc/main-figures")
 
   # Needed for `here::here()` to work right
   writeLines("", ".here")
