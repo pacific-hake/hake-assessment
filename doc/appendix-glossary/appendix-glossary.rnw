@@ -81,7 +81,11 @@ Fishing intensity: A measure of the magnitude of fishing, defined for a fishing 
 \eb
 \mbox {fishing intensity for }F & = & 1-\mbox{SPR}(F),
 \ee
-where SPR$(F)$ is the spawning potential ratio for the value of $F$ accumulated over the entire year. It is often given as a percentage. Relative fishing intensity is the fishing intensity relative to that at the SPR fishing rate $\Fforty$, where $\Fforty$ is the $F$ that gives an SPR of 40\% such that, by definition, SPR$(\Fforty) = 40\%$ (the benchmark spawning ratio). Therefore
+where SPR$(F)$ is the spawning potential ratio for the value of $F$ accumulated over the
+entire year. It is often given as a percentage. Relative fishing intensity is the fishing
+intensity relative to that at the SPR fishing rate $\Fforty$, where $\Fforty$ is the $F$ that
+gives an SPR of 40\% such that, by definition, SPR$(\Fforty) = 40\%$ (the benchmark spawning
+ratio). Therefore
 \eb
 \mbox{relative fishing intensity for }F & = & \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(\Fforty)}\\
  & = & \frac{1-\mbox{SPR}(F)}{1-0.4}\\

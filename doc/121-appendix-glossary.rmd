@@ -4,6 +4,7 @@
 
 # Glossary of terms and acronyms used in this document {#sec:app-glossary}
 
+\noindent
 \leftskip 0.7in
 \parindent -0.7in
 
@@ -142,15 +143,16 @@ below) or the spawning potential ratio (SPR, see below).
 $F$: Instantaneous rate of fishing mortality (or fishing mortality rate);
 see below.
 
-$\Fforty$: The rate of fishing mortality estimated to give a spawning
+$\FSPRforty$: The rate of fishing mortality estimated to give a spawning
 potential ratio (SPR, see below) of 40%. Therefore, by definition this
 satisfies
-\eb
-0.4 = \frac{\mbox{spawning biomass per recruit with }\Fforty}{\mbox{spawning biomass per recruit with no fishing}},
-\ee
+\begin{align} 
+  0.4
+    &= \frac{\mbox{spawning biomass per recruit with }\Fforty}{\mbox{spawning biomass per recruit with no fishing}},
+\end{align} 
 and SPR$(\Fforty) = 40%$. The 40% value is specified in the Agreement.
 
-\Ffortyten{} harvest policy: The default harvest policy (see above).
+\FSPRfortyten harvest policy: The default harvest policy (see above).
 
 Female spawning biomass: The biomass of mature female fish at the beginning
 of the year. Sometimes abbreviated to spawning biomass.
@@ -161,29 +163,31 @@ waterways and aquatic resources.
 
 Fishing intensity: A measure of the magnitude of fishing, defined for a
 fishing rate $F$ as:
-\eb
-\mbox {fishing intensity for }F & = & 1-\mbox{SPR}(F),
-\ee
+\begin{align}
+  \mbox{fishing intensity for }F &= 1 - \mbox{SPR}(F),
+\end{align}
 where SPR$(F)$ is the spawning potential ratio for the value of $F$
 accumulated over the entire year. It is often given as a percentage.
 Relative fishing intensity is the fishing intensity relative to that at
 the SPR fishing rate $\Fforty$, where $\Fforty$ is the $F$ that gives an
 SPR of 40% such that, by definition, SPR$(\Fforty) = 40\%$ (the benchmark
 spawning ratio). Therefore
-\eb
-\mbox{relative fishing intensity for }F & = & \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(\Fforty)}\\
-& = & \frac{1-\mbox{SPR}(F)}{1-0.4}\\
-& = & \frac{1-\mbox{SPR}(F)}{0.6},
-\label{appendix-glossary-spr}
-\ee
+\begin{align}
+  (\#eq:appendix-glossary-spr)
+  \mbox{relative fishing intensity for }F
+    &= \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(\Fforty)} \\
+    &= \frac{1-\mbox{SPR}(F)}{1-0.4} \\
+    &= \frac{1-\mbox{SPR}(F)}{0.6},
+\end{align}
 as shown in Figure~\@ref(fig:glossary-fishing-intensity-illustration-fig).
 For brevity we use $\mbox{SPR}_{40\%} = \mbox{SPR}(\Fforty)$ in the text.
 Although this simply equals 40%, it can be helpful to explicitly write:
-\eb
-\mbox{relative fishing intensity for }F & = & \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}_{40\%}}.
-\ee
+\begin{align}
+  \mbox{relative fishing intensity for }F
+    &= \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}_{40\%}}.
+\end{align}
 The calculation of relative fishing intensity is shown graphically in
-Figure~\@ref(fig:glossary-SPR-illustration-fig).
+Figure~\@ref(fig:glossary-spr-illustration-fig).
 
 Fishing mortality rate, or instantaneous rate of fishing mortality ($F$):
 A metric of fishing intensity that is usually reported in relation to the
@@ -362,9 +366,9 @@ numerator and denominator of the Spawning potential ratio (SPR, see below).
 Spawning potential ratio (SPR): The ratio of the spawning biomass per recruit
 under a given level of fishing to the estimated spawning biomass per recruit
 in the absence of fishing; i.e.~for fishing mortality rate $F$
-\eb
-\mbox{SPR}(F) = \frac{\mbox{spawning biomass per recruit with }F}{\mbox{spawning biomass per recruit with no fishing}}.
-\ee
+<!-- \begin{equation}  -->
+<!-- \mbox{SPR}(F) = \frac{\mbox{spawning biomass per recruit with }F}{\mbox{spawning biomass per recruit with no fishing}}. -->
+<!-- \end{equation} -->
 Often expressed as a percentage, it achieves a value of 100% in the absence
 of fishing and declines toward zero as fishing intensity increases. See
 Figure~\@ref(fig:glossary-spr-illustration-fig) for a graphical demonstration
@@ -408,12 +412,12 @@ Year-class: A group of fish born in the same year. See also 'cohort' and
 (ref:fishing-intensity-illustration-cap) Fishing intensity as a function
 of SPR (top axis) and 1-SPR (bottom axis); given the benchmark SPR of 40%,
 the solid blue line is simply $1/0.6$, as shown in equation
-(\@ref(eq:appendix-glossary-spr)).
+\@ref(eq:appendix-glossary-spr).
 
 (ref:fishing-intensity-illustration-alt) This figure shows how fishing
 intensity linearly increases with SPR.
 
-```{r fishing-intensity-illustration-fig, fig.cap = "(ref:fishing-intensity-illustration-cap)", fig.height = 5, fig.width = 5, is.fig = TRUE, alt.text = "(ref:fishing-intensity-illustration-alt)"}
+```{r glossary-fishing-intensity-illustration-fig, fig.cap = "(ref:fishing-intensity-illustration-cap)", fig.height = 5, fig.width = 5, is.fig = TRUE, alt.text = "(ref:fishing-intensity-illustration-alt)"}
 # Do as a function so that variables remain local
 plot_intensity <- function(target = 0.4){
   spr <- seq(0, 1, length = 100)
@@ -446,7 +450,12 @@ plot_intensity <- function(target = 0.4){
     scale_x_continuous(breaks = seq(0, 1, 0.2),
                        sec.axis = sec_axis(~ ., 
                                            breaks = seq(0, 1, 0.2),
-                                           labels = seq(1, 0, -0.2),
+                                           labels = c("1.0",
+                                                      "0.8",
+                                                      "0.6",
+                                                      "0.4",
+                                                      "0.2",
+                                                      "0.0"),
                                            name = "SPR")) +
     scale_y_continuous(breaks = seq(0, 1.5, 0.5)) +
     xlab("1 - SPR") +
@@ -463,9 +472,11 @@ this year.
 
 (ref:spr-illustration-alt) This figure shows how SPR is calculated.
 
-```{r spr-illustration-fig, fig.cap = "(ref:spr-illustration-cap)", fig.height = 7, fig.width = 6, is.fig = TRUE, alt.text = "(ref:spr-illustration-alt)"}
+```{r glossary-spr-illustration-fig, fig.cap = "(ref:spr-illustration-cap)", fig.height = 7, fig.width = 6, is.fig = TRUE, alt.text = "(ref:spr-illustration-alt)"}
 
-plot_spr_illustration(base_model, yrs = start_yr_age_comps:last_data_yr)
+plot_spr_illustration(base_model,
+                      color = "royalblue",
+                      yrs = start_yr_age_comps:last_data_yr)
 ```
 
 \clearpage
