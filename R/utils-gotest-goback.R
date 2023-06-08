@@ -24,7 +24,7 @@ gotest <- function(repo_dr = "~/github/pacific-hake/hake"){
                "002-load-globals.rmd",
                "003-load-models.rmd",
                "003-load-models.R",
-               "004-load-knitr-variables.rmd",
+               "004-load-project-variables.rmd",
                "013-tables.rmd",
                "014-figures.rmd",
                "101-appendix-base-mcmc-diagnostics.rmd",
@@ -68,7 +68,7 @@ gotest <- function(repo_dr = "~/github/pacific-hake/hake"){
     '            "001-load-packages.rmd",',
     '            "002-load-globals.rmd",',
     '            "003-load-models.rmd",',
-    '            "004-load-knitr-variables.rmd",',
+    '            "004-load-project-variables.rmd",',
     '            "005-test.rmd"]',
     '',
     'delete_merged_file: false')
