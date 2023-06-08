@@ -4,3 +4,4 @@
 
 \newpage
 \appendix
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
