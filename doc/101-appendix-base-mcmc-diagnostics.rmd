@@ -183,3 +183,5 @@ plot_pairs(base_model,
            key_posteriors_titles = key_posteriors_titles,
            recr = (end_yr - 10):(end_yr - 1))
 ```
+
+\clearpage

@@ -1,0 +1,23 @@
+\newpage
+
+\rfoot{SRG requests}
+
+# Scientific Review Group (SRG) requests from `r assess_yr` meeting {#sec:app-srg-requests}
+
+This appendix summarizes results produced in response to Scientific Review
+Group requests made during the meeting held from Xth to Xth February
+`r assess_yr`.
+
+## Request 1 -- simple text here {-}
+
+"Request description."
+
+Answer goes here.
+
+## Request 2 -- simple text here {-}
+
+"Request description."
+
+Answer goes here.
+
+\clearpage
