@@ -2,7 +2,7 @@
 
 \rfoot{Base model MCMC diagnostics}
 
-# Base model MCMC diagnostics
+# Base model MCMC diagnostics {#sec:app-mcmc-diagnostics}
 
 (ref:app-mcmc-diag-m-r0-cap) Summary of Markov chain Monte Carlo diagnostics
 for natural mortality (upper panels) and the natural log of mean unfished
@@ -152,7 +152,7 @@ coefficient.
 and derived quantities. Natural mortality and log R0 show positive
 correlation as do 2014 and 2016 recruitment.
 
-```{r main-mcmc-pairs-fig, fig.cap = "(ref:main-mcmc-pairs-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-mcmc-pairs-alt)"}
+```{r app-mcmc-pairs-fig, fig.cap = "(ref:main-mcmc-pairs-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-mcmc-pairs-alt)"}
 
 plot_pairs(base_model,
            type = "key",
@@ -175,7 +175,7 @@ font size proportional to the square root of the coefficient.
 many derived quantities. There is some positive correlation between 2014
 and 2016 recruitment deviations.
 
-```{r main-mcmc-pairs-recruit-devs-fig, fig.cap = "(ref:main-mcmc-pairs-recruit-devs-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-mcmc-pairs-recruit-devs-alt)"}
+```{r app-mcmc-pairs-recruit-devs-fig, fig.cap = "(ref:main-mcmc-pairs-recruit-devs-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-mcmc-pairs-recruit-devs-alt)"}
 
 plot_pairs(base_model,
            type = "devs",

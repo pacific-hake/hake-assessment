@@ -502,7 +502,7 @@ The term `reference points' is used throughout this document to describe common
 conceptual summary metrics (Table~\@ref(tab:es-reference-points-tab)).
 The Agreement specifically identifies $\Fforty$ as the default harvest rate
 and $\Bforty$ as a point where the 40:10 TAC adjustment is triggered
-(see the Glossary in Appendix~\@ref(chap:glossary)).
+(see the Glossary in Appendix~\@ref(sec:glossary)).
 The medians of sustainable yields and biomass reference points are similar
 to what was reported in the `r last_assess_yr` assessment. The probability
 that female spawning biomass at the beginning of `r assess_yr` is below

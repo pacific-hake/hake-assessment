@@ -33,14 +33,14 @@ Figure~\@ref(fig:main-age-comp-bubbles-fig)).
 - The relative age-1 index (billions of age-1 fish) derived from the
 `r survey_name` (`r str_flatten_comma(survey_age1_yrs)`;
  Table~\@ref(tab:main-survey-history-tab);
- Figure~\@ref(fig:main-age-one-index-fig)).
+ Figure~\@ref(fig:main-survey-extrap-biomass-fig)).
 
 - Mean observed weight-at-age data from fishery and survey catches
 (1975--`r max_fishery_age_prop[2]`;
-Figures~\@ref(fig:main-empirical-weight-at-age-fig)--
+Figures~\@ref(fig:main-weight-at-age-fig)--
 \@ref(fig:main-weight-at-age-lines-fig))
 and, thus, derived fecundity-at-age as well
-(Figure~\@ref(fig:main-maturity-fig)).
+(Figure~\@ref(fig:main-maturity-ogive-fig)).
 
 The following biological relationships, derived from external analysis of
 auxiliary data, were input as fixed values in the assessment model:
@@ -50,7 +50,7 @@ auxiliary data, were input as fixed values in the assessment model:
 - Proportion of female `r sp` mature by age, as developed from recent
 histological analyses of ovary samples
 (Table~\@ref(tab:main-maturity-ogives-tab) and
-Figure~\@ref(fig:main-maturity-fig)).
+Figure~\@ref(fig:main-maturity-ogive-fig)).
 
 Additional data sources not used in this assessment are discussed in Section
 \@ref(sec:data-not-used).
@@ -239,7 +239,7 @@ analyses, described below, are conducted to develop a relative age-1 index.
 
 The `r survey_end_yr` survey covered U.S. and Canadian waters from Point
 Conception to north of Haida Gwaii using 108 transects
-(Figure \@ref(fig:main-backscatter-map)). In the U.S.A., transects were
+(Figure \@ref(fig:main-acoustic-age2-bs-fig)). In the U.S.A., transects were
 mostly separated by 10~nmi, except 20~nmi spacing was used north of San
 Francisco Bay to Cape Mendocino and again in northern Washington to account
 for available ship days at sea. In Canada, transects were separated by 10~nmi
@@ -249,7 +249,7 @@ the survey in `r survey_end_yr`.
 
 Distributions of the backscatter of `r sp` plotted for each acoustic survey
 since 1995 illustrate the variable spatial patterns of age-2$+$ fish across
-years (Figure~\@ref(fig:main-backscatter-map-fig)). This variability is due in
+years (Figure~\@ref(fig:main-acoustic-age2-bs-fig)). This variability is due in
 part to changes in the composition of the age-2$+$ population because older
 `r sp` tend to migrate farther north and partly due to environmental and/or
 climatic factors. The 1998 acoustic survey is notable because it shows an
@@ -268,7 +268,7 @@ The distribution of `r sp` in 2017 was more latitudinally uniform than
 observed in 2015.  This is likely a result of having large proportions of two
 cohorts (2010 and 2014 year-classes) in 2017 as opposed to many other years
 when a single cohort is dominant in the observed samples
-(Figure~\@ref(fig:main-backscatter-map-fig)). Weak 2019 El Ni\~no conditions
+(Figure~\@ref(fig:main-acoustic-age2-bs-fig)). Weak 2019 El Ni\~no conditions
 decreased in their prevalence starting in March of that year, leading to
 neutral conditions by July. Consequently, the 2019 survey saw `r sp` on all
 survey transects from just north of Morro Bay, California to the northern end
@@ -361,7 +361,7 @@ for the estimate of age-2$+$ biomass). The index (numbers of fish) indicates
 relative changes between years, not absolute values. The age-1 index
 confirms the large year classes in 2008, 2010, 2014, 2016, and 2020
 (Table~\@ref(tab:main-survey-history-tab) and
-Figure~\@ref(fig:main-age-one-index-fig)). In 2021, some age-1 fish were found
+Figure~\@ref(fig:main-acoustic-age1-bs-fig)). In 2021, some age-1 fish were found
 in isolated homogeneous pockets but they were more so found to be mixed in
 with older fish. That same general pattern has occurred since 2015, with
 the exception of 2019 where age-1 fish were mostly in isolated pockets.
@@ -433,7 +433,7 @@ research surveys of spawning `r sp`.
 Data related to the fecundity relationship were updated for the 2018
 assessment [@JTC2018]. The age-based maturity ogive 
 (Table~\@ref(tab:main-maturity-ogives-tab) and
-Figure~\@ref(fig:main-maturity-fig))
+Figure~\@ref(fig:main-maturity-ogive-fig))
 was developed using histological estimates of functional maturity from 1,947
 ovaries that were associated with age estimates. These samples were collected
 from the acoustic survey, winter and summer acoustic research trips, observers
@@ -455,7 +455,7 @@ values in the calculation of fecundity [@JTC2019]. Samples from age-15$+$
 fish were pooled for both the maturity and weight-at-age estimation due to
 limited sample sizes. Consequently, the age 15$+$ estimates were applied to
 ages 15-20 in the population dynamics model
-(Figure~\@ref(fig:main-maturity-fig)).
+(Figure~\@ref(fig:main-maturity-ogive-fig)).
 
 Some fish at almost every age were found to be functionally immature based
 on histological criteria. Older, functionally immature fish are a combination
@@ -512,16 +512,16 @@ The additional across-lab double reads will be informative for updating
 the ageing-error matrix. Unfortunately, increased protocols for moving
 samples across the border have led to delays.
 
-### Weight-at-age} {#sec:data-weight-at-age}
+### Weight-at-age {#sec:data-weight-at-age}
 
 A matrix of empirically derived population weight-at-age means by year
-(Figures~\@ref(fig:main-empirical-weight-at-age-fig)--
+(Figures~\@ref(fig:main-weight-at-age-fig)--
 \@ref(fig:main-weight-at-age-lines-fig)) is used in the current assessment
 model to translate numbers-at-age directly to biomass-at-age. Annual mean
 weight-at-age was calculated from year-specific samples pooled from all
 fisheries and the acoustic survey for the years 1975 to
 `r max_fishery_age_prop[2]`
-(Figures~\@ref(fig:main-empirical-weight-at-age-fig)--
+(Figures~\@ref(fig:main-weight-at-age-fig)--
 \@ref(fig:main-weight-at-age-lines-fig)). Past investigations into calculating
 weight-at-age for the fishery and survey independently showed little
 impact on model results. New and historical samples were pulled from all
@@ -535,7 +535,7 @@ assessment. Weights from fish ages 15 and above for each year were pooled,
 and thus, ages 15--20 are assumed to have the same mean weight-at-age.
 Combinations of age and year with no observations were assumed to change
 linearly over time between observations at any given age. The number of
-samples (Figure \@ref(fig:main-empirical-weight-at-age-numbers-fig)) is
+samples (Figure \@ref(fig:main-sample-size-weight-at-age-fig)) is
 generally proportional to the amount of catch, so the combinations of year
 and age with no samples should have relatively little importance in the
 overall estimates of the population dynamics.
@@ -543,15 +543,15 @@ overall estimates of the population dynamics.
 The biomass at the start of a given year is based on the weight-at-age from
 the previous year; for example, the biomass at the start of 2022 is
 calculated using the empirical weight-at-age from 2021
-(Figure~\@ref(fig:main-empirical-weight-at-age-fig)). Prior to 1975,
+(Figure~\@ref(fig:main-weight-at-age-fig)). Prior to 1975,
 weight-at-age is assumed to be equal to the mean of all available
 information for each respective age
 (1975-`r last_data_yr`), consistent with the `r last_assess_yr` base model
-(Figure~\@ref(fig:main-empirical-weight-at-age-fig)). Both forecast
+(Figure~\@ref(fig:main-weight-at-age-fig)). Both forecast
 weight-at-age data and forecast selectivity are based on the respective
 means from the most recent five years
 (`r last_data_yr-4`--`r last_data_yr`), for consistency
-(Figure~\@ref(fig:main-empirical-weight-at-age-fig)).
+(Figure~\@ref(fig:main-weight-at-age-fig)).
 
 The use of empirical weight-at-age is a convenient method to capture the
 variability in both the weight-at-length relationship within and among

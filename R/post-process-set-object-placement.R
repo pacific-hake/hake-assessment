@@ -18,7 +18,7 @@ post_process_set_object_placement <- function(x, ...){
   }
   settings_fn <- here("doc", settings_fn)
   if(!file.exists(settings_fn)){
-    stop("The figure/table placement CSV file does not exist. Ths file ",
+    stop("The figure/table placement CSV file does not exist. This file ",
          "should be here:\n", settings_fn,
          call. = FALSE)
   }

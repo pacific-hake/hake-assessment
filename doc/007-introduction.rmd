@@ -43,13 +43,13 @@ version `r ss_version` of the Stock Synthesis software
 [@JTC2022]. All model runs reported in this document are performed in a
 Bayesian context. Responses to `r last_assess_yr` SRG requests are in
 Section~\@ref(sec:assessment-response-review) and a Glossary of terms appears
-in Appendix~\@ref(chap:glossary).
+in Appendix~\@ref(sec:glossary).
 
 ## Stock structure and life history {#sec:intro-stock-structure}
 
 `r sp` is a semi-pelagic schooling species distributed along the west coast
 of North America, generally ranging in latitude from 25\degree\ N~to 55\degree\ N
-(see Figure~\@ref(fig:main-overview-map) for an overview map). It is among 18
+(see Figure~\@ref(fig:main-overview-map-fig) for an overview map). It is among 18
 species of hake from four genera (being the majority of the family
 *Merluccidae*), which are found in both hemispheres of the Atlantic and Pacific
 Oceans [@AlheitPitcher1995; @LlorisMatallanasEtAl2005].
@@ -79,19 +79,19 @@ Older `r sp` exhibit the greatest northern migration each season, with two-
 and three-year old fish rarely observed in Canadian waters north of southern
 Vancouver Island. During El Ni\~no events (warm ocean conditions such as in
 1998 and 2016), a larger proportion of the population migrates into Canadian
-waters (Figure~\@ref(fig:main-backscatter-map)), due to temperature effects
+waters (Figure~\@ref(fig:main-acoustic-age2-bs-fig)), due to temperature effects
 [@MalickHunsickerEtAl2020] and possibly intensified northward transport
 during the period of active migration [@Dorn1995b; @AgostiniFrancisEtAl2006].
 In contrast, La Ni\~na conditions (colder water, such as in 2001, 2011, and
 2021) result in a southward shift in their distribution, with a much smaller
 proportion of the population found in Canadian waters, as seen in those
-surveys (Figure~\@ref(fig:main-backscatter-map)). In general, warmer than
+surveys (Figure~\@ref(fig:main-acoustic-age2-bs-fig)). In general, warmer than
 average thermal habitat conditions for mature `r sp` leads to relatively
 higher biomass further north and relatively lower biomass around the
 U.S.-Canadian border, while cooler than average conditions leads to relatively
 higher biomass of immature `r sp` generally spread evenly across their
 distribution [@MalickHunsickerEtAl2020]. The distribution of age-1 fish also
-changes between years (Figure~\@ref(fig:main-backscatter-map-age1)).
+changes between years (Figure~\@ref(fig:main-acoustic-age1-bs-fig)).
 
 ## Ecosystem considerations {#sec:intro-ecosystem-considerations}
 
@@ -263,14 +263,14 @@ coast-wide TAC of `r last_yr_tac`~t for `r last_data_yr`. The U.S. catch
 target was set at `r last_yr_us_tac`~t and the Canadian catch target
 at `r last_yr_can_tac`~t. The historical catch of `r sp` for
 `r start_yr`--`r last_data_yr` by nation and fishery sector is shown in
-Tables~\@ref(tab:intro-catches-US)--\@ref(tab:main-landings-tac) and
-Figure~\@ref(fig:main-catches). Table~\@ref(tab:main-landings-tac) also shows
+Tables~\@ref(tab:main-catches-us-tab)--\@ref(tab:main-landings-tac-tab) and
+Figure~\@ref(fig:main-catches-fig). Table~\@ref(tab:main-landings-tac-tab) also shows
 recent catches in relation to targets (see
 Section~\@ref(sec:assessment-model-results)). A brief review of the
 `r last_data_yr` fishery is presented here by country.  Additional
 information is available in annual United States and Canada Advisory Panel
 reports
-(Appendices~\@ref(chap:us-fishery-report)--\@ref(chap:canada-fishery-report)).
+(Appendices~\@ref(sec:us-fishery-report)--\@ref(sec:canada-fishery-report)).
 
 ### Fisheries for `r sp` in the United States {#sec:intro-fisheries-us}
 
@@ -305,9 +305,9 @@ hour after official sunrise) south of 42\degree\ N latitude (the
 Oregon-California border) at any time during the year.
 
 The total catch of `r sp` in U.S. waters was the fourth highest value ever
-recorded (Table~\@ref(tab:intro-catches-US)) and the U.S. utilization rate
+recorded (Table~\@ref(tab:main-catches-us-tab)) and the U.S. utilization rate
 (`r last_yr_us_attained`%) continued to be maintained close to what it
-has been in recent years (see Appendix~\@ref(chap:us-fishery-report) for more
+has been in recent years (see Appendix~\@ref(sec:us-fishery-report) for more
 details). The catcher-processor, mothership, and shore-based fleets caught
 `r catcher_processor_ct`%, `r mothership_ct`%, and `r shore_based_ct`% of
 their final reallocated quotas, respectively. Tribal landings, which are
@@ -315,9 +315,9 @@ included in the shoreside sector totals were `r f(last_yr_us_ti_ct)`~t.
 Monthly catch rates in the at-sea sector were on average lower than last year
 except for May, which was slightly higher, and August, which in most years
 has no catch due to vessels fishing Alaskan pollock at that time
-(Figure~\@ref(fig:main-us-catch-rates)). The median fishing depth for the
+(Figure~\@ref(fig:main-us-catch-rates-fig)). The median fishing depth for the
 at-sea fleets was deeper than last year but near the average over the last
-five years (Figure~\@ref(fig:main-us-at-sea-depths)). The shore-based fishery
+five years (Figure~\@ref(fig:main-us-depths-fig)). The shore-based fishery
 had the largest monthly catches during July, August, and September.
 
 In both U.S. at-sea sectors, age-2, age-6, and age-8 fish, associated with the
@@ -325,22 +325,23 @@ In both U.S. at-sea sectors, age-2, age-6, and age-8 fish, associated with the
 age-2 fish were seen in appreciable numbers in the catch this year.
 The reported proportions at age summarize sampling efforts on
 `r us_age_n_cp` catcher-processor hauls and `r us_age_n_ms` mothership hauls
-(Table~\@ref(tab:main-sampling-history)).
+(Table~\@ref(tab:main-sampling-history-tab)).
 For the catcher-processor sector, the four most abundant age classes (by
 numbers) seen in `r last_data_yr` were age-`r us_age_1_prop_age_cp`
 (`r us_age_1_prop_cp`%), age-`r us_age_2_prop_age_cp` (`r us_age_2_prop_cp`%),
 age-`r us_age_3_prop_age_cp` (`r us_age_3_prop_cp`%), and
 age-`r us_age_4_prop_age_cp` (`r us_age_4_prop_cp`%);
-Table~\@ref(tab:main-us-cp-age-data).
+Table~\@ref(tab:main-us-cp-age-data-tab).
 For the mothership sector, the four most abundant age classes for
 `r last_data_yr` were age-`r us_age_1_prop_age_ms` (`r us_age_1_prop_ms`%),
 age-`r us_age_2_prop_age_ms` (`r us_age_2_prop_ms`%),
 age-`r us_age_3_prop_age_ms` (`r us_age_3_prop_ms`%), and
 age-`r us_age_4_prop_age_ms` (`r us_age_4_prop_ms`%);
-Table~\@ref(tab:main-us-ms-age-data).
+Table~\@ref(tab:main-us-ms-age-data-tab).
 
-Age-samples from `r pull(us_ss_age_df[us_ss_age_df$year == last_data_yr,
-"n.trips"])` shoreside trips showed similar age compositions in the catch
+Age-samples from
+`r pull(us_ss_age_df[us_ss_age_df$year == last_data_yr, "n.trips"])`
+shoreside trips showed similar age compositions in the catch
 compared to the at-sea fisheries, though not nearly as many age-2 fish.
 The four most abundant age classes for highest occurrences being for
 `r last_data_yr` were age-`r us_age_1_prop_age_shore`
@@ -348,23 +349,23 @@ The four most abundant age classes for highest occurrences being for
 (`r us_age_2_prop_shore`%), age-`r us_age_3_prop_age_shore`
 (`r us_age_3_prop_shore`%), and age-`r us_age_4_prop_age_shore`
 (`r us_age_4_prop_shore`%);
-Table~\@ref(tab:main-us-shore-age-data). Age-composition differences
+Table~\@ref(tab:main-us-shore-age-data-tab). Age-composition differences
 between at-sea and shoreside fleets during the 2022 fishing year were larger
-than usual due, in part, to seasonal spatiotemporal fleet dynamics. For
+than usual due, in part, to seasonal spatio-temporal fleet dynamics. For
 example, the timing of the at-sea `r sp` fishery shifted due to low Bering
 Sea pollock quotas and stayed south along the Oregon and California border
-longer than usual (see Appendix~\@ref(chap:us-fishery-report) for more
+longer than usual (see Appendix~\@ref(sec:us-fishery-report) for more
 details).
 
 ### Fisheries for `r sp` in Canada {#sec:intro-fisheries-can}
 
 The `r last_data_yr` Canadian `r sp` domestic fishery removed
 `r last_yr_can_landings`~t from Canadian waters
-(Table~\@ref(tab:intro-catches-Can)), which was `r last_yr_can_attained`%
+(Table~\@ref(tab:main-catches-can-tab)), which was `r last_yr_can_attained`%
 of the Canadian TAC of `r last_yr_can_tac`~t. The attainment for Canada
 was much lower than usual, due to the fishing vessels having a difficult
 time finding fish in Canadian waters (see
-Appendix~\@ref(chap:canada-fishery-report) for more details).
+Appendix~\@ref(sec:canada-fishery-report) for more details).
 
 The shoreside component made up of vessels landing fresh round product onshore
 landed `r last_yr_can_shore`~t, the lowest on record since 1990.
@@ -377,7 +378,7 @@ the Canadian fleet is that abundance in Canadian-waters was down in 2022,
 including areas outside of Southwest Vancouver Island. The freezer trawlers
 fished in considerably shallower areas than last year and at shallower depths,
 whereas the shoreside vessels fished their gear at deeper depths than in 2021
-(Figure~\@ref(fig:main-can-at-sea-depths)). Reports of difficulties finding
+(Figure~\@ref(fig:main-can-depths-fig)). Reports of difficulties finding
 fish in 2022, and thus additional searching, is perhaps related to these
 standout differences in fishing depths. The fish caught in Canada appeared to
 be mostly from three age classes (ages 6, 8, 12, and 5), with very few smaller
@@ -389,7 +390,7 @@ age-`r max_shoreside_age_prop_age` (`r max_shoreside_age_prop`%),
 age-`r second_shoreside_age_prop_age` (`r second_shoreside_age_prop`%),
 age-`r third_shoreside_age_prop_age` (`r third_shoreside_age_prop`%), and
 age-`r fourth_shoreside_age_prop_age` (`r fourth_shoreside_age_prop`%);
-Table~\@ref(tab:main-can-shore-age-data).
+Table~\@ref(tab:main-can-shore-age-data-tab).
 The most abundant year classes in the Canadian freezer-trawler catch were age-
 `r max_freezer_trawler_age_prop_age`
 (`r max_freezer_trawler_age_prop`%),
@@ -399,5 +400,5 @@ age-`r third_freezer_trawler_age_prop_age`
 (`r third_freezer_trawler_age_prop`%), and
 age-`r fourth_freezer_trawler_age_prop_age`
 (`r fourth_freezer_trawler_age_prop`%);
-Table~\@ref(tab:main-can-ft-age-data).
+Table~\@ref(tab:main-can-ft-age-data-tab).
 

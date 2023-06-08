@@ -2,7 +2,7 @@
 #'
 #' @details
 #' Searches the TeX code in `x` for the keywords `BEGIN LANDSCAPE` and
-#' `END LANDSCAPE` (all in caps) that surround either a knitr chuk that
+#' `END LANDSCAPE` (all in caps) that surround either a knitr chunk that
 #' produces a figure or a Bookdown image import statement with this format:
 #' `![Caption](path/to/filename)`
 #'

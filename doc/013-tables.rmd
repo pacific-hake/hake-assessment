@@ -234,7 +234,7 @@ table_maturity_ogive(
   maturity_ogives_df,
   caption = paste0(
     "Information on maturity and fecundity used in this assessment as shown ",
-    "in Figure~\\@ref(fig:main-maturity). The sample sizes refer to the ",
+    "in Figure~\\@ref(fig:main-maturity-ogive-fig). The sample sizes refer to the ",
     "subset of samples in Table~\\@ref(tab:main-ovaries-tab) for which age ",
     "readings and histological estimates of maturity have been completed. ",
     "The mean weight (kg) is based on a much larger set of samples. Mean ",

@@ -18,7 +18,7 @@ Post-process landscape figures in TEX code
 }
 \details{
 Searches the TeX code in \code{x} for the keywords \verb{BEGIN LANDSCAPE} and
-\verb{END LANDSCAPE} (all in caps) that surround either a knitr chuk that
+\verb{END LANDSCAPE} (all in caps) that surround either a knitr chunk that
 produces a figure or a Bookdown image import statement with this format:
 \verb{![Caption](path/to/filename)}
 }
