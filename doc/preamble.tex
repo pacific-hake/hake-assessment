@@ -127,7 +127,10 @@
 \setcounter{secnumdepth}{3}
 
 % Setup hyperlink attributes here.
-\usepackage[breaklinks=true,bookmarksopen,bookmarksdepth=3]{hyperref}
+\usepackage[breaklinks=true,
+            bookmarksopen,
+            bookmarksdepth=3,
+            hypertexnames=false]{hyperref}
 \hypersetup{
   colorlinks = false,
   plainpages = true,
@@ -157,3 +160,18 @@
 
 % Necessary to avoid "too many unprocessed floats" error from pdflatex
 \extrafloats{1000}
+
+% This changes the names of the appendices from a simple letter only
+% (e.g. A) to this format:
+% Appendix A:
+% This change is in both the TOC and the section header for the appendix
+\newcommand{\appendixnumberline}[1]{Appendix #1:\space}
+\let\oldappendix\appendix
+\makeatletter
+\renewcommand{\appendix}{%
+  \addtocontents{toc}{\let\protect\numberline\protect\appendixnumberline}%
+  \renewcommand{\@seccntformat}[1]{Appendix~\csname the##1\endcsname:\quad}%
+  \oldappendix
+}
+\makeatother
+

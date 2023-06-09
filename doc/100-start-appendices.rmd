@@ -5,3 +5,10 @@
 \newpage
 \appendix
 \renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+<!-- Add a new section in the TOC called 'Appendices' -->
+\addtocontents{toc}{\bigskip\medskip\noindent%
+  \textbf{Appendices}\par}
+
+<!-- Necessary to have the same spacing as the rest of the section headers -->
+\vspace{5mm}
