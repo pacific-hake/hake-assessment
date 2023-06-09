@@ -33,6 +33,7 @@ header-includes:
   - \lfoot{DRAFT -- `r params$sp` assessment `r params$assess_yr`}
 link-citations: true
 bibliography: bib/refs.bib
+csl: csl/csas.csl
 ---
 
 ```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
