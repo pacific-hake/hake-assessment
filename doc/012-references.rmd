@@ -1,8 +1,10 @@
 \clearpage
 
+\rfoot{References}
+
 # REFERENCES
 
-<br>
+\vspace{0.5cm}
 
 <!-- Needed to properly number appendices after the References section -->
 <div id="refs"></div>
