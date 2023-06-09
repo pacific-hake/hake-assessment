@@ -1,0 +1,17 @@
+\newpage
+
+\rfoot{Estimated parameters}
+
+# Estimated parameters in the base assessment model {#sec:app-parameters}
+
+```{r appendix-parameter-estimates, results = "asis", echo = FALSE}
+  make.long.parameter.estimates.table(base_model,
+                                      key_posteriors,
+                                      digits = 4,
+                                      xcaption = "Medians of estimated parameters for the base model.",
+                                      xlabel = "tab:app-parameter-estimates",
+                                      font.size = 11,
+                                      space.size = 12)
+```
+
+\clearpage
