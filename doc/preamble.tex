@@ -74,6 +74,9 @@
 
 % Don't use `eqnarray`, it's old and buggy when combined with many newer
 % packages. `\align` is from `amsmath` package
+% These don't work though. It is impossible due to the way align is
+% implemented. We can't use them. Place \begin{align} and \end{lalign}
+% directly in the document instead
 \newcommand{\eb}{\begin{align}}
 \newcommand{\ee}{\end{align}}
 
@@ -161,17 +164,21 @@
 % Necessary to avoid "too many unprocessed floats" error from pdflatex
 \extrafloats{1000}
 
+% This ensures all section headers are centered on the page
+\usepackage{sectsty}
+\sectionfont{\centering}
+
 % This changes the names of the appendices from a simple letter only
 % (e.g. A) to this format:
 % Appendix A:
-% This change is in both the TOC and the section header for the appendix
-\newcommand{\appendixnumberline}[1]{Appendix #1:\space}
-\let\oldappendix\appendix
+% It also places the Appendix A on its own line above the title line.
+% % Centering is added here to match with the main document centering above
+\usepackage{titlesec}
+\usepackage[titletoc,title]{appendix}
 \makeatletter
-\renewcommand{\appendix}{%
-  \addtocontents{toc}{\let\protect\numberline\protect\appendixnumberline}%
-  \renewcommand{\@seccntformat}[1]{Appendix~\csname the##1\endcsname:\quad}%
-  \oldappendix
+\g@addto@macro\appendix{
+  \titleformat{\section}[display]
+    {\centering\normalfont\Large\bfseries}{\appendixname\enspace\thesection}{0.1em}{}
 }
 \makeatother
 

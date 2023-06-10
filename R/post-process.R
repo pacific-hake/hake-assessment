@@ -99,9 +99,6 @@ post_process <- function(fn,
   post <- x[(title_ind + 1):length(x)]
   x <- c(pre, "\\thispagestyle{empty}", post)
 
-  # Sections uppercase/centered ----
-  x <- post_process_section_headers(x)
-
   # Table of contents injection ----
   x <- post_process_table_of_contents(x, ...)
 

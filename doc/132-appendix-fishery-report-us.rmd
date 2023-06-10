@@ -2,6 +2,9 @@
 
 \rfoot{U.S. fishery report}
 
+<!-- \titleformat{\section}[display] -->
+<!--   {\normalfont\Large\bfseries}{\appendixname\enspace\thesection}{.5em}{} -->
+
 # Report of the `r assess_yr - 1` `r sp` fishery in the United States {#sec:app-us-fishery-report}
 
 **Prepared by the United States Advisory Panel on 25 January 2023 for inclusion in this assessment document.**
