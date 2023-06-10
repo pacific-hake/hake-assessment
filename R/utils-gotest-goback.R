@@ -31,6 +31,7 @@ gotest <- function(repo_dr = "~/github/pacific-hake/hake"){
                "object-placement.csv",
                "preamble.tex",
                "bib/refs.bib",
+               "csl/csas.csl",
                "main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue.png",
                "main-figures/fishCatchRatesUS.png",
                "main-figures/hake-picture.eps",
@@ -47,6 +48,7 @@ gotest <- function(repo_dr = "~/github/pacific-hake/hake"){
   unlink("*", recursive = TRUE, force = TRUE)
   dir.create("doc")
   dir.create("doc/bib")
+  dir.create("doc/csl")
   dir.create("doc/main-figures")
 
   # Needed for `here::here()` to work right
