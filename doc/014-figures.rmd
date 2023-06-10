@@ -1006,17 +1006,17 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[2]],
                  rev_colors = TRUE)
 ```
 
-(ref:main-recruit-base-alternative-2-cap) MCMC estimates of recruitment
+(ref:main-recruitment-base-alternative-2-cap) MCMC estimates of recruitment
 deviations for the base model and alternative sensitivity runs that represent
 changes in data. See Figure~\@ref(fig:main-biomass-base-alternative-2-fig)
 for sensitivity descriptions.
 
-(ref:main-recruit-base-alternative-2-alt) This figure shows the occasional
+(ref:main-recruitment-base-alternative-2-alt) This figure shows the occasional
 changes in recruitment deviations for some of the sensitivity runs. Changing
 the age weighting to be down-weighted by the McAllister Ianelli method has
 the largest effect here.
 
-```{r main-recruit-base-alternative-2-fig, fig.caption = "(ref:main-recruit-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruit-base-alternative-2-alt)"}
+```{r main-recruitment-base-alternative-2-fig, fig.cap = "(ref:main-recruitment-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-base-alternative-2-alt)"}
 
 plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
              x_expansion = 2,
@@ -1026,7 +1026,8 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
 
 (ref:main-index-base-alternative-2-cap) MCMC estimates of the fit to the
 acoustic survey biomass time series for the base model and alternative
-sensitivity runs that represent changes in data. See Figure~\@ref(fig:main-biomass-base-alternative-2-fig) for sensitivity
+sensitivity runs that represent changes in data. See
+Figure~\@ref(fig:main-biomass-base-alternative-2-fig) for sensitivity
 descriptions.
 
 (ref:main-index-base-alternative-2-alt) This figure shows the similarity

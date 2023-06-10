@@ -43,7 +43,7 @@ version `r ss_version` of the Stock Synthesis software
 [@JTC2022]. All model runs reported in this document are performed in a
 Bayesian context. Responses to `r last_assess_yr` SRG requests are in
 Section~\@ref(sec:assessment-response-review) and a Glossary of terms appears
-in Appendix~\@ref(sec:glossary).
+in Appendix~\@ref(sec:app-glossary).
 
 ## Stock structure and life history {#sec:intro-stock-structure}
 
@@ -270,7 +270,7 @@ Section~\@ref(sec:assessment-model-results)). A brief review of the
 `r last_data_yr` fishery is presented here by country.  Additional
 information is available in annual United States and Canada Advisory Panel
 reports
-(Appendices~\@ref(sec:us-fishery-report)--\@ref(sec:canada-fishery-report)).
+(Appendices~\@ref(sec:app-us-fishery-report)--\@ref(sec:app-canada-fishery-report)).
 
 ### Fisheries for `r sp` in the United States {#sec:intro-fisheries-us}
 
@@ -307,7 +307,7 @@ Oregon-California border) at any time during the year.
 The total catch of `r sp` in U.S. waters was the fourth highest value ever
 recorded (Table~\@ref(tab:main-catches-us-tab)) and the U.S. utilization rate
 (`r last_yr_us_attained`%) continued to be maintained close to what it
-has been in recent years (see Appendix~\@ref(sec:us-fishery-report) for more
+has been in recent years (see Appendix~\@ref(sec:app-us-fishery-report) for more
 details). The catcher-processor, mothership, and shore-based fleets caught
 `r catcher_processor_ct`%, `r mothership_ct`%, and `r shore_based_ct`% of
 their final reallocated quotas, respectively. Tribal landings, which are
@@ -349,12 +349,12 @@ The four most abundant age classes for highest occurrences being for
 (`r us_age_2_prop_shore`%), age-`r us_age_3_prop_age_shore`
 (`r us_age_3_prop_shore`%), and age-`r us_age_4_prop_age_shore`
 (`r us_age_4_prop_shore`%);
-Table~\@ref(tab:main-us-shore-age-data-tab). Age-composition differences
+Table~\@ref(tab:main-us-sb-age-data-tab). Age-composition differences
 between at-sea and shoreside fleets during the 2022 fishing year were larger
 than usual due, in part, to seasonal spatio-temporal fleet dynamics. For
 example, the timing of the at-sea `r sp` fishery shifted due to low Bering
 Sea pollock quotas and stayed south along the Oregon and California border
-longer than usual (see Appendix~\@ref(sec:us-fishery-report) for more
+longer than usual (see Appendix~\@ref(sec:app-us-fishery-report) for more
 details).
 
 ### Fisheries for `r sp` in Canada {#sec:intro-fisheries-can}
@@ -365,7 +365,7 @@ The `r last_data_yr` Canadian `r sp` domestic fishery removed
 of the Canadian TAC of `r last_yr_can_tac`~t. The attainment for Canada
 was much lower than usual, due to the fishing vessels having a difficult
 time finding fish in Canadian waters (see
-Appendix~\@ref(sec:canada-fishery-report) for more details).
+Appendix~\@ref(sec:app-canada-fishery-report) for more details).
 
 The shoreside component made up of vessels landing fresh round product onshore
 landed `r last_yr_can_shore`~t, the lowest on record since 1990.
@@ -390,7 +390,7 @@ age-`r max_shoreside_age_prop_age` (`r max_shoreside_age_prop`%),
 age-`r second_shoreside_age_prop_age` (`r second_shoreside_age_prop`%),
 age-`r third_shoreside_age_prop_age` (`r third_shoreside_age_prop`%), and
 age-`r fourth_shoreside_age_prop_age` (`r fourth_shoreside_age_prop`%);
-Table~\@ref(tab:main-can-shore-age-data-tab).
+Table~\@ref(tab:main-can-ss-age-data-tab).
 The most abundant year classes in the Canadian freezer-trawler catch were age-
 `r max_freezer_trawler_age_prop_age`
 (`r max_freezer_trawler_age_prop`%),

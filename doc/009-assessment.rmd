@@ -82,7 +82,7 @@ hybrid control rules: $\FSPRthirtyfive$, $\Fforty$, \Ffortyten,
 $\FSPRfortyfive$, \Ffortyfivefortyten, and $\FSPRfifty$ (e.g., @Dorn1996,
 @JTC2013). Changes to policies such as the United States' National Standards
 Guidelines in 2002 and the \Ffortyten harvest control rule in the Agreement
-(Appendix~\@ref(sec:glossary)) have required specific changes to control
+(Appendix~\@ref(sec:app-glossary)) have required specific changes to control
 rules.
 
 In addition to the examples given above and changes documented in stock
@@ -657,7 +657,7 @@ harvest rule in `r end_yr`, as to be expected given the dependencies among
 these quantities (Figure~\@ref(fig:app-mcmc-pairs-fig)). An examination of
 deviations in recruitment (log-scale differences between estimated and
 expected recruitment values) from recent years
-(Figure~\@ref(fig:app-mcmc-pairs-recruitment-devs-fig)) indicates the highest
+(Figure~\@ref(fig:app-mcmc-pairs-recruit-devs-fig)) indicates the highest
 correlation (`r f(base_model$mcmcvals$rec_cor_2014_2016, 2)`)
 was between the 2014 and 2016 recruitment deviations. This is an increase in
 correlation relative to the last assessment despite the fact that each cohort
@@ -1112,11 +1112,6 @@ models, and we present the key sensitivity analyses along with other
 informative sensitivity analyses using full MCMC results
 (Section~\@ref(sec:assessment-sensitivity-analyses)).
 
-%We also present an appendix showing results for the sensitivity model that
-excludes %the age-1 survey index (Appendix~\@ref(sec:age1-survey)). The
-exclusion of the age-1 %survey model was chosen because it matches the
-model structure of the base assessment model.
-
 The JTC continues to be committed to advancing MSE analyses, by coordinating
 research with the `r sp` MSE Working Group and other scientists in the region
 engaged in similar research. Incorporating feedback from the
@@ -1137,7 +1132,7 @@ The term 'reference points' is used throughout this document to describe
 common conceptual summary metrics. The Agreement specifically identifies
 $\Fforty$ as the default harvest rate and $\Bforty$ as a point where the
 40:10 TAC adjustment is triggered (see the Glossary in
-Appendix~\@ref(sec:glossary)).
+Appendix~\@ref(sec:app-glossary)).
 
 We report estimates of the base reference points (e.g., $\Fforty$, $\Bforty$,
 $\Bmsy$, and MSY) with posterior credibility intervals in
@@ -1665,7 +1660,7 @@ decline the following year (given the catch that subsequently occurred),
 because the current assessment model estimates a likely increase
 (Figure~\@ref(fig:main-historical-1-fig)). In 2018, this occurred because the
 biomass trend was relatively flat
-(Figure~\@ref(fig:main-female-spawning-biomass-fig)) so even slight changes in
+(Figure~\@ref(fig:main-biomass-fig)) so even slight changes in
 biomass could influence binomial outcomes of an 'increase' or 'decrease' in
 biomass, despite the overall change in biomass not being very substantial. The
 2021 assessment [@JTC2021] had no information on the 2020 cohort and predicted
