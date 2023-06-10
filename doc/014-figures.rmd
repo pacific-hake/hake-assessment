@@ -439,7 +439,12 @@ series but diverge a little near the end of the time series from about 2017
 to 2021.
 
 ```{r main-survey-index-fit-mcmc-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-cap)", fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-survey-index-fit-mcmc-alt)"}
-base_model$plots$survey_fit
+
+plot_survey_fit_mcmc(base_model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE)
+#base_model$plots$survey_fit
 ```
 
 (ref:main-age1-index-fit-mcmc-cap) Fits (colored lines) to the relative
@@ -459,7 +464,13 @@ time series but diverge a little at the end of the time series for the
 2021 index point.
 
 ```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-age1-index-fit-mcmc-alt)"}
-base_model$plots$age1_index_fit
+
+plot_survey_fit_mcmc(base_model,
+                     type = "age1",
+                     n_posts = 1000,
+                     ylim = c(0, 10),
+                     glow = TRUE)
+#base_model$plots$age1_index_fit
 ```
 (ref:main-age-comp-fits-cap) Base model fits to the observed fishery (top)
 and acoustic survey (bottom) age-composition data. Colored bars show
@@ -612,7 +623,23 @@ has more and larger outliers than the age 2 plus survey.
 
 ```{r main-tv-selex-posteriors-fig, fig.cap = "(ref:main-tv-selex-posteriors-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-tv-selex-posteriors-alt)"}
 
-base_model$plots$selex_posteriors
+plist <- list()
+plist[[1]] <- plot_selex_posteriors(base_model,
+                                    type = "survey",
+                                    probs = probs,
+                                    age_range = c(1, 8),
+                                    show_xlab = FALSE,
+                                    post_med_line_color = "red3",
+                                    unc_line_color = "red3",
+                                    glow = TRUE)
+plist[[2]] <- plot_selex_posteriors(base_model,
+                                    type = "fishery",
+                                    probs = probs,
+                                    age_range = c(1, 8),
+                                    glow = TRUE)
+plot_grid(plotlist = plist, ncol = 1, align = "v")
+
+#base_model$plots$selex_posteriors
 ```
 
 (ref:main-biomass-cap) Median (solid line) of the posterior distribution for
@@ -749,7 +776,8 @@ curve does not fit the estimated recruitments very well for this stock.
 
 ```{r main-stock-recruitment-fig, fig.cap = "(ref:main-stock-recruitment-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-stock-recruitment-alt)"}
 
-base_model$plots$stock_recr
+plot_stock_recruitment(base_model, probs = probs)
+#base_model$plots$stock_recr
 ```
 
 (ref:main-fishing-intensity-cap) Trend in median relative fishing intensity
@@ -814,7 +842,8 @@ distribution of the default catch limit using the default harvest policy.
 
 ```{r main-projected-catch-density-fig, fig.cap = "(ref:main-projected-catch-density-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-projected-catch-density-alt)"}
 
-base_model$plots$catch_fore_density
+plot_catch_forecast_density(base_model, yr = end_yr)
+#base_model$plots$catch_fore_density
 ```
 
 (ref:main-forecast-depletion-comparison-cap) Median and 95% posterior
