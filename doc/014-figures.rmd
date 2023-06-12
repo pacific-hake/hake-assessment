@@ -174,14 +174,20 @@ if(is.null(base_model$plots$age_comp_bubbles)){
   p_lst <- NULL
   p_lst[[1]] <- plot_age_comp_bubbles(base_model,
                                       type = "fishery",
-                                      leg_pos = "top",
-                                      alpha = 0.4)
+                                      leg_pos = "top", 
+                                      inc_mean_age_line = TRUE,
+                                      point_alpha = 0.4,
+                                      xlim = c(start_yr_age_comps, last_data_yr),
+                                      show_x_axis_labels = FALSE)
   p_lst[[2]] <- plot_age_comp_bubbles(base_model,
                                       type = "survey",
-                                      alpha = 0.4)
+                                      clines = c(1999, 2010, 2014, 2016, 2020),
+                                      inc_mean_age_line = TRUE,
+                                      point_alpha = 0.4,
+                                      xlim = c(start_yr_age_comps, last_data_yr))
   suppressWarnings(plot_grid(plotlist = p_lst, nrow = 2))
 }else{
-  base_model$plots$age_comp_bubbles
+    base_model$plots$age_comp_bubbles
 }
 ```
 
@@ -730,7 +736,9 @@ approximately age 3.
 
 ```{r main-numbers-at-age-fig, fig.cap = "(ref:main-numbers-at-age-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-numbers-at-age-alt)"}
 
-plot_age_comp_bubbles(base_model, type = "fishery", leg_pos = "top")
+plot_age_comp_bubbles(base_model, type = "fishery",
+                      mcmc = TRUE,
+                      leg_pos = "top")
 ```
 
 (ref:main-recruitment-scale-all-cap) Medians (solid circles) of the

@@ -6,34 +6,44 @@
 \usage{
 plot_bubbles(
   d,
-  clines = c(1980, 1984, 1999, 2010, 2014, 2016),
+  clines = c(1980, 1984, 1999, 2010, 2014, 2016, 2020),
+  val_col_nm = "Proportion",
   mean_age = NULL,
   mean_age_line_color = "red",
-  mean_age_line_size = 1.5,
+  mean_age_line_width = 1.5,
   mean_age_line_type = "solid",
+  diag_line_color = "darkgreen",
+  diag_line_width = 1,
+  diag_line_type = "solid",
   yrs = NULL,
   by = 5,
   leg_pos = "none",
-  alpha = 0.3,
-  xlim = c(1975, year(Sys.Date())),
-  leg_title = "Proportion",
+  point_alpha = main_alpha,
+  point_fill = main_fill,
+  point_color = "black",
+  xlim = c(1966, year(Sys.Date())),
+  show_x_axis_labels = TRUE,
   ...
 )
 }
 \arguments{
 \item{d}{a \code{\link[tibble:tibble]{tibble::tibble()}} of the data in long format with column
-names \code{Year}, \code{Age}, and \code{Proportion}}
+names \code{Year}, \code{Age}, and the column name given by \code{val_col_nm}}
 
 \item{clines}{An optional vector of years to draw cohort lines through}
+
+\item{val_col_nm}{The name of the column in \code{d} to use for the values}
 
 \item{mean_age}{A two-column tibble with column names \code{Year} and \code{Age} where
 each row contains a year and \code{Age} represents the mean age for each year}
 
 \item{mean_age_line_color}{The line color for the mean age line}
 
-\item{mean_age_line_size}{The line thickness for the mean age line}
-
 \item{mean_age_line_type}{The line type for the mean age line}
+
+\item{diag_line_color}{The line color for the cohort diagonal lines}
+
+\item{diag_line_type}{The line type for the cohort diagonal lines}
 
 \item{yrs}{A vector of 2, for the years to show on the plot}
 
@@ -42,11 +52,15 @@ each row contains a year and \code{Age} represents the mean age for each year}
 \item{leg_pos}{See the \code{legend.position} parameter in
 \code{\link[ggplot2:theme]{ggplot2::theme()}}}
 
-\item{alpha}{See \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}}
+\item{point_alpha}{Transparency of the bubble fill}
+
+\item{point_fill}{Color of the bubble fill}
+
+\item{point_color}{Color of the bubble outline}
 
 \item{xlim}{Limits for the x-axis}
 
-\item{leg_title}{The legend title text}
+\item{show_x_axis_labels}{}
 
 \item{...}{Additional parameters passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}},
 \code{\link[ggplot2:geom_segment]{ggplot2::geom_segment()}} and \code{\link[ggplot2:theme]{ggplot2::theme()}}}
