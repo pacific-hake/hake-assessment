@@ -30,8 +30,8 @@ plot_catch_forecast_density <- function(model,
 
   g <- ggplot(d) +
     geom_density(aes(x = value),
-                 fill = "grey40",
-                 alpha = 0.5)
+                 fill = "royalblue",
+                 alpha = 0.3)
   gb <-  ggplot_build(g)$data[[1]] |>
     as_tibble()
 
@@ -51,8 +51,8 @@ plot_catch_forecast_density <- function(model,
   g <- g + geom_area(data = gb |>
                        filter(x >= quants[1] & x <= quants[3]),
                      aes(x = x, y = y),
-                     fill = "blue",
-                     alpha = 0.5) +
+                     fill = "royalblue",
+                     alpha = 0.7) +
     geom_segment(data = med,
                  aes(x = x,
                      xend = x,
