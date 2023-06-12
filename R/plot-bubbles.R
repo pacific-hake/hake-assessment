@@ -12,7 +12,9 @@
 #' @param by How many years between year labels on the x-axis
 #' @param leg_pos See the `legend.position` parameter in
 #' [ggplot2::theme()]
-#' @param alpha See [ggplot2::geom_point()]
+#' @param point_alpha Transparency of the bubble fill
+#' @param point_fill Color of the bubble fill
+#' @param point_color Color of the bubble outline
 #' @param xlim Limits for the x-axis
 #' @param leg_title The legend title text
 #' @param ... Additional parameters passed to [ggplot2::geom_point()],
@@ -21,55 +23,99 @@
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_bubbles <- function(d,
-                         clines = c(1980, 1984, 1999, 2010, 2014, 2016),
+                         clines = c(1980, 1984, 1999, 2010, 2014, 2016, 2020),
                          mean_age = NULL,
                          mean_age_line_color = "red",
-                         mean_age_line_size = 1.5,
+                         mean_age_line_width = 1.5,
                          mean_age_line_type = "solid",
+                         diag_line_color = "darkgreen",
+                         diag_line_width = 1,
+                         diag_line_type = "solid",
                          yrs = NULL,
                          by = 5,
                          leg_pos = "none",
-                         alpha = 0.3,
-                         xlim = c(1975, year(Sys.Date())),
+                         point_alpha = main_alpha,
+                         point_fill = main_fill,
+                         point_color = "black",
+                         xlim = c(1966, year(Sys.Date())),
                          leg_title = "Proportion",
                          ...){
+
+  if(!all(c("Year", "Age", "Proportion") %in% names(d))){
+    stop("One of the necessary columns is missing. This function requires ",
+         "`Year`, `Age`, and `Proportion` columns",
+         call. = FALSE)
+  }
 
   if(!is.null(xlim[1])){
     d <- d |>
       filter(Year %in% xlim[1]:xlim[2])
   }
 
-  g <- ggplot(d, aes(x = Year, y = Age, size = Proportion)) +
-    geom_point(alpha = alpha, ...) +
-    scale_x_continuous(breaks = seq(from = xlim[1], to = xlim[2], by = by),
+  # Start breaks at the last divisible-by-5 year before the first year
+  x_breaks <- seq(xlim[1] - (xlim[1] %% 5), xlim[2], 5)
+
+  g <- ggplot(d,
+              aes(x = Year,
+                  y = Age,
+                  size = Proportion)) +
+    geom_point(shape = 21,
+               alpha = point_alpha,
+               fill = point_fill,
+               color = point_color,
+               ...) +
+    scale_x_continuous(breaks = x_breaks,
                        expand = c(0.025, 0)) +
     coord_cartesian(xlim) +
     expand_limits(x = xlim[1]:xlim[2]) +
     scale_size_continuous(range = c(0.5, 10))
+
   if(!is.null(clines)){
-    clines <- tibble(year = clines,
-                     y = 0,
-                     xend = clines + max(as.numeric(d$Age)),
-                     yend = max(as.numeric(d$Age)))
+    age_range <- range(as.numeric(as.character(d$Age)))
+    ages <- seq(min(age_range), max(age_range))
+    cohort_lines_df <- clines |>
+      map_df(\(cohort_yr){
+        map_df(ages, \(age){
+          d |>
+            filter(Year == cohort_yr + age,
+                   Age == age)
+        }) |>
+          mutate(cohort = cohort_yr)
+      })
+
     g <- g +
-      geom_segment(data = clines,
-                   x = clines$year,
-                   y = clines$y,
-                   aes(xend = clines$xend,
-                       yend = clines$yend),
-                   size = 1,
-                   color = "red",
-                   ...)
+      geom_path(data = cohort_lines_df,
+                aes(x = Year,
+                    y = Age,
+                    group = factor(cohort)),
+                linewidth = diag_line_width,
+                color = diag_line_color,
+                linetype = diag_line_type)
   }
 
   if(!is.null(mean_age)){
     g <- g +
       geom_line(data = mean_age,
-                aes(x = Year, y = Age),
+                aes(x = Year,
+                    y = Age),
                 inherit.aes = FALSE,
                 color = mean_age_line_color,
-                size = mean_age_line_size,
-                linetype = mean_age_line_type)
+                linewidth = mean_age_line_width,
+                linetype = mean_age_line_type) +
+      # Glow effect for points
+      geom_point(data = mean_age,
+                 aes(x = Year,
+                     y = Age),
+                 inherit.aes = FALSE,
+                 color = "white",
+                 alpha = 0.5,
+                 size = mean_age_line_width + 1) +
+      geom_point(data = mean_age,
+                 aes(x = Year,
+                     y = Age),
+                 inherit.aes = FALSE,
+                 color = mean_age_line_color,
+                 size = mean_age_line_width)
   }
 
   g <- g +
