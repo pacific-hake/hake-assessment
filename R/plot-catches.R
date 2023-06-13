@@ -2,10 +2,8 @@
 #'
 #' @param ct The data frame which is read in from `landings-tac-history.csv`
 #' @param leg_font_size The legend font size
-#' @param axis_title_font_size Size of the font for the X and Y axis labels
-#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param axis_label_color Color for the axis labels and tick labels
-#' @param minor_tick_length The length of the small x-axis ticks
+#' @param mnr_tick_length The length of the small x-axis ticks
+#' @param mjr_tick_length The length of the large x-axis ticks
 #' @param clip_cover There is a white rectangle drawn on top of the plot
 #' to cover any of the plot that made it outside the plot area. `clip` has to
 #' be set to `off` for the major x-axis tick marks to work, So, this is required.
@@ -14,28 +12,27 @@
 #' until you cannot see the white rectangle anymore.
 #' @param xlim The year limits to plot
 #' @param x_breaks The year value tick marks to show for the x axis
+#' @param x_expansion Amount to expand the x axis. See the `expand` argument
+#' in [ggplot2::scale_x_continuous()]
 #' @param x_labs_mod Value for major X-axis tick marks. Every Nth tick
 #' will be longer and have a label. The first and last will be shown
 #' regardless of what this number is
-#' @param ylim The depletion limits to plot
-#' @param y_breaks The depletion value tick marks to show for the y axis
-#' @param x_expansion Amount to expand the x axis. See the `expand` argument
-#' in [ggplot2::scale_x_continuous()]
+#' @param ylim The y-axis min and max limits for the plot
+#' @param y_breaks The tick mark values to show for the y axis
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_catches <- function(ct,
                          leg_font_size = 12,
-                         axis_title_font_size = 14,
-                         axis_tick_font_size = 11,
-                         axis_label_color = "black",
-                         minor_tick_length = 0.1,
+                         mnr_tick_length = minor_tick_length,
+                         mjr_tick_length = major_tick_length,
                          clip_cover = 2,
                          xlim = c(1966, year(Sys.time())),
                          x_breaks = xlim[1]:xlim[2],
                          x_expansion = 1,
                          x_labs_mod = 5,
-                         ylim = c(0, 450)){
+                         ylim = c(0, 450),
+                         y_breaks = seq(0, 400, 100)){
 
   fishery_nms <- c(
     "U.S. Joint-venture",
@@ -107,12 +104,11 @@ plot_catches <- function(ct,
   # X-axis tick mark lengths adjusted here
   x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
   top_y_pos = ylim[1]
-  bot_y_pos = ylim[1] - (ylim[2] - ylim[1]) / 20
+  mjr_tick_length <-
+    as.numeric(convertX(unit(mjr_tick_length, "cm"), "pt"))
+  bot_y_pos = -mjr_tick_length
   custom_ticks <- tibble(group = x_breaks_nth,
                          y_end = bot_y_pos)
-
-  y_breaks <- c(0, 100, 200, 300, 400)
-  y_labels <- y_breaks
 
   g <-
     ggplot(ct,
@@ -132,33 +128,13 @@ plot_catches <- function(ct,
                        breaks = x_breaks,
                        labels = x_labels) +
     scale_y_continuous(expand = c(0, 0),
-                       breaks = y_breaks,
-                       labels = y_labels) +
+                       breaks = y_breaks) +
     coord_cartesian(xlim = xlim,
                     ylim = ylim,
                     clip = "off") +
     theme(legend.position = "none",
-          axis.text.x = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -0.25,
-                                     face = "plain"),
-          axis.text.y = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
-                                      angle = 0,
-                                      vjust = 0,
-                                      face = "plain"),
-          axis.title.y = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      face = "plain"),
-          axis.ticks.length = unit(0.15, "cm")) +
+          axis.ticks.length = unit(mnr_tick_length, "cm"),
+          axis.text.x = element_text(vjust = -mjr_tick_length / 10)) +
     ylab("Catch (kt)")
 
   # Add major tick marks
