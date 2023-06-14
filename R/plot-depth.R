@@ -9,7 +9,6 @@
 #' @export
 plot_depth <- function(depth_df,
                        yrs,
-                       axis_tick_font_size = 11,
                        title_text = NULL,
                        line_col = "grey",
                        box_width = 0.75,
@@ -39,20 +38,8 @@ plot_depth <- function(depth_df,
                  col = line_col,,
                  width = box_width) +
     scale_y_continuous(labels = scales::comma) +
-    theme(plot.title = element_text(hjust = 0.5, face = "bold"),
-          axis.text.x = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -0.25,
-                                     face = "plain"),
-          axis.text.y = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(hjust = 5),
-          axis.ticks.length = unit(0.15, "cm")) +
+    theme(plot.title = element_text(hjust = 0.5),
+          axis.title.x = element_text(hjust = 5)) +
     xlab("")
 
   if(!is.null(title_text)){
