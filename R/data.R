@@ -1,3 +1,34 @@
+#' The color to use by default for all fills in the plots in the document
+#'
+#' @format A character string or numerical value representing an official
+#' color in R
+"main_fill"
+#' The color to use by default for all fills in the plots in the document
+#'
+#' @format A numerical value between 0 and 1 representing the default
+#' transparency for all fills in the plots in the document
+"main_alpha"
+#' The size font to use by default for all axis titles
+#'
+#' @format A numerical value
+"axis_title_font_size"
+#' The size font to use by default for all axis tick labels
+#'
+#' @format A numerical value
+"axis_tick_font_size"
+#' The color to use by default for all axis titles
+#'
+#' @format A numerical value or character string representing an official
+#' color in R
+"axis_label_color"
+#' The length of the minor tick marks in plots in cm
+#'
+#' @format A numerical value
+"minor_tick_length"
+#' The length of the major tick marks in plots in cm
+#'
+#' @format A numerical value
+"major_tick_length"
 #' A list of key posteriors for this assessment
 #'
 #' @format A list of regular expressions used to find the key posterior names

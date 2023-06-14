@@ -2,10 +2,10 @@
 % Please edit documentation in R/utils-theme.R
 \name{hake_theme}
 \alias{hake_theme}
-\title{ggplot2 theme for hake}
+\title{Theme for the \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} plots in the document}
 \usage{
 hake_theme()
 }
 \description{
-ggplot2 theme for hake
+Theme for the \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} plots in the document
 }
