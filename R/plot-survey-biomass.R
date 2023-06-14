@@ -7,12 +7,15 @@
 #' @param index The index type to plot
 #' @param y_lim A vector of two for the minimum and maximum values
 #' for the y-axis on the plot
+#' @param hide_yrs A vector of years to not show the year labels for on the
+#' x-axis. This is to prevent label overlap
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_survey_biomass <- function(model,
                                 index = c("age1", "age2"),
-                                y_lim = c(0, 3)){
+                                y_lim = c(0, 3),
+                                hide_yrs = 2012){
 
   index <- match.arg(index)
   y_label <- ifelse(index == "age1",
@@ -52,9 +55,14 @@ plot_survey_biomass <- function(model,
 
   }
 
+  x_breaks <- ests$year
+  x_labels <- x_breaks
+  x_labels[x_labels %in% hide_yrs] <- ""
+
   g <- g +
     geom_point(aes(y = obs), size = 2) +
-    scale_x_continuous(breaks = ests$year) +
+    scale_x_continuous(breaks = x_breaks,
+                       labels = x_labels) +
     scale_y_continuous(breaks = seq(y_lim[1], y_lim[2], brk_interval),
                        expand = c(0, 0)) +
     coord_cartesian(ylim = y_lim) +

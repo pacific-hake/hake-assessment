@@ -4,7 +4,12 @@
 \alias{plot_survey_biomass}
 \title{Create a plot of survey biomass as points with error   bars}
 \usage{
-plot_survey_biomass(model, index = c("age1", "age2"), y_lim = c(0, 3))
+plot_survey_biomass(
+  model,
+  index = c("age1", "age2"),
+  y_lim = c(0, 3),
+  hide_yrs = 2012
+)
 }
 \arguments{
 \item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
@@ -13,6 +18,9 @@ plot_survey_biomass(model, index = c("age1", "age2"), y_lim = c(0, 3))
 
 \item{y_lim}{A vector of two for the minimum and maximum values
 for the y-axis on the plot}
+
+\item{hide_yrs}{A vector of years to not show the year labels for on the
+x-axis. This is to prevent label overlap}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
