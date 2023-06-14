@@ -2,8 +2,6 @@
 #'
 #' @param ct The data frame which is read in from `landings-tac-history.csv`
 #' @param leg_font_size The legend font size
-#' @param mnr_tick_length The length of the small x-axis ticks
-#' @param mjr_tick_length The length of the large x-axis ticks
 #' @param clip_cover There is a white rectangle drawn on top of the plot
 #' to cover any of the plot that made it outside the plot area. `clip` has to
 #' be set to `off` for the major x-axis tick marks to work, So, this is required.
@@ -24,8 +22,6 @@
 #' @export
 plot_catches <- function(ct,
                          leg_font_size = 12,
-                         mnr_tick_length = minor_tick_length,
-                         mjr_tick_length = major_tick_length,
                          clip_cover = 2,
                          xlim = c(1966, year(Sys.time())),
                          x_breaks = xlim[1]:xlim[2],
@@ -92,11 +88,8 @@ plot_catches <- function(ct,
     mutate(fishery = factor(fishery,
                             levels = fishery_nms_f))
 
-  top_major_line_y <- ylim[1]
-  tick_data <- create_labels_and_ticks(breaks = x_breaks,
-                                       modulo = x_labs_mod,
-                                       lower_lim = top_major_line_y,
-                                       mjr_tick_length = mjr_tick_length)
+  x_labels <- make_major_tick_labels(x_breaks = x_breaks,
+                                     modulo = x_labs_mod)
 
   g <-
     ggplot(ct,
@@ -114,25 +107,27 @@ plot_catches <- function(ct,
                                  "transparent")) +
     scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
-                       labels = tick_data$labels) +
+                       labels = x_labels) +
     scale_y_continuous(expand = c(0, 0),
                        breaks = y_breaks) +
     coord_cartesian(xlim = xlim,
                     ylim = ylim,
                     clip = "off") +
     theme(legend.position = "none",
-          axis.ticks.length = unit(mnr_tick_length, "cm"),
-          axis.text.x = element_text(vjust = -mjr_tick_length / 10)) +
+          # This command moves the major labels down so that the ticks don't
+          # overlap the labels
+          axis.text.x = element_text(vjust = -2)) +
     ylab("Catch (kt)")
 
   # Add major tick marks
-  g <- g +
-    geom_linerange(data = tick_data$custom_ticks,
-                   aes(x = group,
-                       ymax = top_major_line_y,
-                       ymin = end),
-                   size = 0.5,
-                   inherit.aes = FALSE)
+  g <- g |>
+    add_major_ticks(x_breaks = x_breaks,
+                    modulo = x_labs_mod,
+                    # This proportion must be set by trial and error
+                    # Make sure to change `vjust` value above in the `theme()`
+                    # call so the labels are not overlapping the lines or
+                    # too far away from the lines
+                    prop = 1.2)
 
   # Draw a white rectangle over the top of the plot, obscuring any
   # unclipped plot parts. Clipping has to be off to allow different size
@@ -154,7 +149,10 @@ plot_catches <- function(ct,
             legend.text = element_text(size = leg_font_size),
             legend.key.size = unit(0.7, "cm")))
 
-  p <- plot_grid(legend, g, ncol = 1, rel_heights = c(1, 2))
+  p <- plot_grid(legend,
+                 g,
+                 ncol = 1,
+                 rel_heights = c(1, 2))
 
   p
 }

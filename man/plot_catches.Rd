@@ -7,8 +7,6 @@
 plot_catches(
   ct,
   leg_font_size = 12,
-  mnr_tick_length = minor_tick_length,
-  mjr_tick_length = major_tick_length,
   clip_cover = 2,
   xlim = c(1966, year(Sys.time())),
   x_breaks = xlim[1]:xlim[2],
@@ -22,10 +20,6 @@ plot_catches(
 \item{ct}{The data frame which is read in from \code{landings-tac-history.csv}}
 
 \item{leg_font_size}{The legend font size}
-
-\item{mnr_tick_length}{The length of the small x-axis ticks}
-
-\item{mjr_tick_length}{The length of the large x-axis ticks}
 
 \item{clip_cover}{There is a white rectangle drawn on top of the plot
 to cover any of the plot that made it outside the plot area. \code{clip} has to
