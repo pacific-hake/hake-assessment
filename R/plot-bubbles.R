@@ -4,25 +4,26 @@
 #' names `Year`, `Age`, and the column name given by `val_col_nm`
 #' @param clines An optional vector of years to draw cohort lines through
 #' @param val_col_nm The name of the column in `d` to use for the values
-#' @param mean_age A two-column tibble with column names `Year` and `Age` where
-#' each row contains a year and `Age` represents the mean age for each year
+#' @param mean_age A two-column tibble with column names `Year` and `Age`
+#' where each row contains a year and `Age` represents the mean age for
+#' each year
 #' @param mean_age_line_color The line color for the mean age line
+#' @param mean_age_line_width The line width for the mean age line
 #' @param mean_age_line_type The line type for the mean age line
 #' @param diag_line_color The line color for the cohort diagonal lines
+#' @param diag_line_width The line width for the cohort diagonal lines
 #' @param diag_line_type The line type for the cohort diagonal lines
 #' @param yrs A vector of 2, for the years to show on the plot
 #' @param by How many years between year labels on the x-axis
-#' @param leg_pos See the `legend.position` parameter in
-#' [ggplot2::theme()]
+#' @param leg_pos See the `legend.position` parameter in [ggplot2::theme()]
 #' @param point_alpha Transparency of the bubble fill
 #' @param point_fill Color of the bubble fill
 #' @param point_color Color of the bubble outline
 #' @param xlim Limits for the x-axis
 #' @param ... Additional parameters passed to [ggplot2::geom_point()],
 #' [ggplot2::geom_segment()] and [ggplot2::theme()]
-#' @param mean_age_line_width
-#' @param diag_line_width
-#' @param show_x_axis_labels
+#' @param show_x_axis_labels Logical. If `TRUE`, show the x-axis title and
+#' tick labels
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export

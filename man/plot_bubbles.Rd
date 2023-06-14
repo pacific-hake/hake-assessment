@@ -34,14 +34,19 @@ names \code{Year}, \code{Age}, and the column name given by \code{val_col_nm}}
 
 \item{val_col_nm}{The name of the column in \code{d} to use for the values}
 
-\item{mean_age}{A two-column tibble with column names \code{Year} and \code{Age} where
-each row contains a year and \code{Age} represents the mean age for each year}
+\item{mean_age}{A two-column tibble with column names \code{Year} and \code{Age}
+where each row contains a year and \code{Age} represents the mean age for
+each year}
 
 \item{mean_age_line_color}{The line color for the mean age line}
+
+\item{mean_age_line_width}{The line width for the mean age line}
 
 \item{mean_age_line_type}{The line type for the mean age line}
 
 \item{diag_line_color}{The line color for the cohort diagonal lines}
+
+\item{diag_line_width}{The line width for the cohort diagonal lines}
 
 \item{diag_line_type}{The line type for the cohort diagonal lines}
 
@@ -49,8 +54,7 @@ each row contains a year and \code{Age} represents the mean age for each year}
 
 \item{by}{How many years between year labels on the x-axis}
 
-\item{leg_pos}{See the \code{legend.position} parameter in
-\code{\link[ggplot2:theme]{ggplot2::theme()}}}
+\item{leg_pos}{See the \code{legend.position} parameter in \code{\link[ggplot2:theme]{ggplot2::theme()}}}
 
 \item{point_alpha}{Transparency of the bubble fill}
 
@@ -60,7 +64,8 @@ each row contains a year and \code{Age} represents the mean age for each year}
 
 \item{xlim}{Limits for the x-axis}
 
-\item{show_x_axis_labels}{}
+\item{show_x_axis_labels}{Logical. If \code{TRUE}, show the x-axis title and
+tick labels}
 
 \item{...}{Additional parameters passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}},
 \code{\link[ggplot2:geom_segment]{ggplot2::geom_segment()}} and \code{\link[ggplot2:theme]{ggplot2::theme()}}}
