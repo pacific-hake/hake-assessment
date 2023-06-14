@@ -29,7 +29,7 @@ add_major_ticks <- function(g,
   x_breaks <- x_breaks %||% x_limits[1]:x_limits[2]
 
   x_breaks_nth <- x_breaks[x_breaks %% modulo == 0]
-  tick_length <- (y_limits[2] - y_limits[1]) / (.pt * 10) * 0.8
+  tick_length <- (y_limits[2] - y_limits[1]) / (.pt * 10) * prop
   bot_pos <- y_limits[1] - tick_length
 
   custom_ticks <- tibble(group = x_breaks_nth,

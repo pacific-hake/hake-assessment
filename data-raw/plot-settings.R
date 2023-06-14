@@ -5,8 +5,7 @@ axis_title_font_size <- 14
 axis_tick_font_size <- 11
 axis_label_color <- "black"
 
-minor_tick_length <- 0.15
-major_tick_length <- 0.6
+minor_tick_length <- 0.1
 
 # Source this file to see the changes
 usethis::use_data(main_fill, overwrite = TRUE)
