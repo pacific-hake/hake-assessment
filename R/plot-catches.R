@@ -114,9 +114,11 @@ plot_catches <- function(ct,
                     ylim = ylim,
                     clip = "off") +
     theme(legend.position = "none",
-          # This command moves the major labels down so that the ticks don't
-          # overlap the labels
-          axis.text.x = element_text(vjust = -2)) +
+          # These two commands move the x-axis major tick labels and axis
+          # title down so that the ticks. tick labels, and axis title don't
+          # overlap each other
+          axis.text.x = element_text(vjust = -2),
+          axis.title.x = element_text(vjust = -2)) +
     ylab("Catch (kt)")
 
   # Add major tick marks
