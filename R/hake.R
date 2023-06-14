@@ -22,7 +22,8 @@
 #' @importFrom graphics mtext par points polygon rect segments
 #' @importFrom graphics strwidth symbols text title
 #' @importFrom grDevices colorRampPalette gray rgb
-#' @importFrom grid gpar grid.draw grid.newpage rectGrob textGrob
+#' @importFrom grid convertX gpar grid.draw grid.newpage rectGrob textGrob
+#' @importFrom grid unit
 #' @importFrom gridExtra arrangeGrob
 #' @importFrom gtable gtable_add_grob gtable_add_rows
 #' @importFrom kableExtra column_spec kable_styling kbl landscape linebreak

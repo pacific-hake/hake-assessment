@@ -92,23 +92,11 @@ plot_catches <- function(ct,
     mutate(fishery = factor(fishery,
                             levels = fishery_nms_f))
 
-  # Remove labels for the minor x-axis ticks
-  x_labels <- NULL
-  for(i in x_breaks){
-    if(i %% x_labs_mod == 0){
-      x_labels <- c(x_labels, i)
-    }else{
-      x_labels <- c(x_labels, "")
-    }
-  }
-  # X-axis tick mark lengths adjusted here
-  x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
-  top_y_pos = ylim[1]
-  mjr_tick_length <-
-    as.numeric(convertX(unit(mjr_tick_length, "cm"), "pt"))
-  bot_y_pos = -mjr_tick_length
-  custom_ticks <- tibble(group = x_breaks_nth,
-                         y_end = bot_y_pos)
+  top_major_line_y <- ylim[1]
+  tick_data <- create_labels_and_ticks(breaks = x_breaks,
+                                       modulo = x_labs_mod,
+                                       lower_lim = top_major_line_y,
+                                       mjr_tick_length = mjr_tick_length)
 
   g <-
     ggplot(ct,
@@ -126,7 +114,7 @@ plot_catches <- function(ct,
                                  "transparent")) +
     scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
-                       labels = x_labels) +
+                       labels = tick_data$labels) +
     scale_y_continuous(expand = c(0, 0),
                        breaks = y_breaks) +
     coord_cartesian(xlim = xlim,
@@ -139,10 +127,10 @@ plot_catches <- function(ct,
 
   # Add major tick marks
   g <- g +
-    geom_linerange(data = custom_ticks,
+    geom_linerange(data = tick_data$custom_ticks,
                    aes(x = group,
-                       ymax = top_y_pos,
-                       ymin = y_end),
+                       ymax = top_major_line_y,
+                       ymin = end),
                    size = 0.5,
                    inherit.aes = FALSE)
 
@@ -163,7 +151,7 @@ plot_catches <- function(ct,
             legend.direction = "vertical",
             legend.title = element_blank(),
             legend.text.align = 0,
-            legend.text = element_text(size = 12),
+            legend.text = element_text(size = leg_font_size),
             legend.key.size = unit(0.7, "cm")))
 
   p <- plot_grid(legend, g, ncol = 1, rel_heights = c(1, 2))
