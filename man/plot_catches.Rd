@@ -7,16 +7,15 @@
 plot_catches(
   ct,
   leg_font_size = 12,
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
-  axis_label_color = "black",
-  minor_tick_length = 0.1,
+  mnr_tick_length = minor_tick_length,
+  mjr_tick_length = major_tick_length,
   clip_cover = 2,
   xlim = c(1966, year(Sys.time())),
   x_breaks = xlim[1]:xlim[2],
   x_expansion = 1,
   x_labs_mod = 5,
-  ylim = c(0, 450)
+  ylim = c(0, 450),
+  y_breaks = seq(0, 400, 100)
 )
 }
 \arguments{
@@ -24,13 +23,9 @@ plot_catches(
 
 \item{leg_font_size}{The legend font size}
 
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
+\item{mnr_tick_length}{The length of the small x-axis ticks}
 
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{axis_label_color}{Color for the axis labels and tick labels}
-
-\item{minor_tick_length}{The length of the small x-axis ticks}
+\item{mjr_tick_length}{The length of the large x-axis ticks}
 
 \item{clip_cover}{There is a white rectangle drawn on top of the plot
 to cover any of the plot that made it outside the plot area. \code{clip} has to
@@ -50,9 +45,9 @@ in \code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}}
 will be longer and have a label. The first and last will be shown
 regardless of what this number is}
 
-\item{ylim}{The depletion limits to plot}
+\item{ylim}{The y-axis min and max limits for the plot}
 
-\item{y_breaks}{The depletion value tick marks to show for the y axis}
+\item{y_breaks}{The tick mark values to show for the y axis}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
