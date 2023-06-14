@@ -7,6 +7,11 @@
 #' @param x_labs_mod Value for major X-axis tick marks. Every Nth tick
 #' will be longer and have a label. The first and last will be shown
 #' regardless of what this number is
+#' @param tick_prop A value that the length of the major tick marks are
+#' multiplied by
+#' @param vjust_x_labels A value to move the x-axis tick labels and title
+#' by. Negative means move it down, away from the plot, positive is to move
+#' it up, closer to the plot
 #' @param ylim The depletion limits to plot
 #' @param y_breaks The depletion value tick marks to show for the y axis
 #' @param y_labels Labels for the tick marks on the Y axis
@@ -57,15 +62,14 @@ plot_biomass <- function(model_lst = NULL,
                          x_breaks = 1966:year(Sys.time()),
                          x_labs_mod = 5,
                          x_expansion = 3,
+                         tick_prop = 1,
+                         vjust_x_labels = -0.25,
                          ylim = c(0, 4.5),
                          y_breaks = seq(ylim[1], ylim[2], by = 0.5),
                          alpha = 0.1,
                          leg_pos = c(0.65, 0.83),
                          leg_ncol = 1,
                          leg_font_size = 12,
-                         axis_title_font_size = 14,
-                         axis_tick_font_size = 11,
-                         axis_label_color = "black",
                          point_size = 2.5,
                          point_shape = 16,
                          line_width = 1,
@@ -101,26 +105,13 @@ plot_biomass <- function(model_lst = NULL,
     ribbon_colors <- single_ribbon_color
   }
 
-  # Remove labels for the minor x-axis ticks
-  x_labels <- NULL
-  for(i in x_breaks){
-    if(i %% x_labs_mod == 0){
-      x_labels <- c(x_labels, i)
-    }else{
-      x_labels <- c(x_labels, "")
-    }
-  }
+  x_labels <- make_major_tick_labels(x_breaks = x_breaks,
+                                     modulo = x_labs_mod)
 
   # Add "Unfished Equilibrium" to the x break labels
   # with a newline between them
   x_labels <- c(expression(B[0]), x_labels)
   x_breaks = c(bo$year[1], x_breaks)
-  # Major tick mark lengths adjusted here
-  x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
-  top_y_pos = ylim[1]
-  bot_y_pos = ylim[1] - (ylim[2] - ylim[1]) / 25
-  custom_ticks <- tibble(group = x_breaks_nth,
-                         y_end = bot_y_pos)
 
   # Remove projection years
   d <- d |>
@@ -153,6 +144,11 @@ plot_biomass <- function(model_lst = NULL,
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
+          # These two commands move the x-axis major tick labels and axis
+          # title down so that the ticks. tick labels, and axis title don't
+          # overlap each other
+          axis.text.x = element_text(vjust = vjust_x_labels),
+          axis.title.x = element_text(vjust = vjust_x_labels),
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 0, 0)) +
@@ -174,36 +170,14 @@ plot_biomass <- function(model_lst = NULL,
                   alpha = 0.5)
 
   # Add major tick marks
-  g <- g +
-    geom_linerange(data = custom_ticks,
-                   aes(x = group,
-                       ymax = top_y_pos,
-                       ymin = y_end),
-                   size = 0.5,
-                   inherit.aes = FALSE)
-
-  g <- g +
-    theme(axis.text.x = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -0.25,
-                                     face = "plain"),
-          axis.text.y = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
-                                      angle = 0,
-                                      vjust = 0,
-                                      face = "plain"),
-          axis.title.y = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      face = "plain"),
-          axis.ticks.length = unit(0.15, "cm"))
+  g <- g |>
+    add_major_ticks(x_breaks = x_breaks,
+                    modulo = x_labs_mod,
+                    # This proportion must be set by trial and error
+                    # Make sure to change `vjust` value above in the `theme()`
+                    # call so the labels are not overlapping the lines or
+                    # too far away from the lines
+                    prop = tick_prop)
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +

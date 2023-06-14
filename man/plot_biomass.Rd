@@ -25,15 +25,14 @@ plot_biomass(
   x_breaks = 1966:year(Sys.time()),
   x_labs_mod = 5,
   x_expansion = 3,
+  tick_prop = 1,
+  vjust_x_labels = -0.25,
   ylim = c(0, 4.5),
   y_breaks = seq(ylim[1], ylim[2], by = 0.5),
   alpha = 0.1,
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
-  axis_label_color = "black",
   point_size = 2.5,
   point_shape = 16,
   line_width = 1,
@@ -195,14 +194,13 @@ plot_rel_biomass(
   x_breaks = xlim[1]:xlim[2],
   x_labs_mod = 5,
   x_expansion = 3,
+  tick_prop = 0.8,
+  vjust_x_labels = -2,
   ylim = c(0, 3.5),
   alpha = 0.1,
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
-  minor_tick_length = 0.1,
   point_size = 2,
   point_shape = 16,
   line_width = 1,
@@ -285,6 +283,13 @@ regardless of what this number is}
 \item{x_expansion}{Amount to expand the x axis. See the \code{expand} argument in
 \code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}}
 
+\item{tick_prop}{A value that the length of the major tick marks are
+multiplied by}
+
+\item{vjust_x_labels}{A value to move the x-axis tick labels and title
+by. Negative means move it down, away from the plot, positive is to move
+it up, closer to the plot}
+
 \item{ylim}{The depletion limits to plot}
 
 \item{y_breaks}{The depletion value tick marks to show for the y axis}
@@ -297,12 +302,6 @@ regardless of what this number is}
 \item{leg_ncol}{The number of columns to show in the legend}
 
 \item{leg_font_size}{The legend font size}
-
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{axis_label_color}{Color for the axis labels and tick labels}
 
 \item{point_size}{Size of all points shown in plot}
 
@@ -341,6 +340,10 @@ is done to stop the Rmd process from taking forever}
 \item{cohorts}{A vector of cohorts to make lines for}
 
 \item{ages}{A vector of ages to show}
+
+\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
+
+\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
 
 \item{show_arrowheads}{Logical. If \code{TRUE} show arrowheads on the ends of
 the lines}
@@ -393,9 +396,11 @@ default. To change it, edit the year in the \code{\link[=calc_mcmc]{calc_mcmc()}
 then \code{\link[=create_rds_file]{create_rds_file()}} needs to be run again to create the RDS file for
 the model}
 
-\item{minor_tick_length}{The length of the small x-axis ticks}
-
 \item{survey_type}{Either \code{age1} or \code{age2}}
+
+\item{axis_label_color}{Color for the axis labels and tick labels}
+
+\item{minor_tick_length}{The length of the small x-axis ticks}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
