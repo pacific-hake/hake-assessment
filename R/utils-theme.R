@@ -1,11 +1,7 @@
-#' ggplot2 theme for hake
+#' Theme for the [ggplot2::ggplot()] plots in the document
 #'
 #' @export
 hake_theme <- function(){
-
-  axis_title_font_size <- 14
-  axis_tick_font_size <- 11
-  axis_label_color <- "black"
 
   theme_bw() +
     theme(legend.key = element_blank(),
