@@ -7,7 +7,6 @@
 plot_depth(
   depth_df,
   yrs,
-  axis_tick_font_size = 11,
   title_text = NULL,
   line_col = "grey",
   box_width = 0.75,
