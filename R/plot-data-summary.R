@@ -2,15 +2,16 @@
 #' assessment as proportional bubbles
 #'
 #' @param model A model, created by [create_rds_file()]
-#' @param axis_title_font_size Size of the font for the X and Y axis labels
-#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
+#' @param ax_title_font_size Size of the font for the X and Y axis labels
+#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
 #' @param x_breaks The year tick marks to show for the x axis
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
 plot_data_summary <- function(model,
-                              axis_title_font_size = 14,
-                              axis_tick_font_size = 11,
+                              ax_title_font_size = axis_title_font_size,
+                              ax_tick_font_size = axis_tick_font_size,
+                              ax_label_color = axis_label_color,
                               x_breaks = seq(model$startyr - 1,
                                              model$endyr,
                                              by = 5)){
@@ -31,7 +32,10 @@ plot_data_summary <- function(model,
   cpue <- model$cpue |>
     as_tibble() |>
     filter(Use > 0) |>
-    transmute(yr = Yr, fleet = Fleet_name, val = Exp, se = SE) |>
+    transmute(yr = Yr,
+              fleet = Fleet_name,
+              val = Exp,
+              se = SE) |>
     filter(yr %in% start_yr:end_yr) |>
     split(~fleet) |>
     map_df(~{
@@ -78,18 +82,19 @@ plot_data_summary <- function(model,
                     y = fleet,
                     size = val,
                     fill = fleet)) +
-      geom_point(pch = 21, color = "black") +
-      scale_x_continuous(breaks = x_breaks, limits = c(start_yr, end_yr)) +
-      theme(axis.text.x = element_text(color = "grey20",
-                                       size = axis_tick_font_size,
+      geom_point(pch = 21,
+                 color = "black") +
+      scale_x_continuous(breaks = x_breaks,
+                         limits = c(start_yr, end_yr)) +
+      theme(axis.text.x = element_text(color = ax_label_color,
+                                       size = ax_tick_font_size,
                                        angle = 0,
                                        hjust = 0.5,
                                        vjust = -3,
                                        face = "plain"),
-            axis.text.y = element_text(face = "bold",
-                                       size = 14,
+            axis.text.y = element_text(size = ax_title_font_size,
                                        family = "Helvetica",
-                                       color = "black"),
+                                       color = ax_label_color),
             axis.title.x = element_blank(),
             axis.title.y = element_blank(),
             plot.margin = unit(c(0, 0, 1, 0), "lines"),
@@ -103,12 +108,12 @@ plot_data_summary <- function(model,
                x = (end_yr - start_yr) / 2 + start_yr,
                y = label_y,
                size = 6,
-               colour = "black")
+               colour = ax_label_color)
 
     if(!show_x_axis){
       g <- g +
         theme(axis.text.x = element_blank(),
-              axis.title.x = element_blank())
+            axis.title.x = element_blank())
     }
 
     g
@@ -132,8 +137,7 @@ plot_data_summary <- function(model,
   plt <- plot_grid(plotlist = p, ncol = 1, align = "v")
 
   x_grob <- textGrob("Year",
-                     gp = gpar(fontface = "bold",
-                               fontsize = axis_title_font_size))
+                     gp = gpar(fontsize = ax_title_font_size))
 
   grid.arrange(arrangeGrob(plt, bottom = x_grob))
 }

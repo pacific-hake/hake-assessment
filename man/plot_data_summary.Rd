@@ -7,17 +7,18 @@ assessment as proportional bubbles}
 \usage{
 plot_data_summary(
   model,
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
+  ax_title_font_size = axis_title_font_size,
+  ax_tick_font_size = axis_tick_font_size,
+  ax_label_color = axis_label_color,
   x_breaks = seq(model$startyr - 1, model$endyr, by = 5)
 )
 }
 \arguments{
 \item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
+\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
 
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
+\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
 
 \item{x_breaks}{The year tick marks to show for the x axis}
 }
