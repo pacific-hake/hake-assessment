@@ -312,27 +312,26 @@ table_param_est_bounds <- function(model,
                 "Number of\nparameters",
                 "Bounds\n(low, high)",
                 "Prior (Mean, SD)\nsingle value = fixed")
- sec_inds <- c(1, 11, 16)
- data_src_inds <- c(sec_inds[2] + 1, sec_inds[2] + 4, sec_inds[2] + 6)
+
   d <- insert_row(d,
                   c(paste0("\\textbf{\\underline{Stock Dynamics}}"),
-                    "", "", ""), sec_inds[1])
+                    "", "", ""), 1)
   d <- insert_row(d,
                    c(paste0("\\textbf{\\underline{Data Source}}"),
-                     "", "", ""), sec_inds[2])
+                     "", "", ""), 7)
+  d <- insert_row(d,
+                  c(paste0("\\textbf{\\underline{Data Weighting}}"),
+                    "", "", ""), 13)
   d <- insert_row(d,
                    c(paste0("\\textbf{\\emph{Acoustic Survey}}"),
-                     "", "", ""), data_src_inds[1])
+                     "", "", ""), 8)
   d <- insert_row(d,
                    c(paste0("\\textbf{\\emph{Age-1 Survey}}"),
-                     "", "", ""), data_src_inds[1])
+                     "", "", ""), 11)
   d <- insert_row(d,
                    c(paste0("\\textbf{\\emph{Fishery Survey}}"),
-                     "", "", ""), data_src_inds[1])
-  d <- insert_row(d,
-                   c(paste0("\\textbf{\\underline{Data Weighting}}"),
-                     "", "", ""), sec_inds[3])
-
+                     "", "", ""), 13)
+  sec_inds <- c(1, 7, 16)
   # Add spaces after commas and before opening parentheses
   d <- map_df(d, ~{gsub(",", ", ", .x)})
   d <- map_df(d, ~{gsub("\\(", " \\(", .x)})
