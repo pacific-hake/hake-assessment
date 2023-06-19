@@ -375,7 +375,6 @@ if(is.null(base_model$plots$bridge_summary)){
                      x_labs_mod = 10,
                      clip_cover = 0.35,
                      wrap_y_label = TRUE,
-                     axis_title_font_size = 12,
                      leg_pos = "none")
   plist[[2]] <-
     plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
@@ -415,7 +414,6 @@ if(is.null(base_model$plots$bridge_summary)){
                  leg_ncol = 2,
                  leg_font_size = 7,
                  wrap_y_label = TRUE,
-                 axis_title_font_size = 12,
                  leg_pos = c(0.72, 0.82))
   
   full_plist[[2]] <- quad_grid
