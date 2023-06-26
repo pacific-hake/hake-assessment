@@ -162,7 +162,7 @@ bubble in the fishery data is
 `r as.numeric(max_fishery_age_prop[4])` and in the survey data is
 `r f(as.numeric(max_survey_age_prop[3]) / 100, 2)` for age
 `r as.numeric(max_survey_age_prop[5])` in
-`r as.numeric(max_survey_age_prop[4])`. Red lines track large cohorts.
+`r as.numeric(max_survey_age_prop[4])`. Green lines track large cohorts.
 
 (ref:main-age-comp-bubbles-alt) This figure shows that there are currently
 three large cohorts making their way through the stock. The 2010 cohort is
@@ -513,7 +513,7 @@ if(is.null(base_model$plots$age_comp_fits)){
 (ref:main-age-comp-pearson-cap) Pearson residuals for base model fits to
 the age-composition data for the medians of the MCMC posteriors. Closed
 bubbles are positive residuals (observed > expected) and open bubbles are
-negative residuals (observed < expected). Red lines track cohorts from years
+negative residuals (observed < expected). Green lines track cohorts from years
 of large recruitment events.
 
 (ref:main-age-comp-pearson-alt) This figure shows that there are no obvious
@@ -722,7 +722,7 @@ are also seen here.
 
 (ref:main-numbers-at-age-cap) Bubble plot of the medians of the posterior
 distributions of population numbers at age at the beginning of each year,
-where diagonals follow each year-class through time. The red line represents
+where diagonals follow each year-class through time. The green line represents
 the mean age. The scale of the bubbles is represented in the key where the
 units are billions of fish; the largest overall bubble represents the
 `r max_median_nat`~billion age-0 recruits in `r yr_of_max_median_nat`. See
