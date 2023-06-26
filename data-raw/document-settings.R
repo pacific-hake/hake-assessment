@@ -8,6 +8,7 @@ retrospective_yrs <- 1:10
 plot_retro_yrs <- 1:5
 show_ss_output <- FALSE
 large_cohorts <- c(2010, 2014, 2016, 2020)
+age_bubble_cohorts <- c(1980, 1984, 1999, 2010, 2014, 2016, 2020)
 
 # Data start and endpoint variables ----
 recruit_dev_start_yr <- 1946
@@ -37,3 +38,4 @@ usethis::use_data(survey_start_yr, overwrite = TRUE)
 usethis::use_data(survey_end_yr, overwrite = TRUE)
 usethis::use_data(surv_yrs, overwrite = TRUE)
 usethis::use_data(large_cohorts, overwrite = TRUE)
+usethis::use_data(age_bubble_cohorts, overwrite = TRUE)

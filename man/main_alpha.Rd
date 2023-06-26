@@ -3,15 +3,16 @@
 \docType{data}
 \name{main_alpha}
 \alias{main_alpha}
-\title{The color to use by default for all fills in the plots in the document}
+\title{The transparency to use by default for all fills in the plots in the
+document}
 \format{
-A numerical value between 0 and 1 representing the default
-transparency for all fills in the plots in the document
+A numerical value between 0 and 1
 }
 \usage{
 main_alpha
 }
 \description{
-The color to use by default for all fills in the plots in the document
+The transparency to use by default for all fills in the plots in the
+document
 }
 \keyword{datasets}

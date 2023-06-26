@@ -3,11 +3,23 @@
 #' @format A character string or numerical value representing an official
 #' color in R
 "main_fill"
-#' The color to use by default for all fills in the plots in the document
+#' The transparency to use by default for all fills in the plots in the
+#' document
 #'
-#' @format A numerical value between 0 and 1 representing the default
-#' transparency for all fills in the plots in the document
+#' @format A numerical value between 0 and 1
 "main_alpha"
+#' The default color to use for diagonal cohort lines on age bubble plots
+#'
+#' @format A character string or numerical value representing an R color
+"age_diag_line_color"
+#' The default line width to use for diagonal cohort lines on age bubble plots
+#'
+#' @format A numerical value
+"age_diag_line_width"
+#' The default line type to use for diagonal cohort lines on age bubble plots
+#'
+#' @format A character string or numerical value representing an R line type
+"age_diag_line_type"
 #' The size font to use by default for all axis titles
 #'
 #' @format A numerical value
@@ -162,6 +174,16 @@
 #'
 #' @format A single numerical value, a year
 "surv_yrs"
+#' A vector of years when larger-than-normal recruitment took place
+#'
+#' @format A vector of numerical years
+"large_cohorts"
+#' A vector of years when larger-than-normal recruitment took place, used
+#' only for plots showing age bubbles, for drawing the diagonal cohort lines
+#'
+#' @format A vector of numerical years
+"age_bubble_cohorts"
+#'
 #' A data frame containing information on estimated biomass trajectories for
 #' historical assessments from 1991 to present
 #'

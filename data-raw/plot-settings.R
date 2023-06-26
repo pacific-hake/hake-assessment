@@ -1,5 +1,8 @@
 main_fill <- "royalblue"
 main_alpha <- 0.7
+age_diag_line_color = "darkgreen"
+age_diag_line_width = 1
+age_diag_line_type = "solid"
 
 axis_title_font_size <- 14
 axis_tick_font_size <- 11
@@ -10,6 +13,10 @@ minor_tick_length <- 0.1
 # Source this file to see the changes
 usethis::use_data(main_fill, overwrite = TRUE)
 usethis::use_data(main_alpha, overwrite = TRUE)
+usethis::use_data(age_diag_line_color, overwrite = TRUE)
+usethis::use_data(age_diag_line_width, overwrite = TRUE)
+usethis::use_data(age_diag_line_type, overwrite = TRUE)
+
 usethis::use_data(axis_title_font_size, overwrite = TRUE)
 usethis::use_data(axis_tick_font_size, overwrite = TRUE)
 usethis::use_data(axis_label_color, overwrite = TRUE)

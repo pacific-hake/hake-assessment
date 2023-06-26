@@ -15,11 +15,17 @@
 #' @export
 plot_pearson_bubbles <- function(model,
                                  type = c("fishery", "survey"),
-                                 clines = c(1980, 1984, 1999, 2010, 2014, 2016),
+                                 clines = hake::age_bubble_cohorts,
                                  by = 5,
                                  leg_pos = "none",
                                  alpha = 0.3,
                                  xlim = c(1975, year(Sys.Date())),
+                                 point_alpha = hake::main_alpha,
+                                 point_fill = hake::main_fill,
+                                 point_color = "black",
+                                 diag_line_color = hake::age_diag_line_color,
+                                 diag_line_width = hake::age_diag_line_width,
+                                 diag_line_type = hake::age_diag_line_type,
                                  ...){
 
   type <- match.arg(type)
@@ -35,16 +41,18 @@ plot_pearson_bubbles <- function(model,
                      size = abs(pearson_med),
                      fill = factor(sign(as.numeric(pearson_med))))) +
     geom_point(pch = 21,
-               alpha = alpha,
+               alpha = point_alpha,
+               color = point_color,
                ...) +
     scale_x_continuous(breaks = seq(from = xlim[1],
                                     to = xlim[2],
                                     by = by),
                        expand = c(0.025, 0)) +
+    scale_y_continuous(breaks = sort(unique(d$age))) +
     coord_cartesian(xlim) +
     expand_limits(x = xlim[1]:xlim[2]) +
     scale_fill_manual(values = c("white",
-                                 "black"),
+                                 point_fill),
                       guide = "none") +
     scale_size_continuous(breaks = c(1, 1, 2, 2, 3, 3),
                           labels = c(-8, -4, -0.1, 0.1, 4, 8),
@@ -63,8 +71,9 @@ plot_pearson_bubbles <- function(model,
                    y = clines$y,
                    aes(xend = xend,
                        yend = yend),
-                   linewidth = 1,
-                   color = "red",
+                   linewidth = diag_line_width,
+                   color = diag_line_color,
+                   linetype = diag_line_type,
                    inherit.aes = FALSE,
                    ...)
   }
@@ -78,7 +87,13 @@ plot_pearson_bubbles <- function(model,
                                           leg_pos == "left", 10, 1),
                           override.aes =
                             list(fill = c("white", "white", "white",
-                                          "black", "black", "black"),
+                                          point_fill, point_fill, point_fill),
+                                 color = c(point_color,
+                                           point_color,
+                                           point_color),
+                                 alpha = c(point_alpha,
+                                           point_alpha,
+                                           point_alpha),
                                  size = c(8, 4, 0.1,
                                           0.1, 4, 8))))
 
