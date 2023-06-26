@@ -38,20 +38,19 @@ plot_squid <- function(model,
 
   # Extract a data frame of long-format recruitment deviations containing all
   # the models in the model list
-  d_obj <- model$retros$recdevs_df
+  d <- model$retros$recdevs_df$d
+  cohorts <- as.numeric(levels(d$model)) - 1
 
   # Colors of lines and fill - add black to the beginning and remove end color
+  # The B3 here is the transparency, B3 = 179 decimal out of possible 255 (FF),
+  # So B3 means it is about 70% opaque
   colors <- c("#000000B3",
               rev(rich_colors_short(length(cohorts))[-1]))
 
-  # A vector of the year of the assessment (retrospective year)
-  #model_nms <- rev(cohorts + 1)
-
-
   # Add the retrospective ages to the long-format data frame extracted above
   # "This is where the magic happens"
-  d <- d_obj$d |>
-    # Need to do it this was to convert from factor to numeric
+  d <- d |>
+    # Need to do this to convert from factor to numeric
     mutate(model = as.numeric(as.character(model))) |>
     filter(year %in% cohorts) |>
     # Create a list of data frames, one for each cohort
@@ -68,6 +67,7 @@ plot_squid <- function(model,
     }) |>
     # Glue the list of data frames back into a single data frame
     map_df(~{.x})
+
 
   if(relative){
     # Subtract the last year's deviate values, which is in the first row

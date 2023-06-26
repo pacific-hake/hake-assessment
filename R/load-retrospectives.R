@@ -80,10 +80,13 @@ load_retrospectives <- function(model,
 
   # Extract a data frame of long-format recruitment deviations containing all
   # the models in the model list (base mode plus all retrospectives)
+  # `retro_recdevs_df` is for the squid plots
   retro_recdevs_df <- create_group_df_recr(all_retros_lst,
                                            all_retros_yrs,
                                            devs = TRUE)
 
+  # `retro_biomass_df` and `retro_rel_biomass_df` are for plots showing
+  #  biomass trajectories for retrospectives against the base model
   retro_biomass_df <-
     create_group_df_biomass(subset_retros_lst,
                             subset_retros_model_nms)
