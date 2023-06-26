@@ -27,27 +27,26 @@ plot_squid <- function(model,
 
   # Create a list of models, with the core model being first, followed by
   # all the retrospectives located inside it
-  model_lst <- c(list(model), map(model$retros, ~{.x}))
-  end_yr <- model$endyr
+  #model_lst <- c(list(model), map(model$retros, ~{.x}))
+  #end_yr <- model$endyr
 
   # Extract the cohort list from the list of models
-  cohorts <- map_dbl(model_lst, \(mdl){
-    mdl$endyr
-  }) |>
-    sort()
+  #cohorts <- map_dbl(model_lst, \(mdl){
+  #  mdl$endyr
+  #}) |>
+  #  sort()
+
+  # Extract a data frame of long-format recruitment deviations containing all
+  # the models in the model list
+  d_obj <- model$retros$recdevs_df
 
   # Colors of lines and fill - add black to the beginning and remove end color
   colors <- c("#000000B3",
               rev(rich_colors_short(length(cohorts))[-1]))
 
   # A vector of the year of the assessment (retrospective year)
-  model_nms <- rev(cohorts + 1)
+  #model_nms <- rev(cohorts + 1)
 
-  # Extract a data frame of long-format recruitment deviations containing all
-  # the models in the model list
-  d_obj <- create_group_df_recr(model_lst,
-                                model_nms,
-                                devs = TRUE)
 
   # Add the retrospective ages to the long-format data frame extracted above
   # "This is where the magic happens"

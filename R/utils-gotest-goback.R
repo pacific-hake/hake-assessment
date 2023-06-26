@@ -82,6 +82,14 @@ gotest <- function(repo_dr = "~/github/pacific-hake/hake"){
           "output_dir = '.')\nWhen finished, run goback() to go back to ",
           "the directory you came from.")
 
+  if(dirclip()){
+    message("The temporary directory path has been copied to the clipboard ",
+            "for easy pasting into the OS terminal when you run lualatex... ")
+  }else{
+    message("The temporary directory path could not be copied to the ",
+            "clipboard")
+  }
+
   invisible()
 }
 

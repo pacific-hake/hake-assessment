@@ -980,30 +980,30 @@ prob_decline_from_2012_to_2013_historic <-
    f()
 
  # Retrospective setup for the document ----------------------------------------
- retro_model_nms <- c(base_model_name,
-                        map_chr(plot_retro_yrs, ~{
-                          paste0("-", .x, ifelse(.x == 1, " year", " years"))
-                        }))
- retro_lst <- list(base_model)
- for(i in plot_retro_yrs){
-   retro_lst[[i + 1]] <- base_model$retros[[i]]
- }
- retro_models_end_yr <- c(end_yr, end_yr - plot_retro_yrs)
- # Assemble the retrospective list with the base as the first element
-
- d_obj_retro_biomass <-
-   create_group_df_biomass(retro_lst,
-                           retro_model_nms,
-                           end_yrs = retro_models_end_yr)
- d_obj_retro_rel_biomass <-
-   create_group_df_biomass(retro_lst,
-                           retro_model_nms,
-                           rel = TRUE,
-                           end_yrs = retro_models_end_yr)
- d_obj_retro_recr <-
-   create_group_df_recr(retro_lst,
-                        retro_model_nms,
-                        end_yrs = retro_models_end_yr)
+ # retro_model_nms <- c(base_model_name,
+ #                        map_chr(plot_retro_yrs, ~{
+ #                          paste0("-", .x, ifelse(.x == 1, " year", " years"))
+ #                        }))
+ # retro_lst <- list(base_model)
+ # for(i in plot_retro_yrs){
+ #   retro_lst[[i + 1]] <- base_model$retros[[i]]
+ # }
+ # retro_models_end_yr <- c(end_yr, end_yr - plot_retro_yrs)
+ # # Assemble the retrospective list with the base as the first element
+ # 
+ # d_obj_retro_biomass <-
+ #   create_group_df_biomass(retro_lst,
+ #                           retro_model_nms,
+ #                           end_yrs = retro_models_end_yr)
+ # d_obj_retro_rel_biomass <-
+ #   create_group_df_biomass(retro_lst,
+ #                           retro_model_nms,
+ #                           rel = TRUE,
+ #                           end_yrs = retro_models_end_yr)
+ # d_obj_retro_recr <-
+ #   create_group_df_recr(retro_lst,
+ #                        retro_model_nms,
+ #                        end_yrs = retro_models_end_yr)
 
  # Set up bridge model groups for plotting ------------------------------------
  iter <- 0

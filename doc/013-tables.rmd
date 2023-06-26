@@ -435,7 +435,7 @@ table_ci_posteriors(
 
 ```{r main-parameter-estimates-tab, results = "asis", echo = FALSE}
 table_param_est(
-  list(base_model, last_yr_base_model),
+  models = list(base_model, last_yr_base_model),
   model_nms = c(base_model_name, last_yr_base_model_name),
   end_yr = end_yr,
   section_bold = TRUE,
@@ -444,7 +444,6 @@ table_param_est(
   section_line_above = FALSE,
   section_line_below = FALSE,
   digits = 3,
-  rec_yrs = c(2010, 2014, 2016, 2020),
   caption = paste0(
       "Select parameters, derived quantities, and reference point posterior ",
       "median estimates for the (", end_yr, ") base model compared to the ",
@@ -601,7 +600,7 @@ table_risk(
 
 ```{r main-parameter-estimates-sens-1-tab, results = "asis", echo = FALSE}
 table_param_est(
-  sens_models[[1]],
+  models = sens_models[[1]],
   model_nms = sens_models_names[[1]],
   end_yr = end_yr,
   section_bold = TRUE,
@@ -610,7 +609,6 @@ table_param_est(
   section_line_above = TRUE,
   section_line_below = FALSE,
   digits = 3,
-  rec_yrs = c(2010, 2014, 2016, 2020),
   caption = paste0(
     "Posterior medians for select parameters, derived quantities, reference ",
     "points, and negative log likelihoods for the base model and some ",
@@ -627,7 +625,7 @@ table_param_est(
 
 ```{r main-parameter-estimates-sens-2-tab, results = "asis", echo = FALSE}
 table_param_est(
-  sens_models[[2]],
+  models = sens_models[[2]],
   model_nms = sens_models_names[[2]],
   end_yr = end_yr,
   section_bold = TRUE,
@@ -636,7 +634,6 @@ table_param_est(
   section_line_above = TRUE,
   section_line_below = FALSE,
   digits = 3,
-  rec_yrs = c(2010, 2014, 2016, 2020),
   caption = paste0(
     "Posterior medians for select parameters, derived quantities, reference ",
     "points, and negative log likelihoods for the base model and further ",
@@ -653,7 +650,7 @@ table_param_est(
 
 ```{r main-parameter-estimates-sens-3-tab, results = "asis", echo = FALSE}
 table_param_est(
-  sens_models[[3]],
+  models = sens_models[[3]],
   model_nms = sens_models_names[[3]],
   end_yr = end_yr,
   section_bold = TRUE,
@@ -662,7 +659,6 @@ table_param_est(
   section_line_above = TRUE,
   section_line_below = FALSE,
   digits = 3,
-  rec_yrs = c(2010, 2014, 2016, 2020),
   caption = paste0(
     "Posterior medians for select parameters, derived quantities, reference ",
     "points, and negative log likelihoods for the base model and further ",
@@ -679,16 +675,13 @@ table_param_est(
 
 ```{r main-parameter-estimates-retro-tab, results = "asis", echo = FALSE}
 table_param_est(
-  retro_lst,
-  model_nms = retro_model_nms,
-  end_yr = end_yr,
+  base_model$retros$retro_param_est,
   section_bold = TRUE,
   section_italics = TRUE,
   section_underline = TRUE,
   section_line_above = TRUE,
   section_line_below = FALSE,
   digits = 3,
-  rec_yrs = c(2010, 2014, 2016, 2020),
   caption = paste0(
     "Posterior medians from the base model for select parameters, derived ",
     "quantities, reference point estimates, and negative log likelihoods ",

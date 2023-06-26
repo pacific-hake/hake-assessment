@@ -124,7 +124,7 @@ create_rds_file <- function(
 
   # Load retrospectives. If none are found or there is a problem,
   # `model$retros` will be set to `NA`
-  model$retros <- load_retrospectives(model$retrospectives_path, ...)
+  model$retros <- load_retrospectives(model, ...)
 
   # Pre-make plots (optional) ----
   model$plots <- plot_during_loading(model)
@@ -135,8 +135,8 @@ create_rds_file <- function(
 
   # These are too large and after the calculations above in `load_mcmc_vals()`
   # and `load_parameter_priors()`, they are not needed any longer
-  model$mcmc <- NULL
-  model$parameters <- NULL
+  #model$mcmc <- NULL
+  #model$parameters <- NULL
 
   saveRDS(model, file = rds_file)
   if(file.exists(rds_file)){

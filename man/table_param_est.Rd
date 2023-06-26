@@ -2,20 +2,23 @@
 % Please edit documentation in R/table-param-est.R
 \name{table_param_est}
 \alias{table_param_est}
-\title{Returns an \code{\link[xtable:xtable]{xtable::xtable()}} in the proper format for the MCMC posterior
-parameter estimates for all the models in the list, one for each column}
+\title{Returns a \code{\link[kableExtra:kbl]{kableExtra::kbl()}} containing a comparison of parameter
+estimates for all the models in the \code{models} list}
 \usage{
 table_param_est(
-  models,
-  model_nms,
+  d = NULL,
+  models = NULL,
+  model_nms = NULL,
   end_yr,
+  section_row_inds = c(1, 11, 20, 21 + length(hake::large_cohorts)),
+  section_row_headers = c("Parameters", "Derived Quantities",
+    "Reference Points based on $\\\\bm{\\\\Fforty}$", "Negative log likelihoods"),
   section_italics = TRUE,
   section_bold = TRUE,
   section_underline = TRUE,
   section_line_above = FALSE,
   section_line_below = TRUE,
   digits = 3,
-  rec_yrs = NA,
   right_cols_cm = 1.8,
   font_size = 10,
   header_font_size = 10,
@@ -49,9 +52,6 @@ section header lines}
 
 \item{digits}{Number of decimal points for the estimates}
 
-\item{rec_yrs}{A vector of integers supplying the years for which you
-want estimates of recruitment}
-
 \item{right_cols_cm}{The number of centimeters wide to make all of the
 rightmost columns (all the value columns)}
 
@@ -72,6 +72,6 @@ If \code{NULL} this will be calculated as \code{header_font_size * header_vert_s
 An \code{\link[knitr:kable]{knitr::kable()}} object
 }
 \description{
-Returns an \code{\link[xtable:xtable]{xtable::xtable()}} in the proper format for the MCMC posterior
-parameter estimates for all the models in the list, one for each column
+Returns a \code{\link[kableExtra:kbl]{kableExtra::kbl()}} containing a comparison of parameter
+estimates for all the models in the \code{models} list
 }

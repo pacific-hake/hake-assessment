@@ -11,6 +11,7 @@
 #' @import rnaturalearth rnaturalearthhires r4ss
 #'
 #' @importFrom cli symbol
+#' @importFrom clipr clipr_available write_clip dr_clipr
 #' @importFrom crayon green
 #' @importFrom cowplot draw_grob get_legend plot_grid
 #' @importFrom fs dir_ls path
@@ -36,7 +37,7 @@
 #' @importFrom sf st_as_sf st_crs<- st_coordinates
 #' @importFrom stats end median na.omit quantile rbeta reshape rlnorm rnorm
 #' @importFrom stats runif setNames start ts
-#' @importFrom stringr str_flatten str_split
+#' @importFrom stringr str_flatten str_flatten_comma str_split
 #' @importFrom tools file_path_sans_ext file_ext
 #' @importFrom tibble as_tibble enframe
 #' @importFrom tidyselect all_of any_of matches one_of starts_with

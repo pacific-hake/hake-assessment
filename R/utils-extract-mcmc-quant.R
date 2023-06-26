@@ -22,6 +22,7 @@ extract_mcmc_quant <- function(model_lst,
   if(length(end_yrs) == 1){
     end_yrs <- rep(end_yrs, length(model_lst))
   }
+
   if(length(end_yrs) != length(model_lst)){
     stop("Length of `end_yrs` does not equal the length ",
          "of `model_lst`",

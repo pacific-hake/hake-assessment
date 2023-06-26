@@ -1192,7 +1192,7 @@ stable model.
 ```{r main-biomass-recruitment-retrospective-fig, fig.cap = "(ref:main-biomass-recruitment-retrospective-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-biomass-recruitment-retrospective-alt) "}
 
 plist <- list()
-plist[[1]] <- plot_biomass(d_obj = d_obj_retro_biomass,
+plist[[1]] <- plot_biomass(d_obj = base_model$retros$biomass_df,
                            leg_font_size = 9,
                            x_expansion = 4,
                            leg_pos = c(0.6, 0.89),
@@ -1203,7 +1203,7 @@ plist[[1]] <- plot_biomass(d_obj = d_obj_retro_biomass,
 # recruitment from the plot below it to happen without cutting off the
 # biomass panel above. It's acting as a spacer
 plist[[2]] <- NA
-plist[[3]] <- plot_recruitment(d_obj = d_obj_retro_recr,
+plist[[3]] <- plot_recruitment(d_obj = d_obj = base_model$retros$recr_df,
                                leg_pos = "none",
                                rev_colors = TRUE,
                                clip_cover = 8)
