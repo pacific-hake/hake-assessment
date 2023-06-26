@@ -17,16 +17,16 @@ plot_during_loading <- function(model){
   # Plot the survey fit with many MCMC posterior lines
   # This is done MUST be made here because the MCMC object is not stored
   # in the RDS files
-  # out$survey_fit <- plot_survey_fit_mcmc(model,
-  #                                        type = "acoustic",
-  #                                        n_posts = 1000,
-  #                                        glow = TRUE)
-  #
-  # out$age1_index_fit <- plot_survey_fit_mcmc(model,
-  #                                            type = "age1",
-  #                                            n_posts = 1000,
-  #                                            ylim = c(0, 10),
-  #                                            glow = TRUE)
+  out$survey_fit <- plot_survey_fit_mcmc(model,
+                                         type = "acoustic",
+                                         n_posts = 1000,
+                                         glow = TRUE)
+
+  out$age1_index_fit <- plot_survey_fit_mcmc(model,
+                                             type = "age1",
+                                             n_posts = 1000,
+                                             ylim = c(0, 10),
+                                             glow = TRUE)
   #
   # out$selex_posteriors <- {
   #   plist <- list()

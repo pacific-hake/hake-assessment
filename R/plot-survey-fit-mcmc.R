@@ -89,6 +89,12 @@ plot_survey_fit_mcmc <- function(model,
   # which, if `NULL` becomes the number of samples
   n_samp <- model$extra_mcmc$num_posts
   n_posts <- n_posts %||% n_samp
+  if(n_samp < n_posts){
+    warning("the number of posteriors available (", n_samp, ") is less than ",
+            "the requested number of samples to use in the plot (", n_posts,
+            "). Using all available samples (", n_samp, ")")
+    n_posts <- n_samp
+  }
   subsample <- sample(n_samp, n_posts)
   legend_text <- ifelse(n_posts == n_samp,
                         paste0("All (",
@@ -123,6 +129,7 @@ plot_survey_fit_mcmc <- function(model,
 
   # Extract the extra SD value for the given survey `type`
   pat <- "Q_extraSD_(Age1|Acoustic)_Survey\\(\\d+\\)"
+
   extra_sd <- model$mcmc |>
     summarize(across(matches(pat),
                      ~median(.x))) |>
