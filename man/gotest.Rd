@@ -5,9 +5,12 @@
 \title{Create and change to a temporary directory where the loading files have
 been copied to}
 \usage{
-gotest(repo_dr = "~/github/pacific-hake/hake")
+gotest(repo_dr = "~/github/pacific-hake/hake", copy_tmpdir = TRUE)
 }
 \arguments{
+\item{copy_tmpdir}{Logical. If \code{TRUE}, copy the temporary path to the
+OS clipboard}
+
 \item{doc_dr}{The directory that holds all the RMD files for building the
 document. Note: due to \code{tempdir()} issues, we cannot use \code{here()} for this,
 it must be a full path}

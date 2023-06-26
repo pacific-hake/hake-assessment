@@ -12,9 +12,12 @@
 #' @param doc_dr The directory that holds all the RMD files for building the
 #' document. Note: due to `tempdir()` issues, we cannot use `here()` for this,
 #' it must be a full path
+#' @param copy_tmpdir Logical. If `TRUE`, copy the temporary path to the
+#' OS clipboard
 #'
 #' @return Nothing
-gotest <- function(repo_dr = "~/github/pacific-hake/hake"){
+gotest <- function(repo_dr = "~/github/pacific-hake/hake",
+                   copy_tmpdir = TRUE){
 
   # Set global dir name to return back to with `goback()`
   cdr <<- repo_dr
@@ -82,12 +85,15 @@ gotest <- function(repo_dr = "~/github/pacific-hake/hake"){
           "output_dir = '.')\nWhen finished, run goback() to go back to ",
           "the directory you came from.")
 
-  if(dirclip()){
-    message("The temporary directory path has been copied to the clipboard ",
-            "for easy pasting into the OS terminal when you run lualatex... ")
-  }else{
-    message("The temporary directory path could not be copied to the ",
-            "clipboard")
+  if(copy_tmpdir){
+    if(dirclip()){
+      message("The temporary directory path has been copied to ",
+              "the clipboard for easy pasting into the OS terminal when ",
+              "you run lualatex... ")
+    }else{
+      message("The temporary directory path could not be copied to the ",
+              "clipboard")
+    }
   }
 
   invisible()
