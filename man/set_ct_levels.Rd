@@ -2,25 +2,25 @@
 % Please edit documentation in R/000-set-ct-levels.R
 \name{set_ct_levels}
 \alias{set_ct_levels}
-\title{Here is where you fill in the forecast list. This will be used throughout
-the package for forecasts catch levels}
+\title{Reads in the forecast description data and creates the list containing
+the catch levels and extra information used for the assessment document}
 \usage{
-set_ct_levels(nf)
+set_ct_levels(fn = here("doc", "forecast-descriptions.csv"))
 }
 \arguments{
-\item{nf}{The number of forecast years}
+\item{fn}{The name of the file containing the forecast description data}
 }
 \value{
 A list of 2 lists:
 List 1 is a list of lists of length-3 vectors. Each list represents a catch
 level, each vector's three elements are:
-1 - A vector of length \code{nf} of catch levels
+1 - A vector of catch levels
 2 - The nice name for the catch level scenario
 3 - The directory name for the catch level scenario
 List 2 is a list of important values and indices referenced in the document.
 Be sure to update this each year if forecasts are added and/or removed
 }
 \description{
-Here is where you fill in the forecast list. This will be used throughout
-the package for forecasts catch levels
+Reads in the forecast description data and creates the list containing
+the catch levels and extra information used for the assessment document
 }

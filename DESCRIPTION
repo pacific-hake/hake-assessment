@@ -30,6 +30,7 @@ Imports:
   coda,
   cowplot,
   crayon,
+  data.table,
   dplyr,
   fs,
   future,

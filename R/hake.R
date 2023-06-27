@@ -14,6 +14,7 @@
 #' @importFrom clipr clipr_available write_clip dr_clipr
 #' @importFrom crayon green
 #' @importFrom cowplot draw_grob get_legend plot_grid
+#' @importFrom data.table fread
 #' @importFrom fs dir_ls path
 #' @importFrom future plan
 #' @importFrom furrr future_map future_imap furrr_options
