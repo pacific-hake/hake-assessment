@@ -1580,7 +1580,7 @@ There is no indication from retrospective evaluations that the base model is
 displaying a systematic bias.
 
 A comparison of the actual assessment models used in each year since
-`r min(assess_history_df$Year, na.rm = TRUE)` is shown in
+`r min(assess_history_df$yr, na.rm = TRUE)` is shown in
 Figure~\@ref(fig:main-historical-assessments-fig). There have been substantial
 differences in the structural assumptions of the models and, thus, results
 submitted each year. The variability between model results, especially
