@@ -1055,8 +1055,7 @@ the largest effect here.
 ```{r main-recruitment-base-alternative-2-fig, fig.cap = "(ref:main-recruitment-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-base-alternative-2-alt)"}
 
 plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
-             x_expansion = 2,
-             leg_pos = c(0.75, 0.9),
+             leg_pos = c(0.17, 0.92),
              rev_colors = TRUE)
 ```
 
@@ -1131,9 +1130,8 @@ for the large cohorts is highly sensitive to the change in the Phi parameter.
 ```{r main-recruitment-base-alternative-4-fig, fig.cap = "(ref:main-recruitment-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-base-alternative-4-alt)"}
 
 plot_recruitment(d_obj = d_obj_sens_recr[[3]],
-                 x_expansion = 2,
-                 leg_font_size = 9,
-                 leg_pos = c(0.11, 0.94),
+                 leg_font_size = 11,
+                 leg_pos = c(0.13, 0.92),
                  inc_means = FALSE,
                  rev_colors = TRUE)
 ```
@@ -1153,9 +1151,7 @@ cohorts is highly sensitive to the change in the Phi parameter.
 ```{r main-recruitment-devs-base-alternative-4-fig, fig.cap = "(ref:main-recruitment-devs-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-devs-base-alternative-4-alt)"}
 
 plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
-             x_expansion = 2,
-             leg_font_size = 9,
-             leg_pos = c(0.13, 0.88),
+             leg_pos = c(0.15, 0.88),
              rev_colors = TRUE)
 ```
 

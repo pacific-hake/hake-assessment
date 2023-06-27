@@ -16,7 +16,9 @@ plot_recruitment <- function(model_lst = NULL,
                              xlim = c(1966, year(Sys.time())),
                              x_breaks = xlim[1]:xlim[2],
                              x_labs_mod = 5,
-                             x_expansion = 3,
+                             x_expansion = 2,
+                             tick_prop = 1,
+                             vjust_x_labels = -2,
                              ylim = c(0, 40),
                              y_breaks = seq(ylim[1], ylim[2], by = 10),
                              y_labels = y_breaks,
@@ -85,22 +87,8 @@ plot_recruitment <- function(model_lst = NULL,
       mutate(model = factor(model))
   }
 
-  # Remove labels for the minor x-axis ticks
-  x_labels <- NULL
-  for(i in x_breaks){
-    if(i %% x_labs_mod == 0){
-      x_labels <- c(x_labels, i)
-    }else{
-      x_labels <- c(x_labels, "")
-    }
-  }
-
-  # Tick mark lengths adjusted here
-  x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
-  top_y_pos = ylim[1]
-  bot_y_pos = ylim[1] - (ylim[2] - ylim[1]) / 25
-  custom_ticks <- tibble(group = x_breaks_nth,
-                         y_end = bot_y_pos)
+  x_labels <- make_major_tick_labels(x_breaks = x_breaks,
+                                     modulo = x_labs_mod)
 
   # Remove projection years
   d <- d |>
@@ -179,6 +167,11 @@ plot_recruitment <- function(model_lst = NULL,
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
           axis.text.y = element_text(color = y_colors),
+          # These two commands move the x-axis major tick labels and axis
+          # title down so that the ticks. tick labels, and axis title don't
+          # overlap each other
+          axis.text.x = element_text(vjust = vjust_x_labels),
+          axis.title.x = element_text(vjust = vjust_x_labels),
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 12, 12)) +
@@ -201,36 +194,23 @@ plot_recruitment <- function(model_lst = NULL,
   }
 
   # Add major tick marks
-  g <- g +
-    geom_linerange(data = custom_ticks,
-                   aes(x = group,
-                       ymax = top_y_pos,
-                       ymin = y_end),
-                   size = 0.5,
-                   inherit.aes = FALSE)
+  g <- g |>
+    add_major_ticks(x_breaks = x_breaks,
+                    modulo = x_labs_mod,
+                    # This proportion must be set by trial and error
+                    # Make sure to change `vjust` value above in the `theme()`
+                    # call so the labels are not overlapping the lines or
+                    # too far away from the lines
+                    prop = tick_prop)
 
-  g <- g +
-    theme(axis.text.x = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -3,
-                                     face = "plain"),
-          axis.text.y = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = "grey20",
-                                      size = axis_title_font_size,
-                                      vjust = -2,
-                                      angle = 0,
-                                      face = "plain"),
-          axis.title.y = element_text(color = "grey20",
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      face = "plain"),
-          axis.ticks.length = unit(0.15, "cm"))
+  # Add major tick marks
+  # g <- g +
+  #   geom_linerange(data = custom_ticks,
+  #                  aes(x = group,
+  #                      ymax = top_y_pos,
+  #                      ymin = y_end),
+  #                  size = 0.5,
+  #                  inherit.aes = FALSE)
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
