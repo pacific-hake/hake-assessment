@@ -770,7 +770,7 @@ early years and blue colors in the recent years. The thick solid black line
 indicates the central tendency (mean) and the red line indicates the central
 tendency after bias correcting for the lognormal distribution (median).
 Shading around stock-recruit curves indicates uncertainty in shape associated
-with distribution of the steepness parameter ($h$). The gray polygon on the
+with distribution of the steepness parameter ($h$). The blue polygon on the
 right indicates the expected distribution of absolute recruitments.
   
 (ref:main-stock-recruitment-alt) This figure shows that the Stock Recruitment
@@ -778,8 +778,7 @@ curve does not fit the estimated recruitments very well for this stock.
 
 ```{r main-stock-recruitment-fig, fig.cap = "(ref:main-stock-recruitment-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-stock-recruitment-alt)"}
 
-plot_stock_recruitment(base_model, probs = probs)
-#base_model$plots$stock_recr
+plot_stock_recruitment(base_model, probs = hake::probs)
 ```
 
 (ref:main-fishing-intensity-cap) Trend in median relative fishing intensity

@@ -3,26 +3,20 @@
 #' distribution of absolute recruitment is also plotted
 #'
 #' @param model The model output from Stock Synthesis as loaded by
-#' [create_rds_file()].
+#' [create_rds_file()]
 #' @param probs A vector of three probabilities to use in the call to
 #' [stats::quantile()]
 #' @param xlim A vector of two values. The x-axis minimum and maximum values
 #' @param ylim A vector of two values. The y-axis minimum and maximum values
-#' @param axis_title_font_size Size of the font for the X and Y axis labels
-#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param axis_label_color Color for the axis labels and tick labels
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
-plot_stock_recruitment <- function(model,
-                                   probs = c(0.025, 0.5, 0.975),
-                                   xlim = c(0, 1.4),
-                                   ylim = c(0, 7),
-                                   axis_title_font_size = 14,
-                                   axis_tick_font_size = 11,
-                                   axis_label_color = "black"){
+plot_stock_recruitment <- \(model,
+                            probs = hake::probs,
+                            xlim = c(0, 1.4),
+                            ylim = c(0, 7)){
 
-  yrs <- start_yr:end_yr
+  yrs <- model$startyr:model$endyr
 
   b <- seq(0, 1.5, 0.005)
   h <- model$mcmc |>
@@ -54,7 +48,6 @@ plot_stock_recruitment <- function(model,
   dlnorm_vec <- dlnorm(x = r_vec,
                        meanlog = meanlog,
                        sdlog = sigma_r)
-
 
   # Stock-recruitment part of the plot (left panel)
   dd <- r_quants |>
@@ -111,7 +104,8 @@ plot_stock_recruitment <- function(model,
     geom_ribbon(aes(x = b,
                     ymin = lo,
                     ymax = hi),
-                fill = "grey60",
+                fill = hake::main_fill,
+                alpha = hake::main_alpha,
                 linetype = "dotted",
                 color = "black",
                 linewidth = 0.75) +
@@ -172,29 +166,7 @@ plot_stock_recruitment <- function(model,
     ylab(expression(paste("Recruitment relative to unfished equilibrium (",
                           R[0],
                           ")"))) +
-    theme(legend.position = "none",
-          axis.text.x = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -0.25,
-                                     face = "plain"),
-          axis.text.y = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
-                                      angle = 0,
-                                      vjust = 0,
-                                      face = "plain"),
-          axis.title.y = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      face = "plain"),
-          # plot.margin: top, right,bottom, left
-          plot.margin = margin(0, 0, 6, 6))
+    theme(legend.position = "none")
 
   # Right-hand plot - dlnorm distribution (right panel)
   y_breaks <- c(0, adj, 1)
@@ -210,7 +182,8 @@ plot_stock_recruitment <- function(model,
     geom_ribbon(aes(y = r_vec,
                     xmin = 0,
                     xmax = dlnorm_vec),
-                fill = "grey") +
+                fill = hake::main_fill,
+                alpha = hake::main_alpha) +
     geom_segment(aes(x = 0,
                      xend = dlnorm(x = adj,
                                    meanlog = meanlog,
@@ -240,17 +213,7 @@ plot_stock_recruitment <- function(model,
              angle = 90) +
     theme(axis.ticks.x = element_blank(),
           axis.text.x = element_blank(),
-          panel.border = element_blank(),
-          axis.title.y = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      vjust = -3,
-                                      face = "plain"),
-          axis.text.y = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     face = "plain"))
+          panel.border = element_blank())
 
   plot_grid(plotlist = p, rel_widths = c(5, 1), align = "h")
 }
