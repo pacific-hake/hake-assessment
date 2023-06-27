@@ -30,6 +30,11 @@ plot_color <- function(num_colors = 10,
 
   palette_info <- brewer.pal.info[palette_table$palette == palette, ]
   if(num_colors <= palette_info$maxcolors){
+    if(num_colors <= 2){
+      # Avoid warning when there's only one model. `brewer.pal() needs n = 3
+      # or greater
+      num_colors <- 3
+    }
     base <- brewer.pal(name = palette, n = num_colors)
     colors <- c(base[(num_colors - 1):1], "#000000")
   }else{
