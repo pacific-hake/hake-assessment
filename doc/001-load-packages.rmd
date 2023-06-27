@@ -10,7 +10,7 @@ pacman::p_load(
   cli, coda, cowplot, crayon,
   data.tree, date, dplyr,
   future, furrr,
-  gfutilities, ggh4x, ggplot2, ggpubr, ggrepel, grDevices, grid,
+  ggh4x, ggplot2, ggpubr, ggrepel, grDevices, grid,
   gridGraphics, gridExtra, gtools,
   here,
   kableExtra, knitr,
