@@ -4,14 +4,7 @@
 \alias{plot_catch_forecast_density}
 \title{Title}
 \usage{
-plot_catch_forecast_density(
-  model,
-  yr,
-  xlim = c(0, 4),
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
-  axis_label_color = "black"
-)
+plot_catch_forecast_density(model, yr, xlim = c(0, 4))
 }
 \arguments{
 \item{model}{The model output from Stock Synthesis as loaded by
@@ -20,12 +13,6 @@ plot_catch_forecast_density(
 \item{yr}{Forecast year to plot. Must be a column in the MCMC output}
 
 \item{xlim}{A vector of two values. The x-axis minimum and maximum values}
-
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{axis_label_color}{Color for the axis labels and tick labels}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

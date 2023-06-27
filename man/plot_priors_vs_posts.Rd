@@ -4,7 +4,15 @@
 \alias{plot_priors_vs_posts}
 \title{Make a grid of posterior plots with priors and initial values}
 \usage{
-plot_priors_vs_posts(model, x_range = c("posterior", "prior"), ...)
+plot_priors_vs_posts(
+  model,
+  x_range = c("posterior", "prior"),
+  median_line_color = "darkred",
+  initial_value_color = "green",
+  prior_line_color = "black",
+  facet_title_font_size = 16,
+  ...
+)
 }
 \arguments{
 \item{model}{The model output from Stock Synthesis as loaded by
@@ -18,6 +26,16 @@ which data set should specify the range limits. Setting this argument to
 only the realized values in the posterior. This can be helpful when the
 prior is quite vague and the posterior only covers a small range of the
 parameter space.}
+
+\item{median_line_color}{The color to use for the vertical median lines}
+
+\item{initial_value_color}{The color to use for the initial value points}
+
+\item{prior_line_color}{The color to use for the density lines
+representing the prior distributions}
+
+\item{facet_title_font_size}{The font size to use for the panel titles (the
+parameter names at the top of each plot)}
 
 \item{...}{Parameters to be passed to \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}. For example,
 \code{labeller = label_parsed_space}, which is available in this package, will

@@ -536,29 +536,27 @@ if(is.null(base_model$plots$age_comp_pearson)){
 }
 ```
 
-(ref:main-prior-posterior-cap) Prior (black lines) and posterior (gray
+(ref:main-prior-posterior-cap) Prior (black lines) and posterior (blue
 histograms) distributions for natural mortality ($M$), equilibrium log
 recruitment ($\ln R_0)$, steepness ($h$), the additional process-error
 standard deviation (SD) for the acoustic survey, and the Dirichlet-multinomial
 parameters for the fishery ($\theta_{\text{fish}}$) and the survey
-($\theta_{\text{surv}}$). Red triangles signify the initial value for each
-parameter. The small downturns at the ends of the uniform priors for $ln(R_0)$
-and the Survey extra SD parameter represent the hard limits set for the prior
-in the Stock Synthesis control file.
-  
+($\theta_{\text{surv}}$). Green triangles signify the initial value for each
+parameter. Red vertical lines represent the median value. The small downturns
+at the ends of the uniform priors for $ln(R_0)$ and the Survey extra SD
+parameter represent the hard limits set for the prior in the Stock Synthesis
+control file.
+
 (ref:main-prior-posterior-alt) This figure shows how the posteriors shift
 from the priors for key parameters. The steepness parameter appears to have
 an almost identical prior and posterior distribution.
 
 ```{r main-prior-posterior-fig, fig.cap = "(ref:main-prior-posterior-cap)", fig.height = 10, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-prior-posterior-alt)"}
-if(is.null(base_model$plots$prior_posterior)){
+
 plot_priors_vs_posts(base_model,
                      x_range = "prior",
                      ncol = 2,
                      nrow = 3)
-}else{
-  base_model$plots$prior_posterior
-}
 ```
 
 (ref:main-prior-posterior-truncated-cap) As for Figure
@@ -572,14 +570,11 @@ shift from the priors for key parameters. The steepness parameter appears to
 have an almost identical prior and posterior distribution.
 
 ```{r main-prior-posterior-truncated-fig, fig.cap = "(ref:main-prior-posterior-truncated-cap)", fig.height = 10, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-prior-posterior-truncated-alt)"}
-if(is.null(base_model$plots$prior_posterior)){
+
 plot_priors_vs_posts(base_model,
                      x_range = "posterior",
                      ncol = 2,
                      nrow = 3)
-}else{
-  base_model$plots$prior_posterior
-}
 ```
 
 (ref:main-tv-selex-cap) Mountains plot of median fishery selectivity in each
