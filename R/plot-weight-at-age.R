@@ -95,10 +95,10 @@ plot_weight_at_age <- function(wa,
                        labels = y_labels,
                        expand = c(0, 0),
                        limits = c(0, max_value)) +
-    geom_label_repel(data = w |> filter(yr == min_yr),
-                     aes(label = age),
-                     nudge_x = -3.5,
-                     size = age_label_font_size) +
+    # geom_label_repel(data = w |> filter(yr == min_yr),
+    #                  aes(label = age),
+    #                  nudge_x = -3.5,
+    #                  size = age_label_font_size) +
     geom_label_repel(data = w |> filter(yr == max_yr),
                      aes(label = age),
                      nudge_x = 3.5,
