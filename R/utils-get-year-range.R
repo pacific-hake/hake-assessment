@@ -3,8 +3,8 @@
 #'
 #' @param start_yr The suggested start year
 #' @param end_yr  The suggested end year
-#' @param min_yr The data's minimum year
-#' @param max_yr The data's maximum year
+#' @param min_yr The minimum year in the data
+#' @param max_yr The maximum year in the data
 #'
 #' @return A named list of two, the start and end year that is best
 #' @export
