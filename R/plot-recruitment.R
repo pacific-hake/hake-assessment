@@ -203,15 +203,6 @@ plot_recruitment <- function(model_lst = NULL,
                     # too far away from the lines
                     prop = tick_prop)
 
-  # Add major tick marks
-  # g <- g +
-  #   geom_linerange(data = custom_ticks,
-  #                  aes(x = group,
-  #                      ymax = top_y_pos,
-  #                      ymin = y_end),
-  #                  size = 0.5,
-  #                  inherit.aes = FALSE)
-
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
       theme(legend.position = "none")

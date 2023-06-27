@@ -798,12 +798,13 @@ plot_fishing_intensity(base_model)
 
 (ref:main-exploitation-fraction-cap) Trend in median exploitation fraction
 (catch divided by age-2+ biomass) through `r end_yr - 1` with 95% posterior
-credibility intervals.
+credibility intervals. Dotted lines do not have any particular significance
+and are included only to aid in reading the plot.
 
 (ref:main-exploitation-fraction-alt) This figure shows that the current
 exploitation fraction of the female spawning biomass is approximately 0.05.
 This is a drop from the last five years which have been approximately 0.1.
-         
+
 ```{r main-exploitation-fraction-fig, fig.cap = "(ref:main-exploitation-fraction-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-exploitation-fraction-alt)"}
 
 plot_exploitation_fraction(base_model)
