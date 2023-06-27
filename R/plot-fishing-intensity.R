@@ -17,7 +17,6 @@ plot_fishing_intensity <- function(model,
                                    line_width = 0.5,
                                    line_color = "blue"){
 
-
   # Remove labels for the minor x-axis ticks
   x_labels <- NULL
   for(i in x_breaks){
@@ -53,7 +52,10 @@ plot_fishing_intensity <- function(model,
     filter(yrs <= xlim[2])
 
   g <- ggplot(df,
-              aes(x = yrs, xend = yrs, y = plower, yend = pupper)) +
+              aes(x = yrs,
+                  xend = yrs,
+                  y = plower,
+                  yend = pupper)) +
     coord_cartesian(xlim = xlim,
                     ylim = ylim,
                     clip = "off") +
