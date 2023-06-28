@@ -10,6 +10,10 @@ plot_depl_fore_comparison <- function(model,
                                       xlim = c(max(forecast_yrs) - 16,
                                                max(forecast_yrs)),
                                       x_breaks = xlim[1]:xlim[length(xlim)],
+                                      x_labs_mod = 5,
+                                      x_expansion = 1,
+                                      tick_prop = 1,
+                                      vjust_x_labels = -2,
                                       ylim = c(0, 3.5),
                                       y_breaks = c(
                                         0,
@@ -33,19 +37,17 @@ plot_depl_fore_comparison <- function(model,
                                         "3.5"),
                                       y_colors = c(
                                         "black",
-                                               "red",
-                                               "green",
-                                               "black",
-                                               "blue",
-                                               rep("black", length(seq(1.5,
-                                                                       ylim[2],
-                                                                       by = 0.5)))),
+                                        "red",
+                                        "green",
+                                        "black",
+                                        "blue",
+                                        rep("black", length(seq(1.5,
+                                                                ylim[2],
+                                                                by = 0.5)))),
                                       alpha = 0.2,
                                       leg_pos = c(0.15, 0.83),
                                       leg_ncol = 1,
                                       leg_font_size = 12,
-                                      axis_title_font_size = 14,
-                                      axis_tick_font_size = 11,
                                       forecast_yrs){
 
   nice_nms <- map_chr(model$ct_levels[fore_inds], ~{
@@ -90,6 +92,9 @@ plot_depl_fore_comparison <- function(model,
     filter(model == nice_nms[length(nice_nms)],
            !year %in% forecast_yrs[-1])
 
+  x_labels <- make_major_tick_labels(x_breaks = x_breaks,
+                                     modulo = x_labs_mod)
+
   g <- ggplot(fore_future,
               aes(fill = model,
                   color = model,
@@ -101,7 +106,8 @@ plot_depl_fore_comparison <- function(model,
     scale_fill_manual(values = plot_color(length(fore_inds))) +
     scale_color_manual(values = plot_color(length(fore_inds))) +
     coord_cartesian(xlim = xlim,
-                    ylim = ylim) +
+                    ylim = ylim,
+                    clip = "off") +
     geom_point() +
     geom_line() +
     geom_ribbon(alpha = alpha,
@@ -129,19 +135,24 @@ plot_depl_fore_comparison <- function(model,
                linetype = "dotted",
                color = "blue",
                size = 1) +
-    scale_x_continuous(expand = c(0, 0),
+    scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
-                       labels = x_breaks) +
+                       labels = x_labels) +
     scale_y_continuous(expand = c(0, 0),
                        breaks = y_breaks,
                        labels = y_labels) +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
+          # These two commands move the x-axis major tick labels and axis
+          # title down so that the ticks. tick labels, and axis title don't
+          # overlap each other
+          axis.text.x = element_text(vjust = vjust_x_labels),
+          axis.title.x = element_text(vjust = vjust_x_labels),
           # Uncomment this to have colors for B0 text labels
           #axis.text.y = element_text(color = y_colors),
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
-          plot.margin = margin(12, 12, 0, 0)) +
+          plot.margin = margin(12, 12, 12, 0)) +
     guides(fill = guide_legend(ncol = leg_ncol,
                                label.hjust = 0),
            color = guide_legend(ncol = leg_ncol,
@@ -149,33 +160,20 @@ plot_depl_fore_comparison <- function(model,
     xlab("Year") +
     ylab("Relative Spawning Biomass")
 
-  g <- g +
-    theme(axis.text.x = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -0.25,
-                                     face = "plain"),
-          axis.text.y = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = "grey20",
-                                      size = axis_title_font_size,
-                                      angle = 0,
-                                      vjust = 0,
-                                      face = "plain"),
-          axis.title.y = element_text(color = "grey20",
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      face = "plain"),
-          axis.ticks.length = unit(0.15, "cm"))
+  # Add major tick marks
+  g <- g |>
+    add_major_ticks(x_breaks = x_breaks,
+                    modulo = x_labs_mod,
+                    # This proportion must be set by trial and error
+                    # Make sure to change `vjust` value above in the `theme()`
+                    # call so the labels are not overlapping the lines or
+                    # too far away from the lines
+                    prop = tick_prop)
 
   if(!is.null(leg_pos)){
     g <- g +
       theme(legend.position = leg_pos)
   }
 
-    g
+  g
 }

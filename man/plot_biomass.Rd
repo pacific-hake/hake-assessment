@@ -65,6 +65,10 @@ plot_depl_fore_comparison(
   fore_inds = c(1, 2, 6, 12, 14),
   xlim = c(max(forecast_yrs) - 16, max(forecast_yrs)),
   x_breaks = xlim[1]:xlim[length(xlim)],
+  x_labs_mod = 5,
+  x_expansion = 1,
+  tick_prop = 1,
+  vjust_x_labels = -2,
   ylim = c(0, 3.5),
   y_breaks = c(0, 0.1, 0.4, 0.5, 1, seq(1.5, ylim[2], by = 0.5)),
   y_labels = expression("0", "0.1B"[0], "0.4B"[0], "0.5", "B"[0], "1.5", "2", "2.5", "3",
@@ -75,8 +79,6 @@ plot_depl_fore_comparison(
   leg_pos = c(0.15, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
   forecast_yrs
 )
 
