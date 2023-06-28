@@ -9,7 +9,7 @@
 #' @export
 create_rds_file <- function(
     model_dir = NULL,
-    ct_levels_lst = set_ct_levels(4),
+    ct_levels_lst = set_ct_levels(),
     forecasts_path = file.path(model_dir, "forecasts"),
     ct_levels_path = file.path(model_dir, "catch-levels"),
     retrospectives_path = file.path(model_dir, "retrospectives"),
