@@ -3,12 +3,10 @@
 #' MCMC given by model
 #'
 #' @param model A model, created by [create_rds_file()]
-#' @param start_yr The minium year in the plot
+#' @param start_yr The minimum year in the plot
 #' @param end_yr The maximum year in the plot
 #' @param x_lim Vector of two values for minimum and maximum x-axis values
 #' @param y_lim Vector of two values for minimum and maximum y-axis values
-#' @param axis_title_font_size Size of the font for the X and Y axis labels
-#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
 #' @param init_lbl_x_off Initial year label x offset in units of axis
 #' @param init_lbl_y_off Initial year label y offset in units of axis
 #' @param final_lbl_x_off Final year label x offset in units of axis
@@ -21,8 +19,6 @@ plot_phase <- function(model,
                        end_yr,
                        x_lim = c(0, 1.4),
                        y_lim = c(0, 1.2),
-                       axis_title_font_size = 12,
-                       axis_tick_font_size = 11,
                        init_lbl_x_off = 0,
                        init_lbl_y_off = 0,
                        final_lbl_x_off = 0,
@@ -87,7 +83,9 @@ plot_phase <- function(model,
     ylim(y_lim) +
     geom_path(color = col_vec,
               linewidth = 0.5,
-              arrow = arrow(length = unit(0.2, "inches"))) +
+              arrow = arrow(length = unit(0.5, "cm"),
+                            type = "open",
+                            angle = 10)) +
     geom_hline(yintercept = 1.0,
                linetype = "dashed",
                color = "grey") +
@@ -124,38 +122,13 @@ plot_phase <- function(model,
              x = dmed_final + final_lbl_x_off,
              y = pmed_final + final_lbl_y_off,
              label = max(names(dmed))) +
-    theme(# plot.margin: top, right,bottom, left
-          # Needed to avoid tick labels cutting off
-          plot.margin = margin(12, 12, 7, 0)) +
+    # theme(# plot.margin: top, right,bottom, left
+    #       # Needed to avoid tick labels cutting off
+    #       plot.margin = margin(12, 12, 7, 0)) +
     xlab(expression(paste("Relative spawning biomass",
                           ~~B[t]/B[0]))) +
     ylab(expression(paste("Relative fishing intensity",
                           ~~(1-SPR[t-1])/(1-SPR['40%']))))
 
-
-  g <- g +
-    theme(axis.text.x = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -3,
-                                     face = "plain"),
-          axis.text.y = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = "grey20",
-                                      size = axis_title_font_size,
-                                      angle = 0,
-                                      vjust = -2,
-                                      face = "plain"),
-          axis.title.y = element_text(color = "grey20",
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      face = "plain"),
-          axis.ticks.length = unit(0.15, "cm"))
-
   g
 }
-

@@ -12,8 +12,6 @@ plot_phase(
   end_yr,
   x_lim = c(0, 1.4),
   y_lim = c(0, 1.2),
-  axis_title_font_size = 12,
-  axis_tick_font_size = 11,
   init_lbl_x_off = 0,
   init_lbl_y_off = 0,
   final_lbl_x_off = 0,
@@ -23,17 +21,13 @@ plot_phase(
 \arguments{
 \item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{start_yr}{The minium year in the plot}
+\item{start_yr}{The minimum year in the plot}
 
 \item{end_yr}{The maximum year in the plot}
 
 \item{x_lim}{Vector of two values for minimum and maximum x-axis values}
 
 \item{y_lim}{Vector of two values for minimum and maximum y-axis values}
-
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
 
 \item{init_lbl_x_off}{Initial year label x offset in units of axis}
 
