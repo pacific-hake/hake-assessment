@@ -980,11 +980,12 @@ effect and scales the population up with an increase in its size.
 ```{r main-biomass-base-alternative-1-fig, fig.cap = "(ref:main-biomass-base-alternative-1-cap)", fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-biomass-base-alternative-1-alt)"}
   
 plot_biomass(d_obj = d_obj_sens_biomass[[1]],
-             x_expansion = 4,
-             ylim = c(0, 20),
-             y_breaks = seq(0, 20, 2),
-             leg_font_size = 9,
-             leg_pos = c(0.8, 0.75),
+             x_expansion = 3.5,
+             ylim = c(0, 24),
+             y_breaks = seq(0, 24, 2),
+             leg_font_size =8,
+             leg_pos = c(0.65, 0.8),
+             leg_ncol = 2,
              rev_colors = TRUE)
 ```
 
