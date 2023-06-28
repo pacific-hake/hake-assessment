@@ -383,7 +383,6 @@ if(is.null(base_model$plots$bridge_summary)){
                  leg_pos = "none",
                  x_labs_mod = 10,
                  clip_cover = 0.25,
-                 axis_title_font_size = 12,
                  line_width = 0.25)
   
   plist[[3]] <-

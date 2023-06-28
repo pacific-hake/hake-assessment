@@ -20,18 +20,12 @@ plot_recdevs <- function(
     vjust_x_labels = -2,
     ylim = c(-5, 5),
     y_breaks = seq(ylim[1], ylim[2], by = 1),
-    y_labels = expression("-5", "-4", "-3", "-2", "-1",
-                          "0",
-                          "1", "2", "3", "4", "5"),
-    alpha = 0.1,
+    alpha = hake::main_alpha,
     leg_pos = c(0.65, 0.83),
     leg_ncol = 1,
     leg_font_size = 12,
-    axis_title_font_size = 14,
-    axis_tick_font_size = 11,
     point_size = 1.5,
     line_width = 0.5,
-    clip_cover = 2,
     single_point_color = "black",
     single_line_color = "black",
     crossbar_width = 0,
@@ -68,6 +62,21 @@ plot_recdevs <- function(
   d <- d |>
     filter(year <= xlim[2])
 
+  # Remove all values of the CIs that are above or below the y limits,
+  # to avoid the lines drawing past the top/bottom of the plot, because
+  # clipping is off. Clipping must be off to draw the uneven minor/major
+  # ticks on the bottom x-axis
+  d <- d |>
+  # Set maximum values of CI to the maximum y limit value
+  mutate(across(c(devlower, devupper), ~{
+    ifelse(.x < ylim[1],
+           ylim[1],
+           ifelse(.x > ylim[2],
+           ylim[2],
+           .x))})) |>
+  # Don't show median points if they fall above the y limit
+  filter(devmed >= ylim[1] & devmed <= ylim[2])
+
   g <- ggplot(d,
               aes(x = year,
                   y = devmed,
@@ -91,18 +100,15 @@ plot_recdevs <- function(
                        labels = x_labels) +
     scale_y_continuous(expand = c(0, 0),
                        breaks = y_breaks,
-                       labels = y_labels) +
+                       labels = y_breaks) +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
-          # plot.margin: top, right,bottom, left
-          # Needed to avoid tick labels cutting off
           # These two commands move the x-axis major tick labels and axis
           # title down so that the ticks. tick labels, and axis title don't
           # overlap each other
           axis.text.x = element_text(vjust = vjust_x_labels),
-          axis.title.x = element_text(vjust = vjust_x_labels),
-          plot.margin = margin(12, 12, 7, 0)) +
+          axis.title.x = element_text(vjust = vjust_x_labels)) +
     xlab("Year") +
     ylab("Recruitment deviations")
 
@@ -112,7 +118,7 @@ plot_recdevs <- function(
                  color = colors) +
       geom_errorbar(size = line_width,
                     position = position_dodge(dodge_val),
-                    alpha = 0.5,
+                    alpha = alpha,
                     width = crossbar_width)
   }else{
     g <- g +
@@ -139,16 +145,6 @@ plot_recdevs <- function(
       theme(legend.position = leg_pos) +
       guides(color = guide_legend(ncol = leg_ncol))
   }
-
-  # Draw a white rectangle over the top of the plot, obscuring any
-  # unclipped plot parts. Clipping has to be off to allow different size
-  # tick marks. `grid` package used here
-  g <- g +
-    annotation_custom(grob = rectGrob(gp = gpar(col = NA, fill = "white")),
-                      xmin = xlim[1],
-                      xmax = xlim[2],
-                      ymin = ylim[2],
-                      ymax = ylim[2] + clip_cover)
 
   g
 }
