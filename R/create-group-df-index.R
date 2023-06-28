@@ -46,7 +46,7 @@ create_group_df_index <- function(model_lst = NULL,
                                      "Observed")),
            year = as.numeric(year)) |>
     mutate_at(vars(index_lo, index_med, index_hi),
-              ~{.x / 1e6})
+              ~{ifelse(.x > 1e5, .x / 1e6, .x)})
 
   list(d)
 }
