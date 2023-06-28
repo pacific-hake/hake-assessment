@@ -96,10 +96,12 @@ plot_recruitment <- function(
   # Clipping must be off to draw the uneven minor/major ticks on the bottom
   # x-axis
   d <- d |>
+    # Set maximum values of CI to the maximum y limit value
     mutate(across(c(!!rlower_sym, !!rupper_sym), ~{
       ifelse(.x <= ylim[2],
              .x,
              ylim[2])})) |>
+    # Don't show median and mean points if they fall above the y limit
     filter(!!rmed_sym < ylim[2]) |>
     filter(!!rmean_sym < ylim[2])
 

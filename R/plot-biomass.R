@@ -115,16 +115,20 @@ plot_biomass <- function(model_lst = NULL,
   # Clipping must be off to draw the uneven minor/major ticks on the bottom
   # x-axis
   d <- d |>
+    # Set maximum values of CI to the maximum y limit value
     mutate(across(c(slower, supper), ~{
       ifelse(.x <= ylim[2],
              .x,
              ylim[2])})) |>
+    # Don't show median points if they fall above the y limit
     filter(smed < ylim[2])
   bo <- bo |>
+    # Set maximum values of CI to the maximum y limit value
     mutate(across(c(slower, supper), ~{
       ifelse(.x <= ylim[2],
              .x,
              ylim[2])})) |>
+    # Don't show median points if they fall above the y limit
     filter(smed < ylim[2])
 
   g <- ggplot(d,
