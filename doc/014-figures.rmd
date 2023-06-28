@@ -1112,12 +1112,13 @@ descriptions.
 relative spawning biomass varies for some sensitivity runs. As in the
 absolute biomass figure reducing the Phi selectivity parameter results in
 a large increase in current biomass while increasing it results in a decrease.
+
 ```{r main-status-base-alternative-4-fig, fig.cap = "(ref:main-status-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = ""}
 
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
                  x_expansion = 2,
-                 leg_font_size = 9,
-                 leg_pos = c(0.75, 0.88),
+                 leg_font_size = 8,
+                 leg_pos = c(0.65, 0.85),
                  rev_colors = TRUE)
 ```
 
