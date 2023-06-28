@@ -26,12 +26,6 @@
 #' @param axis_label_color Color for the axis labels and tick labels
 #' @param point_size Size of all points shown in plot
 #' @param line_width Width of all lines on the plot
-#' @param clip_cover There is a white rectangle drawn on top of the plot
-#' to cover any of the plot that made it outside the plot area. `clip` has to
-#' be set to `off` for the major x-axis tick marks to work, So, this is required.
-#' If you make the plot in a grid, the rectangle may overwrite some of the plot
-#' above it, and this number will have to be changed through trial and error
-#' until you cannot see the white rectangle anymore.
 #' @param single_line_color Line color for the case where there is only
 #' one model to plot
 #' @param wrap_y_label Logical. If `TRUE`, adds a newline to the y axis
@@ -66,18 +60,17 @@ plot_biomass <- function(model_lst = NULL,
                          vjust_x_labels = -0.25,
                          ylim = c(0, 4.5),
                          y_breaks = seq(ylim[1], ylim[2], by = 0.5),
-                         alpha = 0.1,
+                         alpha = hake::main_alpha,
                          leg_pos = c(0.65, 0.83),
                          leg_ncol = 1,
                          leg_font_size = 12,
                          point_size = 2.5,
                          point_shape = 16,
                          line_width = 1,
-                         clip_cover = 5,
                          single_line_color = "black",
                          single_ribbon_color = "blue",
                          ribbon_line_type = "dotted",
-                         rev_colors = FALSE,
+                         rev_colors = TRUE,
                          wrap_y_label = FALSE,
                          d_obj = NULL){
 
@@ -117,6 +110,23 @@ plot_biomass <- function(model_lst = NULL,
   d <- d |>
     filter(year <= xlim[2])
 
+  # Remove all values of the upper CI that are above the y limit, to avoid
+  # the line drawing past the top of the plot, because clipping is off.
+  # Clipping must be off to draw the uneven minor/major ticks on the bottom
+  # x-axis
+  d <- d |>
+    mutate(across(c(slower, supper), ~{
+      ifelse(.x <= ylim[2],
+             .x,
+             ylim[2])})) |>
+    filter(smed < ylim[2])
+  bo <- bo |>
+    mutate(across(c(slower, supper), ~{
+      ifelse(.x <= ylim[2],
+             .x,
+             ylim[2])})) |>
+    filter(smed < ylim[2])
+
   g <- ggplot(d,
               aes(x = year,
                   y = smed,
@@ -148,10 +158,7 @@ plot_biomass <- function(model_lst = NULL,
           # title down so that the ticks. tick labels, and axis title don't
           # overlap each other
           axis.text.x = element_text(vjust = vjust_x_labels),
-          axis.title.x = element_text(vjust = vjust_x_labels),
-          # plot.margin: top, right,bottom, left
-          # Needed to avoid tick labels cutting off
-          plot.margin = margin(12, 12, 0, 0)) +
+          axis.title.x = element_text(vjust = vjust_x_labels)) +
     labs(x = "Year",
          y = ifelse(wrap_y_label,
                     add_newlines("Female Spawning Biomass+(Mt)"),
@@ -188,16 +195,6 @@ plot_biomass <- function(model_lst = NULL,
       guides(fill = guide_legend(ncol = leg_ncol),
              color = guide_legend(ncol = leg_ncol))
   }
-
-  # Draw a white rectangle over the top of the plot, obscuring any
-  # unclipped plot parts. Clipping has to be off to allow different size
-  # tick marks. `grid` package used here
-  g <- g +
-    annotation_custom(grob = rectGrob(gp = gpar(col = NA, fill = "white")),
-                      xmin = xlim[1],
-                      xmax = xlim[2],
-                      ymin = ylim[2],
-                      ymax = ylim[2] + clip_cover)
 
   g
 }

@@ -11,7 +11,7 @@
 #' @export
 plot_recruitment <- function(
     model_lst = NULL,
-    model_names,
+    model_names = NULL,
     inc_means = FALSE,
     relative = FALSE,
     xlim = c(1966, year(Sys.time())),
@@ -24,18 +24,17 @@ plot_recruitment <- function(
     y_breaks = seq(ylim[1], ylim[2], by = 10),
     y_labels = y_breaks,
     y_colors = rep("black", length(y_breaks)),
-    alpha = 0.2,
+    alpha = hake::main_alpha,
     leg_pos = c(0.65, 0.83),
     leg_ncol = 1,
     leg_font_size = 12,
     point_size = 1.5,
     line_width = 0.5,
-    clip_cover = 2,
     single_point_color = "black",
     single_line_color = "black",
     crossbar_width = 0,
     dodge_val = 0.5,
-    rev_colors = FALSE,
+    rev_colors = TRUE,
     d_obj = NULL){
 
   if(is.null(d_obj)){
@@ -54,13 +53,13 @@ plot_recruitment <- function(
     rmed_sym <- sym("r_rel_med")
     rupper_sym <- sym("r_rel_upper")
     rmean_sym <- sym("r_rel_mean")
-    rinit_sym <- "r_rel_init"
+    rinit <- "r_rel_init"
   }else{
     rlower_sym <- sym("rlower")
     rmed_sym <- sym("rmed")
     rupper_sym <- sym("rupper")
     rmean_sym <- sym("rmean")
-    rinit_sym <- "rinit"
+    rinit <- "rinit"
   }
 
   d <- d_obj[[1]]
@@ -75,7 +74,7 @@ plot_recruitment <- function(
   if(is_single_model){
     colors <- single_point_color
     line_colors <- single_line_color
-    ro_vec <- model_lst[[1]]$mcmccalcs[[rinit_sym]]
+    ro_vec <- model_lst[[1]]$mcmccalcs[[rinit]]
     yrs <- c(seq(min(d$year) - x_expansion,
                  min(d$year) - 1), d$year)
     ro <- tibble(model = model_names[[1]],
@@ -92,6 +91,17 @@ plot_recruitment <- function(
   # Remove projection years
   d <- d |>
     filter(year <= xlim[2])
+  # Remove all values of the upper CI that are above the y limit, to avoid
+  # the line drawing past the top of the plot, because clipping is off.
+  # Clipping must be off to draw the uneven minor/major ticks on the bottom
+  # x-axis
+  d <- d |>
+    mutate(across(c(!!rlower_sym, !!rupper_sym), ~{
+      ifelse(.x <= ylim[2],
+             .x,
+             ylim[2])})) |>
+    filter(!!rmed_sym < ylim[2]) |>
+    filter(!!rmean_sym < ylim[2])
 
   g <- ggplot(d,
               aes(x = year,
@@ -206,16 +216,6 @@ plot_recruitment <- function(
       theme(legend.position = leg_pos) +
       guides(color = guide_legend(ncol = leg_ncol))
   }
-
-  # Draw a white rectangle over the top of the plot, obscuring any
-  # unclipped plot parts. Clipping has to be off to allow different size
-  # tick marks. `grid` package used here
-  g <- g +
-    annotation_custom(grob = rectGrob(gp = gpar(col = NA, fill = "white")),
-                      xmin = xlim[1],
-                      xmax = xlim[2],
-                      ymin = ylim[2],
-                      ymax = ylim[2] + clip_cover)
 
   g
 }

@@ -29,18 +29,17 @@ plot_biomass(
   vjust_x_labels = -0.25,
   ylim = c(0, 4.5),
   y_breaks = seq(ylim[1], ylim[2], by = 0.5),
-  alpha = 0.1,
+  alpha = hake::main_alpha,
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
   point_size = 2.5,
   point_shape = 16,
   line_width = 1,
-  clip_cover = 5,
   single_line_color = "black",
   single_ribbon_color = "blue",
   ribbon_line_type = "dotted",
-  rev_colors = FALSE,
+  rev_colors = TRUE,
   wrap_y_label = FALSE,
   d_obj = NULL
 )
@@ -132,7 +131,7 @@ plot_fore_compare(
 
 plot_recdevs(
   model_lst = NULL,
-  model_names,
+  model_names = NULL,
   xlim = c(1946, year(Sys.time())),
   x_breaks = xlim[1]:xlim[2],
   x_labs_mod = 5,
@@ -161,7 +160,7 @@ plot_recdevs(
 
 plot_recruitment(
   model_lst = NULL,
-  model_names,
+  model_names = NULL,
   inc_means = FALSE,
   relative = FALSE,
   xlim = c(1966, year(Sys.time())),
@@ -174,26 +173,23 @@ plot_recruitment(
   y_breaks = seq(ylim[1], ylim[2], by = 10),
   y_labels = y_breaks,
   y_colors = rep("black", length(y_breaks)),
-  alpha = 0.2,
+  alpha = hake::main_alpha,
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
   point_size = 1.5,
   line_width = 0.5,
-  clip_cover = 2,
   single_point_color = "black",
   single_line_color = "black",
   crossbar_width = 0,
   dodge_val = 0.5,
-  rev_colors = FALSE,
+  rev_colors = TRUE,
   d_obj = NULL
 )
 
 plot_rel_biomass(
   model_lst = NULL,
-  model_names,
+  model_names = NULL,
   xlim = c(1966, year(Sys.time())),
   x_breaks = xlim[1]:xlim[2],
   x_labs_mod = 5,
@@ -249,20 +245,20 @@ plot_rel_recruitment(
 
 plot_survey_index_fits(
   model_lst = NULL,
-  model_names,
+  model_names = NULL,
   survey_type = c("age1", "age2"),
   xlim = c(1995, 2021),
   x_breaks = xlim[1]:xlim[2],
   x_labs_mod = 5,
   x_expansion = 3,
+  tick_prop = 1,
+  vjust_x_labels = -2,
   ylim = c(0, 3),
   y_breaks = seq(ylim[1], ylim[2], by = 0.5),
   alpha = 0.1,
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
   point_size = 1.5,
   line_width = 0.5,
   clip_cover = 2,
@@ -312,13 +308,6 @@ it up, closer to the plot}
 \item{point_shape}{The R shape number for the points}
 
 \item{line_width}{Width of all lines on the plot}
-
-\item{clip_cover}{There is a white rectangle drawn on top of the plot
-to cover any of the plot that made it outside the plot area. \code{clip} has to
-be set to \code{off} for the major x-axis tick marks to work, So, this is required.
-If you make the plot in a grid, the rectangle may overwrite some of the plot
-above it, and this number will have to be changed through trial and error
-until you cannot see the white rectangle anymore.}
 
 \item{single_line_color}{Line color for the case where there is only
 one model to plot}

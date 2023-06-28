@@ -1175,8 +1175,8 @@ set to 0.21.
 
 plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
                        survey_type = "age2",
-                       x_expansion = 2,
-                       leg_pos = c(0.84, 0.16),
+                       x_expansion = 1,
+                       leg_pos = c(0.82, 0.18),
                        rev_colors = TRUE)
 ```
 
@@ -1192,28 +1192,21 @@ stable model.
 
 ```{r main-biomass-recruitment-retrospective-fig, fig.cap = "(ref:main-biomass-recruitment-retrospective-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-biomass-recruitment-retrospective-alt) "}
 
-plist <- list()
-plist[[1]] <- plot_biomass(d_obj = base_model$retros$biomass_df,
-                           leg_font_size = 9,
-                           x_expansion = 4,
-                           leg_pos = c(0.6, 0.89),
-                           leg_ncol = 2,
-                           alpha = 0.1,
-                           rev_colors = TRUE)
-# This extra panel with no plot in it is to allow clipping of the huge
-# recruitment from the plot below it to happen without cutting off the
-# biomass panel above. It's acting as a spacer
-plist[[2]] <- NA
-plist[[3]] <- plot_recruitment(d_obj = base_model$retros$recr_df,
-                               leg_pos = "none",
-                               rev_colors = TRUE,
-                               clip_cover = 8)
+p <- list()
+p[[1]] <- plot_biomass(d_obj = base_model$retros$biomass_df,
+                       leg_font_size = 8,
+                       x_expansion = 3.5,
+                       leg_pos = c(0.6, 0.89),
+                       leg_ncol = 2,
+                       alpha = 0.1)
+p[[2]] <- plot_recruitment(d_obj = base_model$retros$recr_df,
+                           leg_pos = "none")
 
-plot_grid(plotlist = plist,
-          nrow = 3,
+plot_grid(plotlist = p,
+          nrow = 2,
           ncol = 1,
           align = "v",
-          rel_heights = c(1, 0.12, 1))
+          rel_heights = c(1, 1))
 
 retro_cohorts <- (end_yr - 11):(end_yr - 2)
 ```
