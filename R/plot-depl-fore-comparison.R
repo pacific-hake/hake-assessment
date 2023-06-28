@@ -1,54 +1,59 @@
 #' Plot the relative spawning biomass with several forecast trajectories
 #'
 #' @rdname plot_biomass
-#' @param fore_inds Indices of the `model$catch_levels` list to include as
+#' @param fore_inds Indices of the `model$ct_levels` list to include as
 #' forecast catch streams in the plot
 #' @param forecast_yrs A vector of the forecast years
 #' @export
-plot_depl_fore_comparison <- function(model,
-                                      fore_inds = c(1, 2, 6, 12, 14),
-                                      xlim = c(max(forecast_yrs) - 16,
-                                               max(forecast_yrs)),
-                                      x_breaks = xlim[1]:xlim[length(xlim)],
-                                      x_labs_mod = 5,
-                                      x_expansion = 1,
-                                      tick_prop = 1,
-                                      vjust_x_labels = -2,
-                                      ylim = c(0, 3.5),
-                                      y_breaks = c(
-                                        0,
-                                        0.1,
-                                        0.4,
-                                        0.5,
-                                        1.0,
-                                        seq(1.5,
-                                            ylim[2],
-                                            by = 0.5)),
-                                      y_labels = expression(
-                                        "0",
-                                        "0.1B"[0],
-                                        "0.4B"[0],
-                                        "0.5",
-                                        "B"[0],
-                                        "1.5",
-                                        "2",
-                                        "2.5",
-                                        "3",
-                                        "3.5"),
-                                      y_colors = c(
-                                        "black",
-                                        "red",
-                                        "green",
-                                        "black",
-                                        "blue",
-                                        rep("black", length(seq(1.5,
-                                                                ylim[2],
-                                                                by = 0.5)))),
-                                      alpha = 0.2,
-                                      leg_pos = c(0.15, 0.83),
-                                      leg_ncol = 1,
-                                      leg_font_size = 12,
-                                      forecast_yrs){
+plot_depl_fore_comparison <- function(
+    model,
+    fore_inds = c(1, # Zero catch
+                  2, # 180,000 t catch
+                  model$ct_levels_vals$ct_actual_ind,
+                  model$ct_levels_vals$ct_tac_ind,
+                  model$ct_levels_vals$ct_default_policy_ind),
+    xlim = c(max(forecast_yrs) - 16,
+             max(forecast_yrs)),
+    x_breaks = xlim[1]:xlim[length(xlim)],
+    x_labs_mod = 5,
+    x_expansion = 1,
+    tick_prop = 1,
+    vjust_x_labels = -2,
+    ylim = c(0, 3.5),
+    y_breaks = c(
+      0,
+      0.1,
+      0.4,
+      0.5,
+      1.0,
+      seq(1.5,
+          ylim[2],
+          by = 0.5)),
+    y_labels = expression(
+      "0",
+      "0.1B"[0],
+      "0.4B"[0],
+      "0.5",
+      "B"[0],
+      "1.5",
+      "2",
+      "2.5",
+      "3",
+      "3.5"),
+    y_colors = c(
+      "black",
+      "red",
+      "green",
+      "black",
+      "blue",
+      rep("black", length(seq(1.5,
+                              ylim[2],
+                              by = 0.5)))),
+    alpha = 0.2,
+    leg_pos = c(0.15, 0.83),
+    leg_ncol = 1,
+    leg_font_size = 12,
+    forecast_yrs){
 
   nice_nms <- map_chr(model$ct_levels[fore_inds], ~{
     .x[[2]]
@@ -90,7 +95,8 @@ plot_depl_fore_comparison <- function(model,
   historic <- fore |>
     mutate(year = as.numeric(year)) |>
     filter(model == nice_nms[length(nice_nms)],
-           !year %in% forecast_yrs[-1])
+           !year %in% forecast_yrs[-1]) |>
+    filter(year %in% xlim[1]:xlim[2])
 
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
                                      modulo = x_labs_mod)
@@ -149,7 +155,7 @@ plot_depl_fore_comparison <- function(model,
           axis.text.x = element_text(vjust = vjust_x_labels),
           axis.title.x = element_text(vjust = vjust_x_labels),
           # Uncomment this to have colors for B0 text labels
-          #axis.text.y = element_text(color = y_colors),
+          # axis.text.y = element_text(color = y_colors),
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 12, 0)) +

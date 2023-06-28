@@ -62,7 +62,8 @@ plot_cohort_catch(
 
 plot_depl_fore_comparison(
   model,
-  fore_inds = c(1, 2, 6, 12, 14),
+  fore_inds = c(1, 2, model$ct_levels_vals$ct_actual_ind,
+    model$ct_levels_vals$ct_tac_ind, model$ct_levels_vals$ct_default_policy_ind),
   xlim = c(max(forecast_yrs) - 16, max(forecast_yrs)),
   x_breaks = xlim[1]:xlim[length(xlim)],
   x_labs_mod = 5,
@@ -355,7 +356,7 @@ the lines}
 \item{arrow_size}{size of the arrow heads, \code{npc} units. See \code{\link[grid:unit]{grid::unit()}}
 For description of \code{npc}}
 
-\item{fore_inds}{Indices of the \code{model$catch_levels} list to include as
+\item{fore_inds}{Indices of the \code{model$ct_levels} list to include as
 forecast catch streams in the plot}
 
 \item{y_labels}{Labels for the tick marks on the Y axis}
