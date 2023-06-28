@@ -9,35 +9,34 @@
 #' then [create_rds_file()] needs to be run again to create the RDS file for
 #' the model
 #' @export
-plot_recruitment <- function(model_lst = NULL,
-                             model_names,
-                             inc_means = FALSE,
-                             relative = FALSE,
-                             xlim = c(1966, year(Sys.time())),
-                             x_breaks = xlim[1]:xlim[2],
-                             x_labs_mod = 5,
-                             x_expansion = 2,
-                             tick_prop = 1,
-                             vjust_x_labels = -2,
-                             ylim = c(0, 40),
-                             y_breaks = seq(ylim[1], ylim[2], by = 10),
-                             y_labels = y_breaks,
-                             y_colors = rep("black", length(y_breaks)),
-                             alpha = 0.2,
-                             leg_pos = c(0.65, 0.83),
-                             leg_ncol = 1,
-                             leg_font_size = 12,
-                             axis_title_font_size = 14,
-                             axis_tick_font_size = 11,
-                             point_size = 1.5,
-                             line_width = 0.5,
-                             clip_cover = 2,
-                             single_point_color = "black",
-                             single_line_color = "black",
-                             crossbar_width = 0,
-                             dodge_val = 0.5,
-                             rev_colors = FALSE,
-                             d_obj = NULL){
+plot_recruitment <- function(
+    model_lst = NULL,
+    model_names,
+    inc_means = FALSE,
+    relative = FALSE,
+    xlim = c(1966, year(Sys.time())),
+    x_breaks = xlim[1]:xlim[2],
+    x_labs_mod = 5,
+    x_expansion = 2,
+    tick_prop = 1,
+    vjust_x_labels = -2,
+    ylim = c(0, 40),
+    y_breaks = seq(ylim[1], ylim[2], by = 10),
+    y_labels = y_breaks,
+    y_colors = rep("black", length(y_breaks)),
+    alpha = 0.2,
+    leg_pos = c(0.65, 0.83),
+    leg_ncol = 1,
+    leg_font_size = 12,
+    point_size = 1.5,
+    line_width = 0.5,
+    clip_cover = 2,
+    single_point_color = "black",
+    single_line_color = "black",
+    crossbar_width = 0,
+    dodge_val = 0.5,
+    rev_colors = FALSE,
+    d_obj = NULL){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -171,10 +170,7 @@ plot_recruitment <- function(model_lst = NULL,
           # title down so that the ticks. tick labels, and axis title don't
           # overlap each other
           axis.text.x = element_text(vjust = vjust_x_labels),
-          axis.title.x = element_text(vjust = vjust_x_labels),
-          # plot.margin: top, right,bottom, left
-          # Needed to avoid tick labels cutting off
-          plot.margin = margin(12, 12, 12, 12)) +
+          axis.title.x = element_text(vjust = vjust_x_labels)) +
     xlab("Year") +
     ylab(ifelse(relative,
                 "Age-0 recruits (billions) relative to 2010 values",
