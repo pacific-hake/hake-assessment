@@ -883,13 +883,14 @@ computed directly from model output and lines interpolate between the points.
 stock declines in 2024 is 50 percent or greater for all catch levels
 including zero. The probability that the stock falls under B40 is almost
 zero for catches up to approximately 350 kilotonnes.
-         
+
 ```{r main-risk-year-1-fig, fig.cap = "(ref:main-risk-year-1-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-risk-year-1-alt)"}
 
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[1],
-                  leg_pos = c(0.2, 0.32),
+                  leg_pos = c(0.3, 0.38),
+                  leg_font_size = 8,
                   remove_x_val = 325)
 ```
 
@@ -911,7 +912,8 @@ for catches up to approximately 380 kilotonnes.
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[2],
-                  leg_pos = c(0.2, 0.32),
+                  leg_pos = c(0.3, 0.5),
+                  leg_font_size = 8,
                   remove_x_val = c(325, 342, 740))
 ```
 
@@ -934,7 +936,9 @@ below 0.1 for catches up to approximately 350 kilotonnes.
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[3],
-                  leg_pos = c(0.2, 0.32),
+                  leg_pos = c(0.38, 0.88),
+                  leg_font_size = 8,
+                  leg_ncol = 2,
                   remove_x_val = c(259, 621))
 ```
 

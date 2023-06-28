@@ -24,9 +24,8 @@ plot_fore_compare <- function(model,
                                          "red",
                                          "tan"),
                               shapes = c(16, 17, 17, 17, 15, 18),
+                              x_expansion = 40,
                               leg_font_size = 8,
-                              axis_title_font_size = 14,
-                              axis_tick_font_size = 11,
                               leg_pos = NULL,
                               leg_ncol = 1,
                               remove_x_val = NULL,
@@ -54,7 +53,8 @@ plot_fore_compare <- function(model,
   }
 
   if(ncol(prob_dat) != 7){
-    stop("The table does not have 7 columns. This is required for this function",
+    stop("The table does not have 7 columns. This is required for ",
+         "this function",
          call. = FALSE)
   }
 
@@ -62,12 +62,14 @@ plot_fore_compare <- function(model,
   ct_sym <- sym(ct_colname)
   names(prob_dat) <- c(
     ct_colname,
-    paste0("P(B", fore_yr + 1, "<B", fore_yr, "): Stock declines in ", fore_yr + 1),
+    paste0("P(B", fore_yr + 1, "<B", fore_yr, "): Stock declines in ",
+           fore_yr + 1),
     paste0("P(B", fore_yr + 1, "<B40%)"),
     paste0("P(B", fore_yr + 1, "<B25%)"),
     paste0("P(B", fore_yr + 1, "<B10%)"),
     paste0("P(", fore_yr, " relative fishing intensity > 100%)"),
-    paste0("P(", fore_yr + 1, " default harvest policy catch < ", fore_yr, " catch)"))
+    paste0("P(", fore_yr + 1, " default harvest policy catch < ",
+           fore_yr, " catch)"))
 
   if(short){
     pat_decline <- paste0("B", fore_yr + 1, "<B", fore_yr)
@@ -93,7 +95,6 @@ plot_fore_compare <- function(model,
              wch_decline_col,
              wch_40_col,
              wch_10_col)
-
   }
 
   lvls <- names(prob_dat)[-1]
@@ -106,8 +107,9 @@ plot_fore_compare <- function(model,
            !!ct_sym := round(!!ct_sym, 0))
 
   x_breaks <- df |> pull(!!ct_colname) |> unique()
+  x_labels <- x_breaks
   if(!is.null(remove_x_val[1])){
-    x_breaks <- x_breaks[!x_breaks %in% remove_x_val]
+    x_labels[x_breaks %in% remove_x_val] <- ""
   }
 
   g <- ggplot(df,
@@ -117,48 +119,27 @@ plot_fore_compare <- function(model,
                   color = Probability,
                   shape = Probability)) +
     geom_point(size = 3) +
-    geom_line(linetype = "dashed", linewidth = 0.5) +
+    geom_line(linetype = "dashed",
+              linewidth = 0.5) +
     scale_color_manual(values = colors) +
     scale_shape_manual(values = shapes) +
     labs(y = "Probability") +
     coord_cartesian(ylim = c(0, 1)) +
-    scale_x_continuous(expand = c(0, 2),
+    scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
-                       labels = x_breaks) +
-    theme(legend.title=element_blank(),
-          axis.text.x = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
-                                     angle = 90,
-                                     # margin with first element set controls
-                                     # up/down position, positive for down
-                                     # Cannot use hjust, it has a bug and does
-                                     # not work
-                                     margin = unit(c(0.15, 0, 0, 0), "cm"),
-                                     # vjust controls left/right
-                                     # position, positive for right
-                                     vjust = 0.35,
-                                     face = "plain"),
-          axis.text.y = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
-                                     hjust = 0,
-                                     # vjust adjusts up/down, positive for
-                                     # down
-                                     vjust = 0.55,
-                                     face = "plain"),
-          axis.title.x = element_text(color = "grey20",
-                                      size = axis_title_font_size,
-                                      angle = 0,
-                                      vjust = 0,
-                                      face = "plain"),
-          axis.title.y = element_text(color = "grey20",
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      face = "plain"),
-          axis.ticks.length = unit(0.15, "cm"))
+                       labels = x_labels) +
+    theme(legend.title = element_blank(),
+          axis.text.x = element_text(angle = 90,
+                                     # Need vjust to move the tick labels
+                                     # to the right due to angle being 90
+                                     # causing them to be offset
+                                     vjust = 0.35))
 
   if(show_50_line){
     g <- g +
-      geom_hline(yintercept = 0.5, linetype = "dotted", color = "black")
+      geom_hline(yintercept = 0.5,
+                 linetype = "dotted",
+                 color = "black")
   }
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
@@ -166,6 +147,7 @@ plot_fore_compare <- function(model,
   }else if(leg_pos[1] != "out"){
     g <- g +
       theme(legend.position = leg_pos,
+            legend.box.background = element_rect(color = "white"),
             legend.text = element_text(size = leg_font_size)) +
       guides(fill = guide_legend(ncol = leg_ncol,
                                  label.hjust = 0),
