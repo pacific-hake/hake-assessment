@@ -854,9 +854,9 @@ of `r end_yr` from the base model (white rectangle) and projections to the
 start of `r forecast_yrs[length(forecast_yrs)]` for several management
 actions, which are defined in the decision tables. The default harvest
 policy catches are
-`r `f(base_model$catch_default_policy[1])`~t in `r `end_yr`,
-`r (base_model$catch_default_policy[2])`~t in `end_yr + 1`, and
-`r (base_model$catch_default_policy[3])`~t in `end_yr + 2`.
+`r f(base_model$ct_default_policy[1])`~t in `r end_yr`,
+`r f(base_model$ct_default_policy[2])`~t in `r end_yr + 1`, and
+`r f(base_model$ct_default_policy[3])`~t in `r end_yr + 2`.
 
 (ref:main-forecast-depletion-comparison-alt) This figure shows that the
 median relative spawning biomass is projected to remain flat for the next
