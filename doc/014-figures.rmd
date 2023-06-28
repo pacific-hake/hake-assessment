@@ -1000,9 +1000,11 @@ sensitivity descriptions.
 ```{r main-status-base-alternative-1-fig, fig.cap = "(ref:main-status-base-alternative-1-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-status-base-alternative-1-alt)"}
 
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
+                 ylim = c(0, 4),
                  x_expansion = 2,
-                 leg_font_size = 9,
-                 leg_pos = c(0.8, 0.75),
+                 leg_font_size = 8,
+                 leg_pos = c(0.65, 0.85),
+                 leg_ncol = 2,
                  rev_colors = TRUE)
 ```
 
@@ -1018,8 +1020,8 @@ estimate increases with the removal of the age-1 index from the model.
 ```{r main-biomass-base-alternative-2-fig, fig.cap = "(ref:main-biomass-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-biomass-base-alternative-2-alt)"}
 
 plot_biomass(d_obj = d_obj_sens_biomass[[2]],
-             x_expansion = 4,
-             leg_pos = c(0.75, 0.9),
+             x_expansion = 3.5,
+             leg_pos = c(0.65, 0.85),
              rev_colors = TRUE)
 ```
 
@@ -1038,7 +1040,7 @@ removal of the age-1 index from the model.
 
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[2]],
                  x_expansion = 2,
-                 leg_pos = c(0.75, 0.9),
+                 leg_pos = c(0.65, 0.85),
                  rev_colors = TRUE)
 ```
 
