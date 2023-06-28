@@ -161,8 +161,7 @@ plot_recruitment <- function(
     scale_y_continuous(expand = c(0, 0),
                        breaks = y_breaks,
                        labels = y_labels) +
-    theme(legend.key.size = unit(0.2, 'cm'),
-          legend.title = element_blank(),
+    theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
           axis.text.y = element_text(color = y_colors),

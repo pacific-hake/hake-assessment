@@ -1135,7 +1135,7 @@ for the large cohorts is highly sensitive to the change in the Phi parameter.
 
 plot_recruitment(d_obj = d_obj_sens_recr[[3]],
                  leg_font_size = 11,
-                 leg_pos = c(0.13, 0.92),
+                 leg_pos = c(0.45, 0.88),
                  inc_means = FALSE,
                  rev_colors = TRUE)
 ```
