@@ -3,29 +3,30 @@
 #' @rdname plot_biomass
 #'
 #' @export
-plot_rel_biomass <- function(model_lst = NULL,
-                             model_names,
-                             xlim = c(1966, year(Sys.time())),
-                             x_breaks = xlim[1]:xlim[2],
-                             x_labs_mod = 5,
-                             x_expansion = 3,
-                             tick_prop = 0.8,
-                             vjust_x_labels = -2,
-                             ylim = c(0, 3.5),
-                             alpha = 0.1,
-                             leg_pos = c(0.65, 0.83),
-                             leg_ncol = 1,
-                             leg_font_size = 12,
-                             point_size = 2,
-                             point_shape = 16,
-                             line_width = 1,
-                             clip_cover = 2,
-                             single_line_color = "black",
-                             single_ribbon_color = "blue",
-                             ribbon_line_type = "dotted",
-                             rev_colors = FALSE,
-                             wrap_y_label = FALSE,
-                             d_obj = NULL){
+plot_rel_biomass <- function(
+    model_lst = NULL,
+    model_names = NULL,
+    xlim = c(1966, year(Sys.time())),
+    x_breaks = xlim[1]:xlim[2],
+    x_labs_mod = 5,
+    x_expansion = 3,
+    tick_prop = 0.8,
+    vjust_x_labels = -2,
+    ylim = c(0, 3.5),
+    alpha = 0.1,
+    leg_pos = c(0.65, 0.83),
+    leg_ncol = 1,
+    leg_font_size = 12,
+    point_size = 2,
+    point_shape = 16,
+    line_width = 1,
+    clip_cover = 2,
+    single_line_color = "black",
+    single_ribbon_color = "blue",
+    ribbon_line_type = "dotted",
+    rev_colors = FALSE,
+    wrap_y_label = FALSE,
+    d_obj = NULL){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
