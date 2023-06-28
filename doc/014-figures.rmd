@@ -1095,9 +1095,9 @@ increasing it results in a decrease.
 ```{r main-biomass-base-alternative-4-fig, fig.cap = "(ref:main-biomass-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = ""}
 
 plot_biomass(d_obj = d_obj_sens_biomass[[3]],
-             x_expansion = 4,
-             leg_font_size = 9,
-             leg_pos = c(0.75, 0.88),
+             x_expansion = 3.5,
+             leg_font_size = 8,
+             leg_pos = c(0.65, 0.85),
              rev_colors = TRUE)
 ```
 
