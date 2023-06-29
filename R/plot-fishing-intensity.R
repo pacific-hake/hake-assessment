@@ -27,20 +27,24 @@ plot_fishing_intensity <- function(model,
   plower <- calcs$plower[inds]
   pmed <- calcs$pmed[inds]
   pupper <- calcs$pupper[inds]
-  yrs <- as.numeric(names(plower))
+  year <- as.numeric(names(plower))
 
-  df <- tibble(yrs,
-               plower,
-               pmed,
-               pupper)
+  d <- tibble(year,
+              plower,
+              pmed,
+              pupper)
 
   # Remove projection years
-  df <- df |>
-    filter(yrs <= xlim[2])
+  d <- d |>
+    filter(year <= xlim[2] & year >= xlim[1])
 
-  g <- ggplot(df,
-              aes(x = yrs,
-                  xend = yrs,
+  # Calculate the data outside the range of the y limits and
+  # change the CI in the data to cut off at the limits
+  yoob <- calc_yoob(d, ylim, "plower", "pmed", "pupper")
+
+  g <- ggplot(yoob$d,
+              aes(x = year,
+                  xend = year,
                   y = plower,
                   yend = pupper)) +
     coord_cartesian(xlim = xlim,
@@ -73,6 +77,10 @@ plot_fishing_intensity <- function(model,
     xlab("Year") +
     ylab(expression(paste("Rel. fishing intensity",
                           ~~(1-italic(SPR))/(1-italic(SPR)['40%']))))
+
+  # Add arrows to the plot to point toward the out of bounds data points
+  g <- g |>
+    draw_arrows_yoob(yoob)
 
   # Add major tick marks
   g <- g |>
