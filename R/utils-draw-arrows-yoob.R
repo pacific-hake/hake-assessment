@@ -1,5 +1,5 @@
 #' Draw arrows on the top and/or bottom of the plot pointing to where
-#' out-of-bounds points are located
+#' out-of-bounds points are located. YOOB means Y-axis Out-Of-Bounds
 #'
 #' @param g A [ggplot2::ggplot()] object
 #' @param yoob Anlist returned from the function [calc_yoob()]

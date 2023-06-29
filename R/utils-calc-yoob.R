@@ -1,6 +1,6 @@
 #' Calculate the data outside the range of the y limits and change the
 #' `lo_col` and `hi_col` in the data frame to be equal to the limits for
-#' those points below or above
+#' those points below or above.  YOOB means Y-axis Out-Of-Bounds
 #'
 #' @param d A data frame containing `lo_col`, `med_col`, and `hi_col`
 #' @param ylim A vector of two values, a lower limit and an upper limits

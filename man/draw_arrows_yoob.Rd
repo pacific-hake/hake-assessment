@@ -3,7 +3,7 @@
 \name{draw_arrows_yoob}
 \alias{draw_arrows_yoob}
 \title{Draw arrows on the top and/or bottom of the plot pointing to where
-out-of-bounds points are located}
+out-of-bounds points are located. YOOB means Y-axis Out-Of-Bounds}
 \usage{
 draw_arrows_yoob(
   g,
@@ -29,5 +29,5 @@ A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Draw arrows on the top and/or bottom of the plot pointing to where
-out-of-bounds points are located
+out-of-bounds points are located. YOOB means Y-axis Out-Of-Bounds
 }

@@ -4,7 +4,7 @@
 \alias{calc_yoob}
 \title{Calculate the data outside the range of the y limits and change the
 \code{lo_col} and \code{hi_col} in the data frame to be equal to the limits for
-those points below or above}
+those points below or above.  YOOB means Y-axis Out-Of-Bounds}
 \usage{
 calc_yoob(d, ylim, lo_col, med_col, hi_col)
 }
@@ -29,5 +29,5 @@ values, \code{d_outside_lo} and/or \code{d_outside_hi} may not be present
 \description{
 Calculate the data outside the range of the y limits and change the
 \code{lo_col} and \code{hi_col} in the data frame to be equal to the limits for
-those points below or above
+those points below or above.  YOOB means Y-axis Out-Of-Bounds
 }
