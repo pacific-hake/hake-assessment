@@ -58,26 +58,14 @@ plot_recdevs <- function(
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
                                      modulo = x_labs_mod)
 
-  # Remove projection years
   d <- d |>
-    filter(year <= xlim[2])
+    filter(year <= xlim[2] & year >= xlim[1])
 
-  # Remove all values of the CIs that are above or below the y limits,
-  # to avoid the lines drawing past the top/bottom of the plot, because
-  # clipping is off. Clipping must be off to draw the uneven minor/major
-  # ticks on the bottom x-axis
-  d <- d |>
-  # Set maximum values of CI to the maximum y limit value
-  mutate(across(c(devlower, devupper), ~{
-    ifelse(.x < ylim[1],
-           ylim[1],
-           ifelse(.x > ylim[2],
-           ylim[2],
-           .x))})) |>
-  # Don't show median points if they fall above the y limit
-  filter(devmed >= ylim[1] & devmed <= ylim[2])
+  # Calculate the data outside the range of the y limits and
+  # change the CI in the data to cut off at the limits
+  yoob <- calc_yoob(d, ylim, "devlower", "devmed", "devupper")
 
-  g <- ggplot(d,
+  g <- ggplot(yoob$d,
               aes(x = year,
                   y = devmed,
                   ymin = devlower,
@@ -126,6 +114,10 @@ plot_recdevs <- function(
                   position = position_dodge(dodge_val),
                   width = crossbar_width)
   }
+
+  # Add arrows to the plot to point toward the out of bounds data points
+  g <- g |>
+    draw_arrows_yoob(yoob)
 
   # Add major tick marks
   g <- g |>

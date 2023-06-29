@@ -20,7 +20,6 @@ plot_rel_biomass <- function(
     point_size = 2,
     point_shape = 16,
     line_width = 1,
-    clip_cover = 2,
     single_line_color = "black",
     single_ribbon_color = "blue",
     ribbon_line_type = "dotted",
@@ -85,9 +84,13 @@ plot_rel_biomass <- function(
 
   # Remove projection years
   d <- d |>
-    filter(year <= xlim[2])
+    filter(year <= xlim[2] & year >= xlim[1])
 
-  g <- ggplot(d,
+  # Calculate the data outside the range of the y limits and
+  # change the CI in the data to cut off at the limits
+  yoob <- calc_yoob(d, ylim, "dlower", "dmed", "dupper")
+
+  g <- ggplot(yoob$d,
               aes(x = year,
                   y = dmed,
                   ymin = dlower,
@@ -141,6 +144,10 @@ plot_rel_biomass <- function(
                                     paste("("~B[t]/B[0]~")"))),
                     expression(paste("Rel. Spawning Biomass ("~B[t]/B[0]~")"))))
 
+  # Add arrows to the plot to point toward the out of bounds data points
+  g <- g |>
+    draw_arrows_yoob(yoob)
+
   # Add major tick marks
   g <- g |>
     add_major_ticks(x_breaks = x_breaks,
@@ -160,16 +167,6 @@ plot_rel_biomass <- function(
       guides(fill = guide_legend(ncol = leg_ncol),
              color = guide_legend(ncol = leg_ncol))
   }
-
-  # Draw a white rectangle over the top of the plot, obscuring any
-  # unclipped plot parts. Clipping has to be off to allow different size
-  # tick marks. `grid` package used here
-  g <- g +
-    annotation_custom(grob = rectGrob(gp = gpar(col = NA, fill = "white")),
-                      xmin = xlim[1],
-                      xmax = xlim[2],
-                      ymin = ylim[2],
-                      ymax = ylim[2] + clip_cover)
 
   g
 }

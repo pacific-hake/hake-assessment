@@ -200,7 +200,6 @@ plot_rel_biomass(
   point_size = 2,
   point_shape = 16,
   line_width = 1,
-  clip_cover = 2,
   single_line_color = "black",
   single_ribbon_color = "blue",
   ribbon_line_type = "dotted",

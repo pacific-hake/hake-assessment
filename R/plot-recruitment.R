@@ -49,18 +49,22 @@ plot_recruitment <- function(
   }
 
   if(relative){
-    rlower_sym <- sym("r_rel_lower")
-    rmed_sym <- sym("r_rel_med")
-    rupper_sym <- sym("r_rel_upper")
-    rmean_sym <- sym("r_rel_mean")
+    rlower <- "r_rel_lower"
+    rmed <- "r_rel_med"
+    rupper <- "r_rel_upper"
+    rmean <- "r_rel_mean"
     rinit <- "r_rel_init"
   }else{
-    rlower_sym <- sym("rlower")
-    rmed_sym <- sym("rmed")
-    rupper_sym <- sym("rupper")
-    rmean_sym <- sym("rmean")
+    rlower <- "rlower"
+    rmed <- "rmed"
+    rupper <- "rupper"
+    rmean <- "rmean"
     rinit <- "rinit"
   }
+  rlower_sym <- sym(rlower)
+  rmed_sym <- sym(rmed)
+  rupper_sym <- sym(rupper)
+  rmean_sym <- sym(rmean)
 
   d <- d_obj[[1]]
   colors <- plot_color(length(unique(d$model)))
@@ -90,22 +94,13 @@ plot_recruitment <- function(
 
   # Remove projection years
   d <- d |>
-    filter(year <= xlim[2])
-  # Remove all values of the upper CI that are above the y limit, to avoid
-  # the line drawing past the top of the plot, because clipping is off.
-  # Clipping must be off to draw the uneven minor/major ticks on the bottom
-  # x-axis
-  d <- d |>
-    # Set maximum values of CI to the maximum y limit value
-    mutate(across(c(!!rlower_sym, !!rupper_sym), ~{
-      ifelse(.x <= ylim[2],
-             .x,
-             ylim[2])})) |>
-    # Don't show median and mean points if they fall above the y limit
-    filter(!!rmed_sym < ylim[2]) |>
-    filter(!!rmean_sym < ylim[2])
+    filter(year <= xlim[2] & year >= xlim[1])
 
-  g <- ggplot(d,
+  # Calculate the data outside the range of the y limits and
+  # change the CI in the data to cut off at the limits
+  yoob <- calc_yoob(d, ylim, rlower, rmed, rupper)
+
+  g <- ggplot(yoob$d,
               aes(x = year,
                   y = !!rmed_sym,
                   ymin = !!rlower_sym,
@@ -199,6 +194,11 @@ plot_recruitment <- function(
                    shape = 4)
     }
   }
+
+  # Add arrows to the plot to point toward the out of bounds data points
+  g <- g |>
+    draw_arrows_yoob(yoob)
+
 
   # Add major tick marks
   g <- g |>
