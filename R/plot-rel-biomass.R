@@ -18,12 +18,21 @@ plot_rel_biomass <- function(
     leg_ncol = 1,
     leg_font_size = 12,
     alpha = hake::ts_ribbon_alpha,
-    point_size = hake::ts_pointsize,
-    point_shape = hake::ts_pointshape,
-    line_width = hake::ts_linewidth,
+    point_size = ifelse(is_single_model,
+                        hake::ts_single_model_pointsize,
+                        hake::ts_pointsize),
+    point_color = hake::ts_single_model_pointcolor,
+    point_shape = ifelse(is_single_model,
+                         hake::ts_single_model_pointshape,
+                         hake::ts_pointshape),
+    line_width = ifelse(is_single_model,
+                        hake::ts_single_model_linewidth,
+                        hake::ts_linewidth),
     single_line_color = hake::ts_single_model_linecolor,
-    single_ribbon_color = hake::ts_ribbon_fill,
-    ribbon_line_type = hake::ts_ribbon_linetype,
+    single_ribbon_color = hake::ts_single_model_ribbon_fill,
+    ribbon_line_type = ifelse(is_single_model,
+                              hake::ts_single_model_ribbon_linetype,
+                              hake::ts_ribbon_linetype),
     rev_colors = FALSE,
     wrap_y_label = FALSE,
     d_obj = NULL){
@@ -111,9 +120,21 @@ plot_rel_biomass <- function(
                     clip = "off") +
     geom_ribbon(alpha = alpha,
                 linetype = ribbon_line_type) +
-    geom_line(linewidth = line_width) +
-    geom_point(size = point_size,
-               shape = point_shape) +
+    geom_line(linewidth = line_width)
+
+  if(is_single_model){
+    g <- g +
+      geom_point(size = point_size,
+                 color = point_color,
+                 shape = point_shape,
+                 stroke = 1.25)
+  }else{
+    g <- g +
+      geom_point(size = point_size,
+                 shape = point_shape)
+  }
+
+  g <- g +
     geom_hline(yintercept = 0.1,
                linetype = "dashed",
                color = "red",

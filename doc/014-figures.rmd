@@ -668,7 +668,6 @@ biomass has been increasing since 2021. The value for 2023 is just above B0.
 ```{r main-relative-biomass-fig, fig.cap = "(ref:main-relative-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-relative-biomass-alt)"}
 plot_rel_biomass(list(base_model),
                  list(base_model_name),
-                 point_shape = hake::ts_single_model_pointshape,
                  ylim = c(0, 3),
                  alpha = 0.2,
                  leg_pos = "none") |>
@@ -691,7 +690,6 @@ of the credible interval.
 
 plot_recruitment(list(base_model),
                  list(base_model_name),
-                 single_line_color = "blue",
                  inc_means = TRUE,
                  leg_pos = "none")
 ```

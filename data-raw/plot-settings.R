@@ -1,49 +1,42 @@
-# Time series plots
-ts_ribbon_fill <- "royalblue"
-ts_ribbon_alpha <- 0.1
-ts_ribbon_linetype <- "dotted"
+# Source this file to apply changes. Don't forget to add documentation for
+# any new package data to file R/data.R
 
-ts_pointshape <- 16
-ts_pointsize <- 2
-ts_linewidth <- 1
+# Shape, size, and stroke of points for multiple model time series plots
+create_data_hake("ts_pointshape", 16)
+create_data_hake("ts_pointsize", 2)
+create_data_hake("ts_pointstroke", 1)
 
-ts_single_model_linecolor <- "black"
-ts_single_model_pointshape <- 1
+# Line width for multiple model time series plots (don't need color or type
+# because those is assigned by the plotting functions)
+create_data_hake("ts_linewidth", 1)
 
-# Non-time series plots
-main_fill <- "royalblue"
-main_alpha <- 0.7
+# Attributes applicable to single model plots only
+create_data_hake("ts_single_model_linecolor", "black")
+create_data_hake("ts_single_model_linewidth", 1)
+create_data_hake("ts_single_model_linetype", "solid")
+create_data_hake("ts_single_model_pointcolor", "black")
+create_data_hake("ts_single_model_pointshape", 1)
+create_data_hake("ts_single_model_pointsize", 2)
+create_data_hake("ts_single_model_pointstroke", 1.25)
+create_data_hake("ts_single_model_ribbon_fill", "royalblue")
+create_data_hake("ts_single_model_ribbon_linetype", "dashed")
 
-# Age bubble plots
-age_diag_line_color = "darkgreen"
-age_diag_line_width = 1
-age_diag_line_type = "solid"
+# Attributes applicable to both single model and multiple model plots
+create_data_hake("ts_ribbon_alpha", 0.1)
+create_data_hake("ts_ribbon_linetype", "dotted")
 
-# All plots
-axis_title_font_size <- 14
-axis_tick_font_size <- 11
-axis_label_color <- "black"
-minor_tick_length <- 0.1
+# Attributes applicable to non-time-series plots
+create_data_hake("main_fill", "royalblue")
+create_data_hake("main_alpha", 0.7)
 
-# Source this file to see the changes
-library(usethis)
-use_data(ts_ribbon_fill, overwrite = TRUE)
-use_data(ts_ribbon_alpha, overwrite = TRUE)
-use_data(ts_ribbon_linetype, overwrite = TRUE)
-use_data(ts_pointshape, overwrite = TRUE)
-use_data(ts_pointsize, overwrite = TRUE)
-use_data(ts_linewidth, overwrite = TRUE)
-use_data(ts_single_model_linecolor, overwrite = TRUE)
-use_data(ts_single_model_pointshape, overwrite = TRUE)
+# Attributes applicable to age bubble plots with diagonal cohort lines
+create_data_hake("age_diag_linecolor", "darkgreen")
+create_data_hake("age_diag_linewidth", 1)
+create_data_hake("age_diag_linetype", "solid")
+create_data_hake("age_fillcolor", "royalblue")
 
-use_data(main_fill, overwrite = TRUE)
-use_data(main_alpha, overwrite = TRUE)
-
-use_data(age_diag_line_color, overwrite = TRUE)
-use_data(age_diag_line_width, overwrite = TRUE)
-use_data(age_diag_line_type, overwrite = TRUE)
-
-use_data(axis_title_font_size, overwrite = TRUE)
-use_data(axis_tick_font_size, overwrite = TRUE)
-use_data(axis_label_color, overwrite = TRUE)
-use_data(minor_tick_length, overwrite = TRUE)
+# Attributes applicable to axis fonts for all plots
+create_data_hake("axis_title_font_size", 14)
+create_data_hake("axis_tick_font_size", 11)
+create_data_hake("axis_label_color", "black")
+create_data_hake("minor_tick_length", 0.1)

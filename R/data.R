@@ -1,9 +1,70 @@
-#' The color to use by default to fill time series CI ribbons in the plots
-#' in the document
+#' The point shape to use for the medians in the time series plots
 #'
-#' @format A character string or numerical value representing an official
-#' color in R
-"ts_ribbon_fill"
+#' @format A numerical value representing the point shape (R standard point
+#' types)
+"ts_pointshape"
+#' The point size to use for the medians in the time series plots
+#'
+#' @format A numerical value
+"ts_pointsize"
+#' The point stroke (boldness) to use for the points representing the median
+#' points in the time series plots
+#'
+#' @format A numerical value
+"ts_pointstroke"
+
+#' The line width to use for the line connecting the median points in the
+#' time series plots
+#'
+#' @format A numerical value
+"ts_linewidth"
+
+#' The line color to use for the line connecting the median points in the
+#' time series plots, when there is only one model plotted
+#'
+#' @format A numerical value or R color string
+"ts_single_model_linecolor"
+#' The line width to use for the line connecting the median points in the
+#' time series plots where there is only one model plotted
+#'
+#' @format A numerical value
+"ts_single_model_linewidth"
+#' The line type to use for the line connecting the median points in the
+#' time series plots where there is only one model plotted
+#'
+#' @format A numerical value
+"ts_single_model_linetype"
+#' The point color to use for the median points in the time series plots,
+#' when there is only one model plotted
+#'
+#' @format A numerical value or R color string
+"ts_single_model_pointcolor"
+#' The point shape to use for the points representing the median points in the
+#' time series plots, when there is only one model plotted
+#'
+#' @format A numerical value
+"ts_single_model_pointshape"
+#' The point size to use for the points representing the median points in the
+#' time series plots, when there is only one model plotted
+#'
+#' @format A numerical value
+"ts_single_model_pointsize"
+#' The point stroke (boldness) to use for the points representing the median
+#' points in the time series plots, when there is only one model plotted
+#'
+#' @format A numerical value
+"ts_single_model_pointstroke"
+#' The color to use to fill time series CI ribbons for plots where there
+#' is only one model plotted
+#'
+#' @format A character string or numerical value representing an R color
+"ts_single_model_ribbon_fill"
+#' The line type to use for the borders on the CI ribbons for plots where
+#' there is only one model plotted
+#'
+#' @format A character string or numerical value representing a line type
+"ts_single_model_ribbon_linetype"
+
 #' The transparency to use by default to fill time series CI ribbons in the
 #' plots in the document
 #'
@@ -14,30 +75,6 @@
 #' @format A numerical value or character string representing line type for
 #' [ggplot2::ggplot()]
 "ts_ribbon_linetype"
-#' The point shape to use for the medians in the time series plots
-#'
-#' @format A numerical value representing the point shape (R standard point
-#' types)
-"ts_pointshape"
-#' The point size to use for the medians in the time series plots
-#'
-#' @format A numerical value
-"ts_pointsize"
-#' The line width to use for the line connecting the median points in the
-#' time series plots
-#'
-#' @format A numerical value
-"ts_linewidth"
-#' The line color to use for the line connecting the median points in the
-#' time series plots, when there is only one model plotted
-#'
-#' @format A numerical value or R color string
-"ts_single_model_linecolor"
-#' The point shape to use for the points representing the median points in the
-#' time series plots, when there is only one model plotted
-#'
-#' @format A numerical value
-"ts_single_model_pointshape"
 #' The color to use by default for all fills in the plots in the document
 #'
 #' @format A character string or numerical value representing an official
@@ -51,15 +88,20 @@
 #' The default color to use for diagonal cohort lines on age bubble plots
 #'
 #' @format A character string or numerical value representing an R color
-"age_diag_line_color"
+"age_diag_linecolor"
 #' The default line width to use for diagonal cohort lines on age bubble plots
 #'
 #' @format A numerical value
-"age_diag_line_width"
+"age_diag_linewidth"
 #' The default line type to use for diagonal cohort lines on age bubble plots
 #'
 #' @format A character string or numerical value representing an R line type
-"age_diag_line_type"
+"age_diag_linetype"
+#' The default fill color to use for bubbles in age bubble plots
+#'
+#' @format A character string or numerical value representing an R color
+"age_fillcolor"
+
 #' The size font to use by default for all axis titles
 #'
 #' @format A numerical value
@@ -77,10 +119,6 @@
 #'
 #' @format A numerical value
 "minor_tick_length"
-#' The length of the major tick marks in plots in cm
-#'
-#' @format A numerical value
-"major_tick_length"
 #' A list of key posteriors for this assessment
 #'
 #' @format A list of regular expressions used to find the key posterior names

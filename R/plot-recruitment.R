@@ -12,6 +12,7 @@
 plot_recruitment <- function(
     model_lst = NULL,
     model_names = NULL,
+    show_arrows = TRUE,
     inc_means = FALSE,
     relative = FALSE,
     xlim = c(1966, year(Sys.time())),
@@ -28,10 +29,11 @@ plot_recruitment <- function(
     leg_pos = c(0.65, 0.83),
     leg_ncol = 1,
     leg_font_size = 12,
-    point_size = 1.5,
-    line_width = 0.5,
-    single_point_color = "black",
-    single_line_color = "black",
+    point_size = hake::ts_pointsize,
+    point_stroke = hake::ts_single_model_pointstroke,
+    line_width = hake::ts_linewidth,
+    single_point_color = hake::ts_single_model_pointcolor,
+    single_line_color = hake::ts_single_model_linecolor,
     crossbar_width = 0,
     dodge_val = 0.5,
     rev_colors = TRUE,
@@ -98,7 +100,7 @@ plot_recruitment <- function(
 
   # Calculate the data outside the range of the y limits and
   # change the CI in the data to cut off at the limits
-  yoob <- calc_yoob(d, ylim, rlower, rmed, rupper)
+  yoob <- calc_yoob(d, ylim, rlower, rmed, rupper, show_arrows)
 
   g <- ggplot(yoob$d,
               aes(x = year,
@@ -198,7 +200,6 @@ plot_recruitment <- function(
   # Add arrows to the plot to point toward the out of bounds data points
   g <- g |>
     draw_arrows_yoob(yoob)
-
 
   # Add major tick marks
   g <- g |>
