@@ -32,7 +32,12 @@
 #' time series plots, when there is only one model plotted
 #'
 #' @format A numerical value or R color string
-"ts_single_line_color"
+"ts_single_model_linecolor"
+#' The point shape to use for the points representing the median points in the
+#' time series plots, when there is only one model plotted
+#'
+#' @format A numerical value
+"ts_single_model_pointshape"
 #' The color to use by default for all fills in the plots in the document
 #'
 #' @format A character string or numerical value representing an official
