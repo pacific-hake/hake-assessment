@@ -18,21 +18,14 @@ calc_yoob <- function(d,
                       ylim,
                       lo_col,
                       med_col,
-                      hi_col){
+                      hi_col,
+                      show_arrows){
 
   lo_col_sym <- sym(lo_col)
   med_col_sym <- sym(med_col)
   hi_col_sym <- sym(hi_col)
 
   lst <- list()
-  # Fetch rows where the median is above the upper limit of the plot.
-  # This will be used to add arrows later pointing to where the missing
-  # points are outside the plot
-  lst$d_outside_lo <- d |>
-    filter(!!med_col_sym < ylim[1])
-
-  lst$d_outside_hi <- d |>
-    filter(!!med_col_sym > ylim[2])
 
   lst$d <- d |>
     mutate(across(c(!!lo_col_sym, !!hi_col_sym), ~{
@@ -41,6 +34,31 @@ calc_yoob <- function(d,
              ifelse(.x > ylim[2],
                     ylim[2],
                     .x))}))
+
+  # Fetch rows where the median is above the upper limit of the plot.
+  # This will be used to add arrows later pointing to where the missing
+  # points are outside the plot
+  if(show_arrows){
+    lst$lo_outside <- d |>
+      filter(!!med_col_sym < ylim[1])
+  }else{
+    lst$d <- lst$d |>
+      mutate(across(!!med_col_sym, ~{
+        ifelse(.x < ylim[1],
+               ylim[1],
+               .x)}))
+  }
+
+  if(show_arrows){
+    lst$hi_outside <- d |>
+      filter(!!med_col_sym > ylim[2])
+  }else{
+    lst$d <- lst$d |>
+      mutate(across(!!med_col_sym, ~{
+        ifelse(.x > ylim[2],
+               ylim[2],
+               .x)}))
+  }
 
   lst$ylim <- ylim
 

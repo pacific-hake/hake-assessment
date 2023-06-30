@@ -21,6 +21,7 @@
 plot_biomass(
   model_lst = NULL,
   model_names,
+  show_arrows = TRUE,
   xlim = c(1964, year(Sys.time())),
   x_breaks = 1966:year(Sys.time()),
   x_labs_mod = 5,
@@ -29,16 +30,16 @@ plot_biomass(
   vjust_x_labels = -0.25,
   ylim = c(0, 4.5),
   y_breaks = seq(ylim[1], ylim[2], by = 0.5),
-  alpha = hake::main_alpha,
+  alpha = hake::ts_ribbon_alpha,
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  point_size = 2.5,
-  point_shape = 16,
-  line_width = 1,
-  single_line_color = "black",
-  single_ribbon_color = "blue",
-  ribbon_line_type = "dotted",
+  point_size = hake::ts_pointsize,
+  point_shape = hake::ts_pointshape,
+  line_width = hake::ts_linewidth,
+  single_line_color = hake::ts_single_model_linecolor,
+  single_ribbon_color = hake::ts_ribbon_fill,
+  ribbon_line_type = hake::ts_ribbon_linetype,
   rev_colors = TRUE,
   wrap_y_label = FALSE,
   d_obj = NULL
@@ -186,23 +187,24 @@ plot_recruitment(
 plot_rel_biomass(
   model_lst = NULL,
   model_names = NULL,
+  show_arrows = TRUE,
   xlim = c(1966, year(Sys.time())),
   x_breaks = xlim[1]:xlim[2],
   x_labs_mod = 5,
   x_expansion = 3,
-  tick_prop = 0.8,
+  tick_prop = 1,
   vjust_x_labels = -2,
   ylim = c(0, 3.5),
-  alpha = 0.1,
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  point_size = 2,
-  point_shape = 16,
-  line_width = 1,
-  single_line_color = "black",
-  single_ribbon_color = "blue",
-  ribbon_line_type = "dotted",
+  alpha = hake::ts_ribbon_alpha,
+  point_size = hake::ts_pointsize,
+  point_shape = hake::ts_pointshape,
+  line_width = hake::ts_linewidth,
+  single_line_color = hake::ts_single_model_linecolor,
+  single_ribbon_color = hake::ts_ribbon_fill,
+  ribbon_line_type = hake::ts_ribbon_linetype,
   rev_colors = FALSE,
   wrap_y_label = FALSE,
   d_obj = NULL
@@ -266,6 +268,12 @@ plot_survey_index_fits(
 \item{model_lst}{A list of models, each created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{model_names}{A vector of model names,the same length as \code{models_lst}}
+
+\item{show_arrows}{Logical. If \code{TRUE}, show arrow that point toward
+medians lying outside the plotting area. Also allow the lines toward those
+median points to be plotted outside the plotting area. If \code{FALSE}, truncate
+the medians that lie outside the plotting area to the maximum (or minimum)
+y limit and draw the lines to go through those new values}
 
 \item{xlim}{The year limits to plot}
 

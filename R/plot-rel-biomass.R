@@ -6,23 +6,24 @@
 plot_rel_biomass <- function(
     model_lst = NULL,
     model_names = NULL,
+    show_arrows = TRUE,
     xlim = c(1966, year(Sys.time())),
     x_breaks = xlim[1]:xlim[2],
     x_labs_mod = 5,
     x_expansion = 3,
-    tick_prop = 0.8,
+    tick_prop = 1,
     vjust_x_labels = -2,
     ylim = c(0, 3.5),
-    alpha = 0.1,
     leg_pos = c(0.65, 0.83),
     leg_ncol = 1,
     leg_font_size = 12,
-    point_size = 2,
-    point_shape = 16,
-    line_width = 1,
-    single_line_color = "black",
-    single_ribbon_color = "blue",
-    ribbon_line_type = "dotted",
+    alpha = hake::ts_ribbon_alpha,
+    point_size = hake::ts_pointsize,
+    point_shape = hake::ts_pointshape,
+    line_width = hake::ts_linewidth,
+    single_line_color = hake::ts_single_model_linecolor,
+    single_ribbon_color = hake::ts_ribbon_fill,
+    ribbon_line_type = hake::ts_ribbon_linetype,
     rev_colors = FALSE,
     wrap_y_label = FALSE,
     d_obj = NULL){
@@ -36,6 +37,11 @@ plot_rel_biomass <- function(
     d_obj <- create_group_df_biomass(model_lst,
                                      model_names,
                                      rel = TRUE)
+  }
+
+  if(ylim[2] %% 0.5 != 0){
+    stop("The upper `ylim` value must be divisible by 0.5",
+         call. = FALSE)
   }
 
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
@@ -88,7 +94,7 @@ plot_rel_biomass <- function(
 
   # Calculate the data outside the range of the y limits and
   # change the CI in the data to cut off at the limits
-  yoob <- calc_yoob(d, ylim, "dlower", "dmed", "dupper")
+  yoob <- calc_yoob(d, ylim, "dlower", "dmed", "dupper", show_arrows)
 
   g <- ggplot(yoob$d,
               aes(x = year,

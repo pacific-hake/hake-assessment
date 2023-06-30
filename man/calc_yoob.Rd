@@ -6,7 +6,7 @@
 \code{lo_col} and \code{hi_col} in the data frame to be equal to the limits for
 those points below or above.  YOOB means Y-axis Out-Of-Bounds}
 \usage{
-calc_yoob(d, ylim, lo_col, med_col, hi_col)
+calc_yoob(d, ylim, lo_col, med_col, hi_col, show_arrows)
 }
 \arguments{
 \item{d}{A data frame containing \code{lo_col}, \code{med_col}, and \code{hi_col}}

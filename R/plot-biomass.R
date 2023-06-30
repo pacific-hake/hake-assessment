@@ -2,6 +2,11 @@
 #'
 #' @param model_lst A list of models, each created by [create_rds_file()]
 #' @param model_names A vector of model names,the same length as `models_lst`
+#' @param show_arrows Logical. If `TRUE`, show arrow that point toward
+#' medians lying outside the plotting area. Also allow the lines toward those
+#' median points to be plotted outside the plotting area. If `FALSE`, truncate
+#' the medians that lie outside the plotting area to the maximum (or minimum)
+#' y limit and draw the lines to go through those new values
 #' @param xlim The year limits to plot
 #' @param x_breaks The year value tick marks to show for the x axis
 #' @param x_labs_mod Value for major X-axis tick marks. Every Nth tick
@@ -51,6 +56,7 @@
 #' @export
 plot_biomass <- function(model_lst = NULL,
                          model_names,
+                         show_arrows = TRUE,
                          xlim = c(1964,
                                   year(Sys.time())),
                          x_breaks = 1966:year(Sys.time()),
@@ -60,16 +66,16 @@ plot_biomass <- function(model_lst = NULL,
                          vjust_x_labels = -0.25,
                          ylim = c(0, 4.5),
                          y_breaks = seq(ylim[1], ylim[2], by = 0.5),
-                         alpha = hake::main_alpha,
+                         alpha = hake::ts_ribbon_alpha,
                          leg_pos = c(0.65, 0.83),
                          leg_ncol = 1,
                          leg_font_size = 12,
-                         point_size = 2.5,
-                         point_shape = 16,
-                         line_width = 1,
-                         single_line_color = "black",
-                         single_ribbon_color = "blue",
-                         ribbon_line_type = "dotted",
+                         point_size = hake::ts_pointsize,
+                         point_shape = hake::ts_pointshape,
+                         line_width = hake::ts_linewidth,
+                         single_line_color = hake::ts_single_model_linecolor,
+                         single_ribbon_color = hake::ts_ribbon_fill,
+                         ribbon_line_type = hake::ts_ribbon_linetype,
                          rev_colors = TRUE,
                          wrap_y_label = FALSE,
                          d_obj = NULL){
@@ -106,32 +112,15 @@ plot_biomass <- function(model_lst = NULL,
   x_labels <- c(expression(B[0]), x_labels)
   x_breaks = c(bo$year[1], x_breaks)
 
-  # Remove projection years
   d <- d |>
-    filter(year <= xlim[2])
+    filter(year <= xlim[2] & year >= ylim[1])
 
-  # Remove all values of the upper CI that are above the y limit, to avoid
-  # the line drawing past the top of the plot, because clipping is off.
-  # Clipping must be off to draw the uneven minor/major ticks on the bottom
-  # x-axis
-  d <- d |>
-    # Set maximum values of CI to the maximum y limit value
-    mutate(across(c(slower, supper), ~{
-      ifelse(.x <= ylim[2],
-             .x,
-             ylim[2])})) |>
-    # Don't show median points if they fall above the y limit
-    filter(smed < ylim[2])
-  bo <- bo |>
-    # Set maximum values of CI to the maximum y limit value
-    mutate(across(c(slower, supper), ~{
-      ifelse(.x <= ylim[2],
-             .x,
-             ylim[2])})) |>
-    # Don't show median points if they fall above the y limit
-    filter(smed < ylim[2])
+  # Calculate the data outside the range of the y limits and
+  # change the CI in the data to cut off at the limits
+  yoob_bo <- calc_yoob(bo, ylim, "slower", "smed", "supper", show_arrows)
+  yoob <- calc_yoob(d, ylim, "slower", "smed", "supper", show_arrows)
 
-  g <- ggplot(d,
+  g <- ggplot(yoob$d,
               aes(x = year,
                   y = smed,
                   ymin = slower,
@@ -170,7 +159,7 @@ plot_biomass <- function(model_lst = NULL,
 
   # Add B0 to the plot
   g <- g +
-    geom_point(data = bo,
+    geom_point(data = yoob_bo$d,
                size = point_size,
                shape = point_shape,
                position = position_dodge(1.5)) +
@@ -178,7 +167,12 @@ plot_biomass <- function(model_lst = NULL,
                   linewidth = line_width,
                   position = position_dodge(1.5),
                   color = ribbon_colors,
-                  alpha = 0.5)
+                  alpha = alpha)
+
+  # Add arrows to the plot to point toward the out of bounds data points
+  g <- g |>
+    draw_arrows_yoob(yoob) |>
+    draw_arrows_yoob(yoob_bo)
 
   # Add major tick marks
   g <- g |>
