@@ -369,63 +369,59 @@ difference is in the recruitment deviation estimates for 2020 to 2022 for
 the bridging model where the 2022 catch is added.
 
 ```{r main-bridge-summary-fig, fig.cap = "(ref:main-bridge-summary-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-bridge-summary-alt)"}
-if(is.null(base_model$plots$bridge_summary)){
-  plist <- list()
-  plist[[1]] <-
-    plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
-                     ylim = c(0, 2.5),
-                     x_labs_mod = 10,
-                     clip_cover = 0.35,
-                     wrap_y_label = TRUE,
-                     leg_pos = "none")
-  plist[[2]] <-
-    plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
-                 leg_pos = "none",
-                 x_labs_mod = 10,
-                 clip_cover = 0.25,
-                 line_width = 0.25)
-  
-  plist[[3]] <-
-    plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
-                           survey_type = "age2",
-                           rev_colors = FALSE,
-                           clip_cover = 0.25,
-                           axis_title_font_size = 12,
-                           leg_pos = "none")
-  
-  plist[[4]] <-
-    plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
-                           survey_type = "age1",
-                           xlim = c(1995, 2022),
-                           ylim = c(0, 11),
-                           y_breaks = seq(0, 11, by = 2),
-                           clip_cover = 0.25,
-                           axis_title_font_size = 12,
-                           rev_colors = FALSE,
-                           leg_pos = "none")
-  
-  # Grid of 2 rows and 1 column with one plot at the top (biomass)
-  # and 4 plots embedded in another grid (quad_grid) at the bottom
-  quad_grid <- cowplot::plot_grid(plotlist = plist,
-                                  nrow = 2,
-                                  ncol = 2)
-  full_plist <- list()
-  full_plist[[1]] <-
-    plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
-                 leg_ncol = 2,
-                 leg_font_size = 7,
-                 wrap_y_label = TRUE,
-                 leg_pos = c(0.72, 0.82))
-  
-  full_plist[[2]] <- quad_grid
-  
-  cowplot::plot_grid(plotlist = full_plist,
-                     nrow = 2,
-                     ncol = 1,
-                     rel_heights = c(0.33, 0.67))
-}else{
-  base_model$plots$bridge_summary
-}
+
+plist <- list()
+plist[[1]] <-
+  plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
+                   ylim = c(0, 2.5),
+                   x_labs_mod = 10,
+                   wrap_y_label = TRUE,
+                   leg_pos = "none")
+plist[[2]] <-
+  plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
+               leg_pos = "none",
+               x_labs_mod = 10,
+               clip_cover = 0.25,
+               line_width = 0.25)
+
+plist[[3]] <-
+  plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
+                         survey_type = "age2",
+                         rev_colors = FALSE,
+                         clip_cover = 0.25,
+                         axis_title_font_size = 12,
+                         leg_pos = "none")
+
+plist[[4]] <-
+  plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
+                         survey_type = "age1",
+                         xlim = c(1995, 2022),
+                         ylim = c(0, 11),
+                         y_breaks = seq(0, 11, by = 2),
+                         clip_cover = 0.25,
+                         axis_title_font_size = 12,
+                         rev_colors = FALSE,
+                         leg_pos = "none")
+
+# Grid of 2 rows and 1 column with one plot at the top (biomass)
+# and 4 plots embedded in another grid (quad_grid) at the bottom
+quad_grid <- cowplot::plot_grid(plotlist = plist,
+                                nrow = 2,
+                                ncol = 2)
+full_plist <- list()
+full_plist[[1]] <-
+  plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
+               leg_ncol = 2,
+               leg_font_size = 7,
+               wrap_y_label = TRUE,
+               leg_pos = c(0.72, 0.82))
+
+full_plist[[2]] <- quad_grid
+
+plot_grid(plotlist = full_plist,
+          nrow = 2,
+          ncol = 1,
+          rel_heights = c(0.33, 0.67))
 ```
 
 (ref:main-survey-index-fit-mcmc-cap) Fits (colored lines) to the acoustic
@@ -676,6 +672,7 @@ plot_rel_biomass(list(base_model),
                  leg_pos = "none") |>
   suppressWarnings()
 ```
+
 (ref:main-recruitment-cap) Medians (solid circles) and means ($\mathrm{X}$)
 of the posterior distribution for recruitment (billions of age-0 fish) with
 95% posterior credibility intervals (blue, vertical lines). The median of the

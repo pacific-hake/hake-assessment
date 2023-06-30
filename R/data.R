@@ -1,3 +1,38 @@
+#' The color to use by default to fill time series CI ribbons in the plots
+#' in the document
+#'
+#' @format A character string or numerical value representing an official
+#' color in R
+"ts_ribbon_fill"
+#' The transparency to use by default to fill time series CI ribbons in the
+#' plots in the document
+#'
+#' @format A numerical value between 0 and 1
+"ts_ribbon_alpha"
+#' The line type for the edges of the CI ribbon for time series CI ribbons
+#'
+#' @format A numerical value or character string representing line type for
+#' [ggplot2::ggplot()]
+"ts_ribbon_linetype"
+#' The point shape to use for the medians in the time series plots
+#'
+#' @format A numerical value representing the point shape (R standard point
+#' types)
+"ts_pointshape"
+#' The point size to use for the medians in the time series plots
+#'
+#' @format A numerical value
+"ts_pointsize"
+#' The line width to use for the line connecting the median points in the
+#' time series plots
+#'
+#' @format A numerical value
+"ts_linewidth"
+#' The line color to use for the line connecting the median points in the
+#' time series plots, when there is only one model plotted
+#'
+#' @format A numerical value or R color string
+"ts_single_line_color"
 #' The color to use by default for all fills in the plots in the document
 #'
 #' @format A character string or numerical value representing an official
