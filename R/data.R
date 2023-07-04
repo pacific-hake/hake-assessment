@@ -119,6 +119,48 @@
 #'
 #' @format A numerical value
 "minor_tick_length"
+
+#' The color of the horizontal line representing B0
+#'
+#' @format A character string or numerical value representing an R color
+"refpt_bo_linecolor"
+#' The color of the horizontal line representing the upper stock reference
+#'
+#' @format A character string or numerical value representing an R color
+"refpt_usr_linecolor"
+#' The color of the horizontal line representing the limit reference point
+#'
+#' @format A character string or numerical value representing an R color
+"refpt_lrp_linecolor"
+#' The default line width to use for the horizontal line representing B0
+#'
+#' @format A numerical value
+"refpt_bo_linewidth"
+#' The default line width to use for the horizontal line representing the
+#' upper stock reference
+#'
+#' @format A numerical value
+"refpt_usr_linewidth"
+#' The default line width to use for the horizontal line representing the
+#' limit reference point
+#'
+#' @format A numerical value
+"refpt_lrp_linewidth"
+#' The default line type to use for the horizontal line representing B0
+#'
+#' @format A character string or numerical value representing an R line type
+"refpt_bo_linetype"
+#' The default line type to use for the horizontal line representing the
+#' upper stock reference
+#'
+#' @format A character string or numerical value representing an R line type
+"refpt_usr_linetype"
+#' The default line type to use for the horizontal line representing the
+#' limit reference point
+#'
+#' @format A character string or numerical value representing an R line type
+"refpt_lrp_linetype"
+
 #' A list of key posteriors for this assessment
 #'
 #' @format A list of regular expressions used to find the key posterior names

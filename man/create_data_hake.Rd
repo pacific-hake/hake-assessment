@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils-create-data-hake.R
 \name{create_data_hake}
 \alias{create_data_hake}
-\title{Create packages data with one call}
+\title{Create package data with one call}
 \usage{
 create_data_hake(var, val)
 }
@@ -15,10 +15,10 @@ create_data_hake(var, val)
 Nothing, creates package data. See \code{\link[usethis:use_data]{usethis::use_data()}}
 }
 \description{
-Create packages data with one call
+Create package data with one call
 }
 \details{
 Usually you have to create a variable first, and then call
 \code{\link[usethis:use_data]{usethis::use_data()}} with the variable name as an argument and the
-package data will be created. This function just uifies that into one step
+package data will be created. This function just unifies that into one step
 }

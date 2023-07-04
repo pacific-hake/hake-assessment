@@ -4,6 +4,7 @@
 #'
 #' @export
 plot_rel_biomass <- function(
+    d_obj = NULL,
     model_lst = NULL,
     model_names = NULL,
     show_arrows = TRUE,
@@ -17,6 +18,8 @@ plot_rel_biomass <- function(
     leg_pos = c(0.65, 0.83),
     leg_ncol = 1,
     leg_font_size = 12,
+    rev_colors = FALSE,
+    wrap_y_label = FALSE,
     alpha = hake::ts_ribbon_alpha,
     point_size = ifelse(is_single_model,
                         hake::ts_single_model_pointsize,
@@ -33,9 +36,15 @@ plot_rel_biomass <- function(
     ribbon_line_type = ifelse(is_single_model,
                               hake::ts_single_model_ribbon_linetype,
                               hake::ts_ribbon_linetype),
-    rev_colors = FALSE,
-    wrap_y_label = FALSE,
-    d_obj = NULL){
+    refpt_bo_linecolor = hake::refpt_bo_linecolor,
+    refpt_usr_linecolor = hake::refpt_usr_linecolor,
+    refpt_lrp_linecolor = hake::refpt_lrp_linecolor,
+    refpt_bo_linewidth = hake::refpt_bo_linewidth,
+    refpt_usr_linewidth = hake::refpt_usr_linewidth,
+    refpt_lrp_linewidth = hake::refpt_lrp_linewidth,
+    refpt_bo_linetype = hake::refpt_bo_linetype,
+    refpt_usr_linetype = hake::refpt_usr_linetype,
+    refpt_lrp_linetype = hake::refpt_lrp_linetype){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -63,10 +72,10 @@ plot_rel_biomass <- function(
                          "0.5",
                          "B"[0])
   y_colors <- c("black",
-                "red",
-                "green",
+                refpt_lrp_linecolor,
+                refpt_usr_linecolor,
                 "black",
-                "blue")
+                refpt_bo_linecolor)
   if(ylim[2] < 1){
     stop("Relative spawning biomass plot y-axis max must be 1 or greater",
          call. = FALSE)
@@ -136,17 +145,17 @@ plot_rel_biomass <- function(
 
   g <- g +
     geom_hline(yintercept = 0.1,
-               linetype = "dashed",
-               color = "red",
-               linewidth = 0.5) +
+               linetype = refpt_lrp_linetype,
+               color = refpt_lrp_linecolor,
+               linewidth = refpt_lrp_linewidth) +
     geom_hline(yintercept = 0.4,
-               linetype = "dashed",
-               color = "green",
-               linewidth = 0.5) +
+               linetype = refpt_usr_linetype,
+               color = refpt_usr_linecolor,
+               linewidth = refpt_usr_linewidth) +
     geom_hline(yintercept = 1,
-               linetype = "dashed",
-               color = "blue",
-               linewidth = 0.52) +
+               linetype = refpt_bo_linetype,
+               color = refpt_bo_linecolor,
+               linewidth = refpt_bo_linewidth) +
     scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
                        labels = x_labels) +

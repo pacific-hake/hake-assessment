@@ -187,6 +187,7 @@ plot_recruitment(
 )
 
 plot_rel_biomass(
+  d_obj = NULL,
   model_lst = NULL,
   model_names = NULL,
   show_arrows = TRUE,
@@ -200,6 +201,8 @@ plot_rel_biomass(
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
+  rev_colors = FALSE,
+  wrap_y_label = FALSE,
   alpha = hake::ts_ribbon_alpha,
   point_size = ifelse(is_single_model, hake::ts_single_model_pointsize,
     hake::ts_pointsize),
@@ -212,9 +215,15 @@ plot_rel_biomass(
   single_ribbon_color = hake::ts_single_model_ribbon_fill,
   ribbon_line_type = ifelse(is_single_model, hake::ts_single_model_ribbon_linetype,
     hake::ts_ribbon_linetype),
-  rev_colors = FALSE,
-  wrap_y_label = FALSE,
-  d_obj = NULL
+  refpt_bo_linecolor = hake::refpt_bo_linecolor,
+  refpt_usr_linecolor = hake::refpt_usr_linecolor,
+  refpt_lrp_linecolor = hake::refpt_lrp_linecolor,
+  refpt_bo_linewidth = hake::refpt_bo_linewidth,
+  refpt_usr_linewidth = hake::refpt_usr_linewidth,
+  refpt_lrp_linewidth = hake::refpt_lrp_linewidth,
+  refpt_bo_linetype = hake::refpt_bo_linetype,
+  refpt_usr_linetype = hake::refpt_usr_linetype,
+  refpt_lrp_linetype = hake::refpt_lrp_linetype
 )
 
 plot_rel_recruitment(
