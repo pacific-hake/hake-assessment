@@ -28,6 +28,9 @@ plot_rel_biomass <- function(
     point_shape = ifelse(is_single_model,
                          hake::ts_single_model_pointshape,
                          hake::ts_pointshape),
+    point_stroke = ifelse(is_single_model,
+                         hake::ts_single_model_pointstroke,
+                         hake::ts_pointstroke),
     line_width = ifelse(is_single_model,
                         hake::ts_single_model_linewidth,
                         hake::ts_linewidth),
@@ -128,19 +131,21 @@ plot_rel_biomass <- function(
                     ylim = ylim,
                     clip = "off") +
     geom_ribbon(alpha = alpha,
-                linetype = ribbon_line_type) +
-    geom_line(linewidth = line_width)
+                linetype = ribbon_line_type)
 
   if(is_single_model){
     g <- g +
-      geom_point(size = point_size,
-                 color = point_color,
-                 shape = point_shape,
-                 stroke = 1.25)
+      geom_pointpath(linewidth = line_width,
+                     size = point_size,
+                     color = point_color,
+                     shape = point_shape,
+                     stroke = point_stroke)
   }else{
     g <- g +
-      geom_point(size = point_size,
-                 shape = point_shape)
+      geom_pointpath(linewidth = line_width,
+                     size = point_size,
+                     shape = point_shape,
+                     stroke = point_stroke)
   }
 
   g <- g +
