@@ -79,9 +79,8 @@ geom_pointpath <- function(
   )
 }
 
-#' @rdname ggplot2-ggproto
-#' @format NULL
-#' @usage NULL
+#' `ggproto` class for the `pointpath` Geom
+#'
 #' @export
 GeomPointPath <- ggproto(
   "GeomPointPath", Geom,
@@ -151,9 +150,11 @@ GeomPointPath <- ggproto(
     })
     solid_lines <- all(attr$solid)
     constant <- all(attr$constant)
-    if (!solid_lines && !constant) {
-      cli::cli_abort(
-        "{.fn {snake_class(self)}} can't have varying {.field colour}, {.field linewidth}, and/or {.field alpha} along the line when {.field linetype} isn't solid")
+    if(!solid_lines && !constant){
+      cli::cli_abort(paste0("{.fn {snake_class(self)}} can't have ",
+                            "varying {.field colour}, {.field linewidth}, ",
+                            "and/or {.field alpha} along the line when ",
+                            "{.field linetype} isn't solid"))
     }
 
     # Work out grouping variables for grobs
@@ -162,8 +163,7 @@ GeomPointPath <- ggproto(
     start <- c(TRUE, group_diff)
     end <-   c(group_diff, TRUE)
 
-    if (!constant) {
-
+    if(!constant){
       arrow <- repair_segment_arrow(arrow, munched$group)
 
       segmentsGrob(
@@ -222,9 +222,11 @@ repair_segment_arrow <- function(arrow, group) {
   }
 
   # Get group parameters
-  rle <- vctrs::vec_group_rle(group) # handles NAs better than base::rle()
+  # handles NAs better than base::rle()
+  rle <- vctrs::vec_group_rle(group)
   n_groups <- length(rle)
-  rle_len <- field(rle, "length") - 1 # segments have 1 member less than lines
+  # segments have 1 member less than lines
+  rle_len <- field(rle, "length") - 1
   rle_end <- cumsum(rle_len)
   rle_start <- rle_end - rle_len + 1
 
