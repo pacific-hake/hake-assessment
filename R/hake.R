@@ -10,7 +10,7 @@
 #' @import purrr
 #' @import rnaturalearth rnaturalearthhires r4ss
 #'
-#' @importFrom cli cli_abort symbol
+#' @importFrom cli cli_abort cli_inform cli_warn symbol
 #' @importFrom clipr clipr_available write_clip dr_clipr
 #' @importFrom crayon green
 #' @importFrom cowplot draw_grob get_legend plot_grid
@@ -36,8 +36,8 @@
 #' @importFrom rlang set_names sym
 #' @importFrom scales comma rescale
 #' @importFrom sf st_as_sf st_crs<- st_coordinates
-#' @importFrom stats end median na.omit quantile rbeta reshape rlnorm rnorm
-#' @importFrom stats runif setNames start ts
+#' @importFrom stats ave complete.cases end median na.omit quantile rbeta
+#' @importFrom stats  reshape rlnorm rnorm runif setNames start ts
 #' @importFrom stringr str_flatten str_flatten_comma str_split
 #' @importFrom tools file_path_sans_ext file_ext
 #' @importFrom tibble as_tibble enframe

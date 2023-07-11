@@ -29,7 +29,17 @@ draw_key_pointpath <- function(data, params, size) {
     data$linetype[is.na(data$linetype)] <- 0
   }
 
-  segmentsGrob(
+  if (is.null(data$shape)) {
+    data$shape <- 19
+  } else if (is.character(data$shape)) {
+    data$shape <- translate_shape_string(data$shape)
+  }
+
+  # NULL means the default stroke size, and NA means no stroke.
+  stroke_size <- data$stroke %||% 0.5
+  stroke_size[is.na(stroke_size)] <- 0
+
+  lg <- segmentsGrob(
     0.1, 0.5, 0.9, 0.5,
     gp = gpar(
       col = alpha(data$colour %||% data$fill %||% "black", data$alpha),
@@ -40,6 +50,19 @@ draw_key_pointpath <- function(data, params, size) {
       lineend = params$lineend %||% "butt"
     ),
     arrow = params$arrow)
+
+  pg <- pointsGrob(
+    0.5, 0.5,
+    pch = data$shape,
+    gp = gpar(
+      col = alpha(data$colour %||% "black", data$alpha),
+      fill = alpha(data$fill %||% "black", data$alpha),
+      fontsize = (data$size %||% 1.5) * .pt + stroke_size * .stroke / 2,
+      lwd = stroke_size * .stroke / 2
+    )
+  )
+
+  grobTree(pg, lg)
 }
 
 #' Connect observations with lines and points
@@ -93,8 +116,9 @@ GeomPointPath <- ggproto(
   "GeomPointPath", Geom,
   required_aes = c("x", "y"),
 
-  default_aes = aes(colour = "black", linewidth = 0.5, linetype = 1, alpha = NA,
-                    shape = 19, size = 1.5, fill = NA, stroke = 0.5),
+  default_aes = aes(colour = "black", linewidth = 0.5, linetype = 1,
+                    alpha = NA, shape = 19, size = 1.5, fill = NA,
+                    stroke = 0.5),
 
   handle_na = function(self, data, params) {
     # Drop missing values at the start or end of a line - can't drop in the
@@ -129,7 +153,8 @@ GeomPointPath <- ggproto(
     data <- check_linewidth(data, snake_class(self))
     if (!anyDuplicated(data$group)) {
       cli::cli_inform(c(
-        "{.fn {snake_class(self)}}: Each group consists of only one observation.",
+        paste0("{.fn {snake_class(self)}}: Each group consists of ",
+               "only one observation."),
         i = "Do you need to adjust the {.field group} aesthetic?"
       ))
     }
@@ -168,12 +193,12 @@ GeomPointPath <- ggproto(
     n <- nrow(munched)
     group_diff <- munched$group[-1] != munched$group[-n]
     start <- c(TRUE, group_diff)
-    end <-   c(group_diff, TRUE)
+    end <- c(group_diff, TRUE)
 
     if(!constant){
       arrow <- repair_segment_arrow(arrow, munched$group)
 
-      segmentsGrob(
+      lg <- segmentsGrob(
         munched$x[!end], munched$y[!end], munched$x[!start], munched$y[!start],
         default.units = "native", arrow = arrow,
         gp = gpar(
@@ -202,19 +227,20 @@ GeomPointPath <- ggproto(
           linemitre = linemitre
         )
       )
-      pg <- pointsGrob(
-        coords$x, coords$y,
-        pch = coords$shape,
-        gp = gpar(
-          col = alpha(coords$colour, coords$alpha),
-          fill = alpha(coords$fill, coords$alpha),
-          # Stroke is added around the outside of the point
-          fontsize = coords$size * .pt + stroke_size * .stroke / 2,
-          lwd = coords$stroke * .stroke / 2
-        )
-      )
-      ggname("geom_pointpath", grobTree(lg, pg))
     }
+    pg <- pointsGrob(
+      coords$x, coords$y,
+      pch = coords$shape,
+      gp = gpar(
+        col = alpha(coords$colour, coords$alpha),
+        fill = alpha(coords$fill, coords$alpha),
+        # Stroke is added around the outside of the point
+        fontsize = coords$size * .pt + stroke_size * .stroke / 2,
+        lwd = coords$stroke * .stroke / 2
+      )
+    )
+    ggname("geom_pointpath", grobTree(lg, pg))
+
   },
 
   draw_key = draw_key_pointpath,
@@ -245,7 +271,7 @@ repair_segment_arrow <- function(arrow, group) {
   rle_start <- rle_end - rle_len + 1
 
   # Recycle ends and lengths
-  ends <- rep(rep(arrow$ends,   length.out = n_groups), rle_len)
+  ends <- rep(rep(arrow$ends, length.out = n_groups), rle_len)
   len <- rep(rep(arrow$length, length.out = n_groups), rle_len)
 
   # Repair ends
