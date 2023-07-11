@@ -10,7 +10,7 @@
 #' @import purrr
 #' @import rnaturalearth rnaturalearthhires r4ss
 #'
-#' @importFrom cli symbol
+#' @importFrom cli cli_abort symbol
 #' @importFrom clipr clipr_available write_clip dr_clipr
 #' @importFrom crayon green
 #' @importFrom cowplot draw_grob get_legend plot_grid
@@ -45,7 +45,7 @@
 #' @importFrom tidyr pivot_longer pivot_wider unnest
 #' @importFrom utils  head globalVariables object.size read.csv read.table
 #' @importFrom utils tail type.convert write.csv write.table
-#' @importFrom vctrs vec_as_names
+#' @importFrom vctrs vec_as_names vec_group_rle
 #' @importFrom withr defer
 #' @importFrom xtable xtable
 

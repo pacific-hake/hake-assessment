@@ -1,4 +1,11 @@
+# Needed for custom Geoms to work correctly
 unique0 <- ggplot2:::unique0
+dapply <- ggplot2:::dapply
+keep_mid_true <- ggplot2:::keep_mid_true
+translate_shape_string <- ggplot2:::translate_shape_string
+check_linewidth <- ggplot2:::check_linewidth
+data_frame0 <- ggplot2:::data_frame0
+ggname <- ggplot2:::ggname
 
 #' Key glyph for legends including [geom_pointpath()]
 #'
@@ -94,7 +101,7 @@ GeomPointPath <- ggproto(
     # middle since you expect those to be shown by a break in the line
     complete <- stats::complete.cases(data[names(data) %in%
                               c("x", "y", "linewidth", "colour", "linetype")])
-    kept <- stats::ave(complete, data$group, FUN = ggplot2:::keep_mid_true)
+    kept <- stats::ave(complete, data$group, FUN = keep_mid_true)
     data <- data[kept, ]
 
     if (!all(kept) && !params$na.rm) {
@@ -116,10 +123,10 @@ GeomPointPath <- ggproto(
     stroke_size[is.na(stroke_size)] <- 0
 
     if (is.character(data$shape)) {
-      data$shape <- ggplot2:::translate_shape_string(data$shape)
+      data$shape <- translate_shape_string(data$shape)
     }
 
-    data <- ggplot2:::check_linewidth(data, snake_class(self))
+    data <- check_linewidth(data, snake_class(self))
     if (!anyDuplicated(data$group)) {
       cli::cli_inform(c(
         "{.fn {snake_class(self)}}: Each group consists of only one observation.",
@@ -137,9 +144,9 @@ GeomPointPath <- ggproto(
     if (nrow(munched) < 2) return(zeroGrob())
 
     # Work out whether we should use lines or segments
-    attr <- ggplot2:::dapply(munched, "group", function(df) {
+    attr <- dapply(munched, "group", function(df) {
       linetype <- unique0(df$linetype)
-      ggplot2:::data_frame0(
+      data_frame0(
         solid = identical(linetype, 1) || identical(linetype, "solid"),
         constant = nrow(unique0(df[, names(df) %in% c("alpha",
                                                       "colour",
@@ -151,10 +158,10 @@ GeomPointPath <- ggproto(
     solid_lines <- all(attr$solid)
     constant <- all(attr$constant)
     if(!solid_lines && !constant){
-      cli::cli_abort(paste0("{.fn {snake_class(self)}} can't have ",
-                            "varying {.field colour}, {.field linewidth}, ",
-                            "and/or {.field alpha} along the line when ",
-                            "{.field linetype} isn't solid"))
+      cli_abort(paste0("{.fn {snake_class(self)}} can't have ",
+                       "varying {.field colour}, {.field linewidth}, ",
+                       "and/or {.field alpha} along the line when ",
+                       "{.field linetype} isn't solid"))
     }
 
     # Work out grouping variables for grobs
@@ -206,7 +213,7 @@ GeomPointPath <- ggproto(
           lwd = coords$stroke * .stroke / 2
         )
       )
-      ggplot2:::ggname("geom_pointpath", grobTree(lg, pg))
+      ggname("geom_pointpath", grobTree(lg, pg))
     }
   },
 
@@ -215,6 +222,13 @@ GeomPointPath <- ggproto(
   rename_size = TRUE
 )
 
+#' Copied from ggplot2 source code file geom-path.R
+#'
+#' @param arrow See [ggplot2::geom_path()]
+#' @param group See [ggplot2::geom_path()]
+#'
+#' @return Repaired `arrow`
+#' @export
 repair_segment_arrow <- function(arrow, group) {
   # Early exit if there is no arrow
   if(is.null(arrow)){
@@ -223,7 +237,7 @@ repair_segment_arrow <- function(arrow, group) {
 
   # Get group parameters
   # handles NAs better than base::rle()
-  rle <- vctrs::vec_group_rle(group)
+  rle <- vec_group_rle(group)
   n_groups <- length(rle)
   # segments have 1 member less than lines
   rle_len <- field(rle, "length") - 1
