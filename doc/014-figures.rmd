@@ -405,9 +405,9 @@ plist[[4]] <-
 
 # Grid of 2 rows and 1 column with one plot at the top (biomass)
 # and 4 plots embedded in another grid (quad_grid) at the bottom
-quad_grid <- cowplot::plot_grid(plotlist = plist,
-                                nrow = 2,
-                                ncol = 2)
+quad_grid <- plot_grid(plotlist = plist,
+                       nrow = 2,
+                       ncol = 2)
 full_plist <- list()
 full_plist[[1]] <-
   plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
