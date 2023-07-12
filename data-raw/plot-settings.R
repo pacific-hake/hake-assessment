@@ -8,7 +8,7 @@ create_data_hake("ts_pointstroke", 1)
 
 # Line width for multiple model time series plots (don't need color or type
 # because those is assigned by the plotting functions)
-create_data_hake("ts_linewidth", 1)
+create_data_hake("ts_linewidth", 0.5)
 
 # Gap between lines and where they connect to points in all time series plots
 create_data_hake("ts_linegap", 0.2)
