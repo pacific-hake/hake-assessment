@@ -4,7 +4,6 @@
 #'
 #' @export
 plot_rel_biomass <- function(
-    d_obj = NULL,
     model_lst = NULL,
     model_names = NULL,
     show_arrows = TRUE,
@@ -20,6 +19,7 @@ plot_rel_biomass <- function(
     leg_font_size = 12,
     rev_colors = FALSE,
     wrap_y_label = FALSE,
+    d_obj = NULL,
     alpha = hake::ts_ribbon_alpha,
     point_size = ifelse(is_single_model,
                         hake::ts_single_model_pointsize,
@@ -34,8 +34,9 @@ plot_rel_biomass <- function(
     line_width = ifelse(is_single_model,
                         hake::ts_single_model_linewidth,
                         hake::ts_linewidth),
-    single_line_color = hake::ts_single_model_linecolor,
-    single_ribbon_color = hake::ts_single_model_ribbon_fill,
+    line_gap = hake::ts_linegap,
+    single_ribbon_lines_color = hake::ts_single_model_linecolor,
+    single_ribbon_fill = hake::ts_single_model_ribbon_fill,
     ribbon_line_type = ifelse(is_single_model,
                               hake::ts_single_model_ribbon_linetype,
                               hake::ts_ribbon_linetype),
@@ -105,8 +106,8 @@ plot_rel_biomass <- function(
     ribbon_colors <- rev(ribbon_colors)
   }
   if(is_single_model){
-    colors <- single_line_color
-    ribbon_colors <- single_ribbon_color
+    colors <- single_ribbon_lines_color
+    ribbon_colors <- single_ribbon_fill
   }
 
   # Remove projection years
@@ -139,13 +140,15 @@ plot_rel_biomass <- function(
                      size = point_size,
                      color = point_color,
                      shape = point_shape,
-                     stroke = point_stroke)
+                     stroke = point_stroke,
+                     mult = line_gap)
   }else{
     g <- g +
       geom_pointpath(linewidth = line_width,
                      size = point_size,
                      shape = point_shape,
-                     stroke = point_stroke)
+                     stroke = point_stroke,
+                     mult = line_gap)
   }
 
   g <- g +

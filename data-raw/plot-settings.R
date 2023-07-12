@@ -3,12 +3,15 @@
 
 # Shape, size, and stroke of points for multiple model time series plots
 create_data_hake("ts_pointshape", 16)
-create_data_hake("ts_pointsize", 2)
+create_data_hake("ts_pointsize", 1.5)
 create_data_hake("ts_pointstroke", 1)
 
 # Line width for multiple model time series plots (don't need color or type
 # because those is assigned by the plotting functions)
 create_data_hake("ts_linewidth", 1)
+
+# Gap between lines and where they connect to points in all time series plots
+create_data_hake("ts_linegap", 0.2)
 
 # Attributes applicable to single model plots only
 create_data_hake("ts_single_model_linecolor", "black")

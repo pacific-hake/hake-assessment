@@ -388,7 +388,7 @@ in the Joint U.S.-Canada Agreement for `r sp` is shown as a horizontal line
 at 1.0.
 
 ```{r es-fishing-intensity-fig, fig.cap = "(ref:es-fishing-intensity-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that we have been below the management value of 1 for FSPR 40 percent throughout the entire time series."}
-plot_fishing_intensity(base_model)
+plot_fishing_intensity(base_model, show_arrows = TRUE)
 ```
 
 Median exploitation fraction (catch divided by biomass of fish of age-2 and
@@ -435,7 +435,7 @@ the appearance of the 1999 year class.
 credibility intervals.
          
 ```{r es-exploitation-fraction-fig, fig.cap = "(ref:es-exploitation-fraction-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that the current exploitation fraction of the female spawning biomass is approximately 0.05. This is a drop from the last five years which have been approximately 0.1."}
-plot_exploitation_fraction(base_model)
+plot_exploitation_fraction(base_model, show_arrows = TRUE)
 ```
 
 ```{r es-landings-tac-tab, results = "asis", echo = FALSE}

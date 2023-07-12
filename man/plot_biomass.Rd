@@ -30,19 +30,37 @@ plot_biomass(
   vjust_x_labels = -0.25,
   ylim = c(0, 4.5),
   y_breaks = seq(ylim[1], ylim[2], by = 0.5),
-  alpha = hake::ts_ribbon_alpha,
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  point_size = hake::ts_pointsize,
-  point_shape = hake::ts_pointshape,
-  line_width = hake::ts_linewidth,
-  single_line_color = hake::ts_single_model_linecolor,
-  single_ribbon_color = hake::ts_ribbon_fill,
-  ribbon_line_type = hake::ts_ribbon_linetype,
+  dodge_bo = 3,
   rev_colors = TRUE,
   wrap_y_label = FALSE,
-  d_obj = NULL
+  d_obj = NULL,
+  alpha = hake::ts_ribbon_alpha,
+  point_size = ifelse(is_single_model, hake::ts_single_model_pointsize,
+    hake::ts_pointsize),
+  point_color = hake::ts_single_model_pointcolor,
+  point_shape = ifelse(is_single_model, hake::ts_single_model_pointshape,
+    hake::ts_pointshape),
+  point_stroke = ifelse(is_single_model, hake::ts_single_model_pointstroke,
+    hake::ts_pointstroke),
+  line_width = ifelse(is_single_model, hake::ts_single_model_linewidth,
+    hake::ts_linewidth),
+  line_gap = hake::ts_linegap,
+  single_ribbon_lines_color = hake::ts_single_model_linecolor,
+  single_ribbon_fill = hake::ts_single_model_ribbon_fill,
+  ribbon_line_type = ifelse(is_single_model, hake::ts_single_model_ribbon_linetype,
+    hake::ts_ribbon_linetype),
+  refpt_bo_linecolor = hake::refpt_bo_linecolor,
+  refpt_usr_linecolor = hake::refpt_usr_linecolor,
+  refpt_lrp_linecolor = hake::refpt_lrp_linecolor,
+  refpt_bo_linewidth = hake::refpt_bo_linewidth,
+  refpt_usr_linewidth = hake::refpt_usr_linewidth,
+  refpt_lrp_linewidth = hake::refpt_lrp_linewidth,
+  refpt_bo_linetype = hake::refpt_bo_linetype,
+  refpt_usr_linetype = hake::refpt_usr_linetype,
+  refpt_lrp_linetype = hake::refpt_lrp_linetype
 )
 
 plot_cohort_catch(
@@ -85,6 +103,7 @@ plot_depl_fore_comparison(
 
 plot_exploitation_fraction(
   model,
+  show_arrows = TRUE,
   xlim = c(1964, year(Sys.time()) - 1),
   x_breaks = 1966:year(Sys.time()),
   x_labs_mod = 5,
@@ -101,6 +120,7 @@ plot_exploitation_fraction(
 
 plot_fishing_intensity(
   model,
+  show_arrows = TRUE,
   xlim = c(1964, year(Sys.time()) - 1),
   x_breaks = 1966:year(Sys.time()),
   x_labs_mod = 5,
@@ -187,7 +207,6 @@ plot_recruitment(
 )
 
 plot_rel_biomass(
-  d_obj = NULL,
   model_lst = NULL,
   model_names = NULL,
   show_arrows = TRUE,
@@ -203,16 +222,20 @@ plot_rel_biomass(
   leg_font_size = 12,
   rev_colors = FALSE,
   wrap_y_label = FALSE,
+  d_obj = NULL,
   alpha = hake::ts_ribbon_alpha,
   point_size = ifelse(is_single_model, hake::ts_single_model_pointsize,
     hake::ts_pointsize),
   point_color = hake::ts_single_model_pointcolor,
   point_shape = ifelse(is_single_model, hake::ts_single_model_pointshape,
     hake::ts_pointshape),
+  point_stroke = ifelse(is_single_model, hake::ts_single_model_pointstroke,
+    hake::ts_pointstroke),
   line_width = ifelse(is_single_model, hake::ts_single_model_linewidth,
     hake::ts_linewidth),
-  single_line_color = hake::ts_single_model_linecolor,
-  single_ribbon_color = hake::ts_single_model_ribbon_fill,
+  line_gap = hake::ts_linegap,
+  single_ribbon_lines_color = hake::ts_single_model_linecolor,
+  single_ribbon_fill = hake::ts_single_model_ribbon_fill,
   ribbon_line_type = ifelse(is_single_model, hake::ts_single_model_ribbon_linetype,
     hake::ts_ribbon_linetype),
   refpt_bo_linecolor = hake::refpt_bo_linecolor,
@@ -313,27 +336,12 @@ it up, closer to the plot}
 
 \item{y_breaks}{The depletion value tick marks to show for the y axis}
 
-\item{alpha}{The transparency for all ribbons}
-
 \item{leg_pos}{The position of the legend inside the plot. If \code{NULL},
 \code{NA}, or \code{none}, the legend will not be shown}
 
 \item{leg_ncol}{The number of columns to show in the legend}
 
 \item{leg_font_size}{The legend font size}
-
-\item{point_size}{Size of all points shown in plot}
-
-\item{point_shape}{The R shape number for the points}
-
-\item{line_width}{Width of all lines on the plot}
-
-\item{single_line_color}{Line color for the case where there is only
-one model to plot}
-
-\item{single_ribbon_color}{The ribbon color if there is only a single model}
-
-\item{ribbon_line_type}{Linetype for ribbon edges; use 0 for no line.}
 
 \item{rev_colors}{Logical. If \code{TRUE}, reverse the order of the colors
 in the plot. Only applies if more than one model is plotted}
@@ -346,6 +354,25 @@ pre-processed to contain all models in a format that is ready to plot.
 Essentially the first steps of this function have been replicated
 outside the function (The code inside the \verb{if(is.null(d_obj))})
 is done to stop the Rmd process from taking forever}
+
+\item{alpha}{The transparency for all ribbons}
+
+\item{point_size}{Size of all points shown in plot}
+
+\item{point_shape}{The R shape number for the points}
+
+\item{line_width}{Width of all lines on the plot}
+
+\item{line_gap}{Gap between the connecting lines and points for each line.
+See the \code{shorten} parameter of \code{\link[lemon:geom_pointpath]{lemon::geom_pointpath()}}}
+
+\item{single_ribbon_lines_color}{Line color for the ribbon limit lines for
+the case where there is only a single model to plot}
+
+\item{single_ribbon_fill}{The ribbon fill color if there is only a single
+model}
+
+\item{ribbon_line_type}{Linetype for ribbon edges; use 0 for no line.}
 
 \item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 

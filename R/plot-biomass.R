@@ -31,8 +31,10 @@
 #' @param axis_label_color Color for the axis labels and tick labels
 #' @param point_size Size of all points shown in plot
 #' @param line_width Width of all lines on the plot
-#' @param single_line_color Line color for the case where there is only
-#' one model to plot
+#' @param line_gap Gap between the connecting lines and points for each line.
+#' See the `shorten` parameter of [lemon::geom_pointpath()]
+#' @param single_ribbon_lines_color Line color for the ribbon limit lines for
+#' the case where there is only a single model to plot
 #' @param wrap_y_label Logical. If `TRUE`, adds a newline to the y axis
 #' label so that it doesn't get cut off
 #' @param rev_colors Logical. If `TRUE`, reverse the order of the colors
@@ -46,7 +48,8 @@
 #' @param x_expansion Amount to expand the x axis. See the `expand` argument in
 #' [ggplot2::scale_x_continuous()]
 #' @param point_shape The R shape number for the points
-#' @param single_ribbon_color The ribbon color if there is only a single model
+#' @param single_ribbon_fill The ribbon fill color if there is only a single
+#' model
 #' @param inc_means Logical. If `TRUE` include the mean values in the plot
 #' @param minor_tick_length The length of the small x-axis ticks
 #' @param survey_type Either `age1` or `age2`
@@ -54,31 +57,55 @@
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
-plot_biomass <- function(model_lst = NULL,
-                         model_names,
-                         show_arrows = TRUE,
-                         xlim = c(1964,
-                                  year(Sys.time())),
-                         x_breaks = 1966:year(Sys.time()),
-                         x_labs_mod = 5,
-                         x_expansion = 3,
-                         tick_prop = 1,
-                         vjust_x_labels = -0.25,
-                         ylim = c(0, 4.5),
-                         y_breaks = seq(ylim[1], ylim[2], by = 0.5),
-                         alpha = hake::ts_ribbon_alpha,
-                         leg_pos = c(0.65, 0.83),
-                         leg_ncol = 1,
-                         leg_font_size = 12,
-                         point_size = hake::ts_pointsize,
-                         point_shape = hake::ts_pointshape,
-                         line_width = hake::ts_linewidth,
-                         single_line_color = hake::ts_single_model_linecolor,
-                         single_ribbon_color = hake::ts_ribbon_fill,
-                         ribbon_line_type = hake::ts_ribbon_linetype,
-                         rev_colors = TRUE,
-                         wrap_y_label = FALSE,
-                         d_obj = NULL){
+plot_biomass <- function(
+    model_lst = NULL,
+    model_names,
+    show_arrows = TRUE,
+    xlim = c(1964,
+             year(Sys.time())),
+    x_breaks = 1966:year(Sys.time()),
+    x_labs_mod = 5,
+    x_expansion = 3,
+    tick_prop = 1,
+    vjust_x_labels = -0.25,
+    ylim = c(0, 4.5),
+    y_breaks = seq(ylim[1], ylim[2], by = 0.5),
+    leg_pos = c(0.65, 0.83),
+    leg_ncol = 1,
+    leg_font_size = 12,
+    dodge_bo = 3,
+    rev_colors = TRUE,
+    wrap_y_label = FALSE,
+    d_obj = NULL,
+    alpha = hake::ts_ribbon_alpha,
+    point_size = ifelse(is_single_model,
+                        hake::ts_single_model_pointsize,
+                        hake::ts_pointsize),
+    point_color = hake::ts_single_model_pointcolor,
+    point_shape = ifelse(is_single_model,
+                         hake::ts_single_model_pointshape,
+                         hake::ts_pointshape),
+    point_stroke = ifelse(is_single_model,
+                          hake::ts_single_model_pointstroke,
+                          hake::ts_pointstroke),
+    line_width = ifelse(is_single_model,
+                        hake::ts_single_model_linewidth,
+                        hake::ts_linewidth),
+    line_gap = hake::ts_linegap,
+    single_ribbon_lines_color = hake::ts_single_model_linecolor,
+    single_ribbon_fill = hake::ts_single_model_ribbon_fill,
+    ribbon_line_type = ifelse(is_single_model,
+                              hake::ts_single_model_ribbon_linetype,
+                              hake::ts_ribbon_linetype),
+    refpt_bo_linecolor = hake::refpt_bo_linecolor,
+    refpt_usr_linecolor = hake::refpt_usr_linecolor,
+    refpt_lrp_linecolor = hake::refpt_lrp_linecolor,
+    refpt_bo_linewidth = hake::refpt_bo_linewidth,
+    refpt_usr_linewidth = hake::refpt_usr_linewidth,
+    refpt_lrp_linewidth = hake::refpt_lrp_linewidth,
+    refpt_bo_linetype = hake::refpt_bo_linetype,
+    refpt_usr_linetype = hake::refpt_usr_linetype,
+    refpt_lrp_linetype = hake::refpt_lrp_linetype){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -100,8 +127,8 @@ plot_biomass <- function(model_lst = NULL,
     ribbon_colors <- rev(ribbon_colors)
   }
   if(is_single_model){
-    colors <- single_line_color
-    ribbon_colors <- single_ribbon_color
+    colors <- single_ribbon_lines_color
+    ribbon_colors <- single_ribbon_fill
   }
 
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
@@ -115,7 +142,7 @@ plot_biomass <- function(model_lst = NULL,
   d <- d |>
     filter(year <= xlim[2] & year >= ylim[1])
 
-  # Calculate the data outside the range of the y limits and
+  # Calculate the data out-of-bounds of the y limits (Y-OOB) and
   # change the CI in the data to cut off at the limits
   yoob_bo <- calc_yoob(bo, ylim, "slower", "smed", "supper", show_arrows)
   yoob <- calc_yoob(d, ylim, "slower", "smed", "supper", show_arrows)
@@ -128,22 +155,19 @@ plot_biomass <- function(model_lst = NULL,
                   group = model,
                   color = model,
                   fill = model)) +
-    scale_fill_manual(values = ribbon_colors) +
-    scale_color_manual(values = colors) +
-    coord_cartesian(xlim = xlim,
-                    ylim = ylim,
-                    clip = "off") +
     geom_ribbon(alpha = alpha,
                 linetype = ribbon_line_type) +
-    geom_line(linewidth = line_width) +
-    geom_point(size = point_size,
-               shape = point_shape) +
     scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
                        labels = x_labels) +
     scale_y_continuous(expand = c(0, 0),
                        breaks = y_breaks,
                        labels = y_breaks) +
+    scale_fill_manual(values = ribbon_colors) +
+    scale_color_manual(values = colors) +
+    coord_cartesian(xlim = xlim,
+                    ylim = ylim,
+                    clip = "off") +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
@@ -157,17 +181,40 @@ plot_biomass <- function(model_lst = NULL,
                     add_newlines("Female Spawning Biomass+(Mt)"),
                     "Female Spawning Biomass (Mt)"))
 
+  # Add the median lines
+  if(is_single_model){
+    g <- g +
+      geom_pointpath(linewidth = line_width,
+                     size = point_size,
+                     color = point_color,
+                     shape = point_shape,
+                     stroke = point_stroke,
+                     mult = line_gap)
+  }else{
+    g <- g +
+      geom_pointpath(linewidth = line_width,
+                     size = point_size,
+                     shape = point_shape,
+                     stroke = point_stroke,
+                     mult = line_gap)
+  }
+
   # Add B0 to the plot
   g <- g +
+    geom_errorbar(data = yoob_bo$d,
+                  linewidth = line_width,
+                  position = position_dodge(dodge_bo),
+                  color = ribbon_colors,
+                  width = 0) +
+    geom_point(data = yoob_bo$d,
+               size = point_size + 0.5,
+               shape = point_shape,
+               color = "white",
+               position = position_dodge(dodge_bo)) +
     geom_point(data = yoob_bo$d,
                size = point_size,
                shape = point_shape,
-               position = position_dodge(1.5)) +
-    geom_errorbar(data = bo,
-                  linewidth = line_width,
-                  position = position_dodge(1.5),
-                  color = ribbon_colors,
-                  alpha = alpha)
+               position = position_dodge(dodge_bo))
 
   # Add arrows to the plot to point toward the out of bounds data points
   g <- g |>

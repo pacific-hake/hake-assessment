@@ -18,6 +18,11 @@
 #'
 #' @format A numerical value
 "ts_linewidth"
+#' The gap between the lines connecting the median points in the time
+#' series plots
+#'
+#' @format A numerical value
+"ts_linegap"
 
 #' The line color to use for the line connecting the median points in the
 #' time series plots, when there is only one model plotted
