@@ -16,11 +16,13 @@
 \alias{plot_rel_biomass}
 \alias{plot_rel_recruitment}
 \alias{plot_survey_index_fits}
-\title{Plot biomass from MCMC output for one or more models}
+\title{Plot biomass from MCMC output for one or more models. Includes the
+virgin biomass, B0}
 \usage{
 plot_biomass(
   model_lst = NULL,
   model_names,
+  d_obj = NULL,
   show_arrows = TRUE,
   xlim = c(1964, year(Sys.time())),
   x_breaks = 1966:year(Sys.time()),
@@ -36,31 +38,26 @@ plot_biomass(
   dodge_bo = 3,
   rev_colors = TRUE,
   wrap_y_label = FALSE,
-  d_obj = NULL,
-  alpha = hake::ts_ribbon_alpha,
-  point_size = ifelse(is_single_model, hake::ts_single_model_pointsize,
-    hake::ts_pointsize),
-  point_color = hake::ts_single_model_pointcolor,
-  point_shape = ifelse(is_single_model, hake::ts_single_model_pointshape,
-    hake::ts_pointshape),
-  point_stroke = ifelse(is_single_model, hake::ts_single_model_pointstroke,
-    hake::ts_pointstroke),
-  line_width = ifelse(is_single_model, hake::ts_single_model_linewidth,
-    hake::ts_linewidth),
-  line_gap = hake::ts_linegap,
-  single_ribbon_lines_color = hake::ts_single_model_linecolor,
-  single_ribbon_fill = hake::ts_single_model_ribbon_fill,
-  ribbon_line_type = ifelse(is_single_model, hake::ts_single_model_ribbon_linetype,
-    hake::ts_ribbon_linetype),
-  refpt_bo_linecolor = hake::refpt_bo_linecolor,
-  refpt_usr_linecolor = hake::refpt_usr_linecolor,
-  refpt_lrp_linecolor = hake::refpt_lrp_linecolor,
-  refpt_bo_linewidth = hake::refpt_bo_linewidth,
-  refpt_usr_linewidth = hake::refpt_usr_linewidth,
-  refpt_lrp_linewidth = hake::refpt_lrp_linewidth,
-  refpt_bo_linetype = hake::refpt_bo_linetype,
-  refpt_usr_linetype = hake::refpt_usr_linetype,
-  refpt_lrp_linetype = hake::refpt_lrp_linetype
+  alpha = ts_ribbon_alpha,
+  point_size = ifelse(is_single_model, ts_single_model_pointsize, ts_pointsize),
+  point_color = ts_single_model_pointcolor,
+  point_shape = ifelse(is_single_model, ts_single_model_pointshape, ts_pointshape),
+  point_stroke = ifelse(is_single_model, ts_single_model_pointstroke, ts_pointstroke),
+  line_width = ifelse(is_single_model, ts_single_model_linewidth, ts_linewidth),
+  line_gap = ts_linegap,
+  single_ribbon_lines_color = ts_single_model_linecolor,
+  single_ribbon_fill = ts_single_model_ribbon_fill,
+  ribbon_line_type = ifelse(is_single_model, ts_single_model_ribbon_linetype,
+    ts_ribbon_linetype),
+  refpt_bo_linecolor = refpt_bo_linecolor,
+  refpt_usr_linecolor = refpt_usr_linecolor,
+  refpt_lrp_linecolor = refpt_lrp_linecolor,
+  refpt_bo_linewidth = refpt_bo_linewidth,
+  refpt_usr_linewidth = refpt_usr_linewidth,
+  refpt_lrp_linewidth = refpt_lrp_linewidth,
+  refpt_bo_linetype = refpt_bo_linetype,
+  refpt_usr_linetype = refpt_usr_linetype,
+  refpt_lrp_linetype = refpt_lrp_linetype
 )
 
 plot_cohort_catch(
@@ -223,30 +220,26 @@ plot_rel_biomass(
   rev_colors = FALSE,
   wrap_y_label = FALSE,
   d_obj = NULL,
-  alpha = hake::ts_ribbon_alpha,
-  point_size = ifelse(is_single_model, hake::ts_single_model_pointsize,
-    hake::ts_pointsize),
-  point_color = hake::ts_single_model_pointcolor,
-  point_shape = ifelse(is_single_model, hake::ts_single_model_pointshape,
-    hake::ts_pointshape),
-  point_stroke = ifelse(is_single_model, hake::ts_single_model_pointstroke,
-    hake::ts_pointstroke),
-  line_width = ifelse(is_single_model, hake::ts_single_model_linewidth,
-    hake::ts_linewidth),
-  line_gap = hake::ts_linegap,
-  single_ribbon_lines_color = hake::ts_single_model_linecolor,
-  single_ribbon_fill = hake::ts_single_model_ribbon_fill,
-  ribbon_line_type = ifelse(is_single_model, hake::ts_single_model_ribbon_linetype,
-    hake::ts_ribbon_linetype),
-  refpt_bo_linecolor = hake::refpt_bo_linecolor,
-  refpt_usr_linecolor = hake::refpt_usr_linecolor,
-  refpt_lrp_linecolor = hake::refpt_lrp_linecolor,
-  refpt_bo_linewidth = hake::refpt_bo_linewidth,
-  refpt_usr_linewidth = hake::refpt_usr_linewidth,
-  refpt_lrp_linewidth = hake::refpt_lrp_linewidth,
-  refpt_bo_linetype = hake::refpt_bo_linetype,
-  refpt_usr_linetype = hake::refpt_usr_linetype,
-  refpt_lrp_linetype = hake::refpt_lrp_linetype
+  alpha = ts_ribbon_alpha,
+  point_size = ifelse(is_single_model, ts_single_model_pointsize, ts_pointsize),
+  point_color = ts_single_model_pointcolor,
+  point_shape = ifelse(is_single_model, ts_single_model_pointshape, ts_pointshape),
+  point_stroke = ifelse(is_single_model, ts_single_model_pointstroke, ts_pointstroke),
+  line_width = ifelse(is_single_model, ts_single_model_linewidth, ts_linewidth),
+  line_gap = ts_linegap,
+  single_ribbon_lines_color = ts_single_model_linecolor,
+  single_ribbon_fill = ts_single_model_ribbon_fill,
+  ribbon_line_type = ifelse(is_single_model, ts_single_model_ribbon_linetype,
+    ts_ribbon_linetype),
+  refpt_bo_linecolor = ts_refpt_bo_linecolor,
+  refpt_usr_linecolor = ts_refpt_usr_linecolor,
+  refpt_lrp_linecolor = ts_refpt_lrp_linecolor,
+  refpt_bo_linewidth = ts_refpt_bo_linewidth,
+  refpt_usr_linewidth = ts_refpt_usr_linewidth,
+  refpt_lrp_linewidth = ts_refpt_lrp_linewidth,
+  refpt_bo_linetype = ts_refpt_bo_linetype,
+  refpt_usr_linetype = ts_refpt_usr_linetype,
+  refpt_lrp_linetype = ts_refpt_lrp_linetype
 )
 
 plot_rel_recruitment(
@@ -308,11 +301,17 @@ plot_survey_index_fits(
 
 \item{model_names}{A vector of model names,the same length as \code{models_lst}}
 
+\item{d_obj}{If not \code{NULL} this is a list which has been
+pre-processed to contain all models in a format that is ready to plot.
+Essentially the first steps of this function have been replicated
+outside the function (The code inside the \verb{if(is.null(d_obj))})
+is done to stop the Rmd process from taking forever}
+
 \item{show_arrows}{Logical. If \code{TRUE}, show arrow that point toward
 medians lying outside the plotting area. Also allow the lines toward those
-median points to be plotted outside the plotting area. If \code{FALSE}, truncate
-the medians that lie outside the plotting area to the maximum (or minimum)
-y limit and draw the lines to go through those new values}
+median points to be plotted outside the plotting area. If \code{FALSE},
+truncate the medians that lie outside the plotting area to the maximum
+(or minimum) y limit and draw the lines to go through those new values}
 
 \item{xlim}{The year limits to plot}
 
@@ -322,67 +321,96 @@ y limit and draw the lines to go through those new values}
 will be longer and have a label. The first and last will be shown
 regardless of what this number is}
 
-\item{x_expansion}{Amount to expand the x axis. See the \code{expand} argument in
-\code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}}
+\item{x_expansion}{Amount to expand the x axis. See the \code{expand} argument
+in \code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}}
 
 \item{tick_prop}{A value that the length of the major tick marks are
-multiplied by}
+multiplied by. This proportion must be set by trial and error. Make sure
+to change \code{vjust_x_labels} so the labels are not overlapping the lines or
+are too far away from the lines}
 
 \item{vjust_x_labels}{A value to move the x-axis tick labels and title
 by. Negative means move it down, away from the plot, positive is to move
 it up, closer to the plot}
 
-\item{ylim}{The depletion limits to plot}
+\item{ylim}{The y-axis minimum and maximum limits for the plot}
 
-\item{y_breaks}{The depletion value tick marks to show for the y axis}
+\item{y_breaks}{The tick mark values to show for the y-axis}
 
 \item{leg_pos}{The position of the legend inside the plot. If \code{NULL},
-\code{NA}, or \code{none}, the legend will not be shown}
+\code{NA}, or "none", the legend will not be shown}
 
 \item{leg_ncol}{The number of columns to show in the legend}
 
-\item{leg_font_size}{The legend font size}
+\item{leg_font_size}{The legend font size
+labels}
+
+\item{dodge_bo}{A value to adjust the spacing between multiple B0 points
+and errorbars in the case of more than one model being plotted}
 
 \item{rev_colors}{Logical. If \code{TRUE}, reverse the order of the colors
 in the plot. Only applies if more than one model is plotted}
 
-\item{wrap_y_label}{Logical. If \code{TRUE}, adds a newline to the y axis
+\item{wrap_y_label}{Logical. If \code{TRUE}, adds a newline to the y-axis
 label so that it doesn't get cut off}
 
-\item{d_obj}{If not \code{NULL} this is a list which has been
-pre-processed to contain all models in a format that is ready to plot.
-Essentially the first steps of this function have been replicated
-outside the function (The code inside the \verb{if(is.null(d_obj))})
-is done to stop the Rmd process from taking forever}
+\item{alpha}{The transparency for the ribbons (credible intervals)}
 
-\item{alpha}{The transparency for all ribbons}
+\item{point_size}{The size of the points used for the median lines (See
+\code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} for more details)}
 
-\item{point_size}{Size of all points shown in plot}
+\item{point_color}{The R color for the points used for the median lines
+(See \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} for more details)}
 
-\item{point_shape}{The R shape number for the points}
+\item{point_shape}{The R shape number for the points used for the median
+lines (See \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} for more details)}
 
-\item{line_width}{Width of all lines on the plot}
+\item{point_stroke}{The stroke value for the points used for the median
+lines (See \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} for more details)}
+
+\item{line_width}{Width of the median line and errorbar line (for the B0
+value) (See \code{\link[ggplot2:geom_path]{ggplot2::geom_path()}} for more details)}
 
 \item{line_gap}{Gap between the connecting lines and points for each line.
-See the \code{shorten} parameter of \code{\link[lemon:geom_pointpath]{lemon::geom_pointpath()}}}
+See the \code{mult} parameter of \code{\link[ggh4x:geom_pointpath]{ggh4x::geom_pointpath()}}}
 
-\item{single_ribbon_lines_color}{Line color for the ribbon limit lines for
-the case where there is only a single model to plot}
+\item{single_ribbon_lines_color}{Line color for the ribbon limit lines
+(credible interval) for the case where there is only a single model to plot}
 
 \item{single_ribbon_fill}{The ribbon fill color if there is only a single
 model}
 
-\item{ribbon_line_type}{Linetype for ribbon edges; use 0 for no line.}
+\item{ribbon_line_type}{Line type for ribbon edges; use 0 for no line.}
+
+\item{refpt_bo_linecolor}{The line color for the B0 horizontal line}
+
+\item{refpt_usr_linecolor}{The line color for the Upper stock reference
+horizontal line}
+
+\item{refpt_lrp_linecolor}{The line color for the Limit Reference point
+horizontal line}
+
+\item{refpt_bo_linewidth}{The line width for the B0 horizontal line}
+
+\item{refpt_usr_linewidth}{The line width for the Upper stock reference
+horizontal line}
+
+\item{refpt_lrp_linewidth}{The line width for the Limit Reference point
+horizontal line}
+
+\item{refpt_bo_linetype}{The line type for the B0 horizontal line}
+
+\item{refpt_usr_linetype}{The line type for the Upper stock reference
+horizontal line}
+
+\item{refpt_lrp_linetype}{The line type for the Limit Reference point
+horizontal line}
 
 \item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{cohorts}{A vector of cohorts to make lines for}
 
 \item{ages}{A vector of ages to show}
-
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
 
 \item{show_arrowheads}{Logical. If \code{TRUE} show arrowheads on the ends of
 the lines}
@@ -393,9 +421,9 @@ For description of \code{npc}}
 \item{fore_inds}{Indices of the \code{model$ct_levels} list to include as
 forecast catch streams in the plot}
 
-\item{y_labels}{Labels for the tick marks on the Y axis}
+\item{y_labels}{Labels for the tick marks on the y-axis}
 
-\item{y_colors}{Colors for the tick labels on the Y axis}
+\item{y_colors}{Colors for the tick labels on the y-axis}
 
 \item{forecast_yrs}{A vector of the forecast years}
 
@@ -425,7 +453,8 @@ one model}
 \item{dodge_val}{The amount to separate lines between unique models
 multiple model plots}
 
-\item{inc_means}{Logical. If \code{TRUE} include the mean values in the plot}
+\item{inc_means}{Logical. If \code{TRUE} include the mean values in the plot.
+Used for recruitment plot only}
 
 \item{relative}{Logical. If \code{TRUE}, create a relative recruitment plot using
 the \code{r_rel_lower}, \code{r_rel_med}, \code{r_rel_upper}, \code{r_rel_mean}, and
@@ -435,17 +464,15 @@ default. To change it, edit the year in the \code{\link[=calc_mcmc]{calc_mcmc()}
 then \code{\link[=create_rds_file]{create_rds_file()}} needs to be run again to create the RDS file for
 the model}
 
-\item{survey_type}{Either \code{age1} or \code{age2}}
-
-\item{axis_label_color}{Color for the axis labels and tick labels}
-
-\item{minor_tick_length}{The length of the small x-axis ticks}
+\item{survey_type}{Either \code{age1} or \code{age2}. Used for survey index plots
+only}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
-Plot biomass from MCMC output for one or more models
+Plot biomass from MCMC output for one or more models. Includes the
+virgin biomass, B0
 
 Create a plot of cohorts by age as a set of lines
 

@@ -1,65 +1,92 @@
-#' Plot biomass from MCMC output for one or more models
+#' Plot biomass from MCMC output for one or more models. Includes the
+#' virgin biomass, B0
 #'
 #' @param model_lst A list of models, each created by [create_rds_file()]
 #' @param model_names A vector of model names,the same length as `models_lst`
-#' @param show_arrows Logical. If `TRUE`, show arrow that point toward
-#' medians lying outside the plotting area. Also allow the lines toward those
-#' median points to be plotted outside the plotting area. If `FALSE`, truncate
-#' the medians that lie outside the plotting area to the maximum (or minimum)
-#' y limit and draw the lines to go through those new values
-#' @param xlim The year limits to plot
-#' @param x_breaks The year value tick marks to show for the x axis
-#' @param x_labs_mod Value for major X-axis tick marks. Every Nth tick
-#' will be longer and have a label. The first and last will be shown
-#' regardless of what this number is
-#' @param tick_prop A value that the length of the major tick marks are
-#' multiplied by
-#' @param vjust_x_labels A value to move the x-axis tick labels and title
-#' by. Negative means move it down, away from the plot, positive is to move
-#' it up, closer to the plot
-#' @param ylim The depletion limits to plot
-#' @param y_breaks The depletion value tick marks to show for the y axis
-#' @param y_labels Labels for the tick marks on the Y axis
-#' @param y_colors Colors for the tick labels on the Y axis
-#' @param alpha The transparency for all ribbons
-#' @param leg_pos The position of the legend inside the plot. If `NULL`,
-#' `NA`, or `none`, the legend will not be shown
-#' @param leg_ncol The number of columns to show in the legend
-#' @param leg_font_size The legend font size
-#' @param axis_title_font_size Size of the font for the X and Y axis labels
-#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param axis_label_color Color for the axis labels and tick labels
-#' @param point_size Size of all points shown in plot
-#' @param line_width Width of all lines on the plot
-#' @param line_gap Gap between the connecting lines and points for each line.
-#' See the `shorten` parameter of [lemon::geom_pointpath()]
-#' @param single_ribbon_lines_color Line color for the ribbon limit lines for
-#' the case where there is only a single model to plot
-#' @param wrap_y_label Logical. If `TRUE`, adds a newline to the y axis
-#' label so that it doesn't get cut off
-#' @param rev_colors Logical. If `TRUE`, reverse the order of the colors
-#' in the plot. Only applies if more than one model is plotted
 #' @param d_obj If not `NULL` this is a list which has been
 #' pre-processed to contain all models in a format that is ready to plot.
 #' Essentially the first steps of this function have been replicated
 #' outside the function (The code inside the `if(is.null(d_obj))`)
 #' is done to stop the Rmd process from taking forever
-#' @param ribbon_line_type Linetype for ribbon edges; use 0 for no line.
-#' @param x_expansion Amount to expand the x axis. See the `expand` argument in
-#' [ggplot2::scale_x_continuous()]
-#' @param point_shape The R shape number for the points
+#' @param show_arrows Logical. If `TRUE`, show arrow that point toward
+#' medians lying outside the plotting area. Also allow the lines toward those
+#' median points to be plotted outside the plotting area. If `FALSE`,
+#' truncate the medians that lie outside the plotting area to the maximum
+#' (or minimum) y limit and draw the lines to go through those new values
+#' @param xlim The year limits to plot
+#' @param x_breaks The year value tick marks to show for the x axis
+#' @param x_labs_mod Value for major X-axis tick marks. Every Nth tick
+#' will be longer and have a label. The first and last will be shown
+#' regardless of what this number is
+#' @param x_expansion Amount to expand the x axis. See the `expand` argument
+#' in [ggplot2::scale_x_continuous()]
+#' @param tick_prop A value that the length of the major tick marks are
+#' multiplied by. This proportion must be set by trial and error. Make sure
+#' to change `vjust_x_labels` so the labels are not overlapping the lines or
+#' are too far away from the lines
+#' @param vjust_x_labels A value to move the x-axis tick labels and title
+#' by. Negative means move it down, away from the plot, positive is to move
+#' it up, closer to the plot
+#' @param ylim The y-axis minimum and maximum limits for the plot
+#' @param y_breaks The tick mark values to show for the y-axis
+#' @param y_labels Labels for the tick marks on the y-axis
+#' @param y_colors Colors for the tick labels on the y-axis
+#' @param alpha The transparency for all ribbons (credible intervals)
+#' @param leg_pos The position of the legend inside the plot. If `NULL`,
+#' `NA`, or "none", the legend will not be shown
+#' @param leg_ncol The number of columns to show in the legend
+#' @param leg_font_size The legend font size
+#' labels
+#' @param wrap_y_label Logical. If `TRUE`, adds a newline to the y-axis
+#' label so that it doesn't get cut off
+#' @param dodge_bo A value to adjust the spacing between multiple B0 points
+#' and errorbars in the case of more than one model being plotted
+#' @param rev_colors Logical. If `TRUE`, reverse the order of the colors
+#' in the plot. Only applies if more than one model is plotted
+#' @param alpha The transparency for the ribbons (credible intervals)
+#' @param point_size The size of the points used for the median lines (See
+#' [ggplot2::geom_point()] for more details)
+#' @param point_color The R color for the points used for the median lines
+#' (See [ggplot2::geom_point()] for more details)
+#' @param point_shape The R shape number for the points used for the median
+#' lines (See [ggplot2::geom_point()] for more details)
+#' @param point_stroke The stroke value for the points used for the median
+#' lines (See [ggplot2::geom_point()] for more details)
+#' @param line_width Width of the median line and errorbar line (for the B0
+#' value) (See [ggplot2::geom_path()] for more details)
+#' @param line_gap Gap between the connecting lines and points for each line.
+#' See the `mult` parameter of [ggh4x::geom_pointpath()]
+#' @param single_ribbon_lines_color Line color for the ribbon limit lines
+#' (credible interval) for the case where there is only a single model to plot
 #' @param single_ribbon_fill The ribbon fill color if there is only a single
 #' model
-#' @param inc_means Logical. If `TRUE` include the mean values in the plot
-#' @param minor_tick_length The length of the small x-axis ticks
-#' @param survey_type Either `age1` or `age2`
-#' @param colors The colors to use for the plot
+#' @param ribbon_line_type Line type for ribbon edges; use 0 for no line.
+#' @param refpt_bo_linecolor The line color for the B0 horizontal line
+#' @param refpt_usr_linecolor The line color for the Upper stock reference
+#' horizontal line
+#' @param refpt_lrp_linecolor The line color for the Limit Reference point
+#' horizontal line
+#' @param refpt_bo_linewidth The line width for the B0 horizontal line
+#' @param refpt_usr_linewidth The line width for the Upper stock reference
+#' horizontal line
+#' @param refpt_lrp_linewidth The line width for the Limit Reference point
+#' horizontal line
+#' @param refpt_bo_linetype The line type for the B0 horizontal line
+#' @param refpt_usr_linetype The line type for the Upper stock reference
+#' horizontal line
+#' @param refpt_lrp_linetype The line type for the Limit Reference point
+#' horizontal line
+#' @param inc_means Logical. If `TRUE` include the mean values in the plot.
+#' Used for recruitment plot only
+#' @param survey_type Either `age1` or `age2`. Used for survey index plots
+#' only
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
 plot_biomass <- function(
     model_lst = NULL,
     model_names,
+    d_obj = NULL,
     show_arrows = TRUE,
     xlim = c(1964,
              year(Sys.time())),
@@ -76,7 +103,6 @@ plot_biomass <- function(
     dodge_bo = 3,
     rev_colors = TRUE,
     wrap_y_label = FALSE,
-    d_obj = NULL,
     alpha = ts_ribbon_alpha,
     point_size = ifelse(is_single_model,
                         ts_single_model_pointsize,
@@ -110,7 +136,7 @@ plot_biomass <- function(
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
       stop("Either `d_obj` or both `model_lst` and `model_names` ",
-           "must be supplied. Both are `NULL`",
+           "must be supplied. Neither data source has been supplied",
            call. = FALSE)
     }
     d_obj <- create_group_df_biomass(model_lst, model_names)
@@ -134,16 +160,16 @@ plot_biomass <- function(
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
                                      modulo = x_labs_mod)
 
-  # Add "Unfished Equilibrium" to the x break labels
-  # with a newline between them
+  # Add "B0" to the x break labels with a newline between them
   x_labels <- c(expression(B[0]), x_labels)
   x_breaks = c(bo$year[1], x_breaks)
 
   d <- d |>
     filter(year <= xlim[2] & year >= ylim[1])
 
-  # Calculate the data out-of-bounds of the y limits (Y-OOB) and
-  # change the CI in the data to cut off at the limits
+  # Calculate the data y-axis out-of-bounds (yoob) and change the credible
+  # interval in the data to cut off at the limits (or not if `show_arrows`
+  # is `TRUE`)
   yoob_bo <- calc_yoob(bo, ylim, "slower", "smed", "supper", show_arrows)
   yoob <- calc_yoob(d, ylim, "slower", "smed", "supper", show_arrows)
 
@@ -171,9 +197,9 @@ plot_biomass <- function(
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
-          # These two commands move the x-axis major tick labels and axis
-          # title down so that the ticks. tick labels, and axis title don't
-          # overlap each other
+          # These following two arguments move the x-axis major tick labels
+          # and axis title down so that the ticks, tick labels, and axis
+          # title don't overlap each other
           axis.text.x = element_text(vjust = vjust_x_labels),
           axis.title.x = element_text(vjust = vjust_x_labels)) +
     labs(x = "Year",
@@ -181,7 +207,8 @@ plot_biomass <- function(
                     add_newlines("Female Spawning Biomass+(Mt)"),
                     "Female Spawning Biomass (Mt)"))
 
-  # Add the median lines
+  # Add the median points and connecting lines.
+  # Uses `ggh4x::geom_pointpath()`
   if(is_single_model){
     g <- g +
       geom_pointpath(linewidth = line_width,
@@ -199,7 +226,7 @@ plot_biomass <- function(
                      mult = line_gap)
   }
 
-  # Add B0 to the plot
+  # Add B0 point and credible interval to the plot
   g <- g +
     geom_errorbar(data = yoob_bo$d,
                   linewidth = line_width,
@@ -216,21 +243,19 @@ plot_biomass <- function(
                shape = point_shape,
                position = position_dodge(dodge_bo))
 
-  # Add arrows to the plot to point toward the out of bounds data points
+  # Add arrows to point toward the out of bounds data points
+  # Note no `+` here, but the pipe instead `|>`
   g <- g |>
     draw_arrows_yoob(yoob) |>
     draw_arrows_yoob(yoob_bo)
 
-  # Add major tick marks
+  # Add a major tick mark every `x_labs_mod` years
   g <- g |>
     add_major_ticks(x_breaks = x_breaks,
                     modulo = x_labs_mod,
-                    # This proportion must be set by trial and error
-                    # Make sure to change `vjust` value above in the `theme()`
-                    # call so the labels are not overlapping the lines or
-                    # too far away from the lines
                     prop = tick_prop)
 
+  # Add legend if requested
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
       theme(legend.position = "none")
