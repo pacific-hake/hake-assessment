@@ -209,22 +209,16 @@ plot_biomass <- function(
 
   # Add the median points and connecting lines.
   # Uses `ggh4x::geom_pointpath()`
-  if(is_single_model){
-    g <- g +
-      geom_pointpath(linewidth = line_width,
-                     size = point_size,
-                     color = point_color,
-                     shape = point_shape,
-                     stroke = point_stroke,
-                     mult = line_gap)
-  }else{
-    g <- g +
-      geom_pointpath(linewidth = line_width,
-                     size = point_size,
-                     shape = point_shape,
-                     stroke = point_stroke,
-                     mult = line_gap)
-  }
+  # `do.call()` used here to include the `color` argument only if
+  # `is_single_model`is `TRUE`
+  g <- g +
+    do.call(geom_pointpath,
+            c(list(linewidth = line_width,
+                   size = point_size,
+                   shape = point_shape,
+                   stroke = point_stroke,
+                   mult = line_gap),
+              list(color = point_color)[is_single_model]))
 
   # Add B0 point and credible interval to the plot
   g <- g +

@@ -6,6 +6,7 @@
 plot_rel_biomass <- function(
     model_lst = NULL,
     model_names = NULL,
+    d_obj = NULL,
     show_arrows = TRUE,
     xlim = c(1966, year(Sys.time())),
     x_breaks = xlim[1]:xlim[2],
@@ -14,12 +15,12 @@ plot_rel_biomass <- function(
     tick_prop = 1,
     vjust_x_labels = -2,
     ylim = c(0, 3.5),
+    y_breaks = seq(ylim[1], ylim[2], by = 0.5),
     leg_pos = c(0.65, 0.83),
     leg_ncol = 1,
     leg_font_size = 12,
     rev_colors = FALSE,
     wrap_y_label = FALSE,
-    d_obj = NULL,
     alpha = ts_ribbon_alpha,
     point_size = ifelse(is_single_model,
                         ts_single_model_pointsize,
@@ -53,7 +54,7 @@ plot_rel_biomass <- function(
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
       stop("Either `d_obj` or both `model_lst` and `model_names` ",
-           "must be supplied. Both are `NULL`",
+           "must be supplied. Neither data source has been supplied",
            call. = FALSE)
     }
     d_obj <- create_group_df_biomass(model_lst,
@@ -61,43 +62,26 @@ plot_rel_biomass <- function(
                                      rel = TRUE)
   }
 
-  if(ylim[2] %% 0.5 != 0){
-    stop("The upper `ylim` value must be divisible by 0.5",
-         call. = FALSE)
-  }
-
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
                                      modulo = x_labs_mod)
 
-  y_breaks <- c(0, 0.1, 0.4, 0.5, 1.0)
-  y_labels <- expression("0",
-                         "0.1B"[0],
-                         "0.4B"[0],
-                         "0.5",
-                         "B"[0])
-  y_colors <- c("black",
-                refpt_lrp_linecolor,
-                refpt_usr_linecolor,
-                "black",
-                refpt_bo_linecolor)
-  if(ylim[2] < 1){
-    stop("Relative spawning biomass plot y-axis max must be 1 or greater",
-         call. = FALSE)
-  }
-  if(ylim[2] > 1){
-    seq_above_1 <- seq(1.5,
-                       ylim[2],
-                       by = 0.5)
-    y_breaks <- c(y_breaks,
-                  seq_above_1)
-    y_labels <- c(y_labels,
-                  parse(text = as.character(seq_above_1)))
-    y_colors <- c(y_colors,
-                  rep("black",
-                      length(seq_above_1)))
-  }
+  # Set up the y breaks, labels, and colors
+  y_breaks_input <- y_breaks
+  y_breaks_refpts <- c(0.1, 0.4, 1.0)
+  y_breaks <- sort(unique((c(y_breaks_input, y_breaks_refpts))))
+  wch_refpts <- map_dbl(y_breaks_refpts, ~{which(.x == y_breaks)})
+  y_labels <- y_breaks
+  y_labels[wch_refpts] <- expression("0.1B"[0], "0.4B"[0], "B"[0])
 
-  d <- d_obj[[1]]
+  # `axis_label_color` is a package data variable
+  y_colors <- rep(axis_label_color, length(y_breaks))
+  y_colors[wch_refpts] <- c(refpt_lrp_linecolor,
+                            refpt_usr_linecolor,
+                            refpt_bo_linecolor)
+
+  d <- d_obj[[1]] |>
+    filter(year <= xlim[2] & year >= xlim[1])
+
   is_single_model <- length(unique(d$model)) == 1
   colors <- plot_color(length(unique(d$model)))
   ribbon_colors <- colors
@@ -109,10 +93,6 @@ plot_rel_biomass <- function(
     colors <- single_ribbon_lines_color
     ribbon_colors <- single_ribbon_fill
   }
-
-  # Remove projection years
-  d <- d |>
-    filter(year <= xlim[2] & year >= xlim[1])
 
   # Calculate the data outside the range of the y limits and
   # change the CI in the data to cut off at the limits
@@ -134,23 +114,20 @@ plot_rel_biomass <- function(
     geom_ribbon(alpha = alpha,
                 linetype = ribbon_line_type)
 
-  if(is_single_model){
-    g <- g +
-      geom_pointpath(linewidth = line_width,
-                     size = point_size,
-                     color = point_color,
-                     shape = point_shape,
-                     stroke = point_stroke,
-                     mult = line_gap)
-  }else{
-    g <- g +
-      geom_pointpath(linewidth = line_width,
-                     size = point_size,
-                     shape = point_shape,
-                     stroke = point_stroke,
-                     mult = line_gap)
-  }
+  # Add the median points and connecting lines.
+  # Uses `ggh4x::geom_pointpath()`
+  # `do.call()` used here to include the `color` argument only if
+  # `is_single_model`is `TRUE`
+  g <- g +
+    do.call(geom_pointpath,
+            c(list(linewidth = line_width,
+                   size = point_size,
+                   shape = point_shape,
+                   stroke = point_stroke,
+                   mult = line_gap),
+              list(color = point_color)[is_single_model]))
 
+  # Add reference point lines
   g <- g +
     geom_hline(yintercept = 0.1,
                linetype = refpt_lrp_linetype,
@@ -173,14 +150,14 @@ plot_rel_biomass <- function(
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
-          # These two commands move the x-axis major tick labels and axis
-          # title down so that the ticks. tick labels, and axis title don't
-          # overlap each other
+          # These following two arguments move the x-axis major tick labels
+          # and axis title down so that the ticks, tick labels, and axis
+          # title don't overlap each other
           axis.text.x = element_text(vjust = vjust_x_labels),
           axis.title.x = element_text(vjust = vjust_x_labels),
           axis.text.y = element_text(color = y_colors),
-          # plot.margin: top, right,bottom, left
-          # Needed to avoid tick labels cutting off
+          # Needed to avoid x-axis label cutting off
+          # margin() arguments: (top, right, bottom, left)
           plot.margin = margin(12, 12, 7, 0)) +
     labs(x = "Year",
          y = ifelse(wrap_y_label,
@@ -188,20 +165,18 @@ plot_rel_biomass <- function(
                                     paste("("~B[t]/B[0]~")"))),
                     expression(paste("Rel. Spawning Biomass ("~B[t]/B[0]~")"))))
 
-  # Add arrows to the plot to point toward the out of bounds data points
+  # Add arrows to point toward the out of bounds data points
+  # Note no `+` here, but the pipe instead `|>`
   g <- g |>
     draw_arrows_yoob(yoob)
 
-  # Add major tick marks
+  # Add a major tick mark every `x_labs_mod` years
   g <- g |>
     add_major_ticks(x_breaks = x_breaks,
                     modulo = x_labs_mod,
-                    # This proportion must be set by trial and error
-                    # Make sure to change `vjust` value above in the `theme()`
-                    # call so the labels are not overlapping the lines or
-                    # too far away from the lines
                     prop = tick_prop)
 
+  # Add legend if requested
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
       theme(legend.position = "none")
