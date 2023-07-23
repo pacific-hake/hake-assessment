@@ -8,11 +8,11 @@
 #' these ages will be thicker and the labels for them will be bold as well
 #' @param cols A vector of colors to base the color ramp on. See
 #' [ggplot2::scale_color_gradientn()]
-#' @param axis_title_font_size Size of the font for the X and Y axis labels
-#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param axis_text_color The color of the tick labels and axis labels
 #' @param age_label_font_size The font size for the labels pointing to the age
 #' lines
+#' @param age_label_side Where to place the age labels next to the lines.
+#' One of "none", "both", "left", or "right"
+#' @param ... Arguments passed to [ggrepel::geom_label_repel()]
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -23,10 +23,9 @@ plot_weight_at_age <- function(wa,
                                         "darkblue",
                                         "yellow",
                                         "darkgreen"),
-                               axis_title_font_size = 14,
-                               axis_tick_font_size = 11,
-                               axis_text_color = "black",
-                               age_label_font_size = 4){
+                               age_label_font_size = 4,
+                               age_label_side = "right",
+                               ...){
 
   age_inds <- grep("^\\d+$", names(wa))
   if(!length(age_inds)){
@@ -95,38 +94,30 @@ plot_weight_at_age <- function(wa,
                        labels = y_labels,
                        expand = c(0, 0),
                        limits = c(0, max_value)) +
-    # geom_label_repel(data = w |> filter(yr == min_yr),
-    #                  aes(label = age),
-    #                  nudge_x = -3.5,
-    #                  size = age_label_font_size) +
-    geom_label_repel(data = w |> filter(yr == max_yr),
-                     aes(label = age),
-                     nudge_x = 3.5,
-                     size = age_label_font_size) +
     xlab("Year") +
     ylab("Mean weight-at-age (kg)") +
-    theme(axis.text.x = element_text(color = axis_text_color,
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -0.25,
-                                     face = "plain"),
-          axis.text.y = element_text(color = axis_text_color,
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = axis_text_color,
-                                      size = axis_title_font_size,
-                                      angle = 0,
-                                      vjust = 0,
-                                      face = "plain"),
-          axis.title.y = element_text(color = axis_text_color,
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      face = "plain"),
-          plot.margin = margin(12, 12, 7, 7),
-          legend.position = "none")
+    theme(legend.position = "none")
+
+  if("left" %in% age_label_side || "both" %in% age_label_side){
+    g <- g +
+      geom_label_repel(data = w |> filter(yr == min_yr),
+                       aes(label = age),
+                       nudge_x = -3.5,
+                       size = age_label_font_size,
+                       arrow = arrow(length = unit(3, "mm"),
+                                     type = "closed"),
+                       ...)
+  }
+  if("right" %in% age_label_side || "both" %in% age_label_side){
+    g <- g +
+      geom_label_repel(data = w |> filter(yr == max_yr),
+                       aes(label = age),
+                       nudge_x = 3.5,
+                       size = age_label_font_size,
+                       arrow = arrow(length = unit(3, "mm"),
+                                     type = "closed"),
+                       ...)
+  }
 
   g
 }

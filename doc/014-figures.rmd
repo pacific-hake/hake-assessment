@@ -344,7 +344,8 @@ plot_weight_at_age(wt_at_age,
                    cols = c("purple",
                             "darkblue",
                             "yellow",
-                            "darkgreen"))
+                            "darkgreen"),
+                   max.overlaps = 15)
   
 }else{
   base_model$plots$weight_at_age_lines

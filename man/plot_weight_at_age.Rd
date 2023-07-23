@@ -9,10 +9,9 @@ plot_weight_at_age(
   ages = NULL,
   bold_ages = NULL,
   cols = c("purple", "darkblue", "yellow", "darkgreen"),
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
-  axis_text_color = "black",
-  age_label_font_size = 4
+  age_label_font_size = 4,
+  age_label_side = "right",
+  ...
 )
 }
 \arguments{
@@ -28,14 +27,13 @@ these ages will be thicker and the labels for them will be bold as well}
 \item{cols}{A vector of colors to base the color ramp on. See
 \code{\link[ggplot2:scale_gradient]{ggplot2::scale_color_gradientn()}}}
 
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{axis_text_color}{The color of the tick labels and axis labels}
-
 \item{age_label_font_size}{The font size for the labels pointing to the age
 lines}
+
+\item{age_label_side}{Where to place the age labels next to the lines.
+One of "none", "both", "left", or "right"}
+
+\item{...}{Arguments passed to \code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}}}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
