@@ -8,7 +8,15 @@ plot_survey_biomass(
   model,
   index = c("age1", "age2"),
   y_lim = c(0, 3),
-  hide_yrs = 2012
+  hide_yrs = 2012,
+  alpha = 0.3,
+  point_size = ts_single_model_pointsize,
+  point_color = ts_single_model_pointcolor,
+  point_shape = ts_single_model_pointshape,
+  point_stroke = ts_single_model_pointstroke,
+  line_width = ts_single_model_linewidth,
+  line_color = ts_single_model_linecolor,
+  line_type = ts_single_model_linetype
 )
 }
 \arguments{
@@ -21,6 +29,27 @@ for the y-axis on the plot}
 
 \item{hide_yrs}{A vector of years to not show the year labels for on the
 x-axis. This is to prevent label overlap}
+
+\item{alpha}{The transparency for the error bars (non-squid). Transparency
+for the squid error bars are 1}
+
+\item{point_size}{The size of the points (See \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} for
+more details)}
+
+\item{point_color}{The R color for the points (See \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}
+for more details)}
+
+\item{point_shape}{The R shape number for the points (See
+\code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} for more details)}
+
+\item{point_stroke}{The stroke value for the points (See
+\code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} for more details)}
+
+\item{line_width}{Width of the error bar lines}
+
+\item{line_color}{R color for the error bar lines}
+
+\item{line_type}{Line type for the error bar lines}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
