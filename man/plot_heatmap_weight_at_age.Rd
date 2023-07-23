@@ -13,9 +13,6 @@ plot_heatmap_weight_at_age(
   proj_line_yr = NULL,
   yrs = NULL,
   cell_font_size = 4,
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
-  axis_text_color = "black",
   ...
 )
 }
@@ -42,13 +39,6 @@ years will be included}
 
 \item{cell_font_size}{Font size of the values printed in each cell of
 the table}
-
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick
-labels}
-
-\item{axis_text_color}{Color for the axis ticks and labels}
 
 \item{...}{Arguments passed to `\code{\link[=heatmap_add_extrap_yrs_wa]{heatmap_add_extrap_yrs_wa()}} and
 \code{\link[=heatmap_calc_function]{heatmap_calc_function()}}}

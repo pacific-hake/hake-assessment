@@ -40,10 +40,6 @@
 #' extrapolated/interpolated. If there is a value, the weight-at-age is data
 #' @param cell_font_size Font size of the values printed in each cell of
 #' the table
-#' @param axis_title_font_size Size of the font for the X and Y axis labels
-#' @param axis_tick_font_size Size of the font for the X and Y axis tick
-#' labels
-#' @param axis_text_color Color for the axis ticks and labels
 #' @param ... Arguments passed to `[heatmap_add_extrap_yrs_wa()] and
 #' [heatmap_calc_function()]
 #'
@@ -58,9 +54,6 @@ plot_heatmap_weight_at_age <- function(
     proj_line_yr = NULL,
     yrs = NULL,
     cell_font_size = 4,
-    axis_title_font_size = 14,
-    axis_tick_font_size = 11,
-    axis_text_color = "black",
     ...){
 
   stopifnot(!is.null(sample_size_df))
@@ -115,7 +108,7 @@ plot_heatmap_weight_at_age <- function(
   # Move weight-at-age data into `ggplot` (long) format ----
   # Rescale the value column so it is between 0 and 1, which is required
   # to create a color gradient using `scale_fill_gradientn()``
-  w <- wa |>
+w <- wa |>
     pivot_longer(-yr, names_to = "age" ) |>
     mutate(age = as.numeric(age)) |>
     mutate(age = factor(age)) |>
@@ -171,27 +164,7 @@ plot_heatmap_weight_at_age <- function(
                color = proj_line_color,
                size = proj_line_width) +
     xlab("Age") +
-    ylab("Year") +
-    theme(axis.text.x = element_text(color = axis_text_color,
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -0.25,
-                                     face = "plain"),
-          axis.text.y = element_text(color = axis_text_color,
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = axis_text_color,
-                                      size = axis_title_font_size,
-                                      angle = 0,
-                                      vjust = 0,
-                                      face = "plain"),
-          axis.title.y = element_text(color = axis_text_color,
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      face = "plain"))
+    ylab("Year")
 
   g
 }
