@@ -60,6 +60,7 @@ plot_catches <- function(ct,
                      "  ",
                      fishery_nms[7:9],
                      "   ")
+
   d <- enframe(fishery_nms, name = NULL) |>
     set_names(c("fishery"))
 
