@@ -30,7 +30,7 @@
 #' Fleet -2 will plot fecundity information.
 #' Fleet -1 will plot population weight-at-age for the middle of the year.
 #' Fleet 0 will plot population weight-at-age for the beginning of the year.
-#' Positive values for fleet will link to a modeled fleet.
+#' Positive values for fleet will link to a modelled fleet.
 #' @param proj_line_color Line color to separate projection years.
 #' @param proj_line_width Line width to separate projection years.
 #' @param yrs A vector of the years to include in the table. If `NULL`, all

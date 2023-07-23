@@ -56,7 +56,7 @@ heatmap_add_extrap_yrs_wa <- function(
   # Extract unique columns ----
   # If there is a plus group in the waa data, and there are ages larger than
   # that, the vector `unq_cols` will have `FALSE` for those column indices
-  # and `TRUE` for the ages equal to and younger than the plus group
+  # and `TRUE` for the ages equal to and younger than the plus group.
   unq_cols <- apply(wa, 1, duplicated) |>
     t() |>
     as.data.frame() |>
@@ -64,6 +64,10 @@ heatmap_add_extrap_yrs_wa <- function(
     slice(1) |>
     unlist() %>%
     `!`()
+  # Special case: For fecundity, age 0 and age 1 have columns of all zeros
+  # so we need to catch that and not remove the age 1 column in that case
+  wch_age1 <- which(names(wa) == "1")
+  unq_cols[wch_age1] <- TRUE
 
   # Remove duplicated columns (typically plus group) ----
   nms <- names(wa)

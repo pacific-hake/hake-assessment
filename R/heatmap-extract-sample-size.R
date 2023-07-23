@@ -67,6 +67,7 @@ heatmap_extract_sample_size <- function(sample_size_df = NULL,
     # which indicate interpolated/Non-interpolated values (zero/non-zero)
     bf <- bf |>
       mutate_at(vars(-yr), ~{!as.logical(.x)})
+
     if(!identical(dim(bf), dim(wa))){
       stop("The structure (dimensions) of `bf` is not identical to the ",
            "structure of `wa`. Chek `heatmap_extract_bf()`",
