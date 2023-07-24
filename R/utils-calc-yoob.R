@@ -19,7 +19,7 @@ calc_yoob <- function(d,
                       lo_col,
                       med_col,
                       hi_col,
-                      show_arrows){
+                      show_arrows = TRUE){
 
   lo_col_sym <- sym(lo_col)
   med_col_sym <- sym(med_col)
