@@ -1,17 +1,16 @@
 #' Plot recruitment deviations from MCMC output for one or more models
 #'
 #' @rdname plot_biomass
-#' @param single_point_color Color to use for the points if there is only
-#' one model
-#' @param crossbar_width The width of the crossbar ends in
-#' [ggplot2::geom_errorbar()]
 #' @param dodge_val The amount to separate lines between unique models
 #' multiple model plots
+#' @param ... Arguments passed to [ggplot2::geom_pointrange()]
 #'
 #' @export
 plot_recdevs <- function(
     model_lst = NULL,
     model_names = NULL,
+    d_obj = NULL,
+    show_arrows = TRUE,
     xlim = c(1946, year(Sys.time())),
     x_breaks = xlim[1]:xlim[2],
     x_labs_mod = 5,
@@ -20,18 +19,27 @@ plot_recdevs <- function(
     vjust_x_labels = -2,
     ylim = c(-5, 5),
     y_breaks = seq(ylim[1], ylim[2], by = 1),
-    alpha = hake::main_alpha,
     leg_pos = c(0.65, 0.83),
     leg_ncol = 1,
     leg_font_size = 12,
-    point_size = 1.5,
-    line_width = 0.5,
-    single_point_color = "black",
-    single_line_color = "black",
+    alpha = 1,
+    point_size = 0.5,
+    point_color = ts_single_model_pointcolor,
+    point_shape = ifelse(is_single_model,
+                         ts_single_model_pointshape,
+                         ts_pointshape),
+    point_stroke = ifelse(is_single_model,
+                          ts_single_model_pointstroke,
+                          ts_pointstroke),
+    line_width = ifelse(is_single_model,
+                        ts_single_model_linewidth,
+                        ts_linewidth),
+    line_type = ts_single_model_linetype,
+    line_color = ts_single_model_linecolor,
     crossbar_width = 0,
-    dodge_val = 0.5,
+    dodge_val = 1,
     rev_colors = FALSE,
-    d_obj = NULL){
+    ...){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -51,8 +59,8 @@ plot_recdevs <- function(
   }
   is_single_model <- length(unique(d$model)) == 1
   if(is_single_model){
-    colors <- single_point_color
-    line_colors <- single_line_color
+    colors <- point_color
+    line_colors <- line_color
   }
 
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
@@ -63,7 +71,12 @@ plot_recdevs <- function(
 
   # Calculate the data outside the range of the y limits and
   # change the CI in the data to cut off at the limits
-  yoob <- calc_yoob(d, ylim, "devlower", "devmed", "devupper")
+  yoob <- calc_yoob(d,
+                    ylim,
+                    "devlower",
+                    "devmed",
+                    "devupper",
+                    show_arrows = show_arrows)
 
   g <- ggplot(yoob$d,
               aes(x = year,
@@ -81,8 +94,6 @@ plot_recdevs <- function(
                color = "black",
                linetype = "solid",
                size = 0.5) +
-    geom_point(size = point_size,
-               position = position_dodge(dodge_val)) +
     scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
                        labels = x_labels) +
@@ -100,19 +111,23 @@ plot_recdevs <- function(
     xlab("Year") +
     ylab("Recruitment deviations")
 
+  # Add the points and error bars
   if(is_single_model){
     g <- g +
-      geom_point(size = point_size,
-                 color = colors) +
-      geom_errorbar(size = line_width,
-                    position = position_dodge(dodge_val),
-                    alpha = alpha,
-                    width = crossbar_width)
+      geom_pointrange(size = point_size,
+                      shape = point_shape,
+                      stroke = point_stroke,
+                      color = point_color,
+                      alpha = alpha,
+                      ...)
   }else{
     g <- g +
-      geom_errorbar(size = line_width,
-                  position = position_dodge(dodge_val),
-                  width = crossbar_width)
+      geom_pointrange(size = point_size,
+                      shape = point_shape,
+                      stroke = point_stroke,
+                      position = position_dodge(dodge_val),
+                      alpha = alpha,
+                      ...)
   }
 
   # Add arrows to the plot to point toward the out of bounds data points

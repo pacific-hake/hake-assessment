@@ -382,15 +382,12 @@ plist[[2]] <-
   plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
                leg_pos = "none",
                x_labs_mod = 10,
-               clip_cover = 0.25,
-               line_width = 0.25)
+               line_width = 0.1)
 
 plist[[3]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
                          survey_type = "age2",
                          rev_colors = FALSE,
-                         clip_cover = 0.25,
-                         axis_title_font_size = 12,
                          leg_pos = "none")
 
 plist[[4]] <-

@@ -150,6 +150,8 @@ plot_fore_compare(
 plot_recdevs(
   model_lst = NULL,
   model_names = NULL,
+  d_obj = NULL,
+  show_arrows = TRUE,
   xlim = c(1946, year(Sys.time())),
   x_breaks = xlim[1]:xlim[2],
   x_labs_mod = 5,
@@ -158,18 +160,21 @@ plot_recdevs(
   vjust_x_labels = -2,
   ylim = c(-5, 5),
   y_breaks = seq(ylim[1], ylim[2], by = 1),
-  alpha = hake::main_alpha,
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  point_size = 1.5,
-  line_width = 0.5,
-  single_point_color = "black",
-  single_line_color = "black",
+  alpha = 1,
+  point_size = 0.5,
+  point_color = ts_single_model_pointcolor,
+  point_shape = ifelse(is_single_model, ts_single_model_pointshape, ts_pointshape),
+  point_stroke = ifelse(is_single_model, ts_single_model_pointstroke, ts_pointstroke),
+  line_width = ifelse(is_single_model, ts_single_model_linewidth, ts_linewidth),
+  line_type = ts_single_model_linetype,
+  line_color = ts_single_model_linecolor,
   crossbar_width = 0,
-  dodge_val = 0.5,
+  dodge_val = 1,
   rev_colors = FALSE,
-  d_obj = NULL
+  ...
 )
 
 plot_recruitment(
@@ -445,14 +450,10 @@ others}
 \item{short}{Logical. If \code{TRUE}, draw only 3 lines (decline, under B40,
 under B10)}
 
-\item{single_point_color}{Color to use for the points if there is only
-one model}
-
-\item{crossbar_width}{The width of the crossbar ends in
-\code{\link[ggplot2:geom_linerange]{ggplot2::geom_errorbar()}}}
-
 \item{dodge_val}{The amount to separate lines between unique models
 multiple model plots}
+
+\item{...}{Arguments passed to \code{\link[ggplot2:geom_linerange]{ggplot2::geom_pointrange()}}}
 
 \item{inc_means}{Logical. If \code{TRUE} include the mean values in the plot.
 Used for recruitment plot only}
