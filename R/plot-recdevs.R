@@ -36,7 +36,6 @@ plot_recdevs <- function(
                         ts_linewidth),
     line_type = ts_single_model_linetype,
     line_color = ts_single_model_linecolor,
-    crossbar_width = 0,
     dodge_val = 1,
     rev_colors = FALSE,
     ...){

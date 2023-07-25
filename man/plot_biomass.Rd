@@ -171,7 +171,6 @@ plot_recdevs(
   line_width = ifelse(is_single_model, ts_single_model_linewidth, ts_linewidth),
   line_type = ts_single_model_linetype,
   line_color = ts_single_model_linecolor,
-  crossbar_width = 0,
   dodge_val = 1,
   rev_colors = FALSE,
   ...
@@ -281,6 +280,8 @@ plot_rel_recruitment(
 plot_survey_index_fits(
   model_lst = NULL,
   model_names = NULL,
+  d_obj = NULL,
+  show_arrows = TRUE,
   survey_type = c("age1", "age2"),
   xlim = c(1995, 2021),
   x_breaks = xlim[1]:xlim[2],
@@ -290,16 +291,24 @@ plot_survey_index_fits(
   vjust_x_labels = -2,
   ylim = c(0, 3),
   y_breaks = seq(ylim[1], ylim[2], by = 0.5),
-  alpha = 0.1,
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  point_size = 1.5,
-  line_width = 0.5,
-  clip_cover = 2,
-  rev_colors = FALSE,
+  alpha = 1,
+  point_size = ts_pointsize,
+  point_color = ts_single_model_pointcolor,
+  point_shape = ifelse(is_single_model, ts_single_model_pointshape, ts_pointshape),
+  point_stroke = ifelse(is_single_model, ts_single_model_pointstroke, ts_pointstroke),
+  line_width = ifelse(is_single_model, ts_single_model_linewidth, ts_linewidth),
+  line_type = ts_single_model_linetype,
+  line_color = ts_single_model_linecolor,
+  obs_point_shape = 17,
+  obs_point_size = ts_pointsize,
+  obs_line_type = "dashed",
+  obs_color = "black",
   dodge_val = 0.5,
-  d_obj = NULL
+  rev_colors = FALSE,
+  ...
 )
 }
 \arguments{

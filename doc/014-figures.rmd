@@ -396,8 +396,6 @@ plist[[4]] <-
                          xlim = c(1995, 2022),
                          ylim = c(0, 11),
                          y_breaks = seq(0, 11, by = 2),
-                         clip_cover = 0.25,
-                         axis_title_font_size = 12,
                          rev_colors = FALSE,
                          leg_pos = "none")
 
@@ -410,6 +408,7 @@ full_plist <- list()
 full_plist[[1]] <-
   plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
                show_arrows = TRUE,
+               dodge_bo = 0.75,
                leg_ncol = 2,
                leg_font_size = 7,
                wrap_y_label = TRUE,
