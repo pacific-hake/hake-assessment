@@ -7,17 +7,17 @@
 plot_pearson_bubbles(
   model,
   type = c("fishery", "survey"),
-  clines = hake::age_bubble_cohorts,
+  clines = age_bubble_cohorts,
   by = 5,
   leg_pos = "none",
   alpha = 0.3,
   xlim = c(1975, year(Sys.Date())),
-  point_alpha = hake::main_alpha,
-  point_fill = hake::main_fill,
+  point_alpha = main_alpha,
+  point_fill = main_fill,
   point_color = "black",
-  diag_line_color = hake::age_diag_line_color,
-  diag_line_width = hake::age_diag_line_width,
-  diag_line_type = hake::age_diag_line_type,
+  diag_line_color = age_diag_line_color,
+  diag_line_width = age_diag_line_width,
+  diag_line_type = age_diag_line_type,
   ...
 )
 }

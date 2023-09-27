@@ -11,9 +11,6 @@ plot_survey_fit_mcmc(
   n_posts = NULL,
   show_legend = TRUE,
   ylim = c(0, 5),
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
-  axis_label_color = "black",
   post_line_width = 0.1,
   post_line_col = "black",
   post_line_alpha = 0.1,
@@ -50,12 +47,6 @@ of posteriors, all posterior lines will be shown}
 
 \item{ylim}{A vector of two values representing the minimum and maximum
 values to appear on the y-axis}
-
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{axis_label_color}{Color for the axis labels and tick labels}
 
 \item{post_line_width}{The width of the posterior lines}
 
@@ -109,6 +100,12 @@ they can more easily be seen in contrast to the background posterior lines}
 
 \item{glow_alpha}{The transparency to use for the "glow" effect around
 lines}
+
+\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
+
+\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{axis_label_color}{Color for the axis labels and tick labels}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
