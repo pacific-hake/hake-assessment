@@ -17,7 +17,7 @@
 #'
 #' @return Nothing
 gotest <- function(repo_dr = "~/github/pacific-hake/hake",
-                   copy_tmpdir = TRUE){
+                   copy_tmpdir = FALSE){
 
   # Set global dir name to return back to with `goback()`
   cdr <<- repo_dr
