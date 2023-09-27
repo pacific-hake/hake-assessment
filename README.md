@@ -4,6 +4,78 @@ ____
 *A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.*
 _____________________________________________________________
 
+## Update - Complete rewrite of code
+* Now a true R package
+* Converted all document code from Sweave with LaTeX to Rmarkdown. See the
+ [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) for help on this syntax
+* Standardize all code filenames by category and one function per file
+* All document text rewritten to conform to Rmarkdown standards
+* Incorporates `bookdown` package for document building
+* `r4ss` package now only used for loading of outputs, not for any figures
+  or tables
+* Table of Contents has been improved with uniform spacing and numbering,
+  and with the Appendix section appearing the same as the main section
+* All figure functions standardized to return `ggplot2:ggplot()` objects,
+  and utilize package global variables for many plot attributes for
+  standardization
+* All tables standardized to return `knitr::kbl()` objects
+* post-processor code injection removes all LaTeX from the core document
+  text for ease of writing
+* All data tables pre-loaded into global package variables to shorten build
+  time and aggregate loading code
+* Decision tables have their format the same as the rest of the tables in the
+  document. There is also more room in them so there are more complete
+  descriptions
+* All old, unused functions and other code removed  
+* Use of Rmarkdown means that no special LaTeX markup needs to be used any
+  longer. For example:
+  - The fancy backward and forward quotes that come before and after quoted
+    text are simpler. With LaTeX we had to write quotes like this:
+    `` `some quote' `` or ```` ``some quote''````. Now we can just write
+    `'some quote'` or `"some quote"` to get the same result
+  - Backslashes before special characters are no longer necessary. Previously
+    we would have to write something like `the 97.5\% quantile`. Now we would
+    simply write `the 97.5% quantile`. This has always been a thorn in our
+    side as forgetting one backslash broke the build broken
+---
+## How to create hake.pdf
+**The `RDS` files must have been created before the document can be built.**
+
+* Load the hake package like this: `devtools::load_all(".")`
+* Render the PDF like this: `render()`
+* If you look at the `hake.pdf` file now, it will be quite ugly with missing
+  references and no Table of Contents among other things. We must run the
+  post-processor to add LaTeX to the Tex file that was generated. It only
+  take a couple of seconds to run:
+  - `post_process("hake.tex")`
+* The Tex file must now be run through LaTeX again, using LuaLatex to give us
+  the final document. Go to a OS terminal window and run the following. Note
+  that `lualatex` is run twice. This is to ensure all references are set
+  correctly. If you run it only once you will find many question marks in the
+  document for figure and table references.
+  - `lualatex hake.tex; lualatex hake.tex`
+
+**`render()` function details**
+
+* Calls the `bookdown::render_book()` function to generate the PDF.
+* Runs the post processing step (`post_process()`) which will:
+  - Insert the Table of Contents
+  - Move any figures or tables around that need to be (Add latex
+    position variables such as [H], [bt] [!H]). The setup file for this
+    is `doc/object-placement.csv`
+  - Customize longtables so they have "continued on next page..." and
+    "Continued from previous page..." on them
+  - Process landscape figures and tables
+  - Align table captions that need it
+  - Add figure and table numbers
+  - Remove vertical space before section headings
+  - Place a marker in the file saying that it's been post-processed
+    so post-processing cannot be run on it a second time
+
+## Debugging a figure or table, or anything else
+
+* 
+
 ## 2023 Assessment cycle (Jan - Mar 2023)
 
 * Model runs were done on an Ubuntu 22.04 LTS server with 80 Xeon Gold CPUs and 128 GB of RAM
@@ -40,7 +112,7 @@ _____________________________________________________________
 
 ## Base model bash script
 
-* The base model is special and has it's own bash script. It is
+* The base model is special and has its own bash script. It is
   `run-base-model.sh`. This needs to be edited each year before beginning.
     
 * Check all the variables and make sure they are correct. Change the
@@ -110,76 +182,6 @@ _____________________________________________________________
 * The `create-sensitivity-dirs.sh` runs code that calls an R function to create
   the standard set of sensitivities for hake, and insert the files into the
   correct directory structure. This needs to be run every year
-
----
-## How to create hake-assessment.pdf
-**The `RDS` files must have been created before the document can be built.**
-
-### Method 1
-
-* Run the following in an R session:
-```R
-source(here::here("R/all.R"))
-build_doc()
-```
-  
-* After the first time you do this, the models will be loaded
-  into the R workspace and any subsequent builds will be a little faster
-  
-* This method has the benefit of one-click type build but if there is
-  an error on the **LaTeX** part it can hang up your R session
-
-### Method 2 (best when working on figures)
-
-* Change to the `doc` subdirectory in the repository and run this in R:
-```R
-knitr::knit("hake-assessment.rnw")
-```
-To add alternative text (after running the above without a cache):
-```R
-add_alt_text(alt_fig_text = alt_fig_text)
-```
-
-Then in a bash terminal:
-```
-lualatex hake-assessment # To create the PDF
-lualatex hake-assessment  # If you notice ?? references in the PDF
-bibtex hake-assessment # To link the bibliography references
-```
-
-## How to work on figures created in the knitr chunks:
-
-* Use `knitr::knit("hake-assessment.rnw")` from within the `doc` directory
-  to knit the document. Once it has been knit, the knitr cache will contain
-  PNG files with the knitr chunk name as the file name, one for each figure
-  
-  - Open the figure and make it fullscreen so you can see details. Assuming
-    it still needs work:
-  
-  - Go back the the function call inside the knitr chunk and change that
-    code however you need to to fix the problem. This will be very fast
-    
-  - Knit the document again with `knitr::knit("hake-assessment.rnw")` and
-    switch back to the open image file and see your change happen to the figure
-    
-  - Iterate these steps until your figure looks how you want it
-  
-  - If you don't change code in the chunk itself, but code in the function
-    that is being called in the chunk, you have to delete all the files in the
-    `knitr-cache` that have the name of the chunk in it. If you don't, the
-    figure won't be rebuilt and you will see no changes
-  
-* This method has the benefit of you seeing exactly what the figure will
-  look like in the document. If you just call the function code in R,
-  you do not get an accurate depiction of the figure and will have to redo
-  it again later.
-  
-* It is really fast, assuming you leave all the other files alone in the 
-  `knitr-cache`. If you delete the `knitr-cache` or unrelated files within
-  it, this method will become very slow.
-    
-* In **Microsoft Windows** you may not be able to leave the figure viewer
-  open when changing the file
 
 ---
 # To take a quick look at model output without making an RDS file

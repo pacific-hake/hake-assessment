@@ -8,6 +8,7 @@ params:
   survey_name: "Joint U.S. and Canadian Integrated Acoustic and Trawl Survey"
   assess_yr: 2023
   last_assess_yr: 2022
+  last_data_yr: 2022
   model_version: "01"
   last_yr_model_version: "01"
 author: |
@@ -41,18 +42,18 @@ library(knitr)
 devtools::load_all("~/github/pacific-hake/hake")  
 
 if(is_latex_output()){
-  knitr_figs_dir <- "knitr-figs-pdf/"
-  knitr_cache_dir <- "knitr-cache-pdf/"
-  fig_out_type <- "png"
+  knitr_figs_dir <<- "knitr-figs-pdf/"
+  knitr_cache_dir <<- "knitr-cache-pdf/"
+  fig_out_type <<- "png"
 }else{
-  knitr_figs_dir <- "knitr-figs-docx/"
-  knitr_cache_dir <- "knitr-cache-docx/"
-  fig_out_type <- "png"
+  knitr_figs_dir <<- "knitr-figs-docx/"
+  knitr_cache_dir <<- "knitr-cache-docx/"
+  fig_out_type <<- "png"
 }
-fig_width <- 7.5
-fig_dpi <- 200
-fig_align <- "center"
-fig_pos <- "htb"
+fig_width <<- 7.5
+fig_dpi <<- 200
+fig_align <<- "center"
+fig_pos <<- "htb"
 opts_chunk$set(
   collapse = TRUE,
   warning = FALSE,
