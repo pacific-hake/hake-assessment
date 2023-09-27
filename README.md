@@ -1,80 +1,125 @@
 ____
 # hake-assessment
 
-*A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.*
+*An R package which uses Bookdown and Rmarkdown to build the US/Canadian Pacific hake assessment document*
 _____________________________________________________________
 
-## Update - Complete rewrite of code
+## 2023/2024 Update - Complete rewrite of code
 * Now a true R package
 * Converted all document code from Sweave with LaTeX to Rmarkdown. See the
  [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) for help on this syntax
 * Standardize all code filenames by category and one function per file
-* All document text rewritten to conform to Rmarkdown standards
-* Incorporates `bookdown` package for document building
+* All document text rewritten to conform to Rmarkdown standards.
+* Incorporates `bookdown` package for document building.
 * `r4ss` package now only used for loading of outputs, not for any figures
-  or tables
+  or tables.
 * Table of Contents has been improved with uniform spacing and numbering,
-  and with the Appendix section appearing the same as the main section
+  and with the Appendix section appearing the same as the main section.
 * All figure functions standardized to return `ggplot2:ggplot()` objects,
   and utilize package global variables for many plot attributes for
-  standardization
-* All tables standardized to return `knitr::kbl()` objects
+  standardization.
+* All tables standardized to return `knitr::kbl()` objects.
 * post-processor code injection removes all LaTeX from the core document
-  text for ease of writing
+  text for ease of writing.
 * All data tables pre-loaded into global package variables to shorten build
-  time and aggregate loading code
-* Decision tables have their format the same as the rest of the tables in the
+  time and aggregate loading code.
+* Decision tables now have the same format as the rest of the tables in the
   document. There is also more room in them so there are more complete
-  descriptions
-* All old, unused functions and other code removed  
+  descriptions in the left column.
+* All old, unused functions and other code removed.
 * Use of Rmarkdown means that no special LaTeX markup needs to be used any
   longer. For example:
   - The fancy backward and forward quotes that come before and after quoted
     text are simpler. With LaTeX we had to write quotes like this:
     `` `some quote' `` or ```` ``some quote''````. Now we can just write
-    `'some quote'` or `"some quote"` to get the same result
+    `'some quote'` or `"some quote"` to get the same result.
   - Backslashes before special characters are no longer necessary. Previously
     we would have to write something like `the 97.5\% quantile`. Now we would
     simply write `the 97.5% quantile`. This has always been a thorn in our
-    side as forgetting one backslash broke the build broken
+    side as forgetting one backslash broke the build broken.
 ---
-## How to create hake.pdf
+## How to create the hake assessment PDF document
 **The `RDS` files must have been created before the document can be built.**
 
 * Load the hake package like this: `devtools::load_all(".")`
 * Render the PDF like this: `render()`
-* If you look at the `hake.pdf` file now, it will be quite ugly with missing
-  references and no Table of Contents among other things. We must run the
-  post-processor to add LaTeX to the Tex file that was generated. It only
-  take a couple of seconds to run:
-  - `post_process("hake.tex")`
-* The Tex file must now be run through LaTeX again, using LuaLatex to give us
-  the final document. Go to a OS terminal window and run the following. Note
-  that `lualatex` is run twice. This is to ensure all references are set
-  correctly. If you run it only once you will find many question marks in the
-  document for figure and table references.
+* The Tex file must now be run through LaTeX again, using `LuaLatex` to give us
+  the final document. Go to an Operating system terminal window and run the
+  following. Note that `lualatex` is run twice. This is to ensure all
+  references are set correctly. If you run it only once you will find many
+  question marks in the document for figure and table references.
   - `lualatex hake.tex; lualatex hake.tex`
 
-**`render()` function details**
+**Details of the `render()` function**
 
-* Calls the `bookdown::render_book()` function to generate the PDF.
-* Runs the post processing step (`post_process()`) which will:
-  - Insert the Table of Contents
-  - Move any figures or tables around that need to be (Add latex
-    position variables such as [H], [bt] [!H]). The setup file for this
-    is `doc/object-placement.csv`
-  - Customize longtables so they have "continued on next page..." and
-    "Continued from previous page..." on them
-  - Process landscape figures and tables
-  - Align table captions that need it
-  - Add figure and table numbers
-  - Remove vertical space before section headings
-  - Place a marker in the file saying that it's been post-processed
-    so post-processing cannot be run on it a second time
+The `render()` function is a two-step process:
+
+1. Calls the `bookdown::render_book()` function to generate the PDF.
+1. Runs the post processing step (`post_process()`) which will:
+    - Insert the Table of Contents
+    - Move any figures or tables around that need to be (Add latex
+      position variables such as [H], [bt] [!H]). The setup file for this
+      is `doc/object-placement.csv`
+    - Customize longtables so they have "continued on next page..." and
+      "Continued from previous page..." on them
+    - Process landscape figures and tables
+    - Align table captions that need it
+    - Add figure and table numbers
+    - Remove vertical space before section headings
+    - Place a marker in the file saying that it's been post-processed
+      so post-processing cannot be run on it a second time
 
 ## Debugging a figure or table, or anything else
 
-* 
+* If you haven't already done so in your current R session, run
+  `devtools::load_all(".")` while in the hake package working directory.
+
+* If you are using Rstudio:
+    - Copy the chunk or chunks of Rmarkdown code you want to test to the
+      clipboard.
+    - Run `gotest()`, which will create a temporary directory containing all
+      the files necessary to run a pared-down version of the document, and
+      switch you to that directory. If your repository directory is not the
+      default ("~/github/pacific-hake/hake"), you will have to include the
+      `repo_dr` argument in the call to `gotest()`.
+    - Click the gear-arrow-down icon ![](gear-arrow-down.png) in the Files
+      window (bottom right panel in Rstudio) and select
+      `Go to working directory`.
+    - Open the `005-text.rmd` file, delete everything in that file if it
+      contains anything, and paste your chunk(s) of code. Save the file.
+    - In the R terminal, build the document using `render()`. The PDF will
+      be built in the current temporary directory, and contain only your test
+      figure(s) or table(s).
+    - Make changes to your code in the temporary file, and when satisfied with
+      your code, copy the code to the clipboard for pasting into the real
+      document.
+
+* If you are not using Rstudio:
+    - Run `gotest()`, which will create a temporary directory containing all
+      the files necessary to run a pared-down version of the document, and
+      switch you to that directory.
+    - Run `getwd()` to find out the name of the temporary directory you are
+      now in. Copy the name of the directory to the clipboard.
+    - Go to the directory using a program of your choice, pasting the
+      directory name into it to get there fast.
+    - Copy the chunk or chunks of Rmarkdown code you want to test to the
+      clipboard.
+    - Open the `005-text.rmd` file from that directory, delete everything in
+      it if it contains anything, and paste your chunk(s) of code.
+      Save the file.
+    - In the R terminal, build the document using `render()`. The PDF will
+      be built in the current temporary directory, and contain only your test
+      figure(s) or table(s).
+    - Make changes to your code in the temporary file, and when satisfied with
+      your code, copy the code to the clipboard for pasting into the real
+      document.
+
+* To go back to the real document, run `goback()`. Run `getwd()` to make sure
+  you are in the correct directory. In Rstudio, click the gear-down-arrow icon
+  ![](gear-arrow-down.png) in the Files window (bottom right panel in Rstudio)
+  and select `Go to working directory`. **Be careful here that you've copied
+  your new code to the clipboard. It may be lost once you've left the
+  temporary directory.**
 
 ## 2023 Assessment cycle (Jan - Mar 2023)
 
