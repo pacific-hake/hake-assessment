@@ -5,10 +5,10 @@ ____
 _____________________________________________________________
 
 ## 2023/2024 Update - Complete rewrite of code
-* Now a true R package
+* Now a true R package.
 * Converted all document code from Sweave with LaTeX to Rmarkdown. See the
- [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) for help on this syntax
-* Standardize all code filenames by category and one function per file
+ [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) for help on this syntax.
+* Standardize all code filenames by category and one function per file.
 * All document text rewritten to conform to Rmarkdown standards.
 * Incorporates `bookdown` package for document building.
 * `r4ss` package now only used for loading of outputs, not for any figures
