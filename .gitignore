@@ -1,5 +1,6 @@
 # root .gitignore
 # Files
+hake.R
 ..Rcheck/
 *~*
 *.7z
