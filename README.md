@@ -5,30 +5,48 @@ ____
 _____________________________________________________________
 
 ## 2023/2024 Update - Complete rewrite of code
-* Now a true R package.
-* Converted all document code from Sweave with LaTeX to Rmarkdown. See the
- [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) for help on this syntax.
-* Standardize all code filenames by category and one function per file.
-* All document text rewritten to conform to Rmarkdown standards.
+
+The following list contains the details of all the changes that were
+implemented in the hake assessment codebase between the 2023 and 2024
+assessment seasons.
+
+* Now a true R package. This compartmentalized the code, and allows for the
+  documentation of functions and package data to be monitored through
+  software tools.
+* Converted all document code from Sweave with embedded LaTeX to Rmarkdown.
+  See the [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+  for help on this syntax.
+* Added a post-processor to inject tedious LaTeX code after the building
+  of the TeX file is complete. This means there is almost no LaTeX code
+  found in the Rmarkdown code files. It make it easier to read and write
+  the actual document text.
+* Standardized all code filenames by category and one function per file.
+* All document text rewritten to conform to Rmarkdown standards. This means
+  re-writing all inline R code into Rmarkdown format (Global replacement of
+  `\Sexpr{r_code_here}` with `` `r r_code_here` ``)
 * Incorporates `bookdown` package for document building.
 * `r4ss` package now only used for loading of outputs, not for any figures
   or tables.
 * Table of Contents has been improved with uniform spacing and numbering,
   and with the Appendix section appearing the same as the main section.
+  There is a post-processing function where the TOC can be modified very
+  easily.
 * All figure functions standardized to return `ggplot2:ggplot()` objects,
   and utilize package global variables for many plot attributes for
   standardization.
 * All tables standardized to return `knitr::kbl()` objects.
-* post-processor code injection removes all LaTeX from the core document
+* Post-processor code injection removes all LaTeX from the core document
   text for ease of writing.
 * All data tables pre-loaded into global package variables to shorten build
   time and aggregate loading code.
 * Decision tables now have the same format as the rest of the tables in the
   document. There is also more room in them so there are more complete
   descriptions in the left column.
-* All old, unused functions and other code removed.
 * Use of Rmarkdown means that no special LaTeX markup needs to be used any
   longer. For example:
+  - The degree symbol used to need a LaTeX variable, escaped in code like
+    this `/degree/` or this `/degree` depending if there was to be a space
+    after it or not. In Rmarkdown we just embed the degree symbol `°`.
   - The fancy backward and forward quotes that come before and after quoted
     text are simpler. With LaTeX we had to write quotes like this:
     `` `some quote' `` or ```` ``some quote''````. Now we can just write
@@ -36,19 +54,49 @@ _____________________________________________________________
   - Backslashes before special characters are no longer necessary. Previously
     we would have to write something like `the 97.5\% quantile`. Now we would
     simply write `the 97.5% quantile`. This has always been a thorn in our
-    side as forgetting one backslash broke the build broken.
+    side as forgetting one backslash broke the whole build, with no easy way
+    to find what was causing it to break.
+* All weights in the document text, figures, and tables are in metric (kt, Mt)
+  instead of thousands of tonnes, '000 tonnes, x 1,000 tonnes, millions of
+  tonnes and any other phrases that were present throughout previously.
+* Forecast descriptions have been placed into a CSV file so that we can more
+  easily find and edit them. These are the values that will appear in the
+  decision tables. The file is found at `doc/forecast-descriptions.csv`
+* Many figure settings have been standardized across all figures. These
+  can be found in `data-raw/plot-settings.R` If these are be changed,
+  follow the same procedure as laid out in the
+  [Adding new data to data tables](#dt) section below, but using the
+  `data-raw/plot-settings.R` instead.
+* Some document settings have been made into package data. See the file
+  `data-raw/document-settings.R` and change the same way as explained in the
+  point above.
+* Some SS filename settings have been made into package data. See the file
+  `data-raw/ss-filenames.R` and change the same way as explained in the
+  points above.
+* The key and nuisance posteriors have been made into package data. See the
+  file `data-raw/key-posteriors.R` and change the same way as explained in the
+  points above.
+* All old, unused functions and other code has been removed.
+  
 ---
 ## How to create the hake assessment PDF document
 **The `RDS` files must have been created before the document can be built.**
 
-* Load the hake package like this: `devtools::load_all(".")`
-* Render the PDF like this: `render()`
-* The Tex file must now be run through LaTeX again, using `LuaLatex` to give us
-  the final document. Go to an Operating system terminal window and run the
-  following. Note that `lualatex` is run twice. This is to ensure all
-  references are set correctly. If you run it only once you will find many
-  question marks in the document for figure and table references.
+* Load the hake package by running `devtools::load_all(".")` while in the
+  hake package working directory.
+* Create the `hake.tex` file by running `render()`. This will create the
+  `hake.tex` file along with the `hake.pdf` file. ***The PDF file created
+  in this step is not formatted correctly, and the following step is required
+  to rebuild it using `lualatex`***.
+* The `hake.tex` file must now be run through LaTeX, using `lualatex` to
+  give us the final document. Go to an Operating System terminal window
+  and run the following in the `doc` directory (where the `hake.tex` file is
+  located). Note that `lualatex` is run twice. This is to ensure all references
+  are set correctly. If you run it only once you will find many question marks
+  in the document for figure and table references.
   - `lualatex hake.tex; lualatex hake.tex`
+
+The file `hake.pdf` will contain the final document.
 
 **Details of the `render()` function**
 
@@ -74,39 +122,44 @@ The `render()` function is a two-step process:
 * If you haven't already done so in your current R session, run
   `devtools::load_all(".")` while in the hake package working directory.
 
-* If you are using Rstudio:
+* **If you are using Rstudio:**
     - Copy the chunk or chunks of Rmarkdown code you want to test to the
       clipboard.
     - Run `gotest()`, which will create a temporary directory containing all
       the files necessary to run a pared-down version of the document, and
       switch you to that directory. If your repository directory is not the
-      default ("~/github/pacific-hake/hake"), you will have to include the
+      default (`~/github/pacific-hake/hake`), you will have to include the
       `repo_dr` argument in the call to `gotest()`.
     - Click the gear-arrow-down icon ![](gear-arrow-down.png) in the Files
       window (bottom right panel in Rstudio) and select
-      `Go to working directory`.
+      `Go to working directory`. This will take the Rstudio file manager to
+      the temporary directory, and show you the files that have been copied
+      there by the `gotest()` function.
     - Open the `005-text.rmd` file, delete everything in that file if it
-      contains anything, and paste your chunk(s) of code. Save the file.
+      contains anything, and paste your chunk(s) of code, or create a new
+      Rmarkdown chunk. Save the file.
     - In the R terminal, build the document using `render()`. The PDF will
       be built in the current temporary directory, and contain only your test
       figure(s) or table(s).
-    - Make changes to your code in the temporary file, and when satisfied with
-      your code, copy the code to the clipboard for pasting into the real
-      document.
+    - Make changes to your code in the temporary `005-text.rmd` file, and
+      when satisfied with your code, copy the code to the clipboard for
+      pasting into the real document.
 
-* If you are not using Rstudio:
-    - Run `gotest()`, which will create a temporary directory containing all
-      the files necessary to run a pared-down version of the document, and
-      switch you to that directory.
-    - Run `getwd()` to find out the name of the temporary directory you are
-      now in. Copy the name of the directory to the clipboard.
-    - Go to the directory using a program of your choice, pasting the
-      directory name into it to get there fast.
-    - Copy the chunk or chunks of Rmarkdown code you want to test to the
-      clipboard.
+* **If you are not using Rstudio:**
+    - Run `gotest(copy_tmpdir = TRUE)`, which will create a temporary
+      directory containing all the files necessary to run a pared-down
+      version of the document, switch you to that directory, and copy the name
+      of the directory to the clipboard. If your repository directory is not
+      the default (`~/github/pacific-hake/hake`), you will have to also
+      include the `repo_dr` argument in the call to `gotest()`.
+    - Go to the temporary directory using a program (file manager) of your
+      choice, pasting the directory name from the clipboard into it so you
+      can get there without having to remember the (ugly) name.
+    - Copy the chunk(s) of Rmarkdown code you want to test to the clipboard
+      from the original file.
     - Open the `005-text.rmd` file from that directory, delete everything in
-      it if it contains anything, and paste your chunk(s) of code.
-      Save the file.
+      it if it contains anything, and paste your chunk(s) of code, or create
+      a new Rmarkdown chunk. Save the file.
     - In the R terminal, build the document using `render()`. The PDF will
       be built in the current temporary directory, and contain only your test
       figure(s) or table(s).
@@ -121,28 +174,51 @@ The `render()` function is a two-step process:
   your new code to the clipboard. It may be lost once you've left the
   temporary directory.**
 
-## 2023 Assessment cycle (Jan - Mar 2023)
 
-* Model runs were done on an Ubuntu 22.04 LTS server with 80 Xeon Gold CPUs and 128 GB of RAM
+## Adding new data to data tables <a name="dt"></a>
+
+This is a bit different than it was previously, because the data tables
+are now package data and have to be built in a different way to update the
+package data.
+
+1. Open the CSV file you want to add data to in the `data-tables` directory.
+1. Add the new data row, and save the file.
+1. Do the first two steps with as many data tables as you want to update, then
+   do then next step once only.
+1. Source the `data-raw/data-tables.R` file to update the data tables:
+   `source(here::here(data-raw/data-tables.R))`
+1. Make sure to include the changes to the RDA files in the GitHub repo by
+   committing the changes in Git. This will be obvious as there will be several
+   dozen RDA files changed. Commit all of the changes.
+   
+Try not to do steps 4 and 5 for every change you make, rather make as many
+changes as you can to data tables at one time, then run steps 4 and 5 once to
+incorporate all the changes (they are binary and its better to keep binary
+file changes to a minimum).
+
+## 2024 Assessment cycle (Jan - Mar 2024)
+
+* Model runs were done on an Ubuntu 22.04 LTS server with 80 Xeon Gold CPUs
+  and 405 GB of RAM.
 
 * All model runs, including the base, bridging, sensitivities, and
   retrospectives, were done using the **main** branch of the
-  [ADNUTS](https://github.com/cgrandin/adnuts) MCMC algorithm, which is a Fork.
+  [ADNUTS](https://github.com/cgrandin/adnuts) MCMC algorithm, which is
+  a Fork.
   
 * `extra-mcmc must be and was enabled for ALL models`
 
-## Server setup for 2023
+## Server setup for 2024
 
 * Operating system: Ubuntu 22.04 LTS (jammy)
 
-* R version: 4.2.2 (2022-11-10 r83330)
+* R version: 4.3.1 (2023-06-16 "Beagle Scouts")
 
-* TexLive version: 2022 (tlmgr version: 63068, 2022-04-18 07:58:07 +0200)
+* TexLive version: 2023 (tlmgr revision 66457 (2023-03-08 00:07:12 +0100))
 
 * The R packages listed [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/R/all.R#L20)
 
 * The TEX packages listed [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/docker/install_packages.R#L21)
-
 
 ---
 # How the models are run
@@ -161,7 +237,7 @@ The `render()` function is a two-step process:
   `run-base-model.sh`. This needs to be edited each year before beginning.
     
 * Check all the variables and make sure they are correct. Change the
-   `year_path` to the new assessment year (Whatever year that January is in)
+  `year_path` to the new assessment year (Whatever year that January is in)
 
 * If run on the server, the `models_path` must be set to `/srv/hake/models`
   
