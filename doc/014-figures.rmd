@@ -228,10 +228,10 @@ if(is.null(base_model$plots$survey_age1)){
 ```
 
 (ref:main-maturity-ogive-cap) Fraction of fish that are mature at each age
-north and south of 34.44\degree\ N (upper panel) and the fecundity
+north and south of 34.44° N (upper panel) and the fecundity
 relationship (lower panel). The fecundity relationship (purple line) is
 the product of the weight-at-age and the maturity-at-age for the samples
-collected from North of 34.44\degree\ N (blue line in upper plot) averaged
+collected from North of 34.44° N (blue line in upper plot) averaged
 across `r start_yr_age_comps` to `r last_data_yr`.
 
 (ref:main-maturity-ogive-alt) This figure shows how maturity increases with

@@ -23,6 +23,7 @@ render <- function(input = "000-launcher.rmd",
 
   bookdown::render_book(input = input,
                         output_dir = output_dir,
+                        envir = globalenv(),
                         ...)
   post_process(fn = tex_fn,
                tag = tag_pdf,
