@@ -1,3 +1,6 @@
+<!-- This HTTML tag ensures all web links will open in a new tab when clicked -->
+<base target="_blank">
+
 ____
 # hake-assessment
 
@@ -13,30 +16,52 @@ assessment seasons.
 * Now a true R package. This compartmentalized the code, and allows for the
   documentation of functions and package data to be monitored through
   software tools.
+
 * Converted all document code from Sweave with embedded LaTeX to Rmarkdown.
   See the [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
   for help on this syntax.
-* Added a post-processor to inject tedious LaTeX code after the building
-  of the TeX file is complete. This means there is almost no LaTeX code
-  found in the Rmarkdown code files. It make it easier to read and write
-  the actual document text.
+
+* Uses the `bookdown` package to create the assessment document. This brings
+  with it the _bookdown.yml file which makes it much easier to see which
+  files are to be included in the build. See the file here: [_bookdown.yml](https://github.com/pacific-hake/hake-assessment/blob/package-dev/doc/_bookdown.yml).
+
+* Uses a post-processor to inject tedious LaTeX code after the building
+  of the TeX file is complete with `bookdown`. This means there is almost no
+  LaTeX code found in the Rmarkdown code files. It make it easier to read
+  and write the actual document text.
+
 * Standardized all code filenames by category and one function per file.
+
+* `r4ss` package now only used for loading of outputs, not for any figures
+  or tables.
+
 * All document text rewritten to conform to Rmarkdown standards. This means
   re-writing all inline R code into Rmarkdown format (Global replacement of
   `\Sexpr{r_code_here}` with `` `r r_code_here` ``)
-* Incorporates `bookdown` package for document building.
-* `r4ss` package now only used for loading of outputs, not for any figures
-  or tables.
 * Table of Contents has been improved with uniform spacing and numbering,
   and with the Appendix section appearing the same as the main section.
   There is a post-processing function where the TOC can be modified very
   easily.
-* All figure functions standardized to return `ggplot2:ggplot()` objects,
-  and utilize package global variables for many plot attributes for
-  standardization.
-* All tables standardized to return `knitr::kbl()` objects.
-* Post-processor code injection removes all LaTeX from the core document
-  text for ease of writing.
+
+* Executive Summary needs a tag at the end of it to signal the post-processor
+  to restart numbering of tables and figures and to switch from letters to
+  numbers. This tag is `Executive summary EOF`. See
+  [Executive summary tag](https://github.com/pacific-hake/hake-assessment/blob/87af60178be68153dc27728935026160fd17a3b7/doc/006-executive-summary.rmd#L832).
+* Tables
+  - All tables standardized to return `knitr::kbl()` objects.
+  - To make any table landscape, just pipe the output to the `landscape()`
+    function. See this [landscape table example](https://github.com/pacific-hake/hake-assessment/blob/05247ca8fa97e98e84d42db10fd2a45fd4fbfec2/doc/013-tables.rmd#L55). The post-processing step injects the
+    LaTeX landscape tags around the table code.
+    
+* Figures
+  - All figures standardized to return `ggplot2::ggplot()` objects.
+  - The method to make a figure landscape is different than that for a table.
+    You must place `BEGIN LANDSCAPE` and `END LANDSCAPE`  tags around the
+    figure code a blank line between them and the figure code.
+    See this [landscape figure example](https://github.com/pacific-hake/hake-assessment/blob/87af60178be68153dc27728935026160fd17a3b7/doc/014-figures.rmd#L32-L36.)
+  - Utilizes package data variables so all figures have the same look and
+    feel. These can be found in [`data-raw/plot-settings.R`](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/plot-settings.R).
+
 * All data tables pre-loaded into global package variables to shorten build
   time and aggregate loading code.
 * Decision tables now have the same format as the rest of the tables in the
