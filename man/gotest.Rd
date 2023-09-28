@@ -5,7 +5,7 @@
 \title{Create and change to a temporary directory where the loading files have
 been copied to}
 \usage{
-gotest(repo_dr = "~/github/pacific-hake/hake", copy_tmpdir = TRUE)
+gotest(repo_dr = "~/github/pacific-hake/hake", copy_tmpdir = FALSE)
 }
 \arguments{
 \item{copy_tmpdir}{Logical. If \code{TRUE}, copy the temporary path to the

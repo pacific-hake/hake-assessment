@@ -3,51 +3,49 @@
 meta <- rmarkdown::metadata
 
 if(length(meta)){
-  sp <<- meta$`params`$sp
-  common_name <<- meta$`params`$common_name
-  science_name <<- meta$`params`$science_name
-  simple_name <<- meta$`params`$simple_name
-  survey_name <<- meta$`params`$survey_name
-  assess_yr <<- meta$`params`$assess_yr
-  last_assess_yr <<- meta$`params`$last_assess_yr
-  last_data_yr <<- meta$`params`$last_data_yr
-  model_version <<- meta$`params`$model_version
-  last_yr_model_version <<- meta$`params`$last_yr_model_version
+  sp <- meta$`params`$sp
+  common_name <- meta$`params`$common_name
+  science_name <- meta$`params`$science_name
+  simple_name <- meta$`params`$simple_name
+  survey_name <- meta$`params`$survey_name
+  assess_yr <- meta$`params`$assess_yr
+  last_assess_yr <- meta$`params`$last_assess_yr
+  last_data_yr <- meta$`params`$last_data_yr
+  model_version <- meta$`params`$model_version
+  last_yr_model_version <- meta$`params`$last_yr_model_version
 }else{
-  sp <<- "hake"
-  common_name <<- "hake"
-  science_name <<- "hake"
-  simple_name <<- "hake"
-  survey_name <<- "survey"
-  assess_yr <<- year(Sys.time())
-  last_assess_yr <<- year(Sys.time()) - 1
-  last_data_yr <<- year(Sys.time()) - 1
-  model_version <<- "01"
-  last_yr_model_version <<- "01"
+  sp <- "hake"
+  common_name <- "hake"
+  science_name <- "hake"
+  simple_name <- "hake"
+  survey_name <- "survey"
+  assess_yr <- year(Sys.time())
+  last_assess_yr <- year(Sys.time()) - 1
+  last_data_yr <- year(Sys.time()) - 1
+  model_version <- "01"
+  last_yr_model_version <- "01"
 }
 
-sys_info <<- Sys.info()
-computer_name <<- sys_info[["nodename"]]
-os_name <<- sys_info[["sysname"]]
-user_name <<- sys_info[["user"]]
+sys_info <- Sys.info()
+computer_name <- sys_info[["nodename"]]
+os_name <- sys_info[["sysname"]]
+user_name <- sys_info[["user"]]
 
-rootd_doc <<- here("doc")
-rootd_data <<- here("inst/extdata/data")
-rootd_models <<- ifelse(computer_name == "hake-precision",
+rootd_doc <- here("doc")
+rootd_data <- here("inst/extdata/data")
+rootd_models <- ifelse(computer_name == "hake-precision",
                         "/srv/hake/models",
                         here("models"))
-models_dir <<- file.path(rootd_models,
+models_dir <- file.path(rootd_models,
                          assess_yr,
                          paste0(model_version, "-version"))
-last_yr_models_dir <<- file.path(rootd_models,
+last_yr_models_dir <- file.path(rootd_models,
                                  last_assess_yr,
                                  paste0(last_yr_model_version, "-version"))
 
-output_csv_dir <<- here(rootd_doc, "out-csv")
-forecast_yrs <<- assess_yr:(assess_yr + 3)
-forecast_yrs_extra <<- assess_yr:(assess_yr + 3)
-end_yr <<- assess_yr
-last_data_yr <<- end_yr - 1
-
-theme_set(hake_theme())
+output_csv_dir <- here(rootd_doc, "out-csv")
+forecast_yrs <- assess_yr:(assess_yr + 3)
+forecast_yrs_extra <- assess_yr:(assess_yr + 3)
+end_yr <- assess_yr
+last_data_yr <- end_yr - 1
 ```
