@@ -54,17 +54,19 @@ table_landings_tac <- function(ct,
                            can_prop,
                            us_attain,
                            can_attain,
-                           tot_attain), ~{ifelse(is.na(.x),
-                                                 "--",
-                                                 paste0(f(.x, 1), "\\%"))}) |>
+                           tot_attain),
+              ~{ifelse(is.na(.x),
+                       "--",
+                       paste0(f(.x, 1), "\\%"))}) |>
     mutate_at(.vars = vars(-c(Year,
                               us_prop,
                               can_prop,
                               us_attain,
                               can_attain,
-                              tot_attain)), ~{ifelse(is.na(.x),
-                                                     "--",
-                                                     f(.x, 0))})
+                              tot_attain)),
+              ~{ifelse(is.na(.x),
+                       "--",
+                       f(.x, 0))})
 
   col_names <- c("Year",
                  "U.S.\nlandings",
@@ -79,7 +81,7 @@ table_landings_tac <- function(ct,
                  "Canada\nprop.\nof catch\ntarget\nremoved",
                  "Total\nprop.\nof catch\ntarget\nremoved")
 
-  # Insert custom header fontsize before linebreaker
+  # Insert custom header font size before linebreaker
   if(is.null(header_font_size)){
     header_font_size <- font_size
   }
