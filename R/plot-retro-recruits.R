@@ -254,7 +254,6 @@ plot_retro_recruits <- function(
         )
       }
     }
-    browser()
   }
   # add legend if requested
   if (legend) {
