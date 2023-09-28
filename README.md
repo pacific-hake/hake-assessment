@@ -1,6 +1,3 @@
-<!-- This HTTML tag ensures all web links will open in a new tab when clicked -->
-<base target="_blank">
-
 ____
 # hake-assessment
 
