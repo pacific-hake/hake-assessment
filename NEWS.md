@@ -67,6 +67,9 @@ implemented in the hake assessment codebase in 2023 between the 2023 and
     figure code.
   - Utilizes package data variables so all figures have the same look and
     feel. These can be found in [`data-raw/plot-settings.R`](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/plot-settings.R).
+  - In the catches bar plot showing catch data by year, moved the larger US
+    catch to the bottom, with smaller catch on top of the bars. It is much
+    easier to see the small catches when they are on top.
 
 * All data tables pre-loaded into global package variables to shorten build
   time and aggregate loading code.
