@@ -236,56 +236,31 @@ if(!dir.exists(fig_dir)){
 %----------------------------------------------------------
 \subsection{Canada FT depth}
 \frame{\frametitle{Canada freezer-trawler depth distribution}
-  <<depthcaft>>=
-
-  par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
-  makebox(
-    can_ft_gear_depth_df[can_ft_gear_depth_df$year >= max(can_ft_gear_depth_df$year) - 4, ],
-    main = "Fishing depth", col = "colour",
-    labels = c("", ""))
-  makebox(
-    can_ft_bottom_depth_df[can_ft_bottom_depth_df$year >= max(can_ft_bottom_depth_df$year) - 4, ],
-    main = "Bottom depth", col = "colour",
-    labels = c("", ""))
-  mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
-  mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
-  @
+<<depthcaft>>=
+  plot_depth_2_panel(can_ft_gear_depth_df,
+                     can_ft_bottom_depth_df,
+                     yrs = (last_data_yr - 4):last_data_yr)
+@
 }
 
 %----------------------------------------------------------
 \subsection{Canada SS depth}
 \frame{\frametitle{Canada shoreside depth distribution}
-  <<depthcass>>=
-  par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
-  makebox(
-    can.ss.gear.depth[can.ss.gear.depth$year >= max(can.ss.gear.depth$year) - 4, ],
-    main = "Fishing depth", col = "colour",
-    labels = c("", ""))
-  makebox(
-    can_ss_bottom_depth_df[can_ss_bottom_depth_df$year >= max(can_ss_bottom_depth_df$year) - 4, ],
-    main = "Bottom depth", col = "colour",
-    labels = c("", ""))
-  mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
-  mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
-  @
+<<depthcass>>=
+  plot_depth_2_panel(can_ss_gear_depth_df,
+                     can_ss_bottom_depth_df,
+                     yrs = (last_data_yr - 4):last_data_yr)
+@
 }
 
 %----------------------------------------------------------
 \subsection{U.S. At-Sea depth}
 \frame{\frametitle{U.S. at-sea depth distribution}
-  <<depthus>>=
-  par(mfrow = c(1, 2), mar=c(2.2, 3.2, 1.2, 0.2), oma = c(2, 1, 0, 0))
-  makebox(
-    us_atsea_fishing_depth_df[us_atsea_fishing_depth_df$year >= max(us_atsea_fishing_depth_df$year) - 4, ],
-    main = "Fishing depth", col = "colour",
-    labels = c("", ""))
-  makebox(
-    us_atsea_bottom_depth_df[us_atsea_bottom_depth_df$year >= max(us_atsea_bottom_depth_df$year) - 4, ],
-    main = "Bottom depth", col = "colour",
-    labels = c("", ""))
-  mtext("Year", side = 1, outer = TRUE, line = -0.6, col = "black")
-  mtext("Depth (m)", side = 2, outer = TRUE, line = -0.5, col = "black")
-  @
+<<depthus>>=
+  plot_depth_2_panel(us_atsea_fishing_depth_df,
+                     us_atsea_bottom_depth_df,
+                     yrs = (last_data_yr - 4):last_data_yr)
+@
 }
 
 %----------------------------------------------------------
