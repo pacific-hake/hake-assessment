@@ -16,7 +16,7 @@
 \hfill
 \includegraphics[height=0.5in]{../../images/DFO.eps}
 
-\vskip0pt plus 1filll
+\vskip0pt plus 1fill
 \begin{center}
 {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
 \vskip22pt
@@ -50,20 +50,18 @@ opts_chunk$set(dev = 'cairo_ps',
                warning = FALSE,
                results = 'hide',
                fig.path = here::here("beamer",
-                                     "SRG",
-                                     "Data",
+                                     "srg",
+                                     "data",
                                      "knitr-cache", "/"),
                cache.path = here::here("beamer",
-                                       "SRG",
-                                       "Data",
+                                       "srg",
+                                       "data",
                                        "knitr-cache", "/"),
                cache = TRUE)
 
-source(here::here("R/all.R"))
-source(file.path(rootd_doc, "load-models.R"))
-source(file.path(rootd_r, "custom-knitr-variables.R"))
+devtools::load_all(here::here())
 
-fig_dir <- here::here("beamer", "SRG", "Data", "figures")
+fig_dir <- here::here("beamer", "srg", "data", "figures")
 if(!dir.exists(fig_dir)){
   dir.create(fig_dir)
 }
@@ -139,28 +137,23 @@ if(!dir.exists(fig_dir)){
   \ei
   \end{column}
   \begin{column}{0.65\linewidth}
-    <<data-overview-map, out.height = '3.4in',out.width='1\\columnwidth'>>=
-      oldpar <- par()
-      par(mgp = c(2, 0.5, 0))
-      make.data.overview.plot(base_model,
-        fleetname = c("Fishery", "Survey (2+)", "Survey (1)"),
-        margins = c(5.1, 1, 0, 5))
-      par(mgp = oldpar$mgp)
+    <<data-overview-map, out.height = "3in", out.width = "1\\columnwidth">>=
+      plot_data_summary(base_model,
+                        label_y_placement = c(1.8, 2.5, 2.0))
     @
   \end{column}
 \end{columns}
 }
 
 %----------------------------------------------------------
-\section[Catches]{Catches}
+%out.width = "0.9\\columnwidth">>=\section[Catches]{Catches}
 \subsection{Catch history}
 \frame[t]{\frametitle{Catches}
  \vspace{-4mm}
  \begin{figure}
  \centering
-  <<catches, fig.height=4.8, fig.width=8, out.width='0.9\\columnwidth'>>=
-    plot_catches(ct, leg.y.loc = 550, leg.cex = 0.7,
-      mar = c(4, 4, 3.25, 0.5))
+  <<catches, fig.height = 3.9>>=
+    plot_catches(ct, xlim = c(start_yr, last_data_yr))
   @
 \end{figure}
 }
