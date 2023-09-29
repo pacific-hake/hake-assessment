@@ -96,25 +96,26 @@ implemented in the hake assessment codebase in 2023 between the 2023 and
 
 * Forecast descriptions have been placed into a CSV file so that we can more
   easily find and edit them. These are the values that will appear in the
-  decision tables. The file is found at `doc/forecast-descriptions.csv`
+  decision tables. The file is found at
+  [doc/forecast-descriptions.csv](https://github.com/pacific-hake/hake-assessment/blob/package-dev/doc/forecast-descriptions.csv).
 
 * Many figure settings have been standardized across all figures. These
-  can be found in `data-raw/plot-settings.R` If these are be changed,
-  follow the same procedure as laid out in the
-  [Adding new data to data tables](#dt) section below, but using the
+  can be found in [data-raw/plot-settings.R](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/plot-settings.R).
+  If these are be changed, follow the same procedure as laid out in the
+  [Adding new data to data tables](#dt) section below, but using
   `data-raw/plot-settings.R` instead.
 
 * Some document settings have been made into package data. See the file
-  `data-raw/document-settings.R` and change the same way as explained in the
-  point above.
+  [data-raw/document-settings.R](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/document-settings.R)
+  and change the same way as explained in the point above.
 
 * Some SS filename settings have been made into package data. See the file
-  `data-raw/ss-filenames.R` and change the same way as explained in the
-  points above.
+  [data-raw/ss-filenames.R](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/ss-filenames.R)
+  and change the same way as explained in the points above.
 
 * The key and nuisance posteriors have been made into package data. See the
-  file `data-raw/key-posteriors.R` and change the same way as explained in the
-  points above.
+  file [data-raw/key-posteriors.R](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/key-posteriors.R)
+  and change the same way as explained in the points above.
 
 * All old, unused functions and other code has been removed.
 

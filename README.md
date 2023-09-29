@@ -4,8 +4,8 @@ ____
 *An R package which uses Bookdown and Rmarkdown to build the US/Canadian Pacific hake assessment document*
 _____________________________________________________________
 
-Read NEWS.md for important details on the major code rewrite that took place
-in 2023.
+Read [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md)
+for important details on the major code rewrite that took place in 2023.
 
 ---
 ## How to create the hake assessment PDF document
@@ -27,7 +27,8 @@ in 2023.
   in the document for figure and table references.
   - `lualatex hake.tex; lualatex hake.tex`
 
-The file `hake.pdf` will contain the final document.
+The file `hake.pdf` will contain the final document. Fo details on the
+`render()` function, see [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md).
 
 ## Debugging a figure or table, or anything else
 
