@@ -102,24 +102,24 @@ implemented in the hake assessment codebase in 2023 between the 2023 and
 * Many figure settings have been standardized across all figures. These
   can be found in [data-raw/plot-settings.R](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/plot-settings.R).
   If these are be changed, follow the same procedure as laid out in the
-  [Adding new data to data tables](https://github.com/pacific-hake/hake-assessment/blob/d7a803127a2945b774d3bf4a7a256104ebd66aed/README.md?plain=1#L90) section of the README.md file, but using `data-raw/plot-settings.R` instead.
+  [Adding new data to data tables](https://github.com/pacific-hake/hake-assessment/blob/079becf0680c53301f4984edbfa2f053606ce9d8/README.md?plain=1#L90) section of the README.md file, but using `data-raw/plot-settings.R` instead.
 
 * Some document settings have been made into package data. See the file
   [data-raw/document-settings.R](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/document-settings.R)
   and change the same way as explained in the
-  [Adding new data to data tables](https://github.com/pacific-hake/hake-assessment/blob/d7a803127a2945b774d3bf4a7a256104ebd66aed/README.md?plain=1#L90)
+  [Adding new data to data tables](https://github.com/pacific-hake/hake-assessment/blob/079becf0680c53301f4984edbfa2f053606ce9d8/README.md?plain=1#L90)
    section of the README.md file.
 
 * Some SS filename settings have been made into package data. See the file
   [data-raw/ss-filenames.R](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/ss-filenames.R)
   and change the same way as explained in the the
-  [Adding new data to data tables](https://github.com/pacific-hake/hake-assessment/blob/d7a803127a2945b774d3bf4a7a256104ebd66aed/README.md?plain=1#L90)
+  [Adding new data to data tables](https://github.com/pacific-hake/hake-assessment/blob/079becf0680c53301f4984edbfa2f053606ce9d8/README.md?plain=1#L90)
    section of the README.md file.
 
 * The key and nuisance posteriors have been made into package data. See the
   file [data-raw/key-posteriors.R](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/key-posteriors.R)
   and change the same way as explained in the
-  [Adding new data to data tables](https://github.com/pacific-hake/hake-assessment/blob/d7a803127a2945b774d3bf4a7a256104ebd66aed/README.md?plain=1#L90)
+  [Adding new data to data tables](https://github.com/pacific-hake/hake-assessment/blob/079becf0680c53301f4984edbfa2f053606ce9d8/README.md?plain=1#L90)
    section of the README.md file.
 
 * All old, unused functions and other code has been removed.
