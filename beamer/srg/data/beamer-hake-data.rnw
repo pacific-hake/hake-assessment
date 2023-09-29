@@ -215,41 +215,21 @@ if(!dir.exists(fig_dir)){
 %----------------------------------------------------------
 \subsection{Cumulative catch}
 \frame{\frametitle{Cumulative catch by month}
-  <<cumulative-catches>>=
-    oldpar <- par(no.readonly = TRUE)
-    par(mar = c(2.1, 3.1, 1.1, 0.5), oma = c(2.1, 2.1, 0, 0),
-      mgp = c(0.4, 0.6, 0))
-    #par(mar = c(2.1, 5.1, 1.1, 1.1), oma = c(2.1, 2.1, 0, 0))
-    layout(matrix(c(1,3,2,4,0,5), nrow = 3, ncol = 2, byrow = TRUE))
-    make.cumulative.catch.plot(can_ss_catch_by_month_df,
-                               title = "Canadian Shoreside Catches",
-                               leg.cex = 0.7,
-                               title.cex = 0.7,
-                               cex.axis = 0.7)
-    make.cumulative.catch.plot(can_ft_catch_by_month_df,
-                               title = " Canadian Freezer-Trawler Catches",
-                               leg.cex = 1e-100,
-                               title.cex = 0.7,
-                               cex.axis = 0.7)
-    mtext(side = 1, line = 2, text = "Month")
-    make.cumulative.catch.plot(us_ss_catch_by_month_df,
-                               title = "U.S. Shore-Based Catches",
-                               leg.cex = 1e-100,
-                               title.cex = 0.7,
-                               cex.axis = 0.7)
-    make.cumulative.catch.plot(us_cp_catch_by_month_df,
-                               title = "U.S. Catcher-Processor Catches",
-                               leg.cex = 1e-100,
-                               title.cex = 0.7,
-                               cex.axis = 0.7)
-    make.cumulative.catch.plot(us_ms_catch_by_month_df,
-                               title = "U.S. Mothership Catches",
-                               leg.cex = 1e-100,
-                               title.cex = 0.7,
-                               cex.axis = 0.7)
-    mtext("Month", side = 1, outer = TRUE)
-    mtext("Cumulative catch (1000 t)", side = 2, outer = TRUE)
-    par <- oldpar
+  <<cumulative-catches, fig.height = 3.5>>=
+    plot_cumulative_catches(list(us_ss_catch_by_month_df,
+                                 can_ss_catch_by_month_df,
+                                 us_cp_catch_by_month_df,
+                                 can_ft_catch_by_month_df,
+                                 us_ms_catch_by_month_df),
+                            list("U.S. Shore-Based",
+                                 "Canadian Shorside",
+                                 "U.S. Catcher-processor",
+                                 "Canadian Freezer-Trawlers",
+                                 "U.S. Mothership"),
+                            type = "cumulative",
+                            ax_title_font_size = 10,
+                            ax_tick_font_size = 8,
+                            leg_font_size = 8)
   @
 }
 
