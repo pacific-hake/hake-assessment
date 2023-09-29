@@ -4,6 +4,9 @@
 #' @param model A model, created by [create_rds_file()]
 #' @param ax_title_font_size Size of the font for the X and Y axis labels
 #' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
+#' @param label_y_placement A vector of three values, one for each of the
+#' panel labels, Catches, Abundance Indices, and Age Compositions respectively
+#' which represent the y value to place the labels at
 #' @param x_breaks The year tick marks to show for the x axis
 #'
 #' @return a [ggplot2::ggplot()] object
@@ -12,6 +15,7 @@ plot_data_summary <- function(model,
                               ax_title_font_size = axis_title_font_size,
                               ax_tick_font_size = axis_tick_font_size,
                               ax_label_color = axis_label_color,
+                              label_y_placement = c(1.8, 2.5, 2.5),
                               x_breaks = seq(model$startyr - 1,
                                              model$endyr,
                                              by = 5)){
@@ -123,15 +127,15 @@ plot_data_summary <- function(model,
   p[[1]] <- plotter(ct,
                     cols = "blue",
                     label = "Catches",
-                    label_y = 1.8)
+                    label_y = label_y_placement[1])
   p[[2]] <- plotter(cpue,
                     cols = c( "green", "red"),
                     label = "Abundance Indices",
-                    label_y = 2.5)
+                    label_y = label_y_placement[2])
   p[[3]] <- plotter(agedbase,
                     cols = c("red", "blue"),
                     label = "Age Compositions",
-                    label_y = 2.5,
+                    label_y = label_y_placement[3],
                     show_x_axis = TRUE)
 
   plt <- plot_grid(plotlist = p, ncol = 1, align = "v")
