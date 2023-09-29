@@ -107,15 +107,18 @@ implemented in the hake assessment codebase in 2023 between the 2023 and
 
 * Some document settings have been made into package data. See the file
   [data-raw/document-settings.R](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/document-settings.R)
-  and change the same way as explained in the point above.
+  and change the same way as explained in the
+  [Adding new data to data tables](#dt) section below.
 
 * Some SS filename settings have been made into package data. See the file
   [data-raw/ss-filenames.R](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/ss-filenames.R)
-  and change the same way as explained in the points above.
+  and change the same way as explained in the the
+  [Adding new data to data tables](#dt) section below.
 
 * The key and nuisance posteriors have been made into package data. See the
   file [data-raw/key-posteriors.R](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/key-posteriors.R)
-  and change the same way as explained in the points above.
+  and change the same way as explained in the
+  [Adding new data to data tables](#dt) section below.
 
 * All old, unused functions and other code has been removed.
 
