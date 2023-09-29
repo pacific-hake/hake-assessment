@@ -87,7 +87,7 @@ The file `hake.pdf` will contain the final document. Fo details on the
   your new code to the clipboard. It may be lost once you've left the
   temporary directory.**
 
-## Adding new data to data tables <a name="dt"></a>
+## Adding new data to data tables
 
 This is a bit different than it was previously, because the data tables
 are now package data and have to be built in a different way to update the
