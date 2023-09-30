@@ -302,14 +302,8 @@ if(!dir.exists(fig_dir)){
 \subsection{Age composition comparison}
 \frame{\frametitle{Survey and fishery age-composition comparison}
 \begin{center}
-<<age-comp-comparison-fishery-survey, out.height='90%', out.width='90%'>>=
-  plot_age_comp_bubbles(base_model,
-                        type = "fishery",
-                        leg_pos = "top",
-                        inc_mean_age_line = TRUE,
-                        point_alpha = 0.4,
-                        xlim = c(start_yr_age_comps, last_data_yr),
-                        show_x_axis_labels = FALSE)
+<<age-comp-comparison-fishery-survey, fig.height = 3.5>>=
+  plot_age_comp_comparison_bubbles(base_model)
 @
 \end{center}
 }
