@@ -267,34 +267,20 @@ if(!dir.exists(fig_dir)){
 \section[Age Comps]{Age Compositions}
 \subsection{Age composition by sector}
 \frame{\frametitle{Age composition by sector}
-  <<age-comp-comparison>>=
-    ## Fix the US age matrices to look like Canada's
-    conv.ages <- function(age.df, rm.cols = 1){
-      rownames(age.df) <- age.df$year
-      age.df <- age.df[,-(1:rm.cols)]
-      colnames(age.df) <- gsub("a", "", colnames(age.df))
-      age.df
-    }
-    us.shore.age.tmp <- conv.ages(us_ss_age_df, rm.cols = 3)
-    us.cp.age.tmp <- conv.ages(us_cp_age_df, rm.cols = 3)
-    us.ms.age.tmp <- conv.ages(us_ms_age_df, rm.cols = 3)
-    oldpar <- par
-    par(mar=c(1.1, 1.1, 3.1, 1.1), oma=c(3.1, 3.1, 0, 0),
-      mgp = c(1, 0.6, 0))
-    layout(matrix(c(1,2,3,4,5), nrow = 1, ncol = 5, byrow=TRUE))
-    make.age.comp.plot(can_ss_age_df, bg.col = "brown",
-      title = "CAN\nShoreside", hide0 = TRUE, frange = 0.05)
-    make.age.comp.plot(can_ft_age_df, bg.col = "salmon",
-      title = "CAN\nFreezer-Trawler", hide0 = TRUE, frange = 0.05)
-    make.age.comp.plot(us.shore.age.tmp, bg.col = "blue",
-      title = "U.S.\nShore-Based", hide0 = TRUE, frange = 0.05)
-    make.age.comp.plot(us.cp.age.tmp, bg.col = "royalblue",
-      title = "U.S.\nCatcher-Processor", hide0 = TRUE, frange = 0.05)
-    make.age.comp.plot(us.ms.age.tmp, bg.col = "darkblue",
-      title = "U.S.\nMothership", hide0 = TRUE, frange = 0.05)
-    mtext("Year", side = 1, outer = TRUE, line = 2)
-    mtext("Age", side = 2, outer = TRUE, line = 2)
-    par <- oldpar
+<<age-comp-comparison, fig.height = 3.9>>=
+
+  plot_age_comp_bubbles_data(list(can_ss_age_df,
+                                  can_ft_age_df,
+                                  us_ss_age_df,
+                                  us_cp_age_df,
+                                  us_ms_age_df),
+                             list("Canadian Shorside",
+                                  "Canadian Freezer-Trawlers",
+                                  "U.S. Shore-Based",
+                                  "U.S. Catcher-processor",
+                                  "U.S. Mothership"),
+                             ax_title_font_size = 8,
+                             ax_tick_font_size = 8)
   @
 }
 
