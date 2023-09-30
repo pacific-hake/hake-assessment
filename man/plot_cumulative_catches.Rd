@@ -33,6 +33,31 @@ the same length as the \code{catch_lst} list}
 to include in the data shown in the plot}
 
 \item{scale}{A number to divide the catch by}
+
+\item{type}{The type of plot, one of default (no change to data),
+proportion, or cumulative}
+
+\item{leg_pos}{A two-element vector describing the placement of the
+legend inside the plotting area where the x,y values are both between 0
+and 1 or "none" for no legend}
+
+\item{leg_font_size}{The font size for the legend items}
+
+\item{line_width}{The width of the lines}
+
+\item{line_gap}{The gap between the points and lines (blank spacing)}
+
+\item{point_shape}{The point shape type}
+
+\item{point_size}{The size of the points}
+
+\item{point_stroke}{The stroke value for the points}
+
+\item{ax_title_font_size}{The title font size}
+
+\item{ax_tick_font_size}{The tick label font size}
+
+\item{ax_label_color}{The axis label color}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

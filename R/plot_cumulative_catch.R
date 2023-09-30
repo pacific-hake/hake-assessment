@@ -7,6 +7,20 @@
 #' @param yrs A vector of two years representing the maximum and minimum years
 #' to include in the data shown in the plot
 #' @param scale A number to divide the catch by
+#' @param type The type of plot, one of default (no change to data),
+#' proportion, or cumulative
+#' @param leg_pos A two-element vector describing the placement of the
+#' legend inside the plotting area where the x,y values are both between 0
+#' and 1 or "none" for no legend
+#' @param leg_font_size The font size for the legend items
+#' @param line_width The width of the lines
+#' @param line_gap The gap between the points and lines (blank spacing)
+#' @param point_shape The point shape type
+#' @param point_size The size of the points
+#' @param point_stroke The stroke value for the points
+#' @param ax_title_font_size The title font size
+#' @param ax_tick_font_size The tick label font size
+#' @param ax_label_color The axis label color
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -38,10 +52,13 @@ plot_cumulative_catches <- function(catch_lst,
   }
   colors <- plot_color(yrs[2] - yrs[1] + 1)
 
-  # Title
+  # Plot a single cumulative catch plot
   #
   # @param d The data frame to plot
   # @param type The type of plot to produce
+  # @param leg_pos A vector of two values for x/y location of the legend
+  # or "non" for no legend
+  # @param title The text to use for the panel title
   #
   # @return A [ggplot2::ggplot()] object
   plot_single_panel <- function(d,
