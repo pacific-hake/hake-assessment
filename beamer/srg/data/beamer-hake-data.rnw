@@ -422,12 +422,31 @@ plot_weight_at_age(wt_at_age,
 
 %----------------------------------------------------------
 \subsection{Maturity and fecundity estimates}
-\frame{\frametitle{Maturity and fecundity estimates}
+\frame{\frametitle{Maturity}
 \begin{figure}
 \centering
- <<maturity.ogive.figure, fig.height=4.5, fig.width=8, out.width='0.85\\columnwidth'>>=
-    maturity.ogive.figure(base_model)
+<<maturity.ogive.figure, fig.height = 3.5>>=
+  plot_maturity_ogives(base_model,
+                       maturity_samples_df)
+                       #axis_title_font_size = 10,
+                       #axis_tick_font_size = 8)
   @
+\end{figure}
+}
+
+%----------------------------------------------------------
+\subsection{Maturity and fecundity estimates}
+\frame{\frametitle{Fecundity}
+\begin{figure}
+\centering
+<<fecundity.figure, fig.height = 3.5>>=
+  plot_fecundity(base_model,
+                 d = maturity_samples_df,
+                 yrs = start_yr_age_comps:(end_yr - 1),
+                 leg_pos = c(0.6, 0.2))
+                 #axis_title_font_size = 10,
+                 #axis_tick_font_size = 8)
+@
 \end{figure}
 }
 

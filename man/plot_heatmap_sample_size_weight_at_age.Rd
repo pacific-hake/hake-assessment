@@ -14,9 +14,9 @@ plot_heatmap_sample_size_weight_at_age(
   yrs = NULL,
   cell_font_size = 4,
   sum_col_fill_color = "white",
-  ax_title_font_size = 14,
-  ax_tick_font_size = 10,
-  ax_label_color = "black",
+  ax_title_font_size = axis_title_font_size,
+  ax_tick_font_size = axis_tick_font_size,
+  ax_label_color = axis_label_color,
   ...
 )
 }
