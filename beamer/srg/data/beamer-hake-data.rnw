@@ -329,11 +329,9 @@ if(!dir.exists(fig_dir)){
  \frame{\frametitle{Acoustic survey age-2$^+$ biomass estimates}
    \begin{figure}
 \centering
-  <<survey-compare-extrap-noextrap, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-    plot_survey_biomass(
-      dplyr::filter(base_model[["dat"]][["CPUE"]], index == 2)
-    )
-  @
+<<survey-compare-extrap-noextrap, fig.height = 3.5>>=
+  plot_survey_biomass(base_model, index = "age2")
+@
 \end{figure}
 }
 
@@ -342,13 +340,9 @@ if(!dir.exists(fig_dir)){
  \frame{\frametitle{Acoustic survey age-1 fish estimates}
    \begin{figure}
 \centering
-  <<survey-age1, fig.height=4.5, fig.width=8, out.width='0.9\\columnwidth'>>=
-    make.survey.age1.plot.data(
-      dplyr::filter(base_model[["dat"]][["CPUE"]], index == 3),
-      log.scale = FALSE,
-      yLim = c(0, 16)
-    )
-  @
+<<survey-age1, fig.height = 3.5>>=
+  plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
+@
 \end{figure}
 }
 
@@ -366,26 +360,37 @@ if(!dir.exists(fig_dir)){
 %----------------------------------------------------------
 \subsection{Mean weight-at-age by year}
 \frame{\frametitle{Weight-at-age by year}
-  <<wt-at-age>>=
-    oldpar <- par()
-    par(mar=c(4.1, 4.1, 1.1, 1.1), oma=c(0, 0, 0, 0))
-    make.wt_at_age.plot(wt_at_age, ages = 2:10, lwd = 1)
-    par <- oldpar
-  @
+<<wt-at-age, fig.height = 3.5>>=
+plot_weight_at_age(wt_at_age,
+                   ages = 2:10,
+                   bold_ages = 5,
+                   cols = c("purple",
+                            "darkblue",
+                            "yellow",
+                            "darkgreen"),
+                   max.overlaps = 15)
+@
 }
 
 %----------------------------------------------------------
 \subsection{Weight-at-age sample sizes}
 \frame{\frametitle{Sample sizes of weight-at-age by year}
 \begin{center}
-<<main-weight-at-age-numbers, out.height='90%', out.width='90%'>>=
-  midyear <- (base_model$endyr - start_yr_age_comps)/2 + start_yr_age_comps
-  weight.at.age.heatmap(base_model,
-                        proj.line.yr = base_model$endyr,
-                        extrap.mask = weight_age_extrapolation_mask,
-                        longterm.mean.ages = NULL,
-                        samplesize = TRUE,
-                        print.years = c(midyear+0.5, base_model$endyr+0.5))
+<<main-weight-at-age-numbers, fig.height = 3.9>>=
+  plot_heatmap_sample_size_weight_at_age(
+    base_model,
+    cell_font_size = 2,
+    sample_size_df = weight_age_sample_sizes_df,
+    pre_yrs = start_yr_age_comps:base_model$endyr,
+    pre_func = mean,
+    post_yrs = (base_model$endyr - 4):base_model$endyr,
+    post_func = mean,
+    cols = c("purple",
+             "lightgreen",
+             "yellow",
+             "dodgerblue"),
+    ax_title_font_size = 10,
+    ax_tick_font_size = 6)
 @
 \end{center}
 }

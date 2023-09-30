@@ -14,6 +14,9 @@ plot_heatmap_sample_size_weight_at_age(
   yrs = NULL,
   cell_font_size = 4,
   sum_col_fill_color = "white",
+  ax_title_font_size = 14,
+  ax_tick_font_size = 10,
+  ax_label_color = "black",
   ...
 )
 }
@@ -45,6 +48,12 @@ the table}
 
 \item{...}{Arguments passed to `\code{\link[=heatmap_add_extrap_yrs_wa]{heatmap_add_extrap_yrs_wa()}},
 \code{\link[=heatmap_get_wa_ggplot_vals]{heatmap_get_wa_ggplot_vals()}}, and \code{\link[=heatmap_set_colors]{heatmap_set_colors()}}}
+
+\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
+
+\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{axis_label_color}{Color for the axis labels and tick labels}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

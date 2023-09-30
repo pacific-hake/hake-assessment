@@ -41,6 +41,9 @@
 #' @param cell_font_size Font size of the values printed in each cell of
 #' the table
 #' @param sum_col_fill_color The fill color for the row sum column
+#' @param axis_title_font_size Size of the font for the X and Y axis labels
+#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
+#' @param axis_label_color Color for the axis labels and tick labels
 #' @param ... Arguments passed to `[heatmap_add_extrap_yrs_wa()],
 #' [heatmap_get_wa_ggplot_vals()], and [heatmap_set_colors()]
 #'
@@ -56,6 +59,9 @@ plot_heatmap_sample_size_weight_at_age <- function(
     yrs = NULL,
     cell_font_size = 4,
     sum_col_fill_color = "white",
+    ax_title_font_size = axis_title_font_size,
+    ax_tick_font_size = axis_tick_font_size,
+    ax_label_color = axis_label_color,
     ...){
 
   sum_col_age_val <- 999
@@ -202,7 +208,28 @@ plot_heatmap_sample_size_weight_at_age <- function(
                color = proj_line_color,
                size = proj_line_width) +
     xlab("Age") +
-    ylab("Year")
+    ylab("Year") +
+    theme(axis.text.x = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = -0.25,
+                                     face = "plain"),
+          axis.text.y = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 0,
+                                      vjust = 0,
+                                      face = "plain"),
+          axis.title.y = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
+
 
   g
 }
