@@ -268,7 +268,6 @@ if(!dir.exists(fig_dir)){
 \subsection{Age composition by sector}
 \frame{\frametitle{Age composition by sector}
 <<age-comp-comparison, fig.height = 3.9>>=
-
   plot_age_comp_bubbles_data(list(can_ss_age_df,
                                   can_ft_age_df,
                                   us_ss_age_df,
@@ -288,12 +287,14 @@ if(!dir.exists(fig_dir)){
 \subsection{Survey age compositions}
 \frame{\frametitle{Acoustic survey age compositions}
 \begin{center}
-  <<survey-age-comps, out.height='85%', out.width='85%'>>=
-    make_age_comp_bubble_plot(base_model,
-                              clines = c(1984, 1999, 2010, 2014, 2016),
-                              subplot = 2,
-                              xlim = c(survey_start_yr, survey_end_yr))
-  @
+<<survey-age-comps, fig.height = 3.5>>=
+  plot_age_comp_bubbles(base_model,
+                        type = "survey",
+                        clines = c(1984, 1999, 2010, 2014, 2016, 2020),
+                        inc_mean_age_line = FALSE,
+                        point_alpha = 0.4,
+                        xlim = c(survey_start_yr, last_data_yr))
+@
 \end{center}
 }
 
@@ -301,17 +302,15 @@ if(!dir.exists(fig_dir)){
 \subsection{Age composition comparison}
 \frame{\frametitle{Survey and fishery age-composition comparison}
 \begin{center}
-  <<age-comp-comparison-fishery-survey, out.height='90%', out.width='90%'>>=
-    oldpar <- par()
-    par(mar=c(1.1, 1.1, 0, 1.1), oma=c(1.1, 2.1, 0, 0), las = 1)
-    ## NOTE this function is not generalized and needs to be fixed
-    make.age.comp.compare.bubble.plot(base_model,
-                                      start_yr = survey_start_yr,
-                                      end_yr = survey_end_yr,
-                                      show.key = TRUE,
-                                      key.yrs = c(1997, 1999, 2002, 2005)+1)
-    par <- oldpar
-  @
+<<age-comp-comparison-fishery-survey, out.height='90%', out.width='90%'>>=
+  plot_age_comp_bubbles(base_model,
+                        type = "fishery",
+                        leg_pos = "top",
+                        inc_mean_age_line = TRUE,
+                        point_alpha = 0.4,
+                        xlim = c(start_yr_age_comps, last_data_yr),
+                        show_x_axis_labels = FALSE)
+@
 \end{center}
 }
 
