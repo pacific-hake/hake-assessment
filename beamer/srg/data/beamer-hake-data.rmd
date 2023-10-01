@@ -241,3 +241,137 @@ plot_cumulative_catches(list(us_ss_catch_by_month_df,
                         leg_font_size = 8)
 ```
   
+# Canada freezer-trawler depth distribution
+```{r depthcaft, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_depth_2_panel(can_ft_gear_depth_df,
+                   can_ft_bottom_depth_df,
+                   yrs = (last_data_yr - 4):last_data_yr)
+```
+
+# Canada shoreside depth distribution
+```{r depthcass, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_depth_2_panel(can_ss_gear_depth_df,
+                   can_ss_bottom_depth_df,
+                   yrs = (last_data_yr - 4):last_data_yr)
+```
+
+# U.S. at-sea depth distribution
+```{r depthus, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_depth_2_panel(us_atsea_fishing_depth_df,
+                   us_atsea_bottom_depth_df,
+                   yrs = (last_data_yr - 4):last_data_yr)
+```
+
+# Age composition by sector
+```{r age-comp-comparison, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_age_comp_bubbles_data(list(can_ss_age_df,
+                                can_ft_age_df,
+                                us_ss_age_df,
+                                us_cp_age_df,
+                                us_ms_age_df),
+                           list("Canadian Shorside",
+                                "Canadian Freezer-Trawlers",
+                                "U.S. Shore-Based",
+                                "U.S. Catcher-processor",
+                                "U.S. Mothership"),
+                           ax_title_font_size = 8,
+                           ax_tick_font_size = 8)
+```
+
+# Acoustic survey age compositions
+```{r survey-age-comps, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_age_comp_bubbles(base_model,
+                      type = "survey",
+                      clines = c(1984, 1999, 2010, 2014, 2016, 2020),
+                      inc_mean_age_line = FALSE,
+                      point_alpha = 0.4,
+                      xlim = c(survey_start_yr, last_data_yr))
+```
+
+# Survey and fishery age-composition comparison
+```{r age-comp-comparison-fishery-survey, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_age_comp_comparison_bubbles(base_model)
+```
+
+# Acoustic survey backscatter (age-2$^+$) and age composition
+![](../../../doc/main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue)
+
+# Acoustic survey backscatter of age-1 fish
+![](../../../doc/main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue)
+
+# Acoustic survey age-2$^+$ biomass estimates
+```{r survey-compare-extrap-noextrap, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_survey_biomass(base_model, index = "age2")
+```
+
+# Acoustic survey age-1 fish estimates
+```{r survey-age1, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
+```
+
+# Weight-at-age data
+* Pre-1975 U.S.~weight-at-age data are not included because they were
+  collected from the Puget Sound.
+* Historical fecundity uses mean weight-at-age data from all years.
+* Future fecundity uses mean weight-at-age data from most recent five years.
+
+# Weight-at-age by year
+```{r wt-at-age, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_weight_at_age(wt_at_age,
+                   ages = 2:10,
+                   bold_ages = 5,
+                   cols = c("purple",
+                            "darkblue",
+                            "yellow",
+                            "darkgreen"),
+                   max.overlaps = 15)
+```
+
+# Sample sizes of weight-at-age by year
+```{r main-weight-at-age-numbers, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_heatmap_sample_size_weight_at_age(
+  base_model,
+  cell_font_size = 2,
+  sample_size_df = weight_age_sample_sizes_df,
+  pre_yrs = start_yr_age_comps:base_model$endyr,
+  pre_func = mean,
+  post_yrs = (base_model$endyr - 4):base_model$endyr,
+  post_func = mean,
+  cols = c("purple",
+           "lightgreen",
+           "yellow",
+           "dodgerblue"),
+  ax_title_font_size = 10,
+  ax_tick_font_size = 6)
+```
+
+# Maturity
+```{r maturity.ogive.figure, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_maturity_ogives(base_model,
+                     maturity_samples_df)
+#axis_title_font_size = 10,
+#axis_tick_font_size = 8)
+```
+
+# Fecundity
+```{r fecundity.figure, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_fecundity(base_model,
+               d = maturity_samples_df,
+               yrs = start_yr_age_comps:(end_yr - 1),
+               leg_pos = c(0.6, 0.2))
+#axis_title_font_size = 10,
+#axis_tick_font_size = 8)
+```
+
+# Data sources **NOT** used in the base model
+* Fishery independent
+  - Length / sex frequencies from the acoustic survey.
+  - Bottom-trawl survey age-composition data.
+  - Juvenile and pre-recruit surveys from the Southwest Fisheries Science
+    Center and Pacific Whiting Conservation Cooperative.
+* Fishery dependent
+  - Length frequencies from the fishery.
+  - Fishery CPUE.
+  - Bycatch in non-target fisheries.
+  - Mexican landings / sample data.
+* Externally derived environmental / ecosystem covariates
