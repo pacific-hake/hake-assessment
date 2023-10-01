@@ -38,7 +38,7 @@
 \newcounter{saveenumi}
 \input{../../hake-beamer.tex}
 
-<<load-everything, echo=FALSE,  message=FALSE, results='hide', warning=FALSE>>=
+<<load-everything, echo = FALSE,  message = FALSE, results = 'hide', warning = FALSE>>=
 library(knitr)  # need this else these options get ignored on first run
 opts_chunk$set(dev = 'cairo_ps',
                fig.dpi = 96,
@@ -65,6 +65,18 @@ fig_dir <- here::here("beamer", "srg", "data", "figures")
 if(!dir.exists(fig_dir)){
   dir.create(fig_dir)
 }
+
+@
+
+<<loading, echo = FALSE, results = "asis">>=
+res <- knitr::knit_child("../../../doc/001-load-packages.rmd")
+cat(res, sep = '\n')
+res <- knitr::knit_child("../../../doc/002-load-globals.rmd")
+cat(res, sep = '\n')
+res <- knitr::knit_child("../../../doc/003-load-models.rmd")
+cat(res, sep = '\n')
+res <- knitr::knit_child("../../../doc/003-load-project-variables.rmd")
+cat(res, sep = '\n')
 @
 
 %----------------------------------------------------------
@@ -168,7 +180,7 @@ if(!dir.exists(fig_dir)){
     \bi
       \item TAC includes \Sexpr{last_yr_can_carryover} t of carryover
       \item Freezer Trawlers and Shoreside -- \Sexpr{last_yr_can_shoreside_tac} t
-      \item Joint Venture                  -- \Sexpr{last_yr_can_tac.jv} t
+      \item Joint Venture                  -- \Sexpr{last_yr_can_tac_jv} t
     \ei
   \end{column}
     \begin{column}[t]{0.5\linewidth}

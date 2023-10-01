@@ -266,7 +266,7 @@ last_yr_can_landings <- ct_last1 |>
 last_yr_can_tac <- ct_last1 |>
   pull(`Canada TAC`) |>
   f(0)
-last_yr_can_tac.jv <- ft |>
+last_yr_can_tac_jv <- ft |>
   filter(Year == last_data_yr) |>
   pull(can_jv_tac) |>
   f(0)
