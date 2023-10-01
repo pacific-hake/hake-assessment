@@ -223,3 +223,21 @@ plot_catches(ct, xlim = c(start_yr, last_data_yr),
 :::
 ::::::
 
+# Cumulative catch by month
+```{r cumulative-catches, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+plot_cumulative_catches(list(us_ss_catch_by_month_df,
+                             can_ss_catch_by_month_df,
+                             us_cp_catch_by_month_df,
+                             can_ft_catch_by_month_df,
+                             us_ms_catch_by_month_df),
+                        list("U.S. Shore-Based",
+                             "Canadian Shorside",
+                             "U.S. Catcher-processor",
+                             "Canadian Freezer-Trawlers",
+                             "U.S. Mothership"),
+                        type = "cumulative",
+                        ax_title_font_size = 10,
+                        ax_tick_font_size = 8,
+                        leg_font_size = 8)
+```
+  
