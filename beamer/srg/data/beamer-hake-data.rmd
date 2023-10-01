@@ -17,7 +17,7 @@ header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
   beamer_presentation:
     theme: "Singapore"
-    slide_level: 1
+    slide_level: 2
 classoption: "aspectratio=169"
 fontsize: 11pt
 urlcolor: blue
@@ -79,7 +79,8 @@ res <- knitr::knit_child("../../../doc/004-load-project-variables.rmd")
 cat(res, sep = '\n')
 ```
 
-# Year in review
+# Review
+## Year in review
 ```{r pchangecatch}
 last_yr_catch <- tail(last_5_yrs_total_ct, 1)
 penult_yr_catch <- tail(last_5_yrs_total_ct, 2)[1]
@@ -122,7 +123,7 @@ surv_text <- ifelse(last_data_yr %% 2,
   - Age-`r max_shoreside_age_prop_age` fish in Canadian shoreside sector.
 * `r surv_text`
 
-# Summary of data sources used
+## Summary of data sources used
 :::::: {.columns}
 ::: {.column width="38%"}
 * Fishery-dependent data
@@ -147,7 +148,8 @@ plot_data_summary(base_model,
 :::
 ::::::
 
-# Catches
+# Catches and Allocations
+## Catches
 ```{r catches, fig.height = 3.2, out.height = "2.6in", out.width = "1\\columnwidth"}
 plot_catches(ct, xlim = c(start_yr, last_data_yr),
              leg_font_size = 7,
@@ -155,7 +157,7 @@ plot_catches(ct, xlim = c(start_yr, last_data_yr),
              leg_ratio = c(1, 4))
 ```
 
-# Allocations of `r end_yr - 1` TAC of `r last_yr_tac` t
+## Allocations of `r end_yr - 1` TAC of `r last_yr_tac` t
 :::::: {.columns}
 ::: {.column width="50%"}
 \center \textbf{\textcolor{blue}{Canada}} \center
@@ -186,7 +188,7 @@ plot_catches(ct, xlim = c(start_yr, last_data_yr),
 :::
 ::::::
 
-# Catches of `r end_yr - 1` TAC of `r last_yr_tac` t
+## Catches of `r end_yr - 1` TAC of `r last_yr_tac` t
 :::::: {.columns}
 ::: {.column width="50%"}
 \center \textbf{\textcolor{blue}{Canada}} \center
@@ -223,7 +225,7 @@ plot_catches(ct, xlim = c(start_yr, last_data_yr),
 :::
 ::::::
 
-# Cumulative catch by month
+## Cumulative catch by month
 ```{r cumulative-catches, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_cumulative_catches(list(us_ss_catch_by_month_df,
                              can_ss_catch_by_month_df,
@@ -241,28 +243,30 @@ plot_cumulative_catches(list(us_ss_catch_by_month_df,
                         leg_font_size = 8)
 ```
   
-# Canada freezer-trawler depth distribution
+# Depths
+## Canada freezer-trawler depth distribution
 ```{r depthcaft, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_depth_2_panel(can_ft_gear_depth_df,
                    can_ft_bottom_depth_df,
                    yrs = (last_data_yr - 4):last_data_yr)
 ```
 
-# Canada shoreside depth distribution
+## Canada shoreside depth distribution
 ```{r depthcass, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_depth_2_panel(can_ss_gear_depth_df,
                    can_ss_bottom_depth_df,
                    yrs = (last_data_yr - 4):last_data_yr)
 ```
 
-# U.S. at-sea depth distribution
+## U.S. at-sea depth distribution
 ```{r depthus, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_depth_2_panel(us_atsea_fishing_depth_df,
                    us_atsea_bottom_depth_df,
                    yrs = (last_data_yr - 4):last_data_yr)
 ```
 
-# Age composition by sector
+# Ages
+## Age composition by sector
 ```{r age-comp-comparison, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_age_comp_bubbles_data(list(can_ss_age_df,
                                 can_ft_age_df,
@@ -278,7 +282,7 @@ plot_age_comp_bubbles_data(list(can_ss_age_df,
                            ax_tick_font_size = 8)
 ```
 
-# Acoustic survey age compositions
+## Acoustic survey age compositions
 ```{r survey-age-comps, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_age_comp_bubbles(base_model,
                       type = "survey",
@@ -288,34 +292,36 @@ plot_age_comp_bubbles(base_model,
                       xlim = c(survey_start_yr, last_data_yr))
 ```
 
-# Survey and fishery age-composition comparison
+## Survey and fishery age-composition comparison
 ```{r age-comp-comparison-fishery-survey, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_age_comp_comparison_bubbles(base_model)
 ```
 
-# Acoustic survey backscatter (age-2$^+$) and age composition
+# Surveys
+## Acoustic survey backscatter (age-2$^+$) and age composition
 ![](../../../doc/main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue)
 
-# Acoustic survey backscatter of age-1 fish
+## Acoustic survey backscatter of age-1 fish
 ![](../../../doc/main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue)
 
-# Acoustic survey age-2$^+$ biomass estimates
+## Acoustic survey age-2$^+$ biomass estimates
 ```{r survey-compare-extrap-noextrap, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_survey_biomass(base_model, index = "age2")
 ```
 
-# Acoustic survey age-1 fish estimates
+## Acoustic survey age-1 fish estimates
 ```{r survey-age1, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
 ```
 
-# Weight-at-age data
+# Weight-at-age
+## Weight-at-age data
 * Pre-1975 U.S.~weight-at-age data are not included because they were
   collected from the Puget Sound.
 * Historical fecundity uses mean weight-at-age data from all years.
 * Future fecundity uses mean weight-at-age data from most recent five years.
 
-# Weight-at-age by year
+## Weight-at-age by year
 ```{r wt-at-age, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_weight_at_age(wt_at_age,
                    ages = 2:10,
@@ -327,7 +333,7 @@ plot_weight_at_age(wt_at_age,
                    max.overlaps = 15)
 ```
 
-# Sample sizes of weight-at-age by year
+## Sample sizes of weight-at-age by year
 ```{r main-weight-at-age-numbers, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_heatmap_sample_size_weight_at_age(
   base_model,
@@ -345,7 +351,8 @@ plot_heatmap_sample_size_weight_at_age(
   ax_tick_font_size = 6)
 ```
 
-# Maturity
+# Maturity and Fecundity
+## Maturity
 ```{r maturity.ogive.figure, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_maturity_ogives(base_model,
                      maturity_samples_df)
@@ -353,7 +360,7 @@ plot_maturity_ogives(base_model,
 #axis_tick_font_size = 8)
 ```
 
-# Fecundity
+## Fecundity
 ```{r fecundity.figure, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
 plot_fecundity(base_model,
                d = maturity_samples_df,
@@ -363,7 +370,8 @@ plot_fecundity(base_model,
 #axis_tick_font_size = 8)
 ```
 
-# Data sources **NOT** used in the base model
+# Summary
+## Data sources **NOT** used in the base model
 * Fishery independent
   - Length / sex frequencies from the acoustic survey.
   - Bottom-trawl survey age-composition data.
