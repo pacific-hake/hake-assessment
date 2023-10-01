@@ -2,6 +2,10 @@
 #'
 #' @param ct The data frame which is read in from `landings-tac-history.csv`
 #' @param leg_font_size The legend font size
+#' @param leg_key_size The size in cm of the bars of color in the legend
+#' @param leg_ratio A vector of length two, for the ratio of the legend size
+#' vs the plot size respectively. Default is c(1, 2). You will likely need to
+#' change this if changing `leg_key_size` and/or `leg_font_size`
 #' @param clip_cover There is a white rectangle drawn on top of the plot
 #' to cover any of the plot that made it outside the plot area. `clip` has to
 #' be set to `off` for the major x-axis tick marks to work, So, this is required.
@@ -22,6 +26,8 @@
 #' @export
 plot_catches <- function(ct,
                          leg_font_size = 12,
+                         leg_key_size = 0.7,
+                         leg_ratio = c(1, 2),
                          clip_cover = 2,
                          xlim = c(1966, year(Sys.time())),
                          x_breaks = xlim[1]:xlim[2],
@@ -150,12 +156,12 @@ plot_catches <- function(ct,
             legend.title = element_blank(),
             legend.text.align = 0,
             legend.text = element_text(size = leg_font_size),
-            legend.key.size = unit(0.7, "cm")))
+            legend.key.size = unit(leg_key_size, "cm")))
 
   p <- plot_grid(legend,
                  g,
                  ncol = 1,
-                 rel_heights = c(1, 2))
+                 rel_heights = leg_ratio)
 
   p
 }
