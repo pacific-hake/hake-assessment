@@ -195,3 +195,121 @@ plot_mcmc_diagnostics_all_params(base_model,
                                  ro_text_size = 3)
 ```
 
+# Fits to data
+## Fit to the acoustic survey index of abundance
+```{r mcmc-survey-fit, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+base_model$plots$survey_fit
+```
+
+## Fit to the age-1 relative index
+```{r mcmc-age1-fit, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+base_model$plots$age1_index_fit
+```
+
+## Fit to acoustic survey age comps
+:::::: {.columns}
+::: {.column width="40%"}
+* Relative cohort strength captured well, but some over- and under-fitting
+* Predicted higher: 1999 cohort and 2010 cohort in 2017 survey
+* Predicted lower: some young cohorts in 2003--2011, 2014 cohort in
+  2017 survey
+* Predictions for 2014 and 2016 cohorts are similar in the 2019 and 2021
+  surveys, despite differences in survey estimates (although well within the
+  range of uncertainty)
+:::
+
+::: {.column width="60%"}
+```{r survey-age-comp-fits, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+plot_age_comp_fit(base_model,
+                  n_col = 4,
+                  type = "survey",
+                  x_breaks = seq(2, 15, 2),
+                  label_font_size = 4,
+                  label_loc = c(12, 0.7))
+```
+:::
+::::::
+
+## Fit to fishery age comps
+:::::: {.columns}
+::: {.column width="40%"}
+* Large 1999, 2010, and 2014 cohorts fit particularly well
+* Some over- and under-fitting in 1980 and 1984 cohorts
+* The 2016 cohort is slightly under-fit in recent years
+* Fishery data in 2022 imply a slightly larger size for the 2020 cohort than
+  the model prediction
+:::
+
+::: {.column width="60%"}
+```{r fishery-age-comp-fits, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+plot_age_comp_fit(base_model,
+                  label_font_size = 3,
+                  type = "fishery",
+                  n_col = 4)
+```
+:::
+::::::
+
+## Pearson residual for fit to the age data
+:::::: {.columns}
+::: {.column width="50%"}
+\center Fishery \center
+```{r fishery-pearson, fig.height=4, out.height = "2in", out.width = "1\\columnwidth"}
+plot_pearson_bubbles(base_model,
+                     type = "fishery",
+                     leg_pos = "top")
+```
+:::
+
+::: {.column width="60%"}
+\center Survey \center
+```{r survey-pearson, fig.height=4, out.height = "2in", out.width = "1\\columnwidth"}
+plot_pearson_bubbles(base_model,
+                     type = "survey",
+                     alpha = 0.7)
+```
+:::
+::::::
+Dark bubbles are positive residuals (observed > expected) and white bubbles
+are negative residuals (observed < expected)
+
+# Estimated Quantities
+## Key parameters
+:::::: {.columns}
+::: {.column width="40%"}
+* Prior for natural mortality looks to be influencing posterior
+* Posterior for steepness does not shift much from prior
+* DM for fishery has a relatively narrow posterior distribution
+* Prior for survey DM parameter looks to be influencing posterior (discussed
+  further in sensitivity section)
+:::
+
+::: {.column width="60%"}
+```{r priors-posts, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+plot_priors_vs_posts(base_model,
+                     x_range = "prior",
+                     ncol = 2,
+                     nrow = 3)
+```
+:::
+::::::
+
+## Acoustic survey catchability (\emph{$q_b$}) posterior for this assessment
+       \bc
+       <<histQ, fig.height=2.25, fig.width=5.5>>=
+         make.mcmc.catchability.plot(base_model, last_yr_base_model,type = "age2plus")
+       @
+         \begin{table}
+       \begin{tabular}{cccc} \hline
+       \textcolor{blue}{Median (\Sexpr{assess_yr})} &
+         \textcolor{red}{Median (\Sexpr{assess_yr - 1})} \\
+       \hline
+       \textcolor{blue}{\Sexpr{f(median(base_model$extra_mcmc$Q_vector), 2)}} &
+         \textcolor{red}{\Sexpr{f(median(last_yr_base_model$extra_mcmc$Q_vector), 2)}} \\
+       %\textcolor{blue}{\Sexpr{f(base_model$cpue$Calc_Q[1],2)}}  &
+         %\textcolor{red}{\Sexpr{f(last_yr_base_model$cpue$Calc_Q[1],2)}} \\
+       \hline
+       \end{tabular}
+       \end{table}
+       \ec
+     }
