@@ -11,16 +11,20 @@ params:
   last_data_yr: 2022
   model_version: "01"
   last_yr_model_version: "01"
-author: Joint Technical Committee
+author: Pacific Hake Joint Technical Committee
 date: "`r format(Sys.time(), '%B %d')`\\textsuperscript{th}, `r format(Sys.time(), '%Y')`"
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
   beamer_presentation:
     theme: "Singapore"
     slide_level: 2
+    keep_tex: true
 classoption: "aspectratio=169"
 fontsize: 11pt
 urlcolor: blue
+header-includes:
+  - \usepackage{makecell, booktabs, array}
+  - \usepackage[outdir=./knitr-figs-pdf/]{epstopdf}
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
@@ -65,7 +69,6 @@ fig_dir <- here::here("beamer", "srg", "data", "knitr-figs-pdf")
 if(!dir.exists(fig_dir)){
   dir.create(fig_dir)
 }
-
 ```
 
 ```{r loading, include = FALSE, results = "asis"}
@@ -125,7 +128,7 @@ surv_text <- ifelse(last_data_yr %% 2,
 
 ## Summary of data sources used
 :::::: {.columns}
-::: {.column width="38%"}
+::: {.column width="40%"}
 * Fishery-dependent data
   - Annual catch (`r start_yr`--`r end_yr - 1`)
   - Age compositions (1975--`r end_yr - 1`; 1$^+$)
@@ -140,7 +143,7 @@ surv_text <- ifelse(last_data_yr %% 2,
 * Maturity ogive (NWFSC, 2017)
 :::
 
-::: {.column width="62%"}
+::: {.column width="60%"}
 ```{r data-overview-map, out.height = "3in", out.width = "1\\columnwidth"}
 plot_data_summary(base_model,
                   label_y_placement = c(1.8, 2.5, 2.0))
@@ -150,7 +153,7 @@ plot_data_summary(base_model,
 
 # Catches and Allocations
 ## Catches
-```{r catches, fig.height = 3.2, out.height = "2.6in", out.width = "1\\columnwidth"}
+```{r catches, fig.height = 3.9, out.height = "3in", out.width = "1\\columnwidth"}
 plot_catches(ct, xlim = c(start_yr, last_data_yr),
              leg_font_size = 7,
              leg_key_size = 0.2,
@@ -226,7 +229,7 @@ plot_catches(ct, xlim = c(start_yr, last_data_yr),
 ::::::
 
 ## Cumulative catch by month
-```{r cumulative-catches, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r cumulative-catches, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_cumulative_catches(list(us_ss_catch_by_month_df,
                              can_ss_catch_by_month_df,
                              us_cp_catch_by_month_df,
@@ -245,21 +248,21 @@ plot_cumulative_catches(list(us_ss_catch_by_month_df,
   
 # Depths
 ## Canada freezer-trawler depth distribution
-```{r depthcaft, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r depthcaft, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_depth_2_panel(can_ft_gear_depth_df,
                    can_ft_bottom_depth_df,
                    yrs = (last_data_yr - 4):last_data_yr)
 ```
 
 ## Canada shoreside depth distribution
-```{r depthcass, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r depthcass, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_depth_2_panel(can_ss_gear_depth_df,
                    can_ss_bottom_depth_df,
                    yrs = (last_data_yr - 4):last_data_yr)
 ```
 
 ## U.S. at-sea depth distribution
-```{r depthus, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r depthus, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_depth_2_panel(us_atsea_fishing_depth_df,
                    us_atsea_bottom_depth_df,
                    yrs = (last_data_yr - 4):last_data_yr)
@@ -267,7 +270,7 @@ plot_depth_2_panel(us_atsea_fishing_depth_df,
 
 # Ages
 ## Age composition by sector
-```{r age-comp-comparison, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r age-comp-comparison, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_age_comp_bubbles_data(list(can_ss_age_df,
                                 can_ft_age_df,
                                 us_ss_age_df,
@@ -283,7 +286,7 @@ plot_age_comp_bubbles_data(list(can_ss_age_df,
 ```
 
 ## Acoustic survey age compositions
-```{r survey-age-comps, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r survey-age-comps, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_age_comp_bubbles(base_model,
                       type = "survey",
                       clines = c(1984, 1999, 2010, 2014, 2016, 2020),
@@ -293,7 +296,7 @@ plot_age_comp_bubbles(base_model,
 ```
 
 ## Survey and fishery age-composition comparison
-```{r age-comp-comparison-fishery-survey, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r age-comp-comparison-fishery-survey, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_age_comp_comparison_bubbles(base_model)
 ```
 
@@ -305,12 +308,12 @@ plot_age_comp_comparison_bubbles(base_model)
 ![](../../../doc/main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue)
 
 ## Acoustic survey age-2$^+$ biomass estimates
-```{r survey-compare-extrap-noextrap, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r survey-compare-extrap-noextrap, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_survey_biomass(base_model, index = "age2")
 ```
 
 ## Acoustic survey age-1 fish estimates
-```{r survey-age1, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r survey-age1, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
 ```
 
@@ -322,7 +325,7 @@ plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
 * Future fecundity uses mean weight-at-age data from most recent five years.
 
 ## Weight-at-age by year
-```{r wt-at-age, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r wt-at-age, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_weight_at_age(wt_at_age,
                    ages = 2:10,
                    bold_ages = 5,
@@ -334,7 +337,7 @@ plot_weight_at_age(wt_at_age,
 ```
 
 ## Sample sizes of weight-at-age by year
-```{r main-weight-at-age-numbers, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r main-weight-at-age-numbers, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_heatmap_sample_size_weight_at_age(
   base_model,
   cell_font_size = 2,
@@ -347,21 +350,34 @@ plot_heatmap_sample_size_weight_at_age(
            "lightgreen",
            "yellow",
            "dodgerblue"),
-  ax_title_font_size = 10,
   ax_tick_font_size = 6)
 ```
 
 # Maturity and Fecundity
+## Ovary sampling
+* Sample sources
+  - Bottom trawl survey (2009, 2012 -- 2017)
+  - Acoustic survey (2012 -- 2013, 2015 -- 2017)
+  - At-sea fishery (2013 -- 2017)
+* Length stratified sampling from surveys with target numbers for 2 cm length bins.
+* Data from 2018 and 2019 are expected to be analyzed in 2021.
+
+## Status of Canadian ovary samples
+```{r ovary-table, results = "asis", echo = FALSE, out.width="1\\columnwidth"}
+table_ovary_samples(
+  ovary_samples_df,
+  font_size = 7,
+  header_font_size = 6)
+```
+
 ## Maturity
-```{r maturity.ogive.figure, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r maturity.ogive.figure, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_maturity_ogives(base_model,
                      maturity_samples_df)
-#axis_title_font_size = 10,
-#axis_tick_font_size = 8)
 ```
 
 ## Fecundity
-```{r fecundity.figure, fig.height = 3.5, out.height = "3in", out.width = "1\\columnwidth"}
+```{r fecundity.figure, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
 plot_fecundity(base_model,
                d = maturity_samples_df,
                yrs = start_yr_age_comps:(end_yr - 1),
@@ -369,6 +385,16 @@ plot_fecundity(base_model,
 #axis_title_font_size = 10,
 #axis_tick_font_size = 8)
 ```
+
+## Fecundity
+* Fecundity-at-age is set to maturity-at-age $*$ weight-at-age in Stock
+  Synthesis.
+* We need a better understanding of:
+  - Batch spawning.
+  - Links between fecundity and size, age, and weight.
+  - How the above topics provide further information about factors that
+    influence varying reproductive output.
+* More winter acoustic surveys may provide further information about these questions.
 
 # Summary
 ## Data sources **NOT** used in the base model
