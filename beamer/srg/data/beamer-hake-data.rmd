@@ -31,7 +31,6 @@ header-includes:
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
 library(knitr)
-devtools::load_all("~/github/pacific-hake/hake")
 
 if(is_latex_output()){
   knitr_figs_dir <<- "knitr-figs-pdf/"
@@ -66,7 +65,6 @@ opts_chunk$set(
   fig.pos = fig_pos)
 
 devtools::load_all(here::here())
-
 fig_dir <- here::here("beamer", "srg", "data", "knitr-figs-pdf")
 if(!dir.exists(fig_dir)){
   dir.create(fig_dir)
