@@ -1,5 +1,5 @@
 ---
-title: "**Fisheries, data, and inputs used in the 2024 Pacific Hake stock assessment**"
+title: "Fisheries, data, and inputs used in the 2024 Pacific Hake stock assessment"
 params:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
@@ -12,11 +12,11 @@ params:
   model_version: "01"
   last_yr_model_version: "01"
 author: Pacific Hake Joint Technical Committee
-date: "`r format(Sys.time(), '%B %d')`\\textsuperscript{th}, `r format(Sys.time(), '%Y')`"
-header: "Draft working paper --- Do not cite or circulate" # or "" to omit
+date: "SRG meeting -- `r assess_yr`"
+subtitle: "Disclaimer: These materials do not constitute a formal publication and are for information only. They are in a pre-review, pre-decisional state and should not be formally cited or reproduced. They are to be considered provisional and do not represent any determination or policy of NOAA or the Department of Commerce."
 output:
   beamer_presentation:
-    theme: "Singapore"
+    theme: Singapore
     slide_level: 2
     keep_tex: true
 classoption: "aspectratio=169"
