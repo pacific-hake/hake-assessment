@@ -25,6 +25,8 @@ urlcolor: blue
 header-includes:
   - \usepackage{makecell, booktabs, array}
   - \usepackage[outdir=./knitr-figs-pdf/]{epstopdf}
+  - \AtBeginSubsection{}
+  - \AtBeginSection{}
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
