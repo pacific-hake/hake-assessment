@@ -443,7 +443,7 @@ to 2021.
 #                      type = "acoustic",
 #                      n_posts = 1000,
 #                      glow = TRUE)
-#base_model$plots$survey_fit
+base_model$plots$survey_fit
 ```
 
 (ref:main-age1-index-fit-mcmc-cap) Fits (colored lines) to the relative
@@ -469,7 +469,7 @@ time series but diverge a little at the end of the time series for the
 #                      n_posts = 1000,
 #                      ylim = c(0, 10),
 #                      glow = TRUE)
-#base_model$plots$age1_index_fit
+base_model$plots$age1_index_fit
 ```
 
 (ref:main-age-comp-fits-cap) Base model fits to the observed fishery (top)
