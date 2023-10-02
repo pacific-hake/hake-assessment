@@ -28,6 +28,9 @@ plot_mcmc_diagnostics_all_params(
 in the 4 plots. Note the plot orders in this vector is:
 top left, top right bottom left bottom right}
 
+\item{ro_text_nudges}{A vector of 4 for the R0 text left/right nudges.
+See \code{\link[=plot_mcmc_histogram]{plot_mcmc_histogram()}}}
+
 \item{...}{Arguments passed to \code{\link[=calc_mcmc_param_stats]{calc_mcmc_param_stats()}} and
 \code{\link[=plot_mcmc_histogram]{plot_mcmc_histogram()}}}
 }

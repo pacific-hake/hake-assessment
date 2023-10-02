@@ -8,6 +8,8 @@
 #' @param ro_arrow_lengths A vector of 4 values to use for the arrow lengths
 #' in the 4 plots. Note the plot orders in this vector is:
 #' top left, top right bottom left bottom right
+#' @param ro_text_nudges A vector of 4 for the R0 text left/right nudges.
+#' See [plot_mcmc_histogram()]
 #' @param ... Arguments passed to [calc_mcmc_param_stats()] and
 #' [plot_mcmc_histogram()]
 #'

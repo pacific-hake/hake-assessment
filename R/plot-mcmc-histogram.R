@@ -18,6 +18,7 @@
 #' `show_ro` is `TRUE`
 #' @param ro_text_nudge Amount to nudge to the left(negative) or right
 #' (positive) the R0 location label
+#' @param ro_text_size The font size for the R0 labels
 #' @param bar_label_limit The number in a bin (count - y-axis), above which
 #' the label of the count for the bar is in white in the middle of the bar
 #' vertically. Below this value, the bar value will be above the bar. To
@@ -59,6 +60,7 @@ plot_mcmc_histogram <- function(d,
                                 show_bar_values = TRUE,
                                 ro_arrow_length = 20,
                                 ro_text_nudge = 0,
+                                ro_text_size = 10,
                                 bar_label_limit = 10,
                                 bar_text_color = "navyblue",
                                 bar_text_size = 2,
@@ -194,6 +196,7 @@ plot_mcmc_histogram <- function(d,
                   aes(x = x + ro_text_nudge,
                       y = yend + extra_text_space,
                       label = label),
+                  size = ro_text_size,
                   parse = TRUE)
     }
     return(g)
@@ -302,6 +305,7 @@ plot_mcmc_histogram <- function(d,
                 aes(x = x + ro_text_nudge,
                     y = yend + extra_text_space,
                     label = label),
+                size = ro_text_size,
                 parse = TRUE)
   }
 

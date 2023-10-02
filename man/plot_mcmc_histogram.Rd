@@ -16,6 +16,7 @@ plot_mcmc_histogram(
   show_bar_values = TRUE,
   ro_arrow_length = 20,
   ro_text_nudge = 0,
+  ro_text_size = 10,
   bar_label_limit = 10,
   bar_text_color = "navyblue",
   bar_text_size = 2,
@@ -57,6 +58,8 @@ arrow pointing to the bin that the R0 parameter is in. Only used if
 
 \item{ro_text_nudge}{Amount to nudge to the left(negative) or right
 (positive) the R0 location label}
+
+\item{ro_text_size}{The font size for the R0 labels}
 
 \item{bar_label_limit}{The number in a bin (count - y-axis), above which
 the label of the count for the bar is in white in the middle of the bar
