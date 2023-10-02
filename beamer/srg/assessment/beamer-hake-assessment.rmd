@@ -1,0 +1,148 @@
+---
+title: "`r assess_yr` Pacific Hake Stock Assessment Methods and Results"
+params:
+  sp: "Pacific Hake"
+  common_name: "Pacific whiting"
+  science_name: "Merluccius productus"
+  simple_name: "hake"
+  survey_name: "Joint U.S. and Canadian Integrated Acoustic and Trawl Survey"
+  assess_yr: 2023
+  last_assess_yr: 2022
+  last_data_yr: 2022
+  model_version: "01"
+  last_yr_model_version: "01"
+author: Pacific Hake Joint Technical Committee
+date: "SRG meeting -- `r assess_yr`"
+subtitle: "Disclaimer: These materials do not constitute a formal publication and are for information only. They are in a pre-review, pre-decisional state and should not be formally cited or reproduced. They are to be considered provisional and do not represent any determination or policy of NOAA or the Department of Commerce."
+output:
+  beamer_presentation:
+    theme: Singapore
+    slide_level: 2
+    keep_tex: true
+classoption: "aspectratio=169"
+fontsize: 11pt
+urlcolor: blue
+header-includes:
+  - \usepackage{makecell, booktabs, array}
+  - \usepackage[outdir=./knitr-figs-pdf/]{epstopdf}
+  - \AtBeginSubsection{}
+  - \AtBeginSection{}
+---
+
+```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
+library(knitr)
+
+if(is_latex_output()){
+  knitr_figs_dir <<- "knitr-figs-pdf/"
+  knitr_cache_dir <<- "knitr-cache-pdf/"
+  fig_out_type <<- "png"
+}else{
+  knitr_figs_dir <<- "knitr-figs-docx/"
+  knitr_cache_dir <<- "knitr-cache-docx/"
+  fig_out_type <<- "png"
+}
+fig_width <<- 7.5
+fig_dpi <<- 200
+fig_align <<- "center"
+fig_pos <<- "htb"
+opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  results = "hide",
+  comment = "#>",
+  fig.path = knitr_figs_dir,
+  cache.path = knitr_cache_dir,
+  fig.width = fig_width,
+  echo = FALSE,
+  autodep = FALSE,
+  cache = TRUE,
+  cache.lazy = FALSE,
+  cache.comments = FALSE,
+  dev = fig_out_type,
+  dpi = fig_dpi,
+  fig.align = fig_align,
+  fig.pos = fig_pos)
+
+devtools::load_all(here::here())
+fig_dir <- here::here("beamer", "srg", "assessment", "knitr-figs-pdf")
+if(!dir.exists(fig_dir)){
+  dir.create(fig_dir)
+}
+```
+
+```{r loading, include = FALSE, results = "asis"}
+res <- knitr::knit_child("../../../doc/001-load-packages.rmd")
+cat(res, sep = '\n')
+res <- knitr::knit_child("../../../doc/002-load-globals.rmd")
+cat(res, sep = '\n')
+res <- knitr::knit_child("../../../doc/003-load-models.rmd")
+cat(res, sep = '\n')
+res <- knitr::knit_child("../../../doc/004-load-project-variables.rmd")
+cat(res, sep = '\n')
+```
+
+# Outline
+* Model changes from `r last_assess_yr`
+* Show some MCMC diagnostics
+* Fits to data
+* Estimates of key quantities
+* Brief response to `r last_assess_yr` SRG assessment recommendations
+* Summary
+
+# Changes from `r last_assess_yr`
+## Changes from the `r last_assess_yr` assessment
+* Update Stock Synthesis to version `r ss_version`
+* Add new catch data for `r last_assess_yr` and update historical catches 
+* Add new weight-at-age data for `r last_assess_yr`and update
+  weight-at-age data
+* Add the `r last_assess_yr` acoustic survey biomass estimate and age data
+* Add the `r last_assess_yr` age-1 index estimate
+* Add new fishery age composition data for `r last_assess_yr` and historical
+  fishery age composition data
+* No changes to acoustic survey biomass estimates or age-1 index
+  estimates this year
+* All model runs in the assessment use MCMC
+
+## Bridging: Model Updates and Additions
+```{r bridge-biomass, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+plist <- list()
+plist[[1]] <-
+  plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
+                   ylim = c(0, 2.5),
+                   x_labs_mod = 10,
+                   wrap_y_label = TRUE,
+                   leg_pos = "none")
+plist[[2]] <-
+  plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
+               leg_pos = "none",
+               x_labs_mod = 10,
+               line_width = 0.1)
+
+plot_grid(plotlist = plist,
+          nrow = 1,
+          ncol = 2)
+```
+
+## Bridging: Model Updates and Additions (survey)
+```{r bridge-survey, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+plist <- list()
+plist[[1]] <-
+  plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
+                         survey_type = "age2",
+                         rev_colors = FALSE,
+                         leg_pos = "none")
+
+plist[[2]] <-
+  plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
+                         survey_type = "age1",
+                         xlim = c(1995, 2022),
+                         ylim = c(0, 11),
+                         y_breaks = seq(0, 11, by = 2),
+                         rev_colors = FALSE,
+                         leg_pos = "none")
+
+plot_grid(plotlist = plist,
+          nrow = 1,
+          ncol = 2)
+```

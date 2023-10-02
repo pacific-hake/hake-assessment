@@ -9,5 +9,7 @@ rm beamer-hake-assessment.snm 2> /dev/null
 rm beamer-hake-assessment.nav 2> /dev/null
 rm beamer-hake-assessment.toc 2> /dev/null
 rm *.pdf 2> /dev/null
-rm -rf figures
-rm -rf knitr-cache
+rm -rf knitr-figs-pdf
+rm -rf knitr-cache-pdf
+rm -rf knitr-figs-docx
+rm -rf knitr-cache-docx
