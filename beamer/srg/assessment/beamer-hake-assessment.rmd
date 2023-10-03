@@ -402,8 +402,7 @@ table_param_est(
   section_line_above = FALSE,
   section_line_below = FALSE,
   digits = 3,
-  caption = "JUNK",
-  font_size = 9,
-  header_font_size = 9,
-  longtable = TRUE)
+  caption = "",
+  font_size = 5.5,
+  header_font_size = 7)
 ```
