@@ -334,7 +334,6 @@ k <- function(){
     column_spec(1, color = "blue") |> 
     column_spec(2, color = "red") |> 
     kable_styling(position = "center")
-  
 }
 
 k()
