@@ -23,10 +23,16 @@ classoption: "aspectratio=169"
 fontsize: 11pt
 urlcolor: blue
 header-includes:
-  - \usepackage{makecell, booktabs, array}
+  - \usepackage{makecell, booktabs, makecell, array, longtable, bm}
+  - \makeatletter\def\fnum@table{\usebeamercolor{caption name}\usebeamerfont*{caption name}\tablename~\thetable}\makeatother
   - \usepackage[outdir=./knitr-figs-pdf/]{epstopdf}
   - \AtBeginSubsection{}
   - \AtBeginSection{}
+  - \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+  - \newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+  - \newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+  - \newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+  - \input{../../hake-beamer.tex}
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
@@ -72,14 +78,20 @@ if(!dir.exists(fig_dir)){
 ```
 
 ```{r loading, include = FALSE, results = "asis"}
-res <- knitr::knit_child("../../../doc/001-load-packages.rmd")
-cat(res, sep = '\n')
-res <- knitr::knit_child("../../../doc/002-load-globals.rmd")
-cat(res, sep = '\n')
-res <- knitr::knit_child("../../../doc/003-load-models.rmd")
-cat(res, sep = '\n')
-res <- knitr::knit_child("../../../doc/004-load-project-variables.rmd")
-cat(res, sep = '\n')
+library(here)
+res <- knitr::knit_child(here("doc/001-load-packages.rmd"))
+cat(res, sep = "\n")
+res <- knitr::knit_child(here("doc/002-load-globals.rmd"))
+cat(res, sep = "\n")
+res <- knitr::knit_child(here("doc/003-load-models.rmd"))
+cat(res, sep = "\n")
+res <- knitr::knit_child(here("doc/004-load-project-variables.rmd"))
+cat(res, sep = "\n")
+# Read in latex globals from 004-load-project-variables.rmd
+# The knit_child() command above does not load them in
+# readLines(here("doc/004-load-project-variables.rmd"))
+# grep("\\\\newcommand\\{", d, value = TRUE)
+# cat(latex_lines)
 ```
 
 # Outline
@@ -295,21 +307,103 @@ plot_priors_vs_posts(base_model,
 ::::::
 
 ## Acoustic survey catchability (\emph{$q_b$}) posterior for this assessment
-       \bc
-       <<histQ, fig.height=2.25, fig.width=5.5>>=
-         make.mcmc.catchability.plot(base_model, last_yr_base_model,type = "age2plus")
-       @
-         \begin{table}
-       \begin{tabular}{cccc} \hline
-       \textcolor{blue}{Median (\Sexpr{assess_yr})} &
-         \textcolor{red}{Median (\Sexpr{assess_yr - 1})} \\
-       \hline
-       \textcolor{blue}{\Sexpr{f(median(base_model$extra_mcmc$Q_vector), 2)}} &
-         \textcolor{red}{\Sexpr{f(median(last_yr_base_model$extra_mcmc$Q_vector), 2)}} \\
-       %\textcolor{blue}{\Sexpr{f(base_model$cpue$Calc_Q[1],2)}}  &
-         %\textcolor{red}{\Sexpr{f(last_yr_base_model$cpue$Calc_Q[1],2)}} \\
-       \hline
-       \end{tabular}
-       \end{table}
-       \ec
-     }
+```{r catchability-density, fig.height=4, out.height = "2in", out.width = "0.8\\columnwidth"}
+plot_catchability_density(base_model,
+                          last_yr_base_model,
+                          type = "age2",
+                          line_widths = c(1, 1),
+                          line_types = c("solid", "solid"))
+```
+
+```{r table-catchability-medians, results = "asis"}
+k <- function(){
+
+  d <- tibble(a = c(paste0("Median (", assess_yr, ")"),
+                    f(median(last_yr_base_model$extra_mcmc$q_vector), 2)),
+              b = c(paste0("Median (", last_assess_yr, ")"),
+                    f(median(base_model$extra_mcmc$q_vector), 2)))
+
+  kbl(d,
+      format = "latex",
+      booktabs = TRUE,
+      col.names = NULL,
+      align = c("c", "c"),
+      linesep = "",
+      escape = FALSE) |>
+    row_spec(0, bold = TRUE) |> 
+    column_spec(1, color = "blue") |> 
+    column_spec(2, color = "red") |> 
+    kable_styling(position = "center")
+  
+}
+
+k()
+```
+
+## Time-varying selectivity
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-mountains, fig.height=4, out.height = "2.8in", out.width = "1\\columnwidth"}
+
+tv_selex_start_yr <- 1990
+
+plot_selex_mountains(base_model,
+                     yrs = tv_selex_start_yr:last_data_yr,
+                     ages = 1:8,
+                     fill_num_colors = 50,
+                     scale = 20)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-uncertainty, fig.height=4, out.height = "2.8in", out.width = "1\\columnwidth"}
+plot_selex_uncertainty(base_model,
+                       n_col = 2,
+                       label_loc = c(1, 0.65),
+                       label_font_size = 3)
+```
+:::
+::::::
+
+## Posterior distributions for survey (left) and fishery (right) selectivity
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-posterior-survey, fig.height=4, out.height = "2.8in", out.width = "1\\columnwidth"}
+plot_selex_posteriors(base_model,
+                      type = "survey",
+                      probs = probs,
+                      age_range = c(1, 8),
+                      post_med_line_color = "red3",
+                      unc_line_color = "red3",
+                      glow = TRUE)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-posterior-fishery, fig.height=4, out.height = "2.8in", out.width = "1\\columnwidth"}
+plot_selex_posteriors(base_model,
+                      type = "fishery",
+                      probs = probs,
+                      age_range = c(1, 8),
+                      glow = TRUE)
+```
+:::
+::::::
+
+## Key quantities
+```{r table-parameter-ests, results = "asis"}
+table_param_est(
+  models = list(base_model, last_yr_base_model),
+  model_nms = c(base_model_name, last_yr_base_model_name),
+  end_yr = end_yr,
+  section_bold = TRUE,
+  section_italics = TRUE,
+  section_underline = TRUE,
+  section_line_above = FALSE,
+  section_line_below = FALSE,
+  digits = 3,
+  caption = "JUNK",
+  font_size = 9,
+  header_font_size = 9,
+  longtable = TRUE)
+```
