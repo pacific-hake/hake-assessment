@@ -13,6 +13,8 @@ pacman::p_load(
   ggh4x, ggplot2, ggpubr, ggrepel, grDevices, grid,
   gridGraphics, gridExtra, gtools,
   here,
+  # kableExtra - Using cgrandin's fork because there is a bug in the master
+  # *Sending a pull request to author to fix it - Oct 2, 2023*
   kableExtra, knitr,
   lubridate,
   maps, maptools, matrixcalc,

@@ -1,4 +1,5 @@
 ---
+test: false
 title: "**\\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r params$assess_yr`}**"
 params:
   sp: "Pacific Hake"
@@ -39,7 +40,16 @@ csl: csl/csas.csl
 
 ```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
 library(knitr)
-devtools::load_all("~/github/pacific-hake/hake")  
+user <- Sys.getenv("USERNAME")
+if(rmarkdown::metadata$test){
+  if(user == "grandin"){
+    devtools::load_all("~/github/pacific-hake/hake")
+  }else{
+    devtools::load_all("~/github/pacific-hake/hake-assessment")
+  }
+}else{
+  devtools::load_all(here::here())  
+}
 
 if(is_latex_output()){
   knitr_figs_dir <<- "knitr-figs-pdf/"

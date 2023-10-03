@@ -1,48 +1,41 @@
-#' Create and change to a temporary directory where the loading files have
-#' been copied to
+#' Create and change to a temporary directory and copy a skeleton
+#' version of the document files for testing
 #'
 #' @details
-#' Run `bookdown::render_book("000-launcher.rmd", output_dir = ".")` once
-#' in the temporary directory to load everything necessary. Once that has
-#' completed you can run any table or figure code in the document for
-#' debugging purposes. You can also see what a plot or table will look like
-#' in the doc by adding it to the blank "006-test.rmd" file and then running
-#' bookdown as above.
+#' See the *Debugging a figure or table, or anything else* section of the
+#' README.md file for detailed explanation
 #'
-#' @param doc_dr The directory that holds all the RMD files for building the
-#' document. Note: due to `tempdir()` issues, we cannot use `here()` for this,
-#' it must be a full path
-#' @param copy_tmpdir Logical. If `TRUE`, copy the temporary path to the
-#' OS clipboard
+#' @param copy_tmpdir Logical. If `TRUE`, copy the temporary path that
+#' you were just placed in to the OS clipboard
 #'
 #' @return Nothing
-gotest <- function(repo_dr = "~/github/pacific-hake/hake",
-                   copy_tmpdir = FALSE){
+gotest <- function(copy_tmpdir = FALSE){
 
-  # Set global dir name to return back to with `goback()`
-  cdr <<- repo_dr
+  # Set global directory name to return back to with `goback()`
+  goback_dr <<- getwd()
 
-  raw_fns <- c("000-launcher.rmd",
-               "001-load-packages.rmd",
-               "002-load-globals.rmd",
-               "003-load-models.rmd",
-               "003-load-models.R",
-               "004-load-project-variables.rmd",
-               "013-tables.rmd",
-               "014-figures.rmd",
-               "101-appendix-base-mcmc-diagnostics.rmd",
-               "object-placement.csv",
-               "preamble.tex",
-               "bib/refs.bib",
-               "csl/csas.csl",
-               "main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue.png",
-               "main-figures/fishCatchRatesUS.png",
-               "main-figures/hake-picture.eps",
-               "main-figures/hake-picture.png",
-               "main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue.png",
-               "clean")
+  raw_fns <- c(
+    "000-launcher.rmd",
+    "001-load-packages.rmd",
+    "002-load-globals.rmd",
+    "003-load-models.rmd",
+    "003-load-models.R",
+    "004-load-project-variables.rmd",
+    "013-tables.rmd",
+    "014-figures.rmd",
+    "101-appendix-base-mcmc-diagnostics.rmd",
+    "object-placement.csv",
+    "preamble.tex",
+    "bib/refs.bib",
+    "csl/csas.csl",
+    "main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue.png",
+    "main-figures/fishCatchRatesUS.png",
+    "main-figures/hake-picture.eps",
+    "main-figures/hake-picture.png",
+    "main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue.png",
+    "clean")
 
-  doc_dr <- file.path(repo_dr, "doc")
+  doc_dr <- file.path(here::here("doc"))
 
   src_fns <- file.path(doc_dr, raw_fns)
 
@@ -80,6 +73,12 @@ gotest <- function(repo_dr = "~/github/pacific-hake/hake",
   writeLines(bd_lines, "_bookdown.yml")
   writeLines("", "005-test.rmd")
 
+  # Edit the launcher to be in test mode
+  launcher <- readLines("000-launcher.rmd")
+  ind <- grep("test:", launcher)
+  launcher[ind] <- "test: true"
+  writeLines(launcher, "000-launcher.rmd")
+
   message("\nAll variables and models loaded, in a temporary directory.",
           "\n\nRun bookdown::render_book('000-launcher.rmd', ",
           "output_dir = '.')\nWhen finished, run goback() to go back to ",
@@ -95,6 +94,7 @@ gotest <- function(repo_dr = "~/github/pacific-hake/hake",
               "clipboard")
     }
   }
+  message("Now in directory ", getwd())
 
   invisible()
 }
@@ -116,17 +116,17 @@ gotest <- function(repo_dr = "~/github/pacific-hake/hake",
 #' @return Nothing
 goback <- function(){
 
-  if(!exists("cdr")){
-    stop("The variable `cdr` does not exist. You need to set this to the ",
-         "directory name you want to go back to, then re-run this ",
-         "function. In future, make sure you enter a temporary directory ",
-         "for testing using the `hake::gotest()` function, which ",
-         "automatically sets `cdr` for you",
+  if(!exists("goback_dr")){
+    stop("The variable `goback_dr` does not exist. You need to set ",
+         "this to the directory name you want to go back to, then ",
+         "run goback() again. In future, make sure you enter a temporary ",
+         "directory for testing using the `hake::gotest()` function, which ",
+         "automatically sets `goback_dr` for you",
          call. = FALSE)
   }
 
-  setwd(cdr)
+  setwd(goback_dr)
   #set_here(".")
   i_am(".here")
-  setwd("doc")
+  message("Now in directory ", getwd())
 }

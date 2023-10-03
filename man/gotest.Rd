@@ -2,31 +2,23 @@
 % Please edit documentation in R/utils-gotest-goback.R
 \name{gotest}
 \alias{gotest}
-\title{Create and change to a temporary directory where the loading files have
-been copied to}
+\title{Create and change to a temporary directory and copy a skeleton
+version of the document files for testing}
 \usage{
-gotest(repo_dr = "~/github/pacific-hake/hake", copy_tmpdir = FALSE)
+gotest(copy_tmpdir = FALSE)
 }
 \arguments{
-\item{copy_tmpdir}{Logical. If \code{TRUE}, copy the temporary path to the
-OS clipboard}
-
-\item{doc_dr}{The directory that holds all the RMD files for building the
-document. Note: due to \code{tempdir()} issues, we cannot use \code{here()} for this,
-it must be a full path}
+\item{copy_tmpdir}{Logical. If \code{TRUE}, copy the temporary path that
+you were just placed in to the OS clipboard}
 }
 \value{
 Nothing
 }
 \description{
-Create and change to a temporary directory where the loading files have
-been copied to
+Create and change to a temporary directory and copy a skeleton
+version of the document files for testing
 }
 \details{
-Run \code{bookdown::render_book("000-launcher.rmd", output_dir = ".")} once
-in the temporary directory to load everything necessary. Once that has
-completed you can run any table or figure code in the document for
-debugging purposes. You can also see what a plot or table will look like
-in the doc by adding it to the blank "006-test.rmd" file and then running
-bookdown as above.
+See the \emph{Debugging a figure or table, or anything else} section of the
+README.md file for detailed explanation
 }
