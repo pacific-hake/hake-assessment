@@ -1,4 +1,4 @@
-% Add header line. `\PassOptionsToPackage` is used to pass optioins to
+% Add header line. `\PassOptionsToPackage` is used to pass options to
 % a package that has already been loaded. Bookdown creates code to loads
 % the geometry package before this preamble is loaded, so this is needed to
 % add options after the fact. To include footer line, see
@@ -18,7 +18,7 @@
 
 
 \usepackage{fancyhdr}
-% Make header nd footer the same line width
+% Make header and footer the same line width
 \renewcommand{\headrulewidth}{0.25pt}
 \renewcommand{\footrulewidth}{0.25pt}
 \pagestyle{fancy}
@@ -41,7 +41,7 @@
 % Provides control over the `\maketitle` command
 \usepackage{titling}
 
-% Provides normal numernic numbering for pages
+% Provides normal numeric numbering for pages
 \pagenumbering{arabic}
 
 % Math packages
@@ -83,7 +83,7 @@
 % Used to make the headers in tables via the kableExtra::linebreak() function.
 \usepackage{makecell}
 % These two commands make the table header cells set up by `linebreaker()`
-% have their text closer together vertically. They work inconjunction with
+% have their text closer together vertically. They work in conjunction with
 % `\makecell`.
 \usepackage{array}
 \renewcommand\cellset{\renewcommand\arraystretch{0.5}
