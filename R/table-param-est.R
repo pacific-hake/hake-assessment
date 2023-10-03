@@ -25,6 +25,9 @@
 #' If `NULL` this will be calculated as `header_font_size * header_vert_scale`
 #' @param header_vert_scale Scale factor to create the vertical spacing value.
 #' See `header_vert_spacing`
+#' @param longtable Logical. Passed to [kableExtra::kbl()]
+#' @param caption The table caption, or `NULL` for none. Passed to
+#' [kableExtra::kbl()]
 #' @param ... Arguments passed to [knitr::kable()]
 #'
 #' @return An [knitr::kable()] object
@@ -50,7 +53,15 @@ table_param_est <- function(
     header_font_size = 10,
     header_vert_spacing = 12,
     header_vert_scale = 1.2,
+    longtable = FALSE,
+    caption = NULL,
     ...){
+
+  if(longtable && missing(caption)){
+    caption <- paste0(
+      "\\textcolor{red}{Run post\\_process\\_beamer('filename.tex') ",
+      "and then lualatex filename.tex to remove this caption}")
+  }
 
   if(is.null(d)){
     d <- get_param_est_comparison_df(models,
@@ -131,6 +142,8 @@ table_param_est <- function(
            linesep = "",
            col.names = col_names,
            escape = FALSE,
+           longtable = longtable,
+           caption = caption,
            ...) |>
     row_spec(0, bold = TRUE)
 

@@ -24,6 +24,8 @@ table_param_est(
   header_font_size = 10,
   header_vert_spacing = 12,
   header_vert_scale = 1.2,
+  longtable = FALSE,
+  caption = NULL,
   ...
 )
 }
@@ -62,6 +64,11 @@ the headers will have the same font size as the table cell data}
 
 \item{header_vert_scale}{Scale factor to create the vertical spacing value.
 See \code{header_vert_spacing}}
+
+\item{longtable}{Logical. Passed to \code{\link[kableExtra:kbl]{kableExtra::kbl()}}}
+
+\item{caption}{The table caption, or \code{NULL} for none. Passed to
+\code{\link[kableExtra:kbl]{kableExtra::kbl()}}}
 
 \item{...}{Arguments passed to \code{\link[knitr:kable]{knitr::kable()}}}
 

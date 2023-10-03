@@ -402,7 +402,6 @@ table_param_est(
   section_line_above = FALSE,
   section_line_below = FALSE,
   digits = 3,
-  caption = "",
   font_size = 5.5,
   header_font_size = 7)
 ```
