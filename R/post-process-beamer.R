@@ -73,5 +73,9 @@ post_process_beamer <- function(tex_fn = "beamer-hake-data.tex"){
   dat <- gsub("\\\\subtitle\\{", "\\\\subtitle{\\\\tiny ", dat)
   d <- c(pre, dat, post)
 
+  # Remove captions from longtables
+  ind <- grep("\\\\caption", d)
+  d <- d[-ind]
+
   writeLines(d, tex_fn)
 }
