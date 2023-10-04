@@ -139,7 +139,8 @@ diagnostics for all base model parameters.
 plot_mcmc_diagnostics_all_params(base_model,
                                  show_ro = TRUE,
                                  ro_arrow_lengths = c(10, 20, 7, 20),
-                                 ro_text_nudges = c(0.15, 0, -0.55, 0))
+                                 ro_text_nudges = c(0.2, 0, -0.55, 0),
+                                 ro_text_size = 5)
 ```
 
 (ref:main-mcmc-pairs-cap) Posterior correlations among the objective

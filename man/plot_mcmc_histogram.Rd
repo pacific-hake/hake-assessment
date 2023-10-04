@@ -16,7 +16,7 @@ plot_mcmc_histogram(
   show_bar_values = TRUE,
   ro_arrow_length = 20,
   ro_text_nudge = 0,
-  ro_text_size = 10,
+  ro_text_size = 5,
   bar_label_limit = 10,
   bar_text_color = "navyblue",
   bar_text_size = 2,

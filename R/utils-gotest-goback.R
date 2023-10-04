@@ -21,9 +21,9 @@ gotest <- function(copy_tmpdir = FALSE){
     "003-load-models.rmd",
     "003-load-models.R",
     "004-load-project-variables.rmd",
-    "013-tables.rmd",
-    "014-figures.rmd",
     "101-appendix-base-mcmc-diagnostics.rmd",
+    "caption-adjustments.csv",
+    "forecast-descriptions.csv",
     "object-placement.csv",
     "preamble.tex",
     "bib/refs.bib",
@@ -80,9 +80,8 @@ gotest <- function(copy_tmpdir = FALSE){
   writeLines(launcher, "000-launcher.rmd")
 
   message("\nAll variables and models loaded, in a temporary directory.",
-          "\n\nRun bookdown::render_book('000-launcher.rmd', ",
-          "output_dir = '.')\nWhen finished, run goback() to go back to ",
-          "the directory you came from.")
+          "\n\nTo build the document, run render()\nWhen finished, ",
+          "run goback() to go back to the directory you came from.")
 
   if(copy_tmpdir){
     if(dirclip()){
