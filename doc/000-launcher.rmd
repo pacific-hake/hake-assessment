@@ -31,6 +31,9 @@ output:
 documentclass: article
 fontsize: 11pt
 urlcolor: blue
+knit: (function(input, ...) {
+       bookdown::render_book("000-launcher.rmd.Rmd", output_dir = ".")
+      })
 header-includes:
   - \pretitle{\begin{center}}
   - \posttitle{\end{center}\begin{center}\LARGE\includegraphics[width=12cm]{main-figures/hake-picture.png}\\[\bigskipamount]\end{center}}
