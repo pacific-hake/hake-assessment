@@ -1,3 +1,4 @@
+\usepackage[margin=1in]{geometry}
 % Add header line. `\PassOptionsToPackage` is used to pass options to
 % a package that has already been loaded. Bookdown creates code to loads
 % the geometry package before this preamble is loaded, so this is needed to
@@ -16,11 +17,21 @@
 % the TEX file
 \usepackage[usegeometry]{typearea}
 
-
 \usepackage{fancyhdr}
 % Make header and footer the same line width
 \renewcommand{\headrulewidth}{0.25pt}
 \renewcommand{\footrulewidth}{0.25pt}
+
+% These two macros make the head and foot lines double lines
+% Comment them out to leave only single lines
+\renewcommand\headrule{\begin{minipage}{1\textwidth}
+\hrule width \hsize height 2pt \kern 1mm \hrule width \hsize
+\end{minipage}\par}
+
+\renewcommand\footrule{\begin{minipage}{1\textwidth}
+\hrule width \hsize height 2pt \kern 1mm \hrule width \hsize
+\end{minipage}\par}
+
 \pagestyle{fancy}
 \fancyhf{}
 

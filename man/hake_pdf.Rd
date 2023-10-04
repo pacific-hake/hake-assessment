@@ -7,6 +7,7 @@
 hake_pdf(
   latex_engine = "lualatex",
   prepub = FALSE,
+  accessibility_tagging = FALSE,
   line_nums = FALSE,
   line_nums_mod = 1,
   pandoc_args = c("--top-level-division=chapter", "--wrap=none",
