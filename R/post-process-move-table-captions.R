@@ -11,7 +11,7 @@ post_process_move_table_captions <- function(x){
 
   # Move a single caption horizontally
   # @param x Tex code, as a vector of lines read in from a TeX file by
-  # [readLines()]
+  # `readLines()`
   # @param tag The chunk tag found in the knitr code chunk header in which
   # the table is created. Includes leading `tab:` part
   # @param pts The number of `pts` to move the caption. Can be positive or
@@ -34,19 +34,30 @@ post_process_move_table_captions <- function(x){
     }
   }
 
-  # Note that all these tags have to be in the ORDER IN WHICH THEY APPEAR
-  # IN THE DOCUMENT! The values are determined by trial-and-error looking at
-  # the document after it's built
-  x <- move_cap(x, "tab:main-catches-us", -4)
-  x <- move_cap(x, "tab:main-assessment-changes-table", -26)
-  x <- move_cap(x, "tab:main-est-numbers-at-age-table", -12)
-  x <- move_cap(x, "tab:main-est-exp-rate-at-age-table", -14)
-  x <- move_cap(x, "tab:main-est-catch-at-age-table", -6)
-  x <- move_cap(x, "tab:main-ci-posterior-table", -16)
-  x <- move_cap(x, "tab:main-risk-year-1-table", -4)
-  x <- move_cap(x, "tab:main-risk-year-2-table", -4)
-  x <- move_cap(x, "tab:main-risk-year-3-table", -4)
-  x <- move_cap(x, "tab:main-parameter-estimates-sens-1", -26)
+  settings_fn <- "caption-adjustments.csv"
+  doc_dr <- here("doc")
+  if(!dir.exists(doc_dr)){
+    stop("The `doc` directory which contains the file `", settings_fn, " ",
+         "does not exist",
+         call. = FALSE)
+  }
+  settings_fn <- here("doc", settings_fn)
+  if(!file.exists(settings_fn)){
+    stop("The caption adjustments CSV file does not exist. This file ",
+         "should be here:\n", settings_fn,
+         call. = FALSE)
+  }
+
+  settings_df <- read_csv(settings_fn,
+                          col_types = cols(),
+                          comment = "#",
+                          show_col_types = FALSE)
+
+  for(i in seq_len(nrow(settings_df))){
+    x <- move_cap(x,
+                  settings_df[i, ]$chunk_label,
+                  settings_df[i, ]$adjustment)
+  }
 
   x
 }

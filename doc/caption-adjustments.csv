@@ -1,0 +1,23 @@
+# For manual adjustments of captions. Some of the captions will not line up
+# perfectly with the header and footer lines. nudging them a bit
+# left (negative number) or right (postivie number) will line them up
+# perfectly
+#
+# Note that all these tags have to be in the ORDER IN WHICH THEY APPEAR
+# IN THE DOCUMENT! The values are determined by trial-and-error looking at
+# the document after it's built
+#
+# Make sure you prepend the label with tab: for tables and fig: for figures
+
+chunk_label,adjustment
+tab:es-landings-tac-tab,-36
+tab:main-catches-us-tab,-4
+tab:main-assessment-changes-tab,-26
+tab:main-est-numbers-at-age-tab,-12
+tab:main-est-exp-rate-at-age-tab,-14
+tab:main-est-catch-at-age-tab,-6
+tab:main-ci-posterior-tab,-16
+tab:main-risk-year-1-tab,-4
+tab:main-risk-year-2-tab,-4
+tab:main-risk-year-3-tab,-4
+tab:main-parameter-estimates-sens-1-tab,-20
