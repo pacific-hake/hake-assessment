@@ -48,6 +48,9 @@ plot_catchability_density(
 
 \item{line_widths}{A vector of two line widths for the two median lines}
 }
+\value{
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
+}
 \description{
 Plot the density histogram for the posteriors for catchability for
 either the acoustic age-2+ survey or the age-1 index

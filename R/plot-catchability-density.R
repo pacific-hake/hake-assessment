@@ -17,10 +17,8 @@
 #' @param line_types A vector of two line types for the two median lines
 #' @param line_widths A vector of two line widths for the two median lines
 #'
-#' @return
+#' @return A [ggplot2::ggplot()] object
 #' @export
-#'
-#' @examples
 plot_catchability_density <- function(model,
                                       model2 = NULL,
                                       type = c("age2", "age1"),
