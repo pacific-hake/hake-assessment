@@ -32,7 +32,7 @@ documentclass: article
 fontsize: 11pt
 urlcolor: blue
 knit: (function(input, ...) {
-       bookdown::render_book("000-launcher.rmd.Rmd", output_dir = ".")
+       hake::render()
       })
 header-includes:
   - \pretitle{\begin{center}}
