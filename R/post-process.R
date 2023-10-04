@@ -45,8 +45,8 @@ post_process <- function(x,
   # Table of contents injection ----
   x <- post_process_table_of_contents(x, ...)
 
-  # Change from book/chapter back to article/section ----
-  x <- post_process_convert_to_article(x)
+  # Change sections to subsections and subsections to subsubsections ----
+  x <- post_process_convert_section_headers(x)
 
   # Placements for figures and tables ----
   x <- post_process_set_object_placement(x, ...)
@@ -67,6 +67,14 @@ post_process <- function(x,
 
   # Subtract vertical space before section headers ----
   x <- post_process_subtract_section_space(x)
+
+  # Add a little space before the "Stock" subsection header as it is bumped up
+  # really close to the "Executive Summary" section header
+  # Find all lines starting with \section{ or \section*{
+  stock_header_ind <- grep("^\\\\addcontentsline\\{toc\\}\\{section\\}\\{Executive summary\\}$", x)
+  pre <- x[1:stock_header_ind]
+  post <- x[(stock_header_ind + 1):length(x)]
+  x <- c(pre, "\\vspace{5mm}", post)
 
   x
 }

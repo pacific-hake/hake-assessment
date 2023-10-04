@@ -6,12 +6,16 @@
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_convert_to_article <- function(x){
+post_process_convert_section_headers <- function(x){
 
-  section_inds <- grep("\\\\section\\{", x)
-  subsection_inds <- grep("\\\\subsection\\{", x)
-  subsubsection_inds <- grep("\\\\subsubsection\\{", x)
-  subsubsubsection_inds <- grep("\\\\subsubsubsection\\{", x)
+  # Find all lines starting with \section{ or \section*{
+  section_inds <- grep("^\\\\section\\*?\\{", x)
+  # Find all lines starting with \subsection{
+  subsection_inds <- grep("^\\\\subsection\\{", x)
+  # Find all lines starting with \subsubsection{
+  subsubsection_inds <- grep("^\\\\subsubsection\\{", x)
+  # Find all lines starting with \subsubsubsection{
+  subsubsubsection_inds <- grep("^\\\\subsubsubsection\\{", x)
 
   # Change sections to subsections etc
   if(length(section_inds))
