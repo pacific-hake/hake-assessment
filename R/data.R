@@ -315,14 +315,12 @@
 #' @format A data frame with 57 rows and 70 variables:
 #' \describe{
 #'   \item{yr}{Assessment year}
-#'   \item{fishery_independent_cpue}
-#'        {Toggle for if the index used was fishery-independent}
+#'   \item{fishery_independent_cpue}{Toggle for if the index used was fishery-independent}
 #'   \item{author}{Assessment authors}
 #'   \item{model}{Type of model}
 #'   \item{value}{Biomass estimate specifics}
 #'   \item{model_type}{Type of model, eg. weight-at-age or growth}
-#'   \item{1960}
-#'{Biomass value for the year. There are additional columns, one for each year}
+#'   \item{1960}{Biomass value for the year. There are additional columns, one for each year}
 #' }
 "assess_history_df"
 #' A data frame containing information on probability of biomass decline
@@ -368,7 +366,7 @@
 #'
 #' @format A data frame with 2636 rows and 33 variables:
 #' \describe{
-#'   \item{sampling_platform}{Group that performed the sampling
+#'   \item{sampling_platform}{Group that performed the sampling}
 #'   \item{yr}{Year of sample}
 #'   \item{primary_reader}{Initials of the primary sample-taker}
 #'   \item{haul_date}{Date of the haul (tow) that the sample was from}
@@ -376,8 +374,7 @@
 #'   \item{rounded_latitude}{Latitude of sample, rounded to degree}
 #'   \item{n_or_s_of_34_44}{Sample was North or South of 34.44 degrees North}
 #'   \item{season}{Season of sample}
-#'   \item{visual_maturity_code}
-#'        {Maturity code for sample taken by visual means only}
+#'   \item{visual_maturity_code}{Maturity code for sample taken by visual means only}
 #'   \item{weight_kg}{Weight of fish}
 #'   \item{length_cm}{Length in centimeters of fish}
 #'   \item{age}{Age of fish or NA if not aged}
@@ -391,16 +388,16 @@
 #'   \item{o_7}{Oocyte markers}
 #'   \item{o_8}{Oocyte markers}
 #'   \item{o_9}{Oocyte markers}
-#'   \item{highest_matstage}{Highest maturity stage assigned
-#'   \item{biological_maturity}{}
-#'   \item{prop_atresia}{}
-#'   \item{functional_maturity}{}
+#'   \item{highest_matstage}{Highest maturity stage assigned}
+#'   \item{biological_maturity}{0 for not mature and 1 for mature}
+#'   \item{prop_atresia}{Proportion for atresia (closedness)}
+#'   \item{functional_maturity}{0 for not mature and 1 for mature}
 #'   \item{spent}{Toggle for spent ovary}
-#'   \item{batch_spent}{}
+#'   \item{batch_spent}{0 for not spent, 1 for spent}
 #'   \item{spawning}{Toggle for spawning fish or non-spawning fish}
-#'   \item{pofs_present}{}
+#'   \item{pofs_present}{0 for not present, 1 for present}
 #'   \item{histology_notes}{Notes taken during histilogical analysis}
-#'   \item{data_notes}{}
+#'   \item{data_notes}{Notes taken during sample analysis}
 #' }
 "maturity_samples_df"
 #' A data frame containing information on weight-at-age
@@ -466,10 +463,8 @@
 #'   \item{Year}{Year of catch/TAC}
 #'   \item{Realized catch}{Actual catch take for the year in tonnes}
 #'   \item{TAC}{Total allowable catch for the year}
-#'   \item{Biomass estimate}
-#'        {The biomass estimate for the year from the current assessment}
-#'   \item{Depletion}
-#'        {The depletion estimate for the year from the current assessment}
+#'   \item{Biomass estimate}{The biomass estimate for the year from the current assessment}
+#'   \item{Depletion}{The depletion estimate for the year from the current assessment}
 #'   \item{Default HCR TAC}{The default harvest control rule TAC (F40%)}
 #' }
 "catch_targets_df"
@@ -481,16 +476,14 @@
 #'   \item{us_tribal_quota}{U.S. tribal quota in tonnes}
 #'   \item{us_research_quota}{U.S. research quota in tonnes}
 #'   \item{us_nontribal_quota}{U.S. non-tribal quota in tonnes}
-#'   \item{us_tribal_quota_reallocated}
-#'        {U.S. tribal quota reallocated in tonnes}
+#'   \item{us_tribal_quota_reallocated}{U.S. tribal quota reallocated in tonnes}
 #'   \item{us_tribal_reallocate_dates}{U.S. tribal quota reallocation dates}
 #'   \item{us_tribal_max_landed}{U.S. tribal maximum landed catch in tonnes}
 #'   \item{can_carried_over}{Canadian carry-over value in tonnes}
 #'   \item{us_shore_reallocated}{U.S. shore-based reallocation in tonnes}
 #'   \item{us_cp_reallocated}{U.S. catcher-processor reallocation in tonnes}
 #'   \item{us_ms_reallocated}{U.S. mothership reallocation in tonnes}
-#'   \item{can_jv_tac}
-#'        {Canadian joint-venture allocation/reallocation in tonnes}
+#'   \item{can_jv_tac}{Canadian joint-venture allocation/reallocation in tonnes}
 #' }
 "further_tac_df"
 #' A data frame containing catch information on Canadian Freezer trawlers
@@ -611,8 +604,7 @@
 #'   \item{U.S. Foreign (hauls)}{Number of samples}
 #'   \item{U.S. Joint-venture (hauls)}{Number of samples}
 #'   \item{U.S. Mothership (hauls)}{Number of samples}
-#'   \item{U.S. Combined Mothership Catcher-processor (hauls)}
-#'        {Number of samples}
+#'   \item{U.S. Combined Mothership Catcher-processor (hauls)}{Number of samples}
 #'   \item{U.S. Catcher-processor (hauls)}{Number of samples}
 #'   \item{U.S. Shore-based (trips)}{Number of samples}
 #'   \item{Canada Foreign (hauls)}{Number of samples}
@@ -959,8 +951,7 @@
 #'   \item{pos}{Position (side) to place label on}
 #'   \item{lat}{Latitude to place label}
 #'   \item{lon}{Longitude to place label}
-#'   \item{north_south}
-#'        {Grouping variable for shiftin base vertical line for placement}
+#'   \item{north_south}{Grouping variable for shiftin base vertical line for placement}
 #'   \item{name}{Name of the port}
 #' }
 "ports_df"
