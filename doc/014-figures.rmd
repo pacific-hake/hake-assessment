@@ -315,9 +315,9 @@ if(is.null(base_model$plots$sample_size_weight_at_age)){
     pre_func = mean,
     post_yrs = (base_model$endyr - 4):base_model$endyr,
     post_func = mean,
-    cols = c("purple",
-             "lightgreen",
+    cols = c("red",
              "yellow",
+             "green",
              "dodgerblue"))
   
 }else{
