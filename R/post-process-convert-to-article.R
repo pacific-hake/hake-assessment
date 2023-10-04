@@ -9,8 +9,6 @@
 #' @examples
 post_process_convert_to_article <- function(x){
 
-  x <- gsub("\\{book\\}", "\\{article\\}", x)
-
   section_inds <- grep("\\\\section", x)
   section_curly_inds <- grep("\\{section\\}", x)
 
@@ -60,8 +58,6 @@ post_process_convert_to_article <- function(x){
                                            "subsubsubsubsection",
                                            x[subsubsubsection_curly_inds])
 
-
-  # Change chapters to sections
   x <- gsub("\\\\chapter", "\\\\section", x)
   x <- gsub("\\{chapter\\}", "{section}", x)
 

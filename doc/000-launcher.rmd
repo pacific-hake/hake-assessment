@@ -28,6 +28,7 @@ output:
    fig_caption: yes
    includes:
      in_header: "preamble.tex"
+documentclass: article
 fontsize: 11pt
 urlcolor: blue
 header-includes:
