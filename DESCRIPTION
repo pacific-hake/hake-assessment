@@ -73,7 +73,7 @@ Suggests:
   testthat
 Remotes: 
   cgrandin/adnuts,
-  cgrandin/kableExtra
+  cgrandin/kableExtra,
   r4ss/r4ss@bioscale,
   ropensci/rnaturalearthhires
 ByteCompile: true
