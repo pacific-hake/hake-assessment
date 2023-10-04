@@ -190,3 +190,10 @@
 }
 \makeatother
 
+% This makes the sections headers all uppercase
+\makeatletter
+\renewcommand{\section}{\@startsection
+{section}{1}{0mm} % name, level, indent
+{-18pt \@plus -0pt \@minus -0pt}{6pt \@plus 0pt} % beforeskip afterskip
+{\centering\normalfont\large\bfseries\MakeUppercase}}
+\makeatother
