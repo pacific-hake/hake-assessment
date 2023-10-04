@@ -4,26 +4,21 @@
 \alias{post_process}
 \title{Post-process the TEX file output by Bookdown}
 \usage{
-post_process(
-  fn,
-  tag = FALSE,
-  figs_dir = ifelse(exists("knitr_figs_dir"), knitr_figs_dir, NULL),
-  ...
-)
+post_process(x, prepub = FALSE, tag = FALSE, ...)
 }
 \arguments{
-\item{fn}{The TEX filename}
-
 \item{tag}{Logical. If \code{TRUE}, include lines for LaTeX \code{tagpdf}
 package to make a more web-accessible document. This will make the compile
 time much longer and is typically used when done the document and doing the
 final compile for government web distribution}
 
+\item{...}{Arguments passed to \code{\link[=post_process_table_of_contents]{post_process_table_of_contents()}}}
+
+\item{fn}{The TEX filename}
+
 \item{figs_dir}{The name of the directory in which the knitr-built
 figures reside. Used for matching figure import locations inside the tex
 file}
-
-\item{...}{Arguments passed to \code{\link[=post_process_table_of_contents]{post_process_table_of_contents()}}}
 }
 \value{
 Nothing, overwrite the file \code{fn} with the modified TEX

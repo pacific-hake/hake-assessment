@@ -81,4 +81,5 @@ post_process_table_of_contents <- function(x,
   x <- gsub("-- ", "\\\\textendash\\\\ ", x)
   x <- gsub("--", "\\\\textendash ", x)
 
+  x
 }

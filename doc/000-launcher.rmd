@@ -20,8 +20,9 @@ author: |
 date: "`r format(Sys.time(), '%B %d')`\\textsuperscript{th}, `r format(Sys.time(), '%Y')`"
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
- bookdown::pdf_document2:
-   latex_engine: pdflatex
+ hake::hake_pdf:
+   latex_engine: lualatex
+   accessibility_tagging: FALSE
    keep_tex: true
    toc: false
    fig_caption: yes
