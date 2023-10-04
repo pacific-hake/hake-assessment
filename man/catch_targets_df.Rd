@@ -11,10 +11,8 @@ A data frame with 21 rows and 6 variables:
 \item{Year}{Year of catch/TAC}
 \item{Realized catch}{Actual catch take for the year in tonnes}
 \item{TAC}{Total allowable catch for the year}
-\item{Biomass estimate}
-{The biomass estimate for the year from the current assessment}
-\item{Depletion}
-{The depletion estimate for the year from the current assessment}
+\item{Biomass estimate}{The biomass estimate for the year from the current assessment}
+\item{Depletion}{The depletion estimate for the year from the current assessment}
 \item{Default HCR TAC}{The default harvest control rule TAC (F40\%)}
 }
 }

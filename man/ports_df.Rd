@@ -11,8 +11,7 @@ A data frame with 28 rows and 6 variables:
 \item{pos}{Position (side) to place label on}
 \item{lat}{Latitude to place label}
 \item{lon}{Longitude to place label}
-\item{north_south}
-{Grouping variable for shiftin base vertical line for placement}
+\item{north_south}{Grouping variable for shiftin base vertical line for placement}
 \item{name}{Name of the port}
 }
 }

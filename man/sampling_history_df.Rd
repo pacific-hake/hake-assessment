@@ -11,8 +11,7 @@ A data frame with 48 rows and 11 variables:
 \item{U.S. Foreign (hauls)}{Number of samples}
 \item{U.S. Joint-venture (hauls)}{Number of samples}
 \item{U.S. Mothership (hauls)}{Number of samples}
-\item{U.S. Combined Mothership Catcher-processor (hauls)}
-{Number of samples}
+\item{U.S. Combined Mothership Catcher-processor (hauls)}{Number of samples}
 \item{U.S. Catcher-processor (hauls)}{Number of samples}
 \item{U.S. Shore-based (trips)}{Number of samples}
 \item{Canada Foreign (hauls)}{Number of samples}

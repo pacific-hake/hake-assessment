@@ -9,14 +9,12 @@ historical assessments from 1991 to present}
 A data frame with 57 rows and 70 variables:
 \describe{
 \item{yr}{Assessment year}
-\item{fishery_independent_cpue}
-{Toggle for if the index used was fishery-independent}
+\item{fishery_independent_cpue}{Toggle for if the index used was fishery-independent}
 \item{author}{Assessment authors}
 \item{model}{Type of model}
 \item{value}{Biomass estimate specifics}
 \item{model_type}{Type of model, eg. weight-at-age or growth}
-\item{1960}
-{Biomass value for the year. There are additional columns, one for each year}
+\item{1960}{Biomass value for the year. There are additional columns, one for each year}
 }
 }
 \usage{
