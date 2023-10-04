@@ -45,6 +45,9 @@ post_process <- function(x,
   # Table of contents injection ----
   x <- post_process_table_of_contents(x, ...)
 
+  # Change from book/chapter back to article/section ----
+  x <- post_process_convert_to_article(x)
+
   # Placements for figures and tables ----
   x <- post_process_set_object_placement(x, ...)
 
