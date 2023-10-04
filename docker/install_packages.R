@@ -7,7 +7,7 @@ devtools::install_github("ropensci/rnaturalearthhires")
 install.packages(c(
   "aws.s3", "cowplot", "data.tree", "date", "dlookr",
   "furrr", "future", "ggpubr", "ggrepel", "here", "kableExtra",
-  "maps", "maptools", "matrixcalc", "rgeos", "rnaturalearth",
+  "maps", "matrixcalc", "rnaturalearth",
   "rstan", "shinystan", "snowfall", "tictoc", "tidyverse"))
 
 tinytex::tlmgr_install(c(
@@ -16,7 +16,7 @@ tinytex::tlmgr_install(c(
   "datetime", "datetime2", "dvips", "ec", "enumitem", "epstopdf-pkg",
   "etex-pkg", "etoolbox", "fancyhdr", "fancyvrb", "float",
   "fmtcount", "framed", "geometry", "hyperref", "iftex",
-  "import", "infwarerr", "kvoptions", "lastpage", "linegoal",
+  "import", "infwarerr", "k+voptions", "lastpage", "linegoal",
   "lineno", "listings", "marginnote", "multirow", "natbib", "ncctools",
   "nowidow", "parskip", "pdflscape", "pdfcomment", "pdftexcmds", "psnfss",
   "rsfs", "soulpos", "soulutf8", "subfig", "times",

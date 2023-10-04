@@ -17,9 +17,9 @@ pacman::p_load(
   # *Sending a pull request to author to fix it - Oct 2, 2023*
   kableExtra, knitr,
   lubridate,
-  maps, maptools, matrixcalc,
+  maps, matrixcalc,
   parallel, purrr,
-  r4ss, RColorBrewer, readr, reshape2, rgeos, rnaturalearth, rnaturalearthhires, rstan,
+  r4ss, RColorBrewer, readr, reshape2, rnaturalearth, rnaturalearthhires, rstan,
   scales, shinystan, sf, stringr,
   testthat, tictoc, tidyr, tools,
   xtable)
