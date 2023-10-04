@@ -70,11 +70,10 @@ post_process <- function(x,
 
   # Add a little space before the "Stock" subsection header as it is bumped up
   # really close to the "Executive Summary" section header
-  # Find all lines starting with \section{ or \section*{
-  stock_header_ind <- grep("^\\\\addcontentsline\\{toc\\}\\{section\\}\\{Executive summary\\}$", x)
-  pre <- x[1:stock_header_ind]
-  post <- x[(stock_header_ind + 1):length(x)]
-  x <- c(pre, "\\vspace{5mm}", post)
+  x <- post_process_add_vert_space_after_header(x)
+
+  # Add horizontal lines to the decision table headers across multiple columns
+  x <- post_process_add_horiz_lines_decision_table(x)
 
   x
 }

@@ -37,7 +37,7 @@ table_decision <- \(
   forecast_inds = seq_along(model$forecasts[[length(model$forecasts)]]),
   rows_to_show = NULL,
   letter_df = tribble(
-    ~let, ~row1_text,                       ~row2_text,
+   ~let,  ~row1_text,                        ~row2_text,
     "a",  "",                                "",
     "b",  "",                                "",
     "c",  "",                                "",
@@ -242,6 +242,7 @@ table_decision <- \(
                                               "Relative spawning biomass",
                                               "Relative fishing intensity")),
                                 align = "c"))
+
   if(type == "biomass"){
     extra_header <- c(set_names(3, ca),
                       set_names(1, ba),

@@ -621,8 +621,10 @@ table_decision(
       min(forecast_yrs) + 1, " (row~", letters[ct_stable_ind], ")."),
   bold_letters = TRUE,
   digits = 2,
+  # Font values higher than 8 and 11 for table and header respectively
+  # will cause the table to wrap to a second page
   font_size = 8,
-  header_font_size = 9,
+  header_font_size = 11,
   # If the font is changed it is almost guaranteed that `left_col_cm` and
   # `right_cols_cm` will have to be changed, especially if the font is made
   # larger. You will have to check this with trial-and-error, building the
@@ -649,8 +651,10 @@ table_decision(
     "selectivity."),
   bold_letters = TRUE,
   digits = 2,
+  # Font values higher than 8 and 11 for table and header respectively
+  # will cause the table to wrap to a second page
   font_size = 8,
-  header_font_size = 9,
+  header_font_size = 11,
   # If the font is changed it is almost guaranteed that `left_col_cm` and
   # `right_cols_cm` will have to be changed, especially if the font is made
   # larger
