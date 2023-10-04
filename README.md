@@ -11,24 +11,19 @@ for important details on the major code rewrite that took place in 2023.
 ## How to create the hake assessment PDF document
 **The `RDS` files must have been created before the document can be built.**
 
-* Load the hake package by running `devtools::load_all(".")` while in the
-  hake package working directory.
+1. Load the hake package by running `devtools::load_all(".")` while in the
+   hake package working directory, or install the hake package on the machine.
 
-* Create the `hake.tex` file by running `render()`. This will create the
-  `hake.tex` file along with the `hake.pdf` file. ***The PDF file created
-  in this step is not formatted correctly, and the following step is required
-  to rebuild it using `lualatex`***.
+1. Run `render()`. This will create the `hake.pdf` assessment document.
 
-* The `hake.tex` file must now be run through LaTeX, using `lualatex` to
-  give us the final document. Go to an Operating System terminal window
-  and run the following in the `doc` directory (where the `hake.tex` file is
-  located). Note that `lualatex` is run twice. This is to ensure all references
-  are set correctly. If you run it only once you will find many question marks
-  in the document for figure and table references.
-  - `lualatex hake.tex; lualatex hake.tex`
+* Alternatively, in RStudio you can click the `knit` button while the file
+  `000-launcher.rmd` is in focus on the screen. This does require that the
+  hake package is installed on the machine, which in RStudio can be
+  accomplished by pressing `Ctrl-Shift-b`. Once it is installed, it will
+  remain and this step won't be needed again to use the knit button.
 
-The file `hake.pdf` will contain the final document. Fo details on the
-`render()` function, see [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md).
+For details on the `render()` function, see
+[NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md).
 
 ## Debugging a figure or table, or anything else
 
@@ -36,7 +31,7 @@ The file `hake.pdf` will contain the final document. Fo details on the
   `devtools::load_all(".")` while in the hake package working directory.
 
 * **If you are using Rstudio:**
-  - Copy the chunk or chunks of Rmarkdown code you want to test to the
+  - Copy  the chunk or chunks of Rmarkdown code you want to test to the
     clipboard.
   - Run `gotest()`, which will create a temporary directory containing all
     the files necessary to run a pared-down version of the document, and
