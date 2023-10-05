@@ -5,82 +5,62 @@ ____
 _____________________________________________________________
 
 Read [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md)
-for important details on the major code rewrite that took place in 2023.
+for important updates.
 
 ---
 ## How to create the hake assessment PDF document
 **The `RDS` files must have been created before the document can be built.**
 
-1. Load the hake package by running `devtools::load_all(".")` while in the
-   hake package working directory, or install the hake package on the machine.
+1. Load the hake package from local repo: run `devtools::load_all(".")`
+   while your working directory is somewhere within the hake repo directory
+   structure.
+1. Change your working directory to the `doc` directory:
+   `setwd(here::here("doc"))`
+1. Run `render()`
+1. The `hake.pdf` document will be built in the `doc` directory.
 
-1. Run `render()`. This will create the `hake.pdf` assessment document.
-
-* Alternatively, in RStudio you can click the `knit` button while the file
-  `000-launcher.rmd` is in focus on the screen. This does require that the
-  hake package is installed on the machine, which in RStudio can be
-  accomplished by pressing `Ctrl-Shift-b`. Once it is installed, it will
-  remain and this step won't be needed again to use the knit button.
+Alternatively, in RStudio you can click the `knit` button while the file
+`000-launcher.rmd` is in focus. This requires that the hake package is
+installed on the machine. Doi that one of these ways:
+- If you have the source repo locally:
+  - If in RStudio, press `Ctrl-Shift-b`
+  - If not in RStudio, run `devtools::install(".")`
+- If you don't have the source repo locally:  
+  - Run `remotes::install_github("pacific-hake/hake-assessment")`
 
 For details on the `render()` function, see
 [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md).
 
-## Debugging a figure or table, or anything else
+## Debugging a figure or table, or any other Rmarkdown code
 
 * If you haven't already done so in your current R session, run
-  `devtools::load_all(".")` while in the hake package working directory.
-
-* **If you are using Rstudio:**
-  - Copy  the chunk or chunks of Rmarkdown code you want to test to the
-    clipboard.
-  - Run `gotest()`, which will create a temporary directory containing all
-    the files necessary to run a pared-down version of the document, and
-    switch you to that directory. If your repository directory is not the
-    default (`~/github/pacific-hake/hake`), you will have to include the
-    `repo_dr` argument in the call to `gotest()`.
-  - Click the gear-arrow-down icon ![](gear-arrow-down.png) in the Files
-    window (bottom right panel in Rstudio) and select
+  `devtools::load_all(".")` while your working directory is somewhere within
+   the hake repo directory structure.
+* Run `gotest()`, which will create a temporary directory containing 
+  copies of all files needed to do a minimal document build, and
+  switch you to that directory.
+  - If in RStudio, click the gear-arrow-down icon ![](gear-arrow-down.png) in
+    the Files window (bottom right panel in Rstudio) and select
     `Go to working directory`. This will take the Rstudio file manager to
     the temporary directory, and show you the files that have been copied
     there by the `gotest()` function.
-  - Open the `005-text.rmd` file, delete everything in that file if it
-    contains anything, and paste your chunk(s) of code, or create a new
-    Rmarkdown chunk. Save the file.
-  - In the R terminal, build the document using `render()`. The PDF will
-    be built in the current temporary directory, and contain only your test
-    figure(s) or table(s).
-  - Make changes to your code in the temporary `005-text.rmd` file, and
-    when satisfied with your code, copy the code to the clipboard for
-    pasting into the real document.
-
-* **If you are not using Rstudio:**
-  - Run `gotest(copy_tmpdir = TRUE)`, which will create a temporary
-    directory containing all the files necessary to run a pared-down
-    version of the document, switch you to that directory, and copy the name
-    of the directory to the clipboard. If your repository directory is not
-    the default (`~/github/pacific-hake/hake`), you will have to also
-    include the `repo_dr` argument in the call to `gotest()`.
-  - Go to the temporary directory using a program (file manager) of your
-    choice, pasting the directory name from the clipboard into it so you
-    can get there without having to remember the (ugly) name.
-  - Copy the chunk(s) of Rmarkdown code you want to test to the clipboard
-    from the original file.
-  - Open the `005-text.rmd` file from that directory, delete everything in
-    it if it contains anything, and paste your chunk(s) of code, or create
-    a new Rmarkdown chunk. Save the file.
-  - In the R terminal, build the document using `render()`. The PDF will
-    be built in the current temporary directory, and contain only your test
-    figure(s) or table(s).
-  - Make changes to your code in the temporary file, and when satisfied with
-    your code, copy the code to the clipboard for pasting into the real
-    document.
-
-* To go back to the real document, run `goback()`. Run `getwd()` to make sure
-  you are in the correct directory. In Rstudio, click the gear-down-arrow icon
-  ![](gear-arrow-down.png) in the Files window (bottom right panel in Rstudio)
-  and select `Go to working directory`. **Be careful here that you've copied
-  your new code to the clipboard. It may be lost once you've left the
-  temporary directory.**
+  - If not in RStudio, type `dirclip()`, which will copy the temporary
+    directory name to the clipboard. You can now go to a file manager of
+    your choice and paste the directory name into it, and it will take you
+    to the temporary working directory.
+* Open the `005-test.rmd` file, and paste your chunk(s) of code into it.
+  Save the file.
+* Build the document by running `render()`. The PDF (`hake.pdf`) will be
+  built in the current temporary directory, and contain only the output
+  from your test code.
+* Iteratively make changes to your code in the temporary `005-test.rmd`
+  file and build the document, until satisfied with your code. Copy the
+  code to the clipboard for pasting into the real document. Be careful,
+  once you leave the temporary directory your code will be gone forever.
+* To go back to the directory you were in before testing, run `goback()`.
+  - If in Rstudio, click the gear-down-arrow icon ![](gear-arrow-down.png) in
+    the Files window (bottom right panel in Rstudio) and select
+    `Go to working directory`.
 
 ## Adding new data to data tables
 
@@ -88,15 +68,17 @@ This is a bit different than it was previously, because the data tables
 are now package data and have to be built in a different way to update the
 package data.
 
-1. Open the CSV file you want to add data to in the `data-tables` directory.
-1. Add the new data row, and save the file.
+1. Open the CSV file from the `data-tables` directory that you want to add
+   data to.
+1. Add the new data row(s), and save the file.
 1. Do the first two steps with as many data tables as you want to update, then
    do then next step once only.
 1. Source the `data-raw/data-tables.R` file to update the data tables:
-   `source(here::here(data-raw/data-tables.R))`
+   `source(here::here(data-raw/data-tables.R))`. This will update the `RDA`
+   files which are the package data files, recogniuzed by the package.
 1. Make sure to include the changes to the RDA files in the GitHub repo by
-   committing the changes in Git. This will be obvious as there will be several
-   dozen RDA files changed. Commit all of the changes.
+   committing those files in Git. This will be obvious as there will be
+   several dozen RDA files changed. Commit all of the changes.
    
 Try not to do steps 4 and 5 for every change you make, rather make as many
 changes as you can to data tables at one time, then run steps 4 and 5 once to
