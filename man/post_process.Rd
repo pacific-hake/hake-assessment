@@ -21,5 +21,6 @@ Nothing, overwrite the file \code{fn} with the modified TEX
 Post-process the TEX file output by Bookdown
 }
 \details{
-Called by \code{\link[=hake_pdf]{hake_pdf()}} to post-process the LaTeX compiled by \link{bookdown}
+Called by \code{\link[=hake_pdf]{hake_pdf()}} to post-process the LaTeX compiled by the
+\link{bookdown} package
 }

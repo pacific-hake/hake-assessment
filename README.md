@@ -62,7 +62,7 @@ For details on the `render()` function, see
     the Files window (bottom right panel in Rstudio) and select
     `Go to working directory`.
 
-## Adding new data to data tables
+## Adding new data to data tables (done annually)
 
 This is a bit different than it was previously, because the data tables
 are now package data and have to be built in a different way to update the
@@ -74,11 +74,13 @@ package data.
 1. Do the first two steps with as many data tables as you want to update, then
    do then next step once only.
 1. Source the `data-raw/data-tables.R` file to update the data tables:
-   `source(here::here(data-raw/data-tables.R))`. This will update the `RDA`
-   files which are the package data files, recogniuzed by the package.
+   `source(here::here(data-raw/data-tables.R))`. If you're using RStudio
+   you can just press `Ctrl-Shift-Enter` to do this. This will update the
+   `RDA` files which are the package data files.
 1. Make sure to include the changes to the RDA files in the GitHub repo by
    committing those files in Git. This will be obvious as there will be
-   several dozen RDA files changed. Commit all of the changes.
+   several dozen RDA files changed when you run `git status`.
+   Commit all of the changes.
    
 Try not to do steps 4 and 5 for every change you make, rather make as many
 changes as you can to data tables at one time, then run steps 4 and 5 once to
@@ -88,26 +90,27 @@ file changes to a minimum).
 ## 2024 Assessment cycle (Jan - Mar 2024)
 
 * Model runs were done on an Ubuntu 22.04 LTS server with 80 Xeon Gold CPUs
-  and 405 GB of RAM.
+  and 404 GB of RAM.
 
 * All model runs, including the base, bridging, sensitivities, and
   retrospectives, were done using the **main** branch of the
-  [ADNUTS](https://github.com/cgrandin/adnuts) MCMC algorithm, which is
-  a Fork.
+  [ADNUTS](https://github.com/cgrandin/adnuts) MCMC algorithm.
   
 * `extra-mcmc must be and was enabled for ALL models`
 
 ## Server setup for 2024
 
-* Operating system: Ubuntu 22.04 LTS (jammy)
+* Operating system: Ubuntu 22.04 LTS (Jammy Jellyfish)
 
 * R version: 4.3.1 (2023-06-16 "Beagle Scouts")
 
 * TexLive version: 2023 (tlmgr revision 66457 (2023-03-08 00:07:12 +0100))
 
-* The R packages listed [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/R/all.R#L20)
+* The R packages listed
+  [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/R/all.R#L20)
 
-* The TEX packages listed [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/docker/install_packages.R#L21)
+* The TEX packages listed
+  [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/docker/install_packages.R#L21)
 
 ---
 # How the models are run
@@ -118,7 +121,8 @@ file changes to a minimum).
   using an R package to distribute model runs which are calling `system()` to
   run each model
   
-* The bash scripts are located [here](https://github.com/pacific-hake/hake-assessment/tree/master/bash-scripts)
+* The bash scripts are located
+  [here](https://github.com/pacific-hake/hake-assessment/tree/master/bash-scripts)
 
 ## Base model bash script
 
