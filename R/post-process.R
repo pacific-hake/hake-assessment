@@ -1,7 +1,8 @@
 #' Post-process the TEX file output by Bookdown
 #'
 #' @details
-#' Add centering for section names,
+#' Called by [hake_pdf()] to post-process the LaTeX compiled by the
+#' [bookdown] package
 #'
 #' @param accessibility_tagging Logical. If `TRUE`, include lines for
 #' LaTeX `tagpdf` package to make a more web-accessible document. This will

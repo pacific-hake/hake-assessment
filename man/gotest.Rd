@@ -19,6 +19,7 @@ Create and change to a temporary directory and copy a skeleton
 version of the document files for testing
 }
 \details{
-See the \emph{Debugging a figure or table, or anything else} section of the
-README.md file for detailed explanation
+See the \emph{Debugging a figure or table, or any other Rmarkdown code}
+section of the README.md file for detailed explanation.
+See the complement function \code{\link[=goback]{goback()}}.
 }

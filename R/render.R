@@ -1,4 +1,4 @@
-#' Render a PDF for the Hake Rmarkdown project
+#' Render the Hake assessment document PDF file
 #'
 #' @param input The name of the launching `rmd` file. This should be the
 #' same as the first `rmd` file named in the `_bookdown.yml` file.

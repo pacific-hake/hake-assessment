@@ -2,7 +2,7 @@
 % Please edit documentation in R/render.R
 \name{render}
 \alias{render}
-\title{Render a PDF for the Hake Rmarkdown project}
+\title{Render the Hake assessment document PDF file}
 \usage{
 render(input = "000-launcher.rmd", output_dir = ".", tex_fn = "hake.tex", ...)
 }
@@ -25,5 +25,5 @@ See \code{fn} argument for \code{\link[=post_process]{post_process()}}}
 Nothing
 }
 \description{
-Render a PDF for the Hake Rmarkdown project
+Render the Hake assessment document PDF file
 }

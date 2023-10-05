@@ -2,8 +2,9 @@
 #' version of the document files for testing
 #'
 #' @details
-#' See the *Debugging a figure or table, or anything else* section of the
-#' README.md file for detailed explanation
+#' See the *Debugging a figure or table, or any other Rmarkdown code*
+#' section of the README.md file for detailed explanation.
+#' See the complement function [goback()].
 #'
 #' @param copy_tmpdir Logical. If `TRUE`, copy the temporary path that
 #' you were just placed in to the OS clipboard
@@ -108,9 +109,8 @@ gotest <- function(copy_tmpdir = FALSE){
 #' to reset the [here::here()] command so that it references the real
 #' project again.
 #'
-#' Assumes you're going back to the hake `doc` directory and that the file
-#' `.here` exists in the directory above that (the hake repository root
-#' directory)
+#' Assumes you're going back to a directory in the hake repository and that
+#' the file `.here` exists in the hake repository root directory.
 #'
 #' @return Nothing
 goback <- function(){

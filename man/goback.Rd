@@ -20,7 +20,6 @@ run this function to return to the real document directory, and
 to reset the \code{\link[here:here]{here::here()}} command so that it references the real
 project again.
 
-Assumes you're going back to the hake \code{doc} directory and that the file
-\code{.here} exists in the directory above that (the hake repository root
-directory)
+Assumes you're going back to a directory in the hake repository and that
+the file \code{.here} exists in the hake repository root directory.
 }

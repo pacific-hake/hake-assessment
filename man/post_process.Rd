@@ -21,5 +21,5 @@ Nothing, overwrite the file \code{fn} with the modified TEX
 Post-process the TEX file output by Bookdown
 }
 \details{
-Add centering for section names,
+Called by \code{\link[=hake_pdf]{hake_pdf()}} to post-process the LaTeX compiled by \link{bookdown}
 }
