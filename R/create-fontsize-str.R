@@ -1,8 +1,8 @@
-#' Creates a LaTex font size string which can be used in
-#' table header cells to make [knitr::kable()] tables have headers with
+#' Creates a LaTeX font size string which can be used in
+#' table header cells to make [kableExtra::kbl()] tables have headers with
 #' a different font size than the table cells have
 #'
-#' @param header_font_size Size of font, in pts
+#' @param header_font_size Size of font, in pt
 #' @param vert_spacing The vertical spacing between newlines for this font.
 #' If `NULL` this will be calculated as `header_font_size * header_vert_scale`
 #' @param header_vert_scale Scale factor to create the vertical spacing value.

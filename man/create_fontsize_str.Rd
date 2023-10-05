@@ -2,8 +2,8 @@
 % Please edit documentation in R/create-fontsize-str.R
 \name{create_fontsize_str}
 \alias{create_fontsize_str}
-\title{Creates a LaTex font size string which can be used in
-table header cells to make \code{\link[knitr:kable]{knitr::kable()}} tables have headers with
+\title{Creates a LaTeX font size string which can be used in
+table header cells to make \code{\link[kableExtra:kbl]{kableExtra::kbl()}} tables have headers with
 a different font size than the table cells have}
 \usage{
 create_fontsize_str(
@@ -14,7 +14,7 @@ create_fontsize_str(
 )
 }
 \arguments{
-\item{header_font_size}{Size of font, in pts}
+\item{header_font_size}{Size of font, in pt}
 
 \item{header_vert_scale}{Scale factor to create the vertical spacing value.
 See \code{header_vert_spacing}}
@@ -30,7 +30,7 @@ before the \code{fontsize} and \code{selectfont} commands and the other having 4
 backslashes
 }
 \description{
-Creates a LaTex font size string which can be used in
-table header cells to make \code{\link[knitr:kable]{knitr::kable()}} tables have headers with
+Creates a LaTeX font size string which can be used in
+table header cells to make \code{\link[kableExtra:kbl]{kableExtra::kbl()}} tables have headers with
 a different font size than the table cells have
 }
