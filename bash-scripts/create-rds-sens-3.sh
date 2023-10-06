@@ -16,5 +16,6 @@ project_path="/srv/hake"
 type_path="03-sensitivity-models"
 verbose=FALSE
 overwrite=TRUE
+keep_index_fit_posts=FALSE
 
 . ./generic-create-rds.sh
