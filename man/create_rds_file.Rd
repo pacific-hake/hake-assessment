@@ -6,6 +6,7 @@
 \usage{
 create_rds_file(
   model_dir = NULL,
+  keep_index_fit_posts = FALSE,
   ct_levels_lst = set_ct_levels(),
   forecasts_path = file.path(model_dir, "forecasts"),
   ct_levels_path = file.path(model_dir, "catch-levels"),
@@ -20,6 +21,11 @@ create_rds_file(
 }
 \arguments{
 \item{model_dir}{Directory name of model to be loaded}
+
+\item{keep_index_fit_posts}{Logical. If \code{TRUE}, keep the \code{index_fit_posts}
+data in the model's list. This contains the survey fit output for every
+posterior`and is quite large. Typically kept for base model only. Needed
+for the \code{\link[=plot_survey_fit_mcmc]{plot_survey_fit_mcmc()}} plot to work.}
 
 \item{verbose}{Logical. If \code{TRUE}, write more output to the console}
 

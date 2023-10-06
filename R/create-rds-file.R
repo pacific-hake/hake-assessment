@@ -3,12 +3,17 @@
 #' @param model_dir Directory name of model to be loaded
 #' @param verbose Logical. If `TRUE`, write more output to the console
 #' @param overwrite Logical. If `TRUE`, overwrite the file if it exists
+#' @param keep_index_fit_posts Logical. If `TRUE`, keep the `index_fit_posts`
+#' data in the model's list. This contains the survey fit output for every
+#' posterior`and is quite large. Typically kept for base model only. Needed
+#' for the [plot_survey_fit_mcmc()] plot to work.
 #' @param ... Arguments to pass to [load_ss_files()]
 #'
 #' @return [base::invisible()]
 #' @export
 create_rds_file <- function(
     model_dir = NULL,
+    keep_index_fit_posts = FALSE,
     ct_levels_lst = set_ct_levels(),
     forecasts_path = file.path(model_dir, "forecasts"),
     ct_levels_path = file.path(model_dir, "catch-levels"),
@@ -128,10 +133,13 @@ create_rds_file <- function(
 
   # Pre-make plots (optional) ----
   model$plots <- plot_during_loading(model)
+
   # Remove `extra_mcmc$index_fit_posts`, (set to `NULL`) because it is
   # large. It is needed for the call to `plot_during_loading()` above so
   # DO NOT move it up in the function
-  model$extra_mcmc$index_fit_posts <- NULL
+  if(!keep_index_fit_posts){
+    model$extra_mcmc$index_fit_posts <- NULL
+  }
 
   # These are too large and after the calculations above in `load_mcmc_vals()`
   # and `load_parameter_priors()`, they are not needed any longer
