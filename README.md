@@ -11,9 +11,9 @@ for important updates.
 ## How to create the hake assessment PDF document
 **The `RDS` files must have been created before the document can be built.**
 
-1. Load the hake package from local repo: run `devtools::load_all(".")`
-   while your working directory is somewhere within the hake repo directory
-   structure.
+1. `git clone` this repository
+1. Open an R session, make sure your working directory is somewhere within
+   the hake repository directory structure and then run: `devtools::load_all()`
 1. Change your working directory to the `doc` directory:
    `setwd(here::here("doc"))`
 1. Run `render()`
@@ -24,7 +24,7 @@ Alternatively, in RStudio you can click the `knit` button while the file
 installed on the machine. Doi that one of these ways:
 - If you have the source repo locally:
   - If in RStudio, press `Ctrl-Shift-b`
-  - If not in RStudio, run `devtools::install(".")`
+  - If not in RStudio, run `devtools::install()`
 - If you don't have the source repo locally:  
   - Run `remotes::install_github("pacific-hake/hake-assessment")`
 
@@ -34,7 +34,7 @@ For details on the `render()` function, see
 ## Debugging a figure or table, or any other Rmarkdown code
 
 * If you haven't already done so in your current R session, run
-  `devtools::load_all(".")` while your working directory is somewhere within
+  `devtools::load_all()` while your working directory is somewhere within
    the hake repo directory structure.
 * Run `gotest()`, which will create a temporary directory containing 
   copies of all files needed to do a minimal document build, and
