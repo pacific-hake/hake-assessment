@@ -265,20 +265,12 @@ The addition of `r last_data_yr` data does not substantially change estimates
 of historical recruitment but recent recruitment estimates have changed
 substantially. For example, this assessment's median estimate of the 2020
 recruitment is
-`r f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]), 1)`~billion
-fish higher than in the last assessment (a 
-`r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
-(prev_assess_recruitment_med)["2020"]) * 100), 0)`% increase). Similarly,
-estimates for 2019 and 2021 recruitments have changed by
-`r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]) /
-(prev_assess_recruitment_med)["2019"]) * 100), 0)`%
-(`r f((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"], 1)`~billion
-fish) and
-`r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]) /
-(prev_assess_recruitment_med)["2021"]) * 100), 0)`%
-(`r f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]), 1)`~billion
-fish), respectively, but the general notion remains that recent recruitment is
-highly uncertain.
+`r med_est_2020_rec`~billion fish higher than in the last assessment (a 
+`r perc_inc_2020_rec_from_last_yr`% increase). Similarly, estimates for 2019
+and 2021 recruitments have changed by `r perc_inc_2019_rec_from_last_yr`%
+(`r med_est_2019_rec`~billion fish) and `r perc_inc_2021_rec_from_last_yr`%
+(`r med_est_2021_rec`~billion fish), respectively, but the general notion
+remains that recent recruitment is highly uncertain.
 
 ```{r es-recruitment-tab, results = "asis", echo = FALSE}
 table_recruitment(

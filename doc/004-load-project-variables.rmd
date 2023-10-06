@@ -570,7 +570,7 @@ median_relative_bio_2017 <- f(mc$dmed["2017"] * 100, 1)
 # Recruitments in current assessment vs last assessment -----------------------
 prev_assess_recruitment_lower  <- last_yr_mc$rlower
 prev_assess_recruitment_med  <- last_yr_mc$rmed
-# Want years onlt
+# Want years only
 prev_assess_recruitment_med <- 
   prev_assess_recruitment_med[grepl("^[0-9]{4}$", names(prev_assess_recruitment_med))]
 prev_assess_recruitment_upper <- last_yr_mc$rupper
@@ -581,6 +581,22 @@ compareable_names <- names(mc$rlower) %in%
   names(prev_assess_recruitment_lower)
 recruitment_med_to_compare <- mc$rmed[compareable_names]
 
+# Recruitment estimates for cohorts
+# this assessment's median estimate of cohorts recruitment
+med_est_2021_rec <-
+  f(((recruitment_med_to_compare - prev_assess_recruitment_med)["20218"]), 1)
+med_est_2020_rec <-
+  f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]), 1)
+med_est_2019_rec <-
+  f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]), 1)
+# % increase from last year
+perc_inc_2021_rec_from_last_yr <- f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]) /
+(prev_assess_recruitment_med)["2021"]) * 100), 0)
+perc_inc_2020_rec_from_last_yr <- f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
+(prev_assess_recruitment_med)["2020"]) * 100), 0)
+perc_inc_2019_rec_from_last_yr <- f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]) /
+(prev_assess_recruitment_med)["2019"]) * 100), 0)
+  
 # Biomass probabilities -------------------------------------------------------
 # ... biomass declines next year to year after with zero catch ----------------
 zero_catch_prob_bio_down_1 <- f(base_model$risks[[1]][1, 2] |> pull())
