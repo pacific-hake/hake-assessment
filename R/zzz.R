@@ -51,7 +51,7 @@ utils::globalVariables(
   "posts_fn", "prop", "qlnorm", "quant", "rainbow",
   "retrospective_yrs",
   "retrospectives_path", "rlower", "rmean", "rmed", "rootd_data",
-  "rootd_models", "rremove", "rsum", "rupper", "se_log", "se_log_2", "seas",
+  "rremove", "rsum", "rupper", "se_log", "se_log_2", "seas",
   "sens_model_names_1", "sens_models_1", "show_ss_output",
   "show_ss_output", "slower", "small_ticks", "smed", "spr_100_path",
   "ss_executable", "stable_catch_path",
