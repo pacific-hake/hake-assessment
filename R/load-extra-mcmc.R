@@ -239,6 +239,19 @@ load_extra_mcmc <- function(model,
   }else{
     selwt <- selwt_lst$selwt |>
       select(-c(yr, iter))
+    if(nrow(natage) != nrow(selwt)){
+      # Can happen if not all posteriors complete, like in 2023 for
+      # sensitivity model 17 (hamel prior)
+      new_nrow <- min(nrow(natage), nrow(selwt))
+      diff <- abs(nrow(natage) - nrow(selwt))
+      if(new_nrow == nrow(natage)){
+        # Re-size selwt
+        selwt <- head(selwt, -diff)
+      }else{
+        # Re-size natage
+        natage <- head(selwt, -diff)
+      }
+    }
     natselwt <- natage * selwt
     extra_mcmc$natselwt_prop <- natselwt %>%
       mutate(rsum = rowSums(.)) |>
