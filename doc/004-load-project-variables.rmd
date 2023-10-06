@@ -65,9 +65,6 @@ ct_constant_rows <- base_model$ct_levels_vals$ct_constant_rows
 ct_constant_str <- base_model$ct_levels_vals$ct_constant_str
 ct_reduction_str <- base_model$ct_levels_vals$ct_reduction_str
 
-# Could probably extract automatically from bridge_models_desc[[1]][1]
-ss_version <- "3.30.20"
-
 # Shortened names -------------------------------------------------------------
 mc <- base_model$mcmccalcs
 last_yr_mc <- last_yr_base_model$mcmccalcs
@@ -876,9 +873,9 @@ sigma_r_lo_main <- sigma_r_sens1[grep("Sigma.+1.[0-4]",
 # Range of "main" recdevs -----------------------------------------------------
 recr_era_main_tmp <- base_model$recruit$era == "Main"
 recr_era_early_tmp <- base_model$recruit$era == "Early"
-main.recdev.start <- min(base_model$recruit$Yr[recr_era_main_tmp])
-main.recdev.end <- max(base_model$recruit$Yr[recr_era_main_tmp])
-main.recdev.early <- min(base_model$recruit$Yr[recr_era_early_tmp])
+main_recdev_start <- min(base_model$recruit$Yr[recr_era_main_tmp])
+main_recdev_end <- max(base_model$recruit$Yr[recr_era_main_tmp])
+main_recdev_early <- min(base_model$recruit$Yr[recr_era_early_tmp])
 
 # Range of "main" bias adjustment period for recdevs -------------------------
 biasadjust_tmp <- base_model$recruit$biasadjuster ==

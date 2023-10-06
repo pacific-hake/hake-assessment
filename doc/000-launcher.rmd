@@ -1,7 +1,6 @@
 ---
-test: false
-title: "**\\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r params$assess_yr`}**"
-params:
+title: "**\\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`}**"
+project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
   science_name: "Merluccius productus"
@@ -10,8 +9,12 @@ params:
   assess_yr: 2023
   last_assess_yr: 2022
   last_data_yr: 2022
+  models_dir: "/srv/hake/models"
+  out_csv_dir: "out-csv"
   model_version: "01"
   last_yr_model_version: "01"
+  ss_version: "3.30.20"
+  forecast_yrs: 2023:2026
 author: |
   Joint Technical Committee of the Pacific Hake/Whiting Agreement \
   Between the Governments of the United States and Canada \
@@ -21,14 +24,14 @@ date: "`r format(Sys.time(), '%B %d')`\\textsuperscript{th}, `r format(Sys.time(
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
  hake::hake_pdf:
-   latex_engine: lualatex
+   latex_engine: lualatex # Do not modify
    accessibility_tagging: FALSE
    keep_tex: true
-   toc: false
+   toc: false # Do not modify, TOC is added by post processing
    fig_caption: yes
    includes:
      in_header: "preamble.tex"
-documentclass: article
+documentclass: article # Do not modify
 fontsize: 11pt
 urlcolor: blue
 knit: (function(input, ...) {
@@ -37,10 +40,11 @@ knit: (function(input, ...) {
 header-includes:
   - \pretitle{\begin{center}}
   - \posttitle{\end{center}\begin{center}\LARGE\includegraphics[width=12cm]{main-figures/hake-picture.png}\\[\bigskipamount]\end{center}}
-  - \lfoot{DRAFT -- `r params$sp` assessment `r params$assess_yr`}
-link-citations: true
-bibliography: bib/refs.bib
-csl: csl/csas.csl
+  - \lfoot{DRAFT -- `r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`}
+link-citations: true # Do not modify
+bibliography: bib/refs.bib # Do not modify
+csl: csl/csas.csl # Do not modify
+test: false # Do not modify
 ---
 
 ```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
@@ -53,7 +57,7 @@ if(rmarkdown::metadata$test){
     devtools::load_all("~/github/pacific-hake/hake-assessment")
   }
 }else{
-  devtools::load_all(here::here())  
+  devtools::load_all(here::here())
 }
 
 if(is_latex_output()){
