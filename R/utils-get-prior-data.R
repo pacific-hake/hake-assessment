@@ -42,94 +42,96 @@ get_prior_data <- function(model,
   priors_lst <- map(params_regex, \(pat){
 
     parind <- grep(pat, params$label)
-    if(length(parind) < 1){
-      stop("The regular expression ", pat, " matched no parameter names",
-           call. = FALSE)
-    }
     if(length(parind) > 1){
-      stop("The regular expression ", pat, " matched more than one (",
+      stop("get_prior_data(): The regular expression ", pat, " matched more than one (",
            length(parind), ") parameter names",
            call. = FALSE)
     }
-    parline <- params[parind, ]
-    message("The regular expression matched ", parline$label)
-    initval <- parline$init
-    finalval <- parline$value
-    parsd <- parline$parm_stdev
+    if(length(parind) < 1){
+      message("get_prior_data(): The regular expression ", pat, " did not ",
+              "match any parameter names")
+      return(NULL)
+    }else{
+      parline <- params[parind, ]
+      message("get_prior_data(): The regular expression matched ", parline$label)
+      initval <- parline$init
+      finalval <- parline$value
+      parsd <- parline$parm_stdev
 
-    pmin <- parline$min
-    pmax <- parline$max
+      pmin <- parline$min
+      pmax <- parline$max
 
-    ptype <- ifelse(is.na(parline$pr_type),
-                    "Normal",
-                    parline$pr_type)
-    psd <- parline$pr_sd
-    pr <- parline$prior
-    pval <- seq(pmin,
-                pmax,
-                length = ncol(model$mcmc))
+      ptype <- ifelse(is.na(parline$pr_type),
+                      "Normal",
+                      parline$pr_type)
+      psd <- parline$pr_sd
+      pr <- parline$prior
+      pval <- seq(pmin,
+                  pmax,
+                  length = ncol(model$mcmc))
 
-    prior_like <- switch(ptype,
-           "Log_Norm" = {
-             0.5 * ((log(pval) - pr) / psd) ^ 2
-           },
-           "Full_Beta" = {
-             mu <- (pr - pmin) / (pmax - pmin);  # CASAL's v
-             tau <- (pr - pmin) * (pmax - pr) / (psd ^ 2) - 1.0
-             aprior <- tau * (1 - mu)  # CASAL's m and n
-             bprior <- tau * mu
-             if(aprior <= 1.0 | bprior <= 1.0) {
-               warning("Bad Beta prior for parameter ", parline$label)
-             }
-             (1.0 - bprior) * log(pconst + pval - pmin) +
-               (1.0 - aprior) * log(pconst + pmax - pval) -
-               (1.0 - bprior) * log(pconst + pr - pmin) -
-               (1.0 - aprior) * log(pconst + pmax - pr)
-           },
-           "No_prior" = {
-             rep(0.0, length(pval))
-           },
-           "Normal" = {
-             0.5 * ((pval - pr) / psd) ^ 2
-           },
-           {
-             warning("No prior found for parameter ", parline$Label)
-             NA
-           }
-           )
-    prior <- NA
-    if(!is.na(prior_like[1])){
-      prior <- exp(-1 * prior_like)
+      prior_like <- switch(ptype,
+                           "Log_Norm" = {
+                             0.5 * ((log(pval) - pr) / psd) ^ 2
+                           },
+                           "Full_Beta" = {
+                             mu <- (pr - pmin) / (pmax - pmin);  # CASAL's v
+                             tau <- (pr - pmin) * (pmax - pr) / (psd ^ 2) - 1.0
+                             aprior <- tau * (1 - mu)  # CASAL's m and n
+                             bprior <- tau * mu
+                             if(aprior <= 1.0 | bprior <= 1.0) {
+                               warning("Bad Beta prior for parameter ", parline$label)
+                             }
+                             (1.0 - bprior) * log(pconst + pval - pmin) +
+                               (1.0 - aprior) * log(pconst + pmax - pval) -
+                               (1.0 - bprior) * log(pconst + pr - pmin) -
+                               (1.0 - aprior) * log(pconst + pmax - pr)
+                           },
+                           "No_prior" = {
+                             rep(0.0, length(pval))
+                           },
+                           "Normal" = {
+                             0.5 * ((pval - pr) / psd) ^ 2
+                           },
+                           {
+                             warning("No prior found for parameter ", parline$Label)
+                             NA
+                           }
+      )
+      prior <- NA
+      if(!is.na(prior_like[1])){
+        prior <- exp(-1 * prior_like)
+      }
+
+      mle <- NULL
+      if(!is.na(parsd) && parsd > 0){
+        mle <- dnorm(pval, finalval, parsd)
+        mlescale <- 1 / (sum(mle) * mean(diff(pval)))
+        mle <- mle * mlescale
+      }
+
+      distribution_pts <- switch(
+        ptype,
+        "Normal" = rnorm(n_points_prior, pr, psd),
+        "Log_Norm" = rlnorm(n_points_prior, pr, psd),
+        "Full_Beta" = rbeta_ab(n_points_prior, pr, psd, min = pmin, max = pmax),
+        "No_prior" = runif(n_points_prior, min = pmin, pmax)
+      )
+      distribution_pts[distribution_pts < pmin |
+                         distribution_pts > pmax] <- NA
+      return(list(initval = initval,
+                  finalval = finalval,
+                  parsd = parsd,
+                  pmin = pmin,
+                  pmax = pmax,
+                  ptype = ptype,
+                  psd = psd,
+                  pr = pr,
+                  pval = pval,
+                  prior = prior,
+                  mle = mle,
+                  prior_random = distribution_pts))
     }
-
-    mle <- NULL
-    if(!is.na(parsd) && parsd > 0){
-      mle <- dnorm(pval, finalval, parsd)
-      mlescale <- 1 / (sum(mle) * mean(diff(pval)))
-      mle <- mle * mlescale
-    }
-
-    distribution_pts <- switch(
-      ptype,
-      "Normal" = rnorm(n_points_prior, pr, psd),
-      "Log_Norm" = rlnorm(n_points_prior, pr, psd),
-      "Full_Beta" = rbeta_ab(n_points_prior, pr, psd, min = pmin, max = pmax),
-      "No_prior" = runif(n_points_prior, min = pmin, pmax)
-    )
-    distribution_pts[distribution_pts < pmin |
-                    distribution_pts > pmax] <- NA
-    list(initval = initval,
-         finalval = finalval,
-         parsd = parsd,
-         pmin = pmin,
-         pmax = pmax,
-         ptype = ptype,
-         psd = psd,
-         pr = pr,
-         pval = pval,
-         prior = prior,
-         mle = mle,
-         prior_random = distribution_pts)
   })
 
   param_recdevs <- params |>
