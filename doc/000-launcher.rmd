@@ -50,6 +50,10 @@ test: false # Do not modify
 ```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
 library(knitr)
 user <- Sys.getenv("USERNAME")
+if(user == ""){
+  # If on RStudio server
+  user <- Sys.getenv("RSTUDIO_USER_IDENTITY")
+}
 if(rmarkdown::metadata$test){
   if(user == "grandin"){
     devtools::load_all("~/github/pacific-hake/hake")
