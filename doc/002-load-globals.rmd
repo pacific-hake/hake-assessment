@@ -24,4 +24,5 @@ models_dir <- file.path(models_dir,
 
 output_csv_dir <- here("doc", out_csv_dir)
 forecast_yrs <- eval(parse(text = forecast_yrs))
+end_yr <- assess_yr
 ```
