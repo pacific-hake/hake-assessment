@@ -1,4 +1,4 @@
-```{r load-globals-chunk, echo = FALSE}
+```{r load-globals, echo = FALSE}
 
 if(!length(rmarkdown::metadata$project_variables)){
   stop("Document compilation not run properly. You must run this code ",

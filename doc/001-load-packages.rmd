@@ -1,4 +1,4 @@
-```{r load-packages-chunk, echo = FALSE}
+```{r load-packages, echo = FALSE}
 
 # To install rnaturalearthhires:
 # devtools::install_github("ropensci/rnaturalearthhires")
