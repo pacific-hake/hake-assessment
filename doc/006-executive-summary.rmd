@@ -599,6 +599,8 @@ determination of fishing relative to the default harvest policy. For example,
 fishing at the $\Fforty$ default harvest-rate catch limit (scenario n: default
 HR) in 2023 results in a median relative fishing intensity of 0.91 (Table~\@ref(tab:es-decisions-spr-tab)).
 
+\newpage
+
 ```{r es-decisions-biomass-tab, results = "asis", echo = FALSE}
 table_decision(
   base_model,

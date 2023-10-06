@@ -23,6 +23,7 @@
 \newcommand{\Fspr}{\mathrm{F_{SPR}}}
 
 ```{r load-custom-knitr-variables-chunk, echo = FALSE}
+
 # Put any variables you intend to use in the text here.
 # The function f() is for formatting and is defined in
 # r-functions/utilities.r
@@ -43,7 +44,6 @@
 # See the calc.ct.levels() and fetch.ct.levels() functions
 #  is load-models.R for details. The NA's below will be populated in each model
 #  by those two functions.
-
 # -----------------------------------------------------------------------------
 ct_levels_vals <- base_model$ct_levels_vals
 ct_levels <- base_model$ct_levels

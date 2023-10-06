@@ -24,48 +24,34 @@ fontsize: 11pt
 urlcolor: blue
 header-includes:
   - \usepackage{makecell, booktabs, array}
-  - \usepackage[outdir=./knitr-figs-pdf/]{epstopdf}
+  - \usepackage[outdir=./knitr-figs/]{epstopdf}
   - \AtBeginSubsection{}
   - \AtBeginSection{}
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
-library(knitr)
 
-if(is_latex_output()){
-  knitr_figs_dir <<- "knitr-figs-pdf/"
-  knitr_cache_dir <<- "knitr-cache-pdf/"
-  fig_out_type <<- "png"
-}else{
-  knitr_figs_dir <<- "knitr-figs-docx/"
-  knitr_cache_dir <<- "knitr-cache-docx/"
-  fig_out_type <<- "png"
-}
-fig_width <<- 7.5
-fig_dpi <<- 200
-fig_align <<- "center"
-fig_pos <<- "htb"
-opts_chunk$set(
+knitr::opts_chunk$set(
   collapse = TRUE,
   warning = FALSE,
   message = FALSE,
-  results = "hide",
-  comment = "#>",
-  fig.path = knitr_figs_dir,
-  cache.path = knitr_cache_dir,
-  fig.width = fig_width,
   echo = FALSE,
   autodep = FALSE,
   cache = TRUE,
   cache.lazy = FALSE,
   cache.comments = FALSE,
-  dev = fig_out_type,
-  dpi = fig_dpi,
-  fig.align = fig_align,
-  fig.pos = fig_pos)
+  results = "hide",
+  comment = "#>",
+  dev = "png",
+  dpi = 200,
+  cache.path = "knitr-cache/",
+  fig.path = "knitr-figs/",
+  fig.align = "center",
+  fig.pos = "htb",
+  fig.width = 7.5)
 
 devtools::load_all(here::here())
-fig_dir <- here::here("beamer", "srg", "data", "knitr-figs-pdf")
+fig_dir <- here::here("beamer/srg/data/knitr-figs")
 if(!dir.exists(fig_dir)){
   dir.create(fig_dir)
 }
