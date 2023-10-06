@@ -77,11 +77,11 @@ age-based [@Dorn1994; @DornSaunders1997; @JTC2012; @JTC2013], and length-based
 
 Several harvest control rules have been explored for providing catch limits
 from stock assessment output. `r sp` stock assessments have presented decision
-makers with constant $\mathrm{F}$, variable $\mathrm{F}$, and the following
-hybrid control rules: $\FSPRthirtyfive$, $\Fforty$, \Ffortyten,
-$\FSPRfortyfive$, \Ffortyfivefortyten, and $\FSPRfifty$ (e.g., @Dorn1996,
-@JTC2013). Changes to policies such as the United States' National Standards
-Guidelines in 2002 and the \Ffortyten harvest control rule in the Agreement
+makers with constant *F*, variable *F*, and the following
+hybrid control rules: `r fspr_35`, `r fspr_40`, `r f_40_40_10`, `r fspr_45`,
+`r f_45_40_10`, and `r fspr_50` (e.g., @Dorn1996, @JTC2013). Changes to
+policies such as the United States' National Standards Guidelines in
+2002 and the `r f_40_40_10`` harvest control rule in the Agreement
 (Appendix~\@ref(sec:app-glossary)) have required specific changes to control
 rules.
 
