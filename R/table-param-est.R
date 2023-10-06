@@ -40,7 +40,7 @@ table_param_est <- function(
     section_row_inds = c(1, 11, 20, 21 + length(hake::large_cohorts)),
     section_row_headers = c("Parameters",
                             "Derived Quantities",
-                            "Reference Points based on $\\bm{\\Fforty}$",
+                            paste0("Reference Points based on ", fspr_40_bold_for_latex_table),
                             "Negative log likelihoods"),
     section_italics = TRUE,
     section_bold = TRUE,

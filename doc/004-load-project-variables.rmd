@@ -56,6 +56,7 @@ b_40_bold <- "***B***~**40%**~"
 
 spr_40 <- "SPR~40%~"
 fishing_rate <- "(1 - SPR(*F*))/(1 - SPR~40%~)"
+rel_fishing_intensity_for_latex_table <- "(1 - SPR)/(1 - SPR\\textsubscript{40\\%})"
 b_0 <- "*B*~0~"
 b_0_for_latex_table <- "\\textit{B}\\textsubscript{0}"
 b_0_bold_for_latex_table <- "\\textbf{\\textit{B}}\\textsubscript{\\textbf{0}}"
