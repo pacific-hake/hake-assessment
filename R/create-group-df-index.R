@@ -25,7 +25,8 @@ create_group_df_index <- function(model_lst = NULL,
     mutate(model = "Observed") |>
     mutate(index_lo = index_med,
            index_hi = index_med) |>
-    select(model, year, index_lo, index_med, index_hi)
+    select(model, year, index_lo, index_med, index_hi) |>
+    mutate_at(.vars = vars(index_lo, index_med, index_hi), ~{.x = .x / 1e6})
 
   d <- bind_cols(extract_survey_index_fits(model_lst,
                                            model_names,
@@ -44,11 +45,12 @@ create_group_df_index <- function(model_lst = NULL,
     mutate(model = factor(model,
                           levels = c(model_names,
                                      "Observed")),
-           year = as.numeric(year)) |>
-    mutate_at(vars(index_lo, index_med, index_hi),
-              ~{ifelse(model != "Last assessment base model",
-                       .x / 1e6,
-                       .x)})
+           year = as.numeric(year))
+
+    # mutate_at(vars(index_lo, index_med, index_hi),
+    #           ~{ifelse(model != "Last assessment base model",
+    #                    .x / 1e6,
+    #                    .x)})
 
   list(d)
 }
