@@ -439,10 +439,10 @@ to 2021.
 
 ```{r main-survey-index-fit-mcmc-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-cap)", fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-survey-index-fit-mcmc-alt)"}
 
-# plot_survey_fit_mcmc(base_model,
-#                      type = "acoustic",
-#                      n_posts = 1000,
-#                      glow = TRUE)
+plot_survey_fit_mcmc(base_model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE)
 base_model$plots$survey_fit
 ```
 
@@ -777,8 +777,8 @@ plot_stock_recruitment(base_model, probs = hake::probs)
 ```
 
 (ref:main-fishing-intensity-cap) Trend in median relative fishing intensity
-(relative to the $\FSPRforty$ management level) through `r end_yr - 1`} with
-95% posterior credibility intervals. The $\FSPRforty$ management level defined
+(relative to the `r fspr_40` management level) through `r end_yr - 1`} with
+95% posterior credibility intervals. The `r fspr_40` management level defined
 in the Joint U.S.-Canada Agreement for `r sp` is shown as a horizontal line
 at 1.0.
 
@@ -829,7 +829,7 @@ nor in an overfished state.
 
 (ref:main-projected-catch-density-cap) The posterior distribution of the
 default `r end_yr` catch limit calculated using the default harvest policy
-(\Ffortyten). The median is `r ct_limit_quantiles["median"]`~t
+(`r f_40_40_10`). The median is `r ct_limit_quantiles["median"]`~t
 (vertical line), with the dark shaded area ranging from the 2.5%
 quantile to the 97.5% quantile, covering the range
 `r ct_limit_quantiles["lower"]`--`r ct_limit_quantiles["upper"]`~t.

@@ -42,30 +42,30 @@ AFSC: Alaska Fisheries Science Center (National Marine Fisheries Service).
 
 $B_0$: The unfished equilibrium female spawning biomass.
 
-$\Bten$: The level of female spawning biomass corresponding to 10% of
-unfished equilibrium female spawning biomass, i.e., $\Bten = 0.1B_0$. This
+`r b_10`: The level of female spawning biomass corresponding to 10% of
+unfished equilibrium female spawning biomass, i.e., `r b_10` = 0.1`r b_0`. This
 is the level below which the calculated TAC is set to 0, based on the 40:10
 adjustment (see above).
 
-$\Bforty$: The level of female spawning biomass corresponding to 40% of
-unfished equilibrium female spawning biomass, i.e., ~$\Bforty = 0.4B_0$.
+`r b_40`: The level of female spawning biomass corresponding to 40% of
+unfished equilibrium female spawning biomass, i.e., ~$`r b_40` = 0.4B_0$.
 This is the level below which the calculated TAC is decreased from the value
-associated with $\Fforty$, based on the 40:10 adjustment (see above).
+associated with `r f_40`, based on the 40:10 adjustment (see above).
 
-$\Bmsy$: The estimated female spawning biomass which theoretically would
+`r b_msy`: The estimated female spawning biomass which theoretically would
 produce the maximum sustainable yield (MSY) under equilibrium fishing
 conditions (constant fishing and average recruitment in every year). Also
-see $\Bforty$ (above).
+see `r b_40` (above).
 
 Backscatter: The scattering by a target back in the direction of an acoustic
 source. Specifically, the Nautical Area Scattering Coefficient (a measure of
 scattering per area) is frequently referred to as backscatter.
 
-Benchmark spawning potential ratio ($\mbox{SPR}_{40\%}$): The spawning
+Benchmark spawning potential ratio (`r bspr_40`): The spawning
 potential ratio of 40%, where the 40% relates to the default harvest rate of
-$\Fforty$ specified in the Agreement. Even under equilibrium conditions,
-$\Fforty$ would not necessarily result in a female spawning biomass of
-$B_{40\%}$ because $\Fforty$ is defined in terms of the spawning potential
+`r f_40` specified in the Agreement. Even under equilibrium conditions,
+`r f_40` would not necessarily result in a female spawning biomass of
+`r b_40` because `r f_40` is defined in terms of the spawning potential
 ratio which depends on the female spawning biomass *per recruit*.
 
 California Current Ecosystem: The waters of the continental shelf and slope
@@ -116,7 +116,7 @@ CPUE: Catch-per-unit-effort (see above).
 CV: Coefficient of variation. A measure of uncertainty defined as the
 standard deviation (SD, see below) divided by the mean.
 
-Default harvest policy (rate): The application of $\Fforty$ (see below)
+Default harvest policy (rate): The application of `r f_40` (see below)
 with the 40:10 adjustment (see above). Having considered any advice provided
 by the JTC, SRG or AP, the JMC may recommend a different harvest rate if
 the scientific evidence demonstrates that a different rate is necessary
@@ -143,16 +143,16 @@ below) or the spawning potential ratio (SPR, see below).
 $F$: Instantaneous rate of fishing mortality (or fishing mortality rate);
 see below.
 
-$\FSPRforty$: The rate of fishing mortality estimated to give a spawning
+`r fspr_40`: The rate of fishing mortality estimated to give a spawning
 potential ratio (SPR, see below) of 40%. Therefore, by definition this
 satisfies
 \begin{align} 
   0.4
-    &= \frac{\mbox{spawning biomass per recruit with }\Fforty}{\mbox{spawning biomass per recruit with no fishing}},
+    &= \frac{\mbox{spawning biomass per recruit with }`r f_40`}{\mbox{spawning biomass per recruit with no fishing}},
 \end{align} 
-and SPR$(\Fforty) = 40%$. The 40% value is specified in the Agreement.
+and SPR`r f_40` = 40%. The 40% value is specified in the Agreement.
 
-\FSPRfortyten harvest policy: The default harvest policy (see above).
+`r fspr_40_10` harvest policy: The default harvest policy (see above).
 
 Female spawning biomass: The biomass of mature female fish at the beginning
 of the year. Sometimes abbreviated to spawning biomass.
@@ -169,18 +169,18 @@ fishing rate $F$ as:
 where SPR$(F)$ is the spawning potential ratio for the value of $F$
 accumulated over the entire year. It is often given as a percentage.
 Relative fishing intensity is the fishing intensity relative to that at
-the SPR fishing rate $\Fforty$, where $\Fforty$ is the $F$ that gives an
-SPR of 40% such that, by definition, SPR$(\Fforty) = 40\%$ (the benchmark
+the SPR fishing rate `r f_40`, where `r f_40` is the $F$ that gives an
+SPR of 40% such that, by definition, SPR`r f_40` = 40% (the benchmark
 spawning ratio). Therefore
 \begin{align}
   (\#eq:appendix-glossary-spr)
   \mbox{relative fishing intensity for }F
-    &= \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(\Fforty)} \\
+    &= \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(`r f_40`)} \\
     &= \frac{1-\mbox{SPR}(F)}{1-0.4} \\
     &= \frac{1-\mbox{SPR}(F)}{0.6},
 \end{align}
 as shown in Figure~\@ref(fig:glossary-fishing-intensity-illustration-fig).
-For brevity we use $\mbox{SPR}_{40\%} = \mbox{SPR}(\Fforty)$ in the text.
+For brevity we use `r spr_40` = SPR}(`r f_40`) in the text.
 Although this simply equals 40%, it can be helpful to explicitly write:
 \begin{align}
   \mbox{relative fishing intensity for }F
@@ -197,7 +197,7 @@ instantaneous rate operating simultaneously with natural mortality, it is
 not equivalent to exploitation fraction (or percent annual removal; see
 above) or the spawning potential ratio (SPR, see below).
 
-$\Fmsy$: The rate of fishing mortality estimated to produce the maximum
+`r f_msy`: The rate of fishing mortality estimated to produce the maximum
 sustainable yield (MSY) from the stock.
 
 Harvest strategy: A formal system for managing a fishery that includes
