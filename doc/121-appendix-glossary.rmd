@@ -148,8 +148,8 @@ potential ratio (SPR, see below) of 40%. Therefore, by definition this
 satisfies
 \begin{align} 
   0.4
-    &= \frac{\mbox{spawning biomass per recruit with }`r f_40`}{\mbox{spawning biomass per recruit with no fishing}},
-\end{align} 
+    &= \frac{\mbox{spawning biomass per recruit with }`r f_40_for_latex_table`}{\mbox{spawning biomass per recruit with no fishing}},
+\end{align}
 and SPR`r f_40` = 40%. The 40% value is specified in the Agreement.
 
 `r fspr_40_10` harvest policy: The default harvest policy (see above).
@@ -175,12 +175,12 @@ spawning ratio). Therefore
 \begin{align}
   (\#eq:appendix-glossary-spr)
   \mbox{relative fishing intensity for }F
-    &= \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(`r f_40`)} \\
+    &= \frac{1-\mbox{SPR}(F)}{1-\mbox{SPR}(`r f_40_for_latex_table`)} \\
     &= \frac{1-\mbox{SPR}(F)}{1-0.4} \\
     &= \frac{1-\mbox{SPR}(F)}{0.6},
 \end{align}
 as shown in Figure~\@ref(fig:glossary-fishing-intensity-illustration-fig).
-For brevity we use `r spr_40` = SPR}(`r f_40`) in the text.
+For brevity we use `r spr_40` = SPR(`r f_40`) in the text.
 Although this simply equals 40%, it can be helpful to explicitly write:
 \begin{align}
   \mbox{relative fishing intensity for }F
