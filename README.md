@@ -17,11 +17,14 @@ for important updates.
 1. Change your working directory to the `doc` directory:
    `setwd(here::here("doc"))`
 1. Run `render()`
-1. The `hake.pdf` document will be built in the `doc` directory.
+1. The `hake.pdf` document will be built in the `doc` directory. The first
+   time building the document in a new R session will take several minutes
+   because the model RDS file have to be loaded. After that, the build will
+   be quicker.
 
 Alternatively, in RStudio you can click the `knit` button while the file
 `000-launcher.rmd` is in focus. This requires that the hake package is
-installed on the machine. Doi that one of these ways:
+installed on the machine. Do that one of these ways:
 - If you have the source repo locally:
   - If in RStudio, press `Ctrl-Shift-b`
   - If not in RStudio, run `devtools::install()`
@@ -52,7 +55,9 @@ For details on the `render()` function, see
   Save the file.
 * Build the document by running `render()`. The PDF (`hake.pdf`) will be
   built in the current temporary directory, and contain only the output
-  from your test code.
+  from your test code. If you haven't built the document yet in the current
+  R session, this will take a few minutes because all the mode files have
+  to be loaded.
 * Iteratively make changes to your code in the temporary `005-test.rmd`
   file and build the document, until satisfied with your code. Copy the
   code to the clipboard for pasting into the real document. Be careful,
@@ -72,20 +77,21 @@ package data.
    data to.
 1. Add the new data row(s), and save the file.
 1. Do the first two steps with as many data tables as you want to update, then
-   do then next step once only.
+   do then next step as few times as possible.
 1. Source the `data-raw/data-tables.R` file to update the data tables:
    `source(here::here(data-raw/data-tables.R))`. If you're using RStudio
-   you can just press `Ctrl-Shift-Enter` to do this. This will update the
-   `RDA` files which are the package data files.
-1. Make sure to include the changes to the RDA files in the GitHub repo by
+   you can just press `Ctrl-Shift-Enter` with the file in focus to do this.
+   This will update the `*.rda` files which are the binary package data files.
+1. Make sure to include the changes to the `*.rda` files in the GitHub repo by
    committing those files in Git. This will be obvious as there will be
-   several dozen RDA files changed when you run `git status`.
-   Commit all of the changes.
+   several dozen `*.rda` files changed when you run `git status`. Commit all
+   of the changes.
    
 Try not to do steps 4 and 5 for every change you make, rather make as many
 changes as you can to data tables at one time, then run steps 4 and 5 once to
-incorporate all the changes (they are binary and its better to keep binary
-file changes to a minimum).
+incorporate all the changes. The `*.rda` files are binary and its better to
+keep binary file changes to a minimum when using Git as it can introduce
+repository bloating.
 
 ## 2024 Assessment cycle (Jan - Mar 2024)
 

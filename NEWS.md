@@ -6,16 +6,19 @@ The following list contains the details of all the changes that were
 implemented in the hake assessment codebase in 2023 between the 2023 and
 2024 assessment seasons.
 
+* The document is built using [Bookdown](https://bookdown.org/), an R package
+  that facilitates writing complex documents using
+  [R Markdown](https://rmarkdown.rstudio.com/). See the [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+  for help on syntax.
+* Converted ALL document code from Sweave to Rmarkdown.
 * Now a true R package. This compartmentalized the code, and allows for the
   documentation of functions and package data to be monitored through
   software tools.
-* Converted all document code from Sweave with embedded LaTeX to Rmarkdown.
-  See the [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
-  for help on syntax.
-* Uses the `bookdown` package to create the assessment document. This brings
-  with it the `_bookdown.yml` file which contains the names of all files
-  that are to be included in the build. See the file here:
-  [_bookdown.yml](https://github.com/pacific-hake/hake-assessment/blob/package-dev/doc/_bookdown.yml).
+* The `bookdown` package uses the project-specific `_bookdown.yml` file which
+  contains the names of all files that are to be included in the build.
+  See the file here: [_bookdown.yml](https://github.com/pacific-hake/hake-assessment/blob/package-dev/doc/_bookdown.yml). The layout of this file allows for extremely easy
+  commenting-out of sections while you are working on a particular section and
+  need to build just that section.
 * Uses a post-processor to inject tedious LaTeX code after the building
   of the TeX file is complete with `bookdown`. This means there is almost no
   LaTeX code found in the Rmarkdown code files. It make it easier to read
