@@ -24,9 +24,6 @@
 #' multiplied by. This proportion must be set by trial and error. Make sure
 #' to change `vjust_x_labels` so the labels are not overlapping the lines or
 #' are too far away from the lines
-#' @param vjust_x_labels A value to move the x-axis tick labels and title
-#' by. Negative means move it down, away from the plot, positive is to move
-#' it up, closer to the plot
 #' @param ylim The y-axis minimum and maximum limits for the plot
 #' @param y_breaks The tick mark values to show for the y-axis
 #' @param y_labels Labels for the tick marks on the y-axis
@@ -80,6 +77,10 @@
 #' Used for recruitment plot only
 #' @param survey_type Either `age1` or `age2`. Used for survey index plots
 #' only
+#' @param ax_title_font_size Size of the font for the X and Y axis labels
+#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
+#' @param ax_label_color Color of the font for the X and Y axis tick and
+#' title labels
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
@@ -94,7 +95,6 @@ plot_biomass <- function(
     x_labs_mod = 5,
     x_expansion = 3,
     tick_prop = 1,
-    vjust_x_labels = -0.25,
     ylim = c(0, 4.5),
     y_breaks = seq(ylim[1], ylim[2], by = 0.5),
     leg_pos = c(0.65, 0.83),
@@ -131,7 +131,10 @@ plot_biomass <- function(
     refpt_lrp_linewidth = refpt_lrp_linewidth,
     refpt_bo_linetype = refpt_bo_linetype,
     refpt_usr_linetype = refpt_usr_linetype,
-    refpt_lrp_linetype = refpt_lrp_linetype){
+    refpt_lrp_linetype = refpt_lrp_linetype,
+    ax_title_font_size = axis_title_font_size,
+    ax_tick_font_size = axis_tick_font_size,
+    ax_label_color = axis_label_color){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -196,16 +199,31 @@ plot_biomass <- function(
                     clip = "off") +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
-          legend.text.align = 0,
-          # These following two arguments move the x-axis major tick labels
-          # and axis title down so that the ticks, tick labels, and axis
-          # title don't overlap each other
-          axis.text.x = element_text(vjust = vjust_x_labels),
-          axis.title.x = element_text(vjust = vjust_x_labels)) +
+          legend.text.align = 0) +
     labs(x = "Year",
          y = ifelse(wrap_y_label,
                     add_newlines("Female Spawning Biomass+(Mt)"),
-                    "Female Spawning Biomass (Mt)"))
+                    "Female Spawning Biomass (Mt)")) +
+    theme(axis.text.x = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = -0.25,
+                                     face = "plain"),
+          axis.text.y = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 0,
+                                      vjust = -0.25,
+                                      face = "plain"),
+          axis.title.y = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
 
   # Add the median points and connecting lines.
   # Uses `ggh4x::geom_pointpath()`

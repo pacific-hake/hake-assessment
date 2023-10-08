@@ -786,13 +786,14 @@ spawning biomass (horizontal) and `r end_yr - 1` relative fishing intensity
 nor in an overfished state.
 
 ```{r main-phase-fig, fig.cap = "(ref:main-phase-cap)", fig.height=6, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-phase-alt)"}
-  plot_phase(base_model,
-             start_yr,
-             end_yr,
-             init_lbl_x_off = -0.04,
-             init_lbl_y_off = -0.04,
-             final_lbl_x_off = 0.04,
-             final_lbl_y_off = 0.04)
+
+plot_phase(base_model,
+           start_yr,
+           end_yr,
+           init_lbl_x_off = -0.04,
+           init_lbl_y_off = -0.04,
+           final_lbl_x_off = 0.04,
+           final_lbl_y_off = 0.04)
 ```
 
 (ref:main-projected-catch-density-cap) The posterior distribution of the

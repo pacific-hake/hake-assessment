@@ -15,7 +15,10 @@ plot_phase(
   init_lbl_x_off = 0,
   init_lbl_y_off = 0,
   final_lbl_x_off = 0,
-  final_lbl_y_off = 0
+  final_lbl_y_off = 0,
+  ax_title_font_size = axis_title_font_size,
+  ax_tick_font_size = axis_tick_font_size,
+  ax_label_color = axis_label_color
 )
 }
 \arguments{
@@ -36,6 +39,13 @@ plot_phase(
 \item{final_lbl_x_off}{Final year label x offset in units of axis}
 
 \item{final_lbl_y_off}{Final year label y offset in units of axis}
+
+\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
+
+\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{ax_label_color}{Color of the font for the X and Y axis tick and
+title labels}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

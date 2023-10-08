@@ -29,7 +29,6 @@ plot_biomass(
   x_labs_mod = 5,
   x_expansion = 3,
   tick_prop = 1,
-  vjust_x_labels = -0.25,
   ylim = c(0, 4.5),
   y_breaks = seq(ylim[1], ylim[2], by = 0.5),
   leg_pos = c(0.65, 0.83),
@@ -57,7 +56,10 @@ plot_biomass(
   refpt_lrp_linewidth = refpt_lrp_linewidth,
   refpt_bo_linetype = refpt_bo_linetype,
   refpt_usr_linetype = refpt_usr_linetype,
-  refpt_lrp_linetype = refpt_lrp_linetype
+  refpt_lrp_linetype = refpt_lrp_linetype,
+  ax_title_font_size = axis_title_font_size,
+  ax_tick_font_size = axis_tick_font_size,
+  ax_label_color = axis_label_color
 )
 
 plot_cohort_catch(
@@ -106,13 +108,17 @@ plot_exploitation_fraction(
   x_labs_mod = 5,
   x_expansion = 1,
   tick_prop = 1,
-  vjust_x_labels = -2,
   ylim = c(0, 0.25),
   y_breaks = seq(ylim[1], ylim[2], by = 0.05),
-  point_size = 1,
-  point_shape = 16,
-  line_width = 0.5,
-  line_color = "blue"
+  point_size = ts_single_model_pointsize,
+  point_color = ts_single_model_pointcolor,
+  point_shape = ts_single_model_pointshape,
+  point_stroke = ts_single_model_pointstroke,
+  line_width = ts_single_model_linewidth,
+  line_color = ts_single_line_color,
+  ax_title_font_size = axis_title_font_size,
+  ax_tick_font_size = axis_tick_font_size,
+  ax_label_color = axis_label_color
 )
 
 plot_fishing_intensity(
@@ -123,13 +129,17 @@ plot_fishing_intensity(
   x_labs_mod = 5,
   x_expansion = 1,
   tick_prop = 1,
-  vjust_x_labels = -2,
   ylim = c(0, 1.4),
   y_breaks = seq(ylim[1], ylim[2], by = 0.2),
-  point_size = 1,
-  point_shape = 16,
-  line_width = 0.5,
-  line_color = "blue"
+  point_size = ts_single_model_pointsize,
+  point_color = ts_single_model_pointcolor,
+  point_shape = ts_single_model_pointshape,
+  point_stroke = ts_single_model_pointstroke,
+  line_width = ts_single_model_linewidth,
+  line_color = ts_single_line_color,
+  ax_title_font_size = axis_title_font_size,
+  ax_tick_font_size = axis_tick_font_size,
+  ax_label_color = axis_label_color
 )
 
 plot_fore_compare(
@@ -350,10 +360,6 @@ multiplied by. This proportion must be set by trial and error. Make sure
 to change \code{vjust_x_labels} so the labels are not overlapping the lines or
 are too far away from the lines}
 
-\item{vjust_x_labels}{A value to move the x-axis tick labels and title
-by. Negative means move it down, away from the plot, positive is to move
-it up, closer to the plot}
-
 \item{ylim}{The y-axis minimum and maximum limits for the plot}
 
 \item{y_breaks}{The tick mark values to show for the y-axis}
@@ -427,6 +433,13 @@ horizontal line}
 \item{refpt_lrp_linetype}{The line type for the Limit Reference point
 horizontal line}
 
+\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
+
+\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{ax_label_color}{Color of the font for the X and Y axis tick and
+title labels}
+
 \item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{cohorts}{A vector of cohorts to make lines for}
@@ -467,13 +480,6 @@ under B10)}
 
 \item{dodge_val}{The amount to separate lines between unique models
 multiple model plots}
-
-\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{ax_label_color}{Color of the font for the X and Y axis tick and
-title labels}
 
 \item{...}{Arguments passed to \code{\link[ggplot2:geom_linerange]{ggplot2::geom_pointrange()}}}
 

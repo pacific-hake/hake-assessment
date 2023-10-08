@@ -10,13 +10,17 @@ plot_fishing_intensity <- function(model,
                                    x_labs_mod = 5,
                                    x_expansion = 1,
                                    tick_prop = 1,
-                                   vjust_x_labels = -2,
                                    ylim = c(0, 1.4),
                                    y_breaks = seq(ylim[1], ylim[2], by = 0.2),
-                                   point_size = 1,
-                                   point_shape = 16,
-                                   line_width = 0.5,
-                                   line_color = "blue"){
+                                   point_size = ts_single_model_pointsize,
+                                   point_color = ts_single_model_pointcolor,
+                                   point_shape = ts_single_model_pointshape,
+                                   point_stroke = ts_single_model_pointstroke,
+                                   line_width = ts_single_model_linewidth,
+                                   line_color = ts_single_line_color,
+                                   ax_title_font_size = axis_title_font_size,
+                                   ax_tick_font_size = axis_tick_font_size,
+                                   ax_label_color = axis_label_color){
 
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
                                      modulo = x_labs_mod)
@@ -57,22 +61,40 @@ plot_fishing_intensity <- function(model,
                  lineend = "round",
                  color = line_color) +
     geom_point(aes(y = pmed),
-               size = point_size) +
+               shape = point_shape,
+               color = point_color,
+               size = point_size,
+               stroke = point_stroke) +
     scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
                        labels = x_labels) +
     scale_y_continuous(expand = c(0, 0),
                        breaks = y_breaks,
                        labels = y_breaks) +
-    theme(# These two commands move the x-axis major tick labels and axis
-          # title down so that the ticks. tick labels, and axis title don't
-          # overlap each other
-          axis.text.x = element_text(vjust = vjust_x_labels),
-          axis.title.x = element_text(vjust = vjust_x_labels)) +
     annotate("text",
              x = xlim[1] + 2,
              y = 1.05,
-             label = expression(~F['SPR=40%']))
+             label = expression(~F['SPR=40%'])) +
+    theme(axis.text.x = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = -1,
+                                     face = "plain"),
+          axis.text.y = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 0,
+                                      vjust = -1,
+                                      face = "plain"),
+          axis.title.y = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
 
   g <- g +
     xlab("Year") +
