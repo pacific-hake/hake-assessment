@@ -2,9 +2,20 @@
 % Please edit documentation in R/plot-catch-forecast-density.R
 \name{plot_catch_forecast_density}
 \alias{plot_catch_forecast_density}
-\title{Title}
+\title{Create a plot showing the density of the posterior for the catch forecast
+for a given year}
 \usage{
-plot_catch_forecast_density(model, yr, xlim = c(0, 4))
+plot_catch_forecast_density(
+  model,
+  yr,
+  xlim = c(0, 4),
+  fill_color = ts_single_model_ribbon_fill,
+  fill_alpha_tail = 0.3,
+  fill_alpha_main = 0.7,
+  ax_title_font_size = axis_title_font_size,
+  ax_tick_font_size = axis_tick_font_size,
+  ax_label_color = axis_label_color
+)
 }
 \arguments{
 \item{model}{The model output from Stock Synthesis as loaded by
@@ -13,10 +24,25 @@ plot_catch_forecast_density(model, yr, xlim = c(0, 4))
 \item{yr}{Forecast year to plot. Must be a column in the MCMC output}
 
 \item{xlim}{A vector of two values. The x-axis minimum and maximum values}
+
+\item{fill_color}{The color used to fill under the density curve}
+
+\item{fill_alpha_tail}{The transparency used for the color of the tails}
+
+\item{fill_alpha_main}{The transparency used for the color of the main part
+of the curve (-1SD - 1SD)}
+
+\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
+
+\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{ax_label_color}{Color of the font for the X and Y axis tick and
+title labels}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
-Title
+Create a plot showing the density of the posterior for the catch forecast
+for a given year
 }

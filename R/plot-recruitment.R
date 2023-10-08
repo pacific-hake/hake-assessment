@@ -8,10 +8,6 @@
 #' default. To change it, edit the year in the [calc_mcmc()] function, and
 #' then [create_rds_file()] needs to be run again to create the RDS file for
 #' the model
-#' @param ax_title_font_size Size of the font for the X and Y axis labels
-#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param ax_label_color Color of the font for the X and Y axis tick and
-#' title labels
 #'
 #' @export
 plot_recruitment <- function(
