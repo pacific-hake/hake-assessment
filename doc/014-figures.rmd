@@ -202,12 +202,8 @@ apportionment uncertainty in 2009 are displayed in black).
 estimate has decreased from 2019 to 2021.
 
 ```{r main-survey-extrap-biomass-fig,  fig.cap = "(ref:main-survey-extrap-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-survey-extrap-biomass-alt)"}
-if(is.null(base_model$plots$survey_extrap_biomass)){
-  plot_survey_biomass(base_model, index = "age2")
-}else{
-  base_model$plots$survey_extrap_biomass
-}
 
+plot_survey_biomass(base_model, index = "age2")
 ```
 
 (ref:main-survey-age1-cap) Relative index of age-1 fish (numbers of fish,
