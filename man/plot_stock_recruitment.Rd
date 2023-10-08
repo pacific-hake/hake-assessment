@@ -8,21 +8,30 @@ distribution of absolute recruitment is also plotted}
 \usage{
 plot_stock_recruitment(
   model,
-  probs = hake::probs,
   xlim = c(0, 1.4),
-  ylim = c(0, 7)
+  ylim = c(0, 7),
+  ax_title_font_size = axis_title_font_size,
+  ax_tick_font_size = axis_tick_font_size,
+  ax_label_color = axis_label_color
 )
 }
 \arguments{
 \item{model}{The model output from Stock Synthesis as loaded by
 \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{probs}{A vector of three probabilities to use in the call to
-\code{\link[stats:quantile]{stats::quantile()}}}
-
 \item{xlim}{A vector of two values. The x-axis minimum and maximum values}
 
 \item{ylim}{A vector of two values. The y-axis minimum and maximum values}
+
+\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
+
+\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{ax_label_color}{Color of the font for the X and Y axis tick and
+title labels}
+
+\item{probs}{A vector of three probabilities to use in the call to
+\code{\link[stats:quantile]{stats::quantile()}}}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

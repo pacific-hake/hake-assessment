@@ -723,7 +723,6 @@ plot_recruitment(list(base_model),
                  relative = TRUE,
                  ylim = c(0, 1.2),
                  y_breaks = seq(0, 1.2, by = 0.1),
-                 single_line_color = "blue",
                  leg_pos = "none")
 ```
 
@@ -742,7 +741,7 @@ curve does not fit the estimated recruitments very well for this stock.
 
 ```{r main-stock-recruitment-fig, fig.cap = "(ref:main-stock-recruitment-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-stock-recruitment-alt)"}
 
-plot_stock_recruitment(base_model, probs = hake::probs)
+plot_stock_recruitment(base_model)
 ```
 
 (ref:main-fishing-intensity-cap) Trend in median relative fishing intensity

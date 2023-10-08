@@ -8,13 +8,19 @@
 #' [stats::quantile()]
 #' @param xlim A vector of two values. The x-axis minimum and maximum values
 #' @param ylim A vector of two values. The y-axis minimum and maximum values
+#' @param ax_title_font_size Size of the font for the X and Y axis labels
+#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
+#' @param ax_label_color Color of the font for the X and Y axis tick and
+#' title labels
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_stock_recruitment <- \(model,
-                            probs = hake::probs,
                             xlim = c(0, 1.4),
-                            ylim = c(0, 7)){
+                            ylim = c(0, 7),
+                            ax_title_font_size = axis_title_font_size,
+                            ax_tick_font_size = axis_tick_font_size,
+                            ax_label_color = axis_label_color){
 
   yrs <- model$startyr:model$endyr
 
@@ -104,8 +110,8 @@ plot_stock_recruitment <- \(model,
     geom_ribbon(aes(x = b,
                     ymin = lo,
                     ymax = hi),
-                fill = hake::main_fill,
-                alpha = hake::main_alpha,
+                fill = main_fill,
+                alpha = main_alpha,
                 linetype = "dotted",
                 color = "black",
                 linewidth = 0.75) +
@@ -166,7 +172,27 @@ plot_stock_recruitment <- \(model,
     ylab(expression(paste("Recruitment relative to unfished equilibrium (",
                           R[0],
                           ")"))) +
-    theme(legend.position = "none")
+    theme(legend.position = "none",
+          axis.text.x = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = -1,
+                                     face = "plain"),
+          axis.text.y = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 0,
+                                      vjust = -1,
+                                      face = "plain"),
+          axis.title.y = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
 
   # Right-hand plot - dlnorm distribution (right panel)
   y_breaks <- c(0, adj, 1)
@@ -213,7 +239,21 @@ plot_stock_recruitment <- \(model,
              angle = 90) +
     theme(axis.ticks.x = element_blank(),
           axis.text.x = element_blank(),
-          panel.border = element_blank())
+          panel.border = element_blank(),
+          axis.text.y = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 0,
+                                      vjust = -1,
+                                      face = "plain"),
+          axis.title.y = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
 
   plot_grid(plotlist = p, rel_widths = c(5, 1), align = "h")
 }
