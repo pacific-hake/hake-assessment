@@ -240,17 +240,15 @@ of Point Conception which is at a latitude of 34.4 degrees they appear to
 reach maturity between the age of 2 and 3.
 
 ```{r main-maturity-ogive-fig, fig.cap = "(ref:main-maturity-ogive-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-maturity-ogive-alt)"}
-if(is.null(base_model$plots$maturity_ogive)){
-  p_lst <- list()
-  p_lst[[1]] <- plot_maturity_ogives(base_model, maturity_samples_df)
-  p_lst[[2]] <- plot_fecundity(base_model,
-                               d = maturity_samples_df,
-                               yrs = start_yr_age_comps:(end_yr - 1))
-  plot_grid(plotlist = p_lst, ncol = 1)
-}else{
-  base_model$plots$maturity_ogive
-}
+
+p_lst <- list()
+p_lst[[1]] <- plot_maturity_ogives(base_model, maturity_samples_df)
+p_lst[[2]] <- plot_fecundity(base_model,
+                             d = maturity_samples_df,
+                             yrs = start_yr_age_comps:(end_yr - 1))
+plot_grid(plotlist = p_lst, ncol = 1)
 ```
+
 (ref:main-weight-at-age-cap) Empirical weight-at-age (kg) values used for
 the base model. Colors correspond to the values, with red being the lightest
 fish (across all years and ages) and blue being the heaviest fish. For each
@@ -270,22 +268,18 @@ to present.
 ```{r main-weight-at-age-fig, fig.cap = "(ref:main-weight-at-age-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-weight-at-age-alt)"}
 # See `heatmap_extract_wa()` for argument choices, many are passed in `...`
 # from `plot_weight_at_age_heatmap()`
-if(is.null(base_model$plots$weight_at_age)){
-  plot_heatmap_weight_at_age(
-    base_model,
-    cell_font_size = 3,
-    sample_size_df = weight_age_sample_sizes_df,
-    pre_yrs = start_yr_age_comps:base_model$endyr,
-    pre_func = mean,
-    post_yrs = (base_model$endyr - 4):base_model$endyr,
-    post_func = mean,
-    cols = c("red",
-             "yellow",
-             "green",
-             "dodgerblue"))
-}else{
-  base_model$plots$weight_at_age
-}
+plot_heatmap_weight_at_age(
+  base_model,
+  cell_font_size = 3,
+  sample_size_df = weight_age_sample_sizes_df,
+  pre_yrs = start_yr_age_comps:base_model$endyr,
+  pre_func = mean,
+  post_yrs = (base_model$endyr - 4):base_model$endyr,
+  post_func = mean,
+  cols = c("red",
+           "yellow",
+           "green",
+           "dodgerblue"))
 ```
 
 (ref:main-sample-size-weight-at-age-cap) Sample sizes of empirical
@@ -306,23 +300,18 @@ for ages 3 through 7.
 ```{r main-sample-size-weight-at-age-fig, fig.cap = "(ref:main-sample-size-weight-at-age-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-sample-size-weight-at-age-alt)"}
 # See `heatmap_extract_wa()` for argument choices, many are passed in `...`
 # from `plot_weight_at_age_heatmap()`
-if(is.null(base_model$plots$sample_size_weight_at_age)){
-  plot_heatmap_sample_size_weight_at_age(
-    base_model,
-    cell_font_size = 3,
-    sample_size_df = weight_age_sample_sizes_df,
-    pre_yrs = start_yr_age_comps:base_model$endyr,
-    pre_func = mean,
-    post_yrs = (base_model$endyr - 4):base_model$endyr,
-    post_func = mean,
-    cols = c("red",
-             "yellow",
-             "green",
-             "dodgerblue"))
-  
-}else{
-  base_model$plots$sample_size_weight_at_age
-}
+plot_heatmap_sample_size_weight_at_age(
+  base_model,
+  cell_font_size = 3,
+  sample_size_df = weight_age_sample_sizes_df,
+  pre_yrs = start_yr_age_comps:base_model$endyr,
+  pre_func = mean,
+  post_yrs = (base_model$endyr - 4):base_model$endyr,
+  post_func = mean,
+  cols = c("red",
+           "yellow",
+           "green",
+           "dodgerblue"))
 ```
 
 (ref:main-weight-at-age-lines-cap) Empirical mean weight-at-age (kg) values
@@ -337,7 +326,6 @@ prior to 1980. There is a trend of increasing weight-at-age for the last
 6 to 7 years.
 
 ```{r main-weight-at-age-lines-fig, fig.cap = "(ref:main-weight-at-age-lines-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-weight-at-age-lines-alt)"}
-if(is.null(base_model$plots$weight_at_age_lines)){
 plot_weight_at_age(wt_at_age,
                    ages = 2:10,
                    bold_ages = 5,
@@ -346,10 +334,6 @@ plot_weight_at_age(wt_at_age,
                             "yellow",
                             "darkgreen"),
                    max.overlaps = 15)
-  
-}else{
-  base_model$plots$weight_at_age_lines
-}
 ```
 
 (ref:main-bridge-summary-cap) Bridging models showing the sequential steps
@@ -442,8 +426,9 @@ to 2021.
 plot_survey_fit_mcmc(base_model,
                      type = "acoustic",
                      n_posts = 1000,
-                     glow = TRUE)
-base_model$plots$survey_fit
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5)
 ```
 
 (ref:main-age1-index-fit-mcmc-cap) Fits (colored lines) to the relative
@@ -464,12 +449,11 @@ time series but diverge a little at the end of the time series for the
 
 ```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-age1-index-fit-mcmc-alt)"}
 
-# plot_survey_fit_mcmc(base_model,
-#                      type = "age1",
-#                      n_posts = 1000,
-#                      ylim = c(0, 10),
-#                      glow = TRUE)
-base_model$plots$age1_index_fit
+plot_survey_fit_mcmc(base_model,
+                     type = "age1",
+                     n_posts = 1000,
+                     ylim = c(0, 10),
+                     glow = TRUE)
 ```
 
 (ref:main-age-comp-fits-cap) Base model fits to the observed fishery (top)
@@ -484,24 +468,19 @@ and under-fitting in the early part of the fishery time series from 1975 to
 1995. The survey shows some over fitting from 2001 to 2005.
 
 ```{r main-age-comp-fits-fig, fig.cap = "(ref:main-age-comp-fits-cap)", fig.height = 11, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-age-comp-fits-alt)"}
-if(is.null(base_model$plots$age_comp_fits)){
-  plist <- NULL
-  plist[[1]] <-
-    plot_age_comp_fit(base_model,
-                      label_font_size = 3,
-                      type = "fishery",
-                      n_col = 4)
-  plist[[2]] <-
-    plot_age_comp_fit(base_model,
-                      n_col = 1,
-                      type = "survey",
-                      x_breaks = 2:15,
-                      label_font_size = 3,
-                      label_loc = c(14, 0.45))
-  plot_grid(plotlist = plist, nrow = 2)
-}else{
-  base_model$plots$age_comp_fits
-}
+
+plist <- NULL
+plist[[1]] <-
+  plot_age_comp_fit(base_model,
+                    type = "fishery",
+                    n_col = 4)
+plist[[2]] <-
+  plot_age_comp_fit(base_model,
+                    n_col = 1,
+                    type = "survey",
+                    x_breaks = 2:15,
+                    label_loc = c(14, 0.45))
+plot_grid(plotlist = plist, nrow = 2)
 ```
 
 (ref:main-age-comp-pearson-cap) Pearson residuals for base model fits to
@@ -514,20 +493,16 @@ of large recruitment events.
 patterns in the Pearson residuals for the fishery and the survey.
 
 ```{r main-age-comp-pearson-fig, fig.cap = "(ref:main-age-comp-pearson-cap)", fig.height = 11, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-age-comp-pearson-alt)"}
-if(is.null(base_model$plots$age_comp_pearson)){
-  plist <- NULL
-  plist[[1]] <-
-    plot_pearson_bubbles(base_model,
-                         type = "fishery",
-                         leg_pos = "top")
-  plist[[2]] <-
-    plot_pearson_bubbles(base_model,
-                         type = "survey",
-                         alpha = 0.7)
-  plot_grid(plotlist = plist, ncol = 1)
-}else{
-  base_model$plots$age_comp_pearson
-}
+plist <- NULL
+plist[[1]] <-
+  plot_pearson_bubbles(base_model,
+                       type = "fishery",
+                       leg_pos = "top")
+plist[[2]] <-
+  plot_pearson_bubbles(base_model,
+                       type = "survey",
+                       alpha = 0.7)
+plot_grid(plotlist = plist, ncol = 1)
 ```
 
 (ref:main-prior-posterior-cap) Prior (black lines) and posterior (blue
@@ -587,7 +562,6 @@ plot_selex_mountains(base_model,
                      ages = 1:8,
                      fill_num_colors = 50,
                      scale = 20)
-
 ```
 
 (ref:main-tv-selex-uncertainty-cap) Fishery selectivity sampled from
@@ -623,17 +597,15 @@ plist[[1]] <- plot_selex_posteriors(base_model,
                                     probs = probs,
                                     age_range = c(1, 8),
                                     show_xlab = FALSE,
-                                    post_med_line_color = "red3",
-                                    unc_line_color = "red3",
-                                    glow = TRUE)
+                                    post_med_line_color = "red",
+                                    unc_line_color = "red",
+                                    glow = FALSE)
 plist[[2]] <- plot_selex_posteriors(base_model,
                                     type = "fishery",
                                     probs = probs,
                                     age_range = c(1, 8),
-                                    glow = TRUE)
+                                    glow = FALSE)
 plot_grid(plotlist = plist, ncol = 1, align = "v")
-
-#base_model$plots$selex_posteriors
 ```
 
 (ref:main-biomass-cap) Median (solid line) of the posterior distribution for
@@ -651,8 +623,7 @@ plot_biomass(list(base_model),
              list(base_model_name),
              ylim = c(0, 5),
              point_shape = hake::ts_single_model_pointshape,
-             leg_pos = "none") |>
-  suppressWarnings()
+             leg_pos = "none")
 ```
 
 (ref:main-relative-biomass-cap) Median (solid line) of the posterior
@@ -690,7 +661,8 @@ of the credible interval.
 plot_recruitment(list(base_model),
                  list(base_model_name),
                  inc_means = TRUE,
-                 leg_pos = "none")
+                 leg_pos = "none") |>
+  suppressWarnings()
 ```
 
 (ref:main-recruitment-devs-cap) Medians (solid circles) of the posterior
@@ -704,10 +676,11 @@ each cohort. The same above-average cohorts seen in the recruitment figure
 are also seen here.
 
 ```{r main-recruitment-devs-fig, fig.cap = "(ref:main-recruitment-devs-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-devs-alt)"}
-  plot_recdevs(list(base_model),
-               list(base_model_name),
-               single_line_color = "blue",
-               leg_pos = "none")
+
+plot_recdevs(list(base_model),
+             list(base_model_name),
+             line_color = ts_single_line_color,
+             leg_pos = "none")
 ```
 
 (ref:main-numbers-at-age-cap) Bubble plot of the medians of the posterior

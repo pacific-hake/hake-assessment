@@ -14,6 +14,8 @@
 #' @export
 plot_fecundity <- function(model,
                            yrs = NULL,
+                           line_colors = c("blue", "red"),
+                           line_alpha = 0.5,
                            leg_pos = c(0.68, 0.13),
                            leg_ncol = 1,
                            leg_font_size = 14,
@@ -40,7 +42,7 @@ plot_fecundity <- function(model,
   age <- as.numeric(names(fec))
   d <- tibble(age = age,
               `Mean weight at age` = wt,
-              `Mean fecundity (maturity-at-age X weight-at-age` = fec) |>
+              `Mean fecundity (maturity-at-age X weight-at-age)` = fec) |>
     pivot_longer(-age) |>
     filter(age > 0) |>
     mutate(name = factor(name, levels = unique(name)))
@@ -56,7 +58,8 @@ plot_fecundity <- function(model,
                   y = value,
                   group = name,
                   color = name)) +
-    geom_line(linewidth = 1.5) +
+    geom_line(linewidth = 1.5,
+              alpha = line_alpha) +
     geom_hline(yintercept = y_breaks,
                linewidth = 0.5,
                alpha = 0.5,
@@ -70,29 +73,29 @@ plot_fecundity <- function(model,
           # plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 14, 0),
-          axis.text.x = element_text(color = "grey20",
+          axis.text.x = element_text(color = axis_label_color,
                                      size = axis_tick_font_size,
                                      angle = 0,
                                      hjust = 0.5,
                                      vjust = -3,
                                      face = "plain"),
-          axis.text.y = element_text(color = "grey20",
+          axis.text.y = element_text(color = axis_label_color,
                                      size = axis_tick_font_size,
                                      hjust = 1,
                                      vjust = 0.5,
                                      face = "plain"),
-          axis.title.x = element_text(color = "grey20",
+          axis.title.x = element_text(color = axis_label_color,
                                       size = axis_title_font_size,
                                       angle = 0,
                                       vjust = -2,
                                       face = "plain"),
-          axis.title.y = element_text(color = "grey20",
+          axis.title.y = element_text(color = axis_label_color,
                                       size = axis_title_font_size,
                                       angle = 90,
                                       face = "plain")) +
     labs(x = "Age",
          y = "Weight or fecundity (kg)") +
-    scale_color_manual(values = c("green", "purple"))
+    scale_color_manual(values = line_colors)
 
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){

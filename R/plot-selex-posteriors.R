@@ -25,13 +25,15 @@
 #' diameter of the points to create the glow effect
 #' @param glow_color Color of the glow effect
 #' @param glow_alpha Transparency of the glow effect
-#'
+#' @param ax_title_font_size Size of the font for the X and Y axis labels
+#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
+#' @param ax_label_color Color of the font for the X and Y axis tick and
+#' title labels
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_selex_posteriors <- function(
     model = NULL,
     type = c("fishery", "survey"),
-    probs = c(0.025, 0.5, 0.975),
     age_range = NULL,
     show_xlab = TRUE,
     post_line_width = 0.1,
@@ -40,15 +42,19 @@ plot_selex_posteriors <- function(
     post_med_line_width = 1,
     post_med_line_color = "blue3",
     post_med_line_alpha = 1,
+    post_line_gap = ts_linegap,
     post_med_point_size = 3,
     unc_line_width = 1,
     unc_line_color = "blue3",
     unc_line_alpha = 1,
     unc_point_size = 3,
-    glow = TRUE,
+    glow = FALSE,
     glow_offset = 0.5,
     glow_color = "white",
-    glow_alpha = 1){
+    glow_alpha = 1,
+    ax_title_font_size = axis_title_font_size,
+    ax_tick_font_size = axis_tick_font_size,
+    ax_label_color = axis_label_color){
 
   type <- match.arg(type)
   if(type == "fishery"){
@@ -88,7 +94,27 @@ plot_selex_posteriors <- function(
     # Thin posterior lines (no glow for these)
     geom_line(linewidth = post_line_width,
               color = post_line_color,
-              alpha = post_line_alpha)
+              alpha = post_line_alpha) +
+    theme(axis.text.x = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = -3,
+                                     face = "plain"),
+          axis.text.y = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 0,
+                                      vjust = -1,
+                                      face = "plain"),
+          axis.title.y = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
 
   if(glow){
     # Glow - Error bars only - no points here
@@ -126,12 +152,14 @@ plot_selex_posteriors <- function(
                      linewidth = post_med_line_width + glow_offset,
                      color = glow_color,
                      alpha = glow_alpha,
+                     mult = post_line_gap,
                      size = post_med_point_size) +
       # Glow 2 - Median posterior line and points
       geom_pointpath(data = quants,
                      linewidth = post_med_line_width + glow_offset,
                      color = glow_color,
                      alpha = glow_alpha,
+                     mult = post_line_gap,
                      size = post_med_point_size + glow_offset)
   }
 
@@ -140,6 +168,7 @@ plot_selex_posteriors <- function(
     geom_pointpath(data = quants,
                    linewidth = post_med_line_width,
                    color = post_med_line_color,
+                   mult = post_line_gap,
                    size = post_med_point_size) +
     xlab(ifelse(show_xlab, "Age", "")) +
     ylab("Selectivity")

@@ -37,7 +37,7 @@
 #'  extra SD parameter estimates
 #' @param extrasd_point_size The sizeof the median points for the
 #' extra SD parameter estimates
-#' @param glow Logical. If `TRUE`, add a white glow around the lines so that
+#' @param glow Logical. If `TRUE`, add a glow around the lines so that
 #' they can more easily be seen in contrast to the background posterior lines
 #' @param glow_offset The amount to add to the lines and points to create the
 #' @param post_line_width The width of the posterior lines
@@ -60,21 +60,22 @@ plot_survey_fit_mcmc <- function(model,
                                  post_line_col = "black",
                                  post_line_alpha = 0.1,
                                  post_med_line_width = 1,
-                                 post_med_line_color = "blue",
-                                 post_med_line_alpha = 1,
+                                 post_med_line_color = "royalblue",
+                                 post_med_line_alpha = main_alpha,
                                  post_med_point_size = 3,
-                                 obs_line_width = 2,
-                                 obs_line_color = "blue",
+                                 post_line_gap = ts_linegap,
+                                 obs_line_width = 1,
+                                 obs_line_color = "royalblue",
                                  obs_point_color = "black",
-                                 obs_point_size = 3,
+                                 obs_point_size = 2,
                                  obs_alpha = 1,
                                  extrasd_line_width = 0.5,
-                                 extrasd_line_color = "blue",
-                                 extrasd_point_color = "blue",
+                                 extrasd_line_color = "royalblue",
+                                 extrasd_point_color = "royalblue",
                                  extrasd_point_size = 3,
                                  extrasd_alpha = 1,
-                                 glow = TRUE,
-                                 glow_offset = 0.5,
+                                 glow = FALSE,
+                                 glow_offset = 0.25,
                                  glow_color = "white",
                                  glow_alpha = 1){
 
@@ -210,6 +211,7 @@ plot_survey_fit_mcmc <- function(model,
                      color = glow_color,
                      alpha = glow_alpha,
                      size = post_med_point_size,
+                     mult = post_line_gap,
                      inherit.aes = FALSE) +
       # Glow 2 - Add posterior median points and line
       geom_pointpath(data = index_med,
@@ -219,6 +221,7 @@ plot_survey_fit_mcmc <- function(model,
                      color = glow_color,
                      alpha = glow_alpha,
                      size = post_med_point_size + glow_offset,
+                     mult = post_line_gap,
                      inherit.aes = FALSE)
   }
 
@@ -230,6 +233,7 @@ plot_survey_fit_mcmc <- function(model,
                    color = post_med_line_color,
                    size = post_med_point_size,
                    linewidth = post_med_line_width,
+                   mult = post_line_gap,
                    inherit.aes = FALSE)
 
   if(glow){

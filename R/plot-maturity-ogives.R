@@ -4,14 +4,20 @@
 #'
 #' @param model A model, created by [create_rds_file()]
 #' @param d  The data frame which is read in from
+#' @param colors A vector of two colors for North and South of 34 degrees
+#' respectively
+#' @param point_alpha Transparency of the bubbles
+#' @param line_alpha Transparency of the lines
 #' `inst/extdata/data/hake-maturity-data.csv`
 #' @param alpha The transparency for all ribbons
 #' @param leg_pos The position of the legend inside the plot. If `NULL`,
 #' `NA`, or `none`, the legend will not be shown
 #' @param leg_ncol The number of columns to show in the legend
 #' @param leg_font_size The legend font size
-#' @param axis_title_font_size Size of the font for the X and Y axis labels
-#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
+#' @param ax_title_font_size Size of the font for the X and Y axis labels
+#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
+#' @param ax_label_color Color of the font for the X and Y axis tick and
+#' title labels
 #' @param ret_df Logical. If `TRUE`, don't plot, instead return the
 #' calculation of `d` which may be needed as part of the fecundity calculation
 #' elsewhere
@@ -20,12 +26,15 @@
 #' @export
 plot_maturity_ogives <- function(model,
                                  d,
-                                 alpha = 0.1,
+                                 colors =c("blue", "red"),
+                                 point_alpha = 0.3,
+                                 line_alpha = 0.3,
                                  leg_pos = c(0.85, 0.15),
                                  leg_ncol = 1,
                                  leg_font_size = 16,
-                                 axis_title_font_size = 18,
-                                 axis_tick_font_size = 11,
+                                 ax_title_font_size = axis_title_font_size,
+                                 ax_tick_font_size = axis_tick_font_size,
+                                 ax_label_color = axis_label_color,
                                  ret_df = FALSE){
 
   age_max <- max(model$agebins)
@@ -145,10 +154,10 @@ plot_maturity_ogives <- function(model,
                linewidth = 0.5,
                alpha = 0.5,
                linetype = "dashed") +
-    geom_line(linewidth = 1, alpha = 0.3) +
-    geom_point(shape = 21, color = "black", alpha = 0.3) +
-    scale_fill_manual(values = c("blue", "red")) +
-    scale_color_manual(values = c("blue", "red")) +
+    geom_line(linewidth = 1, alpha = line_alpha) +
+    geom_point(shape = 21, color = "black", alpha = point_alpha) +
+    scale_fill_manual(values = colors) +
+    scale_color_manual(values = colors) +
     scale_size(range = c(0, 20)) +
     scale_x_continuous(breaks = x_breaks, labels = x_labels) +
     scale_y_continuous(breaks = y_breaks) +
@@ -157,6 +166,7 @@ plot_maturity_ogives <- function(model,
                   label = num_samp,
                   color = area),
               inherit.aes = FALSE,
+              show.legend = FALSE,
               size = 5) +
     guides(size = "none",
            color = "none",
@@ -168,24 +178,24 @@ plot_maturity_ogives <- function(model,
           plot.margin = margin(12, 12, 14, 0)) +
     labs(x = "Age",
          y = "Proportion mature") +
-    theme(axis.text.x = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
+    theme(axis.text.x = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
                                      angle = 0,
                                      hjust = 0.5,
                                      vjust = -3,
                                      face = "plain"),
-          axis.text.y = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
+          axis.text.y = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
                                      hjust = 1,
                                      vjust = 0.5,
                                      face = "plain"),
-          axis.title.x = element_text(color = "grey20",
-                                      size = axis_title_font_size,
+          axis.title.x = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
                                       angle = 0,
                                       vjust = -2,
                                       face = "plain"),
-          axis.title.y = element_text(color = "grey20",
-                                      size = axis_title_font_size,
+          axis.title.y = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
                                       angle = 90,
                                       face = "plain"))
 
