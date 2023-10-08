@@ -9,7 +9,7 @@ implemented in the hake assessment codebase in 2023 between the 2023 and
 * The document is built using [Bookdown](https://bookdown.org/), an R package
   that facilitates writing complex documents using
   [R Markdown](https://rmarkdown.rstudio.com/). See the [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
-  for help on syntax.
+  for help on syntax. The R Markdown is converted to a PDF with [Pandoc](https://pandoc.org/), but this is a part of the `bookdown` package and invisible for the most part to end users.
 * Converted ALL document code from Sweave to Rmarkdown.
 * Now a true R package. This compartmentalized the code, and allows for the
   documentation of functions and package data to be monitored through

@@ -4,34 +4,45 @@ ____
 *An R package which uses Bookdown and Rmarkdown to build the US/Canadian Pacific hake assessment document*
 _____________________________________________________________
 
-Read [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md)
-for important updates.
+In 2023, the project code was switched over from an older Sweave-based approach to
+Bookdown. Read [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md) for important details on this and other issues.
+
+The assessment document is built using the following software packages:
+* [R Markdown](https://rmarkdown.rstudio.com/lesson-1.html): A simple yet
+  powerful markup language designed to remove the need for tedious LaTeX
+  macros embedded throughout your text. See the [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+  for help on syntax.
+* [knitr](https://yihui.org/knitr/): This R package is responsible for creating
+  figures and tables during builds, and for dealing with inline R code chunks
+  to create reproducible paragraphs of text.
+* [Pandoc](https://pandoc.org/): A very powerful document converter and in
+  this case converts the R Markdown to LaTeX code and compiles it into a
+  PDF file.
+* [YAML](https://yaml.org/spec/1.2.2/#chapter-1-introduction-to-yaml): This 
+  is a simple configuration file format used to keep the project in order. It is used by `bookdown`.
+* [Bookdown](https://bookdown.org/): An R package that facilitates writing
+  complex documents by integrating the above packages into a single package,
+  using a YAML configuration file.
 
 ---
 ## How to create the hake assessment PDF document
 **The `RDS` files must have been created before the document can be built.**
 
+1. Open an R session, and install the hake repository:
+   `remotes::install_github("pacific-hake/hakeassessment")`
 1. `git clone` this repository
-1. Open an R session, make sure your working directory is somewhere within
-   the hake repository directory structure and then run: `devtools::load_all()`
-1. Change your working directory to the `doc` directory:
+1. In an R session, change your working directory to the `doc` directory:
    `setwd(here::here("doc"))`
-1. Run `render()`
+1. Run `hake::render()`
 1. The `hake.pdf` document will be built in the `doc` directory. The first
-   time building the document in a new R session will take several minutes
-   because the model RDS file have to be loaded. After that, the build will
-   be quicker.
+   time building the document in a new R session will take about 10 minutes
+   because the model RDS files have to be loaded. After that, the build will
+   be much quicker.
 
 Alternatively, in RStudio you can click the `knit` button while the file
-`000-launcher.rmd` is in focus. This requires that the hake package is
-installed on the machine. Do that one of these ways:
-- If you have the source repo locally:
-  - If in RStudio, press `Ctrl-Shift-b`
-  - If not in RStudio, run `devtools::install()`
-- If you don't have the source repo locally:  
-  - Run `remotes::install_github("pacific-hake/hake-assessment")`
+`000-launcher.rmd` is open in the editor window.
 
-For details on the `render()` function, see
+For details on the `hake::render()` function, see
 [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md).
 
 ## Debugging a figure or table, or any other Rmarkdown code
