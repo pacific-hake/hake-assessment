@@ -8,6 +8,10 @@
 #' default. To change it, edit the year in the [calc_mcmc()] function, and
 #' then [create_rds_file()] needs to be run again to create the RDS file for
 #' the model
+#' @param ax_title_font_size Size of the font for the X and Y axis labels
+#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
+#' @param ax_label_color Color of the font for the X and Y axis tick and
+#' title labels
 #' @export
 plot_recruitment <- function(
     model_lst = NULL,
@@ -29,15 +33,26 @@ plot_recruitment <- function(
     leg_pos = c(0.65, 0.83),
     leg_ncol = 1,
     leg_font_size = 12,
-    point_size = ts_pointsize,
-    point_stroke = ts_single_model_pointstroke,
-    line_width = ts_linewidth,
-    single_point_color = ts_single_model_pointcolor,
-    single_line_color = ts_single_model_linecolor,
+    point_size = ifelse(is_single_model,
+                        ts_single_model_pointsize,
+                        ts_pointsize),
+    color = ts_single_model_pointcolor,
+    point_shape = ifelse(is_single_model,
+                         ts_single_model_pointshape,
+                         ts_pointshape),
+    point_stroke = ifelse(is_single_model,
+                          ts_single_model_pointstroke,
+                          ts_pointstroke),
+    line_width = ifelse(is_single_model,
+                        ts_single_model_linewidth,
+                        ts_linewidth),
     crossbar_width = 0,
     dodge_val = 0.5,
     rev_colors = TRUE,
-    d_obj = NULL){
+    d_obj = NULL,
+    ax_title_font_size = axis_title_font_size,
+    ax_tick_font_size = axis_tick_font_size,
+    ax_label_color = axis_label_color){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -69,17 +84,18 @@ plot_recruitment <- function(
   rmean_sym <- sym(rmean)
 
   d <- d_obj[[1]]
+  is_single_model <- length(unique(d$model)) == 1
   colors <- plot_color(length(unique(d$model)))
-  line_colors <- colors
   if(rev_colors){
     colors <- rev(colors)
-    line_colors <- rev(line_colors)
+  }
+  if(is_single_model){
+    colors <- color
   }
 
-  is_single_model <- length(unique(d$model)) == 1
   if(is_single_model){
-    colors <- single_point_color
-    line_colors <- single_line_color
+    #colors <- single_point_color
+    #colors <- single_line_color
     ro_vec <- model_lst[[1]]$mcmccalcs[[rinit]]
     yrs <- c(seq(min(d$year) - x_expansion,
                  min(d$year) - 1), d$year)
@@ -110,10 +126,30 @@ plot_recruitment <- function(
                   group = model,
                   color = model,
                   fill = model)) +
-    scale_color_manual(values = line_colors) +
+    scale_color_manual(values = colors) +
     coord_cartesian(xlim = xlim,
                     ylim = ylim,
-                    clip = "off")
+                    clip = "off") +
+    theme(axis.text.x = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = vjust_x_labels,
+                                     face = "plain"),
+          axis.text.y = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 0,
+                                      vjust = vjust_x_labels,
+                                      face = "plain"),
+          axis.title.y = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
 
   if(is_single_model){
     ro_val <- ro[[rmed_sym]][1]
@@ -133,6 +169,9 @@ plot_recruitment <- function(
 
     g <- g +
       geom_point(size = point_size,
+                 shape = point_shape,
+                 stroke = point_stroke,
+                 position = position_dodge(dodge_val),
                  color = colors) +
       geom_hline(data = ro,
                  aes(yintercept = !!rmed_sym),
@@ -147,10 +186,7 @@ plot_recruitment <- function(
                     position = position_dodge(dodge_val),
                     width = crossbar_width,
                     alpha = 0.5,
-                    color = line_colors) +
-      geom_point(size = point_size,
-                 position = position_dodge(dodge_val),
-                 color = colors)
+                    color = colors)
   }else{
     g <- g +
       geom_errorbar(size = line_width,
@@ -174,12 +210,12 @@ plot_recruitment <- function(
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
-          axis.text.y = element_text(color = y_colors),
+          axis.text.y = element_text(color = y_colors)) +
           # These two commands move the x-axis major tick labels and axis
           # title down so that the ticks. tick labels, and axis title don't
           # overlap each other
-          axis.text.x = element_text(vjust = vjust_x_labels),
-          axis.title.x = element_text(vjust = vjust_x_labels)) +
+          #axis.text.x = element_text(vjust = vjust_x_labels),
+          #axis.title.x = element_text(vjust = vjust_x_labels)) +
     xlab("Year") +
     ylab(ifelse(relative,
                 "Age-0 recruits (billions) relative to 2010 values",
