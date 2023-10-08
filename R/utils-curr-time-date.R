@@ -22,15 +22,15 @@ curr_time_date <- function(testday = NULL){
 
   if(last_char == "1" &&
      penult_char %in% c(" ", "2", "3")){
-    day <- paste0(day, "\\textsuperscript{st}")
+    day <- paste0(day, "\\\\textsuperscript{st}")
   }else if(last_char == "2" &&
            penult_char %in% c(" ", "2")){
-    day <- paste0(day, "\\textsuperscript{nd}")
+    day <- paste0(day, "\\\\textsuperscript{nd}")
   }else if(last_char == "3" &&
            penult_char %in% c(" ", "2")){
-    day <- paste0(day, "\\textsuperscript{rd}")
+    day <- paste0(day, "\\\\textsuperscript{rd}")
   }else{
-    day <- paste0(day, "\\textsuperscript{th}")
+    day <- paste0(day, "\\\\textsuperscript{th}")
   }
 
   year <- format(Sys.time(), '%Y')
