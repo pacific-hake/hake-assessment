@@ -8,7 +8,6 @@ as many lines with an overlaid errorbar for each age}
 plot_selex_posteriors(
   model = NULL,
   type = c("fishery", "survey"),
-  probs = c(0.025, 0.5, 0.975),
   age_range = NULL,
   show_xlab = TRUE,
   post_line_width = 0.1,
@@ -17,23 +16,25 @@ plot_selex_posteriors(
   post_med_line_width = 1,
   post_med_line_color = "blue3",
   post_med_line_alpha = 1,
+  post_line_gap = ts_linegap,
   post_med_point_size = 3,
   unc_line_width = 1,
   unc_line_color = "blue3",
   unc_line_alpha = 1,
   unc_point_size = 3,
-  glow = TRUE,
+  glow = FALSE,
   glow_offset = 0.5,
   glow_color = "white",
-  glow_alpha = 1
+  glow_alpha = 1,
+  ax_title_font_size = axis_title_font_size,
+  ax_tick_font_size = axis_tick_font_size,
+  ax_label_color = axis_label_color
 )
 }
 \arguments{
 \item{model}{A model list, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{type}{One of 1 or 2 where 1 = Fishery and 2 = Acoustic age 2+ survey}
-
-\item{probs}{A vector of two quantiles to include for the uncertainty}
 
 \item{age_range}{A vector of two for the min and max ages to plot. If \code{NULL},
 all ages in the data will be plotted}
@@ -72,6 +73,15 @@ diameter of the points to create the glow effect}
 \item{glow_color}{Color of the glow effect}
 
 \item{glow_alpha}{Transparency of the glow effect}
+
+\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
+
+\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{ax_label_color}{Color of the font for the X and Y axis tick and
+title labels}
+
+\item{probs}{A vector of two quantiles to include for the uncertainty}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

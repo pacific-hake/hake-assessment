@@ -7,6 +7,8 @@
 plot_fecundity(
   model,
   yrs = NULL,
+  line_colors = c("blue", "red"),
+  line_alpha = 0.5,
   leg_pos = c(0.68, 0.13),
   leg_ncol = 1,
   leg_font_size = 14,

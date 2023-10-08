@@ -16,7 +16,7 @@ plot_age_comp_fit(
   axis_tick_font_size = 12,
   axis_label_color = "black",
   label_loc = c(ages[length(ages)] - 2, 0.45),
-  label_font_size = 4,
+  label_font_size = 5,
   point_size = 1.5,
   whisker_width = 0.15
 )

@@ -196,15 +196,18 @@ plot_recruitment(
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  point_size = ts_pointsize,
-  point_stroke = ts_single_model_pointstroke,
-  line_width = ts_linewidth,
-  single_point_color = ts_single_model_pointcolor,
-  single_line_color = ts_single_model_linecolor,
+  point_size = ifelse(is_single_model, ts_single_model_pointsize, ts_pointsize),
+  color = ts_single_model_pointcolor,
+  point_shape = ifelse(is_single_model, ts_single_model_pointshape, ts_pointshape),
+  point_stroke = ifelse(is_single_model, ts_single_model_pointstroke, ts_pointstroke),
+  line_width = ifelse(is_single_model, ts_single_model_linewidth, ts_linewidth),
   crossbar_width = 0,
   dodge_val = 0.5,
   rev_colors = TRUE,
-  d_obj = NULL
+  d_obj = NULL,
+  ax_title_font_size = axis_title_font_size,
+  ax_tick_font_size = axis_tick_font_size,
+  ax_label_color = axis_label_color
 )
 
 plot_rel_biomass(
@@ -474,6 +477,13 @@ the \code{r_rel_lower}, \code{r_rel_med}, \code{r_rel_upper}, \code{r_rel_mean},
 default. To change it, edit the year in the \code{\link[=calc_mcmc]{calc_mcmc()}} function, and
 then \code{\link[=create_rds_file]{create_rds_file()}} needs to be run again to create the RDS file for
 the model}
+
+\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
+
+\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{ax_label_color}{Color of the font for the X and Y axis tick and
+title labels}
 
 \item{survey_type}{Either \code{age1} or \code{age2}. Used for survey index plots
 only}

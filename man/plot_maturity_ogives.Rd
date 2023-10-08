@@ -9,22 +9,30 @@ Conception (34.44° latitude)}
 plot_maturity_ogives(
   model,
   d,
-  alpha = 0.1,
+  colors = c("blue", "red"),
+  point_alpha = 0.3,
+  line_alpha = 0.3,
   leg_pos = c(0.85, 0.15),
   leg_ncol = 1,
   leg_font_size = 16,
-  axis_title_font_size = 18,
-  axis_tick_font_size = 11,
+  ax_title_font_size = axis_title_font_size,
+  ax_tick_font_size = axis_tick_font_size,
+  ax_label_color = axis_label_color,
   ret_df = FALSE
 )
 }
 \arguments{
 \item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{d}{The data frame which is read in from
-\code{inst/extdata/data/hake-maturity-data.csv}}
+\item{d}{The data frame which is read in from}
 
-\item{alpha}{The transparency for all ribbons}
+\item{colors}{A vector of two colors for North and South of 34 degrees
+respectively}
+
+\item{point_alpha}{Transparency of the bubbles}
+
+\item{line_alpha}{Transparency of the lines
+\code{inst/extdata/data/hake-maturity-data.csv}}
 
 \item{leg_pos}{The position of the legend inside the plot. If \code{NULL},
 \code{NA}, or \code{none}, the legend will not be shown}
@@ -33,13 +41,18 @@ plot_maturity_ogives(
 
 \item{leg_font_size}{The legend font size}
 
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
+\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
 
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
+\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{ax_label_color}{Color of the font for the X and Y axis tick and
+title labels}
 
 \item{ret_df}{Logical. If \code{TRUE}, don't plot, instead return the
 calculation of \code{d} which may be needed as part of the fecundity calculation
 elsewhere}
+
+\item{alpha}{The transparency for all ribbons}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

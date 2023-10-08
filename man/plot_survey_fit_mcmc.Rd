@@ -15,21 +15,22 @@ plot_survey_fit_mcmc(
   post_line_col = "black",
   post_line_alpha = 0.1,
   post_med_line_width = 1,
-  post_med_line_color = "blue",
-  post_med_line_alpha = 1,
+  post_med_line_color = "royalblue",
+  post_med_line_alpha = main_alpha,
   post_med_point_size = 3,
-  obs_line_width = 2,
-  obs_line_color = "blue",
+  post_line_gap = ts_linegap,
+  obs_line_width = 1,
+  obs_line_color = "royalblue",
   obs_point_color = "black",
-  obs_point_size = 3,
+  obs_point_size = 2,
   obs_alpha = 1,
   extrasd_line_width = 0.5,
-  extrasd_line_color = "blue",
-  extrasd_point_color = "blue",
+  extrasd_line_color = "royalblue",
+  extrasd_point_color = "royalblue",
   extrasd_point_size = 3,
   extrasd_alpha = 1,
-  glow = TRUE,
-  glow_offset = 0.5,
+  glow = FALSE,
+  glow_offset = 0.25,
   glow_color = "white",
   glow_alpha = 1
 )
@@ -91,7 +92,7 @@ extra SD parameter estimates}
 
 \item{extrasd_alpha}{The transparency of the extra SD lines}
 
-\item{glow}{Logical. If \code{TRUE}, add a white glow around the lines so that
+\item{glow}{Logical. If \code{TRUE}, add a glow around the lines so that
 they can more easily be seen in contrast to the background posterior lines}
 
 \item{glow_offset}{The amount to add to the lines and points to create the}
