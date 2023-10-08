@@ -24,7 +24,7 @@ plot_recruitment <- function(
     x_labs_mod = 5,
     x_expansion = 2,
     tick_prop = 1,
-    vjust_x_labels = -2,
+    vjust_x_labels = -1,
     ylim = c(0, 40),
     y_breaks = seq(ylim[1], ylim[2], by = 10),
     y_labels = y_breaks,
@@ -211,11 +211,6 @@ plot_recruitment <- function(
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
           axis.text.y = element_text(color = y_colors)) +
-          # These two commands move the x-axis major tick labels and axis
-          # title down so that the ticks. tick labels, and axis title don't
-          # overlap each other
-          #axis.text.x = element_text(vjust = vjust_x_labels),
-          #axis.title.x = element_text(vjust = vjust_x_labels)) +
     xlab("Year") +
     ylab(ifelse(relative,
                 "Age-0 recruits (billions) relative to 2010 values",

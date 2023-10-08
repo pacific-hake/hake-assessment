@@ -157,7 +157,7 @@ plot_recdevs(
   x_labs_mod = 5,
   x_expansion = 2,
   tick_prop = 1,
-  vjust_x_labels = -2,
+  vjust_x_labels = -1,
   ylim = c(-5, 5),
   y_breaks = seq(ylim[1], ylim[2], by = 1),
   leg_pos = c(0.65, 0.83),
@@ -173,6 +173,9 @@ plot_recdevs(
   line_color = ts_single_model_linecolor,
   dodge_val = 1,
   rev_colors = FALSE,
+  ax_title_font_size = axis_title_font_size,
+  ax_tick_font_size = axis_tick_font_size,
+  ax_label_color = axis_label_color,
   ...
 )
 
@@ -187,7 +190,7 @@ plot_recruitment(
   x_labs_mod = 5,
   x_expansion = 2,
   tick_prop = 1,
-  vjust_x_labels = -2,
+  vjust_x_labels = -1,
   ylim = c(0, 40),
   y_breaks = seq(ylim[1], ylim[2], by = 10),
   y_labels = y_breaks,
@@ -465,6 +468,13 @@ under B10)}
 \item{dodge_val}{The amount to separate lines between unique models
 multiple model plots}
 
+\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
+
+\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{ax_label_color}{Color of the font for the X and Y axis tick and
+title labels}
+
 \item{...}{Arguments passed to \code{\link[ggplot2:geom_linerange]{ggplot2::geom_pointrange()}}}
 
 \item{inc_means}{Logical. If \code{TRUE} include the mean values in the plot.
@@ -477,13 +487,6 @@ the \code{r_rel_lower}, \code{r_rel_med}, \code{r_rel_upper}, \code{r_rel_mean},
 default. To change it, edit the year in the \code{\link[=calc_mcmc]{calc_mcmc()}} function, and
 then \code{\link[=create_rds_file]{create_rds_file()}} needs to be run again to create the RDS file for
 the model}
-
-\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{ax_label_color}{Color of the font for the X and Y axis tick and
-title labels}
 
 \item{survey_type}{Either \code{age1} or \code{age2}. Used for survey index plots
 only}

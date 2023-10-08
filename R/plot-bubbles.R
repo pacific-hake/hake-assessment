@@ -24,6 +24,10 @@
 #' [ggplot2::geom_segment()] and [ggplot2::theme()]
 #' @param show_x_axis_labels Logical. If `TRUE`, show the x-axis title and
 #' tick labels
+#' @param ax_title_font_size Size of the font for the X and Y axis labels
+#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
+#' @param ax_label_color Color of the font for the X and Y axis tick and
+#' title labels
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -45,6 +49,9 @@ plot_bubbles <- function(d,
                          point_color = "black",
                          xlim = c(1966, year(Sys.Date())),
                          show_x_axis_labels = TRUE,
+                         ax_title_font_size = axis_title_font_size,
+                         ax_tick_font_size = axis_tick_font_size,
+                         ax_label_color = axis_label_color,
                          ...){
 
   if(!all(c("Year", "Age", val_col_nm) %in% names(d))){
@@ -77,7 +84,27 @@ plot_bubbles <- function(d,
                        expand = c(0.025, 0)) +
     coord_cartesian(xlim = xlim) +
     expand_limits(x = xlim[1]:xlim[2]) +
-    scale_size_continuous(range = c(0.5, 10))
+    scale_size_continuous(range = c(0.5, 10)) +
+    theme(axis.text.x = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     angle = 0,
+                                     hjust = 0.5,
+                                     vjust = -1,
+                                     face = "plain"),
+          axis.text.y = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     hjust = 1,
+                                     vjust = 0.5,
+                                     face = "plain"),
+          axis.title.x = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 0,
+                                      vjust = -1,
+                                      face = "plain"),
+          axis.title.y = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      angle = 90,
+                                      face = "plain"))
 
   if(!is.null(clines)){
     age_range <- range(as.numeric(as.character(d$Age)))
