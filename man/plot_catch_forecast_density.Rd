@@ -12,9 +12,7 @@ plot_catch_forecast_density(
   fill_color = ts_single_model_ribbon_fill,
   fill_alpha_tail = 0.3,
   fill_alpha_main = 0.7,
-  ax_title_font_size = axis_title_font_size,
-  ax_tick_font_size = axis_tick_font_size,
-  ax_label_color = axis_label_color
+  ...
 )
 }
 \arguments{
@@ -32,12 +30,7 @@ plot_catch_forecast_density(
 \item{fill_alpha_main}{The transparency used for the color of the main part
 of the curve (-1SD - 1SD)}
 
-\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{ax_label_color}{Color of the font for the X and Y axis tick and
-title labels}
+\item{...}{Arguments to pass to \code{\link[=theme_axis_text]{theme_axis_text()}}}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

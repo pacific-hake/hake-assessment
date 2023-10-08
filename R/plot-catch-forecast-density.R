@@ -9,10 +9,7 @@
 #' @param fill_alpha_tail The transparency used for the color of the tails
 #' @param fill_alpha_main The transparency used for the color of the main part
 #' of the curve (-1SD - 1SD)
-#' @param ax_title_font_size Size of the font for the X and Y axis labels
-#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param ax_label_color Color of the font for the X and Y axis tick and
-#' title labels
+#' @param ... Arguments to pass to [theme_axis_text()]
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -22,9 +19,7 @@ plot_catch_forecast_density <- function(model,
                                         fill_color = ts_single_model_ribbon_fill,
                                         fill_alpha_tail = 0.3,
                                         fill_alpha_main = 0.7,
-                                        ax_title_font_size = axis_title_font_size,
-                                        ax_tick_font_size = axis_tick_font_size,
-                                        ax_label_color = axis_label_color){
+                                        ...){
 
   col <- paste0("ForeCatch_", yr)
   col_sym <- sym(col)
@@ -73,27 +68,8 @@ plot_catch_forecast_density <- function(model,
     coord_cartesian(xlim = xlim) +
     xlab(paste0("Projected ", yr, " catch (Mt) based on the default ",
                 "harvest policy")) +
-    ylab("Density") +
-    theme(axis.text.x = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -1,
-                                     face = "plain"),
-          axis.text.y = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 0,
-                                      vjust = -1,
-                                      face = "plain"),
-          axis.title.y = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 90,
-                                      face = "plain"))
+    ylab("Density")
 
-  g
+  g |>
+    theme_axis_text(...)
 }
