@@ -1,3 +1,4 @@
+
 \rfoot{Assessment}
 
 # Assessment {#sec:assessment}
@@ -1149,23 +1150,23 @@ reference points of `r b_10` and `r b_40` (the female spawning biomass being
 10% and 40%, respectively, of the unfished equilibrium female spawning
 biomass). The probabilities of the female spawning biomass at the start of
 `r assess_yr` being above each of these points are
-P$(\mathrm{B}_{`r assess_yr`} > `r b_10`) = `r probs_curr_b10`$% and
-P$(\mathrm{B}_{`r assess_yr`} > `r b_40`) = `r probs_curr_b40`$%
+P(*B*~`r assess_yr`~ > `r b_10`) = `r probs_curr_b10`% and
+P(*B*~`r assess_yr`~ > `r b_40`) = `r probs_curr_b40`%
 such that the stock is estimated to be in the 'healthy zone' (above the upper
 stock reference point of `r b_40`). This probability was higher than in last
 year's assessment, where the equivalent calculation was
-P$(\mathrm{B}_{`r assess_yr - 1`} > `r b_40`) = 90.5$%. Note that a probability
+P(*B*~`r assess_yr - 1`~ > `r b_40`) = 90.5%. Note that a probability
 of '100%' (or '0%') is based on the MCMC results, and is not meant to imply
 that something definitely occurs (or definitely does not occur).
 
 With respect to DFO's provisional limit reference point of 0.4`r b_msy` and
 provisional upper stock reference point of 0.8`r b_msy`, the probabilities are
-P$(\mathrm{B}_{`r assess_yr`} > 0.4`r b_msy`) = `r f(dfo_probs_curr[1, 2] |> pull(), 0)`$%
+P(*B*~`r assess_yr`~ > 0.4`r b_msy`) = `r f(dfo_probs_curr[1, 2] |> pull(), 0)`%
 and
-P$(\mathrm{B}_{`r assess_yr`} > 0.8`r b_msy`) = `r f(dfo_probs_curr[1, 3] |> pull(), 1)`$%
+P(*B*~`r assess_yr`~ > 0.8`r b_msy`) = `r f(dfo_probs_curr[1, 3] |> pull(), 1)`%
 such that the stock is estimated to be in the provisional `healthy zone'.
 For completeness, we note that
-P$(\mathrm{B}_{`r assess_yr`} > `r b_msy`) = `r f(dfo_probs_curr[1, 1] |> pull(), 1)`$%.
+P(*B*~`r assess_yr`~ > `r b_msy`) = `r f(dfo_probs_curr[1, 1] |> pull(), 1)`%.
 
 Reference levels of stock status that are used by the U.S. Pacific Fisheries
 Management Council (PFMC) for `r sp` include `r b_40` and a Minimum Stock
@@ -1174,9 +1175,9 @@ estimated posterior median relative spawning biomass is
 `r curr_depl_median`%, such that the female spawning biomass is well above
 `r b_40` and `r b_25`. The probability that female spawning biomass
 at the beginning of `r assess_yr` is above `r b_40` is
-P$(\mathrm{B}_{`r assess_yr`} > `r b_40`) = `r probs_curr_b40`$% (as noted
+     = `r probs_curr_b40`% (as noted
 above), and of being above `r b_25` is
-P$(\mathrm{B}_{`r assess_yr`} > `r b_25`) = `r probs_curr_b25`$%.
+P(*B*~`r assess_yr`~ > `r b_25`) = `r probs_curr_b25`%.
 
 ## Model projections {#sec:assessment-model-projections}
 
@@ -1315,17 +1316,17 @@ With respect to the DFO reference points, with the largest
 `r assess_yr` catch of `r largest_next_catch`~t given in
 Table~\@ref(tab:main-risk-year-1-tab), at the start of `r assess_yr + 1` the
 stock is expected to be above the critical zone with a probability of
-P$(\mathrm{B}_{`r assess_yr + 1`} > `r b_10`) = `r prob_next_over_b10`$%
+P(*B*~`r assess_yr + 1`~ > `r b_10`) = `r prob_next_over_b10`%
 and in the healthy zone with a probability of
-P$(\mathrm{B}_{`r assess_yr + 1`} > `r b_40`) = `r prob_next_over_b40`$%.
+P(*B*~`r assess_yr + 1`~ > `r b_40`) = `r prob_next_over_b40`%.
 With respect to the DFO provisional reference points (based on `r b_msy`), the
 stock is expected to be above the provisional critical zone with a probability
 of
-P$(\mathrm{B}_{`r assess_yr + 1`} > 0.4`r b_msy`) = `r dfo_prob_next_over_40bmsy`$%,
+P(*B*~`r assess_yr + 1`~ > 0.4`r b_msy`) = `r dfo_prob_next_over_40bmsy`%,
 in the healthy zone with a probability of
-P$(\mathrm{B}_{`r assess_yr + 1`} > 0.8`r b_msy`) = `r dfo_prob_next_over_80bmsy`$%,
+P(*B*~`r assess_yr + 1`~ > 0.8`r b_msy`) = `r dfo_prob_next_over_80bmsy`%,
 and above `r b_msy` with a probability of
-P$(\mathrm{B}_{`r assess_yr + 1`} > `r b_msy`) = `r dfo_prob_next_over_bmsy`$% for
+P(*B*~`r assess_yr + 1`~ > `r b_msy`) = `r dfo_prob_next_over_bmsy`% for
 this catch.
 
 With respect to PFMC stock size reference points, a level of `r assess_yr`
@@ -1628,20 +1629,20 @@ a relatively good idea of general projected trends and status.
 
 As an example, the 2019 assessment [@JTC2019] gave the estimated probability
 of the female spawning biomass declining in the subsequent year,
-i.e.,~P($\mathrm{B}_{2020} < \mathrm{B}_{2019}$), for several possible catches
+i.e., P(*B*~2020~ < *B*~2019~), for several possible catches
 in 2019, such as 0~t, 180,000~t, 350,000~t, 410,000~t etc. Now that we 'know'
 the catch in 2019 was 412,015~t, we can select the 410,000~t row (close
 enough to 412,015~t) in the table from the 2019 assessment to give that
 assessment's
-P$(\mathrm{B}_{2020} < \mathrm{B}_{2019}) =$ `r prob_decline_from_2019_to_2020_historic`%;
+P(*B*~2020~ < *B*~2019~) = `r prob_decline_from_2019_to_2020_historic`%;
 Figure~\@ref(fig:main-historical-1-fig). We can also calculate this probability
 from the current assessment model, which implicitly includes the
 412,015~t catch from 2019, giving
-P$(\mathrm{B}_{2020} < \mathrm{B}_{2019}) =$ `r prob_decline_from_2019_to_2020_curr`%;
+P(*B*~2020~} < *B*~2019~) = `r prob_decline_from_2019_to_2020_curr`%;
 Figure~\@ref(fig:main-historical-1-fig). We extracted similar probabilities
 from past assessment documents going back to 2012 and calculate analogous
 probabilities,
-P$(\mathrm{B}_{t+1} < \mathrm{B}_{t})$, from the current base model
+P(*B*~t+1~} < *B*~t~)$, from the current base model
 (Figure~\@ref(fig:main-historical-1-fig); see @JTC2022 for full methods).
 
 Each assessment correctly predicted whether the stock would increase or
@@ -1681,7 +1682,7 @@ likely decline in female spawning biomass given current information.
 
 A similar approach was used to calculate the probability of the biomass
 falling below `r b_40` in the subsequent year,
-i.e.,~P$(\mathrm{B}_{t+1} < `r b_40`)$; Figure~\@ref(fig:main-historical-2-fig).
+i.e., P(*B*~t+1~ < `r b_40`); Figure~\@ref(fig:main-historical-2-fig).
 The 2012 assessment was the only one that gave a $>50%$ chance of the
 biomass falling below `r b_40` in the subsequent year, but later data
 determined that the 2010 year class was indeed substantial and so in
@@ -1701,14 +1702,14 @@ exceptions, the retrospective probabilities of decline (colored squares in
 Figures~\@ref(fig:main-historical-retro-1-fig)--
 \@ref(fig:main-historical-retro-all-fig)) are generally close to the
 probabilities currently estimated using all available data (blue triangles).
-An exception is P$(\mathrm{B}_{2016} < \mathrm{B}_{2015})$ which is
+An exception is P(*B*~2016~ < *B*~2015~) which is
 underestimated (compared to the current base model) until data to 2017 are
 included (the 2015 values in each panel of
 Figure~\@ref(fig:main-historical-retro-2-fig)). This is due to the
 retrospective uncertainty of the 2014 cohort, seen as an increase and then
 decrease in expected cohort size in
 Figure~\@ref(fig:main-retrospective-recruitment-fig). The retrospective
-calculations for P$(\mathrm{B}_{t+1} < `r b_40`)$ show little change as more
+calculations for P(*B*~t+1~ < `r b_40`) show little change as more
 data are added (Figure~\@ref(fig:main-historical-retro-bforty-all-fig)),
 except for 2015 and 2021 as information becomes available about the strong
 2014 and 2020 cohorts. Combined, these results enhance confidence in the
