@@ -16,7 +16,6 @@ plot_survey_index_fits <- function(
     x_labs_mod = 5,
     x_expansion = 3,
     tick_prop = 1,
-    vjust_x_labels = -2,
     ylim = c(0, 3),
     y_breaks = seq(ylim[1], ylim[2], by = 0.5),
     leg_pos = c(0.65, 0.83),
@@ -118,12 +117,9 @@ plot_survey_index_fits <- function(
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
-          # Needed to avoid tick labels cutting off
-          # These two commands move the x-axis major tick labels and axis
-          # title down so that the ticks. tick labels, and axis title don't
-          # overlap each other
-          axis.text.x = element_text(vjust = vjust_x_labels),
-          axis.title.x = element_text(vjust = vjust_x_labels)) +
+          axis.text.x = element_text(vjust = -2),
+          axis.title.x = element_text(vjust = -2),
+          plot.margin = margin(12, 12, 12, 0)) +
     xlab("Year") +
     ylab(y_title)
 

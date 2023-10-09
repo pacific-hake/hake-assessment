@@ -15,9 +15,6 @@ plot_maturity_ogives(
   leg_pos = c(0.85, 0.15),
   leg_ncol = 1,
   leg_font_size = 16,
-  ax_title_font_size = axis_title_font_size,
-  ax_tick_font_size = axis_tick_font_size,
-  ax_label_color = axis_label_color,
   ret_df = FALSE
 )
 }
@@ -40,13 +37,6 @@ respectively}
 \item{leg_ncol}{The number of columns to show in the legend}
 
 \item{leg_font_size}{The legend font size}
-
-\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{ax_label_color}{Color of the font for the X and Y axis tick and
-title labels}
 
 \item{ret_df}{Logical. If \code{TRUE}, don't plot, instead return the
 calculation of \code{d} which may be needed as part of the fecundity calculation

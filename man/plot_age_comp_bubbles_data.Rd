@@ -8,10 +8,7 @@ sector of the fishery}
 plot_age_comp_bubbles_data(
   age_data_lst,
   names_lst,
-  years = c(year(now()) - 6, year(now()) - 1),
-  ax_title_font_size = axis_title_font_size,
-  ax_tick_font_size = axis_tick_font_size,
-  ax_label_color = axis_label_color
+  years = c(year(now()) - 6, year(now()) - 1)
 )
 }
 \arguments{

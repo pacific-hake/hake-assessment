@@ -25,10 +25,7 @@ plot_selex_posteriors(
   glow = FALSE,
   glow_offset = 0.5,
   glow_color = "white",
-  glow_alpha = 1,
-  ax_title_font_size = axis_title_font_size,
-  ax_tick_font_size = axis_tick_font_size,
-  ax_label_color = axis_label_color
+  glow_alpha = 1
 )
 }
 \arguments{
@@ -73,13 +70,6 @@ diameter of the points to create the glow effect}
 \item{glow_color}{Color of the glow effect}
 
 \item{glow_alpha}{Transparency of the glow effect}
-
-\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{ax_label_color}{Color of the font for the X and Y axis tick and
-title labels}
 
 \item{probs}{A vector of two quantiles to include for the uncertainty}
 }

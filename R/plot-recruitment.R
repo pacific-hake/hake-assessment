@@ -46,10 +46,7 @@ plot_recruitment <- function(
     crossbar_width = 0,
     dodge_val = 0.5,
     rev_colors = TRUE,
-    d_obj = NULL,
-    ax_title_font_size = axis_title_font_size,
-    ax_tick_font_size = axis_tick_font_size,
-    ax_label_color = axis_label_color){
+    d_obj = NULL){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -126,28 +123,7 @@ plot_recruitment <- function(
     scale_color_manual(values = colors) +
     coord_cartesian(xlim = xlim,
                     ylim = ylim,
-                    clip = "off") +
-    theme(axis.text.x = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = vjust_x_labels,
-                                     face = "plain"),
-          axis.text.y = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 0,
-                                      vjust = vjust_x_labels,
-                                      face = "plain"),
-          axis.title.y = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 90,
-                                      face = "plain"))
-
+                    clip = "off")
   if(is_single_model){
     ro_val <- ro[[rmed_sym]][1]
     below <- which(ro_val > y_breaks)
@@ -207,7 +183,8 @@ plot_recruitment <- function(
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
-          axis.text.y = element_text(color = y_colors)) +
+          axis.text.y = element_text(color = y_colors),
+          axis.title.y = element_text(vjust = 2)) +
     xlab("Year") +
     ylab(ifelse(relative,
                 "Age-0 recruits (billions) relative to 2010 values",

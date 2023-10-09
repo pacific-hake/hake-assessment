@@ -29,7 +29,7 @@ plot_priors_vs_posts <- function(model,
                                  median_line_color = "darkred",
                                  initial_value_color = "green",
                                  prior_line_color = "black",
-                                 facet_title_font_size = 16,
+                                 facet_title_font_size = axis_title_font_size,
                                  ...){
   x_range <- match.arg(x_range)
 

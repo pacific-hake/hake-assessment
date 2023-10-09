@@ -10,9 +10,6 @@ plot_squid(
   show_ci = FALSE,
   ci_alpha = 0.2,
   ci_yrs = NULL,
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
-  axis_label_color = "black",
   year_label_font_size = 4
 )
 }
@@ -30,12 +27,6 @@ ribbon fill}
 
 \item{ci_yrs}{A vector of years to include credible intervals for.
 If \code{NULL}, all will be shown. Only used if \code{show_ci} is \code{TRUE}}
-
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{axis_label_color}{Color for the axis labels and tick labels}
 
 \item{year_label_font_size}{Size of the font for the year labels}
 }

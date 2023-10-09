@@ -17,10 +17,7 @@ plot_fishing_intensity <- function(model,
                                    point_shape = ts_single_model_pointshape,
                                    point_stroke = ts_single_model_pointstroke,
                                    line_width = ts_single_model_linewidth,
-                                   line_color = ts_single_line_color,
-                                   ax_title_font_size = axis_title_font_size,
-                                   ax_tick_font_size = axis_tick_font_size,
-                                   ax_label_color = axis_label_color){
+                                   line_color = ts_single_line_color){
 
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
                                      modulo = x_labs_mod)
@@ -75,28 +72,6 @@ plot_fishing_intensity <- function(model,
              x = xlim[1] + 2,
              y = 1.05,
              label = expression(~F['SPR=40%'])) +
-    theme(axis.text.x = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -1,
-                                     face = "plain"),
-          axis.text.y = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 0,
-                                      vjust = -1,
-                                      face = "plain"),
-          axis.title.y = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 90,
-                                      face = "plain"))
-
-  g <- g +
     xlab("Year") +
     ylab(expression(paste("Rel. fishing intensity",
                           ~~(1-italic(SPR))/(1-italic(SPR)['40%']))))

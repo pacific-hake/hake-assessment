@@ -9,9 +9,6 @@
 #' ribbon fill
 #' @param ci_yrs A vector of years to include credible intervals for.
 #' If `NULL`, all will be shown. Only used if `show_ci` is `TRUE`
-#' @param axis_title_font_size Size of the font for the X and Y axis labels
-#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param axis_label_color Color for the axis labels and tick labels
 #' @param year_label_font_size Size of the font for the year labels
 #'
 #' @export
@@ -20,9 +17,6 @@ plot_squid <- function(model,
                        show_ci = FALSE,
                        ci_alpha = 0.2,
                        ci_yrs = NULL,
-                       axis_title_font_size = 14,
-                       axis_tick_font_size = 11,
-                       axis_label_color = "black",
                        year_label_font_size = 4){
 
   # Create a list of models, with the core model being first, followed by
@@ -170,26 +164,6 @@ plot_squid <- function(model,
                 "Recruitment deviation relative to recent estimate",
                 "Recruitment deviation")) +
   theme(legend.position = "none",
-          axis.text.x = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -0.25,
-                                     face = "plain"),
-          axis.text.y = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
-                                      angle = 0,
-                                      vjust = 0,
-                                      face = "plain"),
-          axis.title.y = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      face = "plain"),
         # plot.margin: top, right,bottom, left
         plot.margin = margin(0, 6, 6, 6))
 

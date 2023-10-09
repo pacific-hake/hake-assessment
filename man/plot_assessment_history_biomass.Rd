@@ -14,10 +14,7 @@ plot_assessment_history_biomass(
   clip_cover = 5,
   leg_pos = c(0.75, 0.8),
   leg_ncol = 3,
-  leg_font_size = 8,
-  axis_title_font_size = 14,
-  axis_tick_font_size = 11,
-  axis_label_color = "black"
+  leg_font_size = 8
 )
 }
 \arguments{

@@ -1,7 +1,25 @@
 #' Theme for the [ggplot2::ggplot()] plots in the document
 #'
+#' @param ax_label_color The color of the text for all tick labels and
+#' axis titles in the project
+#' @param ax_title_font_size The font size for all the axis titles in the
+#' project
+#' @param ax_tick_font_size The font size for all the axis tick labels in the
+#' project
+#' @param ax_title_font_face The font face for all the axis titles in the
+#' project. One of "plain", "bold", or "italics"
+#' @param ax_tick_font_face The font face for all the axis tick labels in the
+#' project. One of "plain", "bold", or "italics"
+#' @param ax_tick_length_cm  The length of all the tick mark lines in the
+#' project
+#'
 #' @export
-hake_theme <- function(){
+hake_theme <- function(ax_label_color = axis_label_color,
+                       ax_title_font_size = axis_title_font_size,
+                       ax_tick_font_size = axis_tick_font_size,
+                       ax_title_font_face = "plain",
+                       ax_tick_font_face  = "plain",
+                       ax_tick_length_cm = 0.15){
 
   theme_bw() +
     theme(legend.key = element_blank(),
@@ -10,26 +28,26 @@ hake_theme <- function(){
           panel.grid.minor = element_blank(),
           legend.background = element_rect(fill = "transparent"),
           plot.margin = margin(6, 6, 6, 6),
-
-          axis.text.x = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     angle = 0,
+          axis.text.x = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
                                      hjust = 0.5,
-                                     vjust = -0.25,
-                                     face = "plain"),
-          axis.text.y = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
+                                     vjust = -1,
+                                     face = ax_tick_font_face),
+          axis.title.x = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      hjust = 0.5,
+                                      vjust = -1,
+                                      face = ax_title_font_face),
+          axis.text.y = element_text(color = ax_label_color,
+                                     size = ax_tick_font_size,
+                                     hjust = 0.5,
                                      vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
-                                      angle = 0,
+                                     face = ax_tick_font_face),
+          axis.title.y = element_text(color = ax_label_color,
+                                      size = ax_title_font_size,
+                                      hjust = 0.5,
                                       vjust = 0,
-                                      face = "plain"),
-          axis.title.y = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
                                       angle = 90,
-                                      face = "plain"),
-          axis.ticks.length = unit(0.15, "cm"))
+                                      face = ax_title_font_face),
+          axis.ticks.length = unit(ax_tick_length_cm, "cm"))
 }

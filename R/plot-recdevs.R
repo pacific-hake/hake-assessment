@@ -3,10 +3,6 @@
 #' @rdname plot_biomass
 #' @param dodge_val The amount to separate lines between unique models
 #' multiple model plots
-#' @param ax_title_font_size Size of the font for the X and Y axis labels
-#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param ax_label_color Color of the font for the X and Y axis tick and
-#' title labels
 #' @param ... Arguments passed to [ggplot2::geom_pointrange()]
 #'
 #' @export
@@ -42,9 +38,6 @@ plot_recdevs <- function(
     line_color = ts_single_model_linecolor,
     dodge_val = 1,
     rev_colors = FALSE,
-    ax_title_font_size = axis_title_font_size,
-    ax_tick_font_size = axis_tick_font_size,
-    ax_label_color = axis_label_color,
     ...){
 
   if(is.null(d_obj)){
@@ -110,27 +103,7 @@ plot_recdevs <- function(
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0) +
     xlab("Year") +
-    ylab("Recruitment deviations") +
-    theme(axis.text.x = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = vjust_x_labels,
-                                     face = "plain"),
-          axis.text.y = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 0,
-                                      vjust = vjust_x_labels,
-                                      face = "plain"),
-          axis.title.y = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 90,
-                                      face = "plain"))
+    ylab("Recruitment deviations")
 
   # Add the points and error bars
   if(is_single_model){

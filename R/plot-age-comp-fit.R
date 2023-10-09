@@ -148,15 +148,7 @@ plot_age_comp_fit <- function(model,
     theme(strip.background = element_blank(),
           panel.spacing = unit(0, "cm"),
           strip.text.x = element_blank(),
-          plot.margin = margin(12, 12, 0, 0),
-          axis.text.x = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size),
-          axis.title.x = element_text(color = axis_label_color,
-                                      vjust = 1,
-                                      size = axis_title_font_size),
-          axis.title.y = element_text(color = axis_label_color,
-                                      size = axis_title_font_size),
-          axis.ticks.length = unit(0.15, "cm"),
+          plot.margin = margin(12, 12, 6, 0),
           legend.position = "none") +
     ylab("Proportion") +
     xlab("Age")

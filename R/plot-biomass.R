@@ -131,10 +131,7 @@ plot_biomass <- function(
     refpt_lrp_linewidth = refpt_lrp_linewidth,
     refpt_bo_linetype = refpt_bo_linetype,
     refpt_usr_linetype = refpt_usr_linetype,
-    refpt_lrp_linetype = refpt_lrp_linetype,
-    ax_title_font_size = axis_title_font_size,
-    ax_tick_font_size = axis_tick_font_size,
-    ax_label_color = axis_label_color){
+    refpt_lrp_linetype = refpt_lrp_linetype){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -199,31 +196,15 @@ plot_biomass <- function(
                     clip = "off") +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
-          legend.text.align = 0) +
+          legend.text.align = 0,
+          axis.text.x = element_text(vjust = -0.25),
+          axis.title.x = element_text(vjust = -0.25),
+          axis.title.y = element_text(vjust = 2),
+          plot.margin = margin(12, 12, 6, 0)) +
     labs(x = "Year",
          y = ifelse(wrap_y_label,
                     add_newlines("Female Spawning Biomass+(Mt)"),
-                    "Female Spawning Biomass (Mt)")) +
-    theme(axis.text.x = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -0.25,
-                                     face = "plain"),
-          axis.text.y = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 0,
-                                      vjust = -0.25,
-                                      face = "plain"),
-          axis.title.y = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 90,
-                                      face = "plain"))
+                    "Female Spawning Biomass (Mt)"))
 
   # Add the median points and connecting lines.
   # Uses `ggh4x::geom_pointpath()`

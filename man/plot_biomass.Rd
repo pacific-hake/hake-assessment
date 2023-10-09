@@ -56,10 +56,7 @@ plot_biomass(
   refpt_lrp_linewidth = refpt_lrp_linewidth,
   refpt_bo_linetype = refpt_bo_linetype,
   refpt_usr_linetype = refpt_usr_linetype,
-  refpt_lrp_linetype = refpt_lrp_linetype,
-  ax_title_font_size = axis_title_font_size,
-  ax_tick_font_size = axis_tick_font_size,
-  ax_label_color = axis_label_color
+  refpt_lrp_linetype = refpt_lrp_linetype
 )
 
 plot_cohort_catch(
@@ -115,10 +112,7 @@ plot_exploitation_fraction(
   point_shape = ts_single_model_pointshape,
   point_stroke = ts_single_model_pointstroke,
   line_width = ts_single_model_linewidth,
-  line_color = ts_single_line_color,
-  ax_title_font_size = axis_title_font_size,
-  ax_tick_font_size = axis_tick_font_size,
-  ax_label_color = axis_label_color
+  line_color = ts_single_line_color
 )
 
 plot_fishing_intensity(
@@ -136,10 +130,7 @@ plot_fishing_intensity(
   point_shape = ts_single_model_pointshape,
   point_stroke = ts_single_model_pointstroke,
   line_width = ts_single_model_linewidth,
-  line_color = ts_single_line_color,
-  ax_title_font_size = axis_title_font_size,
-  ax_tick_font_size = axis_tick_font_size,
-  ax_label_color = axis_label_color
+  line_color = ts_single_line_color
 )
 
 plot_fore_compare(
@@ -183,9 +174,6 @@ plot_recdevs(
   line_color = ts_single_model_linecolor,
   dodge_val = 1,
   rev_colors = FALSE,
-  ax_title_font_size = axis_title_font_size,
-  ax_tick_font_size = axis_tick_font_size,
-  ax_label_color = axis_label_color,
   ...
 )
 
@@ -217,10 +205,7 @@ plot_recruitment(
   crossbar_width = 0,
   dodge_val = 0.5,
   rev_colors = TRUE,
-  d_obj = NULL,
-  ax_title_font_size = axis_title_font_size,
-  ax_tick_font_size = axis_tick_font_size,
-  ax_label_color = axis_label_color
+  d_obj = NULL
 )
 
 plot_rel_biomass(
@@ -304,7 +289,6 @@ plot_survey_index_fits(
   x_labs_mod = 5,
   x_expansion = 3,
   tick_prop = 1,
-  vjust_x_labels = -2,
   ylim = c(0, 3),
   y_breaks = seq(ylim[1], ylim[2], by = 0.5),
   leg_pos = c(0.65, 0.83),
@@ -433,13 +417,6 @@ horizontal line}
 \item{refpt_lrp_linetype}{The line type for the Limit Reference point
 horizontal line}
 
-\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{ax_label_color}{Color of the font for the X and Y axis tick and
-title labels}
-
 \item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{cohorts}{A vector of cohorts to make lines for}
@@ -496,6 +473,13 @@ the model}
 
 \item{survey_type}{Either \code{age1} or \code{age2}. Used for survey index plots
 only}
+
+\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
+
+\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
+
+\item{ax_label_color}{Color of the font for the X and Y axis tick and
+title labels}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
@@ -512,7 +496,8 @@ Create a plot of exploitation fraction
 
 Create a plot of fishing intensity
 
-Title
+Create a plot of forecast value comparisons with the catch level on
+the x-axis and probability as the y axis value
 
 Plot recruitment deviations from MCMC output for one or more models
 

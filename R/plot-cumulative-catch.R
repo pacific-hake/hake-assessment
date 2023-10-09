@@ -18,9 +18,6 @@
 #' @param point_shape The point shape type
 #' @param point_size The size of the points
 #' @param point_stroke The stroke value for the points
-#' @param ax_title_font_size The title font size
-#' @param ax_tick_font_size The tick label font size
-#' @param ax_label_color The axis label color
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -38,10 +35,7 @@ plot_cumulative_catches <- function(catch_lst,
                                     line_gap = ts_linegap,
                                     point_shape = ts_pointshape,
                                     point_size = ts_pointsize,
-                                    point_stroke = ts_pointstroke,
-                                    ax_title_font_size = axis_title_font_size,
-                                    ax_tick_font_size = axis_tick_font_size,
-                                    ax_label_color = axis_label_color){
+                                    point_stroke = ts_pointstrok){
 
   type <- match.arg(type)
 
@@ -89,18 +83,7 @@ plot_cumulative_catches <- function(catch_lst,
                          labels = month.abb[seq(2, 12, 2)]) +
       theme(axis.title.x = element_blank(),
             axis.title.y = element_blank(),
-            axis.text.x = element_text(color = ax_label_color,
-                                       size = ax_tick_font_size,
-                                       angle = 0,
-                                       hjust = 0.5,
-                                       vjust = -0.25,
-                                       face = "plain"),
-            axis.text.y = element_text(color = ax_label_color,
-                                       size = ax_tick_font_size,
-                                       hjust = 1,
-                                       vjust = 0.5,
-                                       face = "plain"),
-            plot.title = element_text(size = ax_title_font_size,
+            plot.title = element_text(size = axis_title_font_size,
                                       hjust = 0.5),
             legend.position = leg_pos,
             legend.key.size = unit(0.2, 'cm'),

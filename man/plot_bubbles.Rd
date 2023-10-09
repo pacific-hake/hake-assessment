@@ -6,7 +6,7 @@
 \usage{
 plot_bubbles(
   d,
-  clines = hake::age_bubble_cohorts,
+  clines = age_bubble_cohorts,
   val_col_nm = "Proportion",
   mean_age = NULL,
   mean_age_line_color = "red",
@@ -23,9 +23,6 @@ plot_bubbles(
   point_color = "black",
   xlim = c(1966, year(Sys.Date())),
   show_x_axis_labels = TRUE,
-  ax_title_font_size = axis_title_font_size,
-  ax_tick_font_size = axis_tick_font_size,
-  ax_label_color = axis_label_color,
   ...
 )
 }
@@ -69,16 +66,6 @@ each year}
 
 \item{show_x_axis_labels}{Logical. If \code{TRUE}, show the x-axis title and
 tick labels}
-
-\item{ax_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{ax_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{ax_label_color}{Color of the font for the X and Y axis tick and
-title labels}
-
-\item{...}{Additional parameters passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}},
-\code{\link[ggplot2:geom_segment]{ggplot2::geom_segment()}} and \code{\link[ggplot2:theme]{ggplot2::theme()}}}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

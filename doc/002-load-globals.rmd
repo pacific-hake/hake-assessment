@@ -23,8 +23,17 @@ models_dir <- file.path(models_dir,
                         paste0(model_version, "-version"))
 
 output_csv_dir <- here("doc", out_csv_dir)
-forecast_yrs <- eval(parse(text = forecast_yrs))
 end_yr <- assess_yr
 
-theme_set(hake_theme())
+# `forecast_yrs` is special because it is an R expression in the YAML code
+# and not just a plain value. It has to be parsed from a text string into
+# an R expression using `eval(parse())`
+forecast_yrs <- eval(parse(text = forecast_yrs))
+
+theme_set(hake_theme(ax_label_color = fig_label_color,
+                     ax_title_font_size = fig_title_font_size,
+                     ax_tick_font_size = fig_tick_font_size,
+                     ax_title_font_face = fig_title_font_face,
+                     ax_tick_font_face = fig_tick_font_face,
+                     ax_tick_length_cm = fig_tick_length_cm))
 ```

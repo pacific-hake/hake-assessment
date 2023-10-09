@@ -70,6 +70,5 @@ plot_catch_forecast_density <- function(model,
                 "harvest policy")) +
     ylab("Density")
 
-  g |>
-    theme_axis_text(...)
+  g
 }

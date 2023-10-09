@@ -92,13 +92,9 @@ approximately 500 meters and fishing depths approximately 300 meters on
 average in the last 5 years for United States fleets.
 
 ```{r main-us-depths-fig, fig.cap = "(ref:main-us-depths-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-us-depths-alt)"}
-if(is.null(base_model$plots$us_depths)){
-  plot_depth_2_panel(us_atsea_fishing_depth_df,
-                     us_atsea_bottom_depth_df,
-                     yrs = (last_data_yr - 4):last_data_yr)
-}else{
-  base_model$plots$us_depths  
-}
+plot_depth_2_panel(us_atsea_fishing_depth_df,
+                   us_atsea_bottom_depth_df,
+                   yrs = (last_data_yr - 4):last_data_yr)
 ```
 
 (ref:main-can-depths-cap) Distribution of fishing depths (left) and bottom
@@ -116,17 +112,14 @@ changed somewhat with both fleets fishing closer to the bottom and in
 shallower water.
 
 ```{r main-can-depths-fig, fig.cap = "(ref:main-can-depths-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-can-depths-alt)"}
-if(is.null(base_model$plots$can_depths)){
- plot_depth_4_panel(can_ft_gear_depth_df,
+
+plot_depth_4_panel(can_ft_gear_depth_df,
                    can_ft_bottom_depth_df,
                    can_ss_gear_depth_df,
                    can_ss_bottom_depth_df,
                    fleet_1_name = "Freezer trawlers",
                    fleet_2_name = "Shoreside",
                    yrs = (last_data_yr - 4):last_data_yr)
-}else{
-  base_model$plots$can_depths
-}
 ```
 
 (ref:main-data-overview-cap) Overview of data used in this assessment. Circle
@@ -144,11 +137,8 @@ from the age 2 plus acoustic survey were included. This includes the index of
 abundance and age compositions from 1995 to present for odd years.
 
 ```{r main-data-overview-fig, fig.cap = "(ref:main-data-overview-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-data-overview-alt)"}
-if(is.null(base_model$plots$data_overview )){
- plot_data_summary(base_model) 
-}else{
- base_model$plots$data_overview 
-}
+
+plot_data_summary(base_model) 
 ```
 
 (ref:main-age-comp-bubbles-cap) Age compositions for the aggregate fishery
@@ -169,28 +159,25 @@ three large cohorts making their way through the stock. The 2010 cohort is
 the largest followed by the 2014 cohort and the 2016 cohort. The 2020 cohort
 is large but highly uncertain.
 
-```{r main-age-comp-bubbles-fig, fig.cap = "(ref:main-age-comp-bubbles-cap)", fig.height = 8, fig.width = 6, is.fig = TRUE, alt.text = "(ref:main-age-comp-bubbles-alt)", out.height = "\\textheight",  out.width = "\\textwidth"}
-if(is.null(base_model$plots$age_comp_bubbles)){
-  p_lst <- NULL
-  p_lst[[1]] <-
-    plot_age_comp_bubbles(base_model,
-                          type = "fishery",
-                          leg_pos = "top", 
-                          inc_mean_age_line = TRUE,
-                          point_alpha = 0.4,
-                          xlim = c(start_yr_age_comps, last_data_yr),
-                          show_x_axis_labels = FALSE)
-  p_lst[[2]] <-
-    plot_age_comp_bubbles(base_model,
-                          type = "survey",
-                          clines = c(1999, 2010, 2014, 2016, 2020),
-                          inc_mean_age_line = TRUE,
-                          point_alpha = 0.4,
-                          xlim = c(start_yr_age_comps, last_data_yr))
-  plot_grid(plotlist = p_lst, nrow = 2)
-}else{
-    base_model$plots$age_comp_bubbles
-}
+```{r main-age-comp-bubbles-fig, fig.cap = "(ref:main-age-comp-bubbles-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-age-comp-bubbles-alt)", out.height = "\\textheight",  out.width = "\\textwidth"}
+
+p_lst <- NULL
+p_lst[[1]] <-
+  plot_age_comp_bubbles(base_model,
+                        type = "fishery",
+                        leg_pos = "top", 
+                        inc_mean_age_line = TRUE,
+                        point_alpha = 0.4,
+                        xlim = c(start_yr_age_comps, last_data_yr),
+                        show_x_axis_labels = FALSE)
+p_lst[[2]] <-
+  plot_age_comp_bubbles(base_model,
+                        type = "survey",
+                        clines = c(1999, 2010, 2014, 2016, 2020),
+                        inc_mean_age_line = TRUE,
+                        point_alpha = 0.4,
+                        xlim = c(start_yr_age_comps, last_data_yr))
+plot_grid(plotlist = p_lst, nrow = 2)
 ```
 
 (ref:main-survey-extrap-biomass-cap) Acoustic survey biomass index of age-2+
@@ -216,11 +203,8 @@ analysis does not include kriging as is done to estimate age-2+ biomass.
 has increased from 2019 to 2021.
 
 ```{r main-survey-age1-fig, fig.cap = "(ref:main-survey-age1-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-survey-age1-alt)"}
-if(is.null(base_model$plots$survey_age1)){
-  plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
-}else{
-  base_model$plots$survey_age1
-}
+
+plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
 ```
 
 (ref:main-maturity-ogive-cap) Fraction of fish that are mature at each age
@@ -549,7 +533,7 @@ in each year.
 (ref:main-tv-selex-alt) This figure shows individual median selectivity
 plots for each year in a mountain range configuration.
 
-```{r main-tv-selex-fig, fig.cap = "(ref:main-tv-selex-cap)", fig.height = 8, fig.width = 4, is.fig = TRUE, alt.text = "(ref:main-tv-selex-alt)"}
+```{r main-tv-selex-fig, fig.cap = "(ref:main-tv-selex-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-tv-selex-alt)"}
 
 tv_selex_start_yr <- 1990
 
@@ -590,7 +574,6 @@ has more and larger outliers than the age 2 plus survey.
 plist <- list()
 plist[[1]] <- plot_selex_posteriors(base_model,
                                     type = "survey",
-                                    probs = probs,
                                     age_range = c(1, 8),
                                     show_xlab = FALSE,
                                     post_med_line_color = "red",
@@ -598,7 +581,6 @@ plist[[1]] <- plot_selex_posteriors(base_model,
                                     glow = FALSE)
 plist[[2]] <- plot_selex_posteriors(base_model,
                                     type = "fishery",
-                                    probs = probs,
                                     age_range = c(1, 8),
                                     glow = FALSE)
 plot_grid(plotlist = plist, ncol = 1, align = "v")
@@ -923,7 +905,7 @@ cohorts are expected to make up most of the coming years catch. The 2020
 cohort is predicted to be the largest cohort in the stock in 2023. That
 prediction has high uncertainty when compared to the other cohorts.
 
-```{r main-age-comp-forecast-fig, fig.cap = "(ref:main-age-comp-forecast-cap)", fig.height = 4.5, fig.width = 6.5, is.fig = TRUE, alt.text = "(ref:main-age-comp-forecast-alt)"}
+```{r main-age-comp-forecast-fig, fig.cap = "(ref:main-age-comp-forecast-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-age-comp-forecast-alt)"}
 
 plot_fore_age_comps(base_model)
 ```

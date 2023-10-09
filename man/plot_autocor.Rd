@@ -10,7 +10,7 @@ plot_autocor(
   lag_max = 20,
   y_lim = c(-1, 1),
   bar_width = 0.5,
-  fill = "royalblue",
+  fill = main_fill,
   alpha = 0.3,
   ...
 )

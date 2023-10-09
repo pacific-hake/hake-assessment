@@ -14,10 +14,6 @@
 #' `NA`, or `none`, the legend will not be shown
 #' @param leg_ncol The number of columns to show in the legend
 #' @param leg_font_size The legend font size
-#' @param ax_title_font_size Size of the font for the X and Y axis labels
-#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param ax_label_color Color of the font for the X and Y axis tick and
-#' title labels
 #' @param ret_df Logical. If `TRUE`, don't plot, instead return the
 #' calculation of `d` which may be needed as part of the fecundity calculation
 #' elsewhere
@@ -32,9 +28,6 @@ plot_maturity_ogives <- function(model,
                                  leg_pos = c(0.85, 0.15),
                                  leg_ncol = 1,
                                  leg_font_size = 16,
-                                 ax_title_font_size = axis_title_font_size,
-                                 ax_tick_font_size = axis_tick_font_size,
-                                 ax_label_color = axis_label_color,
                                  ret_df = FALSE){
 
   age_max <- max(model$agebins)
@@ -177,27 +170,7 @@ plot_maturity_ogives <- function(model,
           # Needed to avoid tick labels cutting off
           plot.margin = margin(12, 12, 14, 0)) +
     labs(x = "Age",
-         y = "Proportion mature") +
-    theme(axis.text.x = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -3,
-                                     face = "plain"),
-          axis.text.y = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 0,
-                                      vjust = -2,
-                                      face = "plain"),
-          axis.title.y = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 90,
-                                      face = "plain"))
+         y = "Proportion mature")
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +

@@ -16,10 +16,7 @@ plot_cumulative_catches(
   line_gap = ts_linegap,
   point_shape = ts_pointshape,
   point_size = ts_pointsize,
-  point_stroke = ts_pointstroke,
-  ax_title_font_size = axis_title_font_size,
-  ax_tick_font_size = axis_tick_font_size,
-  ax_label_color = axis_label_color
+  point_stroke = ts_pointstrok
 )
 }
 \arguments{
@@ -52,12 +49,6 @@ and 1 or "none" for no legend}
 \item{point_size}{The size of the points}
 
 \item{point_stroke}{The stroke value for the points}
-
-\item{ax_title_font_size}{The title font size}
-
-\item{ax_tick_font_size}{The tick label font size}
-
-\item{ax_label_color}{The axis label color}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

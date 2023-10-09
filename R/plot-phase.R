@@ -11,10 +11,6 @@
 #' @param init_lbl_y_off Initial year label y offset in units of axis
 #' @param final_lbl_x_off Final year label x offset in units of axis
 #' @param final_lbl_y_off Final year label y offset in units of axis
-#' @param ax_title_font_size Size of the font for the X and Y axis labels
-#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param ax_label_color Color of the font for the X and Y axis tick and
-#' title labels
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -26,10 +22,7 @@ plot_phase <- function(model,
                        init_lbl_x_off = 0,
                        init_lbl_y_off = 0,
                        final_lbl_x_off = 0,
-                       final_lbl_y_off = 0,
-                       ax_title_font_size = axis_title_font_size,
-                       ax_tick_font_size = axis_tick_font_size,
-                       ax_label_color = axis_label_color){
+                       final_lbl_y_off = 0){
 
   yrs <- start_yr:end_yr
 
@@ -135,27 +128,7 @@ plot_phase <- function(model,
     xlab(expression(paste("Relative spawning biomass",
                           ~~B[t]/B[0]))) +
     ylab(expression(paste("Relative fishing intensity",
-                          ~~(1-SPR[t-1])/(1-SPR['40%'])))) +
-    theme(axis.text.x = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -1,
-                                     face = "plain"),
-          axis.text.y = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 0,
-                                      vjust = -1,
-                                      face = "plain"),
-          axis.title.y = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 90,
-                                      face = "plain"))
+                          ~~(1-SPR[t-1])/(1-SPR['40%']))))
 
   g
 }

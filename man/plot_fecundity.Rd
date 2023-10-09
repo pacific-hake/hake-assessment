@@ -12,8 +12,6 @@ plot_fecundity(
   leg_pos = c(0.68, 0.13),
   leg_ncol = 1,
   leg_font_size = 14,
-  axis_title_font_size = 18,
-  axis_tick_font_size = 11,
   ...
 )
 }
@@ -29,11 +27,11 @@ plot_fecundity(
 
 \item{leg_font_size}{The legend font size}
 
+\item{...}{Arguments passed to \code{\link[=plot_maturity]{plot_maturity()}}}
+
 \item{axis_title_font_size}{Size of the font for the X and Y axis labels}
 
 \item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
-
-\item{...}{Arguments passed to \code{\link[=plot_maturity]{plot_maturity()}}}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

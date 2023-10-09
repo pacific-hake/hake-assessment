@@ -100,7 +100,7 @@ plot_survey_biomass <- function(model,
     xlab("Year") +
     theme(# plot.margin: top, right,bottom, left
           # Needed to avoid tick labels cutting off
-          plot.margin = margin(12, 12, 0, 0))
+          plot.margin = margin(12, 12, 6, 0))
 
   g
 }

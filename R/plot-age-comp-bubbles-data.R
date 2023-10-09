@@ -17,10 +17,7 @@
 plot_age_comp_bubbles_data <- function(age_data_lst,
                                        names_lst,
                                        years = c(year(now()) - 6,
-                                                 year(now()) - 1),
-                                       ax_title_font_size = axis_title_font_size,
-                                       ax_tick_font_size = axis_tick_font_size,
-                                       ax_label_color = axis_label_color){
+                                                 year(now()) - 1)){
 
   if(length(age_data_lst) != length(names_lst)){
     warning("`names_lst` is not the same length as `names_lst. Using ",
@@ -86,15 +83,7 @@ plot_age_comp_bubbles_data <- function(age_data_lst,
                                      size = ax_tick_font_size,
                                      angle = 0,
                                      hjust = 0.5,
-                                     vjust = -0.25,
-                                     face = "plain"),
-          axis.text.y = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          plot.title = element_text(size = ax_title_font_size,
-                                    hjust = 0.5),
+                                     vjust = -0.25),
           legend.position = "none",
           strip.background = element_rect(fill = "transparent"),
           strip.text = element_text(size = ax_title_font_size))

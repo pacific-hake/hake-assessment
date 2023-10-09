@@ -1,4 +1,5 @@
-#' Title
+#' Create a plot of forecast value comparisons with the catch level on
+#' the x-axis and probability as the y axis value
 #'
 #' @rdname plot_biomass
 #' @param fore_yr The forecast year to use in the plot. Must be in
@@ -34,7 +35,6 @@ plot_fore_compare <- function(model,
 
   prob_dat <- model$risks[fore_yr == forecast_yrs][[1]] |>
     as_tibble()
-
 
   # Sort the table by catches
   forecatch_col <- paste0("ForeCatch_", fore_yr)

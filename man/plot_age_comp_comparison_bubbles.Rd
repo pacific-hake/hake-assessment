@@ -5,13 +5,7 @@
 \title{Create a plot of age proportions as bubbles with fishery and survey values
 overlaid in one plot}
 \usage{
-plot_age_comp_comparison_bubbles(
-  model,
-  alpha = 0.3,
-  ax_title_font_size = axis_title_font_size,
-  ax_tick_font_size = axis_tick_font_size,
-  ax_label_color = axis_label_color
-)
+plot_age_comp_comparison_bubbles(model, alpha = 0.3)
 }
 \arguments{
 \item{model}{A model object}

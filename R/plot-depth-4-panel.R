@@ -49,6 +49,7 @@ plot_depth_4_panel <- function(fishing_depth_df1,
                      gp = gpar(fontsize = label_size),
                      rot = 90)
   x_grob <- textGrob("Year",
-                     gp = gpar(fontsize = label_size))
+                     gp = gpar(fontsize = label_size),
+                     vjust = -0.5)
   grid.arrange(arrangeGrob(plt, left = y_grob, bottom = x_grob))
 }

@@ -12,9 +12,6 @@
 #' @return a [ggplot2::ggplot()] object
 #' @export
 plot_data_summary <- function(model,
-                              ax_title_font_size = axis_title_font_size,
-                              ax_tick_font_size = axis_tick_font_size,
-                              ax_label_color = axis_label_color,
                               label_y_placement = c(1.8, 2.5, 2.5),
                               x_breaks = seq(model$startyr - 1,
                                              model$endyr,
@@ -90,16 +87,7 @@ plot_data_summary <- function(model,
                  color = "black") +
       scale_x_continuous(breaks = x_breaks,
                          limits = c(start_yr, end_yr)) +
-      theme(axis.text.x = element_text(color = ax_label_color,
-                                       size = ax_tick_font_size,
-                                       angle = 0,
-                                       hjust = 0.5,
-                                       vjust = -3,
-                                       face = "plain"),
-            axis.text.y = element_text(size = ax_title_font_size,
-                                       family = "Helvetica",
-                                       color = ax_label_color),
-            axis.title.x = element_blank(),
+      theme(axis.title.x = element_blank(),
             axis.title.y = element_blank(),
             plot.margin = unit(c(0, 0, 1, 0), "lines"),
             legend.position = "none") +
@@ -112,12 +100,12 @@ plot_data_summary <- function(model,
                x = (end_yr - start_yr) / 2 + start_yr,
                y = label_y,
                size = 6,
-               colour = ax_label_color)
+               colour = axis_label_color)
 
     if(!show_x_axis){
       g <- g +
         theme(axis.text.x = element_blank(),
-            axis.title.x = element_blank())
+              axis.title.x = element_blank())
     }
 
     g
@@ -141,7 +129,7 @@ plot_data_summary <- function(model,
   plt <- plot_grid(plotlist = p, ncol = 1, align = "v")
 
   x_grob <- textGrob("Year",
-                     gp = gpar(fontsize = ax_title_font_size))
+                     gp = gpar(fontsize = axis_title_font_size))
 
   grid.arrange(arrangeGrob(plt, bottom = x_grob))
 }

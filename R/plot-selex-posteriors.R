@@ -25,10 +25,7 @@
 #' diameter of the points to create the glow effect
 #' @param glow_color Color of the glow effect
 #' @param glow_alpha Transparency of the glow effect
-#' @param ax_title_font_size Size of the font for the X and Y axis labels
-#' @param ax_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param ax_label_color Color of the font for the X and Y axis tick and
-#' title labels
+#'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_selex_posteriors <- function(
@@ -51,10 +48,7 @@ plot_selex_posteriors <- function(
     glow = FALSE,
     glow_offset = 0.5,
     glow_color = "white",
-    glow_alpha = 1,
-    ax_title_font_size = axis_title_font_size,
-    ax_tick_font_size = axis_tick_font_size,
-    ax_label_color = axis_label_color){
+    glow_alpha = 1){
 
   type <- match.arg(type)
   if(type == "fishery"){
@@ -94,27 +88,7 @@ plot_selex_posteriors <- function(
     # Thin posterior lines (no glow for these)
     geom_line(linewidth = post_line_width,
               color = post_line_color,
-              alpha = post_line_alpha) +
-    theme(axis.text.x = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -3,
-                                     face = "plain"),
-          axis.text.y = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 0,
-                                      vjust = -1,
-                                      face = "plain"),
-          axis.title.y = element_text(color = ax_label_color,
-                                      size = ax_title_font_size,
-                                      angle = 90,
-                                      face = "plain"))
+              alpha = post_line_alpha)
 
   if(glow){
     # Glow - Error bars only - no points here

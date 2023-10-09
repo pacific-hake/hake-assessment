@@ -19,8 +19,6 @@ plot_fecundity <- function(model,
                            leg_pos = c(0.68, 0.13),
                            leg_ncol = 1,
                            leg_font_size = 14,
-                           axis_title_font_size = 18,
-                           axis_tick_font_size = 11,
                            ...){
 
   d <- plot_maturity_ogives(model = model, ret_df = TRUE, ...)
@@ -68,31 +66,7 @@ plot_fecundity <- function(model,
     scale_y_continuous(breaks = y_breaks) +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
-          legend.text.align = 0,
-          #legend.background = element_rect(fill = "white"),
-          # plot.margin: top, right,bottom, left
-          # Needed to avoid tick labels cutting off
-          plot.margin = margin(12, 12, 14, 0),
-          axis.text.x = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -3,
-                                     face = "plain"),
-          axis.text.y = element_text(color = axis_label_color,
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
-                                      angle = 0,
-                                      vjust = -2,
-                                      face = "plain"),
-          axis.title.y = element_text(color = axis_label_color,
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      face = "plain")) +
+          legend.text.align = 0) +
     labs(x = "Age",
          y = "Weight or fecundity (kg)") +
     scale_color_manual(values = line_colors)

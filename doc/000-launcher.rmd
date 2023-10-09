@@ -15,12 +15,18 @@ project_variables:
   last_yr_model_version: "01"
   ss_version: "3.30.20"
   out_csv_dir: "out-csv"
+  fig_label_color: "black"
+  fig_title_font_face: "plain"
+  fig_tick_font_face: "plain"
+  fig_title_font_size: 14
+  fig_tick_font_size: 11
+  fig_tick_length_cm: 0.15
 author: |
   Joint Technical Committee of the Pacific Hake/Whiting Agreement \
   Between the Governments of the United States and Canada \
   \
   \
-date: "`r curr_time_date()`"
+date: "`r hake::curr_time_date()`"
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
  hake::hake_pdf:

@@ -12,10 +12,7 @@
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_age_comp_comparison_bubbles <- function(model,
-                                             alpha = 0.3,
-                                             ax_title_font_size = axis_title_font_size,
-                                             ax_tick_font_size = axis_tick_font_size,
-                                             ax_label_color = axis_label_color){
+                                             alpha = 0.3){
 
   d <- model$dat$agecomp |>
     as_tibble() |>
@@ -91,13 +88,7 @@ plot_age_comp_comparison_bubbles <- function(model,
                                      size = ax_tick_font_size,
                                      angle = 0,
                                      hjust = 0.5,
-                                     vjust = -0.25,
-                                     face = "plain"),
-          axis.text.y = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
+                                     vjust = -0.25),
           plot.title = element_text(size = ax_title_font_size,
                                     hjust = 0.5),
           legend.position = "top",
