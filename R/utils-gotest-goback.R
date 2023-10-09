@@ -12,8 +12,16 @@
 #' @return Nothing
 gotest <- function(copy_tmpdir = FALSE){
 
+  curr_dir <- getwd()
+  if(!length(grep("hake", curr_dir)) && length(grep("tmp", curr_dir))){
+    message("You appear to already be in a temporary directory. You ",
+            "must `goback()` before trying to `gotest()` again or just ",
+            "continue to test here")
+    return(invisible())
+  }
+
   # Set global directory name to return back to with `goback()`
-  goback_dr <<- getwd()
+  goback_dr <<- curr_dir
 
   raw_fns <- c(
     "000-launcher.rmd",
@@ -114,6 +122,13 @@ gotest <- function(copy_tmpdir = FALSE){
 #'
 #' @return Nothing
 goback <- function(){
+
+  curr_dir <- getwd()
+  if(length(grep("hake", curr_dir)) && !length(grep("tmp", curr_dir))){
+    message("You appear to already be in the hake repository. You ",
+            "must `gotest()` before trying to `goback()`")
+    return(invisible())
+  }
 
   if(!exists("goback_dr")){
     stop("The variable `goback_dr` does not exist. You need to set ",
