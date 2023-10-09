@@ -299,7 +299,6 @@ interval shaded between the dotted lines.
 ```{r es-recruitment-fig, fig.cap = "(ref:es-recruitment-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "This figure shows that recruitment for each cohort. There are currently three above-average cohorts in the stock with 2020 being the fourth. The 2020 cohort is highly uncertain which can be seen in the size of the credible interval."}
 plot_recruitment(list(base_model),
                  list(base_model_name),
-                 single_line_color = "blue",
                  inc_means = TRUE,
                  leg_pos = "none")
 ```
@@ -361,7 +360,7 @@ table_fishing_intensity(
   digits = 3,
   caption = paste0(
     "Recent estimates of relative fishing intensity, ",
-    fishing_rate, ", and exploitation ",
+    rel_fishing_intensity_for_latex_table, ", and exploitation ",
     "fraction (catch divided by age-2+ biomass)."),
   font_size = 10,
   header_font_size = 9)
