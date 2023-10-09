@@ -497,9 +497,9 @@ and `r b_40` as a point where the 40:10 TAC adjustment is triggered
 The medians of sustainable yields and biomass reference points are similar
 to what was reported in the `r last_assess_yr` assessment. The probability
 that female spawning biomass at the beginning of `r assess_yr` is below
-`r b_40` is P$(\mathrm{B}_{`r assess_yr`} < `r b_40`) = `r probs_curr_below_b40`$%,
+`r b_40` is P(*B*~`r assess_yr`~ < `r b_40`) = `r probs_curr_below_b40`%,
 and of being below `r b_25` is
-P$(\mathrm{B}_{`r assess_yr`} < `r b_25`) = `r probs_curr_below_b25`$%.
+P(*B*~`r assess_yr`~ < `r b_25`) = `r probs_curr_below_b25`%.
 The probability that the relative fishing intensity was above the `r f_40`
 level of 1.0 at the end of `r end_yr - 1`
 is~`r probs_curr_rel_fish_intens_above_1`%.
