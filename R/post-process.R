@@ -23,6 +23,7 @@ post_process <- function(x,
       paste0("\\DocumentMetadata{testphase=phase-II, uncompress, ",
              "pdfstandard=A-2U, lang=en-US}"),
       x)
+    x <- add_alt_text(x)
   }
 
   dc_ind <- grep("documentclass", x)

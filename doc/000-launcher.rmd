@@ -21,6 +21,8 @@ project_variables:
   fig_title_font_size: 14
   fig_tick_font_size: 11
   fig_tick_length_cm: 0.15
+  knitr_figures_dir: "knitr-figs/"
+  knitr_cache_dir: "knitr-cache/"
 author: |
   Joint Technical Committee of the Pacific Hake/Whiting Agreement \
   Between the Governments of the United States and Canada \
@@ -31,7 +33,7 @@ header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
  hake::hake_pdf:
    latex_engine: lualatex
-   accessibility_tagging: FALSE
+   accessibility_tagging: true
    keep_tex: true
    toc: false # Do not modify, TOC is added by post processing
    fig_caption: yes
@@ -86,8 +88,8 @@ knitr::opts_chunk$set(
   comment = "#>",
   dev = "png",
   dpi = 200,
-  cache.path = "knitr-cache/",
-  fig.path = "knitr-figs/",
+  cache.path = rmarkdown::metadata$project_variables$knitr_cache_dir,
+  fig.path = rmarkdown::metadata$project_variables$knitr_figures_dir,
   fig.align = "center",
   fig.pos = "htb",
   fig.width = 7.5)

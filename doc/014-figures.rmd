@@ -12,11 +12,8 @@ document or past assessment documents are shown.
 interest for the hake fishery.
 
 ```{r main-overview-map-fig, fig.cap = "(ref:main-overview-map-cap)", is.fig = TRUE, alt.text = "(ref:main-overview-map-alt)", fig.height = 8, fig.width = 6, out.height = "\\textheight",  out.width = "\\textwidth"}
-if(is.null(base_model$plots$overview_map)){
-  plot_overview_map(ports_df, states_df)
-}else{
-  base_model$plots$overview_map
-}
+
+plot_overview_map(ports_df, states_df)
 ```
 
 (ref:main-acoustic-age2-bs-cap) Spatial distribution of acoustic backscatter
@@ -26,12 +23,15 @@ proportional to observed backscatter. Bar plots show survey-estimated biomass
 for ages 2 to 20, with major cohorts highlighted in color. Figure produced
 by Julia Clemons (NOAA).
 
-(ref:main-acoustic-age2-bs-alt) This figure shows that `r sp`  migrate further
+(ref:main-acoustic-age2-bs-alt) This figure shows that `r sp` migrate further
 north in some years.
 
 BEGIN LANDSCAPE - must have blank line below separating this from figure code
 
-![(#fig:main-acoustic-age2-bs-fig) (ref:main-acoustic-age2-bs-cap)](`r here::here("doc", "main-figures", "hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue.png")`)
+```{r main-acoustic-age2-bs-fig, fig.cap = "(ref:main-acoustic-age2-bs-cap)", is.fig = TRUE, alt.text = "(ref:main-acoustic-age2-bs-alt)", results = "asis", out.height = "\\textheight",  out.width = "\\textwidth"}
+
+include_graphics("main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue.png", error = FALSE)
+```
 
 END LANDSCAPE - must have blank line above separating this from figure code
 
@@ -49,7 +49,10 @@ locations of age-1 `r sp`.
 
 BEGIN LANDSCAPE
 
-![(#fig:main-acoustic-age1-bs-fig) (ref:main-acoustic-age1-bs-cap)](`r here::here("doc", "main-figures", "age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue.png")`)
+```{r main-acoustic-age1-bs-fig, fig.cap = "(ref:main-acoustic-age1-bs-cap)", is.fig = TRUE, alt.text = "(ref:main-acoustic-age1-bs-alt)", results = "asis", out.height = "\\textheight",  out.width = "\\textwidth"}
+
+include_graphics("main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue.png", error = FALSE)
+```
 
 END LANDSCAPE
 
@@ -62,13 +65,7 @@ years have been the largest in the time series.
 
 ```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-catches-alt)"}
 
-# This needs to be made into a ggplot to store it as an object
-
-if(is.null(base_model$plots$catches)){
-  plot_catches(ct, xlim = c(start_yr, last_data_yr))
-}else{
-  base_model$plots$catches
-}
+plot_catches(ct, xlim = c(start_yr, last_data_yr))
 ```
 
 (ref:main-us-catch-rates-cap) Unstandardized (raw) catch-rates (t/hr) of 
@@ -78,7 +75,10 @@ if(is.null(base_model$plots$catches)){
 (ref:main-us-catch-rates-alt) This figure shows changes in catch rates for
 the U.S. fleet. The rates are highest in September followed by May and June.
 
-![(#fig:main-us-catch-rates-fig) (ref:main-us-catch-rates-cap)](`r here::here("doc", "main-figures", "fishCatchRatesUS.png")`)
+```{r main-us-catch-rates-fig, fig.cap = "(ref:main-us-catch-rates-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-us-catch-rates-alt)"}
+
+include_graphics("main-figures/fishCatchRatesUS.png", error = FALSE)
+```
 
 (ref:main-us-depths-cap) Distribution of fishing depths (left) and bottom
 depths (right), in meters, of hauls targeting `r sp` in the U.S.
