@@ -1,5 +1,6 @@
 ---
-title: "**\\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`}**"
+title: |
+  | \vspace{5cm} **\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`}**
 project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
@@ -128,6 +129,16 @@ Andrew M. Edwards^2^
 ^3^ *Northwest Fisheries Science Center, National Marine Fisheries
   Service, National Oceanic and Atmospheric Administration, U.S. Department of
   Commerce, 2725 Montlake Blvd. East, Seattle, WA 98112-2097, USA*
+
+\
+
+This document should be cited as follows:
+
+Berger, A.M., C.J. Grandin, K.F. Johnson and A.M. Edwards.
+`r assess_yr`. Status of the `r sp` (whiting) stock in U.S. and Canadian
+waters in `r assess_yr`. Prepared by the Joint Technical Committee of 
+the U.S. and Canada `r sp`/Whiting Agreement, National Marine Fisheries
+Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
 
 
 TABLE OF CONTENTS GOES HERE - DO NOT DELETE OR MODIFY THIS LINE
