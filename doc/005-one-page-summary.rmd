@@ -70,4 +70,3 @@ female spawning biomass declining from `r end_yr` to `r end_yr + 1`, an
 `r end_yr + 1` to `r end_yr + 2`, and an
 `r last_yr_tac_risk_3_biomass_decline`% chance of it declining for these
 constant catches.
-+
