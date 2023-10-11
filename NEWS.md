@@ -9,20 +9,24 @@ implemented in the hake assessment codebase in 2023 between the 2023 and
 * The document is built using [Bookdown](https://bookdown.org/), an R package
   that facilitates writing complex documents using
   [R Markdown](https://rmarkdown.rstudio.com/). See the [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
-  for help on syntax. The R Markdown is converted to a PDF with [Pandoc](https://pandoc.org/), but this is a part of the `bookdown` package and invisible for the most part to end users.
+  for help on syntax. The R Markdown is converted to a PDF with [Pandoc](https://pandoc.org/),
+  but this is a part of the `bookdown` package and invisible for the most
+  part to end users.
 * Converted ALL document code from Sweave to Rmarkdown.
 * Now a true R package. This compartmentalized the code, and allows for the
   documentation of functions and package data to be monitored through
   software tools.
 * The `bookdown` package uses the project-specific `_bookdown.yml` file which
   contains the names of all files that are to be included in the build.
-  See the file here: [_bookdown.yml](https://github.com/pacific-hake/hake-assessment/blob/package-dev/doc/_bookdown.yml). The layout of this file allows for extremely easy
-  commenting-out of sections while you are working on a particular section and
-  need to build just that section.
+  See the file here: [_bookdown.yml](https://github.com/pacific-hake/hake-assessment/blob/package-dev/doc/_bookdown.yml).
+  The layout of this file allows for extremely easy commenting-out of sections
+  while you are working on a particular section and need to build just that
+  section.
 * Uses a post-processor to inject tedious LaTeX code after the building
   of the TeX file is complete with `bookdown`. This means there is almost no
   LaTeX code found in the Rmarkdown code files. It make it easier to read
-  and write the actual document text.
+  and write the actual document text. This post-processing step is invisible
+  to the authors when building the document (no extra steps required).
 * Standardized all code filenames by category and one function per file.
 * `r4ss` package now only used for loading of outputs, not for any figures
   or tables.
@@ -35,8 +39,9 @@ implemented in the hake assessment codebase in 2023 between the 2023 and
 * The Table of Contents has been improved with uniform spacing and numbering,
   and with the Appendix section having the same format as the main section.
   There is a post-processing function
-  ([post_process_table_of_contents](https://github.com/pacific-hake/hake-assessment/blob/package-dev/R/post-process-table-of-contents.R)) which allows the TOC to be
-  modified very easily. There is a line in `000-launcher.rmd` that reads
+  ([post_process_table_of_contents](https://github.com/pacific-hake/hake-assessment/blob/package-dev/R/post-process-table-of-contents.R))
+  which allows the TOC to be modified very easily. There is a line in
+  `000-launcher.rmd` that reads
   `TABLE OF CONTENTS GOES HERE - DO NOT DELETE OR MODIFY THIS LINE`. This
   is a required tag for the post-processor which will inject the table of
   contents code there.
@@ -118,26 +123,33 @@ implemented in the hake assessment codebase in 2023 between the 2023 and
   file [data-raw/key-posteriors.R](https://github.com/pacific-hake/hake-assessment/blob/package-dev/data-raw/key-posteriors.R)
   and change the same way as explained in the
   [Adding new data to data tables](https://github.com/pacific-hake/hake-assessment/blob/079becf0680c53301f4984edbfa2f053606ce9d8/README.md?plain=1#L90)
-   section of the README.md file.
+  section of the README.md file.
+* The way in which web accessibility including the alternative text
+  injection is done has been changed, it no longer uses knitr hooks which
+  means a full build from scratch is not required to inject these features.
+  Also, an external file is no longer used to keep track of these captions.
+  In addition, inline R chunks can be used in the alternative text
+  definitions. These are not parsed by knitr but by a function in the post
+  processor.
 * All landscape pages have header and footer lines and text, so they match
   their portrait counterparts.
 * All old, unused functions and other code has been removed.
 
 ## Details of the `render()` function
 
-The `render()` function is a two-step process:
+The `render()` function performs two-steps internally:
 
 1. Calls the `bookdown::render_book()` function to generate the PDF.
-1. Runs the post processing step (`post_process()`) which will:
-  - Insert the Table of Contents
-  - Move any figures or tables around that need to be (Add latex
+1. Runs the post processing step (`post_process()`) on the LaTeX file
+   before creating the PDF which:
+  - Inserts the Table of Contents
+  - Moves any figures or tables around that need to be (Adds latex
     position variables such as [H], [bt] [!H]). The setup file for this
     is `doc/object-placement.csv`
-  - Customize longtables so they have "continued on next page..." and
+  - Customizes longtables so they have "continued on next page..." and
     "Continued from previous page..." on them
-  - Process landscape figures and tables
-  - Align table captions that need it
-  - Add figure and table numbers
-  - Remove vertical space before section headings
-  - Place a marker in the file saying that it's been post-processed
-    so post-processing cannot be run on it a second time
+  - Processes landscape figures and tables
+  - Aligns table captions to the left margin if they need it
+  - Adds figure and table numbers
+  - Removes vertical space before section headings
+  - Adds the web-accessibility features, including the alternative text
