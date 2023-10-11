@@ -54,6 +54,7 @@ add_alt_text <- function(x){
   file_based_ref_labels <- map_chr(file_fns_labels, ~{
     extract_ref_label_from_figure_filename(.x)
   })
+
   alt_text_files <- map_chr(file_based_ref_labels, ~{
     extract_alt_text(.x)
   })

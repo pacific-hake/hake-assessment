@@ -27,11 +27,13 @@ extract_alt_text <- function(inp_str){
     rmd <- readLines(.x)
     x <- grep(inp_str, rmd)
     if(length(x)){
-      if(length(x) != 2){
-        stop("Error matching alternate text label ", inp_str, " in file ", .x,
-             ". There should be 2 matches, one for the knitr code chunk ",
-             "and one for the definition but there are ", length(x),
+      if(!length(x)){
+        stop("No match found for alternate text label ", inp_str, " in file ",
+             .x, ".",
              call. = FALSE)
+      }
+      if(length(x) == 1){
+        return("No alternative text defined for this figure")
       }
       str <- gsub("\\(", "\\\\(", inp_str)
       str <- gsub("\\)", "\\\\)", str)
