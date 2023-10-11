@@ -1,12 +1,12 @@
-#' Extract contents of text found in a (ref:variable) found in any rmd file
+#' Extract contents of text found in a `(ref:variable)` found in any rmd file
 #'
 #' @details
 #' 1. Starts by parsing the `_bookdown.yml` file to extract the names of all
 #'    uncommented rmd files in the current build.
-#' 2. Searches all those files for any lines starting with (ref:variable).
+#' 2. Searches all those files for any lines starting with `(ref:variable)`.
 #'    Preceding spaces are ignored
-#' 3. Extracts all the text found for the label given by `inp_str`, and returns
-#'    the description found for it (the actual alternative text)
+#' 3. Extracts all the text found for the label given by `inp_str`, and
+#'    returns the description found for it (the actual alternative text)
 #'
 #' @param inp_str The string to match, in the format `(ref:alt-text-label)`
 #'

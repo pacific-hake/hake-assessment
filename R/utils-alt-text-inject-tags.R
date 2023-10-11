@@ -10,8 +10,14 @@
 #' @export
 alt_text_inject_tags <- function(x, label, alt_text){
 
-  includegraphics_ind <- grep(paste0(label, "\\-[0-9]+"), x)
   caption_ind <- grep(paste0(label, "\\}"), x)
+  includegraphics_ind <- caption_ind
+  repeat{
+    if(length(grep("includegraphics", x[includegraphics_ind]))){
+      break
+    }
+    includegraphics_ind <- includegraphics_ind - 1
+  }
 
   pre <- x[1:(includegraphics_ind - 1)]
   post <- x[(caption_ind + 1):length(x)]

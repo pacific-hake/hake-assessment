@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils-alt-text-inject-tags.R
 \name{alt_text_inject_tags}
 \alias{alt_text_inject_tags}
-\title{Inject the tagpdf code around the figure chunk given by the knitr
+\title{Inject the \code{tagpdf} code around the figure chunk given by the knitr
 chunk \code{label}}
 \usage{
 alt_text_inject_tags(x, label, alt_text)
@@ -19,6 +19,6 @@ alt_text_inject_tags(x, label, alt_text)
 The modified Tex code, as a vector
 }
 \description{
-Inject the tagpdf code around the figure chunk given by the knitr
+Inject the \code{tagpdf} code around the figure chunk given by the knitr
 chunk \code{label}
 }

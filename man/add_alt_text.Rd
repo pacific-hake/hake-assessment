@@ -20,11 +20,8 @@ package
 }
 \details{
 Searches the given TEX file for the \verb{includegraphics\{\}},
-\verb{\\\\begin\{caption\}}, \verb{\\\\end\{caption\}}, \verb{\\\\begin\{knitrout\}},
-\verb{\\\\end\{knitrout\}}, and \verb{\\\\label\{fig.*\}} and manipulates the
-structure of those commands with the figure tagging commands
-injected. Alternative text comes from a data frame created
-during the knitting process via \code{knitr} hooks that read in the
-text from the \code{alt.text} knitr chunk tags in the figures. Those
-have to be manually changed each year
+finds the correct alternative text for those calls by searching through
+the project RMD files for the matching \code{(ref:variable-alt)} definitions
+and injects the text and the \code{tagpdf} structural LaTeX lines for
+web accessibility
 }
