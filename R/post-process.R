@@ -17,15 +17,6 @@ post_process <- function(x,
                          accessibility_tagging = FALSE,
                          ...){
 
-  if(accessibility_tagging){
-    x <- c(
-      "\\RequirePackage{pdfmanagement-testphase}",
-      paste0("\\DocumentMetadata{testphase=phase-II, uncompress, ",
-             "pdfstandard=A-2U, lang=en-US}"),
-      x)
-    x <- add_alt_text(x)
-  }
-
   dc_ind <- grep("documentclass", x)
   if(!length(dc_ind)){
     stop("\\documentclass not found, document is not valid LaTeX and ",
@@ -76,6 +67,16 @@ post_process <- function(x,
 
   # Add horizontal lines to the decision table headers across multiple columns
   x <- post_process_add_horiz_lines_decision_table(x)
+
+  #if(FALSE){
+  if(accessibility_tagging){
+    x <- c(
+      "\\RequirePackage{pdfmanagement-testphase}",
+      paste0("\\DocumentMetadata{testphase=phase-II, uncompress, ",
+             "pdfstandard=A-2U, lang=en-US}"),
+      x)
+    x <- add_alt_text(x)
+  }
 
   x
 }
