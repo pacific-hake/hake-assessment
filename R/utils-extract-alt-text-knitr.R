@@ -28,12 +28,12 @@ extract_alt_text <- function(inp_str){
     x <- grep(inp_str, rmd)
     if(length(x)){
       if(!length(x)){
-        stop("No match found for alternate text label ", inp_str, " in file ",
-             .x, ".",
-             call. = FALSE)
-      }
-      if(length(x) == 1){
         return("No alternative text defined for this figure")
+      }
+      if(length(x) > 1){
+        stop("Alt. text label `", inp_st, "` defined more than once in ",
+             "file `", .x, "`",
+             call. = FALSE)
       }
       str <- gsub("\\(", "\\\\(", inp_str)
       str <- gsub("\\)", "\\\\)", str)

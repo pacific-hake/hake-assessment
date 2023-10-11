@@ -11,7 +11,7 @@ document or past assessment documents are shown.
 (ref:main-overview-map-alt) This figure shows many ports and cities of
 interest for the hake fishery.
 
-```{r main-overview-map-fig, fig.cap = "(ref:main-overview-map-cap)", is.fig = TRUE, alt.text = "(ref:main-overview-map-alt)", fig.height = 8, fig.width = 6, out.height = "\\textheight",  out.width = "\\textwidth"}
+```{r main-overview-map-fig, fig.cap = "(ref:main-overview-map-cap)", fig.height = 8, fig.width = 6, out.height = "\\textheight",  out.width = "\\textwidth"}
 
 plot_overview_map(ports_df, states_df)
 ```
@@ -28,7 +28,7 @@ north in some years.
 
 BEGIN LANDSCAPE - must have blank line below separating this from figure code
 
-```{r main-acoustic-age2-bs-fig, fig.cap = "(ref:main-acoustic-age2-bs-cap)", is.fig = TRUE, alt.text = "(ref:main-acoustic-age2-bs-alt)", results = "asis", out.height = "\\textheight",  out.width = "\\textwidth"}
+```{r main-acoustic-age2-bs-fig, fig.cap = "(ref:main-acoustic-age2-bs-cap)", results = "asis", out.height = "\\textheight",  out.width = "\\textwidth"}
 
 include_graphics("main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue.png", error = FALSE)
 ```
@@ -49,7 +49,7 @@ locations of age-1 `r sp`.
 
 BEGIN LANDSCAPE
 
-```{r main-acoustic-age1-bs-fig, fig.cap = "(ref:main-acoustic-age1-bs-cap)", is.fig = TRUE, alt.text = "(ref:main-acoustic-age1-bs-alt)", results = "asis", out.height = "\\textheight",  out.width = "\\textwidth"}
+```{r main-acoustic-age1-bs-fig, fig.cap = "(ref:main-acoustic-age1-bs-cap)", results = "asis", out.height = "\\textheight",  out.width = "\\textwidth"}
 
 include_graphics("main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue.png", error = FALSE)
 ```
@@ -63,7 +63,7 @@ sectors where they are represented.
 (ref:main-catches-alt) This figure shows that catches in four of the last six
 years have been the largest in the time series.
 
-```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-catches-alt)"}
+```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 5, fig.width = 8}
 
 plot_catches(ct, xlim = c(start_yr, last_data_yr))
 ```
@@ -75,7 +75,7 @@ plot_catches(ct, xlim = c(start_yr, last_data_yr))
 (ref:main-us-catch-rates-alt) This figure shows changes in catch rates for
 the U.S. fleet. The rates are highest in September followed by May and June.
 
-```{r main-us-catch-rates-fig, fig.cap = "(ref:main-us-catch-rates-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-us-catch-rates-alt)"}
+```{r main-us-catch-rates-fig, fig.cap = "(ref:main-us-catch-rates-cap)", fig.height = 5, fig.width = 8}
 
 include_graphics("main-figures/fishCatchRatesUS.png", error = FALSE)
 ```
@@ -91,7 +91,7 @@ data. Whiskers encompass the 95% quantiles.
 approximately 500 meters and fishing depths approximately 300 meters on
 average in the last 5 years for United States fleets.
 
-```{r main-us-depths-fig, fig.cap = "(ref:main-us-depths-cap)", fig.height = 4, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-us-depths-alt)"}
+```{r main-us-depths-fig, fig.cap = "(ref:main-us-depths-cap)", fig.height = 4, fig.width = 8}
 plot_depth_2_panel(us_atsea_fishing_depth_df,
                    us_atsea_bottom_depth_df,
                    yrs = (last_data_yr - 4):last_data_yr)
@@ -111,7 +111,7 @@ shoreside vessels at a depth of approximately 150 meters. In 2023 this
 changed somewhat with both fleets fishing closer to the bottom and in
 shallower water.
 
-```{r main-can-depths-fig, fig.cap = "(ref:main-can-depths-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-can-depths-alt)"}
+```{r main-can-depths-fig, fig.cap = "(ref:main-can-depths-cap)", fig.height = 8, fig.width = 8}
 
 plot_depth_4_panel(can_ft_gear_depth_df,
                    can_ft_bottom_depth_df,
@@ -136,7 +136,7 @@ present. Fishery age compositions from 1975 to present were used and all data
 from the age 2 plus acoustic survey were included. This includes the index of
 abundance and age compositions from 1995 to present for odd years.
 
-```{r main-data-overview-fig, fig.cap = "(ref:main-data-overview-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-data-overview-alt)"}
+```{r main-data-overview-fig, fig.cap = "(ref:main-data-overview-cap)", fig.height = 5, fig.width = 8}
 
 plot_data_summary(base_model) 
 ```
@@ -159,7 +159,7 @@ three large cohorts making their way through the stock. The 2010 cohort is
 the largest followed by the 2014 cohort and the 2016 cohort. The 2020 cohort
 is large but highly uncertain.
 
-```{r main-age-comp-bubbles-fig, fig.cap = "(ref:main-age-comp-bubbles-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-age-comp-bubbles-alt)", out.height = "\\textheight",  out.width = "\\textwidth"}
+```{r main-age-comp-bubbles-fig, fig.cap = "(ref:main-age-comp-bubbles-cap)", fig.height = 8, fig.width = 8, out.height = "\\textheight",  out.width = "\\textwidth"}
 
 p_lst <- NULL
 p_lst[[1]] <-
@@ -188,7 +188,7 @@ apportionment uncertainty in 2009 are displayed in black).
 (ref:main-survey-extrap-biomass-alt) This figure shows that the survey biomass
 estimate has decreased from 2019 to 2021.
 
-```{r main-survey-extrap-biomass-fig,  fig.cap = "(ref:main-survey-extrap-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-survey-extrap-biomass-alt)"}
+```{r main-survey-extrap-biomass-fig,  fig.cap = "(ref:main-survey-extrap-biomass-cap)", fig.height = 5, fig.width = 8}
 
 plot_survey_biomass(base_model, index = "age2")
 ```
@@ -202,7 +202,7 @@ analysis does not include kriging as is done to estimate age-2+ biomass.
 (ref:main-survey-age1-alt) This figure shows that the age-1 survey estimate
 has increased from 2019 to 2021.
 
-```{r main-survey-age1-fig, fig.cap = "(ref:main-survey-age1-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-survey-age1-alt)"}
+```{r main-survey-age1-fig, fig.cap = "(ref:main-survey-age1-cap)", fig.height = 5, fig.width = 8}
 
 plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
 ```
@@ -219,14 +219,14 @@ age. Fish appear to reach full maturity between the age of 3 and 4. South
 of Point Conception which is at a latitude of 34.4 degrees they appear to
 reach maturity between the age of 2 and 3.
 
-```{r main-maturity-ogive-fig, fig.cap = "(ref:main-maturity-ogive-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-maturity-ogive-alt)"}
+```{r main-maturity-ogive-fig, fig.cap = "(ref:main-maturity-ogive-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth"}
 
-p_lst <- list()
-p_lst[[1]] <- plot_maturity_ogives(base_model, maturity_samples_df)
-p_lst[[2]] <- plot_fecundity(base_model,
-                             d = maturity_samples_df,
-                             yrs = start_yr_age_comps:(end_yr - 1))
-plot_grid(plotlist = p_lst, ncol = 1)
+p <- list()
+p[[1]] <- plot_maturity_ogives(base_model, maturity_samples_df)
+p[[2]] <- plot_fecundity(base_model,
+                         d = maturity_samples_df,
+                         yrs = start_yr_age_comps:(end_yr - 1))
+plot_grid(plotlist = p, ncol = 1)
 ```
 
 (ref:main-weight-at-age-cap) Empirical weight-at-age (kg) values used for
@@ -245,7 +245,8 @@ over all years of data.
 through time. The weight-at-age appears to have decreased overall from 1975
 to present.
 
-```{r main-weight-at-age-fig, fig.cap = "(ref:main-weight-at-age-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-weight-at-age-alt)"}
+```{r main-weight-at-age-fig, fig.cap = "(ref:main-weight-at-age-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth"}
+
 # See `heatmap_extract_wa()` for argument choices, many are passed in `...`
 # from `plot_weight_at_age_heatmap()`
 plot_heatmap_weight_at_age(
@@ -277,7 +278,8 @@ large sample sizes.
 of weight-at-age vary between years and ages with the most samples occurring
 for ages 3 through 7.
 
-```{r main-sample-size-weight-at-age-fig, fig.cap = "(ref:main-sample-size-weight-at-age-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth", is.fig = TRUE, alt.text = "(ref:main-sample-size-weight-at-age-alt)"}
+```{r main-sample-size-weight-at-age-fig, fig.cap = "(ref:main-sample-size-weight-at-age-cap)", fig.height = 11, fig.width = 8, out.height = "\\textheight", out.width = "\\textwidth"}
+
 # See `heatmap_extract_wa()` for argument choices, many are passed in `...`
 # from `plot_weight_at_age_heatmap()`
 plot_heatmap_sample_size_weight_at_age(
@@ -305,7 +307,8 @@ weight-at-age is lower for most ages in the most recent years than for years
 prior to 1980. There is a trend of increasing weight-at-age for the last
 6 to 7 years.
 
-```{r main-weight-at-age-lines-fig, fig.cap = "(ref:main-weight-at-age-lines-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-weight-at-age-lines-alt)"}
+```{r main-weight-at-age-lines-fig, fig.cap = "(ref:main-weight-at-age-lines-cap)", fig.height = 5, fig.width = 8}
+
 plot_weight_at_age(wt_at_age,
                    ages = 2:10,
                    bold_ages = 5,
@@ -333,28 +336,28 @@ the first bridging models for various model outputs. The only notable
 difference is in the recruitment deviation estimates for 2020 to 2022 for
 the bridging model where the 2022 catch is added.
 
-```{r main-bridge-summary-fig, fig.cap = "(ref:main-bridge-summary-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-bridge-summary-alt)"}
+```{r main-bridge-summary-fig, fig.cap = "(ref:main-bridge-summary-cap)", fig.height = 8, fig.width = 8}
 
-plist <- list()
-plist[[1]] <-
+p <- list()
+p[[1]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
                    ylim = c(0, 2.5),
                    x_labs_mod = 10,
                    wrap_y_label = TRUE,
                    leg_pos = "none")
-plist[[2]] <-
+p[[2]] <-
   plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
                leg_pos = "none",
                x_labs_mod = 10,
                line_width = 0.1)
 
-plist[[3]] <-
+p[[3]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
                          survey_type = "age2",
                          rev_colors = FALSE,
                          leg_pos = "none")
 
-plist[[4]] <-
+p[[4]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
                          survey_type = "age1",
                          xlim = c(1995, 2022),
@@ -365,11 +368,11 @@ plist[[4]] <-
 
 # Grid of 2 rows and 1 column with one plot at the top (biomass)
 # and 4 plots embedded in another grid (quad_grid) at the bottom
-quad_grid <- plot_grid(plotlist = plist,
+quad_grid <- plot_grid(plotlist = p,
                        nrow = 2,
                        ncol = 2)
-full_plist <- list()
-full_plist[[1]] <-
+full_p <- list()
+full_p[[1]] <-
   plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
                show_arrows = TRUE,
                dodge_bo = 0.75,
@@ -378,9 +381,9 @@ full_plist[[1]] <-
                wrap_y_label = TRUE,
                leg_pos = c(0.72, 0.82))
 
-full_plist[[2]] <- quad_grid
+full_p[[2]] <- quad_grid
 
-plot_grid(plotlist = full_plist,
+plot_grid(plotlist = full_p,
           nrow = 2,
           ncol = 1,
           rel_heights = c(0.33, 0.67))
@@ -401,7 +404,7 @@ biomass. The lines are very tightly packed together for most of the time
 series but diverge a little near the end of the time series from about 2017
 to 2021.
 
-```{r main-survey-index-fit-mcmc-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-cap)", fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-survey-index-fit-mcmc-alt)"}
+```{r main-survey-index-fit-mcmc-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-cap)", fig.height=6, fig.width=8}
 
 plot_survey_fit_mcmc(base_model,
                      type = "acoustic",
@@ -427,7 +430,7 @@ age-1 index.The lines are very tightly packed together for most of the
 time series but diverge a little at the end of the time series for the
 2021 index point.
 
-```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height=6, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-age1-index-fit-mcmc-alt)"}
+```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height=6, fig.width=8}
 
 plot_survey_fit_mcmc(base_model,
                      type = "age1",
@@ -447,7 +450,7 @@ the fishery and acoustic survey against the data. There is some slight over
 and under-fitting in the early part of the fishery time series from 1975 to
 1995. The survey shows some over fitting from 2001 to 2005.
 
-```{r main-age-comp-fits-fig, fig.cap = "(ref:main-age-comp-fits-cap)", fig.height = 11, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-age-comp-fits-alt)"}
+```{r main-age-comp-fits-fig, fig.cap = "(ref:main-age-comp-fits-cap)", fig.height = 11, fig.width = 8}
 
 plist <- NULL
 plist[[1]] <-
@@ -472,17 +475,18 @@ of large recruitment events.
 (ref:main-age-comp-pearson-alt) This figure shows that there are no obvious
 patterns in the Pearson residuals for the fishery and the survey.
 
-```{r main-age-comp-pearson-fig, fig.cap = "(ref:main-age-comp-pearson-cap)", fig.height = 11, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-age-comp-pearson-alt)"}
-plist <- NULL
-plist[[1]] <-
+```{r main-age-comp-pearson-fig, fig.cap = "(ref:main-age-comp-pearson-cap)", fig.height = 11, fig.width = 8}
+
+p <- NULL
+p[[1]] <-
   plot_pearson_bubbles(base_model,
                        type = "fishery",
                        leg_pos = "top")
-plist[[2]] <-
+p[[2]] <-
   plot_pearson_bubbles(base_model,
                        type = "survey",
                        alpha = 0.7)
-plot_grid(plotlist = plist, ncol = 1)
+plot_grid(plotlist = p, ncol = 1)
 ```
 
 (ref:main-prior-posterior-cap) Prior (black lines) and posterior (blue
@@ -500,7 +504,7 @@ control file.
 from the priors for key parameters. The steepness parameter appears to have
 an almost identical prior and posterior distribution.
 
-```{r main-prior-posterior-fig, fig.cap = "(ref:main-prior-posterior-cap)", fig.height = 10, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-prior-posterior-alt)"}
+```{r main-prior-posterior-fig, fig.cap = "(ref:main-prior-posterior-cap)", fig.height = 10, fig.width = 8}
 
 plot_priors_vs_posts(base_model,
                      x_range = "prior",
@@ -518,7 +522,7 @@ individual panels.
 shift from the priors for key parameters. The steepness parameter appears to
 have an almost identical prior and posterior distribution.
 
-```{r main-prior-posterior-truncated-fig, fig.cap = "(ref:main-prior-posterior-truncated-cap)", fig.height = 10, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-prior-posterior-truncated-alt)"}
+```{r main-prior-posterior-truncated-fig, fig.cap = "(ref:main-prior-posterior-truncated-cap)", fig.height = 10, fig.width = 8}
 
 plot_priors_vs_posts(base_model,
                      x_range = "posterior",
@@ -533,7 +537,7 @@ in each year.
 (ref:main-tv-selex-alt) This figure shows individual median selectivity
 plots for each year in a mountain range configuration.
 
-```{r main-tv-selex-fig, fig.cap = "(ref:main-tv-selex-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-tv-selex-alt)"}
+```{r main-tv-selex-fig, fig.cap = "(ref:main-tv-selex-cap)", fig.height = 8, fig.width = 8}
 
 tv_selex_start_yr <- 1990
 
@@ -554,7 +558,7 @@ for all years from `r start_yr` to `r tv_selex_start_yr`.
 (ref:main-tv-selex-uncertainty-alt) This figure shows individual panels for
 each year with selectivity medians and 0.95 credible intervals.
 
-```{r main-tv-selex-uncertainty-fig, fig.cap = "(ref:main-tv-selex-uncertainty-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-tv-selex-uncertainty-alt)"}
+```{r main-tv-selex-uncertainty-fig, fig.cap = "(ref:main-tv-selex-uncertainty-cap)", fig.height = 8, fig.width = 8}
 
 plot_selex_uncertainty(base_model, n_col = 2)
 ```
@@ -569,21 +573,21 @@ selectivity trajectories for all samples from the posteriors of fishery and
 survey selectivity parameters with 0.95 credible intervals. The age 1 index
 has more and larger outliers than the age 2 plus survey.
 
-```{r main-tv-selex-posteriors-fig, fig.cap = "(ref:main-tv-selex-posteriors-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-tv-selex-posteriors-alt)"}
+```{r main-tv-selex-posteriors-fig, fig.cap = "(ref:main-tv-selex-posteriors-cap)", fig.height = 8, fig.width = 8}
 
-plist <- list()
-plist[[1]] <- plot_selex_posteriors(base_model,
-                                    type = "survey",
-                                    age_range = c(1, 8),
-                                    show_xlab = FALSE,
-                                    post_med_line_color = "red",
-                                    unc_line_color = "red",
-                                    glow = FALSE)
-plist[[2]] <- plot_selex_posteriors(base_model,
-                                    type = "fishery",
-                                    age_range = c(1, 8),
-                                    glow = FALSE)
-plot_grid(plotlist = plist, ncol = 1, align = "v")
+p <- list()
+p[[1]] <- plot_selex_posteriors(base_model,
+                                type = "survey",
+                                age_range = c(1, 8),
+                                show_xlab = FALSE,
+                                post_med_line_color = "red",
+                                unc_line_color = "red",
+                                glow = FALSE)
+p[[2]] <- plot_selex_posteriors(base_model,
+                                type = "fishery",
+                                age_range = c(1, 8),
+                                glow = FALSE)
+plot_grid(plotlist = p, ncol = 1, align = "v")
 ```
 
 (ref:main-biomass-cap) Median (solid line) of the posterior distribution for
@@ -595,7 +599,7 @@ is the estimated unfished equilibrium biomass, $B_0$.
 (ref:main-biomass-alt) This figure shows that the median spawning biomass has
 been increasing in size since 2021.
 
-```{r main-biomass-fig, fig.cap = "(ref:main-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-biomass-alt)"}
+```{r main-biomass-fig, fig.cap = "(ref:main-biomass-cap)", fig.height = 5, fig.width = 8}
 
 plot_biomass(list(base_model),
              list(base_model_name),
@@ -612,7 +616,7 @@ lines show 10%, 40%, and 100% of the unfished equilibrium ($B_0$).
 (ref:main-relative-biomass-alt) This figure shows that the relative spawning
 biomass has been increasing since 2021. The value for 2023 is just above B0.
 
-```{r main-relative-biomass-fig, fig.cap = "(ref:main-relative-biomass-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-relative-biomass-alt)"}
+```{r main-relative-biomass-fig, fig.cap = "(ref:main-relative-biomass-cap)", fig.height = 5, fig.width = 8}
 
 plot_rel_biomass(model_lst = list(base_model),
                  model_names = list(base_model_name),
@@ -634,7 +638,7 @@ There are currently three above-average cohorts in the stock with 2020 being
 the fourth. The 2020 cohort is highly uncertain which can be seen in the size
 of the credible interval.
 
-```{r main-recruitment-fig, fig.cap = "(ref:main-recruitment-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-alt)"}
+```{r main-recruitment-fig, fig.cap = "(ref:main-recruitment-cap)", fig.height = 5, fig.width = 8}
 
 plot_recruitment(list(base_model),
                  list(base_model_name),
@@ -653,7 +657,7 @@ at age in `r start_yr`, the initial year of the model.
 each cohort. The same above-average cohorts seen in the recruitment figure
 are also seen here.
 
-```{r main-recruitment-devs-fig, fig.cap = "(ref:main-recruitment-devs-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-devs-alt)"}
+```{r main-recruitment-devs-fig, fig.cap = "(ref:main-recruitment-devs-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_recdevs(list(base_model),
              list(base_model_name),
@@ -674,7 +678,7 @@ decreasing in numbers as they pass through the stock from one year to the
 next. The mean age has fluctuated over time and is currently rising and at
 approximately age 3.
 
-```{r main-numbers-at-age-fig, fig.cap = "(ref:main-numbers-at-age-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-numbers-at-age-alt)"}
+```{r main-numbers-at-age-fig, fig.cap = "(ref:main-numbers-at-age-cap)", fig.height = 8, fig.width = 8}
 
 plot_age_comp_bubbles(base_model, type = "fishery",
                       mcmc = TRUE,
@@ -697,7 +701,7 @@ dotted lines.
 (ref:main-recruitment-scale-all-alt) This figure shows distributions of
 recruitment estimates relative to those in 2010 for all years.
 
-```{r main-recruitment-scale-all-fig, fig.cap = "(ref:main-recruitment-scale-all-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-scale-all-alt)"}
+```{r main-recruitment-scale-all-fig, fig.cap = "(ref:main-recruitment-scale-all-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_recruitment(list(base_model),
                  list(base_model_name),
@@ -721,7 +725,7 @@ right indicates the expected distribution of absolute recruitments.
 (ref:main-stock-recruitment-alt) This figure shows that the Stock Recruitment
 curve does not fit the estimated recruitments very well for this stock.
 
-```{r main-stock-recruitment-fig, fig.cap = "(ref:main-stock-recruitment-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-stock-recruitment-alt)"}
+```{r main-stock-recruitment-fig, fig.cap = "(ref:main-stock-recruitment-cap)", fig.height = 8, fig.width = 8}
 
 plot_stock_recruitment(base_model)
 ```
@@ -736,7 +740,7 @@ at 1.0.
 the management value of 1 for FSPR 40 percent throughout the entire time
 series.
 
-```{r main-fishing-intensity-fig, fig.cap = "(ref:main-fishing-intensity-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-fishing-intensity-alt)"}
+```{r main-fishing-intensity-fig, fig.cap = "(ref:main-fishing-intensity-cap)", fig.height = 5, fig.width = 8}
 
 plot_fishing_intensity(base_model)
 ```
@@ -750,7 +754,7 @@ credibility intervals. Dotted lines represent exploitation rates of 10% and
 exploitation fraction of the female spawning biomass is approximately 0.05.
 This is a drop from the last five years which have been approximately 0.1.
 
-```{r main-exploitation-fraction-fig, fig.cap = "(ref:main-exploitation-fraction-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-exploitation-fraction-alt)"}
+```{r main-exploitation-fraction-fig, fig.cap = "(ref:main-exploitation-fraction-cap)", fig.height = 5, fig.width = 8}
 
 plot_exploitation_fraction(base_model)
 ```
@@ -767,7 +771,7 @@ spawning biomass (horizontal) and `r end_yr - 1` relative fishing intensity
 (ref:main-phase-alt) This figure shows that we are currently not overfishing
 nor in an overfished state.
 
-```{r main-phase-fig, fig.cap = "(ref:main-phase-cap)", fig.height=6, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-phase-alt)"}
+```{r main-phase-fig, fig.cap = "(ref:main-phase-cap)", fig.height=6, fig.width = 8}
 
 plot_phase(base_model,
            start_yr,
@@ -788,7 +792,7 @@ quantile to the 97.5% quantile, covering the range
 (ref:main-projected-catch-density-alt) This figure shows the wide posterior
 distribution of the default catch limit using the default harvest policy.
 
-```{r main-projected-catch-density-fig, fig.cap = "(ref:main-projected-catch-density-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-projected-catch-density-alt)"}
+```{r main-projected-catch-density-fig, fig.cap = "(ref:main-projected-catch-density-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_catch_forecast_density(base_model, yr = end_yr)
 #base_model$plots$catch_fore_density
@@ -809,7 +813,7 @@ median relative spawning biomass is projected to remain flat for the next
 3 years with zero catch and to decline for all non-zero catch levels
 evaluated.
 
-```{r main-depletion-comparison-fig, fig.cap = "(ref:main-forecast-depletion-comparison-cap)", fig.height = 5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-forecast-depletion-comparison-alt)"}
+```{r main-depletion-comparison-fig, fig.cap = "(ref:main-forecast-depletion-comparison-cap)", fig.height = 5, fig.width = 8}
 
 # See the file `000-set-ct-levels.R`. The values for `fore_inds` below are
 # the indices of the forecast values in the list `ct_levels_vals`
@@ -830,7 +834,7 @@ stock declines in 2024 is 50 percent or greater for all catch levels
 including zero. The probability that the stock falls under B40 is almost
 zero for catches up to approximately 350 kilotonnes.
 
-```{r main-risk-year-1-fig, fig.cap = "(ref:main-risk-year-1-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-risk-year-1-alt)"}
+```{r main-risk-year-1-fig, fig.cap = "(ref:main-risk-year-1-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
@@ -853,7 +857,7 @@ stock declines in 2025 is 74 percent or greater for all catch levels
 including zero. The probability that the stock falls under B40 is below 0.1
 for catches up to approximately 380 kilotonnes.
 
-```{r main-risk-year-2-fig, fig.cap = "(ref:main-risk-year-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-risk-year-2-alt)"}
+```{r main-risk-year-2-fig, fig.cap = "(ref:main-risk-year-2-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
@@ -877,7 +881,7 @@ stock declines in 2026 is approximately 65 percent or greater for all catch
 levels including zero. The probability that the stock falls under B40 is
 below 0.1 for catches up to approximately 350 kilotonnes.
 
-```{r main-risk-year-3-fig, fig.cap = "(ref:main-risk-year-3-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-risk-year-3-alt)"}
+```{r main-risk-year-3-fig, fig.cap = "(ref:main-risk-year-3-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
@@ -905,7 +909,7 @@ cohorts are expected to make up most of the coming years catch. The 2020
 cohort is predicted to be the largest cohort in the stock in 2023. That
 prediction has high uncertainty when compared to the other cohorts.
 
-```{r main-age-comp-forecast-fig, fig.cap = "(ref:main-age-comp-forecast-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-age-comp-forecast-alt)"}
+```{r main-age-comp-forecast-fig, fig.cap = "(ref:main-age-comp-forecast-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_fore_age_comps(base_model)
 ```
@@ -923,7 +927,7 @@ biomass changes between the first set of sensitivity runs. Changing the
 standard deviation of the natural mortality parameter has the most notable
 effect and scales the population up with an increase in its size.
 
-```{r main-biomass-base-alternative-1-fig, fig.cap = "(ref:main-biomass-base-alternative-1-cap)", fig.height=4.5, fig.width=8, is.fig = TRUE, alt.text = "(ref:main-biomass-base-alternative-1-alt)"}
+```{r main-biomass-base-alternative-1-fig, fig.cap = "(ref:main-biomass-base-alternative-1-cap)", fig.height = 4.5, fig.width = 8}
   
 plot_biomass(d_obj = d_obj_sens_biomass[[1]],
              x_expansion = 3.5,
@@ -943,7 +947,7 @@ sensitivity descriptions.
   
 (ref:main-status-base-alternative-1-alt) This figure shows how relative spawning biomass changes between the first set of sensitivity runs. As in the absolute biomass figure changing the standard deviation of the natural mortality parameter has the most notable effect and scales the population up with an increase in its size.
 
-```{r main-status-base-alternative-1-fig, fig.cap = "(ref:main-status-base-alternative-1-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-status-base-alternative-1-alt)"}
+```{r main-status-base-alternative-1-fig, fig.cap = "(ref:main-status-base-alternative-1-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
                  ylim = c(0, 4),
@@ -963,7 +967,7 @@ fishery composition data using the McAllister-Ianelli method.
 biomass changes between the second set of sensitivity runs. The biomass
 estimate increases with the removal of the age-1 index from the model.
 
-```{r main-biomass-base-alternative-2-fig, fig.cap = "(ref:main-biomass-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-biomass-base-alternative-2-alt)"}
+```{r main-biomass-base-alternative-2-fig, fig.cap = "(ref:main-biomass-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_biomass(d_obj = d_obj_sens_biomass[[2]],
              x_expansion = 3.5,
@@ -982,7 +986,7 @@ spawning biomass changes between the second set of sensitivity runs. As in
 the absolute biomass figure the relative biomass estimate increases with the
 removal of the age-1 index from the model.
 
-```{r main-status-base-alternative-2-fig, fig.cap = "(ref:main-status-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-status-base-alternative-2-alt)"}
+```{r main-status-base-alternative-2-fig, fig.cap = "(ref:main-status-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[2]],
                  x_expansion = 2,
@@ -1000,7 +1004,7 @@ changes in recruitment deviations for some of the sensitivity runs. Changing
 the age weighting to be down-weighted by the McAllister Ianelli method has
 the largest effect here.
 
-```{r main-recruitment-base-alternative-2-fig, fig.cap = "(ref:main-recruitment-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-base-alternative-2-alt)"}
+```{r main-recruitment-base-alternative-2-fig, fig.cap = "(ref:main-recruitment-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
              leg_pos = c(0.17, 0.92),
@@ -1019,7 +1023,7 @@ index. Removal of the age-1 index results in a drop in recent survey index
 fits while changing the age composition method to the McAllister Ianelli
 method increases it.
 
-```{r main-index-base-alternative-2-fig, fig.cap = "(ref:main-index-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = ""}
+```{r main-index-base-alternative-2-fig, fig.cap = "(ref:main-index-base-alternative-2-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp2[[1]],
                        x_expansion = 1,
@@ -1038,7 +1042,7 @@ spawning biomass varies for some sensitivity runs. Reducing the Phi
 selectivity parameter results in a large increase in current biomass while
 increasing it results in a decrease.
 
-```{r main-biomass-base-alternative-4-fig, fig.cap = "(ref:main-biomass-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = ""}
+```{r main-biomass-base-alternative-4-fig, fig.cap = "(ref:main-biomass-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_biomass(d_obj = d_obj_sens_biomass[[3]],
              x_expansion = 3.5,
@@ -1059,7 +1063,7 @@ relative spawning biomass varies for some sensitivity runs. As in the
 absolute biomass figure reducing the Phi selectivity parameter results in
 a large increase in current biomass while increasing it results in a decrease.
 
-```{r main-status-base-alternative-4-fig, fig.cap = "(ref:main-status-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = ""}
+```{r main-status-base-alternative-4-fig, fig.cap = "(ref:main-status-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
                  ylim = c(0, 3),
@@ -1079,7 +1083,7 @@ descriptions.
 in recruitment between certain sensitivity runs. The recruitment estimate
 for the large cohorts is highly sensitive to the change in the Phi parameter.
 
-```{r main-recruitment-base-alternative-4-fig, fig.cap = "(ref:main-recruitment-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-base-alternative-4-alt)"}
+```{r main-recruitment-base-alternative-4-fig, fig.cap = "(ref:main-recruitment-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_recruitment(d_obj = d_obj_sens_recr[[3]],
                  leg_font_size = 11,
@@ -1100,7 +1104,7 @@ differences in recruitment deviations between certain sensitivity runs. As
 with the absolute recruitment figure the recruitment estimate for the large
 cohorts is highly sensitive to the change in the Phi parameter.
 
-```{r main-recruitment-devs-base-alternative-4-fig, fig.cap = "(ref:main-recruitment-devs-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-recruitment-devs-base-alternative-4-alt)"}
+```{r main-recruitment-devs-base-alternative-4-fig, fig.cap = "(ref:main-recruitment-devs-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
              leg_pos = c(0.15, 0.88),
@@ -1119,7 +1123,7 @@ fit to the biomass index for certain sensitivity runs. There is a large
 scaling upward of the last six index estimates when the Phi parameter is
 set to 0.21.
 
-```{r main-index-base-alternative-4-fig, fig.cap = "(ref:main-index-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-index-base-alternative-4-alt)"}
+```{r main-index-base-alternative-4-fig, fig.cap = "(ref:main-index-base-alternative-4-cap)", fig.height = 4.5, fig.width = 8}
 
 plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
                        survey_type = "age2",
@@ -1138,7 +1142,7 @@ retrospectives all follow the same biomass trajectory and have similar
 recruitment estimates for all but the most recent years indicating a
 stable model.
 
-```{r main-biomass-recruitment-retrospective-fig, fig.cap = "(ref:main-biomass-recruitment-retrospective-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-biomass-recruitment-retrospective-alt) "}
+```{r main-biomass-recruitment-retrospective-fig, fig.cap = "(ref:main-biomass-recruitment-retrospective-cap)", fig.height = 8}
 
 p <- list()
 p[[1]] <- plot_biomass(d_obj = base_model$retros$biomass_df,
@@ -1185,7 +1189,7 @@ forecasted landings and that information is not typically available to
 estimate recruitments until fish are of age three. Estimates of larger
 deviates take a longer time to stabilize.
 
-```{r main-retrospective-recruitment-fig, fig.cap = "(ref:main-retrospective-recruitment-cap)", fig.height = 6, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-retrospective-recruitment-alt)"}
+```{r main-retrospective-recruitment-fig, fig.cap = "(ref:main-retrospective-recruitment-cap)", fig.height = 6, fig.width = 8}
 
 plot_squid(base_model,
            show_ci = TRUE,
@@ -1205,7 +1209,7 @@ recruitment deviations scaled to the most recent estimate. Almost all trend
 towards zero by age three except for the 2015 cohort which was a strong
 negative recruitment deviation.
 
-```{r main-relative-retrospective-recruitment-fig, fig.cap = "(ref:main-relative-retrospective-recruitment-cap)", fig.height = 6, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-relative-retrospective-recruitment-alt)"}
+```{r main-relative-retrospective-recruitment-fig, fig.cap = "(ref:main-relative-retrospective-recruitment-cap)", fig.height = 6, fig.width = 8}
 
 plot_squid(base_model,
            relative = TRUE)
@@ -1221,7 +1225,7 @@ credible interval from the `r assess_yr` base model.
 (ref:main-historical-assessments-alt) This figure shows the varying
 historical estimates of spawning biomass from the annual assessments.
 
-```{r main-historical-assessments-fig, fig.cap = "(ref:main-historical-assessments-cap)", fig.height = 4.5, fig.width = 6.5, is.fig = TRUE, alt.text = "(ref:main-historical-assessments-alt)"}
+```{r main-historical-assessments-fig, fig.cap = "(ref:main-historical-assessments-cap)", fig.height = 4.5, fig.width = 6.5}
 
 plot_assessment_history_biomass(base_model, assess_history_df)
 ```
@@ -1246,7 +1250,7 @@ spawning biomass from assessments dating back to 2012.
 unprocessed floats' -->
 \clearpage
 
-```{r main-historical-dispersion-fig, fig.cap = "(ref:main-historical-dispersion-cap)", fig.height = 4.5, fig.width = 6.5, is.fig = TRUE, alt.text = "(ref:main-historical-dispersion-alt)"}
+```{r main-historical-dispersion-fig, fig.cap = "(ref:main-historical-dispersion-cap)", fig.height = 4.5, fig.width = 6.5}
 
 p <- list()
 p[[1]] <-

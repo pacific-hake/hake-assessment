@@ -417,7 +417,8 @@ the solid blue line is simply $1/0.6$, as shown in equation
 (ref:fishing-intensity-illustration-alt) This figure shows how fishing
 intensity linearly increases with SPR.
 
-```{r glossary-fishing-intensity-illustration-fig, fig.cap = "(ref:fishing-intensity-illustration-cap)", fig.height = 5, fig.width = 5, is.fig = TRUE, alt.text = "(ref:fishing-intensity-illustration-alt)"}
+```{r glossary-fishing-intensity-illustration-fig, fig.cap = "(ref:fishing-intensity-illustration-cap)", fig.height = 5, fig.width = 5}
+
 # Do as a function so that variables remain local
 plot_intensity <- function(target = 0.4){
   spr <- seq(0, 1, length = 100)
@@ -462,6 +463,7 @@ plot_intensity <- function(target = 0.4){
     ylab("Fishing intensity") +
     theme(plot.margin = margin(c(20, 6, 6, 6)))
 }
+
 plot_intensity()
 ```
 (ref:spr-illustration-cap) Illustration of the spawning potential ratio
@@ -472,7 +474,7 @@ this year.
 
 (ref:spr-illustration-alt) This figure shows how SPR is calculated.
 
-```{r glossary-spr-illustration-fig, fig.cap = "(ref:spr-illustration-cap)", fig.height = 7, fig.width = 6, is.fig = TRUE, alt.text = "(ref:spr-illustration-alt)"}
+```{r glossary-spr-illustration-fig, fig.cap = "(ref:spr-illustration-cap)", fig.height = 7, fig.width = 6}
 
 plot_spr_illustration(base_model,
                       color = "royalblue",

@@ -10,7 +10,18 @@
 #' @export
 alt_text_inject_tags <- function(x, label, alt_text){
 
-  caption_ind <- grep(paste0(label, "\\}"), x)
+  caption_ind <- grep(paste0("\\\\label\\{fig:", label, "\\}"), x)
+  if(!length(caption_ind)){
+    stop("Could not find \\label{fig:", label, "} in the LaTeX file. Make ",
+         "Sure you have the caption set up properly for this figure",
+         call. = FALSE)
+  }
+  if(length(caption_ind) > 1){
+    stop("There was more than one \\label{fig:", label, "} in the LaTeX ",
+         "file. Make sure you have the caption set up properly for this ",
+         "figure",
+         call. = FALSE)
+  }
   includegraphics_ind <- caption_ind
   repeat{
     if(length(grep("includegraphics", x[includegraphics_ind]))){

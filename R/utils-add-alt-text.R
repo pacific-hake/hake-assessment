@@ -81,7 +81,9 @@ add_alt_text <- function(x){
 
   # Inject the alt text and accompanying accessibility tags
   for(label in seq_along(all_fig_labels)){
-    x <- alt_text_inject_tags(x, all_fig_labels[label], all_alt_text[label])
+    x <- alt_text_inject_tags(x,
+                              all_fig_labels[label],
+                              all_alt_text[label])
   }
 
   x

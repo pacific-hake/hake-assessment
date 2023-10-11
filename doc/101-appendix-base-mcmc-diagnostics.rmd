@@ -134,7 +134,7 @@ a stationary distribution by comparing different sections of the chain.
 (ref:app-mcmc-diag-hists-alt) This figure shows good summary MCMC
 diagnostics for all base model parameters.
 
-```{r app-mcmc-diag-hists-fig, fig.cap = "(ref:app-mcmc-diag-hists-cap)", fig.height = 6, fig.width = 8, is.fig = TRUE, alt.text = ""}
+```{r app-mcmc-diag-hists-fig, fig.cap = "(ref:app-mcmc-diag-hists-cap)", fig.height = 6, fig.width = 8}
 
 plot_mcmc_diagnostics_all_params(base_model,
                                  show_ro = TRUE,
@@ -153,7 +153,7 @@ coefficient.
 and derived quantities. Natural mortality and log R0 show positive
 correlation as do 2014 and 2016 recruitment.
 
-```{r app-mcmc-pairs-fig, fig.cap = "(ref:main-mcmc-pairs-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-mcmc-pairs-alt)"}
+```{r app-mcmc-pairs-fig, fig.cap = "(ref:main-mcmc-pairs-cap)", fig.height = 8, fig.width = 8}
 
 plot_pairs(base_model,
            type = "key",
@@ -176,7 +176,7 @@ font size proportional to the square root of the coefficient.
 many derived quantities. There is some positive correlation between 2014
 and 2016 recruitment deviations.
 
-```{r app-mcmc-pairs-recruit-devs-fig, fig.cap = "(ref:main-mcmc-pairs-recruit-devs-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:main-mcmc-pairs-recruit-devs-alt)"}
+```{r app-mcmc-pairs-recruit-devs-fig, fig.cap = "(ref:main-mcmc-pairs-recruit-devs-cap)", fig.height = 8, fig.width = 8}
 
 plot_pairs(base_model,
            type = "devs",
