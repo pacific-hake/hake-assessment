@@ -409,15 +409,15 @@ Year-class: A group of fish born in the same year. See also 'cohort' and
 \leftskip 0in
 \parindent 0in
 
-(ref:fishing-intensity-illustration-cap) Fishing intensity as a function
+(ref:glossary-fishing-intensity-illustration-cap) Fishing intensity as a function
 of SPR (top axis) and 1-SPR (bottom axis); given the benchmark SPR of 40%,
 the solid blue line is simply $1/0.6$, as shown in equation
 \@ref(eq:appendix-glossary-spr).
 
-(ref:fishing-intensity-illustration-alt) This figure shows how fishing
+(ref:glossary-fishing-intensity-illustration-alt) This figure shows how fishing
 intensity linearly increases with SPR.
 
-```{r glossary-fishing-intensity-illustration-fig, fig.cap = "(ref:fishing-intensity-illustration-cap)", fig.height = 5, fig.width = 5}
+```{r glossary-fishing-intensity-illustration-fig, fig.cap = "(ref:glossary-fishing-intensity-illustration-cap)", fig.width = 5}
 
 # Do as a function so that variables remain local
 plot_intensity <- function(target = 0.4){
@@ -466,15 +466,15 @@ plot_intensity <- function(target = 0.4){
 
 plot_intensity()
 ```
-(ref:spr-illustration-cap) Illustration of the spawning potential ratio
+(ref:glossary-spr-illustration-cap) Illustration of the spawning potential ratio
 (SPR) calculation based on the combination of maturity and fecundity used
-in the model, using the maximum likelihood estimates of natural mortality,
-selectivity, and fishing mortality in the final year of the base model from
-this year.
+in the model, using the MCMC estimates of natural mortality, selectivity,
+and fishing mortality in the final year of the base model used in this
+year's assessment.
 
-(ref:spr-illustration-alt) This figure shows how SPR is calculated.
+(ref:glossary-spr-illustration-alt) This figure shows how SPR is calculated.
 
-```{r glossary-spr-illustration-fig, fig.cap = "(ref:spr-illustration-cap)", fig.height = 7, fig.width = 6}
+```{r glossary-spr-illustration-fig, fig.cap = "(ref:glossary-spr-illustration-cap)", fig.height = 7, fig.width = 6}
 
 plot_spr_illustration(base_model,
                       color = "royalblue",

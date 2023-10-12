@@ -18,7 +18,7 @@ smoothed histogram of values in the trace plot).
 (ref:app-mcmc-diag-m-r0-alt) This figure shows good MCMC diagnostics for the
 base model for natural mortality and log R0 parameters.
 
-```{r app-mcmc-diag-m-r0-fig, fig.cap = "(ref:app-mcmc-diag-m-r0-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:app-mcmc-diag-m-r0-alt)"}
+```{r app-mcmc-diag-m-r0-fig, fig.cap = "(ref:app-mcmc-diag-m-r0-cap)", fig.height = 8}
 plist <- NULL
 plist[[1]] <-
   plot_mcmc_diagnostics(base_model,
@@ -56,7 +56,7 @@ Sub-panel descriptions as in Figure~\@ref{fig:app-mcmc-diag-m-r0-fig}.
 for the base model for steepness and the survey extra standard deviation
 parameters.
 
-```{r app-mcmc-diag-h-extra-sd-fig, fig.cap = "(ref:app-mcmc-diag-h-extra-sd-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = "(ref:app-mcmc-diag-h-extra-sd-alt)"}
+```{r app-mcmc-diag-h-extra-sd-fig, fig.cap = "(ref:app-mcmc-diag-h-extra-sd-cap)", fig.height = 8}
 
 plist <- NULL
 plist[[1]] <-
@@ -91,8 +91,9 @@ lower panels) in the base model. Sub-panel descriptions as in Figure~\@ref{fig:a
 
 (ref:app-mcmc-diag-dm-alt) This figure shows good MCMC diagnostics for the
 base model for the two Dirichlet-multinomial parameters for the fishery and
-survey.http://127.0.0.1:16727/graphics/plot_zoom_png?width=1536&height=813
-```{r app-mcmc-diag-dm-fig, fig.cap = "(ref:app-mcmc-diag-dm-cap)", fig.height = 8, fig.width = 8, is.fig = TRUE, alt.text = ""}
+survey.
+
+```{r app-mcmc-diag-dm-fig, fig.cap = "(ref:app-mcmc-diag-dm-cap)", fig.height = 8}
 
 plist <- NULL
 plist[[1]] <-
@@ -134,7 +135,7 @@ a stationary distribution by comparing different sections of the chain.
 (ref:app-mcmc-diag-hists-alt) This figure shows good summary MCMC
 diagnostics for all base model parameters.
 
-```{r app-mcmc-diag-hists-fig, fig.cap = "(ref:app-mcmc-diag-hists-cap)", fig.height = 6, fig.width = 8}
+```{r app-mcmc-diag-hists-fig, fig.cap = "(ref:app-mcmc-diag-hists-cap)", fig.height = 6}
 
 plot_mcmc_diagnostics_all_params(base_model,
                                  show_ro = TRUE,
@@ -143,17 +144,17 @@ plot_mcmc_diagnostics_all_params(base_model,
                                  ro_text_size = 5)
 ```
 
-(ref:main-mcmc-pairs-cap) Posterior correlations among the objective
+(ref:app-mcmc-pairs-cap) Posterior correlations among the objective
 function which is minimized during model fitting, key base-model parameters,
 and derived quantities. Numbers refer to the absolute correlation
 coefficients, with font size proportional to the square root of the
 coefficient.
 
-(ref:main-mcmc-pairs-alt) "This figure shows pairs plots for many parameters
+(ref:app-mcmc-pairs-alt) "This figure shows pairs plots for many parameters
 and derived quantities. Natural mortality and log R0 show positive
 correlation as do 2014 and 2016 recruitment.
 
-```{r app-mcmc-pairs-fig, fig.cap = "(ref:main-mcmc-pairs-cap)", fig.height = 8, fig.width = 8}
+```{r app-mcmc-pairs-fig, fig.cap = "(ref:app-mcmc-pairs-cap)", fig.height = 8}
 
 plot_pairs(base_model,
            type = "key",
@@ -167,16 +168,16 @@ plot_pairs(base_model,
                          end_yr + 2))
 ```
 
-(ref:main-mcmc-pairs-recruit-devs-cap) Posterior correlations among
+(ref:app-mcmc-pairs-recruit-devs-cap) Posterior correlations among
 recruitment deviations from recent years and mean unfished equilibrium
 recruitment. Numbers refer to the absolute correlation coefficients, with
 font size proportional to the square root of the coefficient.
 
-(ref:main-mcmc-pairs-recruit-devs-alt) This figure shows pairs plots for
+(ref:app-mcmc-pairs-recruit-devs-alt) This figure shows pairs plots for
 many derived quantities. There is some positive correlation between 2014
 and 2016 recruitment deviations.
 
-```{r app-mcmc-pairs-recruit-devs-fig, fig.cap = "(ref:main-mcmc-pairs-recruit-devs-cap)", fig.height = 8, fig.width = 8}
+```{r app-mcmc-pairs-recruit-devs-fig, fig.cap = "(ref:app-mcmc-pairs-recruit-devs-cap)", fig.height = 8}
 
 plot_pairs(base_model,
            type = "devs",
