@@ -55,9 +55,6 @@ post_process <- function(x,
   # Figure/table lettering/numbering ----
   x <- post_process_add_counters(x)
 
-  # Subtract vertical space before section headers ----
-  x <- post_process_subtract_section_space(x)
-
   # Change sections to subsections and subsections to subsubsections ----
   x <- post_process_convert_section_headers(x)
 
