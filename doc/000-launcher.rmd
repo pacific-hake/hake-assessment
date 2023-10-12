@@ -2,6 +2,7 @@
 title: |
   | \vspace{5cm} **\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`}**
 project_variables:
+  accessibility_tagging: false # If true, alt text and figure tags are added
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
   science_name: "Merluccius productus"
@@ -37,7 +38,6 @@ header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
  hake::hake_pdf:
    latex_engine: lualatex
-   accessibility_tagging: true
    keep_tex: true # Keep the tex file around for debugging purposes
    toc: false # Do not modify, TOC is added by post processing
    fig_caption: yes # Do not modify, use fig.cap knitr chunk option

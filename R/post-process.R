@@ -4,17 +4,14 @@
 #' Called by [hake_pdf()] to post-process the LaTeX compiled by the
 #' [bookdown] package
 #'
-#' @param accessibility_tagging Logical. If `TRUE`, include lines for
-#' LaTeX `tagpdf` package to make a more web-accessible document. This will
-#' make the compile time much longer and is typically used when done the
-#' document and doing the final compile for government web distribution
-#' @param ... Arguments passed to [post_process_table_of_contents()]
+#' @param x Tex code, as a vector of lines read in from a TeX file by
+#' [readLines()]
+#' @param ... Arguments passed to [post_process_table_of_contents()],
+#' [post_process_set_latex_placement_options()], and [post_process_longtables]
 #'
 #' @return Nothing, overwrite the file `fn` with the modified TEX
 #' @export
 post_process <- function(x,
-                         prepub = FALSE,
-                         accessibility_tagging = FALSE,
                          ...){
 
   dc_ind <- grep("documentclass", x)
@@ -24,7 +21,7 @@ post_process <- function(x,
          call. = FALSE)
   }
 
-  # Remove page number from title page
+  # Remove page number from title page ----
   title_ind <- grep("^\\\\maketitle", x)
   if(!length(title_ind)){
     stop("`\\maketitle` not found. You must be using the `\\maketitle` ",
@@ -44,7 +41,7 @@ post_process <- function(x,
   # Longtable customization ----
   x <- post_process_longtables(x, ...)
 
-  # Landscape figures and table customization
+  # Landscape figures and table customization ----
   x <- post_process_landscape_figures(x)
   x <- post_process_landscape_tables(x)
   x <- post_process_fix_landscape_issues(x)
@@ -58,14 +55,15 @@ post_process <- function(x,
   # Change sections to subsections and subsections to subsubsections ----
   x <- post_process_convert_section_headers(x)
 
-  # Add a little space before the "Stock" subsection header as it is bumped up
-  # really close to the "Executive Summary" section header
+  # Add a little space before the "Stock" subsection header ----
+  # as it is bumped up really close to the "Executive Summary" section header
   x <- post_process_add_vert_space_after_header(x)
 
-  # Add horizontal lines to the decision table headers across multiple columns
+  # Add horizontal lines to the decision table headers ----
+  # across multiple columns
   x <- post_process_add_horiz_lines_decision_table(x)
 
-  #if(FALSE){
+  # Tag the figures in the PDF and add alternative text ----
   if(accessibility_tagging){
     x <- c(
       "\\RequirePackage{pdfmanagement-testphase}",

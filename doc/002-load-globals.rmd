@@ -2,7 +2,8 @@
 
 if(!length(rmarkdown::metadata$project_variables)){
   stop("Document compilation not run properly. You must run this code ",
-       "using the Bookdown/Rmarkdown system, by calling `hake::render()`",
+       "using the Bookdown/Rmarkdown system, by calling `hake::render()` ",
+       "which is a simple wrapper for `bookdown::render_book()`",
        call. = FALSE)
 }
 

@@ -4,15 +4,14 @@
 \alias{post_process}
 \title{Post-process the TEX file output by Bookdown}
 \usage{
-post_process(x, prepub = FALSE, accessibility_tagging = FALSE, ...)
+post_process(x, ...)
 }
 \arguments{
-\item{accessibility_tagging}{Logical. If \code{TRUE}, include lines for
-LaTeX \code{tagpdf} package to make a more web-accessible document. This will
-make the compile time much longer and is typically used when done the
-document and doing the final compile for government web distribution}
+\item{x}{Tex code, as a vector of lines read in from a TeX file by
+\code{\link[=readLines]{readLines()}}}
 
-\item{...}{Arguments passed to \code{\link[=post_process_table_of_contents]{post_process_table_of_contents()}}}
+\item{...}{Arguments passed to \code{\link[=post_process_table_of_contents]{post_process_table_of_contents()}},
+\code{\link[=post_process_set_latex_placement_options]{post_process_set_latex_placement_options()}}, and \link{post_process_longtables}}
 }
 \value{
 Nothing, overwrite the file \code{fn} with the modified TEX
