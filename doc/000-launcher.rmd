@@ -24,6 +24,8 @@ project_variables:
   fig_tick_length_cm: 0.15
   knitr_figures_dir: "knitr-figs/"
   knitr_cache_dir: "knitr-cache/"
+  figure_height: 5
+  figure_width: 8
   dots_per_inch: 100 # Increasing this increases the file size a LOT
 author: |
   Joint Technical Committee of the Pacific Hake/Whiting Agreement \
@@ -96,7 +98,10 @@ knitr::opts_chunk$set(
   fig.path = yaml_proj_vars$knitr_figures_dir,
   fig.align = "center",
   fig.pos = "htb",
-  fig.width = 7.5)
+  fig.height = yaml_proj_vars$figure_height,
+  fig.width = yaml_proj_vars$figure_width,
+  out.height = "\\textheight",
+  out.width = "\\textwidth")
 
 if(file.exists("hake.tex")){
   system("./clean")
