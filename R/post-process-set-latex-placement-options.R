@@ -7,7 +7,7 @@
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_set_object_placement <- function(x, ...){
+post_process_set_latex_placement_options <- function(x, ...){
 
   settings_fn <- "object-placement.csv"
   doc_dr <- here("doc")
@@ -29,19 +29,13 @@ post_process_set_object_placement <- function(x, ...){
                           show_col_types = FALSE)
 
   if(nrow(settings_df) < 1){
-    return(invisible())
+    return(x)
   }
 
-  pwalk(settings_df, ~{
-    row <- list(...)
-    x <<- post_process_set_tab_fig_placement(
-      x,
-      type = row$type,
-      knitr_label = ifelse(is.na(row$knitr_label),
-                           row$file_name,
-                           row$knitr_label),
-      place = row$placement)
-  })
+  for(i in seq_len(nrow(settings_df))){
+    row_df <- settings_df |> slice(i)
+    x <- post_process_object_placement(x, row_df, row_num = i, ...)
+  }
 
   x
 }

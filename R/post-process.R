@@ -39,7 +39,7 @@ post_process <- function(x,
   x <- post_process_table_of_contents(x, ...)
 
   # Placements for figures and tables ----
-  x <- post_process_set_object_placement(x, ...)
+  x <- post_process_set_latex_placement_options(x, ...)
 
   # Longtable customization ----
   x <- post_process_longtables(x, ...)

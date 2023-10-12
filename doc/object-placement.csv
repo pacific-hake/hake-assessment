@@ -11,12 +11,12 @@
 #
 # Column descriptions:
 # type: table or figure
-# knitr_label: The knitr chunk label for the chunk which creates the
-#   figure. If blank `file_name` will be used
-# file_name: The file name for an image file inserted using rmarkdown
-#   code. If blank, `knitr_label` will be used
+# label: The knitr chunk label for the chunk which creates the figure. If
+#        blank the `file_name` column will be used
+# file_name: The file name without extension for an image file inserted using
+#            rmarkdown code. If blank, the `label` column will be used
 # placement: One of the following LaTeX placement strings (or a
-#   combination of them):
+#            combination of them):
 # - h: Place the float here, i.e., approximately at the same point it occurs
 #      in the source text.
 # - t: Position at the top of the page.
@@ -27,19 +27,19 @@
 # - H: Place the float at precisely the location in the LaTeX code. This
 #      requires the float package
 
-type,knitr_label,file_name,placement
-table,es-decisions-biomass-tab,,H
-table,es-decisions-spr-tab,,H
-table,es-recruitment-tab,,H
-table,es-reference-points-tab,,H
-table,es-biomass-tab,,!b
-table,us-ap-catch-tab,,H
+type,label,file_name,placement
 figure,es-catches-fig,,!b
-figure,es-survey-biomass-fig,,H
-figure,es-survey-age1-fig,,H
-figure,es-biomass-fig,,H
-figure,es-relative-biomass-fig,,H
-figure,es-exploitation-fraction-fig,,H
-figure,main-overview-map-fig,,H
-figure,main-us-depths-fig,,H
-figure,,fishCatchRatesUS.png,H
+#table,es-decisions-spr-tab,,H
+#table,es-recruitment-tab,,H
+#table,es-reference-points-tab,,H
+#table,es-biomass-tab,,!b
+#table,es-decisions-biomass-tab,,H
+#table,us-ap-catch-tab,,H
+#figure,es-survey-biomass-fig,,H
+#figure,es-survey-age1-fig,,H
+#figure,es-biomass-fig,,H
+#figure,es-relative-biomass-fig,,H
+#figure,es-exploitation-fraction-fig,,H
+#figure,main-overview-map-fig,,H
+#figure,main-us-depths-fig,,H
+figure,,fishCatchRatesUS,H

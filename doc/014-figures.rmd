@@ -75,7 +75,7 @@ plot_catches(ct, xlim = c(start_yr, last_data_yr))
 (ref:main-us-catch-rates-alt) This figure shows changes in catch rates for
 the U.S. fleet. The rates are highest in September followed by May and June.
 
-```{r main-us-catch-rates-fig, fig.cap = "(ref:main-us-catch-rates-cap)"}
+```{r main-us-catch-rates-fig, fig.cap = "(ref:main-us-catch-rates-cap)", results = "asis"}
 
 include_graphics("main-figures/fishCatchRatesUS.png", error = FALSE)
 ```
