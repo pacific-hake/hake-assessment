@@ -798,7 +798,7 @@ plot_catch_forecast_density(base_model, yr = end_yr)
 #base_model$plots$catch_fore_density
 ```
 
-(ref:main-forecast-depletion-comparison-cap) Median and 95% posterior
+(ref:main-depletion-comparison-cap) Median and 95% posterior
 credibility intervals of estimated relative spawning biomass to the start
 of `r end_yr` from the base model (white rectangle) and projections to the
 start of `r forecast_yrs[length(forecast_yrs)]` for several management
@@ -808,7 +808,7 @@ policy catches are
 `r f(base_model$ct_default_policy[2])`~t in `r end_yr + 1`, and
 `r f(base_model$ct_default_policy[3])`~t in `r end_yr + 2`.
 
-(ref:main-forecast-depletion-comparison-alt) This figure shows that the
+(ref:main-depletion-comparison-alt) This figure shows that the
 median relative spawning biomass is projected to remain flat for the next
 3 years with zero catch and to decline for all non-zero catch levels
 evaluated.

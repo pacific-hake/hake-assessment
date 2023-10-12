@@ -1,10 +1,11 @@
-#' Extract contents of text found in a `(ref:variable)` found in any rmd file
+#' Extract contents of text found in a `(ref:variable-alt)` found in any rmd
+#' file
 #'
 #' @details
 #' 1. Starts by parsing the `_bookdown.yml` file to extract the names of all
 #'    uncommented rmd files in the current build.
-#' 2. Searches all those files for any lines starting with `(ref:variable)`.
-#'    Preceding spaces are ignored
+#' 2. Searches all those files for any lines starting with `(ref:variable-alt)`.
+#'    Preceding spaces are ignored.
 #' 3. Extracts all the text found for the label given by `inp_str`, and
 #'    returns the description found for it (the actual alternative text)
 #'
@@ -13,6 +14,7 @@
 #' @return The text found for the label given by `inp_str`
 extract_alt_text <- function(inp_str){
 
+
   bd_lines <- readLines(here("doc/_bookdown.yml"))
   bd_rmd_raw <- grep("\\.rmd", bd_lines, value = TRUE)
   # Remove commented-out lines (for speed)
@@ -20,52 +22,42 @@ extract_alt_text <- function(inp_str){
   if(length(grep("^#", bd))){
     bd <- bd[-grep("^#", bd)]
   }
+
   fns <- gsub(".*([0-9]{3}\\-[a-zA-Z\\-]+\\.rmd).*", "\\1", bd)
   fns <- here("doc", fns)
 
+  alt_str <- paste0(inp_str, "-alt")
   k <- map(fns, ~{
     rmd <- readLines(.x)
-    x <- grep(inp_str, rmd)
+    x <- grep(alt_str, rmd)
     if(length(x)){
       if(!length(x)){
         return("No alternative text defined for this figure")
       }
       if(length(x) > 1){
-        stop("Alt. text label `", inp_st, "` defined more than once in ",
+        stop("Alt. text label `", alt_str, "-alt` defined more than once in ",
              "file `", .x, "`",
-             call. = FALSE)
-      }
-      str <- gsub("\\(", "\\\\(", inp_str)
-      str <- gsub("\\)", "\\\\)", str)
-      str <- paste0(str, " *")
-
-      x_ind <- grep(paste0("^", str), rmd[x])
-      if(!length(x_ind)){
-        stop("Error matching the text label ", str, " in the file ", .x,
-             "at the beginning of a line. This label needs to be at the ",
-             "beginning of its own line with the alternative text ",
-             "description following it",
              call. = FALSE)
       }
       # Find all lines that belong in the alt text (there may be newlines
       # in between them in the source rmd file). Assuming that after the
       # alt t5ext is done, it will be followed by either a blank line or
       # the start of a chunk (starts with ```), or the end-of-file
-      text_ind <- x[x_ind]
-      text_end_ind <- text_ind
+      start_ind <- x
+      end_ind <- x
       repeat{
         # Check the line for a new chunk or a blank line
-        is_chunk <- grep("```", rmd[text_end_ind]) |>
+        is_chunk <- grep("```", rmd[end_ind]) |>
           length() |>
           as.logical()
-        is_blank_line <-  grep("^$", rmd[text_end_ind]) |>
+        is_blank_line <-  grep("^$", rmd[end_ind]) |>
           length() |>
           as.logical()
-        is_eof <<- text_end_ind == length(rmd)
+        is_eof <<- end_ind == length(rmd)
         if(is_chunk || is_blank_line || is_eof){
           break
         }
-        text_end_ind <- text_end_ind + 1
+        end_ind <- end_ind + 1
       }
       # Now on either chunk start of blank line, so remove that line from
       # the text, checking the EOF conditions
@@ -73,18 +65,19 @@ extract_alt_text <- function(inp_str){
         # Only need to check if there's a blank line. A chunk cannot start
         # (and end) on the same line so no need to check that at EOF
         if(!length(grep("^$", rmd[length(rmd)]))){
-          text_end_ind <- text_end_ind - 1
+          end_ind <- end_ind - 1
         }
       }else{
-        text_end_ind <- text_end_ind - 1
+        end_ind <- end_ind - 1
       }
       # Glue all the text lines together
-      text <- paste(rmd[text_ind:text_end_ind], collapse = " ")
+      alt_text <- paste(rmd[start_ind:end_ind], collapse = " ")
       # Remove the label
-      text <- gsub(str, "", text)
+      ref_regex <- paste0("\\(ref:", alt_str, "\\) *")
+      alt_text <- gsub(ref_regex, "", alt_text)
 
       # Return a vector of the label and it's text
-      text
+      alt_text
     }
   })
 

@@ -2,7 +2,8 @@
 % Please edit documentation in R/utils-extract-alt-text-knitr.R
 \name{extract_alt_text}
 \alias{extract_alt_text}
-\title{Extract contents of text found in a \code{(ref:variable)} found in any rmd file}
+\title{Extract contents of text found in a \code{(ref:variable-alt)} found in any rmd
+file}
 \usage{
 extract_alt_text(inp_str)
 }
@@ -13,14 +14,15 @@ extract_alt_text(inp_str)
 The text found for the label given by \code{inp_str}
 }
 \description{
-Extract contents of text found in a \code{(ref:variable)} found in any rmd file
+Extract contents of text found in a \code{(ref:variable-alt)} found in any rmd
+file
 }
 \details{
 \enumerate{
 \item Starts by parsing the \verb{_bookdown.yml} file to extract the names of all
 uncommented rmd files in the current build.
-\item Searches all those files for any lines starting with \code{(ref:variable)}.
-Preceding spaces are ignored
+\item Searches all those files for any lines starting with \code{(ref:variable-alt)}.
+Preceding spaces are ignored.
 \item Extracts all the text found for the label given by \code{inp_str}, and
 returns the description found for it (the actual alternative text)
 }

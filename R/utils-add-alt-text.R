@@ -51,16 +51,15 @@ add_alt_text <- function(x){
                           "\\1",
                           x[file_inds])
 
-  file_based_ref_labels <- map_chr(file_fns_labels, ~{
-    extract_ref_label_from_figure_filename(.x)
+  file_based_labels <- map_chr(file_fns_labels, ~{
+    extract_label_from_figure_filename(.x)
   })
 
-  alt_text_files <- map_chr(file_based_ref_labels, ~{
+  alt_text_knitr <- map_chr(knitr_labels, ~{
     extract_alt_text(.x)
   })
 
-  knitr_ref_labels <- paste0("(ref:", knitr_labels, "-alt)")
-  alt_text_knitr <- map_chr(knitr_ref_labels, ~{
+  alt_text_files <- map_chr(file_based_labels, ~{
     extract_alt_text(.x)
   })
 
@@ -72,11 +71,10 @@ add_alt_text <- function(x){
   all_alt_text[knitr_which] <- alt_text_knitr
   all_alt_text[file_which] <- alt_text_files
 
-  file_based_fig_labels <- gsub("\\(ref:", "", file_based_ref_labels)
-  file_based_fig_labels <- gsub("\\-alt\\)$", "", file_based_fig_labels)
   all_fig_labels <- NULL
   all_fig_labels[knitr_which] <- knitr_labels
-  all_fig_labels[file_which] <- file_based_fig_labels
+  all_fig_labels[file_which] <- file_based_labels
+
   all_fig_labels <- paste0(all_fig_labels, "-fig")
 
   # Inject the alt text and accompanying accessibility tags
