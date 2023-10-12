@@ -103,9 +103,6 @@ knitr::opts_chunk$set(
   out.height = "\\textheight",
   out.width = "\\textwidth")
 
-if(file.exists("hake.tex")){
-  system("./clean")
-}
 ```
 
 \newpage
