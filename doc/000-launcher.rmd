@@ -24,6 +24,7 @@ project_variables:
   fig_tick_length_cm: 0.15
   knitr_figures_dir: "knitr-figs/"
   knitr_cache_dir: "knitr-cache/"
+  dots_per_inch: 100 # Increasing this increases the file size a LOT
 author: |
   Joint Technical Committee of the Pacific Hake/Whiting Agreement \
   Between the Governments of the United States and Canada \
@@ -35,9 +36,9 @@ output:
  hake::hake_pdf:
    latex_engine: lualatex
    accessibility_tagging: true
-   keep_tex: true
+   keep_tex: true # Keep the tex file around for debugging purposes
    toc: false # Do not modify, TOC is added by post processing
-   fig_caption: yes
+   fig_caption: yes # Do not modify, use fig.cap knitr chunk option
    includes:
      in_header: "preamble.tex"
 documentclass: article # Do not modify
@@ -76,6 +77,8 @@ if(rmarkdown::metadata$test){
   devtools::load_all(here::here())
 }
 
+yaml_proj_vars <- rmarkdown::metadata$project_variables
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   warning = FALSE,
@@ -88,9 +91,9 @@ knitr::opts_chunk$set(
   results = "hide",
   comment = "#>",
   dev = "png",
-  dpi = 200,
-  cache.path = rmarkdown::metadata$project_variables$knitr_cache_dir,
-  fig.path = rmarkdown::metadata$project_variables$knitr_figures_dir,
+  dpi = yaml_proj_vars$dots_per_inch,
+  cache.path = yaml_proj_vars$knitr_cache_dir,
+  fig.path = yaml_proj_vars$knitr_figures_dir,
   fig.align = "center",
   fig.pos = "htb",
   fig.width = 7.5)
