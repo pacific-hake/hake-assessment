@@ -62,6 +62,10 @@ post_process <- function(x, ...){
   # across multiple columns
   x <- post_process_add_horiz_lines_decision_table(x, ...)
 
+  # Add counter reset for all appendices so each lettered appendix starts
+  # at 1 again, e.g. A.1, A.2 ... B.1, B.2 ...
+  x <- post_process_add_appendix_counter_resets(x, ...)
+
   # Tag the figures in the PDF and add alternative text ----
   if(accessible_pdf){
     x <- c(
