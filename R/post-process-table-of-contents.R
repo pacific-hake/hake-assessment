@@ -31,19 +31,21 @@ post_process_table_of_contents <- function(x,
                                "DO NOT DELETE OR MODIFY THIS LINE")
   toc_ind <- grep(toc_indicator_line, x)
   if(!length(toc_ind)){
-    stop("The Table of contents indicator line was not found. ",
-         "It must be present somewhere and is:\n",
-         toc_indicator_line,
+    stop("The Table of contents tag was not found. It must be present ",
+         " and is:\n", toc_indicator_line,
          call. = FALSE)
   }
   if(length(toc_ind) > 1){
-    stop("The Table of contents indicator line was found more than once ",
-         "in the document. It must appear only once. It is:\n",
-         toc_indicator_line,
+    stop("The Table of contents tag was found more than once in the ",
+         "document. It must appear only once. It is:\n", toc_indicator_line,
          call. = FALSE)
   }
 
   x <- c(x[1:(toc_ind - 1)],
+         "%",
+         "% The following code was injected by",
+         "% hake::post_process_table_of_contents()",
+         "%",
          "\\newpage",
          "\\renewcommand{\\contentsname}{TABLE OF CONTENTS}",
          "\\renewcommand{\\cfttoctitlefont}{\\hfill\\Large\\bf}",
@@ -64,6 +66,9 @@ post_process_table_of_contents <- function(x,
          "\\tableofcontents",
          "\\end{center}",
          "\\thispagestyle{fancy}",
+         "%",
+         "% End of injected code",
+         "%",
          x[(toc_ind + 1):length(x)])
 
   # Fix line binders (~) ----

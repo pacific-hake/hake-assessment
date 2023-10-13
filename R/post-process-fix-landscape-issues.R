@@ -100,14 +100,21 @@ post_process_fix_landscape_issues <- function(x,
     if(length(newpage_inds)){
       lst <- post_process_extract_chunks(x, newpage_inds, newpage_inds)
       lst$between <- map(lst$between, \(lscape_line){
-        c("\\KOMAoptions{paper = landscape, DIV = last}",
+        c("%",
+          "% The following code was injected by",
+          "% hake::post_process_fix_landscape_issues()",
+          "%",
+          "\\KOMAoptions{paper = landscape, DIV = last}",
           paste0("\\newgeometry{",
                  "hmargin = 1in, ",
                  "bottom = 1in, ",
                  "height = 7in, ",
                  "includehead}"),
           "\\fancyheadoffset{0pt}",
-          "\\newpage")
+          "\\newpage",
+          "%",
+          "% End of injected code",
+          "%")
       })
       x <- post_process_interlace_chunks(lst)
 

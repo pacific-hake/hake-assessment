@@ -51,10 +51,17 @@ post_process_add_counters <- function(x,
   }
 
   lst <- post_process_extract_chunks(x, ind, ind)
-  lst$between[[1]] <- c("\\renewcommand{\\thetable}{\\arabic{table}}",
+  lst$between[[1]] <- c("%",
+                        "% The following code was injected by",
+                        "% hake::post_process_add_counters()",
+                        "%",
+                        "\\renewcommand{\\thetable}{\\arabic{table}}",
                         "\\setcounter{table}{0}",
                         "\\renewcommand{\\thefigure}{\\arabic{figure}}",
-                        "\\setcounter{figure}{0}")
+                        "\\setcounter{figure}{0}",
+                        "%",
+                        "% End of injected code",
+                        "%")
 
   post_process_interlace_chunks(lst)
 }

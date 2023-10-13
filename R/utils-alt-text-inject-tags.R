@@ -35,6 +35,10 @@ alt_text_inject_tags <- function(x, label, alt_text){
   chunk <- x[includegraphics_ind:(caption_ind - 1)]
 
   ret <- c(pre,
+           "%",
+           "% The following code was injected by",
+           "% hake::alt_text_inject_tags()",
+           "%",
            paste0("\\tagstructbegin{tag=Figure,alttext=",
                   alt_text,
                   "}"),
@@ -48,6 +52,9 @@ alt_text_inject_tags <- function(x, label, alt_text){
            x[caption_ind],
            "\\tagmcend",
            "\\tagstructend",
+           "%",
+           "% End of injected code",
+           "%",
            post)
 
   ret

@@ -24,9 +24,16 @@ post_process_add_appendix_counter_resets <- function(x,
     pre <- x[1:app_inds[ind]]
     post <- x[(app_inds[ind] + 1):length(x)]
     x <- c(pre,
+           "%",
+           "% The following code was injected by",
+           "% hake::post_process_add_appendix_counter_resets()",
+           "%",
            "\\setcounter{equation}{0}",
            "\\setcounter{figure}{0}",
            "\\setcounter{table}{0}",
+           "%",
+           "% End of injected code",
+           "%",
            post)
   }
 

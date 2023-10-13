@@ -23,14 +23,21 @@ post_process_landscape_tables <- function(x,
     fnt_line <- gsub("^\\\\begin\\{landscape\\}\\\\begingroup(.*)$",
                      "\\1",
                      lscape_line)
-    c("\\KOMAoptions{paper = landscape, DIV = last}",
+    c("%",
+      "% The following code was injected by",
+      "% hake::post_process_landscape_tables()",
+      "%",
+      "\\KOMAoptions{paper = landscape, DIV = last}",
       paste0("\\newgeometry{",
              "hmargin = 1in, ",
              "bottom = 1in, ",
              "height = 7in, ",
              "includehead}"),
       "\\fancyheadoffset{0pt}",
-      fnt_line)
+      fnt_line,
+      "%",
+      "% End of injected code",
+      "%")
   })
 
   x <- post_process_interlace_chunks(lst)
@@ -45,13 +52,19 @@ post_process_landscape_tables <- function(x,
 
   lst <- post_process_extract_chunks(x, lscape_endgroup_inds, lscape_end_inds)
   lst$between <- map(lst$between, \(lscape_line){
-    c("\\KOMAoptions{paper = portrait, DIV = last}",
+    c("%",
+      "% The following code was injected by",
+      "% hake::post_process_landscape_tables()",
+      "%",
+      "\\KOMAoptions{paper = portrait, DIV = last}",
       "\\restoregeometry",
-      "\\fancyheadoffset{0pt}")
+      "\\fancyheadoffset{0pt}",
+      "%",
+      "% End of injected code",
+      "%")
   })
 
   x <- post_process_interlace_chunks(lst)
-
 
   x
 }

@@ -42,7 +42,7 @@ post_process_add_start_appendices_code <- function(x, ..){
 
   x <- c(pre,
          "%",
-         "% The following appendix starting code was injected by",
+         "% The following code was injected by",
          "% hake::post_process_add_start_appendices_code()",
          "%",
          "\\newpage",
