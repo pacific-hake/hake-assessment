@@ -31,6 +31,17 @@ post_process <- function(x, ...){
   post <- x[(title_ind + 1):length(x)]
   x <- c(pre, "\\thispagestyle{empty}", post)
 
+  # Add LaTeX code for the start of the appendices section. This is needed
+  # to tell the LaTeX compiler to start numbering the sections using letters
+  # and set u-p tables, figures, and equations to be of the format A.2 for
+  # example. It also adds TOC information so this has to come before the TOC
+  # ppst processing step
+  x <- post_process_add_start_appendices_code(x, ..)
+
+  # Add counter reset for all appendices so each lettered appendix starts
+  # at 1 again, e.g. A.1, A.2 ... B.1, B.2 ...
+  x <- post_process_add_appendix_counter_resets(x, ...)
+
   # Table of contents injection ----
   x <- post_process_table_of_contents(x, ...)
 
@@ -51,9 +62,6 @@ post_process <- function(x, ...){
   # Figure/table lettering/numbering ----
   x <- post_process_add_counters(x, ...)
 
-  # Change sections to subsections and subsections to subsubsections ----
-  #x <- post_process_convert_section_headers(x, ...)
-
   # Add a little space before the "Stock" subsection header ----
   # as it is bumped up really close to the "Executive Summary" section header
   x <- post_process_add_vert_space_after_header(x, ...)
@@ -61,10 +69,6 @@ post_process <- function(x, ...){
   # Add horizontal lines to the decision table headers ----
   # across multiple columns
   x <- post_process_add_horiz_lines_decision_table(x, ...)
-
-  # Add counter reset for all appendices so each lettered appendix starts
-  # at 1 again, e.g. A.1, A.2 ... B.1, B.2 ...
-  x <- post_process_add_appendix_counter_resets(x, ...)
 
   # Tag the figures in the PDF and add alternative text ----
   if(accessible_pdf){

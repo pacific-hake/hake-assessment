@@ -4,15 +4,4 @@ separate, you can comment out any appendices you wish and the others will
 still build properly.
 -->
 
-\newpage
-\appendix
-\renewcommand{\theequation}{\thesection.\arabic{equation}}
-\renewcommand\thefigure{\thesection.\arabic{figure}}
-\renewcommand\thetable{\thesection.\arabic{table}}
-
-<!-- Add a new section in the TOC called 'Appendices' -->
-\addtocontents{toc}{\bigskip\medskip\noindent
-  \textbf{Appendices}\par}
-
-<!-- Necessary to have the same spacing as the rest of the section headers -->
-\vspace{5mm}
+APPENDICES START HERE
