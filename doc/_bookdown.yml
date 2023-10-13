@@ -18,7 +18,7 @@ rmd_files: ["000-launcher.rmd",
             "013-tables.rmd",
             "014-figures.rmd",
             #File 100 is required to make all that follow it appendices.
-            # "100-start-appendices.rmd",
+            "100-start-appendices.rmd",
             "101-appendix-base-mcmc-diagnostics.rmd",
             "111-appendix-srg-requests.rmd",
             "121-appendix-glossary.rmd",

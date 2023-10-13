@@ -2,10 +2,12 @@
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
+#' @param ... Absorbs arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_add_horiz_lines_decision_table <- function(x){
+post_process_add_horiz_lines_decision_table <- function(x,
+                                                        ...){
 
   ind <- grep("\\\\selectfont Relative spawning biomass\\}\\}\\}", x)
   if(length(ind)){

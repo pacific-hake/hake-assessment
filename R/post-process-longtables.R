@@ -13,11 +13,13 @@
 #' [readLines()]
 #' @param cont_page_just The justification for the continue page lines.
 #' Must be one of "l", "c", or "r"
+#' @param ... Absorbs arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
 #' @export
 post_process_longtables <- function(x,
-                                    cont_page_just = c("l", "c", "r")){
+                                    cont_page_just = c("l", "c", "r"),
+                                    ...){
 
   cont_page_just <- match.arg(cont_page_just)
 

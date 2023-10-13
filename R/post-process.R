@@ -11,8 +11,7 @@
 #'
 #' @return Nothing, overwrite the file `fn` with the modified TEX
 #' @export
-post_process <- function(x,
-                         ...){
+post_process <- function(x, ...){
 
   dc_ind <- grep("documentclass", x)
   if(!length(dc_ind)){
@@ -42,35 +41,35 @@ post_process <- function(x,
   x <- post_process_longtables(x, ...)
 
   # Landscape figures and table customization ----
-  x <- post_process_landscape_figures(x)
-  x <- post_process_landscape_tables(x)
-  x <- post_process_fix_landscape_issues(x)
+  x <- post_process_landscape_figures(x, ...)
+  x <- post_process_landscape_tables(x, ...)
+  x <- post_process_fix_landscape_issues(x, ...)
 
   # Table caption alignment ----
-  x <- post_process_move_table_captions(x)
+  x <- post_process_move_table_captions(x, ...)
 
   # Figure/table lettering/numbering ----
-  x <- post_process_add_counters(x)
+  x <- post_process_add_counters(x, ...)
 
   # Change sections to subsections and subsections to subsubsections ----
-  x <- post_process_convert_section_headers(x)
+  #x <- post_process_convert_section_headers(x, ...)
 
   # Add a little space before the "Stock" subsection header ----
   # as it is bumped up really close to the "Executive Summary" section header
-  x <- post_process_add_vert_space_after_header(x)
+  x <- post_process_add_vert_space_after_header(x, ...)
 
   # Add horizontal lines to the decision table headers ----
   # across multiple columns
-  x <- post_process_add_horiz_lines_decision_table(x)
+  x <- post_process_add_horiz_lines_decision_table(x, ...)
 
   # Tag the figures in the PDF and add alternative text ----
-  if(accessibility_tagging){
+  if(accessible_pdf){
     x <- c(
       "\\RequirePackage{pdfmanagement-testphase}",
       paste0("\\DocumentMetadata{testphase=phase-II, uncompress, ",
              "pdfstandard=A-2U, lang=en-US}"),
       x)
-    x <- add_alt_text(x)
+    x <- add_alt_text(x, ...)
   }
 
   x

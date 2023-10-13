@@ -4,11 +4,13 @@
 \alias{post_process_landscape_figures}
 \title{Post-process landscape figures in TEX code}
 \usage{
-post_process_landscape_figures(x)
+post_process_landscape_figures(x, ...)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
+
+\item{...}{Absorbs arguments meant for other functions}
 }
 \value{
 The modified Tex code, as a vector

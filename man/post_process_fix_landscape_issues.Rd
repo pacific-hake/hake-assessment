@@ -6,11 +6,13 @@
 If this is not done, there will be a blank portrait page between
 sequential landscape pages}
 \usage{
-post_process_fix_landscape_issues(x)
+post_process_fix_landscape_issues(x, ...)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
+
+\item{...}{Absorbs arguments meant for other functions}
 }
 \value{
 The modified Tex code, as a vector

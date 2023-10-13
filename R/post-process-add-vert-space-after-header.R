@@ -2,10 +2,12 @@
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
+#' @param ... Absorbs arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_add_vert_space_after_header <- function(x){
+post_process_add_vert_space_after_header <- function(x,
+                                                     ...){
 
   ind <- grep("^\\\\addcontentsline\\{toc\\}\\{section\\}\\{Executive summary\\}$", x)
   if(length(ind)){

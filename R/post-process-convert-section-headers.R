@@ -3,10 +3,12 @@
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
+#' @param ... Absorbs arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_convert_section_headers <- function(x){
+post_process_convert_section_headers <- function(x,
+                                                 ...){
 
   # Find all lines starting with \section{ or \section*{
   section_inds <- grep("^\\\\section\\*?\\{", x)

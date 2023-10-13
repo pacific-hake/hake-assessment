@@ -4,11 +4,13 @@
 \alias{post_process_add_vert_space_after_header}
 \title{Add LaTeX vertical space code after the Executive Summary section header}
 \usage{
-post_process_add_vert_space_after_header(x)
+post_process_add_vert_space_after_header(x, ...)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
+
+\item{...}{Absorbs arguments meant for other functions}
 }
 \value{
 The modified Tex code, as a vector

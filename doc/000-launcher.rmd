@@ -2,7 +2,9 @@
 title: |
   | \vspace{5cm} **\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`}**
 project_variables:
-  accessibility_tagging: false # If true, alt text and figure tags are added
+  # If `true`, alternative figure text and figure tags are added for
+  # PDF web accessibility compliance
+  accessible_pdf: false
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
   science_name: "Merluccius productus"
@@ -23,11 +25,16 @@ project_variables:
   fig_title_font_size: 14
   fig_tick_font_size: 11
   fig_tick_length_cm: 0.15
+  fig_height: 5
+  fig_width: 8
+  # The latex position by default for all figures. Modify individual
+  # figure positions by editing the `doc/object-placement.csv` file
+  fig_pos: "htb"
+  fig_filetype: "png"
   knitr_figures_dir: "knitr-figs/"
   knitr_cache_dir: "knitr-cache/"
-  figure_height: 5
-  figure_width: 8
-  dots_per_inch: 100 # Increasing this increases the file size a LOT
+  # Increasing `dots_per_inch` for figure output increases the file size a LOT
+  dots_per_inch: 100
 author: |
   Joint Technical Committee of the Pacific Hake/Whiting Agreement \
   Between the Governments of the United States and Canada \
@@ -38,9 +45,13 @@ header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
  hake::hake_pdf:
    latex_engine: lualatex
-   keep_tex: true # Keep the tex file around for debugging purposes
-   toc: false # Do not modify, TOC is added by post processing
-   fig_caption: yes # Do not modify, use fig.cap knitr chunk option
+   # Keep the tex file around for debugging purposes
+   keep_tex: true
+   # Do not modify, Table of Contents is added by post processor
+   toc: false
+   # Do not modify, allows usage of `fig.cap` knitr chunk option for
+   # figure captions
+   fig_caption: yes
    includes:
      in_header: "preamble.tex"
 documentclass: article # Do not modify
@@ -61,6 +72,7 @@ test: false # Do not modify, code modifies this when using hake::gotest()
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
 
+# Current user's name on the system
 # If regular desktop R session, use Sys.getenv("USERNAME")
 # If on RStudio server, use Sys.getenv("RSTUDIO_USER_IDENTITY")
 user <- ifelse(Sys.getenv("USERNAME") == "",
@@ -68,7 +80,7 @@ user <- ifelse(Sys.getenv("USERNAME") == "",
                Sys.getenv("USERNAME"))
 
 if(rmarkdown::metadata$test){
-  # For gotest() sessions
+  # Necessary for `gotest()` testing
   if(user == "grandin"){
     devtools::load_all("~/github/pacific-hake/hake")
   }else{
@@ -79,30 +91,41 @@ if(rmarkdown::metadata$test){
   devtools::load_all(here::here())
 }
 
+# This grabs the YAML `project_variables` from above
 yaml_proj_vars <- rmarkdown::metadata$project_variables
 
+# Don't modify anything in `opts_chunk$set()`. Modify the YAML
+# `project_variables` above
 knitr::opts_chunk$set(
+  # `collapse` - If `TRUE`, source code and output will remain together in
+  # one chunk (inseparable from each other in the document). Probably
+  # doesn't apply for this document but remains in case any source code is
+  # shown
   collapse = TRUE,
+  # Don't show warnings, messages, or source code (respectively)
+  # in the document
   warning = FALSE,
   message = FALSE,
   echo = FALSE,
-  autodep = FALSE,
+  # Create the `knitr_cache_dir` and `knitr_figs_dir` directories for caching
   cache = TRUE,
+  cache.path = yaml_proj_vars$knitr_cache_dir,
+  # cache.lazy - if `FALSE`, load the models at the beginning all at once
   cache.lazy = FALSE,
+  # Prevents invalidation of the cache when only comments are entered
+  # in chunks
   cache.comments = FALSE,
   results = "hide",
   comment = "#>",
-  dev = "png",
+  dev = yaml_proj_vars$fig_filetype,
   dpi = yaml_proj_vars$dots_per_inch,
-  cache.path = yaml_proj_vars$knitr_cache_dir,
   fig.path = yaml_proj_vars$knitr_figures_dir,
   fig.align = "center",
-  fig.pos = "htb",
-  fig.height = yaml_proj_vars$figure_height,
-  fig.width = yaml_proj_vars$figure_width,
+  fig.pos = yaml_proj_vars$fig_pos,
+  fig.height = yaml_proj_vars$fig_height,
+  fig.width = yaml_proj_vars$fig_width,
   out.height = "\\textheight",
   out.width = "\\textwidth")
-
 ```
 
 \newpage
@@ -140,10 +163,13 @@ Andrew M. Edwards^2^
 This document should be cited as follows:
 
 Berger, A.M., C.J. Grandin, K.F. Johnson and A.M. Edwards.
-`r assess_yr`. Status of the `r sp` (whiting) stock in U.S. and Canadian
-waters in `r assess_yr`. Prepared by the Joint Technical Committee of 
-the U.S. and Canada `r sp`/Whiting Agreement, National Marine Fisheries
-Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
+`r rmarkdown::metadata$project_variables$assess_yr`. Status of the
+`r rmarkdown::metadata$project_variables$sp` (whiting) stock in U.S. and
+Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`.
+Prepared by the Joint Technical Committee of the U.S. and Canada
+`r rmarkdown::metadata$project_variables$sp`/Whiting Agreement, National
+Marine Fisheries Service and Fisheries and Oceans Canada.
+\pageref{LastPage}~p.
 
 
 TABLE OF CONTENTS GOES HERE - DO NOT DELETE OR MODIFY THIS LINE

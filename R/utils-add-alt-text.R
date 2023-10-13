@@ -10,10 +10,12 @@
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
+#' @param ... Absorbs arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-add_alt_text <- function(x){
+add_alt_text <- function(x,
+                         ...){
 
   # Strip whitespace from the beginning of all lines
   x <- gsub("^[[:space:]]+", "\\1", x)

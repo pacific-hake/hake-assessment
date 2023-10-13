@@ -5,13 +5,15 @@
 #' @param row_df A data frame which is a single row, and has the columns
 #' `type`, `label`, `file_name`, and `placement`
 #' @param row_num Which row this is from the object placement file
+#' @param ... Absorbs other arguments not meant for this function
 #'
 #' @return The modified Tex code, as a vector
 #' @export
 post_process_object_placement <- function(x,
                                           row_df,
                                           row_num,
-                                          num_search_lines = 5){
+                                          num_search_lines = 5,
+                                          ...){
 
   if(nrow(row_df) != 1){
     stop("There should only be one row in the data frame passed in to ",

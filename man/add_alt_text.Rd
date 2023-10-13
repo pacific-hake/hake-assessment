@@ -5,11 +5,13 @@
 \title{Add alternative text to figures in the document via the \code{tagpdf} LaTeX
 package}
 \usage{
-add_alt_text(x)
+add_alt_text(x, ...)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
+
+\item{...}{Absorbs arguments meant for other functions}
 }
 \value{
 The modified Tex code, as a vector

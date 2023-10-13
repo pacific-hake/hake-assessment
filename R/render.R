@@ -14,6 +14,8 @@ render <- function(input = "000-launcher.rmd",
                    output_dir = ".",
                    ...){
 
-  bookdown::render_book(envir = globalenv(),
+  bookdown::render_book(input = input,
+                        output_dir = output_dir,
+                        envir = globalenv(),
                         ...)
 }

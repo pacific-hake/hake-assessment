@@ -4,7 +4,7 @@
 \alias{post_process_longtables}
 \title{Post-process LaTeX longtables in TEX code}
 \usage{
-post_process_longtables(x, cont_page_just = c("l", "c", "r"))
+post_process_longtables(x, cont_page_just = c("l", "c", "r"), ...)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
@@ -12,6 +12,8 @@ post_process_longtables(x, cont_page_just = c("l", "c", "r"))
 
 \item{cont_page_just}{The justification for the continue page lines.
 Must be one of "l", "c", or "r"}
+
+\item{...}{Absorbs arguments meant for other functions}
 }
 \value{
 The modified Tex code, as a vector

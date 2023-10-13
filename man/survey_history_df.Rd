@@ -14,28 +14,12 @@ A data frame with 14 rows and 5 variables:
 \item{vessels}{A list of the vessels involved in the survey}
 \item{hauls.with.samples}{The number of hauls with samples taken}
 }
-
-A data frame with 14 rows and 7 variables:
-\describe{
-\item{year}{Year of survey}
-\item{total}{The total coastwide biomass estimate}
-\item{canada.total}{The Canadian biomass estimate}
-\item{canada.prop}
-{The proportion of the biomass estimate attributed to Canada}
-\item{total.cv}{The total coastwide uncertainty}
-\item{canada.cv}{The Canadian uncertainty}
-\item{us.cv}{The U.S. uncertainty}
-}
 }
 \usage{
-survey_history_df
-
 survey_history_df
 }
 \description{
 A data frame containing information about the history of all acoustic
 surveys done
-
-A data frame containing information about the biomass estimate by country
 }
 \keyword{datasets}

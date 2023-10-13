@@ -8,10 +8,12 @@
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
+#' @param ... Absorbs arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_landscape_figures <- function(x){
+post_process_landscape_figures <- function(x,
+                                           ...){
 
   # Add fancy landscape page type to landscape pages to remove the sideways
   # headers and footers, and add a page number at the bottom

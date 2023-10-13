@@ -5,11 +5,13 @@
 \title{Add LaTeX counter code so that the Executive summary has letters for
 tables and figures, and the rest of the document has numbers}
 \usage{
-post_process_add_counters(x)
+post_process_add_counters(x, ...)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
+
+\item{...}{Absorbs arguments meant for other functions}
 }
 \value{
 The modified Tex code, as a vector

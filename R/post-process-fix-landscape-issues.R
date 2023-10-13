@@ -4,10 +4,12 @@
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
+#' @param ... Absorbs arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_fix_landscape_issues <- function(x){
+post_process_fix_landscape_issues <- function(x,
+                                              ...){
 
   la <- grep(
     "^\\\\KOMAoptions\\{paper = landscape, DIV \\= last\\}$", x)

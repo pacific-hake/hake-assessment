@@ -2,35 +2,19 @@
 % Please edit documentation in R/hake-pdf.R
 \name{hake_pdf}
 \alias{hake_pdf}
-\title{Bookdown function to build the hake assessment document}
+\title{Custom function to allow the post processing steps to be run before
+PDF rendering}
 \usage{
-hake_pdf(
-  latex_engine = "lualatex",
-  prepub = FALSE,
-  accessibility_tagging = FALSE,
-  line_nums = FALSE,
-  line_nums_mod = 1,
-  pandoc_args = c("--top-level-division=chapter", "--wrap=none",
-    "--default-image-extension=png"),
-  ...
-)
+hake_pdf(...)
 }
 \arguments{
-\item{latex_engine}{See \code{\link[bookdown:html_document2]{bookdown::pdf_document2()}}}
-
-\item{prepub}{Logical. Is the document a draft or the final document}
-
-\item{line_nums}{Logical. Show line numbers}
-
-\item{line_nums_mod}{If \code{line_nums} is \code{TRUE}, show every nth line number}
-
-\item{pandoc_args}{See \code{\link[bookdown:html_document2]{bookdown::pdf_document2()}}}
-
-\item{...}{Passed to \code{\link[bookdown:html_document2]{bookdown::pdf_document2()}}}
+\item{...}{Variables from the YAML code (in `000-launcher.rmd``)
+passed to \code{\link[bookdown:html_document2]{bookdown::pdf_document2()}} and \code{\link[=post_process]{post_process()}}}
 }
 \value{
 The output from \code{\link[bookdown:html_document2]{bookdown::pdf_document2()}}
 }
 \description{
-Bookdown function to build the hake assessment document
+Custom function to allow the post processing steps to be run before
+PDF rendering
 }

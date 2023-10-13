@@ -6,11 +6,13 @@
 to center kable tables and left-justify the captions to the left side
 of the page}
 \usage{
-post_process_move_table_captions(x)
+post_process_move_table_captions(x, ...)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
+
+\item{...}{Absorbs arguments meant for other functions}
 }
 \value{
 The modified Tex code, as a vector

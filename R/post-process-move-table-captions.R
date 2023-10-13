@@ -4,10 +4,12 @@
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
+#' @param ... Absorbs arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_move_table_captions <- function(x){
+post_process_move_table_captions <- function(x,
+                                             ...){
 
   # Move a single caption horizontally
   # @param x Tex code, as a vector of lines read in from a TeX file by

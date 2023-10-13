@@ -5,11 +5,13 @@
 \title{Replace chapter with section for all sections, and prepend a "sub" to
 each section, subsection etc to lower each by one level}
 \usage{
-post_process_convert_section_headers(x)
+post_process_convert_section_headers(x, ...)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
+
+\item{...}{Absorbs arguments meant for other functions}
 }
 \value{
 The modified Tex code, as a vector
