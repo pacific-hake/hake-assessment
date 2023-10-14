@@ -10,8 +10,6 @@
 #' @param ages A vector of ages to include
 #' @param n_col The number of columns to hold panels
 #' @param rev Logical. If `TRUE`, reverse the order of the years
-#' @param axis_title_font_size Size of the font for the X and Y axis labels
-#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
 #' @param border_width Thickness of the border line. If `NULL` no border will
 #' be shown
 #' @param border_color Color of the column borders
@@ -33,8 +31,6 @@ plot_selex_uncertainty <- function(model,
                                    rev = FALSE,
                                    point_size = 1,
                                    point_fatten = 2,
-                                   axis_title_font_size = 14,
-                                   axis_tick_font_size = 12,
                                    border_width = 2,
                                    border_color = "black",
                                    border_linetype = "solid",
@@ -149,14 +145,7 @@ plot_selex_uncertainty <- function(model,
           strip.text.x = element_blank(),
           axis.text.y = element_blank(),
           axis.ticks.y = element_blank(),
-          plot.margin = margin(12, 12, 6, 0),
-          axis.text.x = element_text(color = "grey20",
-                                     size = axis_tick_font_size),
-          axis.title.x = element_text(color = "grey20",
-                                      size = axis_title_font_size),
-          axis.title.y = element_text(color = "grey20",
-                                      size = axis_title_font_size),
-          axis.ticks.length = unit(0.15, "cm")) +
+          plot.margin = margin(12, 12, 6, 0)) +
     ylab("Selectivity by year") +
     xlab("Age")
 
