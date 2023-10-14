@@ -17,22 +17,26 @@ plot_survey_fit_mcmc(
   post_med_line_width = 1,
   post_med_line_color = "royalblue",
   post_med_line_alpha = main_alpha,
-  post_med_point_size = 3,
+  post_med_point_size = 1.5,
   post_line_gap = ts_linegap,
   obs_line_width = 1,
   obs_line_color = "royalblue",
   obs_point_color = "black",
-  obs_point_size = 2,
+  obs_point_size = 1.5,
   obs_alpha = 1,
   extrasd_line_width = 0.5,
   extrasd_line_color = "royalblue",
   extrasd_point_color = "royalblue",
-  extrasd_point_size = 3,
+  extrasd_point_size = 2,
   extrasd_alpha = 1,
   glow = FALSE,
   glow_offset = 0.25,
-  glow_color = "white",
-  glow_alpha = 1
+  glow_color = "black",
+  glow_alpha = 1,
+  leg_xmin = survey_start_yr - 1,
+  leg_xmax = survey_end_yr - 2,
+  leg_ymin = ylim[2] - 1.5,
+  leg_ymax = ylim[2] - 0.25
 )
 }
 \arguments{
@@ -63,6 +67,9 @@ posterior lines}
 \item{post_med_line_alpha}{The transparency of the posterior median line}
 
 \item{post_med_point_size}{The size of the posterior median points}
+
+\item{post_line_gap}{The line gap value (separation between points and the
+line connecting them)}
 
 \item{obs_line_width}{The width of the error bar lines for observed
 values}
@@ -102,11 +109,17 @@ they can more easily be seen in contrast to the background posterior lines}
 \item{glow_alpha}{The transparency to use for the "glow" effect around
 lines}
 
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
+\item{leg_xmin}{The bottom left x value for drawing the white box under
+the legend}
 
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
+\item{leg_xmax}{The bottom right x value for drawing the white box under
+the legend}
 
-\item{axis_label_color}{Color for the axis labels and tick labels}
+\item{leg_ymin}{The top left y value for drawing the white box under
+the legend}
+
+\item{leg_ymax}{The top right y value for drawing the white box under
+the legend}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

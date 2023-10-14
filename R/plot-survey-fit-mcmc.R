@@ -11,9 +11,6 @@
 #' randomly drawn from all posteriors. if this is larger than the number
 #' of posteriors, all posterior lines will be shown
 #' @param show_legend Logical. If `TRUE`, show the legend
-#' @param axis_title_font_size Size of the font for the X and Y axis labels
-#' @param axis_tick_font_size Size of the font for the X and Y axis tick labels
-#' @param axis_label_color Color for the axis labels and tick labels
 #' @param ylim A vector of two values representing the minimum and maximum
 #' values to appear on the y-axis
 #' @param post_line_col The color of the thinner individual posterior lines
@@ -48,6 +45,16 @@
 #' @param glow_color The color to use for the "glow" effect around lines
 #' @param glow_alpha The transparency to use for the "glow" effect around
 #' lines
+#' @param post_line_gap The line gap value (separation between points and the
+#' line connecting them)
+#' @param leg_xmin The bottom left x value for drawing the white box under
+#' the legend
+#' @param leg_xmax The bottom right x value for drawing the white box under
+#' the legend
+#' @param leg_ymin The top left y value for drawing the white box under
+#' the legend
+#' @param leg_ymax The top right y value for drawing the white box under
+#' the legend
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
@@ -62,22 +69,26 @@ plot_survey_fit_mcmc <- function(model,
                                  post_med_line_width = 1,
                                  post_med_line_color = "royalblue",
                                  post_med_line_alpha = main_alpha,
-                                 post_med_point_size = 3,
+                                 post_med_point_size = 1.5,
                                  post_line_gap = ts_linegap,
                                  obs_line_width = 1,
                                  obs_line_color = "royalblue",
                                  obs_point_color = "black",
-                                 obs_point_size = 2,
+                                 obs_point_size = 1.5,
                                  obs_alpha = 1,
                                  extrasd_line_width = 0.5,
                                  extrasd_line_color = "royalblue",
                                  extrasd_point_color = "royalblue",
-                                 extrasd_point_size = 3,
+                                 extrasd_point_size = 2,
                                  extrasd_alpha = 1,
                                  glow = FALSE,
                                  glow_offset = 0.25,
-                                 glow_color = "white",
-                                 glow_alpha = 1){
+                                 glow_color = "black",
+                                 glow_alpha = 1,
+                                 leg_xmin = survey_start_yr - 1,
+                                 leg_xmax = survey_end_yr - 2,
+                                 leg_ymin = ylim[2] - 1.5,
+                                 leg_ymax = ylim[2] - 0.25){
 
   type <- match.arg(type)
 
@@ -309,6 +320,12 @@ plot_survey_fit_mcmc <- function(model,
     symbol_y <- max(ylim) - 0.2 * type_off
 
     g <- g +
+      # White rectangle acts as legend background
+      geom_rect(aes(xmin = leg_xmin,
+                    xmax = leg_xmax,
+                    ymin = leg_ymin,
+                    ymax = leg_ymax),
+                fill = "white") +
       # Error bar symbol construction
       annotate("segment",
                x = symbol_x_start,
