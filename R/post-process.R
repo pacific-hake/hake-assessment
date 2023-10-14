@@ -66,6 +66,10 @@ post_process <- function(x, ...){
   # as it is bumped up really close to the "Executive Summary" section header
   x <- post_process_add_vert_space_after_header(x, ...)
 
+  # Add phantomsection tag to sections that are unnumbered to force the
+  # bookmark links to work right for them
+  x <- post_process_repair_unnumbered_section_links(x, ...)
+
   # Add horizontal lines to the decision table headers ----
   # across multiple columns
   x <- post_process_add_horiz_lines_decision_table(x, ...)
