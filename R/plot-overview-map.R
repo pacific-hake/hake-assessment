@@ -16,7 +16,8 @@ plot_overview_map <- function(
     states_df,
     crs = 4326,
     extents = tibble(lon = c(-140, -113),
-                     lat = c(33, 58))){
+                     lat = c(33, 58)),
+    label_size = 4){
 
 
   coast <- ne_states(country = c("United States of America",
@@ -107,14 +108,14 @@ plot_overview_map <- function(
                      aes(x = lon,
                          y = lat,
                          label = name),
-                     size = 5,
+                     size = label_size,
                      color = "black") +
     geom_text_repel(data = se_alaska,
                     aes(x = lon,
                         y = lat,
                         label = name),
                     xlim = c(-131, NA),
-                    size = 5,
+                    size = label_size,
                     color = "black",
                     segment.size = 1,
                     arrow = arrow(length = unit(0.02, "npc"))) +
@@ -123,7 +124,7 @@ plot_overview_map <- function(
                         y = lat,
                         label = name),
                     xlim = c(NA, -135),
-                    size = 4.5,
+                    size = label_size,
                     segment.size = 0.8,
                     arrow = arrow(length = unit(0.01, "npc"))) +
     geom_text_repel(data = ports_left_south,
@@ -131,7 +132,7 @@ plot_overview_map <- function(
                         y = lat,
                         label = name),
                     xlim = c(NA, -125),
-                    size = 4.5,
+                    size = label_size,
                     segment.size = 0.8,
                     arrow = arrow(length = unit(0.01, "npc"))) +
     geom_text_repel(data = ports_right_north,
@@ -139,7 +140,7 @@ plot_overview_map <- function(
                         y = lat,
                         label = name),
                     xlim = c(-129, NA),
-                    size = 4.5,
+                    size = label_size,
                     segment.size = 0.8,
                     arrow = arrow(length = unit(0.01, "npc"))) +
     geom_text_repel(data = ports_right_south,
@@ -147,7 +148,7 @@ plot_overview_map <- function(
                         y = lat,
                         label = name),
                     xlim = c(-122, NA),
-                    size = 4.5,
+                    size = label_size,
                     segment.size = 0.8,
                     arrow = arrow(length = unit(0.01, "npc"))) +
     geom_text_repel(data = ports_right_mid_south,
@@ -155,7 +156,7 @@ plot_overview_map <- function(
                         y = lat,
                         label = name),
                     xlim = c(-123.75, NA),
-                    size = 4.5,
+                    size = label_size,
                     segment.size = 0.8,
                     arrow = arrow(length = unit(0.01, "npc"))) +
     geom_text_repel(data = ports_left_far_south,
@@ -163,13 +164,13 @@ plot_overview_map <- function(
                         y = lat,
                         label = name),
                     xlim = c(NA, -121),
-                    size = 4.5,
+                    size = label_size,
                     segment.size = 0.8,
                     arrow = arrow(length = unit(0.01, "npc"))) +
     coord_sf(xlim = extents[[1]],
              ylim = extents[[2]]) +
-    ylab(paste0("Latitude (", intToUtf8(176), ")")) +
-    xlab(paste0("Longitude (", intToUtf8(176), ")"))
+    ylab(paste0("Latitude (°)")) +
+    xlab(paste0("Longitude (°)"))
 
     g
 }

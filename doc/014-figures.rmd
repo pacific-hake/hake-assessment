@@ -11,7 +11,7 @@ document or past assessment documents are shown.
 (ref:main-overview-map-alt) This figure shows many ports and cities of
 interest for the hake fishery.
 
-```{r main-overview-map-fig, fig.cap = "(ref:main-overview-map-cap)", fig.width = 6}
+```{r main-overview-map-fig, fig.cap = "(ref:main-overview-map-cap)", fig.height = 10}
 
 plot_overview_map(ports_df, states_df)
 ```
