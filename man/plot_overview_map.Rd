@@ -8,7 +8,8 @@ plot_overview_map(
   ports_df,
   states_df,
   crs = 4326,
-  extents = tibble(lon = c(-140, -113), lat = c(33, 58))
+  extents = tibble(lon = c(-140, -113), lat = c(33, 58)),
+  label_size = 4
 )
 }
 \arguments{
