@@ -29,5 +29,8 @@ knitr figures directories
 }
 \details{
 This function can be called from anywhere in the hake project and will
-clean the "doc" directory, not the local directory
+clean the "doc" directory, not the local directory. If you are testing
+with \code{gotest()} and are in a temporary directory, the cleaning will be
+applied there instead. The cleaning takes place on whatever directory
+is at \code{here::here("doc")}
 }
