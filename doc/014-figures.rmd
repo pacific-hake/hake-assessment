@@ -344,17 +344,20 @@ p[[1]] <-
                    ylim = c(0, 2.5),
                    x_labs_mod = 10,
                    wrap_y_label = TRUE,
+                   tick_prop = 2,
                    leg_pos = "none")
 p[[2]] <-
   plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
                leg_pos = "none",
                x_labs_mod = 10,
+               tick_prop = 2,
                line_width = 0.1)
 
 p[[3]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
                          survey_type = "age2",
                          rev_colors = FALSE,
+                         tick_prop = 2,
                          leg_pos = "none")
 
 p[[4]] <-
@@ -364,6 +367,7 @@ p[[4]] <-
                          ylim = c(0, 11),
                          y_breaks = seq(0, 11, by = 2),
                          rev_colors = FALSE,
+                         tick_prop = 2,
                          leg_pos = "none")
 
 # Grid of 2 rows and 1 column with one plot at the top (biomass)
@@ -379,6 +383,7 @@ full_p[[1]] <-
                leg_ncol = 2,
                leg_font_size = 7,
                wrap_y_label = TRUE,
+               tick_prop = 2,
                leg_pos = c(0.72, 0.82))
 
 full_p[[2]] <- quad_grid
