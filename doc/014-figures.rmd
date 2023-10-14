@@ -338,6 +338,7 @@ the bridging model where the 2022 catch is added.
 
 ```{r main-bridge-summary-fig, fig.cap = "(ref:main-bridge-summary-cap)", fig.height = 8}
 
+panels_title_size <- 11
 p <- list()
 p[[1]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
@@ -345,20 +346,32 @@ p[[1]] <-
                    x_labs_mod = 10,
                    wrap_y_label = TRUE,
                    tick_prop = 2,
-                   leg_pos = "none")
+                   leg_pos = "none") +
+  theme(axis.title.y = element_text(size = panels_title_size),
+        axis.title.x = element_text(size = panels_title_size),
+        # plot.margin: top, right,bottom, left
+        plot.margin = margin(12, 12, 6, 12))
 p[[2]] <-
   plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
                leg_pos = "none",
                x_labs_mod = 10,
                tick_prop = 2,
-               line_width = 0.1)
+               line_width = 0.1) +
+  theme(axis.title.y = element_text(size = panels_title_size),
+        axis.title.x = element_text(size = panels_title_size),
+        # plot.margin: top, right,bottom, left
+        plot.margin = margin(12, 12, 6, 12))
 
 p[[3]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
                          survey_type = "age2",
                          rev_colors = FALSE,
                          tick_prop = 2,
-                         leg_pos = "none")
+                         leg_pos = "none") +
+  theme(axis.title.y = element_text(size = panels_title_size),
+        axis.title.x = element_text(size = panels_title_size),
+        # plot.margin: top, right,bottom, left
+        plot.margin = margin(12, 12, 6, 12))
 
 p[[4]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
@@ -368,7 +381,11 @@ p[[4]] <-
                          y_breaks = seq(0, 11, by = 2),
                          rev_colors = FALSE,
                          tick_prop = 2,
-                         leg_pos = "none")
+                         leg_pos = "none") +
+  theme(axis.title.y = element_text(size = panels_title_size),
+        axis.title.x = element_text(size = panels_title_size),
+        # plot.margin: top, right,bottom, left
+        plot.margin = margin(12, 12, 6, 12))
 
 # Grid of 2 rows and 1 column with one plot at the top (biomass)
 # and 4 plots embedded in another grid (quad_grid) at the bottom
@@ -384,7 +401,11 @@ full_p[[1]] <-
                leg_font_size = 7,
                wrap_y_label = TRUE,
                tick_prop = 2,
-               leg_pos = c(0.72, 0.82))
+               leg_pos = c(0.72, 0.82)) +
+  theme(axis.title.y = element_text(size = panels_title_size),
+        axis.title.x = element_text(size = panels_title_size),
+        # plot.margin: top, right,bottom, left
+        plot.margin = margin(12, 12, 6, 12))
 
 full_p[[2]] <- quad_grid
 
@@ -416,7 +437,8 @@ plot_survey_fit_mcmc(base_model,
                      n_posts = 1000,
                      glow = TRUE,
                      glow_color = "black",
-                     glow_offset = 0.5)
+                     glow_offset = 0.5,
+                     leg_ymin = 4.25)
 ```
 
 (ref:main-age1-index-fit-mcmc-cap) Fits (colored lines) to the relative
