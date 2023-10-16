@@ -50,7 +50,7 @@ create_data_hake("maturity_samples_df",
 
 create_data_hake("weight_age_sample_sizes_df",
                  read_csv(file.path(load_dir,
-                                    "wtatage_all_samplesize.csv"),
+                                    "wtatage-all-samplesize.csv"),
                           col_types = cols(),
                           show_col_types = FALSE))
 
