@@ -1,25 +1,24 @@
 ```{r load-project-variables, echo = FALSE}
 
 # Put any variables you intend to use in the text here.
-# The function f() is for formatting and is defined in
-# r-functions/utilities.r
+# Note that the function f() is for formatting and is defined in
+# `R/utils-f.R`
 
 # -----------------------------------------------------------------------------
-# The forecasting yrs and probabilities can be set to whatever is required, the
-#  code is set up to automatically accommodate changes
-#  Change them in all.R
-# -----------------------------------------------------------------------------
-
-# -----------------------------------------------------------------------------
-# ct_levels is a list of N 3-item lists of catch levels with values:
-#  1. values for catch to forecast
-#  2. their pretty names to appear in the document
-#  3. their directory names
-# Each element of the list is a list of length equal to the
-# number of elements in forecast_yrs.
-# See the calc.ct.levels() and fetch.ct.levels() functions
-#  is load-models.R for details. The NA's below will be populated in each model
-#  by those two functions.
+# ct_levels is a list of N 3-item lists of catch levels with values found in
+# `doc/forecast-descriptions.csv` and pre-loaded into the base_model.
+#  Its columns are:
+#  1-4. Values for catch to forecast for four years (1 column each)
+#  5.   Their pretty names to appear in the document
+#  6.   Their directory names
+#  7    The forecast type (constant for all years or 10% reduction each
+#       year, etc)
+#  8.   Special - Signifies that the catch level is a special one which will
+#       have additional text in the table (default HR, SPR100, etc)
+# Each element of the `ct_levels` list is a list of length 3, .representing
+# 1. A vector of the catch levels
+# 2. The name of the catch scenario to be shown in the decision tables
+# 3. The directory name for the catch scenario
 # -----------------------------------------------------------------------------
 ct_levels_vals <- base_model$ct_levels_vals
 ct_levels <- base_model$ct_levels
@@ -110,7 +109,7 @@ can_allotment_percent_last_yr <- f(pull(ct_last1, `Canada TAC`) /
 us_allotment_percent_last_yr <- f(pull(ct_last1, `U.S. TAC`) /
                                     pull(ct_last1, `Total TAC`) * 100, 2)
 # Further TAC sources ---------------------------------------------------------
-ft <- further_tac_df # (defined in inst/extdata/data/02-load-data-tables.rnw)
+ft <- further_tac_df
 last_yr_us_tribal <- ft |>
   filter(Year == last_data_yr) |>
   pull(us_tribal_quota)
