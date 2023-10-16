@@ -35,7 +35,7 @@ post_process <- function(x, ...){
   # to tell the LaTeX compiler to start numbering the sections using letters
   # and set u-p tables, figures, and equations to be of the format A.2 for
   # example. It also adds TOC information so this has to come before the TOC
-  # ppst processing step
+  # post-processing step
   x <- post_process_add_start_appendices_code(x, ..)
 
   # Add counter reset for all appendices so each lettered appendix starts
