@@ -1,7 +1,7 @@
 #' hake: A package for creating the Pacific hake stock assessment document
 #'
 #' Uses the `knitr` R package along with `lualatex` to generate a PDF
-#' of the stock assessment document. Aldo included are beamer presentation
+#' of the stock assessment document. Also included are beamer presentation
 #' templates for the various meetings required.
 #'
 #' @import adnuts coda dplyr
