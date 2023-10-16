@@ -211,14 +211,14 @@ last_yr_us_tac <- ct_last1 |>
   f(0)
 # ... US Attainment by fleet, last year ---------------------------------------
 last_yr_us_cp_ct_percent <- f(last_yr_us_cp_ct /
-                                   last_yr_us_cp_quota_reallocated * 100,
-                                 1)
+                                last_yr_us_cp_quota_reallocated * 100,
+                              1)
 last_yr_us_ms_ct_percent <- f(last_yr_us_ms_ct /
-                                   last_yr_us_ms_quota_reallocated * 100,
-                                 1)
+                                last_yr_us_ms_quota_reallocated * 100,
+                              1)
 last_yr_us_shore_ct_percent <- f(last_yr_us_shore_ct /
-                                      last_yr_us_shore_quota_reallocated * 100,
-                                    1)
+                                   last_yr_us_shore_quota_reallocated * 100,
+                                 1)
 
 # ... Canada Attainment, catch, and TAC ---------------------------------------
 last_yr_can_carryover <- ft |>
@@ -244,10 +244,10 @@ last_yr_can_tac_jv <- ft |>
   pull(can_jv_tac) |>
   f(0)
 last_yr_can_shoreside_tac <- ((ct_last1 |>
-                                   pull(`Canada TAC`)) -
-                                  (ft |>
-                                     filter(Year == last_data_yr) |>
-                                     pull(can_jv_tac))) |>
+                                 pull(`Canada TAC`)) -
+                                (ft |>
+                                   filter(Year == last_data_yr) |>
+                                   pull(can_jv_tac))) |>
   f(0)
 latest_yr_can_jv <- ct |>
   filter(`Canada Joint-venture` > 0) |>
@@ -356,7 +356,7 @@ ratio_bio_median_curr_last <- mc$smed[names(mc$smed) == end_yr] /
 if(ratio_bio_median_curr_last > 1){
   diff_bio_median_last_curr <-
     f((mc$smed[names(mc$smed) == end_yr] /
-                mc$smed[names(mc$smed) == last_data_yr] - 1) * 100)
+         mc$smed[names(mc$smed) == last_data_yr] - 1) * 100)
   diff_bio_median_last_curr_text <- "higher than"
 }else{
   diff_bio_median_last_curr <-
@@ -455,7 +455,7 @@ median_intensity_2007_to_2011_max <- f(max(median_intensity_2007_to_2011) * 100,
 # Includes > end_yr
 median_intensity_above_one_all_yrs <- names(which(mc$pmed > 1))
 median_intensity_above_one_yrs <- median_intensity_above_one_all_yrs[
-         median_intensity_above_one_all_yrs < end_yr]
+  median_intensity_above_one_all_yrs < end_yr]
 median_intensity_above_1_text <- paste(
   ifelse(
     test = !length(median_intensity_above_one_all_yrs),
@@ -529,12 +529,12 @@ med_est_2019_rec <-
   f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]), 1)
 # % increase from last year
 perc_inc_2021_rec_from_last_yr <- f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]) /
-(prev_assess_recruitment_med)["2021"]) * 100), 0)
+                                        (prev_assess_recruitment_med)["2021"]) * 100), 0)
 perc_inc_2020_rec_from_last_yr <- f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
-(prev_assess_recruitment_med)["2020"]) * 100), 0)
+                                        (prev_assess_recruitment_med)["2020"]) * 100), 0)
 perc_inc_2019_rec_from_last_yr <- f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]) /
-(prev_assess_recruitment_med)["2019"]) * 100), 0)
-  
+                                        (prev_assess_recruitment_med)["2019"]) * 100), 0)
+
 # Biomass probabilities -------------------------------------------------------
 # ... biomass declines next year to year after with zero catch ----------------
 zero_catch_prob_bio_down_1 <- f(base_model$risks[[1]][1, 2] |> pull())
@@ -555,7 +555,7 @@ largest_next_catch_index <-
   which.max(pull(base_model$risks[[1]][, paste0("ForeCatch_", assess_yr)]))
 largest_next_catch <-
   f(pull(base_model$risks[[1]][largest_next_catch_index, paste0("ForeCatch_",
-                                                           assess_yr)]),
+                                                                assess_yr)]),
     0)
 prob_next_over_b10 <-
   f(100 - as.numeric(base_model$risks[[1]][largest_next_catch_index,
@@ -664,11 +664,11 @@ us_age_n_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr, "n.hauls"] |>
 us_age_n_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr, "n.hauls"] |> 
   pull()
 us_last_yr_age_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr,
-                                 grep("^a",
-                                      colnames(us_cp_age_df))]
+                                  grep("^a",
+                                       colnames(us_cp_age_df))]
 us_last_yr_age_cp <-
   us_last_yr_age_cp[order(unlist(us_last_yr_age_cp[1, , drop = TRUE]),
-                            decreasing = TRUE)] |> 
+                          decreasing = TRUE)] |> 
   unlist()
 us_age_1_prop_age_cp <- as.numeric(gsub("^a", "", names(us_last_yr_age_cp)[1]))
 us_age_1_prop_cp <- f(us_last_yr_age_cp[1] * 100, 1)
@@ -679,11 +679,11 @@ us_age_3_prop_cp <- f(us_last_yr_age_cp[3] * 100, 1)
 us_age_4_prop_age_cp <- as.numeric(gsub("^a", "", names(us_last_yr_age_cp)[4]))
 us_age_4_prop_cp <- f(us_last_yr_age_cp[4] * 100, 1)
 us_last_yr_age_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr,
-                                    grep("^a",
-                                         colnames(us_ms_age_df))]
+                                  grep("^a",
+                                       colnames(us_ms_age_df))]
 us_last_yr_age_ms <-
   us_last_yr_age_ms[order(unlist(us_last_yr_age_ms[1, , drop = TRUE]),
-                            decreasing = TRUE)] |> 
+                          decreasing = TRUE)] |> 
   unlist()
 us_age_1_prop_age_ms <- as.numeric(gsub("^a", "", names(us_last_yr_age_ms)[1]))
 us_age_1_prop_ms <- f(us_last_yr_age_ms[1] * 100, 1)
@@ -694,8 +694,8 @@ us_age_3_prop_ms <- f(us_last_yr_age_ms[3] * 100, 1)
 us_age_4_prop_age_ms <- as.numeric(gsub("^a", "", names(us_last_yr_age_ms)[4]))
 us_age_4_prop_ms <- f(us_last_yr_age_ms[4] * 100, 1)
 us_last_yr_age_shore <- us_ss_age_df[us_ss_age_df$year == last_data_yr,
-                                       grep("^a",
-                                            colnames(us_ss_age_df))]
+                                     grep("^a",
+                                          colnames(us_ss_age_df))]
 
 us_last_yr_age_shore <-
   us_last_yr_age_shore[order(unlist(us_last_yr_age_shore[1, , drop = TRUE]),
@@ -899,7 +899,7 @@ theta_survey <- base_model$mcmcparams$theta_survey
 dm_weight_fishery <- round(theta_fishery / (1 + theta_fishery), 3)
 dm_weight_survey <- round(theta_survey / (1 + theta_survey), 3)
 
-  # MCMC quantiles for the fishery DM parameter
+# MCMC quantiles for the fishery DM parameter
 log_theta_fishery_lower <- base_model$mcmcvals$log_theta_fishery_lower
 log_theta_fishery_median <- base_model$mcmcvals$log_theta_fishery_median
 log_theta_fishery_upper <- base_model$mcmcvals$log_theta_fishery_upper
@@ -961,108 +961,108 @@ prob_decline_from_2012_to_2013_historic <-
   as.numeric() |>
   f()
 
- prob_decline_from_2012_to_2013_curr <-
-   historical_probs_df |>
-   filter(Year == 2012) |>
-   select("P_decline_curr") |>
-   as.numeric() |>
-   f()
+prob_decline_from_2012_to_2013_curr <-
+  historical_probs_df |>
+  filter(Year == 2012) |>
+  select("P_decline_curr") |>
+  as.numeric() |>
+  f()
 
- # Retrospective setup for the document ----------------------------------------
- # retro_model_nms <- c(base_model_name,
- #                        map_chr(plot_retro_yrs, ~{
- #                          paste0("-", .x, ifelse(.x == 1, " year", " years"))
- #                        }))
- # retro_lst <- list(base_model)
- # for(i in plot_retro_yrs){
- #   retro_lst[[i + 1]] <- base_model$retros[[i]]
- # }
- # retro_models_end_yr <- c(end_yr, end_yr - plot_retro_yrs)
- # # Assemble the retrospective list with the base as the first element
- # 
- # d_obj_retro_biomass <-
- #   create_group_df_biomass(retro_lst,
- #                           retro_model_nms,
- #                           end_yrs = retro_models_end_yr)
- # d_obj_retro_rel_biomass <-
- #   create_group_df_biomass(retro_lst,
- #                           retro_model_nms,
- #                           rel = TRUE,
- #                           end_yrs = retro_models_end_yr)
- # d_obj_retro_recr <-
- #   create_group_df_recr(retro_lst,
- #                        retro_model_nms,
- #                        end_yrs = retro_models_end_yr)
+# Retrospective setup for the document ----------------------------------------
+# retro_model_nms <- c(base_model_name,
+#                        map_chr(plot_retro_yrs, ~{
+#                          paste0("-", .x, ifelse(.x == 1, " year", " years"))
+#                        }))
+# retro_lst <- list(base_model)
+# for(i in plot_retro_yrs){
+#   retro_lst[[i + 1]] <- base_model$retros[[i]]
+# }
+# retro_models_end_yr <- c(end_yr, end_yr - plot_retro_yrs)
+# # Assemble the retrospective list with the base as the first element
+# 
+# d_obj_retro_biomass <-
+#   create_group_df_biomass(retro_lst,
+#                           retro_model_nms,
+#                           end_yrs = retro_models_end_yr)
+# d_obj_retro_rel_biomass <-
+#   create_group_df_biomass(retro_lst,
+#                           retro_model_nms,
+#                           rel = TRUE,
+#                           end_yrs = retro_models_end_yr)
+# d_obj_retro_recr <-
+#   create_group_df_recr(retro_lst,
+#                        retro_model_nms,
+#                        end_yrs = retro_models_end_yr)
 
- # Set up bridge model groups for plotting ------------------------------------
- iter <- 0
- d_obj_bridge_biomass <- map2(bridge_models, bridge_models_names, ~{
-   iter <- iter + 1
-   create_group_df_biomass(.x, .y,
-                           end_yrs = bridge_model_end_yr[[iter]])
- })
- iter <- 0
- d_obj_bridge_rel_biomass <- map2(bridge_models, bridge_models_names, ~{
-   iter <- iter + 1
-   create_group_df_biomass(.x, .y,
-                           rel = TRUE,
-                           end_yrs = bridge_model_end_yr[[iter]])
- })
- iter <- 0
- d_obj_bridge_recdev <- map2(bridge_models, bridge_models_names, ~{
-   iter <- iter + 1
-   create_group_df_recr(.x, .y,
-                        devs = TRUE,
-                        end_yrs = bridge_model_end_yr[[iter]])
- })
- iter <- 0
- d_obj_bridge_age1_index <- map2(bridge_models, bridge_models_names, ~{
-   iter <- iter + 1
-   create_group_df_index(.x, .y,
-                         survey_type = "age1")
- })
- iter <- 0
- d_obj_bridge_age2_index <- map2(bridge_models, bridge_models_names, ~{
-   iter <- iter + 1
-   create_group_df_index(.x, .y,
-                         survey_type = "age2")
- })
+# Set up bridge model groups for plotting ------------------------------------
+iter <- 0
+d_obj_bridge_biomass <- map2(bridge_models, bridge_models_names, ~{
+  iter <- iter + 1
+  create_group_df_biomass(.x, .y,
+                          end_yrs = bridge_model_end_yr[[iter]])
+})
+iter <- 0
+d_obj_bridge_rel_biomass <- map2(bridge_models, bridge_models_names, ~{
+  iter <- iter + 1
+  create_group_df_biomass(.x, .y,
+                          rel = TRUE,
+                          end_yrs = bridge_model_end_yr[[iter]])
+})
+iter <- 0
+d_obj_bridge_recdev <- map2(bridge_models, bridge_models_names, ~{
+  iter <- iter + 1
+  create_group_df_recr(.x, .y,
+                       devs = TRUE,
+                       end_yrs = bridge_model_end_yr[[iter]])
+})
+iter <- 0
+d_obj_bridge_age1_index <- map2(bridge_models, bridge_models_names, ~{
+  iter <- iter + 1
+  create_group_df_index(.x, .y,
+                        survey_type = "age1")
+})
+iter <- 0
+d_obj_bridge_age2_index <- map2(bridge_models, bridge_models_names, ~{
+  iter <- iter + 1
+  create_group_df_index(.x, .y,
+                        survey_type = "age2")
+})
 
- # Set up sensitivity model groups for plotting -------------------------------
- # Biomass  -------------------------------------------------------------------
- d_obj_sens_biomass <- map2(sens_models, sens_models_names, ~{
-   create_group_df_biomass(.x, .y)
- })
- d_obj_sens_rel_biomass <- map2(sens_models, sens_models_names, ~{
-   create_group_df_biomass(.x, .y, rel = TRUE)
- })
- d_obj_sens_recr <- map2(sens_models, sens_models_names, ~{
-   create_group_df_recr(.x, .y)
- })
- d_obj_sens_recdev <- map2(sens_models, sens_models_names, ~{
-   create_group_df_recr(.x, .y, devs = TRUE)
- })
- # extra mcmc required for these
- d_obj_sens_age1_index_grp2 <- map2(sens_models[2], sens_models_names[2], ~{
-   create_group_df_index(.x, .y, "age1")
- })
- d_obj_sens_age1_index_grp3 <- map2(sens_models[3], sens_models_names[3], ~{
-   create_group_df_index(.x, .y, "age1")
- })
- d_obj_sens_age1_index_grp4 <- map2(sens_models[4], sens_models_names[4], ~{
-   create_group_df_index(.x, .y, "age1")
- })
- d_obj_sens_age2_index_grp2 <- map2(sens_models[2], sens_models_names[2], ~{
-   create_group_df_index(.x, .y, "age2")
- })
- d_obj_sens_age2_index_grp3 <- map2(sens_models[3], sens_models_names[3], ~{
-   create_group_df_index(.x, .y, "age2")
- })
- d_obj_sens_age2_index_grp4 <- map2(sens_models[4], sens_models_names[4], ~{
-   create_group_df_index(.x, .y, "age2")
- })
+# Set up sensitivity model groups for plotting -------------------------------
+# Biomass  -------------------------------------------------------------------
+d_obj_sens_biomass <- map2(sens_models, sens_models_names, ~{
+  create_group_df_biomass(.x, .y)
+})
+d_obj_sens_rel_biomass <- map2(sens_models, sens_models_names, ~{
+  create_group_df_biomass(.x, .y, rel = TRUE)
+})
+d_obj_sens_recr <- map2(sens_models, sens_models_names, ~{
+  create_group_df_recr(.x, .y)
+})
+d_obj_sens_recdev <- map2(sens_models, sens_models_names, ~{
+  create_group_df_recr(.x, .y, devs = TRUE)
+})
+# extra mcmc required for these
+d_obj_sens_age1_index_grp2 <- map2(sens_models[2], sens_models_names[2], ~{
+  create_group_df_index(.x, .y, "age1")
+})
+d_obj_sens_age1_index_grp3 <- map2(sens_models[3], sens_models_names[3], ~{
+  create_group_df_index(.x, .y, "age1")
+})
+d_obj_sens_age1_index_grp4 <- map2(sens_models[4], sens_models_names[4], ~{
+  create_group_df_index(.x, .y, "age1")
+})
+d_obj_sens_age2_index_grp2 <- map2(sens_models[2], sens_models_names[2], ~{
+  create_group_df_index(.x, .y, "age2")
+})
+d_obj_sens_age2_index_grp3 <- map2(sens_models[3], sens_models_names[3], ~{
+  create_group_df_index(.x, .y, "age2")
+})
+d_obj_sens_age2_index_grp4 <- map2(sens_models[4], sens_models_names[4], ~{
+  create_group_df_index(.x, .y, "age2")
+})
 
- # Values used in management presentation
+# Values used in management presentation
 last_yr_catch_fore <- base_model$ct_levels[[ct_actual_ind]][[1]][1]
 ct_col <- paste0("ForeCatch_", forecast_yrs[1])
 ct_col_sym <- sym(ct_col)
