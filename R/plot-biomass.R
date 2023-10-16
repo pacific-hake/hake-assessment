@@ -199,8 +199,7 @@ plot_biomass <- function(
           legend.text.align = 0,
           axis.text.x = element_text(vjust = -0.25),
           axis.title.x = element_text(vjust = -0.25),
-          axis.title.y = element_text(vjust = 2),
-          plot.margin = margin(12, 12, 6, 0)) +
+          axis.title.y = element_text(vjust = 2)) +
     labs(x = "Year",
          y = ifelse(wrap_y_label,
                     add_newlines("Female Spawning Biomass+(Mt)"),

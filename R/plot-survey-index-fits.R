@@ -118,8 +118,7 @@ plot_survey_index_fits <- function(
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
           axis.text.x = element_text(vjust = -2),
-          axis.title.x = element_text(vjust = -2),
-          plot.margin = margin(12, 12, 12, 0)) +
+          axis.title.x = element_text(vjust = -2)) +
     xlab("Year") +
     ylab(y_title)
 

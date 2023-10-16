@@ -155,10 +155,7 @@ plot_rel_biomass <- function(
           # title don't overlap each other
           axis.text.x = element_text(vjust = vjust_x_labels),
           axis.title.x = element_text(vjust = vjust_x_labels),
-          axis.text.y = element_text(color = y_colors),
-          # Needed to avoid x-axis label cutting off
-          # margin() arguments: (top, right, bottom, left)
-          plot.margin = margin(12, 12, 7, 0)) +
+          axis.text.y = element_text(color = y_colors)) +
     labs(x = "Year",
          y = ifelse(wrap_y_label,
                     expression(atop("Rel. Spawning Biomass",
