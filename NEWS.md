@@ -42,9 +42,8 @@ implemented in the hake assessment codebase in 2023 between the 2023 and
   ([post_process_table_of_contents](https://github.com/pacific-hake/hake-assessment/blob/package-dev/R/post-process-table-of-contents.R))
   which allows the TOC to be modified very easily. There is a line in
   `000-launcher.rmd` that reads
-  `TABLE OF CONTENTS GOES HERE - DO NOT DELETE OR MODIFY THIS LINE`. This
-  is a required tag for the post-processor which will inject the table of
-  contents code there.
+  `TABLE OF CONTENTS GOES HERE`. This is a required tag for the post-processor
+  which will inject the table of contents code there.
 * The Executive Summary requires a tag (`Executive summary EOF`) at the end
   of it to signal the post-processor to restart numbering of tables and
   figures and to switch from letters to numbers. See

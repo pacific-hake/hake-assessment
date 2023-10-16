@@ -27,8 +27,8 @@ post_process_table_of_contents <- function(x,
                                            subsubsection_num_width_inch = 0.45,
                                            ...){
 
-  toc_indicator_line <- paste0("TABLE OF CONTENTS GOES HERE - ",
-                               "DO NOT DELETE OR MODIFY THIS LINE")
+  toc_indicator_line <- "TABLE OF CONTENTS GOES HERE"
+
   toc_ind <- grep(toc_indicator_line, x)
   if(!length(toc_ind)){
     stop("The Table of contents tag was not found. It must be present ",
