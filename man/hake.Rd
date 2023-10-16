@@ -6,6 +6,6 @@
 \title{hake: A package for creating the Pacific hake stock assessment document}
 \description{
 Uses the \code{knitr} R package along with \code{lualatex} to generate a PDF
-of the stock assessment document. Aldo included are beamer presentation
+of the stock assessment document. Also included are beamer presentation
 templates for the various meetings required.
 }
