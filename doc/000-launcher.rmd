@@ -27,6 +27,8 @@ project_variables:
   fig_tick_length_cm: 0.15
   fig_height: 5
   fig_width: 8
+  # margin arguments are in this order: top, right,bottom, left
+  fig_margins: "margin(12, 12, 12, 12)"
   # The latex position by default for all figures. Modify individual
   # figure positions by editing the `doc/object-placement.csv` file
   fig_pos: "htb"

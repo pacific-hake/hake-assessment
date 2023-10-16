@@ -11,6 +11,8 @@ if(!length(rmarkdown::metadata$project_variables)){
 # of the YAML part of `000-launcher.rmd`
 list2env(rmarkdown::metadata$project_variables, envir = globalenv())
 
+yaml_check_margin_format(fig_margins)
+
 sys_info <- Sys.info()
 computer_name <- sys_info[["nodename"]]
 os_name <- sys_info[["sysname"]]
@@ -36,5 +38,6 @@ theme_set(hake_theme(ax_label_color = fig_label_color,
                      ax_tick_font_size = fig_tick_font_size,
                      ax_title_font_face = fig_title_font_face,
                      ax_tick_font_face = fig_tick_font_face,
-                     ax_tick_length_cm = fig_tick_length_cm))
+                     ax_tick_length_cm = fig_tick_length_cm,
+                     margin_def = eval(parse(text = fig_margins))))
 ```

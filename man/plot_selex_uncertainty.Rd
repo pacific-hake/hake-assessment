@@ -12,8 +12,6 @@ plot_selex_uncertainty(
   rev = FALSE,
   point_size = 1,
   point_fatten = 2,
-  axis_title_font_size = 14,
-  axis_tick_font_size = 12,
   border_width = 2,
   border_color = "black",
   border_linetype = "solid",
@@ -38,10 +36,6 @@ maximum years to plot panels for}
 
 \item{point_fatten}{The fatness of the point. Needed when using
 \code{\link[ggplot2:geom_linerange]{ggplot2::geom_errorbar()}}}
-
-\item{axis_title_font_size}{Size of the font for the X and Y axis labels}
-
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
 
 \item{border_width}{Thickness of the border line. If \code{NULL} no border will
 be shown}

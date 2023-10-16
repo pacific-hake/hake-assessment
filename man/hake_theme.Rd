@@ -10,7 +10,8 @@ hake_theme(
   ax_tick_font_size = axis_tick_font_size,
   ax_title_font_face = "plain",
   ax_tick_font_face = "plain",
-  ax_tick_length_cm = 0.15
+  ax_tick_length_cm = 0.15,
+  margin_def = margin(0, 0, 0, 0)
 )
 }
 \arguments{
@@ -31,6 +32,11 @@ project. One of "plain", "bold", or "italics"}
 
 \item{ax_tick_length_cm}{The length of all the tick mark lines in the
 project}
+
+\item{margin_def}{A call to the function \code{\link[ggplot2:element]{ggplot2::margin()}}. The format
+must be like this: margin(12, 12, 12, 12) where the order of the arguments
+is for each side top, right, bottom, left. Defaults to zero margin on all
+sides}
 }
 \description{
 Theme for the \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} plots in the document
