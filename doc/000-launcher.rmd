@@ -18,7 +18,6 @@ project_variables:
   model_version: "01"
   last_yr_model_version: "01"
   ss_version: "3.30.20"
-  out_csv_dir: "out-csv"
   fig_label_color: "black"
   fig_title_font_face: "plain"
   fig_tick_font_face: "plain"
@@ -35,6 +34,7 @@ project_variables:
   fig_filetype: "png"
   knitr_figures_dir: "knitr-figs/"
   knitr_cache_dir: "knitr-cache/"
+  out_csv_dir: "out-csv"
   # Increasing `dots_per_inch` for figure output increases the file size a LOT
   dots_per_inch: 100
 author: |
