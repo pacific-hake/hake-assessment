@@ -1,0 +1,90 @@
+---
+title: "Fisheries, data, and inputs used in the `r rmarkdown::metadata$project_variables$assess_yr` Pacific Hake stock assessment"
+project_variables:
+  sp: "Pacific Hake"
+  common_name: "Pacific whiting"
+  science_name: "Merluccius productus"
+  simple_name: "hake"
+  survey_name: "Joint U.S. and Canadian Integrated Acoustic and Trawl Survey"
+  assess_yr: 2023
+  last_assess_yr: 2022
+  last_data_yr: 2022
+  forecast_yrs: 2023:2026
+  models_dir: "/srv/hake/models"
+  model_version: "01"
+  last_yr_model_version: "01"
+  ss_version: "3.30.20"
+  fig_label_color: "black"
+  fig_title_font_face: "plain"
+  fig_tick_font_face: "plain"
+  fig_title_font_size: 14
+  fig_tick_font_size: 11
+  fig_tick_length_cm: 0.15
+  fig_height: 5
+  fig_width: 8
+  # margin arguments are in this order: top, right,bottom, left
+  fig_margins: "margin(12, 12, 12, 12)"
+  # The latex position by default for all figures. Modify individual
+  # figure positions by editing the `doc/object-placement.csv` file
+  fig_pos: "htb"
+  fig_filetype: "png"
+  knitr_figures_dir: "knitr-figs/"
+  knitr_cache_dir: "knitr-cache/"
+  out_csv_dir: "out-csv"
+  # Increasing `dots_per_inch` for figure output increases the file size a LOT
+  dots_per_inch: 100
+author: Pacific Hake Joint Technical Committee
+date: "SRG meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
+output:
+  hake::hake_beamer:
+    theme: Singapore
+    slide_level: 2
+    keep_tex: true
+classoption: "aspectratio=169"
+fontsize: 11pt
+urlcolor: blue
+header-includes:
+  - \usepackage{makecell, booktabs, array}
+  - \usepackage[outdir=./knitr-figs/]{epstopdf}
+  - \AtBeginSubsection{}
+  - \AtBeginSection{}
+  - |
+    \makeatletter
+    \def\ps@sectionpage{%
+      \setbeamertemplate{frame footer}{\tiny{\textcolor{beaublue}{Conference 56. Jahrestagung der DGSMP, 2021 | SIMON RESS}}}
+    }
+    \addtobeamertemplate{section page}{\thispagestyle{sectionpage}}{}
+    
+    \makeatother
+---
+
+```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
+library(knitr)
+library(here)
+
+opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  echo = FALSE,
+  autodep = FALSE,
+  cache = TRUE,
+  cache.lazy = FALSE,
+  cache.comments = FALSE,
+  results = "hide",
+  comment = "#>",
+  dev = "png",
+  dpi = 200,
+  cache.path = "knitr-cache/",
+  fig.path = "knitr-figs/",
+  fig.align = "center",
+  fig.pos = "htb",
+  fig.width = 7.5)
+
+#devtools::load_all(here())
+fig_dir <- here("beamer/srg/data/knitr-figs")
+if(!dir.exists(fig_dir)){
+  dir.create(fig_dir)
+}
+```
+

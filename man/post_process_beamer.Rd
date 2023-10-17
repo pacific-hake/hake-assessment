@@ -2,24 +2,23 @@
 % Please edit documentation in R/post-process-beamer.R
 \name{post_process_beamer}
 \alias{post_process_beamer}
-\title{Post-process Beamer Rmarkdown TeX files}
+\title{Post-process the TEX file output by Bookdown for beamer presentations}
 \usage{
-post_process_beamer(tex_fn = "beamer-hake-data.tex")
+post_process_beamer(x, ...)
 }
 \arguments{
-\item{tex_fn}{The TeX file name}
+\item{x}{Tex code, as a vector of lines read in from a TeX file by
+\code{\link[=readLines]{readLines()}}}
+
+\item{...}{Arguments passed to all the post-processing functions}
 }
 \value{
-Nothing, overwrites the input file \code{tex_fn}
+The modified Tex code, as a vector
 }
 \description{
-Post-process Beamer Rmarkdown TeX files
+Post-process the TEX file output by Bookdown for beamer presentations
 }
 \details{
-Inserts the logos and picture on the title slide, and makes the disclaimer
-text tiny so it fits on the slide
-Creates a backup of the \code{tex_fn} file before modifying it. The backup file
-is called 'backup.tex',
-Must run \verb{lualatex beamer-hake-data.tex;lualatex beamer-hake-data.tex} in
-a command-line terminal once done to re-create the PDF.
+Called by \code{\link[=hake_beamer]{hake_beamer()}} to post-process the LaTeX compiled by the
+\link{bookdown} package
 }

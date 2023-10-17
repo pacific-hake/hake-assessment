@@ -64,8 +64,5 @@ post_process <- function(x, ...){
   # Tag the figures in the PDF and add alternative text ----
   x <- post_process_add_alt_text(x, ...)
 
-  # Add disclaimer to the presentation title pages
-  x <- post_process_add_disclaimer_presentations(x, ...)
-
   x
 }
