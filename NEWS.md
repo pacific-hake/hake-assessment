@@ -136,19 +136,32 @@ implemented in the hake assessment codebase in 2023 between the 2023 and
 
 ## Details of the `render()` function
 
-The `render()` function performs two-steps internally:
+The `hake::render()` function performs two-steps internally:
 
-1. Calls the `bookdown::render_book()` function to generate the PDF.
-1. Runs the post processing step (`post_process()`) on the LaTeX file
+1. Calls `bookdown::render_book("000-launcher.rmd" out_dir = ".")`
+    to generate the PDF.
+1. Runs the post processing step (`hake::post_process()`) on the LaTeX file
    before creating the PDF which:
-  - Inserts the Table of Contents
-  - Moves any figures or tables around that need to be (Adds latex
-    position variables such as [H], [bt] [!H]). The setup file for this
-    is `doc/object-placement.csv`
-  - Customizes longtables so they have "continued on next page..." and
-    "Continued from previous page..." on them
-  - Processes landscape figures and tables
-  - Aligns table captions to the left margin if they need it
-  - Adds figure and table numbers
-  - Removes vertical space before section headings
-  - Adds the web-accessibility features, including the alternative text
+    * Makes sure the LaTeX code contains `article` and `documentclass`.
+    * Removes the title page number.
+    * Adds in some code to set up appendices at the `START APPENDICES HERE`
+      tag.
+    * Adds in counter resets for each new appendix so appendices;
+      figure, table, and equation numbering starts at 1 for each new appendix.
+    * Inserts the Table of Contents by replacing the
+      `TABLE OF CONTENTS GOES HERE` tag.
+    * Moves any figures or tables around that need to be (Adds LaTeX
+      position variables such as [H], [bt] [!H]). The setup file for this
+      is `doc/object-placement.csv`.
+    * Customizes longtables so they have "continued on next page..." and
+      "Continued from previous page..." on them.
+    * Processes landscape figures by replacing tags `BEGIN LANDSCAPE` and
+      `END LANDSCAPE`, and fix issues caused by multiple landscape pages in
+       a row such as blank pages appearing.
+    * Aligns table captions to the left margin if they need it.
+    * Adds figure and table numbers.
+    * Adds vertical space after section headings where needed.
+    * Repairs unnumbered section links so the TOC clicking works for unnumbered
+      sections (adds \phantomsection).
+    * Adds horizontal group lines in the headers of decision tables.
+    * Adds the web-accessibility features, including the alternative text.

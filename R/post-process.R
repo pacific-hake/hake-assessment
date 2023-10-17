@@ -6,34 +6,21 @@
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
-#' @param ... Arguments passed to [post_process_table_of_contents()],
-#' [post_process_set_latex_placement_options()], and [post_process_longtables]
+#' @param ... Arguments passed to all the post-processing functions
 #'
-#' @return Nothing, overwrite the file `fn` with the modified TEX
+#' @return The modified Tex code, as a vector
 #' @export
 post_process <- function(x, ...){
 
-  dc_ind <- grep("documentclass", x)
-  if(!length(dc_ind)){
-    stop("\\documentclass not found, document is not valid LaTeX and ",
-         "cannot be built",
-         call. = FALSE)
-  }
+  # Make sure the LaTeX code is viable (basic checks)
+  post_process_error_check(x, ...)
 
-  # Remove page number from title page ----
-  title_ind <- grep("^\\\\maketitle", x)
-  if(!length(title_ind)){
-    stop("`\\maketitle` not found. You must be using the `\\maketitle` ",
-         "method to produce the title page for this document",
-         call. = FALSE)
-  }
-  pre <- x[1:(title_ind)]
-  post <- x[(title_ind + 1):length(x)]
-  x <- c(pre, "\\thispagestyle{empty}", post)
+  # Remove the page number from the title page only
+  x <- post_process_remove_title_page_number(x, ...)
 
   # Add LaTeX code for the start of the appendices section. This is needed
   # to tell the LaTeX compiler to start numbering the sections using letters
-  # and set u-p tables, figures, and equations to be of the format A.2 for
+  # and set up tables, figures, and equations to be of the format A.2 for
   # example. It also adds TOC information so this has to come before the TOC
   # post-processing step
   x <- post_process_add_start_appendices_code(x, ..)
@@ -75,14 +62,7 @@ post_process <- function(x, ...){
   x <- post_process_add_horiz_lines_decision_table(x, ...)
 
   # Tag the figures in the PDF and add alternative text ----
-  if(accessible_pdf){
-    x <- c(
-      "\\RequirePackage{pdfmanagement-testphase}",
-      paste0("\\DocumentMetadata{testphase=phase-II, uncompress, ",
-             "pdfstandard=A-2U, lang=en-US}"),
-      x)
-    x <- add_alt_text(x, ...)
-  }
+  x <- post_process_add_alt_text(x, ...)
 
   x
 }

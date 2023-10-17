@@ -1,12 +1,12 @@
-#' Add alternative text to figures in the document via the `tagpdf` LaTeX
-#' package
+#' Add alternative text to figures in the document via the
+#' `pdfmanagement-testphase` LaTeX package
 #'
 #' @details
 #' Searches the given TEX file for the `includegraphics{}`,
 #' finds the correct alternative text for those calls by searching through
 #' the project RMD files for the matching `(ref:variable-alt)` definitions
-#' and injects the text and the `tagpdf` structural LaTeX lines for
-#' web accessibility
+#' and injects the text and the `pdfmanagement-testphase` structural
+#' LaTeX lines for web accessibility
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
@@ -14,8 +14,27 @@
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-add_alt_text <- function(x,
+post_process_add_alt_text <- function(x,
                          ...){
+
+
+  if(!accessible_pdf){
+    return(x)
+  }
+
+  # Inject the headers needed for the pdfmanagement-testphase package
+  x <- c(
+    "%",
+    "% The following code was injected by",
+    "% hake::post_process_add_alt_text()",
+    "%",
+    "\\RequirePackage{pdfmanagement-testphase}",
+    paste0("\\DocumentMetadata{testphase=phase-II, uncompress, ",
+           "pdfstandard=A-2U, lang=en-US}"),
+    "%",
+    "% End of injected code",
+    "%",
+    x)
 
   # Strip whitespace from the beginning of all lines
   x <- gsub("^[[:space:]]+", "\\1", x)

@@ -10,11 +10,10 @@ post_process(x, ...)
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
 
-\item{...}{Arguments passed to \code{\link[=post_process_table_of_contents]{post_process_table_of_contents()}},
-\code{\link[=post_process_set_latex_placement_options]{post_process_set_latex_placement_options()}}, and \link{post_process_longtables}}
+\item{...}{Arguments passed to all the post-processing functions}
 }
 \value{
-Nothing, overwrite the file \code{fn} with the modified TEX
+The modified Tex code, as a vector
 }
 \description{
 Post-process the TEX file output by Bookdown
