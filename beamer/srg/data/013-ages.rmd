@@ -1,0 +1,34 @@
+# Ages
+## Age composition by sector
+```{r age-comp-comparison, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
+plot_age_comp_bubbles_data(list(can_ss_age_df,
+                                can_ft_age_df,
+                                us_ss_age_df,
+                                us_cp_age_df,
+                                us_ms_age_df),
+                           list("Canadian Shorside",
+                                "Canadian Freezer-Trawlers",
+                                "U.S. Shore-Based",
+                                "U.S. Catcher-processor",
+                                "U.S. Mothership")) +
+  theme(axis.title.x = element_text(size = 8),
+        axis.title.y = element_text(size = 8),
+        axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 8))
+```
+
+## Acoustic survey age compositions
+```{r survey-age-comps, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
+plot_age_comp_bubbles(base_model,
+                      type = "survey",
+                      clines = c(1984, 1999, 2010, 2014, 2016, 2020),
+                      inc_mean_age_line = FALSE,
+                      point_alpha = 0.4,
+                      xlim = c(survey_start_yr, last_data_yr))
+```
+
+## Survey and fishery age-composition comparison
+```{r age-comp-comparison-fishery-survey, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
+plot_age_comp_comparison_bubbles(base_model)
+```
+

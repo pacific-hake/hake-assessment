@@ -1,0 +1,17 @@
+# Surveys
+## Acoustic survey backscatter (age-2$^+$) and age composition
+![](../../../doc/main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue)
+
+## Acoustic survey backscatter of age-1 fish
+![](../../../doc/main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue)
+
+## Acoustic survey age-2$^+$ biomass estimates
+```{r survey-compare-extrap-noextrap, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
+plot_survey_biomass(base_model, index = "age2")
+```
+
+## Acoustic survey age-1 fish estimates
+```{r survey-age1, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
+plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
+```
+

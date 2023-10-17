@@ -12,11 +12,17 @@
 #' @export
 post_process_beamer <- function(x, ...){
 
+  # Insert the NOAA and DFO logos and the hake picture on the title
+  # page
   x <- post_process_beamer_insert_title_page_logos(x, ...)
 
   # Add disclaimer to the presentation title page. Requires that
   # `post_process_beamer_insert_title_page_logos()` was run previously
   x <- post_process_beamer_insert_disclaimer(x, ...)
+
+  # Make the title page plain (no navigation bar or theme shadow and remove
+  # extra blank title page
+  x <- post_process_beamer_make_title_page_plain(x, ...)
 
   x
 }
