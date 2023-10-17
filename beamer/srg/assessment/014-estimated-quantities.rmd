@@ -1,0 +1,117 @@
+# Estimated Quantities
+## Key parameters
+:::::: {.columns}
+::: {.column width="40%"}
+* Prior for natural mortality looks to be influencing posterior
+* Posterior for steepness does not shift much from prior
+* DM for fishery has a relatively narrow posterior distribution
+* Prior for survey DM parameter looks to be influencing posterior (discussed
+  further in sensitivity section)
+:::
+
+::: {.column width="60%"}
+```{r priors-posts, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+plot_priors_vs_posts(base_model,
+                     x_range = "prior",
+                     ncol = 2,
+                     nrow = 3)
+```
+:::
+::::::
+
+## Acoustic survey catchability (\emph{$q_b$}) posterior for this assessment
+```{r catchability-density, fig.height=4, out.height = "2in", out.width = "0.8\\columnwidth"}
+plot_catchability_density(base_model,
+                          last_yr_base_model,
+                          type = "age2",
+                          line_widths = c(1, 1),
+                          line_types = c("solid", "solid"))
+```
+
+```{r table-catchability-medians, results = "asis"}
+k <- function(){
+
+  d <- tibble(a = c(paste0("Median (", assess_yr, ")"),
+                    f(median(last_yr_base_model$extra_mcmc$q_vector), 2)),
+              b = c(paste0("Median (", last_assess_yr, ")"),
+                    f(median(base_model$extra_mcmc$q_vector), 2)))
+
+  kbl(d,
+      format = "latex",
+      booktabs = TRUE,
+      col.names = NULL,
+      align = c("c", "c"),
+      linesep = "",
+      escape = FALSE) |>
+    row_spec(0, bold = TRUE) |> 
+    column_spec(1, color = "blue") |> 
+    column_spec(2, color = "red") |> 
+    kable_styling(position = "center")
+}
+
+k()
+```
+
+## Time-varying selectivity
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-mountains, fig.height=4, out.height = "2.8in", out.width = "1\\columnwidth"}
+
+tv_selex_start_yr <- 1990
+
+plot_selex_mountains(base_model,
+                     yrs = tv_selex_start_yr:last_data_yr,
+                     ages = 1:8,
+                     fill_num_colors = 50,
+                     scale = 20)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-uncertainty, fig.height=4, out.height = "2.8in", out.width = "1\\columnwidth"}
+plot_selex_uncertainty(base_model,
+                       n_col = 2,
+                       label_loc = c(1, 0.65),
+                       label_font_size = 3)
+```
+:::
+::::::
+
+## Posterior distributions for survey (left) and fishery (right) selectivity
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-posterior-survey, fig.height=4, out.height = "2.8in", out.width = "1\\columnwidth"}
+plot_selex_posteriors(base_model,
+                      type = "survey",
+                      age_range = c(1, 8),
+                      post_med_line_color = "red3",
+                      unc_line_color = "red3",
+                      glow = TRUE)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-posterior-fishery, fig.height=4, out.height = "2.8in", out.width = "1\\columnwidth"}
+plot_selex_posteriors(base_model,
+                      type = "fishery",
+                      age_range = c(1, 8),
+                      glow = TRUE)
+```
+:::
+::::::
+
+## Key quantities
+```{r table-parameter-ests, results = "asis"}
+table_param_est(
+  models = list(base_model, last_yr_base_model),
+  model_nms = c(base_model_name, last_yr_base_model_name),
+  end_yr = end_yr,
+  section_bold = TRUE,
+  section_italics = TRUE,
+  section_underline = TRUE,
+  section_line_above = FALSE,
+  section_line_below = FALSE,
+  digits = 3,
+  font_size = 5.5,
+  header_font_size = 7)
+```
