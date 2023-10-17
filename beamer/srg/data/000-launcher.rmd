@@ -34,7 +34,7 @@ project_variables:
   # Increasing `dots_per_inch` for figure output increases the file size a LOT
   dots_per_inch: 100
 author: Pacific Hake Joint Technical Committee
-date: "SRG meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
+date: "SRG meeting -- `r rmarkdown::metadata$project_variables$assess_yr`\n \n \n \\  \\tiny Disclaimer: These materials do not constitute a formal publication and are for information only. They are in a pre-review, pre-decisional state and should not be formally cited or reproduced. They are to be considered provisional and do not represent any determination or policy of NOAA or the Department of Commerce."
 output:
   hake::hake_beamer:
     theme: Singapore
@@ -48,40 +48,66 @@ header-includes:
   - \usepackage[outdir=./knitr-figs/]{epstopdf}
   - \AtBeginSubsection{}
   - \AtBeginSection{}
-  - |
-    \makeatletter
-    \def\ps@sectionpage{%
-      \setbeamertemplate{frame footer}{\tiny{\textcolor{beaublue}{Conference 56. Jahrestagung der DGSMP, 2021 | SIMON RESS}}}
-    }
-    \addtobeamertemplate{section page}{\thispagestyle{sectionpage}}{}
-    
-    \makeatother
+test: false # Do not modify, code modifies this when using hake::gotest()
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
-library(knitr)
-library(here)
 
-opts_chunk$set(
+# Current user's name on the system
+# If regular desktop R session, use Sys.getenv("USERNAME")
+# If on RStudio server, use Sys.getenv("RSTUDIO_USER_IDENTITY")
+user <- ifelse(Sys.getenv("USERNAME") == "",
+               Sys.getenv("RSTUDIO_USER_IDENTITY"),
+               Sys.getenv("USERNAME"))
+
+if(rmarkdown::metadata$test){
+  # Necessary for `gotest()` testing
+  if(user == "grandin"){
+    devtools::load_all("~/github/pacific-hake/hake")
+  }else{
+    devtools::load_all("~/github/pacific-hake/hake-assessment")
+  }
+}else{
+  # For regular doc build
+  devtools::load_all(here::here())
+}
+
+# This grabs the YAML `project_variables` from above
+yaml_proj_vars <- rmarkdown::metadata$project_variables
+
+# Don't modify anything in `opts_chunk$set()`. Modify the YAML
+# `project_variables` above
+knitr::opts_chunk$set(
+  # `collapse` - If `TRUE`, source code and output will remain together in
+  # one chunk (inseparable from each other in the document). Probably
+  # doesn't apply for this document but remains in case any source code is
+  # shown
   collapse = TRUE,
+  # Don't show warnings, messages, or source code (respectively)
+  # in the document
   warning = FALSE,
   message = FALSE,
   echo = FALSE,
-  autodep = FALSE,
+  # Create the `knitr_cache_dir` and `knitr_figs_dir` directories for caching
   cache = TRUE,
+  cache.path = yaml_proj_vars$knitr_cache_dir,
+  # cache.lazy - if `FALSE`, load the models at the beginning all at once
   cache.lazy = FALSE,
+  # Prevents invalidation of the cache when only comments are entered
+  # in chunks
   cache.comments = FALSE,
   results = "hide",
   comment = "#>",
-  dev = "png",
-  dpi = 200,
-  cache.path = "knitr-cache/",
-  fig.path = "knitr-figs/",
+  dev = yaml_proj_vars$fig_filetype,
+  dpi = yaml_proj_vars$dots_per_inch,
+  fig.path = yaml_proj_vars$knitr_figures_dir,
   fig.align = "center",
-  fig.pos = "htb",
-  fig.width = 7.5)
+  fig.pos = yaml_proj_vars$fig_pos,
+  fig.height = yaml_proj_vars$fig_height,
+  fig.width = yaml_proj_vars$fig_width,
+  out.height = "\\textheight",
+  out.width = "\\textwidth")
 
-#devtools::load_all(here())
 fig_dir <- here("beamer/srg/data/knitr-figs")
 if(!dir.exists(fig_dir)){
   dir.create(fig_dir)
