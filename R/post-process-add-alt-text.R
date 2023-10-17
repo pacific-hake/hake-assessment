@@ -17,7 +17,6 @@
 post_process_add_alt_text <- function(x,
                          ...){
 
-
   if(!accessible_pdf){
     return(x)
   }
