@@ -39,6 +39,7 @@ output:
   hake::hake_beamer:
     theme: Singapore
     slide_level: 2
+    toc: false
     keep_tex: true
 classoption: "aspectratio=169"
 fontsize: 11pt

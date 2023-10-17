@@ -13,7 +13,8 @@
 post_process_beamer <- function(x, ...){
 
   # Add disclaimer to the presentation title pages
-  x <- post_process_add_disclaimer_presentations(x, ...)
+  #x <- post_process_add_disclaimer_presentations(x, ...)
 
+  x <- post_process_beamer_insert_title_page_logos(x, ...)
   x
 }
