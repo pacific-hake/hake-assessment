@@ -2,17 +2,17 @@
 % Please edit documentation in R/utils-clean.R
 \name{clean}
 \alias{clean}
-\title{Clean the doc directory of all build output including knitr cache and
-knitr figures directories}
+\title{Clean (delete) all build output including knitr cache and knitr figures
+directories from the current directory}
 \usage{
 clean(
-  knitr_figures_dir = here::here("doc/knitr-figs"),
-  knitr_cache_dir = here::here("doc/knitr-cache"),
-  out_csv_dir = here::here("doc/out-csv")
+  knitr_figures_dir = "knitr-figs",
+  knitr_cache_dir = "knitr-cache",
+  out_csv_dir = "out-csv"
 )
 }
 \arguments{
-\item{knitr_figures_dir}{Directory where4 the knitr-generated
+\item{knitr_figures_dir}{Directory where the knitr-generated
 figures reside}
 
 \item{knitr_cache_dir}{Directory where the knitr cached chunk
@@ -24,8 +24,8 @@ databases reside}
 Nothing
 }
 \description{
-Clean the doc directory of all build output including knitr cache and
-knitr figures directories
+Clean (delete) all build output including knitr cache and knitr figures
+directories from the current directory
 }
 \details{
 This function can be called from anywhere in the hake project and will

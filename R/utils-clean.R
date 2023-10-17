@@ -1,5 +1,5 @@
-#' Clean the doc directory of all build output including knitr cache and
-#' knitr figures directories
+#' Clean (delete) all build output including knitr cache and knitr figures
+#' directories from the current directory
 #'
 #' @details
 #' This function can be called from anywhere in the hake project and will
@@ -8,7 +8,7 @@
 #' applied there instead. The cleaning takes place on whatever directory
 #' is at `here::here("doc")`
 #'
-#' @param knitr_figures_dir Directory where4 the knitr-generated
+#' @param knitr_figures_dir Directory where the knitr-generated
 #' figures reside
 #' @param knitr_cache_dir Directory where the knitr cached chunk
 #' databases reside
@@ -16,32 +16,73 @@
 #'
 #' @return Nothing
 #' @export
-clean <- function(knitr_figures_dir = here::here("doc/knitr-figs"),
-                  knitr_cache_dir = here::here("doc/knitr-cache"),
-                  out_csv_dir = here::here("doc/out-csv")){
+clean <- function(knitr_figures_dir = "knitr-figs",
+                  knitr_cache_dir = "knitr-cache",
+                  out_csv_dir = "out-csv"){
 
-  # Delete hake.aux, hake.tex etc or
-  # hake-assessment.aux, hake-assessment.tex etc
-  fns <- list.files(path = here::here("doc"),
-                    pattern = paste0("hake(\\-assessment)?\\.(",
-                                     "tex|",
-                                     "Rmd|",
-                                     "aux|",
-                                     "bbl|",
-                                     "blg|",
-                                     "log|",
-                                     "lof|",
-                                     "lot|",
-                                     "pdf|",
-                                     "ps|",
-                                     "md|",
-                                     "toc|",
-                                     "txt|",
-                                     "upa|",
-                                     "upb)"),
-                    full.names = TRUE)
+  curr_dir <- getwd()
+  knitr_figures_dir <- file.path(curr_dir, "knitr-figs")
+  knitr_cache_dir <- file.path(curr_dir, "knitr-cache")
+  out_csv_dir <- file.path(curr_dir, "out-csv")
 
-  unlink(fns, force = TRUE)
+  # Possible names of the docs to delete without extensions
+  docs_pat <- c("hake",
+                "hake-assessment",
+                "JTC-assessment",
+                "JTC-data",
+                "JTC-management",
+                "JTC-requests",
+                "JTC-sensitivity",
+                "JMC",
+                "JMC-Canada",
+                "JMC-US")
+
+  # The extensions of the above docs to delete
+  extensions_pat <- paste0("(tex|",
+                           "Rmd|",
+                           "aux|",
+                           "bbl|",
+                           "blg|",
+                           "log|",
+                           "lof|",
+                           "lot|",
+                           "pdf|",
+                           "ps|",
+                           "md|",
+                           "toc|",
+                           "txt|",
+                           "upa|",
+                           "upb)")
+  for(i in seq_along(docs_pat)){
+    full_pat <- paste0(docs_pat[i],
+                       "\\.(",
+                       "tex|",
+                       "Rmd|",
+                       "aux|",
+                       "bbl|",
+                       "blg|",
+                       "log|",
+                       "lof|",
+                       "lot|",
+                       "pdf|",
+                       "ps|",
+                       "md|",
+                       "toc|",
+                       "txt|",
+                       "upa|",
+                       "upb)")
+
+    # Delete hake.aux, hake.tex etc or
+    # hake-assessment.aux, hake-assessment.tex etc
+    fns <- list.files(path = curr_dir,
+                      pattern = full_pat,
+                      full.names = TRUE)
+    unlink(fns, force = TRUE)
+  }
+
+  unlink(c("hake.Rmd",
+           "hake-assessment.Rmd"),
+         force = TRUE)
 
   # Delete build directories
   dirs <- c(knitr_figures_dir,
@@ -49,5 +90,5 @@ clean <- function(knitr_figures_dir = here::here("doc/knitr-figs"),
             out_csv_dir)
 
   unlink(dirs, recursive = TRUE, force = TRUE)
-  message("Done cleaning the `", here::here("doc"), "` directory\n")
+  message("Done cleaning the `", curr_dir, "` directory\n")
 }
