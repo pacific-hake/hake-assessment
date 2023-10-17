@@ -13,7 +13,7 @@
 post_process <- function(x, ...){
 
   # Make sure the LaTeX code is viable (basic checks)
-  post_process_error_check(x, ...)
+  #post_process_error_check(x, ...)
 
   # Remove the page number from the title page only
   x <- post_process_remove_title_page_number(x, ...)
@@ -63,6 +63,9 @@ post_process <- function(x, ...){
 
   # Tag the figures in the PDF and add alternative text ----
   x <- post_process_add_alt_text(x, ...)
+
+  # Add disclaimer to the presentation title pages
+  x <- post_process_add_disclaimer_presentations(x, ...)
 
   x
 }

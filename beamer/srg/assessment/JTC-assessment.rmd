@@ -1,6 +1,6 @@
 ---
 title: "`r assess_yr` Pacific Hake Stock Assessment Methods and Results"
-params:
+project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
   science_name: "Merluccius productus"
@@ -38,7 +38,7 @@ header-includes:
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
 library(knitr)
 
-knitr::opts_chunk$set(
+opts_chunk$set(
   collapse = TRUE,
   warning = FALSE,
   message = FALSE,
@@ -66,13 +66,13 @@ if(!dir.exists(fig_dir)){
 
 ```{r loading, include = FALSE, results = "asis"}
 library(here)
-res <- knitr::knit_child(here("doc/001-load-packages.rmd"))
+res <- knit_child(here("doc/001-load-packages.rmd"))
 cat(res, sep = "\n")
-res <- knitr::knit_child(here("doc/002-load-globals.rmd"))
+res <- knit_child(here("doc/002-load-globals.rmd"))
 cat(res, sep = "\n")
-res <- knitr::knit_child(here("doc/003-load-models.rmd"))
+res <- knit_child(here("doc/003-load-models.rmd"))
 cat(res, sep = "\n")
-res <- knitr::knit_child(here("doc/004-load-project-variables.rmd"))
+res <- knit_child(here("doc/004-load-project-variables.rmd"))
 cat(res, sep = "\n")
 # Read in latex globals from 004-load-project-variables.rmd
 # The knit_child() command above does not load them in

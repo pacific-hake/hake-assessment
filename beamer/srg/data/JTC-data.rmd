@@ -1,6 +1,6 @@
 ---
-title: "Fisheries, data, and inputs used in the 2024 Pacific Hake stock assessment"
-params:
+title: "Fisheries, data, and inputs used in the `r rmarkdown::metadata$project_variables$assess_yr` Pacific Hake stock assessment"
+project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
   science_name: "Merluccius productus"
@@ -9,11 +9,33 @@ params:
   assess_yr: 2023
   last_assess_yr: 2022
   last_data_yr: 2022
+  forecast_yrs: 2023:2026
+  models_dir: "/srv/hake/models"
   model_version: "01"
   last_yr_model_version: "01"
+  ss_version: "3.30.20"
+  fig_label_color: "black"
+  fig_title_font_face: "plain"
+  fig_tick_font_face: "plain"
+  fig_title_font_size: 14
+  fig_tick_font_size: 11
+  fig_tick_length_cm: 0.15
+  fig_height: 5
+  fig_width: 8
+  # margin arguments are in this order: top, right,bottom, left
+  fig_margins: "margin(12, 12, 12, 12)"
+  # The latex position by default for all figures. Modify individual
+  # figure positions by editing the `doc/object-placement.csv` file
+  fig_pos: "htb"
+  fig_filetype: "png"
+  knitr_figures_dir: "knitr-figs/"
+  knitr_cache_dir: "knitr-cache/"
+  out_csv_dir: "out-csv"
+  # Increasing `dots_per_inch` for figure output increases the file size a LOT
+  dots_per_inch: 100
 author: Pacific Hake Joint Technical Committee
-date: "SRG meeting -- `r assess_yr`"
-subtitle: "Disclaimer: These materials do not constitute a formal publication and are for information only. They are in a pre-review, pre-decisional state and should not be formally cited or reproduced. They are to be considered provisional and do not represent any determination or policy of NOAA or the Department of Commerce."
+date: "SRG meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
+subtitle: "\\tiny Disclaimer: These materials do not constitute a formal publication and are for information only. They are in a pre-review, pre-decisional state and should not be formally cited or reproduced. They are to be considered provisional and do not represent any determination or policy of NOAA or the Department of Commerce."
 output:
   beamer_presentation:
     theme: Singapore
@@ -27,11 +49,21 @@ header-includes:
   - \usepackage[outdir=./knitr-figs/]{epstopdf}
   - \AtBeginSubsection{}
   - \AtBeginSection{}
+  - |
+    \makeatletter
+    \def\ps@sectionpage{%
+      \setbeamertemplate{frame footer}{\tiny{\textcolor{beaublue}{Conference 56. Jahrestagung der DGSMP, 2021 | SIMON RESS}}}
+    }
+    \addtobeamertemplate{section page}{\thispagestyle{sectionpage}}{}
+    
+    \makeatother
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
+library(knitr)
+library(here)
 
-knitr::opts_chunk$set(
+opts_chunk$set(
   collapse = TRUE,
   warning = FALSE,
   message = FALSE,
@@ -50,21 +82,21 @@ knitr::opts_chunk$set(
   fig.pos = "htb",
   fig.width = 7.5)
 
-devtools::load_all(here::here())
-fig_dir <- here::here("beamer/srg/data/knitr-figs")
+devtools::load_all(here())
+fig_dir <- here("beamer/srg/data/knitr-figs")
 if(!dir.exists(fig_dir)){
   dir.create(fig_dir)
 }
 ```
 
 ```{r loading, include = FALSE, results = "asis"}
-res <- knitr::knit_child("../../../doc/001-load-packages.rmd")
+res <- knit_child(here("doc/001-load-packages.rmd"))
 cat(res, sep = '\n')
-res <- knitr::knit_child("../../../doc/002-load-globals.rmd")
+res <- knit_child(here("doc/002-load-globals.rmd"))
 cat(res, sep = '\n')
-res <- knitr::knit_child("../../../doc/003-load-models.rmd")
+res <- knit_child(here("doc/003-load-models.rmd"))
 cat(res, sep = '\n')
-res <- knitr::knit_child("../../../doc/004-load-project-variables.rmd")
+res <- knit_child(here("doc/004-load-project-variables.rmd"))
 cat(res, sep = '\n')
 ```
 
@@ -227,9 +259,11 @@ plot_cumulative_catches(list(us_ss_catch_by_month_df,
                              "Canadian Freezer-Trawlers",
                              "U.S. Mothership"),
                         type = "cumulative",
-                        ax_title_font_size = 10,
-                        ax_tick_font_size = 8,
-                        leg_font_size = 8)
+                        leg_font_size = 8) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 8))
 ```
   
 # Depths
@@ -266,9 +300,11 @@ plot_age_comp_bubbles_data(list(can_ss_age_df,
                                 "Canadian Freezer-Trawlers",
                                 "U.S. Shore-Based",
                                 "U.S. Catcher-processor",
-                                "U.S. Mothership"),
-                           ax_title_font_size = 8,
-                           ax_tick_font_size = 8)
+                                "U.S. Mothership")) +
+  theme(axis.title.x = element_text(size = 8),
+        axis.title.y = element_text(size = 8),
+        axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 8))
 ```
 
 ## Acoustic survey age compositions

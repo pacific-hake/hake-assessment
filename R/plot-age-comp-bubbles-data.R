@@ -79,14 +79,14 @@ plot_age_comp_bubbles_data <- function(age_data_lst,
     facet_grid(~type, scales = "free_x") +
     xlab("Year") +
     ylab("Age") +
-    theme(axis.text.x = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
+    theme(axis.text.x = element_text(color = axis_label_color,
+                                     size = axis_tick_font_size,
                                      angle = 0,
                                      hjust = 0.5,
                                      vjust = -0.25),
           legend.position = "none",
           strip.background = element_rect(fill = "transparent"),
-          strip.text = element_text(size = ax_title_font_size))
+          strip.text = element_text(size = axis_title_font_size))
 
   g
 }

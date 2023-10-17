@@ -35,7 +35,7 @@ plot_cumulative_catches <- function(catch_lst,
                                     line_gap = ts_linegap,
                                     point_shape = ts_pointshape,
                                     point_size = ts_pointsize,
-                                    point_stroke = ts_pointstrok){
+                                    point_stroke = ts_pointstroke){
 
   type <- match.arg(type)
 
@@ -125,7 +125,7 @@ plot_cumulative_catches <- function(catch_lst,
   # x_grob <- textGrob("Month",
   #                    gp = gpar(fontsize = ax_title_font_size))
   y_grob <- textGrob("Cumulative catch (kt)",
-                     gp = gpar(fontsize = ax_title_font_size),
+                     gp = gpar(fontsize = axis_title_font_size),
                      rot = 90)
 
   grid.arrange(arrangeGrob(plt,

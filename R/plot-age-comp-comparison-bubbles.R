@@ -84,17 +84,17 @@ plot_age_comp_comparison_bubbles <- function(model,
                      labels = years_labels) +
     xlab("Year") +
     ylab("Age") +
-    theme(axis.text.x = element_text(color = ax_label_color,
-                                     size = ax_tick_font_size,
+    theme(axis.text.x = element_text(color = axis_label_color,
+                                     size = axis_tick_font_size,
                                      angle = 0,
                                      hjust = 0.5,
                                      vjust = -0.25),
-          plot.title = element_text(size = ax_title_font_size,
+          plot.title = element_text(size = axis_title_font_size,
                                     hjust = 0.5),
           legend.position = "top",
           legend.title = element_blank(),
           strip.background = element_rect(fill = "transparent"),
-          strip.text = element_text(size = ax_title_font_size)) +
+          strip.text = element_text(size = axis_title_font_size)) +
     guides(fill = guide_legend(override.aes = list(size = 7)))
 
   g

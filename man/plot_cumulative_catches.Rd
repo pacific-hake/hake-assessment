@@ -16,7 +16,7 @@ plot_cumulative_catches(
   line_gap = ts_linegap,
   point_shape = ts_pointshape,
   point_size = ts_pointsize,
-  point_stroke = ts_pointstrok
+  point_stroke = ts_pointstroke
 )
 }
 \arguments{
