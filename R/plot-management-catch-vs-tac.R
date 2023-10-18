@@ -57,7 +57,7 @@ plot_management_catch_vs_tac <- function(d,
               linetype = line_type,
               linewidth = line_width,
               alpha = line_alpha) +
-    labs(y = "Catch or TAC (1,000 t)") +
+    labs(y = "Catch or TAC (kt)") +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size)) +
     scale_y_continuous(labels = comma,

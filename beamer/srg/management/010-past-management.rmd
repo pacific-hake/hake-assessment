@@ -1,7 +1,7 @@
 # Introduction
 
 ## Past management: Total Allowable Catch
-```{r tac-vs-realized-catch-ts}
+```{r tac-vs-realized-catch-ts, fig.height = 3.5, fig.width = 7.5, out.height = "75%"}
 
 plot_management_catch_vs_tac(catch_targets_df,
                              curr_assess_biomass = base_model$catch_default_policy[1],
@@ -26,7 +26,7 @@ def_med_hr_tac <- catch_targets_df |>
 :::
 
 ::: {.column width="55%"}
-```{r tac-vs-realized-catch}
+```{r tac-vs-realized-catch, fig.height = 3.5, fig.width = 7.5, out.height = "60%"}
 
 plot_management_catch_vs_tac_1_to_1(catch_targets_df)
 ```
@@ -36,7 +36,7 @@ plot_management_catch_vs_tac_1_to_1(catch_targets_df)
 ## Past management: Performance
 :::::: {.columns}
 ::: {.column width="25%"}
-* P(B_`r assess_yr`_ / B_0_ < 0.4) = `r probs_curr_below_b40`$
+* P(B~`r assess_yr`~/B~0~ < 0.4) = `r probs_curr_below_b40`
 * P(relative fishing intensity at end of `r assess_yr - 1` > 1.0)
   = `r probs_curr_rel_fish_intens_above_1`%
 * Joint probability of both is `r joint_percent_prob_above_below`%
@@ -45,8 +45,8 @@ plot_management_catch_vs_tac_1_to_1(catch_targets_df)
 :::
 
 ::: {.column width="75%"}
-```{r main-phase, fig.height = 5, fig.width = 8,out.width = "1.0\\columnwidth"}
-
+```{r main-phase, fig.height = 5, fig.width = 8, out.height = "80%"}
+#out.width = "1.0\\columnwidth"}
 plot_phase(base_model,
            start_yr,
            end_yr,

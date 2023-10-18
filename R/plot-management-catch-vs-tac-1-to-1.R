@@ -78,7 +78,7 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
              size = 3) +
     annotate("point",
              x = leg_xmin + 10,
-             y = leg_ymax - 40,
+             y = leg_ymax - 50,
              shape = 0,
              color = "black",
              size = 3) +
@@ -89,7 +89,7 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
              hjust = 0) +
     annotate("text",
              x = leg_xmin + 30,
-             y = leg_ymax - 40,
+             y = leg_ymax - 50,
              label = "Realized catch",
              hjust = 0)
 

@@ -32,7 +32,7 @@ project_variables:
   knitr_cache_dir: "knitr-cache/"
   out_csv_dir: "out-csv"
   # Increasing `dots_per_inch` for figure output increases the file size a LOT
-  dots_per_inch: 100
+  dots_per_inch: 200
   # To remove image, leave `title_page_image` blank. In that case,
   # `title_page_image_height_in` and `title_page_image_width_in` will be
   # ignored
