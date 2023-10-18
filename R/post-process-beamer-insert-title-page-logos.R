@@ -37,17 +37,32 @@ post_process_beamer_insert_title_page_logos <- function(x, ...){
     "  \\vskip0pt plus 1fill",
     "  \\begin{center}",
     "  {\\usebeamerfont{title}\\usebeamercolor[fg]{title}\\inserttitle}\\\\",
-    "  \\vskip22pt",
-    "  \\includegraphics[height=1in, width=4in]{../../images/hake-on-board.eps}\\\\",
-    "  \\insertauthor",
-    "  \\vskip5pt",
-    "  \\insertdate",
-    "  \\end{center}",
-    #"  \\tiny \\textcolor{blue}{Disclaimer: These materials do not constitute a formal publication and are for information only. They are in a pre-review, pre-decisional state and should not be formally cited or reproduced. They are to be considered provisional and do not represent any determination or policy of NOAA or the Department of Commerce.}\\par",
-    "  \\usebeamerfont{subtitle}\\usebeamercolor[fg]{subtitle}\\insertsubtitle\\par",
-    "  \\vskip0pt plus 1filll",
-    "}",
-    "")
+    "  \\vskip22pt")
+
+  if(is.null(title_page_image)){
+    dat <- c(dat,
+             paste0("  \\includegraphics[height=1in, width=4in]{",
+                    "../../images/blank.png}\\\\"))
+  }else{
+    dat <- c(dat,
+             paste0("  \\includegraphics[height=",
+                    title_page_image_height_in,
+                    "in, width=",
+                    title_page_image_width_in,
+                    "in]{",
+                    title_page_image,
+                    "}\\\\"))
+  }
+
+  dat <- c(dat,
+           "  \\insertauthor",
+           "  \\vskip5pt",
+           "  \\insertdate",
+           "  \\end{center}",
+           "  \\usebeamerfont{subtitle}\\usebeamercolor[fg]{subtitle}\\insertsubtitle\\par",
+           "  \\vskip0pt plus 1filll",
+           "}",
+           "")
 
   x <- c(pre, dat, post)
 

@@ -43,6 +43,11 @@ plot_management_catch_vs_tac <- function(d,
     mutate(name = factor(name, levels = group_ord)) |>
     mutate(value = value / 1e3)
 
+  x_min <- d$Year |> min()
+  x_max <- d$Year |> max()
+  x_breaks <- d$Year |> unique() |> sort()
+  x_labels <- x_breaks
+  x_labels[x_labels %% 2 == 1] <- ""
   g <- ggplot(d, aes(x = Year,
                      y = value,
                      color = name,
@@ -54,11 +59,11 @@ plot_management_catch_vs_tac <- function(d,
               alpha = line_alpha) +
     labs(y = "Catch or TAC (1,000 t)") +
     theme(legend.title = element_blank(),
-          axis.text.x = element_text(angle = 45, hjust = 1),
           legend.text = element_text(size = leg_font_size)) +
     scale_y_continuous(labels = comma,
                        limits = c(0, NA)) +
-    scale_x_continuous(breaks = seq(0, 3000, 1))
+    scale_x_continuous(breaks = x_breaks,
+                       labels = x_labels)
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +

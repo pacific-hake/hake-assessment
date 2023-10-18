@@ -1,8 +1,9 @@
 # Changes from `r last_assess_yr`
 ## Changes from the `r last_assess_yr` assessment
+
 * Update Stock Synthesis to version `r ss_version`
 * Add new catch data for `r last_assess_yr` and update historical catches 
-* Add new weight-at-age data for `r last_assess_yr`and update
+* Add new weight-at-age data for `r last_assess_yr` and update
   weight-at-age data
 * Add the `r last_assess_yr` acoustic survey biomass estimate and age data
 * Add the `r last_assess_yr` age-1 index estimate
@@ -13,7 +14,8 @@
 * All model runs in the assessment use MCMC
 
 ## Bridging: Model Updates and Additions
-```{r bridge-biomass, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+
+```{r bridge-biomass, fig.height = 4, out.height = "2.7in", out.width = "1\\columnwidth"}
 p <- list()
 p[[1]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
@@ -33,6 +35,7 @@ plot_grid(plotlist = p,
 ```
 
 ## Bridging: Model Updates and Additions (survey)
+
 ```{r bridge-survey, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
 p <- list()
 p[[1]] <-
@@ -56,6 +59,7 @@ plot_grid(plotlist = p,
 ```
 
 ## Bridging: Summary
+
 * Updating Stock Synthesis software has no effect on results. Relevant
   changes include:
   - Weight-at-age specified in first year of forecast, rather than

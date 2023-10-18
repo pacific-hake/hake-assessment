@@ -1,5 +1,5 @@
 ---
-title: "`r rmarkdown$metadata$project_variables$assess_yr` Pacific Hake Stock Assessment Methods and Results"
+title: "Management outcomes of the `r rmarkdown::metadata$project_variables$assess_yr` Pacific Hake stock assessment"
 project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
@@ -120,7 +120,7 @@ knitr::opts_chunk$set(
   out.height = "\\textheight",
   out.width = "\\textwidth")
 
-fig_dir <- here("beamer/srg/assessment/knitr-figs")
+fig_dir <- here("beamer/srg/management/knitr-figs")
 if(!dir.exists(fig_dir)){
   dir.create(fig_dir)
 }

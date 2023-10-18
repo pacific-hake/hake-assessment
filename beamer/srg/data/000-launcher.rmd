@@ -33,6 +33,12 @@ project_variables:
   out_csv_dir: "out-csv"
   # Increasing `dots_per_inch` for figure output increases the file size a LOT
   dots_per_inch: 100
+  # To remove image, leave `title_page_image` blank. In that case,
+  # `title_page_image_height_in` and `title_page_image_width_in` will be
+  # ignored
+  title_page_image: "../../images/hake-on-board.eps"
+  title_page_image_height_in: 1
+  title_page_image_width_in: 4
 author: Pacific Hake Joint Technical Committee
 date: "SRG meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
 output:

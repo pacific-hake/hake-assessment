@@ -7,24 +7,21 @@
 plot_management_catch_vs_tac_1_to_1(
   d,
   top_yrs = NULL,
-  xlim = c(0, 1000),
-  ylim = c(0, 800),
-  color_darken = 0.9
+  x_lim = c(0, 1000),
+  y_lim = c(0, 800),
+  leg_xmin = 20,
+  leg_xmax = 620,
+  leg_ymin = 700,
+  leg_ymax = 780
 )
 }
 \arguments{
 \item{d}{The data as read in using \code{\link[readr:read_delim]{readr::read_csv()}} from the file
 "catch-targets.csv"}
 
-\item{top_yrs}{Year to place labels on top for (remainder will be labels
-below points)}
-
 \item{xlim}{See \code{\link[base:plot]{base::plot()}}}
 
 \item{ylim}{See \code{\link[base:plot]{base::plot()}}}
-
-\item{color_darken}{A value between 0 and 1 for darkening of points and
-text. Smaller values will make it darker}
 }
 \description{
 Plot the TAC vs realized catch on a 1-to-1 plot

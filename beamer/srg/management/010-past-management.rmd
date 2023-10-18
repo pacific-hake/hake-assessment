@@ -1,0 +1,60 @@
+# Introduction
+
+## Past management: Total Allowable Catch
+```{r tac-vs-realized-catch-ts}
+
+plot_management_catch_vs_tac(catch_targets_df,
+                             curr_assess_biomass = base_model$catch_default_policy[1],
+                             leg_pos = c(0.12, 0.87),
+                             leg_font_size = 10)
+
+def_med_hr_tac <- catch_targets_df |> 
+  filter(Year == last_assess_yr) |> 
+  select(`Default HCR TAC`) |> 
+  unlist()
+```
+
+## Past management: Total Allowable Catch
+:::::: {.columns}
+::: {.column width="45%"}
+* March `r last_assess_yr`
+  - Default median HR TAC is `r f(def_med_hr_tac)` t
+  - Sum of unilateral TACs is `r last_yr_tac` t
+* When default HR suggests a large catch, TAC is often set less
+* Catches are often less than the TAC
+* Box colors correspond to year in the time series
+:::
+
+::: {.column width="55%"}
+```{r tac-vs-realized-catch}
+
+plot_management_catch_vs_tac_1_to_1(catch_targets_df)
+```
+:::
+::::::
+
+## Past management: Performance
+:::::: {.columns}
+::: {.column width="25%"}
+* P(B_`r assess_yr`_ / B_0_ < 0.4) = `r probs_curr_below_b40`$
+* P(relative fishing intensity at end of `r assess_yr - 1` > 1.0)
+  = `r probs_curr_rel_fish_intens_above_1`%
+* Joint probability of both is `r joint_percent_prob_above_below`%
+* Fishing intensity has remained below target
+* Biomass has mostly remained above target
+:::
+
+::: {.column width="75%"}
+```{r main-phase, fig.height = 5, fig.width = 8,out.width = "1.0\\columnwidth"}
+
+plot_phase(base_model,
+           start_yr,
+           end_yr,
+           init_lbl_x_off = -0.04,
+           init_lbl_y_off = -0.04,
+           final_lbl_x_off = 0.04,
+           final_lbl_y_off = 0.04)
+```
+:::
+::::::
+
