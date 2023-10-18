@@ -52,7 +52,7 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
                   label = Year),
               nudge_x = -30,
               nudge_y = -30,
-              check_overlap = TRUE,
+              #check_overlap = TRUE,
               inherit.aes = FALSE,
               show.legend = FALSE) +
     scale_x_continuous(breaks = seq(x_lim[1], x_lim[2], 200),
