@@ -15,21 +15,11 @@
 #' @return A [cowplot::plot_grid()] object
 #' @export
 plot_fore_age_comps <- function(model,
-                                probs = hake::probs,
                                 x_lim = c(1, 15),
                                 x_breaks = seq(x_lim[1], x_lim[2], 2),
                                 y_lim = c(0, 0.4),
                                 whisker_width = 0.5){
 
-  if(length(probs) != 3){
-    stop("The `probs` vector must be length 3, composed of the lower CI ",
-         "median, and upper CI",
-         call. = FALSE)
-  }
-  if(probs[2] != 0.5){
-    stop("The middle value in `probs` must be 0.5 (median)",
-         call. = FALSE)
-  }
   natsel_prop <- model$extra_mcmc$natsel_prop
   natselwt_prop <- model$extra_mcmc$natselwt_prop
 
