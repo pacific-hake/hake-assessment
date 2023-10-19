@@ -806,39 +806,38 @@ rec_2017 <- get_rec_ci(last_yr_base_model, base_model, 2017)
 rec_2020 <- get_rec_ci(last_yr_base_model, base_model, 2020)
 
 # Estimated prop at age (numbers) of the catch in first forecast year ---------
-fore_catch_prop <-
-  as.data.frame(t(as.numeric(f(apply(extramc$natsel_prop, 2, median) * 100))))
-names(fore_catch_prop) <- paste0("Age", 0:20)
+fore_catch_prop <- map_df(extramc$natsel_prop * 100, ~{f(median(.x))}) |> 
+  complete(fill = list(0:20, val = 0))
 
 # Credible intervals for age5 -------------------------------------------------
 # (pick the biggest cohort from fore_catch_prop; note natsel_prop columns
 # start with age-0).
-fore_catch_prop_age2_lower <- quantile(extramc$natsel_prop |> pull(3),
+fore_catch_prop_age2_lower <- quantile(extramc$natsel_prop |> pull(`2`),
                                        probs[1]) * 100
-fore_catch_prop_age2_upper <- quantile(extramc$natsel_prop |> pull(3),
+fore_catch_prop_age2_upper <- quantile(extramc$natsel_prop |> pull(`2`),
                                        probs[3]) * 100
-fore_catch_prop_age3_lower <- quantile(extramc$natsel_prop |> pull(4),
+fore_catch_prop_age3_lower <- quantile(extramc$natsel_prop |> pull(`3`),
                                        probs[1]) * 100
-fore_catch_prop_age3_upper <- quantile(extramc$natsel_prop |> pull(4),
+fore_catch_prop_age3_upper <- quantile(extramc$natsel_prop |> pull(`3`),
                                        probs[3]) * 100
-fore_catch_prop_age6_lower <- quantile(extramc$natsel_prop |> pull(7),
+fore_catch_prop_age6_lower <- quantile(extramc$natsel_prop |> pull(`6`),
                                        probs[1]) * 100
-fore_catch_prop_age6_upper <- quantile(extramc$natsel_prop |> pull(7),
+fore_catch_prop_age6_upper <- quantile(extramc$natsel_prop |> pull(`6`),
                                        probs[3]) * 100
-fore_catch_prop_age7_lower <- quantile(extramc$natsel_prop |> pull(8),
+fore_catch_prop_age7_lower <- quantile(extramc$natsel_prop |> pull(`7`),
                                        probs[1]) * 100
-fore_catch_prop_age7_upper <- quantile(extramc$natsel_prop |> pull(8),
+fore_catch_prop_age7_upper <- quantile(extramc$natsel_prop |> pull(`7`),
                                        probs[3]) * 100
 
 # Estimated prop at age (catch) of catch in first forecast year ---------------
-fore_catch_prop_wt_age2_median <- median(extramc$natselwt_prop |> pull(3)) * 100
-fore_catch_prop_wt_age3_median <- median(extramc$natselwt_prop |> pull(4)) * 100
-fore_catch_prop_wt_age4_median <- median(extramc$natselwt_prop |> pull(5)) * 100
-fore_catch_prop_wt_age5_median <- median(extramc$natselwt_prop |> pull(6)) * 100
-fore_catch_prop_wt_age6_median <- median(extramc$natselwt_prop |> pull(7)) * 100
-fore_catch_prop_wt_age7_median <- median(extramc$natselwt_prop |> pull(8)) * 100
-fore_catch_prop_wt_age10_median <- median(extramc$natselwt_prop |> pull(11)) * 100
-fore_catch_prop_wt_age11_median <- median(extramc$natselwt_prop |> pull(12)) * 100
+fore_catch_prop_wt_age2_median <- median(extramc$natselwt_prop |> pull(`2`)) * 100
+fore_catch_prop_wt_age3_median <- median(extramc$natselwt_prop |> pull(`3`)) * 100
+fore_catch_prop_wt_age4_median <- median(extramc$natselwt_prop |> pull(`4`)) * 100
+fore_catch_prop_wt_age5_median <- median(extramc$natselwt_prop |> pull(`5`)) * 100
+fore_catch_prop_wt_age6_median <- median(extramc$natselwt_prop |> pull(`6`)) * 100
+fore_catch_prop_wt_age7_median <- median(extramc$natselwt_prop |> pull(`7`)) * 100
+fore_catch_prop_wt_age10_median <- median(extramc$natselwt_prop |> pull(`10`)) * 100
+fore_catch_prop_wt_age11_median <- median(extramc$natselwt_prop |> pull(`11`)) * 100
 
 # Sigma_r, standard deviation of recruitment variability ----------------------
 sigma_r <- f(base_model$sigma_R_in, 2)
