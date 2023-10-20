@@ -29,8 +29,8 @@
 table_decision(base_model,
                type = "biomass",
                rows_to_show = c("a", "b", "f", "j", "k"),
-               font_size = 8,
-               header_font_size = 9)
+               font_size = 6,
+               header_font_size = 7)
 ```
 
 ## Probability table definitions
@@ -38,21 +38,22 @@ table_decision(base_model,
 Probabilities associated with biomass and fishing-based metrics for different
 fixed catch levels (see Executive Summary: Tables i, j, and k; Figures k, l,
 and m)
-* Fix the catch in `r assess_yr` to estimate *B*~`r assess_yr + 1`~
+
+* Fix the catch in `r assess_yr` to estimate *B*\textsubscript{`r assess_yr + 1`}
 * Fix the catches in `r assess_yr` and `r assess_yr + 1` to estimate
-  *B*~`assess_yr + 2`~
+  *B*\textsubscript{`r assess_yr + 2`}
 * Fix the catches in `r assess_yr`, `r assess_yr + 1`, and `r assess_yr + 2`
-  to estimate *B*~`assess_yr + 3`~
-* P(*B*~`r assess_yr + 1`~ < *B*~y~): Probability that biomass in
-  `r assess_yr + 1` is less a specified biomass such as *B*~`r assess_yr`~
-   or `r b_40`
+  to estimate *B*\textsubscript{`r assess_yr + 3`}
+* P(*B*\textsubscript{`r assess_yr + 1`} < *B*~y~): Probability that biomass in
+  `r assess_yr + 1` is less a specified biomass such as
+  *B*\textsubscript{`r assess_yr`} or `r b_40`
 * P(relative FI > 100% target): Probability that relative fishing intensity
   in fixed catch year is greater than the target fishing intensity
 * Probabilities are calculated as proportions of the MCMC samples meeting
   the criteria, e.g. 50% probability of being under `r b_40` means that
   4,000 of the 8,000 MCMC samples were under `r b_40`
 
-## Probabilities based on `r end_yr` catch}
+## Probabilities based on `r end_yr` catch
 
 ```{r main-risk-forecast-year-1-table, results = "asis"}
 
@@ -72,7 +73,7 @@ plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[1],
                   leg_pos = c(0.28, 0.36),
-                  leg_font_size = 7,
+                  leg_font_size = 5,
                   remove_x_val = 325)
 ```
 

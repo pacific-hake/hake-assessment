@@ -77,9 +77,7 @@ post_process_beamer_insert_title_page_logos <- function(
              paste0("  \\includegraphics[height=1in, width=4in]{",
                     images_path, "/blank.png}\\\\"))
   }else{
-    if(test){
-      title_page_image <- file.path(images_path, title_page_image)
-    }
+    title_page_image <- file.path(images_path, title_page_image)
     dat <- c(dat,
              paste0("  \\includegraphics[height=",
                     title_page_image_height_in,
