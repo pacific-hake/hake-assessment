@@ -14,7 +14,7 @@
 * Base selectivity (used for years before 1991 as well)
   - Mean of weight-at-age across 1975-`r last_data_yr`
   - Recruitment at estimated *R~0~* or from stock-recruit relationship
-  - Catch alternatives presented for some specific cases
+* Catch alternatives presented for some specific cases
 
 ## Harvest-rule predicted catch for `r assess_yr`
 :::::: {.columns}

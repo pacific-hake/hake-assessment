@@ -8,10 +8,12 @@ for a given year}
 plot_catch_forecast_density(
   model,
   yr,
-  xlim = c(0, 4),
+  xlim = c(0, 3000),
   fill_color = ts_single_model_ribbon_fill,
   fill_alpha_tail = 0.3,
   fill_alpha_main = 0.7,
+  label_x_offset = 500,
+  label_y_offset = 1e-04,
   ...
 )
 }
@@ -29,6 +31,12 @@ plot_catch_forecast_density(
 
 \item{fill_alpha_main}{The transparency used for the color of the main part
 of the curve (-1SD - 1SD)}
+
+\item{label_x_offset}{An x-axis offset to move the median label to,
+Positive means move right}
+
+\item{label_y_offset}{A y-axis offset to move the median label to,
+Positive means move up}
 
 \item{...}{Arguments to pass to \code{\link[=theme_axis_text]{theme_axis_text()}}}
 }

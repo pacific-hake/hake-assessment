@@ -129,6 +129,7 @@ plot_fore_compare <- function(model,
                        breaks = x_breaks,
                        labels = x_labels) +
     theme(legend.title = element_blank(),
+          legend.text.align = 0,
           axis.text.x = element_text(angle = 90,
                                      # Need vjust to move the tick labels
                                      # to the right due to angle being 90

@@ -22,7 +22,8 @@ plot_phase <- function(model,
                        init_lbl_x_off = 0,
                        init_lbl_y_off = 0,
                        final_lbl_x_off = 0,
-                       final_lbl_y_off = 0){
+                       final_lbl_y_off = 0,
+                       title_y_font_size = axis_title_font_size){
 
   yrs <- start_yr:end_yr
 
@@ -128,7 +129,8 @@ plot_phase <- function(model,
     xlab(expression(paste("Relative spawning biomass",
                           ~~B[t]/B[0]))) +
     ylab(expression(paste("Relative fishing intensity",
-                          ~~(1-SPR[t-1])/(1-SPR['40%']))))
+                          ~~(1-SPR[t-1])/(1-SPR['40%'])))) +
+    theme(axis.title.y = element_text(size = title_y_font_size))
 
   g
 }

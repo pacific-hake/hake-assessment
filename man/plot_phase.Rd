@@ -15,7 +15,8 @@ plot_phase(
   init_lbl_x_off = 0,
   init_lbl_y_off = 0,
   final_lbl_x_off = 0,
-  final_lbl_y_off = 0
+  final_lbl_y_off = 0,
+  title_y_font_size = axis_title_font_size
 )
 }
 \arguments{
