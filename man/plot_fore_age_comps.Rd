@@ -7,7 +7,6 @@ numbers and weight for the first forecast year (\code{endyr} + 1)}
 \usage{
 plot_fore_age_comps(
   model,
-  probs = hake::probs,
   x_lim = c(1, 15),
   x_breaks = seq(x_lim[1], x_lim[2], 2),
   y_lim = c(0, 0.4),
@@ -16,9 +15,6 @@ plot_fore_age_comps(
 }
 \arguments{
 \item{model}{A model object, created by \code{\link[=create_rds_file]{create_rds_file()}}}
-
-\item{probs}{A vector of three quantiles for the lower CI,
-median, and upper CI. The second value must be 0.5}
 
 \item{x_lim}{A vector of 2 representing the minimum and maximum x-axis
 values to plot}
@@ -30,6 +26,9 @@ values to plot}
 
 \item{whisker_width}{The width of the top and bottom crossbars
 (whiskers) on the error bars}
+
+\item{probs}{A vector of three quantiles for the lower CI,
+median, and upper CI. The second value must be 0.5}
 }
 \value{
 A \code{\link[cowplot:plot_grid]{cowplot::plot_grid()}} object
