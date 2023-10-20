@@ -26,7 +26,7 @@
 :::
 
 ::: {.column width="62%"}
-```{r main-projected-catch-density, out.height = "75%"}
+```{r main-projected-catch-density, out.height = "80%"}
 plot_catch_forecast_density(base_model,
                             yr = end_yr,
                             xlim = c(0, 3))
@@ -45,7 +45,7 @@ plot_catch_forecast_density(base_model,
 :::
 
 ::: {.column width="62%"}
-```{r main-forecast-depletion-comparison-plot, out.height = "75%"}
+```{r main-forecast-depletion-comparison-plot, out.height = "80%"}
 # See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,
@@ -74,7 +74,7 @@ Median proportions
 :::
 
 ::: {.column width="55%"}
-```{r main-age-comp-forecast, fig.height = 3.5, fig.width = 5.5, out.height = "75%"}
+```{r main-age-comp-forecast, fig.height = 3.5, fig.width = 5.5, out.height = "80%"}
 plot_fore_age_comps(base_model)
 ```
 :::

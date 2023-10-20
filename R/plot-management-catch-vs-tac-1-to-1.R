@@ -2,10 +2,21 @@
 #'
 #' @param d The data as read in using [readr::read_csv()] from the file
 #' "catch-targets.csv"
-#' @param xlim See [base::plot()]
-#' @param ylim  See [base::plot()]
+#' @param yr_font_size The font size for the year labels
+#' @param yrs_nudge_right A vector of years to nudge the labels to the right
+#' instead of left for. If `NULL`, none will be modified
+#' @param x_lim Limits for the x-axis
+#' @param y_lim Limits for the y-axis
+#' @param leg_xmin The x-axis value for the left side of the legend
+#' @param leg_xmax The x-axis value for the right side of the legend
+#' @param leg_ymin The x-axis value for the bottom side of the legend
+#' @param leg_ymax The x-axis value for the top side of the legend
+#'
+#' @return A [ggplot2::ggplot()] object
+#' @export
 plot_management_catch_vs_tac_1_to_1 <- function(d,
-                                                top_yrs = NULL,
+                                                yr_font_size = 3,
+                                                yrs_nudge_right = NULL,
                                                 x_lim = c(0, 1000),
                                                 y_lim = c(0, 800),
                                                 leg_xmin = 20,
@@ -23,6 +34,17 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
 
   num_unq_yrs <- d$Year |> unique() |> length()
   cols <- plot_color(num_unq_yrs)
+
+  # Make new data frame for right nudged years
+  use_nudged_yrs <- FALSE
+
+  if(!is.null(yrs_nudge_right[1])){
+    use_nudged_yrs <- TRUE
+    d_right <- d |>
+      filter(Year %in% yrs_nudge_right)
+    d_left <- d |>
+      filter(!Year %in% yrs_nudge_right)
+  }
 
   g <- ggplot(d) +
     geom_abline(linetype = "dotted") +
@@ -44,17 +66,48 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
                      y = `Realized catch`,
                      yend = TAC),
                  color = "black",
-                 inherit.aes = FALSE) +
-    geom_text(aes(x = `Default HCR TAC`,
-                  y = `Realized catch`,
-                  group = Year,
-                  color = Year,
-                  label = Year),
-              nudge_x = -30,
-              nudge_y = -30,
-              #check_overlap = TRUE,
-              inherit.aes = FALSE,
-              show.legend = FALSE) +
+                 inherit.aes = FALSE)
+  if(use_nudged_yrs){
+    g <- g +
+      geom_text(data = d_left,
+                aes(x = `Default HCR TAC`,
+                    y = `Realized catch`,
+                    group = Year,
+                    color = Year,
+                    label = Year),
+                size = yr_font_size,
+                nudge_x = -30,
+                nudge_y = -30,
+                inherit.aes = FALSE,
+                show.legend = FALSE) +
+      geom_text(data = d_right,
+                aes(x = `Default HCR TAC`,
+                    y = `Realized catch`,
+                    group = Year,
+                    color = Year,
+                    label = Year),
+                size = yr_font_size,
+                nudge_x = 30,
+                nudge_y = -30,
+                #check_overlap = TRUE,
+                inherit.aes = FALSE,
+                show.legend = FALSE)
+  }else{
+    g <- g +
+      geom_text(aes(x = `Default HCR TAC`,
+                    y = `Realized catch`,
+                    group = Year,
+                    color = Year,
+                    label = Year),
+                size = yr_font_size,
+                nudge_x = -30,
+                nudge_y = -30,
+                #check_overlap = TRUE,
+                inherit.aes = FALSE,
+                show.legend = FALSE)
+  }
+
+  g <- g +
     scale_x_continuous(breaks = seq(x_lim[1], x_lim[2], 200),
                        expand = c(0, 0),
                        limits = x_lim) +

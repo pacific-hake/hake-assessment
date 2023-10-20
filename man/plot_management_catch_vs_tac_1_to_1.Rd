@@ -6,7 +6,8 @@
 \usage{
 plot_management_catch_vs_tac_1_to_1(
   d,
-  top_yrs = NULL,
+  yr_font_size = 3,
+  yrs_nudge_right = NULL,
   x_lim = c(0, 1000),
   y_lim = c(0, 800),
   leg_xmin = 20,
@@ -19,9 +20,25 @@ plot_management_catch_vs_tac_1_to_1(
 \item{d}{The data as read in using \code{\link[readr:read_delim]{readr::read_csv()}} from the file
 "catch-targets.csv"}
 
-\item{xlim}{See \code{\link[base:plot]{base::plot()}}}
+\item{yr_font_size}{The font size for the year labels}
 
-\item{ylim}{See \code{\link[base:plot]{base::plot()}}}
+\item{yrs_nudge_right}{A vector of years to nudge the labels to the right
+instead of left for. If \code{NULL}, none will be modified}
+
+\item{x_lim}{Limits for the x-axis}
+
+\item{y_lim}{Limits for the y-axis}
+
+\item{leg_xmin}{The x-axis value for the left side of the legend}
+
+\item{leg_xmax}{The x-axis value for the right side of the legend}
+
+\item{leg_ymin}{The x-axis value for the bottom side of the legend}
+
+\item{leg_ymax}{The x-axis value for the top side of the legend}
+}
+\value{
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Plot the TAC vs realized catch on a 1-to-1 plot

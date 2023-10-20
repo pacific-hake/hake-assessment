@@ -59,7 +59,12 @@ plot_management_catch_vs_tac <- function(d,
               alpha = line_alpha) +
     labs(y = "Catch or TAC (kt)") +
     theme(legend.title = element_blank(),
-          legend.text = element_text(size = leg_font_size)) +
+          legend.text = element_text(size = leg_font_size),
+          # Following make the legend smaller and legend items closer together
+          legend.key.size = unit(0.25, "cm"),
+          legend.text.align = 0,
+          legend.spacing.y = unit(0.01, "cm")) +
+    guides(color = guide_legend(byrow = TRUE)) +
     scale_y_continuous(labels = comma,
                        limits = c(0, NA)) +
     scale_x_continuous(breaks = x_breaks,

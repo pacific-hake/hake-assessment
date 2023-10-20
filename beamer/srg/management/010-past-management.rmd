@@ -1,12 +1,12 @@
 # Introduction
 
 ## Past management: Total Allowable Catch
-```{r tac-vs-realized-catch-ts, fig.height = 3.5, fig.width = 7.5, out.height = "75%"}
+```{r tac-vs-realized-catch-ts, fig.height = 3.5, fig.width = 7.5, out.height = "80%"}
 
 plot_management_catch_vs_tac(catch_targets_df,
                              curr_assess_biomass = base_model$catch_default_policy[1],
                              leg_pos = c(0.12, 0.87),
-                             leg_font_size = 10)
+                             leg_font_size = 8)
 
 def_med_hr_tac <- catch_targets_df |> 
   filter(Year == last_assess_yr) |> 
@@ -16,7 +16,7 @@ def_med_hr_tac <- catch_targets_df |>
 
 ## Past management: Total Allowable Catch
 :::::: {.columns}
-::: {.column width="45%"}
+::: {.column width="40%"}
 * March `r last_assess_yr`
   - Default median HR TAC is `r f(def_med_hr_tac)` t
   - Sum of unilateral TACs is `r last_yr_tac` t
@@ -25,10 +25,13 @@ def_med_hr_tac <- catch_targets_df |>
 * Box colors correspond to year in the time series
 :::
 
-::: {.column width="55%"}
-```{r tac-vs-realized-catch, fig.height = 3.5, fig.width = 7.5, out.height = "60%"}
+::: {.column width="60%"}
+```{r tac-vs-realized-catch, fig.height = 4, fig.width = 6.5, out.height = "75%"}
 
-plot_management_catch_vs_tac_1_to_1(catch_targets_df)
+plot_management_catch_vs_tac_1_to_1(catch_targets_df,
+                                    yrs_nudge_right = c(2006, 2010, 2011,
+                                                        2012, 2014, 2019,
+                                                        2020))
 ```
 :::
 ::::::

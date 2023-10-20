@@ -67,7 +67,7 @@ table_risk(
 ```
 
 ## Probabilities based on `r end_yr` catch
-```{r forecast-risk-comparison-plot-year-1, fig.height = 3.5, out.height = "75%"}
+```{r forecast-risk-comparison-plot-year-1, fig.height = 3.5, out.height = "80%"}
 
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
@@ -95,7 +95,7 @@ table_risk(base_model,
 ```
 
 ## Probabilities based on `r end_yr` and `r end_yr + 1` catches
-```{r forecast-risk-comparison-plot-year-2, fig.height = 3.5, out.height = "75%"}
+```{r forecast-risk-comparison-plot-year-2, fig.height = 3.5, out.height = "80%"}
 
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
@@ -121,7 +121,7 @@ table_risk(base_model,
            header_font_size = 9)
 ```
 ## Probabilities based on `r end_yr`, `r end_yr + 1`, and `r end_yr + 2` catches
-```{r forecast-risk-comparison-plot-year-3, fig.height = 3.5, out.height = "75%"}
+```{r forecast-risk-comparison-plot-year-3, fig.height = 3.5, out.height = "80%"}
 
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
