@@ -135,6 +135,7 @@ gotest <- function(copy_tmpdir = FALSE){
     dir.create(file.path("doc", knitr_figures_dir))
     dir.create("doc/images")
   }
+
   if(type == "pdf"){
     dir.create("doc/bib")
     dir.create("doc/csl")
@@ -168,7 +169,7 @@ gotest <- function(copy_tmpdir = FALSE){
   if(type == "beamer"){
     writeLines(c("# Test Slide", ""), "005-test.rmd")
   }else{
-    writeLines("", "005-test.rmd")
+    writeLines(c("# Test section", ""), "005-test.rmd")
   }
 
   # Edit the launcher to be in test mode. Need to keep leading spaces due to

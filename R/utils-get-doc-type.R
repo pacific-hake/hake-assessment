@@ -31,9 +31,11 @@ get_doc_type <- function(fn){
          "`hake_beamer:`",
          call. = FALSE)
   }
+
   type <- x[ind_type]
   type <- gsub("^\\s*", "", type)
   type <- gsub(":$", "", type)
+  type <- gsub("hake::", "", type)
   type <- gsub("^hake_", "", type)
 
   type
