@@ -79,6 +79,13 @@ table_decision <- \(
     stop("`letter_df` must have three columns",
          call. = FALSE)
   }
+
+  if(!is.null(rows_to_show[1])){
+    forecast_inds <- match(rows_to_show, letter_df$let)
+    letter_df <- letter_df |>
+      filter(let %in% rows_to_show)
+  }
+
   if(bold_letters){
     letter_df <- letter_df |>
       mutate(let = latex_bold(paste0(let, ":")))
@@ -121,8 +128,8 @@ table_decision <- \(
     table_header <- latex_bold("Relative fishing intensity")
   }
 
-  # Extract th catch levels for the three years shown in the table (3)
-  ct_levels <- map(model$forecasts[[3]], ~{
+  # Extract the catch levels for the three years shown in the table (3)
+  ct_levels <- map(model$forecasts[[3]][forecast_inds], ~{
     .x$fore_catch$catch
   }) |>
     unlist() |>
