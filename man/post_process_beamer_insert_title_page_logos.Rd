@@ -5,11 +5,35 @@
 \title{Insert the NOAA and DFO logos and a hake picture on the title page of a
 beamer presentation}
 \usage{
-post_process_beamer_insert_title_page_logos(x, ...)
+post_process_beamer_insert_title_page_logos(
+  x,
+  test,
+  images_dir,
+  title_page_image,
+  title_page_image_height_in,
+  title_page_image_width_in,
+  ...
+)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
+
+\item{test}{Logical. If \code{TRUE}, this is a test compilation in a temporary
+directory. If \code{FALSE}, it is the real compilation of the full presentation,
+in the hake directory structure}
+
+\item{images_dir}{The directory where the title picture and logos are
+found for beamer presentations}
+
+\item{title_page_image}{The filename of the image to place on the title page
+of the beamer presentation. If \code{NULL}, a blank image will appear}
+
+\item{title_page_image_height_in}{The height in inches for the title page
+image. Only applies if \code{title_page_image} is not \code{NULL}}
+
+\item{title_page_image_width_in}{The width in inches for the title page
+image. Only applies if \code{title_page_image} is not \code{NULL}}
 
 \item{...}{Arguments passed to all the post-processing functions}
 }

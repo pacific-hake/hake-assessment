@@ -30,6 +30,7 @@ read_bookdown_file <- function(fn = "./_bookdown.yml"){
     tmp <- gsub("rmd_files:\\s*\\[", "", tmp)
     tmp <- gsub("^\\s*", "", tmp)
     tmp <- gsub("\\]*", "", tmp)
+    tmp <- gsub(",", "", tmp)
     x$rmd_fns <- tmp
   }
 
@@ -37,7 +38,9 @@ read_bookdown_file <- function(fn = "./_bookdown.yml"){
   tmp <- grep(dmf_pat, bd, value = TRUE)
   if(length(tmp)){
     tmp <- gsub(dmf_pat, "\\1", tmp)
-    x$delete_merged_file <- as.logical(tmp)
+    if(tmp %in% c("true", "false")){
+      x$delete_merged_file <- as.logical(tmp)
+    }
   }
 
   x
