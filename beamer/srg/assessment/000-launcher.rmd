@@ -1,5 +1,5 @@
 ---
-title: "`r rmarkdown$metadata$project_variables$assess_yr` Pacific Hake Stock Assessment Methods and Results"
+title: "`r rmarkdown::metadata$project_variables$assess_yr` Pacific Hake Stock Assessment Methods and Results"
 project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
@@ -32,13 +32,7 @@ project_variables:
   knitr_cache_dir: "knitr-cache/"
   out_csv_dir: "out-csv"
   # Increasing `dots_per_inch` for figure output increases the file size a LOT
-  dots_per_inch: 100
-  # To remove image, leave `title_page_image` blank. In that case,
-  # `title_page_image_height_in` and `title_page_image_width_in` will be
-  # ignored
-  title_page_image: "../../images/hake-line-drawing.png"
-  title_page_image_height_in: 1
-  title_page_image_width_in: 2
+  dots_per_inch: 200
 author: Pacific Hake Joint Technical Committee
 date: "SRG meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
 output:
@@ -47,6 +41,14 @@ output:
     slide_level: 2
     toc: false
     keep_tex: true
+    test: false # Do not modify. Modified by gotest() function for testing
+    images_dir: "../../images" # Beamer logos and title image
+    # To remove image, leave `title_page_image` value blank. In that case,
+    # `title_page_image_height_in` and `title_page_image_width_in` will be
+    # ignored. Note that it must be present in `images_dir` above
+    title_page_image: "hake-line-drawing.png"
+    title_page_image_height_in: 1
+    title_page_image_width_in: 2
 classoption: "aspectratio=169"
 fontsize: 11pt
 urlcolor: blue
@@ -60,7 +62,6 @@ header-includes:
   - \newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
   - \newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
   - \newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
-test: false # Do not modify, code modifies this when using hake::gotest()
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
@@ -72,7 +73,9 @@ user <- ifelse(Sys.getenv("USERNAME") == "",
                Sys.getenv("RSTUDIO_USER_IDENTITY"),
                Sys.getenv("USERNAME"))
 
-if(rmarkdown::metadata$test){
+test <- rmarkdown::metadata$output$hake_beamer$test %||% FALSE
+
+if(test){
   # Necessary for `gotest()` testing
   if(user == "grandin"){
     devtools::load_all("~/github/pacific-hake/hake")

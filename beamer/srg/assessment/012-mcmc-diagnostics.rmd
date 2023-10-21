@@ -16,7 +16,7 @@
 ```{r main-mcmc-diag-hists, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
 plot_mcmc_diagnostics_all_params(base_model,
                                  show_ro = TRUE,
-                                 ro_arrow_lengths = c(10, 20, 7, 20),
+                                 ro_arrow_lengths = c(20, 30, 7, 40),
                                  ro_text_nudges = c(0.15, 0, -0.55, 0),
                                  ro_text_size = 3)
 ```
