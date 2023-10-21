@@ -60,7 +60,7 @@ sector, and
 :::
 
 ::: {.column width="60%"}
-```{r data-overview-map, out.height = "3in", out.width = "1\\columnwidth"}
+```{r data-overview-map, out.height = "85%"}
 plot_data_summary(base_model,
                   label_y_placement = c(1.8, 2.5, 2.0))
 ```

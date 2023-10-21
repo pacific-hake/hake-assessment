@@ -165,10 +165,7 @@ plot_maturity_ogives <- function(model,
            color = "none",
            fill = guide_legend("")) +
     theme(legend.title = element_blank(),
-          legend.text = element_text(size = leg_font_size),
-          # plot.margin: top, right,bottom, left
-          # Needed to avoid tick labels cutting off
-          plot.margin = margin(12, 12, 14, 0)) +
+          legend.text = element_text(size = leg_font_size)) +
     labs(x = "Age",
          y = "Proportion mature")
 

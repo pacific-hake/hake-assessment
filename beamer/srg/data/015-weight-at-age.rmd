@@ -6,7 +6,7 @@ collected from the Puget Sound.
 * Future fecundity uses mean weight-at-age data from most recent five years.
 
 ## Weight-at-age by year
-```{r wt-at-age, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
+```{r wt-at-age, fig.height = 4, out.height = "85%"}
 plot_weight_at_age(wt_at_age,
                    ages = 2:10,
                    bold_ages = 5,
@@ -18,7 +18,7 @@ plot_weight_at_age(wt_at_age,
 ```
 
 ## Sample sizes of weight-at-age by year
-```{r main-weight-at-age-numbers, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
+```{r main-weight-at-age-numbers, fig.height = 4, out.height = "85%"}
 plot_heatmap_sample_size_weight_at_age(
   base_model,
   cell_font_size = 2,
@@ -27,10 +27,11 @@ plot_heatmap_sample_size_weight_at_age(
   pre_func = mean,
   post_yrs = (base_model$endyr - 4):base_model$endyr,
   post_func = mean,
-  cols = c("purple",
-           "lightgreen",
+  cols = c("red",
            "yellow",
-           "dodgerblue"),
-  ax_tick_font_size = 6)
+           "green",
+           "dodgerblue")) +
+  theme(axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 6))
 ```
 

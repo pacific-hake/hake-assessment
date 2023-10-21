@@ -16,7 +16,8 @@ plot_cumulative_catches(
   line_gap = ts_linegap,
   point_shape = ts_pointshape,
   point_size = ts_pointsize,
-  point_stroke = ts_pointstroke
+  point_stroke = ts_pointstroke,
+  title_font_size = axis_title_font_size
 )
 }
 \arguments{
@@ -49,6 +50,8 @@ and 1 or "none" for no legend}
 \item{point_size}{The size of the points}
 
 \item{point_stroke}{The stroke value for the points}
+
+\item{title_font_size}{Size of the title text for each panel}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

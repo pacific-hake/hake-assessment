@@ -18,7 +18,8 @@
 #' @param point_shape The point shape type
 #' @param point_size The size of the points
 #' @param point_stroke The stroke value for the points
-#'
+#' @param title_font_size Size of the title text for each panel
+
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_cumulative_catches <- function(catch_lst,
@@ -35,7 +36,12 @@ plot_cumulative_catches <- function(catch_lst,
                                     line_gap = ts_linegap,
                                     point_shape = ts_pointshape,
                                     point_size = ts_pointsize,
-                                    point_stroke = ts_pointstroke){
+                                    point_stroke = ts_pointstroke,
+                                    title_font_size = axis_title_font_size,
+                                    ax_title_x = axis_title_font_size,
+                                    ax_title_y = axis_title_font_size,
+                                    ax_text_x = axis_tick_font_size,
+                                    ax_text_y = axis_tick_font_size){
 
   type <- match.arg(type)
 
@@ -83,7 +89,9 @@ plot_cumulative_catches <- function(catch_lst,
                          labels = month.abb[seq(2, 12, 2)]) +
       theme(axis.title.x = element_blank(),
             axis.title.y = element_blank(),
-            plot.title = element_text(size = axis_title_font_size,
+            axis.text.x = element_text(size = ax_text_x),
+            axis.text.y = element_text(size = ax_text_y),
+            plot.title = element_text(size = title_font_size,
                                       hjust = 0.5),
             legend.position = leg_pos,
             legend.key.size = unit(0.2, 'cm'),

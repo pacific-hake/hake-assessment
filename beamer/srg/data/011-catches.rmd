@@ -1,9 +1,9 @@
 # Catches and Allocations
 ## Catches
-```{r catches, fig.height = 3.9, out.height = "3in", out.width = "1\\columnwidth"}
+```{r catches, fig.height = 4, out.height = "85%"}
 plot_catches(ct, xlim = c(start_yr, last_data_yr),
-             leg_font_size = 7,
-             leg_key_size = 0.2,
+             leg_font_size = 9,
+             leg_key_size = 0.5,
              leg_ratio = c(1, 4))
 ```
 
@@ -80,7 +80,7 @@ t of tribal catches
 ::::::
 
 ## Cumulative catch by month
-```{r cumulative-catches, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
+```{r cumulative-catches, fig.height = 4, out.height = "85%"}
 plot_cumulative_catches(list(us_ss_catch_by_month_df,
                              can_ss_catch_by_month_df,
                              us_cp_catch_by_month_df,
@@ -92,10 +92,9 @@ plot_cumulative_catches(list(us_ss_catch_by_month_df,
                              "Canadian Freezer-Trawlers",
                              "U.S. Mothership"),
                         type = "cumulative",
-                        leg_font_size = 8) +
-  theme(axis.title.x = element_text(size = 10),
-        axis.title.y = element_text(size = 10),
-        axis.text.x = element_text(size = 8),
-        axis.text.y = element_text(size = 8))
+                        leg_font_size = 8,
+                        title_font_size = 8,
+                        ax_text_x = 8,
+                        ax_text_y = 8)
 ```
 

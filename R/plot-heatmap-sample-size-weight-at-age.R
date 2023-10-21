@@ -195,8 +195,7 @@ plot_heatmap_sample_size_weight_at_age <- function(
     scale_y_continuous(breaks = y_breaks,
                        labels = y_labels,
                        expand = c(0, 0)) +
-    theme(legend.position = "none",
-          plot.margin = margin(12, 12, 10, 0)) +
+    theme(legend.position = "none") +
     geom_hline(yintercept = c(first_yr - 0.5,
                               end_yr + 0.5),
                color = proj_line_color,

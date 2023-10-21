@@ -1,6 +1,6 @@
 # Ages
 ## Age composition by sector
-```{r age-comp-comparison, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
+```{r age-comp-comparison, fig.height = 4, out.height = "85%"}
 plot_age_comp_bubbles_data(list(can_ss_age_df,
                                 can_ft_age_df,
                                 us_ss_age_df,
@@ -11,14 +11,15 @@ plot_age_comp_bubbles_data(list(can_ss_age_df,
                                 "U.S. Shore-Based",
                                 "U.S. Catcher-processor",
                                 "U.S. Mothership")) +
-  theme(axis.title.x = element_text(size = 8),
-        axis.title.y = element_text(size = 8),
+  theme(#axis.title.x = element_text(size = 8),
+        #axis.title.y = element_text(size = 8),
         axis.text.x = element_text(size = 8),
-        axis.text.y = element_text(size = 8))
+        axis.text.y = element_text(size = 8),
+        strip.text = element_text(size = 8))
 ```
 
 ## Acoustic survey age compositions
-```{r survey-age-comps, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
+```{r survey-age-comps, fig.height = 4, out.height = "85%"}
 plot_age_comp_bubbles(base_model,
                       type = "survey",
                       clines = c(1984, 1999, 2010, 2014, 2016, 2020),
@@ -28,7 +29,7 @@ plot_age_comp_bubbles(base_model,
 ```
 
 ## Survey and fishery age-composition comparison
-```{r age-comp-comparison-fishery-survey, fig.height = 4, out.height = "3in", out.width = "1\\columnwidth"}
+```{r age-comp-comparison-fishery-survey, fig.height = 4, out.height = "85%"}
 plot_age_comp_comparison_bubbles(base_model)
 ```
 
