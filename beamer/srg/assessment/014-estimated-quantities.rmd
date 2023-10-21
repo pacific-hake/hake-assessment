@@ -10,7 +10,7 @@
 :::
 
 ::: {.column width="60%"}
-```{r priors-posts, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+```{r priors-posts, fig.height = 4, out.height = "80%"}
 plot_priors_vs_posts(base_model,
                      x_range = "prior",
                      ncol = 2,
@@ -20,7 +20,7 @@ plot_priors_vs_posts(base_model,
 ::::::
 
 ## Acoustic survey catchability (\emph{$q_b$}) posterior for this assessment
-```{r catchability-density, fig.height=4, out.height = "2in", out.width = "0.8\\columnwidth"}
+```{r catchability-density, fig.height = 4, out.height = "80%"}
 plot_catchability_density(base_model,
                           last_yr_base_model,
                           type = "age2",
@@ -55,7 +55,7 @@ k()
 ## Time-varying selectivity
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r selectivity-mountains, fig.height=4, out.height = "2.8in", out.width = "1\\columnwidth"}
+```{r selectivity-mountains, fig.height = 4, out.height = "80%"}
 
 tv_selex_start_yr <- 1990
 
@@ -68,7 +68,7 @@ plot_selex_mountains(base_model,
 :::
 
 ::: {.column width="50%"}
-```{r selectivity-uncertainty, fig.height=4, out.height = "2.8in", out.width = "1\\columnwidth"}
+```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
 plot_selex_uncertainty(base_model,
                        n_col = 2,
                        label_loc = c(1, 0.65),
@@ -80,7 +80,7 @@ plot_selex_uncertainty(base_model,
 ## Posterior distributions for survey (left) and fishery (right) selectivity
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r selectivity-posterior-survey, fig.height=4, out.height = "2.8in", out.width = "1\\columnwidth"}
+```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
 plot_selex_posteriors(base_model,
                       type = "survey",
                       age_range = c(1, 8),
@@ -91,7 +91,7 @@ plot_selex_posteriors(base_model,
 :::
 
 ::: {.column width="50%"}
-```{r selectivity-posterior-fishery, fig.height=4, out.height = "2.8in", out.width = "1\\columnwidth"}
+```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
 plot_selex_posteriors(base_model,
                       type = "fishery",
                       age_range = c(1, 8),
@@ -112,6 +112,6 @@ table_param_est(
   section_line_above = FALSE,
   section_line_below = FALSE,
   digits = 3,
-  font_size = 5.5,
-  header_font_size = 7)
+  font_size = 5,
+  header_font_size = 6)
 ```

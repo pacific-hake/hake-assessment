@@ -1,12 +1,24 @@
 # Fits to data
 ## Fit to the acoustic survey index of abundance
-```{r mcmc-survey-fit, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
-base_model$plots$survey_fit
+```{r mcmc-survey-fit, fig.height = 4, out.height = "80%"}
+
+plot_survey_fit_mcmc(base_model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymin = 4.25)
 ```
 
 ## Fit to the age-1 relative index
-```{r mcmc-age1-fit, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
-base_model$plots$age1_index_fit
+```{r mcmc-age1-fit, fig.height = 4, out.height = "80%"}
+
+plot_survey_fit_mcmc(base_model,
+                     type = "age1",
+                     n_posts = 1000,
+                     ylim = c(0, 10),
+                     glow = TRUE)
 ```
 
 ## Fit to acoustic survey age comps
@@ -22,7 +34,7 @@ base_model$plots$age1_index_fit
 :::
 
 ::: {.column width="60%"}
-```{r survey-age-comp-fits, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+```{r survey-age-comp-fits, fig.height = 4, out.height = "80%"}
 plot_age_comp_fit(base_model,
                   n_col = 4,
                   type = "survey",
@@ -44,7 +56,7 @@ plot_age_comp_fit(base_model,
 :::
 
 ::: {.column width="60%"}
-```{r fishery-age-comp-fits, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+```{r fishery-age-comp-fits, fig.height = 4, out.height = "75%"}
 plot_age_comp_fit(base_model,
                   label_font_size = 3,
                   type = "fishery",
@@ -57,16 +69,16 @@ plot_age_comp_fit(base_model,
 :::::: {.columns}
 ::: {.column width="50%"}
 \center Fishery \center
-```{r fishery-pearson, fig.height=4, out.height = "2in", out.width = "1\\columnwidth"}
+```{r fishery-pearson, fig.height = 4, fig.width = 6, out.height = "65%"}
 plot_pearson_bubbles(base_model,
                      type = "fishery",
                      leg_pos = "top")
 ```
 :::
 
-::: {.column width="60%"}
+::: {.column width="50%"}
 \center Survey \center
-```{r survey-pearson, fig.height=4, out.height = "2in", out.width = "1\\columnwidth"}
+```{r survey-pearson, fig.height = 4, fig.width = 6, out.height = "65%"}
 plot_pearson_bubbles(base_model,
                      type = "survey",
                      alpha = 0.7)

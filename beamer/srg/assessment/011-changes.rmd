@@ -15,7 +15,7 @@
 
 ## Bridging: Model Updates and Additions
 
-```{r bridge-biomass, fig.height = 4, out.height = "2.7in", out.width = "1\\columnwidth"}
+```{r bridge-biomass, fig.height = 4, out.height = "80%"}
 p <- list()
 p[[1]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
@@ -36,7 +36,7 @@ plot_grid(plotlist = p,
 
 ## Bridging: Model Updates and Additions (survey)
 
-```{r bridge-survey, fig.height=4, out.height = "2.7in", out.width = "1\\columnwidth"}
+```{r bridge-survey, fig.height = 4, out.height = "80%"}
 p <- list()
 p[[1]] <-
   plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
