@@ -1,5 +1,5 @@
 # name of the pdf file that is created: hake.pdf
-book_filename: "JTC-sensitivities"
+book_filename: "JTC-sensitivity"
 rmd_files: ["000-launcher.rmd",
             "../../../doc/001-load-packages.rmd",
             "../../../doc/002-load-globals.rmd",
