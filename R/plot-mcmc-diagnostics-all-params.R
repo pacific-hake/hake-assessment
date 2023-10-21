@@ -83,6 +83,7 @@ plot_mcmc_diagnostics_all_params <- function(model,
                                 ro_arrow_length =  ro_arrow_lengths[4],
                                 ro_text_nudge = ro_text_nudges[4],
                                 y_brk = 50,
+                                y_lim = c(0, 350),
                                 ...)
 
   p <- plot_grid(plotlist = p, nrow = 2)
