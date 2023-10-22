@@ -967,30 +967,45 @@ prob_decline_from_2012_to_2013_curr <-
   f()
 
 # Retrospective setup for the document ----------------------------------------
-# retro_model_nms <- c(base_model_name,
-#                        map_chr(plot_retro_yrs, ~{
-#                          paste0("-", .x, ifelse(.x == 1, " year", " years"))
-#                        }))
-# retro_lst <- list(base_model)
-# for(i in plot_retro_yrs){
-#   retro_lst[[i + 1]] <- base_model$retros[[i]]
-# }
-# retro_models_end_yr <- c(end_yr, end_yr - plot_retro_yrs)
-# # Assemble the retrospective list with the base as the first element
-# 
-# d_obj_retro_biomass <-
-#   create_group_df_biomass(retro_lst,
-#                           retro_model_nms,
-#                           end_yrs = retro_models_end_yr)
-# d_obj_retro_rel_biomass <-
-#   create_group_df_biomass(retro_lst,
-#                           retro_model_nms,
-#                           rel = TRUE,
-#                           end_yrs = retro_models_end_yr)
-# d_obj_retro_recr <-
-#   create_group_df_recr(retro_lst,
-#                        retro_model_nms,
-#                        end_yrs = retro_models_end_yr)
+# Retrospective setup has been done in the RDS creation part of the code,
+# so it is included in the RDS files already.
+# The code here is to create a list of incremental lists, each on having one
+# more year subtracted so that when plotted, we can watch each extra year get
+# added on one by one
+retro_inc_nms <- list(c("Base model",
+                        " -1 year"),
+                      c("Base model",
+                        " -1 year",
+                        " -2 years"),
+                      c("Base model",
+                        " -1 year",
+                        " -2 years",
+                        " -3 years"),
+                      c("Base model",
+                        " -1 year",
+                        " -2 years",
+                        " -3 years",
+                        " -4 years"),
+                      c("Base model",
+                        " -1 year",
+                        " -2 years",
+                        " -3 years",
+                        " -4 years",
+                        " -5 years"))
+
+retros_biomass_incremental <- map(retro_inc_nms, \(retro_mdls){
+  base_model$retros$biomass_df$d |>
+    filter(model %in% retro_mdls)
+  })
+retros_bo_incremental <- map(retro_inc_nms, \(retro_mdls){
+  base_model$retros$biomass_df$bo |>
+    filter(model %in% retro_mdls)
+  })
+
+retros_biomass_incremental <- map2(retros_biomass_incremental,
+                                   retros_bo_incremental, \(d, bo){
+                                     list(d = d, bo = bo)
+                                   })
 
 # Set up bridge model groups for plotting ------------------------------------
 iter <- 0

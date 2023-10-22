@@ -152,6 +152,10 @@ plot_biomass <- function(
     colors <- rev(colors)
     ribbon_colors <- rev(ribbon_colors)
   }
+  # In case the length is 2, `plot_color()` will return 3 so we must remove one
+  # for the `geom_errorbar()` function to work correctly
+  length(ribbon_colors) <- length(unique(d$model))
+
   if(is_single_model){
     colors <- single_ribbon_lines_color
     ribbon_colors <- single_ribbon_fill
@@ -192,8 +196,7 @@ plot_biomass <- function(
     scale_fill_manual(values = ribbon_colors) +
     scale_color_manual(values = colors) +
     coord_cartesian(xlim = xlim,
-                    ylim = ylim,
-                    clip = "off") +
+                    ylim = ylim) +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,

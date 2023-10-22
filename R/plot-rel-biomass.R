@@ -109,8 +109,7 @@ plot_rel_biomass <- function(
     scale_fill_manual(values = ribbon_colors) +
     scale_color_manual(values = colors) +
     coord_cartesian(xlim = xlim,
-                    ylim = ylim,
-                    clip = "off") +
+                    ylim = ylim) +
     geom_ribbon(alpha = alpha,
                 linetype = ribbon_line_type)
 

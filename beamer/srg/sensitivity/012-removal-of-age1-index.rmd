@@ -1,16 +1,13 @@
 # Age-1 index
 
 ## Remove age-1 index
-```{r age1-biomass-fig, fig.height = 3, out.hright = "85%"}
-  plot_biomass(model_lst = list(base_model,
-                                sens_models[[2]][[2]]),
-               model_names = c(base_model_name,
-                               sens_models_desc[[2]][1]),
+```{r age1-biomass-fig, fig.height = 3, out.height = "85%"}
+  plot_biomass(d_obj = d_obj_sens_biomass[[2]],
                x_expansion = 4,
-               ylim = c(0, 6),
+               ylim = c(0, 5),
                y_breaks = seq(0, 20, 2),
                leg_font_size = 5,
-               leg_pos = c(0.8, 0.75),
+               leg_pos = c(0.7, 0.85),
                rev_colors = TRUE,
                ribbon_line_type = 0) +
   theme(axis.title.x = element_text(size = 12),
@@ -21,14 +18,12 @@
 
 ## Remove age-1 index
 ```{r age1-par-table, results = "asis"}
-table_param_est(models = list(base_model,
-                              sens_models[[2]][[2]]),
-                model.names = c(base_model_name,
-                                sens_models_desc[[2]][1]),
+table_param_est(models = sens_models[[2]],
+                model_nms = sens_models_names[[2]],
                 end_yr = end_yr,
                 digits = 3,
                 font_size = 5,
-                right_cols_cm = 0.65,
+                right_cols_cm = 0.75,
                 header_font_size = 6,
                 section_line_above = FALSE,
                 section_line_below = FALSE)

@@ -1,0 +1,122 @@
+# Retrospectives
+
+## Base model retrospectives - Spawning biomass
+```{r retro-biomass-1, fig.height = 3, out.height = "85%"}
+
+plot_biomass(d_obj = retros_biomass_incremental[[1]],
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.7, 0.85),
+             leg_ncol = 1,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             ribbon_line_type = 0) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.1, units = "cm"),
+        legend.text = element_text(size = 8))
+```
+
+## Base model retrospectives - Spawning biomass
+```{r retro-biomass-2, fig.height = 3, out.height = "85%"}
+
+plot_biomass(d_obj = retros_biomass_incremental[[2]],
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.7, 0.85),
+             leg_ncol = 1,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             ribbon_line_type = 0) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.1, units = "cm"),
+        legend.text = element_text(size = 8))
+```
+
+## Base model retrospectives - Spawning biomass
+```{r retro-biomass-3, fig.height = 3, out.height = "85%"}
+
+plot_biomass(d_obj = retros_biomass_incremental[[3]],
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.7, 0.85),
+             leg_ncol = 1,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             ribbon_line_type = 0) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.1, units = "cm"),
+        legend.text = element_text(size = 8))
+```
+
+## Base model retrospectives - Spawning biomass
+```{r retro-biomass-4, fig.height = 3, out.height = "85%"}
+
+plot_biomass(d_obj = retros_biomass_incremental[[4]],
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.7, 0.85),
+             leg_ncol = 1,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             ribbon_line_type = 0) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.1, units = "cm"),
+        legend.text = element_text(size = 8))
+```
+
+## Base model retrospectives - Spawning biomass
+```{r retro-biomass-5, fig.height = 3, out.height = "85%"}
+
+plot_biomass(d_obj = retros_biomass_incremental[[5]],
+             leg_font_size = 5,
+             x_expansion = 4,
+             leg_pos = c(0.7, 0.85),
+             leg_ncol = 1,
+             alpha = 0.1,
+             rev_colors = TRUE,
+             ribbon_line_type = 0) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.1, units = "cm"),
+        legend.text = element_text(size = 8))
+```
+
+## Base model retrospectives - recruitment
+```{r retro-recr, fig.height = 3, out.height = "85%"}
+plot_recruitment(d_obj = d_obj_sens_recr[[3]],
+                 leg_font_size = 5,
+                 leg_pos = c(0.13, 0.85),
+                 inc_means = FALSE,
+                 rev_colors = TRUE) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+## Base model retrospective -- squid plot
+```{r retro-3, fig.height = 3, out.height = "85%"}
+
+plot_squid(base_model,
+           show_ci = TRUE,
+           ci_yrs = 2012:2015) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12))
+```
+
+## Historical assessments (retrospective)
+```{r retro-4, fig.height = 3, out.height = "85%"}
+
+plot_assessment_history_biomass(base_model,
+                                assess_history_df,
+                                leg_pos = c(0.75, 0.7)) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.1, units = "cm"),
+        legend.text = element_text(size = 6))
+```
+
