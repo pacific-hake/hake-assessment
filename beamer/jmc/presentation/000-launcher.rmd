@@ -1,5 +1,5 @@
 ---
-title: "Management outcomes of the `r rmarkdown::metadata$project_variables$assess_yr` Pacific Hake stock assessment"
+title: "Results of the `r rmarkdown::metadata$project_variables$assess_yr` Pacific Hake stock assessment"
 project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
@@ -36,7 +36,7 @@ project_variables:
 author: Pacific Hake Joint Technical Committee
 date: "SRG meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
 output:
-  hake_beamer:
+  hake::hake_beamer:
     theme: Singapore
     slide_level: 2
     toc: false
@@ -53,15 +53,10 @@ classoption: "aspectratio=169"
 fontsize: 11pt
 urlcolor: blue
 header-includes:
-  - \usepackage{makecell, booktabs, makecell, array, longtable, bm}
-  - \makeatletter\def\fnum@table{\usebeamercolor{caption name}\usebeamerfont*{caption name}\tablename~\thetable}\makeatother
+  - \usepackage{makecell, booktabs, array}
   - \usepackage[outdir=./knitr-figs/]{epstopdf}
   - \AtBeginSubsection{}
   - \AtBeginSection{}
-  - \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
-  - \newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
-  - \newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
-  - \newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}

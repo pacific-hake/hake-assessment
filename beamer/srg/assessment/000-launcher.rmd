@@ -123,7 +123,7 @@ knitr::opts_chunk$set(
   out.height = "\\textheight",
   out.width = "\\textwidth")
 
-fig_dir <- here("beamer/srg/assessment/knitr-figs")
+fig_dir <- file.path(getwd(), "knitr-figs")
 if(!dir.exists(fig_dir)){
   dir.create(fig_dir)
 }

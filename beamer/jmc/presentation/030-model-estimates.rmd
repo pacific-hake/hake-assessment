@@ -1,0 +1,26 @@
+# Model estimates
+
+## Recruitment (numbers of fish)
+
+## Spawning Biomass
+
+## Relative Spawning Biomass
+
+## Fishing intensity and exploitation rate
+
+## Biomass and Relative Fishing Intensity
+
+* Biomass has remained above `r b_40` since 2010; current estimate is  
+  *B*~`r assess_yr`~/`r b_0` = `r f(base_model$mcmccalcs$dmed[names(base_model$mcmccalcs$dmed) %in% end_yr], 2)`
+* Fishing intensity has continually remained below `r f_40`; current estimate
+  is  
+  (1 - SPR~`r last_data_yr`~)/(1 - SPR~40%~) =
+  `r f(base_model$mcmccalcs$pmed[names(base_model$mcmccalcs$pmed) == assess_yr - 1], 2)`
+* The estimated probability that spawning biomass at the start of
+  `r assess_yr` is below the `r b_40` (40% of `r b_0`) reference point is
+   `r probs_curr_below_b40`%
+* The probability that the relative fishing intensity is above `r f_40`
+  at the end of `r end_yr - 1` is `r probs_curr_rel_fish_intens_above_1`%
+* The probability of both of these things occurring is
+  `r joint_percent_prob_above_below`%
+

@@ -1,5 +1,5 @@
 ---
-title: "Management outcomes of the `r rmarkdown::metadata$project_variables$assess_yr` Pacific Hake stock assessment"
+title: "SRG Assessment Requests"
 project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
@@ -36,13 +36,13 @@ project_variables:
 author: Pacific Hake Joint Technical Committee
 date: "SRG meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
 output:
-  hake_beamer:
+  hake::hake_beamer:
     theme: Singapore
     slide_level: 2
     toc: false
     keep_tex: true
     test: false # Do not modify. Modified by gotest() function for testing
-    images_dir: "../../images" # Beamer logos and title image
+    images_dir: "../../../images" # Beamer logos and title image
     # To remove image, leave `title_page_image` value blank. In that case,
     # `title_page_image_height_in` and `title_page_image_width_in` will be
     # ignored. Note that it must be present in `images_dir` above
@@ -53,15 +53,10 @@ classoption: "aspectratio=169"
 fontsize: 11pt
 urlcolor: blue
 header-includes:
-  - \usepackage{makecell, booktabs, makecell, array, longtable, bm}
-  - \makeatletter\def\fnum@table{\usebeamercolor{caption name}\usebeamerfont*{caption name}\tablename~\thetable}\makeatother
+  - \usepackage{makecell, booktabs, array}
   - \usepackage[outdir=./knitr-figs/]{epstopdf}
   - \AtBeginSubsection{}
   - \AtBeginSection{}
-  - \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
-  - \newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
-  - \newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
-  - \newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
