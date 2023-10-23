@@ -1,6 +1,7 @@
 # Projections
 
 ## Projection methods
+
 * Projections estimate the biomass at start of `r end_yr + 1`,
   `r end_yr + 2`, and `r end_yr + 3`
   - Mean of fishery selectivity from `r end_yr - 5`--`r end_yr - 1` used in
@@ -27,9 +28,9 @@
 
 ::: {.column width="62%"}
 ```{r main-projected-catch-density, out.height = "80%"}
+
 plot_catch_forecast_density(base_model,
-                            yr = end_yr,
-                            xlim = c(0, 3))
+                            yr = end_yr)
 ```
 :::
 ::::::
@@ -46,6 +47,7 @@ plot_catch_forecast_density(base_model,
 
 ::: {.column width="62%"}
 ```{r main-forecast-depletion-comparison-plot, out.height = "80%"}
+
 # See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,

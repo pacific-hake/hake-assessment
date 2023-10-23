@@ -14,6 +14,12 @@ project_variables:
   model_version: "01"
   last_yr_model_version: "01"
   ss_version: "3.30.20"
+  # For a list of colors you can use here see:
+  # https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/latexcolors/latexcolors.pdf
+  #table_highlight_color: "fuzzywuzzy"
+  #table_highlight_color: "lighttaupe"
+  table_highlight_color: "deepsaffron"
+  table_highlight_bold: true
   fig_label_color: "black"
   fig_title_font_face: "plain"
   fig_tick_font_face: "plain"
@@ -53,15 +59,10 @@ classoption: "aspectratio=169"
 fontsize: 11pt
 urlcolor: blue
 header-includes:
-  - \usepackage{makecell, booktabs, makecell, array, longtable, bm}
-  - \makeatletter\def\fnum@table{\usebeamercolor{caption name}\usebeamerfont*{caption name}\tablename~\thetable}\makeatother
+# Many other things are added here by the post-processor but this one
+# (knitr-figs) must be here for the initial build step.
+# See post_process_beamer_add_extra_headers_etc()
   - \usepackage[outdir=./knitr-figs/]{epstopdf}
-  - \AtBeginSubsection{}
-  - \AtBeginSection{}
-  - \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
-  - \newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
-  - \newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
-  - \newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
