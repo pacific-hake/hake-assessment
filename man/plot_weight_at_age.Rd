@@ -9,6 +9,7 @@ plot_weight_at_age(
   ages = NULL,
   bold_ages = NULL,
   cols = c("purple", "darkblue", "yellow", "darkgreen"),
+  x_labels_mod = 5,
   age_label_font_size = 4,
   age_label_side = "right",
   ...
@@ -26,6 +27,8 @@ these ages will be thicker and the labels for them will be bold as well}
 
 \item{cols}{A vector of colors to base the color ramp on. See
 \code{\link[ggplot2:scale_gradient]{ggplot2::scale_color_gradientn()}}}
+
+\item{x_labels_mod}{Show every nth year where n is this number}
 
 \item{age_label_font_size}{The font size for the labels pointing to the age
 lines}

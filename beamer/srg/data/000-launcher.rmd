@@ -59,6 +59,9 @@ classoption: "aspectratio=169"
 fontsize: 11pt
 urlcolor: blue
 header-includes:
+# Many other things are added here by the post-processor but this one
+# (knitr-figs) must be here for the initial build step.
+# See post_process_beamer_add_extra_headers_etc()
   - \usepackage[outdir=./knitr-figs/]{epstopdf}
 ---
 

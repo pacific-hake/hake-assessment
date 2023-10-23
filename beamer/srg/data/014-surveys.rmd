@@ -7,11 +7,18 @@
 
 ## Acoustic survey age-2$^+$ biomass estimates
 ```{r survey-compare-extrap-noextrap, fig.height = 4, out.height = "85%"}
-plot_survey_biomass(base_model, index = "age2")
+
+plot_survey_biomass(base_model,
+                    index = "age2",
+                    remove_yr_labels = 2012)
 ```
 
 ## Acoustic survey age-1 fish estimates
 ```{r survey-age1, fig.height = 4, out.height = "85%"}
-plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
+
+plot_survey_biomass(base_model,
+                    index = "age1",
+                    y_lim = c(0, 16),
+                    remove_yr_labels = 2012)
 ```
 

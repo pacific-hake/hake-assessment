@@ -12,6 +12,7 @@
 #' lines
 #' @param age_label_side Where to place the age labels next to the lines.
 #' One of "none", "both", "left", or "right"
+#' @param x_labels_mod Show every nth year where n is this number
 #' @param ... Arguments passed to [ggrepel::geom_label_repel()]
 #'
 #' @return A [ggplot2::ggplot()] object
@@ -23,6 +24,7 @@ plot_weight_at_age <- function(wa,
                                         "darkblue",
                                         "yellow",
                                         "darkgreen"),
+                               x_labels_mod = 5,
                                age_label_font_size = 4,
                                age_label_side = "right",
                                ...){
@@ -66,8 +68,10 @@ plot_weight_at_age <- function(wa,
   # Set up the y-axis tick mark frequency (one for every year)
   y_breaks <- seq(0, max(w$value), by = 0.25)
   y_labels <- y_breaks
-  x_breaks <- seq(min_yr, max_yr, by = 5)
+
+  x_breaks <- min_yr:max_yr
   x_labels <- x_breaks
+  x_labels[!x_labels %in% seq(min_yr, max_yr, by = x_labels_mod)] <- ""
 
   max_value <- max(w$value)
 

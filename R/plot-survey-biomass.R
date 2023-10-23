@@ -7,7 +7,7 @@
 #' @param index The index type to plot
 #' @param y_lim A vector of two for the minimum and maximum values
 #' for the y-axis on the plot
-#' @param hide_yrs A vector of years to not show the year labels for on the
+#' @param remove_yr_labels A vector of years to not show the year labels for on the
 #' x-axis. This is to prevent label overlap
 #' @param alpha The transparency for the error bars (non-squid). Transparency
 #' for the squid error bars are 1
@@ -28,7 +28,7 @@
 plot_survey_biomass <- function(model,
                                 index = c("age1", "age2"),
                                 y_lim = c(0, 3),
-                                hide_yrs = 2012,
+                                remove_yr_labels = NULL,
                                 alpha = 0.3,
                                 point_size = ts_single_model_pointsize,
                                 point_color = ts_single_model_pointcolor,
@@ -81,9 +81,12 @@ plot_survey_biomass <- function(model,
 
   }
 
-  x_breaks <- ests$year
+  x_breaks <- min(ests$year):max(ests$year)
   x_labels <- x_breaks
-  x_labels[x_labels %in% hide_yrs] <- ""
+  x_labels[!x_labels %in% ests$year] <- ""
+  if(!is.null(remove_yr_labels)){
+    x_labels[x_labels %in% remove_yr_labels] <- ""
+  }
 
   g <- g +
     geom_point(aes(y = obs),

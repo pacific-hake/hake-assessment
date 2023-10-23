@@ -8,7 +8,7 @@ plot_survey_biomass(
   model,
   index = c("age1", "age2"),
   y_lim = c(0, 3),
-  hide_yrs = 2012,
+  remove_yr_labels = NULL,
   alpha = 0.3,
   point_size = ts_single_model_pointsize,
   point_color = ts_single_model_pointcolor,
@@ -27,7 +27,7 @@ plot_survey_biomass(
 \item{y_lim}{A vector of two for the minimum and maximum values
 for the y-axis on the plot}
 
-\item{hide_yrs}{A vector of years to not show the year labels for on the
+\item{remove_yr_labels}{A vector of years to not show the year labels for on the
 x-axis. This is to prevent label overlap}
 
 \item{alpha}{The transparency for the error bars (non-squid). Transparency
