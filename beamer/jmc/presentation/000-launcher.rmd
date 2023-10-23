@@ -14,6 +14,12 @@ project_variables:
   model_version: "01"
   last_yr_model_version: "01"
   ss_version: "3.30.20"
+  # For a list of colors you can use here see:
+  # https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/latexcolors/latexcolors.pdf
+  #table_highlight_color: "fuzzywuzzy"
+  #table_highlight_color: "lighttaupe"
+  table_highlight_color: "deepsaffron"
+  table_highlight_bold: true
   fig_label_color: "black"
   fig_title_font_face: "plain"
   fig_tick_font_face: "plain"
@@ -37,12 +43,15 @@ author: Pacific Hake Joint Technical Committee
 date: "SRG meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
 output:
   hake::hake_beamer:
+    code_folding: hide
     theme: Singapore
     slide_level: 2
     toc: false
     keep_tex: true
-    test: false # Do not modify. Modified by gotest() function for testing
-    images_dir: "../../images" # Beamer logos and title image
+    # Do not modify. Modified by gotest() function for testing
+    test: false
+    # Beamer logos and title image
+    images_dir: "../../images"
     # To remove image, leave `title_page_image` value blank. In that case,
     # `title_page_image_height_in` and `title_page_image_width_in` will be
     # ignored. Note that it must be present in `images_dir` above
@@ -53,10 +62,10 @@ classoption: "aspectratio=169"
 fontsize: 11pt
 urlcolor: blue
 header-includes:
-  - \usepackage{makecell, booktabs, array}
+# Many other things are added here by the post-processor but this one
+# (knitr-figs) must be here for the initial build step.
+# See post_process_beamer_add_extra_headers_etc()
   - \usepackage[outdir=./knitr-figs/]{epstopdf}
-  - \AtBeginSubsection{}
-  - \AtBeginSection{}
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}

@@ -12,6 +12,8 @@
 #' @export
 post_process_beamer <- function(x, ...){
 
+  x <- post_process_beamer_add_extra_headers_etc(x, ...)
+
   # Insert the NOAA and DFO logos and the hake picture on the title
   # page
   x <- post_process_beamer_insert_title_page_logos(x, ...)
@@ -23,6 +25,10 @@ post_process_beamer <- function(x, ...){
   # Make the title page plain (no navigation bar or theme shadow and remove
   # extra blank title page
   x <- post_process_beamer_make_title_page_plain(x, ...)
+
+  # Add horizontal lines to the decision table headers ----
+  # across multiple columns
+  x <- post_process_add_horiz_lines_decision_table(x, ...)
 
   x
 }

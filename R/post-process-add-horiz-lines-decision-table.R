@@ -8,7 +8,6 @@
 #' @export
 post_process_add_horiz_lines_decision_table <- function(x,
                                                         ...){
-
   ind <- grep("\\\\selectfont Relative spawning biomass\\}\\}\\}", x)
   if(length(ind)){
     for(i in seq_along(x[ind])){

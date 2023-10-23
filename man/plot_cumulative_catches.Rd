@@ -17,7 +17,11 @@ plot_cumulative_catches(
   point_shape = ts_pointshape,
   point_size = ts_pointsize,
   point_stroke = ts_pointstroke,
-  title_font_size = axis_title_font_size
+  title_font_size = axis_title_font_size,
+  ax_title_x = axis_title_font_size,
+  ax_title_y = axis_title_font_size,
+  ax_text_x = axis_tick_font_size,
+  ax_text_y = axis_tick_font_size
 )
 }
 \arguments{

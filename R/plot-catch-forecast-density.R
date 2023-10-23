@@ -93,6 +93,8 @@ plot_catch_forecast_density <- function(model,
                nudge_x = label_x_offset,
                nudge_y = label_y_offset,
                fill = "white") +
+    scale_x_continuous(breaks = seq(xlim[1], xlim[2], 500),
+                       labels = scales::comma(seq(xlim[1], xlim[2], 500))) +
     coord_cartesian(xlim = xlim) +
     theme(axis.text.y = element_blank(),
           axis.ticks = element_blank()) +

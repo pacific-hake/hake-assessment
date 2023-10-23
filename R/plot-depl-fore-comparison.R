@@ -153,12 +153,7 @@ plot_depl_fore_comparison <- function(
           # title down so that the ticks. tick labels, and axis title don't
           # overlap each other
           axis.text.x = element_text(vjust = vjust_x_labels),
-          axis.title.x = element_text(vjust = vjust_x_labels),
-          # Uncomment this to have colors for B0 text labels
-          # axis.text.y = element_text(color = y_colors),
-          # plot.margin: top, right,bottom, left
-          # Needed to avoid tick labels cutting off
-          plot.margin = margin(12, 12, 12, 0)) +
+          axis.title.x = element_text(vjust = vjust_x_labels)) +
     guides(fill = guide_legend(ncol = leg_ncol,
                                label.hjust = 0),
            color = guide_legend(ncol = leg_ncol,

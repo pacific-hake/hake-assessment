@@ -33,9 +33,9 @@ clean <- function(knitr_figures_dir = "knitr-figs",
                 "JTC-management",
                 "JTC-requests",
                 "JTC-sensitivity",
-                "JMC",
-                "JMC-Canada",
-                "JMC-US")
+                "JTC-stock-assessment-JMC",
+                "JTC-stock-assessment-JMC-Canada",
+                "JTC-stock-assessment-JMC-US")
 
   # The extensions of the above docs to delete
   extensions_pat <- paste0("(",
@@ -55,25 +55,13 @@ clean <- function(knitr_figures_dir = "knitr-figs",
                            "toc|",
                            "txt|",
                            "upa|",
-                           "upb)")
+                           "upb",
+                           ")")
   for(i in seq_along(docs_pat)){
     full_pat <- paste0(docs_pat[i],
-                       "\\.(",
-                       "tex|",
-                       "Rmd|",
-                       "aux|",
-                       "bbl|",
-                       "blg|",
-                       "log|",
-                       "lof|",
-                       "lot|",
-                       "pdf|",
-                       "ps|",
-                       "md|",
-                       "toc|",
-                       "txt|",
-                       "upa|",
-                       "upb)")
+                       "\\.",
+                       extensions_pat,
+                       ")")
 
     # Delete hake.aux, hake.tex etc or
     # hake-assessment.aux, hake-assessment.tex etc

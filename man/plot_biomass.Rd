@@ -130,7 +130,9 @@ plot_fishing_intensity(
   point_shape = ts_single_model_pointshape,
   point_stroke = ts_single_model_pointstroke,
   line_width = ts_single_model_linewidth,
-  line_color = ts_single_line_color
+  line_color = ts_single_line_color,
+  fspr40_text_x = xlim[1] + 2,
+  fspr40_text_y = 1.05
 )
 
 plot_fore_compare(
@@ -437,6 +439,10 @@ forecast catch streams in the plot}
 \item{y_colors}{Colors for the tick labels on the y-axis}
 
 \item{forecast_yrs}{A vector of the forecast years}
+
+\item{fspr40_text_x}{X-axis value for the location of the FSPR=40\% text}
+
+\item{fspr40_text_y}{Y-axis value for the location of the FSPR=40\% text}
 
 \item{fore_yr}{The forecast year to use in the plot. Must be in
 \code{forecast_yrs}}

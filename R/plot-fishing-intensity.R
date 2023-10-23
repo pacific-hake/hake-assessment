@@ -1,6 +1,9 @@
 #' Create a plot of fishing intensity
 #'
 #' @rdname plot_biomass
+#' @param fspr40_text_x X-axis value for the location of the FSPR=40% text
+#' @param fspr40_text_y Y-axis value for the location of the FSPR=40% text
+#'
 #' @export
 plot_fishing_intensity <- function(model,
                                    show_arrows = TRUE,
@@ -17,7 +20,9 @@ plot_fishing_intensity <- function(model,
                                    point_shape = ts_single_model_pointshape,
                                    point_stroke = ts_single_model_pointstroke,
                                    line_width = ts_single_model_linewidth,
-                                   line_color = ts_single_line_color){
+                                   line_color = ts_single_line_color,
+                                   fspr40_text_x = xlim[1] + 2,
+                                   fspr40_text_y = 1.05){
 
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
                                      modulo = x_labs_mod)
@@ -69,8 +74,8 @@ plot_fishing_intensity <- function(model,
                        breaks = y_breaks,
                        labels = y_breaks) +
     annotate("text",
-             x = xlim[1] + 2,
-             y = 1.05,
+             x = fspr40_text_x,
+             y = fspr40_text_y,
              label = expression(~F['SPR=40%'])) +
     xlab("Year") +
     ylab(expression(paste("Rel. fishing intensity",

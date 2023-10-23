@@ -2,11 +2,85 @@
 
 ## Recruitment (numbers of fish)
 
+```{r main-recruitment-fig, fig.height = 4, out.height = "85%"}
+
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 inc_means = TRUE,
+                 leg_pos = "none") +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
 ## Spawning Biomass
+
+```{r jmc-biomass-fig, fig.height = 4, out.height = "85%"}
+
+plot_biomass(list(base_model),
+             list(base_model_name),
+             ylim = c(0, 5),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = "none") +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
 
 ## Relative Spawning Biomass
 
+```{r jmc-relative-biomass-fig, fig.height = 4, out.height = "85%"}
+
+plot_rel_biomass(model_lst = list(base_model),
+                 model_names = list(base_model_name),
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 leg_pos = "none") +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
 ## Fishing intensity and exploitation rate
+:::::: {.columns}
+::: {.column width="50%"}
+<!-- \center Relative fishing intensity \center -->
+```{r jmc-fishing-intensity-fig, fig.height = 4, fig.width = 4, out.height = "75%"}
+
+plot_fishing_intensity(base_model,
+                       line_width = 0.5,
+                       point_size = 1.5,
+                       point_stroke = 1,
+                       fspr40_text_x = 1970) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+:::
+
+::: {.column width="50%"}
+<!-- \center Exploitation rate \center -->
+```{r jmc-exploitation-fraction-fig, fig.height = 4, fig.width = 4, out.height = "75%"}
+
+plot_exploitation_fraction(base_model,
+                           line_width = 0.5,
+                           point_size = 1.5,
+                           point_stroke = 1) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+:::
+::::::
 
 ## Biomass and Relative Fishing Intensity
 
@@ -24,3 +98,22 @@
 * The probability of both of these things occurring is
   `r joint_percent_prob_above_below`%
 
+## Joint history of rel. fishing intensity and rel. biomass
+
+```{r jmc-phase-plot, fig.height = 3, out.height = "85%"}
+
+plot_phase(base_model,
+           start_yr,
+           end_yr,
+           init_lbl_x_off = -0.04,
+           init_lbl_y_off = -0.04,
+           final_lbl_x_off = 0.04,
+           final_lbl_y_off = 0.04,
+           cross_line_width = 0.25,
+           cross_line_color = "black") +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 7),
+        axis.text.x = element_text(size = 8),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
