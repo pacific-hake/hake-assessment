@@ -4,6 +4,8 @@
 #' names `Year`, `Age`, and the column name given by `val_col_nm`
 #' @param clines An optional vector of years to draw cohort lines through
 #' @param val_col_nm The name of the column in `d` to use for the values
+#' @param remove_yr_labels A vector of years to remove the ,labels for in
+#' case they are overlapping
 #' @param mean_age A two-column tibble with column names `Year` and `Age`
 #' where each row contains a year and `Age` represents the mean age for
 #' each year
@@ -28,6 +30,7 @@
 plot_bubbles <- function(d,
                          clines = age_bubble_cohorts,
                          val_col_nm = "Proportion",
+                         remove_yr_labels = NULL,
                          mean_age = NULL,
                          mean_age_line_color = "red",
                          mean_age_line_width = 1.5,
@@ -59,8 +62,12 @@ plot_bubbles <- function(d,
       filter(Year %in% xlim[1]:xlim[2])
   }
 
-  # Start breaks at the last year divisible-by-`by` before the first year
-  x_breaks <- seq(xlim[1] - (xlim[1] %% by), xlim[2], by)
+  x_breaks <- xlim[1]:xlim[2]
+  x_labels <- x_breaks
+  x_labels[!x_labels %in% unique(d$Year)] <- ""
+  if(!is.null(remove_yr_labels)){
+    x_labels[x_labels %in% remove_yr_labels] <- ""
+  }
 
   g <- ggplot(d,
               aes(x = Year,
@@ -71,6 +78,7 @@ plot_bubbles <- function(d,
                fill = point_fill,
                color = point_color) +
     scale_x_continuous(breaks = x_breaks,
+                       labels = x_labels,
                        expand = c(0.025, 0)) +
     coord_cartesian(xlim = xlim) +
     expand_limits(x = xlim[1]:xlim[2]) +

@@ -5,20 +5,15 @@
 \title{Create a plot of age proportions as bubbles with fishery and survey values
 overlaid in one plot}
 \usage{
-plot_age_comp_comparison_bubbles(model, alpha = 0.3)
+plot_age_comp_comparison_bubbles(model, alpha = 0.3, remove_yr_labels = NULL)
 }
 \arguments{
 \item{model}{A model object}
 
 \item{alpha}{Transparanecy of the bubbles}
 
-\item{ax_title_font_size}{The font size for the axis titles and strip
-titles (sector names)}
-
-\item{ax_tick_font_size}{The foint size for the axis tick labels
-(years and ages)}
-
-\item{ax_label_color}{The color for the axis tick labels}
+\item{remove_yr_labels}{A vector of years to remove the ,labels for in
+case they are overlapping}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

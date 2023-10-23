@@ -45,18 +45,24 @@ sector, and
 ## Summary of data sources used
 :::::: {.columns}
 ::: {.column width="40%"}
+
+\bsmall
+
 * Fishery-dependent data
-- Annual catch (`r start_yr`--`r end_yr - 1`)
-- Age compositions (1975--`r end_yr - 1`; 1$^+$)
+* Annual catch (`r start_yr`--`r end_yr - 1`)
+* Age compositions (1975--`r end_yr - 1`; 1$^+$)
 * Acoustic survey (`r survey_start_yr`--`r survey_end_yr`)
-- Biomass index age 2$^+$
+* Biomass index age 2$^+$
   - Age compositions (2$^+$)
-- Numbers of age-1 fish
+* Numbers of age-1 fish
 * Weight-at-age (1975--`r end_yr - 1`)
 * Ageing imprecision and biases
-- double reads
-- blind reads
+* double reads
+* blind reads
 * Maturity ogive (NWFSC, 2017)
+
+\esmall
+
 :::
 
 ::: {.column width="60%"}

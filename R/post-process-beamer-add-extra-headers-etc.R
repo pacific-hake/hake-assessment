@@ -44,7 +44,9 @@ post_process_beamer_add_extra_headers_etc <- function(x, ...){
             "\\setbeamertemplate{navigation symbols}{}",
             "\\setbeamertemplate{footline}[page number]",
             "\\newcommand{\\bsmall}{\\begin{small}}",
-            "\\newcommand{\\esmall}{\\end{small}}")
+            "\\newcommand{\\esmall}{\\end{small}}",
+            "\\newcommand{\\btiny}{\\begin{tiny}}",
+            "\\newcommand{\\etiny}{\\end{tiny}}")
 
   c(pre,
     data,

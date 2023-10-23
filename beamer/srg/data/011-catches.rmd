@@ -93,7 +93,7 @@ plot_cumulative_catches(list(us_ss_catch_by_month_df,
                              "U.S. Mothership"),
                         type = "cumulative",
                         leg_font_size = 8,
-                        title_font_size = 8,
+                        title_font_size = 10,
                         ax_text_x = 8,
                         ax_text_y = 8)
 ```

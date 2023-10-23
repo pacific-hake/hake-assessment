@@ -14,6 +14,12 @@ project_variables:
   model_version: "01"
   last_yr_model_version: "01"
   ss_version: "3.30.20"
+  # For a list of colors you can use here see:
+  # https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/latexcolors/latexcolors.pdf
+  #table_highlight_color: "fuzzywuzzy"
+  #table_highlight_color: "lighttaupe"
+  table_highlight_color: "deepsaffron"
+  table_highlight_bold: true
   fig_label_color: "black"
   fig_title_font_face: "plain"
   fig_tick_font_face: "plain"
@@ -53,10 +59,7 @@ classoption: "aspectratio=169"
 fontsize: 11pt
 urlcolor: blue
 header-includes:
-  - \usepackage{makecell, booktabs, array}
   - \usepackage[outdir=./knitr-figs/]{epstopdf}
-  - \AtBeginSubsection{}
-  - \AtBeginSection{}
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
@@ -86,7 +89,7 @@ if(test){
 yaml_proj_vars <- rmarkdown::metadata$project_variables
 
 # Don't modify anything in `opts_chunk$set()`. Modify the YAML
-# `project_variables` above
+# `project_variables` above. `cache.lazy` MUST be `FALSE`
 knitr::opts_chunk$set(
   # `collapse` - If `TRUE`, source code and output will remain together in
   # one chunk (inseparable from each other in the document). Probably
@@ -94,7 +97,7 @@ knitr::opts_chunk$set(
   # shown
   collapse = TRUE,
   # Don't show warnings, messages, or source code (respectively)
-  # in the document
+  # in the document.
   warning = FALSE,
   message = FALSE,
   echo = FALSE,

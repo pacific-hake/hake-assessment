@@ -75,6 +75,10 @@ plot_cumulative_catches <- function(catch_lst,
         mutate(catch = cumsum(catch))
     }
 
+    x_breaks <- 1:12
+    x_labels <- month.abb[x_breaks]
+    x_labels[x_breaks %% 2 == 1] <- ""
+
     g <- ggplot(d,
                 aes(x = month,
                     y = catch,
@@ -85,14 +89,15 @@ plot_cumulative_catches <- function(catch_lst,
                      shape = point_shape,
                      stroke = point_stroke) +
       scale_color_manual(values = colors) +
-      scale_x_continuous(breaks = seq(2, 12, 2),
-                         labels = month.abb[seq(2, 12, 2)]) +
+      scale_x_continuous(breaks = x_breaks,
+                         labels = x_labels) +
       theme(axis.title.x = element_blank(),
             axis.title.y = element_blank(),
             axis.text.x = element_text(size = ax_text_x),
             axis.text.y = element_text(size = ax_text_y),
             plot.title = element_text(size = title_font_size,
                                       hjust = 0.5),
+            plot.margin = margin(0, 0, 10, 10),
             legend.position = leg_pos,
             legend.key.size = unit(0.2, 'cm'),
             legend.title = element_blank(),

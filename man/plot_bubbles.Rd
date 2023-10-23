@@ -8,6 +8,7 @@ plot_bubbles(
   d,
   clines = age_bubble_cohorts,
   val_col_nm = "Proportion",
+  remove_yr_labels = NULL,
   mean_age = NULL,
   mean_age_line_color = "red",
   mean_age_line_width = 1.5,
@@ -33,6 +34,9 @@ names \code{Year}, \code{Age}, and the column name given by \code{val_col_nm}}
 \item{clines}{An optional vector of years to draw cohort lines through}
 
 \item{val_col_nm}{The name of the column in \code{d} to use for the values}
+
+\item{remove_yr_labels}{A vector of years to remove the ,labels for in
+case they are overlapping}
 
 \item{mean_age}{A two-column tibble with column names \code{Year} and \code{Age}
 where each row contains a year and \code{Age} represents the mean age for

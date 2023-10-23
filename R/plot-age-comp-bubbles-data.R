@@ -66,6 +66,9 @@ plot_age_comp_bubbles_data <- function(age_data_lst,
   }) |>
     map_dfr(~{.x})
 
+  x_breaks <- seq(min(years), max(years), 1)
+  x_labels <- x_breaks
+  x_labels[x_breaks %% 2 == 1] <- ""
 
   g <- ggplot(df,
               aes(x = year,
@@ -75,7 +78,8 @@ plot_age_comp_bubbles_data <- function(age_data_lst,
     geom_point(pch = 21,
                color = "black") +
     scale_fill_manual(values = colors) +
-    scale_x_discrete(breaks = seq(min(years), max(years), 2)) +
+    scale_x_discrete(breaks = x_breaks,
+                     labels = x_labels) +
     facet_grid(~type, scales = "free_x") +
     xlab("Year") +
     ylab("Age") +

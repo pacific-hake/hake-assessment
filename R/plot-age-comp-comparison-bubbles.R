@@ -3,16 +3,14 @@
 #'
 #' @param model A model object
 #' @param alpha Transparanecy of the bubbles
-#' @param ax_title_font_size The font size for the axis titles and strip
-#' titles (sector names)
-#' @param ax_tick_font_size The foint size for the axis tick labels
-#' (years and ages)
-#' @param ax_label_color The color for the axis tick labels
+#' @param remove_yr_labels A vector of years to remove the ,labels for in
+#' case they are overlapping
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_age_comp_comparison_bubbles <- function(model,
-                                             alpha = 0.3){
+                                             alpha = 0.3,
+                                             remove_yr_labels = NULL){
 
   d <- model$dat$agecomp |>
     as_tibble() |>
@@ -71,6 +69,19 @@ plot_age_comp_comparison_bubbles <- function(model,
 
   colors <- c("red", "blue")
 
+  x_breaks <- unique(d$year) |> as.character() |> as.numeric()
+  x_labels <- x_breaks
+  actual_yrs <- d |>
+    mutate(year = as.character(year),
+           year = as.numeric(year)) |>
+    filter(!is.na(value)) |>
+    pull(year) |>
+    unique()
+  x_labels[!x_labels %in% actual_yrs] <- ""
+  if(!is.null(remove_yr_labels)){
+    x_labels[x_labels %in% remove_yr_labels] <- ""
+  }
+
   g <- ggplot(d,
               aes(x = year,
                   y = age,
@@ -80,8 +91,8 @@ plot_age_comp_comparison_bubbles <- function(model,
                 alpha = alpha) +
     scale_fill_manual(values = colors) +
     scale_y_continuous(breaks = ages) +
-    scale_x_discrete(breaks = years,
-                     labels = years_labels) +
+    scale_x_discrete(breaks = x_breaks,
+                     labels = x_labels) +
     xlab("Year") +
     ylab("Age") +
     theme(axis.text.x = element_text(color = axis_label_color,
