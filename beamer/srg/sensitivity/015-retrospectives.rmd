@@ -1,6 +1,6 @@
 # Retrospectives
 
-## Base model retrospectives - Spawning biomass
+## Base model retrospectives -- Spawning biomass
 ```{r retro-biomass-1, fig.height = 3, out.height = "85%"}
 
 plot_biomass(d_obj = retros_biomass_incremental[[1]],
@@ -17,7 +17,7 @@ plot_biomass(d_obj = retros_biomass_incremental[[1]],
         legend.text = element_text(size = 8))
 ```
 
-## Base model retrospectives - Spawning biomass
+## Base model retrospectives -- Spawning biomass
 ```{r retro-biomass-2, fig.height = 3, out.height = "85%"}
 
 plot_biomass(d_obj = retros_biomass_incremental[[2]],
@@ -34,7 +34,7 @@ plot_biomass(d_obj = retros_biomass_incremental[[2]],
         legend.text = element_text(size = 8))
 ```
 
-## Base model retrospectives - Spawning biomass
+## Base model retrospectives -- Spawning biomass
 ```{r retro-biomass-3, fig.height = 3, out.height = "85%"}
 
 plot_biomass(d_obj = retros_biomass_incremental[[3]],
@@ -51,7 +51,7 @@ plot_biomass(d_obj = retros_biomass_incremental[[3]],
         legend.text = element_text(size = 8))
 ```
 
-## Base model retrospectives - Spawning biomass
+## Base model retrospectives -- Spawning biomass
 ```{r retro-biomass-4, fig.height = 3, out.height = "85%"}
 
 plot_biomass(d_obj = retros_biomass_incremental[[4]],
@@ -68,7 +68,7 @@ plot_biomass(d_obj = retros_biomass_incremental[[4]],
         legend.text = element_text(size = 8))
 ```
 
-## Base model retrospectives - Spawning biomass
+## Base model retrospectives -- Spawning biomass
 ```{r retro-biomass-5, fig.height = 3, out.height = "85%"}
 
 plot_biomass(d_obj = retros_biomass_incremental[[5]],
@@ -85,7 +85,7 @@ plot_biomass(d_obj = retros_biomass_incremental[[5]],
         legend.text = element_text(size = 8))
 ```
 
-## Base model retrospectives - recruitment
+## Base model retrospectives -- recruitment
 ```{r retro-recr, fig.height = 3, out.height = "85%"}
 plot_recruitment(d_obj = d_obj_sens_recr[[3]],
                  leg_font_size = 5,
