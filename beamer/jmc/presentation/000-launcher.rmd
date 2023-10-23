@@ -43,7 +43,6 @@ author: Pacific Hake Joint Technical Committee
 date: "SRG meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
 output:
   hake::hake_beamer:
-    code_folding: hide
     theme: Singapore
     slide_level: 2
     toc: false

@@ -42,7 +42,9 @@ post_process_beamer_add_extra_headers_etc <- function(x, ...){
             paste0("\\newcolumntype{L}[1]{>{\\PreserveBackslash",
                    "\\raggedright}p{#1}}"),
             "\\setbeamertemplate{navigation symbols}{}",
-            "\\setbeamertemplate{footline}[page number]")
+            "\\setbeamertemplate{footline}[page number]",
+            "\\newcommand{\\bsmall}{\\begin{small}}",
+            "\\newcommand{\\esmall}{\\end{small}}")
 
   c(pre,
     data,

@@ -10,6 +10,6 @@ rmd_files: ["000-launcher.rmd",
             "012-mcmc-diagnostics.rmd",
             "013-fits-to-data.rmd",
             "014-estimated-quantities.rmd"]
-# `delete_merged_file`: If true, the hake.Rmd file which was created by
+# `delete_merged_file`: If false, the hake.Rmd file which was created by
 # bookdown during the build will be kept after the hake.pdf file is created
-delete_merged_file: false
+delete_merged_file: true

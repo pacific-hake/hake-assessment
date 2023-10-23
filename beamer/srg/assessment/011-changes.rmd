@@ -60,6 +60,8 @@ plot_grid(plotlist = p,
 
 ## Bridging: Summary
 
+\bsmall
+
 * Updating Stock Synthesis software has no effect on results. Relevant
   changes include:
   - Weight-at-age specified in first year of forecast, rather than
@@ -83,4 +85,5 @@ plot_grid(plotlist = p,
   on historical estimates, shifted recent recruitment estimates
   (esp. 2019--2021), and increased estimates of 2022 (slightly) and 2023
   (considerably) female spawning biomass.
-
+  
+\esmall
