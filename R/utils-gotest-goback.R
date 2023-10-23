@@ -38,8 +38,7 @@ gotest <- function(copy_tmpdir = FALSE){
   type <- get_doc_type(bookdown_lst$rmd_fns[1])
 
   if(type == "beamer"){
-    raw_fns <- c(bookdown_lst$rmd_fns,
-                 "clean")
+    raw_fns <- bookdown_lst$rmd_fns
 
     src_fns <- replace_dotted_paths(raw_fns)
     dest_fns <- file.path("doc", basename(src_fns))
@@ -109,8 +108,7 @@ gotest <- function(copy_tmpdir = FALSE){
       "object-placement.csv",
       "preamble.tex",
       "bib/refs.bib",
-      "csl/csas.csl",
-      "clean")
+      "csl/csas.csl")
 
     # Add the main figures (prebuilt figures and logos in files)
     main_figs_src_dir <- here::here("doc/main-figures")
@@ -149,7 +147,7 @@ gotest <- function(copy_tmpdir = FALSE){
   })
 
   # Needed to set `here:here()` correctly
-  i_am("./doc/clean")
+  i_am("./doc/000-launcher.rmd")
 
   setwd("doc")
   # Create the bookdown configuration file _bookdown.yml
