@@ -32,6 +32,9 @@ post_process <- function(x, ...){
   # Table of contents injection ----
   x <- post_process_table_of_contents(x, ...)
 
+  # Replace tildes (~) in the code so they pas through Pandoc to LaTeX
+  x <- post_process_fix_tildes(x, ...)
+
   # Placements for figures and tables ----
   x <- post_process_set_latex_placement_options(x, ...)
 

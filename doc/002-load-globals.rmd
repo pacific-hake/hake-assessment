@@ -11,8 +11,6 @@ if(!length(rmarkdown::metadata$project_variables)){
 # of the YAML part of `000-launcher.rmd`
 list2env(rmarkdown::metadata$project_variables, envir = globalenv())
 
-yaml_check_margin_format(fig_margins)
-
 sys_info <- Sys.info()
 computer_name <- sys_info[["nodename"]]
 os_name <- sys_info[["sysname"]]
@@ -28,10 +26,12 @@ models_dir <- file.path(models_dir,
 output_csv_dir <- here("doc", out_csv_dir)
 end_yr <- assess_yr
 
-# `forecast_yrs` is special because it is an R expression in the YAML code
-# and not just a plain value. It has to be parsed from a text string into
-# an R expression using `eval(parse())`
+# `forecast_yrs` and `figure_margins` are special because they are R
+# expressions in the YAML code and not just a plain value. They have to be
+# parsed from a text string into an R expression using `eval(parse())`
 forecast_yrs <- eval(parse(text = forecast_yrs))
+yaml_check_margin_format(fig_margins)
+fig_margins <- eval(parse(text = fig_margins))
 
 theme_set(hake_theme(ax_label_color = fig_label_color,
                      ax_title_font_size = fig_title_font_size,
@@ -39,5 +39,5 @@ theme_set(hake_theme(ax_label_color = fig_label_color,
                      ax_title_font_face = fig_title_font_face,
                      ax_tick_font_face = fig_tick_font_face,
                      ax_tick_length_cm = fig_tick_length_cm,
-                     margin_def = eval(parse(text = fig_margins))))
+                     margin_def = fig_margins))
 ```

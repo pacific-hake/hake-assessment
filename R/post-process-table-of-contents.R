@@ -71,20 +71,5 @@ post_process_table_of_contents <- function(x,
          "%",
          x[(toc_ind + 1):length(x)])
 
-  # Fix line binders (~) ----
-  # bookdown turns ~ into "\\textasciitilde " in the TEX, so we change it back
-  # Don't remove the space-* at the end of the pattern, some cases
-  # eg. (million~t) have a space and some don't eg. (Fig~\@ref{})
-  x <- gsub("\\\\textasciitilde *", "~", x)
-  # In captions, the two escape characters are not correctly dealt with,
-  # because it is technically not Rmarkdown code inside the caption text in
-  # R function calls. this makes it so we can use \\@ref() inside those
-  # captions
-  x <- gsub("\\\\\\\\ref", "\\\\ref", x)
-
-  # Change double-dashes to en-dashes ----
-  x <- gsub("-- ", "\\\\textendash\\\\ ", x)
-  x <- gsub("--", "\\\\textendash ", x)
-
   x
 }

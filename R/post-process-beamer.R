@@ -30,5 +30,8 @@ post_process_beamer <- function(x, ...){
   # across multiple columns
   x <- post_process_add_horiz_lines_decision_table(x, ...)
 
+  # Replace tildes (~) in the code so they pas through Pandoc to LaTeX
+  x <- post_process_fix_tildes(x, ...)
+
   x
 }
