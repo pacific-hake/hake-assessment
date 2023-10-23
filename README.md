@@ -4,36 +4,43 @@ ____
 *An R package which uses Bookdown and Rmarkdown to build the US/Canadian Pacific hake assessment document*
 _____________________________________________________________
 
-In 2023, the project code was switched over from an older Sweave-based approach to
-Bookdown. Read [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md) for important details on this and other issues.
+In 2023, the project code used for building the assessment document and all the
+presentations was switched over from an older Sweave-based approach to the [Bookdown](https://bookdown.org/) system. Read [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md) for important details on this and other issues.
 
 The assessment document is built using the following software packages:
 * [R Markdown](https://rmarkdown.rstudio.com/lesson-1.html): A simple yet
   powerful markup language designed to remove the need for tedious LaTeX
-  macros embedded throughout your text. See the [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+  macros embedded throughout the text. See the [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
   for help on syntax.
 * [knitr](https://yihui.org/knitr/): This R package is responsible for creating
   figures and tables during builds, and for dealing with inline R code chunks
-  to create reproducible paragraphs of text.
-* [Pandoc](https://pandoc.org/): A very powerful document converter and in
-  this case converts the R Markdown to LaTeX code and compiles it into a
-  PDF file.
+  to create reproducible paragraphs of text. `knitr` chunks are written in a
+  special `R Markdown` format.
+* [Pandoc](https://pandoc.org/): A very powerful document converter which in
+  this case converts the R Markdown to LaTeX code.
+* [LuaTeX](https://www.luatex.org/): The LaTeX compiler which converts the
+  LaTeX created by `Pandoc` into the final PDF document.
 * [YAML](https://yaml.org/spec/1.2.2/#chapter-1-introduction-to-yaml): This 
-  is a simple configuration file format used to keep the project in order. It is used by `bookdown`.
+  is a simple configuration file format used to keep the project in order.
+  It is used by `bookdown`.
 * [Bookdown](https://bookdown.org/): An R package that facilitates writing
-  complex documents by integrating the above packages into a single package,
-  using a YAML configuration file.
+  complex documents by integrating all of the above packages into a single
+  package, using a YAML configuration file.
 
 ---
 ## How to create the hake assessment PDF document
 **The `RDS` files must have been created before the document can be built.**
 
-1. Open an R session, and install the hake repository:
+1. If you are on the Pacific Hake Linux server, go to step 2.  
+   If you are on a local machine, open an R session, and install the hake
+   package from GitHub:
    `remotes::install_github("pacific-hake/hakeassessment")`
-1. `git clone` this repository
-1. In an R session, change your working directory to the `doc` directory:
+1. `git clone` this repository:  
+   `git clone https://github.com/pacific-hake/hake-assessment`
+1. In an R session, change your working directory to the `doc` directory:  
    `setwd(here::here("doc"))`
-1. Run `hake::render()`
+1. Create the PDF assessment document:  
+   `hake::render()`
 1. The `hake.pdf` document will be built in the `doc` directory. The first
    time building the document in a new R session will take about 10 minutes
    because the model RDS files have to be loaded. After that, the build will
