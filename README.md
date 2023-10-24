@@ -1,11 +1,14 @@
 ____
-# hake-assessment
+# hake-assessment  <img src="doc/main-figures/hake-picture.png"" align="right" height="139" />
 
-*An R package which uses Bookdown and Rmarkdown to build the US/Canadian Pacific hake assessment document*
+> An R package which uses Bookdown and Rmarkdown to build the US/Canadian Pacific hake assessment document
 _____________________________________________________________
 
 In 2023, the project code used for building the assessment document and all the
-presentations was switched over from an older Sweave-based approach to the [Bookdown](https://bookdown.org/) system. Read [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md) for important details on this and other issues.
+presentations was switched over from the original Sweave-based approach to the
+[Bookdown](https://bookdown.org/) system. Read
+[NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md)
+for important details on this.
 
 The assessment document is built using the following software packages:
 * [R Markdown](https://rmarkdown.rstudio.com/lesson-1.html): A simple yet
@@ -22,8 +25,8 @@ The assessment document is built using the following software packages:
   LaTeX created by `Pandoc` into the final PDF document.
 * [YAML](https://yaml.org/spec/1.2.2/#chapter-1-introduction-to-yaml): This 
   is a simple configuration file format used to keep the project in order.
-  It is used by `bookdown`.
-* [Bookdown](https://bookdown.org/): An R package that facilitates writing
+  It is used by the `bookdown` package.
+* [bookdown](https://bookdown.org/): An R package that facilitates writing
   complex documents by integrating all of the above packages into a single
   package, using a YAML configuration file.
 
