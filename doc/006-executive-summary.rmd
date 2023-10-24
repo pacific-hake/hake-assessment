@@ -495,6 +495,8 @@ nor in an overfished state.
 plot_phase(base_model,
            1966,
            2023,
+           cross_line_width = 0.5,
+           cross_line_color = "black",
            init_lbl_x_off = -0.04,
            init_lbl_y_off = -0.04,
            final_lbl_x_off = 0.04,

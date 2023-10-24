@@ -40,7 +40,7 @@ on November 21, 2003, and entered into force June 25, 2008.
 
 AFSC: Alaska Fisheries Science Center (National Marine Fisheries Service).
 
-$B_0$: The unfished equilibrium female spawning biomass.
+`r b_0`: The unfished equilibrium female spawning biomass.
 
 `r b_10`: The level of female spawning biomass corresponding to 10% of
 unfished equilibrium female spawning biomass, i.e., `r b_10` = 0.1`r b_0`. This
@@ -140,7 +140,7 @@ assessments; note that in previous assessments is was $3+$). This value
 is not equivalent to the instantaneous rate of fishing mortality (see
 below) or the spawning potential ratio (SPR, see below).
 
-$F$: Instantaneous rate of fishing mortality (or fishing mortality rate);
+*F*: Instantaneous rate of fishing mortality (or fishing mortality rate);
 see below.
 
 `r fspr_40`: The rate of fishing mortality estimated to give a spawning
@@ -162,14 +162,14 @@ and services that support sustainable use and development of Canada's
 waterways and aquatic resources.
 
 Fishing intensity: A measure of the magnitude of fishing, defined for a
-fishing rate $F$ as:
+fishing rate *F* as:
 \begin{align}
   \mbox{fishing intensity for }F &= 1 - \mbox{SPR}(F),
 \end{align}
-where SPR$(F)$ is the spawning potential ratio for the value of $F$
+where SPR(*F*) is the spawning potential ratio for the value of *F*
 accumulated over the entire year. It is often given as a percentage.
 Relative fishing intensity is the fishing intensity relative to that at
-the SPR fishing rate `r f_40`, where `r f_40` is the $F$ that gives an
+the SPR fishing rate `r f_40`, where `r f_40` is the *F* that gives an
 SPR of 40% such that, by definition, SPR`r f_40` = 40% (the benchmark
 spawning ratio). Therefore
 \begin{align}
@@ -189,7 +189,7 @@ Although this simply equals 40%, it can be helpful to explicitly write:
 The calculation of relative fishing intensity is shown graphically in
 Figure~\@ref(fig:glossary-spr-illustration-fig).
 
-Fishing mortality rate, or instantaneous rate of fishing mortality ($F$):
+Fishing mortality rate, or instantaneous rate of fishing mortality (*F*):
 A metric of fishing intensity that is usually reported in relation to the
 most highly selected ages(s) or length(s), or occasionally as an average
 over an age range that is vulnerable to the fishery. Because it is an
@@ -310,9 +310,9 @@ the posterior distribution (see above). For other parameters, informative
 priors can be constructed based on auxiliary information and/or expert
 knowledge or opinions.
 
-$q$: Catchability (see above).
+*q*: Catchability (see above).
 
-$R_0$: Estimated annual recruitment at unfished equilibrium.
+`r r_0`: Estimated annual recruitment at unfished equilibrium.
 
 Recruits/recruitment: the estimated number of new members in a fish
 population born in the same age. In this assessment, recruitment is
@@ -326,7 +326,7 @@ and are relative to the expected recruitment at a given spawning biomass
 Relative fishing intensity: See definition of fishing intensity.
 
 Relative spawning biomass: The ratio of the beginning-of-the-year female
-spawning biomass to the unfished equilibrium female spawning biomass ($B_0$,
+spawning biomass to the unfished equilibrium female spawning biomass (`r b_0`,
 see above). Thus, lower values are associated with fewer mature female fish.
 This term was introduced in the 2015 stock assessment as a replacement
 for "depletion" (see above) which was a source of some confusion.
@@ -365,7 +365,7 @@ numerator and denominator of the Spawning potential ratio (SPR, see below).
 
 Spawning potential ratio (SPR): The ratio of the spawning biomass per recruit
 under a given level of fishing to the estimated spawning biomass per recruit
-in the absence of fishing; i.e.~for fishing mortality rate $F$
+in the absence of fishing; i.e.~for fishing mortality rate *F*
 <!-- \begin{equation}  -->
 <!-- \mbox{SPR}(F) = \frac{\mbox{spawning biomass per recruit with }F}{\mbox{spawning biomass per recruit with no fishing}}. -->
 <!-- \end{equation} -->
@@ -376,13 +376,13 @@ of the calculation of SPR.
 
 SPR: Spawning potential ratio (see above).
 
-$\mbox{SPR}_{40\%}$: See benchmark spawning potential ratio.
+`r spr_40`: See benchmark spawning potential ratio.
 
 SS: Stock Synthesis (see below).
 
-Steepness ($h$): A stock-recruit relationship parameter representing the
-proportion of $R_0$ expected (on average) when the female spawning biomass
-is reduced to 20% of $B_0$ (i.e.,~when relative spawning biomass is equal
+Steepness (*h*): A stock-recruit relationship parameter representing the
+proportion of `r r_0` expected (on average) when the female spawning biomass
+is reduced to 20% of `r b_0` (i.e.,~when relative spawning biomass is equal
 to 20%).
 
 Stock Synthesis (SS): The age-structured stock assessment model applied in
@@ -419,52 +419,7 @@ intensity linearly increases with SPR.
 
 ```{r glossary-fishing-intensity-illustration-fig, fig.cap = "(ref:glossary-fishing-intensity-illustration-cap)", fig.width = 5}
 
-# Do as a function so that variables remain local
-plot_intensity <- function(target = 0.4){
-  spr <- seq(0, 1, length = 100)
-  intensity = (1 - spr) / (1 - target)
-  d <- tibble(spr = spr,
-              intensity = intensity) |> 
-    mutate(spr_1 = 1 - spr)
-  max_segment_ind <- min(which(d$intensity <= 1))
-  max_segment <- d |> 
-    slice(max_segment_ind)
-  
-  ggplot(d,
-         aes(x = spr_1,
-             y = intensity)) +
-    geom_line(linewidth = 2,
-              color = "royalblue") +
-    geom_vline(xintercept = 0.6,
-               linetype = "dashed") +
-    geom_segment(aes(x = 0,
-                     xend = max_segment$spr_1,
-                     y = 1,
-                     yend = 1),
-                 linetype = "dashed") +
-    annotate("text",
-             x = max_segment$spr_1 - 0.05,
-             y = 1.35,
-             label = "Target SPR",
-             angle = 90,
-             size = 5) +
-    scale_x_continuous(breaks = seq(0, 1, 0.2),
-                       sec.axis = sec_axis(~ ., 
-                                           breaks = seq(0, 1, 0.2),
-                                           labels = c("1.0",
-                                                      "0.8",
-                                                      "0.6",
-                                                      "0.4",
-                                                      "0.2",
-                                                      "0.0"),
-                                           name = "SPR")) +
-    scale_y_continuous(breaks = seq(0, 1.5, 0.5)) +
-    xlab("1 - SPR") +
-    ylab("Fishing intensity") +
-    theme(plot.margin = margin(c(20, 6, 6, 6)))
-}
-
-plot_intensity()
+plot_intensity_illustration(0.4)
 ```
 (ref:glossary-spr-illustration-cap) Illustration of the spawning potential ratio
 (SPR) calculation based on the combination of maturity and fecundity used
