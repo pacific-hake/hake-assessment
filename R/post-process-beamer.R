@@ -12,6 +12,9 @@
 #' @export
 post_process_beamer <- function(x, ...){
 
+  # Include some LaTeX packages, and custom macros including the ones for
+  # special table widths such as L{2cm}, C{2cm}, and R{2cm} (example values)
+  # used in the decision table
   x <- post_process_beamer_add_extra_headers_etc(x, ...)
 
   # Insert the NOAA and DFO logos and the hake picture on the title
