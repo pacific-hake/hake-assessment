@@ -20,7 +20,6 @@ alternative_text.csv
 *.out
 *.pdf
 *.pem
-*.png
 *.ppt*
 *.ps
 key_pair.R
