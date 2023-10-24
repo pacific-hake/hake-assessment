@@ -16,6 +16,7 @@ plot_survey_index_fits <- function(
     x_labs_mod = 5,
     x_expansion = 3,
     tick_prop = 1,
+    vjust_x_labels = -0.25,
     ylim = c(0, 3),
     y_breaks = seq(ylim[1], ylim[2], by = 0.5),
     leg_pos = c(0.65, 0.83),
@@ -117,8 +118,8 @@ plot_survey_index_fits <- function(
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
-          axis.text.x = element_text(vjust = -2),
-          axis.title.x = element_text(vjust = -2)) +
+          axis.text.x = element_text(vjust = vjust_x_labels),
+          axis.title.x = element_text(vjust = vjust_x_labels)) +
     xlab("Year") +
     ylab(y_title)
 

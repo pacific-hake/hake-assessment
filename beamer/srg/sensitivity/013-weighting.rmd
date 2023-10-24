@@ -1,14 +1,16 @@
 # Weighting
 
 ## Downweight fishery age-composition data
-```{r downweight-biomass-fig, fig.height = 3, out.height = "85%"}
+```{r downweight-biomass-fig, fig.height = 4, out.height = "85%"}
 plot_biomass(model_lst = list(base_model,
                               sens_models[[2]][[3]]),
              model_names = c(base_model_name,
                              sens_models_desc[[2]][2]),
              x_expansion = 4,
              ylim = c(0, 5),
-             y_breaks = seq(0, 20, 2),
+             y_breaks = seq(0, 5, 1),
+             tick_prop = 1.5,
+             vjust_x_labels = 0,
              leg_font_size = 5,
              leg_pos = c(0.7, 0.85),
              rev_colors = TRUE,
@@ -20,13 +22,17 @@ plot_biomass(model_lst = list(base_model,
 ```
 
 ## Downweight fishery age-composition data
-```{r downweight-sensitivity-biomass-rel, fig.height = 3, out.height = "85%"}
+```{r downweight-sensitivity-biomass-rel, fig.height = 4, out.height = "85%"}
 plot_rel_biomass(model_lst = list(base_model,
                                   sens_models[[2]][[3]]),
                  model_names = c(base_model_name,
                                  sens_models_desc[[2]][2]),
                  x_expansion = 4,
                  ylim = c(0, 2.5),
+                 y_breaks = seq(0, 2.5, 0.5),
+                 tick_prop = 1.5,
+                 vjust_x_labels = -0.5,
+                 hjust_y_labels = 1,
                  leg_font_size = 5,
                  leg_pos = c(0.7, 0.85),
                  rev_colors = TRUE,

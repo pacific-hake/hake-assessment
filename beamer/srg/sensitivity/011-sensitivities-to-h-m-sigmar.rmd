@@ -1,7 +1,12 @@
 # *h*, *M*, $\sigma_r$
 
 ## Sensitivity to steepness, *h*
-```{r h-biomass-fig, fig.height = 3, out.height = "85%"}
+```{r h-biomass-fig, fig.height = 4, out.height = "85%"}
+
+leg_font_size <- 5
+leg_locs <- c(0.7, 0.85)
+ribbon_line_type <- 0
+
 plot_biomass(model_lst = list(sens_models[[1]][[1]],
                               sens_models[[1]][[2]],  # [[1]] is base model
                               sens_models[[1]][[3]]),
@@ -10,11 +15,13 @@ plot_biomass(model_lst = list(sens_models[[1]][[1]],
                              sens_models_desc[[1]][2]),
              x_expansion = 4,
              ylim = c(0, 5),
-             y_breaks = seq(0, 20, 2),
-             leg_font_size = 5,
-             leg_pos = c(0.7, 0.85),
+             y_breaks = seq(0, 5, 1),
+             tick_prop = 1.5,
+             vjust_x_labels = -0.25,
+             leg_font_size = leg_font_size,
+             leg_pos = leg_locs,
              rev_colors = TRUE,
-             ribbon_line_type = 0) +
+             ribbon_line_type = ribbon_line_type) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12),
         legend.key.size = unit(0.5, units = "cm"),
@@ -22,7 +29,7 @@ plot_biomass(model_lst = list(sens_models[[1]][[1]],
 ```
 
 ## Sensitivity to steepness, *h*
-```{r h-biomass-rel-fig, fig.height = 3, out.height = "85%"}
+```{r h-biomass-rel-fig, fig.height = 4, out.height = "85%"}
 plot_rel_biomass(model_lst = list(sens_models[[1]][[1]],
                               sens_models[[1]][[2]],  # [[1]] is base model
                               sens_models[[1]][[3]]),
@@ -31,10 +38,14 @@ plot_rel_biomass(model_lst = list(sens_models[[1]][[1]],
                              sens_models_desc[[1]][2]),
              x_expansion = 4,
              ylim = c(0, 2.5),
-             leg_font_size = 5,
-             leg_pos = c(0.7, 0.85),
+             y_breaks = seq(0, 2.5, 0.5),
+             tick_prop = 1.5,
+             vjust_x_labels = -2.25,
+             hjust_y_labels = 1,
+             leg_font_size = leg_font_size,
+             leg_pos = leg_locs,
              rev_colors = TRUE,
-             ribbon_line_type = 0) +
+             ribbon_line_type = ribbon_line_type) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12),
         legend.key.size = unit(0.5, units = "cm"),
@@ -42,7 +53,7 @@ plot_rel_biomass(model_lst = list(sens_models[[1]][[1]],
 ```
 
 ## Sensitivity to natural mortality, *M* (base has prior median 0.2, sd 0.1)
-```{r m-biomass-fig, fig.height = 3, out.height = "85%"}
+```{r m-biomass-fig, fig.height = 4, out.height = "85%"}
 plot_biomass(model_lst = list(base_model,
                               sens_models[[1]][[6]],
                               sens_models[[1]][[7]],
@@ -53,11 +64,13 @@ plot_biomass(model_lst = list(base_model,
                              sens_models_desc[[1]][7]),
              x_expansion = 4,
              ylim = c(0, 20),
-             y_breaks = seq(0, 20, 2),
-             leg_font_size = 5,
-             leg_pos = c(0.7, 0.80),
+             y_breaks = seq(0, 20, 5),
+             tick_prop = 1.5,
+             vjust_x_labels = -0.25,
+             leg_font_size = leg_font_size,
+             leg_pos = leg_locs,
              rev_colors = TRUE,
-             ribbon_line_type = 0) +
+             ribbon_line_type = ribbon_line_type) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12),
         legend.key.size = unit(0.5, units = "cm"),
@@ -76,14 +89,20 @@ plot_rel_biomass(model_lst = list(base_model,
                                  sens_models_desc[[1]][7]),
              x_expansion = 4,
              ylim = c(0, 4),
-             leg_font_size = 5,
-             leg_pos = c(0.7, 0.85),
+             y_breaks = seq(0, 4, 1),
+             tick_prop = 1.5,
+             vjust_x_labels = -2.75,
+             hjust_y_labels = 1,
+             leg_font_size = leg_font_size,
+             leg_pos = leg_locs,
              rev_colors = TRUE,
-             ribbon_line_type = 0) +
+             ribbon_line_type = ribbon_line_type) +
   theme(axis.title.x = element_text(size = 12),
-        axis.title.y = element_text(size = 12),
+        axis.title.y = element_text(size = 12,
+                                    vjust = -5),
         legend.key.size = unit(0.5, units = "cm"),
-        legend.text = element_text(size = 10))
+        legend.text = element_text(size = 10),
+        axis.ticks.length = unit(0.3, "cm"))
 ```
 
 ## Sensitivity to natural mortality, *M* (base has prior median 0.2, sd 0.1)
@@ -97,16 +116,17 @@ table_param_est(models = list(base_model,
                               sens_models_names[[1]][6],
                               sens_models_names[[1]][7]),
                 end_yr = end_yr,
+                show_loglike = FALSE,
                 digits = 3,
-                font_size = 5,
-                right_cols_cm = 0.75,
-                header_font_size = 6,
+                font_size = 4.5,
+                right_cols_cm = 1.25,
+                header_font_size = 5,
                 section_line_above = FALSE,
                 section_line_below = FALSE)
 ```
 
 ## Sensitivity to s.d. of recruitment variability, $\sigma_r$; base `r sigma_r`
-```{r sigmar-biomass-fig, fig.height = 3, out.height  = "85%"}
+```{r sigmar-biomass-fig, fig.height = 4, out.height  = "85%"}
 plot_biomass(model_lst = list(base_model,
                               sens_models[[1]][[4]],
                               sens_models[[1]][[5]]),
@@ -115,11 +135,13 @@ plot_biomass(model_lst = list(base_model,
                              sens_models_desc[[1]][4]),
              x_expansion = 4,
              ylim = c(0, 5),
-             y_breaks = seq(0, 20, 2),
-             leg_font_size = 5,
-             leg_pos = c(0.7, 0.85),
+             y_breaks = seq(0, 5, 1),
+             tick_prop = 1.5,
+             vjust_x_labels = -0.25,
+             leg_font_size = leg_font_size,
+             leg_pos = leg_locs,
              rev_colors = TRUE,
-             ribbon_line_type = 0) +
+             ribbon_line_type = ribbon_line_type) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12),
         legend.key.size = unit(0.5, units = "cm"),
@@ -127,7 +149,7 @@ plot_biomass(model_lst = list(base_model,
 ```
 
 ## Sensitivity to s.d. of recruitment variability, $\sigma_r$; base `r sigma_r`
-```{r sigmar-biomass-fig-rel, fig.height = 3, out.height = "85%"}
+```{r sigmar-biomass-fig-rel, fig.height = 4, out.height = "85%"}
 plot_rel_biomass(model_lst = list(base_model,
                                   sens_models[[1]][[4]],
                                   sens_models[[1]][[5]]),
@@ -136,12 +158,18 @@ plot_rel_biomass(model_lst = list(base_model,
                                  sens_models_desc[[1]][4]),
              x_expansion = 4,
              ylim = c(0, 4),
-             leg_font_size = 5,
-             leg_pos = c(0.7, 0.85),
+             y_breaks = seq(0, 4, 1),
+             tick_prop = 1.5,
+             vjust_x_labels = -2.25,
+             hjust_y_labels = 1,
+             leg_font_size = leg_font_size,
+             leg_pos = leg_locs,
              rev_colors = TRUE,
-             ribbon_line_type = 0) +
+             ribbon_line_type = ribbon_line_type) +
   theme(axis.title.x = element_text(size = 12),
-        axis.title.y = element_text(size = 12),
+        axis.title.y = element_text(size = 12,
+                                    vjust = -4,
+                                    hjust = 0.75),
         legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```

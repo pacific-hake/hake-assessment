@@ -10,6 +10,7 @@ table_param_est(
   models = NULL,
   model_nms = NULL,
   end_yr,
+  show_loglike = TRUE,
   section_row_inds = c(1, 11, 20, 21 + length(large_cohorts)),
   section_row_headers = c("Parameters", "Derived Quantities",
     paste0("Reference Points based on ", fspr_40_bold_for_latex_table),
@@ -37,6 +38,9 @@ table_param_est(
 models in the models list}
 
 \item{end_yr}{The last year to include}
+
+\item{show_loglike}{Logical. If \code{TRUE} show the negative log likelihood
+values in the table}
 
 \item{section_italics}{Logical. If \code{TRUE}, make the section header lines
 italicized}

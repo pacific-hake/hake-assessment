@@ -6,6 +6,8 @@
 #' models in the models list
 #' @param end_yr The last year to include
 #' @param digits The number of decimal points to include in the table
+#' @param inc_loglike Logical. If `TRUE`, include the negative log-likelihood
+#' values
 #' @param ... Absorbs arguments meant for other functions
 #'
 #' @return A data frame containing 1 column of parameter estimates for each
@@ -15,6 +17,7 @@ get_param_est_comparison_df <- function(models,
                                         model_nms,
                                         end_yr = models[[1]]$endyr,
                                         digits = 3,
+                                        inc_loglike = TRUE,
                                         ...){
 
   # MCMC parameter estimates
@@ -102,15 +105,21 @@ get_param_est_comparison_df <- function(models,
         ssb_curr_fem = mdl$mcmccalcs$refpts$f_spawn_bio_bf40[2],
         spr_msy = "40.0\\%",
         exp_frac = mdl$mcmccalcs$refpts$exp_frac_spr[2],
-        yield_f40 = mdl$mcmccalcs$refpts$yield_bf40[2],
-        total_like = f(pull(filter(like, type == "total")), 2),
-        survey_like = f(pull(filter(like, type == "survey")), 2),
-        survey_age_like = f(survey_age_like, 2),
-        fishery_age_like = f(fishery_age_like, 2),
-        recr_like = f(pull(filter(like, type == "recruitment")), 2),
-        priors_like = f(pull(filter(like, type == "parm_priors")), 2),
-        parmdev_like = f(pull(filter(like, type == "parm_devs")), 2)),
+        yield_f40 = mdl$mcmccalcs$refpts$yield_bf40[2]),
       value = mdl_nm)
+    if(inc_loglike){
+      df_nll <- enframe(
+        c(total_like = f(pull(filter(like, type == "total")), 2),
+          survey_like = f(pull(filter(like, type == "survey")), 2),
+          survey_age_like = f(survey_age_like, 2),
+          fishery_age_like = f(fishery_age_like, 2),
+          recr_like = f(pull(filter(like, type == "recruitment")), 2),
+          priors_like = f(pull(filter(like, type == "parm_priors")), 2),
+          parmdev_like = f(pull(filter(like, type == "parm_devs")), 2)),
+        value = mdl_nm)
+      df <- bind_rows(df, df_nll)
+    }
+    df
   })
 
   # Remove parameter name column from all but first model then bind them
@@ -155,15 +164,21 @@ get_param_est_comparison_df <- function(models,
     paste0("Female spawning biomass at ", fspr_40_for_latex_table, "(", bspr_40_for_latex_table, ", kt)"),
     paste0("SPR at ", fspr_40_for_latex_table, " (kt)"),
     "Exploitation fraction corresponding to SPR",
-    paste0("Yield at ",  bspr_40_for_latex_table, " (kt)"),
-    "Total",
-    "Survey index",
-    "Survey age compositions",
-    "Fishery age compositions",
-    "Recruitment",
-    "Parameter priors",
-    "Parameter deviations"),
+    paste0("Yield at ",  bspr_40_for_latex_table, " (kt)")),
     name = NULL)
+
+  if(inc_loglike){
+    param_descs_nll <- enframe(
+      c("Total",
+        "Survey index",
+        "Survey age compositions",
+        "Fishery age compositions",
+        "Recruitment",
+        "Parameter priors",
+        "Parameter deviations"),
+      name = NULL)
+    param_descs <- bind_rows(param_descs, param_descs_nll)
+  }
 
   d |>
     mutate(parameter = param_descs$value)

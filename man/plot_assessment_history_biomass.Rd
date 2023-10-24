@@ -11,7 +11,8 @@ plot_assessment_history_biomass(
   ylim = c(0, 7),
   y_breaks = ylim[1]:ylim[2],
   y_major_lab_adj = 45,
-  clip_cover = 5,
+  tick_prop = 1,
+  vjust_x_labels = -0.25,
   leg_pos = c(0.75, 0.8),
   leg_ncol = 3,
   leg_font_size = 8
@@ -35,13 +36,6 @@ show on the y-axis}
 \item{y_major_lab_adj}{A value to move the major tick abels closer/further
 away from the major tick marks. Reducing this moves them closer, increasing
 it moves them further away}
-
-\item{clip_cover}{There is a white rectangle drawn on top of the plot
-to cover any of the plot that made it outside the plot area. \code{clip} has to
-be set to \code{off} for the major x-axis tick marks to work, So, this is required.
-If you make the plot in a grid, the rectangle may overwrite some of the plot
-above it, and this number will have to be changed through trial and error
-until you cannot see the white rectangle anymore.}
 
 \item{leg_pos}{The position of the legend inside the plot. If \code{NULL},
 \code{NA}, or \code{none}, the legend will not be shown}

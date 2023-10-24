@@ -10,6 +10,7 @@ get_param_est_comparison_df(
   model_nms,
   end_yr = models[[1]]$endyr,
   digits = 3,
+  inc_loglike = TRUE,
   ...
 )
 }
@@ -22,6 +23,9 @@ models in the models list}
 \item{end_yr}{The last year to include}
 
 \item{digits}{The number of decimal points to include in the table}
+
+\item{inc_loglike}{Logical. If \code{TRUE}, include the negative log-likelihood
+values}
 
 \item{...}{Absorbs arguments meant for other functions}
 }

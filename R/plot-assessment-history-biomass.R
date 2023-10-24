@@ -12,12 +12,6 @@
 #' @param y_major_lab_adj A value to move the major tick abels closer/further
 #' away from the major tick marks. Reducing this moves them closer, increasing
 #' it moves them further away
-#' @param clip_cover There is a white rectangle drawn on top of the plot
-#' to cover any of the plot that made it outside the plot area. `clip` has to
-#' be set to `off` for the major x-axis tick marks to work, So, this is required.
-#' If you make the plot in a grid, the rectangle may overwrite some of the plot
-#' above it, and this number will have to be changed through trial and error
-#' until you cannot see the white rectangle anymore.
 #' @param leg_pos The position of the legend inside the plot. If `NULL`,
 #' `NA`, or `none`, the legend will not be shown
 #' @param leg_ncol The number of columns to show in the legend
@@ -34,7 +28,8 @@ plot_assessment_history_biomass <- function(base_model,
                                             ylim = c(0, 7),
                                             y_breaks = ylim[1]:ylim[2],
                                             y_major_lab_adj = 45,
-                                            clip_cover = 5,
+                                            tick_prop = 1,
+                                            vjust_x_labels = -0.25,
                                             leg_pos = c(0.75, 0.8),
                                             leg_ncol = 3,
                                             leg_font_size = 8){
@@ -174,7 +169,8 @@ plot_assessment_history_biomass <- function(base_model,
     theme(legend.key.size = unit(0.2, 'cm'),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
-          axis.text.x = element_text(vjust = -0.25),
+          axis.text.x = element_text(vjust = vjust_x_labels),
+          axis.title.x = element_text(vjust = vjust_x_labels),
           axis.title.y = element_text(vjust = 2),
           # plot.margin: top, right,bottom, left
           plot.margin = margin(12, 14, 6, 6)) +
@@ -196,15 +192,11 @@ plot_assessment_history_biomass <- function(base_model,
              color = guide_legend(ncol = leg_ncol))
   }
 
-  # Draw a white rectangle over the top of the plot, obscuring any
-  # unclipped plot parts. Clipping has to be off to allow different size
-  # tick marks. `grid` package used here
-  g <- g +
-    annotation_custom(grob = rectGrob(gp = gpar(col = NA, fill = "white")),
-                      xmin = xlim[1],
-                      xmax = xlim[2],
-                      ymin = ylim[2],
-                      ymax = ylim[2] + clip_cover)
+  # Add a major tick mark every `x_labs_mod` years
+  g <- g |>
+    add_major_ticks(x_breaks = x_breaks,
+                    modulo = x_labs_mod,
+                    prop = tick_prop)
 
   g
 }

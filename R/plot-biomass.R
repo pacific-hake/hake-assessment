@@ -24,6 +24,8 @@
 #' multiplied by. This proportion must be set by trial and error. Make sure
 #' to change `vjust_x_labels` so the labels are not overlapping the lines or
 #' are too far away from the lines
+#' @param vjust_x_labels Adjustment to move the x-axis tick labels and label
+#' up or down. Negative numbers move down
 #' @param ylim The y-axis minimum and maximum limits for the plot
 #' @param y_breaks The tick mark values to show for the y-axis
 #' @param y_labels Labels for the tick marks on the y-axis
@@ -95,6 +97,7 @@ plot_biomass <- function(
     x_labs_mod = 5,
     x_expansion = 3,
     tick_prop = 1,
+    vjust_x_labels = -0.25,
     ylim = c(0, 4.5),
     y_breaks = seq(ylim[1], ylim[2], by = 0.5),
     leg_pos = c(0.65, 0.83),
@@ -196,12 +199,16 @@ plot_biomass <- function(
     scale_fill_manual(values = ribbon_colors) +
     scale_color_manual(values = colors) +
     coord_cartesian(xlim = xlim,
-                    ylim = ylim) +
+                    ylim = ylim,
+                    # `clip` must be "off" or the different length tick
+                    #  marks will not work. All tick marks will be the same
+                    #  length
+                    clip = "off") +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
           legend.text.align = 0,
-          axis.text.x = element_text(vjust = -0.25),
-          axis.title.x = element_text(vjust = -0.25),
+          axis.text.x = element_text(vjust = vjust_x_labels),
+          axis.title.x = element_text(vjust = vjust_x_labels),
           axis.title.y = element_text(vjust = 2)) +
     labs(x = "Year",
          y = ifelse(wrap_y_label,

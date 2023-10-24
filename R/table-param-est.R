@@ -5,6 +5,8 @@
 #' @param model_nms A vector of names of the same length as the number of
 #' models in the models list
 #' @param end_yr The last year to include
+#' @param show_loglike Logical. If `TRUE` show the negative log likelihood
+#' values in the table
 #' @param section_italics Logical. If `TRUE`, make the section header lines
 #' italicized
 #' @param section_bold Logical. If `TRUE`, make the section header lines
@@ -37,6 +39,7 @@ table_param_est <- function(
     models = NULL,
     model_nms = NULL,
     end_yr,
+    show_loglike = TRUE,
     section_row_inds = c(1, 11, 20, 21 + length(large_cohorts)),
     section_row_headers = c("Parameters",
                             "Derived Quantities",
@@ -58,6 +61,11 @@ table_param_est <- function(
     caption = NULL,
     ...){
 
+  if(!show_loglike){
+    section_row_headers <- section_row_headers[-length(section_row_headers)]
+    section_row_inds <- section_row_inds[-length(section_row_inds)]
+  }
+
   if(longtable && missing(caption)){
     caption <- paste0(
       "\\textcolor{red}{Run post\\_process\\_beamer('filename.tex') ",
@@ -68,6 +76,7 @@ table_param_est <- function(
     d <- get_param_est_comparison_df(models,
                                      model_nms,
                                      end_yr = end_yr,
+                                     inc_loglike = show_loglike,
                                      ...)
   }
 

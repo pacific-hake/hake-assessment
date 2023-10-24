@@ -14,6 +14,7 @@ plot_rel_biomass <- function(
     x_expansion = 3,
     tick_prop = 1,
     vjust_x_labels = -2,
+    hjust_y_labels = 0,
     ylim = c(0, 3.5),
     y_breaks = seq(ylim[1], ylim[2], by = 0.5),
     leg_pos = c(0.65, 0.83),
@@ -109,7 +110,11 @@ plot_rel_biomass <- function(
     scale_fill_manual(values = ribbon_colors) +
     scale_color_manual(values = colors) +
     coord_cartesian(xlim = xlim,
-                    ylim = ylim) +
+                    ylim = ylim,
+                    # `clip` must be "off" or the different length tick
+                    #  marks will not work. All tick marks will be the same
+                    #  length
+                    clip = "off") +
     geom_ribbon(alpha = alpha,
                 linetype = ribbon_line_type)
 
@@ -154,7 +159,8 @@ plot_rel_biomass <- function(
           # title don't overlap each other
           axis.text.x = element_text(vjust = vjust_x_labels),
           axis.title.x = element_text(vjust = vjust_x_labels),
-          axis.text.y = element_text(color = y_colors)) +
+          axis.text.y = element_text(color = y_colors,
+                                     hjust = hjust_y_labels)) +
     labs(x = "Year",
          y = ifelse(wrap_y_label,
                     expression(atop("Rel. Spawning Biomass",

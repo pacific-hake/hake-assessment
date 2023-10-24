@@ -29,6 +29,7 @@ plot_biomass(
   x_labs_mod = 5,
   x_expansion = 3,
   tick_prop = 1,
+  vjust_x_labels = -0.25,
   ylim = c(0, 4.5),
   y_breaks = seq(ylim[1], ylim[2], by = 0.5),
   leg_pos = c(0.65, 0.83),
@@ -221,6 +222,7 @@ plot_rel_biomass(
   x_expansion = 3,
   tick_prop = 1,
   vjust_x_labels = -2,
+  hjust_y_labels = 0,
   ylim = c(0, 3.5),
   y_breaks = seq(ylim[1], ylim[2], by = 0.5),
   leg_pos = c(0.65, 0.83),
@@ -291,6 +293,7 @@ plot_survey_index_fits(
   x_labs_mod = 5,
   x_expansion = 3,
   tick_prop = 1,
+  vjust_x_labels = -0.25,
   ylim = c(0, 3),
   y_breaks = seq(ylim[1], ylim[2], by = 0.5),
   leg_pos = c(0.65, 0.83),
@@ -345,6 +348,9 @@ in \code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}}
 multiplied by. This proportion must be set by trial and error. Make sure
 to change \code{vjust_x_labels} so the labels are not overlapping the lines or
 are too far away from the lines}
+
+\item{vjust_x_labels}{Adjustment to move the x-axis tick labels and label
+up or down. Negative numbers move down}
 
 \item{ylim}{The y-axis minimum and maximum limits for the plot}
 
