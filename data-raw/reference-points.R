@@ -19,6 +19,7 @@ create_data_hake("fspr_50", "*F*~SPR=50%~")
 create_data_hake("fspr_40_10", "*F*~SPR=40%~--40:10")
 create_data_hake("fspr_40_10_for_latex_table", "\\textit{F}\\textsubscript{SPR=40\\%}--40:10")
 create_data_hake("fspr_40_10_noit", "F~SPR=40%~--40:10")
+# Three stars each side of text means the text will be both bold and in italics
 create_data_hake("fspr_40_bold", "***F***~**SPR=40%**~")
 
 create_data_hake("b_10", "*B*~10%~")
