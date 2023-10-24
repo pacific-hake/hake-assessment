@@ -1,5 +1,5 @@
 ____
-# hake-assessment  <img src="doc/main-figures/hake-bookdown-etc.png" align="right" height="139" />
+# hake-assessment  <img src="doc/main-figures/hake-logos.png" align="right" height="139" />
 
 > An R package which uses Bookdown and Rmarkdown to build the US/Canadian Pacific hake assessment document
 _____________________________________________________________
