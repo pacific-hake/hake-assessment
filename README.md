@@ -34,29 +34,39 @@ The assessment document is built using the following software packages:
 ## How to create the hake assessment PDF document
 **The `RDS` files must have been created before the document can be built.**
 
-1. If you are on the Pacific Hake Linux server, go to step 2.  
-   If you are on a local machine, open an R session, and install the hake
-   package from GitHub:
-   `remotes::install_github("pacific-hake/hakeassessment")`
-1. `git clone` this repository:  
+1. Install the hake package:
+   - If you are on the Linux server, the `hake` package is already installed,
+     go to step 2.
+   - If you are on a local machine, open an R session, and install the hake
+     package from GitHub:
+     `remotes::install_github("pacific-hake/hakeassessment")`
+1. Clone this GitHub repository:  
    `git clone https://github.com/pacific-hake/hake-assessment`
-1. In an R session, change your working directory to the `doc` directory:  
+1. If using Rstudio, open `hake.Rproj`. If not, open an R console however you
+   like to and navigate to the hake project root directory. Either way, change
+   your working directory to the `doc` directory:  
    `setwd(here::here("doc"))`
 1. Create the PDF assessment document:  
    `hake::render()`
-1. The `hake.pdf` document will be built in the `doc` directory. The first
-   time building the document in a new R session will take about 10 minutes
+1. The `hake.pdf` document will be rendered in the `doc` directory. The first
+   time rendering the document in a new R session will take about 7-8 minutes
    because the model RDS files have to be loaded. After that, the build will
    be much quicker.
 
 Alternatively, in RStudio you can click the `knit` button while the file
-`000-launcher.rmd` is open in the editor window.
+`000-launcher.rmd` is open in the editor window. This will be much slower
+though because it starts its own new R session, which means all the models
+have to be loaded every time you render the document this way.
 
 For details on the `hake::render()` function, see
 [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md).
 
 ## Debugging a figure or table, or any other Rmarkdown code
 
+It's super easy, `gotest()` to enter a customized debug directory
+and then `goback()` to go back to the directory you were in.
+
+**Details:**  
 * If you haven't already done so in your current R session, run
   `devtools::load_all()` while your working directory is somewhere within
    the hake repo directory structure.
@@ -77,12 +87,13 @@ For details on the `hake::render()` function, see
 * Build the document by running `render()`. The PDF (`hake.pdf`) will be
   built in the current temporary directory, and contain only the output
   from your test code. If you haven't built the document yet in the current
-  R session, this will take a few minutes because all the mode files have
+  R session, this will take 7-8 minutes because all the mode files have
   to be loaded.
 * Iteratively make changes to your code in the temporary `005-test.rmd`
   file and build the document, until satisfied with your code. Copy the
   code to the clipboard for pasting into the real document. Be careful,
-  once you leave the temporary directory your code will be gone forever.
+  once you leave the temporary directory your code in `005-test.rmd` will be
+  gone and unrecoverable.
 * To go back to the directory you were in before testing, run `goback()`.
   - If in Rstudio, click the gear-down-arrow icon ![](gear-arrow-down.png) in
     the Files window (bottom right panel in Rstudio) and select
@@ -90,15 +101,22 @@ For details on the `hake::render()` function, see
 
 ## Adding new data to data tables (done annually)
 
-This is a bit different than it was previously, because the data tables
-are now package data and have to be built in a different way to update the
-package data.
+Data tables are package data and can be accessed directly from within
+the package like in this example, which gives you the U.S. at-sea bottom
+depth table:  
+`hake::us_atsea_bottom_depth_df`
+
+To see a list of all package data available in the `hake` package:  
+`data(package = "hake")`
+
+To update any package data, for example if we add a new rows to the CSV files
+found in the `data-tables` directory:
 
 1. Open the CSV file from the `data-tables` directory that you want to add
    data to.
 1. Add the new data row(s), and save the file.
 1. Do the first two steps with as many data tables as you want to update, then
-   do then next step as few times as possible.
+   do then next steps as few times as possible.
 1. Source the `data-raw/data-tables.R` file to update the data tables:
    `source(here::here(data-raw/data-tables.R))`. If you're using RStudio
    you can just press `Ctrl-Shift-Enter` with the file in focus to do this.
@@ -113,6 +131,37 @@ changes as you can to data tables at one time, then run steps 4 and 5 once to
 incorporate all the changes. The `*.rda` files are binary and its better to
 keep binary file changes to a minimum when using Git as it can introduce
 repository bloating.
+
+## Reference point text markup
+
+The reference points and other values which are referred to in text in
+numerous places and require complex markup and/or latex are located in the
+file `data-raw/reference-points.R`. They are stored as package data so can be
+referred to like this (example for *F*<sub>SPR=40%</sub>):  
+- `hake::fspr_40_10` for Rmarkdown (inside text in the document) or
+- `hake::fspr_40_10_for_latex_table` for tables (which require LaTeX code)
+
+To add to this list or change anything, follow the same method as laid out in
+the `Adding new data to data tables (done annually)` section above. Test the
+new expression by using the `gotest()/goback()` debugging method.
+
+## Plot settings
+
+There are many standardized project-wide plot settings which are also
+package data. These can be found in the file `data-raw/plot-settings.R`.
+If any are modified or new ones are added, follow the same method as laid
+out in the `Adding new data to data tables (done annually)` section above.
+For example, if you wanted to change the cohort diagonal line color in all
+age bubble plots from dark green to red you would find this line of code:  
+
+File: `data-raw/plot-settings.R`  
+Line: `create_data_hake("age_diag_linecolor", "darkgreen")`  
+
+and change darkgreen to red. Then source the file and reload the package
+using:  
+`devtools::load_all()`
+
+
 
 ## 2024 Assessment cycle (Jan - Mar 2024)
 
