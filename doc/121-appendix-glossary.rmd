@@ -81,7 +81,7 @@ otherwise recommended by the JMC. Adjustments under this sub-paragraph shall
 in no case exceed 15 percent of a Party's unadjusted individual TAC for the
 year in which the shortfall occurred."
 
-Catchability ($q$): The parameter defining the proportionality between a
+Catchability (*q*): The parameter defining the proportionality between a
 relative index of stock abundance (often a fishery-independent survey) and
 the estimated stock abundance available to that survey (as modified by
 selectivity) in the assessment model.
@@ -150,7 +150,7 @@ satisfies
   0.4
     &= \frac{\mbox{spawning biomass per recruit with }`r f_40_for_latex_table`}{\mbox{spawning biomass per recruit with no fishing}},
 \end{align}
-and SPR`r f_40` = 40%. The 40% value is specified in the Agreement.
+and SPR(`r f_40`) = 40%. The 40% value is specified in the Agreement.
 
 `r fspr_40_10` harvest policy: The default harvest policy (see above).
 
@@ -170,7 +170,7 @@ where SPR(*F*) is the spawning potential ratio for the value of *F*
 accumulated over the entire year. It is often given as a percentage.
 Relative fishing intensity is the fishing intensity relative to that at
 the SPR fishing rate `r f_40`, where `r f_40` is the *F* that gives an
-SPR of 40% such that, by definition, SPR`r f_40` = 40% (the benchmark
+SPR of 40% such that, by definition, SPR(`r f_40`) = 40% (the benchmark
 spawning ratio). Therefore
 \begin{align}
   (\#eq:appendix-glossary-spr)
@@ -214,6 +214,8 @@ by the Agreement. The full formal name is "Joint Technical Committee of
 the `r sp`/Whiting Agreement Between the Governments of the United States
 and Canada".
 
+kt: Kilotonne(s). Metric abbreviation for 1,000 metric tonnes
+
 Logistic transformation: A mathematical transformation used to translate
 between numbers bounded within some range to numbers on the real line
 ($-\infty$ to $+\infty$).
@@ -243,9 +245,7 @@ MSE: Management Strategy Evaluation (see above).
 
 MSY: Maximum sustainable yield (see above).
 
-t: Metric ton(s). A unit of mass (often referred to as weight) equal to
-1,000 kilograms or 2,204.62 pounds. Some previous stock assessments used
-the abbreviation "mt" (metric tons).
+Mt: megatonne(s). Metric abbreviation for 1,000,000 metric tonnes.
 
 NA: Not available.
 
@@ -387,6 +387,10 @@ to 20%).
 
 Stock Synthesis (SS): The age-structured stock assessment model applied in
 this stock assessment.
+
+t: Metric tonne(s). A unit of mass (often referred to as weight) equal to
+1,000 kilograms or 2,204.62 pounds. Some previous stock assessments used
+the abbreviation "mt" (metric tonnes).
 
 Target strength (TS): The amount of backscatter from an individual acoustic
 target.
