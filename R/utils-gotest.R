@@ -16,6 +16,7 @@
 #'
 #' @return Nothing, but the global variable `goback_dr` is set for the
 #' function [goback()] to use to return to the original directory
+#' @export
 gotest <- function(config_fn = "_bookdown.yml"){
 
   if(!file.exists(config_fn)){
