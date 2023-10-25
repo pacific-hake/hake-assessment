@@ -82,10 +82,9 @@ as well.
   copies of all files needed to do a minimal document build, and
   switch you to that directory.
   - If in RStudio, click the gear-arrow-down icon ![](gear-arrow-down.png) in
-    the Files window (bottom right panel in Rstudio) and select
-    `Go to working directory`. This will take the Rstudio file manager to
-    the temporary directory, and show you the files that have been copied
-    there by the `gotest()` function.
+    the Files window and select `Go to working directory`. This will take
+    the Rstudio file manager to the temporary directory, and show you
+    the files that have been copied there by the `gotest()` function.
   - If not in RStudio, type `dirclip()`, which will copy the temporary
     directory name to the clipboard. You can now go to a file manager of
     your choice and paste the directory name into it, and it will take you
