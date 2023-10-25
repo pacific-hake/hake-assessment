@@ -28,9 +28,8 @@ Clean (delete) all build output including knitr cache and knitr figures
 directories from the current directory
 }
 \details{
-This function can be called from anywhere in the hake project and will
-clean the "doc" directory, not the local directory. If you are testing
-with \code{gotest()} and are in a temporary directory, the cleaning will be
-applied there instead. The cleaning takes place on whatever directory
-is at \code{here::here("doc")}
+This function will clean the current working directory. It works from
+within the main \code{doc} directory as well as in all the beamer presentation
+directories. If you are testing with \code{gotest()} and are in a temporary
+directory, in the subdirectory \code{doc}, the cleaning will be applied there.
 }

@@ -2,11 +2,10 @@
 #' directories from the current directory
 #'
 #' @details
-#' This function can be called from anywhere in the hake project and will
-#' clean the "doc" directory, not the local directory. If you are testing
-#' with `gotest()` and are in a temporary directory, the cleaning will be
-#' applied there instead. The cleaning takes place on whatever directory
-#' is at `here::here("doc")`
+#' This function will clean the current working directory. It works from
+#' within the main `doc` directory as well as in all the beamer presentation
+#' directories. If you are testing with `gotest()` and are in a temporary
+#' directory, in the subdirectory `doc`, the cleaning will be applied there.
 #'
 #' @param knitr_figures_dir Directory where the knitr-generated
 #' figures reside
@@ -21,9 +20,9 @@ clean <- function(knitr_figures_dir = "knitr-figs",
                   out_csv_dir = "out-csv"){
 
   curr_dir <- getwd()
-  knitr_figures_dir <- file.path(curr_dir, "knitr-figs")
-  knitr_cache_dir <- file.path(curr_dir, "knitr-cache")
-  out_csv_dir <- file.path(curr_dir, "out-csv")
+  knitr_figures_dir <- file.path(curr_dir, knitr_figures_dir)
+  knitr_cache_dir <- file.path(curr_dir, knitr_cache_dir)
+  out_csv_dir <- file.path(curr_dir, out_csv_dir)
 
   # Possible names of the docs to delete without extensions
   docs_pat <- c("hake",
@@ -72,15 +71,11 @@ clean <- function(knitr_figures_dir = "knitr-figs",
     unlink(fns, force = TRUE)
   }
 
-  unlink(c("hake.Rmd",
-           "hake-assessment.Rmd"),
-         force = TRUE)
-
   # Delete build directories
   dirs <- c(knitr_figures_dir,
             knitr_cache_dir,
             out_csv_dir)
-
   unlink(dirs, recursive = TRUE, force = TRUE)
+
   message("Done cleaning the `", curr_dir, "` directory\n")
 }
