@@ -42,8 +42,6 @@ post_process_longtables <- function(x,
          call. = FALSE)
   }
   if(!length(beg_inds)){
-    message("There were no `\\begin{longtable}` commands found in the TeX ",
-            "code.\n")
     return(x)
   }
 
