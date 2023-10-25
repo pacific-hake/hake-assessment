@@ -8,7 +8,8 @@ rmd_files: ["000-launcher.rmd",
             "010-past-management.rmd",
             "011-projections.rmd",
             "012-decision-tables.rmd",
-            "013-summary.rmd"]
+            "013-summary.rmd",
+            "../../../doc/999-blank.rmd"]
 # `delete_merged_file`: If true, the hake.Rmd file which was created by
 # bookdown during the build will be kept after the hake.pdf file is created
 delete_merged_file: false

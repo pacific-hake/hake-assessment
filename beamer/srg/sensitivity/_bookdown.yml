@@ -12,7 +12,8 @@ rmd_files: ["000-launcher.rmd",
             "014-tv-selectivity-phi.rmd",
             "015-retrospectives.rmd",
             "016-historical.rmd",
-            "017-summary.rmd"]
+            "017-summary.rmd",
+            "../../../doc/999-blank.rmd"]
 # `delete_merged_file`: If true, the hake.Rmd file which was created by
 # bookdown during the build will be kept after the hake.pdf file is created
 delete_merged_file: false

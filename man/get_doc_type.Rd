@@ -10,7 +10,7 @@ get_doc_type(fn)
 \item{fn}{The RMD filename}
 }
 \value{
-Either "beamer" or "pdf". "pdf" means the main assessment document
+Either "beamer" or "doc". "doc" means the main assessment document
 }
 \description{
 Get the document type for the given RMD file

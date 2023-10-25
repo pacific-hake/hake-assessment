@@ -5,7 +5,7 @@
 
 echo "Directories to be deleted: "
 find . -type d -name "knitr-cache"
-find . -type d -name "figures"
+find . -type d -name "knitr-figs"
 
 find . -type d -name "knitr-cache" -exec rm -rf {} +
-find . -type d -name "figures" -exec rm -rf {} +
+find . -type d -name "knitr-figs" -exec rm -rf {} +

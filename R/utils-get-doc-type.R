@@ -2,7 +2,7 @@
 #'
 #' @param fn The RMD filename
 #'
-#' @return Either "beamer" or "pdf". "pdf" means the main assessment document
+#' @return Either "beamer" or "doc". "doc" means the main assessment document
 #' @export
 get_doc_type <- function(fn){
 
@@ -23,12 +23,12 @@ get_doc_type <- function(fn){
   if(!length(ind_type)){
     stop("You must have a line containing `output:` in your index RMD file ",
          "(", bookdown_lst$rmd_fns[1], ") followed by a line containing ",
-         "either `hake_pdf:` or `hake_beamer:`",
+         "the document type (either `hake_pdf:` or `hake_beamer):`",
          call. = FALSE)
   }
   if(!length(ind_type)){
-    stop("There is more than one line containing either `hake_pdf:` or ",
-         "`hake_beamer:`",
+    stop("There is more than one line containing the document type ",
+         "(either `hake_pdf:` or `hake_beamer)",
          call. = FALSE)
   }
 
@@ -37,6 +37,10 @@ get_doc_type <- function(fn){
   type <- gsub(":$", "", type)
   type <- gsub("hake::", "", type)
   type <- gsub("^hake_", "", type)
+
+  if(type == "pdf"){
+    type <- "doc"
+  }
 
   type
 }
