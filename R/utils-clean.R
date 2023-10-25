@@ -57,17 +57,14 @@ clean <- function(knitr_figures_dir = "knitr-figs",
                            "upa|",
                            "upb",
                            ")")
-  for(i in seq_along(docs_pat)){
-    full_pat <- paste0(docs_pat[i],
-                       "\\.",
-                       extensions_pat)
-
-    # Delete hake.aux, hake.tex etc or
-    # hake-assessment.aux, hake-assessment.tex etc
+  for(fn_base in docs_pat){
     fns <- list.files(path = curr_dir,
-                      pattern = full_pat,
+                      pattern = paste0(fn_base,
+                                       "\\.",
+                                       extensions_pat),
                       full.names = TRUE)
 
+    # Delete files that match above combinations
     unlink(fns, force = TRUE)
   }
 
