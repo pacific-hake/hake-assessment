@@ -32,7 +32,8 @@ The assessment document is built using the following software packages:
 
 ---
 ## How to create the hake assessment PDF document
-**The `RDS` files must have been created before the document can be built.**
+>**The same method works for creating the beamer presentation PDFs**  
+>The `RDS` files must have been created before the document can be built
 
 1. Install the hake package:
    - If you are on the Linux server, the `hake` package is already installed,
@@ -44,14 +45,20 @@ The assessment document is built using the following software packages:
    `git clone https://github.com/pacific-hake/hake-assessment`
 1. If using Rstudio, open `hake.Rproj`. If not, open an R console however you
    like to and navigate to the hake project root directory. Either way, change
-   your working directory to the `doc` directory:  
+   your working directory to the `doc` directory (*for beamer presentations
+   change your working directory to the one containing all the RMD files*):  
    `setwd(here::here("doc"))`
-1. Create the PDF assessment document:  
+1. Create the PDF document (*same command for beamer presentations*):  
    `hake::render()`
 1. The `hake.pdf` document will be rendered in the `doc` directory. The first
    time rendering the document in a new R session will take about 7-8 minutes
    because the model RDS files have to be loaded. After that, the build will
    be much quicker.
+1. Clean the directory up from time to time by running `hake::clean()`. This
+   will remove all files and subdirectories created by the `render()`
+   function. This command also works for the beamer presentation directories.
+   If you get an error stating that the variable `assess_yr` could not be
+   found, run `clean()`.
 
 Alternatively, in RStudio you can click the `knit` button while the file
 `000-launcher.rmd` is open in the editor window. This will be much slower
@@ -63,8 +70,9 @@ For details on the `hake::render()` function, see
 
 ## Debugging a figure or table, or any other Rmarkdown code
 
-It's super easy, `gotest()` to enter a customized debug directory
-and then `goback()` to go back to the directory you were in.
+Run `gotest()` to enter a customized debug directory and then `goback()`
+to go back to the directory you were in. This works for beamer presentations
+as well.
 
 **Details:**  
 * If you haven't already done so in your current R session, run

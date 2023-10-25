@@ -7,15 +7,15 @@
 render(input = "000-launcher.rmd", output_dir = ".", ...)
 }
 \arguments{
-\item{input}{The name of the launching \code{rmd} file. This should be the
+\item{input}{The name of the index \code{rmd} file. This should be the
 same as the first \code{rmd} file named in the \verb{_bookdown.yml} file.
 See \code{input} argument for \code{\link[bookdown:render_book]{bookdown::render_book()}}}
 
-\item{output_dir}{Which directory to build the PDF in.
-See \code{output_dir} argument for \code{\link[bookdown:render_book]{bookdown::render_book()}}}
+\item{output_dir}{Which directory to build the PDF in. See \code{output_dir}
+argument for \code{\link[bookdown:render_book]{bookdown::render_book()}}}
 
 \item{...}{Arguments to pass to the \code{\link[bookdown:render_book]{bookdown::render_book()}} and
-\code{\link[=post_process]{post_process()}} functions}
+\code{\link[=post_process]{post_process()}} or \code{\link[=post_process_beamer]{post_process_beamer()}} functions}
 }
 \value{
 Nothing

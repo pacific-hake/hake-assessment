@@ -35,7 +35,8 @@ clean <- function(knitr_figures_dir = "knitr-figs",
                 "JTC-sensitivity",
                 "JTC-stock-assessment-JMC",
                 "JTC-stock-assessment-JMC-Canada",
-                "JTC-stock-assessment-JMC-US")
+                "JTC-stock-assessment-JMC-US",
+                "test")
 
   # The extensions of the above docs to delete
   extensions_pat <- paste0("(",

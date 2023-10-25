@@ -92,7 +92,7 @@ gotest <- function(config_fn = "_bookdown.yml"){
   setwd("doc")
   # Create the bookdown configuration file _bookdown.yml
   bd_lines <- c(
-    'book_filename: "hake"',
+    'book_filename: "test"',
     'rmd_files: ["000-launcher.rmd",',
     '            "001-load-packages.rmd",',
     '            "002-load-globals.rmd",',
