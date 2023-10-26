@@ -1,0 +1,56 @@
+# Projections
+
+## Harvest-rule predicted catch for `r assess_yr`
+:::::: {.columns}
+::: {.column width="38%"}
+* Using the defined *F~SPR=40%~* harvest rate with a 40:10 adjustment, the
+  median projected `r end_yr` TAC is \textbf{`r ct_limit_quantiles["median"]` t}
+* 2.5% and 97.5% quantiles: `r ct_limit_quantiles["lower"]` and
+  `r ct_limit_quantiles["upper"]` t
+:::
+
+::: {.column width="62%"}
+```{r main-projected-catch-density, out.height = "80%"}
+plot_catch_forecast_density(base_model,
+                            yr = end_yr)
+```
+:::
+::::::
+
+## Projection methods
+
+* Projections estimate the biomass at start of `r end_yr + 1`, `r end_yr + 2`,
+  and `r end_yr + 3`
+  -  Mean of fishery selectivity from `r end_yr - 5`--`r end_yr - 1` used
+     in projections
+  -  Mean of weight-at-age from `r end_yr - 5`--`r end_yr - 1` used in
+     projections
+  -  Recruitment from stock-recruit relationship (with uncertain deviations)
+  -  Used for default HR calculations
+  -  Alternative future catch levels explored
+* Equilibrium calculations (`r b_0`, `r f_spr`, MSY, etc.)
+  - Base selectivity (used for years before 1991 as well)
+  - Mean of weight-at-age across 1975-`r last_data_yr`
+  - Recruitment at estimated `r r_0` or from stock-recruit relationship
+* Catch alternatives presented for some specific cases
+
+## Three-year projections
+:::::: {.columns}
+::: {.column width="38%"}
+
+* No fishing results in increase in *median* relative spawning biomass
+  from `r assess_yr` to `r assess_yr + 2` then leveling off
+* All others shown result in eventual declines in the median
+* Uncertainty is large and increases from `r end_yr` to `r end_yr + 3`
+:::
+
+::: {.column width="62%"}
+```{r jmc-main-forecast-depletion-comparison, fig.height = 4, out.height = "80%"}
+
+plot_depl_fore_comparison(base_model,
+                          fore_inds = c(1, 2, 6, 12, 14),
+                          forecast_yrs = forecast_yrs,
+                          leg_pos = c(0.18, 0.8))
+```
+:::
+::::::
