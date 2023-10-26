@@ -40,9 +40,10 @@ The assessment document is built using the following software packages:
      go to step 2.
    - If you are on a local machine, open an R session, and install the hake
      package from GitHub:
-     `remotes::install_github("pacific-hake/hakeassessment")`
-1. Clone this GitHub repository:  
-   `git clone https://github.com/pacific-hake/hake-assessment`
+     `remotes::install_github("pacific-hake/hake-assessment@package-dev")`
+1. Clone this GitHub repository and switch to the `package-dev` branch:  
+   `git clone https://github.com/pacific-hake/hake-assessment`  
+   `git checkout package-dev`
 1. If using Rstudio, open `hake.Rproj`. If not, open an R console however you
    like to and navigate to the hake project root directory. Either way, change
    your working directory to the `doc` directory (*for beamer presentations
@@ -68,11 +69,11 @@ have to be loaded every time you render the document this way.
 For details on the `hake::render()` function, see
 [NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md).
 
-## Debugging a figure or table, or any other Rmarkdown code
+## Debugging chunks of code and Rmarkdown text
 
-Run `gotest()` to enter a customized debug directory and then `goback()`
-to go back to the directory you were in. This works for beamer presentations
-as well.
+Run `gotest()` to enter a customized debug directory, paste the code in
+and run `render()`. When done, run `goback()` to go back to the directory you
+were in originally. This works for beamer presentations as well.
 
 **Details:**  
 * If you haven't already done so in your current R session, run
@@ -106,7 +107,7 @@ as well.
     the Files window (bottom right panel in Rstudio) and select
     `Go to working directory`.
 
-## Adding new data to data tables (done annually)
+## Adding new data to data tables
 
 Data tables are package data and can be accessed directly from within
 the package like in this example, which gives you the U.S. at-sea bottom
