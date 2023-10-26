@@ -1087,7 +1087,7 @@ increasing it results in a decrease.
 
 plot_biomass(d_obj = d_obj_sens_biomass[[3]],
              x_expansion = 3.5,
-             leg_font_size = 8,
+             leg_font_size = 12,
              leg_pos = c(0.65, 0.85),
              rev_colors = TRUE)
 ```
@@ -1110,7 +1110,7 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
                  ylim = c(0, 3),
                  show_arrows = TRUE,
                  x_expansion = 2,
-                 leg_font_size = 8,
+                 leg_font_size = 12,
                  leg_pos = c(0.65, 0.85),
                  rev_colors = TRUE)
 ```
@@ -1127,7 +1127,7 @@ for the large cohorts is highly sensitive to the change in the Phi parameter.
 ```{r main-recruitment-base-alternative-4-fig, fig.cap = "(ref:main-recruitment-base-alternative-4-cap)", fig.height = 4.5}
 
 plot_recruitment(d_obj = d_obj_sens_recr[[3]],
-                 leg_font_size = 11,
+                 leg_font_size = 12,
                  leg_pos = c(0.45, 0.88),
                  inc_means = FALSE,
                  rev_colors = TRUE)
@@ -1187,7 +1187,7 @@ stable model.
 
 p <- list()
 p[[1]] <- plot_biomass(d_obj = base_model$retros$biomass_df,
-                       leg_font_size = 8,
+                       leg_font_size = 12,
                        x_expansion = 3.5,
                        leg_pos = c(0.6, 0.89),
                        leg_ncol = 2,
@@ -1268,7 +1268,10 @@ historical estimates of spawning biomass from the annual assessments.
 
 ```{r main-historical-assessments-fig, fig.cap = "(ref:main-historical-assessments-cap)"}
 
-plot_assessment_history_biomass(base_model, assess_history_df)
+plot_assessment_history_biomass(base_model,
+                                assess_history_df,
+                                #leg_pos = c(0.73, 0.7),
+                                leg_font_size = 12)
 ```
 
 (ref:main-historical-dispersion-cap) Comparison of absolute (left panel)
