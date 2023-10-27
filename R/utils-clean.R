@@ -7,10 +7,10 @@
 #' directories. If you are testing with `gotest()` and are in a temporary
 #' directory, in the subdirectory `doc`, the cleaning will be applied there.
 #'
-#' @param ... Optional UNQOUTED names of chunks that should be 'cleaned'.
-#' The chunk name(s) will be used to delete only the objects relating to
-#' them from the `knitr_figures_dir` and `knitr-cache`.as well as all the
-#'  LaTeX and intermediate RMD and MD files
+#' @param ... Optional quoted or unquoted names of chunks that should be
+#' 'cleaned'.The chunk name(s) will be used to delete only the objects
+#' relating to them from the `knitr_figures_dir` and `knitr-cache`.as well
+#' as all the LaTeX and intermediate RMD and MD files
 #' @param knitr_figures_dir Directory where the knitr-generated
 #' figures reside
 #' @param knitr_cache_dir Directory where the knitr cached chunk
@@ -31,6 +31,7 @@ clean <- function(...,
     cache <- list.files(knitr_cache_dir, full.names = TRUE)
     walk(chunks, ~{
       nm <- gsub(" - ", "-", as_label(.x))
+      nm <- gsub('"', "", nm)
       fns <- grep(nm, figs, value = TRUE)
       if(length(fns)){
         result <- unlink(fns, force = TRUE)
