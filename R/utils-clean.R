@@ -7,6 +7,10 @@
 #' directories. If you are testing with `gotest()` and are in a temporary
 #' directory, in the subdirectory `doc`, the cleaning will be applied there.
 #'
+#' @param ... Optional UNQOUTED names of chunks that should be 'cleaned'.
+#' The chunk name(s) will be used to delete only the objects relating to
+#' them from the `knitr_figures_dir` and `knitr-cache`.as well as all the
+#'  LaTeX and intermediate RMD and MD files
 #' @param knitr_figures_dir Directory where the knitr-generated
 #' figures reside
 #' @param knitr_cache_dir Directory where the knitr cached chunk
@@ -15,9 +19,40 @@
 #'
 #' @return Nothing
 #' @export
-clean <- function(knitr_figures_dir = "knitr-figs",
+clean <- function(...,
+                  knitr_figures_dir = "knitr-figs",
                   knitr_cache_dir = "knitr-cache",
                   out_csv_dir = "out-csv"){
+
+  chunks <- enquos(...)
+  if(length(chunks)){
+    # Only delete files related to the chunks given
+    figs <- list.files(knitr_figures_dir, full.names = TRUE)
+    cache <- list.files(knitr_cache_dir, full.names = TRUE)
+    walk(chunks, ~{
+      nm <- gsub(" - ", "-", as_label(.x))
+      fns <- grep(nm, figs, value = TRUE)
+      if(length(fns)){
+        result <- unlink(fns, force = TRUE)
+        if(!result){
+          message("Deleted file(s): ", paste(fns, collapse = ", "))
+        }
+      }
+      fns <- grep(nm, cache, value = TRUE)
+      if(length(fns)){
+        result <- unlink(fns, force = TRUE)
+        if(!result){
+          message("Deleted file(s): ", paste(fns, collapse = ", "))
+        }
+      }
+    })
+  }else{
+    # Delete knitr directories recursively (all files)
+    dirs <- c(knitr_figures_dir,
+              knitr_cache_dir,
+              out_csv_dir)
+    unlink(dirs, recursive = TRUE, force = TRUE)
+  }
 
   curr_dir <- getwd()
   knitr_figures_dir <- file.path(curr_dir, knitr_figures_dir)
@@ -67,12 +102,6 @@ clean <- function(knitr_figures_dir = "knitr-figs",
     # Delete files that match above combinations
     unlink(fns, force = TRUE)
   }
-
-  # Delete build directories
-  dirs <- c(knitr_figures_dir,
-            knitr_cache_dir,
-            out_csv_dir)
-  unlink(dirs, recursive = TRUE, force = TRUE)
 
   message("Done cleaning the `", curr_dir, "` directory\n")
 }

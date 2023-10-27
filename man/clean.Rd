@@ -6,12 +6,18 @@
 directories from the current directory}
 \usage{
 clean(
+  ...,
   knitr_figures_dir = "knitr-figs",
   knitr_cache_dir = "knitr-cache",
   out_csv_dir = "out-csv"
 )
 }
 \arguments{
+\item{...}{Optional UNQOUTED names of chunks that should be 'cleaned'.
+The chunk name(s) will be used to delete only the objects relating to
+them from the \code{knitr_figures_dir} and \code{knitr-cache}.as well as all the
+LaTeX and intermediate RMD and MD files}
+
 \item{knitr_figures_dir}{Directory where the knitr-generated
 figures reside}
 
