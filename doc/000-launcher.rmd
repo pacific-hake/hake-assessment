@@ -21,6 +21,7 @@ project_variables:
   fig_label_color: "black"
   fig_title_font_face: "plain"
   fig_tick_font_face: "plain"
+  # Title and x and y axis labels font size
   fig_title_font_size: 14
   fig_tick_font_size: 11
   fig_tick_length_cm: 0.15
