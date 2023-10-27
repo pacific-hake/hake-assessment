@@ -59,7 +59,7 @@ output:
    # Depth of the table of contents, 2 means 1.2, 3 means 1.2.3, etc.
    toc_depth: 3
    toc_text_color: "black"
-   # These change the appearance of the table of contents
+   # These `toc_` variables change the appearance of the table of contents
    toc_section_indent_inch: 0
    toc_section_num_width_inch: 0.2
    toc_subsection_indent_inch: 0.3
@@ -69,9 +69,13 @@ output:
    # If `toc_underline_links` is `true`, then `toc_link_text_color` below
    # is ignored and text will be black. You can have either colored links
    # of colored text, but not both
-   toc_underline_links: false
-   toc_underline_link_color: red
-   toc_link_text_color: blue
+   toc_underline_links: true
+   # See `xcolor` package documentation for color lists, Section 4
+   # "Colors by Name". Supported here are `dvipsnames`, `svgnames`,
+   # and `x11names`, so basically all colors listed
+   # https://ctan.mirror.rafal.ca/macros/latex/contrib/xcolor/xcolor.pdf
+   toc_underline_link_color: Burlywood2
+   toc_link_text_color: WildStrawberry
    includes:
      in_header: "preamble.tex"
 documentclass: article # Do not modify
