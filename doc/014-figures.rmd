@@ -1270,8 +1270,11 @@ historical estimates of spawning biomass from the annual assessments.
 
 plot_assessment_history_biomass(base_model,
                                 assess_history_df,
-                                #leg_pos = c(0.73, 0.7),
-                                leg_font_size = 12)
+                                leg_pos = c(0.73, 0.7),
+                                leg_font_size = 12) +
+  theme(axis.text.x = element_text(vjust = -2),
+        axis.title.x = element_text(vjust = -2),
+        plot.margin = margin(0, 0, 12, 12))
 ```
 
 (ref:main-historical-dispersion-cap) Comparison of absolute (left panel)
