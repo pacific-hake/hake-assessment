@@ -32,6 +32,10 @@ post_process <- function(x, ...){
   # Table of contents injection ----
   x <- post_process_table_of_contents(x, ...)
 
+  # Modify the reference and URL link colors and types (underlined
+  # or text-color-based)
+  x <- post_process_modify_link_colors(x, ...)
+
   # Replace tildes (~) in the code so they pas through Pandoc to LaTeX
   x <- post_process_fix_tildes(x, ...)
 

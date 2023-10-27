@@ -16,14 +16,22 @@
 #' headers in the TOC
 #' @param toc_subsubsection_num_width_inch Width of subsubsection numbers in inches
 #' in the TOC
-#' @param toc_underline_links Logical. If `TRUE` make all the ljnks in the
+#' @param underline_links Logical. If `TRUE` make all the ljnks in the
 #' TOC and the section links in the document text be underlined
-#' @param toc_underline_link_color If `toc_underline_links` is `TRUE`, this
+#' @param toc_underline_link_color If `underline_links` is `TRUE`, this
 #' color will be the underline color. See LaTeX package `xcolor` for allowable
 #' colors
-#' @param toc_link_text_color If `toc_underline_links` is `FALSE`, this color
+#' @param toc_link_text_color If `underline_links` is `FALSE`, this color
 #' will be the color of the link text (without underlines). See LaTeX package
 #' `xcolor` for allowable colors
+#' @param cite_underline_link_color If `underline_links` is `TRUE`, this
+#' color will be the underline color for citations
+#' @param cite_link_text_color Text color for citation links. See
+#' `toc_link_text_color`
+#' @param url_underline_link_color If `underline_links` is `TRUE`, this
+#' color will be the underline color for URLs
+#' @param url_link_text_color Text color for URL links. See
+#' `toc_link_text_color`
 #' @param ... Absorb arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
@@ -37,9 +45,13 @@ post_process_table_of_contents <- function(
     toc_subsection_num_width_inch = 0.35,
     toc_subsubsection_indent_inch = 0.5,
     toc_subsubsection_num_width_inch = 0.45,
-    toc_underline_links = FALSE,
+    underline_links = FALSE,
     toc_underline_link_color = "blue",
-    toc_link_text_color = "black",
+    toc_link_text_color = "blue",
+    cite_underline_link_color = "blue",
+    cite_link_text_color = "blue",
+    url_underline_link_color = "blue",
+    url_link_text_color = "blue",
     ...){
 
   toc_indicator_line <- "TABLE OF CONTENTS GOES HERE"
@@ -143,7 +155,7 @@ post_process_table_of_contents <- function(
          "% hake::post_process_table_of_contents()",
          "%",
          "\\hypersetup{",
-         paste0("colorlinks = ", ifelse(toc_underline_links,
+         paste0("colorlinks = ", ifelse(underline_links,
                                         "false",
                                         "true"),
                 ","),
@@ -154,9 +166,19 @@ post_process_table_of_contents <- function(
          paste0("linkbordercolor = ",
                 toc_underline_link_color,
                 ","),
+         paste0("citecolor = ",
+                cite_link_text_color,
+                ","),
+         paste0("citebordercolor = ",
+                cite_underline_link_color,
+                ","),
+         paste0("urlcolor = ",
+                url_link_text_color,
+                ","),
+         paste0("urlbordercolor = ",
+                url_underline_link_color,
+                ","),
          "pdfborderstyle = {/S/U/W 1},",
-         "citecolor = black,",
-         #"urlcolor = black",
          "pdflang = {en-US},",
          paste0("pdftitle = {",
                 # `doc_title` created in 002-load-globals.rmd as a global
