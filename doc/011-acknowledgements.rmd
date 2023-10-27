@@ -73,10 +73,11 @@ handling logistics related to Treaty communications and meetings.
 We thank the Stock Synthesis, the \texttt{r4ss} R package, and the
 \texttt{adnuts} R package development teams for continually improving stock
 assessment tools used in this assessment. Calculations and figures from Stock
-Synthesis output were performed using `r `R.Version()$version.string` and many
-R [@R2022] packages (in particular \texttt{r4ss}, \texttt{adnuts}, and
-\texttt{knitr}). The use of R, \texttt{knitr}, \LaTeX, and GitHub immensely
-facilitated the collaborative writing of this document.
-In particular, having all of the code under \texttt{git} version control since
-the 2016 assessment [@JTC2016] has ensured delivery of the assessment document
-within a contracted time frame.
+Synthesis output were performed using `r R.Version()$version.string`. Many
+R [@R2022] packages were used to produce this document (in particular
+\texttt{bookdown}, \texttt{rmarkdown}, \texttt{knitr}, and \texttt{adnuts}) 
+
+Having all of the code under \texttt{git} version control has greatly
+increased the collaboration between authors. It has been in use since the
+2016 assessment [@JTC2016] has ensured delivery of the assessment document
+each year within a contracted time frame.
