@@ -142,20 +142,6 @@
             bookmarksopen,
             bookmarksdepth=3,
             hypertexnames=false]{hyperref}
-\hypersetup{
-  colorlinks = false,
-  plainpages = true,
-  linkcolor = black,
-  linkbordercolor = blue,
-  pdfborderstyle = {/S/U/W 1},
-  citecolor = black,
-  %urlcolor = black,
-  pdflang = {en-US},
-  pdftitle = {Status of the Pacific Hake (whiting) stock in U.S. and Canadian
-  waters},
-  pdfauthor = {Joint Technical Committee of the Pacific Hake/Whiting Agreement
-  \\ Between the Governments of the United States and Canada}
-}
 
 % Provides `\landscape`. Unnecessary for compiling after running the post
 % processing script (`hake::post_process()`) in R but needed for the
@@ -200,3 +186,9 @@
 
 % To show the number of pages in the document
 \usepackage{lastpage}
+
+\usepackage{titletoc}
+\titlecontents{section}[0cm]
+{\addvspace{6pt}\sffamily\bfseries}
+{\contentslabel[\thecontentslabel]{1.25cm}}{}
+{\sffamily\hfill\color{black}\thecontentspage}[]

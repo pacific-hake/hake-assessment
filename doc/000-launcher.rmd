@@ -56,6 +56,22 @@ output:
    # Do not modify, allows usage of `fig.cap` knitr chunk option for
    # figure captions
    fig_caption: yes
+   # Depth of the table of contents, 2 means 1.2, 3 means 1.2.3, etc.
+   toc_depth: 3
+   toc_text_color: "black"
+   # These change the appearance of the table of contents
+   toc_section_indent_inch: 0
+   toc_section_num_width_inch: 0.2
+   toc_subsection_indent_inch: 0.3
+   toc_subsection_num_width_inch: 0.35
+   toc_subsubsection_indent_inch: 0.5
+   toc_subsubsection_num_width_inch: 0.45
+   # If `toc_underline_links` is `true`, then `toc_link_text_color` below
+   # is ignored and text will be black. You can have either colored links
+   # of colored text, but not both
+   toc_underline_links: false
+   toc_underline_link_color: red
+   toc_link_text_color: blue
    includes:
      in_header: "preamble.tex"
 documentclass: article # Do not modify

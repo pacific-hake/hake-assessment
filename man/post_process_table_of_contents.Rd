@@ -6,12 +6,16 @@
 \usage{
 post_process_table_of_contents(
   x,
-  section_indent_inch = 0,
-  section_num_width_inch = 0.2,
-  subsection_indent_inch = 0.3,
-  subsection_num_width_inch = 0.35,
-  subsubsection_indent_inch = 0.5,
-  subsubsection_num_width_inch = 0.45,
+  toc_depth = 2,
+  toc_section_indent_inch = 0,
+  toc_section_num_width_inch = 0.2,
+  toc_subsection_indent_inch = 0.3,
+  toc_subsection_num_width_inch = 0.35,
+  toc_subsubsection_indent_inch = 0.5,
+  toc_subsubsection_num_width_inch = 0.45,
+  toc_underline_links = FALSE,
+  toc_underline_link_color = "blue",
+  toc_link_text_color = "black",
   ...
 )
 }
@@ -19,23 +23,37 @@ post_process_table_of_contents(
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
 
-\item{section_indent_inch}{Indent value in inches for section headers in
+\item{toc_depth}{The depth of the entries in the table of contents:
+2 means 1.2, 3 means 1.2.3, 4 means 1.2.3.4, etc}
+
+\item{toc_section_indent_inch}{Indent value in inches for section headers in
 the TOC}
 
-\item{section_num_width_inch}{Width of section numbers in inches in
+\item{toc_section_num_width_inch}{Width of section numbers in inches in
 the TOC}
 
-\item{subsection_indent_inch}{Indent value in inches for subsection headers
+\item{toc_subsection_indent_inch}{Indent value in inches for subsection headers
 in the TOC}
 
-\item{subsection_num_width_inch}{Width of subsection numbers in inches in
+\item{toc_subsection_num_width_inch}{Width of subsection numbers in inches in
 the TOC}
 
-\item{subsubsection_indent_inch}{Indent value in inches for subsubsection
+\item{toc_subsubsection_indent_inch}{Indent value in inches for subsubsection
 headers in the TOC}
 
-\item{subsubsection_num_width_inch}{Width of subsubsection numbers in inches
+\item{toc_subsubsection_num_width_inch}{Width of subsubsection numbers in inches
 in the TOC}
+
+\item{toc_underline_links}{Logical. If \code{TRUE} make all the ljnks in the
+TOC and the section links in the document text be underlined}
+
+\item{toc_underline_link_color}{If \code{toc_underline_links} is \code{TRUE}, this
+color will be the underline color. See LaTeX package \code{xcolor} for allowable
+colors}
+
+\item{toc_link_text_color}{If \code{toc_underline_links} is \code{FALSE}, this color
+will be the color of the link text (without underlines). See LaTeX package
+\code{xcolor} for allowable colors}
 
 \item{...}{Absorb arguments meant for other functions}
 }

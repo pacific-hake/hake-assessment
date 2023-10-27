@@ -33,6 +33,18 @@ forecast_yrs <- eval(parse(text = forecast_yrs))
 yaml_check_margin_format(fig_margins)
 fig_margins <- eval(parse(text = fig_margins))
 
+# Extract document title for use in hypersetup later
+doc_title <- rmarkdown::metadata$title
+doc_title <- gsub(".*\\\\TitleFont\\{(.*)\\}.*$", "\\1", doc_title)
+# Replace `r code` chunk with year (assuming it is year here)
+doc_title <- gsub("(.*)`r\\s+.*`(.*)", paste0("\\1", assess_yr, "\\2"), doc_title)
+
+# Extract document author for use in hypersetup later
+doc_author <- gsub("\\\n", "", rmarkdown::metadata$author)
+doc_author <- gsub("\\\\\\\\\\\\", "", doc_author)
+doc_author <- gsub("\\s*$", "", doc_author)
+doc_author <- gsub("\\\\", "\\\\\\\\", doc_author)
+
 theme_set(hake_theme(ax_label_color = fig_label_color,
                      ax_title_font_size = fig_title_font_size,
                      ax_tick_font_size = fig_tick_font_size,
