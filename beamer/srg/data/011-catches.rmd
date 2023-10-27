@@ -1,6 +1,7 @@
 # Catches and Allocations
 ## Catches
 ```{r catches, fig.height = 4, out.height = "85%"}
+
 plot_catches(ct, xlim = c(start_yr, last_data_yr),
              leg_font_size = 9,
              leg_key_size = 0.5,
@@ -81,6 +82,7 @@ t of tribal catches
 
 ## Cumulative catch by month
 ```{r cumulative-catches, fig.height = 4, out.height = "85%"}
+
 plot_cumulative_catches(list(us_ss_catch_by_month_df,
                              can_ss_catch_by_month_df,
                              us_cp_catch_by_month_df,

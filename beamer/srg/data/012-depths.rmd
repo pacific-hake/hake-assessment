@@ -1,20 +1,23 @@
 # Depths
 ## Canada freezer-trawler depth distribution
-```{r depthcaft, fig.height = 4, out.height = "85%"}
+```{r depth-ca-ft, fig.height = 4, out.height = "85%"}
+
 plot_depth_2_panel(can_ft_gear_depth_df,
                    can_ft_bottom_depth_df,
                    yrs = (last_data_yr - 4):last_data_yr)
 ```
 
 ## Canada shoreside depth distribution
-```{r depthcass, fig.height = 4, out.height = "85%"}
+```{r depth-ca-ss, fig.height = 4, out.height = "85%"}
+
 plot_depth_2_panel(can_ss_gear_depth_df,
                    can_ss_bottom_depth_df,
                    yrs = (last_data_yr - 4):last_data_yr)
 ```
 
 ## U.S. at-sea depth distribution
-```{r depthus, fig.height = 4, out.height = "85%"}
+```{r depth-us, fig.height = 4, out.height = "85%"}
+
 plot_depth_2_panel(us_atsea_fishing_depth_df,
                    us_atsea_bottom_depth_df,
                    yrs = (last_data_yr - 4):last_data_yr)

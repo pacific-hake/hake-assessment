@@ -1,6 +1,7 @@
 # Ages
 ## Age composition by sector
 ```{r age-comp-comparison, fig.height = 4, out.height = "85%"}
+
 plot_age_comp_bubbles_data(list(can_ss_age_df,
                                 can_ft_age_df,
                                 us_ss_age_df,

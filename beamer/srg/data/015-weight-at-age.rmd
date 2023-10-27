@@ -7,6 +7,7 @@ collected from the Puget Sound.
 
 ## Weight-at-age by year
 ```{r wt-at-age, fig.height = 4, out.height = "85%"}
+
 plot_weight_at_age(wt_at_age,
                    ages = 2:10,
                    bold_ages = 5,
@@ -19,6 +20,7 @@ plot_weight_at_age(wt_at_age,
 
 ## Sample sizes of weight-at-age by year
 ```{r main-weight-at-age-numbers, fig.height = 4, out.height = "85%"}
+
 plot_heatmap_sample_size_weight_at_age(
   base_model,
   cell_font_size = 2,

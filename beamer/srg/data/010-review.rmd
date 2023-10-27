@@ -1,6 +1,7 @@
 # Review
 ## Year in review
-```{r pchangecatch}
+```{r catch-change}
+
 last_yr_catch <- tail(last_5_yrs_total_ct, 1)
 penult_yr_catch <- tail(last_5_yrs_total_ct, 2)[1]
 pchangecatch <- percent(abs((last_yr_catch - penult_yr_catch)) / penult_yr_catch)
@@ -10,7 +11,7 @@ pchangecatch <- ifelse(last_yr_catch > penult_yr_catch,
 
 rank_catch_last_year <- rank(base_model$catch$Obs * -1) |>
   tail(1) |>
-  scales::ordinal()
+  ordinal()
 
 # If odd year, create survey text. If even, create "No survey this year" text
 surv_text <- ifelse(last_data_yr %% 2,
@@ -67,6 +68,7 @@ sector, and
 
 ::: {.column width="60%"}
 ```{r data-overview-map, out.height = "85%"}
+
 plot_data_summary(base_model,
                   label_y_placement = c(1.8, 2.5, 2.0))
 ```
