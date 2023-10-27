@@ -572,7 +572,7 @@ table_reference_points(
 
 Measures of uncertainty in the base model underestimate the total uncertainty
 in the current stock status and projections because they do not account for
-possible alternative structural models for `r `simple_name` population
+possible alternative structural models for `r simple_name` population
 dynamics and fishery processes (e.g., selectivity) and the scientific basis
 for prior probability distributions. To address such structural uncertainties,
 we performed sensitivity analyses to investigate a range of alternative
