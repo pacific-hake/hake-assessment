@@ -13,13 +13,6 @@ post_process_table_of_contents(
   toc_subsection_num_width_inch = 0.35,
   toc_subsubsection_indent_inch = 0.5,
   toc_subsubsection_num_width_inch = 0.45,
-  underline_links = FALSE,
-  toc_underline_link_color = "blue",
-  toc_link_text_color = "blue",
-  cite_underline_link_color = "blue",
-  cite_link_text_color = "blue",
-  url_underline_link_color = "blue",
-  url_link_text_color = "blue",
   ...
 )
 }
@@ -47,29 +40,6 @@ headers in the TOC}
 
 \item{toc_subsubsection_num_width_inch}{Width of subsubsection numbers in inches
 in the TOC}
-
-\item{underline_links}{Logical. If \code{TRUE} make all the ljnks in the
-TOC and the section links in the document text be underlined}
-
-\item{toc_underline_link_color}{If \code{underline_links} is \code{TRUE}, this
-color will be the underline color. See LaTeX package \code{xcolor} for allowable
-colors}
-
-\item{toc_link_text_color}{If \code{underline_links} is \code{FALSE}, this color
-will be the color of the link text (without underlines). See LaTeX package
-\code{xcolor} for allowable colors}
-
-\item{cite_underline_link_color}{If \code{underline_links} is \code{TRUE}, this
-color will be the underline color for citations}
-
-\item{cite_link_text_color}{Text color for citation links. See
-\code{toc_link_text_color}}
-
-\item{url_underline_link_color}{If \code{underline_links} is \code{TRUE}, this
-color will be the underline color for URLs}
-
-\item{url_link_text_color}{Text color for URL links. See
-\code{toc_link_text_color}}
 
 \item{...}{Absorb arguments meant for other functions}
 }

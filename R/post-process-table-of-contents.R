@@ -16,22 +16,6 @@
 #' headers in the TOC
 #' @param toc_subsubsection_num_width_inch Width of subsubsection numbers in inches
 #' in the TOC
-#' @param underline_links Logical. If `TRUE` make all the ljnks in the
-#' TOC and the section links in the document text be underlined
-#' @param toc_underline_link_color If `underline_links` is `TRUE`, this
-#' color will be the underline color. See LaTeX package `xcolor` for allowable
-#' colors
-#' @param toc_link_text_color If `underline_links` is `FALSE`, this color
-#' will be the color of the link text (without underlines). See LaTeX package
-#' `xcolor` for allowable colors
-#' @param cite_underline_link_color If `underline_links` is `TRUE`, this
-#' color will be the underline color for citations
-#' @param cite_link_text_color Text color for citation links. See
-#' `toc_link_text_color`
-#' @param url_underline_link_color If `underline_links` is `TRUE`, this
-#' color will be the underline color for URLs
-#' @param url_link_text_color Text color for URL links. See
-#' `toc_link_text_color`
 #' @param ... Absorb arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
@@ -45,13 +29,6 @@ post_process_table_of_contents <- function(
     toc_subsection_num_width_inch = 0.35,
     toc_subsubsection_indent_inch = 0.5,
     toc_subsubsection_num_width_inch = 0.45,
-    underline_links = FALSE,
-    toc_underline_link_color = "blue",
-    toc_link_text_color = "blue",
-    cite_underline_link_color = "blue",
-    cite_link_text_color = "blue",
-    url_underline_link_color = "blue",
-    url_link_text_color = "blue",
     ...){
 
   toc_indicator_line <- "TABLE OF CONTENTS GOES HERE"
@@ -105,95 +82,13 @@ post_process_table_of_contents <- function(
          "document LaTeX. It needs to be present in the `preamble.tex` file",
          call. = FALSE)
   }
-  snd_pat <- "\\\\setcounter\\{secnumdepth\\}(\\{[0-9]+\\})"
-  secnumdepth_ind <- grep(snd_pat, x)
-  if(!length(secnumdepth_ind)){
-    stop("The line \\setcounter{secnumdepth}{X} was not found in the ",
+  tocdepth_ind <- grep("\\\\setcounter\\{tocdepth\\}", x)
+  if(!length(tocdepth_ind)){
+    stop("The line \\setcounter{tocdepth}{x} was not found in the ",
          "document LaTeX. It needs to be present in the `preamble.tex` file",
          call. = FALSE)
   }
-  ind <- secnumdepth_ind[which(abs(secnumdepth_ind - tocloft_ind) < 10)]
-  x[ind] <- paste0("\\setcounter{secnumdepth}{", toc_depth, "}")
-
-  # Remove color from TOC links
-  # Inject hyperref setup for link colors
-  start_ind <- grep("hypersetup", x)
-  if(!length(start_ind)){
-    #grep("\\\\title\\{", x)
-  }
-  if(length(start_ind) > 1){
-    stop("\\hypersetup was found more than once in the LaTeX code",
-         call. = FALSE)
-  }
-  # Look for closing brace, keeping a count of open ones
-  # Assumes closing brace is not on the same line as opening one
-  end_ind <- start_ind + 1
-  ob_count <- 1
-  repeat{
-    if(end_ind == length(x)){
-      stop("Could not find matching end brace for the \\hypersetup call",
-           call. = FALSE)
-    }
-    if(!ob_count){
-      break
-    }
-    for(i in seq_len(nchar(x[end_ind]))){
-      ch <- substr(x[end_ind], i, i)
-      if(ch == "{"){
-        ob_count <- ob_count + 1
-      }else if(ch == "}"){
-        ob_count <- ob_count - 1
-      }
-    }
-    end_ind <- end_ind + 1
-  }
-
-  # Remove the hypersetup chunk and add replacement
-  x <- c(x[1:(start_ind - 1)],
-         "%",
-         "% The following code was injected by",
-         "% hake::post_process_table_of_contents()",
-         "%",
-         "\\hypersetup{",
-         paste0("colorlinks = ", ifelse(underline_links,
-                                        "false",
-                                        "true"),
-                ","),
-         "plainpages = false,",
-         paste0("linkcolor = ",
-                toc_link_text_color,
-                ","),
-         paste0("linkbordercolor = ",
-                toc_underline_link_color,
-                ","),
-         paste0("citecolor = ",
-                cite_link_text_color,
-                ","),
-         paste0("citebordercolor = ",
-                cite_underline_link_color,
-                ","),
-         paste0("urlcolor = ",
-                url_link_text_color,
-                ","),
-         paste0("urlbordercolor = ",
-                url_underline_link_color,
-                ","),
-         "pdfborderstyle = {/S/U/W 1},",
-         "pdflang = {en-US},",
-         paste0("pdftitle = {",
-                # `doc_title` created in 002-load-globals.rmd as a global
-                doc_title,
-                "},"),
-         paste0("pdfauthor = {",
-                # `doc_author` created in 002-load-globals.rmd as a global
-                doc_author,
-                "}"),
-         "}",
-         "%",
-         "% End of injected code",
-         "%",
-         "",
-         x[(end_ind + 1):length(x)])
+  x[tocdepth_ind] <- paste0("\\setcounter{tocdepth}{", toc_depth, "}")
 
   x
 }

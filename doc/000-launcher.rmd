@@ -51,8 +51,6 @@ output:
    keep_tex: true
    # Do not modify. Modified by gotest() function for testing
    test: false
-   # Do not modify, Table of Contents is added by post processor
-   toc: false
    # Do not modify, allows usage of `fig.cap` knitr chunk option for
    # figure captions
    fig_caption: yes
@@ -60,6 +58,8 @@ output:
    # Depth of the table of contents, 2 means 1.2, 3 means 1.2.3, etc.
    # Note this also remove subsubsection numbering in the document sections
    toc_depth: 3
+   # Do not modify, Table of Contents is added by post processor
+   toc: false
    toc_section_indent_inch: 0
    toc_section_num_width_inch: 0.2
    toc_subsection_indent_inch: 0.3
@@ -77,12 +77,13 @@ output:
    # "Colors by Name". Supported here are `dvipsnames`, `svgnames`,
    # and `x11names`, so basically all colors listed
    # https://ctan.mirror.rafal.ca/macros/latex/contrib/xcolor/xcolor.pdf
-   toc_underline_link_color: WildStrawberry
-   toc_link_text_color: WildStrawberry
+   # If colors are left out or `null`, they will be black by default
+   toc_underline_link_color: Tan4
+   toc_link_text_color: Tan4
    # Color of the citation links in the text. These are dealt with in
    # `post_process_table_of_contents()`
-   cite_underline_link_color: Orchid2
-   cite_link_text_color: Orchid2
+   cite_underline_link_color: Turquoise1
+   cite_link_text_color: Turquoise1
    # Color of the URL links in the text. These are dealt with in
    # `post_process_table_of_contents()`
    url_underline_link_color: RoyalBlue1
