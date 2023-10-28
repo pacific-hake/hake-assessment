@@ -54,6 +54,8 @@ output:
    # Do not modify, allows usage of `fig.cap` knitr chunk option for
    # figure captions
    fig_caption: yes
+   footer_left: "DRAFT -- `r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`"
+   footer_right: ""
    # These `toc_` variables change the appearance of the table of contents
    # Depth of the table of contents, 2 means 1.2, 3 means 1.2.3, etc.
    # Note this also remove subsubsection numbering in the document sections
@@ -88,7 +90,9 @@ output:
    # `post_process_table_of_contents()`
    url_underline_link_color: RoyalBlue1
    url_link_text_color: RoyalBlue1
-
+   # Headrule and Footrule line definitions
+   footrule_width_pt: 0.25
+   headrule_width_pt: 0.25
    includes:
      in_header: "preamble.tex"
 documentclass: article # Do not modify
@@ -100,7 +104,6 @@ knit: (function(input, ...) {
 header-includes:
   - \pretitle{\begin{center}}
   - \posttitle{\end{center}\begin{center}\LARGE\includegraphics[width=12cm]{main-figures/hake-picture.png}\\[\bigskipamount]\end{center}}
-  - \lfoot{DRAFT -- `r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`}
 link-citations: true # Do not modify
 bibliography: bib/refs.bib # Do not modify
 csl: csl/csas.csl # Do not modify

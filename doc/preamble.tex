@@ -18,6 +18,16 @@
 \usepackage[usegeometry]{typearea}
 
 \usepackage{fancyhdr}
+\fancypagestyle{plain}{
+  \fancyhead{}
+
+  \fancyfoot[C]{\thepage}
+
+  \fancyfoot{}
+  \fancyfoot[L]{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[R]{}
+}
 % Make header and footer the same line width
 \renewcommand{\headrulewidth}{0.25pt}
 \renewcommand{\footrulewidth}{0.25pt}
@@ -122,7 +132,9 @@
             labelfont = bf]{caption}
 
 % Page number in the bottom center of page.
+\fancyfoot[L]{}
 \fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
 
 % Font settings for the title page.
 \newcommand*{\TitleFont}{

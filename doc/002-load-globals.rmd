@@ -47,6 +47,12 @@ doc_author <- gsub("\\\\\\\\\\\\", "", doc_author)
 doc_author <- gsub("\\s*$", "", doc_author)
 doc_author <- gsub("\\\\", "\\\\\\\\", doc_author)
 
+# Evaluate the footer text from YAML inputs
+footer_left <- extract_inline_rcode(
+  rmarkdown::metadata$output$`hake::hake_pdf`$footer_left)
+footer_right <- extract_inline_rcode(
+  rmarkdown::metadata$output$`hake::hake_pdf`$footer_right)
+
 theme_set(hake_theme(ax_label_color = fig_label_color,
                      ax_title_font_size = fig_title_font_size,
                      ax_tick_font_size = fig_tick_font_size,

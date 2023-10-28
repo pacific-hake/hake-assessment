@@ -18,6 +18,9 @@ post_process <- function(x, ...){
   # Remove the page number from the title page only
   x <- post_process_remove_title_page_number(x, ...)
 
+  # Add headers and footers information to the pages
+  x <- post_process_add_headers_footers(x, ...)
+
   # Add LaTeX code for the start of the appendices section. This is needed
   # to tell the LaTeX compiler to start numbering the sections using letters
   # and set up tables, figures, and equations to be of the format A.2 for
