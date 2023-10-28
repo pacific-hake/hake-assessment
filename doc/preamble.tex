@@ -28,19 +28,7 @@
   \fancyfoot[C]{\thepage}
   \fancyfoot[R]{}
 }
-% Make header and footer the same line width
-\renewcommand{\headrulewidth}{0.25pt}
-\renewcommand{\footrulewidth}{0.25pt}
-
-% These two macros make the head and foot lines double lines
-% Comment them out to leave only single lines
-\renewcommand\headrule{\begin{minipage}{1\textwidth}
-\hrule width \hsize height 2pt \kern 1mm \hrule width \hsize
-\end{minipage}\par}
-
-\renewcommand\footrule{\begin{minipage}{1\textwidth}
-\hrule width \hsize height 2pt \kern 1mm \hrule width \hsize
-\end{minipage}\par}
+% INSERT headrule and footrule here
 
 \pagestyle{fancy}
 \fancyhf{}

@@ -4,11 +4,42 @@
 \alias{post_process_add_headers_footers}
 \title{Add left and right footer text to the pages}
 \usage{
-post_process_add_headers_footers(x, ...)
+post_process_add_headers_footers(
+  x,
+  headrule_width_pt = 0.25,
+  headrule_double_lines = FALSE,
+  headrule_double_width_pt = 2,
+  headrule_double_space_mm = 1,
+  footrule_width_pt = 0.25,
+  footrule_double_lines = FALSE,
+  footrule_double_width_pt = 2,
+  footrule_double_space_mm = 1,
+  ...
+)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
+
+\item{headrule_width_pt}{Width of the primary headrule line in pts}
+
+\item{headrule_double_lines}{Logical. If \code{TRUE}, make headrule double lines}
+
+\item{headrule_double_width_pt}{Width of the secondary (top) headrule line
+in pts if \code{headrule_double_lines} is \code{TRUE}}
+
+\item{headrule_double_space_mm}{Space between the two headrule lines in mm
+if \code{headrule_double_lines} is \code{TRUE}}
+
+\item{footrule_width_pt}{Width of the primary footrule line in pts}
+
+\item{footrule_double_lines}{Logical. If \code{TRUE}, make footrule double lines}
+
+\item{footrule_double_width_pt}{Width of the secondary (top) footrule line
+in pts if \code{footrule_double_lines} is \code{TRUE}}
+
+\item{footrule_double_space_mm}{Space between the two footrule lines in mm
+if \code{footrule_double_lines} is \code{TRUE}}
 
 \item{...}{Absorbs arguments meant for other functions}
 }
