@@ -90,22 +90,25 @@ output:
    # `post_process_table_of_contents()`
    url_underline_link_color: RoyalBlue1
    url_link_text_color: RoyalBlue1
+
+   # Headrule and Footrule definitions - can leave blank and defaults
+   # will be used. See `post_process_add_headers_footers()`
    # Headrule line definitions
    headrule_width_pt: 0.5
    # Use double lines for header
-   headrule_double_lines: true
+   headrule_double_lines: true 
    # Width of the top line, width of bottom line is `headrule_width_pt` above
    headrule_double_width_pt: 2
    # Space between the double lines
    headrule_double_space_mm: 1
    # Footrule line definitions
-   footrule_width_pt: 3
+   footrule_width_pt: 0.5
    # Use double lines for footer
    footrule_double_lines: true
    # Width of the top line, width of bottom line is `footrule_width_pt` above
    footrule_double_width_pt: 2
    # Space between the double lines
-   footrule_double_space_mm: 2
+   footrule_double_space_mm: 1
 
    includes:
      in_header: "preamble.tex"
@@ -124,6 +127,8 @@ csl: csl/csas.csl # Do not modify
 ---
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
+
+library(rlang)
 
 # Current user's name on the system
 # If regular desktop R session, use Sys.getenv("USERNAME")

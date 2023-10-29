@@ -6,14 +6,14 @@
 \usage{
 post_process_add_headers_footers(
   x,
-  headrule_width_pt = 0.25,
-  headrule_double_lines = FALSE,
-  headrule_double_width_pt = 2,
-  headrule_double_space_mm = 1,
-  footrule_width_pt = 0.25,
-  footrule_double_lines = FALSE,
-  footrule_double_width_pt = 2,
-  footrule_double_space_mm = 1,
+  headrule_width_pt = NULL,
+  headrule_double_lines = NULL,
+  headrule_double_width_pt = NULL,
+  headrule_double_space_mm = NULL,
+  footrule_width_pt = NULL,
+  footrule_double_lines = NULL,
+  footrule_double_width_pt = NULL,
+  footrule_double_space_mm = NULL,
   ...
 )
 }
