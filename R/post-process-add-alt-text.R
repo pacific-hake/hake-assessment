@@ -10,12 +10,21 @@
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
+#' @param accessible_pdf Logical. If `TRUE`, inject the code needed to include
+#' the `pdfmanagement-testphase`` package and add alternative text
 #' @param ... Absorbs arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
 #' @export
 post_process_add_alt_text <- function(x,
-                         ...){
+                                      accessible_pdf = NULL,
+                                      title_page_image = NULL,
+                                      title_page_image_width_cm = NULL,
+                                      ...){
+
+  accessible_pdf <- accessible_pdf %||% FALSE
+  title_page_image <- title_page_image %||% "main-figures/hake-picture.png"
+  title_page_image_width_cm <- title_page_image_width_cm %||% 12
 
   if(!accessible_pdf){
     return(x)
@@ -35,41 +44,45 @@ post_process_add_alt_text <- function(x,
     "%",
     x)
 
-  # Strip whitespace from the beginning of all lines
-  x <- gsub("^[[:space:]]+", "\\1", x)
-  # Strip out lines that begin with comment character (after removing
-  # leading whitespace)
-  x <- x[!grepl("^%", x)]
-
-  inc_graphics_all_pat <- "\\\\includegraphics"
-  all_figure_inds <- grep(inc_graphics_all_pat, x)
   # Title page image is totally different in the way it is included so we
   # remove it from the process right at the start
-  title_page_hake_pic_ind <- grep("hake\\-picture", x[all_figure_inds])
-  all_figure_inds <- all_figure_inds[-title_page_hake_pic_ind]
+  pat_title_page_fig <- paste0("\\\\includegraphics\\[width\\s*=\\s*",
+                               title_page_image_width_cm,
+                               "\\s*cm\\]\\{",
+                               title_page_image,
+                               "\\}")
+  ind_title_page_fig <- grep(pat_title_page_fig, x)
 
-  if(!length(all_figure_inds)){
-    # No figures in document
+  pat_all_figs <- paste0("\\\\includegraphics")
+  inds_all_figs <- grep(pat_all_figs, x)
+  inds_all_figs <- inds_all_figs[inds_all_figs != ind_title_page_fig]
+  # Remove all lines starting with comment character
+  comment_lines <- grep("^%", trimws(x[inds_all_figs]))
+  if(length(comment_lines)){
+    inds_all_figs <- inds_all_figs[-comment_lines]
+  }
+
+  if(!length(inds_all_figs)){
+    # No figures in document except possibly the title page image
     return(x)
   }
 
   # Get indices of file-based figures
-  is_knitr <- map_lgl(x[all_figure_inds], ~{
-    png_pat <- knitr_figures_dir
-    length(grep(png_pat, .x))
+  is_knitr <- map_lgl(x[inds_all_figs], ~{
+    length(grep(knitr_figures_dir, .x))
   })
-  knitr_inds <- all_figure_inds[is_knitr]
-  file_inds <- all_figure_inds[!is_knitr]
+  inds_knitr <- inds_all_figs[is_knitr]
+  inds_file <- inds_all_figs[!is_knitr]
+
   # Get chunk names for the knitr-based figures
   knitr_labels <- gsub(paste0(".*\\{",
                               knitr_figures_dir,
                               "(.*?)-fig-[0-9]+\\} *$"),
                        "\\1",
-                       x[knitr_inds])
-  file_fns_labels <- gsub(paste0(".*\\{main-figures/",
-                                 "(.*?)\\} *$"),
-                          "\\1",
-                          x[file_inds])
+                       x[inds_knitr])
+
+  pat_fns <- ".*?([0-9a-zA-Z_-]+)\\}\\s*$"
+  file_fns_labels <- gsub(pat_fns, "\\1", x[inds_file])
 
   file_based_labels <- map_chr(file_fns_labels, ~{
     extract_label_from_figure_filename(.x)
@@ -84,8 +97,8 @@ post_process_add_alt_text <- function(x,
   })
 
   # Put the alt text in the correct order
-  file_which <- which(all_figure_inds %in% file_inds)
-  knitr_which <- which(all_figure_inds %in% knitr_inds)
+  file_which <- which(inds_all_figs %in% inds_file)
+  knitr_which <- which(inds_all_figs %in% inds_knitr)
 
   all_alt_text <- NULL
   all_alt_text[knitr_which] <- alt_text_knitr

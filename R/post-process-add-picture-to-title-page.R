@@ -15,6 +15,7 @@ post_process_add_picture_to_title_page <- function(x,
 
   title_page_image <- title_page_image %||% "main-figures/hake-picture.png"
   title_page_image_width_cm <- title_page_image_width_cm %||% 12
+
   if(!file.exists(title_page_image)){
     stop("The file `", title_page_image, "` does not exist",
          call. = FALSE)

@@ -16,7 +16,7 @@ post_process <- function(x, ...){
   #post_process_error_check(x, ...)
 
   # Need to add this here - cannot be done anywhere else - to ensure the
-  # xcolor colors are all loaded correctly
+  # xcolor colors are all loaded
   x <- post_process_add_xcolor_package(x, ...)
 
   # Change the font and font size according to YAML selections

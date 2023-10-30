@@ -2,9 +2,6 @@
 title: |
   | \vspace{5cm} **\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`}**
 project_variables:
-  # If `true`, alternative figure text and figure tags are added for
-  # PDF web accessibility compliance
-  accessible_pdf: false
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
   science_name: "Merluccius productus"
@@ -54,6 +51,13 @@ output:
    # Figure captions
    # Do not modify, allows usage of `fig.cap` knitr chunk option for
    fig_caption: yes
+   
+   # Accessibility settings ----------------------------------------------------
+   #
+   # If `true`, alternative figure text and figure tags are added for
+   # PDF web accessibility compliance
+   accessible_pdf: true
+   # ---------------------------------------------------------------------------
 
    # Font settings -------------------------------------------------------------
    #
@@ -70,7 +74,7 @@ output:
 
    # Footer text and title page picture ----------------------------------------
    #
-   title_page_image: "../beamer/images/hake-line-drawing.png"
+   title_page_image: "main-figures/hake-line-drawing.png"
    #title_page_image: "main-figures/hake-picture.png"
    title_page_image_width_cm: 12
    footer_left: "DRAFT -- `r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`"
@@ -170,7 +174,7 @@ if(user == "grandin"){
   models_dir <- "/srv/hake/models"
 }
 
-test <- rmarkdown::metadata$output$hake_pdf$test %||% FALSE
+test <- rmarkdown::metadata$output$`hake::hake_pdf`$test %||% FALSE
 
 if(test){
   # Necessary for `gotest()` testing

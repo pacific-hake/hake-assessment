@@ -5,11 +5,20 @@
 \title{Add alternative text to figures in the document via the
 \code{pdfmanagement-testphase} LaTeX package}
 \usage{
-post_process_add_alt_text(x, ...)
+post_process_add_alt_text(
+  x,
+  accessible_pdf = NULL,
+  title_page_image = NULL,
+  title_page_image_width_cm = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
+
+\item{accessible_pdf}{Logical. If \code{TRUE}, inject the code needed to include
+the `pdfmanagement-testphase`` package and add alternative text}
 
 \item{...}{Absorbs arguments meant for other functions}
 }

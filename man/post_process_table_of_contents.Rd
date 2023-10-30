@@ -6,13 +6,13 @@
 \usage{
 post_process_table_of_contents(
   x,
-  toc_depth = 2,
-  toc_section_indent_inch = 0,
-  toc_section_num_width_inch = 0.2,
-  toc_subsection_indent_inch = 0.3,
-  toc_subsection_num_width_inch = 0.35,
-  toc_subsubsection_indent_inch = 0.5,
-  toc_subsubsection_num_width_inch = 0.45,
+  toc_depth = NULL,
+  toc_section_indent_inch = NULL,
+  toc_section_num_width_inch = NULL,
+  toc_subsection_indent_inch = NULL,
+  toc_subsection_num_width_inch = NULL,
+  toc_subsubsection_indent_inch = NULL,
+  toc_subsubsection_num_width_inch = NULL,
   ...
 )
 }
