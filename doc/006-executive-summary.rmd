@@ -20,6 +20,8 @@ much smaller, populations of `r simple_name` occurring in the major inlets
 of the Northeast Pacific Ocean, including the Strait of Georgia, Puget Sound,
 and the Gulf of California, are not included in this analysis.
 
+## Catches {-}
+
 (ref:es-catches-cap) Total `r sp` catch used in the assessment by sector,
 `r start_yr`--`r last_data_yr`. U.S. tribal catches are included in the
 sectors where they are represented.
@@ -31,8 +33,6 @@ years have been the largest in the time series.
 
 plot_catches(ct, xlim = c(start_yr, last_data_yr))
 ```
-
-## Catches {-}
 
 Coast-wide fishery landings of `r sp` averaged `r f(mean(ct$Total))`~t
 from `r min(ct$Year)` to `r max(ct$Year)`, with a low of

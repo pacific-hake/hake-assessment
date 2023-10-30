@@ -28,7 +28,8 @@
 #      requires the float package
 
 type,label,file_name,placement
-figure,es-catches-fig,,!b
+figure,es-catches-fig,,H
+table,es-catches-tab,,H
 table,es-decisions-spr-tab,,H
 table,es-recruitment-tab,,H
 table,es-reference-points-tab,,H
