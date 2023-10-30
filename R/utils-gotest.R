@@ -17,7 +17,10 @@
 #' @return Nothing, but the global variable `goback_dr` is set for the
 #' function [goback()] to use to return to the original directory
 #' @export
-gotest <- function(config_fn = "_bookdown.yml"){
+gotest <- function(config_fn = "_bookdown.yml",
+                   figures_dir = NULL){
+
+  figures_dir <- figures_dir %||% "image-files"
 
   if(!file.exists(config_fn)){
     stop("The `bookdown` config file `", config_fn, "` does not exist",
@@ -72,7 +75,7 @@ gotest <- function(config_fn = "_bookdown.yml"){
   unlink("*", recursive = TRUE, force = TRUE)
 
   dir.create("doc")
-  dir.create("doc/main-figures")
+  dir.create(file.path("doc", figures_dir))
   if(type == "beamer"){
     dir.create("doc/images")
   }else if(type == "doc"){

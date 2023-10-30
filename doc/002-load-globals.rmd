@@ -1,6 +1,9 @@
 ```{r load-globals, echo = FALSE}
 
-if(!length(rmarkdown::metadata$project_variables)){
+proj_vars <- rmarkdown::metadata$project_variables
+output <- rmarkdown::metadata$output$`hake::hake_pdf`
+  
+if(!length(proj_vars)){
   stop("Document compilation not run properly. You must run this code ",
        "using the Bookdown/Rmarkdown system, by calling `hake::render()` ",
        "which is a simple wrapper for `bookdown::render_book()`",
@@ -9,7 +12,7 @@ if(!length(rmarkdown::metadata$project_variables)){
 
 # Create a global variable for each item in the `project_variables` section
 # of the YAML part of `000-launcher.rmd`
-list2env(rmarkdown::metadata$project_variables, envir = globalenv())
+list2env(proj_vars, envir = globalenv())
 
 sys_info <- Sys.info()
 computer_name <- sys_info[["nodename"]]
@@ -49,9 +52,9 @@ doc_author <- gsub("\\\\", "\\\\\\\\", doc_author)
 
 # Evaluate the footer text from YAML inputs
 footer_left <- extract_inline_rcode(
-  rmarkdown::metadata$output$`hake::hake_pdf`$footer_left)
+  output$footer_left)
 footer_right <- extract_inline_rcode(
-  rmarkdown::metadata$output$`hake::hake_pdf`$footer_right)
+  output$footer_right)
 
 theme_set(hake_theme(ax_label_color = fig_label_color,
                      ax_title_font_size = fig_title_font_size,

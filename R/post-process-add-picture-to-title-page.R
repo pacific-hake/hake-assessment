@@ -4,6 +4,9 @@
 #' [readLines()]
 #' @param title_page_image The file to include as the title page image
 #' @param title_page_image_width_cm The width in cm to use for the picture
+#' @param figures_dir The subdirectory of the "doc" directory containing
+#' images that have previously been made such as pictures and logos, and all
+#' other figures made outside the scope of this project
 #' @param ... Absorbs arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
@@ -11,9 +14,12 @@
 post_process_add_picture_to_title_page <- function(x,
                                                    title_page_image = NULL,
                                                    title_page_image_width_cm = NULL,
+                                                   figures_dir = NULL,
                                                    ...){
 
-  title_page_image <- title_page_image %||% "main-figures/hake-picture.png"
+  figures_dir <- figures_dir %||% "image-files"
+  title_page_image <- title_page_image %||% file.path(figures_dir,
+                                                      "hake-line-drawing.png")
   title_page_image_width_cm <- title_page_image_width_cm %||% 12
 
   if(!file.exists(title_page_image)){

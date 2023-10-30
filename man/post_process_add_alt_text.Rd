@@ -10,6 +10,7 @@ post_process_add_alt_text(
   accessible_pdf = NULL,
   title_page_image = NULL,
   title_page_image_width_cm = NULL,
+  figures_dir = NULL,
   ...
 )
 }
@@ -19,6 +20,10 @@ post_process_add_alt_text(
 
 \item{accessible_pdf}{Logical. If \code{TRUE}, inject the code needed to include
 the `pdfmanagement-testphase`` package and add alternative text}
+
+\item{figures_dir}{The subdirectory of the "doc" directory containing
+images that have previously been made such as pictures and logos, and all
+other figures made outside the scope of this project}
 
 \item{...}{Absorbs arguments meant for other functions}
 }

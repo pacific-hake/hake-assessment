@@ -5,7 +5,7 @@
 \title{Create and change to a temporary directory and copy a skeleton
 version of the document or beamer presentation files for testing}
 \usage{
-gotest(config_fn = "_bookdown.yml")
+gotest(config_fn = "_bookdown.yml", figures_dir = NULL)
 }
 \arguments{
 \item{config_fn}{The name of the bookdown YAML file. The default is

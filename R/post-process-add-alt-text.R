@@ -12,6 +12,9 @@
 #' [readLines()]
 #' @param accessible_pdf Logical. If `TRUE`, inject the code needed to include
 #' the `pdfmanagement-testphase`` package and add alternative text
+#' @param figures_dir The subdirectory of the "doc" directory containing
+#' images that have previously been made such as pictures and logos, and all
+#' other figures made outside the scope of this project
 #' @param ... Absorbs arguments meant for other functions
 #'
 #' @return The modified Tex code, as a vector
@@ -20,10 +23,13 @@ post_process_add_alt_text <- function(x,
                                       accessible_pdf = NULL,
                                       title_page_image = NULL,
                                       title_page_image_width_cm = NULL,
+                                      figures_dir = NULL,
                                       ...){
 
+  figures_dir <- figures_dir %||% "image-files"
   accessible_pdf <- accessible_pdf %||% FALSE
-  title_page_image <- title_page_image %||% "main-figures/hake-picture.png"
+  title_page_image <- title_page_image %||% file.path(figures_dir,
+                                                      "hake-line-drawing.png")
   title_page_image_width_cm <- title_page_image_width_cm %||% 12
 
   if(!accessible_pdf){

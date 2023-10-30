@@ -30,7 +30,7 @@ BEGIN LANDSCAPE - must have blank line below separating this from figure code
 
 ```{r main-acoustic-age2-bs-fig, fig.cap = "(ref:main-acoustic-age2-bs-cap)", results = "asis"}
 
-include_graphics("main-figures/hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue.png", error = FALSE)
+include_graphics(file.path(figures_dir,"hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue.png"), error = FALSE)
 ```
 
 END LANDSCAPE - must have blank line above separating this from figure code
@@ -51,7 +51,7 @@ BEGIN LANDSCAPE
 
 ```{r main-acoustic-age1-bs-fig, fig.cap = "(ref:main-acoustic-age1-bs-cap)", results = "asis"}
 
-include_graphics("main-figures/age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue.png", error = FALSE)
+include_graphics(file.path(figures_dir,"age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue.png"), error = FALSE)
 ```
 
 END LANDSCAPE
@@ -77,7 +77,7 @@ the U.S. fleet. The rates are highest in September followed by May and June.
 
 ```{r main-us-catch-rates-fig, fig.cap = "(ref:main-us-catch-rates-cap)", results = "asis"}
 
-include_graphics("main-figures/fishCatchRatesUS.png", error = FALSE)
+include_graphics(file.path(figures_dir,"fishCatchRatesUS.png"), error = FALSE)
 ```
 
 (ref:main-us-depths-cap) Distribution of fishing depths (left) and bottom

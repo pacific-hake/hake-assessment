@@ -5,7 +5,10 @@
 #' Meant to be called by the wrapper function [gotest()]
 #'
 #' @return Nothing
-gotest_doc_get_src_dest_filenames <- function(bookdown_lst = NULL){
+gotest_doc_get_src_dest_filenames <- function(bookdown_lst = NULL,
+                                              figures_dir = figures_dir){
+
+  figures_dir <- figures_dir %||% "image-files"
 
   raw_fns <- c(
     "000-launcher.rmd",
@@ -33,9 +36,9 @@ gotest_doc_get_src_dest_filenames <- function(bookdown_lst = NULL){
   }
 
   # Add the main figures (prebuilt figures and logos in files)
-  main_figs_src_dir <- here::here("doc/main-figures")
+  main_figs_src_dir <- here::here("doc", figures_dir)
   main_figs_basename_fns <- list.files(main_figs_src_dir)
-  main_figs_fns <- file.path("main-figures", main_figs_basename_fns)
+  main_figs_fns <- file.path(figures_dir, main_figs_basename_fns)
   raw_fns <- c(raw_fns, main_figs_fns)
 
   doc_dr <- file.path(here::here("doc"))

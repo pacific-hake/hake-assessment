@@ -72,10 +72,10 @@ output:
    font: "texgyrepagella"
    # ---------------------------------------------------------------------------
 
-   # Footer text and title page picture ----------------------------------------
+   # IMages, title page picture, and footer text -------------------------------
    #
-   title_page_image: "main-figures/hake-line-drawing.png"
-   #title_page_image: "main-figures/hake-picture.png"
+   figures_dir: "image-files"
+   title_page_image: "image-files/hake-line-drawing.png"
    title_page_image_width_cm: 12
    footer_left: "DRAFT -- `r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`"
    # NOTE: cannot use backticks inside R-chunk bleow, so need to use

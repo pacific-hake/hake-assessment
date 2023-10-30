@@ -5,7 +5,17 @@
 \title{Create the lists of source and destination filenames needed for copying
 for the beamer presentations testing}
 \usage{
-gotest_beamer_get_src_dest_filenames(bookdown_lst)
+gotest_beamer_get_src_dest_filenames(
+  bookdown_lst = NULL,
+  figures_dir = figures_dir
+)
+}
+\arguments{
+\item{bookdown_lst}{A list as returned by \code{\link[=read_bookdown_file]{read_bookdown_file()}}}
+
+\item{figures_dir}{The subdirectory of the "doc" directory containing
+images that have previously been made such as pictures and logos, and all
+other figures made outside the scope of this project}
 }
 \value{
 Nothing

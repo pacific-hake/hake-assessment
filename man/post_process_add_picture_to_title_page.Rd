@@ -8,6 +8,7 @@ post_process_add_picture_to_title_page(
   x,
   title_page_image = NULL,
   title_page_image_width_cm = NULL,
+  figures_dir = NULL,
   ...
 )
 }
@@ -18,6 +19,10 @@ post_process_add_picture_to_title_page(
 \item{title_page_image}{The file to include as the title page image}
 
 \item{title_page_image_width_cm}{The width in cm to use for the picture}
+
+\item{figures_dir}{The subdirectory of the "doc" directory containing
+images that have previously been made such as pictures and logos, and all
+other figures made outside the scope of this project}
 
 \item{...}{Absorbs arguments meant for other functions}
 }
