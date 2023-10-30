@@ -15,6 +15,10 @@ post_process <- function(x, ...){
   # Make sure the LaTeX code is viable (basic checks)
   #post_process_error_check(x, ...)
 
+  # Need to add this here - cannot be done anywhere else - to ensure the
+  # xcolor colors are all loaded correctly
+  x <- post_process_add_xcolor_package(x, ...)
+
   # Change the font and font size according to YAML selections
   x <- post_process_modify_font_info(x, ...)
 
@@ -37,6 +41,9 @@ post_process <- function(x, ...){
 
   # Table of contents injection ----
   x <- post_process_table_of_contents(x, ...)
+
+  # Add any picture to the title page
+  x <- post_process_add_picture_to_title_page(x, ...)
 
   # Modify the reference and URL link colors and types (underlined
   # or text-color-based)
