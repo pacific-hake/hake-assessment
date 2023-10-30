@@ -36,16 +36,16 @@ post_process_add_counters <- function(x,
   # Insert commands to change numbering to arabic (regular numbers) for the
   # rest of the document
 
-  pat <- "Executive summary EOF"
+  pat <- "EXECUTIVE SUMMARY EOF"
   ind <- grep(pat, x)
   if(!length(ind)){
-    stop("Could not find the Executive summary EOF marker which is used ",
+    stop("Could not find the `EXECUTIVE SUMMARY EOF` marker which is used ",
          "to insert the numbering information for tables and figures for ",
          "the non-Executive Summary part of the document",
          call. = FALSE)
   }
   if(length(ind) > 1){
-    stop("Multiple lines matched the Executive summary EOF regular ",
+    stop("Multiple lines matched the `EXECUTIVE SUMMARY EOF` regular ",
          "expression `", pat, "`",
          call. = FALSE)
   }

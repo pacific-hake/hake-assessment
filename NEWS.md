@@ -44,7 +44,7 @@ implemented in the hake assessment codebase in 2023 between the 2023 and
   `000-launcher.rmd` that reads
   `TABLE OF CONTENTS GOES HERE`. This is a required tag for the post-processor
   which will inject the table of contents code there.
-* The Executive Summary requires a tag (`Executive summary EOF`) at the end
+* The Executive Summary requires a tag (`EXECUTIVE SUMMARY EOF`) at the end
   of it to signal the post-processor to restart numbering of tables and
   figures and to switch from letters to numbers. See
   [Executive summary tag](https://github.com/pacific-hake/hake-assessment/blob/87af60178be68153dc27728935026160fd17a3b7/doc/006-executive-summary.rmd#L832).

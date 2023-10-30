@@ -898,5 +898,5 @@ table_risk(
 ```{r child = "010-research-needs/research-needs.rmd"}
 ```
 
-Executive summary EOF - do not remove - required by the post-processor
+EXECUTIVE SUMMARY EOF - do not remove - required by the post-processor
 \clearpage
