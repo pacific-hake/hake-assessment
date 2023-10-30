@@ -18,9 +18,11 @@
 #' function [goback()] to use to return to the original directory
 #' @export
 gotest <- function(config_fn = "_bookdown.yml",
-                   figures_dir = NULL){
+                   figures_dir = NULL,
+                   knitr_figures_dir = NULL){
 
   figures_dir <- figures_dir %||% "image-files"
+  knitr_figures_dir <- knitr_figures_dir %||% "knitr-figs"
 
   if(!file.exists(config_fn)){
     stop("The `bookdown` config file `", config_fn, "` does not exist",
@@ -121,6 +123,7 @@ gotest <- function(config_fn = "_bookdown.yml",
   # put it in the knitr figures directory, but fails with error if that
   # directory does not exist. This is an edge case
   launcher <- readLines(index_fn)
+
   knitr_figures_dir <- grep("knitr_figures_dir:", launcher, value = TRUE)
   if(!length(knitr_figures_dir)){
     stop("`knitr_figures_dir:` not found in file ",

@@ -29,8 +29,6 @@ project_variables:
   # figure positions by editing the `doc/object-placement.csv` file
   fig_pos: "htb"
   fig_filetype: "png"
-  knitr_figures_dir: "knitr-figs/"
-  knitr_cache_dir: "knitr-cache/"
   out_csv_dir: "out-csv"
   # Increasing `dots_per_inch` for figure output increases the file size a LOT
   dots_per_inch: 100
@@ -72,11 +70,14 @@ output:
    font: "texgyrepagella"
    # ---------------------------------------------------------------------------
 
-   # IMages, title page picture, and footer text -------------------------------
-   #
+   # Chunk output and image directories, title page picture -------------------
+   knitr_figures_dir: "knitr-figs"
+   knitr_cache_dir: "knitr-cache"
    figures_dir: "image-files"
    title_page_image: "image-files/hake-line-drawing.png"
    title_page_image_width_cm: 12
+
+   # Footer text --------------------------------------------------------------
    footer_left: "DRAFT -- `r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`"
    # NOTE: cannot use backticks inside R-chunk bleow, so need to use
    # [['hake::hake_pdf']]
@@ -103,14 +104,14 @@ output:
    # used for underlined links instead. You can have either all colored
    # text links or colored underlines for links, but not both. All link types
    # must be either colored text or colored underlines.
-   underline_links: false
+   underline_links: true
    # See `xcolor` package documentation for color lists, Section 4
    # "Colors by Name". Supported here are `dvipsnames`, `svgnames`,
    # and `x11names`, so basically all colors listed
    # https://ctan.mirror.rafal.ca/macros/latex/contrib/xcolor/xcolor.pdf
    # If colors are left out or `null`, they will be black by default
    toc_underline_link_color: Tan4
-   toc_link_text_color: Tan4
+   toc_link_text_color: WildStrawberry
    # Color of the citation links in the text. These are dealt with in
    # `post_process_table_of_contents()`
    cite_underline_link_color: Turquoise1
@@ -188,8 +189,10 @@ if(test){
   devtools::load_all(here::here())
 }
 
-# This grabs the YAML `project_variables` from above
+# This grabs the YAML `project_variables` and `outputs` from above
 yaml_proj_vars <- rmarkdown::metadata$project_variables
+output_vars <- rmarkdown::metadata$output$`hake::hake_pdf`
+figures_dir <- output_vars$figures_dir
 
 # Don't modify anything in `opts_chunk$set()`. Modify the YAML
 # `project_variables` above
@@ -206,7 +209,12 @@ knitr::opts_chunk$set(
   echo = FALSE,
   # Create the `knitr_cache_dir` and `knitr_figs_dir` directories for caching
   cache = TRUE,
-  cache.path = yaml_proj_vars$knitr_cache_dir,
+  # `cache.path` is required to have a trailing slash
+  cache.path = ifelse(substr(output_vars$knitr_cache_dir,
+                             nchar(output_vars$knitr_cache_dir),
+                             nchar(output_vars$knitr_cache_dir)) != "/",
+                      paste0(output_vars$knitr_cache_dir, "/"),
+                      output_vars$knitr_cache_dir),
   # cache.lazy - if `FALSE`, load the models at the beginning all at once
   cache.lazy = FALSE,
   # Prevents invalidation of the cache when only comments are entered
@@ -216,7 +224,12 @@ knitr::opts_chunk$set(
   comment = "#>",
   dev = yaml_proj_vars$fig_filetype,
   dpi = yaml_proj_vars$dots_per_inch,
-  fig.path = yaml_proj_vars$knitr_figures_dir,
+  # `fig.path` is required to have a trailing slash
+  fig.path = ifelse(substr(output_vars$knitr_figures_dir,
+                           nchar(output_vars$knitr_figures_dir),
+                           nchar(output_vars$knitr_figures_dir)) != "/",
+                    paste0(output_vars$knitr_figures_dir, "/"),
+                    output_vars$knitr_figures_dir),
   fig.align = "center",
   fig.pos = yaml_proj_vars$fig_pos,
   fig.height = yaml_proj_vars$fig_height,

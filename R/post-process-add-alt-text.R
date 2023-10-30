@@ -24,6 +24,7 @@ post_process_add_alt_text <- function(x,
                                       title_page_image = NULL,
                                       title_page_image_width_cm = NULL,
                                       figures_dir = NULL,
+                                      knitr_figures_dir = NULL,
                                       ...){
 
   figures_dir <- figures_dir %||% "image-files"
@@ -31,6 +32,7 @@ post_process_add_alt_text <- function(x,
   title_page_image <- title_page_image %||% file.path(figures_dir,
                                                       "hake-line-drawing.png")
   title_page_image_width_cm <- title_page_image_width_cm %||% 12
+  knitr_figures_dir <- knitr_figures_dir %||% "knitr-figs"
 
   if(!accessible_pdf){
     return(x)
@@ -81,9 +83,14 @@ post_process_add_alt_text <- function(x,
   inds_file <- inds_all_figs[!is_knitr]
 
   # Get chunk names for the knitr-based figures
+  mid_pat <- ifelse(substr(knitr_figures_dir,
+                           nchar(knitr_figures_dir),
+                           nchar(knitr_figures_dir)) == "/",
+                    "(.*?)-fig-[0-9]+\\} *$",
+                    "/(.*?)-fig-[0-9]+\\} *$")
   knitr_labels <- gsub(paste0(".*\\{",
                               knitr_figures_dir,
-                              "(.*?)-fig-[0-9]+\\} *$"),
+                              mid_pat),
                        "\\1",
                        x[inds_knitr])
 

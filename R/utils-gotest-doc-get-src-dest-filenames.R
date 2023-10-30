@@ -6,7 +6,7 @@
 #'
 #' @return Nothing
 gotest_doc_get_src_dest_filenames <- function(bookdown_lst = NULL,
-                                              figures_dir = figures_dir){
+                                              figures_dir = NULL){
 
   figures_dir <- figures_dir %||% "image-files"
 
