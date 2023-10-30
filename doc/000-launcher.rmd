@@ -71,6 +71,7 @@ output:
    # Footer text and title page picture ----------------------------------------
    #
    title_page_image: "../beamer/images/hake-line-drawing.png"
+   #title_page_image: "main-figures/hake-picture.png"
    title_page_image_width_cm: 12
    footer_left: "DRAFT -- `r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`"
    # NOTE: cannot use backticks inside R-chunk bleow, so need to use [['']]
