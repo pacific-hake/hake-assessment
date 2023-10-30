@@ -67,10 +67,18 @@
   \usepackage{lmodern}
 \else
   % Lualatex requirements
+  % Command to find fonts (TexLive) - not case sensitive
+  % luaotfload-tool --find="IBM Plex Serif" --fuzzy
+  % luaotfload-tool --find="ibm plex serif" --fuzzy
   \usepackage{fontspec}
-  \setsansfont{CMU Sans Serif}
-  \setmainfont{IBM Plex Sans}
-  \setmonofont{CMU Typewriter Text} % Consolas
+  %\setsansfont{CMU Sans Serif}
+  %\setmonofont{CMU Typewriter Text} % Consolas
+  %
+  % Do not change the following line, the font is changed in the YAML
+  % part of 000-launcher.rmd and the post processor looks for this line to
+  % replace with your selection
+  \setmainfont{IBM Plex Serif}
+
   % Needed by lualatex to print unicode symbols
   \PassOptionsToPackage{math-style=ISO,bold-style=ISO}{unicode-math}
   % Create an alias for bm->symbf when using lualatex to avoid

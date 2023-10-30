@@ -51,11 +51,33 @@ output:
    keep_tex: true
    # Do not modify. Modified by gotest() function for testing
    test: false
+   # Figure captions
    # Do not modify, allows usage of `fig.cap` knitr chunk option for
-   # figure captions
    fig_caption: yes
+
+   # Font settings -------------------------------------------------------------
+   #
+   font_size_pt: 12
+   # Available fonts in alphabetical order. Uncomment one only
+   # See `post_process_modify_font_info()`
+   #font: "baskervillef"
+   #font: "ibm plex sans"
+   #font: "ibm plex serif"
+   #font: "roboto"
+   #font: "robotoserif"
+   font: "texgyrepagella"
+   # ---------------------------------------------------------------------------
+
+   # Footer text --------------------------------------------------------------
+   #
    footer_left: "DRAFT -- `r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`"
-   footer_right: ""
+   # NOTE: cannot use backticks inside R-chunk bleow, so need to use [['']]
+   # to access the hake::hake_pdf object
+   footer_right: "Font: `r rmarkdown::metadata$output[['hake::hake_pdf']]$font`"
+   # ---------------------------------------------------------------------------
+
+   # Table of contents and reference link settings ----------------------------
+   #
    # These `toc_` variables change the appearance of the table of contents
    # Depth of the table of contents, 2 means 1.2, 3 means 1.2.3, etc.
    # Note this also remove subsubsection numbering in the document sections
@@ -90,10 +112,13 @@ output:
    # `post_process_table_of_contents()`
    url_underline_link_color: RoyalBlue1
    url_link_text_color: RoyalBlue1
+   # ---------------------------------------------------------------------------
 
-   # Headrule and Footrule definitions - can leave blank and defaults
-   # will be used. See `post_process_add_headers_footers()`
-   # Headrule line definitions
+   # Headrule and Footrule settings --------------------------------------------
+   #
+   # Can be left blank and defaults will be used.
+   # See `post_process_add_headers_footers()`
+   # Headrule line definitions ----------------------------
    headrule_width_pt: 0.5
    # Use double lines for header
    headrule_double_lines: true 
@@ -101,7 +126,8 @@ output:
    headrule_double_width_pt: 2
    # Space between the double lines
    headrule_double_space_mm: 1
-   # Footrule line definitions
+   #
+   # Footrule line definitions ----------------------------
    footrule_width_pt: 0.5
    # Use double lines for footer
    footrule_double_lines: true
@@ -109,11 +135,11 @@ output:
    footrule_double_width_pt: 2
    # Space between the double lines
    footrule_double_space_mm: 1
+   # ---------------------------------------------------------------------------
 
    includes:
      in_header: "preamble.tex"
 documentclass: article # Do not modify
-fontsize: 11pt
 urlcolor: blue
 knit: (function(input, ...) {
        hake::render()
@@ -128,6 +154,7 @@ csl: csl/csas.csl # Do not modify
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
 
+# Need rlang library for %||%
 library(rlang)
 
 # Current user's name on the system

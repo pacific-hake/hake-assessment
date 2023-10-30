@@ -15,6 +15,9 @@ post_process <- function(x, ...){
   # Make sure the LaTeX code is viable (basic checks)
   #post_process_error_check(x, ...)
 
+  # Change the font and font size according to YAML selections
+  x <- post_process_modify_font_info(x, ...)
+
   # Remove the page number from the title page only
   x <- post_process_remove_title_page_number(x, ...)
 
