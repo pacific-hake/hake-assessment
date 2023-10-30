@@ -24,14 +24,22 @@
 #' @export
 post_process_modify_link_colors <- function(
     x,
-    underline_links = FALSE,
-    toc_underline_link_color = "blue",
-    toc_link_text_color = "blue",
-    cite_underline_link_color = "blue",
-    cite_link_text_color = "blue",
-    url_underline_link_color = "blue",
-    url_link_text_color = "blue",
+    underline_links = NULL,
+    toc_underline_link_color = NULL,
+    toc_link_text_color = NULL,
+    cite_underline_link_color = NULL,
+    cite_link_text_color = NULL,
+    url_underline_link_color = NULL,
+    url_link_text_color = NULL,
     ...){
+
+  underline_links <- underline_links %||% FALSE
+  toc_underline_link_color <- toc_underline_link_color %||% "blue"
+  toc_link_text_color <- toc_link_text_color %||% "blue"
+  cite_underline_link_color <- cite_underline_link_color %||% "blue"
+  cite_link_text_color <- cite_link_text_color %||% "blue"
+  url_underline_link_color <- url_underline_link_color %||% "blue"
+  url_link_text_color <- url_link_text_color %||% "blue"
 
   # Find the \hypersetup LaTeX command
   start_ind <- grep("\\\\hypersetup", x)

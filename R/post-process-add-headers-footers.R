@@ -61,9 +61,6 @@ post_process_add_headers_footers <- function(x,
   }
   pre <- x[1:ind]
   post <- x[(ind + 1):length(x)]
-  # dat <- c(paste0("\\renewcommand{\\headrulewidth}{", headrule_width_pt, "}"),
-  #          paste0("\\renewcommand{\\footrulewidth}{", footrule_width_pt, "}"),
-  #          "")
   dat <- NULL
 
   if(headrule_double_lines){
