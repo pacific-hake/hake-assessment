@@ -86,12 +86,13 @@ output:
 
    # Table of contents and reference link settings ----------------------------
    #
+   # Do not modify `toc`, it must be false as the Table of Contents is
+   # added by post processor
+   toc: false
    # These `toc_` variables change the appearance of the table of contents
    # Depth of the table of contents, 2 means 1.2, 3 means 1.2.3, etc.
-   # Note this also remove subsubsection numbering in the document sections
+   # Note this also determines subsubsection numbering in the document sections
    toc_depth: 3
-   # Do not modify, Table of Contents is added by post processor
-   toc: false
    toc_section_indent_inch: 0
    toc_section_num_width_inch: 0.2
    toc_subsection_indent_inch: 0.3
@@ -104,20 +105,20 @@ output:
    # used for underlined links instead. You can have either all colored
    # text links or colored underlines for links, but not both. All link types
    # must be either colored text or colored underlines.
-   underline_links: true
+   underline_links: false
    # See `xcolor` package documentation for color lists, Section 4
    # "Colors by Name". Supported here are `dvipsnames`, `svgnames`,
    # and `x11names`, so basically all colors listed
    # https://ctan.mirror.rafal.ca/macros/latex/contrib/xcolor/xcolor.pdf
    # If colors are left out or `null`, they will be black by default
-   toc_underline_link_color: Tan4
-   toc_link_text_color: WildStrawberry
+   toc_underline_link_color: Blue
+   toc_link_text_color: Blue
    # Color of the citation links in the text. These are dealt with in
    # `post_process_table_of_contents()`
-   cite_underline_link_color: Turquoise1
-   cite_link_text_color: Turquoise1
-   # Color of the URL links in the text. These are dealt with in
+   cite_underline_link_color: DarkOliveGreen
+   cite_link_text_color: DarkOliveGreen
    # `post_process_table_of_contents()`
+   # Color of the URL links in the text. These are dealt with in
    url_underline_link_color: RoyalBlue1
    url_link_text_color: RoyalBlue1
    # ---------------------------------------------------------------------------
