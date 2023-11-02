@@ -5,10 +5,7 @@
 \title{Create the lists of source and destination filenames needed for copying
 for the main assessment document testing}
 \usage{
-gotest_doc_get_src_dest_filenames(
-  bookdown_lst = NULL,
-  figures_dir = figures_dir
-)
+gotest_doc_get_src_dest_filenames(bookdown_lst = NULL, figures_dir = NULL)
 }
 \value{
 Nothing

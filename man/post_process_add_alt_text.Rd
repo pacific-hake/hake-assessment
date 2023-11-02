@@ -11,6 +11,7 @@ post_process_add_alt_text(
   title_page_image = NULL,
   title_page_image_width_cm = NULL,
   figures_dir = NULL,
+  knitr_figures_dir = NULL,
   ...
 )
 }
