@@ -31,6 +31,7 @@
 #' @importFrom kableExtra column_spec kable_styling kbl landscape linebreak
 #' @importFrom here here i_am
 #' @importFrom lubridate hour minute month now second seconds_to_period year
+#' @importFrom parallel detectCores
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
 #' @importFrom readr cols read_csv read_table2 write_csv
 #' @importFrom rlang `%||%` as_label enquos set_names sym
