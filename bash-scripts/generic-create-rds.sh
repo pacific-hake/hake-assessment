@@ -10,7 +10,7 @@
 
 repo_path=`Rscript -e "cat(here::here())"`
 models_path="models"
-year_path=2023
+year_path=2024
 version_path="01-version"
 
 models_path=$project_path/$models_path/$year_path/$version_path/$type_path
