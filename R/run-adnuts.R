@@ -166,7 +166,7 @@ run_adnuts <- function(path,
   input_files <- file.path(path, input_files)
   file.copy(input_files, mcmc_path, overwrite = TRUE)
   if(run_extra_mcmc){
-    dir.create(file.path(mcmc_path, "sso"), showWarnings = FALSE)
+    dir.create(file.path(mcmc_path, "sso"), showWarnings = TRUE)
     modify_starter_mcmc_type(mcmc_path, 2)
   }else{
     modify_starter_mcmc_type(mcmc_path, 1)
@@ -278,29 +278,6 @@ run_adnuts <- function(path,
                               fn_logfile = fn_logfile)
 
   save(list = ls(all.names = TRUE), file = rdata_file, envir = environment())
-
-  # Make sure the PSV file has the name ss3.psv
-  fns_psv <- list.files(mcmc_path)
-  psv_ind <- grep("\\.psv", fns_psv)
-  if(!length(psv_ind)){
-    stop("-mceval not possible. There are no PSV files present in `",
-         mcmc_path, "` after the MCMC run",
-         call. = FALSE)
-  }
-  if(length(psv_ind) > 1){
-    stop("-mceval not possible. There is more than one PSV file present in `",
-         mcmc_path, "` after the MCMC run. PSV files found are:\n",
-         paste(fns_psv[psv_ind], collapse = "\n"),
-         call. = FALSE)
-  }
-  fn_psv <- file.path(mcmc_path, fns_psv[psv_ind])
-  fn_new_psv <- file.path(mcmc_path, "ss.psv")
-  if(!file.rename(fn_psv, fn_new_psv)){
-    stop("Could not rename PSV file from `", fn_psv, "` to `", fn_new_psv,
-         "`, and therefore cannot run -mceval step. Change the name and",
-         "run it manually in terminal",
-         call. = FALSE)
-  }
 
   cmd <- paste0("cd ", mcmc_path, " && ", fn_exe, " -mceval")
   if(!is.null(fn_logfile)){
