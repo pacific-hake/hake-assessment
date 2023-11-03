@@ -4,6 +4,14 @@ ____
 > An R package which uses Bookdown and Rmarkdown to build the US/Canadian Pacific hake assessment document
 _____________________________________________________________
 
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/y/pacific-hake/hake-assessment)
+![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/pacific-hake/hake-assessment)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/pacific-hake/hake-assessment/package-dev)
+![GitHub contributors](https://img.shields.io/github/contributors/pacific-hake/hake-assessment)
+![Codecov](https://img.shields.io/codecov/c/github/pacific-hake/hake-assessment)
+![Github All Releases](https://img.shields.io/github/downloads/pacific-hake/hake-assessment/total.svg)
+
+
 In 2023, the project code used for building the assessment document and all the
 presentations was switched over from the original Sweave-based approach to the
 [Bookdown](https://bookdown.org/) system. Read
