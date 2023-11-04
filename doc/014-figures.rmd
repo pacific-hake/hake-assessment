@@ -466,7 +466,7 @@ plot_survey_fit_mcmc(base_model,
                      glow_offset = 0.5,
                      leg_ymin = 4.25,
                      x_lim = c(survey_start_yr, survey_end_yr),
-                     y_lim = c(0, 5),
+                     y_lim = c(0, 6),
                      x_labs_mod = 5,
                      y_labs_by = 0.5,
                      tick_prop = 1,
@@ -495,8 +495,17 @@ time series but diverge a little at the end of the time series for the
 plot_survey_fit_mcmc(base_model,
                      type = "age1",
                      n_posts = 1000,
-                     ylim = c(0, 10),
-                     glow = TRUE)
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymin = 4.25,
+                     x_lim = c(survey_start_yr, survey_end_yr),
+                     y_lim = c(0, 10),
+                     x_labs_mod = 5,
+                     y_labs_by = 0.5,
+                     tick_prop = 1,
+                     vjust_x_labels = -2,
+                     remove_yr_labels = NULL)
 ```
 
 (ref:main-age-comp-fits-cap) Base model fits to the observed fishery (top)

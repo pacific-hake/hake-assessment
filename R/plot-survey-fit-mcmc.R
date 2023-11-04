@@ -89,13 +89,13 @@ plot_survey_fit_mcmc <- function(model,
                                  post_med_line_alpha = main_alpha,
                                  post_med_point_size = 1.5,
                                  post_line_gap = ts_linegap,
-                                 obs_line_width = 1,
+                                 obs_line_width = 1.5,
                                  obs_line_color = "royalblue",
                                  obs_point_color = "black",
-                                 obs_point_size = 1.5,
+                                 obs_point_size = 2.5,
                                  obs_alpha = 1,
                                  extrasd_line_width = 0.5,
-                                 extrasd_line_color = "royalblue",
+                                 extrasd_line_color = "black",
                                  extrasd_point_color = "royalblue",
                                  extrasd_point_size = 2,
                                  extrasd_alpha = 1,
@@ -127,13 +127,13 @@ plot_survey_fit_mcmc <- function(model,
   legend_text <- ifelse(n_posts == n_samp,
                         paste0("All (",
                                f(n_posts),
-                               ") of the MCMC estimates of ",
+                               ") of the MCMC estimates\nof ",
                                ifelse(type == "acoustic",
                                       "expected survey biomass",
                                       "scaled age-1 numbers")),
                         paste0("A subset (",
                                f(n_posts),
-                               ") of the MCMC estimates of ",
+                               ") of the MCMC estimates\nof ",
                                ifelse(type == "acoustic",
                                       "expected survey biomass",
                                       "scaled age-1 numbers")))
@@ -275,10 +275,29 @@ plot_survey_fit_mcmc <- function(model,
                    inherit.aes = FALSE)
 
   if(glow){
+    # Glow - Obs line (observed)
+    g <- g +
+      geom_errorbar(data = obs,
+                    width = 0,
+                    linewidth = obs_line_width + 0.25,
+                    color = glow_color,
+                    alpha = glow_alpha,
+                    lineend = "round")
+  }
+
+  # Obs line (observed)
+  g <- g +
+    geom_errorbar(data = obs,
+                  width = 0,
+                  linewidth = obs_line_width,
+                  color = obs_line_color,
+                  lineend = "round")
+
+  if(glow){
     # Glow - Extra SD line (Longer than obs)
     g <- g +
       geom_errorbar(data = obs_extra_sd,
-                    linewidth = extrasd_line_width + 0.5,
+                    linewidth = extrasd_line_width + 0.25,
                     width = 0,
                     color = glow_color,
                     alpha = glow_alpha,
@@ -294,30 +313,11 @@ plot_survey_fit_mcmc <- function(model,
                   lineend = "round")
 
   if(glow){
-    # Glow - Obs line (observed)
-    g <- g +
-      geom_errorbar(data = obs,
-                    width = 0,
-                    linewidth = obs_line_width + 0.5,
-                    color = glow_color,
-                    alpha = glow_alpha,
-                    lineend = "round")
-  }
-
-  # Obs line (observed)
-  g <- g +
-    geom_errorbar(data = obs,
-                  width = 0,
-                  linewidth = obs_line_width,
-                  color = obs_line_color,
-                  lineend = "round")
-
-  if(glow){
     # Glow - Obs median point
     g <- g +
       geom_point(data = obs,
-                 size = obs_point_size + 0.5,
-                 color = glow_color,
+                 size = obs_point_size + 1,
+                 color = "white",
                  alpha = glow_alpha)
   }
 
@@ -330,7 +330,7 @@ plot_survey_fit_mcmc <- function(model,
     scale_x_continuous(breaks = x_breaks,
                        labels = x_labels) +
     scale_y_continuous(breaks = y_breaks,
-                       expand = c(0, 0)) +
+                       expand = c(0, 0.1)) +
     coord_cartesian(ylim = y_lim,
                     clip = "off") +
     xlab("Year") +
@@ -338,7 +338,8 @@ plot_survey_fit_mcmc <- function(model,
                 "Biomass index (Mt)",
                 "Relative Age-1 index (billions of fish)")) +
     theme(axis.text.x = element_text(vjust = vjust_x_labels),
-          axis.title.x = element_text(vjust = vjust_x_labels))
+          axis.title.x = element_text(vjust = vjust_x_labels),
+          plot.margin = margin(0, 0, 12, 12))
 
   # Add a major tick mark every `x_labs_mod` years
   g <- g |>
@@ -348,7 +349,10 @@ plot_survey_fit_mcmc <- function(model,
                     ...)
 
   if(show_legend){
+    # "Legend" is manually made and has three entries each with text and
+    # one or more symbols
     x_rng <- layer_scales(g)$x$range$range
+    y_rng <- layer_scales(g)$y$range$range
     symbol_x <- x_rng[1]
     symbol_x_start <- symbol_x - 1
     symbol_x_end <- symbol_x + 1
@@ -356,14 +360,9 @@ plot_survey_fit_mcmc <- function(model,
     type_off <- diff(y_lim) / 5
     symbol_y <- max(y_lim) - 0.2 * type_off
 
+    # First legend row
     g <- g +
-      # White rectangle acts as legend background
-      geom_rect(aes(xmin = leg_xmin,
-                    xmax = leg_xmax,
-                    ymin = leg_ymin,
-                    ymax = leg_ymax),
-                fill = "white") +
-      # Error bar symbol construction
+      # First symbol
       annotate("segment",
                x = symbol_x_start,
                xend = symbol_x_end,
@@ -383,62 +382,14 @@ plot_survey_fit_mcmc <- function(model,
                y = symbol_y,
                shape = 19,
                colour = "white",
-               size = obs_point_size + glow_offset) +
+               size = obs_point_size + 1) +
       annotate("point",
                x = symbol_x,
                y = symbol_y,
                shape = 19,
                colour = obs_point_color,
                size = obs_point_size) +
-      # Median posterior survey fit construction
-      annotate("segment",
-               x = symbol_x_start,
-               xend = symbol_x_end,
-               y = symbol_y - 0.2 * type_off,
-               yend = symbol_y - 0.2 * type_off,
-               colour = post_med_line_color,
-               linewidth = post_med_line_width + 0.5) +
-      annotate("segment",
-               x = symbol_x_start,
-               xend = symbol_x_end,
-               y = symbol_y - 0.2 * type_off,
-               yend = symbol_y - 0.2 * type_off,
-               colour = post_med_line_color,
-               linewidth = post_med_line_width) +
-      annotate("point",
-               x = symbol_x,
-               y = symbol_y - 0.2 * type_off,
-               shape = 19,
-               colour = "white",
-               size = post_med_point_size + 2) +
-      annotate("point",
-               x = symbol_x,
-               y = symbol_y - 0.2 * type_off,
-               shape = 19,
-               colour = post_med_line_color,
-               size = post_med_point_size) +
-      # Posterior survey fit individual lines construction
-      annotate("segment",
-               x = symbol_x_start,
-               xend = symbol_x_end,
-               y = symbol_y - 0.4 * type_off,
-               yend = symbol_y - 0.4 * type_off,
-               colour = post_line_col,
-               linewidth = 0.2) +
-      annotate("segment",
-               x = symbol_x_start,
-               xend = symbol_x_end,
-               y = symbol_y - 0.3 * type_off,
-               yend = symbol_y - 0.45 * type_off,
-               colour = post_line_col,
-               linewidth = 0.2) +
-      annotate("segment",
-               x = symbol_x_start,
-               xend = symbol_x_end,
-               y = symbol_y - 0.42 * type_off,
-               yend = symbol_y - 0.33 * type_off,
-               colour = post_line_col,
-               linewidth = 0.2) +
+      # First text
       annotate("text",
                x = text_x,
                y = symbol_y,
@@ -446,20 +397,79 @@ plot_survey_fit_mcmc <- function(model,
                               ifelse(type == "acoustic",
                                      "survey biomass",
                                      "age-1 index"),
-                              " with input (wide) ",
-                              "and estimated (narrow) 95% intervals"),
-               hjust = 0) +
+                              " with input (thick)\n",
+                              "and estimated (thin) 95% intervals"),
+               hjust = 0)
+
+    # Second legend row
+    pr <- 0.5
+    g <- g +
+      # Second symbol
+      annotate("segment",
+               x = symbol_x_start,
+               xend = symbol_x_end,
+               y = symbol_y - pr * type_off,
+               yend = symbol_y - pr * type_off,
+               colour = post_med_line_color,
+               linewidth = post_med_line_width + 0.5) +
+      annotate("segment",
+               x = symbol_x_start,
+               xend = symbol_x_end,
+               y = symbol_y - pr * type_off,
+               yend = symbol_y - pr * type_off,
+               colour = post_med_line_color,
+               linewidth = post_med_line_width) +
+      annotate("point",
+               x = symbol_x,
+               y = symbol_y - pr * type_off,
+               shape = 19,
+               colour = "white",
+               size = post_med_point_size + 2) +
+      annotate("point",
+               x = symbol_x,
+               y = symbol_y - pr * type_off,
+               shape = 19,
+               colour = post_med_line_color,
+               size = post_med_point_size) +
+      # Second text
       annotate("text",
                x = text_x,
-               y = symbol_y - 0.2 * type_off,
+               y = symbol_y - pr * type_off,
                label = paste0("Median MCMC estimate of ",
                               ifelse(type == "acoustic",
-                                     "expected survey biomass",
-                                     "scaled age-1 numbers")),
-               hjust = 0) +
+                                     "expected\nsurvey biomass",
+                                     "scaled\nage-1 numbers")),
+               hjust = 0)
+
+    # Third legend row
+    pr <- 2 * pr
+    g <- g +
+      #Third symbol
+      annotate("segment",
+               x = symbol_x_start,
+               xend = symbol_x_end,
+               y = symbol_y - pr * type_off,
+               yend = symbol_y - pr * type_off,
+               colour = post_line_col,
+               linewidth = 0.2) +
+      annotate("segment",
+               x = symbol_x_start,
+               xend = symbol_x_end,
+               y = symbol_y - (pr - 0.1) * type_off,
+               yend = symbol_y - (pr + 0.05) * type_off,
+               colour = post_line_col,
+               linewidth = 0.2) +
+      annotate("segment",
+               x = symbol_x_start,
+               xend = symbol_x_end,
+               y = symbol_y - (pr + 0.02) * type_off,
+               yend = symbol_y - (pr - 0.07) * type_off,
+               colour = post_line_col,
+               linewidth = 0.2) +
+      # Third text
       annotate("text",
                x = text_x,
-               y = symbol_y - 0.4 * type_off,
+               y = symbol_y - pr * type_off,
                label = legend_text,
                hjust = 0)
   }else{
