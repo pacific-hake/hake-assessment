@@ -168,8 +168,7 @@ p_lst[[1]] <-
                         leg_pos = "top", 
                         inc_mean_age_line = TRUE,
                         point_alpha = 0.4,
-                        xlim = c(start_yr_age_comps, last_data_yr),
-                        show_x_axis_labels = FALSE)
+                        xlim = c(start_yr_age_comps, last_data_yr))
 p_lst[[2]] <-
   plot_age_comp_bubbles(base_model,
                         type = "survey",
@@ -508,11 +507,13 @@ p <- NULL
 p[[1]] <-
   plot_pearson_bubbles(base_model,
                        type = "fishery",
-                       leg_pos = "top")
+                       leg_pos = "top",
+                       xlim = c(start_yr_age_comps, last_data_yr))
 p[[2]] <-
   plot_pearson_bubbles(base_model,
                        type = "survey",
-                       alpha = 0.7)
+                       alpha = 0.7,
+                       xlim = c(start_yr_age_comps, last_data_yr))
 plot_grid(plotlist = p, ncol = 1)
 ```
 
