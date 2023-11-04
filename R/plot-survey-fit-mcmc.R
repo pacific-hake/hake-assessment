@@ -11,8 +11,20 @@
 #' randomly drawn from all posteriors. if this is larger than the number
 #' of posteriors, all posterior lines will be shown
 #' @param show_legend Logical. If `TRUE`, show the legend
-#' @param ylim A vector of two values representing the minimum and maximum
-#' values to appear on the y-axis
+#' @param x_lim A vector of two for the minimum and maximum values
+#' for the x-axis on the plot
+#' @param y_lim A vector of two for the minimum and maximum values
+#' for the y-axis on the plot
+#' @param x_labs_mod How many years between year labels on the x-axis
+#' @param y_labs_by How often to have a label on the y-axis
+#' @param tick_prop A value that the length of the major tick marks are
+#' multiplied by. This proportion must be set by trial and error. Make sure
+#' to change `vjust_x_labels` so the labels are not overlapping the lines or
+#' are too far away from the lines
+#' @param vjust_x_labels Adjustment to move the x-axis tick labels and label
+#' up or down. Negative numbers move down
+#' @param remove_yr_labels A vector of years to remove the ,labels for in
+#' case they are overlapping
 #' @param post_line_col The color of the thinner individual posterior lines
 #' @param post_line_alpha The transparency of the thinner individual
 #' posterior lines
@@ -62,7 +74,13 @@ plot_survey_fit_mcmc <- function(model,
                                  type = c("age1", "acoustic"),
                                  n_posts = NULL,
                                  show_legend = TRUE,
-                                 ylim = c(0, 5),
+                                 x_lim = c(survey_start_yr, survey_end_yr),
+                                 y_lim = c(0, 5),
+                                 x_labs_mod = 5,
+                                 y_labs_by = 0.5,
+                                 tick_prop = 1,
+                                 vjust_x_labels = -1.5,
+                                 remove_yr_labels = NULL,
                                  post_line_width = 0.1,
                                  post_line_col = "black",
                                  post_line_alpha = 0.1,
@@ -87,8 +105,9 @@ plot_survey_fit_mcmc <- function(model,
                                  glow_alpha = 1,
                                  leg_xmin = survey_start_yr - 1,
                                  leg_xmax = survey_end_yr - 2,
-                                 leg_ymin = ylim[2] - 1.5,
-                                 leg_ymax = ylim[2] - 0.25){
+                                 leg_ymin = y_lim[2] - 1.5,
+                                 leg_ymax = y_lim[2] - 0.25,
+                                 ...){
 
   type <- match.arg(type)
 
@@ -188,10 +207,18 @@ plot_survey_fit_mcmc <- function(model,
   #   filter(fleet == surv_index) |>
   #   select(-fleet)
 
-  x_breaks <- obs$yr
-  x_labels <- obs$yr
-  x_labels[x_labels == 2012] <- ""
-  y_breaks <- seq(min(ylim), max(ylim), by = 1)
+  x_breaks <- x_lim[1]:x_lim[2]
+  x_labels <- x_breaks
+  if(is.null(x_labs_mod)){
+    x_labels[!x_labels %in% unique(obs$yr)] <- ""
+  }else{
+    x_labels[x_labels %% x_labs_mod != 0] <- ""
+  }
+  if(!is.null(remove_yr_labels)){
+    x_labels[x_labels %in% remove_yr_labels] <- ""
+  }
+
+  y_breaks <- seq(y_lim[1], y_lim[2], y_labs_by)
 
   g <- ggplot(obs,
               aes(x = yr,
@@ -304,11 +331,21 @@ plot_survey_fit_mcmc <- function(model,
                        labels = x_labels) +
     scale_y_continuous(breaks = y_breaks,
                        expand = c(0, 0)) +
-    coord_cartesian(ylim = ylim) +
+    coord_cartesian(ylim = y_lim,
+                    clip = "off") +
     xlab("Year") +
     ylab(ifelse(type == "acoustic",
                 "Biomass index (Mt)",
-                "Relative Age-1 index (billions of fish)"))
+                "Relative Age-1 index (billions of fish)")) +
+    theme(axis.text.x = element_text(vjust = vjust_x_labels),
+          axis.title.x = element_text(vjust = vjust_x_labels))
+
+  # Add a major tick mark every `x_labs_mod` years
+  g <- g |>
+    add_major_ticks(x_breaks = x_breaks,
+                    modulo = x_labs_mod,
+                    prop = tick_prop,
+                    ...)
 
   if(show_legend){
     x_rng <- layer_scales(g)$x$range$range
@@ -316,8 +353,8 @@ plot_survey_fit_mcmc <- function(model,
     symbol_x_start <- symbol_x - 1
     symbol_x_end <- symbol_x + 1
     text_x <- symbol_x_end + 0.25
-    type_off <- diff(ylim) / 5
-    symbol_y <- max(ylim) - 0.2 * type_off
+    type_off <- diff(y_lim) / 5
+    symbol_y <- max(y_lim) - 0.2 * type_off
 
     g <- g +
       # White rectangle acts as legend background

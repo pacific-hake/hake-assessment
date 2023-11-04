@@ -15,6 +15,7 @@
 #' up or down. Negative numbers move down
 #' @param remove_yr_labels A vector of years to remove the ,labels for in
 #' case they are overlapping
+#' @param x_labs_mod How many years between year labels on the x-axis
 #' @param alpha The transparency for the error bars (non-squid). Transparency
 #' for the squid error bars are 1
 #' @param point_size The size of the points (See [ggplot2::geom_point()] for
@@ -117,7 +118,9 @@ plot_survey_biomass <- function(model,
     coord_cartesian(ylim = y_lim,
                     clip = "off") +
     ylab(y_label) +
-    xlab("Year")
+    xlab("Year") +
+    theme(axis.text.x = element_text(vjust = vjust_x_labels),
+          axis.title.x = element_text(vjust = vjust_x_labels))
 
   # Add a major tick mark every `x_labs_mod` years
   g <- g |>

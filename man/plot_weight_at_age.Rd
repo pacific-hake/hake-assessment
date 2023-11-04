@@ -9,7 +9,14 @@ plot_weight_at_age(
   ages = NULL,
   bold_ages = NULL,
   cols = c("purple", "darkblue", "yellow", "darkgreen"),
+  x_lim = c(start_yr_age_comps, last_data_yr),
+  y_lim = c(0, 2),
+  y_labs_by = 0.25,
   x_labels_mod = 5,
+  x_labs_mod = 5,
+  tick_prop = 1,
+  vjust_x_labels = -1.5,
+  remove_yr_labels = NULL,
   age_label_font_size = 4,
   age_label_side = "right",
   ...
@@ -28,7 +35,24 @@ these ages will be thicker and the labels for them will be bold as well}
 \item{cols}{A vector of colors to base the color ramp on. See
 \code{\link[ggplot2:scale_gradient]{ggplot2::scale_color_gradientn()}}}
 
+\item{x_lim}{The min and max limits as a vector for the x-axis}
+
+\item{y_lim}{The min and max limits as a vector for the y-axis}
+
 \item{x_labels_mod}{Show every nth year where n is this number}
+
+\item{x_labs_mod}{How many years between year labels on the x-axis}
+
+\item{tick_prop}{A value that the length of the major tick marks are
+multiplied by. This proportion must be set by trial and error. Make sure
+to change \code{vjust_x_labels} so the labels are not overlapping the lines or
+are too far away from the lines}
+
+\item{vjust_x_labels}{Adjustment to move the x-axis tick labels and label
+up or down. Negative numbers move down}
+
+\item{remove_yr_labels}{A vector of years to remove the ,labels for in
+case they are overlapping}
 
 \item{age_label_font_size}{The font size for the labels pointing to the age
 lines}
@@ -37,6 +61,8 @@ lines}
 One of "none", "both", "left", or "right"}
 
 \item{...}{Arguments passed to \code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}}}
+
+\item{y_lab_by}{The amount between each y-axis label}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

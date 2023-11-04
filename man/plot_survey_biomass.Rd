@@ -32,6 +32,8 @@ plot_survey_biomass(
 \item{y_lim}{A vector of two for the minimum and maximum values
 for the y-axis on the plot}
 
+\item{x_labs_mod}{How many years between year labels on the x-axis}
+
 \item{alpha}{The transparency for the error bars (non-squid). Transparency
 for the squid error bars are 1}
 

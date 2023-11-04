@@ -10,7 +10,13 @@ plot_survey_fit_mcmc(
   type = c("age1", "acoustic"),
   n_posts = NULL,
   show_legend = TRUE,
-  ylim = c(0, 5),
+  x_lim = c(survey_start_yr, survey_end_yr),
+  y_lim = c(0, 5),
+  x_labs_mod = 5,
+  y_labs_by = 0.5,
+  tick_prop = 1,
+  vjust_x_labels = -1.5,
+  remove_yr_labels = NULL,
   post_line_width = 0.1,
   post_line_col = "black",
   post_line_alpha = 0.1,
@@ -35,8 +41,9 @@ plot_survey_fit_mcmc(
   glow_alpha = 1,
   leg_xmin = survey_start_yr - 1,
   leg_xmax = survey_end_yr - 2,
-  leg_ymin = ylim[2] - 1.5,
-  leg_ymax = ylim[2] - 0.25
+  leg_ymin = y_lim[2] - 1.5,
+  leg_ymax = y_lim[2] - 0.25,
+  ...
 )
 }
 \arguments{
@@ -50,8 +57,26 @@ of posteriors, all posterior lines will be shown}
 
 \item{show_legend}{Logical. If \code{TRUE}, show the legend}
 
-\item{ylim}{A vector of two values representing the minimum and maximum
-values to appear on the y-axis}
+\item{x_lim}{A vector of two for the minimum and maximum values
+for the x-axis on the plot}
+
+\item{y_lim}{A vector of two for the minimum and maximum values
+for the y-axis on the plot}
+
+\item{x_labs_mod}{How many years between year labels on the x-axis}
+
+\item{y_labs_by}{How often to have a label on the y-axis}
+
+\item{tick_prop}{A value that the length of the major tick marks are
+multiplied by. This proportion must be set by trial and error. Make sure
+to change \code{vjust_x_labels} so the labels are not overlapping the lines or
+are too far away from the lines}
+
+\item{vjust_x_labels}{Adjustment to move the x-axis tick labels and label
+up or down. Negative numbers move down}
+
+\item{remove_yr_labels}{A vector of years to remove the ,labels for in
+case they are overlapping}
 
 \item{post_line_width}{The width of the posterior lines}
 
