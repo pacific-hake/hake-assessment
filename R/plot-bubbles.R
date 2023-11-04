@@ -75,7 +75,7 @@ plot_bubbles <- function(d,
   if(is.null(x_labs_mod)){
     x_labels[!x_labels %in% unique(d$Year)] <- ""
   }else{
-    x_labels[!x_labels %in% seq(xlim[1], xlim[2], x_labs_mod)] <- ""
+    x_labels[x_labels %% x_labs_mod != 0] <- ""
   }
   if(!is.null(remove_yr_labels)){
     x_labels[x_labels %in% remove_yr_labels] <- ""

@@ -7,7 +7,7 @@
 plot_age_comp_bubbles(
   model,
   type = c("fishery", "survey"),
-  mcmc = FALSE,
+  proportions = TRUE,
   inc_mean_age_line = TRUE,
   ...
 )
@@ -17,8 +17,8 @@ plot_age_comp_bubbles(
 
 \item{type}{Either \code{fishery} or \code{survey}}
 
-\item{mcmc}{Logical. If \code{TRUE}, plt the MCMC median numbers-at-age. If
-\code{FALSE} plot the input data (either fishery or survey as given by \code{type})}
+\item{proportions}{Logical. If \code{TRUE}, If \code{TRUE} plot the input data
+proportions-at-age. If \code{FALSE} plot the estimated median numbers-at-age}
 
 \item{inc_mean_age_line}{Logical. If \code{TRUE}, plot the mean age line
 over the bubbles}

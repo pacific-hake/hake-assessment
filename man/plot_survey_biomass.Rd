@@ -7,16 +7,21 @@
 plot_survey_biomass(
   model,
   index = c("age1", "age2"),
+  x_lim = c(survey_start_yr, survey_end_yr),
   y_lim = c(0, 3),
-  remove_yr_labels = NULL,
+  x_labs_mod = 5,
   alpha = 0.3,
+  tick_prop = 1,
+  vjust_x_labels = -1.5,
+  remove_yr_labels = NULL,
   point_size = ts_single_model_pointsize,
   point_color = ts_single_model_pointcolor,
   point_shape = ts_single_model_pointshape,
   point_stroke = ts_single_model_pointstroke,
   line_width = ts_single_model_linewidth,
   line_color = ts_single_model_linecolor,
-  line_type = ts_single_model_linetype
+  line_type = ts_single_model_linetype,
+  ...
 )
 }
 \arguments{
@@ -27,11 +32,19 @@ plot_survey_biomass(
 \item{y_lim}{A vector of two for the minimum and maximum values
 for the y-axis on the plot}
 
-\item{remove_yr_labels}{A vector of years to not show the year labels for on the
-x-axis. This is to prevent label overlap}
-
 \item{alpha}{The transparency for the error bars (non-squid). Transparency
 for the squid error bars are 1}
+
+\item{tick_prop}{A value that the length of the major tick marks are
+multiplied by. This proportion must be set by trial and error. Make sure
+to change \code{vjust_x_labels} so the labels are not overlapping the lines or
+are too far away from the lines}
+
+\item{vjust_x_labels}{Adjustment to move the x-axis tick labels and label
+up or down. Negative numbers move down}
+
+\item{remove_yr_labels}{A vector of years to remove the ,labels for in
+case they are overlapping}
 
 \item{point_size}{The size of the points (See \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} for
 more details)}

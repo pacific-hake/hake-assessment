@@ -159,7 +159,7 @@ three large cohorts making their way through the stock. The 2010 cohort is
 the largest followed by the 2014 cohort and the 2016 cohort. The 2020 cohort
 is large but highly uncertain.
 
-```{r main-age-comp-bubbles-fig, fig.cap = "(ref:main-age-comp-bubbles-cap)", fig.height = 8}
+```{r main-age-comp-bubbles-fig, fig.cap = "(ref:main-age-comp-bubbles-cap)", fig.height = 11}
 
 p_lst <- NULL
 p_lst[[1]] <-
@@ -168,14 +168,21 @@ p_lst[[1]] <-
                         leg_pos = "top", 
                         inc_mean_age_line = TRUE,
                         point_alpha = 0.4,
-                        xlim = c(start_yr_age_comps, last_data_yr))
+                        xlim = c(start_yr_age_comps, last_data_yr),
+                        tick_prop = 0.7,
+                        vjust_x_labels = -1.5,
+                        remove_yr_labels = NULL)
 p_lst[[2]] <-
   plot_age_comp_bubbles(base_model,
                         type = "survey",
                         clines = c(1999, 2010, 2014, 2016, 2020),
                         inc_mean_age_line = TRUE,
                         point_alpha = 0.4,
-                        xlim = c(start_yr_age_comps, last_data_yr))
+                        xlim = c(start_yr_age_comps, last_data_yr),
+                        tick_prop = 0.7,
+                        vjust_x_labels = -1.5,
+                        remove_yr_labels = NULL)
+                        
 plot_grid(plotlist = p_lst, nrow = 2)
 ```
 
@@ -189,7 +196,14 @@ estimate has decreased from 2019 to 2021.
 
 ```{r main-survey-extrap-biomass-fig,  fig.cap = "(ref:main-survey-extrap-biomass-cap)"}
 
-plot_survey_biomass(base_model, index = "age2")
+plot_survey_biomass(base_model,
+                    index = "age2",
+                    y_lim = c(0, 3),
+                    x_labs_mod = 5,
+                    alpha = 0.3,
+                    tick_prop = 1,
+                    vjust_x_labels = -1.5,
+                    remove_yr_labels = NULL)
 ```
 
 (ref:main-survey-age1-cap) Relative index of age-1 fish (numbers of fish,
@@ -203,7 +217,14 @@ has increased from 2019 to 2021.
 
 ```{r main-survey-age1-fig, fig.cap = "(ref:main-survey-age1-cap)"}
 
-plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
+plot_survey_biomass(base_model,
+                    index = "age1",
+                    y_lim = c(0, 16),
+                    x_labs_mod = 5,
+                    alpha = 0.3,
+                    tick_prop = 1,
+                    vjust_x_labels = -1.5,
+                    remove_yr_labels = NULL)
 ```
 
 (ref:main-maturity-ogive-cap) Fraction of fish that are mature at each age
@@ -508,12 +529,20 @@ p[[1]] <-
   plot_pearson_bubbles(base_model,
                        type = "fishery",
                        leg_pos = "top",
-                       xlim = c(start_yr_age_comps, last_data_yr))
+                       xlim = c(start_yr_age_comps, last_data_yr),
+                        tick_prop = 0.7,
+                        vjust_x_labels = -1.5,
+                        remove_yr_labels = NULL)
+
 p[[2]] <-
   plot_pearson_bubbles(base_model,
                        type = "survey",
                        alpha = 0.7,
-                       xlim = c(start_yr_age_comps, last_data_yr))
+                       xlim = c(start_yr_age_comps, last_data_yr),
+                        tick_prop = 0.7,
+                        vjust_x_labels = -1.5,
+                        remove_yr_labels = NULL)
+
 plot_grid(plotlist = p, ncol = 1)
 ```
 
@@ -706,11 +735,14 @@ decreasing in numbers as they pass through the stock from one year to the
 next. The mean age has fluctuated over time and is currently rising and at
 approximately age 3.
 
-```{r main-numbers-at-age-fig, fig.cap = "(ref:main-numbers-at-age-cap)", fig.height = 8}
+```{r main-numbers-at-age-fig, fig.cap = "(ref:main-numbers-at-age-cap)", fig.height = 11}
 
 plot_age_comp_bubbles(base_model, type = "fishery",
-                      mcmc = TRUE,
-                      leg_pos = "top")
+                      proportions = FALSE,
+                      leg_pos = "top",
+                      tick_prop = 0.3,
+                      vjust_x_labels = -1.2,
+                      remove_yr_labels = NULL)
 ```
 
 (ref:main-recruitment-scale-all-cap) Medians (solid circles) of the

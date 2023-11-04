@@ -2,8 +2,8 @@
 #'
 #' @param model A model object as returned from [create_rds_file()]
 #' @param type Either `fishery` or `survey`
-#' @param mcmc Logical. If `TRUE`, plt the MCMC median numbers-at-age. If
-#' `FALSE` plot the input data (either fishery or survey as given by `type`)
+#' @param proportions Logical. If `TRUE`, If `TRUE` plot the input data
+#' proportions-at-age. If `FALSE` plot the estimated median numbers-at-age
 #' @param inc_mean_age_line Logical. If `TRUE`, plot the mean age line
 #' over the bubbles
 #' @param ... Additional parameters passed to [plot_bubbles()]
@@ -12,7 +12,7 @@
 #' @export
 plot_age_comp_bubbles <- function(model,
                                   type = c("fishery", "survey"),
-                                  mcmc = FALSE,
+                                  proportions = TRUE,
                                   inc_mean_age_line = TRUE,
                                   ...){
 
@@ -24,25 +24,9 @@ plot_age_comp_bubbles <- function(model,
   }
 
   # Ages to show in the plot
-  val_col_nm <- ifelse(mcmc, "Numbers (billions)", "Proportion")
+  val_col_nm <- ifelse(proportions, "Proportion", "Numbers (billions)")
   val_col_sym <- sym(val_col_nm)
-  if(mcmc){
-    if(type == "survey"){
-      stop("`survey` Numbers-at-age for MCMC not available. You would ",
-           "need to add that to the extra-mcmc extraction code first",
-           call. = FALSE)
-    }
-
-    d <- model$extra_mcmc$natage_med |>
-      rename(Year = yr) |>
-      pivot_longer(-Year,
-                   names_to = "Age",
-                   values_to = val_col_nm) |>
-      mutate(Age = as.numeric(Age)) |>
-      mutate(Age = factor(Age)) |>
-      mutate(!!val_col_sym := !!val_col_sym / 1e3)
-
-  }else{
+  if(proportions){
     pat <- "^a(\\d+)$"
     age_inds <- grep(pat, names(model$dat$agecomp))
     ages_chr <- gsub(pat, "\\1", names(model$dat$agecomp[age_inds]))
@@ -68,6 +52,20 @@ plot_age_comp_bubbles <- function(model,
                    names_to = "Age",
                    values_to = val_col_nm) |>
       mutate(Age = as.numeric(Age))
+  }else{
+    if(type == "survey"){
+      stop("`survey` Numbers-at-age for MCMC not available. You would ",
+           "need to add that to the extra-mcmc extraction code first",
+           call. = FALSE)
+    }
+
+    d <- model$extra_mcmc$natage_med |>
+      rename(Year = yr) |>
+      pivot_longer(-Year,
+                   names_to = "Age",
+                   values_to = val_col_nm) |>
+      mutate(Age = as.numeric(Age)) |>
+      mutate(!!val_col_sym := !!val_col_sym / 1e3)
   }
 
   if(inc_mean_age_line){

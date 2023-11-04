@@ -7,8 +7,14 @@
 #' @param index The index type to plot
 #' @param y_lim A vector of two for the minimum and maximum values
 #' for the y-axis on the plot
-#' @param remove_yr_labels A vector of years to not show the year labels for on the
-#' x-axis. This is to prevent label overlap
+#' @param tick_prop A value that the length of the major tick marks are
+#' multiplied by. This proportion must be set by trial and error. Make sure
+#' to change `vjust_x_labels` so the labels are not overlapping the lines or
+#' are too far away from the lines
+#' @param vjust_x_labels Adjustment to move the x-axis tick labels and label
+#' up or down. Negative numbers move down
+#' @param remove_yr_labels A vector of years to remove the ,labels for in
+#' case they are overlapping
 #' @param alpha The transparency for the error bars (non-squid). Transparency
 #' for the squid error bars are 1
 #' @param point_size The size of the points (See [ggplot2::geom_point()] for
@@ -27,16 +33,21 @@
 #' @export
 plot_survey_biomass <- function(model,
                                 index = c("age1", "age2"),
+                                x_lim = c(survey_start_yr, survey_end_yr),
                                 y_lim = c(0, 3),
-                                remove_yr_labels = NULL,
+                                x_labs_mod = 5,
                                 alpha = 0.3,
+                                tick_prop = 1,
+                                vjust_x_labels = -1.5,
+                                remove_yr_labels = NULL,
                                 point_size = ts_single_model_pointsize,
                                 point_color = ts_single_model_pointcolor,
                                 point_shape = ts_single_model_pointshape,
                                 point_stroke = ts_single_model_pointstroke,
                                 line_width = ts_single_model_linewidth,
                                 line_color = ts_single_model_linecolor,
-                                line_type = ts_single_model_linetype){
+                                line_type = ts_single_model_linetype,
+                                ...){
 
   index <- match.arg(index)
   y_label <- ifelse(index == "age1",
@@ -78,15 +89,20 @@ plot_survey_biomass <- function(model,
                    color = line_color,
                    linetype = line_type,
                    lineend = "round")
-
   }
 
-  x_breaks <- min(ests$year):max(ests$year)
+  x_breaks <- x_lim[1]:x_lim[2]
   x_labels <- x_breaks
-  x_labels[!x_labels %in% ests$year] <- ""
+  if(is.null(x_labs_mod)){
+    x_labels[!x_labels %in% unique(ests$year)] <- ""
+  }else{
+    x_labels[x_labels %% x_labs_mod != 0] <- ""
+  }
   if(!is.null(remove_yr_labels)){
     x_labels[x_labels %in% remove_yr_labels] <- ""
   }
+
+  y_breaks <- seq(y_lim[1], y_lim[2], brk_interval)
 
   g <- g +
     geom_point(aes(y = obs),
@@ -96,11 +112,19 @@ plot_survey_biomass <- function(model,
                stroke = point_stroke) +
     scale_x_continuous(breaks = x_breaks,
                        labels = x_labels) +
-    scale_y_continuous(breaks = seq(y_lim[1], y_lim[2], brk_interval),
+    scale_y_continuous(breaks = y_breaks,
                        expand = c(0, 0)) +
-    coord_cartesian(ylim = y_lim) +
+    coord_cartesian(ylim = y_lim,
+                    clip = "off") +
     ylab(y_label) +
     xlab("Year")
+
+  # Add a major tick mark every `x_labs_mod` years
+  g <- g |>
+    add_major_ticks(x_breaks = x_breaks,
+                    modulo = x_labs_mod,
+                    prop = tick_prop,
+                    ...)
 
   g
 }
