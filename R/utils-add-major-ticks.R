@@ -11,6 +11,8 @@
 #' @param prop A value between 0 and 1 to multiply the length of the major
 #' tick lines by. This is used in case the full length ticks are overlapping
 #' the tick labels
+#' @param major_tick_thickness The thickness of the major tick marks
+#' @param ... Absorbs arguments meant for other functions
 #'
 #' @return A [ggplot2::ggplot()] object, the original plot `g` with x-axis
 #' ticks modified to be minor and major ticks
@@ -19,10 +21,27 @@
 add_major_ticks <- function(g,
                             x_breaks = NULL,
                             modulo = 5,
-                            prop = 0.8){
+                            prop = 0.8,
+                            major_tick_thickness = 0.5,
+                            ...){
 
   gr <- ggplot_build(g)
+  scale_limits <- gr$plot$scales$scales[[2]]$limits
+  if(!is.null(scale_limits)){
+    if(!is.na(scale_limits[1]) && !is.na(scale_limits[2])){
+      warning("The plot has `limits` set to non-`NA`values in the ",
+              "`scale_y_continuous()` function, which prevents major ",
+              "ticks from being drawn as those limits clip the y-axis ",
+              "values to the data. Offending function call is:\n\n",
+              deparse(sys.calls()[[sys.nframe()-1]]),
+              "\n")
+    }
+  }
 
+  if(gr$layout$coord$clip == "on"){
+    g <- g +
+      coord_cartesian(clip = "off")
+  }
   x_limits <- gr$layout$panel_params[[1]]$x.range
   y_limits <- gr$layout$panel_params[[1]]$y.range
 
@@ -40,7 +59,7 @@ add_major_ticks <- function(g,
                    aes(x = group,
                        ymax = y_limits[1],
                        ymin = end),
-                   size = 0.5,
+                   size = major_tick_thickness,
                    inherit.aes = FALSE)
 
 }
