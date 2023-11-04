@@ -67,8 +67,7 @@ plot_age_comp_bubbles <- function(model,
       pivot_longer(-Year,
                    names_to = "Age",
                    values_to = val_col_nm) |>
-      mutate(Age = as.numeric(Age)) |>
-      mutate(Age = factor(Age))
+      mutate(Age = as.numeric(Age))
   }
 
   if(inc_mean_age_line){

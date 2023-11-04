@@ -8,7 +8,10 @@ plot_pearson_bubbles(
   model,
   type = c("fishery", "survey"),
   clines = age_bubble_cohorts,
-  by = 5,
+  tick_prop = 1,
+  vjust_x_labels = -1.5,
+  remove_yr_labels = NULL,
+  x_labs_mod = 5,
   leg_pos = "none",
   alpha = 0.3,
   xlim = c(1975, year(Sys.Date())),
@@ -28,7 +31,18 @@ plot_pearson_bubbles(
 
 \item{clines}{An optional vector of years to draw cohort lines through}
 
-\item{by}{How many years between year labels on the x-axis}
+\item{tick_prop}{A value that the length of the major tick marks are
+multiplied by. This proportion must be set by trial and error. Make sure
+to change \code{vjust_x_labels} so the labels are not overlapping the lines or
+are too far away from the lines}
+
+\item{vjust_x_labels}{Adjustment to move the x-axis tick labels and label
+up or down. Negative numbers move down}
+
+\item{remove_yr_labels}{A vector of years to remove the ,labels for in
+case they are overlapping}
+
+\item{x_labs_mod}{How many years between year labels on the x-axis}
 
 \item{leg_pos}{See the \code{leg_pos} parameter of
 \code{\link[ggplot2:theme]{ggplot2::theme()}}}

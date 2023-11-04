@@ -6,7 +6,14 @@
 to be used in a plot, and the custom tick data frame to be used to draw
 the lines outside the ggplot panel area using \code{\link[ggplot2:geom_linerange]{ggplot2::geom_linerange()}}}
 \usage{
-add_major_ticks(g, x_breaks = NULL, modulo = 5, prop = 0.8)
+add_major_ticks(
+  g,
+  x_breaks = NULL,
+  modulo = 5,
+  prop = 0.8,
+  major_tick_thickness = 0.5,
+  ...
+)
 }
 \arguments{
 \item{g}{A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object}
@@ -21,6 +28,10 @@ is a major tick}
 \item{prop}{A value between 0 and 1 to multiply the length of the major
 tick lines by. This is used in case the full length ticks are overlapping
 the tick labels}
+
+\item{major_tick_thickness}{The thickness of the major tick marks}
+
+\item{...}{Absorbs arguments meant for other functions}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object, the original plot \code{g} with x-axis

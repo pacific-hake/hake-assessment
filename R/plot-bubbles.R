@@ -4,6 +4,12 @@
 #' names `Year`, `Age`, and the column name given by `val_col_nm`
 #' @param clines An optional vector of years to draw cohort lines through
 #' @param val_col_nm The name of the column in `d` to use for the values
+#' @param tick_prop A value that the length of the major tick marks are
+#' multiplied by. This proportion must be set by trial and error. Make sure
+#' to change `vjust_x_labels` so the labels are not overlapping the lines or
+#' are too far away from the lines
+#' @param vjust_x_labels Adjustment to move the x-axis tick labels and label
+#' up or down. Negative numbers move down
 #' @param remove_yr_labels A vector of years to remove the ,labels for in
 #' case they are overlapping
 #' @param mean_age A two-column tibble with column names `Year` and `Age`
@@ -16,7 +22,7 @@
 #' @param diag_line_width The line width for the cohort diagonal lines
 #' @param diag_line_type The line type for the cohort diagonal lines
 #' @param yrs A vector of 2, for the years to show on the plot
-#' @param by How many years between year labels on the x-axis
+#' @param x_labs_mod How many years between year labels on the x-axis
 #' @param leg_pos See the `legend.position` parameter in [ggplot2::theme()]
 #' @param point_alpha Transparency of the bubble fill
 #' @param point_fill Color of the bubble fill
@@ -30,6 +36,8 @@
 plot_bubbles <- function(d,
                          clines = age_bubble_cohorts,
                          val_col_nm = "Proportion",
+                         tick_prop = 1,
+                         vjust_x_labels = -1.5,
                          remove_yr_labels = NULL,
                          mean_age = NULL,
                          mean_age_line_color = "red",
@@ -39,7 +47,7 @@ plot_bubbles <- function(d,
                          diag_line_width = age_diag_line_width,
                          diag_line_type = age_diag_line_type,
                          yrs = NULL,
-                         by = 5,
+                         x_labs_mod = 5,
                          leg_pos = "none",
                          point_alpha = main_alpha,
                          point_fill = main_fill,
@@ -64,10 +72,17 @@ plot_bubbles <- function(d,
 
   x_breaks <- xlim[1]:xlim[2]
   x_labels <- x_breaks
-  x_labels[!x_labels %in% unique(d$Year)] <- ""
+  if(is.null(x_labs_mod)){
+    x_labels[!x_labels %in% unique(d$Year)] <- ""
+  }else{
+    x_labels[!x_labels %in% seq(xlim[1], xlim[2], x_labs_mod)] <- ""
+  }
   if(!is.null(remove_yr_labels)){
     x_labels[x_labels %in% remove_yr_labels] <- ""
   }
+
+  y_breaks <- min(d$Age):max(d$Age)
+  y_lim <- c(min(d$Age), max(d$Age))
 
   g <- ggplot(d,
               aes(x = Year,
@@ -78,11 +93,24 @@ plot_bubbles <- function(d,
                fill = point_fill,
                color = point_color) +
     scale_x_continuous(breaks = x_breaks,
-                       labels = x_labels,
-                       expand = c(0.025, 0)) +
-    coord_cartesian(xlim = xlim) +
-    expand_limits(x = xlim[1]:xlim[2]) +
-    scale_size_continuous(range = c(0.5, 10))
+                       labels = x_labels) +
+    scale_y_continuous(breaks = y_breaks,
+                       labels = y_breaks) +
+    coord_cartesian(#xlim = xlim,
+                    ylim = y_lim,
+                    # `clip` must be "off" or the different length tick
+                    #  marks will not work. All tick marks will be the same
+                    #  length
+                    clip = "off") +
+    theme(axis.text.x = element_text(vjust = vjust_x_labels),
+          axis.title.x = element_text(vjust = vjust_x_labels))
+
+  # Add a major tick mark every `x_labs_mod` years
+  g <- g |>
+    add_major_ticks(x_breaks = x_breaks,
+                    modulo = x_labs_mod,
+                    prop = tick_prop,
+                    ...)
 
   if(!is.null(clines)){
     age_range <- range(as.numeric(as.character(d$Age)))
@@ -104,7 +132,8 @@ plot_bubbles <- function(d,
                     group = factor(cohort)),
                 linewidth = diag_line_width,
                 color = diag_line_color,
-                linetype = diag_line_type)
+                linetype = diag_line_type,
+                show.legend = FALSE)
   }
 
   if(!is.null(mean_age)){
@@ -140,7 +169,7 @@ plot_bubbles <- function(d,
   }
 
   g <- g +
-    theme(legend.position = leg_pos, ...)
+    theme(legend.position = leg_pos)
 
   g
 }
