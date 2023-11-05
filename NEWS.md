@@ -1,9 +1,16 @@
-## hake assessment repository news
+## News for the `hake-assessment` repository
+
+>Quicklinks (press alt-left arrow to come back here):  
+>- [Complete rewrite of code in 2023](#complete-rewrite-of-code-in-2023)  
+>- [Details of the `render()` function](#render-details)
+>  - [Main assessment document](#main-assessment-document)
+>  - [Beamer presentations](#beamer-presentations)
+>    - [Multiple columns on slides](#multiple-columns-on-slides)
 
 ## Complete rewrite of code in 2023
 
 The following list contains the details of all the changes that were
-implemented in the hake assessment codebase in 2023 between the 2023 and
+implemented in the `hake-assessment` codebase in 2023 between the 2023 and
 2024 assessment seasons.
 
 * The document is built using [Bookdown](https://bookdown.org/), an R package
@@ -136,13 +143,14 @@ implemented in the hake assessment codebase in 2023 between the 2023 and
 * All old, unused functions and other code has been removed.
 * All presentations have been converted to bookdown projects as well. The
   method to build those is identical to the method to build the main
-  document. (`hake::render()` in the directory the presentation resides in).
+  document. See the section below for details.
 * Presentations have been broken down into multiple files for each. The files
   represent individual sections within the beamer presentation so it
   is easy to find code by looking at the name of the group of dots on the
   slides that your figure/table/text is in; the filename will be the same as
   those section names.
 
+<a name="render-details"></a>
 ## Details of the `render()` function
 
 ### Main assessment document
@@ -181,8 +189,7 @@ two-steps internally:
 ### Beamer presentations
 The `render()` function works for the presentations as well. In this case,
 the steps are the same except that the post-processor function used is
-`hake::post_process_beamer()`. For the presentations, the `documentclass` is
-`beamer`. The post processing steps performed are:
+`hake::post_process_beamer()`. The post processing steps performed are:
 * Include some missing LaTeX packages and table formatting macros,m and other
   custom LaTeX commands/macros.
 * Insert the DFO and NOAA logos and am optional picture on the first slide.
@@ -197,3 +204,24 @@ the steps are the same except that the post-processor function used is
   together (e.g. 250,000~t), this fixes them so LaTeX does what it is
   supposed to do with them, keep them together on a line in the rendered PDF.
   
+To debug/test slides, the same procedure is followed as with the main
+document, run `gotest()` and a skeleton copy of the beamer project will be
+made to a temporary directory so you can test how text, figures, and tables
+look on your slides.
+
+#### Multiple columns on slides
+Multiple columns on a slide are implemented using triple-colon HTML syntax.
+See the [SRG management presentation](https://github.com/pacific-hake/hake-assessment/blob/7e3d56f798390f51c5a914ff07a2225ce8e6c0ad/beamer/srg/management/010-past-management.rmd#L18)
+for examples of this. You must follow this format:
+
+`:::::: {.columns}`  
+`::: {.column width="40%"}`  
+Content of left column which is 40% of the width of the page  
+`:::`  
+`::: {.column width="60%"}`  
+Content of right column which is 60% of the width of the page  
+`:::`  
+`::::::`
+
+See [here](https://enzedonline.com/en/tech-blog/adding-multi-column-formats-to-r-markdown-documents/)
+for many more details on this format.
