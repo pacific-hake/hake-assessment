@@ -71,7 +71,8 @@ clean <- function(...,
                 "JTC-stock-assessment-JMC",
                 "JTC-stock-assessment-JMC-Canada",
                 "JTC-stock-assessment-JMC-US",
-                "test")
+                "test",
+                "fmin")
 
   # The extensions of the above docs to delete
   extensions_pat <- paste0("(",
