@@ -1,0 +1,33 @@
+# Past management
+
+## Total allowable catch
+:::::: {.columns}
+::: {.column width="40%"}
+
+* March `r last_assess_yr`
+  - Default harvest rule TAC = `r f((catch_targets_df %>% filter(Year == last_assess_yr))[["Default HCR TAC"]])` t
+  - Sum of unilateral TACs = `r last_yr_tac` t
+* When default HR suggests a large catch, TAC is often set less
+* Catches are often less than the TAC
+* Box colors correspond to year in the time series (darker are more recent)
+:::
+
+::: {.column width="50%"}
+```{r jmc-tac-vs-realized-catch, fig.height = 4, fig.width = 4, out.height = "85%"}
+
+plot_management_catch_vs_tac_1_to_1(catch_targets_df,
+                                    yrs_nudge_right = c(2006, 2010, 2011,
+                                                        2012, 2014, 2019,
+                                                        2020))
+```
+:::
+::::::
+
+## Total allowable catch
+```{r jmc-tac-vs-realized-catch-ts, fig.height = 3.5, fig.width = 7.5, out.height = "80%"}
+
+plot_management_catch_vs_tac(catch_targets_df,
+                             curr_assess_biomass = base_model$catch_default_policy[1],
+                             leg_pos = c(0.12, 0.87),
+                             leg_font_size = 8)
+```

@@ -1,0 +1,94 @@
+# TV Selectivity ($\Phi$)
+
+## Flexibility in time-varying selectivity -- $\Phi$
+
+* \textcolor{red}{2017 assessment} -- deviation of time-varying fishery
+  selectivity was increased from $\phi=0.03$ to $\phi=0.20$, to reduce an
+  anomalously high estimate of 2014 recruitment driven solely by fishery
+  catch-at-age data
+* \textcolor{red}{2018 assessment} -- changed from logistic space
+  ($\phi=0.20$) to standard space ($\Phi=1.40$)
+* \textcolor{red}{2019-`r assess_yr` assessments} -- retained the 2018
+  value of $\Phi=1.40$
+
+Here we test alternative values of $\Phi$
+
+## Alternative deviations for selectivity, $\Phi$
+```{r phi-biomass-fig, fig.height = 3, out.height = "85%"}
+plot_biomass(model_lst = list(base_model,
+                              sens_models[[3]][[2]],
+                              sens_models[[3]][[3]],
+                              sens_models[[3]][[4]]),
+             model_names = c(base_model_name,
+                             sens_models_desc[[3]][1],
+                             sens_models_desc[[3]][2],
+                             sens_models_desc[[3]][3]),
+             x_expansion = 4,
+             ylim = c(0, 6),
+             y_breaks = seq(0, 6, 1),
+             tick_prop = 1.5,
+             vjust_x_labels = 0,
+             leg_font_size = 5,
+             leg_pos = c(0.7, 0.85),
+             rev_colors = TRUE,
+             ribbon_line_type = 0) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+## Alternative deviations for selectivity, $\Phi$
+```{r phi-recr-fig, fig.height = 3, out.height = "85%"}
+plot_recruitment(d_obj = d_obj_sens_recr[[3]],
+                 x_expansion = 2,
+                 ylim = c(0,45),
+                 tick_prop = 1.5,
+                 vjust_x_labels = -0.25,
+                 leg_font_size = 9,
+                 leg_pos = c(0.13, 0.80),
+                 inc_means = FALSE,
+                 rev_colors = TRUE) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+## Alternative deviations for selectivity -- age-2+ biomass index fit
+```{r phi-survey-fig, fig.height = 3, out.height = "85%"}
+plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
+                       survey_type = "age2",
+                       point_stroke = 0,
+                       x_expansion = 2,
+                       tick_prop = 1.5,
+                       vjust_x_labels = -0.5,
+                       leg_pos = c(0.74, 0.25),
+                       rev_colors = TRUE,
+                       leg_font_size = 6) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+## Alternative deviations for selectivity, $\Phi$
+```{r phi-sensitivity-table, results = "asis"}
+table_param_est(models = list(base_model,
+                              sens_models[[3]][[2]],
+                              sens_models[[3]][[3]],
+                              sens_models[[3]][[4]]),
+                model_nms = c(base_model_name,
+                              sens_models_desc[[3]][1],
+                              sens_models_desc[[3]][2],
+                              sens_models_desc[[3]][3]),
+                end_yr = end_yr,
+                show_loglike = FALSE,
+                digits = 3,
+                font_size = 4,
+                right_cols_cm = 1.25,
+                header_font_size = 5,
+                section_line_above = FALSE,
+                section_line_below = FALSE)
+```
+

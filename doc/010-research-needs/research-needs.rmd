@@ -1,0 +1,68 @@
+<!-- This section is loaded from within
+executive-summary/executive-summary.rmd and also from
+research-needs-section/research-needs-loader.rmd -->
+
+There are many research projects that could improve the stock assessment for
+`r sp` and lead to improved biological understanding and decision-making. The
+top three are:
+
+1. Continue to conduct research to evaluate ways to improve recent, current,
+and future recruitment estimates for use in stock assessment. This could
+include the development of time series of recruitment indices, time series of
+informative environmental or ecosystem variables, and models that have
+predictive skill (e.g., Vestfals et al, under review). Explorations should
+also consider options for incorporating information on recruitment into the
+stock assessment model and the `r sp` management framework. For example,
+time series could be included in the stock assessment as a standalone data
+source (similar to acoustic survey biomass estimates) or the estimation
+procedure that was used to generate the time series itself could be integrated
+directly into the stock assessment model. Results from such work should be
+connected to or in cooperation with ongoing research related to recruitment
+variability as discussed in Section~\@ref(sec:assessment-response-review).
+Related, there is a need to streamline and broaden the availability of
+products from oceanographic models (e.g., Regional Ocean Modeling System)
+so that they are available stock-wide (spanning the international boundary)
+and updated on a recurring basis so they can be used as informative links in
+operational stock assessments. A successful example of this has been the
+annual production of `r sp` distribution forecasts that depend on short-term
+(i.e., 6--9 month) forecasts of subsurface (i.e., 100 m depth) temperature
+from [J-SCOPE](http://www.nanoos.org/products/j-scope/home.php). The existing
+management strategy evaluation framework should be used, or further developed,
+to examine how information on recruitment can inform robust management
+decisions.
+
+1. Document the existing survey methodologies, protocols, and adaptive
+survey-design decisions that lead to the development of `r sp` biomass and
+age-composition estimates and the relative age-1 index used in the stock
+assessment. Such documentation will ensure transparency, enable repeatability,
+and provide a record of changes in procedures over time. Also, continue to
+conduct research to improve the estimation of age composition and abundance
+from data collected during the acoustic survey. This includes, but is not
+limited to, research on species identification, target verification, target
+strength, implications of the south-to-north directionality of the survey,
+alternative technologies to assist in the survey (e.g., artificial intelligence
+and machine learning), and efficient analysis methods. The latter should
+include bootstrapping of the acoustic survey time series or related methods
+that can incorporate relevant uncertainties into the calculations of survey
+variance. Relevant uncertainties include topics such as the target-strength
+relationship, subjective scoring of echograms, thresholding methods, and
+methods to estimate the species-mix that are used to interpret the acoustic
+backscatter. Continue to work with acousticians and survey personnel from the
+Northwest Fisheries Science Center (and, more broadly, those involved with the
+U.S. Re-Envisioning West Coast Surveys Initiative) and Fisheries and Oceans
+Canada to determine optimal survey designs given constraints, including
+designs that incorporate ecosystem-based factors and other potential target
+species (e.g., rockfish, euphausiids, and mesopelagics) for the
+`r survey_name`. The existing management strategy evaluation framework should
+be used, or further developed, to examine how changes in survey methods can be
+used to inform robust management decisions.
+
+1. Work with regional partners to develop an annual workflow that provides key
+metrics, indicators, or other summaries of general ecosystem conditions
+relevant to the `r sp` coast-wide stock.  In particular, include those that are
+potentially associated with `r sp` biology and ecology (e.g., recruitment,
+distribution, predation, prey, and communities). Such information can broaden
+the context within which a single species stock assessment is interpreted, be
+used to support model development, refine uncertain assessment conclusions
+(e.g., productivity), and provide other non-assessment indicators of the
+system's state to management.

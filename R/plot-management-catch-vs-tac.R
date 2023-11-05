@@ -10,6 +10,10 @@
 #' @param line_width Width of the connecting lines
 #' @param line_alpha Which alpha level (0-1) to use for connecting
 #' the values with vertical lines
+#' @param leg_pos The legend position as x-y coordinates (vector of 2)
+#' @param leg_ncol The number of columns to split the legend into
+#' @param leg_font_size The legend font size
+#' @param point_size The point size
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -39,6 +43,12 @@ plot_management_catch_vs_tac <- function(d,
     mutate(name = factor(name, levels = group_ord)) |>
     mutate(value = value / 1e3)
 
+  x_min <- d$Year |> min()
+  x_max <- d$Year |> max()
+  x_breaks <- d$Year |> unique() |> sort()
+  x_labels <- x_breaks
+  x_labels[x_labels %% 2 == 1] <- ""
+
   g <- ggplot(d, aes(x = Year,
                      y = value,
                      color = name,
@@ -48,13 +58,18 @@ plot_management_catch_vs_tac <- function(d,
               linetype = line_type,
               linewidth = line_width,
               alpha = line_alpha) +
-    labs(y = "Catch or TAC (1,000 t)") +
+    labs(y = "Catch or TAC (kt)") +
     theme(legend.title = element_blank(),
-          axis.text.x = element_text(angle = 45, hjust = 1),
-          legend.text = element_text(size = leg_font_size)) +
+          legend.text = element_text(size = leg_font_size),
+          # Following make the legend smaller and legend items closer together
+          legend.key.size = unit(0.25, "cm"),
+          legend.text.align = 0,
+          legend.spacing.y = unit(0.01, "cm")) +
+    guides(color = guide_legend(byrow = TRUE)) +
     scale_y_continuous(labels = comma,
                        limits = c(0, NA)) +
-    scale_x_continuous(breaks = seq(0, 3000, 1))
+    scale_x_continuous(breaks = x_breaks,
+                       labels = x_labels)
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +

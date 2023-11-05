@@ -50,7 +50,7 @@ create_sens_dirs <- function(dir_version,
   file_exe <- fs::dir_ls(dir_base, regex = "exe$")
   if (length(file_exe) > 1 | length(file_exe) == 0) {
     message(
-      glue::glue("{length(file_exe)} executable(s) were found in ", dir_base)
+      glue("{length(file_exe)} executable(s) were found in ", dir_base)
     )
   }
   input <- r4ss::SS_read(dir_base, verbose = FALSE)

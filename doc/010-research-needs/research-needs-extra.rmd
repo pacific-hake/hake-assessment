@@ -1,0 +1,71 @@
+<!-- All but the first three are here. The first three are in research-needs.rmd -->
+1. Use, build, and expand upon the existing management strategy evaluation
+framework to evaluate major sources of uncertainty relating to data, model
+structure, and the harvest policy for this fishery (as needed) and compare
+potential methods to address them. In particular, utilize and adapt the
+management strategy evaluation framework to address new and ongoing stock
+assessment research and data needs through the Pacific Hake Management
+Strategy Evaluation Working Group, including relevant requests by the
+Scientific Review Group (see Section~\@ref(sec:assessment-response-review)).
+For example, research investigating links between `r sp` biomass, spatial
+distribution, growth, recruitment, and natural mortality, and how these
+biological processes vary with ocean conditions and ecosystem variables such
+as temperature, transport, and prey availability could inform models used in
+the MSE. Ongoing investigations have the potential to improve the scenarios
+considered in future work on the management strategy evaluation framework
+and the basic understanding of drivers of `r sp` population dynamics and
+availability to fisheries and surveys.
+
+1. Complete the ongoing inter-laboratory otolith exchange and use the results
+to update estimates of ageing error used in the stock assessment. This would
+include updated information about ageing imprecision and the effects of large
+cohorts as understood given simulation analyses and blind-source age reads of
+samples with and without dominant year classes. The last inter-laboratory
+comparison was done in 2010 ('CARE' exchanges). Related, streamlining
+procedures that ease the exchange of biological materials (e.g., otoliths)
+across international borders would increase the efficiency at which research
+products can be produced.
+
+1. Continue to collect and analyze life-history data, including weight,
+maturity, and fecundity for `r sp`. Explore possible relationships among
+these life-history traits and correlations with time, empirical growth, and
+population density. Improve understanding of links between fecundity and
+size, age, weight, and batch spawning, as well as spatio-temporal variability
+in the timing of spawning, skip spawning, batch fecundity, and size and age at
+maturity. Additionally, a more spatially comprehensive maturity analysis that
+incorporates information from Canadian samples would be advantageous.
+
+1. Explore the operational use of environmental DNA data for characterizing
+aspects of `r sp` population dynamics, such as changes in species distribution
+or perhaps density, and the incorporation of these data into stock
+assessments. Recent research demonstrated that environmental DNA provides
+similar information as the acoustic survey at scales relevant to management,
+i.e., coast-wide and not just sample-to-sample comparisons
+[@SheltonRamonLacaEtAl2022], but longer time series are needed before the data
+can be used to inform trends in abundance. Environmental DNA is now available
+for 2019 and 2021 (two years total). Continuing to extend the time series
+would allow for its incorporation in future stock assessments as an index of
+abundance.
+
+1. Explore alternative approaches and related assumptions for parameterizing
+time-varying fishery selectivity in the assessment. Simulations that evaluate
+methods for including multiple variance structures, including interactions,
+tradeoffs, and related assumptions, across multiple processes (e.g.,
+selectivity, recruitment, data weighting) in integrated stock assessment
+models would be particularly beneficial.
+
+1. Revisit alternative methods for refining existing prior distributions for
+natural mortality, including the use of meta-analytic methods.
+Evaluate feasibility of estimating age-specific natural mortality for `r sp`.
+
+1. Explore mid-water community dynamics (or predator/prey relationships more
+generally) to better understand linkages to `r sp` distribution, abundance,
+and growth. For example, weight-at-age data or other mechanistic linkages
+(e.g., from diet studies) can inform inter-annual variability and trends in
+growth, which can improve biomass forecasting capabilities for `r sp`.
+
+1. Explore the potential to use acoustic data collected from commercial
+fishing vessels to study `r sp` distributions, schooling patterns, and other
+questions of interest. This could be similar to the 'acoustic vessels of
+opportunity' program on fishing vessels targeting Pollock in Alaska
+[@StienessenHonkalehtoEtAl2019].

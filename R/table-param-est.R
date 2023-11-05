@@ -1,250 +1,185 @@
-#' Returns an [xtable::xtable()] in the proper format for the MCMC posterior
-#' parameter estimates for all the models in the list, one for each column
+#' Returns a [kableExtra::kbl()] containing a comparison of parameter
+#' estimates for all the models in the `models` list
 #'
 #' @param models A list of models which contain the MCMC output
 #' @param model_nms A vector of names of the same length as the number of
 #' models in the models list
 #' @param end_yr The last year to include
+#' @param show_loglike Logical. If `TRUE` show the negative log likelihood
+#' values in the table
+#' @param section_italics Logical. If `TRUE`, make the section header lines
+#' italicized
+#' @param section_bold Logical. If `TRUE`, make the section header lines
+#' boldface
+#' @param section_underline Logical. If `TRUE`, make the section header lines
+#' underlined
+#' @param section_line_above Logical. If `TRUE`, place a horizontal line above
+#' section header lines
+#' @param section_line_below Logical. If `TRUE`, place a horizontal line below
+#' section header lines
 #' @param digits Number of decimal points for the estimates
-#' @param xcaption Caption to appear in the calling document
-#' @param xlabel The label used to reference the table in latex
-#' @param font_size Size of the font for the table
-#' @param space_size Size of the vertical spaces for the table
-#' @param rec_yrs A vector of integers supplying the years for which you
-#' want estimates of recruitment
-#' @param show_like If `TRUE`, include the negative log-likelihoods (set to
-#' `FALSE` for presentations)
+#' @param right_cols_cm The number of centimeters wide to make all of the
+#' rightmost columns (all the value columns)
+#' @param font_size The table data and header font size in points
+#' @param header_font_size The font size for the headers only. If `NULL`,
+#' the headers will have the same font size as the table cell data
+#' @param vert_spacing The vertical spacing between newlines for this font.
+#' If `NULL` this will be calculated as `header_font_size * header_vert_scale`
+#' @param header_vert_scale Scale factor to create the vertical spacing value.
+#' See `header_vert_spacing`
+#' @param longtable Logical. Passed to [kableExtra::kbl()]
+#' @param caption The table caption, or `NULL` for none. Passed to
+#' [kableExtra::kbl()]
+#' @param ... Arguments passed to [knitr::kable()]
 #'
-#' @return as [xtable::xtable()]
+#' @return An [knitr::kable()] object
 #' @export
-#'
-table_param_est <- function(models,
-                            model_nms,
-                            end_yr,
-                            digits = 3,
-                            xcaption = "default",
-                            xlabel = "default",
-                            font_size = 9,
-                            space_size = 10,
-                            rec_yrs = NA,
-                            show_like = TRUE){
+table_param_est <- function(
+    d = NULL,
+    models = NULL,
+    model_nms = NULL,
+    end_yr,
+    show_loglike = TRUE,
+    section_row_inds = c(1, 11, 20, 21 + length(large_cohorts)),
+    section_row_headers = c("Parameters",
+                            "Derived Quantities",
+                            paste0("Reference Points based on ",
+                                   fspr_40_bold_for_latex_table),
+                            "Negative log likelihoods"),
+    section_italics = TRUE,
+    section_bold = TRUE,
+    section_underline = TRUE,
+    section_line_above = FALSE,
+    section_line_below = TRUE,
+    digits = 3,
+    right_cols_cm = 1.8,
+    font_size = 10,
+    header_font_size = 10,
+    header_vert_spacing = 12,
+    header_vert_scale = 1.2,
+    longtable = FALSE,
+    caption = NULL,
+    ...){
 
-  if(is.na(rec_yrs[1])){
-    stop("No cohort recruitment years supplied: `rec_yrs`",
-         call. = FALSE)
+  if(!show_loglike){
+    section_row_headers <- section_row_headers[-length(section_row_headers)]
+    section_row_inds <- section_row_inds[-length(section_row_inds)]
   }
 
-  # MCMC parameter estimates
-  tab <- map2(models, model_nms, function(mdl, mdl_nm){
-    recs <- map_dbl(rec_yrs, function(rec_yr){
-      median(mdl$mcmc[[paste0("Recr_", rec_yr)]]) / 1e3
-      })
-    names(recs) <- paste0("recr_", rec_yrs)
-    recs <- f(recs, 0)
-
-    # Catchabilities
-    if(mdl$extra_mcmc_exists){
-      q_med <- mdl$extra.mcmc$q.med
-      # Filter for last year in the series, since q's are not time varying
-      q_acoustic <- q_med |>
-        filter(Fleet == 2)
-      if(nrow(q_acoustic)){
-        q_acoustic <- q_acoustic %>%
-          `[`("value") |>
-          tail(1) |>
-          unlist()
-      }else{
-        q_acoustic <- NA
-      }
-      q_age1 <- q_med |>
-        filter(Fleet == 3)
-      if(nrow(q_age1)){
-        q_age1 <- q_age1 %>%
-          `[`("value") |>
-          tail(1) |>
-          unlist()
-      }else{
-        q_age1 <- NA
-      }
-    }else{
-      q_acoustic <- NA
-      q_age1 <- NA
-    }
-
-    df <- enframe(
-      c(nat_m =
-          ifelse("NatM_uniform_Fem_GP_1" %in% names(mdl$mcmc),
-                 f(median(mdl$mcmc$`NatM_uniform_Fem_GP_1`), digits),
-                 f(median(mdl$mcmc$`NatM_p_1_Fem_GP_1`), digits)),
-        ro = f(exp(median(mdl$mcmc$`SR_LN(R0)`)) / 1e3),
-        h = ifelse(is.null(mdl$mcmc$`SR_BH_steep`),
-                   NA,
-                   f(median(mdl$mcmc$`SR_BH_steep`),
-                     digits)),
-
-        survey_sd = f(median(mdl$mcmc$`Q_extraSD_Acoustic_Survey(2)`), digits),
-        catchability = ifelse(is.na(q_acoustic), NA, f(q_acoustic, digits)),
-
-        survey_age1_sd = ifelse(is.null(mdl$mcmc$`Q_extraSD_Age1_Survey(3)`),
-                                NA,
-                                f(median(mdl$mcmc$`Q_extraSD_Age1_Survey(3)`), digits)),
-        catchability_age1 = ifelse(all(is.na(q_age1)),
-                                   NA,
-                                   f(q_age1, digits)),
-
-        dm_fishery = ifelse(is.null(mdl$mcmc$`ln(DM_theta)_Age_P1`),
-                            ifelse(is.null(mdl$mcmc$`ln(DM_theta)_1`),
-                                   NA,
-                                   f(median(mdl$mcmc$`ln(DM_theta)_1`), digits)),
-                            f(median(mdl$mcmc$`ln(DM_theta)_Age_P1`), digits)),
-        dm_survey = ifelse(is.null(mdl$mcmc$`ln(DM_theta)_Age_P2`),
-                           ifelse(is.null(mdl$mcmc$`ln(DM_theta)_2`),
-                                  NA,
-                                  f(median(mdl$mcmc$`ln(DM_theta)_2`), digits)),
-                           f(median(mdl$mcmc$`ln(DM_theta)_Age_P2`), digits)),
-        recs,
-        bo = f(median(mdl$mcmc$`SSB_Initial`) / 1e3),
-        ssb_2009 = paste0(f(median(mdl$mcmc$`SSB_2009` /
-                                     mdl$mcmc$SSB_Initial) * 100, 1),
-                          "\\%"),
-        ssb_curr = ifelse(mdl$endyr <= end_yr - 2,
-                          "--",
-                          paste0(f(median(mdl$mcmc[[paste0("SSB_", end_yr)]] /
-                                            mdl$mcmc$SSB_Initial) * 100, 1), "\\%")),
-        spr_last = ifelse(mdl$endyr <= end_yr - 2,
-                          "--",
-                          paste0(f(median(mdl$mcmc[[paste0("SPRratio_", end_yr - 1)]]) * 100, 1), "\\%")),
-        ssb_curr_fem = f(median(mdl$mcmc$`SSB_SPR`) / 1e3, 0),
-        spr_msy = "40.0\\%",
-        exp_frac = mdl$mcmccalcs$exp.frac.spr[2],
-        yield_f40 = f(median(mdl$mcmc$`Dead_Catch_SPR`) / 1e3, 0),
-        total_like = f(filter(mdl$likelihoods_used,
-                              rownames(mdl$likelihoods_used) == "TOTAL")$values, 2),
-        survey_like = f(filter(mdl$likelihoods_used,
-                               rownames(mdl$likelihoods_used) == "Survey")$values, 2),
-        fishery_age_like = f(filter(mdl$likelihoods_by_fleet, Label == "Age_like")$Fishery, 2),
-        survey_age_like = f(filter(mdl$likelihoods_by_fleet, Label == "Age_like")$Acoustic_Survey, 2),
-        recr_like = f(filter(mdl$likelihoods_used,
-                             rownames(mdl$likelihoods_used) == "Recruitment")$values, 2),
-        priors_like = f(filter(mdl$likelihoods_used,
-                               rownames(mdl$likelihoods_used) == "Parm_priors")$values, 2),
-        parmdev_like = f(filter(mdl$likelihoods_used,
-                                rownames(mdl$likelihoods_used) == "Parm_devs")$values, 2)),
-      value = mdl_nm)
-  })
-
-  # Remove parameter name column from all but first model then bind them all together,
-  # make a variable that records if there are any age-1 index parameter values,
-  # replace NAs with double-dashes, and add a blank row at the top for aesthetic purposes
-  tab[-1] <- map(tab[-1], function(mdl_tab){
-    mdl_tab[, 2]
-  })
-  tab <- tab |>
-    bind_cols()
-  age_1 <- !(tab |>
-               filter(name == "survey_age1_sd") |>
-               select(-name) |>
-               is.na() |>
-               all())
-  tab[is.na(tab)] <- "--"
-  tab <- rbind(rep("", length(models) + 1), tab)
-
-  tab_labels <- enframe(
-    c("", # For blank line at top
-      paste0("Natural mortality (", latex.italics("M"), ")"),
-      paste0("Unfished recruitment (", latex.subscr(latex.italics("R"), "0"), ", millions)"),
-      paste0("Steepness (", latex.italics("h"), ")"),
-      "Additional biomass index SD",
-      paste0("Catchability: biomass index (", latex.italics("$q_b$"), ")"),
-      "Additional age-1 index SD",
-      paste0("Catchability: age-1 index (", latex.italics("$q_1$"), ")"),
-      "Dirichlet-multinomial fishery (log~$\\theta_{\\text{fish}}$)",
-      "Dirichlet-multinomial survey (log~$\\theta_{\\text{surv}}$)",
-      paste(rec_yrs, "recruitment (millions)"),
-      paste0("Unfished female spawning biomass (",
-             latex.subscr(latex.italics("B"), "0"), ", thousand t)"),
-      "2009 relative spawning biomass",
-      paste0(end_yr, " relative spawning biomass"),
-      paste0(end_yr - 1, " rel. fishing intensity: (1-SPR)/(1-",
-             latex.subscr("SPR", "40\\%"), ")"),
-      paste0("Female spawning biomass at ",
-             latex.subscr(latex.italics("F"), "SPR=40\\%"),
-             " (",
-             latex.subscr(latex.italics("B"), "SPR=40\\%"), ", thousand t)"),
-      paste0("SPR at ", latex.subscr(latex.italics("F"), "SPR=40\\%")), "Exploitation fraction corresponding to SPR",
-      paste0("Yield at ", latex.subscr(latex.italics("B"), "SPR=40\\%"), " (thousand t)")),
-    name = NULL)
-  if(!age_1){
-    tab_labels <- tab_labels |>
-      filter(value != "Additional age-1 index SD")
-    tab <- tab |>
-      filter(name != "survey_age1_sd")
+  if(longtable && missing(caption)){
+    caption <- paste0(
+      "\\textcolor{red}{Run post\\_process\\_beamer('filename.tex') ",
+      "and then lualatex filename.tex to remove this caption}")
   }
 
-  if(show_like){
-    tab_labels <- rbind(tab_labels,
-                        "Total",
-                        "Survey",
-                        "Survey age compositions",
-                        "Fishery age compositions",
-                        "Recruitment",
-                        "Parameter priors",
-                        "Parameter deviations")
+  if(is.null(d)){
+    d <- get_param_est_comparison_df(models,
+                                     model_nms,
+                                     end_yr = end_yr,
+                                     inc_loglike = show_loglike,
+                                     ...)
+  }
+
+  # Insert header rows at the row indices where the section headers are
+  walk2(section_row_inds,
+        section_row_headers, \(ind, hdr){
+    row_vec <- c(hdr, rep("", ncol(d) - 1))
+    d <<- insert_row(d, row_vec, ind)
+  })
+
+  if(section_underline){
+    # Make section headers bold
+    d[section_row_inds, "parameter"] <-
+      map(d[section_row_inds, "parameter"],
+          ~{latex_under(.x)})
+  }
+  if(section_italics){
+    # Make section headers italics
+    d[section_row_inds, "parameter"] <-
+      map(d[section_row_inds, "parameter"],
+          ~{latex_italics(.x)})
+  }
+  if(section_bold){
+    # Make section headers bold
+    d[section_row_inds, "parameter"] <-
+      map(d[section_row_inds, "parameter"],
+          ~{latex_bold(.x)})
+  }
+
+  # Replace NA and "NA" with "--"
+  d <- map_df(d, ~{
+    gsub(" *NA *", "--", .x)
+  })
+  d[is.na(d)] <- "--"
+
+  if(is.null(model_nms)){
+    # Remove leading spaces from column names
+    names(d) <- gsub("^\\s+", "", names(d))
+    col_names <- c("Parameter, Quantity, or Reference point",
+                   gsub(" +", "\n", names(d)[-1]))
   }else{
-    tab <- head(tab, -7)
+    col_names <- c("Parameter, Quantity, or Reference point",
+                   gsub(" +", "\n", model_nms))
   }
 
-  # Add the labels and remove the 'name' column which is just the short form of the name.
-  # If debugging, leave 'name' in here and compare side-by-side with the labels created
-  tab <- bind_cols(tab_labels, tab) |>
-    select(-name)
+  # Introduce newline at a slash separator
+  col_names <- gsub("\\/", "\\\\/\n", col_names)
 
-  # Split up the headers (model names) by words and let them stack on
-  # top of each other to reduce width of table
-  model_nms_str <- map_chr(model_nms, function(model_nm){
-    latex.mlc(gsub(" ", "\\\\\\\\", model_nm), make.bold = FALSE)
-    })
-  colnames(tab) <- c("", model_nms_str)
+  # Insert custom header font size before linebreaker
+  if(is.null(header_font_size)){
+    header_font_size <- font_size
+  }
+  hdr_font_str <- create_fontsize_str(header_font_size,
+                                      header_vert_spacing,
+                                      header_vert_scale)
 
-  # Add sub-headers for different parameter types
-  addtorow <- list()
-  addtorow$pos <- list()
-  addtorow$pos[[1]] <- 1
-  addtorow$pos[[2]] <- ifelse(age_1,
-                              10,
-                              9)
-  addtorow$pos[[3]] <- ifelse(age_1,
-                              14 + length(rec_yrs),
-                              13 + length(rec_yrs))
-  addtorow$command <-
-    c(paste0(latex.bold(latex.under("Parameters")),
-             latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under("Derived Quantities")),
-             latex.nline),
-      paste0(latex.nline,
-             latex.bold(latex.under("Reference Points based on $\\Fforty$")),
-             latex.nline))
-  if(show_like){
-    addtorow$pos[[4]] <- ifelse(age_1, 21, 20)
-    addtorow$command <- c(addtorow$command,
-                          paste0(latex.nline,
-                                 latex.bold(latex.under("Negative log likelihoods")),
-                                 latex.nline))
+  col_names <- gsub("\\n",
+                    paste0("\n", hdr_font_str$quad),
+                    col_names)
+  col_names <- paste0(hdr_font_str$dbl, col_names)
+  # Add \\makecell{} latex command to headers with newlines to create
+  # multi-line header cells
+  col_names <- linebreaker(col_names, align = "c")
+
+  k <- kbl(d,
+           format = "latex",
+           booktabs = TRUE,
+           align = c("l",
+                     rep(paste0("R{",
+                                right_cols_cm,
+                                "cm}"),
+                         ncol(d) - 1)),
+           linesep = "",
+           col.names = col_names,
+           escape = FALSE,
+           longtable = longtable,
+           caption = caption,
+           ...) |>
+    row_spec(0, bold = TRUE)
+
+  if(section_line_above){
+    # Do not show a line above if a section starts on the first line
+    # as it creates a double line at the top of the table
+    sec_inds_above <- section_row_inds[section_row_inds != 1]
+    k <- k |>
+      row_spec(sec_inds_above - 1,
+               extra_latex_after = paste0("\\cline{",
+                                          1,
+                                          "-",
+                                          length(col_names),
+                                          "}"))
+  }
+  if(section_line_below){
+    k <- k |>
+      row_spec(section_row_inds,
+               extra_latex_after = paste0("\\cline{",
+                                          1,
+                                          "-",
+                                          length(col_names),
+                                          "}"))
   }
 
-  # Make the size string for font and space size
-  size.string <- latex.size.str(font_size, space_size)
-  print(xtable(tab,
-               caption = xcaption,
-               label = xlabel,
-               align = get.align(ncol(tab),
-                                 just = "c")),
-        caption.placement = "top",
-        include.rownames = FALSE,
-        sanitize.text.function = function(x){x},
-        size = size.string,
-        add.to.row = addtorow,
-        tabular.environment = "tabular",
-        table.placement = "H")
+  k |>
+    kable_styling(font_size = font_size,
+                  latex_options = c("repeat_header"))
 }

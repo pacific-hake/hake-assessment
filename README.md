@@ -1,31 +1,208 @@
 ____
-# hake-assessment
+# hake-assessment  <img src="doc/image-files/hake-logos.png" align="right" height="139" />
 
-*A framework which uses latex and knitr code to build the US/Canadian Pacific hake assessment.*
+> An R package which uses Bookdown and Rmarkdown to build the US/Canadian Pacific hake assessment document
 _____________________________________________________________
 
-## 2023 Assessment cycle (Jan - Mar 2023)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/y/pacific-hake/hake-assessment)
+![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/pacific-hake/hake-assessment)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/pacific-hake/hake-assessment/package-dev)
+![GitHub contributors](https://img.shields.io/github/contributors/pacific-hake/hake-assessment)
+![Codecov](https://img.shields.io/codecov/c/github/pacific-hake/hake-assessment)
+![Github All Releases](https://img.shields.io/github/downloads/pacific-hake/hake-assessment/total.svg)
 
-* Model runs were done on an Ubuntu 22.04 LTS server with 80 Xeon Gold CPUs and 128 GB of RAM
+
+In 2023, the project code used for building the assessment document and all the
+presentations was switched over from the original Sweave-based approach to the
+[Bookdown](https://bookdown.org/) system. Read
+[NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md)
+for important details on this.
+
+The assessment document is built using the following software packages:
+* [R Markdown](https://rmarkdown.rstudio.com/lesson-1.html): A simple yet
+  powerful markup language designed to remove the need for tedious LaTeX
+  macros embedded throughout the text. See the [Rmarkdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+  for help on syntax.
+* [knitr](https://yihui.org/knitr/): This R package is responsible for creating
+  figures and tables during builds, and for dealing with inline R code chunks
+  to create reproducible paragraphs of text. `knitr` chunks are written in a
+  special `R Markdown` format.
+* [Pandoc](https://pandoc.org/): A very powerful document converter which in
+  this case converts the R Markdown to LaTeX code.
+* [LuaTeX](https://www.luatex.org/): The LaTeX compiler which converts the
+  LaTeX created by `Pandoc` into the final PDF document.
+* [YAML](https://yaml.org/spec/1.2.2/#chapter-1-introduction-to-yaml): This 
+  is a simple configuration file format used to keep the project in order.
+  It is used by the `bookdown` package.
+* [bookdown](https://bookdown.org/): An R package that facilitates writing
+  complex documents by integrating all of the above packages into a single
+  package, using a YAML configuration file.
+
+---
+## How to create the hake assessment PDF document
+>**The same method works for creating the beamer presentation PDFs**  
+>The `RDS` files must have been created before the document can be built
+
+1. Install the hake package:
+   - If you are on the Linux server, the `hake` package is already installed,
+     go to step 2.
+   - If you are on a local machine, open an R session, and install the hake
+     package from GitHub:
+     `remotes::install_github("pacific-hake/hake-assessment@package-dev")`
+1. Clone this GitHub repository and switch to the `package-dev` branch:  
+   `git clone https://github.com/pacific-hake/hake-assessment`  
+   `git checkout package-dev`
+1. If using Rstudio, open `hake.Rproj`. If not, open an R console however you
+   like to and navigate to the hake project root directory. Either way, change
+   your working directory to the `doc` directory (*for beamer presentations
+   change your working directory to the one containing all the RMD files*):  
+   `setwd(here::here("doc"))`
+1. Create the PDF document (*same command for beamer presentations*):  
+   `hake::render()`
+1. The `hake.pdf` document will be rendered in the `doc` directory. The first
+   time rendering the document in a new R session will take about 7-8 minutes
+   because the model RDS files have to be loaded. After that, the build will
+   be much quicker.
+1. Clean the directory up from time to time by running `hake::clean()`. This
+   will remove all files and subdirectories created by the `render()`
+   function. This command also works for the beamer presentation directories.
+   If you get an error stating that the variable `assess_yr` could not be
+   found, run `clean()`.
+
+Alternatively, in RStudio you can click the `knit` button while the file
+`000-launcher.rmd` is open in the editor window. This will be much slower
+though because it starts its own new R session, which means all the models
+have to be loaded every time you render the document this way.
+
+For details on the `hake::render()` function, see
+[NEWS.md](https://github.com/pacific-hake/hake-assessment/blob/package-dev/NEWS.md).
+
+## Debugging chunks of code and Rmarkdown text
+
+Run `gotest()` to enter a customized debug directory, paste the code in
+and run `render()`. When done, run `goback()` to go back to the directory you
+were in originally. This works for beamer presentations as well.
+
+**Details:**  
+* If you haven't already done so in your current R session, run
+  `devtools::load_all()` while your working directory is somewhere within
+   the hake repo directory structure.
+* Run `gotest()`, which will create a temporary directory containing 
+  copies of all files needed to do a minimal document build, and
+  switch you to that directory.
+  - If in RStudio, click the gear-arrow-down icon ![](gear-arrow-down.png) in
+    the Files window and select `Go to working directory`. This will take
+    the Rstudio file manager to the temporary directory, and show you
+    the files that have been copied there by the `gotest()` function.
+  - If not in RStudio, type `dirclip()`, which will copy the temporary
+    directory name to the clipboard. You can now go to a file manager of
+    your choice and paste the directory name into it, and it will take you
+    to the temporary working directory.
+* Open the `005-test.rmd` file, and paste your chunk(s) of code into it.
+  Save the file.
+* Build the document by running `render()`. The PDF (`hake.pdf`) will be
+  built in the current temporary directory, and contain only the output
+  from your test code. If you haven't built the document yet in the current
+  R session, this will take 7-8 minutes because all the mode files have
+  to be loaded.
+* Iteratively make changes to your code in the temporary `005-test.rmd`
+  file and build the document, until satisfied with your code. Copy the
+  code to the clipboard for pasting into the real document. Be careful,
+  once you leave the temporary directory your code in `005-test.rmd` will be
+  gone and unrecoverable.
+* To go back to the directory you were in before testing, run `goback()`.
+  - If in Rstudio, click the gear-down-arrow icon ![](gear-arrow-down.png) in
+    the Files window (bottom right panel in Rstudio) and select
+    `Go to working directory`.
+
+## Adding new data to data tables
+
+Data tables are package data and can be accessed directly from within
+the package like in this example, which gives you the U.S. at-sea bottom
+depth table:  
+`hake::us_atsea_bottom_depth_df`
+
+To see a list of all package data available in the `hake` package:  
+`data(package = "hake")`
+
+To update any package data, for example if we add a new rows to the CSV files
+found in the `data-tables` directory:
+
+1. Open the CSV file from the `data-tables` directory that you want to add
+   data to.
+1. Add the new data row(s), and save the file.
+1. Do the first two steps with as many data tables as you want to update, then
+   do then next steps as few times as possible.
+1. Source the `data-raw/data-tables.R` file to update the data tables:
+   `source(here::here(data-raw/data-tables.R))`. If you're using RStudio
+   you can just press `Ctrl-Shift-Enter` with the file in focus to do this.
+   This will update the `*.rda` files which are the binary package data files.
+1. Make sure to include the changes to the `*.rda` files in the GitHub repo by
+   committing those files in Git. This will be obvious as there will be
+   several dozen `*.rda` files changed when you run `git status`. Commit all
+   of the changes.
+   
+Try not to do steps 4 and 5 for every change you make, rather make as many
+changes as you can to data tables at one time, then run steps 4 and 5 once to
+incorporate all the changes. The `*.rda` files are binary and its better to
+keep binary file changes to a minimum when using Git as it can introduce
+repository bloating.
+
+## Reference point text markup
+
+The reference points and other values which are referred to in text in
+numerous places and require complex markup and/or latex are located in the
+file `data-raw/reference-points.R`. They are stored as package data so can be
+referred to like this (example for *F*<sub>SPR=40%</sub>):  
+- `hake::fspr_40_10` for Rmarkdown (inside text in the document) or
+- `hake::fspr_40_10_for_latex_table` for tables (which require LaTeX code)
+
+To add to this list or change anything, follow the same method as laid out in
+the `Adding new data to data tables (done annually)` section above. Test the
+new expression by using the `gotest()/goback()` debugging method.
+
+## Plot settings
+
+There are many standardized project-wide plot settings which are also
+package data. These can be found in the file `data-raw/plot-settings.R`.
+If any are modified or new ones are added, follow the same method as laid
+out in the `Adding new data to data tables (done annually)` section above.
+For example, if you wanted to change the cohort diagonal line color in all
+age bubble plots from dark green to red you would find this line of code:  
+
+File: `data-raw/plot-settings.R`  
+Line: `create_data_hake("age_diag_linecolor", "darkgreen")`  
+
+and change darkgreen to red. Then source the file and reload the package
+using:  
+`devtools::load_all()`
+
+
+
+## 2024 Assessment cycle (Jan - Mar 2024)
+
+* Model runs were done on an Ubuntu 22.04 LTS server with 80 Xeon Gold CPUs
+  and 404 GB of RAM.
 
 * All model runs, including the base, bridging, sensitivities, and
   retrospectives, were done using the **main** branch of the
-  [ADNUTS](https://github.com/cgrandin/adnuts) MCMC algorithm, which is a Fork.
+  [ADNUTS](https://github.com/cgrandin/adnuts) MCMC algorithm.
   
 * `extra-mcmc must be and was enabled for ALL models`
 
-## Server setup for 2023
+## Server setup for 2024
 
-* Operating system: Ubuntu 22.04 LTS (jammy)
+* Operating system: Ubuntu 22.04 LTS (Jammy Jellyfish)
 
-* R version: 4.2.2 (2022-11-10 r83330)
+* R version: 4.3.1 (2023-06-16 "Beagle Scouts")
 
-* TexLive version: 2022 (tlmgr version: 63068, 2022-04-18 07:58:07 +0200)
+* TexLive version: 2023 (tlmgr revision 66457 (2023-03-08 00:07:12 +0100))
 
-* The R packages listed [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/R/all.R#L20)
+* The R packages listed
+  [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/R/all.R#L20)
 
-* The TEX packages listed [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/docker/install_packages.R#L21)
-
+* The TEX packages listed
+  [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/docker/install_packages.R#L21)
 
 ---
 # How the models are run
@@ -36,15 +213,16 @@ _____________________________________________________________
   using an R package to distribute model runs which are calling `system()` to
   run each model
   
-* The bash scripts are located [here](https://github.com/pacific-hake/hake-assessment/tree/master/bash-scripts)
+* The bash scripts are located
+  [here](https://github.com/pacific-hake/hake-assessment/tree/master/bash-scripts)
 
 ## Base model bash script
 
-* The base model is special and has it's own bash script. It is
+* The base model is special and has its own bash script. It is
   `run-base-model.sh`. This needs to be edited each year before beginning.
     
 * Check all the variables and make sure they are correct. Change the
-   `year_path` to the new assessment year (Whatever year that January is in)
+  `year_path` to the new assessment year (Whatever year that January is in)
 
 * If run on the server, the `models_path` must be set to `/srv/hake/models`
   
@@ -56,18 +234,19 @@ _____________________________________________________________
 * The base model has more steps that other models (calculation of catch levels
   for forecasting, and the forecasting itself). There are clear chunk of code
   for these options in `models_path`. Currently you have to comment out what
-  you don't want to run (comment character is #)
+  you don't want to run (comment character is #).
     
 * Some chunks delete files. This is to save space.
-  [This chunk](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/bash-scripts/run-base-model.sh#L50) for example, deletes all output files in the `forecasts`
-  directory except those necessary to run the forecasts
+  [This chunk](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/bash-scripts/run-base-model.sh#L50)
+  for example, deletes all output files in the `forecasts` directory except
+  those necessary to run the forecasts.
     
 ## Forecasts for the base model
 
 * Either leave the forecasting chunks in `run-base-model.sh` uncommented or run
   `run-base-forecasts.sh` after the base model has already been run. Note that
   you need to edit this file also before running it, as it has the year,
-  etc. in it
+  etc. in it.
   
 ## Retrospectives for base model
 
@@ -93,8 +272,8 @@ _____________________________________________________________
     
     Note that there cannot be spaces around the `=` sign in bash scripts
 
-  - `generic-run-models.sh` contains the **year_path** variable that needs to be
-    changed each year
+  - `generic-run-models.sh` contains the **year_path** variable that needs to
+    be changed each year.
     
   - It also contains `version_path` which should usually be **01-version**
     but if the base model is scrapped after some time, then a new
@@ -110,76 +289,6 @@ _____________________________________________________________
 * The `create-sensitivity-dirs.sh` runs code that calls an R function to create
   the standard set of sensitivities for hake, and insert the files into the
   correct directory structure. This needs to be run every year
-
----
-## How to create hake-assessment.pdf
-**The `RDS` files must have been created before the document can be built.**
-
-### Method 1
-
-* Run the following in an R session:
-```R
-source(here::here("R/all.R"))
-build_doc()
-```
-  
-* After the first time you do this, the models will be loaded
-  into the R workspace and any subsequent builds will be a little faster
-  
-* This method has the benefit of one-click type build but if there is
-  an error on the **LaTeX** part it can hang up your R session
-
-### Method 2 (best when working on figures)
-
-* Change to the `doc` subdirectory in the repository and run this in R:
-```R
-knitr::knit("hake-assessment.rnw")
-```
-To add alternative text (after running the above without a cache):
-```R
-add_alt_text(alt_fig_text = alt_fig_text)
-```
-
-Then in a bash terminal:
-```
-lualatex hake-assessment # To create the PDF
-lualatex hake-assessment  # If you notice ?? references in the PDF
-bibtex hake-assessment # To link the bibliography references
-```
-
-## How to work on figures created in the knitr chunks:
-
-* Use `knitr::knit("hake-assessment.rnw")` from within the `doc` directory
-  to knit the document. Once it has been knit, the knitr cache will contain
-  PNG files with the knitr chunk name as the file name, one for each figure
-  
-  - Open the figure and make it fullscreen so you can see details. Assuming
-    it still needs work:
-  
-  - Go back the the function call inside the knitr chunk and change that
-    code however you need to to fix the problem. This will be very fast
-    
-  - Knit the document again with `knitr::knit("hake-assessment.rnw")` and
-    switch back to the open image file and see your change happen to the figure
-    
-  - Iterate these steps until your figure looks how you want it
-  
-  - If you don't change code in the chunk itself, but code in the function
-    that is being called in the chunk, you have to delete all the files in the
-    `knitr-cache` that have the name of the chunk in it. If you don't, the
-    figure won't be rebuilt and you will see no changes
-  
-* This method has the benefit of you seeing exactly what the figure will
-  look like in the document. If you just call the function code in R,
-  you do not get an accurate depiction of the figure and will have to redo
-  it again later.
-  
-* It is really fast, assuming you leave all the other files alone in the 
-  `knitr-cache`. If you delete the `knitr-cache` or unrelated files within
-  it, this method will become very slow.
-    
-* In **Microsoft Windows** you may not be able to leave the figure viewer
-  open when changing the file
 
 ---
 # To take a quick look at model output without making an RDS file

@@ -1,0 +1,700 @@
+\newpage
+
+\rfoot{Tables}
+
+# Tables {#sec:tables}
+
+```{r main-catches-us-tab, results = "asis", echo = FALSE}
+table_catch(
+  ct,
+  inc_foreign_jv = TRUE,
+  start_yr = start_yr,
+  end_yr = end_yr - 1,
+  country = "us",
+  caption = paste0(
+    "Annual catches of ", sp, " (t) in U.S. waters by fleet, ", start_yr,
+    "--", last_data_yr, ". Tribal catches are included in the fleet totals. ",
+    "Research catch includes landed catch associated with research-related ",
+    "activities. Catch associated with surveys and discarded bycatch in ",
+    "fisheries not targeting hake is not currently included in the table or ",
+    "model."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
+
+```{r main-catches-can-tab, results = "asis", echo = FALSE}
+table_catch(
+  ct,
+  inc_foreign_jv = TRUE,
+  start_yr = start_yr,
+  end_yr = end_yr - 1,
+  country = "can",
+  caption = paste0(
+    "Annual catches of ", sp, " (t) in Canadian  waters by fleet, ",
+    start_yr, "--", last_data_yr, "."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
+
+```{r main-landings-tac-tab, results = "asis", echo = FALSE}
+table_landings_tac(
+  ct,
+  start_yr = start_yr,
+  end_yr = last_data_yr,
+  caption = paste0(
+    sp,
+    " landings and management decisions, ", start_yr, "--", last_data_yr, ". ", 
+    "A dash (--)  indicates the management decision was either not ",
+    "specified or was unknown to the authors at the time of this ",
+    "assessment."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-sampling-history-tab, results = "asis", echo = FALSE}
+table_sampling_history(
+  sampling_history_df,
+  start_yr = start_yr_age_comps,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Annual summary of U.S. and Canadian fishery sampling included in this ",
+    "stock assessment by fleet, ", start_yr_age_comps, "--", last_data_yr, 
+    ". The majority of values are reported as number of hauls but U.S. ",
+    "Shore-based and Canadian Shoreside fleets are reported as the number ",
+    "of trips. A dash (--) indicates there was no sampled catch. The ",
+    "number of fish with otoliths sampled per haul has varied over time but ",
+    "is typically small."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+```{r main-us-cp-age-data-tab, results = "asis", echo = FALSE}
+table_us_age_data(
+  us_cp_age_df,
+  fleet = "cp",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the U.S. ",
+    "Catcher-Processor fleet. Proportions are calculated from numbers of ",
+    "individuals in each age group. Age 15+ is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+\newpage
+
+```{r main-us-ms-age-data-tab, results = "asis", echo = FALSE}
+table_us_age_data(
+  us_ms_age_df,
+  fleet = "ms",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the U.S. ",
+    "Mothership fleet. Proportions are calculated from numbers of ",
+    "individuals in each age group. Age 15+ is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+```{r main-us-sb-age-data-tab, results = "asis", echo = FALSE}
+table_us_age_data(
+  us_cp_age_df,
+  fleet = "sb",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the U.S. ",
+    "Shore-based fleet. Proportions are calculated from numbers of ",
+    "individuals in each age group. Age 15+ is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+```{r main-can-ss-age-data-tab, results = "asis", echo = FALSE}
+table_can_age_data(
+  can_ages_lst,
+  can_ss_num_fish,
+  fleet = "ss",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the Canadian ",
+    "Shoreside fleet. Proportions are calculated from numbers of individuals ",
+    "in each age group. Age 15+ is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-can-ft-age-data-tab, results = "asis", echo = FALSE}
+table_can_age_data(
+  can_ages_lst,
+  can_ft_num_fish,
+  fleet = "ft",
+  start_yr = end_yr - num_recent_yrs,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Recent age-proportion data used in the assessment for the Canadian ",
+    "Freezer trawler fleet. Proportions are calculated from numbers of ",
+    "individuals in each age group. Age 15+ is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-input-age-data-fishery-tab, results = "asis", echo = FALSE}
+table_input_age_data(
+  base_model,
+  fleet = "fishery",
+  start_yr = start_yr_age_comps,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Aggregated fishery age-proportion data used in the base model. ",
+    "Proportions are calculated from numbers of individuals in each age ",
+    "group where the contributions from each fleet are weighted by the ",
+    "catch in that fleet. Sample sizes are sum of hauls and trips from ",
+    "individual fleets (shown in preceding tables) as described in ",
+    "Section~\\@ref(sec:data-fishery-biological-data). Age 15+ is an ",
+    "accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-input-age-data-survey-tab, results = "asis", echo = FALSE}
+table_input_age_data(
+  base_model,
+  fleet = "survey",
+  start_yr = start_yr_age_comps,
+  end_yr = last_data_yr,
+  caption = paste0(
+    "Acoustic age 2+ survey age-proportion data used in the base model. ",
+    "Proportions are calculated from numbers of individuals in each age ",
+    "group. Age 15+ is an accumulator group."),
+  font_size = 10,
+  header_font_size = 11,
+  digits = 2,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-survey-history-tab, results = "asis", echo = FALSE}
+table_survey_history(
+  base_model,
+  survey_history_df,
+  vessel_sep_lines = TRUE,
+  digits = 3,
+  caption = paste0(
+    "Summary of the acoustic age 2+ surveys from ", survey_start_yr,
+    " to ", survey_end_yr, "."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-survey-by-country-tab, results = "asis", echo = FALSE}
+table_survey_by_country(
+  survey_by_country_df,
+  digits = 3,
+  caption = paste0(
+    "Summary of the acoustic survey age-2+ biomass attributed to each ",
+    "country."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE) |>
+  landscape()
+```
+
+```{r main-maturity-ogives-tab, results = "asis", echo = FALSE}
+table_maturity_ogive(
+  maturity_ogives_df,
+  caption = paste0(
+    "Information on maturity and fecundity used in this assessment as shown ",
+    "in Figure~\\@ref(fig:main-maturity-ogive-fig). The sample sizes refer to the ",
+    "subset of samples in Table~\\@ref(tab:main-ovaries-tab) for which age ",
+    "readings and histological estimates of maturity have been completed. ",
+    "The mean weight (kg) is based on a much larger set of samples. Mean ",
+    "fecundity is the product of maturity and mean weight but note that ",
+    "year-specific fecundities from ", start_yr_age_comps, "--", last_data_yr,
+    " were used in the stock assessment. The values reported for ages 15 ",
+    "and above represent the average across all samples in this range."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
+
+<!-- This is needed to cite within a table caption, see how it is included
+the caption below. Note it is OUTSIDE of a knitr chunk. -->
+(ref:cite-jtc2018) @JTC2018
+
+```{r main-ovaries-tab, results = "asis", echo = FALSE}
+table_ovary_samples(
+  ovary_samples_df,
+  caption = paste0(
+    "Number of ", sp, " ovaries collected for histological analysis. The ",
+    "maturity ogive was determined from a subset of these samples (up to ",
+    "and including 2017; (ref:cite-jtc2018))."),
+  font_size = 9,
+  header_font_size = 8,
+  longtable = TRUE)
+```
+\clearpage
+
+```{r main-parameters-estimated-summary-tab, results = "asis", echo = FALSE}
+table_param_est_bounds(
+  base_model,
+  start_rec_dev_yr = recruit_dev_start_yr,
+  end_rec_dev_yr = end_yr - 1,
+  section_sep_lines = TRUE,
+  digits = 2,
+  caption = paste0(
+    "Summary of estimated model parameters and priors in the base model. ",
+    "The beta prior is parameterized with a mean and standard deviation. ",
+    "The lognormal prior is parameterized with the median and standard ",
+    "deviation in log space."),
+  font_size = 9,
+  header_font_size = 9,
+  longtable = TRUE)
+```
+
+```{r main-assessment-changes-tab, results = "asis", echo = FALSE}
+table_assessment_changes(
+  assess_changes_df,
+  start_yr = 2011,
+  end_yr = end_yr,
+  caption = paste0(
+    "Annual changes in the modeling framework used to assess ", sp, " since ",
+    "2011. Methods used to weight the age-composition data (Comp Method), ",
+    "i.e., McAllister-Ianelli (MI) and Dirichlet-multinomial (D-M) ",
+    "approaches, are explained in the main text. The MCMC column gives the ",
+    "number of Markov chain Monte Carlo samples used to describe model ",
+    "results and produce statistical inference."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
+
+```{r main-est-numbers-at-age-tab, results = "asis", echo = FALSE}
+table_at_age(
+  base_model,
+  type = "naa",
+  end_yr = end_yr,
+  caption = paste0(
+    "Estimated numbers-at-age at the beginning of the year from the base ",
+    "model (posterior medians; million)."),
+  font_size = 9,
+  header_font_size = 10,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+```{r main-est-biomass-at-age-tab, results = "asis", echo = FALSE}
+table_at_age(
+  base_model,
+  type = "baa",
+  end_yr = end_yr,
+  caption = paste0(
+    "Estimated total biomass-at-age at the beginning of the year from the ",
+    "base model (posterior medians; kilotonnes)."),
+  font_size = 9,
+  header_font_size = 10,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+```{r main-est-exp-rate-at-age-tab, results = "asis", echo = FALSE}
+table_at_age(
+  base_model,
+  type = "eraa",
+  end_yr = end_yr - 1,
+  digits = 2,
+  caption = paste0(
+    "Estimated exploitation-fraction-at-age (catch-at-age divided by ",
+    "biomass-at-age at the beginning of the year) presented as a percentage ",
+    "for each year from the base model (posterior medians; percentage of ",
+    "age class removed by fishing)."),
+  font_size = 8,
+  header_font_size = 10,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+```{r main-est-catch-at-age-tab, results = "asis", echo = FALSE}
+table_at_age(
+  base_model,
+  type = "caan",
+  end_yr = end_yr - 1,
+  caption = paste0(
+    "Estimated catch-at-age in numbers for each year from the base model ",
+    "(posterior medians; thousands)."),
+  font_size = 6,
+  header_font_size = 10,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+```{r main-est-catch-at-age-biomass-tab, results = "asis", echo = FALSE}
+table_at_age(
+  base_model,
+  type = "caab",
+  end_yr = end_yr - 1,
+  caption = paste0(
+    "Estimated catch-at-age in total biomass for each year from the base ",
+    "model (posterior medians; tonnes)."),
+  font_size = 6,
+  header_font_size = 10,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+```{r main-cohort-effects-tab, results = "asis", echo = FALSE}
+table_cohort(
+  base_model,
+  cohorts = c(1999, 2010, 2014, 2016, 2020),
+  cohort_bold = TRUE,
+  cohort_italics = TRUE,
+  cohort_underline = TRUE,
+  cohort_line_above = TRUE,
+  cohort_line_below = FALSE,
+  reverse_cohorts = TRUE,
+  caption = paste0(
+    "Calculations showing changes in biomass at each age due to natural ",
+    "mortality and fishing for recent strong cohorts. Start Biomass is the ",
+    "biomass at the beginning of the year, Catch Weight is the catch for ",
+    "the cohort for the year, Natural mortality is the biomass attributed ",
+    "to natural mortality, and Surviving Biomass is what survives to the ",
+    "end of the year. Surviving Biomass does not equal the Start Biomass ",
+    "in the following year because the empirical weights-at-age change ",
+    "between years. Estimated quantities are posterior medians."),
+  font_size = 11,
+  header_font_size = 12,
+  longtable = TRUE)
+```
+
+```{r main-median-posterior-tab, results = "asis", echo = FALSE}
+table_median_posteriors(
+  base_model,
+  start_yr = start_yr,
+  end_yr = end_yr,
+  digits = 1,
+  caption = paste0(
+    "Time series of median posterior population estimates from the base ",
+    "model. Relative spawning biomass is spawning biomass relative to the ",
+    "unfished equilibrium (", b_0_for_latex_table, "). Total biomass includes
+    females and males of ages 0 and above. Age-2+ biomass includes females ",
+    "and males ages 2 and above. Exploitation fraction is total catch ",
+    "divided by total age-2+ biomass. Relative fishing intensity is (",
+    rel_fishing_intensity_for_latex_table, ") such that values below 100\\% ",
+    "represent fishing below ", f_40_for_latex_table, ". In the last row, ",
+    "dashes (--) indicate quanties requiring ", end_yr, " catch which has ",
+    "not taken place yet."),
+  font_size = 8,
+  header_font_size = 9,
+  longtable = TRUE)
+```
+
+```{r main-ci-posterior-tab, results = "asis", echo = FALSE}
+table_ci_posteriors(
+  base_model,
+  start_yr = start_yr,
+  end_yr = end_yr,
+  digits = 1,
+  caption = paste0(
+    "Time-series of 95\\% posterior credibility intervals for the quantities ",
+    "shown in Table \\@ref(tab:main-median-posterior-tab). In the last ",
+    "row, dashes (--) indicate quanties requiring ", end_yr, " catch which ",
+    "has not taken place yet."),
+  font_size = 8,
+  header_font_size = 9,
+  longtable = TRUE)
+```
+
+```{r main-parameter-estimates-tab, results = "asis", echo = FALSE}
+table_param_est(
+  models = list(base_model, last_yr_base_model),
+  model_nms = c(base_model_name, last_yr_base_model_name),
+  end_yr = end_yr,
+  section_bold = TRUE,
+  section_italics = TRUE,
+  section_underline = TRUE,
+  section_line_above = FALSE,
+  section_line_below = FALSE,
+  digits = 3,
+  caption = paste0(
+      "Select parameters, derived quantities, and reference point posterior ",
+      "median estimates for the (", end_yr, ") base model compared to the ",
+      "previous assessment's (", end_yr - 1, ") base model. Dashes (--) in ",
+      "column for the previous assessment indicate quantities that were ",
+      " not available in that assessment"),
+  font_size = 9,
+  header_font_size = 9,
+  longtable = TRUE)
+```
+
+```{r main-reference-points-tab, results = "asis", echo = FALSE}
+table_reference_points(
+  base_model,
+  category_bold = TRUE,
+  category_italics = TRUE,
+  category_underline = TRUE,
+  category_line_above = FALSE,
+  category_line_below = FALSE,
+  caption = paste0(
+    "Summary of median and 95\\% credibility intervals of equilibrium ",
+    "conceptual reference points for the base assessment model. ",
+    "Equilibrium reference points were computed using ", start_yr_age_comps,
+    "--", end_yr - 1, " averages for mean weight-at-age and baseline ",
+    "selectivity-at-age (1966--1990; prior to time-varying deviations). ",
+    "Dashes (--) indicate values that are static at one value and do not ",
+    "have a credible interval associated with them."),
+  font_size = 10,
+  header_font_size = 11,
+  longtable = TRUE)
+```
+
+\clearpage
+
+```{r main-decisions-biomass-tab, results = "asis", echo = FALSE}
+table_decision(
+  base_model,
+  type = "biomass",
+  forecast_inds =
+    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
+  caption = paste0(
+      "Forecast quantiles of ", sp, " relative spawning biomass at the ",
+      "beginning of the year. Catch alternatives are based on: constant ",
+      "catches (rows ", ct_constant_str, "), including catch similar to ",
+      min(forecast_yrs) - 1," (row~", letters[ct_actual_ind],
+      ") and to the TAC from ", min(forecast_yrs) - 1," (row~",
+      letters[ct_tac_ind], "); and non-constant catches that result in ",
+      "annual 10\\% declines in catch (rows ", ct_reduction_str,
+      "), median relative fishing intensity of 100\\% (row ",
+      letters[ct_spr100_ind], "), median catch estimated via the default ",
+      "harvest policy (", f_40_40_10_for_latex_table,", row~",
+      letters[ct_default_policy_ind], "), and the fishing intensity that ",
+      "results in the median projected catch remaining the same in ",
+      min(forecast_yrs), " and ",min(forecast_yrs) + 1, " (row~",
+      letters[ct_stable_ind], ")."),
+  bold_letters = TRUE,
+  digits = 2,
+  font_size = 10,
+  header_font_size = 10,
+  # If the font is changed it is almost guaranteed that `left_col_cm` and
+  # `right_cols_cm` will have to be changed, especially if the font is made
+  # larger. You will have to check this with trial-and-error, building the
+  # document, checking the table and adjusting, over and over until it looks
+  # right
+  left_col_cm = 3,
+  right_cols_cm = 1.2,
+  longtable = TRUE)
+```
+
+```{r main-decisions-spr-tab, results = "asis", echo = FALSE}
+table_decision(
+  base_model,
+  type = "spr",
+  forecast_inds =
+    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
+  caption = paste0(
+    "Forecast quantiles of ", sp, " relative fishing intensity ",
+    "(1-SPR)/(1-SPR\\textsubscript{40\\%}), expressed as a proportion, for ",
+    "the ", min(forecast_yrs), "--", max(forecast_yrs) - 1, " catch ",
+    "alternatives presented in Table~\\@ref(tab:main-decisions-biomass-tab). ",
+    "Values greater than 1 indicate relative fishing intensities greater ",
+    "than the ", f_40_for_latex_table, " harvest policy calculated using baseline ",
+    "selectivity."),
+  bold_letters = TRUE,
+  digits = 2,
+  font_size = 10,
+  header_font_size = 10,
+  # If the font is changed it is almost guaranteed that `left_col_cm` and
+  # `right_cols_cm` will have to be changed, especially if the font is made
+  # larger
+  left_col_cm = 3,
+  right_cols_cm = 1.2,
+  longtable = TRUE)
+```
+
+```{r main-risk-year-1-tab, results = "asis", echo = FALSE}
+# Index in model$risks to use, e.g. 1 means forecast year 2 compared to
+# forecast year 1
+table_risk(
+  base_model,
+  forecast_yrs,
+  index = 1,
+  type = "probability",
+  digits = 2,
+  caption = paste0(
+    "Probabilities related to spawning biomass, relative fishing intensity, ",
+    "and the ", end_yr + 1, " default harvest policy catch for alternative ",
+    end_yr, " catch options (catch options explained in ",
+    "Table~\\@ref(tab:main-decisions-biomass-tab))."),
+  font_size = 10,
+  header_font_size = 10,
+  longtable = TRUE)
+```
+
+```{r main-risk-year-2-tab, results = "asis", echo = FALSE}
+# Index in model$risks to use, e.g. 1 means forecast year 2 compared to
+# forecast year 1
+table_risk(
+  base_model,
+  forecast_yrs,
+  index = 2,
+  type = "probability",
+  digits = 2,
+  caption = paste0(
+    "Probabilities related to spawning biomass, relative fishing intensity, ",
+    "and the ", end_yr + 2, " default harvest policy catch for alternative ",
+    end_yr + 1, " catch options, given the ", end_yr, " catch level shown ",
+    "in Table~\\@ref(tab:main-risk-year-1-tab) (catch options explained in ",
+    "Table~\\@ref(tab:main-decisions-biomass-tab))."),
+  font_size = 10,
+  header_font_size = 10,
+  longtable = TRUE)
+```
+
+```{r main-risk-year-3-tab, results = "asis", echo = FALSE}
+# Index in model$risks to use, e.g. 1 means forecast year 2 compared to
+# forecast year 1
+table_risk(
+  base_model,
+  forecast_yrs,
+  index = 3,
+  type = "probability",
+  digits = 2,
+  caption = paste0(
+    "Probabilities related to spawning biomass, relative fishing intensity, ",
+    "and the ", end_yr + 3, " default harvest policy catch for alternative ",
+    end_yr + 2, " catch options, given the ", end_yr, " and ", end_yr + 1,
+    " catch levels shown in Tables~\\@ref(tab:main-risk-year-1-tab) and~",
+    "\\@ref(tab:main-risk-year-2-tab) (catch options explained in Table~",
+    "\\@ref(tab:main-decisions-biomass-tab))."),
+  font_size = 10,
+  header_font_size = 10,
+  longtable = TRUE)
+```
+
+```{r main-parameter-estimates-sens-1-tab, results = "asis", echo = FALSE}
+table_param_est(
+  models = sens_models[[1]],
+  model_nms = sens_models_names[[1]],
+  end_yr = end_yr,
+  section_bold = TRUE,
+  section_italics = TRUE,
+  section_underline = TRUE,
+  section_line_above = TRUE,
+  section_line_below = FALSE,
+  digits = 3,
+  caption = paste0(
+    "Posterior medians for select parameters, derived quantities, reference ",
+    "points, and negative log likelihoods for the base model and some ",
+    "sensitivity runs (described in ",
+    "Section~\\@ref(sec:assessment-sensitivity-analyses)). A dash (--) ",
+    "indicates that the parameter or derived quantity was not estimated in ",
+    "the model."),
+  right_cols_cm = 1.8,
+  font_size = 9,
+  header_font_size = 9,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+```{r main-parameter-estimates-sens-2-tab, results = "asis", echo = FALSE}
+table_param_est(
+  models = sens_models[[2]],
+  model_nms = sens_models_names[[2]],
+  end_yr = end_yr,
+  section_bold = TRUE,
+  section_italics = TRUE,
+  section_underline = TRUE,
+  section_line_above = TRUE,
+  section_line_below = FALSE,
+  digits = 3,
+  caption = paste0(
+    "Posterior medians for select parameters, derived quantities, reference ",
+    "points, and negative log likelihoods for the base model and further ",
+    "sensitivity runs (described in ",
+    "Section~\\@ref(sec:assessment-sensitivity-analyses)). A dash (--) ",
+    "indicates that the parameter or derived quantity was not estimated in ",
+    "the model."),
+  right_cols_cm = 2,
+  font_size = 9,
+  header_font_size = 9,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+```{r main-parameter-estimates-sens-3-tab, results = "asis", echo = FALSE}
+table_param_est(
+  models = sens_models[[3]],
+  model_nms = sens_models_names[[3]],
+  end_yr = end_yr,
+  section_bold = TRUE,
+  section_italics = TRUE,
+  section_underline = TRUE,
+  section_line_above = TRUE,
+  section_line_below = FALSE,
+  digits = 3,
+  caption = paste0(
+    "Posterior medians for select parameters, derived quantities, reference ",
+    "points, and negative log likelihoods for the base model and further ",
+    "sensitivity runs (described in ",
+    "Section~\\@ref(sec:assessment-sensitivity-analyses)). A dash (--) ",
+    "indicates that the parameter or derived quantity was not estimated in ",
+    "the model."),
+  right_cols_cm = 1.8,
+  font_size = 9,
+  header_font_size = 9,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+```{r main-parameter-estimates-retro-tab, results = "asis", echo = FALSE}
+table_param_est(
+  base_model$retros$retro_param_est,
+  section_bold = TRUE,
+  section_italics = TRUE,
+  section_underline = TRUE,
+  section_line_above = TRUE,
+  section_line_below = FALSE,
+  digits = 3,
+  caption = paste0(
+    "Posterior medians from the base model for select parameters, derived ",
+    "quantities, reference point estimates, and negative log likelihoods ",
+    "for retrospective analyses. Some values are implied since they occur ",
+    "after the ending year of the respective retrospective analysis. A ",
+    "dash (--) indicates that the parameter or derived quantity was not ",
+    "output by the model."),
+  right_cols_cm = 1.8,
+  font_size = 9,
+  header_font_size = 9,
+  longtable = TRUE) |> 
+  landscape()
+```
+
+\clearpage

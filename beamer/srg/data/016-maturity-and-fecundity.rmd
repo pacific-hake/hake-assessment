@@ -1,0 +1,44 @@
+# Maturity and Fecundity
+## Ovary sampling
+* Sample sources
+- Bottom trawl survey (2009, 2012 -- 2017)
+- Acoustic survey (2012 -- 2013, 2015 -- 2017)
+- At-sea fishery (2013 -- 2017)
+* Length stratified sampling from surveys with target numbers for 2 cm length bins.
+* Data from 2018 and 2019 are expected to be analyzed in 2021.
+
+## Status of Canadian ovary samples
+```{r ovary-table, results = "asis"}
+
+table_ovary_samples(
+  ovary_samples_df,
+  font_size = 7,
+  header_font_size = 6)
+```
+
+## Maturity
+```{r maturity-ogive-figure, fig.height = 4, out.height = "85%"}
+
+plot_maturity_ogives(base_model,
+                     maturity_samples_df)
+```
+
+## Fecundity
+```{r fecundity-figure, fig.height = 4, out.height = "85%"}
+
+plot_fecundity(base_model,
+               d = maturity_samples_df,
+               yrs = start_yr_age_comps:(end_yr - 1),
+               leg_pos = c(0.6, 0.2))
+```
+
+## Fecundity
+* Fecundity-at-age is set to maturity-at-age $*$ weight-at-age in Stock
+Synthesis.
+* We need a better understanding of:
+  - Batch spawning.
+- Links between fecundity and size, age, and weight.
+- How the above topics provide further information about factors that
+influence varying reproductive output.
+* More winter acoustic surveys may provide further information about these questions.
+

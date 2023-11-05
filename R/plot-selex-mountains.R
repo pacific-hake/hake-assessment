@@ -1,84 +1,154 @@
-plot_selex_mountains <- function(selex_by_yr,
+#' Create a plot of median selectivity as a set of overlapping "mountains"
+#' which are shaded top-down for visual appeal
+#'
+#' @param model The model output from Stock Synthesis as loaded by
+#'   [create_rds_file()].
+#' @param yrs A vector of years to include in the plot. If `NULL`, all years
+#' found in the data will be included
+#' @param ages A vector of ages to include in the plot
+#' @param scale A scaling factor to increase or decrease the height of the
+#' selectivity plots
+#' @param fill_num_colors The number of colors for the gradient of colors
+#' between `fill_col_upper` and `fill_col_lower`
+#' @param fill_col_upper The top color for the gradient color scheme
+#' @param fill_col_lower  The bottom color for the gradient color scheme
+#'
+#' @return A [ggplot2::ggplot()] object
+#' @export
+plot_selex_mountains <- function(model,
                                  yrs = NULL,
-                                 ages = NULL,
-                                 scale = 3){
+                                 ages = 1:8,
+                                 scale = 1,
+                                 fill_num_colors = 20,
+                                 fill_col_upper = "darkblue",
+                                 fill_col_lower = "lightblue"){
 
-  yr_vec <- yrs[1]:yrs[2]
+  color_func <- colorRampPalette(colors = c(fill_col_upper, fill_col_lower))
+  gradient_cols <- color_func(n = fill_num_colors)
+  fill_reduction_prop <- 1 - (1 / fill_num_colors)
+  prop_seq <- seq(0, fill_reduction_prop, 1 / fill_num_colors)
+
+  sel_med <- model$extra_mcmc$sel_fishery_med |>
+    select(-iter)
 
   if(!is.null(yrs)){
-    selex_by_yr <- selex_by_yr |>
-      filter(Yr %in% yr_vec)
+    sel_med <- sel_med |>
+      filter(yr %in% yrs)
   }
+
   if(!is.null(ages)){
-    selex_by_yr <- selex_by_yr |>
-      select(Yr, all_of(as.character(ages)))
+    sel_med <- sel_med |>
+      select(yr, all_of(as.character(ages)))
   }
 
-  d <- selex_by_yr |>
-    pivot_longer(-Yr, names_to = "age", values_to = "prop") |>
-    mutate(prop = prop * scale)
+  d <- sel_med |>
+    pivot_longer(-yr, names_to = "age", values_to = "prop") |>
+    mutate(prop = prop * scale) |>
+    mutate(age = as.numeric(age)) |>
+    arrange(-yr, age) |>
+    rename(ymax = prop) |>
+    split(~yr) |>
+    rev() |>
+    set_names(NULL) |>
+    imap(~{.x |>
+        mutate(ymin = .y)}) |>
+    map_df(~{.x}) |>
+    mutate(across(everything(), ~{as.numeric(.x)})) |>
+    mutate(which_ribbon = 1) |>
+    # The `add_extra_ribbon_data()` function is found in this file, below
+    add_extra_ribbon_data(prop_seq) |>
+    mutate(ymax = ymin + ymax) |>
+    mutate(ribbon_color = gradient_cols[which_ribbon]) |>
+    arrange(-yr, age)
 
-  d <- d |>
-    filter(Yr %in% 2012) |>
-    mutate(Yr = factor(Yr, levels = rev(sort(unique(Yr)))))
-
-
-  # ggplot(d, aes(x = age, ymax = prop, group = Yr)) +
-  #   geom_ribbon(ymin = 0, color = "black", fill = "lightgrey")  +
-
-  xlist1 <- seq(0, 1 * scale, by = 0.02)
-  #xlist1 <- sort(c(max(d$prop),tail(d$prop, 1),
-  #                 pretty(c(0,min(d$prop)),n = 20, min.n = 20)))
-  browser()
-  ggplot(d, aes(x = age, y = prop, group = Yr)) +
-    geom_line() +
-    mapply(function(ylow, yhigh, col, a = 0.1){
-      geom_ribbon(aes(ymin = ylow,
-                      ymax = yhigh),
-                  alpha = a,
-                  fill = col)
-    },
-    tail(xlist1, -1),
-    head(xlist1, -1),
-    "salmon",
-    seq(0, 1, length = length(xlist1) - 1)) +
-    geom_line(size = 2, color = "white") +
-    geom_line(size = 1.1) +
-    geom_ribbon(aes(ymin = prop, ymax = Inf), fill = "white", alpha = 0.8) +
-    facet_wrap(~Yr, ncol = 1) +
+  g <- ggplot(d,
+              aes(x = age,
+                  y = yr,
+                  group = yr,
+                  color = yr)) +
+    geom_ribbon(aes(x = age,
+                    ymax = ymax,
+                    ymin = ymin,
+                    group = which_ribbon,
+                    fill = ribbon_color),
+                alpha = 0.5,
+                inherit.aes = FALSE) +
+    scale_fill_identity() +
+    scale_x_continuous(expand = c(0, 0),
+                       breaks = ages) +
+    coord_cartesian(xlim = c(0, max(ages))) +
+    geom_line(data = d |>
+                filter(which_ribbon == 1),
+              aes(x = age,
+                  y = ymax,
+                  group = yr),
+              color = "white",
+              linewidth = 0.75,
+              alpha = 0.5,
+              inherit.aes = FALSE) +
+    geom_line(data = d |>
+                filter(which_ribbon == 1),
+              aes(x = age,
+                  y = ymax,
+                  group = yr),
+              color = "black",
+              linewidth = 0.5,
+              inherit.aes = FALSE) +
+    geom_text(aes(x = 0.75,
+                  y = ymin + 0.5,
+                  hjust = 0.75,
+                  vjust = -0.5,
+                  label = yr),
+              inherit.aes = FALSE) +
+    facet_grid(yr ~ ., switch = "y") +
     theme(strip.background = element_blank(),
           panel.spacing = unit(-2, "cm"),
           strip.text.x = element_blank(),
+          strip.text.y = element_blank(),
           axis.text.y = element_blank(),
           axis.ticks.y = element_blank(),
-          plot.margin = margin(12, 12, 0, 0),
+          plot.margin = margin(0, 6, 6, 12),
           panel.border = element_blank(),
           panel.background = element_rect(fill = "transparent"),
           plot.background = element_rect(fill = "transparent", color = NA),
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(),
           legend.background = element_rect(fill = "transparent"),
-          legend.box.background = element_rect(fill = "transparent")) +
-    scale_y_continuous(expand = c(0, 0))
+          legend.box.background = element_rect(fill = "transparent"),
+          legend.position = "none") +
+    xlab("Age") +
+    ylab("Selectivity by year")
 
-          # axis.text.x = element_text(color = "grey20",
-          #                            size = axis_tick_font_size),
-          # axis.title.x = element_text(color = "grey20",
-          #                             size = axis_title_font_size),
-          # axis.title.y = element_text(color = "grey20",
-          #                             size = axis_title_font_size),
-          # axis.ticks.length = unit(0.15, "cm"))
+  g
+}
 
-  # ggplot(d, aes(x = age,
-  #               y = Yr,
-  #               height = prop * scale,
-  #               group = Yr,
-  #               fill = prop)) +
-  #   ggridges::geom_ridgeline(fill = "white") +
-  #   ggpattern::geom_polygon_pattern(
-  #     pattern_fill = "white",
-  #     pattern_orientation = 2,
-  #     pattern          = "gradient",
-  #     pattern_fill2 = "black")
+#' Add extra data for decreasing-sized polygons which will be used to make
+#' ribbons, one inside the other. See [plot_selex_mountains()]
+#'
+#' @param d The data frame to add ribbon data to
+#' @param prop_seq A sequence of decreasing proportion values which
+#' will be applied to the height data iteratively to create smaller
+#' polygon data
+#'
+#' @return A modified data frame with the same structure as `d`, but with
+#' many more rows which contain the extra ribbon polygon data
+add_extra_ribbon_data <- function(d, prop_seq){
 
+  prop_seq <- prop_seq[prop_seq != 0]
+  prop_seq <- rev(sort(prop_seq))
+
+  d |>
+    split(~yr) |>
+    map(~{
+      out <- .x
+      for(i in seq_along(prop_seq)){
+        tmp <- .x |>
+          mutate(ymax = ymax * prop_seq[i]) |>
+          mutate(which_ribbon = i + 1)
+        out <- out |>
+          bind_rows(tmp)
+      }
+      out
+    }) |>
+    map_df(~{.x})
 }

@@ -1,33 +1,52 @@
 #' Plot recruitment from MCMC output for one or more models
 #'
 #' @rdname plot_biomass
+#' @param relative Logical. If `TRUE`, create a relative recruitment plot using
+#' the `r_rel_lower`, `r_rel_med`, `r_rel_upper`, `r_rel_mean`, and
+#' `r_rel_init` elements of `mcmccalcs` which are created in the function
+#' [calc_mcmc()]. In that function, the relative year is set. It is 2010 by
+#' default. To change it, edit the year in the [calc_mcmc()] function, and
+#' then [create_rds_file()] needs to be run again to create the RDS file for
+#' the model
+#'
 #' @export
-plot_recruitment <- function(model_lst = NULL,
-                             model_names,
-                             inc_means = FALSE,
-                             xlim = c(1966, year(Sys.time())),
-                             x_breaks = xlim[1]:xlim[2],
-                             x_labs_mod = 5,
-                             x_expansion = 3,
-                             ylim = c(0, 40),
-                             y_breaks = seq(ylim[1], ylim[2], by = 10),
-                             y_labels = y_breaks,
-                             y_colors = rep("black", length(y_breaks)),
-                             alpha = 0.2,
-                             leg_pos = c(0.65, 0.83),
-                             leg_ncol = 1,
-                             leg_font_size = 12,
-                             axis_title_font_size = 14,
-                             axis_tick_font_size = 11,
-                             point_size = 1.5,
-                             line_width = 0.5,
-                             clip_cover = 2,
-                             single_point_color = "black",
-                             single_line_color = "black",
-                             crossbar_width = 0,
-                             dodge_val = 0.5,
-                             rev_colors = FALSE,
-                             d_obj = NULL){
+plot_recruitment <- function(
+    model_lst = NULL,
+    model_names = NULL,
+    show_arrows = TRUE,
+    inc_means = FALSE,
+    relative = FALSE,
+    xlim = c(1966, year(Sys.time())),
+    x_breaks = xlim[1]:xlim[2],
+    x_labs_mod = 5,
+    x_expansion = 2,
+    tick_prop = 1,
+    vjust_x_labels = -1,
+    ylim = c(0, 40),
+    y_breaks = seq(ylim[1], ylim[2], by = 10),
+    y_labels = y_breaks,
+    y_colors = rep("black", length(y_breaks)),
+    alpha = 0.3,
+    leg_pos = c(0.65, 0.83),
+    leg_ncol = 1,
+    leg_font_size = 12,
+    point_size = ifelse(is_single_model,
+                        ts_single_model_pointsize,
+                        ts_pointsize),
+    color = ts_single_model_pointcolor,
+    point_shape = ifelse(is_single_model,
+                         ts_single_model_pointshape,
+                         ts_pointshape),
+    point_stroke = ifelse(is_single_model,
+                          ts_single_model_pointstroke,
+                          ts_pointstroke),
+    line_width = ifelse(is_single_model,
+                        ts_single_model_linewidth,
+                        ts_linewidth),
+    crossbar_width = 0,
+    dodge_val = 0.5,
+    rev_colors = TRUE,
+    d_obj = NULL){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -35,67 +54,78 @@ plot_recruitment <- function(model_lst = NULL,
            "must be supplied. Both are `NULL`",
            call. = FALSE)
     }
-    d_obj <- create_group_df_recr(model_lst, model_names)
+    d_obj <- create_group_df_recr(model_lst,
+                                  model_names,
+                                  relative = relative)
   }
 
+  if(relative){
+    rlower <- "r_rel_lower"
+    rmed <- "r_rel_med"
+    rupper <- "r_rel_upper"
+    rmean <- "r_rel_mean"
+    rinit <- "r_rel_init"
+  }else{
+    rlower <- "rlower"
+    rmed <- "rmed"
+    rupper <- "rupper"
+    rmean <- "rmean"
+    rinit <- "rinit"
+  }
+  rlower_sym <- sym(rlower)
+  rmed_sym <- sym(rmed)
+  rupper_sym <- sym(rupper)
+  rmean_sym <- sym(rmean)
+
   d <- d_obj[[1]]
+  is_single_model <- length(unique(d$model)) == 1
   colors <- plot_color(length(unique(d$model)))
-  line_colors <- colors
   if(rev_colors){
     colors <- rev(colors)
-    line_colors <- rev(line_colors)
   }
-  is_single_model <- length(unique(d$model)) == 1
   if(is_single_model){
-    colors <- single_point_color
-    line_colors <- single_line_color
-    ro_vec <- model_lst[[1]]$mcmccalcs$rinit
+    colors <- color
+  }
+
+  if(is_single_model){
+    #colors <- single_point_color
+    #colors <- single_line_color
+    ro_vec <- model_lst[[1]]$mcmccalcs[[rinit]]
     yrs <- c(seq(min(d$year) - x_expansion,
                  min(d$year) - 1), d$year)
     ro <- tibble(model = model_names[[1]],
                  year = yrs,
-                 rlower = ro_vec[1],
-                 rmed = ro_vec[2],
-                 rupper = ro_vec[3]) |>
+                 !!rlower_sym := ro_vec[1],
+                 !!rmed_sym := ro_vec[2],
+                 !!rupper_sym := ro_vec[3]) |>
       mutate(model = factor(model))
   }
 
-  # Remove labels for the minor x-axis ticks
-  x_labels <- NULL
-  for(i in x_breaks){
-    if(i %% x_labs_mod == 0){
-      x_labels <- c(x_labels, i)
-    }else{
-      x_labels <- c(x_labels, "")
-    }
-  }
-
-  # Tick mark lengths adjusted here
-  x_breaks_nth <- x_breaks[x_breaks %% x_labs_mod == 0]
-  top_y_pos = ylim[1]
-  bot_y_pos = ylim[1] - (ylim[2] - ylim[1]) / 25
-  custom_ticks <- tibble(group = x_breaks_nth,
-                         y_end = bot_y_pos)
+  x_labels <- make_major_tick_labels(x_breaks = x_breaks,
+                                     modulo = x_labs_mod)
 
   # Remove projection years
   d <- d |>
-    filter(year <= xlim[2])
+    filter(year <= xlim[2] & year >= xlim[1])
 
-  g <- ggplot(d,
+  # Calculate the data outside the range of the y limits and
+  # change the CI in the data to cut off at the limits
+  yoob <- calc_yoob(d, ylim, rlower, rmed, rupper, show_arrows)
+
+  g <- ggplot(yoob$d,
               aes(x = year,
-                  y = rmed,
-                  ymin = rlower,
-                  ymax = rupper,
+                  y = !!rmed_sym,
+                  ymin = !!rlower_sym,
+                  ymax = !!rupper_sym,
                   group = model,
                   color = model,
                   fill = model)) +
-    scale_color_manual(values = line_colors) +
+    scale_color_manual(values = colors) +
     coord_cartesian(xlim = xlim,
                     ylim = ylim,
                     clip = "off")
-
   if(is_single_model){
-    ro_val <- ro$rmed[1]
+    ro_val <- ro[[rmed_sym]][1]
     below <- which(ro_val > y_breaks)
     above <- which(ro_val < y_breaks)
     tmp <- y_breaks
@@ -103,7 +133,7 @@ plot_recruitment <- function(model_lst = NULL,
     y_labels <- c(tmp[below], expression(R[0]), tmp[above])
 
     # Expand right side of ro so that ribbon covers whole plot
-    ro_row <- ro[nrow(ro),]
+    ro_row <- ro[nrow(ro), ]
     ro_next_yr <- ro_row$year
     for(yr in ro_next_yr:(ro_next_yr + x_expansion)){
       ro_row$year <- yr
@@ -112,23 +142,24 @@ plot_recruitment <- function(model_lst = NULL,
 
     g <- g +
       geom_point(size = point_size,
+                 shape = point_shape,
+                 stroke = point_stroke,
+                 position = position_dodge(dodge_val),
                  color = colors) +
       geom_hline(data = ro,
-                 aes(yintercept = rmed),
+                 aes(yintercept = !!rmed_sym),
                  linetype = "dashed") +
       geom_ribbon(data = ro,
-                  aes(ymin = rlower,
-                      ymax = rupper),
+                  aes(ymin = !!rlower_sym,
+                      ymax = !!rupper_sym),
                   alpha = alpha,
+                  fill = "black",
                   linetype = "dotted") +
       geom_errorbar(size = line_width,
                     position = position_dodge(dodge_val),
                     width = crossbar_width,
                     alpha = 0.5,
-                    color = line_colors) +
-      geom_point(size = point_size,
-                 position = position_dodge(dodge_val),
-                 color = colors)
+                    color = colors)
   }else{
     g <- g +
       geom_errorbar(size = line_width,
@@ -151,57 +182,40 @@ plot_recruitment <- function(model_lst = NULL,
                        labels = y_labels) +
     theme(legend.title = element_blank(),
           legend.text = element_text(size = leg_font_size),
+          legend.text.align = 0,
           axis.text.y = element_text(color = y_colors),
-          # plot.margin: top, right,bottom, left
-          # Needed to avoid tick labels cutting off
-          plot.margin = margin(12, 12, 7, 0)) +
+          axis.title.y = element_text(vjust = 2)) +
     xlab("Year") +
-    ylab("Age-0 recruits (billions)")
+    ylab(ifelse(relative,
+                "Age-0 recruits (billions) relative to 2010 values",
+                "Age-0 recruits (billions)"))
 
   if(inc_means){
     if(is_single_model){
       g <- g +
-        geom_point(aes(y = rmean),
+        geom_point(aes(y = !!rmean_sym),
                    shape = 4,
                    color = colors)
     }else{
       g <- g +
-        geom_point(aes(y = rmean),
+        geom_point(aes(y = !!rmean_sym),
                    shape = 4)
     }
   }
 
-  # Add major tick marks
-  g <- g +
-    geom_linerange(data = custom_ticks,
-                   aes(x = group,
-                       ymax = top_y_pos,
-                       ymin = y_end),
-                   size = 0.5,
-                   inherit.aes = FALSE)
+  # Add arrows to the plot to point toward the out of bounds data points
+  g <- g |>
+    draw_arrows_yoob(yoob)
 
-  g <- g +
-    theme(axis.text.x = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
-                                     angle = 0,
-                                     hjust = 0.5,
-                                     vjust = -3,
-                                     face = "plain"),
-          axis.text.y = element_text(color = "grey20",
-                                     size = axis_tick_font_size,
-                                     hjust = 1,
-                                     vjust = 0.5,
-                                     face = "plain"),
-          axis.title.x = element_text(color = "grey20",
-                                      size = axis_title_font_size,
-                                      vjust = -2,
-                                      angle = 0,
-                                      face = "plain"),
-          axis.title.y = element_text(color = "grey20",
-                                      size = axis_title_font_size,
-                                      angle = 90,
-                                      face = "plain"),
-          axis.ticks.length = unit(0.15, "cm"))
+  # Add major tick marks
+  g <- g |>
+    add_major_ticks(x_breaks = x_breaks,
+                    modulo = x_labs_mod,
+                    # This proportion must be set by trial and error
+                    # Make sure to change `vjust` value above in the `theme()`
+                    # call so the labels are not overlapping the lines or
+                    # too far away from the lines
+                    prop = tick_prop)
 
   if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
     g <- g +
@@ -211,16 +225,6 @@ plot_recruitment <- function(model_lst = NULL,
       theme(legend.position = leg_pos) +
       guides(color = guide_legend(ncol = leg_ncol))
   }
-
-  # Draw a white rectangle over the top of the plot, obscuring any
-  # unclipped plot parts. Clipping has to be off to allow different size
-  # tick marks. `grid` package used here
-  g <- g +
-    annotation_custom(grob = rectGrob(gp = gpar(col = NA, fill = "white")),
-                      xmin = xlim[1],
-                      xmax = xlim[2],
-                      ymin = ylim[2],
-                      ymax = ylim[2] + clip_cover)
 
   g
 }

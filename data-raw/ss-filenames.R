@@ -1,0 +1,13 @@
+# Source this file to apply changes. Don't forget to add documentation for
+# any new package data to file R/data.R
+library(usethis)
+
+create_data_hake("ss_executable", "ss3")
+create_data_hake("starter_fn", "starter.ss")
+create_data_hake("par_fn", "ss.par")
+create_data_hake("forecast_fn", "forecast.ss")
+create_data_hake("weight_at_age_fn", "wtatage.ss")
+create_data_hake("posts_fn", "posteriors.sso")
+create_data_hake("derposts_fn", "derived_posteriors.sso")
+create_data_hake("report_fn", "Report.sso")
+create_data_hake("comp_report_fn", "CompReport.sso")

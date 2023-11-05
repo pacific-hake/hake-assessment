@@ -1,0 +1,55 @@
+#' Reads in the forecast description data and creates the list containing
+#' the catch levels and extra information used for the assessment document
+#'
+#' @param fn The name of the file containing the forecast description data
+#'
+#' @return A list of 2 lists:
+#' List 1 is a list of lists of length-3 vectors. Each list represents a catch
+#' level, each vector's three elements are:
+#' 1 - A vector of catch levels
+#' 2 - The nice name for the catch level scenario
+#' 3 - The directory name for the catch level scenario
+#' List 2 is a list of important values and indices referenced in the document.
+#' Be sure to update this each year if forecasts are added and/or removed
+#'
+#' @export
+set_ct_levels <- function(fn = here("doc", "forecast-descriptions.csv")){
+
+  # Need fread() here because there are commas in the description field
+  ret <- list()
+  ct_levels <- fread(fn) |>
+    as_tibble()
+
+  # Columns with forecast catch
+  ct_inds <- grep("^catch_year[0-9]+$", names(ct_levels))
+  desc_ind <- max(ct_inds) + 1
+  dir_name_ind <- max(ct_inds) + 2
+
+  ret$ct_levels <- ct_levels |>
+    pmap(~{
+      row <- c(...) |>
+        set_names(NULL)
+      list(as.numeric(row[ct_inds]),
+           row[desc_ind],
+           row[dir_name_ind])})
+
+  ret$ct_levels_vals <- list(
+    ct_levels_num = length(ret$ct_levels),
+    ct_actual_ind = grep("actual", ct_levels$special),
+    ct_tac_ind = grep("tac", ct_levels$special),
+    ct_spr100_ind = grep("spr100", ct_levels$special),
+    ct_default_policy_ind = grep("default_hr", ct_levels$special),
+    ct_stable_ind = grep("stable_catch", ct_levels$special),
+    ct_reduction_rows = grep("reduction", ct_levels$forecast_type),
+    ct_constant_rows = grep("constant", ct_levels$forecast_type),
+    # Copy/paste values of `ct_constant_rows` in here
+    ct_constant_str =
+      paste(letters[grep("constant", ct_levels$forecast_type)],
+            collapse = ", "),
+    # Copy/paste values of `ct_reduction_rows` in here
+    ct_reduction_str =
+      paste(letters[grep("reduction", ct_levels$forecast_type)],
+            collapse = ", "))
+
+  ret
+}

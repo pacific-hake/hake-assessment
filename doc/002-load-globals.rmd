@@ -1,0 +1,66 @@
+```{r load-globals, echo = FALSE}
+
+proj_vars <- rmarkdown::metadata$project_variables
+output <- rmarkdown::metadata$output$`hake::hake_pdf`
+  
+if(!length(proj_vars)){
+  stop("Document compilation not run properly. You must run this code ",
+       "using the Bookdown/Rmarkdown system, by calling `hake::render()` ",
+       "which is a simple wrapper for `bookdown::render_book()`",
+       call. = FALSE)
+}
+
+# Create a global variable for each item in the `project_variables` section
+# of the YAML part of `000-launcher.rmd`
+list2env(proj_vars, envir = globalenv())
+
+sys_info <- Sys.info()
+computer_name <- sys_info[["nodename"]]
+os_name <- sys_info[["sysname"]]
+user_name <- sys_info[["user"]]
+
+last_yr_models_dir <- file.path(models_dir,
+                                last_assess_yr,
+                                paste0(last_yr_model_version, "-version"))
+models_dir <- file.path(models_dir,
+                        assess_yr,
+                        paste0(model_version, "-version"))
+
+output_csv_dir <- here("doc", out_csv_dir)
+end_yr <- assess_yr
+
+# `forecast_yrs` and `figure_margins` are special because they are R
+# expressions in the YAML code and not just a plain value. They have to be
+# parsed from a text string into an R expression using `eval(parse())`
+forecast_yrs <- eval(parse(text = forecast_yrs))
+yaml_check_margin_format(fig_margins)
+fig_margins <- eval(parse(text = fig_margins))
+
+# Extract document title for use in \\hypersetup in
+# `post_process_modify_link_colors()`
+doc_title <- rmarkdown::metadata$title
+doc_title <- gsub(".*\\\\TitleFont\\{(.*)\\}.*$", "\\1", doc_title)
+# Replace `r code` chunk with year (assuming it is year here)
+doc_title <- gsub("(.*)`r\\s+.*`(.*)", paste0("\\1", assess_yr, "\\2"), doc_title)
+
+# Extract document author for use in \\hypersetup in
+# `post_process_modify_link_colors()`
+doc_author <- gsub("\\\n", "", rmarkdown::metadata$author)
+doc_author <- gsub("\\\\\\\\\\\\", "", doc_author)
+doc_author <- gsub("\\s*$", "", doc_author)
+doc_author <- gsub("\\\\", "\\\\\\\\", doc_author)
+
+# Evaluate the footer text from YAML inputs
+footer_left <- extract_inline_rcode(
+  output$footer_left)
+footer_right <- extract_inline_rcode(
+  output$footer_right)
+
+theme_set(hake_theme(ax_label_color = fig_label_color,
+                     ax_title_font_size = fig_title_font_size,
+                     ax_tick_font_size = fig_tick_font_size,
+                     ax_title_font_face = fig_title_font_face,
+                     ax_tick_font_face = fig_tick_font_face,
+                     ax_tick_length_cm = fig_tick_length_cm,
+                     margin_def = fig_margins))
+```

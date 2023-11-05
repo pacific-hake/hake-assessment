@@ -2,102 +2,149 @@
 #'
 #' @param d The data as read in using [readr::read_csv()] from the file
 #' "catch-targets.csv"
-#' @param top_yrs Year to place labels on top for (remainder will be labels
-#' below points)
-#' @param xlim See [base::plot()]
-#' @param ylim  See [base::plot()]
-#' @param color_darken A value between 0 and 1 for darkening of points and
-#' text. Smaller values will make it darker
+#' @param yr_font_size The font size for the year labels
+#' @param yrs_nudge_right A vector of years to nudge the labels to the right
+#' instead of left for. If `NULL`, none will be modified
+#' @param x_lim Limits for the x-axis
+#' @param y_lim Limits for the y-axis
+#' @param leg_xmin The x-axis value for the left side of the legend
+#' @param leg_xmax The x-axis value for the right side of the legend
+#' @param leg_ymin The x-axis value for the bottom side of the legend
+#' @param leg_ymax The x-axis value for the top side of the legend
+#'
+#' @return A [ggplot2::ggplot()] object
+#' @export
 plot_management_catch_vs_tac_1_to_1 <- function(d,
-                                                top_yrs = NULL,
-                                                xlim = c(0, 1000),
-                                                ylim = c(0, 800),
-                                                color_darken = 0.9){
+                                                yr_font_size = 3,
+                                                yrs_nudge_right = NULL,
+                                                x_lim = c(0, 1000),
+                                                y_lim = c(0, 800),
+                                                leg_xmin = 20,
+                                                leg_xmax = 620,
+                                                leg_ymin = 700,
+                                                leg_ymax = 780){
 
-  oldpar <- par("mfrow", "mar", "mgp", "cex.lab")
-  on.exit(par(oldpar))
-  # location is bottom unless points overlap too much
-  d <- d %>%
-    mutate(color = rev(rich.colors.short(n = nrow(d), alpha = 1)))
 
-  d$color <- d$color %>%
-    map_chr(function(x){
-      tmp <- col2rgb(x) / 255
-      rgb(tmp[1] * color_darken,
-          tmp[2] * color_darken,
-          tmp[3] * color_darken)
-    })
+  d <- d |>
+    mutate(`Realized catch` = `Realized catch` / 1000,
+           TAC = TAC / 1000,
+           `Default HCR TAC` = `Default HCR TAC` / 1000) |>
+    filter(!is.na(`Default HCR TAC`)) |>
+    mutate(Year = factor(Year))
 
-  bottom <- d
-  if(!is.null(top_yrs[1])){
-    top <- d %>%
-      filter(Year %in% top_yrs)
-    bottom <- d %>%
-      filter(!Year %in% top_yrs)
+  num_unq_yrs <- d$Year |> unique() |> length()
+  cols <- plot_color(num_unq_yrs)
+
+  # Make new data frame for right nudged years
+  use_nudged_yrs <- FALSE
+
+  if(!is.null(yrs_nudge_right[1])){
+    use_nudged_yrs <- TRUE
+    d_right <- d |>
+      filter(Year %in% yrs_nudge_right)
+    d_left <- d |>
+      filter(!Year %in% yrs_nudge_right)
   }
 
-  par(mfrow = c(1, 1),
-      mar = c(3.5, 4.6, 1, 1))
-  plot(0,
-       type = 'n',
-       las = 1,
-       ylab = "",
-       xlab = "",
-       xlim = xlim,
-       ylim = ylim)
+  g <- ggplot(d) +
+    geom_abline(linetype = "dotted") +
+    geom_point(aes(x = `Default HCR TAC`,
+                   y = TAC),
+               size = 3,
+               color = "black",
+               inherit.aes = FALSE) +
+    geom_point(aes(x = `Default HCR TAC`,
+                   y = `Realized catch`,
+                   group = Year,
+                   color = Year),
+               shape = 15,
+               size = 3,
+               inherit.aes = FALSE,
+               show.legend = FALSE) +
+    geom_segment(aes(x = `Default HCR TAC`,
+                     xend = `Default HCR TAC`,
+                     y = `Realized catch`,
+                     yend = TAC),
+                 color = "black",
+                 inherit.aes = FALSE)
+  if(use_nudged_yrs){
+    g <- g +
+      geom_text(data = d_left,
+                aes(x = `Default HCR TAC`,
+                    y = `Realized catch`,
+                    group = Year,
+                    color = Year,
+                    label = Year),
+                size = yr_font_size,
+                nudge_x = -30,
+                nudge_y = -30,
+                inherit.aes = FALSE,
+                show.legend = FALSE) +
+      geom_text(data = d_right,
+                aes(x = `Default HCR TAC`,
+                    y = `Realized catch`,
+                    group = Year,
+                    color = Year,
+                    label = Year),
+                size = yr_font_size,
+                nudge_x = 30,
+                nudge_y = -30,
+                #check_overlap = TRUE,
+                inherit.aes = FALSE,
+                show.legend = FALSE)
+  }else{
+    g <- g +
+      geom_text(aes(x = `Default HCR TAC`,
+                    y = `Realized catch`,
+                    group = Year,
+                    color = Year,
+                    label = Year),
+                size = yr_font_size,
+                nudge_x = -30,
+                nudge_y = -30,
+                #check_overlap = TRUE,
+                inherit.aes = FALSE,
+                show.legend = FALSE)
+  }
 
-  ## Add points for realized catch
-  points(d$`Default HCR TAC` / 1000,
-         d$`Realized catch` / 1000,
-         pch = 22,
-         bg = d$color,
-         col = "black",
-         cex = 2)
-  ## Add points for TAC
-  points(d$`Default HCR TAC` / 1000,
-         d$TAC / 1000,
-         pch = 16,
-         col = "black",
-         cex = 2)
+  g <- g +
+    scale_x_continuous(breaks = seq(x_lim[1], x_lim[2], 200),
+                       expand = c(0, 0),
+                       limits = x_lim) +
+    scale_y_continuous(breaks = seq(y_lim[1], y_lim[2], 200),
+                       expand = c(0, 0),
+                       limits = y_lim) +
+    scale_color_manual(values = cols) +
+    xlab("Median TAC from harvest rule (kt)") +
+    ylab("Catch or TAC (kt)") +
+    # White rectangle acts as legend background
+    geom_rect(aes(xmin = leg_xmin,
+                  xmax = leg_xmax,
+                  ymin = leg_ymin,
+                  ymax = leg_ymax),
+              fill = "white") +
+    annotate("point",
+             x = leg_xmin + 10,
+             y = leg_ymax - 10,
+             shape = 16,
+             color = "black",
+             size = 3) +
+    annotate("point",
+             x = leg_xmin + 10,
+             y = leg_ymax - 50,
+             shape = 0,
+             color = "black",
+             size = 3) +
+    annotate("text",
+             x = leg_xmin + 30,
+             y = leg_ymax - 10,
+             label = "TAC implemented by management",
+             hjust = 0) +
+    annotate("text",
+             x = leg_xmin + 30,
+             y = leg_ymax - 50,
+             label = "Realized catch",
+             hjust = 0)
 
-  text(x = bottom$`Default HCR TAC` / 1000,
-       y = bottom$`Realized catch` / 1000,
-       label = substring(bottom$Year, 3),
-       pch = 0,
-       col = bottom$color,
-       cex = 0.9,
-       srt = 0,
-       adj = c(0.5, 2.0))
-
-  text(x = top$`Default HCR TAC` / 1000,
-       y = top$`Realized catch` / 1000,
-       label = substring(top$Year, 3),
-       pch = 0,
-       col = top$color,
-       cex = 0.9,
-       srt = 0,
-       adj = c(1.5, 0.5))
-
-  segments(d$`Default HCR TAC` / 1000,
-           d$TAC / 1000,
-           d$`Default HCR TAC` / 1000,
-           d$`Realized catch` / 1000 + 10,
-           lwd = 1.5,
-           alpha = 0.6)
-  abline(a = 0,
-         b = 1,
-         col = gray(0.5))
-  title(xlab = "Median TAC from harvest rule (thousand t)",
-        mgp = c(2.1, 1, 0),
-        cex.lab = 1.1)
-  title(ylab = "Catch or TAC (1,000 t)",
-        mgp = c(3.1, 1, 0),
-        cex.lab = 1.1)
-  legend("topleft",
-         legend = c("TAC implemented by management",
-                    "Realized catch"),
-         pch = c(16, 0),
-         bty = "n",
-         cex = 1.2)
-
+  g
 }

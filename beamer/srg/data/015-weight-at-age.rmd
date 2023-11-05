@@ -1,0 +1,39 @@
+# Weight-at-age
+## Weight-at-age data
+* Pre-1975 U.S.~weight-at-age data are not included because they were
+collected from the Puget Sound.
+* Historical fecundity uses mean weight-at-age data from all years.
+* Future fecundity uses mean weight-at-age data from most recent five years.
+
+## Weight-at-age by year
+```{r wt-at-age, fig.height = 4, out.height = "85%"}
+
+plot_weight_at_age(wt_at_age,
+                   ages = 2:10,
+                   bold_ages = 5,
+                   cols = c("purple",
+                            "darkblue",
+                            "yellow",
+                            "darkgreen"),
+                   max.overlaps = 15)
+```
+
+## Sample sizes of weight-at-age by year
+```{r main-weight-at-age-numbers, fig.height = 4, out.height = "85%"}
+
+plot_heatmap_sample_size_weight_at_age(
+  base_model,
+  cell_font_size = 2,
+  sample_size_df = weight_age_sample_sizes_df,
+  pre_yrs = start_yr_age_comps:base_model$endyr,
+  pre_func = mean,
+  post_yrs = (base_model$endyr - 4):base_model$endyr,
+  post_func = mean,
+  cols = c("red",
+           "yellow",
+           "green",
+           "dodgerblue")) +
+  theme(axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 6))
+```
+

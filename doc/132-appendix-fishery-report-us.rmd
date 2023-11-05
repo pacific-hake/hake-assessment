@@ -1,0 +1,146 @@
+\newpage
+
+\rfoot{U.S. fishery report}
+
+<!-- \titleformat{\section}[display] -->
+<!--   {\normalfont\Large\bfseries}{\appendixname\enspace\thesection}{.5em}{} -->
+
+# Report of the `r assess_yr - 1` `r sp` fishery in the United States {#sec:app-us-fishery-report}
+
+**Prepared by the United States Advisory Panel on 25 January 2023 for inclusion in this assessment document.**
+
+Total U.S. harvest in the 2022 whiting fishery was 290,900.38~t which is
+78.3% of the U.S. allocation of 371,433~t. This is a higher utilization rate
+than recent years, however, the utilization rate is consistent with the
+industry's pre-season expectations for harvest in 2022.
+
+**At-Sea Fishery:**
+The U.S. at-sea fishery, comprised of the Mothership (MS) and Catcher
+Processor (CP) sectors, generally followed their typical temporal pattern.
+However, the lower Bering Sea pollock TAC provided the opportunity for
+increased whiting effort throughout the season, with more participants and
+more days at sea. The fishery started May 15, with the CP sector ending the
+third week of June and the MS sector effort extending into July (a longer
+duration for this sector than most years). After B-season pollock, both
+at-sea sectors resumed whiting fishing in mid-August and ended in
+mid-October, finishing earlier than previous years. The timing of the
+at-sea fishery shifted in 2022 because the lower Bering Sea pollock TAC
+allowed whiting effort to last longer in the spring and to start earlier in the fall.
+
+**Shoreside (SS) and Mothership Catcher Vessels (CV):**
+Fishing in the U.S. shoreside sector got off to a slow start in 2022. The
+season was characterized as spotty throughout most of the year, and overall,
+shoreside catch was the lowest it's been in several years, harvesting only
+66.9% of its available allocation. While this is a considerably lower
+SS utilization rate than recent years, this lower catch is reflective
+of tradeoffs associated with increased effort in other sectors and the
+fishing conditions and locations of fish concentrations relative to markets,
+not coastwide fish abundance. There is significant overlap of catcher vessels
+between the MS and SS sectors and increased MS effort reduced SS effort
+resulting in a slower start to the SS season. In addition, the hake also
+seemed "slow to show up" near shoreside markets particularly to the north,
+possibly due to the environmental conditions reported earlier this
+year -- cold (and often highly variable) surface temps, a poorly formed
+Pacific High, late wind patterns, and late upwelling. The scratchy fishing
+at the start of the season for the SS catcher vessels improved by July as
+the hake appeared to move north. However, the fishing conditions did not
+improve off Washington until later in the summer.
+
+Fishing in the MS sector was generally good in the spring and more fish was
+caught in the spring fishery than in past years, in part due to good fishing
+and effort later into summer than in past years. In the fall fishery,
+catcher vessels delivering to MS had the potential to get more fish out of
+the water, but one MS platform broke down at the end of B season pollock
+and had to cancel their fall hake plans, while another MS breakdown down
+prevented completion of their remaining 1.5 trips.
+
+**Tribal Fishery:**
+Tribal effort was sporadic through the summer and fall. Fish abundance in the
+Makah Tribal usual and accustomed fishing grounds was better than past
+years and exhibited more normal patterns of abundance and movement through
+the area following the deep water and moving northward, often quickly, across
+the US-Canada border. Total Tribal harvest continued to be limited by
+catcher vessel availability and availability of tenders to carry the catch
+to the market for processing.
+
+**Fish Size, Distribution and Abundance:**
+The at-sea sectors reported good fish abundance generally on par with
+recent years. Hake, especially larger size classes, were deeper in the water
+column. For the at-sea sectors, the bulk of the catch was 450--550 grams,
+with smaller (less than 300 gram) and larger (more than 600 gram) also in
+the mix.
+
+The SS sector reported a good size distribution of fish with most areas
+reporting average fish size of 550 grams or larger. Early in the spring,
+the fish were being found in larger concentrations further to the south. A
+few MS fleets made trips into federal waters off California in the early
+Spring (despite fuel costs), with their MS waiting at the OR/CA border
+-- hake were reported to be abundant, catch per unit effort (CPUE) high, and
+fish size was on the smaller to moderate size. SS deliveries during this
+time were hampered by fuel costs and the vessels' ability to run up and
+down the coast often great distances from their SS market.
+
+Throughout the season the SS sector reported over 90% of fish were over 400
+grams. As reported by the MS sector in the spring, smaller fish (possibly
+1-year olds) were seen south of Newport OR, particularly in the shallows,
+but they were avoided once the boats located better concentrations of larger
+fish further north. Strong market disincentives were again in place to
+discourage harvest of smaller fish.
+
+**Incidental Species:**
+Catch of incidental species followed similar patterns as previous years,
+with the fleets focusing avoidance efforts on rockfish and Chinook salmon.
+Incidental catch of warmer water species, like Jack and Pacific mackerels,
+were lower than amounts observed in 2021, but encounters were still higher
+than normal, especially given the colder water temperatures. Shad bycatch
+was also notably higher than in recent years.
+
+Large concentrations of small sablefish were again reported by all sectors
+and had to be actively avoided, especially early in the season. There are a
+couple of young, very abundant year classes of sablefish up in the water
+column. There were many reports of vessels moving from productive hake
+fishing grounds in order to avoid sablefish. In general, fishing at deeper
+depths allowed for cleaner fishing on larger fish for the vessels that
+were capable of doing so.
+
+```{r us-ap-catch-tab, results = "asis", echo = FALSE}
+d <- tibble(` ` = c("Allocation (t)",
+                    "Catch (t)",
+                    "Utilization (%)"),
+            `U.S. TAC` = c(401896,
+                           290901,
+                           72.4),
+            `Shoreside` = c(156002,
+                            104323,
+                            66.9),
+            `Catcher Processor` = c(126287,
+                                    126247,
+                                    100),
+            `Mothership` = c(89144,
+                             59157,
+                             66.4),
+            `Tribal` = c(30463,
+                         1174,
+                         3.9)) |> 
+  mutate(across(-` `, ~{.x <- ifelse(row_number() == n(),
+                                     paste0(f(.x, 1), "%"),
+                                     f(.x))}))
+
+kbl(d,
+    align = "lrrrrr",
+    format = "latex",
+    booktabs = TRUE,
+    caption = paste0("Final allocations (after reallocation of tribal ",
+                     "quota) and catch totals (tonnes, t). Note that ",
+                     "402,646 t U.S. TAC is reduced by 750 t for research ",
+                     "and incidental catch set. Minor differences in catch ",
+                     "in this table compared to that used in the stock ",
+                     "assessment can occur due to the timing of data ",
+                     "extractions.")) |> 
+  row_spec(0, bold = TRUE) |> 
+  column_spec(1, bold = TRUE)
+  
+```
+
+\clearpage
+

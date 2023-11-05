@@ -1,0 +1,15 @@
+# Overview
+
+## Overview
+
+* Sensitivity models:
+  - Alternative assumptions for steepness (*h*)
+  - Alternative assumptions for natural mortality (*M*)
+  - Alternative standard deviations for recruitment ($\sigma_r$)
+  - Remove the age-1 index
+  - Downweight fishery age-composition data
+  - Alternative standard deviations for time-varying selectivity ($\Phi$)
+* Retrospectives `r length(retrospective_yrs)` years into the past
+* Spawning biomass estimates from `r assess_yr - 1991 + 1` years of assessments
+* Hindsight performance of past projections
+* Conveying recruitment uncertainty

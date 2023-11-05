@@ -79,8 +79,8 @@ plot_retro_recruits <- function(
   upperCI <- retroSummary[["upperCI"]]
 
   # figure out colors (using the r4ss adaptation of Arni's function)
-  colvec <- rich.colors.short(length(cohorts), alpha = 0.7)
-  shadecolvec <- rich.colors.short(length(cohorts), alpha = 0.1)
+  colvec <- rich_colors_short(length(cohorts), alpha = 0.7)
+  shadecolvec <- rich_colors_short(length(cohorts), alpha = 0.1)
   colvec <- rainbow(length(cohorts), alpha = 0.7)
   shadecolvec <- rainbow(length(cohorts), alpha = 0.1)
   colvec.txt <- colvec
@@ -172,25 +172,15 @@ plot_retro_recruits <- function(
   for (iy in 1:length(cohorts)) {
     y <- cohorts[iy]
     cohortvals <- recvals[recvals[["Yr"]] == y, 1:n]
-    cohortvalsLower <- recvalsLower[recvalsLower[["Yr"]] == y, 1:n]
-    cohortvalsUpper <- recvalsUpper[recvalsUpper[["Yr"]] == y, 1:n]
     # combine rows where the parameter labels may differ
     if (nrow(cohortvals) > 1) {
       cohortvals2 <- rep(NA, n)
-      cohortvalsLower2 <- rep(NA, n)
-      cohortvalsUpper2 <- rep(NA, n)
       for (icol in 1:n) {
         cohortvals2[icol] <- cohortvals[!is.na(cohortvals[, icol]), icol]
-        cohortvalsLower2[icol] <- cohortvalsLower[!is.na(cohortvalsLower[, icol]), icol]
-        cohortvalsUpper2[icol] <- cohortvalsUpper[!is.na(cohortvalsUpper[, icol]), icol]
       }
       cohortvals <- cohortvals2
-      cohortvalsLower <- cohortvalsLower2
-      cohortvalsUpper <- cohortvalsUpper2
     }
     cohortvals <- as.numeric(cohortvals) / scale
-    cohortvalsLower <- as.numeric(cohortvalsLower) / scale
-    cohortvalsUpper <- as.numeric(cohortvalsUpper) / scale
 
     goodmodels <- (1:n)[endyrvec - y >= 0]
     # which of the values is the final and initial

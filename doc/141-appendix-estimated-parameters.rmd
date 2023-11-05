@@ -1,0 +1,12 @@
+\newpage
+
+\rfoot{Estimated parameters}
+
+# Estimated parameters in the base assessment model {#sec:app-parameters}
+
+```{r appendix-parameter-estimates, results = "asis", echo = FALSE}
+
+table_parameters_long_summary(base_model)
+```
+
+\clearpage

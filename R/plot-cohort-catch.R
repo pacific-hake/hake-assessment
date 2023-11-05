@@ -32,7 +32,10 @@ plot_cohort_catch <- function(model,
   len_each <- length(ages)
 
   cohort_df <- map(cohorts, \(cohort){
-    j <- cumsum(cohort.catch(model, cohort, ages = ages, trim.end.year = end_yr))
+    j <- cumsum(cohort_catch(model,
+                             cohort,
+                             ages = ages,
+                             trim_end_year = end_yr))
     length(j) <- len_each
     names(j) <- ages
     j / 1e3

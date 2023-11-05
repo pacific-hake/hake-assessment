@@ -1,0 +1,102 @@
+# Catches and Allocations
+## Catches
+```{r catches, fig.height = 4, out.height = "85%"}
+
+plot_catches(ct, xlim = c(start_yr, last_data_yr),
+             leg_font_size = 9,
+             leg_key_size = 0.5,
+             leg_ratio = c(1, 4))
+```
+
+## Allocations of `r end_yr - 1` TAC of `r last_yr_tac` t
+:::::: {.columns}
+::: {.column width="50%"}
+\center \textbf{\textcolor{blue}{Canada}} \center
+
+\
+
+\center \textbf{TAC was `r last_yr_can_tac` t} \center
+
+* TAC includes `r last_yr_can_carryover` t of carryover
+* Freezer Trawlers and Shoreside -- `r last_yr_can_shoreside_tac` t
+* Joint Venture -- `r last_yr_can_tac_jv` t
+
+:::
+
+::: {.column width="50%"}
+\center \textbf{\textcolor{blue}{United States}} \center
+
+\
+
+\center \textbf{TAC was `r last_yr_us_tac` t} \center
+
+* Research and bycatch -- `r f(last_yr_us_research)` t
+* Tribal  -- `r f(last_yr_us_tribal)` t -
+  `r f(last_yr_us_tribal_quota_reallocated)` t reallocated on
+`r last_yr_us_tribal_reallocate_dates`
+* Catcher Processor -- `r f(last_yr_us_cp_quota_reallocated)` t
+* Mothership -- `r f(last_yr_us_ms_quota_reallocated)` t
+* Shore-Based -- `r f(last_yr_us_shore_quota_reallocated)` t
+
+:::
+::::::
+
+## Catches of `r end_yr - 1` TAC of `r last_yr_tac` t
+:::::: {.columns}
+::: {.column width="50%"}
+\center \textbf{\textcolor{blue}{Canada}} \center
+
+\
+
+\center \textbf{TAC was `r last_yr_can_tac` t} \center
+`r last_yr_can_landings` t, `r last_yr_can_attained`% of the Canadian TAC
+
+* Freezer Trawlers -- `r last_yr_can_freezer` t,
+`r last_yr_can_freezer_percent`% of Canadian catch
+* Shoreside -- `r last_yr_can_shore` t,
+`r last_yr_can_shore_percent`% of Canadian catch
+* Joint Venture -- `r last_yr_can_jv` t,
+`r last_yr_can_jv_percent`% of Canadian catch
+
+:::
+
+::: {.column width="50%"}
+\center \textbf{\textcolor{blue}{United States}} \center
+
+\
+
+\center \textbf{TAC was `r last_yr_us_tac` t} \center
+`r last_yr_us_landings` t, `r last_yr_us_attained`% of the U.S. TAC
+
+* Catcher Processor -- `r f(last_yr_us_cp_ct)` t,
+`r last_yr_us_cp_ct_percent`% of US CP allocation
+* Mothership `r f(last_yr_us_ms_ct)` t,
+`r last_yr_us_ms_ct_percent`% of US MS allocation
+* Shore-Based -- `r f(last_yr_us_shore_ct)` t,
+`r last_yr_us_shore_ct_percent`% of shore-based allocation, includes
+`r f(round(sum(subset(us_ti_ct_by_month_df, year == last_assess_yr)$catch), 0))`
+t of tribal catches
+
+:::
+::::::
+
+## Cumulative catch by month
+```{r cumulative-catches, fig.height = 4, out.height = "85%"}
+
+plot_cumulative_catches(list(us_ss_catch_by_month_df,
+                             can_ss_catch_by_month_df,
+                             us_cp_catch_by_month_df,
+                             can_ft_catch_by_month_df,
+                             us_ms_catch_by_month_df),
+                        list("U.S. Shore-Based",
+                             "Canadian Shorside",
+                             "U.S. Catcher-processor",
+                             "Canadian Freezer-Trawlers",
+                             "U.S. Mothership"),
+                        type = "cumulative",
+                        leg_font_size = 8,
+                        title_font_size = 10,
+                        ax_text_x = 8,
+                        ax_text_y = 8)
+```
+

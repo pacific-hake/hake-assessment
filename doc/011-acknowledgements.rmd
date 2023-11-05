@@ -1,0 +1,83 @@
+\newpage
+
+\rfoot{Acknowledgments}
+
+# Acknowledgments {#sec:acknowledgments}
+
+We thank the authors of previous assessments whose work remains an influential
+part of this assessment. We are grateful for the hard work of the U.S. and
+Canadian acoustics teams, including (in alphabetical order)
+Ethan Beyer,
+Alicia Billings,
+Dezhang Chu,
+Julia Clemons,
+Steve Deblois,
+Jackie Detering,
+Stephane Gauthier,
+Elizabeth Phillips,
+John Pohl,
+Benjamin Snow,
+Chelsea Stanley, and
+Rebecca Thomas,
+as well as the crews of the NOAA ship *Bell Shimada* and the fishing vessel
+*Nordic Pearl*.
+We thank the following individuals who contributed technical
+assistance, analysis tools, data, or comments to this and/or previous
+assessments:
+Scott Buchanan,
+Cassandra Donavan,
+Mark Freeman,
+Joanne Groot,
+Marie Guldin,
+Owen Hamel,
+Jim Hastie,
+Melissa Head,
+Jason Jannot,
+William Jasper,
+Jerry Leonard,
+Kristin Marshall,
+Rick Methot,
+Patrick McDonald,
+Cole Monnahan,
+Kiva Oken,
+Elizabeth Phillips,
+Erin Steiner,
+Brad Stenberg,
+Ian Taylor (who gave insightful comments on a draft version),
+Jim Thorson,
+Vanessa Tuttle,
+Joe Watson,
+Steve Wischniowski,
+and contributions by many others that are too numerous to list here. We also
+thank the attendees at the official JTC meeting who provided valuable insight
+into the `r end_yr - 1` commercial fisheries in Canada and the U.S., as well
+as additional perspective on the acoustic survey and `r sp` related research.
+We appreciate the input from the AP (particularly for providing
+Appendices~\@ref(sec:app-canada-fishery-report)
+and \@ref(sec:app-us-fishery-report)) and other industry representatives as
+well as the JMC members.
+
+We thank all the members of the Scientific Review Group for their thoughtful
+review and smoothly run SRG meeting, including co-chairs John Holmes and
+Owen Hamel, panel members
+Trevor Branch,
+Jaclyn Cleary,
+% Will White,
+and Allan Hicks, and AP advisors
+Shannon Mann and
+Lori Steele.
+
+Finally, we are very thankful for the Treaty coordinator, Colin Sayre, for
+handling logistics related to Treaty communications and meetings.
+
+We thank the Stock Synthesis, the \texttt{r4ss} R package, and the
+\texttt{adnuts} R package development teams for continually improving stock
+assessment tools used in this assessment. Calculations and figures from Stock
+Synthesis output were performed using `r R.Version()$version.string`. Many
+R [@R2022] packages were used to produce this document (in particular
+\texttt{bookdown}, \texttt{rmarkdown}, \texttt{knitr}, and \texttt{adnuts}) 
+
+Having all of the code under \texttt{git} version control has greatly
+increased the collaboration between authors. It has been in use since the
+2016 assessment [@JTC2016] has ensured delivery of the assessment document
+each year within a contracted time frame.

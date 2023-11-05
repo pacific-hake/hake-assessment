@@ -1,5 +1,7 @@
 # root .gitignore
 # Files
+hake.R
+..Rcheck/
 *~*
 *.7z
 *.aux
@@ -9,7 +11,6 @@ credentials
 *.docx
 *.doc
 *.dvi
-*.eps
 *.exe
 alternative_text.csv
 *junk*
@@ -18,7 +19,6 @@ alternative_text.csv
 *.out
 *.pdf
 *.pem
-*.png
 *.ppt*
 *.ps
 key_pair.R
@@ -27,7 +27,7 @@ key_pair.R
 *.rdx
 .RHistory
 .Rhistory
-.Rproj.user
+.Rproj.user/
 *.snm
 *.ss_new
 *.sso
@@ -58,6 +58,8 @@ remote-desktop-scripts*
 temp-keep*
 data/extractedData*
 doc/old-pdfs*
+doc/hake.Rmd
+doc/*.md
 
 # Other
 appendix-srg-requests-2017.rnw
@@ -77,3 +79,4 @@ appendix-srg-requests-2019.rnw
 # Whitelist
 !testing/
 !testing/*
+!*gotest*

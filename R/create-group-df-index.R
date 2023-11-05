@@ -2,9 +2,8 @@
 #' model list which is in long format ready for [ggplot2::ggplot()]
 #'
 #' @param model_lst A list of models, each created by [create_rds_file()]
+#' @param survey_type Either `age1` or `age2`
 #' @param model_names A vector of model names,the same length as `model_lst`
-#' @param type The type of survey, must be one of `age1` or `age2`.
-#' `age2` means age 2+ acoustic survey and `age1``is the age 1 acoustic survey
 #'
 #' @return A list containing a [tibble::tibble()]
 #'
@@ -21,33 +20,37 @@ create_group_df_index <- function(model_lst = NULL,
     as_tibble() |>
     filter(index == fleet) |>
     select(-seas, -se_log, -index) |>
-    setNames(c("year", "index.med")) |>
+    setNames(c("year", "index_med")) |>
     mutate(year = as.numeric(year)) |>
     mutate(model = "Observed") |>
-    mutate(index.025 = index.med,
-           index.975 = index.med) |>
-    select(model, year, index.025, index.med, index.975)
+    mutate(index_lo = index_med,
+           index_hi = index_med) |>
+    select(model, year, index_lo, index_med, index_hi) |>
+    mutate_at(.vars = vars(index_lo, index_med, index_hi), ~{.x = .x / 1e6})
 
   d <- bind_cols(extract_survey_index_fits(model_lst,
                                            model_names,
                                            survey_type = survey_type,
-                                           "index.025",
+                                           "index_lo",
                                            TRUE),
                  extract_survey_index_fits(model_lst,
                                            model_names,
                                            survey_type = survey_type,
-                                           "index.med"),
+                                           "index_med"),
                  extract_survey_index_fits(model_lst,
                                            model_names,
                                            survey_type = survey_type,
-                                           "index.975")) |>
+                                           "index_hi")) |>
     bind_rows(obs) |>
     mutate(model = factor(model,
                           levels = c(model_names,
                                      "Observed")),
-           year = as.numeric(year)) |>
-    mutate_at(vars(index.025, index.med, index.975),
-              ~{.x / 1e6})
+           year = as.numeric(year))
+
+    # mutate_at(vars(index_lo, index_med, index_hi),
+    #           ~{ifelse(model != "Last assessment base model",
+    #                    .x / 1e6,
+    #                    .x)})
 
   list(d)
 }

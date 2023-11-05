@@ -15,11 +15,7 @@
 #' @param seed The random seed used to draw the random seeds for each chain
 #' @param num_samples The number of samples to output
 #' @param num_warmup_samples The warmup samples (equivalent of burnin)
-#' @param adapt_delta The target acceptance rate. See [adnuts::sample_nuts()]
-#' @param check_issues Run [adnuts::launch_shinyadmb()] after initial short
-#' run to discover issues. This will stop the function before the main
-#' iterations are done, so you will have to re-run the function again
-#' with this set to `FALSE`.
+#' @param adapt_delta The target acceptance rate. See [adnuts::sample_admb()]
 #' @param run_extra_mcmc If `TRUE`, run SS extra mcmc option which outputs
 #' files into the `sso` subdirectory. If `FALSE`, those files will not be
 #' created and the `posteriors.sso` and `dervied_posteriors.sso` files
@@ -28,13 +24,11 @@
 #' @param overwrite Logical. If `TRUE`, don't ask user if they want to
 #' overwrite if the directory already exists, just do it
 #' @param input_files The input files for SS
-#'
-#' @importFrom crayon green
-#' @importFrom cli symbol
-#' @importFrom lubridate seconds_to_period
-#' @importFrom r4ss copy_SS_inputs
+#' @param hess_step Logical. If `TRUE`, use the `hess_step` algorithm`
+#' @param fn_logfile The filename of the logfile
 #'
 #' @return Nothing
+#' @export
 run_adnuts <- function(path,
                        num_chains = NULL,
                        seed = 42,
@@ -48,14 +42,14 @@ run_adnuts <- function(path,
                                     "ss3"),
                        overwrite = FALSE,
                        fn_logfile = "model_output.log",
-                       input_files = c(ifelse(exists("starter_file_name"),
-                                              starter_file_name,
+                       input_files = c(ifelse(exists("starter_fn"),
+                                              starter_fn,
                                               "starter.ss"),
-                                       ifelse(exists("starter_file_name"),
-                                              forecast_file_name,
+                                       ifelse(exists("starter_fn"),
+                                              forecast_fn,
                                               "forecast.ss"),
-                                       ifelse(exists("weight_at_age_file_name"),
-                                              weight_at_age_file_name,
+                                       ifelse(exists("weight_at_age_fn"),
+                                              weight_at_age_fn,
                                               "wtatage.ss"),
                                        ifelse(exists("control_file_name"),
                                               control_file_name,
@@ -172,7 +166,7 @@ run_adnuts <- function(path,
   input_files <- file.path(path, input_files)
   file.copy(input_files, mcmc_path, overwrite = TRUE)
   if(run_extra_mcmc){
-    dir.create(file.path(mcmc_path, "sso"), showWarnings = FALSE)
+    dir.create(file.path(mcmc_path, "sso"), showWarnings = TRUE)
     modify_starter_mcmc_type(mcmc_path, 2)
   }else{
     modify_starter_mcmc_type(mcmc_path, 1)

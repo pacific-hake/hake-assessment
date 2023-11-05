@@ -1,0 +1,732 @@
+\newpage
+
+\rfoot{Data}
+
+# Data {#sec:data}
+
+Fishery-dependent and fishery-independent data used in this assessment
+(Figure~\@ref(fig:main-data-overview-fig)) include the following sources:
+
+- Total catch from all U.S. and Canadian fisheries that target `r sp`
+from `r start_yr` to `r last_data_yr` (Tables                                       \@ref(tab:main-catches-us-tab)--\@ref(tab:main-landings-tac-tab)).
+
+- Fishery age compositions aggregated by year and country-specific sector
+for the last ten years are available
+(Tables~\@ref(tab:main-us-cp-age-data-tab)--\@ref(tab:main-can-ft-age-data-tab))
+to investigate region-specific trends; age compositions aggregated by year,
+composed of data from the U.S. fishery
+(`r max_fishery_age_prop[1]`--`r max_fishery_age_prop[2]`) and the
+Canadian fishery
+(`r can_age_yrs_min`--`r can_age_yrs_max`),
+are used to fit the model
+(Table~\@ref(tab:main-input-age-data-fishery-tab) and
+Figure~\@ref(fig:main-age-comp-bubbles-fig)).
+
+- Biomass index and age compositions from the `r survey_name`
+(`r str_flatten_comma(survey.age.years)`;
+ Tables~\@ref(tab:main-input-age-data-survey-tab),
+ ~\@ref(tab:main-survey-history-tab),
+ and~\@ref(tab:main-survey-by-country-tab);
+ Figures~\@ref(fig:main-age-comp-bubbles-fig)
+ and~\@ref(fig:main-survey-extrap-biomass-fig)).
+
+- The relative age-1 index (billions of age-1 fish) derived from the
+`r survey_name` (`r str_flatten_comma(survey_age1_yrs)`;
+ Table~\@ref(tab:main-survey-history-tab);
+ Figure~\@ref(fig:main-survey-extrap-biomass-fig)).
+
+- Mean observed weight-at-age data from fishery and survey catches
+(1975--`r max_fishery_age_prop[2]`;
+Figures~\@ref(fig:main-weight-at-age-fig)--
+\@ref(fig:main-weight-at-age-lines-fig))
+and, thus, derived fecundity-at-age as well
+(Figure~\@ref(fig:main-maturity-ogive-fig)).
+
+The following biological relationships, derived from external analysis of
+auxiliary data, were input as fixed values in the assessment model:
+
+- Ageing-error matrices based on cross-read and double-blind-read otoliths.
+
+- Proportion of female `r sp` mature by age, as developed from recent
+histological analyses of ovary samples
+(Table~\@ref(tab:main-maturity-ogives-tab) and
+Figure~\@ref(fig:main-maturity-ogive-fig)).
+
+Additional data sources not used in this assessment are discussed in Section
+\@ref(sec:data-not-used).
+
+## Fishery-dependent data {#sec:data-fishery-data}
+
+### Total catch {#sec:data-total-catch}
+
+The catch of `r sp` for `r start_yr`--`r last_data_yr` is summarized by
+country-specific sectors
+(Tables~\@ref(tab:main-catches-us-tab)--\@ref(tab:main-landings-tac-tab))
+and modeled as annual coast-wide catches. Catches in U.S. waters prior to
+1978 are available only by year from @BaileyFrancisEtAl1982 and
+historical assessment documents. Canadian catches prior to 1989 are also
+unavailable in disaggregated form. The U.S. shore-based landings are from the
+Pacific Fishery Information Network (PacFIN) database. Foreign and
+Joint-Venture catches for 1981--`r terminal_yr_us_jv_foreign` and U.S.
+domestic at-sea catches for 1991--`r last_data_yr` are calculated from the
+Alaska Fisheries Science Center's North Pacific Groundfish and Halibut
+Observer (NORPAC) database, which also stores data from the At-Sea Hake
+Observer Program. Canadian Joint-Venture catches from 1989 are from the
+Groundfish Biological (GFBio) database. Canadian shore-based landings are
+from the Groundfish Catch (GFCatch) database for 1989--1995, the Pacific
+Harvest Trawl (PacHarvTrawl) database for 1996--March 31, 2007, and the
+Fisheries Operations System (FOS) database for April 2007--present.
+
+Vessels in the U.S. shore-based fishery carry observers and are required to
+retain all catch and bycatch for sampling by plant observers. All catches
+from U.S. at-sea vessels, Canadian Joint-Venture vessels, and Canadian
+freezer trawlers were monitored by at-sea observers from 1996--2019.
+
+In 2020 and 2021 there were no observers on Canadian freezer trawlers due to
+staffing issues. Due to the ongoing staffing issues, the decision was made to
+stop providing observers on board all Canadian vessels, for 2022 and all
+future groundfish trawl trips. This means there is not currently and will not
+be in the future, any at-sea sampling on board Canadian vessels. Canadian
+managers, scientists, and the sampling contractor, Archipelago Marine Research
+Ltd.~(AMR) met in early 2022 to solidify a plan to ensure the ongoing sampling
+of `r sp` for Canadian trips. The sampling plan was agreed upon by all parties
+and consisted of employees aboard Freezer trawlers freezing two bags of
+approximately 50 whole fish from two tows per trip and delivering them to AMR
+on return to shore. The bags are stored by AMR until enough have accumulated
+to sample in bulk, and they sample them over the period of a day or two. This
+plan ensures that there are individual weights taken for fish from the freezer
+trawlers, something that was not happening during the at-sea sampling. These
+weight data give more Canadian input into the weight-at-age matrix. The
+shoreside vessels continue to make landings with sampling happening on shore
+at the time of landing.
+
+Canadian trawl catches are monitored autonomously at-sea by cameras onboard
+vessels. Catch is recorded by dockside samplers within the Groundfish Trawl
+Dockside Monitoring Program using total catch weights provided by processing
+plants. Discards are negligible relative to the total fishery catch for all
+sectors.
+
+For recent catches with haul- or trip-level information, removals by month
+during the fishing season allowed for the estimation of monthly bycatch
+rates from observer or dockside information. This information has also
+allowed a detailed investigation of shifts in fishery timing
+(see Figure~5 in @JTC2014).
+
+Minor updates to catches used in previous assessments were made based on the
+best available information extracted from the aforementioned databases.
+Tribal catches were available in PacFIN for the U.S. tribal fishery at the
+time the data were extracted and were cross-checked with numbers based on
+information provided by the Makah Tribe. The Makah Tribe is also working on
+providing historical catches such that shore-based catches can be
+summarized separately from tribal catches since the onset of the fishery.
+
+### Fishery biological data {#sec:data-fishery-biological-data}
+
+Biological information from the U.S. at-sea fishery was extracted from the
+NORPAC database. This included sex, length, weight, and age information
+from the foreign and Joint-Venture fisheries from
+1975--`r terminal_yr_us_jv_foreign` and from the domestic at-sea fishery
+since `r first_yr_us_atsea`. Observers collect data by selecting fish
+randomly from each haul. The number of otoliths collected per haul has varied
+over time but is currently three fish every third haul.
+
+Biological samples from the U.S. shore-based fishery since 1991 were collected
+by port samplers located where there are substantial landings of `r sp`,
+primarily Eureka, Newport, Astoria, and Westport. Port samplers routinely take
+one sample per offload (or trip) consisting of 100 randomly selected fish for
+individual length and weight, and, from these, typically 20 fish are randomly
+subsampled for otolith extraction.
+
+When there were observers (1996--2019) aboard Canadian freezer trawler vessels,
+they collected 50 otoliths and 300 lengths per sample, sampling once per day
+during trips that on average last approximately seven days. For 2022 and
+onwards, there are no longer observers on freezer trawlers
+(Section~\@ref(sec:data-total-catch)), so the frozen samples that are
+delivered for each trip are all sampled for length, weight, sex, and otoliths
+are taken. There are approximately 100 fish per trip, in two bags of 50. There
+have been some exceptions to this; due to unforeseen circumstances while at
+sea, some trips did not bring any samples back and some only brought single
+bags.
+
+For electronically observed Canadian Shoreside trips, port samplers obtain
+biological data from the landed catch. For each sampled trip, 50 ages
+and 300 lengths are sampled from the catch. Observed domestic haul-level
+information is then aggregated to the trip level to be consistent with the
+unobserved trips that are sampled in ports.
+
+When there has been a Canadian Joint-Venture fishery, length samples are
+collected every second day of fishing operations, and otoliths are collected
+once per week. Length and age samples are taken randomly from a given codend.
+The sampled weight from which biological information is collected must be
+inferred from length-weight relationships.
+
+The sampling unit for the shore-based fisheries is the trip, while the haul is
+the primary unit for the at-sea fisheries
+(Table~\@ref(tab:main-sampling-history-tab)). There is no least common
+denominator for aggregating at-sea and shore-based fishery samples because
+detailed haul-level information is not recorded for trips in the shore-based
+fishery and hauls sampled in the at-sea fishery cannot be aggregated to a
+comparable trip level. As a result, initial sample sizes are simply the
+summed hauls and trips for fishery biological data.
+
+Biological data were analyzed based on the sampling protocols used to collect
+them and expanded to estimate the corresponding statistic from the entire
+landed catch by fishery and year when sampling occurred. A description of the
+analytical steps for expanding the age compositions can be found in earlier
+stock assessment documents [@JTC2013; JTC2014].
+
+The aggregate fishery age-composition data
+(`r max_fishery_age_prop[1]`--`r max_fishery_age_prop[2]`)
+confirm the well-known pattern of large cohorts born in 1973, 1977, 1980,
+1984, 1987, 1999, 2008, 2010, 2014, 2016, and 2020
+(Table~\@ref(tab:main-input-age-data-fishery-tab) and
+Figure~\@ref(fig:main-age-comp-bubbles-fig)).
+Recent age-composition data still easily track the 2010 cohort, as well as the
+large cohorts born since then (Table~\@ref(tab:main-input-age-data-fishery-tab)
+and Figure~\@ref(fig:main-age-comp-bubbles-fig)). Currently, the 2020
+cohort is the largest observed cohort in the U.S. at-sea sector (Tables~\@ref(tab:main-us-cp-age-data-tab)--\@ref(tab:main-us-ms-age-data-tab)),
+the 2016 cohort is the largest observed cohort in the U.S. shore-based fleet (Table~\@ref(tab:main-us-sb-age-data-tab)) and both Canadian fleets (Tables~\@ref(tab:main-can-ss-age-data-tab)--
+\@ref(tab:main-can-ft-age-data-tab)).
+Age-1 fish were observed by the fishery this year
+(Table~\@ref(tab:main-input-age-data-fishery-tab)) in the U.S. at-sea sector and
+shore-based fleet. For the combined data in `r last_data_yr`,
+`r top_coh(base_model, last_data_yr, 3, cap = FALSE)`. For the combined data
+in `r last_data_yr - 1`,
+`r top_coh(base_model, last_data_yr - 1, 3, cap = FALSE)`.
+
+We caution that proportion-at-age data contain information about the relative
+numbers-at-age, and these can be affected by changing recruitment, selectivity,
+or fishing mortality, making these data difficult to interpret on their own.
+For example, the above-average 2005 and 2006 year classes declined in
+proportion in the 2011 fishery samples but persisted in small proportions for
+years in the fishery catch, although were much reduced starting in 2011 due to
+mortality and the overwhelming size of the more recent large cohorts. The
+assessment model is fit to these data to estimate the absolute sizes of
+incoming cohorts, which become more precise after they have been observed
+several times (i.e., encountered by the fishery and survey over several years).
+
+Both the weight-
+(Figure~\@ref(fig:main-weight-at-age-lines-fig);
+Section \@ref(sec:data-weight-at-age) and length-at-age information suggest
+that growth of `r sp` has fluctuated markedly over time (see Figure~7 in
+@StewartForrestEtAl2011). This is particularly evident in the frequency of
+larger fish ($>55$~cm) before 1990 and a recent linear shift towards larger
+fish.Although length-composition data (Section \@ref(sec:data-length-at-age))
+are not fit explicitly in the base assessment model presented here, the
+presence of the 2008 and 2010 year classes have been clearly observed in
+length data from both of the U.S. fishery sectors, and the 2014 year class has
+been apparent since 2016.
+
+## Fishery-independent data {#sec:data-fishery-independent}
+
+### Acoustic survey {#sec:data-acoustic-survey}
+
+The `r survey_name` [@StewartForrestEtAl2011] has been the primary
+fishery-independent tool used to assess the distribution, abundance, and
+biology of coastal age-2$+$ `r sp` along the west coasts of the U.S.A.
+and Canada. The acoustic surveys performed in
+`r survey.age.years[-length(survey.age.years)]`, and
+`r survey.age.years[length(survey.age.years)]` were used in this assessment
+(Table~\@ref(tab:main-survey-history-tab)). The acoustic survey samples
+transects that represent all waters off the coasts of the U.S.A. and Canada
+thought to contain all portions of the age-2$+$ `r sp` stock. Observations
+of age-0 and age-1 `r sp` are excluded from the age-2$+$ index due to
+largely different schooling behavior relative to older `r sp`, concerns
+about their catchability by the trawl gear, and differences in expected
+location during the summer months when the survey takes place.
+Observations of age-1 `r sp` are recorded during the survey, and additional
+analyses, described below, are conducted to develop a relative age-1 index.
+
+The `r survey_end_yr` survey covered U.S. and Canadian waters from Point
+Conception to north of Haida Gwaii using 108 transects
+(Figure \@ref(fig:main-acoustic-age2-bs-fig)). In the U.S.A., transects were
+mostly separated by 10~nmi, except 20~nmi spacing was used north of San
+Francisco Bay to Cape Mendocino and again in northern Washington to account
+for available ship days at sea. In Canada, transects were separated by 10~nmi
+along Vancouver Island and then 20~nmi further north. The Bell M. Shimada and
+the F/V Nordic Pearl worked collaboratively to completed the full extent of
+the survey in `r survey_end_yr`.
+
+Distributions of the backscatter of `r sp` plotted for each acoustic survey
+since 1995 illustrate the variable spatial patterns of age-2$+$ fish across
+years (Figure~\@ref(fig:main-acoustic-age2-bs-fig)). This variability is due in
+part to changes in the composition of the age-2$+$ population because older
+`r sp` tend to migrate farther north and partly due to environmental and/or
+climatic factors. The 1998 acoustic survey is notable because it shows an
+extremely northward distribution that is thought to be related to the strong
+1997-1998 El Ni\~no. In contrast, distribution of `r sp` during the 2001
+acoustic survey was compressed into the lower latitudes off the coast of
+Oregon and Northern California. There was a strong La Ni\~na event in 2000.
+In 2003, 2005, and 2007 the distribution of `r sp` did not show an unusual
+coast-wide pattern despite 2003 and 2007 being characterized as El Ni\~no
+years. In 2009, 2011, 2012, and 2013 the majority of the distribution of
+`r sp` was again found in U.S. waters, which is more likely due to
+age-composition than the environment, although 2013 showed some warmer than
+average sea-surface temperatures. In 2015, sea-surface temperatures were
+warmer again, resulting in a northern shift in the overall distribution.
+The distribution of `r sp` in 2017 was more latitudinally uniform than
+observed in 2015.  This is likely a result of having large proportions of two
+cohorts (2010 and 2014 year-classes) in 2017 as opposed to many other years
+when a single cohort is dominant in the observed samples
+(Figure~\@ref(fig:main-acoustic-age2-bs-fig)). Weak 2019 El Ni\~no conditions
+decreased in their prevalence starting in March of that year, leading to
+neutral conditions by July. Consequently, the 2019 survey saw `r sp` on all
+survey transects from just north of Morro Bay, California to the northern end
+of Vancouver Island, with the greatest offshore extent found off of Cape
+Mendocino. The 2021 survey saw the majority of `r sp` in U.S. waters and a
+continuation of conditions moving towards higher productivity La Ni\~na
+conditions in the California Current from 2020 to 2021. Ongoing research is
+looking into relationships between environmental conditions and `r sp`
+distribution and recruitment, that will help to inform the mechanisms behind
+observations [@MalickSiedleckiEtAl2020; @Phillips2023].
+
+During the acoustic surveys, mid-water trawls are made opportunistically to
+determine the species composition of observed acoustic sign and to obtain the
+length data necessary to scale the acoustic backscatter into biomass (see
+Table~\@ref(tab:main-survey-history-tab) for the number of trawls in each
+survey year). Biological samples collected from these trawls are
+post-stratified, based on similarity in size composition, and the composite
+length frequency is used to characterize the size distribution of `r sp`
+along each transect and to predict the expected backscattering cross
+section for `r sp` based on the fish-size target-strength (TS) relationship.
+Any potential biases that might be caused by factors such as alternative
+TS relationships are partially accounted for in catchability. But,
+variability in the estimated survey biomass due to uncertainty in TS is
+not explicitly accounted for in the assessment.
+
+Data from the acoustic survey are analyzed using kriging, which accounts for
+spatial correlation, to provide an estimate of total biomass as well as an
+estimate of the year-specific sampling variability due to patchiness of
+schools of `r sp` and irregular transects
+[@Petitgas1993; @RivoirardSimmondsEtAl2000; @MelloRose2005;
+@SimmondsMacLennan2006]. Advantages to the kriging approach are discussed in
+the 2013 stock assessment [@JTC2013].
+
+For the 2016 assessment [@JTC2016], the data from all surveys since 1998 were
+scrutinized and reanalyzed using consistent assumptions, an updated version of
+the EchoPro software, and a common input-file structure because some previously
+generated files had spurious off-transect zeros because of how the data were
+exported. The same analytical procedure was carried out during the reanalysis
+of 1995 survey data [@JTC2017] and during the preparation of survey data
+collected since 2017. The assumptions are as follows:
+
+- fixed minimum ($k_{min}=3$) and maximum ($k_{min}=10$) number of
+points used to calculate the value in a cell;
+
+- search radius is three times the length scale that is estimated from the
+variogram; and
+
+- biomass decays with distance from the end of the transect when extrapolating
+biomass beyond the western end of a transect, which was refined and supported
+by the SRG starting with the 2016 assessment [@JTC2016].
+
+The 2021 survey estimate was scaled by factor of 1.06 to convert EK~80 acoustic
+data (2021 survey only) to EK~60 acoustic data to standardize the survey time
+series. The survey team will eventually be converting all pre-2021 EK~60 data
+to an equivalent EK~80 format. Thus, a full time series of consistently
+analyzed survey biomass (Table~\@ref(tab:main-survey-history-tab) and
+Figure~\@ref(fig:main-survey-extrap-biomass-fig)) and age compositions (Table~\@ref(tab:main-input-age-data-survey-tab) and
+Figure~\@ref(fig:main-age-comp-bubbles-fig)) since 1995 are used to fit the
+stock assessment model. These data contain many sources of variability (see 
+@StewartForrestEtAl2011) but results from research done in 2010 and 2014 on
+their representativeness show that trawl sampling and post-stratification is
+only a small source of variability. Specifically, repeated trawls at different
+depths and spatial locations on the same aggregation of `r sp` were similar
+and analyses regarding the method used to stratify the data led to similar
+overall conclusions. Estimates of country-specific age-2$+$ biomass are also
+provided (Table~\@ref(tab:main-survey-by-country-tab)).
+
+Estimated age-2$+$ biomass in the survey increased steadily over the four
+surveys conducted in 2011-2013 and 2015
+(Table~\@ref(tab:main-survey-history-tab)and
+Figure~\@ref(fig:main-survey-extrap-biomass-fig)). It decreased in 2017 to
+`r f(survey_biomass["2017"], 2)`~Mt and then increased to 1.72~Mt in
+2019 before decreasing again to
+`r last_survey_yr_biomass`~Mt in `r last_survey_yr`. The
+`r last_survey_yr` survey age composition was made up of 
+`r combine_words(paste0(f(survey_last_yr_age[1:5] * 100), "\\%"))`
+from the
+`r combine_words(last_survey_yr-type.convert(as.is=TRUE,names(survey_last_yr_age[1:5])))`
+year classes, respectively. Note that the estimate of biomass does not include
+age-1 fish and the age compositions used to estimate selectivity of the survey
+also exclude age-1 fish (Table~\@ref(tab:main-input-age-data-survey-tab)).
+
+A separate relative age-1 index (numbers of fish) was included in the base
+model in 2022 and was previously explored as a sensitivity since 2013
+[@JTC2013; @JTC2021; @JTC2022]. The relative index of age-1 fish in this
+assessment was estimated similarly to previous years, except the estimate of
+2021 numbers of age-1 fish was scaled by a factor of 1.06 to account for
+differences between the EK~60 and EK~80 echosounders (the same approach used
+for the estimate of age-2$+$ biomass). The index (numbers of fish) indicates
+relative changes between years, not absolute values. The age-1 index
+confirms the large year classes in 2008, 2010, 2014, 2016, and 2020
+(Table~\@ref(tab:main-survey-history-tab) and
+Figure~\@ref(fig:main-acoustic-age1-bs-fig)). In 2021, some age-1 fish were found
+in isolated homogeneous pockets but they were more so found to be mixed in
+with older fish. That same general pattern has occurred since 2015, with
+the exception of 2019 where age-1 fish were mostly in isolated pockets.
+
+Incorporating the relative age-1 index results in estimates of recruitment
+strength that are informed on average one year earlier than models without the
+index (compare the retrospective Figures~54 and~G.1 in @JTC2021). The
+suite of sensitivity models related to the relative age-1 index explored over
+the past decade indicate that its use typically provides the model with the
+correct direction of cohort strength (weak, strong, or neutral). The utility of
+an informed recruitment signal is far greater than an uninformed recruitment
+assumption. Whereas the assumption for uninformed recruitment is currently
+limited to the mean estimated recruitment over a specified range of years.
+Finally, the `r survey_name` team supports its use for stock assessment, and
+the team is committed to continually evaluating and refining approaches to
+improve survey estimates and related uncertainty. A model without the age-1
+index was explored as a sensitivity.
+
+## Other data not used in this assessment {#sec:data-not-used}
+
+Some data sources were not included in the base model but have been explored,
+used for sensitivity analyses, or were included in previous stock assessments.
+Data sources not discussed here have either been discussed at past `r sp`
+assessment review meetings or are discussed in more detail in the 2013 stock
+assessment document [@JTC2013]. A few are listed below.
+
+- Fishery and survey length compositions.
+
+- Fishery and survey age-at-length compositions.
+
+- Calculation of a reliable fishery catch-per-unit-effort (CPUE) metric is
+particularly problematic for `r sp`, and it has never been used as a tuning
+index for the assessment of this stock (see @JTC2013 for more details).
+
+- Biomass index and age compositions from the following years of the
+`r survey_name`, 1977, 1980, 1983, 1986, 1989, and 1992.
+
+- Bottom trawl surveys in the U.S.A. and Canada (various years and spatial
+coverage from 1977--`r last_assess_yr`).
+
+- Northwest Fisheries Science Center/Southwest Fisheries Science
+Center/PWCC coast-wide juvenile `r sp` and rockfish surveys 
+(2001--`r last_assess_yr`).
+
+- Bycatch of `r sp` in the trawl fishery for Pink Shrimp off the coast of
+Oregon (2004, 2005, 2007, and 2008).
+
+- Historical biological samples collected in Canada prior to 1990 but
+currently not available in electronic form.
+
+- Historical biological samples collected in the U.S. prior to 1975 but
+currently not available in electronic form or too incomplete to allow
+analysis with methods consistent with more current sampling programs.
+
+- California Cooperative Oceanic Fisheries Investigations (CalCOFI)
+larval `r sp` production index, 1951-2006. The data source was
+previously explored and rejected as a potential index of `r sp` female
+spawning biomass. However, the JTC are exploring new avenues to utilize
+CalCOFI data based on recently developed methods (see
+Section~\@ref(sec:assessment-response-review)).
+
+- Northwest Fisheries Science Center winter 2016 and 2017 acoustic
+research surveys of spawning `r sp`.
+
+## Externally analyzed data {#sec:data-externally-analyzed-data}
+
+### Maturity and fecundity {#sec:data-maturity}
+
+Data related to the fecundity relationship were updated for the 2018
+assessment [@JTC2018]. The age-based maturity ogive 
+(Table~\@ref(tab:main-maturity-ogives-tab) and
+Figure~\@ref(fig:main-maturity-ogive-fig))
+was developed using histological estimates of functional maturity from 1,947
+ovaries that were associated with age estimates. These samples were collected
+from the acoustic survey, winter and summer acoustic research trips, observers
+in the U.S. At-Sea Hake Observer Program aboard commercial catcher-processor
+vessels, and the U.S. West Coast Groundfish Bottom Trawl Survey
+(Table~\@ref(tab:main-ovaries-tab)). Samples from south of Point Conception
+(34.44° N) were excluded from this analysis because they were thought
+to mature at earlier ages and smaller sizes (see @JTC2018 for more
+information). Tissue samples for genetic analyses have been collected from
+many of the same fish from which ovaries were sampled. It is the hope that
+these genetic samples may help determine whether the fish south of
+34.44° N are from the same stock as the rest of the coastal population.
+Additional samples are available to update this relationship (including
+samples collected from Canadian waters since 2018) but have yet to be
+analyzed.
+
+Time-varying fecundity-at-age was modeled using year-specific weight-at-age
+values in the calculation of fecundity [@JTC2019]. Samples from age-15$+$
+fish were pooled for both the maturity and weight-at-age estimation due to
+limited sample sizes. Consequently, the age 15$+$ estimates were applied to
+ages 15-20 in the population dynamics model
+(Figure~\@ref(fig:main-maturity-ogive-fig)).
+
+Some fish at almost every age were found to be functionally immature based
+on histological criteria. Older, functionally immature fish are a combination
+of "skip spawners" that will not be spawning in the upcoming year and
+senescent fish that appear to no longer have viable ovaries. Results from
+ongoing research investigating the impacts of functionally immature
+individuals on estimates of female spawning biomass could help refine the
+fraction of fish mature at each age.
+
+### Ageing error {#sec:data-ageing-error}
+
+The large inventory of `r sp` age determinations includes many duplicate reads
+of the same otolith, either by more than one laboratory or by more than one
+age reader within a laboratory. Recent west coast stock assessments have
+utilized the cross- and double-reads approach to generate an ageing-error
+matrix describing the imprecision and bias in the observation process as a
+function of fish age. New data and analyses were used in the 2009 assessment
+to address an additional process influencing the ageing of `r sp`, namely
+cohort-specific ageing error related to the relative strength of a
+year-class. This process reflects a tendency for uncertain age determinations
+to be assigned to predominant year classes. The result is that the presence of
+strong year classes is inflated in the age data while neighboring year classes
+are under-represented relative to what would be observed if ageing error were
+consistent at age across cohorts.
+
+To account for these observation errors in the model, year-specific
+ageing-error matrices (defined via vectors of standard deviations of observed
+age at true age) are applied, where the standard deviations of strong year
+classes are reduced by a constant proportion. For the 2009 and 2010
+assessments, this proportion was determined empirically by comparing
+double-read error rates for strong year classes with rates for other year
+classes. In 2010, a blind double-read study was conducted using otoliths
+collected across the years 2003-2009. One read was conducted by a reader who
+was aware of the year of collection, and therefore of the age of the strong
+year classes in each sample, while the other read was performed by a reader
+without knowledge of the year of collection, and therefore with little or no
+information to indicate which ages would be more prevalent. The results were
+analyzed via an optimization routine to estimate both ageing error and cohort
+effect. The resultant ageing error was similar to the ageing error derived
+from the 2008 analysis. Since 2011, cohort-specific ageing error has been
+used to reduce the ageing-error standard deviation by a factor of 0.55 for the
+following largest cohorts: 1980, 1984, 1999, 2010, and 2014. In the 2014 base
+model [@JTC2014], the 2008 cohort was also included in this set, but
+subsequent estimates show this year class to not be as strong as previously
+thought, and thus, cohort-specific ageing error has not been included for the
+2008 cohort since 2015. Also, cohort-specific ageing error does not include
+the reduction in ageing error for age-1 fish under the assumption that they
+never represent a large enough proportion of the samples to cause measurement
+error related to the cohort-effect.
+
+Additional exchanges of otoliths between ageing labs within the U.S.A. and
+Canada are in process but were not completed in time for this assessment.
+The additional across-lab double reads will be informative for updating
+the ageing-error matrix. Unfortunately, increased protocols for moving
+samples across the border have led to delays.
+
+### Weight-at-age {#sec:data-weight-at-age}
+
+A matrix of empirically derived population weight-at-age means by year
+(Figures~\@ref(fig:main-weight-at-age-fig)--
+\@ref(fig:main-weight-at-age-lines-fig)) is used in the current assessment
+model to translate numbers-at-age directly to biomass-at-age. Annual mean
+weight-at-age was calculated from year-specific samples pooled from all
+fisheries and the acoustic survey for the years 1975 to
+`r max_fishery_age_prop[2]`
+(Figures~\@ref(fig:main-weight-at-age-fig)--
+\@ref(fig:main-weight-at-age-lines-fig)). Past investigations into calculating
+weight-at-age for the fishery and survey independently showed little
+impact on model results. New and historical samples were pulled from all
+relevant databases such that the derived matrices included the best available
+data. Samples from winter and research surveys are not included. Samples from
+the Canadian fishery are subset by area to exclude near-shore samples.
+Pre-1975 weight-at-age data available in the PacFIN database that were
+discovered during the 2018 assessment-review process were confirmed to be
+samples collected within Puget Sound and have not been included in any
+assessment. Weights from fish ages 15 and above for each year were pooled,
+and thus, ages 15--20 are assumed to have the same mean weight-at-age.
+Combinations of age and year with no observations were assumed to change
+linearly over time between observations at any given age. The number of
+samples (Figure \@ref(fig:main-sample-size-weight-at-age-fig)) is
+generally proportional to the amount of catch, so the combinations of year
+and age with no samples should have relatively little importance in the
+overall estimates of the population dynamics.
+
+The biomass at the start of a given year is based on the weight-at-age from
+the previous year; for example, the biomass at the start of 2022 is
+calculated using the empirical weight-at-age from 2021
+(Figure~\@ref(fig:main-weight-at-age-fig)). Prior to 1975,
+weight-at-age is assumed to be equal to the mean of all available
+information for each respective age
+(1975-`r last_data_yr`), consistent with the `r last_assess_yr` base model
+(Figure~\@ref(fig:main-weight-at-age-fig)). Both forecast
+weight-at-age data and forecast selectivity are based on the respective
+means from the most recent five years
+(`r last_data_yr-4`--`r last_data_yr`), for consistency
+(Figure~\@ref(fig:main-weight-at-age-fig)).
+
+The use of empirical weight-at-age is a convenient method to capture the
+variability in both the weight-at-length relationship within and among
+years as well as the variability in length-at-age data, without requiring
+parametric models to represent these relationships. However, this method
+requires the assumption that observed values are not biased by strong
+selectivity at length or weight and that the spatial and temporal patterns
+of the data sources provide a representative view of the underlying
+population. Simulations show that, in general, using empirical
+weight-at-age data when many observations are available results in more
+accurate estimates of spawning biomass than modeling growth
+[@KuriyamaOnoEtAl2015].
+
+The temporal changes in weight-at-age may be due to ecosystem effects such as
+prey availability, predator abundance, and ocean temperature
+[@ChittaroGrandinetal2022]. Thus, while not explicitly parameterized in
+the assessment, such ecosystem effects are somewhat implicitly accounted for,
+especially compared to assuming time-invariant weight-at-age.
+
+### Length-at-age {#sec:data-length-at-age}
+
+In the 2006-2010 assessments that attempted to estimate the parameters
+describing a parametric growth curve, strong patterns were identified in the
+observed data indicating sexually dimorphic and temporally variable growth.
+In aggregate, these patterns result in a greater amount of process error for
+length-at-age data than is easily accommodated with parametric growth models,
+and attempts to explicitly model size-at-age dynamics (including use of both
+year-specific and cohort-specific growth) have not been very successful for
+`r sp`. The lack of success was particularly evident in the residuals of the
+length-frequency data from models prior to 2011. Potential avenues for
+explicitly modeling variability in length- and weight-at-age data in this
+model have not been revisited since 2011.
+
+## Estimated parameters and prior probability distributions} {#sec:data-estimated-parameters}
+
+Several prior distributions
+(Table~\@ref(tab:main-parameters-estimated-summary-tab)) are
+used to fit the model. The priors that are assumed to be informative are
+discussed below.
+
+### Natural Mortality {#sec:data-natural-mortality}
+
+Since the 2011 assessment, a combination of the informative prior for natural
+mortality used in previous Canadian assessments and results from analyses
+using Hoenig's [@Hoenig1983] method support the use of a `r m_prior[1]`
+distribution with a median of `r f(exp(as.numeric(m_prior[2])), 2)` and a
+standard deviation (in log space) of `r m_prior[3]`. Sensitivity to this prior
+has been evaluated extensively in many previous assessments of `r sp`
+(see @JTC2013 for a discussion of the historical treatment of natural
+mortality and its prior) and is repeated here (see Section
+\@ref(sec:assessment-sensitivity-analyses)), including increasing the prior
+standard deviation and using an alternative prior distribution altogether
+based on a life history meta-analysis [@Hamel2015,@HamelCope2022]. This
+method used a lognormal prior distribution with a median of 0.22
+(based on a maximum age of 25 for `r sp`) and a standard deviation (in log
+space) of 0.31. Alternative prior distributions for natural mortality
+typically have a significant impact on the model results. But in the absence
+of new information on natural mortality there has been little option to update
+the prior.
+
+### Steepness {#sec:data-steepness}
+
+The prior for the steepness parameter of the stock-recruitment function is
+based on the median (0.79) and the 20th (0.67) and 80th (0.87) percentiles
+from the meta-analysis of the family Gadidae [@MyersBowenEtAl1999] and has
+been used in U.S. assessments since 2007. This prior has a beta distribution
+with parameters 9.76 and 2.80, which translate to a mean of 0.777 and a
+log-standard deviation of 0.113. Sensitivities to the variance on the prior
+on steepness were evaluated in the 2012 and 2013 assessments
+[@JTC2012; JTC2013]. Sensitivities to the mean of the prior are explored in
+this assessment (see Section \@ref(sec:assessment-sensitivity-analyses)).
+
+### Variability on fishery selectivity deviations {#sec:data-variability-selectivity}
+
+Time-varying selectivity was introduced in the 2014 assessment [@JTC2014] and
+is modeled using annual deviations since 1991 applied to the selectivity-at-age
+parameters for the fishery. A normal distribution with a fixed standard
+deviation ($\Phi=$ `r sel_phi_val`; see @JTC2018 for justification) is used as
+a penalty function to keep deviations from straying far from zero. Selectivity
+for age-0 fish is fixed at 0.0 and parameters for ages that are estimated
+represent the change in selectivity from the next youngest age. Beyond the age
+of 6, age-specific parameters are fixed at zero giving constant selectivity
+beyond the last estimated value. The condition that maximum selectivity equals
+1.0 results in one fewer degree of freedom than the number of estimated
+parameters. Further testing of alternative methods for parameterizing
+time-varying selectivity (e.g., @Xu2019) should be investigated in conjunction
+with the estimation of additional time-varying parameters.
+
+### Age composition likelihood {#sec:data-age-comp-likelihood}
+
+Since 2018, the assessment has used the linear formulation of the
+Dirichlet-multinomial (D-M) likelihood [@ThorsonEtAl2017Dirichlet] to fit the
+age-composition data. Estimated parameters $\theta_{\mathrm{fish}}$ and
+$\theta_{\mathrm{surv}}$ serve to automatically adjust the weight given to the
+fishery- and the survey-composition data, respectively. As of 2021, Stock
+Synthesis includes the constant of integration in the likelihood calculation
+for the D-M model such that likelihoods are comparable across weighting
+methods.
+
+Integration of weighting the composition data within the assessment increases
+the efficiency of the assessment process, removes the subjective choice of how
+many iterations are required, and ensures that the results of model
+sensitivities, retrospective analyses, and likelihood profiles are
+automatically tuned, rather than having the age compositions be given the same
+weight as the base model. Note that the following description holds for both
+the survey data and the fishery data, with $\theta$ equal to
+$\theta_{\text{surv}}$ or $\theta_{\text{fish}}$.
+
+The likelihood function for the linear parameterization of the D-M likelihood
+(see Equation 10 of @ThorsonEtAl2017Dirichlet) is
+
+\begin{align}
+\text{L}(\bm{\pi},\theta|\bm{\tilde{\pi}},n) &= \frac{\Gamma(n+1)}{\prod\limits_{a=1}^{A_{\scriptscriptstyle{\text{max}}}} \Gamma(n\tilde{\pi}_a + 1)} \frac{\Gamma(\theta n)}{\Gamma(n + \theta n)} \prod\limits_{a=1}^{A_{\scriptscriptstyle{\text{max}}}} \frac{\Gamma(n \tilde{\pi}_a + \theta n \pi_a)}{\Gamma(\theta n\pi_a)},
+\end{align}
+
+where
+$\tilde{\pi}_a$ is the observed proportion at age $a$,
+$\pi_a$ is the corresponding expected proportion at age $a$ estimated
+by the model,
+$\bm{\tilde{\pi}}$ and $\bm{\pi}$ designate the vectors of these proportions,
+
+$A_{\text{max}}$ is the maximum age in the model,
+and $n$ is the input sample size. The parameter $\theta$ is defined as a
+linear scaling parameter such that $\theta n$ is the variance-inflation
+parameter of the D-M distribution. The linear parameterization has been shown
+to be superior over the saturation parameterization in simulation testing
+[@FischAhrensEtAl2022], and thus corroborates our decision to continue to
+use it even though the saturation parameterization is available in Stock
+Synthesis.
+
+The effective sample size associated with this likelihood is given by
+
+\begin{align}
+n_{\mathrm{eff}} &= \frac{1}{1 + \theta} + \frac{n \theta}{1 + \theta}.
+\label{DMeff}
+\end{align}
+
+The input sample sizes used in this assessment, which are based on the
+number of trips and/or hauls, are large enough that the first term
+is insignificant compared to the second term. Consequently,
+$\theta / (1 + \theta)$ can be compared to the sample size
+multipliers used in the McAllister-Ianelli data-weighting method
+[@McAllisterIanelli1997] that was used for assessments prior to 2018
+(Table~\@ref(tab:main-assessment-changes-tab)) and
+as a sensitivity here (see Section~\@ref(sec:assessment-sensitivity-analyses)).
+In short, the McAllister-Ianelli method involves
+iteratively adjusting multipliers of the input sample sizes
+passed to the multinomial likelihoods until they are
+roughly equal to the harmonic mean of the effective sample sizes. The
+effective sample size is dependent on how well the model expectation matches
+the observed values. Typically, this process involves no more
+than four to five iterations.
+
+A uniform prior between $-5$ and $20$ for
+$\log \theta_{\text{fish}}$ and $\log \theta_{\text{surv}}$ tends to lead to
+inefficient sampling of $\log \theta_{\text{surv}}$ because many
+samples occur in a part of the parameter space where the effective sample
+size multiplier, $\theta_{\text{surv}} / (1 + \theta_{\text{surv}})$, is
+between 0.99 and 1.0 [@JTC2019]. In that area, the input sample sizes given
+the uniform prior have full weight and the likelihood surface is almost
+completely flat with respect to
+$\log \theta_{\text{surv}}$. The current prior on $\log \theta_{\text{surv}}$
+can be associated with an approximately uniform prior of the weight
+$\theta_{\text{surv}} / (1 + \theta_{\text{surv}})$, where the parameters of
+the normal distribution were back-calculated from a uniform distribution with
+the bounds of 0 and 1 [@JTC2020]. The normal prior for both
+$\log \theta_{\text{fish}}$ and $\log \theta_{\text{surv}}$ has a mean of
+`r effn_prior[2]` and a standard deviation of `r effn_prior[3]`.
+
+Composition data can also be weighted using the Francis method (T2.6 in Table
+2 of @Francis2011), which is based on variability in the observed ages by
+year. This method, like the McAllister-Ianelli method, is iterative, where
+the sample sizes are adjusted such that the fit of the expected mean age
+should be within the estimated uncertainty at a rate that is consistent with
+the variability expected given the effective sample sizes. The Francis method
+is known to be sensitive to outliers and prone to convergence issues when
+selectivity varies with time. As a result, the Francis method was not
+included as a sensitivity.

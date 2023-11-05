@@ -1,0 +1,43 @@
+# Historical
+
+## Historical performance of the Pacific Hake stock assessment
+
+* General question -- how 'good' are projection probabilities? And why do
+  they seem to change over time?
+* For example, 2019 assessment Table i we had:
+
+```{r historical-mini-tab, results = "asis"}
+hdr <- c("Catch\nin 2019",
+         "Probability\n\\emph{B}\\textsubscript{2020}<\\emph{B}\\textsubscript{2019}",
+         "Probability\n \\emph{B}\\textsubscript{2020}<\\emph{B}\\textsubscript{40\\%}")
+hdr <- linebreaker(hdr, align = "c")
+
+d <- tibble(col1 = c("a: 0", "b: 180,000", "c: 350,000", "\\textcolor{red}{d: 410,000}"),
+            col2 = c("17\\%", "40\\%", "57\\%", "\\textcolor{red}{57\\%}"),
+            col3 = c("8\\%", "13\\%", "17\\%", "\\textcolor{red}{17\\%}"))
+kbl(d,
+    format = "latex",
+    booktabs = TRUE,
+    escape = FALSE,
+    col.names = hdr) |>
+  row_spec(0, bold = TRUE) |> 
+  kable_styling(position = "center")
+```
+
+\pause
+* Now (since it's `r assess_yr`) we '*know*' the 2019 catch was
+  `r f(filter(ct_last_10yrs, Year == 2019)$Total)` t, so row d was close
+  enough.
+\pause
+* How do the probabilities in row~d compare to estimates of them from the
+  current base model?
+
+## Probabilities of decline in subsequent year
+
+* Previous assessments have 'correctly' projected an increase or decrease
+  in subsequent year (except 2018 and 2021)
+* An assessment's projection is almost always less definitive than from
+  the current base model, since current model has more information
+* Analysis gives confidence in the current expectation of the stock
+  declining next year
+  

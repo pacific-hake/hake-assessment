@@ -1,13 +1,17 @@
 #' Run forecasting for the model supplied
 #'
-#' @details If there is no mcmc component to the model, an error will be given and the program will be stopped
+#' @param model_path The directory containing the model
+#' @param ct_levels_path The directory containing the output of
+#' [run_ct_levels()]
+#' @param ... Arguments passed to [fetch_ct_levels()]
 #'
-#' @param model The SS model output as loaded by [load_ss_files()]
+#' @details If there is no mcmc component to the model, an error will be
+#' given and the program will be stopped
 #'
 #' @return [base::invisible()]
 #' @export
 run_forecasts <- function(model_path,
-                          catch_levels_path,
+                          ct_levels_path,
                           ...){
 
   model <- load_ss_files(model_path, ...)
@@ -15,10 +19,10 @@ run_forecasts <- function(model_path,
   dir.create(forecasts_path, showWarnings = FALSE)
   unlink(file.path(forecasts_path, "*"), recursive = TRUE)
 
-  catch_levels_path <- file.path(model_path, catch_levels_path)
+  ct_levels_path <- file.path(model_path, ct_levels_path)
 
   # Calculate and add on model-custom catch levels
-  catch_levels <- fetch_catch_levels(catch_levels_path, ...)
+  ct_levels <- fetch_ct_levels(ct_levels_path, ...)
 
   message("Running forecasts for model located in ", model_path, "\n")
   dir.create(forecasts_path, showWarnings = FALSE)
@@ -27,8 +31,8 @@ run_forecasts <- function(model_path,
     # In this outer loop .x is the forecast year
     fore_path <- file.path(forecasts_path, paste0("forecast-year-", .x))
     dir.create(fore_path, showWarnings = FALSE)
-    future_map2(catch_levels, .x, ~{
-      # In this inner loop .y is the forecast year and .x is the list element of catch_levels
+    future_map2(ct_levels, .x, ~{
+      # In this inner loop .y is the forecast year and .x is the list element of ct_levels
       name <- .x[[3]]
       catch_ind <- which(forecast_yrs == .y)
       new_forecast_dir <- file.path(fore_path, name)
@@ -42,7 +46,7 @@ run_forecasts <- function(model_path,
       modify_starter_mcmc_type(new_forecast_dir, 1)
 
       # Insert fixed catches into forecast file
-      forecast_file <- file.path(new_forecast_dir, forecast_file_name)
+      forecast_file <- file.path(new_forecast_dir, forecast_fn)
       fore <- SS_readforecast(forecast_file,
                               Nfleets = 1,
                               Nareas = 1,
@@ -57,8 +61,8 @@ run_forecasts <- function(model_path,
       SS_writeforecast(fore, dir = new_forecast_dir, overwrite = TRUE, verbose = FALSE)
 
       # Evaluate the model using mceval option of ADMB, and retrieve the output
-      unlink(file.path(new_forecast_dir, derposts_file_name), force = TRUE)
-      unlink(file.path(new_forecast_dir, posts_file_name), force = TRUE)
+      unlink(file.path(new_forecast_dir, derposts_fn), force = TRUE)
+      unlink(file.path(new_forecast_dir, posts_fn), force = TRUE)
       unlink(file.path(new_forecast_dir, "sso"), force = TRUE)
       shell_command <- paste0("cd ", new_forecast_dir, " && ", ss_executable, " -mceval")
       system_(shell_command, wait = TRUE, intern = !show_ss_output)

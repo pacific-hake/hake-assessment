@@ -1,0 +1,3 @@
+```{r source-load-models, echo = FALSE}
+source(here::here("doc/003-load-models.R"))
+```

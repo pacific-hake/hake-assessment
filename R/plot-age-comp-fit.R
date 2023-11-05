@@ -2,35 +2,52 @@
 #' age comps and errorbars being the MCMC fits with 95% credible
 #' interval
 #'
+#' @param model A model, created by [create_rds_file()]
 #' @param type The type of fits/observations to plot. Must be either
 #' `fishery` or `survey`
 #' @param n_col The number of columns for the facets (years)
 #' @param whisker_width The width (size) of the top and bottom bars on the
-#' ends of the errorbar
-#' @rdname plot_biomass
+#' @param ages A vector of ages to show on the x-axis
+#' @param x_breaks The x-axis breaks passed to [ggplot2::scale_x_discrete()]
+#' @param axis_title_font_size The font size for the axis titles
+#' @param axis_tick_font_size The font size for the axis tick labels
+#' @param axis_label_color Color for the axis labels and tick labels
+#' @param label_loc The x-y location of the labels in each panel (vector of 2)
+#' @param label_font_size The label font size
+#' @param point_size The point size. Passed to [ggplot2::geom_point()]ends of
+#' the errorbar
+#'
 #' @export
 plot_age_comp_fit <- function(model,
                               type = c("fishery", "survey"),
-                              ages = `if`(type == "fishery", 1:15, 2:15),
+                              ages = NULL,
                               n_col = 4,
                               x_breaks = seq(2, max(ages), by = 2),
                               axis_title_font_size = 14,
                               axis_tick_font_size = 12,
+                              axis_label_color = "black",
                               label_loc = c(ages[length(ages)] - 2, 0.45),
-                              label_font_size = 4,
+                              label_font_size = 5,
                               point_size = 1.5,
                               whisker_width = 0.15){
 
   type <- match.arg(type)
 
   if(type == "fishery"){
-    d <- model$extra.mcmc$comp_fishery
+    if(is.null(ages)){
+      ages <- 1:15
+    }
+    d <- model$extra_mcmc$residuals_fishery
   }else if(type == "survey"){
-    d <- model$extra.mcmc$comp_survey
+    if(is.null(ages)){
+      ages <- 2:15
+    }
+    d <- model$extra_mcmc$residuals_survey
   }
+
   d <- d |>
-    select(-c(Pearson_lower, Pearson_med, Pearson_upper)) |>
-    mutate(Age = factor(Age))
+    select(-c(pearson_lo, pearson_med, pearson_hi)) |>
+    mutate(age = factor(age))
 
   colors <- rev(plot_color(length(ages)))
 
@@ -40,7 +57,7 @@ plot_age_comp_fit <- function(model,
   # ordered this way. So `yr_vec` ends up being in an order where, when
   # ggplot draws the facets from left to right row by row, they appear
   # in a downward column order
-  yr_vec <- sort(unique(d$Yr))
+  yr_vec <- sort(unique(d$yr))
 
   if(length(yr_vec) %% n_col != 0){
     extras <- length(yr_vec) %% n_col
@@ -89,7 +106,7 @@ plot_age_comp_fit <- function(model,
   # subsequent facets. For the survey, this can be 1, 2, or 3 years
   # and for the fishery it is always 1 but this allows for any
   # possibility
-  x <- sort(unique(d$Yr))
+  x <- sort(unique(d$yr))
   yr_diffs <- x[-1] - x[-length(x)]
   cols <- colors
   for(i in seq_along(yr_diffs)){
@@ -99,39 +116,39 @@ plot_age_comp_fit <- function(model,
   d <- d |>
     mutate(col = cols)
 
-  g <- ggplot(d, aes(x = Age, y = Obs_med, group = Yr, fill = col)) +
-    geom_bar(stat = "identity", width = 1, color = "black") +
+  g <- ggplot(d,
+              aes(x = age,
+                  y = obs_med,
+                  group = yr,
+                  fill = col)) +
+    geom_bar(stat = "identity",
+             width = 1,
+             color = "black") +
     scale_fill_manual(values = colors) +
-    geom_point(aes(x = Age, y = Exp_med),
+    geom_point(aes(x = age,
+                   y = exp_med),
                shape = 21,
                size = point_size,
                fill = "white",
                inherit.aes = FALSE) +
-    geom_errorbar(aes(x = Age,
-                      ymin = Exp_lower,
-                      ymax = Exp_upper),
+    geom_errorbar(aes(x = age,
+                      ymin = exp_lo,
+                      ymax = exp_hi),
                   width = whisker_width,
                   inherit.aes = FALSE) +
     scale_x_discrete(breaks = x_breaks,
                      labels = x_breaks) +
-    facet_wrap(~factor(Yr, levels = yr_vec),
+    facet_wrap(~factor(yr,
+                       levels = yr_vec),
                ncol = n_col) +
-    geom_label(aes(label = Yr),
-               x = label_loc[1],
-               y = label_loc[2],
-               size = label_font_size,
-               fill = "transparent") +
+    geom_text(aes(label = yr),
+              x = label_loc[1],
+              y = label_loc[2],
+              size = label_font_size) +
     theme(strip.background = element_blank(),
-          panel.spacing=unit(0, "cm"),
+          panel.spacing = unit(0, "cm"),
           strip.text.x = element_blank(),
-          plot.margin = margin(12, 12, 0, 0),
-          axis.text.x = element_text(color = "grey20",
-                                     size = axis_tick_font_size),
-          axis.title.x = element_text(color = "grey20",
-                                      size = axis_title_font_size),
-          axis.title.y = element_text(color = "grey20",
-                                      size = axis_title_font_size),
-          axis.ticks.length = unit(0.15, "cm"),
+          plot.margin = margin(12, 12, 6, 12),
           legend.position = "none") +
     ylab("Proportion") +
     xlab("Age")

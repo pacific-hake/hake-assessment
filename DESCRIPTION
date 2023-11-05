@@ -1,60 +1,87 @@
-Package: hake-assessment
+Package: hake
 Type: Package
 Title: Stock Assessment for Pacific Hake
-Version: 1.0.4
+Version: 1.1.0
 Authors@R: c(
-    person(c("Aaron", "M."), "Berger", role = "aut", email = "aaron.berger@noaa.gov"),
-    person(c("Andrew"), "Edwards", role = "aut", email = "Andrew.Edwards@dfo-mpo.gc.ca"),
-    person(c("Chris"), "Grandin", role = c("aut", "cre"), email = "Chris.Grandin@dfo-mpo.gc.ca"),
-    person(c("Kelli", "F."), "Johnson", role = "aut", email = "kelli.johnson@noaa.gov"))
+    person("Chris", "Grandin",
+           role = c("aut", "cre"),
+           email = "chris.grandin@gmail.com"),
+    person("Kelli", "Johnson",
+           role = "aut",
+           email = "kelli.johnson@noaa.gov"),
+    person("Andrew", "Edwards",
+           role = "aut",
+           email = "andrew.edwards@dfo-mpo.gc.ca"),
+    person("Aaron", "Berger",
+           role = "aut",
+           email = "aaron.berger@noaa.gov"))
 Description: Code to compile the stock assessment for Pacific Hake.
-License: 
+License: MIT + file LICENSE
 URL: https://github.com/pacific-hake/hake-assessment
 BugReports: https://github.com/pacific-hake/hake-assessment/issues
-LazyData: true
-Suggests:
-    rmarkdown,
-    testthat
 VignetteBuilder: knitr
 Depends:
-    R (>= 4.2.2)
+  R (>= 4.2.0)
 Imports:
-    adnuts,
-    cli,
-    cowplot,
-    crayon,
-    furrr,
-    ggh4x,
-    ggplot2,
-    ggrepel,
-    glue,
-    graphics,
-    grDevices,
-    grid,
-    gridExtra,
-    gridGraphics,
-    gtools,
-    here,
-    knitr,
-    lubridate,
-    matrixcalc,
-    RColorBrewer,
-    reshape2,
-    rnaturalearthhires,
-    r4ss (>= 1.35.3),
-    rgeos,
-    rstan,
-    shinystan,
-    stats,
-    tictoc,
-    tidyverse,
-    tools,
-    utils
+  adnuts,
+  bookdown,
+  cli,
+  clipr,
+  coda,
+  cowplot,
+  crayon,
+  data.table,
+  dplyr,
+  fs,
+  future,
+  furrr,
+  ggh4x,
+  ggplot2,
+  ggrepel,
+  glue,
+  grDevices,
+  grid,
+  gridExtra,
+  gtable,
+  here,
+  kableExtra,
+  knitr,
+  lubridate,
+  microbenchmark,
+  pacman,
+  parallel,
+  purrr,
+  RColorBrewer,
+  readr,
+  rnaturalearthhires,
+  r4ss (>= 1.46.2),
+  rlang,
+  scales,
+  sf,
+  stringr,
+  tibble,
+  tidyselect,
+  tidyr,
+  tools,
+  utils,
+  withr
+Suggests:
+  data.tree,
+  date,
+  ggpubr,
+  rmarkdown,
+  shinystan,
+  testthat
 Remotes: 
-    github::cgrandin/adnuts,
-    github::pbs-assess/gfutilities,
-    github::nwfsc-assess/nwfscMapping@development,
-    github::r4ss/r4ss@bioscale,
-    github::ropensci/rnaturalearthhires
-RoxygenNote: 7.1.2
+  cgrandin/adnuts,
+  cgrandin/kableExtra,
+  r4ss/r4ss@bioscale,
+  ropensci/rnaturalearthhires
+ByteCompile: true
 Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+SystemRequirements: luahbtex (>= 1.16.0) - https://www.luatex.org/
+Config/testthat/parallel: true
+Config/testthat/edition: 2
+LazyData: true

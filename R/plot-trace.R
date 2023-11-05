@@ -3,11 +3,15 @@
 #' @param model A model list, created by [create_rds_file()]
 #' @param post_regex A regular expression that matches one parameter name
 #' and nothing else
+#' @param color The color for the trace lines
+#' @param alpha The transparency for the trace lines
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_trace <- function(model,
-                       post_regex){
+                       post_regex,
+                       color = "blue",
+                       alpha = 1){
 
   mtch <- grep(post_regex, names(model$mcmc))
 
@@ -29,5 +33,7 @@ plot_trace <- function(model,
     transmute(Iteration = as.numeric(Iteration),
               Value = .[[2]]) |>
     ggplot(aes(x = Iteration, y = Value)) +
-    geom_path()
+    geom_path(color = color,
+              alpha = alpha) +
+    scale_x_continuous(labels = comma)
 }
