@@ -12,7 +12,6 @@ project_variables:
   forecast_yrs: 2023:2026
   model_version: "01"
   last_yr_model_version: "01"
-  ss_version: "3.30.20"
   # For a list of colors you can use here see:
   # https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/latexcolors/latexcolors.pdf
   #table_highlight_color: "fuzzywuzzy"
@@ -41,7 +40,7 @@ project_variables:
 author: Pacific Hake Joint Technical Committee
 date: "Canadian AP/JMC March meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
 output:
-  hake_beamer:
+  hake::hake_beamer:
     theme: Singapore
     slide_level: 2
     toc: false
@@ -49,7 +48,7 @@ output:
     # Do not modify. Modified by gotest() function for testing
     test: false
     # Beamer logos and title image
-    images_dir: "../../images"
+    images_dir: "../../../doc/image-files"
     # To remove image, leave `title_page_image` value blank. In that case,
     # `title_page_image_height_in` and `title_page_image_width_in` will be
     # ignored. Note that it must be present in `images_dir` above
@@ -81,7 +80,7 @@ if(user == "grandin"){
   models_dir <- "/srv/hake/models"
 }
 
-test <- rmarkdown::metadata$output$hake_beamer$test %||% FALSE
+test <- rmarkdown::metadata$output$`hake::hake_beamer`$test %||% FALSE
 
 if(test){
   # Necessary for `gotest()` testing
