@@ -11,6 +11,12 @@
 #' extract_inline_rcode("Testing `r Sys.time()` one two")
 extract_inline_rcode <- function(str){
 
+  if(is.null(str)){
+    # The presentations need this because they do not have header/footer
+    # text
+    return(NULL)
+  }
+
   x <- strsplit(str, "`r")[[1]]
 
   if(length(x) == 1){

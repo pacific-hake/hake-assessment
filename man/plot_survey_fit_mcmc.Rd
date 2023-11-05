@@ -39,10 +39,9 @@ plot_survey_fit_mcmc(
   glow_offset = 0.25,
   glow_color = "black",
   glow_alpha = 1,
-  leg_xmin = survey_start_yr - 1,
-  leg_xmax = survey_end_yr - 2,
-  leg_ymin = y_lim[2] - 1.5,
   leg_ymax = y_lim[2] - 0.25,
+  leg_sep = 0.6,
+  leg_font_size = 10/.pt,
   ...
 )
 }
@@ -134,17 +133,11 @@ they can more easily be seen in contrast to the background posterior lines}
 \item{glow_alpha}{The transparency to use for the "glow" effect around
 lines}
 
-\item{leg_xmin}{The bottom left x value for drawing the white box under
-the legend}
-
-\item{leg_xmax}{The bottom right x value for drawing the white box under
-the legend}
-
-\item{leg_ymin}{The top left y value for drawing the white box under
-the legend}
-
 \item{leg_ymax}{The top right y value for drawing the white box under
 the legend}
+
+\item{leg_sep}{The amount to seperate each entry in the legend. Needed
+because the legend is manually made}
 }
 \value{
 a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

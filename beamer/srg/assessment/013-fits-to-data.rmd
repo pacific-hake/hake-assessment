@@ -1,14 +1,18 @@
 # Fits to data
+
 ## Fit to the acoustic survey index of abundance
 ```{r mcmc-survey-fit, fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(base_model,
                      type = "acoustic",
                      n_posts = 1000,
+                     y_lim = c(0, 6),
                      glow = TRUE,
                      glow_color = "black",
                      glow_offset = 0.5,
-                     leg_ymin = 4.25)
+                     leg_ymax = 4.7,
+                     leg_sep = 0.7,
+                     leg_font_size = 10 / .pt)
 ```
 
 ## Fit to the age-1 relative index
@@ -17,8 +21,13 @@ plot_survey_fit_mcmc(base_model,
 plot_survey_fit_mcmc(base_model,
                      type = "age1",
                      n_posts = 1000,
-                     ylim = c(0, 10),
-                     glow = TRUE)
+                     y_lim = c(0, 10),
+                     glow = TRUE,
+                     y_labs_by = 1,
+                     leg_ymax = 4.7,
+                     leg_sep = 0.7,
+                     leg_font_size = 10 / .pt) +
+  theme(plot.margin = margin(2, 0, 12, 12))
 ```
 
 ## Fit to acoustic survey age comps

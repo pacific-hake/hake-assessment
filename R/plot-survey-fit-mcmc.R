@@ -59,14 +59,10 @@
 #' lines
 #' @param post_line_gap The line gap value (separation between points and the
 #' line connecting them)
-#' @param leg_xmin The bottom left x value for drawing the white box under
-#' the legend
-#' @param leg_xmax The bottom right x value for drawing the white box under
-#' the legend
-#' @param leg_ymin The top left y value for drawing the white box under
-#' the legend
 #' @param leg_ymax The top right y value for drawing the white box under
 #' the legend
+#' @param leg_sep The amount to seperate each entry in the legend. Needed
+#' because the legend is manually made
 #'
 #' @return a [ggplot2::ggplot()] object
 #' @export
@@ -103,10 +99,9 @@ plot_survey_fit_mcmc <- function(model,
                                  glow_offset = 0.25,
                                  glow_color = "black",
                                  glow_alpha = 1,
-                                 leg_xmin = survey_start_yr - 1,
-                                 leg_xmax = survey_end_yr - 2,
-                                 leg_ymin = y_lim[2] - 1.5,
                                  leg_ymax = y_lim[2] - 0.25,
+                                 leg_sep = 0.6,
+                                 leg_font_size = 10 / .pt,
                                  ...){
 
   type <- match.arg(type)
@@ -358,7 +353,8 @@ plot_survey_fit_mcmc <- function(model,
     symbol_x_end <- symbol_x + 1
     text_x <- symbol_x_end + 0.25
     type_off <- diff(y_lim) / 5
-    symbol_y <- max(y_lim) - 0.2 * type_off
+    #symbol_y <- max(y_lim) - 0.2 * type_off
+    symbol_y <- leg_ymax * type_off
 
     # First legend row
     g <- g +
@@ -399,78 +395,80 @@ plot_survey_fit_mcmc <- function(model,
                                      "age-1 index"),
                               " with input (thick)\n",
                               "and estimated (thin) 95% intervals"),
+               size = leg_font_size,
                hjust = 0)
 
     # Second legend row
-    pr <- 0.5
     g <- g +
       # Second symbol
       annotate("segment",
                x = symbol_x_start,
                xend = symbol_x_end,
-               y = symbol_y - pr * type_off,
-               yend = symbol_y - pr * type_off,
+               y = symbol_y - leg_sep * type_off,
+               yend = symbol_y - leg_sep * type_off,
                colour = post_med_line_color,
                linewidth = post_med_line_width + 0.5) +
       annotate("segment",
                x = symbol_x_start,
                xend = symbol_x_end,
-               y = symbol_y - pr * type_off,
-               yend = symbol_y - pr * type_off,
+               y = symbol_y - leg_sep * type_off,
+               yend = symbol_y - leg_sep * type_off,
                colour = post_med_line_color,
                linewidth = post_med_line_width) +
       annotate("point",
                x = symbol_x,
-               y = symbol_y - pr * type_off,
+               y = symbol_y - leg_sep * type_off,
                shape = 19,
                colour = "white",
                size = post_med_point_size + 2) +
       annotate("point",
                x = symbol_x,
-               y = symbol_y - pr * type_off,
+               y = symbol_y - leg_sep * type_off,
                shape = 19,
                colour = post_med_line_color,
                size = post_med_point_size) +
       # Second text
       annotate("text",
                x = text_x,
-               y = symbol_y - pr * type_off,
+               y = symbol_y - leg_sep * type_off,
                label = paste0("Median MCMC estimate of ",
                               ifelse(type == "acoustic",
                                      "expected\nsurvey biomass",
                                      "scaled\nage-1 numbers")),
+               size = leg_font_size,
                hjust = 0)
 
     # Third legend row
-    pr <- 2 * pr
+    leg_sep <- 2 * leg_sep
     g <- g +
       #Third symbol
       annotate("segment",
                x = symbol_x_start,
                xend = symbol_x_end,
-               y = symbol_y - pr * type_off,
-               yend = symbol_y - pr * type_off,
+               y = symbol_y - leg_sep * type_off,
+               yend = symbol_y - leg_sep * type_off,
                colour = post_line_col,
                linewidth = 0.2) +
       annotate("segment",
                x = symbol_x_start,
                xend = symbol_x_end,
-               y = symbol_y - (pr - 0.1) * type_off,
-               yend = symbol_y - (pr + 0.05) * type_off,
+               y = symbol_y - (leg_sep - 0.1) * type_off,
+               yend = symbol_y - (leg_sep + 0.05) * type_off,
                colour = post_line_col,
                linewidth = 0.2) +
       annotate("segment",
                x = symbol_x_start,
                xend = symbol_x_end,
-               y = symbol_y - (pr + 0.02) * type_off,
-               yend = symbol_y - (pr - 0.07) * type_off,
+               y = symbol_y - (leg_sep + 0.02) * type_off,
+               yend = symbol_y - (leg_sep - 0.07) * type_off,
                colour = post_line_col,
                linewidth = 0.2) +
       # Third text
       annotate("text",
                x = text_x,
-               y = symbol_y - pr * type_off,
+               y = symbol_y - leg_sep * type_off,
                label = legend_text,
+               size = leg_font_size,
                hjust = 0)
   }else{
     g <- g +

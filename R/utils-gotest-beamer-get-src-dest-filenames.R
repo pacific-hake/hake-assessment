@@ -5,12 +5,12 @@
 #' Meant to be called by the wrapper function [gotest()]
 #'
 #' @param bookdown_lst A list as returned by [read_bookdown_file()]
-#' @param figures_dir The subdirectory of the "doc" directory containing
+#' @param my_figures_dir The subdirectory of the "doc" directory containing
 #' images that have previously been made such as pictures and logos, and all
 #' other figures made outside the scope of this project
 #' @return Nothing
 gotest_beamer_get_src_dest_filenames <- function(bookdown_lst = NULL,
-                                                 figures_dir = figures_dir){
+                                                 my_figures_dir = figures_dir){
 
   if(is.null(bookdown_lst)){
     stop("`bookdown_lst` argument cannot be `NULL`",
@@ -60,6 +60,7 @@ gotest_beamer_get_src_dest_filenames <- function(bookdown_lst = NULL,
   images_src_dir <- gsub("\\s*images_dir:\\s*", "", images_src_dir)
   images_src_dir <- gsub("\\s*#.*", "", images_src_dir)
   images_src_fns <- list.files(images_src_dir, full.names = TRUE)
+
   if(!length(images_src_fns)){
     stop("Could not get a list of the images needed for the beamer ",
          "presentations (location of logos). See gotest_beamer() function",
@@ -71,9 +72,9 @@ gotest_beamer_get_src_dest_filenames <- function(bookdown_lst = NULL,
   dest_fns <- c(dest_fns, images_dest_fns)
 
   # Add the main figures (prebuilt figures)
-  main_figs_src_dir <- here::here("doc", figures_dir)
+  main_figs_src_dir <- here::here("doc", my_figures_dir)
   main_figs_src_fns <- list.files(main_figs_src_dir, full.names = TRUE)
-  main_figs_dest_fns <- file.path("doc", figures_dir, basename(main_figs_src_fns))
+  main_figs_dest_fns <- file.path("doc", my_figures_dir, basename(main_figs_src_fns))
   src_fns <- c(src_fns, main_figs_src_fns)
   dest_fns <- c(dest_fns, main_figs_dest_fns)
 
