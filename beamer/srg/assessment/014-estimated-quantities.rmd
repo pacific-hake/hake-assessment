@@ -69,8 +69,11 @@ plot_selex_mountains(base_model,
 
 ::: {.column width="50%"}
 ```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
+
 plot_selex_uncertainty(base_model,
                        n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE,
                        label_loc = c(1, 0.65),
                        label_font_size = 3)
 ```

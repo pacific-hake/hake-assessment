@@ -639,7 +639,10 @@ each year with selectivity medians and 0.95 credible intervals.
 
 ```{r main-tv-selex-uncertainty-fig, fig.cap = "(ref:main-tv-selex-uncertainty-cap)", fig.height = 8}
 
-plot_selex_uncertainty(base_model, n_col = 2)
+plot_selex_uncertainty(base_model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE)
 ```
 
 (ref:main-tv-selex-posteriors-cap) Estimated selectivities for the acoustic

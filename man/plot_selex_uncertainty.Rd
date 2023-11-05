@@ -17,7 +17,9 @@ plot_selex_uncertainty(
   border_linetype = "solid",
   show_panel_borders = FALSE,
   label_loc = c(1, 0.75),
-  label_font_size = 4
+  label_font_size = 4,
+  pad_top = TRUE,
+  pad_bottom = TRUE
 )
 }
 \arguments{
@@ -50,6 +52,10 @@ be shown}
 the panels}
 
 \item{label_font_size}{The labels font size}
+
+\item{pad_top}{Add blank cells across the top as "padding"}
+
+\item{pad_bottom}{Add blank cells across the bottom as "padding"}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

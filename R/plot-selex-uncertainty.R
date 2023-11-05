@@ -10,17 +10,19 @@
 #' @param ages A vector of ages to include
 #' @param n_col The number of columns to hold panels
 #' @param rev Logical. If `TRUE`, reverse the order of the years
+#' @param point_size The point size
+#' @param point_fatten The fatness of the point. Needed when using
+#' [ggplot2::geom_errorbar()]
 #' @param border_width Thickness of the border line. If `NULL` no border will
 #' be shown
 #' @param border_color Color of the column borders
 #' @param border_linetype Line type of the column borders
+#' @param show_panel_borders Logical. If `TRUE`, show borders around the panels
 #' @param label_loc A vector of two (x, y) describing the label location inside
 #' the panels
 #' @param label_font_size The labels font size
-#' @param point_size The point size
-#' @param point_fatten The fatness of the point. Needed when using
-#' [ggplot2::geom_errorbar()]
-#' @param show_panel_borders Logical. If `TRUE`, show borders around the panels
+#' @param pad_top Add blank cells across the top as "padding"
+#' @param pad_bottom Add blank cells across the bottom as "padding"
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -36,7 +38,9 @@ plot_selex_uncertainty <- function(model,
                                    border_linetype = "solid",
                                    show_panel_borders = FALSE,
                                    label_loc = c(1, 0.75),
-                                   label_font_size = 4){
+                                   label_font_size = 4,
+                                   pad_top = TRUE,
+                                   pad_bottom = TRUE){
 
   yr_vec <- yr_lim[1]:yr_lim[2]
 
@@ -88,21 +92,19 @@ plot_selex_uncertainty <- function(model,
                  lower = NA_real_,
                  upper = NA_real_)
 
-  if(length(yr_vec) %% n_col != 0){
-    extras <- length(yr_vec) %% n_col
-    full_cols_len <- length(yr_vec) - extras
-    num_each_col <- full_cols_len / n_col
-    col_lengths <- rep(num_each_col, n_col)
-    for(i in 1:extras){
-      col_lengths[i] <- col_lengths[i] + 1
-    }
-    if(sum(col_lengths) != length(yr_vec)){
-      stop("Sanity check failed, column algorithm error",
-           call. = FALSE)
-    }
-  }else{
-    col_lengths <- rep(length(yr_vec) / n_col, n_col)
-  }
+  # `extras` is the number of extra cells to add to `yr_vec` to make the total
+  # number of years divisible by the number of columns (`n_col`)
+  leftover <- length(yr_vec) %% n_col
+  extras <- ifelse(leftover, n_col - leftover, 0)
+  # Add elements with different numbers of spaces to `yr_vec` to make it
+  # divisible. There has to be a different number of spaces because later
+  # these become levels when year is a factor for the plot
+  post_empty_cells <- seq_len(extras) |>
+    map_chr(~{
+      paste(rep(" ", .x), collapse = "")
+    })
+  yr_vec <- c(yr_vec, post_empty_cells)
+  col_lengths <- rep(length(yr_vec) / n_col, n_col)
 
   start_of_col <- 1
   yr_lst <- map(col_lengths, ~{
@@ -111,12 +113,49 @@ plot_selex_uncertainty <- function(model,
     ret
   })
 
+  if(pad_top){
+    # pad the top with empty cells
+    yr_lst <- yr_lst |>
+      imap(~{
+        head_cell_val <- paste(rep(" ", .y + n_col + 1), collapse = "")
+        c(head_cell_val, .x)
+      })
+  }
+  if(pad_bottom){
+    # pad the top with empty cells
+    yr_lst <- yr_lst |>
+      imap(~{
+        head_cell_val <- paste(rep(" ", .y + n_col * 2 + 1), collapse = "")
+        c(.x, head_cell_val)
+      })
+  }
+
   yr_vec <- map(seq_along(yr_lst[[1]]), function(yr_ind){
-      map_dbl(yr_lst, function(lst_elem){
+      map_chr(yr_lst, function(lst_elem){
         lst_elem[yr_ind]
       })
   }) |>
     unlist()
+
+  # Add space-based elements to the data frame
+  spc <- grep("\\s+", yr_vec, v=T)
+  ages <- d$age |> unique()
+  d_spc <- expand.grid(spc, ages) |>
+    as_tibble() |>
+    setNames(c("yr", "age"))
+  d_spc_therest <- tibble(lower = NA_real_,
+                          med = NA_real_,
+                          upper = NA_real_)
+  row <- d_spc_therest
+  for(i in seq_len(nrow(d_spc) - 1)){
+    d_spc_therest <- d_spc_therest |>
+      bind_rows(row)
+  }
+  d_spc <- d_spc |>
+    bind_cols(d_spc_therest)
+
+  d <- d |>
+    bind_rows(d_spc)
 
   g <- ggplot(d,
               aes(x = age,
@@ -163,8 +202,7 @@ plot_selex_uncertainty <- function(model,
                          fill = NA))
     })
 
-    yr_col_lengths <- yr_lst |>
-      map_dbl(~{length(!.x[!is.na(.x)])})
+    yr_col_lengths <- yr_lst |> lengths()
     t_extent <- 7
     l_extent <- map_dbl(seq_len(n_col), ~{
       5 + (.x - 1) * 4
