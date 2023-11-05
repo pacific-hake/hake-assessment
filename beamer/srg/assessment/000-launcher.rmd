@@ -98,7 +98,7 @@ if(test){
 yaml_proj_vars <- rmarkdown::metadata$project_variables
 
 # Don't modify anything in `opts_chunk$set()`. Modify the YAML
-# `project_variables` above
+# `project_variables` above. `cache.lazy` MUST be `FALSE`
 knitr::opts_chunk$set(
   # `collapse` - If `TRUE`, source code and output will remain together in
   # one chunk (inseparable from each other in the document). Probably
