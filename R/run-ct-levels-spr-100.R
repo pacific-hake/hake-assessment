@@ -2,7 +2,6 @@
 #' SPR to 1, within the tolerance given (`ct_levels_spr_tol`)
 #'
 #' @param model The SS model output as loaded by [create_rds_file()]
-#' @param spr_100_path Path where the SPR model files are found
 #' @param forecast_yrs A vector if the years to forecast for
 #' @param ct_levels_spr_tol The tolerance to be within 1 for the SPR
 #' @param ct_levels_catch_tol Catch tolerance. If the upper and lower catch
@@ -12,12 +11,13 @@
 #' @param ... Not used
 #' @export
 run_ct_levels_spr_100 <- function(model,
-                                  spr_100_path,
                                   forecast_yrs,
                                   ct_levels_spr_tol,
                                   ct_levels_catch_tol,
                                   ct_levels_max_iter,
                                   ...){
+
+  pth <- here::here(doc_path, spr_100_path)
 
   files <- list.files(model$mcmc_path)
   files <- files[files != "sso"]

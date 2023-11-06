@@ -13,7 +13,7 @@
 #' Be sure to update this each year if forecasts are added and/or removed
 #'
 #' @export
-set_ct_levels <- function(fn = here("doc", "forecast-descriptions.csv")){
+set_ct_levels <- function(fn = here(doc_path, forecast_fn)){
 
   # Need fread() here because there are commas in the description field
   ret <- list()

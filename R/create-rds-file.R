@@ -88,7 +88,6 @@ create_rds_file <- function(
                                       ...)
 
   # Set all important forecast directories here
-  model$forecast_fn <- "forecast.ss"
   model$forecasts_path <- forecasts_path
   model$ct_levels_path <- ct_levels_path
   model$retrospectives_path <- retrospectives_path

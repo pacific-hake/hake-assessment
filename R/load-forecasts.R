@@ -96,7 +96,7 @@ load_forecasts <- function(model,
       case_dir_name <- ct_levels_names[catch_level_ind]
       fore <- SS_readforecast(file.path(fore_path,
                                         case_dir_name,
-                                        model$forecast_fn),
+                                        forecast_fn),
                               verbose = FALSE)
       fore_catch <- fore$ForeCatch |>
         as_tibble() |>

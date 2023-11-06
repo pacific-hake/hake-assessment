@@ -7,7 +7,7 @@
 #' @param model_dir The directory the models are located in
 #' @param run_forecasts Logical. Run forecasting?
 #' @param run_retrospectives Logical. If `TRUE`, run retrospectives?
-#' @param run_ct_levels Logical. If `TRUE`, run catch levels estimation
+#' @param run_catch_levels Logical. If `TRUE`, run catch levels estimation
 #' routines
 #' @param ... Arguments passed to the [run_ct_levels()], [run_forecasts()],
 #' and [run_retrospectives()] functions
@@ -17,7 +17,7 @@
 run <- function(model_dir = NULL,
                 run_forecasts = FALSE,
                 run_retrospectives = FALSE,
-                run_ct_levels = FALSE,
+                run_catch_levels = FALSE,
                 ...){
 
   stopifnot(!is.null(model_dir))
@@ -27,7 +27,7 @@ run <- function(model_dir = NULL,
          call. = FALSE)
   }
   if(dir.exists(file.path(model_dir, "mcmc"))){
-    if(run_ct_levels){
+    if(run_catch_levels){
       run_ct_levels(model_dir, ...)
     }
     if(run_forecasts){
@@ -35,7 +35,7 @@ run <- function(model_dir = NULL,
       if(!dir.exists(ct_levels_fullpath) | run_ct_levels){
         run_ct_levels(model_dir, ...)
       }
-      run_forecasts(model_dir, ct_levels_path, ...)
+      run_forecasts(model_dir, ...)
     }
     if(run_retrospectives){
       run_retrospectives(model_dir, ...)
