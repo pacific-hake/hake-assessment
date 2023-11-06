@@ -22,7 +22,7 @@
 clean <- function(...,
                   knitr_figures_dir = "knitr-figs",
                   knitr_cache_dir = "knitr-cache",
-                  out_csv_dir = "out-csv"){
+                  out_csv_dir = out_csv_path){
 
   chunks <- enquos(...)
   if(length(chunks)){

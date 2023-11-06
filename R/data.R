@@ -1,3 +1,35 @@
+# From paths.R ----
+#' Directory name for storing the catch levels calculations.
+#'
+#' @format A character string
+"ct_levels_path"
+#' Directory name for storing the forecasting.
+#'
+#' @format A character string
+"forecasts_path"
+#' Directory name for storing the retrospectives.
+#'
+#' @format A character string
+"retropectives_path"
+#' Directory name for storing the default harvest rule catch catch levels
+#'
+#' @format A character string
+"default_hr_path"
+#' Directory name for storing the stable catch catch levels
+#'
+#' @format A character string
+"stable_catch_path"
+#' Directory name for storing the SPR 100 catch levels
+#'
+#' @format A character string
+"spr_100_path"
+#' Directory name for outputting the CSV versions of at-age tables in the
+#' document
+#'
+#' @format A character string
+"out_csv_path"
+
+# From plot-settings.R ----
 #' The point shape to use for the medians in the time series plots
 #'
 #' @format A numerical value representing the point shape (R standard point
@@ -12,7 +44,6 @@
 #'
 #' @format A numerical value
 "ts_pointstroke"
-
 #' The line width to use for the line connecting the median points in the
 #' time series plots
 #'
@@ -23,7 +54,6 @@
 #'
 #' @format A numerical value
 "ts_linegap"
-
 #' The line color to use for the line connecting the median points in the
 #' time series plots, when there is only one model plotted
 #'
@@ -106,7 +136,6 @@
 #'
 #' @format A character string or numerical value representing an R color
 "age_fillcolor"
-
 #' The size font to use by default for all axis titles
 #'
 #' @format A numerical value
@@ -124,7 +153,6 @@
 #'
 #' @format A numerical value
 "minor_tick_length"
-
 #' The color of the horizontal line representing B0
 #'
 #' @format A character string or numerical value representing an R color
@@ -166,6 +194,7 @@
 #' @format A character string or numerical value representing an R line type
 "refpt_lrp_linetype"
 
+# From key-posteriors.R ----
 #' A list of key posteriors for this assessment
 #'
 #' @format A list of regular expressions used to find the key posterior names
@@ -185,6 +214,8 @@
 #'
 #' @format A character string
 "nuisance_posteriors_file"
+
+# From ss-filenames.R ----
 #' A character string containing the name of the SS3 executable
 #' (without extension)
 #'
@@ -227,6 +258,8 @@
 #'
 #' @format A character string
 "comp_report_fn"
+
+# From document-settings.R ----
 #' Custom catch levels calculations. The tolerance in the SPR away from
 #' 1 for the calculation of catch for SPR = 1
 #'
@@ -308,7 +341,8 @@
 #'
 #' @format A vector of numerical years
 "age_bubble_cohorts"
-#'
+
+# From data-tables.R
 #' A data frame containing information on estimated biomass trajectories for
 #' historical assessments from 1991 to present
 #'

@@ -35,7 +35,6 @@ project_variables:
   fig_filetype: "png"
   knitr_figures_dir: "knitr-figs/"
   knitr_cache_dir: "knitr-cache/"
-  out_csv_dir: "out-csv"
   # Increasing `dots_per_inch` for figure output increases the file size a LOT
   dots_per_inch: 200
 author: Pacific Hake Joint Technical Committee
