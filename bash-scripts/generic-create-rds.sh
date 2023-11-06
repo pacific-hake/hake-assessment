@@ -8,9 +8,16 @@
 [[ -z $overwrite ]] && { echo "Variable 'overwrite' has not been set, bailing out." ; exit 1; }
 [[ -z $keep_index_fit_posts ]] && { echo "Variable 'keep_index_fit_posts' has not been set, bailing out." ; exit 1; }
 
+# Create the variable $assess_year containing the current year unless it
+# is currently December, in which case it will be the current year + 1
+# Enter a year as an argument here to force it to be that year, even if
+# December.
+. ./get-assess-year.sh
+
 repo_path=`Rscript -e "cat(here::here())"`
 models_path="models"
-year_path=2024
+# *Never* change `year_path` manually - See `get-assess-year.sh` call above
+year_path=$assess_year
 version_path="01-version"
 
 models_path=$project_path/$models_path/$year_path/$version_path/$type_path

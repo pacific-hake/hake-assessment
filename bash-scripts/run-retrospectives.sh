@@ -1,16 +1,21 @@
 #!/bin/bash
 
 # Must comment out two rows of this at a time to run on hake-precision server
-# Each takes 16 CPUs
+# Each takes 16 CPUs, so 64 CPUs for 4 of them
 years=(1 2 3 4)
        5 6 7 8)
        9 10)
+
 repo_path=`Rscript -e "cat(here::here())"`
-# If running on a local machine and the model folder is in your
-# repo root, uncomment the next line and comment the line after it
-#models+path=$repo_path/models
+# Create the variable $assess_year containing the current year unless it
+# is currently December, in which case it will be the current year + 1
+# Enter a year as an argument here to force it to be that year, even if
+# December.
+. ./get-assess-year.sh
+
 models_path="/srv/hake/models"
-year_path=2023
+# *Never* change `year_path` manually - See `get-assess-year.sh` call above
+year_path=$assess_year
 version_path="01-version"
 type_path="01-base-models"
 model_name="01-base"
@@ -28,7 +33,7 @@ for year in ${years[@]}; do
   (trap 'kill 0' SIGINT; \
   echo; \
   Rscript -e " \
-  setwd('$repo_path'); source('R/all.R'); \
+  setwd('$repo_path'); devtools::load_all(); \
   run_retrospectives('$model_path', \
                      retrospective_yrs = $year, \
                      num_chains = $num_chains, \

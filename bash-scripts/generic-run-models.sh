@@ -11,9 +11,16 @@
 [[ -z $small ]] &&{ echo "Variable 'small' has not been set, bailing out." ; exit 1; }
 [[ -z $verbose ]] &&{ echo "Variable 'verbose' has not been set, bailing out." ; exit 1; }
 
+# Create the variable $assess_year containing the current year unless it
+# is currently December, in which case it will be the current year + 1
+# Enter a year as an argument here to force it to be that year, even if
+# December.
+. ./get-assess-year.sh
+
 repo_path=`Rscript -e "cat(here::here())"`
 models_path="models"
-year_path=2023
+# *Never* change `year_path` manually - See `get-assess-year.sh` call above
+year_path=$assess_year
 version_path="01-version"
 
 num_chains=16

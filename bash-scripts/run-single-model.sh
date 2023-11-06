@@ -7,12 +7,16 @@
 # Start timer
 SECONDS=0
 
+# Create the variable $assess_year containing the current year unless it
+# is currently December, in which case it will be the current year + 1
+# Enter a year as an argument here to force it to be that year, even if
+# December.
+. ./get-assess-year.sh
+
 repo_path=`Rscript -e "cat(here::here())"`
-# If running on a local machine and the model folder is in your
-# repo root, uncomment the next line and comment the line after it
-#models_path=$repo_path/models
-models_path="/srv/hake/models"
-year_path=2024
+models_path="models"
+# *Never* change `year_path` manually - See `get-assess-year.sh` call above
+year_path=$assess_year
 version_path="01-version"
 type_path="05-test-models"
 model_name="01-test-ss3"
