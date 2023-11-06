@@ -2,7 +2,8 @@
 % Please edit documentation in R/run.R
 \name{run}
 \alias{run}
-\title{Run extra models for forecasting, retrospectives, and extra MCMC (one report file per posterior)}
+\title{Run extra models for forecasting, retrospectives, and extra MCMC
+(one report file per posterior)}
 \usage{
 run(
   model_dir = NULL,
@@ -19,17 +20,20 @@ run(
 
 \item{run_retrospectives}{Logical. If \code{TRUE}, run retrospectives?}
 
-\item{run_ct_levels}{Logical. Run catch levels estimation routines?}
+\item{run_ct_levels}{Logical. If \code{TRUE}, run catch levels estimation
+routines}
 
-\item{...}{Passed to the subroutines}
+\item{...}{Arguments passed to the \code{\link[=run_ct_levels]{run_ct_levels()}}, \code{\link[=run_forecasts]{run_forecasts()}},
+and \code{\link[=run_retrospectives]{run_retrospectives()}} functions}
 }
 \value{
 \code{\link[base:invisible]{base::invisible()}}
 }
 \description{
-Run extra models for forecasting, retrospectives, and extra MCMC (one report file per posterior)
+Run extra models for forecasting, retrospectives, and extra MCMC
+(one report file per posterior)
 }
 \details{
-This is a wrapper function for calling \code{\link[=run_ct_levels]{run_ct_levels()}}, \code{\link[=run_forecasts]{run_forecasts()}},
-and \code{\link[=run_retrospectives]{run_retrospectives()}} functions.
+This is a wrapper function for calling \code{\link[=run_ct_levels]{run_ct_levels()}},
+\code{\link[=run_forecasts]{run_forecasts()}}, and \code{\link[=run_retrospectives]{run_retrospectives()}} functions.
 }

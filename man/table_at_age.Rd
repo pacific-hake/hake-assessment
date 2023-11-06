@@ -12,7 +12,7 @@ table_at_age(
   end_yr = NA,
   type = c("naa", "eraa", "caan", "caab", "baa"),
   digits = 0,
-  csv_dir = here::here("doc", "out-csv"),
+  csv_dir = here::here("doc", out_csv_path),
   font_size = 10,
   header_font_size = 10,
   header_vert_spacing = 12,

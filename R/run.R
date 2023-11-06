@@ -1,13 +1,16 @@
-#' Run extra models for forecasting, retrospectives, and extra MCMC (one report file per posterior)
+#' Run extra models for forecasting, retrospectives, and extra MCMC
+#' (one report file per posterior)
 #'
-#' @details This is a wrapper function for calling [run_ct_levels()], [run_forecasts()],
-#' and [run_retrospectives()] functions.
+#' @details This is a wrapper function for calling [run_ct_levels()],
+#' [run_forecasts()], and [run_retrospectives()] functions.
 #'
 #' @param model_dir The directory the models are located in
 #' @param run_forecasts Logical. Run forecasting?
 #' @param run_retrospectives Logical. If `TRUE`, run retrospectives?
-#' @param run_ct_levels Logical. Run catch levels estimation routines?
-#' @param ... Passed to the subroutines
+#' @param run_ct_levels Logical. If `TRUE`, run catch levels estimation
+#' routines
+#' @param ... Arguments passed to the [run_ct_levels()], [run_forecasts()],
+#' and [run_retrospectives()] functions
 #'
 #' @return [base::invisible()]
 #' @export

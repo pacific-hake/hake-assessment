@@ -13,7 +13,7 @@ build_rds <- function(model_dirs = model_list,
 
   map(model_dirs, function(x = .x, ...){
     run(model_dir = x,
-        ct_levels_path = ct_levels_path,
+        ct_levels_path = ct_levels_dir,
         ct_levels = ct_levels,
         ...)
     if(build_file){
