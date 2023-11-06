@@ -1,4 +1,8 @@
 # From paths.R ----
+#' Directory name for the main assessment document.
+#'
+#' @format A character string
+"doc_path"
 #' Directory name for storing the catch levels calculations.
 #'
 #' @format A character string

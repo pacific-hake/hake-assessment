@@ -2,6 +2,7 @@
 # any new package data to file R/data.R
 
 # General variables
+create_data_hake("doc_path", "doc")
 create_data_hake("ct_levels_path", "catch-levels")
 create_data_hake("forecasts_path", "forecasts")
 create_data_hake("retropectives_path", "retrospectives")
