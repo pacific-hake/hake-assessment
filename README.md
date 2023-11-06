@@ -19,7 +19,7 @@ ____
 >- [2024 Assessment cycle (Jan - Mar 2024)](#assessment-cycle)
 >   - [Server setup for 2024](#server-setup)
 >- [How the models are run](#how-to-run-models)
->   - [Base model bash script](#base-model-bash)
+>   - [Base model bash script (`bash-scripts/run-base-model.sh`)](#base-model-bash)
 >   - [Forecasts for the base model](#forecasts)
 >   - [Retrospectives for base model](#retrospectives)
 >   - [Other models bash scripts](#bash-scripts-run)
@@ -238,31 +238,55 @@ using:
   [here](https://github.com/pacific-hake/hake-assessment/tree/master/bash-scripts)
 
 <a name="base-model-bash"></a>
-### Base model bash script
+### Base model bash script (`bash-scripts/run-base-model.sh`)
 
-* The base model is special and has its own bash script. It is
-  `run-base-model.sh`. This needs to be edited each year before beginning.
+* The base model is special and has its own bash script for running the model.
+  It is `run-base-model.sh`, located in the `bash-scripts` directory.
+  This needs to be edited each year before trying to run the model or you
+  will end up re-running last year's base model.
     
 * Check all the variables and make sure they are correct. Change the
-  `year_path` to the new assessment year (Whatever year that January is in)
+  `year_path` to the new assessment year (Whatever year the assessment is
+   reviewed in).
 
-* If run on the server, the `models_path` must be set to `/srv/hake/models`
+* If run on the server, the `models_path` must be set to `/srv/hake/models`.
   
 * If run on a local machine, set `models_path` to the location of your
   `models` directory. This is typically a subdirectory of the repository,
   and if so the variable would set like this: `models_path=$repo_path/models`.
-  Note that there cannot be spaces around the `=` sign in bash scripts.
+  If not, it must be the full path. Note that there cannot be spaces around
+  the `=` sign in bash scripts.
+
+* Wherever your `models` directory is located, it must have a subdirectory
+  structure as follows to run the base model:
+   ```
+   $year_path/01-version/01-base-models/01-base/
+   ```
+   The `01-base` directory must contain the SS3 input files:
+   ```
+   hake_data.ss
+   hake_control.ss
+   forecast.ss
+   starter.ss
+   wtatage.ss
+   ```
     
 * The base model has more steps that other models (calculation of catch levels
-  for forecasting, and the forecasting itself). There are clear chunk of code
-  for these options in `models_path`. Currently you have to comment out what
-  you don't want to run (comment character is #).
+  for forecasting, and the forecasting itself). There are clearly defined
+  chunks of code for these options in `bash-scripts/run-base-model.sh`.
+  Currently you have to comment out what you don't want to run (comment
+  character is #). If testing, you may want to comment out all the forecasting
+  and catch levels calculations.
     
-* Some chunks delete files. This is to save space.
-  [This chunk](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/bash-scripts/run-base-model.sh#L50)
+* Some of the chunks of code delete unnecessary output files. This is to
+  save space. [This chunk](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/bash-scripts/run-base-model.sh#L50)
   for example, deletes all output files in the `forecasts` directory except
   those necessary to run the forecasts.
     
+* There is a call to build the RDS file once completed running the model.
+  This can also be commented out and run manually using the bash script
+  `bash-scripts/create-rdes-base.sh`.
+
 <a name="forecasts"></a>
 ### Forecasts for the base model
 
