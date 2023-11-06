@@ -287,21 +287,28 @@ using:
   This can also be commented out and run manually using the bash script
   `bash-scripts/create-rdes-base.sh`.
 
+* On Linux, if you are in the `bash-scripts` directory in the terminal, run
+  the script like this:
+  `./run-base-model.sh`
+
 <a name="forecasts"></a>
 ### Forecasts for the base model
 
-* Either leave the forecasting chunks in `run-base-model.sh` uncommented or run
-  `run-base-forecasts.sh` after the base model has already been run. Note that
-  you need to edit this file also before running it, as it has the year,
-  etc. in it.
+* To run forecasts, either leave the forecasting chunks uncommented in the
+  `bash-scripts/run-base-model.sh` bash script or run
+  `bash-scripts/run-base-forecasts.sh` after the base model has already
+  been run. Note that you may need edit this file also before running it.
+  The forecasts definitions are found in a CSV file,
+  `doc/forecast-descriptions.csv`. Edit them there before running, the code
+  uses this file to set up and run the forecasts.
   
 <a name="retrospectives"></a>
 ### Retrospectives for base model
 
-* To run these, first run the base model, then edit `run-retrospectives.sh`. The
-  `year_path` will have to be changed each year and also `models_path` if you
-  are running on a different machine than the server. See the section
-  on running the base model for directions on this variable
+* To run retrospectives, either leave the forecasting chunks uncommented
+  in the `bash-scripts/run-base-model.sh` bash script or first run the
+  base model with the retrospectives chunk commented out, then run
+  `run-retrospectives.sh`.
 
 <a name="bash-scripts-run"></a>
 ### Other models bash scripts
