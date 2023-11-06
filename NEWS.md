@@ -1,11 +1,11 @@
 ## News for the `hake-assessment` repository
 
->Quicklinks (press alt-left arrow to come back here):  
+>**Page links:**
 >- [Complete rewrite of code in 2023](#complete-rewrite-of-code-in-2023)  
 >- [Details of the `render()` function](#render-details)
->  - [Main assessment document](#main-assessment-document)
->  - [Beamer presentations](#beamer-presentations)
->    - [Multiple columns on slides](#multiple-columns-on-slides)
+>   - [Main assessment document](#main-assessment-document)
+>   - [Beamer presentations](#beamer-presentations)
+>      - [Multiple columns on slides](#multiple-columns-on-slides)
 
 ## Complete rewrite of code in 2023
 
@@ -200,8 +200,10 @@ the steps are the same except that the post-processor function used is
   white page.
 * Add the grouping horizontal lines to the decision tables, if they are
   present in the presentation.
-* Fix tildes - In cases where tildes are found between text to keep them
-  together (e.g. 250,000~t), this fixes them so LaTeX does what it is
+* Fix tildes - In cases where tildes have been written in *Rmarkdown*
+  between two words to keep them together (e.g. 250,000~t), *Pandoc* will
+  replace those with `\\text
+  this fixes them so LaTeX does what it is
   supposed to do with them, keep them together on a line in the rendered PDF.
   
 To debug/test slides, the same procedure is followed as with the main
@@ -211,7 +213,7 @@ look on your slides.
 
 #### Multiple columns on slides
 Multiple columns on a slide are implemented using triple-colon HTML syntax.
-See the [SRG management presentation](https://github.com/pacific-hake/hake-assessment/blob/7e3d56f798390f51c5a914ff07a2225ce8e6c0ad/beamer/srg/management/010-past-management.rmd#L18)
+See [these lines of code in the SRG management presentation](https://github.com/pacific-hake/hake-assessment/blob/7e3d56f798390f51c5a914ff07a2225ce8e6c0ad/beamer/srg/management/010-past-management.rmd#L18)
 for examples of this. You must follow this format:
 
 `:::::: {.columns}`  

@@ -9,23 +9,25 @@ ____
 ![GitHub contributors](https://img.shields.io/github/contributors/pacific-hake/hake-assessment)
 ![Codecov](https://img.shields.io/codecov/c/github/pacific-hake/hake-assessment)
 
->Quicklinks (press alt-left arrow to come back here):  
->- [How to create the hake assessment PDF document](#create-doc)  
+>**Page links:**
+>- [Introduction](#introduction)
+>- [How to create the hake assessment PDF document](#create-doc)
 >- [Debugging chunks of code and Rmarkdown text](#debugging)  
->- [Adding new data to data tables](#add-new-data)  
->- [Reference point text markup](#settings-ref-pt)  
->- [Plot settings](#settings-plot)  
->- [2024 Assessment cycle (Jan - Mar 2024)](#assessment-cycle)  
->- [Server setup for 2024](#server-setup)  
->- [How the models are run](#how-to-run-models)  
->- [Base model bash script](#base-model-bash)  
->- [Forecasts for the base model](#forecasts)  
->- [Retrospectives for base model](#retrospectives)  
->- [Other models bash scripts](#bash-scripts-run)  
->- [Other bash scripts](#bash-scripts-other)  
->- [To take a quick look at model output without making an RDS file](#quick-look)  
+>- [Adding new data to data tables](#add-new-data)
+>- [Reference point text markup](#settings-ref-pt)
+>- [Plot settings](#settings-plot)
+>- [2024 Assessment cycle (Jan - Mar 2024)](#assessment-cycle)
+>   - [Server setup for 2024](#server-setup)
+>- [How the models are run](#how-to-run-models)
+>   - [Base model bash script](#base-model-bash)
+>   - [Forecasts for the base model](#forecasts)
+>   - [Retrospectives for base model](#retrospectives)
+>   - [Other models bash scripts](#bash-scripts-run)
+>   - [Other bash scripts](#bash-scripts-other)
+>* [To take a quick look at model output without making an RDS file](#quick-look)
 _____________________________________________________________
 
+## Introduction
 In 2023, the project code used for building the assessment document and all the
 presentations was switched over from the original Sweave-based approach to the
 [Bookdown](https://bookdown.org/) system. Read
@@ -208,7 +210,7 @@ using:
 * `extra-mcmc must be and was enabled for ALL models`
 
 <a name="server-setup"></a>
-## Server setup for 2024
+### Server setup for 2024
 
 * Operating system: Ubuntu 22.04 LTS (Jammy Jellyfish)
 
@@ -224,7 +226,7 @@ using:
 
 ---
 <a name="how-to-run-models"></a>
-# How the models are run
+## How the models are run
 
 * There are bash scripts which launch R functions. The scripts are used to
   allow OS-level control over the parallelism, which allows us to view
@@ -236,7 +238,7 @@ using:
   [here](https://github.com/pacific-hake/hake-assessment/tree/master/bash-scripts)
 
 <a name="base-model-bash"></a>
-## Base model bash script
+### Base model bash script
 
 * The base model is special and has its own bash script. It is
   `run-base-model.sh`. This needs to be edited each year before beginning.
@@ -262,7 +264,7 @@ using:
   those necessary to run the forecasts.
     
 <a name="forecasts"></a>
-## Forecasts for the base model
+### Forecasts for the base model
 
 * Either leave the forecasting chunks in `run-base-model.sh` uncommented or run
   `run-base-forecasts.sh` after the base model has already been run. Note that
@@ -270,7 +272,7 @@ using:
   etc. in it.
   
 <a name="retrospectives"></a>
-## Retrospectives for base model
+### Retrospectives for base model
 
 * To run these, first run the base model, then edit `run-retrospectives.sh`. The
   `year_path` will have to be changed each year and also `models_path` if you
@@ -278,7 +280,7 @@ using:
   on running the base model for directions on this variable
 
 <a name="bash-scripts-run"></a>
-## Other models bash scripts
+### Other models bash scripts
 
 * The bash scripts that start with `run-` are for running models. Each of
   them calls `generic-run-models.sh` which contains the script that actually
@@ -304,7 +306,7 @@ using:
     entered here or you will still be using the old version of the models.
     
 <a name="bash-scripts-other"></a>
-## Other bash scripts
+### Other bash scripts
 
 * The `create-` scripts are for creating RDS files (if you need or want to do
   this manually after running the models). The `run-` scripts will create the
@@ -316,7 +318,7 @@ using:
 
 ---
 <a name="quick-look"></a>
-# To take a quick look at model output without making an RDS file
+## To take a quick look at model output without making an RDS file
 
 Open R within the model's folder and use the command:
 
