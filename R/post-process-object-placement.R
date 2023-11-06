@@ -29,12 +29,12 @@ post_process_object_placement <- function(x,
          call. = FALSE)
   }
   if(is.na(row_df$label) && is.na(row_df$file_name)){
-    stop("There is an error in the file `object-placement.csv`. ",
+    stop("There is an error in the file `", object_placement_fn , "`",
          "Both `label` and `file_name` have no value in row ", row_num,
          call. = FALSE)
   }
   if(is.na(row_df$placement)){
-    stop("There is an error in the file `object-placement.csv`. ",
+    stop("There is an error in the file `", object_placement_fn , "`. ",
          "The `placement` column is missing a value in row ", row_num,
          call. = FALSE)
   }
@@ -48,23 +48,23 @@ post_process_object_placement <- function(x,
       label <- paste0("\\/", row_df$label)
     }
   }else{
-    stop("The `type` is ", row_df$type, " for row ", row_num, " in ",
-         "`object-placement.csv`. It must be either 'figure' or 'table'",
+    stop("The `type` is ", row_df$type, " for row ", row_num, " in `",
+         object_placement_fn , "`. It must be either 'figure' or 'table'",
          call. = FALSE)
   }
 
   ind <- grep(label, x)
   if(!length(ind)){
     warning(row_df$type, " label `", row_df$label, "`, was not found in ",
-            "the tex file. It was not placed as requested in the ",
-            "`object-placement.csv` file")
+            "the tex file. It was not placed as requested in the `",
+            object_placement_fn , "` file")
     return(x)
   }
 
   if(length(ind) > 1){
     warning("There was more than one ", row_df$type," label `", row_df$label,
-            "`, found in the tex file. It was not placed as requested in the ",
-            "`object-placement.csv` file")
+            "`, found in the tex file. It was not placed as requested in the `",
+            object_placement_fn , "` file")
     return(x)
   }
 

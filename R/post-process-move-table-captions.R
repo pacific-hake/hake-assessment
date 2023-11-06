@@ -36,7 +36,7 @@ post_process_move_table_captions <- function(x,
     }
   }
 
-  settings_fn <- "caption-adjustments.csv"
+  settings_fn <- caption_adjustments_fn
   doc_dr <- here("doc")
   if(!dir.exists(doc_dr)){
     stop("The `doc` directory which contains the file `", settings_fn, " ",

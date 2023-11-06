@@ -9,7 +9,7 @@
 #' @export
 post_process_set_latex_placement_options <- function(x, ...){
 
-  settings_fn <- "object-placement.csv"
+  settings_fn <- object_placement_fn
   doc_dr <- here("doc")
   if(!dir.exists(doc_dr)){
     stop("The `doc` directory which contains the file `", settings_fn, " ",
