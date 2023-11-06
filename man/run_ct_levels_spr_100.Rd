@@ -7,7 +7,6 @@ SPR to 1, within the tolerance given (\code{ct_levels_spr_tol})}
 \usage{
 run_ct_levels_spr_100(
   model,
-  spr_100_path,
   forecast_yrs,
   ct_levels_spr_tol,
   ct_levels_catch_tol,
@@ -17,8 +16,6 @@ run_ct_levels_spr_100(
 }
 \arguments{
 \item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
-
-\item{spr_100_path}{Path where the SPR model files are found}
 
 \item{forecast_yrs}{A vector if the years to forecast for}
 

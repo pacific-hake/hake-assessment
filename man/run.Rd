@@ -9,7 +9,7 @@ run(
   model_dir = NULL,
   run_forecasts = FALSE,
   run_retrospectives = FALSE,
-  run_ct_levels = FALSE,
+  run_catch_levels = FALSE,
   ...
 )
 }
@@ -20,7 +20,7 @@ run(
 
 \item{run_retrospectives}{Logical. If \code{TRUE}, run retrospectives?}
 
-\item{run_ct_levels}{Logical. If \code{TRUE}, run catch levels estimation
+\item{run_catch_levels}{Logical. If \code{TRUE}, run catch levels estimation
 routines}
 
 \item{...}{Arguments passed to the \code{\link[=run_ct_levels]{run_ct_levels()}}, \code{\link[=run_forecasts]{run_forecasts()}},

@@ -4,13 +4,10 @@
 \alias{run_ct_levels}
 \title{A wrapper to run the catch levels determination routines}
 \usage{
-run_ct_levels(model_path, ct_levels_path = ct_levels_path, ...)
+run_ct_levels(model_path, ...)
 }
 \arguments{
 \item{model_path}{The model directory name}
-
-\item{ct_levels_path}{The catch levels list, which is a list of lists
-of length 3}
 
 \item{...}{Absorbs arguments intended for other functions}
 }

@@ -7,6 +7,7 @@ create_data_hake("key_posteriors",
                       "SR_LN",
                       "SR_BH_steep",
                       "Q_extraSD_Acoustic_Survey",
+                      "Q_extraSD_Age1_Survey",
                       "ln\\(DM_theta\\)_Age_P1",
                       "ln\\(DM_theta\\)_Age_P2"))
 
@@ -15,11 +16,12 @@ create_data_hake("key_posteriors_titles",
                       "ln(R[0])",
                       "Steepness",
                       "Survey extra SD",
+                      "Age 1 extra SD",
                       "Dirichlet-multinomial fishery",
                       "Dirichlet-multinomial survey"))
 
-create_data_hake("key_posteriors_file",
+create_data_hake("key_posteriors_fn",
                  "keyposteriors.csv")
 
-create_data_hake("nuisance_posteriors_file",
+create_data_hake("nuisance_posteriors_fn",
                  "nuisanceposteriors.csv")

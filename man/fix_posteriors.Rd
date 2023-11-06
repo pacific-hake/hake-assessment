@@ -11,8 +11,10 @@ fix_posteriors(fn)
 \item{fn}{File name for the posterior file}
 }
 \value{
-If the file contains only one header/data row (i.e is of correct
-format) then return a 1-row data frame of the contents
+Nothing. If the file contains only one header/data row (i.e is
+of correct format) then nothing happens. If it contains more than one
+header row, remove the second header and everything else after that in
+the file and overwrite the file
 }
 \description{
 Remove multiple header/data rows found in posteriors files to leave just

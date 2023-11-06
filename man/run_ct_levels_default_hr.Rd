@@ -6,12 +6,10 @@
 second year projections to find a stable catch within the the given
 tolerance}
 \usage{
-run_ct_levels_default_hr(model, default_hr_path, forecast_yrs, ...)
+run_ct_levels_default_hr(model, forecast_yrs, ...)
 }
 \arguments{
 \item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
-
-\item{default_hr_path}{The path in which the default hr forecast resides}
 
 \item{forecast_yrs}{A vector of forecast years}
 

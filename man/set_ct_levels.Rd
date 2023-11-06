@@ -5,7 +5,7 @@
 \title{Reads in the forecast description data and creates the list containing
 the catch levels and extra information used for the assessment document}
 \usage{
-set_ct_levels(fn = here("doc", "forecast-descriptions.csv"))
+set_ct_levels(fn = here(doc_path, forecast_fn))
 }
 \arguments{
 \item{fn}{The name of the file containing the forecast description data}

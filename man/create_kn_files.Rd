@@ -2,24 +2,18 @@
 % Please edit documentation in R/create-kn-files.R
 \name{create_kn_files}
 \alias{create_kn_files}
-\title{Create the \code{nuisance} and \code{key} posteriors files}
+\title{Create the \code{nuisance} and \code{key} posteriors CSV files in the output
+mcmc directory of the model}
 \usage{
-create_kn_files(model, posterior_regex, key_post_fn, nuisance_post_fn)
+create_kn_files(model)
 }
 \arguments{
 \item{model}{A model object representing the output from the SS model}
-
-\item{posterior_regex}{A vector of key posterior names in regular
-expression formats, which will be glued together with logical OR ('|') to
-match the names}
-
-\item{key_post_fn}{Filename for the key posterior file}
-
-\item{nuisance_post_fn}{Filename for the nuisance posterior file}
 }
 \value{
-Nothing
+Nothing, creates two CSV files
 }
 \description{
-Create the \code{nuisance} and \code{key} posteriors files
+Create the \code{nuisance} and \code{key} posteriors CSV files in the output
+mcmc directory of the model
 }

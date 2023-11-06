@@ -3,6 +3,15 @@
 #'
 #' @format A character string
 "doc_path"
+#' Directory name for the mcmc output for models
+#'
+#' @format A character string
+"mcmc_path"
+#' Directory name for the mcmc output when MCMC_output_detail in SS3 is 2
+#' which means one report file and CompReport file for each posterior
+#'
+#' @format A character string
+"sso_path"
 #' Directory name for storing the catch levels calculations.
 #'
 #' @format A character string
@@ -32,6 +41,20 @@
 #'
 #' @format A character string
 "out_csv_path"
+#' Name of file containing the forecasting descriptions and settings
+#'
+#' @format A character string
+"forecast_descriptions_fn"
+#' Name of file containing the caption adjustments for figures and tables
+#'
+#' @format A character string
+"caption_adjustments_fn"
+#' Name of file containing the object placement settings for figures and
+#' tables (LaTeX placement values such as H, !b, tbh, etc.)
+#'
+#' @format A character string
+"object_placement_fn"
+
 
 # From plot-settings.R ----
 #' The point shape to use for the medians in the time series plots
@@ -212,12 +235,11 @@
 #' A character string containing the file name for the key posteriors CSV file
 #'
 #' @format A character string
-"key_posteriors_file"
+"key_posteriors_fn"
 #' A character string containing the file name for the nuisance posteriors
 #' CSV file
-#'
 #' @format A character string
-"nuisance_posteriors_file"
+"nuisance_posteriors_fn"
 
 # From ss-filenames.R ----
 #' A character string containing the name of the SS3 executable
@@ -229,6 +251,14 @@
 #'
 #' @format A character string
 "starter_fn"
+#' A character string containing the file name for the SS3 control file
+#'
+#' @format A character string
+"control_fn"
+#' A character string containing the file name for the SS3 data file
+#'
+#' @format A character string
+"data_fn"
 #' A character string containing the file name for the SS3 par file
 #' (parameter output)
 #'
@@ -262,6 +292,10 @@
 #'
 #' @format A character string
 "comp_report_fn"
+#' A character string containing the file name for the model output logfile
+#'
+#' @format A character string
+"model_output_log_fn"
 
 # From document-settings.R ----
 #' Custom catch levels calculations. The tolerance in the SPR away from
