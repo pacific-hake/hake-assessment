@@ -44,7 +44,7 @@ load_extra_mcmc <- function(model,
     reps <-
       load_extra_mcmc_repfiles(
         model$extra_mcmc_path,
-        file_pat = "Report_mce_[0-9]+\\.sso$",
+        file_pat = regex_extra_mcmc_report,
         progress_n = progress_n,
         verbose = verbose,
         first = first)
@@ -53,7 +53,7 @@ load_extra_mcmc <- function(model,
     compreps <-
       load_extra_mcmc_repfiles(
         model$extra_mcmc_path,
-        file_pat = "CompReport_mce_[0-9]+\\.sso$",
+        file_pat = regex_extra_mcmc_compreport,
         progress_n = progress_n,
         verbose = verbose,
         first = first)

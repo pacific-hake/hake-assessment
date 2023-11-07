@@ -20,6 +20,19 @@
 #'
 #' @format A character string
 "regex_main_recdevs"
+#' Regular expression for the Report files in the extra MCMC runs.
+#' Used in load_extra_mcmc.R
+#'
+#' @format A character string
+"regex_extra_mcmc_report"
+#' Regular expression for the CompReport files in the extra MCMC runs.
+#' Used in load_extra_mcmc.R
+#'
+#' @format A character string
+"regex_extra_mcmc_compreport"
+
+
+
 # From paths-and-filenames.R ----
 #' Directory name for the main assessment document.
 #'
