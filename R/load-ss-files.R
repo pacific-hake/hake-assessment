@@ -4,22 +4,12 @@
 #' for mcmc parameters.
 #'
 #' @param model_path The directory that the model is in
-#' @param key_posts Vector of key posteriors used to create key posteriors file
-#' @param posts_fn Posteriors output filename
-#' @param key_posts_fn Name of the key posteriors filename
-#' @param nuisance_posts_fn Name of the nuisance posteriors filename
 #' @param printstats Print info on each model loaded via [r4ss::SS_output()]
-#' @param ... Absorbs arguments intended for other functions
+#' @param ... Passed to `calc_mcmc()`
 #'
 #' @return A model object representing the output from the SS model
 #' @export
 load_ss_files <- function(model_path = NA,
-                          key_posts = c("NatM",
-                                        "SR_LN",
-                                        "SR_BH_steep",
-                                        "Q_extraSD",
-                                        "ln.EffN_mult._1",
-                                        "ln.EffN_mult._2"),
                           printstats = FALSE,
                           ...){
 
@@ -112,8 +102,7 @@ load_ss_files <- function(model_path = NA,
     create_kn_files(model)
 
     # Do the mcmc calculations, e.g. quantiles for SB, SSB, DEPL, RECR, RECRDEVS
-    model$mcmccalcs <- calc_mcmc(model$mcmc,
-                                 ...)
+    model$mcmccalcs <- calc_mcmc(model$mcmc, ...)
 
     # The MCMC object itself is huge and should not be included in the list,
     # as the loading of it in the document is prohibitive. It was used to

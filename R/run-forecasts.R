@@ -1,8 +1,6 @@
 #' Run forecasting for the model supplied
 #'
 #' @param model_path The directory containing the model
-#' @param ct_levels_path The directory containing the output of
-#' [run_ct_levels()]
 #' @param ... Arguments passed to [fetch_ct_levels()]
 #'
 #' @details If there is no mcmc component to the model, an error will be
@@ -10,11 +8,17 @@
 #'
 #' @return [base::invisible()]
 #' @export
-run_forecasts <- function(model_path,
-                          ct_levels_path,
+run_forecasts <- function(model = NULL,
+                          model_path = NULL,
                           ...){
 
-  model <- load_ss_files(model_path, ...)
+  if(is.null(model)){
+    if(is.null(model_path)){
+      stop("`run_forecasts`: Either `model` or `model_path` must be supplied")
+    }
+    model <- load_ss_files(model_path, ...)
+  }
+
   forecasts_path <- file.path(model_path, forecasts_path)
   dir.create(forecasts_path, showWarnings = FALSE)
   unlink(file.path(forecasts_path, "*"), recursive = TRUE)
@@ -22,7 +26,7 @@ run_forecasts <- function(model_path,
   ct_levels_path <- file.path(model_path, ct_levels_path)
 
   # Calculate and add on model-custom catch levels
-  ct_levels <- fetch_ct_levels(ct_levels_path, ...)
+  ct_levels <- load_ct_levels(model, ...)
 
   message("Running forecasts for model located in ", model_path, "\n")
   dir.create(forecasts_path, showWarnings = FALSE)

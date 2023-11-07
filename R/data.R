@@ -1,8 +1,35 @@
-# From paths.R ----
+# From regular-expressions.R ----
+#' Regular expression for the "early initial" (Early_InitAge) recruitment
+#' deviation parameters in SS3 MCMC output
+#'
+#' @format A character string
+"regex_recdev_early"
+#' Regular expression for the "early", "main", and "late" recruitment
+#' deviation parameters (Early_RecrDev, etc.)in SS3 MCMC output
+#'
+#' @format A character string
+"regex_recdev_all"
+#' Regular expression for the "early", "main", and "late" recruitment
+#' deviation parameters (Early_RecrDev, etc.)in SS3 MCMC output. Used
+#' in load_mcmc_vals.R
+#'
+#' @format A character string
+"regex_eml_recdevs"
+#' Regular expression for the "main" recruitment deviation
+#' parameters in SS3 MCMC output. Used in load_mcmc_vals.R
+#'
+#' @format A character string
+"regex_main_recdevs"
+# From paths-and-filenames.R ----
 #' Directory name for the main assessment document.
 #'
 #' @format A character string
 "doc_path"
+#' Directory name for outputting the CSV versions of at-age tables in the
+#' document
+#'
+#' @format A character string
+"out_csv_path"
 #' Directory name for the mcmc output for models
 #'
 #' @format A character string
@@ -36,11 +63,6 @@
 #'
 #' @format A character string
 "spr_100_path"
-#' Directory name for outputting the CSV versions of at-age tables in the
-#' document
-#'
-#' @format A character string
-"out_csv_path"
 #' Name of file containing the forecasting descriptions and settings
 #'
 #' @format A character string
@@ -380,7 +402,7 @@
 #' @format A vector of numerical years
 "age_bubble_cohorts"
 
-# From data-tables.R
+# From data-tables.R ----
 #' A data frame containing information on estimated biomass trajectories for
 #' historical assessments from 1991 to present
 #'

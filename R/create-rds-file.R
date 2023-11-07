@@ -11,35 +11,35 @@
 #'
 #' @return [base::invisible()]
 #' @export
-create_rds_file <- function(
-    model_dir = NULL,
-    keep_index_fit_posts = FALSE,
-    ct_levels_lst = set_ct_levels(),
-    forecasts_path = file.path(model_dir, forecasts_path),
-    ct_levels_path = file.path(model_dir, catch-levels_path),
-    retrospectives_path = file.path(model_dir, retrospectives_path),
-    default_hr_path = file.path(ct_levels_path, default_hr_path),
-    stable_catch_path = file.path(ct_levels_path, stable_catch_path),
-    spr_100_path = file.path(ct_levels_path, spr_100_path),
-    verbose = TRUE,
-    overwrite = TRUE,
-    ...){
+create_rds_file <- function(model_dir = NULL,
+                            keep_index_fit_posts = FALSE,
+                            verbose = TRUE,
+                            overwrite = TRUE,
+                            ...){
 
   stopifnot(!is.null(model_dir))
+
+  ct_levels_lst <- set_ct_levels()
+  forecasts_fullpath <- file.path(model_dir, forecasts_path)
+  ct_levels_fullpath <- file.path(model_dir, ct_levels_path)
+  retrospectives_fullpath <- file.path(model_dir, retrospectives_path)
+  default_hr_fullpath <- file.path(ct_levels_fullpath, default_hr_path)
+  stable_catch_fullpath <- file.path(ct_levels_fullpath, stable_catch_path)
+  spr_100_fullpath <- file.path(ct_levels_fullpath, spr_100_path)
 
   if(length(grep("\\/$", model_dir))){
     # Remove trailing slashes
     model_dir <- gsub("\\/+$", "", model_dir)
   }
   if(!dir.exists(model_dir)){
-    stop("Directory `", model_dir, "` does not exist",
+    stop("`create_rds_file()`: Model directory `", model_dir,
+         "` does not exist",
          call. = FALSE)
   }
 
   if(is.null(ct_levels_lst$ct_levels)){
-    stop("`ct_levels_lstct_levels` is `NULL` but requires a value. It is a ",
-         "list of lists of vectors of length 3. Use ",
-         "`hake::set_ct_levels()` to set this",
+    stop("`create_rds_file()`: `ct_levels_lst` is `NULL` but requires a ",
+         "value. Use `hake::set_ct_levels()` to generate this properly",
          call. = FALSE)
   }
   # The RDS file will have the same name as the directory it is in
@@ -48,26 +48,28 @@ create_rds_file <- function(
    if(overwrite){
      unlink(rds_file, force = TRUE)
    }else{
-     stop_quietly("The RDS file `", rds_file, "` exists and you did not set ",
-                  "`overwrite = TRUE`")
+     stop_quietly("`create_rds_file()`: The RDS file `", rds_file,
+                  "` exists but you did not set `overwrite = TRUE`, so ",
+                  "nothing was done by the `create_rds_file()` function")
    }
   }
 
   if(verbose){
-    message("Creating a new RDS file from SS3 model output...")
-    message("Loading SS3 model input and output files in:\n",
-            "`", model_dir, "`\n")
+    message("`create_rds_file()`: Creating a new RDS file from SS3 ",
+            "model output...")
+    message("`create_rds_file()`: Loading SS3 model input and output ",
+            "files in:\n`", model_dir, "`\n")
   }
   model <- load_ss_files(model_dir, ...)
   if(verbose){
-    message("SS3 input and output files loaded successfully from ",
-            "model output in: ",
+    message("`create_rds_file()`: SS3 input and output files loaded ",
+            "successfully from model output in: ",
             "`", model_dir, "`\n")
   }
   # Try loading extra mcmc output. If none are found or there is a problem,
   # model$extra_mcmc will be NA
   if(verbose){
-    message("Loading extra MCMC output for model in:\n",
+    message("`create_rds_file()`: Loading extra MCMC output for model in:\n",
             "`", model$extra_mcmc_path, "`\n")
   }
 

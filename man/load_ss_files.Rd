@@ -4,28 +4,14 @@
 \alias{load_ss_files}
 \title{Load all the SS files for output and input, and return the model object}
 \usage{
-load_ss_files(
-  model_path = NA,
-  key_posts = c("NatM", "SR_LN", "SR_BH_steep", "Q_extraSD", "ln.EffN_mult._1",
-    "ln.EffN_mult._2"),
-  printstats = FALSE,
-  ...
-)
+load_ss_files(model_path = NA, printstats = FALSE, ...)
 }
 \arguments{
 \item{model_path}{The directory that the model is in}
 
-\item{key_posts}{Vector of key posteriors used to create key posteriors file}
-
 \item{printstats}{Print info on each model loaded via \code{\link[r4ss:SS_output]{r4ss::SS_output()}}}
 
-\item{...}{Absorbs arguments intended for other functions}
-
-\item{posts_fn}{Posteriors output filename}
-
-\item{key_posts_fn}{Name of the key posteriors filename}
-
-\item{nuisance_posts_fn}{Name of the nuisance posteriors filename}
+\item{...}{Passed to \code{calc_mcmc()}}
 }
 \value{
 A model object representing the output from the SS model

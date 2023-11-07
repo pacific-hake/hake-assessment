@@ -5,12 +5,7 @@
 \title{Clean (delete) all build output including knitr cache and knitr figures
 directories from the current directory}
 \usage{
-clean(
-  ...,
-  knitr_figures_dir = "knitr-figs",
-  knitr_cache_dir = "knitr-cache",
-  out_csv_dir = out_csv_path
-)
+clean(..., knitr_figures_dir = "knitr-figs", knitr_cache_dir = "knitr-cache")
 }
 \arguments{
 \item{...}{Optional quoted or unquoted names of chunks that should be
@@ -23,8 +18,6 @@ figures reside}
 
 \item{knitr_cache_dir}{Directory where the knitr cached chunk
 databases reside}
-
-\item{out_csv_dir}{Directory where the table outputs reside}
 }
 \value{
 Nothing

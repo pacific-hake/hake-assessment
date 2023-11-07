@@ -30,7 +30,7 @@ models_dir <- file.path(models_dir,
                         assess_yr,
                         paste0(model_version, "-version"))
 
-output_csv_dir <- here("doc", out_csv_dir)
+output_csv_dir <- here("doc", out_csv_path)
 end_yr <- assess_yr
 
 # Forecast years --------------------------------------------------------------
@@ -38,7 +38,7 @@ end_yr <- assess_yr
 # the number of `catch_year` columns in the forecast descriptions CSV file
 # and always begins in the current assessment year (`assess_yr`)
 fore_file <- here::here(doc_path, forecast_fn)
-if(!file.exists(fore_file){
+if(!file.exists(fore_file)){
   stop("File `", fore_file, "` does not exist.",
        call. = FALSE)
 }

@@ -5,10 +5,16 @@
 #'
 #' @return [base::invisible()]
 #' @export
-run_ct_levels <- function(model_path,
+run_ct_levels <- function(model = NULL,
+                          model_path = NULL,
                           ...){
 
-  model <- load_ss_files(model_path)
+  if(is.null(model)){
+    if(is.null(model_path)){
+      stop("`run_ct_levels`: Either `model` or `model_path` must be supplied")
+    }
+    model <- load_ss_files(model_path, ...)
+  }
 
   ct_levels_fullpath <- file.path(model_path, ct_levels_path)
   dir.create(ct_levels_fullpath, showWarnings = FALSE)

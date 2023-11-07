@@ -4,18 +4,10 @@
 \alias{calc_mcmc}
 \title{Return a list of mcmc calculations, e.g. quantiles for various values}
 \usage{
-calc_mcmc(
-  mcmc,
-  probs = c(0.025, 0.5, 0.975),
-  biomass_scale = 1e+06,
-  recr_scale = 1e+06,
-  ...
-)
+calc_mcmc(mcmc, biomass_scale = 1e+06, recr_scale = 1e+06, ...)
 }
 \arguments{
 \item{mcmc}{The output of the \code{\link[r4ss:SSgetMCMC]{r4ss::SSgetMCMC()}} function as a data.frame}
-
-\item{probs}{A vector of 3 values, the lower CI, median, and upper CI}
 
 \item{biomass_scale}{A scale factor to divide biomass values by}
 

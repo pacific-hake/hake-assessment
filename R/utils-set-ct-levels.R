@@ -15,16 +15,20 @@
 #' @export
 set_ct_levels <- function(fn = here(doc_path, forecast_fn)){
 
-  # Need fread() here because there are commas in the description field
   ret <- list()
+
+  # Need fread() here because there are commas in the description field
+  # TODO: Check this again and remove data.table dependency if possible
   ct_levels <- fread(fn) |>
     as_tibble()
 
   # Columns with forecast catch
   ct_inds <- grep("^catch_year[0-9]+$", names(ct_levels))
-  desc_ind <- max(ct_inds) + 1
-  dir_name_ind <- max(ct_inds) + 2
+  desc_ind <- grep("description", names(ct_levels))
+  dir_name_ind <- grep("directory", names(ct_levels))
 
+  # Convert the table format into a list structure that can makes run
+  # code simpler
   ret$ct_levels <- ct_levels |>
     pmap(~{
       row <- c(...) |>

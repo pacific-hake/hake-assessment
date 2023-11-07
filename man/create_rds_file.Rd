@@ -7,13 +7,6 @@
 create_rds_file(
   model_dir = NULL,
   keep_index_fit_posts = FALSE,
-  ct_levels_lst = set_ct_levels(),
-  forecasts_path = file.path(model_dir, forecasts_path),
-  ct_levels_path = file.path(model_dir, catch - levels_path),
-  retrospectives_path = file.path(model_dir, retrospectives_path),
-  default_hr_path = file.path(ct_levels_path, default_hr_path),
-  stable_catch_path = file.path(ct_levels_path, stable_catch_path),
-  spr_100_path = file.path(ct_levels_path, spr_100_path),
   verbose = TRUE,
   overwrite = TRUE,
   ...

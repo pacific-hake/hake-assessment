@@ -60,21 +60,26 @@ load_mcmc_vals <- function(model,
   out$prob_percent_2010_rec_gt_1980_rec <-
     f(mean(model$mcmc$Recr_2010 > model$mcmc$Recr_1980) * 100, 0)
 
-  out$sigma_r_alt_allyr <- calc_sd_of_devs(model$mcmc,
-                                           pattern = "^[EML].+_RecrDev")
-  out$sigma_r_this_year_main <- calc_sd_of_devs(model$mcmc)
+  out$sigma_r_alt_allyr <- model$mcmc |>
+    select(matches(regex_eml_recdevs)) |>
+    apply(1, FUN = sd) |>
+    median() |>
+    f(2)
+
+  out$sigma_r_this_year_main <-  model$mcmc |>
+    select(matches(regex_main_recdevs)) |>
+    apply(1, FUN = sd) |>
+    median() |>
+    f(2)
 
   # MCMC quantiles for the fishery DM parameter
-  pat <- "^.*\\(DM_theta\\)_(Age_P)?1$"
-  col_effn <- grep(pat, colnames(model$mcmc))
+  col_effn <- get_col_name_from_key_title(
+    model$mcmc,
+    pat = "Dirichlet-multinomial fishery")
   if(length(col_effn)){
-    if(length(col_effn) > 1){
-      stop("More than one fishery DM parameter found in `model$mcmc` using ",
-           "regular expression ", pat,
-           call. = FALSE)
-    }
+    col_effn_sym <- sym(col_effn)
     effn <- model$mcmc |>
-      pull(col_effn)
+      pull(!!col_effn_sym)
     out$log_theta_fishery_median <- median(effn)
     out$log_theta_fishery_lower <- quantile(effn, probs = probs[1])
     out$log_theta_fishery_upper <- quantile(effn, probs = probs[3])
@@ -85,24 +90,21 @@ load_mcmc_vals <- function(model,
       (1 + exp(out$log_theta_fishery_upper))
   }else{
     out$log_theta_fishery_median <- NA
-      out$log_theta_fishery_lower <- NA
-      out$log_theta_fishery_upper <- NA
-      out$dm_weight_fishery_median <- NA
-      out$dm_weight_fishery_lower <- NA
-      out$dm_weight_fishery_upper <- NA
+    out$log_theta_fishery_lower <- NA
+    out$log_theta_fishery_upper <- NA
+    out$dm_weight_fishery_median <- NA
+    out$dm_weight_fishery_lower <- NA
+    out$dm_weight_fishery_upper <- NA
   }
 
   # MCMC quantiles for the survey DM parameter
-  pat <- "^.*\\(DM_theta\\)_(Age_P)?2$"
-  col_effn <- grep(pat, colnames(model$mcmc))
+  col_effn <- get_col_name_from_key_title(
+    model$mcmc,
+    pat = "Dirichlet-multinomial fishery")
   if(length(col_effn)){
-    if(length(col_effn) > 1){
-      stop("More than one survey DM parameter found in `model$mcmc` using ",
-           "regular expression ", pat,
-           call. = FALSE)
-    }
+    col_effn_sym <- sym(col_effn)
     effn <- model$mcmc |>
-      pull(col_effn)
+      pull(!!col_effn_sym)
     out$log_theta_survey_median <- median(effn)
     out$log_theta_survey_lower <- quantile(effn, probs = probs[1])
     out$log_theta_survey_upper <- quantile(effn, probs = probs[3])
@@ -113,26 +115,60 @@ load_mcmc_vals <- function(model,
       (1 + exp(out$log_theta_survey_upper))
   }else{
     out$log_theta_survey_median <- NA
-      out$log_theta_survey_lower <- NA
-      out$log_theta_survey_upper <- NA
-      out$dm_weight_survey_median <- NA
-      out$dm_weight_survey_lower <- NA
-      out$dm_weight_survey_upper <- NA
+    out$log_theta_survey_lower <- NA
+    out$log_theta_survey_upper <- NA
+    out$dm_weight_survey_median <- NA
+    out$dm_weight_survey_lower <- NA
+    out$dm_weight_survey_upper <- NA
   }
 
   # MCMC parameter estimates for model ----------------------------------------
   # ... natural mortality -----------------------------------------------------
-  out$nat_m <- quantile(model$mcmc$NatM_uniform_Fem_GP_1, probs = probs)
+  nat_mort <- get_col_name_from_key_title(
+    model$mcmc,
+    pat = "Natural mortality")
+
+  if(length(nat_mort)){
+    nat_mort_sym <- sym(nat_mort)
+    nat_mort<- model$mcmc |>
+      pull(!!nat_mort_sym)
+    out$nat_m <- quantile(nat_mort, probs = probs)
+  }else{
+    out$nat_m <- NA
+  }
+
   # ... steepness -------------------------------------------------------------
-  out$steep <- quantile(model$mcmc$SR_BH_steep, probs = probs)
-  out$bratio_curr <- quantile(model$mcmc[[paste0("Bratio_", assess_yr)]],
-                              probs = probs)
-  out$bratio_age1 <- quantile(model$mcmc[[paste0("Bratio_", assess_yr)]],
-                              probs = probs)
+  val <- get_col_name_from_key_title(
+    model$mcmc,
+    pat = "Steepness")
+
+  if(length(val)){
+    val_sym <- sym(val)
+    steepness <- model$mcmc |>
+      pull(!!val)
+
+    out$steep <- quantile(steepness, probs = probs)
+  }else{
+    out$steep <- NA
+  }
+
+  # ... Bratio and SPR---------------------------------------------------------
+  bratio_label <- paste0("Bratio_", assess_yr)
+  spr_label <- paste0("Bratio_", assess_yr - 1)
+  val <- model$mcmc |>
+    pull(bratio_label)
+
+  if(length(val)){
+    out$bratio_curr <- quantile(val, probs = probs)
+    out$bratio_age1 <- quantile(val, probs = probs)
+  }else{
+    out$bratio_curr <- NA
+    out$bratio_age1 <- NA
+  }
 
   out$joint_percent_prob_above_below <-
-    f(sum(model$mcmc[[paste0("Bratio_", assess_yr)]] < 0.4 &
-            model$mcmc[[paste0("SPRratio_", assess_yr - 1)]] > 1) /
+    f(sum(model$mcmc[[bratio_label]] < 0.4 &
+            model$mcmc[[spr_label]] > 1) /
         nrow(model$mcmc) * 100,
       1)
 

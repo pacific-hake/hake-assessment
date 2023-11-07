@@ -15,14 +15,12 @@
 #' figures reside
 #' @param knitr_cache_dir Directory where the knitr cached chunk
 #' databases reside
-#' @param out_csv_dir Directory where the table outputs reside
 #'
 #' @return Nothing
 #' @export
 clean <- function(...,
                   knitr_figures_dir = "knitr-figs",
-                  knitr_cache_dir = "knitr-cache",
-                  out_csv_dir = out_csv_path){
+                  knitr_cache_dir = "knitr-cache"){
 
   chunks <- enquos(...)
   if(length(chunks)){
@@ -51,14 +49,14 @@ clean <- function(...,
     # Delete knitr directories recursively (all files)
     dirs <- c(knitr_figures_dir,
               knitr_cache_dir,
-              out_csv_dir)
+              out_csv_path)
     unlink(dirs, recursive = TRUE, force = TRUE)
   }
 
   curr_dir <- getwd()
   knitr_figures_dir <- file.path(curr_dir, knitr_figures_dir)
   knitr_cache_dir <- file.path(curr_dir, knitr_cache_dir)
-  out_csv_dir <- file.path(curr_dir, out_csv_dir)
+  out_csv_dir <- file.path(curr_dir, out_csv_path)
 
   # Possible names of the docs to delete without extensions
   docs_pat <- c("hake",

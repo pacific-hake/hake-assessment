@@ -4,13 +4,10 @@
 \alias{run_forecasts}
 \title{Run forecasting for the model supplied}
 \usage{
-run_forecasts(model_path, ct_levels_path, ...)
+run_forecasts(model = NULL, model_path = NULL, ...)
 }
 \arguments{
 \item{model_path}{The directory containing the model}
-
-\item{ct_levels_path}{The directory containing the output of
-\code{\link[=run_ct_levels]{run_ct_levels()}}}
 
 \item{...}{Arguments passed to \code{\link[=fetch_ct_levels]{fetch_ct_levels()}}}
 }
