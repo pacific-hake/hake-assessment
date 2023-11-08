@@ -299,6 +299,11 @@
 #'
 #' @format A character string
 "par_fn"
+#' A character string containing the file name for the SS3 psv file
+#' (binary ADMB output needed for the mceval step)
+#'
+#' @format A character string
+"psv_fn"
 #' A character string containing the file name for the SS3 forecast file
 #'
 #' @format A character string

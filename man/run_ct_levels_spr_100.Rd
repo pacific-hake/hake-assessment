@@ -7,10 +7,8 @@ SPR to 1, within the tolerance given (\code{ct_levels_spr_tol})}
 \usage{
 run_ct_levels_spr_100(
   model,
-  forecast_yrs,
-  ct_levels_spr_tol,
-  ct_levels_catch_tol,
-  ct_levels_max_iter,
+  forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+  ss_exe = ss_executable,
   ...
 )
 }
@@ -19,15 +17,15 @@ run_ct_levels_spr_100(
 
 \item{forecast_yrs}{A vector if the years to forecast for}
 
-\item{ct_levels_spr_tol}{The tolerance to be within 1 for the SPR}
-
-\item{ct_levels_catch_tol}{Catch tolerance. If the upper and lower catch
-in the algorithm are within this, it is assumed that the SPR is close
-enough}
-
-\item{ct_levels_max_iter}{The maximum number of iterations to do}
+\item{ss_exe}{The name of the SS3 executable. If run standalone,
+this will be \link{ss_executable}. If run from the context of of the \link{bookdown}
+document, this will be set as a YAML key/tag}
 
 \item{...}{Not used}
+}
+\value{
+Nothing, the 'forecast.ss' file will have the catch numbers at the
+end of the file under 'Catch_or_F'
 }
 \description{
 Run the model iteratively zoning in on a catch value that reduces the

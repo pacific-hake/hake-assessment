@@ -23,20 +23,14 @@ run_ct_levels <- function(model = NULL,
 
   #plan("multisession")
   #future_map(1:3, function(x = .x,
-  map(1:3, function(x = .x, fore_yrs = forecast_yrs){
+  map(2, function(x = .x, fore_yrs = forecast_yrs){
+
+    model <- load_ss_files(model_path)
     if(x == 1){
-      model <- load_ss_files(model_path)
       run_ct_levels_default_hr(model, fore_yrs)
     }else if(x == 2){
-      model <- load_ss_files(model_path)
-      dir.create(spr_100_path, showWarnings = FALSE)
-      run_ct_levels_spr_100(model,
-                            fore_yrs,
-                            ct_levels_spr_tol,
-                            ct_levels_catch_tol,
-                            ct_levels_max_iter)
+      run_ct_levels_spr_100(model, fore_yrs)
     }else{
-      model <- load_ss_files(model_path)
       stable_catch_path <- file.path(ct_levels_fullpath, stable_catch_path)
       dir.create(stable_catch_path, showWarnings = FALSE)
       run_ct_levels_stable_catch(model,

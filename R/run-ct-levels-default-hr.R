@@ -9,6 +9,8 @@
 #' document, this will be set as a YAML key/tag
 #' @param ... Absorbs arguments intended for other functions
 #'
+#' @return Nothing, the 'forecast.ss' file will have the catch numbers at the
+#' end of the file under 'Catch_or_F'
 #' @export
 run_ct_levels_default_hr <- function(model,
                                      forecast_yrs,
@@ -17,7 +19,10 @@ run_ct_levels_default_hr <- function(model,
 
   pth <- here(model$path, ct_levels_path, default_hr_path)
   dir.create(pth, showWarnings = FALSE)
-browser()
+  # Delete any old files/subdirectories in `default-hr` directory that may
+  # still exist from a previous run
+  unlink(file.path(pth, "*"), recursive = TRUE)
+
   files <- list.files(model$mcmc_path)
   if(!all(ss_input_files %in% files)){
     stop("`run_ct_levels_default_hr`: At least one SS3 input file missing ",
@@ -39,6 +44,8 @@ browser()
                                       model$extra_mcmc_path,
                                       model$mcmc_path),
                                derposts_fn)
+  dest_derposts_fn <- file.path(pth, derposts_fn)
+
   if(!file.exists(src_derposts_fn)){
     stop("`run_ct_levels_default_hr`: The file:\n`", src_derposts_fn,
          "\n` does not exist and therefore cannot be copied to directory\n`",
@@ -46,20 +53,27 @@ browser()
   }
 
   # Copy derived posteriors from the applicable directory
-  copy_flag <- file.copy(src_derposts_fn,
-                         file.path(pth, derposts_fn))
+  copy_flag <- file.copy(src_derposts_fn, dest_derposts_fn)
   if(!copy_flag){
     stop("`run_ct_levels_default_hr`: The file:\n`", src_derposts_fn, "`\n",
+         "could not be copied to directory\n`", pth, "`")
+  }
+  # Copy ss.psv from the mcmc directory
+  sspsv_fn <- file.path(model$mcmc_path, psv_fn)
+  copy_flag <- file.copy(sspsv_fn, file.path(pth, psv_fn))
+  if(!copy_flag){
+    stop("`run_ct_levels_default_hr`: The file:\n`", psv_fn, "`\n",
          "could not be copied to directory\n`", pth, "`")
   }
 
   forecast_file <- file.path(pth, forecast_fn)
   default_hr_catch <- vector(length = length(forecast_yrs), mode = "numeric")
-  for(i in 1:length(forecast_yrs)){
+  for(i in seq_along(forecast_yrs)){
     out <- read.table(file.path(pth, derposts_fn), header = TRUE) |>
       as_tibble()
     fore_yr_label <- paste0("ForeCatch_", forecast_yrs[i])
     fore_yr_label_sym <- sym(fore_yr_label)
+
     default_hr_catch[i] <- out |>
       pull(!!fore_yr_label_sym) |>
       median()
@@ -77,7 +91,7 @@ browser()
                      dir = pth,
                      overwrite = TRUE,
                      verbose = FALSE)
-    unlink(src_derposts_fn, force = TRUE)
+    unlink(dest_derposts_fn, force = TRUE)
     message("Default HR - for forecast year: ",
             forecast_yrs[i], " of ",
             tail(forecast_yrs, 1))
@@ -90,4 +104,5 @@ browser()
                             ss_exe, " -mceval")
     system_(shell_command, wait = TRUE, intern = !show_ss_output)
   }
+  invisible()
 }

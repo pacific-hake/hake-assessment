@@ -17,3 +17,7 @@ A year
 \description{
 Get the current assessment year
 }
+\details{
+There is a bash script that does this as well. See
+\code{hake/bash-scripts/get-assess-year.sh}
+}

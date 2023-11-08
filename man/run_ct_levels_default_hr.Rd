@@ -6,14 +6,22 @@
 second year projections to find a stable catch within the the given
 tolerance}
 \usage{
-run_ct_levels_default_hr(model, forecast_yrs, ...)
+run_ct_levels_default_hr(model, forecast_yrs, ss_exe = ss_executable, ...)
 }
 \arguments{
 \item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{forecast_yrs}{A vector of forecast years}
 
+\item{ss_exe}{The name of the SS3 executable. If run standalone,
+this will be \link{ss_executable}. If run from the context of of the \link{bookdown}
+document, this will be set as a YAML key/tag}
+
 \item{...}{Absorbs arguments intended for other functions}
+}
+\value{
+Nothing, the 'forecast.ss' file will have the catch numbers at the
+end of the file under 'Catch_or_F'
 }
 \description{
 Run the model iteratively reducing the difference between the first and
