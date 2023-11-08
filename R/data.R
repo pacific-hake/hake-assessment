@@ -331,6 +331,12 @@
 #'
 #' @format A character string
 "model_output_log_fn"
+#' A vector of character strings containing the file names needed for inputs
+#' for SS3
+#'
+#' @format A character string
+"ss_input_files"
+
 
 # From document-settings.R ----
 #' Custom catch levels calculations. The tolerance in the SPR away from

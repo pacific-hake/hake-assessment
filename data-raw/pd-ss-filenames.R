@@ -14,3 +14,9 @@ create_data_hake("derposts_fn", "derived_posteriors.sso")
 create_data_hake("report_fn", "Report.sso")
 create_data_hake("comp_report_fn", "CompReport.sso")
 create_data_hake("model_output_log_fn", "model_output.log")
+
+create_data_hake("ss_input_files", c(starter_fn,
+                                     control_fn,
+                                     data_fn,
+                                     forecast_fn,
+                                     weight_at_age_fn))
