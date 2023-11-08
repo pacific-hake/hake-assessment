@@ -7,6 +7,7 @@
 #' @export
 run_ct_levels <- function(model = NULL,
                           model_path = NULL,
+                          forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
                           ...){
 
   if(is.null(model)){
@@ -22,17 +23,15 @@ run_ct_levels <- function(model = NULL,
 
   #plan("multisession")
   #future_map(1:3, function(x = .x,
-  map(1:3, function(x = .x, forecast_yrs = forecast_yrs){
+  map(1:3, function(x = .x, fore_yrs = forecast_yrs){
     if(x == 1){
       model <- load_ss_files(model_path)
-      run_ct_levels_default_hr(model,
-                               default_hr_path,
-                               forecast_yrs)
+      run_ct_levels_default_hr(model, fore_yrs)
     }else if(x == 2){
       model <- load_ss_files(model_path)
       dir.create(spr_100_path, showWarnings = FALSE)
       run_ct_levels_spr_100(model,
-                            forecast_yrs,
+                            fore_yrs,
                             ct_levels_spr_tol,
                             ct_levels_catch_tol,
                             ct_levels_max_iter)
@@ -42,7 +41,7 @@ run_ct_levels <- function(model = NULL,
       dir.create(stable_catch_path, showWarnings = FALSE)
       run_ct_levels_stable_catch(model,
                                  stable_catch_path,
-                                 forecast_yrs,
+                                 fore_yrs,
                                  ct_levels_catch_tol,
                                  ct_levels_max_iter)
     }

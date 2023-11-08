@@ -2,7 +2,9 @@
 # any new package data to file R/data.R
 library(usethis)
 
-create_data_hake("ss_executable", "ss3")
+create_data_hake("ss_executable", "ss3_2024")
+create_data_hake("show_ss_output", FALSE)
+
 create_data_hake("starter_fn", "starter.ss")
 create_data_hake("control_fn", "hake_control.ss")
 create_data_hake("data_fn", "hake_data.ss")

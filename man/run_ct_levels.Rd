@@ -4,7 +4,12 @@
 \alias{run_ct_levels}
 \title{A wrapper to run the catch levels determination routines}
 \usage{
-run_ct_levels(model = NULL, model_path = NULL, ...)
+run_ct_levels(
+  model = NULL,
+  model_path = NULL,
+  forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+  ...
+)
 }
 \arguments{
 \item{model_path}{The model directory name}

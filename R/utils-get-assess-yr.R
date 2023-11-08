@@ -1,5 +1,9 @@
 #' Get the current assessment year
 #'
+#' @details
+#' There is a bash script that does this as well. See
+#' `hake/bash-scripts/get-assess-year.sh`
+#'
 #' @param assess_yr_month_cutoff The month where 1 will be added to
 #' the assessment year. So if this is 12 and the current date is in December,
 #' the assessment year will be the next year, which starts in January
