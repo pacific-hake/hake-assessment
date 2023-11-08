@@ -6,6 +6,9 @@
 #' @param ss_exe The name of the SS3 executable. If run standalone,
 #' this will be [ss_executable]. If run from the context of of the [bookdown]
 #' document, this will be set as a YAML key/tag
+#' @param keep_files Logical. If `TRUE`, keep all files in the deirectory,
+#' if `FALSE` delete all files except for the 'forecast.ss' file, or
+#' whichever file is named by the `forecast_fn` variable
 #' @param ... Not used
 #'
 #' @return Nothing, the 'forecast.ss' file will have the catch numbers at the
@@ -14,6 +17,7 @@
 run_ct_levels_spr_100 <- function(model,
                                   forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
                                   ss_exe = ss_executable,
+                                  keep_files = FALSE,
                                   ...){
 
   pth <- here(model$path, ct_levels_path, spr_100_path)
@@ -163,5 +167,13 @@ run_ct_levels_spr_100 <- function(model,
       iter <- iter + 1
     }
   }
+
+  if(!keep_files){
+    fns <- list.files(pth)
+    fns <- fns[fns != forecast_fn]
+    fns <- file.path(pth, fns)
+    unlink(fns, force = TRUE)
+  }
+
   invisible()
 }

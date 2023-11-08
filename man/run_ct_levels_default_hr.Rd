@@ -6,7 +6,13 @@
 second year projections to find a stable catch within the the given
 tolerance}
 \usage{
-run_ct_levels_default_hr(model, forecast_yrs, ss_exe = ss_executable, ...)
+run_ct_levels_default_hr(
+  model,
+  forecast_yrs,
+  ss_exe = ss_executable,
+  keep_files = FALSE,
+  ...
+)
 }
 \arguments{
 \item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
@@ -16,6 +22,10 @@ run_ct_levels_default_hr(model, forecast_yrs, ss_exe = ss_executable, ...)
 \item{ss_exe}{The name of the SS3 executable. If run standalone,
 this will be \link{ss_executable}. If run from the context of of the \link{bookdown}
 document, this will be set as a YAML key/tag}
+
+\item{keep_files}{Logical. If \code{TRUE}, keep all files in the deirectory,
+if \code{FALSE} delete all files except for the 'forecast.ss' file, or
+whichever file is named by the \code{forecast_fn} variable}
 
 \item{...}{Absorbs arguments intended for other functions}
 }

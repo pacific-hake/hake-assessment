@@ -25,19 +25,12 @@ run_ct_levels <- function(model = NULL,
   #future_map(1:3, function(x = .x,
   map(2, function(x = .x, fore_yrs = forecast_yrs){
 
-    model <- load_ss_files(model_path)
     if(x == 1){
-      run_ct_levels_default_hr(model, fore_yrs)
+      run_ct_levels_default_hr(model, fore_yrs, )
     }else if(x == 2){
       run_ct_levels_spr_100(model, fore_yrs)
     }else{
-      stable_catch_path <- file.path(ct_levels_fullpath, stable_catch_path)
-      dir.create(stable_catch_path, showWarnings = FALSE)
-      run_ct_levels_stable_catch(model,
-                                 stable_catch_path,
-                                 fore_yrs,
-                                 ct_levels_catch_tol,
-                                 ct_levels_max_iter)
+      run_ct_levels_stable_catch(model, fore_yrs)
     }
   })
   # },

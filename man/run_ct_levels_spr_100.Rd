@@ -9,6 +9,7 @@ run_ct_levels_spr_100(
   model,
   forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
   ss_exe = ss_executable,
+  keep_files = FALSE,
   ...
 )
 }
@@ -20,6 +21,10 @@ run_ct_levels_spr_100(
 \item{ss_exe}{The name of the SS3 executable. If run standalone,
 this will be \link{ss_executable}. If run from the context of of the \link{bookdown}
 document, this will be set as a YAML key/tag}
+
+\item{keep_files}{Logical. If \code{TRUE}, keep all files in the deirectory,
+if \code{FALSE} delete all files except for the 'forecast.ss' file, or
+whichever file is named by the \code{forecast_fn} variable}
 
 \item{...}{Not used}
 }
