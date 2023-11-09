@@ -3,61 +3,52 @@
 #' tolerance
 #'
 #' @param model The SS model output as loaded by [create_rds_file()]
-#' @param stable_catch_path The path of the stable catch scenario
 #' @param forecast_yrs A vector of forecast years
-#' @param ct_levels_catch_tol The tolerance for stopping based on catch
-#' difference
-#' @param ct_levels_max_iter The maximum number of iterations
+#' @param ss_exe The name of the SS3 executable. If run standalone,
+#' this will be [ss_executable]. If run from the context of of the [bookdown]
+#' document, this will be set as a YAML key/tag
+#' @param keep_files Logical. If `TRUE`, keep all files in the directory,
+#' if `FALSE` delete all files except for the filename contained in the
+#' the `forecast_fn` variable. This is 'forecast.ss' by default for SS3
 #' @param ... Absorbs other arguments intended for other functions
 #'
 #' @export
-run_ct_levels_stable_catch <- function(model,
-                                       stable_catch_path,
-                                       forecast_yrs,
-                                       ct_levels_catch_tol,
-                                       ct_levels_max_iter,
-                                       ...){
+run_ct_levels_stable_catch <- function(
+    model,
+    forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+    ss_exe = NULL,
+    keep_files = FALSE,
+    ...){
 
-  files <- list.files(model$mcmc_path)
-  files <- files[files != "sso"]
-  file.copy(file.path(model$mcmc_path,
-                      files),
-            file.path(stable_catch_path,
-                      files),
-            copy.mode = TRUE)
+  ss_exe <- get_ss3_exe_name(ss_exe)
 
-  # Copy derived posteriors from the applicable directory
-  file.copy(file.path(ifelse(model$extra_mcmc_exists,
-                             model$extra_mcmc_path,
-                             model$mcmc_path),
-                      derposts_fn),
-            file.path(stable_catch_path,
-                      derposts_fn))
+  pth <- here(model$path, ct_levels_path, stable_catch_path)
+  run_catch_levels_copy_input_files(model, pth)
+  dest_derposts_fullpath_fn <- file.path(pth, derposts_fn)
+  forecast_fullpath_fn <- file.path(pth, forecast_fn)
+  # Make a modification to the starter file so the extra MCMC files are
+  # not created
+  modify_starter_mcmc_type(pth, 1)
 
-  forecast_file <- file.path(stable_catch_path, forecast_fn)
   stable_catch <- vector(length = length(forecast_yrs), mode = "numeric")
-  out <- read.table(file.path(stable_catch_path,
-                              derposts_fn),
-                    header = TRUE)
   iter <- 1
   repeat{
-    out <- read.table(file.path(stable_catch_path,
-                                derposts_fn),
-                      header = TRUE)
-    stable_catch[1] <- median(as.numeric(out[paste0("ForeCatch_",
-                                                    forecast_yrs[1])][[1]]))
-    stable_catch[2] <- median(as.numeric(out[paste0("ForeCatch_",
-                                                    forecast_yrs[2])][[1]]))
-    stable_catch[3] <- median(as.numeric(out[paste0("ForeCatch_",
-                                                    forecast_yrs[3])][[1]]))
-    stable_catch[4] <- median(as.numeric(out[paste0("ForeCatch_",
-                                                    forecast_yrs[4])][[1]]))
+    out <- read.table(dest_derposts_fullpath_fn, header = TRUE) |>
+      as_tibble()
+
+    stable_catch <- map_dbl(forecast_yrs, ~{
+      fore_yr_label <- paste0("ForeCatch_", .x)
+      fore_yr_label_sym <- sym(fore_yr_label)
+      out |>
+        pull(!!fore_yr_label_sym) |>
+        median()
+    })
 
     message("Stable Catch: ")
     catch_diff <- abs(stable_catch[1] - stable_catch[2])
     message("Catch difference from forecast year 1 to 2: ",
             catch_diff,
-            " < ", ct_levels_catch_tol, " ? ",
+            " < ", ct_levels_catch_tol, "? ",
             ifelse(catch_diff < ct_levels_catch_tol,
                    "Yes",
                    "No"))
@@ -70,7 +61,7 @@ run_ct_levels_stable_catch <- function(model,
               catch_diff)
       break
     }
-    fore <- SS_readforecast(forecast_file,
+    fore <- SS_readforecast(forecast_fullpath_fn,
                             Nfleets = 1,
                             Nareas = 1,
                             nseas = 1,
@@ -82,22 +73,17 @@ run_ct_levels_stable_catch <- function(model,
       Fleet = 1,
       Catch_or_F = (stable_catch[1] + stable_catch[2]) / 2)
     SS_writeforecast(fore,
-                     dir = stable_catch_path,
+                     dir = pth,
                      overwrite = TRUE,
                      verbose = FALSE)
-    unlink(file.path(stable_catch_path, derposts_fn),
-           force = TRUE)
+    unlink(dest_derposts_fullpath_fn, force = TRUE)
 
-    # Make a modification to the starter file so the extra MCMC files are
-    # not created
-    modify_starter_mcmc_type(stable_catch_path, 1)
-
-    shell_command <- paste0("cd ", stable_catch_path, " && ",
+    shell_command <- paste0("cd ", pth, " && ",
                             ss_executable, " -mceval")
     system_(shell_command, wait = TRUE, intern = !show_ss_output)
     iter <- iter + 1
   }
-  fore <- SS_readforecast(forecast_file,
+  fore <- SS_readforecast(forecast_fullpath_fn,
                           Nfleets = 1,
                           Nareas = 1,
                           nseas = 1,
@@ -109,12 +95,20 @@ run_ct_levels_stable_catch <- function(model,
     Fleet = 1,
     Catch_or_F = stable_catch[1:length(forecast_yrs)])
   SS_writeforecast(fore,
-                   dir = stable_catch_path,
+                   dir = pth,
                    overwrite = TRUE,
                    verbose = FALSE)
-  unlink(file.path(stable_catch_path, derposts_fn),
-         force = TRUE)
-  shell_command <- paste0("cd ", stable_catch_path, " && ",
+  unlink(dest_derposts_fullpath_fn, force = TRUE)
+  shell_command <- paste0("cd ", pth, " && ",
                           ss_executable, " -mceval")
   system_(shell_command, wait = FALSE, intern = !show_ss_output)
+
+  if(!keep_files){
+    fns <- list.files(pth)
+    fns <- fns[fns != forecast_fn]
+    fns <- file.path(pth, fns)
+    unlink(fns, force = TRUE)
+  }
+
+  invisible()
 }

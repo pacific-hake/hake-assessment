@@ -50,6 +50,7 @@ Imports:
   microbenchmark,
   pacman,
   parallel,
+  parallelly,
   purrr,
   RColorBrewer,
   readr,

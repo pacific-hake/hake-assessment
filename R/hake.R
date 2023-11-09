@@ -17,7 +17,7 @@
 #' @importFrom data.table fread
 #' @importFrom fs dir_ls path
 #' @importFrom future plan
-#' @importFrom furrr future_map future_imap furrr_options
+#' @importFrom furrr future_map future_imap furrr_options future_walk
 #' @importFrom ggridges geom_ridgeline
 #' @importFrom glue glue
 #' @importFrom graphics arrows grid hist layout legend lines matplot
@@ -32,6 +32,7 @@
 #' @importFrom here here i_am
 #' @importFrom lubridate hour minute month now second seconds_to_period year
 #' @importFrom parallel detectCores
+#' @importFrom parallelly supportsMulticore
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
 #' @importFrom readr cols read_csv read_table2 write_csv
 #' @importFrom rlang `%||%` as_label enquos set_names sym

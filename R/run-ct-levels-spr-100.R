@@ -1,80 +1,36 @@
 #' Run the model iteratively zoning in on a catch value that reduces the
-#' SPR to 1, within the tolerance given (`ct_levels_spr_tol`)
+#' SPR to 1, within the tolerance given by (`ct_levels_spr_tol`)
 #'
-#' @param model The SS model output as loaded by [create_rds_file()]
+#' @param model The SS3 model output as loaded by [create_rds_file()]
 #' @param forecast_yrs A vector if the years to forecast for
 #' @param ss_exe The name of the SS3 executable. If run standalone,
 #' this will be [ss_executable]. If run from the context of of the [bookdown]
 #' document, this will be set as a YAML key/tag
-#' @param keep_files Logical. If `TRUE`, keep all files in the deirectory,
-#' if `FALSE` delete all files except for the 'forecast.ss' file, or
-#' whichever file is named by the `forecast_fn` variable
-#' @param ... Not used
+#' @param keep_files Logical. If `TRUE`, keep all files in the directory,
+#' if `FALSE` delete all files except for the filename contained in the
+#' the `forecast_fn` variable. This is 'forecast.ss' by default for SS3
+#' @param ... Absorbs other arguments intended for other functions
 #'
 #' @return Nothing, the 'forecast.ss' file will have the catch numbers at the
 #' end of the file under 'Catch_or_F'
 #' @export
-run_ct_levels_spr_100 <- function(model,
-                                  forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
-                                  ss_exe = ss_executable,
-                                  keep_files = FALSE,
-                                  ...){
+run_ct_levels_spr_100 <- function(
+    model,
+    forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+    ss_exe = NULL,
+    keep_files = FALSE,
+    ...){
+
+  ss_exe <- get_ss3_exe_name(ss_exe)
 
   pth <- here(model$path, ct_levels_path, spr_100_path)
-  dir.create(pth, showWarnings = FALSE)
-  # Delete any old files/subdirectories in `default-hr` directory that may
-  # still exist from a previous run
-  unlink(file.path(pth, "*"), recursive = TRUE)
-
-  files <- list.files(model$mcmc_path)
-  if(!all(ss_input_files %in% files)){
-    stop("`run_ct_levels_spr_100`: At least one SS3 input file missing ",
-         "in directory\n`", pth, "`\nThe missing file(s) are:\n",
-         paste(ss_input_files[!ss_input_files %in% files], collapse = "\n"))
-  }
-  copy_flag <- file.copy(file.path(model$path,
-                                   ss_input_files),
-                         file.path(pth, ss_input_files),
-                         copy.mode = TRUE)
-  if(!all(copy_flag)){
-    stop("`run_ct_levels_spr_100`: At least one SS3 imput file failed ",
-         "to copy from directory\n`", model$path, "` to directory\n`",
-         pth, "`.\nThe file(s) not copied are:\n",
-         paste(ss_input_files[!copy_flag], collapse = "\n"))
-  }
-
-  src_derposts_fn <- file.path(ifelse(model$extra_mcmc_exists,
-                                      model$extra_mcmc_path,
-                                      model$mcmc_path),
-                               derposts_fn)
-  dest_derposts_fn <- file.path(pth, derposts_fn)
-
-  if(!file.exists(src_derposts_fn)){
-    stop("`run_ct_levels_spr_100`: The file:\n`", src_derposts_fn,
-         "\n` does not exist and therefore cannot be copied to directory\n`",
-         pth, "`")
-  }
-
-  # Copy derived posteriors from the applicable directory
-  copy_flag <- file.copy(src_derposts_fn, dest_derposts_fn)
-  if(!copy_flag){
-    stop("`run_ct_levels_spr_100`: The file:\n`", src_derposts_fn, "`\n",
-         "could not be copied to directory\n`", pth, "`")
-  }
-
-  # Copy ss.psv from the mcmc directory
-  sspsv_fn <- file.path(model$mcmc_path, psv_fn)
-  copy_flag <- file.copy(sspsv_fn, file.path(pth, psv_fn))
-  if(!copy_flag){
-    stop("`run_ct_levels_spr_100`: The file:\n`", psv_fn, "`\n",
-         "could not be copied to directory\n`", pth, "`")
-  }
-
-  forecast_file <- file.path(pth, forecast_fn)
+  run_catch_levels_copy_input_files(model, pth)
+  dest_derposts_fullpath_fn <- file.path(pth, derposts_fn)
+  forecast_fullpath_fn <- file.path(pth, forecast_fn)
 
   spr_100_catch <- vector(length = length(forecast_yrs), mode = "numeric")
   for(i in seq_along(forecast_yrs)){
-    fore <- SS_readforecast(forecast_file,
+    fore <- SS_readforecast(forecast_fullpath_fn,
                             Nfleets = 1,
                             Nareas = 1,
                             nseas = 1,
@@ -99,7 +55,7 @@ run_ct_levels_spr_100 <- function(model,
                        dir = pth,
                        overwrite = TRUE,
                        verbose = FALSE)
-      unlink(dest_derposts_fn, force = TRUE)
+      unlink(dest_derposts_fullpath_fn, force = TRUE)
 
       # Make a modification to the starter file so the extra MCMC files are
       # not created
@@ -108,7 +64,7 @@ run_ct_levels_spr_100 <- function(model,
       shell_command <- paste0("cd ", pth, " && ",
                               ss_exe, " -mceval")
       system_(shell_command, wait = TRUE, intern = !show_ss_output)
-      out <- read.table(dest_derposts_fn, header = TRUE) |>
+      out <- read.table(dest_derposts_fullpath_fn, header = TRUE) |>
         as_tibble()
       spr_yr_label <- paste0("SPRratio_", forecast_yrs[i])
       spr_yr_label_sym <- sym(spr_yr_label)

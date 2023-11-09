@@ -3,18 +3,18 @@
 \name{run_ct_levels_spr_100}
 \alias{run_ct_levels_spr_100}
 \title{Run the model iteratively zoning in on a catch value that reduces the
-SPR to 1, within the tolerance given (\code{ct_levels_spr_tol})}
+SPR to 1, within the tolerance given by (\code{ct_levels_spr_tol})}
 \usage{
 run_ct_levels_spr_100(
   model,
   forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
-  ss_exe = ss_executable,
+  ss_exe = NULL,
   keep_files = FALSE,
   ...
 )
 }
 \arguments{
-\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
+\item{model}{The SS3 model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{forecast_yrs}{A vector if the years to forecast for}
 
@@ -22,11 +22,11 @@ run_ct_levels_spr_100(
 this will be \link{ss_executable}. If run from the context of of the \link{bookdown}
 document, this will be set as a YAML key/tag}
 
-\item{keep_files}{Logical. If \code{TRUE}, keep all files in the deirectory,
-if \code{FALSE} delete all files except for the 'forecast.ss' file, or
-whichever file is named by the \code{forecast_fn} variable}
+\item{keep_files}{Logical. If \code{TRUE}, keep all files in the directory,
+if \code{FALSE} delete all files except for the filename contained in the
+the \code{forecast_fn} variable. This is 'forecast.ss' by default for SS3}
 
-\item{...}{Not used}
+\item{...}{Absorbs other arguments intended for other functions}
 }
 \value{
 Nothing, the 'forecast.ss' file will have the catch numbers at the
@@ -34,5 +34,5 @@ end of the file under 'Catch_or_F'
 }
 \description{
 Run the model iteratively zoning in on a catch value that reduces the
-SPR to 1, within the tolerance given (\code{ct_levels_spr_tol})
+SPR to 1, within the tolerance given by (\code{ct_levels_spr_tol})
 }

@@ -2,20 +2,20 @@
 % Please edit documentation in R/run-ct-levels-default-hr.R
 \name{run_ct_levels_default_hr}
 \alias{run_ct_levels_default_hr}
-\title{Run the model iteratively reducing the difference between the first and
+\title{Run the model, iteratively reducing the difference between the first and
 second year projections to find a stable catch within the the given
 tolerance}
 \usage{
 run_ct_levels_default_hr(
   model,
-  forecast_yrs,
-  ss_exe = ss_executable,
+  forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+  ss_exe = NULL,
   keep_files = FALSE,
   ...
 )
 }
 \arguments{
-\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
+\item{model}{The SS3 model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{forecast_yrs}{A vector of forecast years}
 
@@ -23,9 +23,9 @@ run_ct_levels_default_hr(
 this will be \link{ss_executable}. If run from the context of of the \link{bookdown}
 document, this will be set as a YAML key/tag}
 
-\item{keep_files}{Logical. If \code{TRUE}, keep all files in the deirectory,
-if \code{FALSE} delete all files except for the 'forecast.ss' file, or
-whichever file is named by the \code{forecast_fn} variable}
+\item{keep_files}{Logical. If \code{TRUE}, keep all files in the directory,
+if \code{FALSE} delete all files except for the filename contained in the
+the \code{forecast_fn} variable. This is 'forecast.ss' by default for SS3}
 
 \item{...}{Absorbs arguments intended for other functions}
 }
@@ -34,7 +34,7 @@ Nothing, the 'forecast.ss' file will have the catch numbers at the
 end of the file under 'Catch_or_F'
 }
 \description{
-Run the model iteratively reducing the difference between the first and
+Run the model, iteratively reducing the difference between the first and
 second year projections to find a stable catch within the the given
 tolerance
 }

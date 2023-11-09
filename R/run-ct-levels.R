@@ -21,46 +21,29 @@ run_ct_levels <- function(model = NULL,
   dir.create(ct_levels_fullpath, showWarnings = FALSE)
   unlink(file.path(ct_levels_fullpath, "*"), recursive = TRUE)
 
-  #plan("multisession")
-  #future_map(1:3, function(x = .x,
-  map(2, function(x = .x, fore_yrs = forecast_yrs){
+  if(supportsMulticore()){
+    plan("multicore", workers = 3)
+  }else{
+    message("`run_ct_levels`: Your operating system does not support ",
+            "forking, so multicore parallelism cannot be used. Use a Mac or ",
+            "Linux machine if you want this to run in parallel. Even if you ",
+            "are on a Mac or Linux machine, you cannot use multicore ",
+            "parallelism if you are in an Rstudio terminal, you must run ",
+            "the code using Rscript (via bash file perhaps) or terminal R")
+    plan("sequential")
+  }
+  future_walk(1:3, \(x = .x,
+                     mdl = model,
+                     fore_yrs = forecast_yrs){
 
     if(x == 1){
-      run_ct_levels_default_hr(model, fore_yrs, )
+      run_ct_levels_default_hr(mdl, fore_yrs)
     }else if(x == 2){
-      run_ct_levels_spr_100(model, fore_yrs)
+      run_ct_levels_spr_100(mdl, fore_yrs)
     }else{
-      run_ct_levels_stable_catch(model, fore_yrs)
+      run_ct_levels_stable_catch(mdl, fore_yrs)
     }
   })
-  # },
-  # ct_levels_fullpath = ct_levels_fullpath,
-  # default_hr_path = default_hr_path,
-  # spr_100_path = spr_100_path,
-  # stable_catch_path = stable_catch_path,
-  # forecast_yrs = forecast_yrs,
-  # ct_levels_spr_tol = ct_levels_spr_tol,
-  # ct_levels_catch_tol = ct_levels_catch_tol,
-  # ct_levels_max_iter = ct_levels_max_iter,
-  # .options = furrr_options(
-  #   globals = c(f = f,
-  #               load_ss_files = load_ss_files,
-  #               SS_output = SS_output,
-  #               fix.posteriors = fix.posteriors,
-  #               posts_fn = posts_fn,
-  #               derposts_fn = derposts_fn,
-  #               create_kn_files = create_kn_files,
-  #               calc_mcmc = calc_mcmc,
-  #               get_os = get_os,
-  #               run_ct_levels_default_hr = run_ct_levels_default_hr,
-  #               run_ct_levels_spr_100 = run_ct_levels_spr_100,
-  #               run_ct_levels_stable_catch = run_ct_levels_stable_catch,
-  #               latex_bold = latex_bold,
-  #               forecast_fn = forecast_fn,
-  #               ss_executable = ss_executable,
-  #               show_ss_output = show_ss_output,
-  #               starter_fn = starter_fn,
-  #               modify_starter_mcmc_type = modify_starter_mcmc_type,
-  #               system_ = system_)))
-  # plan()
+
+  invisible()
 }

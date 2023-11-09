@@ -8,24 +8,24 @@ tolerance}
 \usage{
 run_ct_levels_stable_catch(
   model,
-  stable_catch_path,
-  forecast_yrs,
-  ct_levels_catch_tol,
-  ct_levels_max_iter,
+  forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+  ss_exe = NULL,
+  keep_files = FALSE,
   ...
 )
 }
 \arguments{
 \item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 
-\item{stable_catch_path}{The path of the stable catch scenario}
-
 \item{forecast_yrs}{A vector of forecast years}
 
-\item{ct_levels_catch_tol}{The tolerance for stopping based on catch
-difference}
+\item{ss_exe}{The name of the SS3 executable. If run standalone,
+this will be \link{ss_executable}. If run from the context of of the \link{bookdown}
+document, this will be set as a YAML key/tag}
 
-\item{ct_levels_max_iter}{The maximum number of iterations}
+\item{keep_files}{Logical. If \code{TRUE}, keep all files in the directory,
+if \code{FALSE} delete all files except for the filename contained in the
+the \code{forecast_fn} variable. This is 'forecast.ss' by default for SS3}
 
 \item{...}{Absorbs other arguments intended for other functions}
 }
