@@ -53,7 +53,7 @@ run_adnuts <- function(path,
   fn_exe <- get_model_executable(fn_exe)
 
   # Chains to run in parallel
-  num_machine_cores  <- detectCores()
+  num_machine_cores  <-availableCores()
   if(is.null(num_chains)){
     num_chains <- num_machine_cores - 1
   }

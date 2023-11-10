@@ -1,8 +1,9 @@
 #' hake: A package for creating the Pacific hake stock assessment document
 #'
-#' Uses the `knitr` R package along with `lualatex` to generate a PDF
-#' of the stock assessment document. Also included are beamer presentation
-#' templates for the various meetings required.
+#' Uses the [bookdown], [rmarkdown], and [knitr] packages along with
+#' TexLive's `lualatex` to generate a PDF of the stock assessment document.
+#' Also included are [bookdown] beamer presentation templates for the various
+#' meetings required.
 #'
 #' @import adnuts coda dplyr
 #' @import GGally ggh4x ggplot2 ggrepel
@@ -13,12 +14,11 @@
 #' @importFrom cli cli_abort cli_inform cli_warn symbol
 #' @importFrom clipr clipr_available write_clip dr_clipr
 #' @importFrom crayon green
-#' @importFrom cowplot draw_grob get_legend plot_grid
+#' @importFrom cowplot get_legend plot_grid
 #' @importFrom data.table fread
 #' @importFrom fs dir_ls path
-#' @importFrom future plan
+#' @importFrom future availableCores plan
 #' @importFrom furrr future_map future_imap furrr_options future_walk
-#' @importFrom ggridges geom_ridgeline
 #' @importFrom glue glue
 #' @importFrom graphics arrows grid hist layout legend lines matplot
 #' @importFrom graphics mtext par points polygon rect segments
@@ -31,7 +31,6 @@
 #' @importFrom kableExtra column_spec kable_styling kbl landscape linebreak
 #' @importFrom here here i_am
 #' @importFrom lubridate hour minute month now second seconds_to_period year
-#' @importFrom parallel detectCores
 #' @importFrom parallelly supportsMulticore
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
 #' @importFrom readr cols read_csv read_table2 write_csv

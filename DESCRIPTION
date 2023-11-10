@@ -49,7 +49,6 @@ Imports:
   lubridate,
   microbenchmark,
   pacman,
-  parallel,
   parallelly,
   purrr,
   RColorBrewer,
