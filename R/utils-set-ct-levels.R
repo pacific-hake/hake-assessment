@@ -13,7 +13,7 @@
 #' Be sure to update this each year if forecasts are added and/or removed
 #'
 #' @export
-set_ct_levels <- function(fn = here(doc_path, forecast_fn)){
+set_ct_levels <- function(fn = here(doc_path, forecast_descriptions_fn)){
 
   ret <- list()
 

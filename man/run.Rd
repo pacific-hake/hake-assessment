@@ -6,22 +6,22 @@
 (one report file per posterior)}
 \usage{
 run(
-  model_dir = NULL,
+  model = NULL,
+  model_path = NULL,
+  run_catch_levels = FALSE,
   run_forecasts = FALSE,
   run_retrospectives = FALSE,
-  run_catch_levels = FALSE,
   ...
 )
 }
 \arguments{
-\item{model_dir}{The directory the models are located in}
+\item{model_path}{The directory the models are located in}
 
-\item{run_forecasts}{Logical. Run forecasting?}
+\item{run_catch_levels}{Logical. If \code{TRUE} run catch levels estimation}
 
-\item{run_retrospectives}{Logical. If \code{TRUE}, run retrospectives?}
+\item{run_forecasts}{Logical. If \code{TRUE} run forecasting}
 
-\item{run_catch_levels}{Logical. If \code{TRUE}, run catch levels estimation
-routines}
+\item{run_retrospectives}{Logical. If \code{TRUE} run retrospectives}
 
 \item{...}{Arguments passed to the \code{\link[=run_ct_levels]{run_ct_levels()}}, \code{\link[=run_forecasts]{run_forecasts()}},
 and \code{\link[=run_retrospectives]{run_retrospectives()}} functions}

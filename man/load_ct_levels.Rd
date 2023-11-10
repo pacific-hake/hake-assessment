@@ -2,35 +2,37 @@
 % Please edit documentation in R/load-ct-levels.R
 \name{load_ct_levels}
 \alias{load_ct_levels}
-\title{Load catch levels from SS forecast files. This is used to retrieve ending
-values after running the \code{\link[=run_ct_levels]{run_ct_levels()}} function for default HR, SPR 100,
-and stable catch}
+\title{Load catch levels from SS forecast files.}
 \usage{
-load_ct_levels(model, ct_levels_lst = NULL, ...)
+load_ct_levels(model_path, ...)
 }
 \arguments{
-\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
-
-\item{ct_levels_lst}{The catch levels list as returned by
-\code{set_ct_levels()}}
+\item{model_path}{The model directory name}
 
 \item{...}{Absorbs arguments intended for other functions}
 }
 \value{
 A list of 3-element lists of vectors of 3 catch levels
 corresponding to:
-a) SPR-100\%
-b) Default harvest policy
-c) Stable catch
-Return object looks the same as the \code{ct_levels} object but with three more
-elements
+\enumerate{
+\item vector of values, 1 for each forecast year
+\item Pretty name of the catch stream scenario
+\item The directory name for the scenario
+}
+
+Return object looks the same as the the list returned from
+\code{set_ct_levels()} but with the NAs replaced for the catch levels that
+needed to be run through algorithms to get the catch values (default-hr,
+spr-100, stable-catch)
 }
 \description{
-Load catch levels from SS forecast files. This is used to retrieve ending
-values after running the \code{\link[=run_ct_levels]{run_ct_levels()}} function for default HR, SPR 100,
-and stable catch
+Load catch levels from SS forecast files.
 }
 \details{
+This is used to retrieve calculated values after running the
+\code{\link[=run_ct_levels]{run_ct_levels()}} function for default HR, SPR 100, and stable catch
+stream scenarios
+
 Assumes \code{\link[=run_ct_levels]{run_ct_levels()}} function has been run and the forecast
 files are populated with 3 forecast years.
 }

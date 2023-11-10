@@ -24,7 +24,7 @@ version_path="01-version"
 type_path="01-base-models"
 model_name="01-base"
 
-num_chains=16
+num_chains=8
 num_samples=8000
 num_warmup_samples=250
 adapt_delta=0.95
@@ -41,23 +41,23 @@ run_adnuts_timed('$model_path', adapt_delta = $adapt_delta, run_extra_mcmc = $ru
 > /dev/null 2>&1; echo "Base model MCMC complete")
 
 # Run the base models catch-level calculations
-(trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); devtools::load_all(); \
-build_rds('$model_path', run_catch_levels = TRUE, build_file = FALSE)" \
-> /dev/null 2>&1; echo "Base model catch level calculations complete")
-
-# Delete all files except the forecast.ss files
-find $model_path/catch-levels -type f \
-! -name 'forecast.ss' -delete
-
-# Run the base models forecasts
-(trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); devtools::load_all(); \
-build_rds('$model_path', run_catch_levels = FALSE, run_forecasts = TRUE, build_file = FALSE)" \
-> /dev/null 2>&1; echo "Base model forecasts complete")
-
-# Delete the unnecessary files. Some are huge (eg. echoinput.sso can be 3GB)
-find $model_path/forecasts -type f \
-! \( -name 'posteriors.sso' -o -name 'derived_posteriors.sso' -o -name 'forecast.ss' \) -delete
-
+# (trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); devtools::load_all(); \
+# build_rds('$model_path', run_catch_levels = TRUE, build_file = FALSE)" \
+# > /dev/null 2>&1; echo "Base model catch level calculations complete")
+#
+# # Delete all files except the forecast.ss files
+# find $model_path/catch-levels -type f \
+# ! -name 'forecast.ss' -delete
+#
+# # Run the base models forecasts
+# (trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); devtools::load_all(); \
+# build_rds('$model_path', run_catch_levels = FALSE, run_forecasts = TRUE, build_file = FALSE)" \
+# > /dev/null 2>&1; echo "Base model forecasts complete")
+#
+# # Delete the unnecessary files. Some are huge (eg. echoinput.sso can be 3GB)
+# find $model_path/forecasts -type f \
+# ! \( -name 'posteriors.sso' -o -name 'derived_posteriors.sso' -o -name 'forecast.ss' \) -delete
+#
 # Build the RDS file
 (trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); devtools::load_all(); \
 create_rds_file('$model_path')" \

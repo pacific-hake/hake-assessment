@@ -1,4 +1,11 @@
-# From regular-expressions.R ----
+# pd-messages.R
+#  A warning message about how parallelism cannot be done due to inability
+#  to use the OS forking mechanism
+#
+#' @format A character string
+"parallelism_warning"
+
+# pd-regular-expressions.R ----
 #' Regular expression for the "early initial" (Early_InitAge) recruitment
 #' deviation parameters in SS3 MCMC output
 #'
@@ -31,9 +38,7 @@
 #' @format A character string
 "regex_extra_mcmc_compreport"
 
-
-
-# From paths-and-filenames.R ----
+# pd-paths-and-filenames.R ----
 #' Directory name for the main assessment document.
 #'
 #' @format A character string
@@ -60,6 +65,10 @@
 #'
 #' @format A character string
 "forecasts_path"
+#' Name to be prepended to year for forecast directory names.
+#'
+#' @format A character string
+"forecasts_prepend"
 #' Directory name for storing the retrospectives.
 #'
 #' @format A character string
@@ -90,8 +99,7 @@
 #' @format A character string
 "object_placement_fn"
 
-
-# From plot-settings.R ----
+# pd-plot-settings.R ----
 #' The point shape to use for the medians in the time series plots
 #'
 #' @format A numerical value representing the point shape (R standard point
@@ -256,7 +264,7 @@
 #' @format A character string or numerical value representing an R line type
 "refpt_lrp_linetype"
 
-# From key-posteriors.R ----
+# pd-key-posteriors.R ----
 #' A list of key posteriors for this assessment
 #'
 #' @format A list of regular expressions used to find the key posterior names
@@ -276,7 +284,7 @@
 #' @format A character string
 "nuisance_posteriors_fn"
 
-# From ss-filenames.R ----
+# pd-ss-filenames.R ----
 #' A character string containing the name of the SS3 executable
 #' (without extension)
 #'
@@ -343,7 +351,7 @@
 "ss_input_files"
 
 
-# From document-settings.R ----
+# pd-document-settings.R ----
 #' Custom catch levels calculations. The tolerance in the SPR away from
 #' 1 for the calculation of catch for SPR = 1
 #'
@@ -426,7 +434,7 @@
 #' @format A vector of numerical years
 "age_bubble_cohorts"
 
-# From data-tables.R ----
+# pd-data-tables.R ----
 #' A data frame containing information on estimated biomass trajectories for
 #' historical assessments from 1991 to present
 #'

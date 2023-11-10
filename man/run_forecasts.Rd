@@ -2,12 +2,21 @@
 % Please edit documentation in R/run-forecasts.R
 \name{run_forecasts}
 \alias{run_forecasts}
-\title{Run forecasting for the model supplied}
+\title{Run forecasting for a model in parallel when possible}
 \usage{
-run_forecasts(model = NULL, model_path = NULL, ...)
+run_forecasts(
+  model = NULL,
+  model_path = NULL,
+  forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+  ...
+)
 }
 \arguments{
+\item{model}{The SS3 model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
+
 \item{model_path}{The directory containing the model}
+
+\item{forecast_yrs}{A vector of forecast years}
 
 \item{...}{Arguments passed to \code{\link[=fetch_ct_levels]{fetch_ct_levels()}}}
 }
@@ -15,9 +24,14 @@ run_forecasts(model = NULL, model_path = NULL, ...)
 \code{\link[base:invisible]{base::invisible()}}
 }
 \description{
-Run forecasting for the model supplied
+Run forecasting for a model in parallel when possible
 }
 \details{
-If there is no mcmc component to the model, an error will be
-given and the program will be stopped
+The function will check to see if you can run the forecasting in parallel.
+If you are on Windows, or calling the code from an  Rstudio console,
+you will be asked if you want to continue in sequential mode. To run in
+parallel (multicore) mode, you must be on a Mac or Linux machine, and NOT
+using Rstudio. You must call this function from Rscript or the terminal
+R program. You can use a bash script containing Rscript - e "R code here"
+as well
 }
