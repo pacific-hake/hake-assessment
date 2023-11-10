@@ -12,6 +12,8 @@ run_ct_levels(
 )
 }
 \arguments{
+\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
+
 \item{model_path}{The model directory name}
 
 \item{...}{Absorbs arguments intended for other functions}

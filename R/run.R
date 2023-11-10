@@ -1,7 +1,7 @@
-#' Run extra models for forecasting, retrospectives, and extra MCMC
-#' (one report file per posterior)
+#' Run catch-levels, forecasting, and retrospectives in one function
 #'
-#' @details This is a wrapper function for calling [run_ct_levels()],
+#' @details
+#' This is a wrapper function for calling [run_ct_levels()],
 #' [run_forecasts()], and [run_retrospectives()] functions.
 #'
 #' @param model_path The directory the models are located in
@@ -22,7 +22,7 @@ run <- function(model = NULL,
 
   if(is.null(model)){
     if(is.null(model_path)){
-      stop("`run_ct_levels`: Either `model` or `model_path` must be supplied")
+      stop("Either `model` or `model_path` must be supplied")
     }
     model <- load_ss_files(model_path, ...)
   }else{
@@ -50,13 +50,16 @@ run <- function(model = NULL,
   }
   if(run_forecasts){
     ct_levels_fullpath <- file.path(model_path, ct_levels_path)
-    if(!dir.exists(ct_levels_fullpath) | run_ct_levels){
-      run_ct_levels(model_path, ...)
+    if(!dir.exists(ct_levels_fullpath)){
+      message("You requested the forecasting be run bu the catch-levels ",
+              "directory does not exist so `run_catch_levels() must be run ",
+              "first. Executing run_catch_levels().\n")
+      run_ct_levels(model, ...)
     }
-    run_forecasts(model_path, ...)
+    run_forecasts(model, ...)
   }
   if(run_retrospectives){
-    run_retrospectives(model_path, ...)
+    run_retrospectives(model, ...)
   }
 
   invisible()

@@ -1,5 +1,6 @@
 #' A wrapper to run the catch levels determination routines
 #'
+#' @param model The SS model output as loaded by [create_rds_file()]
 #' @param model_path The model directory name
 #' @param ... Absorbs arguments intended for other functions
 #'

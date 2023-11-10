@@ -5,6 +5,11 @@ library(usethis)
 create_data_hake("ss_executable", "ss3_2024")
 create_data_hake("show_ss_output", FALSE)
 
+create_data_hake("covar_fn", "covar.sso")
+create_data_hake("data_ssnew_fn", "data.ss_new")
+create_data_hake("data_new_ssnew_fn", "data_echo.ss_new")
+
+
 create_data_hake("starter_fn", "starter.ss")
 create_data_hake("control_fn", "hake_control.ss")
 create_data_hake("data_fn", "hake_data.ss")

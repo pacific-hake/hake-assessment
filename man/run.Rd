@@ -2,8 +2,7 @@
 % Please edit documentation in R/run.R
 \name{run}
 \alias{run}
-\title{Run extra models for forecasting, retrospectives, and extra MCMC
-(one report file per posterior)}
+\title{Run catch-levels, forecasting, and retrospectives in one function}
 \usage{
 run(
   model = NULL,
@@ -30,8 +29,7 @@ and \code{\link[=run_retrospectives]{run_retrospectives()}} functions}
 \code{\link[base:invisible]{base::invisible()}}
 }
 \description{
-Run extra models for forecasting, retrospectives, and extra MCMC
-(one report file per posterior)
+Run catch-levels, forecasting, and retrospectives in one function
 }
 \details{
 This is a wrapper function for calling \code{\link[=run_ct_levels]{run_ct_levels()}},

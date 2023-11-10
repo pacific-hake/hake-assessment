@@ -5,20 +5,24 @@
 \title{Runs retrospectives for the given model and for the vector of years given}
 \usage{
 run_retrospectives(
-  model_path,
-  retrospective_yrs = NA,
+  model = NULL,
+  model_path = NULL,
+  yrs = retrospective_yrs,
   remove_blocks = FALSE,
   retro_mcmc = TRUE,
-  run_extra_mcmc = TRUE,
-  fn_exe = ifelse(exists("ss_executable"), ss_executable, "ss3"),
+  ss_exe = NULL,
   ...
 )
 }
 \arguments{
+\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
+
 \item{model_path}{The path of the model run}
 
-\item{retrospective_yrs}{The years (e.g. 1:6) to run so each of these
-numbers means that many years of data removed from the model}
+\item{yrs}{A vector of number of years value prior to current end year in
+the model to run retrospectives for. Example if this is c(1, 5) then two
+retrospectives will be run, one with 1 year of data removed and one with 5
+years of data removed}
 
 \item{remove_blocks}{If \code{TRUE}, remove block designs from control file
 prior to running}
@@ -26,12 +30,10 @@ prior to running}
 \item{retro_mcmc}{If \code{TRUE}, run the ADNUTS MCMC in the \emph{mcmc}
 subdirectory for each retrospective in addition to the MLE run}
 
-\item{run_extra_mcmc}{Logical. If \code{TRUE}, run the model with extra-mcmc
-turned on}
+\item{ss_exe}{The name of the SS3 executable. If \code{NULL} then
+\link{ss_executable} will be used}
 
-\item{fn_exe}{The filename of the executable for running the model}
-
-\item{...}{Arguments passed to \code{\link[=create_rds_file]{create_rds_file()}}}
+\item{...}{Arguments passed to \code{\link[=load_ss_files]{load_ss_files()}} and \code{\link[=run_adnuts]{run_adnuts()}}}
 }
 \value{
 \code{\link[base:invisible]{base::invisible()}}
@@ -40,8 +42,13 @@ turned on}
 Runs retrospectives for the given model and for the vector of years given
 }
 \details{
-This will create a \emph{retrospectives} directory in the same directory as the model resides,
-create a directory for each retrospective year, copy all model files into each directory,
-run the retrospectives, and make a list of the \code{\link[r4ss:SS_output]{r4ss::SS_output()}} call to each
-Warning - This function will completely delete all previous retrospectives that have been run without notice.
+This will:
+\enumerate{
+\item Create a directory with the name found in the package data  variable
+\link{retrospectives_path} directory in the same directory that the model
+resides in
+\item Create subdirectories for each retrospective year
+\item Copy all SS3 model input files into each directory
+\item Run a retrospective for each year found in \code{yrs}
+}
 }

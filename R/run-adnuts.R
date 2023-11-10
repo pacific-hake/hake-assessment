@@ -40,11 +40,7 @@ run_adnuts <- function(path,
                        fn_exe = ss_executable,
                        overwrite = FALSE,
                        fn_logfile = model_output_log_fn,
-                       input_files = c(starter_fn,
-                                       forecast_fn,
-                                       weight_at_age_fn,
-                                       control_fn,
-                                       data_fn)){
+                       input_files = ss_input_files){
 
   # Determine if the caller is calling from an Rstudio session
   is_rstudio <- Sys.getenv("RSTUDIO") == "1"

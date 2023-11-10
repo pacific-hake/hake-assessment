@@ -73,6 +73,10 @@
 #'
 #' @format A character string
 "retropectives_path"
+#' Name to be prepended to year for retrospective directory names.
+#'
+#' @format A character string
+"retrospectives_prepend"
 #' Directory name for storing the default harvest rule catch catch levels
 #'
 #' @format A character string
@@ -290,6 +294,26 @@
 #'
 #' @format A character string
 "ss_executable"
+#' A character string containing the name of the variable flag for showing
+#' SS3 output messages or not
+#'
+#' @format A character string
+"show_ss_output"
+#' A character string containing the name of the covariance output file in SS3
+#'
+#' @format A character string
+"covar_fn"
+#' A character string containing the name of the file SS3 creates internally
+#' as a copy of the [data_fn] input file
+#'
+#' @format A character string
+"data_ssnew_fn"
+#' A character string containing the name of the secondary file SS3 creates
+#' internally as a copy of the [data_fn] input file
+#'
+#' @format A character string
+"data_new_ssnew_fn"
+
 #' A character string containing the file name for the SS3 starter file
 #'
 #' @format A character string

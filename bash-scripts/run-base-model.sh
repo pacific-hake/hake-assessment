@@ -34,8 +34,11 @@ model_path=$models_path/$year_path/$version_path/$type_path/$model_name
 [[ ! -d $model_path ]] && { echo "Error: Directory $model_path does not exist, bailing out." ; exit 1; }
 
 (trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); devtools::load_all(); \
-run_adnuts_timed('$model_path', adapt_delta = $adapt_delta, run_extra_mcmc = $run_extra_mcmc, \
-                 num_chains = $num_chains, num_samples = $num_samples, \
+run_adnuts_timed('$model_path', \
+                 adapt_delta = $adapt_delta, \
+                 run_extra_mcmc = $run_extra_mcmc, \
+                 num_chains = $num_chains, \
+                 num_samples = $num_samples, \
                  num_warmup_samples = $num_warmup_samples,
                  fn_exe = 'ss3_2024')" \
 > /dev/null 2>&1; echo "Base model MCMC complete")

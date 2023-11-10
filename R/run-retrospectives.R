@@ -1,131 +1,157 @@
 #' Runs retrospectives for the given model and for the vector of years given
 #'
+#' @param model The SS model output as loaded by [create_rds_file()]
 #' @param model_path The path of the model run
 #' @param remove_blocks If `TRUE`, remove block designs from control file
 #' prior to running
 #' @param retro_mcmc If `TRUE`, run the ADNUTS MCMC in the *mcmc*
 #' subdirectory for each retrospective in addition to the MLE run
-#' @param retrospective_yrs The years (e.g. 1:6) to run so each of these
-#' numbers means that many years of data removed from the model
-#' @param run_extra_mcmc Logical. If `TRUE`, run the model with extra-mcmc
-#' turned on
-#' @param fn_exe The filename of the executable for running the model
-#' @param ... Arguments passed to [create_rds_file()]
+#' @param yrs A vector of number of years value prior to current end year in
+#' the model to run retrospectives for. Example if this is c(1, 5) then two
+#' retrospectives will be run, one with 1 year of data removed and one with 5
+#' years of data removed
+#' @param ss_exe The name of the SS3 executable. If `NULL` then
+#' [ss_executable] will be used
+#' @param ... Arguments passed to [load_ss_files()] and [run_adnuts()]
 #'
-#' @details This will create a *retrospectives* directory in the same directory as the model resides,
-#' create a directory for each retrospective year, copy all model files into each directory,
-#' run the retrospectives, and make a list of the [r4ss::SS_output()] call to each
-#' Warning - This function will completely delete all previous retrospectives that have been run without notice.
+#' @details
+#' This will:
+#' 1. Create a directory with the name found in the package data  variable
+#'    [retrospectives_path] directory in the same directory that the model
+#'    resides in
+#' 2. Create subdirectories for each retrospective year
+#' 3. Copy all SS3 model input files into each directory
+#' 4. Run a retrospective for each year found in `yrs`
 #'
 #' @return [base::invisible()]
 #' @export
-run_retrospectives <- function(model_path,
-                               retrospective_yrs = NA,
+run_retrospectives <- function(model = NULL,
+                               model_path = NULL,
+                               yrs = retrospective_yrs,
                                remove_blocks = FALSE,
                                retro_mcmc = TRUE,
-                               run_extra_mcmc = TRUE,
-                               fn_exe = ifelse(exists("ss_executable"),
-                                               ss_executable,
-                                               "ss3"),
+                               ss_exe = NULL,
                                ...){
 
-  stopifnot(!is.na(retrospective_yrs))
+  ss_exe <- get_ss3_exe_name(ss_exe)
 
-  model <- load_ss_files(model_path, ...)
-  retro_path <- file.path(model_path, "retrospectives")
-  dir.create(retro_path, showWarnings = FALSE)
-
-  # Copy all required model files into the retrospective directory
-  files_to_copy <- c(file.path(model_path,
-                               c(starter_fn,
-                                 forecast_fn,
-                                 weight_at_age_fn)),
-                     model$ctl_file,
-                     model$dat_file)
-
-  walk(retrospective_yrs, function(.x, ...){
-
-    .x <- abs(.x)
-
-    retro_subdir <- file.path(retro_path,
-                              paste0("retro-",
-                                     pad_num(.x, 2)))
-    dir.create(retro_subdir, showWarnings = FALSE)
-    file.copy(files_to_copy, retro_subdir)
-    starter_file <- file.path(retro_subdir, starter_fn)
-    starter <- SS_readstarter(starter_file, verbose = FALSE)
-    starter$retro_yr <- -.x
-    starter$init_values_src <- 0
-    SS_writestarter(starter,
-                    dir = retro_subdir,
-                    verbose = FALSE,
-                    overwrite = TRUE)
-
-    dat <- SS_readdat(file.path(retro_subdir, starter$datfile),
-                      verbose = FALSE,
-                      version = model$SS_versionshort)
-    ctl <- SS_readctl(file.path(retro_subdir, starter$ctlfile),
-                      verbose = FALSE,
-                      use_datlist = TRUE,
-                      datlist = dat,
-                      version = model$SS_versionshort)
-
-    ctl$MainRdevYrLast <- ctl$MainRdevYrLast - .x
-    ctl$last_yr_fullbias_adj <- ctl$MainRdevYrLast - 1
-    ctl$first_recent_yr_nobias_adj <- ctl$MainRdevYrLast
-
-    asp <- ctl$age_selex_parms$dev_maxyr
-    asp <- ifelse(asp > dat$endyr - .x, dat$endyr - .x, asp)
-    ctl$age_selex_parms$dev_maxyr <- asp
-
-    chk <- ctl$age_selex_parms |>
-      filter(dev_minyr !=0) |>
-      select(dev_minyr, dev_maxyr) |>
-      mutate(diff = dev_maxyr - dev_minyr) |>
-      pull(diff)
-    if(length(chk) > 0){
-      if(any(chk < 1)){
-        stop("The retrospective, ",
-             basename(retro_subdir),
-             ", has time-varying selectivity outside the data years.")
+  # Ensure `model` and `model_path` have values ----
+  if(is.null(model)){
+    if(is.null(model_path)){
+      stop("Either `model` or `model_path` must be supplied")
+    }
+    model <- load_ss_files(model_path, ...)
+  }else{
+    if(is.null(model_path)){
+      model_path <- model$path
+    }else{
+      if(model$path != model_path){
+        stop("You provided both `model` and `model_path` and `model$path` ",
+             "does not math `model_path`")
       }
     }
-    SS_writectl(ctl,
-                outfile = file.path(retro_subdir, starter$ctlfile),
-                version = model$SS_versionshort,
-                overwrite = TRUE,
-                verbose = FALSE)
+  }
 
-    if(remove_blocks){
-      ctl_file <- file.path(retro_subdir, model$ctl_file)
-      ctl <- readLines(ctl_file)
-      ctl[grep("block designs", ctl)] <-
-        "0 # Number of block designs for time varying parameters"
-      ctl[grep("blocks per design", ctl) + 0:2] <- "# blocks deleted"
-      unlink(ctl_file)
-      writeLines(ctl, ctl_file)
+  # Setup retrospective path names ----
+  retro_pth <- file.path(model_path, retropectives_path)
+  dir.create(retro_pth, showWarnings = FALSE)
+  retro_subdirs <- file.path(retro_pth,
+                             paste0(retrospectives_prepend,
+                                    pad_num(yrs, 2)))
+  src_fns <- file.path(model_path, ss_input_files)
+
+  # Create directories and copy input files into them ----
+  walk(retro_subdirs, \(retro_subdir){
+    dir.create(retro_subdir, showWarnings = FALSE)
+    unlink(file.path(retro_subdir, "*"), force = TRUE)
+    dest_fns <- file.path(retro_subdir, ss_input_files)
+    copy_flags <- file.copy(src_fns, dest_fns)
+    if(!all(copy_flags)){
+      stop("Problem copying SS3 input files from directory `", model_path,
+           " to retrospective subdirectory `", retro_subdir, "`")
     }
-    covar_file <- file.path(retro_subdir, "covar.sso")
-    if(file.exists(covar_file)){
-      unlink(covar_file)
-    }
-    if(retro_mcmc){
-      run_adnuts(retro_subdir,
-                 run_extra_mcmc = run_extra_mcmc,
-                 ...)
-    }else{
-      command <- paste0("cd ", retro_subdir, " && ", fn_exe, " -nox")
-      system_(command, wait = FALSE, intern = !show_ss_output)
-    }
-    data_new <- readLines(file.path(retro_subdir, "data_echo.ss_new"))
-    df_for_meanbody <- grep("DF_for_meanbodysize", data_new)
-    if(length(df_for_meanbody)){
-      data_new[df_for_meanbody] <- paste0("#_COND_",
-                                          data_new[df_for_meanbody])
-      writeLines(data_new, con = file.path(retro_subdir,
-                                           "data.ss_new"))
-      writeLines(data_new, con = file.path(retro_subdir,
-                                           "data_echo.ss_new"))
-    }
-  }, ...)
+  })
+
+  # Main run loop ----
+  walk2(
+    yrs,
+    retro_subdirs,
+    \(retro_yr, retro_subdir, ...){
+
+      message("Running retrospective for year = ", retro_yr)
+      starter_file <- file.path(retro_subdir, starter_fn)
+      starter <- SS_readstarter(starter_file, verbose = FALSE)
+      starter$retro_yr <- -retro_yr
+      starter$init_values_src <- 0
+      SS_writestarter(starter,
+                      dir = retro_subdir,
+                      verbose = FALSE,
+                      overwrite = TRUE)
+
+      dat <- SS_readdat(file.path(retro_subdir, starter$datfile),
+                        verbose = FALSE,
+                        version = model$SS_versionshort)
+      ctl <- SS_readctl(file.path(retro_subdir, starter$ctlfile),
+                        verbose = FALSE,
+                        use_datlist = TRUE,
+                        datlist = dat,
+                        version = model$SS_versionshort)
+
+      ctl$MainRdevYrLast <- ctl$MainRdevYrLast - retro_yr
+      ctl$last_yr_fullbias_adj <- ctl$MainRdevYrLast - 1
+      ctl$first_recent_yr_nobias_adj <- ctl$MainRdevYrLast
+
+      asp <- ctl$age_selex_parms$dev_maxyr
+      asp <- ifelse(asp > dat$endyr - retro_yr, dat$endyr - retro_yr, asp)
+      ctl$age_selex_parms$dev_maxyr <- asp
+
+      chk <- ctl$age_selex_parms |>
+        filter(dev_minyr != 0) |>
+        select(dev_minyr, dev_maxyr) |>
+        mutate(diff = dev_maxyr - dev_minyr) |>
+        pull(diff)
+      if(length(chk) > 0){
+        if(any(chk < 1)){
+          stop("The retrospective, ",
+               basename(retro_subdir),
+               ", has time-varying selectivity outside the data years.")
+        }
+      }
+      SS_writectl(ctl,
+                  outfile = file.path(retro_subdir, starter$ctlfile),
+                  version = model$SS_versionshort,
+                  overwrite = TRUE,
+                  verbose = FALSE)
+
+      if(remove_blocks){
+        ctl_file <- file.path(retro_subdir, model$ctl_file)
+        ctl <- readLines(ctl_file)
+        ctl[grep("block designs", ctl)] <-
+          "0 # Number of block designs for time varying parameters"
+        ctl[grep("blocks per design", ctl) + 0:2] <- "# blocks deleted"
+        unlink(ctl_file, force = TRUE)
+        writeLines(ctl, ctl_file)
+      }
+      covar_file <- file.path(retro_subdir, covar_fn)
+      unlink(covar_file, force = TRUE)
+      if(retro_mcmc){
+        # Call to ADNUTS ----
+        run_adnuts(path = retro_subdir, ...)
+      }else{
+        command <- paste0("cd ", retro_subdir, " && ",
+                          ss_exe, " -nox")
+        system_(command, wait = FALSE, intern = !show_ss_output)
+      }
+      d_new <- readLines(file.path(retro_subdir, data_new_ssnew_fn))
+      df_for_meanbody <- grep("DF_for_meanbodysize", d_new)
+      if(length(df_for_meanbody)){
+        d_new[df_for_meanbody] <- paste0("#_COND_",
+                                         d_new[df_for_meanbody])
+        writeLines(d_new, con = file.path(retro_subdir,
+                                          data_ssnew_fn))
+        writeLines(d_new, con = file.path(retro_subdir,
+                                          data_new_ssnew_fn))
+        message("Done running retrospective for year = ", retro_yr)
+      }
+    }, ...)
 }

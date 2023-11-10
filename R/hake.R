@@ -18,7 +18,8 @@
 #' @importFrom data.table fread
 #' @importFrom fs dir_ls path
 #' @importFrom future availableCores plan
-#' @importFrom furrr future_map future_imap furrr_options future_walk
+#' @importFrom furrr future_map future_imap furrr_options
+#' @importFrom furrr future_walk future_walk2
 #' @importFrom glue glue
 #' @importFrom graphics arrows grid hist layout legend lines matplot
 #' @importFrom graphics mtext par points polygon rect segments

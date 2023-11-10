@@ -5,11 +5,15 @@
 #' @param pth The path to the directory in which the dynamic catch levels
 #' run will occur. Example:
 #' '/srv/hake/models/2023/01-version/01-base-models/01-base/catch-levels/spr-100'
+#' @param inp_files_only Logical. If `TRUE`, on;ly copy the SS3 inputs files
+#' which are in the package data variable [ss_input_files]. If `FALSE`,
+#' include 'derposts,sso' and 'ss.psv' as well
 #'
 #' @return [base::invisible()] If the function returns, all files were copied
 #' successfully. If they were not, an error is thrown
 run_catch_levels_copy_input_files <- function(model,
-                                              pth){
+                                              pth,
+                                              inp_files_only = FALSE){
 
   dir.create(pth, showWarnings = FALSE)
   # Delete any old files/subdirectories in `default-hr` directory that may
@@ -37,6 +41,11 @@ run_catch_levels_copy_input_files <- function(model,
          "`.\nThe file(s) not copied are:\n",
          paste(ss_input_files[!copy_flag], collapse = "\n"))
   }
+
+  if(inp_files_only){
+    return(invisible())
+  }
+
   if(is.null(model$extra_mcmc_exists)){
     stop("The model 'extra mcmc path exists' is not set. ",
          "`model$extra_mcmc_exists` is `NULL`")
