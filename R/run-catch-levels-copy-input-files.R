@@ -17,15 +17,14 @@ run_catch_levels_copy_input_files <- function(model,
   unlink(file.path(pth, "*"), recursive = TRUE)
 
   if(is.null(model$mcmc_path)){
-    stop("`run_catch_levels_copy_input_files`: The model mcmc path is not ",
-         "set. `model$mcmc_path` is `NULL`")
+    stop("The model mcmc path is not set. `model$mcmc_path` is `NULL`")
   }
 
   # SS3 input files (5 files) ----
   files <- list.files(model$mcmc_path)
   if(!all(ss_input_files %in% files)){
-    stop("`run_catch_levels_copy_input_files`: At least one SS3 input file ",
-         "missing in directory\n`", pth, "`\nThe missing file(s) are:\n",
+    stop("At least one SS3 input file missing in directory\n`", pth,
+         "`\nThe missing file(s) are:\n",
          paste(ss_input_files[!ss_input_files %in% files], collapse = "\n"))
   }
   copy_flag <- file.copy(file.path(model$path,
@@ -33,19 +32,19 @@ run_catch_levels_copy_input_files <- function(model,
                          file.path(pth, ss_input_files),
                          copy.mode = TRUE)
   if(!all(copy_flag)){
-    stop("`run_catch_levels_copy_input_files`: At least one SS3 imput file ",
-         "failed to copy from directory\n`", model$path, "` to directory\n`",
-         pth, "`.\nThe file(s) not copied are:\n",
+    stop("At least one SS3 imput file failed to copy from directory\n`",
+         model$path, "` to directory\n`", pth,
+         "`.\nThe file(s) not copied are:\n",
          paste(ss_input_files[!copy_flag], collapse = "\n"))
   }
   if(is.null(model$extra_mcmc_exists)){
-    stop("`run_catch_levels_copy_input_files`: The model 'extra mcmc path ",
-         "exists' is not set. `model$extra_mcmc_exists` is `NULL`")
+    stop("The model 'extra mcmc path exists' is not set. ",
+         "`model$extra_mcmc_exists` is `NULL`")
   }
   if(model$extra_mcmc_exists){
     if(is.null(model$extra_mcmc_path)){
-      stop("`run_catch_levels_copy_input_files`: The model 'extra mcmc path' ",
-           "is not set. `model$extra_mcmc_path` is `NULL`")
+      stop("The model 'extra mcmc path' is not set. `model$extra_mcmc_path`
+           is `NULL`")
     }
   }
 
@@ -56,27 +55,25 @@ run_catch_levels_copy_input_files <- function(model,
                                derposts_fn)
   dest_derposts_fn <- file.path(pth, derposts_fn)
   if(!file.exists(src_derposts_fn)){
-    stop("`run_catch_levels_copy_input_files`: The file:\n`", src_derposts_fn,
-         "\n` does not exist and therefore cannot be copied to directory\n`",
-         pth, "`")
+    stop("The file:\n`", src_derposts_fn, "\n` does not exist and therefore ",
+         "cannot be copied to directory\n`", pth, "`")
   }
   copy_flag <- file.copy(src_derposts_fn, dest_derposts_fn)
   if(!copy_flag){
-    stop("`run_catch_levels_copy_input_files`: The file:\n`", src_derposts_fn,
+    stop("The file:\n`", src_derposts_fn,
          "`\ncould not be copied to directory\n`", pth, "`")
   }
 
   # PSV file ----
   sspsv_fn <- file.path(model$mcmc_path, psv_fn)
   if(!file.exists(sspsv_fn)){
-    stop("`run_catch_levels_copy_input_files`: The file:\n`", sspsv_fn,
-         "\n` does not exist and therefore cannot be copied to directory\n`",
-         pth, "`")
+    stop("The file:\n`", sspsv_fn, "\n` does not exist and therefore ",
+         "cannot be copied to directory\n`", pth, "`")
   }
   copy_flag <- file.copy(sspsv_fn, file.path(pth, psv_fn))
   if(!copy_flag){
-    stop("`run_catch_levels_copy_input_files`: The file:\n`", psv_fn, "`\n",
-         "could not be copied to directory\n`", pth, "`")
+    stop("The file:\n`", psv_fn, "`\ncould not be copied to directory\n`",
+         pth, "`")
   }
 
   invisible()
