@@ -2,19 +2,24 @@
 % Please edit documentation in R/utils-pad-num.R
 \name{pad_num}
 \alias{pad_num}
-\title{Pad the beginning of a number with zeroes}
+\title{Pad the beginning of numbers in a vector with zeroes so they all have
+the same number of characters}
 \usage{
-pad_num(num, digits = 1)
+pad_num(x, n_digits = 2, pad_char = "0")
 }
 \arguments{
-\item{num}{A vector of the numbers to pad}
+\item{x}{A vector of the numbers to pad}
 
-\item{digits}{The number of characters that the resulting strings
+\item{n_digits}{The number of characters that the resulting strings
 should have}
+
+\item{pad_char}{The character to pad with. Typically zero but can be any
+character}
 }
 \value{
 A vector of strings of the padded numbers
 }
 \description{
-Pad the beginning of a number with zeroes
+Pad the beginning of numbers in a vector with zeroes so they all have
+the same number of characters
 }
