@@ -63,9 +63,9 @@ run_adnuts <- function(path,
                   "requested (", num_chains, ")")
     if(is_rstudio){
       message(red(symbol$cross, msg))
-      stop_quietly(call. = FALSE)
+      stop_quietly()
     }else{
-      stop(msg, call. = FALSE)
+      stop(msg)
     }
   }
 
@@ -86,9 +86,9 @@ run_adnuts <- function(path,
                     "you want to run the procedure.")
       if(is_rstudio){
         message(red(symbol$cross, msg))
-        stop_quietly(, call. = FALSE)
+        stop_quietly()
       }else{
-        stop(msg, call. = FALSE)
+        stop(msg)
       }
     }
   }
@@ -129,9 +129,9 @@ run_adnuts <- function(path,
     msg <- paste0("System command returned an error (status 1):\n", cmd)
     if(is_rstudio){
       message(red(symbol$cross, msg))
-      stop_quietly(call. = FALSE)
+      stop_quietly()
     }else{
-      stop(msg, call. = FALSE)
+      stop(msg)
     }
   }
 
@@ -144,9 +144,9 @@ run_adnuts <- function(path,
     msg <- paste0("System command returned an error (status 1):\n", cmd)
     if(is_rstudio){
       message(red(symbol$cross, msg))
-      stop_quietly(call. = FALSE)
+      stop_quietly()
     }else{
-      stop(msg, call. = FALSE)
+      stop(msg)
     }
   }
 
@@ -170,9 +170,9 @@ run_adnuts <- function(path,
     msg <- paste0("System command returned an error (status 1):\n", cmd)
     if(is_rstudio){
       message(red(symbol$cross, msg))
-      stop_quietly(call. = FALSE)
+      stop_quietly()
     }else{
-      stop(msg, call. = FALSE)
+      stop(msg)
     }
   }
   # Copy .ss_new files to .ss files in the mcmc directory

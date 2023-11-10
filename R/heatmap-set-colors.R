@@ -23,8 +23,7 @@ heatmap_set_colors <- function(wa = NULL,
     as.numeric()
   if(!length(ages)){
     stop("No numeric column names were found in the supplied ",
-         "data frame `wa`",
-         call. = FALSE)
+         "data frame `wa`")
   }
   num_ages <- length(ages)
   col_func <- colorRampPalette(cols)

@@ -13,8 +13,7 @@ plot_assessment_timeline <- function(yrs = c(2017, 2018, 2019, 2020,
                                               23, 18, 36)){
 
   if(length(yrs) != length(days)){
-    stop("`yrs` aand `days` must be the same length",
-         call. = FALSE)
+    stop("`yrs` aand `days` must be the same length")
   }
 
   d <- tibble(yrs = yrs,

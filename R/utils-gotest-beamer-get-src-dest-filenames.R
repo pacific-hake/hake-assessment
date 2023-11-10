@@ -13,8 +13,7 @@ gotest_beamer_get_src_dest_filenames <- function(bookdown_lst = NULL,
                                                  my_figures_dir = figures_dir){
 
   if(is.null(bookdown_lst)){
-    stop("`bookdown_lst` argument cannot be `NULL`",
-         call. = FALSE)
+    stop("`bookdown_lst` argument cannot be `NULL`")
   }
 
   raw_fns <- bookdown_lst$rmd_fns
@@ -22,8 +21,7 @@ gotest_beamer_get_src_dest_filenames <- function(bookdown_lst = NULL,
   r_fn <- grep("003-load-models.rmd", raw_fns, value = TRUE)
   if(!length(r_fn)){
     stop("File `", r_fn, "` not found in the bookdown config file. See ",
-         "gotest_beamer() function",
-         call. = FALSE)
+         "gotest_beamer() function")
   }
 
   dotted_path_to_docs <- gsub("((../)*doc)/*.*", "\\1", r_fn)
@@ -42,8 +40,7 @@ gotest_beamer_get_src_dest_filenames <- function(bookdown_lst = NULL,
   src_fns <- grep(pat, src_fns, value = TRUE)
   if(!length(src_fns)){
     stop("No files in the bookdown config file matched the files to be ",
-         "copied. See the `gotest_beamer()` function",
-    call. = FALSE)
+         "copied. See the `gotest_beamer()` function")
   }
   dest_fns <- file.path("doc", basename(src_fns))
 
@@ -53,8 +50,7 @@ gotest_beamer_get_src_dest_filenames <- function(bookdown_lst = NULL,
   x <- readLines(index_fn)
   images_src_dir <- grep("images_dir:", x, value = TRUE)
   if(!length(images_src_dir)){
-    stop("`images_dir:` not found in 000-launcher.rmd",
-         call. = FALSE)
+    stop("`images_dir:` not found in 000-launcher.rmd")
   }
   images_src_dir <- gsub('\\"', "", images_src_dir)
   images_src_dir <- gsub("\\s*images_dir:\\s*", "", images_src_dir)
@@ -63,8 +59,7 @@ gotest_beamer_get_src_dest_filenames <- function(bookdown_lst = NULL,
 
   if(!length(images_src_fns)){
     stop("Could not get a list of the images needed for the beamer ",
-         "presentations (location of logos). See gotest_beamer() function",
-         call. = FALSE)
+         "presentations (location of logos). See gotest_beamer() function")
   }
   images_src_fns <- replace_dotted_paths(images_src_fns)
   images_dest_fns <- file.path("doc/images", basename(images_src_fns))

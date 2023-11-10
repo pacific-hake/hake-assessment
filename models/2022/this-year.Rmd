@@ -80,8 +80,7 @@ walk2(drs_src_dir, drs_dest_dir, ~{
       if(copied){
         message("File `", .x, "` copied to `", .y, "`")
       }else{
-        stop("File `", .x, "` was not copied to `", .y, "`",
-             call. = FALSE)
+        stop("File `", .x, "` was not copied to `", .y, "`")
       }
   }
 })

@@ -11,12 +11,10 @@ modify_starter_mcmc_type <- function(path, value){
 
   # Make a modification to the starter file
   if(!dir.exists(path)){
-    stop("The directory ", path, " does not exist",
-         call. = FALSE)
+    stop("The directory ", path, " does not exist")
   }
   if(!file.exists(file.path(path, starter_fn))){
-    stop("The file ", file.path(path, starter_fn), " does not exist",
-         call. = FALSE)
+    stop("The file ", file.path(path, starter_fn), " does not exist")
   }
   starter_contents <- readLines(file.path(path,
                                           starter_fn))

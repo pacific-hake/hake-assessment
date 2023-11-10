@@ -40,7 +40,7 @@ run_forecasts <- function(model = NULL,
 
   if(is.null(model)){
     if(is.null(model_path)){
-      stop("`run_ct_levels`: Either `model` or `model_path` must be supplied")
+      stop("Either `model` or `model_path` must be supplied")
     }
     model <- load_ss_files(model_path, ...)
   }else{

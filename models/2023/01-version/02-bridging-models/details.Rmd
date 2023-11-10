@@ -45,8 +45,7 @@ extra_described_dirs <- described_dirs[!described_dirs %in% basename(real_dirs)]
 if(length(extra_described_dirs)){
   stop("\n\nYou have described directories that do not exist in:\n\n",
        getwd(), "/details.Rmd\n\nThe directories described which don't exist are:\n\n",
-       paste(extra_described_dirs, collapse = "\n"),
-       call. = FALSE)
+       paste(extra_described_dirs, collapse = "\n"))
 }
 
 extra_real_dirs <- real_dirs[!basename(real_dirs) %in% described_dirs]

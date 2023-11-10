@@ -15,8 +15,7 @@ yaml_check_margin_format <- function(fig_margins){
     stop("`figure_margin` in 000-launcher.rmd is not in the correct format. ",
          "It should be formatted this way:\nmargin(A, B, C, D) where A, B, C, ",
          "and D are integers representing the top, right, bottom, and left ",
-         "margin sizes for all figures in the document",
-         call. = FALSE)
+         "margin sizes for all figures in the document")
   }
 
   invisible()

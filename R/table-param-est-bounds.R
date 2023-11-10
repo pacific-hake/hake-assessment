@@ -259,13 +259,11 @@ table_param_est_bounds <- function(model,
   dm_inds <- grep("DM", ctl)
   if(!length(dm_inds)){
     stop("`DM` not found n the control file, cannot extract ",
-         "Dirichlet-multinomial parameter settings",
-         call. = FALSE)
+         "Dirichlet-multinomial parameter settings")
   }
   if(length(dm_inds) != 2){
     stop("`DM` does not match exactly two items in the control file. See ",
-         "the code in table_param_est_bounds()",
-         call. = FALSE)
+         "the code in table_param_est_bounds()")
   }
   dm <- map(dm_inds, ~{fetch_and_split(ctl, .x)})
 

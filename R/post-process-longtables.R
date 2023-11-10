@@ -38,8 +38,7 @@ post_process_longtables <- function(x,
       paste0("and ",
              length(end_inds),
              " `\\end{longtable}` commands. "))
-    stop(len_beg, len_end, "There must be the same number of each",
-         call. = FALSE)
+    stop(len_beg, len_end, "There must be the same number of each")
   }
   if(!length(beg_inds)){
     return(x)
@@ -57,8 +56,7 @@ post_process_longtables <- function(x,
            "`kable(longtable = TRUE) |> kable_styling(latex_options = ",
            "c('repeat_header'))`\nIn addition, booktabs must be set to ",
            "`TRUE`.\n\nThe chunk with the error is:\n",
-           paste(tbl, collapse = "\n"), "\n",
-           call. = FALSE)
+           paste(tbl, collapse = "\n"), "\n")
     }
     first_yr_line <- tbl[gr + 1]
     # Extract the number of columns in the table

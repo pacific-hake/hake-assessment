@@ -16,8 +16,7 @@ get_year_range <- \(start_yr = NA,
      is.null(max_yr[1]) ||
      is.na(min_yr[1]) ||
      is.na(max_yr[1])){
-    stop("`min_yr` and `max_yr` cannot be `NA` or `NULL`",
-         call. = FALSE)
+    stop("`min_yr` and `max_yr` cannot be `NA` or `NULL`")
   }
   s_yr <- min_yr
   e_yr <- max_yr
@@ -39,12 +38,10 @@ get_year_range <- \(start_yr = NA,
     }
   }
   if(e_yr < s_yr){
-    stop("End year occurs before start year",
-         call. = FALSE)
+    stop("End year occurs before start year")
   }
   if(s_yr > e_yr){
-    stop("End year occurs before start year",
-         call. = FALSE)
+    stop("End year occurs before start year")
   }
   list(start_yr = s_yr, end_yr = e_yr)
 }

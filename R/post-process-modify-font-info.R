@@ -20,12 +20,10 @@ post_process_modify_font_info <- function(x,
   # Set font size ----
   start_ind <- grep("\\\\documentclass\\[?", x)
   if(!length(start_ind)){
-    stop("\\documentclass not found in the preamble LaTex code",
-         call. = FALSE)
+    stop("\\documentclass not found in the preamble LaTex code")
   }
   if(length(start_ind) > 1){
-    stop("\\documentclass found more than once in the preamble LaTex code",
-         call. = FALSE)
+    stop("\\documentclass found more than once in the preamble LaTex code")
   }
 
   # \documentclass code will always look like this coming from Pandoc:
@@ -44,12 +42,10 @@ post_process_modify_font_info <- function(x,
   if(!length(end_ind)){
     stop("Could not find `]{article}` in the LaTeX code produced by Pandoc ",
          "Make sure this regular expression is still correct in the case ",
-         "Pandoc writes its documentclass outpu differently in new realeases",
-         call. = FALSE)
+         "Pandoc writes its documentclass outpu differently in new realeases")
   }
   if(length(end_ind) > 1){
-    stop("Found `]{article}` in the LaTeX code produced by Pandoc ",
-         call. = FALSE)
+    stop("Found `]{article}` in the LaTeX code produced by Pandoc ")
   }
 
   pre <- x[1:start_ind]
@@ -64,15 +60,13 @@ post_process_modify_font_info <- function(x,
   if(!length(mainfont_ind)){
     stop("\\setmainfont{IBM Plex Serif} not found in the preamble LaTeX ",
          "code. This must be present as the default font in the preamble ",
-         "or the font selection in the YAML will have no effect",
-         call. = FALSE)
+         "or the font selection in the YAML will have no effect")
   }
   if(length(mainfont_ind) > 1){
     stop("\\setmainfont{IBM Plex Serif} found more then once in the ",
          "preamble LaTeX code. This must be present only once as the ",
          "default font in the preamble or the font selection in the YAML ",
-         "will have no effect",
-         call. = FALSE)
+         "will have no effect")
   }
   font <- tolower(font)
   pre <- x[1:(mainfont_ind - 1)]
@@ -109,12 +103,10 @@ post_process_modify_font_info <- function(x,
   }else if(font == "qtpalatine"){
     new_font_dat <- "\\setmainfont{QTPalatine}"
   }else{
-    stop("Font not available (not coded into post-processor): `", font, "`",
-         call. = FALSE)
+    stop("Font not available (not coded into post-processor): `", font, "`")
   }
 
   x <- c(pre, new_font_dat, post)
 
   x
-
 }

@@ -13,14 +13,12 @@ post_process_beamer_insert_disclaimer <- function(x, ...){
 
   if(!length(ind)){
     stop("The \\usebeamerfont{subtitle} tag was not found. It must be present ",
-         " to insert the disclaimer on the title page",
-         call. = FALSE)
+         " to insert the disclaimer on the title page")
   }
   if(length(ind) > 1){
     stop("The \\usebeamerfont{subtitle} tag was found more than once in the ",
          "document. It must appear only once to insert the disclaimer on ",
-         "the title page",
-         call. = FALSE)
+         "the title page")
   }
 
   pre <- x[1:(ind - 1)]

@@ -74,8 +74,7 @@ plot_selex_posteriors <- function(
   if(!is.null(age_range)){
     if(!all(age_range[1]:age_range[2] %in% ages)){
       stop("`age_range` is out of range of the data. You must choose values ",
-           "between ", min(ages), " and ", max(ages),
-           call. = FALSE)
+           "between ", min(ages), " and ", max(ages))
     }
     sel <- sel |>
       filter(age %in% age_range[1]:age_range[2])

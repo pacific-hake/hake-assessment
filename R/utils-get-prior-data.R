@@ -44,8 +44,7 @@ get_prior_data <- function(model,
     parind <- grep(pat, params$label)
     if(length(parind) > 1){
       stop("get_prior_data(): The regular expression ", pat, " matched more than one (",
-           length(parind), ") parameter names",
-           call. = FALSE)
+           length(parind), ") parameter names")
     }
     if(length(parind) < 1){
       message("get_prior_data(): The regular expression ", pat, " did not ",

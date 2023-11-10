@@ -11,8 +11,7 @@ post_process_remove_title_page_number <- function(x, ...){
 
   if(!length(title_ind)){
     stop("`\\maketitle` not found. You must be using the `\\maketitle` ",
-         "method to produce the title page for this document",
-         call. = FALSE)
+         "method to produce the title page for this document")
   }
 
   pre <- x[1:(title_ind)]

@@ -21,8 +21,7 @@ post_process_fix_landscape_issues <- function(x,
            "of KOMA portrait chunks. This means that the landscape page ",
            "algorithm broke and you need to fix it. See ",
            "post_process_landscape_tables() and ",
-           "post_process_landscape_figures()",
-           call. = FALSE)
+           "post_process_landscape_figures()")
     }
     lst <- post_process_extract_chunks(x, la, po + 2)
     # Each `between` chunk of `lst` is a full landscape table or figure

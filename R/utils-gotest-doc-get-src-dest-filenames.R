@@ -31,8 +31,7 @@ gotest_doc_get_src_dest_filenames <- function(bookdown_lst = NULL,
          "do not exist in the current directory. The file(s) that do ",
          "not exists are:\n\n",
          paste(raw_fns[!fns_exists], collapse = "\n"),
-         "\n\nCheck the `gotest_doc()` function",
-         call. = FALSE)
+         "\n\nCheck the `gotest_doc()` function")
   }
 
   # Add the main figures (prebuilt figures and logos in files)

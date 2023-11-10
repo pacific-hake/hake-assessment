@@ -13,7 +13,7 @@ vec2df <- function(vec, nms = NULL){
 
   if(!is.null(nms) && length(vec) != length(nms)){
     stop("The number of names supplied does not match the number ",
-         "of elements in `vec`", call. = FALSE)
+         "of elements in `vec`")
     names(df) <- nms
   }
 

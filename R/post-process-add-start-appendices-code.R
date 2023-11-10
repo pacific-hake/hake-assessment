@@ -33,8 +33,7 @@ post_process_add_start_appendices_code <- function(x, ..){
   if(length(ind) > 1){
     stop("You have more than one start appendices tag in your code. ",
          "Search for `APPENDICES START HERE` and make sure there is ",
-         "only one",
-         call. = FALSE)
+         "only one")
   }
 
   pre <- x[1:(ind - 1)]

@@ -18,8 +18,7 @@ load_extra_mcmc_repfiles <- function(dr,
                                      first = NULL){
 
   if(!dir.exists(dr)){
-    stop("The directory `", dr, "` does not exist",
-         call. = FALSE)
+    stop("The directory `", dr, "` does not exist")
   }
   if(substring(file_pat, 1, 1) != "/"){
     # If this isn't done, any paths that match the expression will remain

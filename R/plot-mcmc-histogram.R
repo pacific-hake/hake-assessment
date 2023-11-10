@@ -73,8 +73,7 @@ plot_mcmc_histogram <- function(d,
                                 ...){
 
   if(!col_nm %in% names(d)){
-    stop("Column `", col_nm, "` is not present in the data frame provided",
-         call. = FALSE)
+    stop("Column `", col_nm, "` is not present in the data frame provided")
   }
 
   col_sym <- sym(col_nm)
@@ -271,8 +270,7 @@ plot_mcmc_histogram <- function(d,
     wch_less <- which(gr$xmin < ro_val / scale_effn)
     wch_more <- which(gr$xmin >= ro_val / scale_effn)
     if(tail(wch_less, 1) + 1 != head(wch_more, 1)){
-      stop("The R0 value does not seem to fit into a bin on the histogram",
-           call. = FALSE)
+      stop("The R0 value does not seem to fit into a bin on the histogram")
     }
     ro_xmin <- gr |>
       slice(tail(wch_less, 1)) |>

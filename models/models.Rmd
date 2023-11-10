@@ -25,12 +25,10 @@ dest_dir <- ifelse(computer_name == "hake-precision",
                    "/srv/hake/models",
                    src_dir)
 if(!dir.exists(dest_dir)){
-  stop("Directory `", dest_dir,"` does not exist. Bailing out",
-       call. = FALSE)
+  stop("Directory `", dest_dir,"` does not exist. Bailing out")
 }
 if(!dir.exists(src_dir)){
-  stop("Directory `", src_dir,"` does not exist. Bailing out",
-       call. = FALSE)
+  stop("Directory `", src_dir,"` does not exist. Bailing out")
 }
 if(src_dir != dest_dir){
   # Check that the directories in the documentation source are all found in
@@ -42,19 +40,16 @@ if(src_dir != dest_dir){
                            recursive = TRUE,
                            full.names = FALSE)
   if(!length(drs_dest_dir)){
-    stop("Directory `", dest_dir, "` does not contain any directories",
-         call. = FALSE)
+    stop("Directory `", dest_dir, "` does not contain any directories")
   }
   if(!length(drs_src_dir)){
-    stop("Directory `", src_dir, "` does not contain any directories",
-         call. = FALSE)
+    stop("Directory `", src_dir, "` does not contain any directories")
   }
   in_dest_dir <- drs_src_dir %in% drs_dest_dir
   if(!all(in_dest_dir)){
     stop("Not all the model documentation directories are in the ",
          "destination directory. Missing directories are:\n",
-         paste(drs_src_dir[!in_dest_dir], collapse = "\n"),
-         call. = FALSE)
+         paste(drs_src_dir[!in_dest_dir], collapse = "\n"))
   }
 }
 
@@ -136,8 +131,7 @@ walk2(drs_src_dir, drs_dest_dir, ~{
       if(copied){
         message("File `", .x, "` copied to `", .y, "`")
       }else{
-        stop("File `", .x, "` was not copied to `", .y, "`",
-             call. = FALSE)
+        stop("File `", .x, "` was not copied to `", .y, "`")
       }
   }
 })

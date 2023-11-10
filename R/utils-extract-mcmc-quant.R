@@ -25,8 +25,7 @@ extract_mcmc_quant <- function(model_lst,
 
   if(length(end_yrs) != length(model_lst)){
     stop("Length of `end_yrs` does not equal the length ",
-         "of `model_lst`",
-         call. = FALSE)
+         "of `model_lst`")
   }
 
   out <- map2(model_lst, end_yrs, ~{

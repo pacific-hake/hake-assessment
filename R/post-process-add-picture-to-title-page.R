@@ -23,20 +23,17 @@ post_process_add_picture_to_title_page <- function(x,
   title_page_image_width_cm <- title_page_image_width_cm %||% 12
 
   if(!file.exists(title_page_image)){
-    stop("The file `", title_page_image, "` does not exist",
-         call. = FALSE)
+    stop("The file `", title_page_image, "` does not exist")
   }
 
   ind <- grep("PREAMBLE EOF", x)
   if(!length(ind)){
     stop("The `PREAMBLE EOF` tag was not found in the preamble LaTeX code. ",
-         "Insert it and run again",
-         call. = FALSE)
+         "Insert it and run again")
   }
   if(length(ind) > 1){
     stop("The `PREAMBLE EOF` tag was found more than once in the preamble ",
-         "LaTeX code.",
-         call. = FALSE)
+         "LaTeX code.")
   }
   pre <- x[1:(ind - 1)]
   post <- x[(ind + 1):length(x)]

@@ -40,13 +40,11 @@ post_process_add_headers_footers <- function(x,
 
   left_ind <- grep("fancyfoot\\[L\\]\\{\\}", x)
   if(!length(left_ind)){
-    stop("`\\fancyfoot[L]{}` not found in the preamble.tex code",
-         call. = FALSE)
+    stop("`\\fancyfoot[L]{}` not found in the preamble.tex code")
   }
   right_ind <- grep("fancyfoot\\[R\\]\\{\\}", x)
   if(!length(right_ind)){
-    stop("`\\fancyfoot[R]{}` not found in the preamble.tex code",
-         call. = FALSE)
+    stop("`\\fancyfoot[R]{}` not found in the preamble.tex code")
   }
 
   x[left_ind] <- paste0("\\fancyfoot[L]{", footer_left, "}")
@@ -56,8 +54,7 @@ post_process_add_headers_footers <- function(x,
   ind <- grep("INSERT headrule and footrule here", x)
   if(!length(ind)){
     stop("'INSERT headrule and footrule here' not found in the preamble. ",
-         "It should be just after the fancyhead and fancyfoot definitions",
-         call. = FALSE)
+         "It should be just after the fancyhead and fancyfoot definitions")
   }
   pre <- x[1:ind]
   post <- x[(ind + 1):length(x)]

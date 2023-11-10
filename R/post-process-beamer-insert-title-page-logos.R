@@ -32,14 +32,12 @@ post_process_beamer_insert_title_page_logos <- function(
 
   if(!length(ind)){
     stop("The \\usepackage{pgfpages} tag was not found. It must be present ",
-         " to insert the custom beamer title page",
-         call. = FALSE)
+         " to insert the custom beamer title page")
   }
   if(length(ind) > 1){
     stop("The \\usepackage{pgfpages} tag was found more than once in the ",
          "document. It must appear only once to insert the custom beamer ",
-         "title page",
-         call. = FALSE)
+         "title page")
   }
 
   # If NULL, set default values

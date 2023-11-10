@@ -45,12 +45,10 @@ post_process_modify_link_colors <- function(
   start_ind <- grep("\\\\hypersetup", x)
   if(!length(start_ind)){
     stop("\\hypersetup not found in the LaTeX code. This should have been ",
-         "injected by Pandoc so this is a more serious error",
-         call. = FALSE)
+         "injected by Pandoc so this is a more serious error")
     }
   if(length(start_ind) > 1){
-    stop("\\hypersetup was found more than once in the LaTeX code",
-         call. = FALSE)
+    stop("\\hypersetup was found more than once in the LaTeX code")
   }
   # Find all lines that encompass the \hypersetup command by brace matching
   # Look for closing brace, keeping a count of open ones
@@ -60,8 +58,7 @@ post_process_modify_link_colors <- function(
   repeat{
     if(end_ind == length(x)){
       stop("Could not find matching end curly brace for the ",
-           "\\hypersetup call",
-           call. = FALSE)
+           "\\hypersetup call")
     }
     if(!ob_count){
       break

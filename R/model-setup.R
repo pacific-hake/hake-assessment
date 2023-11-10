@@ -100,8 +100,7 @@ model_setup <- function(drs = NA,
                         ...){
 
   if(is.null(drs[1]) || is.na(drs[1])){
-    stop("`drs` is `NULL` or `NA`. Set drs to the output of `set_dirs()`",
-         call. = FALSE)
+    stop("`drs` is `NULL` or `NA`. Set drs to the output of `set_dirs()`")
   }
 
   # Set `NULL` descriptions to defaults where possible (directories exist)
@@ -178,8 +177,7 @@ model_setup <- function(drs = NA,
         fn <- file.path(path, paste0(basename(path), ".rds"))
         if(!file.exists(fn)){
           stop("RDS file `", fn, "` does not exist. Create it using ",
-               "the `create_rds_file()` function",
-               call. = FALSE)
+               "the `create_rds_file()` function")
         }})
 
       # Load the models in from the RDS files

@@ -28,8 +28,7 @@ load_extra_mcmc_get_chunk <- function(lst,
   if(length(headmark_ind) > 1){
     warning("More than one match in the input for the regular expression `",
             beg_pat, "`. Using the first one. You should fix the regular ",
-            "expression so that only the line you want matches",
-         call. = FALSE)
+            "expression so that only the line you want matches")
     headmark_ind <- headmark_ind[1]
   }
 
@@ -42,8 +41,7 @@ load_extra_mcmc_get_chunk <- function(lst,
   if(length(tailmark_ind) > 1){
     warning("More than one match in the input for the regular expression `",
             end_pat, "`. Using the first one. You should fix the regular ",
-            "expression so that only the line you want matches",
-            call. = FALSE)
+            "expression so that only the line you want matches")
     tailmark_ind <- tailmark_ind[1]
   }
   if(tailmark_ind < headmark_ind){

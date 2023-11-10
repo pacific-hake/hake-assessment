@@ -25,8 +25,7 @@ gotest <- function(config_fn = "_bookdown.yml",
   knitr_figures_dir <- knitr_figures_dir %||% "knitr-figs"
 
   if(!file.exists(config_fn)){
-    stop("The `bookdown` config file `", config_fn, "` does not exist",
-         call. = FALSE)
+    stop("The `bookdown` config file `", config_fn, "` does not exist")
   }
 
   curr_dir <- getwd()
@@ -44,8 +43,7 @@ gotest <- function(config_fn = "_bookdown.yml",
          "`bookdown` config file (`", config_fn, "`) as it is used to ",
          "determine which type of project you are wanting to test. ",
          "e.g. the main assessment document or one of the beamer ",
-         "presentations ",
-         call. = FALSE)
+         "presentations ")
   }
   # Set global directory name to return back to with `goback()`
   goback_dr <<- curr_dir
@@ -56,8 +54,7 @@ gotest <- function(config_fn = "_bookdown.yml",
   bookdown_lst <- read_bookdown_file(config_fn)
   index_fn <- bookdown_lst$rmd_fns[1]
   if(!file.exists(index_fn)){
-    stop("The `bookdown` index file `", index_fn, "` does not exist",
-         call. = FALSE)
+    stop("The `bookdown` index file `", index_fn, "` does not exist")
   }
   type <- get_doc_type(index_fn)
 
@@ -66,8 +63,7 @@ gotest <- function(config_fn = "_bookdown.yml",
   }else if(type == "beamer"){
     fns_lst <- gotest_beamer_get_src_dest_filenames(bookdown_lst)
   }else{
-    stop("Document type `type` not implemented yet",
-         call. = FALSE)
+    stop("Document type `type` not implemented yet")
   }
   src_fns <- fns_lst$src_fns
   dest_fns <- fns_lst$dest_fns
@@ -127,8 +123,7 @@ gotest <- function(config_fn = "_bookdown.yml",
   knitr_figures_dir <- grep("knitr_figures_dir:", launcher, value = TRUE)
   if(!length(knitr_figures_dir)){
     stop("`knitr_figures_dir:` not found in file ",
-         "`", index_fn, "`",
-         call. = FALSE)
+         "`", index_fn, "`")
   }
   knitr_figures_dir <- gsub('\\"',
                             "",
@@ -144,14 +139,13 @@ gotest <- function(config_fn = "_bookdown.yml",
   ind <- grep("test:", launcher)
   if(!length(ind)){
     stop("Could not find `test:` in the `000-launcher.rmd` file., It must ",
-         "be in the `hake_beamer:` or `hake_pdf:` section of YAML in that file",
-         call. = FALSE)
+         "be in the `hake_beamer:` or `hake_pdf:` section of YAML in ",
+         "that file")
   }
   if(length(ind) > 1){
     stop("`test:` occurs more than once in the `000-launcher.rmd` file., ",
          "It must only occur in the `hake_beamer:` or `hake_pdf:` section ",
-         "of YAML in that file",
-         call. = FALSE)
+         "of YAML in that file")
   }
   val <- launcher[ind]
   # Capture leading spaces

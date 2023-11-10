@@ -14,8 +14,7 @@ load_ss_files <- function(model_path = NA,
                           ...){
 
   if(!dir.exists(model_path)){
-    stop("Directory `", model_path, "` does not exist",
-         call. = FALSE)
+    stop("Directory `", model_path, "` does not exist")
   }
 
   # Load MPD results
@@ -42,20 +41,17 @@ load_ss_files <- function(model_path = NA,
   ctl_fn_ind <- grep(control_fn, model_path_listing)
   par_fn_ind <- grep(par_fn, model_path_listing)
   if(!length(dat_fn_ind)){
-    stop("The data file `", file.path(model_path, data_fn), "` is missing",
-         call. = FALSE)
+    stop("The data file `", file.path(model_path, data_fn), "` is missing")
   }
   if(!length(ctl_fn_ind)){
     stop("The control file `", file.path(model_path, control_fn),
-         "` is missing",
-         call. = FALSE)
+         "` is missing")
 
   }
   if(length(ctl_fn_ind) > 1){
     stop("Error in model ", model_path, ", there is more than one control ",
          "file. A control file is any file with a name ending in ",
-         "`_control.ss`",
-         call. = FALSE)
+         "`_control.ss`")
   }
   model$path <- model_path
   model$dat_file <- file.path(model_path, data_fn)

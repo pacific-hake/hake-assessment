@@ -40,24 +40,20 @@ table_decision_original <- function(
     ...){
 
   if(length(rows_to_label) != length(row_labels)){
-    stop("rows_to_label vector must be the same length as row_labels list",
-         call. = FALSE)
+    stop("rows_to_label vector must be the same length as row_labels list")
   }
 
   if(!all(rows_to_label %in% letters)){
     stop("All characters in rows_to_label must be a single letter ",
-         "of the alphabet",
-         call. = FALSE)
+         "of the alphabet")
   }
 
   if(type != "biomass" & type != "spr"){
-    stop("type `", type, "` is not implemented",
-         call. = FALSE)
+    stop("type `", type, "` is not implemented")
   }
   if(any(forecast_inds > length(model$forecasts[[length(model$forecasts)]]))){
     stop("forecast_inds contains values greater than the length of the ",
-         "forecast catch levels list",
-         call. = FALSE)
+         "forecast catch levels list")
   }
 
   forecast <- model$forecasts[[length(model$forecasts)]][forecast_inds]
@@ -275,8 +271,7 @@ table_decision_original <- function(
       ind <- grep(paste0("^", .x, ":"), forecast_tab$labels)
     })
     if(!length(root_rows)){
-      stop("None of the rows you selected exist in the decision table",
-           call. = FALSE)
+      stop("None of the rows you selected exist in the decision table")
     }
     remove_inds <- (length(forecast_yrs) - 1):length(forecast_yrs)
     rows <- map(seq_along(forecast_yrs)[-remove_inds], ~{

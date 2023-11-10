@@ -44,13 +44,11 @@ post_process_table_of_contents <- function(
   toc_ind <- grep(toc_indicator_line, x)
   if(!length(toc_ind)){
     stop("The Table of contents tag was not found. It must be present ",
-         " and is:\n", toc_indicator_line,
-         call. = FALSE)
+         " and is:\n", toc_indicator_line)
   }
   if(length(toc_ind) > 1){
     stop("The Table of contents tag was found more than once in the ",
-         "document. It must appear only once. It is:\n", toc_indicator_line,
-         call. = FALSE)
+         "document. It must appear only once. It is:\n", toc_indicator_line)
   }
 
   x <- c(x[1:(toc_ind - 1)],
@@ -87,14 +85,12 @@ post_process_table_of_contents <- function(
   tocloft_ind <- grep("\\\\usepackage\\{tocloft\\}", x)
   if(!length(tocloft_ind)){
     stop("The line \\usepackage{tocloft} was not found in the ",
-         "document LaTeX. It needs to be present in the `preamble.tex` file",
-         call. = FALSE)
+         "document LaTeX. It needs to be present in the `preamble.tex` file")
   }
   tocdepth_ind <- grep("\\\\setcounter\\{tocdepth\\}", x)
   if(!length(tocdepth_ind)){
     stop("The line \\setcounter{tocdepth}{x} was not found in the ",
-         "document LaTeX. It needs to be present in the `preamble.tex` file",
-         call. = FALSE)
+         "document LaTeX. It needs to be present in the `preamble.tex` file")
   }
   x[tocdepth_ind] <- paste0("\\setcounter{tocdepth}{", toc_depth, "}")
 

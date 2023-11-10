@@ -55,8 +55,7 @@ plot_rel_biomass <- function(
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
       stop("Either `d_obj` or both `model_lst` and `model_names` ",
-           "must be supplied. Neither data source has been supplied",
-           call. = FALSE)
+           "must be supplied. Neither data source has been supplied")
     }
     d_obj <- create_group_df_biomass(model_lst,
                                      model_names,

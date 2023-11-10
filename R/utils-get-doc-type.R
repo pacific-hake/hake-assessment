@@ -10,26 +10,22 @@ get_doc_type <- function(fn){
   ind_output <- grep("output:", x)
   if(!length(ind_output)){
     stop("You must have a line containing `output:` in your index RMD file ",
-         "(", bookdown_lst$rmd_fns[1], ")",
-         call. = FALSE)
+         "(", bookdown_lst$rmd_fns[1], ")")
   }
   if(length(ind_output) > 1){
     stop("There is more than one line containing `output:` in your index ",
-         "RMD file (", bookdown_lst$rmd_fns[1], ")",
-         call. = FALSE)
+         "RMD file (", bookdown_lst$rmd_fns[1], ")")
   }
 
   ind_type <- grep("hake_(pdf|beamer):", x)
   if(!length(ind_type)){
     stop("You must have a line containing `output:` in your index RMD file ",
          "(", bookdown_lst$rmd_fns[1], ") followed by a line containing ",
-         "the document type (either `hake_pdf:` or `hake_beamer):`",
-         call. = FALSE)
+         "the document type (either `hake_pdf:` or `hake_beamer):`")
   }
   if(!length(ind_type)){
     stop("There is more than one line containing the document type ",
-         "(either `hake_pdf:` or `hake_beamer)",
-         call. = FALSE)
+         "(either `hake_pdf:` or `hake_beamer)")
   }
 
   type <- x[ind_type]

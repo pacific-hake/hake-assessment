@@ -50,8 +50,7 @@ plot_survey_index_fits <- function(
   if(is.null(d_obj)){
     if(is.null(model_lst[1] || is.null(model_names[1]))){
       stop("Either `d_obj` or both `model_lst` and `model_names` ",
-           "must be supplied. Both are `NULL`",
-           call. = FALSE)
+           "must be supplied. Both are `NULL`")
     }
     d_obj <- create_group_df_index(model_lst, model_names, survey_type)
   }

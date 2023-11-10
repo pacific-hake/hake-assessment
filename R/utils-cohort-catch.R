@@ -13,16 +13,13 @@ cohort_catch <- function(model,
                          trim_end_year = NA) {
 
   if(!model$extra_mcmc_exists){
-    stop("The model does not have extra mcmc information",
-         call. = FALSE)
+    stop("The model does not have extra mcmc information")
   }
   if(missing("cohort")){
-    stop("No `cohort` supplied",
-         call. = FALSE)
+    stop("No `cohort` supplied")
   }
   if(length(cohort) > 1){
-    stop("Only one `cohort` can be calculated at a time",
-         call. = FALSE)
+    stop("Only one `cohort` can be calculated at a time")
   }
 
   catage <- model$extra_mcmc$catage_med

@@ -31,7 +31,7 @@ number_to_word <- function(x = NA, th = FALSE, cap_first = FALSE){
                                       Recall(makeNumber(digits[2:1]))))
     else {
       nSuffix <- ((nDigits + 2) %/% 3) - 1
-      if (nSuffix > length(suffixes)) stop(paste(x, "is too large!"), call. = FALSE)
+      if (nSuffix > length(suffixes)) stop(paste(x, "is too large!"))
       trim(paste(Recall(makeNumber(digits[
         nDigits:(3 * nSuffix + 1)])),
         suffixes[nSuffix],"," ,

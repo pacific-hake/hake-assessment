@@ -13,14 +13,12 @@ post_process_set_latex_placement_options <- function(x, ...){
   doc_dr <- here("doc")
   if(!dir.exists(doc_dr)){
     stop("The `doc` directory which contains the file `", settings_fn, " ",
-         "does not exist",
-         call. = FALSE)
+         "does not exist")
   }
   settings_fn <- here("doc", settings_fn)
   if(!file.exists(settings_fn)){
     stop("The figure/table placement CSV file does not exist. This file ",
-         "should be here:\n", settings_fn,
-         call. = FALSE)
+         "should be here:\n", settings_fn)
   }
 
   settings_df <- read_csv(settings_fn,

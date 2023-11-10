@@ -87,8 +87,7 @@ run_retrospectives <- function(model_path,
       if(any(chk < 1)){
         stop("The retrospective, ",
              basename(retro_subdir),
-             ", has time-varying selectivity outside the data years.",
-             call. = FALSE)
+             ", has time-varying selectivity outside the data years.")
       }
     }
     SS_writectl(ctl,

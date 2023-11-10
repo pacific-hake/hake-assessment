@@ -26,8 +26,7 @@ goback <- function(){
          "this to the directory name you want to go back to, then ",
          "run goback() again. In future, make sure you enter a temporary ",
          "directory for testing using the `hake::gotest()` function, which ",
-         "automatically sets `goback_dr` for you",
-         call. = FALSE)
+         "automatically sets `goback_dr` for you")
   }
 
   setwd(goback_dr)

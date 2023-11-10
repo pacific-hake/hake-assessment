@@ -16,14 +16,12 @@ post_process_add_counters <- function(x,
   ind <- grep(pat, x)
   if(!length(ind)){
    warning("Could not find the Executive summary right footer line to insert ",
-        "the letter numbering information for tables and figures",
-        call. = FALSE)
+        "the letter numbering information for tables and figures")
     return(x)
   }
   if(length(ind) > 1){
     stop("Multiple lines matched the Executive summary right footer regular ",
-         "expression `", pat, "`",
-         call. = FALSE)
+         "expression `", pat, "`")
   }
 
   lst <- post_process_extract_chunks(x, ind, ind)
@@ -41,13 +39,11 @@ post_process_add_counters <- function(x,
   if(!length(ind)){
     stop("Could not find the `EXECUTIVE SUMMARY EOF` marker which is used ",
          "to insert the numbering information for tables and figures for ",
-         "the non-Executive Summary part of the document",
-         call. = FALSE)
+         "the non-Executive Summary part of the document")
   }
   if(length(ind) > 1){
     stop("Multiple lines matched the `EXECUTIVE SUMMARY EOF` regular ",
-         "expression `", pat, "`",
-         call. = FALSE)
+         "expression `", pat, "`")
   }
 
   lst <- post_process_extract_chunks(x, ind, ind)

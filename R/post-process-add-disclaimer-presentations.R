@@ -11,13 +11,11 @@ post_process_add_disclaimer_presentations <- function(x, ...){
   ind <- grep("\\\\date", x)
   if(!length(ind)){
     stop("The \\date line was not found. It must be present to add the ",
-         "disclaimer to the title page",
-         call. = FALSE)
+         "disclaimer to the title page")
   }
   if(length(ind) > 1){
     stop("The \\date line was found more than once. It must be present only ",
-         "once to add the disclaimer to the title page",
-         call. = FALSE)
+         "once to add the disclaimer to the title page")
   }
   pre <- x[1:ind]
   post <- x[(ind + 1):length(x)]

@@ -11,8 +11,7 @@
 fix_posteriors <- function(fn){
 
   if(!file.exists(fn)){
-    stop("File `", fn, " does not exist",
-         call. = FALSE)
+    stop("File `", fn, " does not exist")
   }
   posts <- read.table(fn,
                       header = TRUE,

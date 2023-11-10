@@ -15,8 +15,7 @@ load_extra_mcmc_naa <- function(reps,
   natage_header_ind <- grep(pat, rep_example)
   if(!length(natage_header_ind)){
     stop("Could not find a line in the report file matching the regular ",
-         "expression `", pat, "`",
-         call. = FALSE)
+         "expression `", pat, "`")
   }
   natage_header_ind <- natage_header_ind[1]
   natage_header_ind <- natage_header_ind + 1
@@ -25,13 +24,11 @@ load_extra_mcmc_naa <- function(reps,
   natage_end_ind <- grep("^BIOMASS_AT_AGE", rep_example)
   if(!length(natage_end_ind)){
     stop("Could not find a line in the report file matching the regular ",
-         "expression `", pat, "`",
-         call. = FALSE)
+         "expression `", pat, "`")
   }
   if(length(natage_end_ind) > 1){
     stop("There is more than 1 matching line for the regular expression `",
-         pat, "`",
-         call. = FALSE)
+         pat, "`")
   }
   natage_end_ind <- natage_end_ind - 2
   reps_natage <- map(reps, ~{.x[natage_start_ind:natage_end_ind]})

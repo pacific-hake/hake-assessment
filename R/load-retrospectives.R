@@ -23,8 +23,7 @@ load_retrospectives <- function(model,
   num_fns_match <- length(grep(pat, fns))
   if(!num_fns_match){
     stop("There were no subdirectories in the `", retro_path, "` directory ",
-         "that matched the pattern ", pat,
-         call. = FALSE)
+         "that matched the pattern ", pat)
   }
   retro_yrs <- sort(as.numeric(gsub(pat, "\\1", fns)))
 

@@ -32,8 +32,7 @@ load_extra_mcmc_m <- function(reps,
     col <- "NatM_p_1_Fem_GP_1"
     if(!col %in% names(d)){
       stop("Neither `NatM_uniform_Fem_GP_1` nor `NatM_p_1_Fem_GP_1` were ",
-           "found in the output data for Natural mortality",
-           call. = FALSE)
+           "found in the output data for Natural mortality")
     }
   }
 

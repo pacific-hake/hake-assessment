@@ -35,7 +35,6 @@ fix_title_case_for_csl <- function(
   if(file.exists(out_fn)){
     message("File `", out_fn,"` was created")
   }else{
-    stop("File `", out_fn,"` was not created",
-         call. = FALSE)
+    stop("File `", out_fn,"` was not created")
   }
 }

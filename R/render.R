@@ -15,29 +15,25 @@ render <- function(input = "000-launcher.rmd",
                    ...){
 
   if(!file.exists(input)){
-    stop("`render()`: The input file `", input, "` does not exist",
-         call. = FALSE)
+    stop("`render()`: The input file `", input, "` does not exist")
   }
 
   x <- readLines(input)
   test_line <- grep("test:", x, value = TRUE)
   if(!length(test_line)){
     stop("`render()`: The YAML line containing tag `test:` was not found ",
-         "in the input file `", input, "`",
-         call. = FALSE)
+         "in the input file `", input, "`")
   }
   if(length(test_line) > 1){
     stop("`render()`: The YAML line containing tag `test:` was found ",
-         "more than once in the input file `", input, "`",
-         call. = FALSE)
+         "more than once in the input file `", input, "`")
   }
 
   test <- gsub(".*test:\\s*(true|false).*", "\\1", test_line)
   if(!test %in% c("true", "false")){
    stop("`render()`: The YAML line containing tag `test:` in the ",
         "input file `", input, "` had a value other than `true` or ",
-        "`false`",
-        call. = FALSE)
+        "`false`")
   }
   test <- as.logical(test)
   if(test){

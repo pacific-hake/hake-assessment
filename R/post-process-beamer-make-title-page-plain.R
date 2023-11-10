@@ -12,21 +12,18 @@ post_process_beamer_make_title_page_plain <- function(x,...){
 
   if(!length(ind)){
     stop("The \\titlepage tag was not found. It must be present to remove ",
-         "the theme shadow and navigation bar from the title page",
-         call. = FALSE)
+         "the theme shadow and navigation bar from the title page")
   }
   if(length(ind) > 1){
     stop("The \\titlepage tag was found more than once in the ",
          "document. It must appear only once to to remove the theme shadow ",
-         "and navigation bar from the title page",
-         call. = FALSE)
+         "and navigation bar from the title page")
   }
 
   ind_next_begin_frame <- ind + 1
   repeat{
     if(length(ind_next_begin_frame) == length(x)){
-      stop("There was no \\begin{frame} following the \\titlepage command",
-           call. = FALSE)
+      stop("There was no \\begin{frame} following the \\titlepage command")
     }
     is_begin_frame <- length(grep("^\\\\begin\\{frame\\}$",
                                   x[ind_next_begin_frame]))

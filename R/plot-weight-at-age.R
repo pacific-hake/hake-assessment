@@ -51,8 +51,7 @@ plot_weight_at_age <- function(wa,
   age_inds <- grep("^\\d+$", names(wa))
   if(!length(age_inds)){
     stop("There were no age columns found in the data frame `wa`. Age ",
-         "column names are numeric values of one or more digits only",
-         call. = FALSE)
+         "column names are numeric values of one or more digits only")
   }
 
   if(is.null(ages[1])){
@@ -77,8 +76,7 @@ plot_weight_at_age <- function(wa,
   if(!is.null(bold_ages)){
     if(!all(bold_ages %in% ages)){
       stop("Not all of the selected ages to be bolded (`bol_ages`) are ",
-           "in the ages to be plotted",
-           call. = FALSE)
+           "in the ages to be plotted")
     }
     w <- w |>
       mutate(isbold = ifelse(age %in% bold_ages, TRUE, FALSE))

@@ -13,14 +13,12 @@ post_process_beamer_add_extra_headers_etc <- function(x, ...){
 
   if(!length(ind)){
     stop("`\\ifLuaTex` not found. It is needed to inject all the header ",
-         "calls so the tables work properly and so page numbers show up",
-         call. = FALSE)
+         "calls so the tables work properly and so page numbers show up")
   }
   if(length(ind) > 1){
     stop("`\\ifLuaTex` found more than once. It must be present once only ",
          "to inject all the header calls so the tables work properly and ",
-         "so page numbers show up",
-         call. = FALSE)
+         "so page numbers show up")
   }
 
   pre <- x[1:(ind - 1)]

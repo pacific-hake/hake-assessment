@@ -68,8 +68,7 @@ plot_age_comp_fit <- function(model,
       col_lengths[i] <- col_lengths[i] + 1
     }
     if(sum(col_lengths) != length(yr_vec)){
-      stop("Sanity check failed, column algorithm error",
-           call. = FALSE)
+      stop("Sanity check failed, column algorithm error")
     }
   }else{
     col_lengths <- rep(length(yr_vec) / n_col, n_col)

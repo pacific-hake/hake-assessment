@@ -32,15 +32,12 @@ create_rds_file <- function(model_dir = NULL,
     model_dir <- gsub("\\/+$", "", model_dir)
   }
   if(!dir.exists(model_dir)){
-    stop("`create_rds_file()`: Model directory `", model_dir,
-         "` does not exist",
-         call. = FALSE)
+    stop("Model directory `", model_dir, "` does not exist")
   }
 
   if(is.null(ct_levels_lst$ct_levels)){
-    stop("`create_rds_file()`: `ct_levels_lst` is `NULL` but requires a ",
-         "value. Use `hake::set_ct_levels()` to generate this properly",
-         call. = FALSE)
+    stop("`ct_levels_lst` is `NULL` but requires a  value. Use ",
+         "`set_ct_levels()` to generate this properly")
   }
   # The RDS file will have the same name as the directory it is in
   rds_file <- file.path(model_dir, paste0(basename(model_dir), ".rds"))
@@ -153,8 +150,7 @@ create_rds_file <- function(model_dir = NULL,
     message("RDS file `", rds_file, "` was created ",
             f(dt[[1]], 2), " ", units(dt), " ago\n\n")
   }else{
-    stop("File was not created during the `saveRDS()` call",
-         call. = FALSE)
+    stop("File was not created during the `saveRDS()` call")
   }
 
   invisible()

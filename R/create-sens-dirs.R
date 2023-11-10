@@ -41,8 +41,7 @@ create_sens_dirs <- function(dir_version,
     fns <- list.files(sens_dir, all.files = TRUE, recursive = TRUE, no.. = TRUE, include.dirs = TRUE)
     if(length(fns)){
       stop("\nDirectory `", sens_dir, "` exists and contains files and/or directories. ",
-           "Delete these or the whole directory and try again\n",
-           call. = FALSE)
+           "Delete these or the whole directory and try again\n")
     }
   }
   dir.create(sens_dir)

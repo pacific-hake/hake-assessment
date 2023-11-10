@@ -63,8 +63,7 @@ plot_pairs <- function(model,
   }else if(type == "devs"){
     ro_ind <- grep("R\\[0", map_chr(key_posteriors_titles, ~.x))
     if(!length(ro_ind)){
-      stop("Counld not find the R0 parameter in the list of key parameters",
-           call. = FALSE)
+      stop("Counld not find the R0 parameter in the list of key parameters")
     }
     select_vec <- key_posteriors[ro_ind]
     labels_vec <- key_posteriors_titles[ro_ind]

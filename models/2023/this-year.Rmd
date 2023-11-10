@@ -84,8 +84,7 @@ walk2(drs_src_dir, drs_dest_dir, ~{
       }else{
         stop("File:\n`",
              .x, "/this-version.html`\nwas not copied to:\n`",
-             .y, "/this-version.html`",
-             call. = FALSE)
+             .y, "/this-version.html`")
       }
   }
 })

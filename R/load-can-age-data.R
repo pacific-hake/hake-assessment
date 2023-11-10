@@ -8,8 +8,7 @@
 load_can_age_data <- function(fn){
 
   if(!file.exists(fn)){
-    stop("File `", fn, "` does not exist",
-         call. = FALSE)
+    stop("File `", fn, "` does not exist")
   }
 
   dat <- readLines(fn)

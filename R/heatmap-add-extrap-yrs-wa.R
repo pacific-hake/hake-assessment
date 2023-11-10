@@ -83,8 +83,7 @@ heatmap_add_extrap_yrs_wa <- function(
       stop("The vector `pre_wa_vals` you supplied is not the right ",
            "length to fit the weight-at-age data frame. It is ",
            length(pre_wa_vals), " long but needs to be ", ncol(wa) - 1,
-           " long",
-           call. = FALSE)
+           " long")
     }
   }
 
@@ -93,8 +92,7 @@ heatmap_add_extrap_yrs_wa <- function(
       stop("The vector `post_wa_vals` you supplied is not the right ",
            "length to fit the weight-at-age data frame. It is ",
            length(post_wa_vals), " long but needs to be ", ncol(wa) - 1,
-           " long",
-           call. = FALSE)
+           " long")
     }
   }
 

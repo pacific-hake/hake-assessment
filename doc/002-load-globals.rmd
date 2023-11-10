@@ -7,8 +7,7 @@ output <- rmarkdown::metadata$output$`hake::hake_pdf`
 if(!length(proj_vars)){
   stop("Document compilation not run properly. You must run this code ",
        "using the Bookdown/Rmarkdown system, by calling `hake::render()` ",
-       "which is a simple wrapper for `bookdown::render_book()`",
-       call. = FALSE)
+       "which is a simple wrapper for `bookdown::render_book()`")
 }
 
 # Globals for YAML tags -------------------------------------------------------
@@ -39,15 +38,13 @@ end_yr <- assess_yr
 # and always begins in the current assessment year (`assess_yr`)
 fore_file <- here::here(doc_path, forecast_fn)
 if(!file.exists(fore_file)){
-  stop("File `", fore_file, "` does not exist.",
-       call. = FALSE)
+  stop("File `", fore_file, "` does not exist.")
 }
 fore_desc_df <- read_csv(fore_file, col_types = cols())
 fore_num_yrs <- length(grep("catch_year" , names(fore_desc_df)))
 if(!fore_num_yrs){
   stop("There are no column names containing `catch_year` in the forecast ",
-       "definition file `", fore_file, "`",
-       call. = FALSE)
+       "definition file `", fore_file, "`")
 }
 forecast_yrs <- seq(assess_yr, (assess_yr + fore_num_yrs - 1))
 

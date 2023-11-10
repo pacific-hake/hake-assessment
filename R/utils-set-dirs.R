@@ -70,23 +70,19 @@ set_dirs <- function(
     suppress_warnings = FALSE){
 
   if(is.null(models_dir) || is.na(models_dir)){
-    stop("`models_dir` must not be `NULL` or `NA`",
-         call. = FALSE)
+    stop("`models_dir` must not be `NULL` or `NA`")
   }
 
   if(!dir.exists(models_dir)){
-    stop("`models_dir` does not exist",
-         call. = FALSE)
+    stop("`models_dir` does not exist")
   }
 
   if(is.null(last_yr_models_dir) || is.na(last_yr_models_dir)){
-    stop("`last_yr_models_dir` must not be `NULL` or `NA`",
-         call. = FALSE)
+    stop("`last_yr_models_dir` must not be `NULL` or `NA`")
   }
 
   if(!dir.exists(last_yr_models_dir)){
-    stop("`last_yr_models_dir` does not exist",
-         call. = FALSE)
+    stop("`last_yr_models_dir` does not exist")
   }
 
   if(is.null(base_models_dir) ||
@@ -104,8 +100,7 @@ set_dirs <- function(
          "`base_models_dir`\n`bridge_models_dir`\n`sens_models_dir`\n",
          "`request_models_dir`\n`test_models_dir`\n`base_models_dirs`\n",
          "`bridge_models_dirs`\n`sens_models_dirs`\n`request_models_dirs`\n",
-         "`test_models_dirs`\n",
-         call. = FALSE)
+         "`test_models_dirs`\n")
   }
 
   root_dirs_rel <- c(base_models_dir,
@@ -176,7 +171,7 @@ set_dirs <- function(
     if(length(prepend_to_bridge) != length(bridge_models_dirs)){
       stop("Length of `prepend_to_bridge` (", length(prepend_to_bridge),
            ") is not equal to length of `bridge_model_dirs` (",
-           length(bridge_models_dirs), ")", call. = FALSE)
+           length(bridge_models_dirs), ")")
     }
     if(!is.na(dirs[[2]])){
       dirs[[2]] <- map2(dirs[[2]], prepend_to_bridge, function(br, prp){

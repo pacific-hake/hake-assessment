@@ -17,26 +17,22 @@ post_process_object_placement <- function(x,
 
   if(nrow(row_df) != 1){
     stop("There should only be one row in the data frame passed in to ",
-         "`row_df`",
-         call. = FALSE)
+         "`row_df`")
   }
   if(!"type" %in% names(row_df) ||
      !"label" %in% names(row_df) ||
      !"file_name" %in% names(row_df) ||
      !"placement" %in% names(row_df)){
     stop("The one-row data frame must have the columns `type`, `label`, ",
-         "`file_name`, and `placement`. One or more are missing",
-         call. = FALSE)
+         "`file_name`, and `placement`. One or more are missing")
   }
   if(is.na(row_df$label) && is.na(row_df$file_name)){
     stop("There is an error in the file `", object_placement_fn , "`",
-         "Both `label` and `file_name` have no value in row ", row_num,
-         call. = FALSE)
+         "Both `label` and `file_name` have no value in row ", row_num)
   }
   if(is.na(row_df$placement)){
     stop("There is an error in the file `", object_placement_fn , "`. ",
-         "The `placement` column is missing a value in row ", row_num,
-         call. = FALSE)
+         "The `placement` column is missing a value in row ", row_num)
   }
 
   if(row_df$type == "table"){
@@ -49,8 +45,7 @@ post_process_object_placement <- function(x,
     }
   }else{
     stop("The `type` is ", row_df$type, " for row ", row_num, " in `",
-         object_placement_fn , "`. It must be either 'figure' or 'table'",
-         call. = FALSE)
+         object_placement_fn , "`. It must be either 'figure' or 'table'")
   }
 
   ind <- grep(label, x)
@@ -79,8 +74,7 @@ post_process_object_placement <- function(x,
     type_txt <- ifelse(row_df$type == "table", ".*?table", "figure")
     stop("Did not find the line \\begin{", type_txt, "} associated with the ",
          row_df$type, " inclusion line `", x[ind], "`. Consider increasing ",
-         "the number of lines searched above it (`num_search_lines` argument)",
-         call. = FALSE)
+         "the number of lines searched above it (`num_search_lines` argument)")
   }
   beg_ind <- ind - num_search_lines + beg_ind - 1
 

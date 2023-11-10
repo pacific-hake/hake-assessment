@@ -59,8 +59,7 @@ plot_bubbles <- function(d,
   if(!all(c("Year", "Age", val_col_nm) %in% names(d))){
     stop("One of the necessary columns is missing. This function requires ",
          "`Year` and `Age` columns and a column with the name assigned ",
-         "to the argument `val_col_nm` (default name is `Proportion`)",
-         call. = FALSE)
+         "to the argument `val_col_nm` (default name is `Proportion`)")
   }
 
   val_col_sym <- sym(val_col_nm)

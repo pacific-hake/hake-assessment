@@ -54,8 +54,7 @@ plot_fore_compare <- function(model,
 
   if(ncol(prob_dat) != 7){
     stop("The table does not have 7 columns. This is required for ",
-         "this function",
-         call. = FALSE)
+         "this function")
   }
 
   ct_colname <- paste0("Catch in ", fore_yr, " (kt)")
@@ -75,20 +74,17 @@ plot_fore_compare <- function(model,
     pat_decline <- paste0("B", fore_yr + 1, "<B", fore_yr)
     wch_decline_col <- grep(pat_decline, names(prob_dat))
     if(!length(wch_decline_col)){
-      stop("No column name contains `", pat_decline, "`",
-           call. = FALSE)
+      stop("No column name contains `", pat_decline, "`")
     }
     pat_40 <- paste0("B", fore_yr + 1, "<B40%")
     wch_40_col <- grep(pat_40, names(prob_dat))
     if(!length(wch_40_col)){
-      stop("No column name contains `", pat_40, "`",
-           call. = FALSE)
+      stop("No column name contains `", pat_40, "`")
     }
     pat_10 <- paste0("B", fore_yr + 1, "<B10%")
     wch_10_col <- grep(pat_10, names(prob_dat))
     if(!length(wch_40_col)){
-      stop("No column name contains `", pat_10, "`",
-           call. = FALSE)
+      stop("No column name contains `", pat_10, "`")
     }
     prob_dat <- prob_dat |>
       select(!!ct_sym,

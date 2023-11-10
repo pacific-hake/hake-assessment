@@ -21,8 +21,7 @@ load_forecasts <- function(model,
 
   if(is.na(model$ct_levels[1])){
     stop("`model$ct_levels` cannot be `NA`. There was likely a problem ",
-         "with finding the path for the ct_levels outputs",
-         call. = FALSE)
+         "with finding the path for the ct_levels outputs")
   }
 
   # Extract the catch level names from the list into a vector
@@ -39,15 +38,13 @@ load_forecasts <- function(model,
     stop("The number of actual forecast years run (", num_forecasts, ") ",
          "does not match the number of forecast years specified in the ",
          "model (", model$nforecastyears, "). Check the contents of the ",
-         "directory `", model$forecasts_path, "`",
-         call. = FALSE)
+         "directory `", model$forecasts_path, "`")
   }
   forecast_yrs <- dir_listing
   lst <- map(forecast_yrs, function(fore_yr){
     fore_path <- file.path(model$forecasts_path, fore_yr)
     if(!dir.exists(fore_path)){
-      stop("Directory `", fore_path, "` does not exist",
-           call. = FALSE)
+      stop("Directory `", fore_path, "` does not exist")
     }
     # Get the directory listing of the forecast directory and make sure
     # it matches what the catch levels are.currently set to in
@@ -59,8 +56,7 @@ load_forecasts <- function(model,
            "in `set_catch_levels()` and compare to what is in the directory.",
            "It is ok to have extra forecasts present in the forecast ",
            "directory, but all forecast catch levels appearing in ",
-           "`set_catch_levels()` must be present in the directory",
-           call. = FALSE)
+           "`set_catch_levels()` must be present in the directory")
     }
     # Eliminate extra forecast runs, possibly done after the document was
     # created, for the JMC meeting or some other reason

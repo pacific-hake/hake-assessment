@@ -25,14 +25,12 @@ plot_autocor <- function(model,
 
   if(!length(mtch)){
     stop("The regex `", post_regex, "` did not match any names in the mcmc ",
-         "data frame",
-         call. = FALSE)
+         "data frame")
   }
 
   if(length(mtch) > 1){
     stop("The regex `", post_regex, "` matched more than one name in the ",
-         "mcmc data frame",
-         call. = FALSE)
+         "mcmc data frame")
   }
 
   mc <- model$mcmc |>

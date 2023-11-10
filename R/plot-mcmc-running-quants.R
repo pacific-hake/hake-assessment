@@ -21,18 +21,16 @@ plot_running_quants <- function(model,
 
   if(!length(mtch)){
     stop("The regex `", post_regex, "` did not match any names in the mcmc ",
-         "data frame",
-         call. = FALSE)
+         "data frame")
   }
 
   if(length(mtch) > 1){
     stop("The regex `", post_regex, "` matched more than one name in the ",
-         "mcmc data frame",
-         call. = FALSE)
+         "mcmc data frame")
   }
 
   if(length(probs) != 3){
-    stop("`probs` must be a vector of 3 values", call. = FALSE)
+    stop("`probs` must be a vector of 3 values")
   }
 
   mc <- model$mcmc |>

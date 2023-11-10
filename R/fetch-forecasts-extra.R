@@ -21,8 +21,7 @@ fetch_forecasts_extra <- function(
     ...){
 
   if(is.null(forecasts_path[1])){
-    stop("`forecasts_path` cannot be `NULL`",
-         call. = FALSE)
+    stop("`forecasts_path` cannot be `NULL`")
   }
   if(!dir.exists(forecasts_path)){
     return(NA)
@@ -30,12 +29,10 @@ fetch_forecasts_extra <- function(
   message("\nLoading forecast data from ", forecasts_path, "\n")
 
   if(is.null(my_catch_levels[1])){
-    stop("`my_catch_levels` cannot be `NULL`",
-         call. = FALSE)
+    stop("`my_catch_levels` cannot be `NULL`")
   }
   if(is.null(forecast_yrs[1])){
-    stop("`forecast_yrs` cannot be `NULL`",
-         call. = FALSE)
+    stop("`forecast_yrs` cannot be `NULL`")
   }
 
   # Extract the catch level names from the list into a vector
@@ -49,8 +46,7 @@ fetch_forecasts_extra <- function(
   lst <- map(forecast_yrs, function(fore_yr){
     fore_path <- file.path(forecasts_path, paste0("forecast-year-", fore_yr))
     if(!dir.exists(fore_path)){
-      stop("Directory `fore_path` = ", fore_path, " does not exist",
-           call. = FALSE)
+      stop("Directory `fore_path` = ", fore_path, " does not exist")
     }
     # Get the directory listing of the forecast directory and make sure
     # it matches what the catch levels are.currently set to in
@@ -61,8 +57,7 @@ fetch_forecasts_extra <- function(
       stop("There is a discrepancy between what you have set ",
            "for the catch_levels_names \n and what appears in the forecasts ",
            "directory '", fore_path,"'. \n Check the names in both and try ",
-           "again.\n\n",
-           call. = FALSE)
+           "again.\n\n")
     }
 
     lvls_lst <- imap(my_catch_levels, function(catch_level, catch_level_ind){

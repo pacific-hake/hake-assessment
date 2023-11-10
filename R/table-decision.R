@@ -72,12 +72,10 @@ table_decision <- \(
   type <- match.arg(type)
 
   if(is.null(nrow(letter_df)) || nrow(letter_df) == 0){
-    stop("`letter_df` is not a data frame with at least one row",
-         call. = FALSE)
+    stop("`letter_df` is not a data frame with at least one row")
   }
   if(ncol(letter_df) != 3){
-    stop("`letter_df` must have three columns",
-         call. = FALSE)
+    stop("`letter_df` must have three columns")
   }
 
   if(!is.null(rows_to_show[1])){
@@ -104,19 +102,16 @@ table_decision <- \(
   fore_lst <- model$forecasts
   if(is.null(fore_lst[1]) || is.na(fore_lst[1])){
     stop("No forecasts found for input `model`. `model$forecasts` is `NULL` ",
-         "or `NA`",
-         call. = FALSE)
+         "or `NA`")
   }
   if(any(forecast_inds > length(fore_lst[[length(fore_lst)]]))){
     stop("`forecast_inds` contains values greater than the length of the ",
-         "forecast catch levels list (`model$forecasts`)",
-         call. = FALSE)
+         "forecast catch levels list (`model$forecasts`)")
   }
   if(length(forecast_inds) != nrow(letter_df)){
     stop("The data frame describing the rows of the table (`letter_df`) ",
          "does ot have the same number of rows as the number of forecast ",
-         "streams you have provided (`forecast_inds`)",
-         call. = FALSE)
+         "streams you have provided (`forecast_inds`)")
   }
 
   forecast <- fore_lst[[length(fore_lst)]][forecast_inds]
@@ -175,8 +170,7 @@ table_decision <- \(
   forecast_yrs <- forecast[[1]]$fore_catch$year
   if(length(forecast_yrs) != 4){
     stop("The number of forecast years in the model is not 4. The decision ",
-         "function is currently designed for 4 years only",
-         call. = FALSE)
+         "function is currently designed for 4 years only")
   }
   # Create a data frame column containing the forecast years (minus 1)
   # to prepare for addition to the table data frame

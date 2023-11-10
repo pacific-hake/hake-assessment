@@ -15,8 +15,7 @@ calc_mcmc_param_stats <- function(model, scale_effn = 1e3, ...){
   param_nms <- model$post_names
   if(!all(param_nms %in% names(model$mcmc))){
     stop("Not all posterior names in the `model$post_names` object were ",
-         "found in the `model$mcmc` data frame",
-         call. = FALSE)
+         "found in the `model$mcmc` data frame")
   }
   mc <- model$mcmc |>
     as_tibble() |>

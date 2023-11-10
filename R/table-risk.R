@@ -35,8 +35,7 @@ table_risk <- function(model,
   type <- match.arg(type)
 
   if(index > length(model$risks)){
-    stop("`index` must be less than or equal to ", length(model$risks),
-         call. = FALSE)
+    stop("`index` must be less than or equal to ", length(model$risks))
   }
   risk <- model$risks[[index]] |>
                         as_tibble()

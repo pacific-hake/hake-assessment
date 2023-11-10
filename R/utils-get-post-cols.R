@@ -23,8 +23,7 @@ get_post_cols <- function(df, pat, scale = 1, exact = FALSE){
 
   if(!nrow(d)){
     stop("`get_post_cols()`: The regular expression `", patt, "` did not ",
-         "match and column names in the data frame `df`",
-         call. = FALSE)
+         "match and column names in the data frame `df`")
   }
 
   if(!exact){

@@ -31,12 +31,10 @@ post_process_extract_chunks <- function(x, beg_inds, end_inds){
 
   if(!length(beg_inds)){
     stop("`beg_inds` is zero length. You must have at least one set of ",
-         "indices to extract",
-         call. = FALSE)
+         "indices to extract")
   }
   if(length(beg_inds) != length(end_inds)){
-    stop("`beg_inds` and `end_inds` must be the same length",
-         call. = FALSE)
+    stop("`beg_inds` and `end_inds` must be the same length")
   }
   out <- list()
   out$between <- list()

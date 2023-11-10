@@ -19,8 +19,7 @@ plot_spr_illustration <- function(model,
   if(!length(ages_chr)){
     stop("Problem with object `model$ageselex`, no ages were found as ",
          "column names in the data frame. Check to make sure they are ",
-         "there and not prepended by some characters, e.g. 'a15'",
-         call. = FALSE)
+         "there and not prepended by some characters, e.g. 'a15'")
   }
   ages <- as.numeric(ages_chr)
   yrs <- yrs %||% unique(model$wtatage$Yr)

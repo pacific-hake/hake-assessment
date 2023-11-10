@@ -33,8 +33,7 @@ plot_age_comp_bubbles <- function(model,
     if(!length(ages_chr)){
       stop("Problem with object `model$agecomp`, no ages were found as ",
            "column names in the data frame. Check to make sure they are ",
-           "there and not prepended by an 'a', e.g. 'a15'",
-           call. = FALSE)
+           "there and not prepended by an 'a', e.g. 'a15'")
     }
     ages <- as.numeric(ages_chr)
     ages_cols <- paste0("a", ages)
@@ -55,8 +54,7 @@ plot_age_comp_bubbles <- function(model,
   }else{
     if(type == "survey"){
       stop("`survey` Numbers-at-age for MCMC not available. You would ",
-           "need to add that to the extra-mcmc extraction code first",
-           call. = FALSE)
+           "need to add that to the extra-mcmc extraction code first")
     }
 
     d <- model$extra_mcmc$natage_med |>

@@ -36,8 +36,7 @@ extract_alt_text <- function(inp_str){
       }
       if(length(x) > 1){
         stop("Alt. text label `", alt_str, "-alt` defined more than once in ",
-             "file `", .x, "`",
-             call. = FALSE)
+             "file `", .x, "`")
       }
       # Find all lines that belong in the alt text (there may be newlines
       # in between them in the source rmd file). Assuming that after the
@@ -86,13 +85,11 @@ extract_alt_text <- function(inp_str){
 
   if(!length(k)){
     stop("Error retrieving your label ", inp_str, ". There were no matching ",
-         "labels found with a description for this label",
-         call. = FALSE)
+         "labels found with a description for this label")
   }
   if(length(k) > 1){
     stop("Error retrieving your label ", inp_str, ". There was more ",
-         "than one text dfescription. Returned values:\n", k,
-         call. = FALSE)
+         "than one text dfescription. Returned values:\n", k)
   }
 
   k <- unlist(k)
@@ -113,8 +110,7 @@ extract_alt_text <- function(inp_str){
   }
   if(length(backtick_inds) %% 2 != 0){
     stop("There is an odd number of backticks in the text referred ",
-         "to by label ", inp_str, ". The text is:\n", k,
-         call. = FALSE)
+         "to by label ", inp_str, ". The text is:\n", k)
   }
 
   chunks_non_r <- str_split(k, "`r .*?`")[[1]]
@@ -126,8 +122,7 @@ extract_alt_text <- function(inp_str){
   walk(start_inds, ~{
     if(substr(k, .x + 1, .x + 1) != "r" && substr(k, .x + 2, .x + 2) != " "){
       stop("Non-r code chunk found. R code chunks must be of the format ",
-           "`r code_here`",
-           call. = FALSE)
+           "`r code_here`")
     }
   })
   end_inds <- backtick_inds[seq(2, length(backtick_inds), 2)]
