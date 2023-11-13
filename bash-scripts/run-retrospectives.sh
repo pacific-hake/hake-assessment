@@ -3,8 +3,8 @@
 # Must comment out two rows of this at a time to run on hake-precision server
 # Each takes 16 CPUs, so 64 CPUs for 4 of them, or run all ten on 5 CPUs each
 #years=(1 2 3 4)
-years=(4 5 6 7)
-# years=(7 8 9 10)
+#years=(4 5 6 7)
+years=(7 8 9 10)
 
 repo_path=`Rscript -e "cat(here::here())"`
 # Create the variable $assess_year containing the current year unless it

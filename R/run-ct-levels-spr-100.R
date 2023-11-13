@@ -3,9 +3,8 @@
 #'
 #' @param model The SS3 model output as loaded by [create_rds_file()]
 #' @param forecast_yrs A vector if the years to forecast for
-#' @param ss_exe The name of the SS3 executable. If run standalone,
-#' this will be [ss_executable]. If run from the context of of the [bookdown]
-#' document, this will be set as a YAML key/tag
+#' @param ss_exe The name of executable to use or `NULL` to use the package
+#' data variable [ss_executable]
 #' @param keep_files Logical. If `TRUE`, keep all files in the directory,
 #' if `FALSE` delete all files except for the filename contained in the
 #' the `forecast_fn` variable. This is 'forecast.ss' by default for SS3
@@ -42,7 +41,7 @@ run_ct_levels_spr_100 <- function(
 
     spr_100_catch[i] <- model$mcmc |>
       pull(!!fore_catch_label_sym) |>
-      median()
+      median(na.rm = TRUE)
     upper <- spr_100_catch[i]
     lower <- 0
     iter <- 1
@@ -71,7 +70,7 @@ run_ct_levels_spr_100 <- function(
 
       spr <- out |>
         pull(!!spr_yr_label_sym) |>
-        median()
+        median(na.rm = TRUE)
 
       message("SPR 100, for forecast year: ",
               forecast_yrs[i], " of ",

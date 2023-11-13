@@ -11,19 +11,19 @@ SECONDS=0
 # is currently December, in which case it will be the current year + 1
 # Enter a year as an argument here to force it to be that year, even if
 # December.
-. ./get-assess-year.sh
+. ./get-assess-year.sh 2024
 
 repo_path=`Rscript -e "cat(here::here())"`
-models_path="models"
+models_path="/srv/hake/models"
 # *Never* change `year_path` manually - See `get-assess-year.sh` call above
 year_path=$assess_year
 version_path="01-version"
 type_path="05-test-models"
-model_name="01-test-ss3"
+model_name="02-test-ss3-fewsamples"
 
-num_chains=16
-num_samples=8000
-num_warmup_samples=250
+num_chains=8
+num_samples=1000
+num_warmup_samples=50
 adapt_delta=0.95
 run_extra_mcmc=TRUE
 

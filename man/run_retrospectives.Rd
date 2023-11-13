@@ -30,8 +30,8 @@ prior to running}
 \item{retro_mcmc}{If \code{TRUE}, run the ADNUTS MCMC in the \emph{mcmc}
 subdirectory for each retrospective in addition to the MLE run}
 
-\item{ss_exe}{The name of the SS3 executable. If \code{NULL} then
-\link{ss_executable} will be used}
+\item{ss_exe}{The name of executable to use or \code{NULL} to use the package
+data variable \link{ss_executable}}
 
 \item{...}{Arguments passed to \code{\link[=load_ss_files]{load_ss_files()}} and \code{\link[=run_adnuts]{run_adnuts()}}}
 }

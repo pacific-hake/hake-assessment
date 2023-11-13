@@ -1,6 +1,6 @@
 #' Create an rds file to hold the model's data and outputs.
 #'
-#' @param model_dir Directory name of model to be loaded
+#' @param model_path Directory name of model to be loaded
 #' @param verbose Logical. If `TRUE`, write more output to the console
 #' @param overwrite Logical. If `TRUE`, overwrite the file if it exists
 #' @param keep_index_fit_posts Logical. If `TRUE`, keep the `index_fit_posts`
@@ -11,63 +11,55 @@
 #'
 #' @return [base::invisible()]
 #' @export
-create_rds_file <- function(model_dir = NULL,
+create_rds_file <- function(model = NULL,
+                            model_path = NULL,
                             keep_index_fit_posts = FALSE,
                             verbose = TRUE,
                             overwrite = TRUE,
                             ...){
 
-  stopifnot(!is.null(model_dir))
+  if(is.null(model)){
+    if(is.null(model_path)){
+      stop("Either `model` or `model_path` must be supplied")
+    }
+    if(verbose){
+      message("`create_rds_file()`: Loading SS3 model input and output ",
+              "files in:\n`", model_path, "`\n")
+    }
+    model <- load_ss_files(model_path, ...)
+  }else{
+    if(is.null(model_path)){
+      model_path <- model$path
+    }else{
+      if(model$path != model_path){
+        stop("You provided both `model` and `model_path` and `model$path` ",
+             "does not math `model_path`")
+      }
+    }
+  }
 
-  ct_levels_lst <- set_ct_levels()
-  forecasts_fullpath <- file.path(model_dir, forecasts_path)
-  ct_levels_fullpath <- file.path(model_dir, ct_levels_path)
-  retrospectives_fullpath <- file.path(model_dir, retrospectives_path)
-  default_hr_fullpath <- file.path(ct_levels_fullpath, default_hr_path)
-  stable_catch_fullpath <- file.path(ct_levels_fullpath, stable_catch_path)
-  spr_100_fullpath <- file.path(ct_levels_fullpath, spr_100_path)
-
-  if(length(grep("\\/$", model_dir))){
+  if(length(grep("\\/$", model_path))){
     # Remove trailing slashes
-    model_dir <- gsub("\\/+$", "", model_dir)
-  }
-  if(!dir.exists(model_dir)){
-    stop("Model directory `", model_dir, "` does not exist")
+    model_path <- gsub("\\/+$", "", model_path)
   }
 
-  if(is.null(ct_levels_lst$ct_levels)){
-    stop("`ct_levels_lst` is `NULL` but requires a  value. Use ",
-         "`set_ct_levels()` to generate this properly")
+  if(!dir.exists(model_path)){
+    stop("Model directory `", model_path, "` does not exist")
   }
+
   # The RDS file will have the same name as the directory it is in
-  rds_file <- file.path(model_dir, paste0(basename(model_dir), ".rds"))
+  rds_file <- file.path(model_path, paste0(basename(model_path), ".rds"))
   if(file.exists(rds_file)){
-   if(overwrite){
-     unlink(rds_file, force = TRUE)
-   }else{
-     stop_quietly("`create_rds_file()`: The RDS file `", rds_file,
-                  "` exists but you did not set `overwrite = TRUE`, so ",
-                  "nothing was done by the `create_rds_file()` function")
+   if(!overwrite){
+     stop_quietly("The RDS file `", rds_file,"` exists but you did not ",
+                  "set `overwrite = TRUE`, so nothing was done by the ",
+                  "`create_rds_file()` function")
    }
   }
 
   if(verbose){
     message("`create_rds_file()`: Creating a new RDS file from SS3 ",
-            "model output...")
-    message("`create_rds_file()`: Loading SS3 model input and output ",
-            "files in:\n`", model_dir, "`\n")
-  }
-  model <- load_ss_files(model_dir, ...)
-  if(verbose){
-    message("`create_rds_file()`: SS3 input and output files loaded ",
-            "successfully from model output in: ",
-            "`", model_dir, "`\n")
-  }
-  # Try loading extra mcmc output. If none are found or there is a problem,
-  # model$extra_mcmc will be NA
-  if(verbose){
-    message("`create_rds_file()`: Loading extra MCMC output for model in:\n",
-            "`", model$extra_mcmc_path, "`\n")
+            "model output.")
   }
 
   # Add values to be used in the document that require the MCMC data frame to
@@ -80,34 +72,31 @@ create_rds_file <- function(model_dir = NULL,
   model$parameter_priors <- get_prior_data(model, ...)
   model$parameter_posts <- get_posterior_data(model, ...)
 
+  # Try loading extra mcmc output. If none are found or there is a problem,
+  # model$extra_mcmc will be NA
+  if(verbose){
+    message("`create_rds_file()`: Loading extra MCMC output for model in:\n",
+            "`", model$extra_mcmc_path, "`\n")
+  }
   # Add values extracted from the extra MCMC output which includes index
   # estimates, catchability estimates, and at-age data frames
   model$extra_mcmc <- load_extra_mcmc(model,
                                       verbose = verbose,
                                       ...)
 
-  # Set all important forecast directories here
-  model$forecasts_path <- forecasts_path
-  model$ct_levels_path <- ct_levels_path
-  model$retrospectives_path <- retrospectives_path
-  model$default_hr_path <- default_hr_path
-  model$stable_catch_path <- stable_catch_path
-  model$spr_100_path <- spr_100_path
-
   # Load forecasts. If none are found or there is a problem,
   # `model$forecasts` will be `NA`
   model$catch_levels <- NA
   model$catch_default_policy <- NA
-  if(dir.exists(model$ct_levels_path)){
+
+  ct_levels_fullpath <- file.path(model_path, ct_levels_path)
+  if(dir.exists(ct_levels_fullpath)){
     # Load in the missing `default HR`, `SPR 100`, and `stable catch` values
     # by passing `ct_levels` which has those values as NA. `load_ct_levels()`
     # populates them with the values from the catch levels runs which were
     # run using reduction search type algorithms and have their results
     # located in forecast files in their respective run directories
-    ct_levels_lst <- load_ct_levels(model,
-                                    ct_levels_lst = ct_levels_lst,
-                                    ...)
-
+    ct_levels_lst <- load_ct_levels(model_path, ...)
     model$ct_levels <- ct_levels_lst$ct_levels
     model$ct_levels_vals <- ct_levels_lst$ct_levels_vals
 

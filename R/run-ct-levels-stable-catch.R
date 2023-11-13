@@ -4,9 +4,8 @@
 #'
 #' @param model The SS model output as loaded by [create_rds_file()]
 #' @param forecast_yrs A vector of forecast years
-#' @param ss_exe The name of the SS3 executable. If run standalone,
-#' this will be [ss_executable]. If run from the context of of the [bookdown]
-#' document, this will be set as a YAML key/tag
+#' @param ss_exe The name of executable to use or `NULL` to use the package
+#' data variable [ss_executable]
 #' @param keep_files Logical. If `TRUE`, keep all files in the directory,
 #' if `FALSE` delete all files except for the filename contained in the
 #' the `forecast_fn` variable. This is 'forecast.ss' by default for SS3
@@ -41,7 +40,7 @@ run_ct_levels_stable_catch <- function(
       fore_yr_label_sym <- sym(fore_yr_label)
       out |>
         pull(!!fore_yr_label_sym) |>
-        median()
+        median(na.rm = TRUE)
     })
 
     message("Stable Catch: ")
@@ -93,7 +92,7 @@ run_ct_levels_stable_catch <- function(
     Year = forecast_yrs[1:length(forecast_yrs)],
     Seas = 1,
     Fleet = 1,
-    Catch_or_F = stable_catch[1:length(forecast_yrs)])
+    Catch_or_F = stable_catch[seq_along(forecast_yrs)])
   SS_writeforecast(fore,
                    dir = pth,
                    overwrite = TRUE,

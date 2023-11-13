@@ -6,7 +6,7 @@
 
 if [ "$#" -eq 1 ]
 then
-  echo "Supplied argument! $1"
+  echo "Using year supplied as argument for assess_yr: $1"
   assess_year=$1
   mnth=1
 else

@@ -9,7 +9,7 @@
 #' @param mcmc The output of the [r4ss::SSgetMCMC()] function as a data.frame
 #' @param biomass_scale A scale factor to divide biomass values by
 #' @param recr_scale A scale factor to divide recruitment values by
-#' @param ... Absorb arguments meant for other functions
+#' @param ... Absorbs arguments meant for other functions
 #'
 #' @return A named list of MCMC outputs
 #' @export

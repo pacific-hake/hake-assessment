@@ -18,9 +18,8 @@ run_ct_levels_spr_100(
 
 \item{forecast_yrs}{A vector if the years to forecast for}
 
-\item{ss_exe}{The name of the SS3 executable. If run standalone,
-this will be \link{ss_executable}. If run from the context of of the \link{bookdown}
-document, this will be set as a YAML key/tag}
+\item{ss_exe}{The name of executable to use or \code{NULL} to use the package
+data variable \link{ss_executable}}
 
 \item{keep_files}{Logical. If \code{TRUE}, keep all files in the directory,
 if \code{FALSE} delete all files except for the filename contained in the

@@ -8,6 +8,7 @@ run_forecasts(
   model = NULL,
   model_path = NULL,
   forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+  ss_exe = NULL,
   ...
 )
 }
@@ -17,6 +18,10 @@ run_forecasts(
 \item{model_path}{The directory containing the model}
 
 \item{forecast_yrs}{A vector of forecast years}
+
+\item{ss_exe}{The name of the SS3 executable. If run standalone,
+this will be \link{ss_executable}. If run from the context of of the \link{bookdown}
+document, this will be set as a YAML key/tag}
 
 \item{...}{Arguments passed to \code{\link[=fetch_ct_levels]{fetch_ct_levels()}}}
 }
@@ -28,10 +33,11 @@ Run forecasting for a model in parallel when possible
 }
 \details{
 The function will check to see if you can run the forecasting in parallel.
-If you are on Windows, or calling the code from an  Rstudio console,
+If you are on Windows, or calling the code from an Rstudio console,
 you will be asked if you want to continue in sequential mode. To run in
 parallel (multicore) mode, you must be on a Mac or Linux machine, and NOT
-using Rstudio. You must call this function from Rscript or the terminal
-R program. You can use a bash script containing Rscript - e "R code here"
-as well
+using Rstudio. You must also call this function from Rscript or the
+terminal R program. You can also use a bash script containing
+\verb{Rscript - e "R code here"}. See the scripts located in the \code{bash-scripts}
+directory
 }

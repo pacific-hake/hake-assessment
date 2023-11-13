@@ -6,12 +6,12 @@
 #' prior to running
 #' @param retro_mcmc If `TRUE`, run the ADNUTS MCMC in the *mcmc*
 #' subdirectory for each retrospective in addition to the MLE run
-#' @param yrs A vector of number of years value prior to current end year in
-#' the model to run retrospectives for. Example if this is c(1, 5) then two
-#' retrospectives will be run, one with 1 year of data removed and one with 5
-#' years of data removed
-#' @param ss_exe The name of the SS3 executable. If `NULL` then
-#' [ss_executable] will be used
+#' @param retro_yrs A vector of number of years value prior to current end
+#' year in the model to run retrospectives for. Example if this is c(1, 5)
+#' then two retrospectives will be run, one with 1 year of data removed and
+#' one with 5 years of data removed
+#' @param ss_exe The name of executable to use or `NULL` to use the package
+#' data variable [ss_executable]
 #' @param ... Arguments passed to [load_ss_files()] and [run_adnuts()]
 #'
 #' @details
@@ -21,13 +21,13 @@
 #'    resides in
 #' 2. Create subdirectories for each retrospective year
 #' 3. Copy all SS3 model input files into each directory
-#' 4. Run a retrospective for each year found in `yrs`
+#' 4. Run a retrospective for each year found in `retro_yrs`
 #'
 #' @return [base::invisible()]
 #' @export
 run_retrospectives <- function(model = NULL,
                                model_path = NULL,
-                               yrs = retrospective_yrs,
+                               retro_yrs = retrospective_yrs,
                                remove_blocks = FALSE,
                                retro_mcmc = TRUE,
                                ss_exe = NULL,
@@ -57,7 +57,7 @@ run_retrospectives <- function(model = NULL,
   dir.create(retro_pth, showWarnings = FALSE)
   retro_subdirs <- file.path(retro_pth,
                              paste0(retrospectives_prepend,
-                                    pad_num(yrs, 2)))
+                                    pad_num(retro_yrs, 2)))
   src_fns <- file.path(model_path, ss_input_files)
 
   # Create directories and copy input files into them ----
@@ -74,7 +74,7 @@ run_retrospectives <- function(model = NULL,
 
   # Main run loop ----
   walk2(
-    yrs,
+    retro_yrs,
     retro_subdirs,
     \(retro_yr, retro_subdir, ...){
 

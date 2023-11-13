@@ -16,7 +16,10 @@ run_ct_levels(
 
 \item{model_path}{The model directory name}
 
-\item{...}{Absorbs arguments intended for other functions}
+\item{forecast_yrs}{A vector of forecast years}
+
+\item{...}{Passes arguments to \code{\link[=run_ct_levels_default_hr]{run_ct_levels_default_hr()}},
+\code{\link[=run_ct_levels_spr_100]{run_ct_levels_spr_100()}}, and \code{\link[=run_ct_levels_stable_catch]{run_ct_levels_stable_catch()}}}
 }
 \value{
 \code{\link[base:invisible]{base::invisible()}}

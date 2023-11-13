@@ -3,22 +3,27 @@
 #' @param model The SS3 model output as loaded by [create_rds_file()]
 #' @param model_path The directory containing the model
 #' @param forecast_yrs A vector of forecast years
+#' @param ss_exe The name of the SS3 executable. If run standalone,
+#' this will be [ss_executable]. If run from the context of of the [bookdown]
+#' document, this will be set as a YAML key/tag
 #' @param ... Arguments passed to [fetch_ct_levels()]
 #'
 #' @details
 #' The function will check to see if you can run the forecasting in parallel.
-#' If you are on Windows, or calling the code from an  Rstudio console,
+#' If you are on Windows, or calling the code from an Rstudio console,
 #' you will be asked if you want to continue in sequential mode. To run in
 #' parallel (multicore) mode, you must be on a Mac or Linux machine, and NOT
-#' using Rstudio. You must call this function from Rscript or the terminal
-#' R program. You can use a bash script containing Rscript - e "R code here"
-#' as well
+#' using Rstudio. You must also call this function from Rscript or the
+#' terminal R program. You can also use a bash script containing
+#' `Rscript - e "R code here"`. See the scripts located in the `bash-scripts`
+#' directory
 #'
 #' @return [base::invisible()]
 #' @export
 run_forecasts <- function(model = NULL,
                           model_path = NULL,
                           forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+                          ss_exe = NULL,
                           ...){
 
   # First, check if the computer/terminal combination of capable of running
@@ -95,6 +100,7 @@ run_forecasts <- function(model = NULL,
       src_fns <- list.files(model$mcmc_path, full.names = TRUE)
       dest_fns <- file.path(new_forecast_dir, list.files(model$mcmc_path))
       copy_flag <- file.copy(src_fns, dest_fns, copy.mode = TRUE)
+
       if(!all(copy_flag)){
         stop("At least one MCMC file failed to copy from directory\n`",
              model$mcmc_path, "` to directory\n`",
@@ -102,7 +108,8 @@ run_forecasts <- function(model = NULL,
              paste(src_fns[!copy_flag], collapse = "\n"))
       }
 
-      # Make a modification to the starter file so the extra MCMC files are not created
+      # Make a modification to the starter file so the extra MCMC files
+      #  are not created
       modify_starter_mcmc_type(new_forecast_dir, 1)
 
       # Insert fixed catches into forecast file

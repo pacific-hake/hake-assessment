@@ -1,11 +1,10 @@
 #' Create and return a list of output stats to attach to the main model
 #' by looking in the model's path for the report files.
 #'
-#' @param model A model list as created by [create_rds_file()]
+#' @param model A model list as created by [load_ss_files()]
 #' @param progress_n Report every time this many files are processed. Consider
 #' how many posteriors there are, this should be a fairly large proportion of
-#' that (around 1/8th) or there will be too much output and it will run really
-#' slow
+#' that (around 1/8th) or there will be too much output and it will run slow
 #' @param verbose Logical. If `TRUE`, show progress messages
 #' @param first Load this many of the files. If `NULL`, load them all. Used
 #' for debugging purposes to cut down the size of the lists used
@@ -41,6 +40,9 @@ load_extra_mcmc <- function(model,
     first <- model$nposts
   }
   if(!exists("reps") || (exists("reps") && length(reps) != first)){
+    if(verbose){
+      message("Loading Report files")
+    }
     reps <-
       load_extra_mcmc_repfiles(
         model$extra_mcmc_path,
@@ -50,6 +52,9 @@ load_extra_mcmc <- function(model,
         first = first)
   }
   if(!exists("compreps") || (exists("compreps") && length(compreps) != first)){
+    if(verbose){
+      message("Loading CompReport files")
+    }
     compreps <-
       load_extra_mcmc_repfiles(
         model$extra_mcmc_path,

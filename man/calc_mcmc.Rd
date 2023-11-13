@@ -13,7 +13,7 @@ calc_mcmc(mcmc, biomass_scale = 1e+06, recr_scale = 1e+06, ...)
 
 \item{recr_scale}{A scale factor to divide recruitment values by}
 
-\item{...}{Absorb arguments meant for other functions}
+\item{...}{Absorbs arguments meant for other functions}
 }
 \value{
 A named list of MCMC outputs

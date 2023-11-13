@@ -4,9 +4,8 @@
 #'
 #' @param model The SS3 model output as loaded by [create_rds_file()]
 #' @param forecast_yrs A vector of forecast years
-#' @param ss_exe The name of the SS3 executable. If run standalone,
-#' this will be [ss_executable]. If run from the context of of the [bookdown]
-#' document, this will be set as a YAML key/tag
+#' @param ss_exe The name of executable to use or `NULL` to use the package
+#' data variable [ss_executable]
 #' @param keep_files Logical. If `TRUE`, keep all files in the directory,
 #' if `FALSE` delete all files except for the filename contained in the
 #' the `forecast_fn` variable. This is 'forecast.ss' by default for SS3
@@ -35,11 +34,15 @@ run_ct_levels_default_hr <- function(
     out <- read.table(dest_derposts_fullpath_fn, header = TRUE) |>
       as_tibble()
     fore_yr_label <- paste0("ForeCatch_", forecast_yrs[i])
-    fore_yr_label_sym <- sym(fore_yr_label)
 
+    if(!fore_yr_label %in% names(out)){
+      stop("The forecast column `", fore_yr_label, "` does not exist in the ",
+           "derived posteriors file `", dest_derposts_fullpath_fn, "`")
+    }
+    fore_yr_label_sym <- sym(fore_yr_label)
     default_hr_catch[i] <- out |>
       pull(!!fore_yr_label_sym) |>
-      median()
+      median(na.rm = TRUE)
     fore <- SS_readforecast(forecast_fullpath_fn,
                             Nfleets = 1,
                             Nareas = 1,
