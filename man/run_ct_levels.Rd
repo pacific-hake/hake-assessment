@@ -8,6 +8,9 @@ run_ct_levels(
   model = NULL,
   model_path = NULL,
   forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+  run_default_hr = TRUE,
+  run_spr_100 = TRUE,
+  run_stable_catch = TRUE,
   ...
 )
 }

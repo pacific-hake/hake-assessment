@@ -8,12 +8,11 @@ by looking in the model's path for the report files.}
 load_extra_mcmc(model, progress_n = 500, verbose = TRUE, first = NULL, ...)
 }
 \arguments{
-\item{model}{A model list as created by \code{\link[=create_rds_file]{create_rds_file()}}}
+\item{model}{A model list as created by \code{\link[=load_ss_files]{load_ss_files()}}}
 
 \item{progress_n}{Report every time this many files are processed. Consider
 how many posteriors there are, this should be a fairly large proportion of
-that (around 1/8th) or there will be too much output and it will run really
-slow}
+that (around 1/8th) or there will be too much output and it will run slow}
 
 \item{verbose}{Logical. If \code{TRUE}, show progress messages}
 

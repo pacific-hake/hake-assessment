@@ -14,7 +14,7 @@ run_adnuts(
   run_extra_mcmc = FALSE,
   hess_step = TRUE,
   fn_exe = ss_executable,
-  overwrite = FALSE,
+  overwrite = TRUE,
   fn_logfile = model_output_log_fn,
   input_files = ss_input_files
 )
@@ -43,8 +43,10 @@ will be in the running directory}
 
 \item{fn_exe}{The name of the executable which was built using ADMB}
 
-\item{overwrite}{Logical. If \code{TRUE}, don't ask user if they want to
-overwrite if the directory already exists, just do it}
+\item{overwrite}{Logical. If \code{TRUE} and in an interactive session,
+don't ask user if they want to overwrite if the directory already exists,
+just do it. If non-interactive, the output will be overwritten and this
+will be ignored}
 
 \item{fn_logfile}{The filename of the logfile}
 

@@ -5,7 +5,8 @@
 \title{Create an rds file to hold the model's data and outputs.}
 \usage{
 create_rds_file(
-  model_dir = NULL,
+  model = NULL,
+  model_path = NULL,
   keep_index_fit_posts = FALSE,
   verbose = TRUE,
   overwrite = TRUE,
@@ -13,7 +14,7 @@ create_rds_file(
 )
 }
 \arguments{
-\item{model_dir}{Directory name of model to be loaded}
+\item{model_path}{Directory name of model to be loaded}
 
 \item{keep_index_fit_posts}{Logical. If \code{TRUE}, keep the \code{index_fit_posts}
 data in the model's list. This contains the survey fit output for every

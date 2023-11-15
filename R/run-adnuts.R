@@ -21,8 +21,10 @@
 #' created and the `posteriors.sso` and `dervied_posteriors.sso` files
 #' will be in the running directory
 #' @param fn_exe The name of the executable which was built using ADMB
-#' @param overwrite Logical. If `TRUE`, don't ask user if they want to
-#' overwrite if the directory already exists, just do it
+#' @param overwrite Logical. If `TRUE` and in an interactive session,
+#' don't ask user if they want to overwrite if the directory already exists,
+#' just do it. If non-interactive, the output will be overwritten and this
+#' will be ignored
 #' @param input_files The input files for SS
 #' @param hess_step Logical. If `TRUE`, use the `hess_step` algorithm`
 #' @param fn_logfile The filename of the logfile
@@ -38,7 +40,7 @@ run_adnuts <- function(path,
                        run_extra_mcmc = FALSE,
                        hess_step = TRUE,
                        fn_exe = ss_executable,
-                       overwrite = FALSE,
+                       overwrite = TRUE,
                        fn_logfile = model_output_log_fn,
                        input_files = ss_input_files){
 

@@ -59,6 +59,19 @@ run_forecasts <- function(model = NULL,
     }
   }
 
+  if(!check_catch_levels(model)){
+    message("`run_forecasts()`: The `", file.path(model_path, ct_levels),
+            "` directory does not appear to be in the correct format. ",
+            "Either one of the subdirectories does not exist, or the `",
+            forecast_fn, "` files inside the subdirectories do not ",
+            "contain the right number of forecast years.\n\nRunning ",
+            "`run_ct_levels()` before forecasting.")
+    run_ct_levels(model,
+                  forecast_yrs = forecast_yrs,
+                  ss_exe = ss_exe,
+                  ... )
+  }
+
   if(is.null(model$mcmc_path)){
     stop("`model$mcmc_path` is `NULL`")
   }

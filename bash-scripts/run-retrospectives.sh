@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Must comment out two rows of this at a time to run on hake-precision server
-# Each takes 16 CPUs, so 64 CPUs for 4 of them, or run all ten on 5 CPUs each
-#years=(1 2 3 4)
-#years=(4 5 6 7)
-years=(7 8 9 10)
-
 repo_path=`Rscript -e "cat(here::here())"`
 # Create the variable $assess_year containing the current year unless it
 # is currently December, in which case it will be the current year + 1
@@ -30,17 +24,20 @@ model_path=$models_path/$year_path/$version_path/$type_path/$model_name
 [[ ! -d $model_path ]] && { echo "Error: Directory $model_path does not \
 exist, bailing out." ; exit 1; }
 
-for year in ${years[@]}; do
+for arg; do
   (trap 'kill 0' SIGINT; \
   echo; \
   Rscript -e " \
-  setwd('$repo_path'); devtools::load_all(); \
+  setwd('$repo_path'); \
+  devtools::load_all(); \
   run_retrospectives(model_path = '$model_path', \
-                     yrs = $year, \
+                     retro_yrs = $arg, \
                      num_chains = $num_chains, \
                      num_samples = $num_samples, \
                      num_warmup_samples = $num_warmup_samples, \
                      adapt_delta = $adapt_delta, \
-                     run_extra_mcmc = $run_extra_mcmc)" > /dev/null 2>&1; \
-  echo "Retrospective -$year completed") &
+                     run_extra_mcmc = $run_extra_mcmc)" \
+  > /dev/null 2>&1; \
+  printf "\nRetrospective -$arg completed\n" \
+  ) &
 done

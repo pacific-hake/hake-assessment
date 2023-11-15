@@ -7,7 +7,8 @@
 run_retrospectives(
   model = NULL,
   model_path = NULL,
-  yrs = retrospective_yrs,
+  retro_yrs = retrospective_yrs,
+  num_chains = 1,
   remove_blocks = FALSE,
   retro_mcmc = TRUE,
   ss_exe = NULL,
@@ -19,10 +20,10 @@ run_retrospectives(
 
 \item{model_path}{The path of the model run}
 
-\item{yrs}{A vector of number of years value prior to current end year in
-the model to run retrospectives for. Example if this is c(1, 5) then two
-retrospectives will be run, one with 1 year of data removed and one with 5
-years of data removed}
+\item{retro_yrs}{A vector of number of years value prior to current end
+year in the model to run retrospectives for. Example if this is c(1, 5)
+then two retrospectives will be run, one with 1 year of data removed and
+one with 5 years of data removed}
 
 \item{remove_blocks}{If \code{TRUE}, remove block designs from control file
 prior to running}
@@ -49,6 +50,6 @@ This will:
 resides in
 \item Create subdirectories for each retrospective year
 \item Copy all SS3 model input files into each directory
-\item Run a retrospective for each year found in \code{yrs}
+\item Run a retrospective for each year found in \code{retro_yrs}
 }
 }

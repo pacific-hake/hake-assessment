@@ -23,10 +23,17 @@ adapt_delta=0.95
 run_extra_mcmc=TRUE
 
 model_path=$models_path/$year_path/$version_path/$type_path/$model_name
-[[ ! -d $model_path ]] && { echo "Error: Directory $model_path does not exist, bailing out." ; exit 1; }
+
+[[ ! -d $model_path ]] && { echo "Error: Directory $model_path \
+does not exist, bailing out." ; exit 1; }
 
 # Run the base models forecasts
-(trap 'kill 0' SIGINT; Rscript -e "setwd('$repo_path'); devtools::load_all(); \
-build_rds('$model_path', run_catch_levels = TRUE, run_forecasts = TRUE, build_file = FALSE)" \
-  > /dev/null 2>&1; echo "Base model forecasts complete")
-
+(trap 'kill 0' SIGINT; \
+  echo; \
+  Rscript -e " \
+    setwd('$repo_path'); \
+    devtools::load_all(); \
+    run_forecasts(model_path = $model_path)" \
+  > /dev/null 2>&1; \
+  printf "\nBase model forecasts complete\n" \
+)

@@ -28,10 +28,22 @@
 run_retrospectives <- function(model = NULL,
                                model_path = NULL,
                                retro_yrs = retrospective_yrs,
+                               num_chains = 1,
                                remove_blocks = FALSE,
                                retro_mcmc = TRUE,
                                ss_exe = NULL,
                                ...){
+
+  # Check core availability ----
+  # Allow 90% core usage
+  num_cores <- floor(availableCores() * 0.9)
+  total_requested_cores <- num_chains * length(retro_yrs)
+  if(total_requested_cores  >= num_cores){
+    stop("Your system has ", num_cores," and you have asked for ", num_chains,
+         " chains for ", length(retro_yrs), " years which equates to ",
+         total_requested_cores, " cores. You must reduce the number of ",
+         "chains, years, or both")
+  }
 
   ss_exe <- get_ss3_exe_name(ss_exe)
 
@@ -134,24 +146,30 @@ run_retrospectives <- function(model = NULL,
       }
       covar_file <- file.path(retro_subdir, covar_fn)
       unlink(covar_file, force = TRUE)
+
       if(retro_mcmc){
         # Call to ADNUTS ----
-        run_adnuts(path = retro_subdir, ...)
+        run_adnuts(path = retro_subdir,
+                   num_chains = num_chains,
+                   ...)
       }else{
         command <- paste0("cd ", retro_subdir, " && ",
                           ss_exe, " -nox")
         system_(command, wait = FALSE, intern = !show_ss_output)
       }
-      d_new <- readLines(file.path(retro_subdir, data_new_ssnew_fn))
-      df_for_meanbody <- grep("DF_for_meanbodysize", d_new)
-      if(length(df_for_meanbody)){
-        d_new[df_for_meanbody] <- paste0("#_COND_",
-                                         d_new[df_for_meanbody])
-        writeLines(d_new, con = file.path(retro_subdir,
-                                          data_ssnew_fn))
-        writeLines(d_new, con = file.path(retro_subdir,
-                                          data_new_ssnew_fn))
-        message("Done running retrospective for year = ", retro_yr)
+      d_new_fn <- file.path(retro_subdir, data_new_ssnew_fn)
+      if(file.exists(d_new_fn)){
+        d_new <- readLines(d_new_fn)
+        df_for_meanbody <- grep("DF_for_meanbodysize", d_new)
+        if(length(df_for_meanbody)){
+          d_new[df_for_meanbody] <- paste0("#_COND_",
+                                           d_new[df_for_meanbody])
+          writeLines(d_new, con = file.path(retro_subdir,
+                                            data_ssnew_fn))
+          writeLines(d_new, con = file.path(retro_subdir,
+                                            data_new_ssnew_fn))
+          message("Done running retrospective for year = ", retro_yr)
+        }
       }
     }, ...)
 }
