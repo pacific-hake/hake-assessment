@@ -3,6 +3,7 @@
 #' @param lst The list
 #' @param scale A scale factor. If 1e3, return values in kB, if 1e6, GB,
 #' 1e12, TB
+#' @param digits The number of decimal places to show
 #' @param desc Logical. If `TRUE`, sort the table in order of largest size
 #' in the first row and smallest in the last row
 #'
@@ -10,6 +11,7 @@
 #' @export
 obj_sizes <- function(lst,
                       scale = c("b", "kb", "mb", "gb", "tb"),
+                      digits = 0,
                       desc = TRUE){
 
   scale <- match.arg(scale)
@@ -31,10 +33,13 @@ obj_sizes <- function(lst,
     sc <- "TB"
   }
 
+  size_col_nm <- paste0("Size (", sc, ")")
+  size_col_sym <- sym(size_col_nm)
+
   lst |>
     map_dbl(~as.numeric(object.size(.x)) / scale) |>
     sort(decreasing = desc) |>
     enframe() |>
-    setNames(c("List element", paste0("Size (", sc, ")"))) |>
-    mutate(`Size (B)` = f(`Size (B)`))
+    setNames(c("List element", size_col_nm)) |>
+    mutate(!!size_col_sym := f(!!size_col_sym, digits))
 }
