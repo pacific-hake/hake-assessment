@@ -6,8 +6,9 @@
 #' how many posteriors there are, this should be a fairly large proportion of
 #' that (around 1/8th) or there will be too much output and it will run slow
 #' @param verbose Logical. If `TRUE`, show progress messages
-#' @param first Load this many of the files. If `NULL`, load them all. Used
-#' for debugging purposes to cut down the size of the lists used
+#' @param first Load this many of the files. If a non-positive number, load
+#' them all. Used for debugging purposes to cut down the size of the
+#' lists used
 #' @param ... Arguments passed to [extract_rep_table()]
 #'
 #' @return The extra MCMC list
@@ -15,7 +16,7 @@
 load_extra_mcmc <- function(model,
                             progress_n = 500,
                             verbose = TRUE,
-                            first = NULL,
+                            first = 0,
                             ...){
 
   if(is.null(model$extra_mcmc_path) || is.na(model$extra_mcmc_path)){
@@ -36,7 +37,7 @@ load_extra_mcmc <- function(model,
     return(NA)
   }
 
-  if(is.null(first)){
+  if(first <= 0){
     first <- model$nposts
   }
   if(!exists("reps") || (exists("reps") && length(reps) != first)){

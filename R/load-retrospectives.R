@@ -1,48 +1,65 @@
 #' Fetch the retrospectives and return a list of each. If there are no retrospective
 #' directories or there is some other problem, the program will halt
 #'
-#' @param retro_path The path in which the retrospective directories reside
+#' @param model The SS3 model output as loaded by [load_ss_files()]
+#' @param model_path The directory containing the model
 #' @param ... Arguments passed to [load_ss_files()] and [load_extra_mcmc()]
 #'
 #' @return The list of retrospective outputs
 #' @export
 load_retrospectives <- function(model,
+                                model_path = NULL,
                                 base_model_name = "Base model",
+                                verbose = TRUE,
                                 ...){
 
-  retro_path <- model$retrospectives_path
+  if(is.null(model)){
+    if(is.null(model_path)){
+      stop("Either `model` or `model_path` must be supplied")
+    }
+    model <- load_ss_files(model_path, ...)
+  }else{
+    if(is.null(model_path)){
+      model_path <- model$path
+    }else{
+      if(model$path != model_path){
+        stop("You provided both `model` and `model_path` and `model$path` ",
+             "does not math `model_path`")
+      }
+    }
+  }
 
-  if(!dir.exists(retro_path)){
-    warning("The retrospectives directory `", retro_path, "` does not ",
-            "exist. Not loading any retrospectives.")
+  retro_fullpath <- file.path(model_path, retropectives_path)
+  if(!dir.exists(retro_fullpath)){
+    if(verbose){
+      warning("The retrospectives directory `", retro_fullpath, "` does not ",
+              "exist. Not loading any retrospectives.")
+    }
     return(NA)
   }
 
-  fns <- dir(retro_path)
-  pat <- "^retro-([0-9]+)$"
+  fns <- dir(retro_fullpath)
+  pat <- paste0("^", retrospectives_prepend, "([0-9]+)$")
   num_fns_match <- length(grep(pat, fns))
   if(!num_fns_match){
-    stop("There were no subdirectories in the `", retro_path, "` directory ",
-         "that matched the pattern ", pat)
+    stop("There were no subdirectories in the `", retro_fullpath,
+         "`\ndirectory that matched the pattern ", pat)
   }
   retro_yrs <- sort(as.numeric(gsub(pat, "\\1", fns)))
 
-  message("Loading retrospectives from ", retro_path)
+  if(verbose){
+    message("Loading retrospectives from ", retro_fullpath)
+  }
 
+  plan("multicore", workers = length(retro_yrs))
   # Cannot use parallel here because some list items are missing
-  retros_lst <- imap(retro_yrs, \(x, y, ...){
+  retros_lst <- furrr::future_imap(retro_yrs, \(x, y, ...){
     # Pad the beginning of a digit with a zero
-    pad_zero <- \(num){
-      num <- as.character(num)
-      if(nchar(num) == 1){
-        paste0("0", num)
-      }else{
-        num
-      }
+    retro_sub <- paste0("retro-", pad_num(x, n_digits = 2, pad_char = "0"))
+    retro_dir <- file.path(retro_fullpath, retro_sub)
+    if(verbose){
+      message("Loading from ", retro_dir)
     }
-    retro_sub <- paste0("retro-", pad_zero(x))
-    retro_dir <- file.path(retro_path, retro_sub)
-    message("Loading from ", retro_dir)
     model <- load_ss_files(retro_dir, ...)
     model$extra_mcmc <- load_extra_mcmc(model, ...)
     model$endyr <- model$endyr - y
@@ -66,9 +83,9 @@ load_retrospectives <- function(model,
   # Base model is the first model, followed by the retrospectives indexed by
   # the hake::plot_retro_yrs vector of indices (1 = -1 years, 2 = -2 years,
   # etc)
-  subset_retros_lst <- all_retros_lst[c(1, hake::plot_retro_yrs + 1)]
+  subset_retros_lst <- all_retros_lst[c(1, plot_retro_yrs + 1)]
   subset_retros_model_nms <- c(base_model_name,
-                              map_chr(hake::plot_retro_yrs, \(yr_ind){
+                              map_chr(plot_retro_yrs, \(yr_ind){
                                 paste0(" -",
                                        yr_ind,
                                        " year",
@@ -107,6 +124,9 @@ load_retrospectives <- function(model,
                      recr_df = retro_recr_df,
                      retro_param_est = retro_param_est)
 
-  message("Finished loading retrospectives")
+  if(verbose){
+    message("Finished loading retrospectives")
+  }
+
   retros_lst
 }

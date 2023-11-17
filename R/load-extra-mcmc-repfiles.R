@@ -6,8 +6,9 @@
 #' in the directory
 #' @param progress_n Report every time this many files are read in
 #' @param verbose Show all progress messages
-#' @param first Load this many of the files. If `NULL`, load them all. Used
-#' for debugging purposes to cut down the size of the lists used
+#' @param first Load this many of the files. If a non-positive number, load
+#' them all. Used for debugging purposes to cut down the size of the
+#' lists used
 #'
 #' @return A list of data frames, 1 for each report file
 #' @export
@@ -15,7 +16,7 @@ load_extra_mcmc_repfiles <- function(dr,
                                      file_pat = "Report_mce_[0-9]+\\.sso$",
                                      progress_n = 500,
                                      verbose = TRUE,
-                                     first = NULL){
+                                     first = 0){
 
   if(!dir.exists(dr)){
     stop("The directory `", dr, "` does not exist")
@@ -29,7 +30,7 @@ load_extra_mcmc_repfiles <- function(dr,
   dir_list <- dir(dr, full.names = TRUE)
   repfile_lst <- grep(file_pat, dir_list, value = TRUE)
 
-  if(!is.null(first) && first < length(repfile_lst)){
+  if(first > 0 && first < length(repfile_lst)){
     repfile_lst <- repfile_lst[seq_len(first)]
     warning("Using only the first ", first, " posteriors!!")
   }
