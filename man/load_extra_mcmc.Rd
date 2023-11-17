@@ -5,7 +5,7 @@
 \title{Create and return a list of output stats to attach to the main model
 by looking in the model's path for the report files.}
 \usage{
-load_extra_mcmc(model, progress_n = 500, verbose = TRUE, first = NULL, ...)
+load_extra_mcmc(model, progress_n = 500, verbose = TRUE, first = 0, ...)
 }
 \arguments{
 \item{model}{A model list as created by \code{\link[=load_ss_files]{load_ss_files()}}}
@@ -16,8 +16,9 @@ that (around 1/8th) or there will be too much output and it will run slow}
 
 \item{verbose}{Logical. If \code{TRUE}, show progress messages}
 
-\item{first}{Load this many of the files. If \code{NULL}, load them all. Used
-for debugging purposes to cut down the size of the lists used}
+\item{first}{Load this many of the files. If a non-positive number, load
+them all. Used for debugging purposes to cut down the size of the
+lists used}
 
 \item{...}{Arguments passed to \code{\link[=extract_rep_table]{extract_rep_table()}}}
 }

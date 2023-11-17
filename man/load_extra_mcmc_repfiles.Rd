@@ -10,7 +10,7 @@ load_extra_mcmc_repfiles(
   file_pat = "Report_mce_[0-9]+\\\\.sso$",
   progress_n = 500,
   verbose = TRUE,
-  first = NULL
+  first = 0
 )
 }
 \arguments{
@@ -23,8 +23,9 @@ in the directory}
 
 \item{verbose}{Show all progress messages}
 
-\item{first}{Load this many of the files. If \code{NULL}, load them all. Used
-for debugging purposes to cut down the size of the lists used}
+\item{first}{Load this many of the files. If a non-positive number, load
+them all. Used for debugging purposes to cut down the size of the
+lists used}
 }
 \value{
 A list of data frames, 1 for each report file

@@ -10,3 +10,7 @@ TexLive's \code{lualatex} to generate a PDF of the stock assessment document.
 Also included are \link{bookdown} beamer presentation templates for the various
 meetings required.
 }
+\details{
+All of these are in alphabetical order, both packages and functions
+within them
+}

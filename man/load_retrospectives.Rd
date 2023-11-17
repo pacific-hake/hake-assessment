@@ -5,12 +5,20 @@
 \title{Fetch the retrospectives and return a list of each. If there are no retrospective
 directories or there is some other problem, the program will halt}
 \usage{
-load_retrospectives(model, base_model_name = "Base model", ...)
+load_retrospectives(
+  model,
+  model_path = NULL,
+  base_model_name = "Base model",
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
-\item{...}{Arguments passed to \code{\link[=load_ss_files]{load_ss_files()}} and \code{\link[=load_extra_mcmc]{load_extra_mcmc()}}}
+\item{model}{The SS3 model output as loaded by \code{\link[=load_ss_files]{load_ss_files()}}}
 
-\item{retro_path}{The path in which the retrospective directories reside}
+\item{model_path}{The directory containing the model}
+
+\item{...}{Arguments passed to \code{\link[=load_ss_files]{load_ss_files()}} and \code{\link[=load_extra_mcmc]{load_extra_mcmc()}}}
 }
 \value{
 The list of retrospective outputs

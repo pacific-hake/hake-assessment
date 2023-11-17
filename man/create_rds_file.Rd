@@ -5,11 +5,10 @@
 \title{Create an rds file to hold the model's data and outputs.}
 \usage{
 create_rds_file(
-  model = NULL,
   model_path = NULL,
   keep_index_fit_posts = FALSE,
   verbose = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   ...
 )
 }
@@ -23,7 +22,7 @@ for the \code{\link[=plot_survey_fit_mcmc]{plot_survey_fit_mcmc()}} plot to work
 
 \item{verbose}{Logical. If \code{TRUE}, write more output to the console}
 
-\item{overwrite}{Logical. If \code{TRUE}, overwrite the file if it exists}
+\item{overwrite}{Logical. If \code{TRUE}, overwrite the RDS file if it exists}
 
 \item{...}{Arguments to pass to \code{\link[=load_ss_files]{load_ss_files()}}}
 }
@@ -32,4 +31,9 @@ for the \code{\link[=plot_survey_fit_mcmc]{plot_survey_fit_mcmc()}} plot to work
 }
 \description{
 Create an rds file to hold the model's data and outputs.
+}
+\details{
+This function does not load retrospectives and forecasts.
+To do that you must run this first, then run other functions
+to load those things and attach them to the model list
 }

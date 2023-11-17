@@ -39,7 +39,7 @@ create_rds_files_retro <- function(model_path,
     message(paste0("`create_rds_files_retro()`: ", parallelism_warning))
     if(interactive()){
       message("\nContinue in sequential mode? (choose a number)")
-      ans <- utils::menu(c("Yes", "No"))
+      ans <- menu(c("Yes", "No"))
       if(ans == 2){
         message("`create_rds_files_retro()`: Bailing out at the user's ",
                 "request")
@@ -48,8 +48,8 @@ create_rds_files_retro <- function(model_path,
     }
     plan("sequential")
   }
-  future_walk(retro_paths, \(pth){
+  future_walk(retro_paths, \(pth, ...){
     create_rds_file(pth, verbose = verbose, ...)
-  })
+  }, ...)
 
 }
