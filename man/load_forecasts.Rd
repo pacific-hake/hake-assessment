@@ -4,15 +4,26 @@
 \alias{load_forecasts}
 \title{Fetch the output from previously-run forecasting using \code{\link[=run_forecasts]{run_forecasts()}}}
 \usage{
-load_forecasts(model, first = model$nposts, ...)
+load_forecasts(
+  model_path = NULL,
+  first = 0,
+  forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
-\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
+\item{first}{Load this many of the files. If a non-positive number, load
+them all. Used for debugging purposes to cut down the size of the
+lists used}
 
-\item{first}{Load this many of the files. If \code{NULL}, load them all. Used
-for debugging purposes to cut down the size of the lists used}
+\item{forecast_yrs}{A vector of forecast years}
+
+\item{verbose}{Logical. If \code{TRUE}, show messages}
 
 \item{...}{Absorbs arguments intended for other functions}
+
+\item{model}{The SS model output as loaded by \code{\link[=create_rds_file]{create_rds_file()}}}
 }
 \value{
 A list of forecast outputs as read in by \code{\link[r4ss:SSgetMCMC]{r4ss::SSgetMCMC()}}

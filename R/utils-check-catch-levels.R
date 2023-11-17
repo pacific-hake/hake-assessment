@@ -1,8 +1,10 @@
+#' Check that catch levels has been run
+#'
+#' @details
 #' Ensure that the [run_catch_levels()] function has been run successfully
 #' by looking in to the catch levels directory and checking values in the
 #' forecast files
 #'
-#' @param model The SS model output as loaded by [create_rds_file()]
 #' @param model_path The directory the models are located in
 #' @param forecast_yrs A vector of forecast years
 #' @param ... Absorbs arguments meant for other functions
@@ -10,25 +12,12 @@
 #' @return Logical. `TRUE` if the catch levels appears to have been run
 #' successfully and `FALSE` otherwise
 #' @export
-check_catch_levels <- function(model = NULL,
-                               model_path = NULL,
+check_catch_levels <- function(model_path = NULL,
                                forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
                                ...){
 
-  if(is.null(model)){
-    if(is.null(model_path)){
-      stop("Either `model` or `model_path` must be supplied")
-    }
-    model <- load_ss_files(model_path, ...)
-  }else{
-    if(is.null(model_path)){
-      model_path <- model$path
-    }else{
-      if(model$path != model_path){
-        stop("You provided both `model` and `model_path` and `model$path` ",
-             "does not math `model_path`")
-      }
-    }
+  if(is.null(model_path)){
+    stop("`model_path` must not be `NULL`")
   }
 
   ct_levels_fullpath <- file.path(model_path, ct_levels_path)

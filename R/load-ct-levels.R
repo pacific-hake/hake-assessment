@@ -27,7 +27,13 @@
 load_ct_levels <- function(model_path,
                            ...){
 
-  ct_levels_lst = set_ct_levels()
+  if(!check_catch_levels(model_path, ...)){
+    stop("The catch levels do not appear to have been run, have been run ",
+         "incorrectly, or only been run partially. Re-run using ",
+         "`run_catch_levels` before trying to attach forecasting")
+  }
+
+  ct_levels_lst <- set_ct_levels()
 
   ct_levels_fullpath <- file.path(model_path, ct_levels_path)
   drs <- list.files(ct_levels_fullpath)

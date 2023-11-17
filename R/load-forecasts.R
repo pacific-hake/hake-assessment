@@ -4,71 +4,89 @@
 #' loading the forecasts, return `NA`
 #'
 #' @param model The SS model output as loaded by [create_rds_file()]
-#' @param first Load this many of the files. If `NULL`, load them all. Used
-#' for debugging purposes to cut down the size of the lists used
+#' @param first Load this many of the files. If a non-positive number, load
+#' them all. Used for debugging purposes to cut down the size of the
+#' lists used
+#' @param forecast_yrs A vector of forecast years
+#' @param verbose Logical. If `TRUE`, show messages
 #' @param ... Absorbs arguments intended for other functions
 #'
 #' @return A list of forecast outputs as read in by [r4ss::SSgetMCMC()]
 #' @export
-load_forecasts <- function(model,
-                           first = model$nposts,
+load_forecasts <- function(model_path = NULL,
+                           first = 0,
+                           forecast_yrs = get_assess_yr():(get_assess_yr() + 3),
+                           verbose = TRUE,
                            ...){
 
-  if(!dir.exists(model$forecasts_path)){
-    return(NA)
+  if(!check_forecasts(model_path, ...)){
+    stop("The forecasts do not appear to have been run, have been run ",
+         "incorrectly, or only been run partially. Re-run using ",
+         "`run_forecasts` before trying to attach forecasting")
   }
-  message("\nLoading forecast data from ", model$forecasts_path, "\n")
+  fore_fullpath <- file.path(model_path, forecasts_path)
+  if(verbose){
+    message("\nLoading forecast data from directory `", fore_fullpath,
+            "`\n")
+  }
 
-  if(is.na(model$ct_levels[1])){
-    stop("`model$ct_levels` cannot be `NA`. There was likely a problem ",
-         "with finding the path for the ct_levels outputs")
-  }
+  ct_levels_lst <- load_ct_levels(model_path, ...)
+  ct_levels <- ct_levels_lst$ct_levels
 
   # Extract the catch level names from the list into a vector
-  ct_levels_catch <- map(model$ct_levels, ~{.x[[1]]})
-  ct_levels_desc <- map_chr(model$ct_levels, ~{.x[[2]]})
-  ct_levels_names <- map_chr(model$ct_levels, ~{.x[[3]]})
+  ct_levels_catch <- map(ct_levels, ~{.x[[1]]})
+  ct_levels_desc <- map_chr(ct_levels, ~{.x[[2]]})
+  ct_levels_names <- map_chr(ct_levels, ~{.x[[3]]})
 
   # Get the directory listing and choose the last one for loading
-  dir_listing <- dir(model$forecasts_path)
+  dir_nms <- list.files(fore_fullpath)
+  dir_nms_fullpath <- file.path(model_path, forecasts_path, dir_nms)
 
   # Make sure only year directories exist here
-  num_forecasts <- length(grep("^20[0-9]{2}$", dir_listing))
-  if(num_forecasts != model$nforecastyears){
+  pat <- paste0("^", forecasts_prepend, "20[0-9]{2}$")
+  num_forecasts <- length(grep(pat, dir_nms))
+  if(num_forecasts != length(forecast_yrs)){
     stop("The number of actual forecast years run (", num_forecasts, ") ",
          "does not match the number of forecast years specified in the ",
-         "model (", model$nforecastyears, "). Check the contents of the ",
-         "directory `", model$forecasts_path, "`")
+         "model (", length(forecast_yrs), "). Check the contents of the ",
+         "directory\n`", fore_fullpath, "`\n")
   }
-  forecast_yrs <- dir_listing
-  lst <- map(forecast_yrs, function(fore_yr){
-    fore_path <- file.path(model$forecasts_path, fore_yr)
-    if(!dir.exists(fore_path)){
-      stop("Directory `", fore_path, "` does not exist")
+
+  if(supportsMulticore()){
+    plan("multicore", workers = length(forecast_yrs))
+  }else{
+    message(paste0("`create_rds_files_retro()`: ", parallelism_warning))
+    if(interactive()){
+      message("\nContinue in sequential mode? (choose a number)")
+      ans <- menu(c("Yes", "No"))
+      if(ans == 2){
+        message("`create_rds_files_retro()`: Bailing out at the user's ",
+                "request")
+        return(invisible())
+      }
     }
+    plan("sequential")
+  }
+  lst <- future_map(dir_nms_fullpath, \(fore_path){
+
     # Get the directory listing of the forecast directory and make sure
     # it matches what the catch levels are.currently set to in
     # forecast-catch-levels.R`
-    dir_listing <- dir(fore_path)
-    if(!all(ct_levels_names %in% dir_listing)){
-      stop("There is one or more missing catch level directories in the ",
-           "forecasts directory:\n`", fore_path,"`\nCheck the names set up ",
-           "in `set_catch_levels()` and compare to what is in the directory.",
-           "It is ok to have extra forecasts present in the forecast ",
-           "directory, but all forecast catch levels appearing in ",
-           "`set_catch_levels()` must be present in the directory")
-    }
+    fore_subdir <- dir(fore_path)
     # Eliminate extra forecast runs, possibly done after the document was
     # created, for the JMC meeting or some other reason
-    dir_listing <- ct_levels_names[dir_listing %in% ct_levels_names]
-    lvls_lst <- imap(model$ct_levels, \(catch_level, catch_level_ind){
+    fore_paths <- ct_levels_names[dir_nms %in% ct_levels_names]
+    lvls_lst <- imap(ct_levels, \(catch_level, catch_level_ind){
       fore_level_path <- file.path(fore_path, catch_level[[3]])
       message("Loading from ", fore_level_path)
 
       mcmc_out <- SSgetMCMC(dir = fore_level_path,
                             writecsv = FALSE,
-                            verbose = FALSE) |>
-        slice_head(n = first)
+                            verbose = FALSE)
+      if(first > 0){
+        mcmc_out <- mcmc_out |>
+          slice_head(n = first)
+      }
 
       # Get the values of interest, namely Spawning biomass and SPR for the two
       # decision tables in the executive summary
@@ -83,9 +101,9 @@ load_forecasts <- function(model,
 
       # Now, filter out the projected years only
       sb_proj_cols <- sb |>
-        select(all_of(forecast_yrs))
+        select(all_of(as.character(forecast_yrs)))
       spr_proj_cols <- spr |>
-        select(all_of(forecast_yrs))
+        select(all_of(as.character(forecast_yrs)))
       sb_proj_cols <- na.omit(sb_proj_cols)
       spr_proj_cols <- na.omit(spr_proj_cols)
       # Get forecast catches from the forecast.ss files

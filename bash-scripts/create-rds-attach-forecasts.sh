@@ -1,8 +1,7 @@
 #!/bin/bash
 #
-# Create an RDS file for each retrospective model found in the
-# `$model_path/retrospectives` directory. The `retrospectives` part
-# of the path is appended  in the `create_rds_files_retro()` function
+# Load and attach forecasts to a RDS file as a list element called `fortecasts`
+# and overwrite the original RDS file
 
 # Create the variable $assess_year containing the current year unless it
 # is currently December, in which case it will be the current year + 1
@@ -29,13 +28,12 @@ model_path=$project_path/$models_path/$year_path/$version_path/$type_path/$model
 exist, bailing out." ; exit 1; }
 
 (trap 'kill 0' SIGINT; \
-  printf "\nBuilding RDS files for retrospectives in base model directory\n \
+  printf "\nAttaching forecasts to RDS file in base model directory\n \
   in parallel (if on Linux/Mac)\n"; \
   Rscript -e " \
   setwd('$repo_path'); \
   suppressPackageStartupMessages(devtools::load_all()); \
-  create_rds_files_retro(model_path = '$model_path', \
-                         verbose = TRUE, \
-                         overwrite = TRUE)"; \
+  create_rds_attach_forecasts(model_path = '$model_path', \
+                              verbose = TRUE)"; \
   printf "\nFinished creating RDS file for retrospectives\n"; \
 )
