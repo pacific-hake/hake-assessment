@@ -8,5 +8,4 @@ create_data_hake("parallelism_warning",
   "Linux machine if you want this to run in parallel. Even if you\n",
   "are on a Mac or Linux machine, you cannot use multicore\n",
   "parallelism if you are in an Rstudio terminal, you must run\n",
-  "the code using Rscript (via bash file perhaps) or terminal R\n\n",
-  "Running in sequential mode..."))
+  "the code using Rscript (via bash file perhaps) or terminal R\n\n"))

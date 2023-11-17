@@ -28,7 +28,7 @@ for model in ${models[@]}; do
   echo; \
   Rscript -e " \
   setwd('$repo_path'); \
-  devtools::load_all(); \
+  suppressPackageStartupMessages(devtools::load_all()); \
   # Use first = 2000 as argument to load first 2000 samples only
   create_rds_file('$model_path', \
                   verbose = $verbose, \
