@@ -5,6 +5,8 @@
 #' Also included are [bookdown] beamer presentation templates for the various
 #' meetings required.
 #'
+#' All of these are in alphabetical order, both packages and functions
+#' within them
 #' @import adnuts coda dplyr
 #' @import GGally ggh4x ggplot2 ggrepel
 #' @import knitr
@@ -39,17 +41,16 @@
 #' @importFrom scales comma ordinal rescale
 #' @importFrom sf st_as_sf st_crs<- st_coordinates
 #' @importFrom stats ave complete.cases end median na.omit quantile rbeta
-#' @importFrom stats  reshape rlnorm rnorm runif setNames start ts
+#' @importFrom stats reshape rlnorm rnorm runif setNames start ts
 #' @importFrom stringr str_flatten str_flatten_comma str_split str_sub
 #' @importFrom tools file_path_sans_ext file_ext
 #' @importFrom tibble as_tibble enframe
 #' @importFrom tidyselect all_of any_of matches one_of starts_with
 #' @importFrom tidyr pivot_longer pivot_wider unnest
-#' @importFrom utils  head globalVariables object.size read.csv read.table
+#' @importFrom utils head globalVariables menu object.size read.csv read.table
 #' @importFrom utils tail type.convert write.csv write.table
 #' @importFrom vctrs vec_as_names vec_group_rle
 #' @importFrom withr defer
-#' @importFrom xtable xtable
 
 #' @docType package
 #' @name hake
