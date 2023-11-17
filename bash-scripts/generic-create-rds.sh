@@ -36,6 +36,8 @@ version_path="01-version"
 
 # In the following assignment, only `$type_path ` comes from the calling script
 models_path=$project_path/$models_path/$year_path/$version_path/$type_path
+[[ ! -d $model_path ]] && { echo "Error: Directory $model_path does not \
+exist, bailing out." ; exit 1; }
 
 # `$models` comes from the calling script
 for model in ${models[@]}; do

@@ -25,6 +25,8 @@ type_path="01-base-models"
 model="01-base"
 
 model_path=$project_path/$models_path/$year_path/$version_path/$type_path/$model
+[[ ! -d $model_path ]] && { echo "Error: Directory $model_path does not \
+exist, bailing out." ; exit 1; }
 
 (trap 'kill 0' SIGINT; \
   printf "\nBuilding RDS files for retrospectives in directory\n \
