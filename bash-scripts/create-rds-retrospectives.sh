@@ -29,13 +29,12 @@ model_path=$project_path/$models_path/$year_path/$version_path/$type_path/$model
 exist, bailing out." ; exit 1; }
 
 (trap 'kill 0' SIGINT; \
-  printf "\nBuilding RDS files for retrospectives in base model directory\n \
-  in parallel (if on Linux/Mac)\n"; \
+  printf "\nCreating RDS files for base model retrospectives\n"; \
   Rscript -e " \
   setwd('$repo_path'); \
   suppressPackageStartupMessages(devtools::load_all()); \
   create_rds_files_retro(model_path = '$model_path', \
                          verbose = TRUE, \
                          overwrite = TRUE)"; \
-  printf "\nFinished creating RDS file for retrospectives\n"; \
+  printf "\nFinished creating RDS file for base model retrospectives\n"; \
 )
