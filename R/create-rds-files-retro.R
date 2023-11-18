@@ -34,6 +34,7 @@ create_rds_files_retro <- function(model_path,
   }
 
   if(supportsMulticore()){
+    message("Creating the retrospective RDS files in parallel")
     plan("multicore", workers = length(retro_paths))
   }else{
     message(paste0("`create_rds_files_retro()`: ", parallelism_warning))
@@ -48,6 +49,7 @@ create_rds_files_retro <- function(model_path,
     }
     plan("sequential")
   }
+
   future_walk(retro_paths, \(pth, ...){
     create_rds_file(pth, verbose = verbose, ...)
   }, ...)
