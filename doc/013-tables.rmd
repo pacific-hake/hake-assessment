@@ -676,7 +676,7 @@ table_param_est(
 
 ```{r main-parameter-estimates-retro-tab, results = "asis", echo = FALSE}
 table_param_est(
-  base_model$retros$retro_param_est,
+  base_model$retrospectives$retro_param_est,
   section_bold = TRUE,
   section_italics = TRUE,
   section_underline = TRUE,

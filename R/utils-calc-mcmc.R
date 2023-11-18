@@ -94,8 +94,10 @@ calc_mcmc <- function(mcmc,
   # Spawning biomass ----
   ssb <- get_post_cols(mcmc, "SSB", biomass_scale)
 
-  out$svirg <- get_post_cols(mcmc, "SSB_Virgin", biomass_scale, exact = TRUE)
-  out$sinit <- get_post_cols(mcmc, "SSB_Initial", biomass_scale, exact = TRUE)
+  svirg <- get_post_cols(mcmc, "SSB_Virgin", biomass_scale, exact = TRUE)
+  out$svirg <- svirg |> pull(1) |> quantile(probs, na.rm = TRUE)
+  sinit <- get_post_cols(mcmc, "SSB_Initial", biomass_scale, exact = TRUE)
+  out$sinit <- sinit |> pull(1) |> quantile(probs, na.rm = TRUE)
 
   out$slower <- apply(ssb, 2, quantile, prob = probs[1], na.rm = TRUE)
   out$smed <- apply(ssb, 2, quantile, prob = probs[2], na.rm = TRUE)
@@ -103,7 +105,7 @@ calc_mcmc <- function(mcmc,
 
   # Depletion ----
   depl <- ssb |>
-    bind_cols(out$sinit) |>
+    bind_cols(sinit) |>
     mutate(across(-SSB_Initial, ~{.x / SSB_Initial})) |>
     select(-SSB_Initial)
 

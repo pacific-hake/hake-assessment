@@ -51,7 +51,7 @@ plot_historical_probs_retro <- function(
   }
 
   # For 2021 base.case: 10
-  earliest.retro.available = length(model$retros)
+  earliest.retro.available = length(model$retrospectives)
   earliest.retro.to.use = min(assess_yr - xLim[1],
                               earliest.retro.available)
 
@@ -106,7 +106,7 @@ plot_historical_probs_retro <- function(
                                  ...)
     }
 
-    make.historical.probs.plot(model$retros[[i]],
+    make.historical.probs.plot(model$retrospectives[[i]],
                                hist_probs = hist_probs,
                                type = type,
                                end = assess_yr - i,

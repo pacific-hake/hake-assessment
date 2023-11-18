@@ -7,7 +7,7 @@
 create_rds_attach_retrospectives(
   model_path = NULL,
   verbose = TRUE,
-  base_model_name = "BAse model",
+  base_model_name = "Base model",
   ...
 )
 }

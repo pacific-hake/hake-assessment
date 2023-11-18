@@ -994,11 +994,11 @@ retro_inc_nms <- list(c("Base model",
                         " -5 years"))
 
 retros_biomass_incremental <- map(retro_inc_nms, \(retro_mdls){
-  base_model$retros$biomass_df$d |>
+  base_model$retrospectives$biomass_df$d |>
     filter(model %in% retro_mdls)
   })
 retros_bo_incremental <- map(retro_inc_nms, \(retro_mdls){
-  base_model$retros$biomass_df$bo |>
+  base_model$retrospectives$biomass_df$bo |>
     filter(model %in% retro_mdls)
   })
 

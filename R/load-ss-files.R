@@ -17,7 +17,7 @@ load_ss_files <- function(model_path = NA,
     stop("Directory `", model_path, "` does not exist")
   }
 
-  # Load MPD results
+  # Load Report.ss file for model limits etc
   model <- tryCatch({
     SS_output(dir = model_path,
               verbose = FALSE,

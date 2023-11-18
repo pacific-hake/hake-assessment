@@ -36,7 +36,7 @@ end_yr <- assess_yr
 # `forecast_yrs` is a vector of years to forecast for. This is calculated from
 # the number of `catch_year` columns in the forecast descriptions CSV file
 # and always begins in the current assessment year (`assess_yr`)
-fore_file <- here::here(doc_path, forecast_fn)
+fore_file <- here::here(doc_path, forecast_descriptions_fn)
 if(!file.exists(fore_file)){
   stop("File `", fore_file, "` does not exist.")
 }

@@ -137,6 +137,7 @@ load_forecasts <- function(model_path = NULL,
            outputs = mcmc_out,
            fore_catch = fore_catch)
     })
+    message("\n")
     names(lvls_lst) <- ct_levels_names
     lvls_lst
   })

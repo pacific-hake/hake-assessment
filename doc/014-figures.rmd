@@ -1244,13 +1244,13 @@ stable model.
 ```{r main-biomass-recruitment-retrospective-fig, fig.cap = "(ref:main-biomass-recruitment-retrospective-cap)", fig.height = 8}
 
 p <- list()
-p[[1]] <- plot_biomass(d_obj = base_model$retros$biomass_df,
+p[[1]] <- plot_biomass(d_obj = base_model$retrospectives$biomass_df,
                        leg_font_size = 12,
                        x_expansion = 3.5,
                        leg_pos = c(0.6, 0.89),
                        leg_ncol = 2,
                        alpha = 0.1)
-p[[2]] <- plot_recruitment(d_obj = base_model$retros$recr_df,
+p[[2]] <- plot_recruitment(d_obj = base_model$retrospectives$recr_df,
                            leg_pos = "none")
 
 plot_grid(plotlist = p,

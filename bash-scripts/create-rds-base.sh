@@ -1,7 +1,19 @@
 #!/bin/bash
 
 # Build RDS file for the base model
-#
+# The path structure is as follows
+# /srv/hake/models/2023/01-version/01-base-models/01-base/
+#  ^   ^    ^      ^    ^          ^              ^
+#  |   |    |      |    |          |              |
+#  |   |    |      |    |          |              $models (in this script)
+#  |   |    |      |    |          $type_path (in this script)
+#  |   |    |      |    $version_path (in generic-create-rds.sh)
+#  |   |    |      $year (in generic-create-rds.sh)
+#  |   |    $models_path (in generic-create-rds.sh)
+#  \  /
+#   ||
+#   $project_path (in this script)
+
 models=(01-base)
 
 # If running on a local machine and the model folder is in your

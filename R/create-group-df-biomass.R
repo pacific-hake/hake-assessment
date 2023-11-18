@@ -21,7 +21,8 @@ create_group_df_biomass <- function(model_lst = NULL,
 
   init_year <- model_lst[[1]]$startyr - bo_yr
 
-  vals <- paste0(ifelse(rel, "d", "s"), c("lower", "med", "upper"))
+  vals <- paste0(ifelse(rel, "d", "s"),
+                 c("lower", "med", "upper"))
 
   d <- bind_cols(extract_mcmc_quant(model_lst,
                                     model_names,

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Load and attach forecasts to a RDS file as a list element called `forecasts`
-# and overwrite the original RDS file
+# Load and attach retrospectives to a RDS file as a list element called
+# `retrospectives` and overwrite the original RDS file
 
 # Create the variable $assess_year containing the current year unless it
 # is currently December, in which case it will be the current year + 1
@@ -28,12 +28,11 @@ model_path=$project_path/$models_path/$year_path/$version_path/$type_path/$model
 exist, bailing out." ; exit 1; }
 
 (trap 'kill 0' SIGINT; \
-  printf "\nAttaching foreecasts to base model RDS file\n \
-  (in parallel if on Linux/Mac)\n"; \
+  printf "\nAttaching retrospectives to base model RDS file\n"; \
   Rscript -e " \
   setwd('$repo_path'); \
   suppressPackageStartupMessages(devtools::load_all()); \
-  create_rds_attach_forecasts(model_path = '$model_path', \
-                              verbose = TRUE)"; \
-  printf "\nFinished attaching foreecasts to base model RDS file\n"; \
+  create_rds_attach_retrospectives(model_path = '$model_path', \
+                                   verbose = TRUE)"; \
+  printf "\nFinished attaching retrospectives to base model RDS file\n"; \
 )

@@ -14,7 +14,7 @@
 #' @export
 create_rds_attach_retrospectives <- function(model_path = NULL,
                                              verbose = TRUE,
-                                             base_model_name = "BAse model",
+                                             base_model_name = "Base model",
                                              ...){
 
   # Check for RDS file existence
@@ -61,7 +61,7 @@ create_rds_attach_retrospectives <- function(model_path = NULL,
     readRDS(fn)
   })
   all_cohorts <- map_dbl(all_retros_lst, \(mdl){
-    mdl$endyr
+    mdl$Retro_year
   }) |>
     sort()
   all_retros_yrs <- rev(all_cohorts) + 1
@@ -111,9 +111,7 @@ create_rds_attach_retrospectives <- function(model_path = NULL,
                      recr_df = retro_recr_df,
                      retro_param_est = retro_param_est)
 
-
   model[[retropectives_path]] <- retros_lst
-
 
   saveRDS(model, file = rds_file)
   if(file.exists(rds_file)){

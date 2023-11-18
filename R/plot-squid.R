@@ -21,7 +21,7 @@ plot_squid <- function(model,
 
   # Create a list of models, with the core model being first, followed by
   # all the retrospectives located inside it
-  #model_lst <- c(list(model), map(model$retros, ~{.x}))
+  #model_lst <- c(list(model), map(model$retrospectives, ~{.x}))
   #end_yr <- model$endyr
 
   # Extract the cohort list from the list of models
@@ -32,7 +32,7 @@ plot_squid <- function(model,
 
   # Extract a data frame of long-format recruitment deviations containing all
   # the models in the model list
-  d <- model$retros$recdevs_df$d
+  d <- model$retrospectives$recdevs_df$d
   cohorts <- as.numeric(levels(d$model)) - 1
 
   # Colors of lines and fill - add black to the beginning and remove end color
