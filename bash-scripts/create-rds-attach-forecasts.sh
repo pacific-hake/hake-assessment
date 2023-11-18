@@ -28,12 +28,12 @@ model_path=$project_path/$models_path/$year_path/$version_path/$type_path/$model
 exist, bailing out." ; exit 1; }
 
 (trap 'kill 0' SIGINT; \
-  printf "\nAttaching forecasts to RDS file in base model directory\n \
-  in parallel (if on Linux/Mac)\n"; \
+  printf "\nAttaching foreecasts to base model RDS file\n \
+  (in parallel if on Linux/Mac)\n"; \
   Rscript -e " \
   setwd('$repo_path'); \
   suppressPackageStartupMessages(devtools::load_all()); \
   create_rds_attach_forecasts(model_path = '$model_path', \
                               verbose = TRUE)"; \
-  printf "\nFinished creating RDS file for retrospectives\n"; \
+  printf "\nFinished attaching foreecasts to base model RDS file\n"; \
 )
