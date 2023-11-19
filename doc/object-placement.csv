@@ -6,7 +6,7 @@
 # \begin{figure}[tbp]
 #   for the figure with knitr label `es-example-fig` and the entry below is:
 # figure,es-catches-fig,,!b
-#   the resultig LaTex code will be:
+#   the resulting LaTex code will be:
 # \begin{figure}[!b]
 #
 # Column descriptions:
@@ -25,7 +25,7 @@
 # - !: Override internal parameters LaTeX uses for determining “good” float
 #      positions.
 # - H: Place the float at precisely the location in the LaTeX code. This
-#      requires the float package
+#      is typically the one we use most often
 
 # Header column names
 type,label,file_name,placement
