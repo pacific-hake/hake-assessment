@@ -144,7 +144,7 @@ plot_fore_compare <- function(model,
   }else if(leg_pos[1] != "out"){
     g <- g +
       theme(legend.position = leg_pos,
-            legend.box.background = element_rect(color = "white"),
+            #legend.box.background = element_rect(color = "white"),
             legend.text = element_text(size = leg_font_size)) +
       guides(fill = guide_legend(ncol = leg_ncol,
                                  label.hjust = 0),
