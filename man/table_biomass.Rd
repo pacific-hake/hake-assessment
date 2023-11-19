@@ -24,7 +24,7 @@ table_param_est_bounds(
   start_rec_dev_yr,
   end_rec_dev_yr,
   section_sep_lines = FALSE,
-  digits = 3,
+  digits = 2,
   font_size = 8,
   header_font_size = 10,
   header_vert_spacing = 12,

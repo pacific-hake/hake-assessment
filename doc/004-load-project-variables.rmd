@@ -768,8 +768,8 @@ param_details <- table_param_est_bounds(base_model,
                                         end_rec_dev_yr = end_yr - 1,
                                         ret_df = TRUE)
 m_prior <- param_details |> 
-  filter(grepl("Natural mortality", V1)) |> 
-  pull(4) |> 
+  filter(param == "m") |> 
+  pull(prior_str) |> 
   split_prior_info(dec_points = 2, first_to_lower = TRUE)
 
 # ... Dirichlet Multinomial priors --------------------------------------------

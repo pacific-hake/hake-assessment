@@ -15,7 +15,7 @@ table_param_est_bounds <- function(model,
                                    start_rec_dev_yr,
                                    end_rec_dev_yr,
                                    section_sep_lines = FALSE,
-                                   digits = 3,
+                                   digits = 2,
                                    font_size = 8,
                                    header_font_size = 10,
                                    header_vert_spacing = 12,
@@ -23,288 +23,295 @@ table_param_est_bounds <- function(model,
                                    ret_df = FALSE,
                                    ...){
 
-  lo <- 1
-  hi <- 2
-  init <- 3
-  p_mean <- 4 # prior mean
-  p_sd <- 5   # prior sd
-  p_type <- 6 # prior type
-  phase <- 7
-  start_yr_sel <- 10
-  end_yr_sel <- 11
-
-  prior_type <- c("0" = "Uniform",
-                  "-1" = "Uniform",
-                  "2" = "Beta",
-                  "3" = "Lognormal")
-
-  # Fetch the line `x` from the vector `ctl` and split it up, removing spaces.
-  # Also remove any leading spaces
-  #
-  # @param ctl The input vector of lines from the control file
-  # @param x The line to extract from vector `vec`
-  #
-  # @return A vector of values
-  fetch_and_split <- function(ctl, x){
-
-    j <- ctl[x]
-    # Remove inter-number spaces
-    j <- strsplit(j," +")[[1]]
-    # Remove leading spaces
-    j <- j[j != ""]
-    return(j)
-  }
-
-  # Looks at the prior type p_type and phase, and if uniform will return
-  #  "Uniform"
-  # If not uniform, it will parse the `vals` and build a string defining
-  #  the prior info.
-  # If Fixed, it will return the initial value
-  # If Lognormal, it will parse the `vals` and build a string defining the
-  #  prior info, with the exp function applied
-  #
-  # @param vals The parameter initial values and settings from the control file
-  # @param digits The number of decimal points to return
-  #
-  # @return A string with the prior type and initial values in parentheses
-  fetch_prior_info <- function(vals, digits = 2){
-    if(vals[p_type] < 0 & vals[phase] > 0){
-      # Uniform prior on estimated parameter
-      return("Uniform")
-    }
-    if(vals[p_type] < 0 & vals[phase] < 0){
-      # Fixed parameter
-      return(vals[init])
-    }
-    paste0(prior_type[vals[p_type]], " (",
-           f(as.numeric(vals[p_mean]), digits), ", ",
-           f(as.numeric(vals[p_sd]), digits), ")")
-  }
-
   ctl <- model$ctl
-  # Remove preceding and trailing whitespace on all elements,
-  #  but not 'between' whitespace.
-  ctl <- trimws(ctl)
-  # Remove all lines that start with a comment
-  ctl <- ctl[-grep("^#.*", ctl)]
+  if(is.null(ctl)){
+    stop("No control file information fopund in the `model` list")
+  }
+  if(!"SR_parms" %in% names(ctl)){
+    stop("`SR_parms` not found in the control file list (`model$ctl`)")
+  }
 
-  # R0
-  pat <- "_SR_LN\\(R0\\)$"
-  ind <- grep(pat, ctl)
-  if(!length(ind)){stop("`ctl` did not have a line containing ", pat)}
-  r0 <- fetch_and_split(ctl, ind)
-  r0_vals <- c(paste0("Log (",
-                      latex_subscr(latex_italics("R"),
-                                   "0"),
-                      ")"),
-               1,
-               paste0("(", r0[lo], ", ", r0[hi], ")"),
-               prior_type[r0[p_type]])
+  sr_params <- convert_ctl_file_param_dfs(ctl, "SR_parms") |>
+    mutate(param = gsub("sr_", "", param)) |>
+    mutate(param = ifelse(grepl("ln", param), "ro", param)) |>
+    mutate(param = ifelse(grepl("steep", param), "h", param)) |>
+    mutate(param = ifelse(grepl("sigmar", param), "sigma_r", param)) |>
+    filter(!param %in% c("autocorr", "regime"))
 
-  # Steepness
-  pat <- "_SR_BH_steep$"
-  ind <- grep(pat, ctl)
-  if(!length(ind)){stop("`ctl` did not have a line containing ", pat)}
-  h <- fetch_and_split(ctl, ind)
-  h_vals <- c(paste0("Steepness (",
-                     latex_italics("h"),
-                     ")"),
-              1,
-              paste0("(", h[lo], ", ", h[hi], ")"),
-              fetch_prior_info(h, digits))
+  # R0 ----
+  row <- sr_params[sr_params$param == "ro", ]
+  row$latex_nm <- paste0("Log (",
+                         latex_subscr(latex_italics("R"), "0"),
+                         ")")
+  row$num_param <- "1"
+  row$bounds <- paste0("(", row$lo, ", ", row$hi, ")")
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params[sr_params$param == "ro", ] <- row
 
-  # Recruitment variability (sigma_r)
-  pat <- "_SR_sigmaR$"
-  ind <- grep(pat, ctl)
-  if(!length(ind)){stop("`ctl` did not have a line containing ", pat)}
-  sig_r <- fetch_and_split(ctl, ind)
-  sig_r_vals <- c(paste0("Recruitment variability (",
+  # Steepness (h) ----
+  row <- sr_params[sr_params$param == "h", ]
+  row$latex_nm <- paste0("Steepness (",
+                         latex_italics("h"),
+                         ")")
+  row$num_param <- "1"
+  row$bounds <- paste0("(", row$lo, ", ", row$hi, ")")
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params[sr_params$param == "h", ] <- row
+
+  # Recruitment variability (sigma_r) ----
+  row <- sr_params[sr_params$param == "sigma_r", ]
+  row$latex_nm <- paste0("Recruitment variability (",
                          latex_italics("$\\sigma_r$"),
-                         ")"),
-                  if(sig_r[p_type] < 0 & sig_r[phase] > 0)
-                    1
-                  else
-                    "--",
-                  if(sig_r[p_type] < 0 & sig_r[phase] > 0)
-                    paste0(" (", sig_r[lo], ", ", sig_r[hi], ")")
-                  else
-                    "--",
-                  sig_r[3])
+                         ")")
+  if(row$type < 0 && row$phase > 0){
+    row$num_param <- "1"
+    row$bounds <- paste0("(", row$lo, ", ", row$hi, ")")
+  }else{
+    row$num_param <- "--"
+    row$bounds <- "--"
+  }
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params[sr_params$param == "sigma_r", ] <- row
 
-  # Recruitment devs
+  # Recruitment deviations ----
   # The number of them comes from the arguments to this function (for now)
-  pat_lb <- "#min rec_dev$"
-  pat_ub <- "#max rec_dev$"
-  ind_lb <- grep(pat_lb, ctl)
-  ind_ub <- grep(pat_ub, ctl)
-  if(!length(ind_lb)){stop("`ctl` did not have a line containing ", pat_lb)}
-  if(!length(ind_ub)){stop("`ctl` did not have a line containing ", pat_ub)}
-  rec_dev_lb <- fetch_and_split(ctl, ind_lb)[1]
-  rec_dev_ub <- fetch_and_split(ctl, ind_ub)[1]
-  rec_dev_vals <- c(paste0("Log recruitment deviations: ",
-                           start_rec_dev_yr,
-                           "--",
-                           end_rec_dev_yr),
-                    end_rec_dev_yr - start_rec_dev_yr + 1,
-                    paste0("(",
-                           rec_dev_lb,
-                           ", ",
-                           rec_dev_ub,
-                           ")"),
-                    paste0("Lognormal (0, ",
-                           latex_italics("$\\sigma_r$"),
-                           ")"))
-
-  # Natural mortality
-  pat <- "#_NatM_p_1_Fem_GP_1$"
-  ind <- grep(pat, ctl)
-  if(!length(ind)){stop("`ctl` did not have a line containing ", pat)}
-  m <- fetch_and_split(ctl, ind)
-  m.vals <- c(paste0("Natural mortality (",
-                     latex_italics("M"),
-                     ")"),
-              if(prior_type[m[p_type]] == "Fixed")
-                "--"
-              else
-                1,
-              paste0("(", m[lo], ", ", m[hi], ")"),
-              fetch_prior_info(m, digits))
-
-  # Survey additional value for SE
-  pat <- "#_Q_extraSD_Acoustic_Survey\\(2\\)$"
-  ind <- grep(pat, ctl)
-  if(!length(ind)){stop("`ctl` did not have a line containing ", pat)}
-  se <- fetch_and_split(ctl, ind)
-  se_vals <- c("Additional variance for survey log(SE)",
-               1,
-               paste0("(", se[lo], ", ", se[hi], ")"),
-               "Uniform")
-
-  # Survey selectivity parameters
-  pat <- "AgeSel_.*_Survey.*[0-9]\\)$"
-  vals <- grep(pat, ctl, value = TRUE)
-  vals_split <- strsplit(vals, "\\s+")
-  vals_df <- data.frame(do.call("rbind", vals_split))
-  # Which parameters have phase greater than zero, subtract 1 because the ages
-  # start at zero so the row numbers are off by one
-  s_ages_estimated <- which(vals_df[, 7] > 0) - 1
-  age_sel_vals <- c(paste0("Non-parametric age-based selectivity: ages ",
-                           min(s_ages_estimated),
-                           "--",
-                           max(s_ages_estimated)),
-                    length(s_ages_estimated),
-                    paste0(" (",
-                           min(vals_df[vals_df[, 7] > 0, lo]),
-                           ", ",
-                           min(vals_df[vals_df[, 7] > 0, hi]), ")"),
-                    "Uniform")
-
-  # Age-1 survey additional value for SE
-  pat <- "#_Q_extraSD_Age1_Survey\\(3\\)$"
-  ind <- grep(pat, ctl)
-  if(!length(ind)){stop("`ctl` did not have a line containing ", pat)}
-  se_age1 <- fetch_and_split(ctl, ind)
-  se_age1_vals <- c("Additional variance for age-1 index log(SE)",
-                    1,
-                    paste0("(", se_age1[lo], ", ", se_age1[hi], ")"),
-                    "Uniform")
+  row <- tibble(param = "recdev",
+                hi = as.character(ctl$max_rec_dev),
+                lo = as.character(ctl$min_rec_dev),
+                type = "3",
+                phase = as.character(ctl$recdev_phase),
+                init = "0",
+                mean = "0",
+                sd = "$\\sigma_r$",
+                latex_nm = paste0("Log recruitment deviations: ",
+                                  start_rec_dev_yr, "--", end_rec_dev_yr),
+                num_param = end_rec_dev_yr - start_rec_dev_yr + 1,
+                bounds = paste0("(", ctl$min_rec_dev, ", ",
+                                ctl$max_rec_dev, ")"),
+                prior_str = NA) |>
+    mutate(across(everything(), as.character))
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params <- sr_params |>
+    bind_rows(row)
 
 
-  # Survey selectivity parameters
-  pat <- "AgeSel_.*_Fishery.*[0-9]\\)$"
-  vals <- grep(pat, ctl, value = TRUE)
-  vals_split <- strsplit(vals, "\\s+")
-  vals_df <- data.frame(do.call("rbind", vals_split))
-  # Which parameters have phase greater than zero, subtract 1 because the ages
-  # start at zero so the row numbers are off by one
-  f_ages_estimated <- which(vals_df[, 7] > 0) - 1
-  f_age_sel_vals <- c(paste0("Non-parametric age-based selectivity: ages ",
-                             min(f_ages_estimated),
-                             "--",
-                             max(f_ages_estimated)),
-                      length(f_ages_estimated),
-                      paste0("(", min(vals_df[vals_df[, 7] > 0, lo]), ", ",
-                             max(vals_df[vals_df[, 7] > 0, hi]), ")"),
-                      "Uniform")
-  n_yrs_sel_vals <-
-    diff(as.numeric(vals_df[vals_df[, 7] > 0,
-                            start_yr_sel:end_yr_sel][1, 1:2])) + 1
+  # Natural mortality ----
+  mg_params <- convert_ctl_file_param_dfs(ctl, "MG_parms")
 
-  # Selectivity deviations for fishery
+  row <- mg_params |>
+    filter(grepl("natm", param))
+
+  if(nrow(row) != 1){
+    stop("Either the natural mortality parameter was not found in the ",
+         "control file or there is more than one of them")
+  }
+  row$param <- "m"
+  row$num_param <- ifelse(row$phase <= 0 , "--", "1")
+  row$bounds <- paste0("(", row$lo, ", ", row$hi, ")")
+  row$latex_nm <- paste0("Natural mortality (", latex_italics("M"), ")")
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params <- sr_params |>
+    bind_rows(row)
+
+  # Survey additional value for SE ----
+  q_params <- convert_ctl_file_param_dfs(ctl, "Q_parms")
+
+  row <- q_params |>
+    filter(grepl("extrasd_acoustic", param))
+
+  if(nrow(row) != 1){
+    stop("Either the 'extra SD acoustic survey' parameter was not found ",
+         "in the control file or there is more than one of them")
+  }
+
+  row$param <- "extra_sd_survey"
+  row$num_param <- ifelse(row$phase <= 0 , "--", "1")
+  row$bounds <- paste0("(", row$lo, ", ", row$hi, ")")
+  row$latex_nm <- "Additional variance for survey log(SE)"
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params <- sr_params |>
+    bind_rows(row)
+
+  # Survey selectivity parameters ----
+  sel_params <- convert_ctl_file_param_dfs(ctl, "age_selex_parms") |>
+    filter(grepl("acoustic_survey", param))
+
+  ages <- as.character(as.numeric(gsub("agesel_p_([0-9]+).*",
+                                       "\\1",
+                                       sel_params$param)) - 1)
+  sel_params <- sel_params |>
+    mutate(param = ages)
+
+  if(!nrow(sel_params)){
+    stop("The 'selectivity acoustic survey' parameters was not found ",
+         "in the control file")
+  }
+
+  ages_estimated_df <- sel_params |>
+    filter(phase > 0)
+  row <- ages_estimated_df |>
+    slice(1)
+  if(nrow(ages_estimated_df)){
+    row$num_param <- as.character(nrow(ages_estimated_df))
+  }else{
+    row$num_param <- "--"
+  }
+  row$param <- "age_sel_survey"
+  row$bounds <- paste0("(", row$lo, ", ", row$hi, ")")
+  row$latex_nm <- paste0("Non-parametric age-based selectivity: ages ",
+                         min(ages_estimated_df$param),
+                         "--",
+                         max(ages_estimated_df$param))
+
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params <- sr_params |>
+    bind_rows(row)
+
+  # Age-1 survey additional value for SE ----
+  q_params <- convert_ctl_file_param_dfs(ctl, "Q_parms")
+
+  row <- q_params |>
+    filter(grepl("extrasd_age1", param))
+
+  if(nrow(row) != 1){
+    stop("Either the 'extra SD age 1' parameter was not found ",
+         "in the control file or there is more than one of them")
+  }
+
+  row$param <- "extra_sd_age1"
+  row$num_param <- ifelse(row$phase <= 0 , "--", "1")
+  row$bounds <- paste0("(", row$lo, ", ", row$hi, ")")
+  row$latex_nm <- "Additional variance for age-1 index log(SE)"
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params <- sr_params |>
+    bind_rows(row)
+
+  # Fishery selectivity parameters ----
+  sel_params <- convert_ctl_file_param_dfs(ctl, "age_selex_parms") |>
+    filter(grepl("fishery", param))
+
+  ages <- as.character(as.numeric(gsub("agesel_p_([0-9]+).*",
+                                       "\\1",
+                                       sel_params$param)) - 1)
+  sel_params <- sel_params |>
+    mutate(param = ages)
+
+  if(!nrow(sel_params)){
+    stop("The 'selectivity acoustic survey' parameters was not found ",
+         "in the control file")
+  }
+
+  ages_estimated_df <- sel_params |>
+    filter(phase > 0)
+  # Assumes all estimated age selectivities have same starting conditions
+  row <- ages_estimated_df |>
+    slice(1)
+  if(nrow(ages_estimated_df)){
+    row$num_param <- as.character(nrow(ages_estimated_df))
+  }else{
+    row$num_param <- "--"
+  }
+  row$param <- "age_sel_fishery"
+  row$bounds <- paste0("(", row$lo, ", ", row$hi, ")")
+  row$latex_nm <- paste0("Non-parametric age-based selectivity: ages ",
+                         min(ages_estimated_df$param),
+                         "--",
+                         max(ages_estimated_df$param))
+
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params <- sr_params |>
+    bind_rows(row)
+
+  # Selectivity deviations for fishery ----
   sel_devs <- model$parameter_priors$`Fishery recruitment deviations`
+  sel_devs_tv <- ctl$age_selex_parms_tv |>
+    as_tibble(rownames = "param")
 
-  sel_dev_bounds <- paste0("(",
-                           first(sel_devs$min),
-                           ", ",
-                           first(sel_devs$max),
-                           ")")
+  sel_dev_mean <- sel_devs_tv |>
+    filter(grepl("dev_auto", param)) |>
+    first() |>
+    pull(INIT) |>
+    as.character()
 
-  f_age_sel_dev_vals <-
-    c(paste0("Selectivity deviations (",
-             min(vals_df[vals_df[, start_yr_sel] != 0, start_yr_sel]),
-             "--",
-             max(vals_df[vals_df[, end_yr_sel] != 0, end_yr_sel]),
-             ", ages ",
-             min(f_ages_estimated),
-             "--",
-             max(f_ages_estimated),
-             ")"),
-      length(f_ages_estimated) * n_yrs_sel_vals,
-      sel_dev_bounds,
-      paste0("Normal (0, ",
-             model$mcmcparams$param_recdevs_se,
-             ")"))
+  sel_dev_sd <- sel_devs_tv |>
+    filter(grepl("dev_se", param)) |>
+    first() |>
+    pull(INIT) |>
+    as.character()
 
-  # Dirichlet-Multinomial likelihood parameters
-  dm_inds <- grep("DM", ctl)
-  if(!length(dm_inds)){
-    stop("`DM` not found n the control file, cannot extract ",
-         "Dirichlet-multinomial parameter settings")
+  sel_dev_yrs <- gsub(".*DEVadd_([0-9]+)$", "\\1", sel_devs$label)
+  start_sel_dev_yr <- min(sel_dev_yrs)
+  end_sel_dev_yr <- max(sel_dev_yrs)
+
+  prior_type <- first(sel_devs$pr_type)
+  if(prior_type == "dev"){
+    prior_type <- "4"
   }
-  if(length(dm_inds) != 2){
-    stop("`DM` does not match exactly two items in the control file. See ",
-         "the code in table_param_est_bounds()")
+
+  row <- tibble(param = "seldevs",
+                hi = as.character(first(sel_devs$min)),
+                lo = as.character(first(sel_devs$max)),
+                type = prior_type,
+                phase = as.character(ctl$recdev_phase),
+                init = as.character(first(sel_devs$init)),
+                mean = sel_dev_mean,
+                sd = sel_dev_sd,
+                latex_nm = paste0("Selectivity deviations: ",
+                                  start_sel_dev_yr, "--", end_sel_dev_yr),
+                num_param = nrow(sel_devs),
+                bounds = paste0("(", first(sel_devs$min), ", ",
+                                first(sel_devs$max), ")"),
+                prior_str = NA) |>
+    mutate(across(everything(), as.character))
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params <- sr_params |>
+    bind_rows(row)
+
+  # Dirichlet-Multinomial - fishery ----
+  dm_params <- convert_ctl_file_param_dfs(ctl, "dirichlet_parms")
+
+  row <- dm_params |>
+    filter(grepl(".*1$", param))
+
+  if(nrow(row) != 1){
+    stop("Either the 'Dirichlet multinomial fishery' parameter was not found ",
+         "in the control file or there is more than one of them")
   }
-  dm <- map(dm_inds, ~{fetch_and_split(ctl, .x)})
 
-  dmf <- dm[[1]]
-  dms <- dm[[2]]
-  dmf_vals <- c(paste0("Dirichlet-multinomial fishery likelihood, ",
-                       latex_italics("$\\log(\\theta_{fish})$")),
-                2,
-                paste0("(", dmf[lo], ", ", dmf[hi], ")"),
-                paste0("Normal (",
-                       dmf[4], ", ",
-                       dmf[5],
-                       ")"))
+  row$param <- "dm_fishery"
+  row$num_param <- ifelse(row$phase <= 0 , "--", "2")
+  row$bounds <- paste0("(", row$lo, ", ", row$hi, ")")
+  row$latex_nm <- paste0("Dirichlet-multinomial fishery likelihood, ",
+                         latex_italics("$\\log(\\theta_{fishery})$"))
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params <- sr_params |>
+    bind_rows(row)
 
-  dms_vals <- c(paste0("Dirichlet-multinomial survey likelihood, ",
-                       latex_italics("$\\log(\\theta_{survey})$")),
-                2,
-                paste0("(", dms[lo], ", ", dms[hi], ")"),
-                paste0("Normal (",
-                       dms[4], ", ",
-                       dms[5],
-                       ")"))
+  # Dirichlet multinomial - survey ----
+  row <- dm_params |>
+    filter(grepl(".*2$", param))
 
-  d <- rbind(r0_vals,
-             h_vals,
-             sig_r_vals,
-             rec_dev_vals,
-             m.vals,
-             se_vals,
-             age_sel_vals,
-             se_age1_vals,
-             f_age_sel_vals,
-             f_age_sel_dev_vals,
-             dmf_vals,
-             dms_vals) |>
-    as.data.frame() |>
-    as_tibble()
+  if(nrow(row) != 1){
+    stop("Either the 'Dirichlet multinomial survey' parameter was not found ",
+         "in the control file or there is more than one of them")
+  }
 
+  row$param <- "dm_survey"
+  row$num_param <- ifelse(row$phase <= 0 , "--", "2")
+  row$bounds <- paste0("(", row$lo, ", ", row$hi, ")")
+  row$latex_nm <- paste0("Dirichlet-multinomial survey likelihood, ",
+                         latex_italics("$\\log(\\theta_{survey})$"))
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params <- sr_params |>
+    bind_rows(row)
+
+  # Clean up populated data frame ----
   if(ret_df){
-    return(d)
+    return(sr_params)
   }
+
+  d <- sr_params |>
+    select(latex_nm, num_param, bounds, prior_str)
 
   names(d) <- c("Parameter",
                 "Number of\nparameters",
