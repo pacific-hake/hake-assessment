@@ -140,7 +140,7 @@ run_forecasts <- function(model = NULL,
 
       SS_writeforecast(fore, dir = new_forecast_dir, overwrite = TRUE, verbose = FALSE)
 
-      # Evaluate the model using mceval option of ADMB, and retrieve the output
+      # Evaluate the model using -mceval option of ADMB, and retrieve the output
       unlink(file.path(new_forecast_dir, derposts_fn), force = TRUE)
       unlink(file.path(new_forecast_dir, posts_fn), force = TRUE)
       unlink(file.path(new_forecast_dir, "sso"), force = TRUE)
