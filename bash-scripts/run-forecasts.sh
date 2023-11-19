@@ -8,6 +8,19 @@
 # December.
 . ./get-assess-year.sh
 
+# The path structure is as follows
+# /srv/hake/models/2023/01-version/01-base-models/01-base/
+#  ^   ^    ^      ^    ^          ^              ^
+#  |   |    |      |    |          |              |
+#  |   |    |      |    |          |              $model_name
+#  |   |    |      |    |          $type_path
+#  |   |    |      |    $version_path
+#  |   |    |      $year
+#  |   |    $models_path
+#  \  /
+#   ||
+#   $project_path
+
 repo_path=`Rscript -e "cat(here::here())"`
 models_path="models"
 # *Never* change `year_path` manually - See `get-assess-year.sh` call above
@@ -15,12 +28,6 @@ year_path=$assess_year
 version_path="01-version"
 type_path="01-base-models"
 model_name="01-base"
-
-num_chains=16
-num_samples=8000
-num_warmup_samples=250
-adapt_delta=0.95
-run_extra_mcmc=TRUE
 
 model_path=$models_path/$year_path/$version_path/$type_path/$model_name
 
