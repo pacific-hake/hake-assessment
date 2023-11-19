@@ -9,7 +9,7 @@
 #' @param ret_df If `TRUE`, return a data frame of the results, if `FALSE`,
 #' return a [kableExtra::kbl()] table
 #'
-#' @return Either a data frame or [kableExtra::kbl()] object
+#' @return Either a [tibble::tibble()] or [kableExtra::kbl()] object
 #' @export
 table_param_est_bounds <- function(model,
                                    start_rec_dev_yr,

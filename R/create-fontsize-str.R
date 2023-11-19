@@ -3,7 +3,7 @@
 #' a different font size than the table cells have
 #'
 #' @param header_font_size Size of font, in pt
-#' @param vert_spacing The vertical spacing between newlines for this font.
+#' @param header_vert_spacing The vertical spacing between newlines for this font.
 #' If `NULL` this will be calculated as `header_font_size * header_vert_scale`
 #' @param header_vert_scale Scale factor to create the vertical spacing value.
 #' See `header_vert_spacing`

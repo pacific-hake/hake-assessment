@@ -71,7 +71,7 @@ If \code{NULL} this will be calculated as \code{header_font_size * header_vert_s
 \value{
 An \code{\link[knitr:kable]{knitr::kable()}} object
 
-Either a data frame or \code{\link[kableExtra:kbl]{kableExtra::kbl()}} object
+Either a \code{\link[tibble:tibble]{tibble::tibble()}} or \code{\link[kableExtra:kbl]{kableExtra::kbl()}} object
 }
 \description{
 Create a table of spawning biomass and relative spawning biomass
