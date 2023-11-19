@@ -80,3 +80,4 @@ appendix-srg-requests-2019.rnw
 !testing/
 !testing/*
 !*gotest*
+inst/doc
