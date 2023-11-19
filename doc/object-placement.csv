@@ -27,7 +27,10 @@
 # - H: Place the float at precisely the location in the LaTeX code. This
 #      requires the float package
 
+# Header column names
 type,label,file_name,placement
+
+# Executive summary
 figure,es-catches-fig,,H
 table,es-catches-tab,,H
 table,es-decisions-spr-tab,,H
@@ -35,12 +38,26 @@ table,es-recruitment-tab,,H
 table,es-reference-points-tab,,H
 table,es-biomass-tab,,!b
 table,es-decisions-biomass-tab,,H
+table,es-decisions-spr-tab,,H
+table,es-risk-year-1-tab,,H
+table,es-risk-year-2-tab,,H
+table,es-risk-year-3-tab,,H
+
+# Main section
 table,us-ap-catch-tab,,H
+
+# Executive summary
 figure,es-survey-biomass-fig,,H
 figure,es-survey-age1-fig,,H
 figure,es-biomass-fig,,H
 figure,es-relative-biomass-fig,,H
 figure,es-exploitation-fraction-fig,,H
+figure,es-depletion-comparison-fig,,H
+figure,es-risk-year-1-fig,,H
+figure,es-risk-year-2-fig,,H
+figure,es-risk-year-3-fig,,H
+
+# Main section
 figure,main-overview-map-fig,,H
 figure,main-us-depths-fig,,H
 figure,,fishCatchRatesUS,H
