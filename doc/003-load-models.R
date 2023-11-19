@@ -109,7 +109,6 @@ if(!exists("last_yr_base_model")){
 last_yr_base_model_name <- paste0(assess_yr-1," Base model")
 
 base_model <- models$base_models_dirs[[1]][[1]]
-base_model$ctl <- gsub("\t", " ", base_model$ctl)
 base_model_name <- attr(base_model, "desc")
 
 bridge_models <- models$bridge_models_dirs

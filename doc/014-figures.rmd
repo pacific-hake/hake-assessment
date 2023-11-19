@@ -587,7 +587,7 @@ an almost identical prior and posterior distribution.
 
 plot_priors_vs_posts(base_model,
                      x_range = "prior",
-                     ncol = 2,
+                     ncol = 3,
                      nrow = 3)
 ```
 
@@ -605,7 +605,7 @@ have an almost identical prior and posterior distribution.
 
 plot_priors_vs_posts(base_model,
                      x_range = "posterior",
-                     ncol = 2,
+                     ncol = 3,
                      nrow = 3)
 ```
 

@@ -115,8 +115,10 @@ calc_mcmc <- function(mcmc,
 
   # Recruitment ----
   recr <- get_post_cols(mcmc, "Recr", recr_scale)
-  out$rvirg <- get_post_cols(mcmc, "Recr_Virgin", biomass_scale, TRUE)
-  out$rinit <- get_post_cols(mcmc, "Recr_Initial", biomass_scale, TRUE)
+  rvirg <- get_post_cols(mcmc, "Recr_Virgin", biomass_scale, TRUE)
+  out$rvirg <- quantile(rvirg, probs,na.rm = TRUE)
+  rinit <- get_post_cols(mcmc, "Recr_Initial", biomass_scale, TRUE)
+  out$rinit <- quantile(rinit, probs,na.rm = TRUE)
 
   out$rlower <- apply(recr, 2, quantile,prob = probs[1], na.rm = TRUE)
   out$rmed <- apply(recr, 2, quantile, prob = probs[2], na.rm = TRUE)
@@ -132,7 +134,7 @@ calc_mcmc <- function(mcmc,
   out$r_rel_upper <- apply(rel_recr, 2, quantile,prob = probs[3], na.rm = TRUE)
   out$r_rel_mean <- apply(rel_recr, 2, mean, na.rm = TRUE)
 
-  out$r_rel_init <- out$rinit |> bind_cols(recr |> select(`2010`)) |>
+  out$r_rel_init <- rinit |> bind_cols(recr |> select(`2010`)) |>
     mutate(Recr_Initial = Recr_Initial / `2010`) |>
     select(-`2010`) |>
     unlist() |>

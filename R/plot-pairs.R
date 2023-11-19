@@ -251,6 +251,17 @@ plot_pairs <- function(model,
             axis.text.x = element_blank())
   }
 
+  ind <- grep("Age 1 extra SD", labels_vec)
+  if(length(ind)){
+    labels_vec[ind] <- "atop(scriptstyle('Age 1'), scriptstyle('extra SD'))"
+  }
+  # The `labeller` cannot have spaces in the names, we have to use ~ instead
+  labels_vec <- gsub(" +", "~", labels_vec)
+  # Only some are scriptstyle (small text), make sure all are
+  has_scriptstyle <- grep("scriptstyle", labels_vec)
+  labels_vec[-has_scriptstyle] <- paste0("scriptstyle(",
+                                         labels_vec[-has_scriptstyle],
+                                         ")")
   names(d) <- labels_vec
 
   # For debugging, reduce number of columns to make it faster
