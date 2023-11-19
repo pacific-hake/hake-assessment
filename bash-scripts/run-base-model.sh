@@ -13,6 +13,19 @@ SECONDS=0
 # December.
 . ./get-assess-year.sh
 
+# The path structure is as follows
+# /srv/hake/models/2023/01-version/01-base-models/01-base/
+#  ^   ^    ^      ^    ^          ^              ^
+#  |   |    |      |    |          |              |
+#  |   |    |      |    |          |              $model_name
+#  |   |    |      |    |          $type_path
+#  |   |    |      |    $version_path
+#  |   |    |      $year
+#  |   |    $models_path
+#  \  /
+#   ||
+#   $project_path
+
 repo_path=`Rscript -e "cat(here::here())"`
 # If running on a local machine and the model folder is in your
 # repo root, uncomment the next line and comment the line after it
@@ -24,6 +37,7 @@ version_path="01-version"
 type_path="01-base-models"
 model_name="01-base"
 
+ss_exe="ss_2024"
 num_chains=8
 num_samples=8000
 num_warmup_samples=250
@@ -46,15 +60,15 @@ exist, bailing out." ; exit 1; }
                      num_chains = $num_chains, \
                      num_samples = $num_samples, \
                      num_warmup_samples = $num_warmup_samples,
-                     fn_exe = 'ss3_2024')" \
+                     fn_exe = $ss_exe)" \
   > /dev/null 2>&1; \
   echo "Base model MCMC complete" \
 )
 
 # Run the base model catch-level, forecasts, and retrospectives
-. ./run-fore-retro.sh
-
-. ./create-base-rds.sh
+# . ./run-fore-retro.sh
+#
+# . ./create-base-rds.sh
 
 ELAPSED="Script runtime: $(($SECONDS / 3600)) hrs $((($SECONDS / 60) % 60)) \
 min $(($SECONDS % 60)) sec"
