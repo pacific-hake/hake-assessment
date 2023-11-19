@@ -784,7 +784,7 @@ catches up to approximately 350 thousand tonnes.
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[1],
-                  leg_pos = c(0.2, 0.32),
+                  leg_pos = c(0.22, 0.31),
                   remove_x_val = 325)
 ```
 
@@ -828,7 +828,7 @@ including zero. The probability that the stock falls under B40 is below
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[2],
-                  leg_pos = c(0.2, 0.32),
+                  leg_pos = c(0.22, 0.31),
                   remove_x_val = c(325, 342, 740))
 ```
 
@@ -869,7 +869,7 @@ below 0.1 for catches up to approximately 350 thousand tonnes.
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[3],
-                  leg_pos = c(0.2, 0.32),
+                  leg_pos = c(0.22, 0.31),
                   remove_x_val = c(259, 621))
 ```
 
