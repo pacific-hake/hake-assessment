@@ -5,14 +5,14 @@
 
 # This script must be called from another script where the following
 # variables have been set
-[[ -z $models ]] &&{ echo "Variable 'models' has not been set, bailing \
-out." ; exit 1; }
-[[ -z $type_path ]] && { echo "Variable 'type_path' has not been set, \
-bailing out." ; exit 1; }
-[[ -z $run_extra_mcmc ]] &&{ echo "Variable 'run_extra_mcmc' has not been \
-set, bailing out." ; exit 1; }
-[[ -z $adapt_delta ]] &&{ echo "Variable 'adapt_delta' has not been set, \
-bailing out." ; exit 1; }
+[[ -z $models ]] &&{ printf "\nVariable 'models' has not been set, bailing \
+out.\n" ; exit 1; }
+[[ -z $type_path ]] && { printf "\nVariable 'type_path' has not been set, \
+bailing out.\n" ; exit 1; }
+[[ -z $run_extra_mcmc ]] &&{ printf "\nVariable 'run_extra_mcmc' has not been \
+set, bailing out.\n" ; exit 1; }
+[[ -z $adapt_delta ]] &&{ printf "\nVariable 'adapt_delta' has not been set, \
+bailing out.\n" ; exit 1; }
 
 # Create the variable $assess_year containing the current year unless it
 # is currently December, in which case it will be the current year + 1
@@ -35,16 +35,17 @@ num_samples=8000
 num_warmup_samples=250
 
 models_path=$project_path/$models_path/$year_path/$version_path/$type_path
-[ -d "$models_path" ] && echo "Directory $models_path exists, starting \
-run loop." || { echo "Error: Directory $models_path does not exist, \
-bailing out." ; exit 1; }
+
+[ -d "$models_path" ] && printf "\nDirectory $models_path exists, starting \
+run loop.\n" || { printf "\nError: Directory $models_path does not exist, \
+bailing out.\n" ; exit 1; }
 
 for model in ${models[@]}; do
   (trap 'kill 0' SIGINT; \
   model_path=$models_path/$model; \
-  [ -d "$model_path" ] && echo "Directory $model_path exists, running the \
-  model." || { echo "Error: Directory $model_path does not \
-  exist, bailing out for this model." ; exit 1; };
+  [ -d "$model_path" ] && printf "\nDirectory $model_path exists, running the \
+  model.\n" || { printf "\nError: Directory $model_path does not \
+  exist, bailing out for this model.\n" ; exit 1; };
   printf "\nRunning model in directory\n$model\n"; \
   Rscript -e " \
   setwd('$repo_path'); \
