@@ -9,7 +9,7 @@ models=(01-h-prior-mean-low \
         05-m-02-sd \
         06-m-03-sd \
         07-m-hamel-prior \
-        08-age-1-survey \
+        #08-age-1-survey \
         09-comp-weight-harmonic-mean \
         10-tv-select-phi-extra-low \
         11-tv-select-phi-low \
