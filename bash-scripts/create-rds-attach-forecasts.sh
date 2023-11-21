@@ -3,6 +3,19 @@
 # Load and attach forecasts to a RDS file as a list element called `forecasts`
 # and overwrite the original RDS file
 
+# The path structure is as follows
+# /srv/hake/models/2023/01-version/01-base-models/01-base/
+#  ^   ^    ^      ^    ^          ^              ^
+#  |   |    |      |    |          |              |
+#  |   |    |      |    |          |              $model_name
+#  |   |    |      |    |          $type_path
+#  |   |    |      |    $version_path
+#  |   |    |      $year
+#  |   |    $models_path
+#  \  /
+#   ||
+#   $project_path
+
 # Create the variable $assess_year containing the current year unless it
 # is currently December, in which case it will be the current year + 1
 # Enter a year as an argument here to force it to be that year, even if

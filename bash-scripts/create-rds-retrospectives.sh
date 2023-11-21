@@ -4,6 +4,19 @@
 # `$model_path/retrospectives` directory. The `retrospectives` part
 # of the path is appended  in the `create_rds_files_retro()` function
 
+# The path structure is as follows
+# /srv/hake/models/2023/01-version/01-base-models/01-base/
+#  ^   ^    ^      ^    ^          ^              ^
+#  |   |    |      |    |          |              |
+#  |   |    |      |    |          |              $model_name
+#  |   |    |      |    |          $type_path
+#  |   |    |      |    $version_path
+#  |   |    |      $year
+#  |   |    $models_path
+#  \  /
+#   ||
+#   $project_path
+
 # Create the variable $assess_year containing the current year unless it
 # is currently December, in which case it will be the current year + 1
 # Enter a year as an argument here to force it to be that year, even if
