@@ -24,7 +24,7 @@ ____
 >   - [Retrospectives for base model](#retrospectives)
 >   - [Other models bash scripts](#bash-scripts-run)
 >   - [Other bash scripts](#bash-scripts-other)
->* [To take a quick look at model output without making an RDS file](#quick-look)
+>- [To take a quick look at model output without making an RDS file](#quick-look)
 _____________________________________________________________
 
 ## Introduction
