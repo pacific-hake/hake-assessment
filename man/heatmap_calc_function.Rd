@@ -10,7 +10,7 @@ heatmap_calc_function(wa = NULL, func = mean, yr_col = "yr", ...)
 }
 \arguments{
 \item{wa}{A weight-at-age data frame with a column \code{yr} for the years, and
-numerically-names columns for ages}
+numerically-named columns for ages}
 
 \item{func}{A function to use on each age column to create a row of outputs}
 

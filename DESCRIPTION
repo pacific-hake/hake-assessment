@@ -51,8 +51,10 @@ Imports:
   pacman,
   parallelly,
   purrr,
+  rayshader,
   RColorBrewer,
   readr,
+  rgl,
   rnaturalearthhires,
   r4ss (>= 1.46.2),
   rlang,
@@ -76,7 +78,8 @@ Remotes:
   cgrandin/adnuts,
   cgrandin/kableExtra,
   r4ss/r4ss@bioscale,
-  ropensci/rnaturalearthhires
+  ropensci/rnaturalearthhires,
+  tylermorganwall/rayshader
 ByteCompile: true
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

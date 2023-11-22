@@ -3,7 +3,7 @@
 #' ([plot_weight_at_age_heatmap()])
 #'
 #' @param wa A weight-at-age data frame with a column `yr` for the years, and
-#' numerically-names columns for ages
+#' numerically-named columns for ages
 #' @param func A function to use on each age column to create a row of outputs
 #' @param ... Absorb arguments meant for other functions
 #'

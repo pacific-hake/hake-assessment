@@ -38,6 +38,8 @@
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
 #' @importFrom readr cols read_csv read_table2 write_csv
 #' @importFrom rlang `%||%` as_label enquos set_names sym
+#' @importFrom rayshader plot_gg render_camera render_snapshot
+#' @importFrom rgl rglwidget
 #' @importFrom scales comma ordinal rescale
 #' @importFrom sf st_as_sf st_crs<- st_coordinates
 #' @importFrom stats ave complete.cases end median na.omit quantile rbeta
