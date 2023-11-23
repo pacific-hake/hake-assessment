@@ -25,7 +25,9 @@ gotest_beamer_get_src_dest_filenames <- function(bookdown_lst = NULL,
   }
 
   dotted_path_to_docs <- gsub("((../)*doc)/*.*", "\\1", r_fn)
+
   raw_fns <- c(raw_fns, file.path(dotted_path_to_docs, "003-load-models.R"))
+  raw_fns <- c(raw_fns, file.path(dotted_path_to_docs, forecast_descriptions_fn))
 
   src_fns <- replace_dotted_paths(raw_fns)
   # Only copy files that match these ones
@@ -35,7 +37,8 @@ gotest_beamer_get_src_dest_filenames <- function(bookdown_lst = NULL,
                 "003-load-models.rmd|",
                 "003-load-models.R|",
                 "004-load-project-variables.rmd|",
-                "999-blank.rmd")
+                "999-blank.rmd|",
+                forecast_descriptions_fn)
 
   src_fns <- grep(pat, src_fns, value = TRUE)
   if(!length(src_fns)){

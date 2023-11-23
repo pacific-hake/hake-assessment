@@ -458,6 +458,22 @@
 #' @format A vector of numerical years
 "age_bubble_cohorts"
 
+# pd-tac-catch-proportions.R ----
+#' The proportion of the U.S. TAC that the Mothership sector gets each year
+#'
+#' @format A numerical value less than one
+"us_ms_prop_tac"
+#' The proportion of the U.S. TAC that the Catcher-processor sector gets
+#' each year
+#'
+#' @format A numerical value less than one
+"us_cp_prop_tac"
+#' The proportion of the U.S. TAC that the Shore-based sector gets each year
+#'
+#' @format A numerical value less than one
+"us_ss_prop_tac"
+
+
 # pd-data-tables.R ----
 #' A data frame containing information on estimated biomass trajectories for
 #' historical assessments from 1991 to present

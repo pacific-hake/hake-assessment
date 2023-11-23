@@ -61,10 +61,12 @@ gotest <- function(config_fn = "_bookdown.yml",
   if(type == "doc"){
     fns_lst <- gotest_doc_get_src_dest_filenames()
   }else if(type == "beamer"){
-    fns_lst <- gotest_beamer_get_src_dest_filenames(bookdown_lst)
+    fns_lst <- gotest_beamer_get_src_dest_filenames(bookdown_lst,
+                                                    my_figures_dir = figures_dir)
   }else{
     stop("Document type `type` not implemented yet")
   }
+
   src_fns <- fns_lst$src_fns
   dest_fns <- fns_lst$dest_fns
 

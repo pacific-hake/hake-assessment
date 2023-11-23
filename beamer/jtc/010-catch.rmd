@@ -1,0 +1,6 @@
+# Catch, TAC, and Attainment for `r last_data_yr`
+
+```{r xx, results = "asis"}
+
+table_catch_tac_summary(last_data_yr)
+```
