@@ -133,5 +133,7 @@ fig_dir <- file.path(getwd(), "knitr-figs")
 if(!dir.exists(fig_dir)){
   dir.create(fig_dir)
 }
+
+can_dat_lst <- readRDS("/srv/hake/other/hake-all-nov-14-2023.rds")
 ```
 

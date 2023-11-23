@@ -10,6 +10,8 @@ plot_depth(
   title_text = NULL,
   line_col = "grey",
   box_width = 0.75,
+  y_lim = NULL,
+  y_breaks = NULL,
   ...
 )
 }
@@ -19,7 +21,15 @@ plot_depth(
 
 \item{yrs}{A vector of the years to show in the plot}
 
-\item{axis_tick_font_size}{Size of the font for the X and Y axis tick labels}
+\item{title_text}{The title to show. If \code{NULL}, do not show the title}
+
+\item{line_col}{The color of the median line and box outline}
+
+\item{box_width}{With of each box}
+
+\item{y_lim}{The vector of two value representing the y-limits for the plot}
+
+\item{y_breaks}{The vector of y-axis values to show on the plot}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

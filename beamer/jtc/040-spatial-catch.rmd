@@ -1,0 +1,36 @@
+# Spatial Catch/CPUE - Canada
+
+```{r spatial-catch-freezer-trawlers-canada}
+
+# `can_dat_lst` loaded at the bottom of `000-launcher.rmd`
+cpue_ft <- can_dat_lst$cpue_spatial |> 
+  filter(year >= last_data_yr,
+         major_stat_area_code %in% can_major_hake_areas,
+         vessel_registration_number %in% freezer_trawlers$fos_id)
+
+cpue_ss <- can_dat_lst$cpue_spatial |> 
+  filter(year >= last_data_yr,
+         major_stat_area_code %in% can_major_hake_areas,
+         !vessel_registration_number %in% freezer_trawlers$fos_id)
+
+p <- list()
+p[[1]] <- plot_cpue_spatial(cpue_ft,
+                            bin_width = 7,
+                            n_minimum_vessels = 3,
+                            xlim = c(350, 800),
+                            ylim = c(5350, 5800)) +
+  ggtitle("Freezer Trawlers CPUE") +
+  labs(subtitle = "2023; including discards; 3-vessel minimum") +
+  scale_y_continuous(labels = comma)
+
+p[[2]] <- plot_cpue_spatial(cpue_ss,
+                            bin_width = 7,
+                            n_minimum_vessels = 3,
+                            xlim = c(350, 800),
+                            ylim = c(5350, 5800)) +
+  ggtitle("Shoreside CPUE") +
+  labs(subtitle = "2023; including discards; 3-vessel minimum") +
+  scale_y_continuous(labels = comma)
+plot_grid(plotlist = p, nrow = 1, ncol = 2)
+```
+

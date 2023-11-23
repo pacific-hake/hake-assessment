@@ -1,3 +1,19 @@
+# pd-canada-areas-and-vessel-ids.R ----
+#  A vector of the major areas codes used for Canadian data for offshore hake
+#
+#' @format A character vector
+"can_major_hake_areas"
+#  A data frame containing the Canadian freezer trawler names and ID numbers
+#  for the catch and biological databases
+#
+#' @format A data frame
+#' \describe{
+#'   \item{vessel}{Name of the vessels that are freezer trawlers}
+#'   \item{fos_id}{The FOS database ID number for the vessel}
+#'   \item{gfbio_id}{The GFBIO database ID number for the vessel}
+#' }
+"freezer_trawlers"
+
 # pd-messages.R
 #  A warning message about how parallelism cannot be done due to inability
 #  to use the OS forking mechanism
