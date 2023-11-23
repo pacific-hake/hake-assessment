@@ -1,5 +1,5 @@
 ---
-title: "`r Pacific Hake fishery and data for `r rmarkdown::metadata$project_variables$assess_yr - 1`"
+title: "Pacific Hake fishery and data for `r rmarkdown::metadata$project_variables$assess_yr - 1`"
 project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
