@@ -17,12 +17,10 @@ comm_samp <- ft_comm_samp |>
 lengths_raw <- tidy_lengths_raw(comm_samp,
                                 survey = c("Freezer Trawlers", "Shoreside"),
                                 bin_size = 2,
-                                year_range = c(2002, Inf)
-)
-lengths_raw <- lengths_raw |> 
-  filter(year %in% seq(last_data_yr - 4, last_data_yr))
+                                year_range = seq(last_data_yr - 4, last_data_yr))
 
 plot_lengths(lengths_raw, show_year = "all",
-             fill_col = c("F" = rgb(1, 0, 0, 0.3), "M" = rgb(0, 0, 1, 0.3))) +
+             fill_col = c("F" = rgb(1, 0, 0, 0.3),
+                          "M" = rgb(0, 0, 1, 0.3))) +
   ggtitle("")
 ```

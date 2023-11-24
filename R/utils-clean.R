@@ -69,6 +69,7 @@ clean <- function(...,
                 "JTC-stock-assessment-JMC",
                 "JTC-stock-assessment-JMC-Canada",
                 "JTC-stock-assessment-JMC-US",
+                "JTC-data-december",
                 "test",
                 "fmin")
 
