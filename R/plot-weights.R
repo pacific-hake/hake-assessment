@@ -1,6 +1,7 @@
-#' Plot some years of weight densities
+#' Plot some years of weight of length histograms
 #'
 #' @param df A data frame as returned by [gfplot::tidy_lengths_raw()]
+#' @param type Either "length" or "weight"
 #' @param fill_col A named vector of two colors for Female and male bars.
 #' The names are "F" and "M" respectively.
 #' @param line_col A named vector of two colors for Female and male bar
@@ -14,16 +15,22 @@
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
-plot_weights <- function(df,
-                         min_total = 20,
-                         bin_width = 0.075,
-                         x_breaks = pretty(d$weight_bin, 4L),
-                         label_font_size = 2.25,
-                         fill_col = c("F" = rgb(1, 0, 0, 0.3),
-                                      "M" = rgb(0, 0, 1, 0.3)),
-                         line_col = c("F" = rgb(1, 0, 0, 0.3),
-                                      "M" = rgb(0, 0, 1, 0.3)),
-                         unit_str = "kg"){
+plot_weights_lengths <- function(df,
+                                 type = c("length", "weight"),
+                                 min_total = 20,
+                                 bin_width = 0.075,
+                                 x_breaks = pretty(d[[bin_col]], 4L),
+                                 label_font_size = 2.25,
+                                 fill_col = c("F" = rgb(1, 0, 0, 0.3),
+                                              "M" = rgb(0, 0, 1, 0.3)),
+                                 line_col = c("F" = rgb(1, 0, 0, 0.3),
+                                              "M" = rgb(0, 0, 1, 0.3)),
+                                 unit_str = ifelse(type == "length", "cm", "kg")){
+
+  type <- match.arg(type)
+
+  bin_col <- paste0(type, "_bin")
+  bin_col_sym <- sym(bin_col)
 
   d <- df |>
     group_by(year, survey_abbrev) |>
@@ -33,12 +40,13 @@ plot_weights <- function(df,
     arrange(year, survey_abbrev, sex) |>
     mutate(proportion = ifelse(total >= min_total, proportion, NA))
 
-  range_lengths <- diff(range(d$weight_bin, na.rm = TRUE))
-  counts <- select(d, survey_abbrev, year, total) |>
+  range_lengths <- diff(range(d[[bin_col]], na.rm = TRUE))
+  counts <- d |>
+    select(survey_abbrev, year, total) |>
     unique()
 
   g <- d |>
-    ggplot(aes(weight_bin,
+    ggplot(aes(!!bin_col_sym,
                proportion)) +
     geom_col(aes(color = sex,
                  fill = sex),
@@ -47,7 +55,7 @@ plot_weights <- function(df,
              position = position_identity()) +
     geom_text(data = counts,
               aes(label = total),
-              x = min(d$weight_bin, na.rm = TRUE) + 0.02 * range_lengths,
+              x = min(d[[bin_col]], na.rm = TRUE) + 0.02 * range_lengths,
               y = 0.85,,
               inherit.aes = FALSE,
               color = "black",
@@ -67,8 +75,15 @@ plot_weights <- function(df,
                switch = "y") +
     labs(color = "Sex",
          fill = "Sex") +
-    xlab(paste0("Weight (", unit_str, ")")) +
     ylab("")
+
+  if(type == "length"){
+    g <- g +
+      xlab(paste0("Length (", unit_str, ")"))
+  }else{
+    g <- g +
+      xlab(paste0("Weight (", unit_str, ")"))
+  }
 
   g
 }

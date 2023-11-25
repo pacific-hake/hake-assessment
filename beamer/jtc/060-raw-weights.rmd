@@ -27,14 +27,15 @@ comm_samp <- comm_samp |>
 weights_raw <- tidy_lengths_raw(comm_samp,
                                 survey = c("Freezer Trawlers", "Shoreside"),
                                 bin_size = 0.1,
-                                year_range = seq(last_data_yr - 4, last_data_yr)) |> 
+                                year_range = seq(last_data_yr - 10, last_data_yr)) |> 
   rename(weight_bin = length_bin)
 
-plot_weights(weights_raw,
-             bin_width = 0.075,
-             x_breaks = seq(0, 2, 0.2),
-             label_font_size = 2.25,
-             fill_col = c("F" = rgb(1, 0, 0, 0.3), # red with transparency
-                          "M" = rgb(0, 0, 1, 0.3)), # blue with transparency
-             unit_str = "kg")
+plot_weights_lengths(weights_raw,
+                     type = "weight",
+                     bin_width = 0.075,
+                     x_breaks = seq(0, 2, 0.2),
+                     label_font_size = 4,
+                     fill_col = c("F" = rgb(1, 0, 0, 0.3), # red with transparency
+                                  "M" = rgb(0, 0, 1, 0.3)), # blue with transparency
+                     unit_str = "kg")
 ```
