@@ -91,20 +91,21 @@ plot_spatial_cpue <- function(
     #filter(X >= lims$X[1] & X <= lims$X[2] & Y >= lims$Y[1] & Y <= lims$Y[2])
 
   x <- public_dat |>
+    mutate(across(c(X, Y), ~{.x <- .x * 1e3})) |>
     st_as_sf(crs = crs_utm, coords = c("X", "Y")) |>
     st_transform(crs_wgs84) |>
     st_coordinates() |>
     as_tibble() |>
     setNames(c("lon", "lat"))
+
   public_dat <- public_dat |>
     bind_cols(x)
 
   polygon <- public_dat |>
     st_as_sf(coords = c("lon", "lat"), crs =crs_wgs84) |>
     group_by(hex_id) |>
-    summarise(geometry = st_combine(geometry)) |>
+    summarise(geometry = st_combine(geometry), cpue = mean(cpue)) |>
     st_cast("POLYGON")
-
 
   browser()
   # Make the plot ----
@@ -122,12 +123,15 @@ plot_spatial_cpue <- function(
                  color = "grey",
                  size = 0.5) +
     ggplot2::geom_sf(linewidth = 0.5,
-                     fill = "red") +
+                     fill = "grey") +
     theme_bw() +
     ggplot2::geom_sf(data = polygon,
-                     aes(color = "black",
-                         fill = hex_id,
-                         group = hex_id)) +
+                     aes(color = cpue),
+                     fill = "transparent",
+                     linewidth = 1,
+                     inherit.aes = FALSE) +
+    scale_color_gradientn(colors = polygon$hex_id) +
+    scale_fill_continuous(type = "viridis") +
     coord_sf(datum = st_crs(crs_wgs84),
              xlim = x_lim,
              ylim = y_lim,
