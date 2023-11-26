@@ -13,9 +13,17 @@ plot_spatial_cpue(
   y_lim = c(48, 52.5),
   bin_width = 7,
   n_minimum_vessels = 3,
-  bath_contours = c(100, 200, 500),
+  coast_line_color = "black",
+  coast_line_thickness = 0.5,
+  coast_fill = "grey",
+  bath_alpha = 0.8,
+  bath_contours = c(100, 200, 500, 1000, 1500),
+  bath_contour_color = "black",
+  bath_contour_thickness = 0.25,
   hexagon_border_color = "black",
-  hexagon_border_thickness = 0.5
+  hexagon_border_thickness = 0.1,
+  hex_fill_breaks = c(0, 250, 1000, seq(3000, 14000, 3000)),
+  hex_fill_labels = comma(hex_fill_breaks)
 )
 }
 \arguments{
@@ -49,13 +57,32 @@ limits of the y-axis in degrees of latitude}
 \item{n_minimum_vessels}{The minimum number of vessels that must be present
 in a hexagon for the hexagon to be shown}
 
+\item{coast_line_color}{The ljne color for the coastline}
+
+\item{coast_line_thickness}{The line thickness for the coastline}
+
+\item{coast_fill}{The fill color for the land areas}
+
+\item{bath_alpha}{The transparency for the bathymetric raster layer}
+
 \item{bath_contours}{A vector of contours to show contour lines for.
 These can be either positive or negative; they will all be made negative
 in the function}
 
+\item{bath_contour_color}{The line color for the bathymetric contours}
+
+\item{bath_contour_thickness}{The line thickness for the bathymetric
+contours}
+
 \item{hexagon_border_color}{The color of the hexagon border lines}
 
 \item{hexagon_border_thickness}{The thickness of the hexagon border lines}
+
+\item{hex_fill_breaks}{The breaks to show in the color bar that describes
+the colors of the hexagons. Must be the same length as \code{hex_fill_labels}}
+
+\item{hex_fill_labels}{The labels to show in the color bar that describes
+the colors of the hexagons. Must be the same length as \code{hex_fill_breaks}}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

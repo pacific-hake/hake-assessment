@@ -1,7 +1,7 @@
 # Spatial CPUE
 
-## Spatial CPUE - Canada
-```{r spatial-catch-freezer-trawlers-canada}
+## Spatial CPUE Canada, Freezer Trawlers
+```{r spatial-catch-freezer-trawlers-canada, out.width = "60%", out.height = "95%"}
 
 # `can_dat_lst` loaded at the bottom of `000-launcher.rmd`
 cpue_ft <- can_dat_lst$cpue_spatial |> 
@@ -9,25 +9,22 @@ cpue_ft <- can_dat_lst$cpue_spatial |>
          major_stat_area_code %in% can_major_hake_areas,
          vessel_registration_number %in% freezer_trawlers$fos_id)
 
+plot_spatial_cpue(cpue_ft,
+                  bin_width = 7,
+                  n_minimum_vessels = 3) +
+  labs(subtitle = "2023; including discards; 3-vessel minimum")
+```
+
+## Spatial CPUE Canada, Shoreside
+```{r spatial-catch-shoreside-canada, out.width = "60%", out.height = "95%"}
+
 cpue_ss <- can_dat_lst$cpue_spatial |> 
   filter(year >= last_data_yr,
          major_stat_area_code %in% can_major_hake_areas,
          !vessel_registration_number %in% freezer_trawlers$fos_id)
 
-p <- list()
-p[[1]] <- plot_spatial_cpue(cpue_ft,
-                            bin_width = 7,
-                            n_minimum_vessels = 3) +
-  ggtitle("Freezer Trawlers CPUE") +
-  labs(subtitle = "2023; including discards; 3-vessel minimum") +
-  scale_y_continuous(labels = comma)
-                            
-p[[2]] <- plot_spatial_cpue(cpue_ss,
-                            bin_width = 7,
-                            n_minimum_vessels = 3) +
-  ggtitle("Shoreside CPUE") +
-  labs(subtitle = "2023; including discards; 3-vessel minimum") +
-  scale_y_continuous(labels = comma)
-plot_grid(plotlist = p, nrow = 1, ncol = 2)
+plot_spatial_cpue(cpue_ss,
+                  bin_width = 7,
+                  n_minimum_vessels = 3) +
+  labs(subtitle = "2023; including discards; 3-vessel minimum")
 ```
-
