@@ -15,20 +15,16 @@ cpue_ss <- can_dat_lst$cpue_spatial |>
          !vessel_registration_number %in% freezer_trawlers$fos_id)
 
 p <- list()
-p[[1]] <- gfplot::plot_cpue_spatial(cpue_ft,
+p[[1]] <- plot_spatial_cpue(cpue_ft,
                             bin_width = 7,
-                            n_minimum_vessels = 3,
-                            xlim = c(350, 800),
-                            ylim = c(5350, 5800)) +
+                            n_minimum_vessels = 3) +
   ggtitle("Freezer Trawlers CPUE") +
   labs(subtitle = "2023; including discards; 3-vessel minimum") +
   scale_y_continuous(labels = comma)
-
-p[[2]] <- plot_cpue_spatial(cpue_ss,
+                            
+p[[2]] <- plot_spatial_cpue(cpue_ss,
                             bin_width = 7,
-                            n_minimum_vessels = 3,
-                            xlim = c(350, 800),
-                            ylim = c(5350, 5800)) +
+                            n_minimum_vessels = 3) +
   ggtitle("Shoreside CPUE") +
   labs(subtitle = "2023; including discards; 3-vessel minimum") +
   scale_y_continuous(labels = comma)

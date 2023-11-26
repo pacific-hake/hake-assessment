@@ -34,6 +34,7 @@
 #' @importFrom kableExtra column_spec kable_styling kbl landscape linebreak
 #' @importFrom here here i_am
 #' @importFrom lubridate hour minute month now second seconds_to_period year
+#' @importFrom marmap fortify.bathy getNOAA.bathy
 #' @importFrom parallelly supportsMulticore
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
 #' @importFrom readr cols read_csv read_table2 write_csv
@@ -41,7 +42,8 @@
 #' @importFrom rayshader plot_gg render_camera render_snapshot
 #' @importFrom rgl rglwidget
 #' @importFrom scales comma ordinal rescale
-#' @importFrom sf st_as_sf st_crs<- st_coordinates
+#' @importFrom sf st_as_sf st_cast st_combine st_crop st_crs st_crs<-
+#' @importFrom sf st_transform st_coordinates
 #' @importFrom stats ave complete.cases end median na.omit quantile rbeta
 #' @importFrom stats reshape rlnorm rnorm runif setNames start ts
 #' @importFrom stringr str_flatten str_flatten_comma str_split str_sub
