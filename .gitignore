@@ -1,7 +1,7 @@
 # root .gitignore
 # Files
 hake.R
-marmap_coords*
+marmap_coord*
 ..Rcheck/
 *~*
 *.7z
