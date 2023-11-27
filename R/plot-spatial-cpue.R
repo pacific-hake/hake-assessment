@@ -38,6 +38,8 @@
 #' the colors of the hexagons. Must be the same length as `hex_fill_labels`
 #' @param hex_fill_labels The labels to show in the color bar that describes
 #' the colors of the hexagons. Must be the same length as `hex_fill_breaks`
+#' @param hex_cols A vector of colors used to create a color ramp palette
+#' to represent the CPUE shown in the hexagons
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -62,7 +64,11 @@ plot_spatial_cpue <- function(
     hexagon_border_color = "black",
     hexagon_border_thickness = 0.25,
     hex_fill_breaks = c(0, 250, 1000, seq(3000, 14000, 3000)),
-    hex_fill_labels = comma(hex_fill_breaks)){
+    hex_fill_labels = comma(hex_fill_breaks),
+    hex_colors = c("antiquewhite",
+                   "yellow",
+                   "orange",
+                   "red")){
 
   bath_contours <- -abs(bath_contours)
 
@@ -84,12 +90,14 @@ plot_spatial_cpue <- function(
                         resolution =bathy_resolution,
                         keep = TRUE)
 
-  # Convert 'bathy' type to regular data frame, with UTMs
-  bath_df <- fortify.bathy(bath) |>
+  # Convert 'bathy' type to regular data frame
+  bath_df <- bath |>
+    fortify.bathy() |>
     as_tibble()
 
   # CPUE hexagons ----
-  d <- add_utm_columns(d)
+  d <- d |>
+    add_utm_columns()
   lims <- tibble(lon = x_lim,
                  lat = y_lim) |>
     add_utm_columns()
@@ -122,12 +130,8 @@ plot_spatial_cpue <- function(
               cpue = mean(cpue)) |>
     st_cast("POLYGON")
 
-  cols = c("dodgerblue",
-           "green",
-           "yellow",
-           "red")
   num_colors <- nrow(d)
-  col_func <- colorRampPalette(cols)
+  col_func <- colorRampPalette(hex_colors)
   colors <- col_func(num_colors - 1)
 
   # Make the plot ----
@@ -159,19 +163,25 @@ plot_spatial_cpue <- function(
             linewidth = hexagon_border_thickness,
             inherit.aes = FALSE) +
     # Fill in the hexagons
-    #scale_fill_gradientn(colors = colors) +
-    #scale_fill_viridis_c(option = "magma", direction = -1) +
-    scale_fill_viridis_c(trans = "sqrt",
-                         option = "D",
+    scale_fill_gradientn(colors = hex_colors,
                          breaks = hex_fill_breaks,
                          labels = hex_fill_labels) +
+    # Alternative color ramps for the hexagons
+    # scale_fill_viridis_c(option = "magma",
+    #                      direction = -1,
+    #                      breaks = hex_fill_breaks,
+    #                      labels = hex_fill_labels) +
+    # scale_fill_viridis_c(trans = "sqrt",
+    #                      option = "D",
+    #                      breaks = hex_fill_breaks,
+    #                      labels = hex_fill_labels) +
     coord_sf(datum = st_crs(crs_ll),
              xlim = x_lim,
              ylim = y_lim,
              expand = FALSE) +
     guides(fill = guide_colorbar(barwidth = 0.5,
                                  barheight = 5,
-                                 title = "CPUE",
+                                 title = "CPUE (kg/hr)",
                                  title.hjust = 0,
                                  label.position = "left")) +
     xlab("Longitude (°)") +
