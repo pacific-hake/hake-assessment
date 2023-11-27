@@ -185,8 +185,11 @@ plot_spatial_cpue <- function(
                                  title.hjust = 0,
                                  label.position = "left")) +
     xlab("Longitude (°)") +
-    ylab("Latitude (°)") +
-    scale_y_continuous(labels = comma)
+  ylab("Latitude (°)") +
+  # Remove degree symbol and N and W from the tick labels and show only raw
+  # lat/longs
+  scale_x_continuous(labels = abs) +
+  scale_y_continuous(labels = abs)
 
   g
 }
