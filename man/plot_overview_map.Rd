@@ -7,9 +7,11 @@
 plot_overview_map(
   ports_df,
   states_df,
-  crs = 4326,
-  extents = tibble(lon = c(-140, -113), lat = c(33, 58)),
-  label_size = 4
+  crs_ll = 4326,
+  x_lim = c(-140, -113),
+  y_lim = c(33, 58),
+  label_size = 4,
+  ...
 )
 }
 \arguments{

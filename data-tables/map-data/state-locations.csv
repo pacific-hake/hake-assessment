@@ -1,7 +1,7 @@
-lat,lon,name
-31.24,115.56,Baja California
-53.4,124.85,BC
-57,132.1,Southeast Alaska
-46.5,120.43,WA
-44.58,120.8,OR
-36.55,118.5,CA
+name,lon,lat,label_pos,label_lon,label_lat,label_size,label_fill,label_color,show_arrow,show_point
+Baja California,-115.4,31,right,-125,31,5,steelblue3,black,TRUE,FALSE
+BC,,,right,-122,53,6,grey,black,FALSE,FALSE
+Southeast Alaska,132.1,57,right,-125,57,5,grey,black,TRUE,FALSE
+WA,,,right,-120,47.5,6,grey,black,FALSE,FALSE
+OR,,,right,-120,44.5,6,grey,black,FALSE,FALSE
+CA,,,right,-119,36,6,grey,black,FALSE,FALSE

@@ -21,9 +21,10 @@ plot_spatial_cpue(
   bath_contour_color = "black",
   bath_contour_thickness = 0.25,
   hexagon_border_color = "black",
-  hexagon_border_thickness = 0.1,
+  hexagon_border_thickness = 0.25,
   hex_fill_breaks = c(0, 250, 1000, seq(3000, 14000, 3000)),
-  hex_fill_labels = comma(hex_fill_breaks)
+  hex_fill_labels = comma(hex_fill_breaks),
+  hex_colors = c("antiquewhite", "yellow", "orange", "red")
 )
 }
 \arguments{
@@ -83,6 +84,9 @@ the colors of the hexagons. Must be the same length as \code{hex_fill_labels}}
 
 \item{hex_fill_labels}{The labels to show in the color bar that describes
 the colors of the hexagons. Must be the same length as \code{hex_fill_breaks}}
+
+\item{hex_cols}{A vector of colors used to create a color ramp palette
+to represent the CPUE shown in the hexagons}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

@@ -261,6 +261,8 @@ create_data_hake("ports_df",
                      "map-data",
                      "port-locations.csv"),
            col_types = cols(),
+           comment = "#",
+
            show_col_types = FALSE))
 
 create_data_hake("states_df",
@@ -268,4 +270,5 @@ create_data_hake("states_df",
                                     "map-data",
                                     "state-locations.csv"),
                           col_types = cols(),
+                          comment = "#",
                           show_col_types = FALSE))
