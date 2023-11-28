@@ -3,20 +3,23 @@
 \name{plot_map}
 \alias{plot_map}
 \title{Create a map of a part of the west coast of North America,
-including bathymetry}
+including bathymetry raster and contours}
 \usage{
 plot_map(
   crs_ll = 4326,
-  bathy_resolution = 1,
   x_lim = c(-140, -113),
   y_lim = c(33, 58),
   coast_line_color = "black",
-  coast_line_thickness = 0.5,
+  coast_line_thickness = 0.1,
   coast_fill = "grey",
-  bath_alpha = 0.8,
-  bath_contours = c(100, 200, 500, 1000, 1500),
-  bath_contour_color = "black",
-  bath_contour_thickness = 0.25
+  show_bathy_contours = TRUE,
+  show_bathy_raster = TRUE,
+  bathy_resolution = 1,
+  bathy_alpha = 0.8,
+  bathy_contours = c(100, 200, 500, 1000, 1500),
+  bathy_contour_color = "black",
+  bathy_contour_thickness = 0.25,
+  bathy_raster_scale = scale_fill_continuous(type = "gradient")
 )
 }
 \arguments{
@@ -26,36 +29,46 @@ others. The default is 4326 which is WGS84: See
 \href{https://epsg.org/home.html}{Epsg.org} for details. Click \verb{Text search}
 tab and look at the \code{code} column for valid crs numbers}
 
-\item{bathy_resolution}{The resolution for the bathymetry in minutes.
-See \code{\link[marmap:getNOAA.bathy]{marmap::getNOAA.bathy()}}}
-
 \item{x_lim}{The length-2 vector representing the minimum and maximum
 limits of the x-axis in degrees of longitude}
 
 \item{y_lim}{The length-2 vector representing the minimum and maximum
 limits of the y-axis in degrees of latitude}
 
-\item{coast_line_color}{The ljne color for the coastline}
+\item{coast_line_color}{The line color for the coastline}
 
 \item{coast_line_thickness}{The line thickness for the coastline}
 
 \item{coast_fill}{The fill color for the land areas}
 
-\item{bath_alpha}{The transparency for the bathymetric raster layer}
+\item{show_bathy_contours}{Logical. If \code{TRUE} draw the bathymetry contour
+lines}
 
-\item{bath_contours}{A vector of contours to show contour lines for.
+\item{show_bathy_raster}{Logical. If \code{TRUE} draw the bathymetry raster
+layer}
+
+\item{bathy_resolution}{The resolution for the bathymetry in minutes.
+See \code{\link[marmap:getNOAA.bathy]{marmap::getNOAA.bathy()}}}
+
+\item{bathy_alpha}{The transparency for the bathymetric raster layer}
+
+\item{bathy_contours}{A vector of contours to show contour lines for.
 These can be either positive or negative; they will all be made negative
 in the function}
 
-\item{bath_contour_color}{The line color for the bathymetric contours}
+\item{bathy_contour_color}{The line color for the bathymetric contours}
 
-\item{bath_contour_thickness}{The line thickness for the bathymetric
+\item{bathy_contour_thickness}{The line thickness for the bathymetric
 contours}
+
+\item{bathy_raster_scale}{A \verb{ggplot2::scale_*} function describing the
+color gradient to use for the bathymetry raster. For example:
+\code{scale_fill_gradientn(colors = c("red", "orange", "yellow"))}}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Create a map of a part of the west coast of North America,
-including bathymetry
+including bathymetry raster and contours
 }
