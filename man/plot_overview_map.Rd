@@ -13,6 +13,7 @@ plot_overview_map(
   label_fill_default = "white",
   label_border_size = NA,
   arrowhead_size = 0.01,
+  point_size = 2,
   point_color = "red",
   ...
 )
@@ -40,6 +41,8 @@ no border}
 
 \item{arrowhead_size}{The size of the arrowheads on the label arrows,
 in 'npc'}
+
+\item{point_size}{The size of the location points}
 
 \item{point_color}{The color of the location points}
 

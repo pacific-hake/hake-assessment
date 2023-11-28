@@ -23,6 +23,7 @@
 #' @param arrowhead_size The size of the arrowheads on the label arrows,
 #' in 'npc'
 #' @param point_color The color of the location points
+#' @param point_size The size of the location points
 #' @param ...
 #'
 #' @return A [ggplot2::ggplot()] object
@@ -36,18 +37,14 @@ plot_overview_map <- function(
     label_fill_default = "white",
     label_border_size = NA,
     arrowhead_size = 0.01,
+    point_size = 2,
     point_color = "red",
     ...){
 
   g <- plot_map(crs_ll = crs_ll,
                 x_lim = x_lim,
                 y_lim = y_lim,
-                coast_line_thickness = 0.1,
                 ...)
-
-  # locations_df <- states_df |>
-  #   mutate(lon = -abs(lon)) |>
-  #   mutate(color = ifelse(is.na(color), label_color, color))
 
   locations_df <- ports_df |>
     bind_rows(states_df) |>
@@ -58,10 +55,6 @@ plot_overview_map <- function(
     mutate(label_fill = ifelse(is.na(label_fill),
                                label_fill_default,
                                label_fill))
-
-  # locations_sf <- locations_df |>
-  #   st_as_sf(coords = c("lon", "lat"), crs = crs_ll) |>
-  #   `st_crs<-`(crs_ll)
 
   # Add the ports and states to the map one at a time, because each has
   # custom settings in the rows of the data frame they are defined in
@@ -106,7 +99,7 @@ plot_overview_map <- function(
               color = ifelse(row_df$show_point,
                              point_color,
                              "transparent"),
-              size = 2,
+              size = point_size,
               show.legend = FALSE)
 
     if(row_df$label_pos == "left"){
@@ -159,9 +152,9 @@ plot_overview_map <- function(
   })
 
   g <- g  +
-    scale_color_identity()+
-    scale_size_identity()+
-    scale_fill_identity()+
+    scale_color_identity( )+
+    scale_size_identity() +
+    scale_fill_identity() +
     coord_sf(datum = st_crs(crs_ll),
              xlim = x_lim,
              ylim = y_lim,
