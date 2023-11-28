@@ -1,7 +1,7 @@
 name,lon,lat,label_pos,label_lon,label_lat,label_size,label_fill,label_color,show_arrow,show_point
-Baja California,-115.4,31,right,-125,31,5,steelblue3,black,TRUE,FALSE
-BC,,,right,-122,53,6,grey,black,FALSE,FALSE
-Southeast Alaska,132.1,57,right,-125,57,5,grey,black,TRUE,FALSE
-WA,,,right,-120,47.5,6,grey,black,FALSE,FALSE
-OR,,,right,-120,44.5,6,grey,black,FALSE,FALSE
-CA,,,right,-119,36,6,grey,black,FALSE,FALSE
+Baja California,-115.4,31,left,-120,31,5,steelblue3,black,TRUE,FALSE
+BC,,,right,-124,53,6,grey,black,FALSE,FALSE
+Southeast Alaska,132.1,57,right,-130,57,5,grey,black,TRUE,FALSE
+WA,,,right,-121,47.5,6,grey,black,FALSE,FALSE
+OR,,,right,-121,44.5,6,grey,black,FALSE,FALSE
+CA,,,right,-120,36,6,grey,black,FALSE,FALSE

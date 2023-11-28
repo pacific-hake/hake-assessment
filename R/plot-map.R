@@ -45,10 +45,6 @@ plot_map <- function(
                                  "Canada",
                                  "Mexico"),
                      returnclass = "sf")
-    # st_crop(xmin = x_lim[1],
-    #         xmax = x_lim[2],
-    #         ymin = y_lim[1],
-    #         ymax = y_lim[2])
 
   # Bathymetry ----
   # This creates a file named like `marmap_coord*`. There is a new file

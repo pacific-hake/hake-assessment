@@ -5,31 +5,55 @@
 \title{Create a map of the west coast of North America showing places of interest}
 \usage{
 plot_overview_map(
-  ports_df,
-  states_df,
   crs_ll = 4326,
-  x_lim = c(-140, -113),
-  y_lim = c(33, 58),
+  x_lim = c(-137, -110),
+  y_lim = c(29, 58),
   label_size = 4,
+  label_color_default = "white",
+  label_fill_default = "white",
+  label_border_size = NA,
+  arrowhead_size = 0.01,
+  point_color = "red",
   ...
 )
 }
 \arguments{
-\item{ports_df}{A data frame as read in by \code{\link[readr:read_delim]{readr::read_csv()}}}
+\item{crs_ll}{Coordinate Reference System (CRS) number. Default is
+4326 which is WGS84: See \href{https://epsg.org/home.html}{Epsg.org} for
+details. Click \verb{Text search} tab and look at the \code{code} column for
+valid crs numbers}
 
-\item{states_df}{A data frame as read in by \code{\link[readr:read_delim]{readr::read_csv()}}}
+\item{x_lim}{The length-2 vector representing the minimum and maximum
+limits of the x-axis in degrees of longitude}
 
-\item{crs}{Coordinate Reference System (CRS) number. Default is 4326 which
-is WGS84: See \href{https://epsg.org/home.html}{Epsg.org} for details. Click
-\verb{Text search} tab and look at the \code{code} column for valid crs numbers}
+\item{y_lim}{The length-2 vector representing the minimum and maximum
+limits of the y-axis in degrees of latitude}
 
-\item{extents}{The extents of the map as a two-column data frame with
-columns \code{latitude} and \code{longitude}. Change this to make the map larger
-or smaller, i.e. to zoom map in/out}
+\item{label_color_default}{The default color for label text and arrows if
+the \code{label_color} column has blanks in the port/state description file(s)}
+
+\item{label_fill_default}{The default color for fill for label boxes
+if the \code{label_color} column has blanks in the port/state description file(s)}
+
+\item{label_border_size}{The thickness of the label box borders. \code{NA} means
+no border}
+
+\item{arrowhead_size}{The size of the arrowheads on the label arrows,
+in 'npc'}
+
+\item{point_color}{The color of the location points}
+
+\item{...}{}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Create a map of the west coast of North America showing places of interest
+}
+\details{
+The plot is customized in the \code{data-tables/map-data/port-locations.csv} and
+\code{data-tables/map-data/state-locations.csv} files, which both must have
+identical column names and number of columns (they are row-bound
+together in this function)
 }

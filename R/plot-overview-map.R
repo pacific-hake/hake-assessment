@@ -1,5 +1,11 @@
 #' Create a map of the west coast of North America showing places of interest
 #'
+#' @details
+#' The plot is customized in the `data-tables/map-data/port-locations.csv` and
+#' `data-tables/map-data/state-locations.csv` files, which both must have
+#' identical column names and number of columns (they are row-bound
+#' together in this function)
+#'
 #' @param crs_ll Coordinate Reference System (CRS) number. Default is
 #' 4326 which is WGS84: See [Epsg.org](https://epsg.org/home.html) for
 #' details. Click `Text search` tab and look at the `code` column for
@@ -8,14 +14,23 @@
 #' limits of the x-axis in degrees of longitude
 #' @param y_lim The length-2 vector representing the minimum and maximum
 #' limits of the y-axis in degrees of latitude
-#' @label_size The size of the font for the port and state labels
+#' @param label_color_default The default color for label text and arrows if
+#' the `label_color` column has blanks in the port/state description file(s)
+#' @param label_fill_default The default color for fill for label boxes
+#' if the `label_color` column has blanks in the port/state description file(s)
+#' @param label_border_size The thickness of the label box borders. `NA` means
+#' no border
+#' @param arrowhead_size The size of the arrowheads on the label arrows,
+#' in 'npc'
+#' @param point_color The color of the location points
+#' @param ...
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_overview_map <- function(
     crs_ll = 4326,
-    x_lim = c(-140, -110),
-    y_lim = c(30, 58),
+    x_lim = c(-137, -110),
+    y_lim = c(29, 58),
     label_size = 4,
     label_color_default = "white",
     label_fill_default = "white",
@@ -49,7 +64,7 @@ plot_overview_map <- function(
   #   `st_crs<-`(crs_ll)
 
   # Add the ports and states to the map one at a time, because each has
-  # custom settings
+  # custom settings in the rows of the data frame they are defined in
   pmap(locations_df, ~{
 
     row_df <- tibble(...)
@@ -104,6 +119,8 @@ plot_overview_map <- function(
            "'", row_df$label_pos, "' was found")
     }
 
+    label_hjust <- ifelse(row_df$label_pos == "left", 1, 0)
+
     if(row_df$show_arrow){
 
       g <<- g +
@@ -124,7 +141,8 @@ plot_overview_map <- function(
                       label = name,
                       size = label_size,
                       fill = label_fill),
-                  label.size = label_border_size)
+                  label.size = label_border_size,
+                  hjust = label_hjust)
     }else{
       g <<- g +
         geom_label(data = row_df,
@@ -134,7 +152,8 @@ plot_overview_map <- function(
                        fill = label_fill,
                        label = name,
                        size = label_size),
-                   label.size = label_border_size)
+                   label.size = label_border_size,
+                   hjust = label_hjust)
     }
     NULL
   })

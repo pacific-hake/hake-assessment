@@ -1,24 +1,24 @@
 name,lon,lat,label_pos,label_lon,label_lat,label_size,label_fill,label_color,show_arrow,show_point
-Prince Rupert,-130.32,54.32,right,-124,54,4,grey,black,TRUE,TRUE
-Dixon Entrance,-132.6,54.35,left,-137,55,4,steelblue3,black,TRUE,TRUE
-Haida Gwaii,-132.31,53.23,left,-137,52.5,4,steelblue3,black,TRUE,TRUE
-Strait of Georgia,-123.55,49.19,right,-121,51,4,grey,black,TRUE,TRUE
-Vancouver,-123.12,49.28,right,-120,50,4,grey,black,TRUE,TRUE
-Puget Sound,-122.55,48.04,right,-119,48.5,4,grey,black,TRUE,TRUE
-Port Hardy,-127.46,50.71,right,-133,51,4,steelblue3,black,TRUE,TRUE
-Ucluelet,-125.55,48.94,left,-130,49.5,4,steelblue3,black,TRUE,TRUE
-Strait of Juan De Fuca,-124.51,48.43,left,-131,48.5,4,steelblue3,black,TRUE,TRUE
+Prince Rupert,-130.32,54.32,right,-128,54,4,grey,black,TRUE,TRUE
+Dixon Entrance,-132.6,54.35,right,-128,55,4,grey,black,TRUE,TRUE
+Haida Gwaii,-132.31,53.23,left,-132.5,52,4,steelblue3,black,TRUE,TRUE
+Strait of Georgia,-123.55,49.19,right,-122,51,4,grey,black,TRUE,TRUE
+Vancouver,-123.12,49.28,right,-121.5,50,4,grey,black,TRUE,TRUE
+Puget Sound,-122.55,48.04,right,-121.5,48.5,4,grey,black,TRUE,TRUE
+Port Hardy,-127.46,50.71,left,-132,51,4,steelblue3,black,TRUE,TRUE
+Ucluelet,-125.55,48.94,left,-129,49.5,4,steelblue3,black,TRUE,TRUE
+Strait of Juan De Fuca,-124.51,48.43,left,-128.5,48.5,4,steelblue3,black,TRUE,TRUE
 Neah Bay,-124.62,48.365,left,-128,47.5,4,steelblue3,black,TRUE,TRUE
-Westport,-124.1,46.88,left,-128,46.6,4,steelblue3,black,TRUE,TRUE
-Astoria,-123.82,46.18,left,-128,45.8,4,steelblue3,black,TRUE,TRUE
-Newport,-124.05,44.63,left,-128,44.63,4,steelblue3,black,TRUE,TRUE
-Charleston (Coos Bay),-124.32,43.33,left,-130,43.33,4,steelblue3,black,TRUE,TRUE
-Port Orford,-124.48,42.73,right,-121,42.73,4,grey,black,TRUE,TRUE
-Crescent City,-124.2,41.76,left,-130,41.76,4,steelblue3,black,TRUE,TRUE
-Fields Landing,-124.22,40.72,left,-130,40.72,4,steelblue3,black,TRUE,TRUE
-Eureka,-124.15,40.8,right,-121,40.8,4,grey,black,TRUE,TRUE
-Fort Bragg,-123.8,39.43,left,-129,39.43,4,steelblue3,black,TRUE,TRUE
-Princeton/Half Moon Bay,-122.42,37.45,left,-129,37.45,4,steelblue3,black,TRUE,TRUE
-Morro Bay,-120.86,35.37,left,-127,35.37,4,steelblue3,black,TRUE,TRUE
-Santa Barbara,-119.68,34.42,left,-127,34.42,4,steelblue3,black,TRUE,TRUE
-Los Angeles,-117.7,33.5,left,-127,33.5,4,steelblue3,black,TRUE,TRUE
+Westport,-124.1,46.88,left,-127.5,46.6,4,steelblue3,black,TRUE,TRUE
+Astoria,-123.82,46.18,left,-126.5,45.8,4,steelblue3,black,TRUE,TRUE
+Newport,-124.05,44.63,left,-126.5,44.63,4,steelblue3,black,TRUE,TRUE
+Charleston (Coos Bay),-124.32,43.33,left,-126.5,43.33,4,steelblue3,black,TRUE,TRUE
+Port Orford,-124.48,42.73,right,-123,42.73,4,grey,black,TRUE,TRUE
+Crescent City,-124.2,41.76,left,-126.5,41.76,4,steelblue3,black,TRUE,TRUE
+Fields Landing,-124.22,40.72,left,-126.5,40.72,4,steelblue3,black,TRUE,TRUE
+Eureka,-124.15,40.8,right,-123,40.8,4,grey,black,TRUE,TRUE
+Fort Bragg,-123.8,39.43,left,-126,39.43,4,steelblue3,black,TRUE,TRUE
+Princeton/Half Moon Bay,-122.42,37.45,left,-125,37.45,4,steelblue3,black,TRUE,TRUE
+Morro Bay,-120.86,35.37,left,-124,35.37,4,steelblue3,black,TRUE,TRUE
+Santa Barbara,-119.68,34.42,left,-123,34.42,4,steelblue3,black,TRUE,TRUE
+Los Angeles,-117.7,33.5,left,-122,33.5,4,steelblue3,black,TRUE,TRUE
