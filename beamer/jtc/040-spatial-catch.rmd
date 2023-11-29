@@ -10,8 +10,10 @@ cpue_ft <- can_dat_lst$cpue_spatial |>
          vessel_registration_number %in% freezer_trawlers$fos_id)
 
 plot_spatial_cpue(cpue_ft,
-                  bin_width = 7,
-                  n_minimum_vessels = 3) +
+                  bin_width = 10,
+                  n_minimum_vessels = 3,
+                  x_lim = c(-131.25, -124.5),
+                  y_lim = c(48, 52.5)) +
   labs(subtitle = "2023; including discards; 3-vessel minimum")
 ```
 
@@ -24,8 +26,10 @@ cpue_ss <- can_dat_lst$cpue_spatial |>
          !vessel_registration_number %in% freezer_trawlers$fos_id)
 
 plot_spatial_cpue(cpue_ss,
-                  bin_width = 7,
-                  n_minimum_vessels = 3) +
+                  bin_width = 10,
+                  n_minimum_vessels = 3,
+                  x_lim = c(-131.25, -124.5),
+                  y_lim = c(48, 52.5)) +
   labs(subtitle = "2023; including discards; 3-vessel minimum")
 ```
 
@@ -39,7 +43,7 @@ cpue_ft <- can_dat_lst$cpue_spatial |>
          vessel_registration_number %in% freezer_trawlers$fos_id)
 
 plot_spatial_cpue(cpue_ft,
-                  bin_width = 7,
+                  bin_width = 10,
                   n_minimum_vessels = 3,
                   crs_utm = 32610,
                   x_lim = c(-126.5, -123),
@@ -51,7 +55,7 @@ plot_spatial_cpue(cpue_ft,
 ```{r spatial-catch-oregon, out.width = "60%", out.height = "95%"}
 
 plot_spatial_cpue(cpue_ft,
-                  bin_width = 7,
+                  bin_width = 10,
                   n_minimum_vessels = 3,
                   crs_utm = 32610,
                   x_lim = c(-126.5, -122),
@@ -63,7 +67,7 @@ plot_spatial_cpue(cpue_ft,
 ```{r spatial-catch-california, out.width = "60%", out.height = "95%"}
 
 plot_spatial_cpue(cpue_ft,
-                  bin_width = 7,
+                  bin_width = 10,
                   n_minimum_vessels = 3,
                   crs_utm = 32611,
                   x_lim = c(-126.5, -116),
@@ -75,7 +79,7 @@ plot_spatial_cpue(cpue_ft,
 ```{r spatial-catch-west-coast, out.width = "60%", out.height = "95%"}
 
 plot_spatial_cpue(cpue_ft,
-                  bin_width = 7,
+                  bin_width = 10,
                   n_minimum_vessels = 3,
                   crs_utm = 32611,
                   x_lim = c(-131.5, -110),
