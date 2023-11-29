@@ -19,12 +19,6 @@ ____
 >- [2024 Assessment cycle (Jan - Mar 2024)](#assessment-cycle)
 >   - [Server setup for 2024](#server-setup)
 >- [How the models are run](#how-to-run-models)
->   - [Base model bash script (`bash-scripts/run-base-model.sh`)](#base-model-bash)
->   - [Forecasts for the base model](#forecasts)
->   - [Retrospectives for base model](#retrospectives)
->   - [Other models bash scripts](#bash-scripts-run)
->   - [Other bash scripts](#bash-scripts-other)
->- [To take a quick look at model output without making an RDS file](#quick-look)
 _____________________________________________________________
 
 ## Introduction
@@ -58,7 +52,9 @@ The assessment document is built using the following software packages:
 <a name="create-doc"></a>
 ## How to create the hake assessment PDF document
 >**The same method works for creating the beamer presentation PDFs**  
->The `RDS` files must have been created before the document can be built
+>The `RDS` files must have been created before the document can be built,
+>To make them, see the section: \
+>[How the models are run](#how-to-run-models)
 
 1. Install the hake package:
    - If you are on the Linux server, the `hake` package is already installed,
@@ -96,9 +92,10 @@ For details on the `hake::render()` function, see
 <a name="debugging"></a>
 ## Debugging chunks of code and Rmarkdown text
 
-Run `gotest()` to enter a customized debug directory, paste the code in
-and run `render()`. When done, run `goback()` to go back to the directory you
-were in originally. This works for beamer presentations as well.
+Run `gotest()` to enter a customized debug directory, paste the code into the
+`005-test.rmd` file, save it and run `render()`. When done, run `goback()`
+to go back to the directory you were in originally. This works for all beamer
+presentations as well.
 
 **Details:**  
 * If you haven't already done so in your current R session, run
@@ -143,30 +140,25 @@ depth table:
 To see a list of all package data available in the `hake` package:  
 `data(package = "hake")`
 
-To update any package data, for example if we add a new rows to the CSV files
-found in the `data-tables` directory:
+To update any package data, for example if we want to add new rows to the
+CSV files found in the `data-tables` directory:
 
 1. Open the CSV file from the `data-tables` directory that you want to add
    data to.
 1. Add the new data row(s), and save the file.
 1. Do the first two steps with as many data tables as you want to update, then
-   do then next steps as few times as possible.
-1. Source the `data-raw/data-tables.R` file to update the data tables:
-   `source(here::here(data-raw/data-tables.R))`. If you're using RStudio
+   do then next steps.
+1. Source the `data-raw/pd-data-tables.R` file to update the package data
+   to reflect your changes:
+   `source(here::here(data-raw/pd-data-tables.R))`. If you're using RStudio
    you can just press `Ctrl-Shift-Enter` with the file in focus to do this.
    This will update the `*.rda` files which are the binary package data files.
-1. Make sure to include the changes to the `*.rda` files in the GitHub repo by
-   committing those files in Git. This will be obvious as there will be
-   several dozen `*.rda` files changed when you run `git status`. Commit all
-   of the changes.
+1. Make sure to commit the changes to the `*.rda` files in the GitHub repo.
+1. The new data will not appear until you run `devtools::load_all()` or
+   `render()` the document or a beamer presentation.
    
-Try not to do steps 4 and 5 for every change you make, rather make as many
-changes as you can to data tables at one time, then run steps 4 and 5 once to
-incorporate all the changes. The `*.rda` files are binary and its better to
-keep binary file changes to a minimum when using Git as it can introduce
-repository bloating.
-
 <a name="settings-ref-pt"></a>
+
 ## Reference point text markup
 
 The reference points and other values which are referred to in text in
@@ -177,10 +169,13 @@ referred to like this (example for *F*<sub>SPR=40%</sub>):
 - `hake::fspr_40_10_for_latex_table` for tables (which require LaTeX code)
 
 To add to this list or change anything, follow the same method as laid out in
-the `Adding new data to data tables (done annually)` section above. Test the
-new expression by using the `gotest()/goback()` debugging method.
+the `Adding new data to data tables` section above. Test the
+new expression by using the `gotest()/goback()` debugging method. The only
+difference is that you will be editing and sourcing the file
+`data-raw/pd-reference-points.R` instead.
 
 <a name="settings-plot"></a>
+
 ## Plot settings
 
 There are many standardized project-wide plot settings which are also
@@ -216,146 +211,22 @@ using:
 
 * R version: 4.3.1 (2023-06-16 "Beagle Scouts")
 
+* The R packages listed
+  [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/R/all.R#L20) are all installed site-wide; users do not need to (and should
+  not) install them on their own accounts
+
 * TexLive version: 2023 (tlmgr revision 66457 (2023-03-08 00:07:12 +0100))
 
-* The R packages listed
-  [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/R/all.R#L20)
-
-* The TEX packages listed
-  [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/docker/install_packages.R#L21)
+* The TexLive packages listed
+  [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/docker/install_packages.R#L21) are all installed site-wide; users do not
+  need to (and should not) install them on their own accounts
 
 ---
 <a name="how-to-run-models"></a>
 ## How the models are run
 
-* There are bash scripts which launch R functions. The scripts are used to
-  allow OS-level control over the parallelism, which allows us to view
-  the processes running for each and every model, in addition it is faster than
-  using an R package to distribute model runs which are calling `system()` to
-  run each model
-  
-* The bash scripts are located
-  [here](https://github.com/pacific-hake/hake-assessment/tree/master/bash-scripts)
-
-<a name="base-model-bash"></a>
-### Base model bash script (`bash-scripts/run-base-model.sh`)
-
-* The base model is special and has its own bash script for running the model.
-  It is `run-base-model.sh`, located in the `bash-scripts` directory.
-  This needs to be edited each year before trying to run the model or you
-  will end up re-running last year's base model.
-    
-* Check all the variables and make sure they are correct. Change the
-  `year_path` to the new assessment year (Whatever year the assessment is
-   reviewed in).
-
-* If run on the server, the `models_path` must be set to `/srv/hake/models`.
-  
-* If run on a local machine, set `models_path` to the location of your
-  `models` directory. This is typically a subdirectory of the repository,
-  and if so the variable would set like this: `models_path=$repo_path/models`.
-  If not, it must be the full path. Note that there cannot be spaces around
-  the `=` sign in bash scripts.
-
-* Wherever your `models` directory is located, it must have a subdirectory
-  structure as follows to run the base model:
-   ```
-   $year_path/01-version/01-base-models/01-base/
-   ```
-   The `01-base` directory must contain the SS3 input files:
-   ```
-   hake_data.ss
-   hake_control.ss
-   forecast.ss
-   starter.ss
-   wtatage.ss
-   ```
-    
-* The base model has more steps that other models (calculation of catch levels
-  for forecasting, and the forecasting itself). There are clearly defined
-  chunks of code for these options in `bash-scripts/run-base-model.sh`.
-  Currently you have to comment out what you don't want to run (comment
-  character is #). If testing, you may want to comment out all the forecasting
-  and catch levels calculations.
-    
-* Some of the chunks of code delete unnecessary output files. This is to
-  save space. [This chunk](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/bash-scripts/run-base-model.sh#L50)
-  for example, deletes all output files in the `forecasts` directory except
-  those necessary to run the forecasts.
-    
-* There is a call to build the RDS file once completed running the model.
-  This can also be commented out and run manually using the bash script
-  `bash-scripts/create-rdes-base.sh`.
-
-* On Linux, if you are in the `bash-scripts` directory in the terminal, run
-  the script like this:
-  `./run-base-model.sh`
-
-<a name="forecasts"></a>
-### Forecasts for the base model
-
-* To run forecasts, either leave the forecasting chunks uncommented in the
-  `bash-scripts/run-base-model.sh` bash script or run
-  `bash-scripts/run-base-forecasts.sh` after the base model has already
-  been run. Note that you may need edit this file also before running it.
-  The forecasts definitions are found in a CSV file,
-  `doc/forecast-descriptions.csv`. Edit them there before running, the code
-  uses this file to set up and run the forecasts.
-  
-<a name="retrospectives"></a>
-### Retrospectives for base model
-
-* To run retrospectives, either leave the forecasting chunks uncommented
-  in the `bash-scripts/run-base-model.sh` bash script or first run the
-  base model with the retrospectives chunk commented out, then run
-  `run-retrospectives.sh`.
-
-<a name="bash-scripts-run"></a>
-### Other models bash scripts
-
-* The bash scripts that start with `run-` are for running models. Each of
-  them calls `generic-run-models.sh` which contains the script that actually
-  distributes parallel processes and runs the models
-  
-* The `run-` scripts must have their `project_path` set as follows
-  (same as how the base model `models_path` is set):
-  
-  - If run on a local machine, set `project_path` to the parent directory
-    of your `models` directory. This is typically the repository location,
-    and if so the variable would set like this:
-    
-    `` project_path=`Rscript -e "cat(dirname(here::here()))"` ``
-    
-    Note that there cannot be spaces around the `=` sign in bash scripts
-
-  - `generic-run-models.sh` contains the **year_path** variable that needs to
-    be changed each year.
-    
-  - It also contains `version_path` which should usually be **01-version**
-    but if the base model is scrapped after some time, then a new
-    version will be started called **02-version** and that would have to be
-    entered here or you will still be using the old version of the models.
-    
-<a name="bash-scripts-other"></a>
-### Other bash scripts
-
-* The `create-` scripts are for creating RDS files (if you need or want to do
-  this manually after running the models). The `run-` scripts will create the
-  RDS files automatically though so you may never need these scripts
-  
-* The `create-sensitivity-dirs.sh` runs code that calls an R function to create
-  the standard set of sensitivities for hake, and insert the files into the
-  correct directory structure. This needs to be run every year
-
----
-<a name="quick-look"></a>
-## To take a quick look at model output without making an RDS file
-
-Open R within the model's folder and use the command:
-
-```
-r4ss::SS_plots(SS_output("./"))
-```
-
-This creates figures and an HTML page with tabs for sets of figures. This is useful for quickly looking at results, especially when MCMCs have not yet been run and so the assessment document will not build yet.
-
+There is a detailed vignette on this topic. To build the vignette,
+navigate in the R terminal to `vignettes` and run the following command:
+`rmarkdown::render("vignettes/run-models.Rmd")`
+Once this is done, there will be an HTML file called `run-models.html`. Open
+that in a browser.

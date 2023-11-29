@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 library(hake)
 ```
 
-**Section links** \
+**Page links** \
 
 - [Introduction](#introduction) \
      - [Bash scripts](#bash-scripts) \
@@ -68,37 +68,44 @@ so it can run in parallel in any context meaning it can be run on Windows,
 Linux, or Mac, from within `Rstudio` or from `Rscript` and the parallelism
 will always work.
 
-The scripts in this project do not use the `multisession` plan. It was too
-much work (maybe impossible) to manually create the correct computing
-environment for each case. Instead, parallelism is implemented using the
-`multicore` plan. This type of parallelism plan allows child processes to
+The scripts in this package do not use the `multisession` plan. It was too
+much work (maybe impossible) to create a customized computing environment
+for each and every case. Instead, parallelism is implemented using the
+`multicore` plan from the
+[future package](https://future.futureverse.org/#multicore-futures).
+This type of parallelism plan allows child processes to
 be spawned directly from a parent process at any time, and continue without
-any additional setup, making its implementation trivial in user code. It
-relies on the `fork` context being implemented in the operating system.
-Microsoft Windows does not have the ability to `fork()` child processes and
-therefore these scripts will not run in parallel on a Windows machine. They
-will work on Linux and Mac operating systems only. They also will not work
-if run from within Rstudio (on any OS) because it has another layer on top
-of the R environment which renders `fork()` unstable.
+any additional setup whatsoever, making its implementation trivial in user
+code. It relies on the kernel-level `fork()` command being implemented in the
+operating system. Microsoft Windows does not contain such an implementation
+and cannot `fork()` child processes. These scripts will not run in parallel
+on a Windows machine. They will work on Linux and Mac operating systems only.
+They also will not work if run from within Rstudio (on any OS) because it has
+another abstraction layer on top of the R environment which renders the
+`fork()` command unstable.  The Windows subsystems for Linux (WSL and WSL2)
+do NOT implement `fork()` so trying to use them will not work despite them
+appearing to be Linux implementations. 
 
-To run all of the `Bash` scripts mentioned here in parallel mode, they must
-be run on a Linux or Mac machine, outside of Rstudio. The Windows subsystem
-for Linux (WSL and WSL2) do NOT implement `fork()` so trying that will not
-work. The R functions found inside the `Bash` scripts will not run
-in parallel mode if you try to run them from within Rstudio.
+*To run the `Bash` scripts mentioned here in parallel mode, they must be run
+on a Linux or Mac machine, outside of Rstudio.*
 
 If run from Windows, these scripts will still work but run in `sequential`
 mode which is very, very slow.
 
 <a name="run-and-create"></a>
+
 ## Running the models and creating the RDS files
 
 ### Running the base model
 
-Run scripts in the `Bash-scripts` directory in this order. In some cases you
+The base model is a special case in that it has forecasting and
+retrospectives. In actuality, those things can be run for any model but it is
+described here as the *base model* as that is the usual case.
+
+Run scripts in the `bash-scripts` directory in this order. In some cases you
 need to wait for the previous one to finish. In others, you can launch two
-steps concurrently (for example numbers 2 & 3 can be done at the same time,
-as can 4 & 5):
+steps concurrently (for example numbers 2 & 3 can be done at the same time in
+two different `Bash` sessions, as can 4 & 5):
 
 1. `run-base-model.sh`
    - wait for `run-base-model.sh` to finish
@@ -119,7 +126,7 @@ as can 4 & 5):
 
 #### Script details
 
-1. Open the `Bash-scripts/run-base-model.sh` file in an editor.
+1. Open the `bash-scripts/run-base-model.sh` file in an editor.
   
 2. Make sure all path variables are correct. The path structure on the
    Linux server with associated variables is as follows. Whichever computer
@@ -148,7 +155,7 @@ as can 4 & 5):
    `run_extra_mcmc` variable must be set to `TRUE`.
      
 3. Open a `Bash` terminal and change directories so you are in the
-  `Bash-scripts` directory, and execute the run script as follows. Note that
+  `bash-scripts` directory, and execute the run script as follows. Note that
    you must have the leading dot and slash to run it if you are in the
    directory in which the script resides.
    ```
@@ -160,7 +167,7 @@ as can 4 & 5):
 4. Once the model run has completed, create an RDS file for the base model,
    which will not yet contain the forecasting and retrospectives. Those will
    be added to the file later. To create the file, open the `Bash` scripts
-   `Bash-scripts/create-rds-base.sh` and `Bash-scripts/generic-create-rds.sh`.
+   `bash-scripts/create-rds-base.sh` and `bash-scripts/generic-create-rds.sh`.
    The first script has some variable settings and then calls the second one,
    which also has some settings and the actual call to the R function that
    creates the RDS file. After making sure they are correct, run it to create
@@ -170,7 +177,8 @@ as can 4 & 5):
    $ ./create-rds-base.sh
    ```
     Verify that the RDS file is where it should be and check that it's time
-    stamp makes sense. On the server it should be here:
+    stamp makes sense. On the server you can check the file information
+    like this:
 
     `$ ll /srv/hake/models/2023/01-version/01-base-models/01-base/01-base.rds`
 
@@ -198,7 +206,7 @@ as can 4 & 5):
      disappear. Once they are all gone, the model run is nearly done. The
      only remaining step is the `-mceval` step which creates a
      `mcmc/sso/Report_mce_****.sso` file for each posterior. To see the
-     chain directories disappearing over time:
+     chain directories disappearing over time, do this every so often:
      
      ```
      $ cd /srv/hake/models/2023/01-version/01-base-models/01-base/mcmc
@@ -235,13 +243,13 @@ as can 4 & 5):
 
 #### Running the catch-levels routine and forecasting for the base model
 
-1. Open the `Bash-scripts/run-forecasts.sh` file in an editor.
+1. Open the `bash-scripts/run-forecasts.sh` file in an editor.
 
 2. Make sure all path variables are correct. They must be the same as what
-   is in `Bash-scripts/run-base-model.sh`.
+   is in `bash-scripts/run-base-model.sh`.
 
 3. Open a `Bash` terminal and change directories so you are in the
-  `Bash-scripts` directory, and execute the run script: `./run-forecasts.sh`.
+  `bash-scripts` directory, and execute the run script: `./run-forecasts.sh`.
    This will take about an hour on Linux or Mac.
    
    - The parallelism for the catch-levels is implemented such that
@@ -257,14 +265,14 @@ as can 4 & 5):
      `doc/forecast-descriptions.csv`.
      
 4. Attach the catch-levels and forecasting output to the base model RDS
-   file. Open the script `Bash-scripts/create-rds-attach-forecasts.sh` and
+   file. Open the script `bash-scripts/create-rds-attach-forecasts.sh` and
    make sure all the path variables match the base model location. Run the
    script. Multiprocessor forking is implemented for loading so that each
    forecast year gets its own processor. This code will overwrite the base
    model RDS file.
    
    ```
-   $ cd Bash-scripts
+   $ cd bash-scripts
    $ ./create-rds-attach-forecasts.sh
    ```
 
@@ -272,13 +280,13 @@ as can 4 & 5):
 
 #### Running the retrospectives for the base model
 
-1. Open the `Bash-scripts/run-retrospectives.sh` file in an editor.
+1. Open the `bash-scripts/run-retrospectives.sh` file in an editor.
 
 2. Make sure all path variables are correct. They must be the same as what
-   is in `Bash-scripts/run-base-model.sh`.
+   is in `bash-scripts/run-base-model.sh`.
 
 3. Open a `Bash` terminal and change directories so you are in the
-   `Bash-scripts` directory, and execute the run script
+   `bash-scripts` directory, and execute the run script
    `./run-retrospectives.sh` with N arguments representing the numbers of years
    subtracted from the data for each retrospective model. For example, to run
    4 retrospective models, each having 1, 2, 3, and 4 years of data removed,
@@ -307,14 +315,14 @@ as can 4 & 5):
    file would have to be rebuilt.
    
    ```
-   $ cd Bash-scripts
+   $ cd bash-scripts
    $ ./create-rds-files-retro.R
    ```
    This script creates all 10 RDS file in parallel, using the multicore
    forking mechanism and takes about 20 minutes.
    
 5. Attach the retrospectives output to the base model RDS file. Open the
-   script `Bash-scripts/create-rds-attach-retrospectives.sh` and make sure all
+   script `bash-scripts/create-rds-attach-retrospectives.sh` and make sure all
    the path variables match the base model location. Run the script.
    Multiprocessor forking is implemented for loading so that each
    forecast year gets its own processor. This code will overwrite the base
@@ -325,14 +333,14 @@ as can 4 & 5):
 
 ### Run bridging models
 
-1. Open the two scripts `Bash-scripts/run-bridge-models.sh` and
-   `Bash-scripts/generic-run-models.sh` in an editor.
+1. Open the two scripts `bash-scripts/run-bridge-models.sh` and
+   `bash-scripts/generic-run-models.sh` in an editor.
 
 2. Make sure all bridge model directory names are correct (`models` list in
-   `Bash-scripts/run-bridge-models.sh`).
+   `bash-scripts/run-bridge-models.sh`).
 
 3. Open a `Bash` terminal and change directories so you are in the
-   `Bash-scripts` directory, and execute the script
+   `bash-scripts` directory, and execute the script
    
    ```
    $ ./run-bridge-models.sh
@@ -341,9 +349,9 @@ as can 4 & 5):
    the number of models in `$models` is the number of CPUs required for this
    script. For the server. it should not be more than 64, or 4 models at a time
    with `num_chains=16`. `$num_chains` is defined in
-   `Bash-scripts/generic-run-models.sh`. If you need to run 2 or more sets of
+   `bash-scripts/generic-run-models.sh`. If you need to run 2 or more sets of
    bridge models to complete them all due to the CPU limitations, comment some
-   out in `Bash-scripts/run-bridge-models.sh`. For example, thew following
+   out in `bash-scripts/run-bridge-models.sh`. For example, thew following
    shows that the first three models will be run and the last three will not.
    In `Bash`, lists have a space between the elements, and the backslash
    allows you to break a line up and continue it on the next line. So the
@@ -362,7 +370,7 @@ as can 4 & 5):
    necessary for one plot, which so far is only shown for the base model.
   
 2. Create the RDS files for each bridging model with the
-   `Bash-scripts/create-rds-bridge.sh`. This script contains the same `models` list
+   `bash-scripts/create-rds-bridge.sh`. This script contains the same `models` list
    as in the script that runs the bridge models. Make sure the `models` list
    is in order and then run the script
    
@@ -380,6 +388,6 @@ as can 4 & 5):
    named as `run-sensitivity-models-*.sh` with `*` being 1 through 4.
    
 2. Create the RDS files for each sensitivity model with the
-   `Bash-scripts/create-rds-sensitivities.sh` script. This is the same
+   `bash-scripts/create-rds-sensitivities.sh` script. This is the same
    process as for bridge models above.
 
