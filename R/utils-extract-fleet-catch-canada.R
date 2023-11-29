@@ -1,0 +1,100 @@
+#' Merge Canadian DMP and LOGS catch data and extract into 3 data frames,
+#' for Freezer trawlers, Shoreside, and Joint-venture
+#'
+#' @param lst a list of three data frames as returned by
+#' [load_catch_data_canada()]
+#' @return A data frame containing only data for the type given by `type`
+#' @export
+#' @importFrom dplyr filter group_by summarize ungroup full_join arrange
+#' @importFrom lubridate year month day
+extract_fleet_catch_canada <- function(lst){
+
+  if(length(lst) != 3){
+    stop("The length of the input list `lst` does not equal 3")
+  }
+  if(!all(names(lst) %in% c("dmp_df", "logs_df", "logs_inside_df"))){
+    stop("The names of the elements in the list `lst` are not correct. ",
+         "They must be `dmp_df`, `logs_df`, and `logs_inside_df`")
+  }
+
+  # Build FT and SS ----
+  # If the non-JV vessel was fishing in JV, remove those catches
+  dmp_df <- lst$dmp_df |>
+    filter(!grepl("JV", licence_trip_type))
+  logs_df <- lst$logs_df |>
+    filter(!grepl("JV", trip_type))
+
+  # At Sea Observer Program records only (all of those are discards in the
+  # LOGS data), for all fleet types
+  discards_df <- lst$logs_df |>
+    filter(source == "ASOP") |>
+    filter(!is.na(released_wt))
+
+  dmp_ft_df <- dmp_df |>
+    filter(vrn %in% pull(freezer_trawlers, fos_id))
+  discards_ft_df <- discards_df |>
+    filter(vrn %in% pull(freezer_trawlers, fos_id))
+
+  dmp_ss_df <- dmp_df |>
+    filter(!vrn %in% pull(freezer_trawlers, fos_id))
+  discards_ss_df <- discards_df |>
+    filter(!vrn %in% pull(freezer_trawlers, fos_id))
+
+  dmp_jv_df <- lst$dmp_df |>
+    filter(grepl("JV", licence_trip_type))
+  discards_jv_df <- discards_df |>
+    filter(grepl("JV", trip_type))
+
+  summarize_dmp <- \(d, wt_col){
+
+    wt_col_sym <- sym(wt_col)
+    d |>
+      complete(landing_date = seq.Date(min(landing_date),
+                                       max(landing_date),
+                                       by = "day")) |>
+      mutate(year = year(landing_date),
+             month = month(landing_date),
+             day = day(landing_date),
+             !!wt_col_sym := as.numeric(!!wt_col_sym)) |>
+      select(year, month, day, !!wt_col_sym) |>
+      group_by(year, month, day) |>
+      summarize(landings = sum(!!wt_col_sym) * lbs_to_kilos,
+                count =  n()) |>
+      ungroup() |>
+      mutate(landings = ifelse(is.na(landings), 0, landings))
+  }
+
+  dmp_ft_df <- summarize_dmp(dmp_ft_df, "converted_wght_lbs_")
+  dmp_ss_df <- summarize_dmp(dmp_ss_df, "converted_wght_lbs_")
+  discards_ft_df <- summarize_dmp(discards_ft_df, "released_wt")
+  discards_ss_df <- summarize_dmp(discards_ss_df, "released_wt")
+
+  join_dmp <- \(d, d_discards){
+    browser()
+    full_join(d,
+              d_discards,
+              by = c("year", "month", "day")) |>
+      group_by(year, month, day) |>
+      mutate(landings.x = ifelse(is.na(landings.x),
+                                 0,
+                                 landings.x),
+             landings.y = ifelse(is.na(landings.y),
+                                 0,
+                                 landings.y)) |>
+      summarize(landings = landings.x + landings.y,
+                landings_count = count.x,
+                discards_count = count.y) |>
+      ungroup() |>
+      mutate(discards_count = ifelse(is.na(discards_count),
+                                     0,
+                                     discards_count)) |>
+      arrange(year, month, day)
+  }
+  dmp_ft_df <- join_dmp(dmp_ft_df, discards_ft_df)
+  dmp_ss_df <- join_dmp(dmp_ft_df, discards_ss_df)
+  dmp_jv_df <- join_dmp(dmp_ft_df, discards_jv_df)
+
+  list(ft = dmp_ft_df,
+       ss = dmp_ss_df,
+       jv = dmp_jv_df)
+}

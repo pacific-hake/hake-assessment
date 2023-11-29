@@ -52,7 +52,7 @@
 #' @importFrom tools file_path_sans_ext file_ext
 #' @importFrom tibble as_tibble enframe
 #' @importFrom tidyselect all_of any_of matches one_of starts_with
-#' @importFrom tidyr pivot_longer pivot_wider unnest
+#' @importFrom tidyr complete pivot_longer pivot_wider unnest
 #' @importFrom utils head globalVariables menu object.size read.csv read.table
 #' @importFrom utils tail type.convert write.csv write.table
 #' @importFrom vctrs vec_as_names vec_group_rle
