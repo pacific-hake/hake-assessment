@@ -6,7 +6,7 @@
 #' @return A list of three data frames, one for each gear: Freezer trawlers,
 #' Shoreside, and Joint Venture
 #' @export
-extract_fleet_catch_canada <- function(lst){
+canada_extract_fleet_catch <- function(lst){
 
   if(length(lst) != 3){
     stop("The length of the input list `lst` does not equal 3")

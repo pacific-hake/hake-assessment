@@ -20,7 +20,7 @@
 #' assessment
 #'
 #' @export
-load_catch_data_canada <- function(dr = "/srv/hake/other/landings",
+canada_load_catch_data <- function(dr = "/srv/hake/other/landings",
                                    min_date = as.Date("2007-04-01")){
 
   if(!dir.exists(dr)){
