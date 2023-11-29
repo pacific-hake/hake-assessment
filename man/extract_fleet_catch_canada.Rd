@@ -12,7 +12,8 @@ extract_fleet_catch_canada(lst)
 \code{\link[=load_catch_data_canada]{load_catch_data_canada()}}}
 }
 \value{
-A data frame containing only data for the type given by \code{type}
+A list of three data frames, one for each gear: Freezer trawlers,
+Shoreside, and Joint Venture
 }
 \description{
 Merge Canadian DMP and LOGS catch data and extract into 3 data frames,

@@ -3,10 +3,9 @@
 #'
 #' @param lst a list of three data frames as returned by
 #' [load_catch_data_canada()]
-#' @return A data frame containing only data for the type given by `type`
+#' @return A list of three data frames, one for each gear: Freezer trawlers,
+#' Shoreside, and Joint Venture
 #' @export
-#' @importFrom dplyr filter group_by summarize ungroup full_join arrange
-#' @importFrom lubridate year month day
 extract_fleet_catch_canada <- function(lst){
 
   if(length(lst) != 3){
@@ -17,7 +16,6 @@ extract_fleet_catch_canada <- function(lst){
          "They must be `dmp_df`, `logs_df`, and `logs_inside_df`")
   }
 
-  # Build FT and SS ----
   # If the non-JV vessel was fishing in JV, remove those catches
   dmp_df <- lst$dmp_df |>
     filter(!grepl("JV", licence_trip_type))
@@ -64,13 +62,13 @@ extract_fleet_catch_canada <- function(lst){
       mutate(landings = ifelse(is.na(landings), 0, landings))
   }
 
-  dmp_ft_df <- summarize_dmp(dmp_ft_df, "converted_wght_lbs_")
-  dmp_ss_df <- summarize_dmp(dmp_ss_df, "converted_wght_lbs_")
-  discards_ft_df <- summarize_dmp(discards_ft_df, "released_wt")
-  discards_ss_df <- summarize_dmp(discards_ss_df, "released_wt")
+  dmp_lst <- map(list(dmp_ft_df, dmp_ss_df, dmp_jv_df),
+                 ~{summarize_dmp(.x, "converted_wght_lbs_")})
+  discards_lst <- map(list(discards_ft_df, discards_ss_df, discards_jv_df),
+                      ~{summarize_dmp(.x, "released_wt")})
 
   join_dmp <- \(d, d_discards){
-    browser()
+
     full_join(d,
               d_discards,
               by = c("year", "month", "day")) |>
@@ -90,11 +88,8 @@ extract_fleet_catch_canada <- function(lst){
                                      discards_count)) |>
       arrange(year, month, day)
   }
-  dmp_ft_df <- join_dmp(dmp_ft_df, discards_ft_df)
-  dmp_ss_df <- join_dmp(dmp_ft_df, discards_ss_df)
-  dmp_jv_df <- join_dmp(dmp_ft_df, discards_jv_df)
 
-  list(ft = dmp_ft_df,
-       ss = dmp_ss_df,
-       jv = dmp_jv_df)
+  map2(dmp_lst, discards_lst,
+       join_dmp) |>
+    setNames(c("ft", "ss", "jv"))
 }
