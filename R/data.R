@@ -489,6 +489,24 @@
 #' @format A numerical value less than one
 "us_ss_prop_tac"
 
+# pd-data-table-filenames.R ----
+#' The directory name for the directory containing the data tables as
+#' csv files
+#'
+#' @format A character string
+"data_tables_path"
+#' The filename for the Freezer trawler catch by year and month data file
+#'
+#' @format A character string
+"can_ft_catch_by_month_fn"
+#' The filename for the Shoreside catch by year and month data file
+#'
+#' @format A character string
+"can_ss_catch_by_month_fn"
+#' The filename for the Joint venture catch by year and month data file
+#'
+#' @format A character string
+"can_jv_catch_by_month_fn"
 
 # pd-data-tables.R ----
 #' A data frame containing information on estimated biomass trajectories for

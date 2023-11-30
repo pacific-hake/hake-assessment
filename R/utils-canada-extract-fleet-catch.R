@@ -46,6 +46,7 @@ canada_extract_fleet_catch <- function(lst){
   summarize_dmp <- \(d, wt_col){
 
     wt_col_sym <- sym(wt_col)
+    browser()
     d |>
       complete(landing_date = seq.Date(min(landing_date),
                                        max(landing_date),

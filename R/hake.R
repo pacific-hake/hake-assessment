@@ -35,7 +35,7 @@
 #' @importFrom gtable gtable_add_grob gtable_add_rows
 #' @importFrom kableExtra column_spec kable_styling kbl landscape linebreak
 #' @importFrom here here i_am
-#' @importFrom lubridate hour minute month now second seconds_to_period year
+#' @importFrom lubridate day hour minute month now second seconds_to_period year
 #' @importFrom marmap fortify.bathy getNOAA.bathy
 #' @importFrom parallelly supportsMulticore
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
