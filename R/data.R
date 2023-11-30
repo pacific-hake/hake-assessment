@@ -507,6 +507,19 @@
 #'
 #' @format A character string
 "can_jv_catch_by_month_fn"
+#' The filename for the Canadian catch by year
+#'
+#' @format A character string
+"can_catch_by_year_fn"
+#' The filename for the landings and TAC history for the US and Canada
+#'
+#' @format A character string
+"landings_tac_fn"
+#' The filename for the file containing further TAC details such as U.S.
+#' tribal allocations and Canadian carryover and Joint venture TAC
+#'
+#' @format A character string
+"further_tac_details_fn"
 
 # pd-data-tables.R ----
 #' A data frame containing information on estimated biomass trajectories for

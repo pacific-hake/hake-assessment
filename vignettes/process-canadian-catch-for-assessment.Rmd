@@ -68,17 +68,42 @@ databases such as Groundfish FOS (GFFOS) are built by querying FOS.
      `/srv/hake/other/landings/LogCatchReportXXXX.csv` \
      where the `XXXX` is the 4-digit year
 
- - Open R and load the hake package: \
-   ```` library(hake) ```` or \
-   ```` devtools::load_all() ````
- - Run the following to overwrite these three files: \
-   `can-ft-catch-by-month.csv` \
-   `can-ss-catch-by-month.csv` \
-   `can-jv-catch-by-month.csv`
+**Once the data files have been uploaded, do the following steps.** \
+**Note - simply compiling this vignette will build the files, and you can
+just skip to #4. Check the timestamps of the files to verify.** \
+
+  1. Open R and load the hake package: \
+     ```{r}
+     devtools::load_all()
+     ```
+
+   1. Run the following to create (overwrite) the Canadian catch-by-year file
+      (note the directory `dr` which contains the files created above): \
+      ```{r echo = TRUE}
+      fleet_catch <- canada_load_catch_data(dr = "/srv/hake/other/landings") |>
+                     canada_extract_fleet_catch()
    
-   ````
-   canada_load_catch_data() |>
-   canada_extract_fleet_catch() |>
-   canada_create_fleet_catch_csv_files()
-   ````
- 
+      canada_create_fleet_year_catch_csv_files(fleet_catch)
+      ```
+
+   1. Run the following to create (overwrite) the three Canadian catch-by-month
+      files (note that it uses the `fleet_catch` object created above): \
+      ```{r, echo = TRUE}
+       
+       canada_create_fleet_month_catch_csv_files(fleet_catch)
+       ```
+
+   1. Manually edit this file: \
+       ```{r, echo = FALSE}
+       here(data_tables_path, can_landings_tac_fn)
+       ```
+       by copying the Canadian values from this file:
+       ```{r, echo = FALSE}
+       here(data_tables_path, can_catch_by_year_fn)
+       ```
+
+   1. Manually add the new year's Canadian carryover value and JV TAC (if any)
+      to this file:
+      ```{r, echo = FALSE}
+      here(data_tables_path, further_tac_details_fn)
+      ```

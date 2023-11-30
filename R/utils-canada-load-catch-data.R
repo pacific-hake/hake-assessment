@@ -73,13 +73,13 @@ canada_load_catch_data <- function(dr = "/srv/hake/other/landings",
            "or more than one line staarting with 'TRIP'. Fix that file")
     }
     logs_vec <- logs_vec[-(1:(hdr_ind - 1))]
-    suppressWarnings(
-      logs_df <- read.table(text = logs_vec,
-                            sep = ",",
-                            fill = TRUE,
-                            as.is = TRUE,
-                            header = TRUE) |>
-        as_tibble())
+    logs_df <- read.table(text = logs_vec,
+                          sep = ",",
+                          quote = "",
+                          fill = TRUE,
+                          as.is = TRUE,
+                          header = TRUE) |>
+      as_tibble()
   })
   names(logs_df) <- map_chr(names(logs_df), ~{
     .x <- tolower(.x)
@@ -95,6 +95,11 @@ canada_load_catch_data <- function(dr = "/srv/hake/other/landings",
   if(any(logs_df$area == "4B")){
     logs_inside_df <- logs_df |>
       filter(area == "4B")
+    # logs_df <- logs_df |>
+    #   filter(landing_port != "FRENCH CREEK") |>
+    #   mutate(month = month(landing_date)) |>
+    #   filter(!(area == "4B" & month < 6)) |>
+    #   select(-month)
   }
 
   list(dmp_df = d,

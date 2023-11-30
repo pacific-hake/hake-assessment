@@ -4,11 +4,14 @@
 #' [canada_extract_fleet_catch()]
 #' @param catch_scale A value to divide the catch by prior to writing to
 #' the file
+#' @param digits The number of decimal points to report on the catches in
+#' the csv files
 #'
 #' @returns Nothing, creates three CSV files
 #' @export
-canada_create_fleet_catch_csv_files <- function(lst,
-                                                catch_scale = 1000){
+canada_create_fleet_month_catch_csv_files <- function(lst,
+                                                      catch_scale = 1000,
+                                                      digits = 3){
 
   if(length(lst) != 3){
     stop("The length of the input list `lst` does not equal 3")
@@ -29,15 +32,17 @@ canada_create_fleet_catch_csv_files <- function(lst,
   walk2(lst,
         fns,
         \(df, fn){
-          browser()
+
           d <- df |>
             group_by(year, month) |>
             summarize(catch = sum(landings) / catch_scale) |>
             ungroup() |>
-            pivot_wider()
-            dcast(year ~ month )
+            mutate(catch = round(catch, digits)) |>
+            pivot_wider(names_from = "month", values_from = "catch") |>
+            select(year, as.character(1:12))
+
           d[is.na(d)] <- 0
-          browser()
           write_csv(d, fn)
+          message("The file:\n`", fn, "`\nwas written with new catch data\n")
         })
 }
