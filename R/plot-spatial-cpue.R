@@ -26,7 +26,8 @@
 #' @param hex_fill_breaks The breaks to show in the color bar that describes
 #' the colors of the hexagons. Must be the same length as `hex_fill_labels`
 #' @param hex_fill_labels The labels to show in the color bar that describes
-#' @param hex_colors
+#' @param hex_colors A vector of colors to use to make a color ramp palette
+#' for the hexagons
 #' @param ...
 #' the colors of the hexagons. Must be the same length as `hex_fill_breaks`
 #' @return A [ggplot2::ggplot()] object

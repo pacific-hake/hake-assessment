@@ -60,6 +60,9 @@ the colors of the hexagons. Must be the same length as \code{hex_fill_labels}}
 
 \item{hex_fill_labels}{The labels to show in the color bar that describes}
 
+\item{hex_colors}{A vector of colors to use to make a color ramp palette
+for the hexagons}
+
 \item{...}{the colors of the hexagons. Must be the same length as \code{hex_fill_breaks}}
 }
 \value{
