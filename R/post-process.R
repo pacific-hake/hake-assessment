@@ -33,7 +33,7 @@ post_process <- function(x, ...){
   # and set up tables, figures, and equations to be of the format A.2 for
   # example. It also adds TOC information so this has to come before the TOC
   # post-processing step
-  x <- post_process_add_start_appendices_code(x, ..)
+  x <- post_process_add_start_appendices_code(x, ...)
 
   # Add counter reset for all appendices so each lettered appendix starts
   # at 1 again, e.g. A.1, A.2 ... B.1, B.2 ...
