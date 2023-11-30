@@ -72,9 +72,9 @@ post_process_object_placement <- function(x,
 
   if(!length(beg_ind)){
     type_txt <- ifelse(row_df$type == "table", ".*?table", "figure")
-    stop("Did not find the line \\begin{", type_txt, "} associated with the ",
-         row_df$type, " inclusion line `", x[ind], "`. Consider increasing ",
-         "the number of lines searched above it (`num_search_lines` argument)")
+    warning("Did not find the line \\begin{", type_txt, "} associated with the ",
+            row_df$type, " inclusion line `", x[ind], "`. Consider increasing ",
+            "the number of lines searched above it (`num_search_lines` argument)")
   }
   beg_ind <- ind - num_search_lines + beg_ind - 1
 
