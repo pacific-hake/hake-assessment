@@ -1,0 +1,84 @@
+---
+title: "Process the Canadian catch"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to run the Hake models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE, message = FALSE, results = "hide", warning = FALSE}
+library(hake)
+```
+
+This method gets the realtime data from the Fisheries Operations System (FOS)
+database directly, which is the most current source of catch data. Other
+databases such as Groundfish FOS (GFFOS) are built by querying FOS.
+
+ - Open the Microsoft Edge browser (no other browsers work for this) on the
+   DFO network or with the VPN turned on and go to
+   http://paccfprodin/fos2/index.cfm (or http://10.112.10.29/fos2/index.cfm)
+   - Enter Username (grandinc) and Password (g.....3#), and login
+   - Select Groundfish Trawl
+   - Enter the current year and click **Set Default Preferences**
+     and **Set Session Preferences**
+   - Click red "Reports" button
+
+ - **For the DMP landings:**
+   - The Dockside Monitoring Program has the most reliable landings numbers,
+     so we will use this for the landed catch
+   - Click **Landings by species by date (DMP)**
+   - Type or select **Pacific Hake** from the species dropdown box.
+   - Set Start date to April 1, 2007 (Before that catch data were in
+     PacHarvTrawl not FOS)
+   - Set End date to today's date
+   - Leave everything else blank
+   - Click **Run Report**
+   - It will take several minutes. There is no visible sign that it is
+     doing anything. Don't get impatient, it's working, just wait
+   - Once finished, the screen will change, giving you a link to open the
+     new file
+   - Click the link then **Save As..**
+   - Upload the file to the following directory on the server: \
+     `/srv/hake/other/landings/LandingsSpeciesDateDMP.csv`
+
+ - **For the LOGS landings:**
+   - Logbook data have discards, so we need to add those to the total landings
+     from the DMP data
+   - On the FOS website, in the same way as above, also run the
+     **Catch by species by Date (LOGS)** report
+   - Note you can only do 1 year at a time due to size restrictions on
+     output data. You don't need to re-run the previous years, only the new
+     year
+   - Leave all areas checked
+   - Select January 1 for the year to the end date for that year, usually
+     December 31 or the current date if before that
+   - Make sure **Fishing/ASOP logs** is checked, not **Video Catch logs**
+   - It will take several minutes. There is no visible sign that it is doing
+     anything
+   - Click the link then **Save As..**
+   - Upload the file to the following directory on the server: \
+     `/srv/hake/other/landings/LogCatchReportXXXX.csv` \
+     where the `XXXX` is the 4-digit year
+
+ - Open R and load the hake package: \
+   ```` library(hake) ```` or \
+   ```` devtools::load_all() ````
+ - Run the following to overwrite these three files: \
+   `can-ft-catch-by-month.csv` \
+   `can-ss-catch-by-month.csv` \
+   `can-jv-catch-by-month.csv`
+   
+   ````
+   canada_load_catch_data() |>
+   canada_extract_fleet_catch() |>
+   canada_create_fleet_catch_csv_files()
+   ````
+ 
