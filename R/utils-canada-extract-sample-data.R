@@ -20,7 +20,8 @@ canada_extract_sample_data <- function(dr = "/srv/hake/other/samples",
   fn <- file.path(d, can_sample_data_rds_fn)
 
   if(overwrite || !file.exists(fn)){
-    d <- get_commercial_samples(species_code)
+    d <- get_commercial_samples(species_code,
+                                unsorted_only = FALSE)
     saveRDS(d, fn)
     message("The file:\n`", fn, "`\nwas written with new sample data\n")
   }else{
