@@ -35,6 +35,7 @@ Imports:
   fs,
   future,
   furrr,
+  gfdata,
   gfplot,
   ggh4x,
   ggnewscale,
@@ -80,6 +81,7 @@ Suggests:
 Remotes: 
   cgrandin/adnuts,
   cgrandin/kableExtra,
+  pbs-assess/gfdata,
   pbs-assess/gfplot,
   r4ss/r4ss@bioscale,
   ropensci/rnaturalearthhires,

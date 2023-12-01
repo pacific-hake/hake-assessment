@@ -520,7 +520,11 @@
 #'
 #' @format A character string
 "further_tac_details_fn"
-
+#' The filename for the RDS file containing hake sample data as extracted
+#' using [gfdata::get_commercial_samples()]
+#'
+#' @format A character string
+"can_sample_data_rds_fn"
 # pd-data-tables.R ----
 #' A data frame containing information on estimated biomass trajectories for
 #' historical assessments from 1991 to present

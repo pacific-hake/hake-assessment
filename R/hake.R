@@ -22,6 +22,7 @@
 #' @importFrom future availableCores plan
 #' @importFrom furrr future_map future_imap furrr_options
 #' @importFrom furrr future_walk future_walk2
+#' @importFrom gfdata get_commercial_samples
 #' @importFrom gfplot tidy_lengths_raw
 #' @importFrom ggnewscale new_scale_fill
 #' @importFrom glue glue
