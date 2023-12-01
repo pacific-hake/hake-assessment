@@ -1,0 +1,56 @@
+---
+title: "Process the Canadian samples"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to run the Hake models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE, message = FALSE, results = "hide", warning = FALSE}
+library(hake)
+```
+
+**Note - simply compiling this vignette will build the files, and you can
+just skip to #4. Check the timestamps of the files to verify.** \
+
+   1. Open R and load the hake package: \
+      ```{r}
+      devtools::load_all()
+      ```
+
+   1. On the DFO network, or on a DFO computer with the VPN turned on, run
+      the following to extract the newest data: \
+      ```{r echo = TRUE, eval = FALSE}
+      canada_extract_sample_data(dr = "directory/to/save/in")
+      ```
+      This will create a file called `r can_sample_data_rds_fn` in the
+      directory you chose.
+      
+   1. Move the file (`r can_sample_data_rds_fn`) you created to the server
+      in the directory `/srv/hake/other/samples`.
+      
+   1. Run the following to create (overwrite) the Canadian XXXX file
+      (note the directory `dr` which contains the files created above): \
+      ```{r echo = TRUE}
+      sample_df <- canada_load_sample_data()
+      ```
+
+   1. Run the following to generate the age proportions: \
+      ```{r echo = TRUE}
+      x <- get_age_proportions(sample_df)
+      ```
+      Those are the weighted age proportions for all Canadian fleets
+      aggregated.
+      
+   1. Run the following to generate the age proportions by fleet (Freezer
+      trawlers, Shoreside, and Joint venture): \
+      ```{r echo = TRUE}
+      ```
