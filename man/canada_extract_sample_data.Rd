@@ -20,6 +20,9 @@ it exists}
 \item{species_code}{The species code from the GFBio database, or
 species name if you're unsure}
 }
+\value{
+Nothing, writes an RDS file
+}
 \description{
 Fetch the sample data from the GFBIOSQL database
 The data will be filtered to only include hake major and minor areas

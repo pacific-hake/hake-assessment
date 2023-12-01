@@ -490,6 +490,11 @@
 "us_ss_prop_tac"
 
 # pd-data-table-filenames.R ----
+
+#' The filename for the Canadian weight-at-age CSV file
+#'
+#' @format A character string
+"can-weight-at-age.csv"
 #' The directory name for the directory containing the data tables as
 #' csv files
 #'
