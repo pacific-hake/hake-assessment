@@ -1,0 +1,49 @@
+#' Calculate the length-weight relationship parameters for the data with
+#' both length and weight, given a grouping variable
+#'
+#' @param d A data frame as returned by [gfdata::get_commercial_samples()]
+#' @param grouping_cols A vector of character strings matching the names
+#'  of the columns you want to group for
+#' @param lw_cutoff How many length-weight records are required per sample
+#' to use the length-weight model for that sample. If less than this, the
+#' overall yearly values will be used
+#' @param lw_tol See [fit_lw()]
+#' @param lw_maxiter See [fit_lw()]
+#'
+#' @return The original data frame with the columns `lw_alpha` and `lw_beta`
+#' added (if necessary). If those columns exist, they will be overwritten
+#' with `NA`s and values calculated where data exist
+#'
+#' @export
+calc_lw_params <- function(d,
+                           grouping_cols = "year",
+                           lw_cutoff = 10,
+                           lw_tol = 0.1,
+                           lw_maxiter = 1e3){
+
+  coalesce_after <- "lw_alpha" %in% names(d)
+
+  grouping_cols_df <- unique(d %>% select(grouping_cols))
+
+  x <- d |>
+    group_by_at(vars(one_of(grouping_cols))) |>
+    group_map(~ fit_lw(.x, lw_tol, lw_maxiter)) %>%
+    set_names(1:length(.))
+
+  y <- do.call(rbind, x) |>
+    as_tibble() |>
+    bind_cols(grouping_cols_df) |>
+    select(grouping_cols, lw_alpha, lw_beta)
+
+  out <- d |>
+    left_join(y, by = grouping_cols)
+
+  if(coalesce_after){
+    out <- out |>
+      mutate(lw_alpha = coalesce(lw_alpha.x, lw_alpha.y),
+             lw_beta = coalesce(lw_beta.x, lw_beta.y)) |>
+      select(-c(lw_alpha.x, lw_alpha.y, lw_beta.x, lw_beta.y))
+  }
+
+  out
+}

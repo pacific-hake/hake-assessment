@@ -1,9 +1,10 @@
-#' Get the weight-at-age data frame for commercial data.
+#' Get the weight-at-age data frame for commercial data and
 #'
 #' @details
 #' No filtering is performed in this function.
+#' Creates a CSV file containing the commercial weight-at-age
 #'
-#' @param d A list as returned by [gfdata::get_commercial_catch()]
+#' @param d A list as returned by [gfdata::get_commercial_samples()]
 #' @param weight_scale A value to divide the weights by
 #' @param num_sex Either 1 or 2. If 1, then fill the column `Sex` with `U`
 #' for every record. If 2, use the data to fill the `Sex` column with

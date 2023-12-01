@@ -1,0 +1,102 @@
+#' Get the age data from the sample data
+#'
+#' @param d A data frame as returned by [gfdata::get_commercial_samples()]
+#' @param min_date Earliest date to include
+#' @param plus_grp Age plus group for maximum grouping
+#' @param lw_cutoff How many length-weight records are required to estimate
+#' a length/weight model
+#' @param lw_tol See [fit_lw()]
+#' @param lw_maxiter See [fit_lw()]
+#' @param weight_scale A value to divide the weights by
+#' @param by_month Logical. If `TRUE`, return a data frame with a
+#' `month` column in addition to a `year` column
+#'
+#' @return Nothing
+#' @export
+get_age_proportions <- function(
+    d,
+    min_date = as.Date("1972-01-01"),
+    plus_grp = 15,
+    lw_cutoff = 10,
+    lw_tol = 0.1,
+    lw_maxiter = 1e3,
+    weight_scale = 1e3,
+    by_month = FALSE){
+
+  temporal_grouping <- if(by_month) c("year", "month") else "year"
+
+  d <- d |>
+    filter(!is.na(age)) |>
+    mutate(age = ifelse(age > plus_grp, plus_grp, age)) |>
+    mutate(trip_start_date = as.Date(trip_start_date)) |>
+    filter(trip_start_date >= min_date)
+
+  if(by_month){
+    d <- d |>
+      mutate(month = month(trip_start_date)) |>
+      select(year, month, sample_id, length,
+             weight, age, sample_weight, catch_weight)
+  }else{
+    d <- d |>
+      select(year, sample_id, length, weight,
+             age, sample_weight, catch_weight)
+  }
+
+  all_yrs_lw <- fit_lw(d, lw_tol, lw_maxiter)
+
+  ds <- d |>
+    calc_lw_params("sample_id", lw_cutoff, lw_tol, lw_maxiter) |>
+    calc_lw_params(temporal_grouping, lw_cutoff, lw_tol, lw_maxiter) |>
+    rename(lw_alpha.x = lw_alpha,
+           lw_beta.x = lw_beta) |>
+    mutate(lw_alpha.y = all_yrs_lw[1],
+           lw_beta.y = all_yrs_lw[2]) |>
+    mutate(lw_alpha = coalesce(lw_alpha.x, lw_alpha.y),
+           lw_beta = coalesce(lw_beta.x, lw_beta.y)) |>
+    select(-c(lw_alpha.x, lw_alpha.y, lw_beta.x, lw_beta.y))
+
+  # Calculate the weights from length for all missing weights,
+  # using specimen-specific LW params
+  ds <- ds |>
+    filter(!is.na(length)) |>
+    mutate(weight = ifelse(is.na(weight),
+                           lw_alpha * length ^ lw_beta,
+                           weight))
+
+  ap <- ds |>
+    group_by(sample_id) |>
+    mutate(sample_weight = ifelse(is.na(sample_weight),
+                                  sum(weight) / weight_scale,
+                                  sample_weight)) |>
+    mutate(sample_weight = ifelse(all(is.na(catch_weight)),
+                                  1,
+                                  sample_weight),
+           catch_weight = ifelse(all(is.na(catch_weight)),
+                                 1,
+                                 catch_weight)) |>
+    ungroup() |>
+    group_by(sample_id, age) |>
+    summarize(year = first(year),
+              num_ages = n(),
+              sample_weight = first(sample_weight),
+              catch_weight = first(catch_weight)) |>
+    ungroup() |>
+    complete(sample_id, age) |>
+    filter(age > 0) |>
+    group_by(sample_id) |>
+    mutate(num_ages = ifelse(is.na(num_ages),
+                             0,
+                             num_ages),
+           year = max(year, na.rm = TRUE),
+           sample_weight = max(sample_weight, na.rm = TRUE),
+           catch_weight = max(catch_weight, na.rm = TRUE)) |>
+    mutate(num_ages_weighted = num_ages * catch_weight / sample_weight) |>
+    ungroup() |>
+    group_by(year, age) |>
+    summarize(num_ages_weighted = sum(num_ages_weighted)) |>
+    mutate(age_prop = num_ages_weighted / sum(num_ages_weighted)) |>
+    ungroup() |>
+    select(-num_ages_weighted)
+
+  pivot_wider(ap, names_from = age, values_from = age_prop)
+}
