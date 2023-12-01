@@ -2,6 +2,9 @@
 #'
 #' @param d A data frame as returned by [gfdata::get_commercial_samples()]
 #' @param min_date Earliest date to include
+#' @param raw_proportions Logical. If `TRUE`, return raw, unweighted age
+#' proportions. If `FALSE`, return the age proportions weighted by sample
+#' and catch weights
 #' @param plus_grp Age plus group for maximum grouping
 #' @param lw_cutoff How many length-weight records are required to estimate
 #' a length/weight model
@@ -16,6 +19,7 @@
 get_age_proportions <- function(
     d,
     min_date = as.Date("1972-01-01"),
+    raw_proportions = FALSE,
     plus_grp = 15,
     lw_cutoff = 10,
     lw_tol = 0.1,
@@ -41,6 +45,25 @@ get_age_proportions <- function(
       select(year, sample_id, length, weight,
              age, sample_weight, catch_weight)
   }
+  if(raw_proportions){
+    d |>
+      filter(!is.na(age)) |>
+      filter(age > 0) |>
+      group_by(year) |>
+      mutate(num_at_age_year = n()) |>
+      ungroup() |>
+      group_by(year, age) |>
+      mutate(num_at_age = n()) |>
+      ungroup()|>
+      select(year, age, num_at_age, num_at_age_year) |>
+      mutate(age_prop = num_at_age / num_at_age_year) |>
+      distinct() |>
+      select(year, age, age_prop) |>
+      arrange(year, age) |>
+      complete(year, age = 1:plus_grp, fill = list(age_prop = 0)) |>
+      pivot_wider(names_from = age, values_from = age_prop) %>%
+      return()
+  }
 
   all_yrs_lw <- fit_lw(d, lw_tol, lw_maxiter)
 
@@ -63,7 +86,7 @@ get_age_proportions <- function(
                            lw_alpha * length ^ lw_beta,
                            weight))
 
-  ap <- ds |>
+  ds |>
     group_by(sample_id) |>
     mutate(sample_weight = ifelse(is.na(sample_weight),
                                   sum(weight) / weight_scale,
@@ -96,7 +119,6 @@ get_age_proportions <- function(
     summarize(num_ages_weighted = sum(num_ages_weighted)) |>
     mutate(age_prop = num_ages_weighted / sum(num_ages_weighted)) |>
     ungroup() |>
-    select(-num_ages_weighted)
-
-  pivot_wider(ap, names_from = age, values_from = age_prop)
+    select(-num_ages_weighted) |>
+    pivot_wider(names_from = age, values_from = age_prop)
 }
