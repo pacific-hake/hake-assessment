@@ -6,13 +6,12 @@
 #' proportions. If `FALSE`, return the age proportions weighted by sample
 #' and catch weights
 #' @param plus_grp Age plus group for maximum grouping
-#' @param lw_cutoff How many length-weight records are required to estimate
-#' a length/weight model
 #' @param lw_tol See [fit_lw()]
 #' @param lw_maxiter See [fit_lw()]
 #' @param weight_scale A value to divide the weights by
 #' @param by_month Logical. If `TRUE`, return a data frame with a
 #' `month` column in addition to a `year` column
+#' @param digits The number of decimal places to round the values to
 #'
 #' @return Nothing
 #' @export
@@ -21,11 +20,11 @@ canada_get_age_proportions <- function(
     min_date = as.Date("1972-01-01"),
     raw_proportions = FALSE,
     plus_grp = 15,
-    lw_cutoff = 10,
     lw_tol = 0.1,
     lw_maxiter = 1e3,
     weight_scale = 1e3,
-    by_month = FALSE){
+    by_month = FALSE,
+    digits = 3){
 
   temporal_grouping <- if(by_month) c("year", "month") else "year"
 
@@ -72,8 +71,8 @@ canada_get_age_proportions <- function(
   all_yrs_lw <- fit_lw(d, lw_tol, lw_maxiter)
 
   ds <- d |>
-    calc_lw_params("sample_id", lw_cutoff, lw_tol, lw_maxiter) |>
-    calc_lw_params(temporal_grouping, lw_cutoff, lw_tol, lw_maxiter) |>
+    calc_lw_params("sample_id", lw_tol, lw_maxiter) |>
+    calc_lw_params(temporal_grouping, lw_tol, lw_maxiter) |>
     rename(lw_alpha.x = lw_alpha,
            lw_beta.x = lw_beta) |>
     mutate(lw_alpha.y = all_yrs_lw[1],
@@ -124,5 +123,6 @@ canada_get_age_proportions <- function(
     mutate(age_prop = num_ages_weighted / sum(num_ages_weighted)) |>
     ungroup() |>
     select(-num_ages_weighted) |>
-    pivot_wider(names_from = age, values_from = age_prop)
+    pivot_wider(names_from = age, values_from = age_prop) |>
+    mutate(across(-year, ~{f(.x, digits)}))
 }

@@ -9,11 +9,11 @@ canada_get_age_proportions(
   min_date = as.Date("1972-01-01"),
   raw_proportions = FALSE,
   plus_grp = 15,
-  lw_cutoff = 10,
   lw_tol = 0.1,
   lw_maxiter = 1000,
   weight_scale = 1000,
-  by_month = FALSE
+  by_month = FALSE,
+  digits = 3
 )
 }
 \arguments{
@@ -27,9 +27,6 @@ and catch weights}
 
 \item{plus_grp}{Age plus group for maximum grouping}
 
-\item{lw_cutoff}{How many length-weight records are required to estimate
-a length/weight model}
-
 \item{lw_tol}{See \code{\link[=fit_lw]{fit_lw()}}}
 
 \item{lw_maxiter}{See \code{\link[=fit_lw]{fit_lw()}}}
@@ -38,6 +35,8 @@ a length/weight model}
 
 \item{by_month}{Logical. If \code{TRUE}, return a data frame with a
 \code{month} column in addition to a \code{year} column}
+
+\item{digits}{The number of decimal places to round the values to}
 }
 \value{
 Nothing
