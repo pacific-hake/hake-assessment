@@ -1,12 +1,20 @@
-#' Calculate the length-weight relationship parameters for the data with
-#' both length and weight, given a grouping variable
+#' Calculate length-weight relationship parameters
+#'
+#' @description
+#' Calculate length-weight relationship parameters for the data with both
+#' length and weight data, given one or more grouping variables.
+#'
+#' @details
+#' If the column `lw_alpha` already exists in the input data frame `d`,
+#' the calculated parameters `lw_alpha` and `lw_beta` will be coalesced
+#' with the input ones. This means they will be combined together similar to
+#' a union or left join. The input parameter values will take precedence and
+#' the `NA` values found in that column will be replaced with the parameter
+#' estimates calculated here with [fit_lw()].
 #'
 #' @param d A data frame as returned by [gfdata::get_commercial_samples()]
 #' @param grouping_cols A vector of character strings matching the names
-#'  of the columns you want to group for
-#' @param lw_cutoff How many length-weight records are required per sample
-#' to use the length-weight model for that sample. If less than this, the
-#' overall yearly values will be used
+#'  of the columns you want to group for. i.e. `"year"` or `c("year", "month")`
 #' @param lw_tol See [fit_lw()]
 #' @param lw_maxiter See [fit_lw()]
 #'
@@ -17,13 +25,14 @@
 #' @export
 calc_lw_params <- function(d,
                            grouping_cols = "year",
-                           lw_cutoff = 10,
                            lw_tol = 0.1,
                            lw_maxiter = 1e3){
 
   coalesce_after <- "lw_alpha" %in% names(d)
 
-  grouping_cols_df <- unique(d %>% select(grouping_cols))
+  grouping_cols_df <- d |>
+    select(grouping_cols) |>
+    unique()
 
   x <- d |>
     group_by_at(vars(one_of(grouping_cols))) |>

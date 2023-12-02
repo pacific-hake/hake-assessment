@@ -16,7 +16,7 @@
 #'
 #' @return Nothing
 #' @export
-get_age_proportions <- function(
+canada_get_age_proportions <- function(
     d,
     min_date = as.Date("1972-01-01"),
     raw_proportions = FALSE,
@@ -29,6 +29,10 @@ get_age_proportions <- function(
 
   temporal_grouping <- if(by_month) c("year", "month") else "year"
 
+  if(!"trip_start_date" %in% names(d)){
+    d <- d |>
+      rename(trip_start_date = trip_end_date)
+  }
   d <- d |>
     filter(!is.na(age)) |>
     mutate(age = ifelse(age > plus_grp, plus_grp, age)) |>

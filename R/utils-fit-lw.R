@@ -1,8 +1,12 @@
 #' Fit a length-weight model
 #'
+#' @details
+#' Uses a modified version of [stats::nls()] that uses [minpack.lm::nls.lm()]
+#' for fitting. See [minpack.lm::nlsLM()] for details.
+#'
 #' @param d Data frame containing the columns `length` and `weight`
-#' @param tol See [stats::nls()]
-#' @param maxiter See [stats::nls()]
+#' @param tol Model tolerance. See [minpack.lm::nls.lm.control()]
+#' @param maxiter Model maximum iterations. See [minpack.lm::nls.lm.control()]
 #'
 #' @return The [stats::coefficients()] for the model fit
 fit_lw <- function(d,

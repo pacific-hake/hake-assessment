@@ -2,26 +2,15 @@
 % Please edit documentation in R/utils-calc-lw-params.R
 \name{calc_lw_params}
 \alias{calc_lw_params}
-\title{Calculate the length-weight relationship parameters for the data with
-both length and weight, given a grouping variable}
+\title{Calculate length-weight relationship parameters}
 \usage{
-calc_lw_params(
-  d,
-  grouping_cols = "year",
-  lw_cutoff = 10,
-  lw_tol = 0.1,
-  lw_maxiter = 1000
-)
+calc_lw_params(d, grouping_cols = "year", lw_tol = 0.1, lw_maxiter = 1000)
 }
 \arguments{
 \item{d}{A data frame as returned by \code{\link[gfdata:get_data]{gfdata::get_commercial_samples()}}}
 
 \item{grouping_cols}{A vector of character strings matching the names
-of the columns you want to group for}
-
-\item{lw_cutoff}{How many length-weight records are required per sample
-to use the length-weight model for that sample. If less than this, the
-overall yearly values will be used}
+of the columns you want to group for. i.e. \code{"year"} or \code{c("year", "month")}}
 
 \item{lw_tol}{See \code{\link[=fit_lw]{fit_lw()}}}
 
@@ -33,6 +22,14 @@ added (if necessary). If those columns exist, they will be overwritten
 with \code{NA}s and values calculated where data exist
 }
 \description{
-Calculate the length-weight relationship parameters for the data with
-both length and weight, given a grouping variable
+Calculate length-weight relationship parameters for the data with both
+length and weight data, given one or more grouping variables.
+}
+\details{
+If the column \code{lw_alpha} already exists in the input data frame \code{d},
+the calculated parameters \code{lw_alpha} and \code{lw_beta} will be coalesced
+with the input ones. This means they will be combined together similar to
+a union or left join. The input parameter values will take precedence and
+the \code{NA} values found in that column will be replaced with the parameter
+estimates calculated here with \code{\link[=fit_lw]{fit_lw()}}.
 }

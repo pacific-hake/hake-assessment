@@ -45,21 +45,18 @@ just skip to #4. Check the timestamps of the files to verify.** \
       samples_fleet_lst <- canada_get_fleet_samples(sample_df)
       ```
 
-   1. Run the following to generate the age proportions: \
+   1. Run the following to generate aggregated (all fleets) age proportions, \
+      weighted by sample weight and catch weight: \
       ```{r echo = TRUE}
-      x <- get_age_proportions(sample_df)
+      ap <- get_age_proportions(sample_df)
       ```
-      Those are the weighted age proportions for all Canadian fleets
-      aggregated.
-      
+
    1. Run the following to generate the age proportions by fleet (Freezer
       trawlers, Shoreside, and Joint venture): \
       ```{r echo = TRUE}
-      ft_sample_df <- sample_df |> 
-        filter(vessel_id %in% freezer_trawlers$gfbio_id)
-      ft_ap <- get_age_proportions(ft_sample_df)
+      ft_ap <- get_age_proportions(samples_fleet_lst$ft)
       
-      ss_sample_df <- sample_df |> 
-        filter(!vessel_id %in% freezer_trawlers$gfbio_id)
-      ss_ap <- get_age_proportions(ss_sample_df)
+      ss_ap <- get_age_proportions(samples_fleet_lst$ss)
+      
+      jv_ap <- get_age_proportions(samples_fleet_lst$jv)
       ```
