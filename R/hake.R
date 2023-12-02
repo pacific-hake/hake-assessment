@@ -38,6 +38,7 @@
 #' @importFrom here here i_am
 #' @importFrom lubridate day hour minute month now second seconds_to_period year
 #' @importFrom marmap fortify.bathy getNOAA.bathy
+#' @importFrom minpack.lm nlsLM
 #' @importFrom parallelly supportsMulticore
 #' @importFrom RColorBrewer brewer.pal.info brewer.pal
 #' @importFrom readr cols read_csv read_table2 write_csv

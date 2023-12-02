@@ -4,7 +4,7 @@
 #' @param tol See [stats::nls()]
 #' @param maxiter See [stats::nls()]
 #'
-#' @return The [stats::coefficients()] of the model fit
+#' @return The [stats::coefficients()] for the model fit
 fit_lw <- function(d,
                    tol = 0.1,
                    maxiter = 1e3){
@@ -17,9 +17,10 @@ fit_lw <- function(d,
   }
   w <- d$weight
   l <- d$length
-  fit <- nls(w ~ lw_alpha * l ^ lw_beta,
-             start = c(lw_alpha = 0.5, lw_beta = 2.0),
-             control = list(tol = tol, maxiter = maxiter))
+
+  fit <- nlsLM(w ~ lw_alpha * l ^ lw_beta,
+               start = c(lw_alpha = 0.5, lw_beta = 2.0),
+               control = list(tol = tol, maxiter = maxiter))
 
   coefficients(fit)
 }

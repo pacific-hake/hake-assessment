@@ -14,7 +14,7 @@ fit_lw(d, tol = 0.1, maxiter = 1000)
 \item{maxiter}{See \code{\link[stats:nls]{stats::nls()}}}
 }
 \value{
-The \code{\link[stats:coef]{stats::coefficients()}} of the model fit
+The \code{\link[stats:coef]{stats::coefficients()}} for the model fit
 }
 \description{
 Fit a length-weight model

@@ -52,6 +52,7 @@ Imports:
   lubridate,
   marmap,
   microbenchmark,
+  minpack.lm,
   pacman,
   parallelly,
   purrr,
