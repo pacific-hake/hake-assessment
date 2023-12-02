@@ -2,7 +2,7 @@
 title: "Process the Canadian samples"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{How to run the Hake models}
+  %\VignetteIndexEntry{Process the Canadian samples}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -27,20 +27,22 @@ just skip to #4. Check the timestamps of the files to verify.** \
       ```
 
    1. On the DFO network, or on a DFO computer with the VPN turned on, run
-      the following to extract the newest data: \
+      the following to extract the newest data from the `GFBioSQL` database. \
+      Choose any directory, the one shown here is an example: \
       ```{r echo = TRUE, eval = FALSE}
-      canada_extract_sample_data(dr = "directory/to/save/in")
+      canada_extract_samples_from_db(dr = "/srv/hake/other/samples")
       ```
       This will create a file called `r can_sample_data_rds_fn` in the
       directory you chose.
       
-   1. Move the file (`r can_sample_data_rds_fn`) you created to the server
-      in the directory `/srv/hake/other/samples`.
+   1. Move or copy the file (`r can_sample_data_rds_fn`) you created to the
+      server in the directory `/srv/hake/other/samples`.
       
    1. Run the following to create (overwrite) the Canadian XXXX file
       (note the directory `dr` which contains the files created above): \
       ```{r echo = TRUE}
       sample_df <- canada_load_sample_data()
+      samples_fleet_lst <- canada_get_fleet_samples(sample_df)
       ```
 
    1. Run the following to generate the age proportions: \
@@ -53,4 +55,11 @@ just skip to #4. Check the timestamps of the files to verify.** \
    1. Run the following to generate the age proportions by fleet (Freezer
       trawlers, Shoreside, and Joint venture): \
       ```{r echo = TRUE}
+      ft_sample_df <- sample_df |> 
+        filter(vessel_id %in% freezer_trawlers$gfbio_id)
+      ft_ap <- get_age_proportions(ft_sample_df)
+      
+      ss_sample_df <- sample_df |> 
+        filter(!vessel_id %in% freezer_trawlers$gfbio_id)
+      ss_ap <- get_age_proportions(ss_sample_df)
       ```
