@@ -38,25 +38,43 @@ just skip to #4. Check the timestamps of the files to verify.** \
    1. Move or copy the file (`r can_sample_data_rds_fn`) you created to the
       server in the directory `/srv/hake/other/samples`.
       
-   1. Run the following to create (overwrite) the Canadian XXXX file
-      (note the directory `dr` which contains the files created above): \
+   1. Run the following to load the sample data from the RDS file created
+      above. Area and gear type filtering is also performed in this
+      function. The default gear type is `midwater ttrawl` and the default
+      areas are the west coast major areas plus the strait of Juan de Fuca: \
       ```{r echo = TRUE}
       sample_df <- canada_load_sample_data()
+      ```
+
+   1. Run the following to break the `sample_df` data frame created above
+      into smaller data frames representing the three Canadian fleets
+      (Freezer trawlers, Shoreside, and Joint venture): \
+      ```{r echo = TRUE}
       samples_fleet_lst <- canada_get_fleet_samples(sample_df)
       ```
-
-   1. Run the following to generate aggregated (all fleets) age proportions, \
-      weighted by sample weight and catch weight: \
+   1. Run the following to create (overwrite) the Canadian age proportions
+      by fleet files (Freezer trawlers, Shoreside, and Joint venture).
+      These proportions are weighted by sample weight and catch weight,
+      and use a length/weight model to estimate parameters used to generate
+      individual specimen weights from records with only length data: \
       ```{r echo = TRUE}
-      ap <- canada_get_age_proportions(sample_df)
+      canada_create_age_proportions_csv(samples_fleet_lst$ft, type = "ft")
+      canada_create_age_proportions_csv(samples_fleet_lst$ss, type = "ss")
+      canada_create_age_proportions_csv(samples_fleet_lst$jv, type = "jv")
       ```
 
-   1. Run the following to generate the age proportions by fleet (Freezer
-      trawlers, Shoreside, and Joint venture): \
+   1. Run the following to create (overwrite) the raw Canadian age proportions
+      by fleet files (Freezer trawlers, Shoreside, and Joint venture).
+      These proportions are not weighted and do not contain weights calculated
+      by using a length/weight model: \
       ```{r echo = TRUE}
-      ft_ap <- canada_get_age_proportions(samples_fleet_lst$ft)
-      
-      ss_ap <- canada_get_age_proportions(samples_fleet_lst$ss)
-      
-      jv_ap <- canada_get_age_proportions(samples_fleet_lst$jv)
+      canada_create_age_proportions_csv(samples_fleet_lst$ft,
+                                        type = "ft",
+                                        raw_proportions = TRUE)
+      canada_create_age_proportions_csv(samples_fleet_lst$ss,
+                                        type = "ss",
+                                        raw_proportions = TRUE)
+      canada_create_age_proportions_csv(samples_fleet_lst$jv,
+                                        type = "jv",
+                                        raw_proportions = TRUE)
       ```

@@ -500,6 +500,18 @@
 #'
 #' @format A character string
 "data_tables_path"
+#' The filename for the Freezer trawler age proportions by year data file
+#'
+#' @format A character string
+"can_ft_age_props_fn"
+#' The filename for the Shoreside age proportions by year data file
+#'
+#' @format A character string
+"can_ss_age_props_fn"
+#' The filename for the Joint venture age proportions by year data file
+#'
+#' @format A character string
+"can_jv_age_props_fn"
 #' The filename for the Freezer trawler catch by year and month data file
 #'
 #' @format A character string

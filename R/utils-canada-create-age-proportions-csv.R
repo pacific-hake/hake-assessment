@@ -1,6 +1,14 @@
-#' Get the age data from the sample data
+#' Create an age proportion CSV data from the sample data
+#'
+#' @details
+#' A CSV file will be written, and the data frame will also be returned
+#' invisibly. The data frame will contain the year, number of fish by year
+#' in the data, and the number of samples (hauls/trips) in the data.
+#' Shoreside uses trips as a sampling unit and the other two use hauls.
 #'
 #' @param d A data frame as returned by [gfdata::get_commercial_samples()]
+#' @param type The fleet type to create the file for. This is needed so
+#' the function knows what the filename should be for each fleet
 #' @param min_date Earliest date to include
 #' @param raw_proportions Logical. If `TRUE`, return raw, unweighted age
 #' proportions. If `FALSE`, return the age proportions weighted by sample
@@ -13,10 +21,11 @@
 #' `month` column in addition to a `year` column
 #' @param digits The number of decimal places to round the values to
 #'
-#' @return Nothing
+#' @return The age proportion data frame, invisibly
 #' @export
-canada_get_age_proportions <- function(
+canada_create_age_proportions_csv <- function(
     d,
+    type = c("ft", "ss", "jv"),
     min_date = as.Date("1972-01-01"),
     raw_proportions = FALSE,
     plus_grp = 15,
@@ -24,7 +33,9 @@ canada_get_age_proportions <- function(
     lw_maxiter = 1e3,
     weight_scale = 1e3,
     by_month = FALSE,
-    digits = 3){
+    digits = 5){
+
+  type <- match.arg(type)
 
   temporal_grouping <- if(by_month) c("year", "month") else "year"
 
@@ -49,7 +60,7 @@ canada_get_age_proportions <- function(
              age, sample_weight, catch_weight)
   }
   if(raw_proportions){
-    d |>
+    out <- d |>
       filter(!is.na(age)) |>
       filter(age > 0) |>
       group_by(year) |>
@@ -64,8 +75,19 @@ canada_get_age_proportions <- function(
       select(year, age, age_prop) |>
       arrange(year, age) |>
       complete(year, age = 1:plus_grp, fill = list(age_prop = 0)) |>
-      pivot_wider(names_from = age, values_from = age_prop) %>%
-      return()
+      pivot_wider(names_from = age, values_from = age_prop) |>
+      mutate(across(-year, ~{f(.x, digits)}))
+
+    fn <- here(data_tables_path,
+               switch(type,
+                      "ft" = paste0("raw-", can_ft_age_props_fn),
+                      "ss" = paste0("raw-", can_ss_age_props_fn),
+                      "jv" = paste0("raw-", can_jv_age_props_fn)))
+
+    write_csv(out, fn)
+    message("The file:\n`", fn, "`\nwas written with new age proportion ",
+            "data\n")
+    return(invisible(out))
   }
 
   all_yrs_lw <- fit_lw(d, lw_tol, lw_maxiter)
@@ -89,7 +111,7 @@ canada_get_age_proportions <- function(
                            lw_alpha * length ^ lw_beta,
                            weight))
 
-  ds |>
+  age_props <- ds |>
     group_by(sample_id) |>
     mutate(sample_weight = ifelse(is.na(sample_weight),
                                   sum(weight) / weight_scale,
@@ -125,4 +147,45 @@ canada_get_age_proportions <- function(
     select(-num_ages_weighted) |>
     pivot_wider(names_from = age, values_from = age_prop) |>
     mutate(across(-year, ~{f(.x, digits)}))
+
+  # Add number of fish and number of samples ----
+  num_fish <- ds |>
+    split(~year) |>
+    map_dfr(~{
+      .x |>
+      group_by(year) |>
+        summarize(num_fish = n()) |>
+        ungroup()
+    }) |>
+    mutate(year = as.numeric(year)) |>
+    mutate(num_fish = as.numeric(num_fish))
+
+  num_samples <- ds |>
+    split(~year) |>
+    map_dbl(~{
+      .x |>
+        pull(sample_id) |>
+        unique() |>
+        length()
+    })
+  num_samples <- tibble(year = names(num_samples)) |>
+    mutate(num_samples = num_samples) |>
+    mutate(year = as.numeric(year))
+
+  # Join `num_fish`, `num_samples`, and `age_props`
+  out <- num_fish |>
+    full_join(num_samples, by = "year") |>
+    full_join(age_props, by = "year")
+
+  # Write the csv files out ----
+  fn <- here(data_tables_path,
+             switch(type,
+                    "ft" = can_ft_age_props_fn,
+                    "ss" = can_ss_age_props_fn,
+                    "jv" = can_jv_age_props_fn))
+
+  write_csv(out, fn)
+  message("The file:\n`", fn, "`\nwas written with new age proportion data\n")
+
+  invisible(out)
 }
