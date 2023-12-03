@@ -4,10 +4,17 @@
 \alias{canada_load_sample_data}
 \title{Load the Canadian commercial sample data}
 \usage{
-canada_load_sample_data(dr = "/srv/hake/other/samples")
+canada_load_sample_data(
+  fn = file.path("/srv/hake/other/samples", can_sample_data_rds_fn),
+  gear_type = "midwater trawl"
+)
 }
 \arguments{
-\item{dr}{The directory in which the sample RDS file resides}
+\item{fn}{The file name for the sample RDS file}
+
+\item{gear_type}{A vector of fishing gear type (description). Must be
+one or more of: \verb{midwater trawl}, \verb{bottom trawl}, \verb{shrimp trawl},
+or \verb{unknown trawl}. If \code{NULL}, all type will be included}
 }
 \value{
 A data frame containing filtered Canadian samples
@@ -21,6 +28,6 @@ data variable \link{can_sample_data_rds_fn}
 The following filtering is performed in this function for all fleets:
 \enumerate{
 \item Areas - BC offshore areas + Strait of Juan de Fuca
-\item Fishing gear - Midwater trawl only
+\item Fishing gear - Midwater trawl only by default
 }
 }

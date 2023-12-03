@@ -8,28 +8,36 @@
 #' @details
 #' The following filtering is performed in this function for all fleets:
 #' 1) Areas - BC offshore areas + Strait of Juan de Fuca
-#' 2) Fishing gear - Midwater trawl only
+#' 2) Fishing gear - Midwater trawl only by default
 #'
-#' @param dr The directory in which the sample RDS file resides
+#' @param fn The file name for the sample RDS file
+#' @param gear_type A vector of fishing gear type (description). Must be
+#' one or more of: `midwater trawl`, `bottom trawl`, `shrimp trawl`,
+#' or `unknown trawl`. If `NULL`, all type will be included
 #'
 #' @return A data frame containing filtered Canadian samples
 #' @export
-canada_load_sample_data <- function(dr = "/srv/hake/other/samples"){
+canada_load_sample_data <- function(
+    fn = file.path("/srv/hake/other/samples", can_sample_data_rds_fn),
+    gear_type = "midwater trawl"){
 
-  if(!dir.exists(dr)){
-    stop("The directory `", dr, "` does not exist")
-  }
-
-  fn <- file.path(dr, can_sample_data_rds_fn)
-
-  if(file.exists(fn)){
-    readRDS(fn) |>
-      filter(major_stat_area_code %in% can_major_hake_areas |
-               (major_stat_area_code == "01" &
-                  minor_stat_area_code == "20")) |>
-      filter(gear_desc == "MIDWATER TRAWL")
-  }else{
+  if(!file.exists(fn)){
     stop("The file:\n`", fn, "`\ndoes not exist. Run ",
          "`canada_extract_sample_data()` to create it")
   }
+
+  out <- readRDS(fn) |>
+    filter(major_stat_area_code %in% can_major_hake_areas |
+             (major_stat_area_code == "01" &
+                minor_stat_area_code == "20"))
+
+  if(!is.null(gear_type)){
+    gear_type <- toupper(gear_type)
+    gear_pat <- paste(gear_type, collapse = "|")
+
+    out <- out %>%
+      filter(grepl(gear_pat, .$gear_desc))
+  }
+
+  out
 }
