@@ -41,6 +41,7 @@ calc_lw_params <- function(d,
 
   y <- do.call(rbind, x) |>
     as_tibble() |>
+    setNames(c("lw_alpha", "lw_beta")) |>
     bind_cols(grouping_cols_df) |>
     select(grouping_cols, lw_alpha, lw_beta)
 
