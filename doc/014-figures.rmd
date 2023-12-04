@@ -13,7 +13,7 @@ interest for the hake fishery.
 
 ```{r main-overview-map-fig, fig.cap = "(ref:main-overview-map-cap)", fig.height = 10}
 
-plot_overview_map(ports_df, states_df)
+plot_overview_map()
 ```
 
 (ref:main-acoustic-age2-bs-cap) Spatial distribution of acoustic backscatter
