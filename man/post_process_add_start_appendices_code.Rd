@@ -4,7 +4,7 @@
 \alias{post_process_add_start_appendices_code}
 \title{Add start appendices LaTeX code}
 \usage{
-post_process_add_start_appendices_code(x, ..)
+post_process_add_start_appendices_code(x, ...)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by

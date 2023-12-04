@@ -141,58 +141,48 @@ create_data_hake("us_research_catch_by_month_df",
                           col_types = cols(),
                           show_col_types = FALSE))
 
-# Sampling data ----
+# Sampling history data ----
 create_data_hake("sampling_history_df",
                  read_csv(file.path(load_dir,
                                     "fishery-sampling-history.csv"),
                           col_types = cols(),
                           show_col_types = FALSE))
 
-# * Canada sampling ----
-create_data_hake("can_ages_lst",
-                 load_can_age_data(file.path(load_dir,
-                                             "can-age-data.csv")))
-
-create_data_hake("can_ft_num_fish",
+# * Canada age proportions ----
+create_data_hake("can_ft_age_df",
                  read_csv(file.path(load_dir,
-                                    "can-ft-num-fish-aged.csv"),
-                          col_types = cols(),
-                          show_col_types = FALSE))
-
-create_data_hake("can_ss_num_fish",
-                 read_csv(file.path(load_dir,
-                                    "can-ss-num-fish-aged.csv"),
-                          col_types = cols(),
-                          show_col_types = FALSE))
-
-create_data_hake("can_jv_num_fish",
-                 read_csv(file.path(load_dir,
-                                    "can-jv-num-fish-aged.csv"),
+                                             can_ft_age_props_fn),
                           col_types = cols(),
                           show_col_types = FALSE))
 
 create_data_hake("can_ss_age_df",
-                 can_ages_lst[[1]])
-
-create_data_hake("can_ft_age_df",
-                 can_ages_lst[[2]])
-
-# * US sampling ----
-create_data_hake("us_ss_age_df",
                  read_csv(file.path(load_dir,
-                                    "us-shore-age-data.csv"),
+                                             can_ss_age_props_fn),
+                          col_types = cols(),
+                          show_col_types = FALSE))
+#load_can_age_data
+create_data_hake("can_jv_age_df",
+                 read_csv(file.path(load_dir,
+                                    can_jv_age_props_fn),
                           col_types = cols(),
                           show_col_types = FALSE))
 
+# * US age proportions ----
 create_data_hake("us_cp_age_df",
                  read_csv(file.path(load_dir,
-                                    "us-cp-age-data.csv"),
+                                    us_cp_age_props_fn),
                           col_types = cols(),
                           show_col_types = FALSE))
 
 create_data_hake("us_ms_age_df",
                  read_csv(file.path(load_dir,
-                                    "us-ms-age-data.csv"),
+                                    us_ms_age_props_fn),
+                          col_types = cols(),
+                          show_col_types = FALSE))
+
+create_data_hake("us_sb_age_df",
+                 read_csv(file.path(load_dir,
+                                    us_sb_age_props_fn),
                           col_types = cols(),
                           show_col_types = FALSE))
 

@@ -13,7 +13,7 @@
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_add_start_appendices_code <- function(x, ..){
+post_process_add_start_appendices_code <- function(x, ...){
 
   ind <- grep("APPENDICES START HERE", x)
   # Get the lines of the appendix starts

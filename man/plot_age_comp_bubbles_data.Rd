@@ -7,14 +7,14 @@ sector of the fishery}
 \usage{
 plot_age_comp_bubbles_data(
   age_data_lst,
-  names_lst,
+  nms_vec,
   years = c(year(now()) - 6, year(now()) - 1)
 )
 }
 \arguments{
 \item{age_data_lst}{A list of age proportion data frames}
 
-\item{names_lst}{A list of names for the sectors, must be the same length
+\item{nms_vec}{A vector of names for the sectors, must be the same length
 as \code{age_data-lst}}
 
 \item{years}{A vector of two values re0-presenting the minimum and maximum

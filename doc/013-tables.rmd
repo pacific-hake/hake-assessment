@@ -18,7 +18,7 @@ table_catch(
     "activities. Catch associated with surveys and discarded bycatch in ",
     "fisheries not targeting hake is not currently included in the table or ",
     "model."),
-  font_size = 10,
+  font_size = 8,
   header_font_size = 11,
   longtable = TRUE)
 ```
@@ -129,8 +129,6 @@ table_us_age_data(
 
 ```{r main-can-ss-age-data-tab, results = "asis", echo = FALSE}
 table_can_age_data(
-  can_ages_lst,
-  can_ss_num_fish,
   fleet = "ss",
   start_yr = end_yr - num_recent_yrs,
   end_yr = last_data_yr,

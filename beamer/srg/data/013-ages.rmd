@@ -4,14 +4,14 @@
 
 plot_age_comp_bubbles_data(list(can_ss_age_df,
                                 can_ft_age_df,
-                                us_ss_age_df,
+                                us_sb_age_df,
                                 us_cp_age_df,
                                 us_ms_age_df),
-                           list("Canadian Shorside",
-                                "Canadian Freezer-Trawlers",
-                                "U.S. Shore-Based",
-                                "U.S. Catcher-processor",
-                                "U.S. Mothership")) +
+                           c("Canadian Shorside",
+                             "Canadian Freezer-Trawlers",
+                             "U.S. Shore-Based",
+                             "U.S. Catcher-processor",
+                             "U.S. Mothership")) +
   theme(#axis.title.x = element_text(size = 8),
         #axis.title.y = element_text(size = 8),
         axis.text.x = element_text(size = 8),

@@ -657,63 +657,59 @@ third_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
 ss_age_prop_holder <- get_age_prop(last_yr_can_ages_ss, 4)
 fourth_shoreside_age_prop_age <- ss_age_prop_holder[1]
 fourth_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
-# ... US age data -------------------------------------------------------------
-us_age_n_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr, "n.hauls"] |> 
-  pull()
-us_age_n_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr, "n.hauls"] |> 
-  pull()
-us_last_yr_age_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr,
-                                  grep("^a",
-                                       colnames(us_cp_age_df))]
-us_last_yr_age_cp <-
-  us_last_yr_age_cp[order(unlist(us_last_yr_age_cp[1, , drop = TRUE]),
-                          decreasing = TRUE)] |> 
-  unlist()
-us_age_1_prop_age_cp <- as.numeric(gsub("^a", "", names(us_last_yr_age_cp)[1]))
-us_age_1_prop_cp <- f(us_last_yr_age_cp[1] * 100, 1)
-us_age_2_prop_age_cp <- as.numeric(gsub("^a", "", names(us_last_yr_age_cp)[2]))
-us_age_2_prop_cp <- f(us_last_yr_age_cp[2] * 100, 1)
-us_age_3_prop_age_cp <- as.numeric(gsub("^a", "", names(us_last_yr_age_cp)[3]))
-us_age_3_prop_cp <- f(us_last_yr_age_cp[3] * 100, 1)
-us_age_4_prop_age_cp <- as.numeric(gsub("^a", "", names(us_last_yr_age_cp)[4]))
-us_age_4_prop_cp <- f(us_last_yr_age_cp[4] * 100, 1)
-us_last_yr_age_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr,
-                                  grep("^a",
-                                       colnames(us_ms_age_df))]
-us_last_yr_age_ms <-
-  us_last_yr_age_ms[order(unlist(us_last_yr_age_ms[1, , drop = TRUE]),
-                          decreasing = TRUE)] |> 
-  unlist()
-us_age_1_prop_age_ms <- as.numeric(gsub("^a", "", names(us_last_yr_age_ms)[1]))
-us_age_1_prop_ms <- f(us_last_yr_age_ms[1] * 100, 1)
-us_age_2_prop_age_ms <- as.numeric(gsub("^a", "", names(us_last_yr_age_ms)[2]))
-us_age_2_prop_ms <- f(us_last_yr_age_ms[2] * 100, 1)
-us_age_3_prop_age_ms <- as.numeric(gsub("^a", "", names(us_last_yr_age_ms)[3]))
-us_age_3_prop_ms <- f(us_last_yr_age_ms[3] * 100, 1)
-us_age_4_prop_age_ms <- as.numeric(gsub("^a", "", names(us_last_yr_age_ms)[4]))
-us_age_4_prop_ms <- f(us_last_yr_age_ms[4] * 100, 1)
-us_last_yr_age_shore <- us_ss_age_df[us_ss_age_df$year == last_data_yr,
-                                     grep("^a",
-                                          colnames(us_ss_age_df))]
 
-us_last_yr_age_shore <-
-  us_last_yr_age_shore[order(unlist(us_last_yr_age_shore[1, , drop = TRUE]),
-                             decreasing = TRUE)] |> 
-  unlist()
+# ... US age data -------------------------------------------------------------
+us_age_n_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr, "num_samples"] |> 
+  pull()
+us_age_n_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr, "num_samples"] |> 
+  pull()
+us_last_yr_age_cp <- us_cp_age_df |> 
+  filter(year == last_data_yr) |> 
+  select(-year, -num_fish, -num_samples) |> 
+  unlist() |> 
+  sort(decreasing = TRUE)
+us_age_1_prop_age_cp <- as.numeric(names(us_last_yr_age_cp)[1])
+us_age_1_prop_cp <- f(us_last_yr_age_cp[1] * 100, 1)
+us_age_2_prop_age_cp <- as.numeric(names(us_last_yr_age_cp)[2])
+us_age_2_prop_cp <- f(us_last_yr_age_cp[2] * 100, 1)
+us_age_3_prop_age_cp <- as.numeric(names(us_last_yr_age_cp)[3])
+us_age_3_prop_cp <- f(us_last_yr_age_cp[3] * 100, 1)
+us_age_4_prop_age_cp <- as.numeric(names(us_last_yr_age_cp)[4])
+us_age_4_prop_cp <- f(us_last_yr_age_cp[4] * 100, 1)
+
+us_last_yr_age_ms <- us_ms_age_df |> 
+  filter(year == last_data_yr) |> 
+  select(-year, -num_fish, -num_samples) |> 
+  unlist() |> 
+  sort(decreasing = TRUE)
+us_age_1_prop_age_ms <- as.numeric(names(us_last_yr_age_ms)[1])
+us_age_1_prop_ms <- f(us_last_yr_age_ms[1] * 100, 1)
+us_age_2_prop_age_ms <- as.numeric(names(us_last_yr_age_ms)[2])
+us_age_2_prop_ms <- f(us_last_yr_age_ms[2] * 100, 1)
+us_age_3_prop_age_ms <- as.numeric(names(us_last_yr_age_ms)[3])
+us_age_3_prop_ms <- f(us_last_yr_age_ms[3] * 100, 1)
+us_age_4_prop_age_ms <- as.numeric(names(us_last_yr_age_ms)[4])
+us_age_4_prop_ms <- f(us_last_yr_age_ms[4] * 100, 1)
+
+us_last_yr_age_shore <- us_sb_age_df |> 
+  filter(year == last_data_yr) |> 
+  select(-year, -num_fish, -num_samples) |> 
+  unlist() |> 
+  sort(decreasing = TRUE)
 us_age_1_prop_age_shore <-
-  as.numeric(gsub("^a", "", names(us_last_yr_age_shore)[1]))
+  as.numeric(names(us_last_yr_age_shore)[1])
 us_age_1_prop_shore <-
   f(us_last_yr_age_shore[1] * 100, 1)
 us_age_2_prop_age_shore <-
-  as.numeric(gsub("^a", "", names(us_last_yr_age_shore)[2]))
+  as.numeric(names(us_last_yr_age_shore)[2])
 us_age_2_prop_shore <-
   f(us_last_yr_age_shore[2] * 100, 1)
 us_age_3_prop_age_shore <-
-  as.numeric(gsub("^a", "", names(us_last_yr_age_shore)[3]))
+  as.numeric(names(us_last_yr_age_shore)[3])
 us_age_3_prop_shore <-
   f(us_last_yr_age_shore[3] * 100, 1)
 us_age_4_prop_age_shore <-
-  as.numeric(gsub("^a", "", names(us_last_yr_age_shore)[4]))
+  as.numeric(names(us_last_yr_age_shore)[4])
 us_age_4_prop_shore <-
   f(us_last_yr_age_shore[4] * 100, 1)
 

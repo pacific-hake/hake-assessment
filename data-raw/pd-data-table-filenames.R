@@ -9,6 +9,10 @@ create_data_hake("can_ft_age_props_fn", "can-ft-age-proportions.csv")
 create_data_hake("can_ss_age_props_fn", "can-ss-age-proportions.csv")
 create_data_hake("can_jv_age_props_fn", "can-jv-age-proportions.csv")
 
+create_data_hake("us_cp_age_props_fn", "us-cp-age-proportions.csv")
+create_data_hake("us_ms_age_props_fn", "us-ms-age-proportions.csv")
+create_data_hake("us_sb_age_props_fn", "us-sb-age-proportions.csv")
+
 create_data_hake("can_ft_catch_by_month_fn", "can-ft-catch-by-month.csv")
 create_data_hake("can_ss_catch_by_month_fn", "can-ss-catch-by-month.csv")
 create_data_hake("can_jv_catch_by_month_fn", "can-jv-catch-by-month.csv")

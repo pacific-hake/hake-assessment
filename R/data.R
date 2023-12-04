@@ -512,6 +512,21 @@
 #'
 #' @format A character string
 "can_jv_age_props_fn"
+#' The filename for the Catcher-processor fleet age proportions by year
+#' data file
+#'
+#' @format A character string
+"us_cp_age_props_fn"
+#' The filename for the U.S. Mothership fleet age proportions by year
+#' data file
+#'
+#' @format A character string
+"us_ms_age_props_fn"
+#' The filename for the U.S. Shore-based fleet  age proportions by year
+#' data file
+#'
+#' @format A character string
+"us_sb_age_props_fn"
 #' The filename for the Freezer trawler catch by year and month data file
 #'
 #' @format A character string

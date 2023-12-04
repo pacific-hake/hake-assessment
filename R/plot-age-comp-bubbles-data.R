@@ -2,7 +2,7 @@
 #' sector of the fishery
 #'
 #' @param age_data_lst A list of age proportion data frames
-#' @param names_lst A list of names for the sectors, must be the same length
+#' @param nms_vec A vector of names for the sectors, must be the same length
 #' as `age_data-lst`
 #' @param years A vector of two values re0-presenting the minimum and maximum
 #' year values to plot
@@ -15,56 +15,40 @@
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_age_comp_bubbles_data <- function(age_data_lst,
-                                       names_lst,
+                                       nms_vec,
                                        years = c(year(now()) - 6,
                                                  year(now()) - 1)){
 
-  if(length(age_data_lst) != length(names_lst)){
-    warning("`names_lst` is not the same length as `names_lst. Using ",
+  if(length(age_data_lst) != length(nms_vec)){
+    warning("`age_data_lst` is not the same length as `nms_vec`. Using ",
             "default panel titles")
-    names_lst <- as.list(paste0("Fishery ", seq(1, length(catch_lst))))
+    nms_vec <- as.list(paste0("Fishery ", seq(1, length(age_data_lst))))
   }
   colors <- plot_color(length(age_data_lst))
 
   years <- years[1]:years[2]
 
-  df <- imap(age_data_lst, function(d, ind){
+  df <- map2_dfr(age_data_lst, nms_vec, function(d, nm){
 
-    # Put all data frames are now in exactly the same format
-    if(is.matrix(d)){
-      # Canadian format
-      yrs <- rownames(d) |> as.numeric()
-      d <- d |>
-        as_tibble() |>
-        mutate(year = yrs) |>
-        select(year, everything())
-    }else{
-      # US format
-      yrs <- d$year
-      d <- d |>
-        select(-year, -starts_with("n."))
-      nms <- gsub("a", "", names(d))
-      d <- d |>
-        mutate(year = yrs)  |>
-        select(year, everything()) |>
-        setNames(c("year", nms))
-    }
+    ages <- names(d)
+    ages <- sort(as.numeric(ages[!ages %in% c("year",
+                                              "num_fish",
+                                              "num_samples")]))
 
-    # Put into long format for ggplot, and add the fishery name
     d |>
+      select(-c(num_fish, num_samples)) |>
+      filter(year %in% years) |>
       pivot_longer(-year) |>
       setNames(c("year", "age", "value")) |>
-      mutate(type = names_lst[[ind]]) |>
+      mutate(type = nm) |>
       mutate(age = as.numeric(age)) |>
       mutate(year = factor(year, levels = years)) |>
-      mutate(type = factor(type, levels = names_lst)) |>
-      filter(year %in% years) |>
+      mutate(type = factor(type, levels = nms_vec)) |>
       complete(year = year,
                age = age,
-               type = type,
+               type = nm,
                fill = list(value = NA))
-  }) |>
-    map_dfr(~{.x})
+  })
 
   x_breaks <- seq(min(years), max(years), 1)
   x_labels <- x_breaks
