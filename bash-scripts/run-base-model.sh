@@ -37,7 +37,7 @@ version_path="01-version"
 type_path="01-base-models"
 model_name="01-base"
 
-ss_exe="ss_2024"
+ss_exe="ss3_2024"
 num_chains=8
 num_samples=8000
 num_warmup_samples=250

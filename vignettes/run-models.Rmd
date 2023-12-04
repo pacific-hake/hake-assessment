@@ -142,7 +142,7 @@ two different `Bash` sessions, as can 4 & 5):
   
 3. Make sure the settings for running `adnuts` are correct. They are:
    ```
-   ss_exe="ss_2024"
+   ss_exe="ss3_2024"
    num_chains=16
    num_samples=8000
    num_warmup_samples=250
