@@ -65,11 +65,6 @@ exist, bailing out." ; exit 1; }
   echo "Base model MCMC complete" \
 )
 
-# Run the base model catch-level, forecasts, and retrospectives
-# . ./run-fore-retro.sh
-#
-# . ./create-base-rds.sh
-
 ELAPSED="Script runtime: $(($SECONDS / 3600)) hrs $((($SECONDS / 60) % 60)) \
 min $(($SECONDS % 60)) sec"
 
