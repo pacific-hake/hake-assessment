@@ -75,9 +75,8 @@ table_sampling_history(
 ```
 
 ```{r main-us-cp-age-data-tab, results = "asis", echo = FALSE}
-table_us_age_data(
-  us_cp_age_df,
-  fleet = "cp",
+table_age_data(
+  fleet = "us_cp",
   start_yr = end_yr - num_recent_yrs,
   end_yr = last_data_yr,
   caption = paste0(
@@ -94,9 +93,8 @@ table_us_age_data(
 \newpage
 
 ```{r main-us-ms-age-data-tab, results = "asis", echo = FALSE}
-table_us_age_data(
-  us_ms_age_df,
-  fleet = "ms",
+table_age_data(
+  fleet = "us_ms",
   start_yr = end_yr - num_recent_yrs,
   end_yr = last_data_yr,
   caption = paste0(
@@ -111,9 +109,8 @@ table_us_age_data(
 ```
 
 ```{r main-us-sb-age-data-tab, results = "asis", echo = FALSE}
-table_us_age_data(
-  us_cp_age_df,
-  fleet = "sb",
+table_age_data(
+  fleet = "us_sb",
   start_yr = end_yr - num_recent_yrs,
   end_yr = last_data_yr,
   caption = paste0(
@@ -128,8 +125,8 @@ table_us_age_data(
 ```
 
 ```{r main-can-ss-age-data-tab, results = "asis", echo = FALSE}
-table_can_age_data(
-  fleet = "ss",
+table_age_data(
+  fleet = "can_ss",
   start_yr = end_yr - num_recent_yrs,
   end_yr = last_data_yr,
   caption = paste0(
@@ -144,10 +141,8 @@ table_can_age_data(
 ```
 
 ```{r main-can-ft-age-data-tab, results = "asis", echo = FALSE}
-table_can_age_data(
-  can_ages_lst,
-  can_ft_num_fish,
-  fleet = "ft",
+table_age_data(
+  fleet = "can_ft",
   start_yr = end_yr - num_recent_yrs,
   end_yr = last_data_yr,
   caption = paste0(
