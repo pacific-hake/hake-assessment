@@ -1,6 +1,11 @@
 ---
 title: "How to run the Hake models"
-output: rmarkdown::html_vignette
+output:
+   rmarkdown::html_vignette:
+      toc: true
+      toc_depth: 4
+      number_sections: true
+      pandoc_args: ["--number-offset=1"]
 vignette: >
   %\VignetteIndexEntry{How to run the Hake models}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,19 +22,6 @@ knitr::opts_chunk$set(
 ```{r setup, echo = FALSE, message = FALSE, results = "hide", warning = FALSE}
 library(hake)
 ```
-
-**Page links** \
-
-- [Introduction](#introduction) \
-     - [Bash scripts](#bash-scripts) \
-     - [Parallelism in the scripts](#parallelism-in-the-scripts) \
-- [Running the models and creating the RDS files](#run-and-create) \
-     - **[Running the base model](#running-the-base-model)**
-        - [Script details](#script-details)
-        - [Running the catch-levels routine and forecasting for the base model](#run-ct-levels-and-fore)
-        - [Running the retrospectives for the base model](#run-retros)
-     - [Run bridging models](#run-bridging-models)
-     - [Run sensitivity models](#run-sensitibity-models)
 
 _______________________________________________________________________
 
@@ -104,32 +96,34 @@ described here for the *base model* as that is the usual case. The same
 procedure should be followed for any model you want retrospectives and/or
 forecasting for.
 
-**Clean up the directory first** \
+<a name="clean-up"></a>
+
+#### Clean up the directory first \
 
 Before running any model, you need to make sure the directory is ***clean***, 
 in terms of extraneous files left over from previously running the model.
 You may get an error when running the model if you have not done this.
 To clean the directory, use a script (on the server) called `clean_ss3`.
 Run it from within the directory you want to clean like this: \
-```
+```bash
 clean_ss3
 ```
 If you want to know where on the server this script resides, run this: \
-```
+```bash
 which clean_ss3
 ```
 and the script itself can be viewed quickly with this command: \
-```
+```bash
 cat `which clean_ss3`
 ```
 The clean script also has an argument to recursively remove the `mcmc`
 directory and all of its contents. Make sure you're sure because there's no
-recovering them if you use that argument: \
-```
+recovering the files once you've used that argument: \
+```bash
 clean_ss3 mcmc
 ```
 
-**Run the script(s)** \
+#### Run the script(s) \
 
 Run scripts from within the `bash-scripts` directory in this order. In
 some cases you need to wait for the previous script to finish. In others,
@@ -153,27 +147,11 @@ done at the same time in two different `Bash` sessions, as can 4 & 5):
    - wait for all retrospective RDS files to be created
 1. `create-rds-attach-retrospectives.sh`
 
-**To run a new test model** \
-
-To run a new test model, we will assume you are using the base model as
-a starting point and want to make some modifications to it. To do this,
-create a new directory in the `models` directory. On the server, this needs
-to be done on the `/srv` drive as it has a huge amount of space. The drive
-on which the user accounts reside has almost no space, so please do not run
-models there.
-
-1. Make a new directory at \
-   `/srv/hake/models/2024/05-test-models/XX-new-model-name` \
-   Note that the year in the path will change depending on the assessment
-   year.
-   
-1. Copy the input files from the base model to the new directory
-
 #### Script details
 
 1. Open the `bash-scripts/run-base-model.sh` file in an editor.
   
-2. Make sure all path variables are correct. The path structure on the
+1. Make sure all path variables are correct. The path structure on the
    Linux server with associated variables is as follows. Whichever computer
    you are on, the path structure **MUST** be the same as this (from
    `$models_path` forward):
@@ -185,8 +163,8 @@ models there.
    unless it is currently December, in which case it will be the current
    year + 1.
   
-3. Make sure the settings for running `adnuts` are correct. They are:
-   ```
+1. Make sure the settings for running `adnuts` are correct. They are:
+   ```bash
    ss_exe="ss3_2024"
    num_chains=16
    num_samples=8000
@@ -198,36 +176,45 @@ models there.
    For the other settings, see the `adnuts` documentation. The values shown
    are what we have used for the last few years (2021--2023).The
    `run_extra_mcmc` variable must be set to `TRUE`.
-     
-3. Open a `Bash` terminal and change directories so you are in the
+
+1. There is a line in the script which pipes **ALL** output, including errors
+   to `NULL` which means nothing is printed during the run. This makes the code
+   fast. If you want to allow messages to be printed, you can comment this
+   line out. It is this line: \
+   ```bash
+   > /dev/null 2>&1; \
+   ```
+   To comment it out, place a `#` before it.
+
+1. Open a `Bash` terminal and change directories so you are in the
   `bash-scripts` directory, and execute the run script as follows. Note that
    you must have the leading dot and slash to run it if you are in the
    directory in which the script resides.
-   ```
-   $ ./run-base-model.sh
+   ```bash
+   ./run-base-model.sh
    ```
    It will take about 1 hour 45 minutes to complete (on the server with 16
    chains).
   
-4. Once the model run has completed, create an RDS file for the base model,
+1. Once the model run has completed, create an RDS file for the base model,
    which will not yet contain the forecasting and retrospectives. Those will
    be added to the file later. To create the file, open the `Bash` scripts
    `bash-scripts/create-rds-base.sh` and `bash-scripts/generic-create-rds.sh`.
    The first script has some variable settings and then calls the second one,
    which also has some settings and the actual call to the R function that
    creates the RDS file. After making sure they are correct, run it to create
-   base model RDS file in the same folder where the model resides.
-   
-   ```
-   $ ./create-rds-base.sh
+   base model RDS file in the same folder where the model resides. \
+   ```bash
+   ./create-rds-base.sh
    ```
     Verify that the RDS file is where it should be and check that it's time
     stamp makes sense. On the server you can check the file information
-    like this:
+    like this: \
+    ```bash
+    ll /srv/hake/models/2023/01-version/01-base-models/01-base/01-base.rds
+    ```
 
-    `$ ll /srv/hake/models/2023/01-version/01-base-models/01-base/01-base.rds`
-
-5. If you want to check on the progress of the model run, there are a few
+1. If you want to check on the progress of the model run, there are a few
    things you can look at.
    - Watch the `chains` directories being updated. Each chain from 1 to
      whatever you set `num_chains` to will have its own directory created and
@@ -237,11 +224,10 @@ models there.
      files in any one of them every 5-10 seconds or so to watch for changing
      file sizes. This is reassuring that everything is proceeding as it
      should. For example, to do this with the base model for 2023 on the
-     server in a `Bash` terminal:
-     
-     ```
-     $ cd /srv/hake/models/2023/01-version/01-base-models/01-base/mcmc
-     $ ll chain_01
+     server in a `Bash` terminal: \
+     ```bash
+     cd /srv/hake/models/2023/01-version/01-base-models/01-base/mcmc
+     ll chain_01
      ```
 
    - Watch the `chains` directories being removed. Each chain directory is
@@ -251,29 +237,26 @@ models there.
      disappear. Once they are all gone, the model run is nearly done. The
      only remaining step is the `-mceval` step which creates a
      `mcmc/sso/Report_mce_****.sso` file for each posterior. To see the
-     chain directories disappearing over time, do this every so often:
-     
-     ```
-     $ cd /srv/hake/models/2023/01-version/01-base-models/01-base/mcmc
-     $ ll
+     chain directories disappearing over time, do this every so often: \
+     ```bash
+     cd /srv/hake/models/2023/01-version/01-base-models/01-base/mcmc
+     ll
      ```
    
    - Watch `adaptation.csv` and `unbounded.csv` getting larger as the chain
      information updates it. For example, run the following every 5-10
-     seconds to see the file size getting larger:
-     
-     ```
-     $ cd /srv/hake/models/2023/01-version/01-base-models/01-base/mcmc
-     $ ll adaptation.csv
+     seconds to see the file size getting larger: \
+     ```bash
+     cd /srv/hake/models/2023/01-version/01-base-models/01-base/mcmc
+     ll adaptation.csv
      ```
      
    - Watch the process viewer to see each chain working, and watch the
      processes disappear when the chains complete. Open the `htop` viewer
      (Linux) or whatever task manager/process viewer you have access to.
-     This example is for `htop`:
-     
-     ```
-     $ htop
+     This example is for `htop`: \
+     ```bash
+     htop
      ```
      Once in `htop`, you can single out your own processes by pressing `u`
      followed by typing in your username (or a portion of it). When your
@@ -290,10 +273,10 @@ models there.
 
 1. Open the `bash-scripts/run-forecasts.sh` file in an editor.
 
-2. Make sure all path variables are correct. They must be the same as what
+1. Make sure all path variables are correct. They must be the same as what
    is in `bash-scripts/run-base-model.sh`.
 
-3. Open a `Bash` terminal and change directories so you are in the
+1. Open a `Bash` terminal and change directories so you are in the
   `bash-scripts` directory, and execute the run script: `./run-forecasts.sh`.
    This will take about an hour on Linux or Mac.
    
@@ -309,16 +292,15 @@ models there.
      The catch levels to be forecast for are defined in the file
      `doc/forecast-descriptions.csv`.
      
-4. Attach the catch-levels and forecasting output to the base model RDS
+1. Attach the catch-levels and forecasting output to the base model RDS
    file. Open the script `bash-scripts/create-rds-attach-forecasts.sh` and
    make sure all the path variables match the base model location. Run the
    script. Multiprocessor forking is implemented for loading so that each
    forecast year gets its own processor. This code will overwrite the base
-   model RDS file.
-   
-   ```
-   $ cd bash-scripts
-   $ ./create-rds-attach-forecasts.sh
+   model RDS file. \
+   ```bash
+   cd bash-scripts
+   ./create-rds-attach-forecasts.sh
    ```
 
 <a name="run-retros"></a>
@@ -327,18 +309,17 @@ models there.
 
 1. Open the `bash-scripts/run-retrospectives.sh` file in an editor.
 
-2. Make sure all path variables are correct. They must be the same as what
+1. Make sure all path variables are correct. They must be the same as what
    is in `bash-scripts/run-base-model.sh`.
 
-3. Open a `Bash` terminal and change directories so you are in the
+1. Open a `Bash` terminal and change directories so you are in the
    `bash-scripts` directory, and execute the run script
    `./run-retrospectives.sh` with N arguments representing the numbers of years
    subtracted from the data for each retrospective model. For example, to run
    4 retrospective models, each having 1, 2, 3, and 4 years of data removed,
-   run the following command:
-   
-   ```
-   $ ./run-retrospectives 1 2 3 4
+   run the following command: \
+   ```bash
+   ./run-retrospectives 1 2 3 4
    ```
    Each of those retrospective models will use `num_chains` processors, so if
    we leave the script as it is with 16 processors per model, we would be
@@ -346,49 +327,103 @@ models there.
     80-CPU server.
    This will take about 1hour and 45 minutes to complete on the server.
    To run the next three we wait until almost all the processes from the
-   previous call finished (by looking at `htop`), and then run this command:
-   
-   ```
+   previous call finished (by looking at `htop`), and then run this command: \
+   ```bash
    $ ./run-retrospectives 5 6 7
    ```
    Once those are near completion, we run the same command with 8, 9,
    and 10 to finish off the retrospective models.
   
-4. Create individual RDS files for each retrospective. This is done because
+1. Create individual RDS files for each retrospective. This is done because
    it takes a long time to load them all at one time, only to have a small
    error in one of them which means starting all over. This way, only one RDS
-   file would have to be rebuilt.
-   
-   ```
-   $ cd bash-scripts
-   $ ./create-rds-files-retro.R
+   file would have to be rebuilt. \
+   ```bash
+   cd bash-scripts
+   ./create-rds-files-retro.R
    ```
    This script creates all 10 RDS file in parallel, using the multicore
    forking mechanism and takes about 20 minutes.
    
-5. Attach the retrospectives output to the base model RDS file. Open the
+1. Attach the retrospectives output to the base model RDS file. Open the
    script `bash-scripts/create-rds-attach-retrospectives.sh` and make sure all
    the path variables match the base model location. Run the script.
    Multiprocessor forking is implemented for loading so that each
    forecast year gets its own processor. This code will overwrite the base
-   model RDS file.
+   model RDS file. \
+   ```bash
+   ./create-rds-attach-retrospectives.sh
    ```
-   $ ./create-rds-attach-retrospectives.sh
+
+### Setting up and running a new test model \
+
+To run a new test model, we will assume you are using the base model as
+a starting point and want to make some modifications to it. To do this,
+create a new directory in the `models` directory. On the server, this needs
+to be done on the `/srv` drive as it has a huge amount of space. The drive
+on which the user accounts reside has almost no space, so please do not run
+models there.
+
+1. Make a new directory at: \
+   `/srv/hake/models/2024/05-test-models/XX-new-model-name` \
+   Note that the year in the path will change depending on the assessment
+   year.
+   
+1. Copy the input files from the base model to the new directory using the
+   `Bash` script: \
+   `copy-base-model-input-files.sh` \
+   You should first edit the scripts and make sure both the
+   `base_model_path` and `test_model_path` variables are properly set.
+   This script will copy the 5 files listed in the `files` list from the
+   base model directory to the test model directory. You must create the
+   directory first by running `mkdir your_test_model_dirname`.
+
+1. Make a copy of the script `run-base-model.sh` called `run-test-model.sh`
+   or whatever you want to call it. Edit that file, and change the following
+   variables and save: \
+   ```bash
+   type_path="05-test-models"
+   model_name="XX-your-test-model-name"
    ```
+
+1. Change any of the following variables in the script as you need to: \
+   ```bash
+   ss_exe="ss3_2024"
+   num_chains=8
+   num_samples=8000
+   num_warmup_samples=250
+   adapt_delta=0.95
+   run_extra_mcmc=TRUE
+   ```
+   If you change the `num_samples` to 1000 and the `adapt_delta` to 0.4 the
+   model will run much faster (for example for testing).
+
+1. Enter the directory for the new model in the `Bash` terminal and run a
+   simple MLE to make sure the model runs in that mode before starting
+   a full adnuts MCMC run: \
+   ```bash
+   ss3_2024
+   ```
+   This should end elegantly, without error. If it runs, clean the directory
+   and then go ahead and run the script that runs the adnuts MCMC: \
+   ```bash
+   clean_ss3
+   ./run-test-model.sh
+   ```
+   (Or whatever you called the file earlier)
 
 ### Run bridging models
 
 1. Open the two scripts `bash-scripts/run-bridge-models.sh` and
    `bash-scripts/generic-run-models.sh` in an editor.
 
-2. Make sure all bridge model directory names are correct (`models` list in
+1. Make sure all bridge model directory names are correct (`models` list in
    `bash-scripts/run-bridge-models.sh`).
 
-3. Open a `Bash` terminal and change directories so you are in the
-   `bash-scripts` directory, and execute the script
-   
-   ```
-   $ ./run-bridge-models.sh
+1. Open a `Bash` terminal and change directories so you are in the
+   `bash-scripts` directory, and execute the script: \
+   ```bash
+   ./run-bridge-models.sh
    ```
    The models will be run in parallel. Keep in mind that `$num_chains` times
    the number of models in `$models` is the number of CPUs required for this
@@ -398,11 +433,10 @@ models there.
    bridge models to complete them all due to the CPU limitations, comment some
    out in `bash-scripts/run-bridge-models.sh`. For example, thew following
    shows that the first three models will be run and the last three will not.
-   In `Bash`, lists have a space between the elements, and the backslash
-   allows you to break a line up and continue it on the next line. So the
-   space is required before the backslash.
-  
-   ```
+   In `Bash`, lists like this have a space between the elements, and the
+   backslash allows you to break a line up and continue it on the next line.
+   So the space is required before the backslash. \
+   ```bash
    models=(01-updated-ss-exe \
            02-add-new-catch \
            03-add-new-weight-at-age)
@@ -414,13 +448,12 @@ models there.
    the survey index fit posteriors. These take up a lot of space and are only
    necessary for one plot, which so far is only shown for the base model.
   
-2. Create the RDS files for each bridging model with the
+1. Create the RDS files for each bridging model with the
    `bash-scripts/create-rds-bridge.sh`. This script contains the same `models` list
    as in the script that runs the bridge models. Make sure the `models` list
-   is in order and then run the script
-   
-   ```
-   $ ./create-rds-bridge.sh
+   is in order and then run the script: \
+   ```bash
+   ./create-rds-bridge.sh
    ```
 
 ### Run sensitivity models
@@ -432,7 +465,7 @@ models there.
    that are included. These scripts are to be run one at a time. They are
    named as `run-sensitivity-models-*.sh` with `*` being 1 through 4.
    
-2. Create the RDS files for each sensitivity model with the
+1. Create the RDS files for each sensitivity model with the
    `bash-scripts/create-rds-sensitivities.sh` script. This is the same
    process as for bridge models above.
 
