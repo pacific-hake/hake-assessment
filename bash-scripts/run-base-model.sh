@@ -60,7 +60,7 @@ exist, bailing out." ; exit 1; }
                      num_chains = $num_chains, \
                      num_samples = $num_samples, \
                      num_warmup_samples = $num_warmup_samples,
-                     fn_exe = $ss_exe)" \
+                     fn_exe = '$ss_exe')" \
   > /dev/null 2>&1; \
   echo "Base model MCMC complete" \
 )
