@@ -96,16 +96,45 @@ mode which is very, very slow.
 
 ## Running the models and creating the RDS files
 
-### Running the base model
+### Running the base model (and other single models)
 
 The base model is a special case in that it has forecasting and
 retrospectives. In actuality, those things can be run for any model but it is
-described here as the *base model* as that is the usual case.
+described here for the *base model* as that is the usual case. The same
+procedure should be followed for any model you want retrospectives and/or
+forecasting for.
 
-Run scripts in the `bash-scripts` directory in this order. In some cases you
-need to wait for the previous one to finish. In others, you can launch two
-steps concurrently (for example numbers 2 & 3 can be done at the same time in
-two different `Bash` sessions, as can 4 & 5):
+**Clean up the directory first** \
+
+Before running any model, you need to make sure the directory is ***clean***, 
+in terms of extraneous files left over from previously running the model.
+You may get an error when running the model if you have not done this.
+To clean the directory, use a script (on the server) called `clean_ss3`.
+Run it from within the directory you want to clean like this: \
+```
+clean_ss3
+```
+If you want to know where on the server this script resides, run this: \
+```
+which clean_ss3
+```
+and the script itself can be viewed quickly with this command: \
+```
+cat `which clean_ss3`
+```
+The clean script also has an argument to recursively remove the `mcmc`
+directory and all of its contents. Make sure you're sure because there's no
+recovering them if you use that argument: \
+```
+clean_ss3 mcmc
+```
+
+**Run the script(s)** \
+
+Run scripts from within the `bash-scripts` directory in this order. In
+some cases you need to wait for the previous script to finish. In others,
+you can launch two steps concurrently (for example numbers 2 & 3 can be
+done at the same time in two different `Bash` sessions, as can 4 & 5):
 
 1. `run-base-model.sh`
    - wait for `run-base-model.sh` to finish
@@ -123,6 +152,22 @@ two different `Bash` sessions, as can 4 & 5):
 1. `create-rds-retrospectives.sh`
    - wait for all retrospective RDS files to be created
 1. `create-rds-attach-retrospectives.sh`
+
+**To run a new test model** \
+
+To run a new test model, we will assume you are using the base model as
+a starting point and want to make some modifications to it. To do this,
+create a new directory in the `models` directory. On the server, this needs
+to be done on the `/srv` drive as it has a huge amount of space. The drive
+on which the user accounts reside has almost no space, so please do not run
+models there.
+
+1. Make a new directory at \
+   `/srv/hake/models/2024/05-test-models/XX-new-model-name` \
+   Note that the year in the path will change depending on the assessment
+   year.
+   
+1. Copy the input files from the base model to the new directory
 
 #### Script details
 
