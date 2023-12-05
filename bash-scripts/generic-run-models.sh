@@ -43,6 +43,8 @@ models_path="models"
 year_path=$assess_year
 version_path="01-version"
 
+
+ss_exe="ss3_2024"
 num_chains=16
 num_samples=8000
 num_warmup_samples=250
@@ -68,7 +70,8 @@ for model in ${models[@]}; do
                    num_chains = $num_chains, \
                    adapt_delta = $adapt_delta, \
                    num_samples = $num_samples, \
-                   num_warmup_samples = $num_warmup_samples); \
+                   num_warmup_samples = $num_warmup_samples, \
+                   fn_exe = '$ss_exe'); \
   > /dev/null 2>&1; \
   printf "\nFInished running model in directory\n$model\n"; \
   ) &

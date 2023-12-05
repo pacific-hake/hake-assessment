@@ -27,6 +27,7 @@ version_path="01-version"
 type_path="01-base-models"
 model_name="01-base"
 
+ss_exe="ss3_2024"
 num_chains=16
 num_samples=8000
 num_warmup_samples=250
@@ -49,7 +50,8 @@ for arg; do
                      num_samples = $num_samples, \
                      num_warmup_samples = $num_warmup_samples, \
                      adapt_delta = $adapt_delta, \
-                     run_extra_mcmc = $run_extra_mcmc)" \
+                     run_extra_mcmc = $run_extra_mcmc, \
+                     fn_exe = '$ss_exe')" \
   > /dev/null 2>&1; \
   printf "\nRetrospective -$arg completed\n" \
   ) &
