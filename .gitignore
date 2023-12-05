@@ -34,7 +34,6 @@ key_pair.R
 *.sso
 *.synctex
 *synctex*
-*test*
 *.tex
 *.toc
 *.upa
