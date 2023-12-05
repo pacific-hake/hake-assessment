@@ -18,8 +18,8 @@ knitr::opts_chunk$set(
 library(hake)
 ```
 
-**Note - simply compiling this vignette will build the files, and you can
-just skip to #4. Check the timestamps of the files to verify.** \
+**Note - simply rendering this vignette will build the files, and you don't
+have to run anything. Check the timestamps of the files to verify.** \
 
    1. Open R and load the hake package: \
       ```{r}
@@ -30,17 +30,17 @@ just skip to #4. Check the timestamps of the files to verify.** \
       the following to extract the newest data from the `GFBioSQL` database. \
       Choose any directory, the one shown here is an example: \
       ```{r echo = TRUE, eval = FALSE}
-      canada_extract_samples_from_db(dr = "/srv/hake/other/samples")
+      canada_extract_samples_from_db(dr = "some/path/on/local/machine")
       ```
       This will create a file called `r can_sample_data_rds_fn` in the
-      directory you chose.
+      directory you chose for `dr`.
       
    1. Move or copy the file (`r can_sample_data_rds_fn`) you created to the
       server in the directory `/srv/hake/other/samples`.
       
    1. Run the following to load the sample data from the RDS file created
       above. Area and gear type filtering is also performed in this
-      function. The default gear type is `midwater ttrawl` and the default
+      function. The default gear type is `midwater trawl` and the default
       areas are the west coast major areas plus the strait of Juan de Fuca: \
       ```{r echo = TRUE}
       sample_df <- canada_load_sample_data()
@@ -78,3 +78,8 @@ just skip to #4. Check the timestamps of the files to verify.** \
                                         type = "jv",
                                         raw_proportions = TRUE)
       ```
+   1. Create the Canadian weight-at-age CSV file:
+      ```{r echo = TRUE}
+      canada_create_commercial_waa(sample_df)
+      ```   
+      

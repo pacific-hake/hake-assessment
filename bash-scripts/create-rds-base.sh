@@ -16,17 +16,13 @@
 
 models=(01-base)
 
-# If running on a local machine and the model folder is in your
-# repo root, uncomment the next line and comment the line after it
-# project_path=`Rscript -e "cat(dirname(here::here()))"`
-project_path="/srv/hake"
-
 type_path="01-base-models"
 verbose=TRUE
 overwrite=TRUE
 keep_index_fit_posts=TRUE
 # If `first` is zero or negative, load all the posteriors. If any positive
-# number, load the poateriors 1 through `first` only
+# number, load the poateriors 1 through `first` only for speed when testing
+# the function `create_rds_file()` and the functions it calls
 first=0
 
 . ./generic-create-rds.sh

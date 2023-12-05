@@ -1,4 +1,4 @@
-#' Get the weight-at-age data frame for commercial data and
+#' create the weight-at-age CSV file for Canadian commercial data
 #'
 #' @details
 #' No filtering is performed in this function.
@@ -16,10 +16,10 @@
 #' `CAN_jv`, and `CAN_polish` for the four fishery types
 
 #' @export
-canada_get_commercial_wa <- function(d,
-                                     weight_scale = 1e3,
-                                     num_sex = 1,
-                                     ret_df = FALSE){
+canada_create_commercial_waa <- function(d,
+                                         weight_scale = 1e3,
+                                         num_sex = 1,
+                                         ret_df = FALSE){
 
   if(!num_sex %in% 1:2){
     stop("`num_sex` must be either 1 to set all rows' sex value to `U` ",

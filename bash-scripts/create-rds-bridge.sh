@@ -22,11 +22,6 @@ models=(01-updated-ss-exe \
         05-add-survey-age-1 \
         06-add-fishery-ages)
 
-# If running on a local machine and the model folder is in your
-# repo root, uncomment the next line and comment the line after it
-#project  path=`Rscript -e "cat(dirname(here::here()))"`
-project_path="/srv/hake"
-
 type_path="02-bridging-models"
 verbose=FALSE
 overwrite=TRUE

@@ -512,6 +512,18 @@
 #'
 #' @format A character string
 "can_jv_age_props_fn"
+#' The filename for the Freezer trawler raw age proportions by year data file
+#'
+#' @format A character string
+"can_raw_ft_age_props_fn"
+#' The filename for the Shoreside raw age proportions by year data file
+#'
+#' @format A character string
+"can_raw_ss_age_props_fn"
+#' The filename for the Joint venture raw age proportions by year data file
+#'
+#' @format A character string
+"can_raw_jv_age_props_fn"
 #' The filename for the Catcher-processor fleet age proportions by year
 #' data file
 #'
