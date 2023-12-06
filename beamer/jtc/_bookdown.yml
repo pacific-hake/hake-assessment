@@ -5,12 +5,16 @@ rmd_files: ["000-launcher.rmd",
             "../../doc/002-load-globals.rmd",
             "../../doc/003-load-models.rmd",
             "../../doc/004-load-project-variables.rmd",
-            "010-catch.rmd",
-            "020-depths.rmd",
-            "040-spatial-catch.rmd",
-            #"050-raw-lengths.rmd",
-            #"060-raw-weights.rmd",
+            #"010-catch.rmd",
+            #"020-depths.rmd",
+            #"040-spatial-catch.rmd",
+            "050-raw-lengths.rmd",
+            "060-raw-weights.rmd",
+            "070-ages.rmd",
+            "080-sampling-summary.rmd",
             "../../doc/999-blank.rmd"]
-# `delete_merged_file`: If false, the hake.Rmd file which was created by
-# bookdown during the build will be kept after the hake.pdf file is created
+
+# `delete_merged_file`: If false, the JTC-data-december.Rmd file which was
+# created by bookdown during the build will be kept after the
+# JTC-data-december.pdf file is created
 delete_merged_file: true

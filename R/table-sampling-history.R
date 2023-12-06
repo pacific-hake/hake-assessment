@@ -1,6 +1,6 @@
-#' Title
+#' Creates a table of the sampling history for hake
 #'
-#' @param d Data frame as in the file `fishery-sampling-histroy.csv`
+#' @param d Data frame as found in [sampling_history_df]
 #' @param start_yr Start year in table
 #' @param end_yr End year in table
 #' @param font_size The table data and header font size in points

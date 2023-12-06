@@ -41,9 +41,12 @@ plot_weights_lengths <- function(df,
     mutate(proportion = ifelse(total >= min_total, proportion, NA))
 
   range_lengths <- diff(range(d[[bin_col]], na.rm = TRUE))
+
   counts <- d |>
-    select(survey_abbrev, year, total) |>
-    unique()
+    group_by(survey_abbrev, year) |>
+    summarize(total = first(total)) |>
+    mutate(total = f(total)) |>
+    ungroup()
 
   g <- d |>
     ggplot(aes(!!bin_col_sym,
@@ -55,8 +58,8 @@ plot_weights_lengths <- function(df,
              position = position_identity()) +
     geom_text(data = counts,
               aes(label = total),
-              x = min(d[[bin_col]], na.rm = TRUE) + 0.02 * range_lengths,
-              y = 0.85,,
+              x = max(d[[bin_col]], na.rm = TRUE) - 0.2 * range_lengths,
+              y = 0.75,,
               inherit.aes = FALSE,
               color = "black",
               size = label_font_size,

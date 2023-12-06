@@ -1,0 +1,36 @@
+# Sampling summary for Canada
+
+```{r age-comp-comparison, results = "asis"}
+
+sample_df <- canada_load_sample_data()
+samples_fleet_lst <- canada_get_fleet_samples(sample_df)
+# Remove JV for this table
+samples_fleet_lst <- samples_fleet_lst[names(samples_fleet_lst) != "jv"]
+
+samples_summary_tbls_lst <- canada_extract_sampling_by_month(
+  samples_fleet_lst,
+  yr = last_data_yr)
+
+```
+
+:::::: {.columns}
+::: {.column width="45%"}
+\begin{center}\textbf{Freezer trawlers}\end{center}
+```{r canada-sample-summary-ft, results = "asis"}
+table_sampling_by_month(
+  samples_summary_tbls_lst$ft,
+  font_size = 8,
+  header_font_size = 9)
+```
+:::
+
+::: {.column width="45%"}
+\begin{center}\textbf{Shoreside}\end{center}
+```{r canada-sample-summary-ss, results = "asis"}
+table_sampling_by_month(
+  samples_summary_tbls_lst$ss,
+  font_size = 8,
+  header_font_size = 9)
+```
+:::
+::::::

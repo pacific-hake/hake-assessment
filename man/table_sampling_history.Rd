@@ -2,7 +2,7 @@
 % Please edit documentation in R/table-sampling-history.R
 \name{table_sampling_history}
 \alias{table_sampling_history}
-\title{Title}
+\title{Creates a table of the sampling history for hake}
 \usage{
 table_sampling_history(
   d,
@@ -16,7 +16,7 @@ table_sampling_history(
 )
 }
 \arguments{
-\item{d}{Data frame as in the file \code{fishery-sampling-histroy.csv}}
+\item{d}{Data frame as found in \link{sampling_history_df}}
 
 \item{start_yr}{Start year in table}
 
@@ -39,5 +39,5 @@ If \code{NULL} this will be calculated as \code{header_font_size * header_vert_s
 A \code{\link[knitr:kable]{knitr::kable()}} object
 }
 \description{
-Title
+Creates a table of the sampling history for hake
 }
