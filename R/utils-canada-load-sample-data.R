@@ -18,7 +18,7 @@
 #' @return A data frame containing filtered Canadian samples
 #' @export
 canada_load_sample_data <- function(
-    fn = file.path("/srv/hake/other/samples", can_sample_data_rds_fn),
+    fn = file.path("/srv/hake/other/samples/canada", can_sample_data_rds_fn),
     gear_type = "midwater trawl"){
 
   if(!file.exists(fn)){

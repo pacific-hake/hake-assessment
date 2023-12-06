@@ -4,6 +4,8 @@
 ```{r spatial-catch-freezer-trawlers-canada, out.width = "60%", out.height = "95%"}
 
 # `can_dat_lst` loaded at the bottom of `000-launcher.rmd`
+sample_df <- canada_load_sample_data()
+
 cpue_ft <- can_dat_lst$cpue_spatial |> 
   filter(year >= last_data_yr,
          major_stat_area_code %in% can_major_hake_areas,
