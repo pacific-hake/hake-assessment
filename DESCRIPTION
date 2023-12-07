@@ -45,6 +45,7 @@ Imports:
   grDevices,
   grid,
   gridExtra,
+  graphics,
   gtable,
   here,
   kableExtra,
