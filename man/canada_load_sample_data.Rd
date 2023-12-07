@@ -5,7 +5,7 @@
 \title{Load the Canadian commercial sample data}
 \usage{
 canada_load_sample_data(
-  fn = file.path("/srv/hake/other/samples", can_sample_data_rds_fn),
+  fn = file.path("/srv/hake/other/samples/canada", can_sample_data_rds_fn),
   gear_type = "midwater trawl"
 )
 }

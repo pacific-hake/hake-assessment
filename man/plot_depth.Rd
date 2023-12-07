@@ -12,6 +12,7 @@ plot_depth(
   box_width = 0.75,
   y_lim = NULL,
   y_breaks = NULL,
+  reverse_y = TRUE,
   ...
 )
 }
@@ -30,6 +31,10 @@ plot_depth(
 \item{y_lim}{The vector of two value representing the y-limits for the plot}
 
 \item{y_breaks}{The vector of y-axis values to show on the plot}
+
+\item{reverse_y}{Logical. If \code{TRUE}, place the zero on top of the y-axis
+and the depths in reverse order downward, to mirror the water column layout
+in the real world}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
