@@ -1,4 +1,6 @@
-# Monthly sampling summary for Canada in `r last_data_yr`
+# Sampling summaries
+
+## Monthly sampling summary for Canada in `r last_data_yr`
 
 ```{r age-comp-comparison, results = "asis"}
 

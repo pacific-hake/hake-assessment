@@ -28,7 +28,7 @@ plot_cumulative_catches(list(us_ss_catch_by_month_df,
                         ax_text_y = 8)
 ```
 
-# Cumulative catch by month and sector
+## Cumulative catch by month and sector
 ```{r cumulative-catch-by-month-fig}
 
 plot_cumulative_catches(list(us_ss_catch_by_month_df,
