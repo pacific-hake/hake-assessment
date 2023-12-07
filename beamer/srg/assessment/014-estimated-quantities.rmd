@@ -13,7 +13,7 @@
 ```{r priors-posts, fig.height = 4, out.height = "80%"}
 plot_priors_vs_posts(base_model,
                      x_range = "prior",
-                     ncol = 2,
+                     ncol = 3,
                      nrow = 3)
 ```
 :::
