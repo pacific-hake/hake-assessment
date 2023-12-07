@@ -1,6 +1,6 @@
 # Depths
 
-## U.S. At-sea depth distribution
+## U.S. at-sea depth distribution
 ```{r depth-us}
 
 plot_depth_2_panel(us_atsea_fishing_depth_df,
