@@ -37,6 +37,7 @@ Imports:
   furrr,
   gfdata,
   gfplot,
+  GGally,
   ggh4x,
   ggnewscale,
   ggplot2,
@@ -76,6 +77,7 @@ Suggests:
   data.tree,
   date,
   ggpubr,
+  graphics,
   rmarkdown,
   shinystan,
   testthat
