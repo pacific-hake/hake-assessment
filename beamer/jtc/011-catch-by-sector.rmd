@@ -1,0 +1,52 @@
+
+## U.S.A.
+```{r local-globals, echo=FALSE}
+  n_years_to_plot <- 5
+  year_range <- as.character((last_data_yr - n_years_to_plot + 1):last_data_yr)
+  quotas_local <- utils::read.csv(
+    file = here(data_tables_path, further_tac_details_fn),
+    header = TRUE
+  )
+```
+
+## U.S.A.
+```{r cumulative-catch-by-month-fig-us-cp, echo=FALSE}
+  plot_catchvmonthbyyear(
+    data = us_cp_catch_by_month_df,
+    Yrs = year_range,
+    title = "U.S. CP Catches",
+    quotas = structure(
+      quotas_local[, "us_cp_reallocated"],
+      names = quotas_local[["Year"]]
+    ),
+    file = NULL
+  )
+```
+
+## U.S.A.
+```{r cumulative-catch-by-month-fig-us-ms, echo=FALSE}
+  plot_catchvmonthbyyear(
+    data = us_ms_catch_by_month_df,
+    Yrs = year_range,
+    title = "U.S. MS Catches",
+    quotas = structure(
+      quotas_local[, "us_ms_reallocated"],
+      names = quotas_local[["Year"]]
+    ),
+    file = NULL
+  )
+```
+
+## U.S.A.
+```{r cumulative-catch-by-month-fig-us-ss, echo=FALSE}
+  plot_catchvmonthbyyear(
+    data = us_ss_catch_by_month_df,
+    Yrs = year_range,
+    title = "U.S. SS Catches",
+    quotas = structure(
+      quotas_local[, "us_shore_reallocated"],
+      names = quotas_local[["Year"]]
+    ),
+    file = NULL
+  )
+```
