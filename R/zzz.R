@@ -8,8 +8,7 @@
   #   the `.groups` argument.
   .old_options <<- options(max.print = 999999,
                            warnPartialMatchDollar = TRUE,
-                           dplyr.summarise.inform = FALSE,
-                           xtable.comment = FALSE)
+                           dplyr.summarise.inform = FALSE)
 }
 
 .onUnload <- function(libpath){
