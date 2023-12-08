@@ -22,6 +22,7 @@ plot_cumulative_catches(list(us_ss_catch_by_month_df,
                              "Canadian Freezer-Trawlers",
                              "U.S. Mothership"),
                         type = "default",
+                        yrs = c(last_data_yr - 4, last_data_yr),
                         leg_font_size = 8,
                         title_font_size = 10,
                         ax_text_x = 8,
@@ -42,9 +43,30 @@ plot_cumulative_catches(list(us_ss_catch_by_month_df,
                              "Canadian Freezer-Trawlers",
                              "U.S. Mothership"),
                         type = "cumulative",
+                        yrs = c(last_data_yr - 4, last_data_yr),
                         leg_font_size = 8,
                         title_font_size = 10,
                         ax_text_x = 8,
                         ax_text_y = 8)
 ```
 
+## Proportion of total catch by month and sector
+```{r proportion-catch-by-month-fig}
+
+plot_cumulative_catches(list(us_ss_catch_by_month_df,
+                             can_ss_catch_by_month_df,
+                             us_cp_catch_by_month_df,
+                             can_ft_catch_by_month_df,
+                             us_ms_catch_by_month_df),
+                        list("U.S. Shore-Based",
+                             "Canadian Shoreside",
+                             "U.S. Catcher-Processor",
+                             "Canadian Freezer-Trawlers",
+                             "U.S. Mothership"),
+                        type = "proportion",
+                        yrs = c(last_data_yr - 4, last_data_yr),
+                        leg_font_size = 8,
+                        title_font_size = 10,
+                        ax_text_x = 8,
+                        ax_text_y = 8)
+```

@@ -67,7 +67,9 @@ plot_cumulative_catches <- function(catch_lst,
                                 title = ""){
 
     if(type == "proportion"){
-      y <- cumsum(y) / sum(y)
+      d <- d |>
+        group_by(year) |>
+        mutate(catch = cumsum(catch) / sum(catch))
     }
     if(type == "cumulative"){
       d <- d |>
@@ -135,9 +137,12 @@ plot_cumulative_catches <- function(catch_lst,
 
   plt <- plot_grid(plotlist = p, ncol = 2, align = "v")
 
-  # x_grob <- textGrob("Month",
-  #                    gp = gpar(fontsize = ax_title_font_size))
-  y_grob <- textGrob("Cumulative catch (kt)",
+  y_axis_label <- switch(type,
+                         "default" = "Catch (kt)",
+                         "proportion" = "Proportion of total catch",
+                         "cumulative" = "Cumulative catch (kt)")
+
+  y_grob <- textGrob(y_axis_label,
                      gp = gpar(fontsize = axis_title_font_size),
                      rot = 90)
 
