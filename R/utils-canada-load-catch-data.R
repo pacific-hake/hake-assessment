@@ -53,7 +53,7 @@ canada_load_catch_data <- function(dr = "/srv/hake/other/landings/canada",
                   as.is = TRUE,
                   header = TRUE) |>
     as_tibble()
-browser()
+
   names(d) <- map_chr(names(d), ~{
     .x <- tolower(.x)
     .x <- gsub("\\.", "_", .x)
