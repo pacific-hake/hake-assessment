@@ -1,7 +1,7 @@
 ---
 title: "Process the Canadian samples"
 output: rmarkdown::html_vignette
-date: "`r hake::curr_time_date()`"
+date: "This document was rendered on `r hake::curr_time_date()`"
 vignette: >
   %\VignetteIndexEntry{Process the Canadian samples}
   %\VignetteEngine{knitr::rmarkdown}
