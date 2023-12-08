@@ -35,56 +35,56 @@ plot_spatial_cpue(cpue_ss,
   labs(subtitle = "2023; including discards; 3-vessel minimum")
 ```
 
-## Spatial CPUE U.S. Washington
-```{r spatial-catch-washington, out.width = "60%", out.height = "95%"}
+<!-- ## Spatial CPUE U.S. Washington -->
+<!-- ```{r spatial-catch-washington, out.width = "60%", out.height = "95%"} -->
 
-# `can_dat_lst` loaded at the bottom of `000-launcher.rmd`
-cpue_ft <- can_dat_lst$cpue_spatial |> 
-  filter(year >= last_data_yr,
-         major_stat_area_code %in% can_major_hake_areas,
-         vessel_registration_number %in% freezer_trawlers$fos_id)
+<!-- # `can_dat_lst` loaded at the bottom of `000-launcher.rmd` -->
+<!-- cpue_ft <- can_dat_lst$cpue_spatial |>  -->
+<!--   filter(year >= last_data_yr, -->
+<!--          major_stat_area_code %in% can_major_hake_areas, -->
+<!--          vessel_registration_number %in% freezer_trawlers$fos_id) -->
 
-plot_spatial_cpue(cpue_ft,
-                  bin_width = 10,
-                  n_minimum_vessels = 3,
-                  crs_utm = 32610,
-                  x_lim = c(-126.5, -123),
-                  y_lim = c(46, 48.5)) +
-  labs(subtitle = "2023; including discards; 3-vessel minimum")
-```
+<!-- plot_spatial_cpue(cpue_ft, -->
+<!--                   bin_width = 10, -->
+<!--                   n_minimum_vessels = 3, -->
+<!--                   crs_utm = 32610, -->
+<!--                   x_lim = c(-126.5, -123), -->
+<!--                   y_lim = c(46, 48.5)) + -->
+<!--   labs(subtitle = "2023; including discards; 3-vessel minimum") -->
+<!-- ``` -->
 
-## Spatial CPUE U.S. Oregon
-```{r spatial-catch-oregon, out.width = "60%", out.height = "95%"}
+<!-- ## Spatial CPUE U.S. Oregon -->
+<!-- ```{r spatial-catch-oregon, out.width = "60%", out.height = "95%"} -->
 
-plot_spatial_cpue(cpue_ft,
-                  bin_width = 10,
-                  n_minimum_vessels = 3,
-                  crs_utm = 32610,
-                  x_lim = c(-126.5, -122),
-                  y_lim = c(41.5, 46.5)) +
-  labs(subtitle = "2023; including discards; 3-vessel minimum")
-```
+<!-- plot_spatial_cpue(cpue_ft, -->
+<!--                   bin_width = 10, -->
+<!--                   n_minimum_vessels = 3, -->
+<!--                   crs_utm = 32610, -->
+<!--                   x_lim = c(-126.5, -122), -->
+<!--                   y_lim = c(41.5, 46.5)) + -->
+<!--   labs(subtitle = "2023; including discards; 3-vessel minimum") -->
+<!-- ``` -->
 
-## Spatial CPUE U.S. California
-```{r spatial-catch-california, out.width = "60%", out.height = "95%"}
+<!-- ## Spatial CPUE U.S. California -->
+<!-- ```{r spatial-catch-california, out.width = "60%", out.height = "95%"} -->
 
-plot_spatial_cpue(cpue_ft,
-                  bin_width = 10,
-                  n_minimum_vessels = 3,
-                  crs_utm = 32611,
-                  x_lim = c(-126.5, -116),
-                  y_lim = c(31.5, 42.5)) +
-  labs(subtitle = "2023; including discards; 3-vessel minimum")
-```
+<!-- plot_spatial_cpue(cpue_ft, -->
+<!--                   bin_width = 10, -->
+<!--                   n_minimum_vessels = 3, -->
+<!--                   crs_utm = 32611, -->
+<!--                   x_lim = c(-126.5, -116), -->
+<!--                   y_lim = c(31.5, 42.5)) + -->
+<!--   labs(subtitle = "2023; including discards; 3-vessel minimum") -->
+<!-- ``` -->
 
-## Spatial CPUE West Coast
-```{r spatial-catch-west-coast, out.width = "60%", out.height = "95%"}
+<!-- ## Spatial CPUE West Coast -->
+<!-- ```{r spatial-catch-west-coast, out.width = "60%", out.height = "95%"} -->
 
-plot_spatial_cpue(cpue_ft,
-                  bin_width = 10,
-                  n_minimum_vessels = 3,
-                  crs_utm = 32611,
-                  x_lim = c(-131.5, -110),
-                  y_lim = c(31.5, 52.5)) +
-  labs(subtitle = "2023; including discards; 3-vessel minimum")
-```
+<!-- plot_spatial_cpue(cpue_ft, -->
+<!--                   bin_width = 10, -->
+<!--                   n_minimum_vessels = 3, -->
+<!--                   crs_utm = 32611, -->
+<!--                   x_lim = c(-131.5, -110), -->
+<!--                   y_lim = c(31.5, 52.5)) + -->
+<!--   labs(subtitle = "2023; including discards; 3-vessel minimum") -->
+<!-- ``` -->
