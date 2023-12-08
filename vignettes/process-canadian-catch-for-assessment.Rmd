@@ -80,7 +80,7 @@ just skip to #4. Check the timestamps of the files to verify.** \
    1. Run the following to create (overwrite) the Canadian catch-by-year file
       (note the directory `dr` which contains the files created above): \
       ```{r echo = TRUE}
-      fleet_catch <- canada_load_catch_data(dr = "/srv/hake/other/landings") |>
+      fleet_catch <- canada_load_catch_data(dr = "/srv/hake/other/landings/canada") |>
                      canada_extract_fleet_catch()
       
       canada_create_fleet_year_catch_csv_files(fleet_catch)

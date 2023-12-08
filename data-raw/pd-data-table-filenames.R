@@ -22,4 +22,11 @@ create_data_hake("can_jv_catch_by_month_fn", "can-jv-catch-by-month.csv")
 create_data_hake("can_catch_by_year_fn", "can-catch-by-year.csv")
 create_data_hake("landings_tac_fn", "landings-tac-history.csv")
 create_data_hake("further_tac_details_fn", "further-tac-details.csv")
+
+# Canadian sample and landing data ----
+create_data_hake("can_sample_dr", "/srv/hake/other/samples/canada")
+create_data_hake("can_landings_dr", "/srv/hake/other/landings/canada")
+
 create_data_hake("can_sample_data_rds_fn", "sample-data.rds")
+create_data_hake("can_depths_rds_fn", "depths-fishing-events.rds")
+

@@ -6,7 +6,7 @@
 interface}
 \usage{
 canada_load_catch_data(
-  dr = "/srv/hake/other/landings",
+  dr = "/srv/hake/other/landings/canada",
   min_date = as.Date("2007-04-01")
 )
 }

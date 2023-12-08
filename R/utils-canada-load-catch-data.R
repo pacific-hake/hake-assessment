@@ -20,7 +20,7 @@
 #' assessment
 #'
 #' @export
-canada_load_catch_data <- function(dr = "/srv/hake/other/landings",
+canada_load_catch_data <- function(dr = "/srv/hake/other/landings/canada",
                                    min_date = as.Date("2007-04-01")){
 
   if(!dir.exists(dr)){
@@ -53,7 +53,7 @@ canada_load_catch_data <- function(dr = "/srv/hake/other/landings",
                   as.is = TRUE,
                   header = TRUE) |>
     as_tibble()
-
+browser()
   names(d) <- map_chr(names(d), ~{
     .x <- tolower(.x)
     .x <- gsub("\\.", "_", .x)

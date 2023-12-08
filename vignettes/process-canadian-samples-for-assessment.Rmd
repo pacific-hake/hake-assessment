@@ -18,8 +18,10 @@ knitr::opts_chunk$set(
 library(hake)
 ```
 
-**Note - simply rendering this vignette will build the files, and you don't
-have to run anything. Check the timestamps of the files to verify.** \
+**Note - simply rendering this vignette will build all the files, and you
+don't have to do anything else to update sample data. This includes age
+proportions (both weighted and raw), gear and bottom depth-by-fleet files,
+and the weight-at-age file. Check the timestamps of the files to verify.** \
 
    1. Open R and load the hake package: \
       ```{r}
@@ -57,7 +59,7 @@ have to run anything. Check the timestamps of the files to verify.** \
       These proportions are weighted by sample weight and catch weight,
       and use a length/weight model to estimate parameters used to generate
       individual specimen weights from records with only length data: \
-      ```{r echo = TRUE}
+      ```{r echo = TRUE, warnings = FALSE, messages = FALSE}
       canada_create_age_proportions_csv(samples_fleet_lst$ft, type = "ft")
       canada_create_age_proportions_csv(samples_fleet_lst$ss, type = "ss")
       canada_create_age_proportions_csv(samples_fleet_lst$jv, type = "jv")
@@ -81,5 +83,92 @@ have to run anything. Check the timestamps of the files to verify.** \
    1. Create the Canadian weight-at-age CSV file:
       ```{r echo = TRUE}
       canada_create_commercial_waa(sample_df)
-      ```   
+      ```
+
+# Process depth data
+
+This section outlines how to extract fishing depth and bottom depth data
+for the fleets, and create the CSV files for them.
+  
+   1. This assumes you have loaded the package already using
+      `devtools::load_all()`
+  
+   1. On the DFO network, or on a DFO computer with the VPN turned on, run
+      the following to extract the depth data from the `GFBioSQL` database.
+      Choose any directory, the one shown here is an example
+      (`can_sample_dr` and `can_depths_rds_fn` are package data constants): \
+      ```{r echo = TRUE, eval = FALSE}
+      rds_fn <- file.path(can_sample_dr, can_depths_rds_fn)
+      canada_extract_depth_data_from_db(rds_fn)
+      ```
+      This will create a file called `r can_depths_rds_fn` in the
+      directory you chose for `dr`.
+
+   1. Read in the depth/fishing event RDS file created in
+      the previous step. It contains both depths and fishing event IDs. Also
+      read in the samples data RDS file. It contains the fishing event IDs
+      along with the vessel IDs. The two will be joined so depth and vessel
+      ID are in one table: \
+      ```{r echo = TRUE, eval = FALSE}
+      depth_fe_df <- readRDS(rds_fn)
+      if(!exists("sample_df")){
+        sample_df <- canada_load_sample_data()
+      }
+      ```
+   1. Link the two data frames so we can calculate the depth by fleet. Fleet
+      is defined by the `vessel_id` for Freezer trawlers and Shoreside,
+      and `trip_sub_type_desc` for Joint venture. These are in the
+      `sample_df` data frame and need to be merged with the depth data frame: \
+      ```{r echo = TRUE, eval = FALSE}
+      sample_df_unq <- sample_df |> 
+        distinct(year, fishing_event_id, vessel_id, trip_sub_type_desc)
       
+      depth_vessel_df <- depth_fe_df |>
+        left_join(sample_df_unq, by = "fishing_event_id")
+       
+      samples_fleet_lst <- canada_get_fleet_samples(depth_vessel_df)
+      ```
+
+   1. Create the depth CSV files: \
+      ```{r echo = TRUE, eval = FALSE}
+      # Canadian Freezer trawlers gear depth
+      create_depth_by_year_csv_files(
+        samples_fleet_lst$ft,
+        col_name_depth = "best_depth",
+        col_name_year = "year",
+        country = "can",
+        fleet = "ft",
+        type = "gear",
+        yrs = 2007:2023)
+
+      # Canadian Shoreside gear depth
+      create_depth_by_year_csv_files(
+        samples_fleet_lst$ss,
+        col_name_depth = "best_depth",
+        col_name_year = "year",
+        country = "can",
+        fleet = "ss",
+        type = "gear",
+        yrs = 2007:2023)
+     
+      # Canadian Freezer trawlers bottom depth
+      create_depth_by_year_csv_files(
+        samples_fleet_lst$ft,
+        col_name_depth = "fe_beginning_bottom_depth",
+        col_name_year = "year",
+        country = "can",
+        fleet = "ft",
+        type = "bottom",
+        yrs = 2007:2023)
+
+      # Canadian Shoreside bottom depth
+      create_depth_by_year_csv_files(
+        samples_fleet_lst$ss,
+        col_name_depth = "fe_beginning_bottom_depth",
+        col_name_year = "year",
+        country = "can",
+        fleet = "ft",
+        type = "bottom",
+        yrs = 2007:2023)
+      ```   
+     
