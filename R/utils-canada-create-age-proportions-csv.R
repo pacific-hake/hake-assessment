@@ -81,9 +81,9 @@ canada_create_age_proportions_csv <- function(
 
     fn <- here(data_tables_path,
                switch(type,
-                      "ft" = can_raw_ft_age_props_fn,
-                      "ss" = can_raw_ss_age_props_fn,
-                      "jv" = can_raw_jv_age_props_fn))
+                      "ft" = can_raw_ft_age_counts_fn,
+                      "ss" = can_raw_ss_age_counts_fn,
+                      "jv" = can_raw_jv_age_counts_fn))
 
     write_csv(out, fn)
     message("The file:\n`", fn, "`\nwas written with new age proportion ",
