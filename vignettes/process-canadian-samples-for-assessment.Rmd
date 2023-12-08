@@ -1,6 +1,7 @@
 ---
 title: "Process the Canadian samples"
 output: rmarkdown::html_vignette
+date: "`r hake::curr_time_date()`"
 vignette: >
   %\VignetteIndexEntry{Process the Canadian samples}
   %\VignetteEngine{knitr::rmarkdown}
@@ -72,13 +73,13 @@ and the weight-at-age file. Check the timestamps of the files to verify.** \
       ```{r echo = TRUE}
       canada_create_age_proportions_csv(samples_fleet_lst$ft,
                                         type = "ft",
-                                        raw_proportions = TRUE)
+                                        raw_counts = TRUE)
       canada_create_age_proportions_csv(samples_fleet_lst$ss,
                                         type = "ss",
-                                        raw_proportions = TRUE)
+                                        raw_counts = TRUE)
       canada_create_age_proportions_csv(samples_fleet_lst$jv,
                                         type = "jv",
-                                        raw_proportions = TRUE)
+                                        raw_counts = TRUE)
       ```
    1. Create the Canadian weight-at-age CSV file:
       ```{r echo = TRUE}

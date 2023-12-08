@@ -10,7 +10,7 @@
 #' @param type The fleet type to create the file for. This is needed so
 #' the function knows what the filename should be for each fleet
 #' @param min_date Earliest date to include
-#' @param raw_proportions Logical. If `TRUE`, return raw, unweighted age
+#' @param raw_counts Logical. If `TRUE`, return raw, unweighted age
 #' proportions. If `FALSE`, return the age proportions weighted by sample
 #' and catch weights
 #' @param plus_grp Age plus group for maximum grouping
@@ -27,7 +27,7 @@ canada_create_age_proportions_csv <- function(
     d,
     type = c("ft", "ss", "jv"),
     min_date = as.Date("1972-01-01"),
-    raw_proportions = FALSE,
+    raw_counts = FALSE,
     plus_grp = 15,
     lw_tol = 0.1,
     lw_maxiter = 1e3,
@@ -59,7 +59,8 @@ canada_create_age_proportions_csv <- function(
       select(year, sample_id, length, weight,
              age, sample_weight, catch_weight)
   }
-  if(raw_proportions){
+  if(raw_counts){
+
     out <- d |>
       filter(!is.na(age)) |>
       filter(age > 0) |>
@@ -70,13 +71,13 @@ canada_create_age_proportions_csv <- function(
       mutate(num_at_age = n()) |>
       ungroup()|>
       select(year, age, num_at_age, num_at_age_year) |>
-      mutate(age_prop = num_at_age / num_at_age_year) |>
       distinct() |>
-      select(year, age, age_prop) |>
+      select(year, age, num_at_age) |>
       arrange(year, age) |>
       complete(year, age = 1:plus_grp, fill = list(age_prop = 0)) |>
-      pivot_wider(names_from = age, values_from = age_prop) |>
-      mutate(across(-year, ~{f(.x, digits)}))
+      pivot_wider(names_from = age, values_from = num_at_age) |>
+      mutate(across(-year, ~{ifelse(is.na(.x), 0, .x)})) |>
+      mutate(across(-year, ~{round(.x, digits)}))
 
     fn <- here(data_tables_path,
                switch(type,

@@ -8,7 +8,7 @@ canada_create_age_proportions_csv(
   d,
   type = c("ft", "ss", "jv"),
   min_date = as.Date("1972-01-01"),
-  raw_proportions = FALSE,
+  raw_counts = FALSE,
   plus_grp = 15,
   lw_tol = 0.1,
   lw_maxiter = 1000,
@@ -25,7 +25,7 @@ the function knows what the filename should be for each fleet}
 
 \item{min_date}{Earliest date to include}
 
-\item{raw_proportions}{Logical. If \code{TRUE}, return raw, unweighted age
+\item{raw_counts}{Logical. If \code{TRUE}, return raw, unweighted age
 proportions. If \code{FALSE}, return the age proportions weighted by sample
 and catch weights}
 
