@@ -150,10 +150,10 @@ plot_pairs <- function(model,
     select(matches(select_vec))
 
   # Plot for the panels in the upper triangle of the pairs plot
-  # @param data The plot data (passed from [ggAlly::ggpairs()])
+  # @param data The plot data (passed from [GGally::ggpairs()])
   # @param mapping The [ggplot2::aes()] aes mapping
-  # (passed from [ggAlly::ggpairs()])
-  # @param ... Other arguments passed from [ggAlly::ggpairs()]
+  # (passed from [GGally::ggpairs()])
+  # @param ... Other arguments passed from [GGally::ggpairs()]
   # @return
   upper_triangle <- function(data,
                              mapping,
@@ -198,9 +198,9 @@ plot_pairs <- function(model,
   }
 
   # Plot for the panels in the lower triangle of the pairs plot
-  # @param data The plot data (passed from [ggAlly::ggpairs()])
-  # @param mapping The [ggplot2::aes()] aes mapping  (passed from [ggAlly::ggpairs()])
-  # @param ... Other arguments passed from [ggAlly::ggpairs()]
+  # @param data The plot data (passed from [GGally::ggpairs()])
+  # @param mapping The [ggplot2::aes()] aes mapping  (passed from [GGally::ggpairs()])
+  # @param ... Other arguments passed from [GGally::ggpairs()]
   # @return
   lower_triangle <- function(data, mapping, ...){
 
@@ -239,9 +239,9 @@ plot_pairs <- function(model,
   }
 
   # Plot for the panels in the diagonals of the pairs plot
-  # @param data The plot data (passed from [ggAlly::ggpairs()])
-  # @param mapping The [ggplot2::aes()] aes mapping  (passed from [ggAlly::ggpairs()])
-  # @param ... Other arguments passed from [ggAlly::ggpairs()]
+  # @param data The plot data (passed from [GGally::ggpairs()])
+  # @param mapping The [ggplot2::aes()] aes mapping  (passed from [GGally::ggpairs()])
+  # @param ... Other arguments passed from [GGally::ggpairs()]
   # @return
   diagonals <- function(data, mapping, ...){
     ggally_densityDiag(data, mapping) +
