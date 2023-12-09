@@ -7,8 +7,14 @@
 #' @param yrs A vector of two years representing the maximum and minimum years
 #' to include in the data shown in the plot
 #' @param scale A number to divide the catch by
-#' @param type The type of plot, one of default (no change to data),
-#' proportion, or cumulative
+#' @param type The type of plot, one of `catch`, `proportion`, `cumulative`,
+#' or `quota`
+#' @param quota_lst A list the same length as `catch_lst` and `names_lst`
+#' containing data frames which have two columns each, one named `Year`
+#' and one representing the sector quota for that year for which the name
+#' does not matter
+#' @param y_breaks A vector of y-axis values to show. The viewable part of
+#' the y-axis will also be set to the minimum to maximum of these values
 #' @param leg_pos A two-element vector describing the placement of the
 #' legend inside the plotting area where the x,y values are both between 0
 #' and 1 or "none" for no legend
@@ -22,28 +28,42 @@
 
 #' @return A [ggplot2::ggplot()] object
 #' @export
-plot_cumulative_catches <- function(catch_lst,
-                                    names_lst,
-                                    yrs = c((year(now()) - 4),
-                                            (year(now()) - 1)),
-                                    scale = 1000,
-                                    type = c("default",
-                                             "proportion",
-                                             "cumulative"),
-                                    leg_pos = c(0.1, 0.7),
-                                    leg_font_size = 8,
-                                    line_width = ts_linewidth,
-                                    line_gap = ts_linegap,
-                                    point_shape = ts_pointshape,
-                                    point_size = ts_pointsize,
-                                    point_stroke = ts_pointstroke,
-                                    title_font_size = axis_title_font_size,
-                                    ax_title_x = axis_title_font_size,
-                                    ax_title_y = axis_title_font_size,
-                                    ax_text_x = axis_tick_font_size,
-                                    ax_text_y = axis_tick_font_size){
+plot_catch_by_month <- function(catch_lst,
+                                names_lst,
+                                yrs = c((year(now()) - 4),
+                                        (year(now()) - 1)),
+                                scale = 1000,
+                                type = c("catch",
+                                         "proportion",
+                                         "cumulative",
+                                         "quota"),
+                                quota_lst = NULL,
+                                y_breaks = NULL,
+                                leg_pos = c(0.1, 0.7),
+                                leg_font_size = 8,
+                                line_width = ts_linewidth,
+                                line_gap = ts_linegap,
+                                point_shape = ts_pointshape,
+                                point_size = ts_pointsize,
+                                point_stroke = ts_pointstroke,
+                                title_font_size = axis_title_font_size,
+                                ax_title_x = axis_title_font_size,
+                                ax_title_y = axis_title_font_size,
+                                ax_text_x = axis_tick_font_size,
+                                ax_text_y = axis_tick_font_size){
 
   type <- match.arg(type)
+
+  if(type == "quota"){
+    if(is.null(quota_lst)){
+      stop("You provided `quota` as the `type` and the data frame containing ",
+           "quotas `quota_df` is `NULL`")
+    }
+    if(length(quota_lst) != length(catch_lst)){
+      stop("The `quota_lst` list has a different length than the ",
+           "`catch_lst` list")
+    }
+  }
 
   if(length(catch_lst) != length(names_lst)){
     warning("`names_lst` is not te same length as `catch_lst. Using ",
@@ -52,7 +72,7 @@ plot_cumulative_catches <- function(catch_lst,
   }
   colors <- plot_color(yrs[2] - yrs[1] + 1)
 
-  # Plot a single cumulative catch plot
+  # Plot a single catch plot
   #
   # @param d The data frame to plot
   # @param type The type of plot to produce
@@ -64,7 +84,8 @@ plot_cumulative_catches <- function(catch_lst,
   plot_single_panel <- function(d,
                                 type = type,
                                 leg_pos = leg_pos,
-                                title = ""){
+                                title = "",
+                                quota = NULL){
 
     if(type == "proportion"){
       d <- d |>
@@ -75,6 +96,14 @@ plot_cumulative_catches <- function(catch_lst,
       d <- d |>
         group_by(year) |>
         mutate(catch = cumsum(catch))
+    }
+    if(type == "quota"){
+      if(is.null(quota)){
+        stop("`quota` is `NULL` in `plot_single_panel()`")
+      }
+      d <- d |>
+        group_by(year) |>
+        mutate(catch = cumsum(catch) / quota * 1000)
     }
 
     x_breaks <- 1:12
@@ -107,7 +136,23 @@ plot_cumulative_catches <- function(catch_lst,
             legend.text.align = 0) +
       ggtitle(title)
 
+    if(!is.null(y_breaks)){
+      g <- g +
+        scale_y_continuous(breaks = y_breaks) +
+        coord_cartesian(ylim = c(min(y_breaks), max(y_breaks)))
+    }
+
     g
+  }
+
+  if(!is.null(quota_lst)){
+    # This will be the quotas for the last year by sector, in the same order
+    # as `names_lst`
+    quotas_last_yr_by_sector <- map_dbl(quota_lst, ~{
+      .x |>
+        filter(Year == yrs[2]) |>
+        pull(2)
+    })
   }
 
   p <- imap(catch_lst, function(d, ind){
@@ -130,23 +175,27 @@ plot_cumulative_catches <- function(catch_lst,
       leg_pos <- "none"
     }
 
-    plot_single_panel(d, type,
+    plot_single_panel(d,
+                      type,
                       leg_pos = leg_pos,
-                      title = names_lst[[ind]])
+                      title = names_lst[[ind]],
+                      quota = ifelse(type == "quota",
+                                     quotas_last_yr_by_sector[ind],
+                                     NULL))
   })
 
   plt <- plot_grid(plotlist = p, ncol = 2, align = "v")
 
   y_axis_label <- switch(type,
-                         "default" = "Catch (kt)",
+                         "catch" = "Catch (kt)",
                          "proportion" = "Proportion of total catch",
-                         "cumulative" = "Cumulative catch (kt)")
+                         "cumulative" = "Cumulative catch (kt)",
+                         "quota" = "Proportion of sector quota")
 
   y_grob <- textGrob(y_axis_label,
                      gp = gpar(fontsize = axis_title_font_size),
                      rot = 90)
 
   grid.arrange(arrangeGrob(plt,
-                           #bottom = x_grob,
                            left = y_grob))
 }

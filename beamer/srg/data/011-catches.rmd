@@ -83,7 +83,7 @@ t of tribal catches
 ## Cumulative catch by month
 ```{r cumulative-catches, fig.height = 4, out.height = "85%"}
 
-plot_cumulative_catches(list(us_ss_catch_by_month_df,
+plot_catch_by_month(list(us_ss_catch_by_month_df,
                              can_ss_catch_by_month_df,
                              us_cp_catch_by_month_df,
                              can_ft_catch_by_month_df,
