@@ -1,5 +1,5 @@
 ---
-title: "Pacific Hake fishery and data for `r rmarkdown::metadata$project_variables$assess_yr - 1`"
+title: "Pacific Hake fishery and data for `r rmarkdown::metadata$project_variables$last_data_yr`"
 project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
@@ -9,7 +9,7 @@ project_variables:
   assess_yr: 2023
   last_assess_yr: 2022
   last_data_yr: 2023
-  forecast_yrs: 2023:2026
+  forecast_yrs: 2024:2027
   model_version: "01"
   last_yr_model_version: "01"
   # For a list of colors you can use here see:

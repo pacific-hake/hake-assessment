@@ -7,7 +7,7 @@
 #' @param write_file If `TRUE`, write the output to the data file given by
 #' the package data variable `can_catch_by_year_fn`. If `FALSE`, return the
 #' data frame
-#' @params digits The number of decimal places to include in the table output
+#' @param digits The number of decimal places to include in the table output
 #'
 #' @return If `write_file` is `TRUE`, nothing. If `write_file` is `FALSE`,
 #' a data frame containing the catch by year (rows) and fishery type (columns)

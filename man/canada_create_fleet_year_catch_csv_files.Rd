@@ -22,6 +22,8 @@ the file}
 \item{write_file}{If \code{TRUE}, write the output to the data file given by
 the package data variable \code{can_catch_by_year_fn}. If \code{FALSE}, return the
 data frame}
+
+\item{digits}{The number of decimal places to include in the table output}
 }
 \value{
 If \code{write_file} is \code{TRUE}, nothing. If \code{write_file} is \code{FALSE},

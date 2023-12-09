@@ -28,11 +28,17 @@ canada_extract_depth_data_from_db <- function(
   }
 
   message(msg_start)
-  d <- run_sql("GFBioSQL", "select * from B21_Samples") |>
-    as_tibble() |>
-    select(FISHING_EVENT_ID, Best_Depth, FE_BEGINNING_BOTTOM_DEPTH,
-           FE_END_BOTTOM_DEPTH, FE_MAX_BOTTOM_DEPTH, FE_MIN_BOTTOM_DEPTH,
-           FE_MODAL_BOTTOM_DEPTH)
+  sql_fn <- here(sql_path, canada_depth_sql_fn)
+  if(!file.exists(sql_fn)){
+    stop("File `", sql_fn, "` does not exist")
+  }
+  sql <- readLines(sql_fn) |>
+    paste(collapse = "\n")
+  d <- run_sql("GFBioSQL", sql) |>
+    as_tibble() #|>
+    # select(FISHING_EVENT_ID, Best_Depth, FE_BEGINNING_BOTTOM_DEPTH,
+    #        FE_END_BOTTOM_DEPTH, FE_MAX_BOTTOM_DEPTH, FE_MIN_BOTTOM_DEPTH,
+    #        FE_MODAL_BOTTOM_DEPTH)
   names(d) <- tolower(names(d))
   message(msg_end)
 

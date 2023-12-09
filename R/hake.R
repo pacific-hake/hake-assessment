@@ -32,7 +32,7 @@
 #' @importFrom grDevices colorRampPalette gray rgb
 #' @importFrom grid convertX gpar grid.draw grid.newpage rectGrob textGrob
 #' @importFrom grid unit
-#' @importFrom gridExtra arrangeGrob
+#' @importFrom gridExtra arrangeGrob grid.arrange
 #' @importFrom gtable gtable_add_grob gtable_add_rows
 #' @importFrom kableExtra column_spec kable_styling kbl landscape linebreak
 #' @importFrom here here i_am

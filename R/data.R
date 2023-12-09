@@ -105,6 +105,10 @@
 #'
 #' @format A character string
 "spr_100_path"
+#' Directory name for any SQL code files
+#'
+#' @format A character string
+"sql_path"
 #' Name of file containing the forecasting descriptions and settings
 #'
 #' @format A character string
@@ -118,6 +122,11 @@
 #'
 #' @format A character string
 "object_placement_fn"
+#' Name of file containing the SQL code to extract Canadian fishery gear
+#' depths and bottom depths
+#'
+#' @format A character string
+"canada_depth_sql_fn"
 
 # pd-plot-settings.R ----
 #' The point shape to use for the medians in the time series plots

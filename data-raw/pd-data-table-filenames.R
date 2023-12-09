@@ -29,4 +29,3 @@ create_data_hake("can_landings_dr", "/srv/hake/other/landings/canada")
 
 create_data_hake("can_sample_data_rds_fn", "sample-data.rds")
 create_data_hake("can_depths_rds_fn", "depths-fishing-events.rds")
-
