@@ -1,5 +1,5 @@
 ---
-title: "How to run the Hak   e models"
+title: "How to run the Hake models"
 output:
    rmarkdown::html_vignette:
       toc: true
