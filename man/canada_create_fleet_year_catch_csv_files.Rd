@@ -9,7 +9,8 @@ fisheries}
 canada_create_fleet_year_catch_csv_files(
   lst,
   catch_scale = 1000,
-  write_file = TRUE
+  write_file = TRUE,
+  digits = 2
 )
 }
 \arguments{
