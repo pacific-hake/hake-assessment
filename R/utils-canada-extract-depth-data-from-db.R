@@ -37,13 +37,12 @@ canada_extract_depth_data_from_db <- function(
 
   fleets <- c("ft", "ss", "jv")
 
-  depth_lst <- map(fleets, \(fleet){
+  d <- map_dfr(fleets, \(fleet){
     sql <- canada_sql_inject_fishery_filters(sql, type = fleet)
     run_sql("GFFOS", sql) |>
       as_tibble() |>
       mutate(fleet = fleet)
-  }) |>
-    bind_rows()
+  })
 
   message(msg_end)
 
