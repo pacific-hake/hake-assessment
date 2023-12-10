@@ -25,6 +25,7 @@ canada_extract_depth_data_from_db <- function(
   if((!overwrite && file.exists(fn)) && !ret_df){
     message("The database query was not run because the file `", fn, "` ",
             "exists and `overwrite` is `FALSE`")
+    return(invisible())
   }
 
   message(msg_start)
@@ -43,8 +44,6 @@ canada_extract_depth_data_from_db <- function(
       mutate(fleet = fleet)
   }) |>
     bind_rows()
-
-  browser()
 
   message(msg_end)
 
