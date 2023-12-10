@@ -573,6 +573,11 @@
 #'
 #' @format A character string
 "further_tac_details_fn"
+#' The filename for the file containing coastwide catch targets (TACs),
+#' realized catch and biomass estimates
+#'
+#' @format A character string
+"catch_targets_biomass_fn"
 #' The filename for the RDS file containing hake sample data as extracted
 #' using [gfdata::get_commercial_samples()]
 #'

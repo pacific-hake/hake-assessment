@@ -16,12 +16,14 @@ create_data_hake("us_cp_age_props_fn", "us-cp-age-proportions.csv")
 create_data_hake("us_ms_age_props_fn", "us-ms-age-proportions.csv")
 create_data_hake("us_sb_age_props_fn", "us-sb-age-proportions.csv")
 
+# Catch data ----
 create_data_hake("can_ft_catch_by_month_fn", "can-ft-catch-by-month.csv")
 create_data_hake("can_ss_catch_by_month_fn", "can-ss-catch-by-month.csv")
 create_data_hake("can_jv_catch_by_month_fn", "can-jv-catch-by-month.csv")
 create_data_hake("can_catch_by_year_fn", "can-catch-by-year.csv")
 create_data_hake("landings_tac_fn", "landings-tac-history.csv")
 create_data_hake("further_tac_details_fn", "further-tac-details.csv")
+create_data_hake("catch_targets_biomass_fn", "catch-targets-biomass.csv")
 
 # Canadian sample and landing data ----
 create_data_hake("can_sample_dr", "/srv/hake/other/samples/canada")
