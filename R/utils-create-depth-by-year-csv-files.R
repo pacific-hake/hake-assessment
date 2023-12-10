@@ -15,7 +15,7 @@
 #' @param yrs A vector of years to include. If NULL, all years in the data
 #' will be included
 #' @param scale A value to multiply the depths by. Default value of 1.8288
-#' converts fathoms to meters
+#' converts fathoms to meters. Set to 1 to use values as-is
 #' @param min_depth_cutoff The depth for which to remove data. All data
 #' shallower than this will be removed. If this is left at the default of
 #' zero, all zero depth records will be removed from the data
@@ -94,5 +94,5 @@ create_depth_by_year_csv_files <- function(
   out_fn <- paste0("depth-", country, "-", fleet, "-", type, ".csv")
   out_fn <- file.path(output_path, out_fn)
   write_csv(dpth, out_fn)
-  message("Created depth file `", out_fn, "`")
+  message("Created depth file:\n`", out_fn, "`")
 }
