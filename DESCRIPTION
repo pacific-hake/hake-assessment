@@ -63,6 +63,7 @@ Imports:
   readr,
   rgl,
   rlang,
+  rnaturalearth,
   rnaturalearthhires,
   r4ss (>= 1.46.2),
   scales,
@@ -88,6 +89,7 @@ Remotes:
   pbs-assess/gfdata,
   pbs-assess/gfplot,
   r4ss/r4ss@bioscale,
+  ropensci/rnaturalearth,
   ropensci/rnaturalearthhires,
   tylermorganwall/rayshader
 ByteCompile: true
