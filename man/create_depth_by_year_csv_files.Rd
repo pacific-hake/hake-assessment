@@ -42,7 +42,7 @@ file name only)}
 will be included}
 
 \item{scale}{A value to multiply the depths by. Default value of 1.8288
-converts fathoms to meters}
+converts fathoms to meters. Set to 1 to use values as-is}
 
 \item{min_depth_cutoff}{The depth for which to remove data. All data
 shallower than this will be removed. If this is left at the default of
