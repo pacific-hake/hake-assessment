@@ -12,6 +12,9 @@
 #' @param type One of `bottom` or `gear` for depth type (used in the output
 #' file name only)
 #' @param output_path The directory in which to write the output CSV file
+#' @param probs A vector of the proabilities to use for the depth stats that
+#' will become the box ends and whisker ends of the box plots when they
+#' are plotted with [plot_depth()]
 #' @param yrs A vector of years to include. If NULL, all years in the data
 #' will be included
 #' @param scale A value to multiply the depths by. Default value of 1.8288
@@ -32,6 +35,7 @@ create_depth_by_year_csv_files <- function(
     fleet = c("ft", "ss", "atsea", "cp", "ms", "sb"),
     type = c("bottom", "gear"),
     output_path = here(data_tables_path),
+    probs = probs_forecast,
     yrs = NULL,
     scale = 1.8288,
     min_depth_cutoff = 0,
@@ -72,7 +76,7 @@ create_depth_by_year_csv_files <- function(
               depth = !!col_sym_depth * scale) |>
     filter(depth > min_depth_cutoff) |>
     group_by(year) |>
-    do(adf(t(adf(quantile(.$depth, probs_forecast))))) |>
+    do(adf(t(adf(quantile(.$depth, probs))))) |>
     ungroup() |>
     setNames(c("year",
                "lower95",

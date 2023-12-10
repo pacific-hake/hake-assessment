@@ -1,7 +1,14 @@
-## Age proportions
+# Ages
+
+## Age proportions by fleet/sector
 
 ```{r age-proportions-canada}
 
+ages <- can_ss_age_df |>
+  names() %>%
+  grep("^[0-9]+$", ., value = TRUE) |>
+  as.numeric() |> 
+  sort()
 plot_age_comp_bubbles_data(list(can_ss_age_df,
                                 can_ft_age_df,
                                 us_sb_age_df,
@@ -11,10 +18,12 @@ plot_age_comp_bubbles_data(list(can_ss_age_df,
                              "Canadian Freezer-Trawlers",
                              "U.S. Shore-Based",
                              "U.S. Catcher-Processor",
-                             "U.S. Mothership")) +
+                             "U.S. Mothership"),
+                           years = c(last_data_yr - 6, last_data_yr)) +
   theme(#axis.title.x = element_text(size = 8),
         #axis.title.y = element_text(size = 8),
         axis.text.x = element_text(size = 8),
         axis.text.y = element_text(size = 8),
-        strip.text = element_text(size = 8))
+        strip.text = element_text(size = 8)) +
+  scale_y_continuous(breaks = ages)
 ```

@@ -1,4 +1,6 @@
-# Length proportions for Canadian fleets
+# Length and Weight data
+
+## Length proportions for Canadian fleets
 
 ```{r raw-lengths-canada}
 
@@ -21,9 +23,13 @@ lengths_raw <- tidy_lengths_raw(comm_samp,
 plot_weights_lengths(lengths_raw,
                      type = "length",
                      bin_width = 2,
-                     x_breaks = seq(0, 100, 20),
+                     x_breaks = seq(30, 80, 10),
                      label_font_size = 4,
                      fill_col = c("F" = rgb(1, 0, 0, 0.3), # red with transparency
                                   "M" = rgb(0, 0, 1, 0.3)), # blue with transparency
-                     unit_str = "cm")
+                     unit_str = "cm") +
+  geom_vline(xintercept = seq(30, 80, 10),
+             linetype = "dashed",
+             linewidth = 0.1) +
+  coord_cartesian(xlim = c(30, 90))
 ```

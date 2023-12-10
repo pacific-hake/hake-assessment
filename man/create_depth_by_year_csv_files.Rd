@@ -13,6 +13,7 @@ create_depth_by_year_csv_files(
   fleet = c("ft", "ss", "atsea", "cp", "ms", "sb"),
   type = c("bottom", "gear"),
   output_path = here(data_tables_path),
+  probs = probs_forecast,
   yrs = NULL,
   scale = 1.8288,
   min_depth_cutoff = 0,
@@ -37,6 +38,10 @@ output file name only)}
 file name only)}
 
 \item{output_path}{The directory in which to write the output CSV file}
+
+\item{probs}{A vector of the proabilities to use for the depth stats that
+will become the box ends and whisker ends of the box plots when they
+are plotted with \code{\link[=plot_depth]{plot_depth()}}}
 
 \item{yrs}{A vector of years to include. If NULL, all years in the data
 will be included}
