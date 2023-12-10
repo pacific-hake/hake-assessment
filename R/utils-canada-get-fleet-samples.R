@@ -34,7 +34,7 @@ canada_get_fleet_samples <- function(d,
   }else{
     ft_ids <- freezer_trawlers$fos_id
   }
-browser()
+
   map(fleets, \(fleet){
 
     switch(fleet,
@@ -46,7 +46,6 @@ browser()
                           c("OBSERVED DOMESTIC",
                             "NON - OBSERVED DOMESTIC"))
              }
-             browser()
              df <- df |>
                filter(vessel_id %in% ft_ids)
            },
