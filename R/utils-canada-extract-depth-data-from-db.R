@@ -32,14 +32,20 @@ canada_extract_depth_data_from_db <- function(
   if(!file.exists(sql_fn)){
     stop("File `", sql_fn, "` does not exist")
   }
-  sql <- readLines(sql_fn) |>
-    paste(collapse = "\n")
-  d <- run_sql("GFBioSQL", sql) |>
-    as_tibble() #|>
-    # select(FISHING_EVENT_ID, Best_Depth, FE_BEGINNING_BOTTOM_DEPTH,
-    #        FE_END_BOTTOM_DEPTH, FE_MAX_BOTTOM_DEPTH, FE_MIN_BOTTOM_DEPTH,
-    #        FE_MODAL_BOTTOM_DEPTH)
-  names(d) <- tolower(names(d))
+  sql <- readLines(sql_fn)
+
+  fleets <- c("ft", "ss", "jv")
+
+  depth_lst <- map(fleets, \(fleet){
+    sql <- canada_sql_inject_fishery_filters(sql, type = fleet)
+    run_sql("GFFOS", sql) |>
+      as_tibble() |>
+      mutate(fleet = fleet)
+  }) |>
+    bind_rows()
+
+  browser()
+
   message(msg_end)
 
   if(ret_df){

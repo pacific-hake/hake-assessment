@@ -13,36 +13,63 @@
 #' 3) Joint venture - Observed J-V trips
 #'
 #' @param d A data frame as returned by [gfdata::get_commercial_samples()],
-#' or the wrapper [canada_load_sample_data()]
+#' or the wrapper [canada_load_sample_data()], or from
+#' [canada_extract_depth_data_from_db()]
+#' @param db_type The type of database that `d` came from. This is needed
+#' to determine which Freezer trawler vessel IDs to use, `GFbioSQL` or `GFFOS`
 #'
 #' @return A list of three named data frames, one for each of the three
 #' Canadian fisheries `ft`, `ss`, and `jv`
 #'
 #' @export
-canada_get_fleet_samples <- function(d){
+canada_get_fleet_samples <- function(d,
+                                     db_type = c("gfbio",
+                                                 "gffos")){
 
   fleets <- c("ft", "ss", "jv")
 
+  db_type <- match.arg(db_type)
+  if(db_type == "gfbio"){
+    ft_ids <- freezer_trawlers$gfbio_id
+  }else{
+    ft_ids <- freezer_trawlers$fos_id
+  }
+browser()
   map(fleets, \(fleet){
 
     switch(fleet,
            "ft" = {
-             df <- d |>
-               filter(trip_sub_type_desc %in%
-                        c("OBSERVED DOMESTIC",
-                          "NON - OBSERVED DOMESTIC")) |>
-               filter(vessel_id %in% freezer_trawlers$gfbio_id)
+             df <- d
+             if(db_type == "gfbio"){
+               df <- df |>
+                 filter(trip_sub_type_desc %in%
+                          c("OBSERVED DOMESTIC",
+                            "NON - OBSERVED DOMESTIC"))
+             }
+             browser()
+             df <- df |>
+               filter(vessel_id %in% ft_ids)
            },
            "ss" = {
-             df <- d |>
-               filter(trip_sub_type_desc %in%
-                        c("OBSERVED DOMESTIC",
-                          "NON - OBSERVED DOMESTIC")) |>
-               filter(!vessel_id %in% freezer_trawlers$gfbio_id)
+             df <- d
+             if(db_type == "gfbio"){
+               df <- df |>
+                 filter(trip_sub_type_desc %in%
+                          c("OBSERVED DOMESTIC",
+                            "NON - OBSERVED DOMESTIC"))
+             }
+             df <- df |>
+               filter(!vessel_id %in% ft_ids)
            },
            "jv" = {
-             df <- d |>
-               filter(trip_sub_type_desc == "OBSERVED J-V")
+             if(db_type == "gfbio"){
+               df <- d |>
+                 filter(trip_sub_type_desc == "OBSERVED J-V")
+             }else{
+               # No FOS JV records will be returned, this includes depth
+               # records
+               df <- NULL
+             }
            })
     df
   }) |>

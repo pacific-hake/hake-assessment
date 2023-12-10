@@ -4,11 +4,15 @@
 \alias{canada_get_fleet_samples}
 \title{Split up the Canadian samples data frame into fleet data frames}
 \usage{
-canada_get_fleet_samples(d)
+canada_get_fleet_samples(d, db_type = c("gfbio", "gffos"))
 }
 \arguments{
 \item{d}{A data frame as returned by \code{\link[gfdata:get_data]{gfdata::get_commercial_samples()}},
-or the wrapper \code{\link[=canada_load_sample_data]{canada_load_sample_data()}}}
+or the wrapper \code{\link[=canada_load_sample_data]{canada_load_sample_data()}}, or from
+\code{\link[=canada_extract_depth_data_from_db]{canada_extract_depth_data_from_db()}}}
+
+\item{db_type}{The type of database that \code{d} came from. This is needed
+to determine which Freezer trawler vessel IDs to use, \code{GFbioSQL} or \code{GFFOS}}
 }
 \value{
 A list of three named data frames, one for each of the three

@@ -6,18 +6,18 @@
 \usage{
 canada_extract_depth_data_from_db(
   fn = file.path(can_sample_dr, can_depths_rds_fn),
-  ret_df = FALSE,
+  ret_lst = FALSE,
   overwrite = FALSE
 )
 }
 \arguments{
-\item{ret_df}{Logical. If \code{TRUE}, return the data frame from the function
-and do not write a csv file. If \code{FALSE}, write the csv file and return
-nothing}
-
 \item{overwrite}{Logical. Overwrite the RDS file for if it exists}
 
 \item{dr}{The directory to save the depth RDS file in}
+
+\item{ret_df}{Logical. If \code{TRUE}, return the data frame from the function
+and do not write a csv file. If \code{FALSE}, write the csv file and return
+nothing}
 }
 \value{
 If \code{ret_df} is \code{TRUE}, return the depth data frame. If \code{ret_df}

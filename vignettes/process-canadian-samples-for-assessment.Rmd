@@ -111,23 +111,21 @@ for the fleets, and create the CSV files for them.
       along with the vessel IDs. The two will be joined so depth and vessel
       ID are in one table: \
       ```{r echo = TRUE, eval = FALSE}
-      depth_fe_df <- readRDS(rds_fn)
-      if(!exists("sample_df")){
-        sample_df <- canada_load_sample_data()
-      }
+      depth_fe_df <- readRDS(rds_fn) |> 
+        mutate(year = year(catchdate)) |> 
+        rename(vessel_id = vessel) |> 
+        select(year,
+               fishing_event_id,
+               vessel_id,
+               bottomdepth_fm,
+               geardepth_fm)
       ```
    1. Link the two data frames so we can calculate the depth by fleet. Fleet
       is defined by the `vessel_id` for Freezer trawlers and Shoreside,
       and `trip_sub_type_desc` for Joint venture. These are in the
       `sample_df` data frame and need to be merged with the depth data frame: \
       ```{r echo = TRUE, eval = FALSE}
-      sample_df_unq <- sample_df |> 
-        distinct(year, fishing_event_id, vessel_id, trip_sub_type_desc)
-      
-      depth_vessel_df <- depth_fe_df |>
-        left_join(sample_df_unq, by = "fishing_event_id")
-       
-      samples_fleet_lst <- canada_get_fleet_samples(depth_vessel_df)
+      samples_fleet_lst <- canada_get_fleet_samples(depth_vessel_df, "gffos")
       ```
 
    1. Create the depth CSV files: \
