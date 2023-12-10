@@ -9,6 +9,7 @@
 #' within them
 #' @import adnuts coda dplyr
 #' @import GGally ggh4x ggplot2 ggrepel
+#' @import hakedataUSA
 #' @import knitr
 #' @import purrr
 #' @import rnaturalearth rnaturalearthhires r4ss

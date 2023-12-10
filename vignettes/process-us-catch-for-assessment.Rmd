@@ -27,7 +27,7 @@ results of `here::here()` do not give you your clone of
 somewhere that does.
 
     1. Pull data from the databases and process it: \
-       ```{r pull-process, echo=FALSE}
+       ```{r pull-process, echo=FALSE, eval = FALSE}
        hakedataUSA::pull_database()
        hakedataUSA::process_database()
        ```
