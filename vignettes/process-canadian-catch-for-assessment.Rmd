@@ -93,16 +93,15 @@ just skip to #4. Check the timestamps of the files to verify.** \
        canada_create_fleet_month_catch_csv_files(fleet_catch)
       ```
 
-   1. Manually edit this file: \
+   1. Run the following to update the `landings-tac-history.csv` and
+      `catch-targets-biomass.csv` file. This function depends on the monthly
+      catch files being filled out but it is not harmful to run it prior to
+      all of the files being completed for the current year: \
       ```{r, echo = FALSE}
-      here(data_tables_path, can_landings_tac_fn)
-      ```
-      by copying the Canadian values from this file:
-      ```{r, echo = FALSE}
-      here(data_tables_path, can_catch_by_year_fn)
+      utils_update_catch_sums()
       ```
 
-   1. Manually add the new year's Canadian carryover value and JV TAC (if any)
+   2. Manually add the new year's Canadian carryover value and JV TAC (if any)
       to this file:
       ```{r, echo = FALSE}
       here(data_tables_path, further_tac_details_fn)

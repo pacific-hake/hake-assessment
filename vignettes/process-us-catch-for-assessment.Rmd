@@ -1,0 +1,41 @@
+---
+title: "Process the Canadian catch"
+output: rmarkdown::html_vignette
+date: "This document was rendered on `r hake::curr_time_date()`"
+vignette: >
+  %\VignetteIndexEntry{Process the Canadian catch}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE, message = FALSE, results = "hide", warning = FALSE}
+library(hake)
+library(hakedataUSA)
+```
+
+The code within {hake} requires that `here::here()` be functional and point R
+to the appropriate directory within your cloned repository. Thus, if the
+results of `here::here()` do not give you your clone of
+\url{github.com/pacific-hake/hake-assessment} then you must navigate to
+somewhere that does.
+
+    1. Pull data from the databases and process it: \
+       ```{r pull-process, echo=FALSE}
+       hakedataUSA::pull_database()
+       hakedataUSA::process_database()
+       ```
+
+   1. Run the following to update the `landings-tac-history.csv` and
+      `catch-targets-biomass.csv` file. This function depends on the monthly
+      catch files being filled out but it is not harmful to run it prior to
+      all of the files being completed for the current year: \
+      ```{r, echo=FALSE}
+      utils_update_catch_sums()
+      ```
