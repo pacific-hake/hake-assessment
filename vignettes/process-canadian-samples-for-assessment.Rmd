@@ -108,32 +108,27 @@ for the fleets, and create the CSV files for them.
    1. Read in the depth/fishing event RDS file created in
       the previous step. It contains both depths and fishing event IDs. Also
       read in the samples data RDS file. It contains the fishing event IDs
-      along with the vessel IDs. The two will be joined so depth and vessel
-      ID are in one table: \
-      ```{r echo = TRUE, eval = FALSE}
+      along with the vessel IDs and fleet: \
+      ```{r echo = TRUE, messages = TRUE}
+      # Load the Canadian depth data in and manipulate the data frame
+      rds_fn <- file.path(can_sample_dr, can_depths_rds_fn)
       depth_fe_df <- readRDS(rds_fn) |> 
-        mutate(year = year(catchdate)) |> 
-        rename(vessel_id = vessel) |> 
+        mutate(year = year(best_date)) |> 
         select(year,
+               fleet,
                fishing_event_id,
                vessel_id,
-               bottomdepth_fm,
-               geardepth_fm)
-      ```
-   1. Link the two data frames so we can calculate the depth by fleet. Fleet
-      is defined by the `vessel_id` for Freezer trawlers and Shoreside,
-      and `trip_sub_type_desc` for Joint venture. These are in the
-      `sample_df` data frame and need to be merged with the depth data frame: \
-      ```{r echo = TRUE, eval = FALSE}
-      samples_fleet_lst <- canada_get_fleet_samples(depth_vessel_df, "gffos")
+               bottom_depth_fm,
+               gear_depth_fm)
+      message("Loaded the Canadian depth data in from file:\n`", rds_fn, "`")
       ```
 
    1. Create the depth CSV files: \
-      ```{r echo = TRUE, eval = FALSE}
+      ```{r echo = TRUE, messages = TRUE}
       # Canadian Freezer trawlers gear depth
       create_depth_by_year_csv_files(
-        samples_fleet_lst$ft,
-        col_name_depth = "best_depth",
+        filter(depth_fe_df, fleet == "ft"),
+        col_name_depth = "gear_depth_fm",
         col_name_year = "year",
         country = "can",
         fleet = "ft",
@@ -142,8 +137,8 @@ for the fleets, and create the CSV files for them.
 
       # Canadian Shoreside gear depth
       create_depth_by_year_csv_files(
-        samples_fleet_lst$ss,
-        col_name_depth = "best_depth",
+        filter(depth_fe_df, fleet == "ss"),
+        col_name_depth = "gear_depth_fm",
         col_name_year = "year",
         country = "can",
         fleet = "ss",
@@ -152,8 +147,8 @@ for the fleets, and create the CSV files for them.
      
       # Canadian Freezer trawlers bottom depth
       create_depth_by_year_csv_files(
-        samples_fleet_lst$ft,
-        col_name_depth = "fe_beginning_bottom_depth",
+        filter(depth_fe_df, fleet == "ft"),
+        col_name_depth = "bottom_depth_fm",
         col_name_year = "year",
         country = "can",
         fleet = "ft",
@@ -162,12 +157,11 @@ for the fleets, and create the CSV files for them.
 
       # Canadian Shoreside bottom depth
       create_depth_by_year_csv_files(
-        samples_fleet_lst$ss,
-        col_name_depth = "fe_beginning_bottom_depth",
+        filter(depth_fe_df, fleet == "ss"),
+        col_name_depth = "bottom_depth_fm",
         col_name_year = "year",
         country = "can",
         fleet = "ft",
         type = "bottom",
         yrs = 2007:2023)
-      ```   
-     
+      ```

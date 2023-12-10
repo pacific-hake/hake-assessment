@@ -1,7 +1,7 @@
 select
-c.FISHING_EVENT_ID as FID,
+c.FISHING_EVENT_ID as fishing_event_id,
 c.BEST_DATE as best_date,
-c.VESSEL_REGISTRATION_NUMBER as vessel,
+c.VESSEL_REGISTRATION_NUMBER as vessel_id,
 c.MAJOR_STAT_AREA_CODE as major_stat_area_code,
 c.BEST_DEPTH_FM as bottom_depth_fm,
 ts.GEAR_DEPTH_FM as gear_depth_fm
