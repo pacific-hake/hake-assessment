@@ -18,7 +18,7 @@ table_catch_tac_summary(
 \arguments{
 \item{yr}{The year to use for the table}
 
-\item{attain_digits}{The number of deciaml places in the attainment
+\item{attain_digits}{The number of decimal places in the attainment
 percentages}
 
 \item{font_size}{The table data and header font size in points}
@@ -36,7 +36,7 @@ See \code{header_vert_spacing}}
 \item{...}{Arguments passed to \code{\link[knitr:kable]{knitr::kable()}}}
 }
 \value{
-An \code{\link[knitr:kable]{knitr::kable()}} object
+A \code{\link[knitr:kable]{knitr::kable()}} object
 }
 \description{
 Create a table of US vs Canadian catch, TAC, and attainment for the

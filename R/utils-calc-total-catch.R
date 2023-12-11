@@ -2,7 +2,7 @@
 #' JTC December meeting presentation
 #'
 #' @param yr The year to use for the table
-#' @param attain_digits The number of deciaml places in the attainment
+#' @param attain_digits The number of decimal places in the attainment
 #' percentages
 #' @param font_size The table data and header font size in points
 #' @param header_font_size The font size for the headers only. If `NULL`,
@@ -15,7 +15,7 @@
 #'
 #' @param ... Arguments passed to [knitr::kable()]
 #'
-#' @return An [knitr::kable()] object
+#' @return A [knitr::kable()] object
 #' @export
 table_catch_tac_summary <- function(yr = NULL,
                                     attain_digits = 1,
@@ -26,7 +26,7 @@ table_catch_tac_summary <- function(yr = NULL,
                                     ...){
 
   if(is.null(yr)){
-    stop("You must wupply a year (`yr`) to get values for")
+    stop("You must supply a year (`yr`) to get values for")
   }
 
   out <- list()
