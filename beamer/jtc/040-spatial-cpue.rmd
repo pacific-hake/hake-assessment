@@ -1,12 +1,12 @@
 # Spatial CPUE
 
-## Spatial CPUE Canada, Freezer Trawlers
+## Spatial CPUE Canada, Freezer-Trawler
 ```{r spatial-catch-freezer-trawlers-canada, out.width = "60%", out.height = "95%"}
 
 # `can_dat_lst` loaded at the bottom of `000-launcher.rmd`
 sample_df <- canada_load_sample_data()
 
-cpue_ft <- can_dat_lst$cpue_spatial |> 
+cpue_ft <- can_dat_lst$cpue_spatial |>
   filter(year >= last_data_yr,
          major_stat_area_code %in% can_major_hake_areas,
          vessel_registration_number %in% freezer_trawlers$fos_id)
@@ -16,13 +16,13 @@ plot_spatial_cpue(cpue_ft,
                   n_minimum_vessels = 3,
                   x_lim = c(-131.25, -124.5),
                   y_lim = c(48, 52.5)) +
-  labs(subtitle = "2023; including discards; 3-vessel minimum")
+  labs(subtitle = paste0(last_data_yr, "; including discards; 3-vessel minimum"))
 ```
 
 ## Spatial CPUE Canada, Shoreside
 ```{r spatial-catch-shoreside-canada, out.width = "60%", out.height = "95%"}
 
-cpue_ss <- can_dat_lst$cpue_spatial |> 
+cpue_ss <- can_dat_lst$cpue_spatial |>
   filter(year >= last_data_yr,
          major_stat_area_code %in% can_major_hake_areas,
          !vessel_registration_number %in% freezer_trawlers$fos_id)
@@ -32,59 +32,65 @@ plot_spatial_cpue(cpue_ss,
                   n_minimum_vessels = 3,
                   x_lim = c(-131.25, -124.5),
                   y_lim = c(48, 52.5)) +
-  labs(subtitle = "2023; including discards; 3-vessel minimum")
+  labs(subtitle = paste0(last_data_yr, "; including discards; 3-vessel minimum"))
 ```
 
-<!-- ## Spatial CPUE U.S. Washington -->
-<!-- ```{r spatial-catch-washington, out.width = "60%", out.height = "95%"} -->
+```{r make-us-atsea-cpue, eval = FALSE}
+load("norpac_catch.Rdat")
+cpue_atsea <- ncatch |>
+  hakedataUSA::process_catch_norpac() |>
+  dplyr::filter(
+    SPECIES == 206,
+    year >= last_data_yr,
+    !is.na(crate)
+  ) |>
+  dplyr::mutate(
+    vessel_registration_number = as.numeric(as.factor(VESSEL)),
+    cpue = EXTRAPOLATED_WEIGHT / HRS
+  ) |>
+  dplyr::select(
+    fishing_event_id = HAULJOIN,
+    lat = LATDD_START,
+    lon = LONDD_START,
+    vessel_registration_number,
+    cpue,
+    crate
+  )
+```
+## Spatial CPUE U.S. Washington, At-Sea
+```{r spatial-catch-washington, out.width = "60%", out.height = "95%", eval = FALSE}
 
-<!-- # `can_dat_lst` loaded at the bottom of `000-launcher.rmd` -->
-<!-- cpue_ft <- can_dat_lst$cpue_spatial |>  -->
-<!--   filter(year >= last_data_yr, -->
-<!--          major_stat_area_code %in% can_major_hake_areas, -->
-<!--          vessel_registration_number %in% freezer_trawlers$fos_id) -->
+# `can_dat_lst` loaded at the bottom of `000-launcher.rmd`
+plot_spatial_cpue(cpue_atsea,
+                  bin_width = 10,
+                  n_minimum_vessels = 3,
+                  hex_fill_breaks = seq(0, 54000, 5000),
+                  x_lim = c(-126.5, -123),
+                  y_lim = c(46, 48.5)) +
+  labs(subtitle = paste0(last_data_yr, "; 3-vessel minimum"))
+```
 
-<!-- plot_spatial_cpue(cpue_ft, -->
-<!--                   bin_width = 10, -->
-<!--                   n_minimum_vessels = 3, -->
-<!--                   crs_utm = 32610, -->
-<!--                   x_lim = c(-126.5, -123), -->
-<!--                   y_lim = c(46, 48.5)) + -->
-<!--   labs(subtitle = "2023; including discards; 3-vessel minimum") -->
-<!-- ``` -->
+## Spatial CPUE U.S. Oregon, At-Sea
+```{r spatial-catch-oregon, out.width = "60%", out.height = "95%", eval = FALSE}
 
-<!-- ## Spatial CPUE U.S. Oregon -->
-<!-- ```{r spatial-catch-oregon, out.width = "60%", out.height = "95%"} -->
+plot_spatial_cpue(cpue_atsea,
+                  bin_width = 10,
+                  n_minimum_vessels = 3,
+                  hex_fill_breaks = seq(0, 54000, 5000),
+                  x_lim = c(-126.5, -122),
+                  y_lim = c(41.0, 46.5)) +
+  labs(subtitle = paste0(last_data_yr, "; 3-vessel minimum"))
+```
 
-<!-- plot_spatial_cpue(cpue_ft, -->
-<!--                   bin_width = 10, -->
-<!--                   n_minimum_vessels = 3, -->
-<!--                   crs_utm = 32610, -->
-<!--                   x_lim = c(-126.5, -122), -->
-<!--                   y_lim = c(41.5, 46.5)) + -->
-<!--   labs(subtitle = "2023; including discards; 3-vessel minimum") -->
-<!-- ``` -->
 
-<!-- ## Spatial CPUE U.S. California -->
-<!-- ```{r spatial-catch-california, out.width = "60%", out.height = "95%"} -->
+## Spatial CPUE West Coast, At-Sea
+```{r spatial-catch-west-coast, out.width = "60%", out.height = "95%", eval = FALSE}
 
-<!-- plot_spatial_cpue(cpue_ft, -->
-<!--                   bin_width = 10, -->
-<!--                   n_minimum_vessels = 3, -->
-<!--                   crs_utm = 32611, -->
-<!--                   x_lim = c(-126.5, -116), -->
-<!--                   y_lim = c(31.5, 42.5)) + -->
-<!--   labs(subtitle = "2023; including discards; 3-vessel minimum") -->
-<!-- ``` -->
-
-<!-- ## Spatial CPUE West Coast -->
-<!-- ```{r spatial-catch-west-coast, out.width = "60%", out.height = "95%"} -->
-
-<!-- plot_spatial_cpue(cpue_ft, -->
-<!--                   bin_width = 10, -->
-<!--                   n_minimum_vessels = 3, -->
-<!--                   crs_utm = 32611, -->
-<!--                   x_lim = c(-131.5, -110), -->
-<!--                   y_lim = c(31.5, 52.5)) + -->
-<!--   labs(subtitle = "2023; including discards; 3-vessel minimum") -->
-<!-- ``` -->
+plot_spatial_cpue(cpue_atsea,
+                  bin_width = 10,
+                  n_minimum_vessels = 3,
+                  hex_fill_breaks = seq(0, 54000, 5000),
+                  x_lim = c(-131.5, -110),
+                  y_lim = c(41.0, 52.5)) +
+  labs(subtitle = paste0(last_data_yr, "; 3-vessel minimum"))
+```
