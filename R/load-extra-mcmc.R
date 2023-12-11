@@ -103,7 +103,7 @@ load_extra_mcmc <- function(model,
   sel_fishery_lst <- load_extra_mcmc_sel(
     reps = reps,
     start_yr = model$startyr,
-    end_yr = model$endyr,
+    end_yr = model$endyr + 1,
     progress_n = progress_n,
     verbose = verbose,
     beg_pat = "^COMBINED_ALK",
@@ -223,12 +223,11 @@ load_extra_mcmc <- function(model,
   }
 
   natage <- natage_lst$atage |>
-    #filter(yr %in% unique(sel_fishery_lst$sel$yr)) |>
-    filter(yr == model$endyr) |>
+    filter(yr == model$endyr + 1) |>
     select(-c(yr, iter))
 
   sel <- sel_fishery_lst$sel |>
-    filter(yr == model$endyr) |>
+    filter(yr == model$endyr + 1) |>
     select(-c(yr))
 
   natsel <- natage * sel
