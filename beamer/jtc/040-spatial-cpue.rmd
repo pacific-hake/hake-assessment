@@ -60,7 +60,6 @@ cpue_atsea <- ncatch |>
 ## Spatial CPUE U.S. Washington, At-Sea
 ```{r spatial-catch-washington, out.width = "60%", out.height = "95%", eval = FALSE}
 
-# `can_dat_lst` loaded at the bottom of `000-launcher.rmd`
 plot_spatial_cpue(cpue_atsea,
                   bin_width = 10,
                   n_minimum_vessels = 3,
