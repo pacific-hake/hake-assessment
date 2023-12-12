@@ -11,7 +11,9 @@ samples_fleet_lst$ft <- samples_fleet_lst$ft |>
 samples_fleet_lst$ss <- samples_fleet_lst$ss |> 
   mutate(survey_abbrev = "Shoreside")
 comm_samp <- samples_fleet_lst$ft |> 
-  bind_rows(samples_fleet_lst$ss)
+  bind_rows(samples_fleet_lst$ss) |> 
+  mutate(sex = "U") # Remove the sex colors and legend
+
 
 # Hack to make the weight plot look like the length plot. Remove length column
 # and rename weight column to length, create the bins and data frame format
@@ -25,18 +27,23 @@ comm_samp <- comm_samp |>
 weights_raw <- tidy_lengths_raw(comm_samp,
                                 survey = c("Freezer Trawlers", "Shoreside"),
                                 bin_size = 0.1,
-                                year_range = seq(last_data_yr - 10, last_data_yr)) |> 
+                                year_range = seq(last_data_yr - 10, last_data_yr),
+                                remove_unsexed = FALSE) |> 
   rename(weight_bin = length_bin)
 
 plot_weights_lengths(weights_raw,
                      type = "weight",
+                     include_sex = FALSE,
                      bin_width = 0.075,
                      x_breaks = seq(0, 2.5, 0.5),
                      label_font_size = 4,
-                     fill_col = c("F" = rgb(1, 0, 0, 0.3), # red with transparency
-                                  "M" = rgb(0, 0, 1, 0.3)), # blue with transparency
                      unit_str = "kg") +
   geom_vline(xintercept = seq(0, 2, 0.5),
              linetype = "dashed",
              linewidth = 0.1)
 ```
+
+## Weight proportions for U.S. sectors
+
+![](/srv/hake/other/samples/us/raw_weight_AtSea.png){width=100% height=50% alt="U.S. at-sea fishery weight distribution"}
+![](/srv/hake/other/samples/us/raw_weight_shore.png){width=100% height=50% alt="U.S. shoreside fishery weight distribution"}

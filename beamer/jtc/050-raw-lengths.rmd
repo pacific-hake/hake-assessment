@@ -13,23 +13,29 @@ samples_fleet_lst$ft <- samples_fleet_lst$ft |>
 samples_fleet_lst$ss <- samples_fleet_lst$ss |> 
   mutate(survey_abbrev = "Shoreside")
 comm_samp <- samples_fleet_lst$ft |> 
-  bind_rows(samples_fleet_lst$ss)
+  bind_rows(samples_fleet_lst$ss) |> 
+  mutate(sex = "U") # Remove the sex colors and legend
 
 lengths_raw <- tidy_lengths_raw(comm_samp,
                                 survey = c("Freezer Trawlers", "Shoreside"),
                                 bin_size = 2,
-                                year_range = seq(last_data_yr - 10, last_data_yr))
+                                year_range = seq(last_data_yr - 10, last_data_yr),
+                                remove_unsexed = FALSE)
 
 plot_weights_lengths(lengths_raw,
                      type = "length",
+                     include_sex = FALSE,
                      bin_width = 2,
                      x_breaks = seq(30, 80, 10),
                      label_font_size = 4,
-                     fill_col = c("F" = rgb(1, 0, 0, 0.3), # red with transparency
-                                  "M" = rgb(0, 0, 1, 0.3)), # blue with transparency
                      unit_str = "cm") +
   geom_vline(xintercept = seq(30, 80, 10),
              linetype = "dashed",
              linewidth = 0.1) +
   coord_cartesian(xlim = c(30, 90))
 ```
+
+## Length proportions for U.S. sectors
+
+![](/srv/hake/other/samples/us/raw_length_AtSea.png){width=100% height=50% alt="U.S. at-sea fishery length distribution"}
+![](/srv/hake/other/samples/us/raw_length_shore.png){width=100% height=50% alt="U.S. shoreside fishery length distribution"}

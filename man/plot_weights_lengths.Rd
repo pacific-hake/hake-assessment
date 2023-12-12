@@ -7,12 +7,15 @@
 plot_weights_lengths(
   df,
   type = c("length", "weight"),
+  include_sex = TRUE,
   min_total = 20,
   bin_width = 0.075,
   x_breaks = pretty(d[[bin_col]], 4L),
   label_font_size = 2.25,
   fill_col = c(F = rgb(1, 0, 0, 0.3), M = rgb(0, 0, 1, 0.3)),
   line_col = c(F = rgb(1, 0, 0, 0.3), M = rgb(0, 0, 1, 0.3)),
+  unsexed_fill_col = rgb(0, 0, 1, 0.3),
+  unsexed_col = "black",
   unit_str = ifelse(type == "length", "cm", "kg")
 )
 }
@@ -20,6 +23,9 @@ plot_weights_lengths(
 \item{df}{A data frame as returned by \code{\link[gfplot:tidy_comps]{gfplot::tidy_lengths_raw()}}}
 
 \item{type}{Either "length" or "weight"}
+
+\item{include_sex}{Logical. If \code{TRUE}, include the sex data in the plot,
+with two bar colors}
 
 \item{min_total}{Minimum number of fish for a given survey and year needed
 before a histogram is shown.}
@@ -35,6 +41,10 @@ The names are "F" and "M" respectively.}
 
 \item{line_col}{A named vector of two colors for Female and male bar
 outlines. The names are "F" and "M" respectively.}
+
+\item{unsexed_fill_col}{The color to use for non-sex-specific bar fill}
+
+\item{unsexed_col}{Thew color to use for the bar border for unsexed bars}
 
 \item{unit_str}{A string representing the units, e.g. 'g' or 'kg'}
 }
