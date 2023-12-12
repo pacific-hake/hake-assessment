@@ -11,6 +11,7 @@ plot_catch_by_month(
   scale = 1000,
   type = c("catch", "proportion", "cumulative", "quota"),
   quota_lst = NULL,
+  disclaimer_text = NULL,
   y_breaks = NULL,
   leg_pos = c(0.1, 0.7),
   leg_font_size = 8,
@@ -45,6 +46,9 @@ or \code{quota}}
 containing data frames which have two columns each, one named \code{Year}
 and one representing the sector quota for that year for which the name
 does not matter}
+
+\item{disclaimer_text}{Text to show in the empty panel at the bottom
+right of the plot grid. If \code{NULL}, Nothing will be shown there}
 
 \item{y_breaks}{A vector of y-axis values to show. The viewable part of
 the y-axis will also be set to the minimum to maximum of these values}

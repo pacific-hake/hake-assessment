@@ -13,6 +13,8 @@
 #' containing data frames which have two columns each, one named `Year`
 #' and one representing the sector quota for that year for which the name
 #' does not matter
+#' @param disclaimer_text Text to show in the empty panel at the bottom
+#' right of the plot grid. If `NULL`, Nothing will be shown there
 #' @param y_breaks A vector of y-axis values to show. The viewable part of
 #' the y-axis will also be set to the minimum to maximum of these values
 #' @param leg_pos A two-element vector describing the placement of the
@@ -38,6 +40,7 @@ plot_catch_by_month <- function(catch_lst,
                                          "cumulative",
                                          "quota"),
                                 quota_lst = NULL,
+                                disclaimer_text = NULL,
                                 y_breaks = NULL,
                                 leg_pos = c(0.1, 0.7),
                                 leg_font_size = 8,
@@ -183,6 +186,20 @@ plot_catch_by_month <- function(catch_lst,
                                      quotas_last_yr_by_sector[ind],
                                      NULL))
   })
+
+  if(!is.null(disclaimer_text)){
+    p[[length(p) + 1]] <- ggplot(data = tibble(x = 1, y = 1),
+                                 aes(x, y)) +
+      geom_text(x = 0,
+                label = disclaimer_text,
+                size = 4,
+                hjust = 0) +
+      theme(axis.title.x = element_blank(),
+            axis.title.y = element_blank(),
+            axis.text.x = element_blank(),
+            axis.text.y = element_blank(),
+            axis.ticks = element_blank())
+  }
 
   plt <- plot_grid(plotlist = p, ncol = 2, align = "v")
 
