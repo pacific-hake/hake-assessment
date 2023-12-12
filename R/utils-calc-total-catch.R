@@ -62,6 +62,15 @@ table_catch_tac_summary <- function(yr = NULL,
                              us_cp_tac * 100,
                            attain_digits), "\\%")
 
+  us_ss_perc_catch <- paste0(f(pull(ct_df, `U.S. Shore-based`) /
+                           pull(ct_df, `U.S. Total`) * 100,
+                         attain_digits), "\\%")
+  us_ms_perc_catch <- paste0(f(pull(ct_df, `U.S. Mothership`) /
+                           pull(ct_df, `U.S. Total`) * 100,
+                         attain_digits), "\\%")
+  us_cp_perc_catch <- paste0(f(pull(ct_df, `U.S. Catcher-processor`) /
+                           pull(ct_df, `U.S. Total`) * 100,
+                         attain_digits), "\\%")
   can_ss_perc_catch <- paste0(f(pull(ct_df, `Canada Shoreside`) /
                            pull(ct_df, `Canada Total`) * 100,
                          attain_digits), "\\%")
@@ -77,26 +86,32 @@ table_catch_tac_summary <- function(yr = NULL,
       "TAC", f(pull(ct_df, `Canada TAC`))),
     c("Attainment", us_attain,
       "Attainment", can_attain),
-    c("Shore-based", "", "Shoreside", ""),
+    c("Shore-Based", "", "Shoreside", ""),
     c("Catch (t)", f(pull(ct_df, `U.S. Shore-based`)),
       "Catch (t)", f(pull(ct_df, `Canada Shoreside`))),
-    c("TAC", f(us_ss_tac) ,
+    c("TAC", f(us_ss_tac),
       "--", "--"),
     c("Attainment", us_ss_attain,
-      "\\% of Total Canadian Catch", can_ss_perc_catch),
-    c("Catcher-processor", "", "Freezer-trawlers", ""),
+      "--", "--"),
+    c("\\% of U.S. Catch", us_ss_perc_catch,
+      "\\% of Canadian Catch", can_ss_perc_catch),
+    c("Catcher-Processor", "", "Freezer-Trawler", ""),
     c("Catch (t)", f(pull(ct_df, `U.S. Catcher-processor`)),
       "Catch (t)", f(pull(ct_df, `Canada Freezer-trawler`))),
     c("TAC", f(us_cp_tac),
       "--", "--"),
     c("Attainment", us_cp_attain,
-      "\\% of Total Canadian Catch", can_ft_perc_catch),
+      "--", "--"),
+    c("\\% of U.S. Catch", us_cp_perc_catch,
+      "\\% of Canadian Catch", can_ft_perc_catch),
     c("Mothership", "", "", ""),
     c("Catch (t)", f(pull(ct_df, `U.S. Mothership`)),
       "--", "--"),
     c("TAC", f(us_ms_tac),
       "--", "--"),
     c("Attainment", us_ms_attain,
+      "--", "--"),
+    c("\\% of U.S. Catch", us_ms_perc_catch,
       "--", "--"))
 
   df <- map_dfr(lst, ~{
@@ -127,9 +142,9 @@ table_catch_tac_summary <- function(yr = NULL,
       col.names = NULL,
       escape = FALSE,
       ...) |>
-    row_spec(c(0, 1, 5, 9, 13), bold = TRUE) |>
-    row_spec(c(1, 5, 9, 13), italic = TRUE) |>
-    row_spec(c(4, 8, 12), hline_after = TRUE) |>
+    row_spec(c(0, 1, 5, 10, 15), bold = TRUE) |>
+    row_spec(c(1, 5, 10, 15), italic = TRUE) |>
+    row_spec(c(4, 10, 14), hline_after = TRUE) |>
     kable_styling(font_size = font_size) |>
     add_header_above(c("U.S." = 2, "Canada" = 2), bold = TRUE)
 }
