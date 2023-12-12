@@ -102,7 +102,7 @@ plot_catch_by_month(list(us_ss_catch_by_month_df,
                     disclaimer_text = paste0(
                       "Canada does not have fleet-specific\n",
                       "quotas so only U.S. sectors are\n",
-                      "shown here"),
+                      "shown here."),
                     yrs = c(last_data_yr - 4, last_data_yr),
                     y_breaks = seq(0, 1, 0.25),
                     leg_font_size = 8,
