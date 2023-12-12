@@ -1,7 +1,7 @@
 # Spatial CPUE
 
 ## Spatial CPUE Canada, Freezer-Trawler
-```{r spatial-catch-freezer-trawlers-canada, out.width = "60%", out.height = "95%"}
+```{r spatial-catch-freezer-trawlers-canada, out.width = "60%", out.height = "90%"}
 
 # `can_dat_lst` loaded at the bottom of `000-launcher.rmd`
 sample_df <- canada_load_sample_data()
@@ -20,7 +20,7 @@ plot_spatial_cpue(cpue_ft,
 ```
 
 ## Spatial CPUE Canada, Shoreside
-```{r spatial-catch-shoreside-canada, out.width = "60%", out.height = "95%"}
+```{r spatial-catch-shoreside-canada, out.width = "60%", out.height = "90%"}
 
 cpue_ss <- can_dat_lst$cpue_spatial |>
   filter(year >= last_data_yr,
@@ -57,39 +57,23 @@ cpue_atsea <- ncatch |>
     crate
   )
 ```
-## Spatial CPUE U.S. Washington, At-Sea
-```{r spatial-catch-washington, out.width = "60%", out.height = "95%", eval = FALSE}
 
+## Spatial CPUE U.S. West Coast, At-Sea
+```{r spatial-catch-west-coast, out.width = "60%", out.height = "90%", eval = FALSE}
+# This figure is created using confidential data and thus is available in
+# beamer/jtc/knitr-figs/spatial-catch-west-coast-1.png in Kelli Johnson's user account
 plot_spatial_cpue(cpue_atsea,
                   bin_width = 10,
                   n_minimum_vessels = 3,
                   hex_fill_breaks = seq(0, 54000, 5000),
-                  x_lim = c(-126.5, -123),
-                  y_lim = c(46, 48.5)) +
+                  x_lim = c(-131.5, -123),
+                  y_lim = c(41.0, 48.5)) +
   labs(subtitle = paste0(last_data_yr, "; 3-vessel minimum"))
 ```
 
-## Spatial CPUE U.S. Oregon, At-Sea
-```{r spatial-catch-oregon, out.width = "60%", out.height = "95%", eval = FALSE}
+<!-- 
+\begin{center}
+\includegraphics[width=0.6\linewidth,height=0.90\textheight]{knitr-figs/spatial-catch-west-coast-1}
+\end{center}
+-->
 
-plot_spatial_cpue(cpue_atsea,
-                  bin_width = 10,
-                  n_minimum_vessels = 3,
-                  hex_fill_breaks = seq(0, 54000, 5000),
-                  x_lim = c(-126.5, -122),
-                  y_lim = c(41.0, 46.5)) +
-  labs(subtitle = paste0(last_data_yr, "; 3-vessel minimum"))
-```
-
-
-## Spatial CPUE West Coast, At-Sea
-```{r spatial-catch-west-coast, out.width = "60%", out.height = "95%", eval = FALSE}
-
-plot_spatial_cpue(cpue_atsea,
-                  bin_width = 10,
-                  n_minimum_vessels = 3,
-                  hex_fill_breaks = seq(0, 54000, 5000),
-                  x_lim = c(-131.5, -110),
-                  y_lim = c(41.0, 52.5)) +
-  labs(subtitle = paste0(last_data_yr, "; 3-vessel minimum"))
-```
