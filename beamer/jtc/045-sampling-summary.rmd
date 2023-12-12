@@ -38,3 +38,76 @@ table_sampling_by_month(
 ```
 :::
 ::::::
+
+## Monthly sampling summary for U.S. in `r last_data_yr`
+
+```{r calc-numread, echo = FALSE, eval = FALSE}
+load("page.Rdat")
+load("atsea.ages.Rdat")
+```
+
+```{r us-sample-summary-atsea, results = "asis", eval = FALSE}
+# TODO: use this code rather than the pre-made tables below
+table_sampling_by_month(
+  us_extract_sampling_by_month(c("AGE", "LENGTH", "WEIGHT"), atsea.ages),
+  font_size = 8,
+  header_font_size = 9)
+```
+
+
+```{r us-sample-summary-sb, results = "asis", eval = FALSE}
+# TODO: use this code rather than the pre-made tables below
+table_sampling_by_month(
+  us_extract_sampling_by_month(c("AGE", "FISH_LENGTH", "FISH_WEIGHT"), page),
+  font_size = 8,
+  header_font_size = 9)
+```
+
+:::::: {.columns}
+::: {.column width="45%"}
+\begin{center}\textbf{At-Sea}\end{center}
+\begin{table}
+\centering\begingroup\fontsize{8}{10}\selectfont
+
+\begin{tabular}[t]{lR{1.5cm}R{1.5cm}R{1.5cm}}
+\toprule
+\textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Month}} & \textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Number\\ \fontsize{9}{12}\selectfont of ages}} & \textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Number\\ \fontsize{9}{12}\selectfont of lengths}} & \textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Number\\ \fontsize{9}{12}\selectfont of weights}}\\
+\midrule
+May & 1,015 & 1,023 & 1,023\\
+Jun & 69 & 69 & 69\\
+Aug & 0 & 153 & 153\\
+Sep & 265 & 644 & 644\\
+Oct & 376 & 848 & 848\\
+Nov & 0 & 22 & 22\\
+\midrule
+\textbf{Total} & \textbf{1,725} & \textbf{2,759} & \textbf{2,759}\\
+\bottomrule
+\end{tabular}
+\endgroup{}
+\end{table}
+:::
+
+::: {.column width="45%"}
+\begin{center}\textbf{Shore-Based}\end{center}
+\begin{table}
+\centering\begingroup\fontsize{8}{10}\selectfont
+\begin{tabular}[t]{lR{1.5cm}R{1.5cm}R{1.5cm}}
+\toprule
+\textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Month}} & \textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Number\\ \fontsize{9}{12}\selectfont of ages}} & \textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Number\\ \fontsize{9}{12}\selectfont of lengths}} & \textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Number\\ \fontsize{9}{12}\selectfont of weights}}\\
+\midrule
+Mar & 0 & 20 & 20\\
+May & 340 & 720 & 340\\
+Jun & 448 & 540 & 448\\
+Jul & 240 & 500 & 440\\
+Aug & 60 & 500 & 400\\
+Sep & 60 & 370 & 310\\
+Oct & 180 & 560 & 479\\
+Nov & 0 & 20 & 20\\
+\midrule
+\textbf{Total} & \textbf{1,328} & \textbf{3,230} & \textbf{2,457}\\
+\bottomrule
+\end{tabular}
+\endgroup{}
+\end{table}
+:::
+::::::
