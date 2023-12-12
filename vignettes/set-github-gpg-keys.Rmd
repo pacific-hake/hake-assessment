@@ -1,0 +1,47 @@
+---
+title: "Process the Canadian catch"
+output: rmarkdown::html_vignette
+date: "This document was rendered on `r hake::curr_time_date()`"
+vignette: >
+  %\VignetteIndexEntry{Process the Canadian catch}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE, message = FALSE, results = "hide", warning = FALSE}
+```
+
+1. Delete old GPG keys from GitHub and Linux
+
+   - List secret keys: \
+     `gpg --list-keys`
+   - Delete all keys, one by one. For each key, do the following, pasting the
+     key in from the listing above which is the long key under **pub** \
+     `gpg --delete-key 89B7B58F6D30E38C695A5EB6322404A623C5E50C`
+
+1. Create a new passphrase-less secret key, where **USER_ID** is your email
+   address used for our GitHub account: \
+   `gpg --batch --passphrase '' --quick-gen-key USER_ID default default`
+   - List secret keys to get the key value for the next step: \
+     `gpg --list-keys`
+
+1. Create the public key in **armor** format (key cut/paste from listing 
+   above): \
+   `gpg --armor --export 89B7B58F6D30E38C695A5EB6322404A623C5E50CD`
+   
+1. Copy the public GPG key block, beginning with: \
+   `-----BEGIN PGP PUBLIC KEY BLOCK-----` \
+   and ending with: \
+   `-----END PGP PUBLIC KEY BLOCK-----`
+    
+1. Paste the public GPG key block into the **New GPG key** box in Github.
+   You add a GPG key to GitHub by clicking your picture on the top right
+   in GitHub and then select **Settings** and **SSH and GPG Keys**.
+   
