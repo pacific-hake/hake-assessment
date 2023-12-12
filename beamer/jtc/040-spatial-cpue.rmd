@@ -61,7 +61,7 @@ cpue_atsea <- ncatch |>
 ## Spatial CPUE U.S. West Coast, At-Sea
 ```{r spatial-catch-west-coast, out.width = "60%", out.height = "90%", eval = FALSE}
 # This figure is created using confidential data and thus is available in
-# beamer/jtc/knitr-figs/spatial-catch-west-coast-1.png in Kelli Johnson's user account
+# /srv/hake/other/samples/us/spatial-catch-west-coast-1.png
 plot_spatial_cpue(cpue_atsea,
                   bin_width = 10,
                   n_minimum_vessels = 3,
@@ -71,9 +71,7 @@ plot_spatial_cpue(cpue_atsea,
   labs(subtitle = paste0(last_data_yr, "; 3-vessel minimum"))
 ```
 
-<!-- 
 \begin{center}
-\includegraphics[width=0.6\linewidth,height=0.90\textheight]{knitr-figs/spatial-catch-west-coast-1}
+\includegraphics[width=0.6\linewidth,height=0.90\textheight]{/srv/hake/other/samples/us/spatial-catch-west-coast-1}
 \end{center}
--->
 
