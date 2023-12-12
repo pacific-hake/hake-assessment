@@ -1,9 +1,9 @@
 ---
-title: "Process the Canadian catch"
+title: "Generate and use a new GitHub GPG key"
 output: rmarkdown::html_vignette
 date: "This document was rendered on `r hake::curr_time_date()`"
 vignette: >
-  %\VignetteIndexEntry{Process the Canadian catch}
+  %\VignetteIndexEntry{Generate and use a new GitHub GPG key}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -45,3 +45,17 @@ knitr::opts_chunk$set(
    You add a GPG key to GitHub by clicking your picture on the top right
    in GitHub and then select **Settings** and **SSH and GPG Keys**.
    
+1. List the secret key: \
+   `gpg --list-secret-keys --keyid-format=long` \ 
+   The first line should look like this: \
+   `sec   rsa3072/322404A623C5E50C 2023-12-12 [SC] [expires: 2025-12-11]` \
+   Copy the **key** to the clipboard: \
+   `322404A623C5E50C`
+
+1. Run this with that copied key: \
+   `git config --global user.signingkey 322404A623C5E50C`
+   
+1. Try and commit a staged change. For example: \
+   `git commit -a -m "Example commit"` \
+   which should work and **VERIFIED** should appear on the GitHub site
+   in the commits list, next to your new commit.
