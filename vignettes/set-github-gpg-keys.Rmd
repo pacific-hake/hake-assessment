@@ -9,10 +9,8 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+knitr::opts_chunk$set(collapse = TRUE,
+                      comment = "#>")
 ```
 
 ```{r setup, echo = FALSE, message = FALSE, results = "hide", warning = FALSE}
