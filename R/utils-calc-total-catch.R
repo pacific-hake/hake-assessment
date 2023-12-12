@@ -144,7 +144,7 @@ table_catch_tac_summary <- function(yr = NULL,
       ...) |>
     row_spec(c(0, 1, 5, 10, 15), bold = TRUE) |>
     row_spec(c(1, 5, 10, 15), italic = TRUE) |>
-    row_spec(c(4, 10, 14), hline_after = TRUE) |>
+    row_spec(c(4, 9, 14), hline_after = TRUE) |>
     kable_styling(font_size = font_size) |>
     add_header_above(c("U.S." = 2, "Canada" = 2), bold = TRUE)
 }
