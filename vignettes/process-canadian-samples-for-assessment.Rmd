@@ -161,7 +161,7 @@ for the fleets, and create the CSV files for them.
         col_name_depth = "bottom_depth_fm",
         col_name_year = "year",
         country = "can",
-        fleet = "ft",
+        fleet = "ss",
         type = "bottom",
         yrs = 2007:2023)
       ```

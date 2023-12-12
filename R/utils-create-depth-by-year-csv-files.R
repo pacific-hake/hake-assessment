@@ -39,7 +39,7 @@ create_depth_by_year_csv_files <- function(
     yrs = NULL,
     scale = 1.8288,
     min_depth_cutoff = 0,
-  digits = 2){
+    digits = 2){
 
   if(is.null(d)){
     stop("The input data frame `d` cannot be `NULL`")

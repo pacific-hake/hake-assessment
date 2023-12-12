@@ -8,11 +8,16 @@ depth_y_breaks <- seq(min(depth_y_lim), max(depth_y_lim), by = 100)
 ## U.S. at-sea depth distribution
 ```{r depth-us}
 
+yrs <- (last_data_yr - 4):last_data_yr
+depth_lims <- c(0, 700)
+depth_breaks <- seq(depth_lims[1], depth_lims[2], 100)
+
+
 plot_depth_2_panel(us_atsea_fishing_depth_df,
                    us_atsea_bottom_depth_df,
-                   yrs = (last_data_yr - 4):last_data_yr,
-                   y_lim = depth_y_lim,
-                   y_breaks = depth_y_breaks)
+                   yrs = yrs,
+                   y_lim = depth_lims,
+                   y_breaks = depth_breaks)
 ```
 
 ## Canada freezer-trawler depth distribution
@@ -20,9 +25,9 @@ plot_depth_2_panel(us_atsea_fishing_depth_df,
 
 plot_depth_2_panel(can_ft_gear_depth_df,
                    can_ft_bottom_depth_df,
-                   yrs = (last_data_yr - 4):last_data_yr,
-                   y_lim = depth_y_lim,
-                   y_breaks = depth_y_breaks)
+                   yrs = yrs,
+                   y_lim = depth_lims,
+                   y_breaks = depth_breaks)
 ```
 
 ## Canada shoreside depth distribution
@@ -30,8 +35,7 @@ plot_depth_2_panel(can_ft_gear_depth_df,
 
 plot_depth_2_panel(can_ss_gear_depth_df,
                    can_ss_bottom_depth_df,
-                   yrs = (last_data_yr - 4):last_data_yr,
-                   y_lim = depth_y_lim,
-                   y_breaks = depth_y_breaks)
+                   yrs = yrs,
+                   y_lim = depth_lims,
+                   y_breaks = depth_breaks)
 ```
-
