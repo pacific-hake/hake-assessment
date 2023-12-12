@@ -27,3 +27,9 @@ plot_age_comp_bubbles_data(list(can_ss_age_df,
         strip.text = element_text(size = 8)) +
   scale_y_continuous(breaks = ages)
 ```
+
+## Survey age proportions
+
+```{r age-proportions-survey, results = "asis", out.width="60%", out.height="90%"}
+include_graphics("/srv/hake/other/samples/us/survey-age-comps.png")
+```
