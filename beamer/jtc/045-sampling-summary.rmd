@@ -67,7 +67,7 @@ table_sampling_by_month(
 ::: {.column width="45%"}
 \begin{center}\textbf{At-Sea}\end{center}
 ```{r us-atsea-sampling-summary, results = "asis"}
-d <- tibble(month = c("May", "Jun", "Aug", "Sep", "oct", "Nov", "Total"),
+d <- tibble(month = c("May", "Jun", "Aug", "Sep", "Oct", "Nov", "Total"),
             num_age = c(1015, 69, 0, 265, 376, 0, 1725),
             num_length = c(1023, 69, 153, 644, 848, 22, 2759),
             num_weight = c(1023, 69, 153, 644, 848, 22, 2759))
