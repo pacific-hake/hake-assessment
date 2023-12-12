@@ -66,48 +66,27 @@ table_sampling_by_month(
 :::::: {.columns}
 ::: {.column width="45%"}
 \begin{center}\textbf{At-Sea}\end{center}
-\begin{table}
-\centering\begingroup\fontsize{8}{10}\selectfont
-
-\begin{tabular}[t]{lR{1.5cm}R{1.5cm}R{1.5cm}}
-\toprule
-\textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Month}} & \textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Number\\ \fontsize{9}{12}\selectfont of ages}} & \textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Number\\ \fontsize{9}{12}\selectfont of lengths}} & \textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Number\\ \fontsize{9}{12}\selectfont of weights}}\\
-\midrule
-May & 1,015 & 1,023 & 1,023\\
-Jun & 69 & 69 & 69\\
-Aug & 0 & 153 & 153\\
-Sep & 265 & 644 & 644\\
-Oct & 376 & 848 & 848\\
-Nov & 0 & 22 & 22\\
-\midrule
-\textbf{Total} & \textbf{1,725} & \textbf{2,759} & \textbf{2,759}\\
-\bottomrule
-\end{tabular}
-\endgroup{}
-\end{table}
+```{r us-atsea-sampling-summary, results = "asis"}
+d <- tibble(month = c("May", "Jun", "Aug", "Sep", "oct", "Nov", "Total"),
+            num_age = c(1015, 69, 0, 265, 376, 0, 0),
+            num_length = c(1023, 69, 153, 644, 848, 22, 22),
+            num_weight = c(1023, 69, 153, 644, 848, 22, 22))
+table_sampling_by_month(d,
+                        font_size = 8,
+                        header_font_size = 9)
+```
 :::
 
 ::: {.column width="45%"}
-\begin{center}\textbf{Shore-Based}\end{center}
-\begin{table}
-\centering\begingroup\fontsize{8}{10}\selectfont
-\begin{tabular}[t]{lR{1.5cm}R{1.5cm}R{1.5cm}}
-\toprule
-\textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Month}} & \textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Number\\ \fontsize{9}{12}\selectfont of ages}} & \textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Number\\ \fontsize{9}{12}\selectfont of lengths}} & \textbf{\makecell[c]{ \fontsize{9}{12}\selectfont Number\\ \fontsize{9}{12}\selectfont of weights}}\\
-\midrule
-Mar & 0 & 20 & 20\\
-May & 340 & 720 & 340\\
-Jun & 448 & 540 & 448\\
-Jul & 240 & 500 & 440\\
-Aug & 60 & 500 & 400\\
-Sep & 60 & 370 & 310\\
-Oct & 180 & 560 & 479\\
-Nov & 0 & 20 & 20\\
-\midrule
-\textbf{Total} & \textbf{1,328} & \textbf{3,230} & \textbf{2,457}\\
-\bottomrule
-\end{tabular}
-\endgroup{}
-\end{table}
+\begin{center}\textbf{Shore-based}\end{center}
+```{r us-sb-sampling-summary, results = "asis"}
+d <- tibble(month = c("Mar", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
+            num_ages = c(0, 340, 448, 240, 60, 60, 180, 0, 1328),
+            num_lengths = c(20, 720, 540, 500, 500, 370, 560, 20, 3230),
+            num_weights = c(20, 340, 448, 440, 400, 310, 479, 20, 2457))
+table_sampling_by_month(d,
+                        font_size = 8,
+                        header_font_size = 9)
+```
 :::
 ::::::
