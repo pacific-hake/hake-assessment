@@ -16,44 +16,111 @@ knitr::opts_chunk$set(collapse = TRUE,
 ```{r setup, echo = FALSE, message = FALSE, results = "hide", warning = FALSE}
 ```
 
-1. Delete old GPG keys from GitHub and Linux
+To have **<span style="color:green;">Verified</span>** appear on your GitHub
+commits, follow this vignette.
+
+1. Delete old GPG keys from GitHub and Linux:
 
    - List secret keys: \
-     `gpg --list-keys`
+     ```{bash, echo = TRUE}
+     gpg --list-keys
+     ```
    - Delete all keys, one by one. For each key, do the following, pasting the
      key in from the listing above which is the long key under **pub** \
-     `gpg --delete-key 89B7B58F6D30E38C695A5EB6322404A623C5E50C`
+     ```{bash, eval = FALSE}
+     gpg --delete-key 89B7B58F6D30E38C695A5EB6322404A623C5E50C
+     ```
+   - Go to your GitHub account, click your picture on the top right, choose
+     **Settings**, then **SSH and GPG keys**. Press the
+     **<span style="color:red;">Delete</span>** button for each GPG key,
+     until there are none left.
 
 1. Create a new passphrase-less secret key, where **USER_ID** is your email
    address used for our GitHub account: \
-   `gpg --batch --passphrase '' --quick-gen-key USER_ID default default`
-   - List secret keys to get the key value for the next step: \
-     `gpg --list-keys`
+   ```{bash, eval = FALSE}
+   gpg --batch --passphrase '' --quick-gen-key USER_ID default default
+   ```
+   List secret keys to get the key value for the next step: \
+   ```{bash, echo = TRUE}
+   gpg --list-keys
+   ```
 
 1. Create the public key in **armor** format (key cut/paste from listing 
    above): \
-   `gpg --armor --export 89B7B58F6D30E38C695A5EB6322404A623C5E50CD`
+   ```{bash, eval = FALSE}
+   gpg --armor --export 89B7B58F6D30E38C695A5EB6322404A623C5E50CD
+   ```
+   This will output a long string of many rows taking up a whole screen,
+   called a **GPG public key block**.
    
-1. Copy the public GPG key block, beginning with: \
-   `-----BEGIN PGP PUBLIC KEY BLOCK-----` \
-   and ending with: \
-   `-----END PGP PUBLIC KEY BLOCK-----`
+1. Copy the **GPG public key block** to the clipboard. It begins with: \
+   **<span style="color:purple;">-----BEGIN PGP PUBLIC KEY BLOCK-----</span>** \
+   and ends with: \
+   **<span style="color:purple;">-----END PGP PUBLIC KEY BLOCK-----</span>** \
+   Make sure to copy the begin and end lines and everything inbetween.
     
 1. Paste the public GPG key block into the **New GPG key** box in Github.
    You add a GPG key to GitHub by clicking your picture on the top right
    in GitHub and then select **Settings** and **SSH and GPG Keys**.
    
 1. List the secret key: \
-   `gpg --list-secret-keys --keyid-format=long` \ 
-   The first line should look like this: \
-   `sec   rsa3072/322404A623C5E50C 2023-12-12 [SC] [expires: 2025-12-11]` \
+   ```{bash, echo = TRUE}
+   gpg --list-secret-keys --keyid-format=long
+   ```
+   The first line should look like the following. The blue text shows the key: \
+   <span style="color:grey;">sec   rsa3072/</span><span style="color:blue;">322404A623C5E50C</span> <span style="color:grey;">2023-12-12 [SC] [expires: 2025-12-11]</span> \
    Copy the **key** to the clipboard: \
-   `322404A623C5E50C`
+   <span style="color:blue;">322404A623C5E50C</span>
 
-1. Run this with that copied key: \
-   `git config --global user.signingkey 322404A623C5E50C`
+1. Run the following command with that copied key: \
+   ```{bash, eval = FALSE}
+   git config --global user.signingkey 322404A623C5E50C
+   ```
+
+1. Try and commit a staged change. For example: \
+   ```{bash, eval = FALSE}
+   git commit -a -m "Example commit"
+   ```
+   which should work and <span style="color:green;">Verified</span>
+   should appear on the GitHub site in the commits list, next to your
+   new commit. If instead <span style="color:red;">Unverified</span>
+   appears, proceed to the next step.
+   
+1. Edit the key and make sure the username and email information
+   is correct: \
+   ```{bash, eval = FALSE}
+   gpg --edit-key 322404A623C5E50C
+   ```
+
+1. At the gpg prompt (>), type: \
+   `adduid`
+
+1. Follow the prompts to add your real name and email address, Make sure
+   the email address you enter is the one that your GitHub account is
+   connected to. Enter "o" for Okay when it asks. When the gpog prompt
+   appears again (>), type:
+   `save`
+   
+1. Create the public key in **armor** format (key cut/paste from listing 
+   above): \
+   ```{bash, eval = FALSE}
+   gpg --armor --export 89B7B58F6D30E38C695A5EB6322404A623C5E50CD
+   ```
+   
+1. Copy the **GPG public key block** to the clipboard. It begins with: \
+   **<span style="color:purple;">-----BEGIN PGP PUBLIC KEY BLOCK-----</span>** \
+   and ends with: \
+   **<span style="color:purple;">-----END PGP PUBLIC KEY BLOCK-----</span>** \
+   Make sure to copy the begin and end lines and everything inbetween.
+    
+1. Paste the public GPG key block into the **New GPG key** box in Github.
+   You add a GPG key to GitHub by clicking your picture on the top right
+   in GitHub and then select **Settings** and **SSH and GPG Keys**.
    
 1. Try and commit a staged change. For example: \
-   `git commit -a -m "Example commit"` \
+   ```{bash, eval = FALSE}
+   git commit -a -m "Example commit"
+   ```
    which should work and **VERIFIED** should appear on the GitHub site
    in the commits list, next to your new commit.
+   
