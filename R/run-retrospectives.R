@@ -2,8 +2,6 @@
 #'
 #' @param model The SS model output as loaded by [create_rds_file()]
 #' @param model_path The path of the model run
-#' @param remove_blocks If `TRUE`, remove block designs from control file
-#' prior to running
 #' @param retro_mcmc If `TRUE`, run the ADNUTS MCMC in the *mcmc*
 #' subdirectory for each retrospective in addition to the MLE run
 #' @param retro_yrs A vector of number of years value prior to current end
@@ -29,7 +27,6 @@ run_retrospectives <- function(model = NULL,
                                model_path = NULL,
                                retro_yrs = retrospective_yrs,
                                num_chains = 1,
-                               remove_blocks = FALSE,
                                retro_mcmc = TRUE,
                                ss_exe = NULL,
                                ...){
@@ -135,15 +132,6 @@ run_retrospectives <- function(model = NULL,
                   overwrite = TRUE,
                   verbose = FALSE)
 
-      if(remove_blocks){
-        ctl_file <- file.path(retro_subdir, model$ctl_file)
-        ctl <- readLines(ctl_file)
-        ctl[grep("block designs", ctl)] <-
-          "0 # Number of block designs for time varying parameters"
-        ctl[grep("blocks per design", ctl) + 0:2] <- "# blocks deleted"
-        unlink(ctl_file, force = TRUE)
-        writeLines(ctl, ctl_file)
-      }
       covar_file <- file.path(retro_subdir, covar_fn)
       unlink(covar_file, force = TRUE)
 

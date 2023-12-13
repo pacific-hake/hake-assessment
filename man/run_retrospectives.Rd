@@ -9,7 +9,6 @@ run_retrospectives(
   model_path = NULL,
   retro_yrs = retrospective_yrs,
   num_chains = 1,
-  remove_blocks = FALSE,
   retro_mcmc = TRUE,
   ss_exe = NULL,
   ...
@@ -24,9 +23,6 @@ run_retrospectives(
 year in the model to run retrospectives for. Example if this is c(1, 5)
 then two retrospectives will be run, one with 1 year of data removed and
 one with 5 years of data removed}
-
-\item{remove_blocks}{If \code{TRUE}, remove block designs from control file
-prior to running}
 
 \item{retro_mcmc}{If \code{TRUE}, run the ADNUTS MCMC in the \emph{mcmc}
 subdirectory for each retrospective in addition to the MLE run}
