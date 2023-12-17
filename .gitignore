@@ -26,6 +26,8 @@ key_pair.R
 *.RData
 *.rdb
 *.rdx
+Renviron
+.Renviron
 .RHistory
 .Rhistory
 .Rproj.user/

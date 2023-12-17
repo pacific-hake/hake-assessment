@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Clean ADMB output from the current directory
+rm -f variance
+rm -f eigv.rpt
+rm -f *.bar
+rm -f *.cov
+rm -f *.cor
+rm -f *.cpp
+rm -f *.dep
+rm -f *.hes
+rm -f *.log
+rm -f *.aux
+rm -f *.out
+rm -f *.txt
+rm -f *.eva
+rm -f *.htp
+rm -f *.obj
+rm -f *.par
+rm -f *.rep
+rm -f *.std
+rm -f *.p0*
+rm -f *.p1*
+rm -f *.p2*
+rm -f *.r0*
+rm -f *.r1*
+rm -f *.r2*
+rm -f *.b0*
+rm -f *.b1*
+rm -f *.b2*
+rm -f *.res
+rm -f *.d
+rm -f *.eql
+rm -f *.csv
+rm -f *.psv
+rm -f *.mc*
+rm -f *.hst
+rm -f *.ecm
+rm -f *.tmp
+rm -f nf1b2list*
+rm -f f1b2list*
+rm -f sims
+rm -f hesscheck
+rm -f *.rhes
+rm -f *.bgs
+rm -f hessian.bin
+rm -f *.luu
+
+echo Cleanup of ADMB complete.

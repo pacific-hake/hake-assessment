@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# Remove all output from an SS3 model run:
+# clean_ss3
+#
+# Remove all output from an SS3 model run AND
+#  the mcmc directory and all its contents recursively:
+# clean_ss3 mcmc
+
+find . -type f -not \( \
+     -name 'starter.ss' \
+     -or -name 'forecast.ss' \
+     -or -name 'hake_control.ss' \
+     -or -name 'hake_data.ss' \
+     -or -name 'wtatage.ss' \
+     -or -name '*.rds' \) -delete
+
+if [ "$1" = "mcmc" ]; then
+ rm -rf mcmc
+fi
+
+rm -rf chain*
+rm -rf plots
+
+echo Cleanup of ADMB complete.
