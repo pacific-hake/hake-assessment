@@ -1,5 +1,8 @@
 ```{r load-packages, echo = FALSE}
 
+# To avoid an RGL warning while loading rgl and other packages
+options(rgl.useNULL = TRUE)
+
 # To install rnaturalearthhires:
 # devtools::install_github("ropensci/rnaturalearthhires")
 
