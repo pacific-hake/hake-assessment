@@ -66,7 +66,7 @@ Imports:
   rlang,
   rnaturalearth,
   rnaturalearthhires,
-  r4ss (>= 1.46.2),
+  r4ss,
   scales,
   sf,
   stringr,
@@ -90,7 +90,7 @@ Remotes:
   pbs-assess/gfdata,
   pbs-assess/gfplot,
   pacific-hake/hakedataUSA,
-  r4ss/r4ss@bioscale,
+  r4ss/r4ss,
   ropensci/rnaturalearth,
   ropensci/rnaturalearthhires,
   tylermorganwall/rayshader
