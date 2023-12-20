@@ -41,6 +41,7 @@ RUN apt-get update && apt-get  -y --no-install-recommends install \
     # libproj and libsqllite3 packages are required for sf and marmap
     # R packages
     libproj-dev \
-    libsqlite3-dev
+    libsqlite3-dev \
+    libxt6
 
 RUN apt upgrade -y
