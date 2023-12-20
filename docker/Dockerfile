@@ -6,46 +6,23 @@
 # repository (this directory)
 #
 # The command to build this image is:
-# `docker build -t cgrandin/hake .`
+# docker build -t cgrandin/hake .
 # or, to build completely from scratch:
-# `docker build --no-cache -t cgrandin/hake .`
+# docker build --no-cache -t cgrandin/hake .
+#
+# Every so ofter you will want to clean up the images and containers.
+# To do so follow these next few commands:
 #
 # To look at and then remove all images:
-# `docker images -a`
-# `docker rmi $(docker images -a)`
+# docker images -a
+# docker rmi $(docker images -a)
 #
 # To look at and then remove all non-running containers:
-# `docker ps -a`
-# `docker rm $(docker ps -a)`
+# docker ps -a
+# docker rm $(docker ps -a)
 #
-# To run the container this build produces (cgrandin/hake) read the following:
-#
-# To start the container in a Bash shell so you can run bash scripts
-# (for running models and RDS creation scripts, etc), run this command:
-#
-# `docker run -it -p 8787:8787 -e PASSWORD=a cgrandin/hake bash`
-#
-# Once in the container, you can also launch RStudio server by running
-# this command:
-#
-# `/init`
-#
-# To return to the bash swhell, you must press the exit button on the top right
-# of the Rstudio GUI in the browser
-#
-# To start the container with RStudio server running, run this command:
-#
-# `docker run -p 8787:8787 -e PASSWORD=a cgrandin/hake`
-#
-# To access the RStudio sever, open a browser and type the following in
-# the URL bar:
-#
-# localhost:8787
-#
-# This will go to an RStudio sign-in page. Enter the user as "rstudio" and
-# the Password as "a". Note the password was set by you in the `docker run`
-# command that launches this container.
-
+# To run the container this build produces (cgrandin/hake), run the
+# `run-hake-docker.sh` script and read the comments within it.
 
 FROM cgrandin/ubuntu-essentials as os
 LABEL maintainer = "chris.grandin@gmail.com"
@@ -85,6 +62,7 @@ WORKDIR $HOME
 # Clone the hake repository
 WORKDIR $HOME
 RUN git clone https://github.com/pacific-hake/hake-assessment hake
+RUN chmod -R 777 hake
 
 # Install R packages needed for the hake assessment
 #
