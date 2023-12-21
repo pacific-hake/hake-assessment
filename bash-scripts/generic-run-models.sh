@@ -71,7 +71,7 @@ for model in ${models[@]}; do
                    adapt_delta = $adapt_delta, \
                    num_samples = $num_samples, \
                    num_warmup_samples = $num_warmup_samples, \
-                   fn_exe = '$ss_exe'); \
+                   fn_exe = '$ss_exe')"; \
   > /dev/null 2>&1; \
   printf "\nFinished running model in directory\n$model\n"; \
   ) &
