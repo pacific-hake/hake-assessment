@@ -18,13 +18,13 @@
 
 # This script must be called from another script where the following
 # variables have been set
-[[ -z $models ]] &&{ printf "\nVariable 'models' has not been set, bailing \
+[[ -z $models ]] && { printf "\nVariable 'models' has not been set, bailing \
 out.\n" ; exit 1; }
 [[ -z $type_path ]] && { printf "\nVariable 'type_path' has not been set, \
 bailing out.\n" ; exit 1; }
-[[ -z $run_extra_mcmc ]] &&{ printf "\nVariable 'run_extra_mcmc' has not been \
+[[ -z $run_extra_mcmc ]] && { printf "\nVariable 'run_extra_mcmc' has not been \
 set, bailing out.\n" ; exit 1; }
-[[ -z $adapt_delta ]] &&{ printf "\nVariable 'adapt_delta' has not been set, \
+[[ -z $adapt_delta ]] && { printf "\nVariable 'adapt_delta' has not been set, \
 bailing out.\n" ; exit 1; }
 
 # Create the variable $assess_year containing the current year unless it
@@ -73,6 +73,6 @@ for model in ${models[@]}; do
                    num_warmup_samples = $num_warmup_samples, \
                    fn_exe = '$ss_exe'); \
   > /dev/null 2>&1; \
-  printf "\nFInished running model in directory\n$model\n"; \
+  printf "\nFinished running model in directory\n$model\n"; \
   ) &
 done
