@@ -1,3 +1,9 @@
 setwd("/home/rstudio/github/pacific-hake/hake-assessment/doc")
+
+if(Sys.getenv("RSTUDIO") == "1"){
+  rstudioapi::filesPaneNavigate(getwd())
+}
+
 suppressWarnings(devtools::load_all())
+
 options(scipen = 999)
