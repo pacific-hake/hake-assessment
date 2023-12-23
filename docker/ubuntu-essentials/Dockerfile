@@ -26,8 +26,7 @@ RUN apt-get update && apt-get  -y --no-install-recommends install \
     htop \
     git \
     less \
-    # libgeos and libdunits packages are required for sf and rayshader
-    # R packages
+    # libgeos and libdunits packages are required for sf R package
     libudunits2-dev \
     libgeos++-dev \
     libgeos3.10.2 \
@@ -36,7 +35,8 @@ RUN apt-get update && apt-get  -y --no-install-recommends install \
     libgeos-doc \
     libgdal-dev \
     libglpk-dev \
-    # For the raytracer group of R packages
+    # For the raytracer group of R packages (left in despite
+    # raytracer removal as it is fast)
     libglu1 \
     # libproj and libsqllite3 packages are required for sf and marmap
     # R packages

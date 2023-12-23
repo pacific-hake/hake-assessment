@@ -12,8 +12,7 @@ github_pac_lst <- c("cgrandin/adnuts",
                     "pbs-assess/gfdata",
                     "pbs-assess/gfplot",
                     "ropensci/rnaturalearthhires",
-                    "r4ss/r4ss",
-                    "tylermorganwall/rayshader")
+                    "r4ss/r4ss")
 
 walk(github_pac_lst, \(pkg){
   install_github(pkg)

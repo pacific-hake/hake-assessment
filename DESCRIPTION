@@ -59,7 +59,6 @@ Imports:
   pacman,
   parallelly,
   purrr,
-  rayshader,
   RColorBrewer,
   readr,
   rgl,
@@ -92,8 +91,7 @@ Remotes:
   pacific-hake/hakedataUSA,
   r4ss/r4ss,
   ropensci/rnaturalearth,
-  ropensci/rnaturalearthhires,
-  tylermorganwall/rayshader
+  ropensci/rnaturalearthhires
 ByteCompile: true
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
