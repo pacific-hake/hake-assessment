@@ -316,33 +316,6 @@ plot_heatmap_sample_size_weight_at_age(
            "dodgerblue"))
 ```
 
-(ref:main-weight-at-age-3d-cap) Empirical weight-at-age (kg) values used for
-the base model. Colors are the same as in the heatmaps above, and the bar
-heights represent the sample sizes. The numbers on top of the bars are the
-actual sample sizes for each year/age combination.
-
-(ref:main-weight-at-age-3d-alt) This plot shows the weight-at-age heatmap in
-3D with the bar heights representing the sample size for each year/age
-combination.
-
-```{r main-weight-at-age-3d-alt, fig.cap = "(ref:main-weight-at-age-3d-cap)", fig.height = 11}
-
-# See `heatmap_extract_wa()` for argument choices, many are passed in `...`
-# from `plot_weight_at_age_heatmap()`
-plot_3d_heatmap(
-  base_model,
-  cell_font_size = 3,
-  sample_size_df = weight_age_sample_sizes_df,
-  pre_yrs = start_yr_age_comps:base_model$endyr,
-  pre_func = mean,
-  post_yrs = (base_model$endyr - 4):base_model$endyr,
-  post_func = mean,
-  cols = c("red",
-           "yellow",
-           "green",
-           "dodgerblue"))
-```
-
 (ref:main-weight-at-age-lines-cap) Empirical mean weight-at-age (kg) values
 for ages 2--10 used for the base model, as in
 Figure~\@ref(fig:main-weight-at-age-fig) but shown as time series. Blue
