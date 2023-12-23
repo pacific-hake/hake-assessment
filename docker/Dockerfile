@@ -92,11 +92,21 @@ RUN rm -rf texlive_tmp
 
 # Clone the hake repository
 WORKDIR $HOME
-RUN git clone https://github.com/pacific-hake/hake-assessment hake
-RUN chmod -R 777 hake
+RUN mkdir github
+RUN mkdir github/pacific-hake
+
+ENV PHAKE=$HOME/github/pacific-hake
+ENV HAKE_REPO=hake-assessment
+ENV HAKE=$PHAKE/$HAKE_REPO
+
+WORKDIR $PHAKE
+RUN git clone https://github.com/pacific-hake/hake-assessment $HAKE_REPO
+RUN chmod -R 777 $HAKE_REPO
 
 #.Rprofile contains the code that loads the hake package into the session
 # automatically at startup
 COPY Rprofile $HOME/.Rprofile
-# Start in the hake directory
-WORKDIR $HOME/hake
+# Start in the hake directory and pull the repository so it is fresh
+COPY run-git-pull.sh $HAKE/git-pull.sh
+WORKDIR $HAKE
+CMD ["run-git-pull.sh"]
