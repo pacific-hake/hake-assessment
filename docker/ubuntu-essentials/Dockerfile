@@ -24,8 +24,11 @@ RUN apt-get update && apt-get  -y --no-install-recommends install \
     curl \
     flex \
     htop \
+    ghostscript \
     git \
     less \
+    # For magick R package
+    libmagick++-dev \
     # libgeos and libdunits packages are required for sf R package
     libudunits2-dev \
     libgeos++-dev \

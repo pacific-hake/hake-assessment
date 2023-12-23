@@ -11,6 +11,7 @@
 #' @import GGally ggh4x ggplot2 ggrepel
 #' @import hakedataUSA
 #' @import knitr
+#' @import magick
 #' @import purrr
 #' @import rnaturalearth rnaturalearthhires r4ss
 #'

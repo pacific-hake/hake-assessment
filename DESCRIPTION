@@ -53,6 +53,7 @@ Imports:
   kableExtra,
   knitr,
   lubridate,
+  magick,
   marmap,
   microbenchmark,
   minpack.lm,
