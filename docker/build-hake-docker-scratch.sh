@@ -9,4 +9,4 @@
 # we can do about it.
 docker build --no-cache -t cgrandin/ubuntu-essentials ubuntu-essentials
 
-docker build -t cgrandin/hake .
+docker build --no-cache -t cgrandin/hake .
