@@ -52,7 +52,7 @@
 #' @importFrom stats ave coefficients complete.cases end median na.omit nls
 #' @importFrom stats quantile rbeta reshape rlnorm rnorm runif setNames
 #' @importFrom stats start ts
-#' @importFrom stringr str_flatten str_flatten_comma str_split str_sub
+#' @importFrom stringr str_count str_flatten str_flatten_comma str_split str_sub
 #' @importFrom tools file_path_sans_ext file_ext
 #' @importFrom tibble as_tibble enframe
 #' @importFrom tidyselect all_of any_of matches one_of starts_with
