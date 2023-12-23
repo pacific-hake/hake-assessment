@@ -5,6 +5,7 @@ library(remotes)
 library(purrr)
 library(usethis)
 
+# These are the packages on GitHub, in alphabetical order
 github_pac_lst <- c("cgrandin/adnuts",
                     "cgrandin/kableExtra",
                     "pacific-hake/hakedataUSA",
@@ -18,9 +19,8 @@ walk(github_pac_lst, \(pkg){
   install_github(pkg)
 })
 
-# This assumes you are starting with rocker/tidyverse, so there are no
-# tidyverse packages here
-
+# These are packages on CRAN. Alphabetical order, each line has the same
+# starting letter for each package (new line for new starting letter)
 pac_lst <- c(
   "bookdown",
   "car", "carData", "clipr", "coda", "corrplot", "cowplot",

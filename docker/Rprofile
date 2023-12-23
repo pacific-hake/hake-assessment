@@ -1,0 +1,3 @@
+setwd("/home/rstudio/hake/doc")
+suppressWarnings(devtools::load_all())
+options(scipen = 999)

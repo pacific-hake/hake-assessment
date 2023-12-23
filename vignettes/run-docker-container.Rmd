@@ -1,0 +1,116 @@
+---
+title: "Run the hake docker container"
+output: rmarkdown::html_vignette
+date: "This document was rendered on `r hake::curr_time_date()`"
+vignette: >
+  %\VignetteIndexEntry{Run the hake docker container}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE,
+                      comment = "#>")
+```
+
+```{r setup, echo = FALSE, message = FALSE, results = "hide", warning = FALSE}
+```
+
+## Quick run
+
+1. Acquire the `models` directory from Google Drive (need permission) and
+   place it wherever you want on your computer. Copy the absolute path of
+   its location somewhere like the clipboard.
+
+1. `git clone` the hake package from GitHub: \
+   `git clone https://github.com/pacific-hake/hake-assessment`
+
+1. If the directory where your `models` are located is not `/srv`, edit the
+   `create-volume.sh` file and replace `device=/srv` with
+   `device=/path/to/models/dir` where `/path/to/models/dir` is the path to
+   the models directory on your machine. Save the file and close.
+
+1. Open a Bash terminal and navigate to the `docker` directory
+
+1. Run `./run-hake-docker.sh`
+
+1. Once the Docker Bash terminal starts, you can connect to the Rstudio server:
+
+   - In the Bash terminal, type: `/init`. This will run some code and leave
+     the terminal in a paused state.
+   - Open a browser.
+   - In the URL bar, type `localhost:8787`
+   - The Rstudio login page will appear. In the user box type `rstudio`. In
+     the password box, type `a`.
+   - Rstudio will open in your browser. You will start in the hake directory
+     (this is the hake-assessment root directory).
+   - To build the document, see the README.md for the hake project [GitHub
+     repository](https://github.com/pacific-hake/hake-assessment).
+   - To exit, click the button on the top right of the RStudio server page
+     which says `rstudio` to its left and looks like an arrow pointing to
+     the right off a white square.
+   - Go back to the Docker Bash terminal and press Ctrl-c to return to the
+     Bash prompt. 
+   - Type `exit` to close the Docker container.
+
+## Introduction
+
+The hake docker build files are found in the `docker` directory. The
+`Dockerfile` is the primary script to build the image and the sub-directory
+`ubuntu-essentials` contains the build files to create the starting image for
+the hake docker image.
+
+## Structure of the Docker image
+**cgrandin/ubuntu-essentials** is based on the **rocker/tidyverse:latest**
+image. See [The Rocker Project](https://rocker-project.org/). It contains
+the latest versions of everything in it. Currently (December 2023) it
+contains: \
+
+1. Ubuntu 22.04 LTS Operating System
+
+1. R version 4.3.2 (2023-10-31)
+
+1. RStudio 2023.12.0 Build 369
+
+1. Ubuntu packages added that are needed by the hake assessment project
+
+## Contents of the **Dockerfile**
+
+**cgrandin/hake** contains: \
+
+1. [ADMB](https://github.com/admb-project/admb) release version 13.1
+   (12-22-2023) built from source.
+   
+1. [SS3](https://github.com/nmfs-ost/ss3-source-code) release version 3.30.22
+   (2023-10-31) built from source.
+   
+1. TexLive 2023 (texlive-base version) (https://www.tug.org/texlive/)
+
+1. Many R packages that are either directly required by the hake project or
+   dependency packages of those required.
+
+1. A clone of the GitHub repository for the hake assessment in the directory: \
+   `/home/rstudio/hake`
+   
+1. New environment variables:
+   - $HOME (`/home/rstudio`)
+   - $INST (`/usr/bin`)
+   - $ADMB_HOME (`/usr/bin/admb/build/admb`)
+   - $ADMB_AD2CSV (`/usr/bin/admb/contrib/ad2csv`)
+   - $SS3_EXE_NAME (`ss3_2024`)
+   - $SS3_HOME (`/usr/bin/ss3`)
+   - $TEXLIVE_HOME (`/usr/local/texlive/2023/bin/x86_64-linux`)
+   - $MANPATH (`/usr/local/texlive/2023/texmf-dist/doc/man`)
+   - $INFOPATH (`/usr/local/texlive/2023/texmf-dist/doc/info`)
+
+1. The **$PATH** environment variable has new paths added from the above list:
+   - $HOME
+   - $ADMB_HOME/bin
+   - $ADMB_AD2CSV
+   - $SS3_HOME
+   - $TEXLIVE_HOME
+
+
+
+To have **<span style="color:green;">Verified</span>** appear on your GitHub
+

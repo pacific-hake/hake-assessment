@@ -59,11 +59,6 @@ RUN ./install_ss3.sh
 RUN mv ss3/ss ss3/$SS3_EXE_NAME
 WORKDIR $HOME
 
-# Clone the hake repository
-WORKDIR $HOME
-RUN git clone https://github.com/pacific-hake/hake-assessment hake
-RUN chmod -R 777 hake
-
 # Install R packages needed for the hake assessment
 #
 # Need to copy the .Renviron file which contains the GITHUB_PAT token so
@@ -95,5 +90,13 @@ RUN rm install_r_packages.R
 RUN rm install_texlive.sh
 RUN rm -rf texlive_tmp
 
+# Clone the hake repository
+WORKDIR $HOME
+RUN git clone https://github.com/pacific-hake/hake-assessment hake
+RUN chmod -R 777 hake
+
+#.Rprofile contains the code that loads the hake package into the session
+# automatically at startup
+COPY Rprofile $HOME/.Rprofile
 # Start in the hake directory
 WORKDIR $HOME/hake

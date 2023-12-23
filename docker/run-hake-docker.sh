@@ -34,5 +34,9 @@
 # the Password as "a". You can change that password if you like by changing
 # `PASSWORD` in the `docker run` call below.
 
+# `create-volume.sh` cretaes the `hake_models` volume used in the `docker run`
+# call following it
+./create-volume.sh
+
 docker run -it -p 8787:8787 -e PASSWORD=a -v hake_models:/srv \
   cgrandin/hake bash
