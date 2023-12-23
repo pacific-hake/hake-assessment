@@ -27,7 +27,7 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
 
   d <- d |>
     mutate(`Realized catch` = `Realized catch` / 1000,
-           TAC = TAC / 1000,
+           `Total TAC` = `Total TAC` / 1000,
            `Default HCR TAC` = `Default HCR TAC` / 1000) |>
     filter(!is.na(`Default HCR TAC`)) |>
     mutate(Year = factor(Year))
@@ -49,7 +49,7 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
   g <- ggplot(d) +
     geom_abline(linetype = "dotted") +
     geom_point(aes(x = `Default HCR TAC`,
-                   y = TAC),
+                   y = `Total TAC`),
                size = 3,
                color = "black",
                inherit.aes = FALSE) +
@@ -64,7 +64,7 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
     geom_segment(aes(x = `Default HCR TAC`,
                      xend = `Default HCR TAC`,
                      y = `Realized catch`,
-                     yend = TAC),
+                     yend = `Total TAC`),
                  color = "black",
                  inherit.aes = FALSE)
   if(use_nudged_yrs){
