@@ -9,6 +9,8 @@ git stash clear
 
 git pull
 
+# `git pull` resets the file permissions so we have to set them back to
+# fully open again after pulling
 chmod -R 777 .
 
 # Return control back to the main Dockerfile script. If this is missing,
