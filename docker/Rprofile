@@ -1,10 +1,22 @@
-setwd("/home/rstudio/github/pacific-hake/hake-assessment/doc")
+dr <- "/home/rstudio/github/pacific-hake/hake-assessment"
+dr_doc <- file.path(dr, "doc")
+setwd(dr_doc)
 
 if(Sys.getenv("RSTUDIO") == "1"){
-  setHook("rstudio.sessionInit", action = "append", function(newSession) {
+  setHook("rstudio.sessionInit",
+          action = "append",
+          \(newSession){
     rstudioapi::filesPaneNavigate(getwd())
-    rstudioapi::navigateToFile("doc/_bookdowm.yml")
-    rstudioapi::navigateToFile("doc/000-launcher.Rmd")
+  })
+  setHook("rstudio.sessionInit",
+          action = "append",
+          \(newSession){
+    rstudioapi::navigateToFile(file.path(dr_doc, "_bookdown.yml"))
+  })
+  setHook("rstudio.sessionInit",
+          action = "append",
+          \(newSession){
+    rstudioapi::navigateToFile(file.path(dr_doc, "000-launcher.rmd"))
   })
 }
 
