@@ -109,5 +109,5 @@ COPY Rprofile $HOME/.Rprofile
 # Start in the hake directory and pull the repository so it is fresh
 COPY run-git-pull.sh $HAKE/git-pull.sh
 WORKDIR $HAKE
-RUN ./git-pull.sh
+ENTRYPOINT ["./git-pull.sh"]"
 
