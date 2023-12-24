@@ -8,3 +8,11 @@ git stash # There seem to be changes somehow. Ignore them.
 git stash clear
 
 git pull
+
+chmod -R 777 .
+
+# Return control back to the main Dockerfile script. If this is missing,
+# then the ENTRYPOINT command that called this script will exit the
+# container once this script is finished. Don't removeor the container will
+# never open up for you.
+exec "$@"
