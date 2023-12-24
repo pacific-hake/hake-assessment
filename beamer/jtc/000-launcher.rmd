@@ -66,28 +66,26 @@ header-includes:
 
 ```{r setup, echo = FALSE, cache = FALSE, message = FALSE, results = "hide", warning = FALSE}
 
+# user and home setup ----
 # Current user's name on the system
 # If regular desktop R session, use Sys.getenv("USERNAME")
 # If on RStudio server, use Sys.getenv("RSTUDIO_USER_IDENTITY")
 user <- ifelse(Sys.getenv("USERNAME") == "",
                Sys.getenv("RSTUDIO_USER_IDENTITY"),
                Sys.getenv("USERNAME"))
-
 if(user == "grandin"){
-  models_dir <- "/srv/hake/models"
-}else{
-  models_dir <- "/srv/hake/models"
+  # Add specialized user code here
 }
-
-test <- rmarkdown::metadata$output$`hake::hake_beamer`$test %||% FALSE
-
+home <- system("echo $HOME")
+if(home == ""){
+  stop("`home` is an empty string. The `system(echo $HOME)` call failed ",
+       "which means the $HOME variable in the OS is not set")
+}
+models_dir <- "/srv/hake/models"
+test <- rmarkdown::metadata$output$`hake::hake_pdf`$test %||% FALSE
 if(test){
   # Necessary for `gotest()` testing
-  if(user == "grandin"){
-    devtools::load_all("~/github/pacific-hake/hake")
-  }else{
-    devtools::load_all("~/github/pacific-hake/hake-assessment")
-  }
+  devtools::load_all(paste0(home, "/github/pacific-hake/hake-assessment"))
 }else{
   # For regular doc build
   devtools::load_all(here::here())

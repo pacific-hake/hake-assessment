@@ -26,9 +26,11 @@ knitr::opts_chunk$set(collapse = TRUE,
    `git clone https://github.com/pacific-hake/hake-assessment`
 
 1. If the directory where your `models` are located is not `/srv`, edit the
-   `create-volume.sh` file and replace `device=/srv` with
-   `device=/path/to/models/dir` where `/path/to/models/dir` is the path to
-   the models directory on your machine. Save the file and close.
+   `create-volume.sh` file and replace \
+   `--opt device=/srv` with \
+   `--opt device=/path/to/models/dir` \
+   where `/path/to/models/dir` is the path to the models directory on
+   your machine. Save the file and close.
 
 1. Open a Bash terminal and navigate to the `docker` directory
 
@@ -36,21 +38,22 @@ knitr::opts_chunk$set(collapse = TRUE,
 
 1. Once the Docker Bash terminal starts, you can connect to the Rstudio server:
 
-   - In the Bash terminal, type: `/init`. This will run some code and leave
-     the terminal in a paused state.
+   - In the Bash terminal, type: `/init`. This will start the Rstudio server
+     and leave the terminal in a paused state.
    - Open a browser.
    - In the URL bar, type `localhost:8787`
    - The Rstudio login page will appear. In the user box type `rstudio`. In
      the password box, type `a`.
-   - Rstudio will open in your browser. You will start in the hake directory
-     (this is the hake-assessment root directory).
-   - To build the document, see the README.md for the hake project [GitHub
-     repository](https://github.com/pacific-hake/hake-assessment).
+   - Rstudio will open in your browser. You will start in the `doc` directory
+     (this is the directory in which the main document is built).
+   - To build the document in full now, type `render()`. For more information
+     on building the document, see the `README.md` file for the [hake
+     assessment repository](https://github.com/pacific-hake/hake-assessment).
    - To exit, click the button on the top right of the RStudio server page
      which says `rstudio` to its left and looks like an arrow pointing to
-     the right off a white square.
-   - Go back to the Docker Bash terminal and press Ctrl-c to return to the
-     Bash prompt. 
+     the right off a white square, OR type `q()` at the console.
+   - Go back to the Docker Bash terminal and press Ctrl-c a couple of times
+     to return to the Bash prompt.
    - Type `exit` to close the Docker container.
 
 ## Introduction
