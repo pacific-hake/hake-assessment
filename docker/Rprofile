@@ -1,7 +1,11 @@
 setwd("/home/rstudio/github/pacific-hake/hake-assessment/doc")
 
 if(Sys.getenv("RSTUDIO") == "1"){
-  rstudioapi::filesPaneNavigate(getwd())
+  setHook("rstudio.sessionInit", action = "append", function(newSession) {
+    rstudioapi::filesPaneNavigate(getwd())
+    rstudioapi::navigateToFile("_bookdowm.yml")
+    rstudioapi::navigateToFile("000-launcher.Rmd")
+  })
 }
 
 suppressWarnings(devtools::load_all())

@@ -107,6 +107,7 @@ RUN chmod -R 777 $HAKE_REPO
 # automatically at startup
 COPY Rprofile $HOME/.Rprofile
 # Start in the hake directory and pull the repository so it is fresh
-COPY run-git-pull.sh $HAKE/git-pull.sh
+COPY run-git-pull.sh $HAKE/run-git-pull.sh
 WORKDIR $HAKE
-CMD ["run-git-pull.sh"]
+RUN ./run-git-pull.sh
+

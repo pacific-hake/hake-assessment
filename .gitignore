@@ -31,6 +31,9 @@ Renviron
 .RHistory
 .Rhistory
 .Rproj.user/
+# Needed for the Docker containers to endure pulling occurs when
+# container is started
+./run-git-pull.sh
 *.snm
 *.ss_new
 *.sso
