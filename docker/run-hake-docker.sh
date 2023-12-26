@@ -34,9 +34,14 @@
 # the Password as "a". You can change that password if you like by changing
 # `PASSWORD` in the `docker run` call below.
 
-# `create-volume.sh` cretaes the `hake_models` volume used in the `docker run`
-# call following it
-./create-volume.sh
+# Example SRV_DIR in Windows on Grandin's machine. Note that the 'srv'
+# directory must follow the exact same directory sub-structure as exists on
+# the server. That is, you must have /srv/hake/models with the years'
+# subdirectories existing in the /srv/hake/models directory.
+#
+# SRV_DIR="d:/WORK/A_Species/Hake/srv"
+# On the server (default):
+SRV_DIR=/srv
 
-docker run -it -p 8787:8787 -e PASSWORD=a -v hake_models:/srv \
-  cgrandin/hake bash
+docker run -it -p 8787:8787 -e PASSWORD=a --mount \
+  type=bind,source=$SRV_DIR,target=/srv cgrandin/hake bash
