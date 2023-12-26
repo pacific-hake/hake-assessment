@@ -1,11 +1,13 @@
 #!/bin/bash
 
 # Synchronize all model input files and RDS files to Google drive,
-# preserving directory structure
+# preserving directory structure for given year, which is passed as an
+# argument. If no argument is supplied, the current year (as calculated by
+# `get-assess-year.sh`) will be synced.
 #
 # rclone config must have been run before this, with a new remote called
 # `googledrive`. To see if it is set up properly, run the following:
-# `rclone listremotes
+# `rclone listremotes`
 # Which should return `googledrive:`
 #
 # `get-assess-year.sh` creates the variable $assess_year containing the
