@@ -1,9 +1,9 @@
 ---
-title: "Run the hake docker container"
+title: "Running the hake docker container on Windows"
 output: rmarkdown::html_vignette
 date: "This document was rendered on `r hake::curr_time_date()`"
 vignette: >
-  %\VignetteIndexEntry{Run the hake docker container}
+  %\VignetteIndexEntry{Running the hake docker container on Windows}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,28 +16,56 @@ knitr::opts_chunk$set(collapse = TRUE,
 ```{r setup, echo = FALSE, message = FALSE, results = "hide", warning = FALSE}
 ```
 
-## Quick run
+This vignette assumes you have installed Docker on your local Windows machine.
+If it is an IT-controlled machine it is unlikely they will allow it to be
+installed as the docker service requires root access to run the containers,
+which they see as a vulnerability.
 
-1. Acquire the `models` directory from Google Drive (need permission) and
-   place it wherever you want on your computer. Copy the absolute path of
-   its location somewhere like the clipboard.
+1. Acquire the [srv directory](https://drive.google.com/drive/folders/11KCdlsgk0hj3NlQY1aV6C99QBEP1GyQV)
+   from Google Drive (need share permission) and place it wherever you want
+   on your computer. Copy the absolute path of its location somewhere like
+   the clipboard. For example, if you were on Windows, downloaded it and
+   copied it into the directory `C:\work\hake`, copy the directory
+   `c:\work\hake\srv` to the clipboard or make note of it. This folder
+   contains an exact replica of the `/srv` directory structure on the server,
+   so the code in the Docker container does not need to be modified to run
+   the same as on the server. The directories contain only SS3 input files and
+   the output RDS files for the models, not all the MCMC files and SS3 output
+   files, so the download is not too long.
 
 1. `git clone` the hake package from GitHub: \
    `git clone https://github.com/pacific-hake/hake-assessment`
 
-1. If the directory where your `models` are located is not `/srv`, edit the
-   `create-volume.sh` file and replace \
-   `--opt device=/srv` with \
-   `--opt device=/path/to/models/dir` \
-   where `/path/to/models/dir` is the path to the models directory on
-   your machine. Save the file and close.
+1. You must link the directory on your computer from the download with the
+   `/srv` directory inside the Docker container. Continuing the example
+   above, the directory name `c:\work\hake\srv` where you stored the downloaded
+   `srv` folder is in the clipboard. Edit the file `docker/run-hake-docker.sh`
+   file and find this line:  \
 
-1. Open a Bash terminal and navigate to the `docker` directory
+   `elif [[ "$OSTYPE" == "msys" ]]; then` \
+   
+   then find your name, for example:
+
+   `if [[ "$USERNAME" == "grandin" ]]; then`
+   `  SRV_DIR="d:/WORK/A_Species/Hake/srv"`
+
+   Set your `SRV_DIR` to the directory you pasted to the clipboard, which for
+   this example was `c:\work\hake\srv`. Delete the `printf` message and
+   `exit 1` associated with your name and save. If you commit this change
+   to the repository it will be remembered for the future and you will not
+   have to do this step again when you want to run the Docker container.
+
+1. Open a Bash terminal and navigate to the `docker` directory of the
+   `hake-assessment` repository. On Windows, open `Powershell` or `cmd`
+   and type `bash` to open a bash shell.
 
 1. Run `./run-hake-docker.sh`
 
 1. Once the Docker Bash terminal starts, you can connect to the Rstudio server:
 
+   - If you type `ls /srv` it will be listing the contents of your linked
+     directory on your local machine (`c:\work\hake\srv` for the example
+     above).
    - In the Bash terminal, type: `/init`. This will start the Rstudio server
      and leave the terminal in a paused state.
    - Open a browser.

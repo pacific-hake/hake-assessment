@@ -34,14 +34,32 @@
 # the Password as "a". You can change that password if you like by changing
 # `PASSWORD` in the `docker run` call below.
 
-# Example SRV_DIR in Windows on Grandin's machine. Note that the 'srv'
-# directory must follow the exact same directory sub-structure as exists on
-# the server. That is, you must have /srv/hake/models with the years'
-# subdirectories existing in the /srv/hake/models directory.
+# See Vignette `vignettes/run-docker-container.Rmd` for what to do here.
+# Example below: `SRV_DIR` in Windows on grandin's machine, is going to be
+# linked to `/srv` in the Docker container
 #
 # SRV_DIR="d:/WORK/A_Species/Hake/srv"
 # On the server (default):
-SRV_DIR=/srv
+if [[ "$HOSTNAME" == "hake-precis1ion"* ]]; then
+  # Linux hake server
+  SRV_DIR=/srv
+else
+  # $USERNAME below is output of echo $USERNAME in your bash shell
+  if [[ "$USERNAME" == "grandin1" ]]; then
+    SRV_DIR="d:/WORK/A_Species/Hake/srv"
+  elif [[ "$USERNAME" == "kelli" ]]; then
+    SRV_DIR=/srv
+  elif [[ "$USERNAME" == "aaron" ]]; then
+    SRV_DIR=/srv
+  elif [[ "$USERNAME" == "andy" ]]; then
+    SRV_DIR=/srv
+  else
+    printf "You need to set up the linkage between a directory on your\n \
+            local machine and /srv directory inside the Docker container.\n \
+            Edit the 'run-hake-docker.sh' file.\n\n"
+    exit 1
+  fi
+fi
 
 docker run -it -p 8787:8787 -e PASSWORD=a --mount \
   type=bind,source=$SRV_DIR,target=/srv cgrandin/hake bash
