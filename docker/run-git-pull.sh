@@ -3,7 +3,6 @@
 # Pull a repository. Used for a starting script for Docker container
 # so that you are starting with the most current commit in the repo
 # each time you start the container
-
 git pull
 
 # Tell git to ignore permission chages as differences. If we don't do this,
