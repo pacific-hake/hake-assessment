@@ -52,7 +52,7 @@ get_prior_data <- function(model,
       return(NULL)
     }else{
       parline <- params[parind, ]
-      message("get_prior_data(): The regular expression matched ", parline$label)
+      #message("get_prior_data(): The regular expression matched ", parline$label)
       initval <- parline$init
       finalval <- parline$value
       parsd <- parline$parm_stdev
