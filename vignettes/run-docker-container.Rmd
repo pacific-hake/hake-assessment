@@ -27,16 +27,20 @@ a DOS terminal, then type `bash` inside that to get to a Bash prompt. Use
 that for the following procedure, don't try to run anything from the
 `powershell` or `cmd` terminal directly.
 
+## Steps to run the container for the first time
+
 1. Once you have Docker installed, open a Bash terminal and pull the
    relevant images from Docker Hub: \
 
-   `docker pull cgrandin/ubuntu-essentials` \
-   `docker pull cgrandin/hake` \
+   ```bash
+   docker pull cgrandin/ubuntu-essentials
+   docker pull cgrandin/hake
+   ```
 
    The `cgrandin/hake` image is very large and will take about 15 minutes
    to download.
 
-1. Acquire the [srv directory](https://drive.google.com/drive/folders/11KCdlsgk0hj3NlQY1aV6C99QBEP1GyQV)
+1. Download the [`srv` directory](https://drive.google.com/drive/folders/11KCdlsgk0hj3NlQY1aV6C99QBEP1GyQV)
    from Google Drive (need share permission) and place it wherever you want
    on your computer. Copy the absolute path of its location to the
    clipboard. For example, if you were on Windows, downloaded and placed
@@ -51,7 +55,10 @@ that for the following procedure, don't try to run anything from the
 
 1. `git clone` the hake package onto your local machine from GitHub if you
     haven't done so already: \
-   `git clone https://github.com/pacific-hake/hake-assessment`
+    
+   ```bash
+   git clone https://github.com/pacific-hake/hake-assessment
+   ```
 
 1. You must link the directory on your computer from the download with the
    `/srv` directory inside the Docker container. Continuing the example
@@ -60,19 +67,32 @@ that for the following procedure, don't try to run anything from the
    file and find the line in the `if` statement with your name in it like
    this: \
 
-   `"$USERNAME" == "grandin"` \
+   ```bash
+     elif [[ "$USERNAME" == "chewbacca" ]]; then
+       SRV_DIR="c:\work\hake\srv"
+   ```
    
-   Set your `SRV_DIR` to the directory you pasted to the clipboard, which for
-   this example was `c:\work\hake\srv`. If you commit this change
-   to the repository it will be remembered for the future and you will not
-   have to do this step again when you want to run the Docker container,
-   as long as you always download the `srv` folder from the Google drive to
-   the same place on your machine.
+   Set `SRV_DIR` in your part of the `if` statement to the directory you
+   pasted to the clipboard, which for this example was `c:\work\hake\srv`.
+   Your name must also be correct for the machine you're on. Open a Bash
+   shell in Windows on your local machine (Not `powershell` or `cmd`) and
+   type this to get your name: `echo $USERNAME`. Change your name to what
+   was printed by the `echo` command in the `if` statement.
+   
+   If you commit these changes to the repository your directory will be
+   remembered for the future and you will not have to do this step again
+   when you want to run the Docker container, as long as you always
+   download the `srv` folder from the Google drive to the same place on
+   your machine.
 
 1. Open a Bash terminal and navigate to the `docker` directory of the
    `hake-assessment` repository.
 
-1. Run `./run-hake-docker.sh`
+1. Start a `hake` container:
+
+   ```bash
+   ./run-hake-docker.sh
+   ```
 
 1. Once the Docker Bash terminal starts, it will update the hake repository
    automatically by running `git pull`. You can then connect to the Rstudio
@@ -80,23 +100,39 @@ that for the following procedure, don't try to run anything from the
 
    - If you type `ls /srv` it will be listing the contents of your linked
      directory on your local machine (`c:\work\hake\srv` for the example
-     above).
-   - In the Bash terminal, type: `/init`. This will start the Rstudio server
-     and leave the terminal in a paused state.
-   - Open a browser.
-   - In the URL bar, type `localhost:8787`
-   - The Rstudio login page will appear. In the user box type `rstudio`. In
-     the password box, type `a`.
-   - Rstudio will open in your browser. You will start in the `doc` directory
-     (this is the directory in which the main document is built) and the
-     files `_bookdown.yml` and `000-launcher.rmd` will be open.
-   - To build the document in full, type `render()`. For more information
-     on building the document, see the `README.md` file for the [hake
-     assessment repository](https://github.com/pacific-hake/hake-assessment).
+     above). If this doesn't work, go back to step 4 and make sure both your
+     machine name and directory are correct.
+   - In the Bash terminal, run the folowing command:
+   
+     ```bash
+     /init
+     ```
+
+     This will start the Rstudio server and leave the terminal in a paused
+     state.
+   - Open a Web browser, and in the URL bar, type the following followed
+     by `Enter`:
+   
+     ```
+     localhost:8787
+     ```
+
+   - The Rstudio login page will appear. Enter the credentials:
+     - Username: `rstudio`
+     - Password: `a`
+   - Rstudio will open in your browser. You will start in the `doc` directory,
+     and the files `_bookdown.yml` and `000-launcher.rmd` will be open.
+   - To test the container, build the assessment document:
+   
+     ```R
+     render()
+     ```
+     For more information on building the document, see the `README.md`
+     file for the [hake assessment repository](https://github.com/pacific-hake/hake-assessment).
    - To exit, click the button on the top right of the RStudio server page
      which says `rstudio` to its left and looks like an arrow pointing to
      the right off a white square, OR type `q()` at the console.
-   - Go back to the Docker Bash terminal and press Ctrl-c a couple of times
+   - Go back to the Docker Bash terminal and press `Ctrl-c` a couple of times
      to return to the Bash prompt.
    - Type `exit` in the Bash terminal to close the Docker container. If you 
      keep the Docker container Bash terminal open, Your Rstudio session will
@@ -104,30 +140,61 @@ that for the following procedure, don't try to run anything from the
      Once you exit the container, you will lose any changes made inside it
      (without warning).
 
+## Steps to run the container day-to-day
+
 Once all the steps above are completed, you only need to do the following to
 run a container and work on the assessment: \
 
-1. Open a bash terminal and navigate to the `docker` directory in the hake
-   repository.
+1. Open a Bash terminal and navigate to the `docker` directory in the hake
+   repository on your local machine.
 
 1. Run the script `./run-hake-docker.sh`
 
-1. Once the Docker container's bash prompt appears, type `/init`
+1. Once the Docker container's bash prompt appears, run the command `/init`
 
-1. Go to a Web browser, open a new tab, and type `loclhost:8787` in the
-   URL bar (you can bookmark this).
+1. Go to a Web browser, open a new tab, and type `localhost:8787` in the
+   URL bar and press Enter (you can bookmark this to save time).
 
-1. Login to Rstudio with user `rstudio` and password `a`
+1. Login to Rstudio in the sign-in page that appears:
 
-## Introduction
+   - Username: `rstudio`
+   - Password: `a`
 
-The hake docker build files are found in the `docker` directory. The
-`Dockerfile` is the primary script to build the image and the sub-directory
-`ubuntu-essentials` contains the build files to create the starting image for
-the hake docker image.
+1. Rstudio will open, your working directory will be the `doc` directory, and
+   `devtools::load_all()` will have been run already so the hake package
+   will be loaded.
 
-## Structure of the Docker image
-**cgrandin/ubuntu-essentials** is based on the **rocker/tidyverse:latest**
+## Descriptions of the Docker build and run scripts
+
+The hake docker run and build scripts are found in the `docker` directory of
+the `hake-assessment` repository.
+
+The `Dockerfile` is the primary script to build the `hake` image and the
+sub-directory `docker/ubuntu-essentials` contains the build files to create
+the `cgrandin/ubuntu-essentials` image, which acts as the starting image for
+the `cgrandin/hake` image. It contains all the Linux libraries and commands
+needed to ensure the R packages and compile steps for ADMB and SS3 succeed
+later on when building the `cgrandin/hake` image. Since
+`cgrandin/ubuntu-essentials` is its own Docker image, it has it's own
+`Dockerfile` used to create it.
+
+Note: *The `cgrandin/` part of the image names are necessary because that
+is how docker knows which Docker Hub account to push the image to when
+you run `docker push cgrandin/hake`. Without it, you cannot push the image
+and it will not be share-able.*
+
+The script used to run the container (`run-hake-docker.sh`) is very simple
+as it just calls the `docker run` command which includes a password for
+sign-in, a port allocation for the web browser Rstudio interface
+(in-container-port:out-of-container-port = `8787:8787`) and a linkage to make
+the directory `/srv` inside the container link to a directory outside the
+container, on your local machine. Since that can be different for each person,
+there is an if statement to set that directory to each person's personal
+preference.
+
+## Structure of the Docker image `cgrandin/ubuntu-essentials`
+
+`cgrandin/ubuntu-essentials` is based on the `rocker/tidyverse:latest`
 image. See [The Rocker Project](https://rocker-project.org/). It contains
 the latest versions of everything in it. Currently (December 2023) it
 contains: \
@@ -140,9 +207,15 @@ contains: \
 
 1. Ubuntu packages added that are needed by the hake assessment project
 
-## Contents of the **Dockerfile**
+Every time the `cgrandin/ubuntu-essentials` image is built, the latest Rocker
+image (`rocker/tidyverse:latest`) will be used which means that all of the
+items listed above will be the newest possible (official releases only).
 
-**cgrandin/hake** contains: \
+## Structure of the Docker image `cgrandin/hake`
+
+`cgrandin/ubuntu-essentials` is based on the `cgrandin/ubuntu-essentials`
+image. `cgrandin/hake` contains everything `cgrandin/ubuntu-essentials`
+contains plus the following: \
 
 1. [ADMB](https://github.com/admb-project/admb) release version 13.1
    (12-22-2023) built from source.
@@ -157,6 +230,11 @@ contains: \
 
 1. A clone of the GitHub repository for the hake assessment in the directory: \
    `/home/rstudio/hake`
+   
+1.  A Bash script that will Automatically `git pull` the latest from the
+   `hake-assessment` repository each time a `hake` Docker container is run,
+   so you can be sure you are starting at the `HEAD` of the git repository
+   on the master branch.
    
 1. New environment variables:
    - $HOME (`/home/rstudio`)
@@ -176,6 +254,5 @@ contains: \
    - $SS3_HOME
    - $TEXLIVE_HOME
 
-<!-- ##  -->
-<!-- To have **<span style="color:green;">Verified</span>** appear on your GitHub -->
+<!-- To have **<span style="color:green;">text in green</span>** appear -->
 
