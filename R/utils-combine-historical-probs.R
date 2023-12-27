@@ -2,8 +2,6 @@
 #' combine with past assessment estimates
 #'
 #' @param model A model as loaded by [create_rds_file()]
-#' @param hist_probs A data frame containing the data found in
-#' `assessment-history-probs.csv`
 #' @param start First assessment year to do comparisons
 #' @param end Last assessment year to do comparisons
 #' @param ... Further arguments to pass to [calc_historical_probs()]
@@ -22,17 +20,34 @@
 #'    that the spawning biomass was below B_40 in year+1
 #' @export
 combine_historical_probs <- function(model,
-                                     hist_probs,
                                      start = 2012,
                                      end,
                                      ...){
 
-  res <- cbind(hist_probs[hist_probs$Year %in% start:end, ],
-               calc_historical_probs(model,
-                                     start = start,
-                                     end = end,
-                                     ...)
-  )
-  stopifnot(res$year == res$Year)
-  res <- res[ , !(names(res) %in% c("year"))]
+  hist_probs_rng <- assess_history_probs_df |>
+    filter(Year %in% start:end) |>
+    rename(year = Year)
+
+  new_hist_probs_rng <- calc_historical_probs(model,
+                                              start = start,
+                                              end = end,
+                                              ...) |>
+    as_tibble()
+
+  if(nrow(new_hist_probs_rng) < nrow(hist_probs_rng)){
+    stop("The number of rows (years) in the model-calculated historical ",
+         "probabilties is less than what appears in the ",
+         "`assess_history_probs_df` package data frame (from CSV file)")
+  }
+
+  if(nrow(new_hist_probs_rng) > nrow(hist_probs_rng)){
+    # Add new row(s) of NA's to the old table, if the new one has more
+    # years than the old
+    hist_probs_rng <- hist_probs_rng |>
+      complete(year = sort(new_hist_probs_rng$year),
+               fill = list(value = NA))
+  }
+
+  hist_probs_rng |>
+    full_join(new_hist_probs_rng, by = "year")
 }

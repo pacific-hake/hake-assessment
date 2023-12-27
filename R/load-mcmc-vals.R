@@ -173,11 +173,9 @@ load_mcmc_vals <- function(model,
       1)
 
   # Probabilities for historical performance analyses -------------------------
-  out$historical_probs_df <-
+    out$historical_probs_df <-
     combine_historical_probs(model = model,
-                             hist_probs = assess_history_probs_df,
-                             end = assess_yr - 1) |>
-    as_tibble()
+                             end = assess_yr - 1)
 
   # Random values relying directly on MCMC posteriors in the document text
   # These will be `NULL` for retrospectives going back too far, in that case,
