@@ -18,50 +18,65 @@ knitr::opts_chunk$set(collapse = TRUE,
 
 This vignette assumes you have installed Docker on your local Windows machine.
 If it is an IT-controlled machine it is unlikely they will allow it to be
-installed as the docker service requires root access to run the containers,
-which they see as a vulnerability.
+installed as the Docker service requires root access to run the containers,
+which they see as a vulnerability. \
+[Download Docker installer for Windows](https://docs.docker.com/desktop/install/windows-install/)
+
+In MS Windows 11, open a Bash shell by Running `powershell` or `cmd` to get
+a DOS terminal, then type `bash` inside that to get to a Bash prompt. Use
+that for the following procedure, don't try to run anything from the
+`powershell` or `cmd` terminal directly.
+
+1. Once you have Docker installed, open a Bash terminal and pull the
+   relevant images from Docker Hub: \
+
+   `docker pull cgrandin/ubuntu-essentials` \
+   `docker pull cgrandin/hake` \
+
+   The `cgrandin/hake` image is very large and will take about 15 minutes
+   to download.
 
 1. Acquire the [srv directory](https://drive.google.com/drive/folders/11KCdlsgk0hj3NlQY1aV6C99QBEP1GyQV)
    from Google Drive (need share permission) and place it wherever you want
-   on your computer. Copy the absolute path of its location somewhere like
-   the clipboard. For example, if you were on Windows, downloaded it and
-   copied it into the directory `C:\work\hake`, copy the directory
-   `c:\work\hake\srv` to the clipboard or make note of it. This folder
-   contains an exact replica of the `/srv` directory structure on the server,
+   on your computer. Copy the absolute path of its location to the
+   clipboard. For example, if you were on Windows, downloaded and placed
+   the `srv` directory into the directory `C:\work\hake`, then you would copy
+   the directory `c:\work\hake\srv` to the clipboard. This folder contains
+   an exact replica of the `/srv` directory structure on the server,
    so the code in the Docker container does not need to be modified to run
-   the same as on the server. The directories contain only SS3 input files and
-   the output RDS files for the models, not all the MCMC files and SS3 output
-   files, so the download is not too long.
+   in the Docker container. The downloaded directories contain only SS3
+   input files and the output RDS files for the models, not all the MCMC
+   files and SS3 output files, so the download will not be too long (a couple
+   of minutes).
 
-1. `git clone` the hake package from GitHub: \
+1. `git clone` the hake package onto your local machine from GitHub if you
+    haven't done so already: \
    `git clone https://github.com/pacific-hake/hake-assessment`
 
 1. You must link the directory on your computer from the download with the
    `/srv` directory inside the Docker container. Continuing the example
    above, the directory name `c:\work\hake\srv` where you stored the downloaded
    `srv` folder is in the clipboard. Edit the file `docker/run-hake-docker.sh`
-   file and find this line:  \
+   file and find the line in the `if` statement with your name in it like
+   this: \
 
-   `elif [[ "$OSTYPE" == "msys" ]]; then` \
+   `"$USERNAME" == "grandin"` \
    
-   then find your name, for example:
-
-   `if [[ "$USERNAME" == "grandin" ]]; then`
-   `  SRV_DIR="d:/WORK/A_Species/Hake/srv"`
-
    Set your `SRV_DIR` to the directory you pasted to the clipboard, which for
-   this example was `c:\work\hake\srv`. Delete the `printf` message and
-   `exit 1` associated with your name and save. If you commit this change
+   this example was `c:\work\hake\srv`. If you commit this change
    to the repository it will be remembered for the future and you will not
-   have to do this step again when you want to run the Docker container.
+   have to do this step again when you want to run the Docker container,
+   as long as you always download the `srv` folder from the Google drive to
+   the same place on your machine.
 
 1. Open a Bash terminal and navigate to the `docker` directory of the
-   `hake-assessment` repository. On Windows, open `Powershell` or `cmd`
-   and type `bash` to open a bash shell.
+   `hake-assessment` repository.
 
 1. Run `./run-hake-docker.sh`
 
-1. Once the Docker Bash terminal starts, you can connect to the Rstudio server:
+1. Once the Docker Bash terminal starts, it will update the hake repository
+   automatically by running `git pull`. You can then connect to the Rstudio
+   server:
 
    - If you type `ls /srv` it will be listing the contents of your linked
      directory on your local machine (`c:\work\hake\srv` for the example
@@ -73,8 +88,9 @@ which they see as a vulnerability.
    - The Rstudio login page will appear. In the user box type `rstudio`. In
      the password box, type `a`.
    - Rstudio will open in your browser. You will start in the `doc` directory
-     (this is the directory in which the main document is built).
-   - To build the document in full now, type `render()`. For more information
+     (this is the directory in which the main document is built) and the
+     files `_bookdown.yml` and `000-launcher.rmd` will be open.
+   - To build the document in full, type `render()`. For more information
      on building the document, see the `README.md` file for the [hake
      assessment repository](https://github.com/pacific-hake/hake-assessment).
    - To exit, click the button on the top right of the RStudio server page
@@ -82,7 +98,26 @@ which they see as a vulnerability.
      the right off a white square, OR type `q()` at the console.
    - Go back to the Docker Bash terminal and press Ctrl-c a couple of times
      to return to the Bash prompt.
-   - Type `exit` to close the Docker container.
+   - Type `exit` in the Bash terminal to close the Docker container. If you 
+     keep the Docker container Bash terminal open, Your Rstudio session will
+     remain cached and start where you left off if you type `/init` again.
+     Once you exit the container, you will lose any changes made inside it
+     (without warning).
+
+Once all the steps above are completed, you only need to do the following to
+run a container and work on the assessment: \
+
+1. Open a bash terminal and navigate to the `docker` directory in the hake
+   repository.
+
+1. Run the script `./run-hake-docker.sh`
+
+1. Once the Docker container's bash prompt appears, type `/init`
+
+1. Go to a Web browser, open a new tab, and type `loclhost:8787` in the
+   URL bar (you can bookmark this).
+
+1. Login to Rstudio with user `rstudio` and password `a`
 
 ## Introduction
 
@@ -141,7 +176,6 @@ contains: \
    - $SS3_HOME
    - $TEXLIVE_HOME
 
-
-
-To have **<span style="color:green;">Verified</span>** appear on your GitHub
+<!-- ##  -->
+<!-- To have **<span style="color:green;">Verified</span>** appear on your GitHub -->
 

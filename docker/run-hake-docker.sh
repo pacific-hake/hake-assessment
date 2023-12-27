@@ -40,12 +40,13 @@
 #
 # SRV_DIR="d:/WORK/A_Species/Hake/srv"
 # On the server (default):
-if [[ "$HOSTNAME" == "hake-precis1ion"* ]]; then
+if [[ "$HOSTNAME" == "hake-precision" ]]; then
   # Linux hake server
+  #SRV_DIR=/srv
   SRV_DIR=/srv
 else
   # $USERNAME below is output of echo $USERNAME in your bash shell
-  if [[ "$USERNAME" == "grandin1" ]]; then
+  if [[ "$USERNAME" == "grandin" ]]; then
     SRV_DIR="d:/WORK/A_Species/Hake/srv"
   elif [[ "$USERNAME" == "kelli" ]]; then
     SRV_DIR=/srv
@@ -55,10 +56,16 @@ else
     SRV_DIR=/srv
   else
     printf "You need to set up the linkage between a directory on your\n \
-            local machine and /srv directory inside the Docker container.\n \
+            local machine and the /srv directory inside the Docker container.\n \
             Edit the 'run-hake-docker.sh' file.\n\n"
     exit 1
   fi
+fi
+
+if [ ! -d "$SRV_DIR" ]; then
+  printf "Directory '$SRV_DIR' does not exist, Edit the 'run-hake-docker.sh'\n \
+          file and try again.\n\n"
+  exit 1
 fi
 
 docker run -it -p 8787:8787 -e PASSWORD=a --mount \
