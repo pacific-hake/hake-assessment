@@ -83,7 +83,7 @@ if(home == ""){
        "which means the $HOME variable in the OS is not set")
 }
 models_dir <- "/srv/hake/models"
-test <- rmarkdown::metadata$output$`hake::hake_pdf`$test %||% FALSE
+test <- rmarkdown::metadata$output$`hake::hake_beamer`$test %||% FALSE
 if(test){
   # Necessary for `gotest()` testing
   devtools::load_all(paste0(home, "/github/pacific-hake/hake-assessment"))
