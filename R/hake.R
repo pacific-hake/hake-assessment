@@ -13,7 +13,8 @@
 #' @import knitr
 #' @import magick
 #' @import purrr
-#' @import rnaturalearth rnaturalearthhires r4ss
+#' @import rnaturalearth rnaturalearthhires
+#' @rawNamespace import(r4ss, except = c(profile))
 #'
 #' @importFrom cli cli_abort cli_inform cli_warn symbol
 #' @importFrom clipr clipr_available write_clip dr_clipr
