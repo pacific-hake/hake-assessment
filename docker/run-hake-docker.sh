@@ -14,7 +14,7 @@ else
   # $USERNAME below is output of echo $USERNAME in your bash shell on your
   # local machine
   if [[ "$USERNAME" == "grandin" ]]; then
-    SRV_DIR="d:/WORK/A_Species/Hake/srv"
+    SRV_DIR="/d/WORK/A_Species/Hake/srv"
   elif [[ "$USERNAME" == "kelli" ]]; then
     SRV_DIR=/srv
   elif [[ "$USERNAME" == "aaron" ]]; then

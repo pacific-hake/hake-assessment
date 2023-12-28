@@ -65,19 +65,25 @@ that for the following procedure, don't try to run anything from the
    above, the directory name `c:\work\hake\srv` where you stored the downloaded
    `srv` folder is in the clipboard. Edit the file `docker/run-hake-docker.sh`
    file and find the line in the `if` statement with your name in it like
-   this: \
+   the following: \
 
    ```bash
      elif [[ "$USERNAME" == "chewbacca" ]]; then
-       SRV_DIR="c:\work\hake\srv"
+       SRV_DIR="/c/work/hake/srv"
    ```
    
    Set `SRV_DIR` in your part of the `if` statement to the directory you
    pasted to the clipboard, which for this example was `c:\work\hake\srv`.
+   Notice the way the directory is written. It needs to be converted into
+   this form since we are running the Docker container from within Bash and
+   not DOS. If the local directory was on the `D:` drive instead like this:
+   `d:\work\hake\srv`, the directory you need to enter here would be
+   `/d/work/hake/srv`.
+
    Your name must also be correct for the machine you're on. Open a Bash
    shell in Windows on your local machine (Not `powershell` or `cmd`) and
-   type this to get your name: `echo $USERNAME`. Change your name to what
-   was printed by the `echo` command in the `if` statement.
+   type this to get your name: `echo $USERNAME`. Change your name  in the
+   `if` statement to what was printed by the `echo` command.
    
    If you commit these changes to the repository your directory will be
    remembered for the future and you will not have to do this step again
@@ -102,12 +108,11 @@ that for the following procedure, don't try to run anything from the
      directory on your local machine (`c:\work\hake\srv` for the example
      above). If this doesn't work, go back to step 4 and make sure both your
      machine name and directory are correct.
-   - In the Bash terminal, run the folowing command:
+   - In the Bash terminal, run the following command:
    
      ```bash
      /init
      ```
-
      This will start the Rstudio server and leave the terminal in a paused
      state.
    - Open a Web browser, and in the URL bar, type the following followed
