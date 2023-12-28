@@ -76,7 +76,7 @@ user <- ifelse(Sys.getenv("USERNAME") == "",
 if(user == "grandin"){
   # Add specialized user code here
 }
-home <- system("echo $HOME")
+home <- system("echo $HOME", intern = TRUE)
 if(home == ""){
   stop("`home` is an empty string. The `system(echo $HOME)` call failed ",
        "which means the $HOME variable in the OS is not set")
