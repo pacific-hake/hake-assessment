@@ -82,6 +82,7 @@ ENV TEXLIVE_HOME=/usr/local/texlive/2023/bin/x86_64-linux
 ENV MANPATH=/usr/local/texlive/2023/texmf-dist/doc/man
 ENV INFOPATH=/usr/local/texlive/2023/texmf-dist/doc/info
 ENV PATH=$TEXLIVE_HOME:$PATH
+
 # Update the TexLive package manager contents - uncomment this if
 # you are adding more TexLive packages below
 #RUN tlmgr update --self
@@ -95,5 +96,7 @@ COPY Rprofile $HOME/.Rprofile
 # Add some things to the history file so we don't have to type them out
 # each time there is a new container
 COPY Rhistory $HOME/.Rhistory
-RUN mkdir $HOME/hake-assessment
-WORKDIR $HOME/hake-assessment
+
+ENV HAKE=$HOME/github/pacific-hake/hake-assessment
+RUN mkdir -p $HAKE
+WORKDIR $HAKE

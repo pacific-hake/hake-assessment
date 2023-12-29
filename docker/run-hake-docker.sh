@@ -55,6 +55,6 @@ docker run \
   -p 8787:8787 \
   -e PASSWORD=a \
   --mount type=bind,source=$SRV_DIR,target=/srv \
-  --mount type=bind,source=$REPO_DIR,target=/home/rstudio/hake-assessment \
+  --mount type=bind,source=$REPO_DIR,target=/home/rstudio/github/pacific-hake/hake-assessment \
   cgrandin/hake \
   bash

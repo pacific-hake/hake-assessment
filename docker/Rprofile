@@ -1,4 +1,4 @@
-dr <- "/home/rstudio/hake-assessment"
+dr <- "/home/rstudio/github/pacific-hake/hake-assessment"
 dr_doc <- file.path(dr, "doc")
 setwd(dr_doc)
 
