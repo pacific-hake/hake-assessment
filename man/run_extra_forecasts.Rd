@@ -8,7 +8,7 @@ run_extra_forecasts(
   model_path,
   forecast_yrs,
   catch_levels = list(list(rep(470000, length(forecast_yrs)), "470,000 t", "16-470000"),
-    list(rep(510000, length(forecast_yrs)), "510,000 t", "17-510000"), list(rep(6e+05,
+    list(rep(510000, length(forecast_yrs)), "510,000 t", "17-510000"), list(rep(600000,
     length(forecast_yrs)), "600,000 t", "18-600000"), list(rep(650000,
     length(forecast_yrs)), "650,000 t", "19-650000")),
   ...

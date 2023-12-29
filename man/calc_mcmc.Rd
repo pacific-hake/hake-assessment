@@ -4,7 +4,7 @@
 \alias{calc_mcmc}
 \title{Return a list of mcmc calculations, e.g. quantiles for various values}
 \usage{
-calc_mcmc(mcmc, biomass_scale = 1e+06, recr_scale = 1e+06, ...)
+calc_mcmc(mcmc, biomass_scale = 1000000, recr_scale = 1000000, ...)
 }
 \arguments{
 \item{mcmc}{The output of the \code{\link[r4ss:SSgetMCMC]{r4ss::SSgetMCMC()}} function as a data.frame}
