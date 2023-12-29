@@ -77,8 +77,8 @@ output:
 
    # Footer text --------------------------------------------------------------
    footer_left: "DRAFT -- `r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`"
-   # NOTE: cannot use backticks inside R-chunk bleow, so need to use
-   # [['hake::hake_pdf']] instead of $`hake::hake_pdf`
+   # NOTE: cannot use backticks inside R-chunk which already uises backticks
+   # here, so need to use [['hake::hake_pdf']] instead of $`hake::hake_pdf`
    footer_right: "Font: `r rmarkdown::metadata$output[['hake::hake_pdf']]$font`"
    # ---------------------------------------------------------------------------
 
