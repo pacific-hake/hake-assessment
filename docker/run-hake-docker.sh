@@ -8,32 +8,53 @@
 
 if [[ "$HOSTNAME" == "hake-precision" ]]; then
   # Linux hake server
-  #SRV_DIR=/srv
-  SRV_DIR=/srv
+  SRV_DIR="/srv"
+  # Assumes everyone has their 'hake-assessment' repository in the same
+  # location within their '/home' directory
+  REPO_DIR="$HOME/github/pacific-hake/hake-assessment"
 else
+  # **Machine is assumed to be MS WINDOWS**
   # $USERNAME below is output of echo $USERNAME in your bash shell on your
   # local machine
   if [[ "$USERNAME" == "grandin" ]]; then
     SRV_DIR="/d/WORK/A_Species/Hake/srv"
+    REPO_DIR="/d/github/pacific-hake/hake-assessment"
   elif [[ "$USERNAME" == "kelli" ]]; then
-    SRV_DIR=/srv
+    SRV_DIR="/c/srv"
+    REPO_DIR="/c/github/pacific-hake/hake-assessment"
   elif [[ "$USERNAME" == "aaron" ]]; then
-    SRV_DIR=/srv
+    SRV_DIR="/c/srv"
+    REPO_DIR="/c/github/pacific-hake/hake-assessment"
   elif [[ "$USERNAME" == "andy" ]]; then
-    SRV_DIR=/srv
+    SRV_DIR="/c/srv"
+    REPO_DIR="/c/github/pacific-hake/hake-assessment"
   else
-    printf "You need to set up the linkage between a directory on your\n \
-            local machine and the /srv directory inside the Docker container.\n \
+    printf "You need to set up the linkages between the directory on your\n \
+            local machine and the /srv directory and hake-assessment\n \
+            repository directory inside the Docker container.\n \
             Edit the 'run-hake-docker.sh' file.\n\n"
     exit 1
   fi
 fi
 
 if [ ! -d "$SRV_DIR" ]; then
-  printf "Directory '$SRV_DIR' does not exist, Edit the 'run-hake-docker.sh'\n \
-          file and try again.\n\n"
+  printf "Directory '$SRV_DIR' does not exist on your local machine, Edit\n \
+          the 'run-hake-docker.sh' file and try again.\n\n"
   exit 1
 fi
 
-docker run -it -p 8787:8787 -e PASSWORD=a --mount \
-  type=bind,source=$SRV_DIR,target=/srv cgrandin/hake bash
+if [ ! -d "$REPO_DIR" ]; then
+  printf "Directory '$REPO_DIR' does not exist on your local machine, Edit\n \
+          the 'run-hake-docker.sh' file and try again.\n\n"
+  exit 1
+fi
+
+docker run \
+  -it \
+  --rm \
+  -p 8787:8787 \
+  -e PASSWORD=a \
+  --mount type=bind,source=$SRV_DIR,target=/srv \
+  --mount type=bind,source=$REPO_DIR,target=/home/rstudio/hake-assessment \
+  cgrandin/hake \
+  bash

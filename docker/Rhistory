@@ -1,0 +1,3 @@
+clean()
+render()
+devtools::load_all("/home/rstudio/hake-assessment")

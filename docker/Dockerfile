@@ -82,31 +82,18 @@ ENV TEXLIVE_HOME=/usr/local/texlive/2023/bin/x86_64-linux
 ENV MANPATH=/usr/local/texlive/2023/texmf-dist/doc/man
 ENV INFOPATH=/usr/local/texlive/2023/texmf-dist/doc/info
 ENV PATH=$TEXLIVE_HOME:$PATH
-# Update the TexLive package manager contents
-RUN tlmgr update --self
+# Update the TexLive package manager contents - uncomment this if
+# you are adding more TexLive packages below
+#RUN tlmgr update --self
 
 # Delete remnants
-RUN rm install_r_packages.R
-RUN rm install_texlive.sh
-RUN rm -rf texlive_tmp
-
-# Clone the hake repository
-WORKDIR $HOME
-RUN mkdir github
-RUN mkdir github/pacific-hake
-
-ENV PHAKE=$HOME/github/pacific-hake
-ENV HAKE_REPO=hake-assessment
-ENV HAKE=$PHAKE/$HAKE_REPO
-
-WORKDIR $PHAKE
-RUN git clone https://github.com/pacific-hake/hake-assessment $HAKE_REPO
-RUN chmod -R 777 $HAKE_REPO
+RUN rm install_r_packages.R install_texlive.sh; rm -rf texlive_tmp
 
 #.Rprofile contains the code that loads the hake package into the session
 # automatically at startup
 COPY Rprofile $HOME/.Rprofile
-# Start in the hake directory and pull the repository so it is fresh
-COPY run-git-pull.sh $HAKE/git-pull.sh
-WORKDIR $HAKE
-ENTRYPOINT ["./git-pull.sh"]
+# Add some things to the history file so we don't have to type them out
+# each time there is a new container
+COPY Rhistory $HOME/.Rhistory
+RUN mkdir $HOME/hake-assessment
+WORKDIR $HOME/hake-assessment

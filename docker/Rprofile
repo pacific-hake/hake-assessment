@@ -1,24 +1,35 @@
-dr <- "/home/rstudio/github/pacific-hake/hake-assessment"
+dr <- "/home/rstudio/hake-assessment"
 dr_doc <- file.path(dr, "doc")
 setwd(dr_doc)
 
 if(Sys.getenv("RSTUDIO") == "1"){
+  # Change the File panel to the current working directory (set above)
   setHook("rstudio.sessionInit",
           action = "append",
           \(newSession){
     rstudioapi::filesPaneNavigate(getwd())
   })
+  # Open the file `doc/_bookdown.yml` in a new tab on startup
   setHook("rstudio.sessionInit",
           action = "append",
           \(newSession){
     rstudioapi::navigateToFile(file.path(dr_doc, "_bookdown.yml"))
   })
+  # Open the file `doc/000-launcher.rmd` in a new tab on startup
   setHook("rstudio.sessionInit",
           action = "append",
           \(newSession){
     rstudioapi::navigateToFile(file.path(dr_doc, "000-launcher.rmd"))
   })
 }
+
+# Set the Graphics backend to Cairo or plots will not show up in the
+# Plots panel in the Rstudio server session
+setHook("rstudio.sessionInit",
+        action = "append",
+        \(newSession){
+    options(device = "Cairo")
+  })
 
 suppressWarnings(devtools::load_all())
 
