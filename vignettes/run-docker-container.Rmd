@@ -16,6 +16,8 @@ knitr::opts_chunk$set(collapse = TRUE,
 ```{r setup, echo = FALSE, message = FALSE, results = "hide", warning = FALSE}
 ```
 
+---
+
 This vignette assumes you have installed Docker on your local Windows machine.
 If it is an IT-controlled machine it is unlikely they will allow it to be
 installed as the Docker service requires root access to run the containers,
@@ -30,93 +32,110 @@ that for the following procedure, don't try to run anything from the
 ## Steps to run the container for the first time
 
 1. Once you have Docker installed, open a Bash terminal and pull the
-   relevant images from Docker Hub: \
+   docker image from Docker Hub: \
 
    ```bash
-   docker pull cgrandin/ubuntu-essentials
    docker pull cgrandin/hake
    ```
 
-   The `cgrandin/hake` image is very large and will take about 15 minutes
-   to download.
+   The image is very large and will take about 5 minutes to download.
 
-1. Download the [`srv` directory](https://drive.google.com/drive/folders/11KCdlsgk0hj3NlQY1aV6C99QBEP1GyQV)
-   from Google Drive (need share permission) and place it wherever you want
-   on your computer. Copy the absolute path of its location to the
-   clipboard. For example, if you were on Windows, downloaded and placed
-   the `srv` directory into the directory `C:\work\hake`, then you would copy
-   the directory `c:\work\hake\srv` to the clipboard. This folder contains
-   an exact replica of the `/srv` directory structure on the server,
-   so the code in the Docker container does not need to be modified to run
-   in the Docker container. The downloaded directories contain only SS3
-   input files and the output RDS files for the models, not all the MCMC
-   files and SS3 output files, so the download will not be too long (a couple
-   of minutes).
+1. Set up the two different local directories that are required to link to
+   the Docker container. They are:
 
-1. `git clone` the hake package onto your local machine from GitHub if you
-    haven't done so already: \
-    
+   - A `srv` directory which contains a structural replica of what resides
+     on the Linux server in the `/srv` directory and holds the model SS3
+     input files and the output `RDS` files for each model.
+       - Download the [srv directory](https://drive.google.com/drive/folders/11KCdlsgk0hj3NlQY1aV6C99QBEP1GyQV)
+         from Google Drive (need share permission) and place it wherever
+         you want on your local machine. Take the directory name, append
+         `srv` to it, convert it to Unix form, and enter it into the run
+         script as the link for the models output.
+         
+         For example, if you are on Windows, and place the `srv` directory into
+         the directory `d:\Work\hake`, then the directory is `d:\Work\hake\srv`.
+         You must convert it into Unix form which is `/d/Work/hake/srv`. This
+         is what you will enter into the run script on the next step.
+         Preserve case when converting to Unix paths and make sure there is
+         a leading `/` on it.
+
+   - A `hake-assessment` directory where the git repository resides. This
+     should be where your working copy is on your local machine.
+  
+       - If you do not have it yet, run `git clone`: \
+
+         ```bash
+         git clone https://github.com/pacific-hake/hake-assessment
+         ```
+
+       - Convert the directory name to Unix form as was done above for the
+         `srv` directory. If your `hake-assessment` directory was
+         `C:\Users\myname\github\pacific-hake\hake-assessment` then the Unix
+         eqivalent is `/c/Users/myname/github/pacific-hake/hake-assessment`.
+
+1. Find your user name on your local machine. If you already know what it is,
+   skip to the next step.
+
+   Open a Bash terminal in Windows on your local machine (Not `powershell`
+   or `cmd`) and type this to get your `USERNAME`: \
+
    ```bash
-   git clone https://github.com/pacific-hake/hake-assessment
+   echo $USERNAME
    ```
 
-1. You must link the directory on your computer from the download with the
-   `/srv` directory inside the Docker container. Continuing the example
-   above, the directory name `c:\work\hake\srv` where you stored the downloaded
-   `srv` folder is in the clipboard. Edit the file `docker/run-hake-docker.sh`
-   file and find the line in the `if` statement with your name in it like
-   the following: \
-
-   ```bash
-     elif [[ "$USERNAME" == "chewbacca" ]]; then
-       SRV_DIR="/c/work/hake/srv"
-   ```
+   Make sure your user name is correct in the `docker/run-hake-docker.sh`
+   file during the next step.
    
-   Set `SRV_DIR` in your part of the `if` statement to the directory you
-   pasted to the clipboard, which for this example was `c:\work\hake\srv`.
-   Notice the way the directory is written. It needs to be converted into
-   this form since we are running the Docker container from within Bash and
-   not DOS. If the local directory was on the `D:` drive instead like this:
-   `d:\work\hake\srv`, the directory you need to enter here would be
-   `/d/work/hake/srv`.
-
-   Your name must also be correct for the machine you're on. Open a Bash
-   shell in Windows on your local machine (Not `powershell` or `cmd`) and
-   type this to get your name: `echo $USERNAME`. Change your name  in the
-   `if` statement to what was printed by the `echo` command.
+1. Link the directories on your computer from the previous step with the
+   corresponding directories inside the Docker container:
    
-   If you commit these changes to the repository your directory will be
-   remembered for the future and you will not have to do this step again
+   - Edit the file `docker/run-hake-docker.sh` file and find the line in
+     the `if` statement with your name in it [(Example)](https://github.com/pacific-hake/hake-assessment/blob/604b168cc6b99f28496a782edb3a1b464f0ed0fe/docker/run-hake-docker.sh#L19). While there, make sure your `USERNAME`
+     is correct and replace it with the output from the previous step.
+     Here is what the `if/then` block looks like using the made up directories
+     from the previous steps: \
+
+     ```bash
+       if [[ "$USERNAME" == "myusername" ]]; then
+         SRV_DIR="/d/Work/hake/srv"
+         REPO_DIR="/c/Users/myname/github/pacific-hake/hake-assessment"
+     ```
+
+   If you commit these changes to the repository your directories will be
+   remembered for the future and you will not have to do this step ever again
    when you want to run the Docker container, as long as you always
    download the `srv` folder from the Google drive to the same place on
-   your machine.
+   your machine, and don't move your `hake-assessment` repository.
 
-1. Open a Bash terminal and navigate to the `docker` directory of the
-   `hake-assessment` repository.
-
-1. Start a `hake` container:
+1. Open a Bash terminal and navigate to `hake-assessment/docker` directory
+   of the `hake-assessment` repository on your local machine, then start
+   a `hake` container:
 
    ```bash
    ./run-hake-docker.sh
    ```
 
-1. Once the Docker Bash terminal starts, it will update the hake repository
-   automatically by running `git pull`. You can then connect to the Rstudio
-   server:
+   - The container will open in a Bash terminal, in the
+     `/home/rstudio/github/pacific-hake/hake-assessment` directory. Type
+     `ls -al` and you should see the files which are in the repository.
+     If you don't see any files, go back to the previous step, and make
+     sure you put the correct directory in the `docker/run-hake-docker.sh`
+     for the `REPO_DIR`. The same applies to the `/srv` directory, type
+     `ls -al /srv` and you should see the `hake` directory listed. If you
+     do not, go back and fix the `SRV_DIR` in the `docker/run-hake-docker.sh`
+     file.
 
-   - If you type `ls /srv` it will be listing the contents of your linked
-     directory on your local machine (`c:\work\hake\srv` for the example
-     above). If this doesn't work, go back to step 4 and make sure both your
-     machine name and directory are correct.
-   - In the Bash terminal, run the following command:
-   
+1. To launch the Rstudio server run the following command:
+
      ```bash
      /init
      ```
-     This will start the Rstudio server and leave the terminal in a paused
-     state.
-   - Open a Web browser, and in the URL bar, type the following followed
-     by `Enter`:
+
+     This will start a Rstudio server on your local machine and leave
+     the terminal in a paused state.
+
+1. To connect to the container's Rstudio server, open a Web browser and,
+   in the URL bar, type the following followed by `Enter`:
    
      ```
      localhost:8787
@@ -125,25 +144,34 @@ that for the following procedure, don't try to run anything from the
    - The Rstudio login page will appear. Enter the credentials:
      - Username: `rstudio`
      - Password: `a`
+
    - Rstudio will open in your browser. You will start in the `doc` directory,
      and the files `_bookdown.yml` and `000-launcher.rmd` will be open.
+
    - To test the container, build the assessment document:
-   
+
      ```R
      render()
      ```
+
      For more information on building the document, see the `README.md`
      file for the [hake assessment repository](https://github.com/pacific-hake/hake-assessment).
-   - To exit, click the button on the top right of the RStudio server page
-     which says `rstudio` to its left and looks like an arrow pointing to
-     the right off a white square, OR type `q()` at the console.
-   - Go back to the Docker Bash terminal and press `Ctrl-c` a couple of times
-     to return to the Bash prompt.
-   - Type `exit` in the Bash terminal to close the Docker container. If you 
-     keep the Docker container Bash terminal open, Your Rstudio session will
-     remain cached and start where you left off if you type `/init` again.
-     Once you exit the container, you will lose any changes made inside it
-     (without warning).
+
+   - To exit the Rstudio server, click the button on the top right of the
+     RStudio server page which says `rstudio` to its left and looks like an
+     arrow pointing to the right off a white square, OR type `q()` at the
+     console.
+
+   - To get the Bash prompt to appear again, go back to the paused
+     Docker Bash terminal and press `Ctrl-c` a couple of times.
+
+   - To exit the container completely, type `exit` in the Bash terminal.
+     If you keep the Docker container Bash terminal open, Your Rstudio
+     session will remain cached and start where you left off if you type
+     `/init` again. Once you exit the container, you will lose any changes
+     made inside it (without warning). This shouldn't matter though, as your
+     changes to the repository (or `srv` directory) are made outside the
+     container because they are linked.
 
 ## Steps to run the container day-to-day
 
@@ -169,95 +197,113 @@ run a container and work on the assessment: \
    `devtools::load_all()` will have been run already so the hake package
    will be loaded.
 
-## Descriptions of the Docker build and run scripts
+\
+
+# Building the Docker images
+
+---
+
+This section doesn't need to be read if you are just running the docker
+container to work on the hake assessment.
+
+## Description of the Docker build process
 
 The hake docker run and build scripts are found in the `docker` directory of
 the `hake-assessment` repository.
 
-The `Dockerfile` is the primary script to build the `hake` image and the
-sub-directory `docker/ubuntu-essentials` contains the build files to create
-the `cgrandin/ubuntu-essentials` image, which acts as the starting image for
-the `cgrandin/hake` image. It contains all the Linux libraries and commands
-needed to ensure the R packages and compile steps for ADMB and SS3 succeed
-later on when building the `cgrandin/hake` image. Since
-`cgrandin/ubuntu-essentials` is its own Docker image, it has it's own
-`Dockerfile` used to create it.
+The `Dockerfile` is the primary script to build the `cgrandin/hake` image
+and the sub-directories `docker/ss-texlive` and `docker/ubuntu-essentials`
+contain the build files to create the `cgrandin/ss-texlive` and
+`cgrandin/ubuntu-essentials` images, which act as the starting images for
+the `cgrandin/hake` image. They are compiled in this order (with descriptions):
 
-Note: *The `cgrandin/` part of the image names are necessary because that
-is how docker knows which Docker Hub account to push the image to when
-you run `docker push cgrandin/hake`. Without it, you cannot push the image
-and it will not be share-able.*
+To build all of the following images and produce the final `cgrandin/hake`
+image from scratch, use the Bash script `build-hake-docker-scratch.sh`. If
+a download times out or some other error occurs, you can continue the build
+by running `build-hake-docker-cached.sh`.
 
-The script used to run the container (`run-hake-docker.sh`) is very simple
-as it just calls the `docker run` command which includes a password for
-sign-in, a port allocation for the web browser Rstudio interface
-(in-container-port:out-of-container-port = `8787:8787`) and a linkage to make
-the directory `/srv` inside the container link to a directory outside the
-container, on your local machine. Since that can be different for each person,
-there is an if statement to set that directory to each person's personal
-preference.
+1. `cgrandin/ubuntu-essentials` - This image contains:
 
-## Structure of the Docker image `cgrandin/ubuntu-essentials`
+   - Ubuntu 22.04 LTS (or whatever the latest release Ubuntu will be in the
+     future)
 
-`cgrandin/ubuntu-essentials` is based on the `rocker/tidyverse:latest`
-image. See [The Rocker Project](https://rocker-project.org/). It contains
-the latest versions of everything in it. Currently (December 2023) it
-contains: \
+   - the Rocker project's `rocker/tidyverse` image which in itself contains
+     the latest Rstudio server, R itself, and the `tidyverse` family of
+     packages. The `tidyverse` family takes many hours to build in a local
+     Docker build script so using this saves a lot of time.
 
-1. Ubuntu 22.04 LTS Operating System
+   - R version 4.3.2 (2023-10-31)
 
-1. R version 4.3.2 (2023-10-31)
+   - RStudio Server 2023.12.0 Build 369
 
-1. RStudio 2023.12.0 Build 369
+   - many additional GNU libraries for Linux that are needed to compile the
+     R packages added later on in the build process.
 
-1. Ubuntu packages added that are needed by the hake assessment project
+1. `cgrandin/ss-texlive` - This image contains:
 
-Every time the `cgrandin/ubuntu-essentials` image is built, the latest Rocker
-image (`rocker/tidyverse:latest`) will be used which means that all of the
-items listed above will be the newest possible (official releases only).
-
-## Structure of the Docker image `cgrandin/hake`
-
-`cgrandin/ubuntu-essentials` is based on the `cgrandin/ubuntu-essentials`
-image. `cgrandin/hake` contains everything `cgrandin/ubuntu-essentials`
-contains plus the following: \
-
-1. [ADMB](https://github.com/admb-project/admb) release version 13.1
-   (12-22-2023) built from source.
+   - the `cgrandin/ubuntu-essentials` image, which includes everything in it.
    
-1. [SS3](https://github.com/nmfs-ost/ss3-source-code) release version 3.30.22
-   (2023-10-31) built from source.
+   - [ADMB](https://github.com/admb-project/admb) release version 13.1
+     (12-22-2023). This is the latest ADMB release, and it is cloned and
+     built from source in the Docker image build.
    
-1. TexLive 2023 (texlive-base version) (https://www.tug.org/texlive/)
-
-1. Many R packages that are either directly required by the hake project or
-   dependency packages of those required.
-
-1. A clone of the GitHub repository for the hake assessment in the directory: \
-   `/home/rstudio/hake`
+   - [SS3](https://github.com/nmfs-ost/ss3-source-code) release version 3.30.22
+     (2023-10-31). This is the latest SS3 release, and it is cloned and
+     built from source in the Docker image build.
    
-1.  A Bash script that will Automatically `git pull` the latest from the
-   `hake-assessment` repository each time a `hake` Docker container is run,
-   so you can be sure you are starting at the `HEAD` of the git repository
-   on the master branch.
-   
-1. New environment variables:
-   - $HOME (`/home/rstudio`)
-   - $INST (`/usr/bin`)
-   - $ADMB_HOME (`/usr/bin/admb/build/admb`)
-   - $ADMB_AD2CSV (`/usr/bin/admb/contrib/ad2csv`)
-   - $SS3_EXE_NAME (`ss3_2024`)
-   - $SS3_HOME (`/usr/bin/ss3`)
-   - $TEXLIVE_HOME (`/usr/local/texlive/2023/bin/x86_64-linux`)
-   - $MANPATH (`/usr/local/texlive/2023/texmf-dist/doc/man`)
-   - $INFOPATH (`/usr/local/texlive/2023/texmf-dist/doc/info`)
+   - TexLive 2023 (texlive-base version) (https://www.tug.org/texlive/) which
+     is the latest TexLive base version (texlive-base). TexLive takes a long
+     time to install during the Docker image build process, so it is separated
+     into its own image, to avoid having to wait every time a small change in
+     the final image needs to be done.
+     
+1. `cgrandin/hake` - This image contains:
 
-1. The **$PATH** environment variable has new paths added from the above list:
+   - Everything present in the `cgrandin/ss-teclive` image.
+
+   - Many R packages, that are needed for the `hake-assessment` package to be
+     used.
+     
+   - A fully-specified `rstudio-prefs.json` file, which holds settings for the
+     Rstudio GUI.
+     
+   - A `.Renviron` file, which contains a `GITHUB_PAT` token which was needed to
+     allow many pulls for the R packages we need. Without it, the build
+     process will error out due to *"too many GitHub API calls"*.
+     
+   - A .Rprofile file, which has R commands that are run when the Rstudio
+     server starts. This includes setting the working directory to the
+     `hake-assessment/doc` directory, syncing the 'Files' panel to that
+     directory, opening two files (`_bookdown.yml` and `000-launcher.rmd`),
+     and setting an option to ensure plots can be shown in the 'Plots' panel.
+     
+   - A .Rhistory file, which contains some often-used commands, so that we
+     can just press the up and down arrows instead of typing them out.
+
+   - new environment variables:
+
+     - $HOME (`/home/rstudio`)
+     - $INST (`/usr/bin`)
+     - $ADMB_HOME (`/usr/bin/admb/build/admb`)
+     - $ADMB_AD2CSV (`/usr/bin/admb/contrib/ad2csv`)
+     - $SS3_EXE_NAME (`ss3_2024`)
+     - $SS3_HOME (`/usr/bin/ss3`)
+     - $TEXLIVE_HOME (`/usr/local/texlive/2023/bin/x86_64-linux`)
+     - $MANPATH (`/usr/local/texlive/2023/texmf-dist/doc/man`)
+     - $INFOPATH (`/usr/local/texlive/2023/texmf-dist/doc/info`)
+
+   - A modified `$PATH` environment variable, containing the directories
+     for the ADMB, SS3, and TexLive executables. In particular, the paths
+     added are (from the list above):
+
    - $HOME
    - $ADMB_HOME/bin
    - $ADMB_AD2CSV
    - $SS3_HOME
    - $TEXLIVE_HOME
 
-<!-- To have **<span style="color:green;">text in green</span>** appear -->
-
+*Note: The `cgrandin/` part of the image names are necessary because that
+is how docker knows which Docker Hub account to push the image to when
+you run `docker push cgrandin/hake`. Without it, you cannot push the image
+and it will not be shareable unless done manually (i.e. upload/download
+to/from Google drive).*
