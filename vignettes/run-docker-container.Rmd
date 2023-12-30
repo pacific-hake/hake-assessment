@@ -293,14 +293,14 @@ by running `build-hake-docker-cached.sh`.
      - $INFOPATH (`/usr/local/texlive/2023/texmf-dist/doc/info`)
 
    - A modified `$PATH` environment variable, containing the directories
-     for the ADMB, SS3, and TexLive executables. In particular, the paths
-     added are (from the list above):
+     for the ADMB, SS3, and TexLive executables. In particular, the
+     paths added to the `$PATH` are (from the list above):
 
-   - $HOME
-   - $ADMB_HOME/bin
-   - $ADMB_AD2CSV
-   - $SS3_HOME
-   - $TEXLIVE_HOME
+   - $HOME (`/home/rstudio`)
+   - $ADMB_HOME/bin (`/usr/bin/admb/build/admb/bin`)
+   - $ADMB_AD2CSV (`/usr/bin/admb/contrib/ad2csv`)
+   - $SS3_HOME (`/usr/bin/ss3`)
+   - $TEXLIVE_HOME (`/usr/local/texlive/2023/bin/x86_64-linux`)
 
 *Note: The `cgrandin/` part of the image names are necessary because that
 is how docker knows which Docker Hub account to push the image to when
