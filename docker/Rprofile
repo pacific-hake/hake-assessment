@@ -1,9 +1,12 @@
+# Repository directory
 dr <- "/home/rstudio/github/pacific-hake/hake-assessment"
+# Assessment document directory
 dr_doc <- file.path(dr, "doc")
 setwd(dr_doc)
 
+# If in an RStudio session, do the following things
 if(Sys.getenv("RSTUDIO") == "1"){
-  # Change the File panel to the current working directory (set above)
+  # Change the File panel to the current working directory (set above to dr_doc)
   setHook("rstudio.sessionInit",
           action = "append",
           \(newSession){
@@ -23,14 +26,11 @@ if(Sys.getenv("RSTUDIO") == "1"){
   })
 }
 
-# Set the Graphics backend to Cairo or plots will not show up in the
-# Plots panel in the Rstudio server session
-setHook("rstudio.sessionInit",
-        action = "append",
-        \(newSession){
-    options(device = "Cairo")
-  })
+# Load the hake package
+suppressWarnings(devtools::load_all(dr))
 
-suppressWarnings(devtools::load_all())
-
+# Show numbers without scientific notation (up to exponent of 999)
 options(scipen = 999)
+
+# Needed to plot in the "plot" panel in Rstudio server
+options(device = "RStudioGD")

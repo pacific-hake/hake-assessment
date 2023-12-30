@@ -58,4 +58,7 @@ COPY Rhistory $HOME/.Rhistory
 ENV HAKE=$HOME/github/pacific-hake/hake-assessment
 RUN mkdir -p $HAKE
 
+COPY rstudio-prefs.json $HOME/.config/rstudio/rstudio-prefs.json
+RUN chmod 777 $HOME/.config/rstudio/rstudio-prefs.json
+
 WORKDIR $HAKE
