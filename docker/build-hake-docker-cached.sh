@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# Build the `ubuntu-essentials` image which resides in the `ubuntu-essentials`
-# directory from the docker directory using the cached steps (Docker layers)
-#
-# Sometimes there are errors which are caused by slow connections
-# (server side). These mostly seem to happen when installing TexLive. If
-# that happens, just run this script again. There doesn't seem to be much
-# we can do about it.
+# Build the hake image from scratch. First builds the dependent images,
+# which reside in subdirectories.
+
 docker build -t cgrandin/ubuntu-essentials ubuntu-essentials
+
+docker build -t cgrandin/ss-texlive ss-texlive
 
 docker build -t cgrandin/hake .

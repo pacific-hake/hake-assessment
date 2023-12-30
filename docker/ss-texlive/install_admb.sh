@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Installs ADMB from source for branch (release) 13.1 (find this in the
+# 'git clone' call below to change)
+#
+# Understand how this file is written:
 # https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
@@ -43,7 +47,8 @@ fi
 cd $admb_dir
 
 # Add semicolons to the end of all lines in all sedflex files,
-# and then remove ^M's which were added by the adding of semicolons step
+# and then remove ^M's which may have been added (if running sed on Windows)
+# by the adding of semicolons step
 sed -i '/[^;] *$/s/$/;/' src/df1b2-separable/sedflex
 sed -i 's/\r//' src/df1b2-separable/sedflex
 
@@ -53,13 +58,16 @@ sed -i 's/\r//' src/nh99/sedflex
 sed -i '/[^;] *$/s/$/;/' tests/xml/sedflex
 sed -i 's/\r//' tests/xml/sedflex
 
-# Remove ^M's from admb, adcomp, and adlink scripts
+# Remove ^M's from admb, adcomp, and adlink scripts (Because MS Windows
+# will add these, nothing will change is Linux source)
 sed -i 's/\r//' scripts/admb/adcomp
 sed -i 's/\r//' scripts/admb/adlink
 sed -i 's/\r//' scripts/admb/admb
 
 num_cpus=`cat /proc/cpuinfo | grep processor | wc -l`
 num_cpus_minus1=$((num_cpus-1))
+# Run `the 'make' command in parallel (available on Linux/Mac only),
+# reducing the compile time by several orders of magnitude.
 make -j $num_cpus_minus1
 
 # This link is required for the examples to build
@@ -68,6 +76,9 @@ ln -s build/admb/bin/admb admb || true
 # Contrib libraries need to be renamed, use symbolic links instead
 cd $admb_dir/build/admb/lib
 
+# These version numbers (g++9.a) will have to be changed in the future,
+# but I was lazy and hard-coded them. If the script breaks, it is probably
+# this
 ln -s libadmb-x86_64-linux-g++9.a libadmb.a || true
 ln -s libadmbo-x86_64-linux-g++9.a libadmbo.a || true
 

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Clone SS source and compile with optimization for ss docker image
+# Clone SS source and compile with optimization for ss docker image. Version
+# is hard coded in the 'git clone' call below. Change thjat as times change
 
 INST=/usr/bin
 SS3_HOME=$INST/ss3
@@ -31,6 +32,7 @@ SS_write_report.tpl \
 SS_ALK.tpl \
 SS_timevaryparm.tpl \
 SS_tagrecap.tpl > ss.tpl
-#
+
+# Compile 'safe' executable (-f)
 admb -f ss
 

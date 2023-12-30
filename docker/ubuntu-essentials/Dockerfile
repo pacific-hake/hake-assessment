@@ -1,7 +1,7 @@
 # Create Docker image that has RStudio and tidyverse built-in,
-# then add any necessary OS packages.
-# The resulting image is imported into the main hake Docker image which
-# resides in the directory above this
+# then add any necessary OS packages. The resulting image is uised as the
+# base for the `cgrandin/ss-texlive` image, which resides in the sibling
+# directory `ss-texlive`
 #
 # To build, make sure you are in the `docker/ubuntu-essentials` directory
 # of a cloned hake repository (this directory)
@@ -10,11 +10,6 @@
 # docker build -t cgrandin/ubuntu-essentials .
 # or, to build completely from scratch:
 # docker build --no-cache -t cgrandin/ubuntu-essentials .
-#
-# Once in awhile, you can remove all images on the machine with:
-# docker rmi $(docker images -a)
-# and you can remove all non-running containers with:
-# docker rm $(docker ps -a)
 
 FROM rocker/tidyverse:latest
 RUN apt-get update && apt-get  -y --no-install-recommends install \

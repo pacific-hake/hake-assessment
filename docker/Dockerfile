@@ -1,14 +1,12 @@
-# Creates the hake assessment Docker image. Starts with ubuntu-essentials
-# which is built by building the Dockerfile in the subdirectory of this
-# one by that name
+# Creates the hake assessment Docker image. Built on the `cgrandin/ss-texlive`
+# image (See subdirectory by the same name).
 #
 # To build, make sure you are in the `docker` directory of a cloned hake
-# repository (this directory)
+# repository.
 #
-# The command to build this image is:
-# docker build -t cgrandin/hake .
-# or, to build completely from scratch:
-# docker build --no-cache -t cgrandin/hake .
+# Use one of the two build scripts:
+# `build-hake-docker-scratch.sh`
+# `build-hake-docker-cached.sh`
 #
 # Every so ofter you will want to clean up the images and containers.
 # To do so follow these next few commands:
@@ -24,39 +22,11 @@
 # To run the container this build produces (cgrandin/hake), run the
 # `run-hake-docker.sh` script and read the comments within it.
 
-FROM cgrandin/ubuntu-essentials as os
+FROM cgrandin/ss-texlive
 LABEL maintainer = "chris.grandin@gmail.com"
 
 SHELL ["/bin/bash", "-c"]
 
-ENV HOME=/home/rstudio
-ENV PATH=$HOME:$PATH
-ENV INST=/usr/bin
-
-#RUN useradd -m container
-WORKDIR $HOME
-
-# Install ADMB and set corresponding environment variables
-ENV ADMB_HOME=$INST/admb/build/admb
-ENV ADMB_AD2CSV=$INST/admb/contrib/ad2csv
-ENV PATH=$ADMB_AD2CSV:$ADMB_HOME/bin:$PATH
-COPY clean_admb $ADMB_HOME
-COPY install_admb.sh $INST/install_admb.sh
-WORKDIR $INST
-# The -d in the following tells the script to download (git clone) the
-# source code prior to building it
-RUN ./install_admb.sh -d
-WORKDIR $HOME
-
-# Install SS3 and set corresponding environment variables
-COPY clean_ss3 $INST
-COPY install_ss3.sh $INST/install_ss3.sh
-ENV SS3_EXE_NAME=ss3_2024
-ENV SS3_HOME=$INST/ss3
-ENV PATH=$SS3_HOME:$PATH
-WORKDIR $INST
-RUN ./install_ss3.sh
-RUN mv ss3/ss ss3/$SS3_EXE_NAME
 WORKDIR $HOME
 
 # Install R packages needed for the hake assessment
@@ -75,18 +45,6 @@ COPY install_r_packages.R $HOME
 RUN R -e "install.packages('here'); \
           source(here::here('install_r_packages.R'))"
 
-# Install TexLive and set corresponding environment variables
-COPY install_texlive.sh $HOME
-RUN ./install_texlive.sh
-ENV TEXLIVE_HOME=/usr/local/texlive/2023/bin/x86_64-linux
-ENV MANPATH=/usr/local/texlive/2023/texmf-dist/doc/man
-ENV INFOPATH=/usr/local/texlive/2023/texmf-dist/doc/info
-ENV PATH=$TEXLIVE_HOME:$PATH
-
-# Update the TexLive package manager contents - uncomment this if
-# you are adding more TexLive packages below
-#RUN tlmgr update --self
-
 # Delete remnants
 RUN rm install_r_packages.R install_texlive.sh; rm -rf texlive_tmp
 
@@ -99,4 +57,5 @@ COPY Rhistory $HOME/.Rhistory
 
 ENV HAKE=$HOME/github/pacific-hake/hake-assessment
 RUN mkdir -p $HAKE
+
 WORKDIR $HAKE
