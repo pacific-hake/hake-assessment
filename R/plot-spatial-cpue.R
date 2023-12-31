@@ -9,7 +9,7 @@
 #' tab and look at the `code` column for valid crs numbers
 #' @param crs_utm Coordinate Reference System (CRS) number for a
 #' Easting/Northing-based projection. This could be UTM9 or UTM10 or
-#' others. There is a different numbre for each UTM zone. The default is
+#' others. There is a different number for each UTM zone. The default is
 #' 32609 which is UTM zone 9 (west coast Canada). See
 #' [Epsg.org](https://epsg.org/home.html) for details. Click `Text search`
 #' tab and look at the `code` column for valid crs numbers
@@ -89,7 +89,8 @@ plot_spatial_cpue <- function(
     setNames(c("lon", "lat"))
 
   public_dat <- public_dat |>
-    bind_cols(x)
+    bind_cols(x) |>
+    filter(!is.na(lat))
 
   polygon <- public_dat |>
     st_as_sf(coords = c("lon", "lat"), crs =crs_ll) |>

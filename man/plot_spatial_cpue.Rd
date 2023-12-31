@@ -33,7 +33,7 @@ tab and look at the \code{code} column for valid crs numbers}
 
 \item{crs_utm}{Coordinate Reference System (CRS) number for a
 Easting/Northing-based projection. This could be UTM9 or UTM10 or
-others. There is a different numbre for each UTM zone. The default is
+others. There is a different number for each UTM zone. The default is
 32609 which is UTM zone 9 (west coast Canada). See
 \href{https://epsg.org/home.html}{Epsg.org} for details. Click \verb{Text search}
 tab and look at the \code{code} column for valid crs numbers}
