@@ -211,16 +211,17 @@ container to work on the hake assessment.
 The hake docker run and build scripts are found in the `docker` directory of
 the `hake-assessment` repository.
 
+**To build all of the following images and produce the final `cgrandin/hake`
+image from scratch, use the Bash script `build-hake-docker-scratch.sh`. If
+a download times out, some other error occurs, or you make a change in the
+`docker/Dockerfile` file, you can continue the build by running
+`build-hake-docker-cached.sh`.**
+
 The `Dockerfile` is the primary script to build the `cgrandin/hake` image
 and the sub-directories `docker/ss-texlive` and `docker/ubuntu-essentials`
 contain the build files to create the `cgrandin/ss-texlive` and
 `cgrandin/ubuntu-essentials` images, which act as the starting images for
 the `cgrandin/hake` image. They are compiled in this order (with descriptions):
-
-To build all of the following images and produce the final `cgrandin/hake`
-image from scratch, use the Bash script `build-hake-docker-scratch.sh`. If
-a download times out or some other error occurs, you can continue the build
-by running `build-hake-docker-cached.sh`.
 
 1. `cgrandin/ubuntu-essentials` - This image contains:
 
@@ -307,3 +308,88 @@ is how docker knows which Docker Hub account to push the image to when
 you run `docker push cgrandin/hake`. Without it, you cannot push the image
 and it will not be shareable unless done manually (i.e. upload/download
 to/from Google drive).*
+
+
+## Cleaning up the Docker environment
+
+Docker creates a lot of intermediate files and sometimes you might find it
+is not building th image properly. To clean up the environment for a new,
+from-scratch build, follow the following steps:
+
+1. Check your containers and delete them all:
+
+   ```bash
+   docker ps -a
+   ```
+   
+   If there are any containers listed, you can remove them one-by-one by
+   one using their container ID or all of them at once using this:
+   
+   ```bash
+   docker rm $(docker ps -a)
+   ```
+   
+1. Check your images and delete them all:
+
+   ```bash
+   docker images
+   ```
+   
+   You will see `cgrandin/hake` and possibly other images in the list. If there
+   are images with `REPOSITORY` and/or `TAG` set to `<none>`, those are
+   intermediate images and can be deleted. You will see in the listing that
+   they take up a lot of space. To get the image IDs for the `<none>`
+   images only, run this:
+   
+   ```bash
+   docker images -f dangling=true -q
+   ```
+   
+   To delete those dangling images, run this:
+   
+   ```bash
+   docker rmi $(docker images -f dangling=true -q)
+   ```
+   
+   If you run `docker images` again you will see they are gone.
+   
+   To delete all images, make sure you have removed the containers that may
+   be using them, and then run:
+   
+   ```bash
+   docker rmi -f $(docker images -aq)
+   ```
+   
+   If any remain, you can remove them one-by-one like this:
+   
+   ```bash
+   docker rmi <IMAGE ID>
+   ```
+   
+   Where `<IMAGE ID>` comes from the listing given in `docker images`.
+   
+1. Clearing out all temporary Docker files will return a lot of drive space.
+   To do it, run this:
+   
+   ```bash
+   docker system prune
+   ```
+   
+   And answer *y* to the "are you sure" question.
+   
+1. Once you've cleaned everything up and double-checked the containers and
+   images lists, you can build the images from scratch by running:
+   
+   ```bash
+   ./run-build-hake-docker-scratch.sh
+   ```
+   
+   This will build the three images needed, one after another.
+   
+1. Once the new images(s) are built, push them to DockerHub:
+
+   ```bash
+   docker push cgrandin/ubuntu-essentials
+   docker push cgrandin/ss-texlive
+   docker push cgrandin/hake
+   ```
