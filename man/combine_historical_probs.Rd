@@ -19,7 +19,7 @@ combine_historical_probs(model, start = 2012, end, ...)
 \value{
 Data frame with columns
 \itemize{
-\item \code{year} - year of assessment
+\item \code{Year} - year of assessment
 \item \code{P_decline} - estimate from \verb{year' assessment model of the probability that the spawning biomass will decline from }year\code{to}year\verb{+ 1 for a catch that turned out to be the catch in}year'
 \item \code{P_below_B40} - estimate from \verb{year' assessment model of the probability that the spawning biomass will be below B_40 in }year\verb{+1 for a catch that turned out to be the catch in }year'
 \item \code{P_decline_curr} - current estimate (from \code{model}) of the probability that

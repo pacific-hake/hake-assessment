@@ -7,7 +7,7 @@
 #' @param ... Further arguments to pass to [calc_historical_probs()]
 #'
 #' @return Data frame with columns
-#' * `year` - year of assessment
+#' * `Year` - year of assessment
 #' * `P_decline` - estimate from `year' assessment model of the probability
 #'    that the spawning biomass will decline from `year` to `year` + 1 for a
 #'    catch that turned out to be the catch in `year'
