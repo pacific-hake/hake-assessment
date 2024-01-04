@@ -689,5 +689,3 @@ table_param_est(
   longtable = TRUE) |> 
   landscape()
 ```
-
-\clearpage

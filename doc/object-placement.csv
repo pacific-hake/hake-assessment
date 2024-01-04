@@ -61,3 +61,7 @@ figure,es-risk-year-3-fig,,H
 figure,main-overview-map-fig,,H
 figure,main-us-depths-fig,,H
 figure,,fishCatchRatesUS,H
+figure,main-age-comp-forecast-fig,,H
+
+# MCMC appendix
+figure,app-mcmc-diag-m-r0-fig,,H
