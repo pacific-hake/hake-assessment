@@ -57,7 +57,7 @@ output:
 
    # Font settings -------------------------------------------------------------
    #
-   font_size_pt: 12
+   font_size_pt: 12pt
    # Available fonts in alphabetical order. Uncomment one only
    # See `post_process_modify_font_info()`
    #font: "baskervillef"
