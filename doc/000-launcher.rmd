@@ -173,9 +173,7 @@ if(user == "grandin"){
 }
 
 # Quick fix to work on Windows, Chris to use an existing function
-home <- ifelse(Sys.info()[["sysname"]] != "Windows",
-               system("echo $HOME", intern = TRUE),
-               shell("echo $HOME", intern = TRUE))
+home <- system_("echo $HOME", intern = TRUE)
 
 if(home == ""){
   stop("`home` is an empty string. The `system(echo $HOME)` call failed ",
