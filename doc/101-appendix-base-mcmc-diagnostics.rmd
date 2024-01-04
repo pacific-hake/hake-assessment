@@ -4,7 +4,7 @@
 
 # Base model MCMC diagnostics {#sec:app-mcmc-diagnostics}
 
-(ref:app-mcmc-diag-m-r0-cap) Summary of Markov chain Monte Carlo diagnostics
+(ref:app-mcmc-diag-m-r0-cap) Summary of MCMC diagnostics
 for natural mortality (upper panels) and the natural log of mean unfished
 equilibrium recruitment (ln($R_0$); lower panels) in the base
 model. Top sub-panels show the trace of the sampled values across iterations
