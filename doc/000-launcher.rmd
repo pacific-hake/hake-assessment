@@ -173,7 +173,7 @@ if(user == "grandin"){
 }
 
 # Quick fix to work on Windows, Chris to use an existing function
-home <- ifelse(sys_info[["sysname"]] != "Windows",
+home <- ifelse(Sys.info()[["sysname"]] != "Windows",
                system("echo $HOME", intern = TRUE),
                shell("echo $HOME", intern = TRUE))
 
