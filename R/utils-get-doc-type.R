@@ -31,7 +31,6 @@ get_doc_type <- function(fn){
   type <- x[ind_type]
   type <- gsub("^\\s*", "", type)
   type <- gsub(":$", "", type)
-  type <- gsub("hake::", "", type)
   type <- gsub("^hake_", "", type)
 
   if(type == "pdf"){
