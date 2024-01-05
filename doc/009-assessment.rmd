@@ -902,19 +902,12 @@ Tables~\@ref(tab:main-median-posterior-tab) and
 and 1999 supported much of the commercial catch from the 1980s to the
 mid-2000s. From 2000 to 2007, estimated recruitment was at some of the
 lowest values in the time series, but this was followed by an above average
-2008 year class. The very strong 2010 year class comprised
-`r top_coh(base_model, 2014, ret_cohort = 2010)`% of the coast-wide commercial
-catch in 2014, `r top_coh(base_model, 2016, ret_cohort = 2010)`% of the 2016
-catch, `r top_coh(base_model, 2018, ret_cohort = 2010)`% of the 2018 catch,
-`r top_coh(base_model, 2020, ret_cohort = 2010)`% of the 2020 catch, and
-`r top_coh(base_model, 2022, ret_cohort = 2010)`% of the 2022 catch.
-The decline from 2014 to 2016 was partly due to the large influx of the 2014
-year class (`r top_coh(base_model, 2016, ret_cohort = 2014)`% of the 2016
-catch was age-2 fish from the 2014 year class; this was larger than the
-proportion of age-2 fish, `r top_coh(base_model, 2012, ret_cohort = 2010)`%,
-from the 2010 year class in 2012).
+2008 year class and a very strong 2010 year class. Above average year classes
+occurred in 2014 and 2016, which have been sustaining the fishery until
+through the end of the last decade, with a probable very large 2020 year class
+entering the fishery currently.
 
-The current assessment also estimates a strong 2014 year class
+The current assessment estimates a strong 2014 year class
 (Figure~\@ref(fig:main-numbers-at-age-fig)) comprising
 `r top_coh(base_model, 2016, ret_cohort = 2014)`% of the 2016 catch,
 `r top_coh(base_model, 2017, ret_cohort = 2014)`% of the 2017 catch,
