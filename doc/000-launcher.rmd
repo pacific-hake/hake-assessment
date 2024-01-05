@@ -35,10 +35,10 @@ author: |
   Between the Governments of the United States and Canada \
   \
   \
-date: "`r hake::curr_time_date()`"
+date: "`r curr_time_date()`"
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
- hake::hake_pdf:
+ hake_pdf:
    latex_engine: lualatex
    # Keep the tex file around for debugging purposes
    keep_tex: true
@@ -78,8 +78,8 @@ output:
    # Footer text --------------------------------------------------------------
    footer_left: "DRAFT -- `r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`"
    # NOTE: cannot use backticks inside R-chunk which already uises backticks
-   # here, so need to use [['hake::hake_pdf']] instead of $`hake::hake_pdf`
-   footer_right: "Font: `r rmarkdown::metadata$output[['hake::hake_pdf']]$font`"
+   # here, so need to use [['hake_pdf']] instead of $`hake_pdf`
+   footer_right: "Font: `r rmarkdown::metadata$output[['hake_pdf']]$font`"
    # ---------------------------------------------------------------------------
 
    # Table of contents and reference link settings ----------------------------
@@ -148,7 +148,7 @@ output:
      in_header: "preamble.tex"
 documentclass: article # Do not modify
 knit: (function(input, ...) {
-       hake::render()
+       render()
       })
 # `classoption` is papersize (a4, a5, letter)
 classoption: letterpaper
@@ -182,7 +182,7 @@ if(home == ""){
        "which means the $HOME variable in the OS is not set")
 }
 models_dir <- "/srv/hake/models"
-test <- rmarkdown::metadata$output$`hake::hake_pdf`$test %||% FALSE
+test <- rmarkdown::metadata$output$`hake_pdf`$test %||% FALSE
 if(test){
   # Necessary for `gotest()` testing
   devtools::load_all(paste0(home, "/github/pacific-hake/hake-assessment"))
@@ -193,7 +193,7 @@ if(test){
 
 # This grabs the YAML `project_variables` and `outputs` from above
 yaml_proj_vars <- rmarkdown::metadata$project_variables
-output_vars <- rmarkdown::metadata$output$`hake::hake_pdf`
+output_vars <- rmarkdown::metadata$output$`hake_pdf`
 figures_dir <- output_vars$figures_dir
 
 # Don't modify anything in `opts_chunk$set()`. Modify the YAML

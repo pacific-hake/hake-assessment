@@ -68,7 +68,7 @@ years have been the largest in the time series.
 plot_catches(ct, xlim = c(start_yr, last_data_yr))
 ```
 
-(ref:main-us-catch-rates-cap) Unstandardized (raw) catch-rates (t/hr) of 
+(ref:main-us-catch-rates-cap) Unstandardized (raw) catch-rates (t/hr) of
 `r sp` catches by tow in the U.S. at-sea fleet from
 `r last_data_yr - 4`--`r last_data_yr`.
 
@@ -138,7 +138,7 @@ abundance and age compositions from 1995 to present for odd years.
 
 ```{r main-data-overview-fig, fig.cap = "(ref:main-data-overview-cap)"}
 
-plot_data_summary(base_model) 
+plot_data_summary(base_model)
 ```
 
 (ref:main-age-comp-bubbles-cap) Age compositions for the aggregate fishery
@@ -165,7 +165,7 @@ p_lst <- NULL
 p_lst[[1]] <-
   plot_age_comp_bubbles(base_model,
                         type = "fishery",
-                        leg_pos = "top", 
+                        leg_pos = "top",
                         inc_mean_age_line = TRUE,
                         point_alpha = 0.4,
                         xlim = c(start_yr_age_comps, last_data_yr),
@@ -182,7 +182,7 @@ p_lst[[2]] <-
                         tick_prop = 0.7,
                         vjust_x_labels = -1.5,
                         remove_yr_labels = NULL)
-                        
+
 plot_grid(plotlist = p_lst, nrow = 2)
 ```
 
@@ -688,7 +688,7 @@ been increasing in size since 2021.
 plot_biomass(list(base_model),
              list(base_model_name),
              ylim = c(0, 5),
-             point_shape = hake::ts_single_model_pointshape,
+             point_shape = ts_single_model_pointshape,
              leg_pos = "none")
 ```
 
@@ -781,7 +781,7 @@ tendency after bias correcting for the lognormal distribution (median).
 Shading around stock-recruit curves indicates uncertainty in shape associated
 with distribution of the steepness parameter ($h$). The blue polygon on the
 right indicates the expected distribution of absolute recruitments.
-  
+
 (ref:main-stock-recruitment-alt) This figure shows that the Stock Recruitment
 curve does not fit the estimated recruitments very well for this stock.
 
@@ -1002,7 +1002,7 @@ standard deviation of the natural mortality parameter has the most notable
 effect and scales the population up with an increase in its size.
 
 ```{r main-biomass-base-alternative-1-fig, fig.cap = "(ref:main-biomass-base-alternative-1-cap)", fig.height = 4.5}
-  
+
 plot_biomass(d_obj = d_obj_sens_biomass[[1]],
              x_expansion = 3.5,
              ylim = c(0, 24),
@@ -1018,7 +1018,7 @@ plot_biomass(d_obj = d_obj_sens_biomass[[1]],
 runs representing changing key parameters. See
 Figure~\@ref(fig:main-biomass-base-alternative-1-fig) for
 sensitivity descriptions.
-  
+
 (ref:main-status-base-alternative-1-alt) This figure shows how relative spawning biomass changes between the first set of sensitivity runs. As in the absolute biomass figure changing the standard deviation of the natural mortality parameter has the most notable effect and scales the population up with an increase in its size.
 
 ```{r main-status-base-alternative-1-fig, fig.cap = "(ref:main-status-base-alternative-1-cap)", fig.height = 4.5}

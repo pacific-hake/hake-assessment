@@ -2,8 +2,8 @@
 
 # Extract YAML sections -------------------------------------------------------
 proj_vars <- rmarkdown::metadata$project_variables
-output <- rmarkdown::metadata$output$`hake::hake_pdf`
-  
+output <- rmarkdown::metadata$output$`hake_pdf`
+
 if(!length(proj_vars)){
   stop("Document compilation not run properly. You must run this code ",
        "using the Bookdown/Rmarkdown system, by calling `hake::render()` ",
