@@ -15,7 +15,18 @@ post_process_modify_font_info <- function(x,
                                           ...){
 
   font <- font %||% "IBM Plex Serif"
-  font_size_pt <- font_size_pt %||% 12
+  font_size_pt <- font_size_pt %||% "12pt"
+
+  font_size_has_pt <- grep("^[0-9]+pt$", font_size_pt)
+  if(!length(font_size_has_pt)){
+    if(is.numeric(font_size_pt)){
+      font_size_pt <- paste0(font_size_pt, "pt")
+    }else{
+      warning("`font_size_pt` in the YAML header is not a numeric value. ",
+              "It will be set to 12pt")
+      font_size_pt <- "12pt"
+    }
+  }
 
   # Set font size ----
   start_ind <- grep("\\\\documentclass\\[?", x)
@@ -38,7 +49,7 @@ post_process_modify_font_info <- function(x,
   # ]{article}
 
   # Match the last line (closing square brace)
-  end_ind <- grep("^\\]\\{article}$", x)
+  end_ind <- grep("\\]\\{article}$", x)
   if(!length(end_ind)){
     stop("Could not find `]{article}` in the LaTeX code produced by Pandoc ",
          "Make sure this regular expression is still correct in the case ",
