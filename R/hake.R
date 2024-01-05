@@ -38,7 +38,8 @@
 #' @importFrom gridExtra arrangeGrob grid.arrange
 #' @importFrom gtable gtable_add_grob gtable_add_rows
 #' @importFrom gtools running
-#' @importFrom kableExtra column_spec kable_styling kbl landscape linebreak
+#' @importFrom kableExtra add_header_above column_spec kable_styling kbl
+#' @importFrom kableExtra landscape linebreak row_spec
 #' @importFrom here here i_am
 #' @importFrom lubridate day hour minute month now second seconds_to_period year
 #' @importFrom marmap fortify.bathy getNOAA.bathy
