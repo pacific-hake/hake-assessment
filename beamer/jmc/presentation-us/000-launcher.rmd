@@ -39,7 +39,7 @@ project_variables:
 author: Pacific Hake Joint Technical Committee
 date: "US AP/JMC March delegation meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
 output:
-  hake::hake_beamer:
+  hake_beamer:
     theme: Singapore
     slide_level: 2
     toc: false
@@ -82,7 +82,7 @@ if(home == ""){
        "which means the $HOME variable in the OS is not set")
 }
 models_dir <- "/srv/hake/models"
-test <- rmarkdown::metadata$output$`hake::hake_beamer`$test %||% FALSE
+test <- rmarkdown::metadata$output$`hake_beamer`$test %||% FALSE
 if(test){
   # Necessary for `gotest()` testing
   devtools::load_all(paste0(home, "/github/pacific-hake/hake-assessment"))
@@ -132,4 +132,3 @@ if(!dir.exists(fig_dir)){
   dir.create(fig_dir)
 }
 ```
-
