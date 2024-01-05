@@ -150,6 +150,8 @@ documentclass: article # Do not modify
 knit: (function(input, ...) {
        hake::render()
       })
+# `classoption` is papersize (a4, a5, letter)
+classoption: letter
 header-includes:
 link-citations: true # Do not modify
 bibliography: bib/refs.bib # Do not modify
