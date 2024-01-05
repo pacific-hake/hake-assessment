@@ -28,12 +28,12 @@ get_param_est_comparison_df <- function(models,
     recs <- NA
 
     if(mdl$extra_mcmc_exists){
-      recs <- map_dbl(hake::large_cohorts, \(rec_yr){
+      recs <- map_dbl(large_cohorts, \(rec_yr){
         mdl$extra_mcmc$recr_cohorts |>
           filter(yr == rec_yr) |>
           pull(`50%`)
       }) |>
-        set_names(paste0("recs_", hake::large_cohorts))
+        set_names(paste0("recs_", large_cohorts))
       recs <- f(recs / 1e3)
 
       q_med <- mdl$extra_mcmc$q_med

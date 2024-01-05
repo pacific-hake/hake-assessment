@@ -46,8 +46,8 @@ plot_fore_age_comps <- function(model,
   plist[[1]] <- ggplot(by_nums,
                        aes(x = age, y = med)) +
     geom_bar(stat = "identity",
-             fill = hake::main_fill,
-             alpha = hake::main_alpha) +
+             fill = main_fill,
+             alpha = main_alpha) +
     geom_errorbar(aes(ymin = lower,
                       ymax = upper),
                   width = whisker_width) +
@@ -66,8 +66,8 @@ plot_fore_age_comps <- function(model,
   plist[[2]] <- ggplot(by_weight,
                        aes(x = age, y = med)) +
     geom_bar(stat = "identity",
-             fill = hake::main_fill,
-             alpha = hake::main_alpha) +
+             fill = main_fill,
+             alpha = main_alpha) +
     geom_errorbar(aes(ymin = lower,
                       ymax = upper),
                   width = whisker_width) +

@@ -65,8 +65,8 @@ plot_priors_vs_posts <- function(model,
   g <- ggplot() +
     geom_histogram(data = posts_long,
                    mapping = aes(value, after_stat(density)),
-                   fill = hake::main_fill,
-                   alpha = hake::main_alpha,
+                   fill = main_fill,
+                   alpha = main_alpha,
                    col = "black",
                    bins = 30) +
     geom_vline(data = group_by(posts_long, param) |>

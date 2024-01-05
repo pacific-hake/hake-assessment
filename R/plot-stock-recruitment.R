@@ -181,8 +181,8 @@ plot_stock_recruitment <- \(model,
     geom_ribbon(aes(y = r_vec,
                     xmin = 0,
                     xmax = dlnorm_vec),
-                fill = hake::main_fill,
-                alpha = hake::main_alpha) +
+                fill = main_fill,
+                alpha = main_alpha) +
     geom_segment(aes(x = 0,
                      xend = dlnorm(x = adj,
                                    meanlog = meanlog,
