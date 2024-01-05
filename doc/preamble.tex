@@ -147,11 +147,11 @@
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 
-% Setup hyperlink attributes here.
-% \usepackage[breaklinks=true,
-%             bookmarksopen,
-%             bookmarksdepth=3,
-%             hypertexnames=false]{hyperref}
+% Setup hyperlink attributes here plus more in post_process_modify_link_colors()
+\PassOptionsToPackage{breaklinks=true,
+  bookmarksopen,
+  bookmarksdepth=3,
+  hypertexnames=false}{hyperref}
 
 % Provides `\landscape`. Unnecessary for compiling after running the post
 % processing script (`hake::post_process()`) in R but needed for the
