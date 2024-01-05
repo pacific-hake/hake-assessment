@@ -13,7 +13,7 @@ plot_catch_forecast_density(
   fill_alpha_tail = 0.3,
   fill_alpha_main = 0.7,
   label_x_offset = 500,
-  label_y_offset = 0.0001,
+  label_y_offset = 1e-04,
   ...
 )
 }

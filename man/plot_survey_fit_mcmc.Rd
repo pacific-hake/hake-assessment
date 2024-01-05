@@ -26,7 +26,7 @@ plot_survey_fit_mcmc(
   post_med_point_size = 1.5,
   post_line_gap = ts_linegap,
   obs_line_width = 1.5,
-  obs_line_color = "royalblue",
+  obs_line_color = "black",
   obs_point_color = "black",
   obs_point_size = 2.5,
   obs_alpha = 1,
