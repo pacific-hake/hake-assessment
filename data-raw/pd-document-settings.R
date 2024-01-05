@@ -10,7 +10,7 @@ create_data_hake("probs", c(0.025, 0.5, 0.975))
 create_data_hake("probs_forecast", c(0.05, 0.25, 0.5, 0.75, 0.95))
 create_data_hake("retrospective_yrs", 1:10)
 create_data_hake("plot_retro_yrs", 1:5)
-create_data_hake("large_cohorts", c(2010, 2014, 2016, 2020))
+create_data_hake("large_cohorts", c(2014, 2016, 2020))
 create_data_hake("age_bubble_cohorts",
                  c(1980, 1984, 1999, 2010, 2014, 2016, 2020))
 
