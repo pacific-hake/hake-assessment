@@ -318,11 +318,6 @@ platforms in the future.**
 > [@EdwardsRobinsonEtAl2020], and aims to provide new information on `r sp`
 > recruitment.*
 
-> *We also include Figure~\@ref(fig:main-recruitment-scale-all-fig) (as
-> developed in the 2022 assessment) which presents a novel approach to
-> visualise estimates of recruitment, to avoid misunderstanding of how large
-> some recruitment events might be.*
-
 3. `r sp` dynamics are highly variable even without fishing mortality. **The
 SRG applauds the efforts of the JTC and the MSE Working Group to add
 capabilities for specifying dynamic reference points within the assessment and
@@ -960,22 +955,10 @@ model estimates a `r prob_percent_2014_rec_gt_2010_rec`% chance that this
 could be the case. The overlapping of the credible intervals in
 Figure~\@ref(fig:main-recruitment-fig) is because large MCMC estimates of 2010
 recruitment are associated with large estimates of 2014 recruitment
-(presumably with large estimates of `r r_0`). By scaling all recruitments by
-the 2010 recruitment, Figure~\@ref(fig:main-recruitment-scale-all-fig) provides
-an intuitive way to compare recruitment across years (see Appendix~H of
-@JTC2022 for motivation and full methods). It shows that there have only been
-two historical recruitment events (1980 and 1984) that might be as large as
-in 2010, whereas Figure~\@ref(fig:main-recruitment-fig) suggests that 1970,
-1999 and 2014 could also possibly be larger than in 2010, giving an
-over-optimistic impression of how often we can expect cohorts the size of
-the 2010 cohort to occur. The 2020 cohort is still very uncertain but has a
-`r prob_percent_2020_rec_gt_2010_rec`% chance of exceeding the 2010 cohort,
-while the 2021 cohort is definitely smaller than the 2010 cohort
-(Figure~\@ref(fig:main-recruitment-scale-all-fig)). Participants in the `r sp`
-process have an intuition that the 2010 is a very large recruitment event --
-Figure~\@ref(fig:main-recruitment-scale-all-fig) shows how it is the largest for
-at least 30 years, and that such large cohorts are rarer than is inferred
-from Figure~\@ref(fig:main-recruitment-fig).
+(presumably with large estimates of `r r_0`). The 2020 cohort is still very
+uncertain but has a `r prob_percent_2020_rec_gt_2010_rec`% chance of
+exceeding the 2010 cohort, while the 2021 cohort is definitely smaller
+than the 2010 cohort.
 
 The estimated recruitments with uncertainty for each year and the overall
 stock recruit relationship are provided in
