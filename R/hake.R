@@ -37,6 +37,7 @@
 #' @importFrom grid unit
 #' @importFrom gridExtra arrangeGrob grid.arrange
 #' @importFrom gtable gtable_add_grob gtable_add_rows
+#' @importFrom gtools running
 #' @importFrom kableExtra column_spec kable_styling kbl landscape linebreak
 #' @importFrom here here i_am
 #' @importFrom lubridate day hour minute month now second seconds_to_period year

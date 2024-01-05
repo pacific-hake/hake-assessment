@@ -19,13 +19,15 @@ calc_mcmc_param_stats <- function(model, scale_effn = 1e3, ...){
   }
   mc <- model$mcmc |>
     as_tibble() |>
-    select(all_of(param_nms)) |>
-    # `set_names(NULL)` is so that the `imap()` call below has indices for
-    # the `ind` argument instead of names
-    set_names(NULL)
+    select(all_of(param_nms))
+
+  # `names(mc)` is so that the `imap()` call below has indices for
+  # the `ind` argument instead of names
+  names(mc) <- 1:ncol(mc)
   draws <- nrow(mc)
 
   d <- imap(mc, \(param, ind){
+    ind <- as.numeric(ind)
     acftemp <- acf(param,
                    lag.max = 1,
                    type = "correlation",
@@ -74,4 +76,3 @@ calc_mcmc_param_stats <- function(model, scale_effn = 1e3, ...){
 
   d
 }
-
