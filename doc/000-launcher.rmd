@@ -1,6 +1,7 @@
 ---
 title: |
   | \vspace{5cm} **\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`}**
+subtitle: DRAFT for submission to Scientific Review Group
 project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
@@ -77,7 +78,7 @@ output:
 
    # Footer text --------------------------------------------------------------
    footer_left: "DRAFT -- `r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`"
-   # NOTE: cannot use backticks inside R-chunk which already uises backticks
+   # NOTE: cannot use backticks inside R-chunk which already uses backticks
    # here, so need to use [['hake_pdf']] instead of $`hake_pdf`
    footer_right: "Font: `r rmarkdown::metadata$output[['hake_pdf']]$font`"
    # ---------------------------------------------------------------------------
@@ -239,6 +240,12 @@ knitr::opts_chunk$set(
   out.height = "\\textheight",
   out.width = "\\textwidth")
 ```
+
+<!-- Disclaimer: These materials do not constitute a formal publication and are for
+information only. They are in a pre-review, pre-decisional state and should not
+be formally cited or reproduced. They are to be considered provisional and do
+not represent any determination or policy of NOAA or the Department of Commerce.
+-->
 
 \newpage
 
