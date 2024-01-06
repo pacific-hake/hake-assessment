@@ -283,9 +283,9 @@ table_assessment_changes(
     "Annual changes in the modeling framework used to assess ", sp, " since ",
     "2011. Methods used to weight the age-composition data (Comp Method), ",
     "i.e., McAllister-Ianelli (MI) and Dirichlet-multinomial (D-M) ",
-    "approaches, are explained in the main text. The MCMC column gives the ",
-    "number of Markov chain Monte Carlo samples used to describe model ",
-    "results and produce statistical inference."),
+    "approaches, are explained in the main text. The Markov chain Monte ",
+    "Carlo column gives the  number of Markov chain Monte Carlo samples ",
+    "used to describe model results and produce statistical inference."),
   font_size = 10,
   header_font_size = 11,
   longtable = TRUE)

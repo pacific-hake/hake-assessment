@@ -443,12 +443,12 @@ plot_grid(plotlist = full_p,
 
 (ref:main-survey-index-fit-mcmc-cap) Fits (colored lines) to the acoustic
 survey (points) with input 95% intervals around the observations. The
-thin blue lines are the results of a random subset of individual MCMC samples.
-Thicker uncertainty intervals around observed survey points indicate 95%
-lognormal uncertainty intervals estimated by the kriging method and are
-used as input to the assessment model. Thinner uncertainty intervals
-indicate estimated 95% uncertainty intervals that account for the model
-estimate of additional uncertainty.
+thin blue lines are the results of a random subset of individual Markov chain
+Monte Carlo samples. Thicker uncertainty intervals around observed survey
+points indicate 95% lognormal uncertainty intervals estimated by the
+kriging method and are used as input to the assessment model. Thinner
+uncertainty intervals indicate estimated 95% uncertainty intervals that
+account for the model estimate of additional uncertainty.
 
 (ref:main-survey-index-fit-mcmc-alt) This figure shows 1000 posterior
 trajectories of the expected survey biomass fitting well to the observed
@@ -478,11 +478,11 @@ plot_survey_fit_mcmc(base_model,
 (ref:main-age1-index-fit-mcmc-cap) Fits (colored lines) to the relative
 age-1 index estimated from the acoustic survey (points) with input 95%
 intervals around the observations. The thin blue lines are the results
-of a random subset of individual MCMC samples. Thicker uncertainty
-intervals around observed survey points indicate 95% lognormal uncertainty
-intervals based on sampling variability and are used as input to the
-assessment model. Thinner uncertainty intervals indicate estimated 95%
-uncertainty intervals that account for the model estimate of additional
+of a random subset of individual Markov chain Monte Carlo samples. Thicker
+uncertainty intervals around observed survey points indicate 95% lognormal
+uncertainty intervals based on sampling variability and are used as input
+to the assessment model. Thinner uncertainty intervals indicate estimated
+95% uncertainty intervals that account for the model estimate of additional
 uncertainty.
 
 (ref:main-age1-index-fit-mcmc-alt) This figure shows many posterior
@@ -514,7 +514,7 @@ plot_survey_fit_mcmc(base_model,
 and acoustic survey (bottom) age-composition data. Colored bars show
 observed proportions with colors following each cohort across years. Points
 with intervals indicate median expected proportions and 95% credibility
-intervals from the MCMC calculations.
+intervals from the Markov chain Monte Carlo calculations.
 
 (ref:main-age-comp-fits-alt) This figure shows the age composition fits for
 the fishery and acoustic survey against the data. There is some slight over
@@ -538,10 +538,10 @@ plot_grid(plotlist = plist, nrow = 2)
 ```
 
 (ref:main-age-comp-pearson-cap) Pearson residuals for base model fits to
-the age-composition data for the medians of the MCMC posteriors. Closed
-bubbles are positive residuals (observed > expected) and open bubbles are
-negative residuals (observed < expected). Green lines track cohorts from years
-of large recruitment events.
+the age-composition data for the medians of the Markov chain Monte Carlo
+posteriors. Closed bubbles are positive residuals (observed > expected) and
+open bubbles are negative residuals (observed < expected). Green lines track
+cohorts from years of large recruitment events.
 
 (ref:main-age-comp-pearson-alt) This figure shows that there are no obvious
 patterns in the Pearson residuals for the fishery and the survey.
@@ -974,9 +974,9 @@ These estimates are based on the posterior distribution for selectivity
 averaged across the most recent five years, weight-at-age data averaged
 across the most recent five years, and the distribution for expected numbers
 at age at the start of `r end_yr` (see
-Table~\@ref(tab:main-est-numbers-at-age-tab) for the MCMC medians of
-numbers-at-age for all years). The panel on the right is scaled based on
-the weight at each age averaged across the last five years.
+Table~\@ref(tab:main-est-numbers-at-age-tab) for the Markov chain Monte Carlo
+medians of numbers-at-age for all years). The panel on the right is scaled
+based on the weight at each age averaged across the last five years.
 
 (ref:main-age-comp-forecast-alt) This figure shows how the few dominant
 cohorts are expected to make up most of the coming years catch. The 2020
@@ -988,13 +988,13 @@ prediction has high uncertainty when compared to the other cohorts.
 plot_fore_age_comps(base_model)
 ```
 
-(ref:main-biomass-base-alternative-1-cap) MCMC estimates of spawning
-biomass for the base model and alternative sensitivity runs representing
-changing the mean of the prior for steepness from 1.0 to 0.5, fixing steepness
-at 1.0, lower (1.0) and higher (1.6) levels of variation assumed about the
-stock-recruitment relationship ($\sigma_r$), changing the standard deviation
-of the prior for natural mortality, and using the Hamel prior distribution
-for natural mortality.
+(ref:main-biomass-base-alternative-1-cap) Markov chain Monte Carlo estimates
+of spawning biomass for the base model and alternative sensitivity runs
+representing changing the mean of the prior for steepness from 1.0 to 0.5,
+fixing steepness at 1.0, lower (1.0) and higher (1.6) levels of variation
+assumed about the stock-recruitment relationship ($\sigma_r$), changing the
+standard deviation of the prior for natural mortality, and using the Hamel
+prior distribution for natural mortality.
 
 (ref:main-biomass-base-alternative-1-alt) This figure shows how spawning
 biomass changes between the first set of sensitivity runs. Changing the
@@ -1013,13 +1013,17 @@ plot_biomass(d_obj = d_obj_sens_biomass[[1]],
              rev_colors = TRUE)
 ```
 
-(ref:main-status-base-alternative-1-cap) MCMC estimates of stock status
-(relative spawning biomass) for the base model and alternative sensitivity
-runs representing changing key parameters. See
-Figure~\@ref(fig:main-biomass-base-alternative-1-fig) for
-sensitivity descriptions.
+(ref:main-status-base-alternative-1-cap) Markov chain Monte Carlo estimates
+of stock status (relative spawning biomass) for the base model and alternative
+sensitivity runs representing changing key parameters. See
+Figure~\@ref(fig:main-biomass-base-alternative-1-fig) for sensitivity
+descriptions.
 
-(ref:main-status-base-alternative-1-alt) This figure shows how relative spawning biomass changes between the first set of sensitivity runs. As in the absolute biomass figure changing the standard deviation of the natural mortality parameter has the most notable effect and scales the population up with an increase in its size.
+(ref:main-status-base-alternative-1-alt) This figure shows how relative
+spawning biomass changes between the first set of sensitivity runs. As in
+the absolute biomass figure changing the standard deviation of the natural
+mortality parameter has the most notable effect and scales the population
+up with an increase in its size.
 
 ```{r main-status-base-alternative-1-fig, fig.cap = "(ref:main-status-base-alternative-1-cap)", fig.height = 4.5}
 
@@ -1032,10 +1036,11 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
                  rev_colors = TRUE)
 ```
 
-(ref:main-biomass-base-alternative-2-cap) MCMC estimates of spawning biomass
-for the base model and alternative sensitivity models that represent the
-following changes in data: removing the index of age-1 fish and down-weighting
-fishery composition data using the McAllister-Ianelli method.
+(ref:main-biomass-base-alternative-2-cap) Markov chain Monte Carlo estimates
+of spawning biomass for the base model and alternative sensitivity models
+that represent the following changes in data: removing the index of age-1
+fish and down-weighting fishery composition data using the
+McAllister-Ianelli method.
 
 (ref:main-biomass-base-alternative-2-alt) This figure shows how spawning
 biomass changes between the second set of sensitivity runs. The biomass
@@ -1049,9 +1054,9 @@ plot_biomass(d_obj = d_obj_sens_biomass[[2]],
              rev_colors = TRUE)
 ```
 
-(ref:main-status-base-alternative-2-cap) MCMC estimates of stock status
-(relative spawning biomass) for the base model and alternative sensitivity
-models that represent changes in data. See
+(ref:main-status-base-alternative-2-cap) Markov chain Monte Carlo estimates
+of stock status (relative spawning biomass) for the base model and
+alternative sensitivity models that represent changes in data. See
 Figure~\@ref(fig:main-biomass-base-alternative-2-fig) for sensitivity
 descriptions.
 
@@ -1068,10 +1073,11 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[2]],
                  rev_colors = TRUE)
 ```
 
-(ref:main-recruitment-base-alternative-2-cap) MCMC estimates of recruitment
-deviations for the base model and alternative sensitivity runs that represent
-changes in data. See Figure~\@ref(fig:main-biomass-base-alternative-2-fig)
-for sensitivity descriptions.
+(ref:main-recruitment-base-alternative-2-cap) Markov chain Monte Carlo
+estimates of recruitment deviations for the base model and alternative
+sensitivity runs that represent changes in data. See
+Figure~\@ref(fig:main-biomass-base-alternative-2-fig) for sensitivity
+descriptions.
 
 (ref:main-recruitment-base-alternative-2-alt) This figure shows the occasional
 changes in recruitment deviations for some of the sensitivity runs. Changing
@@ -1085,10 +1091,10 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
              rev_colors = TRUE)
 ```
 
-(ref:main-index-base-alternative-2-cap) MCMC estimates of the fit to the
-acoustic survey biomass time series for the base model and alternative
-sensitivity runs that represent changes in data. See
-Figure~\@ref(fig:main-biomass-base-alternative-2-fig) for sensitivity
+(ref:main-index-base-alternative-2-cap) Markov chain Monte Carlo
+estimates of the fit to the acoustic survey biomass time series for the
+base model and alternative sensitivity runs that represent changes in data.
+See Figure~\@ref(fig:main-biomass-base-alternative-2-fig) for sensitivity
 descriptions.
 
 (ref:main-index-base-alternative-2-alt) This figure shows the similarity
@@ -1105,11 +1111,11 @@ plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp2[[1]],
                        rev_colors = TRUE)
 ```
 
-(ref:main-biomass-base-alternative-4-cap) MCMC estimates of spawning biomass
-for the base model and alternative sensitivity runs representing different
-standard deviations ($\Phi$) associated with time-varying selectivity.
-Standard deviations examined are below (0.21 and 0.70) and above (2.10)
-the base model value of 1.4.
+(ref:main-biomass-base-alternative-4-cap) Markov chain Monte Carlo estimates
+of spawning biomass for the base model and alternative sensitivity runs
+representing different standard deviations ($\Phi$) associated with
+time-varying selectivity. Standard deviations examined are below (0.21
+and 0.70) and above (2.10) the base model value of 1.4.
 
 (ref:main-biomass-base-alternative-4-alt) This figure shows that recent
 spawning biomass varies for some sensitivity runs. Reducing the Phi
@@ -1125,10 +1131,10 @@ plot_biomass(d_obj = d_obj_sens_biomass[[3]],
              rev_colors = TRUE)
 ```
 
-(ref:main-status-base-alternative-4-cap) MCMC estimates of stock status
-(relative spawning biomass) for the base model and alternative sensitivity
-runs representing different standard deviations ($\Phi$) associated with
-time-varying selectivity. See
+(ref:main-status-base-alternative-4-cap) Markov chain Monte Carlo estimates
+of stock status (relative spawning biomass) for the base model and
+alternative sensitivity runs representing different standard deviations
+($\Phi$) associated with time-varying selectivity. See
 Figure~\@ref(fig:main-biomass-base-alternative-4-fig) for sensitivity
 descriptions.
 
@@ -1148,9 +1154,11 @@ plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
                  rev_colors = TRUE)
 ```
 
-(ref:main-recruitment-base-alternative-4-cap) MCMC estimates of recruitment
-for the base model and alternative sensitivity runs representing different
-standard deviations ($\Phi$) associated with time-varying selectivity. See Figure~\@ref(fig:main-biomass-base-alternative-4-fig) for sensitivity
+(ref:main-recruitment-base-alternative-4-cap) Markov chain Monte Carlo
+estimates of recruitment for the base model and alternative sensitivity
+runs representing different standard deviations ($\Phi$) associated with
+time-varying selectivity. See
+Figure~\@ref(fig:main-biomass-base-alternative-4-fig) for sensitivity
 descriptions.
 
 (ref:main-recruitment-base-alternative-4-alt) This figure shows differences
@@ -1166,10 +1174,10 @@ plot_recruitment(d_obj = d_obj_sens_recr[[3]],
                  rev_colors = TRUE)
 ```
 
-(ref:main-recruitment-devs-base-alternative-4-cap) MCMC estimates of
-recruitment deviations for the base model and alternative sensitivity runs
-representing different standard deviations ($\Phi$) associated with
-time-varying selectivity. See
+(ref:main-recruitment-devs-base-alternative-4-cap) Markov chain Monte Carlo
+estimates of recruitment deviations for the base model and alternative
+sensitivity runs representing different standard deviations ($\Phi$)
+associated with time-varying selectivity. See
 Figure~\@ref(fig:main-biomass-base-alternative-4-fig) for sensitivity
 descriptions.
 
@@ -1185,10 +1193,10 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
              rev_colors = TRUE)
 ```
 
-(ref:main-index-base-alternative-4-cap) MCMC estimates of the fit to the
-survey index of age-2$+$ biomass for the base model and alternative
-sensitivity runs representing different standard deviations ($\Phi$)
-associated with time-varying selectivity. See
+(ref:main-index-base-alternative-4-cap) Markov chain Monte Carlo estimates
+of the fit to the survey index of age-2$+$ biomass for the base model and
+alternative sensitivity runs representing different standard deviations
+($\Phi$) associated with time-varying selectivity. See
 Figure~\@ref(fig:main-biomass-base-alternative-4-fig) for sensitivity
 descriptions.
 
@@ -1206,9 +1214,9 @@ plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
                        rev_colors = TRUE)
 ```
 
-(ref:main-biomass-recruitment-retrospective-cap) MCMC Estimates of spawning
-biomass at the start of each year (top) and recruitment (bottom) for the
-base model and 5-year retrospective runs.
+(ref:main-biomass-recruitment-retrospective-cap) Markov chain Monte Carlo
+estimates of spawning biomass at the start of each year (top) and recruitment
+(bottom) for the base model and 5-year retrospective runs.
 
 (ref:main-biomass-recruitment-retrospective-alt) This figure shows how
 spawning biomass and recruitment vary for retrospective runs. The
@@ -1240,21 +1248,22 @@ retro_cohorts <- (end_yr - 11):(end_yr - 2)
 \clearpage
 
 (ref:main-retrospective-recruitment-cap) Retrospective analysis of
-recruitment deviations from MCMC models over the last
+recruitment deviations from Markov chain Monte Carlo models over the last
 `r length(retro_cohorts)` years. Recruitment deviations are the median
 log-scale differences between recruitment estimated by the model and expected
 recruitment from the spawner-recruit relationship. Age-0 recruitment
-deviations are non-zero because MCMC allows for sampling from the full
-lognormal distribution. Lines represent estimated recruitment deviations
-for cohorts born from `r min(retro_cohorts)` to `r max(retro_cohorts)`, with
-cohort birth year marked at the right of each color-coded line. For example,
-the right-most point for the `r assess_yr - 8` cohort shows the cohort at
-age-8 (i.e., at the start of `r assess_yr`, which represents the base model
-and includes data through `r assess_yr - 1`). The next point to the left
-is the `r assess_yr - 8` cohort at age-7, calculated by removing one year of
-data (so includes data up to `r assess_yr - 2`). Thus, models are fit to
-data available only up to the start of the year in which each cohort became
-a given age, such that the last year of data for a given point equals
+deviations are non-zero because Markov chain Monte Carlo allows for
+sampling from the full lognormal distribution. Lines represent estimated
+recruitment deviations for cohorts born from `r min(retro_cohorts)` to
+`r max(retro_cohorts)`, with cohort birth year marked at the right of each
+color-coded line. For example, the right-most point for the `r assess_yr - 8`
+cohort shows the cohort at age-8 (i.e., at the start of `r assess_yr`,
+which represents the base model and includes data through `r assess_yr - 1`).
+The next point to the left is the `r assess_yr - 8` cohort at age-7,
+calculated by removing one year of data (so includes data up to
+`r assess_yr - 2`). Thus, models are fit to data available only up to the
+start of the year in which each cohort became a given age, such that the
+last year of data for a given point equals
 $cohort\ birth\ year + cohort\ age - 1$.
 
 (ref:main-retrospective-recruitment-alt) This figure shows how recruitment
@@ -1292,9 +1301,9 @@ plot_squid(base_model,
 \clearpage
 
 (ref:main-historical-assessments-cap) Summary of historical `r sp`
-assessment estimates of spawning biomass. Estimates are MLEs or MCMC
-medians depending on the model structure. Shading represents the 95%
-credible interval from the `r assess_yr` base model.
+assessment estimates of spawning biomass. Estimates are MLEs or Markov chain
+Monte Carlo medians depending on the model structure. Shading represents the
+95% credible interval from the `r assess_yr` base model.
 
 (ref:main-historical-assessments-alt) This figure shows the varying
 historical estimates of spawning biomass from the annual assessments.
