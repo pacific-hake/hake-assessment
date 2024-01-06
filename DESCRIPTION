@@ -21,7 +21,6 @@ URL: https://github.com/pacific-hake/hake-assessment
 BugReports: https://github.com/pacific-hake/hake-assessment/issues
 VignetteBuilder: knitr
 Depends:
-  ggtools,
   R (>= 4.2.0)
 Imports:
   adnuts,
