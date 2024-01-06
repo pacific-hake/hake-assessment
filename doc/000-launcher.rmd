@@ -1,7 +1,8 @@
 ---
 title: |
-  | \vspace{5cm} **\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`}**
-subtitle: DRAFT for submission to Scientific Review Group
+  | \vspace{0cm} **\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`}**
+subtitle: |
+ \ **DRAFT for submission to Scientific Review Group\textsuperscript{1}**
 project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
@@ -77,10 +78,11 @@ output:
    title_page_image_width_cm: 12
 
    # Footer text --------------------------------------------------------------
-   footer_left: "DRAFT -- `r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`"
+   footer_left: "`r rmarkdown::metadata$project_variables$sp` assessment `r rmarkdown::metadata$project_variables$assess_yr`"
    # NOTE: cannot use backticks inside R-chunk which already uses backticks
    # here, so need to use [['hake_pdf']] instead of $`hake_pdf`
-   footer_right: "Font: `r rmarkdown::metadata$output[['hake_pdf']]$font`"
+   #footer_right: "Font: `r rmarkdown::metadata$output[['hake_pdf']]$font`"
+   footer_right: "DRAFT - Do not circulate"
    # ---------------------------------------------------------------------------
 
    # Table of contents and reference link settings ----------------------------
@@ -241,11 +243,12 @@ knitr::opts_chunk$set(
   out.width = "\\textwidth")
 ```
 
-<!-- Disclaimer: These materials do not constitute a formal publication and are for
+\small \textsuperscript{1}Disclaimer: These materials do not constitute a formal publication and are for
 information only. They are in a pre-review, pre-decisional state and should not
 be formally cited or reproduced. They are to be considered provisional and do
 not represent any determination or policy of NOAA or the Department of Commerce.
--->
+
+\normalsize
 
 \newpage
 
