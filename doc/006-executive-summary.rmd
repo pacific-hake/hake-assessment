@@ -96,7 +96,8 @@ about `r f(cohort_catch_2010 / 1e6, 2)` Mt,
 This Joint Technical Committee (JTC) assessment depends on the fishery
 landings (`r start_yr`--`r last_data_yr`), an acoustic survey biomass index
 of age-2+ fish (Figure~\@ref(fig:es-survey-biomass-fig) and age compositions
-(`r survey_start_yr`--`r survey_end_yr`), a relative index of age-1 fish (Figure~\@ref(fig:es-survey-age1-fig); `r survey_start_yr`--`r survey_end_yr`),
+(`r survey_start_yr`--`r survey_end_yr`), a relative index of age-1 fish
+(Figure~\@ref(fig:es-survey-age1-fig); `r survey_start_yr`--`r survey_end_yr`),
 fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`), and
 mean weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011
 the survey biomass index was the lowest in the time series and was followed
