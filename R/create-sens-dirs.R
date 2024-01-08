@@ -196,20 +196,68 @@ create_sens_dirs <- function(dir_version,
   ctl[["age_selex_parms_tv"]][rows, "INIT"] <- 2.10
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
+  change_max_age_selectivity <- function(ctl_list, age_max, fishery = 1) {
+    max_parameter_int <- ctl_list[["age_selex_parms"]] |>
+      tibble::rownames_to_column(var = "name") |>
+      dplyr::filter(grepl(paste0("\\(", fishery, "\\)"), name)) |>
+      dplyr::pull(name) |>
+      strsplit(split = "_") |>
+      purrr::map(3) |>
+      as.numeric() |>
+      max()
+    min_parameter_int <- ctl_list[["age_selex_parms"]] |>
+      tibble::rownames_to_column(var = "name") |>
+      dplyr::filter(grepl(paste0("\\(", fishery, "\\)"), name)) |>
+      dplyr::filter(PHASE >= 0) |>
+      dplyr::pull(name) |>
+      strsplit(split = "_") |>
+      purrr::map(3) |>
+      as.numeric() |>
+      min()
+    # Turn off parameters
+    regex_string <- purrr::map(
+      list(
+        c(age_max:max_parameter_int + 2),
+        c(min_parameter_int:(age_max + 1))
+      ),
+      .f = \(x) paste0(
+        "_P_", x,
+        "_.+\\(", fishery, "\\)$",
+        collapse = "|"
+      )
+    )
+    cols_zero <- c("INIT", "dev_minyr", "dev_maxyr", "dev_PH")
+    rows <- grep(regex_string[[1]], rownames(ctl_list[["age_selex_parms"]]))
+    ctl_list[["age_selex_parms"]][rows, cols_zero] <- 0
+    ctl_list[["age_selex_parms"]][rows, "PHASE"] <- -2
+    rows <- grep(regex_string[[2]], rownames(ctl_list[["age_selex_parms"]]))
+    ctl_list[["age_selex_parms"]][rows, "PHASE"] <- 2
+    # This only works with selectivity #17, i.e., not generalized for all species
+    if (any(ctl_list[["age_selex_parms"]][rows, "dev_PH"] > 0)) {
+      ctl_list[["age_selex_parms"]][rows, "dev_PH"] <- max(
+        ctl_list[["age_selex_parms"]][rows, "dev_PH"]
+      )
+      ctl_list[["age_selex_parms"]][rows, "dev_minyr"] <- max(
+        ctl_list[["age_selex_parms"]][rows, "dev_minyr"]
+      )
+      ctl_list[["age_selex_parms"]][rows, "dev_maxyr"] <- max(
+        ctl_list[["age_selex_parms"]][rows, "dev_maxyr"]
+      )
+    }
+    # Turn on parameters
+    return(ctl_list)
+  }
   aa <- setup_sensitivity(prefix_number = 13, suffix_string = "max-sel-age-5")
-  ctl <- setup_ctl(aa)
-  rows <- grep("\\(2\\)", rownames(ctl[["age_selex_parms"]]))
-  ctl[["age_selex_parms"]][rows[7:length(rows)], "PHASE"] <- -2
+  ctl <- setup_ctl(aa) |>
+    change_max_age_selectivity(age_max = 5)
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
   aa <- setup_sensitivity(prefix_number = 14, suffix_string = "max-sel-age-7")
-  ctl <- setup_ctl(aa)
-  rows <- grep("\\(2\\)", rownames(ctl[["age_selex_parms"]]))
-  ctl[["age_selex_parms"]][rows[6:8], "PHASE"] <- 2
+  ctl <- setup_ctl(aa) |>
+    change_max_age_selectivity(age_max = 7)
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
   aa <- setup_sensitivity(prefix_number = 15, suffix_string = "max-sel-age-8")
-  ctl <- setup_ctl(aa)
-  rows <- grep("\\(2\\)", rownames(ctl[["age_selex_parms"]]))
-  ctl[["age_selex_parms"]][rows[6:9], "PHASE"] <- 2
+  ctl <- setup_ctl(aa) |>
+    change_max_age_selectivity(age_max = 8)
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
   # zero sum rec dev constraint
