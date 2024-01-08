@@ -265,15 +265,6 @@ run_adnuts <- function(path,
 
   save(list = ls(all.names = TRUE), file = rdata_file, envir = environment())
 
-  fs::file_copy(
-    fs::dir_ls(
-      path = mcmc_path,
-      type = "file",
-      regexp = paste0(gsub("\\.exe", "", fn_exe), ".psv$")
-    ),
-    fs::path(mcmc_path, "ss.psv"),
-    overwrite = TRUE
-  )
   cmd <- paste0("cd ", mcmc_path, " && ", fn_exe, " -mceval")
   if(!is.null(fn_logfile)){
     cmd <- paste0(cmd, " > ", fn_logfile, " 2>&1")
