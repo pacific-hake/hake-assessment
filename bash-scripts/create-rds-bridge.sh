@@ -15,12 +15,23 @@
 
 # Build RDS files for bridge models
 
-models=(01-updated-ss-exe \
-        02-add-new-catch \
-        03-add-new-weight-at-age \
-        04-add-survey-age-2-plus \
-        05-add-survey-age-1 \
-        06-add-fishery-ages)
+models=( \
+        00-update-ss3-exe \
+        # 01-fix-catches \
+        # 02-fix-weight-at-age \
+        # 03-fix-survey-1 \
+        # 04-fix-fishery-comps \
+        10-add-catches \
+        20-add-weight-at-age \
+        # 30-add-survey-2 \
+        31-add-survey-age-comps
+        40-add-survey-1 \
+        50-add-fishery-ages \
+        # 60-tv-weight-at-age \
+        # 61-redo-fishery-comp \
+        62-tv-fecundity \
+        70-survey-1-t-distribution \
+        )
 
 type_path="02-bridging-models"
 verbose=FALSE
