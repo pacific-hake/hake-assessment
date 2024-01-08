@@ -44,14 +44,8 @@ create_sens_dirs <- function(dir_version,
            "Delete these or the whole directory and try again\n")
     }
   }
-  dir.create(sens_dir)
+  fs::dir_create(sens_dir)
 
-  file_exe <- fs::dir_ls(dir_base, regex = "exe$")
-  if (length(file_exe) > 1 | length(file_exe) == 0) {
-    message(
-      glue("{length(file_exe)} executable(s) were found in ", dir_base)
-    )
-  }
   input <- r4ss::SS_read(dir_base, verbose = FALSE)
   starter <- input[["starter"]]
   dat <- input[["dat"]]
@@ -81,13 +75,7 @@ create_sens_dirs <- function(dir_version,
   setup_ctl <- function(path_sens, return = c("ctl", "dat")) {
     return <- match.arg(return)
     input_list <- r4ss::SS_read(dir = path_sens)
-    file.starter <- file.path(path_sens, "starter.ss")
-    starter <- r4ss::SS_readstarter(file.starter, verbose = FALSE)
-    if(return == "dat"){
-      input_list[["dat"]]
-    }else{
-      input_list[["ctl"]]
-    }
+    return(input_list[[return]])
   }
 
   aa <- setup_sensitivity(prefix_number = 1, suffix_string = "h-prior-mean-low")
