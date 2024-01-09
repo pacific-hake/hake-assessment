@@ -394,7 +394,8 @@ plot_survey_fit_mcmc <- function(model,
                                      "survey biomass",
                                      "age-1 index"),
                               " with input (thick)\n",
-                              "and additionally estimated (median MCMC; thin) standard deviations"),
+                              "and additionally estimated (median MCMC; ",
+                              "thin) standard deviations"),
                size = leg_font_size,
                hjust = 0)
 

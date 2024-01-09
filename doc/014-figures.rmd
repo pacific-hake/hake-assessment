@@ -475,11 +475,20 @@ plot_survey_fit_mcmc(base_model,
                      remove_yr_labels = NULL)
 ```
 
-(ref:main-age1-index-fit-mcmc-cap) Assessment model fit to the relative age-1 index data that was produced from acoustic survey observations. Age-1 index observations (black dots) are input into the assessment model with uncertainty arising from sampling variability (thick vertical black lines). Additional uncertainty is estimated within the stock assessment model (thin vertical black lines) and added to the input sampling variability. A time series of the assessment model fit to the observations (blue line) represents the median of the posterior MCMC samples. A random subset of the individual MCMC time series samples are shown (thin black lines) to provide context for the description of the median MCMC estimate.
+(ref:main-age1-index-fit-mcmc-cap) Assessment model fit to the relative
+age-1 index data that was produced from acoustic survey observations. Age-1
+index observations (black dots) are input into the assessment model with
+uncertainty arising from sampling variability (thick vertical black lines).
+Additional uncertainty is estimated within the stock assessment model (thin
+vertical black lines) and added to the input sampling variability. A time
+series of the assessment model fit to the observations (blue line) represents
+the median of the posterior MCMC samples. A random subset of the individual
+Markov chain Monte Carlo MCMC time series samples are shown (thin black lines)
+to provide context for the description of the median MCMC estimate.
 
 (ref:main-age1-index-fit-mcmc-alt) This figure shows many posterior
 trajectories of the expected numbers of age-1 fish fitting well to the
-age-1 index.The lines are very tightly packed together for most of the
+age-1 index. The lines are very tightly packed together for most of the
 time series but diverge a little at the end of the time series since 2019.
 
 ```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height = 6}
