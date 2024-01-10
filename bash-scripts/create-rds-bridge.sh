@@ -23,14 +23,14 @@ models=( \
         # 04-fix-fishery-comps \
         10-add-catches \
         20-add-weight-at-age \
-        # 30-add-survey-2 \
+        30-add-survey-2 \
         31-add-survey-age-comps
         40-add-survey-1 \
         50-add-fishery-ages \
-        # 60-tv-weight-at-age \
-        # 61-redo-fishery-comp \
-        62-tv-fecundity \
-        70-survey-1-t-distribution \
+        # 60-survey-1-t-distribution \
+        # 70-tv-weight-at-age \
+        # 71-redo-fishery-comp \
+        # 72-tv-fecundity \
         )
 
 type_path="02-bridging-models"
