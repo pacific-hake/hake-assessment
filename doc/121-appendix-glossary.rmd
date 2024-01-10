@@ -34,7 +34,7 @@ below).
 Advisory Panel (AP): The advisory panel on `r sp` established by th
 e Agreement.
 
-Agreement ("Treaty"): The Agreement between the government of the United
+Agreement ('Treaty'): The Agreement between the government of the United
 States and the government of Canada on `r sp`, signed at Seattle, Washington,
 on November 21, 2003, and entered into force June 25, 2008.
 
@@ -123,7 +123,7 @@ the scientific evidence demonstrates that a different rate is necessary
 to sustain the offshore `r sp` resource.
 
 Depletion: Term used for relative spawning biomass (see below) prior to
-the 2015 stock assessment. "Relative depletion" was also used.
+the 2015 stock assessment. 'Relative depletion' was also used.
 
 DFO: Department of Fisheries and Oceans (Canada). See Fisheries and
 Oceans Canada.
@@ -210,9 +210,9 @@ Joint Management Committee (JMC): The joint management committee
 established by the Agreement.
 
 Joint Technical Committee (JTC): The joint technical committee established
-by the Agreement. The full formal name is "Joint Technical Committee of
+by the Agreement. The full formal name is 'Joint Technical Committee of
 the `r sp`/Whiting Agreement Between the Governments of the United States
-and Canada".
+and Canada'.
 
 kt: Kilotonne(s). Metric abbreviation for 1,000 metric tonnes
 
@@ -220,8 +220,8 @@ Logistic transformation: A mathematical transformation used to translate
 between numbers bounded within some range to numbers on the real line
 ($-\infty$ to $+\infty$).
 
-Magnuson-Stevens Fishery Conservation and Management Act: The MSFCMA,
-sometimes known as the "Magnuson-Stevens Act", established the 200-mile
+Magnuson--Stevens Fishery Conservation and Management Act: The MSFCMA,
+sometimes known as the 'Magnuson--Stevens Act', established the 200-mile
 fishery conservation zone, the regional fishery management council system,
 and other provisions of U.S. marine fishery law.
 
@@ -329,7 +329,7 @@ Relative spawning biomass: The ratio of the beginning-of-the-year female
 spawning biomass to the unfished equilibrium female spawning biomass (`r b_0`,
 see above). Thus, lower values are associated with fewer mature female fish.
 This term was introduced in the 2015 stock assessment as a replacement
-for "depletion" (see above) which was a source of some confusion.
+for 'depletion' (see above) which was a source of some confusion.
 
 rwMH: Random walk Metropolis Hastings Bayesian MCMC sampling algorithm
 used to create posterior distributions used in `r sp` Bayesian stock
@@ -339,7 +339,7 @@ Scientific Review Group (SRG): The scientific review group established by
 the Agreement.
 
 Scientific and Statistical Committee (SSC): The scientific advisory
-committee to the PFMC. The Magnuson-Stevens Act requires that each council
+committee to the PFMC. The Magnuson--Stevens Act requires that each council
 maintain an SSC to assist in gathering and analyzing statistical,
 biological, ecological, economic, social, and other scientific information
 that is relevant to the management of council fisheries.
@@ -390,7 +390,7 @@ this stock assessment.
 
 t: Metric tonne(s). A unit of mass (often referred to as weight) equal to
 1,000 kilograms or 2,204.62 pounds. Some previous stock assessments used
-the abbreviation "mt" (metric tonnes).
+the abbreviation 'mt' (metric tonnes).
 
 Target strength (TS): The amount of backscatter from an individual acoustic
 target.
