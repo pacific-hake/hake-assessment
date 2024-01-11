@@ -47,6 +47,8 @@ run_forecasts <- function(model = NULL,
     if(is.null(model_path)){
       stop("Either `model` or `model_path` must be supplied")
     }
+    message("Loading model output into R list for model located at:\n",
+            model_path)
     model <- load_ss_files(model_path, ...)
   }else{
     if(is.null(model_path)){
@@ -59,8 +61,8 @@ run_forecasts <- function(model = NULL,
     }
   }
 
-  if(!check_catch_levels(model)){
-    message("`run_forecasts()`: The `", file.path(model_path, ct_levels),
+  if(!check_catch_levels(model_path)){
+    message("`run_forecasts()`: The `", file.path(model_path, ct_levels_path),
             "` directory does not appear to be in the correct format. ",
             "Either one of the subdirectories does not exist, or the `",
             forecast_fn, "` files inside the subdirectories do not ",
@@ -138,7 +140,10 @@ run_forecasts <- function(model = NULL,
                                    Fleet = 1,
                                    Catch_or_F = ct_level[[1]][1:catch_ind])
 
-      SS_writeforecast(fore, dir = new_forecast_dir, overwrite = TRUE, verbose = FALSE)
+      SS_writeforecast(fore,
+                       dir = new_forecast_dir,
+                       overwrite = TRUE,
+                       verbose = FALSE)
 
       # Evaluate the model using -mceval option of ADMB, and retrieve the output
       unlink(file.path(new_forecast_dir, derposts_fn), force = TRUE)
