@@ -28,6 +28,7 @@ bridge_models_desc <-
   list(c("Update Stock Synthesis version to 3.30.20",
          "Correct historical catches",
          "Correct historical weight-at-age",
+         "Correct historical Age-1 survey index",
          "Correct historical fishery age comps",
          paste0("Add ", last_data_yr, " catch"),
          paste0("Add ", last_data_yr, " weight-at-age"),
@@ -39,7 +40,7 @@ bridge_models_desc <-
          "Use calculated TV weight-at-age",
          "Corrected Fishery age comps for new WAA",
          "Use pre-estimated TV maturity"))
-prepend_to_bridge <- TRUE
+prepend_to_bridge <- c(TRUE, FALSE)
 # Subtract the following number of years of the end of the models
 # when plotting. Should only be 1 for the first one or two, then zeroes.
 # This vector must be 1 longer than the above lists, because last year's
@@ -123,7 +124,7 @@ if(!exists("last_yr_base_model")){
     readRDS(file.path(drs$last_yr_base_model_dir,
                       paste0(basename(drs$last_yr_base_model_dir), ".rds")))
 }
-last_yr_base_model_name <- paste0(assess_yr-1," Base model")
+last_yr_base_model_name <- paste0(last_assess_yr, " Base model")
 
 base_model <- models$base_models_dirs[[1]][[1]]
 base_model_name <- attr(base_model, "desc")
