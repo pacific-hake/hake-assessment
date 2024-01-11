@@ -68,18 +68,6 @@ years have been the largest in the time series.
 plot_catches(ct, xlim = c(start_yr, last_data_yr))
 ```
 
-(ref:main-us-catch-rates-cap) Unstandardized (raw) catch-rates (t/hr) of
-`r sp` catches by tow in the U.S. at-sea fleet from
-`r last_data_yr - 4`--`r last_data_yr`.
-
-(ref:main-us-catch-rates-alt) This figure shows changes in catch rates for
-the U.S. fleet. The rates are highest in September followed by May and June.
-
-```{r main-us-catch-rates-fig, fig.cap = "(ref:main-us-catch-rates-cap)", results = "asis"}
-
-include_graphics(file.path(figures_dir,"fishCatchRatesUS.png"), error = FALSE)
-```
-
 (ref:main-us-depths-cap) Distribution of fishing depths (left) and bottom
 depths (right), in meters, of hauls targeting `r sp` in the U.S.
 Catcher-Processor and Mothership sectors from
