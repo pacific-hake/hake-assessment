@@ -23,3 +23,7 @@ fan lo
 # Change ownership recursively, starting in current directory
 sudo chown -R grandin:hake .
 
+# Find all RDS files in a folder recursibely and sort by number. Run in
+# briding model directory of sensitiviy directory to see which models
+# have RDS files built for them
+find -name "*.rds" | sort
