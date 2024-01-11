@@ -17,6 +17,11 @@ sensors | grep "ac"
 # View fan speeds
 sensors | grep "fan"
 
+# Graphical display of all cores temperatures. Runs in background after you
+# close the window so there is a graph that builds up over time once you
+# open it again
+psensor
+
 # Turn fan speed up for fan #2
 fan hi
 # Retun fan speed to original
