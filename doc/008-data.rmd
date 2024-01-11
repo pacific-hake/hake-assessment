@@ -23,7 +23,7 @@ are used to fit the model
 Figure~\@ref(fig:main-age-comp-bubbles-fig)).
 
 - Biomass index and age compositions from the `r survey_name`
-(`r str_flatten_comma(survey.age.years)`;
+(`r str_flatten_comma(survey_age_years)`;
  Tables~\@ref(tab:main-input-age-data-survey-tab),
  ~\@ref(tab:main-survey-history-tab),
  and~\@ref(tab:main-survey-by-country-tab);
@@ -225,8 +225,8 @@ The `r survey_name` [@StewartForrestEtAl2011] has been the primary
 fishery-independent tool used to assess the distribution, abundance, and
 biology of coastal age-2$+$ `r sp` along the west coasts of the U.S.A.
 and Canada. The acoustic surveys performed in
-`r survey.age.years[-length(survey.age.years)]`, and
-`r survey.age.years[length(survey.age.years)]` were used in this assessment
+`r survey_age_years[-length(survey_age_years)]`, and
+`r survey_age_years[length(survey_age_years)]` were used in this assessment
 (Table~\@ref(tab:main-survey-history-tab)). The acoustic survey samples
 transects that represent all waters off the coasts of the U.S.A. and Canada
 thought to contain all portions of the age-2$+$ `r sp` stock. Observations

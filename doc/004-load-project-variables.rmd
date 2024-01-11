@@ -623,7 +623,7 @@ can_age_yrs <- can_ages_lst |>
 can_age_yrs_min <- min(can_age_yrs)
 can_age_yrs_max <- max(can_age_yrs)
 # ... age composition data for data section -----------------------------------
-survey.age.years <-
+survey_age_years <-
   base_model$dat$agecomp[base_model$dat$agecomp$FltSvy == 2, ]$Yr
 max_fishery_age_prop <- get_age_comp_limits(base_model, type = 1)
 max_survey_age_prop <- get_age_comp_limits(base_model, type = 2)
