@@ -2,7 +2,6 @@
 # any new package data to file R/data.R
 
 # General variables
-#create_data_hake("ct_levels_spr_tol", 0.01)
 create_data_hake("ct_levels_spr_tol", 0.1)
 create_data_hake("ct_levels_catch_tol", 100)
 create_data_hake("ct_levels_max_iter", 20)
@@ -20,6 +19,6 @@ create_data_hake("unfished_eq_yr", 1964)
 create_data_hake("start_yr", 1966)
 create_data_hake("start_yr_age_comps", 1975)
 create_data_hake("survey_start_yr", 1995)
-create_data_hake("survey_end_yr", 2021)
+create_data_hake("survey_end_yr", 2023)
 create_data_hake("surv_yrs", c(1995, 1998, 2001, 2003, 2005, 2007, 2009,
-                               2011, 2012, 2013, 2015, 2017, 2019, 2021))
+                               2011, 2012, 2013, 2015, 2017, 2019, 2021, 2023))
