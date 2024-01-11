@@ -9,19 +9,36 @@ base_models_desc <- "Base model"
 # model will be prepended to the group.
 # See `set_dirs()`
 bridge_models_dirs <-
-  list(c("01-updated-ss-exe",
-         "02-add-new-catch",
-         "03-add-new-weight-at-age",
-         #"04-add-survey-age-2-plus", # Uncomment in survey years
-         #"05-add-survey-age-1", # Uncomment in survey years
-         "06-add-fishery-ages"))
+  list(c("00-update-ss3-exe",
+         "01-fix-catches",
+         "02-fix-weight-at-age",
+         "03-fix-survey-1",
+         "04-fix-fishery-comps",
+         "10-add-catches",
+         "20-add-weight-at-age",
+         "30-add-survey-2",
+         "31-add-survey-age-comps",
+         "40-add-survey-1",
+         "50-add-fishery-ages"),
+       c("60-survey-1-t-distribution",
+         "70-tv-weight-at-age",
+         "71-redo-fishery-comp",
+         "72-tv-fecundity"))
 bridge_models_desc <-
   list(c("Update Stock Synthesis version to 3.30.20",
+         "Correct historical catches",
+         "Correct historical weight-at-age",
+         "Correct historical fishery age comps",
          paste0("Add ", last_data_yr, " catch"),
          paste0("Add ", last_data_yr, " weight-at-age"),
-         #"Add age-2+ acoustic survey", # Uncomment in survey years
-         #"Add age-1 index", # Uncomment in survey years
-         paste0("Add ", last_data_yr, " fishery age comps")))
+         "Add age-2+ acoustic survey index",
+         "Add age-2+ acoustic survey age comps",
+         "Add age-1 index",
+         paste0("Add ", last_data_yr, " fishery age comps")),
+       c("Change survey to use student-t distribution",
+         "Use calculated TV weight-at-age",
+         "Corrected Fishery age comps for new WAA",
+         "Use pre-estimated TV maturity"))
 prepend_to_bridge <- TRUE
 # Subtract the following number of years of the end of the models
 # when plotting. Should only be 1 for the first one or two, then zeroes.
