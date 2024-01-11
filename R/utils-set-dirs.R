@@ -147,42 +147,48 @@ set_dirs <- function(
     })
   })
 
-  # Check that full paths exist. If they don't set them to NA
-  dirs <- map(subdirs, function(subdir){
-    map(subdir, function(group){
-      map_chr(group, function(fn){
-        if(file.exists(fn)){
-          fn
-        }else{
-          NA_character_
+  dirs <- map(subdirs, \(subdir){
+    map(subdir, \(group){
+      map_chr(group, \(dr){
+        if(dir.exists(dr)){
+          return(dr)
         }
+        NA_character_
       })
     })
   })
 
+  # Check that full paths exist for bridging models.
+  # If they don't, stop with error
+  br_grps <- dirs[[2]]
+  walk(br_grps, \(grp){
+    if(any(is.na(grp))){
+      stop("Bridge model directories missing. Check your bridge model ",
+           "directory names carefully!\n\n")
+    }
+  })
 
   last_yr_base_model_dir <- file.path(last_yr_models_dir,
                                       basename(base_models_dir),
                                       base_models_dirs)
 
   # Prepend last year's base model to the bridge model groups as defined
-  # by `prepend_to_bridge`
+  # by `prepend_to_bridge` unless the bridge_model directories are `NA`
   if(!is.null(prepend_to_bridge[1]) && !is.na(prepend_to_bridge[1])){
     if(length(prepend_to_bridge) != length(bridge_models_dirs)){
       stop("Length of `prepend_to_bridge` (", length(prepend_to_bridge),
            ") is not equal to length of `bridge_model_dirs` (",
            length(bridge_models_dirs), ")")
     }
-    if(!is.na(dirs[[2]])){
-      dirs[[2]] <- map2(dirs[[2]], prepend_to_bridge, function(br, prp){
-        if(prp){
-          c(last_yr_base_model_dir, br)
-        }else{
-          br
-        }
-      })
-    }
+    dirs[[2]] <- map2(dirs[[2]], prepend_to_bridge, function(br, prp){
+      if(prp){
+        c(last_yr_base_model_dir, br)
+      }else{
+        br
+      }
+    })
   }
+
   # Prepend the base model to each of the sensitivity model groups
   dirs[[3]] <- map(dirs[[3]], function(sns){
     if(is.na(sns[1])){
