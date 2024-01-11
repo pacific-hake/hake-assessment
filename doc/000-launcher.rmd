@@ -9,9 +9,9 @@ project_variables:
   science_name: "Merluccius productus"
   simple_name: "hake"
   survey_name: "Joint U.S. and Canadian Integrated Acoustic and Trawl Survey"
-  assess_yr: 2023
-  last_assess_yr: 2022
-  last_data_yr: 2022
+  assess_yr: 2024
+  last_assess_yr: 2023
+  last_data_yr: 2023
   model_version: "01"
   last_yr_model_version: "01"
   ss_version: "3.30.22"
