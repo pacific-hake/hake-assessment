@@ -8,6 +8,8 @@ grep "CRON.*grandin" /var/log/syslog
 
 # Edit CRON jobs
 crontab -e
+# If above command says "no crontab available for grandin"
+sudo crontab -u grandin -e
 
 # View CPU core temperatures (if 'crit' temp is reached, CPU will be switched
 # off and machine will lock up due to failsafe)
