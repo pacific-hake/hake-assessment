@@ -90,8 +90,8 @@ sens_models_desc <-
 #bridge_models_desc <- NA
 #prepend_to_bridge <- NA
 
-#sens_models_dirs <- NA
-#sens_models_desc <- NA
+sens_models_dirs <- NA
+sens_models_desc <- NA
 
 request_models_dirs <- NA
 request_models_desc <- NA
