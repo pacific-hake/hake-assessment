@@ -35,7 +35,7 @@
 #   $project_path
 
 repo_path=`Rscript -e "cat(here::here())"`
-models_path="models"
+models_path="/srv/hake/models"
 # *Never* change `year_path` manually - See `get-assess-year.sh` call above
 year_path=$assess_year
 version_path="01-version"
@@ -53,7 +53,7 @@ does not exist, bailing out." ; exit 1; }
   Rscript -e " \
     setwd('$repo_path'); \
     devtools::load_all(); \
-    run_forecasts(model_path = $model_path)" \
+    run_forecasts(model_path = '$model_path')" \
   > /dev/null 2>&1; \
   printf "\nBase model forecasts complete\n" \
 )
