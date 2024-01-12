@@ -155,6 +155,16 @@ last_yr_landings <- ct_last1 |>
 last_yr_tac <- ct_last1 |>
   pull(`Total TAC`) |>
   f(0)
+last_yr_us_rank <- ct |>
+  mutate(rank = rank(-1 * `U.S. Total`)) |>
+  filter(Year == last_data_yr) |>
+  pull(rank) |>
+  ordinal()
+last_yr_can_rank <- ct |>
+  mutate(rank = rank(-1 * `Canada Total`)) |>
+  filter(Year == last_data_yr) |>
+  pull(rank) |>
+  ordinal()
 # ... catch over the last 10 years --------------------------------------------
 ct_last_10yrs <- ct |>
   slice_tail(n = 10)
