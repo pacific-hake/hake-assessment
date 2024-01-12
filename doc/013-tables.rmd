@@ -593,81 +593,90 @@ table_risk(
 ```
 
 ```{r main-parameter-estimates-sens-1-tab, results = "asis", echo = FALSE}
-table_param_est(
-  models = sens_models[[1]],
-  model_nms = sens_models_names[[1]],
-  end_yr = end_yr,
-  section_bold = TRUE,
-  section_italics = TRUE,
-  section_underline = TRUE,
-  section_line_above = TRUE,
-  section_line_below = FALSE,
-  digits = 3,
-  caption = paste0(
-    "Posterior medians for select parameters, derived quantities, reference ",
-    "points, and negative log likelihoods for the base model and some ",
-    "sensitivity runs (described in ",
-    "Section~\\@ref(sec:assessment-sensitivity-analyses)). A dash (--) ",
-    "indicates that the parameter or derived quantity was not estimated in ",
-    "the model."),
-  right_cols_cm = 1.8,
-  font_size = 9,
-  header_font_size = 9,
-  longtable = TRUE) |> 
-  landscape()
+if(!is.na(sens_models[[1]])){
+  table_param_est(
+    models = sens_models[[1]],
+    model_nms = sens_models_names[[1]],
+    end_yr = end_yr,
+    section_bold = TRUE,
+    section_italics = TRUE,
+    section_underline = TRUE,
+    section_line_above = TRUE,
+    section_line_below = FALSE,
+    digits = 3,
+    caption = paste0(
+      "Posterior medians for select parameters, derived quantities, reference ",
+      "points, and negative log likelihoods for the base model and some ",
+      "sensitivity runs (described in ",
+      "Section~\\@ref(sec:assessment-sensitivity-analyses)). A dash (--) ",
+      "indicates that the parameter or derived quantity was not estimated in ",
+      "the model."),
+    right_cols_cm = 1.8,
+    font_size = 9,
+    header_font_size = 9,
+    longtable = TRUE) |> 
+    landscape()
+}
 ```
 
 ```{r main-parameter-estimates-sens-2-tab, results = "asis", echo = FALSE}
-table_param_est(
-  models = sens_models[[2]],
-  model_nms = sens_models_names[[2]],
-  end_yr = end_yr,
-  section_bold = TRUE,
-  section_italics = TRUE,
-  section_underline = TRUE,
-  section_line_above = TRUE,
-  section_line_below = FALSE,
-  digits = 3,
-  caption = paste0(
-    "Posterior medians for select parameters, derived quantities, reference ",
-    "points, and negative log likelihoods for the base model and further ",
-    "sensitivity runs (described in ",
-    "Section~\\@ref(sec:assessment-sensitivity-analyses)). A dash (--) ",
-    "indicates that the parameter or derived quantity was not estimated in ",
-    "the model."),
-  right_cols_cm = 2,
-  font_size = 9,
-  header_font_size = 9,
-  longtable = TRUE) |> 
-  landscape()
+
+if(!is.na(sens_models[[1]])){
+  table_param_est(
+    models = sens_models[[2]],
+    model_nms = sens_models_names[[2]],
+    end_yr = end_yr,
+    section_bold = TRUE,
+    section_italics = TRUE,
+    section_underline = TRUE,
+    section_line_above = TRUE,
+    section_line_below = FALSE,
+    digits = 3,
+    caption = paste0(
+      "Posterior medians for select parameters, derived quantities, reference ",
+      "points, and negative log likelihoods for the base model and further ",
+      "sensitivity runs (described in ",
+      "Section~\\@ref(sec:assessment-sensitivity-analyses)). A dash (--) ",
+      "indicates that the parameter or derived quantity was not estimated in ",
+      "the model."),
+    right_cols_cm = 2,
+    font_size = 9,
+    header_font_size = 9,
+    longtable = TRUE) |> 
+    landscape()
+}
 ```
 
 ```{r main-parameter-estimates-sens-3-tab, results = "asis", echo = FALSE}
-table_param_est(
-  models = sens_models[[3]],
-  model_nms = sens_models_names[[3]],
-  end_yr = end_yr,
-  section_bold = TRUE,
-  section_italics = TRUE,
-  section_underline = TRUE,
-  section_line_above = TRUE,
-  section_line_below = FALSE,
-  digits = 3,
-  caption = paste0(
-    "Posterior medians for select parameters, derived quantities, reference ",
-    "points, and negative log likelihoods for the base model and further ",
-    "sensitivity runs (described in ",
-    "Section~\\@ref(sec:assessment-sensitivity-analyses)). A dash (--) ",
-    "indicates that the parameter or derived quantity was not estimated in ",
-    "the model."),
-  right_cols_cm = 1.8,
-  font_size = 9,
-  header_font_size = 9,
-  longtable = TRUE) |> 
-  landscape()
+
+if(!is.na(sens_models[[1]])){
+  table_param_est(
+    models = sens_models[[3]],
+    model_nms = sens_models_names[[3]],
+    end_yr = end_yr,
+    section_bold = TRUE,
+    section_italics = TRUE,
+    section_underline = TRUE,
+    section_line_above = TRUE,
+    section_line_below = FALSE,
+    digits = 3,
+    caption = paste0(
+      "Posterior medians for select parameters, derived quantities, reference ",
+      "points, and negative log likelihoods for the base model and further ",
+      "sensitivity runs (described in ",
+      "Section~\\@ref(sec:assessment-sensitivity-analyses)). A dash (--) ",
+      "indicates that the parameter or derived quantity was not estimated in ",
+      "the model."),
+    right_cols_cm = 1.8,
+    font_size = 9,
+    header_font_size = 9,
+    longtable = TRUE) |> 
+    landscape()
+}
 ```
 
 ```{r main-parameter-estimates-retro-tab, results = "asis", echo = FALSE}
+
 table_param_est(
   base_model$retrospectives$retro_param_est,
   section_bold = TRUE,

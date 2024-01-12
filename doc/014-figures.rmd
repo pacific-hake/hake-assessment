@@ -446,21 +446,21 @@ to 2021.
 
 ```{r main-survey-index-fit-mcmc-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-cap)", fig.height=6, fig.width=8}
 
-plot_survey_fit_mcmc(base_model,
-                     type = "acoustic",
-                     n_posts = 1000,
-                     glow = TRUE,
-                     glow_color = "black",
-                     glow_offset = 0.5,
-                     leg_ymax = 4.8,
-                     leg_sep = 0.45,
-                     x_lim = c(survey_start_yr, survey_end_yr),
-                     y_lim = c(0, 6),
-                     x_labs_mod = 5,
-                     y_labs_by = 0.5,
-                     tick_prop = 1,
-                     vjust_x_labels = -2,
-                     remove_yr_labels = NULL)
+# plot_survey_fit_mcmc(base_model,
+#                      type = "acoustic",
+#                      n_posts = 1000,
+#                      glow = TRUE,
+#                      glow_color = "black",
+#                      glow_offset = 0.5,
+#                      leg_ymax = 4.8,
+#                      leg_sep = 0.45,
+#                      x_lim = c(survey_start_yr, survey_end_yr),
+#                      y_lim = c(0, 6),
+#                      x_labs_mod = 5,
+#                      y_labs_by = 0.5,
+#                      tick_prop = 1,
+#                      vjust_x_labels = -2,
+#                      remove_yr_labels = NULL)
 ```
 
 (ref:main-age1-index-fit-mcmc-cap) Assessment model fit to the relative
@@ -481,21 +481,21 @@ time series but diverge a little at the end of the time series since 2019.
 
 ```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height = 6}
 
-plot_survey_fit_mcmc(base_model,
-                     type = "age1",
-                     n_posts = 1000,
-                     glow = TRUE,
-                     glow_color = "black",
-                     glow_offset = 0.5,
-                     leg_ymax = 4.8,
-                     leg_sep = 0.45,
-                     x_lim = c(survey_start_yr, survey_end_yr),
-                     y_lim = c(0, 37),
-                     x_labs_mod = 5,
-                     y_labs_by = 5,
-                     tick_prop = 1,
-                     vjust_x_labels = -2,
-                     remove_yr_labels = NULL)
+# plot_survey_fit_mcmc(base_model,
+#                      type = "age1",
+#                      n_posts = 1000,
+#                      glow = TRUE,
+#                      glow_color = "black",
+#                      glow_offset = 0.5,
+#                      leg_ymax = 4.8,
+#                      leg_sep = 0.45,
+#                      x_lim = c(survey_start_yr, survey_end_yr),
+#                      y_lim = c(0, 37),
+#                      x_labs_mod = 5,
+#                      y_labs_by = 5,
+#                      tick_prop = 1,
+#                      vjust_x_labels = -2,
+#                      remove_yr_labels = NULL)
 ```
 
 (ref:main-age-comp-fits-cap) Base model fits to the observed fishery (top)
@@ -991,14 +991,16 @@ effect and scales the population up with an increase in its size.
 
 ```{r main-biomass-base-alternative-1-fig, fig.cap = "(ref:main-biomass-base-alternative-1-cap)", fig.height = 4.5}
 
-plot_biomass(d_obj = d_obj_sens_biomass[[1]],
-             x_expansion = 3.5,
-             ylim = c(0, 24),
-             y_breaks = seq(0, 24, 2),
-             leg_font_size =8,
-             leg_pos = c(0.65, 0.8),
-             leg_ncol = 2,
-             rev_colors = TRUE)
+if(!is.null(d_obj_sens_biomass[[1]])){
+  plot_biomass(d_obj = d_obj_sens_biomass[[1]],
+               x_expansion = 3.5,
+               ylim = c(0, 24),
+               y_breaks = seq(0, 24, 2),
+               leg_font_size =8,
+               leg_pos = c(0.65, 0.8),
+               leg_ncol = 2,
+               rev_colors = TRUE)
+}
 ```
 
 (ref:main-status-base-alternative-1-cap) Markov chain Monte Carlo estimates
@@ -1015,13 +1017,15 @@ up with an increase in its size.
 
 ```{r main-status-base-alternative-1-fig, fig.cap = "(ref:main-status-base-alternative-1-cap)", fig.height = 4.5}
 
-plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
-                 ylim = c(0, 4),
-                 x_expansion = 2,
-                 leg_font_size = 8,
-                 leg_pos = c(0.65, 0.85),
-                 leg_ncol = 2,
-                 rev_colors = TRUE)
+if(!is.null(d_obj_sens_rel_biomass[[1]])){
+  plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[1]],
+                   ylim = c(0, 4),
+                   x_expansion = 2,
+                   leg_font_size = 8,
+                   leg_pos = c(0.65, 0.85),
+                   leg_ncol = 2,
+                   rev_colors = TRUE)
+}
 ```
 
 (ref:main-biomass-base-alternative-2-cap) Markov chain Monte Carlo estimates
@@ -1036,10 +1040,12 @@ estimate increases with the removal of the age-1 index from the model.
 
 ```{r main-biomass-base-alternative-2-fig, fig.cap = "(ref:main-biomass-base-alternative-2-cap)", fig.height = 4.5}
 
-plot_biomass(d_obj = d_obj_sens_biomass[[2]],
-             x_expansion = 3.5,
-             leg_pos = c(0.65, 0.85),
-             rev_colors = TRUE)
+if(!is.null(d_obj_sens_biomass[[1]])){
+  plot_biomass(d_obj = d_obj_sens_biomass[[2]],
+               x_expansion = 3.5,
+               leg_pos = c(0.65, 0.85),
+               rev_colors = TRUE)
+}
 ```
 
 (ref:main-status-base-alternative-2-cap) Markov chain Monte Carlo estimates
@@ -1055,10 +1061,12 @@ removal of the age-1 index from the model.
 
 ```{r main-status-base-alternative-2-fig, fig.cap = "(ref:main-status-base-alternative-2-cap)", fig.height = 4.5}
 
-plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[2]],
-                 x_expansion = 2,
-                 leg_pos = c(0.65, 0.85),
-                 rev_colors = TRUE)
+if(!is.null(d_obj_sens_rel_biomass[[1]])){
+  plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[2]],
+                   x_expansion = 2,
+                   leg_pos = c(0.65, 0.85),
+                   rev_colors = TRUE)
+}
 ```
 
 (ref:main-recruitment-base-alternative-2-cap) Markov chain Monte Carlo
@@ -1074,9 +1082,11 @@ the largest effect here.
 
 ```{r main-recruitment-base-alternative-2-fig, fig.cap = "(ref:main-recruitment-base-alternative-2-cap)", fig.height = 4.5}
 
-plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
-             leg_pos = c(0.17, 0.92),
-             rev_colors = TRUE)
+if(!is.null(d_obj_sens_recdev[[1]])){
+  plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
+               leg_pos = c(0.17, 0.92),
+               rev_colors = TRUE)
+}
 ```
 
 (ref:main-index-base-alternative-2-cap) Markov chain Monte Carlo
@@ -1093,10 +1103,12 @@ method increases it.
 
 ```{r main-index-base-alternative-2-fig, fig.cap = "(ref:main-index-base-alternative-2-cap)", fig.height = 4.5}
 
-plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp2[[1]],
-                       x_expansion = 1,
-                       leg_pos = c(0.82, 0.18),
-                       rev_colors = TRUE)
+if(!is.null(d_obj_sens_age2_index_grp2[[1]])){
+  plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp2[[1]],
+                         x_expansion = 1,
+                         leg_pos = c(0.82, 0.18),
+                         rev_colors = TRUE)
+}
 ```
 
 (ref:main-biomass-base-alternative-4-cap) Markov chain Monte Carlo estimates
@@ -1112,11 +1124,13 @@ increasing it results in a decrease.
 
 ```{r main-biomass-base-alternative-4-fig, fig.cap = "(ref:main-biomass-base-alternative-4-cap)", fig.height = 4.5}
 
-plot_biomass(d_obj = d_obj_sens_biomass[[3]],
-             x_expansion = 3.5,
-             leg_font_size = 12,
-             leg_pos = c(0.65, 0.85),
-             rev_colors = TRUE)
+if(!is.null(d_obj_sens_biomass[[1]])){
+  plot_biomass(d_obj = d_obj_sens_biomass[[3]],
+               x_expansion = 3.5,
+               leg_font_size = 12,
+               leg_pos = c(0.65, 0.85),
+               rev_colors = TRUE)
+}
 ```
 
 (ref:main-status-base-alternative-4-cap) Markov chain Monte Carlo estimates
@@ -1133,13 +1147,15 @@ a large increase in current biomass while increasing it results in a decrease.
 
 ```{r main-status-base-alternative-4-fig, fig.cap = "(ref:main-status-base-alternative-4-cap)", fig.height = 4.5}
 
-plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
-                 ylim = c(0, 3),
-                 show_arrows = TRUE,
-                 x_expansion = 2,
-                 leg_font_size = 12,
-                 leg_pos = c(0.65, 0.85),
-                 rev_colors = TRUE)
+if(!is.null(d_obj_sens_rel_biomass[[1]])){
+  plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[3]],
+                   ylim = c(0, 3),
+                   show_arrows = TRUE,
+                   x_expansion = 2,
+                   leg_font_size = 12,
+                   leg_pos = c(0.65, 0.85),
+                   rev_colors = TRUE)
+}
 ```
 
 (ref:main-recruitment-base-alternative-4-cap) Markov chain Monte Carlo
@@ -1155,11 +1171,13 @@ for the large cohorts is highly sensitive to the change in the Phi parameter.
 
 ```{r main-recruitment-base-alternative-4-fig, fig.cap = "(ref:main-recruitment-base-alternative-4-cap)", fig.height = 4.5}
 
-plot_recruitment(d_obj = d_obj_sens_recr[[3]],
-                 leg_font_size = 12,
-                 leg_pos = c(0.45, 0.88),
-                 inc_means = FALSE,
-                 rev_colors = TRUE)
+if(!is.null(d_obj_sens_recr[[1]])){
+  plot_recruitment(d_obj = d_obj_sens_recr[[3]],
+                   leg_font_size = 12,
+                   leg_pos = c(0.45, 0.88),
+                   inc_means = FALSE,
+                   rev_colors = TRUE)
+}
 ```
 
 (ref:main-recruitment-devs-base-alternative-4-cap) Markov chain Monte Carlo
@@ -1176,9 +1194,11 @@ cohorts is highly sensitive to the change in the Phi parameter.
 
 ```{r main-recruitment-devs-base-alternative-4-fig, fig.cap = "(ref:main-recruitment-devs-base-alternative-4-cap)", fig.height = 4.5}
 
-plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
-             leg_pos = c(0.15, 0.88),
-             rev_colors = TRUE)
+if(!is.null(d_obj_sens_recdev[[1]])){
+  plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
+               leg_pos = c(0.15, 0.88),
+               rev_colors = TRUE)
+}
 ```
 
 (ref:main-index-base-alternative-4-cap) Markov chain Monte Carlo estimates
@@ -1195,11 +1215,13 @@ set to 0.21.
 
 ```{r main-index-base-alternative-4-fig, fig.cap = "(ref:main-index-base-alternative-4-cap)", fig.height = 4.5}
 
-plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
-                       survey_type = "age2",
-                       x_expansion = 1,
-                       leg_pos = c(0.82, 0.18),
-                       rev_colors = TRUE)
+if(!is.null(d_obj_sens_age2_index_grp3[[1]])){
+  plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
+                         survey_type = "age2",
+                         x_expansion = 1,
+                         leg_pos = c(0.82, 0.18),
+                         rev_colors = TRUE)
+}
 ```
 
 (ref:main-biomass-recruitment-retrospective-cap) Markov chain Monte Carlo

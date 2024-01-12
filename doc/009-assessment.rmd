@@ -1376,14 +1376,10 @@ Figures~\@ref(fig:main-biomass-base-alternative-2-fig) and
 population dynamics are similar, regardless of extrapolation, throughout most
 of the time series. However, there is some divergence in recent year 
 estimates; e.g., the estimated relative spawning biomass in `r end_yr` is
-`r f(100 * sens_models[[2]][[1]]$derived_quants["Bratio_2016","Value"],1)`%
-for the base model (with extrapolation) and
-`r f(100 * sens_models[[2]][[2]]$derived_quants["Bratio_2016","Value"],1)`%
-for the model without extrapolation. The 2016 default harvest control catch
-limit coming from the base model is
-`r f(sens_models[[2]][[1]]$derived_quants["ForeCatch_2016","Value"])`~t
-compared to
-`r f(sens_models[[2]][[2]]$derived_quants["ForeCatch_2016","Value"])`~t
+`r sens_base_bratio`% for the base model (with extrapolation) and
+`r sens_grp2_2_bratio`% for the model without extrapolation. The 2016
+default harvest control catch limit coming from the base model is
+`r sens_base_forecatch`~t compared to `r sens_grp2_2_forecatch`~t
 for the model using no extrapolation (using MLE values).
 
 The standard deviation of the prior distribution on natural mortality was
@@ -1391,12 +1387,12 @@ increased from the base model value of 0.1 to 0.2 and 0.3. The median of the
 MCMC posteriors for natural mortality increased from
 `r f(nat_m[2], 3)` with a 95% credible interval of `r f(nat_m[1], 3)`--
 `r f(nat_m[3], 3)` for the base model (prior standard deviation of 0.1) to
-`r f(nat_m_03[2], 3)` with a 95% credible interval of
-`r f(nat_m_03[1], 3)`--`r f(nat_m_03[3], 3)` for the sensitivity run with the
+`r f_nat_m_03[2]` with a 95% credible interval of
+`r f_nat_m_03[1]`--`r f_nat_m_03[3]` for the sensitivity run with the
 prior standard deviation set to 0.3
 (Table~\@ref(tab:main-parameter-estimates-sens-1-tab)). The @HamelCope2022
-prior model estimated natural mortality at `r f(nat_m_hamel[2], 3)` with
-a 95% credible interval of `r f(nat_m_hamel[1], 3)`--`r f(nat_m_hamel[3], 3)`
+prior model estimated natural mortality at `r f_nat_m_hamel[2]` with
+a 95% credible interval of `r f_nat_m_hamel[1]`--`r f_nat_m_hamel[3]`
 (Table~\@ref(tab:main-parameter-estimates-sens-1-tab)). In addition to
 allowing a higher estimated value for natural mortality, these M
 sensitivity models increased the overall scale of the population, the
@@ -1413,8 +1409,8 @@ The mean of the prior distribution on steepness was decreased from 0.777
 the mean of the prior resulted in a decrease in the MCMC estimate of steepness
 from a median of `r f(steep[2], 3)` with a 95% credible interval of
 `r f(steep[1], 3)`--`r f(steep[3], 3)` to a median of
-`r f(steep_prior_05[2], 3)` with a 95% credible interval of
-`r f(steep_prior_05[1], 3)`--`r f(steep_prior_05[3], 3)`
+`r f_steep_prior_05[2]` with a 95% credible interval of
+`r f_steep_prior_05[1]`--`r f_steep_prior_05[3]`
 (Table~\@ref(tab:main-parameter-estimates-sens-1-tab)). However, neither
 steepness sensitivity analysis had a large impact on the overall model
 results (Figures~\@ref(fig:main-biomass-base-alternative-1-fig) and
