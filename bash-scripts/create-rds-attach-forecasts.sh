@@ -41,7 +41,7 @@ model_path=$project_path/$models_path/$year_path/$version_path/$type_path/$model
 exist, bailing out." ; exit 1; }
 
 (trap 'kill 0' SIGINT; \
-  printf "\nAttaching foreecasts to base model RDS file\n \
+  printf "\nAttaching forecasts to base model RDS file\n \
   (in parallel if on Linux/Mac)\n"; \
   Rscript -e " \
   setwd('$repo_path'); \
