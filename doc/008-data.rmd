@@ -35,13 +35,6 @@ Figure~\@ref(fig:main-age-comp-bubbles-fig)).
  Table~\@ref(tab:main-survey-history-tab);
  Figure~\@ref(fig:main-survey-extrap-biomass-fig)).
 
-- Mean observed weight-at-age data from fishery and survey catches
-(1975--`r max_fishery_age_prop[["end_yr"]]`;
-Figures~\@ref(fig:main-weight-at-age-fig)--
-\@ref(fig:main-weight-at-age-lines-fig))
-and, thus, derived fecundity-at-age as well
-(Figure~\@ref(fig:main-maturity-ogive-fig)).
-
 The following biological relationships, derived from external analysis of
 auxiliary data, were input as fixed values in the assessment model:
 
@@ -51,6 +44,13 @@ auxiliary data, were input as fixed values in the assessment model:
 histological analyses of ovary samples
 (Table~\@ref(tab:main-maturity-ogives-tab) and
 Figure~\@ref(fig:main-maturity-ogive-fig)).
+
+- Mean observed weight-at-age data from fishery and survey catches
+(1975--`r max_fishery_age_prop[["end_yr"]]`;
+Figures~\@ref(fig:main-weight-at-age-fig)--
+\@ref(fig:main-weight-at-age-lines-fig))
+and, thus, derived fecundity-at-age as well
+(Figure~\@ref(fig:main-maturity-ogive-fig)).
 
 Additional data sources not used in this assessment are discussed in Section
 \@ref(sec:data-not-used).
