@@ -7,7 +7,7 @@
 Fishery-dependent and fishery-independent data used in this assessment
 (Figure~\@ref(fig:main-data-overview-fig)) include the following sources:
 
-- Total catch from all U.S. and Canadian fisheries that target `r sp`
+- Total catch from all U.S. and Canadian fisheries that targeted `r sp`
 from `r start_yr` to `r last_data_yr` (Tables                                       \@ref(tab:main-catches-us-tab)--\@ref(tab:main-landings-tac-tab)).
 
 - Fishery age compositions aggregated by year and country-specific sector
@@ -22,7 +22,7 @@ are used to fit the model
 (Table~\@ref(tab:main-input-age-data-fishery-tab) and
 Figure~\@ref(fig:main-age-comp-bubbles-fig)).
 
-- Biomass index and age compositions from the `r survey_name`
+- A biomass index and age compositions from the `r survey_name`
 (`r str_flatten_comma(survey_age_years)`;
  Tables~\@ref(tab:main-input-age-data-survey-tab),
  ~\@ref(tab:main-survey-history-tab),
@@ -65,7 +65,7 @@ country-specific sectors
 and modeled as annual coast-wide catches. Catches in U.S. waters prior to
 1978 are available only by year from @BaileyFrancisEtAl1982 and
 historical assessment documents. Canadian catches prior to 1989 are also
-unavailable in disaggregated form. The U.S. shore-based landings are from the
+unavailable in disaggregated form. U.S. shore-based landings are from the
 Pacific Fishery Information Network (PacFIN) database. Foreign and
 Joint-Venture catches for 1981--`r terminal_yr_us_jv_foreign` and U.S.
 domestic at-sea catches for 1991--`r last_data_yr` are calculated from the
@@ -77,35 +77,6 @@ from the Groundfish Catch (GFCatch) database for 1989--1995, the Pacific
 Harvest Trawl (PacHarvTrawl) database for 1996--March 31, 2007, and the
 Fisheries Operations System (FOS) database for April 2007--present.
 
-Vessels in the U.S. shore-based fishery carry observers and are required to
-retain all catch and bycatch for sampling by plant observers. All catches
-from U.S. at-sea vessels, Canadian Joint-Venture vessels, and Canadian
-freezer trawlers were monitored by at-sea observers from 1996--2019.
-
-In 2020 and 2021 there were no observers on Canadian freezer trawlers due to
-staffing issues. Due to the ongoing staffing issues, the decision was made to
-stop providing observers on board all Canadian vessels, for 2022 and all
-future groundfish trawl trips. This means there is not currently and will not
-be in the future, any at-sea sampling on board Canadian vessels. Canadian
-managers, scientists, and the sampling contractor, Archipelago Marine Research
-Ltd.~(AMR) met in early 2022 to solidify a plan to ensure the ongoing sampling
-of `r sp` for Canadian trips. The sampling plan was agreed upon by all parties
-and consisted of employees aboard Freezer trawlers freezing two bags of
-approximately 50 whole fish from two tows per trip and delivering them to AMR
-on return to shore. The bags are stored by AMR until enough have accumulated
-to sample in bulk, and they sample them over the period of a day or two. This
-plan ensures that there are individual weights taken for fish from the freezer
-trawlers, something that was not happening during the at-sea sampling. These
-weight data give more Canadian input into the weight-at-age matrix. The
-shoreside vessels continue to make landings with sampling happening on shore
-at the time of landing.
-
-Canadian trawl catches are monitored autonomously at-sea by cameras onboard
-vessels. Catch is recorded by dockside samplers within the Groundfish Trawl
-Dockside Monitoring Program using total catch weights provided by processing
-plants. Discards are negligible relative to the total fishery catch for all
-sectors.
-
 Minor updates to catches used in previous assessments were made based on the
 best available information extracted from the aforementioned databases.
 Tribal catches were available in PacFIN for the U.S. tribal fishery at the
@@ -114,54 +85,56 @@ information provided by the Makah Tribe. The Makah Tribe is also working on
 providing historical catches such that shore-based catches can be
 summarized separately from tribal catches since the onset of the fishery.
 
+Historically, the fishery for `r spp` has been well covered by observers with slight differences in coverage by sector. Currently, U.S. shore-based vessels carry observers and are required to retain all catch and bycatch for sampling by plant observers. Vessels participating in the U.S. at-sea sectors are also required to have observers on board and have since 1990. U.S. foreign and Joint-Venture vessels had varying levels of coverage from 1975--1990 ranging from 21-100% coverage. Canadian Joint-Venture and Canadian freezer-trawler vessels were monitored by at-sea observers from 1996--2019. In 2020 and 2021 there were no observers on Canadian freezer trawlers due to staffing issues and in 2022 the decision was made to stop providing observers on board all Canadian vessels. Early in 2022 a sampling plan designed by Canadian managers, scientists, and the sampling contractor, Archipelago Marine Research Ltd.~(AMR), was put into place to ensure the ongoing sampling of `r sp` for Canadian vessels (see Section \@ref(sec:data-fishery-biological-data)). Canadian trawl catches are monitored autonomously at sea by cameras onboard vessels. Catch is recorded by dockside samplers within the Groundfish Trawl Dockside Monitoring Program using total catch weights provided by processing plants. Discards are negligible relative to the total fishery catch for all sectors.
+
 ### Fishery biological data {#sec:data-fishery-biological-data}
 
 Biological information from the U.S. at-sea fishery was extracted from the
 NORPAC database. This included sex, length, weight, and age information
 from the foreign and Joint-Venture fisheries from
 1975--`r terminal_yr_us_jv_foreign` and from the domestic at-sea fishery
-since `r first_yr_us_atsea`. Observers collect data by selecting fish
+since `r first_yr_us_atsea`. Observers collected data by selecting fish
 randomly from each haul. The number of otoliths collected per haul has varied
 over time but is currently three fish every third haul.
 
-Biological samples from the U.S. shore-based fishery since 1991 were collected
-by port samplers located where there are substantial landings of `r sp`,
-primarily Eureka, Newport, Astoria, and Westport. Port samplers routinely take
+Since 1991, biological samples from the U.S. shore-based sector have been
+sampled by port samplers located where there are substantial landings of
+`r sp`, primarily Eureka, Newport, Astoria, and Westport. Port samplers took
 one sample per offload (or trip) consisting of 100 randomly selected fish for
-individual length and weight, and, from these, typically 20 fish are randomly
-subsampled for otolith extraction.
+individual length and weight. From those 100 fish, typically 20 fish were
+randomly subsampled for otolith extraction.
 
-When there were observers (1996--2019) aboard Canadian freezer trawler vessels,
+When there were observers (1996--2019) aboard Canadian freezer trawlers,
 they collected 50 otoliths and 300 lengths per sample, sampling once per day
-during trips that on average last approximately seven days. For 2022 and
-onwards, there are no longer observers on freezer trawlers
-(Section~\@ref(sec:data-total-catch)), so the frozen samples that are
-delivered for each trip are all sampled for length, weight, sex, and otoliths
-are taken. There are approximately 100 fish per trip, in two bags of 50. There
-have been some exceptions to this; due to unforeseen circumstances while at
-sea, some trips did not bring any samples back and some only brought single
-bags.
+during trips that on average last approximately seven days. Since 2022,
+freezer-trawler employees have collected fish for sampling from two tows per
+trip and delivered them to the dock as frozen specimens where they are
+eventually sampled for length, weight, sex, and otoliths. Each delivery
+consists of approximately 100 fish in two separate bags. Bags are used to
+separate the 50 fish taken from a given tow. Due to unforeseen circumstances
+while at sea, some trips did not deliver any samples and some only brought
+single bags.
 
-For electronically observed Canadian Shoreside trips, port samplers obtain
+For electronically observed Canadian shoreside trips, port samplers obtained
 biological data from the landed catch. For each sampled trip, 50 ages
-and 300 lengths are sampled from the catch. Observed domestic haul-level
-information is then aggregated to the trip level to be consistent with the
-unobserved trips that are sampled in ports.
+and 300 lengths were sampled from the catch. Observed domestic haul-level
+information is aggregated to the trip level to be consistent with the
+unobserved trips that were sampled in ports.
 
-When there has been a Canadian Joint-Venture fishery, length samples are
-collected every second day of fishing operations, and otoliths are collected
-once per week. Length and age samples are taken randomly from a given codend.
-The sampled weight from which biological information is collected must be
+When there has been a Canadian Joint-Venture fishery, length samples were
+collected every second day of fishing operations and otoliths were collected
+once per week. Length and age samples were taken randomly from a given codend.
+The sample weight from which biological information is collected must be
 inferred from length-weight relationships.
 
-The sampling unit for the shore-based fisheries is the trip, while the haul is
-the primary unit for the at-sea fisheries
+The sampling unit for shore-based samples is the trip, while the haul is
+the primary unit for the at-sea samples
 (Table~\@ref(tab:main-sampling-history-tab)). There is no least common
-denominator for aggregating at-sea and shore-based fishery samples because
-detailed haul-level information is not recorded for trips in the shore-based
-fishery and hauls sampled in the at-sea fishery cannot be aggregated to a
-comparable trip level. As a result, initial sample sizes are simply the
-summed hauls and trips for fishery biological data.
+denominator for aggregating at-sea and shore-based samples because detailed
+haul-level information is not recorded for shore-based trips and hauls sampled
+in the at-sea sectors cannot be aggregated to a comparable trip level. As a
+result, initial sample sizes are simply the summed hauls and trips for fishery
+biological data.
 
 Biological data were analyzed based on the sampling protocols used to collect
 them and expanded to estimate the corresponding statistic from the entire
