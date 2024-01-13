@@ -963,8 +963,7 @@ if(!is.na(sens_models[[1]])){
 depl_curr <- mc$dmed[names(mc$dmed) == assess_yr]
 # ... joint probability -------------------------------------------------------
 # (%age) of being being both above the target relative fishing intensity
-# in `end_yr - 1` and below the $\Bforty$ (40% of $B_0$) reference point at
-# the start of `end_yr`
+# in `end_yr - 1` and below the B40 reference point at the start of `end_yr`
 joint_percent_prob_above_below <-
   base_model$mcmcvals$joint_percent_prob_above_below
 
