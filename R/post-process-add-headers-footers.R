@@ -51,10 +51,13 @@ post_process_add_headers_footers <- function(x,
   x[right_ind] <- paste0("\\fancyfoot[R]{", footer_right, "}")
 
   # Header and Footer lines
-  ind <- grep("INSERT headrule and footrule here", x)
+  hdr_tag <- paste0("INSERT headrule and footrule here - do not remove ",
+                    "this comment")
+  ind <- grep(hdr_tag, x)
   if(!length(ind)){
-    stop("'INSERT headrule and footrule here' not found in the preamble. ",
-         "It should be just after the fancyhead and fancyfoot definitions")
+    stop("Preprocessing tag '", hdr_tag, "' not found in the preamble. ",
+         "It should be immediately after the fancyhead and fancyfoot ",
+         "definitions")
   }
   pre <- x[1:ind]
   post <- x[(ind + 1):length(x)]
