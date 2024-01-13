@@ -446,21 +446,21 @@ to 2021.
 
 ```{r main-survey-index-fit-mcmc-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-cap)", fig.height=6, fig.width=8}
 
-# plot_survey_fit_mcmc(base_model,
-#                      type = "acoustic",
-#                      n_posts = 1000,
-#                      glow = TRUE,
-#                      glow_color = "black",
-#                      glow_offset = 0.5,
-#                      leg_ymax = 4.8,
-#                      leg_sep = 0.45,
-#                      x_lim = c(survey_start_yr, survey_end_yr),
-#                      y_lim = c(0, 6),
-#                      x_labs_mod = 5,
-#                      y_labs_by = 0.5,
-#                      tick_prop = 1,
-#                      vjust_x_labels = -2,
-#                      remove_yr_labels = NULL)
+plot_survey_fit_mcmc(base_model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.8,
+                     leg_sep = 0.45,
+                     x_lim = c(survey_start_yr, survey_end_yr),
+                     y_lim = c(0, 6),
+                     x_labs_mod = 5,
+                     y_labs_by = 0.5,
+                     tick_prop = 1,
+                     vjust_x_labels = -2,
+                     remove_yr_labels = NULL)
 ```
 
 (ref:main-age1-index-fit-mcmc-cap) Assessment model fit to the relative
@@ -481,21 +481,21 @@ time series but diverge a little at the end of the time series since 2019.
 
 ```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height = 6}
 
-# plot_survey_fit_mcmc(base_model,
-#                      type = "age1",
-#                      n_posts = 1000,
-#                      glow = TRUE,
-#                      glow_color = "black",
-#                      glow_offset = 0.5,
-#                      leg_ymax = 4.8,
-#                      leg_sep = 0.45,
-#                      x_lim = c(survey_start_yr, survey_end_yr),
-#                      y_lim = c(0, 37),
-#                      x_labs_mod = 5,
-#                      y_labs_by = 5,
-#                      tick_prop = 1,
-#                      vjust_x_labels = -2,
-#                      remove_yr_labels = NULL)
+plot_survey_fit_mcmc(base_model,
+                     type = "age1",
+                     n_posts = 1000,
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.8,
+                     leg_sep = 0.45,
+                     x_lim = c(survey_start_yr, survey_end_yr),
+                     y_lim = c(0, 37),
+                     x_labs_mod = 5,
+                     y_labs_by = 5,
+                     tick_prop = 1,
+                     vjust_x_labels = -2,
+                     remove_yr_labels = NULL)
 ```
 
 (ref:main-age-comp-fits-cap) Base model fits to the observed fishery (top)

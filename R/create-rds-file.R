@@ -17,7 +17,7 @@
 #' @return [base::invisible()]
 #' @export
 create_rds_file <- function(model_path = NULL,
-                            keep_index_fit_posts = FALSE,
+                            keep_index_fit_posts = TRUE,
                             verbose = TRUE,
                             overwrite = FALSE,
                             ...){
