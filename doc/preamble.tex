@@ -1,10 +1,19 @@
-\usepackage[margin=1in]{geometry}
 % Add header line. `\PassOptionsToPackage` is used to pass options to
 % a package that has already been loaded. Bookdown creates code to loads
 % the geometry package before this preamble is loaded, so this is needed to
 % add options after the fact. To include footer line, see
 % `\renewcommand{\footrulewidth}` below, after fancyhdr is loaded.
-\PassOptionsToPackage{includehead}{geometry}
+%\flushbottom
+% uncomment showframe below to show the geometry layout in the document
+\usepackage[includeheadfoot,
+            twoside,
+            left=1in,
+            right=1in,
+            bottom=1.5in,
+            bindingoffset=0.5in,
+            footskip=0.5in
+            %showframe
+            ]{geometry}
 
 % To see the frames on each page showing margins and text outline areas
 % for debugging purposes.
@@ -28,7 +37,7 @@
   \fancyfoot[C]{\thepage}
   \fancyfoot[R]{}
 }
-% INSERT headrule and footrule here
+% INSERT headrule and footrule here - do not remove this comment
 
 \pagestyle{fancy}
 \fancyhf{}
