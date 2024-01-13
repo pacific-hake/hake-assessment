@@ -76,6 +76,7 @@ appendix-srg-requests-2019.rnw
 /sandbox/andy/pacea-save/*.rda
 /doc/main-figures/main-figures-10e364f.rnw
 /data-tables/extractedData/*
+doc/_bookdown.yml   # git add -f doc/_bookdown.yml if you make a change you want to push
 
 # Bash
 .bash_history
