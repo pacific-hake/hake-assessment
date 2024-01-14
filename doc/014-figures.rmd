@@ -509,7 +509,7 @@ the fishery and acoustic survey against the data. There is some slight over
 and under-fitting in the early part of the fishery time series from 1975 to
 1995. The survey shows some over fitting from 2001 to 2005.
 
-```{r main-age-comp-fits-fig, fig.cap = "(ref:main-age-comp-fits-cap)", fig.height = 11}
+```{r main-age-comp-fits-fig, fig.cap = "(ref:main-age-comp-fits-cap)", fig.height = 10, out.height = "90%"}
 
 plist <- NULL
 plist[[1]] <-
@@ -534,7 +534,7 @@ cohorts from years of large recruitment events.
 (ref:main-age-comp-pearson-alt) This figure shows that there are no obvious
 patterns in the Pearson residuals for the fishery and the survey.
 
-```{r main-age-comp-pearson-fig, fig.cap = "(ref:main-age-comp-pearson-cap)", fig.height = 11}
+```{r main-age-comp-pearson-fig, fig.cap = "(ref:main-age-comp-pearson-cap)", fig.height = 10, out.height = "90%"}
 
 p <- NULL
 p[[1]] <-
@@ -573,10 +573,11 @@ control file.
 from the priors for key parameters. The steepness parameter appears to have
 an almost identical prior and posterior distribution.
 
-```{r main-prior-posterior-fig, fig.cap = "(ref:main-prior-posterior-cap)", fig.height = 10}
+```{r main-prior-posterior-fig, fig.cap = "(ref:main-prior-posterior-cap)", fig.height = 10, out.height = "85%"}
 
 plot_priors_vs_posts(base_model,
                      x_range = "prior",
+                     facet_title_font_size = 10,
                      ncol = 3,
                      nrow = 3)
 ```
@@ -591,10 +592,11 @@ individual panels.
 shift from the priors for key parameters. The steepness parameter appears to
 have an almost identical prior and posterior distribution.
 
-```{r main-prior-posterior-truncated-fig, fig.cap = "(ref:main-prior-posterior-truncated-cap)", fig.height = 10}
+```{r main-prior-posterior-truncated-fig, fig.cap = "(ref:main-prior-posterior-truncated-cap)", fig.height = 10, out.height = "85%"}
 
 plot_priors_vs_posts(base_model,
                      x_range = "posterior",
+                     facet_title_font_size = 10,
                      ncol = 3,
                      nrow = 3)
 ```
@@ -662,6 +664,8 @@ p[[2]] <- plot_selex_posteriors(base_model,
 plot_grid(plotlist = p, ncol = 1, align = "v")
 ```
 
+\clearpage
+
 (ref:main-biomass-cap) Median (solid line) of the posterior distribution for
 beginning of the year female spawning biomass ($B_t$ in year $t$; Mt)
 through `r end_yr` (solid line) with 95% posterior credibility intervals
@@ -671,7 +675,7 @@ is the estimated unfished equilibrium biomass, $B_0$.
 (ref:main-biomass-alt) This figure shows that the median spawning biomass has
 been increasing in size since 2021.
 
-```{r main-biomass-fig, fig.cap = "(ref:main-biomass-cap)"}
+```{r main-biomass-fig, fig.cap = "(ref:main-biomass-cap)", fig.height = 3}
 
 plot_biomass(list(base_model),
              list(base_model_name),
@@ -688,7 +692,7 @@ lines show 10%, 40%, and 100% of the unfished equilibrium ($B_0$).
 (ref:main-relative-biomass-alt) This figure shows that the relative spawning
 biomass has been increasing since 2021. The value for 2023 is just above B0.
 
-```{r main-relative-biomass-fig, fig.cap = "(ref:main-relative-biomass-cap)"}
+```{r main-relative-biomass-fig, fig.cap = "(ref:main-relative-biomass-cap)", fig.height = 3}
 
 plot_rel_biomass(model_lst = list(base_model),
                  model_names = list(base_model_name),
@@ -697,6 +701,8 @@ plot_rel_biomass(model_lst = list(base_model),
                  leg_pos = "none") |>
   suppressWarnings()
 ```
+
+\clearpage
 
 (ref:main-recruitment-cap) Medians (solid circles) and means ($\mathrm{X}$)
 of the posterior distribution for recruitment (billions of age-0 fish) with
@@ -710,7 +716,7 @@ There are currently three above-average cohorts in the stock with 2020 being
 the fourth. The 2020 cohort is highly uncertain which can be seen in the size
 of the credible interval.
 
-```{r main-recruitment-fig, fig.cap = "(ref:main-recruitment-cap)"}
+```{r main-recruitment-fig), fig.cap = "(ref:main-recruitment-cap)", fig.height = 3}
 
 plot_recruitment(list(base_model),
                  list(base_model_name),
@@ -729,13 +735,15 @@ at age in `r start_yr`, the initial year of the model.
 each cohort. The same above-average cohorts seen in the recruitment figure
 are also seen here.
 
-```{r main-recruitment-devs-fig, fig.cap = "(ref:main-recruitment-devs-cap)", fig.height = 4.5}
+```{r main-recruitment-devs-fig, fig.cap = "(ref:main-recruitment-devs-cap)", fig.height = 3}
 
 plot_recdevs(list(base_model),
              list(base_model_name),
              line_color = ts_single_line_color,
              leg_pos = "none")
 ```
+
+\clearpage
 
 (ref:main-numbers-at-age-cap) Bubble plot of the medians of the posterior
 distributions of population numbers at age at the beginning of each year,
@@ -750,7 +758,7 @@ decreasing in numbers as they pass through the stock from one year to the
 next. The mean age has fluctuated over time and is currently rising and at
 approximately age 3.
 
-```{r main-numbers-at-age-fig, fig.cap = "(ref:main-numbers-at-age-cap)", fig.height = 11}
+```{r main-numbers-at-age-fig, fig.cap = "(ref:main-numbers-at-age-cap)", fig.height = 10, out.height = "90%"}
 
 plot_age_comp_bubbles(base_model, type = "fishery",
                       proportions = FALSE,
@@ -861,7 +869,7 @@ median relative spawning biomass is projected to remain flat for the next
 3 years with zero catch and to decline for all non-zero catch levels
 evaluated.
 
-```{r main-depletion-comparison-fig, fig.cap = "(ref:main-forecast-depletion-comparison-cap)"}
+```{r main-depletion-comparison-fig, fig.cap = "(ref:main-depletion-comparison-cap)"}
 
 # See the file `000-set-ct-levels.R`. The values for `fore_inds` below are
 # the indices of the forecast values in the list `ct_levels_vals`

@@ -61,6 +61,8 @@ figure,es-risk-year-3-fig,,H
 figure,main-overview-map-fig,,H
 figure,main-us-depths-fig,,H
 figure,,fishCatchRatesUS,H
+figure,main-biomass-fig,,H
+figure,main-relative-biomass-fig,,H
 figure,main-age-comp-forecast-fig,,H
 
 # MCMC appendix
