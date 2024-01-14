@@ -208,47 +208,45 @@ Observations of age-1 `r sp` are recorded during the survey, and additional
 analyses, described below, are conducted to develop a relative age-1 index.
 
 The `r survey_end_yr` survey covered U.S. and Canadian waters from Point
-Conception to north of Haida Gwaii using 108 transects
+Conception to north of Haida Gwaii using 116 transects
 (Figure \@ref(fig:main-acoustic-age2-bs-fig)). In the U.S.A., transects were
-mostly separated by 10~nmi, except 20~nmi spacing was used north of San
-Francisco Bay to Cape Mendocino and again in northern Washington to account
-for available ship days at sea. In Canada, transects were separated by 10~nmi
+mostly separated by 10~nmi. In Canada, transects were separated by 10~nmi
 along Vancouver Island and then 20~nmi further north. The Bell M. Shimada and
-the F/V Nordic Pearl worked collaboratively to completed the full extent of
+the F/V Nordic Pearl worked collaboratively to complete the full extent of
 the survey in `r survey_end_yr`.
 
 Distributions of the backscatter of `r sp` plotted for each acoustic survey
-since 1995 illustrate the variable spatial patterns of age-2$+$ fish across
-years (Figure~\@ref(fig:main-acoustic-age2-bs-fig)). This variability is due in
+since 1995 illustrate the variable spatial patterns across time of age-2$+$ fish
+(Figure~\@ref(fig:main-acoustic-age2-bs-fig)). This variability is due in
 part to changes in the composition of the age-2$+$ population because older
-`r sp` tend to migrate farther north and partly due to environmental and/or
+`r sp` tend to migrate farther north and partialy due to environmental and/or
 climatic factors. The 1998 acoustic survey is notable because it shows an
-extremely northward distribution that is thought to be related to the strong
-1997-1998 El Niño. In contrast, distribution of `r sp` during the 2001
+extreme northward distribution that is thought to be related to the strong
+1997--1998 El Niño. In contrast, the distribution of `r sp` during the 2001
 acoustic survey was compressed into the lower latitudes off the coast of
-Oregon and Northern California. There was a strong La Niña event in 2000.
+Oregon and Northern California following the strong La Niña event in 2000.
 In 2003, 2005, and 2007 the distribution of `r sp` did not show an unusual
 coast-wide pattern despite 2003 and 2007 being characterized as El Niño
 years. In 2009, 2011, 2012, and 2013 the majority of the distribution of
 `r sp` was again found in U.S. waters, which is more likely due to
-age-composition than the environment, although 2013 showed some warmer than
+age-composition than the environment because 2013 had some warmer than
 average sea-surface temperatures. In 2015, sea-surface temperatures were
 warmer again, resulting in a northern shift in the overall distribution.
 The distribution of `r sp` in 2017 was more latitudinally uniform than
-observed in 2015.  This is likely a result of having large proportions of two
-cohorts (2010 and 2014 year-classes) in 2017 as opposed to many other years
-when a single cohort is dominant in the observed samples
-(Figure~\@ref(fig:main-acoustic-age2-bs-fig)). Weak 2019 El Niño conditions
-decreased in their prevalence starting in March of that year, leading to
-neutral conditions by July. Consequently, the 2019 survey saw `r sp` on all
-survey transects from just north of Morro Bay, California to the northern end
-of Vancouver Island, with the greatest offshore extent found off of Cape
-Mendocino. The 2021 survey saw the majority of `r sp` in U.S. waters and a
-continuation of conditions moving towards higher productivity La Niña
-conditions in the California Current from 2020 to 2021. Ongoing research is
-looking into relationships between environmental conditions and `r sp`
-distribution and recruitment, that will help to inform the mechanisms behind
-observations [@MalickSiedleckiEtAl2020; @Phillips2023].
+observed in 2015, which is likely a result of having large proportions of both
+the 2010 and 2014 cohorts (Figure~\@ref(fig:main-acoustic-age2-bs-fig)). Weak
+2019 El Niño conditions decreased in their prevalence starting in March of
+that year, leading to neutral conditions by July. Consequently, during the 2019
+survey `r sp` were found on all survey transects from just north of Morro Bay,
+California to the northern end of Vancouver Island, with the greatest offshore
+extent found off of Cape Mendocino. During the 2021 survey, the majority of
+`r sp` were found in U.S. waters, congruent with the continuation of La Niña
+conditions in the California Current from 2020 to 2021. Despite the switch to
+El Niño conditions in April of 2023, very few fish were seen in Canadian
+waters during the 2023 survey. Ongoing research is looking into relationships
+between environmental conditions and `r sp` distribution and recruitment, that
+will help to inform the mechanisms behind observations
+[@MalickSiedleckiEtAl2020; @Phillips2023].
 
 During the acoustic surveys, mid-water trawls are made opportunistically to
 determine the species composition of observed acoustic sign and to obtain the
@@ -290,11 +288,12 @@ variogram; and
 biomass beyond the western end of a transect, which was refined and supported
 by the SRG starting with the 2016 assessment [@JTC2016].
 
-The 2021 survey estimate was scaled by factor of 1.06 to convert EK~80 acoustic
-data (2021 survey only) to EK~60 acoustic data to standardize the survey time
-series. The survey team will eventually be converting all pre-2021 EK~60 data
-to an equivalent EK~80 format. Thus, a full time series of consistently
-analyzed survey biomass (Table~\@ref(tab:main-survey-history-tab) and
+Starting in 2021, the EK~60 echosounders were replaced with EK~80 echosounders,
+and thus, survey estimates from years using the new echosounders are scaled by
+factor of 1.06 to convert the EK~80 to EK~60 acoustic data. The survey team will
+eventually be converting all pre-2021 EK~60 data to an equivalent EK~80 format.
+Thus, a full time series of consistently analyzed survey biomass
+(Table~\@ref(tab:main-survey-history-tab) and
 Figure~\@ref(fig:main-survey-extrap-biomass-fig)) and age compositions (Table~\@ref(tab:main-input-age-data-survey-tab) and
 Figure~\@ref(fig:main-age-comp-bubbles-fig)) since 1995 are used to fit the
 stock assessment model. These data contain many sources of variability (see 
@@ -307,48 +306,46 @@ overall conclusions. Estimates of country-specific age-2$+$ biomass are also
 provided (Table~\@ref(tab:main-survey-by-country-tab)).
 
 Estimated age-2$+$ biomass in the survey increased steadily over the four
-surveys conducted in 2011-2013 and 2015
-(Table~\@ref(tab:main-survey-history-tab)and
+surveys conducted in 2011--2013 and 2015
+(Table~\@ref(tab:main-survey-history-tab) and
 Figure~\@ref(fig:main-survey-extrap-biomass-fig)). It decreased in 2017 to
-`r f(survey_biomass["2017"], 2)`~Mt and then increased to 1.72~Mt in
-2019 before decreasing again to
+`r f(survey_biomass["2017"], 2)`~Mt, then increased to 1.72~Mt in
+2019, and has since decreased to
 `r last_survey_yr_biomass`~Mt in `r last_survey_yr`. The
 `r last_survey_yr` survey age composition was made up of 
-`r combine_words(paste0(f(survey_last_yr_age[1:5] * 100), "\\%"))`
+`r combine_words(paste0(f(survey_last_yr_age[1:5], digits = 2), "\\%"))`
 from the
 `r combine_words(last_survey_yr-type.convert(as.is=TRUE,names(survey_last_yr_age[1:5])))`
 year classes, respectively. Note that the estimate of biomass does not include
 age-1 fish and the age compositions used to estimate selectivity of the survey
 also exclude age-1 fish (Table~\@ref(tab:main-input-age-data-survey-tab)).
 
-A separate relative age-1 index (numbers of fish) was included in the base
-model in 2022 and was previously explored as a sensitivity since 2013
-[@JTC2013; @JTC2021; @JTC2022]. The relative index of age-1 fish in this
-assessment was estimated similarly to previous years, except the estimate of
-2021 numbers of age-1 fish was scaled by a factor of 1.06 to account for
-differences between the EK~60 and EK~80 echosounders (the same approach used
-for the estimate of age-2$+$ biomass). The index (numbers of fish) indicates
-relative changes between years, not absolute values. The age-1 index
-confirms the large year classes in 2008, 2010, 2014, 2016, and 2020
+A separate relative age-1 index (numbers of fish) is used to fit the stock
+assessment model and inform recruitment. For the 2013--2021 assessments
+[@JTC2013; @JTC2021], the relative age-1 index was only explored as a
+sensitivity and not included in the base model. The relative index of age-1
+fish in this assessment was estimated similarly to previous years. And, like
+the age-2$+$ index, data collected using EK~80 echosounders are scaled by a
+factor of 1.06 to account for differences between the EK~60 and EK~80
+echosounders. Note that, in error, this scaleing factor was not applied to the
+2021 estimate in the 2022 [@JTC2022] and 2023 [@JTC2023] assessments. The index
+indicates relative changes between years, not absolute values, and confirms the
+large year classes in 2008, 2010, 2014, 2016, 2020, and 2022
 (Table~\@ref(tab:main-survey-history-tab) and
-Figure~\@ref(fig:main-acoustic-age1-bs-fig)). In 2021, some age-1 fish were found
-in isolated homogeneous pockets but they were more so found to be mixed in
-with older fish. That same general pattern has occurred since 2015, with
-the exception of 2019 where age-1 fish were mostly in isolated pockets.
+Figure~\@ref(fig:main-acoustic-age1-bs-fig)).
 
 Incorporating the relative age-1 index results in estimates of recruitment
 strength that are informed on average one year earlier than models without the
 index (compare the retrospective Figures~54 and~G.1 in @JTC2021). The
 suite of sensitivity models related to the relative age-1 index explored over
-the past decade indicate that its use typically provides the model with the
-correct direction of cohort strength (weak, strong, or neutral). The utility of
-an informed recruitment signal is far greater than an uninformed recruitment
-assumption. Whereas the assumption for uninformed recruitment is currently
-limited to the mean estimated recruitment over a specified range of years.
-Finally, the `r survey_name` team supports its use for stock assessment, and
-the team is committed to continually evaluating and refining approaches to
-improve survey estimates and related uncertainty. A model without the age-1
-index was explored as a sensitivity.
+the past decade indicate that its use typically informs recruitment such that
+the direction of cohort strength (i.e., weak, strong, or neutral) remains
+unchanged in subsequent assessments even after being informed by more data. The
+utility of an informed recruitment signal is far greater than an uninformed
+recruitment assumption. Finally, the `r survey_name` team supports its use in
+the stock assessment and is committed to continually evaluating and refining
+approaches to improve the estimates and related uncertainty. A model without
+the age-1 index was explored as a sensitivity.
 
 ## Other data not used in this assessment {#sec:data-not-used}
 
