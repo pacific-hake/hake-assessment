@@ -703,6 +703,16 @@
 #'   \item{a15}{Number of age 15 fish sampled}
 #' }
 "weight_age_sample_sizes_df"
+#' A data frame containing estimates of maturity at age
+#'
+#' @format A data frame with 4 variables:
+#' \describe{
+#'   \item{age}{Age (years) of fish}
+#'   \item{year}{A four digit integer representing the year}
+#'   \item{p_mature}{The probability a fish is mature}
+#'   \item{model}{A string defining which model the probability came from}
+#' }
+"maturity_estimates_df"
 #' A data frame containing information on catch by year and fishery (fleet)
 #'
 #' @format A data frame with 57 rows and 22 variables:

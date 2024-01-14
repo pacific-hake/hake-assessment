@@ -48,6 +48,19 @@ create_data_hake("maturity_samples_df",
                           guess_max = Inf,
                           show_col_types = FALSE))
 
+# estimates_for_assessment.rds from Eric Ward
+# utils::write.csv(
+#   x = readRDS(fs::path("~", "Downloads", "estimates_for_assessment.rds")) |>
+#     dplyr::ungroup(),
+#   file = fs::path(load_dir, "maturity-ogives.csv"),
+#   row.names = FALSE
+# )
+create_data_hake("maturity_estimates_df",
+                 read_csv(file.path(load_dir,
+                                    "maturity-ogives.csv"),
+                          guess_max = Inf,
+                          show_col_types = FALSE))
+
 create_data_hake("weight_age_sample_sizes_df",
                  read_csv(file.path(load_dir,
                                     "wtatage-all-samplesize.csv"),
