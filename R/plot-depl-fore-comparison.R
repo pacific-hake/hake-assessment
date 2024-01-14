@@ -13,7 +13,7 @@ plot_depl_fore_comparison <- function(
                   model$ct_levels_vals$ct_tac_ind,
                   model$ct_levels_vals$ct_default_policy_ind),
     xlim = c(max(forecast_yrs) - 16,
-             max(forecast_yrs)),
+             max(forecast_yrs) - 1),
     x_breaks = xlim[1]:xlim[length(xlim)],
     x_labs_mod = 5,
     x_expansion = 1,
