@@ -727,7 +727,7 @@ plot_recruitment(list(base_model),
 
 (ref:main-recruitment-devs-cap) Medians (solid circles) of the posterior
 distribution for log-scale recruitment deviations with 95% posterior
-credibility intervals (blue lines). Recruitment deviations for the years
+credibility intervals (vertical lines). Recruitment deviations for the years
 `r recruit_dev_start_yr`--`r start_yr - 1` are used to calculate the numbers
 at age in `r start_yr`, the initial year of the model.
 
