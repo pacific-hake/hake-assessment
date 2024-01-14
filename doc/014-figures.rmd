@@ -147,7 +147,7 @@ three large cohorts making their way through the stock. The 2010 cohort is
 the largest followed by the 2014 cohort and the 2016 cohort. The 2020 cohort
 is large but highly uncertain.
 
-```{r main-age-comp-bubbles-fig, fig.cap = "(ref:main-age-comp-bubbles-cap)", fig.height = 11}
+```{r main-age-comp-bubbles-fig, fig.cap = "(ref:main-age-comp-bubbles-cap)", fig.height = 10, out.height = "90%"}
 
 p_lst <- NULL
 p_lst[[1]] <-
@@ -227,7 +227,7 @@ age. Fish appear to reach full maturity between the age of 3 and 4. South
 of Point Conception which is at a latitude of 34.4 degrees they appear to
 reach maturity between the age of 2 and 3.
 
-```{r main-maturity-ogive-fig, fig.cap = "(ref:main-maturity-ogive-cap)", fig.height = 11}
+```{r main-maturity-ogive-fig, fig.cap = "(ref:main-maturity-ogive-cap)", fig.height = 10, out.height = "90%"}
 
 p <- list()
 p[[1]] <- plot_maturity_ogives(base_model, maturity_samples_df)
@@ -253,7 +253,7 @@ over all years of data.
 through time. The weight-at-age appears to have decreased overall from 1975
 to present.
 
-```{r main-weight-at-age-fig, fig.cap = "(ref:main-weight-at-age-cap)", fig.height = 11}
+```{r main-weight-at-age-fig, fig.cap = "(ref:main-weight-at-age-cap)", fig.height = 10, out.height = "85%"}
 
 # See `heatmap_extract_wa()` for argument choices, many are passed in `...`
 # from `plot_weight_at_age_heatmap()`
@@ -286,7 +286,7 @@ large sample sizes.
 of weight-at-age vary between years and ages with the most samples occurring
 for ages 3 through 7.
 
-```{r main-sample-size-weight-at-age-fig, fig.cap = "(ref:main-sample-size-weight-at-age-cap)", fig.height = 11}
+```{r main-sample-size-weight-at-age-fig, fig.cap = "(ref:main-sample-size-weight-at-age-cap)", fig.height = 10, out.height = "85%"}
 
 # See `heatmap_extract_wa()` for argument choices, many are passed in `...`
 # from `plot_weight_at_age_heatmap()`
@@ -706,7 +706,7 @@ plot_rel_biomass(model_lst = list(base_model),
 
 (ref:main-recruitment-cap) Medians (solid circles) and means ($\mathrm{X}$)
 of the posterior distribution for recruitment (billions of age-0 fish) with
-95% posterior credibility intervals (blue, vertical lines). The median of the
+95% posterior credibility intervals (vertical lines). The median of the
 posterior distribution for mean unfished equilibrium recruitment ($R_0$) is
 shown as the horizontal dashed line with the 95% posterior credibility
 interval shaded between the dotted lines.
@@ -716,7 +716,7 @@ There are currently three above-average cohorts in the stock with 2020 being
 the fourth. The 2020 cohort is highly uncertain which can be seen in the size
 of the credible interval.
 
-```{r main-recruitment-fig), fig.cap = "(ref:main-recruitment-cap)", fig.height = 3}
+```{r main-recruitment-fig, fig.cap = "(ref:main-recruitment-cap)", fig.height = 3}
 
 plot_recruitment(list(base_model),
                  list(base_model_name),
