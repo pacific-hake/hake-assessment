@@ -4,16 +4,22 @@
 #'
 #' @param model The model output from Stock Synthesis as loaded by
 #' [create_rds_file()]
-#' @param probs A vector of three probabilities to use in the call to
-#' [stats::quantile()]
 #' @param xlim A vector of two values. The x-axis minimum and maximum values
 #' @param ylim A vector of two values. The y-axis minimum and maximum values
+#' @param show_yr_text A vector of years to show labels for. If `NULL`,
+#' labels will be shown for all points
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_stock_recruitment <- \(model,
                             xlim = c(0, 1.4),
-                            ylim = c(0, 7)){
+                            ylim = c(0, 7),
+                            show_yr_text = c(1967, 1970,
+                                             1973, 1977,
+                                             1980, 1984,
+                                             1987, 1990,
+                                             1999, 2008,
+                                             2009:2024)){
 
   yrs <- model$startyr:model$endyr
 
@@ -94,10 +100,24 @@ plot_stock_recruitment <- \(model,
     full_join(b_ratio, by = "yr") |>
     mutate(yr = factor(yr))
 
+  yrs_txt_df <- rb
+  if(!is.null(show_yr_text)){
+    yrs_txt_df <- yrs_txt_df |>
+      filter(yr %in% show_yr_text)
+    if(!nrow(yrs_txt_df)){
+      warning("None of the years supplied in the argument `show_yr_text` ",
+              "were in the data. All labels will be shown")
+      yrs_txt_df <- rb
+    }
+  }
+
   colvec <- rev(rich_colors_short(length(yrs) + 10, alpha = 0.8))[-(1:10)]
   x_breaks <- seq(min(xlim), max(xlim), by = 0.2)
   y_breaks <- sort(c(round(adj, 2), min(ylim):max(ylim)))
 
+  median_recr_text_loc <- max(dd$hi) * 1.15
+  mean_recr_text_loc <- max(dd$hi) * 1.4 * adj
+  #browser()
   p <- list()
   p[[1]] <- ggplot(dd) +
     geom_ribbon(aes(x = b,
@@ -147,11 +167,11 @@ plot_stock_recruitment <- \(model,
                    color = yr),
                size = 2) +
     scale_color_manual(values = colvec) +
-    geom_text_repel(data = rb,
+    geom_text_repel(data = yrs_txt_df,
                     aes(x = med_b,
                         y = med_r,
                         label = yr),
-                    max.overlaps = 100) +
+                    max.overlaps = 10) +
     geom_hline(yintercept = 1,
                linetype = "dashed") +
     geom_hline(yintercept = adj,
@@ -165,7 +185,19 @@ plot_stock_recruitment <- \(model,
     ylab(expression(paste("Recruitment relative to unfished equilibrium (",
                           R[0],
                           ")"))) +
-    theme(legend.position = "none")
+    theme(legend.position = "none") +
+    geom_text(x = 0.95,
+              y = median_recr_text_loc,
+              label = "Median recruitment",
+              size = 5,
+              color = "black",
+              hjust = 0) +
+    geom_text(x = 0.95,
+              y = mean_recr_text_loc,
+              label = "Mean recruitment",
+              size = 5,
+              color = "red",
+              hjust = 0)
 
   # Right-hand plot - dlnorm distribution (right panel)
   y_breaks <- c(0, adj, 1)

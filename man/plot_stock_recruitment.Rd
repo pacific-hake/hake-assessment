@@ -6,7 +6,12 @@
 estimated medians and credible intervals by year overlaid. An expected
 distribution of absolute recruitment is also plotted}
 \usage{
-plot_stock_recruitment(model, xlim = c(0, 1.4), ylim = c(0, 7))
+plot_stock_recruitment(
+  model,
+  xlim = c(0, 1.4),
+  ylim = c(0, 7),
+  show_yr_text = c(1967, 1970, 1973, 1977, 1980, 1984, 1987, 1990, 1999, 2008, 2009:2024)
+)
 }
 \arguments{
 \item{model}{The model output from Stock Synthesis as loaded by
@@ -16,8 +21,8 @@ plot_stock_recruitment(model, xlim = c(0, 1.4), ylim = c(0, 7))
 
 \item{ylim}{A vector of two values. The y-axis minimum and maximum values}
 
-\item{probs}{A vector of three probabilities to use in the call to
-\code{\link[stats:quantile]{stats::quantile()}}}
+\item{show_yr_text}{A vector of years to show labels for. If \code{NULL},
+labels will be shown for all points}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
