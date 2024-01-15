@@ -20,7 +20,7 @@ While the general form of the age-structured assessment has remained similar
 since 1991, modeling procedures have been modified in a variety of ways. There
 have been alternative data choices, post-data collection processing routines,
 data-weighting schemes, structural assumptions for the stock assessment model,
-MCMC sampling algorithms, and control rules 
+MCMC sampling algorithms, and control rules
 (Table~\@ref(tab:main-assessment-changes-tab)). Analysts are constantly trying to
 improve the caliber and relevance of the assessment by responding to new
 scientific developments related to statistics and biological dynamics, policy
@@ -88,7 +88,7 @@ rules.
 
 In addition to the examples given above and changes documented in stock
 assessments, there have been many more investigations conducted at review
-panel meetings. Starting in 2013, the addition of the MSE [@JTC2013; 
+panel meetings. Starting in 2013, the addition of the MSE [@JTC2013;
 @JacobsenEtAl2021] facilitated investigating changes to the modeling
 procedure in terms of pre-specified objectives that aim for a sustainable
 coast-wide fishery.
@@ -165,7 +165,7 @@ the number of trips and hauls sampled across all fishing fleets or the number
 of trawl sets in the research surveys
 (see Section~\@ref(sec:data-age-comp-likelihood)).
 
-Model results and statistical inference were based on 
+Model results and statistical inference were based on
 `r f(num_mcmc_samples)` MCMC samples (using the \texttt{adnuts} R package;
 @Monnahan2018) to describe posterior distributions for model
 parameters and derived quantities. The number of samples used for bridging
@@ -179,12 +179,131 @@ in @Monnahan2019.
 
 ## Response to `r end_yr - 1` Scientific Review Group (SRG) review {#sec:assessment-response-review}
 
-The Scientific Review Group (SRG) meeting was held virtually from February
-14-17, 2022.
+The Scientific Review Group (SRG) meeting was held from February
+7-10th, 2023, at the Graduate Hotel, Seattle, WA, U.S.A.
 
 The following are the 'SRG Recommendations and Conclusions for the Stock
-Assessment' from the 2022 SRG report and the associated responses from the
+Assessment' from the 2023 SRG report and the associated responses from the
 JTC:
+
+1. **Pacific Hake dynamics are highly variable even without fishing mortality. The SRG
+applauds the efforts of the JTC and the MSE Working Group to add capabilities for
+estimating dynamic reference points within the assessment and MSE, and encourage
+those groups to jointly develop alternative reference points, including dynamic
+reference points, for future SRG consideration.**
+
+> *Response --
+> *
+
+2. **The SRG also recommends continuing sensitivities for steepness, natural mortality,
+$\sigma_R$, excluding the age-1 index, alternative standard deviations for time-varying
+selectivity, and using the McAllister-Ianelli method to weight fishery age-
+composition data.**
+
+> *Response --
+> *
+
+3. **The SRG recommends that the JTC include dynamic unfished spawning biomass in
+the 2024 assessment as a comparator with the equilibrium unfished spawning
+biomass used to provide management advice. The SRG also encourages the
+continued outreach regarding the use of dynamic reference points to stakeholders
+and managers, including identifying pros and cons of using dynamic unfished
+spawning biomass**
+
+> *Response --
+> *
+
+4. **The SRG recommends that the JTC explore alternative ways of estimating natural
+mortality to update the current approach in the model, which is based on methods
+from more than a decade ago, since newer methods are available. Information
+presented during the SRG meeting implies that natural mortality on age-2 Pacific
+Hake is higher than currently assumed in the assessment model and should be
+explored more fully.**
+
+> *Response --
+> *
+
+5. **The SRG encourages an analysis of catch and CPUE distribution for Canada and
+US that examines latitudinal shifts in fishing over time.**
+
+> *Response --
+> *
+
+6. **The SRG recommends continued work to collect ovary samples and data to develop
+a picture of the Pacific Hake reproductive cycle both seasonally, inter-annually and
+at the life-time scale based on histological and physiological
+measurements. Given the inter-annual variability in age-at-maturity, the SRG recommends that the JTC
+explore ways to incorporate time-varying maturity in the stock assessment
+model.**
+
+> *Response --
+> *
+
+7. **The SRG noted that the age-1 index did not include a value for 2001 because it was zero.
+Although this decision had negligible influence on the results because the estimate for
+2000 recruitment was close to zero, the SRG noted that Stock Synthesis uses a lognormal
+likelihood which does not handle zero values. Given that future zero values are expected
+to have a bigger influence on the results in the short-term, the SRG recommends that
+the JTC explore likelihood forms that can fit to very low index values from the age-1
+survey (e.g., robust likelihood). The SRG acknowledges that implementing new
+likelihoods will require changes to the Stock Synthesis platform.**
+
+> *Response --
+> *
+
+8. **Given the importance of the age-1 index in estimating the size of the age-classes entering
+the fishery, the SRG recommends that the JTC implement updated age-1 index CVs,
+when they are provided by the Survey Team, in the stock assessment model.**
+
+> *Response --
+> *
+
+9. **A new at-sea sampling program in the Canadian freezer-trawler fleet was implemented in
+2022 involving vessel crews sampling 50 fish per tow from two tows per trip. The SRG
+recommends that Canada consider sampling fewer fish from more tows to spread
+the sampling out and provide a more representative sample of fishery catches.**
+
+> *Response --
+> *
+
+10. **The SRG encourages the JTC to consider methods to determine the maximum input
+sample size for the age compositions [e.g. @StewartHamel2014].**
+
+> *Response --
+> *
+
+11. **The SRG notes that there have been multiple strong cohorts in the stock recently
+compared to earlier periods where there was only one strong cohort supporting the stock,
+including during the period of sample collection for the ageing error matrix that supports
+the assessment model. Therefore, the SRG encourages the resumption of the ageing
+error study by the Committee of Age Reading Experts (CARE) using samples
+collected during the past decade.**
+
+> *Response --
+> *
+
+12. **The SRG supports the investigation of alternative selectivity functions, which may
+include a two-dimensional autoregressive (AR) approach, which may use
+information from the previous year and from adjacent year classes to predict
+selectivity.**
+
+> *Response --
+> *
+
+**The SRG appreciates the dedication and teamwork displayed by the JTC in producing
+the best available scientific information and advice on the Pacific Hake stock.**
+
+> *Response --
+> *
+
+
+
+
+
+
+THESE ARE FROM 2023 ASSESSMENT -- TO BE DELETED ONCE DECIDED NOT TO KEEP ANY OF
+THE TEXT.
+
 
 1. **The SRG notes that $\sigma_R$ is an influential parameter and that
   determining the choice of $\sigma_R$ remains a challenge and encourages the
@@ -692,7 +811,7 @@ is known.  The survey did begin earlier that year than all other surveys
 between 1995 and 2009 (Table~\@ref(tab:main-survey-history-tab)), which may
 explain some portion of the anomaly, along with El Ni\~no conditions and age
 structure. The underestimation of the 2009 biomass estimate is larger than
-the underestimation of any other year. The uncertainty of this point (both 
+the underestimation of any other year. The uncertainty of this point (both
 modeled and actual) is high because of the presence of large numbers of
 Humboldt Squid during the survey. Humboldt Squid have similar target
 strength to hake which could introduce bias in the biomass estimate for that
@@ -709,7 +828,7 @@ recent high, but declining, catch levels and produced a couple of
 above-average cohorts that are now mature.
 
 The base model fit to the index of age-1 fish highlights an overall general
-confirmation of relative cohort strength 
+confirmation of relative cohort strength
 (Figure~\@ref(fig:main-age1-index-fit-mcmc-fig)). In particular, the 2008 and 2014
 cohorts were estimated to be less than the index, while the 1994 and 2016
 cohorts were estimated to be larger than indicated by the index. The age-1
@@ -870,7 +989,7 @@ median and broader credibility interval than the
 assessment, but there is considerable overlap of the credibility intervals.
 The increase appears to be due to the addition of 2022 fishery age
 composition data, which suggests the 2020 cohort may be larger than the age-1
-index alone was indicating in the last assessment (as outlined in 
+index alone was indicating in the last assessment (as outlined in
 Section~\@ref(sec:assessment-changes)).
 
 **Recruitment**
@@ -1289,7 +1408,7 @@ for the age-7 `r forecast_yrs[1] - 7` cohort
 (compared to `r fore_catch_prop[["7"]]`% by numbers;
 Figure~\@ref(fig:main-age-comp-forecast-fig)).
 
-With respect to the DFO reference points, with the largest 
+With respect to the DFO reference points, with the largest
 `r assess_yr` catch of `r largest_next_catch`~t given in
 Table~\@ref(tab:main-risk-year-1-tab), at the start of `r assess_yr + 1` the
 stock is expected to be above the critical zone with a probability of
@@ -1374,7 +1493,7 @@ cohorts which have been observed for more years.
 Figures~\@ref(fig:main-biomass-base-alternative-2-fig) and
 \@ref(fig:main-recruitment-base-alternative-2-fig). In general, the estimated
 population dynamics are similar, regardless of extrapolation, throughout most
-of the time series. However, there is some divergence in recent year 
+of the time series. However, there is some divergence in recent year
 estimates; e.g., the estimated relative spawning biomass in `r end_yr` is
 `r sens_base_bratio`% for the base model (with extrapolation) and
 `r sens_grp2_2_bratio`% for the model without extrapolation. The 2016
