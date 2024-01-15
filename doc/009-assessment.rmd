@@ -299,7 +299,7 @@ when they are provided by the Survey Team, in the stock assessment model.**
 recommends that Canada consider sampling fewer fish from more tows to spread
 the sampling out and provide a more representative sample of fishery catches.**
 
-> *Response -- This will set up for the 2024 fishing season.
+> *Response -- This will be set up for the 2024 fishing season.
 > *
 
 10. **The SRG encourages the JTC to consider methods to determine the maximum input
@@ -346,11 +346,10 @@ the best available scientific information and advice on the Pacific Hake stock.*
 
 
 
-THESE ARE FROM 2023 ASSESSMENT -- TO BE DELETED ONCE DECIDED NOT TO KEEP ANY OF
-THE TEXT.
+THESE REMAINING ONES ARE FROM 2023 ASSESSMENT -- keeping for now in case we want
+to re-use (elsewhere) any of the text that is already formatted with references etc.
 
-
-1. **The SRG notes that $\sigma_R$ is an influential parameter and that
+1. [2023 assessment text] **The SRG notes that $\sigma_R$ is an influential parameter and that
   determining the choice of $\sigma_R$ remains a challenge and encourages the
   JTC to continue to work on the issue.**
 
@@ -431,7 +430,7 @@ THE TEXT.
 > Deliverables were put on hold as a result of COVID-19 but the project
 > continues to be making progress.*
 
-2. **The SRG recommends exploring alternative methods to simulate recruitment
+2. [2023 assessment text] **The SRG recommends exploring alternative methods to simulate recruitment
 in the projections. Although Stock Synthesis currently does not have the
 capability to characterize a different process other than the assumed lognormal
 distribution, improvements such as drawing from past observations or using a
@@ -482,7 +481,7 @@ platforms in the future.**
 > [@EdwardsRobinsonEtAl2020], and aims to provide new information on `r sp`
 > recruitment.*
 
-4. The SRG encourages work to develop a picture of the `r sp` reproductive
+4. [2023 assessment text] The SRG encourages work to develop a picture of the `r sp` reproductive
 cycle both seasonally and at the life-time scale based on histological and
 physiological measurements. In addition, the SRG notes that Canadian
 samples and those from the winter research cruises should be included in the
@@ -515,7 +514,7 @@ improve understanding of the `r sp` reproductive cycle.**
 > continue in 2023. New developments are expected to inform maturity in
 > future `r sp` stock assessments.*
 
-6. Based on the preliminary results shown, previous assessments have
+6. [2023 assessment text] Based on the preliminary results shown, previous assessments have
 correctly predicted an increase or decrease in recruitment and female
 spawning biomass in subsequent years, although the projections are usually
 less definitive than the current base model results. Given that this
@@ -539,15 +538,7 @@ assessments.**
 > assessments. This endeavor is well suited for upcoming MSE-related
 > performance metrics discussions.*
 
-7. The SRG notes that there are currently multiple strong cohorts in the
-stock where previously there was only one strong cohort during the period of
-sample collection for the ageing error matrix that supports the assessment
-model. **Based on this observation, the SRG recommends that an ageing error
-study using samples collected during the past decade be conducted in
-conjunction with the Committee of Age Reading Experts (CARE).**
-
-
-8. **The SRG recommends that historical sources of data be investigated to
+8. [2023 assessment text] **The SRG recommends that historical sources of data be investigated to
 determine whether they can be used to supplement the weight-at-age matrix**,
 including unaged otolith samples (and associated data) from the 1970s that
 may be available in the Burke Museum in Seattle.
@@ -560,7 +551,7 @@ may be available in the Burke Museum in Seattle.
 > opportunity to visit the Burke Museum in Seattle to ascertain whether
 > `r sp` age structures are available and in a usable state.*
 
-9. Uncertainty in weight-at-age is not accounted for in the stock assessment
+9. [2023 assessment text] Uncertainty in weight-at-age is not accounted for in the stock assessment
 and a five-year average of recent observations is used for all years of the
 projections. **The SRG requests that the JTC explore alternative methods for
 forecasting weight-at-age and evaluate whether they can improve projections.**
@@ -600,17 +591,7 @@ forecasting weight-at-age and evaluate whether they can improve projections.**
 > what is allowable within other commonly used stock assessment
 > frameworks that accommodate time-varying dynamics.*
 
-10. The parameter weighting the acoustic survey age samples was often
-estimated near the upper bound of 1.0 and could not upweight the age samples.
-Investigations during the SRG meeting showed that the posterior distribution
-of the parameter may have some probability of upweighting the age samples from
-the base assessment inputs, although likely had little difference on stock
-assessment outcomes. **The SRG encourages the JTC to consider methods to
-determine the maximum input sample size for the survey age compositions.
-Previous work of @StewartHamel2014 may be useful for this purpose.**
-
-
-11. The use of high-performance computing (e.g., a dedicated server or cloud
+11. [2023 assessment text] The use of high-performance computing (e.g., a dedicated server or cloud
 computing) allowed for the complete set of assessment results to be
 characterized using MCMC at a minimal cost. **The SRG recommends future use
 of high-performance computing to provide complete and thorough assessment
@@ -651,7 +632,7 @@ results in a timely manner.**
 > the coming years, with a centralized system housing all model runs and
 > document software.*
 
-12. The SRG appreciates the investigation of alternative model structures,
+12. [2023 assessment text] The SRG appreciates the investigation of alternative model structures,
 including alternative modelling platforms. **The SRG encourages the JTC
 to continue these types of investigations.**
 
@@ -659,10 +640,6 @@ to continue these types of investigations.**
 > hake-like assessment in WHAM and SAM, in addition to the custom TMB
 > estimation model used in the MSE, to evaluate the impact of
 > platform-specific configurations, assumptions, and capabilities.*
-
-13. **The SRG appreciates the dedication and teamwork displayed by the JTC
-in producing the best available scientific information and advice on the
-Pacific Hake stock during the COVID-19 pandemic.**
 
 ## Modeling results {#sec:assessment-modeling-results}
 
