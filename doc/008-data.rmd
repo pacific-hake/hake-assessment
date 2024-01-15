@@ -605,7 +605,7 @@ for age-0 fish is fixed at 0.0 and parameters for ages that are estimated
 represent the change in selectivity from the next youngest age. Beyond the age
 of 6, age-specific parameters are fixed at zero giving constant selectivity
 beyond the last estimated value. The condition that maximum selectivity equals
-1.0 results in one fewer degree of freedom than the number of estimated
+1.0 results in one fewer degrees of freedom than the number of estimated
 parameters. Further testing of alternative methods for parameterizing
 time-varying selectivity (e.g., @Xu2019) should be investigated in conjunction
 with the estimation of additional time-varying parameters.
@@ -648,32 +648,31 @@ and $n$ is the input sample size. The parameter $\theta$ is defined as a
 linear scaling parameter such that $\theta n$ is the variance-inflation
 parameter of the D-M distribution. The linear parameterization has been shown
 to be superior over the saturation parameterization in simulation testing
-[@FischAhrensEtAl2022], and thus corroborates our decision to continue to
+[@FischAhrensEtAl2022], and thus, corroborates our decision to continue to
 use it even though the saturation parameterization is available in Stock
 Synthesis.
 
-The effective sample size associated with this likelihood is given by
+The effective sample size ($n_{\mathrm{eff}}$) associated with this likelihood
+is given by
 
 \begin{align}
 n_{\mathrm{eff}} &= \frac{1}{1 + \theta} + \frac{n \theta}{1 + \theta}.
 \label{DMeff}
 \end{align}
 
-The input sample sizes used in this assessment, which are based on the
-number of trips and/or hauls, are large enough that the first term
-is insignificant compared to the second term. Consequently,
-$\theta / (1 + \theta)$ can be compared to the sample size
-multipliers used in the McAllister-Ianelli data-weighting method
+The input sample sizes used in this assessment, which are based on the number
+of trips and/or hauls, are large enough that the first term is insignificant
+compared to the second term. Consequently,
+$\theta / (1 + \theta)$ can be compared to the sample size multipliers used in
+the McAllister-Ianelli (M-I) data-weighting method
 [@McAllisterIanelli1997] that was used for assessments prior to 2018
 (Table~\@ref(tab:main-assessment-changes-tab)) and
 as a sensitivity here (see Section~\@ref(sec:assessment-sensitivity-analyses)).
-In short, the McAllister-Ianelli method involves
-iteratively adjusting multipliers of the input sample sizes
-passed to the multinomial likelihoods until they are
-roughly equal to the harmonic mean of the effective sample sizes. The
-effective sample size is dependent on how well the model expectation matches
-the observed values. Typically, this process involves no more
-than four to five iterations.
+In short, the M-I method involves iteratively adjusting multipliers of the
+input sample sizes passed to the multinomial likelihoods until they are roughly
+equal to the harmonic mean of the effective sample sizes. The effective sample
+size is dependent on how well the model expectation matches the observed
+values. Typically, this process involves no more than four to five iterations.
 
 A uniform prior between $-5$ and $20$ for
 $\log \theta_{\text{fish}}$ and $\log \theta_{\text{surv}}$ tends to lead to
@@ -692,11 +691,10 @@ $\log \theta_{\text{fish}}$ and $\log \theta_{\text{surv}}$ has a mean of
 `r effn_prior[2]` and a standard deviation of `r effn_prior[3]`.
 
 Composition data can also be weighted using the Francis method (T2.6 in Table
-2 of @Francis2011), which is based on variability in the observed ages by
-year. This method, like the McAllister-Ianelli method, is iterative, where
-the sample sizes are adjusted such that the fit of the expected mean age
-should be within the estimated uncertainty at a rate that is consistent with
-the variability expected given the effective sample sizes. The Francis method
-is known to be sensitive to outliers and prone to convergence issues when
-selectivity varies with time. As a result, the Francis method was not
-included as a sensitivity.
+2 of @Francis2011), which is based on variability in the observed ages by year.
+This method, like the M-I method, is iterative, where the sample sizes are
+adjusted such that the fit of the expected mean age should be within the
+estimated uncertainty at a rate that is consistent with the variability
+expected given the effective sample sizes. The Francis method is known to be
+sensitive to outliers and prone to convergence issues when selectivity varies
+with time. As a result, the Francis method was not included as a sensitivity.
