@@ -228,8 +228,13 @@ $\sigma_R$, excluding the age-1 index, alternative standard deviations for time-
 selectivity, and using the McAllister-Ianelli method to weight fishery age-
 composition data.**
 
-> *Response --
-> *
+> CHECK THESE ONCE THEY'RE ALL DONE. Issue 1061.
+> *Response -- The JTC has conducted all of the requested sensitivities
+> (and many others) and provides summaries in written
+> (Section~\@ref(sec:assessment-sensitivity-analyses)), tabular (beginning
+> with Table~\@ref(tab:main-parameter-estimates-sens-1-tab)), and graphical
+> (beginning with Figure~\@ref(fig:main-biomass-base-alternative-1-fig)) formats
+> in this document.*
 
 3. **The SRG recommends that the JTC include dynamic unfished spawning biomass in
 the 2024 assessment as a comparator with the equilibrium unfished spawning
@@ -503,12 +508,6 @@ sensitivities: steepness, natural mortality, $\sigma_R$ , excluding the
 age-1 index, alternative standard deviations for time-varying selectivity,
 and down-weighting fishery age-composition data.**
 
-> *Response -- The JTC has conducted all of the requested sensitivities
-> (and many others) and provides summaries in written
-> (Section~\@ref(sec:assessment-sensitivity-analyses)), tabular (beginning
-> with Table~\@ref(tab:main-parameter-estimates-sens-1-tab)), and graphical
-> (beginning with Figure~\@ref(fig:main-biomass-base-alternative-1-fig)) formats
-> in this document.*
 
 6. Based on the preliminary results shown, previous assessments have
 correctly predicted an increase or decrease in recruitment and female
