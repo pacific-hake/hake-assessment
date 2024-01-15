@@ -6,7 +6,7 @@
 \usage{
 create_rds_file(
   model_path = NULL,
-  keep_index_fit_posts = FALSE,
+  keep_index_fit_posts = TRUE,
   verbose = TRUE,
   overwrite = FALSE,
   ...
