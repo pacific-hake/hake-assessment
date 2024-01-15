@@ -1313,7 +1313,9 @@ negative recruitment deviation.
 ```{r main-relative-retrospective-recruitment-fig, fig.cap = "(ref:main-relative-retrospective-recruitment-cap)", fig.height = 6}
 
 plot_squid(base_model,
-           relative = TRUE)
+           relative = TRUE,
+           show_ci = TRUE,
+           ci_yrs = 2021)
 ```
 
 \clearpage
