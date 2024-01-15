@@ -157,7 +157,7 @@ Biological data were analyzed based on the sampling protocols used to collect
 them and expanded to estimate the corresponding statistic from the entire
 landed catch by fishery and year when sampling occurred. A description of the
 analytical steps for expanding the age compositions can be found in earlier
-stock assessment documents [@JTC2013; JTC2014].
+stock assessment documents [@JTC2013; @JTC2014].
 
 The aggregate fishery age-composition data
 (`r max_fishery_age_prop[1]`--`r max_fishery_age_prop[2]`)
@@ -605,7 +605,7 @@ been used in U.S. assessments since 2007. This prior has a beta distribution
 with parameters 9.76 and 2.80, which translate to a mean of 0.777 and a
 log-standard deviation of 0.113. Sensitivities to the variance on the prior
 on steepness were evaluated in the 2012 and 2013 assessments
-[@JTC2012; JTC2013]. Sensitivities to the mean of the prior are explored in
+[@JTC2012; @JTC2013]. Sensitivities to the mean of the prior are explored in
 this assessment (see Section \@ref(sec:assessment-sensitivity-analyses)).
 
 ### Variability on fishery selectivity deviations {#sec:data-variability-selectivity}
