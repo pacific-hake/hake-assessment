@@ -367,7 +367,7 @@ table_at_age(
 ```{r main-cohort-effects-tab, results = "asis", echo = FALSE}
 table_cohort(
   base_model,
-  cohorts = c(1999, 2010, 2014, 2016, 2020),
+  cohorts = c(1999, 2010, 2014, 2016, 2020, 2021),
   cohort_bold = TRUE,
   cohort_italics = TRUE,
   cohort_underline = TRUE,
