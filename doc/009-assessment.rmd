@@ -192,7 +192,7 @@ estimating dynamic reference points within the assessment and MSE, and encourage
 those groups to jointly develop alternative reference points, including dynamic
 reference points, for future SRG consideration.**
 
-> HERE IS WHAT WE HAD IN 2023 for the same request; note this request is quite
+> TODO HERE IS WHAT WE HAD IN 2023 for the same request; note this request is quite
 > closely tied to number 3.
 >
 > *Response -- The JTC agrees that future reference point discussions
@@ -228,7 +228,7 @@ $\sigma_R$, excluding the age-1 index, alternative standard deviations for time-
 selectivity, and using the McAllister-Ianelli method to weight fishery age-
 composition data.**
 
-> CHECK THESE ONCE THEY'RE ALL DONE. Issue 1061.
+> TODO CHECK THESE ONCE THEY'RE ALL DONE. Issue 1061.
 > *Response -- The JTC has conducted all of the requested sensitivities
 > (and many others) and provides summaries in written
 > (Section~\@ref(sec:assessment-sensitivity-analyses)), tabular (beginning
@@ -243,6 +243,7 @@ continued outreach regarding the use of dynamic reference points to stakeholders
 and managers, including identifying pros and cons of using dynamic unfished
 spawning biomass**
 
+> TODO could mostly link with 1, adding some of the outreach stuff here.
 > *Response --
 > *
 
@@ -269,6 +270,7 @@ measurements. Given the inter-annual variability in age-at-maturity, the SRG rec
 explore ways to incorporate time-varying maturity in the stock assessment
 model.**
 
+> Issue \#1065, Kelli assigned, new appendix.
 > *Response --
 > *
 
@@ -288,7 +290,8 @@ likelihoods will require changes to the Stock Synthesis platform.**
 the fishery, the SRG recommends that the JTC implement updated age-1 index CVs,
 when they are provided by the Survey Team, in the stock assessment model.**
 
-> *Response --
+> *Response -- Updated coefficients of variation were not provided by the Survey
+> Team, and so the fixed value of 0.5 was retained.
 > *
 
 9. **A new at-sea sampling program in the Canadian freezer-trawler fleet was implemented in
@@ -502,12 +505,6 @@ improve understanding of the `r sp` reproductive cycle.**
 > can reduce the effective female spawning biomass. Data analyses will
 > continue in 2023. New developments are expected to inform maturity in
 > future `r sp` stock assessments.*
-
-5. **The SRG also recommends continuing to conduct the following
-sensitivities: steepness, natural mortality, $\sigma_R$ , excluding the
-age-1 index, alternative standard deviations for time-varying selectivity,
-and down-weighting fishery age-composition data.**
-
 
 6. Based on the preliminary results shown, previous assessments have
 correctly predicted an increase or decrease in recruitment and female
