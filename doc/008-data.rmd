@@ -85,7 +85,24 @@ information provided by the Makah Tribe. The Makah Tribe is also working on
 providing historical catches such that shore-based catches can be
 summarized separately from tribal catches since the onset of the fishery.
 
-Historically, the fishery for `r sp` has been well covered by observers with slight differences in coverage by sector. Currently, U.S. shore-based vessels carry observers and are required to retain all catch and bycatch for sampling by plant observers. Vessels participating in the U.S. at-sea sectors are also required to have observers on board and have since 1990. U.S. foreign and Joint-Venture vessels had varying levels of coverage from 1975--1990 ranging from 21-100% coverage. Canadian Joint-Venture and Canadian freezer-trawler vessels were monitored by at-sea observers from 1996--2019. In 2020 and 2021 there were no observers on Canadian freezer trawlers due to staffing issues and in 2022 the decision was made to stop providing observers on board all Canadian vessels. Early in 2022 a sampling plan designed by Canadian managers, scientists, and the sampling contractor, Archipelago Marine Research Ltd.~(AMR), was put into place to ensure the ongoing sampling of `r sp` for Canadian vessels (see Section \@ref(sec:data-fishery-biological-data)). Canadian trawl catches are monitored autonomously at sea by cameras onboard vessels. Catch is recorded by dockside samplers within the Groundfish Trawl Dockside Monitoring Program using total catch weights provided by processing plants. Discards are negligible relative to the total fishery catch for all sectors.
+Historically, the fishery for `r sp` has been well covered by observers with
+slight differences in coverage by sector. Currently, U.S. shore-based vessels
+carry observers and are required to retain all catch and bycatch for sampling
+by plant observers. Vessels participating in the U.S. at-sea sectors are also
+required to have observers on board and have since 1990. U.S. foreign and
+Joint-Venture vessels had varying levels of coverage from 1975--1990 ranging
+from 21-100% coverage. Canadian Joint-Venture and Canadian freezer-trawler
+vessels were monitored by at-sea observers from 1996--2019. In 2020 and 2021
+there were no observers on Canadian freezer trawlers due to staffing issues and
+in 2022 the decision was made to stop providing observers on board all Canadian
+vessels. Early in 2022 a sampling plan designed by Canadian managers,
+scientists, and the sampling contractor, Archipelago Marine Research Ltd.
+(AMR), was put into place to ensure the ongoing sampling of `r sp` for Canadian
+vessels (see Section \@ref(sec:data-fishery-biological-data)). Canadian trawl
+catches are monitored autonomously at sea by cameras onboard vessels. Catch is
+recorded by dockside samplers within the Groundfish Trawl Dockside Monitoring
+Program using total catch weights provided by processing plants. Discards are
+negligible relative to the total fishery catch for all sectors.
 
 ### Fishery biological data {#sec:data-fishery-biological-data}
 
