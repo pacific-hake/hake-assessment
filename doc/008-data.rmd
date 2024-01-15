@@ -350,17 +350,17 @@ the age-1 index was explored as a sensitivity.
 ## Other data not used in this assessment {#sec:data-not-used}
 
 Some data sources were not included in the base model but have been explored,
-used for sensitivity analyses, or were included in previous stock assessments.
-Data sources not discussed here have either been discussed at past `r sp`
-assessment review meetings or are discussed in more detail in the 2013 stock
-assessment document [@JTC2013]. A few are listed below.
+were used for sensitivity analyses, or were included in previous stock
+assessments. Data sources not discussed here have either been discussed at past
+`r sp` assessment review meetings or are discussed in more detail in the 2013
+stock assessment document [@JTC2013]. A few are listed below.
 
 - Fishery and survey length compositions.
 
 - Fishery and survey age-at-length compositions.
 
 - Calculation of a reliable fishery catch-per-unit-effort (CPUE) metric is
-particularly problematic for `r sp`, and it has never been used as a tuning
+particularly problematic for `r sp`, and it has never been used as an
 index for the assessment of this stock (see @JTC2013 for more details).
 
 - Biomass index and age compositions from the following years of the
@@ -384,7 +384,7 @@ currently not available in electronic form or too incomplete to allow
 analysis with methods consistent with more current sampling programs.
 
 - California Cooperative Oceanic Fisheries Investigations (CalCOFI)
-larval `r sp` production index, 1951-2006. The data source was
+larval `r sp` production index, 1951--2006. The data source was
 previously explored and rejected as a potential index of `r sp` female
 spawning biomass. However, the JTC are exploring new avenues to utilize
 CalCOFI data based on recently developed methods (see
