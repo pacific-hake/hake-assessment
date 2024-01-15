@@ -305,8 +305,17 @@ the sampling out and provide a more representative sample of fishery catches.**
 10. **The SRG encourages the JTC to consider methods to determine the maximum input
 sample size for the age compositions [e.g. @StewartHamel2014].**
 
-> *Response --
-> *
+> TODO update this response from 2023, issue 1069:
+>
+> *Response -- The JTC concurs that determining maximum input sample sizes,
+> as well as relative maximums across years, is a worthwhile endeavor.
+> Determining appropriate input samples sizes for composition data is a
+> long-standing issue with much debate. Progress made for `r sp` will
+> undoubtedly provide useful for stock assessment more broadly. The JTC has
+> yet to undertake any specific analyses investigating input sample sizes.
+> Researchers at the Alaska Fisheries Science Center have recently begun
+> similar inquires, indicating that a collaborative approach may be mutually
+> beneficial.*
 
 11. **The SRG notes that there have been multiple strong cohorts in the stock recently
 compared to earlier periods where there was only one strong cohort supporting the stock,
@@ -604,15 +613,6 @@ assessment outcomes. **The SRG encourages the JTC to consider methods to
 determine the maximum input sample size for the survey age compositions.
 Previous work of @StewartHamel2014 may be useful for this purpose.**
 
-> *Response -- The JTC concurs that determining maximum input sample sizes,
-> as well as relative maximums across years, is a worthwhile endeavor.
-> Determining appropriate input samples sizes for composition data is a
-> long-standing issue with much debate. Progress made for `r sp` will
-> undoubtedly provide useful for stock assessment more broadly. The JTC has
-> yet to undertake any specific analyses investigating input sample sizes.
-> Researchers at the Alaska Fisheries Science Center have recently begun
-> similar inquires, indicating that a collaborative approach may be mutually
-> beneficial.*
 
 11. The use of high-performance computing (e.g., a dedicated server or cloud
 computing) allowed for the complete set of assessment results to be
