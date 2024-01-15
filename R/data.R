@@ -601,7 +601,7 @@
 #' A data frame containing information on probability of biomass decline
 #' or of being below B40% for hindcasts of the last 10 years
 #'
-#' @format A data frame with 11 rows and 3 variables:
+#' @format A data frame with 12 rows and 3 variables:
 #' \describe{
 #'   \item{Year}{Year of probabilities}
 #'   \item{P_decline}{Probability of decline from previous year}

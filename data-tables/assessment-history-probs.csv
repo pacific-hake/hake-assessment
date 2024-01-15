@@ -23,7 +23,8 @@
 # 2019 - 411,574 actual, use 410,000
 # 2020 - 379,270 actual, use halfway between 350,000 and 410,000
 # 2021 - 326,629 actual (approx), each 30,000 was about 1% change in P_decline and 2% in P_below_B40
-# 2022 - 320,224 actual, use option e from 2022 assessment.
+# 2022 - 320,224 actual, use option e (320,000) from 2022 assessment. For 2024 assessment the 2022 catch got updated to 323,372, so closer to option f (325,000), but probs are the same so all good
+# 2023 - 263,981 actual, use 270,000 option d from 2023 assessment.
 Year, P_decline, P_below_B40
 2012, 43, 58
 2013, 5, 5
@@ -36,3 +37,4 @@ Year, P_decline, P_below_B40
 2020, 94, 27
 2021, 84, 32
 2022, 30, 8
+2023, 78, 3
