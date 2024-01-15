@@ -540,14 +540,15 @@ means from the most recent five years
 The use of empirical weight-at-age is a convenient method to capture the
 variability in both the weight-at-length relationship within and among
 years as well as the variability in length-at-age data, without requiring
-parametric models to represent these relationships. However, this method
-requires the assumption that observed values are not biased by strong
-selectivity at length or weight and that the spatial and temporal patterns
-of the data sources provide a representative view of the underlying
-population. Simulations show that, in general, using empirical
-weight-at-age data when many observations are available results in more
-accurate estimates of spawning biomass than modeling growth
-[@KuriyamaOnoEtAl2015].
+parametric models to represent growth relationships. Previous attempts to
+explicitly model year-specific and cohort-specific growth were not successful
+for `r sp` and have not been revisited since 2011. The empirical weight-at-age
+method requires the assumption that observed values are not biased by strong
+selectivity at length or weight and that the spatial and temporal patterns of
+the data sources provide a representative view of the underlying population.
+Simulations show that, in general, using empirical weight-at-age data when many
+observations are available results in more accurate estimates of spawning
+biomass than modeling growth [@KuriyamaOnoEtAl2015].
 
 The temporal changes in weight-at-age may be due to ecosystem effects such as
 prey availability, predator abundance, and ocean temperature
@@ -555,21 +556,7 @@ prey availability, predator abundance, and ocean temperature
 the assessment, such ecosystem effects are somewhat implicitly accounted for,
 especially compared to assuming time-invariant weight-at-age.
 
-### Length-at-age {#sec:data-length-at-age}
-
-In the 2006--2010 assessments that attempted to estimate the parameters
-describing a parametric growth curve, strong patterns were identified in the
-observed data indicating sexually dimorphic and temporally variable growth.
-In aggregate, these patterns result in a greater amount of process error for
-length-at-age data than is easily accommodated with parametric growth models,
-and attempts to explicitly model size-at-age dynamics (including use of both
-year-specific and cohort-specific growth) have not been successful for
-`r sp`. The lack of success was particularly evident in the residuals of the
-length-frequency data from models prior to 2011. Potential avenues for
-explicitly modeling variability in length- and weight-at-age data in this
-model have not been revisited since 2011.
-
-## Estimated parameters and prior probability distributions} {#sec:data-estimated-parameters}
+## Estimated parameters and prior probability distributions {#sec:data-estimated-parameters}
 
 Several prior distributions
 (Table~\@ref(tab:main-parameters-estimated-summary-tab)) are
