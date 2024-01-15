@@ -60,6 +60,9 @@ create_rds_attach_retrospectives <- function(model_path = NULL,
   all_retros_lst <- map(rds_fns, \(fn){
     readRDS(fn)
   })
+  # Append the base model to this list
+  all_retros_lst <- c(list(model), all_retros_lst)
+
   all_cohorts <- map_dbl(all_retros_lst, \(mdl){
     mdl$Retro_year
   }) |>
