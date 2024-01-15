@@ -540,14 +540,15 @@ The use of empirical weight-at-age is a convenient method to capture the
 variability in both the weight-at-length relationship within and among
 years as well as the variability in length-at-age data, without requiring
 parametric models to represent growth relationships. Previous attempts to
-explicitly model year-specific and cohort-specific growth were not successful
-for `r sp` and have not been revisited since 2011. The empirical weight-at-age
-method requires the assumption that observed values are not biased by strong
-selectivity at length or weight and that the spatial and temporal patterns of
-the data sources provide a representative view of the underlying population.
-Simulations show that, in general, using empirical weight-at-age data when many
-observations are available results in more accurate estimates of spawning
-biomass than modeling growth [@KuriyamaOnoEtAl2015].
+explicitly model year- and cohort-specific growth were not successful for
+`r sp` and have not been revisited since @StewartForrestEtAl2011. The
+empirical weight-at-age method requires the assumption that observed values
+are not biased by strong selectivity at length or weight and that the spatial
+and temporal patterns of the data sources provide a representative view of the
+underlying population. Simulations show that, in general, using empirical
+weight-at-age data when many observations are available results in more
+accurate estimates of spawning biomass than modeling growth
+[@KuriyamaOnoEtAl2015].
 
 The temporal changes in weight-at-age may be due to ecosystem effects such as
 prey availability, predator abundance, and ocean temperature
