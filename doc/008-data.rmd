@@ -557,13 +557,13 @@ especially compared to assuming time-invariant weight-at-age.
 
 ### Length-at-age {#sec:data-length-at-age}
 
-In the 2006-2010 assessments that attempted to estimate the parameters
+In the 2006--2010 assessments that attempted to estimate the parameters
 describing a parametric growth curve, strong patterns were identified in the
 observed data indicating sexually dimorphic and temporally variable growth.
 In aggregate, these patterns result in a greater amount of process error for
 length-at-age data than is easily accommodated with parametric growth models,
 and attempts to explicitly model size-at-age dynamics (including use of both
-year-specific and cohort-specific growth) have not been very successful for
+year-specific and cohort-specific growth) have not been successful for
 `r sp`. The lack of success was particularly evident in the residuals of the
 length-frequency data from models prior to 2011. Potential avenues for
 explicitly modeling variability in length- and weight-at-age data in this
