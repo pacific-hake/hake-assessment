@@ -266,9 +266,9 @@ table_param_est_bounds(
   digits = 2,
   caption = paste0(
     "Summary of estimated model parameters and priors in the base model. ",
-    "The beta prior is parameterized with a mean and standard deviation. ",
-    "The lognormal prior is parameterized with the median and standard ",
-    "deviation in log space."),
+    "The beta prior is parameterized with a mean and standard deviation (SD). ",
+    "The lognormal prior is parameterized with the median and SD in log space."
+  ),
   font_size = 9,
   header_font_size = 9,
   longtable = TRUE)
@@ -282,7 +282,7 @@ table_assessment_changes(
   caption = paste0(
     "Annual changes in the modeling framework used to assess ", sp, " since ",
     "2011. Methods used to weight the age-composition data (Comp Method), ",
-    "i.e., McAllister-Ianelli (MI) and Dirichlet-multinomial (D-M) ",
+    "i.e., McAllister-Ianelli (M-I) and Dirichlet-multinomial (D-M) ",
     "approaches, are explained in the main text. The Markov chain Monte ",
     "Carlo column gives the  number of Markov chain Monte Carlo samples ",
     "used to describe model results and produce statistical inference."),
