@@ -453,17 +453,16 @@ fraction of fish mature at each age.
 
 The large inventory of `r sp` age determinations includes many duplicate reads
 of the same otolith, either by more than one laboratory or by more than one
-age reader within a laboratory. Recent west coast stock assessments have
-utilized the cross- and double-reads approach to generate an ageing-error
-matrix describing the imprecision and bias in the observation process as a
-function of fish age. New data and analyses were used in the 2009 assessment
-to address an additional process influencing the ageing of `r sp`, namely
-cohort-specific ageing error related to the relative strength of a
-year-class. This process reflects a tendency for uncertain age determinations
-to be assigned to predominant year classes. The result is that the presence of
-strong year classes is inflated in the age data while neighboring year classes
-are under-represented relative to what would be observed if ageing error were
-consistent at age across cohorts.
+age reader within a laboratory. Recent west coast assessments have utilized the
+cross- and double-read approach to generate an ageing-error matrix describing
+the imprecision and bias in the observation process as a function of fish age.
+New data and analyses were used in the 2009 assessment to address an additional
+process influencing the ageing of `r sp`, namely cohort-specific ageing error
+related to the relative strength of a year-class. This process reflects a
+tendency for uncertain age determinations to be assigned to predominant year
+classes. The result is that the presence of strong year classes is inflated in
+the age data while neighboring year classes are under-represented relative to
+what would be observed if ageing error was consistent with age across cohorts.
 
 To account for these observation errors in the model, year-specific
 ageing-error matrices (defined via vectors of standard deviations of observed
@@ -472,7 +471,7 @@ classes are reduced by a constant proportion. For the 2009 and 2010
 assessments, this proportion was determined empirically by comparing
 double-read error rates for strong year classes with rates for other year
 classes. In 2010, a blind double-read study was conducted using otoliths
-collected across the years 2003-2009. One read was conducted by a reader who
+collected across the years 2003--2009. One read was conducted by a reader who
 was aware of the year of collection, and therefore of the age of the strong
 year classes in each sample, while the other read was performed by a reader
 without knowledge of the year of collection, and therefore with little or no
