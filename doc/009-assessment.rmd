@@ -192,8 +192,36 @@ estimating dynamic reference points within the assessment and MSE, and encourage
 those groups to jointly develop alternative reference points, including dynamic
 reference points, for future SRG consideration.**
 
-> *Response --
-> *
+> HERE IS WHAT WE HAD IN 2023 for the same request; note this request is quite
+> closely tied to number 3.
+>
+> *Response -- The JTC agrees that future reference point discussions
+> stemming from simulation work, preferably through the MSE, would be
+> beneficial. In particular, the JTC continues to have interest in exploring
+> the utility of dynamic reference points. The MSE can now utilize dynamic
+> reference points in management procedure scenarios, and Stock Synthesis
+> models can now incorporate dynamic reference point capabilities into
+> routine stock assessment output. In the coming year, the JTC plans to
+> initiate simulations that explore alternative dynamic F-based target
+> reference points coupled with static (equilibrium-based) biomass limit
+> reference points in exploratory harvest control rule scenarios.*
+
+> *Over the past year [2022; so definitely needs updating], the JTC has continued to engage in research
+> activities and outreach related to dynamic reference points broadly, as
+> well as specifically for `r sp`.  In particular, the JTC conducted a
+> learning session at the summer JMC meeting to promote internal awareness
+> and basic understanding of the key concepts, methods, and assumptions
+> associated with dynamic reference point calculations. The JTC also engaged
+> with external partners, the Western and Central Pacific Fisheries
+> Commission science provider (Secretariat of the Pacific Community), to
+> learn from their experience developing and applying dynamic reference
+> points to operational highly migratory species assessments and management
+> plans. Additionally, the JTC is contributing to, and following, updates to
+> Canadian and United States national guidance documentation on the
+> incorporation of prevailing environmental conditions into stock
+> assessments and subsequent management advice (e.g., defining reference
+> points).*
+
 
 2. **The SRG also recommends continuing sensitivities for steepness, natural mortality,
 $\sigma_R$, excluding the age-1 index, alternative standard deviations for time-varying
@@ -436,40 +464,6 @@ platforms in the future.**
 > utilise recent improvements in fitting size spectra to data
 > [@EdwardsRobinsonEtAl2020], and aims to provide new information on `r sp`
 > recruitment.*
-
-3. `r sp` dynamics are highly variable even without fishing mortality. **The
-SRG applauds the efforts of the JTC and the MSE Working Group to add
-capabilities for specifying dynamic reference points within the assessment and
-MSE platforms, and encourage those groups to work together and develop a
-discussion of alternative reference points, including dynamic reference points,
-for future SRG consideration.**
-
-> *Response -- The JTC agrees that future reference point discussions
-> stemming from simulation work, preferably through the MSE, would be
-> beneficial. In particular, the JTC continues to have interest in exploring
-> the utility of dynamic reference points. The MSE can now utilize dynamic
-> reference points in management procedure scenarios, and Stock Synthesis
-> models can now incorporate dynamic reference point capabilities into
-> routine stock assessment output. In the coming year, the JTC plans to
-> initiate simulations that explore alternative dynamic F-based target
-> reference points coupled with static (equilibrium-based) biomass limit
-> reference points in exploratory harvest control rule scenarios.*
-
-> *Over the past year, the JTC has continued to engage in research
-> activities and outreach related to dynamic reference points broadly, as
-> well as specifically for `r sp`.  In particular, the JTC conducted a
-> learning session at the summer JMC meeting to promote internal awareness
-> and basic understanding of the key concepts, methods, and assumptions
-> associated with dynamic reference point calculations. The JTC also engaged
-> with external partners, the Western and Central Pacific Fisheries
-> Commission science provider (Secretariat of the Pacific Community), to
-> learn from their experience developing and applying dynamic reference
-> points to operational highly migratory species assessments and management
-> plans. Additionally, the JTC is contributing to, and following, updates to
-> Canadian and United States national guidance documentation on the
-> incorporation of prevailing environmental conditions into stock
-> assessments and subsequent management advice (e.g., defining reference
-> points).*
 
 4. The SRG encourages work to develop a picture of the `r sp` reproductive
 cycle both seasonally and at the life-time scale based on histological and
