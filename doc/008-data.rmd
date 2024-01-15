@@ -575,13 +575,12 @@ has been evaluated extensively in many previous assessments of `r sp`
 mortality and its prior) and is repeated here (see Section
 \@ref(sec:assessment-sensitivity-analyses)), including increasing the prior
 standard deviation and using an alternative prior distribution altogether
-based on a life history meta-analysis [@Hamel2015,@HamelCope2022]. This
-method used a lognormal prior distribution with a median of 0.22
-(based on a maximum age of 25 for `r sp`) and a standard deviation (in log
-space) of 0.31. Alternative prior distributions for natural mortality
-typically have a significant impact on the model results. But in the absence
-of new information on natural mortality there has been little option to update
-the prior.
+based on a life history meta-analysis [@Hamel2015,@HamelCope2022]. The
+Hamel-Cope prior used a lognormal prior distribution with a median of 0.22
+(based on a maximum age of 25) and a standard deviation (in log space) of 0.31.
+Alternative prior distributions for natural mortality typically have a
+significant impact on the model results. But in the absence of new information
+on natural mortality there has been little option to update the prior.
 
 ### Steepness {#sec:data-steepness}
 
