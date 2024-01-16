@@ -73,6 +73,8 @@ create_rds_file <- function(model_path = NULL,
                                       verbose = verbose,
                                       ...)
 
+  model$mcmcparams <- load_parameter_priors(model)
+
   # Remove `extra_mcmc$index_fit_posts`, (set to `NULL`) because it is
   # large. It is needed for the call to `plot_during_loading()` above so
   # DO NOT move it up in the function

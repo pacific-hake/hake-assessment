@@ -902,28 +902,19 @@ wt_at_age <-
 # Define number of 'recent' years for several tables --------------------------
 num_recent_yrs <- 10
 
-# Dirichlet-Multinomial data weighting parameters MLE -------------------------
-log_theta_fishery <- base_model$mcmcparams$log_theta_fishery
-log_theta_survey <- base_model$mcmcparams$log_theta_survey
-theta_fishery <- base_model$mcmcparams$theta_fishery
-theta_survey <- base_model$mcmcparams$theta_survey
-# Approximate MLE weights
-dm_weight_fishery <- round(theta_fishery / (1 + theta_fishery), 3)
-dm_weight_survey <- round(theta_survey / (1 + theta_survey), 3)
-
+# Dirichlet-Multinomial parameters ---------------------------------------------
 # MCMC quantiles for the fishery DM parameter
 log_theta_fishery_lower <- base_model$mcmcvals$log_theta_fishery_lower
 log_theta_fishery_median <- base_model$mcmcvals$log_theta_fishery_median
 log_theta_fishery_upper <- base_model$mcmcvals$log_theta_fishery_upper
-
-dm_weight_fishery_lower <- base_model$mcmcvals$dm_weight_fishery_lower
-dm_weight_fishery_median <- base_model$mcmcvals$dm_weight_fishery_median
-dm_weight_fishery_upper <- base_model$mcmcvals$dm_weight_fishery_upper
 # MCMC quantiles for the survey DM parameter
 log_theta_survey_lower <- base_model$mcmcvals$log_theta_survey_lower
 log_theta_survey_median <- base_model$mcmcvals$log_theta_survey_median
 log_theta_survey_upper <- base_model$mcmcvals$log_theta_survey_upper
-
+# Dirichlet-Multinomial data weighting parameters-------------------------------
+dm_weight_fishery_lower <- base_model$mcmcvals$dm_weight_fishery_lower
+dm_weight_fishery_median <- base_model$mcmcvals$dm_weight_fishery_median
+dm_weight_fishery_upper <- base_model$mcmcvals$dm_weight_fishery_upper
 dm_weight_survey_lower <- base_model$mcmcvals$dm_weight_survey_lower
 dm_weight_survey_median <- base_model$mcmcvals$dm_weight_survey_median
 dm_weight_survey_upper <- base_model$mcmcvals$dm_weight_survey_upper

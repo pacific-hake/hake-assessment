@@ -739,19 +739,19 @@ has been observed for an additional year.
 
 Regarding the Dirichlet-multinomial parameter $\theta_{\text{fish}}$,
 the estimate (median and 95% credible interval) for
-$\log \theta_{\text{fish}}$ is `r log_theta_fishery_median`
-(`r log_theta_fishery_lower`, `r log_theta_fishery_upper`), giving an
+$\log \theta_{\text{fish}}$ is `r f(log_theta_fishery_median, 3)`
+(`r f(log_theta_fishery_lower, 3)`, `r f(log_theta_fishery_upper, 3)`), giving an
 effective sample size multiplier
 $\theta_{\text{fish}} / (1 + \theta_{\text{fish}})$ of
-`r dm_weight_fishery_median` (`r dm_weight_fishery_lower`,
-`r dm_weight_fishery_upper`).
+`r f(dm_weight_fishery_median, 3)` (`r f(dm_weight_fishery_lower, 3)`,
+`r f(dm_weight_fishery_upper, 3)`).
 The related survey age-composition parameter $\theta_{\text{surv}}$ has
 \protect{$\log \theta_{\text{surv}}$} estimated as
-`r log_theta_survey_median` (`r log_theta_survey_lower`,
-`r log_theta_survey_upper`), and the resulting effective sample size
+`r f(log_theta_survey_median, 3)` (`r f(log_theta_survey_lower, 3)`,
+`r f(log_theta_survey_upper, 3)`), and the resulting effective sample size
 multiplier $\theta_{\text{surv}} / (1 + \theta_{\text{surv}})$ of
-`r dm_weight_survey_median` (`r dm_weight_survey_lower`,
-`r dm_weight_survey_upper`).
+`r f(dm_weight_survey_median, 3)` (`r f(dm_weight_survey_lower, 3)`,
+`r f(dm_weight_survey_upper, 3)`).
 
 The base model fit to the acoustic survey biomass index
 (Figure~\@ref(fig:main-survey-index-fit-mcmc-fig)) remains similar to the
