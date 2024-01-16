@@ -30,8 +30,8 @@ project_variables:
   # figure positions by editing the `doc/object-placement.csv` file
   fig_pos: "htb"
   fig_filetype: "png"
-  # Increasing `dots_per_inch` for figure output increases the file size a LOT
-  dots_per_inch: 100
+  # Increasing `dots_per_inch` for figure output increases the file size a LOT issue 1095
+  dots_per_inch: 300
 author: |
   Joint Technical Committee of the Pacific Hake/Whiting Agreement \
   Between the Governments of the United States and Canada \
