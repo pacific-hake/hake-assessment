@@ -30,6 +30,8 @@
 #' @param legend.loc Legend location
 #' @param main.title Main title text
 #' @param legend.text Legent title text
+#' @param legend.inset Vector for how much to shift the legend, gets parsed to
+#'   `legend( , inset)` value, so see `?legend`. Will depend on figure size.
 #' @param add.to.plot whether to add to an existing plot
 #' @param ... Arguments passed to [combine_historical_probs()]
 #'
@@ -55,6 +57,7 @@ plot_historical_probs <- function(
     legend.text =
       c("From year t's assessment",
         "From current base model"),
+    legend.inset = c(0,0),
     add.to.plot = FALSE,
     ...){
 
@@ -255,6 +258,8 @@ plot_historical_probs <- function(
            lwd = lwd.val,
            pch = pch,
            cex = legend.cex,
-           bty = "y")
+           bty = "y",
+           bg = "transparent",
+           inset = legend.inset)
   }
 }

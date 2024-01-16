@@ -1400,7 +1400,8 @@ model.
 
 plot_historical_probs(base_model,
                       hist_probs = assess_history_probs_df,
-                      add.projs = FALSE)
+                      add.projs = FALSE,
+                      legend.inset = c(0.15, 0))
 ```
 
 \clearpage
