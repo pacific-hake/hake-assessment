@@ -97,33 +97,34 @@ coast-wide fishery.
 
 ## Description of base model {#sec:assessment-base-model}
 
-The `r assess_yr` base model has the same population dynamics structure as the
+The `r assess_yr` base model has the same general population dynamics structure as the
 `r last_assess_yr` assessment's base model. The statistical-catch-at-age model
 assumes that the `r sp` population is a single coast-wide stock subject to
 one aggregated fleet with combined male and female population dynamics. Stock
 Synthesis [@MethotWetzel2013] version `r ss_version` was the modeling platform
 used. The largest change between the `r last_assess_yr` and `r assess_yr`
-stock assessments is the addition of another year of fishery data into the base
-model.
+stock assessments is the addition of another year of fishery and survey data, an
+age-1 index data point, and time-varying maturity information integrated into the
+base model.
 
 The `r assess_yr` base model includes a time series (1995 to
 `r last_survey_yr`) of acoustic age-2+ biomass estimates and acoustic
 estimates of age-1 fish (see Section~\@ref(sec:data-acoustic-survey) for more
-details on the age-1 index). Maturity is assumed to be time-invariant and the
-maturity ogive updated in 2018 was retained
-(see Section~\@ref(sec:data-maturity)). Fecundity is defined as weight-at-age
-multiplied by the maturity ogive and is time-varying across years with
-empirical weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`; see
-Section~\@ref(sec:data-weight-at-age)). The D-M likelihood approach
-[@ThorsonEtAl2017Dirichlet] is again used to estimate the weights associated
+details on the age-1 index). Maturity is assumed to be time-invariant prior to 2009,
+and time-varying, with the integration of annual maturity ogives informed by sea
+temperature at depth, since 2009 (see Section~\@ref(sec:data-maturity)).
+Fecundity is time-varying as defined by annual weight-at-age
+multiplied by annual maturity ogives (`r start_yr_age_comps`--`r last_data_yr`;
+additionally see Section~\@ref(sec:data-weight-at-age)). The D-M likelihood approach
+[@ThorsonEtAl2017Dirichlet] is used to estimate the weights associated
 with age-composition data, rather than iteratively tuning the sample size
 multiplier as in 2017 and earlier assessments (see
 Section~\@ref(sec:data-age-comp-likelihood)). Time-varying fishery
 selectivity is retained in the `r assess_yr` base model with the magnitude
 of the allowable deviations unchanged from the `r last_assess_yr` base model
 (see Section~\@ref(sec:data-variability-selectivity)). The general
-parameterization of selectivity was retained, although additional parameter
-s were required to estimate an additional year of deviations. The selectivity
+parameterization of selectivity was retained, although additional parameters
+were required to estimate an additional year of deviations. The selectivity
 of the acoustic survey is assumed to be time invariant. Selectivity curves
 were modeled as non-parametric functions estimating age-specific values for
 each age beginning at age-2 for the index of age-2+ biomass and age-1 for
@@ -133,7 +134,7 @@ and zero for all other ages.
 
 Prior probability distributions are used for a select few parameters and fixed
 values are used for several parameters. For the base model, the instantaneous
-rate of natural mortality (M) is estimated with a `r m_prior[1]` prior
+rate of time-invariant natural mortality (M) is estimated with a `r m_prior[1]` prior
 having a median of `r f(exp(as.numeric(m_prior[2])), 2)` and a standard
 deviation (in log-space) of 0.1 (see
 Section~\@ref(sec:data-natural-mortality)). The stock-recruitment function is
