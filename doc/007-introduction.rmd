@@ -49,22 +49,21 @@ in Appendix~\@ref(sec:app-glossary).
 
 ## Stock structure and life history {#sec:intro-stock-structure}
 
-`r sp` is a semi-pelagic, schooling species distributed along the west coast
-of North America, generally ranging in latitude from 25° N~to 55° N
-(see Figure~\@ref(fig:main-overview-map-fig) for an overview map). It is among 18
-species of hake from four genera (being the majority of the family
-*Merluccidae*), which are found in both hemispheres of the Atlantic and Pacific
-Oceans [@AlheitPitcher1995; @LlorisMatallanasEtAl2005].
-The coastal population of `r sp` is currently the most abundant groundfish
-population in the California Current system. Smaller populations of this species
-occur in the major inlets of the Northeast Pacific Ocean, including the Strait
-of Georgia, the Puget Sound, and the Gulf of California. Each of these smaller
-populations are genetically distinct from the coastal population
-[@VroomanPaloma1977; @IwamotoFordEtAl2004; @KingMcFarlaneEtAl2012;
-@GarciaEtAl2018]. The coastal population is also distinguished from the inshore
-populations by larger size at age and seasonal migratory behavior and from fish
-off the west coast of Baja California by smaller size at age and later spawning
-[@Zamora-Garcia2020].
+`r sp` is a semi-pelagic, schooling species distributed along the west coast of
+North America, generally ranging in latitude from 25° N~to 55° N
+(Figure~\@ref(fig:main-overview-map-fig)). It is among 18 species of hake from
+four genera (being the majority of the family *Merluccidae*), which are found
+in both hemispheres of the Atlantic and Pacific Oceans [@AlheitPitcher1995;
+@LlorisMatallanasEtAl2005]. The coastal population of `r sp` is currently the
+most abundant groundfish population in the California Current system. Smaller
+populations of this species occur in the major inlets of the Northeast Pacific
+Ocean, including the Strait of Georgia, the Puget Sound, and the Gulf of
+California. Each of these smaller populations are genetically distinct from the
+coastal population [@VroomanPaloma1977; @IwamotoFordEtAl2004;
+@KingMcFarlaneEtAl2012; @GarciaEtAl2018]. The coastal population is also
+distinguished from the inshore populations by larger size at age and seasonal
+migratory behavior and from fish off the west coast of Baja California by
+smaller size at age and later spawning [@Zamora-Garcia2020].
 
 The coastal population of `r sp` typically ranges from the waters off southern
 California to northern British Columbia and rarely into southern Alaska, with
