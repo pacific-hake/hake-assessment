@@ -57,7 +57,8 @@ plot_recruitment(d_obj = d_obj_sens_recr[[3]],
 
 ## Alternative deviations for selectivity -- age-2+ biomass index fit
 ```{r phi-survey-fig, fig.height = 3, out.height = "85%"}
-plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
+plot_survey_index_fits(base_model,
+                       d_obj = d_obj_sens_age2_index_grp3[[1]],
                        survey_type = "age2",
                        point_stroke = 0,
                        x_expansion = 2,

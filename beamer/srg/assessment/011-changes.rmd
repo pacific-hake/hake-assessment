@@ -39,13 +39,15 @@ plot_grid(plotlist = p,
 ```{r bridge-survey, fig.height = 4, out.height = "80%"}
 p <- list()
 p[[1]] <-
-  plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
+  plot_survey_index_fits(base_model,
+                         d_obj = d_obj_bridge_age2_index[[1]],
                          survey_type = "age2",
                          rev_colors = FALSE,
                          leg_pos = "none")
 
 p[[2]] <-
-  plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
+  plot_survey_index_fits(base_model,
+                         d_obj = d_obj_bridge_age1_index[[1]],
                          survey_type = "age1",
                          xlim = c(1995, 2022),
                          ylim = c(0, 11),

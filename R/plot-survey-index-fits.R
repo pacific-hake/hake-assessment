@@ -5,6 +5,7 @@
 #' @param ... Arguments passed to [ggplot2::geom_pointrange()]
 #' @export
 plot_survey_index_fits <- function(
+    model,
     model_lst = NULL,
     model_names = NULL,
     d_obj = NULL,
@@ -39,13 +40,15 @@ plot_survey_index_fits <- function(
     obs_point_shape = 17,
     obs_point_size = ts_pointsize,
     obs_line_type = "dashed",
+    obs_err_line_type = "solid",
+    obs_err_line_width = 1,
     obs_color = "black",
     dodge_val = 0.5,
     rev_colors = FALSE,
     ...){
 
   survey_type <- match.arg(survey_type)
-  fleet <- ifelse(survey_type == "age2", 2, 3)
+  survey_index <- ifelse(survey_type == "age2", 2, 3)
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1] || is.null(model_names[1]))){
@@ -64,11 +67,8 @@ plot_survey_index_fits <- function(
     colors <- rev(colors)
   }
 
-  # Extract observed from data frame, and modify levels accordingly
+  # Extract observed from data frame, and modify levels accordingly ------------
   obs_str <- "Observed"
-  d_obs <- d |>
-    filter(model == !!obs_str) |>
-    mutate(model = factor(model, levels = obs_str))
   model_nms_no_obs <- as.character(unique(d$model))
   model_nms_no_obs <- model_nms_no_obs[model_nms_no_obs != obs_str]
   d <- d |>
@@ -86,10 +86,30 @@ plot_survey_index_fits <- function(
 
   d <- d |>
     filter(year <= xlim[2] & year >= ylim[1])
-  d_obs <- d_obs |>
-    filter(year <= xlim[2] & year >= ylim[1])
 
-  # Calculate the data y-axis out-of-bounds (yoob) and change the credible
+  # Extract observed index values (errorbars on index observations) ------------
+  d_obs <- model$dat$CPUE |>
+    as_tibble() |>
+    filter(index == survey_index)
+  lo <- qlnorm(probs[1],
+               meanlog = log(as.numeric(d_obs$obs)),
+               sdlog = as.numeric(d_obs$se_log))
+  hi <- qlnorm(probs[3],
+               meanlog = log(as.numeric(d_obs$obs)),
+               sdlog = as.numeric(d_obs$se_log))
+  d_obs <- d_obs |>
+    transmute(yr = year,
+              med = obs) |>
+    mutate(lo = !!lo,
+           hi = !!hi) |>
+    mutate(across(-yr, ~{.x / 1e6})) |>
+    rename(year = yr,
+           index_lo = lo,
+           index_med = med,
+           index_hi = hi) |>
+    mutate(year = as.numeric(year))
+
+  # Calculate the data y-axis out-of-bounds (yoob) and change the credible -----
   # interval in the data to cut off at the limits (or not if `show_arrows`
   # is `TRUE`)
   yoob <- calc_yoob(d, ylim, "index_lo", "index_med", "index_hi",
@@ -154,12 +174,24 @@ plot_survey_index_fits <- function(
   # Add the observed line and points
   g <- g +
     geom_pointpath(data = yoob_obs$d,
+                   aes(x = year,
+                       y = index_med),
                    shape = obs_point_shape,
                    size = obs_point_size,
                    stroke = point_stroke,
                    color = obs_color,
                    size = point_size,
-                   linetype = obs_line_type)
+                   linetype = obs_line_type,
+                   inherit.aes = FALSE) +
+    geom_errorbar(data = yoob_obs$d,
+                  aes(x = year,
+                      ymin = index_lo,
+                      ymax = index_hi),
+                  linetype = obs_err_line_type,
+                  linewidth = obs_err_line_width,
+                  color = obs_color,
+                  width = 0.25,
+                  inherit.aes = FALSE)
 
   # Add major tick marks
   g <- g |>

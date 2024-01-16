@@ -377,7 +377,8 @@ p[[2]] <-
         plot.margin = margin(12, 12, 6, 12))
 
 p[[3]] <-
-  plot_survey_index_fits(d_obj = d_obj_bridge_age2_index[[1]],
+  plot_survey_index_fits(base_model,
+                         d_obj = d_obj_bridge_age2_index[[1]],
                          survey_type = "age2",
                          rev_colors = FALSE,
                          tick_prop = 2,
@@ -388,7 +389,8 @@ p[[3]] <-
         plot.margin = margin(12, 12, 6, 12))
 
 p[[4]] <-
-  plot_survey_index_fits(d_obj = d_obj_bridge_age1_index[[1]],
+  plot_survey_index_fits(base_model,
+                         d_obj = d_obj_bridge_age1_index[[1]],
                          survey_type = "age1",
                          xlim = c(1995, 2022),
                          ylim = c(0, 11),
@@ -1112,7 +1114,8 @@ method increases it.
 ```{r main-index-base-alternative-2-fig, fig.cap = "(ref:main-index-base-alternative-2-cap)", fig.height = 4.5}
 
 if(!is.null(d_obj_sens_age2_index_grp2[[1]])){
-  plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp2[[1]],
+  plot_survey_index_fits(base_model,
+                         d_obj = d_obj_sens_age2_index_grp2[[1]],
                          x_expansion = 1,
                          leg_pos = c(0.82, 0.18),
                          rev_colors = TRUE)
@@ -1224,7 +1227,8 @@ set to 0.21.
 ```{r main-index-base-alternative-4-fig, fig.cap = "(ref:main-index-base-alternative-4-cap)", fig.height = 4.5}
 
 if(!is.null(d_obj_sens_age2_index_grp3[[1]])){
-  plot_survey_index_fits(d_obj = d_obj_sens_age2_index_grp3[[1]],
+  plot_survey_index_fits(base_model,
+                         d_obj = d_obj_sens_age2_index_grp3[[1]],
                          survey_type = "age2",
                          x_expansion = 1,
                          leg_pos = c(0.82, 0.18),
