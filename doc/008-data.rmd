@@ -225,11 +225,12 @@ analyses, described below, are conducted to develop a relative age-1 index.
 
 The `r survey_end_yr` survey covered U.S. and Canadian waters from Point
 Conception to north of Haida Gwaii using 116 transects
-(Figure \@ref(fig:main-acoustic-age2-bs-fig)). In the U.S.A., transects were
-mostly separated by 10~nmi. In Canada, transects were separated by 10~nmi
-along Vancouver Island and then 20~nmi further north. The Bell M. Shimada and
-the F/V Nordic Pearl worked collaboratively to complete the full extent of
-the survey in `r survey_end_yr`.
+(Figure~\@ref(fig:main-acoustic-age2-bs-fig)). In the U.S.A., transects were
+mostly separated by 10~nmi; six transects were dropped to account for available
+ship days at sea. In Canada, transects were separated by 10~nmi along Vancouver
+Island and then 20~nmi further north. The NOAA Ship Bell M. Shimada and the
+Canadian Coast Guard Ship Sir John Franklin worked collaboratively to complete
+the full extent of the survey in `r survey_end_yr`.
 
 Distributions of the backscatter of `r sp` plotted for each acoustic survey
 since 1995 illustrate the variable spatial patterns across time of age-2$+$ fish
