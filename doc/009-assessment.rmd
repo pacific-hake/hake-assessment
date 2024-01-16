@@ -1685,7 +1685,7 @@ in 2019, such as 0~t, 180,000~t, 350,000~t, 410,000~t etc. Now that we 'know'
 the catch in 2019 was 412,015~t, we can select the 410,000~t row (close
 enough to 412,015~t) in the table from the 2019 assessment to give that
 assessment's
-P(*B*~2020~ < *B*~2019~) = `r prob_decline_from_2019_to_2020_historic`%;
+P(*B*~2020~<*B*~2019~) = `r prob_decline_from_2019_to_2020_historic`%;
 Figure~\@ref(fig:main-historical-1-fig). We can also calculate this probability
 from the current assessment model, which implicitly includes the
 412,015~t catch from 2019, giving
@@ -1694,20 +1694,23 @@ Figure~\@ref(fig:main-historical-1-fig). We extracted similar probabilities
 from past assessment documents going back to 2012 and calculate analogous
 probabilities,
 P(*B*~t+1~ < *B*~t~), from the current base model
-(Figure~\@ref(fig:main-historical-1-fig); see @JTC2022 for full methods).
+[Figure~\@ref(fig:main-historical-1-fig); see @JTC2022 for full methods].
 
-Each assessment correctly predicted whether the stock would increase or
-decrease the following year (except for 2018 and 2021;
+Each assessment correctly predicted whether the stock would most likely increase or
+decrease the following year, except for 2017, 2019 (the example just given), 2023;
 Figure~\@ref(fig:main-historical-1-fig)). Estimates from previous assessments
-are closer to 50% than those from the current base model (except for 2021;
-Figure~\@ref(fig:main-historical-1-fig)), because the current assessment model
+are closer to 50% than those from the current base model
+(Figure~\@ref(fig:main-historical-1-fig)), because the current assessment model
 has more information and thus provides a more definitive probability (closer
-to 0% or to 100%) than year t's assessment model. It is desirable that the
+to 0% or to 100%) than year $t$'s assessment model. It is desirable that the
 probabilities from the assessment documents are not too definitive (too close
 to 0% or to 100%), because they are admitting a wide range of uncertainty
 given unknown recent recruitments.
 
-The 2018 and 2021 assessments 'incorrectly' projected the stock would likely
+TODO Last year these were 2018 and 2021 - interesting. GOT TO HERE (going to
+make other figures bigger then come back to).
+
+The 2017, 2019, and 2023 assessments 'incorrectly' projected the stock would likely
 decline the following year (given the catch that subsequently occurred),
 because the current assessment model estimates a likely increase
 (Figure~\@ref(fig:main-historical-1-fig)). In 2018, this occurred because the
