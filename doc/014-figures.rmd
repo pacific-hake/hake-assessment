@@ -63,7 +63,7 @@ sectors where they are represented.
 (ref:main-catches-alt) This figure shows that catches in four of the last six
 years have been the largest in the time series.
 
-```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)"}
+```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 5}
 
 plot_catches(ct, xlim = c(start_yr, last_data_yr))
 ```
@@ -124,7 +124,7 @@ present. Fishery age compositions from 1975 to present were used and all data
 from the age 2 plus acoustic survey were included. This includes the index of
 abundance and age compositions from 1995 to present for odd years.
 
-```{r main-data-overview-fig, fig.cap = "(ref:main-data-overview-cap)"}
+```{r main-data-overview-fig, fig.cap = "(ref:main-data-overview-cap)", fig.height = 6}
 
 plot_data_summary(base_model)
 ```
@@ -610,7 +610,7 @@ in each year.
 (ref:main-tv-selex-alt) This figure shows individual median selectivity
 plots for each year in a mountain range configuration.
 
-```{r main-tv-selex-fig, fig.cap = "(ref:main-tv-selex-cap)", fig.height = 8}
+```{r main-tv-selex-fig, fig.cap = "(ref:main-tv-selex-cap)", fig.height = 9}
 
 tv_selex_start_yr <- 1990
 
@@ -631,7 +631,7 @@ for all years from `r start_yr` to `r tv_selex_start_yr`.
 (ref:main-tv-selex-uncertainty-alt) This figure shows individual panels for
 each year with selectivity medians and 0.95 credible intervals.
 
-```{r main-tv-selex-uncertainty-fig, fig.cap = "(ref:main-tv-selex-uncertainty-cap)", fig.height = 8}
+```{r main-tv-selex-uncertainty-fig, fig.cap = "(ref:main-tv-selex-uncertainty-cap)", fig.height = 9}
 
 plot_selex_uncertainty(base_model,
                        n_col = 2,
@@ -677,7 +677,7 @@ is the estimated unfished equilibrium biomass, $B_0$.
 (ref:main-biomass-alt) This figure shows that the median spawning biomass has
 been increasing in size since 2021.
 
-```{r main-biomass-fig, fig.cap = "(ref:main-biomass-cap)", fig.height = 3}
+```{r main-biomass-fig, fig.cap = "(ref:main-biomass-cap)", fig.height = 5}
 
 plot_biomass(list(base_model),
              list(base_model_name),
@@ -694,7 +694,7 @@ lines show 10%, 40%, and 100% of the unfished equilibrium ($B_0$).
 (ref:main-relative-biomass-alt) This figure shows that the relative spawning
 biomass has been increasing since 2021. The value for 2023 is just above B0.
 
-```{r main-relative-biomass-fig, fig.cap = "(ref:main-relative-biomass-cap)", fig.height = 3}
+```{r main-relative-biomass-fig, fig.cap = "(ref:main-relative-biomass-cap)", fig.height = 5}
 
 plot_rel_biomass(model_lst = list(base_model),
                  model_names = list(base_model_name),
@@ -718,7 +718,7 @@ There are currently three above-average cohorts in the stock with 2020 being
 the fourth. The 2020 cohort is highly uncertain which can be seen in the size
 of the credible interval.
 
-```{r main-recruitment-fig, fig.cap = "(ref:main-recruitment-cap)", fig.height = 3}
+```{r main-recruitment-fig, fig.cap = "(ref:main-recruitment-cap)", fig.height = 5}
 
 plot_recruitment(list(base_model),
                  list(base_model_name),
@@ -737,7 +737,7 @@ at age in `r start_yr`, the initial year of the model.
 each cohort. The same above-average cohorts seen in the recruitment figure
 are also seen here.
 
-```{r main-recruitment-devs-fig, fig.cap = "(ref:main-recruitment-devs-cap)", fig.height = 3}
+```{r main-recruitment-devs-fig, fig.cap = "(ref:main-recruitment-devs-cap)", fig.height = 5}
 
 plot_recdevs(list(base_model),
              list(base_model_name),
@@ -871,7 +871,7 @@ median relative spawning biomass is projected to remain flat for the next
 3 years with zero catch and to decline for all non-zero catch levels
 evaluated.
 
-```{r main-depletion-comparison-fig, fig.cap = "(ref:main-depletion-comparison-cap)"}
+```{r main-depletion-comparison-fig, fig.cap = "(ref:main-depletion-comparison-cap)", fig.height = 5}
 
 # See the file `000-set-ct-levels.R`. The values for `fore_inds` below are
 # the indices of the forecast values in the list `ct_levels_vals`
@@ -892,7 +892,7 @@ stock declines in 2024 is 50 percent or greater for all catch levels
 including zero. The probability that the stock falls under B40 is almost
 zero for catches up to approximately 350 kilotonnes.
 
-```{r main-risk-year-1-fig, fig.cap = "(ref:main-risk-year-1-cap)", fig.height = 4.5}
+```{r main-risk-year-1-fig, fig.cap = "(ref:main-risk-year-1-cap)", fig.height = 5}
 
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
@@ -920,7 +920,7 @@ stock declines in 2025 is 74 percent or greater for all catch levels
 including zero. The probability that the stock falls under B40 is below 0.1
 for catches up to approximately 380 kilotonnes.
 
-```{r main-risk-year-2-fig, fig.cap = "(ref:main-risk-year-2-cap)", fig.height = 4.5}
+```{r main-risk-year-2-fig, fig.cap = "(ref:main-risk-year-2-cap)", fig.height = 5}
 
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
@@ -949,7 +949,7 @@ stock declines in 2026 is approximately 65 percent or greater for all catch
 levels including zero. The probability that the stock falls under B40 is
 below 0.1 for catches up to approximately 350 kilotonnes.
 
-```{r main-risk-year-3-fig, fig.cap = "(ref:main-risk-year-3-cap)", fig.height = 4.5}
+```{r main-risk-year-3-fig, fig.cap = "(ref:main-risk-year-3-cap)", fig.height = 5}
 
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
@@ -999,7 +999,7 @@ biomass changes between the first set of sensitivity runs. Changing the
 standard deviation of the natural mortality parameter has the most notable
 effect and scales the population up with an increase in its size.
 
-```{r main-biomass-base-alternative-1-fig, fig.cap = "(ref:main-biomass-base-alternative-1-cap)", fig.height = 4.5}
+```{r main-biomass-base-alternative-1-fig, fig.cap = "(ref:main-biomass-base-alternative-1-cap)", fig.height = 5}
 
 if(!is.null(d_obj_sens_biomass[[1]])){
   plot_biomass(d_obj = d_obj_sens_biomass[[1]],
@@ -1332,7 +1332,7 @@ Monte Carlo medians depending on the model structure. Shading represents the
 (ref:main-historical-assessments-alt) This figure shows the varying
 historical estimates of spawning biomass from the annual assessments.
 
-```{r main-historical-assessments-fig, fig.cap = "(ref:main-historical-assessments-cap)"}
+```{r main-historical-assessments-fig, fig.cap = "(ref:main-historical-assessments-cap)", fig.height = 5.5}
 
 plot_assessment_history_biomass(base_model,
                                 assess_history_df,
