@@ -44,10 +44,12 @@ as adding appreciable contribution to model results [@HelserDornEtAl2002;
 @HelserFleischerEtAl2005; @StewartHamel2010], except for the
 fishery-independent acoustic-based age-1 index which has been included in the
 base model since the 2022 assessment. The process for generating
-fecundity-at-age from weight-at-age data changed in 2019 from using
-time-invariant to year-specific values. Even where data have been consistently
-used, the weighting of these data in the statistical likelihood has changed
-through the use of various emphasis factors (e.g., @Dorn1994,
+fecundity-at-age from the combination of weight-at-age and maturity data changed
+in 2019 from using time-invariant to year-specific weight-at-age values. In 2024,
+time-varying maturity ogives were also added to the calculation of fecundity-at-age
+(see Section~\@ref(sec:data-maturity) for details). Even where data have
+been consistently used, the weighting of these data in the statistical likelihood
+has changed through the use of various emphasis factors (e.g., @Dorn1994,
 @DornSaundersEtAl1999), a multinomial sample size on age compositions (e.g.,
 @DornSaundersEtAl1999, @HelserDornEtAl2002, @HelserFleischerEtAl2005,
 @StewartForrestEtAl2011), internal estimations of effective sample size using
