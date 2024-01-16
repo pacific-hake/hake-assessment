@@ -1689,11 +1689,11 @@ P(*B*~2020~ < *B*~2019~) = `r prob_decline_from_2019_to_2020_historic`%;
 Figure~\@ref(fig:main-historical-1-fig). We can also calculate this probability
 from the current assessment model, which implicitly includes the
 412,015~t catch from 2019, giving
-P(*B*~2020~} < *B*~2019~) = `r prob_decline_from_2019_to_2020_curr`%;
+P(*B*~2020~ < *B*~2019~) = `r prob_decline_from_2019_to_2020_curr`%;
 Figure~\@ref(fig:main-historical-1-fig). We extracted similar probabilities
 from past assessment documents going back to 2012 and calculate analogous
 probabilities,
-P(*B*~t+1~} < *B*~t~)$, from the current base model
+P(*B*~t+1~ < *B*~t~), from the current base model
 (Figure~\@ref(fig:main-historical-1-fig); see @JTC2022 for full methods).
 
 Each assessment correctly predicted whether the stock would increase or

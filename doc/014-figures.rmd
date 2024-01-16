@@ -1404,4 +1404,29 @@ plot_historical_probs(base_model,
                       legend.inset = c(0.15, 0))
 ```
 
+(ref:main-historical-2-cap) For each year $t$, $P(B_{t+1} <$`r b_40`) is
+the probability that the spawning biomass at the
+start of $t+1$ is below `r b_40`.
+The red circles and blue squares represent probabilities calculated analogously
+to Figure~\@ref(fig:main-historical-1-fig).
+The grey horizontal line is the 50% value. For each
+year except 2012, both probabilities lie on the same side of the grey line, indicating that
+each year's assessment model almost always
+correctly estimated that the subsequent year's
+biomass will not fall below `r b_40`.
+For the `r assess_yr` assessment the
+probabilities are shown for all catch alternatives for `r assess_yr`, as
+described in Table~\@ref(tab:main-decisions-biomass-tab), with 0~t shown in pink.
+
+(ref:main-historical-2-alt) This figure compares historical estimates
+of probabilities of the stock declining below the B40.
+
+```{r main-historical-2-fig, fig.cap = "(ref:main-historical-2-cap)", fig.height = 6, is.fig = TRUE, alt.text = "(ref:main-historical-2-alt)"}
+
+plot_historical_probs(base_model,
+                      add.projs = FALSE,
+                      type = "bforty",
+                      legend.loc = "topleft")
+```
+
 \clearpage
