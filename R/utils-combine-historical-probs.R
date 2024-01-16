@@ -30,8 +30,8 @@ combine_historical_probs <- function(model,
 
   new_hist_probs_rng <- calc_historical_probs(model,
                                               start = start,
-                                              end = end,
-                                              ...) |>
+                                              end = end
+                                              ) |>
     as_tibble()
 
   if(nrow(new_hist_probs_rng) < nrow(hist_probs_rng)){

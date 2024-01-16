@@ -1377,30 +1377,30 @@ p[[2]] <-
 plot_grid(plotlist = p, nrow = 1)
 ```
 
-<!-- (ref:main-historical-1-cap) For each year $t$, $P(B_{t+1} < B_t)$ is the -->
-<!-- probability that the spawning biomass at the start of $t+1$ is below that -->
-<!-- at the start of $t$. It is calculated in two ways. Red circles: the -->
-<!-- probability is taken from year $t$'s stock assessment document, from the -->
-<!-- row in the decision table corresponding to the consequent catch in year $t$ -->
-<!-- (with interpolation if necessary). Blue squares: the probability is -->
-<!-- calculated using the current `r assess_yr` base model. The grey horizontal -->
-<!-- line is the 50% value. For each year except 2018 and 2021, both -->
-<!-- probabilities lie on the same side of the grey line, indicating that each -->
-<!-- year's assessment model has almost always 'correctly' estimated an increase -->
-<!-- or decrease the subsequent year's biomass. For the `r assess_yr` -->
-<!-- assessment the probabilities are shown for all catch alternatives for -->
-<!-- `r assess_yr`, as described in Table~\@ref(tab:main-decisions-biomass-tab), -->
-<!-- with 0~t shown in pink. -->
+(ref:main-historical-1-cap) For each year $t$, $P(B_{t+1} < B_t)$ is the
+probability that the spawning biomass at the start of $t+1$ is below that
+at the start of $t$. It is calculated in two ways. Red circles: the
+probability is taken from year $t$'s stock assessment document, from the
+row in the decision table corresponding to the consequent catch in year $t$
+(with interpolation if necessary). Blue squares: the probability is
+calculated using the current `r assess_yr` base model. The grey horizontal
+line is the 50% value. For each year except 2018 and 2021, both
+probabilities lie on the same side of the grey line, indicating that each
+year's assessment model has almost always 'correctly' estimated an increase
+or decrease the subsequent year's biomass. For the `r assess_yr`
+assessment the probabilities are shown for all catch alternatives for
+`r assess_yr`, as described in Table~\@ref(tab:main-decisions-biomass-tab),
+with 0~t shown in pink.
 
-<!-- (ref:main-historical-1-alt) This figure compares historical estimates -->
-<!-- of probabilities of the stock declining with those from the current base -->
-<!-- model. -->
+(ref:main-historical-1-alt) This figure compares historical estimates
+of probabilities of the stock declining with those from the current base
+model.
 
-<!-- ```{r main-historical-1-fig, fig.cap = "(ref:main-historical-1-cap)", fig.height = 6, is.fig = TRUE, alt.text = "(ref:main-historical-1-alt)"} -->
+```{r main-historical-1-fig, fig.cap = "(ref:main-historical-1-cap)", fig.height = 6, is.fig = TRUE, alt.text = "(ref:main-historical-1-alt)"}
 
-<!-- plot_historical_probs(base_model, -->
-<!--                       hist_probs = assess_history_probs_df, -->
-<!--                       add.projs = TRUE) -->
-<!-- ``` -->
+plot_historical_probs(base_model,
+                      hist_probs = assess_history_probs_df,
+                      add.projs = FALSE)
+```
 
 \clearpage

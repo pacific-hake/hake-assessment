@@ -65,7 +65,7 @@ plot_historical_probs <- function(
 
   if(add.to.plot){
     if(type == "decline"){
-      points(res$Year,
+      points(res$year,
              res$P_decline_curr,
              type = "o",
              pch = pch[2],
@@ -94,7 +94,7 @@ plot_historical_probs <- function(
     }
 
     if(type == "bforty"){
-      points(res$Year,
+      points(res$year,
              res$P_below_B40_curr,
              type = "o",
              pch = pch[2],
@@ -120,13 +120,13 @@ plot_historical_probs <- function(
       }
     }
   } else {      # create new plot
-    if(is.null(xLim)) xLim = range(res$Year) + c(0, 1)
+    if(is.null(xLim)) xLim = range(res$year) + c(0, 1)
     oldpar <- par("mar", "xpd")
     on.exit(par(oldpar))
     par(mar = c(4.5, 4.5, 1, 1))
 
     if(type == "decline"){
-      plot(res$Year,
+      plot(res$year,
            res$P_decline,
            xlim = xLim,
            type = "o",
@@ -137,7 +137,7 @@ plot_historical_probs <- function(
            ylim = c(0, 100),
            main = main.title,
            lwd = lwd.val)
-      points(res$Year,
+      points(res$year,
              res$P_decline_curr,
              type = "o",
              pch = pch[2],
@@ -166,7 +166,7 @@ plot_historical_probs <- function(
     }
 
     if(type == "decline.one.year"){
-      plot(res$Year,
+      plot(res$year,
            res$P_decline,
            xlim = xLim,
            type = "o",
@@ -178,23 +178,23 @@ plot_historical_probs <- function(
            main = main.title,
            lwd = lwd.val)
 
-      res_one_year <- res[which(res$Year == one.year), ]
+      res_one_year <- res[which(res$year == one.year), ]
 
-      points(res_one_year$Year,
+      points(res_one_year$year,
              res_one_year$P_decline,
              type = "o",
              pch = pch[1],
              col = colors[1],
              lwd = lwd.val)
 
-      points(res_one_year$Year,
+      points(res_one_year$year,
              res_one_year$P_decline_curr,
              type = "o",
              pch = pch[2],
              col = colors[2],
              lwd = lwd.val)
 
-      text(rep(res_one_year$Year, 2),
+      text(rep(res_one_year$year, 2),
            c(res_one_year$P_decline,
              res_one_year$P_decline_curr),
            labels = c(paste0(res_one_year$P_decline, "%"),
@@ -205,7 +205,7 @@ plot_historical_probs <- function(
 
 
     if(type == "bforty"){
-      plot(res$Year,
+      plot(res$year,
            res$P_below_B40,
            xlim = xLim,
            type = "o",
@@ -215,7 +215,7 @@ plot_historical_probs <- function(
            ylab = "P(biomass is below B40% in year t+1)",
            ylim = c(0, 100),
            lwd = lwd.val)
-      points(res$Year,
+      points(res$year,
              res$P_below_B40_curr,
              type = "o",
              pch = pch[2],
