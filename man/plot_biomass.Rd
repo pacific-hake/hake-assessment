@@ -283,6 +283,7 @@ plot_rel_recruitment(
 )
 
 plot_survey_index_fits(
+  model,
   model_lst = NULL,
   model_names = NULL,
   d_obj = NULL,
@@ -310,6 +311,8 @@ plot_survey_index_fits(
   obs_point_shape = 17,
   obs_point_size = ts_pointsize,
   obs_line_type = "dashed",
+  obs_err_line_type = "solid",
+  obs_err_line_width = 1,
   obs_color = "black",
   dodge_val = 0.5,
   rev_colors = FALSE,
