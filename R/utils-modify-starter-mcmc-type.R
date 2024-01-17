@@ -30,4 +30,5 @@ modify_starter_mcmc_type <- function(path, value){
                             " - *Modified by modify_starter_mcmc_type()*")
   starter_contents[mcmc_output_ind] <- mcmc_output_val
   writeLines(starter_contents, file.path(path, starter_fn))
+  file_chmod(file.path(path, starter_fn), output_permissions)
 }

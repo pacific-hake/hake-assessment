@@ -24,6 +24,10 @@ create_kn_files <- function(model){
   nuisances <- mc |>
     select_at(.vars = vars(-nms))
 
+  # Change hake group permissions to include write permission for the group
+  file_chmod(key_file, output_permissions)
+  file_chmod(nuisance_file, output_permissions)
+
   write_csv(keys, key_file)
   write_csv(nuisances, nuisance_file)
 }

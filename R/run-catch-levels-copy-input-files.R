@@ -16,6 +16,7 @@ run_catch_levels_copy_input_files <- function(model,
                                               inp_files_only = FALSE){
 
   dir.create(pth, showWarnings = FALSE)
+  file_chmod(pth, output_permissions)
   # Delete any old files/subdirectories in `default-hr` directory that may
   # still exist from a previous run
   unlink(file.path(pth, "*"), recursive = TRUE)

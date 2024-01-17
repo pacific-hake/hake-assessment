@@ -21,7 +21,7 @@
 #' @importFrom crayon green
 #' @importFrom cowplot get_legend plot_grid
 #' @importFrom data.table fread
-#' @importFrom fs dir_ls path
+#' @importFrom fs dir_ls path file_chmod
 #' @importFrom future availableCores plan
 #' @importFrom furrr future_map future_imap furrr_options
 #' @importFrom furrr future_walk future_walk2

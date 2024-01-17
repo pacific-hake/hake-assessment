@@ -8,6 +8,7 @@ as many lines with an overlaid errorbar for each age}
 plot_selex_posteriors(
   model = NULL,
   type = c("fishery", "survey"),
+  n_posts = NULL,
   age_range = NULL,
   show_xlab = TRUE,
   post_line_width = 0.1,
@@ -32,6 +33,10 @@ plot_selex_posteriors(
 \item{model}{A model list, created by \code{\link[=create_rds_file]{create_rds_file()}}}
 
 \item{type}{One of 1 or 2 where 1 = Fishery and 2 = Acoustic age 2+ survey}
+
+\item{n_posts}{The number of posterior lines to plot. The lines are
+randomly drawn from all posteriors. if this is larger than the number
+of posteriors, all posterior lines will be shown}
 
 \item{age_range}{A vector of two for the min and max ages to plot. If \code{NULL},
 all ages in the data will be plotted}

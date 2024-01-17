@@ -64,6 +64,7 @@ run_retrospectives <- function(model = NULL,
   # Setup retrospective path names ----
   retro_pth <- file.path(model_path, retropectives_path)
   dir.create(retro_pth, showWarnings = FALSE)
+  file_chmod(retro_pth, output_permissions)
   retro_subdirs <- file.path(retro_pth,
                              paste0(retrospectives_prepend,
                                     pad_num(retro_yrs, 2)))
@@ -72,6 +73,7 @@ run_retrospectives <- function(model = NULL,
   # Create directories and copy input files into them ----
   walk(retro_subdirs, \(retro_subdir){
     dir.create(retro_subdir, showWarnings = FALSE)
+    file_chmod(retro_subdir, output_permissions)
     unlink(file.path(retro_subdir, "*"), force = TRUE)
     dest_fns <- file.path(retro_subdir, ss_input_files)
     copy_flags <- file.copy(src_fns, dest_fns)
@@ -154,8 +156,12 @@ run_retrospectives <- function(model = NULL,
                                            d_new[df_for_meanbody])
           writeLines(d_new, con = file.path(retro_subdir,
                                             data_ssnew_fn))
+          file_chmod(file.path(retro_subdir,
+                               data_ssnew_fn), output_permissions)
           writeLines(d_new, con = file.path(retro_subdir,
                                             data_new_ssnew_fn))
+          file_chmod(file.path(retro_subdir,
+                               data_new_ssnew_fn), output_permissions)
           message("Done running retrospective for year = ", retro_yr)
         }
       }

@@ -83,6 +83,7 @@ run_forecasts <- function(model = NULL,
 
   pth <- file.path(model_path, forecasts_path)
   dir.create(pth, showWarnings = FALSE)
+  file_chmod(pth, output_permissions)
   unlink(file.path(pth, "*"), recursive = TRUE)
 
   ct_levels_fullpath <- file.path(model_path, ct_levels_path)
@@ -96,6 +97,7 @@ run_forecasts <- function(model = NULL,
 
     fore_path <- file.path(pth, paste0(forecasts_prepend, yr))
     dir.create(fore_path, showWarnings = FALSE)
+    file_chmod(fore_path, output_permissions)
 
     if(supports_multicore){
       # One worker for each catch stream
@@ -110,6 +112,7 @@ run_forecasts <- function(model = NULL,
       catch_ind <- which(forecast_yrs == year)
       new_forecast_dir <- file.path(fore_path, nm)
       dir.create(new_forecast_dir, showWarnings = FALSE)
+      file_chmod(new_forecast_dir, output_permissions)
 
       # Copy all model files into this new forecast directory
       src_fns <- list.files(model$mcmc_path, full.names = TRUE)

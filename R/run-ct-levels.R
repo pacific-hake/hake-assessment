@@ -59,6 +59,7 @@ run_ct_levels <- function(model = NULL,
 
   ct_levels_fullpath <- file.path(model_path, ct_levels_path)
   dir.create(ct_levels_fullpath, showWarnings = FALSE)
+  file_chmod(ct_levels_fullpath, output_permissions)
   unlink(file.path(ct_levels_fullpath, "*"), recursive = TRUE)
 
   if(supportsMulticore()){

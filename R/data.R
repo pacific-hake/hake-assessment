@@ -483,6 +483,14 @@
 #' @format A vector of numerical years
 "age_bubble_cohorts"
 
+# pd-filesystem-settings.R ----
+#' The Linux file permissions value to use for fs::file_chmod()
+#'
+#' @format A character string containing 3 octal digits (0-7). e.g. "777"
+#' for full permissions for everybody
+#'
+"output_permissions"
+
 # pd-tac-catch-proportions.R ----
 #' The proportion of the U.S. TAC that the Mothership sector gets each year
 #'

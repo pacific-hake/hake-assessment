@@ -91,7 +91,7 @@ run_adnuts <- function(path,
     }
   }
   dir.create(mcmc_path, showWarnings = FALSE)
-
+  file_chmod(mcmc_path, output_permissions)
   if(hess_step){
     input_files <- c(input_files, "admodel.cov", "admodel.hes", "ss.bar")
   }
@@ -153,6 +153,7 @@ run_adnuts <- function(path,
   file.copy(input_files, mcmc_path, overwrite = TRUE)
   if(run_extra_mcmc){
     dir.create(file.path(mcmc_path, "sso"), showWarnings = TRUE)
+    file_chmod(file.path(mcmc_path, "sso"), output_permissions)
     modify_starter_mcmc_type(mcmc_path, 2)
   }else{
     modify_starter_mcmc_type(mcmc_path, 1)

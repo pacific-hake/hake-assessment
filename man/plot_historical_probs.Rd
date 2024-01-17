@@ -22,6 +22,7 @@ plot_historical_probs(
   legend.loc = "bottomright",
   main.title = NULL,
   legend.text = c("From year t's assessment", "From current base model"),
+  legend.inset = c(0, 0),
   add.to.plot = FALSE,
   ...
 )
@@ -65,6 +66,9 @@ years)}
 \item{main.title}{Main title text}
 
 \item{legend.text}{Legent title text}
+
+\item{legend.inset}{Vector for how much to shift the legend, gets parsed to
+\code{legend( , inset)} value, so see \code{?legend}. Will depend on figure size.}
 
 \item{add.to.plot}{whether to add to an existing plot}
 
