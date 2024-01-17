@@ -1,0 +1,146 @@
+\newpage
+
+\rfoot{Maturity analysis}
+
+# Modeling temporal and spatial trends in hake maturity at age {#sec:app-maturity-analysis}
+
+Contributed by Melissa A. Head, Kelli F. Johnson, Kristin N. Marshall, and Eric
+J. Ward.
+
+TEXT TO GO HERE
+
+(ref:app-maturity-analysis-sampling-platform-cap) CAPTION
+
+(ref:app-maturity-analysis-sampling-platform-alt) ALT TEXT
+
+```{r app-maturity-analysis-sampling-platform-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S1_samplingplatform.png"), error = FALSE)
+```
+
+<!--
+
+
+
+
+
+
+-->
+
+(ref:app-maturity-analysis-sampling-platform-years-cap) CAPTION
+
+(ref:app-maturity-analysis-sampling-platform-years-alt) ALT TEXT
+
+```{r app-maturity-analysis-sampling-platform-years-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-years-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S2_samplingplatform_years.png"), error = FALSE)
+```
+
+
+(ref:app-maturity-analysis-sampling-platform-age-years-cap) CAPTION
+
+(ref:app-maturity-analysis-sampling-platform-age-years-alt) ALT TEXT
+
+```{r app-maturity-analysis-sampling-platform-age-years-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-age-years-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S3_samplingplatform_age_years.png"), error = FALSE)
+```
+
+
+
+(ref:app-maturity-analysis-temp-depth-cap) CAPTION
+
+(ref:app-maturity-analysis-temp-depth-alt) ALT TEXT
+
+```{r app-maturity-analysis-temp-depth-fig, fig.cap = "(ref:app-maturity-analysis-temp-depth-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S4_temp_by_depth.png.png"), error = FALSE)
+```
+
+
+(ref:app-maturity-analysis-raw-feb-temp-cap) CAPTION
+
+(ref:app-maturity-analysis-raw-feb-temp-alt) ALT TEXT
+
+```{r app-maturity-analysis-raw-feb-temp-fig, fig.cap = "(ref:app-maturity-analysis-raw-feb-temp-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S5_raw_feb_temp.png"), error = FALSE)
+```
+
+(ref:app-maturity-analysis-temp-weight-effect-cap) CAPTION
+
+(ref:app-maturity-analysis-temp-weight-effect-alt) ALT TEXT
+
+```{r app-maturity-analysis-temp-weight-effect-fig, fig.cap = "(ref:app-maturity-analysis-temp-weight-effect-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S6_temp_weight_effect.png"), error = FALSE)
+```
+
+(ref:app-maturity-analysis-cog-latitude-cap) CAPTION
+
+(ref:app-maturity-analysis-cog-latitude-alt) ALT TEXT
+
+```{r app-maturity-analysis-cog-latitude-fig, fig.cap = "(ref:app-maturity-analysis-cog-latitude-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S7_cog_latitude.png"), error = FALSE)
+```
+
+
+(ref:app-maturity-analysis-year-effects-nocovar-cap) CAPTION
+
+(ref:app-maturity-analysis-year-effects-nocovar-alt) ALT TEXT
+
+```{r app-maturity-analysis-year-effects-nocovar-fig, fig.cap = "(ref:app-maturity-analysis-year-effects-nocovar-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S8_year_effects_nocovar.png"), error = FALSE)
+```
+
+
+
+(ref:app-maturity-analysis-predicted-maps-byage-cap) CAPTION
+
+(ref:app-maturity-analysis-predicted-maps-byage-alt) ALT TEXT
+
+```{r app-maturity-analysis-predicted-maps-byage-fig, fig.cap = "(ref:app-maturity-analysis-predicted-maps-byage-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S9_predicted_maps_byage.png"), error = FALSE)
+```
+
+(ref:app-maturity-analysis-temp-model-sensitivities-cap) CAPTION
+
+(ref:app-maturity-analysis-temp-model-sensitivities-alt) ALT TEXT
+
+```{r app-maturity-analysis-temp-model-sensitivities-fig, fig.cap = "(ref:app-maturity-analysis-temp-model-sensitivities-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S10_temp_model_sensitivities.png"), error = FALSE)
+```
+
+(ref:app-maturity-analysis-model-comparison-cap) CAPTION
+
+(ref:app-maturity-analysis-model-comparison-alt) ALT TEXT
+
+```{r app-maturity-analysis-model-comparison-fig, fig.cap = "(ref:app-maturity-analysis-model-comparison-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S11_model_comparison.png"), error = FALSE)
+```
+
+(ref:app-maturity-analysis-temp-marginal-cap) CAPTION
+
+(ref:app-maturity-analysis-temp-marginal-alt) ALT TEXT
+
+```{r app-maturity-analysis-temp-marginal-fig, fig.cap = "(ref:app-maturity-analysis-temp-marginal-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S12_temp_marginal.png"), error = FALSE)
+```
+
+(ref:app-maturity-analysis-age-marginal-cap) CAPTION
+
+(ref:app-maturity-analysis-age-marginal-alt) ALT TEXT
+
+```{r app-maturity-analysis-age-marginal-fig, fig.cap = "(ref:app-maturity-analysis-age-marginal-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S13_age_marginal.png"), error = FALSE)
+```
+
+
+\clearpage
