@@ -498,58 +498,57 @@ samples across the border have led to delays.
 
 ### Weight-at-age {#sec:data-weight-at-age}
 
-A matrix of empirically derived population weight-at-age means by year
+A matrix of empirically derived population weight-at-age data by year
 (Figures~\@ref(fig:main-weight-at-age-fig)--
 \@ref(fig:main-weight-at-age-lines-fig)) is used in the current assessment
-model to translate numbers-at-age directly to biomass-at-age. Annual mean
-weight-at-age was calculated from year-specific samples pooled from all
-fisheries and the acoustic survey for the years 1975 to
-`r max_fishery_age_prop[2]`
+model to translate numbers at age to biomass at age. Annual weight-at-age data
+was modelled from biological samples pooled from all fisheries and summer
+surveys for the years 1975 to `r max_fishery_age_prop[2]`
 (Figures~\@ref(fig:main-weight-at-age-fig)--
-\@ref(fig:main-weight-at-age-lines-fig)). Past investigations into calculating
-weight-at-age for the fishery and survey independently showed little
-impact on model results. New and historical samples were pulled from all
-relevant databases such that the derived matrices included the best available
-data. Samples from winter and research surveys are not included. Samples from
-the Canadian fishery are subset by area to exclude near-shore samples.
-Pre-1975 weight-at-age data available in the PacFIN database that were
-discovered during the 2018 assessment-review process were confirmed to be
-samples collected within Puget Sound and have not been included in any
-assessment. Weights from fish ages 15 and above for each year were pooled,
-and thus, ages 15--20 are assumed to have the same mean weight-at-age.
-Combinations of age and year with no observations were assumed to change
-linearly over time between observations at any given age. The number of
-samples (Figure \@ref(fig:main-sample-size-weight-at-age-fig)) is
-generally proportional to the amount of catch, so the combinations of year
-and age with no samples should have relatively little importance in the
-overall estimates of the population dynamics.
+\@ref(fig:main-weight-at-age-lines-fig)). Samples from winter and research
+surveys were not included, nor were samples from near-shore areas.
+Past investigations into calculating weight-at-age data for the fishery and
+survey independently showed little impact on model results, and thus, a single
+matrix is used for all fleets and beginning and middle of the year population
+weight at age.
 
-The biomass at the start of a given year is based on the weight-at-age from
-the previous year; for example, the biomass at the start of 2022 is
-calculated using the empirical weight-at-age from 2021
-(Figure~\@ref(fig:main-weight-at-age-fig)). Prior to 1975,
-weight-at-age is assumed to be equal to the mean of all available
-information for each respective age
-(1975-`r last_data_yr`), consistent with the `r last_assess_yr` base model
-(Figure~\@ref(fig:main-weight-at-age-fig)). Both forecast
-weight-at-age data and forecast selectivity are based on the respective
-means from the most recent five years
-(`r last_data_yr-4`--`r last_data_yr`), for consistency
+A generalized linear model (GLM) with a lognormal distribution was used to
+model weight-at-age data external to the assessment. Weight was thought to
+relate to a smoothed effect of age, between zero and fifteen; random effects
+for cohort and year; and fixed effects for sex, where unsexed fish were
+included as such. The majority of the unsexed samples were from north of the
+U.S--Canada border. Weights from fish ages 15 and above for each year were
+pooled, and thus, ages 15--20 are assumed to have the same weight-at-age.
+Estimated parameters from this model were used to predict weight for ages
+zero to fifteen from 1975 to `r last_data_yr` for each sex. Information was
+then averaged across the three sex groups, i.e., male, female, and unsexed,
+for input into the assessment model.
+The number of samples (Figure \@ref(fig:main-sample-size-weight-at-age-fig)) is
+generally proportional to the amount of catch.
+
+The biomass at the start of a given year is based on the weight-at-age from the
+previous year; for example, the biomass at the start of 2022 is modelled using
+the empirical weight-at-age data from 2021
+(Figure~\@ref(fig:main-weight-at-age-fig)). Prior to 1975, weight-at-age input
+is assumed to be equal to the mean of all available model inputs for each
+respective age (1975-`r last_data_yr`)
 (Figure~\@ref(fig:main-weight-at-age-fig)).
+Forecast weight-at-age data are based on age-specific means from the most
+recent five years (`r last_data_yr-4`--`r last_data_yr`), consistent with
+forecast selectivity (Figure~\@ref(fig:main-weight-at-age-fig)).
 
-The use of empirical weight-at-age is a convenient method to capture the
-variability in both the weight-at-length relationship within and among
-years as well as the variability in length-at-age data, without requiring
-parametric models to represent growth relationships. Previous attempts to
-explicitly model year- and cohort-specific growth were not successful for
-`r sp` and have not been revisited since @StewartForrestEtAl2011. The
-empirical weight-at-age method requires the assumption that observed values
-are not biased by strong selectivity at length or weight and that the spatial
-and temporal patterns of the data sources provide a representative view of the
-underlying population. Simulations show that, in general, using empirical
-weight-at-age data when many observations are available results in more
-accurate estimates of spawning biomass than modeling growth
-[@KuriyamaOnoEtAl2015].
+The use of empirical weight-at-age data is a convenient method to capture the
+variability in both the weight-at-length relationship within and among years
+as well as the variability in length-at-age data, without requiring parametric
+models to represent growth relationships. Previous attempts to explicitly model
+year- and cohort-specific growth were not successful for `r sp` and have not
+been revisited since @StewartForrestEtAl2011. The empirical weight-at-age
+method requires the assumption that observed values are not biased by strong
+selectivity at length or weight and that the spatial and temporal patterns of
+the data sources provide a representative view of the underlying population.
+Simulations show that, in general, using empirical weight-at-age data when many
+observations are available results in more accurate estimates of spawning
+biomass than modeling growth [@KuriyamaOnoEtAl2015].
 
 ## Estimated parameters and prior probability distributions {#sec:data-estimated-parameters}
 
