@@ -30,7 +30,7 @@ BEGIN LANDSCAPE - must have blank line below separating this from figure code
 
 ```{r main-acoustic-age2-bs-fig, fig.cap = "(ref:main-acoustic-age2-bs-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"hake_survey_1995-21_NASCTimeSeries_BiomassAtAgeHistograms_grayblue.png"), error = FALSE)
+include_graphics(file.path(figures_dir,"hake_survey_1995-23_NASCTimeSeries_BiomassAtAgeHistograms_graywhite.png"), error = FALSE)
 ```
 
 END LANDSCAPE - must have blank line above separating this from figure code
@@ -51,7 +51,7 @@ BEGIN LANDSCAPE
 
 ```{r main-acoustic-age1-bs-fig, fig.cap = "(ref:main-acoustic-age1-bs-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"age1hake_03-21_sA_squareroot_bin_narrow-panel_grayblue.png"), error = FALSE)
+include_graphics(file.path(figures_dir,"age1hake_03-23_sA_squareroot_bin_narrow-panel_grayblue.png"), error = FALSE)
 ```
 
 END LANDSCAPE
