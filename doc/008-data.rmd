@@ -551,12 +551,6 @@ weight-at-age data when many observations are available results in more
 accurate estimates of spawning biomass than modeling growth
 [@KuriyamaOnoEtAl2015].
 
-The temporal changes in weight-at-age may be due to ecosystem effects such as
-prey availability, predator abundance, and ocean temperature
-[@ChittaroGrandinetal2022]. Thus, while not explicitly parameterized in
-the assessment, such ecosystem effects are somewhat implicitly accounted for,
-especially compared to assuming time-invariant weight-at-age.
-
 ## Estimated parameters and prior probability distributions {#sec:data-estimated-parameters}
 
 Several prior distributions

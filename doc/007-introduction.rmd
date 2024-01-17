@@ -133,7 +133,9 @@ Nonetheless, ongoing research investigating spatiotemporal drivers of
 weight at age will provide more insights into the specific mechanisms
 affecting changes in growth, which will enable condition-specific prediction
 capabilities (e.g., assumptions of growth, or weight at age, during forecast
-years).
+years). It is hypothesized that temporal changes in weight-at-age data may be
+due to ecosystem effects such as prey availability, predator abundance, and
+ocean temperature [@ChittaroGrandinetal2022].
 
 ## Management of `r sp` {#sec:intro-management}
 
