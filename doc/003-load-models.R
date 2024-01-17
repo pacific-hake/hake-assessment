@@ -9,44 +9,32 @@ base_models_desc <- "Base model"
 # model will be prepended to the group.
 # See `set_dirs()`
 bridge_models_dirs <-
-  list(c("00-update-ss3-exe",
-         "01-fix-catches",
-         "02-fix-weight-at-age",
-         "03-fix-survey-1",
-         "04-fix-fishery-comps",
-         "10-add-catches",
-         "20-add-weight-at-age",
+  list(c("20-add-weight-at-age",
          "30-add-survey-2",
          "31-add-survey-age-comps",
          "40-add-survey-1",
          "50-add-fishery-ages"),
-       c("60-survey-1-t-distribution",
-         "70-tv-weight-at-age",
+       c("50-add-fishery-ages",
+         "60-survey-1-t-distribution",
          "71-redo-fishery-comp",
          "72-tv-fecundity"))
 bridge_models_desc <-
-  list(c("Update Stock Synthesis version to 3.30.20",
-         "Correct historical catches",
-         "Correct historical weight-at-age",
-         "Correct historical Age-1 survey index",
-         "Correct historical fishery age comps",
-         paste0("Add ", last_data_yr, " catch"),
-         paste0("Add ", last_data_yr, " weight-at-age"),
+  list(c("New SS3 and add catch/weight-at-age",
          "Add age-2+ acoustic survey index",
-         "Add age-2+ acoustic survey age comps",
+         "Add survey age comps",
          "Add age-1 index",
          paste0("Add ", last_data_yr, " fishery age comps")),
-       c("Change survey to use student-t distribution",
-         "Use calculated TV weight-at-age",
-         "Corrected Fishery age comps for new WAA",
-         "Use pre-estimated TV maturity"))
+       c(paste0("Add ", last_data_yr, " fishery age comps"),
+         "Use student-t distribution for age-1",
+         "Use modeled temporal weight-at-age",
+         "Use modeled spatio-temporal maturity"))
 prepend_to_bridge <- c(TRUE, FALSE)
 # Subtract the following number of years of the end of the models
 # when plotting. Should only be 1 for the first one or two, then zeroes.
 # This vector must be 1 longer than the above lists, because last year's
 # base model is prepended to those lists
-bridge_model_end_yr <- list(end_yr - c(1, 1, rep(0, 10)),
-                            end_yr - rep(0, 4))
+bridge_model_end_yr <- list(end_yr - c(1, rep(0, length(bridge_models_desc[[1]]))),
+                            end_yr - rep(0, length(bridge_models_desc[[2]])))
 
 # This is a list of vectors of sensitivity groups (sensitivity models that
 # will be plotted against each other). It can be `NA` if you want it to be

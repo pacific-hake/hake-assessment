@@ -333,24 +333,33 @@ plot_weight_at_age(wt_at_age,
                    max.overlaps = 15)
 ```
 
-(ref:main-bridge-summary-cap) Bridging models showing the sequential steps
-made to the base model from the `r last_assess_yr` base model to the
-`r assess_yr` base model. In order the steps are: update the Stock Synthesis
-model code version, add `r last_data_yr` catch, add `r last_data_yr`
-weight-at-age, and add `r last_data_yr` fishery age compositions. The
-final model is the base model for `r assess_yr`. Panels are spawning
-biomass (upper panel), relative spawning biomass (spawning biomass in
-each year relative to the unfished equilibrium spawning biomass, middle
-left), recruitment deviation (middle right), age-2+ survey biomass index
-(lower left), and age-1 index (lower right), with triangles representing
-the observed survey indices.
+(ref:main-bridge-summary-cap-1) Bridging models showing the some of the
+sequential steps made towards the base model from the `r last_assess_yr` base
+model. Models include shifting to the newest version of Stock Synthesis,
+ammending older data sources, and adding new data.
+Panels are spawning biomass (upper panel); relative spawning biomass 
+(spawning biomass in each year relative to the unfished equilibrium spawning
+biomass, middle left); recruitment deviation (middle right); and age-2$+$
+survey biomass (lower left) and age-1 (lower right) indices, with triangles
+representing the observed survey indices.
 
-(ref:main-bridge-summary-alt) This figure shows the differences between
-the first bridging models for various model outputs. The only notable
-difference is in the recruitment deviation estimates for 2020 to 2022 for
-the bridging model where the 2022 catch is added.
+(ref:main-bridge-summary-cap-2) Bridging models showing the some of the
+sequential steps made towards the base model from the `r last_assess_yr` base
+model. Models include the last step from the previous figure of adding new
+data, changes to working up data inputs, and structural changes to the model.
+Panels are spawning biomass (upper panel); relative spawning biomass 
+(spawning biomass in each year relative to the unfished equilibrium spawning
+biomass, middle left); recruitment deviation (middle right); and age-2$+$
+survey biomass (lower left) and age-1 (lower right) indices, with triangles
+representing the observed survey indices.
 
-```{r main-bridge-summary-fig, fig.cap = "(ref:main-bridge-summary-cap)", fig.height = 8}
+(ref:main-bridge-summary-alt-1) The largest change amongst the models occurred when
+data from the age-2$+$ survey was added to the model.
+
+(ref:main-bridge-summary-alt-2) Including time-varying fecundity led to a smaller
+spawning biomass in the terminal year of the model.
+
+```{r main-bridge-summary-fig-1, fig.cap = "(ref:main-bridge-summary-cap-1)", fig.height = 8}
 
 panels_title_size <- 11
 p <- list()
@@ -430,6 +439,90 @@ plot_grid(plotlist = full_p,
           ncol = 1,
           rel_heights = c(0.33, 0.67))
 ```
+
+
+```{r main-bridge-summary-fig-2, fig.cap = "(ref:main-bridge-summary-cap-2)", fig.height = 8, eval = length(bridge_models_desc[[1]]) > 1}
+
+panels_title_size <- 11
+p <- list()
+p[[1]] <-
+  plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[2]],
+                   ylim = c(0, 2.5),
+                   x_labs_mod = 10,
+                   wrap_y_label = TRUE,
+                   tick_prop = 2,
+                   leg_pos = "none") +
+  theme(axis.title.y = element_text(size = panels_title_size),
+        axis.title.x = element_text(size = panels_title_size),
+        # plot.margin: top, right,bottom, left
+        plot.margin = margin(12, 12, 6, 12))
+p[[2]] <-
+  plot_recdevs(d_obj = d_obj_bridge_recdev[[2]],
+               leg_pos = "none",
+               x_labs_mod = 10,
+               tick_prop = 2,
+               line_width = 0.1) +
+  theme(axis.title.y = element_text(size = panels_title_size),
+        axis.title.x = element_text(size = panels_title_size),
+        # plot.margin: top, right,bottom, left
+        plot.margin = margin(12, 12, 6, 12))
+
+p[[3]] <-
+  plot_survey_index_fits(base_model,
+                         d_obj = d_obj_bridge_age2_index[[2]],
+                         survey_type = "age2",
+                         rev_colors = FALSE,
+                         tick_prop = 2,
+                         leg_pos = "none") +
+  theme(axis.title.y = element_text(size = panels_title_size),
+        axis.title.x = element_text(size = panels_title_size),
+        # plot.margin: top, right,bottom, left
+        plot.margin = margin(12, 12, 6, 12))
+
+p[[4]] <-
+  plot_survey_index_fits(base_model,
+                         d_obj = d_obj_bridge_age1_index[[2]],
+                         survey_type = "age1",
+                         xlim = c(1995, 2022),
+                         ylim = c(0, 11),
+                         y_breaks = seq(0, 11, by = 2),
+                         rev_colors = FALSE,
+                         tick_prop = 2,
+                         leg_pos = "none") +
+  theme(axis.title.y = element_text(size = panels_title_size),
+        axis.title.x = element_text(size = panels_title_size),
+        # plot.margin: top, right,bottom, left
+        plot.margin = margin(12, 12, 6, 12))
+
+# Grid of 2 rows and 1 column with one plot at the top (biomass)
+# and 4 plots embedded in another grid (quad_grid) at the bottom
+quad_grid <- plot_grid(plotlist = p,
+                       nrow = 2,
+                       ncol = 2)
+full_p <- list()
+full_p[[1]] <-
+  plot_biomass(d_obj = d_obj_bridge_biomass[[2]],
+               show_arrows = TRUE,
+               dodge_bo = 0.75,
+               leg_ncol = 2,
+               leg_font_size = 7,
+               wrap_y_label = TRUE,
+               tick_prop = 2,
+               leg_pos = c(0.72, 0.82)) +
+  theme(axis.title.y = element_text(size = panels_title_size),
+        axis.title.x = element_text(size = panels_title_size),
+        # plot.margin: top, right,bottom, left
+        plot.margin = margin(12, 12, 6, 12))
+
+full_p[[2]] <- quad_grid
+
+plot_grid(plotlist = full_p,
+          nrow = 2,
+          ncol = 1,
+          rel_heights = c(0.33, 0.67))
+```
+
+
 
 (ref:main-survey-index-fit-mcmc-cap) Fits (colored lines) to the acoustic
 survey (points) with input 95% intervals around the observations. The
