@@ -121,7 +121,7 @@ include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S10_temp_model_sen
 
 ```{r app-maturity-analysis-model-comparison-fig, fig.cap = "(ref:app-maturity-analysis-model-comparison-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S11_model_comparison.png"), error = FALSE)
+include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S11_model_comparison-updated.png"), error = FALSE)
 ```
 
 (ref:app-maturity-analysis-temp-marginal-cap) CAPTION
