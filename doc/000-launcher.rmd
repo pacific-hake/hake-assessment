@@ -131,7 +131,7 @@ output:
    # Headrule line definitions ----------------------------
    headrule_width_pt: 0.5
    # Use double lines for header
-   headrule_double_lines: true
+   headrule_double_lines: false
    # Width of the top line, width of bottom line is `headrule_width_pt` above
    headrule_double_width_pt: 2
    # Space between the double lines
@@ -140,7 +140,7 @@ output:
    # Footrule line definitions ----------------------------
    footrule_width_pt: 0.5
    # Use double lines for footer
-   footrule_double_lines: true
+   footrule_double_lines: false
    # Width of the top line, width of bottom line is `footrule_width_pt` above
    footrule_double_width_pt: 2
    # Space between the double lines
