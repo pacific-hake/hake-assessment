@@ -21,16 +21,12 @@ models=(01-h-prior-mean-low \
         05-m-02-sd \
         06-m-03-sd \
         07-m-hamel-prior \
-        #08-age-1-survey \
+        08-age-1-survey \
         09-comp-weight-harmonic-mean \
         10-tv-select-phi-extra-low \
         11-tv-select-phi-low \
         12-tv-select-phi-high \
-        13-max-sel-age-5 \
-        14-max-sel-age-7 \
-        15-max-sel-age-8 \
-        16-zero-sum-constraint \
-        17-m-hamel-prior-updated)
+        )
 
 type_path="03-sensitivity-models"
 verbose=FALSE

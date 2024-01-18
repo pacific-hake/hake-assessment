@@ -48,16 +48,13 @@ sens_models_dirs <-
          "04-sigma-r-fix-high",
          "05-m-02-sd",
          "06-m-03-sd",
-         "17-m-hamel-prior-updated"),
+         "07-m-hamel-prior"),
+        #  "17-m-hamel-prior-updated"),
        c("08-age-1-survey",
          "09-comp-weight-harmonic-mean"),
        c("10-tv-select-phi-extra-low",
          "11-tv-select-phi-low",
-         "12-tv-select-phi-high"),
-       c("13-max-sel-age-5",
-         "14-max-sel-age-7",
-         "15-max-sel-age-8",
-         "16-zero-sum-constraint"))
+         "12-tv-select-phi-high"))
 sens_models_desc <-
   list(c("Steepness Mean Prior Low (0.5)",
          "Steepness Fix 1.0",
@@ -70,11 +67,7 @@ sens_models_desc <-
          "Downweight Fishery Comps"),
        c("Phi t.v. selectivity (0.21)",
          "Phi t.v. selectivity (0.70)",
-         "Phi t.v. selectivity (2.10)"),
-       c("Max. age selectivity 5",
-         "Max. age selectivity 7",
-         "Max. age selectivity 8",
-         "Recdevs sum to zero"))
+         "Phi t.v. selectivity (2.10)"))
 
 #bridge_models_dirs <- NA
 #bridge_models_desc <- NA
