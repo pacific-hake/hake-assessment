@@ -1,4 +1,4 @@
-#' Make individual plots or one overlaid historical probability calculations
+#' Make individual plots (or one overlaid) of historical probability calculations
 #' that uses retrospective runs (given we have them). Calls
 #' `make.historical.probs.plot()` for each retrospective
 #'
@@ -68,7 +68,7 @@ plot_historical_probs_retro <- function(
   # Always do the current base model first, since want it when make.one
   #.figure = `TRUE`, but don't (for multiple plots) if omit.current = `FALSE`
   if(make.one.figure | !omit.current){
-    make.historical.probs.plot(model,
+    plot_historical_probs(model,
                                hist_probs = hist_probs,
                                type = type,
                                end = assess_yr - 1,
@@ -89,7 +89,7 @@ plot_historical_probs_retro <- function(
     if(!make.one.figure){
       # Still want current base model results and full legend for
       # individual plots
-      make.historical.probs.plot(model,
+      plot_historical_probs(model,
                                  hist_probs = hist_probs,
                                  type = type,
                                  end = assess_yr - i,
@@ -106,7 +106,7 @@ plot_historical_probs_retro <- function(
                                  ...)
     }
 
-    make.historical.probs.plot(model$retrospectives[[i]],
+    plot_historical_probs(model$retrospectives[[i]],
                                hist_probs = hist_probs,
                                type = type,
                                end = assess_yr - i,

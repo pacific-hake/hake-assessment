@@ -173,6 +173,7 @@ load_mcmc_vals <- function(model,
       1)
 
   # Probabilities for historical performance analyses -------------------------
+  # Needs assess_history_probs_df updated with assess_yr-1 assessment values
     out$historical_probs_df <-
     combine_historical_probs(model = model,
                              end = assess_yr - 1)

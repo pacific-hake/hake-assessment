@@ -518,7 +518,7 @@ median_relative_bio_2017 <- f(mc$dmed["2017"] * 100, 1)
 prev_assess_recruitment_lower  <- last_yr_mc$rlower
 prev_assess_recruitment_med  <- last_yr_mc$rmed
 # Want years only
-prev_assess_recruitment_med <- 
+prev_assess_recruitment_med <-
   prev_assess_recruitment_med[grepl("^[0-9]{4}$", names(prev_assess_recruitment_med))]
 prev_assess_recruitment_upper <- last_yr_mc$rupper
 
@@ -669,14 +669,14 @@ fourth_shoreside_age_prop_age <- ss_age_prop_holder[1]
 fourth_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
 
 # ... US age data -------------------------------------------------------------
-us_age_n_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr, "num_samples"] |> 
+us_age_n_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr, "num_samples"] |>
   pull()
-us_age_n_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr, "num_samples"] |> 
+us_age_n_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr, "num_samples"] |>
   pull()
-us_last_yr_age_cp <- us_cp_age_df |> 
-  filter(year == last_data_yr) |> 
-  select(-year, -num_fish, -num_samples) |> 
-  unlist() |> 
+us_last_yr_age_cp <- us_cp_age_df |>
+  filter(year == last_data_yr) |>
+  select(-year, -num_fish, -num_samples) |>
+  unlist() |>
   sort(decreasing = TRUE)
 us_age_1_prop_age_cp <- as.numeric(names(us_last_yr_age_cp)[1])
 us_age_1_prop_cp <- f(us_last_yr_age_cp[1] * 100, 1)
@@ -687,10 +687,10 @@ us_age_3_prop_cp <- f(us_last_yr_age_cp[3] * 100, 1)
 us_age_4_prop_age_cp <- as.numeric(names(us_last_yr_age_cp)[4])
 us_age_4_prop_cp <- f(us_last_yr_age_cp[4] * 100, 1)
 
-us_last_yr_age_ms <- us_ms_age_df |> 
-  filter(year == last_data_yr) |> 
-  select(-year, -num_fish, -num_samples) |> 
-  unlist() |> 
+us_last_yr_age_ms <- us_ms_age_df |>
+  filter(year == last_data_yr) |>
+  select(-year, -num_fish, -num_samples) |>
+  unlist() |>
   sort(decreasing = TRUE)
 us_age_1_prop_age_ms <- as.numeric(names(us_last_yr_age_ms)[1])
 us_age_1_prop_ms <- f(us_last_yr_age_ms[1] * 100, 1)
@@ -701,10 +701,10 @@ us_age_3_prop_ms <- f(us_last_yr_age_ms[3] * 100, 1)
 us_age_4_prop_age_ms <- as.numeric(names(us_last_yr_age_ms)[4])
 us_age_4_prop_ms <- f(us_last_yr_age_ms[4] * 100, 1)
 
-us_last_yr_age_shore <- us_sb_age_df |> 
-  filter(year == last_data_yr) |> 
-  select(-year, -num_fish, -num_samples) |> 
-  unlist() |> 
+us_last_yr_age_shore <- us_sb_age_df |>
+  filter(year == last_data_yr) |>
+  select(-year, -num_fish, -num_samples) |>
+  unlist() |>
   sort(decreasing = TRUE)
 us_age_1_prop_age_shore <-
   as.numeric(names(us_last_yr_age_shore)[1])
@@ -773,9 +773,9 @@ param_details <- table_param_est_bounds(base_model,
                                         start_rec_dev_yr = recruit_dev_start_yr,
                                         end_rec_dev_yr = end_yr - 1,
                                         ret_df = TRUE)
-m_prior <- param_details |> 
-  filter(param == "m") |> 
-  pull(prior_str) |> 
+m_prior <- param_details |>
+  filter(param == "m") |>
+  pull(prior_str) |>
   split_prior_info(dec_points = 2, first_to_lower = TRUE)
 
 # ... Dirichlet Multinomial priors --------------------------------------------
@@ -812,7 +812,7 @@ rec_2017 <- get_rec_ci(last_yr_base_model, base_model, 2017)
 rec_2020 <- get_rec_ci(last_yr_base_model, base_model, 2020)
 
 # Estimated prop at age (numbers) of the catch in first forecast year ---------
-fore_catch_prop <- map_df(extramc$natsel_prop * 100, ~{f(median(.x))}) |> 
+fore_catch_prop <- map_df(extramc$natsel_prop * 100, ~{f(median(.x))}) |>
   complete(fill = list(0:20, val = 0))
 
 # Credible intervals for age5 -------------------------------------------------
@@ -862,10 +862,10 @@ sigma_r_sens1 <- NULL
 sigma_r_hi_main <- NULL
 sigma_r_lo_main <- NULL
 if(!is.na(sens_models[[1]])){
-  sigma_r_sens1 <- sens_models[[1]] |> 
-    map_chr(~{.x$mcmcvals$sigma_r_this_year_main}) |> 
+  sigma_r_sens1 <- sens_models[[1]] |>
+    map_chr(~{.x$mcmcvals$sigma_r_this_year_main}) |>
     set_names(sens_models_names[[1]])
-  
+
   sigma_r_hi_main <- sigma_r_sens1[grep("Sigma.+1.[5-9]",
                                         names(sigma_r_sens1),
                                         value = TRUE)]
@@ -892,10 +892,10 @@ main.recdevbias.end <-
 # Weight-at-age for the base model --------------------------------------------
 # Fleets 1 and 2 are the same in the hake model
 wt_at_age <-
-  base_model$wtatage |> 
-  as_tibble() %>% 
-  set_names(tolower(names(.))) |> 
-  filter(yr %in% start_yr_age_comps:(end_yr - 1)) |> 
+  base_model$wtatage |>
+  as_tibble() %>%
+  set_names(tolower(names(.))) |>
+  filter(yr %in% start_yr_age_comps:(end_yr - 1)) |>
   filter(fleet == 1) |>
   select(yr, matches("^\\d+$"))
 
@@ -959,6 +959,8 @@ joint_percent_prob_above_below <-
   base_model$mcmcvals$joint_percent_prob_above_below
 
 # Probabilities for historical performance analyses ---------------------------
+# Note that calculations also get done within plot_historical_probs() and
+#  plot_historical_probs_retro().
 historical_probs_df <- base_model$mcmcvals$historical_probs_df
 
 prob_decline_from_2019_to_2020_historic <-

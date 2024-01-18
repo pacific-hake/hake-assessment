@@ -1727,7 +1727,7 @@ P(*B*~t+1~ < *B*~t~), from the current base model
 
 Each assessment correctly predicted whether the stock would most likely increase or
 decrease the following year, except for 2017, 2019 (the example just given), 2023;
-Figure~\@ref(fig:main-historical-1-fig)). Estimates from previous assessments
+Figure~\@ref(fig:main-historical-1-fig). Estimates from previous assessments
 are closer to 50% than those from the current base model
 (Figure~\@ref(fig:main-historical-1-fig)), because the current assessment model
 has more information and thus provides a more definitive probability (closer
@@ -1737,12 +1737,13 @@ to 0% or to 100%), because they are admitting a wide range of uncertainty
 given unknown recent recruitments.
 
 TODO Last year these were 2018 and 2021 - interesting. GOT TO HERE (going to
-make other figures bigger then come back to).
+make retro figs then come back to, as they help explain it I think).
+
 
 The 2017, 2019, and 2023 assessments 'incorrectly' projected the stock would likely
 decline the following year (given the catch that subsequently occurred),
 because the current assessment model estimates a likely increase
-(Figure~\@ref(fig:main-historical-1-fig)). In 2018, this occurred because the
+(Figure~\@ref(fig:main-historical-1-fig)). In 2018..., this occurred because the
 biomass trend was relatively flat
 (Figure~\@ref(fig:main-biomass-fig)) so even slight changes in
 biomass could influence binomial outcomes of an 'increase' or 'decrease' in
