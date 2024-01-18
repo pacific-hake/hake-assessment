@@ -274,7 +274,7 @@ explore ways to incorporate time-varying maturity in the stock assessment
 model.**
 
 > *Response -- Melissa Head has been working hard to continuously collect
-> maturity information for `r spp` since 2009. Up until this assessment,
+> maturity information for `r sp` since 2009. Up until this assessment,
 > maturity was included in the fecundity relationship as a single ogive.
 > Maturity-at-age ogives are now estimated for each year since 2009 and used
 > to calculate fecundity (i.e., maturity $*$ weight at age). Moreover, the
@@ -684,7 +684,7 @@ age composition, age-1 survey, and fishery age composition data (in that order);
 to Student's t-distribution;
 - Use a model-based matrix of input weight-at-age data; and
 - Incorporate model-based estimates of time-varying maturity ogives into the
-calculation of time-varying fecundity. 
+calculation of time-varying fecundity.
 
 
 Stock Synthesis version `r ss_version` includes a number of changes since the
