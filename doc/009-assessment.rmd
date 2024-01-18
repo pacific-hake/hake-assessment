@@ -183,7 +183,7 @@ in @Monnahan2019.
 ## Response to `r end_yr - 1` Scientific Review Group (SRG) review {#sec:assessment-response-review}
 
 The Scientific Review Group (SRG) meeting was held from February
-7-10th, 2023, at the Graduate Hotel, Seattle, WA, U.S.A.
+7--10th, 2023, at the Graduate Hotel, Seattle, WA, U.S.A.
 
 The following are the 'SRG Recommendations and Conclusions for the Stock
 Assessment' from the 2023 SRG report and the associated responses from the
@@ -286,7 +286,15 @@ the JTC explore likelihood forms that can fit to very low index values from the 
 survey (e.g., robust likelihood). The SRG acknowledges that implementing new
 likelihoods will require changes to the Stock Synthesis platform.**
 
-> *Response --
+> *Response -- A student-t distribution was implemented for the relative age-1
+> index of abundance. The student-t distribution cannot accommodate values of
+> zero but it does allow for fatter tails than the lognormal distribution.
+> Secondly, the student-t distribution is known to provide more accurate
+> estimates of the variability of the sample mean for small sample sizes than
+> the lognormal when the standard deviation is unknown or imprecise. In the
+> future, additional distributions should be investigated that can accommodate
+> values of zero but this change was seen as a positive step forward until the
+> survey team can estimate the variability of the survey.
 > *
 
 8. **Given the importance of the age-1 index in estimating the size of the age-classes entering
@@ -294,7 +302,8 @@ the fishery, the SRG recommends that the JTC implement updated age-1 index CVs,
 when they are provided by the Survey Team, in the stock assessment model.**
 
 > *Response -- Updated coefficients of variation were not provided by the Survey
-> Team, and so the fixed value of 0.5 was retained.
+> Team; so, the fixed values of 0.5 were retained but a student-t distribution
+> was used to fit the survey instead of a lognormal (see the above response).
 > *
 
 9. **A new at-sea sampling program in the Canadian freezer-trawler fleet was implemented in
@@ -302,7 +311,7 @@ when they are provided by the Survey Team, in the stock assessment model.**
 recommends that Canada consider sampling fewer fish from more tows to spread
 the sampling out and provide a more representative sample of fishery catches.**
 
-> *Response -- This will be set up for the 2024 fishing season.
+> *Response -- This will be implemented starting with the 2024 fishing season.
 > *
 
 10. **The SRG encourages the JTC to consider methods to determine the maximum input
