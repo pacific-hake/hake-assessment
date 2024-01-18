@@ -413,34 +413,105 @@ research surveys of spawning `r sp`.
 
 ## Externally analyzed data {#sec:data-externally-analyzed-data}
 
+### Weight-at-age {#sec:data-weight-at-age}
+
+A matrix of empirically derived population weight-at-age data by year
+(Figures~\@ref(fig:main-weight-at-age-fig)--
+\@ref(fig:main-weight-at-age-lines-fig)) is used in the current assessment
+model to translate numbers at age to biomass at age. Annual weight-at-age data
+was modelled from biological samples pooled from all fisheries and summer
+surveys for the years 1975 to `r max_fishery_age_prop[2]`
+(Figures~\@ref(fig:main-weight-at-age-fig)--
+\@ref(fig:main-weight-at-age-lines-fig)). Samples from winter and research
+surveys were not included, nor were samples from near-shore areas.
+Past investigations into calculating weight-at-age data for the fishery and
+survey independently showed little impact on model results, and thus, a single
+matrix is used for all fleets and beginning and middle of the year population
+weight at age.
+
+A generalized linear mixed model (GLMM) with a lognormal distribution was used
+to model weight-at-age data external to the assessment. Weight was thought to
+relate to a smoothed effect of age, between zero and fifteen; random effects
+for cohort and year; and fixed effects for sex, where unsexed fish were
+included as such. The majority of the unsexed samples were from north of the
+U.S--Canada border. Weights from fish ages 15 and above for each year were
+pooled, and thus, ages 15--20 are assumed to have the same weight-at-age.
+Estimated parameters from this model were used to predict weight for ages
+zero to fifteen from 1975 to `r last_data_yr` for each sex. Information was
+then averaged across the three sex groups, i.e., male, female, and unsexed,
+for input into the assessment model.
+The number of samples (Figure \@ref(fig:main-sample-size-weight-at-age-fig)) is
+generally proportional to the amount of catch.
+
+The biomass at the start of a given year is based on the weight-at-age from the
+previous year; for example, the biomass at the start of 2022 is modelled using
+the empirical weight-at-age data from 2021
+(Figure~\@ref(fig:main-weight-at-age-fig)). Prior to 1975, weight-at-age input
+is assumed to be equal to the mean of all available model inputs for each
+respective age (1975-`r last_data_yr`)
+(Figure~\@ref(fig:main-weight-at-age-fig)).
+Forecast weight-at-age data are based on age-specific means from the most
+recent five years (`r last_data_yr-4`--`r last_data_yr`), consistent with
+forecast selectivity (Figure~\@ref(fig:main-weight-at-age-fig)).
+
+The use of empirical weight-at-age data is a convenient method to capture the
+variability in both the weight-at-length relationship within and among years
+as well as the variability in length-at-age data, without requiring parametric
+models to represent growth relationships. Previous attempts to explicitly model
+year- and cohort-specific growth were not successful for `r sp` and have not
+been revisited since @StewartForrestEtAl2011. The empirical weight-at-age
+method requires the assumption that observed values are not biased by strong
+selectivity at length or weight and that the spatial and temporal patterns of
+the data sources provide a representative view of the underlying population.
+Simulations show that, in general, using empirical weight-at-age data when many
+observations are available results in more accurate estimates of spawning
+biomass than modeling growth [@KuriyamaOnoEtAl2015].
+
 ### Maturity and fecundity {#sec:data-maturity}
 
-Data related to the fecundity relationship were updated for the 2018
-assessment [@JTC2018]. The age-based maturity ogive 
+Through the 2023 assessment [@JTC2023], maturity at age was modelled external
+to the assessment using a time-invariant maturity ogive. Starting in 2024,
+annual age-based maturity ogives
 (Table~\@ref(tab:main-maturity-ogives-tab) and
 Figure~\@ref(fig:main-maturity-ogive-fig))
-was developed using histological estimates of functional maturity from 1,947
-ovaries that were associated with age estimates. These samples were collected
-from the acoustic survey, winter and summer acoustic research trips, observers
-in the U.S. At-Sea Hake Observer Program aboard commercial catcher-processor
-vessels, and the U.S. West Coast Groundfish Bottom Trawl Survey
-(Table~\@ref(tab:main-ovaries-tab)). Samples from south of Point Conception
-(34.44° N) were excluded from this analysis because they were thought
-to mature at earlier ages and smaller sizes (see @JTC2018 for more
-information). Tissue samples for genetic analyses have been collected from
-many of the same fish from which ovaries were sampled. It is the hope that
-these genetic samples may help determine whether the fish south of
-34.44° N are from the same stock as the rest of the coastal population.
-Additional samples are available to update this relationship (including
-samples collected from Canadian waters since 2018) but have yet to be
-analyzed.
+were developed using the same data, i.e., histological estimates of functional
+maturity, but fit with a spatiotemporal GLMM. The current data set is comprised
+of 2,836 ovaries with information on histological estimates of functional
+maturity. The samples were collected from the acoustic survey, winter and
+summer acoustic research trips, U.S. catcher-processor vessels by observers in
+the U.S. At-Sea Hake Observer Program, and the U.S. West Coast Groundfish
+Bottom Trawl Survey (Table~\@ref(tab:main-ovaries-tab)) since 2009. Samples
+from south of Point Conception (34.44° N) have been excluded from maturity
+analyses since 2018 [@JTC2018] because they were thought to mature at earlier
+ages and smaller sizes. Samples from Canada were excluded from this analysis
+because the spatiotemporal resolution was insufficent and led to
+model-convergence issues. Additional samples are available to update the
+maturity relationship (including samples collected from Canadian waters since
+2018) but have yet to be analyzed.
 
-Time-varying fecundity-at-age was modeled using year-specific weight-at-age
-values in the calculation of fecundity [@JTC2019]. Samples from age-15$+$
-fish were pooled for both the maturity and weight-at-age estimation due to
-limited sample sizes. Consequently, the age 15$+$ estimates were applied to
-ages 15-20 in the population dynamics model
-(Figure~\@ref(fig:main-maturity-ogive-fig)).
+The spatiotemporal GLMM used to estimate the probability of being functionally
+mature included an estimated spatial field, spatially varying coefficients for
+the quadratic function of age, and year effects as a quadratic function of
+subsurface (130.67 m) temperature indices in the domain of the West Coast
+Groundfish Bottom Trawl Survey. The stochastic partial differential equation
+approximation to Gaussian Random Fields [@LindgrenEtAl2011] was used to
+approximate the spatial surface with a series of estimated random effects.
+The temperature covariate has the potential to add mechanistic relationships to
+the modeling and reduce uncertainty in years where no or few samples are
+collected. Annual maturity at age was then predicted for each year with data
+using estimated coefficients and projected forward in time to `r last_data_yr`
+using available temperature indices. This forward projection was needed because
+maturity information was not sampled in 2022 and data from `r last_data_yr`
+has yet to be analyzed. More detailed information on the modeling and
+projection methods is available in Appendix~\@ref(sec:app-maturity-analysis).
+
+Time-varying fecundity at age was modeled using year-specific weight-at-age
+values multiplied by year-specific maturity at age [@JTC2019]. The same methods
+were used to estimate early and future maturity as was done for the
+weight-at-age data. Additionally, samples from age-15$+$ fish were pooled for
+both the maturity and weight-at-age estimation due to limited sample sizes.
+Consequently, the age 15$+$ estimates were applied to ages 15--20 in the
+population dynamics model (Figure~\@ref(fig:main-maturity-ogive-fig)).
 
 Some fish at almost every age were found to be functionally immature based
 on histological criteria. Older, functionally immature fish are a combination
@@ -449,6 +520,11 @@ senescent fish that appear to no longer have viable ovaries. Results from
 ongoing research investigating the impacts of functionally immature
 individuals on estimates of female spawning biomass could help refine the
 fraction of fish mature at each age.
+
+Tissue samples have been collected from many of the same fish from which
+ovaries were sampled. In the future, these tissue samples may help determine
+whether the fish south of 34.44° N are from the same population as the rest of
+the coastal population via genetic analyses. 
 
 ### Ageing error {#sec:data-ageing-error}
 
@@ -495,60 +571,6 @@ Canada are in process but were not completed in time for this assessment.
 The additional across-lab double reads will be informative for updating
 the ageing-error matrix. Unfortunately, increased protocols for moving
 samples across the border have led to delays.
-
-### Weight-at-age {#sec:data-weight-at-age}
-
-A matrix of empirically derived population weight-at-age data by year
-(Figures~\@ref(fig:main-weight-at-age-fig)--
-\@ref(fig:main-weight-at-age-lines-fig)) is used in the current assessment
-model to translate numbers at age to biomass at age. Annual weight-at-age data
-was modelled from biological samples pooled from all fisheries and summer
-surveys for the years 1975 to `r max_fishery_age_prop[2]`
-(Figures~\@ref(fig:main-weight-at-age-fig)--
-\@ref(fig:main-weight-at-age-lines-fig)). Samples from winter and research
-surveys were not included, nor were samples from near-shore areas.
-Past investigations into calculating weight-at-age data for the fishery and
-survey independently showed little impact on model results, and thus, a single
-matrix is used for all fleets and beginning and middle of the year population
-weight at age.
-
-A generalized linear model (GLM) with a lognormal distribution was used to
-model weight-at-age data external to the assessment. Weight was thought to
-relate to a smoothed effect of age, between zero and fifteen; random effects
-for cohort and year; and fixed effects for sex, where unsexed fish were
-included as such. The majority of the unsexed samples were from north of the
-U.S--Canada border. Weights from fish ages 15 and above for each year were
-pooled, and thus, ages 15--20 are assumed to have the same weight-at-age.
-Estimated parameters from this model were used to predict weight for ages
-zero to fifteen from 1975 to `r last_data_yr` for each sex. Information was
-then averaged across the three sex groups, i.e., male, female, and unsexed,
-for input into the assessment model.
-The number of samples (Figure \@ref(fig:main-sample-size-weight-at-age-fig)) is
-generally proportional to the amount of catch.
-
-The biomass at the start of a given year is based on the weight-at-age from the
-previous year; for example, the biomass at the start of 2022 is modelled using
-the empirical weight-at-age data from 2021
-(Figure~\@ref(fig:main-weight-at-age-fig)). Prior to 1975, weight-at-age input
-is assumed to be equal to the mean of all available model inputs for each
-respective age (1975-`r last_data_yr`)
-(Figure~\@ref(fig:main-weight-at-age-fig)).
-Forecast weight-at-age data are based on age-specific means from the most
-recent five years (`r last_data_yr-4`--`r last_data_yr`), consistent with
-forecast selectivity (Figure~\@ref(fig:main-weight-at-age-fig)).
-
-The use of empirical weight-at-age data is a convenient method to capture the
-variability in both the weight-at-length relationship within and among years
-as well as the variability in length-at-age data, without requiring parametric
-models to represent growth relationships. Previous attempts to explicitly model
-year- and cohort-specific growth were not successful for `r sp` and have not
-been revisited since @StewartForrestEtAl2011. The empirical weight-at-age
-method requires the assumption that observed values are not biased by strong
-selectivity at length or weight and that the spatial and temporal patterns of
-the data sources provide a representative view of the underlying population.
-Simulations show that, in general, using empirical weight-at-age data when many
-observations are available results in more accurate estimates of spawning
-biomass than modeling growth [@KuriyamaOnoEtAl2015].
 
 ## Estimated parameters and prior probability distributions {#sec:data-estimated-parameters}
 
