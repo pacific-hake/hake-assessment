@@ -369,7 +369,8 @@ p[[1]] <-
                    x_labs_mod = 10,
                    wrap_y_label = TRUE,
                    tick_prop = 2,
-                   leg_pos = "none") +
+                   leg_pos = "none",
+                   rev_colors = TRUE) +
   theme(axis.title.y = element_text(size = panels_title_size),
         axis.title.x = element_text(size = panels_title_size),
         # plot.margin: top, right,bottom, left
@@ -379,7 +380,8 @@ p[[2]] <-
                leg_pos = "none",
                x_labs_mod = 10,
                tick_prop = 2,
-               line_width = 0.1) +
+               line_width = 0.1,
+               rev_colors = TRUE) +
   theme(axis.title.y = element_text(size = panels_title_size),
         axis.title.x = element_text(size = panels_title_size),
         # plot.margin: top, right,bottom, left
@@ -389,9 +391,10 @@ p[[3]] <-
   plot_survey_index_fits(base_model,
                          d_obj = d_obj_bridge_age2_index[[1]],
                          survey_type = "age2",
-                         rev_colors = FALSE,
+                         rev_colors = TRUE,
                          tick_prop = 2,
-                         leg_pos = "none") +
+                         leg_pos = "none",
+                         xlim = c(1995, end_yr)) +
   theme(axis.title.y = element_text(size = panels_title_size),
         axis.title.x = element_text(size = panels_title_size),
         # plot.margin: top, right,bottom, left
@@ -401,10 +404,10 @@ p[[4]] <-
   plot_survey_index_fits(base_model,
                          d_obj = d_obj_bridge_age1_index[[1]],
                          survey_type = "age1",
-                         xlim = c(1995, 2022),
+                         xlim = c(1995, end_yr),
                          ylim = c(0, 11),
                          y_breaks = seq(0, 11, by = 2),
-                         rev_colors = FALSE,
+                         rev_colors = TRUE,
                          tick_prop = 2,
                          leg_pos = "none") +
   theme(axis.title.y = element_text(size = panels_title_size),
@@ -451,7 +454,8 @@ p[[1]] <-
                    x_labs_mod = 10,
                    wrap_y_label = TRUE,
                    tick_prop = 2,
-                   leg_pos = "none") +
+                   leg_pos = "none",
+                   rev_colors = TRUE) +
   theme(axis.title.y = element_text(size = panels_title_size),
         axis.title.x = element_text(size = panels_title_size),
         # plot.margin: top, right,bottom, left
@@ -461,7 +465,8 @@ p[[2]] <-
                leg_pos = "none",
                x_labs_mod = 10,
                tick_prop = 2,
-               line_width = 0.1) +
+               line_width = 0.1,
+               rev_colors = TRUE) +
   theme(axis.title.y = element_text(size = panels_title_size),
         axis.title.x = element_text(size = panels_title_size),
         # plot.margin: top, right,bottom, left
@@ -471,9 +476,10 @@ p[[3]] <-
   plot_survey_index_fits(base_model,
                          d_obj = d_obj_bridge_age2_index[[2]],
                          survey_type = "age2",
-                         rev_colors = FALSE,
+                         rev_colors = TRUE,
                          tick_prop = 2,
-                         leg_pos = "none") +
+                         leg_pos = "none",
+                         xlim = c(1995, end_yr)) +
   theme(axis.title.y = element_text(size = panels_title_size),
         axis.title.x = element_text(size = panels_title_size),
         # plot.margin: top, right,bottom, left
@@ -483,10 +489,10 @@ p[[4]] <-
   plot_survey_index_fits(base_model,
                          d_obj = d_obj_bridge_age1_index[[2]],
                          survey_type = "age1",
-                         xlim = c(1995, 2022),
+                         xlim = c(1995, end_yr),
                          ylim = c(0, 11),
                          y_breaks = seq(0, 11, by = 2),
-                         rev_colors = FALSE,
+                         rev_colors = TRUE,
                          tick_prop = 2,
                          leg_pos = "none") +
   theme(axis.title.y = element_text(size = panels_title_size),
