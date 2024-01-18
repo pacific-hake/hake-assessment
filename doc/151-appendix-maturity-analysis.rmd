@@ -9,6 +9,40 @@ J. Ward.
 
 TEXT TO GO HERE
 
+TABLES
+
+
+```{=latex, eval = FALSE}
+\begin{table}[tbp]
+\centering
+%\caption{**The main notation used here.}
+% \label{tab:notation}
+%\renewcommand\arraystretch{1.2}
+\begin{tabular}{lrrrrrrrrrr}    % {p{2cm}p{12cm}}
+\caption{Samples included in our analysis (after filtering), by sampling
+platform and year.}
+% \label{tab:app-maturity-analysis-sampling-tab}
+% \toprule
+         & 2009 & 2012 & 2013 & 2014 & 2015 & 2016 & 2017 & 2018 & 2019 & 2021\\
+ASHOP    & 0 & 0 & 135 & 196 & 131 & 194 & 177 & 0 & 0 & 0 \\
+Acoustic & 0 & 181 & 186 & 0 & 160 & 131 & 57 & 54 & 59 & 68 \\
+WCGBT    & 244 & 64 & 63 & 197 & 216 & 66 & 102 & 109 & 46 & 0 \\
+% \bottomrule
+\end{tabular}
+\end{table}
+
+```
+
+
+|---------------------------------------------|
+| 2009 | 2012 | 2013 | 2014 | 2015 | 2016 | 2017 | 2018 | 2019 | 2021 |
+|ASHOP    | 0 | 0 | 135 | 196 | 131 | 194 | 177 | 0 | 0 | 0 |
+|Acoustic | 0 | 181 | 186 | 0 | 160 | 131 | 57 | 54 | 59 | 68 |
+|WCGBT    | 244 | 64 | 63 | 197 | 216 | 66 | 102 | 109 | 46 |
+
+
+FIGURES
+
 (ref:app-maturity-analysis-sampling-platform-cap) CAPTION
 
 (ref:app-maturity-analysis-sampling-platform-alt) ALT TEXT
