@@ -299,10 +299,12 @@ likelihoods will require changes to the Stock Synthesis platform.**
 the fishery, the SRG recommends that the JTC implement updated age-1 index CVs,
 when they are provided by the Survey Team, in the stock assessment model.**
 
-> *Response -- Updated coefficients of variation were not provided by the Survey
-> Team; so, the fixed values of 0.5 were retained but a student-t distribution
-> was used to fit the survey instead of a lognormal (see the above response).
-> *
+*Response -- The joint survey team continues to be short staffed.  During 2023, priority was
+given to completing the 2023 survey, including providing the 2023 survey biomass estimate,
+associate age compositions, and the 2023 age-1 index estimate in a timely manner for
+the stock assessment. Age-1 index CVs were not available for inclusion in the
+2024 assessment, so the fixed values of 0.5 were retained but a student-t distribution
+was used to fit the survey instead of a lognormal (see the above response).*
 
 9. **A new at-sea sampling program in the Canadian freezer-trawler fleet was implemented in
 2022 involving vessel crews sampling 50 fish per tow from two tows per trip. The SRG
