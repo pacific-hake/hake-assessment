@@ -11,34 +11,52 @@ TEXT TO GO HERE
 
 TABLES
 
+```{r app-maturity-analysis-sampling-platform-tab, results = "asis", echo = FALSE}
 
-```{=latex, eval = FALSE}
-\begin{table}[tbp]
-\centering
-%\caption{**The main notation used here.}
-% \label{tab:notation}
-%\renewcommand\arraystretch{1.2}
-\begin{tabular}{lrrrrrrrrrr}    % {p{2cm}p{12cm}}
-\caption{Samples included in our analysis (after filtering), by sampling
-platform and year.}
-% \label{tab:app-maturity-analysis-sampling-tab}
-% \toprule
-         & 2009 & 2012 & 2013 & 2014 & 2015 & 2016 & 2017 & 2018 & 2019 & 2021\\
-ASHOP    & 0 & 0 & 135 & 196 & 131 & 194 & 177 & 0 & 0 & 0 \\
-Acoustic & 0 & 181 & 186 & 0 & 160 & 131 & 57 & 54 & 59 & 68 \\
-WCGBT    & 244 & 64 & 63 & 197 & 216 & 66 & 102 & 109 & 46 & 0 \\
-% \bottomrule
-\end{tabular}
-\end{table}
+# Adapting from table_assessment_changes(); don't need function as these tables
+# are one-offs.
+d <- tribble(~Platform , ~"2009", ~"2012", ~"2013", ~"2014", ~"2015", ~"2016", ~"2017", ~"2018", ~"2019",
+             ~"2021",
+"ASHOP", 0, 0, 135, 196, 131, 194, 177, 0, 0, 0,
+"Acoustic", 0, 181, 186, 0, 160, 131, 57, 54, 59, 68,
+"WCGBT", 244, 64, 63, 197, 216, 66, 102, 109, 46, 0)
 
+##  col_names <- c("Year",
+##                  "Framework",
+##                  "Survey",
+##                  "Comp\nMethod",
+##                  "Num.\nMCMC\nsamples",
+##                  "Change")
+
+##   # Insert custom header fontsize before linebreaker
+##   if(is.null(header_font_size)){
+##     header_font_size <- font_size
+##   }
+##   hdr_font_str <- create_fontsize_str(header_font_size,
+##                                       header_vert_spacing,
+##                                       header_vert_scale)
+
+##   col_names <- gsub("\\n", paste0("\n", hdr_font_str$quad), col_names)
+##   col_names <- paste0(hdr_font_str$dbl, col_names)
+##   # Add \\makecell{} latex command to headers with newlines
+##   col_names <- linebreaker(col_names, align = "c")
+
+  kbl(d,
+      format = "latex",
+      booktabs = TRUE,
+      align = c("l", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r"),
+      linesep = "",
+      # col.names = col_names,
+      escape = FALSE,
+      caption = "Samples included in our analysis (after filtering), by sampling platform and year."
+      ) |>
+    row_spec(0, bold = TRUE) |>
+#    column_spec(ncol(d), width = "5cm") |>
+    kable_styling(font_size = 10,
+                  latex_options = c("repeat_header"))
 ```
 
 
-|---------------------------------------------|
-| 2009 | 2012 | 2013 | 2014 | 2015 | 2016 | 2017 | 2018 | 2019 | 2021 |
-|ASHOP    | 0 | 0 | 135 | 196 | 131 | 194 | 177 | 0 | 0 | 0 |
-|Acoustic | 0 | 181 | 186 | 0 | 160 | 131 | 57 | 54 | 59 | 68 |
-|WCGBT    | 244 | 64 | 63 | 197 | 216 | 66 | 102 | 109 | 46 |
 
 
 FIGURES
