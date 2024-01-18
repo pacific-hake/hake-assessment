@@ -53,7 +53,7 @@ d <- tribble(~Platform , ~"2009", ~"2012", ~"2013", ~"2014", ~"2015", ~"2016", ~
       ) |>
     row_spec(0, bold = TRUE) |>
 #    column_spec(ncol(d), width = "5cm") |>
-    kable_styling(font_size = 10,
+    kable_styling(font_size = 12,
                   latex_options = c("repeat_header"))
 ```
 
@@ -79,9 +79,50 @@ d2 <- tribble(
       ) |>
     row_spec(0, bold = TRUE) |>
 #    column_spec(ncol(d), width = "5cm") |>
-    kable_styling(font_size = 10,
+    kable_styling(font_size = 12,
                   latex_options = c("repeat_header"))
 ```
+
+
+```{r app-maturity-analysis-estimates-tab, results = "asis", echo = FALSE}
+d3 <- tribble(
+  ~"Model", ~"Term", ~"Estimate", ~"Std Error",
+  1, "age", 4.46, 0.201,
+  1, "age$^2$", -1.06, 0.0557,
+  1, "ashopFALSE", 3.51, 0.19,
+  1, "ashopTRUE", 4.29, 0.22,
+  2, "age", 4.52, 0.284,
+  2, "age$^2$", -1.35, 0.105,
+  2, "ashopFALSE", 3.74, 0.37,
+  2, "ashopTRUE", 5.2, 0.691,
+  2, "range", 191, 85.4,
+  2, "$\\sigma_O$", 0.653, 0.366,
+  3, "age", 4.51, 0.288,
+  3, "age$^2$", -1.35, 0.102,
+  3, "temp", 0.421, 0.0994,
+  3, "temp$^2$", -0.535, 0.0754,
+  3, "ashopFALSE", 4.36, 0.305,
+  3, "ashopTRUE", 6.05, 0.677,
+  3, "range", 202, 95.2,
+  3, "$\\sigma_O$", 0.544, 0.448)
+
+  kbl(d3,
+      format = "latex",
+      booktabs = TRUE,
+      align = c("c", "c", "r", "r"),
+      linesep = "",
+      # col.names = col_names,
+      escape = FALSE,
+      caption =
+        "Parameter estimates and standard errors estimated for the three models of maturity in our analyses (including ASHOP samples, and only samples north of Pt.~Conception). Fixed effect parameter estimates are in logit space. The spatial range and spatial variance ($\\sigma_O$) are also included for models with those terms."
+      ) |>
+    row_spec(0, bold = TRUE) |>
+#    column_spec(ncol(d), width = "5cm") |>
+    kable_styling(font_size = 12,
+                  latex_options = c("repeat_header"))
+```
+
+
 
 
 
