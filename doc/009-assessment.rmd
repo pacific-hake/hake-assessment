@@ -273,8 +273,21 @@ measurements. Given the inter-annual variability in age-at-maturity, the SRG rec
 explore ways to incorporate time-varying maturity in the stock assessment
 model.**
 
-> Issue \#1065, Kelli assigned, new appendix.
-> *Response --
+> *Response -- Melissa Head has been working hard to continuously collect
+> maturity information for `r spp` since 2009. Up until this assessment,
+> maturity was included in the fecundity relationship as a single ogive.
+> Maturity-at-age ogives are now estimated for each year since 2009 and used
+> to calculate fecundity (i.e., maturity $*$ weight at age). Moreover, the
+> relationship between age and maturity includes a coeffient for temperature
+> (see Appendix~\@ref(sec:app-maturity-analysis)). This relationship could be
+> enhanced in the future by including samples from Canada, samples that have
+> previously been analyzed, collected samples that have yet to be analyzed, and
+> samples collected during future endeavors. During the JTC meeting, it was
+> also brought to our attention that is the potential for samples to be
+> collected from the U.S. shore-based sector as well. The JTC, Melissa Head,
+> and the Sarah Nayani are investigating the feasibility of this in attempts
+> to increase the seasonal coverage of sampling, though winter months will
+> still remain sparsely sampled without a decidated winter survey.
 > *
 
 7. **The SRG noted that the age-1 index did not include a value for 2001 because it was zero.
