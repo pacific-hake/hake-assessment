@@ -130,7 +130,7 @@ kbl(d,
   
 ```
 
-```{r us-ap-catch-tab, results = "asis", echo = FALSE}
+```{r us-ap-catch-prev-tab, results = "asis", echo = FALSE}
 d <- tibble(` ` = c("Allocation (t)",
                     "Catch (t)",
                     "Utilization (%)"),
