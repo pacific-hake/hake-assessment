@@ -16,9 +16,10 @@ get_col_name_from_key_title <- function(df = NULL,
 
   ind <- grep(pat, key_posteriors_titles)
   if(!length(ind)){
-    stop("`get_col_name_from_key_title()` could not match a value in ",
-         "`key_posteriors_titles` matching the regular expression `",
-         pat, "`")
+    warning("`get_col_name_from_key_title()` could not match a value in ",
+            "`key_posteriors_titles` matching the regular expression `",
+            pat, "`")
+    return(NULL)
   }
   if(length(ind) > 1){
     stop("`get_col_name_from_key_title()` matched more than one value in ",
@@ -28,9 +29,11 @@ get_col_name_from_key_title <- function(df = NULL,
   key <- key_posteriors[ind][[1]]
   ind <- grep(key, names(df))
   if(!length(ind)){
-    stop("`get_col_name_from_key_title()` could not find a value in the ",
-         "column names of the `mcmc` posteriors data frame matching the ",
-         "regular expression `", key, "`")
+    browser()
+    warning("`get_col_name_from_key_title()` could not find a value in the ",
+            "column names of the `mcmc` posteriors data frame matching the ",
+            "regular expression `", key, "`")
+    return(NULL)
   }
   if(length(ind) > 1){
     stop("`get_col_name_from_key_title()` matched more than one value in ",

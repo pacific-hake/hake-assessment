@@ -53,44 +53,54 @@ calc_mcmc <- function(mcmc,
 
   # Steepness ----
   col_nm <- get_col_name_from_key_title(mcmc, "Steepness")
-  col_nm_sym <- sym(col_nm)
-  out$steep <- mcmc |>
-    select(!!col_nm_sym) |>
-    unlist() |>
-    quantile(probs)
-
+  out$steep <- NULL
+  if(!is.null(col_nm)){
+    col_nm_sym <- sym(col_nm)
+    out$steep <- mcmc |>
+      select(!!col_nm_sym) |>
+      unlist() |>
+      quantile(probs)
+  }
   # Acoustic survey SD ----
   col_nm <- get_col_name_from_key_title(mcmc, "Survey extra SD")
-  col_nm_sym <- sym(col_nm)
-  out$survey_sd <- mcmc |>
-    select(!!col_nm_sym) |>
-    unlist() |>
-    quantile(probs)
-
+  out$survey_sd <- NULL
+  if(!is.null(col_nm)){
+    col_nm_sym <- sym(col_nm)
+    out$survey_sd <- mcmc |>
+      select(!!col_nm_sym) |>
+      unlist() |>
+      quantile(probs)
+  }
   # Age 1 index ----
   col_nm <- get_col_name_from_key_title(mcmc, "Age 1 extra SD")
-  col_nm_sym <- sym(col_nm)
-  out$age1_index_sd <- mcmc |>
-    select(!!col_nm_sym) |>
-    unlist() |>
-    quantile(probs)
-
+  out$age1_index_sd <- NULL
+  if(!is.null(col_nm)){
+    col_nm_sym <- sym(col_nm)
+    out$age1_index_sd <- mcmc |>
+      select(!!col_nm_sym) |>
+      unlist() |>
+      quantile(probs)
+  }
   # DM fishery parameter ----
   col_nm <- get_col_name_from_key_title(mcmc, "Dirichlet-multinomial fishery")
-  col_nm_sym <- sym(col_nm)
-  out$dm_fishery <- mcmc |>
-    select(!!col_nm_sym) |>
-    unlist() |>
-    quantile(probs)
-
+  out$dm_fishery <- NULL
+  if(!is.null(col_nm)){
+    col_nm_sym <- sym(col_nm)
+    out$dm_fishery <- mcmc |>
+      select(!!col_nm_sym) |>
+      unlist() |>
+      quantile(probs)
+  }
   # DM survey parameter ----
   col_nm <- get_col_name_from_key_title(mcmc, "Dirichlet-multinomial survey")
-  col_nm_sym <- sym(col_nm)
-  out$dm_survey <- mcmc |>
-    select(!!col_nm_sym) |>
-    unlist() |>
-    quantile(probs)
-
+  out$dm_survey <- NULL
+  if(!is.null(col_nm)){
+    col_nm_sym <- sym(col_nm)
+    out$dm_survey <- mcmc |>
+      select(!!col_nm_sym) |>
+      unlist() |>
+      quantile(probs)
+  }
   # Spawning biomass ----
   ssb <- get_post_cols(mcmc, "SSB", biomass_scale)
 
