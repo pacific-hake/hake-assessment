@@ -165,7 +165,8 @@ stock assessment documents [@JTC2013; @JTC2014].
 The aggregate fishery age-composition data
 (`r max_fishery_age_prop[1]`--`r max_fishery_age_prop[2]`)
 confirm the well-known pattern of large cohorts born in 1973, 1977, 1980,
-1984, 1987, 1999, 2008, 2010, 2014, 2016, 2020, 2021
+1984, 1987, 1999, 2008, 2010, 2014, and 2016, and suggests large cohorts for
+2020 and 2021
 (Table~\@ref(tab:main-input-age-data-fishery-tab) and
 Figure~\@ref(fig:main-age-comp-bubbles-fig)).
 Recent age-composition data still easily track the 2010 cohort, as well as the
@@ -351,7 +352,7 @@ a factor of 1.06 to account for differences between the EK~60 and EK~80
 echosounders. Note that, in error, this scaling factor was not applied to the
 2021 estimate in the 2022 [@JTC2022] and 2023 [@JTC2023] assessments. The index
 indicates relative changes between years, not absolute values, and confirms the
-large year classes in 2008, 2010, 2014, 2016, 2020, and 2022
+large year classes in 2008, 2010, 2014, and 2016, and suggests large cohorts for 2020 and 2022
 (Table~\@ref(tab:main-survey-history-tab) and
 Figure~\@ref(fig:main-acoustic-age1-bs-fig)).
 
