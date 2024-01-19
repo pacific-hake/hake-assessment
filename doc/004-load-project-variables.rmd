@@ -578,10 +578,10 @@ prob_next_over_b40 <-
                                                   assess_yr + 1, "<0.40")]),
     0)
 # ... Canadian (DFO) provisional reference points -----------------------------
-dfo_probs_curr <- base_model$risks[[1]] %>%
-  select(tail(names(.), 3))
-dfo_probs_fore <- base_model$risks[[2]] %>%
-  select(tail(names(.), 3))
+dfo_probs_curr <- base_model$risks[[1]] |> 
+  select(last_col(2):last_col())
+dfo_probs_fore <- base_model$risks[[2]] |> 
+  select(last_col(2):last_col())
 # ... next year DFO probs given largest catch this year -----------------------
 dfo_prob_next_over_40bmsy <-
   f(dfo_probs_fore[largest_next_catch_index, paste0("SSB_",
