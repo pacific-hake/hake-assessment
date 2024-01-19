@@ -100,7 +100,7 @@ load_mcmc_vals <- function(model,
   # MCMC quantiles for the survey DM parameter
   col_effn <- get_col_name_from_key_title(
     model$mcmc,
-    pat = "Dirichlet-multinomial fishery")
+    pat = "Dirichlet-multinomial survey")
   if(length(col_effn)){
     col_effn_sym <- sym(col_effn)
     effn <- model$mcmc |>
