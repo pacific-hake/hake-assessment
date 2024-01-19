@@ -4,10 +4,10 @@
 
 # Scientific Review Group (SRG) requests from `r assess_yr` meeting {#sec:app-srg-requests}
 
-This appendix summarizes results produced in response to Scientific Review
-Group requests made during the meeting held from Xth to Xth February
-`r assess_yr`.
+This appendix will summarize results produced in response to Scientific Review
+Group requests made during the meeting held from 6th to 9th February `r assess_yr`.
 
+<!--
 ## Request 1 -- simple text here {-}
 
 "Request description."
@@ -19,5 +19,6 @@ Answer goes here.
 "Request description."
 
 Answer goes here.
+-->
 
 \clearpage
