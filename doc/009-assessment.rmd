@@ -329,17 +329,20 @@ the sampling out and provide a more representative sample of fishery catches.**
 10. **The SRG encourages the JTC to consider methods to determine the maximum input
 sample size for the age compositions [e.g. @StewartHamel2014].**
 
-> TODO update this response from 2023, issue 1069:
->
-> *Response -- The JTC concurs that determining maximum input sample sizes,
-> as well as relative maximums across years, is a worthwhile endeavor.
-> Determining appropriate input samples sizes for composition data is a
-> long-standing issue with much debate. Progress made for `r sp` will
-> undoubtedly provide useful for stock assessment more broadly. The JTC has
-> yet to undertake any specific analyses investigating input sample sizes.
-> Researchers at the Alaska Fisheries Science Center have recently begun
-> similar inquires, indicating that a collaborative approach may be mutually
-> beneficial.*
+> *Response -- Determining input sample sizes is important for how annual fishery
+> and survey age compositions are initially weighted, which then provides the
+> basis from which wholescale re-weighting of data sources (fishery or survey)
+> is done with the Dirichlet data weighting model parameters. The JTC has
+> considered alternative methods, including that of @StewartHamel2014, and has
+> determined that the first step is to explore the handling of survey age composition
+> data (given that initial effective sample sizes and data source weighting is
+< relative to other data sources in the model). Currently, survey age
+< compositions represent age-structure associated with
+< the acoustic survey as viewed through an estimated selectivity curve for the
+< acoustic-trawl sampling net. Yet, selectivity for ages 2 and older with acoustics
+< is theoretically at or near one. The JTC plans to investigate whether there
+< is a more informative way to utilize survey age composition information
+< in the stock assessment model in the coming year.* 
 
 11. **The SRG notes that there have been multiple strong cohorts in the stock recently
 compared to earlier periods where there was only one strong cohort supporting the stock,
@@ -348,27 +351,23 @@ the assessment model. Therefore, the SRG encourages the resumption of the ageing
 error study by the Committee of Age Reading Experts (CARE) using samples
 collected during the past decade.**
 
-> *Response -- An ageing error study in conjunction with CARE has commenced,
-> including planned sample exchanges between United States and Canada ageing
-> labs. However, a full exchange remains on hold due to difficulties with
-> permits to send biological specimens across the border.*
+> *Response -- An ageing error study in conjunction with CARE has been planned
+> for several years, but a full exchange remains on hold due to continuing
+> difficulties with permits to send biological specimens across the border.
+> The JTC plans to move forward with updating the ageing error analysis in
+> the coming year with the data that are available regardless of the status
+> of the in progress CARE study.*
 
 12. **The SRG supports the investigation of alternative selectivity functions, which may
 include a two-dimensional autoregressive (AR) approach, which may use
 information from the previous year and from adjacent year classes to predict
 selectivity.**
 
-> *Response --
-> *
-
-**The SRG appreciates the dedication and teamwork displayed by the JTC in producing
-the best available scientific information and advice on the Pacific Hake stock.**
-
-> *Response -- Teamwork and collaboration is an attribute of great interest
-> and pride within the JTC, and we believe it is fundamental to successfully
-> achieving the science objectives as outlined in the Agreement.*
-
-
+> *Response -- The JTC agrees that investiagions into alternative selectivity functions
+> is a priority research area for `r sp`. The JTC would like to make incremental
+> progress on this in the coming year as time allows, including also looking into
+> alternative methods (e.g., random effects models) to best capture age, year, and
+> cohort effects.*
 
 THESE REMAINING ONES ARE FROM 2023 ASSESSMENT -- keeping for now in case we want
 to re-use (elsewhere) any of the text that is already formatted with references etc.
