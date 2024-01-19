@@ -195,29 +195,28 @@ estimating dynamic reference points within the assessment and MSE, and encourage
 those groups to jointly develop alternative reference points, including dynamic
 reference points, for future SRG consideration.**
 
-*Response -- An evaluation of alternative reference points and how they
-may best be used in `r sp` management continues to be an important area
-for ongoing research. Future reference point discussions
-stemming from simulation work, preferably through the MSE, would be
-beneficial. The JTC, nor the MSE Working Group, have had the capacity to
-initiate simulations that explore alternative reference points, including
-dynamic reference points, to date. Several alternative simulation-based study
-designs have been fleshed out, but the resources to complete such research is
-currently the limiting factor.*
+> *Response -- An evaluation of alternative reference points and how they may
+> best be used in `r sp` management continues to be an important area for ongoing
+> research. Future reference point discussions stemming from simulation work,
+> preferably through the MSE, would be beneficial. The JTC, nor the MSE Working
+> Group, have had the capacity to initiate simulations that explore alternative
+> reference points, including dynamic reference points, to date. Several
+> alternative simulation-based study designs have been fleshed out but the
+> resources to complete such research is currently the limiting factor.*
 
 2. **The SRG also recommends continuing sensitivities for steepness, natural mortality,
 $\sigma_R$, excluding the age-1 index, alternative standard deviations for time-varying
 selectivity, and using the McAllister-Ianelli method to weight fishery age-
 composition data.**
 
-*Response -- The JTC has conducted all of the requested sensitivities
-and provides summaries in written
-(Section~\@ref(sec:assessment-sensitivity-analyses)), tabular (beginning
-with Table~\@ref(tab:main-parameter-estimates-sens-1-tab)), and graphical
-(beginning with Figure~\@ref(fig:main-biomass-base-alternative-1-fig)) formats
-in this document. Many other model explorations were conducted during the
-development and exploration of the base model to understand model performance
-and sensitivty to data and structural decisions.*
+> *Response -- The JTC has conducted all of the requested sensitivities and
+> provides summaries in written
+> (Section~\@ref(sec:assessment-sensitivity-analyses)), tabular (beginning with
+> Table~\@ref(tab:main-parameter-estimates-sens-1-tab)), and graphical
+> (beginning with Figure~\@ref(fig:main-biomass-base-alternative-1-fig)) formats
+> in this document. Many other model explorations were conducted during the
+> development and exploration of the base model to understand model performance
+> and sensitivty to data and structural decisions.*
 
 3. **The SRG recommends that the JTC include dynamic unfished spawning biomass in
 the 2024 assessment as a comparator with the equilibrium unfished spawning
@@ -226,14 +225,14 @@ continued outreach regarding the use of dynamic reference points to stakeholders
 and managers, including identifying pros and cons of using dynamic unfished
 spawning biomass**
 
-*Response -- A figure has been added to the assessment document that shows the
-unfished spawning stock biomass time series relative to the standard 'fished'
-spawning stock biomass time series (see Figure ADD FIGURE HERE).
-This can be used to visually compare equilibirum
-versus non-equilibrium assumptions. The JTC once again delivered a presentation
-on dynamic reference points at the October 2024 JMC and AP meeting as a way to provide
-education and outreach opportunties related to dynamic reference point methods and
-approaches.*
+> *Response -- A figure has been added to the assessment document that shows the
+> unfished spawning stock biomass time series relative to the standard 'fished'
+> spawning stock biomass time series (see Figure ADD FIGURE HERE).
+> This can be used to visually compare equilibirum versus non-equilibrium
+> assumptions. The JTC once again delivered a presentation on dynamic reference
+> points at the October 2023 JMC and AP meeting as a way to provide education
+> and outreach opportunties related to dynamic reference point methods and
+> approaches.*
 
 4. **The SRG recommends that the JTC explore alternative ways of estimating natural
 mortality to update the current approach in the model, which is based on methods
@@ -280,7 +279,7 @@ model.**
 > enhanced in the future by including samples from Canada, samples that have
 > previously been analyzed, collected samples that have yet to be analyzed, and
 > samples collected during future endeavors. During the JTC meeting, it was
-> also brought to our attention that is the potential for samples to be
+> also brought to our attention that there is the potential for samples to be
 > collected from the U.S. shoreside sector as well. The JTC, Melissa Head,
 > and the Sarah Nayani are investigating the feasibility of this in attempts
 > to increase the seasonal coverage of sampling, though winter months will
@@ -311,12 +310,13 @@ likelihoods will require changes to the Stock Synthesis platform.**
 the fishery, the SRG recommends that the JTC implement updated age-1 index CVs,
 when they are provided by the Survey Team, in the stock assessment model.**
 
-*Response -- The joint survey team continues to be short staffed.  During 2023, priority was
-given to completing the 2023 survey, including providing the 2023 survey biomass estimate,
-associate age compositions, and the 2023 age-1 index estimate in a timely manner for
-the stock assessment. Age-1 index CVs were not available for inclusion in the
-2024 assessment, so the fixed values of 0.5 were retained but a student-t distribution
-was used to fit the survey instead of a lognormal (see the above response).*
+> *Response -- The joint survey team continues to be short staffed.  During 2023,
+> priority was given to completing the 2023 survey, including providing the 2023
+> survey biomass estimate, associated age compositions, and the 2023 age-1 index
+> estimate in a timely manner for the stock assessment. Age-1 index CVs were not
+> available for inclusion in the 2024 assessment; so, the fixed values of 0.5 were
+> retained but a student-t distribution was used to fit the survey instead of a
+> lognormal (see the above response).*
 
 9. **A new at-sea sampling program in the Canadian freezer-trawler fleet was implemented in
 2022 involving vessel crews sampling 50 fish per tow from two tows per trip. The SRG
