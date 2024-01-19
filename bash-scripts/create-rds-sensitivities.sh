@@ -26,7 +26,11 @@ models=(01-h-prior-mean-low \
         10-tv-select-phi-extra-low \
         11-tv-select-phi-low \
         12-tv-select-phi-high \
-        )
+        13-max-sel-age-5 \
+        14-max-sel-age-7 \
+        15-max-sel-age-8 \
+        16-zero-sum-constraint \
+       )
 
 type_path="03-sensitivity-models"
 verbose=FALSE
