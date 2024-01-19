@@ -625,10 +625,10 @@ catches_below_200000_since_1986 <-
 
 # Age compositions ------------------------------------------------------------
 # Canadian year range for ages
-can_age_yrs <- can_ages_lst |>
-  map(~{rownames(.x)}) |>
-  unlist() |>
-  unique() |>
+can_age_yrs <- c(can_ft_age_df$year,
+                 can_ss_age_df$year,
+                 can_jv_age_df$year) |> 
+  unique() |> 
   sort()
 can_age_yrs_min <- min(can_age_yrs)
 can_age_yrs_max <- max(can_age_yrs)
@@ -639,7 +639,7 @@ max_fishery_age_prop <- get_age_comp_limits(base_model, type = 1)
 max_survey_age_prop <- get_age_comp_limits(base_model, type = 2)
 # ... Canadian Freezer trawlers age data --------------------------------------
 last_year_can_ages_ft <-
-  can_ages_lst[[2]][rownames(can_ages_lst[[2]]) == last_data_yr, ]
+  can_ft_age_df |> filter(year == last_data_yr) |> pull(year)
 ft_age_prop_holder <- get_age_prop(last_year_can_ages_ft, 1)
 max_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
 max_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
@@ -654,7 +654,7 @@ fourth_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
 fourth_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
 # ... Canadian Shoreside age data ---------------------------------------------
 last_yr_can_ages_ss <-
-  can_ages_lst[[1]][rownames(can_ages_lst[[1]]) == last_data_yr, ]
+  can_ss_age_df |> filter(year == last_data_yr) |> pull(year)
 ss_age_prop_holder <- get_age_prop(last_yr_can_ages_ss, 1)
 max_shoreside_age_prop_age <- ss_age_prop_holder[1]
 max_shoreside_age_prop <- f(ss_age_prop_holder[2] * 100, 1)
