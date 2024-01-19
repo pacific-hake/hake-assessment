@@ -123,6 +123,20 @@ calc_mcmc <- function(mcmc,
   out$dmed <- apply(depl, 2, quantile, prob = probs[2], na.rm = TRUE)
   out$dupper <- apply(depl, 2, quantile, prob = probs[3], na.rm = TRUE)
 
+  # Dynamic B0 biomass ----
+  ssb_dyn <- get_post_cols(mcmc, "Dyn_Bzero", biomass_scale)
+
+  out$dyn_slower <- apply(ssb_dyn, 2, quantile, prob = probs[1], na.rm = TRUE)
+  out$dyn_smed <- apply(ssb_dyn, 2, quantile, prob = probs[2], na.rm = TRUE)
+  out$dyn_supper <- apply(ssb_dyn, 2, quantile, prob = probs[3], na.rm = TRUE)
+  rel_dyn_df <- map2_df(ssb, ssb_dyn, ~{
+    .x / .y
+  })
+
+  out$rel_dyn_slower <- apply(rel_dyn_df, 2, quantile, prob = probs[1], na.rm = TRUE)
+  out$rel_dyn_smed <- apply(rel_dyn_df, 2, quantile, prob = probs[2], na.rm = TRUE)
+  out$rel_dyn_supper <- apply(rel_dyn_df, 2, quantile, prob = probs[3], na.rm = TRUE)
+
   # Recruitment ----
   recr <- get_post_cols(mcmc, "Recr", recr_scale)
   rvirg <- get_post_cols(mcmc, "Recr_Virgin", biomass_scale, TRUE)
