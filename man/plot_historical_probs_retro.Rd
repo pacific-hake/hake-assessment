@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot-historical-probs-retro.R
 \name{plot_historical_probs_retro}
 \alias{plot_historical_probs_retro}
-\title{Make individual plots or one overlaid historical probability calculations
+\title{Make individual plots (or one overlaid) of historical probability calculations
 that uses retrospective runs (given we have them). Calls
 \code{make.historical.probs.plot()} for each retrospective}
 \usage{
@@ -55,7 +55,7 @@ figure}
 \item{...}{Arguments to pass to \code{\link[=make.historical.probs.plot]{make.historical.probs.plot()}}}
 }
 \description{
-Make individual plots or one overlaid historical probability calculations
+Make individual plots (or one overlaid) of historical probability calculations
 that uses retrospective runs (given we have them). Calls
 \code{make.historical.probs.plot()} for each retrospective
 }
