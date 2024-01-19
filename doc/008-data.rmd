@@ -22,7 +22,7 @@ are used to fit the model
 (Table~\@ref(tab:main-input-age-data-fishery-tab) and
 Figure~\@ref(fig:main-age-comp-bubbles-fig)).
 
-- A biomass index and age compositions from the `r survey_name`
+- An age-2+ biomass index and age compositions from the `r survey_name`
 (`r str_flatten_comma(survey_age_years)`;
  Tables~\@ref(tab:main-input-age-data-survey-tab),
  ~\@ref(tab:main-survey-history-tab),
@@ -40,10 +40,13 @@ auxiliary data, were input as fixed values in the assessment model:
 
 - Ageing-error matrices based on cross-read and double-blind-read otoliths.
 
-- Proportion of female `r sp` mature by age, as developed from recent
+- Annual proportions of female `r sp` at each age that are mature, as developed
+from a new analysis (Section~\@ref(sec:data-maturity) and
+Appendix~(sec:app-maturity-analysis)) of
 histological analyses of ovary samples
 (Table~\@ref(tab:main-maturity-ogives-tab) and
-Figure~\@ref(fig:main-maturity-ogive-fig)).
+Figure~\@ref(fig:main-maturity-ogive-fig)). TODO update to new figures when
+they're done.
 
 - Mean observed weight-at-age data from fishery and survey catches
 (1975--`r max_fishery_age_prop[["end_yr"]]`;
@@ -196,10 +199,10 @@ several times (i.e., encountered by the fishery and survey over several years).
 Both the weight-
 (Figure~\@ref(fig:main-weight-at-age-lines-fig);
 Section \@ref(sec:data-weight-at-age)) and length-at-age information suggest
-that growth of `r sp` has fluctuated markedly over time (see Figure~7 in
-@StewartForrestEtAl2011). This is particularly evident in the frequency of
+that growth of `r sp` has fluctuated markedly over time [see Figure~7 in
+@StewartForrestEtAl2011]. This is particularly evident in the frequency of
 larger fish ($>55$~cm) before 1990 and a recent linear shift towards larger
-fish. Although length-composition data (Section \@ref(sec:data-length-at-age))
+fish. Although length-composition data
 are not fit explicitly in the base model presented here, the presence of the
 2008 and 2010 year classes have been clearly observed in length data from the
 U.S. fishery sectors and the 2014 year class has been apparent since 2016.
@@ -275,7 +278,7 @@ length frequency is used to characterize the size distribution of `r sp`
 along each transect and to predict the expected backscattering cross
 section for `r sp` based on the fish-size target-strength (TS) relationship.
 Any potential biases that might be caused by factors such as alternative
-TS relationships are partially accounted for in catchability. But,
+TS relationships are partially accounted for in catchability. But
 variability in the estimated survey biomass due to uncertainty in TS is
 not explicitly accounted for in the assessment.
 
@@ -313,8 +316,8 @@ Thus, a full time series of consistently analyzed survey biomass
 (Table~\@ref(tab:main-survey-history-tab) and
 Figure~\@ref(fig:main-survey-extrap-biomass-fig)) and age compositions (Table~\@ref(tab:main-input-age-data-survey-tab) and
 Figure~\@ref(fig:main-age-comp-bubbles-fig)) since 1995 are used to fit the
-stock assessment model. These data contain many sources of variability (see 
-@StewartForrestEtAl2011) but results from research done in 2010 and 2014 on
+stock assessment model. These data contain many sources of variability [see
+@StewartForrestEtAl2011] but results from research done in 2010 and 2014 on
 their representativeness show that trawl sampling and post-stratification is
 only a small source of variability. Specifically, repeated trawls at different
 depths and spatial locations on the same aggregation of `r sp` were similar
@@ -328,7 +331,7 @@ Figure~\@ref(fig:main-survey-extrap-biomass-fig)). It decreased in 2017 to
 `r f(survey_biomass["2017"], 2)`~Mt, then increased to 1.72~Mt in
 2019, and has since decreased to
 `r last_survey_yr_biomass`~Mt in `r last_survey_yr`. The
-`r last_survey_yr` survey age composition was made up of 
+`r last_survey_yr` survey age composition was made up of
 `r combine_words(paste0(f(survey_last_yr_age[1:5], digits = 2), "\\%"))`
 from the
 `r combine_words(last_survey_yr-type.convert(as.is=TRUE,names(survey_last_yr_age[1:5])))`
@@ -345,7 +348,7 @@ sensitivity and not included in the base model. The relative index of age-1
 fish fit to in this assessment was estimated similarly to previous years. And,
 like the age-2$+$ index, data collected using EK~80 echosounders are scaled by
 a factor of 1.06 to account for differences between the EK~60 and EK~80
-echosounders. Note that, in error, this scaleing factor was not applied to the
+echosounders. Note that, in error, this scaling factor was not applied to the
 2021 estimate in the 2022 [@JTC2022] and 2023 [@JTC2023] assessments. The index
 indicates relative changes between years, not absolute values, and confirms the
 large year classes in 2008, 2010, 2014, 2016, 2020, and 2022
@@ -354,7 +357,7 @@ Figure~\@ref(fig:main-acoustic-age1-bs-fig)).
 
 Incorporating the relative age-1 index results in estimates of recruitment
 strength that are informed on average one year earlier than models without the
-index (e.g., Figures~54 and~G.1 in @JTC2021). The suite of sensitivity models
+index [e.g., Figures~54 and~G.1 in @JTC2021]. The suite of sensitivity models
 related to the relative age-1 index explored over the past decade indicate that
 its use typically informs recruitment such that the direction of cohort
 strength (i.e., weak, strong, or neutral) remains unchanged in subsequent
@@ -379,7 +382,7 @@ stock assessment document [@JTC2013]. A few are listed below.
 
 - Calculation of a reliable fishery catch-per-unit-effort (CPUE) metric is
 particularly problematic for `r sp`, and it has never been used as an
-index for the assessment of this stock (see @JTC2013 for more details).
+index for the assessment of this stock [see @JTC2013 for more details].
 
 - Biomass index and age compositions from the following years of the
 `r survey_name`: 1977, 1980, 1983, 1986, 1989, and 1992.
@@ -388,7 +391,7 @@ index for the assessment of this stock (see @JTC2013 for more details).
 coverage from 1977--`r last_assess_yr`).
 
 - Northwest Fisheries Science Center/Southwest Fisheries Science
-Center/PWCC coast-wide juvenile `r sp` and rockfish surveys 
+Center/PWCC coast-wide juvenile `r sp` and rockfish surveys
 (2001--`r last_assess_yr`).
 
 - Bycatch of `r sp` in the trawl fishery for Pink Shrimp off the coast of
@@ -426,10 +429,10 @@ surveys for the years 1975 to `r max_fishery_age_prop[2]`
 surveys were not included, nor were samples from near-shore areas.
 Past investigations into calculating weight-at-age data for the fishery and
 survey independently showed little impact on model results, and thus, a single
-matrix is used for all fleets and beginning and middle of the year population
-weight at age.
+matrix is used for all fleets and beginning and middle-of-the-year population
+weight-at-age.
 
-A generalized linear mixed model (GLMM) with a lognormal distribution was used
+New for this assessment, a generalized linear mixed model (GLMM) with a lognormal distribution was used
 to model weight-at-age data external to the assessment. Weight was thought to
 relate to a smoothed effect of age, between zero and fifteen; random effects
 for cohort and year; and fixed effects for sex, where unsexed fish were
@@ -469,7 +472,7 @@ biomass than modeling growth [@KuriyamaOnoEtAl2015].
 
 ### Maturity and fecundity {#sec:data-maturity}
 
-Through the 2023 assessment [@JTC2023], maturity at age was modelled external
+Until the 2023 assessment [@JTC2023], maturity-at-age was modelled external
 to the assessment using a time-invariant maturity ogive. Starting in 2024,
 annual age-based maturity ogives
 (Table~\@ref(tab:main-maturity-ogives-tab) and
@@ -498,15 +501,16 @@ approximation to Gaussian Random Fields [@LindgrenEtAl2011] was used to
 approximate the spatial surface with a series of estimated random effects.
 The temperature covariate has the potential to add mechanistic relationships to
 the modeling and reduce uncertainty in years where no or few samples are
-collected. Annual maturity at age was then predicted for each year with data
+collected. Annual maturity-at-age was then predicted for each year with data
 using estimated coefficients and projected forward in time to `r last_data_yr`
 using available temperature indices. This forward projection was needed because
 maturity information was not sampled in 2022 and data from `r last_data_yr`
 has yet to be analyzed. More detailed information on the modeling and
 projection methods is available in Appendix~\@ref(sec:app-maturity-analysis).
 
-Time-varying fecundity at age was modeled using year-specific weight-at-age
-values multiplied by year-specific maturity at age [@JTC2019]. The same methods
+Time-varying fecundity at age was previously modeled using year-specific weight-at-age
+values multiplied by maturity-at-age [@JTC2019]. For this assessment, the maturity-at-age is
+also year specific. The same methods
 were used to estimate early and future maturity as was done for the
 weight-at-age data. Additionally, samples from age-15$+$ fish were pooled for
 both the maturity and weight-at-age estimation due to limited sample sizes.
@@ -524,7 +528,7 @@ fraction of fish mature at each age.
 Tissue samples have been collected from many of the same fish from which
 ovaries were sampled. In the future, these tissue samples may help determine
 whether the fish south of 34.44° N are from the same population as the rest of
-the coastal population via genetic analyses. 
+the coastal population via genetic analyses.
 
 ### Ageing error {#sec:data-ageing-error}
 
