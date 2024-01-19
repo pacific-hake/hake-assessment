@@ -395,6 +395,31 @@ coverage from 1977--`r last_assess_yr`).
 Center/PWCC coast-wide juvenile `r sp` and rockfish surveys
 (2001--`r last_assess_yr`).
 
+> *The JTC has requested DFO funding to collaborate with Australian, U.S.,
+> and Canadian researchers on developing two potential approaches for
+> developing an index of age-0 `r sp`. The first approach is based on the
+> method of @SuthersWhiteEtAl2022, who proposed and simulation-tested a
+> novel method for estimating growth and mortality of fish larvae based on
+> size distributions. In 2022, Suthers visited NOAA's Southwest Fisheries
+> Science Center to start applying the method to CalCOFI data (which
+> include 1.3 million hake larvae) and compare results to estimates of
+> recruitment from the last hake assessment [@JTC2022]. The second approach
+> will apply a method proposed by @HinchliffePepinEtAl2019 that
+> relates the mortality/growth ratio of larval fish to the slope of the
+> zooplankton size spectrum (which characterises the size distribution of
+> zooplankton) to quantify the recruitment potential of larval `r sp`. The
+> proposed work will support collaborations to work on both approaches, will
+> utilise recent improvements in fitting size spectra to data
+> [@EdwardsRobinsonEtAl2020], and aims to provide new information on `r sp`
+> recruitment.*
+
+- California Cooperative Oceanic Fisheries Investigations (CalCOFI)
+larval `r sp` production index, 1951--2006. The data source was
+previously explored and rejected as a potential index of `r sp` female
+spawning biomass. However, the JTC are exploring new avenues to utilize
+CalCOFI data based on recently developed methods (see
+Section~\@ref(sec:assessment-response-review)).
+
 - Bycatch of `r sp` in the trawl fishery for Pink Shrimp off the coast of
 Oregon (2004, 2005, 2007, and 2008).
 
@@ -404,13 +429,6 @@ currently not available in electronic form.
 - Historical biological samples collected in the U.S. prior to 1975 but
 currently not available in electronic form or too incomplete to allow
 for their analysis with methods consistent with more current sampling programs.
-
-- California Cooperative Oceanic Fisheries Investigations (CalCOFI)
-larval `r sp` production index, 1951--2006. The data source was
-previously explored and rejected as a potential index of `r sp` female
-spawning biomass. However, the JTC are exploring new avenues to utilize
-CalCOFI data based on recently developed methods (see
-Section~\@ref(sec:assessment-response-review)).
 
 - Northwest Fisheries Science Center winter 2016 and 2017 acoustic
 research surveys of spawning `r sp`.
