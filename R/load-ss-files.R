@@ -94,8 +94,10 @@ load_ss_files <- function(model_path = NA,
                               replacement = "SSB",
                               names(model$mcmc))
 
-    # Create the key and nuisance posteriors csv files
-    create_kn_files(model)
+    # Get the key and nuisance posteriors
+    key_nuisance <- get_key_nuisance_posts(model)
+    model$key_posts <- key_nuisance$key_posts
+    model$nuisance_posts <- key_nuisance$nuisance_posts
 
     # Do the mcmc calculations, e.g. quantiles for SB, SSB, DEPL, RECR, RECRDEVS
     model$mcmccalcs <- calc_mcmc(model$mcmc, ...)
