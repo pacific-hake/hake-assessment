@@ -337,17 +337,18 @@ plot_weight_at_age(wt_at_age,
 sequential steps made towards the base model from the `r last_assess_yr` base
 model. Models include shifting to the newest version of Stock Synthesis,
 ammending older data sources, and adding new data.
-Panels are spawning biomass (upper panel); relative spawning biomass 
+Panels are spawning biomass (upper panel); relative spawning biomass
 (spawning biomass in each year relative to the unfished equilibrium spawning
 biomass, middle left); recruitment deviation (middle right); and age-2$+$
 survey biomass (lower left) and age-1 (lower right) indices, with triangles
-representing the observed survey indices.
+representing the observed survey indices. Note that in the top panel the red
+circle for 2024 is obscured by the orange circle.
 
 (ref:main-bridge-summary-cap-2) Bridging models showing the some of the
 sequential steps made towards the base model from the `r last_assess_yr` base
 model. Models include the last step from the previous figure of adding new
 data, changes to working up data inputs, and structural changes to the model.
-Panels are spawning biomass (upper panel); relative spawning biomass 
+Panels are spawning biomass (upper panel); relative spawning biomass
 (spawning biomass in each year relative to the unfished equilibrium spawning
 biomass, middle left); recruitment deviation (middle right); and age-2$+$
 survey biomass (lower left) and age-1 (lower right) indices, with triangles

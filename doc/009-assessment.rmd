@@ -342,7 +342,7 @@ sample size for the age compositions [e.g. @StewartHamel2014].**
 < acoustic-trawl sampling net. Yet, selectivity for ages 2 and older with acoustics
 < is theoretically at or near one. The JTC plans to investigate whether there
 < is a more informative way to utilize survey age composition information
-< in the stock assessment model in the coming year.* 
+< in the stock assessment model in the coming year.*
 
 11. **The SRG notes that there have been multiple strong cohorts in the stock recently
 compared to earlier periods where there was only one strong cohort supporting the stock,
@@ -671,7 +671,7 @@ calculation of time-varying fecundity.
 Stock Synthesis version `r ss_version` includes a number of changes since the
 version used by @JTC2023. However, none of the changes were specifically relevant
 to this assessment, and thus the software update had no effect on assessment
-results (Figure~\@ref(fig:main-bridge-summary-fig-1).
+results (Figure~\@ref(fig:main-bridge-summary-fig-1)).
 
 The update of pre-`r last_data_yr` data occurs because databases are
 continually updated; this yielded minor adjustments to the data. For example,
@@ -687,10 +687,10 @@ spawning biomass from `r assess_yr - 1` to `r assess_yr`
 
 Including the `r last_data_yr` fishery-independent biomass estimate led to a downward shift
 in the stock trajectory going back to 2017 and a similar shift in the fit to the survey
-(Figure~\@ref(fig:main-bridge-summary-fig-1)). Whereas including the `r last_data_yr` survey
-biomass age compositions had a negligible effect on the stock trajectory, but it did slightly
-adjust estimates of recent recruitment strength. The addition of `r last_data_yr` age-1
-index led to a predicted increase in stock biomass from 2023 to 2024 as a result of  small shifts in expected recruitment, particularly for the 2020 and 2022 year classes.
+(Figure~\@ref(fig:main-bridge-summary-fig-1)). While including the `r last_data_yr` survey
+biomass age compositions had a negligible effect on the stock trajectory, they did slightly
+adjust estimates of recent recruitment strength. The addition of the `r last_data_yr` age-1
+index led to an estimated increase in stock biomass from 2023 to 2024 as a result of small shifts in expected recruitment, particularly for the 2020 and 2022 year classes.
 
 The final step of adding `r last_data_yr` data involved incorporating fishery age-composition
 information, which shifted the ending year of the deviations in the selectivity parameters
@@ -704,10 +704,10 @@ to the increase in female spawning biomass by the start of
 `r assess_yr`. Despite both fishery age compositions and the relative age-1
 index pointing towards above average cohorts in 2020, 2021 and, to a lesser
 extent, 2022, estimates of `r assess_yr` female
-spawning biomass remain highly uncertain (Figure~\@ref(fig:main-bridge-summary-fig-1).
+spawning biomass remain highly uncertain (Figure~\@ref(fig:main-bridge-summary-fig-1)).
 
 Structurally changing the error distribution for the age-1 survey index from a
-lognormal to a Student's t-distribution (with a degrees of freedom of 13) had
+lognormal to a Student's t-distribution (with 13 degrees of freedom) had
 negligible effect on assessment results (Figure~\@ref(fig:main-bridge-summary-fig-2)).
 Nonetheless, the t-distribution is better suited for these data given the low sample
 size (14) and broader distribution tails compared to a lognormal when sample sizes
@@ -726,13 +726,14 @@ vessels).
 
 Lastly, model-based estimates of time-varying maturity ogives were
 were incorporated into the calculation of time-varying fecundity
-(see Section~\@ref(sec:data-maturity) for details). This is
+(see Section~\@ref(sec:data-maturity) and
+Appendix~\@ref(sec:app-maturity-analysis) for details). This is
 in addition to using time-varying weight-at-age, which improves the assessment
 model inputs that translate total biomass to spawning biomass. The addition of
 time-varying maturity resulted in annual differences in the age at which
 `r sp` mature, such that there were shifts in the translation of total
-biomass to spawnwing biomass by one year in some cases within the time
-series ((Figure~\@ref(fig:main-bridge-summary-fig-2)). While the general
+biomass to spawning biomass by one year in some cases within the time
+series (Figure~\@ref(fig:main-bridge-summary-fig-2)). While the general
 trend in spawning stock biomass and population status remained largely the
 same, there were reductions in both in the most recent years (2023 and 2024).
 
