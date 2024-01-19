@@ -232,7 +232,33 @@ create_sens_dirs <- function(dir_version,
         ctl_list[["age_selex_parms"]][rows, "dev_maxyr"]
       )
     }
-    # Turn on parameters
+    ctl_list[["age_selex_parms"]] <- ctl_list[["age_selex_parms"]] |>
+      dplyr::mutate(dev_link = ifelse(dev_minyr > 0, 2, 0))
+    # Deal with tv parameters
+    tv_names <- ctl_list[["age_selex_parms"]] |>
+      dplyr::filter(dev_link > 0) |>
+      tibble::rownames_to_column() |>
+      dplyr::pull(rowname)
+    ctl_list[["age_selex_parms_tv"]] <- ctl_list[["age_selex_parms_tv"]] |>
+      tibble::rownames_to_column() |>
+      tidyr::separate_wider_delim(
+        rowname,
+        names = c("fleet", "type"),
+        delim = c(rowname = "_dev_")
+      ) |>
+      dplyr::arrange(type) |>
+      dplyr::filter(fleet %in% tv_names) |>
+      dplyr::group_by(type) |>
+      tidyr::complete(fleet = tv_names) |>
+      tidyr::fill(-type, -fleet) |>
+      dplyr::ungroup() |>
+      dplyr::arrange(fleet, dplyr::desc(type)) |>
+      dplyr::mutate(
+        rowname = paste(fleet, type, sep = "_dev_"),
+        .before = type
+      ) |>
+      dplyr::select(-type, -fleet) |>
+      tibble::column_to_rownames()
     return(ctl_list)
   }
   aa <- setup_sensitivity(prefix_number = 13, suffix_string = "max-sel-age-5")
