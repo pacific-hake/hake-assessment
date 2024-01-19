@@ -242,7 +242,19 @@ presented during the SRG meeting implies that natural mortality on age-2 Pacific
 Hake is higher than currently assumed in the assessment model and should be
 explored more fully.**
 
-> *Response --
+> *Response -- The JTC investigated estimating a vector of natural mortality
+> parameters instead of a single age-invariant parameter. Several
+> configurations, i.e., breakpoints at different ages, were explored but no
+> combination of breakpoints led to natural mortality decreasing with age as
+> hypothesized given the diet data of predators of `r sp`. Instead parameters
+> were estimated near the median of the prior. When the prior was removed,
+> natural mortality at younger ages was estimated to be lower than natural
+> mortality at older ages largely due to the lack of information in the data.
+> If age-specific natural mortality is desired in the future, tagging studies
+> could be used to help inform the parameters. Or, diet data could be used to
+> externally estimate natural mortality at age. Other modeling frameworks, such
+> as the Woods Hole Assessment Method have more flexibility in modeling natural
+> mortality and might also be an option for future explorations.
 > *
 
 5. **The SRG encourages an analysis of catch and CPUE distribution for Canada and
