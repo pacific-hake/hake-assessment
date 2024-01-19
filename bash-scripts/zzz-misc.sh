@@ -10,6 +10,8 @@ grep "CRON.*grandin" /var/log/syslog
 crontab -e
 # If above command says "no crontab available for grandin"
 sudo crontab -u grandin -e
+# View cron jobs completed - check to see last time sync occurred
+grep "CRON.*bash" /var/log/syslog
 
 # View CPU core temperatures (if 'crit' temp is reached, CPU will be switched
 # off and machine will lock up due to failsafe)
