@@ -1002,10 +1002,11 @@ Stock status estimates in recent years are lower using the dynamic approach.
 
 ```{r main-fished-unfished-rel-biomass, fig.cap = "(ref:main-fished-unfished-rel-biomass-cap)"}
 
-plot_biomass_fished_unfished(base_model,
-                             model_nms = c("Base model - Fished",
-                                           "Base model - Unfished"),
-                             rel = TRUE)
+plot(1:10)
+#plot_biomass_fished_unfished(base_model,
+#                             model_nms = c("Base model - Fished",
+#                                           "Base model - Unfished"),
+#                             rel = TRUE)
 ```
 
 (ref:main-depletion-comparison-cap) Median and 95% posterior
