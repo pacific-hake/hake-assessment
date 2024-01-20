@@ -225,11 +225,19 @@ continued outreach regarding the use of dynamic reference points to stakeholders
 and managers, including identifying pros and cons of using dynamic unfished
 spawning biomass**
 
-> *Response -- A figure has been added to the assessment document that shows the
+> *Response -- Two figures have been added to the assessment document. The first shows the
 > unfished spawning stock biomass time series relative to the standard 'fished'
-> spawning stock biomass time series (see Figure ADD FIGURE HERE).
-> This can be used to visually compare equilibirum versus non-equilibrium
-> assumptions. The JTC once again delivered a presentation on dynamic reference
+> spawning stock biomass time series (see Figure
+> Figure~\@ref(fig:main-fished-unfished-biomass-fig)). The second shows a comparison
+> of relative spawning biomass when spawning biomass in year $t$ is related to
+> unfished equilibrium biomass, $B_0$ (static $B_0$; as in
+> Figure~\@ref(fig:main-relative-biomass-fig)) and when spawning biomass in
+> year $t$ is related to the unfished biomass time series in year $t$
+> (dynamic $B_0$; see Figure~\@ref(fig:main-fished-unfished-rel-biomass)).
+> These can be used to visually compare equilibirum versus non-equilibrium
+> assumptions and estimated changes in population dynamics in the absence of fishing.*
+>
+> *The JTC once again delivered a presentation on dynamic reference
 > points at the October 2023 JMC and AP meeting as a way to provide education
 > and outreach opportunties related to dynamic reference point methods and
 > approaches.*

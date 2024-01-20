@@ -984,9 +984,9 @@ plot_biomass_fished_unfished(base_model,
 ```
 
 (ref:main-fished-unfished-rel-biomass-cap) A comparison of relative spawning biomass
-when spawning biomass in year $t$ is compared to unfished equilibrium biomass, $B_0$
+when spawning biomass in year $t$ is related to unfished equilibrium biomass, $B_0$
 (static $B_0$, black; as in Figure~\@ref(fig:main-relative-biomass-fig)) and
-when spawning biomass in year $t$ is compared to the unfished biomass time series
+when spawning biomass in year $t$ is related to the unfished biomass time series
 in year $t$ (dynamic $B_0$, red). Median (solid lines) of the posterior
 distribution for each calculation of relative spawning biomass through `r end_yr`
 with 95% posterior credibility intervals (shaded areas). Dashed horizontal
