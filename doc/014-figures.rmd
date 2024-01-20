@@ -960,9 +960,20 @@ plot_catch_forecast_density(base_model, yr = end_yr)
 #base_model$plots$catch_fore_density
 ```
 
-(ref:main-fished-unfished-biomass-cap) Cap text
+(ref:main-fished-unfished-biomass-cap) A comparison of female spawning stock
+biomass with fishing (black; as in Figure~\@ref(fig:main-biomass-fig)) and
+when the effects of fishing on the populaton is removed (red; unfished time series).
+Medians (solid lines) of the posterior distribution for
+beginning of the year female spawning biomass ($B_t$ in year $t$; Mt)
+through `r end_yr` (solid lines) with 95% posterior credibility intervals
+(shaded areas). The left-most circles with 95% posterior credibility intervals
+show the estimated unfished equilibrium biomass, $B_0$. The difference between the
+two lines shows the impact of removing fishing mortality from the population.
 
-(ref:main-fished-unfished-biomass-alt) Alt text
+(ref:main-fished-unfished-biomass-alt) This figure shows that the female spawning biomass
+time series is higher when fishing is removed from the population dynamics compared to
+when it is included. The influence due to fishing (area between the two curves) has been
+higher since 2000.
 
 ```{r main-fished-unfished-biomass-fig, fig.cap = "(ref:main-fished-unfished-biomass-cap)"}
 
@@ -972,9 +983,22 @@ plot_biomass_fished_unfished(base_model,
                              rel = FALSE)
 ```
 
-(ref:main-fished-unfished-rel-biomass-cap) Cap text
+(ref:main-fished-unfished-rel-biomass-cap) A comparison of relative spawning biomass
+when spawning biomass in year $t$ is compared to unfished equilibrium biomass, $B_0$
+(static $B_0$, black; as in Figure~\@ref(fig:main-relative-biomass-fig)) and
+when spawning biomass in year $t$ is compared to the unfished biomass time series
+in year $t$ (dynamic $B_0$, red). Median (solid lines) of the posterior
+distribution for each calculation of relative spawning biomass through `r end_yr`
+with 95% posterior credibility intervals (shaded areas). Dashed horizontal
+lines show 10%, 40%, and 100% of the unfished equilibrium ($B_0$). The
+default `r f_40_40_10` harvest policy uses relative spawning biomass based on
+a static $B_0$ determination of stock status.
 
-(ref:main-fished-unfished-rel-biomass-alt) Alt text
+(ref:main-fished-unfished-rel-biomass-alt) This figure compares the relative spawning
+biomass time series when it is calculated using $B_0$ based on the standard (static) equilibrium
+unfished biomass estimate versus a time-varying (dynamic) estimate of $B_0$ based on the unfished
+time series. While general trends are similar, the dynamic approach produces less variability.
+Stock status estimates in recent years are lower using the dynamic approach.
 
 ```{r main-fished-unfished-rel-biomass, fig.cap = "(ref:main-fished-unfished-rel-biomass-cap)"}
 
