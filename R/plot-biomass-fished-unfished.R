@@ -30,7 +30,6 @@ plot_biomass_fished_unfished <- \(model,
   }
 
   model_lst <- list(model, model_unf)
-  d_obj <- create_group_df_biomass(model_lst, model_nms)
 
   if(rel){
     plot_rel_biomass(model_lst,

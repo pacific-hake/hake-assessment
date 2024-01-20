@@ -960,6 +960,30 @@ plot_catch_forecast_density(base_model, yr = end_yr)
 #base_model$plots$catch_fore_density
 ```
 
+(ref:main-fished-unfished-biomass-cap) Cap text
+
+(ref:main-fished-unfished-biomass-alt) Alt text
+
+```{r main-fished-unfished-biomass-fig, fig.cap = "(ref:main-fished-unfished-biomass-cap)"}
+
+plot_biomass_fished_unfished(base_model,
+                             model_nms = c("Base model - Fished",
+                                           "Base model - Unfished"),
+                             rel = FALSE)
+```
+
+(ref:main-fished-unfished-rel-biomass-cap) Cap text
+
+(ref:main-fished-unfished-rel-biomass-alt) Alt text
+
+```{r main-fished-unfished-rel-biomass, fig.cap = "(ref:main-fished-unfished-rel-biomass-cap)"}
+
+plot_biomass_fished_unfished(base_model,
+                             model_nms = c("Base model - Fished",
+                                           "Base model - Unfished"),
+                             rel = TRUE)
+```
+
 (ref:main-depletion-comparison-cap) Median and 95% posterior
 credibility intervals of estimated relative spawning biomass to the start
 of `r end_yr` from the base model (white rectangle) and projections to the

@@ -228,7 +228,7 @@ plot_rel_biomass(
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  rev_colors = FALSE,
+  rev_colors = TRUE,
   wrap_y_label = FALSE,
   alpha = ts_ribbon_alpha,
   point_size = ifelse(is_single_model, ts_single_model_pointsize, ts_pointsize),
@@ -249,7 +249,8 @@ plot_rel_biomass(
   refpt_lrp_linewidth = ts_refpt_lrp_linewidth,
   refpt_bo_linetype = ts_refpt_bo_linetype,
   refpt_usr_linetype = ts_refpt_usr_linetype,
-  refpt_lrp_linetype = ts_refpt_lrp_linetype
+  refpt_lrp_linetype = ts_refpt_lrp_linetype,
+  ...
 )
 
 plot_rel_recruitment(

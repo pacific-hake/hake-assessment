@@ -20,7 +20,7 @@ plot_rel_biomass <- function(
     leg_pos = c(0.65, 0.83),
     leg_ncol = 1,
     leg_font_size = 12,
-    rev_colors = FALSE,
+    rev_colors = TRUE,
     wrap_y_label = FALSE,
     alpha = ts_ribbon_alpha,
     point_size = ifelse(is_single_model,
@@ -50,7 +50,8 @@ plot_rel_biomass <- function(
     refpt_lrp_linewidth = ts_refpt_lrp_linewidth,
     refpt_bo_linetype = ts_refpt_bo_linetype,
     refpt_usr_linetype = ts_refpt_usr_linetype,
-    refpt_lrp_linetype = ts_refpt_lrp_linetype){
+    refpt_lrp_linetype = ts_refpt_lrp_linetype,
+    ...){
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -59,7 +60,8 @@ plot_rel_biomass <- function(
     }
     d_obj <- create_group_df_biomass(model_lst,
                                      model_names,
-                                     rel = TRUE)
+                                     rel = TRUE,
+                                     ...)
   }
 
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
