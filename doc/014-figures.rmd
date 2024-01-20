@@ -1145,6 +1145,8 @@ plot_fore_compare(base_model,
   guides(color = guide_legend(byrow = TRUE))
 ```
 
+\clearpage
+
 (ref:main-age-comp-forecast-cap) Forecast age compositions in numbers and
 in weight for the `r end_yr` fishery catch (combined across all sectors in
 both countries). Gray bars show median estimates. Thick black lines show
