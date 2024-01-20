@@ -209,19 +209,17 @@ to avoid and reduce bycatch of salmon and rockfish.
 Canadian groundfish managers distribute their portion of the coast-wide TAC
 as quota to individual license holders. In `r last_data_yr`, Canadian hake
 fishermen were allocated a TAC of `r last_yr_can_tac`~t, which did not
-include any carryover quota. Canadian priority lies with the domestic fishery;
-but, when there is determined to be an excess of fish for which there is not
+include any carryover quota. Canadian priority lies with the domestic fishery.
+However, when there is determined to be an excess of fish for which there is not
 enough domestic processing capacity, fisheries managers give consideration to
 a Joint-Venture fishery in which foreign processor vessels are allowed to
-accept codends from Canadian catcher vessels while at sea. The last year a
-Joint-Venture fishery was conducted was in `r latest_yr_can_jv`.
+accept codends from Canadian catcher vessels while at sea. The last year
+there was Joint-Venture quota allocation was in `r latest_yr_can_jv`.
 
 In `r last_data_yr`, all Canadian `r sp` trips were subject to 100%
 observer coverage by electronic monitoring for both the shoreside component
-of the domestic fishery and the freezer-trawler component. There were once
-again no on-board observers available for the entirety of the fishing season.
-This is expected to be the situation moving forward, with no plans for
-observers to board any of the Canadian groundfish vessels.
+of the domestic fishery and the freezer-trawler component. There is no
+observer program for the Canadian `r sp` fisheries.
 
 Retention of all catch, with the exception of prohibited species, was
 mandatory. The retention of groundfish other than Sablefish, Mackerel,
