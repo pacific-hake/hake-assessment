@@ -894,11 +894,12 @@ recruitment estimates relative to those in 2010 for all years.
 
 plot_recruitment(list(base_model),
                  list(base_model_name),
-                 inc_means = TRUE,
+                 inc_means = FALSE,
                  relative = TRUE,
-                 ylim = c(0, 1.2),
-                 y_breaks = seq(0, 1.2, by = 0.1),
-                 leg_pos = "none")
+                 ylim = c(0, 1.4),
+                 y_breaks = seq(0, 1.4, by = 0.2),
+                 leg_pos = "none",
+                 color = "red")
 ```
 
 (ref:main-stock-recruitment-cap) Estimated stock-recruit relationship for

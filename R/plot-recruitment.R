@@ -8,7 +8,7 @@
 #' default. To change it, edit the year in the [calc_mcmc()] function, and
 #' then [create_rds_file()] needs to be run again to create the RDS file for
 #' the model
-#'
+#' @param horizontal_line_color for relative plot, colour of the dashed line at 1
 #' @export
 plot_recruitment <- function(
     model_lst = NULL,
@@ -43,6 +43,7 @@ plot_recruitment <- function(
     line_width = ifelse(is_single_model,
                         ts_single_model_linewidth,
                         ts_linewidth),
+    horizontal_line_color = "darkgreen",
     crossbar_width = 0,
     dodge_val = 0.5,
     rev_colors = TRUE,
@@ -186,8 +187,16 @@ plot_recruitment <- function(
           axis.title.y = element_text(vjust = 2)) +
     xlab("Year") +
     ylab(ifelse(relative,
-                "Age-0 recruits (billions) relative to 2010 values",
+                "Age-0 recruits relative to those in 2010",
                 "Age-0 recruits (billions)"))
+
+  # Add horizontal dashed line at 1 for relative plot
+  if(relative){
+    g <- g +
+      geom_hline(yintercept = 1,
+                 linetype = "dashed",
+                 color = horizontal_line_color)
+  }
 
   if(inc_means){
     if(is_single_model){
