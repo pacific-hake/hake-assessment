@@ -29,7 +29,6 @@ get_col_name_from_key_title <- function(df = NULL,
   key <- key_posteriors[ind][[1]]
   ind <- grep(key, names(df))
   if(!length(ind)){
-    browser()
     warning("`get_col_name_from_key_title()` could not find a value in the ",
             "column names of the `mcmc` posteriors data frame matching the ",
             "regular expression `", key, "`")
