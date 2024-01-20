@@ -704,8 +704,9 @@ spawning biomass from `r assess_yr - 1` to `r assess_yr`
 Including the `r last_data_yr` fishery-independent biomass estimate led to a downward shift
 in the stock trajectory going back to 2017 and a similar shift in the fit to the survey
 (Figure~\@ref(fig:main-bridge-summary-fig-1)). While including the `r last_data_yr` survey
-biomass age compositions had a negligible effect on the stock trajectory, they did slightly
-adjust estimates of recent recruitment strength. The addition of the `r last_data_yr` age-1
+biomass age compositions had a negligible effect on the stock trajectory, they did
+adjust estimates of recent recruitment strength, in particular lowering the 2020
+recruitment somewhat. The addition of the `r last_data_yr` age-1
 index led to an estimated increase in stock biomass from 2023 to 2024 as a result of small shifts in expected recruitment, particularly for the 2020 and 2022 year classes.
 
 The final step of adding `r last_data_yr` data involved incorporating fishery age-composition
@@ -971,47 +972,51 @@ unfished equilibrium in the 1960s, at the start of the assessment period, due
 to lower than average recruitment. The stock is estimated to have increased
 rapidly and was above unfished equilibrium in the mid-1970s and mid-1980s
 (after two large recruitments in the early 1980s). It then declined steadily
-to a low in 1999. This was followed by a brief increase to a peak in 2002 as
+to a low in 1999. This was followed by a brief increase to a peak in 2003 as
 the very large 1999 year class matured. The 1999 year class largely supported
 the fishery for several years due to relatively small recruitments between
 2000 and 2007. With the aging 1999 year class, median female spawning biomass
 declined throughout the late 2000s, reaching a time-series low of
 `r median_bio_min` million~t in `r median_bio_min_yr`. The assessment model
-estimates that median female spawning biomass then peaked again in 2013 and
+estimates that median female spawning biomass then peaked again in
 2014 due to a very large 2010 year class and an above-average 2008 year
 class. The subsequent decline from 2014 to 2016 is primarily from the 2010
 year class surpassing the age at which gains in weight from growth are greater
 than the loss in weight from mortality (growth-mortality transition). The
 2014 year class is estimated to be large, though not as large as the 1999
 and 2010 year classes, resulting in an increased biomass in 2017. The
-estimated biomass was relatively steady from 2017 to 2019, and then declined
-in 2020 and 2021 due to the 2014 and 2016 year classes moving through the
+estimated biomass mostly declined
+from 2018 to 2022 due to the 2014 and 2016 year classes moving through the
 growth-mortality transition during a period of high catches. The increase in
-female spawning biomass since 2021 is due to the expected above average 2020
-cohort entering maturity and the recent declining trend in catch.
+female spawning biomass since 2021 is due to the expected above-average 2020 and
+potentially large 2021 cohorts entering maturity, and the recent declining trend in catch.
 
 The median estimate of the `r end_yr` relative spawning biomass (spawning
 biomass at the start of `r end_yr` divided by that at unfished equilibrium,
 `r b_0`) is `r curr_depl_median`%. However, the uncertainty is large, with a
 95% posterior credibility interval from `r curr_depl_lower`% to
 `r curr_depl_upper`% (Tables~\@ref(tab:main-median-posterior-tab) and
-\@ref(tab:main-ci-posterior-tab), due to remaining unknowns about the size of the
-2020 cohort because the acoustic survey only provided one year of age-1
-information, which is more uncertain than the 2+ estimate.
+\@ref(tab:main-ci-posterior-tab)), partly due to remaining unknowns about the size of the
+potentially large 2021 cohort because the acoustic survey has only provided one year of
+information about it.
+<!-- for non-survey years: age-1 information, which is more uncertain than the -->
+<!-- 2+ estimate. -->
 
 The median estimate of the `r end_yr` female spawning biomass is
 `r curr_bio_median` million~t (with a 95% posterior credibility interval from
 `r curr_bio_lower` to `r curr_bio_upper` million~t). The current estimate of
 the `r end_yr - 1` female spawning biomass is `r prev_bio_median`
-(`r prev_bio_lower`--`r prev_bio_upper`) million~t. This is a somewhat higher
-median and broader credibility interval than the
+(`r prev_bio_lower`--`r prev_bio_upper`) million~t. This is less than half of the
+median, and a much narrower credibility interval, compared to the
 `r prev_bio_median_last_assess` (`r prev_bio_lower_last_assess`--
 `r prev_bio_upper_last_assess`) million~t estimated in the `r end_yr - 1`
-assessment, but there is considerable overlap of the credibility intervals.
-The increase appears to be due to the addition of 2022 fishery age
-composition data, which suggests the 2020 cohort may be larger than the age-1
-index alone was indicating in the last assessment (as outlined in
-Section~\@ref(sec:assessment-changes)).
+assessment; in particular the tail of the distribution is greatly curtailed
+(upper end of the interval is much lower than it was in the `r end_yr - 1`
+assessment).
+The decrease appears to be due to the addition of the age-2+ biomass index
+pulling down the estimated biomass for recent years, plus the addition of the
+survey age compositions lowering the estimated 2020 recruitment
+(Figure~\@ref(fig:main-bridge-summary-fig-1)).
 
 **Recruitment**
 
