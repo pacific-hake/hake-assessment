@@ -825,15 +825,19 @@ above-average cohorts that are now mature.
 
 The base model fit to the index of age-1 fish highlights an overall general
 confirmation of relative cohort strength
-(Figure~\@ref(fig:main-age1-index-fit-mcmc-fig)). In particular, the 2008 and 2014
+(Figure~\@ref(fig:main-age1-index-fit-mcmc-fig)). In particular, the 2008, 2014,
+and 2019
 cohorts were estimated to be less than the index, while the 1994 and 2016
 cohorts were estimated to be larger than indicated by the index. The age-1
 fish in 2011 (the large 2010 cohort) was closely fit.  Age-1 fish in 2021
-(2020 cohort) were estimated slightly above the index value and, being so
-young, include a large amount of uncertainty. The model indicates that the
-2020 cohort may be similar in size to the 2014 cohort, based on information
-in the age-1 index, age-1 fish caught in the 2021 fishery, and from age-2
-fish caught in the 2022 fishery. The high age-1 survey index from 2021 is
+(2020 cohort) were estimated slightly below the index value (in last year's
+assessment they were estimated slightly above) and, being so
+young, include a large amount of uncertainty.
+
+TODO: This next paragraph is specific for 2021 survey so needs updating, including checking
+and updating references, Issue \#1102.
+
+The high age-1 survey index from 2021 is
 largely in concurrence with oceanographic conditions, as summarized in
 NOAA's annual Ecosystem Status Report of the California Current
 [@HarveyGarfieldEtAl2021]. Recruitment is generally impacted by oceanographic
@@ -856,17 +860,22 @@ is particularly good, although models with time-invariant selectivity used in
 previous years also fit the age compositions well. In the `r last_data_yr`
 fishery, `r top_coh(base_model, last_data_yr, 3, cap = FALSE)`. Age
 compositions from the `r survey_end_yr` acoustic survey suggest a similar age
-structure for older fish. The 2020 cohort has not yet been observed by the
-acoustic survey. Combined, the 2015--`r last_data_yr` fishery age-composition
+structure for older fish.
+
+The 2020 cohort has now been observed by, and is well fit by, the
+acoustic survey (Figure~\@ref(fig:main-age-comp-fits-fig)), with the survey's inclusion
+decreasing its estimated size (Figure~\@ref(fig:main-bridge-summary-fig-1)).
+Combined, the 2015--`r last_data_yr` fishery age-composition
 data and the 2017--`r survey_end_yr` acoustic survey age-composition data
 suggest that 2014 was a strong recruitment year, and the model was able to
 adequately fit to these observations (Figure~\@ref(fig:main-age-comp-fits-fig)).
-The 2016 cohort, which has been observed twice by the survey, still appears
-to be smaller than the 2014 cohort. The `r survey_end_yr` survey was the first
-to sample the `r survey_end_yr - 2` cohort, confirming that it was not large
+The 2016 cohort, which has been observed three times by the survey, still appears
+to be smaller than the 2014 cohort.
+
+The `r survey_end_yr` survey was the first
+to sample the `r survey_end_yr - 2` cohort, suggesting that it was large
 (`r survey_a2_prop`% of the `r survey_end_yr` survey catch). The 2020 cohort,
-which has been observed twice by the fishery, once by the age-1 index, but
-not the acoustic survey is currently expected to be above average in size.
+which has now been observed by the acoustic survey is expected to be above average in size.
 Residual patterns to the fishery and survey age data do not show patterns
 that would indicate systematic bias in model predictions
 (Figure~\@ref(fig:main-age-comp-pearson-fig)).
@@ -878,7 +887,7 @@ Tables~\@ref(tab:main-est-numbers-at-age-tab)--
 For the major cohorts, the resulting estimated age-specific catch, natural
 mortality, and surviving biomasses are given in
 Table~\@ref(tab:main-cohort-effects-tab). For example, the catch weight of the
-2014 cohort at age-5 was slightly less than that of the 2010 cohort at age-5
+2014 cohort at age-5 was slightly more than that of the 2010 cohort at age-5
 and the resulting surviving biomass of the 2014 cohort was approximately half
 of the surviving biomass of the 2010 cohort.
 
@@ -903,7 +912,7 @@ selectivity as the `r last_assess_yr` base model, effectively allowing the
 model flexibility (i.e., a lower penalty on the overall likelihood) to fit to
 data that suggests high variability among years for each age. This level of
 variation led to results that remained consistent with the `r survey_end_yr`
-acoustic survey biomass estimate and gave reasonable fits to the fishery
+acoustic survey age-composition data (but not the biomass index) and gave reasonable fits to the fishery
 age-composition data, given that there is considerable uncertainty associated
 with spatial changes in fish availability (due to movement) and recent
 variability in oceanographic conditions. Estimated selectivity deviations for
@@ -916,17 +925,17 @@ generally higher availability) of the younger cohorts in those years. This
 pattern is consistent with the 2008 cohort appearing strong in the fishery age compositions initially, but decreasing in
 prominence from 2013 onward (Figure~\@ref(fig:main-age-comp-fits-fig)). Fishery
 selectivity on age-2 fish was at its highest in 2016. Fishery selectivity for
-the most recent year was characteristic by a logistic pattern, where
-selectivity generally increased smoothly from age 3 to a peak at age 6 and
-older ages (Figure~\@ref(fig:main-tv-selex-uncertainty-fig)). However, age-2
-selectivity was slightly higher than for other younger fish, likely as a
+`r last_data_yr`  was characterised by a local peak at age 3 rather than a
+logistic pattern
+(Figure~\@ref(fig:main-tv-selex-uncertainty-fig)),
+likely as a
 result of increased availability of the above-average 2020 cohort. Even
 though the survey selectivity is time invariant, the posterior shows a broad
 band of uncertainty between ages 2 and 5
-(Figure~\@ref(fig:main-tv-selex-uncertainty-fig)). The decline in survey
+(Figure~\@ref(fig:main-tv-selex-posteriors-fig)). The decline in survey
 selectivity between ages 3 and 4 may be an artifact of the interaction between
 large cohorts and the biennial timing of recent surveys, with the 2010, 2014,
-and 2016 cohorts occurring in the survey at ages 3 and 5 but not age 4.
+2016, and 2020 cohorts occurring in the survey at ages 3 and/or 5 but not age 4.
 Fishery selectivity is likewise very uncertain
 (Figures~\@ref(fig:main-tv-selex-uncertainty-fig) and
 \@ref(fig:main-tv-selex-posteriors-fig)), but in spite of this uncertainty,
