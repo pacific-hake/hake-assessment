@@ -50,7 +50,7 @@ plot_grid(plotlist = plist, nrow = 2)
 (ref:app-mcmc-diag-h-extra-sd-cap) Summary of Markov chain Monte Carlo
 diagnostics for steepness (upper panels) and the additional standard
 deviation (SD) in the biomass index (lower panels) in the base model.
-Sub-panel descriptions as in Figure~\@ref{fig:app-mcmc-diag-m-r0-fig}.
+Sub-panel descriptions as in Figure~\@ref(fig:app-mcmc-diag-m-r0-fig).
 
 (ref:app-mcmc-diag-h-extra-sd-alt) This figure shows good Markov chain Monte
 Carlo diagnostics for the base model for steepness and the survey extra
@@ -86,8 +86,9 @@ plist[[2]] <-
 plot_grid(plotlist = plist, nrow = 2)
 ```
 (ref:app-mcmc-diag-dm-cap) Summary of Markov chain Monte Carlo diagnostics
-for the Dirichlet-multinomial age-composition parameters for the fishery ($\theta_{\text{fish}}$, upper panels) and the survey ($\theta_{\text{surv}}$,
-lower panels) in the base model. Sub-panel descriptions as in Figure~\@ref{fig:app-mcmc-diag-m-r0-fig}.
+for the additional standard deviation (SD) for the age-1 index (upper panels)
+and the Dirichlet-multinomial age-composition parameter for the fishery ($\theta_{\text{fish}}$,
+lower panels) in the base model. Sub-panel descriptions as in Figure~\@ref(fig:app-mcmc-diag-m-r0-fig).
 
 (ref:app-mcmc-diag-dm-alt) This figure shows good Markov chain Monte Carlo
 diagnostics for the base model for the two Dirichlet-multinomial parameters
@@ -131,7 +132,8 @@ statistic (lower left panel) tests for equality between means located in the
 first part of the chain against means in the last part of the chain. The
 Heidelberger and Welch statistic (lower right panel) tests if the sampled
 values come from a stationary distribution by comparing different sections
-of the chain.
+of the chain. Values for the unfished equilibrium recruitment ($R_0$) are
+explicitly highlighted.
 
 (ref:app-mcmc-diag-hists-alt) This figure shows good summary Markov chain
 Monte Carlo diagnostics for all base model parameters.
@@ -149,7 +151,7 @@ plot_mcmc_diagnostics_all_params(base_model,
 function which is minimized during model fitting, key base-model parameters,
 and derived quantities. Numbers refer to the absolute correlation
 coefficients, with font size proportional to the square root of the
-coefficient.
+coefficient. Straight lines on the scatterplots are linear regressions.
 
 (ref:app-mcmc-pairs-alt) "This figure shows pairs plots for many parameters
 and derived quantities. Natural mortality and log R0 show positive
@@ -173,6 +175,7 @@ plot_pairs(base_model,
 recruitment deviations from recent years and mean unfished equilibrium
 recruitment. Numbers refer to the absolute correlation coefficients, with
 font size proportional to the square root of the coefficient.
+Straight lines on the scatterplots are linear regressions.
 
 (ref:app-mcmc-pairs-recruit-devs-alt) This figure shows pairs plots for
 many derived quantities. There is some positive correlation between 2014

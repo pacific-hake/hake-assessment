@@ -531,9 +531,9 @@ plot_grid(plotlist = full_p,
 
 
 
-(ref:main-survey-index-fit-mcmc-cap) Fits (colored lines) to the acoustic
+(ref:main-survey-index-fit-mcmc-cap) Fits (thin black lines) to the acoustic
 survey (points) with input 95% intervals around the observations. The
-thin blue lines are the results of a random subset of individual Markov chain
+thin black lines are the results of a random subset of individual Markov chain
 Monte Carlo samples. Thicker uncertainty intervals around observed survey
 points indicate 95% lognormal uncertainty intervals estimated by the
 kriging method and are used as input to the assessment model. Thinner

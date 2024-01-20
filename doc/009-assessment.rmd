@@ -766,8 +766,8 @@ deviations in recruitment (log-scale differences between estimated and
 expected recruitment values) from recent years
 (Figure~\@ref(fig:app-mcmc-pairs-recruit-devs-fig)) indicates the highest
 correlation (`r f(base_model$mcmcvals$rec_cor_2014_2016, 2)`)
-was between the 2014 and 2016 recruitment deviations. This is an increase in
-correlation relative to the last assessment despite the fact that each cohort
+was between the 2014 and 2016 recruitment deviations. This is the same as in
+the last assessment despite the fact that each cohort
 has been observed for an additional year.
 
 Regarding the Dirichlet-multinomial parameter $\theta_{\text{fish}}$,
@@ -788,21 +788,27 @@ multiplier $\theta_{\text{surv}} / (1 + \theta_{\text{surv}})$ of
 
 The base model fit to the acoustic survey biomass index
 (Figure~\@ref(fig:main-survey-index-fit-mcmc-fig)) remains similar to the
-`r last_assess_yr` base model, which is not surprising given no new survey
-information is available for this assessment. For the
-`r last_assess_yr` base model the `r survey_end_yr` survey biomass estimate
-resulted in a slight upward shift in the fit to the `r penult_survey_yr`
-survey data points, but the result of a relatively stable biomass trend from
-2013--2019 remained unchanged from the previous assessment. At the time, the
-addition of the 2021 fishery data was the main reason for this change in fit
-to the 2019 data point. The 2021 survey estimate was lower than in 2019
-(second lowest since 2013), and the model fit indicates a slight decline in
-biomass from 2019 to 2021. The 2001 survey biomass index continues to be well
-below any model predictions that were evaluated, and no direct cause for this
-is known.  The survey did begin earlier that year than all other surveys
+`r last_assess_yr` base model, up to 2017. The low `r last_survey_yr` survey
+biomass pulls down the last few years of estimated biomass, such that 2019 fit is very good
+(for the `r last_assess_yr` assessment it was overestimated), the 2021 fit is
+underestimated (for the `r last_assess_yr` assessment it was very good).
+
+The new 2023 biomass index is the third lowest in the series
+(Table~\@ref(tab:main-survey-history-tab)), and is well below the estimated index
+from the model, similar to the 2001 index that has always been below
+estimated values [@JTC2023]. While no direct cause for the
+2001 index anomaly is known, the survey did begin earlier that year than all other surveys
 between 1995 and 2009 (Table~\@ref(tab:main-survey-history-tab)), which may
-explain some portion of the anomaly, along with El Niño conditions and age
-structure. The underestimation of the 2009 biomass estimate is larger than
+explain some portion of the anomaly, along with age
+structure. For 2023, the survey timing is not anomalous. The estimated biomass
+increase from 2021 to 2023 is driven by the addition of the age-1 index
+(Figure~\@ref(fig:main-bridge-summary-fig-1)), which suggested an above-average
+2022 cohort (and also increased the 2021 age-1 index compared to the previous assessment;
+Section~\@ref(sec:data-acoustic-survey)).
+
+The relatively stable estimated biomass from
+2013--2019 is unchanged from the previous assessment.
+The underestimation of the 2009 biomass estimate is larger than
 the underestimation of any other year. The uncertainty of this point (both
 modeled and actual) is high because of the presence of large numbers of
 Humboldt Squid during the survey. Humboldt Squid have similar target
@@ -810,10 +816,8 @@ strength to hake which could introduce bias in the biomass estimate for that
 year, and which also likely influenced hake population dynamics through
 predation in that year.
 
-The median posterior density estimates from the fit to the survey were less
-than the 2015 survey index, greater than the 2017 and 2019 survey indices,
-and closely fit the 2021 index (Figure~\@ref(fig:main-survey-index-fit-mcmc-fig)).
-This is likely due to slight differences in what the fishery composition data
+Differences between the median posterior density estimates from the fit to the
+survey index are likely due to slight differences in what the fishery composition data
 and survey composition data, when considered independently, would otherwise
 suggest as population trends. Additionally, the population has undergone
 recent high, but declining, catch levels and produced a couple of
