@@ -79,7 +79,7 @@ Estimates of discard within the target fishery are included, but discarding
 of `r sp` in non-target fisheries is not. Discard from all fisheries, 
 including those that do not target hake, is estimated to be less than 1% of
 landings in recent years. During the last five years, catches were
-considerably above the long-term average catch (`r f(long_term_avge_ct)`~t),
+above the long-term average catch (`r f(long_term_avge_ct)`~t),
 but have been in decline over that period (especially in Canada). Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
 1999 year class, with the cumulative removal (through `r end_yr - 1`) from
@@ -102,14 +102,14 @@ fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`), and
 mean weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011
 the survey biomass index was the lowest in the time series and was followed
 by the index increasing in 2012, 2013, and again in 2015 before decreasing to
-near the time series average in 2017. The 2019 estimate is the fourth highest
-of the series, and the 2021 estimate is near the time series average.
+near the time series average in 2017. The survey shows a decline from 2019
+(the fourth highest of the series) to 2023 (the fourth lowest of the series).
 Age-composition data from the aggregated fisheries and the acoustic survey,
 along with the age-1 index, provide data that facilitates estimating relative
 cohort strength, i.e., strong and weak cohorts. The age-1 index suggests
 particularly large numbers of age-1 fish in 2009, 2011, 2015, and 2021 (2008,
 2010, 2014, and 2020 year classes, respectively), and is not available for
-most even years (odd year classes). There is not data to inform the size of
+most even years (odd year classes). There is no data to inform the size of
 the `r last_data_yr` year class.
 
 (ref:es-survey-biomass-cap) Acoustic survey biomass index of age-2+ fish
@@ -136,8 +136,7 @@ age-composition data, the relative age-1 index, and fishery age-composition
 data. Integrating the joint posterior distribution over model parameters
 provides probabilistic inferences about uncertain model parameters and
 forecasts derived from those parameters; this is done via Markov chain Monte
-Carlo sampling using the efficient No-U-Turn Sampler (NUTS) that was
-successfully tested in 2020 and used in subsequent assessments. Sensitivity
+Carlo sampling using the efficient No-U-Turn Sampler (NUTS). Sensitivity
 analyses are used to identify alternative model assumptions that may also
 be consistent with the data. All models, including bridging, sensitivity,
 and retrospective models, use a Bayesian framework for estimation.
@@ -166,17 +165,25 @@ plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
 
 This `r assess_yr` assessment retained the same general population dynamics
 structure as the base assessment model from `r last_assess_yr` and again is
-configured using Stock Synthesis. This includes the continued use (since 2014)
-of time-varying (rather than fixed) selectivity to maintain flexibility with
-fishing dynamics given variability in `r sp` distribution patterns.
+configured using Stock Synthesis. Updates in this assessment include incorporating
+the new biomass estimate and age-composition data from the acoustic survey conducted in `r survey_end_yr`,
+fishery catch and age-composition data from `r end_yr-1`, weight-at-age data for
+`r end_yr-1`,
+the `r survey_end_yr` age-1 index estimate,
+and minor changes to pre-`r end_yr-1` data. In addition, a model-based approach was
+used to develop the input weight-at-age matrix, and time-varying maturity was
+added to better inform fecundity.
 
+This assessment continues to use (since 2014) time-varying
+(rather than fixed) selectivity to maintain flexibility with
+fishing dynamics given variability in `r sp` distribution patterns.
 The Dirichlet-multinomial estimation approach to weighting composition data
 was retained, and sensitivity to an alternative data-weighting approach was
 investigated. Time-varying fecundity, which was introduced in 2019, was
-retained. Assumptions for the forecast period for weight at age and
+retained and improved upon with time-varying maturity estimates.
+Assumptions for the forecast period for weight at age and
 selectivity continue to be based on conditions during the last five years,
-as done since the 2020 assessment. The main change from the `r last_assess_yr`
-assessment is the addition of `r last_data_yr` data.
+as done since the 2020 assessment.
 
 ## Stock Biomass {-}
 

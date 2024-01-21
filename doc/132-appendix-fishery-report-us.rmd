@@ -13,7 +13,8 @@ Based on data from the Pacific Fisheries Information Network (PacFIN), total
 U.S. harvest in the 2023 whiting fishery was 240,189~t, which is 52% of the
 U.S. allocation of 461,750~t. Total U.S. harvest from these same sectors in
 the 2022 whiting fishery was 289,726~t. Compared to 2022, total U.S. catch
-was down 17% in 2023 (see Tables below).
+was down 17% in 2023 (see Tables \@ref(tab:us-ap-catch-tab)
+and \@ref(tab:us-ap-catch-prev-tab)).
 
 **Shoreside (SS) Fishery:**
 Spring fishing in the SS sector started strong shortly after May 1 but
@@ -91,45 +92,6 @@ not participating during the 2023 whiting fishery. One CP vessel underwent repai
 during the fall. Another vessel experienced a fire and was not operational in the
 whiting fishery this year.
 
-```{r us-ap-catch-tab, results = "asis", echo = FALSE}
-d <- tibble(` ` = c("Allocation (t)",
-                    "Catch (t)",
-                    "Utilization (%)"),
-            `U.S. TAC` = c(461000,
-                           240190,
-                           52.1),
-            `Shoreside` = c(178581,
-                            100392,
-                            56.2),
-            `Catcher Processor` = c(144566,
-                                    107053,
-                                    74.1),
-            `Mothership` = c(102047,
-                             32744,
-                             32.1),
-            `Tribal` = c(35806,
-                         0,
-                         0.0)) |> 
-  mutate(across(-` `, ~{.x <- ifelse(row_number() == n(),
-                                     paste0(f(.x, 1), "%"),
-                                     f(.x))}))
-
-kbl(d,
-    align = "lrrrrr",
-    format = "latex",
-    booktabs = TRUE,
-    caption = paste0("Final 2023 allocations (after reallocation of tribal ",
-                     "quota) and catch totals (tonnes, t). Note that ",
-                     "461,750 t U.S. TAC is reduced by 750 t for research ",
-                     "and incidental catch set. Minor differences in catch ",
-                     "in this table compared to that used in the stock ",
-                     "assessment can occur due to the timing of data ",
-                     "extractions. Source: PacFIN Whiting Report.")) |> 
-  row_spec(0, bold = TRUE) |> 
-  column_spec(1, bold = TRUE)
-  
-```
-
 ```{r us-ap-catch-prev-tab, results = "asis", echo = FALSE}
 d <- tibble(` ` = c("Allocation (t)",
                     "Catch (t)",
@@ -165,6 +127,45 @@ kbl(d,
                      "assessment can occur due to the timing of data ",
                      "extractions. Source: 2023 Whiting Stock Assessment Report ",
                      "and PacFIN Whiting Report.")) |> 
+  row_spec(0, bold = TRUE) |> 
+  column_spec(1, bold = TRUE)
+  
+```
+
+```{r us-ap-catch-tab, results = "asis", echo = FALSE}
+d <- tibble(` ` = c("Allocation (t)",
+                    "Catch (t)",
+                    "Utilization (%)"),
+            `U.S. TAC` = c(461000,
+                           240190,
+                           52.1),
+            `Shoreside` = c(178581,
+                            100392,
+                            56.2),
+            `Catcher Processor` = c(144566,
+                                    107053,
+                                    74.1),
+            `Mothership` = c(102047,
+                             32744,
+                             32.1),
+            `Tribal` = c(35806,
+                         0,
+                         0.0)) |> 
+  mutate(across(-` `, ~{.x <- ifelse(row_number() == n(),
+                                     paste0(f(.x, 1), "%"),
+                                     f(.x))}))
+
+kbl(d,
+    align = "lrrrrr",
+    format = "latex",
+    booktabs = TRUE,
+    caption = paste0("Final 2023 allocations (after reallocation of tribal ",
+                     "quota) and catch totals (tonnes, t). Note that ",
+                     "461,750 t U.S. TAC is reduced by 750 t for research ",
+                     "and incidental catch set. Minor differences in catch ",
+                     "in this table compared to that used in the stock ",
+                     "assessment can occur due to the timing of data ",
+                     "extractions. Source: PacFIN Whiting Report.")) |> 
   row_spec(0, bold = TRUE) |> 
   column_spec(1, bold = TRUE)
   
