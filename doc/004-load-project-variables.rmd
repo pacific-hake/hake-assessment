@@ -746,6 +746,17 @@ prob_percent_2016_rec_gt_2010_rec <-
   base_model$mcmcvals$prob_percent_2016_rec_gt_2010_rec
 prob_percent_2020_rec_gt_2010_rec <-
   base_model$mcmcvals$prob_percent_2020_rec_gt_2010_rec
+# These next ones need the updated .rds from changes in load_mcmcvals_vals(), so setting up
+# for 2025 assessment and commenting out.
+# prob_percent_2021_rec_gt_2010_rec <-
+#   base_model$mcmcvals$prob_percent_2021_rec_gt_2010_rec
+# prob_percent_2022_rec_gt_2010_rec <-
+#   base_model$mcmcvals$prob_percent_2022_rec_gt_2010_rec
+# prob_percent_2023_rec_gt_2010_rec <-
+#   base_model$mcmcvals$prob_percent_2023_rec_gt_2010_rec
+# prob_percent_2024_rec_gt_2010_rec <-
+#   base_model$mcmcvals$prob_percent_2024_rec_gt_2010_rec
+
 prob_percent_2014_rec_gt_2016_rec <-
   base_model$mcmcvals$prob_percent_2014_rec_gt_2016_rec
 prob_percent_2016_rec_gt_2010_rec <-

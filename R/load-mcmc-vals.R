@@ -53,6 +53,15 @@ load_mcmc_vals <- function(model,
     f(mean(model$mcmc$Recr_2016 > model$mcmc$Recr_2010) * 100, 1)
   out$prob_percent_2020_rec_gt_2010_rec <-
     f(mean(model$mcmc$Recr_2020 > model$mcmc$Recr_2010) * 100, 0)
+  out$prob_percent_2021_rec_gt_2010_rec <-
+    f(mean(model$mcmc$Recr_2021 > model$mcmc$Recr_2010) * 100, 0)
+  out$prob_percent_2022_rec_gt_2010_rec <-
+    f(mean(model$mcmc$Recr_2022 > model$mcmc$Recr_2010) * 100, 0)
+  out$prob_percent_2023_rec_gt_2010_rec <-
+    f(mean(model$mcmc$Recr_2023 > model$mcmc$Recr_2010) * 100, 0)
+  out$prob_percent_2024_rec_gt_2010_rec <-
+    f(mean(model$mcmc$Recr_2024 > model$mcmc$Recr_2010) * 100, 0)
+
   out$prob_percent_2014_rec_gt_2016_rec <-
     f(mean(model$mcmc$Recr_2014 > model$mcmc$Recr_2016) * 100, 0)
   out$prob_percent_2016_rec_gt_2010_rec <-
