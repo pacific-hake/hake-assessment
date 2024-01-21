@@ -24,7 +24,7 @@
 get_prior_data <- function(model,
                            params_regex = key_posteriors,
                            params_titles = key_posteriors_titles,
-                           n_points_prior = 1000,
+                           n_points_prior = 1e5,
                            ...){
 
   stopifnot(class(params_regex) == "list")
