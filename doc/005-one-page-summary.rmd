@@ -10,15 +10,17 @@ The model is fit to an acoustic survey index of biomass, an
 index of age-1 fish, annual commercial catch data, mean weight-at-age data,
 and age-composition data from the survey and commercial fisheries.
 
-- Updates to the data include:
-<!-- the new biomass estimate and age-composition data from the acoustic survey conducted in `r survey_end_yr`, -->
+- Updates in this assessment include incorporating
+the new biomass estimate and age-composition data from the acoustic survey conducted in `r survey_end_yr`,
 fishery catch and age-composition data from `r end_yr-1`, weight-at-age data for
 `r end_yr-1`,
-<!-- the `r survey_end_yr` age-1 index estimate, -->
-and minor changes to pre-`r end_yr-1` data.
+the `r survey_end_yr` age-1 index estimate,
+and minor changes to pre-`r end_yr-1` data. In addition, a model-based approach was
+used to develop the input weight-at-age matrix, and time-varying maturity was
+added to better inform fecundity.  
 
 - Coast-wide catch in `r end_yr-1` was `r last_yr_landings`~t
-[t represents metric tons], 6% below the average over the most recent 10 years
+[t represents metric tons], 22% below the average over the most recent 10 years
 (`r ct |> tail(10) |> pull(Total) |> mean() |> f()`~t),
 out of a total allowable catch (TAC), adjusted for carryovers, of `r last_yr_tac` t.
 The U.S. caught `r last_yr_us_landings`~t (`r last_yr_us_attained`% of their quota) and Canada caught `r last_yr_can_landings`~t
@@ -28,11 +30,10 @@ The U.S. caught `r last_yr_us_landings`~t (`r last_yr_us_attained`% of their quo
 (female spawning biomass at the start of `r end_yr` divided by that at
 unfished equilibrium, B~0~) is `r curr_depl_median`% but is highly
 uncertain (with 95% credible interval from `r curr_depl_lower`% to
-`r curr_depl_upper`%). The median relative spawning biomass
-has increased since 2021, due to the estimated above average
-2020 cohort entering maturity. The large,
-but uncertain, size of the 2020 cohort is based on the 2021 age-1 index
-estimate and the `r last_assess_yr` fishery age-composition data.
+`r curr_depl_upper`%). After a slow decline since 2018, the median
+relative spawning biomass increased from 2023 to 2024, due to the
+estimated above average, but uncertain, size of the 2020 and 2021
+cohorts entering maturity.
 
 - The median estimate of female spawning biomass at the start
 of `r end_yr` is `r curr_bio_median_tonnes`~t (with 95% credible
@@ -59,14 +60,15 @@ high uncertainty in estimates of recent and forecasted recruitment.
 Projections setting the `r forecast_yrs[1]` and
 `r forecast_yrs[2]` catches equal to the `r forecast_yrs[1] - 1`
 coast-wide TAC of `r last_yr_tac` t show the estimated median relative
-spawning biomass decreasing from `r f(last_yr_tac_fore_1_biomass)`% in
-`r end_yr` to `r f(last_yr_tac_fore_2_biomass)`% in `r end_yr + 1` to
-`r f(last_yr_tac_fore_3_biomass)`% in `r end_yr + 2`,
+spawning biomass increasing from `r f(last_yr_tac_fore_1_biomass)`% in
+`r end_yr` to `r f(last_yr_tac_fore_2_biomass)`% in `r end_yr + 1` and then
+decreasing to `r f(last_yr_tac_fore_3_biomass)`% in `r end_yr + 2`,
 with a `r last_yr_tac_risk_2_bforty`% chance
 of the female spawning biomass falling below `r b_40` in `r end_yr + 2`.
 There is an estimated `r last_yr_tac_risk_1_biomass_decline`% chance of the
 female spawning biomass declining from `r end_yr` to `r end_yr + 1`, an
 `r last_yr_tac_risk_2_biomass_decline`% chance of it declining from
 `r end_yr + 1` to `r end_yr + 2`, and an
-`r last_yr_tac_risk_3_biomass_decline`% chance of it declining for these
-constant catches.
+`r last_yr_tac_risk_3_biomass_decline`% chance of it declining
+from `r end_yr + 2` to `r end_yr + 3` with a constant catch of
+`r last_yr_tac` t.
