@@ -597,12 +597,13 @@ cohort strength is typically not well known until it is observed by the
 fishery and survey, typically at a minimum age of three).  While the addition
 of the age-1 index helps inform recent recruitment, the survey is conducted
 every other year and does not directly address current or future recruitment
-expectations. In particular, while the model estimates the 2020 cohort as
-above average in size, its absolute size remains highly uncertain. This
+expectations. In particular, while the model estimates the 2020 and 2021 cohorts as
+above average in size, their absolute size remains highly uncertain. This
 uncertainty propagates directly into current and forecasted estimates of female
-spawning biomass. The upcoming 2023 acoustic survey will provide additional
-information on the size of the 2020 year-class (as well as inform the 2021 and
-2022 year classes), which will lessen uncertainty of estimates of female
+spawning biomass. The 2023 acoustic survey provided additional
+information on the size of the 2020 year-class (as well as inform the 2021 year
+class), and the 2023 age-1 index helped inform the size of the 2022 year class.
+Collectively, these lessened uncertainty around estimates of female
 spawning biomass. Further, the interactions among variance parameters that
 govern variability in fishery selectivity and recruitment parameters through
 time, as well as those used in relative data weighting, are not well understood
@@ -631,7 +632,7 @@ most recent years (`r assess_yr - 5`--`r assess_yr - 1`); and constant
 values for all other parameters.
 
 A relative fishing intensity of 1 should indicate fishing at the `r f_40`
-default harvest rate catch target but the projected median relative fishing
+default harvest rate catch target, but the projected median relative fishing
 intensity can be slightly different than the target because the `r f_40`
 default harvest-rate catch limit is calculated using baseline
 selectivity-at-age (1966--1990; prior to time-varying deviations), whereas the
@@ -639,7 +640,7 @@ forecasted catches are removed using selectivity averaged over the last five
 years. Recent changes in selectivity will thus be reflected in the
 determination of fishing relative to the default harvest policy. For example,
 fishing at the `r f_40` default harvest-rate catch limit (scenario n: default
-HR) in 2023 results in a median relative fishing intensity of 0.91 (Table~\@ref(tab:es-decisions-spr-tab)).
+HR) in 2024 results in a median relative fishing intensity of 0.95 (Table~\@ref(tab:es-decisions-spr-tab)).
 
 \newpage
 
@@ -760,18 +761,18 @@ and a `r zero_catch_prob_bio_down_3`% probability of decreasing from
 `r forecast_yrs[3]` to `r forecast_yrs[4]` (Table~\@ref(tab:es-risk-year-3-tab)).
 
 The probability of the female spawning biomass decreasing from `r end_yr` to
-`r end_yr + 1` is above 72% for all non-zero catch levels examined
+`r end_yr + 1` is below 23% for all catch levels examined
 (Table~\@ref(tab:es-risk-year-1-tab) and
 Figure~\@ref(fig:es-risk-year-1-fig)). This probability is
-81% for a `r end_yr` catch level similar to that for `r end_yr - 1`
+2% for a `r end_yr` catch level similar to that for `r end_yr - 1`
 (scenario f: `r end_yr` catch). For all explored catches, the maximum
 probability of female spawning biomass at the start of `r end_yr + 1` dropping
-below `r b_10` is 0%, and of dropping below `r b_40` is 10%
+below `r b_10` is 0%, and of dropping below `r b_40` is 6%
 (Table~\@ref(tab:es-risk-year-1-tab) and
 Figure~\@ref(fig:es-risk-year-1-fig)).
-As the large 2010, 2014, and 2016 cohorts continue to age, their biomass is
+As the above average 2014 and 2016 cohorts continue to age, their biomass is
 expected to decrease as losses from mortality outweigh increases from growth.
-The estimated above-average (yet still highly uncertain) 2020 cohort will
+The estimated above-average (yet still highly uncertain) 2020 and 2021 cohorts will
 continue to play a large role in determining female spawning biomass during
 the forecast years presented here.
 
