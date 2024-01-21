@@ -1029,10 +1029,11 @@ For example, the 1980 median recruitment (the highest in the time series) of
 `r f(recruitment_med_to_compare["1980"], 1)`~billion individuals is now estimated to
 be somewhat larger than the 2010 recruitment of
 `r f(recruitment_med_to_compare["2010"], 1)`~billion, whereas in last year's
-assessment it was
-`r f(prev_assess_recruitment_med["1980"], 1)`~billion compared to
+assessment the 1980 median was
+`r f(prev_assess_recruitment_med["1980"], 1)`~billion, very close to the 2010
+median of
 `r f(prev_assess_recruitment_med["2010"], 1)`~billion.
-This looks to be caused by the penultimate bridging step of using the modelled
+This change appears to be caused by the penultimate bridging step of using the modelled
 temporal weight-at-age inputs (compare the red to blue steps in
 Figure~\@ref(fig:main-bridge-summary-fig-1) noting the increase, on the log
 scale, for 1980 and the slight decrease for 2010).
@@ -1087,7 +1088,7 @@ The current assessment estimates a strong 2014 year class
 `r top_coh(base_model, 2022, ret_cohort = 2014)`% of the 2022 catch, and
 `r top_coh(base_model, 2023, ret_cohort = 2014)`% of the 2023 catch.
 
-The 2016 cohort also appears to be above average, comprising
+The 2016 cohort also appears to be strong, comprising
 `r top_coh(base_model, 2018, ret_cohort = 2016)`% of the 2018 catch,
 `r top_coh(base_model, 2019, ret_cohort = 2016)`% of the 2019 catch,
 `r top_coh(base_model, 2020, ret_cohort = 2016)`% of the 2020 catch,
@@ -1095,27 +1096,31 @@ The 2016 cohort also appears to be above average, comprising
 `r top_coh(base_model, 2022, ret_cohort = 2016)`% of the 2022 catch, and
 `r top_coh(base_model, 2023, ret_cohort = 2016)`% of the 2023 catch.
 
-ANDY to carry on from HERE.
+The large size of the 2014 and 2016 cohorts is informed by
+observations from several years of fishery data and the acoustic survey.
+For all other years from 2011 to 2019, the model currently estimates small year classes
+<!-- see: yrs_since_2010_recruitment_med_below_mean -->
+(median recruitment well below the mean of all median
+recruitments).
+As noted above, the size of the 2020 cohort is estimated to be somewhat smaller than
+in last year's assessment (though last year's estimate was highly uncertain),
+due to the introduction of new information from the 2023 age-2+ biomass index and
+survey age composition data (Figure~\@ref(fig:main-bridge-summary-fig-1)).
+The 2021 cohort strength is only informed by fishery data and the 2023 biomass
+survey, and is estimated to be potentially large with a median and 95% credible
+interval of `r recruitment_med_in_2021` (`r recruitment_lower_in_2021`--
+`r recruitment_upper_in_2021`)~billion fish.
 
-The absolute size of the 2014 year class has now stabilized after observations
-across eight years of fishery observations and three acoustic surveys. The
-2016 year class is estimated to be above average (similar in size to the 2008
-year class) from six years of fishery data and two years of survey data.
-Since 2020, the model currently estimates small 2011, 2013, 2015, 2018, 2019,
-and 2021 year classes (median recruitment well below the mean of all median
-recruitments) and near average 2012 and 2017 year class. With the addition of
-the age-1 index, there is information beyond just fishery encounters in the
-data to estimate the size of the 2020 year class. Collectively, these data
-indicate that the 2020 year class is likely well above average. The much
-smaller 2019 year class is informed by the `r last_survey_yr` biomass index
-and fishery data, but has no age-1 index, and the 2021 year class is only
-informed by fishery data. There is no information in the data to estimate the
+The 2022 cohort was observed by the age-1 index in 2023,
+suggesting it is probably not large (Figures~\@ref(fig:main-survey-age1-fig)
+and~\@ref(fig:main-recruitment-fig)), and it
+will not be observed as part of the age-2+ survey index until 2025. There is no information in the data to estimate the
 sizes of the `r end_yr-1` and `r end_yr` year classes. Retrospective analyses
 of year class strength for young fish have shown the estimates of recent
-recruitment to be unreliable prior to at least model age-3 (observed at age-2)
+recruitment to be unreliable prior to at least model age-3 (observed at age-2
+the previous year)
 without a survey in the most recent year and age-2 (observed at age-1) with a
-survey. While the 2020 cohort was observed by the age-1 index in 2021, it
-will not be observed by the acoustic survey until 2023.
+survey.
 
 From Figure~\@ref(fig:main-recruitment-fig) it looks as though the 2014
 recruitment could be as large as the 2010 recruitment. However, the assessment
@@ -1125,19 +1130,23 @@ Figure~\@ref(fig:main-recruitment-fig) is because large MCMC estimates of 2010
 recruitment are associated with large estimates of 2014 recruitment
 (presumably with large estimates of `r r_0`). By scaling all recruitments by
 the 2010 recruitment, Figure~\@ref(fig:main-recruitment-scale-all-fig) provides
-an intuitive way to compare recruitment across years (see Appendix~H of
-@JTC2022 for motivation and full methods). It shows that there have only been
-two historical recruitment events (1980 and 1984) that might be as large as
-in 2010, whereas Figure~\@ref(fig:main-recruitment-fig) suggests that 1970,
-1999 and 2014 could also possibly be larger than in 2010, giving an
+an intuitive way to compare recruitment across years [see
+@JTC2022 for motivation and methods]. It shows that
+only the 1980 and 1984 recruitments are probably larger than 2010 (median
+relative values $>1$), and the 1970
+recruitment has a small chance of being as large as 2010.
+Whereas Figure~\@ref(fig:main-recruitment-fig) suggests that 1967, 1973, 1977,
+1999, 2014, 2020, and 2021 could also possibly be larger than in 2010, giving an
 over-optimistic impression of how often we can expect cohorts the size of
-the 2010 cohort to occur. The 2020 cohort is still very uncertain but has a
-`r prob_percent_2020_rec_gt_2010_rec`% chance of exceeding the 2010 cohort,
-while the 2021 cohort is definitely smaller than the 2010 cohort
+the 2010 cohort to occur. The 2021 cohort is still very uncertain but has a
+small chance of
+<!-- `r prob_percent_2021_rec_gt_2010_rec` but need .rds file rebuilt, so just -->
+<!-- saying small; that value, and 2022, 2023, 202 will be there for 2025 assessment -->
+chance of exceeding the 2010 cohort
 (Figure~\@ref(fig:main-recruitment-scale-all-fig)). Participants in the `r sp`
-process have an intuition that the 2010 is a very large recruitment event --
-Figure~\@ref(fig:main-recruitment-scale-all-fig) shows how it is the largest for
-at least 30 years, and that such large cohorts are rarer than is inferred
+process have an intuition that the 2010 is a very large recruitment event
+-- Figure~\@ref(fig:main-recruitment-scale-all-fig) shows how it is the largest in
+the last 30~years, and that such large cohorts are rarer than is inferred
 from Figure~\@ref(fig:main-recruitment-fig).
 
 The estimated recruitments with uncertainty for each year and the overall

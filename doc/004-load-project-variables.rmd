@@ -530,6 +530,8 @@ recruitment_med_to_compare <- mc$rmed[compareable_names]
 
 # Recruitment estimates for cohorts
 # this assessment's median estimate of cohorts recruitment
+# These seem to rely on last year's assessment, so are currently (2024-01-21)
+# wrong because of Issue #1106.
 med_est_2021_rec <-
   f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]), 1)
 med_est_2020_rec <-
@@ -578,9 +580,9 @@ prob_next_over_b40 <-
                                                   assess_yr + 1, "<0.40")]),
     0)
 # ... Canadian (DFO) provisional reference points -----------------------------
-dfo_probs_curr <- base_model$risks[[1]] |> 
+dfo_probs_curr <- base_model$risks[[1]] |>
   select(last_col(2):last_col())
-dfo_probs_fore <- base_model$risks[[2]] |> 
+dfo_probs_fore <- base_model$risks[[2]] |>
   select(last_col(2):last_col())
 # ... next year DFO probs given largest catch this year -----------------------
 dfo_prob_next_over_40bmsy <-
@@ -627,8 +629,8 @@ catches_below_200000_since_1986 <-
 # Canadian year range for ages
 can_age_yrs <- c(can_ft_age_df$year,
                  can_ss_age_df$year,
-                 can_jv_age_df$year) |> 
-  unique() |> 
+                 can_jv_age_df$year) |>
+  unique() |>
   sort()
 can_age_yrs_min <- min(can_age_yrs)
 can_age_yrs_max <- max(can_age_yrs)
@@ -755,6 +757,10 @@ recruitment_lower_in_2016 <- f(mc$rlower["2016"], 3)
 recruitment_med_in_2016 <- f(mc$rmed["2016"], 3)
 recruitment_upper_in_2016 <- f(mc$rupper["2016"], 3)
 
+recruitment_lower_in_2021 <- f(mc$rlower["2021"], 3)
+recruitment_med_in_2021 <- f(mc$rmed["2021"], 3)
+recruitment_upper_in_2021 <- f(mc$rupper["2021"], 3)
+
 sd_med_recr_dev_estimates <-
   f(sd(mc$devmed[names(mc$devmed) >= 1970 &
                    names(mc$devmed) <= (last_data_yr - 2)]), 2)
@@ -812,6 +818,10 @@ rec_2014 <- get_rec_ci(last_yr_base_model, base_model, 2014)
 rec_2016 <- get_rec_ci(last_yr_base_model, base_model, 2016)
 rec_2017 <- get_rec_ci(last_yr_base_model, base_model, 2017)
 rec_2020 <- get_rec_ci(last_yr_base_model, base_model, 2020)
+rec_2021 <- get_rec_ci(last_yr_base_model, base_model, 2021)
+rec_2022 <- get_rec_ci(last_yr_base_model, base_model, 2022)
+rec_2023 <- get_rec_ci(last_yr_base_model, base_model, 2023)
+rec_2024 <- get_rec_ci(last_yr_base_model, base_model, 2024)
 
 # Estimated prop at age (numbers) of the catch in first forecast year ---------
 fore_catch_prop <- map_df(extramc$natsel_prop * 100, ~{f(median(.x))}) |>
