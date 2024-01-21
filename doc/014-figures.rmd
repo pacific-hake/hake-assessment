@@ -921,7 +921,7 @@ plot_stock_recruitment(base_model)
 ```
 
 (ref:main-fishing-intensity-cap) Trend in median relative fishing intensity
-(relative to the `r fspr_40` management level) through `r end_yr - 1`} with
+(relative to the `r fspr_40` management level) through `r end_yr - 1` with
 95% posterior credibility intervals. The `r fspr_40` management level defined
 in the Joint U.S.-Canada Agreement for `r sp` is shown as a horizontal line
 at 1.0.
@@ -937,7 +937,7 @@ plot_fishing_intensity(base_model)
 
 (ref:main-exploitation-fraction-cap) Trend in median exploitation fraction
 (catch divided by age-2+ biomass) through `r end_yr - 1` with 95% posterior
-credibility intervals. Dotted lines represent exploitation rates of 10% and
+credibility intervals. Dashed lines represent exploitation rates of 10% and
 20% of the total biomass.
 
 (ref:main-exploitation-fraction-alt) This figure shows that the current

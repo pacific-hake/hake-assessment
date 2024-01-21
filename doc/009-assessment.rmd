@@ -1165,28 +1165,26 @@ the age compositions and the age-1 index, is `r sd_med_recr_dev_estimates`.
 The median estimated relative fishing intensity on the stock is below
 `r f_40` for all years (Figure~\@ref(fig:main-fishing-intensity-fig) and
 Tables~\@ref(tab:main-median-posterior-tab) and
-\@ref(tab:main-ci-posterior-tab)). It was close to `r f_40` in 2008 and 2010,
-but harvest in those years did not exceed the catch limits that were specified,
+\@ref(tab:main-ci-posterior-tab)). It was close to `r f_40` in 1999 and 2006--2008,
+but catches in 2006--2008 did not exceed the catch limits that were specified,
 based on the best available science and harvest control rules in place at the
-time. Exploitation fraction (catch divided by biomass of fish of age-2 and
+time; however, catch did exceed the catch limit in 1999 (Table~\@ref(tab:main-landings-tac-tab)). Exploitation fraction (catch divided by biomass of fish of age-2 and
 above) has shown relatively similar patterns
 (Figure~\@ref(fig:main-exploitation-fraction-fig) and
 Tables~\@ref(tab:main-median-posterior-tab) and
 \@ref(tab:main-ci-posterior-tab)). Although displaying similar patterns, the exploitation fraction does not necessarily correspond to fishing intensity
 because fishing intensity more directly accounts for the age-structure of
 both the population and the catch. Median relative fishing intensity is
-estimated to have declined from `r median_intensity_2010`% in 2010 to
-`r median_intensity_2015`% in 2015, and then it leveled off around 70% from
-2016 to 2019 before declining to `r median_intensity_2022`% in 2022. The
+estimated to have declined from `r median_intensity_2011`% in 2011 to
+`r median_intensity_2015`% in 2015, and then it leveled off around 78-90% from
+2016 to 2019 before declining to `r median_intensity_2023`% in 2023. The
 median exploitation fraction has increased from a recent low of
-`r exploitation_med_2012` in 2012 to `r exploitation_med_2017` in 2017 where
-it remained relatively stable before dropping back to 2012--2015 levels in
-2022. Although there is a considerable amount of imprecision around these
+`r exploitation_med_2012` in 2012 to `r exploitation_med_2021` in 2021 then declined
+to `r exploitation_med_2023` in 2023.
+Although there is a considerable amount of imprecision around these
 recent estimates due to uncertainty in recruitment and spawning biomass,
 the 95% posterior credibility interval of relative fishing intensity was
-below `r f_40` from 2012 through 2016 and again from 2019 to 2022 (Figure~\@ref(fig:main-fishing-intensity-fig)). The median estimate for 2017
-and 2018 is below `r f_40` though the 95% posterior credibility interval
-does include `r f_40`.
+below `r f_40` from 2012-- 2015 and again in 2020, 2021, and 2023 (Figure~\@ref(fig:main-fishing-intensity-fig)).
 
 **Management performance**
 
