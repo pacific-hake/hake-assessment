@@ -593,7 +593,7 @@ table_risk(
 ```
 
 ```{r main-parameter-estimates-sens-1-tab, results = "asis", echo = FALSE}
-if(!is.na(sens_models[[1]])){
+if(!all(is.na(sens_models[[1]]))){
   table_param_est(
     models = sens_models[[1]],
     model_nms = sens_models_names[[1]],
@@ -621,7 +621,7 @@ if(!is.na(sens_models[[1]])){
 
 ```{r main-parameter-estimates-sens-2-tab, results = "asis", echo = FALSE}
 
-if(!is.na(sens_models[[1]])){
+if(!all(is.na(sens_models[[1]]))){
   table_param_est(
     models = sens_models[[2]],
     model_nms = sens_models_names[[2]],
@@ -649,7 +649,7 @@ if(!is.na(sens_models[[1]])){
 
 ```{r main-parameter-estimates-sens-3-tab, results = "asis", echo = FALSE}
 
-if(!is.na(sens_models[[1]])){
+if(!all(is.na(sens_models[[1]]))){
   table_param_est(
     models = sens_models[[3]],
     model_nms = sens_models_names[[3]],

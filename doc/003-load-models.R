@@ -33,8 +33,9 @@ prepend_to_bridge <- c(TRUE, FALSE)
 # when plotting. Should only be 1 for the first one or two, then zeroes.
 # This vector must be 1 longer than the above lists, because last year's
 # base model is prepended to those lists
-bridge_model_end_yr <- list(end_yr - c(1, rep(0, length(bridge_models_desc[[1]]))),
-                            end_yr - rep(0, length(bridge_models_desc[[2]])))
+bridge_model_end_yr <-
+  list(end_yr - c(1, rep(0, length(bridge_models_desc[[1]]))),
+       end_yr - rep(0, length(bridge_models_desc[[2]])))
 
 # This is a list of vectors of sensitivity groups (sensitivity models that
 # will be plotted against each other). It can be `NA` if you want it to be
@@ -69,12 +70,12 @@ sens_models_desc <-
          "Phi t.v. selectivity (0.70)",
          "Phi t.v. selectivity (2.10)"))
 
-#bridge_models_dirs <- NA
-#bridge_models_desc <- NA
-#prepend_to_bridge <- NA
+# bridge_models_dirs <- NA
+# bridge_models_desc <- NA
+# prepend_to_bridge <- NA
 
-sens_models_dirs <- NA
-sens_models_desc <- NA
+# sens_models_dirs <- NA
+# sens_models_desc <- NA
 
 request_models_dirs <- NA
 request_models_desc <- NA
@@ -100,6 +101,7 @@ if(!exists("models")){
                         test_models_desc = test_models_desc,
                         prepend_to_bridge = prepend_to_bridge)
 }
+
 
 if(!exists("last_yr_base_model")){
   last_yr_base_model <-
