@@ -1141,7 +1141,7 @@ over-optimistic impression of how often we can expect cohorts the size of
 the 2010 cohort to occur. The 2021 cohort is still very uncertain but has a
 small chance of
 <!-- `r prob_percent_2021_rec_gt_2010_rec` but need .rds file rebuilt, so just -->
-<!-- saying small; that value, and 2022, 2023, 202 will be there for 2025 assessment -->
+<!-- saying small; that value, and 2022, 2023, 2024 will be there for 2025 assessment -->
 chance of exceeding the 2010 cohort
 (Figure~\@ref(fig:main-recruitment-scale-all-fig)). Participants in the `r sp`
 process have an intuition that the 2010 is a very large recruitment event
@@ -1193,7 +1193,8 @@ utilization rate (i.e., proportion of catch target removed) has been
 `r tot_last_10_yrs_attainment`% and catches have been below coast-wide
 targets (Table~\@ref(tab:main-landings-tac-tab)). From `r end_yr - 5` to
 `r end_yr - 1`, the mean utilization rates differed between the United States
-(`r us_last_5_yrs_attainment`%) and Canada (`r can_last_5_yrs_attainment`%).
+(`r us_last_5_yrs_attainment`%) and Canada (`r can_last_5_yrs_attainment`%),
+though Canada's was higher in 2020.
 In 2015, the utilization rate for the coast-wide fishery was the lowest of
 the previous decade (`r tot_2015_attainment`%) due, in part, to difficulties
 locating aggregations of fish and possibly economic reasons. Before 2015,
@@ -1204,29 +1205,32 @@ declined. In 2016, the utilization rate increased but remained below pre-2015
 levels, despite the total 2016 catch being one of the highest of the preceding
 years. This is in large part due to increasing catch targets as biomass
 continues to increase. While the total utilization rate between 2017--2021 was
-relatively steady and close to the average over the last decade
-(`r tot_last_10_yrs_attainment`%), it decreased in 2022 to
-`r tot_last_yr_attainment`%. This is primarily due to the utilization rate in
-Canada declining since 2020 to a time-series low of 20.3% in 2022.
+relatively steady,
+<!-- and close to the average over the last decade (`r tot_last_10_yrs_attainment`%) -->
+it decreased to
+`r tot_penult_yr_attainment`% in `r last_data_yr - 1` and to
+`r tot_last_yr_attainment`% in `r last_data_yr`. This is due to the utilization rate in
+Canada steadily declining since 2020 to a time-series low of 16.5% in 2023, and
+also a fall in the U.S. utlization rate to 59.7% in 2023.
 Country-specific quotas (or catch targets) in 2020 and 2021 were specified
 unilaterally, due to the lack of an agreement on coast-wide 2020 and 2021
 TACs. The usual `r us_allotment_percent`% and `r can_allotment_percent`%
 allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
-Agreement for `r sp`, was once again implemented in 2022.
+Agreement for `r sp`, was once again implemented in 2022 and 2023.
 Total landings last exceeded the coast-wide quota in 2002 when utilization
 was 112%.
 
 As noted above, the median relative fishing intensity was below `r f_40`
 in all years. The median relative spawning biomass was above the `r b_40`
-reference point in all years except 2007--2010
+reference point in all years except 1999--2000 and 2007--2012
 (Table~\@ref(tab:main-median-posterior-tab) and
 Figure~\@ref(fig:main-relative-biomass-fig)).
 These are also shown on a phase plot of the joint history of relative
 spawning biomass and relative fishing intensity
 (Figure~\@ref(fig:main-phase-fig)). Relative spawning biomass increased from
-the lows in 2007--2010 with above average recruitment in 2008, 2010, 2014,
-2016, 2017, and 2020. Correspondingly, relative fishing intensity has
-remained well below `r f_40`, and total catch has been declining since the
+the lows in 2007--2012 with above average recruitment in 2008, 2010, 2014,
+2016, and 2020. Correspondingly, median relative fishing intensity has
+remained below `r f_40`, and total catch has been declining since the
 time series high in 2017. While there is large uncertainty in the `r end_yr-1`
 estimates of relative fishing intensity and relative spawning biomass,
 the model estimates a `r joint_percent_prob_above_below`% joint probability

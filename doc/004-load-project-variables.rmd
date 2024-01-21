@@ -80,6 +80,11 @@ tot_last_10_yrs_attainment <- ct_last10 |>
   pull(`tot_attain`) |>
   mean() |>
   f(1)
+tot_penult_yr_attainment <- ct_last2 |>
+  filter(Year == last_data_yr - 1) |>
+  pull(`tot_attain`) |>
+  mean() |>
+  f(1)
 tot_last_yr_attainment <- ct_last1 |>
   pull(`tot_attain`) |>
   mean() |>
