@@ -1020,24 +1020,49 @@ survey age compositions lowering the estimated 2020 recruitment
 
 **Recruitment**
 
-The new data for this assessment do not significantly change the pattern of
+The new data for this assessment do not significantly change the general pattern of
 recruitment estimated in recent assessments. However, estimates of absolute
-recruitment for the most recent years can change with new data. For example,
-this assessment's median estimate of the 2020 recruitment is
-`r f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]), 1)`
-~billion fish higher than in the last assessment (a
-`r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
-(prev_assess_recruitment_med)["2020"]) * 100), 0)`% increase).
-Similarly, estimates for 2019 and 2021 recruitments have changed by
+recruitment for the most recent years can change with new data, and the improved
+methods for modeling temporal weight-at-age and spatio-temporal maturity have
+also changed some historical estimated recruitments.
+For example, the 1980 median recruitment (the highest in the time series) of
+`r f(recruitment_med_to_compare["1980"], 1)`~billion individuals is now estimated to
+be somewhat larger than the 2010 recruitment of
+`r f(recruitment_med_to_compare["2010"], 1)`~billion, whereas in last year's
+assessment it was
+`r f(prev_assess_recruitment_med["1980"], 1)`~billion compared to
+`r f(prev_assess_recruitment_med["2010"], 1)`~billion.
+This looks to be caused by the penultimate bridging step of using the modelled
+temporal weight-at-age inputs (compare the red to blue steps in
+Figure~\@ref(fig:main-bridge-summary-fig-1) noting the increase, on the log
+scale, for 1980 and the slight decrease for 2010).
+
+Regarding more recent recruitments, this assessment's median estimate of the 2020 recruitment is
+<!-- check values carefully; use - sign and lower and decrease, or no - sign and -->
+<!-- higher and increase; could automate with abs() and ifelse() -->
+`r f(-((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]), 1)`
+~billion fish lower than in the last assessment (a
+`r f(-((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
+(prev_assess_recruitment_med)["2020"]) * 100), 0)`% decrease), due to the
+age-2+ biomass index and survey age composition data (Figure~\@ref(fig:main-bridge-summary-fig-1)).
+Similarly, estimates of 2019 recruitment have changed by
 `r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]) /
 (prev_assess_recruitment_med)["2019"]) * 100), 0)`%
-(`r f((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"], 1)`
-~billion fish) and
+(which is only `r f((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"], 1)`
+~billion fish because 2019 was already estimated to be a small year class).
+
+The 2021 recruitment is now estimated to be potentially large, whereas
+it was estimated to be below average in last year's assessment (for which the
+only information was the proportions of age-1 fish caught in the 2022 commerical
+fishery). The median has increased by
 `r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]) /
 (prev_assess_recruitment_med)["2021"]) * 100), 0)`%
 (`r f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]), 1)`
-~billion fish), respectively, but the general notion remains that recent
-recruitment is highly uncertain.
+~billion fish).
+The general notion remains that recent
+recruitment is highly uncertain, and estimates for recent years (based on
+limited data) can change substantially.
+
 
 `r sp` have low average recruitment with occasional large year classes
 (Figures~\@ref(fig:main-recruitment-fig) and
@@ -1048,9 +1073,8 @@ and 1999 supported much of the commercial catch from the 1980s to the
 mid-2000s. From 2000 to 2007, estimated recruitment was at some of the
 lowest values in the time series, but this was followed by an above average
 2008 year class and a very strong 2010 year class. Above average year classes
-occurred in 2014 and 2016, which have been sustaining the fishery until
-through the end of the last decade, with a probable very large 2020 year class
-entering the fishery currently.
+occurred in 2014 and 2016, which have been sustaining the fishery in recent
+years (Figure~\@ref(fig:main-age-comp-fits-fig)).
 
 The current assessment estimates a strong 2014 year class
 (Figure~\@ref(fig:main-numbers-at-age-fig)) comprising
@@ -1058,15 +1082,21 @@ The current assessment estimates a strong 2014 year class
 `r top_coh(base_model, 2017, ret_cohort = 2014)`% of the 2017 catch,
 `r top_coh(base_model, 2018, ret_cohort = 2014)`% of the 2018 catch,
 `r top_coh(base_model, 2019, ret_cohort = 2014)`% of the 2019 catch,
-`r top_coh(base_model, 2020, ret_cohort = 2014)`% of the 2020 catch
-`r top_coh(base_model, 2021, ret_cohort = 2014)`% of the 2021 catch, and
-`r top_coh(base_model, 2022, ret_cohort = 2014)`% of the 2022 catch.
+`r top_coh(base_model, 2020, ret_cohort = 2014)`% of the 2020 catch,
+`r top_coh(base_model, 2021, ret_cohort = 2014)`% of the 2021 catch,
+`r top_coh(base_model, 2022, ret_cohort = 2014)`% of the 2022 catch, and
+`r top_coh(base_model, 2023, ret_cohort = 2014)`% of the 2023 catch.
+
 The 2016 cohort also appears to be above average, comprising
 `r top_coh(base_model, 2018, ret_cohort = 2016)`% of the 2018 catch,
 `r top_coh(base_model, 2019, ret_cohort = 2016)`% of the 2019 catch,
-`r top_coh(base_model, 2020, ret_cohort = 2016)`% of the 2020 catch, and
-`r top_coh(base_model, 2021, ret_cohort = 2016)`% of the 2021 catch, and
-`r top_coh(base_model, 2022, ret_cohort = 2016)`% of the 2022 catch.
+`r top_coh(base_model, 2020, ret_cohort = 2016)`% of the 2020 catch,
+`r top_coh(base_model, 2021, ret_cohort = 2016)`% of the 2021 catch,
+`r top_coh(base_model, 2022, ret_cohort = 2016)`% of the 2022 catch, and
+`r top_coh(base_model, 2023, ret_cohort = 2016)`% of the 2023 catch.
+
+ANDY to carry on from HERE.
+
 The absolute size of the 2014 year class has now stabilized after observations
 across eight years of fishery observations and three acoustic surveys. The
 2016 year class is estimated to be above average (similar in size to the 2008
