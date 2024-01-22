@@ -731,7 +731,7 @@ increased `r assess_yr + 1` and `r assess_yr + 2` catch levels
 (Tables~\@ref(tab:es-risk-year-2-tab) and~\@ref(tab:es-risk-year-3-tab)
 and Figures~\@ref(fig:es-risk-year-2-fig) and~\@ref(fig:es-risk-year-3-fig)).
 
-(ref:es-depletion-comparison-cap) Median and 95 posterior
+(ref:es-depletion-comparison-cap) Median and 95% posterior
 credibility intervals of estimated relative spawning biomass to the start
 of `r end_yr` from the base model and projections to the start of `r forecast_yrs[length(forecast_yrs)]` for several management actions, which
 are defined in Table~\@ref(tab:es-decisions-biomass-tab).

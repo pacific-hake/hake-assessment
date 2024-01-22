@@ -19,16 +19,8 @@ plot_depl_fore_comparison <- function(
     x_expansion = 1,
     tick_prop = 1,
     vjust_x_labels = -2,
-    ylim = c(0, 3.5),
-    y_breaks = c(
-      0,
-      0.1,
-      0.4,
-      0.5,
-      1.0,
-      seq(1.5,
-          ylim[2],
-          by = 0.5)),
+    ylim = c(0, 2),
+    y_breaks = c(0, 0.1, 0.4, 0.5, 1, 1.5, 2),
     y_labels = expression(
       "0",
       "0.1B"[0],
@@ -36,19 +28,15 @@ plot_depl_fore_comparison <- function(
       "0.5",
       "B"[0],
       "1.5",
-      "2",
-      "2.5",
-      "3",
-      "3.5"),
+      "2"),
     y_colors = c(
       "black",
       "red",
       "green",
       "black",
       "blue",
-      rep("black", length(seq(1.5,
-                              ylim[2],
-                              by = 0.5)))),
+      "black",
+      "black"),
     alpha = 0.2,
     leg_pos = c(0.15, 0.83),
     leg_ncol = 1,
@@ -64,7 +52,7 @@ plot_depl_fore_comparison <- function(
   names(fore_models) <- nice_nms
   extract_depval <- function(nm, inc_fore_yr = FALSE){
     tib <- map(fore_models, ~{
-      tmp <- .x$mcmccalcs[[nm]]
+      tmp <- .x$depl[rownames(.x$depl) == nm, ]
       nms <- names(tmp)
       wch_yrs <- which(!is.na(suppressWarnings(as.numeric(nms))))
       tmp[wch_yrs]
@@ -80,22 +68,45 @@ plot_depl_fore_comparison <- function(
     }
   }
 
-  nrow_out <- length(unique(extract_depval("dmed", inc_fore_yr = TRUE)$year))
+  nrow_out <- length(unique(extract_depval("50%", inc_fore_yr = TRUE)$year))
   nice_nms_ordered <- map(nice_nms, ~{rep(.x, nrow_out)}) |> unlist()
 
-  fore <- bind_cols(extract_depval("dmed", inc_fore_yr = TRUE),
-                    extract_depval("dlower"),
-                    extract_depval("dupper")) |>
+  fore <- bind_cols(extract_depval("50%", inc_fore_yr = TRUE),
+                    extract_depval("5%"),
+                    extract_depval("95%")) |>
     mutate(model = factor(model, levels = nice_nms))
 
   fore_future <- fore |>
     mutate(year = as.numeric(year)) |>
     filter(year >= min(forecast_yrs))
 
-  historic <- fore |>
-    mutate(year = as.numeric(year)) |>
-    filter(model == nice_nms[length(nice_nms)],
-           !year %in% forecast_yrs[-1]) |>
+  historic_med <- enframe(model$mcmccalcs$dmed)
+  historic_lo <- enframe(model$mcmccalcs$dlower)
+  historic_hi <- enframe(model$mcmccalcs$dupper)
+  historic <- historic_lo |>
+    full_join(historic_med, "name") |>
+    full_join(historic_hi, "name") |>
+    mutate(name = as.numeric(name))
+  names(historic) <- c("year", "5%", "50%", "95%")
+  # Remove forecast years from historic
+  years_rm_historic <- sort(unique(fore_future$year))[-1]
+  historic <- historic |>
+    filter(!year %in% years_rm_historic)
+  # Add model column to historic
+  historic <- historic |>
+    mutate(model = tail(levels(fore_future$model), 1)) |>
+    mutate(model = factor(model)) |>
+    select(model, everything())
+  # Replace last year of historic with first year of projection
+  year_repl_historic <- model$endyr + 1
+  # Get the last year of historic and modify it
+  historic <- historic |>
+    filter(year != year_repl_historic)
+  first_yr_row <- fore_future |>
+    filter(year == year_repl_historic,
+           model == tail(levels(fore_future$model), 1))
+  historic <- historic |>
+    bind_rows(first_yr_row) |>
     filter(year %in% xlim[1]:xlim[2])
 
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
@@ -106,9 +117,9 @@ plot_depl_fore_comparison <- function(
                   color = model,
                   group = model,
                   x = year,
-                  y = dmed,
-                  ymin = dlower,
-                  ymax = dupper)) +
+                  y = `50%`,
+                  ymin = `5%`,
+                  ymax = `95%`)) +
     scale_fill_manual(values = plot_color(length(fore_inds))) +
     scale_color_manual(values = plot_color(length(fore_inds))) +
     coord_cartesian(xlim = xlim,

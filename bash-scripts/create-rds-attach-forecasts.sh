@@ -48,5 +48,5 @@ exist, bailing out." ; exit 1; }
   suppressPackageStartupMessages(devtools::load_all()); \
   create_rds_attach_forecasts(model_path = '$model_path', \
                               verbose = TRUE)"; \
-  printf "\nFinished attaching foreecasts to base model RDS file\n"; \
+  printf "\nFinished attaching forecasts to base model RDS file\n"; \
 )
