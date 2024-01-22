@@ -88,7 +88,7 @@ plot_depl_fore_comparison <- function(
     full_join(historic_hi, "name") |>
     mutate(name = as.numeric(name))
   names(historic) <- c("year", "5%", "50%", "95%")
-  # Remove forecast years from historic
+  # Remove first year from forecast years
   years_rm_historic <- sort(unique(fore_future$year))[-1]
   historic <- historic |>
     filter(!year %in% years_rm_historic)
@@ -97,17 +97,27 @@ plot_depl_fore_comparison <- function(
     mutate(model = tail(levels(fore_future$model), 1)) |>
     mutate(model = factor(model)) |>
     select(model, everything())
-  # Replace last year of historic with first year of projection
-  year_repl_historic <- model$endyr + 1
-  # Get the last year of historic and modify it
   historic <- historic |>
-    filter(year != year_repl_historic)
-  first_yr_row <- fore_future |>
-    filter(year == year_repl_historic,
-           model == tail(levels(fore_future$model), 1))
-  historic <- historic |>
-    bind_rows(first_yr_row) |>
     filter(year %in% xlim[1]:xlim[2])
+
+  # Replace first year of forecast with the last year of historic (so ribbons
+  # are continuous)
+  year_repl_historic <- model$endyr + 1
+  fore_tmp_rows <- fore_future |>
+    filter(year == year_repl_historic) |>
+    select(-`50%`, -`5%`, -`95%`)
+  fore_future <- fore_future |>
+    filter(year != year_repl_historic)
+
+  hist_row <- historic |>
+    filter(year == year_repl_historic) |>
+    select(-model)
+
+  fore_tmp_rows <- fore_tmp_rows |>
+    left_join(hist_row, "year")
+
+  fore_future <- fore_future |>
+    bind_rows(fore_tmp_rows)
 
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
                                      modulo = x_labs_mod)
