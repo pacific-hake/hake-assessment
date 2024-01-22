@@ -25,7 +25,6 @@ extract_survey_index_fits <- function(model_lst,
   fleet <- ifelse(survey_type == "age2", 2, 3)
 
   type <- match.arg(type)
-
   out <- map2(model_lst, model_names, ~{
     .x$extra_mcmc[[type]] |>
       filter(fleet == !!fleet) |>

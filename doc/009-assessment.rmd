@@ -1139,10 +1139,7 @@ Whereas Figure~\@ref(fig:main-recruitment-fig) suggests that 1967, 1973, 1977,
 1999, 2014, 2020, and 2021 could also possibly be larger than in 2010, giving an
 over-optimistic impression of how often we can expect cohorts the size of
 the 2010 cohort to occur. The 2021 cohort is still very uncertain but has a
-small chance of
-<!-- `r prob_percent_2021_rec_gt_2010_rec` but need .rds file rebuilt, so just -->
-<!-- saying small; that value, and 2022, 2023, 2024 will be there for 2025 assessment -->
-chance of exceeding the 2010 cohort
+small chance of exceeding the 2010 cohort
 (Figure~\@ref(fig:main-recruitment-scale-all-fig)). Participants in the `r sp`
 process have an intuition that the 2010 is a very large recruitment event
 -- Figure~\@ref(fig:main-recruitment-scale-all-fig) shows how it is the largest in
