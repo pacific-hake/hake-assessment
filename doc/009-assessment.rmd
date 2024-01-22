@@ -352,13 +352,13 @@ sample size for the age compositions [e.g. @StewartHamel2014].**
 > considered alternative methods, including that of @StewartHamel2014, and has
 > determined that the first step is to explore the handling of survey age composition
 > data (given that initial effective sample sizes and data source weighting is
-< relative to other data sources in the model). Currently, survey age
-< compositions represent age-structure associated with
-< the acoustic survey as viewed through an estimated selectivity curve for the
-< acoustic-trawl sampling net. Yet, selectivity for ages 2 and older with acoustics
-< is theoretically at or near one. The JTC plans to investigate whether there
-< is a more informative way to utilize survey age composition information
-< in the stock assessment model in the coming year.*
+> relative to other data sources in the model). Currently, survey age
+> compositions represent age-structure associated with
+> the acoustic survey as viewed through an estimated selectivity curve for the
+> acoustic-trawl sampling net. Yet, selectivity for ages 2 and older with acoustics
+> is theoretically at or near one. The JTC plans to investigate whether there
+> is a more informative way to utilize survey age composition information
+> in the stock assessment model in the coming year.*
 
 11. **The SRG notes that there have been multiple strong cohorts in the stock recently
 compared to earlier periods where there was only one strong cohort supporting the stock,

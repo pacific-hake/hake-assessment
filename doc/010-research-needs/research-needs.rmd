@@ -31,14 +31,17 @@ management strategy evaluation framework should be used, or further developed,
 to examine how information on recruitment can inform robust management
 decisions.
 
-1. Document the existing survey methodologies, protocols, and adaptive
+2. Document the existing survey methodologies, protocols, and adaptive
 survey-design decisions that lead to the development of `r sp` biomass and
 age-composition estimates and the relative age-1 index used in the stock
 assessment. Such documentation will ensure transparency, enable repeatability,
 and provide a record of changes in procedures over time. Also, continue to
 conduct research to improve the estimation of age composition and abundance
 from data collected during the acoustic survey. This includes, but is not
-limited to, research on species identification, target verification, target
+limited to, providing estimates of uncertainty for the age-1 index and
+investigating alternative ways to utilize survey age composition information
+in the stock assessment model.
+Additionally, research on species identification, target verification, target
 strength, implications of the south-to-north directionality of the survey,
 alternative technologies to assist in the survey (e.g., artificial intelligence
 and machine learning), and efficient analysis methods. The latter should
@@ -49,7 +52,7 @@ relationship, subjective scoring of echograms, thresholding methods, and
 methods to estimate the species-mix that are used to interpret the acoustic
 backscatter. Continue to work with acousticians and survey personnel from the
 Northwest Fisheries Science Center (and, more broadly, those involved with the
-U.S. Re-Envisioning West Coast Surveys Initiative) and Fisheries and Oceans
+U.S. West Coast Integrated Survey Initiative) and Fisheries and Oceans
 Canada to determine optimal survey designs given constraints, including
 designs that incorporate ecosystem-based factors and other potential target
 species (e.g., rockfish, euphausiids, and mesopelagics) for the
@@ -57,7 +60,7 @@ species (e.g., rockfish, euphausiids, and mesopelagics) for the
 be used, or further developed, to examine how changes in survey methods can be
 used to inform robust management decisions.
 
-1. Work with regional partners to develop an annual workflow that provides key
+3. Work with regional partners to develop an annual workflow that provides key
 metrics, indicators, or other summaries of general ecosystem conditions
 relevant to the `r sp` coast-wide stock.  In particular, include those that are
 potentially associated with `r sp` biology and ecology (e.g., recruitment,
