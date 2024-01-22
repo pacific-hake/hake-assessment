@@ -612,7 +612,7 @@ if(!all(is.na(sens_models[[1]]))){
       "indicates that the parameter or derived quantity was not estimated in ",
       "the model."),
     right_cols_cm = 1.8,
-    font_size = 9,
+    font_size = 8,
     header_font_size = 9,
     longtable = TRUE) |> 
     landscape()
