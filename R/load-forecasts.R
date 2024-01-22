@@ -90,32 +90,22 @@ load_forecasts <- function(model_path = NULL,
 
       # Get the values of interest, namely Spawning biomass and SPR for the two
       # decision tables in the executive summary
-      sb <- mcmc_out %>%
+      depl <- mcmc_out %>%
         select(grep("Bratio_", names(.)))
       spr <- mcmc_out %>%
         select(grep("SPRratio_", names(.)))
-      sbzero <- mcmc_out %>%
-        select(grep("SSB_Initial", names(.))) |>
-        mutate(across(everything(), ~{.x = .x / 1e6}))
-      depl <- sb |>
-        as_tibble() |>
-        bind_cols(sbzero) |>
-        mutate(across(everything(), ~{.x = .x / SSB_Initial})) |>
-        select(-SSB_Initial)
 
       # Strip out the Bratio_ and SPRratio_ headers so columns are years only
-      names(sb) <- gsub("Bratio_", "", names(sb))
+      #names(sb) <- gsub("Bratio_", "", names(sb))
       names(spr) <- gsub("SPRratio_", "", names(spr))
       names(depl) <- gsub("Bratio_", "", names(depl))
 
       # Now, filter out the projected years only
-      sb_proj_cols <- sb |>
-        select(all_of(as.character(forecast_yrs)))
       spr_proj_cols <- spr |>
         select(all_of(as.character(forecast_yrs)))
       depl_proj_cols <- depl |>
         select(all_of(as.character(forecast_yrs)))
-      sb_proj_cols <- na.omit(sb_proj_cols)
+
       spr_proj_cols <- na.omit(spr_proj_cols)
       depl_proj_cols <- na.omit(depl_proj_cols)
 
@@ -129,15 +119,7 @@ load_forecasts <- function(model_path = NULL,
         as_tibble() |>
         transmute(year = Year, catch = `Catch or F`) |>
         mutate(catch = ifelse(catch < 1, 0, catch))
-      list(biomass = apply(sb_proj_cols,
-                           2,
-                           quantile,
-                           probs = probs_forecast,
-                           na.rm = TRUE) |>
-             t() |>
-             as_tibble(rownames = "yr") |>
-             mutate(yr = as.numeric(yr)),
-           depl = apply(depl_proj_cols,
+      list(depl = apply(depl_proj_cols,
                         2,
                         quantile,
                         probs = probs_forecast,
