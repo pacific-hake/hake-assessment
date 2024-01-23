@@ -1100,9 +1100,9 @@ The large size of the 2014 and 2016 cohorts is informed by
 observations from several years of fishery data and the acoustic survey.
 For all other years from 2011 to 2019, the model currently estimates small year classes
 <!-- see: yrs_since_2010_recruitment_med_below_mean -->
-(median recruitment well below the mean of all median
+(median recruitment below the mean of all median
 recruitments).
-As noted above, the size of the 2020 cohort is estimated to be somewhat smaller than
+As noted above, the 2020 cohort is estimated to be somewhat smaller than
 in last year's assessment (though last year's estimate was highly uncertain),
 due to the introduction of new information from the 2023 age-2+ biomass index and
 survey age composition data (Figure~\@ref(fig:main-bridge-summary-fig-1)).
@@ -1160,9 +1160,9 @@ the age compositions and the age-1 index, is `r sd_med_recr_dev_estimates`.
 **Exploitation status**
 
 The median estimated relative fishing intensity on the stock is below
-`r f_40` for all years (Figure~\@ref(fig:main-fishing-intensity-fig) and
+1.0 `r median_intensity_above_1_text` (Figure~\@ref(fig:main-fishing-intensity-fig) and
 Tables~\@ref(tab:main-median-posterior-tab) and
-\@ref(tab:main-ci-posterior-tab)). It was close to `r f_40` in 1999 and 2006--2008,
+\@ref(tab:main-ci-posterior-tab)). It was close to 1.0 in 1999 and 2006--2008,
 but catches in 2006--2008 did not exceed the catch limits that were specified,
 based on the best available science and harvest control rules in place at the
 time; however, catch did exceed the catch limit in 1999 (Table~\@ref(tab:main-landings-tac-tab)). Exploitation fraction (catch divided by biomass of fish of age-2 and
@@ -1173,7 +1173,7 @@ Tables~\@ref(tab:main-median-posterior-tab) and
 because fishing intensity more directly accounts for the age-structure of
 both the population and the catch. Median relative fishing intensity is
 estimated to have declined from `r median_intensity_2011`% in 2011 to
-`r median_intensity_2015`% in 2015, and then it leveled off around 78-90% from
+`r median_intensity_2015`% in 2015, and then leveled off around 78-90% from
 2016 to 2019 before declining to `r median_intensity_2023`% in 2023. The
 median exploitation fraction has increased from a recent low of
 `r exploitation_med_2012` in 2012 to `r exploitation_med_2021` in 2021 then declined
@@ -1191,7 +1191,7 @@ utilization rate (i.e., proportion of catch target removed) has been
 targets (Table~\@ref(tab:main-landings-tac-tab)). From `r end_yr - 5` to
 `r end_yr - 1`, the mean utilization rates differed between the United States
 (`r us_last_5_yrs_attainment`%) and Canada (`r can_last_5_yrs_attainment`%),
-though Canada's was higher in 2020.
+though Canada's rate was higher than the U.S.'s in 2020.
 In 2015, the utilization rate for the coast-wide fishery was the lowest of
 the previous decade (`r tot_2015_attainment`%) due, in part, to difficulties
 locating aggregations of fish and possibly economic reasons. Before 2015,

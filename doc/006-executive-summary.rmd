@@ -76,7 +76,7 @@ table_catch(
 
 In this document, the terms catch and landings are used interchangeably.
 Estimates of discard within the target fishery are included, but discarding
-of `r sp` in non-target fisheries is not. Discard from all fisheries, 
+of `r sp` in non-target fisheries is not. Discard from all fisheries,
 including those that do not target hake, is estimated to be less than 1% of
 landings in recent years. During the last five years, catches were
 above the long-term average catch (`r f(long_term_avge_ct)`~t),
@@ -84,7 +84,8 @@ but have been in decline over that period (especially in Canada). Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
 1999 year class, with the cumulative removal (through `r end_yr - 1`) from
 that cohort estimated at approximately
-`r f(cohort_catch_1999 / 1e6, 2)` Mt. Through `r last_data_yr`, the
+`r f(cohort_catch_1999 / 1e6, 2)` Mt [1~Mt = 1~megatonne = 1~million metric
+tonnes]. Through `r last_data_yr`, the
 cumulative catch of the 2010, 2014, and 2016 year classes is estimated to be
 about `r f(cohort_catch_2010 / 1e6, 2)` Mt,
 `r f(cohort_catch_2014 / 1e6, 2)` Mt, and
@@ -116,7 +117,7 @@ the `r last_data_yr` year class.
 (Mt). Approximate 95% confidence intervals are based on
 sampling variability (intervals without squid/hake apportionment
 uncertainty in 2009 are displayed in black).
-  
+
 (ref:es-survey-biomass-alt) This figure shows that the survey estimate has
 decreased from 2019 to 2021.
 
@@ -216,41 +217,46 @@ plot_biomass(list(base_model),
 The stock is estimated to have increased rapidly and was above unfished
 equilibrium in the mid-1970s and mid-1980s (after two large recruitment
 events in the early 1980s). It then declined steadily to a low in 1999. This
-was followed by a brief increase to a peak in 2002 as the very large 1999 year
+was followed by a brief increase to a peak in 2003 as the very large 1999 year
 class matured. The 1999 year class largely supported the fishery for several
 years due to relatively small recruitment events between 2000 and 2007. With
 the aging 1999 year class, median female spawning biomass declined throughout
-the late 2000s, reaching a time-series low of `r median_bio_min` Mt in
+the late 2000s, reaching a time-series low of `r median_bio_min`~Mt in
 `r median_bio_min_yr`. Median female spawning biomass is estimated to have
-peaked again in 2013 and 2014 due to a very large 2010 year class and an
+peaked again in 2014 due to a very large 2010 year class and an
 above-average 2008 year class. The subsequent decline from 2014 to 2016 is
 primarily from the 2010 year class surpassing the age at which the gains in
 weight from growth are greater than the losses in weight from mortality
 (growth-mortality transition). The 2014 year class is estimated to be large,
 though not as large as the 1999 and 2010 year classes, increasing the biomass
-in 2017. The estimated biomass was relatively steady from 2017 to 2019 and then
-declined in 2020 and 2021 due to the 2014 and 2016 year classes moving through
-the growth-mortality transition during a period of high catches. The increase
-in female spawning biomass since 2021 is due to the expected above average
-2020 cohort entering maturity and the recent declining trend in catch.
+in 2017.
+The estimated biomass mostly declined
+from 2018 to 2022 due to the 2014 and 2016 year classes moving through the
+growth-mortality transition during a period of high catches. The increase in
+female spawning biomass since 2021 is due to the expected above-average 2020 and
+potentially large 2021 cohorts entering maturity, and the recent declining trend in catch.
 
-The median estimate of the `r end_yr` relative spawning biomass (female
-spawning biomass at the start of `r end_yr` divided by that at unfished
-equilibrium, `r b_0`) is `r curr_depl_median`%. However, the uncertainty
-is particularly large this year, with a 95% posterior credibility interval
-from `r curr_depl_lower`% to `r curr_depl_upper`%
-(Table~\@ref(tab:es-biomass-tab), due to high uncertainty about the size of
-the 2020 cohort, which has not yet been sampled in the acoustic survey
-biomass index of age-2+ fish. The median estimate of the `r end_yr` female
-spawning biomass is `r curr_bio_median` Mt, with a 95% posterior
-credibility interval from `r curr_bio_lower` to `r curr_bio_upper` Mt.
-The current estimate of the `r end_yr - 1` female spawning biomass is
-`r prev_bio_median` (`r prev_bio_lower`--`r prev_bio_upper`) Mt. This is
-higher than the `r prev_bio_median_last_assess` (`r prev_bio_lower_last_assess`
---`r prev_bio_upper_last_assess`) Mt estimated in the `r end_yr - 1`
-assessment. The increase appears to be due to the addition of 2022 fishery
-age-composition data, which suggests the 2020 cohort may be larger than the
-age-1 index alone was indicating in the last assessment.
+The median estimate of the `r end_yr` relative spawning biomass (spawning
+biomass at the start of `r end_yr` divided by that at unfished equilibrium,
+`r b_0`) is `r curr_depl_median`%. However, the uncertainty is large, with a
+95% posterior credibility interval from `r curr_depl_lower`% to
+`r curr_depl_upper`% (Table~\@ref(tab:es-biomass-tab)), partly due to remaining
+unknowns about the size of the
+potentially large 2021 cohort because the acoustic survey has only provided one year of
+information about it.
+
+The median estimate of the `r end_yr` female spawning biomass is
+`r curr_bio_median`~Mt (with a 95% posterior credibility interval from
+`r curr_bio_lower` to `r curr_bio_upper`~Mt). The current estimate of
+the `r end_yr - 1` female spawning biomass is `r prev_bio_median`
+(`r prev_bio_lower`--`r prev_bio_upper`)~Mt. This is less than half of the
+median, and a much narrower credibility interval, compared to the
+`r prev_bio_median_last_assess` (`r prev_bio_lower_last_assess`--
+`r prev_bio_upper_last_assess`)~Mt estimated in the `r end_yr - 1`
+assessment.
+The decrease appears to be due to the addition of the age-2+ biomass index
+pulling down the estimated biomass for recent years, plus the addition of the
+survey age compositions lowering the estimated 2020 recruitment.
 
 (ref:es-relative-biomass-cap) Median (solid line) of the posterior
 distribution for relative spawning biomass ($B_t / B_0$) through `r end_yr`
@@ -287,16 +293,37 @@ table_biomass(
 
 ## Recruitment {-}
 
-The addition of `r last_data_yr` data does not substantially change estimates
-of historical recruitment but recent recruitment estimates have changed
-substantially. For example, this assessment's median estimate of the 2020
-recruitment is
-`r med_est_2020_rec`~billion fish higher than in the last assessment (a 
-`r perc_inc_2020_rec_from_last_yr`% increase). Similarly, estimates for 2019
-and 2021 recruitments have changed by `r perc_inc_2019_rec_from_last_yr`%
-(`r med_est_2019_rec`~billion fish) and `r perc_inc_2021_rec_from_last_yr`%
-(`r med_est_2021_rec`~billion fish), respectively, but the general notion
-remains that recent recruitment is highly uncertain.
+The addition of `r last_data_yr` data changes the estimates of absolute
+recruitments for the most recent years, while
+the improved
+methods for modeling temporal weight-at-age and spatio-temporal maturity have
+also changed some historical estimated recruitments.
+For example, the 1980 median recruitment (the highest in the time series) of
+`r f(recruitment_med_to_compare["1980"], 1)`~billion individuals is now estimated to
+be somewhat larger than the 2010 recruitment of
+`r f(recruitment_med_to_compare["2010"], 1)`~billion, whereas in last year's
+assessment the 1980 median was
+`r f(prev_assess_recruitment_med["1980"], 1)`~billion, very close to the 2010
+median of
+`r f(prev_assess_recruitment_med["2010"], 1)`~billion.
+This assessment's median estimate of the 2020 recruitment is
+`r f(-((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]), 1)`
+~billion fish lower than in the last assessment (a
+`r f(-((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
+(prev_assess_recruitment_med)["2020"]) * 100), 0)`% decrease; though last year's
+estimate was particularly uncertain), informed by the
+age-2+ biomass index and survey age composition data.
+
+The 2021 recruitment is now estimated to be potentially large, whereas
+it was estimated to be below average in last year's assessment (with limited data);
+the median has increased by
+`r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]) /
+(prev_assess_recruitment_med)["2021"]) * 100), 0)`%
+(`r f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]), 1)`
+~billion fish).
+The general notion remains that recent
+`r sp` recruitment is highly uncertain, and estimates for recent years (based on
+limited data) can change substantially.
 
 ```{r es-recruitment-tab, results = "asis", echo = FALSE}
 
@@ -312,9 +339,6 @@ table_recruitment(
   font_size = 10,
   header_font_size = 9)
 ```
-
-`r sp` have low to moderate recruitment with occasional large year classes
-(Table~\@ref(tab:es-recruitment-tab) and Figure~\@ref(fig:es-recruitment-fig)).
 
 (ref:es-recruitment-cap) Medians (solid circles) and means ($\mathrm{X}$) of the
 posterior distribution for recruitment (billions of age-0 fish) with 95%
@@ -335,40 +359,27 @@ plot_recruitment(list(base_model),
                  leg_pos = "none")
 ```
 
-Large year classes in 1980, 1984, and 1999 supported much of the commercial
-catch from the 1980s to the mid-2000s. From 2000 to 2007, estimated
-recruitment was at some of the lowest values in the time series but this
-was followed by an above average 2008 year class. The strong 2010 year class
-comprised `r top_coh(base_model, 2014, ret_cohort = 2010)`% of the
-coast-wide commercial catch in 2014,
-`r top_coh(base_model, 2016, ret_cohort = 2010)`% of the 2016 catch,
-`r top_coh(base_model, 2018, ret_cohort = 2010)`% of the 2018 catch,
-`r top_coh(base_model, 2020, ret_cohort = 2010)`% of the 2020 catch, and
-`r top_coh(base_model, 2022, ret_cohort = 2010)`% of the 2022 catch.
-The decline from 2014 to 2016 was partly due to the large influx of the 2014
-year class (`r top_coh(base_model, 2016, ret_cohort = 2014)`% of the 2016
-catch was age-2 fish from the 2014 year class; this was larger than the
-proportion of age-2 fish, `r top_coh(base_model, 2012, ret_cohort = 2010)`%,
-from the 2010 year class in 2012). Since 2010, the model currently
-estimates small 2011, 2012, 2013, 2015, 2018, 2019 and 2021 year classes
-(median recruitment well below the mean of all median recruitments).
+`r sp` have low to moderate recruitment with occasional large year classes
+(Table~\@ref(tab:es-recruitment-tab) and Figure~\@ref(fig:es-recruitment-fig)).
+Very large year classes in 1980, 1984,
+and 1999 supported much of the commercial catch from the 1980s to the
+mid-2000s. From 2000 to 2007, estimated recruitment was at some of the
+lowest values in the time series, but this was followed by an above average
+2008 year class and a very strong 2010 year class. Above average year classes
+occurred in 2014 and 2016, which have been sustaining the fishery in recent
+years, with small year classes for all other years from 2011--2019(median recruitment well below the mean of all median recruitments).
 
-The 2014 and 2016 year classes are both larger than average, with 2014
-larger than 2016 but smaller than 2010. With the inclusion of the
-relative age-1 index, there is information beyond just fishery encounters in
-the data to estimate the size of the 2020 year class. Collectively, these
-data indicate that the 2020 year class is likely well above average. The
-much smaller 2019 year class is informed by the `r last_survey_yr`
-biomass index and fishery data but is not informed by the relative age-1
-index, and the 2021 year class is informed only by 2022 fishery data.
-There is no information in the data to estimate the sizes of the
-`r end_yr - 1` and `r end_yr` year classes. Retrospective analyses of
-year-class strength for young fish have shown the estimates of recent
-recruitment to be unreliable prior to at least a model age of three (i.e.,
-fish observed at age two) without a survey in the most recent year and
-two (i.e., fish observed at age one) with a survey. While the 2020 cohort
-was observed by the relative age-1 index in 2021, it will not be observed
-by the acoustic survey until 2023.
+The 2020 cohort is estimated to be above average and the 2021 cohort is
+potentially large, but is currently only informed by limited fishery data and the 2023 biomass
+survey.
+The 2022 cohort was observed by the age-1 index in 2023,
+suggesting it is probably not large. There is no information in the data to estimate the
+sizes of the `r end_yr-1` and `r end_yr` year classes. Retrospective analyses
+of year class strength for young fish have shown the estimates of recent
+recruitment to be unreliable prior to at least model age-3 (observed at age-2
+the previous year)
+without a survey in the most recent year and age-2 (observed at age-1) with a
+survey.
 
 ## Default harvest policy {-}
 
@@ -401,7 +412,7 @@ table_fishing_intensity(
 ```
 
 The median estimated relative fishing intensity on the stock is below the
-management level of 1.0 `r median_intensity_above_1_text` (see 
+management level of 1.0 `r median_intensity_above_1_text` (see
 Table~\@ref(tab:es-fishing-intensity-tab) for recent years and
 Figure~\@ref(fig:es-fishing-intensity-fig)).
 
@@ -421,43 +432,41 @@ plot_fishing_intensity(base_model, show_arrows = TRUE)
 ```
 
 Median exploitation fraction (catch divided by biomass of fish of age-2 and
-above) peaked in 2006 and reached similar levels in 1999 and 2008
-(Figure~\@ref(fig:es-exploitation-fraction-fig). Over the last five years, the
-median estimated exploitation fraction was the highest in 2020 followed
-closely by 2021 before dropping by nearly half in 2022
-(Table~\@ref(tab:es-fishing-intensity-tab). Median relative fishing intensity is
-estimated to have declined from `r median_intensity_2010`% in 2010 to 
-`r median_intensity_2015`% in 2015. It then leveled off around 70% from 2016
-to 2019 before declining to `r median_intensity_2022`% in 2022. The median
-exploitation fraction has, on average, increased from a recent low of
-`r exploitation_med_2012` in 2012 to `r exploitation_med_2020` in 2020
-before dropping back to 2012--2015 levels in 2022. There is a considerable
-amount of uncertainty around estimates of relative fishing intensity, with
-the 95% posterior credibility interval reaching above the `r fspr_40` management
-level (of 1.0) in 2017 and 2018 over the past decade
-(Figure~\@ref(fig:es-fishing-intensity-fig). Exploitation and fishing intensity
-rates do not always track well due to a combination of changing age
-distributions and changing selectivities over time.
+above) peaked in 1999 and 2006
+(Figure~\@ref(fig:es-exploitation-fraction-fig)). Over the last five years, the
+median estimated exploitation fraction was the highest in 2021 followed
+closely by 2020 before dropping by nearly half by 2023
+(Table~\@ref(tab:es-fishing-intensity-tab)).
+Median relative fishing intensity is
+estimated to have declined from `r median_intensity_2011`% in 2011 to
+`r median_intensity_2015`% in 2015, and then leveled off around 78-90% from
+2016 to 2019 before declining to `r median_intensity_2023`% in 2023. The
+median exploitation fraction has increased from a recent low of
+`r exploitation_med_2012` in 2012 to `r exploitation_med_2021` in 2021 then declined
+to `r exploitation_med_2023` in 2023.
+Although there is a considerable amount of imprecision around these
+recent estimates due to uncertainty in recruitment and spawning biomass,
+the 95% posterior credibility interval of relative fishing intensity was
+below `r f_40` from 2012-- 2015 and again in 2020, 2021, and 2023 (Figure~\@ref(fig:es-fishing-intensity-fig)).
+
 
 ## Management performance {-}
 
-Over the last decade (`r end_yr-10`--`r end_yr - 1`), the mean coast-wide
+Over the last decade (`r end_yr - 10`--`r end_yr - 1`), the mean coast-wide
 utilization rate (proportion of catch target removed) has been
-`r tot_last_10_yrs_attainment`% (Table~\@ref(tab:es-landings-tac-tab). Over
-the last five years (`r end_yr - 5` to `r end_yr - 1`), the mean utilization
-rates were `r us_last_5_yrs_attainment`% for the United States
-and `r can_last_5_yrs_attainment`% for Canada. While relatively stable during
-this time in the United States, the utilization rate in Canada has been
-declining since 2020 to a time-series low of 20.3% in 2022. Country-specific
-quotas (or catch targets) in 2020 and 2021 were specified unilaterally, due to
-the lack of an agreement on coast-wide 2020 and 2021 TACs. The usual
-`r us_allotment_percent`% and
-`r can_allotment_percent`% allocation of coast-wide TAC, as specified in the
-Joint U.S.-Canada Agreement for `r sp`, was once again implemented in 2022.
-
+`r tot_last_10_yrs_attainment`% and catches have been below coast-wide
+targets (Table~\@ref(tab:es-landings-tac-tab)). From `r end_yr - 5` to
+`r end_yr - 1`, the mean utilization rates differed between the United States
+(`r us_last_5_yrs_attainment`%) and Canada (`r can_last_5_yrs_attainment`%),
+though Canada's was higher than the U.S.'s in 2020.
+From 2020 the Canada rate steadily declined to a time-series low of 16.5% in 2023, and
+the U.S. rate fell to 59.7% in 2023.
+The usual `r us_allotment_percent`% and `r can_allotment_percent`%
+allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
+Agreement for `r sp`, was implemented in 2022 and 2023.
 Total landings last exceeded the coast-wide quota in 2002 when utilization
-was 112%, though the fishing intensity was relatively low that year due to
-the appearance of the 1999 year class.
+was 112%.
+
 
 (ref:es-exploitation-fraction-cap) Trend in median exploitation fraction
 (catch divided by age-2+ biomass) through `r end_yr - 1` with 95% posterior
@@ -513,29 +522,22 @@ plot_phase(base_model,
 
 \clearpage
 
-The median relative fishing intensity was below 1.0 in all years
-(Figures~\@ref(fig:es-fishing-intensity-fig) and~\@ref(fig:es-phase-fig)).
-The median relative spawning biomass was above the `r b_40` reference point
-in all years except 2007--2010 (Figures~\@ref(fig:es-relative-biomass-fig)
-and~\@ref(fig:es-phase-fig), and the median relative fishing intensity was below
+The median relative spawning biomass was above the 0.4
+reference point in all years except 1999--2000 and 2007--2012
+(Figures~\@ref(fig:es-relative-biomass-fig)
+and~\@ref(fig:es-phase-fig)), and the median relative fishing intensity has
+always been below
 1.0 (Figure~\@ref(fig:es-phase-fig)).
-The benchmark quantities, `r fspr_40` and `r b_40`, result in different median
-population sizes (see Table~\@ref(tab:es-reference-points-tab)), highlighting
-that there are subtle differences in these conceptual reference points.
-Between 2007 and 2010, median relative fishing intensity ranged from
-`r median_intensity_2007_to_2010_min`% to
-`r median_intensity_2007_to_2010_max`% and median relative spawning biomass
-between `r median_relative_bio_2007_to_2010_min` and
-`r median_relative_bio_2007_to_2010_max`. Biomass has risen from the 2010 low
-with the 2008, 2010, 2014, 2016, and 2020 recruitments, and median relative
-spawning biomass has been above the reference point of 40% since
-`r median_relative_bio_above_target_since`.
-
-While there is large uncertainty in the estimates of relative fishing
-intensity and relative spawning biomass, the model estimates a
-`r joint_percent_prob_above_below`% joint probability of being both
-above a relative fishing intensity of 1.0 in `r end_yr - 1` and below the
-`r b_40` relative spawning biomass level at the start of `r end_yr`.
+Relative spawning biomass increased from
+the lows in 2007--2012 with above average recruitment in 2008, 2010, 2014,
+2016, and 2020. Correspondingly, median relative fishing intensity has
+remained below 1, and total catch has been declining since the
+time series high in 2017. While there is large uncertainty in the `r end_yr-1`
+estimates of relative fishing intensity and relative spawning biomass,
+the model estimates a `r joint_percent_prob_above_below`% joint probability
+of being both above the `r f_40` relative fishing intensity in `r end_yr - 1`
+and below the `r b_40` relative spawning biomass level at the start of
+`r end_yr`.
 
 ## Reference points {-}
 
