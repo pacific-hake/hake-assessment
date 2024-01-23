@@ -115,8 +115,8 @@ the `r last_data_yr` year class.
 
 (ref:es-survey-biomass-cap) Acoustic survey biomass index of age-2+ fish
 (Mt). Approximate 95% confidence intervals are based on
-sampling variability (intervals without squid/hake apportionment
-uncertainty in 2009 are displayed in black).
+sampling variability (intervals without the additional squid/hake apportionment
+uncertainty included in 2009, black line).
 
 (ref:es-survey-biomass-alt) This figure shows that the survey estimate has
 decreased from 2019 to 2021.
@@ -333,7 +333,7 @@ table_recruitment(
   end_yr = end_yr - 1,
   caption = paste0(
     "Estimates of recent recruitment (millions of age-0 fish) and ",
-    "recruitment, deviations, where deviations below (above) zero indicate ",
+    "recruitment deviations, where deviations below (above) zero indicate ",
     "recruitment below (above) that estimated from the stock-recruit ",
     "relationship."),
   font_size = 10,
@@ -498,11 +498,11 @@ table_landings_tac(
 
 (ref:es-phase-cap) Estimated historical path of median relative spawning
 biomass in year $t$ and corresponding median relative fishing intensity in
-year $t - 1$. Labels show the time series start and end years and the year
-after the highest relative fishing intensity; labels correspond to year $t$
-(i.e., year of the relative spawning biomass). Gray bars span the 95%
-credibility intervals for `r end_yr` relative spawning biomass (horizontal)
-and `r end_yr - 1` relative fishing intensity (vertical).
+year $t - 1$. Labels show the time series start and end years; labels
+correspond to year $t$ (i.e., year of the relative spawning biomass).
+Gray bars span the 95% credibility intervals for `r end_yr` relative
+spawning biomass (horizontal) and `r end_yr - 1` relative fishing
+intensity (vertical).
 
 (ref:es-phase-alt) This figure shows that we are currently not overfishing
 nor in an overfished state.
@@ -510,8 +510,8 @@ nor in an overfished state.
 ```{r es-phase-fig, fig.cap = "(ref:es-phase-cap)"}
 
 plot_phase(base_model,
-           1966,
-           2023,
+           start_yr,
+           end_yr,
            cross_line_width = 0.5,
            cross_line_color = "black",
            init_lbl_x_off = -0.04,
