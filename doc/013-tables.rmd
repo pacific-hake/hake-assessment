@@ -613,6 +613,10 @@ table_risk(
   longtable = TRUE)
 ```
 
+<!-- The following ADJUST TABLE macro is used by the post-processor to shift
+the table left by this many inches. The margins are modified for this
+page only -->
+ADJUST TABLE 0.5
 ```{r main-parameter-estimates-sens-1-tab, results = "asis", echo = FALSE}
 if(!all(is.na(sens_models[[1]]))){
   table_param_est(
