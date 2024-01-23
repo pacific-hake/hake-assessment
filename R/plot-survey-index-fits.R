@@ -24,21 +24,18 @@ plot_survey_index_fits <- function(
     leg_ncol = 1,
     leg_font_size = 12,
     alpha = 1,
-    point_size = ts_pointsize,
+    point_size = 0.75,
     point_color = ts_single_model_pointcolor,
     point_shape = ifelse(is_single_model,
                          ts_single_model_pointshape,
                          ts_pointshape),
-    point_stroke = ifelse(is_single_model,
-                          ts_single_model_pointstroke,
-                          ts_pointstroke),
     line_width = ifelse(is_single_model,
                         ts_single_model_linewidth,
                         ts_linewidth),
     line_type = ts_single_model_linetype,
     line_color = ts_single_model_linecolor,
     obs_point_shape = 17,
-    obs_point_size = ts_pointsize,
+    obs_point_size = ts_pointsize * 2,
     obs_line_type = "dashed",
     obs_err_line_type = "solid",
     obs_err_line_width = 1,
@@ -140,24 +137,21 @@ plot_survey_index_fits <- function(
           axis.text.x = element_text(vjust = vjust_x_labels),
           axis.title.x = element_text(vjust = vjust_x_labels)) +
     xlab("Year") +
-    ylab(y_title)
+    ylab(y_title) +
+    guides(color = guide_legend(override.aes = list(stroke = 0.1)))
 
   # Add the points and error bars
   if(is_single_model){
     g <- g +
-      geom_pointrange(fatten = 1,
-                      size = point_size,
+      geom_pointrange(size = point_size,
                       shape = point_shape,
-                      stroke = point_stroke,
                       color = point_color,
                       alpha = alpha,
                       ...)
   }else{
     g <- g +
-      geom_pointrange(fatten = 1,
-                      size = point_size,
+      geom_pointrange(size = point_size,
                       shape = point_shape,
-                      stroke = point_stroke,
                       position = position_dodge(dodge_val),
                       alpha = alpha,
                       ...)
@@ -178,9 +172,7 @@ plot_survey_index_fits <- function(
                        y = index_med),
                    shape = obs_point_shape,
                    size = obs_point_size,
-                   stroke = point_stroke,
                    color = obs_color,
-                   size = point_size,
                    linetype = obs_line_type,
                    inherit.aes = FALSE) +
     geom_errorbar(data = yoob_obs$d,
