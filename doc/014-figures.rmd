@@ -404,7 +404,6 @@ p[[3]] <-
 p[[4]] <-
   plot_survey_index_fits(base_model,
                          d_obj = d_obj_bridge_age1_index[[1]],
-                         survey_type = "age1",
                          xlim = c(1995, end_yr),
                          ylim = c(0, 11),
                          y_breaks = seq(0, 11, by = 2),
@@ -1299,7 +1298,8 @@ if(!is.null(d_obj_sens_age2_index_grp2[[1]])){
   plot_survey_index_fits(base_model,
                          d_obj = d_obj_sens_age2_index_grp2[[1]],
                          x_expansion = 1,
-                         leg_pos = c(0.82, 0.18),
+                         ylim = c(0, 10),
+                         leg_pos = c(0.18, 0.85),
                          rev_colors = TRUE)
 }
 ```
