@@ -1324,9 +1324,9 @@ biomass). The probabilities of the female spawning biomass at the start of
 P(*B*~`r assess_yr`~ > `r b_10`) = `r probs_curr_b10`% and
 P(*B*~`r assess_yr`~ > `r b_40`) = `r probs_curr_b40`%
 such that the stock is estimated to be in the 'healthy zone' (above the upper
-stock reference point of `r b_40`). This probability was higher than in last
-year's assessment, where the equivalent calculation was
-P(*B*~`r assess_yr - 1`~ > `r b_40`) = 90.5%. Note that a probability
+stock reference point of `r b_40`). This probability is slightly lower than in
+last year's assessment, where the equivalent calculation was
+P(*B*~`r assess_yr - 1`~ > `r b_40`) = 98.1%. Note that a probability
 of '100%' (or '0%') is based on the MCMC results, and is not meant to imply
 that something definitely occurs (or definitely does not occur).
 
@@ -1352,7 +1352,7 @@ P(*B*~`r assess_yr`~ > `r b_25`) = `r probs_curr_b25`%.
 
 ## Model projections {#sec:assessment-model-projections}
 
-The catch limit for `r min(forecast_yrs)` based on the default `r f_40`ten
+The catch limit for `r min(forecast_yrs)` based on the default `r f_40_40_10`
 harvest policy has a median of `r ct_limit_quantiles["median"]`~t and a wide
 range of uncertainty (Figure~\@ref(fig:main-projected-catch-density-fig)),
 with the 95% credibility interval being `r ct_limit_quantiles["lower"]`--
@@ -1364,29 +1364,28 @@ model
 (Tables~\@ref(tab:main-decisions-biomass-tab) and
 \@ref(tab:main-decisions-spr-tab)). The tables are organized such that the
 projected outcome for each potential catch level and year (each row) can be
-evaluated across the quantiles (columns) of the posterior distribution. The
-tables use the new format demonstrated by @JTC2021 arising from discussions
-at the 2021 SRG meeting. Table~\@ref(tab:main-decisions-biomass-tab) shows
+evaluated across the quantiles (columns) of the posterior distribution.
+Table~\@ref(tab:main-decisions-biomass-tab) shows
 projected relative spawning biomass outcomes, and
 Table~\@ref(tab:main-decisions-spr-tab) shows projected fishing intensity
 outcomes relative to `r f_40` (based on SPR; see table legend).
 
 Population dynamics and governing parameters assumed during the forecast
-period include random recruitment; selectivity, weight-at-age and fecundity
-averaged over the five most recent years (`r assess_yr - 5`--
+period include random recruitment; selectivity, weight-at-age and maturity
+(and thus fecundity) averaged over the five most recent years (`r assess_yr - 5`--
 `r assess_yr - 1`); and all estimated parameters constant (at their
 estimates for each particular MCMC sample).
 
 Relative fishing intensity exceeding 1 (or 100% when shown as a percentage)
 indicates fishing in excess of the `r f_40` default harvest rate limit.
-This can happen for the median relative fishing intensity in
+A slight exceedance can happen for the median relative fishing intensity in
 `r forecast_yrs[1:(length(forecast_yrs) - 2)]` and
 `r forecast_yrs[(length(forecast_yrs) - 1)]` because the `r f_40` default
 harvest-rate catch limit is calculated using baseline selectivity-at-age
 (1966--1990; prior to time-varying deviations), whereas the forecasted
 catches under the default harvest-rate are removed using selectivity averaged
 over the last five years. Recent changes in selectivity could be reflected
-in the projection of over- or under-fishing relative to the desired `r f_40`
+in the projection of slight over- or under-fishing relative to the desired `r f_40`
 rate.
 
 Key management metrics are presented for
@@ -1427,48 +1426,45 @@ Figure~\@ref(fig:main-risk-year-2-fig)), and a
 and Figure~\@ref(fig:main-risk-year-3-fig)).
 
 The probability of the female spawning biomass decreasing from `r end_yr` to
-`r end_yr + 1` is above 72% for all non-zero catch levels examined
+`r end_yr + 1` is below 23% for all catch levels examined
 (Table~\@ref(tab:main-risk-year-1-tab) and
-Figure~\@ref(fig:main-risk-year-1-fig)). It is 81% for the
+Figure~\@ref(fig:main-risk-year-1-fig)). The probability is 1% for the
 `r end_yr` catch level similar to that for `r end_yr - 1`
 (catch alternative~f). For all explored catches, the maximum probability of
 the female spawning biomass dropping below `r b_10` at the start of
-`r end_yr + 1` is near 0%, at the start of `r end_yr + 2` is 1%, and at the
-start of `r end_yr + 3` is 4% (Tables~\@ref(tab:main-risk-year-1-tab)--
+`r end_yr + 1` is near 0%, at the start of `r end_yr + 2` is near 0%, and at the
+start of `r end_yr + 3` is 2% (Tables~\@ref(tab:main-risk-year-1-tab)--
 \@ref(tab:main-risk-year-3-tab) and
 Figures~\@ref(fig:main-risk-year-1-fig)--
 \@ref(fig:main-risk-year-3-fig)). The similar maximum
-probability of dropping below `r b_40` at the start of `r end_yr + 1` is 10%,
-at the start of `r end_yr + 2` is 24%, and at the start of `r end_yr + 3`
-is 35%. As the large 2010, 2014, and 2016 cohorts continue to age, their
-biomass is expected to decrease as losses from mortality continue to outweigh
-increases from growth. The estimated above-average 2020 cohort has already
-begun to play a large role in determining female spawning biomass during the
-forecast years presented here.
+probability of dropping below `r b_40` at the start of `r end_yr + 1` is 6%,
+at the start of `r end_yr + 2` is 15%, and at the start of `r end_yr + 3`
+is 30%. 
 
 It should be noted that forecasted biomass is not only influenced by catch
-levels. As the large 2010 and 2014 cohorts continue to age, their biomass
+levels. As the above average 2014 and 2016 cohorts continue to age, their biomass
 will continue to decrease (Tables~\@ref(tab:main-est-biomass-at-age-tab) and
 \@ref(tab:main-cohort-effects-tab)) as losses from mortality outweigh increases
-from growth. The smaller above-average 2016 cohort entered this
-growth-mortality transition period around 2019
+from growth. The above-average 2020 cohort entered this
+growth-mortality transition period around 2023
 (Tables~\@ref(tab:main-est-biomass-at-age-tab) and
-\@ref(tab:main-cohort-effects-tab)). The below-average 2015 and 2018 cohorts
-will contribute much less to forecasted spawning biomass than the larger
-cohorts. During 2023, the age-3 2020 cohort will likely move through the
-growth-mortality transition and thus no longer contribute to an increase
-in total biomass (note that fecundity will increase which will influence
+\@ref(tab:main-cohort-effects-tab)). During 2024, the age-3 2021 cohort will likely begin the
+growth-mortality transition where a net increase
+in total biomass is less likely (note that fecundity will increase which will influence
 the exact change in female spawning biomass,
-Figure~\@ref(fig:main-maturity-ogive-fig)).
+Figure~\@ref(fig:main-maturity-ogive-fig)). The estimated above-average (yet still highly uncertain) 2020 and 2021 cohorts will continue to play a large role in determining
+female spawning biomass during the forecast years presented here. The below-average
+2015, 2018, and 2019 cohorts will contribute much less to forecasted spawning
+biomass than the larger cohorts. 
 
 The age composition (in numbers) of the catch in `r forecast_yrs[1]` is
 projected to be (using MCMC medians)
 `r fore_catch_prop[["3"]]`% age-3 fish from the `r forecast_yrs[1] - 3` cohort,
-`r fore_catch_prop[["7"]]`% age-7 fish from the `r forecast_yrs[1] - 7` cohort,
-`r fore_catch_prop[["6"]]`% age-6 fish from the `r forecast_yrs[1] - 6` cohort,
-`r fore_catch_prop[["9"]]`% age-9 fish from the `r forecast_yrs[1] - 9` cohort,
-and only
-`r fore_catch_prop[["13"]]`% age-13 fish from the large `r forecast_yrs[1] - 13`
+`r fore_catch_prop[["4"]]`% age-4 fish from the `r forecast_yrs[1] - 4` cohort,
+`r fore_catch_prop[["8"]]`% age-8 fish from the `r forecast_yrs[1] - 8` cohort,
+`r fore_catch_prop[["2"]]`% age-2 fish from the `r forecast_yrs[1] - 2` cohort,
+and
+`r fore_catch_prop[["10"]]`% age-10 fish from the large `r forecast_yrs[1] - 10`
 cohort (Figure~\@ref(fig:main-age-comp-forecast-fig)). However, those estimates
 are highly uncertain with the 95% credibility interval for the age-3 fraction
 spanning `r f(fore_catch_prop_age3_lower)`%--
@@ -1478,9 +1474,9 @@ Due to the higher average weight of older fish compared to younger fish, the
 median expected proportion of the `r forecast_yrs[1]` catch by weight
 is `r f(fore_catch_prop_wt_age3_median)`% for the age-3
 `r forecast_yrs[1] - 3` cohort (compared to `r fore_catch_prop[["3"]]`% by
-numbers) and `r f(fore_catch_prop_wt_age7_median)`%
-for the age-7 `r forecast_yrs[1] - 7` cohort
-(compared to `r fore_catch_prop[["7"]]`% by numbers;
+numbers) and `r f(fore_catch_prop_wt_age4_median)`%
+for the age-4 `r forecast_yrs[1] - 4` cohort
+(compared to `r fore_catch_prop[["4"]]`% by numbers;
 Figure~\@ref(fig:main-age-comp-forecast-fig)).
 
 With respect to the DFO reference points, with the largest

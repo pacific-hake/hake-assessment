@@ -764,7 +764,7 @@ The probability of the female spawning biomass decreasing from `r end_yr` to
 `r end_yr + 1` is below 23% for all catch levels examined
 (Table~\@ref(tab:es-risk-year-1-tab) and
 Figure~\@ref(fig:es-risk-year-1-fig)). This probability is
-2% for a `r end_yr` catch level similar to that for `r end_yr - 1`
+1% for a `r end_yr` catch level similar to that for `r end_yr - 1`
 (scenario f: `r end_yr` catch). For all explored catches, the maximum
 probability of female spawning biomass at the start of `r end_yr + 1` dropping
 below `r b_10` is 0%, and of dropping below `r b_40` is 6%
