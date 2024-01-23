@@ -1660,8 +1660,8 @@ arithmetic mean of the input sample size approximately equal to the harmonic
 mean of the effective sample size. The McAllister-Ianelli method suggested
 a weighting factor of 0.14 and 0.46 (ratio of 0.30) for fishery and survey
 age compositions, respectively. The median estimate from Dirichlet-multinomial
-method used in the base model was `r dm_weight_fishery_median` and
-`r dm_weight_survey_median` (ratio of
+method used in the base model was `r f(dm_weight_fishery_median, 3)` and
+`r f(dm_weight_survey_median, 3)` (ratio of
 `r f(as.numeric(dm_weight_fishery_median) / as.numeric(dm_weight_survey_median), 2)`).
 Downweighting fishery composition data using the McAllister-Ianelli method
 led to minor changes in relative spawning biomass, recruitment estimates, and

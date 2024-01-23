@@ -945,12 +945,12 @@ log_theta_survey_lower <- base_model$mcmcvals$log_theta_survey_lower
 log_theta_survey_median <- base_model$mcmcvals$log_theta_survey_median
 log_theta_survey_upper <- base_model$mcmcvals$log_theta_survey_upper
 # Dirichlet-Multinomial data weighting parameters-------------------------------
-dm_weight_fishery_lower <- f(base_model$mcmcvals$dm_weight_fishery_lower,3)
-dm_weight_fishery_median <- f(base_model$mcmcvals$dm_weight_fishery_median,3)
-dm_weight_fishery_upper <- f(base_model$mcmcvals$dm_weight_fishery_upper,3)
-dm_weight_survey_lower <- f(base_model$mcmcvals$dm_weight_survey_lower,3)
-dm_weight_survey_median <- f(base_model$mcmcvals$dm_weight_survey_median,3)
-dm_weight_survey_upper <- f(base_model$mcmcvals$dm_weight_survey_upper,3)
+dm_weight_fishery_lower <- base_model$mcmcvals$dm_weight_fishery_lower
+dm_weight_fishery_median <- base_model$mcmcvals$dm_weight_fishery_median
+dm_weight_fishery_upper <- base_model$mcmcvals$dm_weight_fishery_upper
+dm_weight_survey_lower <- base_model$mcmcvals$dm_weight_survey_lower
+dm_weight_survey_median <- base_model$mcmcvals$dm_weight_survey_median
+dm_weight_survey_upper <- base_model$mcmcvals$dm_weight_survey_upper
 
 # MCMC parameter estimates for base model -------------------------------------
 # ... natural mortality -------------------------------------------------------
