@@ -1518,7 +1518,7 @@ and structural uncertainty of the base model by investigating how changes to
 the model affected the estimated values and derived quantities. All
 sensitivity analyses compared MCMC posteriors that were created using the
 \texttt{adnuts} R package [@Monnahan2018; @Monnahan2019] to implement the NUTS
-algorithm with a similar number of posterior samples as the base model.
+algorithm with the same number of posterior samples as the base model.
 Several key underlying structural model assumptions were identified that have
 persisted across many previous hake assessments, and thus warrant revisiting
 annually as a set of reference sensitivity examinations to new base models.
@@ -1549,28 +1549,19 @@ selectivity.
 Comparisons of the parameter estimates between the main sensitivity models
 with those from the base model are shown in
 Tables~\@ref(tab:main-parameter-estimates-sens-1-tab)--
-\@ref(tab:main-parameter-estimates-sens-2-tab). None of the sensitivities
+\@ref(tab:main-parameter-estimates-sens-3-tab). None of the sensitivities
 resulted in any substantial departure from the main population dynamics of
-the base model. All sensitivity models showed large estimated increases in
+the base model (Figures~\@ref(fig:main-biomass-base-alternative-1-fig) --
+\@ref(fig:main-index-base-alternative-4-fig)). All sensitivity
+models showed large estimated increases in
 female spawning biomass in the early- to mid-2010s that continues to be
-driven by the 2010, 2014, and 2016 cohorts, followed by several years of
-steady decline (2019--2021) before increasing again due to the strong 2020
-cohort. All sensitivity models indicate that `r assess_yr` relative spawning
+driven by the 2010, 2014, and 2016 cohorts, followed by a period of general
+decline (2018--2023) before increasing again due to the above average 2020 and
+2021 cohorts. All sensitivity models indicate that `r assess_yr` relative spawning
 biomass is above `r b_40`. The overall scale of the population was impacted
 by various alternative assumptions, and the highly uncertain size of the
 recent cohorts were more variable across sensitivity analyses than earlier
 cohorts which have been observed for more years.
-
-Figures~\@ref(fig:main-biomass-base-alternative-2-fig) and
-\@ref(fig:main-recruitment-base-alternative-2-fig). In general, the estimated
-population dynamics are similar, regardless of extrapolation, throughout most
-of the time series. However, there is some divergence in recent year
-estimates; e.g., the estimated relative spawning biomass in `r end_yr` is
-`r sens_base_bratio`% for the base model (with extrapolation) and
-`r sens_grp2_2_bratio`% for the model without extrapolation. The 2016
-default harvest control catch limit coming from the base model is
-`r sens_base_forecatch`~t compared to `r sens_grp2_2_forecatch`~t
-for the model using no extrapolation (using MLE values).
 
 The standard deviation of the prior distribution on natural mortality was
 increased from the base model value of 0.1 to 0.2 and 0.3. The median of the
@@ -1588,7 +1579,7 @@ allowing a higher estimated value for natural mortality, these M
 sensitivity models increased the overall scale of the population, the
 estimated stock status relative to `r b_0` prior to 1990, the uncertainty in
 female spawning biomass on both absolute and relative scales, halved
-estimated relative fishing intensity in `r end_yr - 1`, and doubled
+estimated relative fishing intensity in `r end_yr - 1`, and more than doubled
 equilibrium yield at `r bspr_40`
 (Table~\@ref(tab:main-parameter-estimates-sens-1-tab) and
 Figures~\@ref(fig:main-biomass-base-alternative-1-fig) and
@@ -1615,12 +1606,14 @@ Both sensitivities were similar to the base model in that the calculated
 standard deviation of recruitment deviations (from the main period) was
 higher than the input $\sigma_r$, i.e., `r sigma_r_lo_main` and
 `r sigma_r_hi_main` when $\sigma_r$ was `r sigma_r_sens[1]` and
-`r sigma_r_sens[2]`, respectively. Where, in theory the calculated standard
+`r sigma_r_sens[2]`, respectively. The base model calculated
+standard deviation of recruitment deviations was intermediate at 1.70.
+Where, in theory the calculated standard
 deviation should match the input value used for $\sigma_r$. However, the high
 $\sigma_r$ model had a larger difference between the female spawning biomass
 at unfished equilibrium and the female spawning biomass at the initial year of
 the model than the low $\sigma_r$ model
-(Figure~\@ref(fig:main-status-base-alternative-1-fig)). Similar to previous
+(Figure~\@ref(fig:main-biomass-base-alternative-1-cap)). Similar to previous
 assessments, estimates of unfished equilibrium recruitment and relative
 spawning biomass are sensitive to $\sigma_r$, whereas absolute estimates of
 female spawning biomass are relatively insensitive. The method
@@ -1643,14 +1636,15 @@ relative spawning biomass are `r f(100 * bratio_curr[2], 1)`% for the base model
 for the removal of the age-1 index model (95% credible interval of
 `r f(100 * bratio_age1[1], 1)`--`r f(100 * bratio_age1[3], 1)`%). This
 difference is due to the age-1 index providing additional information on
-recruitment for cohorts associated with recent age-1 indices (i.e., 2018 and
-2020 cohorts detected in the 2019 and 2021 age-1 indices). In particular, the
-base model with the age-1 index suggests that the 2020 year class is estimated to
-be large, but not as large as the 2021 and 2022 fishery data alone (i.e.,
-removing the age-1 index) would otherwise suggest
-(Figure~\@ref(fig:main-biomass-base-alternative-2-fig)). Removing the age-1
+recruitment for cohorts associated with recent age-1 indices (i.e., 2020 and
+2022 cohorts detected in the 2021 and 2023 age-1 indices). In particular, the
+base model with the age-1 index indicates slightly larger 2020 and 2021 year classes
+then the model removing the age-1 index
+(Figure~\@ref(fig:main-recruitment-base-alternative-2-fig)).  Similarly, recruitment
+in 2022 is estimated to be slighlty above average with the
+age-1 index compared to slightly below average without the index. Removing the age-1
 index led to minor changes in fit to the age-2+ survey biomass index, with
-2019 showing a slight improvement and 2021 a deterioration compared to the
+2021 showing a slight improvement and 2023 a deterioration compared to the
 base model (Figure~\@ref(fig:main-index-base-alternative-2-fig)).
 
 The base model includes a Dirichlet-multinomial likelihood component, which
@@ -1684,11 +1678,11 @@ in Section~\@ref(sec:data-variability-selectivity). Changing the values of the
 parameter $\Phi$ controlling the flexibility in time-varying selectivity from
 the base model value of $\Phi = 1.40$ to alternative values of 0.21, 0.70,
 and 2.10, did not appreciably influence the estimates, or precision,
-associated with recruitment in 2014, but it did impact more recent
+associated with recruitment in 2014 or 2016, but it did impact more recent
 recruitments (Figure~\@ref(fig:main-recruitment-base-alternative-4-fig)). In
-particular, recruitment estimates for 2016 and 2020 are linked to the choice
-of $\Phi$, where the model with the smallest $\Phi$ (0.21) estimates the 2016
-and 2020 recruitment deviation as the highest of the $\Phi$ sensitivity
+particular, recruitment estimates for 2020 and 2021 are linked to the choice
+of $\Phi$, where the model with the smallest $\Phi$ (0.21) estimates the 2020
+and 2021 recruitment deviation as the highest of the $\Phi$ sensitivity
 models (Figure~\@ref(fig:main-recruitment-devs-base-alternative-4-fig)),
 leading to a large increase in female spawning biomass in recent years
 compared to the base model

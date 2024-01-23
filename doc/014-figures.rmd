@@ -1297,10 +1297,11 @@ method increases it.
 if(!is.null(d_obj_sens_age2_index_grp2[[1]])){
   plot_survey_index_fits(base_model,
                          d_obj = d_obj_sens_age2_index_grp2[[1]],
-                         x_expansion = 1,
-                         ylim = c(0, 10),
+                         survey_type = "age2",
+                         rev_colors = TRUE,
+                         tick_prop = 2,
                          leg_pos = c(0.18, 0.85),
-                         rev_colors = TRUE)
+                         xlim = c(1995, end_yr))
 }
 ```
 
@@ -1412,9 +1413,10 @@ if(!is.null(d_obj_sens_age2_index_grp3[[1]])){
   plot_survey_index_fits(base_model,
                          d_obj = d_obj_sens_age2_index_grp3[[1]],
                          survey_type = "age2",
-                         x_expansion = 1,
-                         leg_pos = c(0.82, 0.18),
-                         rev_colors = TRUE)
+                         rev_colors = TRUE,
+                         tick_prop = 2,
+                         leg_pos = c(0.18, 0.85),
+                         xlim = c(1995, end_yr))
 }
 ```
 
