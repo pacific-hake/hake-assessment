@@ -116,7 +116,7 @@ table_decision <- \(
 
   forecast <- fore_lst[[length(fore_lst)]][forecast_inds]
   if(type == "biomass"){
-    num_rows <- nrow(forecast[[1]]$biomass) - 1
+    num_rows <- nrow(forecast[[1]]$depl) - 1
     table_header <- latex_bold("Resulting relative spawning biomass")
   }else{
     num_rows <- nrow(forecast[[1]]$spr) - 1
@@ -141,9 +141,12 @@ table_decision <- \(
   # Also, extract the first forecast year and the quantiles of the values to
   # go along with it for later (`first_biomass_yr`). A `<<-` is used here to
   # make the variable available outside the `map()` function
+
   forecast_tab <- map(forecast, ~{
     if(type == "biomass"){
-      tmp <- .x$biomass |>
+      tmp <- .x$depl |>
+        t() |>
+        as_tibble(rownames = "yr") |>
         mutate(yr = paste0("Start of ", yr)) |>
         select(-c("25%", "75%"))
       names(tmp)[1] <- "start of year"
