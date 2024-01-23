@@ -39,6 +39,9 @@ load_extra_mcmc <- function(model,
 
   if(first <= 0){
     first <- model$nposts
+    if(is.null(first)){
+      first <- model$mcmc |> nrow()
+    }
   }
   if(!exists("reps") || (exists("reps") && length(reps) != first)){
     if(verbose){

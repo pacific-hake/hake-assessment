@@ -394,8 +394,9 @@ fore_tac_mcmc_yr1 <- base_model$forecasts[[1]][[ct_tac_ind]]$mcmccalcs
 fore_tac_mcmc_yr2 <- base_model$forecasts[[2]][[ct_tac_ind]]$mcmccalcs
 # Biomass medians for last year's TAC catch level -----------------------------
 endyr_plus_3_fore <- base_model$forecasts[[as.character(end_yr + 3)]]
-endyr_plus_3_fore_tac_catch <- endyr_plus_3_fore[[ct_tac_ind]]$biomass |>
-  as_tibble()
+endyr_plus_3_fore_tac_catch <- endyr_plus_3_fore[[ct_tac_ind]]$depl |> 
+  t() |> 
+  as_tibble(rownames = "yr")
 last_yr_tac_fore_1_biomass <- endyr_plus_3_fore_tac_catch |>
   filter(yr == end_yr) |>
   mutate(`50%` = `50%` * 100) |>
