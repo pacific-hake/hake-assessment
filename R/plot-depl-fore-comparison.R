@@ -16,6 +16,7 @@ plot_depl_fore_comparison <- function(
              max(forecast_yrs) - 1),
     x_breaks = xlim[1]:xlim[length(xlim)],
     x_labs_mod = 5,
+    show_arrows = FALSE,
     x_expansion = 1,
     tick_prop = 1,
     vjust_x_labels = -2,
@@ -122,7 +123,17 @@ plot_depl_fore_comparison <- function(
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
                                      modulo = x_labs_mod)
 
-  g <- ggplot(fore_future,
+  # Calculate the data y-axis out-of-bounds (yoob) and change the credible
+  # interval in the data to cut off at the limits (or not if `show_arrows`
+  # is `TRUE`)
+  yoob_fore <- calc_yoob(fore_future,
+                         ylim,
+                         "5%", "50%", "95%", show_arrows)
+  yoob_historic <- calc_yoob(historic,
+                             ylim,
+                             "5%", "50%", "95%", show_arrows)
+
+  g <- ggplot(yoob_fore$d,
               aes(fill = model,
                   color = model,
                   group = model,
@@ -139,9 +150,9 @@ plot_depl_fore_comparison <- function(
     geom_line() +
     geom_ribbon(alpha = alpha,
                 linetype = "dashed") +
-    geom_point(data = historic) +
-    geom_line(data = historic) +
-    geom_ribbon(data = historic,
+    geom_point(data = yoob_historic$d) +
+    geom_line(data = yoob_historic$d) +
+    geom_ribbon(data = yoob_historic$d,
                 alpha = alpha,
                 linetype = "dashed") +
     geom_rect(aes(xmin = forecast_yrs[1],
