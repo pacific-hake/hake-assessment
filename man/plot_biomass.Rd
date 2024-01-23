@@ -85,12 +85,10 @@ plot_depl_fore_comparison(
   x_expansion = 1,
   tick_prop = 1,
   vjust_x_labels = -2,
-  ylim = c(0, 3.5),
-  y_breaks = c(0, 0.1, 0.4, 0.5, 1, seq(1.5, ylim[2], by = 0.5)),
-  y_labels = expression("0", "0.1B"[0], "0.4B"[0], "0.5", "B"[0], "1.5", "2", "2.5", "3",
-    "3.5"),
-  y_colors = c("black", "red", "green", "black", "blue", rep("black", length(seq(1.5,
-    ylim[2], by = 0.5)))),
+  ylim = c(0, 2),
+  y_breaks = c(0, 0.1, 0.4, 0.5, 1, 1.5, 2),
+  y_labels = expression("0", "0.1B"[0], "0.4B"[0], "0.5", "B"[0], "1.5", "2"),
+  y_colors = c("black", "red", "green", "black", "blue", "black", "black"),
   alpha = 0.2,
   leg_pos = c(0.15, 0.83),
   leg_ncol = 1,
@@ -205,6 +203,7 @@ plot_recruitment(
   point_shape = ifelse(is_single_model, ts_single_model_pointshape, ts_pointshape),
   point_stroke = ifelse(is_single_model, ts_single_model_pointstroke, ts_pointstroke),
   line_width = ifelse(is_single_model, ts_single_model_linewidth, ts_linewidth),
+  horizontal_line_color = "darkgreen",
   crossbar_width = 0,
   dodge_val = 0.5,
   rev_colors = TRUE,
@@ -486,6 +485,8 @@ the \code{r_rel_lower}, \code{r_rel_med}, \code{r_rel_upper}, \code{r_rel_mean},
 default. To change it, edit the year in the \code{\link[=calc_mcmc]{calc_mcmc()}} function, and
 then \code{\link[=create_rds_file]{create_rds_file()}} needs to be run again to create the RDS file for
 the model}
+
+\item{horizontal_line_color}{for relative plot, colour of the dashed line at 1}
 
 \item{survey_type}{Either \code{age1} or \code{age2}. Used for survey index plots
 only}
