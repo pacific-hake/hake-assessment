@@ -149,7 +149,7 @@ Rather than take a spatial average of temperature by year for each month–depth
 combination, we generated biomass weighted averages of temperature (weighting
 temperature by the spatial distribution of hake biomass, rather than weighting
 each spatial location equally). To generate biomass weights, we constructed a
-spatial model of hake catch per unit effort (CPUE, kg / km2), using 2003–2023
+spatial model of hake catch per unit effort (CPUE, kg / km^2^), using 2003–2023
 data from the WCGBTS. We adopted the same SPDE approach used in modeling
 maturity. Our biomass model included a smooth effect of calendar day (as a
 P-spline, dates range from May - October), a time varying intercept modeled with
