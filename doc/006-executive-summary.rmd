@@ -104,7 +104,7 @@ mean weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011
 the survey biomass index was the lowest in the time series and was followed
 by the index increasing in 2012, 2013, and again in 2015 before decreasing to
 near the time series average in 2017. The survey shows a decline from 2019
-(the fourth highest of the series) to 2023 (the fourth lowest of the series).
+(the fourth highest of the series) to 2023 (the third lowest of the series).
 Age-composition data from the aggregated fisheries and the acoustic survey,
 along with the age-1 index, provide data that facilitates estimating relative
 cohort strength, i.e., strong and weak cohorts. The age-1 index suggests
@@ -772,8 +772,9 @@ probability of female spawning biomass at the start of `r end_yr + 1` dropping
 below `r b_10` is 0%, and of dropping below `r b_40` is 6%
 (Table~\@ref(tab:es-risk-year-1-tab) and
 Figure~\@ref(fig:es-risk-year-1-fig)).
-As the above average 2014 and 2016 cohorts continue to age, their biomass is
-expected to decrease as losses from mortality outweigh increases from growth.
+As the above average 2014 and 2016 cohorts continue to age, total biomass of these
+cohorts even without fishing mortality is expected to decrease as losses
+from mortality outweigh increases from growth.
 The estimated above-average (yet still highly uncertain) 2020 and 2021 cohorts will
 continue to play a large role in determining female spawning biomass during
 the forecast years presented here.
