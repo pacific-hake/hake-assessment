@@ -15,12 +15,12 @@
 #   move it left and positive means move it to the right
 
 chunk_label,adjustment
-tab:main-catches-us-tab,-4
-tab:main-assessment-changes-tab,-26
-tab:main-est-numbers-at-age-tab,-12
-tab:main-est-exp-rate-at-age-tab,-14
-tab:main-est-catch-at-age-tab,-6
-tab:main-ci-posterior-tab,-16
-tab:main-risk-year-1-tab,-4
-tab:main-risk-year-2-tab,-4
-tab:main-risk-year-3-tab,-4
+#tab:main-catches-us-tab,-4
+#tab:main-assessment-changes-tab,-26
+#tab:main-est-numbers-at-age-tab,-12
+#tab:main-est-exp-rate-at-age-tab,-14
+#tab:main-est-catch-at-age-tab,-6
+#tab:main-ci-posterior-tab,-16
+#tab:main-risk-year-1-tab,-4
+#tab:main-risk-year-2-tab,-4
+#tab:main-risk-year-3-tab,-4
