@@ -901,18 +901,19 @@ plot_recruitment(list(base_model),
                  color = "red")
 ```
 
-(ref:main-stock-recruitment-cap) Estimated stock-recruit relationship for
+(ref:main-stock-recruitment-cap) Estimated stock--recruitment relationship for
 the base model with median predicted recruitments and 95% posterior
 credibility intervals. Colors indicate time-period, with yellow colors in the
 early years and blue colors in the recent years. The thick solid black line
 indicates the central tendency (mean) and the red line indicates the central
 tendency after bias correcting for the lognormal distribution (median).
-Shading around stock-recruit curves indicates uncertainty in shape associated
-with distribution of the steepness parameter ($h$). The blue polygon on the
-right indicates the expected distribution of absolute recruitments.
+Shading around the stock--recruitment relationship indicates uncertainty in
+shape associated with distribution of the steepness parameter ($h$). The blue
+polygon on the right indicates the expected distribution of absolute
+recruitments.
 
-(ref:main-stock-recruitment-alt) This figure shows that the Stock Recruitment
-curve does not fit the estimated recruitments very well for this stock.
+(ref:main-stock-recruitment-alt) This figure shows that the stock--recruitment
+relationship does not fit the estimated recruitments very well for this stock.
 
 ```{r main-stock-recruitment-fig, fig.cap = "(ref:main-stock-recruitment-cap)", fig.height = 8}
 
@@ -1171,7 +1172,7 @@ plot_fore_age_comps(base_model)
 of spawning biomass for the base model and alternative sensitivity runs
 representing changing the mean of the prior for steepness from 1.0 to 0.5,
 fixing steepness at 1.0, lower (1.0) and higher (1.6) levels of variation
-assumed about the stock-recruitment relationship ($\sigma_r$), changing the
+assumed about the stock--recruitment relationship ($\sigma_r$), changing the
 standard deviation of the prior for natural mortality, and using the Hamel
 prior distribution for natural mortality.
 
@@ -1457,7 +1458,7 @@ retro_cohorts <- (end_yr - 11):(end_yr - 2)
 recruitment deviations from Markov chain Monte Carlo models over the last
 `r length(retro_cohorts)` years. Recruitment deviations are the median
 log-scale differences between recruitment estimated by the model and expected
-recruitment from the spawner-recruit relationship. Age-0 recruitment
+recruitment from the stock-recruitment relationship. Age-0 recruitment
 deviations are non-zero because Markov chain Monte Carlo allows for
 sampling from the full lognormal distribution. Lines represent estimated
 recruitment deviations for cohorts born from `r min(retro_cohorts)` to

@@ -67,7 +67,7 @@ changes. In terms of spatial models, analysts have considered
 spatially explicit forms [@Dorn1994; @Dorn1997], spatially implicit forms
 [@HelserStewartEtAl2006], and single-area models [@JTC2012]. Predicted
 recruitment has been modeled by sampling historical recruitment (e.g.,
-@Dorn1994, @HelserFleischerEtAl2005), using a stock-recruitment
+@Dorn1994, @HelserFleischerEtAl2005), using a stock--recruitment
 relationship parameterized using maximum sustainable yield (MSY) and
 the fishing mortality rate estimated to produce the MSY (`r f_msy`;
 @Martell2010), and using several alternative steepness priors [@JTC2012;
@@ -137,10 +137,10 @@ values are used for several parameters. For the base model, the instantaneous
 rate of time-invariant natural mortality (M) is estimated with a `r m_prior[1]` prior
 having a median of `r f(exp(as.numeric(m_prior[2])), 2)` and a standard
 deviation (in log-space) of 0.1 (see
-Section~\@ref(sec:data-natural-mortality)). The stock-recruitment function is
+Section~\@ref(sec:data-natural-mortality)). The stock--recruitment relationship is
 a Beverton-Holt parameterization, with the log of the mean unexploited
 recruitment (log~`r r_0`) freely estimated. This assessment uses the same
-beta-distributed prior for stock-recruit steepness (h), based on
+beta-distributed prior for stock--recruitment steepness (h), based on
 @MyersBowenEtAl1999, that has been applied since 2011
 [@StewartForrestEtAl2011]. Year-specific recruitment deviations were estimated
 from `r main_recdev_early`--`r main_recdev_end + 1` as well as the years
@@ -500,8 +500,8 @@ platforms in the future.**
 > forecast recruitment estimates.*
 
 > *Available options in Stock Synthesis for recruitment during the
-> projection period are the stock-recruitment curve, the
-> stock-recruitment curve with a multiplier, and the mean across a
+> projection period are the stock--recruitment relationship, the
+> stock--recruitment relationship with a multiplier, and the mean across a
 > user-defined time period. The MSE tool could be used to consider
 > alternative recruitment distributional assumptions as future research.
 > A member of the JTC is on the development team for NOAA's next
@@ -1155,7 +1155,7 @@ the last 30~years, and that such large cohorts are rarer than is inferred
 from Figure~\@ref(fig:main-recruitment-fig).
 
 The estimated recruitments with uncertainty for each year and the overall
-stock recruit relationship are provided in
+stock--recruitment relationship are provided in
 Figure~\@ref(fig:main-stock-recruitment-fig). Extremely large variability
 about the expectation and about the joint uncertainty of individual
 recruitment and female spawning biomass pairs are evident. High and low
@@ -1250,7 +1250,7 @@ associated with several important model parameters including: biomass
 index and age-1 index catchabilities (q~b~ and q~1~, respectively), the
 magnitude of the stock (via the `r r_0` parameter for equilibrium recruitment),
 productivity of the stock (via the steepness parameter, h, of the
-stock-recruitment relationship), the rate of natural mortality (M), annual
+stock--recruitment relationship), the rate of natural mortality (M), annual
 selectivity for key ages, recruitment deviations, and survey and fishery data
 weights (via the Dirichlet-multinomial parameters
 $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
@@ -1542,8 +1542,8 @@ life history meta-analytic method;
 1. Consideration of an alternative prior distribution and a fixed value for
 steepness, to change the resiliency of the stock;
 
-1. Consideration of higher and lower variation about the stock-recruitment
-curve ($\sigma_r$);
+1. Consideration of higher and lower variation about the stock--recruitment
+relationship ($\sigma_r$);
 
 1. Removal of the age-1 index as a data source;
 
@@ -1606,7 +1606,7 @@ steepness sensitivity analysis had a large impact on the overall model
 results (Figures~\@ref(fig:main-biomass-base-alternative-1-fig) and
 \@ref(fig:main-status-base-alternative-1-fig)), because `r sp` female spawning
 biomass has remained above levels where changes in steepness would appreciably
-influence stock-recruit dynamics
+influence the stock--recruitment relationship
 (Figure~\@ref(fig:main-stock-recruitment-fig)).
 
 Input values of $\sigma_r$ were changed from `r sigma_r` (base) to

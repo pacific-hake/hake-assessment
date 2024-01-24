@@ -130,7 +130,7 @@ The assessment uses a Bayesian estimation approach, sensitivity analyses, and
 retrospective investigations to evaluate the potential consequences of
 parameter uncertainty, alternative structural models, and historical
 performance of the assessment model, respectively. The Bayesian approach
-combines prior knowledge about natural mortality, stock-recruitment steepness
+combines prior knowledge about natural mortality, stock--recruitment steepness
 (a parameter for stock productivity), and several other parameters, with
 likelihoods for the acoustic survey biomass index, acoustic survey
 age-composition data, the relative age-1 index, and fishery age-composition
@@ -334,7 +334,7 @@ table_recruitment(
   caption = paste0(
     "Estimates of recent recruitment (millions of age-0 fish) and ",
     "recruitment deviations, where deviations below (above) zero indicate ",
-    "recruitment below (above) that estimated from the stock-recruit ",
+    "recruitment below (above) that estimated from the stock--recruitment ",
     "relationship."),
   font_size = 10,
   header_font_size = 9)

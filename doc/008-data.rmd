@@ -607,7 +607,7 @@ on natural mortality there has been little option to update the prior.
 
 ### Steepness {#sec:data-steepness}
 
-The prior for the steepness parameter of the stock-recruitment function is
+The prior for the steepness parameter of the stock--recruitment relationship is
 based on the median (0.79) and the 20th (0.67) and 80th (0.87) percentiles
 from the meta-analysis of the family Gadidae [@MyersBowenEtAl1999] and has
 been used in U.S. assessments since 2007. This prior has a beta distribution

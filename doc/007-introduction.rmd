@@ -29,7 +29,7 @@ lower bound on the available population biomass in each year.
 
 This assessment is fully Bayesian, with the base model incorporating prior
 information on several key parameters (including informative priors
-on natural mortality, $M$, and steepness of the stock-recruit relationship,
+on natural mortality, $M$, and steepness of the stock--recruitment relationship,
 $h$) and integrating over parameter uncertainty to provide results that can be
 probabilistically interpreted. From a range of alternate models investigated
 by the JTC, a subset of sensitivity analyses are also reported to provide a

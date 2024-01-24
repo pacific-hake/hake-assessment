@@ -319,8 +319,8 @@ population born in the same age. In this assessment, recruitment is
 reported at age~0. See also cohort and year-class.
 
 Recruitment deviation: The offset of the recruitment in a given year
-relative to the stock-recruit function; values occur on a logarithmic scale
-and are relative to the expected recruitment at a given spawning biomass
+relative to the stock--recruitment relationship; values occur on a logarithmic
+scale and are relative to the expected recruitment at a given spawning biomass
 (see below).
 
 Relative fishing intensity: See definition of fishing intensity.
@@ -380,7 +380,7 @@ SPR: Spawning potential ratio (see above).
 
 SS: Stock Synthesis (see below).
 
-Steepness (*h*): A stock-recruit relationship parameter representing the
+Steepness (*h*): A stock--recruitment relationship parameter representing the
 proportion of `r r_0` expected (on average) when the female spawning biomass
 is reduced to 20% of `r b_0` (i.e.,~when relative spawning biomass is equal
 to 20%).

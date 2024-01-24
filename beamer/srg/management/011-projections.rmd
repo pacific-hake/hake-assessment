@@ -8,13 +8,13 @@
     projections
   - Mean of weight-at-age from `r end_yr - 5`--`r end_yr - 1` used in
     projections
-  - Recruitment from stock-recruit relationship (with uncertain deviations)
+  - Recruitment from stock--recruitment relationship (with uncertain deviations)
   - Used for default HR calculations
   - Alternative future catch levels explored
   - Equilibrium calculations (*B~0~*, *F~SPR~*, MSY, etc.)
 * Base selectivity (used for years before 1991 as well)
   - Mean of weight-at-age across 1975-`r last_data_yr`
-  - Recruitment at estimated *R~0~* or from stock-recruit relationship
+  - Recruitment at estimated *R~0~* or from stock--recruitment relationship
 * Catch alternatives presented for some specific cases
 
 ## Harvest-rule predicted catch for `r assess_yr`

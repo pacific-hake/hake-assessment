@@ -25,13 +25,14 @@ plot_catch_forecast_density(base_model,
      in projections
   -  Mean of weight-at-age from `r end_yr - 5`--`r end_yr - 1` used in
      projections
-  -  Recruitment from stock-recruit relationship (with uncertain deviations)
+  -  Recruitment from stock--recruitment relationship (with uncertain
+     deviations)
   -  Used for default HR calculations
   -  Alternative future catch levels explored
 * Equilibrium calculations (`r b_0`, `r f_spr`, MSY, etc.)
   - Base selectivity (used for years before 1991 as well)
   - Mean of weight-at-age across 1975-`r last_data_yr`
-  - Recruitment at estimated `r r_0` or from stock-recruit relationship
+  - Recruitment at estimated `r r_0` or from stock--recruitment relationship
 * Catch alternatives presented for some specific cases
 
 ## Three-year projections
