@@ -29,19 +29,20 @@ analysis.
 
 As each sample in our dataset is georeferenced with a unique latitude and
 longitude, we constructed a series of spatiotemporal models to model variation
-in hake maturity. Our statistical modeling framework can be seen as a version of
-generalized linear mixed models (GLMMs), with a series of fixed and random
-components. We constructed three models to test hypotheses and help improve
-understanding of spatiotemporal variability in hake maturity; these can
-generally be described as
+in hake maturity. Our statistical modeling framework can be seen as a
+version of generalized linear mixed models (GLMMs), with a series of fixed
+and random components. We constructed three models to test hypotheses and
+help improve understanding of spatiotemporal variability in hake maturity;
+these can generally be described as
 
 1. a null model representing the status quo, similar to models used in previous
-hake assessments;
+  hake assessments;
 
 1. a spatiotemporal model incorporating temporal and spatial trends, but no
-covariates;
+   covariates;
 
-1. a spatiotemporal model incorporating temperature as an environmental predictor.
+1. a spatiotemporal model incorporating temperature as an environmental
+   predictor.
 
 To maintain consistency with the status quo, our null model contained no spatial
 or temporal variation. We included quadratic effects of age (to account for
@@ -56,12 +57,12 @@ Acoustic-Trawl samples, however these estimates were small in magnitude and had
 large standard errors, which suggests there were not meaningful differences
 between these sampling platforms. The null model can be written as
 \begin{align}
-E[\bf{y}] = g^{-1} \left( \bf{X} \bf{\beta} + \bf{Z} \bf{b}  \right)
+E[\bm{y}] = g^{-1} \left( \bm{X} \bm{\beta} + \bm{Z} \bm{b}  \right)
 \end{align}
-where $g^{-1}()$ represents the inverse logit function, $\bf{X}$ represents the
-design matrix of fixed effects with estimated parameters $\bf{beta}$, the
-P-spline is represented with random effect design matrix $\bf{Z}$ and
-corresponding coefficients $\bf{b}$.
+where $g^{-1}()$ represents the inverse logit function, $\bm{X}$ represents the
+design matrix of fixed effects with estimated parameters $\bm{beta}$, the
+P-spline is represented with random effect design matrix $\bm{Z}$ and
+corresponding coefficients $\bm{b}$.
 
 As a second model, we extended our null model to include spatial and temporal
 variation. We modeled year effects (intercepts) with a time-varying AR(1) random
@@ -78,15 +79,15 @@ included spatially varying coefficients (SVCs) in age effects, as a quadratic
 relationship (spatial fields for the intercept, age, age^2). This model can be
 written as
 \begin{align}
-E[\bf{y}] = g^{-1} \left( \bf{X} \bf{\beta} + \bf{Z} \bf{b} + \bf{\omega}_{s} +
-	\bf{x}_{age} * \bf{\zeta}_{s,age} + \bf{x}_{age^{2}} * \bf{\zeta}_{s,age^{2}} +
-	\bf{X}^{tvc}_{t} \bf{\gamma_t} \right)
+E[\bm{y}] = g^{-1} \left( \bm{X} \bm{\beta} + \bm{Z} \bm{b} + \bm{\omega}_{s} +
+	\bm{x}_{age} * \bm{\zeta}_{s,age} + \bm{x}_{age^{2}} * \bm{\zeta}_{s,age^{2}} +
+	\bm{X}^{tvc}_{t} \bm{\gamma_t} \right)
 \end{align}
-where new components $\bf{\omega}_{s}$ represent a constant spatial field shared
-across years (analogous to a spatial intercept), $\bf{\zeta}_{s,age}$ and
-$\bf{\zeta}_{s,age^{2}}$ represent spatially varying coefficient effects of age,
-$\bf{X}^{tvc}_{t}$ represents the design matrix of year effects with
-estimated coefficients $\bf{\gamma_t}$. The $\bf{\gamma_t}$
+where new components $\bm{\omega}_{s}$ represent a constant spatial field shared
+across years (analogous to a spatial intercept), $\bm{\zeta}_{s,age}$ and
+$\bm{\zeta}_{s,age^{2}}$ represent spatially varying coefficient effects of age,
+$\bm{X}^{tvc}_{t}$ represents the design matrix of year effects with
+estimated coefficients $\bm{\gamma_t}$. The $\bm{\gamma_t}$
 terms were modeled as AR(1) terms such that $\gamma_{2010} \sim
 N\left(\rho\gamma_{2009}, \sqrt{1-\rho^{2}}\sigma \right)$, where $\rho$
 represents the AR(1) parameter.
@@ -104,20 +105,21 @@ relationships because these only introduced several parameters, while also
 allowing for parabolic relationships. This model can be written in the same form
 as Model 2, without the time varying intercept,
 \begin{align}
-E[\bf{y}] = g^{-1} \left( \bf{X} \bf{\beta} + \bf{Z} \bf{b} + \bf{\omega}_{s} +
-\bf{x}_{age} * \bf{\zeta}_{s,age} + \bf{x}_{age^{2}} * \bf{\zeta}_{s,age^{2}} +
-\bf{X}^{tvc}_{t} \bf{\gamma_t} \right)
+E[\bm{y}] = g^{-1} \left( \bm{X} \bm{\beta} + \bm{Z} \bm{b} + \bm{\omega}_{s} +
+\bm{x}_{age} * \bm{\zeta}_{s,age} + \bm{x}_{age^{2}} * \bm{\zeta}_{s,age^{2}} +
+\bm{X}^{tvc}_{t} \bm{\gamma_t} \right)
 \end{align}
 where the added quadratic effects of temperature are in the fixed effects
-components $\bf{X}$ and $\bf{\beta}$.
+components $\bm{X}$ and $\bm{\beta}$.
 
-Parameter estimation was done using the sdmTMB package (Anderson et al. 2022) in
-R (R Core Development Team 2024). The sdmTMB package provides a convenient
-interface between R and Template Model Builder (TMB) (Kristensen et al. 2016),
-which allows for fast marginal maximum likelihood estimation. Model convergence
-was assessed by examining the Hessian and standard errors of parameter estimates
-and the maximum gradient at convergence. Area under the curve (AUC) estimates
-were also calculated using the pROC package in R (Robin et al. 2011).
+Parameter estimation was done using the \texttt{sdmTMB} package (Anderson et al. 2022) in
+R (R Core Development Team 2024). The \texttt{sdmTMB} package provides a
+convenient interface between R and Template Model Builder (TMB) (Kristensen
+et al. 2016), which allows for fast marginal maximum likelihood estimation.
+Model convergence was assessed by examining the Hessian and standard errors
+of parameter estimates and the maximum gradient at convergence. Area under
+the curve (AUC) estimates were also calculated using the pROC package in R
+(Robin et al. 2011).
 
 ### Deriving temperature indices
 
@@ -127,14 +129,15 @@ and more recently, marine heat waves have been found to delay maturity in other
 groundfish species (Rosemond 2023). Given that temperature sampling is not done
 from all sampling platforms, we relied on modeled temperature
 products. Specifically, we used sea water potential temperature (referred to as
-`temperature` throughout) from the GLORYS12v1 product for (1/12° resolution, 50
-vertical levels, Global Ocean Physics Reanalysis for 1993 - September 2023 and
-Global Ocean Physics Analysis and Forecast for October 2023 - January 2024;
-Global Ocean Physics Reanalysis 2024, Global Ocean Physics Analysis and Forecast
-2024, Lellouche et al. 2021). We processed monthly averages of temperature, and
-used data from a subset of depths corresponding to the vertical distribution of
-hake (25.21m, 40.34m, 55.76m, 77.85m, 92.33m, 109.73m, 130.67m). These data show
-that as expected temperature generally decreases with depth (Fig. S4) and unlike
+`temperature` throughout) from the \texttt{GLORYS12v1} product for (1/12°
+resolution, 50 vertical levels, Global Ocean Physics Reanalysis for 1993
+- September 2023 and Global Ocean Physics Analysis and Forecast for October
+2023 - January 2024; Global Ocean Physics Reanalysis 2024, Global Ocean
+Physics Analysis and Forecast 2024, Lellouche et al. 2021). We processed
+monthly averages of temperature, and used data from a subset of depths
+corresponding to the vertical distribution of `r sp` (25.21m, 40.34m,
+55.76m, 77.85m, 92.33m, 109.73m, 130.67m). These data show that as
+expected temperature generally decreases with depth (Fig. S4) and unlike
 surface temperature that is warmest in summer months, the warmest temperatures
 at depth often occur in winter (Fig. S5). Data from each month–depth combination
 was alternately used to generate annual indices of temperature to relate to
@@ -171,18 +174,18 @@ temperature indices (Fig. S6, =0.98 across all depths and months).
 We performed two main sensitivity analyses across the three models used. First,
 we evaluated the sensitivity of our model selection results to include (or not)
 the fishery dependent ASHOP samples. Second, we evaluated a sensitivity to
-including samples south of Pt Conception (previous maturity modeling has imposed
+including samples south of Pt. Conception (previous maturity modeling has imposed
 a cutoff and not included samples to the south). After ensuring that models
-converged (using the `sanity()` function in sdmTMB), we evaluated the relative
-support of models using AIC. Similarly, alternative temperature indices were
-also compared using AIC (Akaike 1973), and the model(s) with the lowest AIC
-values were deemed to have the most support.
+converged (using the `sanity()` function in \texttt{sdmTMB}), we evaluated
+the relative support of models using AIC. Similarly, alternative temperature
+indices were also compared using AIC (Akaike 1973), and the model(s) with the
+lowest AIC values were deemed to have the most support.
 
 ### Generation of annual maturity at age
 
 To create a single index of maturity for each age–year combination and generate
 maturity ogives, we used results from the best model selected with temperature
-as a driver (February temperature at 130.67m depth north of Pt Conception)
+as a driver (February temperature at 130.67m depth north of Pt. Conception)
 alongside model results for Models 1 - 2. For each of these three models, we
 generated predictions of each of the three models onto the WCGBTS design grid
 for non-ASHOP samples (with a larger intercept, ASHOP samples have earlier
@@ -202,15 +205,15 @@ varying over time and space. In our comparison, most models showed greater
 support for including spatiotemporal processes than the null baseline model
 (Table 2). Similarly, we found that our model using a temperature index to
 predict year effects received the most support when ASHOP samples were included
-and only data north of Pt Conception was used (Table 2, AIC > 10); for other
+and only data north of Pt. Conception was used (Table 2, AIC > 10); for other
 analysis scenarios with different subsets of data used, the time varying random
 walk model without temperature as a driver received more support. For
 consistency with previous hake stock assessment models, we focus the remainder
-of our results on models that only use data north of Pt Conception, and also
+of our results on models that only use data north of Pt. Conception, and also
 include the ASHOP samples.
 
 Focusing on results for models of maturity that include ASHOP samples and only
-include data north of Pt Conception, all three models estimated a similar
+include data north of Pt. Conception, all three models estimated a similar
 quadratic effect of age, and higher maturity at age in ASHOP samples (Table
 3). All three models had similar high AUC values (Model 1 = 0.951, Model 2 =
 0.963, Model 3 = 0.962) indicating high abilities to discriminate between
@@ -275,19 +278,20 @@ Rosemond, R.C. 2023. Influence of novel ocean conditions on life history charact
 
 Shono, H. (2008). Application of the Tweedie distribution to zero-catch data in CPUE analysis. Fisheries Research, 93(1-2), 154-162. https://doi.org/10.1016/j.fishres.2008.03.006
 
-Table 1. Samples included in our analysis (after filtering), by sampling platform and year.
+Table 1. Samples included in our analysis (after filtering), by sampling
+platform and year.
 
 Table 2. Comparison of AIC values from the three models in our analysis. Model 1
 represents the baseline model, Model 2 represents the model with spatiotemporal
 variation but no covariates, and Model 3 represents the model with spatial
 variation and a temperature effect. For the temperature effect, this table
 represents estimates from models using temperature in February, at a depth of
-130.67m, and only north of Pt. Conception. The best models for each combination
+130.67m, and only north of Pt.. Conception. The best models for each combination
 are in bold.
 
 Table 3. Parameter estimates and standard errors estimated for the three models
 of maturity in our analyses (including ASHOP samples, and only samples north of
-Pt Conception). Fixed effect parameter estimates are in logit space. The spatial
+Pt. Conception). Fixed effect parameter estimates are in logit space. The spatial
 range and spatial variance (`sigma_O`) are also included for models with those
 terms.
 
@@ -301,32 +305,31 @@ biomass from the WCGBTS. The spatial range is included, with spatial variance
 
 # Adapting from table_assessment_changes(); don't need function as these tables
 # are one-offs.
-d <- tribble(~Platform , ~"2009", ~"2012", ~"2013", ~"2014", ~"2015", ~"2016", ~"2017", ~"2018", ~"2019",
-             ~"2021",
+d <- tribble(~Platform , ~"2009", ~"2012", ~"2013", ~"2014",
+             ~"2015", ~"2016", ~"2017", ~"2018", ~"2019", ~"2021",
 "ASHOP", 0, 0, 135, 196, 131, 194, 177, 0, 0, 0,
 "Acoustic", 0, 181, 186, 0, 160, 131, 57, 54, 59, 68,
 "WCGBT", 244, 64, 63, 197, 216, 66, 102, 109, 46, 0)
 
 # Keep this in case need extra formatting.
-##  col_names <- c("Year",
-##                  "Framework",
-##                  "Survey",
-##                  "Comp\nMethod",
-##                  "Num.\nMCMC\nsamples",
-##                  "Change")
+#  col_names <- c("Year",
+#                  "Framework",
+#                  "Survey",
+#                  "Comp\nMethod",
+#                  "Num.\nMCMC\nsamples",
+#                  "Change")
 
-##   # Insert custom header fontsize before linebreaker
-##   if(is.null(header_font_size)){
-##     header_font_size <- font_size
-##   }
-##   hdr_font_str <- create_fontsize_str(header_font_size,
-##                                       header_vert_spacing,
-##                                       header_vert_scale)
-
-##   col_names <- gsub("\\n", paste0("\n", hdr_font_str$quad), col_names)
-##   col_names <- paste0(hdr_font_str$dbl, col_names)
-##   # Add \\makecell{} latex command to headers with newlines
-##   col_names <- linebreaker(col_names, align = "c")
+# Insert custom header fontsize before linebreaker
+#   if(is.null(header_font_size)){
+#     header_font_size <- font_size
+#   }
+#   hdr_font_str <- create_fontsize_str(header_font_size,
+#                                       header_vert_spacing,
+#                                       header_vert_scale)
+#   col_names <- gsub("\\n", paste0("\n", hdr_font_str$quad), col_names)
+#   col_names <- paste0(hdr_font_str$dbl, col_names)
+# Add \\makecell{} latex command to headers with newlines
+#   col_names <- linebreaker(col_names, align = "c")
 
   kbl(d,
       format = "latex",
@@ -335,8 +338,8 @@ d <- tribble(~Platform , ~"2009", ~"2012", ~"2013", ~"2014", ~"2015", ~"2016", ~
       linesep = "",
       # col.names = col_names,
       escape = FALSE,
-      caption = "Samples included in our analysis (after filtering), by sampling platform and year."
-      ) |>
+      caption = paste0("Samples included in our analysis (after ",
+                       "filtering), by sampling platform and year.")) |>
     row_spec(0, bold = TRUE) |>
 #    column_spec(ncol(d), width = "5cm") |>
     kable_styling(font_size = 12,
@@ -360,9 +363,15 @@ d2 <- tribble(
       linesep = "",
       # col.names = col_names,
       escape = FALSE,
-      caption =
-      "Comparison of AIC values from the three models in our analysis. Model~1 represents the baseline model, Model~2 represents the model with spatiotemporal variation but no covariates, and Model~3 represents the model with spatial variation and a temperature effect. For the temperature effect, this table represents estimates from models using temperature in February, at a depth of 130.67~m, and only north of Pt. Conception. The best models (lowest AIC) for each combination are in bold."
-      ) |>
+      caption = paste0(
+        "Comparison of AIC values from the three models in our analysis. ",
+        "Model~1 represents the baseline model, Model~2 represents the model ",
+        "with spatiotemporal variation but no covariates, and Model~3 ",
+        "represents the model with spatial variation and a temperature ",
+        "effect. For the temperature effect, this table represents estimates ",
+        "from models using temperature in February, at a depth of 130.67~m, ",
+        "and only north of Pt. Conception. The best models (lowest AIC) ",
+        "for each combination are in bold.")) |>
     row_spec(0, bold = TRUE) |>
 #    column_spec(ncol(d), width = "5cm") |>
     kable_styling(font_size = 12,
@@ -399,9 +408,13 @@ d3 <- tribble(
       linesep = "",
       # col.names = col_names,
       escape = FALSE,
-      caption =
-        "Parameter estimates and standard errors estimated for the three models of maturity in our analyses (including ASHOP samples, and only samples north of Pt.~Conception). Fixed effect parameter estimates are in logit space. The spatial range and spatial variance ($\\sigma_O$) are also included for models with those terms."
-      ) |>
+      caption = paste0(
+        "Parameter estimates and standard errors estimated for the three ",
+        "models of maturity in our analyses (including ASHOP samples, and ",
+        "only samples north of Pt.~Conception). Fixed effect parameter ",
+        "estimates are in logit space. The spatial range and spatial ",
+        "variance ($\\sigma_O$) are also included for models with those ",
+        "terms.")) |>
     row_spec(0, bold = TRUE) |>
 #    column_spec(ncol(d), width = "5cm") |>
     kable_styling(font_size = 12,
@@ -425,8 +438,11 @@ d4 <- tribble(
       linesep = "",
       # col.names = col_names,
       escape = FALSE,
-      caption = "Parameter estimates and standard errors estimated for the model of hake biomass from the WCGBTS. The spatial range is included, with spatial variance ($\\sigma_O$), spatiotemporal variance ($\\sigma_E$), and Tweedie parameters ($\\phi, p$)."
-      ) |>
+      caption = paste0(
+        "Parameter estimates and standard errors estimated for the model of ",
+        "hake biomass from the WCGBTS. The spatial range is included, with ",
+        "spatial variance ($\\sigma_O$), spatiotemporal variance ",
+        "($\\sigma_E$), and Tweedie parameters ($\\phi, p$).")) |>
     row_spec(0, bold = TRUE) |>
 #    column_spec(ncol(d), width = "5cm") |>
     kable_styling(font_size = 12,
@@ -439,7 +455,9 @@ d4 <- tribble(
 
 ```{r app-maturity-analysis-sampling-platform-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S1_samplingplatform.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                           "maturity-analysis/Fig_S1_samplingplatform.png"),
+                 error = FALSE)
 ```
 
 (ref:app-maturity-analysis-sampling-platform-years-cap) Breakdown of samples by year and sampling platform.
@@ -448,7 +466,9 @@ include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S1_samplingplatfor
 
 ```{r app-maturity-analysis-sampling-platform-years-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-years-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S2_samplingplatform_years.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                           "maturity-analysis/Fig_S2_samplingplatform_years.png"),
+                 error = FALSE)
 ```
 
 (ref:app-maturity-analysis-sampling-platform-age-years-cap) Breakdown of samples by age, year, and sampling platform.
@@ -457,7 +477,9 @@ include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S2_samplingplatfor
 
 ```{r app-maturity-analysis-sampling-platform-age-years-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-age-years-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S3_samplingplatform_age_years.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                          "maturity-analysis/Fig_S3_samplingplatform_age_years.png"),
+                 error = FALSE)
 ```
 
 (ref:app-maturity-analysis-temp-depth-cap) Average GLORYS12v1 potential
@@ -468,7 +490,9 @@ Conception, in February.
 
 ```{r app-maturity-analysis-temp-depth-fig, fig.cap = "(ref:app-maturity-analysis-temp-depth-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S4_temp_by_depth.png.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                           "maturity-analysis/Fig_S4_temp_by_depth.png.png"),
+                 error = FALSE)
 ```
 
 
@@ -480,7 +504,9 @@ Conception, at a depth of 130.67m.
 
 ```{r app-maturity-analysis-raw-feb-temp-fig, fig.cap = "(ref:app-maturity-analysis-raw-feb-temp-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S5_raw_feb_temp.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                           "maturity-analysis/Fig_S5_raw_feb_temp.png"),
+                 error = FALSE)
 ```
 
 (ref:app-maturity-analysis-temp-weight-effect-cap) Comparison of temperature
@@ -492,7 +518,9 @@ January, north of Pt Conception is used.
 
 ```{r app-maturity-analysis-temp-weight-effect-fig, fig.cap = "(ref:app-maturity-analysis-temp-weight-effect-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S6_temp_weight_effect.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                           "maturity-analysis/Fig_S6_temp_weight_effect.png"),
+                 error = FALSE)
 ```
 
 (ref:app-maturity-analysis-cog-latitude-cap) Estimated center of gravity of hake biomass from WCGBTS, using data 2003--2023.
@@ -501,37 +529,59 @@ include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S6_temp_weight_eff
 
 ```{r app-maturity-analysis-cog-latitude-fig, fig.cap = "(ref:app-maturity-analysis-cog-latitude-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S7_cog_latitude.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                           "maturity-analysis/Fig_S7_cog_latitude.png"),
+                 error = FALSE)
 ```
 
 
-(ref:app-maturity-analysis-year-effects-nocovar-cap) Estimated year effects from the spatiotemporal hake maturity model without covariates (Model 2 in Tables 2-3). Year effects are included as an autocorrelated random walk (variance is larger in years without data, such as 2010-2011 or 2022-2025), and spatiotemporal effects are modeled with an AR(1) process.
+(ref:app-maturity-analysis-year-effects-nocovar-cap) Estimated year effects
+from the spatiotemporal hake maturity model without covariates (Model 2 in
+Tables 2-3). Year effects are included as an autocorrelated random walk
+(variance is larger in years without data, such as 2010-2011 or 2022-2025),
+and spatiotemporal effects are modeled with an AR(1) process.
 
 (ref:app-maturity-analysis-year-effects-nocovar-alt) ALT TEXT
 
 ```{r app-maturity-analysis-year-effects-nocovar-fig, fig.cap = "(ref:app-maturity-analysis-year-effects-nocovar-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S8_year_effects_nocovar.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                           "maturity-analysis/Fig_S8_year_effects_nocovar.png"),
+                 error = FALSE)
 ```
 
-
-
-(ref:app-maturity-analysis-predicted-maps-byage-cap) Spatial anomalies in predictions of maturity for ages 1 - 5. Predictions are centered, so that blue areas represent lower than average maturation and red areas represent higher than average. Predictions are made from our model with temperature as a covariate (ASHOP included, only data north of Pt Conception), for 2020 as a baseline year; slight variation between ages is driven by the spatially varying coefficient effect of age.
+(ref:app-maturity-analysis-predicted-maps-byage-cap) Spatial anomalies in 
+predictions of maturity for ages 1 - 5. Predictions are centered, so that 
+blue areas represent lower than average maturation and red areas represent 
+higher than average. Predictions are made from our model with temperature as
+a covariate (ASHOP included, only data north of Pt. Conception), for 2020 as
+a baseline year; slight variation between ages is driven by the spatially
+varying coefficient effect of age.
 
 (ref:app-maturity-analysis-predicted-maps-byage-alt) ALT TEXT
 
 ```{r app-maturity-analysis-predicted-maps-byage-fig, fig.cap = "(ref:app-maturity-analysis-predicted-maps-byage-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S9_predicted_maps_byage.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                           "maturity-analysis/Fig_S9_predicted_maps_byage.png"),
+                 error = FALSE)
 ```
 
-(ref:app-maturity-analysis-temp-model-sensitivities-cap) Sensitivity results for the effect of temperature, with data coming from different months and depths, summarized by different regions (`N` = north of Pt Conception, `S` = south of Pt Conception) and modeled using different functional relationships (linear, quadratic, smooth is equivalent to a P-spline). In all cases, the raw AIC values are shown (lower AIC corresponds to more data support).
+(ref:app-maturity-analysis-temp-model-sensitivities-cap) Sensitivity results
+for the effect of temperature, with data coming from different months and
+depths, summarized by different regions (`N` = north of Pt Conception,
+`S` = south of Pt Conception) and modeled using different functional
+relationships (linear, quadratic, smooth is equivalent to a P-spline).
+In all cases, the raw AIC values are shown (lower AIC corresponds to more
+data support).
 
 (ref:app-maturity-analysis-temp-model-sensitivities-alt) ALT TEXT
 
 ```{r app-maturity-analysis-temp-model-sensitivities-fig, fig.cap = "(ref:app-maturity-analysis-temp-model-sensitivities-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S10_temp_model_sensitivities.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                           "maturity-analysis/Fig_S10_temp_model_sensitivities.png"),
+                 error = FALSE)
 ```
 
 (ref:app-maturity-analysis-model-comparison-cap) Biomass weighted estimates of
@@ -543,25 +593,39 @@ non-ASHOP samples.
 
 ```{r app-maturity-analysis-model-comparison-fig, fig.cap = "(ref:app-maturity-analysis-model-comparison-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S11_model_comparison-updated.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                           "maturity-analysis/Fig_S11_model_comparison-updated.png"),
+                 error = FALSE)
 ```
 
-(ref:app-maturity-analysis-temp-marginal-cap) Estimated marginal effect of February temperature (Celsius) at a depth of 130.67m (using ASHOP samples, and data north of Pt Conception). Predictions are made for age-3 fish, and using coefficients corresponding to the non-ASHOP surveys.
+(ref:app-maturity-analysis-temp-marginal-cap) Estimated marginal effect of
+February temperature (Celsius) at a depth of 130.67m (using ASHOP samples,
+and data north of Pt. Conception). Predictions are made for age-3 fish, and
+using coefficients corresponding to the non-ASHOP surveys.
 
 (ref:app-maturity-analysis-temp-marginal-alt) ALT TEXT
 
 ```{r app-maturity-analysis-temp-marginal-fig, fig.cap = "(ref:app-maturity-analysis-temp-marginal-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S12_temp_marginal.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                           "maturity-analysis/Fig_S12_temp_marginal.png"),
+                 error = FALSE)
 ```
 
-(ref:app-maturity-analysis-age-marginal-cap) Estimated ogives in three years representing low temperature (2012), average temperatures (2020), and high temperatures (2016). The model of maturity used February temperature at a depth of 130.67m (using ASHOP samples, and data north of Pt Conception) and ogives represent hake not sampled by ASHOP. The estimated age at 50% maturity is 2.81 in 2020, versus 3.58 in 2012 and 3.82 in 2016.
+(ref:app-maturity-analysis-age-marginal-cap) Estimated ogives in three years
+representing low temperature (2012), average temperatures (2020), and high
+temperatures (2016). The model of maturity used February temperature at a
+depth of 130.67m (using ASHOP samples, and data north of Pt Conception) and
+ogives represent hake not sampled by ASHOP. The estimated age at 50% maturity
+is 2.81 in 2020, versus 3.58 in 2012 and 3.82 in 2016.
 
 (ref:app-maturity-analysis-age-marginal-alt) ALT TEXT
 
 ```{r app-maturity-analysis-age-marginal-fig, fig.cap = "(ref:app-maturity-analysis-age-marginal-cap)", results = "asis"}
 
-include_graphics(file.path(figures_dir,"maturity-analysis/Fig_S13_age_marginal.png"), error = FALSE)
+include_graphics(file.path(figures_dir,
+                           "maturity-analysis/Fig_S13_age_marginal.png"),
+                 error = FALSE)
 ```
 
 \clearpage
