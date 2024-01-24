@@ -113,7 +113,7 @@ create_sens_dirs <- function(dir_version,
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
   aa <- setup_sensitivity(prefix_number = 7, suffix_string = "m-hamel-prior")
   ctl <- setup_ctl(aa)
-  ctl[["MG_parms"]]["NatM_p_1_Fem_GP_1", c("PRIOR", "PR_SD")] <- c(-1.53245582, 0.4384383)
+  ctl[["MG_parms"]]["NatM_p_1_Fem_GP_1", c("PRIOR", "PR_SD")] <- c(-1.53245582, 0.31)
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
   aa <- setup_sensitivity(prefix_number = 8, suffix_string = "age-1-survey")
