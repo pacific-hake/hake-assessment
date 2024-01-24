@@ -370,42 +370,40 @@ than they were the previous year.
 The `r last_data_yr` Canadian `r sp` domestic fishery removed
 `r last_yr_can_landings`~t from Canadian waters
 (Table~\@ref(tab:main-catches-can-tab)), which was `r last_yr_can_attained`%
-of the Canadian TAC of `r last_yr_can_tac`~t. The attainment for Canada
-was much lower than usual, due to the fishing vessels having a difficult
-time finding fish in Canadian waters (see
-Appendix~\@ref(sec:app-canada-fishery-report) for more details).
+of the Canadian TAC of `r last_yr_can_tac`~t. For the second year in a row,
+the attainment for Canada was much lower than usual, due to the fishing
+vessels having a difficult time finding fish in Canadian waters (see
+Appendix~\@ref(sec:app-canada-fishery-report) and last year's assessment, 
+@JTC2023, for more details).
 
-The shoreside component made up of vessels landing fresh round product onshore
-landed `r last_yr_can_shore`~t, the lowest on record since 1990.
-The freezer-trawler component, which freezes headed and gutted product while
-at sea, landed `r last_yr_can_freezer`~t. There was no Joint-Venture fishery
-in `r assess_yr - 1`.
+The shoreside vessels, which land fresh round product onshore, landed `r last_yr_can_shore`~t in `r last_data_yr`, the lowest on record since 1990, and
+a little less than the `r last_data_yr - 1` landings of
+`r f(ct |> filter(Year == last_data_yr) |> pull("Canada Shoreside"))`~t.
+The Freezer trawlers, which freeze headed and gutted product while
+at sea, landed `r last_yr_can_freezer`~t. This was the lowest amount the
+Freezer trawlers have landed since 2013, despite doubling the number of
+vessels since then.
 
 Fishing started in early April and ended in November. The general view of
-the Canadian fleet is that abundance in Canadian-waters was down in 2022,
-including areas outside of Southwest Vancouver Island. The freezer trawlers
-fished in considerably shallower areas than last year and at shallower depths,
-whereas the shoreside vessels fished their gear at deeper depths than in 2021
-(Figure~\@ref(fig:main-can-depths-fig)). Reports of difficulties finding
-fish in 2022, and thus additional searching, is perhaps related to these
-standout differences in fishing depths. The fish caught in Canada appeared to
-be mostly from three age classes (ages 6, 8, 12, and 5), with very few smaller
-fish (less than 500 grams) caught.
+the Canadian fleet is that abundance in Canadian-waters remained below
+normal levels in `r last_data_yr`, including the normally-abundant areas
+outside of Southwest Vancouver Island. Reports of difficulties finding
+fish in `r last_data_yr` led to some vessels not leaving the dock,
+therefore amplifying the effect of low catches. The fish caught in Canada
+appeared to be mostly from four age classes (see below), with very few
+smaller fish (less than 500 grams) caught.
 
 The most abundant year classes in the Canadian shoreside catch (by numbers)
 were
 age-`r max_shoreside_age_prop_age` (`r max_shoreside_age_prop`%),
 age-`r second_shoreside_age_prop_age` (`r second_shoreside_age_prop`%),
 age-`r third_shoreside_age_prop_age` (`r third_shoreside_age_prop`%), and
-age-`r fourth_shoreside_age_prop_age` (`r fourth_shoreside_age_prop`%);
-Table~\@ref(tab:main-can-ss-age-data-tab).
-The most abundant year classes in the Canadian freezer-trawler catch were age-
-`r max_freezer_trawler_age_prop_age`
-(`r max_freezer_trawler_age_prop`%),
-age-`r second_freezer_trawler_age_prop_age`
-(`r second_freezer_trawler_age_prop`%),
-age-`r third_freezer_trawler_age_prop_age`
-(`r third_freezer_trawler_age_prop`%), and
-age-`r fourth_freezer_trawler_age_prop_age`
-(`r fourth_freezer_trawler_age_prop`%);
-Table~\@ref(tab:main-can-ft-age-data-tab).
+age-`r fourth_shoreside_age_prop_age` (`r fourth_shoreside_age_prop`%)
+(Table~\@ref(tab:main-can-ss-age-data-tab)).
+
+The most abundant year classes in the Canadian freezer-trawler catch were
+age-`r max_freezer_trawler_age_prop_age` (`r max_freezer_trawler_age_prop`%),
+age-`r second_freezer_trawler_age_prop_age` (`r second_freezer_trawler_age_prop`%),
+age-`r third_freezer_trawler_age_prop_age` (`r third_freezer_trawler_age_prop`%), and
+age-`r fourth_freezer_trawler_age_prop_age` (`r fourth_freezer_trawler_age_prop`%)
+(Table~\@ref(tab:main-can-ft-age-data-tab)).
