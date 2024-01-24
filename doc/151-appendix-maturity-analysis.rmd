@@ -18,12 +18,14 @@ Ecosystem and Acoustic-Trawl  survey, and gonad tissue samples from the At-Sea
 Hake Observer program (ASHOP). The first two sources represent
 fishery-independent samples, while ASHOP samples are fishery dependent. After
 filtering, this dataset consisted of 2836 samples, from years 2009 to 2021
-(Table 1; Fig. \@ref(fig:app-maturity-analysis-sampling-platform-fig)-\@ref(fig:app-maturity-analysis-sampling-platform-age-years-fig)). An additional 180 samples exist with unknown ages, and
-394 samples exist with uncertain functional maturity; but these were omitted
-from our analysis. Similarly, there are 73 samples in this dataset collected in
-British Columbia (72 of 73 mature; 70 of 73 age 5 or older), but they have
-limited temporal coverage (primarily 2013, 2015) and were omitted from our
-analysis.
+(Table \@ref(tab:app-maturity-analysis-sampling-platform-tab);
+Fig. \@ref(fig:app-maturity-analysis-sampling-platform-fig)-
+\@ref(fig:app-maturity-analysis-sampling-platform-age-years-fig)). An
+additional 180 samples exist with unknown ages, and 394 samples exist with
+uncertain functional maturity; but these were omitted from our analysis.
+Similarly, there are 73 samples in this dataset collected in British
+Columbia (72 of 73 mature; 70 of 73 age 5 or older), but they have limited
+temporal coverage (primarily 2013, 2015) and were omitted from our analysis.
 
 ### Statistical modeling
 
@@ -167,7 +169,8 @@ weighted average of temperature across space, with estimated hake biomass used
 as weights. As the WCGBTS survey only provides an annual snapshot of biomass,
 the same biomass weights were used for all depths and months with temperature
 data. In general, weighted indices remained highly correlated with unweighted
-temperature indices (Fig. \@ref(fig:app-maturity-analysis-temp-weight-effect-fig), =0.98 across all depths and months).
+temperature indices (Fig. \@ref(fig:app-maturity-analysis-temp-weight-effect-fig),
+= 0.98 across all depths and months).
 
 ## Model selection and sensitivity analysis
 
@@ -189,13 +192,14 @@ as a driver (February temperature at 130.67m depth north of Pt. Conception)
 alongside model results for Models 1 - 2. For each of these three models, we
 generated predictions of each of the three models onto the WCGBTS design grid
 for non-ASHOP samples (with a larger intercept, ASHOP samples have earlier
-maturity at age; Table 3). Rather than take a simple average of these estimates
-(which weights each spatial cell equally), we calculated a weighted average,
-using biomass weights. Biomass was predicted using the same spatiotemporal model
-fit to the WCGBTS CPUE data, used in generating weighted indices of
-temperature. Weights were applied to estimated probabilities of maturity in
-logit space, and the total weighted average for each age–year combination was
-converted to normal space with an inverse logit transformation.
+maturity at age; Table \@ref(tab:app-maturity-analysis-estimates-tab)).
+Rather than take a simple average of these estimates (which weights each
+spatial cell equally), we calculated a weighted average, using biomass
+weights. Biomass was predicted using the same spatiotemporal model fit to
+the WCGBTS CPUE data, used in generating weighted indices of temperature.
+Weights were applied to estimated probabilities of maturity in logit space,
+and the total weighted average for each age–year combination was converted
+to normal space with an inverse logit transformation.
 
 ## Results
 
@@ -203,14 +207,15 @@ Comparing our spatiotemporal model of hake maturity to the baseline model
 representing the status quo provides an evaluation of support for maturation
 varying over time and space. In our comparison, most models showed greater
 support for including spatiotemporal processes than the null baseline model
-(Table 2). Similarly, we found that our model using a temperature index to
-predict year effects received the most support when ASHOP samples were included
-and only data north of Pt. Conception was used (Table 2, AIC > 10); for other
-analysis scenarios with different subsets of data used, the time varying random
-walk model without temperature as a driver received more support. For
-consistency with previous hake stock assessment models, we focus the remainder
-of our results on models that only use data north of Pt. Conception, and also
-include the ASHOP samples.
+(Table \@ref(tab:app-maturity-analysis-aic-tab)). Similarly, we found that
+our model using a temperature index to predict year effects received the
+most support when ASHOP samples were included and only data north of Pt.
+Conception was used (Table \@ref(tab:app-maturity-analysis-aic-tab), AIC > 10);
+for other analysis scenarios with different subsets of data used, the time
+varying random walk model without temperature as a driver received more
+support. For consistency with previous hake stock assessment models, we
+focus the remainder of our results on models that only use data north of
+Pt. Conception, and also include the ASHOP samples.
 
 Focusing on results for models of maturity that include ASHOP samples and only
 include data north of Pt. Conception, all three models estimated a similar
@@ -224,26 +229,33 @@ months.
 For models that include spatiotemporal variation, we found similar patterns of
 year effects and spatial variation. Year effects from the time varying model
 without temperature indicated lower than average maturity in a number of years,
-including 2012, 2016, and 2019 (Fig. \@ref(fig:app-maturity-analysis-year-effects-nocovar-fig)). Including spatially varying
-coefficients of age allowed each age to differ slightly – but in general spatial
-patterning was similar across ages (Fig. \@ref(fig:app-maturity-analysis-predicted-maps-byage-fig)). Biomass weighted predictions of
-maturity also appeared similar between our spatiotemporal models with and
-without temperature effects (Fig. \@ref(fig:app-maturity-analysis-temp-model-sensitivities-fig)). The largest differences between these
-models appears to be in years like 2016, when the temperature driven model
-predicts maturation rates lower than the random walk model (the classification
-ability of these models in 2016 was nearly identical, AUC = 0.957 for both).
+including 2012, 2016, and 2019
+(Fig. \@ref(fig:app-maturity-analysis-year-effects-nocovar-fig)). Including
+spatially varying coefficients of age allowed each age to differ slightly –
+but in general spatial patterning was similar across ages
+(Fig. \@ref(fig:app-maturity-analysis-predicted-maps-byage-fig)). Biomass
+weighted predictions of maturity also appeared similar between our
+spatiotemporal models with and without temperature effects
+(Fig. \@ref(fig:app-maturity-analysis-temp-model-sensitivities-fig)). The
+largest differences between these models appears to be in years like 2016,
+when the temperature driven model predicts maturation rates lower than the
+random walk model (the classification ability of these models in 2016 was
+nearly identical, AUC = 0.957 for both).
 
 The estimated marginal effect of temperature in our best model (Tables 2-3)
 indicated a concave relationship between temperature and functional maturity
-(Fig. \@ref(fig:app-maturity-analysis-temp-marginal-fig)). Temperatures in 2018 and 2020 were near the peak of this
-relationship, while most years were cooler (maturity increasing with temperature
-over this region). Temperatures in 2016 and 2019 were high (Fig. \@ref(fig:app-maturity-analysis-temp-depth-fig) - \@ref(fig:app-maturity-analysis-temp-weight-effect-fig)), above
-the threshold corresponding to the peak of the temperature-maturity
-relationship, and maturity at age was estimated to decline in these
-years. Contrasts between years can also be seen in the estimated ogives
-(Fig. \@ref(fig:app-maturity-analysis-age-marginal-fig)) with a delay in maturity occurring in years that are both cooler and
-warmer than 2016 (age at 50% maturity = 2.81 in 2020, versus 3.58 in 2012 or
-3.82 in 2016).
+(Fig. \@ref(fig:app-maturity-analysis-temp-marginal-fig)). Temperatures in
+2018 and 2020 were near the peak of this relationship, while most years
+were cooler (maturity increasing with temperature over this region).
+Temperatures in 2016 and 2019 were high
+(Fig. \@ref(fig:app-maturity-analysis-temp-depth-fig) -
+\@ref(fig:app-maturity-analysis-temp-weight-effect-fig)), above the threshold
+corresponding to the peak of the temperature-maturity relationship, and
+maturity at age was estimated to decline in these years. Contrasts between
+years can also be seen in the estimated ogives
+(Fig. \@ref(fig:app-maturity-analysis-age-marginal-fig)) with a delay in
+maturity occurring in years that are both cooler and warmer than 2016 (age
+at 50% maturity = 2.81 in 2020, versus 3.58 in 2012 or 3.82 in 2016).
 
 ## Citations
 
@@ -278,28 +290,9 @@ Rosemond, R.C. 2023. Influence of novel ocean conditions on life history charact
 
 Shono, H. (2008). Application of the Tweedie distribution to zero-catch data in CPUE analysis. Fisheries Research, 93(1-2), 154-162. https://doi.org/10.1016/j.fishres.2008.03.006
 
-Table 1. Samples included in our analysis (after filtering), by sampling
-platform and year.
+\clearpage
 
-Table 2. Comparison of AIC values from the three models in our analysis. Model 1
-represents the baseline model, Model 2 represents the model with spatiotemporal
-variation but no covariates, and Model 3 represents the model with spatial
-variation and a temperature effect. For the temperature effect, this table
-represents estimates from models using temperature in February, at a depth of
-130.67m, and only north of Pt.. Conception. The best models for each combination
-are in bold.
-
-Table 3. Parameter estimates and standard errors estimated for the three models
-of maturity in our analyses (including ASHOP samples, and only samples north of
-Pt. Conception). Fixed effect parameter estimates are in logit space. The spatial
-range and spatial variance (`sigma_O`) are also included for models with those
-terms.
-
-Table 4. Parameter estimates and standard errors estimated for the model of hake
-biomass from the WCGBTS. The spatial range is included, with spatial variance
-(sigma_O), spatiotemporal variance (sigma_E), and Tweedie parameters (phi, p).
-
-
+## Tables
 
 ```{r app-maturity-analysis-sampling-platform-tab, results = "asis", echo = FALSE}
 
@@ -346,8 +339,6 @@ d <- tribble(~Platform , ~"2009", ~"2012", ~"2013", ~"2014",
                   latex_options = c("repeat_header"))
 ```
 
-
-
 ```{r app-maturity-analysis-aic-tab, results = "asis", echo = FALSE}
 d2 <- tribble(
   ~"ASHOP", ~"Include South", ~"Model 1", ~"Model 2", ~"Model 3",
@@ -377,7 +368,6 @@ d2 <- tribble(
     kable_styling(font_size = 12,
                   latex_options = c("repeat_header"))
 ```
-
 
 ```{r app-maturity-analysis-estimates-tab, results = "asis", echo = FALSE}
 d3 <- tribble(
@@ -421,7 +411,6 @@ d3 <- tribble(
                   latex_options = c("repeat_header"))
 ```
 
-
 ```{r app-maturity-analysis-biomass-tab, results = "asis", echo = FALSE}
 d4 <- tribble(
   ~"Term", ~"Estimate", ~"Std.~Error",
@@ -448,6 +437,10 @@ d4 <- tribble(
     kable_styling(font_size = 12,
                   latex_options = c("repeat_header"))
 ```
+
+\clearpage
+
+## Figures
 
 (ref:app-maturity-analysis-sampling-platform-cap) Breakdown of samples by age and sampling platform.
 
