@@ -118,8 +118,8 @@ convenient interface between R and Template Model Builder (TMB) (Kristensen
 et al. 2016), which allows for fast marginal maximum likelihood estimation.
 Model convergence was assessed by examining the Hessian and standard errors
 of parameter estimates and the maximum gradient at convergence. Area under
-the curve (AUC) estimates were also calculated using the pROC package in R
-(Robin et al. 2011).
+the curve (AUC) estimates were also calculated using the \texttt{pROC}
+package in R (Robin et al. 2011).
 
 ### Deriving temperature indices
 
