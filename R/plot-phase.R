@@ -17,7 +17,7 @@
 plot_phase <- function(model,
                        start_yr,
                        end_yr,
-                       x_lim = c(0, 1.4),
+                       x_lim = c(0, 1.5),
                        y_lim = c(0, 1.2),
                        init_lbl_x_off = 0,
                        init_lbl_y_off = 0,
