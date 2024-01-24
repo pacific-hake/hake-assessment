@@ -334,8 +334,7 @@ age-`r us_age_3_prop_age_ms` (`r us_age_3_prop_ms`%), and
 age-`r us_age_4_prop_age_ms` (`r us_age_4_prop_ms`%);
 Table~\@ref(tab:main-us-ms-age-data-tab).
 
-Age-samples from
-`r pull(us_ss_age_df[us_ss_age_df$year == last_data_yr, "n.trips"])`
+Age-samples from `r pull(us_sb_age_df[us_sb_age_df$year == last_data_yr, "num_samples"])`
 shoreside trips showed similar age compositions in the catch
 compared to the at-sea sectors, though not nearly as many age-2 fish.
 The four most abundant age classes for highest occurrences being for
@@ -344,7 +343,7 @@ The four most abundant age classes for highest occurrences being for
 (`r us_age_2_prop_shore`%), age-`r us_age_3_prop_age_shore`
 (`r us_age_3_prop_shore`%), and age-`r us_age_4_prop_age_shore`
 (`r us_age_4_prop_shore`%);
-Table~\@ref(tab:main-us-sb-age-data-tab). Age-composition differences
+Table~\@ref(tab:main-us-sb-age-data-tab). Age-compositions
 between at-sea and shoreside sectors during this last year were more similar
 than they were the previous year.
 
