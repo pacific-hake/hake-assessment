@@ -18,7 +18,7 @@ Ecosystem and Acoustic-Trawl  survey, and gonad tissue samples from the At-Sea
 Hake Observer program (ASHOP). The first two sources represent
 fishery-independent samples, while ASHOP samples are fishery dependent. After
 filtering, this dataset consisted of 2836 samples, from years 2009 to 2021
-(Table 1; Fig. S1-S3). An additional 180 samples exist with unknown ages, and
+(Table 1; Fig. \@ref(fig:app-maturity-analysis-sampling-platform-fig)-\@ref(fig:app-maturity-analysis-sampling-platform-age-years-fig)). An additional 180 samples exist with unknown ages, and
 394 samples exist with uncertain functional maturity; but these were omitted
 from our analysis. Similarly, there are 73 samples in this dataset collected in
 British Columbia (72 of 73 mature; 70 of 73 age 5 or older), but they have
@@ -137,9 +137,9 @@ Physics Analysis and Forecast 2024, Lellouche et al. 2021). We processed
 monthly averages of temperature, and used data from a subset of depths
 corresponding to the vertical distribution of `r sp` (25.21m, 40.34m,
 55.76m, 77.85m, 92.33m, 109.73m, 130.67m). These data show that as
-expected temperature generally decreases with depth (Fig. S4) and unlike
+expected temperature generally decreases with depth (Fig. \@ref(fig:app-maturity-analysis-temp-depth-fig)) and unlike
 surface temperature that is warmest in summer months, the warmest temperatures
-at depth often occur in winter (Fig. S5). Data from each month–depth combination
+at depth often occur in winter (Fig. \@ref(fig:app-maturity-analysis-raw-feb-temp-fig)). Data from each month–depth combination
 was alternately used to generate annual indices of temperature to relate to
 maturity. As a final stratification, we also considered indices generated using
 (1) coastwide GLORYS12v1 temperatures, (2) temperature north of Pt Conception,
@@ -167,7 +167,7 @@ weighted average of temperature across space, with estimated hake biomass used
 as weights. As the WCGBTS survey only provides an annual snapshot of biomass,
 the same biomass weights were used for all depths and months with temperature
 data. In general, weighted indices remained highly correlated with unweighted
-temperature indices (Fig. S6, =0.98 across all depths and months).
+temperature indices (Fig. \@ref(fig:app-maturity-analysis-temp-weight-effect-fig), =0.98 across all depths and months).
 
 ## Model selection and sensitivity analysis
 
@@ -224,24 +224,24 @@ months.
 For models that include spatiotemporal variation, we found similar patterns of
 year effects and spatial variation. Year effects from the time varying model
 without temperature indicated lower than average maturity in a number of years,
-including 2012, 2016, and 2019 (Fig. S8). Including spatially varying
+including 2012, 2016, and 2019 (Fig. \@ref(fig:app-maturity-analysis-year-effects-nocovar-fig)). Including spatially varying
 coefficients of age allowed each age to differ slightly – but in general spatial
-patterning was similar across ages (Fig. S9). Biomass weighted predictions of
+patterning was similar across ages (Fig. \@ref(fig:app-maturity-analysis-predicted-maps-byage-fig)). Biomass weighted predictions of
 maturity also appeared similar between our spatiotemporal models with and
-without temperature effects (Fig. S10). The largest differences between these
+without temperature effects (Fig. \@ref(fig:app-maturity-analysis-temp-model-sensitivities-fig)). The largest differences between these
 models appears to be in years like 2016, when the temperature driven model
 predicts maturation rates lower than the random walk model (the classification
 ability of these models in 2016 was nearly identical, AUC = 0.957 for both).
 
 The estimated marginal effect of temperature in our best model (Tables 2-3)
 indicated a concave relationship between temperature and functional maturity
-(Fig. S12). Temperatures in 2018 and 2020 were near the peak of this
+(Fig. \@ref(fig:app-maturity-analysis-temp-marginal-fig)). Temperatures in 2018 and 2020 were near the peak of this
 relationship, while most years were cooler (maturity increasing with temperature
-over this region). Temperatures in 2016 and 2019 were high (Fig. S4 - S6), above
+over this region). Temperatures in 2016 and 2019 were high (Fig. \@ref(fig:app-maturity-analysis-temp-depth-fig) - \@ref(fig:app-maturity-analysis-temp-weight-effect-fig)), above
 the threshold corresponding to the peak of the temperature-maturity
 relationship, and maturity at age was estimated to decline in these
 years. Contrasts between years can also be seen in the estimated ogives
-(Fig. S13) with a delay in maturity occurring in years that are both cooler and
+(Fig. \@ref(fig:app-maturity-analysis-age-marginal-fig)) with a delay in maturity occurring in years that are both cooler and
 warmer than 2016 (age at 50% maturity = 2.81 in 2020, versus 3.58 in 2012 or
 3.82 in 2016).
 
@@ -495,7 +495,6 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-
 (ref:app-maturity-analysis-raw-feb-temp-cap) Average GLORYS12v1 potential
 temperature (degrees Celsius) within the domain of the WCGBTS north of Pt
 Conception, at a depth of 130.67m.
@@ -523,17 +522,17 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-(ref:app-maturity-analysis-cog-latitude-cap) Estimated center of gravity of hake biomass from WCGBTS, using data 2003--2023.
+ <!-- Figure Not referenced!! -->
+<!-- (ref:app-maturity-analysis-cog-latitude-cap) Estimated center of gravity of hake biomass from WCGBTS, using data 2003--2023. -->
 
-(ref:app-maturity-analysis-cog-latitude-alt) ALT TEXT
+<!-- (ref:app-maturity-analysis-cog-latitude-alt) ALT TEXT -->
 
-```{r app-maturity-analysis-cog-latitude-fig, fig.cap = "(ref:app-maturity-analysis-cog-latitude-cap)", results = "asis"}
+<!-- ```{r app-maturity-analysis-cog-latitude-fig, fig.cap = "(ref:app-maturity-analysis-cog-latitude-cap)", results = "asis"} -->
 
-include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S7_cog_latitude.png"),
-                 error = FALSE)
-```
-
+<!-- include_graphics(file.path(figures_dir, -->
+<!--                            "maturity-analysis/Fig_S7_cog_latitude.png"), -->
+<!--                  error = FALSE) -->
+<!-- ``` -->
 
 (ref:app-maturity-analysis-year-effects-nocovar-cap) Estimated year effects
 from the spatiotemporal hake maturity model without covariates (Model 2 in
@@ -589,14 +588,15 @@ maturity for each of the three models in our analysis (using ASHOP samples, and
 data north of Pt Conception). Predictions of functional maturity are for
 non-ASHOP samples.
 
-(ref:app-maturity-analysis-model-comparison-alt) ALT TEXT
+<!-- Figure not referenced!! -->
+<!-- (ref:app-maturity-analysis-model-comparison-alt) ALT TEXT -->
 
-```{r app-maturity-analysis-model-comparison-fig, fig.cap = "(ref:app-maturity-analysis-model-comparison-cap)", results = "asis"}
+<!-- ```{r app-maturity-analysis-model-comparison-fig, fig.cap = "(ref:app-maturity-analysis-model-comparison-cap)", results = "asis"} -->
 
-include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S11_model_comparison-updated.png"),
-                 error = FALSE)
-```
+<!-- include_graphics(file.path(figures_dir, -->
+<!--                            "maturity-analysis/Fig_S11_model_comparison-updated.png"), -->
+<!--                  error = FALSE) -->
+<!-- ``` -->
 
 (ref:app-maturity-analysis-temp-marginal-cap) Estimated marginal effect of
 February temperature (Celsius) at a depth of 130.67m (using ASHOP samples,
