@@ -104,9 +104,9 @@ considerations. For example, @TurleyRykaczewski2019 found decreased
 survival of larval `r sp` as storm events increased, contrary to many other
 species in the Southern California Current Ecosystem. An analysis of drivers of
 recruitment across the maternal preconditioning, egg, and larval phases of
-`r sp` indicated recruitment is associated with eddy kinetic energy, the
-location of the North Pacific Current bifurcation, and upwelling during
-maternal preconditioning, as well as with northward long-shore transport
+`r sp` recruitment indicated recruitment is associated with eddy kinetic
+energy, the location of the North Pacific Current bifurcation, and upwelling
+during maternal preconditioning, as well as with northward long-shore transport
 and the number of days between storm events during larval stages
 [@VestfalsEtAl2023]. @Phillips2022 suggests temperature
 dynamically influences the co-occurrence of `r sp` and krill (i.e.,
@@ -116,7 +116,7 @@ was also found to impact the co-occurrence of `r sp` and shortbelly rockfish
 (*Sebastes jordani*, Sebastidae) during the 2014--2016 marine heatwave
 [@FreeEtAl2023]. An index of abundance for Humboldt Squid (*Dosidicus
 gigas*) suggests that the abundance of `r sp` decreases with increasing squid
-abundance [@StewartHazenEtAl2014, @JTC2015]. Many additional research topics
+abundance [@StewartHazenEtAl2014; @JTC2015]. Many additional research topics
 relevant to `r sp` distribution, recruitment, and growth patterns in relation
 to oceanographic conditions have been investigated [@ResslerHolmesEtAl2007;
 @HamelEtAl2015; @MalickHunsickerEtAl2020; @MalickSiedleckiEtAl2020] but further
@@ -125,11 +125,11 @@ research on this topic is still needed.
 Fitting the assessment model to empirical weight-at-age data allows for
 time-varying growth without needing a mechanistic relationship or environmental
 data, which facilitates an `Ecosystem Approach to Fisheries Management'
-(a priority for DFO and NOAA); see Section~\@ref(sec:data-weight-at-age).
+(a priority for DFO and NOAA; see Section~\@ref(sec:data-weight-at-age)).
 Nonetheless, ongoing research investigating spatiotemporal drivers of
 weight at age will provide more insights into the specific mechanisms
 affecting changes in growth, which will enable condition-specific prediction
-capabilities (e.g., assumptions of growth, or weight at age, during forecast
+capabilities (e.g., assumptions of growth or weight at age during forecast
 years). It is hypothesized that temporal changes in weight-at-age data may be
 due to ecosystem effects such as prey availability, predator abundance, and
 ocean temperature [@ChittaroGrandinetal2022].
