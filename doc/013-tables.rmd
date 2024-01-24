@@ -205,8 +205,7 @@ table_survey_history(
     " to ", survey_end_yr, "."),
   font_size = 10,
   header_font_size = 11,
-  longtable = TRUE) |>
-  landscape()
+  longtable = TRUE)
 ```
 
 ```{r main-survey-by-country-tab, results = "asis", echo = FALSE}
@@ -218,8 +217,7 @@ table_survey_by_country(
     "country."),
   font_size = 10,
   header_font_size = 11,
-  longtable = TRUE) |>
-  landscape()
+  longtable = TRUE)
 ```
 
 ```{r main-maturity-ogives-tab, results = "asis", echo = FALSE}
@@ -298,7 +296,7 @@ table_at_age(
   end_yr = end_yr,
   caption = paste0(
     "Estimated numbers-at-age at the beginning of the year from the base ",
-    "model (posterior medians; million)."),
+    "model (posterior medians; millions)."),
   font_size = 9,
   header_font_size = 10,
   longtable = TRUE) |> 
