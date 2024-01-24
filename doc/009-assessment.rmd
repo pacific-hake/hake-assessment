@@ -1585,7 +1585,7 @@ prior standard deviation set to 0.3, and
 `r f_nat_m_hamel[1]`--`r f_nat_m_hamel[3]` for the sensitivity run with the
 @HamelCope2022 prior (Table~\@ref(tab:main-parameter-estimates-sens-1-tab)).
 In addition to increased estimates of natural mortality, results from these
-sensitivity models also showed an increases in the overall scale of the
+sensitivity models also showed an increase in the overall scale of the
 population, the estimated stock status relative to `r b_0` prior to 1990,
 the uncertainty in female spawning biomass on both absolute and relative
 scales, halved estimated relative fishing intensity in `r end_yr - 1`, and more
