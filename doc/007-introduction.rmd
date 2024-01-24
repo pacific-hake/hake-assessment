@@ -234,29 +234,30 @@ has met the Marine Stewardship Council (MSC) Fisheries Standard to be
 certified as meeting sustainable fishing benchmarks since 2009. Foreign fleets
 dominated the fishery until 1991, when domestic fleets began taking the
 majority of the catch. Catches were occasionally greater than 200,000~t prior
-to 1986, and since then they have been greater than 200,000~t for all except
+to 1986, and since then, they have been greater than 200,000~t for all except
 `r catches_below_200000_since_1986` years.
 
-In 2021 (the latest data available), the `r sp` fishery was Canada's largest
-commercial wild fishery (species with the largest catch), representing 10% of
-[Canada's total landings](https://www.dfo-mpo.gc.ca/stats/commercial/land-debarq/sea-maritimes/s2021pq-eng.htm) of all species.
+In 2021, the `r sp` fishery was Canada's largest commercial wild fishery
+(species with the largest catch), representing 10% of Canada's total landings
+of all species
+([www.dfo-mpo.gc.ca](https://www.dfo-mpo.gc.ca/stats/commercial/land-debarq/sea-maritimes/s2021pq-eng.htm)).
 Over CA\$19~million in wages was estimated to have been paid to employees of
 the processing industry in British Columbia in 2021, with an exported value of
 $>$CA\$60~million in product to Ukraine ($>$CA\$25~million), China, South
-Africa, Lithuania and other countries [@DFO2023].
+Africa, Lithuania, and other countries [@DFO2023].
 
-In the US, over US\$75.1 million in wages is estimated to have been paid to
+In the U.S.A., over U.S.\$75.1 million in wages is estimated to have been paid to
 employees in 2021
 ([www.noaa.gov](https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/)).
 This includes wages paid to crew and captains fishing on catcher vessels that
 deliver shoreside and at-sea to motherships; workers in shore-based processing
 facilities; crew, captains, and workers on catcher-processor vessels; and
-workers on mothership vessels. The exported value of Pacific Hake was US\$163
+workers on mothership vessels. The exported value of Pacific Hake was U.S.\$163
 million in 2021, including to Ukraine, Nigeria, and Netherlands, which make up
-about 73\% of the total
+about 73% of the total
 ([www.noaa.gov](https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321)).
 The total economic impact of the `r sp` fishery on the U.S. West Coast in 2021
-was US\$335 million in income and 4,450 jobs.
+was U.S.\$335 million in income and 4,450 jobs.
 
 The Joint Management Committee (JMC) determined an adjusted (for carryovers)
 coast-wide TAC of `r last_yr_tac`~t for `r last_data_yr`. The U.S. catch
@@ -266,7 +267,8 @@ presented here by country
 (Tables~\@ref(tab:main-catches-us-tab)--\@ref(tab:main-landings-tac-tab) and
 Figure~\@ref(fig:main-catches-fig)).  Additional information is available in
 annual U.S. and Canada Advisory Panel reports
-(Appendices~\@ref(sec:app-us-fishery-report)--\@ref(sec:app-canada-fishery-report)).
+(Appendices~\@ref(sec:app-us-fishery-report) and
+\@ref(sec:app-canada-fishery-report)).
 
 ### Fisheries for `r sp` in the United States {#sec:intro-fisheries-us}
 
