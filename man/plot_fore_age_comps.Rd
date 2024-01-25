@@ -9,7 +9,7 @@ plot_fore_age_comps(
   model,
   x_lim = c(1, 15),
   x_breaks = seq(x_lim[1], x_lim[2], 2),
-  y_lim = c(0, 0.4),
+  y_lim = c(0, 0.55),
   whisker_width = 0.5
 )
 }
