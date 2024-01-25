@@ -10,14 +10,10 @@ The model is fit to an acoustic survey index of biomass, a relative
 index of age-1 fish, annual commercial catch data, mean weight-at-age data,
 and age-composition data from the survey and commercial fisheries.
 
-- Updates in this assessment include incorporating
-the new biomass estimate and age-composition data from the acoustic survey conducted in `r survey_end_yr`,
-fishery catch and age-composition data from `r end_yr-1`, weight-at-age data for
-`r end_yr-1`,
-the `r survey_end_yr` age-1 index estimate,
-and minor changes to pre-`r end_yr-1` data. In addition, a model-based approach was
-used to develop the input weight-at-age matrix, and time-varying maturity was
-added to better inform fecundity.  
+- Data for `r end_yr-1` were included for each data set and minor changes to
+pre-`r end_yr-1` data were made as necessary. In addition, a model-based
+approach was used to develop the input weight-at-age matrix and time-varying
+maturity was added to better inform fecundity.
 
 - Coast-wide catch in `r end_yr-1` was `r last_yr_landings`~t
 [t represents metric tons], 22% below the average over the most recent 10 years
