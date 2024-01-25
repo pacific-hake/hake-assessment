@@ -721,8 +721,8 @@ plot_priors_vs_posts(base_model,
 ```
 
 (ref:main-tv-selex-cap) Mountains plot of median fishery selectivity in each
-year for the base model. Range of selectivity is scaled to be between 0 and 1
-in each year.
+year for the base model. The range of selectivity is scaled to be between
+0 and 1 in each year.
 
 (ref:main-tv-selex-alt) This figure shows individual median selectivity
 plots for each year in a mountain range configuration.
@@ -741,9 +741,10 @@ plot_selex_mountains(base_model,
 (ref:main-tv-selex-uncertainty-cap) Fishery selectivity sampled from
 posterior probability distribution by year for the base model. Black dots
 and bars indicate the median and 95% credibility interval, respectively.
-The shaded polygon also shows the 95% credibility interval. Range is from
-0 to 1 within each year. Selectivity for `r tv_selex_start_yr` is shared
-for all years from `r start_yr` to `r tv_selex_start_yr`.
+The shaded polygon also shows the 95% credibility interval. The range of
+selectivity is scaled to be between 0 and 1 in each year.
+Selectivity for `r tv_selex_start_yr` is shared for all years from
+`r start_yr` to `r tv_selex_start_yr`.
 
 (ref:main-tv-selex-uncertainty-alt) This figure shows individual panels for
 each year with selectivity medians and 0.95 credible intervals.
