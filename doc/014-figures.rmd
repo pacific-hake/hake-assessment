@@ -1488,7 +1488,7 @@ recruitment from the stock-recruitment relationship. Age-0 recruitment
 deviations are non-zero because Markov chain Monte Carlo allows for
 sampling from the full lognormal distribution. Lines represent estimated
 recruitment deviations for cohorts born from `r min(retro_cohorts)` to
-`r max(retro_cohorts)`, with cohort birth year marked at the right of each
+`r max(retro_cohorts) + 1`, with cohort birth year marked at the right of each
 color-coded line. For example, the right-most point for the `r assess_yr - 8`
 cohort shows the cohort at age-8 (i.e., at the start of `r assess_yr`,
 which represents the base model and includes data through `r assess_yr - 1`).
@@ -1528,9 +1528,7 @@ negative recruitment deviation.
 ```{r main-relative-retrospective-recruitment-fig, fig.cap = "(ref:main-relative-retrospective-recruitment-cap)", fig.height = 6}
 
 plot_squid(base_model,
-           relative = TRUE,
-           show_ci = TRUE,
-           ci_yrs = 2021)
+           relative = TRUE)
 ```
 
 \clearpage
