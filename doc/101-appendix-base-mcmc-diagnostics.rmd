@@ -159,7 +159,8 @@ first part of the chain against means in the last part of the chain. The
 Heidelberger and Welch statistic (lower right panel) tests if the sampled
 values come from a stationary distribution by comparing different sections
 of the chain. Values for the unfished equilibrium recruitment ($R_0$) are
-explicitly highlighted.
+explicitly highlighted. Values inside the bars represent the number of
+parameters counted in that bin.
 
 (ref:app-mcmc-diag-hists-alt) This figure shows good summary Markov chain
 Monte Carlo diagnostics for all base model parameters.
