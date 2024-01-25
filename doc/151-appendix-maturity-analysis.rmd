@@ -465,7 +465,7 @@ d4 <- tribble(
 ```{r app-maturity-analysis-sampling-platform-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S1_samplingplatform.png"),
+                           "Fig_S1_samplingplatform.png"),
                  error = FALSE)
 ```
 
@@ -476,7 +476,7 @@ include_graphics(file.path(figures_dir,
 ```{r app-maturity-analysis-sampling-platform-years-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-years-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S2_samplingplatform_years.png"),
+                           "Fig_S2_samplingplatform_years.png"),
                  error = FALSE)
 ```
 
@@ -487,7 +487,7 @@ include_graphics(file.path(figures_dir,
 ```{r app-maturity-analysis-sampling-platform-age-years-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-age-years-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                          "maturity-analysis/Fig_S3_samplingplatform_age_years.png"),
+                          "Fig_S3_samplingplatform_age_years.png"),
                  error = FALSE)
 ```
 
@@ -501,7 +501,7 @@ between the ages of 3--5.
 ```{r app-maturity-analysis-temp-depth-fig, fig.cap = "(ref:app-maturity-analysis-temp-depth-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S4_temp_by_depth.png.png"),
+                           "Fig_S4_temp_by_depth.png.png"),
                  error = FALSE)
 ```
 
@@ -515,7 +515,7 @@ Bottom Trawl Survey (WCGBTS) north of Point Conception, at a depth of 130.67 m.
 ```{r app-maturity-analysis-raw-feb-temp-fig, fig.cap = "(ref:app-maturity-analysis-raw-feb-temp-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S5_raw_feb_temp.png"),
+                           "Fig_S5_raw_feb_temp.png"),
                  error = FALSE)
 ```
 
@@ -529,7 +529,7 @@ January, north of Point Conception is used.
 ```{r app-maturity-analysis-temp-weight-effect-fig, fig.cap = "(ref:app-maturity-analysis-temp-weight-effect-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S6_temp_weight_effect.png"),
+                           "Fig_S6_temp_weight_effect.png"),
                  error = FALSE)
 ```
 
@@ -541,7 +541,7 @@ include_graphics(file.path(figures_dir,
 <!-- ```{r app-maturity-analysis-cog-latitude-fig, fig.cap = "(ref:app-maturity-analysis-cog-latitude-cap)", results = "asis"} -->
 
 <!-- include_graphics(file.path(figures_dir, -->
-<!--                            "maturity-analysis/Fig_S7_cog_latitude.png"), -->
+<!--                            "Fig_S7_cog_latitude.png"), -->
 <!--                  error = FALSE) -->
 <!-- ``` -->
 
@@ -557,7 +557,7 @@ and spatiotemporal effects are modeled with an AR(1) process.
 ```{r app-maturity-analysis-year-effects-nocovar-fig, fig.cap = "(ref:app-maturity-analysis-year-effects-nocovar-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S8_year_effects_nocovar.png"),
+                           "Fig_S8_year_effects_nocovar.png"),
                  error = FALSE)
 ```
 
@@ -575,7 +575,7 @@ varying coefficient effect of age.
 ```{r app-maturity-analysis-predicted-maps-byage-fig, fig.cap = "(ref:app-maturity-analysis-predicted-maps-byage-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S9_predicted_maps_byage.png"),
+                           "Fig_S9_predicted_maps_byage.png"),
                  error = FALSE)
 ```
 
@@ -592,7 +592,7 @@ In all cases, the raw Akaike information criterion (AIC) values are shown
 ```{r app-maturity-analysis-temp-model-sensitivities-fig, fig.cap = "(ref:app-maturity-analysis-temp-model-sensitivities-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S10_temp_model_sensitivities.png"),
+                           "Fig_S10_temp_model_sensitivities.png"),
                  error = FALSE)
 ```
 
@@ -607,7 +607,7 @@ Predictions of functional maturity are for non-ASHOP samples.
 <!-- ```{r app-maturity-analysis-model-comparison-fig, fig.cap = "(ref:app-maturity-analysis-model-comparison-cap)", results = "asis"} -->
 
 <!-- include_graphics(file.path(figures_dir, -->
-<!--                            "maturity-analysis/Fig_S11_model_comparison-updated.png"), -->
+<!--                            "Fig_S11_model_comparison-updated.png"), -->
 <!--                  error = FALSE) -->
 <!-- ``` -->
 
@@ -622,7 +622,7 @@ to the non-ASHOP surveys.
 ```{r app-maturity-analysis-temp-marginal-fig, fig.cap = "(ref:app-maturity-analysis-temp-marginal-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S12_temp_marginal.png"),
+                           "Fig_S12_temp_marginal.png"),
                  error = FALSE)
 ```
 
@@ -639,7 +639,7 @@ maturity is 2.81 in 2020, versus 3.58 in 2012 and 3.82 in 2016.
 ```{r app-maturity-analysis-age-marginal-fig, fig.cap = "(ref:app-maturity-analysis-age-marginal-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S13_age_marginal.png"),
+                           "Fig_S13_age_marginal.png"),
                  error = FALSE)
 ```
 
