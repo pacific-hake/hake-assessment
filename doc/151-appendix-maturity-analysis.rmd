@@ -41,7 +41,7 @@ help improve understanding of spatiotemporal variability in hake maturity;
 these can generally be described as
 
 1. a null model representing the status quo, similar to models used in previous
-  hake assessments;
+  hake assessments but with additional data;
 
 1. a spatiotemporal model incorporating temporal and spatial trends, but no
    covariates;
@@ -93,7 +93,7 @@ across years (analogous to a spatial intercept), $\bm{\zeta}_{s,age}$ and
 $\bm{\zeta}_{s,age^{2}}$ represent spatially varying coefficient effects of age,
 and $\bm{X}^{tvc}_{t}$ represents the design matrix of year effects with
 estimated coefficients $\bm{\gamma_t}$. The $\bm{\gamma_t}$
-terms were modeled as AR(1) terms such that $\gamma_{2010} \sim
+terms were modeled as AR(1) terms such as in the example $\gamma_{2010} \sim
 N\left(\rho\gamma_{2009}, \sqrt{1-\rho^{2}}\sigma \right)$, where $\rho$
 represents the AR(1) parameter.
 
@@ -244,7 +244,8 @@ spatiotemporal models with and without temperature effects
 largest differences between these models appears to be in years like 2016,
 when the temperature driven model predicts maturation rates lower than the
 random walk model (the classification ability of these models in 2016 was
-nearly identical, AUC = 0.957 for both).
+nearly identical, AUC = 0.957 for both;
+Figure \@ref(fig:app-maturity-analysis-model-comparison-fig)).
 
 The estimated marginal effect of temperature in our best model (Tables
 \@ref(tab:app-maturity-analysis-aic-tab) and
@@ -268,7 +269,10 @@ biomass of `r sp` was higher than the estimate of the spatiotemporal variance
 suggesting that differences in locations are more prominent than differences
 in locations between years (Table \@ref(tab:app-maturity-analysis-biomass-tab)).
 That is, `r sp` have a patchy distribution but those patches appear in largely
-the same locations year after year.
+the same locations year after year. The center of gravity of the distribution
+was furthest to the north in years that correspond to high temperatures, and
+subsequent decreases in maturity
+(Figure \@ref(fig:app-maturity-analysis-cog-latitude-fig)).
 
 ## Citations
 
@@ -460,7 +464,8 @@ d4 <- tribble(
 
 (ref:app-maturity-analysis-sampling-platform-cap) Breakdown of samples by age and sampling platform.
 
-(ref:app-maturity-analysis-sampling-platform-alt) ALT TEXT
+(ref:app-maturity-analysis-sampling-platform-alt) This figure shows more observations at
+younger ages but samples available past age-15.
 
 ```{r app-maturity-analysis-sampling-platform-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-cap)", results = "asis"}
 
@@ -471,7 +476,8 @@ include_graphics(file.path(figures_dir,
 
 (ref:app-maturity-analysis-sampling-platform-years-cap) Breakdown of samples by year and sampling platform.
 
-(ref:app-maturity-analysis-sampling-platform-years-alt) There are more samples for younger rather than older ages.
+(ref:app-maturity-analysis-sampling-platform-years-alt) There are more samples available
+from 2012 to 2018 then in other years.
 
 ```{r app-maturity-analysis-sampling-platform-years-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-years-cap)", results = "asis"}
 
@@ -482,7 +488,8 @@ include_graphics(file.path(figures_dir,
 
 (ref:app-maturity-analysis-sampling-platform-age-years-cap) Breakdown of samples by age, year, and sampling platform.
 
-(ref:app-maturity-analysis-sampling-platform-age-years-alt) The first samples, in 2009, come from the WCGBTS.
+(ref:app-maturity-analysis-sampling-platform-age-years-alt) There is good coverage of
+age samples from all platforms, partiuclarly from 2012 to 2019.
 
 ```{r app-maturity-analysis-sampling-platform-age-years-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-age-years-cap)", results = "asis"}
 
@@ -492,11 +499,11 @@ include_graphics(file.path(figures_dir,
 ```
 
 (ref:app-maturity-analysis-temp-depth-cap) Average GLORYS12v1 potential
-temperature (degrees Celsius) within the domain of the WCGBTS north of Pt
-Conception, in February.
+temperature (degrees Celsius) within the domain of the West Coast Groundfish
+Bottom Trawl Survey (WCGBTS) north of Point Conception, in February.
 
-(ref:app-maturity-analysis-temp-depth-alt) All sampling platforms sampled fish
-between the ages of 3--5.
+(ref:app-maturity-analysis-temp-depth-alt) Temperatures in all months between
+2015--2022 were higher than historical temperatures for a given month.
 
 ```{r app-maturity-analysis-temp-depth-fig, fig.cap = "(ref:app-maturity-analysis-temp-depth-cap)", results = "asis"}
 
@@ -509,8 +516,8 @@ include_graphics(file.path(figures_dir,
 temperature (degrees Celsius) within the domain of the West Coast Groundfish
 Bottom Trawl Survey (WCGBTS) north of Point Conception, at a depth of 130.67 m.
 
-(ref:app-maturity-analysis-raw-feb-temp-alt) Temperatures in all months between
-2015--2022 were higher than historical temperatures for a given month.
+(ref:app-maturity-analysis-raw-feb-temp-alt) Temperatures for all months measured
+at a depth of 130.67 meters increased between 2010 and 2020.
 
 ```{r app-maturity-analysis-raw-feb-temp-fig, fig.cap = "(ref:app-maturity-analysis-raw-feb-temp-cap)", results = "asis"}
 
@@ -524,7 +531,8 @@ indices (Celsius) using raw averages of temperature and biomass weighted
 averages of temperature; for this illustration data from a depth of 130.67 m in
 January, north of Point Conception is used.
 
-(ref:app-maturity-analysis-temp-weight-effect-alt) ALT TEXT
+(ref:app-maturity-analysis-temp-weight-effect-alt) Weighted by biomass versus
+unweighted average temperatures were similar across the time series.  
 
 ```{r app-maturity-analysis-temp-weight-effect-fig, fig.cap = "(ref:app-maturity-analysis-temp-weight-effect-cap)", results = "asis"}
 
@@ -533,18 +541,6 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
- <!-- Figure Not referenced!! -->
-<!-- (ref:app-maturity-analysis-cog-latitude-cap) Estimated center of gravity of hake biomass from WCGBTS, using data 2003--2023. -->
-
-<!-- (ref:app-maturity-analysis-cog-latitude-alt) ALT TEXT -->
-
-<!-- ```{r app-maturity-analysis-cog-latitude-fig, fig.cap = "(ref:app-maturity-analysis-cog-latitude-cap)", results = "asis"} -->
-
-<!-- include_graphics(file.path(figures_dir, -->
-<!--                            "maturity-analysis/Fig_S7_cog_latitude.png"), -->
-<!--                  error = FALSE) -->
-<!-- ``` -->
-
 (ref:app-maturity-analysis-year-effects-nocovar-cap) Estimated year effects
 from the spatiotemporal hake maturity model without covariates (Model 2 in
 Tables \@ref(tab:app-maturity-analysis-aic-tab) and
@@ -552,7 +548,9 @@ Tables \@ref(tab:app-maturity-analysis-aic-tab) and
 (variance is larger in years without data, such as 2010--2011 or 2022--2025),
 and spatiotemporal effects are modeled with an AR(1) process.
 
-(ref:app-maturity-analysis-year-effects-nocovar-alt) ALT TEXT
+(ref:app-maturity-analysis-year-effects-nocovar-alt) The year effects from the
+spatiotemporal hake maturity model without covariates shows annual differences
+in maturity from year to year.
 
 ```{r app-maturity-analysis-year-effects-nocovar-fig, fig.cap = "(ref:app-maturity-analysis-year-effects-nocovar-cap)", results = "asis"}
 
@@ -570,7 +568,10 @@ only data north of Point Conception), for 2020 as a baseline year;
 slight variation between ages is driven by the spatially
 varying coefficient effect of age.
 
-(ref:app-maturity-analysis-predicted-maps-byage-alt) ALT TEXT
+(ref:app-maturity-analysis-predicted-maps-byage-alt) This figure shows spatial
+anomalies for ages 1 to 5 on seperate maps of the coastline, where lower than
+average maturation was apparent in the south and clear higher and lower maturation
+patches elsewhere. 
 
 ```{r app-maturity-analysis-predicted-maps-byage-fig, fig.cap = "(ref:app-maturity-analysis-predicted-maps-byage-cap)", results = "asis"}
 
@@ -587,7 +588,9 @@ relationships (linear, quadratic, smooth is equivalent to a P-spline).
 In all cases, the raw Akaike information criterion (AIC) values are shown
 (lower AIC corresponds to more data support).
 
-(ref:app-maturity-analysis-temp-model-sensitivities-alt) ALT TEXT
+(ref:app-maturity-analysis-temp-model-sensitivities-alt) Sensitivity results of
+the effect of temperature by month, region, depth, and functional form assumption
+(linear, quadratic, or smoothed using a spline) on AIC.
 
 ```{r app-maturity-analysis-temp-model-sensitivities-fig, fig.cap = "(ref:app-maturity-analysis-temp-model-sensitivities-cap)", results = "asis"}
 
@@ -601,15 +604,15 @@ maturity for each of the three models in our analysis (using samples from the
 At-Sea Hake Observer Program (ASHOP) and data north of Point Conception).
 Predictions of functional maturity are for non-ASHOP samples.
 
-<!-- Figure not referenced!! -->
-<!-- (ref:app-maturity-analysis-model-comparison-alt) ALT TEXT -->
+(ref:app-maturity-analysis-model-comparison-alt) This figure shows differences in
+biomass weighted estimates of maturity across non-spatial, spatial, and the temperature effect models.
 
-<!-- ```{r app-maturity-analysis-model-comparison-fig, fig.cap = "(ref:app-maturity-analysis-model-comparison-cap)", results = "asis"} -->
+```{r app-maturity-analysis-model-comparison-fig, fig.cap = "(ref:app-maturity-analysis-model-comparison-cap)", results = "asis"}
 
-<!-- include_graphics(file.path(figures_dir, -->
-<!--                            "maturity-analysis/Fig_S11_model_comparison-updated.png"), -->
-<!--                  error = FALSE) -->
-<!-- ``` -->
+include_graphics(file.path(figures_dir,
+                         "maturity-analysis/Fig_S11_model_comparison-updated.png"),
+               error = FALSE)
+```
 
 (ref:app-maturity-analysis-temp-marginal-cap) Estimated marginal effect of
 February temperature (Celsius) at a depth of 130.67 m (using samples from the
@@ -617,7 +620,9 @@ At-Sea Hake Observer Program (ASHOP) and data north of Point Conception).
 Predictions are made for age-3 fish, and using coefficients corresponding
 to the non-ASHOP surveys.
 
-(ref:app-maturity-analysis-temp-marginal-alt) ALT TEXT
+(ref:app-maturity-analysis-temp-marginal-alt) This figure shows the marginal
+quadratic effect of February temperature in Celsius at a depth of 130.67 m for
+age-3 fish, with a peak in maturity around 9.0 Celsius.
 
 ```{r app-maturity-analysis-temp-marginal-fig, fig.cap = "(ref:app-maturity-analysis-temp-marginal-cap)", results = "asis"}
 
@@ -634,13 +639,26 @@ and data north of Point Conception) and
 ogives represent hake not sampled by ASHOP. The estimated age at 50%
 maturity is 2.81 in 2020, versus 3.58 in 2012 and 3.82 in 2016.
 
-(ref:app-maturity-analysis-age-marginal-alt) ALT TEXT
+(ref:app-maturity-analysis-age-marginal-alt) Estimated ogives for representative
+years where temperatures were lower (2012), average (2020), and high (2016). The
+ogive shifts to older ages at 50% maturity at higher temperatures.
 
 ```{r app-maturity-analysis-age-marginal-fig, fig.cap = "(ref:app-maturity-analysis-age-marginal-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
                            "maturity-analysis/Fig_S13_age_marginal.png"),
                  error = FALSE)
+```
+
+(ref:app-maturity-analysis-cog-latitude-cap) Estimated center of gravity of hake biomass from WCGBTS, using data 2003--2023.
+
+(ref:app-maturity-analysis-cog-latitude-alt) The center of gravity of hake biomass from the WCGBTS was considerably lower from 2011 to 2014 compared to other years.
+
+```{r app-maturity-analysis-cog-latitude-fig, fig.cap = "(ref:app-maturity-analysis-cog-latitude-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                            "maturity-analysis/Fig_S7_cog_latitude.png"),
+                  error = FALSE)
 ```
 
 \clearpage
