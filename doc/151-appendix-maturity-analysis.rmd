@@ -72,7 +72,7 @@ corresponding coefficients $\bm{b}$.
 As a second model, we extended our null model to include spatial and temporal
 variation. We modeled year effects (intercepts) with a time-varying AR(1) random
 walk. Spatial effects were modeled using the stochastic partial differential
-equation (SPDE) approximation to Gaussian Random Fields [LindgrenEtAl2011].
+equation (SPDE) approximation to Gaussian Random Fields [@LindgrenEtAl2011].
 This approach can be seen as a predictive process method, where a
 spatial surface is approximated by a series of estimated random effects
 (locations referred to knots or vertices) which are then projected to locations
