@@ -23,8 +23,10 @@ plot_recdevs <- function(
     leg_ncol = 1,
     leg_font_size = 12,
     alpha = 1,
-    point_size = 0.5,
     point_color = ts_single_model_pointcolor,
+    point_size = ifelse(is_single_model,
+                        ts_single_model_pointsize,
+                        ts_pointsize),
     point_shape = ifelse(is_single_model,
                          ts_single_model_pointshape,
                          ts_pointshape),
@@ -107,7 +109,7 @@ plot_recdevs <- function(
   # Add the points and error bars
   if(is_single_model){
     g <- g +
-      geom_pointrange(size = point_size,
+      geom_pointrange(size = point_size / .pt,
                       shape = point_shape,
                       stroke = point_stroke,
                       color = point_color,
@@ -115,7 +117,7 @@ plot_recdevs <- function(
                       ...)
   }else{
     g <- g +
-      geom_pointrange(size = point_size,
+      geom_pointrange(size = point_size / .pt,
                       shape = point_shape,
                       stroke = point_stroke,
                       position = position_dodge(dodge_val),

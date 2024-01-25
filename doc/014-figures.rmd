@@ -306,7 +306,7 @@ plot_heatmap_sample_size_weight_at_age(
 
 (ref:main-weight-at-age-lines-cap) Empirical mean weight-at-age (kg) values
 for ages 2--10 used for the base model, as in
-Figure~\@ref(fig:main-weight-at-age-fig) but shown as time series. Blue
+Figure~\@ref(fig:main-weight-at-age-fig) but shown as time series. Purple
 lines are for the youngest ages and green lines are for the oldest ages
 shown, with age-5 having a thicker line and larger points as a visual aid.
 
@@ -362,10 +362,12 @@ spawning biomass in the terminal year of the model.
 
 ```{r main-bridge-summary-fig-1, fig.cap = "(ref:main-bridge-summary-cap-1)", fig.height = 8}
 
+pt_size <- 1
 panels_title_size <- 11
 p <- list()
 p[[1]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
+                   point_size = pt_size,
                    ylim = c(0, 2.5),
                    x_labs_mod = 10,
                    wrap_y_label = TRUE,
@@ -378,6 +380,7 @@ p[[1]] <-
         plot.margin = margin(12, 12, 6, 12))
 p[[2]] <-
   plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
+               point_size = pt_size,
                leg_pos = "none",
                x_labs_mod = 10,
                tick_prop = 2,
@@ -390,6 +393,7 @@ p[[2]] <-
 
 p[[3]] <-
   plot_survey_index_fits(base_model,
+                         point_size = pt_size,
                          d_obj = d_obj_bridge_age2_index[[1]],
                          survey_type = "age2",
                          rev_colors = TRUE,
@@ -403,6 +407,7 @@ p[[3]] <-
 
 p[[4]] <-
   plot_survey_index_fits(base_model,
+                         point_size = pt_size,
                          d_obj = d_obj_bridge_age1_index[[1]],
                          xlim = c(1995, end_yr),
                          ylim = c(0, 11),
@@ -423,6 +428,7 @@ quad_grid <- plot_grid(plotlist = p,
 full_p <- list()
 full_p[[1]] <-
   plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
+               point_size = 1.5,
                show_arrows = TRUE,
                dodge_bo = 0.75,
                leg_ncol = 2,
@@ -442,7 +448,6 @@ plot_grid(plotlist = full_p,
           ncol = 1,
           rel_heights = c(0.33, 0.67))
 ```
-
 
 ```{r main-bridge-summary-fig-2, fig.cap = "(ref:main-bridge-summary-cap-2)", fig.height = 8, eval = length(bridge_models_desc[[1]]) > 1}
 

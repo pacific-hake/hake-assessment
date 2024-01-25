@@ -24,8 +24,10 @@ plot_survey_index_fits <- function(
     leg_ncol = 1,
     leg_font_size = 12,
     alpha = 1,
-    point_size = 0.75,
     point_color = ts_single_model_pointcolor,
+    point_size = ifelse(is_single_model,
+                        ts_single_model_pointsize,
+                        ts_pointsize),
     point_shape = ifelse(is_single_model,
                          ts_single_model_pointshape,
                          ts_pointshape),
@@ -35,7 +37,7 @@ plot_survey_index_fits <- function(
     line_type = ts_single_model_linetype,
     line_color = ts_single_model_linecolor,
     obs_point_shape = 17,
-    obs_point_size = ts_pointsize * 2,
+    obs_point_size = point_size * 2,
     obs_line_type = "dashed",
     obs_err_line_type = "solid",
     obs_err_line_width = 1,
@@ -143,14 +145,14 @@ plot_survey_index_fits <- function(
   # Add the points and error bars
   if(is_single_model){
     g <- g +
-      geom_pointrange(size = point_size,
+      geom_pointrange(size = point_size / .pt,
                       shape = point_shape,
                       color = point_color,
                       alpha = alpha,
                       ...)
   }else{
     g <- g +
-      geom_pointrange(size = point_size,
+      geom_pointrange(size = point_size / .pt,
                       shape = point_shape,
                       position = position_dodge(dodge_val),
                       alpha = alpha,

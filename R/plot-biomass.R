@@ -235,7 +235,7 @@ plot_biomass <- function(
                   color = ribbon_colors,
                   width = 0) +
     geom_point(data = yoob_bo$d,
-               size = point_size + 0.5,
+               size = point_size,
                shape = point_shape,
                color = "white",
                position = position_dodge(dodge_bo)) +
