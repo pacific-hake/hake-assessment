@@ -541,16 +541,15 @@ biomass pulls down the last few years of estimated biomass, such that 2019 fit i
 underestimated (for the `r last_assess_yr` assessment it was very good).
 
 The new 2023 biomass index is the third lowest in the series
-(Table~\@ref(tab:main-survey-history-tab)), and is well below the estimated index
-from the model, similar to the 2001 index that has always been below
-estimated values [@JTC2023]. While no direct cause for the
+(Table~\@ref(tab:main-survey-history-tab)), and is well below the model
+estimate, similar to the 2001 index that has always been below
+model estimates [@JTC2023]. While no direct cause for the
 2001 index anomaly is known, the survey did begin earlier that year than all other surveys
 between 1995 and 2009 (Table~\@ref(tab:main-survey-history-tab)), which may
 explain some portion of the anomaly, along with age
 structure. For 2023, the survey timing is not anomalous. The estimated biomass
-increase from 2021 to 2023 is driven by the addition of the age-1 index
-(Figure~\@ref(fig:main-bridge-summary-fig-1)), which suggested an above-average
-2022 cohort (and also increased the 2021 age-1 index compared to the previous assessment;
+increase from 2023 to 2024 is driven by the addition of 2023 survey age composition data
+(Figure~\@ref(fig:main-bridge-summary-fig-1)). The addition of the 2023 age-1 index suggested an above-average 2022 cohort (and also increased the 2021 age-1 index compared to the previous assessment;
 Section~\@ref(sec:data-acoustic-survey)).
 
 The relatively stable estimated biomass from
@@ -602,8 +601,8 @@ The 2016 cohort, which has been observed three times by the survey, still appear
 to be smaller than the 2014 cohort.
 
 The `r survey_end_yr` survey was the first
-to sample the `r survey_end_yr - 2` cohort, suggesting that it was large
-(`r survey_a2_prop`% of the `r survey_end_yr` survey catch). The 2020 cohort,
+to sample the `r survey_end_yr - 2` cohort, suggesting that it was a large
+contingent of the population (`r survey_a2_prop`% of the `r survey_end_yr` survey catch). The 2020 cohort,
 which has now been observed by the acoustic survey is expected to be above average in size.
 Residual patterns to the fishery and survey age data do not show patterns
 that would indicate systematic bias in model predictions
@@ -700,7 +699,7 @@ and 2010 year classes, resulting in an increased biomass in 2017. The
 estimated biomass mostly declined
 from 2018 to 2022 due to the 2014 and 2016 year classes moving through the
 growth-mortality transition during a period of high catches. The increase in
-female spawning biomass since 2021 is due to the expected above-average 2020 and
+female spawning biomass since 2023 is due to the expected above-average 2020 and
 potentially large 2021 cohorts entering maturity, and the recent declining trend in catch.
 
 The median estimate of the `r end_yr` relative spawning biomass (spawning
@@ -824,7 +823,7 @@ interval of `r recruitment_med_in_2021` (`r recruitment_lower_in_2021`--
 `r recruitment_upper_in_2021`)~billion fish.
 
 The 2022 cohort was observed by the age-1 index in 2023,
-suggesting it is probably not large (Figures~\@ref(fig:main-survey-age1-fig)
+suggesting it is average to below average (Figures~\@ref(fig:main-survey-age1-fig)
 and~\@ref(fig:main-recruitment-fig)), and it
 will not be observed as part of the age-2+ survey index until 2025. There is no information in the data to estimate the
 sizes of the `r end_yr-1` and `r end_yr` year classes. Retrospective analyses
