@@ -470,7 +470,7 @@ younger ages but samples available past age-15.
 ```{r app-maturity-analysis-sampling-platform-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S1_samplingplatform.png"),
+                           "Fig_S1_samplingplatform.png"),
                  error = FALSE)
 ```
 
@@ -482,7 +482,7 @@ from 2012 to 2018 then in other years.
 ```{r app-maturity-analysis-sampling-platform-years-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-years-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S2_samplingplatform_years.png"),
+                           "Fig_S2_samplingplatform_years.png"),
                  error = FALSE)
 ```
 
@@ -494,7 +494,7 @@ age samples from all platforms, partiuclarly from 2012 to 2019.
 ```{r app-maturity-analysis-sampling-platform-age-years-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-age-years-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                          "maturity-analysis/Fig_S3_samplingplatform_age_years.png"),
+                          "Fig_S3_samplingplatform_age_years.png"),
                  error = FALSE)
 ```
 
@@ -508,7 +508,7 @@ Bottom Trawl Survey (WCGBTS) north of Point Conception, in February.
 ```{r app-maturity-analysis-temp-depth-fig, fig.cap = "(ref:app-maturity-analysis-temp-depth-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S4_temp_by_depth.png.png"),
+                           "Fig_S4_temp_by_depth.png.png"),
                  error = FALSE)
 ```
 
@@ -522,7 +522,7 @@ at a depth of 130.67 meters increased between 2010 and 2020.
 ```{r app-maturity-analysis-raw-feb-temp-fig, fig.cap = "(ref:app-maturity-analysis-raw-feb-temp-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S5_raw_feb_temp.png"),
+                           "Fig_S5_raw_feb_temp.png"),
                  error = FALSE)
 ```
 
@@ -537,7 +537,7 @@ unweighted average temperatures were similar across the time series.
 ```{r app-maturity-analysis-temp-weight-effect-fig, fig.cap = "(ref:app-maturity-analysis-temp-weight-effect-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S6_temp_weight_effect.png"),
+                           "Fig_S6_temp_weight_effect.png"),
                  error = FALSE)
 ```
 
@@ -555,7 +555,7 @@ in maturity from year to year.
 ```{r app-maturity-analysis-year-effects-nocovar-fig, fig.cap = "(ref:app-maturity-analysis-year-effects-nocovar-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S8_year_effects_nocovar.png"),
+                           "Fig_S8_year_effects_nocovar.png"),
                  error = FALSE)
 ```
 
@@ -576,7 +576,7 @@ patches elsewhere.
 ```{r app-maturity-analysis-predicted-maps-byage-fig, fig.cap = "(ref:app-maturity-analysis-predicted-maps-byage-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S9_predicted_maps_byage.png"),
+                           "Fig_S9_predicted_maps_byage.png"),
                  error = FALSE)
 ```
 
@@ -595,7 +595,7 @@ the effect of temperature by month, region, depth, and functional form assumptio
 ```{r app-maturity-analysis-temp-model-sensitivities-fig, fig.cap = "(ref:app-maturity-analysis-temp-model-sensitivities-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S10_temp_model_sensitivities.png"),
+                           "Fig_S10_temp_model_sensitivities.png"),
                  error = FALSE)
 ```
 
@@ -610,7 +610,7 @@ biomass weighted estimates of maturity across non-spatial, spatial, and the temp
 ```{r app-maturity-analysis-model-comparison-fig, fig.cap = "(ref:app-maturity-analysis-model-comparison-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                         "maturity-analysis/Fig_S11_model_comparison-updated.png"),
+                         "Fig_S11_model_comparison-updated.png"),
                error = FALSE)
 ```
 
@@ -627,7 +627,7 @@ age-3 fish, with a peak in maturity around 9.0 Celsius.
 ```{r app-maturity-analysis-temp-marginal-fig, fig.cap = "(ref:app-maturity-analysis-temp-marginal-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S12_temp_marginal.png"),
+                           "Fig_S12_temp_marginal.png"),
                  error = FALSE)
 ```
 
@@ -646,7 +646,7 @@ ogive shifts to older ages at 50% maturity at higher temperatures.
 ```{r app-maturity-analysis-age-marginal-fig, fig.cap = "(ref:app-maturity-analysis-age-marginal-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "maturity-analysis/Fig_S13_age_marginal.png"),
+                           "Fig_S13_age_marginal.png"),
                  error = FALSE)
 ```
 
@@ -657,7 +657,7 @@ include_graphics(file.path(figures_dir,
 ```{r app-maturity-analysis-cog-latitude-fig, fig.cap = "(ref:app-maturity-analysis-cog-latitude-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                            "maturity-analysis/Fig_S7_cog_latitude.png"),
+                            "Fig_S7_cog_latitude.png"),
                   error = FALSE)
 ```
 
