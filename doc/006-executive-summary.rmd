@@ -233,7 +233,7 @@ in 2017.
 The estimated biomass mostly declined
 from 2018 to 2022 due to the 2014 and 2016 year classes moving through the
 growth-mortality transition during a period of high catches. The increase in
-female spawning biomass since 2021 is due to the expected above-average 2020 and
+female spawning biomass since 2023 is due to the expected above-average 2020 and
 potentially large 2021 cohorts entering maturity, and the recent declining trend in catch.
 
 The median estimate of the `r end_yr` relative spawning biomass (spawning
@@ -311,11 +311,11 @@ This assessment's median estimate of the 2020 recruitment is
 ~billion fish lower than in the last assessment (a
 `r f(-((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
 (prev_assess_recruitment_med)["2020"]) * 100), 0)`% decrease; though last year's
-estimate was particularly uncertain), informed by the
+estimate was particularly uncertain), and is now informed by the
 age-2+ biomass index and survey age composition data.
 
-The 2021 recruitment is now estimated to be potentially large, whereas
-it was estimated to be below average in last year's assessment (with limited data);
+The 2021 recruitment is estimated to be potentially large, whereas
+it was estimated to be below average in last year's assessment (with very limited data);
 the median has increased by
 `r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]) /
 (prev_assess_recruitment_med)["2021"]) * 100), 0)`%
@@ -369,11 +369,11 @@ lowest values in the time series, but this was followed by an above average
 occurred in 2014 and 2016, which have been sustaining the fishery in recent
 years, with small year classes for all other years from 2011--2019(median recruitment well below the mean of all median recruitments).
 
-The 2020 cohort is estimated to be above average and the 2021 cohort is
-potentially large, but is currently only informed by limited fishery data and the 2023 biomass
+The 2020 cohort is estimated to be above average, and the 2021 cohort is
+estimated to be potentially large from limited fishery data and the 2023 biomass
 survey.
 The 2022 cohort was observed by the age-1 index in 2023,
-suggesting it is probably not large. There is no information in the data to estimate the
+suggesting it is average to below average in size. There is no information in the data to estimate the
 sizes of the `r end_yr-1` and `r end_yr` year classes. Retrospective analyses
 of year class strength for young fish have shown the estimates of recent
 recruitment to be unreliable prior to at least model age-3 (observed at age-2
