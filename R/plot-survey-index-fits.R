@@ -39,6 +39,7 @@ plot_survey_index_fits <- function(
     obs_point_shape = 17,
     obs_point_size = point_size * 2,
     obs_line_type = "dashed",
+    obs_line_width = 1.25,
     obs_err_line_type = "solid",
     obs_err_line_width = 1,
     obs_color = "black",
@@ -176,6 +177,7 @@ plot_survey_index_fits <- function(
                    size = obs_point_size,
                    color = obs_color,
                    linetype = obs_line_type,
+                   linewidth = line_width,
                    inherit.aes = FALSE) +
     geom_errorbar(data = yoob_obs$d,
                   aes(x = year,

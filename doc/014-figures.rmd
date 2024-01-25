@@ -336,10 +336,10 @@ plot_weight_at_age(wt_at_age,
 (ref:main-bridge-summary-cap-1) Bridging models showing the some of the
 sequential steps made towards the base model from the `r last_assess_yr` base
 model. Models include shifting to the newest version of Stock Synthesis,
-ammending older data sources, and adding new data.
+amending older data sources, and adding new data.
 Panels are spawning biomass (upper panel); relative spawning biomass
 (spawning biomass in each year relative to the unfished equilibrium spawning
-biomass, middle left); recruitment deviation (middle right); and age-2$+$
+biomass, middle left); recruitment deviations (middle right); and age-2$+$
 survey biomass (lower left) and age-1 (lower right) indices, with triangles
 representing the observed survey indices. Note that in the top panel the red
 circle for 2024 is obscured by the orange circle.
@@ -350,15 +350,15 @@ model. Models include the last step from the previous figure of adding new
 data, changes to working up data inputs, and structural changes to the model.
 Panels are spawning biomass (upper panel); relative spawning biomass
 (spawning biomass in each year relative to the unfished equilibrium spawning
-biomass, middle left); recruitment deviation (middle right); and age-2$+$
+biomass, middle left); recruitment deviations (middle right); and age-2$+$
 survey biomass (lower left) and age-1 (lower right) indices, with triangles
 representing the observed survey indices.
 
-(ref:main-bridge-summary-alt-1) The largest change amongst the models occurred when
-data from the age-2$+$ survey was added to the model.
+(ref:main-bridge-summary-alt-1) The largest change amongst the models
+occurred when data from the age-2$+$ survey was added to the model.
 
-(ref:main-bridge-summary-alt-2) Including time-varying fecundity led to a smaller
-spawning biomass in the terminal year of the model.
+(ref:main-bridge-summary-alt-2) Including time-varying fecundity led
+to a smaller spawning biomass in the terminal year of the model.
 
 ```{r main-bridge-summary-fig-1, fig.cap = "(ref:main-bridge-summary-cap-1)", fig.height = 8}
 
@@ -367,7 +367,7 @@ panels_title_size <- 11
 p <- list()
 p[[1]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
-                   point_size = pt_size,
+                   point_size = 1.5,
                    ylim = c(0, 2.5),
                    x_labs_mod = 10,
                    wrap_y_label = TRUE,
@@ -381,10 +381,11 @@ p[[1]] <-
 p[[2]] <-
   plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
                point_size = pt_size,
+               dodge_val = 1.5,
                leg_pos = "none",
                x_labs_mod = 10,
                tick_prop = 2,
-               line_width = 0.1,
+               line_width = 0.3,
                rev_colors = TRUE) +
   theme(axis.title.y = element_text(size = panels_title_size),
         axis.title.x = element_text(size = panels_title_size),
@@ -398,6 +399,7 @@ p[[3]] <-
                          survey_type = "age2",
                          rev_colors = TRUE,
                          tick_prop = 2,
+                         vjust_x_labels = -2,
                          leg_pos = "none",
                          xlim = c(1995, end_yr)) +
   theme(axis.title.y = element_text(size = panels_title_size),
@@ -414,6 +416,7 @@ p[[4]] <-
                          y_breaks = seq(0, 11, by = 2),
                          rev_colors = TRUE,
                          tick_prop = 2,
+                         vjust_x_labels = -2,
                          leg_pos = "none") +
   theme(axis.title.y = element_text(size = panels_title_size),
         axis.title.x = element_text(size = panels_title_size),
@@ -451,10 +454,12 @@ plot_grid(plotlist = full_p,
 
 ```{r main-bridge-summary-fig-2, fig.cap = "(ref:main-bridge-summary-cap-2)", fig.height = 8, eval = length(bridge_models_desc[[1]]) > 1}
 
+pt_size <- 1
 panels_title_size <- 11
 p <- list()
 p[[1]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[2]],
+                   point_size = 1.5,
                    ylim = c(0, 2.5),
                    x_labs_mod = 10,
                    wrap_y_label = TRUE,
@@ -467,10 +472,12 @@ p[[1]] <-
         plot.margin = margin(12, 12, 6, 12))
 p[[2]] <-
   plot_recdevs(d_obj = d_obj_bridge_recdev[[2]],
+               point_size = pt_size,
+               dodge_val = 1.5,
                leg_pos = "none",
                x_labs_mod = 10,
                tick_prop = 2,
-               line_width = 0.1,
+               line_width = 0.3,
                rev_colors = TRUE) +
   theme(axis.title.y = element_text(size = panels_title_size),
         axis.title.x = element_text(size = panels_title_size),
@@ -479,10 +486,12 @@ p[[2]] <-
 
 p[[3]] <-
   plot_survey_index_fits(base_model,
+                         point_size = pt_size,
                          d_obj = d_obj_bridge_age2_index[[2]],
                          survey_type = "age2",
                          rev_colors = TRUE,
                          tick_prop = 2,
+                         vjust_x_labels = -2,
                          leg_pos = "none",
                          xlim = c(1995, end_yr)) +
   theme(axis.title.y = element_text(size = panels_title_size),
@@ -492,6 +501,7 @@ p[[3]] <-
 
 p[[4]] <-
   plot_survey_index_fits(base_model,
+                         point_size = pt_size,
                          d_obj = d_obj_bridge_age1_index[[2]],
                          survey_type = "age1",
                          xlim = c(1995, end_yr),
@@ -499,6 +509,7 @@ p[[4]] <-
                          y_breaks = seq(0, 11, by = 2),
                          rev_colors = TRUE,
                          tick_prop = 2,
+                         vjust_x_labels = -2,
                          leg_pos = "none") +
   theme(axis.title.y = element_text(size = panels_title_size),
         axis.title.x = element_text(size = panels_title_size),
@@ -513,6 +524,7 @@ quad_grid <- plot_grid(plotlist = p,
 full_p <- list()
 full_p[[1]] <-
   plot_biomass(d_obj = d_obj_bridge_biomass[[2]],
+               point_size = 1.5,
                show_arrows = TRUE,
                dodge_bo = 0.75,
                leg_ncol = 2,
@@ -532,8 +544,6 @@ plot_grid(plotlist = full_p,
           ncol = 1,
           rel_heights = c(0.33, 0.67))
 ```
-
-
 
 (ref:main-survey-index-fit-mcmc-cap) Fits (thin black lines) to the acoustic
 survey (points) with input 95% intervals around the observations. The

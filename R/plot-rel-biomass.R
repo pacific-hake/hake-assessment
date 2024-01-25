@@ -126,7 +126,7 @@ plot_rel_biomass <- function(
   g <- g +
     do.call(geom_pointpath,
             c(list(linewidth = line_width,
-                   size = point_size / .pt,
+                   size = point_size,
                    shape = point_shape,
                    stroke = point_stroke,
                    mult = line_gap),

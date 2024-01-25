@@ -111,15 +111,18 @@ plot_recdevs <- function(
     g <- g +
       geom_pointrange(size = point_size / .pt,
                       shape = point_shape,
-                      stroke = point_stroke,
                       color = point_color,
+                      linewidth = line_width,
+                      linetype = line_type,
                       alpha = alpha,
                       ...)
   }else{
     g <- g +
       geom_pointrange(size = point_size / .pt,
                       shape = point_shape,
-                      stroke = point_stroke,
+                      width = line_width,
+                      linewidth = line_width,
+                      linetype = line_type,
                       position = position_dodge(dodge_val),
                       alpha = alpha,
                       ...)
