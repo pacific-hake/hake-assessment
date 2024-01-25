@@ -42,7 +42,9 @@ plot_depl_fore_comparison <- function(
     leg_pos = c(0.15, 0.83),
     leg_ncol = 1,
     leg_font_size = 12,
-    forecast_yrs){
+    forecast_yrs,
+    point_size = ts_pointsize,
+    point_shape = ts_pointshape){
 
   nice_nms <- map_chr(model$ct_levels[fore_inds], ~{
     .x[[2]]
@@ -146,15 +148,25 @@ plot_depl_fore_comparison <- function(
     coord_cartesian(xlim = xlim,
                     ylim = ylim,
                     clip = "off") +
-    geom_point() +
+    geom_ribbon(alpha = ts_ribbon_alpha,
+                linetype = ts_ribbon_linetype) +
     geom_line() +
-    geom_ribbon(alpha = alpha,
-                linetype = "dashed") +
-    geom_point(data = yoob_historic$d) +
-    geom_line(data = yoob_historic$d) +
+    geom_point(color = "white",
+               size = point_size * 1.5,
+               shape = point_shape) +
+    geom_point(size = point_size,
+               shape = point_shape) +
     geom_ribbon(data = yoob_historic$d,
                 alpha = alpha,
                 linetype = "dashed") +
+    geom_line(data = yoob_historic$d) +
+    geom_point(data = yoob_historic$d,
+               color = "white",
+               size = point_size * 1.5,
+               shape = point_shape) +
+    geom_point(data = yoob_historic$d,
+               size = point_size,
+               shape = point_shape) +
     geom_rect(aes(xmin = forecast_yrs[1],
                   xmax = forecast_yrs[length(forecast_yrs)],
                   ymin = 0,
@@ -162,17 +174,17 @@ plot_depl_fore_comparison <- function(
               alpha = 0.01,
               fill = "#D2D2D2") +
     geom_hline(yintercept = 0.1,
-               linetype = "dotted",
-               color = "red",
-               size = 1) +
+               linetype = ts_refpt_lrp_linetype,
+               color = ts_refpt_lrp_linecolor,
+               size = ts_refpt_lrp_linewidth) +
     geom_hline(yintercept = 0.4,
-               linetype = "dotted",
-               color = "green",
-               size = 1) +
+               linetype = ts_refpt_usr_linetype,
+               color = ts_refpt_usr_linecolor,
+               size = ts_refpt_usr_linewidth) +
     geom_hline(yintercept = 1,
-               linetype = "dotted",
-               color = "blue",
-               size = 1) +
+               linetype = ts_refpt_bo_linetype,
+               color = ts_refpt_bo_linecolor,
+               size = ts_refpt_bo_linewidth) +
     scale_x_continuous(expand = c(0, x_expansion),
                        breaks = x_breaks,
                        labels = x_labels) +
