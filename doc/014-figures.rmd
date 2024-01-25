@@ -1028,6 +1028,9 @@ higher since 2000.
 plot_biomass_fished_unfished(base_model,
                              model_nms = c("Base model - Fished",
                                            "Base model - Unfished"),
+                             leg_pos = c(0.6, 0.9),
+                             xlim = c(1963,
+                                      year(Sys.time())),
                              rel = FALSE)
 ```
 
@@ -1051,9 +1054,11 @@ Stock status estimates in recent years are lower using the dynamic approach.
 ```{r main-fished-unfished-rel-biomass, fig.cap = "(ref:main-fished-unfished-rel-biomass-cap)"}
 
 plot_biomass_fished_unfished(base_model,
-                            model_nms = c("Base model - Static B0",
-                                          "Base model - Dynamic B0"),
-                            rel = TRUE)
+                             model_nms = c("Base model - Static B0",
+                                           "Base model - Dynamic B0"),
+                             leg_pos = c(0.6, 0.9),
+                             ylim = c(0, 2.75),
+                             rel = TRUE)
 ```
 
 (ref:main-depletion-comparison-cap) Median and 95% posterior
