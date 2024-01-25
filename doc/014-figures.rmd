@@ -1460,6 +1460,7 @@ stable model.
 
 p <- list()
 p[[1]] <- plot_biomass(d_obj = base_model$retrospectives$biomass_df,
+                       ylim = c(0, 5),
                        leg_font_size = 12,
                        x_expansion = 3.5,
                        leg_pos = c(0.6, 0.89),
