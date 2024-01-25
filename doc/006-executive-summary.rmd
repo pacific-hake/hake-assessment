@@ -439,7 +439,7 @@ closely by 2020 before dropping by nearly half by 2023
 (Table~\@ref(tab:es-fishing-intensity-tab)).
 Median relative fishing intensity is
 estimated to have declined from `r median_intensity_2011`% in 2011 to
-`r median_intensity_2015`% in 2015, and then leveled off around 78-90% from
+`r median_intensity_2015`% in 2015, and then leveled off around 78--90% from
 2016 to 2019 before declining to `r median_intensity_2023`% in 2023. The
 median exploitation fraction has increased from a recent low of
 `r exploitation_med_2012` in 2012 to `r exploitation_med_2021` in 2021 then declined
@@ -447,7 +447,7 @@ to `r exploitation_med_2023` in 2023.
 Although there is a considerable amount of imprecision around these
 recent estimates due to uncertainty in recruitment and spawning biomass,
 the 95% posterior credibility interval of relative fishing intensity was
-below `r f_40` from 2012-- 2015 and again in 2020, 2021, and 2023 (Figure~\@ref(fig:es-fishing-intensity-fig)).
+below `r f_40` from 2012--2015 and again in 2020, 2021, and 2023 (Figure~\@ref(fig:es-fishing-intensity-fig)).
 
 
 ## Management performance {-}
