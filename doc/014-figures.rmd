@@ -1173,19 +1173,19 @@ plot_fore_compare(base_model,
 
 (ref:main-age-comp-forecast-cap) Forecast age compositions in numbers and
 in weight for the `r end_yr` fishery catch (combined across all sectors in
-both countries). Gray bars show median estimates. Thick black lines show
-50% credibility intervals and thin black lines show 95% credibility intervals.
-These estimates are based on the posterior distribution for selectivity
-averaged across the most recent five years, weight-at-age data averaged
-across the most recent five years, and the distribution for expected numbers
-at age at the start of `r end_yr` (see
+both countries). Light blue bars show median estimates. Thick black lines
+show 50% credibility intervals and thin black lines show 95% credibility
+intervals. These estimates are based on the posterior distribution for
+selectivity averaged across the most recent five years, weight-at-age
+data averaged across the most recent five years, and the distribution for
+expected numbers at age at the start of `r end_yr` (see
 Table~\@ref(tab:main-est-numbers-at-age-tab) for the Markov chain Monte Carlo
 medians of numbers-at-age for all years). The panel on the right is scaled
 based on the weight at each age averaged across the last five years.
 
 (ref:main-age-comp-forecast-alt) This figure shows how the few dominant
-cohorts are expected to make up most of the coming years catch. The 2020
-cohort is predicted to be the largest cohort in the stock in 2023. That
+cohorts are expected to make up most of the coming years catch. The 2021
+cohort is predicted to be the largest cohort in the stock in 2024. That
 prediction has high uncertainty when compared to the other cohorts.
 
 ```{r main-age-comp-forecast-fig, fig.cap = "(ref:main-age-comp-forecast-cap)", fig.height = 4.5}

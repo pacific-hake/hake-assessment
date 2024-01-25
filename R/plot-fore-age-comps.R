@@ -17,23 +17,27 @@
 plot_fore_age_comps <- function(model,
                                 x_lim = c(1, 15),
                                 x_breaks = seq(x_lim[1], x_lim[2], 2),
-                                y_lim = c(0, 0.4),
+                                y_lim = c(0, 0.55),
                                 whisker_width = 0.5){
 
   natsel_prop <- model$extra_mcmc$natsel_prop
   natselwt_prop <- model$extra_mcmc$natselwt_prop
 
-  perc <- paste0(probs[c(1, 3)] * 100, "%")
+  perc <- paste0(forecast_probs * 100, "%")
 
   reformat <- function(df){
     df |>
-      apply(2, quantile, probs = probs) |>
+      apply(2, quantile, probs = forecast_probs) |>
       as_tibble(rownames = "quant") |>
       mutate(quant = ifelse(quant == perc[1],
-                            "lower",
+                            "lowest",
                             ifelse(quant == perc[2],
-                                   "upper",
-                                   "med"))) |>
+                                   "lower",
+                                   ifelse(quant == perc[3],
+                                          "median",
+                                          ifelse(quant == perc[4],
+                                                 "higher",
+                                                 "highest"))))) |>
       pivot_longer(-quant, names_to = "age", values_to = "prop") |>
       pivot_wider(names_from = "quant", values_from = "prop") |>
       mutate(age = as.numeric(age))
@@ -44,14 +48,22 @@ plot_fore_age_comps <- function(model,
 
   plist <- NULL
   plist[[1]] <- ggplot(by_nums,
-                       aes(x = age, y = med)) +
+                       aes(x = age,
+                           y = median)) +
     geom_bar(stat = "identity",
              fill = main_fill,
              alpha = main_alpha) +
-    geom_errorbar(aes(ymin = lower,
-                      ymax = upper),
+    geom_errorbar(aes(ymin = lowest,
+                      ymax = highest),
+                  linewidth = 0.5,
                   width = whisker_width) +
-    geom_point() +
+    geom_errorbar(aes(ymin = lower,
+                      ymax = higher),
+                  linewidth = 2,
+                  width = 0) +
+    geom_point(color = "white",
+               size = 3.5) +
+    geom_point(size = 2.5) +
     scale_x_continuous(breaks = x_breaks,
                        labels = x_breaks) +
     scale_y_continuous(expand = c(0, 0)) +
@@ -64,14 +76,22 @@ plot_fore_age_comps <- function(model,
                 " catch"))
 
   plist[[2]] <- ggplot(by_weight,
-                       aes(x = age, y = med)) +
+                       aes(x = age,
+                           y = median)) +
     geom_bar(stat = "identity",
              fill = main_fill,
              alpha = main_alpha) +
-    geom_errorbar(aes(ymin = lower,
-                      ymax = upper),
+    geom_errorbar(aes(ymin = lowest,
+                      ymax = highest),
+                  linewidth = 0.5,
                   width = whisker_width) +
-    geom_point() +
+    geom_errorbar(aes(ymin = lower,
+                      ymax = higher),
+                  linewidth = 2,
+                  width = 0) +
+    geom_point(color = "white",
+               size = 3.5) +
+    geom_point(size = 2.5) +
     scale_x_continuous(breaks = x_breaks,
                        labels = x_breaks) +
     scale_y_continuous(expand = c(0, 0)) +
