@@ -435,19 +435,22 @@ survey independently showed little impact on model results, and thus, a single
 matrix is used for all fleets and beginning and middle-of-the-year population
 weight-at-age.
 
-New for this assessment, a generalized linear mixed model (GLMM) with a lognormal distribution was used
-to model weight-at-age data external to the assessment. Weight was thought to
-relate to a smoothed effect of age, between zero and fifteen; random effects
-for cohort and year; and fixed effects for sex, where unsexed fish were
-included as such. The majority of the unsexed samples were from north of the
+New for this assessment, a generalized linear mixed model (GLMM) with a
+lognormal distribution was used to model weight-at-age data external to the
+assessment. Weight was thought to relate to a smoothed effect of age, between
+zero and fifteen; random effects for cohort and year; and fixed effects for
+sex. The model is similar to models investigated for Walleye pollock off of
+Alaska, where models with correlations between age, cohort, and year were
+found to best fit the data [@ChengEtAl2023]. Here, unsexed fish were included
+as such, and the majority of the unsexed samples were from north of the
 U.S--Canada border. Weights from fish ages 15 and above for each year were
 pooled, and thus, ages 15--20 are assumed to have the same weight-at-age.
-Estimated parameters from this model were used to predict weight for ages
-zero to fifteen from 1975 to `r last_data_yr` for each sex. Information was
-then averaged across the three sex groups, i.e., male, female, and unsexed,
-for input into the assessment model.
-The number of samples (Figure \@ref(fig:main-sample-size-weight-at-age-fig)) is
-generally proportional to the amount of catch.
+Estimated parameters from this model were used to predict weight for ages zero
+to fifteen from 1975 to `r last_data_yr` for each sex. Information was then
+averaged across the three sex groups, i.e., male, female, and unsexed, for
+input into the assessment model. The number of samples
+(Figure \@ref(fig:main-sample-size-weight-at-age-fig)) is generally
+proportional to the amount of catch.
 
 The biomass at the start of a given year is based on the weight-at-age from the
 previous year; for example, the biomass at the start of 2022 is modelled using
