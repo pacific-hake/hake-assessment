@@ -1536,7 +1536,9 @@ plot_squid(base_model,
 (ref:main-historical-assessments-cap) Summary of historical `r sp`
 assessment estimates of spawning biomass. Estimates are MLEs or Markov chain
 Monte Carlo medians depending on the model structure. Shading represents the
-95% credible interval from the `r assess_yr` base model.
+95% credible interval from the `r assess_yr` base model. Line colors are
+shades of orange for the oldest models, yellow shades for the 2000's, green
+shades for the 2010's and into blue shades from 2013 to present. 
 
 (ref:main-historical-assessments-alt) This figure shows the varying
 historical estimates of spawning biomass from the annual assessments.
