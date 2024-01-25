@@ -111,8 +111,7 @@ allowing for parabolic relationships. This model can be written in the same form
 as Model 2, without the time varying intercept,
 \begin{align}
 E[\bm{y}] = g^{-1} \left( \bm{X} \bm{\beta} + \bm{Z} \bm{b} + \bm{\omega}_{s} +
-\bm{x}_{age} * \bm{\zeta}_{s,age} + \bm{x}_{age^{2}} * \bm{\zeta}_{s,age^{2}} +
-\bm{X}^{tvc}_{t} \bm{\gamma_t} \right)
+\bm{x}_{age} * \bm{\zeta}_{s,age} + \bm{x}_{age^{2}} * \bm{\zeta}_{s,age^{2}} \right)
 \end{align}
 where the added quadratic effects of temperature are in the fixed effects
 components $\bm{X}$ and $\bm{\beta}$.
