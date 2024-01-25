@@ -616,7 +616,7 @@ plot_survey_fit_mcmc(base_model,
                      post_line_col = "blue")
 ```
 
-(ref:main-age-comp-fits-cap) Base model fits to the observed fishery (top)
+(ref:main-age-comp-fits-cap) Base model fits to the fishery (top)
 and acoustic survey (bottom) age-composition data. Colored bars show
 observed proportions with colors following each cohort across years. Points
 with intervals indicate median expected proportions and 95% credibility
@@ -645,7 +645,8 @@ plot_grid(plotlist = plist, nrow = 2)
 
 (ref:main-age-comp-pearson-cap) Pearson residuals for base model fits to
 the age-composition data for the medians of the Markov chain Monte Carlo
-posteriors. Closed bubbles are positive residuals (observed > expected) and
+posteriors for the fishery (top) and acoustic survey (bottom).
+Closed bubbles are positive residuals (observed > expected) and
 open bubbles are negative residuals (observed < expected). Green lines track
 cohorts from years of large recruitment events.
 
