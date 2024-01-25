@@ -51,7 +51,20 @@ create_data_hake("maturity_samples_df",
 # estimates_for_assessment.rds from Eric Ward
 # utils::write.csv(
 #   x = readRDS(fs::path("~", "Downloads", "estimates_for_assessment.rds")) |>
-#     dplyr::ungroup(),
+#     dplyr::ungroup() |>
+#     dplyr::bind_rows(
+#       readRDS(fs::path("~", "Downloads", "spline.rds")) |>
+#         dplyr::rename(age = age_bins, p_mature = Prop_mat) |>
+#         dplyr::mutate(year = 2007, model = "Spline") |>
+#         dplyr::select(-N),
+#       data.frame(
+#         p_mature = hakedataUSA::maturity_at_age,
+#         year = 2007,
+#         age = 0:(length(hakedataUSA::maturity_at_age) - 1),
+#         model = "Spline w/ CAN"
+#       )
+#     ) |>
+#     dplyr::arrange(model, year, age),
 #   file = fs::path(load_dir, "maturity-ogives.csv"),
 #   row.names = FALSE
 # )
