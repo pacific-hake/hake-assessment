@@ -454,7 +454,7 @@ median_nat_no_yr <- extramc$natage_med |>
 # Billions of fish
 max_median_nat <- f(max(median_nat_no_yr) / 1e3, 1)
 yr_of_max_median_nat_ind <- which(median_nat_no_yr == max(median_nat_no_yr))
-yr_of_max_median_nat <- extramc$natage_median[yr_of_max_median_nat_ind, "Yr"]
+yr_of_max_median_nat <- extramc$natage_med[yr_of_max_median_nat_ind, "yr"]
 
 # Executive Summary and Assessment section ------------------------------------
 num_mcmc_samples <- base_model$mcmcvals$num_mcmc_samples

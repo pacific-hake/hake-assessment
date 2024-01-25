@@ -870,16 +870,17 @@ plot_recdevs(list(base_model),
 
 (ref:main-numbers-at-age-cap) Bubble plot of the medians of the posterior
 distributions of population numbers at age at the beginning of each year,
-where diagonals follow each year-class through time. The green line represents
-the mean age. The scale of the bubbles is represented in the key where the
-units are billions of fish; the largest overall bubble represents the
-`r max_median_nat`~billion age-0 recruits in `r yr_of_max_median_nat`. See
-Table~\@ref(tab:main-est-numbers-at-age-tab) for values.
+where green diagonal lines follow each larger-than-usual year-class through
+time. The red line represents the mean age. The scale of the bubbles is
+represented in the key where the units are billions of fish; the largest
+overall bubble represents the `r max_median_nat`~billion age-0 recruits
+in `r yr_of_max_median_nat`. See Table~\@ref(tab:main-est-numbers-at-age-tab)
+for values.
 
 (ref:main-numbers-at-age-alt) This figure clearly shows the strong cohorts
 decreasing in numbers as they pass through the stock from one year to the
 next. The mean age has fluctuated over time and is currently rising and at
-approximately age 3.
+just above age 3.
 
 ```{r main-numbers-at-age-fig, fig.cap = "(ref:main-numbers-at-age-cap)", fig.height = 10, out.height = "90%"}
 
