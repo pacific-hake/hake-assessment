@@ -66,3 +66,9 @@ figure,main-age-comp-forecast-fig,,H
 
 # MCMC appendix
 figure,app-mcmc-diag-m-r0-fig,,H
+
+# Maturity appendix
+table,app-maturity-analysis-sampling-platform-tab,,ht
+table,app-maturity-analysis-aic-tab,,ht
+table,app-maturity-analysis-estimates-tab,,ht
+table,app-maturity-analysis-biomass-tab,,H

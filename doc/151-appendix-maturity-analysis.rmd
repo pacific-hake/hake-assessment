@@ -388,6 +388,8 @@ d2 <- tribble(
                   latex_options = c("repeat_header"))
 ```
 
+\clearpage
+
 ```{r app-maturity-analysis-estimates-tab, results = "asis", echo = FALSE}
 d3 <- tribble(
   ~"Model", ~"Term", ~"Estimate", ~"Std Error",
