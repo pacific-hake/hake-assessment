@@ -1063,10 +1063,10 @@ plot_biomass_fished_unfished(base_model,
 
 (ref:main-depletion-comparison-cap) Median and 95% posterior
 credibility intervals of estimated relative spawning biomass to the start
-of `r end_yr` from the base model (white rectangle) and projections to the
-start of `r forecast_yrs[length(forecast_yrs)]` for several management
-actions, which are defined in the decision tables. The default harvest
-policy catches are
+of `r end_yr` from the base model and projections to the start of
+`r forecast_yrs[length(forecast_yrs)]` (vertical shaded rectangle) for
+several management actions, which are defined in the decision tables. The
+default harvest policy catches are
 `r f(base_model$ct_default_policy[1])`~t in `r end_yr`,
 `r f(base_model$ct_default_policy[2])`~t in `r end_yr + 1`, and
 `r f(base_model$ct_default_policy[3])`~t in `r end_yr + 2`.
