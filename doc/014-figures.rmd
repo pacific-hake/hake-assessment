@@ -1441,7 +1441,7 @@ if(!is.null(d_obj_sens_age2_index_grp3[[1]])){
                          survey_type = "age2",
                          rev_colors = TRUE,
                          tick_prop = 2,
-                         leg_pos = c(0.18, 0.85),
+                         leg_pos = c(0.15, 0.88),
                          xlim = c(1995, end_yr))
 }
 ```
