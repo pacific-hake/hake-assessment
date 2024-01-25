@@ -383,7 +383,7 @@ Year-class: A group of fish born in the same year. See also 'cohort' and
 \parindent 0in
 
 (ref:glossary-fishing-intensity-illustration-cap) Fishing intensity as a
-function of the spawing potential ratio (SPR; top axis) and 1-SPR (bottom
+function of the spawning potential ratio (SPR; top axis) and 1-SPR (bottom
 axis); given the benchmark SPR of 40%, the solid blue line is simply $1/0.6$,
 as shown in equation \@ref(eq:appendix-glossary-spr).
 
@@ -397,7 +397,8 @@ plot_intensity_illustration(0.4)
 ratio (SPR) calculation based on the combination of maturity and fecundity used
 in the model, using the Markov chain Monte Carlo (MCMC) estimates of natural
 mortality, selectivity, and fishing mortality in the final year of the base
-model used in this year's assessment.
+model used in this year's assessment. The light blue bars represent unfished
+values, the dark blue bars represent fished values.
 
 (ref:glossary-spr-illustration-alt) This figure shows how SPR is calculated.
 
