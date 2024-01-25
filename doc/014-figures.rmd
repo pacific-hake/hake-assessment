@@ -1198,7 +1198,7 @@ of spawning biomass for the base model and alternative sensitivity runs
 representing changing the mean of the prior for steepness from 1.0 to 0.5,
 fixing steepness at 1.0, lower (1.0) and higher (1.6) levels of variation
 assumed about the stock--recruitment relationship ($\sigma_r$), changing the
-standard deviation of the prior for natural mortality, and using the Hamel
+standard deviation of the prior for natural mortality, and using the Hamel/Cope
 prior distribution for natural mortality.
 
 (ref:main-biomass-base-alternative-1-alt) This figure shows how spawning
@@ -1326,7 +1326,7 @@ if(!is.null(d_obj_sens_age2_index_grp2[[1]])){
                          survey_type = "age2",
                          rev_colors = TRUE,
                          tick_prop = 2,
-                         leg_pos = c(0.18, 0.85),
+                         leg_pos = c(0.18, 0.9),
                          xlim = c(1995, end_yr))
 }
 ```
