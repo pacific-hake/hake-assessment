@@ -1479,16 +1479,15 @@ within the range of estimation uncertainty across all retrospective years.
 There is no indication from retrospective evaluations that the base model is
 displaying a systematic bias.
 
-A comparison of the actual assessment models used in each year since
-`r min(assess_history_df$yr, na.rm = TRUE)` is shown in
-Figure~\@ref(fig:main-historical-assessments-fig). There have been substantial
+A comparison of the base models, approved for management, used in each year
+since `r min(assess_history_df$yr, na.rm = TRUE)` indicates that the
+variability between model results, especially early on in the estimated time
+series, is larger than the estimated uncertainty reported from any single model
+(Figure~\@ref(fig:main-historical-assessments-fig)). There have been substantial
 differences in the structural assumptions of the models and, thus, results
-submitted each year. The variability between model results, especially
-early on in the time series, is larger than the uncertainty (95%
-credibility interval) reported from any single model in recent years. Prior
-to 2004, survey catchability was fixed at 1.0 and this assumption was
-heavily investigated between 2004 and 2007, leading to variability in model
-results because of the use of several different, but fixed, values of survey
+submitted each year. Prior to 2004, catchability was fixed at 1.0. This
+assumption was investigated between 2004 and 2007, leading to variability in
+model results because of the use of several different, but fixed, values of
 catchability. Since 2008, catchability has been freely estimated by the model
 (q = `r f(median(base_model$extra_mcmc$q_vector), 2)`). The fixing
 of survey catchability had the effect of driving the estimate of initial
