@@ -234,7 +234,8 @@ plot_maturity_ogives()
 ```
 
 (ref:main-weight-at-age-cap) Empirical weight-at-age (kg) values used for
-the base model. Colors correspond to the values, with red being the lightest
+the base model as predicted from the time-varying model. Colors correspond
+to the values, with red being the lightest
 fish (across all years and ages) and blue being the heaviest fish. For each
 age, the most transparent cells indicate the lightest fish of that age. Data
 are only available from `r start_yr_age_comps`--`r last_data_yr`. Values
@@ -268,7 +269,7 @@ plot_heatmap_weight_at_age(
 
 (ref:main-sample-size-weight-at-age-cap) Sample sizes of empirical
 weight-at-age measurements used to fit the time-varying model used to estimate
-mean weight-at-age that is fit in the base model. Colors and transparency are
+mean weight-at-age that is used in the base model. Colors and transparency are
 identical to Figure~\@ref(fig:main-weight-at-age-fig). Sample sizes of zero
 highlight years for which data are not available, i.e.,
 pre `r start_yr_age_comps` and post `r last_data_yr`. The total sample
@@ -309,7 +310,7 @@ Weight-at-age data are only available from
 pre-data and forecast years are shown outside the blue lines.
 Bold values between `r start_yr_age_comps`--`r max_fishery_age_prop[2]`
 represent year/age combinations where weight-at-age data were unavailable to fit
-the model such that weights were predicted rather estimated.
+the model such that weights were predicted rather than estimated.
 
 (ref:main-fecundity-at-age-alt) This figure shows how fecundity-at-age changes
 through time. See fleet -2 in the weight-at-age.ss file for raw numbers.
