@@ -448,6 +448,8 @@ table_param_est_last_year_hardcoded(
 #   longtable = TRUE)
 ```
 
+\clearpage
+
 ```{r main-reference-points-tab, results = "asis", echo = FALSE}
 table_reference_points(
   base_model,

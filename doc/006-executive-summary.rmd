@@ -611,6 +611,8 @@ govern variability in fishery selectivity and recruitment parameters through
 time, as well as those used in relative data weighting, are not well understood
 and could propagate uncertainty beyond what is presented in this assessment.
 
+\clearpage
+
 ## Forecast decision tables {-}
 
 The catch limit for `r min(forecast_yrs)` based on the default `r f_40_40_10`
