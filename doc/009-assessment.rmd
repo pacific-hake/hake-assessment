@@ -1150,7 +1150,7 @@ Figures~\@ref(fig:main-risk-year-1-fig)--
 \@ref(fig:main-risk-year-3-fig)). The similar maximum
 probability of dropping below `r b_40` at the start of `r end_yr + 1` is 6%,
 at the start of `r end_yr + 2` is 15%, and at the start of `r end_yr + 3`
-is 30%. 
+is 30%.
 
 It should be noted that forecasted biomass is not only influenced by catch
 levels. As the above average 2014 and 2016 cohorts continue to age, total biomass
@@ -1166,7 +1166,7 @@ the exact change in female spawning biomass,
 Figure~\@ref(fig:main-maturity-ogive-fig)). The estimated above-average (yet still highly uncertain) 2020 and 2021 cohorts will continue to play a large role in determining
 female spawning biomass during the forecast years presented here. The below-average
 2015, 2018, and 2019 cohorts will contribute much less to forecasted spawning
-biomass than the larger cohorts. 
+biomass than the larger cohorts.
 
 The age composition (in numbers) of the catch in `r forecast_yrs[1]` is
 projected to be (using MCMC medians)
@@ -1444,7 +1444,7 @@ age-4 with the addition of more data. A similar pattern can be seen with
 the smaller 2017 and 2018 cohorts. Even with the addition of new data,
 the size of the very small 2015 cohort has not fully stabilized.
 Under-estimation is slight, but apparent, for the 2016 cohort as recruitment
-estimates have risen by a small amount since the estimate at age-3. The 
+estimates have risen by a small amount since the estimate at age-3. The
 under-estimation of the 2021 cohort stands out as it was estimated as being
 slightly smaller than average at age-2 in last year's assessment and then
 estimated to be a very large cohort at age-3 this year.
@@ -1543,7 +1543,8 @@ P(*B*~t+1~ < *B*~t~), from the current base model
 [Figure~\@ref(fig:main-historical-1-fig); see @JTC2022 for full methods].
 
 Each assessment correctly predicted whether the stock would most likely increase or
-decrease the following year, except for 2017, 2019 (the example just given), 2023;
+decrease the following year, except for 2017, 2019 (the example just given), and
+2023;
 Figure~\@ref(fig:main-historical-1-fig). Estimates from previous assessments
 are closer to 50% than those from the current base model
 (Figure~\@ref(fig:main-historical-1-fig)), because the current assessment model
@@ -1553,67 +1554,43 @@ probabilities from the assessment documents are not too definitive (too close
 to 0% or to 100%), because they are admitting a wide range of uncertainty
 given unknown recent recruitments.
 
-TODO Last year these were 2018 and 2021 - interesting. GOT TO HERE (going to
-make retro figs then come back to, as they help explain it I think).
-
-
-The 2017, 2019, and 2023 assessments 'incorrectly' projected the stock would likely
+The 2017, 2019, and 2023 assessments `incorrectly' projected that the stock would likely
 decline the following year (given the catch that subsequently occurred),
 because the current assessment model estimates a likely increase
-(Figure~\@ref(fig:main-historical-1-fig)). In 2018..., this occurred because the
-biomass trend was relatively flat
-(Figure~\@ref(fig:main-biomass-fig)) so even slight changes in
+(Figure~\@ref(fig:main-historical-1-fig)). For the 2017 [@JTC2017] and 2019
+[@JTC2019] assessments the biomass trend was projected to be relatively flat the
+following year, so even slight changes in
 biomass could influence binomial outcomes of an 'increase' or 'decrease' in
 biomass, despite the overall change in biomass not being very substantial. The
-2021 assessment [@JTC2021] had no information on the 2020 cohort and predicted
-the biomass would probably decline in 2022 even with zero catch in 2021.
-However, the current assessment estimates that the 2020 cohort was
-particularly large, which highlights how impactful a realized large deviation
+2023 assessment [@JTC2023] had minimal information on the 2021 cohort and predicted
+the biomass would probably decline in 2024 with any non-zero 2023 catch.
+However, the current assessment estimates that the 2021 cohort was potentially
+large, which further highlights how impactful a realized large deviation
 from average recruitment (rather than assuming average recruitment) can be
 on forecasted outcomes. Similarly, the 2012 assessment had no information on
 the very large 2010 recruitment, and so also over-estimated the probability
 of decline the following year (Figure~\@ref(fig:main-historical-1-fig)).
-
 A range of catch alternatives are shown for the current assessment because
 realized `r assess_yr` catches are not yet known
-(Figure~\@ref(fig:main-historical-1-fig)). Catching zero fish in `r assess_yr`
-gives the lowest probability that the stock will decline from `r assess_yr`
-to `r assess_yr + 1`, with any realistic `r assess_yr` catch leading to a
-likely decline in female spawning biomass given current information.
+(Figure~\@ref(fig:main-historical-1-fig)), and give low probabitlies of the
+stock declining from `r assess_yr`
+to `r assess_yr + 1`.
 
 A similar approach was used to calculate the probability of the biomass
 falling below `r b_40` in the subsequent year,
-i.e., P(*B*~t + 1~ < `r b_40`); Figure~\@ref(fig:main-historical-2-fig).
+i.e., P(*B*~t+1~ < `r b_40`); Figure~\@ref(fig:main-historical-2-fig).
 The 2012 assessment was the only one that gave a >50% chance of the
 biomass falling below `r b_40` in the subsequent year, but later data
-determined that the 2010 year class was indeed substantial and so in
+determined that the 2010 year class was substantial and so in
 hindsight the probability of going below `r b_40` was 0% (based on the
-current assessment). Since the 2018 assessment, the estimated probabilities
-of the biomass falling below `r b_40` were >10% and continued to rise (Figure~\@ref(fig:main-historical-2-fig)), until falling due to the
-incoming 2020 cohort. Note that the biomass has been relatively high
-during the time period shown, so 'correctly expecting' the biomass to
-remain >`r b_40` may not be a particular high bar to attain.
-
-Retrospective versions of Figures~\@ref(fig:main-historical-1-fig)
-and \@ref(fig:main-historical-2-fig) are calculated using the current base model
-but with data only up to a certain year
-(Figures~\@ref(fig:main-historical-retro-1-fig)--
-\@ref(fig:main-historical-retro-bforty-all-fig)). While there are some minor
-exceptions, the retrospective probabilities of decline (colored squares in
-Figures~\@ref(fig:main-historical-retro-1-fig)--
-\@ref(fig:main-historical-retro-all-fig)) are generally close to the
-probabilities currently estimated using all available data (blue triangles).
-An exception is P(*B*~2016~ < *B*~2015~) which is
-underestimated (compared to the current base model) until data to 2017 are
-included (the 2015 values in each panel of
-Figure~\@ref(fig:main-historical-retro-2-fig)). This is due to the
-retrospective uncertainty of the 2014 cohort, seen as an increase and then
-decrease in expected cohort size in
-Figure~\@ref(fig:main-retrospective-recruitment-fig). The retrospective
-calculations for P(*B*~t + 1~ < `r b_40`) show little change as more
-data are added (Figure~\@ref(fig:main-historical-retro-bforty-all-fig)),
-except for 2015 and 2021 as information becomes available about the strong
-2014 and 2020 cohorts. Combined, these results enhance confidence in the
-projected outcomes from the assessment model.
+current assessment). From the 2018 assessment onwards, the estimated
+P(*B*~t+1~ < `r b_40`) probabilities rose, until falling due to the
+incoming above-average 2020 cohort and lower catches
+(Figure~\@ref(fig:main-historical-2-fig)). The same probabilities calculated
+from the current base model similarly rose, but remained lower than the previous
+assessments' calculations. The exception is for P(*B*~2023~ < `r b_40`) which is now
+estimated to have been >30% (Figure~\@ref(fig:main-historical-2-fig)), somewhat
+higher than originally estimated in the 2022 assessment [@JTC2022] and also in
+the analogous figure in the 2023 assessment [@JTC2023].
 
 \newpage
