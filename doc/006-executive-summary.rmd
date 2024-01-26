@@ -82,12 +82,12 @@ landings in recent years. During the last five years, catches were
 above the long-term average catch (`r f(long_term_avge_ct)`~t)
 but have been declining over that period (especially in Canada). Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
-1999 year class, with the cumulative removal (through `r end_yr - 1`) from
-that cohort estimated at approximately
+1999 year class, with a cumulative removal (through `r end_yr - 1`) from
+that cohort of
 `r f(cohort_catch_1999 / 1e6, 2)` Mt [1~Mt = 1~megatonne = 1~million metric
 tonnes]. Through `r last_data_yr`, the
-cumulative catch of the 2010, 2014, and 2016 year classes is estimated to be
-about `r f(cohort_catch_2010 / 1e6, 2)` Mt,
+cumulative catches of the 2010, 2014, and 2016 year classes were
+`r f(cohort_catch_2010 / 1e6, 2)` Mt,
 `r f(cohort_catch_2014 / 1e6, 2)` Mt, and
 `r f(cohort_catch_2016 / 1e6, 2)` Mt, respectively. In the
 `r end_yr - 1` catch, `r top_coh(base_model, last_data_yr, 3, cap = FALSE)`.
