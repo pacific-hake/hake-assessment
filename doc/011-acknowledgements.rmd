@@ -44,7 +44,8 @@ Kiva Oken,
 Elizabeth Phillips,
 Erin Steiner,
 Brad Stenberg,
-Ian Taylor (who gave insightful comments on a draft version),
+Ian Taylor,
+Brian Langseth (who gave insightful comments on a draft version),
 Jim Thorson,
 Vanessa Tuttle,
 Joe Watson,
@@ -82,5 +83,5 @@ R [@RCoreTeam] packages were used to produce this document (in particular
 
 Having all of the code under \texttt{git} version control has greatly
 increased the collaboration between authors. It has been in use since the
-2016 assessment [@JTC2016] has ensured delivery of the assessment document
+2016 assessment [@JTC2016] and has ensured delivery of the assessment document
 each year within a contracted time frame.
