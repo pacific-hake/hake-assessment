@@ -52,15 +52,12 @@ table_biomass <- function(model,
     filter(yrs %in% start_yr:end_yr)
 
   names(d) <- c("Year",
-                paste0("SB ($\\bm{B_t}$)\n2.5\\textsuperscript{th}",
-                       "\npercentile"),
-                "SB ($\\bm{B_t}$)\nMedian",
-                "SB ($\\bm{B_t}$)\n97.5\\textsuperscript{th}\npercentile",
-                paste0("Rel.\nSB ($\\bm{B_t/B_0}$)\n2.5\\textsuperscript",
-                       "{th}\npercentile"),
-                "Rel.\nSB ($\\bm{B_t/B_0}$)\nMedian",
-                paste0("Rel.\nSB ($\\bm{B_t/B_0}$)\n97.5\\textsuperscript",
-                       "{th}\npercentile"))
+                "SB \n2.5\\textsuperscript{th}\npercentile",
+                "SB \nMedian",
+                "SB \n97.5\\textsuperscript{th}\npercentile",
+                "Rel. SB \n2.5\\textsuperscript{th}\npercentile",
+                "Rel. SB \nMedian",
+                "Rel. SB \n97.5\\textsuperscript{th}\npercentile")
 
   # Insert custom header fontsize before linebreaker
   if(is.null(header_font_size)){
