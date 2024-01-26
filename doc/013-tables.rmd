@@ -82,7 +82,7 @@ table_age_data(
   caption = paste0(
     "Recent age-proportion data used in the assessment for the U.S. ",
     "Catcher-Processor fleet. Proportions are calculated from numbers of ",
-    "individuals in each age group. Age 15+ is an accumulator group."),
+    "individuals in each age group. Age 15$+$ is an accumulator group."),
   font_size = 10,
   header_font_size = 11,
   digits = 2,
@@ -100,7 +100,7 @@ table_age_data(
   caption = paste0(
     "Recent age-proportion data used in the assessment for the U.S. ",
     "Mothership fleet. Proportions are calculated from numbers of ",
-    "individuals in each age group. Age 15+ is an accumulator group."),
+    "individuals in each age group. Age 15$+$ is an accumulator group."),
   font_size = 10,
   header_font_size = 11,
   digits = 2,
@@ -116,7 +116,7 @@ table_age_data(
   caption = paste0(
     "Recent age-proportion data used in the assessment for the U.S. ",
     "Shore-based fleet. Proportions are calculated from numbers of ",
-    "individuals in each age group. Age 15+ is an accumulator group."),
+    "individuals in each age group. Age 15$+$ is an accumulator group."),
   font_size = 10,
   header_font_size = 11,
   digits = 2,
@@ -132,7 +132,7 @@ table_age_data(
   caption = paste0(
     "Recent age-proportion data used in the assessment for the Canadian ",
     "Shoreside fleet. Proportions are calculated from numbers of individuals ",
-    "in each age group. Age 15+ is an accumulator group."),
+    "in each age group. Age 15$+$ is an accumulator group."),
   font_size = 10,
   header_font_size = 11,
   digits = 2,
@@ -148,7 +148,7 @@ table_age_data(
   caption = paste0(
     "Recent age-proportion data used in the assessment for the Canadian ",
     "Freezer trawler fleet. Proportions are calculated from numbers of ",
-    "individuals in each age group. Age 15+ is an accumulator group."),
+    "individuals in each age group. Age 15$+$ is an accumulator group."),
   font_size = 10,
   header_font_size = 11,
   digits = 2,
@@ -168,7 +168,7 @@ table_input_age_data(
     "group where the contributions from each fleet are weighted by the ",
     "catch in that fleet. Sample sizes are sum of hauls and trips from ",
     "individual fleets (shown in preceding tables) as described in ",
-    "Section~\\@ref(sec:data-fishery-biological-data). Age 15+ is an ",
+    "Section~\\@ref(sec:data-fishery-biological-data). Age 15$+$ is an ",
     "accumulator group."),
   font_size = 10,
   header_font_size = 11,
@@ -184,9 +184,9 @@ table_input_age_data(
   start_yr = start_yr_age_comps,
   end_yr = last_data_yr,
   caption = paste0(
-    "Acoustic age 2+ survey age-proportion data used in the base model. ",
+    "Acoustic age 2$+$ survey age-proportion data used in the base model. ",
     "Proportions are calculated from numbers of individuals in each age ",
-    "group. Age 15+ is an accumulator group."),
+    "group. Age 15$+$ is an accumulator group."),
   font_size = 10,
   header_font_size = 11,
   digits = 2,
@@ -201,7 +201,7 @@ table_survey_history(
   vessel_sep_lines = TRUE,
   digits = 3,
   caption = paste0(
-    "Summary of the acoustic age 2+ surveys from ", survey_start_yr,
+    "Summary of the acoustic age 2$+$ surveys from ", survey_start_yr,
     " to ", survey_end_yr, "."),
   font_size = 10,
   header_font_size = 11,
@@ -213,7 +213,7 @@ table_survey_by_country(
   survey_by_country_df,
   digits = 3,
   caption = paste0(
-    "Summary of the acoustic survey age-2+ biomass attributed to each ",
+    "Summary of the acoustic survey age-2$+$ biomass attributed to each ",
     "country."),
   font_size = 10,
   header_font_size = 11,
@@ -377,9 +377,9 @@ table_median_posteriors(
     "Time series of median posterior population estimates from the base ",
     "model. Relative spawning biomass is spawning biomass relative to the ",
     "unfished equilibrium (", b_0_for_latex_table, "). Total biomass includes
-    females and males of ages 0 and above. Age-2+ biomass includes females ",
+    females and males of ages 0 and above. Age-2$+$ biomass includes females ",
     "and males ages 2 and above. Exploitation fraction is total catch ",
-    "divided by total age-2+ biomass. Relative fishing intensity is (",
+    "divided by total age-2$+$ biomass. Relative fishing intensity is (",
     rel_fishing_intensity_for_latex_table, ") such that values below 100\\% ",
     "represent fishing below ", f_40_for_latex_table, ". In the last row, ",
     "dashes (--) indicate quantities requiring ", end_yr, " catch which has ",

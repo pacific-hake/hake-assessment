@@ -40,11 +40,11 @@ table_survey_by_country <- function(d,
     mutate_at(vars(-year), ~{f(as.numeric(.x), digits)})
 
   col_names <- c("Year",
-                 "U.S.\nAge-2+\nbiomass\n(million t)",
-                 "U.S.\nsampling\nCV\nage-2+",
+                 "U.S.\nAge-2$+$\nbiomass\n(million t)",
+                 "U.S.\nsampling\nCV\nage-2$+$",
                  "U.S.\nprop.\nof\nbiomass",
-                 "Canada\nAge-2+\nbiomass\n(million t)",
-                 "Canada\nsampling\nCV\nage-2+",
+                 "Canada\nAge-2$+$\nbiomass\n(million t)",
+                 "Canada\nsampling\nCV\nage-2$+$",
                  "Canada\nprop.\nof\nbiomass")
 
   # Insert custom header fontsize before linebreaker

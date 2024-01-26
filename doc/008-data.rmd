@@ -22,7 +22,7 @@ are used to fit the model
 (Table~\@ref(tab:main-input-age-data-fishery-tab) and
 Figure~\@ref(fig:main-age-comp-bubbles-fig)).
 
-- An age-2+ biomass index and age compositions from the `r survey_name`
+- An age-2$+$ biomass index and age compositions from the `r survey_name`
 (`r str_flatten_comma(survey_age_years)`;
  Tables~\@ref(tab:main-input-age-data-survey-tab),
  ~\@ref(tab:main-survey-history-tab),
