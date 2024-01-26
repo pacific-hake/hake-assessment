@@ -26,9 +26,9 @@ We thank the following individuals who contributed technical
 assistance, analysis tools, data, or comments to this and/or previous
 assessments:
 Scott Buchanan,
+Chelsea Cooke,
 Cassandra Donavan,
 Mark Freeman,
-Joanne Groot,
 Marie Guldin,
 Owen Hamel,
 Jim Hastie,
@@ -42,16 +42,15 @@ Patrick McDonald,
 Cole Monnahan,
 Kiva Oken,
 Elizabeth Phillips,
+Chelsea Rothkop,
 Erin Steiner,
 Brad Stenberg,
 Ian Taylor,
 Brian Langseth (who gave insightful comments on a draft version),
 Jim Thorson,
 Vanessa Tuttle,
-Joe Watson,
-Steve Wischniowski,
 Audrey Ty,
-Chelsea Cooke,
+Eric Ward,
 and contributions by many others that are too numerous to list here. We also
 thank the attendees at the official JTC meeting who provided valuable insight
 into the `r end_yr - 1` commercial fisheries in Canada and the U.S., as well
@@ -79,7 +78,7 @@ We thank the Stock Synthesis, the \texttt{r4ss} R package, and the
 assessment tools used in this assessment. Calculations and figures from Stock
 Synthesis output were performed using `r R.Version()$version.string`. Many
 R [@RCoreTeam] packages were used to produce this document (in particular
-\texttt{bookdown}, \texttt{rmarkdown}, \texttt{knitr}, and \texttt{adnuts}) 
+\texttt{bookdown}, \texttt{rmarkdown}, \texttt{knitr}, and \texttt{adnuts})
 
 Having all of the code under \texttt{git} version control has greatly
 increased the collaboration between authors. It has been in use since the
