@@ -241,9 +241,8 @@ are only available from `r start_yr_age_comps`--`r last_data_yr`. Values
 based on assumptions for the pre-`r start_yr_age_comps` and forecast years
 are shown outside the blue lines. Bold values between
 `r start_yr_age_comps`--`r max_fishery_age_prop[2]` represent unavailable
-data such that weights were interpolated or extrapolated from adjacent ages
-or years. The bottom row (mean) is the sample-weighted mean weight-at-age
-over all years of data.
+data such that weights were predicted from the time-varying model. The bottom
+row (mean) is the mean weight-at-age over all years of data.
 
 (ref:main-weight-at-age-alt) This figure shows how weight-at-age changes
 through time. The weight-at-age appears to have decreased overall from 1975
@@ -268,12 +267,12 @@ plot_heatmap_weight_at_age(
 ```
 
 (ref:main-sample-size-weight-at-age-cap) Sample sizes of empirical
-weight-at-age measurements used to calculate mean weight-at-age fit in
-the base model. Colors and transparency are identical to
-Figure~\@ref(fig:main-weight-at-age-fig) and based on mean values.
-Sample sizes of zero highlight years for which data are not available, i.e.,
+weight-at-age measurements used to fit the time-varying model used to estimate
+mean weight-at-age that is fit in the base model. Colors and transparency are
+identical to Figure~\@ref(fig:main-weight-at-age-fig). Sample sizes of zero
+highlight years for which data are not available, i.e.,
 pre `r start_yr_age_comps` and post `r last_data_yr`. The total sample
-sizes for each age used in the mean over all data years are shown at the
+sizes for each age used in the model over all data years are shown at the
 bottom and year-specific sample sizes are shown to the right using the same
 color scale with red indicating small sample sizes and blue indicating the
 large sample sizes.
@@ -288,6 +287,37 @@ for ages 3 through 7.
 # from `plot_weight_at_age_heatmap()`
 plot_heatmap_sample_size_weight_at_age(
   base_model,
+  cell_font_size = 3,
+  sample_size_df = weight_age_sample_sizes_df,
+  pre_yrs = start_yr_age_comps:base_model$endyr,
+  pre_func = mean,
+  post_yrs = (base_model$endyr - 4):base_model$endyr,
+  post_func = mean,
+  cols = c("red",
+           "yellow",
+           "green",
+           "dodgerblue"))
+```
+
+(ref:main-fecundity-at-age-cap) Fecundity-at-age values used for the base
+model. Colors correspond to the values, with red being the least fecund fish
+(across all years and ages) and blue being the most fecund fish. For each age,
+the most transparent cells indicate the least fecund fish of that age.
+Fecundity is the product of maturity and weight-at-age.
+Weight-at-age data are only available from
+`r start_yr_age_comps`--`r last_data_yr`. Values based on assumptions for the
+pre-data and forecast years are shown outside the blue lines.
+Bold values between `r start_yr_age_comps`--`r max_fishery_age_prop[2]`
+represent year/age combinations where weight-at-age data were unavailable to fit
+the model such that weights were predicted rather estimated.
+
+(ref:main-fecundity-at-age-alt) This figure shows how fecundity-at-age changes
+through time. See fleet -2 in the weight-at-age.ss file for raw numbers.
+
+```{r main-fecundity-at-age-fig, fig.cap = "(ref:main-fecundity-at-age-cap)", fig.height = 10, out.height = "85%"}
+plot_heatmap_weight_at_age(
+  base_model,
+  fleet = -2,
   cell_font_size = 3,
   sample_size_df = weight_age_sample_sizes_df,
   pre_yrs = start_yr_age_comps:base_model$endyr,

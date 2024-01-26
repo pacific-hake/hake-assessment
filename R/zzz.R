@@ -59,6 +59,6 @@ utils::globalVariables(
   "toc", "tot_catch", "tot_tac", "upper", "Upper CI", "us_catch", "us_cp_xx",
   "us_foreign_xx", "us_jv_xx", "us_ms_xx", "us_research_xx", "us_shore_xx", "us_tac",
   "value", "variable", "weight_at_age_fn", "maturity_samples_df", "assess_changes_df",
-  "assess_history_disp_df", "maturity_ogives_df", "sumprod", "group", "y_end",
+  "assess_history_disp_df", "sumprod", "group", "y_end",
   "end_yr", "red", "xend", "yend", "Default HCR TAC", "Cumulative catch (kt)",
   "survey_history_df", "type", "pos", "endyrvec"))

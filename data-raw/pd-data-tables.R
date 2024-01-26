@@ -36,12 +36,6 @@ create_data_hake("ovary_samples_df",
                           col_types = cols(),
                           show_col_types = FALSE))
 
-create_data_hake("maturity_ogives_df",
-                 read_csv(file.path(load_dir,
-                                    "maturity-table.csv"),
-                          col_types = cols(),
-                          show_col_types = FALSE))
-
 create_data_hake("maturity_samples_df",
                  read_csv(file.path(load_dir,
                                     "maturity-samples.csv"),

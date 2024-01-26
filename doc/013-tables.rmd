@@ -220,24 +220,6 @@ table_survey_by_country(
   longtable = TRUE)
 ```
 
-```{r main-maturity-ogives-tab, results = "asis", echo = FALSE}
-table_maturity_ogive(
-  maturity_ogives_df,
-  caption = paste0(
-    "Information on maturity and fecundity used in this assessment as shown ",
-    "in Figure~\\@ref(fig:main-maturity-ogive-fig). The sample sizes refer to the ",
-    "subset of samples in Table~\\@ref(tab:main-ovaries-tab) for which age ",
-    "readings and histological estimates of maturity have been completed. ",
-    "The mean weight (kg) is based on a much larger set of samples. Mean ",
-    "fecundity is the product of maturity and mean weight but note that ",
-    "year-specific fecundities from ", start_yr_age_comps, "--", last_data_yr,
-    " were used in the stock assessment. The values reported for ages 15 ",
-    "and above represent the average across all samples in this range."),
-  font_size = 10,
-  header_font_size = 11,
-  longtable = TRUE)
-```
-
 <!-- This is needed to cite within a table caption, see how it is included
 the caption below. Note it is OUTSIDE of a knitr chunk. -->
 (ref:cite-jtc2018) @JTC2018
@@ -246,14 +228,13 @@ the caption below. Note it is OUTSIDE of a knitr chunk. -->
 table_ovary_samples(
   ovary_samples_df,
   caption = paste0(
-    "Number of ", sp, " ovaries collected for histological analysis. The ",
-    "maturity ogive was determined from a subset of these samples (up to ",
-    "and including 2017; (ref:cite-jtc2018))."),
+    "Number of ", sp, " ovaries collected for histological analysis and ",
+    "included in the estimates of time-varying maturity. Note that data ",
+    "from 2023 has yet to be analyzed."),
   font_size = 9,
   header_font_size = 8,
   longtable = TRUE)
 ```
-\clearpage
 
 ```{r main-parameters-estimated-summary-tab, results = "asis", echo = FALSE}
 table_param_est_bounds(
