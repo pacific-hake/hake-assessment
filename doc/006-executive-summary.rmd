@@ -96,7 +96,7 @@ about `r f(cohort_catch_2010 / 1e6, 2)` Mt,
 
 This Joint Technical Committee (JTC) assessment depends on the fishery
 landings (`r start_yr`--`r last_data_yr`), an acoustic survey biomass index
-of age-2+ fish (Figure~\@ref(fig:es-survey-biomass-fig) and age compositions
+of age-2+ fish (Figure~\@ref(fig:es-survey-biomass-fig)) and age compositions
 (`r survey_start_yr`--`r survey_end_yr`), a relative index of age-1 fish
 (Figure~\@ref(fig:es-survey-age1-fig); `r survey_start_yr`--`r survey_end_yr`),
 fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`), and
@@ -176,7 +176,7 @@ used to develop the input weight-at-age matrix, and time-varying maturity was
 added to better inform fecundity.
 
 This assessment continues to use (since 2014) time-varying
-(rather than fixed) selectivity to maintain flexibility with
+(rather than constant) selectivity to maintain flexibility with
 fishing dynamics given variability in `r sp` distribution patterns.
 The Dirichlet-multinomial estimation approach to weighting composition data
 was retained, and sensitivity to an alternative data-weighting approach was

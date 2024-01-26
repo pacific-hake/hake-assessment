@@ -375,7 +375,7 @@ Some data sources were not included in the base model but have been explored,
 were used for sensitivity analyses, or were included in previous stock
 assessments. Data sources not discussed here have either been discussed at past
 `r sp` assessment review meetings or are discussed in more detail in the 2013
-stock assessment document [@JTC2013]. A few are listed below.
+stock assessment document [@JTC2013]. These primarily include those listed below.
 
 - Fishery and survey length compositions.
 
@@ -446,8 +446,8 @@ as such, and the majority of the unsexed samples were from north of the
 U.S--Canada border. Weights from fish ages 15 and above for each year were
 pooled, and thus, ages 15--20 are assumed to have the same weight-at-age.
 Estimated parameters from this model were used to predict weight for ages zero
-to fifteen from 1975 to `r last_data_yr` for each sex. Information was then
-averaged across the three sex groups, i.e., male, female, and unsexed, for
+to fifteen from 1975 to `r last_data_yr` for each sex. The mean of estimates across
+the three sex groups, i.e., male, female, and unsexed, was used for
 input into the assessment model. The number of samples
 (Figure \@ref(fig:main-sample-size-weight-at-age-fig)) is generally
 proportional to the amount of catch.
@@ -478,9 +478,9 @@ biomass than modeling growth [@KuriyamaOnoEtAl2015].
 
 ### Maturity and fecundity {#sec:data-maturity}
 
-Until the 2023 assessment [@JTC2023], maturity-at-age was modelled external
-to the assessment using a time-invariant maturity ogive. Starting in 2024,
-annual age-based maturity ogives
+Maturity-at-age has always been modelled external to the assessment,
+but up through the the 2023 assessment [@JTC2023] the maturity ogive was
+time-invariant. Starting in 2024, annual age-based maturity ogives
 (Table~\@ref(tab:main-maturity-ogives-tab) and
 Figure~\@ref(fig:main-maturity-ogive-fig))
 were developed using the same data, i.e., histological estimates of functional
@@ -517,7 +517,7 @@ projection methods is available in Appendix~\@ref(sec:app-maturity-analysis).
 Time-varying fecundity at age was previously modeled using year-specific weight-at-age
 values multiplied by maturity-at-age [@JTC2019]. For this assessment, the maturity-at-age is
 also year specific. The same methods
-were used to estimate early and future maturity as was done for the
+were used to estimate early (before 2009) and projection period maturity as was done for the
 weight-at-age data. Additionally, samples from age-15$+$ fish were pooled for
 both the maturity and weight-at-age estimation due to limited sample sizes.
 Consequently, the age 15$+$ estimates were applied to ages 15--20 in the

@@ -170,7 +170,8 @@ of trawl sets in the research surveys
 
 Model results and statistical inference were based on
 `r f(num_mcmc_samples)` MCMC samples (using the \texttt{adnuts} R package;
-@Monnahan2018) to describe posterior distributions for model
+@Monnahan2018) compiled across 8 chains, each with a 250 sample burn in
+period, to describe posterior distributions for model
 parameters and derived quantities. The number of samples used for bridging
 models, sensitivity models, and retrospective models was also
 `r f(num_mcmc_samples)`. Medians (50% quantiles) are reported together with
@@ -227,7 +228,7 @@ spawning biomass**
 
 > *Response -- Two figures have been added to the assessment document. The first shows the
 > unfished spawning stock biomass time series relative to the standard 'fished'
-> spawning stock biomass time series (see Figure
+> spawning stock biomass time series (see
 > Figure~\@ref(fig:main-fished-unfished-biomass-fig)). The second shows a comparison
 > of relative spawning biomass when spawning biomass in year $t$ is related to
 > unfished equilibrium biomass, $B_0$ (static $B_0$; as in
@@ -472,7 +473,7 @@ when sampling protocols were not as well documented (e.g., from foreign
 vessels).
 
 Lastly, model-based estimates of time-varying maturity ogives were
-were incorporated into the calculation of time-varying fecundity
+incorporated into the calculation of time-varying fecundity
 (see Section~\@ref(sec:data-maturity) and
 Appendix~\@ref(sec:app-maturity-analysis) for details). This is
 in addition to using time-varying weight-at-age, which improves the assessment
@@ -631,7 +632,7 @@ distribution by increasing the prior standard deviation for the natural
 mortality parameter is examined in sensitivity runs (see
 Section~\@ref(sec:assessment-sensitivity-analyses)). Other parameters showed
 updating from diffuse priors to posterior distributions, including
-$\theta_{\text{fish}}$ and  $\theta_{\text{surv}}$ (as outlined in
+$\log \theta_{\text{fish}}$ and  $\log \theta_{\text{surv}}$ (as outlined in
 Section~\@ref(sec:data-age-comp-likelihood)).
 
 The `r assess_yr` base model specified the same level of variation (standard
