@@ -472,30 +472,25 @@ table_reference_points(
 \clearpage
 
 ```{r main-decisions-biomass-tab, results = "asis", echo = FALSE}
+
 table_decision(
   base_model,
   type = "biomass",
   forecast_inds =
     seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
   caption = paste0(
-      "Forecast quantiles of ", sp, " relative spawning biomass at the ",
-      "beginning of the year. Catch alternatives are based on: constant ",
-      "catches (rows ", ct_constant_str, "), including catch similar to ",
-      min(forecast_yrs) - 1," (row~", letters[ct_actual_ind],
-      ") and to the TAC from ", min(forecast_yrs) - 1," (row~",
-      letters[ct_tac_ind], "); and non-constant catches that result in ",
-      "annual 10\\% declines in catch (rows ", ct_reduction_str,
-      "), median relative fishing intensity of 100\\% (row ",
-      letters[ct_spr100_ind], "), median catch estimated via the default ",
-      "harvest policy (", f_40_40_10_for_latex_table,", row~",
-      letters[ct_default_policy_ind], "), and the fishing intensity that ",
-      "results in the median projected catch remaining the same in ",
-      min(forecast_yrs), " and ",min(forecast_yrs) + 1, " (row~",
-      letters[ct_stable_ind], ")."),
+      "Forecast quantiles of Pacific Hake relative spawning biomass at the ",
+      "beginning of the year. Catch alternatives are defined by letters a-o ",
+      "and are a constant value across all ", length(forecast_yrs), " ",
+      "forecasted years unless otherwise defined in the first column. ",
+      "Acronyms are defined in the glossary ",
+      "(Appendix~\\@ref(sec:app-glossary))."),
   bold_letters = TRUE,
   digits = 2,
-  font_size = 10,
-  header_font_size = 10,
+  # Font values higher than 8 and 11 for table and header respectively
+  # will cause the table to wrap to a second page
+  font_size = 8,
+  header_font_size = 11,
   # If the font is changed it is almost guaranteed that `left_col_cm` and
   # `right_cols_cm` will have to be changed, especially if the font is made
   # larger. You will have to check this with trial-and-error, building the
@@ -507,23 +502,25 @@ table_decision(
 ```
 
 ```{r main-decisions-spr-tab, results = "asis", echo = FALSE}
+
 table_decision(
   base_model,
   type = "spr",
   forecast_inds =
     seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
   caption = paste0(
-    "Forecast quantiles of ", sp, " relative fishing intensity ",
-    "(1-SPR)/(1-SPR\\textsubscript{40\\%}), expressed as a proportion, for ",
-    "the ", min(forecast_yrs), "--", max(forecast_yrs) - 1, " catch ",
-    "alternatives presented in Table~\\@ref(tab:main-decisions-biomass-tab). ",
-    "Values greater than 1 indicate relative fishing intensities greater ",
-    "than the ", f_40_for_latex_table, " harvest policy calculated using baseline ",
-    "selectivity."),
+      "Forecast quantiles of Pacific Hake relative fishing intensity ",
+      rel_fishing_intensity_for_latex_table, ", expressed as a proportion. ",
+      "Catch alternatives are defined by letters a-o and are a constant ",
+      "value across all ", length(forecast_yrs), " forecasted years unless ",
+      "otherwise defined in the first column. Acronyms are defined in the ",
+      "glossary (Appendix~\\@ref(sec:app-glossary))."),
   bold_letters = TRUE,
   digits = 2,
-  font_size = 10,
-  header_font_size = 10,
+  # Font values higher than 8 and 11 for table and header respectively
+  # will cause the table to wrap to a second page
+  font_size = 8,
+  header_font_size = 11,
   # If the font is changed it is almost guaranteed that `left_col_cm` and
   # `right_cols_cm` will have to be changed, especially if the font is made
   # larger
