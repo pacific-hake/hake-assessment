@@ -10,16 +10,15 @@ top three are as follows:
 and future estimates of recruitment for use in stock assessment. This could
 include the development of time series of recruitment indices, time series of
 informative environmental or ecosystem variables, and models that have
-predictive skill (e.g., @VestfalsEtAl2023). Explorations should also consider
+predictive skill [e.g., @VestfalsEtAl2023]. Explorations should also consider
 options for incorporating information on recruitment into the assessment model
 and the management framework for `r sp`. For example, time series could be
 included in the stock assessment as a standalone data source (similar to the
-estimates of biomass from the acoustic survey) or improvements could be made to
-the modeling framework to allow these environmental time series to affect
-different parts of the stock--recruitment relationship. Results from such work
-should be connected to or in cooperation with ongoing research related to
-recruitment variability as discussed in
-Section~\@ref(sec:assessment-response-review). Related, there is a need to
+acoustic indices) or improvements could be made to the modeling framework
+such that these environmental time series could impact the stock--recruitment
+relationship directly. Results from such work should be connected to or in
+cooperation with ongoing research related to recruitment variability as discussed
+in Section~\@ref(sec:assessment-response-review). Related, there is a need to
 streamline and broaden the availability of products from oceanographic models
 (e.g., Regional Ocean Modeling System) so they are available across
 international boundaries and updated on a recurring basis, thereby allowing for
@@ -39,7 +38,7 @@ uncertainty related to the target-strength relationship, subjective scoring of
 echograms, thresholding methods, and methods used to estimate the species mixes
 for interpreting the acoustic backscatter into the variance calculations.
 Research should be communicated with those involved in developing the U.S. West
-Coast Integrated Survey Initiative. The existing management strategy evaluation
+Coast Integrated Survey Initiative. The management strategy evaluation
 framework should be used, or further developed, to examine how changes in
 survey methods can be used to inform robust management decisions.
 
