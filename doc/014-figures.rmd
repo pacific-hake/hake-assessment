@@ -218,7 +218,7 @@ plot_survey_biomass(base_model,
 (ref:main-maturity-ogive-cap) Maturity ogives by year used in the assessment.
 The thick black line shows the equilibrium ogive which is an average of all
 years; the thick red line shows the forecast ogive which is an average of
-the last five years (`r last_data_yr`--`r `last_data_yr - 4`). The colors of
+the last five years (`r last_data_yr - 4`--`r last_data_yr`). The colors of
 the year lines move from orange in 2009 through the spectrum to dark blue in
 `r last_data_yr`.
 
