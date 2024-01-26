@@ -892,7 +892,7 @@ plot_age_comp_bubbles(base_model, type = "fishery",
                       remove_yr_labels = NULL)
 ```
 
-(ref:main-recruitment-scale-all-cap) Medians (solid circles) of the
+(ref:main-recruitment-scale-all-cap) Medians (circles) of the
 posterior distribution of annual recruitment relative to recruitment in
 2010 (recruitment divided by the 2010 recruitment for every MCMC sample),
 with 95% posterior credibility intervals (red lines). This procedure somewhat
