@@ -12,13 +12,13 @@ at the start of `r assess_yr`. This stock exhibits seasonal migratory
 behavior, ranging from offshore and generally southern waters during the
 winter spawning season to coastal areas between northern California and
 northern British Columbia during the spring, summer, and fall when the
-fishery is conducted. In years with warmer water the stock tends to move
-farther to the north during the summer. Older `r simple_name` tend to migrate
-farther north than younger fish in all years, with catches in the Canadian
-zone typically consisting of fish greater than four years old. Separate, and
-much smaller, populations of `r simple_name` occurring in the major inlets
-of the Northeast Pacific Ocean, including the Strait of Georgia, Puget Sound,
-and the Gulf of California, are not included in this analysis.
+fishery is conducted. The stock tends to move farther to the north during the
+summer in years with warmer water. Older `r sp` tend to migrate farther north
+than younger `r sp` in all years, with catches in the Canadian zone typically
+consisting of fish greater than four years old. Separate, and much smaller,
+populations of `r sp` occurring in the major inlets of the Northeast Pacific
+Ocean, including the Strait of Georgia, Puget Sound, and the Gulf of
+California, are not included in this analysis.
 
 ## Catches {-}
 
@@ -77,7 +77,7 @@ table_catch(
 In this document, the terms catch and landings are used interchangeably.
 Estimates of discard within the target fishery are included, but discarding
 of `r sp` in non-target fisheries is not. Discard from all fisheries,
-including those that do not target hake, is estimated to be less than 1% of
+including those that do not target `r sp`, is estimated to be less than 1% of
 landings in recent years. During the last five years, catches were
 above the long-term average catch (`r f(long_term_avge_ct)`~t),
 but have been in decline over that period (especially in Canada). Landings
@@ -115,8 +115,8 @@ the `r last_data_yr` year class.
 
 (ref:es-survey-biomass-cap) Acoustic survey biomass index of age-2+ fish
 (Mt). Approximate 95% confidence intervals are based on
-sampling variability (intervals without the additional squid/hake apportionment
-uncertainty included in 2009, black line).
+sampling variability (intervals without the additional squid/`r sp`
+apportionment uncertainty included in 2009, black line).
 
 (ref:es-survey-biomass-alt) This figure shows that the survey estimate has
 decreased from 2019 to 2021.
@@ -145,7 +145,7 @@ Retrospective analyses identify possible poor performance of the assessment
 model with respect to future predictions. Past assessments have conducted
 closed-loop simulations that provide insights into how alternative
 combinations of survey frequency, assessment model selectivity assumptions,
-changes in hake distribution, and harvest control rules affect expected
+changes in the distribution or `r sp`, and harvest control rules affect expected
 management outcomes given repeated application of these procedures over
 the long-term. The results of past (and ongoing) closed-loop simulations
 help inform decisions made for this assessment.
