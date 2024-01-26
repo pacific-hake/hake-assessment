@@ -483,10 +483,9 @@ table_decision(
   caption = paste0(
       "Forecast quantiles of Pacific Hake relative spawning biomass at the ",
       "beginning of the year. Catch alternatives are defined by letters a-o ",
-      "and are a constant value across all ", length(forecast_yrs), " ",
-      "forecasted years unless otherwise defined in the first column. ",
-      "Acronyms are defined in the glossary ",
-      "(Appendix~\\@ref(sec:app-glossary))."),
+      "and are a constant value across all forecasted years unless ",
+      "otherwise defined in the first column. Acronyms are defined in the ",
+      "glossary (Appendix~\\@ref(sec:app-glossary))."),
   bold_letters = TRUE,
   digits = 2,
   # Font values higher than 8 and 11 for table and header respectively
@@ -514,9 +513,9 @@ table_decision(
       "Forecast quantiles of Pacific Hake relative fishing intensity ",
       rel_fishing_intensity_for_latex_table, ", expressed as a proportion. ",
       "Catch alternatives are defined by letters a-o and are a constant ",
-      "value across all ", length(forecast_yrs), " forecasted years unless ",
-      "otherwise defined in the first column. Acronyms are defined in the ",
-      "glossary (Appendix~\\@ref(sec:app-glossary))."),
+      "value across all forecasted years unless otherwise defined in the ",
+      "first column. Acronyms are defined in the glossary ",
+      "(Appendix~\\@ref(sec:app-glossary))."),
   bold_letters = TRUE,
   digits = 2,
   # Font values higher than 8 and 11 for table and header respectively
