@@ -66,9 +66,9 @@ table_catch(
   start_yr = end_yr - 10,
   end_yr = end_yr - 1,
   caption = paste0(
-    "Total ", sp, " catch used in the assessment by sector, ", start_yr,
-    "--", last_data_yr, ". U.S. tribal catches are included in the sectors ",
-    "where they are represented."),
+    "Total ", sp, " catch used in the assessment by sector for the most recent ",
+    "ten years. U.S. tribal catches are included in the sectors where they are ",
+    "represented."),
   font_size = 7,
   header_font_size = 7,
   longtable = TRUE)
