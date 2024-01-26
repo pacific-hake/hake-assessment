@@ -892,19 +892,18 @@ plot_age_comp_bubbles(base_model, type = "fishery",
                       remove_yr_labels = NULL)
 ```
 
-(ref:main-recruitment-scale-all-cap) Medians (green circles) of the
+(ref:main-recruitment-scale-all-cap) Medians (solid circles) of the
 posterior distribution of annual recruitment relative to recruitment in
-2010 (recruitment divided by the 2010 recruitment for every Markov chain
-Monte Carlo sample), with 95% posterior credibility intervals (green vertical
-lines). This procedure somewhat scales out the uncertainty due to
-uncertainty in mean unfished equilibrium recruitment ($R_0$), and better
-elicits comparisons of relative cohort sizes; for example, recruitment
-in 2014 is clearly smaller than in 2010 (horizontal dark green dashed line at
-a value of 1). The year 2010 was chosen as the basis for comparison due to
-its well recognized size and the stability of cohort strength estimates over
-time. The median of $R_0/R_{2010}$ is shown as the horizontal dashed line
-labelled $R_0$ with the 95% posterior credibility interval shaded between
-the dotted lines.
+2010 (recruitment divided by the 2010 recruitment for every MCMC sample),
+with 95% posterior credibility intervals (red lines). This procedure somewhat
+scales out the uncertainty due to uncertainty in mean unfished equilibrium
+recruitment ($R_0$), and better elicits comparisons of relative cohort sizes;
+for example, recruitment in 2014 is clearly smaller than in 2010 (horizontal
+green dashed line). The year 2010 was chosen as the basis for comparison
+due to its well recognized size and the stability of cohort strength
+estimates over time. The median of $R_0/R_{2010}$ is shown as the horizontal
+dashed line with the 95% posterior credibility interval shaded between the
+dotted lines.
 
 (ref:main-recruitment-scale-all-alt) This figure shows distributions of
 recruitment estimates relative to those in 2010 for all years.
@@ -918,7 +917,7 @@ plot_recruitment(list(base_model),
                  ylim = c(0, 1.4),
                  y_breaks = seq(0, 1.4, by = 0.2),
                  leg_pos = "none",
-                 color = "forestgreen")
+                 color = "red")
 ```
 
 (ref:main-stock-recruitment-cap) Estimated stock--recruitment relationship for
