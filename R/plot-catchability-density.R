@@ -37,15 +37,17 @@ plot_catchability_density <- function(model,
   if(type == "age2"){
     qvec <- model$extra_mcmc$q_vector
     set.seed(42)
-    qvec <- rnorm(1000, 0.8, 0.2)
+    # For testing:
+    # qvec <- rnorm(1000, 0.8, 0.2)
     qmed <- median(qvec)
     q <- qvec |>
       as_tibble() |>
       setNames("value")
     if(!is.null(model2)){
-      qvec2 <- model2$extra_mcmc$q_vector
+      qvec2 <- model2$extra_mcmc$Q_vector
       set.seed(69)
-      qvec2 <- rnorm(1000, 0.8, 0.2)
+      # For testing:
+      # qvec2 <- rnorm(1000, 0.8, 0.2)
       qmed2 <- median(qvec2)
     }
   }else if(type == "age1"){
