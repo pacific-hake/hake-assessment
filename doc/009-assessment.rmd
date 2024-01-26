@@ -355,7 +355,7 @@ sample size for the age compositions [e.g. @StewartHamel2014].**
 
 > *Response -- Determining input sample sizes is important for how annual fishery
 > and survey age compositions are initially weighted, which then provides the
-> basis from which wholescale re-weighting of data sources (fishery or survey)
+> basis from which wholesale re-weighting of data sources (fishery or survey)
 > is done with the Dirichlet data weighting model parameters. The JTC has
 > considered alternative methods, including that of @StewartHamel2014, and has
 > determined that the first step is to explore the handling of survey age composition
