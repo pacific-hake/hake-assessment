@@ -52,8 +52,13 @@ plot_catchability_density <- function(model,
     }
   }else if(type == "age1"){
     qvec <- model$extra_mcmc$q_vector_age1
+    qmed <- median(qvec)
+    q <- qvec |>
+      as_tibble() |>
+      setNames("value")
     if(!is.null(model2)){
-      qvec2 <- model2$extra_mcmc$q_vector_age1
+      qvec2 <- model2$extra_mcmc$Q_vector_age1
+      qmed2 <- median(qvec2)
     }
   }
 

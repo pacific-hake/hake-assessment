@@ -550,7 +550,8 @@ to the 2019 data point is very good
 underestimated (for the `r last_assess_yr` assessment it was very good).
 The median of the posterior distribution for the analytically-derived
 catchability associated with the acoustic survey biomass index (q~b~)
-was 0.84 (Figure~\@ref(fig:main-catchability-density-fig)).
+was `r f(median(base_model$extra_mcmc$q_vector), 3)`
+(Figure~\@ref(fig:main-catchability-density-fig)).
 
 The 2023 biomass index is the third lowest in the series
 (Table~\@ref(tab:main-survey-history-tab)), and is well below the model
@@ -594,7 +595,8 @@ cohorts were estimated to be larger than indicated by the index. The 2011 value
 assessment they were estimated slightly above) and, being so
 young, include a large amount of uncertainty. The median of the posterior
 distribution for the analytically-derived catchability associated with the
-age-1 index (q~1~) was 0.50 (Figure~\@ref(fig:main-catchability-density-fig)).
+age-1 index (q~1~) was `r f(median(base_model$extra_mcmc$q_vector_age1), 3)`
+(Figure~\@ref(fig:main-catchability-density-age1-fig)).
 
 Fits to the age-composition data continue to show close correspondence to the
 dominant and small cohorts observed in the data when the data give a

@@ -1042,29 +1042,6 @@ plot_catch_forecast_density(base_model, yr = end_yr)
 #base_model$plots$catch_fore_density
 ```
 
-(ref:main-catchability-density-cap) Density of the Catchability (q) parameter
-for the acoustic survey index. The blue vertical line is the median of the
-posterior for `r assess_yr`, which is
-`r f(median(base_model$extra_mcmc$q_vector), 3)`; the red line is
-the median of the posterior for the last assessment year, `r last_data_yr`,
-which is `r f(median(last_yr_base_model$extra_mcmc$Q_vector), 3)`.
-
-(ref:main-catchability-density-alt) The distribution of the catchability
-parameter posterior is shown with a median around 0.84 for this year's
-assessment model.
-
-```{r main-catchability-density-fig, fig.cap = "(ref:main-catchability-density-cap)", fig.height = 4.5}
-plot_catchability_density(base_model,
-                          last_yr_base_model,
-                          type = "age2",
-                          line_widths = c(1, 1),
-                          line_types = c("solid", "solid")) +
-  xlab("Catchability (q)") +
-  ylab("Distribution") +
-  theme(axis.text.y = element_blank(),
-        axis.ticks.y = element_blank())
-```
-
 (ref:main-fished-unfished-biomass-cap) A comparison of female spawning stock
 biomass with fishing (black; as in Figure~\@ref(fig:main-biomass-fig)) and
 when the effects of fishing on the population is removed (red; unfished time series).
