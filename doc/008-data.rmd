@@ -42,7 +42,7 @@ auxiliary data, were input as fixed values in the assessment model:
 
 - Annual proportions of female `r sp` at each age that are mature, as developed
 from a new analysis (Section~\@ref(sec:data-maturity) and
-Appendix~(sec:app-maturity-analysis)) of
+Appendix~\@ref(sec:app-maturity-analysis)) of
 histological analyses of ovary samples
 (Table~\@ref(tab:main-maturity-ogives-tab) and
 Figure~\@ref(fig:main-maturity-ogive-fig)). TODO update to new figures when
