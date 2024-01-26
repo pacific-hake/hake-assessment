@@ -404,10 +404,10 @@ the `r assess_yr` base model. The steps are:
 
 - Update to the latest version of Stock Synthesis, version `r ss_version`, to
 follow current best practices;
-- Incrementally update catch, weight-at-age, age-1 survey, and fishery age composition data from
+- Incrementally update catch, weight-at-age, age-1 survey, and fishery age-composition data from
 years previous to `r last_data_yr` (in that order);
 - Incrementally add `r last_data_yr` catch, weight-at-age, biomass survey, survey
-age composition, age-1 survey, and fishery age composition data (in that order);
+age composition, age-1 survey, and fishery age-composition data (in that order);
 - Change the error distribution associated with the age-1 survey index from lognormal
 to Student's t-distribution;
 - Use a model-based matrix of input weight-at-age data; and
@@ -549,7 +549,7 @@ model estimates [@JTC2023]. While no direct cause for the
 between 1995 and 2009 (Table~\@ref(tab:main-survey-history-tab)), which may
 explain some portion of the anomaly, along with age
 structure. For 2023, the survey timing is not anomalous. The estimated biomass
-increase from 2023 to 2024 is driven by the addition of 2023 survey age composition data
+increase from 2023 to 2024 is driven by the addition of 2023 survey age-composition data
 (Figure~\@ref(fig:main-bridge-summary-fig-1)). The addition of the 2023 age-1 index suggested an above-average 2022 cohort (and also increased the 2021 age-1 index compared to the previous assessment;
 Section~\@ref(sec:data-acoustic-survey)).
 
@@ -757,7 +757,7 @@ Regarding more recent recruitments, this assessment's median estimate of the 202
 ~billion fish lower than in the last assessment (a
 `r f(-((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
 (prev_assess_recruitment_med)["2020"]) * 100), 0)`% decrease), due to the
-age-2+ biomass index and survey age composition data (Figure~\@ref(fig:main-bridge-summary-fig-1)).
+age-2+ biomass index and survey age-composition data (Figure~\@ref(fig:main-bridge-summary-fig-1)).
 Similarly, estimates of 2019 recruitment have changed by
 `r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]) /
 (prev_assess_recruitment_med)["2019"]) * 100), 0)`%
@@ -817,7 +817,7 @@ recruitments).
 As noted above, the 2020 cohort is estimated to be somewhat smaller than
 in last year's assessment (though last year's estimate was highly uncertain),
 due to the introduction of new information from the 2023 age-2+ biomass index and
-survey age composition data (Figure~\@ref(fig:main-bridge-summary-fig-1)).
+survey age-composition data (Figure~\@ref(fig:main-bridge-summary-fig-1)).
 The 2021 cohort strength is only informed by fishery data and the 2023 biomass
 survey, and is estimated to be potentially large with a median and 95% credible
 interval of `r recruitment_med_in_2021` (`r recruitment_lower_in_2021`--
