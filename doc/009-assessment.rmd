@@ -546,6 +546,9 @@ biomass pulls down the last few years of estimated biomass, such that the fit
 to the 2019 data point is very good
 (for the `r last_assess_yr` assessment it was overestimated), the 2021 fit is
 underestimated (for the `r last_assess_yr` assessment it was very good).
+The median of the posterior distribution for the analytically-derived
+catchability associated with the acoustic survey biomass index (q~b~)
+was 0.84 (Figure~\@ref(fig:main-catchability-density-fig)).
 
 The 2023 biomass index is the third lowest in the series
 (Table~\@ref(tab:main-survey-history-tab)), and is well below the model
@@ -587,7 +590,9 @@ cohorts were estimated to be larger than indicated by the index. The 2011 value
 (the large 2010 cohort) was closely fit.  Age-1 fish in 2021
 (2020 cohort) were estimated slightly below the index value (in last year's
 assessment they were estimated slightly above) and, being so
-young, include a large amount of uncertainty.
+young, include a large amount of uncertainty. The median of the posterior
+distribution for the analytically-derived catchability associated with the
+age-1 index (q~1~) was 0.50 (Figure~\@ref(fig:main-catchability-density-fig)).
 
 Fits to the age-composition data continue to show close correspondence to the
 dominant and small cohorts observed in the data when the data give a
