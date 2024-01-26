@@ -1526,7 +1526,9 @@ retro_cohorts <- (end_yr - 11):(end_yr - 2)
 recruitment deviations from Markov chain Monte Carlo models over the last
 `r length(retro_cohorts)` years. Recruitment deviations are the median
 log-scale differences between recruitment estimated by the model and expected
-recruitment from the stock-recruitment relationship. Age-0 recruitment
+recruitment from the stock-recruitment relationship (shading represents
+95% posterior credibility intervals for a select low, moderate,
+and high deviation). Age-0 recruitment
 deviations are non-zero because Markov chain Monte Carlo allows for
 sampling from the full lognormal distribution. Lines represent estimated
 recruitment deviations for cohorts born from `r min(retro_cohorts)` to
