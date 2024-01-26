@@ -78,7 +78,7 @@ plot_catchability_density <- function(model,
                        limits = c(min(x_breaks), max(x_breaks)),
                        expand = c(0, 0)) +
     scale_y_continuous(breaks = y_breaks,
-                       limits = c(min(y_breaks), max(y_breaks)),
+                       limits = c(min(y_breaks), NA),
                        expand = c(0, 0)) +
     xlab("") +
     ylab("")
