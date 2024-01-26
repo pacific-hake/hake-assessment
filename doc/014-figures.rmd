@@ -644,7 +644,7 @@ plot_survey_fit_mcmc(base_model,
 ```
 
 (ref:main-catchability-density-cap) Density of the Catchability (q) parameter
-for the acoustic survey index. The blue vertical line is the median of the
+for the acoustic survey index. The green vertical line is the median of the
 posterior for `r assess_yr`, which is
 `r f(median(base_model$extra_mcmc$q_vector), 3)`; the red line is
 the median of the posterior for the last assessment year, `r last_data_yr`,
@@ -667,7 +667,7 @@ plot_catchability_density(base_model,
 ```
 
 (ref:main-catchability-density-age1-cap) Density of the Catchability (q) parameter
-for the age-1 index. The blue vertical line is the median of the
+for the age-1 index. The green vertical line is the median of the
 posterior for `r assess_yr`, which is
 `r f(median(base_model$extra_mcmc$q_vector_age1), 3)`; the red line is
 the median of the posterior for the last assessment year, `r last_data_yr`,

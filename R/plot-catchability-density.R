@@ -23,12 +23,12 @@ plot_catchability_density <- function(model,
                                       model2 = NULL,
                                       type = c("age2", "age1"),
                                       num_bins = 30,
-                                      x_breaks = seq(0, 1.4, 0.2),
+                                      x_breaks = seq(0, 1.4, 0.1),
                                       y_breaks = seq(0, 3, 0.5),
                                       bar_outline_color = "black",
                                       bar_fill = main_fill,
                                       bar_alpha = main_alpha,
-                                      line_colors = c("blue", "red"),
+                                      line_colors = c("green", "red"),
                                       line_types = c("solid", "solid"),
                                       line_widths = c(1, 1)){
 
@@ -72,6 +72,11 @@ plot_catchability_density <- function(model,
     geom_vline(data = q,
                aes(xintercept = qmed),
                linetype = line_types[1],
+               linewidth = line_widths[1] * 1.5,
+               color = "white") +
+    geom_vline(data = q,
+               aes(xintercept = qmed),
+               linetype = line_types[1],
                linewidth = line_widths[1],
                color = line_colors[1]) +
     scale_x_continuous(breaks = x_breaks,
@@ -85,6 +90,11 @@ plot_catchability_density <- function(model,
 
   if(!is.null(model2)){
     g <- g +
+      geom_vline(data = q,
+                 aes(xintercept = qmed2),
+                 linetype = line_types[1],
+                 linewidth = line_widths[1] * 1.5,
+                 color = "white") +
       geom_vline(data = q,
                  aes(xintercept = qmed2),
                  linetype = line_types[2],
