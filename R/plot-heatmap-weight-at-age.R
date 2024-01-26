@@ -158,7 +158,7 @@ w <- wa |>
               size = cell_font_size) +
     scale_alpha(range = c(0.1, 1)) +
     theme(legend.position = "none",
-          plot.margin = margin(12, 12, 10, 0)) +
+          plot.margin = margin(12, 12, 10, 12)) +
     geom_hline(yintercept = c(first_yr - 0.5,
                               end_yr + 0.5),
                color = proj_line_color,
