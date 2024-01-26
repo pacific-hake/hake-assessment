@@ -216,7 +216,7 @@ composition data.**
 > (beginning with Figure~\@ref(fig:main-biomass-base-alternative-1-fig)) formats
 > in this document. Many other model explorations were conducted during the
 > development and exploration of the base model to understand model performance
-> and sensitivty to data and structural decisions.*
+> and sensitivity to data and structural decisions.*
 
 3. **The SRG recommends that the JTC include dynamic unfished spawning biomass in
 the 2024 assessment as a comparator with the equilibrium unfished spawning
@@ -234,12 +234,12 @@ spawning biomass**
 > Figure~\@ref(fig:main-relative-biomass-fig)) and when spawning biomass in
 > year $t$ is related to the unfished biomass time series in year $t$
 > (dynamic $B_0$; see Figure~\@ref(fig:main-fished-unfished-rel-biomass)).
-> These can be used to visually compare equilibirum versus non-equilibrium
+> These can be used to visually compare equilibrium versus non-equilibrium
 > assumptions and estimated changes in population dynamics in the absence of fishing.*
 >
 > *The JTC once again delivered a presentation on dynamic reference
 > points at the October 2023 JMC and AP meeting as a way to provide education
-> and outreach opportunties related to dynamic reference point methods and
+> and outreach opportunities related to dynamic reference point methods and
 > approaches.*
 
 4. **The SRG recommends that the JTC explore alternative ways of estimating natural
@@ -290,7 +290,7 @@ model.**
 > maturity was included in the fecundity relationship as a single ogive.
 > Maturity-at-age ogives are now estimated for each year since 2009 and used
 > to calculate fecundity (i.e., maturity $*$ weight at age). Moreover, the
-> relationship between age and maturity includes a coeffient for temperature
+> relationship between age and maturity includes a coefficient for temperature
 > (see Appendix~\@ref(sec:app-maturity-analysis)). This relationship could be
 > enhanced in the future by including samples from Canada, samples that have
 > previously been analyzed, collected samples that have yet to be analyzed, and
@@ -299,7 +299,7 @@ model.**
 > collected from the U.S. shoreside sector as well. The JTC, Melissa Head,
 > and the Sarah Nayani are investigating the feasibility of this in attempts
 > to increase the seasonal coverage of sampling, though winter months will
-> still remain sparsely sampled without a decidated winter survey.
+> still remain sparsely sampled without a dedicated winter survey.
 > *
 
 7. **The SRG noted that the age-1 index did not include a value for 2001 because it was zero.
@@ -387,7 +387,7 @@ include a two-dimensional autoregressive (AR) approach, which may use
 information from the previous year and from adjacent year classes to predict
 selectivity.**
 
-> *Response -- The JTC agrees that investiagions into alternative selectivity functions
+> *Response -- The JTC agrees that investigations into alternative selectivity functions
 > is a priority research area for `r sp`. The JTC would like to make incremental
 > progress on this in the coming year as time allows, including also looking into
 > alternative methods (e.g., random effects models) to best capture age, year, and
@@ -765,7 +765,7 @@ Similarly, estimates of 2019 recruitment have changed by
 
 The 2021 recruitment is now estimated to be potentially large, whereas
 it was estimated to be below average in last year's assessment (for which the
-only information was the proportions of age-1 fish caught in the 2022 commerical
+only information was the proportions of age-1 fish caught in the 2022 commercial
 fishery). The median has increased by
 `r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]) /
 (prev_assess_recruitment_med)["2021"]) * 100), 0)`%
@@ -1338,7 +1338,7 @@ potentially allows for estimating $\sigma_r$ using random effects, and thus,
 this proposed method is not used here to tune the fixed input value.
 
 The sensitivity of the base model to the removal of the relative age-1 index
-provides a method to evalutate how the information about juvenile fish is
+provides a method to evaluate how the information about juvenile fish is
 propagated through the model. Estimates of female spawning biomass throughout
 most of the time series are similar between models with and without the relative
 age-1 index but diverge near the end of the time series
@@ -1356,7 +1356,7 @@ recruitment for cohorts associated with recent age-1 indices (i.e., 2020 and
 base model with the relative age-1 index indicates slightly larger 2020 and
 2021 year classes than the model removing the age-1 index
 (Figure~\@ref(fig:main-recruitment-base-alternative-2-fig)). Similarly,
-recruitment in 2022 is estimated to be slighlty above average when the model is
+recruitment in 2022 is estimated to be slightly above average when the model is
 fit to the relative age-1 index compared to slightly below average without the
 index. Removing the relative age-1 index led to minor changes in fit to the
 age-2$+$ survey biomass index, with 2021 showing a slight improvement and 2023
@@ -1572,7 +1572,7 @@ the very large 2010 recruitment, and so also over-estimated the probability
 of decline the following year (Figure~\@ref(fig:main-historical-1-fig)).
 A range of catch alternatives are shown for the current assessment because
 realized `r assess_yr` catches are not yet known
-(Figure~\@ref(fig:main-historical-1-fig)), and give low probabitlies of the
+(Figure~\@ref(fig:main-historical-1-fig)), and give low probabilities of the
 stock declining from `r assess_yr`
 to `r assess_yr + 1`.
 

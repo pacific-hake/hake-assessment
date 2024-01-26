@@ -1010,7 +1010,7 @@ plot_catch_forecast_density(base_model, yr = end_yr)
 
 (ref:main-fished-unfished-biomass-cap) A comparison of female spawning stock
 biomass with fishing (black; as in Figure~\@ref(fig:main-biomass-fig)) and
-when the effects of fishing on the populaton is removed (red; unfished time series).
+when the effects of fishing on the population is removed (red; unfished time series).
 Medians (solid lines) of the posterior distribution for
 beginning of the year female spawning biomass ($B_t$ in year $t$; Mt)
 through `r end_yr` (solid lines) with 95% posterior credibility intervals

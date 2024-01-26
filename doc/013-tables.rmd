@@ -45,7 +45,7 @@ table_landings_tac(
   end_yr = last_data_yr,
   caption = paste0(
     sp,
-    " landings and management decisions, ", start_yr, "--", last_data_yr, ". ", 
+    " landings and management decisions, ", start_yr, "--", last_data_yr, ". ",
     "A dash (--)  indicates the management decision was either not ",
     "specified or was unknown to the authors at the time of this ",
     "assessment."),
@@ -62,7 +62,7 @@ table_sampling_history(
   end_yr = last_data_yr,
   caption = paste0(
     "Annual summary of U.S. and Canadian fishery sampling included in this ",
-    "stock assessment by fleet, ", start_yr_age_comps, "--", last_data_yr, 
+    "stock assessment by fleet, ", start_yr_age_comps, "--", last_data_yr,
     ". The majority of values are reported as number of hauls but U.S. ",
     "Shore-based and Canadian Shoreside fleets are reported as the number ",
     "of trips. A dash (--) indicates there was no sampled catch. The ",
@@ -70,7 +70,7 @@ table_sampling_history(
     "is typically small."),
   font_size = 10,
   header_font_size = 11,
-  longtable = TRUE) |> 
+  longtable = TRUE) |>
   landscape()
 ```
 
@@ -86,7 +86,7 @@ table_age_data(
   font_size = 10,
   header_font_size = 11,
   digits = 2,
-  longtable = TRUE) |> 
+  longtable = TRUE) |>
   landscape()
 ```
 
@@ -104,7 +104,7 @@ table_age_data(
   font_size = 10,
   header_font_size = 11,
   digits = 2,
-  longtable = TRUE) |> 
+  longtable = TRUE) |>
   landscape()
 ```
 
@@ -120,7 +120,7 @@ table_age_data(
   font_size = 10,
   header_font_size = 11,
   digits = 2,
-  longtable = TRUE) |> 
+  longtable = TRUE) |>
   landscape()
 ```
 
@@ -299,7 +299,7 @@ table_at_age(
     "model (posterior medians; millions)."),
   font_size = 9,
   header_font_size = 10,
-  longtable = TRUE) |> 
+  longtable = TRUE) |>
   landscape()
 ```
 
@@ -313,7 +313,7 @@ table_at_age(
     "base model (posterior medians; kilotonnes)."),
   font_size = 9,
   header_font_size = 10,
-  longtable = TRUE) |> 
+  longtable = TRUE) |>
   landscape()
 ```
 
@@ -330,7 +330,7 @@ table_at_age(
     "age class removed by fishing)."),
   font_size = 8,
   header_font_size = 10,
-  longtable = TRUE) |> 
+  longtable = TRUE) |>
   landscape()
 ```
 
@@ -344,7 +344,7 @@ table_at_age(
     "(posterior medians; thousands)."),
   font_size = 6,
   header_font_size = 10,
-  longtable = TRUE) |> 
+  longtable = TRUE) |>
   landscape()
 ```
 
@@ -358,7 +358,7 @@ table_at_age(
     "model (posterior medians; tonnes)."),
   font_size = 6,
   header_font_size = 10,
-  longtable = TRUE) |> 
+  longtable = TRUE) |>
   landscape()
 ```
 
@@ -401,7 +401,7 @@ table_median_posteriors(
     "divided by total age-2+ biomass. Relative fishing intensity is (",
     rel_fishing_intensity_for_latex_table, ") such that values below 100\\% ",
     "represent fishing below ", f_40_for_latex_table, ". In the last row, ",
-    "dashes (--) indicate quanties requiring ", end_yr, " catch which has ",
+    "dashes (--) indicate quantities requiring ", end_yr, " catch which has ",
     "not taken place yet."),
   font_size = 8,
   header_font_size = 9,
@@ -417,7 +417,7 @@ table_ci_posteriors(
   caption = paste0(
     "Time-series of 95\\% posterior credibility intervals for the quantities ",
     "shown in Table \\@ref(tab:main-median-posterior-tab). In the last ",
-    "row, dashes (--) indicate quanties requiring ", end_yr, " catch which ",
+    "row, dashes (--) indicate quantities requiring ", end_yr, " catch which ",
     "has not taken place yet."),
   font_size = 8,
   header_font_size = 9,
@@ -637,7 +637,7 @@ if(!all(is.na(sens_models[[1]]))){
     right_cols_cm = 1.8,
     font_size = 8,
     header_font_size = 9,
-    longtable = TRUE) |> 
+    longtable = TRUE) |>
     landscape()
 }
 ```
@@ -665,7 +665,7 @@ if(!all(is.na(sens_models[[1]]))){
     right_cols_cm = 2,
     font_size = 9,
     header_font_size = 9,
-    longtable = TRUE) |> 
+    longtable = TRUE) |>
     landscape()
 }
 ```
@@ -693,7 +693,7 @@ if(!all(is.na(sens_models[[1]]))){
     right_cols_cm = 1.8,
     font_size = 9,
     header_font_size = 9,
-    longtable = TRUE) |> 
+    longtable = TRUE) |>
     landscape()
 }
 ```
@@ -718,6 +718,6 @@ table_param_est(
   right_cols_cm = 1.8,
   font_size = 9,
   header_font_size = 9,
-  longtable = TRUE) |> 
+  longtable = TRUE) |>
   landscape()
 ```
