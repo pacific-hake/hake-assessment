@@ -343,7 +343,7 @@ load_extra_mcmc <- function(model,
     as.numeric()
 
   extra_mcmc$q_vector_age1 <- ts_q |>
-    filter(fleet == 2) |>
+    filter(fleet == 3) |>
     select(iter, calc_q) |>
     group_by(iter) |>
     slice(1) |>
