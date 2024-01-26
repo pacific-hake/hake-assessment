@@ -9,6 +9,7 @@
 #' @param whisker_width The width (size) of the top and bottom bars on the
 #' @param ages A vector of ages to show on the x-axis
 #' @param x_breaks The x-axis breaks passed to [ggplot2::scale_x_discrete()]
+#' @param y_breaks The y-axis breaks passed to [ggplot2::scale_y_continuous()]
 #' @param axis_title_font_size The font size for the axis titles
 #' @param axis_tick_font_size The font size for the axis tick labels
 #' @param axis_label_color Color for the axis labels and tick labels
@@ -23,6 +24,7 @@ plot_age_comp_fit <- function(model,
                               ages = NULL,
                               n_col = 4,
                               x_breaks = seq(2, max(ages), by = 2),
+                              y_breaks = c(0, 0.2, 0.4, 0.6),
                               axis_title_font_size = 14,
                               axis_tick_font_size = 12,
                               axis_label_color = "black",
@@ -137,6 +139,7 @@ plot_age_comp_fit <- function(model,
                   inherit.aes = FALSE) +
     scale_x_discrete(breaks = x_breaks,
                      labels = x_breaks) +
+    scale_y_continuous(breaks = y_breaks) +
     facet_wrap(~factor(yr,
                        levels = yr_vec),
                ncol = n_col) +

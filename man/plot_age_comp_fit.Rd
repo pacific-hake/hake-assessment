@@ -12,6 +12,7 @@ plot_age_comp_fit(
   ages = NULL,
   n_col = 4,
   x_breaks = seq(2, max(ages), by = 2),
+  y_breaks = c(0, 0.2, 0.4, 0.6),
   axis_title_font_size = 14,
   axis_tick_font_size = 12,
   axis_label_color = "black",
@@ -32,6 +33,8 @@ plot_age_comp_fit(
 \item{n_col}{The number of columns for the facets (years)}
 
 \item{x_breaks}{The x-axis breaks passed to \code{\link[ggplot2:scale_discrete]{ggplot2::scale_x_discrete()}}}
+
+\item{y_breaks}{The y-axis breaks passed to \code{\link[ggplot2:scale_continuous]{ggplot2::scale_y_continuous()}}}
 
 \item{axis_title_font_size}{The font size for the axis titles}
 

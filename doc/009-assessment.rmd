@@ -598,7 +598,8 @@ age-1 index (q~1~) was 0.50 (Figure~\@ref(fig:main-catchability-density-fig)).
 
 Fits to the age-composition data continue to show close correspondence to the
 dominant and small cohorts observed in the data when the data give a
-consistent signal (Figure~\@ref(fig:main-age-comp-fits-fig)). Because of the
+consistent signal (Figures~\@ref(fig:main-age-comp-fits-fishery-fig) and
+\@ref(fig:main-age-comp-fits-survey-fig)). Because of the
 time-varying fishery selectivity, the fit to commercial age-composition data
 is particularly good, although models with time-invariant selectivity used in
 previous years also fit the age compositions well. In the `r last_data_yr`
@@ -607,14 +608,16 @@ compositions from the `r survey_end_yr` acoustic survey suggest a similar age
 structure for older fish.
 
 The 2020 cohort has now been observed by, and is well fit by, the
-acoustic survey (Figure~\@ref(fig:main-age-comp-fits-fig)), with the survey's inclusion
-decreasing its estimated size (Figure~\@ref(fig:main-bridge-summary-fig-1)).
+acoustic survey (Figure~\@ref(fig:main-age-comp-fits-survey-fig)),
+with the survey's inclusion decreasing its estimated size
+(Figure~\@ref(fig:main-bridge-summary-fig-1)).
 Combined, the 2015--`r last_data_yr` fishery age-composition
 data and the 2017--`r survey_end_yr` acoustic survey age-composition data
 suggest that 2014 was a strong recruitment year, and the model was able to
-adequately fit to these observations (Figure~\@ref(fig:main-age-comp-fits-fig)).
-The 2016 cohort, which has been observed three times by the survey, still appears
-to be smaller than the 2014 cohort.
+adequately fit to these observations
+(Figure~\@ref(fig:main-age-comp-fits-survey-fig)).
+The 2016 cohort, which has been observed three times by the survey,
+still appears to be smaller than the 2014 cohort.
 
 The `r survey_end_yr` survey was the first
 to sample the `r survey_end_yr - 2` cohort, suggesting that it was a large
@@ -666,15 +669,14 @@ until 2020 when the deviation for age-4 was large again
 \@ref(fig:main-tv-selex-uncertainty-fig)). The median selectivity peaks at
 age-4 in 2010, 2012 and 2020 and at age-3 in 2011 suggesting targeting (or
 generally higher availability) of the younger cohorts in those years. This
-pattern is consistent with the 2008 cohort appearing strong in the fishery age compositions initially, but decreasing in
-prominence from 2013 onward (Figure~\@ref(fig:main-age-comp-fits-fig)). Fishery
-selectivity on age-2 fish was at its highest in 2016. Fishery selectivity for
+pattern is consistent with the 2008 cohort appearing strong in the fishery
+age compositions initially, but decreasing in prominence from 2013 onward (Figure~\@ref(fig:main-age-comp-fits-fishery-fig)). Fishery selectivity on
+age-2 fish was at its highest in 2016. Fishery selectivity for
 `r last_data_yr`  was characterised by a local peak at age 3 rather than a
-logistic pattern
-(Figure~\@ref(fig:main-tv-selex-uncertainty-fig)),
-likely as a
-result of increased availability of the above-average 2020 cohort. Even
-though the survey selectivity is time invariant, the posterior shows a broad
+logistic pattern (Figure~\@ref(fig:main-tv-selex-uncertainty-fig)),
+likely as a result of increased availability of the above-average 2020 cohort.
+Even though the survey selectivity is time invariant, the posterior shows a
+broad
 band of uncertainty between ages 2 and 5
 (Figure~\@ref(fig:main-tv-selex-posteriors-fig)). The decline in survey
 selectivity between ages 3 and 4 may be an artifact of the interaction between
@@ -802,7 +804,7 @@ mid-2000s. From 2000 to 2007, estimated recruitment was at some of the
 lowest values in the time series, but this was followed by an above average
 2008 year class and a very strong 2010 year class. Above average year classes
 occurred in 2014 and 2016, which have been sustaining the fishery in recent
-years (Figure~\@ref(fig:main-age-comp-fits-fig)).
+years (Figure~\@ref(fig:main-age-comp-fits-fishery-fig)).
 
 The current assessment estimates a strong 2014 year class
 (Figure~\@ref(fig:main-numbers-at-age-fig)) comprising

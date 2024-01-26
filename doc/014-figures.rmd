@@ -642,31 +642,40 @@ plot_survey_fit_mcmc(base_model,
                      post_line_col = "blue")
 ```
 
-(ref:main-age-comp-fits-cap) Base model fits to the fishery (top)
-and acoustic survey (bottom) age-composition data. Colored bars show
-observed proportions with colors following each cohort across years. Points
-with intervals indicate median expected proportions and 95% credibility
-intervals from the Markov chain Monte Carlo calculations.
+(ref:main-age-comp-fits-fishery-cap) Base model fits to the fishery
+age-composition data. Colored bars show observed proportions with colors
+following each cohort across years. Points with intervals indicate median
+expected proportions and 95% credibility intervals from the Markov chain
+Monte Carlo calculations.
 
-(ref:main-age-comp-fits-alt) This figure shows the age composition fits for
-the fishery and acoustic survey against the data. There is some slight over
-and under-fitting in the early part of the fishery time series from 1975 to
-1995. The survey shows some over fitting from 2001 to 2005.
+(ref:main-age-comp-fits-fishery-alt) This figure shows the age composition
+fits for the fishery against the data. There is some slight over and
+under-fitting in the early part of the time series from 1975 to 1995.
 
-```{r main-age-comp-fits-fig, fig.cap = "(ref:main-age-comp-fits-cap)", fig.height = 10, out.height = "90%"}
+```{r main-age-comp-fits-fishery-fig, fig.cap = "(ref:main-age-comp-fits-fishery-cap)", fig.height = 10, out.height = "90%"}
 
-plist <- NULL
-plist[[1]] <-
-  plot_age_comp_fit(base_model,
-                    type = "fishery",
-                    n_col = 4)
-plist[[2]] <-
-  plot_age_comp_fit(base_model,
-                    n_col = 1,
-                    type = "survey",
-                    x_breaks = 2:15,
-                    label_loc = c(14, 0.45))
-plot_grid(plotlist = plist, nrow = 2)
+plot_age_comp_fit(base_model,
+                  type = "fishery",
+                  n_col = 4)
+```
+
+(ref:main-age-comp-fits-survey-cap) Base model fits to the acoustic survey
+age-composition data. Colored bars show observed proportions with
+colors following each cohort across years. Points with intervals indicate
+median expected proportions and 95% credibility intervals from the Markov
+chain Monte Carlo calculations.
+
+(ref:main-age-comp-fits-survey-alt) This figure shows the age composition
+fits for the acoustic survey against the data. There is some over
+fitting from 2001 to 2005.
+
+```{r main-age-comp-fits-survey-fig, fig.cap = "(ref:main-age-comp-fits-survey-cap)", fig.height = 10, out.height = "90%"}
+
+plot_age_comp_fit(base_model,
+                  n_col = 1,
+                  type = "survey",
+                  x_breaks = 2:15,
+                  label_loc = c(14, 0.45))
 ```
 
 (ref:main-age-comp-pearson-cap) Pearson residuals for base model fits to
