@@ -393,17 +393,15 @@ therefore amplifying the effect of low catches. The fish caught in Canada
 appeared to be mostly from four age classes (see below), with very few
 smaller fish (less than 500 grams) caught.
 
-The most abundant year classes in the Canadian shoreside catch (by numbers)
-were
+The most abundant year classes in the Canadian shoreside catch (by numbers;
+Table~\@ref(tab:main-can-ss-age-data-tab)) were
 age-`r max_shoreside_age_prop_age` (`r max_shoreside_age_prop`%),
 age-`r second_shoreside_age_prop_age` (`r second_shoreside_age_prop`%),
 age-`r third_shoreside_age_prop_age` (`r third_shoreside_age_prop`%), and
-age-`r fourth_shoreside_age_prop_age` (`r fourth_shoreside_age_prop`%)
-(Table~\@ref(tab:main-can-ss-age-data-tab)).
-
-The most abundant year classes in the Canadian freezer-trawler catch were
+age-`r fourth_shoreside_age_prop_age` (`r fourth_shoreside_age_prop`%).
+The most abundant year classes in the Canadian freezer-trawler catch (by
+numbers; Table~\@ref(tab:main-can-ft-age-data-tab)) were
 age-`r max_freezer_trawler_age_prop_age` (`r max_freezer_trawler_age_prop`%),
 age-`r second_freezer_trawler_age_prop_age` (`r second_freezer_trawler_age_prop`%),
 age-`r third_freezer_trawler_age_prop_age` (`r third_freezer_trawler_age_prop`%), and
-age-`r fourth_freezer_trawler_age_prop_age` (`r fourth_freezer_trawler_age_prop`%)
-(Table~\@ref(tab:main-can-ft-age-data-tab)).
+age-`r fourth_freezer_trawler_age_prop_age` (`r fourth_freezer_trawler_age_prop`%).
