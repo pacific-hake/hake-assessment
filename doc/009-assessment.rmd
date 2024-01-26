@@ -49,10 +49,10 @@ in 2019 from using time-invariant to year-specific weight-at-age values. In 2024
 time-varying maturity ogives were also added to the calculation of fecundity-at-age
 (see Section~\@ref(sec:data-maturity) for details). Even where data have
 been consistently used, the weighting of these data in the statistical likelihood
-has changed through the use of various emphasis factors (e.g., @Dorn1994,
-@DornSaundersEtAl1999), a multinomial sample size on age compositions (e.g.,
-@DornSaundersEtAl1999, @HelserDornEtAl2002, @HelserFleischerEtAl2005,
-@StewartForrestEtAl2011), internal estimations of effective sample size using
+has changed through the use of various emphasis factors [e.g., @Dorn1994;
+@DornSaundersEtAl1999], a multinomial sample size on age compositions [e.g.,
+@DornSaundersEtAl1999; @HelserDornEtAl2002; @HelserFleischerEtAl2005;
+@StewartForrestEtAl2011], internal estimations of effective sample size using
 the Dirichlet-multinomial distribution [@JTC2018], and assumptions regarding
 year-specific survey variance. Since 2021, a more computationally efficient
 Bayesian MCMC sampler (No-U-Turn Sampler; NUTS; @HoffmanGelman2014) was used
@@ -82,7 +82,7 @@ Several harvest control rules have been explored for providing catch limits
 from stock assessment output. `r sp` stock assessments have presented decision
 makers with constant *F*, variable *F*, and the following
 hybrid control rules: `r fspr_35`, `r fspr_40`, `r f_40_40_10`, `r fspr_45`,
-`r f_45_40_10`, and `r fspr_50` (e.g., @Dorn1996, @JTC2013). Changes to
+`r f_45_40_10`, and `r fspr_50` [e.g., @Dorn1996; @JTC2013]. Changes to
 policies such as the United States' National Standards Guidelines in
 2002 and the `r f_40_40_10`` harvest control rule in the Agreement
 (Appendix~\@ref(sec:app-glossary)) have required specific changes to control
@@ -352,7 +352,7 @@ sample of fishery catches.**
 > The idea will be introduced again for the 2024 fishing season.*
 
 10. **The SRG encourages the JTC to consider methods to determine the maximum input
-sample size for the age compositions [e.g. @StewartHamel2014].**
+sample size for the age compositions [e.g., @StewartHamel2014].**
 
 > *Response -- Determining input sample sizes is important for how annual fishery
 > and survey age compositions are initially weighted, which then provides the

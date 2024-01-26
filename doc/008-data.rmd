@@ -633,7 +633,7 @@ of 6, age-specific parameters are fixed at zero giving constant selectivity
 beyond the last estimated value. The condition that maximum selectivity equals
 1.0 results in one fewer degrees of freedom than the number of estimated
 parameters. Further testing of alternative methods for parameterizing
-time-varying selectivity (e.g., @Xu2019) should be investigated in conjunction
+time-varying selectivity [e.g., @Xu2019] should be investigated in conjunction
 with the estimation of additional time-varying parameters.
 
 ### Age composition likelihood {#sec:data-age-comp-likelihood}
