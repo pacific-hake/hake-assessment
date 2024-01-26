@@ -42,7 +42,7 @@ for the relative age-1 index is now a student-t distribution rather than a
 log-normal distribution [@JTC2022]. All model runs reported in this document
 are performed in a Bayesian context. Responses to `r last_assess_yr` SRG
 requests are in Section~\@ref(sec:assessment-response-review) and a Glossary
-of terms appears n Appendix~\@ref(sec:app-glossary).
+of terms appears in Appendix~\@ref(sec:app-glossary).
 
 ## Stock structure and life history {#sec:intro-stock-structure}
 
