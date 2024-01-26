@@ -215,69 +215,22 @@ plot_survey_biomass(base_model,
                     remove_yr_labels = NULL)
 ```
 
-(ref:main-maturity-ogive-cap) Annual estimates of the fraction of fish that
-are mature at each age north of 34.44° N. The thicker solid line represents
-equilibrium maturity and the dashed line represents forecast maturity.
+(ref:main-maturity-ogive-cap) Maturity ogives by year used in the assessment.
+The thick black line shows the equilibrium ogive which is an average of all
+years; the thick red line shows the forecast ogive which is an average of
+the last five years (`r last_data_yr`--`r `last_data_yr - 4`). The colors of
+the year lines move from orange in 2009 through the spectrum to dark blue in
+`r last_data_yr`.
 
-(ref:main-maturity-ogive-alt) Maturity increases with age. Fish appear to reach
-full maturity between the age of 3 and 4. Maturity varies annually with 2016
-having the lowest overall maturity at older ages.
+(ref:main-maturity-ogive-alt) Maturity by year is shown beginning in 2009 to
+present. The equilibrium and forecast ogives are also shown, and appear to
+be very similar. The equilibrium ogive is an average of all years and
+the forecast ogive is an average of the last five years. Fish appear to
+reach full maturity between the age of 3 and 4 in all years.
 
 ```{r main-maturity-ogive-fig, fig.cap = "(ref:main-maturity-ogive-cap)", fig.height = 10, out.height = "90%"}
-ggplot(
-  maturity_estimates_df |>
-    group_by(model) |>
-    mutate(
-      yr_forecast = year %in% ((max(year) - 4):max(year))
-    ) |>
-    group_by(model, yr_forecast, age) |>
-    group_modify(
-      ~ .x |>
-        add_row(
-          year = max(.x$year) + 1,
-          age = unique(.x$age),
-          p_mature = mean(.x$p_mature, na.rm = TRUE),
-          model = unique(.x$model)
-        )
-    ) |>
-    group_by(model, age) |>
-    group_modify(
-      ~ .x |>
-        add_row(
-          year = min(.x$year) - 1,
-          age = unique(.x$age),
-          p_mature = mean(.x$p_mature[.x$year != 9999], na.rm = TRUE),
-          yr_forecast = FALSE,
-          model = unique(.x$model)
-        )
-    ) |>
-    ungroup() |>
-    dplyr::filter(grepl("temperature", model)) |>
-    dplyr::mutate(
-      line = case_when(
-        year == min(year) ~ "equilibrium",
-        year == max(year) ~ "forecast",
-        TRUE ~ "main"
-      )
-    ),
-  aes(
-    x = age,
-    y = p_mature,
-    group = year,
-    col = year,
-    linewidth = line,
-    linetype = line
-  ),
-) +
-  geom_line() +
-  xlab("Age (years)") +
-  ylab("Probability of being mature") +
-  # hake_theme(ax_title_font_size = 10) +
-  guides(linewidth = "none", linetype = "none") +
-  labs(color = "Year") +
-  theme(legend.position = c(0.65, 0.45)) +
-  scale_linetype_manual(values=c(1, 2, 1)) +
-  scale_linewidth_manual(values=c(0.8, 0.2, 0.2))
+
+plot_maturity_ogives()
 ```
 
 (ref:main-weight-at-age-cap) Empirical weight-at-age (kg) values used for

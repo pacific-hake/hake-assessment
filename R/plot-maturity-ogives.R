@@ -1,183 +1,169 @@
-#' Create a plot of the maturity ogives used in the assessment. The plot
-#' shows two of them; above and below the line if latitude at Point
-#' Conception (34.44° latitude)
+#' Create a plot containing the maturity ogives by year on a single panel
+#' with inset for an area of interest to contain a detailed view
 #'
-#' @param model A model, created by [create_rds_file()]
-#' @param d  The data frame which is read in from
-#' @param colors A vector of two colors for North and South of 34 degrees
-#' respectively
-#' @param point_alpha Transparency of the bubbles
-#' @param line_alpha Transparency of the lines
-#' `inst/extdata/data/hake-maturity-data.csv`
-#' @param alpha The transparency for all ribbons
-#' @param leg_pos The position of the legend inside the plot. If `NULL`,
-#' `NA`, or `none`, the legend will not be shown
-#' @param leg_ncol The number of columns to show in the legend
+#' @details
+#' The package data frame `maturity_estimates_df` is used.
+#'
+#' @param show_inset Logical. If `TRUE`, show the inset panel
+#' @param from The limits of the inset on the main plot to extract.
+#' See [ggmagnify::geom_magnify()]
+#' @param to The limits on the main panel of the location to place the
+#' inset. See [ggmagnify::geom_magnify()]
 #' @param leg_font_size The legend font size
-#' @param ret_df Logical. If `TRUE`, don't plot, instead return the
-#' calculation of `d` which may be needed as part of the fecundity calculation
-#' elsewhere
+#' @param eq_line_color Color for the Equilibrium line
+#' @param fore_line_color Color for the Forecast line
+#' @param eq_y_start_legend Y value where the legend for the Equilibrium line
+#' and the Forecast line starts. Will likely change each year
+#' @param eq_fore_alpha The transparency value for the Equilibrium and
+#' Forecast lines
+#' @param eq_fore_line_width The line width for the Equilibrium and
+#' Forecast lines
+#' @param leg_line_size_cm The legend line length in cm
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
-plot_maturity_ogives <- function(model,
-                                 d,
-                                 colors =c("blue", "red"),
-                                 point_alpha = 0.3,
-                                 line_alpha = 0.3,
-                                 leg_pos = c(0.85, 0.15),
-                                 leg_ncol = 1,
-                                 leg_font_size = 16,
-                                 ret_df = FALSE){
+plot_maturity_ogives <- function(show_inset = TRUE,
+                                 from = c(xmin = 3,
+                                          xmax = 6.5,
+                                          ymin = 0.75,
+                                          ymax = 1),
+                                 to = c(xmin = 8,
+                                        xmax = 14,
+                                        ymin = 0.05,
+                                        ymax = 0.6),
+                                 eq_line_color = "black",
+                                 fore_line_color = "red",
+                                 eq_y_start_legend = 0.1,
+                                 eq_fore_alpha = 0.7,
+                                 eq_fore_line_width = 3,
+                                 leg_line_size_cm = 1,
+                                 leg_font_size = 14){
 
-  age_max <- max(model$agebins)
+  d <- maturity_estimates_df |>
+    group_by(model) |>
+    mutate(is_fore_yr = year %in% ((max(year) - 4):max(year))) |>
+    group_by(model, is_fore_yr, age) |>
+    group_modify(~ .x |>
+                   add_row(year = 9999,
+                           p_mature = mean(.x$p_mature,
+                                           na.rm = TRUE))) |>
+    group_by(model, age) |>
+    group_modify(~ .x |>
+                   add_row(
+                     year = 0,
+                     p_mature = mean(.x$p_mature[.x$year != 9999],
+                                     na.rm = TRUE))) |>
+    ungroup() |>
+    filter(grepl("temperature", model)) |>
+    mutate(line = case_when(year == min(year) ~ "equilibrium",
+                            year == max(year) ~ "forecast",
+                            TRUE ~ "main"))
 
-  d <- d |>
-    filter(!is.na(age)) |>
-    # Put older fish in the plus group for maturity (age 15+)
-    mutate(age = ifelse(age >= age_max, age_max, age))
-
-  # Split up the data frame by the column `n_or_s_of_34_44` which is if the
-  # sample if north or south of that latitude, then split each of those two
-  # data frames into N data frames, one for each unique age and store the
-  # mean of the `functional_maturity`, which are all 1's or 0's, so the mean
-  # will be the total number of 1's, or mature fish in the sample for each
-  # age. These are re-spliced back into a single data frame (using the two
-  # `map_df` calls). The new columns `y` and `n_samp` are present in the new
-  # data frame
-  d <- d |>
-    split(~n_or_s_of_34_44) |>
-    map_df(\(n_or_s){
-      n_or_s |>
-        split(~age) |>
-        map_df(\(ag){
-          # %>% needed here instead of |> because the next line uses the
-          # dot (`.`) reference for the current data frame
-          ag %>%
-            mutate(frac_mature = mean(functional_maturity),
-                   num_samp = nrow(.))
-        })
-    }) |>
-    transmute(area = n_or_s_of_34_44,
-              age,
-              frac_mature,
-              num_samp)
-
-  if(ret_df){
-    return(d)
-  }
-  # Extract the first row from each of the above categories for the
-  #  maturity plot
-  mat_d <- d |>
-    split(~area) |>
-    map_df(\(n_or_s){
-      n_or_s |>
-        split(~age) |>
-        map_df(\(ag){
-          ag |>
-            slice(1)
-        })
-    }) |>
-    # There are missing area/age combos. This inserts `NA` for those so
-    # that ggplot will not connect the line from one valid age across two
-    # ages to the next valid one
-    complete(area, age) |>
-    split(~area) |>
-    # Move text labels for number of samples above or below the circles
-    # depending on if they are north or south and less or greater than 70
-    imap(\(ar, ind){
-      if(ind == "S"){
-        ar <- ar |>
-          mutate(text_place = ifelse(num_samp < 70,
-                                     frac_mature + 0.05,
-                                     frac_mature))
-
-      }else if(ind == "N"){
-        ar <- ar |>
-          mutate(text_place = ifelse(num_samp < 70,
-                                     frac_mature - 0.05,
-                                     frac_mature))
-      }
-      ar
-    }) |>
-    map_df(~{.x}) |>
-    mutate(area = ifelse(area == "N",
-                         "North of 34.44°",
-                         "South of 34.44°"))
-
-  # Inflate to plot to the max age in the model (not the max age of the
-  # maturity samples which may be less than that
-  age_max_model <- model$wtatage |>
-    names() %>%
-    grep("^\\d", ., value = TRUE) |>
-    as.numeric() |>
-    max()
-  if(age_max_model > age_max){
-    num_yrs_to_add <- age_max_model - age_max
-    end_rows <- mat_d |>
-      split(~area) |>
-      map_df(\(ar){
-        ar %>%
-          slice((nrow(.) - num_yrs_to_add + 1):nrow(.)) |>
-          mutate(frac_mature = last(frac_mature)) |>
-          mutate_at(vars(-area, -frac_mature), ~{NA}) |>
-          mutate(age = seq(age_max + 1, age_max_model))
-      })
-
-    mat_d <- mat_d |>
-      bind_rows(end_rows)
+  if(length(unique(d$model)) > 1){
+    stop("There is more than one model being useed in this plot.")
   }
 
+  d_fore <- d |>
+    filter(line == "forecast",
+           is_fore_yr)
+  d_equil <- d |>
+    filter(line == "equilibrium")
   d <- d |>
-    mutate(area = factor(area, levels = unique(area)))
+    filter(!line %in% c("forecast", "equilibrium"))
 
-  x_breaks <- seq_len(age_max)
-  x_labels <- x_breaks
-  x_labels[length(x_labels)] <- paste0(x_labels[length(x_labels)], "+")
-  y_breaks <- c(0, 0.2, 0.4, 0.6, 0.8, 1.0)
+  #colors <- plot_color(length(unique(d$year)))
+  colors <- rev(rich_colors_short(length(unique(d$year))))
 
-  g <- ggplot(mat_d,
-              aes(x = age,
-                  y = frac_mature,
-                  group = area,
-                  color = area,
-                  fill = area,
-                  size = num_samp)) +
-    geom_hline(yintercept = y_breaks,
-               linewidth = 0.5,
-               alpha = 0.5,
-               linetype = "dashed") +
-    geom_line(linewidth = 1, alpha = line_alpha) +
-    geom_point(shape = 21, color = "black", alpha = point_alpha) +
-    scale_fill_manual(values = colors) +
-    scale_color_manual(values = colors) +
-    scale_size(range = c(0, 20)) +
-    scale_x_continuous(breaks = x_breaks, labels = x_labels) +
-    scale_y_continuous(breaks = y_breaks) +
-    geom_text(aes(x = age,
-                  y = text_place,
-                  label = num_samp,
-                  color = area),
-              inherit.aes = FALSE,
-              show.legend = FALSE,
-              size = 5) +
-    guides(size = "none",
-           color = "none",
-           fill = guide_legend("")) +
-    theme(legend.title = element_blank(),
-          legend.text = element_text(size = leg_font_size)) +
-    labs(x = "Age",
-         y = "Proportion mature")
+  g<- d |>
+    ggplot(aes(x = age,
+               y = p_mature,
+               group = as.factor(year),
+               color = as.factor(year)),
+           linetype = "dashed",
+           linewidth = ts_linewidth) +
+    geom_vline(xintercept = 5,
+               linetype = "dashed",
+               color = "grey20") +
+    geom_line(data = d_equil,
+              linewidth = eq_fore_line_width,
+              color = eq_line_color,
+              alpha = eq_fore_alpha) +
+    geom_line(data = d_fore,
+              linewidth = eq_fore_line_width,
+              color = fore_line_color,
+              alpha = eq_fore_alpha) +
+    geom_line() +
+    scale_color_manual(values = colors,
+                       labels = sort(unique(d$year)),
+                       name = "Year") +
+    xlab("Age (years)") +
+    ylab("Probability of being mature") +
+    theme(legend.key.size = unit(leg_line_size_cm, "cm"),
+          legend.text = element_text(size = leg_font_size),
+          legend.title=element_text(size = leg_font_size + 2))
 
-  if(is.null(leg_pos[1]) || is.na(leg_pos[1])){
+  if(show_inset){
     g <- g +
-      theme(legend.position = "none")
-  }else{
-    g <- g +
-      theme(legend.position = leg_pos) +
-      guides(fill = guide_legend(ncol = leg_ncol,
-                                 override.aes = list(size = 5)),
-             color = guide_legend(ncol = leg_ncol))
+      geom_magnify(from = from,
+                   to = to,
+                   shadow = TRUE,
+                   colour = "black",
+                   linewidth = 0.5,
+                   proj.linetype = 3,
+                   shadow.args = list(colour = "black",
+                                      sigma = 10,
+                                      x_offset = 2,
+                                      y_offset = 5))
   }
+
+  # "Legend" is manually made and has three entries each with text and
+  # one or more symbols
+  lyr <- layer_scales(g)
+  x_rng <- lyr$x$range$range
+  y_rng <- lyr$y$range$range
+  symbol_x <- x_rng[2]
+  symbol_x_start <- symbol_x + 1.5
+  symbol_x_end <- symbol_x_start + 1
+  text_x <- symbol_x_end + 0.25
+  symbol_y <- eq_y_start_legend
+  between_eq_for_y_offset <- 0.04
+
+  g <- g +
+    coord_cartesian(xlim = range(d$age),
+                    clip = "off") +
+    theme(plot.margin = margin(0, 30, 6, 6)) +
+    # First symbol
+    annotate("segment",
+             x = symbol_x_start,
+             xend = symbol_x_end,
+             y = symbol_y,
+             yend = symbol_y,
+             colour = eq_line_color,
+             alpha = eq_fore_alpha,
+             linewidth = eq_fore_line_width) +
+    #Second symbol
+    annotate("segment",
+             x = symbol_x_start,
+             xend = symbol_x_end,
+             y = symbol_y - between_eq_for_y_offset,
+             yend = symbol_y - between_eq_for_y_offset,
+             colour = fore_line_color,
+             alpha = eq_fore_alpha,
+             linewidth = eq_fore_line_width) +
+      # First text
+    annotate("text",
+             x = text_x,
+             y = symbol_y,
+             label = "Equilibrium",
+             size = leg_font_size / .pt,
+             hjust = 0) +
+    # Second text
+    annotate("text",
+             x = text_x,
+             y = symbol_y - between_eq_for_y_offset,
+             label = "Forecast",
+             size = leg_font_size / .pt,
+             hjust = 0)
+
   g
 }

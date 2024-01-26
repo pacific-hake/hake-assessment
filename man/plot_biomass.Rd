@@ -94,7 +94,9 @@ plot_depl_fore_comparison(
   leg_pos = c(0.15, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  forecast_yrs
+  forecast_yrs,
+  point_size = ts_pointsize,
+  point_shape = ts_pointshape
 )
 
 plot_exploitation_fraction(

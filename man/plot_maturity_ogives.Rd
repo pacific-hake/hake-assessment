@@ -2,53 +2,55 @@
 % Please edit documentation in R/plot-maturity-ogives.R
 \name{plot_maturity_ogives}
 \alias{plot_maturity_ogives}
-\title{Create a plot of the maturity ogives used in the assessment. The plot
-shows two of them; above and below the line if latitude at Point
-Conception (34.44° latitude)}
+\title{Create a plot containing the maturity ogives by year on a single panel
+with inset for an area of interest to contain a detailed view}
 \usage{
 plot_maturity_ogives(
-  model,
-  d,
-  colors = c("blue", "red"),
-  point_alpha = 0.3,
-  line_alpha = 0.3,
-  leg_pos = c(0.85, 0.15),
-  leg_ncol = 1,
-  leg_font_size = 16,
-  ret_df = FALSE
+  show_inset = TRUE,
+  from = c(xmin = 3, xmax = 6.5, ymin = 0.75, ymax = 1),
+  to = c(xmin = 8, xmax = 14, ymin = 0.05, ymax = 0.6),
+  eq_line_color = "black",
+  fore_line_color = "red",
+  eq_y_start_legend = 0.1,
+  eq_fore_alpha = 0.7,
+  eq_fore_line_width = 3,
+  leg_line_size_cm = 1,
+  leg_font_size = 14
 )
 }
 \arguments{
-\item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
+\item{show_inset}{Logical. If \code{TRUE}, show the inset panel}
 
-\item{d}{The data frame which is read in from}
+\item{from}{The limits of the inset on the main plot to extract.
+See \code{\link[ggmagnify:geom_magnify]{ggmagnify::geom_magnify()}}}
 
-\item{colors}{A vector of two colors for North and South of 34 degrees
-respectively}
+\item{to}{The limits on the main panel of the location to place the
+inset. See \code{\link[ggmagnify:geom_magnify]{ggmagnify::geom_magnify()}}}
 
-\item{point_alpha}{Transparency of the bubbles}
+\item{eq_line_color}{Color for the Equilibrium line}
 
-\item{line_alpha}{Transparency of the lines
-\code{inst/extdata/data/hake-maturity-data.csv}}
+\item{fore_line_color}{Color for the Forecast line}
 
-\item{leg_pos}{The position of the legend inside the plot. If \code{NULL},
-\code{NA}, or \code{none}, the legend will not be shown}
+\item{eq_y_start_legend}{Y value where the legend for the Equilibrium line
+and the Forecast line starts. Will likely change each year}
 
-\item{leg_ncol}{The number of columns to show in the legend}
+\item{eq_fore_alpha}{The transparency value for the Equilibrium and
+Forecast lines}
+
+\item{eq_fore_line_width}{The line width for the Equilibrium and
+Forecast lines}
+
+\item{leg_line_size_cm}{The legend line length in cm}
 
 \item{leg_font_size}{The legend font size}
-
-\item{ret_df}{Logical. If \code{TRUE}, don't plot, instead return the
-calculation of \code{d} which may be needed as part of the fecundity calculation
-elsewhere}
-
-\item{alpha}{The transparency for all ribbons}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
-Create a plot of the maturity ogives used in the assessment. The plot
-shows two of them; above and below the line if latitude at Point
-Conception (34.44° latitude)
+Create a plot containing the maturity ogives by year on a single panel
+with inset for an area of interest to contain a detailed view
+}
+\details{
+The package data frame \code{maturity_estimates_df} is used.
 }

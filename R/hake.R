@@ -8,7 +8,7 @@
 #' All of these are in alphabetical order, both packages and functions
 #' within them
 #' @import adnuts coda dplyr
-#' @import GGally ggh4x ggplot2 ggrepel
+#' @import GGally ggfx ggh4x ggplot2 ggrepel
 #' @import hakedataUSA
 #' @import knitr
 #' @import magick
@@ -27,6 +27,7 @@
 #' @importFrom furrr future_walk future_walk2
 #' @importFrom gfdata get_commercial_samples run_sql
 #' @importFrom gfplot tidy_lengths_raw
+#' @importFrom ggmagnify geom_magnify
 #' @importFrom ggnewscale new_scale_fill
 #' @importFrom glue glue
 #' @importFrom graphics arrows grid hist layout legend lines matplot

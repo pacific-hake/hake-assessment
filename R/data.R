@@ -606,6 +606,19 @@
 #'   \item{1960}{Biomass value for the year. There are additional columns, one for each year}
 #' }
 "assess_history_df"
+#' A data frame containing information on the maturity estimates by year and
+#' model type. The data are coded as proportion mature by age for a given year
+#' and model.
+#'
+#' @format A data frame with 824 rows and 4 variables:
+#' \describe{
+#'   \item{age}{Age of fish}
+#'   \item{year}{Year sample was taken}
+#'   \item{p_mature}{Proportion mature from 0 to 1}
+#'   \item{model}{Type of model (name of model)}
+#' }
+"maturity_estimates_df"
+
 #' A data frame containing information on probability of biomass decline
 #' or of being below B40% for hindcasts of the last 10 years
 #'

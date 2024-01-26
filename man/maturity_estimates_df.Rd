@@ -3,8 +3,18 @@
 \docType{data}
 \name{maturity_estimates_df}
 \alias{maturity_estimates_df}
-\title{A data frame containing estimates of maturity at age}
+\title{A data frame containing information on the maturity estimates by year and
+model type. The data are coded as proportion mature by age for a given year
+and model.}
 \format{
+A data frame with 824 rows and 4 variables:
+\describe{
+\item{age}{Age of fish}
+\item{year}{Year sample was taken}
+\item{p_mature}{Proportion mature from 0 to 1}
+\item{model}{Type of model (name of model)}
+}
+
 A data frame with 4 variables:
 \describe{
 \item{age}{Age (years) of fish}
@@ -15,8 +25,14 @@ A data frame with 4 variables:
 }
 \usage{
 maturity_estimates_df
+
+maturity_estimates_df
 }
 \description{
+A data frame containing information on the maturity estimates by year and
+model type. The data are coded as proportion mature by age for a given year
+and model.
+
 A data frame containing estimates of maturity at age
 }
 \keyword{datasets}

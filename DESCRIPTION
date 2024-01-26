@@ -38,7 +38,9 @@ Imports:
   gfdata,
   gfplot,
   GGally,
+  ggfx,
   ggh4x,
+  ggmagnify,
   ggnewscale,
   ggplot2,
   ggrepel,
@@ -89,6 +91,7 @@ Suggests:
 Remotes:
   cgrandin/adnuts,
   cgrandin/kableExtra,
+  hughjonesd/ggmagnify,
   pbs-assess/gfdata,
   pbs-assess/gfplot,
   pacific-hake/hakedataUSA,
