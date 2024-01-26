@@ -642,6 +642,52 @@ plot_survey_fit_mcmc(base_model,
                      post_line_col = "blue")
 ```
 
+(ref:main-catchability-density-cap) Density of the Catchability (q) parameter
+for the acoustic survey index. The blue vertical line is the median of the
+posterior for `r assess_yr`, which is
+`r f(median(base_model$extra_mcmc$q_vector), 3)`; the red line is
+the median of the posterior for the last assessment year, `r last_data_yr`,
+which is `r f(median(last_yr_base_model$extra_mcmc$Q_vector), 3)`.
+
+(ref:main-catchability-density-alt) The distribution of the catchability
+parameter posterior is shown with a median around 0.83 for this year's
+assessment model.
+
+```{r main-catchability-density-fig, fig.cap = "(ref:main-catchability-density-cap)", fig.height = 4.5}
+plot_catchability_density(base_model,
+                          last_yr_base_model,
+                          type = "age2",
+                          line_widths = c(1, 1),
+                          line_types = c("solid", "solid")) +
+  xlab("Catchability (q)") +
+  ylab("Distribution") +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+(ref:main-catchability-density-age1-cap) Density of the Catchability (q) parameter
+for the age-1 index. The blue vertical line is the median of the
+posterior for `r assess_yr`, which is
+`r f(median(base_model$extra_mcmc$q_vector_age1), 3)`; the red line is
+the median of the posterior for the last assessment year, `r last_data_yr`,
+which is `r f(median(last_yr_base_model$extra_mcmc$Q_vector_age1), 3)`.
+
+(ref:main-catchability-density-age1-alt) The distribution of the catchability
+parameter posterior is shown with a median around 0.85 for this year's
+assessment model.
+
+```{r main-catchability-density-age1-fig, fig.cap = "(ref:main-catchability-density-age1-cap)", fig.height = 4.5}
+plot_catchability_density(base_model,
+                          last_yr_base_model,
+                          type = "age1",
+                          line_widths = c(1, 1),
+                          line_types = c("solid", "solid")) +
+  xlab("Catchability (q)") +
+  ylab("Distribution") +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
 (ref:main-age-comp-fits-fishery-cap) Base model fits to the fishery
 age-composition data. Colored bars show observed proportions with colors
 following each cohort across years. Points with intervals indicate median
