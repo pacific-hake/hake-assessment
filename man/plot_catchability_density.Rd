@@ -10,12 +10,12 @@ plot_catchability_density(
   model2 = NULL,
   type = c("age2", "age1"),
   num_bins = 30,
-  x_breaks = seq(0, 1.4, 0.2),
+  x_breaks = seq(0, 1.4, 0.1),
   y_breaks = seq(0, 3, 0.5),
   bar_outline_color = "black",
   bar_fill = main_fill,
   bar_alpha = main_alpha,
-  line_colors = c("blue", "red"),
+  line_colors = c("green", "red"),
   line_types = c("solid", "solid"),
   line_widths = c(1, 1)
 )

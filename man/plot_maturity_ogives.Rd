@@ -11,11 +11,13 @@ plot_maturity_ogives(
   to = c(xmin = 8, xmax = 14, ymin = 0.05, ymax = 0.6),
   eq_line_color = "black",
   fore_line_color = "red",
+  eq_x_start_legend = NULL,
   eq_y_start_legend = 0.1,
   eq_fore_alpha = 0.7,
   eq_fore_line_width = 3,
   leg_line_size_cm = 1,
-  leg_font_size = 14
+  leg_font_size = 14,
+  space_between_legend_items_cm = 0.5
 )
 }
 \arguments{
@@ -31,6 +33,11 @@ inset. See \code{\link[ggmagnify:geom_magnify]{ggmagnify::geom_magnify()}}}
 
 \item{fore_line_color}{Color for the Forecast line}
 
+\item{eq_x_start_legend}{X value where the legend for the Equilibrium line
+and the Forecast line starts. Will likely change each year.
+If \code{NULL}, the default of outside the plotting area, under the legend
+will be used}
+
 \item{eq_y_start_legend}{Y value where the legend for the Equilibrium line
 and the Forecast line starts. Will likely change each year}
 
@@ -43,6 +50,9 @@ Forecast lines}
 \item{leg_line_size_cm}{The legend line length in cm}
 
 \item{leg_font_size}{The legend font size}
+
+\item{space_between_legend_items_cm}{Vertical space in cm between the
+legend items}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

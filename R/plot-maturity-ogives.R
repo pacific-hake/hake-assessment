@@ -12,6 +12,10 @@
 #' @param leg_font_size The legend font size
 #' @param eq_line_color Color for the Equilibrium line
 #' @param fore_line_color Color for the Forecast line
+#' @param eq_x_start_legend X value where the legend for the Equilibrium line
+#' and the Forecast line starts. Will likely change each year.
+#' If `NULL`, the default of outside the plotting area, under the legend
+#' will be used
 #' @param eq_y_start_legend Y value where the legend for the Equilibrium line
 #' and the Forecast line starts. Will likely change each year
 #' @param eq_fore_alpha The transparency value for the Equilibrium and
@@ -19,6 +23,8 @@
 #' @param eq_fore_line_width The line width for the Equilibrium and
 #' Forecast lines
 #' @param leg_line_size_cm The legend line length in cm
+#' @param space_between_legend_items_cm Vertical space in cm between the
+#' legend items
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -33,11 +39,13 @@ plot_maturity_ogives <- function(show_inset = TRUE,
                                         ymax = 0.6),
                                  eq_line_color = "black",
                                  fore_line_color = "red",
+                                 eq_x_start_legend = NULL,
                                  eq_y_start_legend = 0.1,
                                  eq_fore_alpha = 0.7,
                                  eq_fore_line_width = 3,
                                  leg_line_size_cm = 1,
-                                 leg_font_size = 14){
+                                 leg_font_size = 14,
+                                 space_between_legend_items_cm = 0.5){
 
   d <- maturity_estimates_df |>
     group_by(model) |>
@@ -100,7 +108,8 @@ plot_maturity_ogives <- function(show_inset = TRUE,
     ylab("Probability of being mature") +
     theme(legend.key.size = unit(leg_line_size_cm, "cm"),
           legend.text = element_text(size = leg_font_size),
-          legend.title=element_text(size = leg_font_size + 2))
+          legend.spacing.y = unit(space_between_legend_items_cm, "cm"),
+          legend.title = element_text(size = leg_font_size + 2))
 
   if(show_inset){
     g <- g +
@@ -121,7 +130,7 @@ plot_maturity_ogives <- function(show_inset = TRUE,
   lyr <- layer_scales(g)
   x_rng <- lyr$x$range$range
   y_rng <- lyr$y$range$range
-  symbol_x <- x_rng[2]
+  symbol_x <- eq_x_start_legend %||% x_rng[2]
   symbol_x_start <- symbol_x + 1.5
   symbol_x_end <- symbol_x_start + 1
   text_x <- symbol_x_end + 0.25

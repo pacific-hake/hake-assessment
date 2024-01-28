@@ -19,17 +19,32 @@ table_ovary_samples(
 ## Maturity
 ```{r maturity-ogive-figure, fig.height = 4, out.height = "85%"}
 
-plot_maturity_ogives(base_model,
-                     maturity_samples_df)
+plot_maturity_ogives(eq_x_start_legend = 10,
+                     eq_y_start_legend = -0.1,
+                     eq_fore_alpha = 0.7,
+                     eq_fore_line_width = 1,
+                     leg_line_size_cm = 0.5,
+                     leg_font_size = 10)
 ```
 
 ## Fecundity
 ```{r fecundity-figure, fig.height = 4, out.height = "85%"}
 
-plot_fecundity(base_model,
-               d = maturity_samples_df,
-               yrs = start_yr_age_comps:(end_yr - 1),
-               leg_pos = c(0.6, 0.2))
+plot_heatmap_weight_at_age(
+  base_model,
+  fleet = -2,
+  cell_font_size = 3,
+  sample_size_df = weight_age_sample_sizes_df,
+  pre_yrs = start_yr_age_comps:base_model$endyr,
+  pre_func = mean,
+  post_yrs = (base_model$endyr - 4):base_model$endyr,
+  post_func = mean,
+  cols = c("red",
+           "yellow",
+           "green",
+           "dodgerblue")) +
+  theme(axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 6))
 ```
 
 ## Fecundity
