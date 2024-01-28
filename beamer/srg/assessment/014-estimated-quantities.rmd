@@ -32,7 +32,7 @@ plot_catchability_density(base_model,
 k <- function(){
 
   d <- tibble(a = c(paste0("Median (", assess_yr, ")"),
-                    f(median(last_yr_base_model$extra_mcmc$q_vector), 2)),
+                    f(median(last_yr_base_model$extra_mcmc$Q_vector), 2)),
               b = c(paste0("Median (", last_assess_yr, ")"),
                     f(median(base_model$extra_mcmc$q_vector), 2)))
 
@@ -105,8 +105,9 @@ plot_selex_posteriors(base_model,
 
 ## Key quantities
 ```{r table-parameter-ests, results = "asis"}
-table_param_est(
-  models = list(base_model, last_yr_base_model),
+
+table_param_est_last_year_hardcoded(
+  model = list(base_model),
   model_nms = c(base_model_name, last_yr_base_model_name),
   end_yr = end_yr,
   section_bold = TRUE,
@@ -115,6 +116,7 @@ table_param_est(
   section_line_above = FALSE,
   section_line_below = FALSE,
   digits = 3,
-  font_size = 5,
-  header_font_size = 6)
+  font_size = 9,
+  header_font_size = 9)
+
 ```
