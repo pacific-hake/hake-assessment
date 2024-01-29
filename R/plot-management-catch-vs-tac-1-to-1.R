@@ -34,6 +34,8 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
 
   num_unq_yrs <- d$Year |> unique() |> length()
   cols <- plot_color(num_unq_yrs)
+  # Change the yellow ones, as they cannot be seen very well on screen
+  cols <- gsub("FFF", "AAA", cols)
 
   # Make new data frame for right nudged years
   use_nudged_yrs <- FALSE
