@@ -4,7 +4,7 @@
 ```{r tac-vs-realized-catch-ts, fig.height = 3.5, fig.width = 7.5, out.height = "80%"}
 
 plot_management_catch_vs_tac(catch_targets_df,
-                             curr_assess_biomass = base_model$catch_default_policy[1],
+                             curr_assess_biomass = base_model$ct_default_policy[1],
                              leg_pos = c(0.12, 0.87),
                              leg_font_size = 8)
 
@@ -12,17 +12,30 @@ def_med_hr_tac <- catch_targets_df |>
   filter(Year == last_assess_yr) |> 
   select(`Default HCR TAC`) |> 
   unlist()
+
+tac_catch_diff_df <- catch_targets_df |>
+  filter(Year >= assess_yr - 10) |>
+  mutate(diff = `Realized catch` / `Total TAC`)
+tac_catch_diff <- tac_catch_diff_df |> 
+  pull(diff)
+rng_tac_catch <- range(tac_catch_diff)
+rng_tac_catch_txt <- f(range(tac_catch_diff) * 100)
+k1 <- which(tac_catch_diff_df$diff == rng_tac_catch[1])
+k2 <- which(tac_catch_diff_df$diff == rng_tac_catch[2])
+rng_tac_catch_yr_lo <- tac_catch_diff_df[k1, ] |> pull(Year)
+rng_tac_catch_yr_hi <- tac_catch_diff_df[k2, ] |> pull(Year)
 ```
 
 ## Past management: Total Allowable Catch
 :::::: {.columns}
 ::: {.column width="40%"}
 * March `r last_assess_yr`
-  - Default median HR TAC is `r f(def_med_hr_tac)` t
-  - Sum of unilateral TACs is `r last_yr_tac` t
-* When default HR suggests a large catch, TAC is often set less
-* Catches are often less than the TAC
-* Box colors correspond to year in the time series
+  - Default Harvest Control Rule TAC was `r f(def_med_hr_tac)` t
+  - Total TAC was `r last_yr_tac` t
+* When Default HCR suggests a large catch, Total TAC is often set less
+* In the last 10 years, realized catches were between
+  `r rng_tac_catch_txt[1]`% and `r rng_tac_catch_txt[2]`% of the Total TAC
+  (`r rng_tac_catch_yr_lo` and `r rng_tac_catch_yr_hi`)
 :::
 
 ::: {.column width="60%"}
