@@ -34,13 +34,13 @@ respectively.
 * `r rank_catch_last_year` highest coast-wide catch.
 * `r pchangecatch` in catch from last year.
 * No Canadian Joint-Venture Fishery.
-* Highest proportion-at-age by sector
-- Age-`r us_age_1_prop_age_cp` fish in U.S. catcher-processor sector,
-- Age-`r us_age_1_prop_age_ms` fish in U.S. mothership sector,
-- Age-`r us_age_1_prop_age_shore` fish in U.S. shore-based sector,
-- Age-`r max_freezer_trawler_age_prop_age` fish in Canadian freezer-trawler
+* Highest proportion at age by sector
+  - Age-`r us_age_1_prop_age_cp` fish in U.S. Catcher-Processor sector,
+  - Age-`r us_age_1_prop_age_ms` fish in U.S. Mothership sector,
+  - Age-`r us_age_1_prop_age_shore` fish in U.S. Shore-based sector,
+  - Age-`r max_freezer_trawler_age_prop_age` fish in Canadian Freezer-Trawler
 sector, and
-- Age-`r max_shoreside_age_prop_age` fish in Canadian shoreside sector.
+  - Age-`r max_shoreside_age_prop_age` fish in Canadian Shoreside sector.
 * `r surv_text`
 
 ## Summary of data sources used
@@ -49,18 +49,17 @@ sector, and
 
 \bsmall
 
-* Fishery-dependent data
 * Annual catch (`r start_yr`--`r end_yr - 1`)
-* Age compositions (1975--`r end_yr - 1`; 1$^+$)
+* Age-1$^+$ compositions (1975--`r end_yr - 1`)
 * Acoustic survey (`r survey_start_yr`--`r survey_end_yr`)
-* Biomass index age 2$^+$
-  - Age compositions (2$^+$)
-* Numbers of age-1 fish
+  - Biomass index of age 2$^+$ (t)
+  - Age-2$^+$ compositions
+  - Numbers of age-1 fish
 * Weight-at-age (1975--`r end_yr - 1`)
 * Ageing imprecision and biases
-* double reads
-* blind reads
-* Maturity ogive (NWFSC, 2017)
+  - double reads
+  - blind reads
+* Time-varying maturity ogives
 
 \esmall
 
