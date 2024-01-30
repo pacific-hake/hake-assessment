@@ -11,6 +11,13 @@
 #' @param init_lbl_y_off Initial year label y offset in units of axis
 #' @param final_lbl_x_off Final year label x offset in units of axis
 #' @param final_lbl_y_off Final year label y offset in units of axis
+#' @param detail_b40_outliers Shade the part of the plot less that B40,
+#' plot the missing points at the lower 2.5% of the depletion distribution,
+#' draw a box around those points and show a label with the description
+#' @param detail_fspr_outliers Shade the part of the plot greater than
+#' FSPR = 1, plot the missing points at the upper 2.5% of the FSPR
+#' distribution, draw a box around those points and show a label with the
+#' description
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -25,7 +32,9 @@ plot_phase <- function(model,
                        final_lbl_y_off = 0,
                        cross_line_width = 1,
                        cross_line_color = "grey",
-                       title_y_font_size = axis_title_font_size){
+                       title_y_font_size = axis_title_font_size,
+                       detail_b40_outliers = FALSE,
+                       detail_fspr_outliers = FALSE){
 
   yrs <- start_yr:end_yr
 
@@ -57,7 +66,7 @@ plot_phase <- function(model,
               pmed,
               col = col_vec)
 
-  # Credible intervals for final year:
+  # Credible intervals for final year ----
   dmed_init <- dmed[names(dmed) %in% min(names(dmed))]
   dmed_final <- dmed[names(dmed) %in% max(names(dmed))]
   dlower_final <- dlower[names(dlower) %in% max(names(dlower))]
@@ -73,6 +82,34 @@ plot_phase <- function(model,
                       y = plower_final,
                       yend = pupper_final)
 
+  # Points outside credible intervals for final year ----
+  ssb <- get_post_cols(model$mcmc, "SSB", 1e6) |>
+    select(as.character(end_yr))
+  ssbo <- get_post_cols(model$mcmc, "SSB_Initial", 1e6, exact = TRUE)
+  depl_df <- ssb |>
+    bind_cols(ssbo) |>
+    rename(biomass = as.character(end_yr),
+           bo = SSB_Initial) |>
+    mutate(depl = biomass / bo)
+  depl <- depl_df |>
+    pull(depl)
+  depl_lowest <- depl[depl < dlower_final]
+  depl_lowest_df <- tibble(dmed = depl_lowest,
+                           pmed = rep(pmed_final, length(depl_lowest)))
+  depl_highest <- depl[depl > dupper_final]
+  depl_highest_df <- tibble(dmed = depl_highest,
+                            pmed = rep(pmed_final, length(depl_highest)))
+  spr <- get_post_cols(model$mcmc, "SPRratio") |>
+    select(as.character(end_yr - 1)) |>
+    pull()
+  spr_highest <- spr[spr > pupper_final]
+  spr_lowest <- spr[spr <= plower_final]
+  spr_highest_df <- tibble(dmed = rep(dmed_final, length(spr_highest)),
+                           pmed = spr_highest)
+  spr_lowest_df <- tibble(dmed = rep(dmed_final, length(spr_lowest)),
+                          pmed = spr_lowest)
+
+  # Plotting ----
   x_breaks <- seq(x_lim[1], x_lim[2], 0.2)
   y_breaks <- seq(y_lim[1], y_lim[2], 0.2)
 
@@ -133,6 +170,103 @@ plot_phase <- function(model,
     ylab(expression(paste("Relative fishing intensity",
                           ~~(1-SPR[t-1])/(1-SPR['40%'])))) +
     theme(axis.title.y = element_text(size = title_y_font_size))
+
+  if(detail_b40_outliers){
+
+    label_y_offset <- 0.1
+    label_df <- tibble(x = 0.4,
+                       y = pmed_final - label_y_offset)
+
+    min_depl <- min(depl_lowest_df$dmed)
+    max_depl <- max(depl_lowest_df$dmed)
+
+    g <- g +
+      geom_point(data = depl_lowest_df,
+                 aes(x = dmed,
+                     y = pmed),
+                 color = "red") +
+      geom_point(data = depl_highest_df,
+                 aes(x = dmed,
+                     y = pmed),
+                 color = "red") +
+      # Box around the depletion uncertainty below 40%
+      geom_rect(data = depl_lowest_df,
+                aes(xmin = min_depl - 0.05,
+                    xmax = 0.4,
+                    ymin = pmed - 0.05,
+                    ymax = pmed + 0.05),
+                color = "black",
+                fill = "transparent") +
+      geom_rect(aes(xmin = 0, xmax = 0.4, ymin = 0, ymax = Inf),
+                fill = "grey20",
+                alpha = 0.005) +
+      geom_segment(aes(x = dlower_final,
+                       xend = 0.4,
+                       y = pmed_final,
+                       yend = pmed_final),
+                   size = 1.5,
+                   color = "black",
+                   lineend = "round",
+                   alpha = 0.003) +
+      geom_label(data = label_df,
+                 aes(x = x,
+                     y = y),
+                 label = paste0("P(B[", end_yr, "] / B[0] < 0.4~B[0])"),
+                 parse = TRUE,
+                 hjust = 1,
+                 size = 3,
+                 inherit.aes = FALSE)
+  }
+
+  if(detail_fspr_outliers){
+
+    min_fspr <- min(spr_highest_df$pmed)
+    max_fspr <- max(spr_highest_df$pmed)
+    spr_highest_med <- (min_fspr + max_fspr) / 2
+
+
+    label_x_offset <- 0.07
+    label_df <- tibble(x = dmed_final + label_x_offset,
+                       y = spr_highest_med)
+
+
+
+    g <- g +
+      geom_point(data = spr_lowest_df,
+                 aes(x = dmed,
+                     y = pmed),
+                 color = "red") +
+      geom_point(data = spr_highest_df,
+                 aes(x = dmed,
+                     y = pmed),
+                 color = "red") +
+      # Box around the FSPR uncertainty above 1
+      geom_rect(data = spr_highest_df,
+                aes(xmin = dmed_final - 0.05,
+                    xmax = dmed_final + 0.05,
+                    ymin = 1,
+                    ymax = max_fspr),
+                color = "black",
+                fill = "transparent") +
+      geom_rect(aes(xmin = x_lim[1],
+                    xmax = x_lim[2],
+                    ymin = 1,
+                    ymax = y_lim[2]),
+                fill = "grey20",
+                alpha = 0.005)
+
+
+    g <- g +
+      geom_label(data = label_df,
+                 aes(x = x,
+                     y = y),
+                 label = paste0("P(Relative fishing intensity at end of ",
+                                last_data_yr,
+                                " > 1)"),
+                 hjust = 0,
+                 size = 3,
+                 inherit.aes = FALSE)
+  }
 
   g
 }

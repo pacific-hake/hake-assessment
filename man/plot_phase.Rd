@@ -18,7 +18,9 @@ plot_phase(
   final_lbl_y_off = 0,
   cross_line_width = 1,
   cross_line_color = "grey",
-  title_y_font_size = axis_title_font_size
+  title_y_font_size = axis_title_font_size,
+  detail_b40_outliers = FALSE,
+  detail_fspr_outliers = FALSE
 )
 }
 \arguments{
@@ -39,6 +41,15 @@ plot_phase(
 \item{final_lbl_x_off}{Final year label x offset in units of axis}
 
 \item{final_lbl_y_off}{Final year label y offset in units of axis}
+
+\item{detail_b40_outliers}{Shade the part of the plot less that B40,
+plot the missing points at the lower 2.5\% of the depletion distribution,
+draw a box around those points and show a label with the description}
+
+\item{detail_fspr_outliers}{Shade the part of the plot greater than
+FSPR = 1, plot the missing points at the upper 2.5\% of the FSPR
+distribution, draw a box around those points and show a label with the
+description}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
