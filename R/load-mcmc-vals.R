@@ -163,7 +163,7 @@ load_mcmc_vals <- function(model,
 
   # ... Bratio and SPR---------------------------------------------------------
   bratio_label <- paste0("Bratio_", assess_yr)
-  spr_label <- paste0("Bratio_", assess_yr - 1)
+  spr_label <- paste0("SPRratio_", assess_yr - 1)
   val <- model$mcmc |>
     pull(bratio_label)
 
