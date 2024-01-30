@@ -56,6 +56,13 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
                color = "black",
                inherit.aes = FALSE) +
     geom_point(aes(x = `Default HCR TAC`,
+                   y = `Realized catch`),
+               shape = 15,
+               size = 3.75,
+               color = "black",
+               inherit.aes = FALSE,
+               show.legend = FALSE) +
+    geom_point(aes(x = `Default HCR TAC`,
                    y = `Realized catch`,
                    group = Year,
                    color = Year),
