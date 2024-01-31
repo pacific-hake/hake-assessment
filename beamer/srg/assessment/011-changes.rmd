@@ -2,47 +2,64 @@
 ## Changes from the `r last_assess_yr` assessment
 
 * Update Stock Synthesis to version `r ss_version`
-* Add new catch data for `r last_assess_yr` and update historical catches 
-* Add new weight-at-age data for `r last_assess_yr` and update
-  weight-at-age data
-* Add the `r last_assess_yr` acoustic survey biomass estimate and age data
-* Add the `r last_assess_yr` age-1 index estimate
-* Add new fishery age composition data for `r last_assess_yr` and historical
-  fishery age composition data
-* No changes to acoustic survey biomass estimates or age-1 index
-  estimates this year
+* Incrementally update catch, weight-at-age, age-1 index, and fishery age-composition
+data from years to 2023 
+* Incrementally add 2023 catch, weight-at-age, biomass survey, survey age-composition,
+age-1 index, and fishery age-composition data
+* Change the error distribution associated with the age-1 index from lognormal to
+Student's t-distribution
+* Use the model-based matrix of input weight-at-age data
+* Incorporate model-based estimates and predictions of time-varying maturity ogives into
+the calculation of time-varying fecundity
 * All model runs in the assessment use MCMC
 
-## Bridging: Model Updates and Additions
+## Bridging: Model Updates and Additions (biomass)
 
-```{r bridge-biomass, fig.height = 4, out.height = "80%"}
+```{r bridge-biomass-1, fig.height = 4, out.height = "80%"}
 p <- list()
 p[[1]] <-
+  plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
+               point_size = 1.5,
+               show_arrows = TRUE,
+               dodge_bo = 0.75,
+               leg_ncol = 2,
+               leg_font_size = 5,
+               x_labs_mod = 10,
+               wrap_y_label = TRUE,
+               tick_prop = 2,
+               leg_pos = c(0.5, 0.9))
+p[[2]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
                    ylim = c(0, 2.5),
                    x_labs_mod = 10,
                    wrap_y_label = TRUE,
                    leg_pos = "none")
-p[[2]] <-
-  plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
-               leg_pos = "none",
-               x_labs_mod = 10,
-               line_width = 0.1)
 
 plot_grid(plotlist = p,
           nrow = 1,
           ncol = 2)
 ```
+## Bridging: Model Updates and Additions (recruitment)
 
+```{r bridge-recruit-1, fig.height = 4, out.height = "80%"}
+  plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
+               x_labs_mod = 10,
+               leg_ncol = 2,
+               leg_font_size = 6,
+               line_width = 0.1,
+               rev_colors = TRUE,
+               leg_pos = c(0.22, 0.9))
+
+```
 ## Bridging: Model Updates and Additions (survey)
 
-```{r bridge-survey, fig.height = 4, out.height = "80%"}
+```{r bridge-survey-1, fig.height = 4, out.height = "80%"}
 p <- list()
 p[[1]] <-
   plot_survey_index_fits(base_model,
                          d_obj = d_obj_bridge_age2_index[[1]],
                          survey_type = "age2",
-                         rev_colors = FALSE,
+                         rev_colors = TRUE,
                          leg_pos = "none")
 
 p[[2]] <-
@@ -51,9 +68,76 @@ p[[2]] <-
                          survey_type = "age1",
                          xlim = c(1995, 2022),
                          ylim = c(0, 11),
+                         leg_ncol = 2,
+                         leg_font_size = 5,
+                         leg_pos = c(0.45, 0.9),
                          y_breaks = seq(0, 11, by = 2),
+                         rev_colors = TRUE)
+
+plot_grid(plotlist = p,
+          nrow = 1,
+          ncol = 2)
+```
+## Bridging: Model Structure (biomass)
+
+```{r bridge-biomass-2, fig.height = 4, out.height = "80%"}
+p <- list()
+p[[1]] <-
+  plot_biomass(d_obj = d_obj_bridge_biomass[[2]],
+               point_size = 1.5,
+               show_arrows = TRUE,
+               dodge_bo = 0.75,
+               leg_ncol = 2,
+               leg_font_size = 4.5,
+               x_labs_mod = 10,
+               wrap_y_label = TRUE,
+               tick_prop = 2,
+               leg_pos = c(0.52, 0.9))
+p[[2]] <-
+  plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[2]],
+                   ylim = c(0, 2.5),
+                   x_labs_mod = 10,
+                   wrap_y_label = TRUE,
+                   leg_pos = "none")
+
+plot_grid(plotlist = p,
+          nrow = 1,
+          ncol = 2)
+```
+## Bridging: Model Structure (recruitment)
+
+```{r bridge-recruit-2, fig.height = 4, out.height = "80%"}
+  plot_recdevs(d_obj = d_obj_bridge_recdev[[2]],
+               x_labs_mod = 10,
+               leg_ncol = 2,
+               leg_font_size = 5,
+               leg_pos = c(0.2, 0.9),
+               rev_colors = TRUE,
+               line_width = 0.1)
+
+```
+## Bridging: Model Structure (survey)
+
+```{r bridge-survey-2, fig.height = 4, out.height = "80%"}
+p <- list()
+p[[1]] <-
+  plot_survey_index_fits(base_model,
+                         d_obj = d_obj_bridge_age2_index[[2]],
+                         survey_type = "age2",
                          rev_colors = FALSE,
                          leg_pos = "none")
+
+p[[2]] <-
+  plot_survey_index_fits(base_model,
+                         d_obj = d_obj_bridge_age1_index[[2]],
+                         survey_type = "age1",
+                         xlim = c(1995, 2022),
+                         ylim = c(0, 11),
+                         leg_ncol = 1,
+                         leg_font_size = 5,
+                         leg_pos = c(0.25, 0.82),
+                         y_breaks = seq(0, 11, by = 2),
+                         rev_colors = TRUE)
 
 plot_grid(plotlist = p,
           nrow = 1,
@@ -64,28 +148,20 @@ plot_grid(plotlist = p,
 
 \bsmall
 
-* Updating Stock Synthesis software has no effect on results. Relevant
-  changes include:
-  - Weight-at-age specified in first year of forecast, rather than
-    carried forward
-  - Report files for models using empirical weight-at-age for growth do
-    not supply output that uses growth parameters
 * Updating data previous to `r last_data_yr` had very little effect on the
   stock trajectory
+* Adding the `r last_data_yr` survey biomass estimate led to a downward shift in stock
+  trajectory (and fit to biomass survey) going back to 2017 
+* Adding the `r last_data_yr` survey age compositions increased stock biomass from 2023 to
+  2024 with increases in 2020 and 2021 recruitment
+* Adding the age-1 index resulted in a slight increase in 2022 recruitment 
+* Adding `r last_assess_yr` fishery age composition data shifted the stock trajectory
+  upwards slightly in recent years and increased 2020 and 2021 recruitment (decreased 2019 and 2022)
   \pause
-* Adding `r last_data_yr` catch and weight-at-age data resulted in a slight
-  upward shift in current female spawning biomass, because the mean weights
-  in `r last_data_yr` were mostly above the recent 5-year average mean
-  weights (assumption before the addition of these data)
-* Adding the `r last_data_yr` survey biomass estimate and age compositions
-  leads to slightly more optimistic estimates of biomass for the last few
-  years and reduces uncertainty
-* The addition of the age-1 index resulted in a small increase in $B_0$,
-  an increase in relative spawning biomass from 2019--2022, and an
-  increase in the estimated size of the 2018 and 2020 cohorts
-* Adding `r last_assess_yr` fishery age composition data had little impact
-  on historical estimates, shifted recent recruitment estimates
-  (esp. 2019--2021), and increased estimates of 2022 (slightly) and 2023
-  (considerably) female spawning biomass.
+* Model-based weight-at-age altered stock size and status in the 1970s and 1980s (and
+  equilibrium B~0~), but had little net effect since that time
+* Time-varying maturity did not influence general trends in stock size or status, but:
+  - There wes a reduction in spawning biomass in recent years; and
+  - The transition to spawning biomass was delayed for up to a year in some cases
   
 \esmall

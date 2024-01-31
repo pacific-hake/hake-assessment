@@ -33,13 +33,12 @@ plot_survey_fit_mcmc(base_model,
 ## Fit to acoustic survey age comps
 :::::: {.columns}
 ::: {.column width="40%"}
-* Relative cohort strength captured well, but some over- and under-fitting
-* Predicted higher: 1999 cohort and 2010 cohort in 2017 survey
-* Predicted lower: some young cohorts in 2003--2011, 2014 cohort in
-  2017 survey
-* Predictions for 2014 and 2016 cohorts are similar in the 2019 and 2021
-  surveys, despite differences in survey estimates (although well within the
-  range of uncertainty)
+* Predicted higher: \textcolor{pink}{1999} cohort and \textcolor{yellow}{2010} cohort
+  in 2017 survey
+* Predicted lower: some young cohorts in 2003--2011, \textcolor{orange}{2014} cohort in
+  2017 survey, **2021** cohort in 2023 survey
+* Predictions for the \textcolor{brown}{2016} cohort have been lower than observed
+  in the 2021 and 2023 surveys
 :::
 
 ::: {.column width="60%"}
@@ -57,11 +56,12 @@ plot_age_comp_fit(base_model,
 ## Fit to fishery age comps
 :::::: {.columns}
 ::: {.column width="40%"}
-* Large 1999, 2010, and 2014 cohorts fit particularly well
-* Some over- and under-fitting in 1980 and 1984 cohorts
-* The 2016 cohort is slightly under-fit in recent years
-* Fishery data in 2022 imply a slightly larger size for the 2020 cohort than
-  the model prediction
+* Large \textcolor{orange}{1999}, \textcolor{red}{2010}, \textcolor{orange}{2014},
+  and \textcolor{purple}{2016} cohorts fit particularly well
+* Some over- and under-fitting in \textcolor{red}{1980} and \textcolor{orange}{1984} cohorts
+* The **2020** cohort is slightly under-fit in recent years
+* Overall, fishery data in 2023 is fit well and implies age 2 and 3 fish made up
+  a large contributon of the catch
 :::
 
 ::: {.column width="60%"}

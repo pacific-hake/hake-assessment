@@ -407,11 +407,11 @@ the `r assess_yr` base model. The steps are as follows:
 
 - Update to the latest version of Stock Synthesis, version `r ss_version`, to
 follow current best practices;
-- Incrementally update catch, weight-at-age, age-1 survey, and fishery age-composition data from
+- Incrementally update catch, weight-at-age, age-1 index, and fishery age-composition data from
 years previous to `r last_data_yr` (in that order);
 - Incrementally add `r last_data_yr` catch, weight-at-age, biomass survey, survey
-age-composition, age-1 survey, and fishery age-composition data (in that order);
-- Change the error distribution associated with the age-1 survey index from lognormal
+age-composition, age-1 index, and fishery age-composition data (in that order);
+- Change the error distribution associated with the age-1 index from lognormal
 to Student's t-distribution;
 - Use a model-based matrix of input weight-at-age data; and
 - Incorporate model-based estimates of time-varying maturity ogives into the
@@ -437,13 +437,11 @@ spawning biomass from `r assess_yr - 1` to `r assess_yr`
 
 Including the `r last_data_yr` fishery-independent biomass estimate led to a downward shift
 in the stock trajectory going back to 2017 and a similar shift in the fit to the survey
-(Figure~\@ref(fig:main-bridge-summary-fig-1)). While including the `r last_data_yr` survey
-biomass age compositions had a negligible effect on the stock trajectory, they did
-adjust estimates of recent recruitment strength, in particular lowering the 2020
-recruitment somewhat. The addition of the `r last_data_yr` relative age-1 index
-led to an estimated increase in stock biomass from 2023 to 2024 as a result of
-small shifts in expected recruitment, particularly for the 2020 and 2022 year
-classes.
+(Figure~\@ref(fig:main-bridge-summary-fig-1)). The addition of the `r last_data_yr` survey
+biomass age compositions led to an estimated increase in stock biomass from 2023 to 2024 as a result of small shifts in expected recruitment, particularly for the 2020 and 2021 year
+classes. While the addition of the `r last_data_yr` relative age-1 index
+had a negligible effect on the stock trajectory, it did slightly adjust estimates of recent
+recruitment strength, in particular raising the 2022 recruitment somewhat.
 
 The final step of adding `r last_data_yr` data involved incorporating fishery age-composition
 information, which shifted the ending year of the deviations in the selectivity parameters

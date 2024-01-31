@@ -2,10 +2,11 @@
 ## Key parameters
 :::::: {.columns}
 ::: {.column width="40%"}
-* Prior for natural mortality looks to be influencing posterior
+* **Prior** for natural mortality looks to be
+  influencing \textcolor{red}{median} of \textcolor{blue}{posterior}
 * Posterior for steepness does not shift much from prior
 * DM for fishery has a relatively narrow posterior distribution
-* Prior for survey DM parameter looks to be influencing posterior (discussed
+* Prior for DM parameters essentially defines parameter bounds (discussed
   further in sensitivity section)
 :::
 
@@ -20,7 +21,7 @@ plot_priors_vs_posts(base_model,
 ::::::
 
 ## Acoustic survey catchability (\emph{$q_b$}) posterior for this assessment
-```{r catchability-density, fig.height = 4, out.height = "60%"}
+```{r catchability-density-q, fig.height = 4, out.height = "60%"}
 plot_catchability_density(base_model,
                           last_yr_base_model,
                           type = "age2",
@@ -28,13 +29,13 @@ plot_catchability_density(base_model,
                           line_types = c("solid", "solid"))
 ```
 
-```{r table-catchability-medians, results = "asis"}
+```{r table-catchability-medians-q, results = "asis"}
 k <- function(){
 
   d <- tibble(a = c(paste0("Median (", assess_yr, ")"),
-                    f(median(last_yr_base_model$extra_mcmc$Q_vector), 2)),
+                    f(median(base_model$extra_mcmc$q_vector), 2)),
               b = c(paste0("Median (", last_assess_yr, ")"),
-                    f(median(base_model$extra_mcmc$q_vector), 2)))
+                    f(median(last_yr_base_model$extra_mcmc$Q_vector), 2)))
 
   kbl(d,
       format = "latex",
@@ -44,7 +45,40 @@ k <- function(){
       linesep = "",
       escape = FALSE) |>
     row_spec(0, bold = TRUE) |> 
-    column_spec(1, color = "blue") |> 
+    column_spec(1, color = "green") |> 
+    column_spec(2, color = "red") |> 
+    kable_styling(position = "center")
+}
+
+k()
+```
+
+## Age-1 index catchability (\emph{$q_1$}) posterior for this assessment
+```{r catchability-density-1, fig.height = 4, out.height = "60%"}
+plot_catchability_density(base_model,
+                          last_yr_base_model,
+                          type = "age1",
+                          line_widths = c(1, 1),
+                          line_types = c("solid", "solid"))
+```
+
+```{r table-catchability-medians-1, results = "asis"}
+k <- function(){
+
+  d <- tibble(a = c(paste0("Median (", assess_yr, ")"),
+                    f(median(base_model$extra_mcmc$q_vector_age1), 2)),
+              b = c(paste0("Median (", last_assess_yr, ")"),
+                    f(median(last_yr_base_model$extra_mcmc$Q_vector_age1), 2)))
+
+  kbl(d,
+      format = "latex",
+      booktabs = TRUE,
+      col.names = NULL,
+      align = c("c", "c"),
+      linesep = "",
+      escape = FALSE) |>
+    row_spec(0, bold = TRUE) |> 
+    column_spec(1, color = "green") |> 
     column_spec(2, color = "red") |> 
     kable_styling(position = "center")
 }
@@ -87,6 +121,7 @@ plot_selex_uncertainty(base_model,
 plot_selex_posteriors(base_model,
                       type = "survey",
                       age_range = c(1, 8),
+                      n_posts = 1000,
                       post_med_line_color = "red3",
                       unc_line_color = "red3",
                       glow = TRUE)
@@ -97,6 +132,7 @@ plot_selex_posteriors(base_model,
 ```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
 plot_selex_posteriors(base_model,
                       type = "fishery",
+                      n_posts = 1000,
                       age_range = c(1, 8),
                       glow = TRUE)
 ```
@@ -116,7 +152,26 @@ table_param_est_last_year_hardcoded(
   section_line_above = FALSE,
   section_line_below = FALSE,
   digits = 3,
-  font_size = 9,
+  font_size = 4,
   header_font_size = 9)
 
+```
+
+## Recruitment Deviations
+```{r rec-dev, fig.height = 4, out.height = "80%"}
+
+plot_recdevs(list(base_model),
+             list(base_model_name),
+             line_color = ts_single_line_color,
+             leg_pos = "none")
+```
+
+## Absolute Recruitment
+```{r rec-abs, fig.height = 4, out.height = "80%"}
+
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 inc_means = TRUE,
+                 leg_pos = "none") |>
+  suppressWarnings()
 ```
