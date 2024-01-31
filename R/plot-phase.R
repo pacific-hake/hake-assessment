@@ -18,6 +18,8 @@
 #' FSPR = 1, plot the missing points at the upper 2.5% of the FSPR
 #' distribution, draw a box around those points and show a label with the
 #' description
+#' @param show_joint_prob_lines Logical. If `TRUE`, show criss-cross lines
+#' representing all of the joint <B40 and FSPR40>1 posteriors
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -34,7 +36,8 @@ plot_phase <- function(model,
                        cross_line_color = "grey",
                        title_y_font_size = axis_title_font_size,
                        detail_b40_outliers = FALSE,
-                       detail_fspr_outliers = FALSE){
+                       detail_fspr_outliers = FALSE,
+                       show_joint_prob_lines = FALSE){
 
   yrs <- start_yr:end_yr
 
@@ -271,6 +274,15 @@ plot_phase <- function(model,
   }
 
   if(detail_b40_outliers && detail_fspr_outliers){
+    g <- g +
+      geom_rect(aes(xmin = x_lim[1],
+                    xmax = 0.4,
+                    ymin = 1,
+                    ymax = y_lim[2]),
+                fill = "white")
+  }
+
+  if(show_joint_prob_lines){
     # plot joint probability lines from posterior points
 
     # Find posterior points both under B40 and over FSPR40=1

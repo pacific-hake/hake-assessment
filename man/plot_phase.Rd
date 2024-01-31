@@ -20,7 +20,8 @@ plot_phase(
   cross_line_color = "grey",
   title_y_font_size = axis_title_font_size,
   detail_b40_outliers = FALSE,
-  detail_fspr_outliers = FALSE
+  detail_fspr_outliers = FALSE,
+  show_joint_prob_lines = FALSE
 )
 }
 \arguments{
@@ -50,6 +51,9 @@ draw a box around those points and show a label with the description}
 FSPR = 1, plot the missing points at the upper 2.5\% of the FSPR
 distribution, draw a box around those points and show a label with the
 description}
+
+\item{show_joint_prob_lines}{Logical. If \code{TRUE}, show criss-cross lines
+representing all of the joint \if{html}{\out{<B40 and FSPR40>}}1 posteriors}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
