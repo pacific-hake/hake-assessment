@@ -177,7 +177,7 @@ if(user == "grandin"){
   # Add specialized user code here
 }
 
-# Quick fix to work on Windows, Chris to use an existing function
+# system_() figures out which OS you are on and runs the proper function
 home <- system_("echo $HOME", intern = TRUE)
 
 if(home == ""){
