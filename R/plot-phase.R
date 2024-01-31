@@ -99,8 +99,10 @@ plot_phase <- function(model,
   depl_highest <- depl[depl > dupper_final]
   depl_highest_df <- tibble(dmed = depl_highest,
                             pmed = rep(pmed_final, length(depl_highest)))
-  spr <- get_post_cols(model$mcmc, "SPRratio") |>
-    select(as.character(end_yr - 1)) |>
+  spr_df <- get_post_cols(model$mcmc, "SPRratio") |>
+    select(as.character(end_yr - 1))
+
+  spr <-spr_df |>
     pull()
   spr_highest <- spr[spr > pupper_final]
   spr_lowest <- spr[spr <= plower_final]
@@ -268,5 +270,39 @@ plot_phase <- function(model,
                  inherit.aes = FALSE)
   }
 
+  if(detail_b40_outliers && detail_fspr_outliers){
+    # plot joint probability lines from posterior points
+
+    # Find posterior points both under B40 and over FSPR40=1
+    wch_depl_lowest <- which(depl <= 0.4)
+    wch_spr_highest <- which(spr >= 1)
+    wch_joint <- intersect(wch_depl_lowest, wch_spr_highest)
+    wch_joint_depl_df <- depl_df |>
+      slice(wch_joint) |>
+      select(depl) |>
+      rename(dmed = depl) |>
+      mutate(pmed = rep(pmed_final, length(wch_joint)))
+      #mutate(y_upper = y_lim[2])
+    wch_joint_spr_df <- spr_df |>
+      slice(wch_joint) |>
+      rename(pmed = 1) |>
+      mutate(dmed = rep(dmed_final, length(wch_joint)))
+
+    g <- g +
+      geom_segment(data = wch_joint_depl_df,
+                aes(x = dmed,
+                    xend = dmed,
+                    y = pmed,
+                    yend = y_lim[2]),
+                color = "red",
+                size = 0.05) +
+      geom_segment(data = wch_joint_spr_df,
+                   aes(x = dmed,
+                       xend = x_lim[1],
+                       y = pmed,
+                       yend = pmed),
+                   color = "red",
+                   size = 0.05)
+  }
   g
 }
