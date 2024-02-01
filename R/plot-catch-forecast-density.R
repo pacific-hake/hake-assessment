@@ -95,9 +95,10 @@ plot_catch_forecast_density <- function(model,
                fill = "white") +
     scale_x_continuous(breaks = seq(xlim[1], xlim[2], 500),
                        labels = scales::comma(seq(xlim[1], xlim[2], 500))) +
-    coord_cartesian(xlim = xlim) +
+    coord_cartesian(xlim = xlim,
+                    expand = FALSE) +
     theme(axis.text.y = element_blank(),
-          axis.ticks = element_blank()) +
+          axis.ticks.y = element_blank()) +
     xlab(paste0("Projected ", yr, " catch (kt) based on the default ",
                 "harvest policy")) +
     ylab("Density")
