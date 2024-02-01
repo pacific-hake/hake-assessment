@@ -10,7 +10,9 @@ plot_fore_age_comps(
   x_lim = c(1, 15),
   x_breaks = seq(x_lim[1], x_lim[2], 2),
   y_lim = c(0, 0.55),
-  whisker_width = 0.5
+  whisker_width = 0.5,
+  point_size = 2,
+  glow_size = 2.5
 )
 }
 \arguments{
@@ -26,6 +28,11 @@ values to plot}
 
 \item{whisker_width}{The width of the top and bottom crossbars
 (whiskers) on the error bars}
+
+\item{point_size}{The size of the median points}
+
+\item{glow_size}{The size of the white glow behind the points (must be
+larger than \code{point_size} to be seen)}
 
 \item{probs}{A vector of three quantiles for the lower CI,
 median, and upper CI. The second value must be 0.5}

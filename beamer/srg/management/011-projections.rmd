@@ -57,28 +57,26 @@ plot_depl_fore_comparison(base_model,
 :::
 ::::::
 
-## Projected age compositions for `r end_yr` fishery catch
+## Projected age proportions for `r end_yr` fishery catch
 :::::: {.columns}
 ::: {.column width="45%"}
-Median proportions
+**Median proportions:**
+```{r fore-age-props, results = "asis"}
 
-(by numbers) are:
-
-* `r fore_catch_prop[["13"]]`% age-13 fish, `r forecast_yrs[1] - 13` cohort
-* `r fore_catch_prop[["9"]]`% age-9 fish, `r forecast_yrs[1] - 9` cohort
-* `r fore_catch_prop[["8"]]`% age-8 fish, `r forecast_yrs[1] - 8` cohort
-* `r fore_catch_prop[["7"]]`% age-7 fish, `r forecast_yrs[1] - 7` cohort
-* `r fore_catch_prop[["6"]]`% age-6 fish, `r forecast_yrs[1] - 6` cohort
-* `r fore_catch_prop[["5"]]`% age-5 fish, `r forecast_yrs[1] - 5` cohort
-* `r fore_catch_prop[["4"]]`% age-4 fish, `r forecast_yrs[1] - 4` cohort
-* `r fore_catch_prop[["3"]]`% age-3 fish, `r forecast_yrs[1] - 3` cohort
-* `r fore_catch_prop[["2"]]`% age-2 fish, `r forecast_yrs[1] - 2` cohort
+table_fore_age_props(fore_catch_prop,
+                     fore_catch_prop_wt,
+                     ages_filt = 1:15,
+                     font_size = 8) |> 
+    # Highlight two largest cohorts
+    row_spec(12:13,
+           bold = table_highlight_bold,
+           background = table_highlight_color)
+```
 :::
 
 ::: {.column width="55%"}
 ```{r main-age-comp-forecast, fig.height = 3.5, fig.width = 5.5, out.height = "80%"}
-plot_fore_age_comps(base_model)
+plot_fore_age_comps(base_model, )
 ```
 :::
 ::::::
-

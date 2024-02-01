@@ -11,6 +11,9 @@
 #' values to plot
 #' @param whisker_width The width of the top and bottom crossbars
 #' (whiskers) on the error bars
+#' @param point_size The size of the median points
+#' @param glow_size The size of the white glow behind the points (must be
+#' larger than `point_size` to be seen)
 #'
 #' @return A [cowplot::plot_grid()] object
 #' @export
@@ -18,7 +21,9 @@ plot_fore_age_comps <- function(model,
                                 x_lim = c(1, 15),
                                 x_breaks = seq(x_lim[1], x_lim[2], 2),
                                 y_lim = c(0, 0.55),
-                                whisker_width = 0.5){
+                                whisker_width = 0.5,
+                                point_size = 2,
+                                glow_size = 2.5){
 
   natsel_prop <- model$extra_mcmc$natsel_prop
   natselwt_prop <- model$extra_mcmc$natselwt_prop
@@ -62,19 +67,19 @@ plot_fore_age_comps <- function(model,
                   linewidth = 2,
                   width = 0) +
     geom_point(color = "white",
-               size = 3.5) +
-    geom_point(size = 2.5) +
+               size = glow_size) +
+    geom_point(size = point_size) +
     scale_x_continuous(breaks = x_breaks,
                        labels = x_breaks) +
     scale_y_continuous(expand = c(0, 0)) +
     coord_cartesian(xlim = x_lim,
                     ylim = y_lim,
-                    expand = FALSE) +
+                    expand = TRUE) +
     xlab("Age") +
     ylab(paste0("Expected proportion in ",
                 model$endyr + 1,
                 " catch")) +
-    ggtitle("Numbers") +
+    ggtitle("By number") +
     theme(plot.title = element_text(hjust = 0.5))
 
   plist[[2]] <- ggplot(by_weight,
@@ -92,16 +97,17 @@ plot_fore_age_comps <- function(model,
                   linewidth = 2,
                   width = 0) +
     geom_point(color = "white",
-               size = 3.5) +
-    geom_point(size = 2.5) +
+               size = glow_size) +
+    geom_point(size = point_size) +
     scale_x_continuous(breaks = x_breaks,
                        labels = x_breaks) +
     scale_y_continuous(expand = c(0, 0)) +
     coord_cartesian(xlim = x_lim,
-                    ylim = y_lim) +
+                    ylim = y_lim,
+                    expand = TRUE) +
     xlab("Age") +
     ylab("") +
-    ggtitle("Weight") +
+    ggtitle("By weight") +
     theme(plot.title = element_text(hjust = 0.5))
 
   plot_grid(plotlist = plist, nrow = 1, align = "h")

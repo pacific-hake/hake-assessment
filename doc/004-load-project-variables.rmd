@@ -871,6 +871,9 @@ fore_catch_prop_age7_upper <- quantile(extramc$natsel_prop |> pull(`7`),
                                        probs[3]) * 100
 
 # Estimated prop at age (catch) of catch in first forecast year ---------------
+fore_catch_prop_wt <- map_df(extramc$natselwt_prop * 100, ~{f(median(.x))}) |>
+  complete(fill = list(0:20, val = 0))
+
 fore_catch_prop_wt_age2_median <- median(extramc$natselwt_prop |> pull(`2`)) * 100
 fore_catch_prop_wt_age3_median <- median(extramc$natselwt_prop |> pull(`3`)) * 100
 fore_catch_prop_wt_age4_median <- median(extramc$natselwt_prop |> pull(`4`)) * 100
