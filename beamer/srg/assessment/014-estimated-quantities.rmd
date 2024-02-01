@@ -175,3 +175,80 @@ plot_recruitment(list(base_model),
                  leg_pos = "none") |>
   suppressWarnings()
 ```
+
+## Estimates of above-average cohorts
+```{r above-average-cohorts-table, results = "asis"}
+
+cohorts <- sort(c(large_cohorts, 2017, 2021))
+last_few_yrs <- c(last_assess_yr, assess_yr)
+table_above_avg_cohorts_yrs(cohorts, last_few_yrs)
+```
+
+## Numbers-at-age (billions)
+:::::: {.columns}
+::: {.column width="40%"}
+* Median posterior distribution estimates
+* Red line is mean age for the year
+* Increasing trend in mean age since 2021
+* Mean age drops significantly in years with large age-0 cohorts,
+  including in 2020 and 2021
+:::
+
+::: {.column width="60%"}
+```{r main-numbers-at-age, fig.height = 4, out.height = "75%"}
+plot_age_comp_bubbles(base_model, type = "fishery",
+                      proportions = FALSE,
+                      leg_pos = "top",
+                      tick_prop = 0.3,
+                      vjust_x_labels = -1.2,
+                      remove_yr_labels = NULL)
+```
+:::
+::::::
+
+## Spawning Biomass
+```{r main-biomass, fig.height = 4, out.height = "80%"}
+
+plot_biomass(list(base_model),
+             list(base_model_name),
+             ylim = c(0, 5),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = "none")
+```
+
+## Spawning Biomass (million t)
+
+```{r survey-pearson-test, fig.height = 4, fig.width = 6, out.height = "65%"}
+plot_pearson_bubbles(base_model,
+                     type = "survey",
+                     alpha = 0.7)
+```
+While the median estimate of B2022 has increased from last year's assessment, partly due
+to increases in weight-at-age, the credible interval mostly overlaps that from last
+year's assessment.
+
+## Uncertainty in Spawning Biomass
+```{r main-historical-dispersion-fig, fig.cap = "(ref:main-historical-dispersion-cap)"}
+p <- list()
+p[[1]] <-
+  plot_assessment_history_disp(base_model,
+                               assess_history_disp_df)
+p[[2]] <-
+  plot_assessment_history_disp(base_model,
+                               assess_history_disp_df,
+                               type = "coeff",
+                               y_lim = c(0, 0.6))
+plot_grid(plotlist = p, nrow = 1)
+```
+
+## Fishing Intensity
+```{r main-fish-inten, fig.height = 4, out.height = "80%"}
+
+plot_fishing_intensity(base_model)
+```
+
+## Exploitation Fraction (ages 2+)
+```{r main-expl-frac, fig.height = 4, out.height = "80%"}
+
+plot_exploitation_fraction(base_model)
+```
