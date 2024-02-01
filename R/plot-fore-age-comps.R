@@ -73,7 +73,9 @@ plot_fore_age_comps <- function(model,
     xlab("Age") +
     ylab(paste0("Expected proportion in ",
                 model$endyr + 1,
-                " catch"))
+                " catch")) +
+    ggtitle("Numbers") +
+    theme(plot.title = element_text(hjust = 0.5))
 
   plist[[2]] <- ggplot(by_weight,
                        aes(x = age,
@@ -98,7 +100,9 @@ plot_fore_age_comps <- function(model,
     coord_cartesian(xlim = x_lim,
                     ylim = y_lim) +
     xlab("Age") +
-    ylab("")
+    ylab("") +
+    ggtitle("Weight") +
+    theme(plot.title = element_text(hjust = 0.5))
 
   plot_grid(plotlist = plist, nrow = 1, align = "h")
 }
