@@ -33,14 +33,14 @@ surv_text <- ifelse(last_data_yr %% 2,
 respectively.
 * `r rank_catch_last_year` highest coast-wide catch.
 * `r pchangecatch` in catch from last year.
-* No Canadian Joint-Venture Fishery.
+* No Canadian joint-venture fishery.
 * Highest proportion at age by sector
-  - Age-`r us_age_1_prop_age_cp` fish in U.S. Catcher-Processor sector,
-  - Age-`r us_age_1_prop_age_ms` fish in U.S. Mothership sector,
-  - Age-`r us_age_1_prop_age_shore` fish in U.S. Shore-based sector,
-  - Age-`r max_freezer_trawler_age_prop_age` fish in Canadian Freezer-Trawler
+  - Age-`r us_age_1_prop_age_cp` fish in U.S. catcher-processor sector,
+  - Age-`r us_age_1_prop_age_ms` fish in U.S. mothership sector,
+  - Age-`r us_age_1_prop_age_shore` fish in U.S. shore-based sector,
+  - Age-`r max_freezer_trawler_age_prop_age` fish in Canadian freezer-trawler
 sector, and
-  - Age-`r max_shoreside_age_prop_age` fish in Canadian Shoreside sector.
+  - Age-`r max_shoreside_age_prop_age` fish in Canadian shoreside sector.
 * `r surv_text`
 
 ## Summary of data sources used
@@ -54,7 +54,7 @@ sector, and
 * Acoustic survey (`r survey_start_yr`--`r survey_end_yr`)
   - Biomass index of age 2$^+$ (t)
   - Age-2$^+$ compositions
-  - Numbers of age-1 fish
+  - Relative index of age-1 fish (numbers)
 * Weight-at-age (1975--`r end_yr - 1`)
 * Ageing imprecision and biases
   - double reads
