@@ -65,7 +65,7 @@ load_extra_mcmc_sel <- function(reps,
     ungroup()
 
   out$sel_end_yr <- ts |>
-    filter(yr == max(yr)) |>
+    filter(yr == end_yr - 1) |>
     select(-yr)
 
     out
