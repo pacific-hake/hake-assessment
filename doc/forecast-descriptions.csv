@@ -10,7 +10,7 @@ catch_year1,catch_year2,catch_year3,catch_year4,description,directory,forecast_t
 380000,380000,380000,380000,"380,000 t",09-380000,constant,
 380000,342000,307800,277020,"380,000 t 10% red.",10-380000-10,reduction,
 430000,430000,430000,430000,"430,000 t",11-430000,constant,
-545000,545000,545000,545000,"2023 TAC: 545,000 t",12-545000,constant,tac
+625000,625000,625000,625000,"2023 TAC: 625,000 t",12-625000,constant,tac
 ,,,,FI = 100%,13-spr-100, calculated,spr100
 ,,,,Default Harvest Policy,14-default-hr, calculated,default_hr
 ,,,,Stable Catch,15-stable-catch, calculated,stable_catch
