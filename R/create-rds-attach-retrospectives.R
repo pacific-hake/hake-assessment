@@ -68,6 +68,7 @@ create_rds_attach_retrospectives <- function(model_path = NULL,
   }) |>
     sort()
   all_retros_yrs <- rev(all_cohorts) + 1
+  plot_retros_yrs <- all_retros_yrs[c(1, plot_retro_yrs + 1)]
 
   # Retrospectives for plotting sensitivity-type plots (subset of retros) ----
   # Base model is the first model, followed by the retrospectives indexed by
@@ -89,20 +90,24 @@ create_rds_attach_retrospectives <- function(model_path = NULL,
   # `retro_recdevs_df` is for the squid plots
   retro_recdevs_df <- create_group_df_recr(all_retros_lst,
                                            all_retros_yrs,
-                                           devs = TRUE)
+                                           devs = TRUE,
+                                           end_yrs = all_retros_yrs)
 
   # `retro_biomass_df` and `retro_rel_biomass_df` are for plots showing
   #  biomass trajectories for retrospectives against the base model
   retro_biomass_df <-
     create_group_df_biomass(subset_retros_lst,
-                            subset_retros_model_nms)
+                            subset_retros_model_nms,
+                            end_yrs = plot_retros_yrs)
   retro_rel_biomass_df <-
     create_group_df_biomass(subset_retros_lst,
                             subset_retros_model_nms,
-                            rel = TRUE)
+                            rel = TRUE,
+                            end_yrs = plot_retros_yrs)
   retro_recr_df <-
     create_group_df_recr(subset_retros_lst,
-                         subset_retros_model_nms)
+                         subset_retros_model_nms,
+                         end_yrs = plot_retros_yrs)
 
   retro_param_est <- get_param_est_comparison_df(subset_retros_lst,
                                                  subset_retros_model_nms,
