@@ -14,6 +14,9 @@ create_data_hake("retrospectives_prepend", "retro-")
 create_data_hake("default_hr_path", "default-hr")
 create_data_hake("stable_catch_path", "stable-catch")
 create_data_hake("spr_100_path", "spr-100")
+create_data_hake("ordered_decision_table_paths", c(spr_100_path,
+                                                   default_hr_path,
+                                                   stable_catch_path))
 
 create_data_hake("sql_path", "sql")
 

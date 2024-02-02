@@ -105,6 +105,11 @@
 #'
 #' @format A character string
 "spr_100_path"
+#' An ordered vector of the paths used in the decision table for those catch
+#' streams with a calculated value. Other catch streams have a numbered path
+#'
+#' @format A character vector
+"ordered_decision_table_paths"
 #' Directory name for any SQL code files
 #'
 #' @format A character string

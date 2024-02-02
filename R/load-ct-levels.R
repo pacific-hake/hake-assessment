@@ -37,6 +37,13 @@ load_ct_levels <- function(model_path,
 
   ct_levels_fullpath <- file.path(model_path, ct_levels_path)
   drs <- list.files(ct_levels_fullpath)
+  if(!all(map_lgl(drs, ~{.x %in% ordered_decision_table_paths}))){
+    stop("Not all of the calculated catch stream directories exist:\n\n",
+         paste(ordered_decision_table_paths, collapse = "\n"), "\n",
+         "The directories you have are:\n\n",
+         paste(drs, collapse = "\n"), "\n\n")
+  }
+  drs <- ordered_decision_table_paths
   fore_fns <- file.path(ct_levels_fullpath, drs, forecast_fn)
   message("\nLoading catch levels from ", ct_levels_fullpath)
 
