@@ -12,6 +12,7 @@ plot_phase(
   end_yr,
   x_lim = c(0, 1.5),
   y_lim = c(0, 1.2),
+  biomass_scale = 1e+06,
   init_lbl_x_off = 0,
   init_lbl_y_off = 0,
   final_lbl_x_off = 0,
@@ -21,7 +22,8 @@ plot_phase(
   title_y_font_size = axis_title_font_size,
   detail_b40_outliers = FALSE,
   detail_fspr_outliers = FALSE,
-  show_joint_prob_lines = FALSE
+  show_joint_prob_points = FALSE,
+  joint_point_color = "purple"
 )
 }
 \arguments{
@@ -34,6 +36,8 @@ plot_phase(
 \item{x_lim}{Vector of two values for minimum and maximum x-axis values}
 
 \item{y_lim}{Vector of two values for minimum and maximum y-axis values}
+
+\item{biomass_scale}{Amount to divide biomass by so the axis has small nums}
 
 \item{init_lbl_x_off}{Initial year label x offset in units of axis}
 
@@ -52,8 +56,12 @@ FSPR = 1, plot the missing points at the upper 2.5\% of the FSPR
 distribution, draw a box around those points and show a label with the
 description}
 
-\item{show_joint_prob_lines}{Logical. If \code{TRUE}, show criss-cross lines
-representing all of the joint \if{html}{\out{<B40 and FSPR40>}}1 posteriors}
+\item{show_joint_prob_points}{Logical. If \code{TRUE}, show jittered points
+near the X and Y points and a scatterplot in the upper left corner showing
+where the joint probabilities are \code{TRUE}}
+
+\item{joint_point_color}{If \code{show_joint_prob_points} is \code{TRUE}, this is
+the color of those points}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

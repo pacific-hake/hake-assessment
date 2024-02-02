@@ -7,6 +7,7 @@
 #' @param end_yr The maximum year in the plot
 #' @param x_lim Vector of two values for minimum and maximum x-axis values
 #' @param y_lim Vector of two values for minimum and maximum y-axis values
+#' @param biomass_scale Amount to divide biomass by so the axis has small nums
 #' @param init_lbl_x_off Initial year label x offset in units of axis
 #' @param init_lbl_y_off Initial year label y offset in units of axis
 #' @param final_lbl_x_off Final year label x offset in units of axis
@@ -21,6 +22,8 @@
 #' @param show_joint_prob_points Logical. If `TRUE`, show jittered points
 #' near the X and Y points and a scatterplot in the upper left corner showing
 #' where the joint probabilities are `TRUE`
+#' @param joint_point_color If `show_joint_prob_points` is `TRUE`, this is
+#' the color of those points
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -29,6 +32,7 @@ plot_phase <- function(model,
                        end_yr,
                        x_lim = c(0, 1.5),
                        y_lim = c(0, 1.2),
+                       biomass_scale = 1e6,
                        init_lbl_x_off = 0,
                        init_lbl_y_off = 0,
                        final_lbl_x_off = 0,
@@ -38,7 +42,8 @@ plot_phase <- function(model,
                        title_y_font_size = axis_title_font_size,
                        detail_b40_outliers = FALSE,
                        detail_fspr_outliers = FALSE,
-                       show_joint_prob_points = FALSE){
+                       show_joint_prob_points = FALSE,
+                       joint_point_color = "purple"){
 
   yrs <- start_yr:end_yr
 
@@ -87,9 +92,9 @@ plot_phase <- function(model,
                       yend = pupper_final)
 
   # Points outside credible intervals for final year ----
-  ssb <- get_post_cols(model$mcmc, "SSB", 1e6) |>
+  ssb <- get_post_cols(model$mcmc, "SSB", biomass_scale) |>
     select(as.character(end_yr))
-  ssbo <- get_post_cols(model$mcmc, "SSB_Initial", 1e6, exact = TRUE)
+  ssbo <- get_post_cols(model$mcmc, "SSB_Initial", biomass_scale, exact = TRUE)
   depl_df <- ssb |>
     bind_cols(ssbo) |>
     rename(biomass = as.character(end_yr),
@@ -177,6 +182,8 @@ plot_phase <- function(model,
                           ~~(1-SPR[t-1])/(1-SPR['40%'])))) +
     theme(axis.title.y = element_text(size = title_y_font_size))
 
+  shade_top_left <- !(detail_b40_outliers && detail_fspr_outliers)
+
   if(detail_b40_outliers){
 
     label_y_offset <- 0.1
@@ -203,7 +210,12 @@ plot_phase <- function(model,
                     ymax = pmed + 0.05),
                 color = "black",
                 fill = "transparent") +
-      geom_rect(aes(xmin = 0, xmax = 0.4, ymin = 0, ymax = Inf),
+      geom_rect(aes(xmin = 0,
+                    xmax = 0.4,
+                    ymin = 0,
+                    ymax = ifelse(shade_top_left,
+                                  Inf,
+                                  1)),
                 fill = "grey20",
                 alpha = 0.005) +
       geom_segment(aes(x = dlower_final,
@@ -254,7 +266,9 @@ plot_phase <- function(model,
                     ymax = max_fspr),
                 color = "black",
                 fill = "transparent") +
-      geom_rect(aes(xmin = x_lim[1],
+      geom_rect(aes(xmin = ifelse(shade_top_left,
+                                  x_lim[1],
+                                  0.4),
                     xmax = x_lim[2],
                     ymin = 1,
                     ymax = y_lim[2]),
@@ -274,17 +288,17 @@ plot_phase <- function(model,
                  inherit.aes = FALSE)
   }
 
-  if(detail_b40_outliers && detail_fspr_outliers){
-    g <- g +
-      geom_rect(aes(xmin = x_lim[1],
-                    xmax = 0.4,
-                    ymin = 1,
-                    ymax = y_lim[2]),
-                fill = "white")
-  }
+  # if(detail_b40_outliers && detail_fspr_outliers){
+  #   g <- g +
+  #     geom_rect(aes(xmin = x_lim[1],
+  #                   xmax = 0.4,
+  #                   ymin = 1,
+  #                   ymax = y_lim[2]),
+  #               fill = "white")
+  # }
 
   if(show_joint_prob_points){
-    # plot joint probability lines from posterior points
+    # Plot joint probability points
 
     # Find posterior points both under B40 and over FSPR40=1
     wch_depl_lowest <- which(depl <= 0.4)
@@ -306,19 +320,23 @@ plot_phase <- function(model,
       mutate(wch_joint_spr_df$pmed)
     names(both) <- c("dmed", "pmed")
 
+    # Points that remain and are NOT jointly probable
+    #spr_hi_not_joint_df <- anti_join(spr_highest_df, wch_joint_spr_df)
+    #depl_lo_not_joint_df <- anti_join(depl_lowest_df, wch_joint_depl_df)
+
     g <- g +
       geom_point(data = wch_joint_depl_df,
                  aes(x = dmed,
                      y = pmed + 0.02),
-                 color = "purple") +
+                 color = joint_point_color) +
       geom_point(data = wch_joint_spr_df,
-                 aes(x = dmed - 0.01,
+                 aes(x = dmed - 0.02,
                      y = pmed),
-                 color = "purple") +
+                 color = joint_point_color) +
       geom_point(data = both,
                  aes(x = dmed,
                      y = pmed),
-                 color = "purple")
+                 color = joint_point_color)
   }
   g
 }
