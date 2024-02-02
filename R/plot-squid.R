@@ -10,14 +10,19 @@
 #' @param ci_yrs A vector of years to include credible intervals for.
 #' If `NULL`, all will be shown. Only used if `show_ci` is `TRUE`
 #' @param year_label_font_size Size of the font for the year labels
-#'
+#' @param y_lim A vector to specify y limits, default is to span what is being
+#'   plotted. If `full` then automatically span all the
+#'   credible intervals even when not showing them all (useful
+#'   for showing sequential plots in a talk). Not tested with `relative = TRUE`
+#'   and `show_ci = TRUE` as we do not currently use those.
 #' @export
 plot_squid <- function(model,
                        relative = FALSE,
                        show_ci = FALSE,
                        ci_alpha = 0.2,
                        ci_yrs = NULL,
-                       year_label_font_size = 4){
+                       year_label_font_size = 4,
+                       y_lim = c(NA, NA)){
 
   # Create a list of models, with the core model being first, followed by
   # all the retrospectives located inside it
@@ -85,6 +90,14 @@ plot_squid <- function(model,
             cols
         })
       })
+  }
+
+  # Make y_lim cover full range of intervals even when showing only some intervals
+  if(length(y_lim) == 1){
+    if(y_lim == "full"){
+      y_lim <- c(min(d$devlower),
+                 max(d$devupper))
+    }
   }
 
   g <- ggplot(d,
@@ -157,7 +170,8 @@ plot_squid <- function(model,
                     direction = "both") +
     scale_x_continuous(breaks = c(seq_along(cohorts),
                                   length(cohorts) + 1) - 1) +
-    scale_y_continuous(breaks = seq(-10, 10)) +
+    scale_y_continuous(breaks = seq(-10, 10),
+                       limits = y_lim) +
     scale_color_identity() +
     xlab("Age") +
     ylab(ifelse(relative,

@@ -110,12 +110,17 @@ plot_recruitment(d_obj = d_obj_sens_recr[[3]],
         legend.text = element_text(size = 10))
 ```
 
+```{r retro-fix-axis, echo=FALSE}
+y_lim_squid <- c(-3.6, 4.2)    # Fix across plots.
+```
+
 ## Base model retrospective -- squid plot
 ```{r retro-3a, fig.height = 3, out.height = "85%"}
 
 plot_squid(base_model,
            show_ci = TRUE,
-           ci_yrs = 2013) +
+           ci_yrs = 2013,
+           y_lim = y_lim_squid) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12))
 ```
@@ -125,7 +130,8 @@ plot_squid(base_model,
 
 plot_squid(base_model,
            show_ci = TRUE,
-           ci_yrs = 2014) +
+           ci_yrs = 2014,
+           y_lim = y_lim_squid) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12))
 ```
@@ -135,7 +141,8 @@ plot_squid(base_model,
 
 plot_squid(base_model,
            show_ci = TRUE,
-           ci_yrs = c(2014, 2016)) +
+           ci_yrs = 2016,
+           y_lim = y_lim_squid) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12))
 ```
@@ -145,7 +152,8 @@ plot_squid(base_model,
 
 plot_squid(base_model,
            show_ci = TRUE,
-           ci_yrs = 2020) +
+           ci_yrs = 2020,
+           y_lim = y_lim_squid) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12))
 ```
@@ -155,7 +163,8 @@ plot_squid(base_model,
 
 plot_squid(base_model,
            show_ci = TRUE,
-           ci_yrs = 2021) +
+           ci_yrs = c(2020,2021),
+           y_lim = y_lim_squid) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12))
 ```
