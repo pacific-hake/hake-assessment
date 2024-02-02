@@ -62,7 +62,7 @@ run_ct_levels_spr_100 <- function(
 
       shell_command <- paste0("cd ", pth, " && ",
                               ss_exe, " -mceval")
-      system_(shell_command, wait = TRUE, intern = !show_ss_output)
+      system_(shell_command, wait = TRUE, intern = TRUE)
       out <- read.table(dest_derposts_fullpath_fn, header = TRUE) |>
         as_tibble()
       spr_yr_label <- paste0("SPRratio_", forecast_yrs[i])
@@ -88,7 +88,7 @@ run_ct_levels_spr_100 <- function(
                      "Yes\n",
                      "No\n"))
 
-      if(abs(spr - 1) < ct_levels_spr_tol |
+      if(abs(spr - 1) < ct_levels_spr_tol ||
          abs(upper - lower) < ct_levels_catch_tol){
         # Sometimes, upper and lower can end up close to equal,
         #  but the tolerance is still not met. In this case, assume
