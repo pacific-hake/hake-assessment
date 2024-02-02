@@ -1,22 +1,19 @@
-# Weight-at-age
-## Weight-at-age data
+# Weight/fecundity at age
+## Summary of weight- and fecundity-at-age data
+* Fixed inputs to Stock Synthesis.
+* Fecundity at age is maturity-at-age $*$ weight-at-age data.
 * Pre-1975 U.S.~weight-at-age data are not included because they were
 collected from the Puget Sound.
-* Historical fecundity uses mean weight-at-age data from all years.
-* Future fecundity uses mean weight-at-age data from most recent five years.
-
-## Weight-at-age by year
-```{r wt-at-age, fig.height = 4, out.height = "85%"}
-
-plot_weight_at_age(wt_at_age,
-                   ages = 2:10,
-                   bold_ages = 5,
-                   cols = c("purple",
-                            "darkblue",
-                            "yellow",
-                            "darkgreen"),
-                   max.overlaps = 15)
-```
+* Ovary sampling occurs in
+U.S. at-sea sectors by at-sea observers,
+acoustic survey, and
+U.S. West Coast Groundfish Bottom Trawl Survey.
+* Survey-based ovary sampling is length stratified with target numbers for 2~cm
+length bins.
+* 2023 ovaries have yet to be analyzed and 21 samples from Canadian acoustic-survey vessels also are not yet analyzed.
+* Historical weight and fecundity are age-specific means from all years.
+* Future weight and fecundity are age-specific manes from most recent five
+years.
 
 ## Sample sizes of weight-at-age by year
 ```{r main-weight-at-age-numbers, fig.height = 4, out.height = "85%"}
@@ -36,4 +33,67 @@ plot_heatmap_sample_size_weight_at_age(
   theme(axis.text.x = element_text(size = 8),
         axis.text.y = element_text(size = 6))
 ```
+## Sample sizes of ovaries by year
+```{r ovary-table, results = "asis"}
 
+table_ovary_samples(
+  ovary_samples_df,
+  font_size = 7,
+  header_font_size = 6)
+```
+
+## Weight-at-age data by year
+```{r wt-at-age, fig.height = 4, out.height = "85%"}
+
+plot_weight_at_age(wt_at_age,
+                   ages = 2:10,
+                   bold_ages = 5,
+                   cols = c("purple",
+                            "darkblue",
+                            "yellow",
+                            "darkgreen"),
+                   max.overlaps = 15)
+```
+
+## Maturity at age by year
+```{r maturity-ogive-figure, fig.height = 4, out.height = "85%"}
+
+plot_maturity_ogives(eq_x_start_legend = 10,
+                     eq_y_start_legend = -0.1,
+                     eq_fore_alpha = 0.7,
+                     eq_fore_line_width = 1,
+                     leg_line_size_cm = 0.5,
+                     leg_font_size = 10)
+```
+
+## Fecundity at age by year
+```{r fecundity-figure, fig.height = 4, out.height = "85%"}
+
+plot_heatmap_weight_at_age(
+  base_model,
+  fleet = -2,
+  cell_font_size = 3,
+  sample_size_df = weight_age_sample_sizes_df,
+  pre_yrs = start_yr_age_comps:base_model$endyr,
+  pre_func = mean,
+  post_yrs = (base_model$endyr - 4):base_model$endyr,
+  post_func = mean,
+  cols = c("red",
+           "yellow",
+           "green",
+           "dodgerblue")) +
+  theme(axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 6))
+```
+
+## Fecundity needs
+
+* We need a better understanding of the following:
+  - Batch spawning.
+  - Links between fecundity and size, age, and weight.
+  - How the above topics provide further information about factors that
+influence varying reproductive output.
+* More winter acoustic surveys may provide further information about these
+questions.
+* Potential to sample from U.S. shore-based vessels using dock-side sampling
+or at-sea observers on shore-based vessels (n = 1) that lack electronic monitoring.

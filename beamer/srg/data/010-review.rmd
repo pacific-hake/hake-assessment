@@ -55,10 +55,10 @@ sector, and
   - Biomass index of age 2$^+$ (t)
   - Age-2$^+$ compositions
   - Relative index of age-1 fish (numbers)
-* Weight-at-age (1975--`r end_yr - 1`)
 * Ageing imprecision and biases
   - double reads
   - blind reads
+* Weight-at-age (1975--`r end_yr - 1`)
 * Time-varying maturity ogives
 
 \esmall

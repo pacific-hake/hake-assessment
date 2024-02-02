@@ -1,0 +1,83 @@
+## Data-based vs. model-based
+
+### Data-based methods
+**Weight-at-age** -- (1) calculate the mean weight within a given age--year
+combination; (2) linearly interpolate across years within an age; and (3)
+fill in missing values from nearest age within a year. Interpolations do not
+account for sample size or cohort.
+
+**Maturity-at-age** -- has always been model based.
+
+### Model-based methods
+**Weight-at-age** -- a model with
+fixed effects for sex,
+random effects for year and cohort, and
+smoothed effect for age.
+
+**Maturity-at-age** -- a spatiotemporal model with spatially varying coefficients
+for the quadratic function of age and year effects as a quadratic function of
+temperature at 130.67~m. Results were weighted by biomass estimates from a
+spatiotemporal model fit to data from the West Coast Groundfish Bottom Trawl
+Survey.
+
+## Generalized linear mixed effects models (GLMMs)
+* Why
+  * Improved standard errors in categories (e.g., years, ages) with low or
+    missing sampling.
+  * Biological processes vary with space and time.
+  * Can assume different distributions for the data than normal.
+* Weight at age
+  * $lognormal(weight) \sim s(age) + year + cohort + sex$
+  * Cannot share location information between JTC members for a spatiotemporal
+    model and some historical samples are missing location information.
+  * Results are predicted for each sex and then averaged across female, male,
+    and unsexed (mainly Canadian samples) to create one matrix.
+* Maturity at age
+
+## Weight-at-age GLMM results
+* Females weigh more on average than males.
+* Cohort effect is larger than year effect.
+
+```{r plot-weight-at-age-by-sex, fig.height = 3}
+readRDS(fs::path("/srv/hake/other/tv", "weight-at-age-preds.rds"))
+# Make figure
+preds |>
+  dplyr::filter(year %in% c(last_data_yr - 5, last_data_yr)) |>
+  ggplot2::ggplot(ggplot2::aes(
+    x = age,
+    y = est_weight,
+    group = interaction(sex, year),
+    colour = fyear,
+    pch = sex
+  )) +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggplot2::xlab("age (years)") +
+  ggplot2::ylab("estimated mass (kg)")
+```
+
+## Weight-at-age GLMM limitations
+* Does not account for month sampled
+```{r plot-weight-at-age-month, fig.height = 2.5}
+m1[["data"]] |> 
+  dplyr::mutate(
+    Source = dplyr::case_when(
+      grepl("acoustic", source, ignore.case = TRUE) ~ "Survey",
+      grepl("CAN", source) ~ "Fishery - Canada",
+      TRUE ~ "Fishery - U.S."
+    )
+  ) |>
+  ggplot2::ggplot() +
+  ggplot2::geom_histogram(aes(y = factor(month), fill = Source), stat = "count") +
+  ggplot2::ylab("Month")
+```
+
+## Generalized linear mixed effects models (GLMMs)
+* Why
+  * Improved standard errors in categories (e.g., years, ages) with low or
+    missing sampling.
+  * Biological processes vary with space and time.
+  * Can assume different distributions for the data than normal.
+* Weight at age
+* Maturity at age
+  * 

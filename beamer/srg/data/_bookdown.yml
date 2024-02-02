@@ -6,13 +6,13 @@ rmd_files: ["000-launcher.rmd",
             "../../../doc/003-load-models.rmd",
             "../../../doc/004-load-project-variables.rmd",
             "010-review.rmd",
-            "011-catches.rmd",
-            "012-depths.rmd",
+            "../../jtc/010-catch.rmd",
+            "../../jtc/020-depths.rmd",
             "013-ages.rmd",
             "014-surveys.rmd",
             "015-weight-at-age.rmd",
-            "016-maturity-and-fecundity.rmd",
-            "017-summary.rmd",
+            "016-spatiotemporal-models.rmd",
+            "../../jtc/079-unused.rmd",
             "../../../doc/999-blank.rmd"]
 # `delete_merged_file`: If true, the hake.Rmd file which was created by
 # bookdown during the build will be kept after the hake.pdf file is created

@@ -127,7 +127,7 @@ knitr::opts_chunk$set(
   fig.pos = yaml_proj_vars$fig_pos,
   fig.height = yaml_proj_vars$fig_height,
   fig.width = yaml_proj_vars$fig_width,
-  out.height = "\\textheight",
+  out.height = "85%",
   out.width = "\\textwidth")
 
 fig_dir <- file.path(getwd(), "knitr-figs")

@@ -1,0 +1,21 @@
+```{r read-survey-age-data}
+survey_weight_at_age <- utils::read.csv("survey-weight-at-age.csv")
+survey_weight_at_age |>
+  dplyr::group_by(Year, Age_yrs) |>
+  dplyr::filter(!is.na(Age_yrs), Age_yrs != 0) |>
+  dplyr::mutate(
+    Age_yrs = ifelse(Age_yrs > 15, 15, Age_yrs)
+  ) |>
+  dplyr::count() |>
+  dplyr::group_by(Year) |>
+  dplyr::mutate(
+    num_ages = sum(n, na.rm = TRUE)
+  ) |>
+  dplyr::arrange(Age_yrs) |>
+  tidyr::pivot_wider(
+    id_cols = c("Year", "num_ages"),
+    values_from = n,
+    names_from = Age_yrs
+  ) |> 
+  dplyr::arrange(Year) |> as.data.frame()
+```
