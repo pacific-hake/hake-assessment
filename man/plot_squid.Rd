@@ -10,7 +10,8 @@ plot_squid(
   show_ci = FALSE,
   ci_alpha = 0.2,
   ci_yrs = NULL,
-  year_label_font_size = 4
+  year_label_font_size = 4,
+  y_lim = c(NA, NA)
 )
 }
 \arguments{
@@ -29,6 +30,12 @@ ribbon fill}
 If \code{NULL}, all will be shown. Only used if \code{show_ci} is \code{TRUE}}
 
 \item{year_label_font_size}{Size of the font for the year labels}
+
+\item{y_lim}{A vector to specify y limits, default is to span what is being
+plotted. If \code{full} then automatically span all the
+credible intervals even when not showing them all (useful
+for showing sequential plots in a talk). Not tested with \code{relative = TRUE}
+and \code{show_ci = TRUE} as we do not currently use those.}
 }
 \description{
 Make the retrospective recruitment deviations plot (squid plot)
