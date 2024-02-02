@@ -111,14 +111,55 @@ plot_recruitment(d_obj = d_obj_sens_recr[[3]],
 ```
 
 ## Base model retrospective -- squid plot
-```{r retro-3, fig.height = 3, out.height = "85%"}
+```{r retro-3a, fig.height = 3, out.height = "85%"}
 
 plot_squid(base_model,
            show_ci = TRUE,
-           ci_yrs = 2012:2015) +
+           ci_yrs = 2013) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12))
 ```
+
+## Base model retrospective -- squid plot
+```{r retro-3b, fig.height = 3, out.height = "85%"}
+
+plot_squid(base_model,
+           show_ci = TRUE,
+           ci_yrs = 2014) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12))
+```
+
+## Base model retrospective -- squid plot
+```{r retro-3c, fig.height = 3, out.height = "85%"}
+
+plot_squid(base_model,
+           show_ci = TRUE,
+           ci_yrs = c(2014, 2016)) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12))
+```
+
+## Base model retrospective -- squid plot
+```{r retro-3d, fig.height = 3, out.height = "85%"}
+
+plot_squid(base_model,
+           show_ci = TRUE,
+           ci_yrs = 2020) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12))
+```
+
+## Base model retrospective -- squid plot
+```{r retro-3e, fig.height = 3, out.height = "85%"}
+
+plot_squid(base_model,
+           show_ci = TRUE,
+           ci_yrs = 2021) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12))
+```
+
 
 ## Historical assessments (retrospective)
 ```{r retro-4, fig.height = 3, out.height = "85%"}
@@ -133,4 +174,3 @@ plot_assessment_history_biomass(base_model,
         legend.key.size = unit(0.1, units = "cm"),
         legend.text = element_text(size = 6))
 ```
-

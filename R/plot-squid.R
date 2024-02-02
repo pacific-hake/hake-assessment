@@ -157,7 +157,7 @@ plot_squid <- function(model,
                     direction = "both") +
     scale_x_continuous(breaks = c(seq_along(cohorts),
                                   length(cohorts) + 1) - 1) +
-    scale_y_continuous(breaks = seq(-3, 3)) +
+    scale_y_continuous(breaks = seq(-10, 10)) +
     scale_color_identity() +
     xlab("Age") +
     ylab(ifelse(relative,
