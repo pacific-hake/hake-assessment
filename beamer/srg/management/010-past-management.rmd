@@ -185,7 +185,7 @@ plot_phase(base_model,
            cross_line_color = "black",
            detail_b40_outliers = TRUE,
            detail_fspr_outliers = TRUE,
-           show_joint_prob_lines = TRUE)
+           show_joint_prob_points = TRUE)
 ```
 :::
 ::::::

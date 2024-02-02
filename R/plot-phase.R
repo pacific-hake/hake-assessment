@@ -18,8 +18,9 @@
 #' FSPR = 1, plot the missing points at the upper 2.5% of the FSPR
 #' distribution, draw a box around those points and show a label with the
 #' description
-#' @param show_joint_prob_lines Logical. If `TRUE`, show criss-cross lines
-#' representing all of the joint <B40 and FSPR40>1 posteriors
+#' @param show_joint_prob_points Logical. If `TRUE`, show jittered points
+#' near the X and Y points and a scatterplot in the upper left corner showing
+#' where the joint probabilities are `TRUE`
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -37,7 +38,7 @@ plot_phase <- function(model,
                        title_y_font_size = axis_title_font_size,
                        detail_b40_outliers = FALSE,
                        detail_fspr_outliers = FALSE,
-                       show_joint_prob_lines = FALSE){
+                       show_joint_prob_points = FALSE){
 
   yrs <- start_yr:end_yr
 
@@ -282,7 +283,7 @@ plot_phase <- function(model,
                 fill = "white")
   }
 
-  if(show_joint_prob_lines){
+  if(show_joint_prob_points){
     # plot joint probability lines from posterior points
 
     # Find posterior points both under B40 and over FSPR40=1
@@ -294,27 +295,30 @@ plot_phase <- function(model,
       select(depl) |>
       rename(dmed = depl) |>
       mutate(pmed = rep(pmed_final, length(wch_joint)))
-      #mutate(y_upper = y_lim[2])
+
     wch_joint_spr_df <- spr_df |>
       slice(wch_joint) |>
       rename(pmed = 1) |>
       mutate(dmed = rep(dmed_final, length(wch_joint)))
 
+    both <- wch_joint_depl_df |>
+      select(dmed) |>
+      mutate(wch_joint_spr_df$pmed)
+    names(both) <- c("dmed", "pmed")
+
     g <- g +
-      geom_segment(data = wch_joint_depl_df,
-                aes(x = dmed,
-                    xend = dmed,
-                    y = pmed,
-                    yend = y_lim[2]),
-                color = "red",
-                size = 0.05) +
-      geom_segment(data = wch_joint_spr_df,
-                   aes(x = dmed,
-                       xend = x_lim[1],
-                       y = pmed,
-                       yend = pmed),
-                   color = "red",
-                   size = 0.05)
+      geom_point(data = wch_joint_depl_df,
+                 aes(x = dmed,
+                     y = pmed + 0.02),
+                 color = "purple") +
+      geom_point(data = wch_joint_spr_df,
+                 aes(x = dmed - 0.01,
+                     y = pmed),
+                 color = "purple") +
+      geom_point(data = both,
+                 aes(x = dmed,
+                     y = pmed),
+                 color = "purple")
   }
   g
 }
