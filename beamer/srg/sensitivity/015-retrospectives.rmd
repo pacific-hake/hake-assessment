@@ -96,8 +96,8 @@ plot_biomass(d_obj = retros_biomass_incremental[[5]],
 ```
 
 ## Base model retrospectives -- recruitment
-```{r retro-recr, fig.height = 3, out.height = "85%"}
-plot_recruitment(d_obj = d_obj_sens_recr[[3]],
+```{r retro-recr-1, fig.height = 3, out.height = "85%"}
+plot_recruitment(d_obj = base_model$retrospectives$recr_df  ,
                  tick_prop = 1.5,
                  vjust_x_labels = 0,
                  leg_font_size = 5,
@@ -109,6 +109,24 @@ plot_recruitment(d_obj = d_obj_sens_recr[[3]],
         legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```
+
+## Base model retrospectives -- recruitment
+```{r retro-recr-2, fig.height = 3, out.height = "85%"}
+plot_recruitment(d_obj = base_model$retrospectives$recr_df  ,
+                 tick_prop = 1.5,
+                 vjust_x_labels = 0,
+                 leg_font_size = 5,
+                 leg_pos = c(0.13, 0.85),
+                 inc_means = FALSE,
+                 rev_colors = TRUE,
+                 xlim = c(2007, 2024),
+                 x_expansion = 1) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
 
 ```{r retro-fix-axis, echo=FALSE}
 y_lim_squid <- c(-3.6, 4.2)    # Fix across plots.
