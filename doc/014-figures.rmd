@@ -1661,11 +1661,9 @@ unprocessed floats' -->
 
 p <- list()
 p[[1]] <-
-  plot_assessment_history_disp(base_model,
-                               assess_history_disp_df)
+  plot_assessment_history_disp(base_model)
 p[[2]] <-
   plot_assessment_history_disp(base_model,
-                               assess_history_disp_df,
                                type = "coeff",
                                y_lim = c(0, 0.6))
 plot_grid(plotlist = p, nrow = 1)

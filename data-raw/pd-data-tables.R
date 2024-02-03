@@ -16,13 +16,6 @@ create_data_hake("assess_history_probs_df",
                           comment = "#",
                           show_col_types = FALSE))
 
-create_data_hake("assess_history_disp_df",
-                 read_csv(file.path(load_dir,
-                                    "assessment-history-dispersion.csv"),
-                          col_types = cols(),
-                          comment = "#",
-                          show_col_types = FALSE))
-
 create_data_hake("assess_changes_df",
                  read_csv(file.path(load_dir,
                                     "assessment-changes.csv"),
