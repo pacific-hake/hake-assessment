@@ -1,6 +1,22 @@
 # Historical
 
-## Historical performance of the Pacific Hake stock assessment
+
+## Historical assessments
+```{r historical-assessments, fig.height = 3, out.height = "85%"}
+
+plot_assessment_history_biomass(base_model,
+                                assess_history_df,
+                                tick_prop = 1.5,
+                                vjust_x_labels = -1,
+                                leg_pos = c(0.75, 0.7)) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.1, units = "cm"),
+        legend.text = element_text(size = 6))
+```
+
+
+## Historical performance of the Pacific Hake assessment
 
 * General question -- how 'good' are projection probabilities? And why do
   they seem to change over time?
@@ -20,7 +36,7 @@ kbl(d,
     booktabs = TRUE,
     escape = FALSE,
     col.names = hdr) |>
-  row_spec(0, bold = TRUE) |> 
+  row_spec(0, bold = TRUE) |>
   kable_styling(position = "center")
 ```
 
@@ -33,11 +49,35 @@ kbl(d,
   current base model?
 
 ## Probabilities of decline in subsequent year
+```{r historical-performance-1, fig.height = 3.5, out.height = "85%"}
 
-* Previous assessments have 'correctly' projected an increase or decrease
-  in subsequent year (except 2018 and 2021)
+plot_historical_probs(base_model,
+                      type="decline_one_year")
+```
+
+## Probabilities of decline in subsequent year
+```{r historical-performance-2, fig.height = 3.5, out.height = "85%"}
+
+plot_historical_probs(base_model,
+                      legend.inset = c(0.15, 0),
+                      legend.cex = 0.8)
+```
+
+## Probabilities of decline in subsequent year
+```{r historical-performance-3, fig.height = 3.5, out.height = "85%"}
+
+plot_historical_probs(base_model,
+                      add.projs = TRUE,
+                      legend.inset = c(0.15, 0),
+                      legend.cex = 0.8)
+```
+
+
+## Probabilities of decline in subsequent year
+
+* Previous assessments have mostly 'correctly' projected an increase or decrease
+  in subsequent year (exceptions: 2017, 2019, 2022, and 2023)
 * An assessment's projection is almost always less definitive than from
   the current base model, since current model has more information
 * Analysis gives confidence in the current expectation of the stock
-  declining next year
-  
+  not declining next year

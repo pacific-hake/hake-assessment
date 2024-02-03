@@ -34,7 +34,7 @@ plot_historical_probs(
 \code{assessment-history-probs.csv}}
 
 \item{type}{"decline" to show probs of spawning biomass declining in year
-after historical assessment year, "decline.one.year" to show that for just
+after historical assessment year, "decline_one_year" to show that for just
 one year (to explain in a talk), "bforty" to show prob of being below
 \verb{B_40\\\\\%} in the year after the historical assessment year}
 

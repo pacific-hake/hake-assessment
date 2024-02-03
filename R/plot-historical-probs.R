@@ -12,7 +12,7 @@
 #' @param hist_probs A data frame containing the data found in
 #' `assessment-history-probs.csv`
 #' @param type "decline" to show probs of spawning biomass declining in year
-#' after historical assessment year, "decline.one.year" to show that for just
+#' after historical assessment year, "decline_one_year" to show that for just
 #' one year (to explain in a talk), "bforty" to show prob of being below
 #' `B_40\\%` in the year after the historical assessment year
 #' @param end final year for calculations
@@ -168,7 +168,7 @@ plot_historical_probs <- function(
       }
     }
 
-    if(type == "decline.one.year"){
+    if(type == "decline_one_year"){
       plot(res$year,
            res$P_decline,
            xlim = xLim,

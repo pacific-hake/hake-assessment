@@ -186,18 +186,3 @@ plot_squid(base_model,
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12))
 ```
-
-
-## Historical assessments (retrospective)
-```{r retro-4, fig.height = 3, out.height = "85%"}
-
-plot_assessment_history_biomass(base_model,
-                                assess_history_df,
-                                tick_prop = 1.5,
-                                vjust_x_labels = -1,
-                                leg_pos = c(0.75, 0.7)) +
-  theme(axis.title.x = element_text(size = 12),
-        axis.title.y = element_text(size = 12),
-        legend.key.size = unit(0.1, units = "cm"),
-        legend.text = element_text(size = 6))
-```
