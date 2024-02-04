@@ -20,28 +20,43 @@ temperature at 130.67~m. Results were weighted by biomass estimates from a
 spatiotemporal model fit to data from the West Coast Groundfish Bottom Trawl
 Survey.
 
+# GLMMs
 ## Generalized linear mixed effects models (GLMMs)
-* Why
-  * Improved standard errors in categories (e.g., years, ages) with low or
-    missing sampling.
-  * Biological processes vary with space and time.
-  * Can assume different distributions for the data than normal.
-* Weight at age
-  * $lognormal(weight) \sim s(age) + year + cohort + sex$
-  * Cannot share location information between JTC members for a spatiotemporal
-    model and some historical samples are missing location information.
-  * Results are predicted for each sex and then averaged across female, male,
-    and unsexed (mainly Canadian samples) to create one matrix.
-* Maturity at age
+* Biological processes vary with space and time.
+* GLMMs allow for distributions other than normal.
+* GLMMs are more efficient than GLMs because random effects allows for
+  estimating a fewer number of parameters.
+* Random effects evaluate the difference between the average response in a
+  group and the average response in the population.
+* GLMMs allow for improved estimates of standard errors in categories (e.g.,
+  years, ages) with low or missing sampling than GLMs.
 
-## Weight-at-age GLMM results
+## Weight-at-age GLMM
+### Data
+  * Mass of individual fish from fishery-independent and -dependent data
+    sources since 1975.
+  * Removed samples from the acoustic survey with a mass of 0.001 given the
+    limitations of the measuring device (Alicia Billings).
+  * Assumed Poland Acoustic Survey samples were from August given literature.
+  * Contacted database authors about four potential outliers.
+
+### Model
+* $weight \sim sex + s(age) + (1|year) + (1|cohort) + lognormal(0, \mu)$
+* No spatial effects because we cannot share sample location information
+  between JTC members and some samples do not have associated locations.
+* Mean of sex-specific predictions to create one matrix of weight at age.
+
+## Weight-at-age GLMM
+### Results
 * Females weigh more on average than males.
 * Cohort effect is larger than year effect.
+* Removing the effect of sex increases the year-to-year variance and decreases
+  the global mean.
 
 ```{r plot-weight-at-age-by-sex, fig.height = 3}
-readRDS(fs::path("/srv/hake/other/tv", "weight-at-age-preds.rds"))
+wtaa_preds <- readRDS(fs::path("/srv/hake/other/tv", "weight-at-age-preds.rds"))
 # Make figure
-preds |>
+wtaa_preds |>
   dplyr::filter(year %in% c(last_data_yr - 5, last_data_yr)) |>
   ggplot2::ggplot(ggplot2::aes(
     x = age,
@@ -56,10 +71,15 @@ preds |>
   ggplot2::ylab("estimated mass (kg)")
 ```
 
-## Weight-at-age GLMM limitations
-* Does not account for month sampled
+## Weight-at-age GLMM
+### Limitations
+* Does not account for sampling platform.
+* Does not account for month sampled.
 ```{r plot-weight-at-age-month, fig.height = 2.5}
-m1[["data"]] |> 
+wtaa_model <- readRDS(
+  fs::path("", "srv", "hake", "other", "tv", "weight-at-age-model.rds")
+)
+wtaa_model[["data"]] |>
   dplyr::mutate(
     Source = dplyr::case_when(
       grepl("acoustic", source, ignore.case = TRUE) ~ "Survey",
@@ -72,12 +92,98 @@ m1[["data"]] |>
   ggplot2::ylab("Month")
 ```
 
-## Generalized linear mixed effects models (GLMMs)
-* Why
-  * Improved standard errors in categories (e.g., years, ages) with low or
-    missing sampling.
-  * Biological processes vary with space and time.
-  * Can assume different distributions for the data than normal.
-* Weight at age
-* Maturity at age
-  * 
+## Maturity-at-age GLMM
+### Definitions
+* Histological sampling: taking cross sectional samples of the gonads
+  immediately after being caught for later viewing under a microscope.
+* Macroscopic sampling: taking samples of the gonads to assess maturity status
+  without using a microscope.
+* Biological maturity: physiological evidence of progressing towards a mature
+  state.
+* Functional maturity: physical evidence of spawning.
+* Atresia: degeneration of ovarian follicles.
+* Senescence: deterioration with age.
+* Skipped spawning: ability to spawn but lack thereof.
+
+## Maturity-at-age GLMM
+### Data
+* Historical estimates
+  * $\sim$ 38 cm (Dorn and Saunders 1997)
+  * 3--4 years (Best 1963; Macgregor 1996, 1971)
+  * age-based functional maturity (Head 2017)
+```{r plot-spline-ogive, fig.height = 2.5}
+plot(
+  x = seq_along(hakedataUSA::maturity_at_age) - 1,
+  hakedataUSA::maturity_at_age,
+  ylab = "P(mature)",
+  xlab = "Age (years)",
+  type = "b"
+)
+```
+* Indeterminate batch spawners with a protracted spawning season.
+* Spatial and temporal differences with younger age at 50% maturity south of
+  Point Conception (i.e., 1.45 vs. 2.56 years) and annual differences in age at
+  50% maturity north of Point Conception from 2.0--3.3.
+
+## Maturity-at-age GLMM
+### Data
+* Fit to ASHOP, acoustic survey, West Coast Groundfish Bottom Trawl Survey data
+  north of Point Conception.
+* 2,836 ovary samples since 2009 (did not include 2023).
+
+## Maturity-at-age GLMM
+```{r app-maturity-analysis-sampling-platform-age-years-fig., results = "asis"}
+figures_dir <- fs::path("../../../doc/image-files")
+include_graphics(file.path(figures_dir,
+                          "Fig_S3_samplingplatform_age_years.png"),
+                 error = FALSE)
+```
+
+## Maturity-at-age GLMM
+### Data
+* Temperature: February average from GLORYS12v1 at 130.67 m, where temperature
+  decreases with depth and warmest temperatures occur in the winter.
+* Temperature was weighted by biomass estimates from the West Coast Groundfish
+  Bottom Trawl Survey on July 1.
+
+## Maturity-at-age GLMM
+### Data
+```{r app-maturity-analysis-temp-depth-fig, results = "asis"}
+include_graphics(file.path(figures_dir,
+                           "Fig_S4_temp_by_depth.png"),
+                 error = FALSE)
+```
+
+## Maturity-at-age GLMM
+### Model
+* $P(mature) \sim temperature + temperature^2 + GMRF() + GMRF(age) + GMRF(age^2)$
+* Annual estimates of maturity at age were also weighted by the same biomass
+  estimates as temperature.
+
+## Maturity-at-age GLMM
+### Results
+* Higher age at 50% maturity in ASHOP samples compared to survey samples.
+* Spatial patterns were similar across ages.
+* Higher age at 50% maturity in moderately warm compared to colder and hot
+  years, i.e., concave relationship.
+* Temperature-based model predicted lower maturity than the model without
+  temperature in 2016.
+
+## Maturity-at-age GLMM
+### Results
+```{r app-maturity-analysis-predicted-maps-byage-fig, results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                           "Fig_S9_predicted_maps_byage.png"),
+                 error = FALSE)
+```
+
+## Maturity-at-age GLMM
+### Limitations and future research
+* Estimating the timing of spawning is difficult.
+* Estimates are of maturity but the input to Stock Synthesis is fecundity.
+* Does maturity relate to fecundity linearly with weight?
+* Getting temperature data for current year was not doable.
+* Temperature forecasts were in the wrong format but could be available in the
+  future.
+* Use cellular markers to confirm skip spawning.
