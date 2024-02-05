@@ -235,11 +235,9 @@ table_yearly_model_compare(last_yr_base_model,
 ```{r main-historical-dispersion-fig, , fig.height = 4, out.height = "80%"}
 p <- list()
 p[[1]] <-
-  plot_assessment_history_disp(base_model,
-                               assess_history_disp_df)
+  plot_assessment_history_disp(base_model)
 p[[2]] <-
   plot_assessment_history_disp(base_model,
-                               assess_history_disp_df,
                                type = "coeff",
                                y_lim = c(0, 0.6))
 plot_grid(plotlist = p, nrow = 1)
