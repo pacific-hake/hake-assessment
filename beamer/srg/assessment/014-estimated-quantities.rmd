@@ -186,7 +186,7 @@ table_above_avg_cohorts_yrs(cohorts, last_few_yrs)
 
 ## Numbers-at-age (billions)
 :::::: {.columns}
-::: {.column width="40%"}
+::: {.column width="30%"}
 * Median posterior distribution estimates
 * Red line is mean age for the year
 * Increasing trend in mean age since 2021
@@ -194,8 +194,8 @@ table_above_avg_cohorts_yrs(cohorts, last_few_yrs)
   including in 2020 and 2021
 :::
 
-::: {.column width="60%"}
-```{r main-numbers-at-age, fig.height = 4, out.height = "75%"}
+::: {.column width="70%"}
+```{r main-numbers-at-age, fig.height = 4, out.height = "80%"}
 plot_age_comp_bubbles(base_model, type = "fishery",
                       proportions = FALSE,
                       leg_pos = "top",
@@ -218,17 +218,21 @@ plot_biomass(list(base_model),
 
 ## Spawning Biomass (million t)
 
-```{r survey-pearson-test, fig.height = 4, fig.width = 6, out.height = "65%"}
-plot_pearson_bubbles(base_model,
-                     type = "survey",
-                     alpha = 0.7)
+```{r spawn-bio-last-yr-vs-curr-yr, results = "asis"}
+table_yearly_model_compare(last_yr_base_model,
+                           base_model,
+                           last_yr = last_assess_yr,
+                           curr_yr = assess_yr,
+                           digits = 3,
+                           font_size = 10)
 ```
-While the median estimate of B2022 has increased from last year's assessment, partly due
-to increases in weight-at-age, the credible interval mostly overlaps that from last
-year's assessment.
+* While the median estimate of *B*~`r assess_yr` has decreased from last
+  year's assessment, partly due to the 2023 survey biomass and time-varying
+  fecundity delaying maturity in recent years
+* The credible interval overlaps that from last year's assessment
 
 ## Uncertainty in Spawning Biomass
-```{r main-historical-dispersion-fig, fig.cap = "(ref:main-historical-dispersion-cap)"}
+```{r main-historical-dispersion-fig, , fig.height = 4, out.height = "80%"}
 p <- list()
 p[[1]] <-
   plot_assessment_history_disp(base_model,
@@ -242,7 +246,7 @@ plot_grid(plotlist = p, nrow = 1)
 ```
 
 ## Fishing Intensity
-```{r main-fish-inten, fig.height = 4, out.height = "80%"}
+```{r main-fish-inten, fig.height = 4, out.height = "70%"}
 
 plot_fishing_intensity(base_model)
 ```
