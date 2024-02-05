@@ -3,7 +3,7 @@
 :::::: {.columns}
 ::: {.column width="40%"}
 * **Prior** for natural mortality looks to be
-  influencing \textcolor{red}{median} of \textcolor{blue}{posterior}
+  influencing \textcolor{Maroon}{median} of \textcolor{blue}{posterior}
 * Posterior for steepness does not shift much from prior
 * DM for fishery has a relatively narrow posterior distribution
 * Prior for DM parameters essentially defines parameter bounds (discussed
