@@ -65,7 +65,9 @@ load_extra_mcmc_sel <- function(reps,
     ungroup()
 
   out$sel_end_yr <- ts |>
-    filter(yr == end_yr - 1) |>
+    filter(yr == ifelse(type == "survey",
+                        end_yr,
+                        end_yr - 1)) |>
     select(-yr)
 
     out
