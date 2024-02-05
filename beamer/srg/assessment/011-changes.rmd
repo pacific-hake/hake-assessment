@@ -6,11 +6,13 @@
 data from years to 2023 
 * Incrementally add 2023 catch, weight-at-age, biomass survey, survey age-composition,
 age-1 index, and fishery age-composition data
+  \pause
 * Change the error distribution associated with the age-1 index from lognormal to
 Student's t-distribution
 * Use the model-based matrix of input weight-at-age data
 * Incorporate model-based estimates and predictions of time-varying maturity ogives into
 the calculation of time-varying fecundity
+  \pause
 * All model runs in the assessment use MCMC
 
 ## Bridging: Model Updates and Additions (biomass)
@@ -60,13 +62,14 @@ p[[1]] <-
                          d_obj = d_obj_bridge_age2_index[[1]],
                          survey_type = "age2",
                          rev_colors = TRUE,
-                         leg_pos = "none")
+                         leg_pos = "none",
+                         xlim = c(1995, end_yr))
 
 p[[2]] <-
   plot_survey_index_fits(base_model,
                          d_obj = d_obj_bridge_age1_index[[1]],
                          survey_type = "age1",
-                         xlim = c(1995, 2022),
+                         xlim = c(1995, end_yr),
                          ylim = c(0, 11),
                          leg_ncol = 2,
                          leg_font_size = 5,
@@ -125,13 +128,14 @@ p[[1]] <-
                          d_obj = d_obj_bridge_age2_index[[2]],
                          survey_type = "age2",
                          rev_colors = FALSE,
-                         leg_pos = "none")
+                         leg_pos = "none",
+                         xlim = c(1995, end_yr))
 
 p[[2]] <-
   plot_survey_index_fits(base_model,
                          d_obj = d_obj_bridge_age1_index[[2]],
                          survey_type = "age1",
-                         xlim = c(1995, 2022),
+                         xlim = c(1995, end_yr),
                          ylim = c(0, 11),
                          leg_ncol = 1,
                          leg_font_size = 5,
