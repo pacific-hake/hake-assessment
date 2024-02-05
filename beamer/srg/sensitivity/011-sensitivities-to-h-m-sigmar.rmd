@@ -118,9 +118,9 @@ table_param_est(models = list(base_model,
                 end_yr = end_yr,
                 show_loglike = FALSE,
                 digits = 3,
-                font_size = 4.5,
+                font_size = 5,
                 right_cols_cm = 1.25,
-                header_font_size = 5,
+                header_font_size = 6,
                 section_line_above = FALSE,
                 section_line_below = FALSE)
 ```
@@ -173,4 +173,3 @@ plot_rel_biomass(model_lst = list(base_model,
         legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```
-

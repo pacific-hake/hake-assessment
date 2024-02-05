@@ -25,9 +25,9 @@ table_param_est(models = sens_models[[2]],
                 end_yr = end_yr,
                 show_loglike = FALSE,
                 digits = 3,
-                font_size = 4.5,
+                font_size = 5,
                 right_cols_cm = 1.25,
-                header_font_size = 5,
+                header_font_size = 6,
                 section_line_above = FALSE,
                 section_line_below = FALSE)
 ```
