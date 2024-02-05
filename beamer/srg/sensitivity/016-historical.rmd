@@ -72,7 +72,6 @@ plot_historical_probs(base_model,
                       legend.cex = 0.8)
 ```
 
-
 ## Probabilities of decline in subsequent year
 
 * Previous assessments have mostly 'correctly' projected an increase or decrease
@@ -81,3 +80,25 @@ plot_historical_probs(base_model,
   the current base model, since current model has more information
 * Analysis gives confidence in the current expectation of the stock
   not declining next year
+
+## Probabilities of being below `r b_40` in subsequent year
+```{r historical-performance-4, fig.height = 3.5, out.height = "85%"}
+
+plot_historical_probs(base_model,
+                      add.projs = TRUE,
+                      type = "bforty",
+                      # legend.inset = c(0.15, 0),
+                      legend.cex = 0.8,
+                      legend.loc = "topleft")
+```
+
+## Probabilities of being below `r b_40` in subsequent year
+
+* Previous assessments have `correctly' projected not falling below `r b_40` in
+  all years, except 2012 (due to unknown huge 2010 recruitment)
+* Caveat: that's not a particularly high bar to meet, given the stock was high
+  from 2013 onwards
+* New this assessment is the increase in current-model-calculated probabilities
+      from 2020 onwards, with 2022 and 2023 being greater than those from the previous assessments
+* Analysis gives some confidence in the current expectation of remaining
+      above `r b_40`

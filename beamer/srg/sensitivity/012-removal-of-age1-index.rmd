@@ -20,8 +20,9 @@
 
 ## Remove age-1 index
 ```{r age1-par-table, results = "asis"}
-table_param_est(models = sens_models[[2]],
-                model_nms = sens_models_names[[2]],
+table_param_est(models = list(sens_models[[2]][[1]],
+                              sens_models[[2]][[2]]),
+                model_nms = sens_models_names[[2]][1:2],
                 end_yr = end_yr,
                 show_loglike = FALSE,
                 digits = 3,
@@ -29,5 +30,10 @@ table_param_est(models = sens_models[[2]],
                 right_cols_cm = 1.25,
                 header_font_size = 6,
                 section_line_above = FALSE,
-                section_line_below = FALSE)
+                section_line_below = FALSE) |>
+  # Highlight some rows
+  row_spec(c(3, 14, 17),
+           bold = table_highlight_bold,
+           background = table_highlight_color)
+
 ```

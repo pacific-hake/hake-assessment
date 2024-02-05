@@ -1,0 +1,27 @@
+# Recruitment
+
+## Absolute Recruitment
+```{r rec-abs, fig.height = 4, out.height = "80%"}
+
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 inc_means = TRUE,
+                 leg_pos = "none",
+				 point_shape = 16) |>
+  suppressWarnings()
+```
+
+## Scaled plot to further convey recruitment variability
+```{r rec-scaled, fig.height = 4, out.height = "80%"}
+
+plot_recruitment(list(base_model),
+                 list(base_model_name),
+                 inc_means = FALSE,
+                 relative = TRUE,
+                 ylim = c(0, 1.4),
+                 y_breaks = seq(0, 1.4, by = 0.2),
+                 leg_pos = "none",
+                 color = "red",
+				 point_shape = 16) |>
+  suppressWarnings()
+```
