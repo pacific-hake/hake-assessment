@@ -8,6 +8,8 @@
     projections
   - Mean of weight-at-age from `r end_yr - 5`--`r end_yr - 1` used in
     projections
+  - Mean of maturity-at-age from `r end_yr - 5`--`r end_yr - 1` used in
+    projections
   - Recruitment from stock--recruitment relationship (with uncertain deviations)
   - Used for default HR calculations
   - Alternative future catch levels explored
@@ -17,7 +19,7 @@
   - Recruitment at estimated *R~0~* or from stock--recruitment relationship
 * Catch alternatives presented for some specific cases
 
-## Harvest-rule predicted catch for `r assess_yr`
+## Default harvest policy for `r assess_yr`
 :::::: {.columns}
 ::: {.column width="38%"}
 * Using the defined *F~SPR=40%~* harvest rate with a 40:10 adjustment, the
@@ -38,11 +40,14 @@ plot_catch_forecast_density(base_model,
 ## Three-year projections
 :::::: {.columns}
 ::: {.column width="38%"}
-* No fishing results in flat *median* relative spawning biomass from
-  `r assess_yr` to `r assess_yr + 3` then leveling off
-* 180,000 t catch shows similar biomass in `r end_yr + 1` followed by decline
-* All others shown result in immediate declines in the median
-* Uncertainty is large and increases from `r end_yr` to `r end_yr + 3`
+- No fishing results in a 1-yea increase in biomass followed by a flat
+  relative spawning biomass from `r end_yr` to `r end_yr + 2`, then a
+  very slight decline
+
+- All positive catch options result in a 1-year increase in biomass followed
+  by continuous decline through to start of 2027
+  
+- Uncertainty is large and increases from `r end_yr` to `r end_yr + 3`
 :::
 
 ::: {.column width="62%"}
