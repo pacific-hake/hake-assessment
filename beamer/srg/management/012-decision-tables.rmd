@@ -4,32 +4,34 @@
 
 * Decision table format
   - Quantiles from the posterior distribution for *Relative spawning biomass*
-    and *Fishing intensity*
-  - Tables **g** and **h** in the Executive summary
+    (Table **g**) and *Fishing intensity* (Table **h**)
+  - Look of the tables has changed but the information is the same as last year
+  
 * Catch alternatives
-  - a: `r ct_levels[[1]][[2]]` (zero catch)
-  - b, c, d, g, i, k: Constant catches of `r ct_levels[[2]][[2]]`, 
-    `r ct_levels[[3]][[2]]`, `r ct_levels[[4]][[2]]`, `r ct_levels[[7]][[2]]`,
+  - **a**: `r ct_levels[[1]][[2]]` (zero catch)
+  - **b**, **c**, **d**, **g**, **i**, **k**: Constant catches of
+    `r ct_levels[[2]][[2]]`, `r ct_levels[[3]][[2]]`,
+    `r ct_levels[[4]][[2]]`, `r ct_levels[[7]][[2]]`,
     `r ct_levels[[9]][[2]]`, and `r ct_levels[[11]][[2]]`.
-  - f: Constant catch equal to the `r ct_levels[[6]][[2]]`
-  - l: Constant catch equal to the `r ct_levels[[12]][[2]]`,
-  - e, h, j: Annual reductions of 10% from:
+  - **f**: Constant catch equal to the `r ct_levels[[6]][[2]]`
+  - **l**: Constant catch equal to the `r ct_levels[[12]][[2]]`,
+  - **e**, **h**, **j**: Annual reductions of 10% from:
         `r f(ct_levels[[5]][[1]][1])` t,
         `r f(ct_levels[[8]][[1]][1])` t, and
-        `r f(ct_levels[[10]][[1]][1])` t.
-  - m: Fishing Intensity = 100% in each year conditioned on fixed catch
+        `r f(ct_levels[[10]][[1]][1])` t
+  - **m**: Fishing Intensity = 100% in each year conditioned on fixed catch
        in previous year
-  - n: Median default Harvest Rule in each year conditioned on fixed catch
-       in previous year
-  - o: Fishing intensity giving 50% prob. that the median `r assess_yr`
-       catch equals median `r assess_yr + 1` catch
+  - **n**: Median Default Harvest Rule in each year conditioned on fixed catch
+         in previous year
+  - **o**: Fishing intensity giving 50% probability that the median
+         `r assess_yr` catch equals median `r assess_yr + 1` catch
 
 ## Relative Spawning Biomass (select rows only)
 ```{r decisions-biomass-table, results = "asis"}
 
 table_decision(base_model,
                type = "biomass",
-               rows_to_show = c("a", "b", "f", "j", "k"),
+               rows_to_show = c("a", "b", "f", "j", "l"),
                font_size = 6,
                header_font_size = 7)
 ```
