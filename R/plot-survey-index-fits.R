@@ -49,9 +49,9 @@ plot_survey_index_fits <- function(
 
   survey_type <- match.arg(survey_type)
   survey_index <- ifelse(survey_type == "age2", 2, 3)
-
+browser()
   if(is.null(d_obj)){
-    if(is.null(model_lst[1] || is.null(model_names[1]))){
+    if(is.null(model_lst[1]) || is.null(model_names[1])){
       stop("Either `d_obj` or both `model_lst` and `model_names` ",
            "must be supplied. Both are `NULL`")
     }
