@@ -101,7 +101,6 @@ plot_heatmap_sample_size_weight_at_age <- function(
   # `s_size` has the same dimensions as `wa` so the fill colors fit in
   #  properly
   s_size <- heatmap_extract_sample_size(sample_size_df,
-                                        fleet,
                                         wa)
 
   # Convert data frame to long form for `ggplot` plotting.
