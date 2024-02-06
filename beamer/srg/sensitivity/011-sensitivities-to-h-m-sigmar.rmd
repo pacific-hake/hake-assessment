@@ -1,6 +1,6 @@
 # *h*, *M*, $\sigma_r$
 
-## Sensitivity to steepness, *h*
+## Sensitivity to steepness, *h* (base has prior mean 0.777)
 ```{r h-biomass-fig, fig.height = 4, out.height = "85%"}
 
 leg_font_size <- 5
