@@ -9,7 +9,6 @@ table_param_est(
   d = NULL,
   models = NULL,
   model_nms = NULL,
-  end_yr,
   show_loglike = TRUE,
   section_row_inds = c(1, 11, 20, 21 + length(large_cohorts)),
   section_row_headers = c("Parameters", "Derived Quantities",
@@ -36,8 +35,6 @@ table_param_est(
 
 \item{model_nms}{A vector of names of the same length as the number of
 models in the models list}
-
-\item{end_yr}{The last year to include}
 
 \item{show_loglike}{Logical. If \code{TRUE} show the negative log likelihood
 values in the table}

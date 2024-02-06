@@ -410,7 +410,6 @@ table_ci_posteriors(
 table_param_est_last_year_hardcoded(
   model = list(base_model),
   model_nms = c(base_model_name, last_yr_base_model_name),
-  end_yr = end_yr,
   section_bold = TRUE,
   section_italics = TRUE,
   section_underline = TRUE,
@@ -430,7 +429,6 @@ table_param_est_last_year_hardcoded(
 # table_param_est(
 #   models = list(base_model, last_yr_base_model),
 #   model_nms = c(base_model_name, last_yr_base_model_name),
-#   end_yr = end_yr,
 #   section_bold = TRUE,
 #   section_italics = TRUE,
 #   section_underline = TRUE,
@@ -599,7 +597,6 @@ if(!all(is.na(sens_models[[1]]))){
   table_param_est(
     models = sens_models[[1]],
     model_nms = sens_models_names[[1]],
-    end_yr = end_yr,
     section_bold = TRUE,
     section_italics = TRUE,
     section_underline = TRUE,
@@ -627,7 +624,6 @@ if(!all(is.na(sens_models[[1]]))){
   table_param_est(
     models = sens_models[[2]],
     model_nms = sens_models_names[[2]],
-    end_yr = end_yr,
     section_bold = TRUE,
     section_italics = TRUE,
     section_underline = TRUE,
@@ -655,7 +651,6 @@ if(!all(is.na(sens_models[[1]]))){
   table_param_est(
     models = sens_models[[3]],
     model_nms = sens_models_names[[3]],
-    end_yr = end_yr,
     section_bold = TRUE,
     section_italics = TRUE,
     section_underline = TRUE,

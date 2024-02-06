@@ -7,7 +7,6 @@
 #' @param model A list of models which contain the MCMC output
 #' @param model_nms A vector of names of the same length as the number of
 #' models in the models list
-#' @param end_yr The last year to include
 #' @param show_loglike Logical. If `TRUE` show the negative log likelihood
 #' values in the table
 #' @param section_italics Logical. If `TRUE`, make the section header lines
@@ -41,7 +40,6 @@ table_param_est_last_year_hardcoded <- function(
     d = NULL,
     model = NULL,
     model_nms = NULL,
-    end_yr,
     show_loglike = FALSE,
     section_row_inds = c(1, 11, 20, 21 + length(large_cohorts)),
     section_row_headers = c("Parameters",
@@ -78,7 +76,6 @@ table_param_est_last_year_hardcoded <- function(
   if(is.null(d)){
     d <- get_param_est_comparison_df(model,
                                      model_nms,
-                                     end_yr = end_yr,
                                      inc_loglike = show_loglike,
                                      ...)
   }
