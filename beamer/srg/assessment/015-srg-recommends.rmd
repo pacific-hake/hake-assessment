@@ -74,7 +74,7 @@ Investigate estimating a vector of natural mortality (*M*) parameters:
 * Breakpoints at different ages -- no combination led to *M* decreasing with age as hypothesized given the diet data of predators of Pacific Hake (prior highly influential; no prior led to lower *M* for young fish)
 * Tagging studies could be used to help inform age-specific *M*
 * Diet data could be used to externally estimate *M* at age (CEATTLE model work)
-* Other modeling frameworks, such as the Woods Hole Assessment Method have more
+* Other modeling frameworks, such as the Woods Hole Assessment Model have more
   flexibility in modeling natural mortality and might also be an option
   for future explorations
 

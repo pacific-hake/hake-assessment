@@ -225,10 +225,11 @@ table_yearly_model_compare(last_yr_base_model,
                            digits = 3,
                            font_size = 10)
 ```
-* While the median estimate of *B*~`r assess_yr` has decreased from last
+* The median estimate of *B*~`r assess_yr-1` has decreased from last
   year's assessment, partly due to the 2023 survey biomass and time-varying
   fecundity delaying maturity in recent years
-* The credible interval overlaps that from last year's assessment
+* This year's *B*~`r assess_yr-1` credible interval does not include the median
+  from last year's assessment
 
 ## Uncertainty in Spawning Biomass
 ```{r main-historical-dispersion-fig, , fig.height = 4, out.height = "80%"}
@@ -240,6 +241,17 @@ p[[2]] <-
                                type = "coeff",
                                y_lim = c(0, 0.6))
 plot_grid(plotlist = p, nrow = 1)
+```
+
+## Relative Spawning Biomass
+```{r main-rel-biomass, fig.height = 4, out.height = "70%"}
+
+plot_rel_biomass(model_lst = list(base_model),
+                 model_names = list(base_model_name),
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 leg_pos = "none") |>
+  suppressWarnings()
 ```
 
 ## Fishing Intensity
