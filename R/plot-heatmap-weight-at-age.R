@@ -79,7 +79,6 @@ plot_heatmap_weight_at_age <- function(
 
   # Extract boldface mask data frame ----
   bf <- heatmap_extract_sample_size(sample_size_df,
-                                    fleet,
                                     wa,
                                     ret_mask = TRUE)
 
@@ -90,6 +89,7 @@ plot_heatmap_weight_at_age <- function(
 
   # Calculate the mean row for the bottom of the heatmap, overwrite the
   # row that is there already
+
   mean_row <- heatmap_calc_function(wa |>
                                       filter(yr %in% start_yr:end_yr),
                                     func = mean,
@@ -99,6 +99,7 @@ plot_heatmap_weight_at_age <- function(
     select(yr, everything())
   # `rows_update` matches the first element (`yr`) by default and
   #  overwrites that row with the `mean` row
+
   wa <- wa |>
     rows_update(mean_row)
 
@@ -142,29 +143,29 @@ w <- wa |>
     mutate(value_text = ifelse(yr == second_yr, "", f(value, 2)),
            rescale = ifelse(yr == second_yr, 0, rescale))
 
-  g <- ggplot(w,
-              aes(x = age,
-                  y = yr,
-                  fontface = ifelse(isbold, "bold", "plain"))) +
-    scale_y_continuous(breaks = y_breaks,
-                       labels = y_labels,
-                       expand = c(0, 0)) +
-    # `geom_raster()` is about 4 times faster than `geom_tile()`
-    geom_raster(aes(alpha = rescale,
-                    fill = value)) +
-    scale_fill_gradientn(colors = colors,
-                         guide = FALSE) +
-    geom_text(aes(label = value_text),
-              size = cell_font_size) +
-    scale_alpha(range = c(0.1, 1)) +
-    theme(legend.position = "none",
-          plot.margin = margin(12, 12, 10, 12)) +
-    geom_hline(yintercept = c(first_yr - 0.5,
-                              end_yr + 0.5),
-               color = proj_line_color,
-               size = proj_line_width) +
-    xlab("Age") +
-    ylab("Year")
-
-  g
+  # g <- ggplot(w,
+  #             aes(x = age,
+  #                 y = yr,
+  #                 fontface = ifelse(isbold, "bold", "plain"))) +
+  #   scale_y_continuous(breaks = y_breaks,
+  #                      labels = y_labels,
+  #                      expand = c(0, 0)) +
+  #   # `geom_raster()` is about 4 times faster than `geom_tile()`
+  #   geom_raster(aes(alpha = rescale,
+  #                   fill = value)) +
+  #   scale_fill_gradientn(colors = colors,
+  #                        guide = FALSE) +
+  #   geom_text(aes(label = value_text),
+  #             size = cell_font_size) +
+  #   scale_alpha(range = c(0.1, 1)) +
+  #   theme(legend.position = "none",
+  #         plot.margin = margin(12, 12, 10, 12)) +
+  #   geom_hline(yintercept = c(first_yr - 0.5,
+  #                             end_yr + 0.5),
+  #              color = proj_line_color,
+  #              size = proj_line_width) +
+  #   xlab("Age") +
+  #   ylab("Year")
+  #
+  # g
 }

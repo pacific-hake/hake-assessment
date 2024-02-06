@@ -4,11 +4,6 @@
 #' @param sample_size_df A data frame where ages are columns (and start with
 #' the letter 'a'). If the values are zero, the weight-at-age was
 #' extrapolated/interpolated. If there is a value, the weight-at-age is data
-#' @param fleet An integer value specifying which fleet you want plotted.
-#' Fleet -2 will plot fecundity information.
-#' Fleet -1 will plot population weight-at-age for the middle of the year.
-#' Fleet 0 will plot population weight-at-age for the beginning of the year.
-#' Positive values for fleet will link to a modeled fleet.
 #' @param wa A weight-at-age data frame as created by [heatmap_extract_wa()]
 #' @param ret_mask Logical. If `TRUE`, return a data frame the same
 #' dimensions as `wa` which contains only the `yr` column and `TRUE`/`FALSE`
@@ -25,24 +20,19 @@
 #' are one row containing the year and all `NA`s (a blank row for the table)
 #' and a row of the column totals, The extra column contains the row sums
 heatmap_extract_sample_size <- function(sample_size_df = NULL,
-                                        fleet = NULL,
                                         wa = NULL,
                                         ret_mask = FALSE,
                                         ...){
 
   stopifnot(!is.null(sample_size_df))
-  stopifnot(!is.null(fleet))
-  stopifnot(is.numeric(fleet))
-  stopifnot(length(fleet) == 1)
   stopifnot(!is.null(wa))
-  stopifnot(is.data.frame(wa))
+  #stopifnot(is.data.frame(wa))
 
   names(sample_size_df) <- tolower(names(sample_size_df))
   # Make age column names numeric (remove leading 'a')
   names(sample_size_df) <- gsub("^a(\\d+)$", "\\1", names(sample_size_df))
 
-  bf <- sample_size_df |>
-    filter(fleet == !!fleet) %>%
+  bf <- sample_size_df %>%
     select(yr, matches("^\\d+", .)) |>
     filter(yr > 0)
 
