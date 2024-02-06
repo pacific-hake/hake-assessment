@@ -32,6 +32,14 @@ Survey.
   years, ages) with low or missing sampling than GLMs.
 
 ## Weight-at-age GLMM
+
+### Andrea Odell -- University of California, Davis
+
+### Kristin Marshall -- Northwest Fisheries Science Center
+
+### Eric Ward -- Northwest Fisheries Science Center
+
+## Weight-at-age GLMM
 ### Data
   * Mass of individual fish from fishery-independent and -dependent data
     sources since 1975.
@@ -91,6 +99,13 @@ wtaa_model[["data"]] |>
   ggplot2::geom_histogram(aes(y = factor(month), fill = Source), stat = "count") +
   ggplot2::ylab("Month")
 ```
+
+## Maturity-at-age GLMM
+### Eric Ward -- Northwest Fisheries Science Center
+
+### Melissa Head -- Northwest Fisheries Science Center
+
+### Kristin Marshall -- Northwest Fisheries Science Center
 
 ## Maturity-at-age GLMM
 ### Definitions
