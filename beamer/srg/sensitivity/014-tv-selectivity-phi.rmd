@@ -74,14 +74,15 @@ plot_survey_index_fits(base_model,
         legend.text = element_text(size = 10))
 ```
 
-## Alternative deviations for selectivity, $\Phi$
-```{r phi-sensitivity-table, results = "asis"}
+<!-- ## Alternative deviations for selectivity, $\Phi$ -->
+```{r phi-sensitivity-table, results = "asis", eval=FALSE}
 table_param_est(models = list(base_model,
                               sens_models[[3]][[2]],
                               sens_models[[3]][[3]],
                               sens_models[[3]][[4]]),
                 model_nms = c(base_model_name,
                               sens_models_desc[[3]][1],
+                                # _desc does not include base model
                               sens_models_desc[[3]][2],
                               sens_models_desc[[3]][3]),
                 end_yr = end_yr,

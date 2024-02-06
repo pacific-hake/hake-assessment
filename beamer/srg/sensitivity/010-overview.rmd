@@ -3,12 +3,12 @@
 ## Overview
 
 1. Sensitivity models:
-  - Alternative assumptions for steepness (*h*)
-  - Alternative assumptions for natural mortality (*M*)
-  - Alternative standard deviations for recruitment ($\sigma_r$)
-  - Remove the age-1 index
-  - Downweight fishery age-composition data
-  - Alternative standard deviations for time-varying selectivity ($\Phi$)
+    - Alternative assumptions for steepness (*h*)
+    - Alternative assumptions for natural mortality (*M*)
+    - Alternative standard deviations for recruitment ($\sigma_r$)
+    - Remove the age-1 index
+    - Downweight fishery age-composition data
+    - Alternative standard deviations for time-varying selectivity ($\Phi$)
 
 2. Retrospectives `r length(retrospective_yrs)` years into the past
 
