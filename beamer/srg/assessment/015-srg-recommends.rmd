@@ -1,0 +1,102 @@
+# Response SRG
+## `r end_yr-1` SRG Assessment Recommendations
+
+We respond here to three requests that the JTC would like to get
+feedback on at the meeting.
+
+Responses to all other requests can be found in the assessment document, which include:
+
+* Reference points in the MSE
+* Conduct key sensitivities
+* CPUE distribution
+* Time-varying maturity
+* Age-1 index distribution
+* Age-1 index CVs
+* Freezer trawler sampling
+* Ageing error study
+* 2D AR selectivity  
+
+## Dynamic unfished spawning biomass
+
+**The SRG recommends that the JTC include dynamic unfished spawning biomass
+in the 2024 assessment as a comparator with the equilibrium unfished spawning
+biomass used to provide management advice. The SRG also encourages the
+continued outreach regarding the use of dynamic reference points to stakeholders
+and managers, including identifying pros and cons of using dynamic unfished
+spawning biomass.**
+
+## **Response**: Dynamic unfished spawning biomass
+:::::: {.columns}
+::: {.column width="40%"}
+* **Fished time series is the current estimates of spawning biomass**
+* \textcolor{red}{Unfished time series removes fishing mortality from modeled
+  population dynamics, thereby directly showing the influence due to fishing}
+* Assume environment (not fishing) affects recruitment deviations
+* Maintain assumptions of no density dependence in life history parameters
+:::
+
+::: {.column width="60%"}
+```{r biomass-unfished, fig.height = 4, out.height = "80%"}
+plot_biomass_fished_unfished(base_model,
+                             model_nms = c("Base model - Fished",
+                                           "Base model - Unfished"),
+                             leg_pos = c(0.6, 0.9),
+                             xlim = c(1963,
+                                      year(Sys.time())),
+                             rel = FALSE)
+```
+:::
+::::::
+
+## **Response**: Dynamic $B_0$
+```{r biomass-dynamic-B0, fig.height = 4, out.height = "80%"}
+plot_biomass_fished_unfished(base_model,
+                             model_nms = c("Base model - Static B0",
+                                           "Base model - Dynamic B0"),
+                             leg_pos = c(0.6, 0.9),
+                             ylim = c(0, 2.75),
+                             rel = TRUE)
+```
+
+## Natural mortality
+
+**The SRG recommends that the JTC explore alternative ways of estimating natural
+mortality to update the current approach in the model, which is based on methods
+from more than a decade ago, since newer methods are available. Information
+presented during the SRG meeting implies that natural mortality on age-2 Pacific
+Hake is higher than currently assumed in the assessment model and should be
+explored more fully.**
+
+## **Response**: Natural mortality
+
+Investigate estimating a vector of natural mortality (*M*) parameters:
+
+* Breakpoints at different ages -- no combination led to *M* decreasing with age as hypothesized given the diet data of predators of Pacific Hake (prior highly influential; no prior led to lower *M* for young fish)
+* Tagging studies could be used to help inform age-specific *M*
+* Diet data could be used to externally estimate *M* at age (CEATTLE model work)
+* Other modeling frameworks, such as the Woods Hole Assessment Method have more
+  flexibility in modeling natural mortality and might also be an option
+  for future explorations
+
+## Input sample size
+
+**The SRG encourages the JTC to consider methods to determine the maximum
+input sample size for the age compositions.**
+
+## **Response**: Input sample size
+
+Determining input sample sizes is important for how annual fishery and
+survey age compositions are initially weighted, which then provides the basis from
+which wholesale re-weighting of data sources (fishery or survey) is done with the
+Dirichlet-multinomial data weighting model parameters.
+ 
+* Considered alternative methods, including that of Stewart and Hamel (2014), and
+  determined that the first step is to explore the handling of survey
+  age-composition data
+* Initial effective sample sizes and data source weighting is relative to other
+  data sources in the model
+* Survey age compositions represent age structure associated with the acoustic survey
+  as viewed through an estimated selectivity curve for the acoustic-trawl sampling net
+* Selectivity for ages two and older with acoustics is theoretically at or near one
+* JTC plans to investigate whether there is a more informative way to utilize survey
+  age-composition information in the stock assessment model in the coming year

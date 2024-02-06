@@ -1,0 +1,22 @@
+# Summary
+## Summary -- Biomass
+* Assessment model continues to fit the age data particularly well
+* The median estimate of the `r end_yr` relative spawning biomass
+  is `r curr_depl_median`% but is highly uncertain (with 95%
+  interval from `r curr_depl_lower`% to `r curr_depl_upper`% )
+* The median estimate of the `r end_yr` female spawning biomass
+  is `r curr_bio_median`million t (`r curr_bio_lower` to `r curr_bio_upper` million t)
+* Recruitment in 2020 and 2021 is estimated to be above average, but both remain uncertain
+  translating to uncertain female spawning biomass in `r end_yr` (and beyond)
+
+
+## Summary -- Key Points
+* Coast-wide catch continues to declined since the time series high in 2017 (40% by 2023)
+* Catch in Canada has steadily declined since 2020 (2023 is 25% of 2020) to the lowest
+  since 2000
+* High proportion of age-2, followed by age-3 and age-7 fish in `r end_yr-1` fishery  
+* Large proportion of above average 2020 and 2021 cohort biomass entering into
+  spawning biomass in 2024 (related to increase from 2023 to 2024)
+* Shift in population trajectory from previous year's assessments due, in part, to
+  new survey biomass estimate, recognizing the rate of maturation fluctuates every
+  year, and improved recent recruitment estimates (2020 cohort) with new data 
