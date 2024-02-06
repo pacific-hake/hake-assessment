@@ -41,9 +41,9 @@ create_data_hake("maturity_samples_df",
 #     dplyr::ungroup() |>
 #     dplyr::bind_rows(
 #       readRDS(fs::path("~", "Downloads", "spline.rds")) |>
-#         dplyr::rename(age = age_bins, p_mature = Prop_mat) |>
-#         dplyr::mutate(year = 2007, model = "Spline") |>
-#         dplyr::select(-N),
+#         dplyr::filter(age > 0, age < 21) |>
+#         dplyr::rename(p_mature = Maturity) |>
+#         dplyr::mutate(year = 2007, model = "Spline"),
 #       data.frame(
 #         p_mature = hakedataUSA::maturity_at_age,
 #         year = 2007,
