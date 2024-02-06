@@ -61,7 +61,7 @@ Survey.
 * Removing the effect of sex increases the year-to-year variance and decreases
   the global mean.
 
-```{r plot-weight-at-age-by-sex, fig.height = 3}
+```{r plot-weight-at-age-by-sex, fig.height = 2.75}
 wtaa_preds <- readRDS(fs::path("/srv/hake/other/tv", "weight-at-age-preds.rds"))
 # Make figure
 wtaa_preds |>
@@ -119,6 +119,11 @@ wtaa_model[["data"]] |>
 * Atresia: degeneration of ovarian follicles.
 * Senescence: deterioration with age.
 * Skipped spawning: ability to spawn but lack thereof.
+* Batch spawning: spawning multiple batches of oocytes during the individual
+  spawning period.
+* Batch fecundity: the number of eggs produced in a single spawning batch,
+  where annual fecundity is a function of both batch fecundity and the number
+  of spawnings per year.
 
 ## Maturity-at-age GLMM
 ### Data
@@ -181,8 +186,8 @@ include_graphics(file.path(figures_dir,
 * Spatial patterns were similar across ages.
 * Higher age at 50% maturity in moderately warm compared to colder and hot
   years, i.e., concave relationship.
-* Temperature-based model predicted lower maturity than the model without
-  temperature in 2016.
+* Temperature-based model predicted lower age at 50% maturity than the model
+  without temperature in 2016.
 
 ## Maturity-at-age GLMM
 ### Results
@@ -198,7 +203,8 @@ include_graphics(file.path(figures_dir,
 * Estimating the timing of spawning is difficult.
 * Estimates are of maturity but the input to Stock Synthesis is fecundity.
 * Does maturity relate to fecundity linearly with weight?
-* Getting temperature data for current year was not doable.
+* Getting temperature data for current year was not doable (current GLORYS
+  forecasts 2--3 weeks).
 * Temperature forecasts were in the wrong format but could be available in the
   future.
 * Use cellular markers to confirm skip spawning.

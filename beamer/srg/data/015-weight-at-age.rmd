@@ -89,6 +89,7 @@ plot_heatmap_weight_at_age(
 ## Fecundity needs
 
 * We need a better understanding of the following:
+  - Batch fecundity and how it varies across space and time.
   - Batch spawning.
   - Links between fecundity and size, age, and weight.
   - How the above topics provide further information about factors that
