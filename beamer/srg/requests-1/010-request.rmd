@@ -48,7 +48,7 @@ kableExtra::kable(
 ```
 
 ## Request 1 -- "Sample sizes for M, F, and U weight-at-age data"
-```{r plot-weight-at-age-by-sex, out.height = "75%"}
+```{r plot-weight-at-age-by-sex, out.height = "85%"}
 wtaa_preds <- readRDS(fs::path("/srv/hake/other/tv", "weight-at-age-preds.rds"))
 # Make figure
 wtaa_preds |>
@@ -62,12 +62,12 @@ wtaa_preds |>
   )) +
   ggplot2::geom_line() +
   ggplot2::geom_point() +
-  ggplot2::xlab("age (years)") +
-  ggplot2::ylab("estimated mass (kg)")
+  ggplot2::xlab("Age (years)") +
+  ggplot2::ylab("Estimated mass (kg)")
 ```
 
 ## Request 1 -- "Sample sizes for M, F, and U weight-at-age data"
-```{r plot-base-v-tv-maturity-ssb}
+```{r plot-base-v-tv-maturity-ssb, out.height = "85%"}
 m_names <- c("base", "sexed weight-at-age")
 weight_at_age_model <- readRDS(
   fs::path(
