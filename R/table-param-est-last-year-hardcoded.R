@@ -95,12 +95,13 @@ table_param_est_last_year_hardcoded <- function(
   d[12, 3] <- "11,409"
   d[13, 3] <- "1,815"
   d[14, 3] <- "34.8\\%"
-  d[15, 3] <- "--"
+  d[15, 3] <- "104\\%"
   d[16, 3] <- "--"
-  d[17, 3] <- "642"
-  d[18, 3] <- "40.0\\%"
-  d[19, 3] <- "18.6\\%"
-  d[20, 3] <- "309"
+  d[17, 3] <- "--"
+  d[18, 3] <- "642"
+  d[19, 3] <- "40.0\\%"
+  d[20, 3] <- "18.6\\%"
+  d[21, 3] <- "309"
 
   # Insert header rows at the row indices where the section headers are
   walk2(section_row_inds,
