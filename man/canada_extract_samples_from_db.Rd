@@ -8,7 +8,8 @@ canada_extract_samples_from_db(
   dr = "/srv/hake/other/samples",
   ret_df = FALSE,
   overwrite = FALSE,
-  unsorted_only = FALSE
+  unsorted_only = FALSE,
+  species_code = 225
 )
 }
 \arguments{
@@ -24,6 +25,9 @@ it exists}
 \item{unsorted_only}{Only include unsorted samples. For hake in Canada,
 this needs to be \code{FALSE} or some years will show no ages at all.
 See \code{\link[gfdata:get_data]{gfdata::get_commercial_samples()}} for additional information}
+
+\item{species_code}{The DFO Groundfish database species code;
+default: 225 (hake)}
 }
 \value{
 If \code{ret_df} is \code{TRUE}, return the sample data frame. If \code{ret_df}

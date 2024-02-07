@@ -13,6 +13,8 @@
 #' @param unsorted_only Only include unsorted samples. For hake in Canada,
 #' this needs to be `FALSE` or some years will show no ages at all.
 #' See [gfdata::get_commercial_samples()] for additional information
+#' @param species_code The DFO Groundfish database species code;
+#' default: 225 (hake)
 #'
 #' @return If `ret_df` is `TRUE`, return the sample data frame. If `ret_df`
 #' is `FALSE`, return nothing, write an RDS file instead
@@ -20,7 +22,8 @@
 canada_extract_samples_from_db <- function(dr = "/srv/hake/other/samples",
                                            ret_df = FALSE,
                                            overwrite = FALSE,
-                                           unsorted_only = FALSE){
+                                           unsorted_only = FALSE,
+                                           species_code = 225){
 
   msg_start <- "Extracting the sample data from the database, please wait ..."
   msg_end <- "Done extracting the sample data from the database.\n"
@@ -37,7 +40,7 @@ canada_extract_samples_from_db <- function(dr = "/srv/hake/other/samples",
     stop("The directory `", dr, "` does not exist")
   }
 
-  fn <- file.path(d, can_sample_data_rds_fn)
+  fn <- file.path(dr, can_sample_data_rds_fn)
 
   if(overwrite || !file.exists(fn)){
     message(msg_start)
