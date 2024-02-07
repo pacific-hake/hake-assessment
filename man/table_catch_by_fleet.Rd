@@ -5,11 +5,14 @@
 \title{Create a table containing the catch-at-age for one of the 3 Canadian
 or 3 U.S. fleets}
 \usage{
-table_catch_by_fleet(flt = 1, font_size = 4)
+table_catch_by_fleet(flt = 1, country = NULL, font_size = 4)
 }
 \arguments{
 \item{flt}{The fleet index. 1 = CAN FT, 2 = CAN SS, 3 = CAN JV,
 4 = US MS, 5 = US CP, 6 = US SB}
+
+\item{country}{If \code{NULL}, use \code{flt} to make the plot. Either 1 or 2 can
+be supplied. If 1, plot Canada. If 2, plot US}
 
 \item{font_size}{The size of the font in the table cells}
 }
