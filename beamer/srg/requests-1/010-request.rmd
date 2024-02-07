@@ -6,7 +6,9 @@ Description
 
 * Point form answers
 
-```{r main-mat-at-age-fig, fig.height = 10, out.height = "85%"}
+## Maturity heatmap
+
+```{r main-mat-at-age-fig, fig.height = 6, out.height = "75%"}
 
 j <- maturity_estimates_df |>
   filter(model == "Spatial + temperature") |> 
