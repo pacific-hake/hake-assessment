@@ -46,3 +46,22 @@ kableExtra::kable(
 ) |>
   kable_styling(font_size = 4.5)
 ```
+
+## Request 1 -- "Sample sizes for M, F, and U weight-at-age data"
+```{r plot-weight-at-age-by-sex, out.height = "75%"}
+wtaa_preds <- readRDS(fs::path("/srv/hake/other/tv", "weight-at-age-preds.rds"))
+# Make figure
+wtaa_preds |>
+  dplyr::filter(year %in% c(last_data_yr - 5, last_data_yr)) |>
+  ggplot2::ggplot(ggplot2::aes(
+    x = age,
+    y = est_weight,
+    group = interaction(sex, year),
+    colour = fyear,
+    pch = sex
+  )) +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggplot2::xlab("age (years)") +
+  ggplot2::ylab("estimated mass (kg)")
+```
