@@ -176,7 +176,7 @@ include_graphics(file.path(figures_dir,
 
 ## Maturity-at-age GLMM
 ### Model
-* $P(mature) \sim temperature + temperature^2 + GMRF() + GMRF(age) + GMRF(age^2)$
+* $P(mature) \sim ASHOP~vs.~Survey + s(day~of~year) + temperature + temperature^2 + GMRF() + GMRF(age) + GMRF(age^2)$
 * Annual estimates of maturity at age were also weighted by the same biomass
   estimates as temperature.
 
