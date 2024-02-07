@@ -240,7 +240,7 @@ Distributions of the backscatter of `r sp` plotted for each acoustic survey
 since 1995 illustrate the variable spatial patterns across time of age-2$+$ fish
 (Figure~\@ref(fig:main-acoustic-age2-bs-fig)). This variability is due in
 part to changes in the composition of the age-2$+$ population because older
-`r sp` tend to migrate farther north and partialy due to environmental and/or
+`r sp` tend to migrate farther north and partially due to environmental and/or
 climatic factors. The 1998 acoustic survey is notable because it shows an
 extreme northward distribution that is thought to be related to the strong
 1997--1998 El Niño. In contrast, the distribution of `r sp` during the 2001
@@ -346,8 +346,8 @@ A separate relative age-1 index (numbers of fish) is used to fit the
 assessment model and inform recruitment. For the 2013--2021 assessments
 [@JTC2013; @JTC2021], the relative age-1 index was only explored as a
 sensitivity and not included in the base model. The relative index of age-1
-fish fit to in this assessment was estimated similarly to previous years. And,
-like the age-2$+$ index, data collected using EK~80 echosounders are scaled by
+fish fit to in this assessment was estimated similarly to previous years. like
+the age-2$+$ index, data collected using EK~80 echosounders are scaled by
 a factor of 1.06 to account for differences between the EK~60 and EK~80
 echosounders. Note that, in error, this scaling factor was not applied to the
 2021 estimate in the 2022 [@JTC2022] and 2023 [@JTC2023] assessments. The index
@@ -601,7 +601,7 @@ has been evaluated extensively in many previous assessments of `r sp`
 mortality and its prior) and is repeated here (see Section
 \@ref(sec:assessment-sensitivity-analyses)), including increasing the prior
 standard deviation and using an alternative prior distribution altogether
-based on a life history meta-analysis [@Hamel2015,@HamelCope2022]. The
+based on a life history meta-analysis [@Hamel2015, @HamelCope2022]. The
 Hamel-Cope prior used a lognormal prior distribution with a median of 0.22
 (based on a maximum age of 25) and a standard deviation (in log space) of 0.31.
 Alternative prior distributions for natural mortality typically have a

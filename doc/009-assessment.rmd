@@ -84,7 +84,7 @@ makers with constant *F*, variable *F*, and the following
 hybrid control rules: `r fspr_35`, `r fspr_40`, `r f_40_40_10`, `r fspr_45`,
 `r f_45_40_10`, and `r fspr_50` [e.g., @Dorn1996; @JTC2013]. Changes to
 policies such as the United States' National Standards Guidelines in
-2002 and the `r f_40_40_10`` harvest control rule in the Agreement
+2002 and the `r f_40_40_10` harvest control rule in the Agreement
 (Appendix~\@ref(sec:app-glossary)) have required specific changes to control
 rules.
 
@@ -102,8 +102,8 @@ The `r assess_yr` base model has the same general population dynamics structure 
 assumes that the `r sp` population is a single coast-wide stock subject to
 one aggregated fleet with combined male and female population dynamics. Stock
 Synthesis [@MethotWetzel2013] version `r ss_version` was the modeling platform
-used. The largest change between the `r last_assess_yr` and `r assess_yr`
-stock assessments is the addition of another year of fishery and survey data, an
+used. The largest changes between the `r last_assess_yr` and `r assess_yr`
+stock assessments are the addition of another year of fishery and survey data, an
 age-1 index data point, and time-varying maturity information integrated into the
 base model.
 
@@ -937,7 +937,7 @@ it decreased to
 `r tot_penult_yr_attainment`% in `r last_data_yr - 1` and to
 `r tot_last_yr_attainment`% in `r last_data_yr`. This is due to the utilization rate in
 Canada steadily declining since 2020 to a time-series low of 16.5% in 2023, and
-also a fall in the U.S. utlization rate to 59.7% in 2023.
+also a fall in the U.S. utilization rate to 59.7% in 2023.
 Country-specific quotas (or catch targets) in 2020 and 2021 were specified
 unilaterally, due to the lack of an agreement on coast-wide 2020 and 2021
 TACs. The usual `r us_allotment_percent`% and `r can_allotment_percent`%
