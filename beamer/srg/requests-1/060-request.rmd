@@ -11,7 +11,8 @@ component to calculate the overall negative log likelihood to be minimized.
 * Age Likelihood: 2144; 131
 * Approximate run time: 2 hours; 17 hours
 
-```{r plot-sur-fit-base-v-lambda-ssb, eval = TRUE}
+## Request 6 -- "Down weight the age-composition sample sizes" 
+```{r plot-sur-fit-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
 m_names <- c("base", "lambda 0.05")
 lambda_model <- readRDS(
   fs::path(
@@ -27,7 +28,9 @@ plot_survey_index_fits(base_model,
                          leg_pos = c(0.75, 0.15),
                          xlim = c(1995, end_yr))
 ```
-```{r plot-age1-fit-base-v-lambda-ssb, eval = FALSE}
+
+## Request 6 -- "Down weight the age-composition sample sizes"
+```{r plot-age1-fit-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
 plot_survey_index_fits(base_model,
                          model_lst=list(base_model, lambda_model),
                          model_names = m_names,
@@ -41,7 +44,8 @@ plot_survey_index_fits(base_model,
                          rev_colors = TRUE)
 ```
 
-```{r plot-base-v-lambda-ssb, eval = FALSE}
+## Request 6 -- "Down weight the age-composition sample sizes"
+```{r plot-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
 plot_biomass(list(base_model, lambda_model),
              model_names = m_names,
              ylim = c(0, 12),
@@ -49,7 +53,8 @@ plot_biomass(list(base_model, lambda_model),
              leg_pos = c(0.75, 0.9))
 ```
 
-```{r plot-rel-base-v-lambda-ssb, eval = FALSE}
+## Request 6 -- "Down weight the age-composition sample sizes"
+```{r plot-rel-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
 plot_rel_biomass(list(base_model, lambda_model),
                  model_names = m_names,
                  ylim = c(0, 2.5),
@@ -59,14 +64,16 @@ plot_rel_biomass(list(base_model, lambda_model),
   suppressWarnings()
 ```
 
-```{r plot-rec-base-v-lambda-ssb, eval = FALSE}
+## Request 6 -- "Down weight the age-composition sample sizes"
+```{r plot-rec-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
 plot_recdevs(list(base_model, lambda_model),
              model_names = m_names,
              line_color = ts_single_line_color,
              leg_pos = c(0.25, 0.95))
 ```
 
-```{r plot-recabs-base-v-lambda-ssb, eval = FALSE}
+## Request 6 -- "Down weight the age-composition sample sizes"
+```{r plot-recabs-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
 plot_recruitment(list(base_model, lambda_model),
                  model_names = m_names,
                  inc_means = TRUE,
