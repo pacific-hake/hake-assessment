@@ -17,3 +17,20 @@ Description
   perfectly match the model-based ones. Sampling varies across space and time,
   and the empirical estimates do not account for any of this variation.
 
+## Request 2 -- "on Figure G.11 add the data for proportion mature"
+
+```{r 02-fig-a, results = "asis", out.height = "85%"}
+figures_dir <- fs::path("../../../doc/image-files")
+include_graphics(file.path(figures_dir,
+                           "2024-srg-response-1-2-a.png"),
+                 error = FALSE)
+```
+
+## Request 2 -- "on Figure G.11 add the data for proportion mature"
+
+```{r 02-fig-b, results = "asis", out.height = "85%"}
+figures_dir <- fs::path("../../../doc/image-files")
+include_graphics(file.path(figures_dir,
+                           "2024-srg-response-1-2-b.png"),
+                 error = FALSE)
+```
