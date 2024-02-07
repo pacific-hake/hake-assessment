@@ -13,7 +13,7 @@
 #' @export
 plot_stock_recruitment <- \(model,
                             xlim = c(0, 1.4),
-                            ylim = c(0, 7),
+                            ylim = c(0, 8),
                             show_yr_text = c(1967, 1970,
                                              1973, 1977,
                                              1980, 1984,
