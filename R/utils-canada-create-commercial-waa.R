@@ -8,7 +8,7 @@
 #' @param weight_scale A value to divide the weights by
 #' @param num_sex Either 1 or 2. If 1, then fill the column `Sex` with `U`
 #' for every record. If 2, use the data to fill the `Sex` column with
-#' `M`, `F`, or `NA` depending on input values
+#' `M`, `F`, or `U` depending on input values
 #' @param ret_df Logical. If `TRUE`, return the weight-at-age data frame.
 #' If `FALSE`, write the data frame to the Canadian weight-at-age CSV file
 #'
@@ -18,7 +18,7 @@
 #' @export
 canada_create_commercial_waa <- function(d,
                                          weight_scale = 1e3,
-                                         num_sex = 1,
+                                         num_sex = 2,
                                          ret_df = FALSE){
 
   if(!num_sex %in% 1:2){
@@ -63,7 +63,7 @@ canada_create_commercial_waa <- function(d,
       }
     }else{
       get_sex_code <- function(sex){
-        ifelse(is.na(sex), NA_character_, ifelse(sex == 1, "M", "F"))
+        ifelse(is.na(sex), "U", ifelse(sex == 1, "M", "F"))
       }
     }
     df |>

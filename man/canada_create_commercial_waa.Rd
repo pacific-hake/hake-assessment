@@ -7,7 +7,7 @@
 canada_create_commercial_waa(
   d,
   weight_scale = 1000,
-  num_sex = 1,
+  num_sex = 2,
   ret_df = FALSE
 )
 }
@@ -18,7 +18,7 @@ canada_create_commercial_waa(
 
 \item{num_sex}{Either 1 or 2. If 1, then fill the column \code{Sex} with \code{U}
 for every record. If 2, use the data to fill the \code{Sex} column with
-\code{M}, \code{F}, or \code{NA} depending on input values}
+\code{M}, \code{F}, or \code{U} depending on input values}
 
 \item{ret_df}{Logical. If \code{TRUE}, return the weight-at-age data frame.
 If \code{FALSE}, write the data frame to the Canadian weight-at-age CSV file}
