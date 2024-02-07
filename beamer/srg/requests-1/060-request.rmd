@@ -9,7 +9,7 @@ component to calculate the overall negative log likelihood to be minimized.
 * Extra SD survey: x, y
 * Extra SD age-1 index: x, y
 * Age Likelihood: x, y
-* Approximate run time: 2 hours, 14 hours
+* Approximate run time: 2 hours, 16 hours
 
 ```{r plot-sur-fit-base-v-lambda-ssb, eval = FALSE}
 m_names <- c("base", "lambda 0.05")
