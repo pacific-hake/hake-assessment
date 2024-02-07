@@ -49,6 +49,7 @@ git-pull.sh
 
 # Folders
 .history/
+.vscode/
 admin*
 cache*
 extra-models*
