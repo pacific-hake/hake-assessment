@@ -1,6 +1,15 @@
 ## Request 6 -- "Down weight the age-composition sample sizes"
 
-Description
+A lambda value of 0.05 was multiplied by the age-composition likelihood
+component to calculate the overall negative log likelihood to be minimized.
 
-* Point form answers
-
+```{r plot-base-v-lambda-ssb, eval = FALSE}
+m_names <- c("base", "lambda 0.05")
+lambda_model <- readRDS(
+  fs::path(
+    models_dir, "05-test-models",
+    "30-lambda-comps", "30-lambda-comps.rds"
+  )
+)
+plot_biomass(list(base_model, lambda_model), model_names = m_names)
+```
