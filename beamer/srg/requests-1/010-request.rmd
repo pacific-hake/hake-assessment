@@ -77,3 +77,15 @@ weight_at_age_model <- readRDS(
 )
 plot_biomass(list(base_model, weight_at_age_model), model_names = m_names)
 ```
+
+## Request 1 -- "Sample sizes for M, F, and U weight-at-age data"
+```{r plot-base-v-tv-maturity-rel, out.height = "85%"}
+m_names <- c("base", "sexed weight-at-age")
+weight_at_age_model <- readRDS(
+  fs::path(
+    models_dir, "05-test-models",
+    "72-tv-fecundity", "72-tv-fecundity.rds"
+  )
+)
+plot_rel_biomass(list(base_model, weight_at_age_model), model_names = m_names)
+```
