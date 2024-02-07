@@ -7,7 +7,6 @@ Fishery Catch-at-age for Canada
 table_catch_by_fleet(country = 1, font_size = 5)
 ```
 
-
 ## Request 7 -- "Survey and catch biomass at age"
 
 Fishery Catch-at-age for U.S.
@@ -16,50 +15,4 @@ Fishery Catch-at-age for U.S.
 
 table_catch_by_fleet(country = 2, font_size = 5)
 ```
-
-## Request 7 -- "Survey and catch biomass at age"
-
-Fishery Catch-at-age for the Canadian Freezer trawler fleet
-
-```{r can-ft-catch-at-age, results = "asis"}
-
-table_catch_by_fleet(1, font_size = 5)
-```
-
-## Request 7 -- "Survey and catch biomass at age"
-
-Fishery Catch-at-age for the Canadian Shoreside fleet
-
-```{r can-ss-catch-at-age, results = "asis"}
-
-table_catch_by_fleet(2, font_size = 5)
-```
-
-## Request 7 -- "Survey and catch biomass at age"
-
-Fishery Catch-at-age for the U.S. Mothership fleet
-
-```{r us-ms-catch-at-age, results = "asis"}
-
-table_catch_by_fleet(4, font_size = 5)
-```
-
-## Request 7 -- "Survey and catch biomass at age"
-
-Fishery Catch-at-age for the U.S. Catcher-Processor fleet
-
-```{r us-cp-catch-at-age, results = "asis"}
-
-table_catch_by_fleet(5, font_size = 5)
-```
-
-## Request 7 -- "Survey and catch biomass at age"
-
-Fishery Catch-at-age for the U.S. Shore-based fleet
-
-```{r us-sb-catch-at-age, results = "asis"}
-
-table_catch_by_fleet(6, font_size = 5)
-```
-
 
