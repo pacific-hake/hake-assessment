@@ -1,5 +1,22 @@
 ## Request 7 -- "Survey and catch biomass at age"
 
+Proportion of survey biomass estimated in Canada.
+
+```{r, can-prop-survey-biomass-fig, results = "asis", out.height="80%"}
+
+include_graphics(file.path(here::here(),"beamer/srg/requests-1/survey-biomass-files/Proportion-by-age-CAN-hake.png"), error = FALSE)
+```
+
+## Request 7 -- "Survey and catch biomass at age"
+
+```{r, can-survey-biomass-at-age-load, echo=FALSE}
+
+survey_biomass_at_age_can <- read_csv(file.path(here::here(), "beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_CAN.csv"))
+
+survey_biomass_at_age_us <- read_csv(file.path(here::here(), "beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_US.csv"))
+```
+
+
 Fishery Catch-at-age for Canada (tonnes)
 
 ```{r can-catch-at-age, results = "asis"}
@@ -15,4 +32,3 @@ Fishery Catch-at-age for U.S. (tonnes)
 
 table_catch_by_fleet(country = 2, font_size = 4)
 ```
-
