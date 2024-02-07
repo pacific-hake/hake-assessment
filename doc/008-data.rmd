@@ -668,7 +668,6 @@ $\tilde{\pi}_a$ is the observed proportion at age $a$,
 $\pi_a$ is the corresponding expected proportion at age $a$ estimated
 by the model,
 $\bm{\tilde{\pi}}$ and $\bm{\pi}$ designate the vectors of these proportions,
-
 $A_{\text{max}}$ is the maximum age in the model,
 and $n$ is the input sample size. The parameter $\theta$ is defined as a
 linear scaling parameter such that $\theta n$ is the variance-inflation
