@@ -1,6 +1,9 @@
 ## Request 5 -- "Tabular 2008--2026 maturity-at-age data"
 
-```{r main-mat-at-age-fig, fig.height = 6, out.height = "75%"}
+The actual years that are included are 2009--2023 and 4 projection years.
+The projections use the mean of the maturity-at-age for 2019--2023.
+
+```{r main-mat-at-age-fig, fig.height = 6, out.height = "70%"}
 
 j <- maturity_estimates_df |>
   filter(model == "Spatial + temperature") |> 
@@ -17,21 +20,37 @@ extra_rows <- j |> slice(1:2)
 extra_rows[1, "Yr"] <- 2007
 extra_rows[2, "Yr"] <- 2008
 j <- bind_rows(extra_rows, j)
+
+# Create projection rows - mean of last 5 years
+rows <- tail(j)
+mn_row <- rows |>
+  colMeans() |>
+  vec2df()
+for(i in 2024:2027){
+  mn_row <- mn_row |> 
+    mutate(Yr = i)
+  j <- j |> 
+    bind_rows(mn_row)
+}
+
 j_model <- base_model
 j_model$wtatage <- j
 j_model$startyr <- 2009
 j_model$endyr <- 2023
 waa_ss_df <- weight_age_sample_sizes_df |> 
-  filter(Yr %in% j_model$startyr:j_model$endyr)
+  filter(Yr %in% 2009:2023)
 
 plot_heatmap_weight_at_age(
   j_model,
   cell_font_size = 4,
-  sample_size_df = weight_age_sample_sizes_df,
+  sample_size_df = waa_ss_df,
   pre_yrs = start_yr_age_comps:base_model$endyr,
   pre_func = mean,
-  post_yrs = (base_model$endyr - 4):base_model$endyr,
-  post_func = mean,
+  post_yrs = 2024:2027,
+  post_wa_vals = j |> select(grep("^[0-9]+$", names(j))) |>
+    tail(1) |>
+    unlist(),
+  #post_func = mean,
   cols = c("red",
            "yellow",
            "green",
