@@ -7,7 +7,7 @@ Fishery Catch-at-age for the Canadian Freezer trawler fleet
 table_catch_by_fleet(1, font_size = 5)
 ```
 
-## Request 6 -- "Survey and catch biomass at age"
+## Request 7 -- "Survey and catch biomass at age"
 
 Fishery Catch-at-age for the Canadian Shoreside fleet
 
@@ -16,7 +16,7 @@ Fishery Catch-at-age for the Canadian Shoreside fleet
 table_catch_by_fleet(2, font_size = 5)
 ```
 
-## Request 6 -- "Survey and catch biomass at age"
+## Request 7 -- "Survey and catch biomass at age"
 
 Fishery Catch-at-age for the U.S. Mothership fleet
 
@@ -25,7 +25,7 @@ Fishery Catch-at-age for the U.S. Mothership fleet
 table_catch_by_fleet(4, font_size = 5)
 ```
 
-## Request 6 -- "Survey and catch biomass at age"
+## Request 7 -- "Survey and catch biomass at age"
 
 Fishery Catch-at-age for the U.S. Catcher-Processor fleet
 
@@ -34,7 +34,7 @@ Fishery Catch-at-age for the U.S. Catcher-Processor fleet
 table_catch_by_fleet(5, font_size = 5)
 ```
 
-## Request 6 -- "Survey and catch biomass at age"
+## Request 7 -- "Survey and catch biomass at age"
 
 Fishery Catch-at-age for the U.S. Shore-based fleet
 
