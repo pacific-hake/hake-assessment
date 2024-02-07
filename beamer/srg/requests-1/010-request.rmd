@@ -1,0 +1,45 @@
+# Requests
+
+## Request 1 -- "Provide a table of the maturity-at-age by year"
+
+Description
+
+* Point form answers
+
+```{r main-mat-at-age-fig, fig.height = 10, out.height = "85%"}
+
+j <- maturity_estimates_df |>
+  filter(model == "Spatial + temperature") |> 
+  transmute(Yr = year, age, p_mature) |>
+  pivot_wider(names_from = age,
+              values_from = p_mature) |> 
+  mutate(Seas = 1,
+         Sex = 1,
+         Bio_pattern = 1,
+         BirthSeas = 1,
+         Fleet = 1,
+         .after = 1)
+extra_rows <- j |> slice(1:2)
+extra_rows[1, "Yr"] <- 2007
+extra_rows[2, "Yr"] <- 2008
+j <- bind_rows(extra_rows, j)
+j_model <- base_model
+j_model$wtatage <- j
+j_model$startyr <- 2009
+j_model$endyr <- 2023
+waa_ss_df <- weight_age_sample_sizes_df |> 
+  filter(Yr %in% j_model$startyr:j_model$endyr)
+
+plot_heatmap_weight_at_age(
+  j_model,
+  cell_font_size = 4,
+  sample_size_df = weight_age_sample_sizes_df,
+  pre_yrs = start_yr_age_comps:base_model$endyr,
+  pre_func = mean,
+  post_yrs = (base_model$endyr - 4):base_model$endyr,
+  post_func = mean,
+  cols = c("red",
+           "yellow",
+           "green",
+           "dodgerblue"))
+```
