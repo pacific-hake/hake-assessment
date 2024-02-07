@@ -7,7 +7,6 @@ for presence/absence of sample sizes if \code{ret_mask} is \code{TRUE}}
 \usage{
 heatmap_extract_sample_size(
   sample_size_df = NULL,
-  fleet = NULL,
   wa = NULL,
   ret_mask = FALSE,
   ...
@@ -17,12 +16,6 @@ heatmap_extract_sample_size(
 \item{sample_size_df}{A data frame where ages are columns (and start with
 the letter 'a'). If the values are zero, the weight-at-age was
 extrapolated/interpolated. If there is a value, the weight-at-age is data}
-
-\item{fleet}{An integer value specifying which fleet you want plotted.
-Fleet -2 will plot fecundity information.
-Fleet -1 will plot population weight-at-age for the middle of the year.
-Fleet 0 will plot population weight-at-age for the beginning of the year.
-Positive values for fleet will link to a modeled fleet.}
 
 \item{wa}{A weight-at-age data frame as created by \code{\link[=heatmap_extract_wa]{heatmap_extract_wa()}}}
 
