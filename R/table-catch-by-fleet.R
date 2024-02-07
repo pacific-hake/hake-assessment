@@ -96,20 +96,32 @@ table_catch_by_fleet <- function(flt = 1,
     joined_df <- joined_lst |>
       bind_rows() |>
       select(-fleet)
+
     df <- joined_df |>
       filter(country == ifelse(!!country == 1, "Canada", "U.S.")) |>
-      group_by(year) |>
-      select(-country, -catch)
+      select(-country) |>
+      mutate(across(c(-year, -catch), ~{.x = catch * .x})) |>
+      split(~year) |>
+      map(~{
+        yrs <- .x$year
+        ct <- .x$catch
+        sums <- .x |>
+          select(-year, -catch) |>
+          colSums(na.rm = TRUE)
+        sums <- c(first(yrs), sum(ct), sums)
+        vec2df(sums)
+      }) |>
+      bind_rows()
 
-    catch_age_lst <- list(df)
+      names(df)[1:2] <- c("Year", "Catch")
+
+    joined_lst <- list(df)
   }
 
   catch_age_lst <- map(joined_lst, ~{
     .x |>
-      mutate(across(grep("^[0-9]+$", names(.x)), ~{.x * catch} )) |>
-      mutate(across(c(catch, grep("^[0-9]+$", names(.x))), ~{f(.x)})) |>
-      select(-country, -fleet, -catch) |>
-      rename(Year = year)
+      #mutate(across(c(-Year, -Catch), ~{.x / 1e3} )) |>
+      mutate(across(c(-Year), ~{f(.x)}))
   })
 
 

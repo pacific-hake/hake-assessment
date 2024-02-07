@@ -1,18 +1,18 @@
 ## Request 7 -- "Survey and catch biomass at age"
 
-Fishery Catch-at-age for Canada
+Fishery Catch-at-age for Canada (tonnes)
 
 ```{r can-catch-at-age, results = "asis"}
 
-table_catch_by_fleet(country = 1, font_size = 5)
+table_catch_by_fleet(country = 1, font_size = 4)
 ```
 
 ## Request 7 -- "Survey and catch biomass at age"
 
-Fishery Catch-at-age for U.S.
+Fishery Catch-at-age for U.S. (tonnes)
 
 ```{r us-catch-at-age, results = "asis"}
 
-table_catch_by_fleet(country = 2, font_size = 5)
+table_catch_by_fleet(country = 2, font_size = 4)
 ```
 
