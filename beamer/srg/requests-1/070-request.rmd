@@ -32,3 +32,54 @@ Fishery Catch-at-age for U.S. (tonnes)
 
 table_catch_by_fleet(country = 2, font_size = 4)
 ```
+
+The following code was pasted into doc using gotest() from the doc directory
+so that landscape pages could be used to show the wide tables
+
+BEGIN LANDSCAPE
+
+```{r, survey-at-age-us, results = "asis"}
+
+d <- read_csv("~/github/pacific-hake/hake-assessment/beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_US.csv",
+              col_types = cols()) |> 
+  rename(wgt = wgt_total) |> 
+  mutate(across(-year, ~{f(.x / 1e3)})) |> 
+  rename(Year = year,
+         Biomass = wgt)
+
+kbl(d,
+    format = "latex",
+    booktabs = TRUE,
+    align = c("l",
+              rep("r", ncol(d) - 1)),
+    linesep = "",
+    caption = "Proportion of survey biomass estimated in the U.S.",
+    escape = FALSE) |>
+  kable_styling(font_size = 7) |>
+  row_spec(0, bold = TRUE)
+```
+
+```{r, survey-at-age-can, results = "asis"}
+
+d <- read_csv("~/github/pacific-hake/hake-assessment/beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_CAN.csv",
+              col_types = cols()) |> 
+  rename(wgt = wgt_total) |> 
+  mutate(across(-year, ~{f(.x / 1e3)})) |> 
+  rename(Year = year,
+         Biomass = wgt)
+
+kbl(d,
+    format = "latex",
+    booktabs = TRUE,
+    align = c("l",
+              rep("r", ncol(d) - 1)),
+    linesep = "",
+    caption = "Proportion of survey biomass estimated in Canada",
+    escape = FALSE) |>
+  kable_styling(font_size = 8) |>
+  row_spec(0, bold = TRUE)
+```
+
+END LANDSCAPE
+
+
