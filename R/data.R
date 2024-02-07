@@ -1193,3 +1193,16 @@
 #'   \item{name}{Name of the port}
 #' }
 "states_df"
+#' A data frame of empirical weight at age for all fisheries and all surveys
+#'
+#' @format A data frame with many rows and eight columns:
+#' \describe{
+#'   \item{source}{The fishery or survey the data came from}
+#'   \item{weight}{The fish weight ()}
+#'   \item{sex}{The sex of the fish, i.e., F, M, or U}
+#'   \item{age}{The age in years of the fish}
+#'   \item{month}{The month the fish was collected}
+#'   \item{year}{The year the fish was collected}
+#'   \item{data_type}{If the fish was collected on a fishing or survey vessel}
+#'   \item{country}{The country the fish was collected in}
+#' }

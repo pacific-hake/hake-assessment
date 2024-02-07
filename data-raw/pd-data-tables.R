@@ -275,3 +275,37 @@ create_data_hake("states_df",
                           col_types = cols(),
                           comment = "#",
                           show_col_types = FALSE))
+
+# Weight-at-age data
+weight_at_age_df <- dplyr::bind_rows(
+  utils::read.csv(
+    fs::path(load_dir, can_waa_fn)
+  ) |>
+    dplyr::mutate(data_type = "fishery", country = "canada"),
+  utils::read.csv(
+    fs::path(load_dir, "us-weight-at-age.csv")
+  ) |>
+    dplyr::mutate(
+      data_type = "fishery",
+      country = "usa",
+      # Set the month of acoustic poland survey data to 8 based on literature
+      Month = ifelse(Source == "Acoustic Poland", 8, Month)
+    ),
+  utils::read.csv(
+    fs::path(load_dir, "survey-weight-at-age.csv")
+  ) |>
+    dplyr::mutate(
+      data_type = "survey",
+      country = ifelse(Source == "Canada Acoustic", "canada", "usa")
+    ) |>
+    dplyr::filter(
+      Weight_kg > 0.001
+    )
+) |>
+  dplyr::select(-dplyr::matches("length")) |>
+  dplyr::mutate(
+    Sex = tidyr::replace_na(Sex, "U")
+  ) |>
+  dplyr::rename(weight = Weight_kg, age = Age_yrs) |>
+  dplyr::rename_with(.fn = tolower)
+create_data_hake("weight_at_age_df", weight_at_age_df)
