@@ -362,8 +362,8 @@ table_cohort(
     "end of the year. Surviving Biomass does not equal the Start Biomass ",
     "in the following year because the empirical weights-at-age change ",
     "between years. Estimated quantities are posterior medians."),
-  font_size = 11,
-  header_font_size = 12,
+  font_size = 9,
+  header_font_size = 9,
   longtable = TRUE)
 ```
 
