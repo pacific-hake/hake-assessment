@@ -593,7 +593,7 @@ cohorts were estimated to be larger than indicated by the index. The 2011 value
 assessment they were estimated slightly above) and, being so
 young, include a large amount of uncertainty. The median of the posterior
 distribution for the analytically-derived catchability associated with the
-age-1 index (q~1~) was `r f(median(base_model$extra_mcmc$q_vector_age1), 3)`
+age-1 index (*q*~1~) was `r f(median(base_model$extra_mcmc$q_vector_age1), 3)`
 (Figure~\@ref(fig:main-catchability-density-age1-fig)).
 
 Fits to the age-composition data continue to show close correspondence to the
