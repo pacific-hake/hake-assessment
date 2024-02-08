@@ -1,7 +1,11 @@
 # Requests
 
-## Request 1 -- "name of request"
+## Request 1 -- "No unsexed weight-at-age data"
 
 The SRG requests rerunning the GLM for weight-at-age without unsexed hake, and creating a weight-at-age matrix using the updated outputs by averaging Males and Females equally. 
 
-* Point form answers
+* The GLMM was reran after filtering the data to remove sex.
+* The model output was truncated to just produce males and females given unsexed fish were no longer in the data used to fit the GLMM.
+* Results for males and females were averaged.
+* The weight-at-age file for SS3 was updated.
+* The updated weight-at-age file was used to process the fishery-composition data.

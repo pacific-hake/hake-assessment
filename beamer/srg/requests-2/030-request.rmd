@@ -1,6 +1,8 @@
-## Request 3 -- "name of request"
+## Request 3 -- "Plot maturity ogives"
 
 The SRG requests that the maturity plot be recalculated for Day 278, peak of maturity.
 
-* Point form answers
+```{r plot-maturity-ogives, out.height = "80%"}
+plot_maturity_ogives()
+```
 
