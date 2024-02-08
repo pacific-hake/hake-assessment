@@ -37,7 +37,7 @@ create_data_hake("maturity_samples_df",
 
 # estimates_for_assessment.rds from Eric Ward
 # utils::write.csv(
-#   x = readRDS(fs::path("~", "Downloads", "estimates_for_assessment.rds")) |>
+#   x = readRDS(fs::path("", "srv", "hake", "other", "tv", "estimates_for_assessment.rds")) |>
 #     dplyr::ungroup() |>
 #     dplyr::bind_rows(
 #       readRDS(fs::path("~", "Downloads", "spline.rds")) |>
