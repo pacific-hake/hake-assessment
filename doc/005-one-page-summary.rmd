@@ -18,9 +18,10 @@ maturity was added to better inform fecundity.
 - Coast-wide catch in `r end_yr-1` was `r last_yr_landings`~t
 [t represents metric tons], 22% below the average over the most recent 10 years
 (`r ct |> tail(10) |> pull(Total) |> mean() |> f()`~t),
-out of a total allowable catch (TAC), adjusted for carryovers, of `r last_yr_tac` t.
-The U.S. caught `r last_yr_us_landings`~t (`r last_yr_us_attained`% of their quota) and Canada caught `r last_yr_can_landings`~t
-(`r last_yr_can_attained`% of their quota).
+out of a total allowable catch (TAC), adjusted for carryovers, of
+`r last_yr_tac` t. The U.S. caught `r last_yr_us_landings`~t
+(`r last_yr_us_attained`% of their quota) and Canada caught
+`r last_yr_can_landings`~t (`r last_yr_can_attained`% of their quota).
 
 - The median estimate of the `r end_yr` relative spawning biomass
 (female spawning biomass at the start of `r end_yr` divided by that at
@@ -56,7 +57,7 @@ high uncertainty in estimates of recent and forecasted recruitment.
 Projections setting the `r forecast_yrs[1]` and
 `r forecast_yrs[2]` catches equal to the `r forecast_yrs[1] - 1`
 coast-wide TAC of `r last_yr_tac` t show the estimated median relative
-spawning biomass increasing from `r f(last_yr_tac_fore_1_biomass)`% in
+spawning biomass decreasing from `r f(last_yr_tac_fore_1_biomass)`% in
 `r end_yr` to `r f(last_yr_tac_fore_2_biomass)`% in `r end_yr + 1` and then
 decreasing to `r f(last_yr_tac_fore_3_biomass)`% in `r end_yr + 2`,
 with a `r last_yr_tac_risk_2_bforty`% chance

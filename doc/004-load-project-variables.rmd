@@ -31,6 +31,7 @@ ct_levels <- base_model$ct_levels
 # -----------------------------------------------------------------------------
 ct_levels_num <- length(ct_levels)
 ct_actual_ind <- base_model$ct_levels_vals$ct_actual_ind
+ct_tac_ind <- base_model$ct_levels_vals$ct_tac_last_ind
 ct_tac_ind <- base_model$ct_levels_vals$ct_tac_ind
 ct_spr100_ind <- base_model$ct_levels_vals$ct_spr100_ind
 ct_default_policy_ind <- base_model$ct_levels_vals$ct_default_policy_ind

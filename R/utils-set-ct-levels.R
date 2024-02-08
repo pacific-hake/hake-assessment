@@ -40,7 +40,8 @@ set_ct_levels <- function(fn = here(doc_path, forecast_descriptions_fn)){
   ret$ct_levels_vals <- list(
     ct_levels_num = length(ret$ct_levels),
     ct_actual_ind = grep("actual", ct_levels$special),
-    ct_tac_ind = grep("tac", ct_levels$special),
+    ct_tac_last_ind = grep("tac_last", ct_levels$special),
+    ct_tac_ind = grep("^tac$", ct_levels$special),
     ct_spr100_ind = grep("spr100", ct_levels$special),
     ct_default_policy_ind = grep("default_hr", ct_levels$special),
     ct_stable_ind = grep("stable_catch", ct_levels$special),

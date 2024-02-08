@@ -38,6 +38,7 @@ run_ct_levels_stable_catch <- function(
     stable_catch <- map_dbl(forecast_yrs, ~{
       fore_yr_label <- paste0("ForeCatch_", .x)
       fore_yr_label_sym <- sym(fore_yr_label)
+
       out |>
         pull(!!fore_yr_label_sym) |>
         median(na.rm = TRUE)
