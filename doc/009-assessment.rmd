@@ -968,10 +968,10 @@ and below the `r b_40` relative spawning biomass level at the start of
 
 The base assessment model integrates over the substantial uncertainty
 associated with several important model parameters including: biomass
-index and age-1 index catchabilities (q~b~ and q~1~, respectively), the
+index and age-1 index catchabilities (*q*~b~ and *q*~1~, respectively), the
 magnitude of the stock (via the `r r_0` parameter for equilibrium recruitment),
-productivity of the stock (via the steepness parameter, h, of the
-stock--recruitment relationship), the rate of natural mortality (M), annual
+productivity of the stock (via the steepness parameter, *h*, of the
+stock--recruitment relationship), the rate of natural mortality (*M*), annual
 selectivity for key ages, recruitment deviations, and survey and fishery data
 weights (via the Dirichlet-multinomial parameters
 $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
@@ -979,9 +979,10 @@ $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
 The medians of the key parameters from the posterior distribution are
 generally similar to those in last year's base model
 (Table~\@ref(tab:main-parameter-estimates-tab)). The largest change was a
-reduction of the 2020 cohort size by more than half. Medians of some of the derived quantities
-also change somewhat; in particular, recruitment in 2016 and 2014 both decreased
-by 10% from those estimated in the `r assess_yr - 1` assessment.
+reduction of the 2020 cohort size by more than half. Medians of some of the
+derived quantities also change somewhat; in particular, recruitment in 2016
+and 2014 both decreased by 10% from those estimated in the
+`r assess_yr - 1` assessment.
 
 The `r sp` stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
