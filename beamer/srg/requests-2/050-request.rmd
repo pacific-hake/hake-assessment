@@ -15,6 +15,15 @@ plot_biomass(list(step_before, first_step, new_base, old_base), model_names = m_
 
 ## Request 5 -- "Re-run the base model"
 ```{r plot-base-v-tv-maturity-rel, out.height = "85%"}
-plot_rel_biomass(list(step_before, first_step, new_base, old_base), model_names = m_names)
+plot_rel_biomass(list(step_before, first_step, new_base, old_base), model_names = m_names,
+                 ylim = c(0, 2.7))
 ```
 
+## Request 5 -- "Re-run the base model"
+```{r plot-base-v-tv-maturity-rel-zoom, out.height = "85%"}
+plot_rel_biomass(list(step_before, first_step, new_base, old_base), model_names = m_names,
+                 ylim = c(0, 2),
+                 xlim = c(2010, 2024),
+                 leg_pos = c(0.2, 0.85)) +
+  scale_x_continuous(expand = c(0.05, 0.05))
+```
