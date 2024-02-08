@@ -192,11 +192,11 @@ and the model(s) with the lowest AIC values were deemed to have the most support
 
 To create a single index of maturity for each age--year combination and generate
 maturity ogives, we used results from the best model selected with temperature
-as a driver (February temperature at 130.67 m depth north of Point Conception)
-alongside model results for Models 1--2. For each of these three models, we
-generated predictions of each of the three models onto the WCGBTS design grid
-for non-ASHOP samples (with a larger intercept, ASHOP samples have earlier
-maturity at age; Table \@ref(tab:app-maturity-analysis-estimates-tab)).
+as a driver (raw February temperature at 130.67 m depth north of Point
+Conception) alongside model results for Models 1--2. For each of these three
+models, we generated predictions of each of the three models onto the WCGBTS
+design grid for non-ASHOP samples (with a larger intercept, ASHOP samples have
+earlier maturity at age; Table \@ref(tab:app-maturity-analysis-estimates-tab)).
 Rather than take a simple average of these estimates (which weights each
 spatial cell equally), we calculated a weighted average, using biomass
 weights. Biomass was predicted using the same spatiotemporal model fit to
