@@ -13,12 +13,14 @@
 #   ||
 #   $project_path
 
-models=( \
-        05-m-02-sd \
-        06-m-03-sd \
-        07-m-hamel-prior \
-        08-age-1-survey \
-        )
+models=(09-comp-weight-harmonic-mean \
+        10-tv-select-phi-extra-low \
+        11-tv-select-phi-low \
+        12-tv-select-phi-high \
+        13-max-sel-age-5 \
+        14-max-sel-age-7 \
+        15-maxc-sel-age-8 \
+        16-zero-sum-constraint)
 
 type_path="03-sensitivity-models"
 

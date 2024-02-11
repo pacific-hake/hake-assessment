@@ -16,11 +16,15 @@
 models=(01-h-prior-mean-low \
         02-h-fix-high \
         03-sigma-r-fix-low \
-        04-sigma-r-fix-high)
+        04-sigma-r-fix-high \
+        05-m-02-sd \
+        06-m-03-sd \
+        07-m-hamel-prior \
+        08-age-1-survey)
 
 type_path="03-sensitivity-models"
 
-run_extra_mcmc=FALSE
+run_extra_mcmc=TRUE
 adapt_delta=0.95
 
 . ./generic-run-models.sh
