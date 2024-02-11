@@ -19,7 +19,7 @@ models=(09-comp-weight-harmonic-mean \
         12-tv-select-phi-high \
         13-max-sel-age-5 \
         14-max-sel-age-7 \
-        15-maxc-sel-age-8 \
+        15-max-sel-age-8 \
         16-zero-sum-constraint)
 
 type_path="03-sensitivity-models"
