@@ -1085,7 +1085,13 @@ distribution of the default catch limit using the default harvest policy.
 
 ```{r main-projected-catch-density-fig, fig.cap = "(ref:main-projected-catch-density-cap)", fig.height = 4.5}
 
-plot_catch_forecast_density(base_model, yr = end_yr)
+plot_param_density(base_model,
+                   param_nm = "ForeCatch_2024",
+                   y_lim = c(0, 0.0013),
+                   expand_vec = c(100, 100),
+                   show_y_labels = FALSE,
+                   x_lab = paste0("Projected ", assess_yr, " catch (kt) ",
+                                  "based on the default harvesy policy"))
 #base_model$plots$catch_fore_density
 ```
 
