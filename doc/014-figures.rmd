@@ -1000,7 +1000,8 @@ plot_recruitment(list(base_model),
                  ylim = c(0, 1.4),
                  y_breaks = seq(0, 1.4, by = 0.2),
                  leg_pos = "none",
-                 color = "red")
+                 color = "red",
+                 point_shape = 16))
 ```
 
 (ref:main-stock-recruitment-cap) Estimated stock--recruitment relationship for
@@ -1019,7 +1020,8 @@ relationship does not fit the estimated recruitments very well for this stock.
 
 ```{r main-stock-recruitment-fig, fig.cap = "(ref:main-stock-recruitment-cap)", fig.height = 8}
 
-plot_stock_recruitment(base_model)
+plot_stock_recruitment(base_model,
+                       ylim = c(0, 7))
 ```
 
 (ref:main-fishing-intensity-cap) Trend in median relative fishing intensity

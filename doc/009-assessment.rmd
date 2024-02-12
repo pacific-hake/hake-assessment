@@ -477,16 +477,16 @@ vessels).
 
 Lastly, model-based estimates of time-varying maturity ogives were
 incorporated into the calculation of time-varying fecundity
-(see Section~\@ref(sec:data-maturity) and
-Appendix~\@ref(sec:app-maturity-analysis) for details). This is
+(Section~\@ref(sec:data-maturity) and
+Appendix~\@ref(sec:app-maturity-analysis)). This is
 in addition to using time-varying weight-at-age inputs, which improves the assessment
 model inputs that translate total biomass to spawning biomass. The addition of
 time-varying maturity resulted in annual differences in the age at which
-`r sp` mature, such that there were shifts in the translation of total
+`r sp` mature, such that there were minor shifts in the translation of total
 biomass to spawning biomass by one year in some cases within the time
-series (Figure~\@ref(fig:main-bridge-summary-fig-2)). While the general
+series (Figure~\@ref(fig:main-bridge-summary-fig-2)), but the general
 trend in spawning biomass and population status remained largely the
-same, there were reductions in both in the most recent years (2023 and 2024).
+same.
 
 ### Assessment model results {#sec:assessment-model-results}
 
@@ -562,18 +562,19 @@ structure. For 2023, the survey timing is not anomalous. The estimated biomass
 increase from 2023 to 2024 is driven by the addition of 2023 survey age-composition data
 (Figure~\@ref(fig:main-bridge-summary-fig-1)). The addition of the 2023 relative
 age-1 index suggested an above-average 2022 cohort (and also increased the 2021
-relative age-1 index compared to the previous assessment;
+relative age-1 index compared to the previous assessment due to a previous omission;
 Section~\@ref(sec:data-acoustic-survey)).
 
 The relatively stable estimated biomass from
 2013--2019 is unchanged from the previous assessment.
-The underestimation of the 2009 biomass estimate is larger than
-the underestimation of any other year. The uncertainty of this point (both
+The underestimation of the 2009 and 2023 biomass estimates are larger than
+the underestimation of any other year. The uncertainty of the 2009 value (both
 modeled and actual) is high because of the presence of large numbers of
 Humboldt Squid during the survey. Humboldt Squid have similar target
 strength to hake which could introduce bias in the biomass estimate for that
 year, which also likely influenced the population dynamics of `r sp` through
-predation in that year.
+predation in that year. Future data will reduce the large uncertainty in the
+2023 biomass estimate, which may reduce the underestimation.
 
 Differences between the median posterior density estimates from the fit to the
 survey index are likely due to slight differences in what the fishery composition data
@@ -585,7 +586,7 @@ above-average cohorts that are now mature.
 The base model fit to the relative index of age-1 fish highlights an overall general
 confirmation of relative cohort strength
 (Figure~\@ref(fig:main-age1-index-fit-mcmc-fig)). In particular, the 2008, 2014,
-and 2019
+and 2018
 cohorts were estimated to be less than the index, while the 1994 and 2016
 cohorts were estimated to be larger than indicated by the index. The 2011 value
 (the large 2010 cohort) was closely fit.  Age-1 fish in 2021
@@ -622,7 +623,7 @@ still appears to be smaller than the 2014 cohort.
 The `r survey_end_yr` survey was the first
 to sample the `r survey_end_yr - 2` cohort, suggesting that it was a large
 contingent of the population (`r survey_a2_prop`% of the `r survey_end_yr` survey catch). The 2020 cohort,
-which has now been observed by the acoustic survey is expected to be above average in size.
+which has now been observed by the acoustic survey, is expected to be above average in size.
 Residual patterns to the fishery and survey age data do not show patterns
 that would indicate systematic bias in model predictions
 (Figure~\@ref(fig:main-age-comp-pearson-fig)).
@@ -633,8 +634,8 @@ Tables~\@ref(tab:main-est-numbers-at-age-tab)--
 \@ref(tab:main-est-catch-at-age-biomass-tab).
 For the major cohorts, the resulting estimated age-specific catch, natural
 mortality, and surviving biomasses are given in
-Table~\@ref(tab:main-cohort-effects-tab). For example, the catch weight of the
-2014 cohort at age-5 was slightly more than that of the 2010 cohort at age-5
+Table~\@ref(tab:main-cohort-effects-tab). For example, at age-5 the catch weight of the
+2014 cohort was slightly more than that of the 2010 cohort,
 and the resulting surviving biomass of the 2014 cohort was approximately half
 of the surviving biomass of the 2010 cohort.
 
@@ -735,13 +736,12 @@ The median estimate of the `r end_yr` female spawning biomass is
 `r curr_bio_median` million~t (with a 95% posterior credibility interval from
 `r curr_bio_lower` to `r curr_bio_upper` million~t). The current estimate of
 the `r end_yr - 1` female spawning biomass is `r prev_bio_median`
-(`r prev_bio_lower`--`r prev_bio_upper`) million~t. This is less than half of the
-median, and a much narrower credibility interval, compared to the
-`r prev_bio_median_last_assess` (`r prev_bio_lower_last_assess`--
-`r prev_bio_upper_last_assess`) million~t estimated in the `r end_yr - 1`
-assessment; in particular the tail of the distribution is greatly curtailed
+(`r prev_bio_lower`--`r prev_bio_upper`) million~t, giving less uncertainty than
+the estimate from the `r end_yr - 1` assessment of `r prev_bio_median_last_assess`
+(`r prev_bio_lower_last_assess`--`r prev_bio_upper_last_assess`) million~t. The current median is reduced from last
+year, partly due to the tail of the distribution being greatly curtailed
 (upper end of the interval is much lower than it was in the `r end_yr - 1`
-assessment).
+assessment), and a slight lowering of the lower end of the interval.
 The decrease appears to be due to the addition of the age-2$+$ biomass index
 pulling down the estimated biomass for recent years, plus the addition of the
 survey age compositions lowering the estimated 2020 recruitment
@@ -752,39 +752,39 @@ survey age compositions lowering the estimated 2020 recruitment
 The new data for this assessment do not significantly change the general pattern of
 recruitment estimated in recent assessments. However, estimates of absolute
 recruitment for the most recent years can change with new data, and the improved
-methods for modeling temporal weight-at-age and spatio-temporal maturity have
-also changed some historical estimated recruitments.
-For example, the 1980 median recruitment (the highest in the time series) of
-`r f(recruitment_med_to_compare["1980"], 1)`~billion individuals is now estimated to
-be somewhat larger than the 2010 recruitment of
-`r f(recruitment_med_to_compare["2010"], 1)`~billion, whereas in last year's
-assessment the 1980 median was
-`r f(prev_assess_recruitment_med["1980"], 1)`~billion, very close to the 2010
-median of
-`r f(prev_assess_recruitment_med["2010"], 1)`~billion.
-This change appears to be caused by the penultimate bridging step of using the modelled
-temporal weight-at-age inputs (compare the red to blue steps in
-Figure~\@ref(fig:main-bridge-summary-fig-1) noting the increase, on the log
-scale, for 1980 and the slight decrease for 2010).
+methods for modeling temporal weight-at-age and spatio-temporal maturity can
+slightly change some historical estimated recruitments.
 
-Regarding more recent recruitments, this assessment's median estimate of the 2020 recruitment is
-<!-- check values carefully; use - sign and lower and decrease, or no - sign and -->
-<!-- higher and increase; could automate with abs() and ifelse() -->
-`r f(-((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]), 1)`
-~billion fish lower than in the last assessment (a
-`r f(-((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
-(prev_assess_recruitment_med)["2020"]) * 100), 0)`% decrease), due to the
-age-2$+$ biomass index and survey age-composition data (Figure~\@ref(fig:main-bridge-summary-fig-1)).
-Similarly, estimates of 2019 recruitment have changed by
+The estimate of 2020 recruitment in last year's assessment was based on only two
+years of data and thus was highly uncertain; it suggested the cohort could
+potentially be huge (95% credible interval:
+`r f(last_yr_base_model$mcmccalcs$rlower["2020"], 1)`--
+`r f(last_yr_base_model$mcmccalcs$rupper["2020"], 1)`~billion fish).
+But with the extra of data in this year's assessment the 2020 cohort looks to be
+above average but not huge (95% interval:
+`r f(base_model$mcmccalcs$rlower["2020"], 1)`--
+`r f(base_model$mcmccalcs$rupper["2020"], 1)`~billion fish).
+The median has consequently fallen from
+`r f(last_yr_base_model$mcmccalcs$rmed["2020"], 1)` to
+`r f(base_model$mcmccalcs$rmed["2020"], 1)`~billion fish between the two assessments.
+
+Similarly, median estimates of 2019 recruitment have changed by
 `r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]) /
 (prev_assess_recruitment_med)["2019"]) * 100), 0)`%
-(which is only `r f((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"], 1)`
+(which is only `r f(-(recruitment_med_to_compare - prev_assess_recruitment_med)["2019"], 1)`
 ~billion fish because 2019 was already estimated to be a small year class).
 
 The 2021 recruitment is now estimated to be potentially large, whereas
 it was estimated to be below average in last year's assessment (for which the
 only information was the proportions of age-1 fish caught in the 2022 commercial
-fishery). The median has increased by
+fishery).
+The 95% credible interval in the `r end_yr - 1` assessment was
+`r f(last_yr_base_model$mcmccalcs$rlower["2021"], 2)`--
+`r f(last_yr_base_model$mcmccalcs$rupper["2021"], 2)`~billion fish),
+expanding in the current assessment to
+`r f(base_model$mcmccalcs$rlower["2021"], 1)`--
+`r f(base_model$mcmccalcs$rupper["2021"], 1)`~billion fish). Consequently,
+the median has increased by
 `r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]) /
 (prev_assess_recruitment_med)["2021"]) * 100), 0)`%
 (`r f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]), 1)`
@@ -861,11 +861,11 @@ recruitment are associated with large estimates of 2014 recruitment
 the 2010 recruitment, Figure~\@ref(fig:main-recruitment-scale-all-fig) provides
 an intuitive way to compare recruitment across years [see
 @JTC2022 for motivation and methods]. It shows that
-only the 1980 and 1984 recruitments are probably larger than 2010 (median
-relative values $>1$), and the 1970
+only the 1980 recruitment is probably larger than 2010 (median
+relative values $>1$), and the 1984
 recruitment has a small chance of being as large as 2010.
 Whereas Figure~\@ref(fig:main-recruitment-fig) suggests that 1967, 1973, 1977,
-1999, 2014, 2020, and 2021 could also possibly be larger than in 2010, giving an
+1999, 2014, and 2020 could also possibly be larger than in 2010, giving an
 over-optimistic impression of how often we can expect cohorts the size of
 the 2010 cohort to occur. The 2021 cohort is still very uncertain but has a
 small chance of exceeding the 2010 cohort
