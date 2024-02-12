@@ -10,6 +10,8 @@
 #' top left, top right bottom left bottom right
 #' @param ro_text_nudges A vector of 4 for the R0 text left/right nudges.
 #' See [plot_mcmc_histogram()]
+#' @param y_lim_geweke A y limit vector of two values for the Geweke plot
+#' only
 #' @param ... Arguments passed to [calc_mcmc_param_stats()] and
 #' [plot_mcmc_histogram()]
 #'
@@ -21,10 +23,11 @@ plot_mcmc_diagnostics_all_params <- function(model,
                                              diag_outline_color = "black",
                                              ro_arrow_lengths = rep(20, 4),
                                              ro_text_nudges = rep(0, 4),
+                                             y_lim_geweke = c(0, 30),
                                              ...){
 
   d <- calc_mcmc_param_stats(model, ...)
-
+browser()
   p <- list()
   p[[1]] <- plot_mcmc_histogram(d,
                                 col_nm = "autocor",
@@ -66,6 +69,7 @@ plot_mcmc_diagnostics_all_params <- function(model,
                                 ro_arrow_length =  ro_arrow_lengths[3],
                                 ro_text_nudge = ro_text_nudges[3],
                                 x_lim = c(-3, 3),
+                                y_lim = y_lim_geweke,
                                 x_breaks = seq(-3, 3, by = 1),
                                 x_brk = 0.25,
                                 y_brk = 5,
