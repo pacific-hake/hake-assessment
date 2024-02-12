@@ -39,8 +39,11 @@ structural assumptions of this `r assess_yr` base model, implemented using
 version `r ss_version` of the Stock Synthesis software [@MethotWetzel2013],
 differ from the `r last_assess_yr` base model in that the distribution assumed
 for the relative age-1 index is now a student-t distribution rather than a
-log-normal distribution [@JTC2022]. All model runs reported in this document
-are performed in a Bayesian context. Responses to `r last_assess_yr` SRG
+log-normal distribution [@JTC2023], and maturity-at-age is now year-specific
+(Section~\@ref(sec:data-maturity) and
+Appendix~\@ref(sec:app-maturity-analysis)).
+All model runs reported in this document are performed in a Bayesian
+context. Responses to `r last_assess_yr` SRG
 requests are in Section~\@ref(sec:assessment-response-review) and a Glossary
 of terms appears in Appendix~\@ref(sec:app-glossary).
 
@@ -373,7 +376,7 @@ The `r last_data_yr` Canadian `r sp` domestic fishery removed
 of the Canadian TAC of `r last_yr_can_tac`~t. For the second year in a row,
 the attainment for Canada was much lower than usual, due to the fishing
 vessels having a difficult time finding fish in Canadian waters (see
-Appendix~\@ref(sec:app-canada-fishery-report) and last year's assessment, 
+Appendix~\@ref(sec:app-canada-fishery-report) and last year's assessment,
 @JTC2023, for more details).
 
 The shoreside vessels, which land fresh round product onshore, landed `r last_yr_can_shore`~t in `r last_data_yr`, the lowest on record since 1990, and
