@@ -14,7 +14,7 @@ plot_param_density(
   y_lab = "Density",
   x_lim = c(0, 3000),
   y_lim = c(0, 1e-04),
-  expand_vec = c(100, 100),
+  expand_vec = c(0, 0),
   x_breaks = seq(x_lim[1], x_lim[2], by = (x_lim[2] - x_lim[1])/6),
   fill_color = ts_single_model_ribbon_fill,
   fill_alpha_tail = 0.3,
@@ -47,7 +47,7 @@ calculation}
 \item{x_lim}{A vector of two values. The x-axis minimum and maximum values}
 
 \item{expand_vec}{A vector to pass to the \code{expand} argument of the
-\code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}} function. Default is \code{c(100, 100)}}
+\code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}} function. Default is \code{c(0, 0)}}
 
 \item{fill_color}{The color used to fill under the density curve}
 
