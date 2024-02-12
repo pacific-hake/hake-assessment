@@ -147,9 +147,11 @@ Fitting the assessment model to empirical weight-at-age data allows for
 time-varying growth without needing a mechanistic relationship or environmental
 data, which facilitates an `Ecosystem Approach to Fisheries Management'
 (a priority for DFO and NOAA; see Section~\@ref(sec:data-weight-at-age)).
-Nonetheless, ongoing research investigating spatiotemporal drivers of
-weight at age and maturity will provide more insights into the specific mechanisms
-affecting changes in growth and fecundity, which will enable condition-specific prediction
+Furthermore, the new year-specific maturity-at-age specifically includes a
+temperature effect from a spatiotemporal model (Section~\@ref(sec:data-maturity) and
+Appendix~\@ref(sec:app-maturity-analysis)).
+Related ongoing research should provide more insights into the specific mechanisms
+affecting changes in growth and fecundity, which will enable further condition-specific prediction
 capabilities (e.g., assumptions of growth, or weight at age, and fecundity during forecast
 years). It is hypothesized that temporal changes in weight-at-age data may be
 due to ecosystem effects such as prey availability, predator abundance, and
