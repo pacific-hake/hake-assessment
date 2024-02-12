@@ -230,7 +230,8 @@ reach full maturity between the age of 3 and 4 in all years.
 
 ```{r main-maturity-ogive-fig, fig.cap = "(ref:main-maturity-ogive-cap)", fig.height = 10, out.height = "90%"}
 
-plot_maturity_ogives()
+plot_maturity_ogives(vert_lines = c(2, 3, 4, 5, 6),
+                     vert_lines_thickness = 0.25)
 ```
 
 (ref:main-weight-at-age-cap) Empirical weight-at-age (kg) values used for

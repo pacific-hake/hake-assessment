@@ -3,12 +3,25 @@
 #'
 #' @details
 #' The package data frame `maturity_estimates_df` is used.
+#' The 'Equilibrium' and 'Forecast' legend items are not part of the legend,
+#' they are annotated text and have to be placed manually if you change the
+#' size of this plot. use the arguments `eq_x_start_legend` and
+#' `eq_y_start_legend` to do so.
 #'
 #' @param show_inset Logical. If `TRUE`, show the inset panel
 #' @param from The limits of the inset on the main plot to extract.
 #' See [ggmagnify::geom_magnify()]
 #' @param to The limits on the main panel of the location to place the
 #' inset. See [ggmagnify::geom_magnify()]
+#' @param x_breaks A vector of values on the x axis to show ticks for
+#' @param x_label_every_nth Every nth value on the x axis, label the tick
+#' mark. So if this is 2, label every second tick age on the x axis
+#' @param vert_lines A vector of ages to draw vertical lines for, to aid
+#' the eye. If `NULL`, draw no lines.
+#' @param vert_lines_type Type of vertical lines if `vert_lines` is `TRUE`
+#' @param vert_lines_color Color of vertical lines if `vert_lines` is `TRUE`
+#' @param vert_lines_thickness Thickness of vertical lines if `vert_lines` is
+#' `TRUE`
 #' @param leg_font_size The legend font size
 #' @param eq_line_color Color for the Equilibrium line
 #' @param fore_line_color Color for the Forecast line
@@ -29,14 +42,20 @@
 #' @return A [ggplot2::ggplot()] object
 #' @export
 plot_maturity_ogives <- function(show_inset = TRUE,
-                                 from = c(xmin = 3,
+                                 from = c(xmin = 2,
                                           xmax = 6.5,
-                                          ymin = 0.75,
+                                          ymin = 0.8,
                                           ymax = 1),
-                                 to = c(xmin = 8,
+                                 to = c(xmin = 5,
                                         xmax = 14,
                                         ymin = 0.05,
                                         ymax = 0.6),
+                                 x_breaks = sort(unique(d$age)),
+                                 x_label_every_nth = 5,
+                                 vert_lines = 5,
+                                 vert_lines_type = "dashed",
+                                 vert_lines_color = "grey20",
+                                 vert_lines_thickness = 0.5,
                                  eq_line_color = "black",
                                  fore_line_color = "red",
                                  eq_x_start_legend = NULL,
@@ -82,16 +101,26 @@ plot_maturity_ogives <- function(show_inset = TRUE,
   #colors <- plot_color(length(unique(d$year)))
   colors <- rev(rich_colors_short(length(unique(d$year))))
 
+  x_labels <- x_breaks
+  x_labels[!x_breaks %% x_label_every_nth == 0] <- ""
+
   g<- d |>
     ggplot(aes(x = age,
                y = p_mature,
                group = as.factor(year),
                color = as.factor(year)),
            linetype = "dashed",
-           linewidth = ts_linewidth) +
-    geom_vline(xintercept = 5,
-               linetype = "dashed",
-               color = "grey20") +
+           linewidth = ts_linewidth)
+
+  if(!is.null(vert_lines[1])){
+    g <- g +
+      geom_vline(xintercept = vert_lines,
+                 linetype = vert_lines_type,
+                 color = vert_lines_color,
+                 linewidth = vert_lines_thickness)
+  }
+
+  g <- g +
     geom_line(data = d_equil,
               linewidth = eq_fore_line_width,
               color = eq_line_color,
@@ -104,6 +133,8 @@ plot_maturity_ogives <- function(show_inset = TRUE,
     scale_color_manual(values = colors,
                        labels = sort(unique(d$year)),
                        name = "Year") +
+    scale_x_continuous(breaks = x_breaks,
+                       labels = x_labels) +
     xlab("Age (years)") +
     ylab("Probability of being mature") +
     theme(legend.key.size = unit(leg_line_size_cm, "cm"),

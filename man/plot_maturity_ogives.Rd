@@ -7,8 +7,14 @@ with inset for an area of interest to contain a detailed view}
 \usage{
 plot_maturity_ogives(
   show_inset = TRUE,
-  from = c(xmin = 3, xmax = 6.5, ymin = 0.75, ymax = 1),
-  to = c(xmin = 8, xmax = 14, ymin = 0.05, ymax = 0.6),
+  from = c(xmin = 2, xmax = 6.5, ymin = 0.8, ymax = 1),
+  to = c(xmin = 5, xmax = 14, ymin = 0.05, ymax = 0.6),
+  x_breaks = sort(unique(d$age)),
+  x_label_every_nth = 5,
+  vert_lines = 5,
+  vert_lines_type = "dashed",
+  vert_lines_color = "grey20",
+  vert_lines_thickness = 0.5,
   eq_line_color = "black",
   fore_line_color = "red",
   eq_x_start_legend = NULL,
@@ -28,6 +34,21 @@ See \code{\link[ggmagnify:geom_magnify]{ggmagnify::geom_magnify()}}}
 
 \item{to}{The limits on the main panel of the location to place the
 inset. See \code{\link[ggmagnify:geom_magnify]{ggmagnify::geom_magnify()}}}
+
+\item{x_breaks}{A vector of values on the x axis to show ticks for}
+
+\item{x_label_every_nth}{Every nth value on the x axis, label the tick
+mark. So if this is 2, label every second tick age on the x axis}
+
+\item{vert_lines}{A vector of ages to draw vertical lines for, to aid
+the eye. If \code{NULL}, draw no lines.}
+
+\item{vert_lines_type}{Type of vertical lines if \code{vert_lines} is \code{TRUE}}
+
+\item{vert_lines_color}{Color of vertical lines if \code{vert_lines} is \code{TRUE}}
+
+\item{vert_lines_thickness}{Thickness of vertical lines if \code{vert_lines} is
+\code{TRUE}}
 
 \item{eq_line_color}{Color for the Equilibrium line}
 
@@ -63,4 +84,8 @@ with inset for an area of interest to contain a detailed view
 }
 \details{
 The package data frame \code{maturity_estimates_df} is used.
+The 'Equilibrium' and 'Forecast' legend items are not part of the legend,
+they are annotated text and have to be placed manually if you change the
+size of this plot. use the arguments \code{eq_x_start_legend} and
+\code{eq_y_start_legend} to do so.
 }
