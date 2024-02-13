@@ -1510,7 +1510,7 @@ submitted each year. Prior to 2004, catchability was fixed at 1.0. This
 assumption was investigated between 2004 and 2007, leading to variability in
 model results because of the use of several different, but fixed, values of
 catchability. Since 2008, catchability has been freely estimated by the model
-($q$ = `r f(median(base_model$extra_mcmc$q_vector), 2)`). The fixing
+($q_b$ = `r f(median(base_model$extra_mcmc$q_vector), 2)`). The fixing
 of survey catchability had the effect of driving the estimate of initial
 biomass upward, which in turn scaled the entire biomass trajectory up,
 leading to higher estimates of relative spawning biomass than in more recent
