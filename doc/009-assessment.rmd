@@ -1089,8 +1089,8 @@ range of uncertainty (Figure~\@ref(fig:main-projected-catch-density-fig)),
 with the 95% credibility interval being `r ct_limit_quantiles["lower"]`--
 `r ct_limit_quantiles["upper"]`~t.
 
-Decision tables give projected population status (relative spawning biomass)
-and relative fishing intensity under different catch alternatives for the base
+Decision tables give projected population status (relative spawning biomass
+and relative fishing intensity) under different catch alternatives for the base
 model
 (Tables~\@ref(tab:main-decisions-biomass-tab) and
 \@ref(tab:main-decisions-spr-tab)). The tables are organized such that the
@@ -1099,7 +1099,7 @@ evaluated across the quantiles (columns) of the posterior distribution.
 Table~\@ref(tab:main-decisions-biomass-tab) shows
 projected relative spawning biomass outcomes, and
 Table~\@ref(tab:main-decisions-spr-tab) shows projected fishing intensity
-outcomes relative to `r f_40` (based on SPR; see table legend).
+outcomes relative to `r fspr_40`.
 
 Population dynamics and governing parameters assumed during the forecast
 period include random recruitment; selectivity, weight-at-age and maturity
@@ -1108,16 +1108,16 @@ period include random recruitment; selectivity, weight-at-age and maturity
 estimates for each particular MCMC sample).
 
 Relative fishing intensity exceeding 1 (or 100% when shown as a percentage)
-indicates fishing in excess of the `r f_40` default harvest rate limit.
+indicates fishing in excess of the `r fspr_40` default harvest rate limit.
 A slight exceedance can happen for the median relative fishing intensity in
 `r forecast_yrs[1:(length(forecast_yrs) - 2)]` and
-`r forecast_yrs[(length(forecast_yrs) - 1)]` because the `r f_40` default
+`r forecast_yrs[(length(forecast_yrs) - 1)]` because the `r fspr_40` default
 harvest-rate catch limit is calculated using baseline selectivity-at-age
 (1966--1990; prior to time-varying deviations), whereas the forecasted
 catches under the default harvest-rate are removed using selectivity averaged
 over the last five years. Recent changes in selectivity could be reflected
-in the projection of slight over- or under-fishing relative to the desired `r f_40`
-rate.
+in the projection of slight over- or under-fishing relative to the desired
+`r fspr_40` rate.
 
 Key management metrics are presented for
 `r forecast_yrs[2:(length(forecast_yrs) - 1)]` and
@@ -1132,8 +1132,9 @@ from this table for intermediate catch values in `r assess_yr`
 (Table~\@ref(tab:main-risk-year-1-tab) and
 Figure~\@ref(fig:main-risk-year-1-fig)). However,
 interpolation may not be applicable for all catches in `r assess_yr + 1` and
-`r assess_yr + 2` because they are conditional on previous year(s) catch
-levels. This explains why a few probabilities decline (rather than rise) with
+`r assess_yr + 2` because they are conditional on catch levels from the
+previous year or years. This explains why a few probabilities decline (rather
+than rise) with
 increased `r assess_yr + 1` and `r assess_yr + 2` catch levels in
 Tables~\@ref(tab:main-risk-year-2-tab) and~\@ref(tab:main-risk-year-3-tab) and
 Figures~\@ref(fig:main-risk-year-2-fig)
@@ -1157,35 +1158,41 @@ Figure~\@ref(fig:main-risk-year-2-fig)), and a
 and Figure~\@ref(fig:main-risk-year-3-fig)).
 
 The probability of the female spawning biomass decreasing from `r end_yr` to
-`r end_yr + 1` is below 23% for all catch levels examined
-(Table~\@ref(tab:main-risk-year-1-tab) and
-Figure~\@ref(fig:main-risk-year-1-fig)). The probability is 1% for the
-`r end_yr` catch level similar to that for `r end_yr - 1`
-(catch alternative~f). For all explored catches, the maximum probability of
-the female spawning biomass dropping below `r b_10` at the start of
-`r end_yr + 1` is near 0%, at the start of `r end_yr + 2` is near 0%, and at the
-start of `r end_yr + 3` is 2% (Tables~\@ref(tab:main-risk-year-1-tab)--
-\@ref(tab:main-risk-year-3-tab) and
+`r end_yr + 1` is greater or equal to `r prob_all_catch_greater`% for all catch
+levels examined other than zero (Table~\@ref(tab:main-risk-year-1-tab) and
+Figure~\@ref(fig:main-risk-year-1-fig)). The probability is
+`r prob_decl_last_yr_catch`% for the `r end_yr` catch level similar to that
+for `r end_yr - 1` (catch alternative~`r letters[ct_actual_ind]`). For all
+explored catches, the maximum probability of the female spawning biomass
+dropping below `r b_10` at the start of `r end_yr + 1` is
+`r prob_max_below_10_yr1`%, at the start of `r end_yr + 2` is
+`r prob_max_below_10_yr2`%, and at the start of `r end_yr + 3` is
+`r prob_max_below_10_yr3`%
+(Tables~\@ref(tab:main-risk-year-1-tab)--\@ref(tab:main-risk-year-3-tab) and
 Figures~\@ref(fig:main-risk-year-1-fig)--
 \@ref(fig:main-risk-year-3-fig)). The similar maximum
-probability of dropping below `r b_40` at the start of `r end_yr + 1` is 6%,
-at the start of `r end_yr + 2` is 15%, and at the start of `r end_yr + 3`
-is 30%.
+probability of dropping below `r b_40` at the start of `r end_yr + 1` is
+`r prob_max_below_40_yr1`%, at the start of `r end_yr + 2` is 
+`r prob_max_below_40_yr2`%, and at the start of `r end_yr + 3`
+is `r prob_max_below_40_yr3`%.
 
 It should be noted that forecasted biomass is not only influenced by catch
-levels. As the above average 2014 and 2016 cohorts continue to age, total biomass
-of these cohorts even without fishing mortality will continue to decrease (Tables~\@ref(tab:main-est-biomass-at-age-tab) and
-\@ref(tab:main-cohort-effects-tab)) as losses from mortality outweigh increases
-from growth. The above-average 2020 cohort entered this
+levels. As the above average 2014 and 2016 cohorts continue to age, total
+biomass of these cohorts even without fishing mortality will continue to
+decrease (Tables~\@ref(tab:main-est-biomass-at-age-tab) and
+\@ref(tab:main-cohort-effects-tab)) as losses from mortality outweigh
+increases from growth. The above-average 2020 cohort entered this
 growth-mortality transition period around 2023
 (Tables~\@ref(tab:main-est-biomass-at-age-tab) and
-\@ref(tab:main-cohort-effects-tab)). During 2024, the age-3 2021 cohort will likely begin the
-growth-mortality transition where a net increase
-in total biomass is less likely (note that fecundity will increase which will influence
-the exact change in female spawning biomass,
-Figure~\@ref(fig:main-maturity-ogive-fig)). The estimated above-average (yet still highly uncertain) 2020 and 2021 cohorts will continue to play a large role in determining
-female spawning biomass during the forecast years presented here. The below-average
-2015, 2018, and 2019 cohorts will contribute much less to forecasted spawning
+\@ref(tab:main-cohort-effects-tab)). During 2024, the age-3 2021 cohort
+will likely begin the growth-mortality transition where a net increase
+in total biomass is less likely (note that fecundity will increase which
+will influence the exact change in female spawning biomass,
+Figure~\@ref(fig:main-maturity-ogive-fig)).
+The estimated above-average (yet still highly uncertain) 2020 and 2021
+cohorts will continue to play a large role in determining female spawning
+biomass during the forecast years presented here. The below-average 2015,
+2018, and 2019 cohorts will contribute much less to forecasted spawning
 biomass than the larger cohorts.
 
 The age composition (in numbers) of the catch in `r forecast_yrs[1]` is

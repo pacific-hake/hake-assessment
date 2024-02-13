@@ -1173,6 +1173,18 @@ decl_col <- paste0("SSB_", forecast_yrs[2], "<SSB_", forecast_yrs[1])
 decl_col_sym <- sym(decl_col)
 below40_col <- paste0("Bratio_", forecast_yrs[2], "<0.40")
 below40_col_sym <- sym(below40_col)
+below10_col <- paste0("Bratio_", forecast_yrs[2], "<0.10")
+below10_col_sym <- sym(below10_col)
+prob_max_below_40_yr1 <- base_model$risks[[1]] |>
+  as_tibble() |>
+  pull(!!below40_col) |>
+  max() |>
+  f(1)
+prob_max_below_10_yr1 <- base_model$risks[[1]] |>
+  as_tibble() |>
+  pull(!!below10_col) |>
+  max() |>
+  f(1)
 prob_decl_yr1_zero_catch <- base_model$risks[[1]] |>
   as_tibble() |>
   filter(!!ct_col_sym < 1) |>
@@ -1188,6 +1200,19 @@ prob_below_b40_yr1_last_yr_catch <- base_model$risks[[1]] |>
   filter(!!ct_col_sym == last_yr_catch_fore) |>
   pull(!!below40_col) |>
   f()
+prob_all_catch_greater <- base_model$risks[[1]] |>
+  as_tibble() |>
+  filter(!!ct_col_sym > 0.01) |>
+  pull(!!decl_col_sym) |>
+  min() |>
+  f()
+# Probability of decline if the catch this coming year is the same as last
+# year's catch
+prob_decl_last_yr_catch <- base_model$risks[[1]] |>
+  as_tibble() |>
+  filter(!!ct_col_sym == last_yr_catch_fore) |>
+  pull(!!decl_col_sym) |>
+  f()
 
 ct_col <- paste0("ForeCatch_", forecast_yrs[2])
 ct_col_sym <- sym(ct_col)
@@ -1195,6 +1220,18 @@ decl_col <- paste0("SSB_", forecast_yrs[3], "<SSB_", forecast_yrs[2])
 decl_col_sym <- sym(decl_col)
 below40_col <- paste0("Bratio_", forecast_yrs[3], "<0.40")
 below40_col_sym <- sym(below40_col)
+below10_col <- paste0("Bratio_", forecast_yrs[3], "<0.10")
+below10_col_sym <- sym(below10_col)
+prob_max_below_40_yr2 <- base_model$risks[[2]] |>
+  as_tibble() |>
+  pull(!!below40_col) |>
+  max() |>
+  f(1)
+prob_max_below_10_yr2 <- base_model$risks[[2]] |>
+  as_tibble() |>
+  pull(!!below10_col) |>
+  max() |>
+  f(1)
 prob_decl_yr2_zero_catch <- base_model$risks[[2]] |>
   as_tibble() |>
   filter(!!ct_col_sym < 1) |>
@@ -1210,4 +1247,24 @@ prob_below_b40_yr2_last_yr_catch <- base_model$risks[[2]] |>
   filter(!!ct_col_sym == last_yr_catch_fore) |>
   pull(!!below40_col) |>
   f()
+
+ct_col <- paste0("ForeCatch_", forecast_yrs[3])
+ct_col_sym <- sym(ct_col)
+decl_col <- paste0("SSB_", forecast_yrs[4], "<SSB_", forecast_yrs[3])
+decl_col_sym <- sym(decl_col)
+below40_col <- paste0("Bratio_", forecast_yrs[4], "<0.40")
+below40_col_sym <- sym(below40_col)
+below10_col <- paste0("Bratio_", forecast_yrs[4], "<0.10")
+below10_col_sym <- sym(below10_col)
+prob_max_below_40_yr3 <- base_model$risks[[3]] |>
+  as_tibble() |>
+  pull(!!below40_col) |>
+  max() |>
+  f(1)
+prob_max_below_10_yr3 <- base_model$risks[[3]] |>
+  as_tibble() |>
+  pull(!!below10_col) |>
+  max() |>
+  f(1)
+
 ```
