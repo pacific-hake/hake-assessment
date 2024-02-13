@@ -715,8 +715,8 @@ the bounds of 0 and 1 [@JTC2020]. The normal prior for both
 $\log \theta_{\text{fish}}$ and $\log \theta_{\text{surv}}$ has a mean of
 `r effn_prior[2]` and a standard deviation of `r effn_prior[3]`.
 
-Composition data can also be weighted using the Francis method (T2.6 in Table
-2 of @Francis2011), which is based on variability in the observed ages by year.
+Composition data can also be weighted using the Francis method [T2.6 in Table
+2 of @Francis2011], which is based on variability in the observed ages by year.
 This method, like the M-I method, is iterative, where the sample sizes are
 adjusted such that the fit of the expected mean age should be within the
 estimated uncertainty at a rate that is consistent with the variability
