@@ -980,10 +980,10 @@ $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
 The medians of the key parameters from the posterior distribution are
 generally similar to those in last year's base model
 (Table~\@ref(tab:main-parameter-estimates-tab)). The largest change was a
-reduction of the 2020 cohort size by more than half. Medians of some of the
-derived quantities also change somewhat; in particular, recruitment in 2016
-and 2014 both decreased by 10% from those estimated in the
-`r assess_yr - 1` assessment.
+reduction of the 2020 recruitment by more than half, as discussed above, leading
+to a fall in the estimated median relative spawning biomass at the start
+of 2023. Medians of the 2014 and 2016 recruitment also both decreased, by about
+10% from those estimated in the `r assess_yr - 1` assessment.
 
 The `r sp` stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
@@ -996,7 +996,7 @@ estimates in `r assess_yr` and throughout the current forecast period, because
 there is considerable uncertainty associated with the absolute size of the, now
 mostly mature, 2020 and 2021 year classes that propagates into forecasts. Although
 the 2023 acoustic survey helped to refine these estimates and reduce uncertainty,
-further observations of these year classes will improve estimates. The addition of
+further observations of these year classes will improve estimates. The inclusion of
 the age-1 index in this assessment will, in some cases, also help to reduce this
 uncertainty (as it currently does in this case; see
 Figure~\@ref(fig:main-recruitment-base-alternative-2-fig) discussed later).
