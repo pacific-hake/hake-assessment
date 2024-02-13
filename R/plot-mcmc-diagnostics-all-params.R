@@ -27,7 +27,7 @@ plot_mcmc_diagnostics_all_params <- function(model,
                                              ...){
 
   d <- calc_mcmc_param_stats(model, ...)
-browser()
+
   p <- list()
   p[[1]] <- plot_mcmc_histogram(d,
                                 col_nm = "autocor",
