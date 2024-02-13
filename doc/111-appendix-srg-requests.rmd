@@ -4,21 +4,351 @@
 
 # Scientific Review Group (SRG) requests from `r assess_yr` meeting {#sec:app-srg-requests}
 
-This appendix will summarize results produced in response to Scientific Review
+This appendix summarizes results produced in response to Scientific Review
 Group requests made during the meeting held from 6th to 9th February `r assess_yr`.
 
-<!--
-## Request 1 -- simple text here {-}
+## Request 1 -- Sample sizes for M, F, and U weight-at-age data {-}
 
 "Request description."
 
-Answer goes here.
+```{r weight-at-age-sample-size, results = "asis"}
+temp_waa <- weight_at_age_df |>
+  dplyr::group_split(country) |>
+  purrr::map_df(\(x) dplyr::group_by(x, country, year, sex, data_type) |>
+    dplyr::count() |>
+    tidyr::pivot_wider(
+      names_sep = " ",
+      values_from = n,
+      names_from = c(sex, data_type),
+      names_sort = TRUE,
+      names_vary = "slowest",
+      values_fill = 0
+    ) |>
+    dplyr::select(country, year, dplyr::starts_with(LETTERS))
+  )
+  kableExtra::kable(
+    temp_waa |> dplyr::filter(country == "canada"),
+    format = "latex",
+    booktabs = TRUE
+  ) |>
+  kable_styling(font_size = 4.5)
+```
+
+```{r weight-at-age-sample-size-us-1, results = "asis"}
+kbl(temp_waa |> dplyr::filter(country == "usa", year <= 1997),
+    format = "latex",
+    booktabs = TRUE) |>
+  kable_styling(font_size = 4.5)
+```
+
+```{r weight-at-age-sample-size-us-2, results = "asis"}
+kbl(temp_waa |> dplyr::filter(country == "usa", year > 1997),
+    format = "latex",
+    booktabs = TRUE) |>
+  kable_styling(font_size = 4.5)
+```
+
+```{r plot-weight-at-age-by-sex, out.height = "85%"}
+wtaa_preds <- readRDS(fs::path("/srv/hake/other/tv", "weight-at-age-preds.rds"))
+# Make figure
+wtaa_preds |>
+  dplyr::filter(year %in% c(last_data_yr - 5, last_data_yr)) |>
+  ggplot2::ggplot(ggplot2::aes(
+    x = age,
+    y = est_weight,
+    group = interaction(sex, year),
+    colour = fyear,
+    pch = sex
+  )) +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggplot2::xlab("Age (years)") +
+  ggplot2::ylab("Estimated mass (kg)")
+```
+
+```{r plot-base-v-tv-maturity-ssb, out.height = "85%"}
+m_names <- c("pre-SRG base", "sexed weight-at-age (new base)")
+old_base_model <- readRDS("/srv/hake/models/2024/01-version/01-base-models/01-base/01-base.rds")
+plot_biomass(list(old_base_model, base_model), model_names = m_names)
+```
+
+```{r plot-base-v-tv-maturity-rel, out.height = "85%"}
+plot_rel_biomass(list(old_base_model, base_model), model_names = m_names)
+```
 
 ## Request 2 -- simple text here {-}
 
-"Request description."
+"on Figure G.11 add the data for proportion mature"
 
-Answer goes here.
--->
+Description
 
+* The first figure shows empirical results for age 2 and the second figure shows
+  empirical results for age 3. Data are included from non-ASHOP samples because
+  that is what the curve is predicting. For each year (denoted on the smooth
+  line) the points appear above or below the labeled point from the same year.
+* We do not expect the points to overlap or lie on the line because the curve
+  represents the marginal effect of temperature (e.g., predicted maturity from
+  non-ASHOP samples collected from an average sample location on July 1).
+* Changing the reference date from July 1 to a later date for age-3 fish would
+  have the effect of shifting the curve up closer to the points because the
+  non-ASHOP samples occur later in the year (25% before July1/75% after). The
+  points are also affected by variable sampling effort year to year.
+* In conclusion, we would never really expect the empirical estimates to
+  perfectly match the model-based ones. Sampling varies across space and time,
+  and the empirical estimates do not account for any of this variation.
+
+```{r 02-fig-a, results = "asis", out.height = "85%"}
+include_graphics(file.path(figures_dir,
+                           "2024-srg-response-1-2-a.png"),
+                 error = FALSE)
+```
+
+```{r 02-fig-b, results = "asis", out.height = "85%"}
+include_graphics(file.path(figures_dir,
+                           "2024-srg-response-1-2-b.png"),
+                 error = FALSE)
+```
 \clearpage
+
+## Request 3 -- Add $SB_{2023}/SB_{0}$ to Table 25 {-}
+
+```{r main-parameter-estimates-tab, results = "asis", echo = FALSE}
+
+table_param_est_last_year_hardcoded(
+  model = list(base_model),
+  model_nms = c(base_model_name, last_yr_base_model_name),
+  section_bold = TRUE,
+  section_italics = TRUE,
+  section_underline = TRUE,
+  section_line_above = FALSE,
+  section_line_below = FALSE,
+  digits = 3,
+  caption = "Table 25 in document, with 2023 rel. biomass added",
+  font_size = 4,
+  header_font_size = 9,
+  longtable = TRUE) 
+  # row_spec(17,
+  #          bold = table_highlight_bold,
+  #          background = table_highlight_color)
+```
+
+## Request 4 -- Clean vs mixed species survey trawls {-}
+
+In 2023 the acoustic-trawl survey had 13 regions out of 282 that were
+classified as hake mix. These regions were associated with 4 separate
+trawls. The hake percentages in those hake mix trawls ranged from 55%
+to 76% hake (all mixed with rockfish).
+
+22.9 kmt out of the 735 kmt of unkriged biomass (3.1%) came from hake
+mixes in 2023.
+
+## Request 5 -- "Tabular 2008--2026 maturity-at-age data"
+
+The actual years that are included are 2009--2023 and 4 projection years.
+The projections use the mean of the maturity-at-age for 2019--2023.
+
+```{r main-mat-at-age-fig, fig.height = 6, out.height = "70%"}
+
+j <- maturity_estimates_df |>
+  filter(model == "Spatial + temperature") |> 
+  transmute(Yr = year, age, p_mature) |>
+  pivot_wider(names_from = age,
+              values_from = p_mature) |> 
+  mutate(Seas = 1,
+         Sex = 1,
+         Bio_pattern = 1,
+         BirthSeas = 1,
+         Fleet = 1,
+         .after = 1)
+extra_rows <- j |> slice(1:2)
+extra_rows[1, "Yr"] <- 2007
+extra_rows[2, "Yr"] <- 2008
+j <- bind_rows(extra_rows, j)
+
+# Create projection rows - mean of last 5 years
+rows <- tail(j)
+mn_row <- rows |>
+  colMeans() |>
+  vec2df()
+for(i in 2024:2027){
+  mn_row <- mn_row |> 
+    mutate(Yr = i)
+  j <- j |> 
+    bind_rows(mn_row)
+}
+
+j_model <- old_base_model
+j_model$wtatage <- j
+j_model$startyr <- 2009
+j_model$endyr <- 2023
+waa_ss_df <- weight_age_sample_sizes_df |> 
+  filter(Yr %in% 2009:2023)
+
+plot_heatmap_weight_at_age(
+  j_model,
+  cell_font_size = 4,
+  sample_size_df = waa_ss_df,
+  pre_yrs = start_yr_age_comps:old_base_model$endyr,
+  pre_func = mean,
+  post_yrs = 2024:2027,
+  post_wa_vals = j |> select(grep("^[0-9]+$", names(j))) |>
+    tail(1) |>
+    unlist(),
+  #post_func = mean,
+  cols = c("red",
+           "yellow",
+           "green",
+           "dodgerblue"))
+```
+
+## Request 6 -- "Down weight the age-composition sample sizes"
+
+A lambda value of 0.05 was multiplied by the age-composition likelihood
+component to calculate the overall negative log likelihood to be minimized.
+
+* DM fishery: 0.341 (base); 0.035 (lambda)
+* DM survey: 0.942; 0.271
+* DM ratio: 0.362; 0.129
+* Extra SD survey: 0.313; 0.202
+* Extra SD age-1 index: 0.385; 0.371
+* Age Likelihood: 2144; 131
+* Approximate run time: 2 hours; 17 hours
+
+```{r plot-sur-fit-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
+m_names <- c("pre-SRG base", "lambda 0.05")
+lambda_model <- readRDS("/srv/hake/models/2024/01-version/05-test-models/30-lambda-comps/30-lambda-comps.rds")
+plot_survey_index_fits(old_base_model,
+                       model_lst=list(old_base_model, lambda_model),
+                       model_names = m_names,
+                       survey_type = "age2",
+                       rev_colors = TRUE,
+                       leg_pos = c(0.75, 0.15),
+                       xlim = c(1995, end_yr))
+```
+
+```{r plot-age1-fit-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
+plot_survey_index_fits(old_base_model,
+                       model_lst=list(base_model, lambda_model),
+                       model_names = m_names,
+                       survey_type = "age1",
+                       xlim = c(1995, end_yr),
+                       ylim = c(0, 11),
+                       leg_ncol = 2,
+                       leg_font_size = 10,
+                       leg_pos = c(0.25, 0.9),
+                       y_breaks = seq(0, 11, by = 2),
+                       rev_colors = TRUE)
+```
+
+```{r plot-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
+plot_biomass(list(old_base_model, lambda_model),
+             model_names = m_names,
+             ylim = c(0, 12),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = c(0.75, 0.9))
+```
+
+```{r plot-rel-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
+plot_rel_biomass(list(old_base_model, lambda_model),
+                 model_names = m_names,
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 point_shape = ts_single_model_pointshape,
+             leg_pos = c(0.75, 0.9)) |>
+  suppressWarnings()
+```
+
+```{r plot-rec-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
+plot_recdevs(list(old_base_model, lambda_model),
+             model_names = m_names,
+             line_color = ts_single_line_color,
+             leg_pos = c(0.25, 0.95))
+```
+
+```{r plot-recabs-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
+plot_recruitment(list(old_base_model, lambda_model),
+                 model_names = m_names,
+                 inc_means = TRUE,
+                 leg_pos = c(0.25, 0.95)) |>
+  suppressWarnings()
+```
+
+## Request 7 -- "Survey and catch biomass at age"
+
+Proportion of survey biomass estimated in Canada.
+
+```{r, can-prop-survey-biomass-fig, results = "asis", out.height="80%"}
+
+include_graphics("../beamer/srg/requests-1/survey-biomass-files/Proportion-by-age-CAN-hake.png")
+```
+
+```{r, can-survey-biomass-at-age-load, echo=FALSE}
+
+survey_biomass_at_age_can <- read_csv("../beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_CAN.csv")
+survey_biomass_at_age_us <- read_csv("../beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_US.csv")
+```
+
+Fishery Catch-at-age for Canada (tonnes)
+
+```{r can-catch-at-age, results = "asis"}
+
+table_catch_by_fleet(country = 1, font_size = 4)
+```
+
+Fishery Catch-at-age for U.S. (tonnes)
+
+```{r us-catch-at-age, results = "asis"}
+
+table_catch_by_fleet(country = 2, font_size = 4)
+```
+
+The following code was pasted into doc using gotest() from the doc directory
+so that landscape pages could be used to show the wide tables
+
+BEGIN LANDSCAPE
+
+```{r, survey-at-age-us, results = "asis"}
+
+d <- read_csv("../beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_US.csv",
+              col_types = cols()) |> 
+  rename(wgt = wgt_total) |> 
+  mutate(across(-year, ~{f(.x / 1e3)})) |> 
+  rename(Year = year,
+         Biomass = wgt)
+
+kbl(d,
+    format = "latex",
+    booktabs = TRUE,
+    align = c("l",
+              rep("r", ncol(d) - 1)),
+    linesep = "",
+    caption = "Proportion of survey biomass estimated in the U.S.",
+    escape = FALSE) |>
+  kable_styling(font_size = 7) |>
+  row_spec(0, bold = TRUE)
+```
+
+```{r, survey-at-age-can, results = "asis"}
+
+d <- read_csv("../beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_CAN.csv",
+              col_types = cols()) |> 
+  rename(wgt = wgt_total) |> 
+  mutate(across(-year, ~{f(.x / 1e3)})) |> 
+  rename(Year = year,
+         Biomass = wgt)
+
+kbl(d,
+    format = "latex",
+    booktabs = TRUE,
+    align = c("l",
+              rep("r", ncol(d) - 1)),
+    linesep = "",
+    caption = "Proportion of survey biomass estimated in Canada",
+    escape = FALSE) |>
+  kable_styling(font_size = 8) |>
+  row_spec(0, bold = TRUE)
+```
+
+END LANDSCAPE
+
+
