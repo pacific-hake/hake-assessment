@@ -431,12 +431,13 @@ plot_fishing_intensity(base_model, show_arrows = TRUE)
 ```
 
 Over the last five years, the median relative fishing intensity was the
-highest in 2019 at `r median_intensity_2019`%, dropping by over 20% to
-`r median_intensity_2020`% in 2020, then remaining stable for 2021 and 2022
-at `r median_intensity_2021`% and `r median_intensity_2022`% respectively.
-The 3-year stable trend from 2020--2022 was ended in 2023 when the Relative
-fishing intensity dropped again by approximately 5% to
-`r median_intensity_2023`% (Table~\@ref(tab:es-fishing-intensity-tab) and
+highest in 2019 at `r median_intensity_2019`% of the target level of
+`r fspr_40` = 1.0, dropping by over 20% to `r median_intensity_2020`% in
+2020, then remaining stable for 2021 and 2022 at `r median_intensity_2021`%
+and `r median_intensity_2022`% respectively. The 3-year stable trend from
+2020--2022 was ended in 2023 when the Relative fishing intensity dropped
+again by approximately 0.05 to `r median_intensity_2023`% of the target
+level of `r fspr_40` = 1.0 (Table~\@ref(tab:es-fishing-intensity-tab) and
 Figure~\@ref(fig:es-fishing-intensity-fig)).
 
 The median exploitation fraction (catch divided by biomass of fish of age-2 and
@@ -449,7 +450,7 @@ Figure~\@ref(fig:es-exploitation-fraction-fig)).
 Although there is a considerable amount of imprecision around these
 estimates due to uncertainty in recruitment and spawning biomass,
 the 95% posterior credibility interval of relative fishing intensity was
-below 1.0 from 2012--2016 and again in 2020--2023
+below `r fspr_40` = 1.0 from 2012--2016 and again in 2020--2023
 (Figure~\@ref(fig:es-fishing-intensity-fig)).
 
 ## Management performance {-}
