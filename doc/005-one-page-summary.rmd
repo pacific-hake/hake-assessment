@@ -70,3 +70,8 @@ female spawning biomass declining from `r end_yr` to `r end_yr + 1`, an
 `r last_yr_tac_risk_3_biomass_decline`% chance of it declining
 from `r end_yr + 2` to `r end_yr + 3` with a constant catch of
 `r last_yr_tac` t.
+
+- Despite healthy stock size and status estimates, the recent lack
+of survey abundance and fishery catch in Canada suggests a shift in
+population distribution leading to distressed northern fisheries
+over recent years.
