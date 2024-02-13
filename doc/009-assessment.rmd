@@ -1498,25 +1498,25 @@ within the range of estimation uncertainty across all retrospective years.
 There is no indication from retrospective evaluations that the base model is
 displaying a systematic bias.
 
+## Comparison with past assessments {#sec:assessment-past-assessments}
+
 A comparison of the base models, approved for management, used in each year
 since `r min(assess_history_df$yr, na.rm = TRUE)` indicates that the
 variability between model results, especially early on in the estimated time
-series, is larger than the estimated uncertainty reported from any single model
+series, is larger than the estimated uncertainty reported from the current base model
 (Figure~\@ref(fig:main-historical-assessments-fig)). There have been substantial
 differences in the structural assumptions of the models and, thus, results
 submitted each year. Prior to 2004, catchability was fixed at 1.0. This
 assumption was investigated between 2004 and 2007, leading to variability in
 model results because of the use of several different, but fixed, values of
 catchability. Since 2008, catchability has been freely estimated by the model
-(q = `r f(median(base_model$extra_mcmc$q_vector), 2)`). The fixing
+($q$ = `r f(median(base_model$extra_mcmc$q_vector), 2)`). The fixing
 of survey catchability had the effect of driving the estimate of initial
 biomass upward, which in turn scaled the entire biomass trajectory up,
 leading to higher estimates of relative spawning biomass than in more recent
-assessments. The median estimates of female spawning biomass for recent years
-have remained similar to the previous assessment but declined relative to the
-2015--2017 assessments. The difference is most likely related to the recent
-under-fitting of the 2017 survey estimate of biomass despite the consistency
-in the structure of the assessment model in recent years. In addition to more
+assessments. The median estimates of female spawning biomass for 2016 and 2017
+have remained similar to the previous assessment, being somewhat lower than in the
+2016 and 2017 assessments. In addition to more
 information about the 2014 and 2016 cohorts, the 2018 assessment model also
 included a change in the data weighting method, an update to maturity and
 fecundity, and a change to selectivity parameterization
@@ -1528,10 +1528,11 @@ The level of uncertainty associated with each assessment's estimate of that
 year's current female spawning biomass (i.e., that used to convey current
 stock status and inform management advice) changes from assessment to
 assessment given updates in data and `r sp` population structure and
-dynamics. While uncertainty around the absolute amount of 2023 female
-spawning biomass is the second largest (behind the 2017 assessment) since
-2012, the relative amount of dispersion (or variability relative to the
-stock size; similar to a coefficient of variation) is not inconsistent with
+dynamics. Uncertainty around the absolute amount of `r assess_yr` female
+spawning biomass is similar to the final-year estimates from previous
+assessments, with both absolute interquartile range and the relative amount of
+dispersion (or variability relative to the
+stock size; similar to a coefficient of variation) consistent with
 previous assessments (Figure~\@ref(fig:main-historical-dispersion-fig)).
 
 ## Performance of past projections {#sec:assessment-past-projections}
