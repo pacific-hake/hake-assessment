@@ -1387,7 +1387,7 @@ The base model includes a Dirichlet-multinomial likelihood component that
 includes two estimated parameters to automatically weight each of the fishery
 and survey age compositions. The base model was compared to a model that
 downweighted the fishery age compositions relative to the survey age
-compositions. This down weighting was based on the McAllister--Ianelli method,
+compositions. This downweighting was based on the McAllister--Ianelli method,
 which requires manual iterative adjustments to the input sample sizes using a
 derived multiplier. The McAllister--Ianelli method, which was used in
 assessments prior to 2018 (Table~\@ref(tab:main-assessment-changes-tab)),

@@ -1,8 +1,8 @@
 ---
 title: |
   | \vspace{0cm} **\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`}**
-subtitle: |
- \ **DRAFT for submission to Scientific Review Group\textsuperscript{1}**
+# subtitle: |
+# \ **DRAFT for submission to Scientific Review Group\textsuperscript{1}**
 project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
@@ -38,7 +38,7 @@ author: |
   \
   \
 date: "`r curr_time_date()`"
-header: "Draft working paper --- Do not cite or circulate" # or "" to omit
+header: ""    # or "Draft working paper --- Do not cite or circulate"
 output:
  hake_pdf:
    latex_engine: lualatex
@@ -82,7 +82,7 @@ output:
    # NOTE: cannot use backticks inside R-chunk which already uses backticks
    # here, so need to use [['hake_pdf']] instead of $`hake_pdf`
    #footer_right: "Font: `r rmarkdown::metadata$output[['hake_pdf']]$font`"
-   footer_right: "DRAFT - Do not circulate"
+   footer_right: " " # "DRAFT - Do not circulate"
    # ---------------------------------------------------------------------------
 
    # Table of contents and reference link settings ----------------------------
@@ -243,10 +243,11 @@ knitr::opts_chunk$set(
   out.width = "\\textwidth")
 ```
 
-\small \textsuperscript{1}Disclaimer: These materials do not constitute a formal publication and are for
+<!-- \small \textsuperscript{1}Disclaimer: These materials do not constitute a formal publication and are for
 information only. They are in a pre-review, pre-decisional state and should not
 be formally cited or reproduced. They are to be considered provisional and do
 not represent any determination or policy of NOAA or the Department of Commerce.
+-->
 
 \normalsize
 
@@ -270,20 +271,19 @@ Aaron M. Berger^3^ \
   3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada*
 
 ^2^ *Northwest Fisheries Science Center, National Marine Fisheries
-  Service, National Oceanic and Atmospheric Administration, U.S. Department of
-  Commerce, 2725 Montlake Blvd. East, Seattle, WA 98112-2097, USA*
+  Service, National Oceanic and Atmospheric Administration, U.S.~Department of
+  Commerce, 2725 Montlake Blvd.~East, Seattle, WA 98112-2097, USA*
 
 ^3^ *Northwest Fisheries Science Center, National Marine
   Fisheries Service, National Oceanic and Atmospheric Administration,
-  U.S. Department of Commerce, 2032 SE OSU Dr. Bldg. 955, Newport, OR
+  U.S.~Department of Commerce, 2032 SE OSU Dr. Bldg.~955, Newport, OR
   97365-5275, USA*
 
 
 \
 
-This DRAFT document is non-citable.
+<!-- This DRAFT document is non-citable. -->
 
-<!--
 This document should be cited as follows:
 
 Grandin, C.J., K.F. Johnson, A.M. Edwards and A.M. Berger.
@@ -292,7 +292,7 @@ Grandin, C.J., K.F. Johnson, A.M. Edwards and A.M. Berger.
 Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`.
 Prepared by the Joint Technical Committee of the U.S. and Canada
 `r rmarkdown::metadata$project_variables$sp`/Whiting Agreement, National
-Marine Fisheries Service and Fisheries and Oceans Canada.~\pageref{LastPage}~p.
--->
+Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
+
 
 TABLE OF CONTENTS GOES HERE
