@@ -82,41 +82,79 @@ kable_styling(font_size = font_size,
               latex_options = c("repeat_header"))
 ```
 
-```{r plot-weight-at-age-by-sex, out.height = "85%"}
+(ref:srg-plot-weight-at-age-by-sex-cap) Weight-at-age by sex for two
+fishing years, 2018 and 2023.
+
+(ref:srg-plot-weight-at-age-by-sex-alt) This plot shows the weight-at-age being
+substantially higher for 2018 fish than 2023 fish. Also, the females are larger
+than the males for both years, as they should be.
+
+```{r srg-plot-weight-at-age-by-sex-fig, out.height = "85%",  fig.cap = "(ref:srg-plot-weight-at-age-by-sex-cap)"}
+
 wtaa_preds <- readRDS(fs::path("/srv/hake/other/tv", "weight-at-age-preds.rds"))
 # Make figure
-wtaa_preds |>
-  dplyr::filter(year %in% c(last_data_yr - 5, last_data_yr)) |>
-  ggplot2::ggplot(ggplot2::aes(
-    x = age,
-    y = est_weight,
-    group = interaction(sex, year),
-    colour = fyear,
-    pch = sex
-  )) +
-  ggplot2::geom_line() +
-  ggplot2::geom_point() +
-  ggplot2::xlab("Age (years)") +
-  ggplot2::ylab("Estimated mass (kg)")
+wtaa_preds <- wtaa_preds |>
+  filter(year %in% c(last_data_yr - 5, last_data_yr)) |>
+  rename(Sex = sex, `Fishing year` = fyear) |>
+  mutate(Sex = ifelse(Sex == "M",
+                      "Male",
+                      "Female"))
+
+g <- ggplot(data = wtaa_preds,
+            aes(x = age,
+                y = est_weight,
+                group = interaction(Sex, year),
+                colour = `Fishing year`,
+                pch = Sex)) +
+     ylim(c(0, 1.5)) +
+     geom_line() +
+     geom_point() +
+     xlab("Age (years)") +
+     ylab("Estimated mass (kg)")
+g
 ```
 
-```{r plot-base-v-tv-maturity-ssb, out.height = "85%"}
-m_names <- c("pre-SRG base", "sexed weight-at-age (new base)")
+(ref:srg-plot-base-v-tv-maturity-ssb-cap) Spawning biomass for the pre-SRG
+base model compared to the final base model which has sexed weight-at-age
+included.
+
+(ref:srg-plot-base-v-tv-maturity-ssb-alt) This plot shows that the spawning
+biomass for the final base model ends at a much higher level than the model
+submitted for review.
+
+```{r srg-plot-base-v-tv-maturity-ssb-fig, out.height = "85%",  fig.cap = "(ref:srg-plot-base-v-tv-maturity-ssb-cap)"}
+
+m_names <- c("Pre-SRG base", "Sexed weight-at-age (new base)")
 old_base_model <- readRDS("/srv/hake/models/2024/01-version/01-base-models/01-base/01-base.rds")
 plot_biomass(list(old_base_model, base_model), model_names = m_names)
 ```
 
-```{r plot-base-v-tv-maturity-rel, out.height = "85%"}
-plot_rel_biomass(list(old_base_model, base_model), model_names = m_names)
+(ref:srg-plot-base-v-tv-maturity-rel-cap) Relative spawning biomass for the
+pre-SRG base model compared to the final base model which has sexed
+weight-at-age included.
+
+(ref:srg-plot-base-v-tv-maturity-rel-alt) This plot shows that the relative
+spawning biomass for the final base model ends at close to B zero.
+
+```{r srg-plot-base-v-tv-maturity-rel-fig, out.height = "85%",  fig.cap = "(ref:srg-plot-base-v-tv-maturity-rel-cap)"}
+plot_rel_biomass(list(old_base_model, base_model),
+                 model_names = m_names,
+                 ylim = c(0, 2.75))
 ```
 
-## Request 2 -- simple text here {-}
+### Request 2 {-}
 
-"on Figure G.11 add the data for proportion mature"
+On Figure G.11 add the data for proportion mature at age-2 (if possible)
+and age-3 to the model prediction of maturity at age-2 (if possible) and
+age-3 from the temperature-based model.
 
-Description
+**JTC Response**
 
-* The first figure shows empirical results for age 2 and the second figure shows
+The JTC provided two figures showing the proportion mature by year and
+temperature.
+
+* Figure~\@ref() shows empirical results for age 2 and
+  Figure~\@ref() shows
   empirical results for age 3. Data are included from non-ASHOP samples because
   that is what the curve is predicting. For each year (denoted on the smooth
   line) the points appear above or below the labeled point from the same year.
@@ -131,13 +169,27 @@ Description
   perfectly match the model-based ones. Sampling varies across space and time,
   and the empirical estimates do not account for any of this variation.
 
-```{r 02-fig-a, results = "asis", out.height = "85%"}
+(ref:srg-prop-age-2-mature-by-temp-cap) Proportion of age-2 fish mature by
+year and sea temperature.
+
+(ref:srg-prop-age-2-mature-by-temp-alt) This figure shows that the proportion
+of age 2 fish mature is approximately 0.15 for 2020 and 2018 at a temperature
+of 9 degrees Celsius.
+
+```{r srg-prop-age-2-mature-by-temp-fig, results = "asis", out.height = "85%", fig.cap = "(ref:srg-prop-age-2-mature-by-temp-cap)"}
 include_graphics(file.path(figures_dir,
                            "2024-srg-response-1-2-a.png"),
                  error = FALSE)
 ```
 
-```{r 02-fig-b, results = "asis", out.height = "85%"}
+(ref:srg-prop-age-3-mature-by-temp-cap) Proportion of age-3 fish mature by
+year and sea temperature.
+
+(ref:srg-prop-age-3-mature-by-temp-alt) This figure shows that the proportion
+of age 3 fish mature is approximately 0.6 for 2020 and 2018 at a temperature
+of 9 degrees Celsius.
+1
+```{r srg-prop-age-3-mature-by-temp-fig, results = "asis", out.height = "85%", fig.cap = "(ref:srg-prop-age-3-mature-by-temp-cap)"}
 include_graphics(file.path(figures_dir,
                            "2024-srg-response-1-2-b.png"),
                  error = FALSE)
