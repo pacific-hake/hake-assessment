@@ -50,7 +50,7 @@ table_decision <- \(
     "j",  "",                                "",
     "k",  paste0(model$endyr - 1, " TAC"),   "",
     "l",  paste0(model$endyr, " TAC"),       "",
-    "m",  "Fishing intensity",               "at 100\\%",
+    "m",  "Fishing intensity",               "near 100\\%",
     "n",  "Default HR",                      paste0("(",
                                                     fspr_40_10_for_latex_table,
                                                     ")"),
