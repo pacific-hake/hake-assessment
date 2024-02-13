@@ -947,7 +947,7 @@ Total landings last exceeded the coast-wide quota in 2002 when utilization
 was 112%.
 
 As noted above, the median relative fishing intensity was below 100% (i.e.
-median fishing intensity below `r f_40`)
+median fishing intensity below `r fspr_40`)
 in all years. The median relative spawning biomass was above 40% (the `r b_40`
 reference point) in all years except 2007--2011
 (Table~\@ref(tab:main-median-posterior-tab) and
@@ -961,7 +961,7 @@ remained below 100%, and total catch has been declining since the
 time series high in 2017. While there is large uncertainty in the `r end_yr-1`
 estimates of relative fishing intensity and relative spawning biomass,
 the model estimates a `r joint_percent_prob_above_below`% joint probability
-of being both above the `r f_40` fishing intensity in `r end_yr - 1`
+of being both above the `r fspr_40` fishing intensity in `r end_yr - 1`
 and below the `r b_40` spawning biomass level at the start of
 `r end_yr`.
 
@@ -1033,15 +1033,15 @@ assessment.
 
 The term 'reference points' is used throughout this document to describe
 common conceptual summary metrics. The Agreement specifically identifies
-`r f_40` as the default harvest rate and `r b_40` as a point where the
+`r fspr_40` as the default harvest rate and `r b_40` as a point where the
 40:10 TAC adjustment is triggered (see the Glossary in
 Appendix~\@ref(sec:app-glossary)).
 
-We report estimates of the base reference points (e.g., `r f_40`, `r b_40`,
+We report estimates of the base reference points (e.g., `r fspr_40`, `r b_40`,
 `r b_msy`, and MSY) with posterior credibility intervals in
 Table~\@ref(tab:main-reference-points-tab). The median of the female spawning
-biomass at `r f_40` (namely the median of `r bspr_40`) and the median yield
-at `r f_40` have remained about the same as estimates in the
+biomass at `r fspr_40` (namely the median of `r bspr_40`) and the median yield
+at `r fspr_40` have remained about the same as estimates in the
 `r last_assess_yr` assessment (Table~\@ref(tab:main-parameter-estimates-tab)).
 
 As part of the DFO Sustainable Fisheries Framework, @DFO2009 defined a limit

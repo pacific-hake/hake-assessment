@@ -180,7 +180,7 @@ unilaterally during these years for the first time since the inception of the
 Agreement. Catch allocations as specified in the Agreement were once again
 applied in 2022.
 
-Since 1999, an upper limit on catch has been calculated using an `r f_40`
+Since 1999, an upper limit on catch has been calculated using an `r fspr_40`
 default harvest rate with a 40:10 adjustment. This decreases the catch
 linearly from the catch at a relative spawning biomass of 40% to zero catch
 at a relative spawning biomass values of 10% or less (called the default
@@ -189,7 +189,7 @@ spawning biomass divided by that at unfished equilibrium. Further
 considerations have almost always resulted in catch targets being set
 lower than the recommended catch limit. Total catch has not exceeded the
 coast-wide quota since 2002, and harvest rates are likely to have never
-exceeded the `r f_40` target.
+exceeded the `r fspr_40` target.
 
 ### Management of `r sp` in the United States {#sec:intro-management-us}
 

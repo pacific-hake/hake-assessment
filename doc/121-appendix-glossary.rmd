@@ -47,7 +47,7 @@ the 40:10 adjustment.
 `r b_40`: The level of female spawning biomass corresponding to 40% of
 unfished equilibrium female spawning biomass, i.e., `r b_40` = 0.4`r b_0`. This
 is the level below which the total allowable catch is decreased from the value
-associated with `r f_40`, based on the 40:10 adjustment.
+associated with `r fspr_40`, based on the 40:10 adjustment.
 
 `r b_msy`: The estimated female spawning biomass which theoretically would
 produce the maximum sustainable yield under equilibrium fishing
@@ -58,9 +58,9 @@ source. Specifically, the Nautical Area Scattering Coefficient (a measure of
 scattering per area) is frequently referred to as backscatter.
 
 Benchmark spawning potential ratio (`r bspr_40`): The spawning potential ratio
-of 40%, where 40% relates to the default harvest rate of `r f_40` specified in
-the Agreement. Even under equilibrium conditions, `r f_40` would not
-necessarily result in a female spawning biomass of `r b_40` because `r f_40` is
+of 40%, where 40% relates to the default harvest rate of `r fspr_40` specified in
+the Agreement. Even under equilibrium conditions, `r fspr_40` would not
+necessarily result in a female spawning biomass of `r b_40` because `r fspr_40` is
 defined in terms of the spawning potential ratio that depends on the female
 spawning biomass per recruit.
 
@@ -112,7 +112,7 @@ year-class.
 Constant catch: A catch scenario used for forecasting in which the same
 catch is used in successive years.
 
-Default harvest policy (rate): The application of `r f_40` with the 40:10
+Default harvest policy (rate): The application of `r fspr_40` with the 40:10
 adjustment. Having considered any advice provided by the Joint Technical
 Committee, Scientific Review Group, or Advisory Panel, the Joint Management
 Committee may recommend a different harvest rate if the scientific evidence
@@ -163,7 +163,7 @@ where SPR(*F*) is the spawning potential ratio for the value of *F* accumulated
 over the entire year. It is often given as a percentage. Relative fishing
 intensity (Figures~\@ref(fig:glossary-fishing-intensity-illustration-fig) and
 \@ref(fig:glossary-spr-illustration-fig)) is the fishing intensity relative to
-that at the SPR fishing rate `r f_40`, where `r f_40` is the *F* that gives an
+that at the SPR fishing rate `r fspr_40`, where `r fspr_40` is the *F* that gives an
 SPR of 40% such that, by definition, SPR(`r f_40`) = 40% (the benchmark
 spawning ratio). Therefore
 \begin{align}
@@ -173,7 +173,7 @@ spawning ratio). Therefore
     &= \frac{1-\mbox{SPR}(F)}{1-0.4} \\
     &= \frac{1-\mbox{SPR}(F)}{0.6}.
 \end{align}
-For brevity we use `r spr_40` = SPR(`r f_40`) in the text.
+For brevity we use `r fspr_40` = SPR(`r f_40`) in the text.
 Although this simply equals 40%, it can be helpful to explicitly write:
 \begin{align}
   \mbox{relative fishing intensity for }F
