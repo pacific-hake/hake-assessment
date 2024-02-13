@@ -449,7 +449,7 @@ Figure~\@ref(fig:es-exploitation-fraction-fig)).
 Although there is a considerable amount of imprecision around these
 estimates due to uncertainty in recruitment and spawning biomass,
 the 95% posterior credibility interval of relative fishing intensity was
-below `r f_40` from 2012--2016 and again in 2020--2023
+below 1.0 from 2012--2016 and again in 2020--2023
 (Figure~\@ref(fig:es-fishing-intensity-fig)).
 
 ## Management performance {-}
@@ -526,7 +526,7 @@ plot_phase(base_model,
 \clearpage
 
 The median relative spawning biomass was above the 0.4
-reference point in all years except 1999--2000 and 2007--2012
+reference point in all years except 2007--2011
 (Figures~\@ref(fig:es-relative-biomass-fig)
 and~\@ref(fig:es-phase-fig)), and the median relative fishing intensity has
 always been below
@@ -538,8 +538,8 @@ remained below 1, and total catch has been declining since the
 time series high in 2017. While there is large uncertainty in the `r end_yr-1`
 estimates of relative fishing intensity and relative spawning biomass,
 the model estimates a `r joint_percent_prob_above_below`% joint probability
-of being both above the `r f_40` relative fishing intensity in `r end_yr - 1`
-and below the `r b_40` relative spawning biomass level at the start of
+of being both above the `r f_40` fishing intensity in `r end_yr - 1`
+and below the `r b_40` spawning biomass level at the start of
 `r end_yr`.
 
 ## Reference points {-}
@@ -692,7 +692,7 @@ table_decision(
       rel_fishing_intensity_for_latex_table, ", expressed as a proportion. ",
       "Catch alternatives are defined by letters a-o and are a constant ",
       "value across all forecasted years unless otherwise defined in the ",
-      "first column. Acronyms are defined in the glossary ", 
+      "first column. Acronyms are defined in the glossary ",
       "(Appendix~\\@ref(sec:app-glossary))."),
   bold_letters = TRUE,
   digits = 2,
