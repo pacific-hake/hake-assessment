@@ -2,16 +2,29 @@
 
 \rfoot{SRG requests}
 
-# Scientific Review Group (SRG) requests from `r assess_yr` meeting {#sec:app-srg-requests}
+# Scientific Review Group (SRG) requests {#sec:app-srg-requests}
 
 This appendix summarizes results produced in response to Scientific Review
-Group requests made during the meeting held from 6th to 9th February `r assess_yr`.
+Group requests made during the meeting held from February 6--9, `r assess_yr`.
 
-## Request 1 -- Sample sizes for M, F, and U weight-at-age data {-}
+## Day 1
 
-"Request description."
+### Request 1 {-}
 
-```{r weight-at-age-sample-size, results = "asis"}
+List the sample sizes for males, females and unsexed (for the weight-at-age),
+for the U.S. and Canada. This will help to understand the effect of averaging
+unsexed fish into empirical weight-at-age and provide some insight into the
+differences spatially of weight-at-age.
+
+**JTC Response**
+
+The JTC provided two tables, one for each country containing the
+weight-at-age sample sizes for each sex code(Male = M, Female = F,
+Unsexed = U), by country (Tables~\@ref(tab:srg-weight-at-age-sample-size-can)
+and \@ref(tab:srg-weight-at-age-sample-size-us)).
+
+```{r srg-weight-at-age-sample-size-can, results = "asis"}
+font_size <- 9
 temp_waa <- weight_at_age_df |>
   dplyr::group_split(country) |>
   purrr::map_df(\(x) dplyr::group_by(x, country, year, sex, data_type) |>
@@ -25,27 +38,48 @@ temp_waa <- weight_at_age_df |>
       values_fill = 0
     ) |>
     dplyr::select(country, year, dplyr::starts_with(LETTERS))
-  )
-  kableExtra::kable(
-    temp_waa |> dplyr::filter(country == "canada"),
-    format = "latex",
-    booktabs = TRUE
   ) |>
-  kable_styling(font_size = 4.5)
+  ungroup()
+
+temp_waa[is.na(temp_waa)] <- 0
+temp_waa <- temp_waa |>
+  mutate(across(-c(country, year), ~{f(.x)}))
+
+nms <- names(temp_waa)
+nms[nms !=  "country"] <- str_to_title(nms[nms != "country"])
+names(temp_waa) <- nms
+can_waa <-temp_waa |>
+  filter(country == "canada") |>
+  select(-country)
+
+kbl(can_waa,
+    format = "latex",
+    linesep = "",
+    align = rep("r", ncol(can_waa)),
+    caption = paste0("Canadian sample sizes for weight-at-age ",
+                     "data. F = Female, M = Male, and U = Unsexed"),
+    booktabs = TRUE) |>
+row_spec(0, bold = TRUE) |>
+kable_styling(font_size = font_size)
 ```
 
-```{r weight-at-age-sample-size-us-1, results = "asis"}
-kbl(temp_waa |> dplyr::filter(country == "usa", year <= 1997),
-    format = "latex",
-    booktabs = TRUE) |>
-  kable_styling(font_size = 4.5)
-```
+```{r srg-weight-at-age-sample-size-us, results = "asis"}
 
-```{r weight-at-age-sample-size-us-2, results = "asis"}
-kbl(temp_waa |> dplyr::filter(country == "usa", year > 1997),
+us_waa <-temp_waa |> 
+  filter(country == "usa") |>
+  select(-country)
+
+kbl(us_waa,
     format = "latex",
-    booktabs = TRUE) |>
-  kable_styling(font_size = 4.5)
+    linesep = "",
+    align = rep("r", ncol(can_waa)),
+    caption = paste0("U.S. sample sizes for weight-at-age ",
+                     "data. F = Female, M = Male, and U = Unsexed"),
+    booktabs = TRUE,
+    longtable = TRUE) |>
+row_spec(0, bold = TRUE) |>
+kable_styling(font_size = font_size,
+              latex_options = c("repeat_header"))
 ```
 
 ```{r plot-weight-at-age-by-sex, out.height = "85%"}
