@@ -1311,7 +1311,7 @@ In addition to increased estimates of natural mortality, results from these
 sensitivity models also showed an increase in the overall scale of the
 population, the estimated stock status relative to `r b_0` prior to 1990,
 the uncertainty in female spawning biomass on both absolute and relative
-scales, halved estimated relative fishing intensity in `r end_yr - 1`, and more
+scales, roughly halved estimated relative fishing intensity in `r end_yr - 1`, and more
 than doubled equilibrium yield at `r bspr_40`
 (Table~\@ref(tab:main-parameter-estimates-sens-1-tab) and
 Figures~\@ref(fig:main-biomass-base-alternative-1-fig) and
