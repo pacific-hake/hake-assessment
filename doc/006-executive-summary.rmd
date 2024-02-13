@@ -297,22 +297,21 @@ The addition of `r last_data_yr` data changes the estimates of absolute
 recruitments for the most recent years, while
 the improved
 methods for modeling temporal weight-at-age and spatio-temporal maturity have
-also changed some historical estimated recruitments.
-For example, the 1980 median recruitment (the highest in the time series) of
-`r f(recruitment_med_to_compare["1980"], 1)`~billion individuals is now estimated to
-be somewhat larger than the 2010 recruitment of
-`r f(recruitment_med_to_compare["2010"], 1)`~billion, whereas in last year's
-assessment the 1980 median was
-`r f(prev_assess_recruitment_med["1980"], 1)`~billion, very close to the 2010
-median of
-`r f(prev_assess_recruitment_med["2010"], 1)`~billion.
-This assessment's median estimate of the 2020 recruitment is
-`r f(-((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]), 1)`
-~billion fish lower than in the last assessment (a
-`r f(-((((recruitment_med_to_compare - prev_assess_recruitment_med)["2020"]) /
-(prev_assess_recruitment_med)["2020"]) * 100), 0)`% decrease; though last year's
-estimate was particularly uncertain), and is now informed by the
-age-2$+$ biomass index and survey age-composition data.
+slightly changed some historical estimated recruitments.
+
+The estimate of 2020 recruitment in last year's assessment was based on only two
+years of data and thus was highly uncertain; it suggested the cohort could
+potentially be huge (95% credible interval:
+`r f(last_yr_base_model$mcmccalcs$rlower["2020"], 1)`--
+`r f(last_yr_base_model$mcmccalcs$rupper["2020"], 1)`~billion fish).
+But now with information from the
+age-2$+$ biomass index and survey age-composition data the 2020 cohort looks to be
+above average but not huge (95% interval:
+`r f(base_model$mcmccalcs$rlower["2020"], 1)`--
+`r f(base_model$mcmccalcs$rupper["2020"], 1)`~billion fish).
+The median has consequently fallen from
+`r f(last_yr_base_model$mcmccalcs$rmed["2020"], 1)` to
+`r f(base_model$mcmccalcs$rmed["2020"], 1)`~billion fish between the two assessments.
 
 The 2021 recruitment is estimated to be potentially large, whereas
 it was estimated to be below average in last year's assessment (with very limited data);

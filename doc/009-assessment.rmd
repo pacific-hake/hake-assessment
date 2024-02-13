@@ -760,7 +760,7 @@ years of data and thus was highly uncertain; it suggested the cohort could
 potentially be huge (95% credible interval:
 `r f(last_yr_base_model$mcmccalcs$rlower["2020"], 1)`--
 `r f(last_yr_base_model$mcmccalcs$rupper["2020"], 1)`~billion fish).
-But with the extra of data in this year's assessment the 2020 cohort looks to be
+But with the extra data in this year's assessment the 2020 cohort looks to be
 above average but not huge (95% interval:
 `r f(base_model$mcmccalcs$rlower["2020"], 1)`--
 `r f(base_model$mcmccalcs$rupper["2020"], 1)`~billion fish).
