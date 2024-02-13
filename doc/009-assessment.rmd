@@ -1055,7 +1055,7 @@ biomass). The probabilities of the female spawning biomass at the start of
 P(*B*~`r assess_yr`~ > `r b_10`) = `r probs_curr_b10`% and
 P(*B*~`r assess_yr`~ > `r b_40`) = `r probs_curr_b40`%
 such that the stock is estimated to be in the 'healthy zone' (above the upper
-stock reference point of `r b_40`). This probability is slightly lower than in
+stock reference point of `r b_40`). This probability is slightly higher than in
 last year's assessment, where the equivalent calculation was
 P(*B*~`r assess_yr - 1`~ > `r b_40`) = 98.1%. Note that a probability
 of '100%' (or '0%') is based on the MCMC results, and is not meant to imply
@@ -1065,7 +1065,7 @@ With respect to DFO's provisional limit reference point of 0.4`r b_msy` and
 provisional upper stock reference point of 0.8`r b_msy`, the probabilities are
 P(*B*~`r assess_yr`~ > 0.4`r b_msy`) = `r f(dfo_probs_curr[1, 2] |> pull(), 0)`%
 and
-P(*B*~`r assess_yr`~ > 0.8`r b_msy`) = `r f(dfo_probs_curr[1, 3] |> pull(), 1)`%
+P(*B*~`r assess_yr`~ > 0.8`r b_msy`) = `r f(dfo_probs_curr[1, 3] |> pull(), 0)`%
 such that the stock is estimated to be in the provisional `healthy zone'.
 For completeness, we note that
 P(*B*~`r assess_yr`~ > `r b_msy`) = `r f(dfo_probs_curr[1, 1] |> pull(), 1)`%.
@@ -1077,7 +1077,7 @@ estimated posterior median relative spawning biomass is
 `r curr_depl_median`%, such that the female spawning biomass is well above
 `r b_40` and `r b_25`. The probability that female spawning biomass
 at the beginning of `r assess_yr` is above `r b_40` is
-     = `r probs_curr_b40`% (as noted
+P(*B*~`r assess_yr`~ > `r b_40`) = `r probs_curr_b40`% (as noted
 above), and of being above `r b_25` is
 P(*B*~`r assess_yr`~ > `r b_25`) = `r probs_curr_b25`%.
 
