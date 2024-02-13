@@ -1563,10 +1563,9 @@ P(*B*~t+1~ < *B*~t~), from the current base model
 [Figure~\@ref(fig:main-historical-1-fig); see @JTC2022 for full methods].
 
 Each assessment correctly predicted whether the stock would most likely increase or
-decrease the following year, except for 2017, 2019 (the example just given), and
-2023;
+decrease the following year, except for 2017 and 2023;
 Figure~\@ref(fig:main-historical-1-fig). Estimates from previous assessments
-are closer to 50% than those from the current base model
+are almost always closer to 50% than those from the current base model
 (Figure~\@ref(fig:main-historical-1-fig)), because the current assessment model
 has more information and thus provides a more definitive probability (closer
 to 0% or to 100%) than year $t$'s assessment model. It is desirable that the
@@ -1574,13 +1573,13 @@ probabilities from the assessment documents are not too definitive (too close
 to 0% or to 100%), because they are admitting a wide range of uncertainty
 given unknown recent recruitments.
 
-The 2017, 2019, and 2023 assessments `incorrectly' projected that the stock would likely
+The 2017 and 2023 assessments `incorrectly' projected that the stock would likely
 decline the following year (given the catch that subsequently occurred),
 because the current assessment model estimates a likely increase
-(Figure~\@ref(fig:main-historical-1-fig)). For the 2017 [@JTC2017] and 2019
-[@JTC2019] assessments the biomass trend was projected to be relatively flat the
+(Figure~\@ref(fig:main-historical-1-fig)). For the 2017 [@JTC2017] assessment
+the biomass trend was projected to be relatively flat the
 following year, so even slight changes in
-biomass could influence binomial outcomes of an 'increase' or 'decrease' in
+biomass could influence the binomial outcome of an 'increase' or 'decrease' in
 biomass, despite the overall change in biomass not being very substantial. The
 2023 assessment [@JTC2023] had minimal information on the 2021 cohort and predicted
 the biomass would probably decline in 2024 with any non-zero 2023 catch.
@@ -1607,10 +1606,8 @@ current assessment). From the 2018 assessment onwards, the estimated
 P(*B*~t+1~ < `r b_40`) probabilities rose, until falling due to the
 incoming above-average 2020 cohort and lower catches
 (Figure~\@ref(fig:main-historical-2-fig)). The same probabilities calculated
-from the current base model similarly rose, but remained lower than the previous
-assessments' calculations. The exception is for P(*B*~2023~ < `r b_40`) which is now
-estimated to have been >30% (Figure~\@ref(fig:main-historical-2-fig)), somewhat
-higher than originally estimated in the 2022 assessment [@JTC2022] and also in
-the analogous figure in the 2023 assessment [@JTC2023].
+from the current base model similarly rose, but all remained lower than the previous
+assessments' calculations, similar to the analogous figure in the 2023
+assessment [@JTC2023].
 
 \newpage

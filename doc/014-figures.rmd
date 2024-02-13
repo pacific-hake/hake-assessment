@@ -1691,7 +1691,7 @@ year's assessment model has almost always `correctly' estimated an increase
 or decrease the subsequent year's biomass. For the `r assess_yr`
 assessment the probabilities are shown for all catch alternatives for
 `r assess_yr`, as described in Table~\@ref(tab:main-decisions-biomass-tab),
-with 0~t being the lowest probability.
+with 0~t being the lowest probability, shown in pink.
 
 (ref:main-historical-1-alt) This figure compares historical estimates
 of probabilities of the stock declining with those from the current base
