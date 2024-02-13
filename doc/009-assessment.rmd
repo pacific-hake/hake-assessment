@@ -891,8 +891,8 @@ the age compositions and the age-1 index, is `r sd_med_recr_dev_estimates`.
 The median estimated relative fishing intensity on the stock is below
 1.0 `r median_intensity_above_1_text` (Figure~\@ref(fig:main-fishing-intensity-fig) and
 Tables~\@ref(tab:main-median-posterior-tab) and
-\@ref(tab:main-ci-posterior-tab)). It was close to 1.0 in 1999 and 2006--2008,
-but catches in 2006--2008 did not exceed the catch limits that were specified,
+\@ref(tab:main-ci-posterior-tab)). It was closest to 1.0 in 1999 and 2008,
+but catch in 2008 did not exceed the catch limit that was specified,
 based on the best available science and harvest control rules in place at the
 time; however, catch did exceed the catch limit in 1999 (Table~\@ref(tab:main-landings-tac-tab)). Exploitation fraction (catch divided by biomass of fish of age-2 and
 above) has shown relatively similar patterns
@@ -901,8 +901,8 @@ Tables~\@ref(tab:main-median-posterior-tab) and
 \@ref(tab:main-ci-posterior-tab)). Although displaying similar patterns, the exploitation fraction does not necessarily correspond to fishing intensity
 because fishing intensity more directly accounts for the age-structure of
 both the population and the catch. Median relative fishing intensity is
-estimated to have declined from `r median_intensity_2011`% in 2011 to
-`r median_intensity_2015`% in 2015, and then leveled off around 78--90% from
+estimated to have declined from `r median_intensity_2010`% in 2010 to
+`r median_intensity_2015`% in 2015, and then leveled off around 73--80% from
 2016 to 2019 before declining to `r median_intensity_2023`% in 2023. The
 median exploitation fraction has increased from a recent low of
 `r exploitation_med_2012` in 2012 to `r exploitation_med_2021` in 2021 then declined
@@ -910,7 +910,7 @@ to `r exploitation_med_2023` in 2023.
 Although there is a considerable amount of imprecision around these
 recent estimates due to uncertainty in recruitment and spawning biomass,
 the 95% posterior credibility interval of relative fishing intensity was
-below `r f_40` from 2012-- 2015 and again in 2020, 2021, and 2023 (Figure~\@ref(fig:main-fishing-intensity-fig)).
+below 100% from 2012--2016 and again from 2020--2023 (Figure~\@ref(fig:main-fishing-intensity-fig)).
 
 **Management performance**
 
@@ -946,9 +946,10 @@ Agreement for `r sp`, was once again implemented in 2022 and 2023.
 Total landings last exceeded the coast-wide quota in 2002 when utilization
 was 112%.
 
-As noted above, the median relative fishing intensity was below `r f_40`
-in all years. The median relative spawning biomass was above the `r b_40`
-reference point in all years except 1999--2000 and 2007--2012
+As noted above, the median relative fishing intensity was below 100% (i.e.
+median fishing intensity below `r f_40`)
+in all years. The median relative spawning biomass was above 40% (the `r b_40`
+reference point) in all years except 2007--2011
 (Table~\@ref(tab:main-median-posterior-tab) and
 Figure~\@ref(fig:main-relative-biomass-fig)).
 These are also shown on a phase plot of the joint history of relative
@@ -956,12 +957,12 @@ spawning biomass and relative fishing intensity
 (Figure~\@ref(fig:main-phase-fig)). Relative spawning biomass increased from
 the lows in 2007--2012 with above average recruitment in 2008, 2010, 2014,
 2016, and 2020. Correspondingly, median relative fishing intensity has
-remained below `r f_40`, and total catch has been declining since the
+remained below 100%, and total catch has been declining since the
 time series high in 2017. While there is large uncertainty in the `r end_yr-1`
 estimates of relative fishing intensity and relative spawning biomass,
 the model estimates a `r joint_percent_prob_above_below`% joint probability
-of being both above the `r f_40` relative fishing intensity in `r end_yr - 1`
-and below the `r b_40` relative spawning biomass level at the start of
+of being both above the `r f_40` fishing intensity in `r end_yr - 1`
+and below the `r b_40` spawning biomass level at the start of
 `r end_yr`.
 
 ## Model uncertainty {#sec:assessment-model-uncertainty}
