@@ -432,12 +432,15 @@ plot_fishing_intensity(base_model, show_arrows = TRUE)
 
 Over the last five years, the median relative fishing intensity was the
 highest in 2019 at `r median_intensity_2019`% of the target level of
-`r fspr_40` = 1.0, dropping by over 20% to `r median_intensity_2020`% in
-2020, then remaining stable for 2021 and 2022 at `r median_intensity_2021`%
-and `r median_intensity_2022`% respectively. The 3-year stable trend from
-2020--2022 was ended in 2023 when the Relative fishing intensity dropped
-again by approximately 0.05 to `r median_intensity_2023`% of the target
-level of `r fspr_40` = 1.0 (Table~\@ref(tab:es-fishing-intensity-tab) and
+`r fspr_40` (1.0), dropping by
+`r abs(as.numeric(median_intensity_2020) - as.numeric(median_intensity_2019))`%
+to `r median_intensity_2020`% in 2020, then remaining stable for 2021 and 2022
+at `r median_intensity_2021`% and `r median_intensity_2022`% respectively.
+The 3-year stable trend from 2020--2022 was ended in 2023 when the Relative
+fishing intensity dropped again by
+`r abs(as.numeric(median_intensity_2022) - as.numeric(median_intensity_2023))`%
+to `r median_intensity_2023`% of the target level of `r fspr_40`
+(Table~\@ref(tab:es-fishing-intensity-tab) and
 Figure~\@ref(fig:es-fishing-intensity-fig)).
 
 The median exploitation fraction (catch divided by biomass of fish of age-2 and
@@ -450,7 +453,7 @@ Figure~\@ref(fig:es-exploitation-fraction-fig)).
 Although there is a considerable amount of imprecision around these
 estimates due to uncertainty in recruitment and spawning biomass,
 the 95% posterior credibility interval of relative fishing intensity was
-below `r fspr_40` = 1.0 from 2012--2016 and again in 2020--2023
+below `r fspr_40` from 2012--2016 and again in 2020--2023
 (Figure~\@ref(fig:es-fishing-intensity-fig)).
 
 ## Management performance {-}
@@ -539,9 +542,9 @@ remained below 1, and total catch has been declining since the
 time series high in 2017. While there is large uncertainty in the `r end_yr-1`
 estimates of relative fishing intensity and relative spawning biomass,
 the model estimates a `r joint_percent_prob_above_below`% joint probability
-of being both above the `r f_40` fishing intensity in `r end_yr - 1`
-and below the `r b_40` spawning biomass level at the start of
-`r end_yr`.
+of being both above the target relative fishing intensity (`r fspr_40`) in
+`r end_yr - 1` and below the relative spawning biomass level of `r b_40`
+at the start of `r end_yr`.
 
 ## Reference points {-}
 
