@@ -1001,7 +1001,7 @@ plot_recruitment(list(base_model),
                  y_breaks = seq(0, 1.4, by = 0.2),
                  leg_pos = "none",
                  color = "red",
-                 point_shape = 16))
+                 point_shape = 16)
 ```
 
 (ref:main-stock-recruitment-cap) Estimated stock--recruitment relationship for
