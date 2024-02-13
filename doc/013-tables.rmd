@@ -230,7 +230,7 @@ table_ovary_samples(
   caption = paste0(
     "Number of ", sp, " ovaries collected for histological analysis and ",
     "included in the estimates of time-varying maturity. Note that data ",
-    "from 2023 has yet to be analyzed."),
+    "from 2023 have yet to be analyzed."),
   font_size = 9,
   header_font_size = 8,
   longtable = TRUE)
@@ -357,7 +357,7 @@ table_cohort(
     "Calculations showing changes in biomass at each age due to natural ",
     "mortality and fishing for recent strong cohorts. Start Biomass is the ",
     "biomass at the beginning of the year, Catch Weight is the catch for ",
-    "the cohort for the year, Natural mortality is the biomass attributed ",
+    "the cohort for the year, Natural Mortality is the biomass attributed ",
     "to natural mortality, and Surviving Biomass is what survives to the ",
     "end of the year. Surviving Biomass does not equal the Start Biomass ",
     "in the following year because the empirical weights-at-age change ",
@@ -379,8 +379,8 @@ table_median_posteriors(
     "unfished equilibrium (", b_0_for_latex_table, "). Total biomass includes
     females and males of ages 0 and above. Age-2$+$ biomass includes females ",
     "and males ages 2 and above. Exploitation fraction is total catch ",
-    "divided by total age-2$+$ biomass. Relative fishing intensity is (",
-    rel_fishing_intensity_for_latex_table, ") such that values below 100\\% ",
+    "divided by total age-2$+$ biomass. Relative fishing intensity is ",
+    rel_fishing_intensity_for_latex_table, " such that values below 100\\% ",
     "represent fishing below ", f_40_for_latex_table, ". In the last row, ",
     "dashes (--) indicate quantities requiring ", end_yr, " catch which has ",
     "not taken place yet."),
