@@ -60,8 +60,8 @@ END LANDSCAPE
 `r start_yr`--`r last_data_yr`. U.S. tribal catches are included in the
 sectors where they are represented.
 
-(ref:main-catches-alt) This figure shows that catches in four of the last six
-years have been the largest in the time series.
+(ref:main-catches-alt) This figure shows that catches have declined each year
+from the historical peak in 2017.
 
 ```{r main-catches-fig, fig.cap = "(ref:main-catches-cap)", fig.height = 5}
 
@@ -92,12 +92,11 @@ box represent the median depth and boxes encompass the middle 50% of the
 data. Whiskers encompass the 95% quantiles.
 
 (ref:main-can-depths-alt) This figure shows that for the last five years in
-Canada freezer trawlers fished at an approximate bottom depth of 400 meters
+Canada freezer trawlers fished at an approximate bottom depth of 250 to 400 meters
 and shoreside vessels fished at an approximate bottom depth of 200 meters.
-Freezer trawlers fished at a gear depth of approximately 200 meters and
-shoreside vessels at a depth of approximately 150 meters. In 2023 this
-changed somewhat with both fleets fishing closer to the bottom and in
-shallower water.
+Freezer trawlers fished at a gear depth of approximately 100 to 300 meters and
+shoreside vessels at a depth of approximately 150 to 250 meters. Bottom depths
+for both fleets have become shallower with fishing being closer to the bottom.
 
 ```{r main-can-depths-fig, fig.cap = "(ref:main-can-depths-cap)", fig.height = 8}
 
@@ -144,8 +143,8 @@ bubble in the fishery data is
 
 (ref:main-age-comp-bubbles-alt) This figure shows that there are currently
 three large cohorts making their way through the stock. The 2010 cohort is
-the largest followed by the 2014 cohort and the 2016 cohort. The 2020 cohort
-is large but highly uncertain.
+the largest followed by the 2014 cohort and the 2016 cohort. The 2020 and
+2021 cohorts are above average but highly uncertain.
 
 ```{r main-age-comp-bubbles-fig, fig.cap = "(ref:main-age-comp-bubbles-cap)", fig.height = 10, out.height = "90%"}
 
@@ -180,7 +179,7 @@ intervals are based on sampling variability (intervals without the additional
 squid/hake apportionment uncertainty included in 2009, black line).
 
 (ref:main-survey-extrap-biomass-alt) This figure shows that the survey biomass
-estimate has decreased from 2019 to 2021.
+estimate has decreased from years 2019 to 2021 and then to 2023.
 
 ```{r main-survey-extrap-biomass-fig,  fig.cap = "(ref:main-survey-extrap-biomass-cap)"}
 
@@ -201,7 +200,7 @@ the survey does not attempt to sample all available age-1 fish and the
 analysis does not include kriging as is done to estimate age-2$+$ biomass.
 
 (ref:main-survey-age1-alt) This figure shows that the age-1 survey estimate
-has increased from 2019 to 2021.
+has increased from years 2019 to 2021 and then decreased to 2023.
 
 ```{r main-survey-age1-fig, fig.cap = "(ref:main-survey-age1-cap)"}
 
@@ -247,8 +246,8 @@ data such that weights were predicted from the time-varying model. The bottom
 row (mean) is the mean weight-at-age over all years of data.
 
 (ref:main-weight-at-age-alt) This figure shows how weight-at-age changes
-through time. The weight-at-age appears to have decreased overall from 1975
-to present.
+through time. The weight of older fish appears to have decreased overall from
+1975 to present.
 
 ```{r main-weight-at-age-fig, fig.cap = "(ref:main-weight-at-age-cap)", fig.height = 10, out.height = "85%"}
 
@@ -361,7 +360,7 @@ plot_weight_at_age(wt_at_age,
                    max.overlaps = 15)
 ```
 
-(ref:main-bridge-summary-cap-1) Bridging models showing the some of the
+(ref:main-bridge-summary-cap-1) Bridging models showing some of the
 sequential steps made towards the base model from the `r last_assess_yr` base
 model. Models include shifting to the newest version of Stock Synthesis,
 amending older data sources, and adding new data.
@@ -372,7 +371,7 @@ survey biomass (lower left) and age-1 (lower right) indices, with triangles
 representing the observed survey indices. Note that in the top panel the red
 circle for 2024 is obscured by the orange circle.
 
-(ref:main-bridge-summary-cap-2) Bridging models showing the some of the
+(ref:main-bridge-summary-cap-2) Bridging models showing some of the
 sequential steps made towards the base model from the `r last_assess_yr` base
 model. Models include the last step from the previous figure of adding new
 data, changes to working up data inputs, and structural changes to the model.
@@ -386,7 +385,7 @@ representing the observed survey indices.
 occurred when data from the age-2$+$ survey was added to the model.
 
 (ref:main-bridge-summary-alt-2) Including time-varying fecundity led
-to a smaller spawning biomass in the terminal year of the model.
+to only minor changes in estimated spawning biomass.
 
 ```{r main-bridge-summary-fig-1, fig.cap = "(ref:main-bridge-summary-cap-1)", fig.height = 8}
 
@@ -586,7 +585,7 @@ model estimate of additional uncertainty.
 trajectories of the expected survey biomass fitting well to the observed
 biomass. The lines are very tightly packed together for most of the time
 series but diverge a little near the end of the time series from about 2017
-to 2021.
+to 2023.
 
 ```{r main-survey-index-fit-mcmc-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-cap)", fig.height=6, fig.width=8}
 
@@ -616,13 +615,13 @@ vertical black lines) and added to the input sampling variability. A time
 series of the assessment model fit to the observations (blue line) represents
 the median of the posterior Markov chain Monte Carlo (MCMC) samples. A
 random subset of the individual MCMC time series samples are shown (thin
-black lines) to provide context for the description of the median MCMC
+blue lines) to provide context for the description of the median MCMC
 estimate.
 
 (ref:main-age1-index-fit-mcmc-alt) This figure shows many posterior
 trajectories of the expected numbers of age-1 fish fitting well to the
 age-1 index. The lines are very tightly packed together for most of the
-time series but diverge a little at the end of the time series since 2019.
+time series but diverge a little at the end of the time series since 2021.
 
 ```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height = 6}
 
@@ -652,8 +651,8 @@ the median of the posterior for the last assessment year, `r last_data_yr`,
 which was `r f(median(last_yr_base_model$extra_mcmc$Q_vector), 3)`.
 
 (ref:main-catchability-density-alt) The distribution of the catchability
-parameter posterior is shown with a median around 0.83 for this year's
-assessment model.
+parameter posterior for the acoustic survey index is shown with a median around
+0.84.
 
 ```{r main-catchability-density-fig, fig.cap = "(ref:main-catchability-density-cap)", fig.height = 4.5}
 plot_catchability_density(base_model,
@@ -675,8 +674,7 @@ the median of the posterior for the last assessment year, `r last_data_yr`,
 which was `r f(median(last_yr_base_model$extra_mcmc$Q_vector_age1), 3)`.
 
 (ref:main-catchability-density-age1-alt) The distribution of the catchability
-parameter posterior is shown with a median around 0.85 for this year's
-assessment model.
+parameter posterior for the age 1 index is shown with a median around 0.49.
 
 ```{r main-catchability-density-age1-fig, fig.cap = "(ref:main-catchability-density-age1-cap)", fig.height = 4.5}
 plot_catchability_density(base_model,
@@ -848,7 +846,6 @@ a subsample of 1,000 draws from the posterior distribution for the base model.
 (ref:main-tv-selex-posteriors-alt) This plot shows individual median
 selectivity trajectories for a subset of samples from the posteriors of
 fishery and survey selectivity parameters with 95% credible intervals.
-The age 1 index has more and larger outliers than the age 2 plus survey.
 
 ```{r main-tv-selex-posteriors-fig, fig.cap = "(ref:main-tv-selex-posteriors-cap)", fig.height = 8}
 
@@ -879,7 +876,7 @@ through `r end_yr` (solid line) with 95% posterior credibility intervals
 is the estimated unfished equilibrium biomass, $B_0$.
 
 (ref:main-biomass-alt) This figure shows that the median spawning biomass has
-been increasing in size since 2021.
+been increasing in size since 2022.
 
 ```{r main-biomass-fig, fig.cap = "(ref:main-biomass-cap)", fig.height = 5}
 
@@ -896,7 +893,7 @@ with 95% posterior credibility intervals (shaded area). Dashed horizontal
 lines show 10%, 40%, and 100% of the unfished equilibrium ($B_0$).
 
 (ref:main-relative-biomass-alt) This figure shows that the relative spawning
-biomass has been increasing since 2021. The value for 2023 is just above B0.
+biomass has been increasing since 2022. The value for 2023 is around B zero.
 
 ```{r main-relative-biomass-fig, fig.cap = "(ref:main-relative-biomass-cap)", fig.height = 5}
 
