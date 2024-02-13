@@ -1446,19 +1446,18 @@ shows similar retrospective results to last year's
 older cohorts. The 2020 cohort has been estimated much lower this year than
 last, which is evident in Figure~\@ref(fig:main-retrospective-recruitment-fig).
 The 2021 cohort has unexpectedly been estimated to be rather large, with
-the age 3's estimated this year to be as large as the age 3 2020 cohort was
-last year.
+the 2021 cohorts at age-3 estimated this year to be as large as the 2020
+cohort was last year at age-3.
 
 Uncertainties are shown for select cohorts in
-Figure~\@ref(fig:main-retrospective-recruitment-fig) for the first time. In
-previous years, this figure showed only the median lines.
-The uncertainty is represented as credible intervals from
-`r f(probs[1] * 100, 1)`% to `r f(probs[3] * 100, 1)`% as shaded areas
-surrounding the median lines. For cohorts that have positive recruitment
-deviations, the uncertainty is a narrower band around the median due to a
-higher sampling rate over the years than the cohorts with negative
+Figure~\@ref(fig:main-retrospective-recruitment-fig). In previous years,
+this figure showed only the median lines. The uncertainty is represented as
+credible intervals from `r f(probs[1] * 100, 1)`% to `r f(probs[3] * 100, 1)`%
+as shaded areas surrounding the median lines. For cohorts that have positive
+recruitment deviations, the uncertainty is a narrower band around the median
+due to a higher sampling rate over the years than the cohorts with negative
 recruitments. Uncertainty for the 2020 and 2021 cohorts is not shown because
-it is so large that it covers the whole plot and washes out the other
+they are so large that they cover the whole plot and wash out the other
 uncertainty bands.
 
 Some cohort recruitments are over or under-estimated at age-2.
@@ -1548,7 +1547,8 @@ Without rigorous simulation experiments it can be difficult to operationally
 assess the accuracy of projections in stock assessments because the truth is
 never known with 100% certainty. For `r sp`, hindsight comparisons have been
 conducted since 2021 [@JTC2021] to evaluate performance of projections
-provided in decision tables (such as Tables~\@ref(tab:main-risk-year-1-tab) and~\@ref(tab:main-risk-year-2-tab)) of past assessments relative to updated
+provided in decision tables (such as Tables~\@ref(tab:main-risk-year-1-tab)
+and~\@ref(tab:main-risk-year-2-tab)) of past assessments relative to updated
 assessments. Overall, results indicate that assessment model projections give
 a relatively good idea of general projected trends and status.
 
@@ -1570,8 +1570,8 @@ probabilities,
 P(*B*~t+1~ < *B*~t~), from the current base model
 [Figure~\@ref(fig:main-historical-1-fig); see @JTC2022 for full methods].
 
-Each assessment correctly predicted whether the stock would most likely increase or
-decrease the following year, except for 2017 and 2023;
+Each assessment correctly predicted whether the stock would most likely
+increase or decrease the following year, except for 2017 and 2023;
 Figure~\@ref(fig:main-historical-1-fig). Estimates from previous assessments
 are almost always closer to 50% than those from the current base model
 (Figure~\@ref(fig:main-historical-1-fig)), because the current assessment model
@@ -1581,27 +1581,27 @@ probabilities from the assessment documents are not too definitive (too close
 to 0% or to 100%), because they are admitting a wide range of uncertainty
 given unknown recent recruitments.
 
-The 2017 and 2023 assessments `incorrectly' projected that the stock would likely
-decline the following year (given the catch that subsequently occurred),
+The 2017 and 2023 assessments `incorrectly' projected that the stock would
+likely decline the following year (given the catch that subsequently occurred),
 because the current assessment model estimates a likely increase
 (Figure~\@ref(fig:main-historical-1-fig)). For the 2017 [@JTC2017] assessment
 the biomass trend was projected to be relatively flat the
 following year, so even slight changes in
 biomass could influence the binomial outcome of an 'increase' or 'decrease' in
 biomass, despite the overall change in biomass not being very substantial. The
-2023 assessment [@JTC2023] had minimal information on the 2021 cohort and predicted
-the biomass would probably decline in 2024 with any non-zero 2023 catch.
-However, the current assessment estimates that the 2021 cohort was potentially
-large, which further highlights how impactful a realized large deviation
-from average recruitment (rather than assuming average recruitment) can be
-on forecasted outcomes. Similarly, the 2012 assessment had no information on
-the very large 2010 recruitment, and so also over-estimated the probability
-of decline the following year (Figure~\@ref(fig:main-historical-1-fig)).
-A range of catch alternatives are shown for the current assessment because
-realized `r assess_yr` catches are not yet known
-(Figure~\@ref(fig:main-historical-1-fig)), and give low probabilities of the
-stock declining from `r assess_yr`
-to `r assess_yr + 1`.
+2023 assessment [@JTC2023] had minimal information on the 2021 cohort and
+predicted the biomass would probably decline in 2024 with any non-zero 2023
+catch. However, the current assessment estimates that the 2021 cohort was
+potentially large, which further highlights how impactful a realized large
+deviation from average recruitment (rather than assuming average recruitment)
+can be on forecasted outcomes. Similarly, the 2012 assessment had no
+information on the very large 2010 recruitment, and so also over-estimated
+the probability of decline the following year
+(Figure~\@ref(fig:main-historical-1-fig)). A range of catch alternatives are
+shown for the current assessment because realized `r assess_yr` catches are
+not yet known (Figure~\@ref(fig:main-historical-1-fig)), and give a mostly
+greater that 50% chance that the stock will decline from `r assess_yr` to
+`r assess_yr + 1`.
 
 A similar approach was used to calculate the probability of the biomass
 falling below `r b_40` in the subsequent year,
