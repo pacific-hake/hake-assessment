@@ -58,7 +58,7 @@ year-specific survey variance. Since 2021, a more computationally efficient
 Bayesian MCMC sampler [No-U-Turn Sampler; NUTS; @HoffmanGelman2014] was used
 to estimate posterior distributions [@Monnahan2018; @Monnahan2019], a change
 from previous assessments that used the random walk Metropolis Hastings (rwMH)
-sampler (details described in @JTC2021). The list of changes discussed above
+sampler [details described in @JTC2021]. The list of changes discussed above
 is for illustrative purposes only and represents a small fraction of the
 different choices analysts have made and that reviewers have required.
 
@@ -69,8 +69,8 @@ spatially explicit forms [@Dorn1994; @Dorn1997], spatially implicit forms
 recruitment has been modeled by sampling historical recruitment [e.g.,
 @Dorn1994; @HelserFleischerEtAl2005], using a stock--recruitment
 relationship parameterized using maximum sustainable yield (MSY) and
-the fishing mortality rate estimated to produce the MSY (`r f_msy`;
-@Martell2010), and using several alternative steepness priors [@JTC2012;
+the fishing mortality rate estimated to produce the MSY [`r f_msy`;
+@Martell2010], and using several alternative steepness priors [@JTC2012;
 @JTC2013]. Selectivity has also been modeled in several ways, invariant
 [@JTC2012; @JTC2013], time-varying with [@HelserDornEtAl2002] and without
 [@Dorn1994; @DornSaunders1997; @JTC2012; @JTC2013] a random walk,
@@ -104,8 +104,8 @@ one aggregated fleet with combined male and female population dynamics. Stock
 Synthesis [@MethotWetzel2013] version `r ss_version` was the modeling platform
 used. The largest changes between the `r last_assess_yr` and `r assess_yr`
 stock assessments are the addition of another year of fishery and survey data, an
-age-1 index data point, and time-varying maturity information integrated into the
-base model.
+age-1 index data point, a model-based method for empirical weight-at-age data,
+and time-varying maturity information integrated into the base model.
 
 The `r assess_yr` base model includes a time series (1995 to
 `r last_survey_yr`) of acoustic age-2$+$ biomass estimates and acoustic
@@ -152,7 +152,7 @@ assessment. This value is based on consistency with the observed variability
 in the time series of recruitment deviation estimates and is the same as
 assumed in assessments from 2013 to `r last_assess_yr`
 (Table~\@ref(tab:main-assessment-changes-tab)). Catchabilities associated with the
-biomass index (q~b~) and with the relative age-1 index (q~1~) were calculated
+biomass index (*q*~b~) and with the relative age-1 index (*q*~1~) were calculated
 analytically as per @LudwigWalters1981 for each sample of posterior parameters,
 resulting in a distribution of catchability for each.
 
