@@ -232,7 +232,7 @@ in 2017.
 The estimated biomass mostly declined
 from 2018 to 2022 due to the 2014 and 2016 year classes moving through the
 growth-mortality transition during a period of high catches. The increase in
-female spawning biomass since 2023 is due to the expected above-average 2020 and
+female spawning biomass in 2023 and 2024 is due to the expected above-average 2020 and
 potentially large 2021 cohorts entering maturity and the recent declining trend in catch.
 
 The median estimate of the `r end_yr` relative spawning biomass (spawning
@@ -246,13 +246,14 @@ information about it.
 
 The median estimate of the `r end_yr` female spawning biomass is
 `r curr_bio_median` (with a 95% posterior credibility interval from
-`r curr_bio_lower` to `r curr_bio_upper`) Mt. The current estimate of
+`r curr_bio_lower` to `r curr_bio_upper`)~Mt.
+The current estimate of
 the `r end_yr - 1` female spawning biomass is `r prev_bio_median`
-(`r prev_bio_lower`--`r prev_bio_upper`)~Mt. This is less than half of the
-median, and a much narrower credibility interval, than what was estimated in
-the compared to the `r end_yr - 1` assessment (i.e.,
-`r prev_bio_median_last_assess`, `r prev_bio_lower_last_assess`--
-`r prev_bio_upper_last_assess`~Mt).
+(`r prev_bio_lower`--`r prev_bio_upper`)~Mt, giving less uncertainty than
+the estimate from the `r end_yr - 1` assessment of `r prev_bio_median_last_assess`
+(`r prev_bio_lower_last_assess`--`r prev_bio_upper_last_assess`)~Mt. The current median is reduced from last
+year, partly due to the tail of the distribution being greatly curtailed, and a
+slight lowering of the lower end of the interval.
 The decrease appears to be due to the addition of the age-2$+$ biomass index
 pulling down the estimated biomass for recent years, plus the addition of the
 survey age compositions lowering the estimated 2020 recruitment.
