@@ -914,10 +914,9 @@ posterior distribution for mean unfished equilibrium recruitment ($R_0$) is
 shown as the horizontal dashed line with the 95% posterior credibility
 interval shaded between the dotted lines.
 
-(ref:main-recruitment-alt) This figure shows that recruitment for each cohort.
-There are currently three above-average cohorts in the stock with 2020 being
-the fourth. The 2020 cohort is highly uncertain which can be seen in the size
-of the credible interval.
+(ref:main-recruitment-alt) This figure shows the recruitment in each year.
+The 2020 cohort looks to be above average, as does the 2021 cohort, which is
+characterised by large uncertainty due to it being so young in the data.
 
 ```{r main-recruitment-fig, fig.cap = "(ref:main-recruitment-cap)", fig.height = 5}
 
@@ -1038,12 +1037,11 @@ plot_fishing_intensity(base_model)
 
 (ref:main-exploitation-fraction-cap) Trend in median exploitation fraction
 (catch divided by age-2$+$ biomass) through `r end_yr - 1` with 95% posterior
-credibility intervals. Dashed lines represent exploitation rates of 10% and
-20% of the total biomass.
+credibility intervals.
 
 (ref:main-exploitation-fraction-alt) This figure shows that the current
-exploitation fraction of the female spawning biomass is approximately 0.05.
-This is a drop from the last five years which have been approximately 0.1.
+exploitation fraction of the female spawning biomass is approximately 0.07.
+This is a drop from the previous five years which have been above 0.1.
 
 ```{r main-exploitation-fraction-fig, fig.cap = "(ref:main-exploitation-fraction-cap)"}
 
@@ -1051,8 +1049,8 @@ plot_exploitation_fraction(base_model)
 ```
 
 (ref:main-phase-cap) Estimated historical path of median relative spawning
-biomass in at the beginning of year $t$ and corresponding median relative
-fishing intensity in the fishing year ($t-1$) leading up to year $t$. Labels
+biomass at the beginning of year $t$ and corresponding median relative
+fishing intensity in fishing year $t-1$ leading up to year $t$. Labels
 show the time series start and end years;
 labels correspond to year $t$ (i.e., year of the relative spawning biomass).
 Gray bars span the 95% credibility intervals for `r end_yr` relative
@@ -1097,7 +1095,7 @@ plot_param_density(base_model,
 
 (ref:main-fished-unfished-biomass-cap) A comparison of female spawning stock
 biomass with fishing (black; as in Figure~\@ref(fig:main-biomass-fig)) and
-when the effects of fishing on the population is removed (red; unfished time series).
+when the effects of fishing on the population are removed (red; unfished time series).
 Medians (solid lines) of the posterior distribution for
 beginning of the year female spawning biomass ($B_t$ in year $t$; Mt)
 through `r end_yr` (solid lines) with 95% posterior credibility intervals
@@ -1108,7 +1106,7 @@ two lines shows the impact of removing fishing mortality from the population.
 (ref:main-fished-unfished-biomass-alt) This figure shows that the female spawning biomass
 time series is higher when fishing is removed from the population dynamics compared to
 when it is included. The influence due to fishing (area between the two curves) has been
-higher since 2000.
+highest since 2000.
 
 ```{r main-fished-unfished-biomass-fig, fig.cap = "(ref:main-fished-unfished-biomass-cap)"}
 
@@ -1133,8 +1131,8 @@ default `r f_40_40_10` harvest policy uses relative spawning biomass based on
 a static $B_0$ determination of stock status.
 
 (ref:main-fished-unfished-rel-biomass-alt) This figure compares the relative spawning
-biomass time series when it is calculated using $B_0$ based on the standard (static) equilibrium
-unfished biomass estimate versus a time-varying (dynamic) estimate of $B_0$ based on the unfished
+biomass time series when it is calculated using B zero based on the standard (static) equilibrium
+unfished biomass estimate versus a time-varying (dynamic) estimate of B zero based on the unfished
 time series. While general trends are similar, the dynamic approach produces less variability.
 Stock status estimates in recent years are lower using the dynamic approach.
 
@@ -1180,8 +1178,8 @@ Table~\@ref(tab:main-risk-year-1-tab). The symbols indicate points that were
 computed directly from model output and lines interpolate between the points.
 
 (ref:main-risk-year-1-alt) This figure shows that the probability that the
-stock declines in 2024 is 50 percent or greater for all catch levels
-including zero. The probability that the stock falls under B40 is almost
+stock declines in 2025 is 50 percent or greater for all catch levels
+above 350 kilotonnes. The probability that the stock falls under B40 is almost
 zero for catches up to approximately 350 kilotonnes.
 
 ```{r main-risk-year-1-fig, fig.cap = "(ref:main-risk-year-1-cap)", fig.height = 5}
@@ -1208,7 +1206,7 @@ Table~\@ref(tab:main-risk-year-2-tab). The symbols indicate points that were
 computed directly from model output and lines interpolate between the points.
 
 (ref:main-risk-year-2-alt) This figure shows that the probability that the
-stock declines in 2025 is 74 percent or greater for all catch levels
+stock declines in 2026 is over 50 percent for all catch levels
 including zero. The probability that the stock falls under B40 is below 0.1
 for catches up to approximately 380 kilotonnes.
 
@@ -1237,7 +1235,7 @@ that were computed directly from model output and lines interpolate between
 the points.
 
 (ref:main-risk-year-3-alt) This figure shows that the probability that the
-stock declines in 2026 is approximately 65 percent or greater for all catch
+stock declines in 2027 is approximately 65 percent or greater for all catch
 levels including zero. The probability that the stock falls under B40 is
 below 0.1 for catches up to approximately 350 kilotonnes.
 
@@ -1272,7 +1270,7 @@ based on the weight at each age averaged across the last five years.
 
 (ref:main-age-comp-forecast-alt) This figure shows how the few dominant
 cohorts are expected to make up most of the coming years catch. The 2021
-cohort is predicted to be the largest cohort in the stock in 2024. That
+cohort is predicted to be the largest cohort in the catch in 2024. That
 prediction has high uncertainty when compared to the other cohorts.
 
 ```{r main-age-comp-forecast-fig, fig.cap = "(ref:main-age-comp-forecast-cap)", fig.height = 4.5}
@@ -1340,7 +1338,8 @@ McAllister-Ianelli method.
 
 (ref:main-biomass-base-alternative-2-alt) This figure shows how spawning
 biomass changes between the second set of sensitivity runs. The biomass
-estimate increases with the removal of the age-1 index from the model.
+estimate decreases in recent years with the removal of the age-1 index from the
+model.
 
 ```{r main-biomass-base-alternative-2-fig, fig.cap = "(ref:main-biomass-base-alternative-2-cap)", fig.height = 4.5}
 
@@ -1360,7 +1359,7 @@ descriptions.
 
 (ref:main-status-base-alternative-2-alt) This figure shows how relative
 spawning biomass changes between the second set of sensitivity runs. As in
-the absolute biomass figure the relative biomass estimate increases with the
+the absolute biomass figure the relative biomass estimate decreases with the
 removal of the age-1 index from the model.
 
 ```{r main-status-base-alternative-2-fig, fig.cap = "(ref:main-status-base-alternative-2-cap)", fig.height = 4.5}
@@ -1380,9 +1379,8 @@ Figure~\@ref(fig:main-biomass-base-alternative-2-fig) for sensitivity
 descriptions.
 
 (ref:main-recruitment-base-alternative-2-alt) This figure shows the occasional
-changes in recruitment deviations for some of the sensitivity runs. Changing
-the age weighting to be down-weighted by the McAllister Ianelli method has
-the largest effect here.
+changes in recruitment deviations for some of the sensitivity runs. Removing
+the age 1 index decreases the estimate of 2022 recruitment.
 
 ```{r main-recruitment-base-alternative-2-fig, fig.cap = "(ref:main-recruitment-base-alternative-2-cap)", fig.height = 4.5}
 
@@ -1517,7 +1515,7 @@ descriptions.
 
 (ref:main-index-base-alternative-4-alt) This figure shows differences in the
 fit to the biomass index for certain sensitivity runs. There is a large
-scaling upward of the last six index estimates when the Phi parameter is
+scaling upward of recent index estimates when the Phi parameter is
 set to 0.21.
 
 ```{r main-index-base-alternative-4-fig, fig.cap = "(ref:main-index-base-alternative-4-cap)", fig.height = 4.5}
@@ -1682,7 +1680,7 @@ probability is taken from year $t$'s stock assessment document, from the
 row in the decision table corresponding to the consequent catch in year $t$
 (with interpolation if necessary). Blue triangles: the probability is
 calculated using the current `r assess_yr` base model. The grey horizontal
-line is the 50% value. For each year except 2017, 2019, and 2023, both
+line is the 50% value. For each year except 2017 and 2023, both
 probabilities lie on the same side of the grey line, indicating that each
 year's assessment model has almost always `correctly' estimated an increase
 or decrease the subsequent year's biomass. For the `r assess_yr`
@@ -1699,7 +1697,8 @@ model.
 plot_historical_probs(base_model,
                       hist_probs = assess_history_probs_df,
                       add.projs = TRUE,
-                      legend.inset = c(0.15, 0))
+                      legend.inset = c(0.21, 0),
+                      legend.cex = 0.9)
 ```
 
 (ref:main-historical-2-cap) For each year $t$, P$(B_{t+1} <$`r b_40`) is
@@ -1717,7 +1716,7 @@ probabilities are shown for all catch alternatives for `r assess_yr`, as
 described in Table~\@ref(tab:main-decisions-biomass-tab), with 0~t shown in pink.
 
 (ref:main-historical-2-alt) This figure compares historical estimates
-of probabilities of the stock declining below the B40.
+of probabilities of the stock declining below the B40 value.
 
 ```{r main-historical-2-fig, fig.cap = "(ref:main-historical-2-cap)", fig.height = 6, is.fig = TRUE, alt.text = "(ref:main-historical-2-alt)"}
 
