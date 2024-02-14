@@ -23,6 +23,13 @@ weight-at-age sample sizes for each sex code(Male = M, Female = F,
 Unsexed = U), by country (Tables~\@ref(tab:srg-weight-at-age-sample-size-can)
 and \@ref(tab:srg-weight-at-age-sample-size-us)).
 
+The weight-at-age for two years, 2018 and 2023 are shown in
+Figure~\@ref(fig:srg-plot-weight-at-age-by-sex-fig). During the meeting, this plot
+contained unsexed fish as well, which were all much heavier than both males and
+females. On investigation, the JTC discovered that the data file for Canada
+had been modified to have all the sex data set to **U** (unsexed). This was
+fixed and Figure~\@ref(fig:srg-plot-weight-at-age-by-sex-fig) shows the result.
+
 ```{r srg-weight-at-age-sample-size-can, results = "asis"}
 font_size <- 9
 temp_waa <- weight_at_age_df |>
@@ -62,6 +69,8 @@ kbl(can_waa,
 row_spec(0, bold = TRUE) |>
 kable_styling(font_size = font_size)
 ```
+
+\clearpage
 
 ```{r srg-weight-at-age-sample-size-us, results = "asis"}
 
@@ -144,17 +153,17 @@ plot_rel_biomass(list(old_base_model, base_model),
 
 ### Request 2 {-}
 
-On Figure G.11 add the data for proportion mature at age-2 (if possible)
-and age-3 to the model prediction of maturity at age-2 (if possible) and
-age-3 from the temperature-based model.
+On Figure~\@ref(fig:app-maturity-analysis-temp-marginal-fig) add the data
+for proportion mature at age-2 (if possible) and age-3 to the model prediction
+of maturity at age-2 (if possible) and age-3 from the temperature-based model.
 
 **JTC Response**
 
 The JTC provided two figures showing the proportion mature by year and
 temperature.
 
-* Figure~\@ref() shows empirical results for age 2 and
-  Figure~\@ref() shows
+* Figure~\@ref(fig:srg-prop-age-2-mature-by-temp-fig) shows empirical results for age 2 and
+  Figure~\@ref(fig:srg-prop-age-3-mature-by-temp-fig) shows
   empirical results for age 3. Data are included from non-ASHOP samples because
   that is what the curve is predicting. For each year (denoted on the smooth
   line) the points appear above or below the labeled point from the same year.
@@ -196,44 +205,64 @@ include_graphics(file.path(figures_dir,
 ```
 \clearpage
 
-## Request 3 -- Add $SB_{2023}/SB_{0}$ to Table 25 {-}
+### Request 3 {-}
 
-```{r main-parameter-estimates-tab, results = "asis", echo = FALSE}
+Add B~2023~/B~0~ to Table~\@ref(tab:main-parameter-estimates-tab) comparing
+the 2023 and 2024 assessments.
 
-table_param_est_last_year_hardcoded(
-  model = list(base_model),
-  model_nms = c(base_model_name, last_yr_base_model_name),
-  section_bold = TRUE,
-  section_italics = TRUE,
-  section_underline = TRUE,
-  section_line_above = FALSE,
-  section_line_below = FALSE,
-  digits = 3,
-  caption = "Table 25 in document, with 2023 rel. biomass added",
-  font_size = 4,
-  header_font_size = 9,
-  longtable = TRUE) 
-  # row_spec(17,
-  #          bold = table_highlight_bold,
-  #          background = table_highlight_color)
-```
+**JTC Response**
 
-## Request 4 -- Clean vs mixed species survey trawls {-}
+The JTC provided an updated table, and updated the table in the assessment
+to match it. See Table~\@ref(tab:main-parameter-estimates-tab). All other
+similar tables in the document containing parameter estimates now have this
+row as well.
+
+### Request 4 {-}
+
+The SRG requests data to better understand the presence of clean hake trawls
+and mixed species trawls in the 2023 acoustic survey by area (such as INPFC
+area). This will help understand where hake were in 2023 and the potential
+effects of mixed trawls on the determination of biomass.
+
+**JTC Response**
 
 In 2023 the acoustic-trawl survey had 13 regions out of 282 that were
 classified as hake mix. These regions were associated with 4 separate
 trawls. The hake percentages in those hake mix trawls ranged from 55%
 to 76% hake (all mixed with rockfish).
 
-22.9 kmt out of the 735 kmt of unkriged biomass (3.1%) came from hake
+22.9 kt out of the 735 kt of un-Kriged biomass (3.1%) came from hake
 mixes in 2023.
 
-## Request 5 -- "Tabular 2008--2026 maturity-at-age data"
+### Request 5 {-}
+
+The SRG requests maturity-at-age in a tabular format from 2008 to 2026.
+These numbers will help understand the variability of maturity-at-age without
+the effect of changes in weight-at-age used to calculate fecundity. It will
+also help understand how the projected maturity-at-age relates to estimated
+values. 
+
+**JTC Response**
 
 The actual years that are included are 2009--2023 and 4 projection years.
 The projections use the mean of the maturity-at-age for 2019--2023.
+Figure~\@ref(fig:srg-main-mat-at-age-fig) shows the requested table in
+a heatmap format to match the other figures in the document depicting
+weight-at-age, sample sizes of weight-at-age, and fecundity.
 
-```{r main-mat-at-age-fig, fig.height = 6, out.height = "70%"}
+(ref:srg-main-mat-at-age-cap) Heatmap showing maturity-at-age by year in the
+same format as the other heatmaps for weight-at-age, sample size, and
+fecundity found in this document (Figures~\@ref(main-weight-at-age-fig)--
+\@ref(main-fecundity-at-age-fig)). The Projected years (`r min(forecast_yrs)`--
+`r max(forecast_yrs)`) are set to the mean values of the previous 5 years
+(`r assess_yr - 5`--`r assess_yr - 1`). The years prior to the initial year
+shown (2009) are set to the mean of the entire time series and are shown in
+the **Mean** row.
+
+(ref:srg-main-mat-at-age-alt) This figure shows that maturity-at-age can vary
+a lot between years.
+
+```{r srg-main-mat-at-age-fig, fig.height = 6, out.height = "70%", fig.cap = "(ref:srg-main-mat-at-age-cap)"}
 
 j <- maturity_estimates_df |>
   filter(model == "Spatial + temperature") |> 
@@ -287,20 +316,41 @@ plot_heatmap_weight_at_age(
            "dodgerblue"))
 ```
 
-## Request 6 -- "Down weight the age-composition sample sizes"
+### Request 6 {-}
+
+The SRG requests that the JTC add a new run seriously downweighting the age
+composition sample sizes to increase the influence of the survey biomass
+index. For example, an effective sample size of no more than 50, which would
+mean dividing the sample size by about 100. Alternatively, use a lambda
+of 0.05 on survey and fishery age composition data. Report the additional
+survey variance as well.
+
+**JTC Response**
 
 A lambda value of 0.05 was multiplied by the age-composition likelihood
 component to calculate the overall negative log likelihood to be minimized.
+The following list gives the differences in parameter estimates.
+Figures~\@ref(fig:srg-plot-sur-fit-base-v-lambda-ssb-fig)--
+\@ref(fig:srg-plot-recabs-base-v-lambda-ssb-fig) were provided to the SRG
+to fulfill the request thoroughly.
 
 * DM fishery: 0.341 (base); 0.035 (lambda)
 * DM survey: 0.942; 0.271
 * DM ratio: 0.362; 0.129
 * Extra SD survey: 0.313; 0.202
 * Extra SD age-1 index: 0.385; 0.371
-* Age Likelihood: 2144; 131
+* Age Likelihood: 2,144; 131
 * Approximate run time: 2 hours; 17 hours
 
-```{r plot-sur-fit-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
+(ref:srg-plot-sur-fit-base-v-lambda-ssb-cap) Fits to the acoustic age 2$+$
+survey observations (triangles) for the base model and the adjusted
+lambda = 0.05 model.
+
+(ref:srg-plot-sur-fit-base-v-lambda-ssb-alt) This figure shows that the
+model with a lambda value of 0.05 fits the 2023 survey index point better than
+the base model.
+
+```{r srg-plot-sur-fit-base-v-lambda-ssb-fig, eval = TRUE,fig.height = 4, out.height = "80%", fig.cap = "(ref:srg-plot-sur-fit-base-v-lambda-ssb-cap)"}
 m_names <- c("pre-SRG base", "lambda 0.05")
 lambda_model <- readRDS("/srv/hake/models/2024/01-version/05-test-models/30-lambda-comps/30-lambda-comps.rds")
 plot_survey_index_fits(old_base_model,
@@ -312,7 +362,15 @@ plot_survey_index_fits(old_base_model,
                        xlim = c(1995, end_yr))
 ```
 
-```{r plot-age1-fit-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
+(ref:srg-plot-age1-fit-base-v-lambda-ssb-cap) Fits to the age 1 index
+observations (triangles) for the base model and the adjusted
+lambda = 0.05 model.
+
+(ref:srg-plot-age1-fit-base-v-lambda-ssb-alt) This figure shows that the
+model with a lambda value of 0.05 fits the 2023 age 1 index point a little
+better than the base model.
+
+```{r srg-plot-age1-fit-base-v-lambda-ssb-fig, eval = TRUE,fig.height = 4, out.height = "80%", fig.cap = "(ref:srg-plot-age1-fit-base-v-lambda-ssb-cap)"}
 plot_survey_index_fits(old_base_model,
                        model_lst=list(base_model, lambda_model),
                        model_names = m_names,
@@ -326,7 +384,15 @@ plot_survey_index_fits(old_base_model,
                        rev_colors = TRUE)
 ```
 
-```{r plot-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
+(ref:srg-plot-base-v-lambda-ssb-cap) Estimated spawning biomass
+for the base model and the adjusted lambda = 0.05 model. The shaded areas
+represent the 95% credible interval.
+
+(ref:srg-plot-base-v-lambda-ssb-alt) This figure shows that the
+model with a lambda value of 0.05 has a much higher overall estimated median
+biomass and an enormous credible interval when compared to the base model.
+
+```{r srg-plot-base-v-lambda-ssb-fig, eval = TRUE,fig.height = 4, out.height = "80%", fig.cap = "(ref:srg-plot-base-v-lambda-ssb-cap)"}
 plot_biomass(list(old_base_model, lambda_model),
              model_names = m_names,
              ylim = c(0, 12),
@@ -334,7 +400,16 @@ plot_biomass(list(old_base_model, lambda_model),
              leg_pos = c(0.75, 0.9))
 ```
 
-```{r plot-rel-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
+(ref:srg-plot-rel-base-v-lambda-ssb-cap) Estimated relative spawning biomass
+for the base model and the adjusted lambda = 0.05 model. The shaded areas
+represent the 95% credible interval.
+
+(ref:srg-plot-rel-base-v-lambda-ssb-alt) This figure shows that the
+model with a lambda value of 0.05 has a much higher overall estimated median
+relative biomass and a larger credible interval when compared to the
+base model.
+
+```{r srg-plot-rel-base-v-lambda-ssb-fig, eval = TRUE,fig.height = 4, out.height = "80%", fig.cap = "(ref:srg-plot-rel-base-v-lambda-ssb-cap)"}
 plot_rel_biomass(list(old_base_model, lambda_model),
                  model_names = m_names,
                  ylim = c(0, 2.5),
@@ -344,14 +419,30 @@ plot_rel_biomass(list(old_base_model, lambda_model),
   suppressWarnings()
 ```
 
-```{r plot-rec-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
+(ref:srg-plot-rec-base-v-lambda-ssb-cap) Estimated recruitment deviations
+for the base model and the adjusted lambda = 0.05 model. The bars represent
+the 95% credible interval.
+
+(ref:srg-plot-rec-base-v-lambda-ssb-alt) This figure shows that the
+model with a lambda value of 0.05 has much larger overall credible intervals
+when compared to the base model.
+
+```{r srg-plot-rec-base-v-lambda-ssb-fig, eval = TRUE,fig.height = 4, out.height = "80%", fig.cap = "(ref:srg-plot-rec-base-v-lambda-ssb-cap)"}
 plot_recdevs(list(old_base_model, lambda_model),
              model_names = m_names,
              line_color = ts_single_line_color,
              leg_pos = c(0.25, 0.95))
 ```
 
-```{r plot-recabs-base-v-lambda-ssb, eval = TRUE,fig.height = 4, out.height = "80%"}
+(ref:srg-plot-recabs-base-v-lambda-ssb-cap) Estimated absolute recruitment
+for the base model and the adjusted lambda = 0.05 model. The bars represent
+the 95% credible interval.
+
+(ref:srg-plot-recabs-base-v-lambda-ssb-alt) This figure shows that the
+model with a lambda value of 0.05 has much larger overall credible intervals
+when compared to the base model.
+
+```{r srg-plot-recabs-base-v-lambda-ssb-fig, eval = TRUE,fig.height = 4, out.height = "80%", fig.cap =  "(ref:srg-plot-recabs-base-v-lambda-ssb-cap)"}
 plot_recruitment(list(old_base_model, lambda_model),
                  model_names = m_names,
                  inc_means = TRUE,
@@ -359,41 +450,64 @@ plot_recruitment(list(old_base_model, lambda_model),
   suppressWarnings()
 ```
 
-## Request 7 -- "Survey and catch biomass at age"
+### Request 7 {-}
 
-Proportion of survey biomass estimated in Canada.
+The SRG would like to see the proportion of survey biomass and catch
+estimated in Canada.
 
-```{r, can-prop-survey-biomass-fig, results = "asis", out.height="80%"}
+**JTC Response**
+
+The JTC provided two tables to show the catch-at-age in each country,
+which were calculated by multiplying the input proportions-at-age with
+the the annual catch in each country
+(Tables~\@ref(tab:srg-can-catch-at-age-tab) and
+\@ref(tab:srg-us-catch-at-age-tab)).
+
+To show the proportion of biomass in Canada as determined by the acoustic
+survey, a figure (Figure~\@ref(fig:srg-can-prop-survey-biomass-fig))
+and two tables (Tables~\@ref(tab:srg-survey-at-age-can-tab) and
+\@ref(tab:srg-survey-at-age-us-tab)) were provided.
+
+```{r srg-can-catch-at-age-tab, results = "asis"}
+
+table_catch_by_fleet(country = 1,
+                     caption = "Fishery Catch-at-age for Canada (t)",
+                     font_size = 7)
+```
+
+```{r srg-us-catch-at-age-tab, results = "asis", echo = FALSE}
+
+table_catch_by_fleet(country = 2,
+                     caption = "Fishery Catch-at-age for U.S. (t)",
+                     font_size = 6)
+```
+
+(ref:srg-can-prop-survey-biomass-cap) The proportion of `r sp` in Canadian
+waters by year and age. The yellow tiles mean that all the fish at that
+age were found in the Canadian part of the survey only. Dark blue means that
+all fish of that age were found in the U.S. part of the survey only, or
+for ages 19 and 20, that there were no data.
+
+(ref:srg-can-prop-survey-biomass-alt) This figure shows that fish over age 15
+are found almost exclusively in Canada and under age 10 mostly in the U.S.
+
+```{r, srg-can-prop-survey-biomass-fig, results = "asis", out.height="80%", fig.cap = "(ref:srg-can-prop-survey-biomass-cap)"}
 
 include_graphics("../beamer/srg/requests-1/survey-biomass-files/Proportion-by-age-CAN-hake.png")
 ```
 
-```{r, can-survey-biomass-at-age-load, echo=FALSE}
+```{r, can-survey-biomass-at-age-load, echo = FALSE}
 
 survey_biomass_at_age_can <- read_csv("../beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_CAN.csv")
 survey_biomass_at_age_us <- read_csv("../beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_US.csv")
 ```
 
-Fishery Catch-at-age for Canada (tonnes)
 
-```{r can-catch-at-age, results = "asis"}
-
-table_catch_by_fleet(country = 1, font_size = 4)
-```
-
-Fishery Catch-at-age for U.S. (tonnes)
-
-```{r us-catch-at-age, results = "asis"}
-
-table_catch_by_fleet(country = 2, font_size = 4)
-```
-
-The following code was pasted into doc using gotest() from the doc directory
-so that landscape pages could be used to show the wide tables
+\clearpage
 
 BEGIN LANDSCAPE
 
-```{r, survey-at-age-us, results = "asis"}
+```{r, srg-survey-at-age-us-tab, results = "asis"}
 
 d <- read_csv("../beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_US.csv",
               col_types = cols()) |> 
@@ -414,7 +528,7 @@ kbl(d,
   row_spec(0, bold = TRUE)
 ```
 
-```{r, survey-at-age-can, results = "asis"}
+```{r, srg-survey-at-age-can-tab, results = "asis"}
 
 d <- read_csv("../beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_CAN.csv",
               col_types = cols()) |> 
@@ -436,5 +550,3 @@ kbl(d,
 ```
 
 END LANDSCAPE
-
-

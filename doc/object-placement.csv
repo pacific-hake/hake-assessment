@@ -72,3 +72,17 @@ table,app-maturity-analysis-sampling-platform-tab,,ht
 table,app-maturity-analysis-aic-tab,,ht
 table,app-maturity-analysis-estimates-tab,,ht
 table,app-maturity-analysis-biomass-tab,,H
+
+# SRG appendix
+table,srg-weight-at-age-sample-size-can,,H
+figure,srg-main-mat-at-age-fig,,H
+figure,srg-plot-sur-fit-base-v-lambda-ssb-fig,,H
+figure,srg-plot-age1-fit-base-v-lambda-ssb-fig,,H
+figure,srg-plot-base-v-lambda-ssb-fig,,H
+figure,srg-plot-rel-base-v-lambda-ssb-fig,,H
+figure,srg-plot-rec-base-v-lambda-ssb-fig,,H
+figure,srg-plot-recabs-base-v-lambda-ssb-fig,,H
+figure,srg-can-prop-survey-biomass-fig,,H
+figure,srg-can-prop-survey-biomass-fig,,H
+table,srg-can-catch-at-age-tab,,H
+table,srg-us-catch-at-age-tab,,H

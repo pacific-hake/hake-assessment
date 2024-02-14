@@ -6,12 +6,14 @@
 #' @param font_size The size of the font in the table cells
 #' @param country If `NULL`, use `flt` to make the plot. Either 1 or 2 can
 #' be supplied. If 1, plot Canada. If 2, plot US
+#' @param ... Arguments passed to [kableExtra::kbl()]
 #'
 #' @return A [kableExtra::kbl()] table
 #' @export
 table_catch_by_fleet <- function(flt = 1,
                                  country = NULL,
-                                 font_size  = 4){
+                                 font_size  = 4,
+                                 ...){
 
   if(!is.null(country)){
     if(!country %in% 1:2){
@@ -133,7 +135,8 @@ table_catch_by_fleet <- function(flt = 1,
            align = c("l",
                      rep("r", num_cols - 1)),
            linesep = "",
-           escape = FALSE) |>
+           escape = FALSE,
+           ...) |>
     kable_styling(font_size = font_size) |>
     row_spec(0, bold = TRUE)
 

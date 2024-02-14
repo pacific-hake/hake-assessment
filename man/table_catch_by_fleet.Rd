@@ -5,7 +5,7 @@
 \title{Create a table containing the catch-at-age for one of the 3 Canadian
 or 3 U.S. fleets}
 \usage{
-table_catch_by_fleet(flt = 1, country = NULL, font_size = 4)
+table_catch_by_fleet(flt = 1, country = NULL, font_size = 4, ...)
 }
 \arguments{
 \item{flt}{The fleet index. 1 = CAN FT, 2 = CAN SS, 3 = CAN JV,
@@ -15,6 +15,8 @@ table_catch_by_fleet(flt = 1, country = NULL, font_size = 4)
 be supplied. If 1, plot Canada. If 2, plot US}
 
 \item{font_size}{The size of the font in the table cells}
+
+\item{...}{Arguments passed to \code{\link[kableExtra:kbl]{kableExtra::kbl()}}}
 }
 \value{
 A \code{\link[kableExtra:kbl]{kableExtra::kbl()}} table
