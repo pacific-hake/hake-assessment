@@ -553,3 +553,181 @@ kbl(d,
 ```
 
 END LANDSCAPE
+
+## Day 2
+
+### Request 1 {-}
+
+The SRG requests rerunning the GLM for weight-at-age without unsexed hake,
+and creating a weight-at-age matrix using the updated outputs by averaging
+Males and Females equally. 
+
+**JTC Response**
+
+* The GLMM was run after filtering the data to remove sex.
+
+* The model output was truncated to just produce males and females given
+  unsexed fish were no longer in the data used to fit the GLMM.
+  
+* Results for males and females were averaged.
+
+* The weight-at-age file for SS3 was updated.
+
+* The updated weight-at-age file was used to process the fishery-composition
+  data.
+
+### Request 2 {-}
+
+The SRG requests a plot of the day effect in the maturity analysis for age-3
+hake for any given year, assuming the peak of maturity is the same in all
+years (please confirm this assumption). 
+
+**JTC Response**
+
+The formula used for the non-spatial effects of the maturity-at-age model
+looks like the following:
+
+$formula <- functional_{maturity} \sim -1 + s(doy) + age_{scaled} + I(age_{scaled}^2) + mean_{temp} + I(mean_{temp}^2)$
+
+where there is **NO** interaction with the smoother on the day of the year.
+Thus, we would not expect the shape of the relationship to change with time
+or temperature in this case.
+
+(ref:srg-doy-maturity-cap) Proportion of mature fish by day of year.
+
+(ref:srg-doy-maturity-alt) This figure shows an continual rise in proportion
+mature from day 100 to day 278 and that by day 210 at least 80 percent of
+hake are mature.
+
+```{r srg-doy-maturity-fig, results = "asis", out.height = "70%", fig.cap = "(ref:srg-doy-maturity-cap)"}
+
+include_graphics(here("doc", figures_dir, "maturity_spline_doy.png"))
+```
+
+### Request 3 {-}
+
+The SRG requests that the maturity plot be recalculated for Day 278, peak
+of maturity.
+
+**JTC Response**
+
+The new figure was presented at the meeting and is now incorporated as part
+of the assessment document (Figure~\@ref(main-maturity-ogive-fig)).
+
+### Request 4 {-}
+
+The SRG asks for a presentation of the recalculated probability mature by
+age matrix.
+
+**JTC Response**
+
+The JTC created a heatmap-type plot
+(Figure~\@ref(fig:srg-main-mat-at-age-heatmap-fig)) which is similar to
+the figures in the document for weight-at-age and fecundity-at-age.
+
+(ref:srg-main-mat-at-age-heatmap-cap) Heatmap showing the maturity-at-age by
+year. Projected years (2024--2027) are the means of the previous five years
+(2019--2023). Values used for years prior to 2009 are the means or the values
+by age for 2009--2023.
+
+(ref:srg-main-mat-at-age-heatmap-alt) This figure is a table of tiles with
+decimal values representing maturity from 0 to 1. The maturity mostly
+increases from ages 2 to 4 and after age 4 values are 1 for most years.
+
+```{r srg-main-mat-at-age-heatmap-fig, fig.height = 6, out.height = "70%", fig.cap = "(ref:srg-main-mat-at-age-heatmap-cap)"}
+
+j <- maturity_estimates_df |>
+  filter(model == "Spatial + temperature") |> 
+  transmute(Yr = year, age, p_mature) |>
+  pivot_wider(names_from = age,
+              values_from = p_mature) |> 
+  mutate(Seas = 1,
+         Sex = 1,
+         Bio_pattern = 1,
+         BirthSeas = 1,
+         Fleet = 1,
+         .after = 1)
+extra_rows <- j |> slice(1:2)
+extra_rows[1, "Yr"] <- 2007
+extra_rows[2, "Yr"] <- 2008
+j <- bind_rows(extra_rows, j)
+
+# Create projection rows - mean of last 5 years
+rows <- tail(j)
+mn_row <- rows |>
+  colMeans() |>
+  vec2df()
+for(i in 2024:2027){
+  mn_row <- mn_row |> 
+    mutate(Yr = i)
+  j <- j |> 
+    bind_rows(mn_row)
+}
+
+j_model <- base_model
+j_model$wtatage <- j
+j_model$startyr <- 2009
+j_model$endyr <- 2023
+waa_ss_df <- weight_age_sample_sizes_df |> 
+  filter(Yr %in% 2009:2023)
+
+plot_heatmap_weight_at_age(
+  j_model,
+  cell_font_size = 4,
+  sample_size_df = waa_ss_df,
+  pre_yrs = start_yr_age_comps:base_model$endyr,
+  pre_func = mean,
+  post_yrs = 2024:2027,
+  post_wa_vals = j |> select(grep("^[0-9]+$", names(j))) |>
+    tail(1) |>
+    unlist(),
+  #post_func = mean,
+  cols = c("red",
+           "yellow",
+           "green",
+           "dodgerblue"))
+```
+
+## Request 5 {-}
+
+The SRG requests rerunning the base assessment model with updated
+weight-at-age and fecundity matrices based on day 278.  Updated harvest
+scenario tables if possible.
+
+**JTC Response**
+
+The JTC ran the modified base model and presents the following figures, 
+
+(ref:srg-new-base-biomass-cap) TODO: caption here
+
+(ref:srg-new-base-biomass-alt) TODO: Alt text here
+
+```{r srg-new-base-biomass-fig, out.height = "85%", fig.cap = "(ref:srg-new-base-biomass-cap)"}
+
+m_names <- c("Bridge step",
+             "No unsexed weight-at-age",
+             "New base",
+             "Old base")
+pth_01 <- "/srv/hake/models/2024/01-version"
+pth_02 <- "/srv/hake/models/2024/02-version"
+
+old_base <-
+  readRDS(file.path(pth_01,
+                    "01-base-models/01-base/01-base.rds"))
+step_before <-
+  readRDS(file.path(pth_01,
+                    "02-bridging-models/60-survey-1-t-distribution/60-survey-1-t-distribution.rds"))
+first_step <-
+  readRDS(file.path(pth_02,
+                    "05-test-models/01-redo-fishery-comp/01-redo-fishery-comp.rds"))
+new_base <-
+  readRDS(file.path(pth_02,
+                    "01-base-models/01-base/01-base.rds"))
+
+plot_biomass(list(step_before,
+                  first_step,
+                  new_base,
+                  old_base),
+             model_names = m_names)
+```
+
