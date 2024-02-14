@@ -10,7 +10,7 @@ project_variables:
   last_assess_yr: 2023
   last_data_yr: 2023
   forecast_yrs: 2024:2027
-  model_version: "01"
+  model_version: "02"
   last_yr_model_version: "01"
   # For a list of colors you can use here see:
   # https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/latexcolors/latexcolors.pdf
