@@ -437,18 +437,18 @@ weight-at-age.
 
 New for this assessment, a generalized linear mixed model (GLMM) with a
 lognormal distribution was used to model weight-at-age data external to the
-assessment. Weight was thought to relate to a smoothed effect of age, between
-zero and fifteen; random effects for cohort and year; and fixed effects for
+assessment. Weight was thought to relate to a smoothed effect of age between
+ages zero and fifteen; random effects for cohort and year; and fixed effects for
 sex. The model is similar to models investigated for Walleye pollock off of
 Alaska, where models with correlations between age, cohort, and year were
-found to best fit the data [@ChengEtAl2023]. Here, unsexed fish were included
-as such, and the majority of the unsexed samples were from north of the
-U.S--Canada border. Weights from fish ages 15 and above for each year were
-pooled, and thus, ages 15--20 are assumed to have the same weight-at-age.
+found to best fit the data [@ChengEtAl2023]. Here, all unsexed fish were
+removed from the analysis given the small sample sizes. Weights from fish ages
+15 and above for each year were pooled, and thus, ages 15--20 are assumed to
+have the same weight-at-age.
 Estimated parameters from this model were used to predict weight for ages zero
-to fifteen from 1975 to `r last_data_yr` for each sex. The mean of estimates across
-the three sex groups, i.e., male, female, and unsexed, was used for
-input into the assessment model. The number of samples
+to fifteen from 1975 to `r last_data_yr` for each sex. The means of annual,
+age-specific estimates across both sexes were used for input into the
+assessment model. The number of samples
 (Figure \@ref(fig:main-sample-size-weight-at-age-fig)) is generally
 proportional to the amount of catch.
 
@@ -456,8 +456,8 @@ The biomass at the start of a given year is based on the weight-at-age from the
 previous year; for example, the biomass at the start of 2022 is modelled using
 the empirical weight-at-age data from 2021
 (Figure~\@ref(fig:main-weight-at-age-fig)). Prior to 1975, weight-at-age input
-is assumed to be equal to the mean of all available model inputs for each
-respective age (1975-`r last_data_yr`)
+to Stock Synthesis is assumed to be equal to the mean of all available years for
+each respective age (1975-`r last_data_yr`)
 (Figure~\@ref(fig:main-weight-at-age-fig)).
 Forecast weight-at-age data are based on age-specific means from the most
 recent five years (`r last_data_yr-4`--`r last_data_yr`), consistent with
@@ -478,24 +478,23 @@ biomass than modeling growth [@KuriyamaOnoEtAl2015].
 
 ### Maturity and fecundity {#sec:data-maturity}
 
-Maturity-at-age has always been modelled external to the assessment,
+Maturity-at-age has always been modelled external to the assessment
 but up through the the 2023 assessment [@JTC2023] the maturity ogive was
-time-invariant. Starting in 2024, annual age-based maturity ogives
-(Figure~\@ref(fig:main-maturity-ogive-fig))
-were developed using the same data, i.e., histological estimates of functional
-maturity, but fit with a spatiotemporal GLMM. The current data set is comprised
-of 2,836 ovaries with information on histological estimates of functional
-maturity. The samples were collected from the acoustic survey, winter and
-summer acoustic research trips, U.S. catcher-processor vessels by observers in
-the U.S. At-Sea Hake Observer Program, and the U.S. West Coast Groundfish
-Bottom Trawl Survey (Table~\@ref(tab:main-ovaries-tab)) since 2009. Samples
-from south of Point Conception (34.44° N) have been excluded from maturity
-analyses since 2018 [@JTC2018] because they were thought to mature at earlier
-ages and smaller sizes. Samples from Canada were excluded from this analysis
-because the spatiotemporal resolution was insufficient and led to
-model-convergence issues. Additional samples are available to update the
-maturity relationship (including samples collected from Canadian waters since
-2018) but have yet to be analyzed.
+time-invariant. Starting with the 2024 assessment, annual age-based maturity
+ogives (Figure~\@ref(fig:main-maturity-ogive-fig)) were developed using the
+same data, i.e., histological estimates of functional maturity, but fit with
+a spatiotemporal GLMM. The current data set is comprised of 2,836 ovaries with
+information on histological estimates of functional maturity. The samples were
+collected from the acoustic survey, winter and summer acoustic research trips,
+U.S. catcher-processor vessels by observers in the U.S. At-Sea Hake Observer
+Program, and the U.S. West Coast Groundfish Bottom Trawl Survey
+(Table~\@ref(tab:main-ovaries-tab)) since 2009. Samples from south of Point
+Conception (34.44° N) have been excluded from maturity analyses since 2018
+[@JTC2018] because they were thought to mature at earlier ages and smaller
+sizes. Samples from Canada were excluded from this analysis because the
+spatiotemporal resolution was insufficient and led to model-convergence issues.
+Additional samples are available to update the maturity relationship (including
+samples collected from Canadian waters since 2018) but have yet to be analyzed.
 
 The spatiotemporal GLMM used to estimate the probability of being functionally
 mature included an estimated spatial field, spatially varying coefficients for
@@ -506,11 +505,12 @@ approximation to Gaussian Random Fields [@LindgrenEtAl2011] was used to
 approximate the spatial surface with a series of estimated random effects.
 The temperature covariate has the potential to add mechanistic relationships to
 the modeling and reduce uncertainty in years where no or few samples are
-collected. Annual maturity-at-age was then predicted for each year with data
-using estimated coefficients and projected forward in time to `r last_data_yr`
+collected. Annual maturity-at-age was then predicted for each year since 2009
+using estimated coefficients for non-ASHOP samples and day 278 (i.e., October
+5th). Projections were also made forward in time to `r last_data_yr`
 using available temperature indices. This forward projection was needed because
 maturity information was not sampled in 2022 and data from `r last_data_yr`
-has yet to be analyzed. More detailed information on the modeling and
+have yet to be analyzed. More detailed information on the modeling and
 projection methods is available in Appendix~\@ref(sec:app-maturity-analysis).
 
 Time-varying fecundity at age (Figure~\@ref(fig:main-fecundity-at-age-fig)) was
