@@ -9,16 +9,17 @@
   
 * Catch alternatives
   - **a**: `r ct_levels[[1]][[2]]` (zero catch)
-  - **b**, **c**, **d**, **g**, **i**, **k**: Constant catches of
+  - **b**, **c**, **f**, **h**, **j**: Constant catches of
     `r ct_levels[[2]][[2]]`, `r ct_levels[[3]][[2]]`,
-    `r ct_levels[[4]][[2]]`, `r ct_levels[[7]][[2]]`,
-    `r ct_levels[[9]][[2]]`, and `r ct_levels[[11]][[2]]`.
-  - **f**: Constant catch equal to the `r ct_levels[[6]][[2]]`
+    `r ct_levels[[6]][[2]]`, `r ct_levels[[8]][[2]]`,
+    `r ct_levels[[10]][[2]]`.
+  - **d**: Constant catch equal to the `r ct_levels[[5]][[2]]`,
+  - **k**: Constant catch equal to the `r ct_levels[[11]][[2]]`,
   - **l**: Constant catch equal to the `r ct_levels[[12]][[2]]`,
-  - **e**, **h**, **j**: Annual reductions of 10% from:
-        `r f(ct_levels[[5]][[1]][1])` t,
-        `r f(ct_levels[[8]][[1]][1])` t, and
-        `r f(ct_levels[[10]][[1]][1])` t
+  - **d**, **g**, **i**: Annual reductions of 10% from:
+        `r f(ct_levels[[4]][[1]][1])` t,
+        `r f(ct_levels[[7]][[1]][1])` t, and
+        `r f(ct_levels[[9]][[1]][1])` t
   - **m**: Fishing Intensity = 100% in each year conditioned on fixed catch
        in previous year
   - **n**: Median Default Harvest Rule in each year conditioned on fixed catch

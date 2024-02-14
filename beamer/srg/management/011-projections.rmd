@@ -43,7 +43,7 @@ plot_param_density(base_model,
 ## Three-year projections
 :::::: {.columns}
 ::: {.column width="38%"}
-- No fishing results in a 1-yea increase in biomass followed by a flat
+- No fishing results in a 1-year increase in biomass followed by a flat
   relative spawning biomass from `r end_yr` to `r end_yr + 2`, then a
   very slight decline
 
@@ -59,7 +59,7 @@ plot_param_density(base_model,
 # See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,
-                          fore_inds = c(1, 2, 6, 12, 14),
+                          fore_inds = c(1, 2, 5, 12, 14),
                           forecast_yrs = forecast_yrs)
 ```
 :::
