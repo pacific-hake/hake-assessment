@@ -174,11 +174,11 @@ summed to `r tot_9192_attainment`% of the coast-wide limit, while the
 limit. The Agreement establishes U.S. and Canadian shares of the coast-wide
 total allowable catch (TAC) at `r us_allotment_percent`% and
 `r can_allotment_percent`%, respectively, and this distribution has largely
-been adhered to since 2005. However, a bilateral agreement on the coast-wide
+been adhered to since 2005. A bilateral agreement on the coast-wide
 TAC could not be reached in 2020 and 2021; so, catch targets were set
 unilaterally during these years for the first time since the inception of the
-Agreement. Catch allocations as specified in the Agreement were once again
-applied in 2022.
+Agreement. Catch allocations as specified in the Agreement have since been
+applied.
 
 Since 1999, an upper limit on catch has been calculated using an `r fspr_40`
 default harvest rate with a 40:10 adjustment. This decreases the catch
@@ -252,7 +252,7 @@ weight.
 
 The fishery for the coastal population of `r sp` occurs along the coasts of
 Northern California, Oregon, Washington, and British Columbia primarily during
-May--November [@JTC2013]. The fishery is conducted with mid-water trawls and
+May--November. The fishery is conducted with mid-water trawls and
 has met the Marine Stewardship Council (MSC) Fisheries Standard to be
 certified as meeting sustainable fishing benchmarks since 2009. Foreign fleets
 dominated the fishery until 1991, when domestic fleets began taking the
@@ -298,7 +298,7 @@ annual U.S. and Canada Advisory Panel reports
 The U.S. specified catch target (i.e., adjusted for carryovers) of
 `r last_yr_us_tac`~t was further divided among the research, tribal,
 catcher-processor, mothership, and shore-based sectors. After the tribal
-allocation of 17.5% (`r f(last_yr_us_tribal)`~t), and a
+allocation of 17.5% (`r f(last_yr_us_tribal)`~t) and a
 `r f(last_yr_us_research)`~t allocation for research catch and bycatch in
 non-groundfish fisheries, the `r last_data_yr` non-tribal U.S. catch limit
 of `r f(last_yr_us_non_tribal)`~t was allocated to the catcher-processor
@@ -367,7 +367,7 @@ The four most abundant age classes for highest occurrences being for
 (`r us_age_3_prop_shore`%), and age-`r us_age_4_prop_age_shore`
 (`r us_age_4_prop_shore`%)
 (Table~\@ref(tab:main-us-sb-age-data-tab)). Age-compositions
-between at-sea and shoreside sectors during this last year were more similar
+from the at-sea and shoreside sectors during this last year were more similar
 than they were the previous year.
 
 ### Fisheries for `r sp` in Canada {#sec:intro-fisheries-can}
