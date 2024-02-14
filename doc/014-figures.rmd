@@ -1603,6 +1603,21 @@ plot_squid(base_model,
 unprocessed floats' -->
 \clearpage
 
+(ref:main-retrospective-recruitment-2-cap) As for
+Figure~\@ref(fig:main-retrospective-recruitment-fig) but with the credibility
+intervals shown for the 2020 and 2021 cohorts.
+
+(ref:main-retrospective-recruitment-2-alt) This figure shows the high
+uncertainty of the 2020 and 2021 cohorts when there is limited data to inform
+them.
+
+```{r main-retrospective-recruitment-2-fig, fig.cap = "(ref:main-retrospective-recruitment-2-cap)", fig.height = 6}
+
+plot_squid(base_model,
+           show_ci = TRUE,
+           ci_yrs = 2020:2021)
+```
+
 (ref:main-relative-retrospective-recruitment-cap) Retrospective recruitment
 estimates shown in Figure \@ref(fig:main-retrospective-recruitment-fig)
 scaled relative to the most recent estimate of the strength of each cohort.

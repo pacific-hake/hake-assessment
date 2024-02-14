@@ -1172,7 +1172,7 @@ dropping below `r b_10` at the start of `r end_yr + 1` is
 Figures~\@ref(fig:main-risk-year-1-fig)--
 \@ref(fig:main-risk-year-3-fig)). The similar maximum
 probability of dropping below `r b_40` at the start of `r end_yr + 1` is
-`r prob_max_below_40_yr1`%, at the start of `r end_yr + 2` is 
+`r prob_max_below_40_yr1`%, at the start of `r end_yr + 2` is
 `r prob_max_below_40_yr2`%, and at the start of `r end_yr + 3`
 is `r prob_max_below_40_yr3`%.
 
@@ -1442,23 +1442,32 @@ Retrospective analyses were performed by iteratively removing the terminal
 years' data (going back 10 years) and estimating the posterior distribution of
 parameters under the assumptions of the base model. This year's base model
 shows similar retrospective results to last year's
-(Figure~\@ref(fig:main-retrospective-recruitment-fig), @JTC2022) for the
-older cohorts. The 2020 cohort has been estimated much lower this year than
-last, which is evident in Figure~\@ref(fig:main-retrospective-recruitment-fig).
-The 2021 cohort has unexpectedly been estimated to be rather large, with
-the 2021 cohorts at age-3 estimated this year to be as large as the 2020
-cohort was last year at age-3.
-
+[Figure~\@ref(fig:main-retrospective-recruitment-fig) and @JTC2022] for the
+older cohorts.
 Uncertainties are shown for select cohorts in
-Figure~\@ref(fig:main-retrospective-recruitment-fig). In previous years,
-this figure showed only the median lines. The uncertainty is represented as
+Figures~\@ref(fig:main-retrospective-recruitment-fig)
+and~\@ref(fig:main-retrospective-recruitment-2-fig). In previous years,
+thes figures showed only the median lines. The uncertainty is represented as
 credible intervals from `r f(probs[1] * 100, 1)`% to `r f(probs[3] * 100, 1)`%
 as shaded areas surrounding the median lines. For cohorts that have positive
 recruitment deviations, the uncertainty is a narrower band around the median
 due to a higher sampling rate over the years than the cohorts with negative
-recruitments. Uncertainty for the 2020 and 2021 cohorts is not shown because
-they are so large that they cover the whole plot and wash out the other
-uncertainty bands.
+recruitments.
+
+The 2020 cohort has been estimated lower this year than
+in last year's assessment, which is also evident in
+Figure~\@ref(fig:main-retrospective-recruitment-2-fig) when excluding the 2023
+data -- the uncertainty at age-3 gets reduced when including the 2023 data, shown
+by the age-4 intervals being tighter and also lower. The latest data no longer
+suggest that 2020 is a huge cohort. The 2021 cohort at age-3 has a similar
+median to the 2020 cohort at age-3, but with less uncertainty
+(narrower credibility interval in
+Figure~\@ref(fig:main-retrospective-recruitment-2-fig)) because it has been seen
+in the age-2+ biomass survey (whereas the 2020 cohort was not seen in that
+survey until it was another year older).
+Although the 2021 displays unusual behaviour in that the median is below 0 at
+age-2 and then above 0 at age-3, its uncertainty at
+age-2 was very large (Figure~\@ref(fig:main-retrospective-recruitment-2-fig)).
 
 Some cohort recruitments are over or under-estimated at age-2.
 Over-estimation can be seen most clearly with the 2014, 2015, 2017, 2018,
@@ -1473,7 +1482,8 @@ Under-estimation is slight, but apparent, for the 2016 cohort as recruitment
 estimates have risen by a small amount since the estimate at age-3. The
 under-estimation of the 2021 cohort stands out as it was estimated as being
 slightly smaller than average at age-2 in last year's assessment and then
-estimated to be a very large cohort at age-3 this year.
+estimated to be a very large cohort at age-3 this year, though this is based on
+medians and the age-2 estimate was highly uncertain, as mentioned above.
 
 Cohort strength is further informed once at least one year of age-2$+$
 survey biomass index age-composition data are available for a
@@ -1482,7 +1492,7 @@ until the cohort reaches age-3, due to the acoustic survey occurring in odd
 years; though the age-1 index does provide some information.
 
 The stability of the recruitment estimates seen in this plot is also evident
-in the uncertainty estimates of each cohort. Uncertainty of the 2016--2021
+in the absolute estimates of uncertainty for each cohort. Uncertainty of the 2016--2021
 cohorts has been substantially reduced compared to removing five years of
 data (Figure~\@ref(fig:main-biomass-recruitment-retrospective-fig), bottom
 figure). The uncertainty of the 2020 cohort was substantially reduced
