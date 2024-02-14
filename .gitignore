@@ -14,6 +14,7 @@ credentials
 *.dvi
 *.exe
 alternative_text.csv
+*.knit.md
 *junk*
 *.log
 *.nav
