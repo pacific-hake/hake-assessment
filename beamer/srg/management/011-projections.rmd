@@ -29,8 +29,13 @@
 ::: {.column width="62%"}
 ```{r main-projected-catch-density, out.height = "80%"}
 
-plot_catch_forecast_density(base_model,
-                            yr = end_yr)
+plot_param_density(base_model,
+                   param_nm = "ForeCatch_2024",
+                   y_lim = c(0, 0.0013),
+                   expand_vec = c(100, 100),
+                   show_y_labels = FALSE,
+                   x_lab = paste0("Projected ", assess_yr, " catch (kt) ",
+                                  "based on the default harvesy policy"))
 ```
 :::
 ::::::
@@ -79,7 +84,7 @@ table_fore_age_props(fore_catch_prop,
 
 ::: {.column width="55%"}
 ```{r main-age-comp-forecast, fig.height = 3.5, fig.width = 5.5, out.height = "80%"}
-plot_fore_age_comps(base_model, )
+plot_fore_age_comps(base_model)
 ```
 :::
 ::::::

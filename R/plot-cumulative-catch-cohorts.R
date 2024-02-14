@@ -14,7 +14,8 @@ plot_cumulative_catch_cohorts <- function(model,
                                                       2010,
                                                       2014,
                                                       2016,
-                                                      2020),
+                                                      2020,
+                                                      2021),
                                           leg_pos = c(0.7, 0.4),
                                           leg_ncol = 1){
 

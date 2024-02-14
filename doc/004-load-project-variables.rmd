@@ -830,6 +830,7 @@ cohort_cum_sum_2014 <- cumsum(cohort_catch(base_model, 2014))
 cohort_cum_sum_2016 <- cumsum(cohort_catch(base_model, 2016))
 cohort_cum_sum_2017 <- cumsum(cohort_catch(base_model, 2017))
 cohort_cum_sum_2020 <- cumsum(cohort_catch(base_model, 2020))
+cohort_cum_sum_2021 <- cumsum(cohort_catch(base_model, 2021))
 ages_1999 <- as.numeric(names(cohort_cum_sum_1999)) - 1999
 ages_2010 <- as.numeric(names(cohort_cum_sum_2010)) - 2010
 ages_2014 <- as.numeric(names(cohort_cum_sum_2014)) - 2014

@@ -37,7 +37,7 @@ project_variables:
   # Increasing `dots_per_inch` for figure output increases the file size a LOT
   dots_per_inch: 200
 author: Pacific Hake Joint Technical Committee
-date: "Canadian AP/JMC March meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
+date: "Canadian AP/JMC meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
 output:
   hake_beamer:
     theme: Singapore
