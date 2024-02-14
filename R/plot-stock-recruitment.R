@@ -115,8 +115,8 @@ plot_stock_recruitment <- \(model,
   x_breaks <- seq(min(xlim), max(xlim), by = 0.2)
   y_breaks <- sort(c(round(adj, 2), min(ylim):max(ylim)))
 
-  median_recr_text_loc <- max(dd$hi) * 1.15
-  mean_recr_text_loc <- max(dd$hi) * 1.4 * adj
+  median_recr_text_loc <- max(dd$hi) * 1.4 * adj
+  mean_recr_text_loc <- max(dd$hi) * 1.15
   #browser()
   p <- list()
   p[[1]] <- ggplot(dd) +
@@ -190,13 +190,13 @@ plot_stock_recruitment <- \(model,
               y = median_recr_text_loc,
               label = "Median recruitment",
               size = 5,
-              color = "black",
+              color = "red",
               hjust = 0) +
     geom_text(x = 0.95,
               y = mean_recr_text_loc,
               label = "Mean recruitment",
               size = 5,
-              color = "red",
+              color = "black",
               hjust = 0)
 
   # Right-hand plot - dlnorm distribution (right panel)
