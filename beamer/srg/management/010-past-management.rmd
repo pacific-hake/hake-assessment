@@ -8,15 +8,15 @@ plot_management_catch_vs_tac(catch_targets_df,
                              leg_pos = c(0.12, 0.87),
                              leg_font_size = 8)
 
-def_med_hr_tac <- catch_targets_df |> 
-  filter(Year == last_assess_yr) |> 
-  select(`Default HCR TAC`) |> 
+def_med_hr_tac <- catch_targets_df |>
+  filter(Year == last_assess_yr) |>
+  select(`Default HCR TAC`) |>
   unlist()
 
 tac_catch_diff_df <- catch_targets_df |>
   filter(Year >= assess_yr - 10) |>
   mutate(diff = `Realized catch` / `Total TAC`)
-tac_catch_diff <- tac_catch_diff_df |> 
+tac_catch_diff <- tac_catch_diff_df |>
   pull(diff)
 rng_tac_catch <- range(tac_catch_diff)
 rng_tac_catch_txt <- f(range(tac_catch_diff) * 100)
@@ -201,5 +201,3 @@ plot_phase(base_model,
 ```
 :::
 ::::::
-
-

@@ -1,6 +1,6 @@
 # Summary
 
-## Summary (1/2)
+## Summary (1/3)
 
 * Based on the default harvest rule, the estimated median catch limit for
   `r min(forecast_yrs)` is `r ct_limit_quantiles["median"]`~t (with 95%
@@ -8,7 +8,7 @@
    `r ct_limit_quantiles["upper"]`~t).
 
 * Projections strongly influenced by size of above-average 2020 and 2021
-  cohorts, with 2021 being very large but also *highly* uncertain.
+  cohorts, with 2021 being potentially large but also *highly* uncertain.
 
 * Spawning biomass has a 50% chance of decreasing from `r assess_yr` to
   `r assess_yr + 1` for a 1-year catch of 350,000~t. At that level and higher,
@@ -22,7 +22,7 @@
   chance of falling below `r b_40` in 1 year, 11% in 2 years, and
   21% in 3 years.
 
-## Summary (2/2)
+## Summary (2/3)
 
 * Catch has increased to the B~0~ level in 2 years after a period of 5
   years of decline (2017--2021).
@@ -44,6 +44,14 @@
   `r end_yr - 1` and below the `r b_40` relative spawning biomass level at the
   start of `r end_yr`.
 
+## Summary (3/3)
+
+* Despite healthy stock size and status estimates, the recent lack of survey
+abundance and fishery catch in Canada suggests a shift in population
+distribution leading to diminished northern fisheries over recent years.
+
+* Conventional wisdom of fish moving further north in warmer years potentially
+no longer holding?
 
 <!-- ## Assessment timeline -->
 

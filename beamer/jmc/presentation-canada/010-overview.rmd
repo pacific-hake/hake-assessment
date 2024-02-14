@@ -26,7 +26,7 @@
   - 2014 and 2016 cohorts estimated to be above average
   - 2015, 2018, and 2019 cohorts estimated to be below average
   - 2020 cohort estimated to be slightly above average
-  - 2021 cohort to be very large (with high uncertainty)
+  - 2021 cohort potentially large (with high uncertainty)
 * Default harvest rule estimated median catch limit for `r min(forecast_yrs)`
   is `r ct_limit_quantiles["median"]` t (with 95% interval from
   `r ct_limit_quantiles["lower"]` to `r ct_limit_quantiles["upper"]` t)
@@ -40,4 +40,3 @@
   Canada it was `r last_yr_can_attained`%
   (`r paste0(ifelse(last_2yr_can_attained_diff < 0, "down", "up"))`
   `r abs(as.numeric(last_2yr_can_attained_diff))`% from last year)
-

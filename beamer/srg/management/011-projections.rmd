@@ -49,7 +49,7 @@ plot_param_density(base_model,
 
 - All positive catch options result in a 1-year increase in biomass followed
   by continuous decline through to start of 2027
-  
+
 - Uncertainty is large and increases from `r end_yr` to `r end_yr + 3`
 :::
 
@@ -74,7 +74,7 @@ plot_depl_fore_comparison(base_model,
 table_fore_age_props(fore_catch_prop,
                      fore_catch_prop_wt,
                      ages_filt = 1:15,
-                     font_size = 8) |> 
+                     font_size = 8) |>
     # Highlight two largest cohorts
     row_spec(12:13,
            bold = table_highlight_bold,
