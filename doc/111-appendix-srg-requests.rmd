@@ -589,7 +589,7 @@ years (please confirm this assumption).
 The formula used for the non-spatial effects of the maturity-at-age model
 looks like the following:
 
-$formula <- functional_{maturity} \sim -1 + s(doy) + age_{scaled} + I(age_{scaled}^2) + mean_{temp} + I(mean_{temp}^2)$
+\resizebox{\textwidth}{!}{$formula <- functional_{maturity} \sim -1 + s(doy) + age_{scaled} + I(age_{scaled}^2) + mean_{temp} + I(mean_{temp}^2)$}
 
 where there is **NO** interaction with the smoother on the day of the year.
 Thus, we would not expect the shape of the relationship to change with time
@@ -698,7 +698,7 @@ scenario tables if possible.
 
 **JTC Response**
 
-The JTC ran the modified base model and presents the following figures, 
+The JTC ran the modified base model and presents the following figures.
 
 (ref:srg-new-base-biomass-cap) TODO: caption here
 
@@ -733,3 +733,35 @@ plot_biomass(list(step_before,
              model_names = m_names)
 ```
 
+(ref:srg-new-base-rel-biomass-cap) TODO: caption here
+
+(ref:srg-new-base-rel-biomass-alt) TODO: Alt text here
+
+```{r srg-plot-new-base-rel-biomass-fig, out.height = "85%", fig.cap = ""}
+
+plot_rel_biomass(list(step_before,
+                      first_step,
+                      new_base,
+                      old_base),
+                 model_names = m_names,
+                 ylim = c(0, 2.7))
+```
+
+### Request 6 {-}
+
+The SRG requests a new executive summary based on the updated base model.
+
+**JTC Response**
+
+The JTC completed the new Executive Summary and submitted it to the SRG
+in an unchecked, draft form. It has been since completed and is the new
+Executive Summary for this document.
+
+Notes:
+
+* The forecast for a constant catch of 270,000 t was removed and the
+  TAC from 2022 (545,000 t) was added. This results in the row letters
+  being different for roughly half of the forecast catch streams in the
+  tables when compared with the submitted pre-SRG Executive Summary.
+
+* The One-page summary has been modified, in particular the last bullet point.
