@@ -4,6 +4,8 @@
 #' [readLines()]
 #' @param underline_links Logical. If `TRUE` make all the links in the
 #' TOC and the section links in the document text be underlined
+#' @param color_links Logical. If `TRUE` make all the links in the
+#' TOC and the section links in the document text be colored
 #' @param toc_underline_link_color If `underline_links` is `TRUE`, this
 #' color will be the underline color. See LaTeX package `xcolor` for allowable
 #' colors
@@ -25,6 +27,7 @@
 post_process_modify_link_colors <- function(
     x,
     underline_links = NULL,
+    color_links = NULL,
     toc_underline_link_color = NULL,
     toc_link_text_color = NULL,
     cite_underline_link_color = NULL,
@@ -81,9 +84,12 @@ post_process_modify_link_colors <- function(
          "% hake::post_process_table_of_contents()",
          "%",
          "\\hypersetup{",
-         paste0("colorlinks = ", ifelse(underline_links,
-                                        "false",
-                                        "true"),
+         ifelse(underline_links,
+                "pdfborderstyle = {/S/U/W 1},",
+                "pdfborderstyle = {},"),
+         paste0("colorlinks = ", ifelse(color_links,
+                                        "true",
+                                        "false"),
                 ","),
          "plainpages = false,",
          paste0("linkcolor = ",
@@ -112,7 +118,6 @@ post_process_modify_link_colors <- function(
                 paste0("%urlbordercolor = ",
                        url_underline_link_color,
                        ",")),
-         "pdfborderstyle = {/S/U/W 1},",
          "pdflang = {en-US},",
          paste0("pdftitle = {",
                 # `doc_title` created in 002-load-globals.rmd as a global

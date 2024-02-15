@@ -54,7 +54,7 @@ output:
    #
    # If `true`, alternative figure text and figure tags are added for
    # PDF web accessibility compliance
-   accessible_pdf: false
+   accessible_pdf: true
    # ---------------------------------------------------------------------------
 
    # Font settings -------------------------------------------------------------
@@ -106,12 +106,13 @@ output:
    # used for underlined links instead. You can have either all colored
    # text links or colored underlines for links, but not both. All link types
    # must be either colored text or colored underlines.
-   underline_links: false
+   underline_links: true
    # See `xcolor` package documentation for color lists, Section 4
    # "Colors by Name". Supported here are `dvipsnames`, `svgnames`,
    # and `x11names`, so basically all colors listed
    # https://ctan.mirror.rafal.ca/macros/latex/contrib/xcolor/xcolor.pdf
    # If colors are left out or `null`, they will be black by default
+   color_links: true
    toc_underline_link_color: Blue
    toc_link_text_color: Blue
    # Color of the citation links in the text. These are dealt with in
@@ -119,7 +120,7 @@ output:
    cite_underline_link_color: DarkOliveGreen
    cite_link_text_color: DarkOliveGreen
    # `post_process_table_of_contents()`
-   # Color of the URL links in the text. These are dealt with in
+   # Color of the URL links in the text.
    url_underline_link_color: RoyalBlue1
    url_link_text_color: RoyalBlue1
    # ---------------------------------------------------------------------------

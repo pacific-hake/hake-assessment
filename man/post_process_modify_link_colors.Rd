@@ -7,6 +7,7 @@
 post_process_modify_link_colors(
   x,
   underline_links = NULL,
+  color_links = NULL,
   toc_underline_link_color = NULL,
   toc_link_text_color = NULL,
   cite_underline_link_color = NULL,
@@ -22,6 +23,9 @@ post_process_modify_link_colors(
 
 \item{underline_links}{Logical. If \code{TRUE} make all the links in the
 TOC and the section links in the document text be underlined}
+
+\item{color_links}{Logical. If \code{TRUE} make all the links in the
+TOC and the section links in the document text be colored}
 
 \item{toc_underline_link_color}{If \code{underline_links} is \code{TRUE}, this
 color will be the underline color. See LaTeX package \code{xcolor} for allowable
