@@ -743,17 +743,19 @@ plot_biomass(list(step_before,
              model_names = m_names)
 ```
 
-(ref:srg-new-base-rel-biomass-cap) Female spawning biomass relative to unfished
-female spawning biomass across time for the terminal
-bridging steps to the new base model, as well as the pre-SRG base model. The bridge
-model is the step in which the student-t distribution was used for the relative age-1
-index of numbers of fish. Weight-at-age data were then updated, followed by fecundity
-using the new maturity ogives to create the new base model.
+(ref:srg-new-base-rel-biomass-cap) Female spawning biomass relative to
+unfished female spawning biomass across time for the terminal bridging steps
+to the new base model, as well as the pre-SRG base model. The bridge model
+is the step in which the student-t distribution was used for the relative
+age-1 index of numbers of fish. Weight-at-age data were then updated,
+followed by fecundity using the new maturity ogives to create the new
+base model.
 
-(ref:srg-new-base-rel-biomass-alt) The current status of the new base model is near
-unfished levels where the pre-SRG model was between unfished and 40% of unfished.
+(ref:srg-new-base-rel-biomass-alt) The current status of the new base model
+is near unfished levels where the pre SRG model was between unfished and
+40 percent of unfished.
 
-```{r srg-plot-new-base-rel-biomass-fig, out.height = "85%", fig.cap = ""}
+```{r srg-new-base-rel-biomass-fig, out.height = "85%", fig.cap = "(ref:srg-new-base-rel-biomass-cap)"}
 
 plot_rel_biomass(list(step_before,
                       first_step,

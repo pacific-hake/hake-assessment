@@ -473,8 +473,8 @@ Groundfish Bottom Trawl Survey (WCGBTS), At-Sea Hake Observer Program (ASHOP),
 and the Northwest Fisheries Science Center Integrated Pacific Hake Ecosystem
 and Acoustic-Trawl Survey).
 
-(ref:app-maturity-analysis-sampling-platform-age-years-alt) There is good coverage of
-age samples from all platforms, particularly from 2012--2019.
+(ref:app-maturity-analysis-sampling-platform-age-years-alt) There is good
+coverage of age samples from all platforms particularly from 2012 to 2019.
 
 ```{r app-maturity-analysis-sampling-platform-age-years-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-age-years-cap)", results = "asis"}
 
@@ -489,12 +489,12 @@ Bottom Trawl Survey (WCGBTS) north of Point Conception, in February by depth
 (m; colors).
 
 (ref:app-maturity-analysis-temp-depth-alt) Temperatures in all months between
-2015--2022 were higher than historical temperatures for a given month.
+2015 to 2022 were higher than historical temperatures for a given month.
 
 ```{r app-maturity-analysis-temp-depth-fig, fig.cap = "(ref:app-maturity-analysis-temp-depth-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                           "Fig_S4_temp_by_depth.png.png"),
+                           "Fig_S4_temp_by_depth.png"),
                  error = FALSE)
 ```
 
@@ -503,8 +503,8 @@ temperature (degrees Celsius) within the domain of the West Coast Groundfish
 Bottom Trawl Survey (WCGBTS) north of Point Conception, at a depth of 130.67 m
 by month (colors).
 
-(ref:app-maturity-analysis-raw-feb-temp-alt) Temperatures for all months measured
-at a depth of 130.67 meters increased between 2010 and 2020.
+(ref:app-maturity-analysis-raw-feb-temp-alt) Temperatures for all months
+measured at a depth of 130 meters increased between 2010 and 2020.
 
 ```{r app-maturity-analysis-raw-feb-temp-fig, fig.cap = "(ref:app-maturity-analysis-raw-feb-temp-cap)", results = "asis"}
 
@@ -519,7 +519,7 @@ averages of temperature (blue). Shown is temperature at a depth of 130.67 m in
 January but only for north of Point Conception.
 
 (ref:app-maturity-analysis-temp-weight-effect-alt) Weighted by biomass versus
-unweighted average temperatures were similar across the time series.  
+unweighted average temperatures were similar across the time series.
 
 ```{r app-maturity-analysis-temp-weight-effect-fig, fig.cap = "(ref:app-maturity-analysis-temp-weight-effect-cap)", results = "asis"}
 
@@ -533,7 +533,7 @@ on maturation from Model 3 (see Table \@ref(tab:app-maturity-analysis-aic-tab))
 using a penalized spline.
 
 (ref:app-maturity-analysis-day-of-year-alt) Maturation increases steeply during
-the middle of the year and slightly declines towards the end of the year.  
+the middle of the year and slightly declines towards the end of the year.
 
 ```{r app-maturity-analysis-day-of-year-fig, fig.cap = "(ref:app-maturity-analysis-day-of-year-cap)", results = "asis"}
 
@@ -570,9 +570,9 @@ variations between ages are driven by the spatially varying coefficient effect
 of age.
 
 (ref:app-maturity-analysis-predicted-maps-byage-alt) This figure shows spatial
-anomalies for ages 1 to 5 on seperate maps of the coastline, where lower than
-average maturation was apparent in the south and clear higher and lower maturation
-patches elsewhere. 
+anomalies for ages 1 to 5 on separate maps of the coastline where lower than
+average maturation was apparent in the south and clear higher and lower
+maturation patches elsewhere. 
 
 ```{r app-maturity-analysis-predicted-maps-byage-fig, fig.cap = "(ref:app-maturity-analysis-predicted-maps-byage-cap)", results = "asis"}
 
@@ -589,9 +589,9 @@ relationships (linear, quadratic, and penalized spline, i.e., 'smooth').
 In all cases, the raw Akaike information criterion (AIC) values are shown
 where a lower AIC corresponds to support for the model from the data.
 
-(ref:app-maturity-analysis-temp-model-sensitivities-alt) Sensitivity results of
-the effect of temperature by month, region, depth, and functional form assumption
-(linear, quadratic, or smoothed using a spline) on AIC.
+(ref:app-maturity-analysis-temp-model-sensitivities-alt) Sensitivity results
+of the effect of temperature by month region depth and functional form
+assumption linear quadratic or smoothed using a spline on AIC.
 
 ```{r app-maturity-analysis-temp-model-sensitivities-fig, fig.cap = "(ref:app-maturity-analysis-temp-model-sensitivities-cap)", results = "asis"}
 
@@ -605,8 +605,9 @@ maturity for each of the three models in our analysis (using samples from the
 At-Sea Hake Observer Program (ASHOP) and data north of Point Conception).
 Predictions of functional maturity are for non-ASHOP samples.
 
-(ref:app-maturity-analysis-model-comparison-alt) This figure shows differences in
-biomass weighted estimates of maturity across non-spatial, spatial, and the temperature effect models.
+(ref:app-maturity-analysis-model-comparison-alt) This figure shows
+differences in biomass weighted estimates of maturity across non spatial
+spatial and the temperature effect models.
 
 ```{r app-maturity-analysis-model-comparison-fig, fig.cap = "(ref:app-maturity-analysis-model-comparison-cap)", results = "asis"}
 
@@ -623,8 +624,8 @@ coefficients corresponding to the non-ASHOP surveys, and for the 278th day of
 the year.
 
 (ref:app-maturity-analysis-temp-marginal-alt) This figure shows the marginal
-quadratic effect of February temperature in Celsius at a depth of 130.67 m for
-age-3 fish, with a peak in maturity around 9.0 Celsius.
+quadratic effect of February temperature at a depth of 130 meters for
+age 3 fish with a peak in maturity around 9 degrees Celsius.
 
 ```{r app-maturity-analysis-temp-marginal-fig, fig.cap = "(ref:app-maturity-analysis-temp-marginal-cap)", results = "asis"}
 
@@ -642,7 +643,7 @@ represent Pacific Hake not sampled by ASHOP. The estimated age at 50%
 maturity is 2.81 in 2020, versus 3.58 in 2012, and 3.82 in 2016.
 
 (ref:app-maturity-analysis-age-marginal-alt) The ogive shifts to older ages
-at 50% maturity at higher temperatures.
+at 50 percent maturity at higher temperatures.
 
 ```{r app-maturity-analysis-age-marginal-fig, fig.cap = "(ref:app-maturity-analysis-age-marginal-cap)", results = "asis"}
 
