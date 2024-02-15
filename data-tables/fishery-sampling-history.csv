@@ -1,4 +1,4 @@
-"Year","U.S. Foreign (hauls)","U.S. Joint-venture (hauls)","U.S. Mothership (hauls)","U.S. Combined Mothership Catcher-processor (hauls)","U.S. Catcher-processor (hauls)","U.S. Shore-based (trips)","Canada Foreign (hauls)","Canada Joint-venture (hauls)","Canada Shoreside (trips)","Canada Freezer trawlers (hauls)"
+Year,U.S. Foreign (hauls),U.S. Joint-venture (hauls),U.S. Mothership (hauls),U.S. Combined Mothership Catcher-processor (hauls),U.S. Catcher-processor (hauls),U.S. Shore-based (trips),Canada Foreign (hauls),Canada Joint-venture (hauls),Canada Shoreside (trips),Canada Freezer trawlers (hauls)
 1975,13,,,,,,,,,
 1976,142,,,,,,,,,
 1977,320,,,,,,,,,
@@ -47,3 +47,4 @@
 2020,,,186,,389,99,,,32,
 2021,,,186,,409,124,,,,2
 2022,,,289,,455,80,,,23,16
+2023,,,127,,391,66,,,12,14
