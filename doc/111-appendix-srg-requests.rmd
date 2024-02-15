@@ -337,7 +337,7 @@ The bulleted list below provides parameter estimates for the base model and
 the requested model run, respectively.
 Figures~\@ref(fig:srg-plot-sur-fit-base-v-lambda-ssb-fig)--\@ref(fig:srg-plot-recabs-base-v-lambda-ssb-fig)
 were provided to the SRG to fulfill the request thoroughly. While substantially downweighting age-composition data results in an improved survey fit, the model
-loses critical inforamation on recruitment and thus overall population scale.
+loses critical information on recruitment and thus overall population scale.
 
 * DM fishery: 0.341 (base); 0.035 (lambda)
 * DM survey: 0.942; 0.271
@@ -592,7 +592,7 @@ looks like the following:
 \resizebox{\textwidth}{!}{$formula <- functional_{maturity} \sim -1 + s(doy) + age_{scaled} + I(age_{scaled}^2) + mean_{temp} + I(mean_{temp}^2)$}
 
 where there is **NO** interaction with the smoother on the day of the year.
-Thus, we would not expect the shape of the relationship to change with time
+Thus, the shape of the relationship does not change with time
 or temperature in this case.
 
 (ref:srg-doy-maturity-cap) Proportion of mature fish by day of year.
