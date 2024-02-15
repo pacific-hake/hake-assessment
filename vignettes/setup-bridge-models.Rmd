@@ -420,7 +420,7 @@ r4ss::SS_write(
 
 ```{r tv-weight-at-age, eval = FALSE}
 r4ss::copy_SS_inputs(
-  dir.old = fs::path(bridge_dir, "60-survey-1-t-distribution"),
+  dir.old = fs::path(real_bridge_dir, "60-survey-1-t-distribution"),
   dir.new = fs::path(bridge_dir, "70-tv-weight-at-age"),
   overwrite = TRUE,
   use_ss_new = FALSE,
@@ -428,16 +428,15 @@ r4ss::copy_SS_inputs(
   recursive = TRUE
 )
 
-# Read in the three csv weight-at-age files
-# TODO: make object names for us and survey csv files
-# model
 m1 <- sdmTMB::sdmTMB(
   data = weight_at_age_df  |>
-  dplyr::mutate(
-    cohort = year - age,
-    fyear = as.factor(year),
-    fcohort = as.factor(cohort)
-  ),
+    dplyr::filter(sex != "U") |>
+    dplyr::mutate(
+      age = ifelse(age > 15, 15, age),
+      cohort = year - age,
+      fyear = as.factor(year),
+      fcohort = as.factor(cohort)
+    ),
   formula = weight ~ 1 + s(age) + (1|fcohort) + (1|fyear) + sex,
   family = lognormal(link = "log"),
   spatial = "off",
@@ -445,6 +444,7 @@ m1 <- sdmTMB::sdmTMB(
   time = "year",
   control = sdmTMB::sdmTMBcontrol(newton_loops = 1)
 )
+sanity(m1)
 residuals_m1 <- residuals(m1)
 residuals_m1 <- residuals_m1[is.finite(residuals_m1)]
 png(fs::path("", "srv", "hake", "other", "tv", "weight-at-age-qq.png"))
@@ -457,12 +457,12 @@ saveRDS(
 
 # create prediction grid
 pred_grid <- expand.grid(
-  year = unique(weight_at_age_df$year),
-  sex = unique(weight_at_age_df$sex),
+  year = unique(m1[["data"]][["year"]]),
+  sex = unique(m1[["data"]][["sex"]]),
   age = 0:15
 ) |>
   dplyr::mutate(cohort = year - age) |>
-  dplyr::filter(cohort %in% weight_at_age_df[["cohort"]]) |>
+  dplyr::filter(cohort %in% unique(m1[["data"]][["cohort"]])) |>
   dplyr::mutate(
     fyear = as.factor(year),
     fcohort = as.factor(cohort)
@@ -486,15 +486,6 @@ ewaa <- preds |>
   ) |>
   as.data.frame() |>
   dplyr::select(year, age, pred_weight)
-utils::write.csv(
-  ewaa,
-  fs::path(
-    data_tables_path,
-    "length-weight-age",
-    "EWAA_fishery_survey_nospatial_1975-2023_long.csv"
-  ),
-  row.names = FALSE
-)
 
 ewaa_complete <- pad_weight_at_age(ewaa)
 hakedataUSA:::write_wtatage_file(
@@ -540,6 +531,9 @@ r4ss::SS_write(
   dir = fs::path(bridge_dir, "71-redo-fishery-comp"),
   overwrite = TRUE
 )
+# Clean the input files
+x <- fs::path(bridge_dir, "71-redo-fishery-comp")
+system(glue::glue("cd {x} && clean_ss3"))
 ```
 
 ```{r tv-maturity, eval = FALSE}
@@ -559,6 +553,9 @@ r4ss::SS_write(
   overwrite = TRUE,
   verbose = FALSE
 )
+# Clean the input files
+x <- fs::path(bridge_dir, "72-tv-fecundity")
+system(glue::glue("cd {x} && clean_ss3"))
 # The following code is for sensitivity analyses not bridging
 test <- update_ss3_maturity(
   maturity = data.frame(
