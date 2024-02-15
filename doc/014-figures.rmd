@@ -1630,8 +1630,6 @@ plot_grid(plotlist = p,
           ncol = 1,
           align = "v",
           rel_heights = c(1, 1))
-
-retro_cohorts <- (end_yr - 11):(end_yr - 2)
 ```
 
 \clearpage

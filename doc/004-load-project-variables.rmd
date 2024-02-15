@@ -1075,7 +1075,7 @@ retros_biomass_incremental <- map2(retros_biomass_incremental,
                                    retros_bo_incremental, \(d, bo){
                                      list(d = d, bo = bo)
                                    })
-
+retro_cohorts <- (end_yr - 11):(end_yr - 2)
 # Set up bridge model groups for plotting ------------------------------------
 iter <- 0
 d_obj_bridge_biomass <- map2(bridge_models, bridge_models_names, ~{
