@@ -7,7 +7,7 @@ as they age}
 \usage{
 plot_cumulative_catch_cohorts(
   model,
-  cohorts = c(1999, 2010, 2014, 2016, 2020),
+  cohorts = c(1999, 2010, 2014, 2016, 2020, 2021),
   leg_pos = c(0.7, 0.4),
   leg_ncol = 1
 )

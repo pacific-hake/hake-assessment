@@ -14,7 +14,7 @@ table_decision(
     "", "d", "10\\\\\% reduction", "each year", "e", paste0(model$endyr, " catch"), "",
     "f", "", "", "g", "10\\\\\% reduction", "each year", "h", "", "", "i",
     "10\\\\\% reduction", "each year", "j", "", "", "k", paste0(model$endyr - 1, " TAC"),
-    "", "l", paste0(model$endyr, " TAC"), "", "m", "Fishing intensity", "at 100\\\\\%",
+    "", "l", paste0(model$endyr, " TAC"), "", "m", "Fishing intensity", "near 100\\\\\%",
     "n", "Default HR", paste0("(", fspr_40_10_for_latex_table, ")"), "o", "Equal catch",
     paste0("($\\\\mathrm{C}_{", model$endyr + 
      1, "} \\\\approxeq \\\\mathrm{C}",
