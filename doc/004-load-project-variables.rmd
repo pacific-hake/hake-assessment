@@ -389,6 +389,10 @@ prev_bio_upper_last_assess <-
   f(last_yr_mc$supper[names(mc$supper) == last_data_yr], 3)
 
 # Forecasting -----------------------------------------------------------------
+# Median fishing intensity at Default HR
+fi_at_hcr <- f(base_model$forecasts$`2024`$`14-default-hr`$spr |>
+                 filter(yr == assess_yr) |>
+                 pull(`50%`), 2)
 # ... first forecast year depletion and spawning biomass estimates ------------
 fore_tac_mcmc_yr1 <- base_model$forecasts[[1]][[ct_tac_ind]]$mcmccalcs
 # ... second forecast year depletion and spawning biomass estimates -----------

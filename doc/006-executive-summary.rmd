@@ -648,8 +648,9 @@ selectivity-at-age (1966--1990; prior to time-varying deviations), whereas the
 forecasted catches are removed using selectivity averaged over the last five
 years. Recent changes in selectivity will thus be reflected in the
 determination of fishing relative to the default harvest policy. For example,
-fishing at the `r fspr_40` default harvest-rate catch limit (scenario n: default
-HR) in 2024 results in a median relative fishing intensity of 0.95 (Table~\@ref(tab:es-decisions-spr-tab)).
+fishing at the `r fspr_40` default harvest-rate catch limit
+(scenario n: default HR) in 2024 results in a median relative fishing
+intensity of `r fi_at_hcr` (Table~\@ref(tab:es-decisions-spr-tab)).
 
 \newpage
 
@@ -759,21 +760,18 @@ and a `r zero_catch_prob_bio_down_3`% probability of decreasing from
 `r forecast_yrs[3]` to `r forecast_yrs[4]` (Table~\@ref(tab:es-risk-year-3-tab)).
 
 The probability of the female spawning biomass decreasing from `r end_yr` to
-`r end_yr + 1` is below 76% for all catch levels examined
-(Table~\@ref(tab:es-risk-year-1-tab) and
-Figure~\@ref(fig:es-risk-year-1-fig)). This probability is
-36% for a `r end_yr` catch level similar to that for `r end_yr - 1`
-(scenario e: `r end_yr - 1` catch). For all explored catches, the maximum
-probability of female spawning biomass at the start of `r end_yr + 1` dropping
-below `r b_10` is 0% and of dropping below `r b_40` is 7%
-(Table~\@ref(tab:es-risk-year-1-tab) and
-Figure~\@ref(fig:es-risk-year-1-fig)).
-As the above average 2014 and 2016 cohorts continue to age, total biomass of these
-cohorts even without fishing mortality is expected to decrease as losses
-from mortality outweigh increases from growth.
-The estimated above-average (yet still highly uncertain) 2020 and 2021 cohorts will
-continue to play a large role in determining female spawning biomass during
-the forecast years presented here.
+`r end_yr + 1` is `r prob_decl_last_yr_catch`% for a `r end_yr` catch level
+similar to that for `r end_yr - 1` (scenario e: `r end_yr - 1` catch). For
+all explored catches, the maximum probability of female spawning biomass at
+the start of `r end_yr + 1` dropping below `r b_10` is
+`r prob_max_below_10_yr1`% and of dropping below `r b_40` is
+`r prob_max_below_40_yr1`% (Table~\@ref(tab:es-risk-year-1-tab) and
+Figure~\@ref(fig:es-risk-year-1-fig)). As the above average 2014 and 2016
+cohorts continue to age, total biomass of these cohorts even without fishing
+mortality is expected to decrease as losses from mortality outweigh increases
+from growth. The estimated above-average (yet still highly uncertain) 2020
+and 2021 cohorts will continue to play a large role in determining female
+spawning biomass during the forecast years presented here.
 
 (ref:es-risk-year-1-cap) Graphical representation of
 the probabilities related to spawning biomass, relative fishing intensity, and
