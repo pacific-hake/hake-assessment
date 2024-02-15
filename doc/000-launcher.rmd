@@ -106,7 +106,7 @@ output:
    # used for underlined links instead. You can have either all colored
    # text links or colored underlines for links, but not both. All link types
    # must be either colored text or colored underlines.
-   underline_links: true
+   underline_links: false
    # See `xcolor` package documentation for color lists, Section 4
    # "Colors by Name". Supported here are `dvipsnames`, `svgnames`,
    # and `x11names`, so basically all colors listed
