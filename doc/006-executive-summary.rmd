@@ -316,8 +316,7 @@ The median has consequently fallen from
 The 2021 recruitment is estimated to be potentially large, whereas
 it was estimated to be below average in last year's assessment (with very limited data);
 the median has increased by
-`r f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]), 1)`
-~billion fish.
+`r f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]), 1)`~billion fish.
 The general notion remains that recent
 `r sp` recruitment is highly uncertain, and estimates for recent years (based on
 limited data) can change substantially.
@@ -374,7 +373,7 @@ The 2022 cohort was observed by the age-1 index in 2023,
 suggesting it is average to below average in size. There is no information in the data to estimate the
 sizes of the `r end_yr-1` and `r end_yr` year classes. Retrospective analyses
 of year class strength for young fish have shown the estimates of recent
-recruitment to be unreliable prior to at least a modelled age of three
+recruitment to be unreliable prior to at least a modelled age of 3
 (observed as age-2 fish the previous year) without a survey in the most recent
 year and a modelled age of two (observed as age-1 fish) with a survey.
 
