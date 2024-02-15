@@ -566,7 +566,7 @@ Males and Females equally.
 
 **JTC Response**
 
-* The GLMM was run after filtering the data to remove sex.
+* The GLMM was run after filtering the data to remove unsexed fish.
 
 * The model output was truncated to just produce males and females given
   unsexed fish were no longer in the data used to fit the GLMM.
@@ -589,10 +589,10 @@ years (please confirm this assumption).
 The formula used for the non-spatial effects of the maturity-at-age model
 looks like the following:
 
-\resizebox{\textwidth}{!}{$formula <- functional_{maturity} \sim -1 + s(doy) + age_{scaled} + I(age_{scaled}^2) + mean_{temp} + I(mean_{temp}^2)$}
+\resizebox{\textwidth}{!}{$maturity_{functional} \sim -1 + s(doy) + age + age^2 + temp + temp^2$}
 
 where there is **NO** interaction with the smoother on the day of the year.
-Thus, the shape of the relationship does not change with time
+Thus, the shape of the relationship (\@ref(fig:srg-doy-maturity-fig)) does not change with time
 or temperature in this case.
 
 (ref:srg-doy-maturity-cap) Proportion of mature fish by day of year.
@@ -613,8 +613,8 @@ of maturity.
 
 **JTC Response**
 
-The new figure was presented at the meeting and is now incorporated as part
-of the assessment document (Figure~\@ref(main-maturity-ogive-fig)).
+The updated figure was presented at the SRG meeting and
+Figure~\@ref(fig:main-maturity-ogive-fig) was also updated.
 
 ### Request 4 {-}
 
@@ -700,9 +700,15 @@ scenario tables if possible.
 
 The JTC ran the modified base model and presents the following figures.
 
-(ref:srg-new-base-biomass-cap) TODO: caption here
+(ref:srg-new-base-biomass-cap) Female spawning biomass across time for the terminal
+bridging steps to the new base model, as well as the pre-SRG base model. The bridge
+model is the step in which the student-t distribution was used for the relative age-1
+index of numbers of fish. Weight-at-age data were then updated, followed by fecundity
+using the new maturity ogives to create the new base model.
 
-(ref:srg-new-base-biomass-alt) TODO: Alt text here
+(ref:srg-new-base-biomass-alt) The estimated female spawning biomass of the new base
+model is more similar to the bridging models than the pre-SRG base model that has a
+lower estimated female spawning biomass.
 
 ```{r srg-new-base-biomass-fig, out.height = "85%", fig.cap = "(ref:srg-new-base-biomass-cap)"}
 
@@ -733,9 +739,15 @@ plot_biomass(list(step_before,
              model_names = m_names)
 ```
 
-(ref:srg-new-base-rel-biomass-cap) TODO: caption here
+(ref:srg-new-base-rel-biomass-cap) Female spawning biomass relative to unfished
+female spawning biomass across time for the terminal
+bridging steps to the new base model, as well as the pre-SRG base model. The bridge
+model is the step in which the student-t distribution was used for the relative age-1
+index of numbers of fish. Weight-at-age data were then updated, followed by fecundity
+using the new maturity ogives to create the new base model.
 
-(ref:srg-new-base-rel-biomass-alt) TODO: Alt text here
+(ref:srg-new-base-rel-biomass-alt) The current status of the new base model is near
+unfished levels where the pre-SRG model was between unfished and 40% of unfished.
 
 ```{r srg-plot-new-base-rel-biomass-fig, out.height = "85%", fig.cap = ""}
 
