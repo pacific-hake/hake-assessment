@@ -88,9 +88,9 @@ In contrast, La Niña conditions (colder water, such as in 2001, 2011, and
 smaller proportion of the population found in Canadian waters compared to
 during El Niño years, a trend evident from the acoustic surveys
 (Figure~\@ref(fig:main-acoustic-age2-bs-fig)). In general, warmer than average
-thermal habitat conditions for mature `r sp` leads to relatively higher biomass
+thermal habitat conditions for mature `r sp` lead to relatively higher biomass
 further north and relatively lower biomass around the U.S.--Canadian border,
-while cooler than average conditions leads to relatively higher biomass of
+while cooler than average conditions lead to relatively higher biomass of
 immature `r sp` generally spread evenly across their distribution
 [@MalickHunsickerEtAl2020]. The distribution of age-1 fish also changes between
 years (Figure~\@ref(fig:main-acoustic-age1-bs-fig)).
@@ -111,7 +111,7 @@ recruitment across the maternal preconditioning, egg, and larval phases of
 energy, the location of the North Pacific Current bifurcation, and upwelling
 during maternal preconditioning, as well as with northward long-shore transport
 and the number of days between storm events during larval stages
-[@VestfalsEtAl2023]. @Phillips2022 suggests temperature
+[@VestfalsEtAl2023]. @Phillips2022 suggest temperature
 dynamically influences the co-occurrence of `r sp` and krill (i.e.,
 euphausiids; *Euphausiacea*), which can influence annual `r sp` growth
 and recruitment as the availability of key prey species shifts. Temperature
@@ -139,8 +139,8 @@ with higher `r sp` recruitment [@VestfalsEtAl2023]. In the southern California C
 Ecosystem, the abundance of Pacific Hake larvae in the CalCOFI survey area has been
 above average for two consecutive years, with 2023 being the highest since 2011. At
 the same time, hake predation by bluefin and swordfish were also well above average in
-recent years (2021 and 2022). Krill, a common prey of `r sp`, abundance in 2023 was
-below average. Lipid-rich copepod biomass was average and relatively stable throughout
+recent years (2021 and 2022). Abundance of krill, a common prey of `r sp`, was
+below average in 2023. Lipid-rich copepod biomass was average and relatively stable throughout
 the summer ('northern' copepod index) of 2023 relative to previous years, but was below average in the winter ('southern' copepod index).
 
 Fitting the assessment model to empirical weight-at-age data allows for
@@ -390,7 +390,7 @@ Freezer trawlers have landed since 2013, despite doubling the number of
 vessels since then.
 
 Fishing started in early April and ended in November. The general view of
-the Canadian fleet is that abundance in Canadian-waters remained below
+the Canadian fleet is that abundance in Canadian waters remained below
 normal levels in `r last_data_yr`, including the normally-abundant areas
 outside of Southwest Vancouver Island. Reports of difficulties finding
 fish in `r last_data_yr` led to some vessels not leaving the dock,
