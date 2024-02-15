@@ -6,9 +6,9 @@
 
 - The stock assessment model for `r assess_yr` has the same
 population dynamics structure as the `r last_assess_yr` model.
-The model is fit to an acoustic survey index of biomass, a relative
-index of age-1 fish, annual commercial catch data, mean weight-at-age data,
-and age-composition data from the survey and commercial fisheries.
+The model is fit to an acoustic survey index of biomass, a relative index of
+age-1 fish, annual commercial catch data, and age-composition data from the
+survey and commercial fisheries.
 
 - Data for `r end_yr-1` were included for each data set and minor changes to
 pre-`r end_yr-1` data were made as necessary. In addition, a new model-based
