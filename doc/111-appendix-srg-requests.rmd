@@ -268,7 +268,10 @@ a lot between years.
 
 ```{r srg-main-mat-at-age-fig, fig.height = 6, out.height = "70%", fig.cap = "(ref:srg-main-mat-at-age-cap)"}
 
-j <- maturity_estimates_df |>
+j <- read.csv(
+  "https://raw.githubusercontent.com/pacific-hake/hake-assessment/2443c4f807f3cd32e33d0390bbc4df0f7b0430d8/data-tables/maturity-ogives.csv",
+  header = TRUE
+) |>
   filter(model == "Spatial + temperature") |> 
   transmute(Yr = year, age, p_mature) |>
   pivot_wider(names_from = age,
