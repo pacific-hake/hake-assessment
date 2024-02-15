@@ -222,7 +222,7 @@ the year lines move from orange in 2009 through the spectrum to dark blue in
 `r last_data_yr`.
 
 (ref:main-maturity-ogive-alt) Maturity by year is shown beginning in 2009 to
-present. The equilibrium and forecast ogives are also shown, and appear to
+present. The equilibrium and forecast ogives are also shown and appear to
 be very similar. The equilibrium ogive is an average of all years and
 the forecast ogive is an average of the last five years. Fish appear to
 reach full maturity between the age of 3 and 4 in all years.
@@ -245,7 +245,7 @@ are shown outside the blue lines. Bold values between
 data such that weights were predicted from the time-varying model. The bottom
 row (mean) is the mean weight-at-age over all years of data.
 
-(ref:main-weight-at-age-alt) This figure shows how weight-at-age changes
+(ref:main-weight-at-age-alt) This figure shows how weight at age changes
 through time. The weight of older fish appears to have decreased overall from
 1975 to present.
 
@@ -279,7 +279,7 @@ color scale with red indicating small sample sizes and blue indicating the
 large sample sizes.
 
 (ref:main-sample-size-weight-at-age-alt) This figure shows the sample sizes
-of weight-at-age vary between years and ages with the most samples occurring
+of weight at age vary between years and ages with the most samples occurring
 for ages 3 through 7.
 
 ```{r main-sample-size-weight-at-age-fig, fig.cap = "(ref:main-sample-size-weight-at-age-cap)", fig.height = 10, out.height = "85%"}
@@ -312,8 +312,8 @@ Bold values between `r start_yr_age_comps`--`r max_fishery_age_prop[2]`
 represent year/age combinations where weight-at-age data were unavailable to fit
 the model such that weights were predicted rather than estimated.
 
-(ref:main-fecundity-at-age-alt) This figure shows how fecundity-at-age changes
-through time. See fleet -2 in the weight-at-age.ss file for raw numbers.
+(ref:main-fecundity-at-age-alt) This figure shows how fecundity at age changes
+through time. See fleet negative 2 in the data files for raw numbers.
 
 ```{r main-fecundity-at-age-fig, fig.cap = "(ref:main-fecundity-at-age-cap)", fig.height = 10, out.height = "85%"}
 plot_heatmap_weight_at_age(
@@ -338,8 +338,8 @@ lines are for the youngest ages and green lines are for the oldest ages
 shown, with age-5 having a thicker line and larger points as a visual aid.
 
 (ref:main-weight-at-age-lines-alt) This figure shows that the annual mean
-weight-at-age is lower for most ages in the most recent years than for years
-prior to 1980. There is a trend of increasing weight-at-age for the last
+weight at age is lower for most ages in the most recent years than for years
+prior to 1980. There is a trend of increasing weight at age for the last
 6 to 7 years.
 
 ```{r main-weight-at-age-lines-fig, fig.cap = "(ref:main-weight-at-age-lines-cap)"}
@@ -360,7 +360,7 @@ plot_weight_at_age(wt_at_age,
                    max.overlaps = 15)
 ```
 
-(ref:main-bridge-summary-cap-1) Bridging models showing some of the
+(ref:main-bridge-summary-1-cap) Bridging models showing some of the
 sequential steps made towards the base model from the `r last_assess_yr` base
 model. Models include shifting to the newest version of Stock Synthesis,
 amending older data sources, and adding new data.
@@ -371,7 +371,7 @@ survey biomass (lower left) and age-1 (lower right) indices, with triangles
 representing the observed survey indices. Note that in the top panel the red
 circle for 2024 is obscured by the orange circle.
 
-(ref:main-bridge-summary-cap-2) Bridging models showing some of the
+(ref:main-bridge-summary-2-cap) Bridging models showing some of the
 sequential steps made towards the base model from the `r last_assess_yr` base
 model. Models include the last step from the previous figure of adding new
 data, changes to working up data inputs, and structural changes to the model.
@@ -381,13 +381,13 @@ biomass, middle left); recruitment deviations (middle right); and age-2$+$
 survey biomass (lower left) and age-1 (lower right) indices, with triangles
 representing the observed survey indices.
 
-(ref:main-bridge-summary-alt-1) The largest change amongst the models
-occurred when data from the age-2$+$ survey was added to the model.
+(ref:main-bridge-summary-1-alt) The largest change amongst the models
+occurred when data from the age 2 plus survey was added to the model.
 
-(ref:main-bridge-summary-alt-2) Including time-varying fecundity led
+(ref:main-bridge-summary-2-alt) Including time-varying fecundity led
 to only minor changes in estimated spawning biomass.
 
-```{r main-bridge-summary-fig-1, fig.cap = "(ref:main-bridge-summary-cap-1)", fig.height = 8}
+```{r main-bridge-summary-1-fig, fig.cap = "(ref:main-bridge-summary-1-cap)", fig.height = 8}
 
 pt_size <- 1
 panels_title_size <- 11
@@ -479,7 +479,7 @@ plot_grid(plotlist = full_p,
           rel_heights = c(0.33, 0.67))
 ```
 
-```{r main-bridge-summary-fig-2, fig.cap = "(ref:main-bridge-summary-cap-2)", fig.height = 8, eval = length(bridge_models_desc[[1]]) > 1}
+```{r main-bridge-summary-2-fig, fig.cap = "(ref:main-bridge-summary-2-cap)", fig.height = 8, eval = length(bridge_models_desc[[1]]) > 1}
 
 pt_size <- 1
 panels_title_size <- 11
@@ -619,8 +619,8 @@ blue lines) to provide context for the description of the median MCMC
 estimate.
 
 (ref:main-age1-index-fit-mcmc-alt) This figure shows many posterior
-trajectories of the expected numbers of age-1 fish fitting well to the
-age-1 index. The lines are very tightly packed together for most of the
+trajectories of the expected numbers of age 1 fish fitting well to the
+age 1 index. The lines are very tightly packed together for most of the
 time series but diverge a little at the end of the time series since 2021.
 
 ```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height = 6}
@@ -696,7 +696,7 @@ Monte Carlo calculations.
 
 (ref:main-age-comp-fits-fishery-alt) This figure shows the age composition
 fits for the fishery against the data. There is some slight over and
-under-fitting in the early part of the time series from 1975 to 1995.
+under fitting in the early part of the time series from 1975 to 1995.
 
 ```{r main-age-comp-fits-fishery-fig, fig.cap = "(ref:main-age-comp-fits-fishery-cap)", fig.height = 10, out.height = "90%"}
 
@@ -845,7 +845,7 @@ a subsample of 1,000 draws from the posterior distribution for the base model.
 
 (ref:main-tv-selex-posteriors-alt) This plot shows individual median
 selectivity trajectories for a subset of samples from the posteriors of
-fishery and survey selectivity parameters with 95% credible intervals.
+fishery and survey selectivity parameters with 95 percent credible intervals.
 
 ```{r main-tv-selex-posteriors-fig, fig.cap = "(ref:main-tv-selex-posteriors-cap)", fig.height = 8}
 
@@ -915,8 +915,8 @@ shown as the horizontal dashed line with the 95% posterior credibility
 interval shaded between the dotted lines.
 
 (ref:main-recruitment-alt) This figure shows the recruitment in each year.
-The 2020 cohort looks to be above average, as does the 2021 cohort, which is
-characterised by large uncertainty due to it being so young in the data.
+The 2020 cohort looks to be above average as does the 2021 cohort which is
+characterized by large uncertainty due to it being so young in the data.
 
 ```{r main-recruitment-fig, fig.cap = "(ref:main-recruitment-cap)", fig.height = 5}
 
@@ -1119,24 +1119,27 @@ plot_biomass_fished_unfished(base_model,
                              rel = FALSE)
 ```
 
-(ref:main-fished-unfished-rel-biomass-cap) A comparison of relative spawning biomass
-when spawning biomass in year $t$ is related to unfished equilibrium biomass, $B_0$
-(static $B_0$, black; as in Figure~\@ref(fig:main-relative-biomass-fig)) and
-when spawning biomass in year $t$ is related to the unfished biomass time series
-in year $t$ (dynamic $B_0$, red). Median (solid lines) of the posterior
-distribution for each calculation of relative spawning biomass through `r end_yr`
-with 95% posterior credibility intervals (shaded areas). Dashed horizontal
-lines show 10%, 40%, and 100% of the unfished equilibrium ($B_0$). The
-default `r f_40_40_10` harvest policy uses relative spawning biomass based on
-a static $B_0$ determination of stock status.
+(ref:main-fished-unfished-rel-biomass-cap) A comparison of relative
+spawning biomass when spawning biomass in year $t$ is related to unfished
+equilibrium biomass, $B_0$ (static $B_0$, black; as in
+Figure~\@ref(fig:main-relative-biomass-fig)) and when spawning biomass in
+year $t$ is related to the unfished biomass time series in year $t$ (dynamic
+$B_0$, red). Median (solid lines) of the posterior distribution for each
+calculation of relative spawning biomass through `r end_yr` with 95% posterior
+credibility intervals (shaded areas). Dashed horizontal lines show 10%,
+40%, and 100% of the unfished equilibrium ($B_0$). The default
+`r f_40_40_10` harvest policy uses relative spawning biomass based on a
+static $B_0$ determination of stock status.
 
-(ref:main-fished-unfished-rel-biomass-alt) This figure compares the relative spawning
-biomass time series when it is calculated using B zero based on the standard (static) equilibrium
-unfished biomass estimate versus a time-varying (dynamic) estimate of B zero based on the unfished
-time series. While general trends are similar, the dynamic approach produces less variability.
-Stock status estimates in recent years are lower using the dynamic approach.
+(ref:main-fished-unfished-rel-biomass-alt) This figure compares the relative
+spawning biomass time series when it is calculated using B zero based on
+the standard static equilibrium unfished biomass estimate versus a
+time-varying dynamic estimate of B zero based on the unfished time series.
+While general trends are similar the dynamic approach produces less
+variability. Stock status estimates in recent years are lower using
+the dynamic approach.
 
-```{r main-fished-unfished-rel-biomass, fig.cap = "(ref:main-fished-unfished-rel-biomass-cap)"}
+```{r main-fished-unfished-rel-biomass-fig, fig.cap = "(ref:main-fished-unfished-rel-biomass-cap)"}
 
 plot_biomass_fished_unfished(base_model,
                              model_nms = c("Base model - Static B0",
@@ -1706,7 +1709,7 @@ with 0~t being the lowest probability, shown in pink.
 of probabilities of the stock declining with those from the current base
 model.
 
-```{r main-historical-1-fig, fig.cap = "(ref:main-historical-1-cap)", fig.height = 6, is.fig = TRUE, alt.text = "(ref:main-historical-1-alt)"}
+```{r main-historical-1-fig, fig.cap = "(ref:main-historical-1-cap)", fig.height = 6}
 
 plot_historical_probs(base_model,
                       hist_probs = assess_history_probs_df,
@@ -1732,7 +1735,7 @@ described in Table~\@ref(tab:main-decisions-biomass-tab), with 0~t shown in pink
 (ref:main-historical-2-alt) This figure compares historical estimates
 of probabilities of the stock declining below the B40 value.
 
-```{r main-historical-2-fig, fig.cap = "(ref:main-historical-2-cap)", fig.height = 6, is.fig = TRUE, alt.text = "(ref:main-historical-2-alt)"}
+```{r main-historical-2-fig, fig.cap = "(ref:main-historical-2-cap)", fig.height = 6}
 
 plot_historical_probs(base_model,
                       add.projs = TRUE,
