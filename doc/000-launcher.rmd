@@ -54,7 +54,7 @@ output:
    #
    # If `true`, alternative figure text and figure tags are added for
    # PDF web accessibility compliance
-   accessible_pdf: true
+   accessible_pdf: false
    # ---------------------------------------------------------------------------
 
    # Font settings -------------------------------------------------------------

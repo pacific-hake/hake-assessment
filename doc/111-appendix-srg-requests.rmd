@@ -9,7 +9,7 @@ Group requests made during the meeting held from February 6--9, `r assess_yr`.
 
 ## Day 1
 
-### Request 1 {-}
+**Request 1**
 
 List the sample sizes for males, females and unsexed (for the weight-at-age),
 for the U.S. and Canada. This will help to understand the effect of averaging
@@ -75,7 +75,7 @@ kable_styling(font_size = font_size)
 
 ```{r srg-weight-at-age-sample-size-us, results = "asis"}
 
-us_waa <-temp_waa |> 
+us_waa <-temp_waa |>
   filter(country == "usa") |>
   select(-country)
 
@@ -154,7 +154,7 @@ plot_rel_biomass(list(old_base_model, base_model),
                  ylim = c(0, 2.75))
 ```
 
-### Request 2 {-}
+**Request 2**
 
 On Figure~\@ref(fig:app-maturity-analysis-temp-marginal-fig) add the data
 for proportion mature at age-2 (if possible) and age-3 to the model prediction
@@ -209,7 +209,7 @@ include_graphics(file.path(figures_dir,
 ```
 \clearpage
 
-### Request 3 {-}
+**Request 3**
 
 Add B~2023~/B~0~ to Table~\@ref(tab:main-parameter-estimates-tab) comparing
 the 2023 and 2024 assessments.
@@ -221,7 +221,7 @@ to match it. See Table~\@ref(tab:main-parameter-estimates-tab). All other
 similar tables in the document containing parameter estimates now have this
 row as well.
 
-### Request 4 {-}
+**Request 4**
 
 The SRG requests data to better understand the presence of clean hake trawls
 and mixed species trawls in the 2023 acoustic survey by area (such as INPFC
@@ -238,13 +238,13 @@ to 76% hake (all mixed with rockfish).
 Of the un-Kriged biomass (3.1%), 22.9 kt out of the 735 kt came from
 hake mixes in 2023.
 
-### Request 5 {-}
+**Request 5**
 
 The SRG requests maturity-at-age in a tabular format from 2008 to 2026.
 These numbers will help understand the variability of maturity-at-age without
 the effect of changes in weight-at-age used to calculate fecundity. It will
 also help understand how the projected maturity-at-age relates to estimated
-values. 
+values.
 
 **JTC Response**
 
@@ -272,10 +272,10 @@ j <- read.csv(
   "https://raw.githubusercontent.com/pacific-hake/hake-assessment/2443c4f807f3cd32e33d0390bbc4df0f7b0430d8/data-tables/maturity-ogives.csv",
   header = TRUE
 ) |>
-  filter(model == "Spatial + temperature") |> 
+  filter(model == "Spatial + temperature") |>
   transmute(Yr = year, age, p_mature) |>
   pivot_wider(names_from = age,
-              values_from = p_mature) |> 
+              values_from = p_mature) |>
   mutate(Seas = 1,
          Sex = 1,
          Bio_pattern = 1,
@@ -293,9 +293,9 @@ mn_row <- rows |>
   colMeans() |>
   vec2df()
 for(i in 2024:2027){
-  mn_row <- mn_row |> 
+  mn_row <- mn_row |>
     mutate(Yr = i)
-  j <- j |> 
+  j <- j |>
     bind_rows(mn_row)
 }
 
@@ -303,7 +303,7 @@ j_model <- old_base_model
 j_model$wtatage <- j
 j_model$startyr <- 2009
 j_model$endyr <- 2023
-waa_ss_df <- weight_age_sample_sizes_df |> 
+waa_ss_df <- weight_age_sample_sizes_df |>
   filter(Yr %in% 2009:2023)
 
 plot_heatmap_weight_at_age(
@@ -323,7 +323,7 @@ plot_heatmap_weight_at_age(
            "dodgerblue"))
 ```
 
-### Request 6 {-}
+**Request 6**
 
 The SRG requests that the JTC add a new run seriously downweighting the age
 composition sample sizes to increase the influence of the survey biomass
@@ -458,7 +458,7 @@ plot_recruitment(list(old_base_model, lambda_model),
   suppressWarnings()
 ```
 
-### Request 7 {-}
+**Request 7**
 
 The SRG would like to see the proportion of survey biomass and catch
 estimated in Canada.
@@ -518,9 +518,9 @@ BEGIN LANDSCAPE
 ```{r, srg-survey-at-age-us-tab, results = "asis"}
 
 d <- read_csv("../beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_US.csv",
-              col_types = cols()) |> 
-  rename(wgt = wgt_total) |> 
-  mutate(across(-year, ~{f(.x / 1e3)})) |> 
+              col_types = cols()) |>
+  rename(wgt = wgt_total) |>
+  mutate(across(-year, ~{f(.x / 1e3)})) |>
   rename(Year = year,
          Biomass = wgt)
 
@@ -539,9 +539,9 @@ kbl(d,
 ```{r, srg-survey-at-age-can-tab, results = "asis"}
 
 d <- read_csv("../beamer/srg/requests-1/survey-biomass-files/Survey_Biomass_at_Age_CAN.csv",
-              col_types = cols()) |> 
-  rename(wgt = wgt_total) |> 
-  mutate(across(-year, ~{f(.x / 1e3)})) |> 
+              col_types = cols()) |>
+  rename(wgt = wgt_total) |>
+  mutate(across(-year, ~{f(.x / 1e3)})) |>
   rename(Year = year,
          Biomass = wgt)
 
@@ -561,11 +561,11 @@ END LANDSCAPE
 
 ## Day 2
 
-### Request 1 {-}
+**Request 1**
 
 The SRG requests rerunning the GLM for weight-at-age without unsexed hake,
 and creating a weight-at-age matrix using the updated outputs by averaging
-Males and Females equally. 
+Males and Females equally.
 
 **JTC Response**
 
@@ -573,7 +573,7 @@ Males and Females equally.
 
 * The model output was truncated to just produce males and females given
   unsexed fish were no longer in the data used to fit the GLMM.
-  
+
 * Results for males and females were averaged.
 
 * The weight-at-age file for SS3 was updated.
@@ -581,11 +581,11 @@ Males and Females equally.
 * The updated weight-at-age file was used to process the fishery-composition
   data.
 
-### Request 2 {-}
+**Request 2**
 
 The SRG requests a plot of the day effect in the maturity analysis for age-3
 hake for any given year, assuming the peak of maturity is the same in all
-years (please confirm this assumption). 
+years (please confirm this assumption).
 
 **JTC Response**
 
@@ -609,7 +609,7 @@ hake are mature.
 include_graphics(here("doc", figures_dir, "maturity_spline_doy.png"))
 ```
 
-### Request 3 {-}
+**Request 3**
 
 The SRG requests that the maturity plot be recalculated for Day 278, peak
 of maturity.
@@ -619,7 +619,7 @@ of maturity.
 The updated figure was presented at the SRG meeting and
 Figure~\@ref(fig:main-maturity-ogive-fig) was also updated.
 
-### Request 4 {-}
+**Request 4**
 
 The SRG asks for a presentation of the recalculated probability mature by
 age matrix.
@@ -642,10 +642,10 @@ increases from ages 2 to 4 and after age 4 values are 1 for most years.
 ```{r srg-main-mat-at-age-heatmap-fig, fig.height = 6, out.height = "70%", fig.cap = "(ref:srg-main-mat-at-age-heatmap-cap)"}
 
 j <- maturity_estimates_df |>
-  filter(model == "Spatial + temperature") |> 
+  filter(model == "Spatial + temperature") |>
   transmute(Yr = year, age, p_mature) |>
   pivot_wider(names_from = age,
-              values_from = p_mature) |> 
+              values_from = p_mature) |>
   mutate(Seas = 1,
          Sex = 1,
          Bio_pattern = 1,
@@ -663,9 +663,9 @@ mn_row <- rows |>
   colMeans() |>
   vec2df()
 for(i in 2024:2027){
-  mn_row <- mn_row |> 
+  mn_row <- mn_row |>
     mutate(Yr = i)
-  j <- j |> 
+  j <- j |>
     bind_rows(mn_row)
 }
 
@@ -673,7 +673,7 @@ j_model <- base_model
 j_model$wtatage <- j
 j_model$startyr <- 2009
 j_model$endyr <- 2023
-waa_ss_df <- weight_age_sample_sizes_df |> 
+waa_ss_df <- weight_age_sample_sizes_df |>
   filter(Yr %in% 2009:2023)
 
 plot_heatmap_weight_at_age(
@@ -693,7 +693,7 @@ plot_heatmap_weight_at_age(
            "dodgerblue"))
 ```
 
-## Request 5 {-}
+**Request 5**
 
 The SRG requests rerunning the base assessment model with updated
 weight-at-age and fecundity matrices based on day 278.  Updated harvest
@@ -762,7 +762,7 @@ plot_rel_biomass(list(step_before,
                  ylim = c(0, 2.7))
 ```
 
-### Request 6 {-}
+**Request 6**
 
 The SRG requests a new executive summary based on the updated base model.
 
