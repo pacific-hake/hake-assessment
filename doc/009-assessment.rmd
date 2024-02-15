@@ -144,8 +144,7 @@ recruitment (log `r r_0`) freely estimated. This assessment uses the same
 beta-distributed prior for stock--recruitment steepness (h), based on
 @MyersBowenEtAl1999, that has been applied since 2011
 [@StewartForrestEtAl2011]. Year-specific recruitment deviations were estimated
-from `r main_recdev_early`--`r main_recdev_end + 1` as well as the years
-`r assess_yr`--`r assess_yr + 4` for purposes of forecasting. The standard
+from `r main_recdev_early`--`r main_recdev_end`. The standard
 deviation, $\sigma_r$, of recruitment variability serves as a recruitment
 deviation constraint and is fixed at `r base_model$sigma_R_in` in this
 assessment. This value is based on consistency with the observed variability
