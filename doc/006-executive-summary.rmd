@@ -726,7 +726,7 @@ be interpolated from these results for intermediate catch values in
 Figure~\@ref(fig:es-risk-year-1-fig)).
 However, interpolation is not appropriate for all catches in `r assess_yr + 1`
 or `r assess_yr + 2` because they are conditional on previous year(s) catch
-levels. This explains why a few probabilities decline (rather than rise) with
+levels. This explains why probabilities can sometimes decline (rather than rise) with
 increased `r assess_yr + 1` and `r assess_yr + 2` catch levels
 (Tables~\@ref(tab:es-risk-year-2-tab) and~\@ref(tab:es-risk-year-3-tab);
 Figures~\@ref(fig:es-risk-year-2-fig) and~\@ref(fig:es-risk-year-3-fig)).
