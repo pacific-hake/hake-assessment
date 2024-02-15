@@ -16,7 +16,7 @@ distribution of the values in the chain (i.e., the marginal density from a
 smoothed histogram of values in the trace plot).
 
 (ref:app-mcmc-diag-m-r0-alt) This figure shows good Markov chain Monte Carlo
-diagnostics for the base model for natural mortality and log R0 parameters.
+diagnostics for the base model for natural mortality and log R 0 parameters.
 
 ```{r app-mcmc-diag-m-r0-fig, fig.cap = "(ref:app-mcmc-diag-m-r0-cap)", fig.height = 8}
 plist <- NULL
@@ -182,9 +182,9 @@ and derived quantities. Numbers refer to the absolute correlation
 coefficients, with font size proportional to the square root of the
 coefficient. Straight lines on the scatterplots are linear regressions.
 
-(ref:app-mcmc-pairs-alt) "This figure shows pairs plots for many parameters
-and derived quantities. Natural mortality and log R0 show positive
-correlation as do 2014 and 2016 recruitment.
+(ref:app-mcmc-pairs-alt) This figure shows pairs plots for many parameters
+and derived quantities. Natural mortality and log R 0 show positive
+correlation.
 
 ```{r app-mcmc-pairs-fig, fig.cap = "(ref:app-mcmc-pairs-cap)", fig.height = 8}
 
