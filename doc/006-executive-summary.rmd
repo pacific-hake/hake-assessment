@@ -110,7 +110,7 @@ along with the age-1 index, provide data that facilitates estimating relative
 cohort strength, i.e., strong and weak cohorts. The age-1 index suggests
 particularly large numbers of age-1 fish in 2009, 2011, 2015, and 2021 (2008,
 2010, 2014, and 2020 year classes, respectively), and is not available for
-most even years (odd year classes). There is no data to inform the size of
+most even years (odd year classes). There are no data to inform the size of
 the `r last_data_yr` year class.
 
 (ref:es-survey-biomass-cap) Acoustic survey biomass index of age-2$+$ fish
@@ -251,8 +251,9 @@ The current estimate of
 the `r end_yr - 1` female spawning biomass is `r prev_bio_median`
 (`r prev_bio_lower`--`r prev_bio_upper`)~Mt, giving less uncertainty than
 the estimate from the `r end_yr - 1` assessment of `r prev_bio_median_last_assess`
-(`r prev_bio_lower_last_assess`--`r prev_bio_upper_last_assess`)~Mt. The current median is reduced from last
-year, partly due to the tail of the distribution being greatly curtailed, and a
+(`r prev_bio_lower_last_assess`--`r prev_bio_upper_last_assess`)~Mt. The current
+median is reduced from that in the `r end_yr - 1` assessment due to the tail of the
+distribution being greatly curtailed and a
 slight lowering of the lower end of the interval.
 The decrease appears to be due to the addition of the age-2$+$ biomass index
 pulling down the estimated biomass for recent years, plus the addition of the
