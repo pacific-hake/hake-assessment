@@ -20,7 +20,7 @@ differences spatially of weight-at-age.
 
 The JTC provided two tables, one for each country containing the
 weight-at-age sample sizes for each sex code(Male = M, Female = F,
-Unsexed = U), by country (Tables~\@ref(tab:srg-weight-at-age-sample-size-can)
+Unsexed = U; Tables~\@ref(tab:srg-weight-at-age-sample-size-can)
 and \@ref(tab:srg-weight-at-age-sample-size-us)).
 
 The weight-at-age for two years, 2018 and 2023 are shown in
@@ -28,7 +28,8 @@ Figure~\@ref(fig:srg-plot-weight-at-age-by-sex-fig). During the meeting, this pl
 contained unsexed fish as well, which were all much heavier than both males and
 females. On investigation, the JTC discovered that the data file for Canada
 had been modified to have all the sex data set to **U** (unsexed). This was
-fixed and Figure~\@ref(fig:srg-plot-weight-at-age-by-sex-fig) shows the result.
+fixed and Figures~\@ref(fig:srg-plot-base-v-tv-maturity-ssb-fig) and
+\@ref(fig:srg-plot-base-v-tv-maturity-rel-fig) show assessment model results.
 
 ```{r srg-weight-at-age-sample-size-can, results = "asis"}
 font_size <- 9
@@ -234,8 +235,8 @@ classified as 'hake mix'. These regions were associated with 4 separate
 trawls. The hake percentages in those hake mix trawls ranged from 55%
 to 76% hake (all mixed with rockfish).
 
-22.9 kt out of the 735 kt of un-Kriged biomass (3.1%) came from hake
-mixes in 2023.
+Of the un-Kriged biomass (3.1%), 22.9 kt out of the 735 kt came from
+hake mixes in 2023.
 
 ### Request 5 {-}
 
@@ -335,7 +336,8 @@ component to calculate the overall negative log likelihood to be minimized.
 The bulleted list below provides parameter estimates for the base model and
 the requested model run, respectively.
 Figures~\@ref(fig:srg-plot-sur-fit-base-v-lambda-ssb-fig)--\@ref(fig:srg-plot-recabs-base-v-lambda-ssb-fig)
-were provided to the SRG to fulfill the request thoroughly.
+were provided to the SRG to fulfill the request thoroughly. While substantially downweighting age-composition data results in an improved survey fit, the model
+loses critical inforamation on recruitment and thus overall population scale.
 
 * DM fishery: 0.341 (base); 0.035 (lambda)
 * DM survey: 0.942; 0.271
