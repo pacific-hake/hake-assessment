@@ -42,9 +42,11 @@ run_ct_levels_spr_100 <- function(
     spr_100_catch[i] <- model$mcmc |>
       pull(!!fore_catch_label_sym) |>
       median(na.rm = TRUE)
-    upper <- spr_100_catch[i]
-    lower <- 0
+
     iter <- 1
+    prop <- 0.1
+    last_catch <- spr_100_catch[i]
+    last_above_1 <- NA
     repeat{
       fore$ForeCatch <- data.frame(Year = forecast_yrs[1:i],
                                    Seas = 1,
@@ -80,19 +82,11 @@ run_ct_levels_spr_100 <- function(
               " < ",
               ct_levels_spr_tol, " ? ",
               ifelse(abs(spr - 1) < ct_levels_spr_tol, "Yes", "No"))
-      message("Upper catch: ", upper,
-              " - Lower catch: ", lower,
-              ". Difference: ",
-              abs(upper - lower), " < ", ct_levels_catch_tol, " ? ",
-              ifelse(abs(upper - lower) < ct_levels_catch_tol,
-                     "Yes\n",
-                     "No\n"))
 
-      if(abs(spr - 1) < ct_levels_spr_tol ||
-         abs(upper - lower) < ct_levels_catch_tol){
-        # Sometimes, upper and lower can end up close to equal,
-        #  but the tolerance is still not met. In this case, assume
-        #  the catch creates an SPR of 100% even though it is slightly off.
+      if(abs(spr - 1) <= ct_levels_spr_tol){
+        warning("An SPR value close to 1 (", spr, ") within the tolerance of ",
+                "`ct_levels_spr_tol` = ", ct_levels_spr_tol, " was reached.")
+        spr_100_catch[i] <- last_catch
         break
       }
       if(iter == ct_levels_max_iter){
@@ -103,22 +97,26 @@ run_ct_levels_spr_100 <- function(
         break
       }
 
-      if(spr - 1 > 0){
-        upper <- spr_100_catch[i]
-        lower <- (upper + lower) / 2.0
-        spr_100_catch[i] <- lower
-        message("spr greater than 1, upper set to ", upper,
-                ", lower set to ", lower,"\n")
-      }else if(spr - 1 < 0){
-        lower <- spr_100_catch[i]
-        upper <- upper * 1.5
-        spr_100_catch[i] <- upper
-        message("spr less than 1, upper set to ", upper,
-                ", lower set to ", lower,"\n")
+      if(spr > 1){
+        if(!is.na(last_above_1) && !last_above_1){
+          prop <- prop / 2
+        }
+        message("spr greater than 1, `last_catch` set to `prop` ", prop, " * ",
+                f(last_catch, 2))
+        last_catch <- last_catch * (1 - prop)
+        last_above_1 <- TRUE
       }else{
-        message("spr exactly equal to 1, breaking\n")
-        break
+        if(!is.na(last_above_1) && last_above_1){
+          prop <- prop / 2
+        }
+        message("spr less than 1, `last_catch` set to `prop` ", prop, " * ",
+                f(last_catch, 2))
+        last_catch <- last_catch * (1 + prop)
+        last_above_1 <- FALSE
       }
+      last_spr <- spr
+      spr_100_catch[i] <- last_catch
+      message("  which is ", f(last_catch, 2))
       iter <- iter + 1
     }
   }

@@ -2,7 +2,7 @@
 # any new package data to file R/data.R
 
 # General variables
-create_data_hake("ct_levels_spr_tol", 0.0001)
+create_data_hake("ct_levels_spr_tol", 0.001)
 create_data_hake("ct_levels_catch_tol", 0.5)
 create_data_hake("ct_levels_max_iter", 30)
 create_data_hake("probs", c(0.025, 0.5, 0.975))
