@@ -9,7 +9,7 @@
 #' and `row2_text` where `let` contains the letter shown in the table for
 #' each row, `row1_text` is the first line of text directly beneath the
 #' letter, and `row2_text` is the second line of text directly below the
-#' first line of text. `row1_text` and `row2_text` can be empty strings, in
+#' first line of text. `row1_text` and `row2_text` cafn be empty strings, in
 #' that case no text will be shown in the cell, only the letter
 #' @param rows_to_show A vector of letters of rows to show. If `NULL`, show
 #' all rows
@@ -50,7 +50,7 @@ table_decision <- \(
     "j",  "",                                "",
     "k",  paste0(model$endyr - 1, " TAC"),   "",
     "l",  paste0(model$endyr, " TAC"),       "",
-    "m",  "Fishing intensity",               "near 100\\%",
+    "m",  "Fishing intensity",               "at 100\\%",
     "n",  "Default HR",                      paste0("(",
                                                     fspr_40_10_for_latex_table,
                                                     ")"),
