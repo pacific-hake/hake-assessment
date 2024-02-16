@@ -596,19 +596,9 @@ looks like the following:
 \resizebox{\textwidth}{!}{$maturity_{functional} \sim -1 + s(doy) + age + age^2 + temp + temp^2$}
 
 where there is **NO** interaction with the smoother on the day of the year.
-Thus, the shape of the relationship (\@ref(fig:srg-doy-maturity-fig)) does not change with time
+Thus, the shape of the relationship
+(\@ref(fig:app-maturity-analysis-day-of-year-fig)) does not change with time
 or temperature in this case.
-
-(ref:srg-doy-maturity-cap) Proportion of mature fish by day of year.
-
-(ref:srg-doy-maturity-alt) This figure shows an continual rise in proportion
-mature from day 100 to day 278 and that by day 210 at least 80 percent of
-hake are mature.
-
-```{r srg-doy-maturity-fig, results = "asis", out.height = "70%", fig.cap = "(ref:srg-doy-maturity-cap)"}
-
-include_graphics(here("doc", figures_dir, "maturity_spline_doy.png"))
-```
 
 **Request 3**
 
