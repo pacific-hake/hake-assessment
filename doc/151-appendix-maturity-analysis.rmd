@@ -528,9 +528,9 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-(ref:app-maturity-analysis-day-of-year-cap) The estimated effect of day of the year
-on maturation from Model 3 (see Table \@ref(tab:app-maturity-analysis-aic-tab))
-using a penalized spline.
+(ref:app-maturity-analysis-day-of-year-cap) The estimated effect of day of
+the year on maturation from Model 3 (see Table
+\@ref(tab:app-maturity-analysis-aic-tab)) using a penalized spline.
 
 (ref:app-maturity-analysis-day-of-year-alt) Maturation increases steeply during
 the middle of the year and slightly declines towards the end of the year.
