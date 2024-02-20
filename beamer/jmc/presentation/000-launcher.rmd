@@ -10,7 +10,7 @@ project_variables:
   last_assess_yr: 2023
   last_data_yr: 2023
   forecast_yrs: 2024:2027
-  model_version: "01"
+  model_version: "02"
   last_yr_model_version: "01"
   # For a list of colors you can use here see:
   # https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/latexcolors/latexcolors.pdf
@@ -37,7 +37,7 @@ project_variables:
   # Increasing `dots_per_inch` for figure output increases the file size a LOT
   dots_per_inch: 200
 author: Pacific Hake Joint Technical Committee
-date: "SRG meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
+date: "AP/JMC February meeting -- `r rmarkdown::metadata$project_variables$assess_yr`"
 output:
   hake_beamer:
     theme: Singapore
