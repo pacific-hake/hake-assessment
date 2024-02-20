@@ -1,50 +1,62 @@
 # Summary
 
-## Key metrics
+## Summary (1/3)
 
-* Uncertainty is large, but stock currently has `r probs_curr_below_b40`%
-  chance of being below `r b_40` and `r probs_curr_rel_fish_intens_above_1`%
-  chance of relative fishing intensity being above 100%.
 * Based on the default harvest rule, the estimated median catch limit for
   `r min(forecast_yrs)` is `r ct_limit_quantiles["median"]`~t (with 95%
    interval from `r ct_limit_quantiles["lower"]` to
    `r ct_limit_quantiles["upper"]`~t).
-* Projections strongly influenced by size of above-average 2014 and 2016
-  cohorts, 2017 still looks to be average, 2018 and 2019 small, and
-  2020 large (but still highly uncertain).
-* Spawning biomass will likely increase from `r assess_yr` to
-  `r assess_yr + 1` for any catch $\leq 473,880$~t. Driven by expected
-   growth of the large 2020 cohort.
-* But then likely decline from >50% chance that spawning biomass will
-  decline from `r assess_yr + 1` to `r assess_yr + 2` for any catch evaluated
-  >0~t.
-* Maintaining a constant catch of 473,880~t (the 2021 TAC) gives a 11%
-  chance of falling below `r b_40` in 1 year (21% in 2 years' time).
-* Overall, we estimate probabilities of future events, and analyses of past
-  projections give some idea of the confidence we can have in those
-  probabilities.
 
-## Key points
-* Catch has continually declined over last five years from a time series
-  high in 2017
-* Low proportion of young fish (ages 1--3) in 2021 fishery
-* Above average 2014 and 2016 cohort biomass: mortality outpacing growth
-  (36% and 34% decline, respectively, from beginning of 2021)
-* Median female spawning biomass relatively high (65% of `r b_0`), but
-  steady recent year-upon-year declines:
-  - *B*~2019~ to *B*~2020~: -9%
-  - *B*~2020~ to *B*~2021~: -12%
-  - *B*~2021~ to *B*~2022~: -13%
-* The 2020 year class currently estimated to be above average
+* Projections strongly influenced by size of above-average 2020 and 2021
+  cohorts, with 2021 being potentially large but also *highly* uncertain.
+
+* Spawning biomass has a 50% chance of decreasing from `r assess_yr` to
+  `r assess_yr + 1` for a 1-year catch of 350,000~t. At that level and higher,
+  catch outpaces growth of the 2020 and 2021 cohorts, while continued
+  mortality occurs on the older cohorts, driving them to make up a low
+  proportion of the stock.
+
+* The decline is even more likely after two and three years of catch.
+
+* Maintaining a constant catch of 625,000~t (the 2023 TAC) gives a 4%
+  chance of falling below `r b_40` in 1 year, 11% in 2 years, and
+  21% in 3 years.
+
+## Summary (2/3)
+
+* Catch has increased to the B~0~ level in 2 years after a period of 5
+  years of decline (2017--2021).
+
+* High proportion of young fish (ages 2--4) predicted in 2024 fishery
+  (68% by numbers, 59% by weight).
+
+* Low proportion of fish older than 4 predicted in 2024 fishery
+  (32% by numbers, 41% by weight).
+
+* The 2021 year class currently estimated to be very large.
+
+* Uncertainty is large, but stock currently has only `r probs_curr_below_b40`%
+  chance of being below `r b_40` and `r probs_curr_rel_fish_intens_above_1`%
+  chance of relative fishing intensity being above 100%.
+
 * The model estimates a `r joint_percent_prob_above_below`% joint
   probability of being both above the target relative fishing intensity in
   `r end_yr - 1` and below the `r b_40` relative spawning biomass level at the
-  start of `r end_yr`
+  start of `r end_yr`.
 
-## Assessment timeline
+## Summary (3/3)
 
-```{r jmc-timing, fig.height = 4, out.height = "85%"}
+* Despite healthy stock size and status estimates, the recent lack of survey
+abundance and fishery catch in Canada suggests a shift in population
+distribution leading to diminished northern fisheries over recent years.
 
-plot_assessment_timeline()
+* Conventional wisdom of fish moving further north in warmer years potentially
+no longer holding?
 
-```
+<!-- ## Assessment timeline -->
+
+<!-- ```{r jmc-timing, fig.height = 4, out.height = "85%"} -->
+
+<!-- plot_assessment_timeline() -->
+
+<!-- ``` -->

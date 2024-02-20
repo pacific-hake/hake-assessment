@@ -7,20 +7,26 @@
   - Add new data for `r last_assess_yr`
 * Update survey biomass estimate and age data:
   - Years prior to `r last_assess_yr`
-  - Add new data for `r last_assess_yr`
+  - Add new `r last_assess_yr` survey index point
 * Update and add new `r last_assess_yr` weight-at-age data
-* Add the age-1 index time series
-* All model runs in the assessment use MCMC (including bridging models)
+  - Weight-at-age data now come from a model with year, cohort and age
+    as inputs
+* Maturity-at-age data now come from a spatio-temporal model with year, age,
+  and ocean temperature as inputs
+* Update the age-1 index time series
+  - Add new `r last_assess_yr` index point
+* All model runs in the assessment are MCMC
 
 ## Overview of stock assessment (2/2)
 
 * The median estimate of `r end_yr` relative spawning biomass is
   `r curr_depl_median`% (with 95% interval from `r curr_depl_lower`%
    to `r curr_depl_upper`%)
-* The 2010, 2014, 2016, and 2017 cohorts make up a large fraction of catches
-  - 2017 cohort estimated to be average
-  - 2018 and 2019 cohort estimated to be below average
-  - 2020 cohort estimated to be above average
+* The 2020 and 2021 cohorts make up a large fraction of coastwide catches
+  - 2014 and 2016 cohorts estimated to be above average
+  - 2015, 2018, and 2019 cohorts estimated to be below average
+  - 2020 cohort estimated to be slightly above average
+  - 2021 cohort potentially large (with high uncertainty)
 * Default harvest rule estimated median catch limit for `r min(forecast_yrs)`
   is `r ct_limit_quantiles["median"]` t (with 95% interval from
   `r ct_limit_quantiles["lower"]` to `r ct_limit_quantiles["upper"]` t)
@@ -34,4 +40,3 @@
   Canada it was `r last_yr_can_attained`%
   (`r paste0(ifelse(last_2yr_can_attained_diff < 0, "down", "up"))`
   `r abs(as.numeric(last_2yr_can_attained_diff))`% from last year)
-
