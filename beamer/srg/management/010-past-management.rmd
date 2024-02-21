@@ -54,9 +54,6 @@ plot_management_catch_vs_tac_1_to_1(catch_targets_df,
 ::: {.column width="30%"}
 * Fishing intensity has remained below 1 ($F_{SPR=40\%}$)
 * Biomass has mostly remained above 0.4 ($0.4B_0$)
-* P(B~`r assess_yr`~/B~0~ < 0.4) = `r probs_curr_below_b40`%
-* P(relative fishing intensity at end of `r assess_yr - 1` > 1.0)
-  = `r probs_curr_rel_fish_intens_above_1`%
 :::
 
 ::: {.column width="70%"}

@@ -44,11 +44,10 @@ plot_param_density(base_model,
 :::::: {.columns}
 ::: {.column width="38%"}
 - No fishing results in a 1-year increase in biomass followed by a flat
-  relative spawning biomass from `r end_yr` to `r end_yr + 2`, then a
-  very slight decline
+  relative spawning biomass from `r end_yr + 1` to `r end_yr + 3`
 
-- All positive catch options result in a 1-year increase in biomass followed
-  by continuous decline through to start of 2027
+- Positive catch options less than 350,000 t result in a 1-year increase
+  in biomass followed by continuous decline through to start of 2027
 
 - Uncertainty is large and increases from `r end_yr` to `r end_yr + 3`
 :::

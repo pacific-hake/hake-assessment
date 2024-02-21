@@ -12,28 +12,27 @@
 
 * Spawning biomass has a 50% chance of decreasing from `r assess_yr` to
   `r assess_yr + 1` for a 1-year catch of 350,000~t. At that level and higher,
-  catch outpaces growth of the 2020 and 2021 cohorts, while continued
-  mortality occurs on the older cohorts, driving them to make up a low
-  proportion of the stock.
+  declines in spawning biomass from catch outpace increases from growth
+  given recent 5-year average selectivity and population age structure.
 
 * The decline is even more likely after two and three years of catch.
 
-* Maintaining a constant catch of 625,000~t (the 2023 TAC) gives a 4%
+* Achieving a constant catch of 625,000~t (the 2023 TAC) gives a 4%
   chance of falling below `r b_40` in 1 year, 11% in 2 years, and
   21% in 3 years.
 
 ## Summary (2/3)
 
-* Catch has increased to the B~0~ level in 2 years after a period of 5
-  years of decline (2017--2021).
+* Spawning biomass has rapidly increased from 2022--2024 after a steady decline
+  from 2018--2022 (though still well above `r b_40`).
 
-* High proportion of young fish (ages 2--4) predicted in 2024 fishery
-  (68% by numbers, 59% by weight).
+* High proportion of age 3 and 4 fish predicted in 2024 fishery
+  (61% by numbers, 55% by weight).
 
-* Low proportion of fish older than 4 predicted in 2024 fishery
-  (32% by numbers, 41% by weight).
+* Older fish predicted in 2024 fishery primarily from 2014 and 2016 cohort
+  (15% by numbers, 20% by weight).
 
-* The 2021 year class currently estimated to be very large.
+* The 2021 year class currently estimated to be well above average.
 
 * Uncertainty is large, but stock currently has only `r probs_curr_below_b40`%
   chance of being below `r b_40` and `r probs_curr_rel_fish_intens_above_1`%
@@ -47,11 +46,11 @@
 ## Summary (3/3)
 
 * Despite healthy stock size and status estimates, the recent lack of survey
-abundance and fishery catch in Canada suggests a shift in population
-distribution leading to diminished northern fisheries over recent years.
+abundance and fishery catch in Canada suggests a population structure not
+conducive to achieving harvest quotas in northern fisheries over recent years.
 
 * Conventional wisdom of fish moving further north in warmer years potentially
-no longer holding?
+no longer holding or covaries with other driving factors.
 
 <!-- ## Assessment timeline -->
 
