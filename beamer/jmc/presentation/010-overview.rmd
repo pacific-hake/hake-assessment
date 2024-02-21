@@ -2,17 +2,17 @@
 
 ## Overview of stock assessment (1/2)
 * Update Stock Synthesis software
-* Update fishery catch and age composition data:
+* Update fishery catch and age-composition data:
   - Years prior to `r last_assess_yr`
   - Add new data for `r last_assess_yr`
 * Update survey biomass estimate and age data:
   - Years prior to `r last_assess_yr`
   - Add new `r last_assess_yr` survey index point
 * Update and add new `r last_assess_yr` weight-at-age data
-  - Weight-at-age data now come from a model with year, cohort and age
+  - Weight-at-age data now come from a model with age, sex, year, and cohort
     as inputs
-* Maturity-at-age data now come from a spatio-temporal model with year, age,
-  and ocean temperature as inputs
+* Maturity-at-age data now come from a spatio-temporal model with age,
+  day of year, and ocean temperature as inputs
 * Update the age-1 index time series
   - Add new `r last_assess_yr` index point
 * All model runs in the assessment are MCMC
