@@ -235,7 +235,7 @@ spawning biomass.**
 > unfished equilibrium biomass, $B_0$ (static $B_0$; as in
 > Figure~\@ref(fig:main-relative-biomass-fig)) and when spawning biomass in
 > year $t$ is related to the unfished biomass time series in year $t$
-> (dynamic $B_0$; see Figure~\@ref(fig:main-fished-unfished-rel-biomass)).
+> (dynamic $B_0$; see Figure~\@ref(fig:main-fished-unfished-rel-biomass-fig)).
 > These can be used to visually compare equilibrium versus non-equilibrium
 > assumptions and estimated changes in population dynamics in the absence of fishing.*
 >
@@ -420,7 +420,7 @@ calculation of time-varying fecundity.
 Stock Synthesis version `r ss_version` includes a number of changes since the
 version used by @JTC2023. However, none of the changes were specifically relevant
 to this assessment, and thus, the software update had no effect on assessment
-results (Figure~\@ref(fig:main-bridge-summary-fig-1)).
+results (Figure~\@ref(fig:main-bridge-summary-1-fig)).
 
 The update of pre-`r last_data_yr` data occurs because databases are
 continually updated; this yielded minor adjustments to the data. For example,
@@ -432,11 +432,11 @@ The addition of the `r last_data_yr` catch and weight-at-age data extends the
 model to the start of `r assess_yr`. Recruitment estimates and historical stock
 trajectory were relatively unchanged, and the new data suggest a slight decrease in female
 spawning biomass from `r assess_yr - 1` to `r assess_yr`
-(Figure~\@ref(fig:main-bridge-summary-fig-1)).
+(Figure~\@ref(fig:main-bridge-summary-1-fig)).
 
 Including the `r last_data_yr` fishery-independent biomass estimate led to a downward shift
 in the stock trajectory going back to 2017 and a similar shift in the fit to the survey
-(Figure~\@ref(fig:main-bridge-summary-fig-1)). The addition of the `r last_data_yr` survey
+(Figure~\@ref(fig:main-bridge-summary-1-fig)). The addition of the `r last_data_yr` survey
 biomass age compositions led to an estimated increase in stock biomass from 2023 to 2024 as a result of small shifts in expected recruitment, particularly for the 2020 and 2021 year
 classes. While the addition of the `r last_data_yr` relative age-1 index
 had a negligible effect on the stock trajectory, it did slightly adjust estimates of recent
@@ -446,7 +446,7 @@ The final step of adding `r last_data_yr` data involved incorporating fishery ag
 information, which shifted the ending year of the deviations in the selectivity parameters
 from `r last_data_yr - 1` to `r last_data_yr`. These data had relatively
 little impact on the historical biomass estimates but did shift recent
-estimates of spawning biomass upwards (Figure~\@ref(fig:main-bridge-summary-fig-1)).
+estimates of spawning biomass upwards (Figure~\@ref(fig:main-bridge-summary-1-fig)).
 Recruitment increased in 2021 and 2022, while the 2020 cohort
 was reduced. The increase in 2021 and 2022 recruitment contributes
 to the increase in female spawning biomass by the start of
@@ -454,11 +454,11 @@ to the increase in female spawning biomass by the start of
 `r assess_yr`. Despite both fishery age compositions and the relative age-1
 index pointing towards above average cohorts in 2020, 2021 and, to a lesser
 extent, 2022, estimates of `r assess_yr` female
-spawning biomass remain highly uncertain (Figure~\@ref(fig:main-bridge-summary-fig-1)).
+spawning biomass remain highly uncertain (Figure~\@ref(fig:main-bridge-summary-1-fig)).
 
 Structurally changing the error distribution for the relative age-1 index from a
 lognormal to a Student's t-distribution (with 13 degrees of freedom) had
-negligible effect on assessment results (Figure~\@ref(fig:main-bridge-summary-fig-2)).
+negligible effect on assessment results (Figure~\@ref(fig:main-bridge-summary-2-fig)).
 Nonetheless, the t-distribution is better suited for these data given the low sample
 size (14) and broader distribution tails compared to a lognormal when sample sizes
 are less than 30.
@@ -469,7 +469,7 @@ changes in weight-at-age for years and ages when there is little or no
 data. Model predictions were based on a smoothed fixed effect for age and
 random effects for year and cohort. During periods of more consistent sampling
 protocols (since the mid-1990s), there was little effect on overall stock
-size or status (Figure~\@ref(fig:main-bridge-summary-fig-2)). However, there
+size or status (Figure~\@ref(fig:main-bridge-summary-2-fig)). However, there
 were refinements to stock size and status during the 1970s and 1980s, a period
 when sampling protocols were not as well documented (e.g., from foreign
 vessels).
@@ -483,7 +483,7 @@ model inputs that translate total biomass to spawning biomass. The addition of
 time-varying maturity resulted in annual differences in the age at which
 `r sp` mature, such that there were minor shifts in the translation of total
 biomass to spawning biomass by one year in some cases within the time
-series (Figure~\@ref(fig:main-bridge-summary-fig-2)), but the general
+series (Figure~\@ref(fig:main-bridge-summary-2-fig)), but the general
 trend in spawning biomass and population status remained largely the
 same.
 
@@ -559,7 +559,7 @@ between 1995 and 2009 (Table~\@ref(tab:main-survey-history-tab)), which may
 explain some portion of the anomaly, along with age
 structure. For 2023, the survey timing is not anomalous. The estimated biomass
 increase from 2023 to 2024 is driven by the addition of 2023 survey age-composition data
-(Figure~\@ref(fig:main-bridge-summary-fig-1)). The addition of the 2023 relative
+(Figure~\@ref(fig:main-bridge-summary-1-fig)). The addition of the 2023 relative
 age-1 index suggested an above-average 2022 cohort (and also increased the 2021
 relative age-1 index compared to the previous assessment due to a previous omission;
 Section~\@ref(sec:data-acoustic-survey)).
@@ -610,7 +610,7 @@ structure for older fish.
 The 2020 cohort has now been observed by, and is well fit by, the
 acoustic survey (Figure~\@ref(fig:main-age-comp-fits-survey-fig)),
 with the survey's inclusion decreasing its estimated size
-(Figure~\@ref(fig:main-bridge-summary-fig-1)).
+(Figure~\@ref(fig:main-bridge-summary-1-fig)).
 Combined, the 2015--`r last_data_yr` fishery age-composition
 data and the 2017--`r survey_end_yr` acoustic survey age-composition data
 suggest that 2014 was a strong recruitment year, and the model was able to
@@ -744,7 +744,7 @@ assessment), and a slight lowering of the lower end of the interval.
 The decrease appears to be due to the addition of the age-2$+$ biomass index
 pulling down the estimated biomass for recent years, plus the addition of the
 survey age compositions lowering the estimated 2020 recruitment
-(Figure~\@ref(fig:main-bridge-summary-fig-1)).
+(Figure~\@ref(fig:main-bridge-summary-1-fig)).
 
 **Recruitment**
 
@@ -833,7 +833,7 @@ recruitments).
 As noted above, the 2020 cohort is estimated to be somewhat smaller than
 in last year's assessment (though last year's estimate was highly uncertain),
 due to the introduction of new information from the 2023 age-2$+$ biomass index and
-survey age-composition data (Figure~\@ref(fig:main-bridge-summary-fig-1)).
+survey age-composition data (Figure~\@ref(fig:main-bridge-summary-1-fig)).
 The 2021 cohort strength is only informed by fishery data and the 2023 biomass
 survey, and is estimated to be potentially large with a median and 95% credible
 interval of `r recruitment_med_in_2021` (`r recruitment_lower_in_2021`--
