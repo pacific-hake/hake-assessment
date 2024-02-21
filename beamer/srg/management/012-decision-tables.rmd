@@ -54,7 +54,7 @@ Figures **k**, **l**, and **m**)
 * P(relative FI > 100% target): Probability that relative fishing intensity
   in fixed catch year is greater than the target fishing intensity
 * Probabilities are calculated as proportions of the MCMC samples meeting
-  the criteria, e.g. 50% probability of being under `r b_40` means that
+  the criteria, e.g., 50% probability of being under `r b_40` means that
   4,000 of the 8,000 MCMC samples were under `r b_40`
 
 ## Probabilities based on `r end_yr` catch

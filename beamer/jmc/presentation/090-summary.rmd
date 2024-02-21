@@ -26,7 +26,7 @@
 * Spawning biomass has rapidly increased from 2022--2024 after a steady decline
   from 2018--2022 (though still well above `r b_40`).
 
-* High proportion of age 3 and 4 fish predicted in 2024 fishery
+* High proportion of age-3 and age-4 fish predicted in 2024 fishery
   (61% by numbers, 55% by weight).
 
 * Older fish predicted in 2024 fishery primarily from 2014 and 2016 cohort
@@ -34,23 +34,23 @@
 
 * The 2021 year class currently estimated to be well above average.
 
-* Uncertainty is large, but stock currently has only `r probs_curr_below_b40`%
+* Uncertainty is large, but stock currently has `r probs_curr_below_b40`%
   chance of being below `r b_40` and `r probs_curr_rel_fish_intens_above_1`%
   chance of relative fishing intensity being above 100%.
 
-* The model estimates a `r joint_percent_prob_above_below`% joint
+* `r joint_percent_prob_above_below`% joint
   probability of being both above the target relative fishing intensity in
   `r end_yr - 1` and below the `r b_40` relative spawning biomass level at the
   start of `r end_yr`.
 
 ## Summary (3/3)
 
-* Despite healthy stock size and status estimates, the recent lack of survey
+* Despite large stock size and high status estimates, the recent lack of survey
 abundance and fishery catch in Canada suggests a population structure not
 conducive to achieving harvest quotas in northern fisheries over recent years.
 
 * Conventional wisdom of fish moving further north in warmer years potentially
-no longer holding or covaries with other driving factors.
+no longer holding or co-varies with other driving factors.
 
 <!-- ## Assessment timeline -->
 
