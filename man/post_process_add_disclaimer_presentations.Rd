@@ -4,7 +4,7 @@
 \alias{post_process_add_disclaimer_presentations}
 \title{Add the disclaimer to the title slide for the presentations}
 \usage{
-post_process_add_disclaimer_presentations(x, ...)
+post_process_add_disclaimer_presentations(x, show_disclaimer = TRUE, ...)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by

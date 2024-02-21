@@ -6,8 +6,9 @@
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_add_disclaimer_presentations <- function(x, ...){
-
+post_process_add_disclaimer_presentations <- function(x,
+                                                      show_disclaimer = TRUE,
+                                                      ...){
   ind <- grep("\\\\date", x)
   if(!length(ind)){
     stop("The \\date line was not found. It must be present to add the ",

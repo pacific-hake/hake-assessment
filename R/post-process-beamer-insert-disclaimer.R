@@ -3,11 +3,20 @@
 #'
 #' @param x Tex code, as a vector of lines read in from a TeX file by
 #' [readLines()]
+#' @param show_disclaimer Logical. If `TRUE`, show the disclaimer text at the
+#' bottom of the title slide. If `FALSE`, no text will be added to the title
+#' slide
 #' @param ... Arguments passed to all the post-processing functions
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_beamer_insert_disclaimer <- function(x, ...){
+post_process_beamer_insert_disclaimer <- function(x,
+                                                  show_disclaimer = TRUE,
+                                                  ...){
+
+  if(!show_disclaimer){
+    return(x)
+  }
 
   ind <- grep("\\\\usebeamerfont\\{subtitle\\}", x)
 

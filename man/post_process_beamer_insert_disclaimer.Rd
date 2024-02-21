@@ -5,11 +5,15 @@
 \title{Insert a disclaimer notice at the bottom of the title page of beamer
 presentations}
 \usage{
-post_process_beamer_insert_disclaimer(x, ...)
+post_process_beamer_insert_disclaimer(x, show_disclaimer = TRUE, ...)
 }
 \arguments{
 \item{x}{Tex code, as a vector of lines read in from a TeX file by
 \code{\link[=readLines]{readLines()}}}
+
+\item{show_disclaimer}{Logical. If \code{TRUE}, show the disclaimer text at the
+bottom of the title slide. If \code{FALSE}, no text will be added to the title
+slide}
 
 \item{...}{Arguments passed to all the post-processing functions}
 }

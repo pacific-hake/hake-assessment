@@ -54,6 +54,7 @@ output:
     title_page_image: "hake-line-drawing.png"
     title_page_image_height_in: 1
     title_page_image_width_in: 2
+    show_disclaimer: false
 classoption: "aspectratio=169"
 fontsize: 11pt
 urlcolor: blue
