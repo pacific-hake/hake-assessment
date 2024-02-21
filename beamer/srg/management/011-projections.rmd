@@ -7,13 +7,9 @@
 * Projections estimate the biomass at start of those years
   - Mean of fishery selectivity from `r end_yr - 5`--`r end_yr - 1` used in
     projections
-  - Mean of weight-at-age from `r end_yr - 5`--`r end_yr - 1` used in
-    projections
-  - Mean of maturity-at-age from `r end_yr - 5`--`r end_yr - 1` used in
-    projections
-  - Mean of fecundity from `r end_yr - 5`--`r end_yr - 1` used in
-    projections
-  - Recruitment from stock--recruitment relationship (with uncertain deviations)
+  - Mean of weight-at-age and maturity-at-age (and thus fecundity) from
+    `r end_yr - 5`--`r end_yr - 1` used in projections
+  - Recruitment from stock--recruitment relationship
 
 * Alternative future catch levels explored
 
