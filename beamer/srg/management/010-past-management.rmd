@@ -27,6 +27,14 @@ rng_tac_catch_yr_hi <- tac_catch_diff_df[k2, ] |> pull(Year)
 ```
 
 ## Past management: Total Allowable Catch
+```{r tac-vs-realized-catch-ts-table, results = "asis"}
+
+plot_management_catch_vs_tac(catch_targets_df,
+                             ret_tbl = TRUE,
+                             font_size = 6)
+```
+
+## Past management: Total Allowable Catch
 :::::: {.columns}
 ::: {.column width="40%"}
 * March `r last_assess_yr`

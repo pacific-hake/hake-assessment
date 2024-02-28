@@ -14,7 +14,11 @@ plot_management_catch_vs_tac(
   leg_pos = c(0.65, 0.83),
   leg_ncol = 1,
   leg_font_size = 12,
-  point_size = 3
+  point_size = 3,
+  ret_tbl = FALSE,
+  font_size = 10,
+  right_cols_cm = 1.8,
+  ...
 )
 }
 \arguments{
@@ -39,6 +43,14 @@ the values with vertical lines}
 \item{leg_font_size}{The legend font size}
 
 \item{point_size}{The point size}
+
+\item{ret_tbl}{Logical. If \code{TRUE}, return a \code{\link[kableExtra:kbl]{kableExtra::kbl()}} containing
+the outputs instead of the \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object}
+
+\item{font_size}{The table data and header font size in points}
+
+\item{right_cols_cm}{The number of centimeters wide to make all of the
+rightmost columns (all the value columns)}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

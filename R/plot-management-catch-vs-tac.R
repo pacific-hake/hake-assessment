@@ -14,6 +14,11 @@
 #' @param leg_ncol The number of columns to split the legend into
 #' @param leg_font_size The legend font size
 #' @param point_size The point size
+#' @param ret_tbl Logical. If `TRUE`, return a [kableExtra::kbl()] containing
+#' the outputs instead of the [ggplot2::ggplot()] object
+#' @param font_size The table data and header font size in points
+#' @param right_cols_cm The number of centimeters wide to make all of the
+#' rightmost columns (all the value columns)
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -25,7 +30,11 @@ plot_management_catch_vs_tac <- function(d,
                                          leg_pos = c(0.65, 0.83),
                                          leg_ncol = 1,
                                          leg_font_size = 12,
-                                         point_size = 3){
+                                         point_size = 3,
+                                         ret_tbl = FALSE,
+                                         font_size = 10,
+                                         right_cols_cm = 1.8,
+                                         ...){
 
   d <- d |>
     select(-c(Depletion, `Biomass estimate`)) |>
@@ -43,6 +52,28 @@ plot_management_catch_vs_tac <- function(d,
     mutate(name = factor(name, levels = group_ord)) |>
     mutate(value = value / 1e3)
 
+  if(ret_tbl){
+
+    d <- d |>
+      pivot_wider(names_from = "name", values_from = "value") |>
+      mutate(across(-Year, ~{f(.x)}))
+    k <- kbl(d,
+             format = "latex",
+             booktabs = TRUE,
+             align = c("l",
+                       rep(paste0("R{",
+                                  right_cols_cm,
+                                  "cm}"),
+                           ncol(d) - 1)),
+             linesep = "",
+             escape = FALSE,
+             ...) |>
+      row_spec(0, bold = TRUE) |>
+      kable_styling(font_size = font_size,
+                    latex_options = c("repeat_header"))
+
+    return(k)
+  }
   x_min <- d$Year |> min()
   x_max <- d$Year |> max()
   x_breaks <- d$Year |> unique() |> sort()
