@@ -12,7 +12,6 @@ rmd_files: ["000-launcher.rmd",
             "../../srg/management/010-past-management.rmd",
             "../../srg/management/011-projections.rmd",
             "../../srg/management/012-decision-tables.rmd",
-            #"080-probability-tables.rmd",
             "090-summary.rmd",
             "../../../doc/999-blank.rmd"]
 # `delete_merged_file`: If false, the hake.Rmd file which was created by
