@@ -34,13 +34,15 @@ post_process_beamer_insert_disclaimer <- function(x,
   post <- x[ind:length(x)]
 
   x <- c(pre,
-         paste0("\\tiny \\textcolor{blue}{Disclaimer: These materials ",
-                "do not constitute a formal publication and are for ",
-                "information only. They are in a pre-review, ",
-                "pre-decisional state and should not be formally cited or ",
-                "reproduced. They are to be considered provisional and do ",
-                "not represent any determination or policy of NOAA or the ",
-                "Department of Commerce.}\\par"),
+         paste0("\\centering \\tiny \\textcolor{blue}{\\parbox[c]{12cm}",
+                "{Disclaimer: These materials do not constitute a formal ",
+                "publication and are for information only. They are in a ",
+                "pre-review, pre-decisional state and should not be ",
+                "formally cited or reproduced. They are to be considered ",
+                "provisional and do not represent any determination or ",
+                "policy of NOAA or the Department of Commerce. \\newline ",
+                "\\newline The results presented here have yet to be ",
+                "approved by the  Scientific Review Group (SRG).}}"),
          post)
 
   x
