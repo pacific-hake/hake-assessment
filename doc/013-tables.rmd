@@ -31,7 +31,7 @@ table_catch(
   end_yr = end_yr - 1,
   country = "can",
   caption = paste0(
-    "Annual catches of ", sp, " (t) in Canadian  waters by fleet, ",
+    "Annual catches of ", sp, " (t) in Canadian waters by fleet, ",
     start_yr, "--", last_data_yr, "."),
   font_size = 10,
   header_font_size = 11,
