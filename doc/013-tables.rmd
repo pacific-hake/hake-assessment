@@ -57,9 +57,9 @@ table_landings_tac(
 
 ```{r main-sampling-history-tab, results = "asis", echo = FALSE}
 table_sampling_history(
-  sampling_history_df,
   start_yr = start_yr_age_comps,
   end_yr = last_data_yr,
+  replace_start_yr = 2010,
   caption = paste0(
     "Annual summary of U.S. and Canadian fishery sampling included in this ",
     "stock assessment by fleet, ", start_yr_age_comps, "--", last_data_yr,
