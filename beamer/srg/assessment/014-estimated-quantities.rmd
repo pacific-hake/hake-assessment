@@ -178,7 +178,7 @@ plot_recruitment(list(base_model),
 ## Estimates of above-average cohorts
 ```{r above-average-cohorts-table, results = "asis"}
 
-cohorts <- sort(c(large_cohorts, 2017, 2021))
+cohorts <- sort(c(large_cohorts, 2017))
 last_few_yrs <- c(last_assess_yr, assess_yr)
 table_above_avg_cohorts_yrs(cohorts, last_few_yrs)
 ```

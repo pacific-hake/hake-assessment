@@ -77,7 +77,7 @@ load_extra_mcmc <- function(model,
   # Cohort recruitments --------------------------------------------------------
   extra_mcmc$recr_cohorts <- load_extra_mcmc_recr_cohorts(
     reps = reps,
-    cohorts = c(2010, 2014, 2016, 2020),
+    cohorts = large_cohorts,
     start_yr = model$startyr,
     end_yr = model$endyr + 1,
     progress_n = progress_n,
