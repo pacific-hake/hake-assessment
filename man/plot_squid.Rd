@@ -11,7 +11,9 @@ plot_squid(
   ci_alpha = 0.2,
   ci_yrs = NULL,
   year_label_font_size = 4,
-  y_lim = c(NA, NA)
+  y_lim = c(NA, NA),
+  surv_point_type = 17,
+  reg_point_type = 19
 )
 }
 \arguments{
@@ -36,6 +38,10 @@ plotted. If \code{full} then automatically span all the
 credible intervals even when not showing them all (useful
 for showing sequential plots in a talk). Not tested with \code{relative = TRUE}
 and \code{show_ci = TRUE} as we do not currently use those.}
+
+\item{surv_point_type}{The point shape type for ages in age-1 index years}
+
+\item{reg_point_type}{The point shape type for ages in non-age-1-index years}
 }
 \description{
 Make the retrospective recruitment deviations plot (squid plot)

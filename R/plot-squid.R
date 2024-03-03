@@ -15,6 +15,8 @@
 #'   credible intervals even when not showing them all (useful
 #'   for showing sequential plots in a talk). Not tested with `relative = TRUE`
 #'   and `show_ci = TRUE` as we do not currently use those.
+#' @param surv_point_type The point shape type for ages in age-1 index years
+#' @param reg_point_type The point shape type for ages in non-age-1-index years
 #' @export
 plot_squid <- function(model,
                        relative = FALSE,
@@ -22,18 +24,9 @@ plot_squid <- function(model,
                        ci_alpha = 0.2,
                        ci_yrs = NULL,
                        year_label_font_size = 4,
-                       y_lim = c(NA, NA)){
-
-  # Create a list of models, with the core model being first, followed by
-  # all the retrospectives located inside it
-  #model_lst <- c(list(model), map(model$retrospectives, ~{.x}))
-  #end_yr <- model$endyr
-
-  # Extract the cohort list from the list of models
-  #cohorts <- map_dbl(model_lst, \(mdl){
-  #  mdl$endyr
-  #}) |>
-  #  sort()
+                       y_lim = c(NA, NA),
+                       surv_point_type = 17,
+                       reg_point_type = 19){
 
   # Extract a data frame of long-format recruitment deviations containing all
   # the models in the model list
@@ -45,6 +38,12 @@ plot_squid <- function(model,
   # So B3 means it is about 70% opaque
   colors <- c("#000000B3",
               rev(rich_colors_short(length(cohorts))[-1]))
+
+  # Add flag for whether the year was a survey year or not.
+  d <- d |>
+    mutate(point_type = ifelse(model %in% survey_age1_yrs,
+                               surv_point_type,
+                               reg_point_type))
 
   # Add the retrospective ages to the long-format data frame extracted above
   # "This is where the magic happens"
@@ -156,7 +155,14 @@ plot_squid <- function(model,
                linetype = "dashed",
                linewidth = 0.1) +
     geom_line(linewidth = 1.5) +
-    geom_point(size = 3) +
+    # Add white border around points so that they stand out from the line more
+    geom_point(size = 4,
+               stat = "identity",
+               shape = d$point_type,
+               color = "white") +
+    geom_point(size = 3,
+               stat = "identity",
+               shape = d$point_type) +
     geom_text_repel(data = text_df,
                     aes(x = age,
                         y = devmed,
