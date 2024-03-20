@@ -20,12 +20,12 @@ models=( \
 05-burnin-100 \
 06-burnin-150 \
 07-burnin-200 \
-#08-burnin-250 \
-#09-burnin-300 \
-#10-burnin-350 \
-#11-burnin-400 \
-#12-burnin-450 \
-#13-burnin-500 \
+08-burnin-250 \
+09-burnin-300 \
+10-burnin-350 \
+11-burnin-400 \
+12-burnin-450 \
+13-burnin-500 \
 )
 type_path="05-test-models"
 verbose=FALSE

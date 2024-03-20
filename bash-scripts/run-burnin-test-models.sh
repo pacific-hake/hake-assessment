@@ -27,9 +27,6 @@ models=( \
 13-burnin-500 \
 )
 
-#num_warmup_samples=(1 50 100 150 200)
-num_warmup_samples=(250 300 350 400 450 500)
-
 # If running on a local machine and the model folder is in your
 # repo root, uncomment the next line and comment the line after it
 #project_path=`Rscript -e "cat(dirname(here::here()))"`
@@ -53,7 +50,6 @@ models_path=$project_path/$models_path/$year_path/$version_path/$type_path
 run loop.\n" || { printf "\nError: Directory $models_path does not exist, \
 bailing out.\n" ; exit 1; }
 
-ind=0
 for model in ${models[@]}; do
   (trap 'kill 0' SIGINT; \
   model_path=$models_path/$model; \
@@ -61,6 +57,7 @@ for model in ${models[@]}; do
   model.\n" || { printf "\nError: Directory $model_path does not \
   exist, bailing out for this model.\n" ; exit 1; };
   printf "\nRunning model in directory\n$model\n"; \
+  num_warmup_samples=`echo "$model" | grep -Po '\d+$'`; \
   Rscript -e " \
   setwd('$repo_path'); \
   suppressPackageStartupMessages(devtools::load_all()); \
@@ -69,7 +66,7 @@ for model in ${models[@]}; do
                    num_chains = $num_chains, \
                    adapt_delta = $adapt_delta, \
                    num_samples = $num_samples, \
-                   num_warmup_samples = ${num_warmup_samples[ind]}, \
+                   num_warmup_samples = $num_warmup_samples, \
                    fn_exe = '$ss_exe')"; \
   > /dev/null 2>&1; \
   printf "\nFinished running model in directory\n$model\n"; \
