@@ -1,3 +1,5 @@
+# Superceded now by pacea_save().
+
 # Saving some hake results to go into the pacea R package. Will maybe make this a
 #  simple function once Chris has package built, but it only needs to be run once
 #  a year. Then copy over results files into pacea/data-raw/groundfish and run
