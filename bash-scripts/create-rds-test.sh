@@ -16,9 +16,7 @@
 # Build RDS files for some sensitivity models. Do not put more than 6 here
 # as the machine will run out of memory
 
-models=(05-waa-fishery-only \
-        06-waa-nospatial-simple \
-        07-waa-spatial-simple)
+models=(14-long-base)
 
 # If running on a local machine and the model folder is in your
 # repo root, uncomment the next line and comment the line after it
