@@ -7,13 +7,15 @@
 #'
 #' @param var The variable name
 #' @param val The value for variable `var`
+#' @param ... Additional arguments for [usethis::use_data()]
 #'
 #' @return Nothing, creates package data. See [usethis::use_data()]
 #' @export
-create_data_hake <- function(var, val){
+create_data_hake <- function(var, val, ...){
 
   assign(var, val)
   do.call(usethis::use_data,
           list(as.name(var),
-               overwrite = TRUE))
+               overwrite = TRUE,
+               ...))
 }
