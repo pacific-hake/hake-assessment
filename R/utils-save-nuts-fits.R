@@ -19,11 +19,8 @@ save_nuts_fits <- function(dr = "/srv/hake/models/2024/02-version/05-test-models
                                        "10-burnin-350",
                                        "11-burnin-400",
                                        "12-burnin-450",
-                                       "13-burnin-500")){
-
-  if(exists("fits")){
-    return(fits)
-  }
+                                       "13-burnin-500",
+                                       "14-long-base")){
 
   walk(mdl_nms, ~{
     rdata_fn <- file.path(dr, .x, "mcmc", "hake.Rdata")

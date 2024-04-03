@@ -10,7 +10,7 @@ save_nuts_fits(
   dr = "/srv/hake/models/2024/02-version/05-test-models",
   mdl_nms = c("03-burnin-1", "04-burnin-50", "05-burnin-100", "06-burnin-150",
     "07-burnin-200", "08-burnin-250", "09-burnin-300", "10-burnin-350", "11-burnin-400",
-    "12-burnin-450", "13-burnin-500")
+    "12-burnin-450", "13-burnin-500", "14-long-base")
 )
 }
 \arguments{

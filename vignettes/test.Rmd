@@ -1,0 +1,147 @@
+---
+title: "Pacific Hake MCMC runs with varying acceptances"
+output:
+   bookdown::html_document2:
+      toc: true
+      toc_depth: 4
+      number_sections: true
+      pandoc_args: ["--number-offset=1"]
+date: "This document was rendered on `r hake::curr_time_date()`"
+vignette: >
+  %\VignetteIndexEntry{Pacific Hake MCMC runs with varying acceptances}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 10,
+  fig.height = 8,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE, results = "hide"}
+devtools::load_all(here::here())
+library(hake)
+theme_set(hake_theme())
+
+# Need this function to show LaTeX tables in HTML
+tex2markdown <- \(texstring){
+  writeLines(text = texstring,
+             con = myfile <- tempfile(fileext = ".tex"))
+  texfile <- pandoc(input = myfile, format = "html")
+  cat(readLines(texfile), sep = "\n")
+  unlink(c(myfile, texfile))
+}
+
+type_path <- "/srv/hake/models/2024/02-version/05-test-models"
+# NUTS fits
+dirs <- c("15-500-samples-group",
+          "16-1000-samples-group",
+          "17-2500-samples-group",
+          "18-5000-samples-group",
+          "19-10000-samples-group")
+
+subdirs <- c("01-80-delta-2-cores",
+             "02-80-delta-4-cores",
+             "03-80-delta-14-cores",
+             "04-85-delta-2-cores",
+             "05-85-delta-4-cores",
+             "06-85-delta-14-cores",
+             "07-90-delta-2-cores",
+             "08-90-delta-4-cores",
+             "09-90-delta-14-cores",
+             "10-95-delta-2-cores",
+             "11-95-delta-4-cores",
+             "12-95-delta-14-cores")
+
+all_dirs <- map(dirs, ~{
+  file.path(.x, subdirs)
+}) |>
+  unlist()
+
+if(!exists("fits")){
+  fits <- save_nuts_fits(mdl_nms = all_dirs)
+  long_chain_fit <- save_nuts_fits(mdl_nms = "14-long-base")
+  fits <- append(long_chain_fit, fits, after = 0)
+  long_chain_nm <- "14-32000-samples-group/00-99-delta-1-cores"
+  names(fits) <- c(long_chain_nm, all_dirs)
+  
+}
+```
+
+# Comparisons between models with the same number of samples
+
+```{r acceptance-tab, echo = FALSE, message = FALSE, results = "asis"}
+
+# Extract the number of samples, adapt_delta, and number of cores values
+nms <- names(fits)
+num_samples <- gsub("\\d{2}-(\\d+)-samples-group\\/\\d+-\\d+-delta-\\d+-cores",
+                 "\\1",
+                 nms)
+num_cores <- gsub("\\d{2}-\\d+-samples-group\\/\\d+-\\d+-delta-(\\d+)-cores",
+                 "\\1",
+                 nms)
+adapt_deltas <- gsub("\\d{2}-\\d+-samples-group\\/\\d+-(\\d+)-delta-\\d+-cores",
+                 "\\1",
+                 nms)
+adapt_deltas <- f(as.numeric(adapt_deltas) / 100, 2)
+
+d <- map_df(fits, \(fit){
+  all_chains_d <- map_df(fit$sampler_params, \(chain_df){
+    chain_df |> 
+      as_tibble()
+  })
+
+  out <- all_chains_d |> 
+    as_tibble() |> 
+    mutate(divergent__ = divergent__ * 10000) |> 
+    summarize(across(everything(), mean)) |> 
+    mutate(across(-divergent__, ~f(.x, 4))) |> 
+    mutate(across(divergent__, ~f(.x)))
+  names(out) <- c("Accept stat",
+                  "Step size",
+                  "Tree depth",
+                  "N leapfrog",
+                  "Divergent",
+                  "Energy")
+  out
+    }) |> 
+  mutate(`Num samples` = num_samples,
+         `Num cores` = num_cores,
+         `Adapt delta` = adapt_deltas) |> 
+  select(`Num samples`,
+         `Num cores`,
+         `Adapt delta`,
+         everything()) |> 
+  mutate(`Num samples` = f(as.numeric(`Num samples`)))
+
+  k <- kbl(d,
+           format = "html",
+           align   = rep("r", ncol(d)),
+           caption = paste0("Convergence statistics for models with ",
+                            "several different number of samples, ",
+                            "Adapt delta and number of cores used. The ",
+                            "first row contains the output for the long ",
+                            "chain base model which can be used as a ",
+                            "reference.")) |> 
+    kable_styling("striped",
+                  full_width = TRUE,
+                  font_size = 14) |> 
+    pack_rows("500 Samples", 2, 13,
+              label_row_css = "background-color: #666; color: #fff;") |> 
+    pack_rows("1,000 Samples", 14, 25,
+              label_row_css = "background-color: #666; color: #fff;") |> 
+    pack_rows("2,500 Samples", 26, 37,
+              label_row_css = "background-color: #666; color: #fff;") |>  
+    pack_rows("5,000 Samples", 38, 49,
+              label_row_css = "background-color: #666; color: #fff;") |> 
+    pack_rows("10,000 Samples", 50, 61,
+              label_row_css = "background-color: #666; color: #fff;")
+  k 
+#tex2markdown(k)
+```

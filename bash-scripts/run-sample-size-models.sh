@@ -1,18 +1,5 @@
 #!/bin/bash
 
-# The path structure is as follows
-# /srv/hake/models/2023/01-version/01-base-models/01-base/
-#  ^   ^    ^      ^    ^          ^              ^
-#  |   |    |      |    |          |              |
-#  |   |    |      |    |          |              $model_name
-#  |   |    |      |    |          $type_path
-#  |   |    |      |    $version_path
-#  |   |    |      $year
-#  |   |    $models_path
-#  \  /
-#   ||
-#   $project_path
-
 models=( \
 01-80-delta-2-cores \
 02-80-delta-4-cores \
@@ -35,7 +22,7 @@ project_path="/srv/hake"
 repo_path=`Rscript -e "cat(here::here())"`
 
 version_path="02-version"
-type_path="05-test-models/17-2500-samples-group"
+type_path="05-test-models/19-10000-samples-group"
 models_path="models"
 ss_exe="ss3_2024"
 
@@ -62,7 +49,7 @@ for model in ${models[@]}; do
   model_num_str=`echo $model | grep -Po '^\d+(?=-\d+)'`
   model_num=${model_num_str#0}
   if [[ ${model_num} -gt 6 ]]; then
-    printf "Exiting $model because the model number is greater than 6\n"
+    printf "Exiting $model because the model number is filtered out\n"
     exit 0
   fi
 

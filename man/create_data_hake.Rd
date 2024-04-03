@@ -4,12 +4,14 @@
 \alias{create_data_hake}
 \title{Create package data with one call}
 \usage{
-create_data_hake(var, val)
+create_data_hake(var, val, ...)
 }
 \arguments{
 \item{var}{The variable name}
 
 \item{val}{The value for variable \code{var}}
+
+\item{...}{Additional arguments for \code{\link[usethis:use_data]{usethis::use_data()}}}
 }
 \value{
 Nothing, creates package data. See \code{\link[usethis:use_data]{usethis::use_data()}}

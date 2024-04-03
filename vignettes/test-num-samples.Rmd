@@ -1,0 +1,448 @@
+---
+title: "Pacific Hake MCMC runs with varying acceptances"
+output:
+   bookdown::html_document2:
+      toc: true
+      toc_depth: 4
+      number_sections: true
+      pandoc_args: ["--number-offset=1"]
+date: "This document was rendered on `r hake::curr_time_date()`"
+vignette: >
+  %\VignetteIndexEntry{Pacific Hake MCMC runs with varying acceptances}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 10,
+  fig.height = 8,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE, results = "hide"}
+devtools::load_all(here::here())
+library(hake)
+theme_set(hake_theme())
+
+# Need this function to show LaTeX tables in HTML
+tex2markdown <- \(texstring){
+  writeLines(text = texstring,
+             con = myfile <- tempfile(fileext = ".tex"))
+  texfile <- pandoc(input = myfile, format = "html")
+  cat(readLines(texfile), sep = "\n")
+  unlink(c(myfile, texfile))
+}
+
+type_path <- "/srv/hake/models/2024/02-version/05-test-models"
+
+if(!exists("long_chain")){
+  long_chain <- readRDS(file.path(type_path,
+                                  "14-long-base/14-long-base.rds"))
+}
+
+if(!exists("chain_lst")){
+  num_samples <- c(500, 1000, 2500, 5000, 10000)
+  chain_lst <- map(num_samples, ~{
+    load_all_models_in_subdir(.x, type_path = type_path)
+  })
+  names(chain_lst) <- num_samples
+}
+if(!exists("lst_ad")){
+  lst_ad <- map(chain_lst, ~{
+    j <- group_test_models(.x, group_by = "adapt_delta")
+    for(i in seq_along(j)){
+      nms <- names(j[[i]])
+      j[[i]] <- append(list(long_chain), j[[i]])
+      names(j[[i]]) <- c("Long chain base model", nms)
+    }
+    j
+  })
+}
+if(!exists("lst_nc")){
+  lst_nc <- map(chain_lst, ~{
+    j <- group_test_models(.x, group_by = "num_cores")
+    for(i in seq_along(j)){
+      nms <- names(j[[i]])
+      j[[i]] <- append(list(long_chain), j[[i]])
+      names(j[[i]]) <- c("Long chain base model", nms)
+    }
+    j
+  })
+}
+
+# NUTS fits
+dirs <- c("15-500-samples-group",
+          "16-1000-samples-group",
+          "17-2500-samples-group",
+          "18-5000-samples-group",
+          "19-10000-samples-group")
+
+subdirs <- c("01-80-delta-2-cores",
+             "02-80-delta-4-cores",
+             "03-80-delta-14-cores",
+             "04-85-delta-2-cores",
+             "05-85-delta-4-cores",
+             "06-85-delta-14-cores",
+             "07-90-delta-2-cores",
+             "08-90-delta-4-cores",
+             "09-90-delta-14-cores",
+             "10-95-delta-2-cores",
+             "11-95-delta-4-cores",
+             "12-95-delta-14-cores")
+
+all_dirs <- map(dirs, ~{
+  file.path(.x, subdirs)
+}) |>
+  unlist()
+
+if(!exists("fits")){
+  fits <- save_nuts_fits(mdl_nms = all_dirs)
+  long_chain_fit <- save_nuts_fits(mdl_nms = "14-long-base")
+  fits <- append(long_chain_fit, fits, after = 0)
+  long_chain_nm <- "14-32000-samples-group/00-99-delta-1-cores"
+  names(fits) <- c(long_chain_nm, all_dirs)
+}
+```
+
+_______________________________________________________________________
+
+# Comparisons between models with the same number of samples
+
+```{r acceptance-tab, echo = FALSE, message = FALSE, results = "asis"}
+
+# Extract the number of samples, adapt_delta, and number of cores values
+nms <- names(fits)
+num_samples <- gsub("\\d{2}-(\\d+)-samples-group\\/\\d+-\\d+-delta-\\d+-cores",
+                 "\\1",
+                 nms)
+num_cores <- gsub("\\d{2}-\\d+-samples-group\\/\\d+-\\d+-delta-(\\d+)-cores",
+                 "\\1",
+                 nms)
+adapt_deltas <- gsub("\\d{2}-\\d+-samples-group\\/\\d+-(\\d+)-delta-\\d+-cores",
+                 "\\1",
+                 nms)
+adapt_deltas <- f(as.numeric(adapt_deltas) / 100, 2)
+
+d <- map_df(fits, \(fit){
+  all_chains_d <- map_df(fit$sampler_params, \(chain_df){
+    chain_df |> 
+      as_tibble()
+  })
+
+  out <- all_chains_d |> 
+    as_tibble() |> 
+    mutate(divergent__ = divergent__ * 10000) |> 
+    summarize(across(everything(), mean)) |> 
+    mutate(across(-divergent__, ~f(.x, 4))) |> 
+    mutate(across(divergent__, ~f(.x)))
+  names(out) <- c("Accept stat",
+                  "Step size",
+                  "Tree depth",
+                  "N leapfrog",
+                  "Divergent",
+                  "Energy")
+  out
+    }) |> 
+  mutate(`Num samples` = num_samples,
+         `Num cores` = num_cores,
+         `Adapt delta` = adapt_deltas) |> 
+  select(`Num samples`,
+         `Num cores`,
+         `Adapt delta`,
+         everything()) |> 
+  mutate(`Num samples` = f(as.numeric(`Num samples`)))
+
+  k <- kbl(d,
+           format = "html",
+           align   = rep("r", ncol(d)),
+           caption = paste0("Convergence statistics for models with ",
+                            "several different number of samples, ",
+                            "Adapt delta and number of cores used. The ",
+                            "first row contains the output for the long ",
+                            "chain base model which can be used as a ",
+                            "reference.")) |> 
+    kable_styling("striped",
+                  full_width = TRUE,
+                  font_size = 14) |> 
+    pack_rows("500 Samples", 2, 13,
+              label_row_css = "background-color: #666; color: #fff;") |> 
+    pack_rows("1,000 Samples", 14, 25,
+              label_row_css = "background-color: #666; color: #fff;") |> 
+    pack_rows("2,500 Samples", 26, 37,
+              label_row_css = "background-color: #666; color: #fff;") |>  
+    pack_rows("5,000 Samples", 38, 49,
+              label_row_css = "background-color: #666; color: #fff;") |> 
+    pack_rows("10,000 Samples", 50, 61,
+              label_row_css = "background-color: #666; color: #fff;")
+k 
+```
+
+# Biomass trajectory comparisons between models
+
+## Models with 500 samples
+
+This is a summary of the outputs of models run with sample size output set
+to 500, with varying `adapt_delta` and number of cores values.
+
+```{r adapt-delta-500-samples, echo = FALSE, fig.cap = "Spawning biomass for models with 500 samples saved. Each panel represents the `adapt_delta` value , multiplied by 100, and each panel has the model runs done with a variable number of cores. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+panels_title_size <- 11
+plot_comparison(lst_ad$`500`,
+                plot_func = plot_biomass,
+                label_text = "Adapt delta",
+                ylim = c(0, 5),
+                leg_pos = c(0.7, 0.8),
+                scale = 100,
+                digits = 2)
+```
+
+```{r num-cores-500-samples, echo = FALSE, fig.cap = "Spawning biomass for models with 500 samples saved. Each panel represents the `num_cores` value, and each panel has the model runs done with a variable number of `adapt_delta` values. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+plot_comparison(lst_nc$`500`,
+                plot_func = plot_biomass,
+                label_text = "Number of cores",
+                ylim = c(0, 5),
+                leg_pos = c(0.7, 0.8))
+```
+
+## Models with 1,000 samples
+
+This is a summary of the outputs of models run with sample size output set
+to 1,000, with varying `adapt_delta` and number of cores values.
+
+```{r adapt-delta-1000-samples, echo = FALSE, fig.cap = "Spawning biomass for models with 1,000 samples saved. Each panel represents the `adapt_delta` value , multiplied by 100, and each panel has the model runs done with a variable number of cores. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+panels_title_size <- 11
+plot_comparison(lst_ad$`1000`,
+                plot_func = plot_biomass,
+                label_text = "Adapt delta",
+                ylim = c(0, 5),
+                leg_pos = c(0.7, 0.8),
+                scale = 100,
+                digits = 2)
+```
+
+```{r num-cores-1000-samples, echo = FALSE, fig.cap = "Spawning biomass for models with 1,000 samples saved. Each panel represents the `num_cores` value, and each panel has the model runs done with a variable number of `adapt_delta` values. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+plot_comparison(lst_nc$`1000`,
+                plot_func = plot_biomass,
+                label_text = "Number of cores",
+                ylim = c(0, 5),
+                leg_pos = c(0.7, 0.8))
+```
+
+## Models with 2,500 samples
+
+This is a summary of the outputs of models run with sample size output set
+to 2,500, with varying `adapt_delta` and number of cores values.
+
+```{r adapt-delta-2500-samples, echo = FALSE, fig.cap = "Spawning biomass for models with 2,500 samples saved. Each panel represents the `adapt_delta` value , multiplied by 100, and each panel has the model runs done with a variable number of cores. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+panels_title_size <- 11
+plot_comparison(lst_ad$`2500`,
+                plot_func = plot_biomass,
+                label_text = "Adapt delta",
+                ylim = c(0, 5),
+                leg_pos = c(0.7, 0.8),
+                scale = 100,
+                digits = 2)
+```
+
+```{r num-cores-2500-samples, echo = FALSE, fig.cap = "Spawning biomass for models with 2,500 samples saved. Each panel represents the `num_cores` value, and each panel has the model runs done with a variable number of `adapt_delta` values. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+plot_comparison(lst_nc$`2500`,
+                plot_func = plot_biomass,
+                label_text = "Number of cores",
+                ylim = c(0, 5),
+                leg_pos = c(0.7, 0.8))
+```
+
+## Models with 5,000 samples
+
+This is a summary of the outputs of models run with sample size output set
+to 5,000, with varying `adapt_delta` and number of cores values.
+
+```{r adapt-delta-5000-samples, echo = FALSE, fig.cap = "Spawning biomass for models with 5,000 samples saved. Each panel represents the `adapt_delta` value , multiplied by 100, and each panel has the model runs done with a variable number of cores. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+panels_title_size <- 11
+plot_comparison(lst_ad$`5000`,
+                plot_func = plot_biomass,
+                label_text = "Adapt delta",
+                ylim = c(0, 5),
+                leg_pos = c(0.7, 0.8),
+                scale = 100,
+                digits = 2)
+```
+
+```{r num-cores-5000-samples, echo = FALSE, fig.cap = "Spawning biomass for models with 5,000 samples saved. Each panel represents the `num_cores` value, and each panel has the model runs done with a variable number of `adapt_delta` values. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+plot_comparison(lst_nc$`5000`,
+                plot_func = plot_biomass,
+                label_text = "Number of cores",
+                ylim = c(0, 5),
+                leg_pos = c(0.7, 0.8))
+```
+
+## Models with 10,000 samples
+
+This is a summary of the outputs of models run with sample size output set
+to 10,000, with varying `adapt_delta` and number of cores values.
+
+```{r adapt-delta-10000-samples, echo = FALSE, fig.cap = "Spawning biomass for models with 10,000 samples saved. Each panel represents the `adapt_delta` value , multiplied by 100, and each panel has the model runs done with a variable number of cores. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+panels_title_size <- 11
+plot_comparison(lst_ad$`10000`,
+                plot_func = plot_biomass,
+                label_text = "Adapt delta",
+                ylim = c(0, 5),
+                leg_pos = c(0.7, 0.8),
+                scale = 100,
+                digits = 2)
+```
+
+```{r num-cores-10000-samples, echo = FALSE, fig.cap = "Spawning biomass for models with 10,000 samples saved. Each panel represents the `num_cores` value, and each panel has the model runs done with a variable number of `adapt_delta` values. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+plot_comparison(lst_nc$`10000`,
+                plot_func = plot_biomass,
+                label_text = "Number of cores",
+                ylim = c(0, 5),
+                leg_pos = c(0.7, 0.8))
+```
+
+# Estimated recruitment comparisons between models
+
+## Models with 500 samples
+
+This is a summary of the outputs of models run with sample size output set
+to 500, with varying `adapt_delta` and number of cores values.
+
+```{r adapt-delta-500-samples-recr, echo = FALSE, fig.cap = "Recruitment for models with 500 samples saved. Each panel represents the `adapt_delta` value , multiplied by 100, and each panel has the model runs done with a variable number of cores. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+panels_title_size <- 11
+plot_comparison(lst_ad$`500`,
+                plot_func = plot_recruitment,
+                label_text = "Adapt delta",
+                ylim = c(0, 40),
+                leg_pos = c(0.7, 0.8),
+                scale = 100,
+                digits = 2)
+```
+
+```{r num-cores-500-samples-recr, echo = FALSE, fig.cap = "Recruitment for models with 500 samples saved. Each panel represents the `num_cores` value, and each panel has the model runs done with a variable number of `adapt_delta` values. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+plot_comparison(lst_nc$`500`,
+                plot_func = plot_recruitment,
+                label_text = "Number of cores",
+                ylim = c(0, 40),
+                leg_pos = c(0.7, 0.8))
+```
+
+## Models with 1,000 samples
+
+This is a summary of the outputs of models run with sample size output set
+to 1,000, with varying `adapt_delta` and number of cores values.
+
+```{r adapt-delta-1000-samples-recr, echo = FALSE, fig.cap = "Recruitment for models with 1,000 samples saved. Each panel represents the `adapt_delta` value , multiplied by 100, and each panel has the model runs done with a variable number of cores. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+panels_title_size <- 11
+plot_comparison(lst_ad$`1000`,
+                plot_func = plot_recruitment,
+                label_text = "Adapt delta",
+                ylim = c(0, 40),
+                leg_pos = c(0.7, 0.8),
+                scale = 100,
+                digits = 2)
+```
+
+```{r num-cores-1000-samples-recr, echo = FALSE, fig.cap = "Recruitment for models with 1,000 samples saved. Each panel represents the `num_cores` value, and each panel has the model runs done with a variable number of `adapt_delta` values. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+plot_comparison(lst_nc$`1000`,
+                plot_func = plot_recruitment,
+                label_text = "Number of cores",
+                ylim = c(0, 40),
+                leg_pos = c(0.7, 0.8))
+```
+
+## Models with 2,500 samples
+
+This is a summary of the outputs of models run with sample size output set
+to 2,500, with varying `adapt_delta` and number of cores values.
+
+```{r adapt-delta-2500-samples-recr, echo = FALSE, fig.cap = "Recruitment for models with 2,500 samples saved. Each panel represents the `adapt_delta` value , multiplied by 100, and each panel has the model runs done with a variable number of cores. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+panels_title_size <- 11
+plot_comparison(lst_ad$`2500`,
+                plot_func = plot_recruitment,
+                label_text = "Adapt delta",
+                ylim = c(0, 40),
+                leg_pos = c(0.7, 0.8),
+                scale = 100,
+                digits = 2)
+```
+
+```{r num-cores-2500-samples-recr, echo = FALSE, fig.cap = "Recruitment for models with 2,500 samples saved. Each panel represents the `num_cores` value, and each panel has the model runs done with a variable number of `adapt_delta` values. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+plot_comparison(lst_nc$`2500`,
+                plot_func = plot_recruitment,
+                label_text = "Number of cores",
+                ylim = c(0, 40),
+                leg_pos = c(0.7, 0.8))
+```
+
+## Models with 5,000 samples
+
+This is a summary of the outputs of models run with sample size output set
+to 5,000, with varying `adapt_delta` and number of cores values.
+
+```{r adapt-delta-5000-samples-recr, echo = FALSE, fig.cap = "Recruitment for models with 5,000 samples saved. Each panel represents the `adapt_delta` value , multiplied by 100, and each panel has the model runs done with a variable number of cores. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+panels_title_size <- 11
+plot_comparison(lst_ad$`5000`,
+                plot_func = plot_recruitment,
+                label_text = "Adapt delta",
+                ylim = c(0, 40),
+                leg_pos = c(0.7, 0.8),
+                scale = 100,
+                digits = 2)
+```
+
+```{r num-cores-5000-samples-recr, echo = FALSE, fig.cap = "Recruitment for models with 5,000 samples saved. Each panel represents the `num_cores` value, and each panel has the model runs done with a variable number of `adapt_delta` values. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+plot_comparison(lst_nc$`5000`,
+                plot_func = plot_recruitment,
+                label_text = "Number of cores",
+                ylim = c(0, 40),
+                leg_pos = c(0.7, 0.8))
+```
+
+## Models with 10,000 samples
+
+This is a summary of the outputs of models run with sample size output set
+to 10,000, with varying `adapt_delta` and number of cores values.
+
+```{r adapt-delta-10000-samples-recr, echo = FALSE, fig.cap = "Recruitment for models with 10,000 samples saved. Each panel represents the `adapt_delta` value , multiplied by 100, and each panel has the model runs done with a variable number of cores. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+panels_title_size <- 11
+plot_comparison(lst_ad$`10000`,
+                plot_func = plot_recruitment,
+                label_text = "Adapt delta",
+                ylim = c(0, 40),
+                leg_pos = c(0.7, 0.8),
+                scale = 100,
+                digits = 2)
+```
+
+```{r num-cores-10000-samples-recr, echo = FALSE, fig.cap = "Recruitment for models with 10,000 samples saved. Each panel represents the `num_cores` value, and each panel has the model runs done with a variable number of `adapt_delta` values. The 'Long chain base model' is a comparison run with the number of samples set to 32,000 and the `adapt_delta` set to 0.99."}
+
+plot_comparison(lst_nc$`10000`,
+                plot_func = plot_recruitment,
+                label_text = "Number of cores",
+                ylim = c(0, 40),
+                leg_pos = c(0.7, 0.8))
+```
+

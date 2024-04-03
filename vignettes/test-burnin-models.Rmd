@@ -1,0 +1,111 @@
+---
+title: "Pacific Hake NUTS"
+output:
+   bookdown::html_document2:
+      toc: true
+      toc_depth: 4
+      number_sections: true
+      pandoc_args: ["--number-offset=1"]
+date: "This document was rendered on `r hake::curr_time_date()`"
+vignette: >
+  %\VignetteIndexEntry{Pacific Hake NUTS}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE, message = FALSE, results = "hide", warning = FALSE}
+library(hake)
+
+# Need this function to show LaTeX tables in HTML
+tex2markdown <- \(texstring){
+  writeLines(text = texstring,
+             con = myfile <- tempfile(fileext = ".tex"))
+  texfile <- pandoc(input = myfile, format = "html")
+  cat(readLines(texfile), sep = "\n")
+  unlink(c(myfile, texfile))
+}
+
+```
+
+_______________________________________________________________________
+
+## Introduction
+
+Running the models for the hake assessment using NUTS requires that the user
+provide the sample size, adapt delta, and the number of chains for the run.
+
+## Burn-in investigation
+
+To determine the ideal burn-in for this assessment model, 11 models were run
+each with a different burn-in value. The models were identical in every other
+way, and used the same `adapt_delta` value of 0.95 and 8 chains. The values
+used for burn-in were: 1, 50, 100, 150, 200, 250, 300, 350, 400, 450, and 500.
+
+There were divergent iterations in all cases, but with decreasing numbers
+after a burn-in of only 50 samples (Table \@ref(tab:burnin-tab)).
+
+To view detailed stats for any one of these models, run the following where 1
+can be any number between 1 and 11:
+
+```{r shiny-ex, echo = TRUE, eval = FALSE}
+fits <- save_nuts_fits()
+adnuts::launch_shinyadmb(fits[[1]])
+```
+
+```{r burnin-tab, echo = FALSE, message = FALSE, results = "asis"}
+
+fits <- save_nuts_fits()
+
+# If only some of the runs are done. Don't forget to change the values in
+# line about 15 lines down:   mutate(`Burn-in` = c(1, seq(50, 500, 50))) |> 
+#
+# fits <- map(fits, ~{
+#   if(is.na(.x[1])){
+#     return(NULL) 
+#   }else{
+#     return(.x) 
+#   }})
+# fits[sapply(fits, is.null)] <- NULL
+
+d <- map_df(fits, \(fit){
+  all_chains_d <- map_df(fit$sampler_params, \(chain_df){
+    chain_df |> 
+      as_tibble()
+  })
+
+  out <- all_chains_d |> 
+    as_tibble() |> 
+    mutate(divergent__ = divergent__ * 10000) |> 
+    summarize(across(everything(), mean)) |> 
+    mutate(across(-divergent__, ~f(.x, 4))) |> 
+    mutate(across(divergent__, ~f(.x)))
+  names(out) <- c("Accept stat",
+                  "Step size",
+                  "Tree depth",
+                  "N leapfrog",
+                  "Divergent",
+                  "Energy")
+  out
+    }) |> 
+  mutate(`Burn-in` = c(1, seq(50, 500, 50), 50)) |> 
+  select(`Burn-in`, everything())
+
+  k <- kbl(d,
+           format = "latex",
+           booktabs = TRUE,
+           align = rep("r", ncol(d)),
+           linesep = "",
+           escape = FALSE,
+           caption = paste0("Convergence statistics for models with ",
+                            "several different burn-in oprions.")) |> 
+    row_spec(0, bold = TRUE)
+
+tex2markdown(k)
+```
