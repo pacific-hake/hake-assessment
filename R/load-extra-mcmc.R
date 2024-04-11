@@ -74,6 +74,34 @@ load_extra_mcmc <- function(model,
 
   extra_mcmc <- list()
 
+  # Age compositions -----------------------------------------------------------
+  # `extra_mcmc$age_comps` is a data frame with columns "iter", "yr", "fleet",
+  # and 15 columns for the age comps estimated in the model labeled as the age
+  extra_mcmc$age_comps <- load_extra_mcmc_age_comps(
+    compreps = compreps,
+    start_yr = model$startyr,
+    end_yr = model$endyr + 1,
+    progress_n = progress_n,
+    verbose = verbose,
+    beg_pat = "^Composition_Database",
+    end_pat = "End_comp_data",
+    ...)
+
+  # Initial numbers-at-age -----------------------------------------------------
+  ages <- model$natage |> names() |> as.numeric() |> suppressWarnings()
+  ages <- ages[!is.na(ages)]
+  max_age <- max(ages)
+
+  extra_mcmc$init_natage <- load_extra_mcmc_init_nage(
+    reps = reps,
+    start_yr = model$startyr,
+    end_yr = model$endyr + 1,
+    progress_n = progress_n,
+    verbose = verbose,
+    beg_pat = paste0("^\\d+\\s*Early_InitAge_", max_age),
+    end_pat = "^\\d+\\s*Early_InitAge_1\\s+",
+    ...)
+
   # Cohort recruitments --------------------------------------------------------
   extra_mcmc$recr_cohorts <- load_extra_mcmc_recr_cohorts(
     reps = reps,

@@ -20,6 +20,7 @@ load_extra_mcmc_get_chunk <- function(lst,
   x <- lst[[1]]
 
   headmark_ind <- grep(beg_pat, x)
+
   if(!length(headmark_ind)){
     warning("Could not find a line in the input matching the regular ",
          "expression `", beg_pat, "`")
@@ -88,6 +89,17 @@ load_extra_mcmc_get_chunk <- function(lst,
   # Multiple columns with the name XX appear in some output (catage in SS3)
   # This line doesn't affect anything if XX is not a column name
   out <- map(lst, ~{gsub("XX", "", .x[start_ind:tail_ind])})
+
+  # Remove any comment lines (lines starting with optional whitespace
+  # and then one or more # symbols)
+  out <- out |>
+    map(~{
+      inds <- grep("^\\s*#+.*$", .x)
+      if(length(inds)){
+        .x <- .x[-inds]
+      }
+      .x
+    })
 
   list(header = header, lst = out)
 }

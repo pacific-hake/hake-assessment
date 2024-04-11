@@ -58,7 +58,7 @@
 #' @importFrom stats start ts
 #' @importFrom stringr str_count str_flatten str_flatten_comma str_split str_sub
 #' @importFrom tools file_path_sans_ext file_ext
-#' @importFrom tibble as_tibble enframe
+#' @importFrom tibble as_tibble as_tibble_row enframe
 #' @importFrom tidyselect all_of any_of matches one_of starts_with
 #' @importFrom tidyr complete pivot_longer pivot_wider unnest
 #' @importFrom utils head globalVariables menu object.size read.csv read.table
