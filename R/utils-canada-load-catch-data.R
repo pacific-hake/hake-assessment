@@ -24,7 +24,7 @@ canada_load_catch_data <- function(dr = "/srv/hake/other/landings/canada",
                                    min_date = as.Date("2007-04-01")){
 
   if(!dir.exists(dr)){
-    stop("The supplied sirectory `dr` = `", dr, "` does not exist")
+    stop("The supplied directory `dr` = `", dr, "` does not exist")
   }
 
   dmp_fn <- file.path(dr, "LandingsSpeciesDateDMP.csv")
