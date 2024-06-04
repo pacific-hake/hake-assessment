@@ -59,6 +59,11 @@ canada_load_catch_data <- function(dr = "/srv/hake/other/landings/canada",
     .x <- gsub("\\.", "_", .x)
   })
 
+  d_inside <- d |>
+    mutate(landing_date = as.Date(landing_date, "%B %d %Y")) |>
+    filter(landing_date >= min_date) |>
+    filter(grepl("(GULF)|(OPT B)", licence_trip_type))
+
   d <- d |>
     mutate(landing_date = as.Date(landing_date, "%B %d %Y")) |>
     filter(landing_date >= min_date) |>
@@ -103,6 +108,7 @@ canada_load_catch_data <- function(dr = "/srv/hake/other/landings/canada",
   }
 
   list(dmp_df = d,
+       dmp_inside_df = d_inside,
        logs_df = logs_df,
        logs_inside_df = logs_inside_df)
 }
