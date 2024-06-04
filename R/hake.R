@@ -66,6 +66,6 @@
 #' @importFrom vctrs vec_as_names vec_group_rle
 #' @importFrom withr defer
 
-#' @docType package
+#' @docType _PACKAGE
 #' @name hake
 NULL
