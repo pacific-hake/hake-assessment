@@ -18,7 +18,7 @@ load_extra_mcmc_age_comps(
 \item{compreps}{A list of vectors representing one element per
 compreport file}
 
-\item{verbose}{Logical. Show messages}
+\item{verbose}{Logical. If \code{TRUE}, show messages}
 
 \item{start_yr}{Filter years earlier than this out of the results. If
 \code{NULL}, no filtering will occur for the start year}
