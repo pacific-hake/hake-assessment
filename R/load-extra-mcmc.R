@@ -102,6 +102,21 @@ load_extra_mcmc <- function(model,
     end_pat = "^\\d+\\s*Early_InitAge_1\\s+",
     ...)
 
+  # Recruitment deviatons ------------------------------------------------------
+  ages <- model$natage |> names() |> as.numeric() |> suppressWarnings()
+  ages <- ages[!is.na(ages)]
+  max_age <- max(ages)
+
+  extra_mcmc$recr_devs <- load_extra_mcmc_recr_devs(
+    reps = reps,
+    start_yr = model$startyr,
+    end_yr = model$endyr,
+    progress_n = progress_n,
+    verbose = verbose,
+    beg_pat = paste0("^\\d+\\s+Early_InitAge_", max_age),
+    end_pat = paste0("^\\d+\\s+Late_RecrDev_", model$endyr),
+    ...)
+
   # Cohort recruitments --------------------------------------------------------
   extra_mcmc$recr_cohorts <- load_extra_mcmc_recr_cohorts(
     reps = reps,
