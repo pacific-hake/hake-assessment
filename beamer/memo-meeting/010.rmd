@@ -17,32 +17,91 @@
 
 ## SRG Request 1
 
-1. The SRG recommends continuing sensitivities for steepness, natural mortality, $\sigma_R$,
+The SRG recommends continuing sensitivities for steepness, natural mortality, $\sigma_R$,
 excluding the age-1 index, alternative standard deviations for time-varying selectivity, and down-weighting fishery age-composition data.
 
 Response: *Yes, we will do these sensitivities.*
 
-## SRG Request 2
+## SRG Request 2, Kelli
 
-kelli
+The SRG recommends that the JTC explore alternative ways of estimating natural mortality to update the current approach in the model, which is based on methods from more than a decade ago, and particularly consider options which have age-based natural mortality.
+
+Response: *Sophia W ran the CEATTLE model (4 models currently) with updated data, gives us a single vector of natural-mortality at age. Would be input as fixed values. Previous attempts at estimating mortality-at-age were not successful using Lorenzen curve. Stock Synthesis is not having new features added. Would involve replacing an estimated M with a fixed mortality-at-age vector. Likely do as a sensitivity analysis.*
+
+*Could think about using Sophia’s work results to inform an age-based M prior.*
+*Can have a predator index, but it’s not dynamic (no feedback like in CEATTLE).*
+[DNA analysis of hake (and other species) in harbor seal diet](https://scholar.google.com/scholar_url?url=https://www.int-res.com/articles/meps_oa/m743p113.pdf&hl=en&sa=X&d=7035063540343333520&ei=dg3KZvPXCq-Ly9YPsfnLwQs&scisig=AFWwaeZ0XVe4uuKTGL-PCWaZhm-R&oi=scholaralrt&hist=_VMmiPwAAAAJ:9480142533121162666:AFWwaea2_PScUeInVLp6dXD_hYL6&html=&pos=0&folt=kw-top).
 
 ## SRG Request 3
 
+The SRG encourages an analysis of catch and biomass distribution for Canada and
+US that examines latitudinal shifts in fishing over time, and tries to predict factors
+influencing these shifts.
+
+Response Aaron: *Owen Liu looking at env’l factors influencing hake. Andy can easily look at temperature for Canadian waters (including modelling outputs for midwaters, so not just surface), at least just for looking for any obvious changes through time.*
+
+*Should we estimate the index from the bottom trawl survey for just California to remove the autocorrelated effects, or maybe just predict to the spatial footprint of California.*
+
 ## SRG Request 4
+
+Pacific Hake dynamics are highly variable even without fishing mortality. The SRG applauds the efforts of the JTC to estimate dynamic reference points, and encourages efforts by the MSE Technical Team to include dynamic reference points in the MSE process. 
+
+Response Aaron: *No time to incorporate into MSE (lost the dedicated MSE person this year); can include dynamic reference points like in 2024 assessment.*
 
 ## SRG Request 5
 
+The SRG recommends continued work to collect ovary samples, with a focus on fecundity and functional maturity, as well as continued annual maturity analysis.
+
+Response Kelli: *Update the model and decide on day of year to use for the analysis. Should we pick something that matches the way stock synthesis is set up. SS3 assumes beginning of the year and end of the year. Email Melissa Head to see what day of the year to use. *
+
 ## SRG Request 6
 
-## SRG Request 7
+On three occasions since 2009 (2011-12, 2016-17, 2023), stock assessments have predicted a rapid increase in biomass similar to that seen in the 2024 assessment, where this rapid increase was not visible in subsequent assessments. The SRG recommends investigating what factors might be causing these shifts in biomass estimates and projections.
 
-## SRG Request 8
+Response Andy: *An age-0 recruitment index would help (Andy presented analyses of age-0 hake data at the SRG meeting; plans to continue when time). This analysis ignores the uncertainty of those estimates.*
+
+## SRG Request 7, Chantel
+
+The SRG encourages the JTC to consider methods to determine the maximum input sample size for the age compositions (e.g. Stewart and Hamel 2014, Hulson et al. 2023).
+
+Response Chantel: *What would happen if we just used the number of fish as input sample size and let the Dirichlet downweight them. We have artificially upweighted sample sizes in last year SRG requests. No great precedent across the assessment community. Could just use the Stewart and Hamel equation as a sensitivity run. Kelli noted that number of tow/trips differ between the shoreside an the at-sea fleet.*
+
+## SRG Request 8, Aaron
+
+The SRG has previously noted that $\sigma_R$ is an influential parameter, and encourages
+further work by the JTC. The SRG supports continuing efforts to explore new recruitment parameterizations, including treating recruitment deviations as random effects, to better estimate $\sigma_R$.
+
+Response: *Future developments (e.g., random effects) could allow fruitful work on this but we are not ready for it. Could cite Cole, Jim etc presentation (Thorson et al. 2024. Dynamic structural equation models as novel framework for incorporating time-variation into stock assessment models. University of Washington Think Tank Seminar October 8th, 2024.) on this.*
 
 ## SRG Request 9
 
-## SRG Request 10
+The SRG noted that the age-1 index did not include a value for 2001 because it was zero. Although this decision had negligible influence on the results because the estimate for 2000 recruitment was close to zero, the SRG noted that Stock Synthesis uses a lognormal likelihood which does not handle zero values. Given that future zero values are expected to have a bigger influence on the results in the short-term, the SRG recommends that the JTC explore likelihood forms that can fit to very low index values from the age-1 survey (e.g., robust likelihood). The SRG acknowledges that implementing new likelihoods will require changes to the Stock Synthesis platform.
 
-## SRG Request 11
+Response: *Not worth our time while others work on it; AK folks have been thinking about this and running into snags. Think we thought/showed that it wouldn’t make much difference (recruitment being zero or very close to zero doesn’t really matter in the bigger picture).*
+
+## SRG Request 10, Andy
+
+The SRG recommends that the JMC review the decision tables and reconsider required harvest scenarios to reduce the number of similar and overlapping Scenarios.
+
+Response: *Need a reply by JTC meeting, so we can discuss and implement for the assessment.*
+
+## SRG Request 11, Aaron
+
+The SRG noted that alternative structures of the assessment model have not been comprehensively examined since 2011 (e.g., multiple fleets and/or spatial model), and were informed that limited staffing and availability of the JTC inhibits these time-consuming analyses. The SRG recommends examining structural assumptions of the stock assessment as time allows. More complex structural assumptions may utilize the data more thoroughly, explain different trends across areas and/or fleets, and estimate stock status more accurately, but simpler models may be more
+appropriate for determination of the TAC. The MSE can be used to determine best performing assessment models for management.
+
+Response: *Need to start with data disaggregation ability (Canada data should be good; US at-sea fishery in a foreign table so need new code but can be done; US shoreside goes back to 1966 but has many missing years (1976-1982 are all missing among others).*
+
+## SRG Request 11 (page 2)
+
+- Break down into what we can do this year and what we can do in future years.
+- List different models/modeling frameworks that can be run and their deficiencies or assumptions that would be needed to run them.
+- Seems that the problem is why the fish aren’t coming to Canada as much. I think this problem actually goes to other SRG requests, like the distribution CPUE modeling. This one is more about using the data that we have and they think that the fleets act differently.
+- List of potential complex structural assumption model types or assumptions that may be more influential in the model that the JTC thinks could best improve the model:
+  - Data weighting
+  - Predator time series (maybe?)
+  - Multiple fleets instead of aggregated fleet
+  - Using fleet-specific weight-at-age data instead of aggregate weight-at-age (this has been looked at before but not for a while)
 
 # Review of March 2024 Landmark Fisheries Memo
 
