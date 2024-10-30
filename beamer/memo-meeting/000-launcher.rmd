@@ -84,7 +84,7 @@ if(home == ""){
   stop("`home` is an empty string. The `system(echo $HOME)` call failed ",
        "which means the $HOME variable in the OS is not set")
 }
-models_dir <- "/srv/hake/models"
+#models_dir <- "/srv/hake/models"
 test <- rmarkdown::metadata$output$`hake_beamer`$test %||% FALSE
 if(test){
   # Necessary for `gotest()` testing
@@ -135,5 +135,5 @@ if(!dir.exists(fig_dir)){
   dir.create(fig_dir)
 }
 
-can_dat_lst <- readRDS("/srv/hake/other/samples/canada/gfbio-all-data.rds")
+#can_dat_lst <- readRDS("/srv/hake/other/samples/canada/gfbio-all-data.rds")
 ```
