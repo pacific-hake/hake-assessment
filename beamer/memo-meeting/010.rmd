@@ -233,7 +233,7 @@ These include:
   - Multiple fleets instead of aggregated fleet
   - Using fleet-specific weight-at-age data instead of aggregate weight-at-age (this has been looked at before but not for a while)
 
-  ## Underlying Issue: Hake Distribution Changes
+## Underlying Issue: Hake Distribution Changes
 
 - Some of the other (higher priority) SRG requests will help understanding, including spatial CPUE modeling.
 - Investigating hake distribution changes in bottom trawl survey
@@ -244,4 +244,3 @@ These include:
 
 - Formal JMC requests for scientific review of internally, or externally, produced research or perspectives should be conducted by the SRG.
 - The JTC suggests that the March 2024 Landmark Fisheries Memo on Selectivity be formally reviewed at the 2025 SRG meeting.
-- Such a review does not hinder aformentioned JTC plans for exploring and developing alternative model structures.
