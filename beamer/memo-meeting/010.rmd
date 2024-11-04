@@ -52,7 +52,7 @@ The SRG encourages an analysis of catch and biomass distribution for Canada and
 US that examines latitudinal shifts in fishing over time, and tries to predict factors
 influencing these shifts.
 
-Response Aaron: *Owen Liu building species distribution models for hake. This work will include incorporating environmental factors across the full transboundary range of hake and will evaluate prediction skill for developing short term forecasts.*
+Response: *Owen Liu building species distribution models for hake. This work will include incorporating environmental factors across the full transboundary range of hake and will evaluate prediction skill for developing short term forecasts.*
 
 *The JTC plans to investigate patterns of hake in the U.S. West Coast Bottom Trawl Survey in California waters where fishery data is limited.*
 
@@ -112,15 +112,45 @@ Response: *The JTC plans to evaluate the multitude of changes in the assessment 
 
 ## Spatial Modelling Good Practices
 
-![](../../beamer/memo-meeting/images/GoodPracticesSpatialModels)
+\setbeamerfont{caption}{size=\Tiny}
+\begin{figure}
+   \begin{minipage}[b]{0.85\textwidth}
+            \centering
+            \includegraphics[width=0.85\linewidth,height=0.85\textheight]{../../beamer/memo-meeting/images/GoodPracticesSpatialModels}
+   \end{minipage}
+   \hfill
+   \begin{minipage}[b]{0.85\textwidth}
+            \caption*{Goethel, Berger, and Cadrin. 2023. Spatial awareness: Good practices and pragmatic recommendations for developing spatially structured stock assessments. Fish Res.}
+   \end{minipage}
+   \end{figure}
 
 ## Spatial Modelling: Main Options
 
-![](../../beamer/memo-meeting/images/ModelComplexity_DataRichness)
+\setbeamerfont{caption}{size=\Tiny}
+\begin{figure}
+   \begin{minipage}[b]{0.85\textwidth}
+            \centering
+            \includegraphics[width=0.95\linewidth,height=0.85\textheight]{../../beamer/memo-meeting/images/ModelComplexity_DataRichness}
+   \end{minipage}
+   \hfill
+   \begin{minipage}[b]{0.85\textwidth}
+            \caption*{Goethel, Berger, and Cadrin. 2023. Spatial awareness: Good practices and pragmatic recommendations for developing spatially structured stock assessments. Fish Res.}
+   \end{minipage}
+   \end{figure}
 
 ## Spatial Modelling: Needs and Limitations
 
-![](../../beamer/memo-meeting/images/SpatialModelTypes)
+\setbeamerfont{caption}{size=\Tiny}
+\begin{figure}
+   \begin{minipage}[b]{0.85\textwidth}
+            \centering
+            \includegraphics[width=0.85\linewidth,height=0.85\textheight]{../../beamer/memo-meeting/images/SpatialModelTypes}
+   \end{minipage}
+   \hfill
+   \begin{minipage}[b]{0.85\textwidth}
+            \caption*{Goethel, Berger, and Cadrin. 2023. Spatial awareness: Good practices and pragmatic recommendations for developing spatially structured stock assessments. Fish Res.}
+   \end{minipage}
+   \end{figure}
 
 ## Spatial Model: Where to Start?
 
