@@ -83,15 +83,23 @@ Response Andy: *An age-0 recruitment index would help (Andy presented analyses o
 The SRG encourages the JTC to consider methods to determine the maximum input sample size for the age compositions (e.g. Stewart and Hamel 2014, Hulson et al. 2023).
 
 \begin{figure}
-\caption*{\it{The JTC agrees that determining input sample sizes is important for fishery and survey age compositions, which then provides the basis from which model-based re-weighting is done. The JTC has considered alternative methods and has determined additional research is needed to inform the calculation of input sample size for both fishery and survey ages. Fishery input sample sizes are calculated using a mixture of either the number of hauls or trips, when haul information is not available (e.g., shore-based), and further work is needed to determine the effective sample sizes at the haul and trip level and how to calculate a fleetwide input sample size. Survey age compositions represent age structure associated with the acoustic survey as viewed through an estimated selectivity curve for the acoustic-trawl sampling net. Yet, selectivity for ages two and older with acoustics is theoretically at or near one. Additionally, if the survey moves to using a new net, changing selectivity, the effective sample size could vary requiring consideration on how to model the survey. The JTC does not plan on investigating this issue for this year's assessment but supports the prioritization of this research for future assessments.}}
+\caption*{\it{Response: The JTC agrees that determining input sample sizes is important for fishery and survey age compositions, which then provides the basis from which model-based re-weighting is done. The JTC has considered alternative methods and has determined additional research is needed to inform the calculation of input sample size for both fishery and survey ages. Fishery input sample sizes are calculated using a mixture of either the number of hauls or trips, when haul information is not available (e.g., shore-based), and further work is needed to determine the effective sample sizes at the haul and trip level and how to calculate a fleetwide input sample size. Survey age compositions represent age structure associated with the acoustic survey as viewed through an estimated selectivity curve for the acoustic-trawl sampling net. Yet, selectivity for ages two and older with acoustics is theoretically at or near one. Additionally, if the survey moves to using a new net, changing selectivity, the effective sample size could vary requiring consideration on how to model the survey. The JTC does not plan on investigating this issue for this year's assessment but supports the prioritization of this research for future assessments.}}
 \end{figure}
 
-## 2024 SRG Request 8, Aaron
+## 2024 SRG Request 8
+
+\setbeamerfont{caption}{size={\fontsize{10}{10}}}
 
 The SRG has previously noted that $\sigma_R$ is an influential parameter, and encourages
 further work by the JTC. The SRG supports continuing efforts to explore new recruitment parameterizations, including treating recruitment deviations as random effects, to better estimate $\sigma_R$.
 
-Response: *Future developments (e.g., random effects) could allow fruitful work on this but we are not ready for it. Could cite Cole, Jim etc presentation (Thorson et al. 2024. Dynamic structural equation models as novel framework for incorporating time-variation into stock assessment models. University of Washington Think Tank Seminar October 8th, 2024.) on this.*
+\begin{figure}
+\caption*{\it{Response: Future improvements in the stock assessment software used to assess hake (e.g., ability to use random effects in the modeling framework) will allow for fruitful work on this.  The Fisheries Integrated Modeling System (FIMS) will replace Stock Synthesis in the coming years and will have random effects capabilities. The Pacific hake assessment is a primary test case for FIMS.}}
+
+\caption*{\it{Other frameworks (e.g., Woods Hole Assesment Model, or WHAM, and bespoke models) can already use random effects.  The JTC has completed initial explorations using WHAM and concluded random effect structures will be beneficial for modeling Pacific hake.}}
+
+\caption*{\it{The JTC is also following pertinent research aimed at advancing these methods (e.g., dynamic structural equation models as novel framework for incorporating time-variation into stock assessment models; AFSC and UW) and approaches for operational assessment use.}}
+\end{figure}
 
 ## 2024 SRG Request 9
 
@@ -166,17 +174,11 @@ Ability to disaggregate the data
 
 The JTC will explore disaggregated data series this year.
 
-## Underlying Issue: Hake Distribution Changes
-
-- Some of the other (higher priority) SRG requests will help understanding, including spatial CPUE modeling.
-- Investigating hake distribution changes in bottom trawl survey
-- Correlating hake distribution changes with California Current IEA
-- Owen Liu's work (see SRG reqeust #3)
-
 ## Some Future Steps
 
 - Evaluate alternative data/model assumptions for validity
 - Evaluate variance and bias tradeoffs with doubling the number of time varying selectivity parameters
+- Compare spatially-implicit assessment approaches: time-varying selectivity versus area-varying selectivity versus both
 - Develop states of nature scenarios to test model structure robustness in the MSE
 
 ## Structural Assumptions
@@ -189,6 +191,13 @@ These include:
   - Improving estimates of natural mortality via predator time series
   - Multiple fleets instead of aggregated fleet
   - Using fleet-specific weight-at-age data instead of aggregate weight-at-age (this has been looked at before but not for a while)
+
+  ## Underlying Issue: Hake Distribution Changes
+
+- Some of the other (higher priority) SRG requests will help understanding, including spatial CPUE modeling.
+- Investigating hake distribution changes in bottom trawl survey
+- Correlating hake distribution changes with California Current IEA
+- Owen Liu's work (hake distribution models informed by environmental data; see SRG reqeust #3)
 
 # Scientific Review
 
