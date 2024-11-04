@@ -22,7 +22,11 @@ JMC Briefing meeting (pre or post SRG)?
 
 - Annual process to resolve, change, and add to existing research and data needs and priorities occurs at the SRG meeting (iterative process)
 - Since 2023, the SRG report intentionally indicates prioritization of stock assessment recommendations
+<<<<<<< HEAD
 - The JTC annually evaluates research plans given priorities, resources, time constraints, and other committments 
+=======
+- The JTC annually evaluates research plans given priorities, resources, time constraints, and other tangential constraints
+>>>>>>> 69a307c4 (Respond to Request 6.)
 - JTC members are typically available to spend November to February working on Pacific Hake given other research and assessment responsibilities throughout the year
 
 Today, we will discuss our plans for this upcoming assessment cycle, as well as some medium-term (1--3 years) research plans.
@@ -74,7 +78,48 @@ Response Kelli: *Update the model and decide on day of year to use for the analy
 
 On three occasions since 2009 (2011-12, 2016-17, 2023), stock assessments have predicted a rapid increase in biomass similar to that seen in the 2024 assessment, where this rapid increase was not visible in subsequent assessments. The SRG recommends investigating what factors might be causing these shifts in biomass estimates and projections.
 
-Response Andy: *An age-0 recruitment index would help (Andy presented analyses of age-0 hake data at the SRG meeting; plans to continue when time). This analysis ignores the uncertainty of those estimates.*
+Response Andy: *This comment arises from Figure 63 showing summaries of
+historical assessment estimates of spawning biomass (presumably????TODO).*
+
+- *Note that historical estimates shown ignore uncertainty. Numbers below are medians*
+
+- *2010-2011 (presumably???TODO): the subsequent assessments greatly reduce the absolute size of the
+  stock, but still show an increase, likely due to the change in model used
+  in 2012. Would have to go back to 2012 assessment to understand why.*
+
+## 2024 SRG Request 6 (ctd.)
+
+On three occasions since 2009 (2011-12, 2016-17, 2023), stock assessments have predicted a rapid increase in biomass similar to that seen in the 2024 assessment, where this rapid increase was not visible in subsequent assessments. The SRG recommends investigating what factors might be causing these shifts in biomass estimates and projections.
+
+
+- *2016-17 increase from each assessment is:*
+  - 2017 base model: increase of 136,000 t
+  - 2018 base model: increase of 194,000 t
+  - 2024 base model: increase of 423,000 t
+
+- *2022-2023 (presumably???TODO) increase from each assessment is:*
+  - 2023 base model: increase of 486,000 t
+  - 2024 base model: increase of 549,000 t
+
+So the increases are actually larger in subsequent assessments, not smaller.
+
+<!-- Even though subsequent base models have pulled the absolute biomass estimates down,
+-->
+
+*An age-0 recruitment index could help (plan to continue analyses of age-0 hake
+data presented at SRG meeting when time).*
+
+<!-- Table b each assessment:
+     2017 assessment. Medians. Increase from 2016-2017 is 2129 kt - 1993 kt = 136,000 t
+     2018 assessment. Medians. Increase from 2016-2017 is 1469 kt - 1275 kt = 194,000 t
+     2024 assessment. Medians. Increase from 2016-2017 is 1646 kt - 1223 kt = 423,000 t
+So increase in 2018 and 2024 assessments are actually larger in absolute numbers, and
+even more so relative values.
+     2023 assessment. Medians. Increase from 2022-2023 is 1909 kt - 1423 kt = 486,000 t
+     2024 assessment. Medians. Increase from 2022-2023 is 1884 kt - 1335 kt = 549,000 t
+
+-->
+
 
 ## 2024 SRG Request 7
 
@@ -170,7 +215,7 @@ Ability to disaggregate the data
 
 - Catch data already disaggregated by fleet across the time series
 - Biological data already disaggregated from 2007 to present
-- Pre-2007: data should be able to be disaggregated by fleet, but inevitably it will not exactly match the legacy (static) historical data currently used in the stock assessment (perhaps not a bad thing...)  
+- Pre-2007: data should be able to be disaggregated by fleet, but inevitably it will not exactly match the legacy (static) historical data currently used in the stock assessment (perhaps not a bad thing...)
 
 The JTC will explore disaggregated data series this year.
 
