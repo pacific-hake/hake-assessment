@@ -74,37 +74,36 @@ Response Kelli: *Update the model and decide on day of year to use for the analy
 
 On three occasions since 2009 (2011-12, 2016-17, 2023), stock assessments have predicted a rapid increase in biomass similar to that seen in the 2024 assessment, where this rapid increase was not visible in subsequent assessments. The SRG recommends investigating what factors might be causing these shifts in biomass estimates and projections.
 
-Response Andy: *This comment arises from Figure 63 showing summaries of
-historical assessment estimates of spawning biomass (presumably????TODO).*
+Response: *This comment seems to arise from Figure 63 showing summaries of
+historical assessment estimates of spawning biomass.*
 
-- *Note that historical estimates shown ignore uncertainty. Numbers below are medians*
+- *Note historical estimates shown ignore uncertainty. Numbers below are medians.*
 
-- *2010-2011 (presumably???TODO): the subsequent assessments greatly reduce the absolute size of the
+- *2010-11 (presumably, not 2011-12): the subsequent assessments greatly reduce the **absolute** size of the
   stock, but still show an increase, likely due to the change in model used
-  in 2012. Would have to go back to 2012 assessment to understand why.*
+  in 2012. Can go back to 2012 assessment to understand why.*
 
 ## 2024 SRG Request 6 (ctd.)
 
-On three occasions since 2009 (2011-12, 2016-17, 2023), stock assessments have predicted a rapid increase in biomass similar to that seen in the 2024 assessment, where this rapid increase was not visible in subsequent assessments. The SRG recommends investigating what factors might be causing these shifts in biomass estimates and projections.
+... 2016-17 and 2023 show rapid increase not seen in later assessments ...
 
+*However, these increases are actually **larger** in later
+  assessments, not smaller. Will clarify question with the SRG.*
 
 - *2016-17 increase from each assessment is:*
   - 2017 base model: increase of 136,000 t
   - 2018 base model: increase of 194,000 t
   - 2024 base model: increase of 423,000 t
 
-- *2022-2023 (presumably???TODO) increase from each assessment is:*
+- *2022-2023 (presumably) increase from each assessment is:*
   - 2023 base model: increase of 486,000 t
   - 2024 base model: increase of 549,000 t
 
-So the increases are actually larger in subsequent assessments, not smaller.
+*An age-0 recruitment index could help (plan to continue analyses of age-0 hake
+data presented at the SRG meeting when time allows).*
 
 <!-- Even though subsequent base models have pulled the absolute biomass estimates down,
 -->
-
-*An age-0 recruitment index could help (plan to continue analyses of age-0 hake
-data presented at SRG meeting when time).*
-
 <!-- Table b each assessment:
      2017 assessment. Medians. Increase from 2016-2017 is 2129 kt - 1993 kt = 136,000 t
      2018 assessment. Medians. Increase from 2016-2017 is 1469 kt - 1275 kt = 194,000 t
@@ -113,7 +112,6 @@ So increase in 2018 and 2024 assessments are actually larger in absolute numbers
 even more so relative values.
      2023 assessment. Medians. Increase from 2022-2023 is 1909 kt - 1423 kt = 486,000 t
      2024 assessment. Medians. Increase from 2022-2023 is 1884 kt - 1335 kt = 549,000 t
-
 -->
 
 
@@ -148,11 +146,11 @@ The SRG noted that the age-1 index did not include a value for 2001 because it w
 
 Response: *Not worth our time while others work on it; AK folks have been thinking about this and running into snags. Think we thought/showed that it wouldn’t make much difference (recruitment being zero or very close to zero doesn’t really matter in the bigger picture).*
 
-## 2024 SRG Request 10, Andy
+## 2024 SRG Request 10
 
 The SRG recommends that the JMC review the decision tables and reconsider required harvest scenarios to reduce the number of similar and overlapping Scenarios.
 
-Response: *Need a reply by JTC meeting, so we can discuss and implement for the assessment.*
+Response: *Need a reply by December JTC meeting, so we can discuss and implement for the assessment.*
 
 # SRG Request 11
 
