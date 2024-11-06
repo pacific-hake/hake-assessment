@@ -38,11 +38,21 @@ Response: *Yes, we will do these sensitivities per our standard workflow.*
 
 ## 2024 SRG Request 2
 
-The SRG recommends that the JTC explore alternative ways of estimating natural mortality to update the current approach in the model, which is based on methods from more than a decade ago, and particularly consider options which have age-based natural mortality.
+The SRG recommends that the JTC explore alternative ways of estimating natural mortality ($M$) to update the current approach in the model, which is based on methods from more than a decade ago, and particularly consider options which have age-based $M$.
 
-Response: *Pacific Hake have several natural predators, including themselves, particularly on the younger ages. Recently, [Trzcinski et al. (2024)](https://scholar.google.com/scholar_url?url=https://www.int-res.com/articles/meps_oa/m743p113.pdf&hl=en&sa=X&d=7035063540343333520&ei=dg3KZvPXCq-Ly9YPsfnLwQs&scisig=AFWwaeZ0XVe4uuKTGL-PCWaZhm-R&oi=scholaralrt&hist=_VMmiPwAAAAJ:9480142533121162666:AFWwaea2_PScUeInVLp6dXD_hYL6&html=&pos=0&folt=kw-top) identified hake as the largest mean proportion of the diet of harbor seals over any other species. Additionally, the abundance of harbor seals is near carrying capacity in Canadian waters and has been since the late 1990s. As of Stock Synthesis v.3.30.18, the inclusion of predators allows for predation mortality to be estimated on top of baseline natural mortality. Data for this predator mortality can be absolute numbers of dead fish due to the predator, an index of predator effort, and predation composition (age or length) data. We could add a predation index based on estimated abundance of harbor seals to the assessment model but this has not been explored as of yet. We feel that a potential better path forward is to use Dynamic Structural Equation Modeling (DSEM) to include indices for multiple predators and allow for two-way interactions between them and the process that estimates mortality. This capability is not, and will not be, available within Stock Synthesis and instead needs a model written in Template Model Builder instead of ADMB. A proof of concept model has been implemented for the Alaska Fisheries Science Center and discussions are ongoing to implement this in the Fisheries Integrated Modeling System (FIMS). Thus, for the 2025 assessment a simple version of FIMS will be fit to current data and potentially presented at the SRG meeting, where the simple version does not have the capacity to estimate ageing error or facilitate DSEMs. A more complex FIMS model will be presented to the SRG in 2026.
+Response: *Hake have several natural predators, including themselves, particularly on younger ages. Recently, [Trzcinski et al. (2024)](https://scholar.google.com/scholar_url?url=https://www.int-res.com/articles/meps_oa/m743p113.pdf&hl=en&sa=X&d=7035063540343333520&ei=dg3KZvPXCq-Ly9YPsfnLwQs&scisig=AFWwaeZ0XVe4uuKTGL-PCWaZhm-R&oi=scholaralrt&hist=_VMmiPwAAAAJ:9480142533121162666:AFWwaea2_PScUeInVLp6dXD_hYL6&html=&pos=0&folt=kw-top) identified hake as the largest mean proportion of the diet of harbor seals. Additionally, the abundance of harbor seals is near carrying capacity in Canadian waters and has been since the late 1990s. Stock Synthesis allows for the inclusion of predators so predation mortality can be estimated on top of baseline natural mortality. Data for predation mortality can be absolute numbers of dead fish due to the predator, an index of predator effort, and predation composition (age or length) data. A predation index based on estimated abundance of harbor seals could be added to the assessment model but this has not been explored.*
 
-The predator feature in SS3 does not allow for feedback between the species of interest and the predator, and thus we used the Climate- Enhanced, Age-based model with Temperature-specific Trophic Linkages and Energetics (CEATTLE; Holsman et al., 2016) to estimate cannibalism of hake. Results from CEATTLE have been presented before but now results are available with updated data. These results provide estimates of baseline natural mortality and natural mortality at age due to cannibalism. These values can be input into SS3 as fixed natural mortality at age. We see this as the way forward because efforts made in 2023 to estimate age-specific natural mortality did not provide plausible estimates suggesting that the data used to fit the SS3 model are not informative for this age-specific process. Furthermore, using a Lorenzen curve within SS3 is only available for models that fit to length and age data and estimate growth. Thus, we have chosen to investigate fixed mortality at age instead of estimating mortality using a Lorenzen curve. This work will be presented at the 2025 SRG meeting. Additionally, if time allows, we will investigate using the results from CEATTLE as priors on age-specific natural mortality but that might not be accomplished by February.*
+## 2024 SRG Request 2 (ctd.)
+
+The SRG recommends that the JTC explore alternative ways of estimating $M$ to update the current approach in the model, which is based on methods from more than a decade ago, and particularly consider options which have age-based $M$.
+
+*A potential better path forward is to use Dynamic Structural Equation Modeling (DSEM) to include indices for multiple predators and allow for two-way interactions between them and the process that estimates $M$. This capability is not, and will not be, available within Stock Synthesis but is possible using models written in Template Model Builder. A proof of concept has been implemented for the Alaska Fisheries Science Center and discussions are ongoing to implement this in the Fisheries Integrated Modeling System (FIMS). Thus, for the 2025 assessment a simple version of FIMS will be fit and potentially presented to the SRG, where the simple version does not have the capacity to estimate ageing error or facilitate DSEMs. A more complex FIMS model will be presented to the SRG in 2026.*
+
+## 2024 SRG Request 2 (ctd.)
+
+The SRG recommends that the JTC explore alternative ways of estimating $M$ to update the current approach in the model, which is based on methods from more than a decade ago, and particularly consider options which have age-based $M$.
+
+*Predation in SS3 does not allow for feedback between hake and the predator, and thus, we used the Climate- Enhanced, Age-based model with Temperature-specific Trophic Linkages and Energetics (CEATTLE; Holsman et al., 2016) to estimate cannibalism. Results have been presented before and have recently been updated to provide estimates of baseline $M$ and $M$ at age due to cannibalism. These values can be input into SS3 as fixed $M$ at age. In 2023 the JTC was unsuccessful in estimating age-specific $M$ because of a lack of data to inform the estimates. Additionally, fitting Lorenzen $M$ is not possible without simultaneously estimating growth. Thus, the JTC sees using fixed age-specific $M$ from CEATTLE as a way forward. This work will be presented at the 2025 SRG meeting. Additionally, the JTC will investigate using the results from CEATTLE to inform age-specific priors on $M$ for the 2026 SRG meeting.*
 
 ## 2024 SRG Request 3
 
@@ -50,7 +60,7 @@ The SRG encourages an analysis of catch and biomass distribution for Canada and
 US that examines latitudinal shifts in fishing over time, and tries to predict factors
 influencing these shifts.
 
-Response: *Owen Liu (NWFSC) is building species distribution models for hake. This work will include incorporating environmental factors across the full transboundary range of hake and will evaluate prediction skill for developing short term forecasts.*
+Response: *Owen Liu (NWFSC) is building species distribution models for hake. This work will include incorporating environmental factors across the full transboundary range of hake and will evaluate prediction skill for developing short-term forecasts.*
 
 *The JTC plans to investigate patterns of hake in the U.S. West Coast Bottom Trawl Survey in California waters where fishery data is limited.*
 
@@ -68,34 +78,34 @@ Response: *There has been limited time (thus far) to evaluate dynamic reference 
 
 The SRG recommends continued work to collect ovary samples, with a focus on fecundity and functional maturity, as well as continued annual maturity analysis.
 
-Response Kelli: *Update the model and decide on day of year to use for the analysis. Should we pick something that matches the way stock synthesis is set up. SS3 assumes beginning of the year and end of the year. Email Melissa Head to see what day of the year to use. *
+Response: *The estimates of maturity will be updated with recent data for the 2025 assessment. Further discussion and investigation is needed on the best day of the year to predict maturity to. The JTC will research the internal assumptions of Stock Synthesis to help inform the best day of the year but no investigation can make up for the lack of data during the winter spawning season. Additional work is being put forward to implement a research effort with Oregon State University and the University of Washington to investigate fecundity.*
 
 ## 2024 SRG Request 6
 
-On three occasions since 2009 (2011-12, 2016-17, 2023), stock assessments have predicted a rapid increase in biomass similar to that seen in the 2024 assessment, where this rapid increase was not visible in subsequent assessments. The SRG recommends investigating what factors might be causing these shifts in biomass estimates and projections.
+On three occasions since 2009 (2011--12, 2016--17, 2023), stock assessments have predicted a rapid increase in biomass similar to that seen in the 2024 assessment, where this rapid increase was not visible in subsequent assessments. The SRG recommends investigating what factors might be causing these shifts in biomass estimates and projections.
 
 Response: *This comment seems to arise from Figure 63 showing summaries of
 historical assessment estimates of spawning biomass.*
 
 - *Note historical estimates shown ignore uncertainty. Numbers below are medians.*
 
-- *2010-11 (presumably, not 2011-12): the subsequent assessments greatly reduce the **absolute** size of the
+- *2010--11 (presumably, not 2011--12): the subsequent assessments greatly reduce the **absolute** size of the
   stock, but still show an increase, likely due to the change in model used
   in 2012. Can go back to 2012 assessment to understand why.*
 
 ## 2024 SRG Request 6 (ctd.)
 
-... 2016-17 and 2023 show rapid increase not seen in later assessments ...
+... 2016--17 and 2023 show rapid increase not seen in later assessments ...
 
 *However, these increases are actually **larger** in later
   assessments, not smaller. Will clarify question with the SRG.*
 
-- *2016-17 increase from each assessment is:*
+- *2016--17 increase from each assessment is:*
   - 2017 base model: increase of 136,000 t
   - 2018 base model: increase of 194,000 t
   - 2024 base model: increase of 423,000 t
 
-- *2022-2023 (presumably) increase from each assessment is:*
+- *2022--2023 (presumably) increase from each assessment is:*
   - 2023 base model: increase of 486,000 t
   - 2024 base model: increase of 549,000 t
 
@@ -119,7 +129,7 @@ even more so relative values.
 
 \setbeamerfont{caption}{size={\fontsize{10}{10}}}
 
-The SRG encourages the JTC to consider methods to determine the maximum input sample size for the age compositions (e.g. Stewart and Hamel 2014, Hulson et al. 2023).
+The SRG encourages the JTC to consider methods to determine the maximum input sample size for the age compositions (e.g., Stewart and Hamel 2014, Hulson et al. 2023).
 
 \begin{figure}
 \caption*{\it{Response: The JTC agrees that determining input sample sizes is important for fishery and survey age compositions, which then provides the basis from which model-based re-weighting is done. The JTC has considered alternative methods and has determined additional research is needed to inform the calculation of input sample size for both fishery and survey ages. Fishery input sample sizes are calculated using a mixture of either the number of hauls or trips, when haul information is not available (e.g., shore-based), and further work is needed to determine the effective sample sizes at the haul and trip level and how to calculate a fleetwide input sample size. Survey age compositions represent age structure associated with the acoustic survey as viewed through an estimated selectivity curve for the acoustic-trawl sampling net. Yet, selectivity for ages two and older with acoustics is theoretically at or near one. Additionally, if the survey moves to using a new net, changing selectivity, the effective sample size could vary requiring consideration on how to model the survey. The JTC does not plan on investigating this issue for this year's assessment but supports the prioritization of this research for future assessments.}}
@@ -133,9 +143,9 @@ The SRG has previously noted that $\sigma_R$ is an influential parameter, and en
 further work by the JTC. The SRG supports continuing efforts to explore new recruitment parameterizations, including treating recruitment deviations as random effects, to better estimate $\sigma_R$.
 
 \begin{figure}
-\caption*{\it{Response: Future improvements in the stock assessment software used to assess hake (e.g., ability to use random effects in the modeling framework) will allow for fruitful work on this.  The Fisheries Integrated Modeling System (FIMS) will replace Stock Synthesis in the coming years and will have random effects capabilities. The Pacific hake assessment is a primary test case for FIMS.}}
+\caption*{\it{Response: Future improvements in the stock assessment software used to assess hake (e.g., ability to use random effects in the modeling framework) will allow for fruitful work on this.  The Fisheries Integrated Modeling System (FIMS) will replace Stock Synthesis in the coming years and will have random effects capabilities. The Pacific Hake assessment is a primary test case for FIMS.}}
 
-\caption*{\it{Other frameworks (e.g., Woods Hole Assesment Model, or WHAM, and bespoke models) can already use random effects.  The JTC has completed initial explorations using WHAM and concluded random effect structures will be beneficial for modeling Pacific hake.}}
+\caption*{\it{Other frameworks (e.g., Woods Hole Assesment Model, or WHAM, and bespoke models) can already use random effects.  The JTC has completed initial explorations using WHAM and concluded random effect structures will be beneficial for modeling Pacific Hake.}}
 
 \caption*{\it{The JTC is also following pertinent research aimed at advancing these methods (e.g., dynamic structural equation models as novel framework for incorporating time-variation into stock assessment models; AFSC and UW) and approaches for operational assessment use.}}
 \end{figure}
@@ -144,20 +154,19 @@ further work by the JTC. The SRG supports continuing efforts to explore new recr
 
 The SRG noted that the age-1 index did not include a value for 2001 because it was zero. Although this decision had negligible influence on the results because the estimate for 2000 recruitment was close to zero, the SRG noted that Stock Synthesis uses a lognormal likelihood which does not handle zero values. Given that future zero values are expected to have a bigger influence on the results in the short-term, the SRG recommends that the JTC explore likelihood forms that can fit to very low index values from the age-1 survey (e.g., robust likelihood). The SRG acknowledges that implementing new likelihoods will require changes to the Stock Synthesis platform.
 
-Response: *Not worth our time while others work on it; AK folks have been thinking about this and running into snags. Think we thought/showed that it wouldn’t make much difference (recruitment being zero or very close to zero doesn’t really matter in the bigger picture).*
+Response: *Researchers at the Alaska Fisheries Science Center have the same problem and have yet to find a solution. The JTC will not be investigating this in the near future nor will Stock Synthesis be altered to accommodate a future solution.*
 
 ## 2024 SRG Request 10
 
 The SRG recommends that the JMC review the decision tables and reconsider required harvest scenarios to reduce the number of similar and overlapping Scenarios.
 
-Response: *Need a reply by December JTC meeting, so we can discuss and implement for the assessment.*
+Response: *The JTC hopes to have a reply from the JMC by the December JTC meeting for implementation in the 2025 assessment of a reduced number of scenarios.*
 
 # SRG Request 11
 
 ## 2024 SRG Request 11
 
-The SRG noted that alternative structures of the assessment model have not been comprehensively examined since 2011 (e.g., multiple fleets and/or spatial model), and were informed that limited staffing and availability of the JTC inhibits these time-consuming analyses. The SRG recommends examining structural assumptions of the stock assessment as time allows. More complex structural assumptions may utilize the data more thoroughly, explain different trends across areas and/or fleets, and estimate stock status more accurately, but simpler models may be more
-appropriate for determination of the TAC. The MSE can be used to determine best performing assessment models for management.
+The SRG noted that alternative structures of the assessment model have not been comprehensively examined since 2011 (e.g., multiple fleets and/or spatial model), and were informed that limited staffing and availability of the JTC inhibits these time-consuming analyses. The SRG recommends examining structural assumptions of the stock assessment as time allows. More complex structural assumptions may utilize the data more thoroughly, explain different trends across areas and/or fleets, and estimate stock status more accurately, but simpler models may be more appropriate for determination of the TAC. The MSE can be used to determine best performing assessment models for management.
 
 Response: *The JTC plans to evaluate the multitude of changes in the assessment process itself (e.g., data availability, assumptions, etc.) that would be needed to develop alternative model structures. This includes developing a work plan, including complimentary or standalone analyses, alternative model structures to explore, and simulation analyses to evaluate and compare alternative models (e.g., using the MSE tool).*
 
@@ -207,16 +216,16 @@ Response: *The JTC plans to evaluate the multitude of changes in the assessment 
 
 Ability to disaggregate the data
 
-- Catch data already disaggregated by fleet across the time series
-- Biological data already disaggregated from 2007 to present
-- Pre-2007: data should be able to be disaggregated by fleet, but inevitably it will not exactly match the legacy (static) historical data currently used in the stock assessment (perhaps not a bad thing...)
+- Catch data are already disaggregated by fleet across the time series
+- Biological data are already disaggregated from 2007 to present
+- Pre-2007: data should be able to be disaggregated by fleet but inevitably they will not exactly match the legacy (static) historical data currently used in the stock assessment (perhaps not a bad thing...)
 
 The JTC will explore disaggregated data series this year.
 
 ## Some Future Steps
 
 - Evaluate alternative data/model assumptions for validity
-- Evaluate variance and bias tradeoffs with doubling the number of time varying selectivity parameters
+- Evaluate variance and bias tradeoffs with doubling the number of time-varying selectivity parameters
 - Compare spatially-implicit assessment approaches: time-varying selectivity versus area-varying selectivity versus both
 - Develop states of nature scenarios to test model structure robustness in the MSE
 
@@ -228,7 +237,7 @@ These include:
 
   - Data weighting
   - Improving estimates of natural mortality via predator time series
-  - Multiple fleets instead of aggregated fleet
+  - Multiple fleets instead of an aggregated fleet
   - Using fleet-specific weight-at-age data instead of aggregate weight-at-age (this has been looked at before but not for a while)
 
 ## Underlying Issue: Hake Distribution Changes
