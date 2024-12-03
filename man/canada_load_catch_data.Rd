@@ -16,7 +16,8 @@ canada_load_catch_data(
 \item{min_date}{Earliest date to include in the data returned}
 }
 \value{
-A list of three named data frames, \code{dmp_df} for the DMP data,
+A list of four named data frames, \code{dmp_df} for the outside DMP data,
+\code{dmp_inside_df} for the inside DMP data,
 \code{logs_df} for the LOGS data, and \code{logs_inside_df} for the area 4B data
 which were not included. \code{logs_inside_df} is returned as a convenience
 for you to see if any other data from area 4B should be included in the

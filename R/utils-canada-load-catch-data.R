@@ -13,7 +13,8 @@
 #' @param dr The directory name where the files reside
 #' @param min_date Earliest date to include in the data returned
 #'
-#' @return A list of three named data frames, `dmp_df` for the DMP data,
+#' @return A list of four named data frames, `dmp_df` for the outside DMP data,
+#' `dmp_inside_df` for the inside DMP data,
 #' `logs_df` for the LOGS data, and `logs_inside_df` for the area 4B data
 #' which were not included. `logs_inside_df` is returned as a convenience
 #' for you to see if any other data from area 4B should be included in the

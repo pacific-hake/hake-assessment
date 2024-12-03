@@ -8,12 +8,16 @@
 #' @export
 canada_extract_fleet_catch <- function(lst){
 
-  if(length(lst) != 3){
-    stop("The length of the input list `lst` does not equal 3")
+  if(length(lst) != 4){
+    stop("The length of the input list `lst` does not equal 4")
   }
-  if(!all(names(lst) %in% c("dmp_df", "logs_df", "logs_inside_df"))){
+  if(!all(names(lst) %in% c("dmp_df",
+                            "dmp_inside_df",
+                            "logs_df",
+                            "logs_inside_df"))){
     stop("The names of the elements in the list `lst` are not correct. ",
-         "They must be `dmp_df`, `logs_df`, and `logs_inside_df`")
+         "They must be `dmp_df`, `dmp_inside_df`, `logs_df`, and ",
+         "`logs_inside_df`")
   }
 
   # If the non-JV vessel was fishing in JV, remove those catches
