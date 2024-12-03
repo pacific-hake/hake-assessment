@@ -49,6 +49,10 @@ databases such as Groundfish FOS (GFFOS) are built by querying FOS.
    - Click the link then **Save As..**
    - Upload the file to the following directory on the server: \
      `/srv/hake/other/landings/LandingsSpeciesDateDMP.csv`
+   - Navigate to the directory on the server where you uploaded the files
+     and check that the file permissions are correct. You will most likely
+     have to run `chmod 775 LandingsSpeciesDateDMP.csv` as a member of
+     the hake group to do this
 
  - **For the LOGS landings:**
    - Logbook data have discards, so we need to add those to the total landings
@@ -68,6 +72,10 @@ databases such as Groundfish FOS (GFFOS) are built by querying FOS.
    - Upload the file to the following directory on the server: \
      `/srv/hake/other/landings/LogCatchReportXXXX.csv` \
      where the `XXXX` is the 4-digit year
+   - Navigate to the directory on the server where you uploaded the files
+     and check that the file permissions are correct. You will most likely
+     have to run `chmod 775 LogCatchReportXXXX.csv` as a member of
+     the hake group to do this
 
 **Once the data files have been uploaded, do the following steps.** \
 **Note - simply compiling this vignette will build the files, and you can
