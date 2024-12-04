@@ -1,8 +1,12 @@
-##'  Save some results as `.rds` files to then be imported into the pacea R package.
+##'  Save some results as `.rds` files to then be imported into the pacea R
+##'  package.
 ##'
 ##' Need to first have results loaded in, so just run this after building the
 ##'   document (function does use `assess_yr` which will have been defined
 ##'   already). Function creates a directory and places the files in there.
+##'   See pacea/data-raw/groundfish/hake.R for next steps. Some results were
+##'   automatically already saved for the assessment (e.g. recruitment), but
+##'   some had to be calculated here (e.g. recruitment scaled by R0).
 ##' @param model_lst List of models, but only works for one, just change if want
 ##'   to save results from a different model. Code keep the list format to
 ##'   remain similar to other `hake` package functions.
@@ -14,8 +18,7 @@
 ##' @return Nothing, but saves the `.rds` files in the appropriate directory.
 ##' @export
 ##' @author Andrew Edwards
-pacea_save <- function(
-                       model_lst = list(base_model),
+pacea_save <- function(model_lst = list(base_model),
                        model_names = list(base_model_name),
                        dir_to_save = NULL){
 
@@ -131,6 +134,32 @@ pacea_save <- function(
           file = paste0(dir_to_save, "/", recr_over_R0_name, ".rds"))
 
 
+  # -- Recruitment deviations --
+
+  recr_devs <- create_group_df_recr(model_lst,
+                                    model_names,
+                                    devs = TRUE)$d %>%
+               dplyr::select(-c("model"))
+
+  stopifnot(colnames(recr_devs) == c("year",
+                                     "devlower",
+                                     "devmed"   ,
+                                     "devupper"))
+
+  # Use pacea names
+  colnames(recr_devs) <- c("year",
+                           "low",
+                           "median",
+                           "high")
+
+  recr_devs_name <- paste0("hake_recruitment_deviations_", assess_yr)
+
+  assign(recr_devs_name,
+         recr_devs)
+
+  saveRDS(get(recr_devs_name),
+          file = paste0(dir_to_save, "/", recr_devs_name, ".rds"))
+
   # -- Spawning biomass --
 
   biomass <- create_group_df_biomass(model_lst,
@@ -155,6 +184,36 @@ pacea_save <- function(
 
   saveRDS(get(biomass_name),
           file = paste0(dir_to_save, "/", biomass_name, ".rds"))
+
+  # -- Total biomass of age-1 hake --
+
+  # Need to do from the full mcmc's, adapted from hake_recruitment_over_R0 above.
+
+  # Does not match Table 18, not sure what batage is then:
+  # dat <- as_tibble(model_lst[[1]]$batage) %>%
+  #   filter(`Beg/Mid` == "B",
+  #          Yr <= assess_yr) %>%  # Projections are 0 anyway
+  #   select(Yr,
+  #          `1`)
+
+  # This matches Table 18, these are kilotonnes
+  dat <- model_lst[[1]]$extra_mcmc$batage_med %>%
+    select(c("yr",
+             `1`)) %>%
+    mutate("low" = as.numeric(NA),
+           "high" = as.numeric(NA)) %>%
+    relocate(year = yr,
+             low,
+             median = `1`,
+             high)
+
+  age_1_biomass_name <- paste0("hake_total_biomass_age_1_",
+                               assess_yr)
+  assign(age_1_biomass_name,
+         dat)
+
+  saveRDS(get(age_1_biomass_name),
+          file = paste0(dir_to_save, "/", age_1_biomass_name, ".rds"))
 
   return()
 }
