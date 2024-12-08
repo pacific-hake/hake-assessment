@@ -6,10 +6,10 @@ project_variables:
   science_name: "Merluccius productus"
   simple_name: "hake"
   survey_name: "Joint U.S. and Canadian Integrated Acoustic and Trawl Survey"
-  assess_yr: 2023
-  last_assess_yr: 2022
-  last_data_yr: 2023
-  forecast_yrs: 2024:2027
+  assess_yr: 2025
+  last_assess_yr: 2024
+  last_data_yr: 2024
+  forecast_yrs: 2025:2028
   model_version: "01"
   last_yr_model_version: "01"
   # For a list of colors you can use here see:
@@ -37,7 +37,7 @@ project_variables:
   # Increasing `dots_per_inch` for figure output increases the file size a LOT
   dots_per_inch: 200
 author: Pacific Hake Joint Technical Committee
-date: "JTC meeting -- December `r rmarkdown::metadata$project_variables$assess_yr`"
+date: "JTC meeting -- December `r rmarkdown::metadata$project_variables$assess_yr - 1`"
 output:
   hake_beamer:
     theme: Singapore
