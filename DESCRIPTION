@@ -51,7 +51,6 @@ Imports:
   graphics,
   gtable,
   gtools,
-  hakedataUSA,
   here,
   kableExtra,
   knitr,
@@ -94,7 +93,6 @@ Remotes:
   hughjonesd/ggmagnify,
   pbs-assess/gfdata,
   pbs-assess/gfplot,
-  pacific-hake/hakedataUSA,
   r4ss/r4ss,
   ropensci/rnaturalearth,
   ropensci/rnaturalearthhires
