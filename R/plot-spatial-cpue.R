@@ -110,11 +110,14 @@ plot_spatial_cpue <- function(
             alpha = hex_alpha,
             color = hex_border_color,
             linewidth = hex_border_thickness,
-            inherit.aes = FALSE) +
+            inherit.aes = FALSE)
     # Fill in the hexagons
-    scale_fill_gradientn(colors = hex_colors,
-                         breaks = hex_fill_breaks,
-                         labels = hex_fill_labels) +
+    if(nrow(polygon) > 2){
+      g <- g +
+        scale_fill_gradientn(colors = hex_colors,
+                             breaks = hex_fill_breaks,
+                             labels = hex_fill_labels)
+    }
     # Alternative color ramps for the hexagons
     # scale_fill_viridis_c(option = "magma",
     #                      direction = -1,
@@ -124,6 +127,7 @@ plot_spatial_cpue <- function(
     #                      option = "D",
     #                      breaks = hex_fill_breaks,
     #                      labels = hex_fill_labels) +
+  g <- g +
     coord_sf(datum = st_crs(crs_ll),
              xlim = x_lim,
              ylim = y_lim,

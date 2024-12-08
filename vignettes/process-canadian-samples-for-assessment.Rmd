@@ -30,6 +30,18 @@ and the weight-at-age file. Check the timestamps of the files to verify.** \
       ```
 
    1. On the DFO network, or on a DFO computer with the VPN turned on, run
+      the following to extract the newest full dataset from the `GFBioSQL`
+      database. \
+      ```{r echo = FALSE, eval = FALSE}
+      d <- gfdata::cache_pbs_data(species = "Pacific Hake")
+      saveRDS(j, "/srv/hake/other/samples/canada/gfbio-all-data.rds")
+      ```
+      The commands must be run on a DFO machine with VPN access. If moving to
+      the hake server, save in the location shown in the command.
+      This file will be used for spatial data to build the maps used in the
+      JTC beamer meeting slides.
+
+   1. On the DFO network, or on a DFO computer with the VPN turned on, run
       the following to extract the newest data from the `GFBioSQL` database. \
       Choose any directory, the one shown here is an example: \
       ```{r echo = TRUE, eval = FALSE}
