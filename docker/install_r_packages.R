@@ -8,7 +8,6 @@ library(usethis)
 # These are the packages on GitHub, in alphabetical order
 github_pac_lst <- c("cgrandin/adnuts",
                     "cgrandin/kableExtra",
-                    "pacific-hake/hakedataUSA",
                     "pbs-assess/gfdata",
                     "pbs-assess/gfplot",
                     "ropensci/rnaturalearthhires",
