@@ -2,7 +2,8 @@
 % Please edit documentation in R/utils-pacea-save.R
 \name{pacea_save}
 \alias{pacea_save}
-\title{Save some results as \code{.rds} files to then be imported into the pacea R package.}
+\title{Save some results as \code{.rds} files to then be imported into the pacea R
+package.}
 \usage{
 pacea_save(
   model_lst = list(base_model),
@@ -29,6 +30,9 @@ Nothing, but saves the \code{.rds} files in the appropriate directory.
 Need to first have results loaded in, so just run this after building the
 document (function does use \code{assess_yr} which will have been defined
 already). Function creates a directory and places the files in there.
+See pacea/data-raw/groundfish/hake.R for next steps. Some results were
+automatically already saved for the assessment (e.g. recruitment), but
+some had to be calculated here (e.g. recruitment scaled by R0).
 }
 \author{
 Andrew Edwards
