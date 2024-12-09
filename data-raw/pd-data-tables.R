@@ -45,9 +45,9 @@ create_data_hake("maturity_samples_df",
 #         dplyr::rename(p_mature = Maturity) |>
 #         dplyr::mutate(year = 2007, model = "Spline"),
 #       data.frame(
-#         p_mature = hakedataUSA::maturity_at_age,
+#         p_mature = maturity_at_age,
 #         year = 2007,
-#         age = 0:(length(hakedataUSA::maturity_at_age) - 1),
+#         age = 0:(length(maturity_at_age) - 1),
 #         model = "Spline w/ CAN"
 #       )
 #     ) |>

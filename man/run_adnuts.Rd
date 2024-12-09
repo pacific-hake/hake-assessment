@@ -32,7 +32,7 @@ run_adnuts(
 
 \item{num_warmup_samples}{The warmup samples (equivalent of burnin)}
 
-\item{adapt_delta}{The target acceptance rate. See \code{\link[adnuts:samplers]{adnuts::sample_admb()}}}
+\item{adapt_delta}{The target acceptance rate. See \code{\link[adnuts:sample_admb]{adnuts::sample_admb()}}}
 
 \item{run_extra_mcmc}{If \code{TRUE}, run SS extra mcmc option which outputs
 files into the \code{sso} subdirectory. If \code{FALSE}, those files will not be
