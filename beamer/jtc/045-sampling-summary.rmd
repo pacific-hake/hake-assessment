@@ -49,7 +49,7 @@ load("atsea.ages.Rdat")
 ```{r us-sample-summary-atsea, results = "asis", eval = FALSE}
 # TODO: use this code rather than the pre-made tables below
 table_sampling_by_month(
-  us_extract_sampling_by_month(c("AGE", "LENGTH", "WEIGHT"), atsea.ages),
+  us_extract_sampling_by_month(c("AGE", "LENGTH", "WEIGHT"), nages),
   font_size = 8,
   header_font_size = 9)
 ```
@@ -67,10 +67,10 @@ table_sampling_by_month(
 ::: {.column width="45%"}
 \begin{center}\textbf{At-Sea}\end{center}
 ```{r us-atsea-sampling-summary, results = "asis"}
-d <- tibble(month = c("May", "Jun", "Aug", "Sep", "Oct", "Nov", "Total"),
-            num_age = c(1015, 69, 0, 265, 376, 0, 1725),
-            num_length = c(1023, 69, 153, 644, 848, 22, 2759),
-            num_weight = c(1023, 69, 153, 644, 848, 22, 2759))
+d <- tibble(month = c("May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
+            num_age = c(215, 1, 0, 72, 178, 157, 0, 623),
+            num_length = c(429, 4, 28, 250, 715, 455, 0, 1881),
+            num_weight = c(429, 4, 28, 250, 715, 455, 0, 1881))
 table_sampling_by_month(d,
                         font_size = 8,
                         header_font_size = 9)
@@ -80,10 +80,10 @@ table_sampling_by_month(d,
 ::: {.column width="45%"}
 \begin{center}\textbf{Shore-based}\end{center}
 ```{r us-sb-sampling-summary, results = "asis"}
-d <- tibble(month = c("Mar", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
-            num_ages = c(0, 340, 448, 240, 60, 60, 180, 0, 1328),
-            num_lengths = c(20, 720, 540, 500, 500, 370, 560, 20, 3230),
-            num_weights = c(20, 340, 448, 440, 400, 310, 479, 20, 2457))
+d <- tibble(month = c("May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
+            num_age = c(119, 240, 330, 240, 219, 140, 0, 1288),
+            num_length = c(360, 600, 800, 620, 510, 360, 0, 3250),
+            num_weight = c(240, 480, 650, 500, 380, 300, 0, 2550))
 table_sampling_by_month(d,
                         font_size = 8,
                         header_font_size = 9)
