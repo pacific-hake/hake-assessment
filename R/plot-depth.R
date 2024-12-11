@@ -24,6 +24,17 @@ plot_depth <- function(depth_df,
                        reverse_y = TRUE,
                        ...){
 
+  yrs_not_present <- yrs[!yrs %in% depth_df$year]
+  if(!is.null(yrs_not_present)){
+    new_rows <- map(yrs_not_present, ~{
+      c(.x, rep(NA, ncol(depth_df) - 1)) |>
+        vec2df(nms = names(depth_df))
+    }) |>
+      bind_rows()
+
+    depth_df <- depth_df |>
+      bind_rows(new_rows)
+  }
   depth_df <- depth_df |>
     filter(year %in% yrs) |>
     rename(lower = lowerhinge,
