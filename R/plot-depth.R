@@ -56,15 +56,14 @@ plot_depth <- function(depth_df,
     y_breaks <- rev(y_breaks)
     y_lim <- rev(y_lim)
   }
-  if(!is.null(y_lim)){
-    g <- g +
-      coord_cartesian(ylim = y_lim)
-  }
   if(!is.null(y_breaks)){
     g <- g +
       scale_y_continuous(breaks = y_breaks,
                          labels = comma)
-
+  }
+  if(!is.null(y_lim)){
+    g <- g +
+      ylim(y_lim)
   }
   if(!is.null(title_text)){
     g <- g +
