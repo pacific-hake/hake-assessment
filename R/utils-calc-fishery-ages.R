@@ -1,5 +1,9 @@
 #' Load data and create age compositions for the fishery
 #'
+#' Uses loaded age data from each fleet to create the age-composition data for
+#' the Stock Synthesis file after weighting by catch and weight-at-age. The
+#' weight-at-age information is passed as a function argument and subset for
+#' fleet 1 and the catch data is available internally in the package.
 #' @details
 #' TODO:
 #' 1. Weight-at-age is summed over all ages 0--20 but ages are not available
@@ -7,6 +11,9 @@
 #' @param weight_at_age A data frame read in by [r4ss::SS_readwtatage()] for
 #'   the current year's model.
 #' @author Kelli F. Johnson
+#' @return
+#' A data frame is returned that is appropriate for using in a Stock Synthesis
+#' data file for the age-composition section.
 calc_fishery_ages <- function(weight_at_age) {
 
   wtatage_repo <- weight_at_age |>
