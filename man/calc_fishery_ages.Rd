@@ -10,8 +10,15 @@ calc_fishery_ages(weight_at_age)
 \item{weight_at_age}{A data frame read in by \code{\link[r4ss:SS_readwtatage]{r4ss::SS_readwtatage()}} for
 the current year's model.}
 }
+\value{
+A data frame is returned that is appropriate for using in a Stock Synthesis
+data file for the age-composition section.
+}
 \description{
-Load data and create age compositions for the fishery
+Uses loaded age data from each fleet to create the age-composition data for
+the Stock Synthesis file after weighting by catch and weight-at-age. The
+weight-at-age information is passed as a function argument and subset for
+fleet 1 and the catch data is available internally in the package.
 }
 \details{
 TODO:
