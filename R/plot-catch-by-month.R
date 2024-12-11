@@ -113,6 +113,10 @@ plot_catch_by_month <- function(catch_lst,
     x_labels <- month.abb[x_breaks]
     x_labels[x_breaks %% 2 == 1] <- ""
 
+    # Zero catch data frame
+    d_zero <- d |>
+      filter(catch == 0)
+
     g <- ggplot(d,
                 aes(x = month,
                     y = catch,
@@ -122,6 +126,12 @@ plot_catch_by_month <- function(catch_lst,
                      size = point_size,
                      shape = point_shape,
                      stroke = point_stroke) +
+      geom_point(data = d_zero,
+                 aes(x = month,
+                     y = catch,
+                     color = year),
+                 shape = 17,
+                 size = 2.5) +
       scale_color_manual(values = colors) +
       scale_x_continuous(breaks = x_breaks,
                          labels = x_labels) +
