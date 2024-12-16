@@ -288,27 +288,7 @@ process_catch_pacfin <- function(pcatch = get_local(file = "pcatch.Rdat"),
   # although 1986 differs from data used
   # database  1986 3431.9436
   # assesment 1986 3465.00
-  
-  # FIXME: Remove this once the fish tickets are in PacFIN
-  tribal_2024_check <- pcatch |>
-    dplyr::filter(FLEET == "TI", year == 2024) |>
-    dplyr::summarize(total = sum(MT)) |>
-    dplyr::pull(total)
-  # Add fake fish tickets to the data
-  if (tribal_2024_check < 1550) {
-    pcatch <- pcatch |>
-      dplyr::add_row(
-        year = 2024,
-        FLEET = "TI",
-        GRID = "MDT",
-        LBS = 358127.8,
-        MT = 162.444,
-        RMT = 162.444,
-        Date = as.Date("2024-10-16"),
-        month = 10,
-        sector = "USshore"
-      )
-  }
+
   pcatch_by_month_year <- pcatch |>
     # TODO: remove this filter when we want all the data 
     dplyr::group_by(
