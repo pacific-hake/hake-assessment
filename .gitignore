@@ -1,6 +1,7 @@
 # root .gitignore
 # Files
 hake.R
+password.txt
 marmap_coord*
 ..Rcheck/
 *~*
