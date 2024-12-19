@@ -43,7 +43,7 @@ models_path="models"
 year_path=$assess_year
 version_path="02-version"
 
-ss_exe="ss3_2024"
+ss_exe="ss3"
 num_chains=8
 num_samples=8000
 num_warmup_samples=250
