@@ -6,69 +6,11 @@
 #' @author Kelli F. Johnson
 #'
 process_weight_at_age_survey <- function(savedir = hakedata_wd()) {
-  year <- hake::get_data_yr()
-  # NWFSC Acoustic Survey path to biological data since 1995
-  server_path <- fs::path(
-    "//nwcfile", "fram", "Survey.Acoustics", "Survey Time Series Analysis",
-    "Historical Summary (for Kriging)", "Biological"
-  )
-
-  # Search for the annual directories, then search for biological_specimen and
-  # the haul files. Merge the two files together then row bind all of the years.
-  # FIXME: Need to rebuild the read_weight_at_age_nwfsc function to read in all
-  #        of these files, for this year it does not matter because it is not a
-  #        survey year but it will matter next year. I think that
-  #        `pull_surveyageproportions()` might be the right function?
-  if (format(Sys.Date(), "%Y") == "2025") {
-    cli::cli_abort(c(
-      "x" = "process_weight_at_age_survey was not fixed, search for FIXME:"
-    ))
-  }
-  if (exists("read_weight_at_age_nwfsc")) {
-  main_tibble <- fs::dir_ls(
-    path = server_path,
-    type = "dir",
-    recurse = TRUE,
-    regexp = paste0(
-      .Platform[["file.sep"]], "[0-9]{4}",
-      .Platform[["file.sep"]], c("US$", "CAN$"),
-      collapse = "|"
-    )
-  ) |>
-    tibble::as_tibble() |>
-    dplyr::mutate(
-      bio_file = purrr::map_chr(
-        value,
-        .f = \(x) fs::dir_ls(x, regexp = "biodata_specimen.+x")[1]
-      ),
-      haul_file = purrr::map_chr(
-        value,
-        .f = \(x) fs::dir_ls(x, regexp = "[hH][aA][uU][lL][_CANand]{0,7}\\.")[1]
-      ),
-      data = purrr::map2(bio_file, haul_file, .f = read_weight_at_age_nwfsc)
-    ) |>
-    dplyr::pull(data) |>
-    dplyr::bind_rows()
-  } else {
-    main_tibble <- tibble()
-  }
   # Save the data after combining with old data
-  file_path <- fs::path(savedir, "survey-weight-at-age.csv")
-  old_data <- utils::read.csv(file_path) |>
-    dplyr::filter(Year < 1993) |>
-    dplyr::mutate(
-      Source = dplyr::case_when(
-        Source == "US_acoustic" ~ "U.S. Acoustic",
-        Source == "CAN_acoustic" ~ "Canada Acoustic",
-        TRUE ~ Source
-      )
-    )
-  final_data <- dplyr::bind_rows(
-    old_data,
-    main_tibble
-  ) |>
-    dplyr::arrange(Source, Year, Month) |>
+  final_data <- pull_survey_weight_at_age() |>
+    dplyr::arrange(Source, Year, Month, Sex, Age_yrs) |>
     as.data.frame()
+  file_path <- fs::path(savedir, "survey-weight-at-age.csv")
 
   utils::write.csv(
     x = final_data,
