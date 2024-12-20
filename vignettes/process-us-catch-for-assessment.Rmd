@@ -1,11 +1,13 @@
 ---
-title: "Process the U.S. catch"
+title: "Pull U.S. data and process all data"
 output: rmarkdown::html_vignette
 date: "This document was rendered on `r hake::curr_time_date()`"
 vignette: >
-  %\VignetteIndexEntry{Process the U.S. catch}
+  %\VignetteIndexEntry{Pull U.S. data and process all data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+params:
+  run: FALSE
 ---
 
 ```{r, include = FALSE}
@@ -22,19 +24,68 @@ library(hake)
 The code within {hake} requires that `here::here()` be functional and point R
 to the appropriate directory within your cloned repository. Thus, if the
 results of `here::here()` do not give you your clone of the
-[Pacific hake Github repository](github.com/pacific-hake/hake-assessment)
-then you must navigate to somewhere that does.
+[pacific-hake/hake-assessment](github.com/pacific-hake/hake-assessment) GitHub
+repository then you must navigate to somewhere that does.
 
-   1. Pull data from the databases and process it: \
-      ```{r pull-process, echo = FALSE, eval = FALSE}
-      hakedataUSA::pull_database()
-      hakedataUSA::process_database()
+   1. Pull data from databases that store data for the U.S. fishing fleets.
+      Information will be saved in data-tables/extractedData as .Rdat files.
+      These files are then used by the next step but the .Rdat files should
+      never be shared themselves because they contain confidential
+      information. Files that begin with 'n' come from the NorPAC database and
+      files that start with 'p' come from the PacFIN database. The following
+      six files will be created and all of the information will also be
+      available in the returned list, though you do not actually need the
+      object:
+      * data-tables/extractedData/nages.Rdat
+      * data-tables/extractedData/ncatch.Rdat
+      * data-tables/extractedData/nweight.Rdat
+      * data-tables/extractedData/page.Rdat
+      * data-tables/extractedData/pcatch.Rdat
+      * data-tables/extractedData/pspec.Rdat\
+      ```{r pull, echo = TRUE, eval=params$run}
+      data_list <- usa_pull_data()
       ```
 
-   1. Run the following to update the `r landings_tac_fn` and
+   2. First, process the downloaded U.S. catches and age composition from
+      above.
+      TODO: Need to re-write the function to match the .csv files from
+      Canada for the age data from the U.S. for each of the three fleets.
+      ```{r process, echo = TRUE, eval=params$run}
+      process_database()
+      ```
+   
+   3. Run the following to update the `r landings_tac_fn` and
       `r catch_targets_biomass_fn` file. This function depends on the monthly
       catch files being filled out but it is not harmful to run it prior to
       all of the files being completed for the current year: \
-      ```{r, echo = FALSE}
+      ```{r, echo = TRUE, eval=params$run}
       utils_update_catch_sums()
+      ```
+
+   4. Pull the survey age composition data.
+      ```{r, echo = TRUE, eval=params$run}
+      this_years_survey_age_data <- pull_survey_age_proportions()
+      ```
+
+   5. Process the survey and then U.S. weight-at-age data to populate the
+      appropriate files. The survey data for both countries are are on the
+      NWFSC Server. Need to do the processing step for the survey weight-at-age
+      data because it has to mix the saved data on the server with some
+      information from 1986 and 1989 as well as Canadian survey data from 1995,
+      1998, 2001, and 2012. Then, process the U.S. data.
+      ```{r, echo = TRUE, eval=params$run}
+      process_weight_at_age_survey()
+      process_weight_at_age_us()
+      # Write a function to ensure that the sample size table is up to date
+      # maybe include it in the function below
+      # Still need to write this function
+      process_all_weight_at_age()
+      ```
+
+   6. Last step is to write the bridging files.
+      ```{r, echo = TRUE, eval=params$run}
+      write_bridging(
+        dir_input = ,
+        dir_output =
+      )
       ```
