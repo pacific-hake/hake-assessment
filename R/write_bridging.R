@@ -117,14 +117,30 @@ write_bridging_catch <- function(input, dir_output) {
 }
 
 write_bridging_weight_at_age <- function(input, dir_output) {
-  # Need to add input weight-at-age data
+  # TODO: combine these two functions, maybe do not even need
+  #       write_wtatage_file as long as the data frame is padded
+
+  # Update with the tv weight-at-age data first and just a vector
+  # of average maturity to use legacy function
+  write_wtatage_file(
+    file = fs::path(dir_output, "wtatage.ss"),
+    data = pad_weight_at_age(weight_at_age_estimates_df),
+    maturity = maturity_estimates_df |>
+      dplyr::filter(doy == 278) |>
+      dplyr::summarize(p_mature = mean(p_mature), .by = c(age)) |>
+      dplyr::pull(p_mature)
+  )
+  # Read that weight-at-age data back in and update it with the
+  # time-varying maturity and write back out
   weight_at_age <- r4ss::SS_readwtatage(
-    file = fs::path(hakedata_wd(), "wtatage.ss"),
-    verbose = FALSE
-  ) %>%
-    dplyr::select(-dplyr::matches("comment")) %>%
-    dplyr::arrange(Yr, Fleet)
+    file = fs::path(dir_output, "wtatage.ss")
+  )
   input[["wtatage"]] <- weight_at_age
+  inputs[["wtatage"]] <- update_ss3_maturity(
+    maturity = maturity_estimates_df |>
+      dplyr::filter(model == "Spatial + temperature", !is.na(p_mature)),
+    weight_at_age = inputs[["wtatage"]]
+  )
   input[["par"]] <- NULL
   r4ss::SS_write(
     inputlist = input,
@@ -132,6 +148,7 @@ write_bridging_weight_at_age <- function(input, dir_output) {
     overwrite = TRUE,
     verbose = FALSE
   )
+  purrr::walk(dir_output, .f = \(x) system(glue::glue("cd {x} && clean_ss3")))
   return(invisible(input))
 }
 

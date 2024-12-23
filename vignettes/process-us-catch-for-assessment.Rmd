@@ -76,6 +76,9 @@ repository then you must navigate to somewhere that does.
       ```{r, echo = TRUE, eval=params$run}
       process_weight_at_age_survey()
       process_weight_at_age_us()
+      model_weight_at_age_long <- estimate_tv_weight_at_age()
+      estimate_tv_maturity_at_age()
+      
       # Write a function to ensure that the sample size table is up to date
       # maybe include it in the function below
       # Still need to write this function
