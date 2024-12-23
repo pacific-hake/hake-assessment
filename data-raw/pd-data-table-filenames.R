@@ -13,6 +13,7 @@ create_data_hake("ovary_samples_fn", "ovary-samples.csv")
 create_data_hake("maturity_samples_fn", "maturity-samples.csv")
 create_data_hake("maturity_estimates_fn", "maturity-ogives.csv")
 create_data_hake("weight_age_sample_sizes_fn","wtatage-all-samplesize.csv")
+create_data_hake("weight_age_estimates_fn", "weight-at-age-ogives.csv")
 
 # Age proportions ----
 create_data_hake("can_ft_age_props_fn", "can-ft-age-proportions.csv")

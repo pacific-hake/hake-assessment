@@ -85,7 +85,9 @@ Suggests:
   ggpubr,
   graphics,
   rmarkdown,
+  sdmTMB,
   shinystan,
+  stats,
   testthat
 Remotes:
   cgrandin/adnuts,
