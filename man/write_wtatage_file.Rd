@@ -5,16 +5,15 @@
 \title{Write weight-at-age file}
 \usage{
 write_wtatage_file(
-  file = paste0("wtatage_", format(Sys.time(), "\%Y"), "created_", format(Sys.time(),
-    "\%d-\%b-\%Y_\%H.\%M"), ".ss"),
+  file = paste0("wtatage_created_", format(Sys.time(), "\%d-\%b-\%Y_\%H.\%M"), ".ss"),
   data,
   maturity
 )
 }
 \arguments{
-\item{file}{A filename that you want to save the information as. The default is to have
-an extension of \code{.ss} such that the file can be used for Stock Synthesis.
-The file path can either be relative or absolute.}
+\item{file}{A filename that you want to save the information as. The default
+is to have an extension of \code{.ss} such that the file can be used for
+Stock Synthesis. The file path can either be relative or absolute.}
 
 \item{data}{Weight at age matrix.}
 
