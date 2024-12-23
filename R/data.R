@@ -624,6 +624,18 @@
 #' }
 "maturity_estimates_df"
 
+#' A data frame containing information on the maturity estimates by year and
+#' model type. The data are coded as proportion mature by age for a given year
+#' and model.
+#'
+#' @format A data frame with 3 variables:
+#' \describe{
+#'   \item{year}{Year sample was taken}
+#'   \item{age}{Age of fish}
+#'   \item{p_weight}{Predicted weight of fish in kg, I think}
+#' }
+"weight_at_age_estimates_df"
+
 #' A data frame containing information on probability of biomass decline
 #' or of being below B40% for hindcasts of the last 10 years
 #'

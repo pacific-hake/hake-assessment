@@ -61,6 +61,11 @@ create_data_hake("maturity_estimates_df",
                           guess_max = Inf,
                           show_col_types = FALSE))
 
+create_data_hake("weight_at_age_estimates_df",
+                 read_csv(file.path(load_dir,
+                                    "weight-at-age-ogives.csv"),
+                          guess_max = Inf,
+                          show_col_types = FALSE))
 create_data_hake("weight_age_sample_sizes_df",
                  read_csv(file.path(load_dir,
                                     "wtatage-all-samplesize.csv"),

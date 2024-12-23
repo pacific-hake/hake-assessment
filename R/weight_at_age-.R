@@ -407,15 +407,17 @@ make_wtatage_plots <- function(plots = 1:6, data, counts, lengths = NULL,
 
 #' Write weight-at-age file
 #'
-#' @param file A filename that you want to save the information as. The default is to have
-#' an extension of \code{.ss} such that the file can be used for Stock Synthesis.
-#' The file path can either be relative or absolute.
+#' @param file A filename that you want to save the information as. The default
+#'   is to have an extension of \code{.ss} such that the file can be used for
+#'   Stock Synthesis. The file path can either be relative or absolute.
 #' @param data Weight at age matrix.
 #' @param maturity A vector of maturity at age.
 #'
-write_wtatage_file <- function(file = paste0("wtatage_", format(Sys.time(), "%Y"), "created_", format(Sys.time(), "%d-%b-%Y_%H.%M"), ".ss"),
-                               data,
-                               maturity) {
+write_wtatage_file <- function(
+  file = paste0("wtatage_created_", format(Sys.time(), "%d-%b-%Y_%H.%M"), ".ss"),
+  data,
+  maturity
+) {
   # Ensure column name that matters is lowercase
   colnames(data)[grep("fleet", ignore.case = TRUE, colnames(data))] <- "fleet"
 
