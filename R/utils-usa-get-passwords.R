@@ -37,7 +37,7 @@ usa_get_passwords <- function(password_file) {
       c("NORPAC" = "TAYLORI", "PacFIN" = "itaylor")[database]
     },
     "Chantel.Wetzel" = {
-      c("NORPAC" = "WETZELC", "PacFIN" = "cwetzel")[database]
+      c("NORPAC" = "CWETZE", "PacFIN" = "cwetzel")[database]
     }
   )
   stopifnot(!is.null(name))
