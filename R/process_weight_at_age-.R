@@ -111,7 +111,6 @@ process_weight_at_age <- function(dir = hakedata_wd(),
                                   maturity = maturity_at_age,
                                   output_wtatage_file_name = "wtatage.ss") {
   fs::dir_create(path = file.path(dir, "plots"))
-  browser()
   # length-weight-age_data.rds provided by CG on 2021-01-09 in google drive #703
   # filtered by area rather than month and provided as rds rather than csv to
   # save on size, contains all US samples in LWAdata_1975to2007.csv, so
