@@ -19,7 +19,7 @@ survey_age_comps <- c(
 survey_age_comps_n <- 64
 
 # These objects might need to be altered at the start
-current_yr <- 2024
+current_yr <- 2025
 model_dir_srv <- "/srv/hake/models"
 model_dir_version <- "01-version"
 model_dir_base <- fs::path("01-base-models", "01-base")
@@ -61,6 +61,8 @@ insert_survey_value <- function(year,
 create_version_dirs(year = current_yr)
 ```
 
+The first step is to copy last year's model over into the bridging directory. Though, it will end up not being an actual duplicate because it will be ran with the new Stock Synthesis executable.
+
 ```{r update-ss3-exe, eval = FALSE}
 # Copy last year's model and run with new exe
 r4ss::copy_SS_inputs(
@@ -72,6 +74,8 @@ r4ss::copy_SS_inputs(
   recursive = TRUE
 )
 ```
+
+The updating of data goes through two cycles, first the old data is updated for each data type. Then once that is complete, the newest years of data are tacked on.
 
 ```{r fix-catches, eval = FALSE}
 r4ss::copy_SS_inputs(
@@ -112,15 +116,47 @@ inputs <- r4ss::SS_read(
   ss_new = FALSE,
   verbose = FALSE
 )
-fixed_weight_at_age <- r4ss::SS_readwtatage(
-  fs::path(here::here(), data_tables_path, "length-weight-age", "wtatage_fix.ss"),
+# TODO: combine these two functions, maybe do not even need
+#       write_wtatage_file as long as the data frame is padded
+# Update with the tv weight-at-age data first and just a vector
+# of average maturity to use legacy function
+write_wtatage_file(
+  file = fs::path(bridge_dir, "02-fix-weight-at-age", "wtatage.ss"),
+  data = pad_weight_at_age(
+    dplyr::filter(weight_at_age_estimates_df, year <= current_yr - 2)
+  ),
+  maturity = maturity_estimates_df |>
+    dplyr::filter(doy == 278, year <= current_yr - 2) |>
+    dplyr::summarize(p_mature = mean(p_mature), .by = c(age)) |>
+    dplyr::pull(p_mature)
+)
+# Read that weight-at-age data back in and update it with the
+# time-varying maturity and write back out
+weight_at_age <- r4ss::SS_readwtatage(
+  file = fs::path(bridge_dir, "02-fix-weight-at-age", "wtatage.ss")
+)
+inputs[["wtatage"]] <- update_ss3_maturity(
+  maturity = maturity_estimates_df |>
+    dplyr::filter(
+      model == "Spatial + temperature",
+      !is.na(p_mature),
+      year <= current_yr - 2,
+      doy == 278
+    ),
+  weight_at_age = weight_at_age
+)
+inputs[["par"]] <- NULL
+r4ss::SS_write(
+  inputlist = inputs,
+  dir = fs::path(bridge_dir, "02-fix-weight-at-age"),
+  overwrite = TRUE,
   verbose = FALSE
 )
-inputs[["wtatage"]] <- fixed_weight_at_age
-r4ss::SS_write(
-  inputs,
-  dir = fs::path(bridge_dir, "02-fix-weight-at-age"),
-  overwrite = TRUE
+# Chris wrote this function and I am not sure what it does but the files
+# will not run without doing it
+purrr::walk(
+  fs::path(bridge_dir, "02-fix-weight-at-age"),
+  .f = \(x) system(glue::glue("cd {x} && clean_ss3"))
 )
 ```
 
@@ -133,24 +169,24 @@ r4ss::copy_SS_inputs(
   verbose = FALSE,
   recursive = TRUE
 )
-inputs <- r4ss::SS_read(
-  dir = fs::path(bridge_dir, "03-fix-survey-1"),
-  ss_new = FALSE,
-  verbose = FALSE
-)
-# TODO: put age-1 survey values in a spreadsheet that is version controlled
-inputs[["dat"]][["CPUE"]] <- insert_survey_value(
-  fleet = 3,
-  year = 2021,
-  data = c(2276192.127, 0.5),
-  archive = inputs[["dat"]][["CPUE"]] |>
-    dplyr::filter(!(year == 2021 & index == 3))
-)
-r4ss::SS_write(
-  inputs,
-  dir = fs::path(bridge_dir, "03-fix-survey-1"),
-  overwrite = TRUE
-)
+# inputs <- r4ss::SS_read(
+#   dir = fs::path(bridge_dir, "03-fix-survey-1"),
+#   ss_new = FALSE,
+#   verbose = FALSE
+# )
+# # TODO: put age-1 survey values in a spreadsheet that is version controlled
+# inputs[["dat"]][["CPUE"]] <- insert_survey_value(
+#   fleet = 3,
+#   year = 2021,
+#   data = c(2276192.127, 0.5),
+#   archive = inputs[["dat"]][["CPUE"]] |>
+#     dplyr::filter(!(year == 2021 & index == 3))
+# )
+# r4ss::SS_write(
+#   inputs,
+#   dir = fs::path(bridge_dir, "03-fix-survey-1"),
+#   overwrite = TRUE
+# )
 ```
 
 ```{r 04-fix-fishery-comps, eval = FALSE}
@@ -229,15 +265,46 @@ inputs <- r4ss::SS_read(
   ss_new = FALSE,
   verbose = FALSE
 )
-new_weight_at_age <- r4ss::SS_readwtatage(
-  fs::path(here::here(), data_tables_path, "length-weight-age", "wtatage.ss"),
+# TODO: combine these two functions, maybe do not even need
+#       write_wtatage_file as long as the data frame is padded
+# Update with the tv weight-at-age data first and just a vector
+# of average maturity to use legacy function
+write_wtatage_file(
+  file = fs::path(bridge_dir, "20-add-weight-at-age", "wtatage.ss"),
+  data = pad_weight_at_age(
+    dplyr::filter(weight_at_age_estimates_df, year <= current_yr - 2)
+  ),
+  maturity = maturity_estimates_df |>
+    dplyr::filter(doy == 278) |>
+    dplyr::summarize(p_mature = mean(p_mature), .by = c(age)) |>
+    dplyr::pull(p_mature)
+)
+# Read that weight-at-age data back in and update it with the
+# time-varying maturity and write back out
+weight_at_age <- r4ss::SS_readwtatage(
+  file = fs::path(bridge_dir, "20-add-weight-at-age", "wtatage.ss")
+)
+inputs[["wtatage"]] <- update_ss3_maturity(
+  maturity = maturity_estimates_df |>
+    dplyr::filter(
+      model == "Spatial + temperature",
+      !is.na(p_mature),
+      doy == 278
+    ),
+  weight_at_age = weight_at_age
+)
+inputs[["par"]] <- NULL
+r4ss::SS_write(
+  inputlist = inputs,
+  dir = fs::path(bridge_dir, "20-add-weight-at-age"),
+  overwrite = TRUE,
   verbose = FALSE
 )
-inputs[["wtatage"]] <- new_weight_at_age
-r4ss::SS_write(
-  inputs,
-  dir = fs::path(bridge_dir, "20-add-weight-at-age"),
-  overwrite = TRUE
+# Chris wrote this function and I am not sure what it does but the files
+# will not run without doing it
+purrr::walk(
+  fs::path(bridge_dir, "20-add-weight-at-age"),
+  .f = \(x) system(glue::glue("cd {x} && clean_ss3"))
 )
 ```
 
@@ -250,36 +317,36 @@ r4ss::copy_SS_inputs(
   verbose = FALSE,
   recursive = TRUE
 )
-inputs <- r4ss::SS_read(
-  dir = fs::path(bridge_dir, "30-add-survey-2"),
-  ss_new = FALSE,
-  verbose = FALSE
-)
-inputs[["dat"]][["CPUE"]] <- insert_survey_value(
-  fleet = -2,
-  year = current_yr - 2,
-  data = c(1, 1),
-  archive = inputs[["dat"]][["CPUE"]]
-)
-# TODO: replace the entire time series and add -fleet for the missing year rows
-#       this will need to be done for the age-1 survey as well
-inputs[["dat"]][["CPUE"]] <- insert_survey_value(
-  year = current_yr - 1,
-  data = survey_by_country_df |>
-    dplyr::filter(year == current_yr - 1) |>
-    dplyr::mutate(
-      total = total * 1000,
-      total.cv = total.cv / 100
-    ) |>
-    dplyr::select(total, total.cv) |>
-    as.vector(),
-  archive = inputs[["dat"]][["CPUE"]]
-)
-r4ss::SS_write(
-  inputs,
-  dir = fs::path(bridge_dir, "30-add-survey-2"),
-  overwrite = TRUE
-)
+# inputs <- r4ss::SS_read(
+#   dir = fs::path(bridge_dir, "30-add-survey-2"),
+#   ss_new = FALSE,
+#   verbose = FALSE
+# )
+# inputs[["dat"]][["CPUE"]] <- insert_survey_value(
+#   fleet = -2,
+#   year = current_yr - 2,
+#   data = c(1, 1),
+#   archive = inputs[["dat"]][["CPUE"]]
+# )
+# # TODO: replace the entire time series and add -fleet for the missing year rows
+# #       this will need to be done for the age-1 survey as well
+# inputs[["dat"]][["CPUE"]] <- insert_survey_value(
+#   year = current_yr - 1,
+#   data = survey_by_country_df |>
+#     dplyr::filter(year == current_yr - 1) |>
+#     dplyr::mutate(
+#       total = total * 1000,
+#       total.cv = total.cv / 100
+#     ) |>
+#     dplyr::select(total, total.cv) |>
+#     as.vector(),
+#   archive = inputs[["dat"]][["CPUE"]]
+# )
+# r4ss::SS_write(
+#   inputs,
+#   dir = fs::path(bridge_dir, "30-add-survey-2"),
+#   overwrite = TRUE
+# )
 ```
 
 ```{r add-survey-age-comps, eval = FALSE}
@@ -296,14 +363,14 @@ inputs <- r4ss::SS_read(
   ss_new = FALSE,
   verbose = FALSE
 )
-inputs[["dat"]][["agecomp"]] <- rbind(
-  inputs[["dat"]][["agecomp"]],
-  c(
-    current_yr - 1, 7, 2, 0, 0, 51, -1, -1, survey_age_comps_n,
-    survey_age_comps
-  )
-) |>
-  dplyr::arrange(-FltSvy, Yr)
+# inputs[["dat"]][["agecomp"]] <- rbind(
+#   inputs[["dat"]][["agecomp"]],
+#   c(
+#     current_yr - 1, 7, 2, 0, 0, 51, -1, -1, survey_age_comps_n,
+#     survey_age_comps
+#   )
+# ) |>
+#   dplyr::arrange(-FltSvy, Yr)
 inputs[["dat"]] <- update_ss3_ageing_error(inputs[["dat"]])
 r4ss::SS_write(
   inputs,
@@ -321,31 +388,31 @@ r4ss::copy_SS_inputs(
   verbose = FALSE,
   recursive = TRUE
 )
-inputs <- r4ss::SS_read(
-  dir = fs::path(bridge_dir, "40-add-survey-1"),
-  ss_new = FALSE,
-  verbose = FALSE
-)
-inputs[["dat"]][["CPUE"]] <- insert_survey_value(
-  fleet = -3,
-  year = current_yr - 2,
-  data = c(1, 1),
-  archive = inputs[["dat"]][["CPUE"]]
-)
-# TODO: put age-1 survey values in a spreadsheet that is version controlled
-inputs[["dat"]][["CPUE"]] <- insert_survey_value(
-  fleet = 3,
-  year = current_yr - 1,
-  data = c(1186865.482, 0.5),
-  archive = inputs[["dat"]][["CPUE"]]
-)
-# TODO: Fix this so non-survey year works because you must subtract 2!
-inputs[["ctl"]][["MainRdevYrLast"]] <- inputs[["dat"]][["endyr"]] - 1
-r4ss::SS_write(
-  inputs,
-  dir = fs::path(bridge_dir, "40-add-survey-1"),
-  overwrite = TRUE
-)
+# inputs <- r4ss::SS_read(
+#   dir = fs::path(bridge_dir, "40-add-survey-1"),
+#   ss_new = FALSE,
+#   verbose = FALSE
+# )
+# inputs[["dat"]][["CPUE"]] <- insert_survey_value(
+#   fleet = -3,
+#   year = current_yr - 2,
+#   data = c(1, 1),
+#   archive = inputs[["dat"]][["CPUE"]]
+# )
+# # TODO: put age-1 survey values in a spreadsheet that is version controlled
+# inputs[["dat"]][["CPUE"]] <- insert_survey_value(
+#   fleet = 3,
+#   year = current_yr - 1,
+#   data = c(1186865.482, 0.5),
+#   archive = inputs[["dat"]][["CPUE"]]
+# )
+# # TODO: Fix this so non-survey year works because you must subtract 2!
+# inputs[["ctl"]][["MainRdevYrLast"]] <- inputs[["dat"]][["endyr"]] - 1
+# r4ss::SS_write(
+#   inputs,
+#   dir = fs::path(bridge_dir, "40-add-survey-1"),
+#   overwrite = TRUE
+# )
 ```
 
 ```{r fishery-comp, eval = FALSE}
@@ -370,18 +437,18 @@ colnames(fishery_age_composition) <- colnames(inputs[["dat"]][["agecomp"]])
 inputs[["dat"]][["agecomp"]] <- dplyr::bind_rows(
   dplyr::filter(
     inputs[["dat"]][["agecomp"]],
-    !(FltSvy == 1 & Yr >= 2008)
+    !(fleet == 1 & year >= 2008)
   ),
   fishery_age_composition |>
-    dplyr::filter(Yr >= 2008)
+    dplyr::filter(year >= 2008)
 ) |>
-  dplyr::arrange(-FltSvy, Yr)
+  dplyr::arrange(-fleet, year)
 
 # Fix terminal year for time-varying selectivity
 inputs[["ctl"]][["age_selex_parms"]][, "dev_maxyr"] <- ifelse(
   inputs[["ctl"]][["age_selex_parms"]][, "dev_maxyr"] == 0,
   0,
-  max(inputs[["dat"]][["agecomp"]][, "Yr"])
+  max(inputs[["dat"]][["agecomp"]][, "year"])
 )
 
 r4ss::SS_write(
@@ -391,196 +458,9 @@ r4ss::SS_write(
 )
 ```
 
-```{r survey-1-t-distribution, eval = FALSE}
-r4ss::copy_SS_inputs(
-  dir.old = fs::path(bridge_dir, "50-add-fishery-ages"),
-  dir.new = fs::path(bridge_dir, "60-survey-1-t-distribution"),
-  overwrite = TRUE,
-  use_ss_new = FALSE,
-  verbose = FALSE,
-  recursive = TRUE
-)
-inputs <- r4ss::SS_read(
-  dir = fs::path(bridge_dir, "60-survey-1-t-distribution"),
-  ss_new = FALSE,
-  verbose = FALSE
-)
-
-# DOF of the student-t distribution is = n for the index - 1
-inputs[["dat"]][["CPUEinfo"]][
-  inputs[["dat"]][["CPUEinfo"]][["Fleet"]] == 3,
-  "Errtype"
-] <- inputs[["dat"]][["CPUE"]] |> dplyr::filter(index == 3) |> NROW() - 1
-r4ss::SS_write(
-  inputs,
-  dir = fs::path(bridge_dir, "60-survey-1-t-distribution"),
-  overwrite = TRUE
-)
-```
-
-```{r tv-weight-at-age, eval = FALSE}
-r4ss::copy_SS_inputs(
-  dir.old = fs::path(real_bridge_dir, "60-survey-1-t-distribution"),
-  dir.new = fs::path(bridge_dir, "70-tv-weight-at-age"),
-  overwrite = TRUE,
-  use_ss_new = FALSE,
-  verbose = FALSE,
-  recursive = TRUE
-)
-
-m1 <- sdmTMB::sdmTMB(
-  data = weight_at_age_df  |>
-    dplyr::filter(sex != "U") |>
-    dplyr::mutate(
-      age = ifelse(age > 15, 15, age),
-      cohort = year - age,
-      fyear = as.factor(year),
-      fcohort = as.factor(cohort)
-    ),
-  formula = weight ~ 1 + s(age) + (1|fcohort) + (1|fyear) + sex,
-  family = lognormal(link = "log"),
-  spatial = "off",
-  spatiotemporal = "off",
-  time = "year",
-  control = sdmTMB::sdmTMBcontrol(newton_loops = 1)
-)
-sanity(m1)
-residuals_m1 <- residuals(m1)
-residuals_m1 <- residuals_m1[is.finite(residuals_m1)]
-png(fs::path("", "srv", "hake", "other", "tv", "weight-at-age-qq.png"))
-qqnorm(residuals_m1); qqline(residuals_m1)
-dev.off()
-saveRDS(
-  m1,
-  file = fs::path("", "srv", "hake", "other", "tv", "weight-at-age-model.rds")
-)
-
-# create prediction grid
-pred_grid <- expand.grid(
-  year = unique(m1[["data"]][["year"]]),
-  sex = unique(m1[["data"]][["sex"]]),
-  age = 0:15
-) |>
-  dplyr::mutate(cohort = year - age) |>
-  dplyr::filter(cohort %in% unique(m1[["data"]][["cohort"]])) |>
-  dplyr::mutate(
-    fyear = as.factor(year),
-    fcohort = as.factor(cohort)
-  )
-
-# Get estimates
-preds <- predict(m1, newdata = pred_grid)
-preds <- preds |>
-  dplyr::mutate(est_weight = exp(est))
-saveRDS(
-  preds,
-  file = fs::path("/srv/hake/other/tv", "weight-at-age-preds.rds")
-)
-
-# make EWAA
-ewaa <- preds |>
-  dplyr::group_by(year, age) |>
-  dplyr::summarise(
-    n = dplyr::n(),
-    pred_weight = mean(exp(est))
-  ) |>
-  as.data.frame() |>
-  dplyr::select(year, age, pred_weight)
-
-ewaa_complete <- pad_weight_at_age(ewaa)
-hakedataUSA:::write_wtatage_file(
-  file = fs::path(bridge_dir, "70-tv-weight-at-age", "wtatage.ss"),
-  data = ewaa_complete,
-  maturity = hakedataUSA::maturity_at_age
-)
-# Clean the input files
-x <- fs::path(bridge_dir, "70-tv-weight-at-age")
-system(glue::glue("cd {x} && clean_ss3"))
-```
-
-```{r redo-fishery-comp, eval = FALSE}
-r4ss::copy_SS_inputs(
-  dir.old = fs::path(bridge_dir, "70-tv-weight-at-age"),
-  dir.new = fs::path(bridge_dir, "71-redo-fishery-comp"),
-  overwrite = TRUE,
-  use_ss_new = FALSE,
-  verbose = FALSE,
-  recursive = TRUE
-)
-inputs <- r4ss::SS_read(
-  dir = fs::path(bridge_dir, "71-redo-fishery-comp"),
-  ss_new = FALSE,
-  verbose = FALSE
-)
-
-fishery_age_composition <- calc_fishery_ages(
-  weight_at_age = inputs[["wtatage"]]
-)
-colnames(fishery_age_composition) <- colnames(inputs[["dat"]][["agecomp"]])
-inputs[["dat"]][["agecomp"]] <- dplyr::bind_rows(
-  dplyr::filter(
-    inputs[["dat"]][["agecomp"]],
-    !(FltSvy == 1 & Yr >= 2008)
-  ),
-  fishery_age_composition |>
-    dplyr::filter(Yr >= 2008)
-) |>
-  dplyr::arrange(-FltSvy, Yr)
-r4ss::SS_write(
-  inputs,
-  dir = fs::path(bridge_dir, "71-redo-fishery-comp"),
-  overwrite = TRUE
-)
-# Clean the input files
-x <- fs::path(bridge_dir, "71-redo-fishery-comp")
-system(glue::glue("cd {x} && clean_ss3"))
-```
-
-```{r tv-maturity, eval = FALSE}
-inputs <- r4ss::SS_read(
-  dir = fs::path(bridge_dir, "71-redo-fishery-comp"),
-  ss_new = FALSE,
-  verbose = FALSE
-)
-inputs[["wtatage"]] <- update_ss3_maturity(
-  maturity = maturity_estimates_df |>
-    dplyr::filter(model == "Spatial + temperature", !is.na(p_mature)),
-  weight_at_age = inputs[["wtatage"]]
-)
-r4ss::SS_write(
-  inputs,
-  dir = fs::path(bridge_dir, "72-tv-fecundity"),
-  overwrite = TRUE,
-  verbose = FALSE
-)
-# Clean the input files
-x <- fs::path(bridge_dir, "72-tv-fecundity")
-system(glue::glue("cd {x} && clean_ss3"))
-# The following code is for sensitivity analyses not bridging
-test <- update_ss3_maturity(
-  maturity = data.frame(
-    age = seq_along(hakedataUSA::maturity_at_age) - 1,
-    year = 2023,
-    p_mature = hakedataUSA::maturity_at_age,
-    model = "old"
-  ),
-  weight_at_age = inputs[["wtatage"]]
-)
-test <- update_ss3_maturity(
-  maturity = maturity_estimates_df |>
-    dplyr::filter(model == "Null", !is.na(p_mature)),
-  weight_at_age = inputs[["wtatage"]]
-)
-test <- update_ss3_maturity(
-  maturity = maturity_estimates_df |>
-    dplyr::filter(model == "Spatial + AR(1) year effects", !is.na(p_mature)),
-  weight_at_age = inputs[["wtatage"]]
-)
-```
-
 ```{r base, eval = FALSE}
 r4ss::copy_SS_inputs(
-  dir.old = fs::path(bridge_dir, "72-tv-fecundity"),
+  dir.old = fs::path(bridge_dir, "50-add-fishery-ages"),
   dir.new = fs::path(dirname(bridge_dir), model_dir_base),
   overwrite = TRUE,
   use_ss_new = FALSE,
@@ -603,14 +483,14 @@ names(res) <- gsub(
   basename(rds_files)
 ) |>
   gsub(pattern = "-", replacement = " ")
-i_runs <- list(1:7, 7:15, c(7, 8, 14, 15))
+i_runs <- list(seq_along(res))
 for (i in seq_along(i_runs)) {
 ggplot2::ggsave(
   filename = fs::path(bridge_dir, paste0("sb-", i, ".png")),
   plot = plot_biomass(
     res[i_runs[[i]]],
     names(res)[i_runs[[i]]],
-    xlim = c(1960, 2023),
+    xlim = c(1960, current_yr),
     leg_pos = c(0.5, 0.9),
     leg_ncol = 3,
     point_color = rainbow(17)
