@@ -14,21 +14,17 @@
 #   $project_path
 
 models=( \
-        00-update-ss3-exe \
+        # 00-update-ss3-exe \
         # 01-fix-catches \
         # 02-fix-weight-at-age \
         # 03-fix-survey-1 \
         # 04-fix-fishery-comps \
         10-add-catches \
         20-add-weight-at-age \
-        30-add-survey-2 \
-        31-add-survey-age-comps
-        40-add-survey-1 \
+        # 30-add-survey-2 \
+        # 31-add-survey-age-comps
+        # 40-add-survey-1 \
         50-add-fishery-ages \
-        # 60-survey-1-t-distribution \
-        # 70-tv-weight-at-age \
-        # 71-redo-fishery-comp \
-        # 72-tv-fecundity \
         )
 
 type_path="02-bridging-models"
