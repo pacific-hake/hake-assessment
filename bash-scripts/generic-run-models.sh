@@ -41,7 +41,7 @@ repo_path=`Rscript -e "cat(here::here())"`
 models_path="models"
 # *Never* change `year_path` manually - See `get-assess-year.sh` call above
 year_path=$assess_year
-version_path="02-version"
+version_path="01-version"
 
 ss_exe="ss3"
 num_chains=8
@@ -51,7 +51,7 @@ num_warmup_samples=250
 models_path=$project_path/$models_path/$year_path/$version_path/$type_path
 
 [ -d "$models_path" ] && printf "\nDirectory $models_path exists, starting \
-run loop.\n" || { printf "\nError: Directory $models_path does not exist, \
+run loop.\n" || { printf "\nError: Directory $models_path does not exist sucks to be you, \
 bailing out.\n" ; exit 1; }
 
 for model in ${models[@]}; do
