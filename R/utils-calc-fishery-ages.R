@@ -17,8 +17,7 @@
 calc_fishery_ages <- function(weight_at_age) {
 
   wtatage_repo <- weight_at_age |>
-    dplyr::filter(Fleet == 1) |>
-    dplyr::rename(year = "Yr") |>
+    dplyr::filter(fleet == 1) |>
     dplyr::select(year, dplyr::matches("^[0-9]+$")) |>
     tidyr::pivot_longer(names_to = "age", values_to = "weight", cols = -year)
 
@@ -77,13 +76,13 @@ calc_fishery_ages <- function(weight_at_age) {
       by = "year"
     ) |>
     dplyr::mutate(
-      Month = 7,
-      Fleet = 1,
-      Sex = 0,
-      Partition = 0,
-      AgeErr = year - 1972,
-      LbinLo = -1,
-      LbinHi = -1,
+      month = 7,
+      fleet = 1,
+      sex = 0,
+      part = 0,
+      ageerr = year - 1972,
+      Lbin_lo = -1,
+      Lbin_hi = -1,
       .after = year
     )
   return(final)

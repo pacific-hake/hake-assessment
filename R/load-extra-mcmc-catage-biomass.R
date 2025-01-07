@@ -15,9 +15,13 @@ load_extra_mcmc_catage_biomass <- function(reps,
   if(verbose){
     message("Extracting Catch-at-age in biomass...")
   }
+  year_column_string <- grep("year|yr",
+                             colnames(wtatage),
+                             value = TRUE,
+                             ignore.case = TRUE)
   wtatage <- wtatage |>
     as_tibble() |>
-    rename(yr = Yr)
+    rename(yr = year_column_string[1])
 
   wt <- wtatage |>
     filter(yr > 0)
@@ -30,12 +34,12 @@ load_extra_mcmc_catage_biomass <- function(reps,
     # to start_yr_wtatage
     row <- wt |>
       as_tibble() |>
-      filter(yr == min(yr), Fleet == 2)
+      filter(yr == min(yr), fleet == 2)
 
     if(nrow(row) > 1){
       stop("The biomass-at-age table failed to build. The `model$wtatage` ",
            "table had ", nrow(row), " rows match the filter for minimum ",
-           "year and Fleet == 2, when it should only be one row")
+           "year and fleet == 2, when it should only be one row")
     }
     missing_yrs <- actual_start_yr:(start_yr_wtatage - 1)
     for(yr in rev(missing_yrs)){
@@ -45,7 +49,7 @@ load_extra_mcmc_catage_biomass <- function(reps,
   }
   ages <- grep("[0-9]+", names(wt), value = TRUE)
   wtatage <- wt |>
-    filter(Fleet == 2) |>
+    filter(fleet == 2) |>
     select(yr, all_of(ages))
 
   yrs <- sort(unique(catage$yr))
