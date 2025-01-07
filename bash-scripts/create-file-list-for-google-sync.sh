@@ -9,7 +9,7 @@ file_list_fn="file_list_for_google_sync.txt"
 
 # Version used for the final base model. Usually 01-version but some years
 # may be 02-version
-version="02-version"
+version="01-version"
 
 base_dir="/srv/hake/models/$assess_year/$version/01-base-models/01-base"
 base_mcmc_dir="$base_dir/mcmc"
