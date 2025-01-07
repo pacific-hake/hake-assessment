@@ -23,7 +23,6 @@ Then the age data are processed using
 Then the weight-at-age data are processed using
 \item \code{\link[=process_weight_at_age_survey]{process_weight_at_age_survey()}}
 \item \code{\link[=process_weight_at_age_us]{process_weight_at_age_us()}}
-\item \code{\link[=process_weight_at_age]{process_weight_at_age()}}
 }
 }
 \concept{process}

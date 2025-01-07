@@ -414,7 +414,7 @@ make_wtatage_plots <- function(plots = 1:6, data, counts, lengths = NULL,
 #' @param maturity A vector of maturity at age.
 #'
 write_wtatage_file <- function(
-  file = paste0("wtatage_created_", format(Sys.time(), "%d-%b-%Y_%H.%M"), ".ss"),
+  file = paste0("wtatage_", format(Sys.time(), "%d-%b-%Y_%H.%M"), ".ss"),
   data,
   maturity
 ) {

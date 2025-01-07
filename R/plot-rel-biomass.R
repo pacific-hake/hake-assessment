@@ -82,7 +82,7 @@ plot_rel_biomass <- function(
                             refpt_bo_linecolor)
 
   d <- d_obj[[1]] |>
-    filter= xlim[2] & year >= xlim[1])
+    filter(year <= xlim[2] & year >= xlim[1])
 
   is_single_model <- length(unique(d$model)) == 1
   colors <- plot_color(length(unique(d$model)))
