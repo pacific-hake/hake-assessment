@@ -13,7 +13,7 @@ load_extra_mcmc_recr_devs <- function(reps,
                                       ...){
 
   if(verbose){
-    message("Extracting initial numbers-at-age ...")
+    message("Extracting initial recruitment deviations ...")
   }
 
   x <- load_extra_mcmc_get_parameter_chunk(reps, ...)
@@ -25,7 +25,13 @@ load_extra_mcmc_recr_devs <- function(reps,
   ages <- gsub("Early_InitAge_(\\d+)", "\\1", age_labels) |>
     as.numeric()
   max_age <- max(ages)
-  yrs <- (start_yr - max_age):end_yr
+  real_end_year <- gsub(
+    pattern = ".+InitAge.+",
+    replacement = NA,
+    x = gsub(".+_RecrDev_", "", x[[1]][["Label"]])) |>
+    as.numeric() |>
+    max(na.rm = TRUE)
+  yrs <- (start_yr - max_age):real_end_year
   j <- x |>
     map_dfr(~{
       .x |> transmute(yr = yrs,

@@ -1,7 +1,7 @@
 #' Update maturity in an SS3 weight-at-age matrix
 #'
 #' @details
-#' Update the maturity information (i.e., `Fleet == -2`) in a matrix of
+#' Update the maturity information (i.e., `fleet == -2`) in a matrix of
 #' weight-at-age data read in using [r4ss::SS_readwtatage()]. Information for
 #' the fleets other than fleet -2 will not be altered. The information from
 #' fleet 0 (i.e., beginning of the season population weight-at-age) is used to
@@ -44,7 +44,7 @@
 #' # weight-at-age file does not exist.
 #' update_ss3_maturity(
 #'   maturity = maturity_estimates_df |>
-#'     dplyr::filter(model == "Null"),
+#'     filter(model == "Null"),
 #'   weight_at_age = r4ss::SS_readwtatage("wtatage.ss")
 #' )
 #' }
@@ -55,7 +55,7 @@ update_ss3_maturity <- function(maturity,
   # Determine the number of forecast years needed to extend the time series in
   # `maturity` to match the number of years available in `weight_at_age`
   good_years <- weight_at_age |>
-    dplyr::pull(Yr) |>
+    dplyr::pull(year) |>
     unique()
   needed_forecast <- sum(
     !good_years[good_years > min(maturity[["year"]])] %in%
@@ -78,23 +78,23 @@ update_ss3_maturity <- function(maturity,
     pad_weight_at_age(n_forecast_years = needed_forecast) |>
     tidyr::complete(
       yr = weight_at_age |>
-        dplyr::filter(Fleet == weight_at_age_fleet) |>
-        dplyr::pull(Yr)
+        filter(fleet == weight_at_age_fleet) |>
+        dplyr::pull(year)
     ) |>
     tidyr::fill(-yr) |>
     dplyr::select(dplyr::matches("^[0-9]"))
 
   # Multiply weight_age_age by maturity to get fecundity
   fecundity_tv <- weight_at_age |>
-    dplyr::filter(Fleet == weight_at_age_fleet) |>
+    filter(fleet == weight_at_age_fleet) |>
     dplyr::select(dplyr::matches("^[0-9]")) *
     maturity_formatted
 
   # Insert the fecundity values into weight_at_age as fleet -2
   # and return the weight-at-age data frame
   weight_at_age[
-    # Select Fleet -2, which is weight * maturity = fecundity
-    weight_at_age[["Fleet"]] == -2,
+    # Select fleet -2, which is weight * maturity = fecundity
+    weight_at_age[["fleet"]] == -2,
     # Select just the 0, 1, 2, ..., 20 columns
     grepl("[0-9]", colnames(weight_at_age))
   ] <- fecundity_tv

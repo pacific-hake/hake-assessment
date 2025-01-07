@@ -52,6 +52,10 @@ load_extra_mcmc_get_chunk <- function(lst,
     return(NA)
   }else if(tailmark_ind > headmark_ind){
     header_ind <- headmark_ind + 1
+    # Skipe NOTES after the maker line
+    while(grepl("NOTE", x[header_ind])) {
+      header_ind <- header_ind + 1
+    }
     # Skip any blank lines between marker and header line
     while(x[header_ind] == "" && header_ind < length(x)){
       header_ind <- header_ind + 1

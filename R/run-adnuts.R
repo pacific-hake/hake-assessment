@@ -150,6 +150,12 @@ run_adnuts <- function(path,
 
   # Run initial MCMC (mcmc_path) ----
   input_files <- file.path(path, input_files)
+  bar_file_name <- grep("bar", input_files, value = TRUE)
+  if (!fs::file_exists(bar_file_name)) {
+    good_bar_file_name <- fs::dir_ls(path, regexp = "\\.bar")
+    stopifnot(length(good_bar_file_name) == 1)
+    input_files[which(input_files == bar_file_name)] <- good_bar_file_name
+  }
   file.copy(input_files, mcmc_path, overwrite = TRUE)
   if(run_extra_mcmc){
     dir.create(file.path(mcmc_path, "sso"), showWarnings = TRUE)
@@ -194,9 +200,10 @@ run_adnuts <- function(path,
     }else{
       message(msg)
     }
+    bar_name <- basename(fs::dir_ls(mcmc_path, regexp = "\\.bar"))
     cmd <- paste0("cd ", mcmc_path, " && ", fn_exe,
                   " -hbf 1 -nox -iprint 200 -mcmc 15 -hess_step 10 ",
-                  "-binp ss.bar")
+                  "-binp ", bar_name)
     if(!is.null(fn_logfile)){
       cmd <- paste0(cmd, " > ", fn_logfile, " 2>&1")
     }
@@ -266,6 +273,16 @@ run_adnuts <- function(path,
 
   save(list = ls(all.names = TRUE), file = rdata_file, envir = environment())
 
+  # Find name of par file and match psv file to it
+  good_psv_name <- gsub(
+    "\\.par",
+    ".psv",
+    basename(fs::dir_ls(mcmc_path, regexp = "\\.par"))
+  )
+  fs::file_copy(
+    fs::dir_ls(path = mcmc_path, regexp = "\\.psv"),
+    fs::path(mcmc_path, good_psv_name)
+  )
   cmd <- paste0("cd ", mcmc_path, " && ", fn_exe, " -mceval")
   if(!is.null(fn_logfile)){
     cmd <- paste0(cmd, " > ", fn_logfile, " 2>&1")

@@ -106,6 +106,11 @@ load_extra_mcmc <- function(model,
   ages <- model$natage |> names() |> as.numeric() |> suppressWarnings()
   ages <- ages[!is.na(ages)]
   max_age <- max(ages)
+  # Test endyr is last year
+  available_late_years <- gsub(
+    pattern = ".+Late_RecrDev_([0-9]{4}) .+",
+    replacement = "\\1",
+    x = grep("Late_RecrDev", reps[[1]], value = TRUE))
 
   extra_mcmc$recr_devs <- load_extra_mcmc_recr_devs(
     reps = reps,
@@ -114,7 +119,7 @@ load_extra_mcmc <- function(model,
     progress_n = progress_n,
     verbose = verbose,
     beg_pat = paste0("^\\d+\\s+Early_InitAge_", max_age),
-    end_pat = paste0("^\\d+\\s+Late_RecrDev_", model$endyr),
+    end_pat = paste0("^\\d+\\s+Late_RecrDev_", tail(available_late_years, 1)),
     ...)
 
   # Cohort recruitments --------------------------------------------------------
