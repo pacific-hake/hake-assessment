@@ -9,7 +9,7 @@
 #' @export
 update_ss3_ageing_error <- function(data_list) {
   while (data_list[["N_ageerror_definitions"]] <
-    max(data_list[["agecomp"]][["Ageerr"]])) {
+    max(data_list[["agecomp"]][["ageerr"]])) {
     data_list[["N_ageerror_definitions"]] <-
       data_list[["N_ageerror_definitions"]] + 1
     bias <- data_list[["ageerror"]][

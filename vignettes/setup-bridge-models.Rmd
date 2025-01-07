@@ -371,12 +371,12 @@ inputs <- r4ss::SS_read(
 #   )
 # ) |>
 #   dplyr::arrange(-FltSvy, Yr)
-inputs[["dat"]] <- update_ss3_ageing_error(inputs[["dat"]])
-r4ss::SS_write(
-  inputs,
-  dir = fs::path(bridge_dir, "31-add-survey-age-comps"),
-  overwrite = TRUE
-)
+# inputs[["dat"]] <- update_ss3_ageing_error(inputs[["dat"]])
+# r4ss::SS_write(
+#   inputs,
+#   dir = fs::path(bridge_dir, "31-add-survey-age-comps"),
+#   overwrite = TRUE
+# )
 ```
 
 ```{r survey-1, eval = FALSE}
@@ -443,6 +443,8 @@ inputs[["dat"]][["agecomp"]] <- dplyr::bind_rows(
     dplyr::filter(year >= 2008)
 ) |>
   dplyr::arrange(-fleet, year)
+# Ensure that ageing error is updated in case this is a non-survey year
+inputs[["dat"]] <- update_ss3_ageing_error(inputs[["dat"]])
 
 # Fix terminal year for time-varying selectivity
 inputs[["ctl"]][["age_selex_parms"]][, "dev_maxyr"] <- ifelse(
