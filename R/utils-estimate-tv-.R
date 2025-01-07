@@ -31,7 +31,7 @@
 #' @author Kelli F. Johnson
 estimate_tv_weight_at_age <- function(max_age = 15, first_year = 1975) {
   weight_at_age_files <- fs::dir_ls(
-    regexp = "weight-at",
+    regexp = "weight-at-age.csv",
     here::here("data-tables")
   )
 
@@ -128,13 +128,13 @@ estimate_tv_weight_at_age <- function(max_age = 15, first_year = 1975) {
   return(ewaa_long)
 }
 
-estimate_tv_maturity_at_age <- function() {
-  cli::cli_inform(c(
-    "i" = "Time-varying maturity is estimated by Eric Ward.",
-    "!" = "Ensure the rds file is downloaded and used to update maturity.",
-    "i" = "Find the raw .rds on ericward-noaa/hake-maturity-assessment-2025.",
-    "i" = "Add model = 'Spatial + temperature' as a column to the rds data.",
-    "i" = "Save the information from the .rds in maturity-ogives.csv"
-  ))
-}
+# estimate_tv_maturity_at_age <- function() {
+#   cli::cli_inform(c(
+#     "i" = "Time-varying maturity is estimated by Eric Ward.",
+#     "!" = "Ensure the rds file is downloaded and used to update maturity.",
+#     "i" = "Find the raw .rds on ericward-noaa/hake-maturity-assessment-2025.",
+#     "i" = "Add model = 'Spatial + temperature' as a column to the rds data.",
+#     "i" = "Save the information from the .rds in maturity-ogives.csv"
+#   ))
+# }
 

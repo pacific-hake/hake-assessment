@@ -41,7 +41,7 @@ is returned, and thus, the returned object can be passed to
 Update maturity in an SS3 weight-at-age matrix
 }
 \details{
-Update the maturity information (i.e., \code{Fleet == -2}) in a matrix of
+Update the maturity information (i.e., \code{fleet == -2}) in a matrix of
 weight-at-age data read in using \code{\link[r4ss:SS_readwtatage]{r4ss::SS_readwtatage()}}. Information for
 the fleets other than fleet -2 will not be altered. The information from
 fleet 0 (i.e., beginning of the season population weight-at-age) is used to
@@ -62,7 +62,7 @@ create fecundity.
 # weight-at-age file does not exist.
 update_ss3_maturity(
   maturity = maturity_estimates_df |>
-    dplyr::filter(model == "Null"),
+    filter(model == "Null"),
   weight_at_age = r4ss::SS_readwtatage("wtatage.ss")
 )
 }

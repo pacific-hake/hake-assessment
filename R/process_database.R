@@ -15,7 +15,6 @@
 #' Then the weight-at-age data are processed using
 #' * [process_weight_at_age_survey()]
 #' * [process_weight_at_age_us()]
-#' * [process_weight_at_age()]
 #' @family process
 process_database <- function() {
   # Catch
@@ -26,13 +25,4 @@ process_database <- function() {
   age_norpac <- process_age_sea(ncatch = processed_catch_norpac)
   age_shore <- process_age_shore()
   plot_raw_age()
-
-  # Weight at age
-  # process_weight_at_age_survey()
-  # process_weight_at_age_us()
-  # old <- process_weight_at_age(
-  #   max_year = hake::get_data_yr() - 1,
-  #   output_wtatage_file_name = "wtatage_fix.ss"
-  # )
-  # withforecast <- process_weight_at_age()
 }

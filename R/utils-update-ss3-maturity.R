@@ -78,7 +78,7 @@ update_ss3_maturity <- function(maturity,
     pad_weight_at_age(n_forecast_years = needed_forecast) |>
     tidyr::complete(
       yr = weight_at_age |>
-        filter(fleet == weight_at_age_fleet) |>
+        dplyr::filter(fleet == weight_at_age_fleet) |>
         dplyr::pull(year)
     ) |>
     tidyr::fill(-yr) |>
@@ -86,7 +86,7 @@ update_ss3_maturity <- function(maturity,
 
   # Multiply weight_age_age by maturity to get fecundity
   fecundity_tv <- weight_at_age |>
-    filter(fleet == weight_at_age_fleet) |>
+    dplyr::filter(fleet == weight_at_age_fleet) |>
     dplyr::select(dplyr::matches("^[0-9]")) *
     maturity_formatted
 
