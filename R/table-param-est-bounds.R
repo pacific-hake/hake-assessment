@@ -36,7 +36,7 @@ table_param_est_bounds <- function(model,
     mutate(param = ifelse(grepl("ln", param), "ro", param)) |>
     mutate(param = ifelse(grepl("steep", param), "h", param)) |>
     mutate(param = ifelse(grepl("sigmar", param), "sigma_r", param)) |>
-    filter(!param %in% c("autocorr", "regime"))
+    dplyr::filter(!param %in% c("autocorr", "regime"))
 
   # R0 ----
   row <- sr_params[sr_params$param == "ro", ]
@@ -99,7 +99,7 @@ table_param_est_bounds <- function(model,
   mg_params <- convert_ctl_file_param_dfs(ctl, "MG_parms")
 
   row <- mg_params |>
-    filter(grepl("natm", param))
+    dplyr::filter(grepl("natm", param))
 
   if(nrow(row) != 1){
     stop("Either the natural mortality parameter was not found in the ",
@@ -117,7 +117,7 @@ table_param_est_bounds <- function(model,
   q_params <- convert_ctl_file_param_dfs(ctl, "Q_parms")
 
   row <- q_params |>
-    filter(grepl("extrasd_acoustic", param))
+    dplyr::filter(grepl("extrasd_acoustic", param))
 
   if(nrow(row) != 1){
     stop("Either the 'extra SD acoustic survey' parameter was not found ",
@@ -134,7 +134,7 @@ table_param_est_bounds <- function(model,
 
   # Survey selectivity parameters ----
   sel_params <- convert_ctl_file_param_dfs(ctl, "age_selex_parms") |>
-    filter(grepl("acoustic_survey", param))
+    dplyr::filter(grepl("acoustic_survey", param))
 
   ages <- as.character(as.numeric(gsub("agesel_p_([0-9]+).*",
                                        "\\1",
@@ -148,7 +148,7 @@ table_param_est_bounds <- function(model,
   }
 
   ages_estimated_df <- sel_params |>
-    filter(phase > 0)
+    dplyr::filter(phase > 0)
   row <- ages_estimated_df |>
     slice(1)
   if(nrow(ages_estimated_df)){
@@ -171,7 +171,7 @@ table_param_est_bounds <- function(model,
   q_params <- convert_ctl_file_param_dfs(ctl, "Q_parms")
 
   row <- q_params |>
-    filter(grepl("extrasd_age1", param))
+    dplyr::filter(grepl("extrasd_age1", param))
 
   if(nrow(row) != 1){
     stop("Either the 'extra SD age 1' parameter was not found ",
@@ -188,7 +188,7 @@ table_param_est_bounds <- function(model,
 
   # Fishery selectivity parameters ----
   sel_params <- convert_ctl_file_param_dfs(ctl, "age_selex_parms") |>
-    filter(grepl("fishery", param))
+    dplyr::filter(grepl("fishery", param))
 
   ages <- as.character(as.numeric(gsub("agesel_p_([0-9]+).*",
                                        "\\1",
@@ -202,7 +202,7 @@ table_param_est_bounds <- function(model,
   }
 
   ages_estimated_df <- sel_params |>
-    filter(phase > 0)
+    dplyr::filter(phase > 0)
   # Assumes all estimated age selectivities have same starting conditions
   row <- ages_estimated_df |>
     slice(1)
@@ -228,13 +228,13 @@ table_param_est_bounds <- function(model,
     as_tibble(rownames = "param")
 
   sel_dev_mean <- sel_devs_tv |>
-    filter(grepl("dev_auto", param)) |>
+    dplyr::filter(grepl("dev_auto", param)) |>
     first() |>
     pull(INIT) |>
     as.character()
 
   sel_dev_sd <- sel_devs_tv |>
-    filter(grepl("dev_se", param)) |>
+    dplyr::filter(grepl("dev_se", param)) |>
     first() |>
     pull(INIT) |>
     as.character()
@@ -276,7 +276,7 @@ table_param_est_bounds <- function(model,
   dm_params <- convert_ctl_file_param_dfs(ctl, "dirichlet_parms")
 
   row <- dm_params |>
-    filter(grepl(".*1$", param))
+    dplyr::filter(grepl(".*1$", param))
 
   if(nrow(row) != 1){
     stop("Either the 'Dirichlet multinomial fishery' parameter was not found ",
@@ -294,7 +294,7 @@ table_param_est_bounds <- function(model,
 
   # Dirichlet multinomial - survey ----
   row <- dm_params |>
-    filter(grepl(".*2$", param))
+    dplyr::filter(grepl(".*2$", param))
 
   if(nrow(row) != 1){
     stop("Either the 'Dirichlet multinomial survey' parameter was not found ",

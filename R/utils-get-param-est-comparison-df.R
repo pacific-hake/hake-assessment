@@ -30,7 +30,7 @@ get_param_est_comparison_df <- function(models,
     if(mdl$extra_mcmc_exists){
       recs <- map_dbl(large_cohorts, \(rec_yr){
         mdl$extra_mcmc$recr_cohorts |>
-          filter(yr == rec_yr) |>
+          dplyr::filter(yr == rec_yr) |>
           pull(`50%`)
       }) |>
         set_names(paste0("recs_", large_cohorts))
@@ -39,7 +39,7 @@ get_param_est_comparison_df <- function(models,
       q_med <- mdl$extra_mcmc$q_med
       # Filter for last year in the series, since q's are not time varying
       q_acoustic <- q_med |>
-        filter(fleet == 2)
+        dplyr::filter(fleet == 2)
       if(nrow(q_acoustic)){
         q_acoustic <- q_acoustic |>
           pull(value)
@@ -48,7 +48,7 @@ get_param_est_comparison_df <- function(models,
         q_acoustic <- NA
       }
       q_age1 <- q_med |>
-        filter(fleet == 3)
+        dplyr::filter(fleet == 3)
       if(nrow(q_age1)){
         q_age1 <- q_age1 |>
           pull(value)
@@ -68,7 +68,7 @@ get_param_est_comparison_df <- function(models,
       mutate(Label = tolower(Label)) |>
       rename_all(~{tolower(.x)})
     age_like <- like_fleet |>
-      filter(label == "age_like")
+      dplyr::filter(label == "age_like")
     survey_age_like <- age_like |>
       pull(acoustic_survey)
     fishery_age_like <- age_like |>
@@ -123,13 +123,13 @@ get_param_est_comparison_df <- function(models,
       value = mdl_nm)
     if(inc_loglike){
       df_nll <- enframe(
-        c(total_like = f(pull(filter(like, type == "total")), 2),
-          survey_like = f(pull(filter(like, type == "survey")), 2),
+        c(total_like = f(pull(dplyr::filter(like, type == "total")), 2),
+          survey_like = f(pull(dplyr::filter(like, type == "survey")), 2),
           survey_age_like = f(survey_age_like, 2),
           fishery_age_like = f(fishery_age_like, 2),
-          recr_like = f(pull(filter(like, type == "recruitment")), 2),
-          priors_like = f(pull(filter(like, type == "parm_priors")), 2),
-          parmdev_like = f(pull(filter(like, type == "parm_devs")), 2)),
+          recr_like = f(pull(dplyr::filter(like, type == "recruitment")), 2),
+          priors_like = f(pull(dplyr::filter(like, type == "parm_priors")), 2),
+          parmdev_like = f(pull(dplyr::filter(like, type == "parm_devs")), 2)),
         value = mdl_nm)
       df <- bind_rows(df, df_nll)
     }

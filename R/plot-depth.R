@@ -36,7 +36,7 @@ plot_depth <- function(depth_df,
       bind_rows(new_rows)
   }
   depth_df <- depth_df |>
-    filter(year %in% yrs) |>
+    dplyr::filter(year %in% yrs) |>
     rename(lower = lowerhinge,
            upper = upperhinge,
            middle = median,

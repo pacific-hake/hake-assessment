@@ -81,7 +81,7 @@ table_decision <- \(
   if(!is.null(rows_to_show[1])){
     forecast_inds <- match(rows_to_show, letter_df$let)
     letter_df <- letter_df |>
-      filter(let %in% rows_to_show)
+      dplyr::filter(let %in% rows_to_show)
   }
 
   if(bold_letters){
@@ -155,7 +155,7 @@ table_decision <- \(
       slice(tmp, -1)
     }else if(type == "spr"){
       tmp <- .x$spr|>
-        filter(yr %in% forecast_yrs[-length(forecast_yrs)]) |>
+        dplyr::filter(yr %in% forecast_yrs[-length(forecast_yrs)]) |>
         select(-c("25%", "75%"))
       names(tmp) <- gsub("%", "\\\\%", names(tmp))
       tmp

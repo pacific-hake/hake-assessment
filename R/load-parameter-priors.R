@@ -11,21 +11,21 @@ load_parameter_priors <- function(model){
   out$effn_priors <- model$parameters |>
     as_tibble() |>
     select(Label, Prior, Pr_SD) |>
-    filter(grepl("DM_theta", Label))
+    dplyr::filter(grepl("DM_theta", Label))
   out$effn_prior <- unlist(out$effn_priors[1, ])
   out$sel_phi_val <- model$parameters |>
     as_tibble() |>
-    filter(Label == "AgeSel_P3_Fishery(1)_dev_se") |>
+    dplyr::filter(Label == "AgeSel_P3_Fishery(1)_dev_se") |>
     pull(Value)
 
   pat <- "AgeSel.*Fishery.*DEV"
   mp <- model$parameters |>
     as_tibble()
   out$param_recdevs <- mp |>
-    filter(grepl(pat, Label))
+    dplyr::filter(grepl(pat, Label))
 
   out$param_recdevs_se <- mp |>
-    filter(Label == "AgeSel_P3_Fishery(1)_dev_se") |>
+    dplyr::filter(Label == "AgeSel_P3_Fishery(1)_dev_se") |>
     pull(Value)
 
   out

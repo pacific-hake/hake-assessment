@@ -23,7 +23,7 @@ plot_data_summary <- function(model,
   ct <- model$catch |>
     as_tibble() |>
     transmute(yr = Yr, val = Obs) |>
-    filter(yr %in% start_yr:end_yr) |>
+    dplyr::filter(yr %in% start_yr:end_yr) |>
     mutate(val = val / sum(val)) |>
     transmute(type = "Catches",
            fleet = "Fishery",
@@ -32,12 +32,12 @@ plot_data_summary <- function(model,
 
   cpue <- model$cpue |>
     as_tibble() |>
-    filter(Use > 0) |>
+    dplyr::filter(Use > 0) |>
     transmute(yr = Yr,
               fleet = Fleet_name,
               val = Exp,
               se = SE) |>
-    filter(yr %in% start_yr:end_yr) |>
+    dplyr::filter(yr %in% start_yr:end_yr) |>
     split(~fleet) |>
     map_df(~{
       .x |>
@@ -57,7 +57,7 @@ plot_data_summary <- function(model,
     mutate(fleet = ifelse(fleet == 1,
                           "Fishery",
                           "Acoustic Survey")) |>
-    filter(yr %in% start_yr:end_yr) |>
+    dplyr::filter(yr %in% start_yr:end_yr) |>
     split(~fleet) |>
     map_df(~{
       .x |>

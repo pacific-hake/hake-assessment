@@ -40,7 +40,7 @@ calc_yoob <- function(d,
   # points are outside the plot
   if(show_arrows){
     lst$lo_outside <- d |>
-      filter(!!med_col_sym < ylim[1])
+      dplyr::filter(!!med_col_sym < ylim[1])
   }else{
     lst$d <- lst$d |>
       mutate(across(!!med_col_sym, ~{
@@ -51,7 +51,7 @@ calc_yoob <- function(d,
 
   if(show_arrows){
     lst$hi_outside <- d |>
-      filter(!!med_col_sym > ylim[2])
+      dplyr::filter(!!med_col_sym > ylim[2])
   }else{
     lst$d <- lst$d |>
       mutate(across(!!med_col_sym, ~{

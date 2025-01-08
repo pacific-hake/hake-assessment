@@ -76,7 +76,8 @@ process_age_sea <- function(
     .x = ifelse(test = grepl("ms", files), yes = 2, no = 1),
     .f = ~ process_atsea_year(
       dat = atsea.ages,
-      ncatch = ncatch %>% dplyr::filter(SPECIES == species_norpac),
+      ncatch = ncatch %>%
+        dplyr::filter(SPECIES == species_norpac),
       minAge = 1,
       maxAge = 15,
       vesselType = .x,
@@ -426,11 +427,11 @@ commLFs.fn <- function(bds,
   points(predwt ~ FISH_LENGTH, data = bds, col = "red")
   mtext(side = 3, line = -1, "Predicted weights in red")
 
-  bds$predWtSum <- stats::ave(bds$predwt, bds$SAMPLE_NO, FUN = sum)
+  bds$predWtSum <- ave(bds$predwt, bds$SAMPLE_NO, FUN = sum)
   if (any(is.na(bds$predWtSum))) {
     stop("There are some predicted weights that are NA. This means that there are NA's in lengths, the parameters, or somewhere else.")
   }
-  bds[, "all_cluster_sum"] <- stats::ave(ifelse(
+  bds[, "all_cluster_sum"] <- ave(ifelse(
     duplicated(paste(bds$SAMPLE_NO, bds$CLUSTER_NO)),
     0, bds$CLUSTER_WGT
   ), bds$SAMPLE_NO, FUN = sum)
@@ -841,11 +842,11 @@ process_atsea_year <- function(dat,
   # missing weights, do it by year.
   # Calculate lm before filling with means
   max_age <- max(dat[["AGE"]], na.rm = TRUE)
-  lm_results <- stats::lm(WEIGHT ~ Year + AGE, data = dat)
+  lm_results <- lm(WEIGHT ~ Year + AGE, data = dat)
   newdata <- tidyr::expand(dat, Year, AGE)
   lm_predict <- cbind(
     newdata,
-    WEIGHT = stats::predict(
+    WEIGHT = predict(
       lm_results,
       newdata = newdata
     )

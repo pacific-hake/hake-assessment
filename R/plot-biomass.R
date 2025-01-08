@@ -171,7 +171,7 @@ plot_biomass <- function(
   x_breaks = c(bo$year[1], x_breaks)
 
   d <- d |>
-    filter(year <= xlim[2] & year >= ylim[1])
+    dplyr::filter(year <= xlim[2] & year >= ylim[1])
 
   # Calculate the data y-axis out-of-bounds (yoob) and change the credible
   # interval in the data to cut off at the limits (or not if `show_arrows`

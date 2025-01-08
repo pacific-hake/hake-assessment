@@ -83,7 +83,7 @@ plot_selex_posteriors <- function(
   selex <- selex |>
     mutate(iter = row_number()) |>
     # Take the random subsample of posterior numbers
-    filter(iter %in% subsample) |>
+    dplyr::filter(iter %in% subsample) |>
     select(iter, everything())
 
   sel <- selex |>
@@ -96,9 +96,9 @@ plot_selex_posteriors <- function(
            "between ", min(ages), " and ", max(ages))
     }
     sel <- sel |>
-      filter(age %in% age_range[1]:age_range[2])
+      dplyr::filter(age %in% age_range[1]:age_range[2])
     quants <- quants |>
-      filter(age %in% age_range[1]:age_range[2])
+      dplyr::filter(age %in% age_range[1]:age_range[2])
   }
 
   g <- ggplot(sel,

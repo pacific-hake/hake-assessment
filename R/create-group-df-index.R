@@ -18,7 +18,7 @@ create_group_df_index <- function(model_lst = NULL,
 
   obs <- model_lst[[1]]$dat$CPUE |>
     as_tibble() |>
-    filter(index == fleet) |>
+    dplyr::filter(index == fleet) |>
     select(year, index) |>
     setNames(c("year", "index_med")) |>
     mutate(year = as.numeric(year)) |>

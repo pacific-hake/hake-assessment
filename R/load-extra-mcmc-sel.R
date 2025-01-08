@@ -23,7 +23,7 @@ load_extra_mcmc_sel <- function(reps,
                           header = x$header,
                           verbose = verbose,
                           ...) |>
-    filter(Fleet == fleet)
+    dplyr::filter(Fleet == fleet)
 
   names(ts) <- tolower(names(ts))
 
@@ -34,11 +34,11 @@ load_extra_mcmc_sel <- function(reps,
 
   if(!is.null(start_yr)){
     ts <- ts |>
-      filter(yr >= start_yr)
+      dplyr::filter(yr >= start_yr)
   }
   if(!is.null(end_yr)){
     ts <- ts |>
-      filter(yr <= end_yr)
+      dplyr::filter(yr <= end_yr)
   }
 
   out <- list()
@@ -65,9 +65,9 @@ load_extra_mcmc_sel <- function(reps,
     ungroup()
 
   out$sel_end_yr <- ts |>
-    filter(yr == ifelse(type == "survey",
-                        end_yr,
-                        end_yr - 1)) |>
+    dplyr::filter(yr == ifelse(type == "survey",
+                               end_yr,
+                               end_yr - 1)) |>
     select(-yr)
 
     out

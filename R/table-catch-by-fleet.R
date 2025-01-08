@@ -81,12 +81,12 @@ table_catch_by_fleet <- function(flt = 1,
   # Truncate age_df to catch_df by years
   age_lst <- map2(age_lst, catch_lst, ~{
     .x |>
-      filter(year %in% unique(.y$year))
+      dplyr::filter(year %in% unique(.y$year))
   })
   # Truncate catch_df to age_df by years
   catch_lst <- map2(catch_lst, age_lst, ~{
     .x |>
-      filter(year %in% unique(.y$year))
+      dplyr::filter(year %in% unique(.y$year))
   })
 
   joined_lst <- map2(catch_lst, age_lst, ~{
@@ -100,7 +100,7 @@ table_catch_by_fleet <- function(flt = 1,
       select(-fleet)
 
     df <- joined_df |>
-      filter(country == ifelse(!!country == 1, "Canada", "U.S.")) |>
+      dplyr::filter(country == ifelse(!!country == 1, "Canada", "U.S.")) |>
       select(-country) |>
       mutate(across(c(-year, -catch), ~{.x = catch * .x})) |>
       split(~year) |>

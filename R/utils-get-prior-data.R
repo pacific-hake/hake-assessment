@@ -134,7 +134,7 @@ get_prior_data <- function(model,
   })
 
   param_recdevs <- params |>
-    filter(grepl("AgeSel.*Fishery.*DEV", label))
+    dplyr::filter(grepl("AgeSel.*Fishery.*DEV", label))
   priors_lst <- c(priors_lst,
                   list(param_recdevs))
   params_titles <- c(params_titles,

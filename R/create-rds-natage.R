@@ -168,7 +168,7 @@ create_rds_natage <- function(model_path = NULL,
 
   # This was for some selectivity calculations in load_extra_mcmc().
 #  natage <- natage_lst$atage |>
-#    filter(yr == model$endyr + 1) |>
+#    dplyr::filter(yr == model$endyr + 1) |>
 #    select(-c(yr, iter))
 
 #  model$mcmcparams <- load_parameter_priors(model)

@@ -50,11 +50,11 @@ plot_selex_uncertainty <- function(model,
 
   if(!is.null(yr_lim[1])){
     lower <- lower |>
-      filter(yr %in% yr_vec)
+      dplyr::filter(yr %in% yr_vec)
     med <- med |>
-      filter(yr %in% yr_vec)
+      dplyr::filter(yr %in% yr_vec)
     upper <- upper |>
-      filter(yr %in% yr_vec)
+      dplyr::filter(yr %in% yr_vec)
   }
   if(!is.null(ages)){
     lower <- lower |>
@@ -209,7 +209,7 @@ plot_selex_uncertainty <- function(model,
     })
 
     bot <- gr$layout |>
-      filter(name == "ylab-l") |>
+      dplyr::filter(name == "ylab-l") |>
       pull(b)
     b_extent <- bot
     if(n_col > 1){

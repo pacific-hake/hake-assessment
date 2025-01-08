@@ -105,11 +105,11 @@ plot_weight_at_age <- function(wa,
                   fontface = ifelse(isbold, "bold", "plain"))) +
     geom_line() +
     geom_point(data = w |>
-                 filter(yr %in% c(min_yr, max_yr))) +
+                 dplyr::filter(yr %in% c(min_yr, max_yr))) +
     geom_point(data = w |>
-                 filter(yr %in% x_breaks)) +
+                 dplyr::filter(yr %in% x_breaks)) +
     geom_point(data = w |>
-                 filter(age %in% bold_ages),
+                 dplyr::filter(age %in% bold_ages),
                size = 3) +
     scale_color_manual(values = colors) +
     scale_linewidth_manual(values = c(0.5, 1.5)) +
@@ -134,7 +134,8 @@ plot_weight_at_age <- function(wa,
 
   if("left" %in% age_label_side || "both" %in% age_label_side){
     g <- g +
-      geom_label_repel(data = w |> filter(yr == min_yr),
+      geom_label_repel(data = w |>
+                         dplyr::filter(yr == min_yr),
                        aes(label = age),
                        nudge_x = -3.5,
                        size = age_label_font_size,
@@ -144,7 +145,8 @@ plot_weight_at_age <- function(wa,
   }
   if("right" %in% age_label_side || "both" %in% age_label_side){
     g <- g +
-      geom_label_repel(data = w |> filter(yr == max_yr),
+      geom_label_repel(data = w |>
+                         dplyr::filter(yr == max_yr),
                        aes(label = age),
                        nudge_x = 3.5,
                        size = age_label_font_size,

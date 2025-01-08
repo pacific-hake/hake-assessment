@@ -44,10 +44,10 @@ canada_create_age_proportions_csv <- function(
       rename(trip_start_date = trip_end_date)
   }
   d <- d |>
-    filter(!is.na(age)) |>
+    dplyr::filter(!is.na(age)) |>
     mutate(age = ifelse(age > plus_grp, plus_grp, age)) |>
     mutate(trip_start_date = as.Date(trip_start_date)) |>
-    filter(trip_start_date >= min_date)
+    dplyr::filter(trip_start_date >= min_date)
 
   if(by_month){
     d <- d |>
@@ -62,8 +62,8 @@ canada_create_age_proportions_csv <- function(
   if(raw_counts){
 
     out <- d |>
-      filter(!is.na(age)) |>
-      filter(age > 0) |>
+      dplyr::filter(!is.na(age)) |>
+      dplyr::filter(age > 0) |>
       group_by(year) |>
       mutate(num_at_age_year = n()) |>
       ungroup() |>
@@ -107,7 +107,7 @@ canada_create_age_proportions_csv <- function(
   # Calculate the weights from length for all missing weights,
   # using specimen-specific LW params
   ds <- ds |>
-    filter(!is.na(length)) |>
+    dplyr::filter(!is.na(length)) |>
     mutate(weight = ifelse(is.na(weight),
                            lw_alpha * length ^ lw_beta,
                            weight))
@@ -131,7 +131,7 @@ canada_create_age_proportions_csv <- function(
               catch_weight = first(catch_weight)) |>
     ungroup() |>
     complete(sample_id, age) |>
-    filter(age > 0) |>
+    dplyr::filter(age > 0) |>
     group_by(sample_id) |>
     mutate(num_ages = ifelse(is.na(num_ages),
                              0,

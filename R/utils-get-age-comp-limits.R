@@ -10,7 +10,7 @@ get_age_comp_limits <- function(model, type = 1){
 
   dat <- model$dat$agecomp %>%
     set_names(tolower(names(.))) |>
-    filter(fltsvy == type) |>
+    dplyr::filter(fltsvy == type) |>
     select(yr, matches("^a\\d+$")) %>%
     setNames(gsub("a", "", names(.)))
 

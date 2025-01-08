@@ -117,7 +117,7 @@ run_retrospectives <- function(model = NULL,
       ctl$age_selex_parms$dev_maxyr <- asp
 
       chk <- ctl$age_selex_parms |>
-        filter(dev_minyr != 0) |>
+        dplyr::filter(dev_minyr != 0) |>
         select(dev_minyr, dev_maxyr) |>
         mutate(diff = dev_maxyr - dev_minyr) |>
         pull(diff)

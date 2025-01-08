@@ -31,7 +31,7 @@ table_catch_tac_summary <- function(yr = NULL,
 
   out <- list()
   ct_df <- ct |>
-    filter(Year == yr)
+    dplyr::filter(Year == yr)
 
   if(!nrow(ct_df)){
     stop("Year `", yr, "` not found in the data frame `ct`, which is ",

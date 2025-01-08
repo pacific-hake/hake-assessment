@@ -48,7 +48,7 @@ table_fishing_intensity <- function(model,
                f(flower, digits),
                f(fmed, digits),
                f(fupper, digits)) |>
-    filter(yrs %in% start_yr:end_yr)
+    dplyr::filter(yrs %in% start_yr:end_yr)
 
   names(df) <- c("Year",
                  "Rel.\nFishing\nIntensity\n2.5\\textsuperscript{th}\npercentile",

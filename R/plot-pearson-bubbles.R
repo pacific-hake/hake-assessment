@@ -100,7 +100,7 @@ plot_pearson_bubbles <- function(model,
       map_df(\(cohort_yr){
         map_df(ages, \(age){
           d |>
-            filter(yr == cohort_yr + age,
+            dplyr::filter(yr == cohort_yr + age,
                    age == age)
         }) |>
           mutate(cohort = cohort_yr)

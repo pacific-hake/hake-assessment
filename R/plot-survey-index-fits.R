@@ -72,7 +72,7 @@ plot_survey_index_fits <- function(
   model_nms_no_obs <- as.character(unique(d$model))
   model_nms_no_obs <- model_nms_no_obs[model_nms_no_obs != obs_str]
   d <- d |>
-    filter(model != !!obs_str) |>
+    dplyr::filter(model != !!obs_str) |>
     mutate(model = factor(model, levels = model_nms_no_obs))
 
   # Add color for Observed data
@@ -85,12 +85,12 @@ plot_survey_index_fits <- function(
                     "Biomass (Mt)")
 
   d <- d |>
-    filter(year <= xlim[2] & year >= ylim[1])
+    dplyr::filter(year <= xlim[2] & year >= ylim[1])
 
   # Extract observed index values (errorbars on index observations) ------------
   d_obs <- model$dat$CPUE |>
     as_tibble() |>
-    filter(index == survey_index)
+    dplyr::filter(index == survey_index)
   lo <- qlnorm(probs[1],
                meanlog = log(as.numeric(d_obs$obs)),
                sdlog = as.numeric(d_obs$se_log))

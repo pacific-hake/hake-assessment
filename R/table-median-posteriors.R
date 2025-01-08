@@ -45,10 +45,10 @@ table_median_posteriors <- function(model,
   ts <- model$timeseries |>
     as_tibble()
   tot_bm <- model$extra_mcmc$total_biomass_quants |>
-    filter(yr %in% yrs) |>
+    dplyr::filter(yr %in% yrs) |>
     select(`50%`)
   age2plus_bm <- model$extra_mcmc$total_age2_plus_biomass_quants |>
-    filter(yr %in% yrs) |>
+    dplyr::filter(yr %in% yrs) |>
     select(`50%`)
 
 # d <- cbind(yrs,

@@ -81,7 +81,7 @@ plot_depl_fore_comparison <- function(
 
   fore_future <- fore |>
     mutate(year = as.numeric(year)) |>
-    filter(year >= min(forecast_yrs))
+    dplyr::filter(year >= min(forecast_yrs))
 
   historic_med <- enframe(model$mcmccalcs$dmed)
   historic_lo <- enframe(model$mcmccalcs$dlower)
@@ -94,26 +94,26 @@ plot_depl_fore_comparison <- function(
   # Remove first year from forecast years
   years_rm_historic <- sort(unique(fore_future$year))[-1]
   historic <- historic |>
-    filter(!year %in% years_rm_historic)
+    dplyr::filter(!year %in% years_rm_historic)
   # Add model column to historic
   historic <- historic |>
     mutate(model = tail(levels(fore_future$model), 1)) |>
     mutate(model = factor(model)) |>
     select(model, everything())
   historic <- historic |>
-    filter(year %in% xlim[1]:xlim[2])
+    dplyr::filter(year %in% xlim[1]:xlim[2])
 
   # Replace first year of forecast with the last year of historic (so ribbons
   # are continuous)
   year_repl_historic <- model$endyr + 1
   fore_tmp_rows <- fore_future |>
-    filter(year == year_repl_historic) |>
+    dplyr::filter(year == year_repl_historic) |>
     select(-`50%`, -`5%`, -`95%`)
   fore_future <- fore_future |>
-    filter(year != year_repl_historic)
+    dplyr::filter(year != year_repl_historic)
 
   hist_row <- historic |>
-    filter(year == year_repl_historic) |>
+    dplyr::filter(year == year_repl_historic) |>
     select(-model)
 
   fore_tmp_rows <- fore_tmp_rows |>

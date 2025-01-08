@@ -26,14 +26,14 @@ plot_spr_illustration <- function(model,
 
   # Average maturity * fecundity
   matfec_vec <- model$wtatage |>
-    filter(Fleet == -2,
+    dplyr::filter(Fleet == -2,
            Yr %in% yrs) |>
     select(all_of(ages_chr)) |>
     summarize_all(mean) |>
     unlist()
   # Average weight at age
   meanwt_vec <- model$wtatage |>
-    filter(Fleet == -1,
+    dplyr::filter(Fleet == -1,
            Yr %in% yrs) |>
     select(all_of(ages_chr)) |>
     summarize_all(mean) |>
@@ -41,18 +41,18 @@ plot_spr_illustration <- function(model,
 
   # numbers at age in equilibrium
   n_at_age_equil <- model$natage |>
-    filter(Era == "VIRG",
+    dplyr::filter(Era == "VIRG",
            `Beg/Mid` == "B") |>
     select(all_of(ages_chr)) |>
     unlist()
 
   m_at_age_endyr <- model$Natural_Mortality |>
-    filter(Yr == model$endyr) |>
+    dplyr::filter(Yr == model$endyr) |>
     select(all_of(ages_chr)) |>
     unlist()
 
   f_at_age_endyr <- model$fatage |>
-    filter(Yr == model$endyr) |>
+    dplyr::filter(Yr == model$endyr) |>
     select(all_of(ages_chr)) |>
     unlist()
 

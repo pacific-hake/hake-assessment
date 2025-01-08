@@ -34,25 +34,25 @@ canada_create_commercial_waa <- function(d,
     switch(sector,
            "CAN_freezer" = {
              df <- d |>
-               filter(trip_sub_type_desc %in%
+               dplyr::filter(trip_sub_type_desc %in%
                         c("OBSERVED DOMESTIC",
                           "NON - OBSERVED DOMESTIC")) |>
-               filter(vessel_id %in% freezer_trawlers$gfbio_id)
+               dplyr::filter(vessel_id %in% freezer_trawlers$gfbio_id)
            },
            "CAN_shoreside" = {
              df <- d |>
-               filter(trip_sub_type_desc %in%
+               dplyr::filter(trip_sub_type_desc %in%
                         c("OBSERVED DOMESTIC",
                           "NON - OBSERVED DOMESTIC")) |>
-               filter(!vessel_id %in% freezer_trawlers$gfbio_id)
+               dplyr::filter(!vessel_id %in% freezer_trawlers$gfbio_id)
            },
            "CAN_jv" = {
              df <- d |>
-               filter(trip_sub_type_desc == "OBSERVED J-V")
+               dplyr::filter(trip_sub_type_desc == "OBSERVED J-V")
            },
            "CAN_polish" = {
              df <- d |>
-               filter(trip_sub_type_desc %in%
+               dplyr::filter(trip_sub_type_desc %in%
                         c("POLISH COMM NATIONAL",
                           "POLISH COMMERCIAL SUPPLEMENTAL"))
            })
@@ -73,7 +73,7 @@ canada_create_commercial_waa <- function(d,
                 Age_yrs = age,
                 Month = month(trip_start_date),
                 Year = year(trip_start_date)) |>
-      filter(!if_any(everything(), is.na))
+      dplyr::filter(!if_any(everything(), is.na))
   }) |>
     arrange(Year, Month, Source, Age_yrs, Weight_kg)
 

@@ -71,6 +71,7 @@ Imports:
   r4ss,
   scales,
   sf,
+  stats,
   stringr,
   tibble,
   tidyselect,
@@ -87,7 +88,6 @@ Suggests:
   rmarkdown,
   sdmTMB,
   shinystan,
-  stats,
   testthat
 Remotes:
   cgrandin/adnuts,

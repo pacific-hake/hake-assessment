@@ -94,7 +94,7 @@ plot_param_density <- function(model,
 
   g <- g +
     geom_area(data = gb |>
-                filter(x >= quants[1] & x <= quants[3]),
+                dplyr::filter(x >= quants[1] & x <= quants[3]),
               aes(x = x,
                   y = y),
               fill = fill_color,

@@ -5,7 +5,7 @@
 ::: {.column width="40%"}
 
 * March `r last_assess_yr`
-  - Default harvest rule TAC = `r f((catch_targets_df %>% filter(Year == last_assess_yr))[["Default HCR TAC"]])` t
+  - Default harvest rule TAC = `r f((catch_targets_df %>% dplyr::filter(Year == last_assess_yr))[["Default HCR TAC"]])` t
   - Sum of unilateral TACs = `r last_yr_tac` t
 * When default HR suggests a large catch, TAC is often set less
 * Catches are often less than the TAC

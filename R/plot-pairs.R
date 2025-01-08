@@ -75,7 +75,7 @@ plot_pairs <- function(model,
       set_names(tolower(names(.))) |>
       mutate(type = tolower(type)) |>
       mutate(name = tolower(name)) |>
-      filter(yr %in% recr)
+      dplyr::filter(yr %in% recr)
 
     if(type == "key"){
       select_vec <- c(select_vec,

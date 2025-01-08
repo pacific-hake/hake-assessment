@@ -42,7 +42,7 @@ plot_priors_vs_posts <- function(model,
   posts_long <- posts |>
     pivot_longer(everything(), names_to = "param") |>
     mutate(param = factor(param, levels = titles)) |>
-    filter(!is.na(value))
+    dplyr::filter(!is.na(value))
 
   priors_long <- map(priors, "prior_random") |>
     as_tibble() |>

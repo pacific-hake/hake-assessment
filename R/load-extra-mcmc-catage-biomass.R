@@ -24,7 +24,7 @@ load_extra_mcmc_catage_biomass <- function(reps,
     rename(yr = year_column_string[1])
 
   wt <- wtatage |>
-    filter(yr > 0)
+    dplyr::filter(yr > 0)
 
   actual_start_yr <- min(catage$yr)
   start_yr_wtatage <- min(wt$yr)
@@ -34,7 +34,7 @@ load_extra_mcmc_catage_biomass <- function(reps,
     # to start_yr_wtatage
     row <- wt |>
       as_tibble() |>
-      filter(yr == min(yr), fleet == 2)
+      dplyr::filter(yr == min(yr), fleet == 2)
 
     if(nrow(row) > 1){
       stop("The biomass-at-age table failed to build. The `model$wtatage` ",
@@ -49,7 +49,7 @@ load_extra_mcmc_catage_biomass <- function(reps,
   }
   ages <- grep("[0-9]+", names(wt), value = TRUE)
   wtatage <- wt |>
-    filter(fleet == 2) |>
+    dplyr::filter(fleet == 2) |>
     select(yr, all_of(ages))
 
   yrs <- sort(unique(catage$yr))
@@ -64,7 +64,7 @@ load_extra_mcmc_catage_biomass <- function(reps,
   # Multiply catage data frame, from each posterior with wtatage
   # Note that the yr and iter columns are removed
   wtatage <- wtatage |>
-    filter(yr %in% unique(catage$yr))
+    dplyr::filter(yr %in% unique(catage$yr))
 
   map(catage_lst, \(df){
     yr_iter <- df |>

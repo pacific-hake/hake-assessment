@@ -106,7 +106,7 @@ plot_recruitment <- function(
 
   # Remove projection years
   d <- d |>
-    filter(year <= xlim[2] & year >= xlim[1])
+    dplyr::filter(year <= xlim[2] & year >= xlim[1])
 
   # Calculate the data outside the range of the y limits and
   # change the CI in the data to cut off at the limits

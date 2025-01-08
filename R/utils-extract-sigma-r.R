@@ -66,13 +66,13 @@ extract_sigma_r <- function(models = NA,
     }
 
     main <- mc %>%
-      filter(grepl("Main", type)) %>%
+      dplyr::filter(grepl("Main", type)) %>%
       mutate(period = "Main")
     early_main <- mc %>%
-      filter(grepl("Early|Main", type)) %>%
+      dplyr::filter(grepl("Early|Main", type)) %>%
       mutate(period = "Early+Main")
     early_main_late <- mc %>%
-      filter(grepl("Early|Main|Late", type)) %>%
+      dplyr::filter(grepl("Early|Main|Late", type)) %>%
       mutate(period = "Early+Main+Late")
 
     lst <- list(main, early_main, early_main_late)

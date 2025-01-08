@@ -19,8 +19,8 @@ extract_inside_catch <- function(...){
 
   disc_df <- j$logs_inside_df |>
     mutate(year = gsub("[a-zA-Z]+ +[0-9]+ +([0-9]{4})", "\\1", hail_out_date)) |>
-    filter(!is.na(released_wt)) |>
-    filter(released_wt > 0) |>
+    dplyr::filter(!is.na(released_wt)) |>
+    dplyr::filter(released_wt > 0) |>
     select(year, released_wt) |>
     rename(wt = released_wt) |>
     group_by(year) |>

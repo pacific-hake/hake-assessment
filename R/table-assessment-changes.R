@@ -48,7 +48,7 @@ table_assessment_changes <- function(d,
     # Cannot have multiple periods in a number (software version must be separated by dashes
     # instead to satisfy accessibility requirements)
     mutate(Framework = gsub("\\.", "-", Framework)) |>
-    filter(Year %in% yrs)
+    dplyr::filter(Year %in% yrs)
 
   col_names <- c("Year",
                  "Framework",

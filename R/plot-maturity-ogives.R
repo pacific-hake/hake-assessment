@@ -81,7 +81,7 @@ plot_maturity_ogives <- function(show_inset = TRUE,
                      p_mature = mean(.x$p_mature[.x$year != 9999],
                                      na.rm = TRUE))) |>
     ungroup() |>
-    filter(grepl("temperature", model)) |>
+    dplyr::filter(grepl("temperature", model)) |>
     mutate(line = case_when(year == min(year) ~ "equilibrium",
                             year == max(year) ~ "forecast",
                             TRUE ~ "main"))
@@ -91,12 +91,12 @@ plot_maturity_ogives <- function(show_inset = TRUE,
   }
 
   d_fore <- d |>
-    filter(line == "forecast",
-           is_fore_yr)
+    dplyr::filter(line == "forecast",
+                  is_fore_yr)
   d_equil <- d |>
-    filter(line == "equilibrium")
+    dplyr::filter(line == "equilibrium")
   d <- d |>
-    filter(!line %in% c("forecast", "equilibrium"))
+    dplyr::filter(!line %in% c("forecast", "equilibrium"))
 
   #colors <- plot_color(length(unique(d$year)))
   colors <- rev(rich_colors_short(length(unique(d$year))))

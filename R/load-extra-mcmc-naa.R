@@ -36,7 +36,7 @@ load_extra_mcmc_naa <- function(reps,
                               natage_header,
                               verbose = verbose,
                               ...) |>
-    filter(`Beg/Mid` == "B") |>
+    dplyr::filter(`Beg/Mid` == "B") |>
     select(-c("Area",
               "Bio_Pattern",
               "Iter",
@@ -50,7 +50,7 @@ load_extra_mcmc_naa <- function(reps,
               "Era",
               "Time")) |>
     map_df(as.numeric) |>
-    filter(Yr >= start_yr) |>
+    dplyr::filter(Yr >= start_yr) |>
     mutate_at(.vars = vars(-Yr), ~{.x / 1e3})
 
   out <- list()

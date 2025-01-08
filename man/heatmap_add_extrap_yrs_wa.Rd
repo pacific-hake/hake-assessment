@@ -8,9 +8,9 @@ series data in \code{model$wtatage}}
 heatmap_add_extrap_yrs_wa(
   model = NULL,
   wa = NULL,
-  pre_yrs = min(pull(filter(model$wtatage, Yr > 0), Yr)):model$endyr,
+  pre_yrs = min(pull(dplyr::filter(model$wtatage, Yr > 0), Yr)):model$endyr,
   pre_func = mean,
-  post_yrs = min(pull(filter(model$wtatage, Yr > 0), Yr)):model$endyr,
+  post_yrs = min(pull(dplyr::filter(model$wtatage, Yr > 0), Yr)):model$endyr,
   post_func = mean,
   pre_wa_vals = NULL,
   post_wa_vals = NULL,

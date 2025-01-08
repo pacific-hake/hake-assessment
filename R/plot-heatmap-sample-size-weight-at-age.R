@@ -63,10 +63,10 @@ plot_heatmap_sample_size_weight_at_age <- function(
   # Extract valid waa for given fleet ----
   wa <- model$wtatage |>
     as_tibble() |>
-    filter(Fleet == fleet) %>%
+    dplyr::filter(Fleet == fleet) %>%
     select(Yr, matches("^\\d", .)) |>
     rename(yr = Yr) |>
-    filter(yr > 0)
+    dplyr::filter(yr > 0)
 
   # Model start and end years ----
   start_yr <- model$startyr
@@ -117,7 +117,7 @@ plot_heatmap_sample_size_weight_at_age <- function(
 
   # Extract the sum column from the sample size data frame ----
   ss_sum_col <- ss |>
-    filter(age == sum_col_age_val) |>
+    dplyr::filter(age == sum_col_age_val) |>
     group_by(age) |>
     mutate(rescale = rescale(sample_size)) |>
     ungroup()
@@ -152,7 +152,7 @@ plot_heatmap_sample_size_weight_at_age <- function(
   # Replace the sum column color from "black" to the colors returned above
   # by `gt0`
   sum_col_df <- ss |>
-    filter(age == sum_col_age_val) |>
+    dplyr::filter(age == sum_col_age_val) |>
     select(-color_col) |>
     mutate(color_col = color_vals)
 

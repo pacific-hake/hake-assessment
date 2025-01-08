@@ -90,7 +90,7 @@ plot_spatial_cpue <- function(
 
   public_dat <- public_dat |>
     bind_cols(x) |>
-    filter(!is.na(lat))
+    dplyr::filter(!is.na(lat))
 
   polygon <- public_dat |>
     st_as_sf(coords = c("lon", "lat"), crs =crs_ll) |>

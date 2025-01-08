@@ -56,19 +56,19 @@ table_cohort <- function(model,
   caa <- model$extra_mcmc$catage_med
   naa <- model$extra_mcmc$natage_med |>
     mutate_at(vars(-yr), ~{.x * 1e3}) |>
-    filter(yr <= max_yr)
+    dplyr::filter(yr <= max_yr)
   naa_next <- model$extra_mcmc$natage_med |>
     mutate_at(vars(-yr), ~{.x * 1e3}) |>
-    filter(yr %in% (min_yr + 1):(max_yr + 1)) |>
+    dplyr::filter(yr %in% (min_yr + 1):(max_yr + 1)) |>
     mutate(yr = yr - 1)
   caa_b <- model$extra_mcmc$cbatage_med |>
-    filter(yr <= max_yr)
+    dplyr::filter(yr <= max_yr)
   baa <- model$extra_mcmc$batage_med |>
-    filter(yr <= max_yr)
+    dplyr::filter(yr <= max_yr)
   waa <- model$wtatage |>
     as_tibble() |>
-    filter(Fleet == 1) |>
-    filter(Yr <= max_yr)
+    dplyr::filter(Fleet == 1) |>
+    dplyr::filter(Yr <= max_yr)
   waa_ages <- grep("^[0-9]+", names(waa), value = TRUE)
   waa <- waa |>
     select(Yr, all_of(waa_ages)) |>

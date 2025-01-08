@@ -59,11 +59,11 @@ load_extra_mcmc_biomass <- function(reps,
 
   if(!is.null(start_yr)){
     ts <- ts |>
-      filter(yr >= start_yr)
+      dplyr::filter(yr >= start_yr)
   }
   if(!is.null(end_yr)){
     ts <- ts |>
-      filter(yr <= end_yr)
+      dplyr::filter(yr <= end_yr)
   }
   total_biomass_quants <- calc_quants_by_group(ts, "bio_all")
   total_age2_plus_biomass_quants <- calc_quants_by_group(ts, "bio_smry")

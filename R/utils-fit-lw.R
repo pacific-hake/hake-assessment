@@ -14,7 +14,7 @@ fit_lw <- function(d,
                    maxiter = 1e3){
 
   d <- d |>
-    filter(!is.na(length), !is.na(weight))
+    dplyr::filter(!is.na(length), !is.na(weight))
 
   if(!nrow(d)){
     return(c(NA, NA))

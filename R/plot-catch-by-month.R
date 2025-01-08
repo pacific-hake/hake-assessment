@@ -115,7 +115,7 @@ plot_catch_by_month <- function(catch_lst,
 
     # Zero catch data frame
     d_zero <- d |>
-      filter(catch == 0)
+      dplyr::filter(catch == 0)
 
     g <- ggplot(d,
                 aes(x = month,
@@ -163,7 +163,7 @@ plot_catch_by_month <- function(catch_lst,
     # as `names_lst`
     quotas_last_yr_by_sector <- map_dbl(quota_lst, ~{
       .x |>
-        filter(Year == yrs[2]) |>
+        dplyr::filter(Year == yrs[2]) |>
         pull(2)
     })
   }
@@ -179,7 +179,7 @@ plot_catch_by_month <- function(catch_lst,
     }
 
     d <- d |>
-      filter(year %in% yrs[1]:yrs[2]) |>
+      dplyr::filter(year %in% yrs[1]:yrs[2]) |>
       mutate(year = factor(year)) |>
       mutate(catch = catch / scale) |>
       complete(year = year, month = 1:12, fill = list(catch = 0))

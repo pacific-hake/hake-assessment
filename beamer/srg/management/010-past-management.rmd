@@ -9,12 +9,12 @@ plot_management_catch_vs_tac(catch_targets_df,
                              leg_font_size = 8)
 
 def_med_hr_tac <- catch_targets_df |>
-  filter(Year == last_assess_yr) |>
+  dplyr::filter(Year == last_assess_yr) |>
   select(`Default HCR TAC`) |>
   unlist()
 
 tac_catch_diff_df <- catch_targets_df |>
-  filter(Year >= assess_yr - 10) |>
+  dplyr::filter(Year >= assess_yr - 10) |>
   mutate(diff = `Realized catch` / `Total TAC`)
 tac_catch_diff <- tac_catch_diff_df |>
   pull(diff)

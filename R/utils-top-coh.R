@@ -46,7 +46,7 @@ top_coh <- function(model = NULL,
   }else{
     tmp <- model$dat$agecomp |>
       select(matches("^a|Yr|FltSvy", ignore.case = FALSE)) |>
-      filter(FltSvy %in% fleet) |>
+      dplyr::filter(FltSvy %in% fleet) |>
       select(-FltSvy) |>
       mutate_all(list(as.numeric))
     names(tmp) <- gsub("^a", "", names(tmp))
@@ -59,7 +59,7 @@ top_coh <- function(model = NULL,
     group_by(Yr) |>
     arrange(desc(value)) |>
     ungroup() |>
-    filter(Yr == yr)
+    dplyr::filter(Yr == yr)
 
   txt <- paste0(ifelse(cap, "The ", "the "),
                 yr - as.numeric(x$name[1]),
@@ -79,7 +79,7 @@ top_coh <- function(model = NULL,
 
   if(!is.na(ret_cohort)){
     cohort_val <- x |>
-      filter(x$name == as.character(yr - ret_cohort)) |>
+      dplyr::filter(x$name == as.character(yr - ret_cohort)) |>
       pull(value)
     return(f(cohort_val * 100, decimals))
   }

@@ -27,7 +27,7 @@ canada_load_sample_data <- function(
   }
 
   out <- readRDS(fn) |>
-    filter(major_stat_area_code %in% can_major_hake_areas |
+    dplyr::filter(major_stat_area_code %in% can_major_hake_areas |
              (major_stat_area_code == "01" &
                 minor_stat_area_code == "20"))
 
@@ -36,7 +36,7 @@ canada_load_sample_data <- function(
     gear_pat <- paste(gear_type, collapse = "|")
 
     out <- out %>%
-      filter(grepl(gear_pat, .$gear_desc))
+      dplyr::filter(grepl(gear_pat, .$gear_desc))
   }
 
   out

@@ -44,7 +44,7 @@ table_survey_history <- function(model,
 
   cpue <- model$dat$CPUE |>
     as_tibble() |>
-    filter(index > 0) |>
+    dplyr::filter(index > 0) |>
     select(-seas) |>
     rename(yr = year) |>
     mutate(obs = f(obs / 1e6, digits),

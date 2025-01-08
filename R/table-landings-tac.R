@@ -46,7 +46,7 @@ table_landings_tac <- function(ct,
            tot_attain)
 
   df <- df |>
-    filter(Year %in% yrs) |>
+    dplyr::filter(Year %in% yrs) |>
     mutate(Year = as.character(Year))
 
   df <- df |>

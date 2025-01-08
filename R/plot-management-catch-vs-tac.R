@@ -38,7 +38,7 @@ plot_management_catch_vs_tac <- function(d,
 
   d <- d |>
     select(-c(Depletion, `Biomass estimate`)) |>
-    filter(!is.na(`Default HCR TAC`))
+    dplyr::filter(!is.na(`Default HCR TAC`))
   if(!is.null(curr_assess_biomass)){
     new_row <- c(max(d$Year) + 1, NA, NA, curr_assess_biomass)
     names(new_row) <- names(d)

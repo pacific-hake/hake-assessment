@@ -33,7 +33,7 @@ plot_selex_mountains <- function(model,
 
   if(!is.null(yrs)){
     sel_med <- sel_med |>
-      filter(yr %in% yrs)
+      dplyr::filter(yr %in% yrs)
   }
 
   if(!is.null(ages)){
@@ -78,7 +78,7 @@ plot_selex_mountains <- function(model,
                        breaks = ages) +
     coord_cartesian(xlim = c(0, max(ages))) +
     geom_line(data = d |>
-                filter(which_ribbon == 1),
+                dplyr::filter(which_ribbon == 1),
               aes(x = age,
                   y = ymax,
                   group = yr),
@@ -87,7 +87,7 @@ plot_selex_mountains <- function(model,
               alpha = 0.5,
               inherit.aes = FALSE) +
     geom_line(data = d |>
-                filter(which_ribbon == 1),
+                dplyr::filter(which_ribbon == 1),
               aes(x = age,
                   y = ymax,
                   group = yr),

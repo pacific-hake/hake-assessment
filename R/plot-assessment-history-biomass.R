@@ -38,7 +38,7 @@ plot_assessment_history_biomass <- function(base_model,
                         lo = base_model$mcmccalcs$slower,
                         med = base_model$mcmccalcs$smed,
                         hi = base_model$mcmccalcs$supper) |>
-    filter(yr <= base_model$endyr + 1)
+    dplyr::filter(yr <= base_model$endyr + 1)
 
   base_ssb_last_yr_df <- base_ssb_df |>
     mutate(label = paste0(base_model$endyr + 1, " Base")) |>
@@ -46,11 +46,11 @@ plot_assessment_history_biomass <- function(base_model,
     transmute(label, yr, value = med)
 
   j <- history_df |>
-    filter(value == "SB million mt") |>
-    filter(is.na(model) | model != "TINSS STAR update") |>
-    filter(is.na(model) | model != "TINSS Post-STAR") |>
-    filter(is.na(model) | model != "Base lowCI") |>
-    filter(is.na(model) | model != "Base highCI") |>
+    dplyr::filter(value == "SB million mt") |>
+    dplyr::filter(is.na(model) | model != "TINSS STAR update") |>
+    dplyr::filter(is.na(model) | model != "TINSS Post-STAR") |>
+    dplyr::filter(is.na(model) | model != "Base lowCI") |>
+    dplyr::filter(is.na(model) | model != "Base highCI") |>
     mutate(model = ifelse(model == "TINSS SSC Final",
                           "TINSS",
                           model)) |>
@@ -60,7 +60,7 @@ plot_assessment_history_biomass <- function(base_model,
     # In case someone entered the current year into the file already,
     # we want control over adding it because it has CIs as well and
     # needs to be black with a thicker line
-    filter(yr <= base_model$endyr)
+    dplyr::filter(yr <= base_model$endyr)
 
   j <- j |>
     select(-c(fishery_independent_cpue,
@@ -75,7 +75,7 @@ plot_assessment_history_biomass <- function(base_model,
     # Add current year median so that it will appear in the legend
     bind_rows(base_ssb_last_yr_df) |>
     mutate(label = factor(label)) |>
-    filter(!is.na(value))
+    dplyr::filter(!is.na(value))
 
   # Colors and shapes of lines and points , not including the
   # current base model
@@ -91,7 +91,7 @@ plot_assessment_history_biomass <- function(base_model,
                           shape))
   # For vertical lines on ends of current year biomass ribbon
   vert_lines_dat <- base_ssb_df |>
-    filter(yr %in% c(min(yr), max(yr)))
+    dplyr::filter(yr %in% c(min(yr), max(yr)))
 
   # Change `label`to `Assessment` for the legend title
   j <- j |>

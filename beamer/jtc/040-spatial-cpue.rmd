@@ -7,7 +7,7 @@
 sample_df <- canada_load_sample_data()
 
 cpue_ft <- can_dat_lst$cpue_spatial |>
-  filter(year >= last_data_yr,
+  dplyr::filter(year >= last_data_yr,
          major_stat_area_code %in% can_major_hake_areas,
          vessel_registration_number %in% freezer_trawlers$fos_id)
 
@@ -23,7 +23,7 @@ plot_spatial_cpue(cpue_ft,
 ```{r spatial-catch-shoreside-canada, out.width = "60%", out.height = "90%"}
 
 cpue_ss <- can_dat_lst$cpue_spatial |>
-  filter(year >= last_data_yr,
+  dplyr::filter(year >= last_data_yr,
          major_stat_area_code %in% can_major_hake_areas,
          !vessel_registration_number %in% freezer_trawlers$fos_id)
 

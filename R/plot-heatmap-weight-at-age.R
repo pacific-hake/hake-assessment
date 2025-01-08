@@ -61,10 +61,10 @@ plot_heatmap_weight_at_age <- function(
   # Extract valid weight-at-age data frame for given fleet ----
   wa <- model$wtatage |>
     as_tibble() |>
-    filter(Fleet == fleet) %>%
+    dplyr::filter(Fleet == fleet) %>%
     select(Yr, matches("^\\d", .)) |>
     rename(yr = Yr) |>
-    filter(yr > 0)
+    dplyr::filter(yr > 0)
 
   # Model start and end years ----
   start_yr <- model$startyr
@@ -91,7 +91,7 @@ plot_heatmap_weight_at_age <- function(
   # row that is there already
 
   mean_row <- heatmap_calc_function(wa |>
-                                      filter(yr %in% start_yr:end_yr),
+                                      dplyr::filter(yr %in% start_yr:end_yr),
                                     func = mean,
                                     ...) |>
     vec2df() |>

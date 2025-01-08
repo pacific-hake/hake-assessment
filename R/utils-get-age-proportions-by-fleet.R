@@ -18,21 +18,21 @@ get_age_proportions_by_fleet <- function(d, raw_proportions = F){
           switch(sector,
                  "ft" = {
                    df <- d |>
-                     filter(trip_sub_type_desc %in%
+                     dplyr::filter(trip_sub_type_desc %in%
                               c("OBSERVED DOMESTIC",
                                 "NON - OBSERVED DOMESTIC")) |>
-                     filter(vessel_id %in% freezer_trawlers$gfbio_id)
+                     dplyr::filter(vessel_id %in% freezer_trawlers$gfbio_id)
                  },
                  "ss" = {
                    df <- d |>
-                    filter(trip_sub_type_desc %in%
+                     dplyr::filter(trip_sub_type_desc %in%
                              c("OBSERVED DOMESTIC",
                                "NON - OBSERVED DOMESTIC")) |>
-                     filter(!vessel_id %in% freezer_trawlers$gfbio_id)
+                     dplyr::filter(!vessel_id %in% freezer_trawlers$gfbio_id)
                  },
                  "jv" = {
                    df <- d |>
-                     filter(trip_sub_type_desc == "OBSERVED J-V")
+                     dplyr::filter(trip_sub_type_desc == "OBSERVED J-V")
                  })
           df |>
             get_age_proportions(raw_proportions = raw_proportions)

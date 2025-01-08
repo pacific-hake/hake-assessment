@@ -50,7 +50,7 @@ plot_squid <- function(model,
   d <- d |>
     # Need to do this to convert from factor to numeric
     mutate(model = as.numeric(as.character(model))) |>
-    filter(year %in% cohorts) |>
+    dplyr::filter(year %in% cohorts) |>
     # Create a list of data frames, one for each cohort
     split(~year) |>
     set_names(NULL) |>
@@ -60,7 +60,7 @@ plot_squid <- function(model,
       .x |>
         # Add color column
         bind_cols(tibble(clr = colors[.y])) |>
-        filter(year <= model) |>
+        dplyr::filter(year <= model) |>
         mutate(age = model - year)
     }) |>
     # Glue the list of data frames back into a single data frame
@@ -109,10 +109,10 @@ plot_squid <- function(model,
     ribbon_dat <- d
     if(!is.null(ci_yrs[1])){
       ribbon_dat <- ribbon_dat |>
-        filter(year %in% ci_yrs)
+        dplyr::filter(year %in% ci_yrs)
     }
     vert_lines_dat <- ribbon_dat |>
-      filter(model %in% c(min(model), max(model))) |>
+      dplyr::filter(model %in% c(min(model), max(model))) |>
       mutate(year = factor(year)) |>
       mutate(model = factor(model))
 

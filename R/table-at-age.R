@@ -73,7 +73,7 @@ table_at_age <- function(model,
   yrs <- start_yr:end_yr
 
   d <- d |>
-    filter(yr %in% yrs) |>
+    dplyr::filter(yr %in% yrs) |>
     rename(Year = yr) |>
     mutate(Year = as.character(Year))
 

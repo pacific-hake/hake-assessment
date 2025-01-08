@@ -66,7 +66,7 @@ plot_bubbles <- function(d,
 
   if(!is.null(xlim[1])){
     d <- d |>
-      filter(Year %in% xlim[1]:xlim[2])
+      dplyr::filter(Year %in% xlim[1]:xlim[2])
   }
 
   x_breaks <- xlim[1]:xlim[2]
@@ -118,8 +118,8 @@ plot_bubbles <- function(d,
       map_df(\(cohort_yr){
         map_df(ages, \(age){
           d |>
-            filter(Year == cohort_yr + age,
-                   Age == age)
+            dplyr::filter(Year == cohort_yr + age,
+                          Age == age)
         }) |>
           mutate(cohort = cohort_yr)
       })

@@ -36,7 +36,7 @@ load_extra_mcmc_atage <- function(reps,
 
   if("Beg/Mid" %in% names(atage)){
     atage <- atage |>
-      filter(`Beg/Mid` == "B")
+      dplyr::filter(`Beg/Mid` == "B")
   }
 
   ages <- grep("[0-9]+", names(atage), value = TRUE)
@@ -48,11 +48,11 @@ load_extra_mcmc_atage <- function(reps,
 
   if(!is.null(start_yr)){
     atage <- atage |>
-      filter(yr >= start_yr)
+      dplyr::filter(yr >= start_yr)
   }
   if(!is.null(end_yr)){
     atage <- atage |>
-      filter(yr <= end_yr)
+      dplyr::filter(yr <= end_yr)
   }
   med <- atage |>
     select(-iter) |>

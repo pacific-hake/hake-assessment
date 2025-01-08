@@ -254,7 +254,7 @@ load_extra_mcmc <- function(model,
   }
   # Divide each catage value by its corresponding batage value
   batage_len_catage <- batage_lst$atage |>
-    filter(yr %in% catage_lst$atage$yr)
+    dplyr::filter(yr %in% catage_lst$atage$yr)
   expatage <- (select(catage_lst$atage, -c(yr, iter)) /
                  as.vector(select(batage_len_catage, -c(yr, iter)))) |>
     as_tibble() |>
@@ -274,11 +274,11 @@ load_extra_mcmc <- function(model,
   }
 
   natage <- natage_lst$atage |>
-    filter(yr == model$endyr + 1) |>
+    dplyr::filter(yr == model$endyr + 1) |>
     select(-c(yr, iter))
 
   sel <- sel_fishery_lst$sel |>
-    filter(yr == model$endyr + 1) |>
+    dplyr::filter(yr == model$endyr + 1) |>
     select(-c(yr))
 
   natsel <- natage * sel
@@ -383,7 +383,7 @@ load_extra_mcmc <- function(model,
     mutate(across(-c(yr, fleet), ~{.x <- .x / 1e6}))
 
   extra_mcmc$q_vector <- ts_q |>
-    filter(fleet == 2) |>
+    dplyr::filter(fleet == 2) |>
     select(iter, calc_q) |>
     group_by(iter) |>
     slice(1) |>
@@ -391,7 +391,7 @@ load_extra_mcmc <- function(model,
     as.numeric()
 
   extra_mcmc$q_vector_age1 <- ts_q |>
-    filter(fleet == 3) |>
+    dplyr::filter(fleet == 3) |>
     select(iter, calc_q) |>
     group_by(iter) |>
     slice(1) |>
@@ -454,12 +454,12 @@ load_extra_mcmc <- function(model,
     message("Calculating pearson residuals...")
   }
   comp <- ts |>
-    filter(!is.na(nsamp_adj), nsamp_adj > 0) |>
+    dplyr::filter(!is.na(nsamp_adj), nsamp_adj > 0) |>
     select(c(iter, yr, fleet, bin, obs, exp, pearson)) |>
     rename(age = bin)
 
   extra_mcmc$residuals_fishery <- comp |>
-    filter(fleet == 1) |>
+    dplyr::filter(fleet == 1) |>
     select(-fleet) |>
     group_by(yr, age) |>
     summarize(exp_lo = quantile(exp, probs = probs[1]),
@@ -472,7 +472,7 @@ load_extra_mcmc <- function(model,
     ungroup()
 
   extra_mcmc$residuals_survey <- comp |>
-    filter(fleet == 2) |>
+    dplyr::filter(fleet == 2) |>
     select(-fleet) |>
     group_by(yr, age) |>
     summarize(exp_lo = quantile(exp, probs = probs[1]),

@@ -136,7 +136,7 @@ plot_survey_fit_mcmc <- function(model,
   # Extract observed index values (thick errorbars) ----
   obs <- model$dat$CPUE |>
     as_tibble() |>
-    filter(index == surv_index)
+    dplyr::filter(index == surv_index)
   lo <- qlnorm(probs[1],
                meanlog = log(as.numeric(obs$obs)),
                sdlog = as.numeric(obs$se_log))
@@ -165,7 +165,7 @@ plot_survey_fit_mcmc <- function(model,
   # These have the extra SD added on
   obs_extra_sd <- model$dat$CPUE |>
     as_tibble() |>
-    filter(index == surv_index)
+    dplyr::filter(index == surv_index)
 
   lo <- qlnorm(probs[1],
                meanlog = log(as.numeric(obs_extra_sd$obs)),
@@ -182,24 +182,24 @@ plot_survey_fit_mcmc <- function(model,
 
   # Extract the index fit posterior lines ----
   index_posts <- model$extra_mcmc$index_fit_posts |>
-    filter(fleet %in% surv_index) |>
+    dplyr::filter(fleet %in% surv_index) |>
     select(-fleet) |>
     pivot_longer(-yr, names_to = "post", values_to = "med") |>
     mutate(post = as.numeric(post)) |>
     mutate(post = factor(post, levels = sort(unique(post)))) |>
     # Take the random subsample of posterior numbers
-    filter(post %in% subsample)
+    dplyr::filter(post %in% subsample)
 
   # Extract index fit median ----
   # index_lo <- model$extra_mcmc$index_lo |>
-  #   filter(fleet == surv_index) |>
+  #   dplyr::filter(fleet == surv_index) |>
   #   select(-fleet)
   index_med <- model$extra_mcmc$index_med |>
-    filter(fleet == surv_index) |>
+    dplyr::filter(fleet == surv_index) |>
     select(-fleet) |>
     rename(med = value)
   # index_hi <- model$extra_mcmc$index_hi |>
-  #   filter(fleet == surv_index) |>
+  #   dplyr::filter(fleet == surv_index) |>
   #   select(-fleet)
 
   x_breaks <- x_lim[1]:x_lim[2]

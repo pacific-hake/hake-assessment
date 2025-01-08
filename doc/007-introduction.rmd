@@ -383,7 +383,7 @@ Appendix~\@ref(sec:app-canada-fishery-report) and last year's assessment,
 
 The shoreside vessels, which land fresh round product onshore, landed `r last_yr_can_shore`~t in `r last_data_yr`, the lowest on record since 1990, and
 a little less than the `r last_data_yr - 1` landings of
-`r f(ct |> filter(Year == last_data_yr - 1) |> pull("Canada Shoreside"))`~t.
+`r f(ct |> dplyr::filter(Year == last_data_yr - 1) |> pull("Canada Shoreside"))`~t.
 The Freezer trawlers, which freeze headed and gutted product while
 at sea, landed `r last_yr_can_freezer`~t. This was the lowest amount the
 Freezer trawlers have landed since 2013, despite doubling the number of

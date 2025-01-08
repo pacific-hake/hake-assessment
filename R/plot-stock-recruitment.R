@@ -78,7 +78,7 @@ plot_stock_recruitment <- \(model,
       mutate(virg = df_virg) |>
       mutate(across(-virg, ~{.x / virg})) |>
       pivot_longer(everything(), names_to = "yr") |>
-      filter(yr != "virg") |>
+      dplyr::filter(yr != "virg") |>
       mutate(yr = gsub(".*?(\\d+$)", "\\1", yr)) |>
       mutate(yr = as.numeric(yr)) |>
       # To remove the weird column names that can't be fixed any other way
@@ -103,7 +103,7 @@ plot_stock_recruitment <- \(model,
   yrs_txt_df <- rb
   if(!is.null(show_yr_text)){
     yrs_txt_df <- yrs_txt_df |>
-      filter(yr %in% show_yr_text)
+      dplyr::filter(yr %in% show_yr_text)
     if(!nrow(yrs_txt_df)){
       warning("None of the years supplied in the argument `show_yr_text` ",
               "were in the data. All labels will be shown")

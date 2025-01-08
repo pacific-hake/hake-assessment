@@ -122,7 +122,7 @@ plot_mcmc_histogram <- function(d,
     if(show_bar_values){
       g <- g +
         geom_text(data = d |>
-                    filter(count > bar_label_limit),
+                    dplyr::filter(count > bar_label_limit),
                   aes(x = x,
                       y = count,
                       label = count),
@@ -130,7 +130,7 @@ plot_mcmc_histogram <- function(d,
                   size = bar_text_size,
                   position = position_stack(vjust = 0.5)) +
         geom_text(data = d |>
-                    filter(count <= bar_label_limit),
+                    dplyr::filter(count <= bar_label_limit),
                   aes(x = x,
                       y = count,
                       label = count),

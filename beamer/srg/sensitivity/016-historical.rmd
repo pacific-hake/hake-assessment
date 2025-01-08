@@ -42,7 +42,7 @@ kbl(d,
 
 \pause
 * Now (since it's `r assess_yr`) we '*know*' the 2019 catch was
-  `r f(filter(ct_last_10yrs, Year == 2019)$Total)` t, so row d was close
+  `r f(dplyr::filter(ct_last_10yrs, Year == 2019)$Total)` t, so row d was close
   enough.
 \pause
 * How do the probabilities in row~d compare to estimates of them from the

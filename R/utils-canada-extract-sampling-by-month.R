@@ -24,9 +24,9 @@ canada_extract_sampling_by_month <- function(fleet_lst,
       col_sym <- sym(.x)
       col_new <- sym(paste0("num_", .x))
       fleet_df |>
-        filter(year == yr) |>
+        dplyr::filter(year == yr) |>
         mutate(month = month(trip_start_date)) |>
-        filter(!is.na(!!col_sym)) |>
+        dplyr::filter(!is.na(!!col_sym)) |>
         group_by(month) |>
         summarize(!!col_new := n()) |>
         ungroup()

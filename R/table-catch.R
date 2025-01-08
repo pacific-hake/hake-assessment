@@ -90,7 +90,7 @@ table_catch <- function(ct,
   }
 
   df <- df |>
-    filter(Year %in% yrs) |>
+    dplyr::filter(Year %in% yrs) |>
     mutate(Year = as.character(Year)) |>
     mutate_at(.vars = vars(-Year), ~{f(.x, 0)})
 

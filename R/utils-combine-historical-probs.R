@@ -25,7 +25,7 @@ combine_historical_probs <- function(model,
                                      ...){
 
   hist_probs_rng <- assess_history_probs_df |>
-    filter(Year %in% start:end) |>
+    dplyr::filter(Year %in% start:end) |>
     rename(year = Year)
 
   new_hist_probs_rng <- calc_historical_probs(model,

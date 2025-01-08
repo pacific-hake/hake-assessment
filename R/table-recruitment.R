@@ -60,7 +60,7 @@ table_recruitment <- function(model,
                f(devlower, digits_dev),
                f(devmed, digits_dev),
                f(devupper, digits_dev)) |>
-    filter(yrs %in% start_yr:end_yr)
+    dplyr::filter(yrs %in% start_yr:end_yr)
 
   names(df) <- c("Year",
                  "Recruit-\nment\n2.5\\textsuperscript{th}\npercentile",

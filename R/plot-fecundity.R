@@ -26,10 +26,10 @@ plot_fecundity <- function(model,
   calc_mean <- function(fleet){
     x <- model$wtatage |>
       as_tibble() |>
-      filter(Fleet == fleet)
+      dplyr::filter(Fleet == fleet)
     if(!is.null(yrs)){
       x <- x |>
-        filter(Yr %in% yrs)
+        dplyr::filter(Yr %in% yrs)
     }
     x |>
       select(matches("^\\d")) |>
@@ -42,7 +42,7 @@ plot_fecundity <- function(model,
               `Mean weight at age` = wt,
               `Mean fecundity (maturity-at-age X weight-at-age)` = fec) |>
     pivot_longer(-age) |>
-    filter(age > 0) |>
+    dplyr::filter(age > 0) |>
     mutate(name = factor(name, levels = unique(name)))
 
   age_max <- max(d$age)

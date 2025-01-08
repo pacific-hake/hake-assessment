@@ -48,13 +48,13 @@ table_sampling_history <- function(start_yr,
                 can_ss_age_df,
                 can_ft_age_df) |>
       map(~{.x |>
-          filter(year %in% replace_start_yr:end_yr) |>
+          dplyr::filter(year %in% replace_start_yr:end_yr) |>
           select(year, num_samples) |>
           complete(year = replace_start_yr:end_yr,
                    fill = list(num_samples = NA))})
 
     d <- d |>
-      filter(!Year %in% replace_start_yr:end_yr)
+      dplyr::filter(!Year %in% replace_start_yr:end_yr)
     rows <- row_template
     for(row in seq_along(replace_start_yr:end_yr)[-1]){
       rows <- rows |>
@@ -80,7 +80,7 @@ table_sampling_history <- function(start_yr,
   yrs <- start_yr:end_yr
 
   d <- d |>
-    filter(Year %in% yrs) |>
+    dplyr::filter(Year %in% yrs) |>
     mutate_all(~{as.numeric(.x)}) |>
     mutate_at(.vars = vars(-Year), ~{
       ifelse(is.na(.x),

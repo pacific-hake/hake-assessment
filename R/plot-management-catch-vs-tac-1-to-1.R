@@ -29,7 +29,7 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
     mutate(`Realized catch` = `Realized catch` / 1000,
            `Total TAC` = `Total TAC` / 1000,
            `Default HCR TAC` = `Default HCR TAC` / 1000) |>
-    filter(!is.na(`Default HCR TAC`)) |>
+    dplyr::filter(!is.na(`Default HCR TAC`)) |>
     mutate(Year = factor(Year))
 
   num_unq_yrs <- d$Year |> unique() |> length()
@@ -43,9 +43,9 @@ plot_management_catch_vs_tac_1_to_1 <- function(d,
   if(!is.null(yrs_nudge_right[1])){
     use_nudged_yrs <- TRUE
     d_right <- d |>
-      filter(Year %in% yrs_nudge_right)
+      dplyr::filter(Year %in% yrs_nudge_right)
     d_left <- d |>
-      filter(!Year %in% yrs_nudge_right)
+      dplyr::filter(!Year %in% yrs_nudge_right)
   }
 
   g <- ggplot(d) +

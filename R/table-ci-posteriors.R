@@ -47,7 +47,7 @@ table_ci_posteriors <- function(model,
     as_tibble()
 
   tot_bm <- model$extra_mcmc$total_biomass_quants |>
-    filter(yr %in% yrs)
+    dplyr::filter(yr %in% yrs)
   stopifnot(lower_col %in% names(tot_bm))
   stopifnot(upper_col %in% names(tot_bm))
   tot_bm_lower <- tot_bm |>
@@ -56,7 +56,7 @@ table_ci_posteriors <- function(model,
     pull(!!upper_col_sym)
 
   age2plus_bm <- model$extra_mcmc$total_age2_plus_biomass_quants |>
-    filter(yr %in% yrs)
+    dplyr::filter(yr %in% yrs)
   stopifnot(lower_col %in% names(age2plus_bm))
   stopifnot(upper_col %in% names(age2plus_bm))
   age2plus_bm_lower <- age2plus_bm |>

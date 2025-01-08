@@ -48,7 +48,7 @@ plot_rel_recruitment <-  function(model_lst = NULL,
   }
 
   rel_row <- d |>
-    filter(year == rel_yr)
+    dplyr::filter(year == rel_yr)
 
   # Make all rows relative to the chosen year (`rel_yr`)
   d <- d |>
@@ -104,7 +104,7 @@ plot_rel_recruitment <-  function(model_lst = NULL,
 
   # Remove projection years
   d <- d |>
-    filter(year <= xlim[2])
+    dplyr::filter(year <= xlim[2])
 
   g <- ggplot(d,
               aes(x = year,

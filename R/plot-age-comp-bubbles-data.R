@@ -37,7 +37,7 @@ plot_age_comp_bubbles_data <- function(age_data_lst,
 
     d |>
       select(-c(num_fish, num_samples)) |>
-      filter(year %in% years) |>
+      dplyr::filter(year %in% years) |>
       pivot_longer(-year) |>
       setNames(c("year", "age", "value")) |>
       mutate(type = nm) |>

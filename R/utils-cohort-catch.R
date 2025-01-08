@@ -25,7 +25,7 @@ cohort_catch <- function(model,
   catage <- model$extra_mcmc$catage_med
   cohort_yrs <- cohort + ages
   tmp_caa <- catage |>
-    filter(yr %in% cohort_yrs) |>
+    dplyr::filter(yr %in% cohort_yrs) |>
     select(all_of(as.character(ages))) |>
     as.matrix()
   cohort_catch <- diag(tmp_caa)

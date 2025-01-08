@@ -58,7 +58,7 @@ plot_survey_biomass <- function(model,
   index <- `if`(index == "age2", 2, 3)
 
   ests <- model$dat$CPUE |>
-    filter(index == !!index) |>
+    dplyr::filter(index == !!index) |>
     transmute(year,
               obs = obs / 1e6,
               se_log,
@@ -66,7 +66,7 @@ plot_survey_biomass <- function(model,
               hi = exp(log(obs) + 1.96 * se_log))
 
   ests_squid <- ests |>
-    filter(year == 2009) |>
+    dplyr::filter(year == 2009) |>
     mutate(se_log = 0.0682) |>
     mutate(lo = exp(log(obs) - 1.96 * se_log),
            hi = exp(log(obs) + 1.96 * se_log))

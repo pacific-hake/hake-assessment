@@ -47,7 +47,7 @@ table_fore_age_props <- function(props_bynum,
            `By number` = perc_bynum,
            `By weight` = perc_bywt,
            Cohort = cohort.x) |>
-  filter(Age %in% ages_filt)
+    dplyr::filter(Age %in% ages_filt)
 
   k <- kbl(d,
            format = "latex",

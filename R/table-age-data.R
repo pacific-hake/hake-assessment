@@ -70,7 +70,7 @@ table_age_data <- function(fleet = c("can_ft", "can_ss", "can_jv",
 
   ages <- grep("[0-9]+", names(d), value = TRUE)
   d <- d |>
-    filter(year %in% yrs) |>
+    dplyr::filter(year %in% yrs) |>
     mutate(across(ages, ~{f(.x * 100, digits)})) |>
     mutate(across(c(num_fish, num_samples), ~{f(.x)}))
 

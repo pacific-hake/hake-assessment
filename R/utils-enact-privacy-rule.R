@@ -90,11 +90,11 @@ enact_privacy_rule <- function(dat,
 
   # Remove hexagons with not enough vessels
   gdat <- gdat |>
-    filter(gdat_count$value >= n_minimum_vessels)
+    dplyr::filter(gdat_count$value >= n_minimum_vessels)
 
   # Get hexagons with not enough fishing events
   lost_fe_id_df <- gdat_fe_id_count |>
-    filter(gdat_count$value < n_minimum_vessels)
+    dplyr::filter(gdat_count$value < n_minimum_vessels)
 
   lost_fe_ids <- sum(lost_fe_id_df$value)
   total_fe_ids <- sum(gdat_fe_id_count$value)

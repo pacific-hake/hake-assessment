@@ -5,7 +5,7 @@
 ```{r age-comp-comparison, results = "asis"}
 
 sample_df <- canada_load_sample_data() |> 
-  filter(sex %in% c(1, 2))
+  dplyr::filter(sex %in% c(1, 2))
 
 samples_fleet_lst <- canada_get_fleet_samples(sample_df)
 # Remove JV for this table

@@ -42,28 +42,28 @@ canada_get_fleet_samples <- function(d,
              df <- d
              if(db_type == "gfbio"){
                df <- df |>
-                 filter(trip_sub_type_desc %in%
+                 dplyr::filter(trip_sub_type_desc %in%
                           c("OBSERVED DOMESTIC",
                             "NON - OBSERVED DOMESTIC"))
              }
              df <- df |>
-               filter(vessel_id %in% ft_ids)
+               dplyr::filter(vessel_id %in% ft_ids)
            },
            "ss" = {
              df <- d
              if(db_type == "gfbio"){
                df <- df |>
-                 filter(trip_sub_type_desc %in%
+                 dplyr::filter(trip_sub_type_desc %in%
                           c("OBSERVED DOMESTIC",
                             "NON - OBSERVED DOMESTIC"))
              }
              df <- df |>
-               filter(!vessel_id %in% ft_ids)
+               dplyr::filter(!vessel_id %in% ft_ids)
            },
            "jv" = {
              if(db_type == "gfbio"){
                df <- d |>
-                 filter(trip_sub_type_desc == "OBSERVED J-V")
+                 dplyr::filter(trip_sub_type_desc == "OBSERVED J-V")
              }else{
                # No FOS JV records will be returned, this includes depth
                # records

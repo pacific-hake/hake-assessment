@@ -49,7 +49,7 @@ table_biomass <- function(model,
               paste0(f(dlower, digits), "\\%"),
               paste0(f(dmed, digits), "\\%"),
               paste0(f(dupper, digits), "\\%")) |>
-    filter(yrs %in% start_yr:end_yr)
+    dplyr::filter(yrs %in% start_yr:end_yr)
 
   names(d) <- c("Year",
                 "SB \n2.5\\textsuperscript{th}\npercentile",

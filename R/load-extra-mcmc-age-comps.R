@@ -56,7 +56,7 @@ load_extra_mcmc_age_comps <- function(compreps,
               age = Bin,
               prop = Exp) |>
     pivot_wider(names_from = "age", values_from = "prop") |>
-    filter(fleet > 0) |>
+    dplyr::filter(fleet > 0) |>
     mutate(across(everything(), ~{.x = as.numeric(.x)}))
 
   # These may be introduced by short lines in the output file which delineate
@@ -75,12 +75,12 @@ load_extra_mcmc_age_comps <- function(compreps,
 
   if(!is.null(start_yr)){
     comps_df <- comps_df |>
-      filter(yr >= start_yr)
+      dplyr::filter(yr >= start_yr)
   }
 
   if(!is.null(end_yr)){
     comps_df <- comps_df |>
-      filter(yr <= end_yr)
+      dplyr::filter(yr <= end_yr)
   }
 
   if(ret_quants){

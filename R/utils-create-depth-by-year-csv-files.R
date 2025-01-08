@@ -71,10 +71,10 @@ create_depth_by_year_csv_files <- function(
   # line below nicer
   adf <- as.data.frame
   dpth <- d |>
-    filter(!is.na(!!col_sym_depth)) |>
+    dplyr::filter(!is.na(!!col_sym_depth)) |>
     transmute(!!col_sym_year,
               depth = !!col_sym_depth * scale) |>
-    filter(depth > min_depth_cutoff) |>
+    dplyr::filter(depth > min_depth_cutoff) |>
     group_by(year) |>
     do(adf(t(adf(quantile(.$depth, probs))))) |>
     ungroup() |>
@@ -87,7 +87,7 @@ create_depth_by_year_csv_files <- function(
 
   if(!is.null(yrs)){
     dpth <- dpth |>
-      filter(!!col_sym_year %in% yrs)
+      dplyr::filter(!!col_sym_year %in% yrs)
   }
 
   # Round all columns except `year`

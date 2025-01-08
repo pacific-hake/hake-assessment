@@ -191,7 +191,7 @@ pacea_save <- function(model_lst = list(base_model),
 
   # Does not match Table 18, not sure what batage is then:
   # dat <- as_tibble(model_lst[[1]]$batage) %>%
-  #   filter(`Beg/Mid` == "B",
+  #   dplyr::filter(`Beg/Mid` == "B",
   #          Yr <= assess_yr) %>%  # Projections are 0 anyway
   #   select(Yr,
   #          `1`)

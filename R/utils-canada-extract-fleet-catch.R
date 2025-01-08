@@ -22,30 +22,30 @@ canada_extract_fleet_catch <- function(lst){
 
   # If the non-JV vessel was fishing in JV, remove those catches
   dmp_df <- lst$dmp_df |>
-    filter(!grepl("JV", licence_trip_type))
+    dplyr::filter(!grepl("JV", licence_trip_type))
   logs_df <- lst$logs_df |>
-    filter(!grepl("JV", trip_type))
+    dplyr::filter(!grepl("JV", trip_type))
 
   # At Sea Observer Program records only (all of those are discards in the
   # LOGS data), for all fleet types
   discards_df <- lst$logs_df |>
-    filter(source == "ASOP") |>
-    filter(!is.na(released_wt))
+    dplyr::filter(source == "ASOP") |>
+    dplyr::filter(!is.na(released_wt))
 
   dmp_ft_df <- dmp_df |>
-    filter(vrn %in% pull(freezer_trawlers, fos_id))
+    dplyr::filter(vrn %in% pull(freezer_trawlers, fos_id))
   discards_ft_df <- discards_df |>
-    filter(vrn %in% pull(freezer_trawlers, fos_id))
+    dplyr::filter(vrn %in% pull(freezer_trawlers, fos_id))
 
   dmp_ss_df <- dmp_df |>
-    filter(!vrn %in% pull(freezer_trawlers, fos_id))
+    dplyr::filter(!vrn %in% pull(freezer_trawlers, fos_id))
   discards_ss_df <- discards_df |>
-    filter(!vrn %in% pull(freezer_trawlers, fos_id))
+    dplyr::filter(!vrn %in% pull(freezer_trawlers, fos_id))
 
   dmp_jv_df <- lst$dmp_df |>
-    filter(grepl("JV", licence_trip_type))
+    dplyr::filter(grepl("JV", licence_trip_type))
   discards_jv_df <- discards_df |>
-    filter(grepl("JV", trip_type))
+    dplyr::filter(grepl("JV", trip_type))
 
   summarize_dmp <- \(d, wt_col){
 

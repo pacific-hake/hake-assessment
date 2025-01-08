@@ -13,6 +13,7 @@
 #' @import magick
 #' @import purrr
 #' @import rnaturalearth rnaturalearthhires
+#' @import stats
 #' @rawNamespace import(r4ss, except = c(profile))
 #'
 #' @importFrom cli cli_abort cli_inform cli_warn symbol
@@ -52,9 +53,6 @@
 #' @importFrom scales comma ordinal rescale
 #' @importFrom sf st_as_sf st_cast st_combine st_crop st_crs st_crs<-
 #' @importFrom sf st_transform st_coordinates
-#' @importFrom stats ave coefficients complete.cases end median na.omit nls
-#' @importFrom stats quantile rbeta reshape rlnorm rnorm runif setNames
-#' @importFrom stats start ts
 #' @importFrom stringr str_count str_flatten str_flatten_comma str_split str_sub
 #' @importFrom tools file_path_sans_ext file_ext
 #' @importFrom tibble as_tibble as_tibble_row enframe

@@ -34,7 +34,7 @@ heatmap_extract_sample_size <- function(sample_size_df = NULL,
 
   bf <- sample_size_df %>%
     select(yr, matches("^\\d+", .)) |>
-    filter(yr > 0)
+    dplyr::filter(yr > 0)
 
   # All years where all values are extrapolated (pre- and post- weight-at-age
   # data values)
@@ -57,7 +57,7 @@ heatmap_extract_sample_size <- function(sample_size_df = NULL,
     # which indicate interpolated/Non-interpolated values (zero/non-zero)
     bf <- bf |>
       mutate_at(vars(-yr), ~{!as.logical(.x)}) |>
-      filter(yr %in% unique(wa$yr))
+      dplyr::filter(yr %in% unique(wa$yr))
 
     if(!identical(dim(bf), dim(wa))){
       stop("The structure (dimensions) of `bf` is not identical to the ",

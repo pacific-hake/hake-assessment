@@ -48,15 +48,15 @@ extramc <- base_model$extra_mcmc
 
 # Attainment in the past ------------------------------------------------------
 ct_last10 <- ct |>
-  filter(Year %in% (end_yr - 10):(end_yr - 1))
+  dplyr::filter(Year %in% (end_yr - 10):(end_yr - 1))
 ct_last5 <- ct |>
-  filter(Year %in% (end_yr - 5):(end_yr - 1))
+  dplyr::filter(Year %in% (end_yr - 5):(end_yr - 1))
 ct_last2 <- ct |>
-  filter(Year %in% (end_yr - 2):(end_yr - 1))
+  dplyr::filter(Year %in% (end_yr - 2):(end_yr - 1))
 ct_last1 <- ct |>
-  filter(Year == end_yr - 1)
+  dplyr::filter(Year == end_yr - 1)
 ct_secondlast <- ct |>
-  filter(Year == end_yr - 2)
+  dplyr::filter(Year == end_yr - 2)
 us_last_5_yrs_attainment <- ct_last5 |>
   pull(`us_attain`) |>
   mean() |>
@@ -82,7 +82,7 @@ tot_last_10_yrs_attainment <- ct_last10 |>
   mean() |>
   f(1)
 tot_penult_yr_attainment <- ct_last2 |>
-  filter(Year == last_data_yr - 1) |>
+  dplyr::filter(Year == last_data_yr - 1) |>
   pull(`tot_attain`) |>
   mean() |>
   f(1)
@@ -91,17 +91,17 @@ tot_last_yr_attainment <- ct_last1 |>
   mean() |>
   f(1)
 tot_2015_attainment <- ct |>
-  filter(Year == 2015) |>
+  dplyr::filter(Year == 2015) |>
   pull(`tot_attain`) |>
   mean() |>
   f(1)
 tot_9192_attainment <- ct |>
-  filter(Year %in% 1991:1992) |>
+  dplyr::filter(Year %in% 1991:1992) |>
   pull(`tot_attain`) |>
   mean() |>
   f(0)
 tot_9399_attainment <- ct |>
-  filter(Year %in% 1993:1999) |>
+  dplyr::filter(Year %in% 1993:1999) |>
   pull(`tot_attain`) |>
   mean() |>
   f(0)
@@ -117,35 +117,35 @@ us_allotment_percent_last_yr <- f(pull(ct_last1, `U.S. TAC`) /
 # Further TAC sources ---------------------------------------------------------
 ft <- further_tac_df
 last_yr_us_tribal <- ft |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(us_tribal_quota)
 last_yr_us_research <- ft |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(us_research_quota)
 last_yr_us_non_tribal <- ft |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(us_nontribal_quota)
 last_yr_us_tribal_quota_reallocated <- ft |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(us_tribal_quota_reallocated)
 last_yr_us_tribal_reallocate_dates <- ft |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(us_tribal_reallocate_dates)
 last_yr_us_tribal_reallocate_dates_f <-
   format(as.Date(as.character(last_yr_us_tribal_reallocate_dates),
                  "%d-%b"),
          "%B %d")
 last_yr_us_tribal_max_landed <- ft |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(us_tribal_max_landed)
 last_yr_us_shore_quota_reallocated <- ft |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(us_shore_reallocated)
 last_yr_us_cp_quota_reallocated <- ft |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(us_cp_reallocated)
 last_yr_us_ms_quota_reallocated <- ft |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(us_ms_reallocated)
 
 # Catch -----------------------------------------------------------------------
@@ -163,12 +163,12 @@ last_yr_tac <- ct_last1 |>
   f(0)
 last_yr_us_rank <- ct |>
   mutate(rank = rank(-1 * `U.S. Total`)) |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(rank) |>
   ordinal()
 last_yr_can_rank <- ct |>
   mutate(rank = rank(-1 * `Canada Total`)) |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(rank) |>
   ordinal()
 # ... catch over the last 10 years --------------------------------------------
@@ -179,19 +179,19 @@ ct_us_mean_10yrs <- f(mean(ct_last_10yrs$`U.S. Total`))
 ct_can_mean_10yrs <- f(mean(ct_last_10yrs$`Canada Total`))
 # ... US Catch by fleet, last year --------------------------------------------
 last_yr_us_research_ct <- ct |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(`U.S. Research`)
 last_yr_us_cp_ct <- ct |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(`U.S. Catcher-processor`)
 last_yr_us_ms_ct <- ct |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(`U.S. Mothership`)
 last_yr_us_shore_ct <- ct |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(`U.S. Shore-based`)
 last_yr_us_ti_ct <- us_ti_ct_by_month_df |>
-  filter(year == last_data_yr) |>
+  dplyr::filter(year == last_data_yr) |>
   pull(catch) |>
   sum()
 catcher_processor_ct <- ((ct_last1 |>
@@ -237,7 +237,7 @@ last_yr_us_shore_ct_percent <- f(last_yr_us_shore_ct /
 
 # ... Canada Attainment, catch, and TAC ---------------------------------------
 last_yr_can_carryover <- ft |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(can_carried_over) |>
   f(0)
 last_yr_can_attained <- ct_last1 |>
@@ -255,17 +255,17 @@ last_yr_can_tac <- ct_last1 |>
   pull(`Canada TAC`) |>
   f(0)
 last_yr_can_tac_jv <- ft |>
-  filter(Year == last_data_yr) |>
+  dplyr::filter(Year == last_data_yr) |>
   pull(can_jv_tac) |>
   f(0)
 last_yr_can_shoreside_tac <- ((ct_last1 |>
                                  pull(`Canada TAC`)) -
                                 (ft |>
-                                   filter(Year == last_data_yr) |>
+                                   dplyr::filter(Year == last_data_yr) |>
                                    pull(can_jv_tac))) |>
   f(0)
 latest_yr_can_jv <- ct |>
-  filter(`Canada Joint-venture` > 0) |>
+  dplyr::filter(`Canada Joint-venture` > 0) |>
   pull(Year) |>
   max()
 last_yr_can_shore <- ct_last1 |>
@@ -294,21 +294,21 @@ last_yr_can_jv_percent <- ((ct_last1 |>
   f(1)
 # Years since 2000 (including 2000) that JV catch has been zero
 terminal_yr_us_jv_foreign <- ct |>
-  filter(`U.S. Foreign` > 0 | `U.S. Joint-venture` > 0) %>%
+  dplyr::filter(`U.S. Foreign` > 0 | `U.S. Joint-venture` > 0) %>%
   slice(nrow(.)) |>
   pull(Year)
 first_yr_us_atsea <- ct |>
-  filter(`U.S. Catcher-processor` > 0 | `U.S. Mothership` > 0) |>
+  dplyr::filter(`U.S. Catcher-processor` > 0 | `U.S. Mothership` > 0) |>
   slice(1) |>
   pull(Year)
 
 # Survey values ---------------------------------------------------------------
 survey_biomass <- base_model$dat$CPUE |>
-  filter(index == 2) |>
+  dplyr::filter(index == 2) |>
   pull(var = obs, name = year) / 1e6
 
 survey_comps <- base_model$dat$agecomp |>
-  filter(FltSvy == 2)
+  dplyr::filter(FltSvy == 2)
 rownames(survey_comps) <- survey_comps$Yr
 
 survey_last_yr <- survey_comps %>%
@@ -324,27 +324,27 @@ survey_a2_prop <- f(survey_last_yr_age[names(survey_last_yr_age) == 2], 1)
 last_survey_yr <- max(as.numeric(names(survey_biomass)))
 # Millions of tonnes
 last_survey_yr_biomass <- base_model$dat$CPUE |>
-  filter(index == 2, year == max(year)) |>
+  dplyr::filter(index == 2, year == max(year)) |>
   mutate(obs = obs / 1e6) |>
   pull(obs) |>
   f(2)
 penult_survey_yr <- base_model$dat$CPUE |>
-  filter(index == 2) |>
+  dplyr::filter(index == 2) |>
   pull(year) |>
   sort() %>%
   `[`(length(.) - 1)
 
 # How many times higher is the last survey than the one before it?
 last_factor_penult <- base_model$dat$CPUE |>
-  filter(index == 2) |>
+  dplyr::filter(index == 2) |>
   mutate(new = obs / lag(obs)) |>
-  filter(year %in% c(last_survey_yr)) |>
+  dplyr::filter(year %in% c(last_survey_yr)) |>
   pull(new) |>
   f(1)
 
 # Age-1 survey
 survey_age1_yrs <- base_model$dat$CPUE |>
-  filter(index == 3) |>
+  dplyr::filter(index == 3) |>
   pull(year)
 # Spawning Biomass and Depletion estimates ------------------------------------
 curr_depl_lower <- f(mc$dlower[names(mc$dlower) == end_yr] * 100, 0)
@@ -391,7 +391,7 @@ prev_bio_upper_last_assess <-
 # Forecasting -----------------------------------------------------------------
 # Median fishing intensity at Default HR
 fi_at_hcr <- f(base_model$forecasts$`2024`$`14-default-hr`$spr |>
-                 filter(yr == assess_yr) |>
+                 dplyr::filter(yr == assess_yr) |>
                  pull(`50%`), 2)
 # ... first forecast year depletion and spawning biomass estimates ------------
 fore_tac_mcmc_yr1 <- base_model$forecasts[[1]][[ct_tac_ind]]$mcmccalcs
@@ -403,17 +403,17 @@ endyr_plus_3_fore_tac_catch <- endyr_plus_3_fore[[ct_tac_ind]]$depl |>
   t() |> 
   as_tibble(rownames = "yr")
 last_yr_tac_fore_1_biomass <- endyr_plus_3_fore_tac_catch |>
-  filter(yr == end_yr) |>
+  dplyr::filter(yr == end_yr) |>
   mutate(`50%` = `50%` * 100) |>
   pull(`50%`)
 
 last_yr_tac_fore_2_biomass <- endyr_plus_3_fore_tac_catch |>
-  filter(yr == end_yr + 1) |>
+  dplyr::filter(yr == end_yr + 1) |>
   mutate(`50%` = `50%` * 100) |>
   pull(`50%`)
 
 last_yr_tac_fore_3_biomass <- endyr_plus_3_fore_tac_catch |>
-  filter(yr == end_yr + 2) |>
+  dplyr::filter(yr == end_yr + 2) |>
   mutate(`50%` = `50%` * 100) |>
   pull(`50%`)
 
@@ -423,7 +423,7 @@ yr_prob_col <- paste0("SSB_", end_yr + 1, "<SSB_", end_yr)
 last_yr_tac_risk_1_biomass_decline <-
   base_model$risks[[as.character(end_yr)]] |>
   as_tibble() |>
-  filter(!!catch_col == curr_catch_tac_value) |>
+  dplyr::filter(!!catch_col == curr_catch_tac_value) |>
   pull(yr_prob_col) |>
   f()
 
@@ -432,7 +432,7 @@ yr_prob_col <- paste0("SSB_", end_yr + 2, "<SSB_", end_yr + 1)
 last_yr_tac_risk_2_biomass_decline <-
   base_model$risks[[as.character(end_yr + 1)]] |>
   as_tibble() |>
-  filter(!!catch_col == curr_catch_tac_value) |>
+  dplyr::filter(!!catch_col == curr_catch_tac_value) |>
   pull(yr_prob_col) |>
   f()
 
@@ -440,7 +440,7 @@ yr_prob_col <- paste0("Bratio_", end_yr + 2, "<0.40")
 last_yr_tac_risk_2_bforty <-
   base_model$risks[[as.character(end_yr + 1)]] |>
   as_tibble() |>
-  filter(!!catch_col == curr_catch_tac_value) |>
+  dplyr::filter(!!catch_col == curr_catch_tac_value) |>
   pull(yr_prob_col) |>
   f()
 
@@ -449,7 +449,7 @@ yr_prob_col <- paste0("SSB_", end_yr + 3, "<SSB_", end_yr + 2)
 last_yr_tac_risk_3_biomass_decline <-
   base_model$risks[[as.character(end_yr + 2)]] |>
   as_tibble() |>
-  filter(!!catch_col == curr_catch_tac_value) |>
+  dplyr::filter(!!catch_col == curr_catch_tac_value) |>
   pull(yr_prob_col) |>
   f()
 
@@ -635,7 +635,7 @@ same_catch_prob_yr_after_next_below_b40 <-
 probs_curr_rel_fish_intens_above_1 <-
   base_model$mcmcvals$probs_curr_rel_fish_intens_above_1
 catches_below_200000_since_1986 <-
-  number_to_word(length(filter(ct, `Total` <= 200000,
+  number_to_word(length(dplyr::filter(ct, `Total` <= 200000,
                                Year > 1986)$Year))
 
 # Age compositions ------------------------------------------------------------
@@ -654,7 +654,7 @@ max_fishery_age_prop <- get_age_comp_limits(base_model, type = 1)
 max_survey_age_prop <- get_age_comp_limits(base_model, type = 2)
 # ... Canadian Freezer trawlers age data --------------------------------------
 last_year_can_ages_ft <- can_ft_age_df |>
-  filter(year == last_data_yr) |>
+  dplyr::filter(year == last_data_yr) |>
   select(-year, -num_fish, -num_samples) |> 
   unlist()
 ft_age_prop_holder <- get_age_prop(last_year_can_ages_ft, 1)
@@ -671,7 +671,7 @@ fourth_freezer_trawler_age_prop_age <- ft_age_prop_holder[1]
 fourth_freezer_trawler_age_prop <- f(ft_age_prop_holder[2] * 100, 1)
 # ... Canadian Shoreside age data ---------------------------------------------
 last_yr_can_ages_ss <- can_ss_age_df |>
-  filter(year == last_data_yr) |>
+  dplyr::filter(year == last_data_yr) |>
   select(-year, -num_fish, -num_samples) |> 
   unlist()
 ss_age_prop_holder <- get_age_prop(last_yr_can_ages_ss, 1)
@@ -693,7 +693,7 @@ us_age_n_cp <- us_cp_age_df[us_cp_age_df$year == last_data_yr, "num_samples"] |>
 us_age_n_ms <- us_ms_age_df[us_ms_age_df$year == last_data_yr, "num_samples"] |>
   pull()
 us_last_yr_age_cp <- us_cp_age_df |>
-  filter(year == last_data_yr) |>
+  dplyr::filter(year == last_data_yr) |>
   select(-year, -num_fish, -num_samples) |>
   unlist() |>
   sort(decreasing = TRUE)
@@ -707,7 +707,7 @@ us_age_4_prop_age_cp <- as.numeric(names(us_last_yr_age_cp)[4])
 us_age_4_prop_cp <- f(us_last_yr_age_cp[4] * 100, 1)
 
 us_last_yr_age_ms <- us_ms_age_df |>
-  filter(year == last_data_yr) |>
+  dplyr::filter(year == last_data_yr) |>
   select(-year, -num_fish, -num_samples) |>
   unlist() |>
   sort(decreasing = TRUE)
@@ -721,7 +721,7 @@ us_age_4_prop_age_ms <- as.numeric(names(us_last_yr_age_ms)[4])
 us_age_4_prop_ms <- f(us_last_yr_age_ms[4] * 100, 1)
 
 us_last_yr_age_shore <- us_sb_age_df |>
-  filter(year == last_data_yr) |>
+  dplyr::filter(year == last_data_yr) |>
   select(-year, -num_fish, -num_samples) |>
   unlist() |>
   sort(decreasing = TRUE)
@@ -810,7 +810,7 @@ param_details <- table_param_est_bounds(base_model,
                                         end_rec_dev_yr = end_yr - 1,
                                         ret_df = TRUE)
 m_prior <- param_details |>
-  filter(param == "m") |>
+  dplyr::filter(param == "m") |>
   pull(prior_str) |>
   split_prior_info(dec_points = 2, first_to_lower = TRUE)
 
@@ -939,8 +939,8 @@ wt_at_age <-
   base_model$wtatage |>
   as_tibble() %>%
   set_names(tolower(names(.))) |>
-  filter(yr %in% start_yr_age_comps:(end_yr - 1)) |>
-  filter(fleet == 1) |>
+  dplyr::filter(yr %in% start_yr_age_comps:(end_yr - 1)) |>
+  dplyr::filter(fleet == 1) |>
   select(yr, matches("^\\d+$"))
 
 # Define number of 'recent' years for several tables --------------------------
@@ -1009,28 +1009,28 @@ historical_probs_df <- base_model$mcmcvals$historical_probs_df
 
 prob_decline_from_2019_to_2020_historic <-
   historical_probs_df |>
-  filter(year == 2019) |>
+  dplyr::filter(year == 2019) |>
   select("P_decline") |>
   as.numeric() |>
   f()
 
 prob_decline_from_2019_to_2020_curr <-
   historical_probs_df |>
-  filter(year == 2019) |>
+  dplyr::filter(year == 2019) |>
   select("P_decline_curr") |>
   as.numeric() |>
   f()
 
 prob_decline_from_2012_to_2013_historic <-
   historical_probs_df |>
-  filter(year == 2012) |>
+  dplyr::filter(year == 2012) |>
   select("P_decline") |>
   as.numeric() |>
   f()
 
 prob_decline_from_2012_to_2013_curr <-
   historical_probs_df |>
-  filter(year == 2012) |>
+  dplyr::filter(year == 2012) |>
   select("P_decline_curr") |>
   as.numeric() |>
   f()
@@ -1064,11 +1064,11 @@ retro_inc_nms <- list(c("Base model",
 
 retros_biomass_incremental <- map(retro_inc_nms, \(retro_mdls){
   base_model$retrospectives$biomass_df$d |>
-    filter(model %in% retro_mdls)
+    dplyr::filter(model %in% retro_mdls)
   })
 retros_bo_incremental <- map(retro_inc_nms, \(retro_mdls){
   base_model$retrospectives$biomass_df$bo |>
-    filter(model %in% retro_mdls)
+    dplyr::filter(model %in% retro_mdls)
   })
 
 retros_biomass_incremental <- map2(retros_biomass_incremental,
@@ -1192,7 +1192,7 @@ prob_max_below_10_yr1 <- base_model$risks[[1]] |>
   f(1)
 prob_decl_yr1_zero_catch <- base_model$risks[[1]] |>
   as_tibble() |>
-  filter(!!ct_col_sym < 1) |>
+  dplyr::filter(!!ct_col_sym < 1) |>
   pull(!!decl_col_sym) |>
   f()
 prob_decl_yr1_other_catch <- base_model$risks[[1]] |>
@@ -1202,12 +1202,12 @@ prob_decl_yr1_other_catch <- base_model$risks[[1]] |>
   f()
 prob_below_b40_yr1_last_yr_catch <- base_model$risks[[1]] |>
   as_tibble() |>
-  filter(!!ct_col_sym == last_yr_catch_fore) |>
+  dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
   pull(!!below40_col) |>
   f()
 prob_all_catch_greater <- base_model$risks[[1]] |>
   as_tibble() |>
-  filter(!!ct_col_sym > 0.01) |>
+  dplyr::filter(!!ct_col_sym > 0.01) |>
   pull(!!decl_col_sym) |>
   min() |>
   f()
@@ -1215,7 +1215,7 @@ prob_all_catch_greater <- base_model$risks[[1]] |>
 # year's catch
 prob_decl_last_yr_catch <- base_model$risks[[1]] |>
   as_tibble() |>
-  filter(!!ct_col_sym == last_yr_catch_fore) |>
+  dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
   pull(!!decl_col_sym) |>
   f()
 
@@ -1239,7 +1239,7 @@ prob_max_below_10_yr2 <- base_model$risks[[2]] |>
   f(1)
 prob_decl_yr2_zero_catch <- base_model$risks[[2]] |>
   as_tibble() |>
-  filter(!!ct_col_sym < 1) |>
+  dplyr::filter(!!ct_col_sym < 1) |>
   pull(!!decl_col_sym) |>
   f()
 prob_decl_yr2_other_catch <- base_model$risks[[2]] |>
@@ -1249,7 +1249,7 @@ prob_decl_yr2_other_catch <- base_model$risks[[2]] |>
   f()
 prob_below_b40_yr2_last_yr_catch <- base_model$risks[[2]] |>
   as_tibble() |>
-  filter(!!ct_col_sym == last_yr_catch_fore) |>
+  dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
   pull(!!below40_col) |>
   f()
 

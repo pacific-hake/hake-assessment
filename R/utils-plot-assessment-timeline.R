@@ -21,9 +21,9 @@ plot_assessment_timeline <- function(yrs = c(2017, 2018, 2019, 2020,
     mutate(rel_days = round((days / max(days)) * 100, 0)) |>
     mutate(yrs = as.numeric(yrs))
   d_odd <- d |>
-    filter(yrs %% 2 == 1)
+    dplyr::filter(yrs %% 2 == 1)
   d_even <- d |>
-    filter(yrs %% 2 == 0)
+    dplyr::filter(yrs %% 2 == 0)
 
   ggplot(d,
          aes(x = yrs,

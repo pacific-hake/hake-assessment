@@ -139,7 +139,7 @@ for the fleets, and create the CSV files for them.
       ```{r echo = TRUE, messages = TRUE}
       # Canadian Freezer trawlers gear depth
       create_depth_by_year_csv_files(
-        filter(depth_fe_df, fleet == "ft"),
+        dplyr::filter(depth_fe_df, fleet == "ft"),
         col_name_depth = "gear_depth_fm",
         col_name_year = "year",
         country = "can",
@@ -149,7 +149,7 @@ for the fleets, and create the CSV files for them.
 
       # Canadian Shoreside gear depth
       create_depth_by_year_csv_files(
-        filter(depth_fe_df, fleet == "ss"),
+        dplyr::filter(depth_fe_df, fleet == "ss"),
         col_name_depth = "gear_depth_fm",
         col_name_year = "year",
         country = "can",
@@ -159,7 +159,7 @@ for the fleets, and create the CSV files for them.
      
       # Canadian Freezer trawlers bottom depth
       create_depth_by_year_csv_files(
-        filter(depth_fe_df, fleet == "ft"),
+        dplyr::filter(depth_fe_df, fleet == "ft"),
         col_name_depth = "bottom_depth_fm",
         col_name_year = "year",
         country = "can",
@@ -169,7 +169,7 @@ for the fleets, and create the CSV files for them.
 
       # Canadian Shoreside bottom depth
       create_depth_by_year_csv_files(
-        filter(depth_fe_df, fleet == "ss"),
+        dplyr::filter(depth_fe_df, fleet == "ss"),
         col_name_depth = "bottom_depth_fm",
         col_name_year = "year",
         country = "can",

@@ -44,7 +44,7 @@
 #' # weight-at-age file does not exist.
 #' update_ss3_maturity(
 #'   maturity = maturity_estimates_df |>
-#'     filter(model == "Null"),
+#'     dplyr::filter(model == "Null"),
 #'   weight_at_age = r4ss::SS_readwtatage("wtatage.ss")
 #' )
 #' }

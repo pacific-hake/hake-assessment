@@ -19,7 +19,7 @@ plot_age_comp_comparison_bubbles <- function(model,
   ages <- as.numeric(gsub("a", "", grep("a[0-9]+", names(d), value = TRUE)))
 
   d_fishery <- d |>
-    filter(FltSvy == 1) |>
+    dplyr::filter(FltSvy == 1) |>
     select(-FltSvy) |>
     setNames(c("year", ages)) |>
     pivot_longer(-year) |>
@@ -30,7 +30,7 @@ plot_age_comp_comparison_bubbles <- function(model,
     mutate(value = value / sum(value)) |>
     ungroup()
   d_survey <- d |>
-    filter(FltSvy == 2) |>
+    dplyr::filter(FltSvy == 2) |>
     select(-FltSvy) |>
     setNames(c("year", ages)) |>
     pivot_longer(-year) |>
@@ -46,7 +46,7 @@ plot_age_comp_comparison_bubbles <- function(model,
 
   d_fishery <- d_fishery |>
     mutate(year = factor(year, levels = years_inc)) |>
-    filter(year %in% years) |>
+    dplyr::filter(year %in% years) |>
     complete(year = year,
              age = age,
              type = type,
@@ -54,7 +54,7 @@ plot_age_comp_comparison_bubbles <- function(model,
 
   d_survey <- d_survey |>
     mutate(year = factor(year, levels = years_inc)) |>
-    filter(year %in% years) |>
+    dplyr::filter(year %in% years) |>
     complete(year = year,
              age = age,
              type = type,
@@ -74,7 +74,7 @@ plot_age_comp_comparison_bubbles <- function(model,
   actual_yrs <- d |>
     mutate(year = as.character(year),
            year = as.numeric(year)) |>
-    filter(!is.na(value)) |>
+    dplyr::filter(!is.na(value)) |>
     pull(year) |>
     unique()
   x_labels[!x_labels %in% actual_yrs] <- ""

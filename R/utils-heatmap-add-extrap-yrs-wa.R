@@ -33,11 +33,11 @@ heatmap_add_extrap_yrs_wa <- function(
     model = NULL,
     wa = NULL,
     pre_yrs = min(model$wtatage |>
-                    filter(Yr > 0) |>
+                    dplyr::filter(Yr > 0) |>
                     pull(Yr)):model$endyr,
     pre_func = mean,
     post_yrs = min(model$wtatage |>
-                     filter(Yr > 0) |>
+                     dplyr::filter(Yr > 0) |>
                      pull(Yr)):model$endyr,
     post_func = mean,
     pre_wa_vals = NULL,
@@ -111,7 +111,7 @@ heatmap_add_extrap_yrs_wa <- function(
     }else{
       pre_dat <- heatmap_calc_function(
         wa = wa |>
-          filter(yr %in% pre_yrs),
+          dplyr::filter(yr %in% pre_yrs),
         func = pre_func,
         ...)
     }
@@ -135,7 +135,7 @@ heatmap_add_extrap_yrs_wa <- function(
   proj_yrs <- wa$yr[wa$yr > end_yr]
   if(length(proj_yrs)){
     wa <- wa |>
-      filter(!yr %in% proj_yrs)
+      dplyr::filter(!yr %in% proj_yrs)
   }
 
   # Add projection years extrapolated values or provided values ----
@@ -146,7 +146,7 @@ heatmap_add_extrap_yrs_wa <- function(
   }else{
     post_dat <- heatmap_calc_function(
       wa = wa |>
-        filter(yr %in% post_yrs),
+        dplyr::filter(yr %in% post_yrs),
       func = post_func,
       ...)
   }
