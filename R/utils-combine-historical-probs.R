@@ -27,7 +27,6 @@ combine_historical_probs <- function(model,
   hist_probs_rng <- assess_history_probs_df |>
     dplyr::filter(Year %in% start:end) |>
     rename(year = Year)
-
   new_hist_probs_rng <- calc_historical_probs(model,
                                               start = start,
                                               end = end
@@ -36,7 +35,7 @@ combine_historical_probs <- function(model,
 
   if(nrow(new_hist_probs_rng) < nrow(hist_probs_rng)){
     stop("The number of rows (years) in the model-calculated historical ",
-         "probabilties is less than what appears in the ",
+         "probabilities is less than what appears in the ",
          "`assess_history_probs_df` package data frame (from CSV file)")
   }
 
