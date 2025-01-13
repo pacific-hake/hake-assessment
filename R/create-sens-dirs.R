@@ -30,7 +30,6 @@
 #' * 13-max-sel-age-'5
 #' * 14-max-sel-age-7
 #' * 15-max-sel-age-8
-#' * 16-zero-sum-constraint
 #'
 create_sens_dirs <- function(dir_version,
                              sens_dir_name = "03-sensitivity-models") {
@@ -320,15 +319,6 @@ create_sens_dirs <- function(dir_version,
   aa <- setup_sensitivity(prefix_number = 15, suffix_string = "max-sel-age-8")
   ctl <- setup_ctl(aa) |>
     change_max_age_selectivity(age_max = 8)
-  r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
-
-  # zero sum rec dev constraint
-  aa <- setup_sensitivity(
-    prefix_number = 16,
-    suffix_string = "zero-sum-constraint"
-  )
-  ctl <- setup_ctl(aa)
-  ctl[["do_recdev"]] <- 1
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
   cli::cli_alert(c(
