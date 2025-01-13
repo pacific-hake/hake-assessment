@@ -1,5 +1,8 @@
 #!/bin/bash
-
+#
+# To run retrospectives -1 year through -5 years:
+# ./run-retrospectives.sh 1 2 3 4 5
+#
 # The path structure is as follows
 # /srv/hake/models/2023/01-version/01-base-models/01-base/
 #  ^   ^    ^      ^    ^          ^              ^
@@ -27,7 +30,7 @@ version_path="01-version"
 type_path="01-base-models"
 model_name="01-base"
 
-ss_exe="ss3_2024"
+ss_exe="ss3"
 num_chains=8
 num_samples=8000
 num_warmup_samples=250
