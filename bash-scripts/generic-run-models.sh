@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# To check if the models were run successfully run this command:
+#
+# find . -wholename '*/mcmc/sso/posteriors.sso' | sort
+#
+# There must be a posteriors.sso file in the sso directory for the
+# model to have been completed. This is a recursive command,
+# so to see if all bridge models (for example) finished,
+# enter the 02-bridge-models directory and issue the command
+#
 # The path structure is as follows
 # /srv/hake/models/2023/01-version/01-base-models/01-base/
 #  ^   ^    ^      ^    ^          ^              ^
