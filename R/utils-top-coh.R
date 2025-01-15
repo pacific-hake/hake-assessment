@@ -44,22 +44,24 @@ top_coh <- function(model = NULL,
   if(use_catage){
     tmp <- model$extra_mcmc$catage_median
   }else{
+
     tmp <- model$dat$agecomp |>
       select(matches("^a|year|fleet", ignore.case = FALSE)) |>
+      select(-ageerr) |>
       dplyr::filter(fleet %in% fleet) |>
       select(-fleet) |>
       mutate_all(list(as.numeric))
     names(tmp) <- gsub("^a", "", names(tmp))
   }
   x <- tmp %>%
-    mutate(row_sum = rowSums(select(., -Yr))) %>%
-    mutate_at(vars(-Yr, -row_sum), ~ . / row_sum) |>
+    mutate(row_sum = rowSums(select(., -year))) %>%
+    mutate_at(vars(-year, -row_sum), ~ . / row_sum) |>
     select(-row_sum) |>
-    pivot_longer(-Yr) |>
-    group_by(Yr) |>
+    pivot_longer(-year) |>
+    group_by(year) |>
     arrange(desc(value)) |>
     ungroup() |>
-    dplyr::filter(Yr == yr)
+    dplyr::filter(year == yr)
 
   txt <- paste0(ifelse(cap, "The ", "the "),
                 yr - as.numeric(x$name[1]),
