@@ -212,12 +212,12 @@ colnames(fishery_age_composition) <- colnames(inputs[["dat"]][["agecomp"]])
 inputs[["dat"]][["agecomp"]] <- dplyr::bind_rows(
   dplyr::filter(
     inputs[["dat"]][["agecomp"]],
-    !(FltSvy == 1 & Yr >= 2008)
+    !(fleet == 1 & year >= 2008)
   ),
   fishery_age_composition |>
     dplyr::filter(Yr < current_yr - 1, Yr >= 2008)
 ) |>
-  dplyr::arrange(-FltSvy, Yr)
+  dplyr::arrange(-fleet, year)
 
 r4ss::SS_write(
   inputs,
@@ -370,7 +370,7 @@ inputs <- r4ss::SS_read(
 #     survey_age_comps
 #   )
 # ) |>
-#   dplyr::arrange(-FltSvy, Yr)
+#   dplyr::arrange(-fleet, year)
 # inputs[["dat"]] <- update_ss3_ageing_error(inputs[["dat"]])
 # r4ss::SS_write(
 #   inputs,

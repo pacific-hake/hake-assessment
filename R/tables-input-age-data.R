@@ -33,7 +33,7 @@ table_input_age_data <- function(model,
   ages <- grep("^a[0-9]+$", names(model$dat$agecomp), value = TRUE)
   d <- model$dat$agecomp |>
     as_tibble() |>
-    dplyr::filter(FltSvy == flt) |>
+    dplyr::filter(fleet == flt) |>
     rename(yr = Yr, num_samp = Nsamp) |>
     select(yr, num_samp, all_of(ages)) |>
     rename_at(vars(ages), ~{gsub("^a([0-9]+)$", "\\1", .x)})

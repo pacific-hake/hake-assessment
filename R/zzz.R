@@ -21,7 +21,7 @@ utils::globalVariables(
   "Beg/Mid", "Bin", "Bio_Pattern", "Bio_all", "Bio_smry", "Biomass estimate", "BirthSeas",
   "CAN_FreezeTrawl", "CAN_JV", "CAN_Shoreside", "CAN_forgn", "CANtotal", "Calc_Q", "Catch (t)",
   "Catch or F", "Cohort", "Depletion", "Era", "Exp", "Exp_lower", "Exp_med", "Exp_upper",
-  "Factor", "Fleet", "FltSvy", "Iter", "Iteration", "Kind", "Label", "Lag", "Lower", "CI", "Median", "N",
+  "Factor", "Fleet", "Iter", "Iteration", "Kind", "Label", "Lag", "Lower", "CI", "Median", "N",
   "Nsamp_adj", "Obs", "Obs_med", "Parm_StDev", "Pearson", "Pearson_lower", "Pearson_med",
   "Pearson_upper", "Probability", "Proportion", "Recr_2010",
   "Seas", "Sex", "StdDev", "TAC", "TACCAN", "TACUSA", "TOTAL", "Type",

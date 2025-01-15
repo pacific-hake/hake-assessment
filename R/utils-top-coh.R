@@ -45,9 +45,9 @@ top_coh <- function(model = NULL,
     tmp <- model$extra_mcmc$catage_median
   }else{
     tmp <- model$dat$agecomp |>
-      select(matches("^a|Yr|FltSvy", ignore.case = FALSE)) |>
-      dplyr::filter(FltSvy %in% fleet) |>
-      select(-FltSvy) |>
+      select(matches("^a|year|fleet", ignore.case = FALSE)) |>
+      dplyr::filter(fleet %in% fleet) |>
+      select(-fleet) |>
       mutate_all(list(as.numeric))
     names(tmp) <- gsub("^a", "", names(tmp))
   }

@@ -41,7 +41,7 @@ plot_age_comp_bubbles <- function(model,
     nms <- c("Year", ages)
     d <- model$dat$agecomp |>
       as_tibble() |>
-      dplyr::filter(FltSvy == type_code) |>
+      dplyr::filter(fleet == type_code) |>
       select(Yr, all_of(ages_cols)) |>
       set_names(nms) %>%
       mutate(n = rowSums(.[-1])) %>%

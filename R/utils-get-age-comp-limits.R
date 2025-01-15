@@ -10,17 +10,17 @@ get_age_comp_limits <- function(model, type = 1){
 
   dat <- model$dat$agecomp %>%
     set_names(tolower(names(.))) |>
-    dplyr::filter(fltsvy == type) |>
-    select(yr, matches("^a\\d+$")) %>%
-    setNames(gsub("a", "", names(.)))
+    dplyr::filter(fleet == type) |>
+    select(year, matches("^a\\d+$")) %>%
+    setNames(gsub("^a", "", names(.)))
 
   subdat <- dat |>
-    select(-yr)
+    select(-year)
   max_row_col <- which(subdat == max(subdat), arr.ind = TRUE)
-  max_prop_yr <- dat[max_row_col[1], ]$yr
+  max_prop_yr <- dat[max_row_col[1], ]$year
   max_prop_age <- names(subdat)[max_row_col[2]]
-  ret_vec <- c(as.integer(min(dat$yr)),
-               as.integer(max(dat$yr)),
+  ret_vec <- c(as.integer(min(dat$year)),
+               as.integer(max(dat$year)),
                max(subdat),
                max_prop_yr,
                max_prop_age)
