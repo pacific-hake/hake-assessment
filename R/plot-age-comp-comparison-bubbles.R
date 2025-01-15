@@ -14,13 +14,13 @@ plot_age_comp_comparison_bubbles <- function(model,
 
   d <- model$dat$agecomp |>
     as_tibble() |>
-    select(-c(Seas, Gender, Part, Ageerr, Lbin_lo, Lbin_hi, Nsamp)) |>
-    rename(year = Yr)
+    select(-c(month, sex, part, ageerr, Lbin_lo, Lbin_hi, Nsamp))
+
   ages <- as.numeric(gsub("a", "", grep("a[0-9]+", names(d), value = TRUE)))
 
   d_fishery <- d |>
-    dplyr::filter(FltSvy == 1) |>
-    select(-FltSvy) |>
+    dplyr::filter(fleet == 1) |>
+    select(-fleet) |>
     setNames(c("year", ages)) |>
     pivot_longer(-year) |>
     setNames(c("year", "age", "value")) |>
@@ -30,8 +30,8 @@ plot_age_comp_comparison_bubbles <- function(model,
     mutate(value = value / sum(value)) |>
     ungroup()
   d_survey <- d |>
-    dplyr::filter(FltSvy == 2) |>
-    select(-FltSvy) |>
+    dplyr::filter(fleet == 2) |>
+    select(-fleet) |>
     setNames(c("year", ages)) |>
     pivot_longer(-year) |>
     setNames(c("year", "age", "value")) |>
