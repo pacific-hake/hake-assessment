@@ -316,6 +316,7 @@ survey_last_yr <- survey_comps %>%
 
 survey_last_yr_age <- survey_last_yr |>
   select(matches("^a", ignore.case = FALSE)) |>
+  select(-ageerr) |> 
   unlist(1) |>
   sort(decreasing = TRUE)
 names(survey_last_yr_age) <- gsub("^a", "", names(survey_last_yr_age))

@@ -335,7 +335,7 @@ Figure~\@ref(fig:main-survey-extrap-biomass-fig)). It decreased in 2017 to
 `r last_survey_yr` survey age composition was made up of
 `r combine_words(paste0(f(survey_last_yr_age[1:5], digits = 2), "\\%"))`
 from the
-`r combine_words(last_survey_yr-type.convert(as.is=TRUE,names(survey_last_yr_age[1:5])))`
+`r combine_words(last_survey_yr - type.convert(as.is=TRUE,names(survey_last_yr_age[1:5])))`
 year classes, respectively. Note that the estimate of biomass does not include
 age-1 fish and the age compositions used to estimate selectivity of the survey
 also exclude age-1 fish (Table~\@ref(tab:main-input-age-data-survey-tab)).
