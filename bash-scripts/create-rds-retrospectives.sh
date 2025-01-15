@@ -33,7 +33,7 @@ models_path="models"
 # *Never* change `year_path` manually here. Instead, to assign a manual year,
 # add it as an argument to the `get-assess-year.sh` call above
 year_path=$assess_year
-version_path="02-version"
+version_path="01-version"
 type_path="01-base-models"
 model="01-base"
 
