@@ -9,25 +9,25 @@ base_models_desc <- "Base model"
 # model will be prepended to the group.
 # See `set_dirs()`
 bridge_models_dirs <-
-  list(c("20-add-weight-at-age",
-         "30-add-survey-2",
-         "31-add-survey-age-comps",
-         "40-add-survey-1",
-         "50-add-fishery-ages"),
-       c("50-add-fishery-ages",
-         "60-survey-1-t-distribution",
-         "71-redo-fishery-comp",
-         "72-tv-fecundity"))
+  list(c("00-update-ss3-exe",
+         "01-fix-catches",
+         "02-fix-weight-at-age",
+         "03-fix-survey-1",
+         "04-fix-fishery-comps"),
+       c("10-add-catches",
+         "20-add-weight-at-age",
+         "50-add-fishery-ages",
+         "60-fix-late-devs"))
 bridge_models_desc <-
-  list(c("New SS3 and add catch/weight-at-age",
-         "Add age-2+ acoustic survey index",
-         "Add survey age comps",
-         "Add age-1 index",
-         paste0("Add ", last_data_yr, " fishery age comps")),
-       c(paste0("Add ", last_data_yr, " fishery age comps"),
-         "Use student-t distribution for age-1",
-         "Use modeled temporal weight-at-age",
-         "Use modeled spatio-temporal maturity"))
+  list(c("Update the SS3 model",
+         "Add changes to catch data",
+         "Add changes to weight-at-age data",
+         "Add changes to survey indices",
+         "Add changes to fishery age comps"),
+       c(paste0("Add ", last_data_yr, " catches"),
+         paste0("Add ", last_data_yr, " weight-at-age"),
+         paste0("Add ", last_data_yr, " fishery ages"),
+         "Fix last two years rec devs"))
 prepend_to_bridge <- c(TRUE, FALSE)
 # Subtract the following number of years of the end of the models
 # when plotting. Should only be 1 for the first one or two, then zeroes.
@@ -50,7 +50,6 @@ sens_models_dirs <-
          "05-m-02-sd",
          "06-m-03-sd",
          "07-m-hamel-prior"),
-        #  "17-m-hamel-prior-updated"),
        c("08-age-1-survey",
          "09-comp-weight-harmonic-mean"),
        c("10-tv-select-phi-extra-low",
