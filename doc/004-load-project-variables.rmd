@@ -308,8 +308,8 @@ survey_biomass <- base_model$dat$CPUE |>
   pull(var = obs, name = year) / 1e6
 
 survey_comps <- base_model$dat$agecomp |>
-  dplyr::filter(FltSvy == 2)
-rownames(survey_comps) <- survey_comps$Yr
+  dplyr::filter(fleet == 2)
+rownames(survey_comps) <- survey_comps$year
 
 survey_last_yr <- survey_comps %>%
   slice(nrow(.))
@@ -380,6 +380,7 @@ if(ratio_bio_median_curr_last > 1){
   diff_bio_median_last_curr_text <- "of"
 }
 prev_bio_upper_tonnes <- f(mc$supper[names(mc$supper) == last_data_yr] * 1e6, 0)
+
 # ... spawning biomass for previous year (last year's assessment) -------------
 prev_bio_lower_last_assess <-
   f(last_yr_mc$slower[names(mc$slower) == last_data_yr], 3)
@@ -390,68 +391,99 @@ prev_bio_upper_last_assess <-
 
 # Forecasting -----------------------------------------------------------------
 # Median fishing intensity at Default HR
-fi_at_hcr <- f(base_model$forecasts$`2024`$`14-default-hr`$spr |>
-                 dplyr::filter(yr == assess_yr) |>
-                 pull(`50%`), 2)
+fi_at_hcr <- NULL
+if(!is.null(base_model$forecasts)){
+  fi_at_hcr <- f(base_model$forecasts[[assess_yr]]$`14-default-hr`$spr |>
+                   dplyr::filter(yr == assess_yr) |>
+                   pull(`50%`), 2)
+}
+
 # ... first forecast year depletion and spawning biomass estimates ------------
 fore_tac_mcmc_yr1 <- base_model$forecasts[[1]][[ct_tac_ind]]$mcmccalcs
 # ... second forecast year depletion and spawning biomass estimates -----------
 fore_tac_mcmc_yr2 <- base_model$forecasts[[2]][[ct_tac_ind]]$mcmccalcs
 # Biomass medians for last year's TAC catch level -----------------------------
 endyr_plus_3_fore <- base_model$forecasts[[as.character(end_yr + 3)]]
-endyr_plus_3_fore_tac_catch <- endyr_plus_3_fore[[ct_tac_ind]]$depl |> 
-  t() |> 
-  as_tibble(rownames = "yr")
-last_yr_tac_fore_1_biomass <- endyr_plus_3_fore_tac_catch |>
-  dplyr::filter(yr == end_yr) |>
-  mutate(`50%` = `50%` * 100) |>
-  pull(`50%`)
 
-last_yr_tac_fore_2_biomass <- endyr_plus_3_fore_tac_catch |>
-  dplyr::filter(yr == end_yr + 1) |>
-  mutate(`50%` = `50%` * 100) |>
-  pull(`50%`)
+endyr_plus_3_fore_tac_catch <- NULL
+last_yr_tac_fore_1_biomass <- NULL
+last_yr_tac_fore_2_biomass <- NULL
+last_yr_tac_fore_3_biomass <- NULL
 
-last_yr_tac_fore_3_biomass <- endyr_plus_3_fore_tac_catch |>
-  dplyr::filter(yr == end_yr + 2) |>
-  mutate(`50%` = `50%` * 100) |>
-  pull(`50%`)
+if(!is.null(endyr_plus_3_fore[[ct_tac_ind]]$depl)){
+  endyr_plus_3_fore_tac_catch <- endyr_plus_3_fore[[ct_tac_ind]]$depl |> 
+    t() |> 
+    as_tibble(rownames = "yr")
+  last_yr_tac_fore_1_biomass <- endyr_plus_3_fore_tac_catch |>
+    dplyr::filter(yr == end_yr) |>
+    mutate(`50%` = `50%` * 100) |>
+    pull(`50%`)
+  last_yr_tac_fore_2_biomass <- endyr_plus_3_fore_tac_catch |>
+    dplyr::filter(yr == end_yr + 1) |>
+    mutate(`50%` = `50%` * 100) |>
+    pull(`50%`)
+  
+  last_yr_tac_fore_3_biomass <- endyr_plus_3_fore_tac_catch |>
+    dplyr::filter(yr == end_yr + 2) |>
+    mutate(`50%` = `50%` * 100) |>
+    pull(`50%`)
+}
 
 curr_catch_tac_value <- ct_levels[[ct_tac_ind]][[1]][1]
 catch_col <- sym(paste0("ForeCatch_", end_yr))
 yr_prob_col <- paste0("SSB_", end_yr + 1, "<SSB_", end_yr)
-last_yr_tac_risk_1_biomass_decline <-
-  base_model$risks[[as.character(end_yr)]] |>
-  as_tibble() |>
-  dplyr::filter(!!catch_col == curr_catch_tac_value) |>
-  pull(yr_prob_col) |>
-  f()
+
+last_yr_tac_risk_1_biomass_decline <- NULL
+
+if(!is.null(base_model$risks)){
+  last_yr_tac_risk_1_biomass_decline <-
+    base_model$risks[[as.character(end_yr)]] |>
+    as_tibble() |>
+    dplyr::filter(!!catch_col == curr_catch_tac_value) |>
+    pull(yr_prob_col) |>
+    f()
+}
 
 catch_col <- sym(paste0("ForeCatch_", end_yr + 1))
 yr_prob_col <- paste0("SSB_", end_yr + 2, "<SSB_", end_yr + 1)
-last_yr_tac_risk_2_biomass_decline <-
-  base_model$risks[[as.character(end_yr + 1)]] |>
-  as_tibble() |>
-  dplyr::filter(!!catch_col == curr_catch_tac_value) |>
-  pull(yr_prob_col) |>
-  f()
+
+last_yr_tac_risk_2_biomass_decline <- NULL
+
+if(!is.null(base_model$risks)){
+  last_yr_tac_risk_2_biomass_decline <-
+    base_model$risks[[as.character(end_yr + 1)]] |>
+    as_tibble() |>
+    dplyr::filter(!!catch_col == curr_catch_tac_value) |>
+    pull(yr_prob_col) |>
+    f()
+}
 
 yr_prob_col <- paste0("Bratio_", end_yr + 2, "<0.40")
-last_yr_tac_risk_2_bforty <-
-  base_model$risks[[as.character(end_yr + 1)]] |>
-  as_tibble() |>
-  dplyr::filter(!!catch_col == curr_catch_tac_value) |>
-  pull(yr_prob_col) |>
-  f()
+
+last_yr_tac_risk_2_bforty <- NULL
+
+if(!is.null(base_model$risks)){
+  last_yr_tac_risk_2_bforty <-
+    base_model$risks[[as.character(end_yr + 1)]] |>
+    as_tibble() |>
+    dplyr::filter(!!catch_col == curr_catch_tac_value) |>
+    pull(yr_prob_col) |>
+    f()
+}
 
 catch_col <- sym(paste0("ForeCatch_", end_yr + 2))
 yr_prob_col <- paste0("SSB_", end_yr + 3, "<SSB_", end_yr + 2)
-last_yr_tac_risk_3_biomass_decline <-
-  base_model$risks[[as.character(end_yr + 2)]] |>
-  as_tibble() |>
-  dplyr::filter(!!catch_col == curr_catch_tac_value) |>
-  pull(yr_prob_col) |>
-  f()
+
+last_yr_tac_risk_3_biomass_decline <- NULL
+
+if(!is.null(base_model$risks)){
+  last_yr_tac_risk_3_biomass_decline <-
+    base_model$risks[[as.character(end_yr + 2)]] |>
+    as_tibble() |>
+    dplyr::filter(!!catch_col == curr_catch_tac_value) |>
+    pull(yr_prob_col) |>
+    f()
+}
 
 # Numbers at age calculations for bubble plot caption -------------------------
 median_nat_no_yr <- extramc$natage_med |>
@@ -502,6 +534,7 @@ median_intensity_2023 <- f(mc$pmed["2023"] * 100, 1)
 median_intensity_penult_yr <- f(mc$pmed[as.character(end_yr - 1)] * 100, 1)
 median_relative_bio <- mc$dmed
 # Remove extra non-year columns to avoid warnings below
+
 median_relative_bio <-
   median_relative_bio[grepl("^[0-9]+$",
                             names(median_relative_bio))]
@@ -561,42 +594,85 @@ perc_inc_2019_rec_from_last_yr <- f(((((recruitment_med_to_compare - prev_assess
 
 # Biomass probabilities -------------------------------------------------------
 # ... biomass declines next year to year after with zero catch ----------------
-zero_catch_prob_bio_down_1 <- f(base_model$risks[[1]][1, 2] |> pull())
-# ... biomass declines year after next to year after that with 0 catch --------
-zero_catch_prob_bio_down_2 <- f(base_model$risks[[2]][1, 2] |> pull())
-# ... biomass declines 2 years after next to year after that with 0 catch -----
-zero_catch_prob_bio_down_3 <- f(base_model$risks[[3]][1, 2] |> pull())
+zero_catch_prob_bio_down_1 <- NULL
+zero_catch_prob_bio_down_2 <- NULL
+zero_catch_prob_bio_down_3 <- NULL
+largest_next_catch_index <-NULL
+largest_next_catch <- NULL
+prob_next_over_b10 <- NULL
+prob_next_over_b40 <- NULL
+dfo_probs_curr <- NULL
+dfo_probs_fore <- NULL
+next_treaty_catch <- NULL
+pfmc_prob_next_yr_below_b40 <- NULL
+pfmc_prob_next_yr_below_b25 <- NULL
+same_catch_as_last_yr <- NULL
+same_catch_prob_next_year_below_b40 <- NULL
+same_catch_prob_yr_after_next_below_b40 <- NULL
+
+if(!is.null(base_model$risks)){
+  zero_catch_prob_bio_down_1 <- f(base_model$risks[[1]][1, 2] |> pull())
+  # ... biomass declines year after next to year after that with 0 catch --------
+  zero_catch_prob_bio_down_2 <- f(base_model$risks[[2]][1, 2] |> pull())
+  # ... biomass declines 2 years after next to year after that with 0 catch -----
+  zero_catch_prob_bio_down_3 <- f(base_model$risks[[3]][1, 2] |> pull())
+  # Reference point probabilities -----------------------------------------------
+  # ... reference points next year given largest catch this year ----------------
+  largest_next_catch_index <-
+    which.max(pull(base_model$risks[[1]][, paste0("ForeCatch_", assess_yr)]))
+  largest_next_catch <-
+    f(pull(base_model$risks[[1]][largest_next_catch_index, paste0("ForeCatch_",
+                                                                  assess_yr)]),
+      0)
+  prob_next_over_b10 <-
+    f(100 - as.numeric(base_model$risks[[1]][largest_next_catch_index,
+                                             paste0("Bratio_",
+                                                    assess_yr + 1,
+                                                    "<0.10")]),
+      0)
+  prob_next_over_b40 <-
+    f(100 - as.numeric(base_model$risks[[1]][largest_next_catch_index,
+                                             paste0("Bratio_",
+                                                    assess_yr + 1, "<0.40")]),
+      0)
+  # ... Canadian (DFO) provisional reference points -----------------------------
+  dfo_probs_curr <- base_model$risks[[1]] |>
+    select(last_col(2):last_col())
+  dfo_probs_fore <- base_model$risks[[2]] |>
+    select(last_col(2):last_col())
+  
+  # ... US (PFMC) stock size reference points based on default Treaty HCR -------
+  next_treaty_catch <- 
+    f(base_model$ct_levels[[ct_default_policy_ind]][[1]][1], 0)
+  pfmc_prob_next_yr_below_b40 <-
+    f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
+                                                          assess_yr + 1,
+                                                          "<0.40")] |> pull())
+  pfmc_prob_next_yr_below_b25 <-
+    f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
+                                                          assess_yr + 1,
+                                                          "<0.25")] |> pull())
+  same_catch_as_last_yr <-
+    f(base_model$ct_levels[[ct_actual_ind]][[1]][1], 0)
+  same_catch_prob_next_year_below_b40 <-
+    f(base_model$risks[[1]][ct_actual_ind, paste0("Bratio_",
+                                                  assess_yr + 1,
+                                                  "<0.40")] |> pull())
+  same_catch_prob_yr_after_next_below_b40 <-
+    f(base_model$risks[[2]][ct_actual_ind, paste0("Bratio_",
+                                                  assess_yr + 2,
+                                                  "<0.40")] |> pull())
+}
 # ... current biomass being above/below B40%, B25%, and B10% ------------------
 probs_curr_b40 <- base_model$mcmcvals$probs_curr_b40
 probs_curr_b25 <- base_model$mcmcvals$probs_curr_b25
 probs_curr_b10 <- base_model$mcmcvals$probs_curr_b10
 probs_curr_below_b40 <- base_model$mcmcvals$probs_curr_below_b40
 probs_curr_below_b25 <- base_model$mcmcvals$probs_curr_below_b25
-
-# Reference point probabilities -----------------------------------------------
-# ... reference points next year given largest catch this year ----------------
-largest_next_catch_index <-
-  which.max(pull(base_model$risks[[1]][, paste0("ForeCatch_", assess_yr)]))
-largest_next_catch <-
-  f(pull(base_model$risks[[1]][largest_next_catch_index, paste0("ForeCatch_",
-                                                                assess_yr)]),
-    0)
-prob_next_over_b10 <-
-  f(100 - as.numeric(base_model$risks[[1]][largest_next_catch_index,
-                                           paste0("Bratio_",
-                                                  assess_yr + 1,
-                                                  "<0.10")]),
-    0)
-prob_next_over_b40 <-
-  f(100 - as.numeric(base_model$risks[[1]][largest_next_catch_index,
-                                           paste0("Bratio_",
-                                                  assess_yr + 1, "<0.40")]),
-    0)
-# ... Canadian (DFO) provisional reference points -----------------------------
-dfo_probs_curr <- base_model$risks[[1]] |>
-  select(last_col(2):last_col())
-dfo_probs_fore <- base_model$risks[[2]] |>
-  select(last_col(2):last_col())
+dfo_prob_next_over_40bmsy <- NULL
+dfo_prob_next_over_80bmsy <- NULL
+dfo_prob_next_over_bmsy <- NULL
+if(!is.null(dfo_probs_fore)){
 # ... next year DFO probs given largest catch this year -----------------------
 dfo_prob_next_over_40bmsy <-
   f(dfo_probs_fore[largest_next_catch_index, paste0("SSB_",
@@ -610,30 +686,12 @@ dfo_prob_next_over_bmsy <-
   f(dfo_probs_fore[largest_next_catch_index, paste0("SSB_",
                                                     assess_yr + 1,
                                                     ">SSB_MSY")] |> pull())
-# ... US (PFMC) stock size reference points based on default Treaty HCR -------
-next_treaty_catch <-
-  f(base_model$ct_levels[[ct_default_policy_ind]][[1]][1], 0)
-pfmc_prob_next_yr_below_b40 <-
-  f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
-                                                        assess_yr + 1,
-                                                        "<0.40")] |> pull())
-pfmc_prob_next_yr_below_b25 <-
-  f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
-                                                        assess_yr + 1,
-                                                        "<0.25")] |> pull())
-same_catch_as_last_yr <-
-  f(base_model$ct_levels[[ct_actual_ind]][[1]][1], 0)
-same_catch_prob_next_year_below_b40 <-
-  f(base_model$risks[[1]][ct_actual_ind, paste0("Bratio_",
-                                                assess_yr + 1,
-                                                "<0.40")] |> pull())
-same_catch_prob_yr_after_next_below_b40 <-
-  f(base_model$risks[[2]][ct_actual_ind, paste0("Bratio_",
-                                                assess_yr + 2,
-                                                "<0.40")] |> pull())
+}
+
 # ... Prob most recent relative fishing intensity is above target of 1 --------
 probs_curr_rel_fish_intens_above_1 <-
   base_model$mcmcvals$probs_curr_rel_fish_intens_above_1
+
 catches_below_200000_since_1986 <-
   number_to_word(length(dplyr::filter(ct, `Total` <= 200000,
                                Year > 1986)$Year))
@@ -649,7 +707,7 @@ can_age_yrs_min <- min(can_age_yrs)
 can_age_yrs_max <- max(can_age_yrs)
 # ... age composition data for data section -----------------------------------
 survey_age_years <-
-  base_model$dat$agecomp[base_model$dat$agecomp$FltSvy == 2, ]$Yr
+  base_model$dat$agecomp[base_model$dat$agecomp$fleet == 2, ]$year
 max_fishery_age_prop <- get_age_comp_limits(base_model, type = 1)
 max_survey_age_prop <- get_age_comp_limits(base_model, type = 2)
 # ... Canadian Freezer trawlers age data --------------------------------------
@@ -939,9 +997,9 @@ wt_at_age <-
   base_model$wtatage |>
   as_tibble() %>%
   set_names(tolower(names(.))) |>
-  dplyr::filter(yr %in% start_yr_age_comps:(end_yr - 1)) |>
+  dplyr::filter(year %in% start_yr_age_comps:(end_yr - 1)) |>
   dplyr::filter(fleet == 1) |>
-  select(yr, matches("^\\d+$"))
+  select(year, matches("^\\d+$"))
 
 # Define number of 'recent' years for several tables --------------------------
 num_recent_yrs <- 10
@@ -1180,44 +1238,55 @@ below40_col <- paste0("Bratio_", forecast_yrs[2], "<0.40")
 below40_col_sym <- sym(below40_col)
 below10_col <- paste0("Bratio_", forecast_yrs[2], "<0.10")
 below10_col_sym <- sym(below10_col)
-prob_max_below_40_yr1 <- base_model$risks[[1]] |>
-  as_tibble() |>
-  pull(!!below40_col) |>
-  max() |>
-  f(1)
-prob_max_below_10_yr1 <- base_model$risks[[1]] |>
-  as_tibble() |>
-  pull(!!below10_col) |>
-  max() |>
-  f(1)
-prob_decl_yr1_zero_catch <- base_model$risks[[1]] |>
-  as_tibble() |>
-  dplyr::filter(!!ct_col_sym < 1) |>
-  pull(!!decl_col_sym) |>
-  f()
-prob_decl_yr1_other_catch <- base_model$risks[[1]] |>
-  as_tibble() |>
-  slice(2) |>
-  pull(!!decl_col_sym) |>
-  f()
-prob_below_b40_yr1_last_yr_catch <- base_model$risks[[1]] |>
-  as_tibble() |>
-  dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
-  pull(!!below40_col) |>
-  f()
-prob_all_catch_greater <- base_model$risks[[1]] |>
-  as_tibble() |>
-  dplyr::filter(!!ct_col_sym > 0.01) |>
-  pull(!!decl_col_sym) |>
-  min() |>
-  f()
-# Probability of decline if the catch this coming year is the same as last
-# year's catch
-prob_decl_last_yr_catch <- base_model$risks[[1]] |>
-  as_tibble() |>
-  dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
-  pull(!!decl_col_sym) |>
-  f()
+
+prob_max_below_40_yr1 <- NULL
+prob_max_below_10_yr1 <- NULL
+prob_decl_yr1_zero_catch <- NULL
+prob_decl_yr1_other_catch <- NULL
+prob_below_b40_yr1_last_yr_catch <- NULL
+prob_all_catch_greater <- NULL
+prob_decl_last_yr_catch <- NULL
+prob_decl_yr1_other_catch <- NULL
+if(!is.null(base_model$risks)){
+  prob_max_below_40_yr1 <- base_model$risks[[1]] |>
+    as_tibble() |>
+    pull(!!below40_col) |>
+    max() |>
+    f(1)
+  prob_max_below_10_yr1 <- base_model$risks[[1]] |>
+    as_tibble() |>
+    pull(!!below10_col) |>
+    max() |>
+    f(1)
+  prob_decl_yr1_zero_catch <- base_model$risks[[1]] |>
+    as_tibble() |>
+    dplyr::filter(!!ct_col_sym < 1) |>
+    pull(!!decl_col_sym) |>
+    f()
+  prob_decl_yr1_other_catch <- base_model$risks[[1]] |>
+    as_tibble() |>
+    slice(2) |>
+    pull(!!decl_col_sym) |>
+    f()
+  prob_below_b40_yr1_last_yr_catch <- base_model$risks[[1]] |>
+    as_tibble() |>
+    dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
+    pull(!!below40_col) |>
+    f()
+  prob_all_catch_greater <- base_model$risks[[1]] |>
+    as_tibble() |>
+    dplyr::filter(!!ct_col_sym > 0.01) |>
+    pull(!!decl_col_sym) |>
+    min() |>
+    f()
+  # Probability of decline if the catch this coming year is the same as last
+  # year's catch
+  prob_decl_last_yr_catch <- base_model$risks[[1]] |>
+    as_tibble() |>
+    dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
+    pull(!!decl_col_sym) |>
+    f()
+}
 
 ct_col <- paste0("ForeCatch_", forecast_yrs[2])
 ct_col_sym <- sym(ct_col)
@@ -1227,31 +1296,40 @@ below40_col <- paste0("Bratio_", forecast_yrs[3], "<0.40")
 below40_col_sym <- sym(below40_col)
 below10_col <- paste0("Bratio_", forecast_yrs[3], "<0.10")
 below10_col_sym <- sym(below10_col)
-prob_max_below_40_yr2 <- base_model$risks[[2]] |>
-  as_tibble() |>
-  pull(!!below40_col) |>
-  max() |>
-  f(1)
-prob_max_below_10_yr2 <- base_model$risks[[2]] |>
-  as_tibble() |>
-  pull(!!below10_col) |>
-  max() |>
-  f(1)
-prob_decl_yr2_zero_catch <- base_model$risks[[2]] |>
-  as_tibble() |>
-  dplyr::filter(!!ct_col_sym < 1) |>
-  pull(!!decl_col_sym) |>
-  f()
-prob_decl_yr2_other_catch <- base_model$risks[[2]] |>
-  as_tibble() |>
-  slice(2) |>
-  pull(!!decl_col_sym) |>
-  f()
-prob_below_b40_yr2_last_yr_catch <- base_model$risks[[2]] |>
-  as_tibble() |>
-  dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
-  pull(!!below40_col) |>
-  f()
+
+prob_max_below_40_yr2 <-NULL
+prob_max_below_10_yr2 <- NULL
+prob_decl_yr2_zero_catch <- NULL
+prob_decl_yr2_other_catch <- NULL
+prob_below_b40_yr2_last_yr_catch <- NULL
+    
+if(!is.null(base_model$risks)){
+  prob_max_below_40_yr2 <- base_model$risks[[2]] |>
+    as_tibble() |>
+    pull(!!below40_col) |>
+    max() |>
+    f(1)
+  prob_max_below_10_yr2 <- base_model$risks[[2]] |>
+    as_tibble() |>
+    pull(!!below10_col) |>
+    max() |>
+    f(1)
+  prob_decl_yr2_zero_catch <- base_model$risks[[2]] |>
+    as_tibble() |>
+    dplyr::filter(!!ct_col_sym < 1) |>
+    pull(!!decl_col_sym) |>
+    f()
+  prob_decl_yr2_other_catch <- base_model$risks[[2]] |>
+    as_tibble() |>
+    slice(2) |>
+    pull(!!decl_col_sym) |>
+    f()
+  prob_below_b40_yr2_last_yr_catch <- base_model$risks[[2]] |>
+    as_tibble() |>
+    dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
+    pull(!!below40_col) |>
+    f()
+}
 
 ct_col <- paste0("ForeCatch_", forecast_yrs[3])
 ct_col_sym <- sym(ct_col)
@@ -1261,15 +1339,20 @@ below40_col <- paste0("Bratio_", forecast_yrs[4], "<0.40")
 below40_col_sym <- sym(below40_col)
 below10_col <- paste0("Bratio_", forecast_yrs[4], "<0.10")
 below10_col_sym <- sym(below10_col)
-prob_max_below_40_yr3 <- base_model$risks[[3]] |>
-  as_tibble() |>
-  pull(!!below40_col) |>
-  max() |>
-  f(1)
-prob_max_below_10_yr3 <- base_model$risks[[3]] |>
-  as_tibble() |>
-  pull(!!below10_col) |>
-  max() |>
-  f(1)
 
+prob_max_below_40_yr3 <- NULL
+prob_max_below_10_yr3 <- NULL
+  
+if(!is.null(base_model$risks)){
+  prob_max_below_40_yr3 <- base_model$risks[[3]] |>
+    as_tibble() |>
+    pull(!!below40_col) |>
+    max() |>
+    f(1)
+  prob_max_below_10_yr3 <- base_model$risks[[3]] |>
+    as_tibble() |>
+    pull(!!below10_col) |>
+    max() |>
+    f(1)
+}
 ```
