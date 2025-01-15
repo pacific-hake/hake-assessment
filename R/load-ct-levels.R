@@ -62,8 +62,9 @@ load_ct_levels <- function(model_path,
                             Nareas = 1,
                             nseas = 1,
                             verbose = FALSE)
+
     fore$ForeCatch |>
-      select(`Catch or F`) |>
+      select(`catch_or_F`) |>
       pull()
   })
   ct_levels <- ct_levels_lst$ct_levels
