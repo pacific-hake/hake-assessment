@@ -11,6 +11,11 @@
 #' @return A Character string. A formatted version of the number `x`.
 #' @export
 f <- function(x, digits = 0){
+
+  if(is.null(x)){
+    return(x)
+  }
+
   format(round(x,
                digits),
          big.mark = ",",
