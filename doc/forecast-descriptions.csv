@@ -9,4 +9,6 @@ catch_year1,catch_year2,catch_year3,catch_year4,description,directory,forecast_t
 450000,450000,450000,450000,"450,000 t",08-450000,constant,
 500000,500000,500000,500000,"500,000 t",09-500000,constant,
 555000,555000,555000,555000,"2024 TAC: 555,000 t",10-555000,constant,tac
-,,,,Default Harvest Policy,11-default-hr,calculated,default_hr
+,,,,FI = 100%,11-spr-100, calculated,spr100
+,,,,Default Harvest Policy,12-default-hr, calculated,default_hr
+,,,,Stable Catch,13-stable-catch, calculated,stable_catch
