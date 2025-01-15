@@ -27,7 +27,6 @@ models=( \
         #31-add-survey-age-comps
         #40-add-survey-1 \
         50-add-fishery-ages \
-        60-fix-late-devs \
         )
 
 type_path="02-bridging-models"
