@@ -115,8 +115,15 @@ run_forecasts <- function(model = NULL,
       file_chmod(new_forecast_dir, output_permissions)
 
       # Copy all model files into this new forecast directory
-      src_fns <- list.files(model$mcmc_path, full.names = TRUE)
-      dest_fns <- file.path(new_forecast_dir, list.files(model$mcmc_path))
+      src_fns <- setdiff(list.files(model$mcmc_path,
+                                    full.names = TRUE),
+                         list.dirs(model$mcmc_path,
+                                    full.names = TRUE))
+      src_fns_nodirs <- setdiff(list.files(model$mcmc_path,
+                                           full.names = FALSE),
+                                list.dirs(model$mcmc_path,
+                                          full.names = TRUE))
+      dest_fns <- file.path(new_forecast_dir, src_fns_nodirs)
       copy_flag <- file.copy(src_fns, dest_fns, copy.mode = TRUE)
 
       if(!all(copy_flag)){
