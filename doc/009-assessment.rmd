@@ -1093,8 +1093,6 @@ that something definitely occurs (or definitely does not occur).
 With respect to DFO's provisional limit reference point of 0.4`r b_msy` and
 provisional upper stock reference point of 0.8`r b_msy`, the probabilities are
 P(*B*~`r assess_yr`~ > 0.4`r b_msy`) = `r f(dfo_probs_curr[1, 2], 0)`%
-<!--P(*B*~`r assess_yr`~ > 0.4`r b_msy`) = `r f(dfo_probs_curr[1, 2] |> pull(), 0)`%
--->
 and
 P(*B*~`r assess_yr`~ > 0.8`r b_msy`) = `r f(dfo_probs_curr[1, 3], 0)`%
 such that the stock is estimated to be in the provisional `healthy zone'.
