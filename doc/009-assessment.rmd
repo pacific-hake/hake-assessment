@@ -1092,12 +1092,14 @@ that something definitely occurs (or definitely does not occur).
 
 With respect to DFO's provisional limit reference point of 0.4`r b_msy` and
 provisional upper stock reference point of 0.8`r b_msy`, the probabilities are
-P(*B*~`r assess_yr`~ > 0.4`r b_msy`) = `r f(dfo_probs_curr[1, 2] |> pull(), 0)`%
+P(*B*~`r assess_yr`~ > 0.4`r b_msy`) = `r f(dfo_probs_curr[1, 2], 0)`%
+<!--P(*B*~`r assess_yr`~ > 0.4`r b_msy`) = `r f(dfo_probs_curr[1, 2] |> pull(), 0)`%
+-->
 and
-P(*B*~`r assess_yr`~ > 0.8`r b_msy`) = `r f(dfo_probs_curr[1, 3] |> pull(), 0)`%
+P(*B*~`r assess_yr`~ > 0.8`r b_msy`) = `r f(dfo_probs_curr[1, 3], 0)`%
 such that the stock is estimated to be in the provisional `healthy zone'.
 For completeness, we note that
-P(*B*~`r assess_yr`~ > `r b_msy`) = `r f(dfo_probs_curr[1, 1] |> pull(), 1)`%.
+P(*B*~`r assess_yr`~ > `r b_msy`) = `r f(dfo_probs_curr[1, 1], 1)`%.
 
 Reference levels of stock status that are used by the U.S. Pacific Fisheries
 Management Council (PFMC) for `r sp` include `r b_40` and a Minimum Stock
