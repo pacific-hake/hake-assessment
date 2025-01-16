@@ -111,8 +111,12 @@ table_at_age <- function(model,
                                           align = "c"))
   extra_header <- c(set_names(1, yr_extra_hdr),
                     set_names(length(ages), age_extra_hdr))
+
   # Need to change the backslashes to quadruple-backslashes here
-  names(extra_header) <- gsub("\\\\", "\\\\\\\\", names(extra_header))
+  # Update - as of January 2025 this had to be commented out. Something must
+  # have changed in the way latex code is created by the new version of
+  # knitr/kableExtra
+  #names(extra_header) <- gsub("\\\\", "\\\\\\\\", names(extra_header))
 
   kbl(d,
       format = "latex",
