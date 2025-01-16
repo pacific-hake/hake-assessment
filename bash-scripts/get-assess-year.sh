@@ -3,7 +3,7 @@
 # Creates the $assess_year variable for insertion into year_path variable
 # for other run and create scripts. If an argument is supplied, `assess_yr`
 # will be set to that, otherwise it will be the current year, unless the
-# current month is Decembver, then it wilol be the current year plus 1
+# current month is December, then it will be the current year plus 1
 
 if [ "$#" -eq 1 ]
 then
