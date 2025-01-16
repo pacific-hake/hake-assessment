@@ -327,8 +327,8 @@ year.
 
 The total catch of `r sp` in U.S. waters was the `r last_yr_us_rank` highest
 value ever recorded (Table~\@ref(tab:main-catches-us-tab)) and the U.S.
-utilization rate (`r last_yr_us_attained`%) was the lowest it has been since
-2015 (see Appendix~\@ref(sec:app-us-fishery-report) for more details). The
+utilization rate (`r last_yr_us_attained`%) was the lowest it has ever been
+(see Appendix~\@ref(sec:app-us-fishery-report) for more details). The
 catcher-processor, mothership, and shore-based sectors caught
 `r catcher_processor_ct`%, `r mothership_ct`%, and `r shore_based_ct`% of
 their final reallocated quotas, respectively. Tribal landings, which are
