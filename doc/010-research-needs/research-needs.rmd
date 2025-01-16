@@ -2,9 +2,11 @@
 executive-summary/executive-summary.rmd and also from
 research-needs-section/research-needs-loader.rmd -->
 
-There are many research projects that could improve the stock assessment for
-`r sp` and lead to improved biological understanding and decision-making. The
-most important are as follows:
+There are many research projects and data collections that could improve
+the stock assessment for `r sp` and lead to improved biological understanding
+and decision-making. The following is a list of needs (new and ongoing) that the
+JTC has identified as having a high probability of improving the overall
+quality and robustness of the stock assessment.
 
 1. Continue to conduct research to evaluate ways to improve recent, current,
 and future estimates of recruitment for use in stock assessment. This could
@@ -30,9 +32,18 @@ Furthermore, the existing management strategy evaluation framework should be
 used, or further developed, to examine how information on recruitment can
 inform robust management decisions.
 
-2. Conduct research on estimates of uncertainty for the relative age-1 index
-and the age-2$+$ index and investigate alternative ways to utilize survey
-age-composition information in the assessment model. Bootstrapping of the
+2. Conduct research on current and future index of abundance data sets
+or species distribution models that provide new age-based (e.g.,
+recruitment or population-wide) or spatial population structure and
+distribution information to the stock assessment.  In particular,
+continue to explore the utility of eDNA-based spatiotemporal biomass indices
+of population abundance. Develop species distributon models for 'r sp'
+that utilize ecosystem information as drivers of observations across
+spatiotemporal domains. Investigate alternative ways to utilize survey
+age-composition information in the assessment model. Develop estimates of
+uncertainty for the current relative age-1 index. Broaden the scope of
+uncertainty considered in the age-2$+$ index and adjust for changes arising
+from the U.S. Integrated Survey Initiative. Bootstrapping of the
 acoustic survey time series, or related methods, could help incorporate
 uncertainty related to the target-strength relationship, subjective scoring of
 echograms, thresholding methods, and methods used to estimate the species mixes
@@ -42,12 +53,14 @@ Coast Integrated Survey Initiative. The management strategy evaluation
 framework should be used, or further developed, to examine how changes in
 survey methods can be used to inform robust management decisions.
 
-1. Work with regional partners to develop an annual workflow that provides key
-metrics, indicators, or other summaries of general ecosystem conditions
-relevant to the coast-wide population of `r sp`.  In particular, include
-indicators that are potentially associated with `r sp` biology and ecology
-(e.g., recruitment, distribution, predation, prey, and communities). Such
-information can broaden the context within which a single species stock
-assessment is interpreted, be used to support model development, refine
-uncertain assessment conclusions (e.g., productivity), and provide other
-non-assessment indicators of the system's state to management.
+3. Continue to develop value-added scientific products to complement the stock
+assessment for management decision-making. In particular, work with regional
+partners to develop risk tables or other annual workflows that provides key
+metrics, indicators, or other summaries of general ecosystem conditions relevant
+to the coast-wide population of `r sp`.  It would be advantageous to include
+indicators that are potentially associated with `r sp` biology and ecology (e.g.,
+recruitment, distribution, predation, prey, and communities). Such information can
+broaden the context within which a single species stock assessment is interpreted,
+be used to support model development, refine uncertain assessment conclusions
+(e.g., productivity), and provide other non-assessment indicators of the
+system's state to management.
