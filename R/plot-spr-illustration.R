@@ -22,19 +22,19 @@ plot_spr_illustration <- function(model,
          "there and not prepended by some characters, e.g. 'a15'")
   }
   ages <- as.numeric(ages_chr)
-  yrs <- yrs %||% unique(model$wtatage$Yr)
+  yrs <- yrs %||% unique(model$wtatage$year)
 
   # Average maturity * fecundity
   matfec_vec <- model$wtatage |>
-    dplyr::filter(Fleet == -2,
-           Yr %in% yrs) |>
+    dplyr::filter(fleet == -2,
+                  year %in% yrs) |>
     select(all_of(ages_chr)) |>
     summarize_all(mean) |>
     unlist()
   # Average weight at age
   meanwt_vec <- model$wtatage |>
-    dplyr::filter(Fleet == -1,
-           Yr %in% yrs) |>
+    dplyr::filter(fleet == -1,
+                  year %in% yrs) |>
     select(all_of(ages_chr)) |>
     summarize_all(mean) |>
     unlist()
@@ -42,7 +42,7 @@ plot_spr_illustration <- function(model,
   # numbers at age in equilibrium
   n_at_age_equil <- model$natage |>
     dplyr::filter(Era == "VIRG",
-           `Beg/Mid` == "B") |>
+                  `Beg/Mid` == "B") |>
     select(all_of(ages_chr)) |>
     unlist()
 

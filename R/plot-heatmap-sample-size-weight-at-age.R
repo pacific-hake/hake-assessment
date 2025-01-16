@@ -63,9 +63,9 @@ plot_heatmap_sample_size_weight_at_age <- function(
   # Extract valid waa for given fleet ----
   wa <- model$wtatage |>
     as_tibble() |>
-    dplyr::filter(Fleet == fleet) %>%
-    select(Yr, matches("^\\d", .)) |>
-    rename(yr = Yr) |>
+    dplyr::filter(fleet == !!fleet) %>%
+    select(year, matches("^\\d", .)) |>
+    rename(yr = year) |>
     dplyr::filter(yr > 0)
 
   # Model start and end years ----

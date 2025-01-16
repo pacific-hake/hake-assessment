@@ -34,7 +34,8 @@ table_input_age_data <- function(model,
   d <- model$dat$agecomp |>
     as_tibble() |>
     dplyr::filter(fleet == flt) |>
-    rename(yr = Yr, num_samp = Nsamp) |>
+    rename(yr = year,
+           num_samp = Nsamp) |>
     select(yr, num_samp, all_of(ages)) |>
     rename_at(vars(ages), ~{gsub("^a([0-9]+)$", "\\1", .x)})
 

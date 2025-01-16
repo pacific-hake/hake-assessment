@@ -26,10 +26,10 @@ plot_fecundity <- function(model,
   calc_mean <- function(fleet){
     x <- model$wtatage |>
       as_tibble() |>
-      dplyr::filter(Fleet == fleet)
+      dplyr::filter(fleet == !!fleet)
     if(!is.null(yrs)){
       x <- x |>
-        dplyr::filter(Yr %in% yrs)
+        dplyr::filter(year %in% yrs)
     }
     x |>
       select(matches("^\\d")) |>

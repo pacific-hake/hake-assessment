@@ -67,12 +67,12 @@ table_cohort <- function(model,
     dplyr::filter(yr <= max_yr)
   waa <- model$wtatage |>
     as_tibble() |>
-    dplyr::filter(Fleet == 1) |>
-    dplyr::filter(Yr <= max_yr)
+    dplyr::filter(fleet == 1) |>
+    dplyr::filter(year <= max_yr)
   waa_ages <- grep("^[0-9]+", names(waa), value = TRUE)
   waa <- waa |>
-    select(Yr, all_of(waa_ages)) |>
-    rename(yr = Yr)
+    select(year, all_of(waa_ages)) |>
+    rename(yr = year)
 
   # Get the diagonals of the cohort data from the data frame
   #

@@ -23,7 +23,7 @@
 #' @author Ian G. Taylor
 #' @seealso [weight_at_age_read()]
 #' @return A data frame with the first six columns pertaining to metadata,
-#' i.e., #Yr, seas, gender, GP, bseas, and fleet, and additional columns
+#' i.e., #year, seas, sex, GP, bseas, and fleet, and additional columns
 #' pertaining to each age starting with age zero up to the maximum age
 #' supplied with the argument `maxage`. Ages for which there were no
 #' samples are filled with `NA`. If \code{value = "count"}, then

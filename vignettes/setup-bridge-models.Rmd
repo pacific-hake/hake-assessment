@@ -215,7 +215,7 @@ inputs[["dat"]][["agecomp"]] <- dplyr::bind_rows(
     !(fleet == 1 & year >= 2008)
   ),
   fishery_age_composition |>
-    dplyr::filter(Yr < current_yr - 1, Yr >= 2008)
+    dplyr::filter(year < current_yr - 1, Yr >= 2008)
 ) |>
   dplyr::arrange(-fleet, year)
 
