@@ -193,7 +193,8 @@ last_yr_us_shore_ct <- ct |>
 last_yr_us_ti_ct <- us_ti_ct_by_month_df |>
   dplyr::filter(year == last_data_yr) |>
   pull(catch) |>
-  sum()
+  sum() |>
+  tidyr::replace_na(0)
 catcher_processor_ct <- ((ct_last1 |>
                             pull(`U.S. Catcher-processor`)) /
                            (last_yr_us_cp_quota_reallocated) * 100) |>

@@ -332,15 +332,17 @@ utilization rate (`r last_yr_us_attained`%) was the lowest it has ever been
 catcher-processor, mothership, and shore-based sectors caught
 `r catcher_processor_ct`%, `r mothership_ct`%, and `r shore_based_ct`% of
 their final reallocated quotas, respectively. Tribal landings, which are
-included in the shoreside sector totals were `r f(last_yr_us_ti_ct)`~t.
-The median fishing depth for the at-sea sectors was the same as last year
-(Figure~\@ref(fig:main-us-depths-fig)). The shore-based sector had the largest
+included in the shoreside sector totals were `r f(last_yr_us_ti_ct)`~t (zeros
+may not reflect actual catch if less than three vessels were fishing; see
+appendix~\@ref(sec:app-us-fishery-report) for further details).
+The median fishing depth for the at-sea sectors was slightly lower than the last
+few years (Figure~\@ref(fig:main-us-depths-fig)). The shore-based sector had the largest
 monthly catches during July, August, and September. While, the at-sea sectors
 had the largest monthly catches during May, September, and October.
 
-In both U.S. at-sea sectors, age-2, age-3, and age-7 fish, associated with the
-2021, 2020, and 2016 year classes, were the most common ages. Both the age-3 and
-age-7 fish were seen last year in appreciable numbers as age-2 and age-6 fish.
+In both U.S. at-sea sectors, age-3 and age-4 fish associated with the
+2021 and 2020 year classes were common ages caught. Both ages were seen
+last year in appreciable numbers as age-2 and age-3 fish.
 The reported proportions at age summarize sampling efforts on
 `r us_age_n_cp` catcher-processor hauls and `r us_age_n_ms` mothership hauls
 (Table~\@ref(tab:main-sampling-history-tab)).
@@ -359,15 +361,17 @@ age-`r us_age_4_prop_age_ms` (`r us_age_4_prop_ms`%)
 
 Age-samples from `r pull(us_sb_age_df[us_sb_age_df$year == last_data_yr, "num_samples"])`
 shoreside trips showed similar age compositions in the catch
-compared to the at-sea sectors, though not nearly as many age-2 fish.
-The four most abundant age classes for highest occurrences being for
+compared to the at-sea sectors, though not nearly as many smaller (age-2
+and age-1) fish and more age-8 and age-10 fish from the 2016 and
+2014 year classes.
+The four most abundant age classes with the highest occurrence in
 `r last_data_yr` were age-`r us_age_1_prop_age_shore`
 (`r us_age_1_prop_shore`%), age-`r us_age_2_prop_age_shore`
 (`r us_age_2_prop_shore`%), age-`r us_age_3_prop_age_shore`
 (`r us_age_3_prop_shore`%), and age-`r us_age_4_prop_age_shore`
 (`r us_age_4_prop_shore`%)
 (Table~\@ref(tab:main-us-sb-age-data-tab)). Age-compositions
-from the at-sea and shoreside sectors during this last year were more similar
+from the at-sea and shoreside sectors during this last year were less similar
 than they were the previous year.
 
 ### Fisheries for `r sp` in Canada {#sec:intro-fisheries-can}
