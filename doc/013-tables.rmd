@@ -471,7 +471,7 @@ table_reference_points(
 
 \clearpage
 
-```{r main-decisions-biomass-tab, results = "asis", echo = FALSE}
+```{r main-decisions-biomass-tab, results = "asis", echo = FALSE, eval = !is.null(base_model$forecasts)}
 
 table_decision(
   base_model,
@@ -500,7 +500,7 @@ table_decision(
   longtable = TRUE)
 ```
 
-```{r main-decisions-spr-tab, results = "asis", echo = FALSE}
+```{r main-decisions-spr-tab, results = "asis", echo = FALSE, eval = !is.null(base_model$forecasts)}
 
 table_decision(
   base_model,
@@ -528,7 +528,7 @@ table_decision(
   longtable = TRUE)
 ```
 
-```{r main-risk-year-1-tab, results = "asis", echo = FALSE}
+```{r main-risk-year-1-tab, results = "asis", echo = FALSE, eval = !is.null(base_model$risks)}
 # Index in model$risks to use, e.g. 1 means forecast year 2 compared to
 # forecast year 1
 table_risk(
@@ -547,7 +547,7 @@ table_risk(
   longtable = TRUE)
 ```
 
-```{r main-risk-year-2-tab, results = "asis", echo = FALSE}
+```{r main-risk-year-2-tab, results = "asis", echo = FALSE, eval = !is.null(base_model$risks)}
 # Index in model$risks to use, e.g. 1 means forecast year 2 compared to
 # forecast year 1
 table_risk(
@@ -567,7 +567,7 @@ table_risk(
   longtable = TRUE)
 ```
 
-```{r main-risk-year-3-tab, results = "asis", echo = FALSE}
+```{r main-risk-year-3-tab, results = "asis", echo = FALSE, eval = !is.null(base_model$risks)}
 # Index in model$risks to use, e.g. 1 means forecast year 2 compared to
 # forecast year 1
 table_risk(
