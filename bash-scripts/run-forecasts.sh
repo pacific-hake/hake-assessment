@@ -54,6 +54,6 @@ does not exist, bailing out." ; exit 1; }
     setwd('$repo_path'); \
     devtools::load_all(); \
     run_forecasts(model_path = '$model_path')" \
-  > /dev/null 2>&1; \
+> /dev/null 2>&1; \
   printf "\nBase model forecasts complete\n" \
 )

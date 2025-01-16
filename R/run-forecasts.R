@@ -115,16 +115,19 @@ run_forecasts <- function(model = NULL,
       file_chmod(new_forecast_dir, output_permissions)
 
       # Copy all model files into this new forecast directory
-      src_fns <- setdiff(list.files(model$mcmc_path,
-                                    full.names = TRUE),
-                         list.dirs(model$mcmc_path,
-                                    full.names = TRUE))
+      # Using setdiff is the only guaranteed way you can disallow directories
+      # in the file list.
       src_fns_nodirs <- setdiff(list.files(model$mcmc_path,
                                            full.names = FALSE),
                                 list.dirs(model$mcmc_path,
-                                          full.names = TRUE))
+                                          full.names = FALSE))
+      src_fns <- file.path(model$mcmc_path, src_fns_nodirs)
       dest_fns <- file.path(new_forecast_dir, src_fns_nodirs)
-      copy_flag <- file.copy(src_fns, dest_fns, copy.mode = TRUE)
+
+      copy_flag <- file.copy(src_fns,
+                             dest_fns,
+                             overwrite = TRUE,
+                             copy.mode = TRUE)
 
       if(!all(copy_flag)){
         stop("At least one MCMC file failed to copy from directory\n`",
