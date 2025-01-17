@@ -53,6 +53,25 @@ table_recruitment <- function(model,
   devupper <- calcs$devupper[inds]
   devupper<- devupper[names(devupper) %in% yrs]
 
+  # Check to see if devlower, devmed, and devupper have values. Fill in
+  # missing years if they do not. This will occur if late devs are turnee
+  # off in the SS3 control file by using a negative number. In that case, the
+  # last two years will not exist in the devs
+  devs <- map(list(devlower, devmed, devupper), \(dev){
+
+    dev_nms <- as.numeric(names(dev))
+    missing_yrs <- setdiff(yrs, dev_nms)
+    if(length(missing_yrs)){
+      missing_vec <- rep(NA, length(missing_yrs))
+      names(missing_vec) <- missing_yrs
+      return(c(dev, missing_vec))
+    }
+    dev
+  })
+  devlower <- devs[[1]]
+  devmed <- devs[[2]]
+  devupper <- devs[[3]]
+
   df <- tibble(yrs,
                f(rlower, digits),
                f(rmed, digits),
@@ -61,6 +80,10 @@ table_recruitment <- function(model,
                f(devmed, digits_dev),
                f(devupper, digits_dev)) |>
     dplyr::filter(yrs %in% start_yr:end_yr)
+
+  # Replace NAs with double dashes in all cells in the table
+  df <- df |>
+    mutate(across(everything(), ~{gsub("^ *NA$", "--", .x)}))
 
   names(df) <- c("Year",
                  "Recruit-\nment\n2.5\\textsuperscript{th}\npercentile",
