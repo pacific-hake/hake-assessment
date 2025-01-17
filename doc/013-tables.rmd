@@ -473,11 +473,18 @@ table_reference_points(
 
 ```{r main-decisions-biomass-tab, results = "asis", echo = FALSE, eval = !is.null(base_model$forecasts)}
 
+model <- base_model
+# Filter out the forecast catch streams that are not used in the
+# decision table
+model$forecasts <- model$forecasts |> 
+  map(~{
+    .x[c(1:10, 12)]
+  })
 table_decision(
-  base_model,
+  model,
   type = "biomass",
   forecast_inds =
-    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
+    seq_along(model$forecasts[[length(model$forecasts)]]),
   caption = paste0(
       "Forecast quantiles of Pacific Hake relative spawning biomass at the ",
       "beginning of the year. Catch alternatives are defined by letters a-o ",
@@ -503,10 +510,10 @@ table_decision(
 ```{r main-decisions-spr-tab, results = "asis", echo = FALSE, eval = !is.null(base_model$forecasts)}
 
 table_decision(
-  base_model,
+  model,
   type = "spr",
   forecast_inds =
-    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
+    seq_along(model$forecasts[[length(model$forecasts)]]),
   caption = paste0(
       "Forecast quantiles of Pacific Hake relative fishing intensity ",
       rel_fishing_intensity_for_latex_table, ", expressed as a proportion. ",
@@ -532,7 +539,7 @@ table_decision(
 # Index in model$risks to use, e.g. 1 means forecast year 2 compared to
 # forecast year 1
 table_risk(
-  base_model,
+  model,
   forecast_yrs,
   index = 1,
   type = "probability",
@@ -546,12 +553,11 @@ table_risk(
   header_font_size = 10,
   longtable = TRUE)
 ```
-
 ```{r main-risk-year-2-tab, results = "asis", echo = FALSE, eval = !is.null(base_model$risks)}
 # Index in model$risks to use, e.g. 1 means forecast year 2 compared to
 # forecast year 1
 table_risk(
-  base_model,
+  model,
   forecast_yrs,
   index = 2,
   type = "probability",
@@ -571,7 +577,7 @@ table_risk(
 # Index in model$risks to use, e.g. 1 means forecast year 2 compared to
 # forecast year 1
 table_risk(
-  base_model,
+  model,
   forecast_yrs,
   index = 3,
   type = "probability",
