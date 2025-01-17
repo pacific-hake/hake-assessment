@@ -739,12 +739,12 @@ class. The subsequent decline from 2014 to 2016 is primarily from the 2010
 year class surpassing the age at which gains in weight from growth are greater
 than the loss in weight from mortality (growth-mortality transition). The
 2014 year class is estimated to be large, though not as large as the 1999
-and 2010 year classes, resulting in an increased biomass in 2017. The
-estimated biomass mostly declined
-from 2018 to 2022 due to the 2014 and 2016 year classes moving through the
+and 2010 year classes, resulting in an increased biomass through 2018. The
+estimated biomass declined
+from 2018 to 2021 due to the 2014 and 2016 year classes moving through the
 growth-mortality transition during a period of high catches. The increase in
-female spawning biomass in 2023 and 2024 is due to the expected above-average 2020 and
-potentially large 2021 cohorts entering maturity, and the recent declining trend in catch.
+female spawning biomass from 2022 through 2025 is due to the above-average 2020 and
+2021 cohorts entering maturity and the recent declining trend in catch.
 
 The median estimate of the `r end_yr` relative spawning biomass (spawning
 biomass at the start of `r end_yr` divided by that at unfished equilibrium,
@@ -753,7 +753,8 @@ biomass at the start of `r end_yr` divided by that at unfished equilibrium,
 `r curr_depl_upper`% (Tables~\@ref(tab:main-median-posterior-tab) and
 \@ref(tab:main-ci-posterior-tab)), partly due to remaining unknowns about the size of the
 potentially large 2021 cohort because the acoustic survey has only provided one year of
-information about it.
+information about it during the 2023 survey. The biennial age-1 index does not provide
+additional information for odd year cohorts like this one. 
 <!-- for non-survey years: age-1 information, which is more uncertain than the -->
 <!-- 2+ estimate. -->
 
@@ -761,8 +762,8 @@ The median estimate of the `r end_yr` female spawning biomass is
 `r curr_bio_median` million~t (with a 95% posterior credibility interval from
 `r curr_bio_lower` to `r curr_bio_upper` million~t). The current estimate of
 the `r end_yr - 1` female spawning biomass is `r prev_bio_median`
-(`r prev_bio_lower`--`r prev_bio_upper`) million~t, giving less uncertainty than
-the estimate from the `r end_yr - 1` assessment of `r prev_bio_median_last_assess`
+(`r prev_bio_lower`--`r prev_bio_upper`) million~t, giving about the same level of
+uncertainty as the estimate from the `r end_yr - 1` assessment of `r prev_bio_median_last_assess`
 (`r prev_bio_lower_last_assess`--`r prev_bio_upper_last_assess`) million~t. The current median is reduced from last
 year, partly due to the tail of the distribution being greatly curtailed
 (upper end of the interval is much lower than it was in the `r end_yr - 1`
