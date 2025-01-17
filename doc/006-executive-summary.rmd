@@ -653,17 +653,24 @@ intensity of `r fi_at_hcr` (Table~\@ref(tab:es-decisions-spr-tab)).
 
 ```{r es-decisions-biomass-tab, results = "asis", echo = FALSE}
 
+model <- base_model
+# Filter out the forecast catch streams that are not used in the
+# decision table
+model$forecasts <- model$forecasts |> 
+  map(~{
+    .x[c(1:10, 12)]
+  })
 table_decision(
-  base_model,
+  model,
   type = "biomass",
   forecast_inds =
-    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
+    seq_along(model$forecasts[[length(model$forecasts)]]),
   caption = paste0(
       "Forecast quantiles of Pacific Hake relative spawning biomass at the ",
       "beginning of the year. Catch alternatives are defined by letters a-o ",
-      "and are a constant value across all forecasted years unless otherwise ",
-      "defined in the first column. Acronyms are defined in the glossary ",
-      "(Appendix~\\@ref(sec:app-glossary))."),
+      "and are a constant value across all forecasted years unless ",
+      "otherwise defined in the first column. Acronyms are defined in the ",
+      "glossary (Appendix~\\@ref(sec:app-glossary))."),
   bold_letters = TRUE,
   digits = 2,
   # Font values higher than 8 and 11 for table and header respectively
@@ -683,10 +690,10 @@ table_decision(
 ```{r es-decisions-spr-tab, results = "asis", echo = FALSE}
 
 table_decision(
-  base_model,
+  model,
   type = "spr",
   forecast_inds =
-    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
+    seq_along(model$forecasts[[length(model$forecasts)]]),
   caption = paste0(
       "Forecast quantiles of Pacific Hake relative fishing intensity ",
       rel_fishing_intensity_for_latex_table, ", expressed as a proportion. ",
