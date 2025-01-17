@@ -117,7 +117,7 @@ load_forecasts <- function(model_path = NULL,
                               verbose = FALSE)
       fore_catch <- fore$ForeCatch |>
         as_tibble() |>
-        transmute(catch = `catch_or_F`) |>
+        transmute(year = year, catch = `catch_or_F`) |>
         mutate(catch = ifelse(catch < 1, 0, catch))
       list(depl = apply(depl_proj_cols,
                         2,
