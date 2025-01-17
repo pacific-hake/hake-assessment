@@ -41,24 +41,16 @@ table_decision <- \(
     "a",  "",                                "",
     "b",  "",                                "",
     "c",  "",                                "",
-    "d",  "10\\% reduction",                 "each year",
-    "e",  paste0(model$endyr, " catch"),     "",
+    "d",  "",                                "",
+    "e",  "",                                "",
     "f",  "",                                "",
-    "g",  "10\\% reduction",                 "each year",
+    "g",  "",                                "",
     "h",  "",                                "",
-    "i",  "10\\% reduction",                 "each year",
-    "j",  "",                                "",
-    "k",  paste0(model$endyr - 1, " TAC"),   "",
-    "l",  paste0(model$endyr, " TAC"),       "",
-    "m",  "Fishing intensity",               "at 100\\%",
-    "n",  "Default HR",                      paste0("(",
+    "i",  "",                                "",
+    "j",  paste0(model$endyr, " TAC"),       "",
+    "k",  "Default HR",                      paste0("(",
                                                     fspr_40_10_for_latex_table,
-                                                    ")"),
-    "o",  "Equal catch",                     paste0("($\\mathrm{C}_{",
-                                                    model$endyr + 1,
-                                                    "} \\approxeq \\mathrm{C}",
-                                                    "_{", model$endyr + 2,
-                                                    "}$)")),
+                                                    ")")),
   bold_letters = TRUE,
   digits = 2,
   left_col_cm = 1,
@@ -108,9 +100,10 @@ table_decision <- \(
     stop("`forecast_inds` contains values greater than the length of the ",
          "forecast catch levels list (`model$forecasts`)")
   }
+
   if(length(forecast_inds) != nrow(letter_df)){
     stop("The data frame describing the rows of the table (`letter_df`) ",
-         "does ot have the same number of rows as the number of forecast ",
+         "does not have the same number of rows as the number of forecast ",
          "streams you have provided (`forecast_inds`)")
   }
 
@@ -203,7 +196,6 @@ table_decision <- \(
     # `Catch year` = latex_bold("Catch year"),
     # `Catch (t)` = latex_bold("Catch (t)"))
   }
-
   # If the relative biomass table:
   # Continue building the table data frame by adding the first row
   # to the previously-constructed data frame (with letters, catch
@@ -228,7 +220,7 @@ table_decision <- \(
                                       header_vert_scale)
 
   # Insert font specs around all column headers
-  col_names <- gsub("\\n", paste0("\n", hdr_font_str$quad), col_names)
+  col_names <- gsub("\\n", paste0("\n", hdr_font_str$dbl), col_names)
   col_names <- paste0(hdr_font_str$dbl, col_names)
   # Add \\makecell{} latex command to headers with newlines (\n)
   col_names <- linebreaker(col_names, align = "c")
@@ -258,7 +250,7 @@ table_decision <- \(
                       set_names(3, rsb))
   }
   # Need to change the backslashes to quadruple-backslashes here
-  names(extra_header) <- gsub("\\\\", "\\\\\\\\", names(extra_header))
+  #names(extra_header) <- gsub("\\\\", "\\\\\\\\", names(extra_header))
 
   # Create the decision table, note the column widths are changed here for
   # the first (leftmost) column and the last 3 (rightmost) columns
