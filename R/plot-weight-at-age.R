@@ -58,17 +58,18 @@ plot_weight_at_age <- function(wa,
     ages <- names(wa)[age_inds]
   }
   col_inds <- which(names(wa) %in% ages)
+
   wa <- wa |>
-    select(yr, col_inds)
+    select(year, col_inds)
 
   num_ages <- length(ages)
-  min_yr <- min(wa$yr)
-  max_yr <- max(wa$yr)
+  min_yr <- min(wa$year)
+  max_yr <- max(wa$year)
   col_func <- colorRampPalette(cols)
   colors <- col_func(num_ages)
 
   w <- wa |>
-    pivot_longer(-yr, names_to = "age") |>
+    pivot_longer(-year, names_to = "age") |>
     mutate(age = as.numeric(age)) |>
     mutate(age = factor(age, levels = sort(unique(age)))) |>
     mutate(isbold = FALSE)
@@ -98,16 +99,16 @@ plot_weight_at_age <- function(wa,
   max_value <- max(w$value)
 
   g <- ggplot(w,
-              aes(x = yr,
+              aes(x = year,
                   y = value,
                   color = age,
                   linewidth = isbold,
                   fontface = ifelse(isbold, "bold", "plain"))) +
     geom_line() +
     geom_point(data = w |>
-                 dplyr::filter(yr %in% c(min_yr, max_yr))) +
+                 dplyr::filter(year %in% c(min_yr, max_yr))) +
     geom_point(data = w |>
-                 dplyr::filter(yr %in% x_breaks)) +
+                 dplyr::filter(year %in% x_breaks)) +
     geom_point(data = w |>
                  dplyr::filter(age %in% bold_ages),
                size = 3) +
@@ -135,7 +136,7 @@ plot_weight_at_age <- function(wa,
   if("left" %in% age_label_side || "both" %in% age_label_side){
     g <- g +
       geom_label_repel(data = w |>
-                         dplyr::filter(yr == min_yr),
+                         dplyr::filter(year == min_yr),
                        aes(label = age),
                        nudge_x = -3.5,
                        size = age_label_font_size,
@@ -146,7 +147,7 @@ plot_weight_at_age <- function(wa,
   if("right" %in% age_label_side || "both" %in% age_label_side){
     g <- g +
       geom_label_repel(data = w |>
-                         dplyr::filter(yr == max_yr),
+                         dplyr::filter(year == max_yr),
                        aes(label = age),
                        nudge_x = 3.5,
                        size = age_label_font_size,

@@ -5,7 +5,7 @@
 #' @return A {ggplot2} object.
 #' @author Kelli F. Johnson
 #' @export
-plot_weight_at_age <- function(data, maxage) {
+plot_weight_at_age_simple <- function(data, maxage) {
   ggplot2::ggplot(
     data = data %>%
       dplyr::mutate(
