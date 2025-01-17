@@ -747,10 +747,19 @@ with zero catch and to decline for all non-zero catch levels evaluated.
 
 ```{r es-depletion-comparison-fig, fig.cap = "(ref:es-depletion-comparison-cap)"}
 
+model <- base_model
+# Filter out the forecast catch streams that are not used in the
+# decision table
+model$forecasts <- model$forecasts |> 
+  map(~{
+    .x[c(1:10, 12)]
+  })
+model$ct_levels <- model$ct_levels[c(1:10, 12)]
+
 # See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.
-plot_depl_fore_comparison(base_model,
-                          fore_inds = c(1, 2, 6, 12, 14),
+plot_depl_fore_comparison(model,
+                          fore_inds = c(1, 2, 6, 10, 11),
                           forecast_yrs = forecast_yrs)
 ```
 
@@ -791,10 +800,10 @@ catches up to approximately 350 thousand tonnes.
 
 ```{r es-risk-year-1-fig, fig.cap = "(ref:es-risk-year-1-cap)", fig.height = 4.5}
 
-plot_fore_compare(base_model,
+plot_fore_compare(model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[1],
-                  leg_pos = c(0.25, 0.85),
+                  leg_pos = c(0.25, 0.75),
                   leg_font_size = 9,
                   remove_x_val = c(270)) +
   # Following make the legend smaller and legend items closer together
@@ -809,7 +818,7 @@ plot_fore_compare(base_model,
 # Index in models[[]]$risks to use, e.g. 1 means forecast year 2 compared
 # to forecast year 1
 table_risk(
-  base_model,
+  model,
   forecast_yrs,
   index = 1,
   type = "probability",
@@ -841,10 +850,10 @@ including zero. The probability that the stock falls under B40 is below
 
 ```{r es-risk-year-2-fig, fig.cap = "(ref:es-risk-year-2-cap)", fig.height = 4.5}
 
-plot_fore_compare(base_model,
+plot_fore_compare(model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[2],
-                  leg_pos = c(0.25, 0.35),
+                  leg_pos = c(0.25, 0.75),
                   leg_font_size = 9,
                   remove_x_val = c(264, 342, 651)) +
   # Following make the legend smaller and legend items closer together
@@ -857,7 +866,7 @@ plot_fore_compare(base_model,
 ```{r es-risk-year-2-tab, results = "asis", echo = FALSE}
 
 table_risk(
-  base_model,
+  model,
   forecast_yrs,
   index = 2,
   type = "probability",
@@ -888,10 +897,10 @@ below 0.1 for catches up to approximately 350 thousand tonnes.
 
 ```{r es-risk-year-3-fig, fig.cap = "(ref:es-risk-year-3-cap)", fig.height = 4.5}
 
-plot_fore_compare(base_model,
+plot_fore_compare(model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[3],
-                  leg_pos = c(0.25, 0.35),
+                  leg_pos = c(0.25, 0.75),
                   leg_font_size = 9,
                   remove_x_val = c(264, 605)) +
   # Following make the legend smaller and legend items closer together
@@ -904,7 +913,7 @@ plot_fore_compare(base_model,
 ```{r es-risk-year-3-tab, results = "asis", echo = FALSE}
 
 table_risk(
-  base_model,
+  model,
   forecast_yrs,
   index = 3,
   type = "probability",

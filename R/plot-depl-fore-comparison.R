@@ -8,7 +8,7 @@
 plot_depl_fore_comparison <- function(
     model,
     fore_inds = c(1, # Zero catch
-                  2, # 180,000 t catch
+                  2, # 150,000 t catch
                   model$ct_levels_vals$ct_actual_ind,
                   model$ct_levels_vals$ct_tac_ind,
                   model$ct_levels_vals$ct_default_policy_ind),
