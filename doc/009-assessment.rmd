@@ -281,7 +281,7 @@ an area for further discussion. The JTC has researched the internal assumptions 
 Stock Synthesis to help inform the best day of the year, but no investigation can make
 up for the lack of data during the winter spawning season. Additional work is being put
 forward to implement a research effort with Oregon State University and the University
-of Washington to investigate broader assumptions about 'r sp' fecundity.*
+of Washington to investigate broader assumptions about `r sp` fecundity.*
 
 6. **On three occasions since 2009 (2011--12, 2016--17, 2023), stock assessments have
 predicted a rapid increase in biomass similar to that seen in the 2024 assessment, where
@@ -342,7 +342,7 @@ as random effects, to better estimate $\sigma_R$.**
 (e.g., ability to use random effects in the modeling framework) will allow for fruitful
 work on this.  The Fisheries Integrated Modeling System (FIMS) will replace Stock
 Synthesis in the coming years and will have random effects capabilities. The Pacific
-Hake assessment is a primary test case for FIMS, and further versions of the 'r sp'
+Hake assessment is a primary test case for FIMS, and further versions of the `r sp`
 assessment in FIMS are expected at forthcoming SRG meetings.*
 
 *Other frameworks (e.g., Woods Hole Assesment Model, or WHAM, and bespoke models) can
@@ -424,7 +424,7 @@ understanding changes in hake distribution. Some of the other (higher priority) 
 above will help with understanding fundamental mechanisms, which can help to formulate hypotheses
 to inform relevant model structures. These include spatial CPUE modeling, investigating hake
 distribution changes in bottom trawl surveys, correlating hake distribution changes with California
-Current IEA results, and 'r sp' distribution modeling research informed by environmental data.*
+Current IEA results, and `r sp` distribution modeling research informed by environmental data.*
 
 ## Modeling results {#sec:assessment-modeling-results}
 

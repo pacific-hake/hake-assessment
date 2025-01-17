@@ -37,7 +37,7 @@ or species distribution models that provide new age-based (e.g.,
 recruitment or population-wide) or spatial population structure and
 distribution information to the stock assessment.  In particular,
 continue to explore the utility of eDNA-based spatiotemporal biomass indices
-of population abundance. Develop species distributon models for 'r sp'
+of population abundance. Develop species distributon models for `r sp`
 that utilize ecosystem information as drivers of observations across
 spatiotemporal domains. Investigate alternative ways to utilize survey
 age-composition information in the assessment model. Develop estimates of
