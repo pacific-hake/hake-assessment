@@ -544,8 +544,8 @@ harvest rule in `r end_yr`, as to be expected given the dependencies among
 these quantities (Figure~\@ref(fig:app-mcmc-pairs-fig)). An examination of
 deviations in recruitment (log-scale differences between estimated and
 expected recruitment values) from recent years
-(Figure~\@ref(fig:app-mcmc-pairs-recruit-devs-fig)) indicates the highest
-correlation (`r f(base_model$mcmcvals$rec_cor_2014_2016, 2)`)
+(Figures~\@ref(fig:app-mcmc-pairs-fig) and \@ref(fig:app-mcmc-pairs-recruit-devs-fig))
+indicates the highest correlation (`r f(base_model$mcmcvals$rec_cor_2014_2016, 2)`)
 was between the 2014 and 2016 recruitment deviations. This is the same as in
 the last assessment despite the fact that each cohort
 has been observed for an additional year.
@@ -570,11 +570,11 @@ multiplier $\theta_{\text{surv}} / (1 + \theta_{\text{surv}})$ of
 
 The base model fit to the acoustic survey biomass index
 (Figure~\@ref(fig:main-survey-index-fit-mcmc-fig)) remains similar to the
-`r last_assess_yr` base model, up to 2017. The low `r last_survey_yr` survey
+`r last_assess_yr` base model. The low `r last_survey_yr` survey
 biomass pulls down the last few years of estimated biomass, such that the fit
-to the 2019 data point is very good
-(for the `r last_assess_yr` assessment it was overestimated), the 2021 fit is
-underestimated (for the `r last_assess_yr` assessment it was very good).
+to the 2019 data point is very good compared to the 2023 assessment when it
+was overestimated. The 2021 fit remains underestimated but within the range
+of the input standard deviation.
 The median of the posterior distribution for the analytically-derived
 catchability associated with the acoustic survey biomass index (q~b~)
 was `r f(median(base_model$extra_mcmc$q_vector), 3)`
@@ -619,28 +619,24 @@ and 2018
 cohorts were estimated to be less than the index, while the 1994 and 2016
 cohorts were estimated to be larger than indicated by the index. The 2011 value
 (the large 2010 cohort) was closely fit.  Age-1 fish in 2021
-(2020 cohort) were estimated slightly below the index value (in last year's
-assessment they were estimated slightly above) and, being so
-young, include a large amount of uncertainty. The median of the posterior
-distribution for the analytically-derived catchability associated with the
-age-1 index (*q*~1~) was `r f(median(base_model$extra_mcmc$q_vector_age1), 3)`
+(2020 cohort) and in 2023 (2022 cohort) were estimated below the index value.
+The median of the posterior distribution for the analytically-derived catchability
+associated with the age-1 index (*q*~1~) was
+`r f(median(base_model$extra_mcmc$q_vector_age1), 3)`
 (Figure~\@ref(fig:main-catchability-density-age1-fig)).
 
 Fits to the age-composition data continue to show close correspondence to the
 dominant and small cohorts observed in the data when the data give a
 consistent signal (Figures~\@ref(fig:main-age-comp-fits-fishery-fig) and
-\@ref(fig:main-age-comp-fits-survey-fig)). Because of the
-time-varying fishery selectivity, the fit to commercial age-composition data
-is particularly good, although models with time-invariant selectivity used in
-previous years also fit the age compositions well. In the `r last_data_yr`
+\@ref(fig:main-age-comp-fits-survey-fig)). The fit to commercial age-composition
+data is particularly good as a result of the large sample sizes and time-varying
+selectivity parameterization. In the `r last_data_yr`
 fishery, `r top_coh(base_model, last_data_yr, 3, cap = FALSE)`. Age
 compositions from the `r survey_end_yr` acoustic survey suggest a similar age
 structure for older fish.
 
-The 2020 cohort has now been observed by, and is well fit by, the
-acoustic survey (Figure~\@ref(fig:main-age-comp-fits-survey-fig)),
-with the survey's inclusion decreasing its estimated size
-(Figure~\@ref(fig:main-bridge-summary-1-fig)).
+The 2020 cohort is well fit by, the acoustic survey
+(Figure~\@ref(fig:main-age-comp-fits-survey-fig)).
 Combined, the 2015--`r last_data_yr` fishery age-composition
 data and the 2017--`r survey_end_yr` acoustic survey age-composition data
 suggest that 2014 was a strong recruitment year, and the model was able to
@@ -663,10 +659,10 @@ Tables~\@ref(tab:main-est-numbers-at-age-tab)--
 \@ref(tab:main-est-catch-at-age-biomass-tab).
 For the major cohorts, the resulting estimated age-specific catch, natural
 mortality, and surviving biomasses are given in
-Table~\@ref(tab:main-cohort-effects-tab). For example, at age-5 the catch weight of the
-2014 cohort was slightly more than that of the 2010 cohort,
-and the resulting surviving biomass of the 2014 cohort was approximately half
-of the surviving biomass of the 2010 cohort.
+Table~\@ref(tab:main-cohort-effects-tab). For example, at age-4 the catch weight of the
+2016 cohort was slightly more than that of the 2014 cohort,
+and the resulting surviving biomass of the 2016 cohort was approximately one-third
+of the surviving biomass of the 2014 cohort.
 
 Posterior distributions for both steepness and natural mortality are
 influenced by priors (Figures~\@ref(fig:main-prior-posterior-fig)--
@@ -702,9 +698,9 @@ generally higher availability) of the younger cohorts in those years. This
 pattern is consistent with the 2008 cohort appearing strong in the fishery
 age compositions initially, but decreasing in prominence from 2013 onward (Figure~\@ref(fig:main-age-comp-fits-fishery-fig)). Fishery selectivity on
 age-2 fish was at its highest in 2016. Fishery selectivity for
-`r last_data_yr`  was characterised by a local peak at age 3 rather than a
-logistic pattern (Figure~\@ref(fig:main-tv-selex-uncertainty-fig)),
-likely as a result of increased availability of the above-average 2020 cohort.
+`r last_data_yr` was characterised by higher than average for age-1 fish
+followed by a relatively flat pattern from age-2 to age-5 before increasing
+at older ages (Figure~\@ref(fig:main-tv-selex-uncertainty-fig)).
 Even though the survey selectivity is time invariant, the posterior shows a
 broad
 band of uncertainty between ages 2 and 5
