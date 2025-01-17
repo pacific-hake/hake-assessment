@@ -34,7 +34,6 @@ Files are written to the disk inside the following directories:
 \item 13-max-sel-age-'5
 \item 14-max-sel-age-7
 \item 15-max-sel-age-8
-\item 16-zero-sum-constraint
 }
 }
 \description{

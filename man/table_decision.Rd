@@ -10,15 +10,7 @@ table_decision(
   type = c("biomass", "spr"),
   forecast_inds = seq_along(model$forecasts[[length(model$forecasts)]]),
   rows_to_show = NULL,
-  letter_df = tribble(~let, ~row1_text, ~row2_text, "a", "", "", "b", "", "", "c", "",
-    "", "d", "10\\\\\% reduction", "each year", "e", paste0(model$endyr, " catch"), "",
-    "f", "", "", "g", "10\\\\\% reduction", "each year", "h", "", "", "i",
-    "10\\\\\% reduction", "each year", "j", "", "", "k", paste0(model$endyr - 1, " TAC"),
-    "", "l", paste0(model$endyr, " TAC"), "", "m", "Fishing intensity", "at 100\\\\\%",
-    "n", "Default HR", paste0("(", fspr_40_10_for_latex_table, ")"), "o", "Equal catch",
-    paste0("($\\\\mathrm{C}_{", model$endyr + 
-     1, "} \\\\approxeq \\\\mathrm{C}",
-    "_{", model$endyr + 2, "}$)")),
+  inc_fi_stable_catch = FALSE,
   bold_letters = TRUE,
   digits = 2,
   left_col_cm = 1,
@@ -38,15 +30,11 @@ table_decision(
 \item{forecast_inds}{The indices to use in the \code{forecasts} object which
 itself is an object of the \code{model} list}
 
-\item{rows_to_show}{A vector of letters of rows to show. If \code{NULL}, show
-all rows}
+\item{rows_to_show}{A vector of letters of rows to show. If \code{NULL}, show}
 
-\item{letter_df}{A data frame with three columns called \code{let}, \code{row1_text},
-and \code{row2_text} where \code{let} contains the letter shown in the table for
-each row, \code{row1_text} is the first line of text directly beneath the
-letter, and \code{row2_text} is the second line of text directly below the
-first line of text. \code{row1_text} and \code{row2_text} can be empty strings, in
-that case no text will be shown in the cell, only the letter}
+\item{inc_fi_stable_catch}{Logical. If \code{TRUE}, include the two rows of
+forecasts for fishing intensity equal to 100\% and stable catch for the first
+two years}
 
 \item{bold_letters}{Logical. If \code{TRUE}, the letters labelling each row
 will be boldface}
