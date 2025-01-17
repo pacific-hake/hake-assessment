@@ -44,7 +44,7 @@ plot_catchability_density <- function(model,
       as_tibble() |>
       setNames("value")
     if(!is.null(model2)){
-      qvec2 <- model2$extra_mcmc$Q_vector
+      qvec2 <- model2$extra_mcmc$q_vector
       set.seed(69)
       # For testing:
       # qvec2 <- rnorm(1000, 0.8, 0.2)
@@ -57,7 +57,7 @@ plot_catchability_density <- function(model,
       as_tibble() |>
       setNames("value")
     if(!is.null(model2)){
-      qvec2 <- model2$extra_mcmc$Q_vector_age1
+      qvec2 <- model2$extra_mcmc$q_vector_age1
       qmed2 <- median(qvec2)
     }
   }
@@ -70,7 +70,7 @@ plot_catchability_density <- function(model,
                    col = bar_outline_color,
                    bins = num_bins) +
     geom_vline(data = q,
-               aes(xintercept = qmed),
+               aes(xintercept = !!qmed),
                linetype = line_types[1],
                linewidth = line_widths[1] * 1.5,
                color = "white") +
