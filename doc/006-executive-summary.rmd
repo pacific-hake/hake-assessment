@@ -687,6 +687,36 @@ table_decision(
   longtable = TRUE)
 ```
 
+```{r es-decisions-biomass-inc-fi-and-stable-catch-tab, results = "asis", echo = FALSE, eval = FALSE}
+
+table_decision(
+  base_model,
+  type = "biomass",
+  inc_fi_stable_catch = TRUE,
+  forecast_inds =
+    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
+  caption = paste0(
+      "Forecast quantiles of Pacific Hake relative spawning biomass at the ",
+      "beginning of the year. Catch alternatives are defined by letters a-o ",
+      "and are a constant value across all forecasted years unless ",
+      "otherwise defined in the first column. Acronyms are defined in the ",
+      "glossary (Appendix~\\@ref(sec:app-glossary))."),
+  bold_letters = TRUE,
+  digits = 2,
+  # Font values higher than 8 and 11 for table and header respectively
+  # will cause the table to wrap to a second page
+  font_size = 8,
+  header_font_size = 11,
+  # If the font is changed it is almost guaranteed that `left_col_cm` and
+  # `right_cols_cm` will have to be changed, especially if the font is made
+  # larger. You will have to check this with trial-and-error, building the
+  # document, checking the table and adjusting, over and over until it looks
+  # right
+  left_col_cm = 3,
+  right_cols_cm = 1.2,
+  longtable = TRUE)
+```
+
 ```{r es-decisions-spr-tab, results = "asis", echo = FALSE}
 
 table_decision(
@@ -714,6 +744,38 @@ table_decision(
   right_cols_cm = 1.2,
   longtable = TRUE)
 ```
+
+```{r es-decisions-spr-inc-fi-and-stable-catch-tab, results = "asis", echo = FALSE, eval = FALSE}
+
+table_decision(
+  base_model,
+  type = "spr",
+  inc_fi_stable_catch = TRUE,
+  forecast_inds =
+    seq_along(base_model$forecasts[[length(base_model$forecasts)]]),
+  caption = paste0(
+      "Forecast quantiles of Pacific Hake relative fishing intensity ",
+      rel_fishing_intensity_for_latex_table, ", expressed as a proportion. ",
+      "Catch alternatives are defined by letters a-o and are a constant ",
+      "value across all forecasted years unless otherwise defined in the ",
+      "first column. Acronyms are defined in the glossary ",
+      "(Appendix~\\@ref(sec:app-glossary))."),
+  bold_letters = TRUE,
+  digits = 2,
+  # Font values higher than 8 and 11 for table and header respectively
+  # will cause the table to wrap to a second page
+  font_size = 8,
+  header_font_size = 11,
+  # If the font is changed it is almost guaranteed that `left_col_cm` and
+  # `right_cols_cm` will have to be changed, especially if the font is made
+  # larger. You will have to check this with trial-and-error, building the
+  # document, checking the table and adjusting, over and over until it looks
+  # right
+  left_col_cm = 3,
+  right_cols_cm = 1.2,
+  longtable = TRUE)
+```
+
 
 Management metrics that were identified as important to the Joint Management
 Committee and the Advisory Panel in 2012 are presented for

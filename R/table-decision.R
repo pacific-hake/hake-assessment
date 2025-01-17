@@ -5,14 +5,10 @@
 #' @param type One of `biomass` or `spr`
 #' @param forecast_inds The indices to use in the `forecasts` object which
 #' itself is an object of the `model` list
-#' @param letter_df A data frame with three columns called `let`, `row1_text`,
-#' and `row2_text` where `let` contains the letter shown in the table for
-#' each row, `row1_text` is the first line of text directly beneath the
-#' letter, and `row2_text` is the second line of text directly below the
-#' first line of text. `row1_text` and `row2_text` can be empty strings, in
-#' that case no text will be shown in the cell, only the letter
 #' @param rows_to_show A vector of letters of rows to show. If `NULL`, show
-#' all rows
+#' @param inc_fi_stable_catch Logical. If `TRUE`, include the two rows of
+#' forecasts for fishing intensity equal to 100% and stable catch for the first
+#' two years
 #' @param left_col_cm Number of centimeters wide to make the leftmost column.
 #' This needs to be changed when the font size is changed
 #' @param right_cols_cm Number of centimeters wide to make the 3 rightmost
@@ -36,21 +32,7 @@ table_decision <- \(
   type = c("biomass", "spr"),
   forecast_inds = seq_along(model$forecasts[[length(model$forecasts)]]),
   rows_to_show = NULL,
-  letter_df = tribble(
-   ~let,  ~row1_text,                        ~row2_text,
-    "a",  "",                                "",
-    "b",  "",                                "",
-    "c",  "",                                "",
-    "d",  "",                                "",
-    "e",  "",                                "",
-    "f",  "",                                "",
-    "g",  "",                                "",
-    "h",  "",                                "",
-    "i",  "",                                "",
-    "j",  paste0(model$endyr, " TAC"),       "",
-    "k",  "Default HR",                      paste0("(",
-                                                    fspr_40_10_for_latex_table,
-                                                    ")")),
+  inc_fi_stable_catch = FALSE,
   bold_letters = TRUE,
   digits = 2,
   left_col_cm = 1,
@@ -63,6 +45,51 @@ table_decision <- \(
 
   type <- match.arg(type)
 
+  #' `letter_df` A data frame with three columns called `let`, `row1_text`,
+  #' and `row2_text` where `let` contains the letter shown in the table for
+  #' each row, `row1_text` is the first line of text directly beneath the
+  #' letter, and `row2_text` is the second line of text directly below the
+  #' first line of text. `row1_text` and `row2_text` can be empty strings, in
+  #' that case no text will be shown in the cell, only the letter
+  if(inc_fi_stable_catch){
+    letter_df = tribble(
+      ~let,  ~row1_text,                        ~row2_text,
+      "a",  "",                                "",
+      "b",  "",                                "",
+      "c",  "",                                "",
+      "d",  "",                                "",
+      "e",  "",                                "",
+      "f",  "",                                "",
+      "g",  "",                                "",
+      "h",  "",                                "",
+      "i",  "",                                "",
+      "j",  paste0(model$endyr, " TAC"),       "",
+      "k",  "Fishing intensity",               "at 100\\%",
+      "l",  "Default HR",                      paste0("(",
+                                                      fspr_40_10_for_latex_table,
+                                                      ")"),
+      "m",  "Equal catch",                     paste0("($\\mathrm{C}_{",
+                                                      model$endyr + 1,
+                                                      "} \\approxeq \\mathrm{C}",
+                                                      "_{", model$endyr + 2,
+                                                      "}$)"))
+  }else{
+    letter_df = tribble(
+      ~let,  ~row1_text,                        ~row2_text,
+      "a",  "",                                "",
+      "b",  "",                                "",
+      "c",  "",                                "",
+      "d",  "",                                "",
+      "e",  "",                                "",
+      "f",  "",                                "",
+      "g",  "",                                "",
+      "h",  "",                                "",
+      "i",  "",                                "",
+      "j",  paste0(model$endyr, " TAC"),       "",
+      "k",  "Default HR",                      paste0("(",
+                                                      fspr_40_10_for_latex_table,
+                                                      ")"))
+  }
   if(is.null(nrow(letter_df)) || nrow(letter_df) == 0){
     stop("`letter_df` is not a data frame with at least one row")
   }
