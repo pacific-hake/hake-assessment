@@ -31,7 +31,7 @@ ct_levels <- base_model$ct_levels
 # -----------------------------------------------------------------------------
 ct_levels_num <- length(ct_levels)
 ct_actual_ind <- base_model$ct_levels_vals$ct_actual_ind
-ct_tac_ind <- base_model$ct_levels_vals$ct_tac_last_ind
+ct_tac_last_ind <- base_model$ct_levels_vals$ct_tac_last_ind
 ct_tac_ind <- base_model$ct_levels_vals$ct_tac_ind
 ct_spr100_ind <- base_model$ct_levels_vals$ct_spr100_ind
 ct_default_policy_ind <- base_model$ct_levels_vals$ct_default_policy_ind
@@ -395,7 +395,10 @@ prev_bio_upper_last_assess <-
 # Median fishing intensity at Default HR
 fi_at_hcr <- NULL
 if(!is.null(base_model$forecasts)){
-  fi_at_hcr <- f(base_model$forecasts[[assess_yr]]$`14-default-hr`$spr |>
+  fore <- base_model$forecasts[[as.character(assess_yr)]] 
+  nms <- fore |> names()
+  default_hr_nm <- grep("default-hr", nms, value = TRUE)
+  fi_at_hcr <- f(fore[[default_hr_nm]]$spr |>
                    dplyr::filter(yr == assess_yr) |>
                    pull(`50%`), 2)
 }
@@ -654,6 +657,7 @@ if(!is.null(base_model$risks)){
     f(base_model$risks[[1]][ct_default_policy_ind, paste0("Bratio_",
                                                           assess_yr + 1,
                                                           "<0.25")] |> pull())
+  if(length(ct_actual_ind)){
   same_catch_as_last_yr <-
     f(base_model$ct_levels[[ct_actual_ind]][[1]][1], 0)
   same_catch_prob_next_year_below_b40 <-
@@ -664,6 +668,7 @@ if(!is.null(base_model$risks)){
     f(base_model$risks[[2]][ct_actual_ind, paste0("Bratio_",
                                                   assess_yr + 2,
                                                   "<0.40")] |> pull())
+  }
 }
 # ... current biomass being above/below B40%, B25%, and B10% ------------------
 probs_curr_b40 <- base_model$mcmcvals$probs_curr_b40
@@ -1231,7 +1236,10 @@ if(!all(is.na(sens_models[[1]]))){
 }
 
 # Values used in management presentation
-last_yr_catch_fore <- base_model$ct_levels[[ct_actual_ind]][[1]][1]
+last_yr_catch_fore <- NULL
+if(length(ct_actual_ind)){
+  last_yr_catch_fore <- base_model$ct_levels[[ct_actual_ind]][[1]][1]
+}
 ct_col <- paste0("ForeCatch_", forecast_yrs[1])
 ct_col_sym <- sym(ct_col)
 decl_col <- paste0("SSB_", forecast_yrs[2], "<SSB_", forecast_yrs[1])
@@ -1270,23 +1278,25 @@ if(!is.null(base_model$risks)){
     slice(2) |>
     pull(!!decl_col_sym) |>
     f()
-  prob_below_b40_yr1_last_yr_catch <- base_model$risks[[1]] |>
-    as_tibble() |>
-    dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
-    pull(!!below40_col) |>
-    f()
+  if(!is.null(last_yr_catch_fore)){
+    prob_below_b40_yr1_last_yr_catch <- base_model$risks[[1]] |>
+      as_tibble() |>
+      dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
+      pull(!!below40_col) |>
+      f()
+    # Probability of decline if the catch this coming year is the same as last
+    # year's catch
+    prob_decl_last_yr_catch <- base_model$risks[[1]] |>
+      as_tibble() |>
+      dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
+      pull(!!decl_col_sym) |>
+      f()
+  }
   prob_all_catch_greater <- base_model$risks[[1]] |>
     as_tibble() |>
     dplyr::filter(!!ct_col_sym > 0.01) |>
     pull(!!decl_col_sym) |>
     min() |>
-    f()
-  # Probability of decline if the catch this coming year is the same as last
-  # year's catch
-  prob_decl_last_yr_catch <- base_model$risks[[1]] |>
-    as_tibble() |>
-    dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
-    pull(!!decl_col_sym) |>
     f()
 }
 
@@ -1326,11 +1336,13 @@ if(!is.null(base_model$risks)){
     slice(2) |>
     pull(!!decl_col_sym) |>
     f()
-  prob_below_b40_yr2_last_yr_catch <- base_model$risks[[2]] |>
-    as_tibble() |>
-    dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
-    pull(!!below40_col) |>
-    f()
+  if(!is.null(last_yr_catch_fore)){
+    prob_below_b40_yr2_last_yr_catch <- base_model$risks[[2]] |>
+      as_tibble() |>
+      dplyr::filter(!!ct_col_sym == last_yr_catch_fore) |>
+      pull(!!below40_col) |>
+      f()
+  }
 }
 
 ct_col <- paste0("ForeCatch_", forecast_yrs[3])
