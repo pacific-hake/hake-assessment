@@ -61,6 +61,19 @@ plot_priors_vs_posts <- function(model,
   # This line is necessary to make `ggplot2::label_parsed()` work properly.
   # If you leave it out, all labels will be `NA`
   names(titles) <- levels(posts_long$param)
+  names(titles) <- gsub(" +", "~", names(titles))
+  posts_long <- posts_long |>
+    mutate(param = as.character(param)) |>
+    mutate(param = gsub(" +", "~", param)) |>
+    mutate(param = factor(param, levels = titles))
+  priors_long <- priors_long |>
+    mutate(param = as.character(param)) |>
+    mutate(param = gsub(" +", "~", param)) |>
+    mutate(param = factor(param, levels = titles))
+  priors_init <- priors_init |>
+    mutate(param = as.character(param)) |>
+    mutate(param = gsub(" +", "~", param)) |>
+    mutate(param = factor(param, levels = titles))
 
   g <- ggplot() +
     geom_histogram(data = posts_long,
@@ -90,6 +103,12 @@ plot_priors_vs_posts <- function(model,
                col = initial_value_color,
                pch = 17,
                size = 4) +
+    # facet_wrap(~param,
+    #            scales = "free") +
+    # facet_wrap(~param,
+    #            scales = "free",
+    #            labeller = labeller(param = my_label_parsed),
+    #            ...) +
     facet_wrap(~param,
                scales = "free",
                labeller = labeller(param = titles,
