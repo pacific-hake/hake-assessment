@@ -1,4 +1,4 @@
-# To add a new year, run calc_retro_stats(base_model) each year (while currently in the year you want to add)
+# To add a new year, run calc_retro_stats (base_model) each year (while currently in the year you want to add)
 Assessment_Year,Terminal_SSB_med,Terminal_SSB_5,Terminal_SSB_95,First_Quartile,Third_Quartile,InterQuartileRange,QuartileCoeffDispersion
 2012,616,169,2228,403,968.6,565.6,0.412365121
 2013,1504,709,3676,1150.5,2009.5,859,0.271835443
@@ -13,3 +13,4 @@ Assessment_Year,Terminal_SSB_med,Terminal_SSB_5,Terminal_SSB_95,First_Quartile,T
 2022,1171.2,583.6,2584.7,919.3,1512.5,593.2,0.243934534
 2023,1909.6,757,5609.8,1399.3,2678.7,1279.4,0.313732222
 2024,1405.1,637.2,3421.8,1070.4,1884.3,813.9,0.275459438
+2025,1736.5,757.6,4150.1,1290.7,2331.3,1040.6,0.287299834
