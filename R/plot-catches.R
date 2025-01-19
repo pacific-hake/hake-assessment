@@ -149,14 +149,16 @@ plot_catches <- function(ct,
                       ymin = ylim[2],
                       ymax = ylim[2] + clip_cover)
 
-  legend <- get_legend(
+  legend <- get_plot_component(
     g + guides(fill = guide_legend(nrow = 4)) +
       theme(legend.position = "top",
             legend.direction = "vertical",
             legend.title = element_blank(),
             legend.text.align = 0,
             legend.text = element_text(size = leg_font_size),
-            legend.key.size = unit(leg_key_size, "cm")))
+            legend.key.size = unit(leg_key_size, "cm")),
+    pattern = "guide-box-top",
+    return_all = TRUE)
 
   p <- plot_grid(legend,
                  g,
