@@ -762,65 +762,68 @@ The median estimate of the `r end_yr` female spawning biomass is
 `r curr_bio_median` million~t (with a 95% posterior credibility interval from
 `r curr_bio_lower` to `r curr_bio_upper` million~t). The current estimate of
 the `r end_yr - 1` female spawning biomass is `r prev_bio_median`
-(`r prev_bio_lower`--`r prev_bio_upper`) million~t, giving about the same level of
+(`r prev_bio_lower`--`r prev_bio_upper`) million~t, giving a slightly narrower range of
 uncertainty as the estimate from the `r end_yr - 1` assessment of `r prev_bio_median_last_assess`
-(`r prev_bio_lower_last_assess`--`r prev_bio_upper_last_assess`) million~t. The current median is reduced from last
-year, partly due to the tail of the distribution being greatly curtailed
-(upper end of the interval is much lower than it was in the `r end_yr - 1`
-assessment), and a slight lowering of the lower end of the interval.
-The decrease appears to be due to the addition of the age-2$+$ biomass index
-pulling down the estimated biomass for recent years, plus the addition of the
-survey age compositions lowering the estimated 2020 recruitment
-(Figure~\@ref(fig:main-bridge-summary-1-fig)).
+(`r prev_bio_lower_last_assess`--`r prev_bio_upper_last_assess`) million~t. The current
+median is reduced from last year, partly due to the influence of the age-2$+$ biomass index
+pulling down the estimated biomass for recent years, the reduction in the estimate of
+the 2022 year class with updated data, and the setting of the 2023 year class using only
+the stock-recruitment relationship (i.e., no estimated recruitment deviate; Figure~\@ref(fig:main-bridge-summary-1-fig)).
 
 **Recruitment**
 
 The new data for this assessment do not significantly change the general pattern of
 recruitment estimated in recent assessments. However, estimates of absolute
-recruitment for the most recent years can change with new data, and the improved
-methods for modeling temporal weight-at-age and spatio-temporal maturity can
-slightly change some historical estimated recruitments.
+recruitment for the most recent years can change with new data and updated
+assumptions about recent recruitments.  In particular, the 2023 and 2024 year classes
+were set based solely on the stock--recruitment relationship for this assessment, such that
+no recruitment deviations were estimated for these years.  While this is standard for the
+most recent data year (2024), the quantity of available data determines whether it is the case
+for the year previous (2023). The only information on the size of the 2023 cohort
+(age-1 fish in 2024) in this assessment comes from the age composition of fishery catches.
+The catch of age-1 fish was particularly high in 2024, potentially due to the unique
+seasonal fishing conditions during the year (see Section appendix) and the relative
+loss of older age classes in the population. Thus, this data point was considered
+suspect as a standalone observation (i.e., without the addition of survey information).
+By restricting 2023 recruitment to the stock--recruitment relationship, the assessment model
+was not allowed to predict a very high 2023 year class based solely on the age-1
+catch in the fishery. Another year of data, particuarlly form the age-2$+$ acoustic--trawl
+survey in 2025 will provide additional information on the size of the 2023 year class.  
 
-The estimate of 2020 recruitment in last year's assessment was based on only two
-years of data and thus was highly uncertain; it suggested the cohort could
-potentially be huge (95% credible interval:
-`r f(last_yr_base_model$mcmccalcs$rlower["2020"], 1)`--
-`r f(last_yr_base_model$mcmccalcs$rupper["2020"], 1)`~billion fish).
-But with the extra data in this year's assessment the 2020 cohort looks to be
-above average but not huge (95% interval:
-`r f(base_model$mcmccalcs$rlower["2020"], 1)`--
-`r f(base_model$mcmccalcs$rupper["2020"], 1)`~billion fish).
-The median has consequently fallen from
-`r f(last_yr_base_model$mcmccalcs$rmed["2020"], 1)` to
-`r f(base_model$mcmccalcs$rmed["2020"], 1)`~billion fish between the two assessments.
-
-Similarly, median estimates of 2019 recruitment have changed by
-`r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2019"]) /
-(prev_assess_recruitment_med)["2019"]) * 100), 0)`%
-(which is only `r f(-(recruitment_med_to_compare - prev_assess_recruitment_med)["2019"], 1)`
-~billion fish because 2019 was already estimated to be a small year class).
-
-The 2021 recruitment is now estimated to be potentially large, whereas
-it was estimated to be below average in last year's assessment (for which the
-only information was the proportions of age-1 fish caught in the 2022 commercial
-fishery).
+The 2021 recruitment is estimated to be well above average
+(though highly uncertain), with the absolute size being similar to the
+2014 year class (current estimate is `r recruitment_med_in_2021`, with
+a 95% credible interval of `r recruitment_lower_in_2021`--
+`r recruitment_upper_in_2021`~billion fish. Last year's assessment
+also indicated a large 2021 year class, so the
+addition of `r last_assess_yr` data did not appreciably change this estimate.
 The 95% credible interval in the `r end_yr - 1` assessment was
 `r f(last_yr_base_model$mcmccalcs$rlower["2021"], 2)`--
-`r f(last_yr_base_model$mcmccalcs$rupper["2021"], 2)`~billion fish),
-expanding in the current assessment to
+`r f(last_yr_base_model$mcmccalcs$rupper["2021"], 2)`~billion fish,
+slightly reduced in the current assessment to
 `r f(base_model$mcmccalcs$rlower["2021"], 1)`--
-`r f(base_model$mcmccalcs$rupper["2021"], 1)`~billion fish). Consequently,
-the median has increased by
+`r f(base_model$mcmccalcs$rupper["2021"], 1)`~billion fish.
+The median has changed by
 `r f(((((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]) /
 (prev_assess_recruitment_med)["2021"]) * 100), 0)`%
 (`r f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]), 1)`
 ~billion fish).
 The general notion remains that recent
 recruitment is highly uncertain, and estimates for recent years (based on
-limited data) can change substantially.
+limited data) can change with more data.
 
+The median estimate of 2020 recruitment continues to be estimated as above average,
+though has declined slightly compared to the median estimate from last year's assessment
+(`r f(base_model$mcmccalcs$rmed["2020"], 1)`~billion fish compared to
+`r f(last_yr_base_model$mcmccalcs$rmed["2020"], 1)`~billion fish, respectively).
+The addition of 2024 fishery data had little affect reducing the uncertainty associated
+with the size of this cohort (95% interval:
+`r f(base_model$mcmccalcs$rlower["2020"], 1)`--
+`r f(base_model$mcmccalcs$rupper["2020"], 1)`~billion fish compared to last year's
+model with `r f(last_yr_base_model$mcmccalcs$rlower["2020"], 1)`--
+`r f(last_yr_base_model$mcmccalcs$rupper["2020"], 1)`~billion fish).
 
-`r sp` have low average recruitment with occasional large year classes
+In general, `r sp` have low average recruitment with occasional large year classes
 (Figures~\@ref(fig:main-recruitment-fig) and
 \@ref(fig:main-recruitment-devs-fig),
 Tables~\@ref(tab:main-median-posterior-tab) and
@@ -829,47 +832,41 @@ and 1999 supported much of the commercial catch from the 1980s to the
 mid-2000s. From 2000 to 2007, estimated recruitment was at some of the
 lowest values in the time series, but this was followed by an above average
 2008 year class and a very strong 2010 year class. Above average year classes
-occurred in 2014 and 2016, which have been sustaining the fishery in recent
-years (Figure~\@ref(fig:main-age-comp-fits-fishery-fig)).
-
+have occurred since then in 2014, 2016 and 2021, which have been sustaining the
+fishery over the last decade (Figure~\@ref(fig:main-age-comp-fits-fishery-fig)).
 The current assessment estimates a strong 2014 year class
 (Figure~\@ref(fig:main-numbers-at-age-fig)) comprising
 `r top_coh(base_model, 2016, ret_cohort = 2014)`% of the 2016 catch,
-`r top_coh(base_model, 2017, ret_cohort = 2014)`% of the 2017 catch,
+`r top_coh(base_model, 2017, ret_cohort = 2014)[[2]]`% of the 2017 catch,
 `r top_coh(base_model, 2018, ret_cohort = 2014)`% of the 2018 catch,
-`r top_coh(base_model, 2019, ret_cohort = 2014)`% of the 2019 catch,
+`r top_coh(base_model, 2019, ret_cohort = 2014)[[2]]`% of the 2019 catch,
 `r top_coh(base_model, 2020, ret_cohort = 2014)`% of the 2020 catch,
-`r top_coh(base_model, 2021, ret_cohort = 2014)`% of the 2021 catch,
-`r top_coh(base_model, 2022, ret_cohort = 2014)`% of the 2022 catch, and
-`r top_coh(base_model, 2023, ret_cohort = 2014)`% of the 2023 catch.
-
-The 2016 cohort also appears to be strong, comprising
+`r top_coh(base_model, 2021, ret_cohort = 2014)[[2]]`% of the 2021 catch,
+`r top_coh(base_model, 2022, ret_cohort = 2014)`% of the 2022 catch,
+`r top_coh(base_model, 2023, ret_cohort = 2014)[[2]]`% of the 2023 catch, and
+`r top_coh(base_model, 2024, ret_cohort = 2014)`% of the 2024 catch.
+The strong 2016 cohort comprises
 `r top_coh(base_model, 2018, ret_cohort = 2016)`% of the 2018 catch,
-`r top_coh(base_model, 2019, ret_cohort = 2016)`% of the 2019 catch,
+`r top_coh(base_model, 2019, ret_cohort = 2016)[[2]]`% of the 2019 catch,
 `r top_coh(base_model, 2020, ret_cohort = 2016)`% of the 2020 catch,
-`r top_coh(base_model, 2021, ret_cohort = 2016)`% of the 2021 catch,
-`r top_coh(base_model, 2022, ret_cohort = 2016)`% of the 2022 catch, and
-`r top_coh(base_model, 2023, ret_cohort = 2016)`% of the 2023 catch.
+`r top_coh(base_model, 2021, ret_cohort = 2016)[[2]]`% of the 2021 catch,
+`r top_coh(base_model, 2022, ret_cohort = 2016)`% of the 2022 catch,
+`r top_coh(base_model, 2023, ret_cohort = 2016)[[2]]`% of the 2023 catch, and
+`r top_coh(base_model, 2024, ret_cohort = 2016)`% of the 2024 catch.
+The strong 2021 cohort comprises
+`r top_coh(base_model, 2023, ret_cohort = 2021)[[2]]`% of the 2023 catch, and
+`r top_coh(base_model, 2024, ret_cohort = 2021)`% of the 2024 catch.
 
-The large size of the 2014 and 2016 cohorts is informed by
+The large size of the 2014, 2016, and 2021 cohorts is informed by
 observations from several years of fishery data and the acoustic survey.
-For all other years from 2011 to 2019, the model currently estimates small year classes
+For all other years from 2011 to 2022, the model currently estimates small year classes
 <!-- see: yrs_since_2010_recruitment_med_below_mean -->
 (median recruitment below the mean of all median
-recruitments).
-As noted above, the 2020 cohort is estimated to be somewhat smaller than
-in last year's assessment (though last year's estimate was highly uncertain),
-due to the introduction of new information from the 2023 age-2$+$ biomass index and
-survey age-composition data (Figure~\@ref(fig:main-bridge-summary-1-fig)).
-The 2021 cohort strength is only informed by fishery data and the 2023 biomass
-survey, and is estimated to be potentially large with a median and 95% credible
-interval of `r recruitment_med_in_2021` (`r recruitment_lower_in_2021`--
-`r recruitment_upper_in_2021`)~billion fish.
-
-The 2022 cohort was observed by the age-1 index in 2023,
-suggesting it is average to below average (Figures~\@ref(fig:main-survey-age1-fig)
-and~\@ref(fig:main-recruitment-fig)), and it
-will not be observed as part of the age-2$+$ survey index until 2025. There is no information in the data to estimate the
+recruitments), except for 2020 as previously mentioned. The 2022 cohort was observed
+by the age-1 index in 2023 and in recent years by the fishery.  To date, this infomration
+suggests that it is well below average (Figures~\@ref(fig:main-survey-age1-fig)
+and~\@ref(fig:main-recruitment-fig)). It will be observed as part of the age-2$+$
+survey index for the first time in 2025. There is no information in the data to estimate the
 sizes of the `r end_yr-1` and `r end_yr` year classes. Retrospective analyses
 of year class strength for young fish have shown the estimates of recent
 recruitment to be unreliable prior to at least model age-3 (observed at age-2
@@ -891,13 +888,13 @@ only the 1980 recruitment is probably larger than 2010 (median
 relative values $>1$), and the 1984
 recruitment has a small chance of being as large as 2010.
 Whereas Figure~\@ref(fig:main-recruitment-fig) suggests that 1967, 1973, 1977,
-1999, 2014, and 2020 could also possibly be larger than in 2010, giving an
+1999, 2014, and 2021 could also possibly be larger than in 2010, giving an
 over-optimistic impression of how often we can expect cohorts the size of
 the 2010 cohort to occur. The 2021 cohort is still very uncertain but has a
 small chance of exceeding the 2010 cohort
 (Figure~\@ref(fig:main-recruitment-scale-all-fig)). Participants in the `r sp`
-process have an intuition that the 2010 is a very large recruitment event
--- Figure~\@ref(fig:main-recruitment-scale-all-fig) shows how it is the largest in
+process have an intuition that the 2010 is a very large recruitment event. As a result,
+Figure~\@ref(fig:main-recruitment-scale-all-fig) shows how it is the largest in
 the last 30~years, and that such large cohorts are rarer than is inferred
 from Figure~\@ref(fig:main-recruitment-fig).
 
