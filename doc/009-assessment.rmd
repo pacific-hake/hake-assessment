@@ -943,11 +943,14 @@ utilization rate (i.e., proportion of catch target removed) has been
 `r tot_last_10_yrs_attainment`% and catches have been below coast-wide
 targets (Table~\@ref(tab:main-landings-tac-tab)). From `r end_yr - 5` to
 `r end_yr - 1`, the mean utilization rates differed between the United States
-(`r us_last_5_yrs_attainment`%) and Canada (`r can_last_5_yrs_attainment`%),
-though Canada's rate was higher than the U.S.'s in 2020.
-In 2015, the utilization rate for the coast-wide fishery was the lowest of
-the previous decade (`r tot_2015_attainment`%) due, in part, to difficulties
-locating aggregations of fish and possibly economic reasons. Before 2015,
+(`r us_last_5_yrs_attainment`%) and Canada (`r can_last_5_yrs_attainment`%). While
+Canada's rate was higher than the U.S.'s in 2020, it has dropped considerably
+over the past few years to historic lows.
+The utilization rate for the coast-wide fishery this year was the lowest of
+the previous decade (`r tot_2024_attainment`%) due, in part, to difficulties
+locating aggregations of fish during the Spring and throughout the year in northern
+areas. Prior to 2024, the previous low was in 2015 at `r tot_2015_attainment`%
+coast-wide attainment. Before 2015,
 the under-utilization in the United States was mostly a result of unrealized
 catch in the tribal apportionment, while reports from stakeholders in Canada
 suggested that hake were less aggregated in Canada and availability had
@@ -960,27 +963,27 @@ relatively steady,
 it decreased to
 `r tot_penult_yr_attainment`% in `r last_data_yr - 1` and to
 `r tot_last_yr_attainment`% in `r last_data_yr`. This is due to the utilization rate in
-Canada steadily declining since 2020 to a time-series low of 16.5% in 2023, and
-also a fall in the U.S. utilization rate to 59.7% in 2023.
+Canada steadily declining since 2020 to the time-series low in 2024, and
+also a fall in the U.S. utilization rate to 40.7% in 2024.
 Country-specific quotas (or catch targets) in 2020 and 2021 were specified
 unilaterally, due to the lack of an agreement on coast-wide 2020 and 2021
 TACs. The usual `r us_allotment_percent`% and `r can_allotment_percent`%
 allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
-Agreement for `r sp`, was once again implemented in 2022 and 2023.
+Agreement for `r sp`, was once again implemented since 2022.
 Total landings last exceeded the coast-wide quota in 2002 when utilization
 was 112%.
 
 As noted above, the median relative fishing intensity was below 100% (i.e.
 median fishing intensity below `r fspr_40`)
-in all years. The median relative spawning biomass was above 40% (the `r b_40`
-reference point) in all years except 2007--2011
+`r median_intensity_above_1_text`. The median relative spawning biomass
+was above 40% (the `r b_40` reference point) in all years except 2007--2011
 (Table~\@ref(tab:main-median-posterior-tab) and
 Figure~\@ref(fig:main-relative-biomass-fig)).
 These are also shown on a phase plot of the joint history of relative
 spawning biomass and relative fishing intensity
 (Figure~\@ref(fig:main-phase-fig)). Relative spawning biomass increased from
-the lows in 2007--2012 with above average recruitment in 2008, 2010, 2014,
-2016, and 2020. Correspondingly, median relative fishing intensity has
+the lows in 2007--2011 with above average recruitment in 2008, 2010, 2014,
+2016, and 2021. Correspondingly, median relative fishing intensity has
 remained below 100%, and total catch has been declining since the
 time series high in 2017. While there is large uncertainty in the `r end_yr-1`
 estimates of relative fishing intensity and relative spawning biomass,

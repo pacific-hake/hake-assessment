@@ -95,6 +95,11 @@ tot_2015_attainment <- ct |>
   pull(`tot_attain`) |>
   mean() |>
   f(1)
+tot_2024_attainment <- ct |>
+  dplyr::filter(Year == 2024) |>
+  pull(`tot_attain`) |>
+  mean() |>
+  f(1)
 tot_9192_attainment <- ct |>
   dplyr::filter(Year %in% 1991:1992) |>
   pull(`tot_attain`) |>
