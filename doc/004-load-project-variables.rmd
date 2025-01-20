@@ -510,7 +510,7 @@ median_intensity_2007_to_2011 <- median_intensity[c("2007", "2008", "2009", "201
 median_intensity_2007_to_2011_min <- f(min(median_intensity_2007_to_2011) * 100, 0)
 median_intensity_2007_to_2011_max <- f(max(median_intensity_2007_to_2011) * 100, 0)
 # Includes > end_yr
-median_intensity_above_one_all_yrs <- names(which(mc$pmed > 1))
+median_intensity_above_one_all_yrs <- names(which(mc$pmed[1:(last_assess_yr-start_yr+1)] > 1))
 median_intensity_above_one_yrs <- median_intensity_above_one_all_yrs[
   median_intensity_above_one_all_yrs < end_yr]
 median_intensity_above_1_text <- paste(
@@ -536,6 +536,7 @@ median_intensity_2020 <- f(mc$pmed["2020"] * 100, 1)
 median_intensity_2021 <- f(mc$pmed["2021"] * 100, 1)
 median_intensity_2022 <- f(mc$pmed["2022"] * 100, 1)
 median_intensity_2023 <- f(mc$pmed["2023"] * 100, 1)
+median_intensity_2024 <- f(mc$pmed["2024"] * 100, 1)
 median_intensity_penult_yr <- f(mc$pmed[as.character(end_yr - 1)] * 100, 1)
 median_relative_bio <- mc$dmed
 # Remove extra non-year columns to avoid warnings below
@@ -867,6 +868,7 @@ exploitation_med_2019 <- f(mc$fmed["2019"],2)
 exploitation_med_2020 <- f(mc$fmed["2020"],2)
 exploitation_med_2021 <- f(mc$fmed["2021"],2)
 exploitation_med_2023 <- f(mc$fmed["2023"],2)
+exploitation_med_2024 <- f(mc$fmed["2024"],2)
 exploitation_med_penult_yr <- f(mc$fmed[as.character(last_data_yr)], 2)
 
 # Priors settings from the control file ---------------------------------------
