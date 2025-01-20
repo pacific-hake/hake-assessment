@@ -45,12 +45,12 @@ table_decision <- \(
 
   type <- match.arg(type)
 
-  #' `letter_df` A data frame with three columns called `let`, `row1_text`,
-  #' and `row2_text` where `let` contains the letter shown in the table for
-  #' each row, `row1_text` is the first line of text directly beneath the
-  #' letter, and `row2_text` is the second line of text directly below the
-  #' first line of text. `row1_text` and `row2_text` can be empty strings, in
-  #' that case no text will be shown in the cell, only the letter
+  # `letter_df` A data frame with three columns called `let`, `row1_text`,
+  # and `row2_text` where `let` contains the letter shown in the table for
+  # each row, `row1_text` is the first line of text directly beneath the
+  # letter, and `row2_text` is the second line of text directly below the
+  # first line of text. `row1_text` and `row2_text` can be empty strings, in
+  # that case no text will be shown in the cell, only the letter
   if(inc_fi_stable_catch){
     letter_df = tribble(
       ~let,  ~row1_text,                        ~row2_text,
