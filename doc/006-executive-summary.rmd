@@ -55,7 +55,7 @@ the coast-wide catch has been declining annually through `r end_yr - 1` to
 `r last_yr_landings`~t out of a total allowable catch (TAC, adjusted for
 carryovers) of `r last_yr_tac`~t. Attainment in the U.S. was
 `r last_yr_us_attained`% of its quota and in Canada it was
-`r last_yr_can_attained`%.
+`r last_yr_can_attained`% in `r assess_yr - 1`.
 
 
 ```{r es-catches-tab, results = "asis", echo = FALSE}
@@ -84,9 +84,9 @@ but have been declining over that period (especially in Canada). Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
 1999 year class, with a cumulative removal (through `r end_yr - 1`) from
 that cohort of
-`r f(cohort_catch_1999 / 1e6, 2)` Mt [1~Mt = 1~megatonne = 1~million metric
-tonnes]. Through `r last_data_yr`, the
-cumulative catches of the 2010, 2014, and 2016 year classes were
+`r f(cohort_catch_1999 / 1e6, 2)` Mt [1~Mt = 1~million metric tonnes].
+Through `r last_data_yr`, the cumulative catches of the 2010, 2014, and 2016
+year classes were
 `r f(cohort_catch_2010 / 1e6, 2)` Mt,
 `r f(cohort_catch_2014 / 1e6, 2)` Mt, and
 `r f(cohort_catch_2016 / 1e6, 2)` Mt, respectively. In the
@@ -103,8 +103,9 @@ fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`), and
 mean weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011
 the survey biomass index was the lowest in the time series and was followed
 by the index increasing in 2012, 2013, and again in 2015 before decreasing to
-near the time series average in 2017. The survey shows a decline from 2019
-(the fourth highest of the series) to 2023 (the third lowest of the series).
+near the time series average in 2017. The survey
+(Figure~\@ref(es-survey-biomass-fig)) shows a decline from 2019 (the fourth
+highest of the series) to 2023 (the third lowest of the series).
 Age-composition data from the aggregated fisheries and the acoustic survey,
 along with the age-1 index, provide data that facilitates estimating relative
 cohort strength, i.e., strong and weak cohorts. The age-1 index suggests
@@ -231,9 +232,9 @@ though not as large as the 1999 and 2010 year classes, increasing the biomass
 in 2017.
 The estimated biomass mostly declined
 from 2018 to 2022 due to the 2014 and 2016 year classes moving through the
-growth-mortality transition during a period of high catches. The increase in
-female spawning biomass in 2023 and 2024 is due to the expected above-average 2020 and
-potentially large 2021 cohorts entering maturity and the recent declining trend in catch.
+growth-mortality transition during a period of high catches. The increases in
+female spawning biomass from 2023--2025 are due to the expected above-average
+2021 cohort entering maturity and the recent declining trend in catch.
 
 The median estimate of the `r end_yr` relative spawning biomass (spawning
 biomass at the start of `r end_yr` divided by that at unfished equilibrium,
