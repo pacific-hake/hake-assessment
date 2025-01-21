@@ -653,6 +653,9 @@ intensity of `r fi_at_hcr` (Table~\@ref(tab:es-decisions-spr-tab)).
 
 ```{r es-decisions-biomass-tab, results = "asis", echo = FALSE}
 
+let <- letters[seq_along(base_model$forecasts[[length(base_model$forecasts)]])]
+last_let <- let[length(let)]
+
 table_decision(
   base_model,
   type = "biomass",
@@ -661,8 +664,8 @@ table_decision(
   inc_fi_stable_catch = length(base_model$forecasts[[1]]) == 13,
   caption = paste0(
       "Forecast quantiles of Pacific Hake relative spawning biomass at the ",
-      "beginning of the year. Catch alternatives are defined by letters a-o ",
-      "and are a constant value across all forecasted years unless ",
+      "beginning of the year. Catch alternatives are defined by letters a-",
+      last_let, " and are a constant value across all forecasted years unless ",
       "otherwise defined in the first column. Acronyms are defined in the ",
       "glossary (Appendix~\\@ref(sec:app-glossary))."),
   bold_letters = TRUE,
@@ -692,7 +695,7 @@ table_decision(
   caption = paste0(
       "Forecast quantiles of Pacific Hake relative fishing intensity ",
       rel_fishing_intensity_for_latex_table, ", expressed as a proportion. ",
-      "Catch alternatives are defined by letters a-o and are a constant ",
+      "Catch alternatives are defined by letters a-", last_let, " and are a constant ",
       "value across all forecasted years unless otherwise defined in the ",
       "first column. Acronyms are defined in the glossary ",
       "(Appendix~\\@ref(sec:app-glossary))."),
