@@ -47,6 +47,7 @@ exist, bailing out." ; exit 1; }
   setwd('$repo_path'); \
   suppressPackageStartupMessages(devtools::load_all()); \
   create_rds_attach_forecasts(model_path = '$model_path', \
-                              verbose = TRUE)"; \
+                              verbose = TRUE,
+                              inc_fi_and_stable_catch = FALSE)"; \
   printf "\nFinished attaching forecasts to base model RDS file\n"; \
 )
