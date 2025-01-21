@@ -2,6 +2,8 @@
 #' the catch levels and extra information used for the assessment document
 #'
 #' @param fn The name of the file containing the forecast description data
+#' @param inc_fi_and_stable_catch Logical. If `TRUE`, include the Fishing
+#' intensity = 100% and the Stable Catch scenarios
 #'
 #' @return A list of 2 lists:
 #' List 1 is a list of lists of length-3 vectors. Each list represents a catch
@@ -13,7 +15,8 @@
 #' Be sure to update this each year if forecasts are added and/or removed
 #'
 #' @export
-set_ct_levels <- function(fn = here(doc_path, forecast_descriptions_fn)){
+set_ct_levels <- function(fn = here(doc_path, forecast_descriptions_fn),
+                          inc_fi_and_stable_catch = FALSE){
 
   ret <- list()
 
@@ -21,6 +24,14 @@ set_ct_levels <- function(fn = here(doc_path, forecast_descriptions_fn)){
   # TODO: Check this again and remove data.table dependency if possible
   ct_levels <- fread(fn) |>
     as_tibble()
+
+  if(!inc_fi_and_stable_catch){
+    # Descriptions of the catch streams
+    inds <- grep("FI|Stable", ct_levels$description)
+    if(length(inds)){
+      ct_levels <- ct_levels[-inds, ]
+    }
+  }
 
   # Columns with forecast catch
   ct_inds <- grep("^catch_year[0-9]+$", names(ct_levels))

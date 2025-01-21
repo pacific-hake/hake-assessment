@@ -10,6 +10,8 @@
 #' files are populated with 3 forecast years.
 #'
 #' @param model_path The model directory name
+#' @param inc_fi_and_stable_catch Logical. If `TRUE`, include the Fishing
+#' intensity = 100% and the Stable Catch scenarios
 #' @param ... Absorbs arguments intended for other functions
 #'
 #' @return A list of 3-element lists of vectors of 3 catch levels
@@ -25,25 +27,37 @@
 #'
 #' @export
 load_ct_levels <- function(model_path,
+                           inc_fi_and_stable_catch = FALSE,
                            ...){
 
-  if(!check_catch_levels(model_path, ...)){
+  if(!check_catch_levels(model_path,
+                         inc_fi_and_stable_catch = inc_fi_and_stable_catch,
+                         ...)){
     stop("The catch levels do not appear to have been run, have been run ",
          "incorrectly, or only been run partially. Re-run using ",
          "`run_catch_levels` before trying to attach forecasting")
   }
 
-  ct_levels_lst <- set_ct_levels()
 
+  #ct_levels_lst <- set_ct_levels(inc_fi_and_stable_catch = inc_fi_and_stable_catch)
+  ct_levels_lst <- set_ct_levels(inc_fi_and_stable_catch = inc_fi_and_stable_catch)
+
+  variable_stream_nms <- ordered_decision_table_paths
+  if(!inc_fi_and_stable_catch){
+    fi_and_stable_catch_inds <- grep("spr|stable", ordered_decision_table_paths)
+    if(length(fi_and_stable_catch_inds)){
+      variable_stream_nms <- variable_stream_nms[-fi_and_stable_catch_inds]
+    }
+  }
   ct_levels_fullpath <- file.path(model_path, ct_levels_path)
   drs <- list.files(ct_levels_fullpath)
-  if(!all(map_lgl(drs, ~{.x %in% ordered_decision_table_paths}))){
-    stop("Not all of the calculated catch stream directories exist:\n\n",
-         paste(ordered_decision_table_paths, collapse = "\n"), "\n",
+  if(!any(map_lgl(drs, ~{.x %in% variable_stream_nms}))){
+    stop("None of the calculated catch stream directories exist:\n\n",
+         paste(variable_stream_nms, collapse = "\n"), "\n",
          "The directories you have are:\n\n",
          paste(drs, collapse = "\n"), "\n\n")
   }
-  drs <- ordered_decision_table_paths
+  drs <- variable_stream_nms
   fore_fns <- file.path(ct_levels_fullpath, drs, forecast_fn)
   message("\nLoading catch levels from ", ct_levels_fullpath)
 
@@ -74,6 +88,7 @@ load_ct_levels <- function(model_path,
 
   # First, find the indices of the custom catch levels within the catch levels
   # list
+  browser()
   ct_dirnames <- ct_levels |> map_chr(~{.x[[3]]})
   ct_inds <- map_dbl(drs, ~{
     grep(.x, ct_dirnames)

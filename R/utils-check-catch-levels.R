@@ -25,7 +25,7 @@ check_catch_levels <- function(model_path = NULL,
     return(FALSE)
   }
 
-  lvls <- set_ct_levels()
+  lvls <- set_ct_levels(...)
   dir_nms <- map_chr(lvls$ct_levels, ~{.x[[3]]})
   dir_nms <- gsub("[0-9]+-(.*)", "\\1", dir_nms)
   dir_nms <- dir_nms[grep("[a-zA-Z]+", dir_nms)]
@@ -55,7 +55,7 @@ check_catch_levels <- function(model_path = NULL,
   })
 
   length_vector <- lengths(yr_ind_lst)
-  if(var(length_vector)){
+  if(length(length_vector) > 1 && var(length_vector)){
     # If not all the number of years in each forecast file are the same, FALSE
     # Uses variance as a bit of trickiness
     return(FALSE)

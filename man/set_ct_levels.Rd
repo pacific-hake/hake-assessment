@@ -5,10 +5,16 @@
 \title{Reads in the forecast description data and creates the list containing
 the catch levels and extra information used for the assessment document}
 \usage{
-set_ct_levels(fn = here(doc_path, forecast_descriptions_fn))
+set_ct_levels(
+  fn = here(doc_path, forecast_descriptions_fn),
+  inc_fi_and_stable_catch = FALSE
+)
 }
 \arguments{
 \item{fn}{The name of the file containing the forecast description data}
+
+\item{inc_fi_and_stable_catch}{Logical. If \code{TRUE}, include the Fishing
+intensity = 100\% and the Stable Catch scenarios}
 }
 \value{
 A list of 2 lists:

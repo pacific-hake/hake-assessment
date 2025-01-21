@@ -4,10 +4,13 @@
 \alias{load_ct_levels}
 \title{Load catch levels from SS forecast files.}
 \usage{
-load_ct_levels(model_path, ...)
+load_ct_levels(model_path, inc_fi_and_stable_catch = FALSE, ...)
 }
 \arguments{
 \item{model_path}{The model directory name}
+
+\item{inc_fi_and_stable_catch}{Logical. If \code{TRUE}, include the Fishing
+intensity = 100\% and the Stable Catch scenarios}
 
 \item{...}{Absorbs arguments intended for other functions}
 }
