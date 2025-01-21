@@ -264,23 +264,23 @@ In 2021, the `r sp` fishery was Canada's largest commercial wild fishery
 (species with the largest catch), representing 10% of Canada's total landings
 of all species
 ([www.dfo-mpo.gc.ca](https://www.dfo-mpo.gc.ca/stats/commercial/land-debarq/sea-maritimes/s2021pq-eng.htm)).
-Over CA\$19~million in wages was estimated to have been paid to employees of
+Over CAD \$19~million in wages was estimated to have been paid to employees of
 the processing industry in British Columbia in 2021, with an exported value of
-$>$CA\$60~million in product to Ukraine ($>$CA\$25~million), China, South
-Africa, Lithuania, and other countries [@DFO2023].
+greater than CAD \$60~million in product to Ukraine (greater than CAD \$25~million),
+China, South Africa, Lithuania, and other countries [@DFO2023].
 
-In the U.S.A., over U.S.\$75.1 million in wages is estimated to have been paid to
+In the United States, over USD \$75.1 million in wages is estimated to have been paid to
 employees in 2021
 ([www.noaa.gov](https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/)).
 This includes wages paid to crew and captains fishing on catcher vessels that
 deliver shoreside and at-sea to motherships; workers in shore-based processing
 facilities; crew, captains, and workers on catcher-processor vessels; and
-workers on mothership vessels. The exported value of Pacific Hake was U.S.\$163
+workers on mothership vessels. The exported value of Pacific Hake was USD \$163
 million in 2021, including to Ukraine, Nigeria, and Netherlands, which make up
 about 73% of the total
 ([www.noaa.gov](https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321)).
 The total economic impact of the `r sp` fishery on the U.S. West Coast in 2021
-was U.S.\$335 million in income and 4,450 jobs.
+was USD \$335 million in income and 4,450 jobs.
 
 The Joint Management Committee (JMC) determined an adjusted (for carryovers)
 coast-wide TAC of `r last_yr_tac`~t for `r last_data_yr`. The U.S. catch
@@ -379,14 +379,15 @@ than they were the previous year.
 The `r last_data_yr` Canadian `r sp` domestic fishery removed
 `r last_yr_can_landings`~t from Canadian waters
 (Table~\@ref(tab:main-catches-can-tab)), which was `r last_yr_can_attained`%
-of the Canadian TAC of `r last_yr_can_tac`~t. For the second year in a row,
+of the Canadian TAC of `r last_yr_can_tac`~t. For the third year in a row,
 the attainment for Canada was much lower than usual, due to the fishing
 vessels having a difficult time finding fish in Canadian waters (see
-Appendix~\@ref(sec:app-canada-fishery-report) and last year's assessment,
-@JTC2023, for more details).
+Appendix~\@ref(sec:app-canada-fishery-report) and the last two years' assessments,
+@JTC2023 and @JTC2024, for more details).
 
-The shoreside vessels, which land fresh round product onshore, landed `r last_yr_can_shore`~t in `r last_data_yr`, the lowest on record since 1990, and
-a little less than the `r last_data_yr - 1` landings of
+The shoreside vessels, which land fresh round product onshore, landed
+`r last_yr_can_shore`~t in `r last_data_yr`, the lowest on record since 1990, and
+less than half of the `r last_data_yr - 1` landings of
 `r f(ct |> dplyr::filter(Year == last_data_yr - 1) |> pull("Canada Shoreside"))`~t.
 The Freezer trawlers, which freeze headed and gutted product while
 at sea, landed `r last_yr_can_freezer`~t. This was the lowest amount the
@@ -397,7 +398,7 @@ Fishing started in early April and ended in November. The general view of
 the Canadian fleet is that abundance in Canadian waters remained below
 normal levels in `r last_data_yr`, including the normally-abundant areas
 outside of Southwest Vancouver Island. Reports of difficulties finding
-fish in `r last_data_yr` led to some vessels not leaving the dock,
+fish in `r last_data_yr` led to most vessels not leaving the dock,
 therefore amplifying the effect of low catches. The fish caught in Canada
 appeared to be mostly from four age classes (see below), with very few
 smaller fish (less than 500 grams) caught.
