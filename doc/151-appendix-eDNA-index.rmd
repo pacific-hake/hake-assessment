@@ -1,0 +1,424 @@
+\newpage
+
+\rfoot{eDNA index}
+
+# Developing an index of relative abundance using environmental DNA samples {#sec:app-eDNA-index}
+
+Contributed by Andrew O. Shelton.
+
+## Methods
+
+### Data filtering
+
+We assembled a dataset 
+
+### Statistical modeling
+
+As each sample 
+
+### Deriving temperature indices
+
+Subsurface ocean temperature 
+
+## Model selection and sensitivity analysis
+
+We performed two main 
+
+### Generation of annual maturity at age
+
+To create a single index o
+
+## Results
+
+Comparing the spatiotemporal 
+
+## Citations
+
+Akaike, H. 1973. Information theory and an extension of the maximum likelihood principle. In B.N. Petrov and F. Csaki (Eds.), Second International Symposium on Information Theory (pp. 267--281). Budapest: Akademiai Kiado.
+
+Anderson, S.C., Ward, E.J., English, P.A., and Barnett, L.A.K. 2022. sdmTMB: an R package for fast, flexible, and user-friendly generalized linear mixed effects models with spatial and spatiotemporal random fields. bioRxiv 2022.03.24.485545. https://doi.org/10.1101/2022.03.24.485545
+
+Eilers, P.H.C., and Marx, B.D. 1996. Flexible smoothing with B-splines and penalties. Statistical Science, 11(2): 89--121. https://doi.org/10.1214/ss/1038425655
+
+Global Ocean Physics Reanalysis. 2024. E.U. Copernicus Marine Service Information (CMEMS). Marine Data Store (MDS). Retrieved January 10, 2024, from https://doi.org/10.48670/moi-00021
+
+Global Ocean Physics Analysis and Forecast. 2024. E.U. Copernicus Marine Service Information (CMEMS). Marine Data Store (MDS). Retrieved January 10, 2024, from https://doi.org/10.48670/moi-00016
+
+Keller, A.A., Wallace, J., and Methot, R. 2017. NWFSC's West Coast groundfish bottom trawl survey: History, design, description. U.S. Dept. Comm., NOAA Tech. Memo. NMFS-NWFSC-136.
+
+Kristensen, K., Nielsen, A., Berg, C.W., Skaug, H., and Bell, B.M. 2016. TMB: Automatic Differentiation and Laplace Approximation. Journal of Statistical Software, 70(5): 1--21. https://doi.org/10.18637/jss.v070.i05
+
+Lellouche, J.-M., Greiner, E., Bourdallé-Badie, R., Garric, G., Melet, A., Drévillon, M., Bricaud, C., Hamon, M., Le Galloudec, O., Regnier, C., Candela, T., Testut, C.-E., Gasparin, F., Ruggiero, G., Benkiran, M., Drillet, Y., and Le Traon, P.-Y. 2021. The Copernicus Global 1/12° Oceanic and Sea Ice GLORYS12 Reanalysis. Frontiers in Earth Science, 9. https://doi.org/10.3389/feart.2021.698876
+
+Lindgren, F., Rue, H., and Lindström, J. 2011. An explicit link between Gaussian fields and Gaussian Markov random fields: The stochastic partial differential equation approach. Journal of the Royal Statistical Society Series B: Statistical Methodology 73: 423--498. https://doi.org/10.1111/j.1467-9868.2011.00777.x
+
+Malick, M. J., Hunsicker, M. E., Haltuch, M. A., Parker-Stetter, S. L., Berger, A. M., and Marshall, K. N. 2020. Relationships between temperature and Pacific hake distribution vary across latitude and life-history stage. Marine Ecology Progress Series 639: 185--197. https://doi.org/10.3354/meps13286
+
+Phillips, E. M., Malick, M. J., Gauthier, S., Haltuch, M. A., Hunsicker, M. E., Parker-Stetter, S. L., and Thomas, R. E. 2023. The influence of temperature on Pacific hake co-occurrence with euphausiids in the California Current Ecosystem. Fisheries Oceanography 32(3): 267--279. https://doi.org/10.1111/fog.12628
+
+R Core Team. 2024. R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. https://www.R-project.org/
+
+Robin, N., Turck, N., Hainard, A., Tiberti, N., Lisacek, F., Sanchez, J.C., and Müller, M. 2011.
+pROC: an open-source package for R and S+ to analyze and compare ROC curves. BMC Bioinformatics 12: 77. https://doi.org/10.1186/1471-2105-12-77
+
+Rosemond, R.C. 2023. Influence of novel ocean conditions on life history characteristics of a nearshore rockfish with implications for population assessment and management. Oregon State University. URL: https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/8p58pp02d
+
+Shono, H. 2008. Application of the Tweedie distribution to zero-catch data in CPUE analysis. Fisheries Research 93(1--2): 154--162. https://doi.org/10.1016/j.fishres.2008.03.006
+
+\clearpage
+
+## Tables
+
+```{r app-maturity-analysis-sampling-platform-tab, results = "asis", echo = FALSE}
+
+# Adapting from table_assessment_changes(); don't need function as these tables
+# are one-offs.
+d <- tribble(~Platform , ~"2009", ~"2012", ~"2013", ~"2014",
+             ~"2015", ~"2016", ~"2017", ~"2018", ~"2019", ~"2021",
+"ASHOP", 0, 0, 135, 196, 131, 194, 177, 0, 0, 0,
+"Acoustic", 0, 181, 186, 0, 160, 131, 57, 54, 59, 68,
+"WCGBT", 244, 64, 63, 197, 216, 66, 102, 109, 46, 0)
+
+# Keep this in case need extra formatting.
+#  col_names <- c("Year",
+#                  "Framework",
+#                  "Survey",
+#                  "Comp\nMethod",
+#                  "Num.\nMCMC\nsamples",
+#                  "Change")
+
+# Insert custom header fontsize before linebreaker
+#   if(is.null(header_font_size)){
+#     header_font_size <- font_size
+#   }
+#   hdr_font_str <- create_fontsize_str(header_font_size,
+#                                       header_vert_spacing,
+#                                       header_vert_scale)
+#   col_names <- gsub("\\n", paste0("\n", hdr_font_str$quad), col_names)
+#   col_names <- paste0(hdr_font_str$dbl, col_names)
+# Add \\makecell{} latex command to headers with newlines
+#   col_names <- linebreaker(col_names, align = "c")
+
+  kbl(d,
+      format = "latex",
+      position = "h",
+      booktabs = TRUE,
+      align = c("l", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r"),
+      linesep = "",
+      # col.names = col_names,
+      escape = FALSE,
+      caption = paste0("Samples included in our analysis (after ",
+                       "filtering), by sampling platform and year.")) |>
+    row_spec(0, bold = TRUE) |>
+#    column_spec(ncol(d), width = "5cm") |>
+    kable_styling(font_size = 12,
+                  latex_options = c("repeat_header"))
+```
+
+```{r app-maturity-analysis-aic-tab, results = "asis", echo = FALSE}
+d2 <- tribble(
+  ~"ASHOP", ~"Include South", ~"Model 1", ~"Model 2", ~"Model 3",
+  "Y", "Y", 1440.12, latex_bold("1334.68"), "1366.41",
+  "Y", "N", 1277.58, "1209.28", latex_bold("1195.94"),
+  "N", "N", 1688.75, latex_bold("893.45"), "902.61",
+  "N", "Y", 1912.61, latex_bold("1014.13"), "1025.47")
+
+  kbl(d2,
+      format = "latex",
+      booktabs = TRUE,
+      align = c("c", "c", "r", "r", "r"),
+      linesep = "",
+      # col.names = col_names,
+      escape = FALSE,
+      caption = paste0(
+        "Comparison of Akaike information criterion (AIC) values from the ",
+        "three models in our analysis. ",
+        "Model~1 represents the baseline model, Model~2 represents the model ",
+        "with spatiotemporal variation but no covariates, and Model~3 ",
+        "represents the model with spatial variation and a temperature ",
+        "effect. For the temperature effect, this table represents estimates ",
+        "from models using temperature in February, at a depth of 130.67~m, ",
+        "and only north of Point Conception. The best models (lowest AIC) ",
+        "for each combination are in bold.")) |>
+    row_spec(0, bold = TRUE) |>
+#    column_spec(ncol(d), width = "5cm") |>
+    kable_styling(font_size = 12,
+                  latex_options = c("repeat_header"))
+```
+
+\clearpage
+
+```{r app-maturity-analysis-estimates-tab, results = "asis", echo = FALSE}
+d3 <- tribble(
+  ~"Model", ~"Term", ~"Estimate", ~"Std Error",
+  1, "age", 4.46, 0.201,
+  1, "age$^2$", -1.06, 0.0557,
+  1, "ashopFALSE", 3.51, 0.19,
+  1, "ashopTRUE", 4.29, 0.22,
+  2, "age", 4.52, 0.284,
+  2, "age$^2$", -1.35, 0.105,
+  2, "ashopFALSE", 3.74, 0.37,
+  2, "ashopTRUE", 5.2, 0.691,
+  2, "range", 191, 85.4,
+  2, "$\\sigma_O$", 0.653, 0.366,
+  3, "age", 4.51, 0.288,
+  3, "age$^2$", -1.35, 0.102,
+  3, "temp", 0.421, 0.0994,
+  3, "temp$^2$", -0.535, 0.0754,
+  3, "ashopFALSE", 4.36, 0.305,
+  3, "ashopTRUE", 6.05, 0.677,
+  3, "range", 202, 95.2,
+  3, "$\\sigma_O$", 0.544, 0.448)
+
+  kbl(d3,
+      format = "latex",
+      booktabs = TRUE,
+      align = c("c", "c", "r", "r"),
+      linesep = "",
+      # col.names = col_names,
+      escape = FALSE,
+      caption = paste0(
+        "Parameter estimates and standard errors estimated for the three ",
+        "models of maturity in our analyses (including samples from the ",
+        "At-Sea Hake Observer Program (ASHOP) and only samples north of ",
+        "Pt.~Conception). Estimates of fixed effects are in logit space. ",
+        "The spatial range and spatial variance ($\\sigma_O$) are also ",
+        "included for models with those terms.")) |>
+    row_spec(0, bold = TRUE) |>
+#    column_spec(ncol(d), width = "5cm") |>
+    kable_styling(font_size = 12,
+                  latex_options = c("repeat_header"))
+```
+
+```{r app-maturity-analysis-biomass-tab, results = "asis", echo = FALSE}
+d4 <- tribble(
+  ~"Term", ~"Estimate", ~"Std.~Error",
+  "range", 33.5, 2.20,
+  "$\\phi$", 21.8, 0.367,
+  "$\\sigma_O$", 3.78, 0.197,
+  "$\\sigma_E$", 1.68, 0.0541,
+  "$p$", 1.64, 0.00368)
+
+  kbl(d4,
+      format = "latex",
+      booktabs = TRUE,
+      align = c("c", "r", "r"),
+      linesep = "",
+      # col.names = col_names,
+      escape = FALSE,
+      caption = paste0(
+        "Parameter estimates and standard errors estimated for the model of ",
+        "hake biomass from the West Coast Groundfish Bottom Trawl Survey ",
+        "(WCGBTS). The spatial range is included, with ",
+        "spatial variance ($\\sigma_O$), spatiotemporal variance ",
+        "($\\sigma_E$), and Tweedie parameters ($\\phi, p$).")) |>
+    row_spec(0, bold = TRUE) |>
+#    column_spec(ncol(d), width = "5cm") |>
+    kable_styling(font_size = 12,
+                  latex_options = c("repeat_header"))
+```
+
+\clearpage
+
+## Figures
+
+(ref:app-maturity-analysis-sampling-platform-age-years-cap) Breakdown of the
+number of observations by age, year, and sampling platform (i.e., West Coast
+Groundfish Bottom Trawl Survey (WCGBTS), At-Sea Hake Observer Program (ASHOP),
+and the Northwest Fisheries Science Center Integrated Pacific Hake Ecosystem
+and Acoustic-Trawl Survey).
+
+(ref:app-maturity-analysis-sampling-platform-age-years-alt) There is good
+coverage of age samples from all platforms particularly from 2012 to 2019.
+
+```{r app-maturity-analysis-sampling-platform-age-years-fig, fig.cap = "(ref:app-maturity-analysis-sampling-platform-age-years-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                          "Fig_S3_samplingplatform_age_years.png"),
+                 error = FALSE)
+```
+
+(ref:app-maturity-analysis-temp-depth-cap) Average GLORYS12v1 potential
+temperature (degrees Celsius) within the domain of the West Coast Groundfish
+Bottom Trawl Survey (WCGBTS) north of Point Conception, in February by depth
+(m; colors).
+
+(ref:app-maturity-analysis-temp-depth-alt) Temperatures in all months between
+2015 to 2022 were higher than historical temperatures for a given month.
+
+```{r app-maturity-analysis-temp-depth-fig, fig.cap = "(ref:app-maturity-analysis-temp-depth-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                           "Fig_S4_temp_by_depth.png"),
+                 error = FALSE)
+```
+
+(ref:app-maturity-analysis-raw-feb-temp-cap) Average GLORYS12v1 potential
+temperature (degrees Celsius) within the domain of the West Coast Groundfish
+Bottom Trawl Survey (WCGBTS) north of Point Conception, at a depth of 130.67 m
+by month (colors).
+
+(ref:app-maturity-analysis-raw-feb-temp-alt) Temperatures for all months
+measured at a depth of 130 meters increased between 2010 and 2020.
+
+```{r app-maturity-analysis-raw-feb-temp-fig, fig.cap = "(ref:app-maturity-analysis-raw-feb-temp-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                           "Fig_S5_raw_feb_temp.png"),
+                 error = FALSE)
+```
+
+(ref:app-maturity-analysis-temp-weight-effect-cap) Comparison of temperature
+indices (Celsius) using raw averages of temperature (red) and biomass weighted
+averages of temperature (blue). Shown is temperature at a depth of 130.67 m in
+January but only for north of Point Conception.
+
+(ref:app-maturity-analysis-temp-weight-effect-alt) Weighted by biomass versus
+unweighted average temperatures were similar across the time series.
+
+```{r app-maturity-analysis-temp-weight-effect-fig, fig.cap = "(ref:app-maturity-analysis-temp-weight-effect-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                           "Fig_S6_temp_weight_effect.png"),
+                 error = FALSE)
+```
+
+(ref:app-maturity-analysis-day-of-year-cap) The estimated effect of day of
+the year on maturation from Model 3 (see Table
+\@ref(tab:app-maturity-analysis-aic-tab)) using a penalized spline.
+
+(ref:app-maturity-analysis-day-of-year-alt) Maturation increases steeply during
+the middle of the year and slightly declines towards the end of the year.
+
+```{r app-maturity-analysis-day-of-year-fig, fig.cap = "(ref:app-maturity-analysis-day-of-year-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                           "maturity_spline_doy.png"),
+                 error = FALSE)
+```
+
+(ref:app-maturity-analysis-year-effects-nocovar-cap) Estimated and predicted
+year effects from the spatiotemporal hake maturity model without covariates
+(Model 2 in Tables \@ref(tab:app-maturity-analysis-aic-tab) and
+\@ref(tab:app-maturity-analysis-estimates-tab)). Year effects are included as
+an autocorrelated random walk (variance is larger in years without data, such
+as 2010--2011 or 2022--2025), and spatiotemporal effects are modeled with an
+AR(1) process.
+
+(ref:app-maturity-analysis-year-effects-nocovar-alt) The year effects from the
+spatiotemporal hake maturity model without covariates shows annual differences
+in maturity from year to year.
+
+```{r app-maturity-analysis-year-effects-nocovar-fig, fig.cap = "(ref:app-maturity-analysis-year-effects-nocovar-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                           "Fig_S8_year_effects_nocovar.png"),
+                 error = FALSE)
+```
+
+(ref:app-maturity-analysis-predicted-maps-byage-cap) Spatial anomalies in 
+predictions of maturity for ages 1--5. Predictions are centered such that blue
+represents lower than average maturation and red represents higher than
+average. Predictions are from Model 3
+(see Table \@ref(tab:app-maturity-analysis-aic-tab)) for year 2020. Slight
+variations between ages are driven by the spatially varying coefficient effect
+of age.
+
+(ref:app-maturity-analysis-predicted-maps-byage-alt) This figure shows spatial
+anomalies for ages 1 to 5 on separate maps of the coastline where lower than
+average maturation was apparent in the south and clear higher and lower
+maturation patches elsewhere. 
+
+```{r app-maturity-analysis-predicted-maps-byage-fig, fig.cap = "(ref:app-maturity-analysis-predicted-maps-byage-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                           "Fig_S9_predicted_maps_byage.png"),
+                 error = FALSE)
+```
+
+(ref:app-maturity-analysis-temp-model-sensitivities-cap) Sensitivity results
+for the effect of temperature, with data coming from different months and
+depths, summarized by different regions (`N` = north of Point Conception,
+`S` = south of Point Conception) and modeled using different functional
+relationships (linear, quadratic, and penalized spline, i.e., 'smooth').
+In all cases, the raw Akaike information criterion (AIC) values are shown
+where a lower AIC corresponds to support for the model from the data.
+
+(ref:app-maturity-analysis-temp-model-sensitivities-alt) Sensitivity results
+of the effect of temperature by month region depth and functional form
+assumption linear quadratic or smoothed using a spline on AIC.
+
+```{r app-maturity-analysis-temp-model-sensitivities-fig, fig.cap = "(ref:app-maturity-analysis-temp-model-sensitivities-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                           "Fig_S10_temp_model_sensitivities.png"),
+                 error = FALSE)
+```
+
+(ref:app-maturity-analysis-model-comparison-cap) Biomass weighted estimates of
+maturity for each of the three models in our analysis (using samples from the
+At-Sea Hake Observer Program (ASHOP) and data north of Point Conception).
+Predictions of functional maturity are for non-ASHOP samples.
+
+(ref:app-maturity-analysis-model-comparison-alt) This figure shows
+differences in biomass weighted estimates of maturity across non spatial
+spatial and the temperature effect models.
+
+```{r app-maturity-analysis-model-comparison-fig, fig.cap = "(ref:app-maturity-analysis-model-comparison-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                         "Fig_S11_model_comparison.png"),
+               error = FALSE)
+```
+
+(ref:app-maturity-analysis-temp-marginal-cap) Estimated marginal effect of
+February temperature (Celsius) at a depth of 130.67 m when fit to data that
+included samples from the At-Sea Hake Observer Program (ASHOP) and only data
+north of Point Conception. Predictions are made for age-3 fish, using
+coefficients corresponding to the non-ASHOP surveys, and for the 278th day of
+the year.
+
+(ref:app-maturity-analysis-temp-marginal-alt) This figure shows the marginal
+quadratic effect of February temperature at a depth of 130 meters for
+age 3 fish with a peak in maturity around 9 degrees Celsius.
+
+```{r app-maturity-analysis-temp-marginal-fig, fig.cap = "(ref:app-maturity-analysis-temp-marginal-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                           "Fig_S12_temp_marginal.png"),
+                 error = FALSE)
+```
+
+(ref:app-maturity-analysis-age-marginal-cap) Estimated ogives in three years
+representing low temperatures (2012), average temperatures (2020), and high
+temperatures (2016). The model of maturity used February temperature at a
+depth of 130.67 m and was fit to data that included samples from the At-Sea
+Hake Observer Program (ASHOP) and only data north of Point Conception. Ogives
+represent Pacific Hake not sampled by ASHOP. The estimated age at 50%
+maturity is 2.81 in 2020, versus 3.58 in 2012, and 3.82 in 2016.
+
+(ref:app-maturity-analysis-age-marginal-alt) The ogive shifts to older ages
+at 50 percent maturity at higher temperatures.
+
+```{r app-maturity-analysis-age-marginal-fig, fig.cap = "(ref:app-maturity-analysis-age-marginal-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                           "Fig_S13_age_marginal.png"),
+                 error = FALSE)
+```
+
+(ref:app-maturity-analysis-cog-latitude-cap) Estimated center of gravity of 
+Pacific Hake biomass from the West Coast Groundfish Bottom Trawl Survey
+(WCGBTS), using 2003--2023 data.
+
+(ref:app-maturity-analysis-cog-latitude-alt) The center of gravity of Pacific
+Hake biomass was considerably lower from 2011 to 2014 compared to other years.
+
+```{r app-maturity-analysis-cog-latitude-fig, fig.cap = "(ref:app-maturity-analysis-cog-latitude-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                            "Fig_S7_cog_latitude.png"),
+                  error = FALSE)
+```
+
+\clearpage

@@ -263,19 +263,24 @@ contributed significantly.
 Authors of this document are (all authors contribute extensively so the
 order rotates annually):
 
-Chris J. Grandin^1^ \
-Kelli F. Johnson^2^ \
-Andrew M. Edwards^1^ \
-Aaron M. Berger^3^ \
+Kelli F. Johnson^1,2^ \
+Andrew M. Edwards^3^ \
+Aaron M. Berger^4^ \
+Chris J. Grandin^3^ \
+Chantel R. Wetzel^1^ \
 
-^1^ *Pacific Biological Station, Fisheries and Oceans Canada,
-  3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada*
-
-^2^ *Northwest Fisheries Science Center, National Marine Fisheries
+^1^ *Northwest Fisheries Science Center, National Marine Fisheries
   Service, National Oceanic and Atmospheric Administration, U.S.~Department of
   Commerce, 2725 Montlake Blvd.~East, Seattle, WA 98112-2097, USA*
 
-^3^ *Northwest Fisheries Science Center, National Marine
+^2^ *Office of Science and Technology, National Marine Fisheries
+  Service, National Oceanic and Atmospheric Administration, U.S.~Department of
+  Commerce, 1315 East--West Highway, Silver Spring, MD 20910, USA*
+
+^3^ *Pacific Biological Station, Fisheries and Oceans Canada,
+  3190 Hammond Bay Road, Nanaimo, B.C. V9T 6N7, Canada*
+
+^4^ *Northwest Fisheries Science Center, National Marine
   Fisheries Service, National Oceanic and Atmospheric Administration,
   U.S.~Department of Commerce, 2032 SE OSU Dr. Bldg.~955, Newport, OR
   97365-5275, USA*
@@ -287,7 +292,7 @@ Aaron M. Berger^3^ \
 
 This document should be cited as follows:
 
-Grandin, C.J., K.F. Johnson, A.M. Edwards and A.M. Berger.
+K.F. Johnson, K.F., A.M. Edwards, A.M. Berger, C.J. Grandin, and C.R. Wetzel.
 `r rmarkdown::metadata$project_variables$assess_yr`. Status of the
 `r rmarkdown::metadata$project_variables$sp` (whiting) stock in U.S. and
 Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`.
