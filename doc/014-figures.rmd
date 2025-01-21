@@ -1166,18 +1166,7 @@ evaluated.
 
 ```{r main-depletion-comparison-fig, fig.cap = "(ref:main-depletion-comparison-cap)", fig.height = 5}
 
-model <- base_model
-# Filter out the forecast catch streams that are not used in the
-# decision table
-model$forecasts <- model$forecasts |> 
-  map(~{
-    .x[c(1:10, 12)]
-  })
-model$ct_levels <- model$ct_levels[c(1:10, 12)]
-
-# See the file `000-set-ct-levels.R`. The values for `fore_inds` below are
-# the indices of the forecast values in the list `ct_levels_vals`
-plot_depl_fore_comparison(model,
+plot_depl_fore_comparison(base_model,
                           fore_inds = c(1, 2, 6, 10, 11),
                           forecast_yrs = forecast_yrs)
 ```
