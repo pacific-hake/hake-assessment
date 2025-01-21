@@ -229,8 +229,7 @@ table_ovary_samples(
   ovary_samples_df,
   caption = paste0(
     "Number of ", sp, " ovaries collected for histological analysis and ",
-    "included in the estimates of time-varying maturity. Note that data ",
-    "from 2023 have yet to be analyzed."),
+    "included in the estimates of time-varying maturity."),
   font_size = 9,
   header_font_size = 8,
   longtable = TRUE)
