@@ -996,7 +996,8 @@ and below the `r b_40` spawning biomass level at the start of
 
 The base assessment model integrates over the substantial uncertainty
 associated with several important model parameters including: biomass
-index and age-1 index catchabilities (*q*~b~ and *q*~1~, respectively), the
+index and age-1 index catchabilities (*q*~b~ and *q*~1~, respectively) and
+observation errors, the
 magnitude of the stock (via the `r r_0` parameter for equilibrium recruitment),
 productivity of the stock (via the steepness parameter, *h*, of the
 stock--recruitment relationship), the rate of natural mortality (*M*), annual
@@ -1006,11 +1007,14 @@ $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
 
 The medians of the key parameters from the posterior distribution are
 generally similar to those in last year's base model
-(Table~\@ref(tab:main-parameter-estimates-tab)). The largest change was a
-reduction of the 2020 recruitment by more than half, as discussed above, leading
-to a fall in the estimated median relative spawning biomass at the start
-of 2023. Medians of the 2014 and 2016 recruitment also both decreased, by about
-10% from those estimated in the `r assess_yr - 1` assessment.
+(Table~\@ref(tab:main-parameter-estimates-tab)). Parameter differences were generally less
+than 10%. For derived management quantities, the largest change was a reduction in the 
+estimated relative spawning biomass at the start of 2024 from
+`r f(last_yr_base_model$mcmccalcs$dmed["2024"], 1)`% in last year's model to
+`r f(base_model$mcmccalcs$dmed["2024"], 1)% this year as a result
+of updated data and using average recruitment for 2023 and 2024.
+Medians of the 2014 and 2016 recruitment increased slightly, while 2021 recruitment
+decreased slightly from those estimated in the `r assess_yr - 1` assessment.
 
 The `r sp` stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
@@ -1023,9 +1027,9 @@ estimates in `r assess_yr` and throughout the current forecast period, because
 there is considerable uncertainty associated with the absolute size of the, now
 mostly mature, 2020 and 2021 year classes that propagates into forecasts. Although
 the 2023 acoustic survey helped to refine these estimates and reduce uncertainty,
-further observations of these year classes will improve estimates. The inclusion of
+further observations of these year classes will improve estimates. The continued inclusion of
 the age-1 index in this assessment will, in some cases, also help to reduce this
-uncertainty (as it currently does in this case; see
+uncertainty during survey years (see
 Figure~\@ref(fig:main-recruitment-base-alternative-2-fig) discussed later).
 However, further work is needed to improve upon the characterization of
 uncertainty in the age-1 index itself, which is based on a time invariant
