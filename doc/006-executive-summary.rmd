@@ -301,27 +301,14 @@ the improved
 methods for modeling temporal weight-at-age and spatio-temporal maturity have
 slightly changed some historical estimated recruitments.
 
-The estimate of 2020 recruitment in last year's assessment was based on only two
-years of data and thus was highly uncertain. It suggested the 2020 cohort could
-potentially be huge (95% credible interval:
-`r f(last_yr_base_model$mcmccalcs$rlower["2020"], 1)`--
-`r f(last_yr_base_model$mcmccalcs$rupper["2020"], 1)`~billion fish),
-but now with information from the
-age-2$+$ biomass index and survey age-composition data the 2020 cohort looks to be
-less but still above average (95% interval:
-`r f(base_model$mcmccalcs$rlower["2020"], 1)`--
-`r f(base_model$mcmccalcs$rupper["2020"], 1)`~billion fish).
-The median has consequently fallen from
-`r f(last_yr_base_model$mcmccalcs$rmed["2020"], 1)` to
-`r f(base_model$mcmccalcs$rmed["2020"], 1)`~billion fish between the two assessments.
+The estimate of 2020 recruitment is slightly above average, whereas in the previous
+two assessments it was highly uncertain but thought to be possibly very large.
 
-The 2021 recruitment is estimated to be potentially large, whereas
-it was estimated to be below average in last year's assessment (with very limited data);
-the median has increased by
-`r f(((recruitment_med_to_compare - prev_assess_recruitment_med)["2021"]), 1)`~billion fish.
-The general notion remains that recent
-`r sp` recruitment is highly uncertain, and estimates for recent years (based on
-limited data) can change substantially.
+The 2021 recruitment is estimated to be potentially large with a median of
+`r f(base_model$mcmccalcs$rmed["2020"], 1)`~billion fish, but with a large
+uncertainty. The general notion remains that recent `r sp` recruitment is
+highly uncertain, and estimates for recent years (based on limited data) can
+change substantially.
 
 ```{r es-recruitment-tab, results = "asis", echo = FALSE}
 
@@ -373,7 +360,7 @@ estimated to be potentially large from limited fishery data and the 2023
 survey.
 The 2022 cohort was observed by the age-1 index in 2023,
 suggesting it is average to below average in size. There is no information in the data to estimate the
-sizes of the `r end_yr-1` and `r end_yr` year classes. Retrospective analyses
+sizes of the `r end_yr - 1` and `r end_yr` year classes. Retrospective analyses
 of year class strength for young fish have shown the estimates of recent
 recruitment to be unreliable prior to at least a modelled age of 3
 (observed as age-2 fish the previous year) without a survey in the most recent
@@ -533,7 +520,7 @@ always been below
 1.0 (Figure~\@ref(fig:es-phase-fig)).
 Relative spawning biomass increased from
 the lows in 2007--2012 with above average recruitment in 2008, 2010, 2014,
-2016, and 2020. Correspondingly, median relative fishing intensity has
+2016, 2020, and 2021. Correspondingly, median relative fishing intensity has
 remained below 1, and total catch has been declining since the
 time series high in 2017. While there is large uncertainty in the `r end_yr-1`
 estimates of relative fishing intensity and relative spawning biomass,
