@@ -1011,7 +1011,7 @@ generally similar to those in last year's base model
 than 10%. For derived management quantities, the largest change was a reduction in the 
 estimated relative spawning biomass at the start of 2024 from
 `r f(last_yr_base_model$mcmccalcs$dmed["2024"], 1)`% in last year's model to
-`r f(base_model$mcmccalcs$dmed["2024"], 1)% this year as a result
+`r f(base_model$mcmccalcs$dmed["2024"], 1)`% this year as a result
 of updated data and using average recruitment for 2023 and 2024.
 Medians of the 2014 and 2016 recruitment increased slightly, while 2021 recruitment
 decreased slightly from those estimated in the `r assess_yr - 1` assessment.
