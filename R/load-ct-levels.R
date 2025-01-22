@@ -88,7 +88,6 @@ load_ct_levels <- function(model_path,
 
   # First, find the indices of the custom catch levels within the catch levels
   # list
-  browser()
   ct_dirnames <- ct_levels |> map_chr(~{.x[[3]]})
   ct_inds <- map_dbl(drs, ~{
     grep(.x, ct_dirnames)
