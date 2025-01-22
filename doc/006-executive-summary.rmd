@@ -104,7 +104,7 @@ mean weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011
 the survey biomass index was the lowest in the time series and was followed
 by the index increasing in 2012, 2013, and again in 2015 before decreasing to
 near the time series average in 2017. The survey
-(Figure~\@ref(es-survey-biomass-fig)) shows a decline from 2019 (the fourth
+(Figure~\@ref(fig:es-survey-biomass-fig)) shows a decline from 2019 (the fourth
 highest of the series) to 2023 (the third lowest of the series).
 Age-composition data from the aggregated fisheries and the acoustic survey,
 along with the age-1 index, provide data that facilitates estimating relative
