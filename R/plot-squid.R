@@ -31,6 +31,7 @@ plot_squid <- function(model,
   # Extract a data frame of long-format recruitment deviations containing all
   # the models in the model list
   d <- model$retrospectives$recdevs_df$d
+
   cohorts <- as.numeric(levels(d$model)) - 1
 
   # Colors of lines and fill - add black to the beginning and remove end color
@@ -66,6 +67,10 @@ plot_squid <- function(model,
     # Glue the list of data frames back into a single data frame
     map_df(~{.x})
 
+  # Set all NAs to zero, as they represent recdevs which are fixed
+  # (new for 2025)
+  d <- d |>
+    map_df(~{ifelse(is.na(.x), 0, .x)})
 
   if(relative){
     # Subtract the last year's deviate values, which is in the first row
