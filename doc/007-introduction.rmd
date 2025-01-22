@@ -36,12 +36,11 @@ by the JTC, a subset of sensitivity analyses are also reported to provide a
 broad qualitative comparison of structural uncertainty with respect to the
 base model (Section~\@ref(sec:assessment-sensitivity-analyses)). The
 structural assumptions of this `r assess_yr` base model, implemented using
-version `r ss_version` of the Stock Synthesis software [@MethotWetzel2013],
-differ from the `r last_assess_yr` base model in that the distribution assumed
-for the relative age-1 index is now a student-t distribution rather than a
-log-normal distribution [@JTC2023], and maturity-at-age is now year-specific
-(Section~\@ref(sec:data-maturity) and
-Appendix~\@ref(sec:app-maturity-analysis)).
+version `r ss_version` of the Stock Synthesis software [@MethotWetzel2013].
+The `r assess_yr` base model is structurally similar to last year's model, 
+except the `r assess_yr` base model does not include estimates of annaul 
+recruitment deviations in the final two years of the model 
+(e.g., `r last_data_yr` and `r last_data_yr - 1`).
 All model runs reported in this document are performed in a Bayesian
 context. Responses to `r last_assess_yr` SRG
 requests are in Section~\@ref(sec:assessment-response-review) and a Glossary
@@ -50,7 +49,7 @@ of terms appears in Appendix~\@ref(sec:app-glossary).
 ## Stock structure and life history {#sec:intro-stock-structure}
 
 `r sp` is a semi-pelagic, schooling species distributed along the west coast of
-North America, generally ranging in latitude from 25° N~to 55° N
+North America, generally ranging in latitude from 25° N~to 55° North Latitude (N. Lat.).
 (Figure~\@ref(fig:main-overview-map-fig)). It is among 18 species of hake from
 four genera (being the majority of the family *Merluccidae*), which are found
 in both hemispheres of the Atlantic and Pacific Oceans [@AlheitPitcher1995;
