@@ -1,8 +1,8 @@
 ---
 title: |
   | \vspace{0cm} **\TitleFont{Status of the Pacific Hake (whiting) stock in U.S. and Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`}**
-# subtitle: |
-# \ **DRAFT for submission to Scientific Review Group\textsuperscript{1}**
+subtitle: |
+  \ **DRAFT for submission to Scientific Review Group\textsuperscript{1}**
 project_variables:
   sp: "Pacific Hake"
   common_name: "Pacific whiting"
@@ -38,7 +38,7 @@ author: |
   \
   \
 date: "`r curr_time_date()`"
-header: ""    # or "Draft working paper --- Do not cite or circulate"
+header: "Draft working paper --- Do not cite or circulate" # or ""
 output:
  hake_pdf:
    latex_engine: lualatex
@@ -244,11 +244,10 @@ knitr::opts_chunk$set(
   out.width = "\\textwidth")
 ```
 
-<!-- \small \textsuperscript{1}Disclaimer: These materials do not constitute a formal publication and are for
+\small \textsuperscript{1}Disclaimer: These materials do not constitute a formal publication and are for
 information only. They are in a pre-review, pre-decisional state and should not
 be formally cited or reproduced. They are to be considered provisional and do
 not represent any determination or policy of NOAA or the Department of Commerce.
--->
 
 \normalsize
 
