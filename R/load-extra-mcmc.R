@@ -329,8 +329,9 @@ load_extra_mcmc <- function(model,
   # of warnings
   x$header <- x$header[x$header != "Fleet_name"]
   x$lst <- map(x$lst, ~{
-    gsub("(Age1|Acoustic)_Survey", "", .x)
+    gsub("(Age1|Acoustic|eDNA)_Survey", "", .x)
   })
+
   ts_q <- extract_rep_table(reps_lst = x$lst,
                             header = x$header,
                             verbose = verbose,
