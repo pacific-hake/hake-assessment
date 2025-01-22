@@ -87,10 +87,10 @@ We developed a state-space framework for modeling hake DNA concentration in the 
 
 and so the hake DNA concentration of is a function of both fixed and random effects. Unlike many spatial datasets, the eDNA samples here are collected across depths at uneven spacing and at varying depths among years (in 2019 water was collected at the surface, 50, 100, 150, 300, and 500 meters while in 2021 and 2023, water was collect at the same depths except samples at 200m replace the 100m). The fixed effect of bottom depth $s(d)$ does not depend on year, reflecting a well documented bottom depth-association between hake and the shelf break (Malick et al. 2020; Shelton et al. 2022; OTHERS), with the year-specific intercept terms allowing for region-wide shifts in hake DNA concentration. 
 
-Preliminary analyses showed clear correlations among depths at particular locations and so we developed a variant of factor analysis to efficiently estimate a spatial field for each depth in each year that allows correlation among the fields as a function of depth. We model $\epsilon_t(x,y,d)$ as a linear combination of Gaussian Markov Random Fields. Specifically, we let $\omega_{tf}(x,y)$ be a zero-centered spatial field for factor $f$ 
+Preliminary analyses showed clear correlations among depths at particular locations and so we developed a variant of factor analysis to efficiently estimate a spatial field for each depth in each year that allows correlation among the fields as a function of depth. We model $\epsilon_t(x,y,d)$ as a linear combination of Gaussian Markov Random Fields. Specifically, we let $\omega_{tf}(x,y)$ be a zero-centered spatial field for factor $f$, 
 
 \begin{align}
-  \boldsymbol{\omega}_{tf}(x,y) \sim MVN \left( 0, \boldsymbol{\Sigma} \right)
+  \boldsymbol{\omega}_{tf}(x,y) \sim MVN \left (0, \boldsymbol{\Sigma} \right)
 \end{align}
 
 where covariance matrix $\boldsymbol{\Sigma}$ follows a Matern covariance function with marginal variance fixed at 1. We allow for anisotropy in the spatial correlation and estimate a single shared spatial range parameter ($\kappa$) for all spatial fields.
