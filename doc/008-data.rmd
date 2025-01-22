@@ -479,13 +479,13 @@ but up through the the 2023 assessment [@JTC2023] the maturity ogive was
 time-invariant. Starting with the 2024 assessment, annual age-based maturity
 ogives (Figure~\@ref(fig:main-maturity-ogive-fig)) were developed using the
 same data, i.e., histological estimates of functional maturity, but fit with
-a spatiotemporal GLMM based on new research [@head-decade-in-press]. The current 
+a spatiotemporal GLMM based on new research by @head-decade-in-press (see Appendix G in @JTC2024 for a full description of the model). The current 
 data set of ovary samples used to inform estimates
 of histological and functional maturity are described in Table~\@ref(tab:main-ovaries-tab). 
 The samples were collected from the acoustic survey, winter and summer acoustic research trips,
 U.S. catcher-processor vessels by observers in the U.S. At-Sea Hake Observer
 Program, and the U.S. West Coast Groundfish Bottom Trawl Survey since 2009. Samples from south of Point
-Conception (34.44° N. Lat.) have been excluded from maturity analyses since 2018
+Conception (34$^\circ$44$^\prime$ N. Lat.) have been excluded from maturity analyses since 2018
 [@JTC2018] because they were thought to mature at earlier ages and smaller
 sizes. Samples from Canada were excluded from this analysis because the
 spatiotemporal resolution was insufficient and led to model-convergence issues.
