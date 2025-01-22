@@ -739,7 +739,7 @@ class. The subsequent decline from 2014 to 2016 is primarily from the 2010
 year class surpassing the age at which gains in weight from growth are greater
 than the loss in weight from mortality (growth-mortality transition). The
 2014 year class is estimated to be large, though not as large as the 1999
-and 2010 year classes, resulting in an increased biomass through 2018. The
+and 2010 year classes, resulting in increasing biomass through 2018. The
 estimated biomass declined
 from 2018 to 2021 due to the 2014 and 2016 year classes moving through the
 growth-mortality transition during a period of high catches. The increase in
@@ -763,7 +763,7 @@ The median estimate of the `r end_yr` female spawning biomass is
 `r curr_bio_lower` to `r curr_bio_upper` million~t). The current estimate of
 the `r end_yr - 1` female spawning biomass is `r prev_bio_median`
 (`r prev_bio_lower`--`r prev_bio_upper`) million~t, giving a slightly narrower range of
-uncertainty as the estimate from the `r end_yr - 1` assessment of `r prev_bio_median_last_assess`
+uncertainty compared to the estimate from the `r end_yr - 1` assessment of `r prev_bio_median_last_assess`
 (`r prev_bio_lower_last_assess`--`r prev_bio_upper_last_assess`) million~t. The current
 median is reduced from last year, partly due to the influence of the age-2$+$ biomass index
 pulling down the estimated biomass for recent years, the reduction in the estimate of
@@ -782,12 +782,12 @@ most recent data year (2024), the quantity of available data determines whether 
 for the year previous (2023). The only information on the size of the 2023 cohort
 (age-1 fish in 2024) in this assessment comes from the age composition of fishery catches.
 The catch of age-1 fish was particularly high in 2024, potentially due to the unique
-seasonal fishing conditions during the year (see Section appendix) and the relative
+seasonal fishing conditions during the year (see Appendix~\@ref(sec:app-us-fishery-report)) and the relative
 loss of older age classes in the population. Thus, this data point was considered
 suspect as a standalone observation (i.e., without the addition of survey information).
 By restricting 2023 recruitment to the stock--recruitment relationship, the assessment model
 was not allowed to predict a very high 2023 year class based solely on the age-1
-catch in the fishery. Another year of data, particuarlly form the age-2$+$ acoustic--trawl
+catch in the fishery. Another year of data, particularly form the age-2$+$ acoustic--trawl
 survey in 2025 will provide additional information on the size of the 2023 year class.  
 
 The 2021 recruitment is estimated to be well above average

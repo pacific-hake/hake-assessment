@@ -109,8 +109,8 @@ highest of the series) to 2023 (the third lowest of the series).
 Age-composition data from the aggregated fisheries and the acoustic survey,
 along with the age-1 index, provide data that facilitates estimating relative
 cohort strength, i.e., strong and weak cohorts. The age-1 index suggests
-particularly large numbers of age-1 fish in 2009, 2011, 2015, and 2021 (2008,
-2010, 2014, and 2020 year classes, respectively), and is not available for
+particularly large numbers of age-1 fish in 2009, 2011, and 2015 (2008,
+2010, and 2014 year classes, respectively), and is not available for
 most even years (odd year classes). There are no data to inform the size of
 the `r last_data_yr` year class.
 
@@ -168,13 +168,16 @@ plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
 This `r assess_yr` assessment retained the same general population dynamics
 structure as the base assessment model from `r last_assess_yr` and again is
 configured using Stock Synthesis. Updates in this assessment include incorporating
-the new biomass estimate and age-composition data from the acoustic survey conducted in `r survey_end_yr`,
+<!-- the new biomass estimate and age-composition data from the acoustic survey conducted in `r survey_end_yr`, -->
 fishery catch and age-composition data from `r end_yr-1`, weight-at-age data for
 `r end_yr-1`,
-the `r survey_end_yr` age-1 index estimate,
-and minor changes to pre-`r end_yr-1` data. In addition, a new model-based
-approach was used to develop the input weight-at-age matrix, and time-varying
-temperature-dependent maturity was introduced to better inform fecundity.
+<!-- the `r survey_end_yr` age-1 index estimate, -->
+and minor changes to pre-`r end_yr-1` data. The model-based
+approaches used to develop the input weight-at-age matrix and time-varying
+temperature-dependent maturity were retained from last year's assessment
+to better inform fecundity. Recruitment in 2023 and 2024 was based solely on the
+stock--recruitment relationship (no estimated recruitment deviations) due to
+little information content in the data.
 
 This assessment continues to use (since 2014) time-varying
 (rather than constant) selectivity to maintain flexibility within the
@@ -228,13 +231,13 @@ above-average 2008 year class. The subsequent decline from 2014 to 2016 is
 primarily from the 2010 year class surpassing the age at which the gains in
 weight from growth are greater than the losses in weight from mortality
 (growth-mortality transition). The 2014 year class is estimated to be large,
-though not as large as the 1999 and 2010 year classes, increasing the biomass
-in 2017.
+though not as large as the 1999 and 2010 year classes, resulting in increasing
+biomass through 2018.
 The estimated biomass mostly declined
-from 2018 to 2022 due to the 2014 and 2016 year classes moving through the
-growth-mortality transition during a period of high catches. The increases in
-female spawning biomass from 2023--2025 are due to the expected above-average
-2021 cohort entering maturity and the recent declining trend in catch.
+from 2018 to 2021 due to the 2014 and 2016 year classes moving through the
+growth-mortality transition during a period of high catches. The increase in
+female spawning biomass from 2022--2025 is due to the above-average 2020 and
+2021 cohorts entering maturity and the recent declining trend in catch.
 
 The median estimate of the `r end_yr` relative spawning biomass (spawning
 biomass at the start of `r end_yr` divided by that at unfished equilibrium,
@@ -250,15 +253,13 @@ The median estimate of the `r end_yr` female spawning biomass is
 `r curr_bio_lower` to `r curr_bio_upper`)~Mt.
 The current estimate of
 the `r end_yr - 1` female spawning biomass is `r prev_bio_median`
-(`r prev_bio_lower`--`r prev_bio_upper`)~Mt, giving less uncertainty than
-the estimate from the `r end_yr - 1` assessment of `r prev_bio_median_last_assess`
+(`r prev_bio_lower`--`r prev_bio_upper`)~Mt, giving a slightly narrower range of
+uncertainty compared to the estimate from the `r end_yr - 1` assessment of `r prev_bio_median_last_assess`
 (`r prev_bio_lower_last_assess`--`r prev_bio_upper_last_assess`)~Mt. The current
-median is reduced from that in the `r end_yr - 1` assessment due to the tail of the
-distribution being greatly curtailed and a
-slight lowering of the lower end of the interval.
-The decrease appears to be due to the addition of the age-2$+$ biomass index
-pulling down the estimated biomass for recent years, plus the addition of the
-survey age compositions lowering the estimated 2020 recruitment.
+median is reduced from last year, partly due to the influence of the age-2$+$ biomass index
+pulling down the estimated biomass for recent years, the reduction in the estimate of
+the 2022 year class with updated data, and the setting of the 2023 year class using only
+the stock-recruitment relationship (i.e., no estimated recruitment deviate).
 
 (ref:es-relative-biomass-cap) Median (solid line) of the posterior
 distribution for relative spawning biomass ($B_t / B_0$) through `r end_yr`
