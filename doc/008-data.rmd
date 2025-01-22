@@ -70,8 +70,8 @@ Pacific Fishery Information Network (PacFIN) database. Foreign and
 Joint-Venture catches for 1981--`r terminal_yr_us_jv_foreign` and U.S.
 domestic at-sea catches for 1991--`r last_data_yr` are calculated from the
 Alaska Fisheries Science Center's North Pacific Groundfish and Halibut
-Observer (NORPAC) database, which also stores data from the At-Sea Hake
-Observer Program (ASHOP). Canadian Joint-Venture catches from 1989 are from the
+Observer (NORPAC) database, which also stores data from the ASHOP. 
+Canadian Joint-Venture catches from 1989 are from the
 Groundfish Biological (GFBio) database. Canadian shoreside landings are
 from the Groundfish Catch (GFCatch) database for 1989--1995, the Pacific
 Harvest Trawl (PacHarvTrawl) database for 1996--March 31, 2007, and the
