@@ -166,7 +166,7 @@ confirm the well-known pattern of large cohorts born in 1973, 1977, 1980,
 2020 and 2021
 (Table~\@ref(tab:main-input-age-data-fishery-tab) and
 Figure~\@ref(fig:main-age-comp-bubbles-fig)).
-<!--- Recent age-composition data still easily track the 2010 cohort, as well as the
+Recent age-composition data still easily track the 2010 cohort, as well as the
 large cohorts born since then (Table~\@ref(tab:main-input-age-data-fishery-tab)
 and Figure~\@ref(fig:main-age-comp-bubbles-fig)). Currently, the 2021 cohort is
 the largest observed cohort in the U.S. at-sea sectors
@@ -175,7 +175,7 @@ the 2020 cohort is the largest observed cohort in the U.S. shore-based sector
 (Table~\@ref(tab:main-us-sb-age-data-tab)), and the 2016 cohort is the largest
 observed cohort in both Canadian fleets
 (Tables~\@ref(tab:main-can-ss-age-data-tab)--
-\@ref(tab:main-can-ft-age-data-tab)). --->
+\@ref(tab:main-can-ft-age-data-tab)). 
 Age-1 fish were observed by the fishery this year
 (Table~\@ref(tab:main-input-age-data-fishery-tab)) in the U.S. For the combined
 data in `r last_data_yr`,
@@ -528,7 +528,7 @@ fraction of fish mature at each age.
 
 Tissue samples have been collected from many of the same fish from which
 ovaries were sampled. In the future, these tissue samples may help determine
-whether the fish south of 34.44° N. Lat. are from the same population as the rest of
+whether the fish south of 34$^\circ$ 44$^\prime$ N. Lat. are from the same population as the rest of
 the coastal population via genetic analyses.
 
 ### Ageing error {#sec:data-ageing-error}
