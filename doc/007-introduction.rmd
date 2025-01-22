@@ -114,7 +114,7 @@ and the number of days between storm events during larval stages
 dynamically influences the co-occurrence of `r sp` and krill (i.e.,
 euphausiids; *Euphausiacea*), which can influence annual `r sp` growth
 and recruitment as the availability of key prey species shifts. Temperature
-was also found to impact the co-occurrence of `r sp` and shortbelly rockfish
+was also found to impact the co-occurrence of `r sp` and Shortbelly Rockfish
 (*Sebastes jordani*, Sebastidae) during the 2014--2016 marine heatwave
 [@FreeEtAl2023]. An index of abundance for Humboldt Squid (*Dosidicus
 gigas*) suggests that the abundance of `r sp` decreases with increasing squid
@@ -125,7 +125,8 @@ to oceanographic conditions have been investigated [@ResslerHolmesEtAl2007;
 a foundation for further research on these topics.
 
 Recent oceanographic trends and large-scale ecosystem conditions,
-as summarized in NOAA's annual [California Current Ecosystem Status Reports](https://www.pcouncil.org/annual-california-current-ecosystem-status-report/),
+as summarized in the National Oceanic and Atmospheric Admistration's (NOAA) 
+annual [California Current Ecosystem Status Reports](https://www.pcouncil.org/annual-california-current-ecosystem-status-report/),
 provide insight into potential drivers of `r sp` population dynamics and fleet
 operations. Periods of high productivity are often marked by strong winter
 upwelling which brings nutrients to coastal waters, cooler temperatures, an
@@ -135,9 +136,9 @@ patterns suggest average conditions for ecosystem productivity as El Niño condi
 continue to strengthen. Despite being highly variable in strength, upwelling was
 generally less than in previous years. Weaker upwelling conditions have been associated
 with higher `r sp` recruitment [@VestfalsEtAl2023]. In the southern California Current
-Ecosystem, the abundance of Pacific Hake larvae in the CalCOFI survey area has been
+Ecosystem, the abundance of `r sp` larvae in the California Cooperative Oceanic Fisheries Investigations (CalCOFI) survey area has been
 above average for two consecutive years, with 2023 being the highest since 2011. At
-the same time, hake predation by bluefin and swordfish were also well above average in
+the same time, `r sp` predation by Bluefin Tuna and Swordfish were also well above average in
 recent years (2021 and 2022). Abundance of krill, a common prey of `r sp`, was
 below average in 2023. Lipid-rich copepod biomass was average and relatively stable throughout
 the summer ('northern' copepod index) of 2023 relative to previous years, but was below average in the winter ('southern' copepod index).
@@ -145,8 +146,8 @@ the summer ('northern' copepod index) of 2023 relative to previous years, but wa
 Fitting the assessment model to empirical weight-at-age data allows for
 time-varying growth without needing a mechanistic relationship or environmental
 data, which facilitates an `Ecosystem Approach to Fisheries Management'
-(a priority for DFO and NOAA; see Section~\@ref(sec:data-weight-at-age)).
-Furthermore, the new year-specific maturity-at-age specifically includes a
+(a priority for Department of Fisheries and Oceans [DFO] and NOAA; see Section~\@ref(sec:data-weight-at-age)).
+Furthermore, the year-specific maturity-at-age specifically includes a
 temperature effect from a spatiotemporal model (Section~\@ref(sec:data-maturity) and
 Appendix~\@ref(sec:app-maturity-analysis)).
 Related ongoing research should provide more insights into the specific mechanisms
