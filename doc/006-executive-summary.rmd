@@ -78,7 +78,7 @@ In this document, the terms catch and landings are used interchangeably.
 Estimates of discard within the target fishery are included but discarding
 of `r sp` in non-target fisheries is not. Discard from all fisheries,
 including those that do not target `r sp`, is estimated to be less than 1% of
-landings in recent years. The catches in `r  last_data_year` declined below 
+landings in recent years. The catches in `r  last_data_yr` declined below 
 the long-term average catch (`r f(long_term_avge_ct)`~t), continuing the
 pattern of declining catches over recent years(especially in Canada). Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
@@ -429,7 +429,7 @@ The median exploitation fraction (catch divided by biomass of fish of age-2 and
 above) peaked in 1999 and 2006 (Figure~\@ref(fig:es-exploitation-fraction-fig)).
 The median exploitation fraction has decreased from a recent high in 2021 of
 `r exploitation_med_2021` to `r exploitation_med_2024` in 2024, which is a
-lowest over the past 10 years(Table~\@ref(tab:es-fishing-intensity-tab) and
+lowest over the past 10 years (Table~\@ref(tab:es-fishing-intensity-tab) and
 Figure~\@ref(fig:es-exploitation-fraction-fig)).
 
 ## Management performance {-}
