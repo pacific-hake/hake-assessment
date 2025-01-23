@@ -483,8 +483,8 @@ maturity (Table~\@ref(tab:main-ovaries-tab)), but fit with a spatiotemporal
 GLMM [@head-decade-2025]. Data fit to the GLMM include samples collected north
 of Point Conception (34$^\circ$ 44$^\prime$ N. Lat.) and south of the
 U.S./Canada border from the acoustic survey, winter and summer acoustic
-research trips, U.S. catcher-processor vessels by observers in the U.S. At-Sea
-Hake Observer Program, and the U.S. West Coast Groundfish Bottom Trawl Survey
+research trips, U.S. catcher-processor vessels by ASHOP observers, 
+and the U.S. West Coast Groundfish Bottom Trawl Survey
 since 2009. Southern samples have been excluded from maturity analyses since
 2018 [@JTC2018] because they are thought to mature at earlier ages and smaller
 sizes. Canadian samples (n = 73) were excluded from the GLMM because their of
@@ -512,7 +512,7 @@ spatial field shared across years (analogous to a spatial intercept),
 $\bm{\zeta}_{s,age}$ and $\bm{\zeta}_{s,age^{2}}$ represent spatially varying
 coefficient effects of age, and $\bm{X}^{tvc}_{t}$ represents the design matrix
 of year effects with estimated coefficients $\bm{\gamma_t}$. The
-$\bm{\gamma_t}$ terms were modeled as AR(1) terms such as in the example
+$\bm{\gamma_t}$ terms were modeled as first-order auto regressive (AR(1)) terms such as in the example
 $\gamma_{2010} \sim N\left(\rho\gamma_{2009}, \sqrt{1-\rho^{2}}\sigma \right)$,
 where $\rho$ represents the AR(1) parameter. The added quadratic effects of
 temperature are in the fixed effects components $\bm{X}$ and $\bm{\beta}$.
@@ -536,14 +536,14 @@ Groundfish Bottom Trawl Survey on July 1 (middle of the survey). These
 predictions were then used to create a weighted average of temperature across
 space.
 
-Maturity at age was estimated to be higher in fishery-dependent samples,
+Maturity-at-age was estimated to be higher in fishery-dependent samples,
 medium-aged fish, and in summer months. Spatial patterning was similar across
 ages. The estimated marginal effect of temperature indicated a concave
 relationship between temperature and functional maturity. Temperatures in 2018
 and 2020 were near the peak of this relationship, while most years were cooler
 (maturity increasing with temperature over this region). Temperatures in 2016
 and 2019 were high above the threshold corresponding to the peak of the
-temperature--maturity relationship, and maturity at age was estimated to
+temperature--maturity relationship, and maturity-at-age was estimated to
 decline in these years. The estimate of the spatial variance for the model used
 to weight spatial estimates based on estimated biomass of `r sp` was higher
 than the estimate of the spatiotemporal variance suggesting that differences in
@@ -563,13 +563,13 @@ temperatures were applied to the estimates of probabilities of being mature in
 logit space. The total weighted average for each age--year combination was
 converted to normal space with an inverse-logit transformation.
 
-Time-varying fecundity at age (Figure~\@ref(fig:main-fecundity-at-age-fig)) was
-modeled using year-specific weight-at-age estimates multiplied by year-specific
+Time-varying fecundity-at-age (Figure~\@ref(fig:main-fecundity-at-age-fig)) was
+calculated by using year-specific weight-at-age estimates multiplied by year-specific
 maturity-at-age [@JTC2019] estimates. The same methods were used to estimate
 early (before 2009) and projection period maturity as was done for the
 weight-at-age data. Additionally, samples from age-15$+$ fish were pooled
 for both the maturity and weight-at-age estimation due to limited sample sizes.
-Consequently, the age 15$+$ estimates were applied to ages 15--20 in thepopulation dynamics model (Figure~\@ref(fig:main-maturity-ogive-fig)).
+Consequently, the age 15$+$ estimates were applied to ages 15--20 in the population dynamics model (Figure~\@ref(fig:main-maturity-ogive-fig)).
 
 Some fish at almost every age were found to be functionally immature based
 on histological criteria. Older, functionally immature fish are a combination
