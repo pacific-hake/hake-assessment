@@ -44,11 +44,13 @@ top_coh <- function(model = NULL,
   if(use_catage){
     tmp <- model$extra_mcmc$catage_median
   }else{
-
+    # Need to change name of object b/c it is named the same as a column and
+    # was leading to all rows being selected
+    fleet_select <- fleet
     tmp <- model$dat$agecomp |>
       select(matches("^a|year|fleet", ignore.case = FALSE)) |>
       select(-ageerr) |>
-      dplyr::filter(fleet %in% fleet) |>
+      dplyr::filter(fleet %in% fleet_select) |>
       select(-fleet) |>
       mutate_all(list(as.numeric))
     names(tmp) <- gsub("^a", "", names(tmp))

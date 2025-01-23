@@ -785,24 +785,24 @@ fishery over the last decade (Figure~\@ref(fig:main-age-comp-fits-fishery-fig)).
 The current assessment estimates a strong 2014 year class
 (Figure~\@ref(fig:main-numbers-at-age-fig)) comprising
 `r top_coh(base_model, 2016, ret_cohort = 2014)`% of the 2016 catch,
-`r top_coh(base_model, 2017, ret_cohort = 2014)[[2]]`% of the 2017 catch,
+`r top_coh(base_model, 2017, ret_cohort = 2014)`% of the 2017 catch,
 `r top_coh(base_model, 2018, ret_cohort = 2014)`% of the 2018 catch,
-`r top_coh(base_model, 2019, ret_cohort = 2014)[[2]]`% of the 2019 catch,
+`r top_coh(base_model, 2019, ret_cohort = 2014)`% of the 2019 catch,
 `r top_coh(base_model, 2020, ret_cohort = 2014)`% of the 2020 catch,
-`r top_coh(base_model, 2021, ret_cohort = 2014)[[2]]`% of the 2021 catch,
+`r top_coh(base_model, 2021, ret_cohort = 2014)`% of the 2021 catch,
 `r top_coh(base_model, 2022, ret_cohort = 2014)`% of the 2022 catch,
-`r top_coh(base_model, 2023, ret_cohort = 2014)[[2]]`% of the 2023 catch, and
+`r top_coh(base_model, 2023, ret_cohort = 2014)`% of the 2023 catch, and
 `r top_coh(base_model, 2024, ret_cohort = 2014)`% of the 2024 catch.
 The strong 2016 cohort comprises
 `r top_coh(base_model, 2018, ret_cohort = 2016)`% of the 2018 catch,
-`r top_coh(base_model, 2019, ret_cohort = 2016)[[2]]`% of the 2019 catch,
+`r top_coh(base_model, 2019, ret_cohort = 2016)`% of the 2019 catch,
 `r top_coh(base_model, 2020, ret_cohort = 2016)`% of the 2020 catch,
-`r top_coh(base_model, 2021, ret_cohort = 2016)[[2]]`% of the 2021 catch,
+`r top_coh(base_model, 2021, ret_cohort = 2016)`% of the 2021 catch,
 `r top_coh(base_model, 2022, ret_cohort = 2016)`% of the 2022 catch,
-`r top_coh(base_model, 2023, ret_cohort = 2016)[[2]]`% of the 2023 catch, and
+`r top_coh(base_model, 2023, ret_cohort = 2016)`% of the 2023 catch, and
 `r top_coh(base_model, 2024, ret_cohort = 2016)`% of the 2024 catch.
 The strong 2021 cohort comprises
-`r top_coh(base_model, 2023, ret_cohort = 2021)[[2]]`% of the 2023 catch, and
+`r top_coh(base_model, 2023, ret_cohort = 2021)`% of the 2023 catch, and
 `r top_coh(base_model, 2024, ret_cohort = 2021)`% of the 2024 catch.
 
 The large size of the 2014, 2016, and 2021 cohorts is informed by
