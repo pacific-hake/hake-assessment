@@ -103,9 +103,12 @@ assumes that the `r sp` population is a single coast-wide stock subject to
 one aggregated fleet with combined male and female population dynamics. Stock
 Synthesis [@MethotWetzel2013] version `r ss_version` was the modeling platform
 used. The largest changes between the `r last_assess_yr` and `r assess_yr`
-stock assessments are the addition of another year of fishery and survey data, an
-age-1 index data point, a model-based method for empirical weight-at-age data,
-and time-varying maturity information integrated into the base model.
+stock assessments are the addition of another year of fishery data and a change
+in the estimation of recruitment in 2023 (age-1 fish in 2024). Given the unique
+seasonal fishing conditions during the year, this data point was considered
+potentially suspect as a standalone observation (i.e., without the addition of survey information).
+Therefore, recruitment in 2023 was based on the stock--recruitment relationship
+(no additional recruitment deviate estimate).
 
 The `r assess_yr` base model includes a time series (1995 to
 `r last_survey_yr`) of acoustic age-2$+$ biomass estimates and acoustic
