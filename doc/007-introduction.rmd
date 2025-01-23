@@ -34,13 +34,12 @@ $h$) and integrating over parameter uncertainty to provide results that can be
 probabilistically interpreted. From a range of alternate models investigated
 by the JTC, a subset of sensitivity analyses are also reported to provide a
 broad qualitative comparison of structural uncertainty with respect to the
-base model (Section~\@ref(sec:assessment-sensitivity-analyses)). The
-structural assumptions of this `r assess_yr` base model, implemented using
+base model (Section~\@ref(sec:assessment-sensitivity-analyses)). The model is implemented using
 version `r ss_version` of the Stock Synthesis software [@MethotWetzel2013].
-The `r assess_yr` base model is structurally similar to last year's model, 
-except the `r assess_yr` base model does not include estimates of annaul 
-recruitment deviations in the final two years of the model 
-(e.g., `r last_data_yr` and `r last_data_yr - 1`).
+The `r assess_yr` base model is structurally similar to last year's model,
+except the `r assess_yr` base model does not include estimates of annual
+recruitment deviations in the final two years of the model
+(i.e., `r last_data_yr - 1` and `r last_data_yr`).
 All model runs reported in this document are performed in a Bayesian
 context. Responses to `r last_assess_yr` SRG
 requests are in Section~\@ref(sec:assessment-response-review) and a Glossary
@@ -125,7 +124,7 @@ to oceanographic conditions have been investigated [@ResslerHolmesEtAl2007;
 a foundation for further research on these topics.
 
 Recent oceanographic trends and large-scale ecosystem conditions,
-as summarized in the National Oceanic and Atmospheric Admistration's (NOAA) 
+as summarized in the National Oceanic and Atmospheric Admistration's (NOAA)
 annual [California Current Ecosystem Status Reports](https://www.pcouncil.org/annual-california-current-ecosystem-status-report/),
 provide insight into potential drivers of `r sp` population dynamics and fleet
 operations. Periods of high productivity are often marked by strong winter
@@ -324,7 +323,7 @@ Regulations do not allow at-sea processing or night fishing (midnight to one
 hour after official sunrise) south of 42° N. Lat. at any time during the
 year.
 
-The total catch of `r sp` in U.S. waters was ranked `r last_yr_us_rank` 
+The total catch of `r sp` in U.S. waters was ranked `r last_yr_us_rank`
 over all years (Table~\@ref(tab:main-catches-us-tab)) and the U.S.
 utilization rate (`r last_yr_us_attained`%) was the lowest it has ever been
 (see Appendix~\@ref(sec:app-us-fishery-report) for more details). The
