@@ -437,7 +437,7 @@ the `r assess_yr` base model. The steps are as follows:
 follow current best practices;
 - Incrementally update catch, maturity-at-age/weight-at-age/fecundity-at-age, and fishery age-composition data from years previous to `r last_data_yr` (in that order);
 - Incrementally add `r last_data_yr` catch, maturity-at-age/weight-at-age/fecundity-at-age, and fishery age-composition data (in that order); and
-- Turn off estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (e.g., recruitment from the stock--recruitment relationship) due to limited data to inform the estimation of `r last_data_yr - 1` year class strength in the absence of survey data.
+- Turn off estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (i.e., recruitment comes from the stock--recruitment relationship) due to limited data to inform the estimation of `r last_data_yr - 1` year class strength in the absence of survey data.
 
 Stock Synthesis version `r ss_version` includes a number of changes since the
 version used by @JTC2024. However, none of the changes were specifically relevant
@@ -463,7 +463,7 @@ had a negligible effect on the stock trajectory, it did slightly adjust estimate
 recruitment strength, in particular raising the 2022 recruitment somewhat.
 --->
 
-The final step in the model bridging turned off estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (e.g., recruitment from the stock--recruitment relationship, Figure~\@ref(fig:main-bridge-summary-2-fig)). Given the unique seasonal
+The final step in the model bridging turned off estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (i.e., recruitment comes from the stock--recruitment relationship, Figure~\@ref(fig:main-bridge-summary-2-fig)). Given the unique seasonal
 fishing conditions during the year, this data point was considered potentially suspect
 as a standalone observation (i.e., without the addition of survey information). This change in the model decreased the female spawning biomass at the start of `r assess_yr` relative to the previous model bridging steps. The next assessment will include survey information via the relative age-1 index which will provide additional information about the strength of the 2023 year class.
 
