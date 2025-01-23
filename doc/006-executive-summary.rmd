@@ -78,9 +78,9 @@ In this document, the terms catch and landings are used interchangeably.
 Estimates of discard within the target fishery are included but discarding
 of `r sp` in non-target fisheries is not. Discard from all fisheries,
 including those that do not target `r sp`, is estimated to be less than 1% of
-landings in recent years. During the last five years, catches were
-above the long-term average catch (`r f(long_term_avge_ct)`~t)
-but have been declining over that period (especially in Canada). Landings
+landings in recent years. The catches in `r  last_data_year` declined below 
+the long-term average catch (`r f(long_term_avge_ct)`~t), continuing the
+pattern of declining catches over recent years(especially in Canada). Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
 1999 year class, with a cumulative removal (through `r end_yr - 1`) from
 that cohort of
@@ -99,9 +99,9 @@ landings (`r start_yr`--`r last_data_yr`), an acoustic survey biomass index
 of age-2$+$ fish (Figure~\@ref(fig:es-survey-biomass-fig)) and age compositions
 (`r survey_start_yr`--`r survey_end_yr`), a relative index of age-1 fish
 (Figure~\@ref(fig:es-survey-age1-fig); `r survey_start_yr`--`r survey_end_yr`),
-fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`), and
-mean weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011
-the survey biomass index was the lowest in the time series and was followed
+fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`), and 
+weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011
+the survey biomass index of age-2$+$ fish was the lowest in the time series and was followed
 by the index increasing in 2012, 2013, and again in 2015 before decreasing to
 near the time series average in 2017. The survey
 (Figure~\@ref(fig:es-survey-biomass-fig)) shows a decline from 2019 (the fourth
@@ -111,8 +111,9 @@ along with the age-1 index, provide data that facilitates estimating relative
 cohort strength, i.e., strong and weak cohorts. The age-1 index suggests
 particularly large numbers of age-1 fish in 2009, 2011, and 2015 (2008,
 2010, and 2014 year classes, respectively), and is not available for
-most even years (odd year classes). There are no data to inform the size of
-the `r last_data_yr` year class.
+most even years (odd year classes, Figure~\@ref(fig:es-survey-age1-fig)). 
+There are no survey data to inform the size of the `r last_data_yr-1`and
+`r last_data_yr` year classes.
 
 (ref:es-survey-biomass-cap) Acoustic survey biomass index of age-2$+$ fish
 (Mt). Approximate 95% confidence intervals are based on
@@ -132,7 +133,7 @@ retrospective investigations to evaluate the potential consequences of
 parameter uncertainty, alternative structural models, and historical
 performance of the assessment model, respectively. The Bayesian approach
 combines prior knowledge about natural mortality, stock--recruitment steepness
-(a parameter for stock productivity), and several other parameters, with
+(e.g., a parameter for stock productivity), and several other parameters, with
 likelihoods for the acoustic survey biomass index, acoustic survey
 age-composition data, the relative age-1 index, and fishery age-composition
 data. Integrating the joint posterior distribution over model parameters
@@ -177,7 +178,7 @@ approaches used to develop the input weight-at-age matrix and time-varying
 temperature-dependent maturity were retained from last year's assessment
 to better inform fecundity. Recruitment in 2023 and 2024 was based solely on the
 stock--recruitment relationship (no estimated recruitment deviations) due to
-little information content in the data.
+no available survey data (e.g., age-1 index) to inform their estimation.
 
 This assessment continues to use (since 2014) time-varying
 (rather than constant) selectivity to maintain flexibility within the
@@ -344,8 +345,7 @@ plot_recruitment(list(base_model),
 The addition of `r last_data_yr` data for this assessment do not significantly
 change the general pattern of recruitment estimated in recent assessments.
 However, estimates of absolute recruitment for the most recent years can change
-with new data and updated assumptions about recent recruitments.
-The estimate of 2020 recruitment is slightly above average, whereas in the previous
+with new data and updated assumptions about recent recruitments. The estimate of 2020 recruitment is above average, whereas in the previous
 two assessments it was highly uncertain but thought to be possibly very large.
 The 2021 recruitment is estimated to be potentially large with a median of
 `r f(base_model$mcmccalcs$rmed["2020"], 1)`~billion fish based on
@@ -353,8 +353,8 @@ several years of fishery data and the 2023 survey. The 2022 cohort was observed
 by the age-1 index in 2023, suggesting it is average to below average in size.
 The 2023 and 2024 year classes were set based solely on the stock--recruitment
 relationship for this assessment, such that no recruitment deviations were estimated
-for these years. There is no information in the data to estimate the
-sizes of the `r end_yr - 1` and `r end_yr` year classes. 
+for these years. There are no survey data available to inform the estimates of
+the `r end_yr - 1` and `r end_yr` year class sizes. 
 The general notion remains that recent `r sp` recruitment is
 highly uncertain, and estimates for recent years (based on limited data) can
 change substantially as new data refines estimates. Retrospective analyses
