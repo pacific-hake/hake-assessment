@@ -112,7 +112,7 @@ plot_depth_4_panel(can_ft_gear_depth_df,
 (ref:main-data-overview-cap) Overview of data used in this assessment. Circle
 areas are proportional to total catch for the fishery data, precision for
 the indices, and total sample size for the age compositions (and cannot be
-compared across data types). Additionally, mean weight-at-age data
+compared across data types). Additionally, weight-at-age data
 (`r start_yr_age_comps`--`r last_data_yr`; not depicted here but see
 Figure~\@ref(fig:main-sample-size-weight-at-age-fig) for sample sizes)
 are used to account for time-varying growth.
@@ -176,7 +176,7 @@ plot_grid(plotlist = p_lst, nrow = 2)
 (ref:main-survey-extrap-biomass-cap) Acoustic survey biomass index of age-2$+$
 fish (Mt, Table~\@ref(tab:main-survey-history-tab)). Approximate 95% confidence
 intervals are based on sampling variability (intervals without the additional
-squid/hake apportionment uncertainty included in 2009, black line).
+squid/`r sp` apportionment uncertainty included in 2009, black line).
 
 (ref:main-survey-extrap-biomass-alt) This figure shows that the survey biomass
 estimate has decreased from years 2019 to 2021 and then to 2023.
@@ -361,7 +361,7 @@ plot_weight_at_age(wt_at_age,
 ```
 
 (ref:main-bridge-summary-1-cap) Bridging models showing some of the
-sequential steps made towards the base model from the `r last_assess_yr` base
+sequential steps made towards the `r assess_yr` base model from the `r last_assess_yr` base
 model. Models include shifting to the newest version of Stock Synthesis,
 amending older data sources, and adding new data.
 Panels are spawning biomass (upper panel); relative spawning biomass
@@ -372,7 +372,7 @@ representing the observed survey indices. Note that in the top panel the red
 circle for 2024 is obscured by the orange circle.
 
 (ref:main-bridge-summary-2-cap) Bridging models showing some of the
-sequential steps made towards the base model from the `r last_assess_yr` base
+sequential steps made towards the `r assess_yr` base model from the `r last_assess_yr` base
 model. Models include the last step from the previous figure of adding new
 data, changes to working up data inputs, and structural changes to the model.
 Panels are spawning biomass (upper panel); relative spawning biomass
@@ -766,7 +766,7 @@ Dirichlet-multinomial parameters for the fishery ($\log \theta_{\text{fish}}$)
 and the survey ($\log \theta_{\text{surv}}$). Green triangles signify the initial
 value for each parameter. Red vertical lines represent the median of the
 posterior. The small downturns at the ends of the uniform priors for
-$ln(R_0)$, and the Survey and age-1 extra SD parameters represent the hard
+$ln(R_0)$, and the acoustic survey and age-1 extra SD parameters represent the hard
 limits set for the priors in the Stock Synthesis control file.
 
 (ref:main-prior-posterior-alt) This figure shows how the posteriors shift
