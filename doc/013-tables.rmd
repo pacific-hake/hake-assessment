@@ -406,8 +406,8 @@ table_ci_posteriors(
 
 ```{r main-parameter-estimates-tab, results = "asis", echo = FALSE}
 
-table_param_est_last_year_hardcoded(
-  model = list(base_model),
+table_param_est(
+  models = list(base_model, last_yr_base_model),
   model_nms = c(base_model_name, last_yr_base_model_name),
   section_bold = TRUE,
   section_italics = TRUE,
@@ -424,25 +424,6 @@ table_param_est_last_year_hardcoded(
   font_size = 9,
   header_font_size = 9,
   longtable = TRUE)
-
-# table_param_est(
-#   models = list(base_model, last_yr_base_model),
-#   model_nms = c(base_model_name, last_yr_base_model_name),
-#   section_bold = TRUE,
-#   section_italics = TRUE,
-#   section_underline = TRUE,
-#   section_line_above = FALSE,
-#   section_line_below = FALSE,
-#   digits = 3,
-#   caption = paste0(
-#     "Select parameters, derived quantities, and reference point posterior ",
-#     "median estimates for the (", end_yr, ") base model compared to the ",
-#     "previous assessment's (", end_yr - 1, ") base model. Dashes (--) in ",
-#     "column for the previous assessment indicate quantities that were ",
-#     " not available in that assessment"),
-#   font_size = 9,
-#   header_font_size = 9,
-#   longtable = TRUE)
 ```
 
 \clearpage
