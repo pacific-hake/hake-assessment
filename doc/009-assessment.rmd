@@ -796,7 +796,7 @@ The 2021 recruitment is estimated to be well above average
 (though highly uncertain), with the absolute size being similar to the
 2014 year class (current estimate is `r recruitment_med_in_2021`, with
 a 95% credible interval of `r recruitment_lower_in_2021`--
-`r recruitment_upper_in_2021`~billion fish. Last year's assessment
+`r recruitment_upper_in_2021`~billion fish). Last year's assessment
 also indicated a large 2021 year class, so the
 addition of `r last_assess_yr` data did not appreciably change this estimate.
 The 95% credible interval in the `r end_yr - 1` assessment was
