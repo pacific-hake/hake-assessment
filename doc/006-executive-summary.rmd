@@ -177,8 +177,11 @@ and minor changes to pre-`r end_yr-1` data. The model-based
 approaches used to develop the input weight-at-age matrix and time-varying
 temperature-dependent maturity were retained from last year's assessment
 to better inform fecundity. Recruitment in 2023 and 2024 was based solely on the
-stock--recruitment relationship (no estimated recruitment deviations) due to
-no available survey data (e.g., age-1 index) to inform their estimation.
+stock--recruitment relationship (no estimated recruitment deviations).  Given the unique seasonal
+fishing conditions during the year, this data point was considered potentially suspect
+as a standalone observation (i.e., without the addition of survey information). Therefore, recruitment in 2023 was based on the stock--recruitment relationship (no additional
+recruitment deviate estimate).
+
 
 This assessment continues to use (since 2014) time-varying
 (rather than constant) selectivity to maintain flexibility within the
