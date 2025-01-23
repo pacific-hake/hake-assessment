@@ -332,9 +332,9 @@ size could vary requiring consideration on how to model the survey. The JTC does
 on investigating this issue for this year's assessment but supports the prioritization of this
 research for future assessments.*
 
-*Instead, the JTC has conducted a sensitivity analyses using input sample sizes following the 
+*Instead, the JTC has conducted a sensitivity analyses using input sample sizes following the
 Stewart and Hamel (2014) approach. The results of that sensitivity are included in
-Section~\@ref(sec:assessment-sensitivity-analyses).* 
+Section~\@ref(sec:assessment-sensitivity-analyses).*
 
 8. **The SRG has previously noted that $\sigma_R$ is an influential parameter,
 and encourages further work by the JTC. The SRG supports continuing efforts to
@@ -756,7 +756,7 @@ biomass at the start of `r end_yr` divided by that at unfished equilibrium,
 \@ref(tab:main-ci-posterior-tab)), partly due to remaining unknowns about the size of the
 potentially large 2021 cohort because the acoustic survey has only provided one year of
 information about it during the 2023 survey. The biennial age-1 index does not provide
-additional information for odd year cohorts like this one. 
+additional information for odd year cohorts like this one.
 <!-- for non-survey years: age-1 information, which is more uncertain than the -->
 <!-- 2+ estimate. -->
 
@@ -790,7 +790,7 @@ suspect as a standalone observation (i.e., without the addition of survey inform
 By restricting 2023 recruitment to the stock--recruitment relationship, the assessment model
 was not allowed to predict a very high 2023 year class based solely on the age-1
 catch in the fishery. Another year of data, particularly form the age-2$+$ acoustic--trawl
-survey in 2025 will provide additional information on the size of the 2023 year class.  
+survey in 2025 will provide additional information on the size of the 2023 year class.
 
 The 2021 recruitment is estimated to be well above average
 (though highly uncertain), with the absolute size being similar to the
@@ -1010,7 +1010,7 @@ $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
 The medians of the key parameters from the posterior distribution are
 generally similar to those in last year's base model
 (Table~\@ref(tab:main-parameter-estimates-tab)). Parameter differences were generally less
-than 10%. For derived management quantities, the largest change was a reduction in the 
+than 10%. For derived management quantities, the largest change was a reduction in the
 estimated relative spawning biomass at the start of 2024 from
 `r f(last_yr_base_model$mcmccalcs$dmed["2024"], 1)`% in last year's model to
 `r f(base_model$mcmccalcs$dmed["2024"], 1)`% this year as a result
@@ -1096,12 +1096,12 @@ that something definitely occurs (or definitely does not occur).
 
 With respect to DFO's provisional limit reference point of 0.4`r b_msy` and
 provisional upper stock reference point of 0.8`r b_msy`, the probabilities are
-P(*B*~`r assess_yr`~ > 0.4`r b_msy`) = `r f(dfo_probs_curr[1, 2], 0)`%
+P(*B*~`r assess_yr`~ > 0.4`r b_msy`) = `r f(pull(dfo_probs_curr[1, 2]), 1)`%
 and
-P(*B*~`r assess_yr`~ > 0.8`r b_msy`) = `r f(dfo_probs_curr[1, 3], 0)`%
+P(*B*~`r assess_yr`~ > 0.8`r b_msy`) = `r f(pull(dfo_probs_curr[1, 3]), 1)`%
 such that the stock is estimated to be in the provisional `healthy zone'.
 For completeness, we note that
-P(*B*~`r assess_yr`~ > `r b_msy`) = `r f(dfo_probs_curr[1, 1], 1)`%.
+P(*B*~`r assess_yr`~ > `r b_msy`) = `r f(pull(dfo_probs_curr[1, 1]), 1)`%.
 
 Reference levels of stock status that are used by the U.S. Pacific Fisheries
 Management Council (PFMC) for `r sp` include `r b_40` and a Minimum Stock
