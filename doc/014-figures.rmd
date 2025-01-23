@@ -1332,22 +1332,25 @@ if(!is.null(d_obj_sens_rel_biomass[[1]])){
 ```
 
 (ref:main-biomass-base-alternative-2-cap) Markov chain Monte Carlo estimates
-of spawning biomass for the base model and alternative sensitivity models
+of female spawning biomass for the base model and alternative sensitivity models
 that represent the following changes in data: removing the index of age-1
-fish and down-weighting fishery composition data using the
-McAllister-Ianelli method.
+fish, down-weighting fishery composition data using the
+McAllister--Ianelli method, adding a relative index of abundance using
+environmental DNA, and using maturity estimates from mid-year rather than later
+in the year.
 
 (ref:main-biomass-base-alternative-2-alt) This figure shows how spawning
 biomass changes between the second set of sensitivity runs. The biomass
 estimate decreases in recent years with the removal of the age-1 index from the
-model.
+model. Female spawning biomass in all years is less when maturity is estimated
+earlier in the year.
 
 ```{r main-biomass-base-alternative-2-fig, fig.cap = "(ref:main-biomass-base-alternative-2-cap)", fig.height = 4.5}
 
 if(!is.null(d_obj_sens_biomass[[1]])){
   plot_biomass(d_obj = d_obj_sens_biomass[[2]],
                x_expansion = 3.5,
-               leg_pos = c(0.65, 0.85),
+               leg_pos = c(0.65, 0.80),
                rev_colors = TRUE)
 }
 ```
@@ -1368,7 +1371,7 @@ removal of the age-1 index from the model.
 if(!is.null(d_obj_sens_rel_biomass[[1]])){
   plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[2]],
                    x_expansion = 2,
-                   leg_pos = c(0.65, 0.85),
+                   leg_pos = c(0.65, 0.80),
                    rev_colors = TRUE)
 }
 ```
@@ -1387,7 +1390,8 @@ the age 1 index decreases the estimate of 2022 recruitment.
 
 if(!is.null(d_obj_sens_recdev[[1]])){
   plot_recdevs(d_obj = d_obj_sens_recdev[[2]],
-               leg_pos = c(0.17, 0.92),
+               leg_pos = c(0.30, 0.90),
+               leg_ncol = 2,
                rev_colors = TRUE)
 }
 ```
@@ -1401,7 +1405,7 @@ descriptions.
 (ref:main-index-base-alternative-2-alt) This figure shows the similarity
 between some sensitivity runs of the estimates of the fit to the biomass
 index. Removal of the age-1 index results in a drop in recent survey index
-fits while changing the age composition method to the McAllister Ianelli
+fits while changing the age composition method to the McAllister--Ianelli
 method increases it.
 
 ```{r main-index-base-alternative-2-fig, fig.cap = "(ref:main-index-base-alternative-2-cap)", fig.height = 4.5}
@@ -1412,7 +1416,7 @@ if(!is.null(d_obj_sens_age2_index_grp2[[1]])){
                          survey_type = "age2",
                          rev_colors = TRUE,
                          tick_prop = 2,
-                         leg_pos = c(0.18, 0.9),
+                         leg_pos = c(0.18, 0.8),
                          xlim = c(1995, end_yr))
 }
 ```
@@ -1435,6 +1439,7 @@ if(!is.null(d_obj_sens_biomass[[1]])){
                x_expansion = 3.5,
                leg_font_size = 12,
                leg_pos = c(0.65, 0.85),
+               leg_ncol = 2,
                rev_colors = TRUE)
 }
 ```

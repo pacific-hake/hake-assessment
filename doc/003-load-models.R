@@ -51,7 +51,9 @@ sens_models_dirs <-
          "06-m-03-sd",
          "07-m-hamel-prior"),
        c("08-age-1-survey",
-         "09-comp-weight-harmonic-mean"),
+         "09-comp-weight-harmonic-mean",
+         "17-eDNA-index",
+         "18-tv-maturity-182"),
        c("10-tv-select-phi-extra-low",
          "11-tv-select-phi-low",
          "12-tv-select-phi-high"))
@@ -64,7 +66,9 @@ sens_models_desc <-
          "Natural Mortality (SD=0.3)",
          "Natural Mortality (Hamel/Cope prior)"),
        c("Remove Age 1 Index",
-         "Downweight Fishery Comps"),
+         "Down-weight Fishery Comps",
+         "eDNA Index",
+         "Earlier maturity"),
        c("Phi t.v. selectivity (0.21)",
          "Phi t.v. selectivity (0.70)",
          "Phi t.v. selectivity (2.10)"))

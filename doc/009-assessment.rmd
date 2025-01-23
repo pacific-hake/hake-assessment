@@ -1310,10 +1310,14 @@ relationship ($\sigma_r$);
 
 1. Removal of the age-1 index as a data source;
 
-1. Downweighting the fishery age-composition data; and
+1. Downweighting the fishery age-composition data;
 
 1. Consideration of alternative standard deviations for time-varying
-selectivity.
+selectivity;
+
+1. Adding a relative index of abundance based on environmental-DNA; and
+
+1. Using the middle of the year to predict maturity-at-age data.
 
 None of the sensitivities resulted in a substantial departure from the main
 population dynamics of the base model
@@ -1468,6 +1472,17 @@ biomass in recent years compared to the base model
 When $\Phi = 0.21$, the fit to the most recent age-2$+$ survey biomass index
 was the worst of the three investigated models
 (Figure~\@ref(fig:main-index-base-alternative-4-fig)).
+
+Changing the day of year that maturity was predicted to from
+`r maturity_estimates_df |> dplyr::pull(doy) |> unique() |> max()` to
+`r maturity_estimates_df |> dplyr::pull(doy) |> unique() |> min()`
+led to a decrease in estimates of spawning biomass for the majority of the time
+series, including unfished spawning biomass
+(Table~\@ref(tab:main-parameter-estimates-sens-2-tab),
+Figure~\@ref(fig:main-biomass-base-alternative-2-fig)). Because this model
+leads to a lower estimates of unfished biomass and similar terminal female
+spawning biomass, the estimates of current depletion are higher than the base
+model (Figure~\@ref(fig:main-status-base-alternative-2-fig)).
 
 ## Retrospective analyses {#sec:assessment-retrospective-analyses}
 
