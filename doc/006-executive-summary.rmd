@@ -7,7 +7,7 @@
 ## Stock {-}
 
 This assessment reports the status of the coastal `r sp` (or `r common_name`,
-*`r science_name`*) stock off the west coast of the United States and Canada
+*`r science_name`*) stock off the west coast of the United States (U.S.) and Canada
 at the start of `r assess_yr`. This stock exhibits seasonal migratory
 behavior, ranging from offshore and generally southern waters during the
 winter spawning season to coastal areas between northern California and
@@ -438,7 +438,7 @@ Over the last decade (`r end_yr - 10`--`r end_yr - 1`), the mean coast-wide
 utilization rate (proportion of catch target removed) has been
 `r tot_last_10_yrs_attainment`% and catches have been below coast-wide
 targets (Table~\@ref(tab:es-landings-tac-tab)). From `r end_yr - 5` to
-`r end_yr - 1`, the mean utilization rates differed between the United States
+`r end_yr - 1`, the mean utilization rates differed between the U.S.
 (`r us_last_5_yrs_attainment`%) and Canada (`r can_last_5_yrs_attainment`%).
 While Canada's rate was higher than the U.S.'s in 2020, it has dropped considerably
 over the past few years to historic lows. The utilization rate for the coast-wide
@@ -618,7 +618,7 @@ status and fishing intensity.
 Figure~\@ref(fig:es-depletion-comparison-fig) shows the projected relative
 spawning biomass for several of the catch alternatives. Population dynamics
 and governing parameters assumed during the forecast period include random
-recruitment; selectivity, weight-at-age and fecundity averaged over the five
+recruitment; selectivity, weight-at-age and fecundity-at-age averaged over the five
 most recent years (`r assess_yr - 5`--`r assess_yr - 1`); and constant
 values for all other parameters.
 
