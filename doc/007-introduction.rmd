@@ -148,8 +148,7 @@ time-varying growth without needing a mechanistic relationship or environmental
 data, which facilitates an `Ecosystem Approach to Fisheries Management'
 (a priority for Department of Fisheries and Oceans [DFO] and NOAA; see Section~\@ref(sec:data-weight-at-age)).
 Furthermore, the year-specific maturity-at-age specifically includes a
-temperature effect from a spatiotemporal model (Section~\@ref(sec:data-maturity) and
-Appendix~\@ref(sec:app-maturity-analysis)).
+temperature effect from a spatiotemporal model (Section~\@ref(sec:data-maturity)).
 Related ongoing research should provide more insights into the specific mechanisms
 affecting changes in growth and fecundity, which will enable further condition-specific prediction
 capabilities (e.g., assumptions of growth, or weight at age, and fecundity during forecast

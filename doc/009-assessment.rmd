@@ -509,8 +509,7 @@ vessels).
 
 Lastly, model-based estimates of time-varying maturity ogives were
 incorporated into the calculation of time-varying fecundity
-(Section~\@ref(sec:data-maturity) and
-Appendix~\@ref(sec:app-maturity-analysis)). This is
+(Section~\@ref(sec:data-maturity)). This is
 in addition to using time-varying weight-at-age inputs, which improves the assessment
 model inputs that translate total biomass to spawning biomass. The addition of
 time-varying maturity resulted in annual differences in the age at which

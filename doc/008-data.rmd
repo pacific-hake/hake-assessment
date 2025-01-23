@@ -40,7 +40,7 @@ auxiliary data, were input as fixed values in the assessment model:
 
 - Ageing-error matrices based on cross-read and double-blind-read otoliths.
 
-- Annual proportions of female `r sp` at each age that are mature (Section~\@ref(sec:data-maturity)  of
+- Annual proportions of female `r sp` at each age that are mature (Section~\@ref(sec:data-maturity) from
 histological analyses of ovary samples (Table~\@ref(tab:main-ovaries-tab); Figure~\@ref(fig:main-maturity-ogive-fig)).
 
 - Mean observed weight-at-age data from fishery and survey catches
@@ -474,49 +474,102 @@ biomass than modeling growth [@KuriyamaOnoEtAl2015].
 
 ### Maturity and fecundity {#sec:data-maturity}
 
-Maturity-at-age has always been modelled external to the assessment
-but up through the the 2023 assessment [@JTC2023] the maturity ogive was
-time-invariant. Starting with the 2024 assessment, annual age-based maturity
-ogives (Figure~\@ref(fig:main-maturity-ogive-fig)) were developed using the
-same data, i.e., histological estimates of functional maturity, but fit with
-a spatiotemporal GLMM based on new research by @head-decade-in-press (see Appendix G in @JTC2024 for a full description of the model). The current 
-data set of ovary samples used to inform estimates
-of histological and functional maturity are described in Table~\@ref(tab:main-ovaries-tab). 
-The samples were collected from the acoustic survey, winter and summer acoustic research trips,
-U.S. catcher-processor vessels by observers in the U.S. At-Sea Hake Observer
-Program, and the U.S. West Coast Groundfish Bottom Trawl Survey since 2009. Samples from south of Point
-Conception (34$^\circ$ 44$^\prime$ N. Lat.) have been excluded from maturity analyses since 2018
-[@JTC2018] because they were thought to mature at earlier ages and smaller
-sizes. Samples from Canada were excluded from this analysis because the
-spatiotemporal resolution was insufficient and led to model-convergence issues.
-Additional samples are available to update the maturity relationship (including
-samples collected from Canadian waters since 2018) but have yet to be analyzed.
+Maturity-at-age has always been modelled external to the assessment but up
+through the the 2023 assessment [@JTC2023] the maturity ogive was
+time-invariant. Starting with the 2024 assessment (Appendix G in @JTC2024),
+annual age-based maturity ogives (Figure~\@ref(fig:main-maturity-ogive-fig))
+were developed using the same data, i.e., histological estimates of functional
+maturity (Table~\@ref(tab:main-ovaries-tab)), but fit with a spatiotemporal
+GLMM [@head-decade-2025]. Data fit to the GLMM include samples collected north
+of Point Conception (34$^\circ$ 44$^\prime$ N. Lat.) and south of the
+U.S./Canada border from the acoustic survey, winter and summer acoustic
+research trips, U.S. catcher-processor vessels by observers in the U.S. At-Sea
+Hake Observer Program, and the U.S. West Coast Groundfish Bottom Trawl Survey
+since 2009. Southern samples have been excluded from maturity analyses since
+2018 [@JTC2018] because they are thought to mature at earlier ages and smaller
+sizes. Canadian samples (n = 73) were excluded from the GLMM because their of
+their lack of spatiotemporal resolution. These northern samples could be
+included in future analyses once all of the Canadian samples are analyzed
+and/or more Canadian samples are collected and analyzed.
 
-The spatiotemporal GLMM used to estimate the probability of being functionally
-mature included an estimated spatial field, spatially varying coefficients for
-the quadratic function of age, and year effects as a quadratic function of
-subsurface (130.67 m) temperature indices in the domain of the West Coast
-Groundfish Bottom Trawl Survey. The stochastic partial differential equation
-approximation to Gaussian Random Fields [@LindgrenEtAl2011] was used to
-approximate the spatial surface with a series of estimated random effects.
-The temperature covariate has the potential to add mechanistic relationships to
-the modeling and reduce uncertainty in years where no or few samples are
-collected. Annual maturity-at-age was then predicted for each year since 2009
-using estimated coefficients for non-ASHOP samples and day 278 (i.e., October
-5th). Projections were also made forward in time to `r last_data_yr`
-using available temperature indices. This forward projection was needed because
-maturity information was not sampled in 2022 and data from `r last_data_yr`
-have yet to be analyzed. 
+The probability of being functionally mature was estimated using a
+spatiotemporal GLMM with a spatial field, spatially varying coefficients for
+the quadratic function of age to account for the potential for skip spawning in
+older individuals, a smooth effect of calendar day modeled with penalized
+(P-spline) regression [@EilersMarx1996], a linear offset for fishery-dependent
+samples, and year effects as a quadratic function of modeled subsurface
+(130.67 m) temperature indices in the domain of the West Coast Groundfish
+Bottom Trawl Survey [@LelloucheEtAl2021],
+\begin{align}
+E[\bm{y}] = g^{-1} \left( \bm{X} \bm{\beta} + \bm{Z} \bm{b} + \bm{\omega}_{s} +
+\bm{x}_{age} * \bm{\zeta}_{s,age} + \bm{x}_{age^{2}} * \bm{\zeta}_{s,age^{2}} \right)
+\end{align}
+Where, $g^{-1}()$ represents the inverse-logit function, $\bm{X}$ represents
+the design matrix of fixed effects with estimated parameters $\bm{\beta}$, the
+P-spline is represented with random effect design matrix $\bm{Z}$ and
+corresponding coefficients $\bm{b}$, $\bm{\omega}_{s}$ represents a constant
+spatial field shared across years (analogous to a spatial intercept),
+$\bm{\zeta}_{s,age}$ and $\bm{\zeta}_{s,age^{2}}$ represent spatially varying
+coefficient effects of age, and $\bm{X}^{tvc}_{t}$ represents the design matrix
+of year effects with estimated coefficients $\bm{\gamma_t}$. The
+$\bm{\gamma_t}$ terms were modeled as AR(1) terms such as in the example
+$\gamma_{2010} \sim N\left(\rho\gamma_{2009}, \sqrt{1-\rho^{2}}\sigma \right)$,
+where $\rho$ represents the AR(1) parameter. The added quadratic effects of
+temperature are in the fixed effects components $\bm{X}$ and $\bm{\beta}$.
+The stochastic partial differential equation approximation to Gaussian Random
+Fields [@LindgrenEtAl2011] was used to approximate the spatial field with a
+series of estimated random effects. The mesh representing the spatial field
+used a cutoff distance of 50 km. The temperature covariate has the potential
+to add mechanistic relationships to the modeling and reduce uncertainty in
+years where no or few samples are collected.
+
+Biomass-weighted averages of temperature were created using estimates of the
+spatial distribution of `r sp` from West Coast Groundfish Bottom Trawl Survey
+catch-per-unit-effort data. These estimates were modeled using the same
+spatial-GLMM approach as was used for the maturity model with a smooth effect
+of calendar day via a P-spline, a time varying intercept modeled with a random
+walk, a spatial field, and spatiotemporal variation modeled as an AR(1)
+process. A Tweedie distribution [@Shono2008] was used to model the catches
+given their skewed nature. Predictions were made to spatial cells from the
+GLORYS12v1 re-analysis that were in the spatial domain of the West Coast
+Groundfish Bottom Trawl Survey on July 1 (middle of the survey). These
+predictions were then used to create a weighted average of temperature across
+space.
+
+Maturity at age was estimated to be higher in fishery-dependent samples,
+medium-aged fish, and in summer months. Spatial patterning was similar across
+ages. The estimated marginal effect of temperature indicated a concave
+relationship between temperature and functional maturity. Temperatures in 2018
+and 2020 were near the peak of this relationship, while most years were cooler
+(maturity increasing with temperature over this region). Temperatures in 2016
+and 2019 were high above the threshold corresponding to the peak of the
+temperature--maturity relationship, and maturity at age was estimated to
+decline in these years. The estimate of the spatial variance for the model used
+to weight spatial estimates based on estimated biomass of `r sp` was higher
+than the estimate of the spatiotemporal variance suggesting that differences in
+locations are more prominent than differences in locations between years. That
+is, `r sp` have a patchy distribution but those patches appear in largely the
+same locations year after year. The center of gravity of the distribution was
+furthest to the north in years that correspond to high temperatures and
+subsequent decreases in maturity.
+
+Annual maturity-at-age predictions were made annually since 2009 using
+estimated coefficients for non-ASHOP samples and day 278 (i.e., October 5th).
+Projections were also made forward in time to `r last_data_yr` using available
+temperature indices. This forward projection was needed because maturity
+information was not sampled in 2022 and data from `r last_data_yr` have yet to
+be analyzed. The same biomass estimates used to create biomass-weighted
+temperatures were applied to the estimates of probabilities of being mature in
+logit space. The total weighted average for each age--year combination was
+converted to normal space with an inverse-logit transformation.
 
 Time-varying fecundity at age (Figure~\@ref(fig:main-fecundity-at-age-fig)) was
-previously modeled using year-specific weight-at-age values multiplied by
-maturity-at-age [@JTC2019]. Starting in 2024 assessment, the maturity-at-age is also
-year specific. The same methods were used to estimate early (before 2009) and
-projection period maturity as was done for the weight-at-age data.
-Additionally, samples from age-15$+$ fish were pooled for both the maturity and
-weight-at-age estimation due to limited sample sizes. Consequently, the age
-15$+$ estimates were applied to ages 15--20 in the population dynamics model
-(Figure~\@ref(fig:main-maturity-ogive-fig)).
+modeled using year-specific weight-at-age estimates multiplied by year-specific
+maturity-at-age [@JTC2019] estimates. The same methods were used to estimate
+early (before 2009) and projection period maturity as was done for the
+weight-at-age data. Additionally, samples from age-15$+$ fish were pooled
+for both the maturity and weight-at-age estimation due to limited sample sizes.
+Consequently, the age 15$+$ estimates were applied to ages 15--20 in thepopulation dynamics model (Figure~\@ref(fig:main-maturity-ogive-fig)).
 
 Some fish at almost every age were found to be functionally immature based
 on histological criteria. Older, functionally immature fish are a combination
