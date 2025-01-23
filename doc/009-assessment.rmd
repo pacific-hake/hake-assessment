@@ -435,19 +435,12 @@ the `r assess_yr` base model. The steps are as follows:
 
 - Update to the latest version of Stock Synthesis, version `r ss_version`, to
 follow current best practices;
-- Incrementally update catch, weight-at-age, age-1 index, and fishery age-composition data from
-years previous to `r last_data_yr` (in that order);
-- Incrementally add `r last_data_yr` catch, weight-at-age, biomass survey, survey
-age-composition, age-1 index, and fishery age-composition data (in that order);
-- Change the error distribution associated with the age-1 index from lognormal
-to Student's t-distribution;
-- Use a model-based matrix of input weight-at-age data; and
-- Incorporate model-based estimates of time-varying maturity ogives into the
-calculation of time-varying fecundity.
-
+- Incrementally update catch, maturity-at-age/weight-at-age/fecundity-at-age, and fishery age-composition data from years previous to `r last_data_yr` (in that order);
+- Incrementally add `r last_data_yr` catch, maturity-at-age/weight-at-age/fecundity-at-age, and fishery age-composition data (in that order); and
+- Turn off estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (e.g., recruitment from the stock--recruitment relationship) due to limited data to inform the estimation of `r last_data_yr - 1` year class strength in the absence of survey data.
 
 Stock Synthesis version `r ss_version` includes a number of changes since the
-version used by @JTC2023. However, none of the changes were specifically relevant
+version used by @JTC2024. However, none of the changes were specifically relevant
 to this assessment, and thus, the software update had no effect on assessment
 results (Figure~\@ref(fig:main-bridge-summary-1-fig)).
 
@@ -457,12 +450,10 @@ samples that were recently aged but not available for the `r last_assess_yr`
 assessment were included. Updates to pre-`r last_assess_yr` data were
 small enough that they had little impact on the model results.
 
-The addition of the `r last_data_yr` catch and weight-at-age data extends the
-model to the start of `r assess_yr`. Recruitment estimates and historical stock
-trajectory were relatively unchanged, and the new data suggest a slight decrease in female
-spawning biomass from `r assess_yr - 1` to `r assess_yr`
-(Figure~\@ref(fig:main-bridge-summary-1-fig)).
+The addition of the `r last_data_yr` catch, modelled weight-at-age estimates, and fishery age compositions extends the model to the start of `r assess_yr`. Historical recruitment estimates and the stock
+trajectory were relatively unchanged through 2023, but the female spawning biomass increased in the final year of the model due to well above average recruitment being estimated for 2023 (Figure~\@ref(fig:main-bridge-summary-2-fig)). With the lack of a survey in 2024, the 2023 recruitment deviation is being informed by age-1 observation in the fishery age-compositions.
 
+<!---
 Including the `r last_data_yr` fishery-independent biomass estimate led to a downward shift
 in the stock trajectory going back to 2017 and a similar shift in the fit to the survey
 (Figure~\@ref(fig:main-bridge-summary-1-fig)). The addition of the `r last_data_yr` survey
@@ -470,50 +461,12 @@ biomass age compositions led to an estimated increase in stock biomass from 2023
 classes. While the addition of the `r last_data_yr` relative age-1 index
 had a negligible effect on the stock trajectory, it did slightly adjust estimates of recent
 recruitment strength, in particular raising the 2022 recruitment somewhat.
+--->
 
-The final step of adding `r last_data_yr` data involved incorporating fishery age-composition
-information, which shifted the ending year of the deviations in the selectivity parameters
-from `r last_data_yr - 1` to `r last_data_yr`. These data had relatively
-little impact on the historical biomass estimates but did shift recent
-estimates of spawning biomass upwards (Figure~\@ref(fig:main-bridge-summary-1-fig)).
-Recruitment increased in 2021 and 2022, while the 2020 cohort
-was reduced. The increase in 2021 and 2022 recruitment contributes
-to the increase in female spawning biomass by the start of
-`r assess_yr`, as these fish are considered mostly mature at the start of
-`r assess_yr`. Despite both fishery age compositions and the relative age-1
-index pointing towards above average cohorts in 2020, 2021 and, to a lesser
-extent, 2022, estimates of `r assess_yr` female
-spawning biomass remain highly uncertain (Figure~\@ref(fig:main-bridge-summary-1-fig)).
+The final step in the model bridging turned off estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (e.g., recruitment from the stock--recruitment relationship, Figure~\@ref(fig:main-bridge-summary-2-fig)). Given the unique seasonal
+fishing conditions during the year, this data point was considered potentially suspect
+as a standalone observation (i.e., without the addition of survey information). This change in the model decreased the female spawning biomass at the start of `r assess_yr` relative to the previous model bridging steps. The next assessment will include survey information via the relative age-1 index which will provide additional information about the strength of the 2023 year class.
 
-Structurally changing the error distribution for the relative age-1 index from a
-lognormal to a Student's t-distribution (with 13 degrees of freedom) had
-negligible effect on assessment results (Figure~\@ref(fig:main-bridge-summary-2-fig)).
-Nonetheless, the t-distribution is better suited for these data given the low sample
-size (14) and broader distribution tails compared to a lognormal when sample sizes
-are less than 30.
-
-Input weight-at-age data were constructed using a model-based approach
-(see Section~\@ref(sec:data-weight-at-age) for details) to better inform
-changes in weight-at-age for years and ages when there is little or no
-data. Model predictions were based on a smoothed fixed effect for age and
-random effects for year and cohort. During periods of more consistent sampling
-protocols (since the mid-1990s), there was little effect on overall stock
-size or status (Figure~\@ref(fig:main-bridge-summary-2-fig)). However, there
-were refinements to stock size and status during the 1970s and 1980s, a period
-when sampling protocols were not as well documented (e.g., from foreign
-vessels).
-
-Lastly, model-based estimates of time-varying maturity ogives were
-incorporated into the calculation of time-varying fecundity
-(Section~\@ref(sec:data-maturity)). This is
-in addition to using time-varying weight-at-age inputs, which improves the assessment
-model inputs that translate total biomass to spawning biomass. The addition of
-time-varying maturity resulted in annual differences in the age at which
-`r sp` mature, such that there were minor shifts in the translation of total
-biomass to spawning biomass by one year in some cases within the time
-series (Figure~\@ref(fig:main-bridge-summary-2-fig)), but the general
-trend in spawning biomass and population status remained largely the
-same.
 
 ### Assessment model results {#sec:assessment-model-results}
 
