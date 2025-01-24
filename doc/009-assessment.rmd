@@ -1418,6 +1418,31 @@ When $\Phi = 0.21$, the fit to the most recent age-2$+$ survey biomass index
 was the worst of the three investigated models
 (Figure~\@ref(fig:main-index-base-alternative-4-fig)).
 
+A biomass-based index of `r spp` relative abundance has been developed using
+environmental DNA (see Appendix~\@ref(sec:app-eDNA-index)) that covers
+the years 2019, 2021, and 2023. The relative eDNA index was specified as having
+a Student’s t-distribution for the error structure (similar to the age-1 index)
+with the number of degrees of freedom equal to one less than the
+number of available data points (i.e., 2). An additional constant and additive
+standard deviation on the log-scale was freely estimated to accommodate
+unaccounted-for sources of process and observation error (median estimate
+is XXX 0.09).
+The index is representative of all fish age-1 and older (i.e., fully selective
+of fish age-1$+$), with a catchability estimated at (median) YYY. The eDNA index
+declined from 2019 to 2023, though more steeply between 2019 to 2021 then between
+2021 and 2023 (see Figure~\@ref(fig:app-eDNA-index-1-fig)). This models fit to the
+eDNA index is adequate. While the inclusion of the eDNA index did not significantly alter most
+key parameters and management quantities (Table~\@ref(tab:main-parameter-estimates-sens-2-tab)),
+it did reduce spawning stock biomass estimates from 2021 onward, similar in size and trajectory
+to the removal of the age-1 index sensitivity
+(Figure~\@ref(fig:main-biomass-base-alternative-2-fig)). The eDNA index was included in
+the stock assessment as an initial exploration and proof-of-concept. Further explorations
+are needed, such as integrating eDNA data with acoustic data outside the assessment model
+to produce more accurate and robust survey estiamtes, before it should be used directly
+for management advice. The construction of a longer time-series, through continued
+environmental DNA sampling, will be advantageous for understanding `r spp` population
+dynamics and the biological communities that interact with `r spp`.
+
 Changing the day of year that maturity was predicted to from
 `r maturity_estimates_df |> dplyr::pull(doy) |> unique() |> max()` to
 `r maturity_estimates_df |> dplyr::pull(doy) |> unique() |> min()`
@@ -1468,7 +1493,7 @@ and~\@ref(fig:main-retrospective-recruitment-2-fig)). The 2021 cohort at
 age-3 has a similar median to the 2020 cohort at age-3, but with less uncertainty
 (narrower credibility interval in
 Figure~\@ref(fig:main-retrospective-recruitment-2-fig)) because it has been seen
-in the age-2+ biomass survey (whereas the 2020 cohort was not seen in that
+in the age-2$+$ biomass survey (whereas the 2020 cohort was not seen in that
 survey until it was another year older). Addition of the `r last_data_yr` data
 show that the recruitment deviation for the 2021 cohort is almost the same as
 it was in the `r assess_yr - 1` assessment, indicating that the 2021 cohort
