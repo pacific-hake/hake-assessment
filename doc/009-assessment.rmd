@@ -949,7 +949,7 @@ magnitude of the stock (via the `r r_0` parameter for equilibrium recruitment),
 productivity of the stock (via the steepness parameter, *h*, of the
 stock--recruitment relationship), the rate of natural mortality (*M*), annual
 selectivity for key ages, recruitment deviations, and survey and fishery data
-weights (via the Dirichlet-multinomial parameters
+weights (via the D-M parameters
 $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
 
 The medians of the key parameters from the posterior distribution are
@@ -957,11 +957,9 @@ generally similar to those in last year's base model
 (Table~\@ref(tab:main-parameter-estimates-tab)). Parameter differences were generally less
 than 10%. For derived management quantities, the largest change was a reduction in the
 estimated relative spawning biomass at the start of 2024 from
-`r f(last_yr_base_model$mcmccalcs$dmed["2024"], 1)`% in last year's model to
-`r f(base_model$mcmccalcs$dmed["2024"], 1)`% this year as a result
-of updated data and using average recruitment for 2023 and 2024.
-Medians of the 2014 and 2016 recruitment increased slightly, while 2021 recruitment
-decreased slightly from those estimated in the `r assess_yr - 1` assessment.
+`r f(100*last_yr_base_model$mcmccalcs$dmed["2024"], 1)`% in last year's model to
+`r f(100*base_model$mcmccalcs$dmed["2024"], 1)`% this year as a result
+of updated data, a reduced estimate of the 2022 year class (e.g., estimated positive recruitment in `r last_data_yr` assessment to negative in this assessment), and other minor reductions in estimated recruitment in recent years. Medians of the 2014, 2016, 2020, and 2021 annual recruitment deviations all decreased slightly.
 
 The `r sp` stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
