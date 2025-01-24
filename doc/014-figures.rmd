@@ -1285,7 +1285,8 @@ representing changing the mean of the prior for steepness from 1.0 to 0.5,
 fixing steepness at 1.0, lower (1.0) and higher (1.6) levels of variation
 assumed about the stock--recruitment relationship ($\sigma_r$), changing the
 standard deviation of the prior for natural mortality, and using the Hamel/Cope
-prior distribution for natural mortality.
+prior distribution for natural mortality. Note that the results for the base model and first four
+sensitivities are very similar and somewhat hidden by the purple line.
 
 (ref:main-biomass-base-alternative-1-alt) This figure shows how spawning
 biomass changes between the first set of sensitivity runs. Changing the
@@ -1311,6 +1312,8 @@ of stock status (relative spawning biomass) for the base model and alternative
 sensitivity runs representing changing key parameters. See
 Figure~\@ref(fig:main-biomass-base-alternative-1-fig) for sensitivity
 descriptions.
+Note that the results for the base model are very similar to the first two
+sensitivities and so are somewhat hidden by the blue and red lines.
 
 (ref:main-status-base-alternative-1-alt) This figure shows how relative
 spawning biomass changes between the first set of sensitivity runs. As in
