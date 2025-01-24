@@ -1364,7 +1364,7 @@ recruitment in 2022 is estimated to be somewhat larger for the base model than
 when removing the age-1 index, though both median recruitment deviations are
 negative (unlike last year's assessment for which the base model's was positive).
 Removing the relative age-1 index led to changes in fit to the
-age-2$+$ survey biomass index.Both models underestimate the 2021 age-2$+$ index (the
+age-2$+$ survey biomass index. Both models underestimate the 2021 age-2$+$ index (the
 base model less so), and both overestimate the 2023 age-2$+$ (the base model
 more so); (Figure~\@ref(fig:main-index-base-alternative-2-fig)). So the
 inclusion of the age-1 index in the base model estimates a higher biomass in
@@ -1442,12 +1442,16 @@ the base model value of $\Phi = 1.40$ to 0.21, 0.70, and 2.10 did not
 appreciably influence the estimates, or precision, associated with recruitment
 in 2014 or 2016 but it did impact more recent recruitments
 (Figure~\@ref(fig:main-recruitment-base-alternative-4-fig)). In particular,
-recruitment estimates for 2020 and 2021 are linked to the choice of $\Phi$,
+recruitment estimates for 2020, 2021, and particularly 2022 are linked to the choice of $\Phi$,
 where the smallest investigated value of $\Phi$ (0.21) led to the highest
-estimates of the 2020 and 2021 recruitment deviations of the investigated
-models (Figure~\@ref(fig:main-recruitment-devs-base-alternative-4-fig)).
-The high estimates of recruitment led to a large increase in female spawning
-biomass in recent years compared to the base model
+estimates of these recruitment deviations
+(Figure~\@ref(fig:main-recruitment-devs-base-alternative-4-fig)).
+For 2021 and 2022 the second highest deviations were for the largest value of
+$\Phi$ (2.10), the next highest for $\Phi = 1.4$, and the smallest for
+$\Phi = 0.7$ (rather than going from lowest to highest $\Phi$).
+The higher estimates of recruitment for $\Phi = 0.21$ led to a large increase in female spawning
+biomass in recent years compared to the base model, with, due to the above recruitment
+pattern, the biomass decreasing as $\Phi$ changes from 0.21 to 2.1 to 1.4 to 0.7.
 (Figure~\@ref(fig:main-biomass-base-alternative-4-fig)).
 When $\Phi = 0.21$, the fit to the most recent age-2$+$ survey biomass index
 was the worst of the three investigated models
