@@ -451,7 +451,7 @@ assessment were included. Updates to pre-`r last_assess_yr` data were
 small enough that they had little impact on the model results.
 
 The addition of the `r last_data_yr` catch, modelled weight-at-age estimates, and fishery age compositions extends the model to the start of `r assess_yr`. Historical recruitment estimates and the stock
-trajectory were relatively unchanged through 2023, but the female spawning biomass increased in the final year of the model due to well above average recruitment being estimated for 2023 (Figure~\@ref(fig:main-bridge-summary-2-fig)). With the lack of a survey in 2024, the 2023 recruitment deviation is being informed by age-1 observation in the fishery age-compositions.
+trajectory were relatively unchanged through 2023, but the female spawning biomass increased in the final year of the model due to well above average recruitment being estimated for `r last_data_yr-1` (Figure~\@ref(fig:main-bridge-summary-2-fig)). With the lack of a survey in 2024, the `r last_data_yr-1` recruitment deviation is being informed solely by age-1 observations in the `r last_data_yr` fishery age-compositions.
 
 <!---
 Including the `r last_data_yr` fishery-independent biomass estimate led to a downward shift
@@ -463,9 +463,9 @@ had a negligible effect on the stock trajectory, it did slightly adjust estimate
 recruitment strength, in particular raising the 2022 recruitment somewhat.
 --->
 
-The final step in the model bridging turned off estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (i.e., recruitment comes from the stock--recruitment relationship, Figure~\@ref(fig:main-bridge-summary-2-fig)). Given the unique seasonal
+The final step in the model bridging turned off the estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (i.e., recruitment comes from the stock--recruitment relationship, Figure~\@ref(fig:main-bridge-summary-2-fig)). Given the unique seasonal
 fishing conditions during the year, this data point was considered potentially suspect
-as a standalone observation (i.e., without the addition of survey information). This change in the model decreased the female spawning biomass at the start of `r assess_yr` relative to the previous model bridging steps. The next assessment will include survey information via the relative age-1 index which will provide additional information about the strength of the 2023 year class.
+as a standalone observation (i.e., without the addition of survey information). This change in the model decreased the female spawning biomass at the start of `r assess_yr` relative to the previous model bridging steps. The next assessment will include data from the `r assess_yr` survey that will provide an age-2+ index with age compositions that will provide additional information on the `r last_data_yr-1` year class strength. Additionally, the `r assess_yr+1` assessment will explore turning back on the estimation of recruitment deviations in the final two model years (e.g., `r last_data_yr` and `r assess_yr`) since there will be both a relative age-1 index and fishery age composition data to inform those estimates. 
 
 
 ### Assessment model results {#sec:assessment-model-results}
@@ -501,7 +501,7 @@ was between the 2014 and 2016 recruitment deviations. This is the same as in
 the last assessment despite the fact that each cohort
 has been observed for an additional year.
 
-Regarding the Dirichlet-multinomial parameter $\theta_{\text{fish}}$,
+Regarding the D-M parameter $\theta_{\text{fish}}$,
 the estimate (median and 95% credible interval) for
 $\log \theta_{\text{fish}}$ was
 `r f(log_theta_fishery_median, 3)`
@@ -740,8 +740,8 @@ survey in `r assess_yr` will provide additional information on the size of the `
 The 2021 recruitment is estimated to be well above average
 (though highly uncertain), with the absolute size being similar to the
 2014 year class (current estimate is `r recruitment_med_in_2021`, with
-a 95% credible interval of `r recruitment_lower_in_2021`--
-`r recruitment_upper_in_2021`~billion fish). Last year's assessment
+a 95% credible interval of `r f(base_model$mcmccalcs$rlower["2021"], 1)`--
+`r f(base_model$mcmccalcs$rupper["2021"], 1)`~billion fish). Last year's assessment
 also indicated a large 2021 year class, so the
 addition of `r last_assess_yr` data did not appreciably change this estimate.
 The 95% credible interval in the `r end_yr - 1` assessment was
@@ -810,7 +810,7 @@ For all other years from 2011 to 2022, the model currently estimates small year 
 <!-- see: yrs_since_2010_recruitment_med_below_mean -->
 (median recruitment below the mean of all median
 recruitments), except for 2020 as previously mentioned. The 2022 cohort was observed
-by the age-1 index in 2023 and in recent years by the fishery.  To date, this infomration
+by the age-1 index in 2023 and in recent years by the fishery.  To date, this information
 suggests that it is well below average (Figures~\@ref(fig:main-survey-age1-fig)
 and~\@ref(fig:main-recruitment-fig)). It will be observed as part of the age-2$+$
 survey index for the first time in 2025. There is no information in the data to estimate the
@@ -889,7 +889,7 @@ Over the last decade (`r end_yr - 10`--`r end_yr - 1`), the mean coast-wide
 utilization rate (i.e., proportion of catch target removed) has been
 `r tot_last_10_yrs_attainment`% and catches have been below coast-wide
 targets (Table~\@ref(tab:main-landings-tac-tab)). From `r end_yr - 5` to
-`r end_yr - 1`, the mean utilization rates differed between the United States
+`r end_yr - 1`, the mean utilization rates differed between the U.S.
 (`r us_last_5_yrs_attainment`%) and Canada (`r can_last_5_yrs_attainment`%). While
 Canada's rate was higher than the U.S.'s in 2020, it has dropped considerably
 over the past few years to historic lows.
@@ -898,9 +898,9 @@ the previous decade (`r tot_2024_attainment`%) due, in part, to difficulties
 locating aggregations of fish during the Spring and throughout the year in northern
 areas. Prior to 2024, the previous low was in 2015 at `r tot_2015_attainment`%
 coast-wide attainment. Before 2015,
-the under-utilization in the United States was mostly a result of unrealized
+the under-utilization in the U.S. was mostly a result of unrealized
 catch in the tribal apportionment, while reports from stakeholders in Canada
-suggested that hake were less aggregated in Canada and availability had
+suggested that `r sp` were less aggregated in Canada and availability had
 declined. In 2016, the utilization rate increased but remained below pre-2015
 levels, despite the total 2016 catch being one of the highest of the preceding
 years. This is in large part due to increasing catch targets as biomass
