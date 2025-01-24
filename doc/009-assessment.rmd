@@ -450,8 +450,17 @@ samples that were recently aged but not available for the `r last_assess_yr`
 assessment were included. Updates to pre-`r last_assess_yr` data were
 small enough that they had little impact on the model results.
 
-The addition of the `r last_data_yr` catch, modelled weight-at-age estimates, and fishery age compositions extends the model to the start of `r assess_yr`. Historical recruitment estimates and the stock
-trajectory were relatively unchanged through 2023, but the female spawning biomass increased in the final year of the model due to well above average recruitment being estimated for `r last_data_yr-1` (Figure~\@ref(fig:main-bridge-summary-2-fig)). With the lack of a survey in 2024, the `r last_data_yr-1` recruitment deviation is being informed solely by age-1 observations in the `r last_data_yr` fishery age-compositions.
+The addition of the `r last_data_yr` catch, modelled weight-at-age estimates,
+and fishery age compositions extends the model to the start of `r assess_yr`.
+And, because there was no survey in `r last_data_yr`, the main recruitment
+deviation period remained at `r last_data_yr - 2` but the late recruitment
+deviations were extended to `r last_data_yr`. Historical recruitment estimates
+and the stock trajectory were relatively unchanged through 2023 but the female
+spawning biomass increased in the final year of the model due to well
+above-average recruitment being estimated for `r last_data_yr-1`
+(Figure~\@ref(fig:main-bridge-summary-2-fig)). With the lack of a survey in
+2024, the `r last_data_yr-1` recruitment deviation is being informed solely by
+age-1 observations in the `r last_data_yr` fishery age-composition data.
 
 <!---
 Including the `r last_data_yr` fishery-independent biomass estimate led to a downward shift
@@ -463,10 +472,20 @@ had a negligible effect on the stock trajectory, it did slightly adjust estimate
 recruitment strength, in particular raising the 2022 recruitment somewhat.
 --->
 
-The final step in the model bridging turned off the estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (i.e., recruitment comes from the stock--recruitment relationship, Figure~\@ref(fig:main-bridge-summary-2-fig)). Given the unique seasonal
-fishing conditions during the year, this data point was considered potentially suspect
-as a standalone observation (i.e., without the addition of survey information). This change in the model decreased the female spawning biomass at the start of `r assess_yr` relative to the previous model bridging steps. The next assessment will include data from the `r assess_yr` survey that will provide an age-2+ index with age compositions that will provide additional information on the `r last_data_yr-1` year class strength. Additionally, the `r assess_yr+1` assessment will explore turning back on the estimation of recruitment deviations in the final two model years (e.g., `r last_data_yr` and `r assess_yr`) since there will be both a relative age-1 index and fishery age composition data to inform those estimates. 
-
+The final step in the model bridging led to turning off the estimation of the
+`r last_data_yr - 1` and `r last_data_yr` recruitment deviations (i.e.,
+recruitment comes from the stock--recruitment relationship,
+Figure~\@ref(fig:main-bridge-summary-2-fig)). Given the unique seasonal fishing
+conditions during the year, these estimates of recruitment were considered
+potentially suspect without the addition of survey information. This change led
+to decreased estimates of female spawning biomass at the start of `r assess_yr`
+relative to the previous model bridging steps. The next assessment will include
+data from the `r assess_yr` survey that will provide an age-2+ index with age
+compositions providing additional information on the `r last_data_yr-1`
+year-class strength. Additionally, the `r assess_yr+1` assessment will explore
+estimating recruitment deviations for `r last_data_yr` and `r assess_yr`
+because there will be both a relative age-1 index and fishery age-composition
+data to inform those estimates.
 
 ### Assessment model results {#sec:assessment-model-results}
 
