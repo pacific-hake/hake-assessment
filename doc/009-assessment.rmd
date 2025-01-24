@@ -1019,7 +1019,7 @@ We report estimates of the base reference points (e.g., `r fspr_40`, `r b_40`,
 `r b_msy`, and MSY) with posterior credibility intervals in
 Table~\@ref(tab:main-reference-points-tab). The median of the female spawning
 biomass at `r fspr_40` (namely the median of `r bspr_40`) and the median yield
-at `r fspr_40` have remained about the same as estimates in the
+at `r fspr_40` have declined slightly from the estimates in the
 `r last_assess_yr` assessment (Table~\@ref(tab:main-parameter-estimates-tab)).
 
 As part of the DFO Sustainable Fisheries Framework, @DFO2009 defined a limit
@@ -1033,7 +1033,7 @@ biomass). The probabilities of the female spawning biomass at the start of
 P(*B*~`r assess_yr`~ > `r b_10`) = `r probs_curr_b10`% and
 P(*B*~`r assess_yr`~ > `r b_40`) = `r probs_curr_b40`%
 such that the stock is estimated to be in the 'healthy zone' (above the upper
-stock reference point of `r b_40`). This probability is slightly higher than in
+stock reference point of `r b_40`). This probability is slightly lower than in
 last year's assessment, where the equivalent calculation was
 P(*B*~`r assess_yr - 1`~ > `r b_40`) = 98.1%. Note that a probability
 of '100%' (or '0%') is based on the MCMC results, and is not meant to imply
