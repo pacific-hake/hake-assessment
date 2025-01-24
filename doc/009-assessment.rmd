@@ -206,12 +206,12 @@ natural mortality ($M$) to update the current approach in the model, which
 is based on methods from more than a decade ago, and particularly consider
 options which have age-based $M$.**
 
-*Response -- Pacific Hake have several natural predators, including themselves,
+*Response -- `r sp` have several natural predators, including themselves,
 particularly on younger ages. Recently, [Trzcinski et al. (2024)](https://scholar.
 google.com/scholar_url?url=https://www.int-res.com/articles/meps_oa/m743p113.
 pdf&hl=en&sa=X&d=7035063540343333520&ei=dg3KZvPXCq-Ly9YPsfnLwQs&scisig=
 AFWwaeZ0XVe4uuKTGL-PCWaZhm-R&oi=scholaralrt&hist=_VMmiPwAAAAJ:9480142533121162666:
-AFWwaea2_PScUeInVLp6dXD_hYL6&html=&pos=0&folt=kw-top) identified Pacific Hake as the largest
+AFWwaea2_PScUeInVLp6dXD_hYL6&html=&pos=0&folt=kw-top) identified `r sp` as the largest
 mean proportion of the diet of Harbor Seals. Additionally, the abundance of Harbor
 Seals is near carrying capacity in Canadian waters and has been since the late 1990s.
 Stock Synthesis allows for the inclusion of predators so predation mortality can be
@@ -239,10 +239,9 @@ $M$ at age due to cannibalism. These values can be input into Stock Synthesis as
 2023 the JTC was unsuccessful in estimating age-specific $M$ because of a lack of data to
 inform the estimates. Additionally, fitting Lorenzen $M$ is not possible without
 simultaneously estimating growth. Thus, the JTC sees using fixed age-specific $M$ from
-CEATTLE as a way forward. This work is included in the sensitivity model section in this
-assessment (Section~\@ref(sec:assessment-sensitivity-analyses)). Additionally,
-the JTC will investigate using the results from CEATTLE to inform age-specific priors on $M$
-for the 2026 SRG meeting.*
+CEATTLE as a way forward and have explored this within Stock Synthesis.
+Additionally, the JTC will investigate using the results from CEATTLE to inform
+age-specific priors on $M$ for the 2026 SRG meeting.*
 
 3. **The SRG encourages an analysis of catch and biomass distribution for Canada and
 US that examines latitudinal shifts in fishing over time, and tries to predict factors
