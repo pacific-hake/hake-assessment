@@ -42,7 +42,7 @@ top_coh <- function(model = NULL,
     num_cohorts = 1
   }
   if(use_catage){
-    tmp <- model$extra_mcmc$catage_median
+    tmp <- model$extra_mcmc$catage_med
   }else{
     # Need to change name of object b/c it is named the same as a column and
     # was leading to all rows being selected
