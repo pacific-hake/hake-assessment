@@ -478,20 +478,20 @@ time-invariant. Starting with the 2024 assessment (Appendix G in @JTC2024),
 annual age-based maturity ogives (Figure~\@ref(fig:main-maturity-ogive-fig))
 were developed using the same data, i.e., histological estimates of functional
 maturity (Table~\@ref(tab:main-ovaries-tab)), but fit with a spatiotemporal
-GLMM [@head-decade-2025]. Data fit to the GLMM include samples collected north
+GLMM [@head-decade-2025]. These data include samples collected north
 of Point Conception (34$^\circ$ 44$^\prime$ N. Lat.) and south of the
 U.S./Canada border from the acoustic survey, winter and summer acoustic
 research trips, U.S. catcher-processor vessels by ASHOP observers, 
 and the U.S. West Coast Groundfish Bottom Trawl Survey
 since 2009. Southern samples have been excluded from maturity analyses since
 2018 [@JTC2018] because they are thought to mature at earlier ages and smaller
-sizes. Canadian samples (n = 73) were excluded from the GLMM because their of
-their lack of spatiotemporal resolution. These northern samples could be
-included in future analyses once all of the Canadian samples are analyzed
-and/or more Canadian samples are collected and analyzed.
+sizes. Canadian samples (n = 73) were excluded from the spatiotemporal model
+because their of their lack of spatiotemporal resolution. These Canadian
+samples could be included in future analyses after all of the Canadian samples
+are analyzed and/or more Canadian samples are collected and analyzed.
 
-The probability of being functionally mature was estimated using a
-spatiotemporal GLMM with a spatial field, spatially varying coefficients for
+The probability of being functionally mature was estimated using the inverse
+logit of the effects of a spatial field, spatially varying coefficients for
 the quadratic function of age to account for the potential for skip spawning in
 older individuals, a smooth effect of calendar day modeled with penalized
 (P-spline) regression [@EilersMarx1996], a linear offset for fishery-dependent
@@ -500,20 +500,16 @@ samples, and year effects as a quadratic function of modeled subsurface
 Bottom Trawl Survey [@LelloucheEtAl2021],
 \begin{align}
 E[\bm{y}] = g^{-1} \left( \bm{X} \bm{\beta} + \bm{Z} \bm{b} + \bm{\omega}_{s} +
-\bm{x}_{age} * \bm{\zeta}_{s,age} + \bm{x}_{age^{2}} * \bm{\zeta}_{s,age^{2}} \right)
+\bm{x}_{age} * \bm{\zeta}_{s,age} + \bm{x}_{age^{2}} * \bm{\zeta}_{s,age^{2}}
+\right).
 \end{align}
 Where, $g^{-1}()$ represents the inverse-logit function, $\bm{X}$ represents
-the design matrix of fixed effects with estimated parameters $\bm{\beta}$, the
-P-spline is represented with random effect design matrix $\bm{Z}$ and
-corresponding coefficients $\bm{b}$, $\bm{\omega}_{s}$ represents a constant
-spatial field shared across years (analogous to a spatial intercept),
+the design matrix of fixed effects with estimated parameters $\bm{\beta}$ that
+include the quadratic effects of temperature, the P-spline is represented with
+random effect design matrix $\bm{Z}$ and corresponding coefficients $\bm{b}$,
+$\bm{\omega}_{s}$ represents a constant spatial field shared across years, and
 $\bm{\zeta}_{s,age}$ and $\bm{\zeta}_{s,age^{2}}$ represent spatially varying
-coefficient effects of age, and $\bm{X}^{tvc}_{t}$ represents the design matrix
-of year effects with estimated coefficients $\bm{\gamma_t}$. The
-$\bm{\gamma_t}$ terms were modeled as first-order auto regressive (AR(1)) terms such as in the example
-$\gamma_{2010} \sim N\left(\rho\gamma_{2009}, \sqrt{1-\rho^{2}}\sigma \right)$,
-where $\rho$ represents the AR(1) parameter. The added quadratic effects of
-temperature are in the fixed effects components $\bm{X}$ and $\bm{\beta}$.
+coefficient effects of age.
 The stochastic partial differential equation approximation to Gaussian Random
 Fields [@LindgrenEtAl2011] was used to approximate the spatial field with a
 series of estimated random effects. The mesh representing the spatial field
@@ -526,11 +522,11 @@ spatial distribution of `r sp` from West Coast Groundfish Bottom Trawl Survey
 catch-per-unit-effort data. These estimates were modeled using the same
 spatial-GLMM approach as was used for the maturity model with a smooth effect
 of calendar day via a P-spline, a time varying intercept modeled with a random
-walk, a spatial field, and spatiotemporal variation modeled as an AR(1)
-process. A Tweedie distribution [@Shono2008] was used to model the catches
-given their skewed nature. Predictions were made to spatial cells from the
-GLORYS12v1 re-analysis that were in the spatial domain of the West Coast
-Groundfish Bottom Trawl Survey on July 1 (middle of the survey). These
+walk, a spatial field, and spatiotemporal variation modeled as a first-order
+autoregressive process. A Tweedie distribution [@Shono2008] was used to model
+the catches given their skewed nature. Predictions were made to spatial cells
+from the GLORYS12v1 re-analysis that were in the spatial domain of the West
+Coast Groundfish Bottom Trawl Survey on July 1 (middle of the survey). These
 predictions were then used to create a weighted average of temperature across
 space.
 
@@ -538,36 +534,37 @@ Maturity-at-age was estimated to be higher in fishery-dependent samples,
 medium-aged fish, and in summer months. Spatial patterning was similar across
 ages. The estimated marginal effect of temperature indicated a concave
 relationship between temperature and functional maturity. Temperatures in 2018
-and 2020 were near the peak of this relationship, while most years were cooler
-(maturity increasing with temperature over this region). Temperatures in 2016
-and 2019 were high above the threshold corresponding to the peak of the
-temperature--maturity relationship, and maturity-at-age was estimated to
-decline in these years. The estimate of the spatial variance for the model used
-to weight spatial estimates based on estimated biomass of `r sp` was higher
-than the estimate of the spatiotemporal variance suggesting that differences in
-locations are more prominent than differences in locations between years. That
-is, `r sp` have a patchy distribution but those patches appear in largely the
-same locations year after year. The center of gravity of the distribution was
-furthest to the north in years that correspond to high temperatures and
-subsequent decreases in maturity.
+and 2020 were near the peak of this relationship, while most years were cooler.
+Temperatures in 2016 and 2019 were high above the threshold corresponding to
+the peak of the temperature--maturity relationship, and maturity-at-age was
+estimated to decline in these years.
 
-Annual maturity-at-age predictions were made annually since 2009 using
+Annual maturity-at-age predictions were made since 2009 using
 estimated coefficients for non-ASHOP samples and day 278 (i.e., October 5th).
 Projections were also made forward in time to `r last_data_yr` using available
 temperature indices. This forward projection was needed because maturity
 information was not sampled in 2022 and data from `r last_data_yr` have yet to
 be analyzed. The same biomass estimates used to create biomass-weighted
 temperatures were applied to the estimates of probabilities of being mature in
-logit space. The total weighted average for each age--year combination was
-converted to normal space with an inverse-logit transformation.
+logit space. Estimate of the spatial variance was higher than the estimate of
+the spatiotemporal variance for the biomass estimates suggesting that
+differences in locations are more prominent than differences in locations
+between years. That is, `r sp` have a patchy distribution but those patches
+appear in largely the same locations year after year. The center of gravity
+of the distribution was furthest to the north in years that corresponded to
+high temperatures and subsequent decreases in maturity. The total weighted
+average maturity for each age--year combination was converted to normal space
+with an inverse-logit transformation.
 
 Time-varying fecundity-at-age (Figure~\@ref(fig:main-fecundity-at-age-fig)) was
-calculated by using year-specific weight-at-age estimates multiplied by year-specific
-maturity-at-age [@JTC2019] estimates. The same methods were used to estimate
-early (before 2009) and projection period maturity as was done for the
-weight-at-age data. Additionally, samples from age-15$+$ fish were pooled
-for both the maturity and weight-at-age estimation due to limited sample sizes.
-Consequently, the age 15$+$ estimates were applied to ages 15--20 in the population dynamics model (Figure~\@ref(fig:main-maturity-ogive-fig)).
+calculated by using year-specific weight-at-age estimates multiplied by
+year-specific maturity-at-age [@JTC2019] estimates. The methods used to
+estimate early (before 2009) and projection period weight at age were also used
+to estimate maturity for these time periods. Additionally, samples from
+age-15$+$ fish were pooled for both the maturity and weight-at-age estimation
+due to limited sample sizes. Consequently, the age 15$+$ estimates were applied
+to ages 15--20 in the population dynamics model
+(Figure~\@ref(fig:main-maturity-ogive-fig)).
 
 Some fish at almost every age were found to be functionally immature based
 on histological criteria. Older, functionally immature fish are a combination
@@ -579,8 +576,8 @@ fraction of fish mature at each age.
 
 Tissue samples have been collected from many of the same fish from which
 ovaries were sampled. In the future, these tissue samples may help determine
-whether the fish south of 34$^\circ$ 44$^\prime$ N. Lat. are from the same population as the rest of
-the coastal population via genetic analyses.
+whether the fish south of 34$^\circ$ 44$^\prime$ N. Lat. are from the same
+population as the rest of the coastal population via genetic analyses.
 
 ### Ageing error {#sec:data-ageing-error}
 
@@ -614,7 +611,7 @@ effect. The resultant ageing error was similar to the ageing error derived
 from the 2008 analysis. Since 2011, cohort-specific ageing error has been
 used to reduce the ageing-error standard deviation by a factor of 0.55 for the
 following largest cohorts: 1980, 1984, 1999, 2010, and 2014. In the 2014 base
-model [@JTC2014], the 2008 cohort was also included in this set, but
+model [@JTC2014], the 2008 cohort was also included in this set but
 subsequent estimates show this year class to not be as strong as previously
 thought, and thus, cohort-specific ageing error has not been included for the
 2008 cohort since 2015. Also, cohort-specific ageing error does not include
@@ -648,7 +645,7 @@ mortality and its prior) and is repeated here (see Section
 \@ref(sec:assessment-sensitivity-analyses)), including increasing the prior
 standard deviation and using an alternative prior distribution altogether
 based on a life history meta-analysis [@Hamel2015, @HamelCope2022]. The
-Hamel-Cope prior used a lognormal prior distribution with a median of 0.22
+Hamel--Cope prior used a lognormal prior distribution with a median of 0.22
 (based on a maximum age of 25) and a standard deviation (in log space) of 0.31.
 Alternative prior distributions for natural mortality typically have a
 significant impact on the model results. But in the absence of new information
@@ -682,7 +679,7 @@ parameters. Further testing of alternative methods for parameterizing
 time-varying selectivity [e.g., @Xu2019] should be investigated in conjunction
 with the estimation of additional time-varying parameters.
 
-### Age composition likelihood {#sec:data-age-comp-likelihood}
+### Age-composition likelihood {#sec:data-age-comp-likelihood}
 
 Since 2018, the assessment has used the linear formulation of the
 Dirichlet-multinomial (D-M) likelihood [@ThorsonEtAl2017Dirichlet] to fit the
@@ -700,7 +697,7 @@ sensitivities, retrospective analyses, and likelihood profiles are
 automatically tuned, rather than having the age compositions be given the same
 weight as the base model. Note that the following description holds for both
 the survey data and the fishery data, with $\theta$ equal to
-$\theta_{\text{surv}}$ or $\theta_{\text{fish}}$.
+$\theta_{\text{surv}}$ or $\theta_{\text{fish}}$, respectively.
 
 The likelihood function for the linear parameterization of the D-M likelihood
 (see Equation 10 of @ThorsonEtAl2017Dirichlet) is
@@ -735,7 +732,7 @@ The input sample sizes used in this assessment, which are based on the number
 of trips and/or hauls, are large enough that the first term is insignificant
 compared to the second term. Consequently,
 $\theta / (1 + \theta)$ can be compared to the sample size multipliers used in
-the McAllister-Ianelli (M-I) data-weighting method
+the McAllister--Ianelli (M-I) data-weighting method
 [@McAllisterIanelli1997] that was used for assessments prior to 2018
 (Table~\@ref(tab:main-assessment-changes-tab)) and
 as a sensitivity here (see Section~\@ref(sec:assessment-sensitivity-analyses)).
