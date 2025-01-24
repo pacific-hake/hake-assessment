@@ -1418,7 +1418,7 @@ When $\Phi = 0.21$, the fit to the most recent age-2$+$ survey biomass index
 was the worst of the three investigated models
 (Figure~\@ref(fig:main-index-base-alternative-4-fig)).
 
-A biomass-based index of `r spp` relative abundance has been developed using
+A biomass-based index of `r sp` relative abundance has been developed using
 environmental DNA (see Appendix~\@ref(sec:app-eDNA-index)) that covers
 the years 2019, 2021, and 2023. The relative eDNA index was specified as having
 a Student’s t-distribution for the error structure (similar to the age-1 index)
@@ -1440,8 +1440,8 @@ the stock assessment as an initial exploration and proof-of-concept. Further exp
 are needed, such as integrating eDNA data with acoustic data outside the assessment model
 to produce more accurate and robust survey estiamtes, before it should be used directly
 for management advice. The construction of a longer time-series, through continued
-environmental DNA sampling, will be advantageous for understanding `r spp` population
-dynamics and the biological communities that interact with `r spp`.
+environmental DNA sampling, will be advantageous for understanding `r sp` population
+dynamics and the biological communities that interact with `r sp`.
 
 Changing the day of year that maturity was predicted to from
 `r maturity_estimates_df |> dplyr::pull(doy) |> unique() |> max()` to
