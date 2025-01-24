@@ -200,7 +200,7 @@ assessment. Also see default harvest policy.
 Joint Management Committee (JMC): The Joint Management Committee is established
 by the Agreement.
 
-Joint Technical Committee (JTC): The Joint Technical Committee established
+Joint Technical Committee (JTC): The Joint Technical Committee is established
 by the Agreement. The formal name is 'Joint Technical Committee of the
 `r sp`/Whiting Agreement Between the Governments of the United States and
 Canada'.
@@ -232,9 +232,8 @@ from a population under equilibrium ecological and environmental conditions.
 
 Megatonne (Mt): Metric abbreviation for 1,000,000 metric tonnes.
 
-Metric tonne (t): A unit of mass (often referred to as weight) equal to
-1,000 kilograms or 2,204.62 pounds. Some previous stock assessments used
-the abbreviation 'mt'.
+Metric tonne (t): A unit of mass equal to 1,000 kilograms or 2,204.62 pounds.
+Some previous stock assessments used the abbreviation 'mt'.
 
 National Marine Fisheries Service (NMFS): See NOAA Fisheries.
 
@@ -266,14 +265,14 @@ evaluation represent alternative configurations of the operating model.
 Pacific Biological Station (PBS): The Pacific Biological Station of Fisheries
 and Oceans Canada located in Nanaimo, British Columbia.
 
-Pacific Coast Fisheries Information Network (PacFIN): A database that provides
+Pacific Fisheries Information Network (PacFIN): A database that provides
 a central repository for commercial fishery information from Washington,
 Oregon, and California.
 
 Pacific Fishery Management Council (PFMC): The U.S. organization under
 which historical stock assessments for `r sp` were conducted.
 
-`r sp`: Common name for `r science_name`, the species whose offshore
+`r sp`: Common name for *`r science_name`*, the species whose offshore
 population in the waters of the United States and Canada is subject of this
 assessment.
 
@@ -290,7 +289,7 @@ sampling.
 Prior distribution: A probability distribution for a parameter in a Bayesian
 analysis that represents the information available before evaluating the
 observed data via the likelihood equation. For some parameters, uninformative
-priors can be constructed which allow the data to dominate the posterior
+priors can be constructed that allow the data to dominate the posterior
 distribution. For other parameters, informative priors can be constructed
 based on auxiliary information and/or expert knowledge or opinions.
 
@@ -302,7 +301,7 @@ Bayesian stock assessment models prior to 2021.
 
 Recruits/recruitment: the estimated number of new members in a fish
 population born in the same age. In this assessment, recruitment is
-reported at age~0. See also cohort and year-class.
+reported at age~0. See cohort and year-class.
 
 Recruitment deviation: The offset of the recruitment in a given year
 relative to the stock--recruitment relationship; values occur on a logarithmic
@@ -345,7 +344,7 @@ numerator and denominator of the spawning potential ratio.
 
 Spawning potential ratio (SPR): The ratio of the spawning biomass per recruit
 under a given level of fishing to the estimated spawning biomass per recruit
-in the absence of fishing; i.e.,~for fishing mortality rate *F*.
+in the absence of fishing.
 <!-- \begin{equation}  -->
 <!-- \mbox{SPR}(F) = \frac{\mbox{spawning biomass per recruit with }F}{\mbox{spawning biomass per recruit with no fishing}}. -->
 <!-- \end{equation} -->
@@ -353,14 +352,15 @@ Often expressed as a percentage, it achieves a value of 100% in the absence
 of fishing and declines toward zero as fishing intensity increases
 (Figure~\@ref(fig:glossary-spr-illustration-fig)).
 
-Standard deviation (sd): A measure of variability within a sample.
+Standard deviation (sd): A measure of variability about the mean within a
+sample.
 
 Steepness (*h*): A parameter of the stock--recruitment relationship
 representing the proportion of `r r_0` expected (on average) when the female
 spawning biomass is reduced to 20% of `r b_0` (i.e.,~when relative spawning
 biomass is equal to 20%).
 
-Stock Synthesis (SS): The age-structured stock assessment model applied in
+Stock Synthesis (SS3): The age-structured stock assessment model applied in
 this stock assessment.
 
 Target strength (TS): The amount of backscatter from an individual acoustic
@@ -369,14 +369,14 @@ target.
 Total allowable catch (TAC): The maximum fishery removal under the terms of
 the Agreement.
 
-U.S./Canadian allocation: The division of the total allowable catch of
-`r us_allotment_percent`% as for the U.S. share and
+U.S./Canadian allocation: The division of the total allowable catch as
+`r us_allotment_percent`% for the U.S. share and
 `r can_allotment_percent`% for the Canadian share.
 
 Vulnerable biomass: The demographic portion of the population available for
 harvest by the fishery.
 
-Year-class: A group of fish born in the same year. See also 'cohort' and
+Year-class: A group of fish born in the same year. See 'cohort' and
 'recruitment'.
 
 \leftskip 0in
@@ -387,8 +387,9 @@ function of the spawning potential ratio (SPR; top axis) and 1-SPR (bottom
 axis); given the benchmark SPR of 40%, the solid blue line is simply $1/0.6$,
 as shown in equation \@ref(eq:appendix-glossary-spr).
 
-(ref:glossary-fishing-intensity-illustration-alt) This figure shows how fishing
-intensity linearly increases with SPR.
+(ref:glossary-fishing-intensity-illustration-alt) Fishing intensity linearly
+increases with SPR from the origin and passes through 1-SPR of 0.6 and fishing
+intensity of 1.0.
 
 ```{r glossary-fishing-intensity-illustration-fig, fig.cap = "(ref:glossary-fishing-intensity-illustration-cap)", fig.width = 5}
 plot_intensity_illustration(0.4)
@@ -400,7 +401,11 @@ mortality, selectivity, and fishing mortality in the final year of the base
 model used in this year's assessment. The light blue bars represent unfished
 values, the dark blue bars represent fished values.
 
-(ref:glossary-spr-illustration-alt) This figure shows how SPR is calculated.
+(ref:glossary-spr-illustration-alt) Numbers per recruit decrease exponentially from
+zero. Biomass per recruit peaks at age-3 fish, the age at which fishing
+significantly decreases the value from an unfished state. Overlaying the spawning
+biomass per recruit from a fished state over an unfished state to visualize how
+SPR is calculated illustrates why it is less than one.
 
 ```{r glossary-spr-illustration-fig, fig.cap = "(ref:glossary-spr-illustration-cap)", fig.height = 7, fig.width = 6}
 plot_spr_illustration(base_model,
