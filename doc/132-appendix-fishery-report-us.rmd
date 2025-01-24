@@ -7,6 +7,81 @@
 
 # Report of the `r assess_yr - 1` `r sp` fishery in the United States {#sec:app-us-fishery-report}
 
-**Prepared by the United States Advisory Panel on TODO date here 17 January 2024 for inclusion in this assessment document.**
+**Prepared by the United States Advisory Panel on 24 January 2025 for inclusion in this assessment document.**
+
+**2024 U.S. Sector Whiting Allocations & Catch**
+Based on information provided by U.S. Advisory Panel members and data from
+the Pacific Fisheries Information Network (PacFIN), total U.S. harvest in the
+2024 whiting fishery was **165,582~t** (see Table \@ref(tab:us-ap-catch-tab)), which is 40% of the U.S. allocation of
+410,035~t. Compared to the 2023 season (240,189~t), total U.S. catch was down
+31% in 2024.
+
+```{r us-ap-catch-tab, results = "asis", echo = FALSE}
+d <- tibble(`US Sector ` = c("Tribal",
+                    "Research",
+                    "Shoreside (SS)",
+                    "Mothership (MS),
+                    "Catcher/Processor (CP),
+                    "Total"),
+            `2024 Initial Allocation` = c(71756,
+                           750, 141762, 81007,114760,410035),
+            `2024 Allocation After Reapportionment` = c(26756,
+                            750,160662,91807,130060,410035),
+            `2024 Catch` = c(1541, Unknown, 81205,20927,61909,165582),
+            `2024 % Utilization` = c(5.8, Unknown, 51, 22.8, 48, 40.4)) |> 
+  mutate(across(-` `, ~{.x <- ifelse(row_number() == n(),
+                                     paste0(f(.x, 1), "%"),
+                                     f(.x))}))
+
+kbl(d,
+    align = "lrrrrr",
+    format = "latex",
+    booktabs = TRUE,
+    caption = paste0("2024 U.S. whiting allocations and catch (metric tons, mt). Source is from the [Federal
+    register](https://www.govinfo.gov/content/pkg/FR-2024-10-22/pdf/2024-24361.pdf) and [PacFIN Whiting Report](https://reports.psmfc.org/pacfin/f?p=501:202::INITIAL:NO:::). Tribal catch is estimated (SS sector), and MS catch was provided by the MS
+    cooperative.")) |> 
+  row_spec(0, bold = TRUE) |> 
+  column_spec(1, bold = TRUE)
+  
+```
+
+The **lack of a Spring fishery for all sectors** is one of the primary factors contributing to the
+low overall catch for the U.S. whiting fishery in 2024. It seems the hake were slow to show up
+(similar to 2023), and aggregation of fish observed in the Spring were located very far south,
+and, in many cases not feasible to pursue (due to cost/economics or regulation). The spring fishery
+was considered a failure for the catcher-processor (CP) sector, and boats in all sectors saw little
+to no fish north of 42 degrees through most of the spring. The mothership (MS) and shoreside (SS)
+vessels were able to get a few scratchy trips in June, but the fishery didn’t start in earnest until
+July. Abnormally cold water temperatures were also reported in the Spring fishery, which did benefit
+fish quality compared to 2023.
+
+**Late summer into early fall** (August – October) provided the best fishing of the season. The
+MS and SS fleets reported notably good, clean fishing in August and September. Fish aggregations
+moved northward from the CA/OR border north of Newport, OR. The fish were consistently 500-600 grams
+with good quality and recovery. By the end of September, catch began to slow, and fish size had
+dropped to the 300-400g range, on average. Most of the MS and SS effort was in mid to southern
+Oregon, with some catch in northern Oregon and Washington in October. Off northern OR and WA,
+fishing was spottier across the entire year. Some SS boats had success finding hake in the box
+off Northern Washington later in the year. Most fish caught of WA waters were larger fish, in
+the 700-900 gram range and larger.
+
+The CP sector began participating in the Fall fishery in late August/early September, which is a
+typical timeframe. At no point in the fall season did the CP sector have a full complement of
+vessels participating at the same time. This is due to some vessels returning from the Alaska
+pollock fishery late, shipyard schedules, and poor fishing. Early in the fall season, strong
+aggregations of whiting were observed in California, however it did not appear that fish moved
+north across the OR/CA border. CP vessels generally encountered low CPUE in the Fall fishery
+and difficulty finding consistent aggregations of whiting resulting in significant efforts
+searching for whiting. Most CP harvest occurred in central and southern Oregon.
+
+Bycatch was less of a problem than in most years, largely due to reduced catch and effort overall.
+Many MS and SS catcher boats use real time cameras and did report seeing very large numbers of
+small/juvenile hake in their cameras – Some fishermen reported seeing more 1 and 2 year olds
+than they’ve seen in more than a decade. Boats in the pink shrimp fishery also reported seeing
+large numbers of juvenile hake.
+
+Only two (2) out of six (6) mothership platforms participated in the U.S. whiting fishery in 2024.
+The shoreside sector continued to see reduced processing capacity with the loss of the Newport
+surimi plants for the 2024 season.
 
 \clearpage
