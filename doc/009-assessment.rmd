@@ -959,7 +959,7 @@ than 10%. For derived management quantities, the largest change was a reduction 
 estimated relative spawning biomass at the start of 2024 from
 `r f(100*last_yr_base_model$mcmccalcs$dmed["2024"], 1)`% in last year's model to
 `r f(100*base_model$mcmccalcs$dmed["2024"], 1)`% this year as a result
-of updated data, a reduced estimate of the 2022 year class (e.g., estimated positive recruitment in `r last_data_yr` assessment to negative in this assessment), and other minor reductions in estimated recruitment in recent years. Medians of the 2014, 2016, 2020, and 2021 annual recruitment deviations all decreased slightly.
+of updated data and a reduced estimate of the 2022 year class (e.g., estimated positive recruitment in `r last_data_yr` assessment to negative in this assessment).
 
 The `r sp` stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
