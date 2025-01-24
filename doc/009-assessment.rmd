@@ -1316,15 +1316,16 @@ influence the stock--recruitment relationship
 (Figure~\@ref(fig:main-stock-recruitment-fig)).
 
 Input values of $\sigma_r$ were changed from `r sigma_r` (base) to
-alternative high (`r sigma_r_sens[2]`) and low (`r sigma_r_sens[1]`) states.
+alternative low (`r sigma_r_sens[1]`) and high (`r sigma_r_sens[2]`) states.
 Both sensitivities were similar to the base model in that the calculated
 standard deviation of recruitment deviations (from the main period) was
 higher than the input $\sigma_r$, i.e., `r sigma_r_lo_main` and
 `r sigma_r_hi_main` when $\sigma_r$ was `r sigma_r_sens[1]` and
 `r sigma_r_sens[2]`, respectively. The calculated standard deviation of
-recruitment deviations from the base model was intermediate at 1.70. These
+recruitment deviations from the base model was intermediate with a median of
+`r sigma_r_this_year_main` These
 calculated standard deviations should match the input if the vectors of
-deviations were from the 'population' of values rather than just a sample.
+deviations were from the `population' of values rather than just a sample.
 However, this systematic bias to be larger than the input value indicates that
 the standard deviation of recruitment deviations is accounting for more
 variability than just variability in recruitment. The high $\sigma_r$ model led
@@ -1334,7 +1335,7 @@ than the low $\sigma_r$ model
 (Figure~\@ref(fig:main-biomass-base-alternative-1-fig)). Similar to previous
 assessments, estimates of unfished equilibrium recruitment and relative
 spawning biomass are sensitive to $\sigma_r$, whereas absolute estimates of
-female spawning biomass are relatively insensitive. The method
+female spawning biomass are relatively insensitive. The method that
 @MethotTaylor2011 proposed to tune $\sigma_r$ was developed in the context of
 maximum likelihood estimation and not Bayesian inference, where the latter
 potentially allows for estimating $\sigma_r$ using random effects, and thus,
@@ -1344,7 +1345,7 @@ The sensitivity of the base model to the removal of the relative age-1 index
 provides a method to evaluate how the information about juvenile fish is
 propagated through the model. Estimates of female spawning biomass throughout
 most of the time series are similar between models with and without the relative
-age-1 index but diverge near the end of the time series
+age-1 index (which only starts in 1995) but diverge near the end of the time series
 (Table~\@ref(tab:main-parameter-estimates-sens-1-tab),
 Figures~\@ref(fig:main-biomass-base-alternative-2-fig) and
 \@ref(fig:main-status-base-alternative-2-fig)). The `r end_yr` estimates of
@@ -1359,12 +1360,15 @@ recruitment for cohorts associated with recent age-1 indices (i.e., 2020 and
 base model with the relative age-1 index indicates slightly larger 2020 and
 2021 year classes than the model removing the age-1 index
 (Figure~\@ref(fig:main-recruitment-base-alternative-2-fig)). Similarly,
-recruitment in 2022 is estimated to be slightly above average when the model is
-fit to the relative age-1 index compared to slightly below average without the
-index. Removing the relative age-1 index led to minor changes in fit to the
-age-2$+$ survey biomass index, with 2021 showing a slight improvement and 2023
-a deterioration compared to the base model
-(Figure~\@ref(fig:main-index-base-alternative-2-fig)).
+recruitment in 2022 is estimated to be somewhat larger for the base model than
+when removing the age-1 index, though both median recruitment deviations are
+negative (unlike last year's assessment for which the base model's was positive).
+Removing the relative age-1 index led to changes in fit to the
+age-2$+$ survey biomass index.Both models underestimate the 2021 age-2$+$ index (the
+base model less so), and both overestimate the 2023 age-2$+$ (the base model
+more so); (Figure~\@ref(fig:main-index-base-alternative-2-fig)). So the
+inclusion of the age-1 index in the base model estimates a higher biomass in
+recent years than excluding it.
 
 The base model includes a Dirichlet-multinomial likelihood component that
 includes two estimated parameters to automatically weight each of the fishery
@@ -1389,28 +1393,6 @@ of early recruitments compared to the base model
 (Figures~\@ref(fig:main-status-base-alternative-2-fig) and
 \@ref(fig:main-recruitment-base-alternative-2-fig)). The largest changes in the time
 series occurred prior to the availability of survey data.
-
-The degree of flexibility of annual variation in the fishery selectivity was
-tested using three alternative values of standard deviations ($\Phi$)
-(Figures~\@ref(fig:main-biomass-base-alternative-4-fig)--
-\@ref(fig:main-index-base-alternative-4-fig)). The consideration of alternative
-$\Phi$ values is discussed earlier in
-Section~\@ref(sec:data-variability-selectivity). Changing $\Phi$, which
-controls the flexibility in time-varying selectivity, from
-the base model value of $\Phi = 1.40$ to 0.21, 0.70, and 2.10 did not
-appreciably influence the estimates, or precision, associated with recruitment
-in 2014 or 2016 but it did impact more recent recruitments
-(Figure~\@ref(fig:main-recruitment-base-alternative-4-fig)). In particular,
-recruitment estimates for 2020 and 2021 are linked to the choice of $\Phi$,
-where the smallest investigated value of $\Phi$ (0.21) led to the highest
-estimates of the 2020 and 2021 recruitment deviations of the investigated
-models (Figure~\@ref(fig:main-recruitment-devs-base-alternative-4-fig)).
-The high estimates of recruitment led to a large increase in female spawning
-biomass in recent years compared to the base model
-(Figure~\@ref(fig:main-biomass-base-alternative-4-fig)).
-When $\Phi = 0.21$, the fit to the most recent age-2$+$ survey biomass index
-was the worst of the three investigated models
-(Figure~\@ref(fig:main-index-base-alternative-4-fig)).
 
 A biomass-based index of `r sp` relative abundance has been developed using
 environmental DNA (see Appendix~\@ref(sec:app-eDNA-index)) that covers
@@ -1448,6 +1430,28 @@ Figure~\@ref(fig:main-biomass-base-alternative-2-fig)). Because this model
 leads to a lower estimates of unfished biomass and similar terminal female
 spawning biomass, the estimates of current depletion are higher than the base
 model (Figure~\@ref(fig:main-status-base-alternative-2-fig)).
+
+The degree of flexibility of annual variation in the fishery selectivity was
+tested using three alternative values of standard deviations ($\Phi$)
+(Figures~\@ref(fig:main-biomass-base-alternative-4-fig)--
+\@ref(fig:main-index-base-alternative-4-fig)). The consideration of alternative
+$\Phi$ values is discussed earlier in
+Section~\@ref(sec:data-variability-selectivity). Changing $\Phi$, which
+controls the flexibility in time-varying selectivity, from
+the base model value of $\Phi = 1.40$ to 0.21, 0.70, and 2.10 did not
+appreciably influence the estimates, or precision, associated with recruitment
+in 2014 or 2016 but it did impact more recent recruitments
+(Figure~\@ref(fig:main-recruitment-base-alternative-4-fig)). In particular,
+recruitment estimates for 2020 and 2021 are linked to the choice of $\Phi$,
+where the smallest investigated value of $\Phi$ (0.21) led to the highest
+estimates of the 2020 and 2021 recruitment deviations of the investigated
+models (Figure~\@ref(fig:main-recruitment-devs-base-alternative-4-fig)).
+The high estimates of recruitment led to a large increase in female spawning
+biomass in recent years compared to the base model
+(Figure~\@ref(fig:main-biomass-base-alternative-4-fig)).
+When $\Phi = 0.21$, the fit to the most recent age-2$+$ survey biomass index
+was the worst of the three investigated models
+(Figure~\@ref(fig:main-index-base-alternative-4-fig)).
 
 ## Retrospective analyses {#sec:assessment-retrospective-analyses}
 
