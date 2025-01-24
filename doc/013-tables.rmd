@@ -64,7 +64,7 @@ table_sampling_history(
     "Annual summary of U.S. and Canadian fishery sampling included in this ",
     "stock assessment by fleet, ", start_yr_age_comps, "--", last_data_yr,
     ". The majority of values are reported as number of hauls but U.S. ",
-    "Shore-based and Canadian Shoreside fleets are reported as the number ",
+    "shoreside and Canadian Shoreside fleets are reported as the number ",
     "of trips. A dash (--) indicates there was no sampled catch. The ",
     "number of fish with otoliths sampled per haul has varied over time but ",
     "is typically small."),
@@ -115,7 +115,7 @@ table_age_data(
   end_yr = last_data_yr,
   caption = paste0(
     "Recent age-proportion data used in the assessment for the U.S. ",
-    "Shore-based fleet. Proportions are calculated from numbers of ",
+    "shoreside fleet. Proportions are calculated from numbers of ",
     "individuals in each age group. Age 15$+$ is an accumulator group."),
   font_size = 10,
   header_font_size = 11,

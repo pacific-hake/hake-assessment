@@ -201,9 +201,9 @@ tribal (17.5%) and non-tribal (82.5%, including a small amount set aside for
 research) components. Starting in 1996, the Makah Tribe has conducted a fishery
 with the tribal allocation in its 'usual and accustomed fishing area'. The
 non-tribal harvest allocation is divided among catcher-processors (34%),
-motherships (24%), and shore-based vessels (42%). Since 2011, the non-tribal
+motherships (24%), and shoreside vessels (42%). Since 2011, the non-tribal
 U.S. fishery has been fully rationalized with allocations in the form of
-Individual Fishing Quotas (IFQs) to the shore-based sector and group shares to
+Individual Fishing Quotas (IFQs) to the shoreside sector and group shares to
 cooperatives in the at-sea mothership (MS) and catcher-processor (CP) sectors.
 The At-Sea Hake Observer Program (ASHOP) has been monitoring fishing vessel activity
 since 1975, originally monitoring foreign and joint-venture vessels. Observer
@@ -271,7 +271,7 @@ In the United States, over USD \$75.1 million in wages is estimated to have been
 employees in 2021
 ([www.noaa.gov](https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/)).
 This includes wages paid to crew and captains fishing on catcher vessels that
-deliver shoreside and at-sea to motherships; workers in shore-based processing
+deliver shoreside and at-sea to motherships; workers in shoreside processing
 facilities; crew, captains, and workers on catcher-processor vessels; and
 workers on mothership vessels. The exported value of Pacific Hake was USD \$163
 million in 2021, including to Ukraine, Nigeria, and Netherlands, which make up
@@ -295,29 +295,29 @@ annual U.S. and Canada Advisory Panel reports
 
 The U.S. specified catch target (i.e., adjusted for carryovers) of
 `r last_yr_us_tac`~t was further divided among the research, tribal,
-catcher-processor, mothership, and shore-based sectors. After the tribal
+catcher-processor, mothership, and shoreside sectors. After the tribal
 allocation of 17.5% (`r f(last_yr_us_tribal)`~t) and a
 `r f(last_yr_us_research)`~t allocation for research catch and bycatch in
 non-groundfish fisheries, the `r last_data_yr` non-tribal U.S. catch limit
 of `r f(last_yr_us_non_tribal)`~t was allocated to the catcher-processor
-(34%), mothership (24%), and shore-based (42%) commercial sectors.
+(34%), mothership (24%), and shoreside (42%) commercial sectors.
 Reallocation of `r f(last_yr_us_tribal_quota_reallocated)`~t of tribal
 quota to non-tribal sectors on
 `r noquote(last_yr_us_tribal_reallocate_dates_f)`
  resulted in final quotas for the catcher-processor, mothership, and
- shore-based sectors of
+ shoreside sectors of
 `r f(last_yr_us_cp_quota_reallocated)`~t,
 `r f(last_yr_us_ms_quota_reallocated)`~t,
 and
 `r f(last_yr_us_shore_quota_reallocated)`~t, respectively.
 
 The U.S. fishery for `r sp` began on May 1. Prior to 2015, the
-shore-based sector was allowed to fish starting June 15 north of 42° N. Lat.
+shoreside sector was allowed to fish starting June 15 north of 42° N. Lat.
 (the Oregon--California border) and April 1 between 40° 30' N. Lat. and 42° N.
 Lat., whereas the at-sea sectors were allowed to fish starting May 15.
-Between 2015--2022, the shore-based sector was allowed to fish north of 40°
+Between 2015--2022, the shoreside sector was allowed to fish north of 40°
 30' N. Lat. starting May 15 and south of 40° 30' N. Lat. starting April 15,
-although only 5% of the shore-based allocation was released for this early
+although only 5% of the shoreside allocation was released for this early
 period. Since 2023, all sectors have been allowed to fish starting May 1.
 Regulations do not allow at-sea processing or night fishing (midnight to one
 hour after official sunrise) south of 42° N. Lat. at any time during the
@@ -327,14 +327,14 @@ The total catch of `r sp` in U.S. waters was ranked `r last_yr_us_rank`
 over all years (Table~\@ref(tab:main-catches-us-tab)) and the U.S.
 utilization rate (`r last_yr_us_attained`%) was the lowest it has ever been
 (see Appendix~\@ref(sec:app-us-fishery-report) for more details). The
-catcher-processor, mothership, and shore-based sectors caught
+catcher-processor, mothership, and shoreside sectors caught
 `r catcher_processor_ct`%, `r mothership_ct`%, and `r shore_based_ct`% of
 their final reallocated quotas, respectively. Tribal landings, which are
 included in the shoreside sector totals were `r f(last_yr_us_ti_ct)`~t (zeros
 may not reflect actual catch if less than three vessels were fishing; see
 appendix~\@ref(sec:app-us-fishery-report) for further details).
 The median fishing depth for the at-sea sectors was slightly deeper than the last
-few years (Figure~\@ref(fig:main-us-depths-fig)). The shore-based sector had the largest
+few years (Figure~\@ref(fig:main-us-depths-fig)). The shoreside sector had the largest
 monthly catches during July, August, and September. While, the at-sea sectors
 had the largest monthly catches during May, September, and October.
 

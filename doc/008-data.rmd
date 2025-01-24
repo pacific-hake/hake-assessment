@@ -67,7 +67,7 @@ country-specific sectors
 and modeled as annual coast-wide catches. Catches in U.S. waters prior to
 1978 are available only by year from @BaileyFrancisEtAl1982 and
 historical assessment documents. Canadian catches prior to 1989 are also
-unavailable in disaggregated form. U.S. shore-based landings are from the
+unavailable in disaggregated form. U.S. shoreside landings are from the
 Pacific Fishery Information Network (PacFIN) database. Foreign and
 Joint-Venture catches for 1981--`r terminal_yr_us_jv_foreign` and U.S.
 domestic at-sea catches for 1991--`r last_data_yr` are calculated from the
@@ -84,11 +84,11 @@ best available information extracted from the aforementioned databases.
 Tribal catches were available in PacFIN for the U.S. tribal fishery at the
 time the data were extracted and were cross-checked with numbers based on
 information provided by the Makah Tribe. The Makah Tribe is also working on
-providing historical catches such that shore-based catches can be
+providing historical catches such that shoreside catches can be
 summarized separately from tribal catches since the onset of the fishery.
 
 Historically, the fishery for `r sp` has been well covered by observers with
-slight differences in coverage by sector. Currently, U.S. shore-based vessels
+slight differences in coverage by sector. Currently, U.S. shoreside vessels
 carry observers and are required to retain all catch and bycatch for sampling
 by plant observers. Vessels participating in the U.S. at-sea sectors are also
 required to have observers on board and have since 1990. U.S. foreign and
@@ -116,7 +116,7 @@ since `r first_yr_us_atsea`. Observers collected data by selecting fish
 randomly from each haul. The number of otoliths collected per haul has varied
 over time but is currently three fish every third haul.
 
-Since 1991, biological samples from the U.S. shore-based sector have been
+Since 1991, biological samples from the U.S. shoreside sector have been
 sampled by port samplers located where there are substantial landings of
 `r sp`, primarily Eureka, Newport, Astoria, and Westport. Port samplers took
 one sample per offload (or trip) consisting of 100 randomly selected fish for
@@ -146,11 +146,11 @@ collected once per week. Length and age samples were taken randomly from a
 given codend. The sample weight from which biological information was collected
 was inferred from length--weight relationships.
 
-The sampling unit for shore-based samples is the trip, while the haul is
+The sampling unit for shoreside samples is the trip, while the haul is
 the primary unit for the at-sea samples
 (Table~\@ref(tab:main-sampling-history-tab)). There is no least common
-denominator for aggregating at-sea and shore-based samples because detailed
-haul-level information is not recorded for shore-based trips and hauls sampled
+denominator for aggregating at-sea and shoreside samples because detailed
+haul-level information is not recorded for shoreside trips and hauls sampled
 in the at-sea sectors cannot be aggregated to a comparable trip level. As a
 result, initial sample sizes are simply the summed hauls and trips for fishery
 biological data.
@@ -172,7 +172,7 @@ Recent age-composition data still easily track the 2010 cohort, as well as the
 large cohorts born since then. Currently, the 2021 cohort is
 the largest observed cohort in the U.S. at-sea sectors
 (Tables~\@ref(tab:main-us-cp-age-data-tab)--\@ref(tab:main-us-ms-age-data-tab)),
-and shore-based sector
+and shoreside sector
 (Table~\@ref(tab:main-us-sb-age-data-tab)), and the 2016 cohort is the largest
 observed cohort in both Canadian fleets
 (Tables~\@ref(tab:main-can-ss-age-data-tab)--
