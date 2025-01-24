@@ -1,4 +1,4 @@
-# Source this file to apply changes. Don't forget to add documentation for
+# Source this file to apply changes. Need load_all(). Don't forget to add documentation for
 # any new package data to file R/data.R
 
 load_dir <- here("data-tables")
