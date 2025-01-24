@@ -9,7 +9,7 @@ management, i.e., coast-wide and not just sample-to-sample comparisons
 [@SheltonRamonLacaEtAl2022].  Continued regular collections of water samples for eDNA
 extraction and analysis will be imperative to expand on the currently available
 three year (2019, 2021, and 2023) time-series to inform medium to long-term
-trends in abundance. 
+trends in abundance.
 
 5. Use, build, and expand upon the existing management strategy evaluation
 framework to evaluate major sources of uncertainty relating to data, model
@@ -30,14 +30,14 @@ surveys.
 
 6. Explore alternative spatial model structures and associated parameterizations
 for `r sp` through the use of simulation analyses. In particular, explore the
-tradeoffs between the current assessment (panmicitc, or single area, and single
+tradeoffs between the current assessment (panmictic, or single area, and single
 fleet model that uses time-varying selectivity to account for spatiotemporal
 variability in fish availability) and alternative spatial configurations.  These
 could include the use of multiple fleets (e.g., an areas-as-fleets model) in a
 single area, or the use of multiple areas that track fish through explicit movement
 estimation or implicitly through spatiotemporal changes in survival. The
 statistical advantages of random effect estimation for these spatial models will
-likely be required.  
+likely be required.
 
 7. Continue to develop Fourier-Transform Near-Infrared Spectroscopy (FT-NIRS)
 methods of fish age determination. Ongoing studies have shown that `r sp` is
@@ -45,7 +45,7 @@ a species that will benefit from the efficiencies gained with machine-assisted
 fish ageing, potentially leading to an increase in the number of ages available
 for the assessment each year. To date, neural-network models that have been
 conditioned with traditional (human-read) otoliths have shown good agreement
-to FT-NIRS read otoliths. 
+to FT-NIRS read otoliths.
 
 8. Complete the ongoing inter-laboratory otolith exchange and use the results
 to update estimates of ageing error used in the stock assessment. This would

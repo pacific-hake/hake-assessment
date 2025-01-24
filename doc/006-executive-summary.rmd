@@ -78,7 +78,7 @@ In this document, the terms catch and landings are used interchangeably.
 Estimates of discard within the target fishery are included but discarding
 of `r sp` in non-target fisheries is not. Discard from all fisheries,
 including those that do not target `r sp`, is estimated to be less than 1% of
-landings in recent years. The catches in `r  last_data_yr` declined below 
+landings in recent years. The catches in `r  last_data_yr` declined below
 the long-term average catch (`r f(long_term_avge_ct)`~t), continuing the
 pattern of declining catches over recent years(especially in Canada). Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
@@ -99,7 +99,7 @@ landings (`r start_yr`--`r last_data_yr`), an acoustic survey biomass index
 of age-2$+$ fish (Figure~\@ref(fig:es-survey-biomass-fig)) and age compositions
 (`r survey_start_yr`--`r survey_end_yr`), a relative index of age-1 fish
 (Figure~\@ref(fig:es-survey-age1-fig); `r survey_start_yr`--`r survey_end_yr`),
-fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`), and 
+fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`), and
 weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011
 the survey biomass index of age-2$+$ fish was the lowest in the time series and was followed
 by the index increasing in 2012, 2013, and again in 2015 before decreasing to
@@ -111,8 +111,8 @@ along with the age-1 index, provide data that facilitates estimating relative
 cohort strength, i.e., strong and weak cohorts. The age-1 index suggests
 particularly large numbers of age-1 fish in 2009, 2011, and 2015 (2008,
 2010, and 2014 year classes, respectively), and is not available for
-most even years (odd year classes, Figure~\@ref(fig:es-survey-age1-fig)). 
-There are no survey data to inform the size of the `r last_data_yr-1`and
+most even years (odd year classes, Figure~\@ref(fig:es-survey-age1-fig)).
+There are no survey data to inform the size of the `r last_data_yr-1` and
 `r last_data_yr` year classes.
 
 (ref:es-survey-biomass-cap) Acoustic survey biomass index of age-2$+$ fish
@@ -357,7 +357,7 @@ by the age-1 index in 2023, suggesting it is average to below average in size.
 The 2023 and 2024 year classes were set based solely on the stock--recruitment
 relationship for this assessment, such that no recruitment deviations were estimated
 for these years. There are no survey data available to inform the estimates of
-the `r end_yr - 1` and `r end_yr` year class sizes. 
+the `r end_yr - 1` and `r end_yr` year class sizes.
 The general notion remains that recent `r sp` recruitment is
 highly uncertain, and estimates for recent years (based on limited data) can
 change substantially as new data refines estimates. Retrospective analyses
@@ -447,7 +447,7 @@ While Canada's rate was higher than the U.S.'s in 2020, it has dropped considera
 over the past few years to historic lows. The utilization rate for the coast-wide
 fishery this year was the lowest of the previous decade (`r tot_2024_attainment`%)
 due, in part, to difficulties locating aggregations of fish during the Spring and
-throughout the year in northern areas. 
+throughout the year in northern areas.
 The usual `r us_allotment_percent`% and `r can_allotment_percent`%
 allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
 Agreement for `r sp`, was implemented for the `r last_assess_yr` fishery.

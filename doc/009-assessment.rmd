@@ -343,7 +343,7 @@ Synthesis in the coming years and will have random effects capabilities. The Pac
 Hake assessment is a primary test case for FIMS, and further versions of the `r sp`
 assessment in FIMS are expected at forthcoming SRG meetings.*
 
-*Other frameworks (e.g., Woods Hole Assesment Model, or WHAM, and bespoke models) can
+*Other frameworks (e.g., Woods Hole Assessment Model, or WHAM, and bespoke models) can
 already use random effects.  The JTC has completed initial explorations using WHAM
 and concluded random effect structures will be beneficial for modeling Pacific Hake.*
 
@@ -1282,7 +1282,7 @@ increased from `r f(nat_m[2], 3)` to
 The 95% credibility intervals also increased, with the largest differences
 in the upper end rather than the lower end of the intervals. The credible
 interval for the base model was
-`r f(nat_m[1], 3)`--`r f(nat_m[3], 3)`, and for the senstivity runs were,
+`r f(nat_m[1], 3)`--`r f(nat_m[3], 3)`, and for the sensitivity runs were,
 respectively,
 `r f_nat_m_02[1]`--`r f_nat_m_02[3]`,
 `r f_nat_m_03[1]`--`r f_nat_m_03[3]` , and
