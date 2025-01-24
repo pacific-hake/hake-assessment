@@ -1097,27 +1097,25 @@ Table~\@ref(tab:main-decisions-spr-tab) shows projected fishing intensity
 outcomes relative to `r fspr_40`.
 
 Population dynamics and governing parameters assumed during the forecast
-period include random recruitment; selectivity, weight-at-age and maturity
-(and thus fecundity) averaged over the five most recent years (`r assess_yr - 5`--
-`r assess_yr - 1`); and all estimated parameters constant (at their
-estimates for each particular MCMC sample).
+period include posterior recruitments taken from the stock-recruitment curve;
+selectivity, weight-at-age and maturity (and thus fecundity) averaged over the
+five most recent years (`r assess_yr - 5`--`r assess_yr - 1`); and all
+estimated parameters constant (at their estimates for each particular MCMC
+sample).
 
 Relative fishing intensity exceeding 1 (or 100% when shown as a percentage)
 indicates fishing in excess of the `r fspr_40` default harvest rate limit.
-A slight exceedance can happen for the median relative fishing intensity in
-`r forecast_yrs[1:(length(forecast_yrs) - 2)]` and
-`r forecast_yrs[(length(forecast_yrs) - 1)]` because the `r fspr_40` default
-harvest-rate catch limit is calculated using baseline selectivity-at-age
-(1966--1990; prior to time-varying deviations), whereas the forecasted
-catches under the default harvest-rate are removed using selectivity averaged
-over the last five years. Recent changes in selectivity could be reflected
-in the projection of slight over- or under-fishing relative to the desired
-`r fspr_40` rate.
+It is possible for values in forecast years to exceed this slightly because
+the `r fspr_40` default harvest-rate catch limit is calculated using
+baseline selectivity-at-age (`r start_yr`--1990; prior to time-varying
+deviations), whereas the forecasted catches under the default harvest-rate
+are removed using selectivity averaged over the last five years. Recent
+changes in selectivity could be reflected in the projection of slight over-
+or under-fishing relative to the desired `r fspr_40` rate.
 
 Key management metrics are presented for
-`r forecast_yrs[2:(length(forecast_yrs) - 1)]` and
-`r forecast_yrs[length(forecast_yrs)]`
-projections (Tables~\@ref(tab:main-risk-year-1-tab)--
+`r str_comma_sep(forecast_yrs[2:length(forecast_yrs)])` projections
+(Tables~\@ref(tab:main-risk-year-1-tab)--
 \@ref(tab:main-risk-year-3-tab) and
 Figures~\@ref(fig:main-risk-year-1-fig)--
 \@ref(fig:main-risk-year-3-fig)). These metrics summarize
@@ -1128,12 +1126,7 @@ from this table for intermediate catch values in `r assess_yr`
 Figure~\@ref(fig:main-risk-year-1-fig)). However,
 interpolation may not be applicable for all catches in `r assess_yr + 1` and
 `r assess_yr + 2` because they are conditional on catch levels from the
-previous year or years. This explains why a few probabilities decline (rather
-than rise) with
-increased `r assess_yr + 1` and `r assess_yr + 2` catch levels in
-Tables~\@ref(tab:main-risk-year-2-tab) and~\@ref(tab:main-risk-year-3-tab) and
-Figures~\@ref(fig:main-risk-year-2-fig)
-and \@ref(fig:main-risk-year-3-fig).
+previous year or years.
 
 Figure~\@ref(fig:main-depletion-comparison-fig) shows the projected
 relative spawning biomass trajectory through
@@ -1155,11 +1148,9 @@ and Figure~\@ref(fig:main-risk-year-3-fig)).
 The probability of the female spawning biomass decreasing from `r end_yr` to
 `r end_yr + 1` is greater or equal to `r prob_all_catch_greater`% for all catch
 levels examined other than zero (Table~\@ref(tab:main-risk-year-1-tab) and
-Figure~\@ref(fig:main-risk-year-1-fig)). The probability is
-`r prob_decl_last_yr_catch`% for the `r end_yr` catch level similar to that
-for `r end_yr - 1` (catch alternative~`r letters[ct_actual_ind]`). For all
-explored catches, the maximum probability of the female spawning biomass
-dropping below `r b_10` at the start of `r end_yr + 1` is
+Figure~\@ref(fig:main-risk-year-1-fig)). For all explored catches, the
+maximum probability of the female spawning biomass dropping below `r b_10`
+at the start of `r end_yr + 1` is
 `r prob_max_below_10_yr1`%, at the start of `r end_yr + 2` is
 `r prob_max_below_10_yr2`%, and at the start of `r end_yr + 3` is
 `r prob_max_below_10_yr3`%
@@ -1176,40 +1167,34 @@ levels. As the above average 2014 and 2016 cohorts continue to age, total
 biomass of these cohorts even without fishing mortality will continue to
 decrease (Tables~\@ref(tab:main-est-biomass-at-age-tab) and
 \@ref(tab:main-cohort-effects-tab)) as losses from mortality outweigh
-increases from growth. The above-average 2020 cohort entered this
-growth-mortality transition period around 2023
+increases from growth. The above-average 2021 cohort entered this
+growth-mortality transition period around 2024
 (Tables~\@ref(tab:main-est-biomass-at-age-tab) and
-\@ref(tab:main-cohort-effects-tab)). During 2024, the age-3 2021 cohort
-will likely begin the growth-mortality transition where a net increase
-in total biomass is less likely (note that fecundity will increase which
-will influence the exact change in female spawning biomass,
-Figure~\@ref(fig:main-maturity-ogive-fig)).
-The estimated above-average (yet still highly uncertain) 2020 and 2021
-cohorts will continue to play a large role in determining female spawning
+\@ref(tab:main-cohort-effects-tab)).
+The 2021 cohort will play a large role in determining female spawning
 biomass during the forecast years presented here. The below-average 2015,
 2018, and 2019 cohorts will contribute much less to forecasted spawning
 biomass than the larger cohorts.
 
 The age composition (in numbers) of the catch in `r forecast_yrs[1]` is
 projected to be (using MCMC medians)
-`r fore_catch_prop[["3"]]`% age-3 fish from the `r forecast_yrs[1] - 3` cohort,
 `r fore_catch_prop[["4"]]`% age-4 fish from the `r forecast_yrs[1] - 4` cohort,
-`r fore_catch_prop[["8"]]`% age-8 fish from the `r forecast_yrs[1] - 8` cohort,
-`r fore_catch_prop[["2"]]`% age-2 fish from the `r forecast_yrs[1] - 2` cohort,
+`r fore_catch_prop[["5"]]`% age-5 fish from the `r forecast_yrs[1] - 5` cohort,
+`r fore_catch_prop[["9"]]`% age-9 fish from the `r forecast_yrs[1] - 9` cohort,
 and
-`r fore_catch_prop[["10"]]`% age-10 fish from the large `r forecast_yrs[1] - 10`
-cohort (Figure~\@ref(fig:main-age-comp-forecast-fig)). However, those estimates
-are highly uncertain with the 95% credibility interval for the age-3 fraction
-spanning `r f(fore_catch_prop_age3_lower)`%--
-`r f(fore_catch_prop_age3_upper)`%.
+`r fore_catch_prop[["11"]]`% age-11 fish from the `r forecast_yrs[1] - 11` cohort
+(Figure~\@ref(fig:main-age-comp-forecast-fig)). However, those estimates
+are highly uncertain with the 95% credibility interval for the age-4 fraction
+spanning `r f(fore_catch_prop_age4_lower)`%--
+`r f(fore_catch_prop_age4_upper)`%.
 
 Due to the higher average weight of older fish compared to younger fish, the
 median expected proportion of the `r forecast_yrs[1]` catch by weight
-is `r f(fore_catch_prop_wt_age3_median)`% for the age-3
-`r forecast_yrs[1] - 3` cohort (compared to `r fore_catch_prop[["3"]]`% by
-numbers) and `r f(fore_catch_prop_wt_age4_median)`%
-for the age-4 `r forecast_yrs[1] - 4` cohort
-(compared to `r fore_catch_prop[["4"]]`% by numbers;
+is `r f(fore_catch_prop_wt_age4_median)`% for the age-3
+`r forecast_yrs[1] - 4` cohort (compared to `r fore_catch_prop[["11"]]`% by
+numbers) and `r f(fore_catch_prop_wt_age11_median)`%
+for the age-4 `r forecast_yrs[1] - 11` cohort
+(compared to `r fore_catch_prop[["11"]]`% by numbers;
 Figure~\@ref(fig:main-age-comp-forecast-fig)).
 
 With respect to the DFO reference points, with the largest
@@ -1235,14 +1220,6 @@ catch consistent with the Agreement default harvest control rule
 probability of resulting in the biomass going below `r b_40` at the start of
 `r assess_yr + 1` (and `r pfmc_prob_next_yr_below_b25`% probability of going
 below `r b_25`; Table~\@ref(tab:main-risk-year-1-tab)).
-If catches in `r assess_yr` and `r assess_yr + 1` are the same as in
-`r assess_yr - 1` (`r same_catch_as_last_yr`~t,
-catch scenario~`r letters[ct_actual_ind]`)
-then the probability of the biomass going below `r b_40` is
-`r same_catch_prob_next_year_below_b40`% for the start of
-`r assess_yr + 1` and
-`r same_catch_prob_yr_after_next_below_b40`% for the start of
-`r assess_yr + 2`.
 
 ## Sensitivity analyses {#sec:assessment-sensitivity-analyses}
 
