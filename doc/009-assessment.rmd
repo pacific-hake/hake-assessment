@@ -1437,7 +1437,7 @@ was the worst of the three investigated models
 
 A biomass-based index of `r sp` relative abundance has been developed using
 environmental DNA (see Appendix~\@ref(sec:app-eDNA-index)) that covers
-the years 2019, 2021, and 2023. The relative eDNA index was specified as having
+the years 2019, 2021, and 2023. The index was specified as having
 a Student’s t-distribution for the error structure (similar to the age-1 index)
 with the number of degrees of freedom equal to one less than the
 number of available data points (i.e., 2). An additional constant and additive
@@ -1445,17 +1445,18 @@ standard deviation on the log-scale was freely estimated to accommodate
 unaccounted-for sources of process and observation error (median estimate
 is XXX 0.09).
 The index is representative of all fish age-1 and older (i.e., fully selective
-of fish age-1$+$), with a catchability estimated at (median) YYY. The eDNA index
+of fish age-1$+$), with a median catchability estimate of YYY. The eDNA index
 declined from 2019 to 2023, though more steeply between 2019 to 2021 then between
-2021 and 2023 (see Figure~\@ref(fig:app-eDNA-index-1-fig)). This models fit to the
-eDNA index is adequate. While the inclusion of the eDNA index did not significantly alter most
+2021 and 2023 (see Figure~\@ref(fig:app-eDNA-index-1-fig)). The eDNA index is
+fit well in this sensitivity model, somewhat at the cost of reduced fits in the age
+composition data. While the inclusion of the eDNA index did not significantly alter most
 key parameters and management quantities (Table~\@ref(tab:main-parameter-estimates-sens-2-tab)),
 it did reduce spawning stock biomass estimates from 2021 onward, similar in size and trajectory
 to the removal of the age-1 index sensitivity
 (Figure~\@ref(fig:main-biomass-base-alternative-2-fig)). The eDNA index was included in
 the stock assessment as an initial exploration and proof-of-concept. Further explorations
 are needed, such as integrating eDNA data with acoustic data outside the assessment model
-to produce more accurate and robust survey estiamtes, before it should be used directly
+to produce more accurate and robust survey estimates, before it should be used directly
 for management advice. The construction of a longer time-series, through continued
 environmental DNA sampling, will be advantageous for understanding `r sp` population
 dynamics and the biological communities that interact with `r sp`.
