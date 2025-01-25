@@ -32,8 +32,6 @@ In the sections that follow, we provided detailed information about the design a
 
 ### Field sampling and processing water samples for eDNA
 
-### Field sampling and processing water samples for eDNA
-
 We collected eDNA samples during the 2019, 2021, and 2023 U.S.-Canada Integrated Ecosystem \& Acoustic-Trawl Survey for Pacific hake aboard the NOAA Ship *Bell M. Shimada* (all years) and DFO Ship *Sir John Franklin* (2023) conducted between July and September (e.g. de Blois 2020). 
 
 We collected seawater from up to six depths (surface, 50, 100, 150, 300, and 500m in 2019; 200m samples replace the 100m depth in 2021 and 2023) where a Conductivity Temperature and Depth (CTD) rosette was deployed. We sampled water from at 186, 199, and 238 stations in 2019, 2021, and 2023, respectively. Two replicates of 2.5L of seawater were collected at each depth and station from independent Niskin bottles attached to a CTD rosette. Water samples from the surface were collected from the ship's salt water intake line but processed identically to Niskin samples. We refer to the depth of surface sampling at 0m, but in truth surface samples are collected at a depth of approximately 3m. Nearly all CTD casts and therefore water collection for eDNA occurred at night while acoustic sampling and trawl sampling took place during daylight hours. In addition to field samples, we collected a range of control water samples to test for laboratory contamination during water filtering, DNA extraction, and subsequent laboratory steps.
@@ -150,7 +148,7 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-(ref:app-eDNA-index-depth-preds-smooth-cap) Predictions of Hake DNA concentration from the spatio-temporal model.
+(ref:app-eDNA-index-depth-preds-smooth-cap) Predictions of Hake DNA concentration from the spatio-temporal model across multiple years (rows) and depths (columns).
 
 (ref:app-eDNA-index-depth-preds-smooth-alt) Predictions of Hake DNA concentration from the spatio-temporal model are variable across the sampling domain.
 
@@ -174,7 +172,7 @@ include_graphics(file.path(figures_dir,
 
 Another way to look at the spatial patterns are along-transect perpendicular to the coastline.  We show the same East-West slices across multiple years (Figures~\@ref(fig:app-eDNA-index-plot-D-trans1-fig) and~\@ref(fig:app-eDNA-index-plot-D-trans2-fig)). Note the color scale is not identical among transect figures.
 
-(ref:app-eDNA-index-plot-D-trans1-cap) Predicted DNA concentration along E-W transect at 37.58 N. Projections are in 50m depth bins.
+(ref:app-eDNA-index-plot-D-trans1-cap) Predicted hake DNA concentration (copies per uL) along E-W transect at 37.58 N. Projections are in 50m depth bins.
 
 (ref:app-eDNA-index-plot-D-trans1-alt) Shows similar concentrations in 2019 and 2021, with an increase at certain depths in 2023.
 
@@ -185,7 +183,7 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-(ref:app-eDNA-index-plot-D-trans2-cap) Predicted DNA concentration along E-W transect at 40 N. Projections are in 50m depth bins.
+(ref:app-eDNA-index-plot-D-trans2-cap) Predicted hake DNA concentration (copies per uL) along E-W transect at 40 N. Projections are in 50m depth bins.
 
 (ref:app-eDNA-index-plot-D-trans2-alt) Shows similar concentrations in 2019 and 2021, with an increase at certain depths in 2023.
 
@@ -234,7 +232,7 @@ include_graphics(file.path(figures_dir,
 ```
 Finally, we can look calculate the correlation of the spatial fields among water depths. This is correlation that derives from from the estimated factor weight matrix (see *Statistical Model*) and shows that there are strong estimated correlation among depths and but that generally, the surface samples are at best weakly correlated with depths below 150m or so where the majority of hake and hake DNA is found (Figure~\@ref(fig:app-eDNA-index-plot-smoothed-fig)).
 
-(ref:app-eDNA-index-plot-correlation-spatial-cap) Estimated Correlation spatial effect with depth (t(L) L matrix multiplication).
+(ref:app-eDNA-index-plot-correlation-spatial-cap) Estimated correlation among depths for the  spatial effect.
 
 (ref:app-eDNA-index-plot-correlation-spatial-alt) Estimated Correlation spatial effect with depth (t(L) L matrix multiplication).
 
@@ -249,7 +247,7 @@ We construct the eDNA index by generating predictions to each depth between the 
 
 Differences among years become more obvious when we plot the index as a ratio between years to understand how hake DNA has changed in distribution between years (Figure~\@ref(fig:app-eDNA-index-plot-2D-diff-fig)).  Here bright colors indicate areas where estimated DNA concentration changed dramatically between years. For example, the predominance of blue in the panels "ratio_19_21" and "ratio_19_23" indicate areas that are substantially higher in 2019 relative to the other years.
 
-(ref:app-eDNA-index-plot-2D-1-cap) Depth-integrated eDNA index for each year.
+(ref:app-eDNA-index-plot-2D-1-cap) Depth-integrated eDNA index for 5km grid cell in each year.
 
 (ref:app-eDNA-index-plot-2D-1-alt) Concentrations of eDNA are variable in space and time for the three index years (2019, 2021, and 2023).
 
@@ -270,9 +268,6 @@ include_graphics(file.path(figures_dir,
                           "p_D_pred_2D_ratio.png"),
                  error = FALSE)
 ```
-
-\newpage
-\clearpage
 
 #### Index Estimates
 
@@ -300,9 +295,6 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-\newpage
-\clearpage
-
 ### Statistical model
 
 We developed a state-space framework for modeling hake DNA concentration in the coastal ocean building and modifying the work of Shelton et al. 2022.  State-space models separate the true biological process from the methods used to observe the process. Let $D_t(x,y,d)$ be the true, but unobserved concentration of hake DNA (log DNA $copies$ $\mu L^{-1}$) present at spatial coordinates $\{x,y\}$ (eastings and northings, respectively, in km) and sample depth $d$ (meters) in year $t$. Let $\alpha_t$ be a year-specific intercept, $s(b)$ be a smooth that depends on bottom depth in meters at location $\{x,y\}$, $b$, and $\epsilon_t(x,y,d)$ be a random effect that allows for covariation among spatial locations, years, and water depth. We write these as additive on the log-scale,
@@ -319,7 +311,7 @@ Preliminary analyses showed clear correlations among depths at particular locati
   \mathbf{\omega}_{tf}(x,y) \sim MVN (0,\mathbf{\Sigma})
 \end{align}
 
-where covariance matrix $\boldsymbol{\Sigma}$ follows a Matern covariance function with marginal variance fixed at 1. We allow for anisotropy in the spatial correlation and estimate a single shared spatial range parameter ($\kappa$) for all spatial fields. We follow the parameterization and approach of *sdmTMB* (Anderson et al. 2024) for GMRFs.
+where covariance matrix $\mathbf{\Sigma}$ follows a Matern covariance function with marginal variance fixed at 1. We allow for anisotropy in the spatial correlation and estimate a single shared spatial range parameter ($\kappa$) for all spatial fields. We follow the parameterization and approach of *sdmTMB* (Anderson et al. 2024) for GMRFs.
 
 We allow multiple independent factors, $f=1,..,F$ in year $t$ so each $\omega_{tf}(x,y)$ are independent among years and factors. Then we estimate a weight coefficient for each factor that is a function of water depth so the realized spatial field in each depth is a linear combination of spatial fields and factor weights,
 
@@ -375,8 +367,6 @@ Note that there are different intercept $\beta_{0j}$, slope $\beta_{1j}$ and det
 
 For estimation, we fit the model for the standards first and treat them as fixed and known when we estimate the parameters for the field collected water samples.
 
-\newpage
-
 #### Diagnostic Plots
 
 **Standards**
@@ -394,7 +384,7 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-(ref:app-eDNA-index-plot-stand-2-cap) Positives for standards.
+(ref:app-eDNA-index-plot-stand-2-cap) Positive observations for standards. Left panel shows observations and fits from a single plate with known DNA concentrations, while the right panels shows the positive observations for all standard plates in a given year (points have been jittered to reduce overlap).
 
 (ref:app-eDNA-index-plot-stand-2-alt) Positives for standards.
 
@@ -420,7 +410,7 @@ include_graphics(file.path(figures_dir,
 
 We provide a few plots of predictions and observations for pres-abs and positive components (each faceted by water depth) (Figures~\@ref(fig:app-eDNA-index-plot-pres-abs-unk-fig) and~\@ref(fig:app-eDNA-index-plot-pos-unk-fig)). We also present two figures of the relationship between DNA concentration ($D$) and the concentration within a given bottle ($E$; Figures~\@ref(fig:app-eDNA-index-plot-D-v-E-fig) and~\@ref(fig:app-eDNA-index-plot-D-v-E2-fig)) to illustrate the effect of the bottle random effects and offsets that affect each sampled water bottle.
 
-(ref:app-eDNA-index-plot-pres-abs-unk-cap) Prediction vs. observed.
+(ref:app-eDNA-index-plot-pres-abs-unk-cap) Prediction vs. observed, presence-absence component.
 
 (ref:app-eDNA-index-plot-pres-abs-unk-alt) Prediction vs. observed.
 
@@ -431,7 +421,7 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-(ref:app-eDNA-index-plot-pos-unk-cap) Prediction vs. observed, positive component.
+(ref:app-eDNA-index-plot-pos-unk-cap) Prediction vs. observed, positive component. Note the rare outliers; outliers are almost always one bottle of very high concentration that has a replicate bottle that has very low estimated concentration. Lines are loess smoothes.
 
 (ref:app-eDNA-index-plot-pos-unk-alt) Prediction vs. observed, positive component.
 
@@ -442,7 +432,7 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-(ref:app-eDNA-index-plot-D-v-E-cap) Plot of the latent variable D vs. E (the concentration assayed by qPCR).
+(ref:app-eDNA-index-plot-D-v-E-cap) Plot of the latent variable D vs. E (the concentration assayed by qPCR) faceted by year (columns) and dilution (rows). Note how the dilution shifts all points down relative to the 1:1 line.
 
 (ref:app-eDNA-index-plot-D-v-E-alt) Plot of the latent variable D vs. E (the concentration assayed by qPCR).
 
@@ -453,7 +443,7 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-(ref:app-eDNA-index-plot-D-v-E2-cap) Plot of the latent variable D vs. E for dilution ==1.  Faceted by depth.
+(ref:app-eDNA-index-plot-D-v-E2-cap) Plot of the latent variable D vs. E for undiluted samples for years (columns) and water depths (rows).
 
 (ref:app-eDNA-index-plot-D-v-E2-alt) Plot of the latent variable D vs. E for dilution ==1.  Faceted by depth.
 
