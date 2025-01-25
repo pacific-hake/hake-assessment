@@ -4,24 +4,37 @@
 
 # Developing an abundance index for Pacific Hake using Environmental DNA {#sec:app-eDNA-index}
 
-Contributed by Andrew O. Shelton, Krista Nichols, Ana Ramon-Laca, Abigail Wells, Meghan Parsley,
-Samatha Engster, and Madison Betts
+Contributed by Andrew O. Shelton, Krista Nichols, Kim M. Parsons, Madison Betts, Samatha Engster, Ana Ramón-Laca, Meghan Parsley, Megan Shaffer, Abigail Wells
 
 \clearpage
 
 ## Introduction
 
-*References are messed up here, fix*
+Environmental DNA (eDNA, residual genetic material sampled from water, soil, or air) is an increasingly common tool for non-invasively sampling marine and aquatic ecological communities, valuable for estimating species occurrence (Veilleux, et al. 2021), biodiversity (i.e., Richness; Muenzel et al. 2024), and genetic structure (Andres et al. 2023). However, eDNA has not been widely used for quantitative abundance estimation (but see Shelton et al. 2022, Guri et al. 2024, Stoeckle et al. 2024). While the use of eDNA for quantification is supported both conceptually -- where there is more of a species, more cells are shed into the environment, and thus there is more DNA -- and empirically (e.g. there are strong linkages between single-species eDNA measures of in aquaria (Jo et al. 2019a, Ledger et al. 2024), rivers and streams (Pont 2024), estuaries and coastal oceans (DiBattista et al. 2022, Baetscher et al. 2024, Maes et al. 2023, Shelton et al. 2019)), quantitative uses of eDNA observations have significantly lagged behind their use in occurrence and biodiversity applications. 
 
-Environmental DNA (eDNA; residual genetic material sampled from water, soil, or air) is an increasingly common tool for non-invasively sampling marine and aquatic ecological communities, valuable for estimating species occurrence (Veilleux et al. 2021), biodiversity (i.e., Richness; Muenzel et al. 2024), and genetic structure (Andres et al. 2023). However, eDNA has not been widely used for quantitative abundance estimation (but see Shelton et al. 2022, Guri et al. 2024, and Stoeckle et al. 2024). While the use of eDNA for quantification is supported both conceptually -- where there is more of a species, more cells are shed in the environment, and thus there is more DNA -- and empirically (e.g. there are strong linkages between single-species eDNA measures of in aquaria (Jo et al. 2019; Ledger et al. 2024), rivers and streams (Pont 2024), estuaries and nearshore habitats (Dibattista et al. 2022; Baetscher et al. 2024), and coastal oceans (Maes et al. 2023; Shelton et al. 2019) quantitative uses of eDNA observations have significantly lagged behind their use in occurrence and biodiversity applications.
+Here we use environmental DNA samples from three years of the U.S.-Canada Integrated Ecosystem \& Acoustic-Trawl Survey for Pacific hake to develop an index of abundance for Pacific Hake. We incorporate samples collected over 13 degrees of latitude between the surface and 500m depth and spanning nearshore to the deep waters off the continental shelf. This effort is the largest and most extensive eDNA survey in the world and encompasses nearly 3000 sampling stations and nearly 6000 individual 2.5L water samples collected over the 3 survey years. In previous work, we showed that the distribution and abundance of hake DNA within a year (2019) largely mirrored the spatial distribution of hake biomass estimated from the acoustic trawl survey (Shelton et al. 2022). Here, we extend our analyses to use hake DNA to describe changes in the hake population through time. To our knowledge this is the first use of eDNA to develop an index of abundance for stock assessment purposes.
 
-Here we use DNA samples from three years of a very large fishery survey to develop and index of abundance for a Pacific Hake.... and so on.
+### Connecting DNA and abundance metrics
+
+Because this is the first use of an eDNA index in a stock assessment context, it is important to describe the logic and assumptions that connect observations of DNA from water samples to measures of fish biomass or abundance.  The key difference between an eDNA survey and other traditional surveys is that traditional surveys depend on directly observing the organism of interest either through capture (e.g. via net sampling) or other means (e.g. via acoustic backscatter).  eDNA, in contrast, detects traces left behind by organisms -- cells derived from slime, scales, feces or other tissues -- not the organism itself.  A metaphor is that sampling eDNA is sampling the shadow of the organism. Therefore, the justification for using an eDNA index relies on understanding how such a shadow reflects the true population of interest. This relationship hinges on understanding two important processes: 1) the rate at which DNA is shed into the environment, and 2) the rate at which eDNA decays in aqueous environments. Recent reviews describe these processes in detail (e.g. Andruszkiewicz Allan et al. 2021, Lamb et al. 2022, Jo 2023) and we briefly describe some of the relevant literature here. Additional processes can affect eDNA (see e.g. Barnes and Turner 2016), but assumptions about shedding and decay predominate in this application.
+
+Decay rates have been extensively studied in laboratory settings and show relatively rapid declines in eDNA with most eDNA decaying on the order or hours to a few days (Sassoubre et al. 2016; Andruszkiewicz Allan et al. 2021; Kirtane et al. 2021). While there are documented effects of environmental conditions (e.g. temprature, pH) on eDNA decay, within the range of conditions within our sampling domain, assuming an invariant rates of decay among the sampling depths and locations is reasonable. That is, we assume any differences in decay between, for example, the far north and south of the domain or between shallow and deep water samples are relatively trivial.
+
+Shedding rates are far more difficult to study than decay and while there are estimates of shedding across a wide range of fish species under different conditions (e.g. Sassoubre et al. 2016, Thalinger et al. 2021, Jo et al. 2019b), estimates vary wildly both within and among species. In our application which is focused on a single species (Pacific hake), the relevant question is whether shedding can be considered proportional to biomass.  There is support from metabolic theory that shedding should scale in proportion to the surface area of individuals, not biomass (e.g. Yates et al. 2021). Furthermore, metabolic theory would suggest that different ontogenetic stages or different age fish may have different shedding rates  (i.e. rapidly growing individuals may shed more DNA into the environment than slow growing individuals). To date, empirical evidence of differences among individuals of different ontogenetic stages or sizes is equivocal (Klymus et al. 2015, Ostberg and Chase 2022, Wilder et al. 2023) and remains an active area of research. We note that both laboratory studies of related species (gadids, Ledger et al. 2024) and previous work on hake (Shelton et al. 2022) support a proportionality between hake biomass and eDNA. Therefore we assume a proportionality between biomass and DNA concentration. Future work should challenge this assumption with an eye toward understanding how age or size structure may affect observed eDNA. In stock assessment terms, such work could inform developing an age- or size-dependent selectivity curve for an eDNA index. We do not pursue such approaches here.
 
 ## Methods 
 
+### Overview 
+
+The use of eDNA methods will be unfamiliar to many readers and so we provide a high level summary of the methods and before providing technical details in the following sections. Many samples of water are collected during the U.S.-Canada Integrated Ecosystem \& Acoustic-Trawl Survey for Pacific hake.  For each sample, 2.5L of water is collected. Each sample is then filtered using vacuum filtration onto a filter paper and the filter is placed in a preservative and stored until it can be transported to the genetics laboratory at the end of the survey cruise. In the laboratory, samples are processed to extract and clean the DNA captured on the filter. The extracted DNA samples contain DNA from a wide variety of organisms (from bacteria to plankton to fish to whales). Each sample is assayed using quantitative polymerase chain reaction (qPCR) using a primer that amplifies a portion of the Pacific hake mitochondrial genome. The qPCR assay provides a way of determining the concentration of hake mitochondiral DNA in each sample. From these qPCR observations we can construct a statistical model to describe the variation in hake DNA concentration across samples, space, depths, and among years.  Finally, we can combine the estimates of hake concentration to generate an index based on DNA concentration for each year. This eDNA index, therefore, represents and estimate of overall DNA concentration in a given year which is related to the biomass of hake present in the environment (see *Introduction*). 
+
+In the sections that follow, we provided detailed information about the design and execution of water sampling and the creation of an eDNA index from the statistical model. We provide a brief overview of the spatio-temporal model and estimation procedure in the methods and a full description of the statistical model separately after the results. We largely omit the detailed protocols and laboratory analyses as they are described elsewhere (Ramón-Laca et al. 2021). 
+
 ### Field sampling and processing water samples for eDNA
 
-We collected eDNA samples during the 2019, 2021, and 2023 U.S.-Canada Integrated Ecosystem \& Acoustic-Trawl Survey for Pacific hake aboard the NOAA Ship *Bell M. Shimada* (all years) and DFO Ship *Sir John Franklin* (2023) conducted in July and September (deBlois et al. 2020) ADD REFS TO SURVEY DESCRIPTIONS. Detailed collection protocols and laboratory analyses for all steps follow Ramon-Laca et al. (2021) and are only summarized here.
+### Field sampling and processing water samples for eDNA
+
+We collected eDNA samples during the 2019, 2021, and 2023 U.S.-Canada Integrated Ecosystem \& Acoustic-Trawl Survey for Pacific hake aboard the NOAA Ship *Bell M. Shimada* (all years) and DFO Ship *Sir John Franklin* (2023) conducted between July and September (e.g. de Blois 2020). 
 
 We collected seawater from up to six depths (surface, 50, 100, 150, 300, and 500m in 2019; 200m samples replace the 100m depth in 2021 and 2023) where a Conductivity Temperature and Depth (CTD) rosette was deployed. We sampled water from at 186, 199, and 238 stations in 2019, 2021, and 2023, respectively. Two replicates of 2.5L of seawater were collected at each depth and station from independent Niskin bottles attached to a CTD rosette. Water samples from the surface were collected from the ship's salt water intake line but processed identically to Niskin samples. We refer to the depth of surface sampling at 0m, but in truth surface samples are collected at a depth of approximately 3m. Nearly all CTD casts and therefore water collection for eDNA occurred at night while acoustic sampling and trawl sampling took place during daylight hours. In addition to field samples, we collected a range of control water samples to test for laboratory contamination during water filtering, DNA extraction, and subsequent laboratory steps.
 
@@ -29,7 +42,7 @@ Sampling stations were spread across a spatial domain that varied slightly among
 (Figure~\@ref(fig:app-eDNA-index-station-map-acoustic-lines-fig)) with water sampling occuring between San Francisco, CA and Cape Flattery, WA in 2019, expanding south in 2021 to include Pt. Conception, CA to Cape Flattery, WA, and including a slightly larger northern extent in 2023, spanning Pt. Conception, CA to west of Barkley Sound, BC
 (Figure~\@ref(fig:app-eDNA-index-station-map-acoustic-lines-fig)). This means that the spatial domain where water samples are available varies among years.  We discuss the implications of this varying sampling for developing indices of abundance below.
 
-We assayed the DNA concentration of hake using qPCR in 1,752 (in 2019), 1,820 (2021), and 2,189 (2022) individual water samples. We analyzed each sample at least 3 times independently using qPCR (see Laboratory Methods for a detailed description of DNA methods). After DNA extraction and cleaning, a single water sample is 100 $\mu L$.  Each qPCR reaction uses 2 $\mu L$ provides an estimate of the DNA concentration (units: $DNA$ $copies$ $\mu L^{-1}$) for each water sample. We analyzed control sample and qPCR standards of known DNA concentration alongside the field samples to calibrate the qPCR analysis. Across all samples and years, this represents more than 20,000 individual qPCR reactions.
+We assayed the DNA concentration of hake using qPCR in 1,752 (in 2019), 1,820 (2021), and 2,189 (2022) individual water samples. We analyzed each sample at least 3 times independently using qPCR. After DNA extraction and cleaning, a single water sample is 100 $\mu L$.  Each qPCR reaction uses 2 $\mu L$ and provides an estimate of the DNA concentration (units: $DNA$ $copies$ $\mu L^{-1}$) for each water sample. We analyzed control sample and qPCR standards of known DNA concentration alongside the field samples to calibrate the qPCR analysis. Across all samples and years, this represents more than 20,000 individual qPCR reactions.
 
 ```{r app-eDNA-index-stations-tab, results = "asis", echo = FALSE}
 stations_tab <- read.csv(file.path(figures_dir,"CTD_stations_table.csv"))
@@ -55,13 +68,13 @@ include_graphics(file.path(figures_dir,
 
 The area sampled by the acoustic-trawl survey varies among years.  In Figure~\@ref(fig:app-eDNA-index-station-map-acoustic-lines-fig), we show the acoustic transect lines sampled during the hake survey and overlay the locations of CTD stations at which water was collected for eDNA sampling. Note that the east-west extent of both the acoustic transects and water sampling stations vary somewhat among years -- transects in 2019 tend to cover more area than transects in 2021 and 2023, particularly in northern California near Cape Mendocino (40.4N).  
 
-To generate a spatial domain for each year, we used a 5km resolution gridded maps to project eDNA concentration. This vector-based grid was developed by Feist et al. (2021) and uses a custom coordinate reference system that conserves area and distance reasonably well across the west coast of the United States (Supplement S1). Each grid cell has an associated area-weighted mean bottom depth as well. To account for changes in survey area among years, we defined a polygon for each year by including the entirety of acoustic transects from that year and connecting adjacent transects along their eastern-most extent and their western-most extent. All 5km grid cells whose centriods fell within this polygon were included in the projection set. Because eDNA varies with depth as well as geospatially, we made prediction for each grid cell in 50m depth increments up to 500m or the bottom depth of each cell. 
+To generate a spatial domain for each year, we used a 5km resolution gridded maps to project eDNA concentration. This vector-based grid was developed by Feist et al. (2021) and uses a custom coordinate reference system that conserves area and distance reasonably well across the west coast of the United States (see also Shelton et al. 2022). Each grid cell has an associated area-weighted mean bottom depth as well. To account for changes in survey area among years, we defined a polygon for each year by including the entirety of acoustic transects from that year and connecting adjacent transects along their eastern-most extent and their western-most extent. All 5km grid cells whose centriods fell within this polygon were included in the projection set. Because eDNA varies with depth as well as geospatially, we made prediction for each grid cell in 50m depth increments up to 500m or the bottom depth of each cell. 
 
 Finally, we defined three areas based on latitude to enable the creation of abundance indices that are comparable across years.  We created a core area between Cape Flattery, WA and San Franscisco Bay, CA that is shared among all years.  In addition, this region has historically contained the majority of hake biomass detected during the hake acoustic survey (hereafter "core area"; Figure~\@ref(fig:app-eDNA-index-area-by-year-fig)).  We defined a second area from San Francisco Bay to Pt. Conception (hereafter "south area"), and a small area north of Cape Flattery, WA (hereafter "north area"). Observations of hake DNA are available for all years for the core area, for the south area in 2021 and 2023, and for the north area in 2023 (see Figure~\@ref(fig:app-eDNA-index-station-map-acoustic-lines-fig)), therefore we report summaries of hake DNA in each area for the appropriate years. 
 
 Therefore predictions for each grid cell on a regular grid at evenly spaced depths between the surface and 500m (or the bottom depth).  To generate an eDNA index, we simply sum the predictions for each area-year combination and use the overall sum as the our hake eDNA index of abundance (units: $DNA$ $copies$ $\mu L^{-1}$). Note that an index constructed in this way, is sensitive to the density of prediction locations and depth -- predicting to and summing over say a 2km grid would yield a larger value than predictions summed over a 5km grid -- but as long as the density of predictions are equivalent among years and areas, the index will provide information about the relative abundance among areas and years.
 
-(ref:app-eDNA-index-area-by-year-cap) Area designations included in projections.
+(ref:app-eDNA-index-area-by-year-cap) Areas included in projections.
 
 (ref:app-eDNA-index-area-by-year-alt) The core area includes Washington, Oregon, and northern California.  The southern area represents southern California, and the northern area is in British Columbia.
 
@@ -77,104 +90,15 @@ comb_by_year_tab<- read.csv(file.path(figures_dir,"Area_projections.csv"))
 kable(comb_by_year_tab,caption = "Number of 5km grid cells used in each year and area.  Parentheses show the total number of prediction locations including depth (predictions at each grid cell at every 50m between the surface and bottom or 500m).")
 ```
 
-### Statistical model for environmental DNA
+#### Summary of Statistical Model and Estimation
 
-We developed a state-space framework for modeling hake DNA concentration in the coastal ocean building and modifying the work of Shelton et al. 2022.  State-space models separate the true biological process from the methods used to observe the process. Let $D_t(x,y,d)$ be the true, but unobserved concentration of hake DNA (log DNA $copies$ $\mu L^{-1}$) present at spatial coordinates $\{x,y\}$ (eastings and northings, respectively, in km) and sample depth $d$ (meters) in year $t$. Let $\alpha_t$ be a year-specific intercept, $s(b)$ be a smooth that depends on bottom depth in meters at location $\{x,y\}$, $b$, and $\epsilon_t(x,y,d)$ be a random effect that allows for covariation among spatial locations, years, and water depth. We write these as additive on the log-scale,
+We developed a spatio-temporal model for modeling hake DNA concentration in the coastal ocean building and modifying the work of Shelton et al. (2022; see *Statistical model*).  We model the concentration of hake DNA (log DNA $copies$ $\mu L^{-1}$) present at spatial coordinates and sample depth in each year as a function of year-specific intercept parameters, a common smooth effect of bottom depth, and spatially smooth fields (Gaussian Markov Random Fields). The model includes observation models developed for use with qPCR data and is a hurdle-style model, including both an occurrence and conditional positive component. 
 
-\begin{align}
-  & D_t(x,y,d) = \alpha_t + s(b) + \epsilon_t(x,y,d)
-\end{align}
+This approach largely follows the statistical estimation procedure implemented in spatio-temporal model estimation software *sdmTMB* (Anderson et al. 2024) and *VAST* (Thorson et al. 2015a, 2019), but implemented in code to incorporate the unique details of the hake eDNA model. For spatial fields we use a Matern covariance function that allow for anisotropy and use have a single estimated a single range parameter shared among all fields (see *Statistical model*).  Spatio-temporal models are well known for their computational burden. Our model requires estimating multiple spatial fields in each year. To implement the model we approximate the Gaussian Markov Random Fields using the SPDE approximation from Lindgren et al. (2011) and implemented in Template Model Builder (Kristensen et al. 2016) in the R statistical language (R Core Team 2024).
 
-and so the hake DNA concentration of is a function of both fixed and random effects. Unlike many spatial datasets, the eDNA samples here are collected across depths at uneven spacing and at varying depths among years (in 2019 water was collected at the surface, 50, 100, 150, 300, and 500 meters while in 2021 and 2023, water was collect at the same depths except samples at 200m replace the 100m). The fixed effect of bottom depth $s(d)$ does not depend on year, reflecting a well documented bottom depth-association between hake and the shelf break (Malick et al. 2020; Shelton et al. 2022; OTHERS), with the year-specific intercept terms allowing for region-wide shifts in hake DNA concentration. 
+We checked for model convergence by examining the converged model for a positive definite Hessian matrix and also ran each model multiple times from randomly generated starting points. In the cases when identically configured models converged at different log-likelihoods, we retained the model with the lowest log-likelihood. We derive uncertainty bounds for parameter and unobserved states using bias-correction and the generalized delta-method which approximates the uncertainty around maximum likelihood estimates as following a multivariate normal distribution (Kristensen et al. 2016). This proceedure provides a fast approximation of uncertainty bounds, but likely underestimates overall uncertainty in derived abundance indices.
 
-Preliminary analyses showed clear correlations among depths at particular locations and so we developed a variant of factor analysis to efficiently estimate a spatial field for each depth in each year that allows correlation among the fields as a function of depth. We model $\epsilon_t(x,y,d)$ as a linear combination of Gaussian Markov Random Fields. Specifically, we let $\omega_{tf}(x,y)$ be a zero-centered spatial field for factor $f$, 
-
-\begin{align}
-  \mathbf{\omega}_{tf}(x,y) \sim MVN (0,\mathbf{\Sigma})
-\end{align}
-
-where covariance matrix $\mathbf{\Sigma}$ follows a Matern covariance function with marginal variance fixed at 1. We allow for anisotropy in the spatial correlation and estimate a single shared spatial range parameter ($\kappa$) for all spatial fields.
-
-MATERN, INLA AND SPDE APPROACH DETAILS GO HERE. (CITATIONS). 
-
-We allow multiple independent factors, $f=1,..,F$ in year $t$ so each $\omega_{tf}(x,y)$ are independent among years and factors. Then we estimate a weight coefficient for each factor that is a function of water depth so the realized spatial field in each each and depth is a linear combination of spatial fields and factor weights,
-
-\begin{align} 
- \epsilon_t(x,y,d) = \sum_{f=1}^F l_{f}(d) \omega_{tf}(x,y)
-\end{align}
-
-This can be expressed in matrix notation as 
-
-\begin{align}
-  \mathbf{\epsilon}_{t}(x,y,d) = \mathbf{L} \mathbf{\Omega}_{t}
-\end{align}
-
-where $\mathbf{L}$ has $F$ columns (one for each factor) and $D$ rows (one for each projection depth) and $\mathbf{\Omega}_{t}$ has $F$ rows and $S$ (number of spatial locations) columns. Classic factor analysis estimates the factors $l_{f}(d)$ as independent parameters (e.g. to estimate spatial fields for multiple species that are correlated in space and provide among species correlations; Thorson et al 2016), but we are interested in maintaining the correlation structure across depths. Thus we introduce the potential for correlations among water depths by modeling the factor weights as a smooth function of water depth, 
-
-\begin{align}
-  l_{f}(d) = s_f(d)
-\end{align}
-
-where $s_f(d)$ indicates a p-spline for factor $f$. In practice we have samples from at most six depths at any station, and so we limit the number of knots in the spline to four to each avoid over-parameterization. To improve estimation and avoid identifiability and label-switching issues, we impose a additional constraints on the factor smoothes. Specifically, we impose a penalty on the intercept term for each factor, such that the intercept associated with factor $f$ has a prior distribution $a_{0f} \sim N(0, 3f^{-1})$.  This has the practical impact of associating the first factor with the largest intercept, the second factor with a smaller intercept, etc. Using a smooth for the factor weights allows for model predictions to additional water depths that were unobserved during survey (e.g. 250m or 400m) using a relatively small number of parameters. Unlike most factor analyses, we are not expressly interested in the factors themselves or relating factors to environmental covariates and so we do not transform or further explore the factor loadings (e.g. varimax rotation, REF). Note that we use a single smooth for each factor and do not estimate year-specific factor smoothes.
-
-### Observation models for DNA concentration
-
-We are primarily interested in the DNA concentration over space, time, and depth, and thus the latent variable $D_t(x,y,d)$ is our focus.  Unfortunately, qPCR does not allow us to directly measure this concentration. Instead qPCR measures the PCR cycle at which a 2$\mu L^{-1}$ aliquot of a extacted DNA was detected to fluoresce and compares that observation against the flourescence pattern of samples of known DNA concentration ("the standard curve"), to provide an estimate of DNA concentration for each unknown sample. Each water sample is analyzed using at least 3 independent qPCR replicates to account for laboratory and machine variability. In addition to qPCR variability among replicates, we also have to account for modifications that affect each water sample and occurred during water sampling and processing. First, we have a three offsets that modify the true DNA concentration to affect what we observed in the qPCR: 1) $V_i$ is the proportion of 2.5 L filtered from Niskin $i$ (occasionally some seawater was spilled or not filtered; $V_i =1$ for the vast majority of samples); 2) $I_i$ is the known dilution used to on sample $i$ to eliminate PCR inhibition. PCR inhibition is most commonly observed in surface samples and is vanishingly rare for samples collected below 100m; 3) $\mathbf{I}\zeta$ is an estimated offset for an ethanol wash error from 2019 ($\zeta$ is the estimated effect of the wash error and $\mathbf{I}$ is an indicator variable where $\mathbf{I}=1$ for affected samples and $\mathbf{I}=0$ otherwise; see Shelton et al. 2021 Supp S1 for additional description).
-
-Finally, we add a random effect for the individual bottles sampled at each year-station-depth combination (for notational simplicity, let $\delta_i = \delta_t(x,y,z)$). This effect which describes the deviation of individual sampled bottles from the location mean, $\delta_i \sim N(0,\tau_d)$, with $\tau_d$ indicating a depth-specific standard deviation among bottles. This reflects empirical observations of between water bottle variability that changes with depth (Shelton et al. 2021). Then, the log-concentration of DNA in a sample analyzed by qPCR, $E_i$ (other subscripts suppressed for notational simplicity) is, 
-
-\begin{align}
-  E_{i} &= D_t({x,y,d}) +  \log{V_i} + \log{I_i} + \mathbf{I}\zeta + \delta_i
-\end{align}
-
-We connect the estimated concentrations to observations from qPCR using two likelihoods that are similar to a hurdle model. First we determine whether amplification was detected in each qPCR replicate $r$ run on each plate $j$, $G_{ijr} \in \{0,1\}$ and if amplification was observed we model the PCR cycle at which amplification was detected $C_{ijr}$; $C_{ijr}$ is observed as a continuous, positive value. DNA concentrations have a log-linear relationships with $C_{ijr}$; smaller values of $C_{ijr}$ are associated with higher DNA concentrations (REFs). 
-
-Because we are modeling the discrete number of DNA molecules that are present in the assayed sample, we know that the Poisson distribution provides an appropriate observation distribution for the number of molecules present in a given qPCR reaction. Assuming a Poisson distribution, conditional on a true mean number of DNA copies in the sample $X$, the probability of having exactly zero DNA copies in a qPCR reaction is $e^{-X}$ and the probability of having non-zero DNA copies is the complement, $1-e^{-X}$. If there are exactly zero molecules in a qPCR reaction, amplification and therefore detection of amplification will not occur. However, there are other factors that may reduce amplification further and therefore we expect the probability of amplification to be at most $1-e^{-X}$. As a result, we estimate an additional term, $\phi_{j}$ representing the fractional reduction in amplification efficiency due to other factors on qPCR plate $j$ ($0<\phi_{j}<1$). Then we have pair of observation models for hake DNA, both of which are a function of DNA concentration. 
-
-\begin{align}
-  G_{ijr} &\sim Bernoulli\left(1 - \exp(-2 e^{E_{ij}}\phi_{j}\right)\\ 
-  C_{ijr} &\sim N(\beta_{0j}+\beta_{1j}{E_{ij}},\sigma_C(E_{ij})) \qquad  if \: G_{ijr} = 1 
-\end{align} 
-
-The 2 is present in the first line of the equation because we use 2 $\mu L$ of sample in each qPCR reaction and so the expected DNA copies in reaction is $2e^{E_{ij}}$. We allow $\sigma_C({E_ij})$ to vary as a log-linear function of DNA concentration to account for the fact that there is decreased variability in qPCR measures of $C_t$ at higher DNA concentrations: $\sigma_C({E_{ij}}) = exp(\gamma_{0}+\gamma_{1}E_{ij})$.
-
-By itself, the above model is unidentifiable because field samples do not provide information about the parameters that define relationship between the number of DNA copies and PCR cycle ($\beta_{0j}$, $\beta_{1j}$, and $\phi_j$). Therefore, as is standard with qPCR analyses, we include standards of known concentration to estimate these parameters. Each qPCR plate has replicate samples with a known number of DNA copies. These standards span six orders of magnitude (1 to 100,000 copies $\mu L^{-1}$, each of 2$\mu L$) and determine the relationship between copy number and PCR cycle of detection. Let $K_j$ be the log-known copy number in PCR plate $j$, then,
-
-\begin{align}
-  G_{jr} &\sim Bernoulli\left(1-exp(-2 K_j \phi_{j}))\right)\\
-  C_{jr} &\sim Normal(\beta_{0j}+\beta_{1j}\log{K_{j}},\sigma_C({K_j})) \quad  if \: G_{jr} =1
-\end{align}
-
-Note that there are different intercept $\beta_{0j}$, slope $\beta_{1j}$ and detectability $\phi_{j}$ parameters for each PCR plate to allow for among-plate variation in amplification. We model each calibration paratemeter $\beta_{0j},\beta_{1j},\phi_{j})$ hierarchically using a normal distribution, with among plate mean and variance (i.e. $\beta_{0j} \sim N(\mu_{\beta_{0}},\sigma_{\beta_{0}})$. 
-
-#### Estimation
-
-Spatio-temporal models are well known for their computational burden. Given the above statistical model, that means estimating a spatial field for the number of factors in each year. To implement the above model we approximate the Gaussian Markov Random Fields represented by $\omega_{tf}(x,y)$ using the SPDE approximation from Lindgren et al. (and other REFs) and implemented in Template Model Builder (TMB) in the R statistical language (REF). This approach largely follows the statistical estimation procedure implemented in spatio-temporal model estimation software *sdmTMB* (Anderson et al. XXXX) and *VAST* (Thorson et al. XXXX), but is implemented in code to incorporate the unique details of the hake eDNA model. For all models we allowed for anisotropy and estimated a single range parameter shared among all fields. As noted earlier, the marginal variance of the spatial fields was fixed at 1. 
-
-We checked for model convergence by examining the converged model for a positive definite Hessian matrix and also ran each model multiple times from randomly generated starting points.  In the cases when identically configured models converged at different log-likelihoods, we retained the model with the lowest log-likelihood. 
-
-In models using the SPDE approach, estimated spatial fields can be sensitive to the construction of the mesh used to approximate the smooth spatial field (see e.g. REF). Therefore, we estimated models with the same fixed and random effect configuration but that varied the density of the spatial mesh.  We ran 15 models using an increasingly dense mesh ranging between 90 and 250 knots. We found that the 10 models using between 103 and 191 provided similar parameter estimates and predictions and, generally, quite similar total joint negative log-likelihood. To incorporate the variability among these multiple models into the estimated abundance index, we generated 2,000 simulations of the index in each area-year combination from each of the ten converged models.  This approach has the effect of equally weighting each of the ten spatio-temporal models.
-
-**JUNK FOR OLE:**
-
-find a way to cite (Ono et al. 2024, ICES)
-
-Briefly, we approximate full Gaussian Markov Random Field using a discrete set of knots (a mesh) that  a Matern covariance function, and sparse matrix math.  We then project form the knot locations to the observed locations. 
-
-+ Implemented in TMB ... Laplace approximation integrating out random effects.... etc. etc.
-+ Delta-method for confidence intervals.
-+ Using multivariate normal to simulate the index in each year-area.
-+ Details
-  - tried different numbers of factors (seems like best is 2.  Model struggles with 3 factors, fails for anything larger, 1 factor produces poor fits).
-  - tried different constraint on the factor smooths (4 knots feels about right).  Need to limit wiggliness as you reduce the number of observatio ns for later knots.  
-  - tried to add depth-specific intercepts and depth-by-year intercepts.  As you might expect these work when you have simpler forms for the spatial fields, do squirrelly things when you try and estimate alongside complicated spatial fields.
-  - Have considered allowing  factors to vary by year (i.e. this allows for a different covariance matrix among depths for each year), but left this off of the 
-
-#### Laboratory Methods
-
-To account for possible contamination, negative sampling controls were collected routinely by filtering 2 L of distilled water from either the onboard evaporator or from distilled water brought from the laboratory for this purpose (N = 49, *X, Y* in 2019, 2021 and 2023, respectively). The water was filtered immediately after collection using 47 mm diameter mixed cellulose ester sterile filters with a 1 $\mu$m pore size using a vacuum pump. The filters were stored at room temperature in Longmire's buffer until DNA extraction (Renshaw et al. 2015). In 2021 and 2023, we deployed filters in the shipboard lab with the intention of collecting any airborne hake DNA (ref Copenhagen air DNA paper).  We found minimal contamination in our controls (ADD section and expand)
-
-The DNA was extracted using a modified phenol:chloroform method with a phase lock to increase the throughput and yield. Quantification of Pacific hake was performed by qPCR using a specific TaqMan assay on a QuanStudio 6 (Applied Biosystems) that included an internal positive control (IPC) of the reaction to account for PCR inhibition. Any shift of more than 0.5 cycles from the IPC at the non-template controls of the PCR was considered inhibition. Affected samples were diluted at 1:5 and re-run. Samples that remained inhibited at 1:5 were further diluted to 1:10 and requantified. For all diluted samples, we include the smallest dilution that showed a less that 0.5 cycle difference from the IPC in non-template controls. For detailed methodologies and laboratory protocols see Ramon-Laca et al. (2021).
+In models using the SPDE approach, estimated spatial fields can be sensitive to the construction of the mesh used to approximate the smooth spatial field (see e.g. Dambly et al. 2023). Therefore, we estimated models with the same fixed and random effect configuration but that varied the density of the spatial mesh.  We ran 15 models using an increasingly dense mesh ranging between 90 and 250 knots. We found that the 10 models using between 103 and 191 provided similar parameter estimates and predictions and, generally, quite similar total joint negative log-likelihood. To incorporate the variability among these multiple models into the estimated abundance index, we generated 2,000 simulations of the index in each area-year combination from each of the ten converged models using a multivariate normal approximation. We then equally weighted each of the ten spatio-temporal models to derive overall point estimates and uncertainty bounds across the 2,000 simulations. 
 
 ## Results
 
@@ -182,7 +106,7 @@ We first present visualizations and summaries of the eDNA obsevations under mini
 
 ### Observations
 
-We first present an overview of water sample level observations (Figure~\@ref(fig:app-eDNA-index-plot-raw-eDNA-fig)). While this figure is quite complicated,  we can clearly see that the spatial distribution of of observed eDNA concentration varies substantially among depths and years. Note in addition that there are clearly a few samples in each year that are notably higher concentration than the average. We will discuss some of these outlier observations further below.
+Figure~\@ref(fig:app-eDNA-index-plot-raw-eDNA-fig) presents an overview of water sample level observations. While this figure is busy, we can see that the spatial distribution of observed eDNA concentration varies substantially among depths and years. Note in addition that there are clearly a few samples in each year that are notably higher concentration than the average.
 
 (ref:app-eDNA-index-plot-raw-eDNA-cap) Raw estimates of hake eDNA concentraion by year (rows) and sampling depth (columns).   Each circle represents estimated eDNA from a single water bottle. Black dots represent samples in which amplification was not detected.
 
@@ -196,45 +120,13 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-ADD MARGINAL PLOTS OF DNA BY DEPTH, BOTTOM DEPTH.... PERHAPS OTHERS.
+### Model Fit and Spatial Predictions
 
-### Index Estimates
+The model generated predictions that varied in space and time and was able to match qPCR observations. We present a few diagnostic plots including predicted-observed plots for both the occurrence and postive components in a section at the end of this document (see *Diagnostic Plots*). We focus on the spatial predictions here as they are the most relevant component to generating an abundance index, but we also comment on the contribution of fixed, smooth, and random effects to model predictions.
 
-Following the estimation methods, we provide an estimate for an eDNA index for the core and south (Figure~\@ref(fig:app-eDNA-index-1-fig)). For 2021 and 2023 we can combine the core and south areas to provide an index covering Pt. Conception, CA to Cape Flattery, WA (Figure~\@ref(fig:app-eDNA-index-2-fig)). 
+First, we can provide is a plot of the spatial predictions of hake DNA concentration ($D$, units: log $copies$ $\mu L^{-1}$) to observed locations (Figure~\@ref(fig:app-eDNA-index-depth-preds-Di-all-fig)). In truth, these figures are small and difficult to interpret, so we provide a second figure that shows the predictions for 50m and 150m depths (Figure~\@ref(fig:app-eDNA-index-depth-preds-Di-few-fig)).
 
-(ref:app-eDNA-index-1-cap) The eDNA index calculated for appropriate years for the core and south areas (see also Figure~\@ref(fig:app-eDNA-index-area-by-year-fig). Colored lines show estimates from individual spatio-temporal models and 95 percent interval. Black lines show the among model average, interquantile range and 90 percent intervals.
-
-(ref:app-eDNA-index-1-alt) The index shows a declining trend from 2019 through 2023 in the core area. The southern area only shows a stable trend from 2021 to 2023.
-
-```{r app-eDNA-index-1-fig, fig.cap = "(ref:app-eDNA-index-1-cap)", results = "asis"}
-
-include_graphics(file.path(figures_dir,
-                          "eDNA_index_1.png"),
-                 error = FALSE)
-```
-
-(ref:app-eDNA-index-2-cap) The eDNA index calculated for appropriate years for the core and south areas (see also Figure~\@ref(fig:app-eDNA-index-area-by-year-fig)). Colored lines show estimates from individual spatio-temporal models and 95 percent interval. Points and error bars show the among model average, interquantile range and 90 percent intervals.
-
-(ref:app-eDNA-index-2-alt) The index shows a declining trend from 2019 through 2023 in the core area. The southern area only shows a stable trend from 2021 to 2023.
-
-```{r app-eDNA-index-2-fig, fig.cap = "(ref:app-eDNA-index-2-cap)", results = "asis"}
-
-include_graphics(file.path(figures_dir,
-                          "eDNA_index_2.png"),
-                 error = FALSE)
-```
-
-#### Spatial Predictions
-
-First we can provide is a plot of the spatial predictions of hake DNA concentration (D, units: log $copies$ $\mu L^{-1}$) to observed locations (Figure~\@ref(fig:app-eDNA-index-depth-preds-Di-all-fig)). In truth, these figures are small and difficult to interpret, so we provide a second figure that shows the predictions for 50m and 150m depths (Figure~\@ref(fig:app-eDNA-index-depth-preds-Di-few-fig)).
-
-Of course we can make predictions to the entire gridded 5km surface as well (Figure~\@ref(fig:app-eDNA-index-depth-preds-smooth-fig)). As with Figure~\@ref(fig:app-eDNA-index-depth-preds-Di-all-fig), this is too small to be particualrly informative, so focus on 50m and 150m depths for this smooth prediction as well (Figure~\@ref(fig:app-eDNA-index-depth-preds-smooth-few-fig)).
-
-We construct the eDNA index by generating predictions to each depth between the surface and 500m in 50m intervals and then summing. We can therefore sum across depths within each 5km grid cell to generate a depth-integrated map of DNA in each year (Figure~\@ref(fig:app-eDNA-index-plot-2D-1-fig)), and we can compare this index between years to understand how hake DNA has changed in distribution between years (Figure~\@ref(fig:app-eDNA-index-plot-2D-diff-fig)).
-
-Another way to look at the spatial patterns are along-transect perpendicular to the coastline.  We show the same East-West slices across multiple years (Figures~\@ref(fig:app-eDNA-index-plot-D-trans1-fig) and~\@ref(fig:app-eDNA-index-plot-D-trans2-fig)). Note the color scale is not identical among transect figures.
-
-*Should add the benthos into this plot (white space in the lower right of each panel.)*
+We can make predictions to the entire gridded 5km surface as well (Figure~\@ref(fig:app-eDNA-index-depth-preds-smooth-fig)). As with Figure~\@ref(fig:app-eDNA-index-depth-preds-Di-all-fig), this is too small to be particualrly informative, so focus on 50m and 150m depths for this smooth prediction as well (Figure~\@ref(fig:app-eDNA-index-depth-preds-smooth-few-fig)). Hake DNA is generally most abundant in the 150m to 300m water depth range (see also Shelton et al. 2022).
 
 (ref:app-eDNA-index-depth-preds-Di-all-cap) Predictions of hake DNA concentration at sampled locations across years (rows) and sampled depths (columns).
 
@@ -280,27 +172,7 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-(ref:app-eDNA-index-plot-2D-1-cap) Depth-integrated eDNA index for each year.
-
-(ref:app-eDNA-index-plot-2D-1-alt) Concentrations of eDNA are variable in space and time for the three index years (2019, 2021, and 2023).
-
-```{r app-eDNA-index-plot-2D-1-fig, fig.cap = "(ref:app-eDNA-index-plot-2D-1-cap)", results = "asis"}
-
-include_graphics(file.path(figures_dir,
-                          "p_D_pred_2D.png"),
-                 error = FALSE)
-```
-
-(ref:app-eDNA-index-plot-2D-diff-cap) The ratio of the depth-integrated eDNA index between all pairs of years for each year. This shows how areas have changed in their hake DNA among years. Each panel shows the relationship between two years. For example, ratio_19_21 is the predictions from 2021 divided by the predictions from 2019.  This means blue cells are areas in which the predictions are larger in 2019 that 2021. Red area indicated areas indicate locations where 2021 is larger than 2019. NOTES. OLE NEEDS TO CLIP SOUTH OF SF BAY FOR ALL THINGS @)!( AND THE AREA NORTH OF CAPE FLATTERY FOR 19 and 21.
-
-(ref:app-eDNA-index-plot-2D-diff-alt) There are spatial changes across years, particularly from 2021 to 2023.
-
-```{r app-eDNA-index-plot-2D-diff-fig, fig.cap = "(ref:app-eDNA-index-plot-2D-diff-cap)", results = "asis"}
-
-include_graphics(file.path(figures_dir,
-                          "p_D_pred_2D_ratio.png"),
-                 error = FALSE)
-```
+Another way to look at the spatial patterns are along-transect perpendicular to the coastline.  We show the same East-West slices across multiple years (Figures~\@ref(fig:app-eDNA-index-plot-D-trans1-fig) and~\@ref(fig:app-eDNA-index-plot-D-trans2-fig)). Note the color scale is not identical among transect figures.
 
 (ref:app-eDNA-index-plot-D-trans1-cap) Predicted DNA concentration along E-W transect at 37.58 N. Projections are in 50m depth bins.
 
@@ -324,11 +196,9 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-#### Fixed Effect Estimates
+These predictions are the combination of a fixed effect of year intercept (Figure~\@ref(fig:app-eDNA-index-plot-Fixed-fig)) as well as the smooth as a function of bottom depth (Figure~\@ref(fig:app-eDNA-index-plot-smoothed-fig)). The year intercepts should not be interpreted as an estimate of overall abundance in each year because the sampling frame changes substantially among years. The depth smooth finds that peak hake abundance corresponds to bottom depths between approximately 100m and 200m (Figure~\@ref(fig:app-eDNA-index-plot-smoothed-fig)). This corresponds to the continental shelf break and agrees with existing information about hake distribution.
 
-We provide the estimated year intercept (Figure~\@ref(fig:app-eDNA-index-plot-Fixed-fig)) as well as the smooth as a function of bottom depth (Figure~\@ref(fig:app-eDNA-index-plot-smoothed-fig)). Both of these effects directly determine the hake DNA concentration $D_t(x,y,d)$ that is of primary interest. 
-
-(ref:app-eDNA-index-plot-Fixed-cap) Year intercepts.
+(ref:app-eDNA-index-plot-Fixed-cap) Year intercepts and 95 percent intervals.
 
 (ref:app-eDNA-index-plot-Fixed-alt) The intercept is highest in 2019 and lowest in 2021.
 
@@ -339,42 +209,18 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-(ref:app-eDNA-index-plot-smoothed-cap) Depth smooth (FIX X-AXIS TO BE NON-LOG, add CI).
+(ref:app-eDNA-index-plot-smoothed-cap) Marginal effect of depth (p-spline smooth).
 
 (ref:app-eDNA-index-plot-smoothed-alt) The smoothed marginal effect increases at first before decreasing.
 
 ```{r app-eDNA-index-plot-smoothed-fig, fig.cap = "(ref:app-eDNA-index-plot-smoothed-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                          "p_smooth_effects.png"),
+                          "p_smooth_effects2.png"),
                  error = FALSE)
 ```
 
-#### Fixed Effect Estimates
-
-Here are the bottle random effects.  Again, these are the deviations from the mean location (ie. year-station-depth ) DNA concentration. Note that the effect of water bottle is quite large (from about 1.48 at the surface to about 1.05 at 500m). These deviations are on the log scale so a SD of 1.25 means that the on average, a bottle is $e^{1.5} = 3.49$ times the mean estimated DNA concentration. In concrete terms that means that a for a mean concentration of 10 $copies$ $\mu L^{-1}$, we could expect to often see observations between about 3 and 35 $copies$ $\mu L^{-1}$.
-
-(ref:app-eDNA-index-plot-bottle-effects-cap) Random bottle effects by year and depth.
-
-(ref:app-eDNA-index-plot-bottle-effects-alt) Random bottle effects by year and depth.
-
-```{r app-eDNA-index-plot-bottle-effects-fig, fig.cap = "(ref:app-eDNA-index-plot-bottle-effects-cap)", results = "asis"}
-
-include_graphics(file.path(figures_dir,
-                          "p_bottle_2.png"),
-                 error = FALSE)
-```
-
-(ref:app-eDNA-index-plot-bottle-effects2-cap) Random bottle effects by year, depth, and space.
-
-(ref:app-eDNA-index-plot-bottle-effects2-alt) Random bottle effects by year, depth, and space.
-
-```{r app-eDNA-index-plot-bottle-effects2-fig, fig.cap = "(ref:app-eDNA-index-plot-bottle-effects2-cap)", results = "asis"}
-
-include_graphics(file.path(figures_dir,
-                          "p_bottle_1.png"),
-                 error = FALSE)
-```
+One important difference between eDNA and other traditional fisheries survey methods is that we have replicate water samples taken from a single location and time. We refer to these random effects as a bottle effect and they represent deviations of a single observed water sample from the mean location (ie. year-station-depth) DNA concentration. We find that individual water bottles sampled from opposite sides of a CTD rosette can be quite large. We estimate the standard deviation among bottles declines with water depth (from about 1.48 at the surface to about 1.04 at 500m). These deviations are on the log-scale so a SD of 1.25 means that the on average, a bottle is $e^{1.25} = 3.49$ times the mean estimated DNA concentration. In concrete terms that means that a for a mean concentration of 10 $copies$ $\mu L^{-1}$, we could expect to often see observations between about 3 and 35 $copies$ $\mu L^{-1}$.
 
 (ref:app-eDNA-index-plot-tau-bottle-depth-cap) Estimated among bottle standard deviation by depth.
 
@@ -386,12 +232,156 @@ include_graphics(file.path(figures_dir,
                           "p_tau_depth.png"),
                  error = FALSE)
 ```
+Finally, we can look calculate the correlation of the spatial fields among water depths. This is correlation that derives from from the estimated factor weight matrix (see *Statistical Model*) and shows that there are strong estimated correlation among depths and but that generally, the surface samples are at best weakly correlated with depths below 150m or so where the majority of hake and hake DNA is found (Figure~\@ref(fig:app-eDNA-index-plot-smoothed-fig)).
 
-#### Model Diagnostics
+(ref:app-eDNA-index-plot-correlation-spatial-cap) Estimated Correlation spatial effect with depth (t(L) L matrix multiplication).
+
+(ref:app-eDNA-index-plot-correlation-spatial-alt) Estimated Correlation spatial effect with depth (t(L) L matrix multiplication).
+
+```{r app-eDNA-index-plot-correlation-spatial-fig, fig.cap = "(ref:app-eDNA-index-plot-correlation-spatial-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                          "p_corr_plot.png"),
+                 error = FALSE)
+```
+
+We construct the eDNA index by generating predictions to each depth between the surface and 500m in 50m intervals and then summing. We can therefore sum across depths within each 5km grid cell to generate a depth-integrated map of DNA in each year (Figure~\@ref(fig:app-eDNA-index-plot-2D-1-fig)). Note that in these figures we make predictions to the entire spatial domain, even if there are no observations near some locations in particular year (e.g. south of San Francisco Bay in 2019). In general, the plots show higher DNA concentrations in 2019 relative to 2021 or 2023 particularly north of Cape Mendocino.
+
+Differences among years become more obvious when we plot the index as a ratio between years to understand how hake DNA has changed in distribution between years (Figure~\@ref(fig:app-eDNA-index-plot-2D-diff-fig)).  Here bright colors indicate areas where estimated DNA concentration changed dramatically between years. For example, the predominance of blue in the panels "ratio_19_21" and "ratio_19_23" indicate areas that are substantially higher in 2019 relative to the other years.
+
+(ref:app-eDNA-index-plot-2D-1-cap) Depth-integrated eDNA index for each year.
+
+(ref:app-eDNA-index-plot-2D-1-alt) Concentrations of eDNA are variable in space and time for the three index years (2019, 2021, and 2023).
+
+```{r app-eDNA-index-plot-2D-1-fig, fig.cap = "(ref:app-eDNA-index-plot-2D-1-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                          "p_D_pred_2D.png"),
+                 error = FALSE)
+```
+
+(ref:app-eDNA-index-plot-2D-diff-cap) The ratio of the depth-integrated eDNA index between all pairs of years for each year. This shows how areas have changed in their hake DNA among years. Each panel shows the relationship between two years. For example, ratio_19_21 is the predictions from 2021 divided by the predictions from 2019.  This means blue cells are areas in which the predictions are larger in 2019 that 2021 (red areas indicate the converse). Grey areas indicate areas that are out of the survey area for one or both of the years.
+
+(ref:app-eDNA-index-plot-2D-diff-alt) There are spatial changes across years, particularly from 2021 to 2023.
+
+```{r app-eDNA-index-plot-2D-diff-fig, fig.cap = "(ref:app-eDNA-index-plot-2D-diff-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                          "p_D_pred_2D_ratio.png"),
+                 error = FALSE)
+```
+
+\newpage
+\clearpage
+
+#### Index Estimates
+
+Following the estimation methods, we summed across the predictions to generate a coastwide index of abundances.  We repeated this approach for 10 different spatial meshes to provide an estimate for an eDNA index for the core and south areas (Figure~\@ref(fig:app-eDNA-index-1-fig)). We show estimates for the individual model configurations and the consensus index (Figure~\@ref(fig:app-eDNA-index-1-fig)). Note that all model provide qualitatively the same pattern: a substantial ($\approx 35\%$) decline in DNA concentration between 2019 and 2021 a most further decline between 2021 and 2023.  For 2021 and 2023 we can combine the core and south areas to provide an index covering Pt. Conception, CA to Cape Flattery, WA (Figure~\@ref(fig:app-eDNA-index-2-fig)). Our models suggest that the total DNA in 2023 in both the core and south areas was roughly equivalent to the DNA in the core area in 2019.
+
+(ref:app-eDNA-index-1-cap) The eDNA index calculated for appropriate years for the core and south areas (see also Figure~\@ref(fig:app-eDNA-index-area-by-year-fig). Colored lines show estimates from individual spatio-temporal models and 95 percent interval. Black lines show the among model average, interquantile range and 90 percent intervals.
+
+(ref:app-eDNA-index-1-alt) The index shows a declining trend from 2019 through 2023 in the core area. The southern area only shows a stable trend from 2021 to 2023.
+
+```{r app-eDNA-index-1-fig, fig.cap = "(ref:app-eDNA-index-1-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                          "eDNA_index_1.png"),
+                 error = FALSE)
+```
+
+(ref:app-eDNA-index-2-cap) The eDNA index calculated for appropriate years for the core and south areas (see also Figure~\@ref(fig:app-eDNA-index-area-by-year-fig)). Colored lines show estimates from individual spatio-temporal models and 95 percent interval. Points and error bars show the among model average, interquantile range and 90 percent intervals.
+
+(ref:app-eDNA-index-2-alt) The index shows a declining trend from 2019 through 2023 in the core area. The southern area only shows a stable trend from 2021 to 2023.
+
+```{r app-eDNA-index-2-fig, fig.cap = "(ref:app-eDNA-index-2-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                          "eDNA_index_2.png"),
+                 error = FALSE)
+```
+
+\newpage
+\clearpage
+
+### Statistical model
+
+We developed a state-space framework for modeling hake DNA concentration in the coastal ocean building and modifying the work of Shelton et al. 2022.  State-space models separate the true biological process from the methods used to observe the process. Let $D_t(x,y,d)$ be the true, but unobserved concentration of hake DNA (log DNA $copies$ $\mu L^{-1}$) present at spatial coordinates $\{x,y\}$ (eastings and northings, respectively, in km) and sample depth $d$ (meters) in year $t$. Let $\alpha_t$ be a year-specific intercept, $s(b)$ be a smooth that depends on bottom depth in meters at location $\{x,y\}$, $b$, and $\epsilon_t(x,y,d)$ be a random effect that allows for covariation among spatial locations, years, and water depth. We write these as additive on the log-scale,
+
+\begin{align}
+  & D_t(x,y,d) = \alpha_t + s(b) + \epsilon_t(x,y,d)
+\end{align}
+
+and so the hake DNA concentration of is a function of both fixed and random effects. Unlike many spatial datasets, the eDNA samples here are collected across depths at uneven spacing and at varying depths among years (in 2019 water was collected at the surface, 50, 100, 150, 300, and 500 meters while in 2021 and 2023, water was collect at the same depths except samples at 200m replace the 100m). The fixed effect of bottom depth $s(d)$ does not depend on year, reflecting a well documented bottom depth-association between hake and the shelf break (Malick et al. 2020), with the year-specific intercept terms allowing for region-wide shifts in hake DNA concentration. 
+
+Preliminary analyses showed clear correlations among depths at particular locations and so we developed a variant of factor analysis to efficiently estimate a spatial field for each depth in each year that allows correlation among the fields as a function of depth. We model $\epsilon_t(x,y,d)$ as a linear combination of Gaussian Markov Random Fields. Specifically, we let $\omega_{tf}(x,y)$ be a zero-centered spatial field for factor $f$, 
+
+\begin{align}
+  \mathbf{\omega}_{tf}(x,y) \sim MVN (0,\mathbf{\Sigma})
+\end{align}
+
+where covariance matrix $\boldsymbol{\Sigma}$ follows a Matern covariance function with marginal variance fixed at 1. We allow for anisotropy in the spatial correlation and estimate a single shared spatial range parameter ($\kappa$) for all spatial fields. We follow the parameterization and approach of *sdmTMB* (Anderson et al. 2024) for GMRFs.
+
+We allow multiple independent factors, $f=1,..,F$ in year $t$ so each $\omega_{tf}(x,y)$ are independent among years and factors. Then we estimate a weight coefficient for each factor that is a function of water depth so the realized spatial field in each depth is a linear combination of spatial fields and factor weights,
+
+\begin{align} 
+ \epsilon_t(x,y,d) = \sum_{f=1}^F l_{f}(d) \omega_{tf}(x,y)
+\end{align}
+
+This can be expressed in matrix notation as 
+
+\begin{align}
+  \mathbf{\epsilon}_{t}(x,y,d) = \mathbf{L} \mathbf{\Omega}_{t}
+\end{align}
+
+where $\mathbf{L}$ has $F$ columns (one for each factor) and $D$ rows (one for each projection depth) and $\mathbf{\Omega}_{t}$ has $F$ rows and $S$ (number of spatial locations) columns. Classic factor analysis estimates the factors $l_{f}(d)$ as independent parameters (e.g. to estimate spatial fields for multiple species that are correlated in space and provide among species correlations; Thorson et al 2016), but we are interested in maintaining the correlation structure across depths. Thus we introduce the potential for correlations among water depths by modeling the factor weights as a smooth function of water depth, 
+
+\begin{align}
+  l_{f}(d) = s_f(d)
+\end{align}
+
+where $s_f(d)$ indicates a p-spline for factor $f$. In practice we have samples from at most six depths at any station, and so we limit the number of knots in the spline to four to each avoid over-parameterization. To improve estimation and avoid identifiability and label-switching issues, we impose a additional constraints on the factor smoothes. Specifically, we impose a penalty on the intercept term for each factor, such that the intercept associated with factor $f$ has a prior distribution $a_{0f} \sim N(0, 3f^{-1})$.  This has the practical impact of associating the first factor with the largest intercept, the second factor with a smaller intercept, etc. Using a smooth for the factor weights allows for model predictions to additional water depths that were unobserved during survey (e.g. 250m or 400m) using a relatively small number of parameters. Unlike most factor analyses, we are not expressly interested in the factors themselves or relating factors to environmental covariates and so we do not transform or further explore the factor loadings (e.g. varimax rotation). Note that we use a single smooth for each factor and do not estimate year-specific factor smoothes. Future work may justify relaxing this model form.
+
+After experimenting with fits using a range of factors (1 and 4), we settled on using 2 factors in further analyses.  Using 3 or more factors generally led to model convergence and identifiability problems, whereas using only one factor led to unsatisfactory model fits.
+
+### Observation models for DNA concentration
+
+We are primarily interested in the DNA concentration over space, time, and depth, and thus the latent variable $D_t(x,y,d)$ is our focus.  Unfortunately, qPCR does not allow us to directly measure this concentration. Instead qPCR measures the PCR cycle at which a 2$\mu L^{-1}$ aliquot of a extacted DNA was detected to fluoresce and compares that observation against the flourescence pattern of samples of known DNA concentration ("the standard curve"), to provide an estimate of DNA concentration for each unknown sample. Each water sample is analyzed using at least 3 independent qPCR replicates to account for laboratory and machine variability. In addition to qPCR variability among replicates, we also have to account for modifications that affect each water sample and occurred during water sampling and processing. First, we have three offsets that modify the true DNA concentration to affect what we observed in the qPCR: 1) $V_i$ is the proportion of 2.5 L filtered from Niskin $i$ (occasionally some seawater was spilled or not filtered; $V_i =1$ for the vast majority of samples); 2) $I_i$ is the known dilution used to on sample $i$ to eliminate PCR inhibition. PCR inhibition is most commonly observed in surface samples and is vanishingly rare for samples collected below 100m; 3) $\mathbf{I}\zeta$ is an estimated offset for an ethanol wash error from 2019 ($\zeta$ is the estimated effect of the wash error and $\mathbf{I}$ is an indicator variable where $\mathbf{I}=1$ for affected samples and $\mathbf{I}=0$ otherwise; see Shelton et al. 2021 Supp S1 for additional description).
+
+Finally, we add a random effect for the individual bottles sampled at each year-station-depth combination (for notational simplicity, let $\delta_i = \delta_t(x,y,z)$). This effect which describes the deviation of individual sampled bottles from the location mean, $\delta_i \sim N(0,\tau_d)$, with $\tau_d$ indicating a depth-specific standard deviation among bottles. We impose a smooth on $\tau_d$ so it is function of water depth  This reflects empirical observations of between water bottle variability that changes with depth (Shelton et al. 2021). Then, the log-concentration of DNA in a sample analyzed by qPCR, $E_i$ (other subscripts suppressed for notational simplicity) is, 
+
+\begin{align}
+  E_{i} &= D_t({x,y,d}) +  \log{V_i} + \log{I_i} + \mathbf{I}\zeta + \delta_i
+\end{align}
+
+We connect the estimated concentrations to observations from qPCR using two likelihoods that are similar to a hurdle model. First we determine whether amplification was detected in each qPCR replicate $r$ run on each plate $j$, $G_{ijr} \in \{0,1\}$ and if amplification was observed we model the PCR cycle at which amplification was detected $C_{ijr}$; $C_{ijr}$ is observed as a continuous, positive value. DNA concentrations have a log-linear relationships with $C_{ijr}$; smaller values of $C_{ijr}$ are associated with higher DNA concentrations (see Figure~\@ref(fig:app-eDNA-index-plot-stand-2-fig)). 
+
+Because we are modeling the discrete number of DNA molecules that are present in the assayed sample, we know that the Poisson distribution provides an appropriate observation distribution for the number of molecules present in a given qPCR reaction. Assuming a Poisson distribution, conditional on a true mean number of DNA copies in the sample $X$, the probability of having exactly zero DNA copies in a qPCR reaction is $e^{-X}$ and the probability of having non-zero DNA copies is the complement, $1-e^{-X}$. If there are exactly zero molecules in a qPCR reaction, amplification and therefore detection of amplification will not occur. However, there are other factors that may reduce amplification further and therefore we expect the probability of amplification to be at most $1-e^{-X}$. As a result, we estimate an additional term, $\phi_{j}$ representing the fractional reduction in amplification efficiency due to other factors on qPCR plate $j$ ($0<\phi_{j}<1$). Then we have pair of observation models for hake DNA, both of which are a function of DNA concentration. 
+
+\begin{align}
+  G_{ijr} &\sim Bernoulli\left(1 - \exp(-2 e^{E_{ij}}\phi_{j}\right)\\ 
+  C_{ijr} &\sim N(\beta_{0j}+\beta_{1j}{E_{ij}},\sigma_C(E_{ij})) \qquad  if \: G_{ijr} = 1 
+\end{align} 
+
+The 2 is present in the first line of the equation because we use 2 $\mu L$ of sample in each qPCR reaction and so the expected DNA copies in reaction is $2e^{E_{ij}}$. We allow $\sigma_C({E_ij})$ to vary as a log-linear function of DNA concentration to account for the fact that there is decreased variability in qPCR measures of $C_t$ at higher DNA concentrations: $\sigma_C({E_{ij}}) = exp(\gamma_{0}+\gamma_{1}E_{ij})$.
+
+By itself, the above model is unidentifiable because field samples do not provide information about the parameters that define relationship between the number of DNA copies and PCR cycle ($\beta_{0j}$, $\beta_{1j}$, and $\phi_j$). Therefore, as is standard with qPCR analyses, we include standards of known concentration to estimate these parameters. Each qPCR plate has replicate samples with a known number of DNA copies. These standards span six orders of magnitude (1 to 100,000 copies $\mu L^{-1}$, each of 2$\mu L$) and determine the relationship between copy number and PCR cycle of detection. Let $K_j$ be the log copy number in PCR plate $j$, then,
+
+\begin{align}
+  G_{jr} &\sim Bernoulli\left(1-exp(-2 K_j \phi_{j}))\right)\\
+  C_{jr} &\sim Normal(\beta_{0j}+\beta_{1j}\log{K_{j}},\sigma_C({K_j})) \quad  if \: G_{jr} =1
+\end{align}
+
+Note that there are different intercept $\beta_{0j}$, slope $\beta_{1j}$ and detectability $\phi_{j}$ parameters for each PCR plate to allow for among-plate variation in amplification. We model each calibration paratemeter $\beta_{0j},\beta_{1j},\phi_{j})$ hierarchically using a normal distribution, with among plate mean and variance (i.e. $\beta_{0j} \sim N(\mu_{\beta_{0}},\sigma_{\beta_{0}})$. 
+
+For estimation, we fit the model for the standards first and treat them as fixed and known when we estimate the parameters for the field collected water samples.
+
+\newpage
+
+#### Diagnostic Plots
 
 **Standards**
 
-We start by plotting the qPCR standards (qPCR analyses on DNA of a known concentration) for a single PCR plate individual, all of the plates run within a single year, and then all of the estimated relationships across all years.  For the presence-absence components and for the positive components.  
+We start by plotting the qPCR standards (qPCR analyses on DNA of a known concentration) for a single PCR plate individual, all of the plates run within a single year, and then all of the estimated relationships across all years.  For the presence-absence components and for the positive components (Figures~\@ref(fig:app-eDNA-index-plot-stand-1-fig), ~\@ref(fig:app-eDNA-index-plot-stand-2-fig), and~\@ref(fig:app-eDNA-index-plot-stand-3-fig)).
 
 (ref:app-eDNA-index-plot-stand-1-cap) Presence-absence plot for standards.
 
@@ -428,13 +418,7 @@ include_graphics(file.path(figures_dir,
 
 **Unknown Samples**
 
-Let's look at plots of predictions and observations for pres-abs and positive components (each faceted by water depth).
-
-Ok. There are a couple of other plots that I haven't included as yet but should:
-
-* Plot of wash_offset estimate
-* Plot of spatial residuals
-* Report spatial range, anisotropy, etc.
+We provide a few plots of predictions and observations for pres-abs and positive components (each faceted by water depth) (Figures~\@ref(fig:app-eDNA-index-plot-pres-abs-unk-fig) and~\@ref(fig:app-eDNA-index-plot-pos-unk-fig)). We also present two figures of the relationship between DNA concentration ($D$) and the concentration within a given bottle ($E$; Figures~\@ref(fig:app-eDNA-index-plot-D-v-E-fig) and~\@ref(fig:app-eDNA-index-plot-D-v-E2-fig)) to illustrate the effect of the bottle random effects and offsets that affect each sampled water bottle.
 
 (ref:app-eDNA-index-plot-pres-abs-unk-cap) Prediction vs. observed.
 
@@ -480,39 +464,26 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-(ref:app-eDNA-index-plot-L-factor-cap) Estimated Factors as a function of depth.
-
-(ref:app-eDNA-index-plot-L-factor-alt) Estimated Factors as a function of depth.
-
-```{r app-eDNA-index-plot-L-factor-fig, fig.cap = "(ref:app-eDNA-index-plot-L-factor-cap)", results = "asis"}
-
-include_graphics(file.path(figures_dir,
-                          "p_L_factor.png"),
-                 error = FALSE)
-```
-
-(ref:app-eDNA-index-plot-correlation-spatial-cap) Estimated Correlation spatial effect with depth (t(L) L matrix multiplication).
-
-(ref:app-eDNA-index-plot-correlation-spatial-alt) Estimated Correlation spatial effect with depth (t(L) L matrix multiplication).
-
-```{r app-eDNA-index-plot-correlation-spatial-fig, fig.cap = "(ref:app-eDNA-index-plot-correlation-spatial-cap)", results = "asis"}
-
-include_graphics(file.path(figures_dir,
-                          "p_corr_plot.png"),
-                 error = FALSE)
-```
-
 ## Acknowledgements
 
-Funding for this project was provided by the NMFS Genomic Strategic Initiative. Special thanks to S. Allen, B. Dewees, J. Witmer and J. Davis (*ADD*) for assistance during sample collection and the captain and crew of the NOAA ship *Bell M. Shimada* for overall support during the shipboard collection effort. E. Iwamoto and other members of the molecular genetics lab at the Northwest Fisheries Science Center supported laboratory work. **A. Billings, J. Pohl, D. Chu, E. Phillips**
+Funding for this project was provided by the NMFS Genomic Strategic Initiative. We thank the crew and scientists of the NOAA ship *Bell M. Shimada* and DFO Ship *Sir John Franklin* for support during the shipboard collection effort. We thank E. Iwamoto and other members of the molecular genetics lab at the Northwest Fisheries Science Center supported laboratory work. We thank the many members of the FEAT team and the Northwest Fisheries Science Center including J. Clemmons, A. Billings, J. Pohl, D. Chu, E. Phillips, S. Parker-Stetter, R. Thomas, and S. deBlois. We thank A. Berger, O. Hamel, and D. Baetscher for discussions during the development of this project.
 
 ### References
+
+Anderson, Sean C., Eric J. Ward, Philina A. English, Lewis A. K. Barnett, and James T. Thorson. 2024. sdmTMB: An r Package for Fast, Flexible, and User-Friendly Generalized Linear Mixed Effects Models with Spatial and Spatiotemporal Random Fields. \emph{bioRxiv}
+2022.03.24.485545. \url{https://doi.org/10.1101/2022.03.24.485545}.
 
 Andres, Kara J., David M. Lodge, Suresh A. Sethi, and Jose Andrés. 2023. Detecting and Analysing Intraspecific Genetic Variation with eDNA. Population Genetics to Species Abundance. \emph{Molecular
 Ecology} 32 (15): 4118--32. \url{https://doi.org/10.1111/mec.17031}.
 
+Andruszkiewicz Allan, Elizabeth, Weifeng Gordon Zhang, Andone C Lavery,and Annette F Govindarajan. 2021. Environmental DNA Shedding and Decay Rates from Diverse Animal Forms and Thermal Regimes. \emph{Environmental DNA} 3 (2): 492--514.
+
 Baetscher, Diana S., Meredith R. Pochardt, Patrick D. Barry, and Wes A. Larson. 2024. Tide Impacts the Dispersion of eDNA from Nearshore Net Pens in a Dynamic High‐latitude Marine Environment. \emph{Environmental DNA} 6 (2): e533.
 \url{https://doi.org/10.1002/edn3.533}.
+
+Barnes, Matthew A, and Cameron R Turner. 2016. The Ecology of Environmental {DNA} and Implications for Conservation Genetics. \emph{Conservation Genetics} 17 (1): 1--17.
+
+Dambly, Lea I, Nick JB Isaac, Kate E Jones, Katherine L Boughey, and Robert B O'Hara. 2023. Integrated Species Distribution Models Fitted in INLA Are Sensitive to Mesh Parameterisation. \emph{Ecography} 2023(7): e06391.
 
 de Blois, Steven. 2020. The 2019 Joint U.S.--Canada Integrated Ecosystem and Pacific Hake Acoustic-Trawl Survey: Cruise Report SH-19-06. \emph{U.S. Department of Commerce, NOAA Processed Report NMFS-NWFSC-PR-2020-03}.
 
@@ -522,10 +493,27 @@ Feist, Blake E, Jameal F Samhouri, Karin A Forney, and Lauren E Saez. 2021. Foot
 
 Guri, Gledis, Andrew Olaf Shelton, Ryan P Kelly, Nigel Yoccoz, Torild Johansen, Kim Præbel, Tanja Hanebrekke, Jessica Louise Ray, Johanna Fall, and Jon-Ivar Westgaard. 2024. Predicting Trawl Catches Using Environmental DNA. Edited by W Stewart Grant. \emph{ICES Journal of Marine Science}, August, fsae097. \url{https://doi.org/10.1093/icesjms/fsae097}.
 
+Jo, Toshiaki S. 2023. Utilizing the State of Environmental DNA (eDNA) to Incorporate Time-Scale Information into eDNA Analysis. \emph{Proceedings of the Royal Society B: Biological Sciences} 290
+(1999): 20230979. \url{https://doi.org/10.1098/rspb.2023.0979}.
+
 Jo, Toshiaki, Hiroaki Murakami, Satoshi Yamamoto, Reiji Masuda, and Toshifumi Minamoto. 2019. Effect of Water Temperature and Fish Biomass on Environmental DNA Shedding, Degradation, and Size Distribution. \emph{Ecology and Evolution} 9 (3): 1135--46. \url{https://doi.org/10.1002/ece3.4802}.
+
+Kirtane, Anish, Daniel Wieczorek, Thomas Noji, Liza Baskin, Claire Ober, Riley Plosica, Ashley Chenoweth, Katie Lynch, and Lauren Sassoubre. 2021. Quantification of Environmental DNA (eDNA) Shedding and Decay Rates for Three Commercially Harvested Fish Species and Comparison
+Between eDNA Detection and Trawl Catches. \emph{Environmental DNA} 3(6): 1142--55. https://doi.org/\url{https://doi.org/10.1002/edn3.236}.
+
+Klymus, Katy E., Catherine A. Richter, Duane C. Chapman, and Craig Paukert. 2015. Quantification of eDNA Shedding Rates from Invasive Bighead Carp Hypophthalmichthys Nobilis and Silver Carp
+Hypophthalmichthys Molitrix. \emph{Biological Conservation} 183: 77--84.
+https://doi.org/\url{https://doi.org/10.1016/j.biocon.2014.11.020}.
+
+Kristensen, Kasper, Anders Nielsen, Casper W. Berg, Hans Skaug, and Bradley M. Bell. 2016. TMB: Automatic Differentiation and Laplace Approximation. \emph{Journal of Statistical Software} 70 (5): 1--21. \url{https://doi.org/10.18637/jss.v070.i05}.
+
+Lamb, Philip D., Vera G. Fonseca, David L. Maxwell, and Chibuzor C. Nnanatu. 2022. Systematic Review and Meta-Analysis: Water Type and Temperature Affect Environmental DNA Decay. \emph{Molecular Ecology Resources} 22 (7): 2494--2505.
+https://doi.org/\url{https://doi.org/10.1111/1755-0998.13627}.
 
 Ledger, Kimberly J., Mary Beth Rew Hicks, Thomas P. Hurst, Wes Larson, and Diana S. Baetscher. 2024. Validation of Environmental DNA for Estimating Proportional and Absolute Biomass. \emph{Environmental DNA} 6 (5): e70030.
 \url{https://doi.org/10.1002/edn3.70030}.
+
+Lindgren, Finn, Håvard Rue, and Johan Lindström. 2011. An Explicit Link Between Gaussian Fields and Gaussian Markov Random Fields: The Stochastic Partial Differential Equation Approach. \emph{Journal of the Royal Statistical Society: Series B (Statistical Methodology)} 73 (4): 423--98. https://doi.org/\url{https://doi.org/10.1111/j.1467-9868.2011.00777.x}.
 
 Maes, Sarah M., Sam Desmet, Rein Brys, Klaas Sys, Tom Ruttink, Sara Maes, Kris Hostens, Lies Vansteenbrugge, and Sofie Derycke. 2023. Detection and Quantification of Two Commercial Flatfishes {{\emph{Solea}}}{{\emph{ Solea}}} and {{\emph{Pleuronectes}}}{{\emph{Platessa}}} in the North Sea Using Environmental DNA. \emph{Environmental DNA}, April, edn3.426. \url{https://doi.org/10.1002/edn3.426}.
 
@@ -533,12 +521,17 @@ Malick, Michael J, Mary E Hunsicker, Melissa A Haltuch, Sandra L Parker-Stetter,
 
 Muenzel, Dominic, Alessia Bani, Maarten De Brauwer, Eleanor Stewart, Cilun Djakiman, Halwi, Ray Purnama, et al. 2024. Combining Environmental DNA and Visual Surveys Can Inform Conservation Planning for Coral Reefs. \emph{Proceedings of the National Academy of Sciences} 121 (17): e2307214121. \url{https://doi.org/10.1073/pnas.2307214121}.
 
+Ostberg, Carl O., and Dorothy M. Chase. 2022. Ontogeny of eDNA Shedding During Early Development in Chinook Salmon (Oncorhynchus Tshawytscha). \emph{Environmental DNA} 4 (2): 339--48.
+https://doi.org/\url{https://doi.org/10.1002/edn3.258}.
+
 Pont, Didier. 2024. Predicting Downstream Transport Distance of Fish eDNA in Lotic Environments. \emph{Molecular Ecology Resources} 24(4): e13934. \url{https://doi.org/10.1111/1755-0998.13934}.
+
+R Core Team. 2024. \emph{R: A Language and Environment for Statistical Computing}. Vienna, Austria: R Foundation for Statistical Computing. \url{https://www.R-project.org/}.
 
 Ramón-Laca, Ana, Abigail Wells, and Linda Park. 2021. A Workflow for the Relative Quantification of Multiple Fish Species from Oceanic Water Samples Using Environmental DNA (eDNA) to Support Large-Scale 2021. \emph{PLoS ONE} 16: e0257773.
 \url{https://doi.org/10.1371/journal.pone.0257773}.
 
-Renshaw, Mark A, Brett P Olds, Christopher L Jerde, Margaret M McVeigh, and David M Lodge. 2015. The Room Temperature Preservation of Filtered Environmental DNA Samples and Assimilation into a Phenol--Chloroform--Isoamyl Alcohol DNA Extraction. \emph{Molecular Ecology Resources} 15 (1): 168--76.
+Sassoubre, Lauren M, Kevan M Yamahara, Luke D Gardner, Barbara A Block, and Alexandria B Boehm. 2016. Quantification of Environmental {DNA} (e{DNA}) Shedding and Decay Rates for Three Marine Fish. \emph{Environmental Science \& Technology} 50 (19): 10456--64.
 
 Shelton, Andrew Olaf, Ryan P Kelly, James L O'Donnell, Linda Park, Piper Schwenke, Correigh Greene, Richard A Henderson, and Eric M Beamer. 2019. Environmental DNA Provides Quantitative Estimates of a Threatened Salmon Species. \emph{Biological Conservation} 237: 383--91.
 
@@ -548,8 +541,22 @@ Shelton, Andrew Olaf, Ana Ramón-Laca, Abigail Wells, Julia Clemons, Dezhang Chu
 Stoeckle, Mark Y., Jesse H. Ausubel, Greg Hinks, and Stacy M. VanMorter. 2024. A Potential Tool for Marine Biogeography: eDNA--dominant Fish Species Differ Among Coastal Habitats and by Season Concordant with Gear-Based Assessments. Edited by Arga Chandrashekar Anil. \emph{PLOS ONE} 19 (11): e0313170.
 \url{https://doi.org/10.1371/journal.pone.0313170}.
 
+Thalinger, Bettina, Andreas Rieder, Anna Teuffenbach, Yannick Pütz, Thorsten Schwerte, Josef Wanzenböck, and Michael Traugott. 2021. The Effect of Activity, Energy Use, and Species Identity on Environmental DNA Shedding of Freshwater Fish. \emph{Frontiers in Ecology and Evolution} 9. \url{https://doi.org/10.3389/fevo.2021.623718}.
+
+Thorson, James T. 2019. Guidance for Decisions Using the Vector Autoregressive Spatio-Temporal (VAST) Package in Stock, Ecosystem, Habitat and Climate Assessments. \emph{Fisheries Research} 210:
+143--61. https://doi.org/\url{https://doi.org/10.1016/j.fishres.2018.10.013}.
+
+Thorson, James T, Andrew O Shelton, Eric J Ward, and Hans J Skaug. 2015a. Geostatistical Delta-Generalized Linear Mixed Models Improve Precision for Estimated Abundance Indices for West Coast Groundfishes. \emph{ICES Journal of Marine Science} 72 (5): 1297--1310.
+
+Thorson, James T, Mark D Scheuerell, Andrew O Shelton, Kevin E See, Hans J Skaug, Kasper Kristensen. 2015b. Spatial factor analysis: a new tool for estimating joint species distributions and correlations in species range. \emph{Methods in Ecology and Evolution} 6 (6):627--637.
+
 Veilleux, Heather D., Melissa D. Misutka, and Chris N. Glover. 2021. Environmental DNA and Environmental RNA: Current and
 Prospective Applications for Biological Monitoring. \emph{Science of The Total Environment} 782 (August): 146891.
 \url{https://doi.org/10.1016/j.scitotenv.2021.146891}.
+
+Wilder, Maxwell L., John M. Farrell, and Hyatt C. Green. 2023. Estimating eDNA Shedding and Decay Rates for Muskellunge in Early Stages of Development. \emph{Environmental DNA} 5 (2): 251--63.
+https://doi.org/\url{https://doi.org/10.1002/edn3.349}.
+
+Yates, M. C., D. M. Glaser, J. R. Post, M. E. Cristescu, D. J. Fraser, and A. M. Derry. 2021. The Relationship Between eDNA Particle Concentration and Organism Abundance in Nature Is Strengthened by Allometric Scaling. \emph{Molecular Ecology} 30 (13): 3068--82. https://doi.org/\url{https://doi.org/10.1111/mec.15543}.
 
 \clearpage
