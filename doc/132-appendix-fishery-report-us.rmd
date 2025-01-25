@@ -20,30 +20,29 @@ the Pacific Fisheries Information Network (PacFIN), total U.S. harvest in the
 d <- tibble(`US Sector ` = c("Tribal",
                     "Research",
                     "Shoreside (SS)",
-                    "Mothership (MS),
-                    "Catcher/Processor (CP),
+                    "Mothership (MS)",
+                    "Catcher-Processor (CP)",
                     "Total"),
-            `2024 Initial Allocation` = c(71756,
+            `Initial Allocation` = c(71756,
                            750, 141762, 81007,114760,410035),
-            `2024 Allocation After Reapportionment` = c(26756,
+            `Allocation After Reapportionment` = c(26756,
                             750,160662,91807,130060,410035),
-            `2024 Catch` = c(1541, Unknown, 81205,20927,61909,165582),
-            `2024 % Utilization` = c(5.8, Unknown, 51, 22.8, 48, 40.4)) |> 
-  mutate(across(-` `, ~{.x <- ifelse(row_number() == n(),
-                                     paste0(f(.x, 1), "%"),
-                                     f(.x))}))
+            `Catch` = c(1541, "Unknown", 81205,20927,61909,165582),
+            `Utilization (%)` = c(5.8, "Unknown", 51, 22.8, 48, 40.4))
 
 kbl(d,
-    align = "lrrrrr",
+    align = "lrrrr",
     format = "latex",
+    latex_options = "scale_down",
     booktabs = TRUE,
-    caption = paste0("2024 U.S. whiting allocations and catch (metric tons, mt). Source is from the [Federal
-    register](https://www.govinfo.gov/content/pkg/FR-2024-10-22/pdf/2024-24361.pdf) and [PacFIN Whiting Report](https://reports.psmfc.org/pacfin/f?p=501:202::INITIAL:NO:::). Tribal catch is estimated (SS sector), and MS catch was provided by the MS
-    cooperative.")) |> 
+    caption = paste0("2024 U.S. whiting allocations and catch (metric tons, mt).",
+                    ". Tribal catch is estimated (SS sector), and MS catch was provided by the MS cooperative.")) |> 
   row_spec(0, bold = TRUE) |> 
   column_spec(1, bold = TRUE)
   
 ```
+Sources for Table \@ref(tab:us-ap-catch-tab) are from the [Federal register](https://www.govinfo.gov/content/pkg/FR-2024-10-22/pdf/2024-24361.pdf) and
+[PacFIN Whiting Report](https://reports.psmfc.org/pacfin/f?p=501:202::INITIAL:NO:::).
 
 The **lack of a Spring fishery for all sectors** is one of the primary factors contributing to the
 low overall catch for the U.S. whiting fishery in 2024. It seems the hake were slow to show up

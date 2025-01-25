@@ -13,7 +13,7 @@ Samatha Engster, and Madison Betts
 
 *References are messed up here, fix*
 
-Environmental DNA (eDNA, residual genetic material sampled from water, soil, or air) is an increasingly common tool for non-invasively sampling marine and aquatic ecological communities, valuable for estimating species occurrence (Veilleux et al. 2021), biodiversity (i.e., Richness, Muenzel et al. 2024), and genetic structure (Andres et al. 2023). However, eDNA has not been widely used for quantitative abundance estimation (but see Shelton et al. 2022, Guri et al. 2024, and Stoeckle et al. 2024). While the use of eDNA for quantification is supported both conceptually -- where there is more of a species, more cells are shed in the environment, and thus there is more DNA -- and empirically (e.g. there are strong linkages between single-species eDNA measures of in aquaria (Jo et al. 2019; Ledger et al. 2024), rivers and streams (Pont 2024), estuaries and nearshore habitats (Dibattista et al. 2022; Baetscher et al. 2024), and coastal oceans (Maes et al. 2023; Shelton et al. 2019) quantitative uses of eDNA observations have significantly lagged behind their use in occurrence and biodiversity applications.
+Environmental DNA (eDNA; residual genetic material sampled from water, soil, or air) is an increasingly common tool for non-invasively sampling marine and aquatic ecological communities, valuable for estimating species occurrence (Veilleux et al. 2021), biodiversity (i.e., Richness; Muenzel et al. 2024), and genetic structure (Andres et al. 2023). However, eDNA has not been widely used for quantitative abundance estimation (but see Shelton et al. 2022, Guri et al. 2024, and Stoeckle et al. 2024). While the use of eDNA for quantification is supported both conceptually -- where there is more of a species, more cells are shed in the environment, and thus there is more DNA -- and empirically (e.g. there are strong linkages between single-species eDNA measures of in aquaria (Jo et al. 2019; Ledger et al. 2024), rivers and streams (Pont 2024), estuaries and nearshore habitats (Dibattista et al. 2022; Baetscher et al. 2024), and coastal oceans (Maes et al. 2023; Shelton et al. 2019) quantitative uses of eDNA observations have significantly lagged behind their use in occurrence and biodiversity applications.
 
 Here we use DNA samples from three years of a very large fishery survey to develop and index of abundance for a Pacific Hake.... and so on.
 
@@ -27,7 +27,7 @@ We collected seawater from up to six depths (surface, 50, 100, 150, 300, and 500
 
 Sampling stations were spread across a spatial domain that varied slightly among years
 (Figure~\@ref(fig:app-eDNA-index-station-map-acoustic-lines-fig)) with water sampling occuring between San Francisco, CA and Cape Flattery, WA in 2019, expanding south in 2021 to include Pt. Conception, CA to Cape Flattery, WA, and including a slightly larger northern extent in 2023, spanning Pt. Conception, CA to west of Barkley Sound, BC
-(Figure~\@ref(fig:app-eDNA-index-station-map-acoustic-lines-fig). This means that the spatial domain where water samples are available varies among years.  We discuss the implications of this varying sampling for developing indices of abundance below.
+(Figure~\@ref(fig:app-eDNA-index-station-map-acoustic-lines-fig)). This means that the spatial domain where water samples are available varies among years.  We discuss the implications of this varying sampling for developing indices of abundance below.
 
 We assayed the DNA concentration of hake using qPCR in 1,752 (in 2019), 1,820 (2021), and 2,189 (2022) individual water samples. We analyzed each sample at least 3 times independently using qPCR (see Laboratory Methods for a detailed description of DNA methods). After DNA extraction and cleaning, a single water sample is 100 $\mu L$.  Each qPCR reaction uses 2 $\mu L$ provides an estimate of the DNA concentration (units: $DNA$ $copies$ $\mu L^{-1}$) for each water sample. We analyzed control sample and qPCR standards of known DNA concentration alongside the field samples to calibrate the qPCR analysis. Across all samples and years, this represents more than 20,000 individual qPCR reactions.
 
@@ -57,7 +57,7 @@ The area sampled by the acoustic-trawl survey varies among years.  In Figure~\@r
 
 To generate a spatial domain for each year, we used a 5km resolution gridded maps to project eDNA concentration. This vector-based grid was developed by Feist et al. (2021) and uses a custom coordinate reference system that conserves area and distance reasonably well across the west coast of the United States (Supplement S1). Each grid cell has an associated area-weighted mean bottom depth as well. To account for changes in survey area among years, we defined a polygon for each year by including the entirety of acoustic transects from that year and connecting adjacent transects along their eastern-most extent and their western-most extent. All 5km grid cells whose centriods fell within this polygon were included in the projection set. Because eDNA varies with depth as well as geospatially, we made prediction for each grid cell in 50m depth increments up to 500m or the bottom depth of each cell. 
 
-Finally, we defined three areas based on latitude to enable the creation of abundance indices that are comparable across years.  We created a core area between Cape Flattery, WA and San Franscisco Bay, CA that is shared among all years.  In addition, this region has historically contained the majority of hake biomass detected during the hake acoustic survey (hereafter "core area"; Figure~\@ref(fig:app-eDNA-index-area-by-year-fig).  We defined a second area from San Francisco Bay to Pt. Conception (hereafter "south area"), and a small area north of Cape Flattery, WA (hereafter "north area"). Observations of hake DNA are available for all years for the core area, for the south area in 2021 and 2023, and for the north area in 2023 (see Figure~\@ref(fig:app-eDNA-index-station-map-acoustic-lines-fig), therefore we report summaries of hake DNA in each area for the appropriate years. 
+Finally, we defined three areas based on latitude to enable the creation of abundance indices that are comparable across years.  We created a core area between Cape Flattery, WA and San Franscisco Bay, CA that is shared among all years.  In addition, this region has historically contained the majority of hake biomass detected during the hake acoustic survey (hereafter "core area"; Figure~\@ref(fig:app-eDNA-index-area-by-year-fig)).  We defined a second area from San Francisco Bay to Pt. Conception (hereafter "south area"), and a small area north of Cape Flattery, WA (hereafter "north area"). Observations of hake DNA are available for all years for the core area, for the south area in 2021 and 2023, and for the north area in 2023 (see Figure~\@ref(fig:app-eDNA-index-station-map-acoustic-lines-fig)), therefore we report summaries of hake DNA in each area for the appropriate years. 
 
 Therefore predictions for each grid cell on a regular grid at evenly spaced depths between the surface and 500m (or the bottom depth).  To generate an eDNA index, we simply sum the predictions for each area-year combination and use the overall sum as the our hake eDNA index of abundance (units: $DNA$ $copies$ $\mu L^{-1}$). Note that an index constructed in this way, is sensitive to the density of prediction locations and depth -- predicting to and summing over say a 2km grid would yield a larger value than predictions summed over a 5km grid -- but as long as the density of predictions are equivalent among years and areas, the index will provide information about the relative abundance among areas and years.
 
@@ -182,7 +182,7 @@ We first present visualizations and summaries of the eDNA obsevations under mini
 
 ### Observations
 
-We first present an overview of water sample level observations (Figure~\@ref(fig:app-eDNA-index-plot-raw-eDNA-fig). While this figure is quite complicated,  we can clearly see that the spatial distribution of of observed eDNA concentration varies substantially among depths and years. Note in addition that there are clearly a few samples in each year that are notably higher concentration than the average. We will discuss some of these outlier observations further below.
+We first present an overview of water sample level observations (Figure~\@ref(fig:app-eDNA-index-plot-raw-eDNA-fig)). While this figure is quite complicated,  we can clearly see that the spatial distribution of of observed eDNA concentration varies substantially among depths and years. Note in addition that there are clearly a few samples in each year that are notably higher concentration than the average. We will discuss some of these outlier observations further below.
 
 (ref:app-eDNA-index-plot-raw-eDNA-cap) Raw estimates of hake eDNA concentraion by year (rows) and sampling depth (columns).   Each circle represents estimated eDNA from a single water bottle. Black dots represent samples in which amplification was not detected.
 
@@ -200,7 +200,7 @@ ADD MARGINAL PLOTS OF DNA BY DEPTH, BOTTOM DEPTH.... PERHAPS OTHERS.
 
 ### Index Estimates
 
-Following the estimation methods, we provide an estimate for an eDNA index for the core and south (Figure~\@ref(fig:app-eDNA-index-1-fig). For 2021 and 2023 we can combine the core and south areas to provide an index covering Pt. Conception, CA to Cape Flattery, WA (Figure~\@ref(fig:app-eDNA-index-2-fig). 
+Following the estimation methods, we provide an estimate for an eDNA index for the core and south (Figure~\@ref(fig:app-eDNA-index-1-fig)). For 2021 and 2023 we can combine the core and south areas to provide an index covering Pt. Conception, CA to Cape Flattery, WA (Figure~\@ref(fig:app-eDNA-index-2-fig)). 
 
 (ref:app-eDNA-index-1-cap) The eDNA index calculated for appropriate years for the core and south areas (see also Figure~\@ref(fig:app-eDNA-index-area-by-year-fig). Colored lines show estimates from individual spatio-temporal models and 95 percent interval. Black lines show the among model average, interquantile range and 90 percent intervals.
 
@@ -213,7 +213,7 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-(ref:app-eDNA-index-2-cap) The eDNA index calculated for appropriate years for the core and south areas (see also Figure~\@ref(fig:app-eDNA-index-area-by-year-fig). Colored lines show estimates from individual spatio-temporal models and 95 percent interval. Points and error bars show the among model average, interquantile range and 90 percent intervals.
+(ref:app-eDNA-index-2-cap) The eDNA index calculated for appropriate years for the core and south areas (see also Figure~\@ref(fig:app-eDNA-index-area-by-year-fig)). Colored lines show estimates from individual spatio-temporal models and 95 percent interval. Points and error bars show the among model average, interquantile range and 90 percent intervals.
 
 (ref:app-eDNA-index-2-alt) The index shows a declining trend from 2019 through 2023 in the core area. The southern area only shows a stable trend from 2021 to 2023.
 
@@ -226,11 +226,11 @@ include_graphics(file.path(figures_dir,
 
 #### Spatial Predictions
 
-First we can provide is a plot of the spatial predictions of hake DNA concentration (D, units: log $copies$ $\mu L^{-1}$) to observed locations (Figure~\@ref(fig:app-eDNA-index-depth-preds-Di-all-fig). In truth, these figures are small and difficult to interpret, so we provide a second figure that shows the predictions for 50m and 150m depths (Figure~\@ref(fig:app-eDNA-index-depth-preds-Di-few-fig).
+First we can provide is a plot of the spatial predictions of hake DNA concentration (D, units: log $copies$ $\mu L^{-1}$) to observed locations (Figure~\@ref(fig:app-eDNA-index-depth-preds-Di-all-fig)). In truth, these figures are small and difficult to interpret, so we provide a second figure that shows the predictions for 50m and 150m depths (Figure~\@ref(fig:app-eDNA-index-depth-preds-Di-few-fig)).
 
-Of course we can make predictions to the entire gridded 5km surface as well (Figure~\@ref(fig:app-eDNA-index-depth-preds-smooth-fig). As with Figure~\@ref(fig:app-eDNA-index-depth-preds-Di-all-fig), this is too small to be particualrly informative, so focus on 50m and 150m depths for this smooth prediction as well (Figure~\@ref(fig:app-eDNA-index-depth-preds-smooth-few-fig).
+Of course we can make predictions to the entire gridded 5km surface as well (Figure~\@ref(fig:app-eDNA-index-depth-preds-smooth-fig)). As with Figure~\@ref(fig:app-eDNA-index-depth-preds-Di-all-fig), this is too small to be particualrly informative, so focus on 50m and 150m depths for this smooth prediction as well (Figure~\@ref(fig:app-eDNA-index-depth-preds-smooth-few-fig)).
 
-We construct the eDNA index by generating predictions to each depth between the surface and 500m in 50m intervals and then summing. We can therefore sum across depths within each 5km grid cell to generate a depth-integrated map of DNA in each year (Figure~\@ref(fig:app-eDNA-index-plot-2D-1-fig)  and we can compare this index between years to understand how hake DNA has changed in distribution between years (Figure~\@ref(fig:app-eDNA-index-plot-2D-diff-fig).
+We construct the eDNA index by generating predictions to each depth between the surface and 500m in 50m intervals and then summing. We can therefore sum across depths within each 5km grid cell to generate a depth-integrated map of DNA in each year (Figure~\@ref(fig:app-eDNA-index-plot-2D-1-fig)), and we can compare this index between years to understand how hake DNA has changed in distribution between years (Figure~\@ref(fig:app-eDNA-index-plot-2D-diff-fig)).
 
 Another way to look at the spatial patterns are along-transect perpendicular to the coastline.  We show the same East-West slices across multiple years (Figures~\@ref(fig:app-eDNA-index-plot-D-trans1-fig) and~\@ref(fig:app-eDNA-index-plot-D-trans2-fig)). Note the color scale is not identical among transect figures.
 
@@ -326,7 +326,7 @@ include_graphics(file.path(figures_dir,
 
 #### Fixed Effect Estimates
 
-We provide the estimated year intercept (Figure~\@ref(fig:app-eDNA-index-plot-Fixed-fig) as well as the smooth as a function of bottom depth (Figure~\@ref(fig:app-eDNA-index-plot-smoothed-fig). Both of these effects directly determine the hake DNA concentration $D_t(x,y,d)$ that is of primary interest. 
+We provide the estimated year intercept (Figure~\@ref(fig:app-eDNA-index-plot-Fixed-fig)) as well as the smooth as a function of bottom depth (Figure~\@ref(fig:app-eDNA-index-plot-smoothed-fig)). Both of these effects directly determine the hake DNA concentration $D_t(x,y,d)$ that is of primary interest. 
 
 (ref:app-eDNA-index-plot-Fixed-cap) Year intercepts.
 
