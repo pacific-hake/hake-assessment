@@ -82,8 +82,20 @@ include_graphics(file.path(figures_dir,
 ```
 
 ```{r app-eDNA-index-comb-by-year-tab, results = "asis", echo = FALSE}
-comb_by_year_tab<- read.csv(file.path(figures_dir,"Area_projections.csv"))
-kable(comb_by_year_tab,caption = "Number of 5km grid cells used in each year and area.  Parentheses show the total number of prediction locations including depth (predictions at each grid cell at every 50m between the surface and bottom or 500m).")
+
+comb_by_year_tab <- read.csv(file.path(figures_dir,"Area_projections.csv"))
+
+
+kbl(comb_by_year_tab,
+    format = "latex",
+    booktabs = TRUE,
+    linesep = "",
+    caption = paste0("Number of 5km grid cells used in each year and ",
+                     "area. Parentheses show the total number of prediction ",
+                     "locations including depth (predictions at each grid ",
+                     "cell at every 50m between the surface and bottom or ",
+                     "500m).")) |> 
+  row_spec(0, bold = TRUE)
 ```
 
 #### Summary of Statistical Model and Estimation
