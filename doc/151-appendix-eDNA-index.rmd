@@ -130,8 +130,7 @@ Figure~\@ref(fig:app-eDNA-index-plot-raw-eDNA-fig) presents an overview of water
 
 (ref:app-eDNA-index-plot-raw-eDNA-cap) Raw estimates of hake eDNA concentraion by year (rows) and sampling depth (columns).   Each circle represents estimated eDNA from a single water bottle. Black dots represent samples in which amplification was not detected.
 
-(ref:app-eDNA-index-plot-raw-eDNA-alt) Envrionmental DNA is found at all depths sampled across years, with
-latitudinal variation by year and depth.
+(ref:app-eDNA-index-plot-raw-eDNA-alt) Envrionmental DNA is found at all depths sampled across years, with latitudinal variation by year and depth.
 
 ```{r app-eDNA-index-plot-raw-eDNA-fig, fig.cap = "(ref:app-eDNA-index-plot-raw-eDNA-cap)", results = "asis"}
 
