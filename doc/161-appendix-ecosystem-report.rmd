@@ -2,7 +2,7 @@
 
 \rfoot{Ecosystem report}
 
-# Hake-specific ecosystem report {#sec:app-ecosystem-report}
+# Hake-specific ecosystem summary {#sec:app-ecosystem-report}
 
 Contributed by Kristin N. Marshall, Mary E. Hunsicker, and Andrew M. Edwards
 
@@ -26,46 +26,75 @@ We present some of the indicators that @VestfalsEtAl2023 found to lead to higher
 analysis used estimated hake recruitment up to 2010, based on results in
 the @JTC2020 hake assessment, although we conducted a preliminary update of
 that study using more recent recruitment estimates and found some differences in
-conclusions. TODO: Kristin to say if that last bit is okay.
+conclusions. TODO: Kristin to say if that last bit is okay. Me - rewrite.
 
-TODO decide on consistent order (figure also). Fix ref in caption.
+TODO decide on consistent order (figures also).
+
+TODO Do in order of life-history stage (following Vestfals Table A1).
+
+TODO ASTegg might be LST, checking w KM
+
+TODO Kristin and Mary: please carefully check the first table; think I've got
+the directions right (though one was not in Vestfals Table A3 so I presume
+Kristin found it useful recently).
 
 \begin{table}[hbp]
 \centering
 \caption{\label{tab:app-ecosystem-report-indicators-tab}Descriptions of easily
 available ecosystem variables that were found to influence `r sp`
-recruitment (Vestfals et al., 2023), using their abbreviations. See
-Vestfals et al. (2023) for full details.}
+recruitment either by Vestfals et al. (2023) or our updated analyses (unpublished).
+Variables are in order of life-history stage, following Table~A1 of Vestfals et
+al. (2023); see that reference for full details. Shelf break is considered
+between 100 and 2,000~m isobaths, defining the longitudinal extent for several
+variables. Subscripts refer to life-history stage: TODO.}
 \centering
 \fontsize{10}{12}\selectfont
 \begin{tabular}[t]{p{3cm}p{6cm}p{6cm}}
 \toprule
-Abbreviation of variable & Definition & Effect on recruitment\\
+Abbreviation of variable & Definition & Effect on recruitment; expectation for an increase in
+variable\\
 \midrule
-TEMPspawn & Mean temperature during spawning & Fish less likely to spawn at
-higher temperatures TODO \\
-$\mbox{SSH}_{\mbox{ja.c}}$ & Average (off California from January to April) sea-surface
-height as an indicator of basin-scale processes. & Not clear which way it goes. \\
-ASTegg (TODO variable said LST, asked KM) & Net along-shore transport & Increased northward
-advection away from juvenile nursery areas decreases recruitment \\
-$\mbox{PU}_{\mbox{latelarv}}$ & Strength of poleward current & Increased northward
-advection away from juvenile nursery areas decreases recruitment \\
-$\mbox{MLD}_{\mbox{latelarv}}$ & Mean location of mixed layer depth (shelf break
-between 100~m and 2000~m isobaths, 31 to 37 degrees north, Mar-Jun)& Larvae aggregate
-at base of mixed layer so mixed layer depth may limit how far they rise in the
-water column affecting later transport\\
-$\mbox{MLD}_{\mbox{yolk}}$ & Mean location of mixed layer depth (shelf break
-between 100~m and 2000~m isobaths, 31 to 36 degrees north, Jan-Apr) & TODO Larvae aggregate
-at base of mixed layer so mixed layer depth may limit how far they rise in the
-water column affecting later transport\\
-$\mbox{PREY}_{\mbox{pre,her}}$ & Pacific Herring spawning biomass off the west coast of
+
+PREY$_{\mbox{pre,her}}$ & Pacific Herring spawning biomass off the west coast of
 Vancouver Island & Increased competition with herring on summer feeding grounds
-leads to poorer feeding conditions and reduced adult condition, reducing
-recruitment the following year\\
-$\mbox{BI}_{\mbox{pre}}$ & North Pacific Current Bifurcation Index & Northward shifted
-bifurcation leads to increased advection of prey southwards, leading to pooer
+leads to poorer feeding conditions and reduced adult condition;
+$\downarrow$ recruitment the following year\\
+
+BI$_{\mbox{pre}}$ & North Pacific Current Bifurcation Index & Northward-shifted
+bifurcation leads to increased advection of prey southwards, leading to poorer
 feeding conditions off British Columbia, Washington, and Oregon, and reduced
-adult condition\\
+adult condition;
+$\downarrow$ recruitment the following year\\
+
+TEMP$_{\mbox{spawn}}$ & Mean temperature during spawning (shelf break,
+Jan-Mar, 130-500~m depth, 31-36~\textdegree~N) & Fish less likely to spawn at
+higher temperatures; $\downarrow$ recruitment that year\\
+
+AST$_{\mbox{eggs}}$ & Net along-shore transport (shelf break,
+Jan-Mar, 40-60~m depth, 31-36~\textdegree~N)
+& Increased northward advection away from juvenile nursery areas decreases
+recruitment; $\downarrow$ recruitment that year\\
+
+MLD$_{\mbox{yolk}}$ & Mean mixed layer depth (shelf break
+Jan-Apr, 31-36~\textdegree~N)
+& Larvae aggregate at base of mixed layer so mixed layer depth may limit how far
+they rise in the water column affecting later transport; $\downarrow$ recruitment that year\\
+
+SSH$_{\mbox{JA.c}}$ & Average sea-surface
+height off California as an indicator of basin-scale processes (from coast to
+30~km offshore, Jan-Apr, 34.5-42.5~\textdegree~N)
+& Not clear which way it goes (not in Table A3 Vestfals). TODO KM??\\
+
+MLD$_{\mbox{latelarv}}$ & Mean mixed layer depth (shelf break
+Mar-Jun, 31-37~\textdegree~N)
+& Larvae aggregate at base of mixed layer so mixed layer depth may limit how far they rise in the
+water column affecting later transport; $\downarrow$ recruitment that year\\
+
+PU$_{\mbox{latelarv}}$ & Strength of poleward undercurrent (from coast to 275~m isobath,
+Mar-Jun, 75-275~m depth, 33.5-34.5~\textdegree~N)
+& Increased northward
+advection away from juvenile nursery areas decreases recruitment; $\downarrow$ recruitment that year \\
+
 \bottomrule
 \end{tabular}
 \end{table}
@@ -79,6 +108,7 @@ pacea ecosystem-summary-hake-glorys.R when confirmed.
 PUTlate - PU_latelarv
 MLDlate - MLD_latelarv
 
+JA.c - Jan-Apr off California.
 
 Availability of prey-predators
 
