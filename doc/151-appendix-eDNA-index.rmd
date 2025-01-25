@@ -479,7 +479,7 @@ include_graphics(file.path(figures_dir,
 
 Funding for this project was provided by the NMFS Genomic Strategic Initiative. We thank the crew and scientists of the NOAA ship *Bell M. Shimada* and DFO Ship *Sir John Franklin* for support during the shipboard collection effort. We thank E. Iwamoto and other members of the molecular genetics lab at the Northwest Fisheries Science Center supported laboratory work. We thank the many members of the FEAT team and the Northwest Fisheries Science Center including J. Clemmons, A. Billings, J. Pohl, D. Chu, E. Phillips, S. Parker-Stetter, R. Thomas, and S. deBlois. We thank A. Berger, O. Hamel, and D. Baetscher for discussions during the development of this project.
 
-### References
+## References
 
 Anderson, Sean C., Eric J. Ward, Philina A. English, Lewis A. K. Barnett, and James T. Thorson. 2024. sdmTMB: An r Package for Fast, Flexible, and User-Friendly Generalized Linear Mixed Effects Models with Spatial and Spatiotemporal Random Fields. \emph{bioRxiv}
 2022.03.24.485545. \url{https://doi.org/10.1101/2022.03.24.485545}.
