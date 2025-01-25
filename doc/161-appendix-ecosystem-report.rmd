@@ -1,0 +1,135 @@
+\newpage
+
+\rfoot{Ecosystem report}
+
+# Hake-specific ecosystem report {#sec:app-ecosystem-report}
+
+Contributed by Kristin N. Marshall, Mary E. Hunsicker, and Andrew M. Edwards
+
+The base model for this stock assessment includes
+year-specific maturity-at-age that explicitly accounts for changes in temperature, and
+empirical weight-at-age data that may be due to ecosystem effects. As such, the
+assessment is consistent with an `Ecosystem Approach to Fisheries
+Management' TODO add ref related to Jenny's talk if Bridget has something. To further this, here we
+present further relevant ecosystem information that has been previously
+found to influence `r sp` recruitment [@VestfalsEtAl2023].
+We focus on easily-available and updatable
+information, and what is presented here is not exhaustive. As such it should be
+considered a first step in providing an operational summary of relevant
+ecosystem information for `r sp`. We then present a NOAA-style risk table (TODO
+get ref, see document).
+
+## Ecosystem variables relevant for recruitment
+
+We present some of the indicators that @VestfalsEtAl2023 found to lead to higher
+`r sp` recruitment (Table \@ref(tab:app-ecosystem-report-indicators-tab)). That
+analysis used estimated hake recruitment up to 2010, based on results in
+the @JTC2020 hake assessment, although we conducted a preliminary update of
+that study using more recent recruitment estimates and found some differences in
+conclusions. TODO: Kristin to say if that last bit is okay.
+
+TODO decide on consistent order (figure also). Fix ref in caption.
+
+\begin{table}[hbp]
+\centering
+\caption{\label{tab:app-ecosystem-report-indicators-tab}Descriptions of easily
+available ecosystem variables that were found to influence `r sp`
+recruitment (Vestfals et al., 2023), using their abbreviations. See
+Vestfals et al. (2023) for full details.}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{p{3cm}p{6cm}p{6cm}}
+\toprule
+Abbreviation of variable & Definition & Effect on recruitment\\
+\midrule
+TEMPspawn & Mean temperature during spawning & Fish less likely to spawn at
+higher temperatures TODO \\
+$\mbox{SSH}_{\mbox{ja.c}}$ & Average (off California from January to April) sea-surface
+height as an indicator of basin-scale processes. & Not clear which way it goes. \\
+ASTegg (TODO variable said LST, asked KM) & Net along-shore transport & Increased northward
+advection away from juvenile nursery areas decreases recruitment \\
+$\mbox{PU}_{\mbox{latelarv}}$ & Strength of poleward current & Increased northward
+advection away from juvenile nursery areas decreases recruitment \\
+$\mbox{MLD}_{\mbox{latelarv}}$ & Mean location of mixed layer depth (shelf break
+between 100~m and 2000~m isobaths, 31 to 37 degrees north, Mar-Jun)& Larvae aggregate
+at base of mixed layer so mixed layer depth may limit how far they rise in the
+water column affecting later transport\\
+$\mbox{MLD}_{\mbox{yolk}}$ & Mean location of mixed layer depth (shelf break
+between 100~m and 2000~m isobaths, 31 to 36 degrees north, Jan-Apr) & TODO Larvae aggregate
+at base of mixed layer so mixed layer depth may limit how far they rise in the
+water column affecting later transport\\
+$\mbox{PREY}_{\mbox{pre,her}}$ & Pacific Herring spawning biomass off the west coast of
+Vancouver Island & Increased competition with herring on summer feeding grounds
+leads to poorer feeding conditions and reduced adult condition, reducing
+recruitment the following year\\
+$\mbox{BI}_{\mbox{pre}}$ & North Pacific Current Bifurcation Index & Northward shifted
+bifurcation leads to increased advection of prey southwards, leading to pooer
+feeding conditions off British Columbia, Washington, and Oregon, and reduced
+adult condition\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Asked Kristin if these are correct (need for my code - maybe I should switch to
+the proper ones):
+Tspawn - TEMPspawn
+SSHjac - SSH_jac (this matches)
+LSTegg - CST_eggs.s or CST_eggs.n or AST_eggs ?   Change variable name in
+pacea ecosystem-summary-hake-glorys.R when confirmed.
+PUTlate - PU_latelarv
+MLDlate - MLD_latelarv
+
+
+Availability of prey-predators
+
+Hake Risk Table
+
+\begin{table}[hbp]
+\centering
+\caption{\label{tab:app-ecosystem-report-risk-tab}Risk table ....}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{p{5cm}p{5cm}p{5cm}}
+\toprule
+Ecosystem and environmental conditions & Assessment data inputs &
+Assessment model fits and structural uncertainty\\
+\midrule
+Recruitment: 2020-2021 recruitment indicators were positive (environmental
+conditions) & & \\
+ & & \\
+Prey: increasing (krill, juvenile hake) & & \\
+ & & \\
+Predators: no trend & & \\
+ & & \\
+CVA rank: low & & \\
+\hline
+Level 2 (medium agreement, robust evidence) & Level 3 (maturity-at-age linked
+explicitly to temperature) & Level X\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+## Ecosystem and Environmental Conditions (need to update, write last, this is sablefish)
+
+We evaluated recent trends in environmental drivers of sablefish recruitment and growth, predators, and prey, along with the climate vulnerability assessment (CVA) rank assigned to hake by McClure et al. (2023). We did not consider competitors, habitat, or non-fisheries human activities (such as offshore wind development) during this evaluation. Overall, we consider ecosystem and environmental conditions to be neutral (Level 2) for hake, with medium to high confidence, based on medium agreement among indicators and robust evidence. Recent trends in prey abundance have been positive and the evidence for this trend is robust. However, other indices (potential negative impacts of El Niño and a moderate CVA rank) do not portend favorable conditions for hake productivity, though the evidence for these indicators is not as strong.
+Environmental drivers
+Recruitment
+Over the past three years, environmental conditions in the California Current Ecosystem have been largely warmer than average even with the backdrop of a prolonged La Niña event, which provided favorable recruitment conditions.
+
+[relates to 2023-2024] Overall, these data suggest a XX in stock productivity in
+coming years, (in)consistent with the assessment model. However, forecasts
+suggest an intensifying El Niño during fall 2023/winter 2024. During El Niño
+events that impact the California Current Ecosystem, upwelling is generally
+weaker (Jacox et al. 2015), and northern copepod populations are generally
+lower. These changes have the potential to negatively impact hake recruitment
+(Vestfals et al. 2023).
+
+Hake distribution
+
+Predators and prey
+Hake is common in many predator’s diets (e.g., Albacore, arrowtooth flounder, sharks (common and bigeye thresher, blue), swordfish (broadbill), CA sea lion, harbor seal, humboldt squid, northern fur seal, dolphins, pacific hake, jack mackerel, spiny dogfish, sablefish, shortspine thornyhead).  Recent trends (i.e. over the last 5 years) in these populations of hake predators are stable or increasing, suggesting mild concern about increased predation. We assume that long term trends, in particular those related to recovery of marine mammals over several decades, are implicitly represented in the stock assessment and do not represent notable changes that warrant inclusion in the risk table. However, recent indices of prey abundance are favorable. Krill is a dominant diet item for juveniles and adult hake (Wippel et al. 2017, Phillips et al. 2022, Bizzarro et al. 2023). The CCIEA krill indicator shows an increasing trend over the last five years.
+CVA results
+Hake are highly exposed with low sensitivity to climate change, with an overall rank of low (McClure et al. 2023).  However, we note that the CVA work pre-dates recent studies on the relationships between hake distribution and recruitment and ocean conditions (Malick et al. 2020, Vestfals et al. 2023).
+
+\clearpage
