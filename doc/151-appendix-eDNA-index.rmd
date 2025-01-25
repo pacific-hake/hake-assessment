@@ -41,11 +41,23 @@ Sampling stations were spread across a spatial domain that varied slightly among
 We assayed the DNA concentration of hake using qPCR in 1,752 (in 2019), 1,820 (2021), and 2,189 (2022) individual water samples. We analyzed each sample at least 3 times independently using qPCR. After DNA extraction and cleaning, a single water sample is 100 $\mu L$.  Each qPCR reaction uses 2 $\mu L$ and provides an estimate of the DNA concentration (units: $DNA$ $copies$ $\mu L^{-1}$) for each water sample. We analyzed control sample and qPCR standards of known DNA concentration alongside the field samples to calibrate the qPCR analysis. Across all samples and years, this represents more than 20,000 individual qPCR reactions.
 
 ```{r app-eDNA-index-stations-tab, results = "asis", echo = FALSE}
-stations_tab <- read.csv(file.path(figures_dir,"CTD_stations_table.csv"))
-#stations_tab$Depth..m.[stations_tab$Depth..m.==0] <- 3
-nom <- colnames(stations_tab)[grepl("X",colnames(stations_tab))]
-colnames(stations_tab) <- c("Depth (m)",substr(nom,2,nchar(nom)))
-kable(stations_tab,caption = "Unique stations sampled for each sampling depth and year.")
+
+stations_tab <- read.csv(file.path(figures_dir, "CTD_stations_table.csv")) |>
+  mutate(across(-1, ~{f(.x)}))
+
+nms <- names(stations_tab)
+nms <- gsub("^X", "", nms)
+nms <- c("Depth (m)", nms[-1])
+names(stations_tab) <- nms
+
+kbl(stations_tab,
+    format = "latex",
+    booktabs = TRUE,
+    align = c("l", rep("r", ncol(stations_tab) - 1)),
+    linesep = "",
+    caption = "Unique stations sampled for each sampling depth and year.") |> 
+  row_spec(0, bold = TRUE) |> 
+  row_spec(nrow(stations_tab), bold = TRUE)  
 ```
 
 (ref:app-eDNA-index-station-map-acoustic-lines-cap) Locations of acoustic transect and water samples collected from CTD stations in each year. Only transect lines within the range of water samples are shown.
