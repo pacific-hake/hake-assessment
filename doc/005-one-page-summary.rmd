@@ -35,7 +35,7 @@ cohorts entering maturity.
 - The median estimate of female spawning biomass at the start
 of `r end_yr` is `r curr_bio_median_tonnes`~t (with 95% credible
 interval from `r curr_bio_lower_tonnes` to `r curr_bio_upper_tonnes`~t).
-This is
+This is a slight increase from
 <!-- `r diff_bio_median_last_curr`% `r diff_bio_median_last_curr_text` -->
 this assessment's estimate for the `r end_yr-1` female spawning
 biomass of `r prev_bio_median_tonnes`~t (with 95% credible interval
