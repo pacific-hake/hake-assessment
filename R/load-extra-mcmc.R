@@ -316,6 +316,52 @@ load_extra_mcmc <- function(model,
       as_tibble()
   }
 
+  # eDNA Q and ExtraSD values --------------------------------------------------
+  if(verbose){
+    message("Extracting eDNA Q and ExtraSD values ...")
+  }
+  # Need the headers, so extract from PARAMETERS to get headers, then remove
+  # all rows except for the two values we want
+  x <- load_extra_mcmc_get_chunk(reps,
+                                 beg_pat = "^PARAMETERS report",
+                                 end_pat = "AgeSel_P1_Fishery")
+
+  lnq_edna <-  map(x$lst, ~{grep("LnQ_base_eDNA_Survey",
+                                 .x, value = TRUE)})
+
+  q_extrasd_edna <-  map(x$lst, ~{grep("Q_extraSD_eDNA_Survey",
+                                       .x, value = TRUE)})
+
+  if(all(lengths(lnq_edna))){
+    lnq_edna <- suppressWarnings(extract_rep_table(reps_lst = lnq_edna,
+                                                   header = x$header,
+                                                   verbose = verbose,
+                                                   ...))
+
+    names(lnq_edna) <- tolower(names(lnq_edna))
+
+    lnq_edna_quants <- lnq_edna$value |> quantile(probs = probs)
+
+    extra_mcmc$lnq_edna_lo <- lnq_edna_quants[1]
+    extra_mcmc$lnq_edna_med <- lnq_edna_quants[2]
+    extra_mcmc$lnq_edna_hi <- lnq_edna_quants[3]
+  }
+
+  if(all(lengths(q_extrasd_edna))){
+    q_extrasd_edna <- suppressWarnings(extract_rep_table(reps_lst = q_extrasd_edna,
+                                                         header = x$header,
+                                                         verbose = verbose,
+                                                         ...))
+
+    names(q_extrasd_edna) <- tolower(names(q_extrasd_edna))
+
+    q_extrasd_edna_quants <- q_extrasd_edna$value |> quantile(probs = probs)
+
+    extra_mcmc$q_extrasd_edna_lo <- q_extrasd_edna_quants[1]
+    extra_mcmc$q_extrasd_edna_med <- q_extrasd_edna_quants[2]
+    extra_mcmc$q_extrasd_edna_hi <- q_extrasd_edna_quants[3]
+  }
+
   # Catchability --------------------------------------------------------------
   if(verbose){
     message("Extracting survey indices...")
@@ -344,6 +390,7 @@ load_extra_mcmc <- function(model,
   if(verbose){
     message("Extracting index fits and catchabilities...")
   }
+
   extra_mcmc$q_med <- ts_q |>
     mutate(calc_q = as.numeric(calc_q)) |>
     group_by(fleet, yr) |>
@@ -393,6 +440,14 @@ load_extra_mcmc <- function(model,
 
   extra_mcmc$q_vector_age1 <- ts_q |>
     dplyr::filter(fleet == 3) |>
+    select(iter, calc_q) |>
+    group_by(iter) |>
+    slice(1) |>
+    pull(calc_q) |>
+    as.numeric()
+
+  extra_mcmc$q_vector_edna <- ts_q |>
+    dplyr::filter(fleet == 4) |>
     select(iter, calc_q) |>
     group_by(iter) |>
     slice(1) |>
