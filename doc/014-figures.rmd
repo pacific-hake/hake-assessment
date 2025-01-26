@@ -1703,13 +1703,14 @@ probability is taken from year $t$'s stock assessment document, from the
 row in the decision table corresponding to the consequent catch in year $t$
 (with interpolation if necessary). Blue triangles: the probability is
 calculated using the current `r assess_yr` base model. The grey horizontal
-line is the 50% value. For each year except 2017 and 2023, both
+line is the 50% value. For each year except 2017, 2021, and 2023, both
 probabilities lie on the same side of the grey line, indicating that each
 year's assessment model has almost always `correctly' estimated an increase
-or decrease the subsequent year's biomass. For the `r assess_yr`
+or decrease in the subsequent year's biomass. For the `r assess_yr`
 assessment the probabilities are shown for all catch alternatives for
 `r assess_yr`, as described in Table~\@ref(tab:main-decisions-biomass-tab),
-with 0~t being the lowest probability, shown in pink.
+with 0~t being the lowest probability, shown in pink (the others are all
+overlayed at 100\%).
 
 (ref:main-historical-1-alt) This figure compares historical estimates
 of probabilities of the stock declining with those from the current base
@@ -1720,7 +1721,7 @@ model.
 plot_historical_probs(base_model,
                       hist_probs = assess_history_probs_df,
                       add.projs = TRUE,
-                      legend.inset = c(0.21, 0),
+                      legend.inset = c(0.27, 0),
                       legend.cex = 0.9)
 ```
 
