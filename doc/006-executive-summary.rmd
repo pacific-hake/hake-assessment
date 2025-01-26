@@ -87,9 +87,9 @@ that cohort of
 `r f(cohort_catch_1999 / 1e6, 2)` Mt [1~Mt = 1~million metric tonnes].
 Through `r last_data_yr`, the cumulative catches of the 2010, 2014, and 2016
 year classes were
-`r f(cohort_catch_2010 / 1e6, 2)` Mt,
-`r f(cohort_catch_2014 / 1e6, 2)` Mt, and
-`r f(cohort_catch_2016 / 1e6, 2)` Mt, respectively. In the
+`r f(cohort_catch_2010 / 1e6, 2)`~Mt,
+`r f(cohort_catch_2014 / 1e6, 2)`~Mt, and
+`r f(cohort_catch_2016 / 1e6, 2)`~Mt, respectively. In the
 `r end_yr - 1` catch, `r top_coh(base_model, last_data_yr, 3, cap = FALSE)`.
 
 ## Data and assessment {-}
@@ -189,7 +189,7 @@ fishery dynamics given variability in `r sp` distribution patterns.
 The Dirichlet-multinomial estimation approach to weighting composition data
 was retained, and sensitivity to an alternative data-weighting approach was
 investigated. Time-varying fecundity, which was introduced in 2019, was
-retained and improved upon with time-varying estimates of maturity.
+retained and improved upon with time-varying estimates of maturity in 2024.
 Assumptions for the forecast period for weight at age and
 selectivity continue to be based on conditions during the last five years,
 as done since the 2020 assessment.
@@ -351,7 +351,7 @@ However, estimates of absolute recruitment for the most recent years can change
 with new data and updated assumptions about recent recruitments. The estimate of 2020 recruitment is above average, whereas in the previous
 two assessments it was highly uncertain but thought to be possibly very large.
 The 2021 recruitment is estimated to be potentially large with a median of
-`r f(base_model$mcmccalcs$rmed["2020"], 1)`~billion fish based on
+`r f(base_model$mcmccalcs$rmed["2021"], 1)`~billion fish based on
 several years of fishery data and the 2023 survey. The 2022 cohort was observed
 by the age-1 index in 2023, suggesting it is average to below average in size.
 The 2023 and 2024 year classes were set based solely on the stock--recruitment
@@ -402,9 +402,10 @@ Table~\@ref(tab:es-fishing-intensity-tab) for recent years and
 Figure~\@ref(fig:es-fishing-intensity-fig)). Over the last five years, it was the
 highest in 2019 at `r median_intensity_2019`%, dropped
 in 2020 to `r median_intensity_2020`% and remained stable through 2021 and 2022
-at `r median_intensity_2021`% and `r median_intensity_2022`% respectively.
-In 2023, the relative fishing intensity dropped further
-to `r median_intensity_2023`%
+at `r median_intensity_2021`% and `r median_intensity_2022`% respectively,
+then dropping in 2023 to
+`r median_intensity_2023`% and in 2024 to
+`r median_intensity_2024`%
 (Table~\@ref(tab:es-fishing-intensity-tab) and
 Figure~\@ref(fig:es-fishing-intensity-fig)).
 Although there is a considerable amount of imprecision around these
@@ -431,7 +432,7 @@ plot_fishing_intensity(base_model, show_arrows = TRUE)
 The median exploitation fraction (catch divided by biomass of fish of age-2 and
 above) peaked in 1999 and 2006 (Figure~\@ref(fig:es-exploitation-fraction-fig)).
 The median exploitation fraction has decreased from a recent high in 2021 of
-`r exploitation_med_2021` to `r exploitation_med_2024` in 2024, which is a
+`r exploitation_med_2021` to `r exploitation_med_2024` in 2024, which is the
 lowest over the past 10 years (Table~\@ref(tab:es-fishing-intensity-tab) and
 Figure~\@ref(fig:es-exploitation-fraction-fig)).
 
@@ -446,7 +447,7 @@ targets (Table~\@ref(tab:es-landings-tac-tab)). From `r end_yr - 5` to
 While Canada's rate was higher than the U.S.'s in 2020, it has dropped considerably
 over the past few years to historic lows. The utilization rate for the coast-wide
 fishery this year was the lowest of the previous decade (`r tot_2024_attainment`%)
-due, in part, to difficulties locating aggregations of fish during the Spring and
+due, in part, to difficulties locating aggregations of fish during the spring and
 throughout the year in northern areas.
 The usual `r us_allotment_percent`% and `r can_allotment_percent`%
 allocation of coast-wide TAC, as specified in the Joint U.S.-Canada
@@ -595,8 +596,8 @@ class), and the 2023 age-1 index helped inform the size of the 2022 year class.
 Collectively, these lessened uncertainty around estimates of female
 spawning biomass. Information on the size of the 2023 year class from the 2024
 fishery was considered suspect given the unique fishing conditions during the
-year and was therefore set according to the stock--recruitment relationship
-(no estimated recruitment deviate). Further, the interactions among variance parameters that
+year and so 2023 recruitment was therefore set according to the stock--recruitment relationship
+(with no estimated recruitment deviate). Further, the interactions among variance parameters that
 govern variability in fishery selectivity and recruitment parameters through
 time, as well as those used in relative data weighting, are not well understood
 and could propagate uncertainty beyond what is presented in this assessment.
@@ -715,17 +716,21 @@ given each potential management action. Although not linear, probabilities can
 be interpolated from these results with reasonable accuracy for intermediate catch values in
 `r assess_yr` (Table~\@ref(tab:es-risk-year-1-tab) and
 Figure~\@ref(fig:es-risk-year-1-fig)).
-However, interpolation is only appropriate for the constant catch scenarios in `r assess_yr + 1`
-or `r assess_yr + 2` (i.e., not the Default HR scenario) because it is conditional on previous year(s) catch
-levels. This explains why probabilities can sometimes decline (rather than rise) with
-increased `r assess_yr + 1` and `r assess_yr + 2` catch levels
+However, interpolation is not appropriate for the Default HR scenario
+in `r assess_yr + 1` or `r assess_yr + 2` because it is conditional on previous year(s) catch
+levels.
+<!-- Commenting out in 2025 as did not happen, as we only have the one
+bouncing-around catch alternatve.
+This explains why probabilities can sometimes decline (rather than rise) with
+increased assess_yr + 1 and assess_yr + 2 catch levels
 (Tables~\@ref(tab:es-risk-year-2-tab) and~\@ref(tab:es-risk-year-3-tab);
 Figures~\@ref(fig:es-risk-year-2-fig) and~\@ref(fig:es-risk-year-3-fig)).
+-->
 
 (ref:es-depletion-comparison-cap) Median and 95% posterior
 credibility intervals of estimated relative spawning biomass to the start
 of `r end_yr` from the base model and projections to the start of
-`r forecast_yrs[length(forecast_yrs)]` for several management actions, which
+`r forecast_yrs[length(forecast_yrs)]` for several catch alternatives, which
 are defined in Table~\@ref(tab:es-decisions-biomass-tab).
 
 (ref:es-depletion-comparison-alt) This figure shows that the median
@@ -743,12 +748,14 @@ plot_depl_fore_comparison(base_model,
 
 With zero catch for the next three years and average recruitment from 2023 onward, the biomass has a
 `r zero_catch_prob_bio_down_1`% probability of decreasing from
-`r forecast_yrs[1]` to `r forecast_yrs[2]` (Table~\@ref(tab:es-risk-year-1-tab);
-Figure~\@ref(fig:es-depletion-comparison-fig)), a
+`r forecast_yrs[1]` to `r forecast_yrs[2]` (Table~\@ref(tab:es-risk-year-1-tab) and
+Figure~\@ref(fig:es-risk-year-1-fig)), a
 `r zero_catch_prob_bio_down_2`% probability of decreasing from
-`r forecast_yrs[2]` to `r forecast_yrs[3]` (Table~\@ref(tab:es-risk-year-2-tab)),
+`r forecast_yrs[2]` to `r forecast_yrs[3]` (Table~\@ref(tab:es-risk-year-2-tab)
+and Figure~\@ref(fig:es-risk-year-2-fig)),
 and a `r zero_catch_prob_bio_down_3`% probability of decreasing from
-`r forecast_yrs[3]` to `r forecast_yrs[4]` (Table~\@ref(tab:es-risk-year-3-tab)).
+`r forecast_yrs[3]` to `r forecast_yrs[4]` (Table~\@ref(tab:es-risk-year-3-tab)
+and Figure~\@ref(fig:es-risk-year-1-fig)).
 
 For all explored catches, the maximum probability of female spawning biomass at
 the start of `r end_yr + 1` dropping below `r b_10` is
