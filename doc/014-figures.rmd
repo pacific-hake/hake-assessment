@@ -362,8 +362,8 @@ plot_weight_at_age(wt_at_age,
 
 (ref:main-bridge-summary-1-cap) Bridging models showing some of the
 sequential steps made towards the `r assess_yr` base model from the `r last_assess_yr` base
-model. Models include shifting to the newest version of Stock Synthesis,
-amending older data sources, and adding new data.
+model. Models include shifting to the newest version of Stock Synthesis and
+amending older data sources.
 Panels are spawning biomass (upper panel); relative spawning biomass
 (spawning biomass in each year relative to the unfished equilibrium spawning
 biomass, middle left); recruitment deviations (middle right); and age-2$+$
@@ -373,19 +373,21 @@ circle for 2024 is obscured by the orange circle.
 
 (ref:main-bridge-summary-2-cap) Bridging models showing some of the
 sequential steps made towards the `r assess_yr` base model from the `r last_assess_yr` base
-model. Models include the last step from the previous figure of adding new
-data, changes to working up data inputs, and structural changes to the model.
+model. Models include the last step from the previous figure of updating older
+data, the addition of new data inputs for the current year, and structural changes to the model.
 Panels are spawning biomass (upper panel); relative spawning biomass
 (spawning biomass in each year relative to the unfished equilibrium spawning
 biomass, middle left); recruitment deviations (middle right); and age-2$+$
 survey biomass (lower left) and age-1 (lower right) indices, with triangles
 representing the observed survey indices.
 
-(ref:main-bridge-summary-1-alt) The largest change amongst the models
-occurred when data from the age 2 plus survey was added to the model.
+(ref:main-bridge-summary-1-alt) There was little change resulting from
+any of these bridging models.
 
-(ref:main-bridge-summary-2-alt) Including time-varying fecundity led
-to only minor changes in estimated spawning biomass.
+(ref:main-bridge-summary-2-alt) The largest change amongst the models
+occurred when new fishery composition data from the current year and
+the estimation of recruitment deviations was turned off for 2023 onwards
+were added to the model.
 
 ```{r main-bridge-summary-1-fig, fig.cap = "(ref:main-bridge-summary-1-cap)", fig.height = 8}
 
@@ -396,6 +398,7 @@ p[[1]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
                    point_size = 1.5,
                    ylim = c(0, 2.5),
+                   xlim = c(1966, last_assess_yr),
                    x_labs_mod = 10,
                    wrap_y_label = TRUE,
                    tick_prop = 2,
@@ -408,6 +411,7 @@ p[[1]] <-
 p[[2]] <-
   plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
                point_size = pt_size,
+               xlim = c(1966, last_assess_yr),
                dodge_val = 1.5,
                leg_pos = "none",
                x_labs_mod = 10,
@@ -428,7 +432,7 @@ p[[3]] <-
                          tick_prop = 2,
                          vjust_x_labels = -2,
                          leg_pos = "none",
-                         xlim = c(1995, end_yr)) +
+                         xlim = c(1995, last_assess_yr)) +
   theme(axis.title.y = element_text(size = panels_title_size),
         axis.title.x = element_text(size = panels_title_size),
         # plot.margin: top, right,bottom, left
@@ -438,7 +442,7 @@ p[[4]] <-
   plot_survey_index_fits(base_model,
                          point_size = pt_size,
                          d_obj = d_obj_bridge_age1_index[[1]],
-                         xlim = c(1995, end_yr),
+                         xlim = c(1995, last_assess_yr),
                          ylim = c(0, 11),
                          y_breaks = seq(0, 11, by = 2),
                          rev_colors = TRUE,
@@ -459,6 +463,7 @@ full_p <- list()
 full_p[[1]] <-
   plot_biomass(d_obj = d_obj_bridge_biomass[[1]],
                point_size = 1.5,
+               xlim = c(1964, last_assess_yr),
                show_arrows = TRUE,
                dodge_bo = 0.75,
                leg_ncol = 2,

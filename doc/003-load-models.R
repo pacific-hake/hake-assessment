@@ -14,7 +14,8 @@ bridge_models_dirs <-
          "02-fix-weight-at-age",
          #"03-fix-survey-1",
          "04-fix-fishery-comps"),
-       c("10-add-catches",
+       c("04-fix-fishery-comps",
+         "10-add-catches",
          "20-add-weight-at-age",
          "50-add-fishery-ages",
          "60-fix-late-devs"))
@@ -24,7 +25,8 @@ bridge_models_desc <-
          "Add changes to weight-at-age data",
          #"Add changes to survey indices",
          "Add changes to fishery age comps"),
-       c(paste0("Add ", last_data_yr, " catches"),
+       c("Add changes to fishery age comps",
+         paste0("Add ", last_data_yr, " catches"),
          paste0("Add ", last_data_yr, " weight-at-age"),
          paste0("Add ", last_data_yr, " fishery ages"),
          "Fix last two years rec devs"))
