@@ -652,7 +652,7 @@ for the acoustic survey index. The green vertical line is the median of the
 posterior for `r assess_yr`, which is
 `r f(median(base_model$extra_mcmc$q_vector), 3)`; the red line is
 the median of the posterior for the last assessment year, `r last_data_yr`,
-which was `r f(median(last_yr_base_model$extra_mcmc$Q_vector), 3)`.
+which was `r f(median(last_yr_base_model$extra_mcmc$q_vector), 3)`.
 
 (ref:main-catchability-density-alt) The distribution of the catchability
 parameter posterior for the acoustic survey index is shown with a median around
@@ -675,7 +675,7 @@ for the age-1 index. The green vertical line is the median of the
 posterior for `r assess_yr`, which is
 `r f(median(base_model$extra_mcmc$q_vector_age1), 3)`; the red line is
 the median of the posterior for the last assessment year, `r last_data_yr`,
-which was `r f(median(last_yr_base_model$extra_mcmc$Q_vector_age1), 3)`.
+which was `r f(median(last_yr_base_model$extra_mcmc$q_vector_age1), 3)`.
 
 (ref:main-catchability-density-age1-alt) The distribution of the catchability
 parameter posterior for the age 1 index is shown with a median around 0.49.

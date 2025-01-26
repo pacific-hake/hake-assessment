@@ -481,6 +481,8 @@ table_decision(
   longtable = TRUE)
 ```
 
+\clearpage
+
 ```{r main-decisions-spr-tab, results = "asis", echo = FALSE, eval = !is.null(base_model$forecasts)}
 
 table_decision(
