@@ -1402,7 +1402,9 @@ unaccounted-for sources of process and observation error (median estimate
 is `r f(as.numeric(sens_models[[2]][[4]]$extra_mcmc$q_extrasd_edna_med), 3)`).
 The index is representative of all fish age-1 and older (i.e., fully selective
 of fish age-1$+$), with a median catchability estimate of
-`r f(as.numeric(exp(sens_models[[2]][[4]]$extra_mcmc$lnq_edna_med)), 3)`. The eDNA index
+`r f(as.numeric(exp(sens_models[[2]][[4]]$extra_mcmc$lnq_edna_med)), 3)`. Catchability
+is not as intuitive as for the other indices as it scales copies of DNA per microliter
+to biomass. The eDNA index
 declined from 2019 to 2023, though more steeply between 2019 to 2021 then between
 2021 and 2023 (see Figure~\@ref(fig:app-eDNA-index-1-fig)). The eDNA index is
 fit well in this sensitivity model, somewhat at the cost of reduced fits in the age
