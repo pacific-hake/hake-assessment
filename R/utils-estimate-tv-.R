@@ -54,7 +54,36 @@ estimate_tv_weight_at_age <- function(max_age = 15, first_year = 1975) {
     ) |>
     dplyr::rename_with(.fn = tolower) |>
     dplyr::filter(weight > 0)
-
+  weight_at_age_data |>
+    dplyr::group_by(year, age_yrs) |>
+    dplyr::count() |>
+    dplyr::arrange(age_yrs) |>
+    dplyr::ungroup() |>
+    dplyr::bind_rows(
+      dplyr::group_by(weight_at_age_data, age_yrs) |>
+      dplyr::count() |>
+      dplyr::mutate(year = -1940)
+    ) |>
+    tidyr::pivot_wider(
+      names_from = age_yrs,
+      values_from = n,
+      names_sort = FALSE,
+      names_glue = "a{age_yrs}"
+    ) |>
+    dplyr::arrange(year) |>
+    dplyr::rename(Yr = year) |>
+    dplyr::mutate(
+      seas = 1,
+      gender = 1,
+      GP = 1,
+      bseas = 1,
+      Fleet = 1,
+      .after = Yr
+    ) |>
+    utils::write.csv(
+      fs::path(here::here("data-tables"), "wtatage-all-samplesize.csv"),
+      row.names = FALSE
+    )
 
   # model
   m1 <- sdmTMB::sdmTMB(
