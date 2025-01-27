@@ -46,7 +46,8 @@ recruitment either by Vestfals et al. (2023) or our updated analyses (unpublishe
 Variables are in order of life-history stage, following Table~A1 of Vestfals et
 al. (2023); see that reference for full details. Shelf break is considered
 between 100 and 2,000~m isobaths, defining the longitudinal extent for several
-variables. Subscripts refer to life-history stage: TODO.}
+variables. Subscripts refer to life-history stage: TODO. All variables are
+standardised over the ranges of years shown in the figures.}
 \centering
 \fontsize{10}{12}\selectfont
 \begin{tabular}[t]{p{3cm}p{6cm}p{6cm}}
@@ -65,6 +66,16 @@ bifurcation leads to increased advection of prey southwards, leading to poorer
 feeding conditions off British Columbia, Washington, and Oregon, and reduced
 adult condition;
 $\downarrow$ recruitment the following year\\
+
+PDO$_{\mbox{pre}}$ & Pacific Decadal Oscillation during preconditioning (Apr-Sep) & Indicator of basin-scale
+processes, negative phase linked to higher productivity and improved adult condition (Apr-Sep);
+$\downarrow$ recruitment the following year\\
+
+NPGO$_{\mbox{pre}}$ & North Pacific Gyre Oscillation during preconditioning
+(Apr-Sep) & Indicator of basin-scale
+processes, positive phase linked to higher nutrient concentrations and
+productivity, and improved adult condition;
+$\uparrow$ recruitment the following year\\
 
 TEMP$_{\mbox{spawn}}$ & Mean temperature during spawning (shelf break,
 Jan-Mar, 130-500~m depth, 31-36~\textdegree~N) & Fish less likely to spawn at
@@ -94,6 +105,9 @@ PU$_{\mbox{latelarv}}$ & Strength of poleward undercurrent (from coast to 275~m 
 Mar-Jun, 75-275~m depth, 33.5-34.5~\textdegree~N)
 & Increased northward
 advection away from juvenile nursery areas decreases recruitment; $\downarrow$ recruitment that year \\
+
+PRED$_{\mbox{age0.age1hake}}$ & Biomass of age-1 Pacific Hake (from this stock assessment)
+& Age-1 hake predate on pelagic juveniles (roughly Apr-Sep); $\downarrow$ recruitment that year \\
 
 \bottomrule
 \end{tabular}
