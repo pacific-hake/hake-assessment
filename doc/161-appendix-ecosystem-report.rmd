@@ -124,6 +124,40 @@ MLDlate - MLD_latelarv
 
 JA.c - Jan-Apr off California.
 
+<!-- Figures currently built in pacea/R-temp/ecosystem-summary-hake-make-figures.R on dev-andy branch -->
+
+(ref:app-ecosystem-summary-from-pacea-cap) Caption here.
+
+(ref:app-ecosystem-summary-from-pacea-alt) Alt text here.
+
+```{r app-ecosystem-summary-from-pacea-fig, fig.cap = "(ref:app-ecosystem-summary-from-pacea-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                          "ecosystem_summary_from_pacea.png"),
+                 error = FALSE)
+```
+
+
+(ref:app-ecosystem-summary-from-glorys-cap) Caption here.
+
+(ref:app-ecosystem-summary-from-glorys-alt) Alt text here.
+
+```{r app-ecosystem-summary-from-glorys-fig, fig.cap = "(ref:app-ecosystem-summary-from-glorys-cap)", results = "asis"}
+
+include_graphics(file.path(figures_dir,
+                          "ecosystem_summary_from_glorys.png"),
+                 error = FALSE) #
+```
+
+
+
+
+
+
+
+
+
+
 Availability of prey-predators
 
 Hake Risk Table
