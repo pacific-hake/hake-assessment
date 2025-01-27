@@ -10,12 +10,17 @@ The base model for this stock assessment includes
 year-specific maturity-at-age that explicitly accounts for changes in temperature, and
 empirical weight-at-age data that may be due to ecosystem effects. As such, the
 assessment is consistent with an `Ecosystem Approach to Fisheries
-Management' TODO add ref related to Jenny's talk if Bridget has something. To further this, here we
+Management'
+
+<!-- TODO add ref related to Jenny's talk if Bridget has something. -->
+
+Here we
 present further relevant ecosystem information that has been previously
 found to influence `r sp` recruitment [@VestfalsEtAl2023].
 We focus on easily-available and updatable
 information, and what is presented here is not exhaustive. As such it should be
-considered a first step in providing an operational summary of relevant
+considered a first step in providing an operational summary (updatable and
+expanded upon every year) of relevant
 ecosystem information for `r sp`. We then present a NOAA-style risk table (TODO
 get ref, see document).
 
@@ -24,19 +29,18 @@ get ref, see document).
 We present some of the indicators that @VestfalsEtAl2023 found to lead to higher
 `r sp` recruitment (Table \@ref(tab:app-ecosystem-report-indicators-tab)). That
 analysis used estimated hake recruitment up to 2010, based on results in
-the @JTC2020 hake assessment, although we conducted a preliminary update of
-that study using more recent recruitment estimates and found some differences in
-conclusions. TODO: Kristin to say if that last bit is okay. Me - rewrite.
+the @JTC2020 hake assessment. We conducted a preliminary update of
+that study using more recent recruitment estimates from the 2024 assessment
+[@JTC2024], finding .... (K.~Marshall, pers.~comm.). TODO: checkwith Kristin
+how to say that. Table~\@ref(tab:app-ecosystem-report-indicators-tab) describes
+11 variables of recruitment that we assimilated and their expected effected on
+recruitment of `r sp`. Time series for five variables (and associated plotting
+functions) are based on values amalgamated in the pacea R package TODO and six
+were calculated from outputs of the Global
+Ocean Physics Reanalysis (GLORYS12V1) product, which is a global ocean
+eddy-resolving oceanographic model covering 1993 onwards
+(https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030/description).
 
-TODO decide on consistent order (figures also).
-
-TODO Do in order of life-history stage (following Vestfals Table A1).
-
-TODO ASTegg might be LST, checking w KM
-
-TODO Kristin and Mary: please carefully check the first table; think I've got
-the directions right (though one was not in Vestfals Table A3 so I presume
-Kristin found it useful recently).
 
 \begin{table}[hbp]
 \centering
@@ -46,13 +50,12 @@ recruitment either by Vestfals et al. (2023) or our updated analyses (unpublishe
 Variables are in order of life-history stage, following Table~A1 of Vestfals et
 al. (2023); see that reference for full details. Shelf break is considered
 between 100 and 2,000~m isobaths, defining the longitudinal extent for several
-variables. Subscripts refer to life-history stage: TODO. All variables are
-standardised over the ranges of years shown in the figures.}
+variables. Subscripts refer to life-history stage: TODO}
 \centering
 \fontsize{10}{12}\selectfont
 \begin{tabular}[t]{p{3cm}p{6cm}p{6cm}}
 \toprule
-Abbreviation of variable & Definition & Effect on recruitment; expectation for an increase in
+Abbreviation~of variable & Definition & Effect on recruitment; expectation for an increase in
 variable\\
 \midrule
 
@@ -94,7 +97,7 @@ they rise in the water column affecting later transport; $\downarrow$ recruitmen
 SSH$_{\mbox{JA.c}}$ & Average sea-surface
 height off California as an indicator of basin-scale processes (from coast to
 30~km offshore, Jan-Apr, 34.5-42.5~\textdegree~N)
-& Not clear which way it goes (not in Table A3 Vestfals). TODO KM??\\
+& Not clear which way it goes (not in Table A3 Vestfals). TODO ???\\
 
 MLD$_{\mbox{latelarv}}$ & Mean mixed layer depth (shelf break
 Mar-Jun, 31-37~\textdegree~N)
@@ -113,22 +116,64 @@ PRED$_{\mbox{age0.age1hake}}$ & Biomass of age-1 Pacific Hake (from this stock a
 \end{tabular}
 \end{table}
 
-Asked Kristin if these are correct (need for my code - maybe I should switch to
-the proper ones):
-Tspawn - TEMPspawn
-SSHjac - SSH_jac (this matches)
-LSTegg - CST_eggs.s or CST_eggs.n or AST_eggs ?   Change variable name in
-pacea ecosystem-summary-hake-glorys.R when confirmed.
-PUTlate - PU_latelarv
-MLDlate - MLD_latelarv
 
-JA.c - Jan-Apr off California.
+
+TODO add refs for pacea outputs
+
+Estimates of `r sp` recruitment from this assessment are presented alongside the
+five indices calculated using outputs from pacea
+(Figure~\@ref(fig:app-ecosystem-summary-from-pacea-fig))
+and the six indices calculated from GLORYS output
+(Figure~\@ref(fig:app-ecosystem-summary-from-glorys-fig)).
+All indices are standardised over the ranges of years shown (different for each
+figure), such that each index has a mean of zero and standard deviation of
+one. The x-axis corresponds to the year for which recruitment is expected to be
+influenced by the ecosystem variable represented by the index. For example,
+PREY$_{\mbox{pre,her}}$ is an index representing Pacific Herring spawning biomass off the west coast of
+Vancouver Island. @VestfalsEtAl2023 found that increased herring biomass led to
+increased competition with hake on summer feeding grounds, leading to poorer
+feeding conditions and reduced adult condition. `r sp` recruitment would then be
+affected the following year. Thus, the PREY$_{\mbox{pre,her}}$ index year 2020 in
+Figure~\@ref(fig:app-ecosystem-summary-from-pacea-fig)
+represents the herring spawning biomass in 2019, because that is the biomass
+expected to influence hake recruitment in 2020. A similar shift is done for the
+other three variables that influence the adult preconditioning stage of hake.
+
+The notation PREY$_{\mbox{pre,her}}$ represents herring being a prey item for
+adult hake in the preconditioning stage, although @VestfalsEtAl2023 found a
+competition effect (not a predator-prey effect as originally hypothesised).
+
+Since a higher herring biomass is expected to correspond to a decrease in hake
+recruitment, the y-axis for the herring index in
+Figure~\@ref(fig:app-ecosystem-summary-from-pacea-fig)
+is flipped, so that lower-than-average herring biomass is are high on the plot
+(yet are coloured blue to represent a negative herring biomass
+anomaly). Similarly, red represents a positive herring biomass anomaly but
+values point downwards to indicate a negative potential effect on hake
+recruitment. A similar flip is done for all variables for which a negative index
+was found to
+correspond to positive hake recruitment. Thus, `up` in the plots can be
+interpeted as supposedly good for hake recruitment, to make it easier to
+visualise potential effects. A similar approach is taken for
+Figure~\@ref(fig:app-ecosystem-summary-from-glorys-fig).
+
+We have not conducted further analyses on these time series, but present them as
+a first attempt to compile varied ecosystem information into single figures that
+can
+stimulate thinking about ecosystem effects, and
+that can be updated and expanded upon for future assessments.
 
 <!-- Figures currently built in pacea/R-temp/ecosystem-summary-hake-make-figures.R on dev-andy branch -->
 
-(ref:app-ecosystem-summary-from-pacea-cap) Caption here.
+(ref:app-ecosystem-summary-from-pacea-cap) Estimated hake recruitment from this assessment (top), plus five ecosystem indices
+using values from the pacea R package. The x-axis corresponds to the
+expected influenced year
+of `r sp` recruitment (see
+text). Red bars represent a positive index, with the y-axis flipped for four
+indices so that
+upwards represents a positive expected influence on recruitment.
 
-(ref:app-ecosystem-summary-from-pacea-alt) Alt text here.
+(ref:app-ecosystem-summary-from-pacea-alt) Alt text here. TODO
 
 ```{r app-ecosystem-summary-from-pacea-fig, fig.cap = "(ref:app-ecosystem-summary-from-pacea-cap)", results = "asis"}
 
@@ -137,10 +182,12 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
+(ref:app-ecosystem-summary-from-glorys-cap) Estimated `r sp` recruitment from
+the current assessment model (top), plus six ecosystem calculated from GLORYS
+output. Axes are defined as in
+Figure~\@ref(fig:app-ecosystem-summary-from-pacea-fig) and in the text.
 
-(ref:app-ecosystem-summary-from-glorys-cap) Caption here.
-
-(ref:app-ecosystem-summary-from-glorys-alt) Alt text here.
+(ref:app-ecosystem-summary-from-glorys-alt) Alt text here. TODO
 
 ```{r app-ecosystem-summary-from-glorys-fig, fig.cap = "(ref:app-ecosystem-summary-from-glorys-cap)", results = "asis"}
 
@@ -149,18 +196,7 @@ include_graphics(file.path(figures_dir,
                  error = FALSE) #
 ```
 
-
-
-
-
-
-
-
-
-
-Availability of prey-predators
-
-Hake Risk Table
+\clearpage
 
 \begin{table}[hbp]
 \centering
@@ -187,8 +223,11 @@ explicitly to temperature) & Level X\\
 \end{tabular}
 \end{table}
 
+TODO Kristin and Mary: please carefully check the first table; think I've got
+the directions right (though one was not in Vestfals Table A3 so I presume
+Kristin found it useful recently). I then need to update text in figure also.
 
-## Ecosystem and Environmental Conditions (need to update, write last, this is sablefish)
+## Ecosystem and Environmental Conditions (need to update, write last, this is sablefish, or just start from text in main section that is copied into the Google Doc)
 
 We evaluated recent trends in environmental drivers of sablefish recruitment and growth, predators, and prey, along with the climate vulnerability assessment (CVA) rank assigned to hake by McClure et al. (2023). We did not consider competitors, habitat, or non-fisheries human activities (such as offshore wind development) during this evaluation. Overall, we consider ecosystem and environmental conditions to be neutral (Level 2) for hake, with medium to high confidence, based on medium agreement among indicators and robust evidence. Recent trends in prey abundance have been positive and the evidence for this trend is robust. However, other indices (potential negative impacts of El Niño and a moderate CVA rank) do not portend favorable conditions for hake productivity, though the evidence for these indicators is not as strong.
 Environmental drivers
