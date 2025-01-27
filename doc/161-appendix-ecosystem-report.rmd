@@ -219,7 +219,8 @@ include_graphics(file.path(figures_dir,
 
 \begin{table}[hbp]
 \centering
-\caption{\label{tab:app-ecosystem-report-risk-tab}Risk table ....}
+\caption{\label{tab:app-ecosystem-report-risk-tab}Risk table ....**Aaron doing
+in Google Doc.}
 \centering
 \fontsize{10}{12}\selectfont
 \begin{tabular}[t]{p{5cm}p{5cm}p{5cm}}
@@ -236,8 +237,7 @@ Predators: no trend & & \\
  & & \\
 CVA rank: low & & \\
 \hline
-Level 2 (medium agreement, robust evidence) & Level 3 (maturity-at-age linked
-explicitly to temperature) & Level X\\
+Level 2 (medium agreement, robust evidence) & Level XX & Level XX\\
 \bottomrule
 \end{tabular}
 \end{table}
