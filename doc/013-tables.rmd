@@ -239,7 +239,7 @@ table_ovary_samples(
 table_param_est_bounds(
   base_model,
   start_rec_dev_yr = recruit_dev_start_yr,
-  end_rec_dev_yr = 2022,
+  end_rec_dev_yr = main_recdev_end,
   section_sep_lines = TRUE,
   digits = 2,
   caption = paste0(
