@@ -6,6 +6,7 @@
 with inset for an area of interest to contain a detailed view}
 \usage{
 plot_maturity_ogives(
+  doy = 278,
   show_inset = TRUE,
   from = c(xmin = 2, xmax = 6.5, ymin = 0.8, ymax = 1),
   to = c(xmin = 5, xmax = 14, ymin = 0.05, ymax = 0.6),
@@ -27,6 +28,9 @@ plot_maturity_ogives(
 )
 }
 \arguments{
+\item{doy}{Day of year. This must be present in the
+\code{hake::maturity_estimates_df} data frame unde the column \code{doy}.}
+
 \item{show_inset}{Logical. If \code{TRUE}, show the inset panel}
 
 \item{from}{The limits of the inset on the main plot to extract.

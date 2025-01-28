@@ -8,6 +8,8 @@
 #' size of this plot. use the arguments `eq_x_start_legend` and
 #' `eq_y_start_legend` to do so.
 #'
+#' @param doy Day of year. This must be present in the
+#' `hake::maturity_estimates_df` data frame unde the column `doy`.
 #' @param show_inset Logical. If `TRUE`, show the inset panel
 #' @param from The limits of the inset on the main plot to extract.
 #' See [ggmagnify::geom_magnify()]
@@ -41,7 +43,8 @@
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
-plot_maturity_ogives <- function(show_inset = TRUE,
+plot_maturity_ogives <- function(doy = 278,
+                                 show_inset = TRUE,
                                  from = c(xmin = 2,
                                           xmax = 6.5,
                                           ymin = 0.8,
@@ -66,7 +69,16 @@ plot_maturity_ogives <- function(show_inset = TRUE,
                                  leg_font_size = 14,
                                  space_between_legend_items_cm = 0.5){
 
+  check_doy_val <- maturity_estimates_df |>
+    dplyr::filter(doy == !!doy)
+
+  if(!nrow(check_doy_val)){
+    stop("Day of year `doy` value not found in the data frame ",
+         "`hake::maturity_estimates_df`")
+  }
+
   d <- maturity_estimates_df |>
+    dplyr::filter(doy == !!doy) |>
     group_by(model) |>
     mutate(is_fore_yr = year %in% ((max(year) - 4):max(year))) |>
     group_by(model, is_fore_yr, age) |>
@@ -104,7 +116,7 @@ plot_maturity_ogives <- function(show_inset = TRUE,
   x_labels <- x_breaks
   x_labels[!x_breaks %% x_label_every_nth == 0] <- ""
 
-  g<- d |>
+  g <- d |>
     ggplot(aes(x = age,
                y = p_mature,
                group = as.factor(year),
