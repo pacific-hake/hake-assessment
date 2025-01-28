@@ -34,7 +34,8 @@ heatmap_extract_sample_size <- function(sample_size_df = NULL,
 
   bf <- sample_size_df %>%
     select(yr, matches("^\\d+", .)) |>
-    dplyr::filter(yr > 0)
+    dplyr::filter(yr > 0) |>
+    dplyr::mutate(dplyr::across(dplyr::everything(), \(x) tidyr::replace_na(x, 0)))
 
   # All years where all values are extrapolated (pre- and post- weight-at-age
   # data values)
