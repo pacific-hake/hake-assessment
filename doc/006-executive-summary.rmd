@@ -86,7 +86,7 @@ between 2001 and 2008 were predominantly comprised of fish from the very large
 that cohort of
 `r f(cohort_catch_1999 / 1e6, 2)` Mt [1~Mt = 1~million metric tonnes].
 Through `r last_data_yr`, the cumulative catches of the 2010, 2014, and 2016
-year classes were
+year classes were estimated at
 `r f(cohort_catch_2010 / 1e6, 2)`~Mt,
 `r f(cohort_catch_2014 / 1e6, 2)`~Mt, and
 `r f(cohort_catch_2016 / 1e6, 2)`~Mt, respectively. In the
@@ -306,7 +306,8 @@ table_biomass(
 
 ## Recruitment {-}
 
-`r sp` have low to moderate recruitment with occasional large year classes
+`r sp` have low to moderate recruitment (relative to the long-term average)
+with occasional large year classes
 (Table~\@ref(tab:es-recruitment-tab) and Figure~\@ref(fig:es-recruitment-fig)).
 Very large year classes in 1980, 1984,
 and 1999 supported much of the commercial catch from the 1980s to the
@@ -361,7 +362,7 @@ The 2021 recruitment is estimated to be potentially large with a median of
 several years of fishery data and the 2023 survey. The 2022 cohort was observed
 by the age-1 index in 2023, suggesting it is average to below average in size.
 There are no survey data available to inform the estimates of
-the `r end_yr - 2` and `r end_yr` year class sizes, for which recruitment
+the `r end_yr - 2`--`r end_yr` year class sizes, for which recruitment
 deviations were set to zero.
 The general notion remains that recent `r sp` recruitment is
 highly uncertain, and estimates for recent years (based on limited data) can
@@ -432,7 +433,7 @@ series.
 
 ```{r es-fishing-intensity-fig, fig.cap = "(ref:es-fishing-intensity-cap)"}
 
-plot_fishing_intensity(base_model, show_arrows = TRUE)
+plot_fishing_intensity(base_model, show_arrows = TRUE, line_color="grey32")
 ```
 
 The median exploitation fraction (catch divided by biomass of fish of age-2 and
@@ -471,7 +472,7 @@ This is a drop from the last five years which have been approximately 0.1.
 
 ```{r es-exploitation-fraction-fig, fig.cap = "(ref:es-exploitation-fraction-cap)"}
 
-plot_exploitation_fraction(base_model, show_arrows = TRUE)
+plot_exploitation_fraction(base_model, show_arrows = TRUE, line_color="grey32")
 ```
 
 ```{r es-landings-tac-tab, results = "asis", echo = FALSE}
@@ -603,10 +604,11 @@ Collectively, these lessened uncertainty around estimates of female
 spawning biomass. Information on the size of the 2023 year class from the 2024
 fishery was considered suspect given the unique fishing conditions during the
 year and so, as mentioned earlier, recruitment deviations from 2023 onwards were
-set to zero. Further, the interactions among variance parameters that
+set to zero. Further, the impact of interactions among variance parameters that
 govern variability in fishery selectivity and recruitment parameters through
-time, as well as those used in relative data weighting, are not well understood
-and could propagate uncertainty beyond what is presented in this assessment.
+time, as well as those used in relative data weighting, are not well understood. If
+variance parameters were estimated as random effects, such interactions could
+propagate uncertainty beyond what is presented in this assessment.
 
 \clearpage
 
@@ -640,7 +642,7 @@ default harvest rate catch target. But, the projected median relative fishing
 intensity can be slightly different than the target because the `r fspr_40`
 default harvest-rate catch limit is calculated using baseline
 selectivity-at-age (1966--1990; prior to time-varying deviations), whereas the
-forecasted catches are removed using selectivity averaged over the last five
+forecasted catches use selectivity averaged over the last five
 years. Recent changes in selectivity will thus be reflected in the
 determination of fishing relative to the default harvest policy. For example,
 fishing at the `r fspr_40` default harvest-rate catch limit

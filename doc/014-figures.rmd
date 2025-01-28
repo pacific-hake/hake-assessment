@@ -1036,7 +1036,7 @@ series.
 
 ```{r main-fishing-intensity-fig, fig.cap = "(ref:main-fishing-intensity-cap)"}
 
-plot_fishing_intensity(base_model)
+plot_fishing_intensity(base_model, line_color="grey32")
 ```
 
 (ref:main-exploitation-fraction-cap) Trend in median exploitation fraction
@@ -1049,7 +1049,7 @@ This is a drop from the previous five years which have been above 0.1.
 
 ```{r main-exploitation-fraction-fig, fig.cap = "(ref:main-exploitation-fraction-cap)"}
 
-plot_exploitation_fraction(base_model)
+plot_exploitation_fraction(base_model, line_color="grey32")
 ```
 
 (ref:main-phase-cap) Estimated historical path of median relative spawning
