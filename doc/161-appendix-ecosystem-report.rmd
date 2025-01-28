@@ -187,7 +187,11 @@ We have not conducted further analyses on these time series, but present them as
 a first attempt to compile varied ecosystem information into single figures that
 can
 stimulate thinking about ecosystem effects, and
-that can be updated and expanded upon for future assessments.
+that can be updated and expanded upon for future assessments. Note that the
+strongest driver of hake recruitment found by
+@VestfalsEtAl2023 was eddy kinetic energy between May and September (during the
+female spawning preconditioning stage) from point Conception to Cape Blanco, but
+an up-to-date index of this was not easily available.
 
 <!-- Figures currently built in pacea/R-temp/ecosystem-summary-hake-make-figures.R on dev-andy branch -->
 
