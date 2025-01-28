@@ -105,6 +105,7 @@ table_catch <- function(ct,
   col_names <- gsub(" ", "\n", names(df))
   col_names <- gsub("-", "-\n", col_names)
   col_names <- gsub("Shoreside", "Shore-\nside", col_names)
+  col_names <- gsub("\nbased", "\nside", col_names)
   col_names <- gsub("Mothership", "Mother-\nship", col_names)
   col_names <- gsub("\\n", paste0("\n", hdr_font_str$quad), col_names)
   col_names <- paste0(hdr_font_str$dbl, col_names)
