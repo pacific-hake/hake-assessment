@@ -12,8 +12,6 @@ empirical weight-at-age data that may be due to ecosystem effects. As such, the
 assessment is consistent with an `Ecosystem Approach to Fisheries
 Management'.
 
-<!-- TODO add ref related to Jenny's talk if Bridget has something. -->
-
 Section~\@ref(sec:recruitment-variables) discusses
 relevant ecosystem information that has been previously
 found to influence `r sp` recruitment [@VestfalsEtAl2023].
@@ -24,7 +22,7 @@ expanded upon every year) of relevant
 ecosystem information for `r sp`. Section~\@ref(sec:ecosystem-conditions) then describes
 broader ecosystem and environmental conditions relevant to `r sp`. A risk table
 (Table~\@ref(tab:app-ecosystem-report-risk-tab)) summarizes conditions, uncertainty,
-and concerns related to `r sp`. (TODO get ref, see document).
+and concerns related to `r sp`.
 
 ## Ecosystem variables relevant for recruitment {#sec:recruitment-variables}
 
@@ -99,12 +97,15 @@ they rise in the water column affecting later transport; $\downarrow$ recruitmen
 SSH$_{\mbox{JA.c}}$ & Average sea-surface
 height off California as an indicator of basin-scale processes (from coast to
 30~km offshore, Jan-Apr, 34.5-42.5~\textdegree~N) &
+Higher sea surface is indicative of higher productivity and better conditions for copepods;
 $\uparrow$ recruitment that year\\
 
 MLD$_{\mbox{latelarv}}$ & Mean mixed layer depth (shelf break
 Mar-Jun, 31-37~\textdegree~N)
 & Larvae aggregate at base of mixed layer so mixed layer depth may limit how far they rise in the
-water column affecting later transport; $\uparrow$ recruitment that year\\
+water column affecting later transport, and possibly less competition and
+predation when mixed layer shallower; % Kristin's guess
+$\uparrow$ recruitment that year\\
 
 PU$_{\mbox{latelarv}}$ & Strength of poleward undercurrent (from coast to 275~m isobath,
 Mar-Jun, 75-275~m depth, 33.5-34.5~\textdegree~N)
@@ -326,15 +327,13 @@ whether these conditions will negatively impact hake recruitment.
 
 ### Hake distribution
 
-TODO check the correct Malick 2020 ref, assuming Sidelecki
-
 Seasonal forecasts of hake distribution in the northern region of the California
 Current Ecosystem
-[@MalickSiedleckiEtAl2020] were not available at the time of writing this
+[@MalickHunsickerEtAl2020] were not available at the time of writing this
 summary, however these temperature-driven forecasts will be presented at the
 2025 SRG meeting. Given what we know about the influence of temperature on hake
 distribution and the role of temperature as a proxy for prey availability
-[@MalickSiedleckiEtAl2020 @Phillips2022], we suspect that the delayed
+[@MalickHunsickerEtAl2020, @Phillips2022], we suspect that the delayed
 upwelling observed in 2024 may have delayed the extent of the northern migration
 of hake in the spring. Return to average conditions later in summer may have
 supported a later northern shift as feeding conditions for hake improved.
@@ -347,11 +346,13 @@ trends (i.e. over the last five years) in many of these populations of hake
 predators are stable or increasing, suggesting mild concern about increased
 predation. For example, the consumption of hake by Bluefin Tuna and Swordfish
 has been well above average in recent years and the spawning biomass of these
-species has increased over this period as well (Leising et al., in prep). We
+species has increased over this period as well (Leising et al., in prep).
+<!-- We
 assume that long term trends, in particular those related to recovery of marine
 mammals over several decades, are implicitly represented in the stock assessment
 and do not represent notable changes that warrant inclusion in the risk
-table. However, recent indices of prey abundance are favorable. Krill is a
+table.-->
+However, recent indices of prey abundance are favorable. Krill is a
 dominant diet item for juvenile and adult hake TODO (Wippel et al. 2017)
 [@Phillips2022], Bizzarro et al. 2023). The CCIEA krill indicator shows an
 increasing trend in the central CCE over the last five years.
@@ -361,6 +362,6 @@ increasing trend in the central CCE over the last five years.
 Hake are highly exposed with low sensitivity to climate change, with an overall
 rank of low @McClureEtAl2023. However, we note that the CVA work pre-dates
 recent studies on the relationships between hake distribution and recruitment
-and ocean conditions [@MalickSiedleckiEtAl2020, VestfalsEtAl2023].
+and ocean conditions [@MalickHunsickerEtAl2020, @VestfalsEtAl2023].
 
 \clearpage
