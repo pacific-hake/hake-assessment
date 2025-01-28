@@ -109,7 +109,9 @@ seasonal fishing conditions during the year, the fishery age composition of age-
 in 2024 was considered
 potentially suspect as a standalone observation (i.e., without the addition of survey information).
 Therefore, recruitment in 2023 was based on the stock--recruitment relationship
-(no additional recruitment deviate estimate).
+(no additional recruitment deviate estimate). In addition, no recruitment deviations were
+estimated for `r end_yr - 1` -- forecast years because no information is available
+to inform the estimates.
 
 The `r assess_yr` base model includes a time series (1995 to
 `r last_survey_yr`) of acoustic age-2$+$ biomass estimates and acoustic
@@ -304,6 +306,7 @@ assessments, not smaller. For example, 2016--17 increase from each assessment is
   - *2017 base model: increase of 136,000 t*
   - *2018 base model: increase of 194,000 t*
   - *2024 base model: increase of 423,000 t;*
+
 *and 2022--2023 (presumably) increase from each assessment is:*
   - *2023 base model: increase of 486,000 t*
   - *2024 base model: increase of 549,000 t*
@@ -438,7 +441,7 @@ the `r assess_yr` base model. The steps are as follows:
 follow current best practices;
 - Incrementally update catch, maturity-at-age/weight-at-age/fecundity-at-age, and fishery age-composition data from years previous to `r last_data_yr` (in that order);
 - Incrementally add `r last_data_yr` catch, maturity-at-age/weight-at-age/fecundity-at-age, and fishery age-composition data (in that order); and
-- Turn off estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (i.e., recruitment comes from the stock--recruitment relationship) due to limited data to inform the estimation of `r last_data_yr - 1` year class strength in the absence of survey data.
+- Turn off estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (i.e., recruitment comes from the stock--recruitment relationship) due to limited data to inform the estimation of `r last_data_yr - 1` year class strength in the absence of survey data. Similarly, no recruitment deviations were estimated during the forecast period.
 
 Stock Synthesis version `r ss_version` includes a number of changes since the
 version used by @JTC2024. However, none of the changes were specifically relevant
