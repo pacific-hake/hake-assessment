@@ -18,7 +18,7 @@ model-based approach was used for the input weight-at-age matrix and time-varyin
 temperature-dependent maturity, both of which better inform fecundity.
 
 - Coast-wide catch in `r end_yr-1` was `r last_yr_landings`~t
-(t represents metric tons), 48% below the average over the most recent 10 years
+(t represents metric tonnes), 48% below the average over the most recent 10 years
 (`r ct |> tail(10) |> pull(Total) |> mean() |> f()`~t),
 out of a total allowable catch (TAC), adjusted for carryovers, of
 `r last_yr_tac` t. The U.S. caught `r last_yr_us_landings`~t
