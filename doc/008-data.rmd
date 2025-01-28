@@ -427,11 +427,16 @@ A matrix of empirically derived population weight-at-age data by year
 (Figures~\@ref(fig:main-weight-at-age-fig)--
 \@ref(fig:main-weight-at-age-lines-fig)) is used in the current assessment
 model to translate numbers at age to biomass at age. Annual weight-at-age data
-was modelled from biological samples pooled from all fisheries and summer
-surveys for the years 1975 to `r max_fishery_age_prop[2]`
+was modelled from biological samples pooled from all fisheries and most
+surveys for the years 1965 to `r max_fishery_age_prop[2]`
 (Figures~\@ref(fig:main-weight-at-age-fig)--
 \@ref(fig:main-weight-at-age-lines-fig)). Samples from near-shore areas, i.e.,
-the Puget Sound, were not included.
+the Puget Sound, were not included. The earliest samples come from the U.S.
+shoreside vessels that date back to 1965. With the effort to reconstruct all
+historical data, some additional historical samples were found within the U.S.
+databases for this assessment, such as these early shoreside samples. Additional
+effort is ongoing to ensure that all samples taken during the acoustic survey
+research trips are also available.
 Past investigations into calculating weight-at-age data for the fishery and
 survey independently showed little impact on model results, and thus, a single
 matrix is used for all fleets and beginning and middle-of-the-year population
