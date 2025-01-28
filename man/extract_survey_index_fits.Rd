@@ -8,7 +8,7 @@ in a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}-ready data frame}
 extract_survey_index_fits(
   model_lst,
   model_names,
-  survey_type = c("age1", "age2"),
+  survey_type = c("age1", "age2", "edna"),
   type = c("index_med", "index_lo", "index_hi"),
   inc_model_year = FALSE
 )
@@ -18,8 +18,7 @@ extract_survey_index_fits(
 
 \item{model_names}{A vector of model names,the same length as \code{models_lst}}
 
-\item{survey_type}{The type of survey, must be one of \code{age1} or \code{age2}.
-\code{age2} means age 2+ acoustic survey and `age1``is the age 1 acoustic survey}
+\item{survey_type}{One of \code{age1}, \code{age2}, or \code{edna}}
 
 \item{type}{A name as found in the \code{extra_mcmc[[type]]} object of a model
 objects, for example if \code{type == index.med}, it is a table of index fit}

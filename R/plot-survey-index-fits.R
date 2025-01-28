@@ -11,7 +11,8 @@ plot_survey_index_fits <- function(
     d_obj = NULL,
     show_arrows = TRUE,
     survey_type = c("age1",
-                    "age2"),
+                    "age2",
+                    "edna"),
     xlim = c(1995, 2021),
     x_breaks = xlim[1]:xlim[2],
     x_labs_mod = 5,
@@ -42,13 +43,17 @@ plot_survey_index_fits <- function(
     obs_line_width = 1.25,
     obs_err_line_type = "solid",
     obs_err_line_width = 1,
+    obs_upper_bar_width = 0.25,
     obs_color = "black",
     dodge_val = 0.5,
     rev_colors = FALSE,
     ...){
 
   survey_type <- match.arg(survey_type)
-  survey_index <- ifelse(survey_type == "age2", 2, 3)
+  survey_index <- ifelse(survey_type == "age2", 2,
+                         ifelse(survey_type == "age1",
+                                3,
+                                4))
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){
@@ -186,7 +191,7 @@ plot_survey_index_fits <- function(
                   linetype = obs_err_line_type,
                   linewidth = obs_err_line_width,
                   color = obs_color,
-                  width = 0.25,
+                  width = obs_upper_bar_width,
                   inherit.aes = FALSE)
 
   # Add major tick marks

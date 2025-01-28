@@ -8,7 +8,7 @@ model list which is in long format ready for \code{\link[ggplot2:ggplot]{ggplot2
 create_group_df_index(
   model_lst = NULL,
   model_names = NULL,
-  survey_type = c("age1", "age2")
+  survey_type = c("age1", "age2", "edna")
 )
 }
 \arguments{
@@ -16,7 +16,7 @@ create_group_df_index(
 
 \item{model_names}{A vector of model names,the same length as \code{model_lst}}
 
-\item{survey_type}{Either \code{age1} or \code{age2}}
+\item{survey_type}{One of \code{age1}, \code{age2}, or \code{edna}}
 }
 \value{
 A list containing a \code{\link[tibble:tibble]{tibble::tibble()}}

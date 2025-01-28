@@ -1406,8 +1406,10 @@ if(!is.null(d_obj_sens_recdev[[1]])){
 (ref:main-index-base-alternative-2-cap) Markov chain Monte Carlo
 estimates of the fit to the acoustic survey biomass time series for the
 base model and alternative sensitivity runs that represent changes in data.
-See Figure~\@ref(fig:main-biomass-base-alternative-2-fig) for sensitivity
-descriptions.
+The black triangles with error bars represent the input data points with
+associated uncertainty, and the blue dots are the estimated values for each
+year. See Figure~\@ref(fig:main-biomass-base-alternative-2-fig) for
+sensitivity descriptions.
 
 (ref:main-index-base-alternative-2-alt) This figure shows the similarity
 between some sensitivity runs of the estimates of the fit to the biomass
@@ -1422,10 +1424,42 @@ if(!is.null(d_obj_sens_age2_index_grp2[[1]])){
                          d_obj = d_obj_sens_age2_index_grp2[[1]],
                          survey_type = "age2",
                          rev_colors = TRUE,
-                         tick_prop = 2,
+                         tick_prop = 1,
                          leg_pos = c(0.18, 0.8),
                          xlim = c(1995, end_yr))
 }
+```
+
+(ref:main-index-edna-cap) Markov chain Monte Carlo
+estimates of the fit to the eDNA survey biomass time series for the
+sensitivity model which includes the eDNA survey index. The black triangles
+with error bars represent the input data points with associated uncertainty,
+and the blue dots are the estimated values for each year.
+
+(ref:main-index-edna-alt) This figure shows the three indices and model fits
+to those index points for the eDNA survey for the sensitivity which includes
+eDNA survey as an indesx of abundance.
+
+```{r main-index-edna-fig, fig.cap = "(ref:main-index-edna-cap)", fig.height = 4.5}
+
+plot_survey_index_fits(sens_models[[2]][[4]],
+                       list(sens_models[[2]][[4]]),
+                       "EDNA",
+                       survey_type = "edna",
+                       tick_prop = 1,
+                       vjust_x_labels = -2,
+                       leg_pos = "none",
+                       ylim = c(0, 0.5),
+                       y_breaks = seq(0, 0.5, 0.1),
+                       xlim = c(2019, 2023),
+                       x_breaks = seq(2019, 2023, 1),
+                       x_labs_mod = 1,
+                       x_expansion = 0.5,
+                       obs_upper_bar_width = 0.05) +
+  theme(axis.title.y = element_text(size = panels_title_size),
+        axis.title.x = element_text(size = panels_title_size),
+        # plot.margin: top, right,bottom, left
+        plot.margin = margin(12, 12, 6, 12))
 ```
 
 (ref:main-biomass-base-alternative-4-cap) Markov chain Monte Carlo estimates
@@ -1538,9 +1572,9 @@ if(!is.null(d_obj_sens_age2_index_grp3[[1]])){
                          d_obj = d_obj_sens_age2_index_grp3[[1]],
                          survey_type = "age2",
                          rev_colors = TRUE,
-                         tick_prop = 2,
+                         tick_prop = 1,
                          leg_pos = c(0.15, 0.88),
-                         xlim = c(1995, end_yr+1))
+                         xlim = c(1995, end_yr + 1))
 }
 ```
 

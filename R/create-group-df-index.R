@@ -2,7 +2,7 @@
 #' model list which is in long format ready for [ggplot2::ggplot()]
 #'
 #' @param model_lst A list of models, each created by [create_rds_file()]
-#' @param survey_type Either `age1` or `age2`
+#' @param survey_type One of `age1`, `age2`, or `edna`
 #' @param model_names A vector of model names,the same length as `model_lst`
 #'
 #' @return A list containing a [tibble::tibble()]
@@ -10,11 +10,16 @@
 #' @export
 create_group_df_index <- function(model_lst = NULL,
                                   model_names = NULL,
-                                  survey_type = c("age1", "age2")){
+                                  survey_type = c("age1",
+                                                  "age2",
+                                                  "edna")){
 
   survey_type <- match.arg(survey_type)
 
-  fleet <- ifelse(survey_type == "age2", 2, 3)
+  fleet <- ifelse(survey_type == "age2", 2,
+                  ifelse(survey_type == "age1",
+                         3,
+                         4))
 
   obs <- model_lst[[1]]$dat$CPUE |>
     as_tibble() |>
