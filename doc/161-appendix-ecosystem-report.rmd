@@ -10,21 +10,23 @@ The base model for this stock assessment includes
 year-specific maturity-at-age that explicitly accounts for changes in temperature, and
 empirical weight-at-age data that may be due to ecosystem effects. As such, the
 assessment is consistent with an `Ecosystem Approach to Fisheries
-Management'
+Management'.
 
 <!-- TODO add ref related to Jenny's talk if Bridget has something. -->
 
-Here we
-present further relevant ecosystem information that has been previously
+Section~\@ref(sec:recruitment-variables) discusses
+relevant ecosystem information that has been previously
 found to influence `r sp` recruitment [@VestfalsEtAl2023].
 We focus on easily-available and updatable
 information, and what is presented here is not exhaustive. As such it should be
 considered a first step in providing an operational summary (updatable and
 expanded upon every year) of relevant
-ecosystem information for `r sp`. We then present a NOAA-style risk table (TODO
-get ref, see document).
+ecosystem information for `r sp`. Section~\@ref(sec:ecosystem-conditions) then describes
+broader ecosystem and environmental conditions relevant to `r sp`. A risk table
+(Table~\@ref(tab:app-ecosystem-report-risk-tab)) summarizes conditions, uncertainty,
+and concerns related to `r sp`. (TODO get ref, see document).
 
-## Ecosystem variables relevant for recruitment
+## Ecosystem variables relevant for recruitment {#sec:recruitment-variables}
 
 We present some of the indicators that @VestfalsEtAl2023
 and subsequent analyses (Marshall et al., pers. comm.) found to correlate with
@@ -285,7 +287,7 @@ Level~2 (medium agreement, robust evidence) & Level~1 & Level 2\\
 \end{tabular}
 \end{table}
 
-## Ecosystem and Environmental Conditions
+## Ecosystem and Environmental Conditions {#sec:ecosystem-conditions}
 
 To start the process of discussing the vulnerability of `r sp` to climate change,
 we evaluated recent trends in environmental drivers of hake recruitment and
