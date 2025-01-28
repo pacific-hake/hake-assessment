@@ -176,12 +176,18 @@ fishery catch and age-composition data from `r end_yr-1`, weight-at-age data for
 and minor changes to pre-`r end_yr-1` data. The model-based
 approaches used to develop the input weight-at-age matrix and time-varying
 temperature-dependent maturity were retained from last year's assessment
-to better inform fecundity. Recruitment in 2023 and 2024 was based solely on the
-stock--recruitment relationship (no estimated recruitment deviations).  Given the unique seasonal
-fishing conditions during the year, this data point was considered potentially suspect
-as a standalone observation (i.e., without the addition of survey information). Therefore, recruitment in 2023 was based on the stock--recruitment relationship (no additional
-recruitment deviate estimate).
-
+to better inform fecundity. The only data point that can directly inform the size of
+the 2023 cohort is from age-1 observations in the commercial fishery
+in 2024. Given the unique seasonal
+fishing conditions during the year, and that this single data point (not from a
+survey) can be overly influential on the
+estimated 2023 recruitment, estimated recruitment in 2023 was
+based solely on the stock--recruitment relationship, with no estimated
+recruitment deviations (i.e., deviations fixed at zero, giving average recruitment). For consistency, this was also done for 2024 and the
+projection years. This differs to previous assessment models, for which
+recruitments in such years also included a random component (extra variability
+around the stock-recruitment relationship), yielding a large range of
+recruitments.
 
 This assessment continues to use (since 2014) time-varying
 (rather than constant) selectivity to maintain flexibility within the
@@ -259,11 +265,11 @@ The current estimate of
 the `r end_yr - 1` female spawning biomass is `r prev_bio_median`
 (`r prev_bio_lower`--`r prev_bio_upper`)~Mt, giving a slightly narrower range of
 uncertainty compared to the estimate from the `r end_yr - 1` assessment of `r prev_bio_median_last_assess`
-(`r prev_bio_lower_last_assess`--`r prev_bio_upper_last_assess`)~Mt. The current
-median is reduced from last year, partly due to the influence of the age-2$+$ biomass index
+(`r prev_bio_lower_last_assess`--`r prev_bio_upper_last_assess`)~Mt. This
+median is reduced from last year's assessment, partly due to the influence of the age-2$+$ biomass index
 pulling down the estimated biomass for recent years, the reduction in the estimate of
-the 2022 year class with updated data, and the setting of the 2023 year class using only
-the stock-recruitment relationship (i.e., no estimated recruitment deviate).
+the 2022 year class with updated data, and the aforementioned fixed zero
+recruitment deviation for the 2023 recruitment.
 
 (ref:es-relative-biomass-cap) Median (solid line) of the posterior
 distribution for relative spawning biomass ($B_t / B_0$) through `r end_yr`
@@ -354,17 +360,17 @@ The 2021 recruitment is estimated to be potentially large with a median of
 `r f(base_model$mcmccalcs$rmed["2021"], 1)`~billion fish based on
 several years of fishery data and the 2023 survey. The 2022 cohort was observed
 by the age-1 index in 2023, suggesting it is average to below average in size.
-The 2023 and 2024 year classes were set based solely on the stock--recruitment
-relationship for this assessment, such that no recruitment deviations were estimated
-for these years. There are no survey data available to inform the estimates of
-the `r end_yr - 1` and `r end_yr` year class sizes.
+There are no survey data available to inform the estimates of
+the `r end_yr - 2` and `r end_yr` year class sizes, for which recruitment
+deviations were set to zero.
 The general notion remains that recent `r sp` recruitment is
 highly uncertain, and estimates for recent years (based on limited data) can
 change substantially as new data refines estimates. Retrospective analyses
 of year class strength for young fish have shown the estimates of recent
 recruitment to be unreliable prior to at least a modelled age of 3
 (observed as age-2 fish the previous year) without a survey in the most recent
-year and a modelled age of two (observed as age-1 fish) with a survey.
+year and a modelled age of 2 (observed as age-1 fish) with a survey, giving
+further motivation for fixing recruitment deviations to 0 for `r end_yr - 2` onwards.
 
 ## Default harvest policy {-}
 
@@ -596,8 +602,8 @@ class), and the 2023 age-1 index helped inform the size of the 2022 year class.
 Collectively, these lessened uncertainty around estimates of female
 spawning biomass. Information on the size of the 2023 year class from the 2024
 fishery was considered suspect given the unique fishing conditions during the
-year and so 2023 recruitment was therefore set according to the stock--recruitment relationship
-(with no estimated recruitment deviate). Further, the interactions among variance parameters that
+year and so, as mentioned earlier, recruitment deviations from 2023 onwards were
+set to zero. Further, the interactions among variance parameters that
 govern variability in fishery selectivity and recruitment parameters through
 time, as well as those used in relative data weighting, are not well understood
 and could propagate uncertainty beyond what is presented in this assessment.
@@ -621,10 +627,13 @@ to three years of future catch levels based on subsequent estimates of stock
 status and fishing intensity.
 Figure~\@ref(fig:es-depletion-comparison-fig) shows the projected relative
 spawning biomass for several of the catch alternatives. Population dynamics
-and governing parameters assumed during the forecast period include random
-recruitment; selectivity, weight-at-age and fecundity-at-age averaged over the five
-most recent years (`r assess_yr - 5`--`r assess_yr - 1`); and constant
-values for all other parameters.
+and governing parameters assumed during the forecast period include selectivity,
+weight-at-age and fecundity-at-age averaged over the five
+most recent years (`r assess_yr - 5`--`r assess_yr - 1`), and constant
+values for all other parameters. The setting of recruitment deviations to zero from 2023
+onwards does not allow very large (or very small) random recruitments to
+occur and propagate through the projections as these cohorts mature; hence total
+uncertainty for projections appears to be less than for previous assessments.
 
 A relative fishing intensity of 1 should indicate fishing at the `r fspr_40`
 default harvest rate catch target. But, the projected median relative fishing
