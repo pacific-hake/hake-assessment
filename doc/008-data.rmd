@@ -1,4 +1,3 @@
-\newpage
 
 \rfoot{Data}
 
@@ -36,11 +35,11 @@ Figure~\@ref(fig:main-age-comp-bubbles-fig)).
  Table~\@ref(tab:main-survey-history-tab);
  Figure~\@ref(fig:main-survey-extrap-biomass-fig)).
 
- - An age-1$+$ relative biomass index for `r sp` based on 
+ - An age-1$+$ relative biomass index for `r sp` based on
  environmental DNA was used in a sensitivity model exploration in this
  assessment. The index covers the years 2019, 2021, and 2023. A full
  explanation of the data and index can be found in
- Appendix~\@ref(sec:app-eDNA-index). 
+ Appendix~\@ref(sec:app-eDNA-index).
 
 The following biological relationships, derived from external analysis of
 auxiliary data, were input as fixed values in the assessment model:
@@ -56,7 +55,7 @@ auxiliary data, were input as fixed values in the assessment model:
 Figures~\@ref(fig:main-weight-at-age-fig)--
 \@ref(fig:main-weight-at-age-lines-fig)).
 
-- Derived fecundity-at-age as the product of year-specific weight-at-age multiplied 
+- Derived fecundity-at-age as the product of year-specific weight-at-age multiplied
 by year-specific maturity-at-age (Figures~\@ref(fig:main-maturity-ogive-fig) and
 \@ref(fig:main-fecundity-at-age-fig)).
 
@@ -78,7 +77,7 @@ Pacific Fishery Information Network (PacFIN) database. Foreign and
 Joint-Venture catches for 1981--`r terminal_yr_us_jv_foreign` and U.S.
 domestic at-sea catches for 1991--`r last_data_yr` are calculated from the
 Alaska Fisheries Science Center's North Pacific Groundfish and Halibut
-Observer (NORPAC) database, which also stores A-SHOP data. 
+Observer (NORPAC) database, which also stores A-SHOP data.
 Canadian Joint-Venture catches from 1989 are from the
 Groundfish Biological (GFBio) database. Canadian shoreside landings are
 from the Groundfish Catch (GFCatch) database for 1989--1995, the Pacific
@@ -182,7 +181,7 @@ and shoreside sector
 (Table~\@ref(tab:main-us-sb-age-data-tab)), and the 2016 cohort is the largest
 observed cohort in both Canadian fleets
 (Tables~\@ref(tab:main-can-ss-age-data-tab)--
-\@ref(tab:main-can-ft-age-data-tab)). 
+\@ref(tab:main-can-ft-age-data-tab)).
 Age-1 fish were observed by the fishery this year
 (Table~\@ref(tab:main-input-age-data-fishery-tab)) in the U.S. For the combined
 data in `r last_data_yr`,
@@ -348,7 +347,7 @@ A separate relative age-1 index (numbers of fish) is used to fit the
 assessment model and inform recruitment. For the 2013--2021 assessments
 [@JTC2013; @JTC2021], the relative age-1 index was only explored as a
 sensitivity and not included in the base model. The relative index of age-1
-fish fit to in this assessment was estimated similarly to previous years. Similar to 
+fish fit to in this assessment was estimated similarly to previous years. Similar to
 the age-2$+$ index, data collected using EK~80 echosounders are scaled by
 a factor of 1.06 to account for differences between the EK~60 and EK~80
 echosounders for the age-1 index. Note that, in error, this scaling factor was not applied to the
@@ -458,7 +457,7 @@ assessment model. The number of samples
 (Figure \@ref(fig:main-sample-size-weight-at-age-fig)) is generally
 proportional to the amount of catch.
 
-The biomass at the start of a given year is based on the weight-at-age from the 
+The biomass at the start of a given year is based on the weight-at-age from the
 same mid-year, when the majority of samples are available
 (Figure~\@ref(fig:main-weight-at-age-fig)). Prior to 1975, weight-at-age input
 to Stock Synthesis is assumed to be equal to the mean of all available years for
@@ -492,7 +491,7 @@ maturity (Table~\@ref(tab:main-ovaries-tab)), but fit with a spatiotemporal
 GLMM [@head-decade-2025]. These data include samples collected north
 of Point Conception (34$^\circ$ 44$^\prime$ N. Lat.) and south of the
 U.S./Canada border from the acoustic survey, winter and summer acoustic
-research trips, U.S. catcher-processor vessels by A-SHOP observers, 
+research trips, U.S. catcher-processor vessels by A-SHOP observers,
 and the U.S. West Coast Groundfish Bottom Trawl Survey
 since 2009. Southern samples have been excluded from maturity analyses since
 2018 [@JTC2018] because they are thought to mature at earlier ages and smaller
