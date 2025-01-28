@@ -1579,6 +1579,26 @@ if(!is.null(d_obj_sens_age2_index_grp3[[1]])){
 }
 ```
 
+(ref:main-maturity-ogive-sens-cap) Maturity ogives by year used in the
+sensitivity to maturity being reached earlier in the year (July 1).
+The thick black line shows the equilibrium ogive which is an average of all
+years; the thick red line shows the forecast ogive which is an average of
+the last five years (`r last_data_yr - 4`--`r last_data_yr`). The colors of
+the year lines move from orange in 2009 through the spectrum to dark blue in
+`r last_data_yr`.
+
+(ref:main-maturity-ogive-sens-alt) Maturity by year is shown beginning in 2009 to
+present. The equilibrium and forecast ogives are also shown and appear to
+be very similar. The equilibrium ogive is an average of all years and
+the forecast ogive is an average of the last five years. Fish appear to
+reach full maturity between the age of 3 and 4 in all years.
+
+```{r main-maturity-ogive-sens-fig, fig.cap = "(ref:main-maturity-ogive-cap)", fig.height = 10, out.height = "90%"}
+
+plot_maturity_ogives(doy = 182,
+                     vert_lines = c(2, 3, 4, 5, 6),
+                     vert_lines_thickness = 0.25)
+```
 
 \clearpage
 
