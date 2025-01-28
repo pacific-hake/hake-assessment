@@ -1613,9 +1613,11 @@ if(!is.null(d_obj_sens_age2_index_grp3[[1]])){
 (ref:main-biomass-base-alternative-5-cap) Markov chain Monte Carlo estimates
 of spawning biomass for the base model and alternative sensitivity runs
 representing different ways to parameterize natural mortality at age, where
-the baseline mortality is estimated or fixed and cannibalistic mortality is
-added to the baseline mortality. Natural mortality is assumed to be equal for
-all ages five and above in both sensitivities.
+the baseline mortality is estimated (Natural mortality at age) or fixed
+(Fixed natural mortality at age). Year-specific deviations relating to
+cannibalistic mortality are added to the baseline mortality in both
+sensitivities. Natural mortality is assumed to be equal for
+all ages five and above.
 
 (ref:main-biomass-base-alternative-5-alt) This figure shows that recent
 spawning biomass varies for some sensitivity runs. Fixing natural mortality
@@ -1723,9 +1725,12 @@ if(!is.null(d_obj_sens_age2_index_grp4[[1]])){
 }
 ```
 
-(ref:main-mortality-sens-cap) Mortality due to cannibalism for five
-age groups (colors), where mortality is assumed to be equal for all
-ages five and above.
+(ref:main-mortality-sens-cap) Mortality due to cannibalism for five age groups
+(darker colors for younger ages), where mortality is assumed to be equal for
+all ages five and above. Mortality is highest for younger ages and is increasing
+for all ages in the most recent years of projections from the Climate-Enhanced,
+Age-based model with Temperature-specific Trophic Linkages and Energetics
+(CEATTLE) model.
 
 (ref:main-mortality-sens-alt) Cannibalistic mortality is higher for
 age-1 fish than any other age. Estimates are projected to increase in
