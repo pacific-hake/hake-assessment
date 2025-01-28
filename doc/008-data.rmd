@@ -72,7 +72,7 @@ Pacific Fishery Information Network (PacFIN) database. Foreign and
 Joint-Venture catches for 1981--`r terminal_yr_us_jv_foreign` and U.S.
 domestic at-sea catches for 1991--`r last_data_yr` are calculated from the
 Alaska Fisheries Science Center's North Pacific Groundfish and Halibut
-Observer (NORPAC) database, which also stores ASHOP data. 
+Observer (NORPAC) database, which also stores A-SHOP data. 
 Canadian Joint-Venture catches from 1989 are from the
 Groundfish Biological (GFBio) database. Canadian shoreside landings are
 from the Groundfish Catch (GFCatch) database for 1989--1995, the Pacific
@@ -481,7 +481,7 @@ maturity (Table~\@ref(tab:main-ovaries-tab)), but fit with a spatiotemporal
 GLMM [@head-decade-2025]. These data include samples collected north
 of Point Conception (34$^\circ$ 44$^\prime$ N. Lat.) and south of the
 U.S./Canada border from the acoustic survey, winter and summer acoustic
-research trips, U.S. catcher-processor vessels by ASHOP observers, 
+research trips, U.S. catcher-processor vessels by A-SHOP observers, 
 and the U.S. West Coast Groundfish Bottom Trawl Survey
 since 2009. Southern samples have been excluded from maturity analyses since
 2018 [@JTC2018] because they are thought to mature at earlier ages and smaller
@@ -540,7 +540,7 @@ the peak of the temperature--maturity relationship, and maturity-at-age was
 estimated to decline in these years.
 
 Annual maturity-at-age predictions were made since 2009 using
-estimated coefficients for non-ASHOP samples and day 278 (i.e., October 5th).
+estimated coefficients for non-A-SHOP samples and day 278 (i.e., October 5th).
 Projections were also made forward in time to `r last_data_yr` using available
 temperature indices. This forward projection was needed because maturity
 information was not sampled in 2022 and data from `r last_data_yr` have yet to

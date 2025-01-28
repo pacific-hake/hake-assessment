@@ -145,7 +145,7 @@ recent years (2021 and 2022). Abundance of krill, a common prey of `r sp`, was
 below average in 2023. Lipid-rich copepod biomass was average and relatively stable throughout
 the summer ('northern' copepod index) of 2023 relative to previous years, but was below average in the winter ('southern' copepod index).
 
-Fitting the assessment model to empirical weight-at-age data allows for
+Using empirical weight-at-age data in the model allows for
 time-varying growth without needing a mechanistic relationship or environmental
 data, which facilitates an `Ecosystem Approach to Fisheries Management'
 (a priority for Department of Fisheries and Oceans [DFO] and NOAA; see Section~\@ref(sec:data-weight-at-age)).
@@ -208,9 +208,9 @@ motherships (24%), and shoreside vessels (42%). Since 2011, the non-tribal
 U.S. fishery has been fully rationalized with allocations in the form of
 Individual Fishing Quotas (IFQs) to the shoreside sector and group shares to
 cooperatives in the at-sea mothership (MS) and catcher-processor (CP) sectors.
-The At-Sea Hake Observer Program (ASHOP) has been monitoring fishing vessel activity
-since 1975, originally monitoring foreign and joint-venture vessels. Observer
-coverage has been 100% on all domestic vessels since 1991, including the 2020
+The At-Sea Hake Observer Program (A-SHOP) has been monitoring fishing vessel activity
+since 1975, originally monitoring foreign and joint-venture vessels. All domestic vessels have full observer 
+coverage since 1991, including the 2020
 and 2021 fishing seasons, despite the COVID-19 pandemic.
 
 Shortly after the 1997 allocation agreement was approved by the Pacific Marine
@@ -296,7 +296,7 @@ annual U.S. and Canada Advisory Panel reports
 
 ### Fisheries for `r sp` in the United States {#sec:intro-fisheries-us}
 
-The U.S. specified catch target (i.e., adjusted for carryovers) of
+In `r last_data_yr`, the U.S. specified catch target (i.e., adjusted for carryovers) of
 `r last_yr_us_tac`~t was further divided among the research, tribal,
 catcher-processor, mothership, and shoreside sectors. After the tribal
 allocation of 17.5% (`r f(last_yr_us_tribal)`~t) and a
@@ -314,8 +314,7 @@ quota to non-tribal sectors on
 and
 `r f(last_yr_us_shore_quota_reallocated)`~t, respectively.
 
-The U.S. fishery for `r sp` began on May 1. Prior to 2015, the
-shoreside sector was allowed to fish starting June 15 north of 42° N. Lat.
+Prior to 2015, the shoreside sector was allowed to fish starting June 15 north of 42° N. Lat.
 (the Oregon--California border) and April 1 between 40° 30' N. Lat. and 42° N.
 Lat., whereas the at-sea sectors were allowed to fish starting May 15.
 Between 2015--2022, the shoreside sector was allowed to fish north of 40°
@@ -326,7 +325,7 @@ Regulations do not allow at-sea processing or night fishing (midnight to one
 hour after official sunrise) south of 42° N. Lat. at any time during the
 year.
 
-The total catch of `r sp` in U.S. waters was ranked `r last_yr_us_rank`
+In `r last_data_yr`, the total catch of `r sp` in U.S. waters was ranked `r last_yr_us_rank`
 over all years (Table~\@ref(tab:main-catches-us-tab)) and the U.S.
 utilization rate (`r last_yr_us_attained`%) was the lowest it has ever been
 (see Appendix~\@ref(sec:app-us-fishery-report) for more details). The
@@ -361,7 +360,7 @@ age-`r us_age_4_prop_age_ms` (`r us_age_4_prop_ms`%)
 (Table~\@ref(tab:main-us-ms-age-data-tab)).
 
 Age-samples from `r pull(us_sb_age_df[us_sb_age_df$year == last_data_yr, "num_samples"])`
-shoreside trips showed similar age compositions in the catch
+shoreside trips in `r last_data_yr` showed similar age compositions in the catch
 compared to the at-sea sectors, though not nearly as many smaller (age-2
 and age-1) fish and more age-8 and age-10 fish from the 2016 and
 2014 year classes.
@@ -404,7 +403,7 @@ therefore amplifying the effect of low catches. The fish caught in Canada
 appeared to be mostly from four age classes (see below), with very few
 smaller fish (less than 500 grams) caught.
 
-The most abundant year classes in the Canadian shoreside catch (by numbers;
+The most abundant year classes in the Canadian shoreside catch in `r last_data_yr` (by numbers;
 Table~\@ref(tab:main-can-ss-age-data-tab)) were
 age-`r max_shoreside_age_prop_age` (`r max_shoreside_age_prop`%),
 age-`r second_shoreside_age_prop_age` (`r second_shoreside_age_prop`%),
