@@ -1475,26 +1475,26 @@ Estimates of mortality at age since 1993 due to cannibalism were estimated
 using CEATTLE [@HolsmanEtAl2016] and input into the assessment as fixed values.
 These deviations were available for five groups of fish, age-1 fish and younger,
 age-2 fish, age-3 fish, age-4 fish, and fish ages five and older. The same
-deviations were used for each sensitivity but the first sensitivity
+deviations were used for two sensitivity models. The first sensitivity
 estimated baseline mortality for each age group, while the second
 sensitivity fixed baseline mortality at 0.13 for all groups based on the
 estimate of baseline mortality from CEATTLE. Given the age-specific
 deviations, mortality was, on average, more than 20 times larger for age-1 fish
 than any other age. Age-2 fish also experienced more cannibalism than older
 fish in most years but estimates of cannibalism were higher for age-3 than
-age-2 fish in some years (Figure~\@ref(fig:main-mortality-sens-fig)). These
+age-2 fish in some years (Figure~\@ref(fig:main-mortality-sens-fig)). Age-specific
 values were estimated by fitting the CEATTLE model to diet data up to 2019.
-Diet data since 2019 exists but has yet to be analyzed and included in regional
-database for its use in CEATTLE. Age-0 and age-1 fish were found in over 7000
+Diet data since 2019 exists but has yet to be analyzed and included in the regional
+database for use in CEATTLE. Age-0 and age-1 fish were found in over 7000
 stomachs of `r sp`. Additionally, CEATTLE is informed by temperature at 130 m
-from the same spatial footprint of the acoustic survey taken from GLORYS
+depth from the same spatial footprint of the acoustic survey taken from GLORYS
 output. More details about fitting data on `r sp` to CEATTLE can be found
 in @WassermannEtAl2025.
 
 Estimates of spawning biomass and other derived quantities were quite similar
-when baseline natural mortality was estimated,
+when baseline natural mortality was estimated
 (Figures~\@ref(fig:main-biomass-base-alternative-5-fig)--
-\@ref(fig:main-index-base-alternative-5-fig)) with the largest differences seen
+\@ref(fig:main-index-base-alternative-5-fig)), with the largest differences seen
 in the mid-1980s and in the terminal years where the deviations are the highest
 (Figure~\@ref(fig:main-mortality-sens-fig)). Notably, estimates of spawning
 biomass decreased to near target levels when baseline natural mortality was
@@ -1504,7 +1504,7 @@ Estimates of recruitment deviations were smaller for the initial period and
 larger for the main period, though the differences were relatively small, when
 age-specific natural mortality was not estimated compared to the other two
 models (Figure~\@ref(fig:main-recruitment-devs-base-alternative-5-fig)).
-In the future, an additional sensitivity should be conducted that adds another
+Future sensitivity evaluations could include adding another
 age group, i.e., age six and above, where the deviations are fixed at zero
 instead of assumed to be the same as age-5 fish.
 
