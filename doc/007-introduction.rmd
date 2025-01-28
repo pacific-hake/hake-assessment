@@ -95,9 +95,6 @@ years (Figure~\@ref(fig:main-acoustic-age1-bs-fig)).
 
 ## Ecosystem considerations {#sec:intro-ecosystem-considerations}
 
-To be updated once new Appendix finalised, in conjunction with Kristin Marshal
-and Mary Hunsicker.
-
 `r sp` are important to ecosystem dynamics in the Eastern Pacific Ocean due
 to their relatively large total biomass and potentially large role as both prey
 and predator [@JTC2013]. Ongoing research investigating abiotic (i.e.,
@@ -126,24 +123,46 @@ to oceanographic conditions have been investigated [@ResslerHolmesEtAl2007;
 @HamelEtAl2015; @MalickHunsickerEtAl2020; @MalickSiedleckiEtAl2020] and provide
 a foundation for further research on these topics.
 
+Motivated by such research, focussing on @VestfalsEtAl2023 in particular, we
+include a new hake-specific ecosystem summary
+in Appendix~\@ref(sec:app-ecosystem-report). We collate time series of relevant ecosystem
+processes that are believed to somewhat influence hake recruitment. These include prey (Pacific Herring, \emph{Clupea pallasii}, off
+Vancouver Island) and predators (age-1 hake), basin-scale oceanography, and
+local calculations of sea-surface temperature, alongshore transport, sea-surface
+height, mixed layer depths, and the strength of poleward undercurrent. These are
+calculated for specific areas and time periods corresponding to different
+life-history stages of `r sp` [@VestfalsEtAl2023]. While not
+comprehensive or definitive, this is a start to including such hake-relevant
+ecosystem information in the annual stock assessment.
+
 Recent oceanographic trends and large-scale ecosystem conditions,
-as summarized in the National Oceanic and Atmospheric Administration's (NOAA)
-annual [California Current Ecosystem Status Reports](https://www.pcouncil.org/annual-california-current-ecosystem-status-report/),
+as summarized in the National Oceanic and Atmospheric Administration’s (NOAA)
+annual [California Current Ecosystem Status Reports](https://www.pcouncil.org/annual-california-current-ecosystem-status-report/)
+(Leising et al. in prep, for 2024)
 provide insight into potential drivers of `r sp` population dynamics and fleet
 operations. Periods of high productivity are often marked by strong winter
-upwelling which brings nutrients to coastal waters, cooler temperatures, an
+and spring upwelling which brings nutrients to coastal waters, cooler temperatures, an
 energy-rich copepod community, and high productivity of krill, a key food source for `r sp`
-[@BuckleyLivingston1997; @CCIEA2021]. During 2023 [@CCIEA2024], basin-scale climate
-patterns suggest average conditions for ecosystem productivity as El Niño conditions
-continue to strengthen. Despite being highly variable in strength, upwelling was
-generally less than in previous years. Weaker upwelling conditions have been associated
-with higher `r sp` recruitment [@VestfalsEtAl2023]. In the southern California Current
-Ecosystem, the abundance of `r sp` larvae in the California Cooperative Oceanic Fisheries Investigations (CalCOFI) survey area has been
-above average for two consecutive years, with 2023 being the highest since 2011. At
-the same time, `r sp` predation by Bluefin Tuna and Swordfish were also well above average in
-recent years (2021 and 2022). Abundance of krill, a common prey of `r sp`, was
-below average in 2023. Lipid-rich copepod biomass was average and relatively stable throughout
-the summer ('northern' copepod index) of 2023 relative to previous years, but was below average in the winter ('southern' copepod index).
+[@BuckleyLivingston1997; @CCIEA2021].
+
+During 2024 (Leising et al. in prep), basin-scale climate patterns suggest below average to
+average conditions in the California Current Ecosystem (CCE). A strong El Niño
+in 2023-24 resulted in warm temperatures during winter and spring and delayed
+upwelling. The responses of lower trophic level communities to these conditions
+were typical of those observed during previous El Niño events. For example, the
+biomass of lipid-rich northern copepods and adult krill were below average in
+the northern region of the CCE in winter and spring. However, the El Niño
+conditions dissipated quickly and the ecosystem transitioned to cooler and more
+productive conditions following a strong spring upwelling. The northern copepods
+and krill recovered to near average abundances in summer and fall, and the
+forage community throughout the CCE was relatively diverse and
+productive. Observations of forage communities in the central and southern
+regions of the CCE indicate that the abundances of larval and juvenile hake in
+these regions are above average and have been increasing over the past five
+years. At the same time, consumption of `r sp` by Bluefin Tuna and
+Swordfish has been well above average in recent years (2022-23) and the spawning
+stock biomass of these predators has been increasing over this same period as
+well.
 
 Using empirical weight-at-age data in the model allows for
 time-varying growth without needing a mechanistic relationship or environmental
@@ -209,7 +228,7 @@ U.S. fishery has been fully rationalized with allocations in the form of
 Individual Fishing Quotas (IFQs) to the shoreside sector and group shares to
 cooperatives in the at-sea mothership (MS) and catcher-processor (CP) sectors.
 The At-Sea Hake Observer Program (A-SHOP) has been monitoring fishing vessel activity
-since 1975, originally monitoring foreign and joint-venture vessels. All domestic vessels have full observer 
+since 1975, originally monitoring foreign and joint-venture vessels. All domestic vessels have full observer
 coverage since 1991, including the 2020
 and 2021 fishing seasons, despite the COVID-19 pandemic.
 
