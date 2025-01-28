@@ -45,7 +45,7 @@ plot_catches <- function(ct,
     "Canada Foreign",
     "Canada Freezer-trawler",
     "Canada Shoreside",
-    "U.S. Shore-based",
+    "U.S. Shoreside",
     "U.S. Catcher-processor",
     "U.S. Mothership")
 
