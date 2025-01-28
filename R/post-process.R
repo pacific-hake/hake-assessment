@@ -84,5 +84,8 @@ post_process <- function(x, ...){
   # Tag the figures in the PDF and add alternative text ----
   x <- post_process_add_alt_text(x, ...)
 
+  # Add code for section headers of depth 4
+  x <- post_process_convert_section_headers(x, ...)
+
   x
 }

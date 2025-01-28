@@ -251,6 +251,7 @@ include_graphics(file.path(figures_dir,
                           "p_tau_depth.png"),
                  error = FALSE)
 ```
+
 Finally, we can look calculate the correlation of the spatial fields among water depths. This
 correlation derives from from the estimated factor weight matrix (see \@ref(statistical-model)) and shows that there are strong estimated correlation among depths and but that generally, the surface samples are at best weakly correlated with depths below 150m or so where the majority of hake and hake DNA is found (Figure~\@ref(fig:app-eDNA-index-plot-smoothed-fig)).
 

@@ -10,34 +10,21 @@
 post_process_convert_section_headers <- function(x,
                                                  ...){
 
-  # Find all lines starting with \section{ or \section*{
-  section_inds <- grep("^\\\\section\\*?\\{", x)
-  # Find all lines starting with \subsection{
-  subsection_inds <- grep("^\\\\subsection\\{", x)
-  # Find all lines starting with \subsubsection{
-  subsubsection_inds <- grep("^\\\\subsubsection\\{", x)
-  # Find all lines starting with \subsubsubsection{
-  subsubsubsection_inds <- grep("^\\\\subsubsubsection\\{", x)
+  titlesec_ind <- grep("usepackage\\{titlesec\\}", x)
+  x_pre <- x[1:(titlesec_ind - 1)]
+  x_post <- x[(titlesec_ind + 1):length(x)]
 
-  # Change sections to subsections etc
-  if(length(section_inds))
-    x[section_inds] <- gsub("section",
-                            "subsection",
-                            x[section_inds])
-  if(length(subsection_inds))
-    x[subsection_inds] <- gsub("subsection",
-                               "subsubsection",
-                               x[subsection_inds])
-  if(length(subsubsection_inds))
-    x[subsubsection_inds] <- gsub("subsubsection",
-                                  "subsubsubsection",
-                                  x[subsubsection_inds])
-  if(length(subsubsubsection_inds))
-    x[subsubsubsection_inds] <- gsub("subsubsubsection",
-                                     "subsubsubsubsection",
-                                     x[subsubsubsection_inds])
-  x <- gsub("\\\\chapter", "\\\\section", x)
-  x <- gsub("\\{chapter\\}", "{section}", x)
+  x <- c(x_pre,
+         c("",
+           "% Need the following to make the fourth level headers work right",
+           "\\usepackage{titlesec}",
+           "\\setcounter{secnumdepth}{4}",
+           "\\titleformat{\\paragraph}",
+           "{\\normalfont\\normalsize\\bfseries}{\\theparagraph}{1em}{}",
+           "\\titlespacing*{\\paragraph}",
+           "{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}",
+           ""),
+         x_post)
 
   x
 }
