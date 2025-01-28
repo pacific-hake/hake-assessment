@@ -51,7 +51,7 @@ plot_age_comp_fit <- function(model,
     select(-c(pearson_lo, pearson_med, pearson_hi)) |>
     mutate(age = factor(age))
 
-  colors <- rev(plot_color(length(ages)))
+  colors <- plot_color(length(ages))
 
   # `yr_vec` is used to set up downward column order for the facets instead
   # of the default left to right row order. This is done by putting the
