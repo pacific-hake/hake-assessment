@@ -80,9 +80,16 @@ approximately 500 meters and fishing depths approximately 300 meters on
 average in the last 5 years for United States fleets.
 
 ```{r main-us-depths-fig, fig.cap = "(ref:main-us-depths-cap)", fig.height = 4}
+
+yrs <- (last_data_yr - 4):last_data_yr
+depth_lims <- c(0, 700)
+depth_breaks <- seq(depth_lims[1], depth_lims[2], 100)
+
 plot_depth_2_panel(us_atsea_fishing_depth_df,
                    us_atsea_bottom_depth_df,
-                   yrs = (last_data_yr - 4):last_data_yr)
+                   yrs = yrs,
+                   y_lim = depth_lims,
+                   y_breaks = depth_breaks)
 ```
 
 (ref:main-can-depths-cap) Distribution of fishing depths (left) and bottom
@@ -106,7 +113,9 @@ plot_depth_4_panel(can_ft_gear_depth_df,
                    can_ss_bottom_depth_df,
                    fleet_1_name = "Freezer trawlers",
                    fleet_2_name = "Shoreside",
-                   yrs = (last_data_yr - 4):last_data_yr)
+                   yrs = yrs,
+                   y_lim = depth_lims,
+                   y_breaks = depth_breaks)
 ```
 
 (ref:main-data-overview-cap) Overview of data used in this assessment. Circle
