@@ -1448,7 +1448,7 @@ and the blue dots are the estimated values for each year.
 
 (ref:main-index-edna-alt) This figure shows the three indices and model fits
 to those index points for the eDNA survey for the sensitivity which includes
-eDNA survey as an indesx of abundance.
+eDNA survey as an index of abundance.
 
 ```{r main-index-edna-fig, fig.cap = "(ref:main-index-edna-cap)", fig.height = 4.5}
 
