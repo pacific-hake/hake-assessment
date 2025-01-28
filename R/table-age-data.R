@@ -3,7 +3,7 @@
 #'
 #' @param fleet Use codes of `can_ft` = Canada Freezer trawlers, `can_ss` =
 #' Canada Shoreside, `can_jv` = Canada Joint venture, `us_cp` = U.S. Catcher-
-#' processor, `us_ms` = U.S. Mothership, or `us_sb` = U.S. Shore-based
+#' processor, `us_ms` = U.S. Mothership, or `us_sb` = U.S. Shoreside
 #' @param start_yr Start year in table
 #' @param end_yr End year in table
 #' @param font_size The table data and header font size in points

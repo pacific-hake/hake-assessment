@@ -37,7 +37,7 @@ respectively.
 * Highest proportion at age by sector
   - Age-`r us_age_1_prop_age_cp` fish in U.S. catcher-processor sector,
   - Age-`r us_age_1_prop_age_ms` fish in U.S. mothership sector,
-  - Age-`r us_age_1_prop_age_shore` fish in U.S. shore-based sector,
+  - Age-`r us_age_1_prop_age_shore` fish in U.S. shoreside sector,
   - Age-`r max_freezer_trawler_age_prop_age` fish in Canadian freezer-trawler
 sector, and
   - Age-`r max_shoreside_age_prop_age` fish in Canadian shoreside sector.

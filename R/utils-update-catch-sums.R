@@ -53,7 +53,7 @@ utils_update_catch_sums <- function(dir_data = here::here("data-tables"),
       fleet = dplyr::case_when(
         fleet == "ms" ~ "U.S. Mothership",
         fleet == "cp" ~ "U.S. Catcher-processor",
-        fleet == "shore" ~ "U.S. Shore-based",
+        fleet == "shore" ~ "U.S. Shoreside",
         fleet == "research" ~ "U.S. Research",
         fleet == "ss" ~ "Canada Shoreside",
         fleet == "ft" ~ "Canada Freezer-trawler",

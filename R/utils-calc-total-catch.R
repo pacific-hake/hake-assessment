@@ -54,7 +54,7 @@ table_catch_tac_summary <- function(yr = NULL,
 
   can_attain <- paste0(f(pull(ct_df, can_attain), attain_digits), "\\%")
   us_attain <- paste0(f(pull(ct_df, us_attain), attain_digits), "\\%")
-  us_ss_attain <- paste0(f(pull(ct_df, `U.S. Shore-based`) / us_ss_tac * 100,
+  us_ss_attain <- paste0(f(pull(ct_df, `U.S. Shoreside`) / us_ss_tac * 100,
                            attain_digits), "\\%")
   us_ms_attain <- paste0(f(pull(ct_df, `U.S. Mothership`) / us_ms_tac * 100,
                            attain_digits), "\\%")
@@ -62,7 +62,7 @@ table_catch_tac_summary <- function(yr = NULL,
                              us_cp_tac * 100,
                            attain_digits), "\\%")
 
-  us_ss_perc_catch <- paste0(f(pull(ct_df, `U.S. Shore-based`) /
+  us_ss_perc_catch <- paste0(f(pull(ct_df, `U.S. Shoreside`) /
                            pull(ct_df, `U.S. Total`) * 100,
                          attain_digits), "\\%")
   us_ms_perc_catch <- paste0(f(pull(ct_df, `U.S. Mothership`) /
@@ -87,7 +87,7 @@ table_catch_tac_summary <- function(yr = NULL,
     c("Attainment", us_attain,
       "Attainment", can_attain),
     c("Shore-Based", "", "Shoreside", ""),
-    c("Catch (t)", f(pull(ct_df, `U.S. Shore-based`)),
+    c("Catch (t)", f(pull(ct_df, `U.S. Shoreside`)),
       "Catch (t)", f(pull(ct_df, `Canada Shoreside`))),
     c("TAC", f(us_ss_tac),
       "--", "--"),

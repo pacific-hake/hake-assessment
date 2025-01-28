@@ -194,7 +194,7 @@ last_yr_us_ms_ct <- ct |>
   pull(`U.S. Mothership`)
 last_yr_us_shore_ct <- ct |>
   dplyr::filter(Year == last_data_yr) |>
-  pull(`U.S. Shore-based`)
+  pull(`U.S. Shoreside`)
 last_yr_us_ti_ct <- us_ti_ct_by_month_df |>
   dplyr::filter(year == last_data_yr) |>
   pull(catch) |>
@@ -209,7 +209,7 @@ mothership_ct <- ((ct_last1 |>
                     (last_yr_us_ms_quota_reallocated) * 100) |>
   f(1)
 shore_based_ct <- ((ct_last1 |>
-                      pull(`U.S. Shore-based`) -
+                      pull(`U.S. Shoreside`) -
                       last_yr_us_ti_ct) /
                      (last_yr_us_shore_quota_reallocated) * 100) |>
   f(1)

@@ -40,7 +40,7 @@ calc_fishery_ages <- function(weight_at_age) {
     "Canada Shoreside" = can_ss_age_df,
     "U.S. Catcher-processor" = us_cp_age_df,
     "U.S. Mothership" = us_ms_age_df,
-    "U.S. Shore-based" = us_sb_age_df,
+    "U.S. Shoreside" = us_sb_age_df,
     .id = "sector"
   )
 

@@ -63,7 +63,7 @@ table_sampling_history <- function(start_yr,
     rows$Year <- replace_start_yr:end_yr
     rows$`U.S. Mothership (hauls)` <- lst[[1]]$num_samples
     rows$`U.S. Catcher-processor (hauls)` <- lst[[2]]$num_samples
-    rows$`U.S. Shore-based (trips)` <- lst[[3]]$num_samples
+    rows$`U.S. Shoreside (trips)` <- lst[[3]]$num_samples
     rows$`Canada Shoreside (trips)` <- lst[[4]]$num_samples
     rows$`Canada Freezer trawlers (hauls)` <- lst[[5]]$num_samples
 

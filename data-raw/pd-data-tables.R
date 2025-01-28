@@ -88,7 +88,7 @@ create_data_hake("ct",
                             `U.S. Joint-venture` +
                             `U.S. Mothership` +
                             `U.S. Catcher-processor` +
-                            `U.S. Shore-based` +
+                            `U.S. Shoreside` +
                             `U.S. Research`,
                           `Canada Total` =
                             `Canada Foreign` +

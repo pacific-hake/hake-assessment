@@ -36,8 +36,6 @@ plot_catches <- function(ct,
                          ylim = c(0, 450),
                          y_breaks = seq(0, 400, 100)){
 
-  colnames(ct)[colnames(ct) == "U.S. Shore-based"] <- "U.S. Shoreside"
-
   fishery_nms <- c(
     "U.S. Joint-venture",
     "U.S. Foreign",
