@@ -36,6 +36,12 @@ Figure~\@ref(fig:main-age-comp-bubbles-fig)).
  Table~\@ref(tab:main-survey-history-tab);
  Figure~\@ref(fig:main-survey-extrap-biomass-fig)).
 
+ - An age-1$+$ relative biomass index for `r sp` based on 
+ environmental DNA was used in a sensitivity model exploration in this
+ assessment. The index covers the years 2019, 2021, and 2023. A full
+ explanation of the data and index can be found in
+ Appendix~\@ref(sec:app-eDNA-index). 
+
 The following biological relationships, derived from external analysis of
 auxiliary data, were input as fixed values in the assessment model:
 

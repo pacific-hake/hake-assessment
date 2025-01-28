@@ -104,8 +104,9 @@ one aggregated fleet with combined male and female population dynamics. Stock
 Synthesis [@MethotWetzel2013] version `r ss_version` was the modeling platform
 used. The largest changes between the `r last_assess_yr` and `r assess_yr`
 stock assessments are the addition of another year of fishery data and a change
-in the estimation of recruitment in 2023 (age-1 fish in 2024). Given the unique
-seasonal fishing conditions during the year, this data point was considered
+in the estimation of recruitment from 2023 onwards. Given the unique
+seasonal fishing conditions during the year, the fishery age composition of age-1 fish
+in 2024 was considered
 potentially suspect as a standalone observation (i.e., without the addition of survey information).
 Therefore, recruitment in 2023 was based on the stock--recruitment relationship
 (no additional recruitment deviate estimate).
@@ -258,7 +259,7 @@ in California waters where fishery data is limited. Data sharing agreements betw
 countries are concurrently being developed so that the JTC can explore coast-wide fishing location
 information to better understand spatial fleet dynamics over time. The JTC will also be
 investigating spatial fishing effort, catch, and revenue over time using data summary
-tools (e.g., PacFEM) that are currently under development (but available for beta
+tools (e.g., Pacific Fishing Effort Mapping Project) that are currently under development (but available for beta
 explorations).*
 
 4. **Pacific Hake dynamics are highly variable even without fishing mortality. The
@@ -302,9 +303,10 @@ data included in 2012 (e.g., addition of 2011 survey biomass estimate).*
 assessments, not smaller. For example, 2016--17 increase from each assessment is:*
   - *2017 base model: increase of 136,000 t*
   - *2018 base model: increase of 194,000 t*
-  - *2024 base model: increase of 423,000 t; and 2022--2023 (presumably) increase from each assessment is:*
-    - *2023 base model: increase of 486,000 t*
-    - *2024 base model: increase of 549,000 t*
+  - *2024 base model: increase of 423,000 t;*
+*and 2022--2023 (presumably) increase from each assessment is:*
+  - *2023 base model: increase of 486,000 t*
+  - *2024 base model: increase of 549,000 t*
 
  *An age-0 recruitment index could help, and the JTC plans to continue analyses
  of age-0 Pacific Hake data presented at previous SRG meetings when time allows.*
@@ -323,8 +325,8 @@ input sample size. Survey age compositions represent age structure associated wi
 survey as viewed through an estimated selectivity curve for the acoustic-trawl sampling net.
 Yet, selectivity for ages two and older with acoustics is theoretically at or near one.
 Additionally, if the survey moves to using a new net, changing selectivity, the effective sample
-size could vary requiring consideration on how to model the survey. The JTC does not plan
-on investigating this issue for this year's assessment but supports the prioritization of this
+size could vary requiring consideration on how to model the survey. The JTC did not
+investigate this issue for this year's assessment but supports the prioritization of this
 research for future assessments.*
 
 *Instead, the JTC has conducted a sensitivity analyses using input sample sizes following the
@@ -372,7 +374,7 @@ required harvest scenarios to reduce the number of similar and overlapping
 Scenarios.**
 
 *Response -- The JTC helped initiate discussions on decision table structure at
-a 6 December JMC meeting. Refinements of the number of catch scenarios were discussed
+a 6 December 2024 JMC meeting. Refinements of the number of catch scenarios were discussed
 and a JMC recommendation was put forth. The JTC followed those recommendations for the
 decision tables used in this assessment. This included a reduction in the total number
 of catch scenarios.*
@@ -543,7 +545,7 @@ to the 2019 data point is very good compared to the 2023 assessment when it
 was overestimated. The 2021 fit remains underestimated but within the range
 of the input standard deviation.
 The median of the posterior distribution for the analytically-derived
-catchability associated with the acoustic survey biomass index (q~b~)
+catchability associated with the acoustic survey biomass index ($q~b~$)
 was `r f(median(base_model$extra_mcmc$q_vector), 3)`
 (Figure~\@ref(fig:main-catchability-density-fig)).
 
@@ -599,12 +601,12 @@ fishery, `r top_coh(base_model, last_data_yr, 3, cap = FALSE)`. Age
 compositions from the `r survey_end_yr` acoustic survey suggest a similar age
 structure for older fish.
 
-The 2020 cohort is well fit by, the acoustic survey
+The 2020 cohort is well fit by the acoustic survey
 (Figure~\@ref(fig:main-age-comp-fits-survey-fig)).
 Combined, the 2015--`r last_data_yr` fishery age-composition
 data and the 2017--`r survey_end_yr` acoustic survey age-composition data
 suggest that 2014 was a strong recruitment year, and the model was able to
-adequately fit to these observations
+adequately fit these observations
 (Figure~\@ref(fig:main-age-comp-fits-survey-fig)).
 The 2016 cohort, which has been observed three times by the survey,
 still appears to be smaller than the 2014 cohort.
@@ -740,9 +742,8 @@ The new data for this assessment do not significantly change the general pattern
 recruitment estimated in recent assessments. However, estimates of absolute
 recruitment for the most recent years can change with new data and updated
 assumptions about recent recruitments.  In particular, the `r last_data_yr - 1` and `r last_data_yr` year classes were set based solely on the stock--recruitment relationship for this assessment, such that
-no recruitment deviations were estimated for these years.  While this is standard for the
-most recent data year (`r last_data_yr`), the quantity of available data determines whether it is the case
-for the year previous (`r last_data_yr - 1`). The only information on the size of the 2023 cohort
+no recruitment deviations were estimated for these years (as well as none for forecast years).
+The only information on the size of the 2023 cohort
 (age-1 fish in `r last_data_yr`) in this assessment comes from the age composition of fishery catches.
 The catch of age-1 fish was particularly high in `r last_data_yr`, potentially due to the unique
 seasonal fishing conditions during the year (see Appendix~\@ref(sec:app-us-fishery-report)) and the relative
@@ -786,7 +787,8 @@ with the size of this cohort (95% interval:
 model with `r f(last_yr_base_model$mcmccalcs$rlower["2020"], 1)`--
 `r f(last_yr_base_model$mcmccalcs$rupper["2020"], 1)`~billion fish).
 
-In general, `r sp` have low average recruitment with occasional large year classes
+In general, `r sp` have low average recruitment (relative to the long-term average)
+with occasional large year classes
 (Figures~\@ref(fig:main-recruitment-fig) and
 \@ref(fig:main-recruitment-devs-fig),
 Tables~\@ref(tab:main-median-posterior-tab) and
