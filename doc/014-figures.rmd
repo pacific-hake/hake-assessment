@@ -771,7 +771,7 @@ and the survey ($\log \theta_{\text{surv}}$). Green triangles signify the initia
 value for each parameter. Red vertical lines represent the median of the
 posterior. The small downturns at the ends of the uniform priors for
 $ln(R_0)$, and the acoustic survey and age-1 extra SD parameters represent the hard
-limits set for the priors in the Stock Synthesis control file.
+limits (via the smoothed line) set for the priors in the Stock Synthesis control file.
 
 (ref:main-prior-posterior-alt) This figure shows how the posteriors shift
 from the priors for key parameters. The steepness parameter appears to have
@@ -935,7 +935,8 @@ plot_recruitment(list(base_model),
 distribution for log-scale recruitment deviations with 95% posterior
 credibility intervals (vertical lines). Recruitment deviations for the years
 `r recruit_dev_start_yr`--`r start_yr - 1` are used to calculate the numbers
-at age in `r start_yr`, the initial year of the model.
+at age in `r start_yr`, the initial year of the model. Those after `r main_recdev_end`
+were not estimated in the model.
 
 (ref:main-recruitment-devs-alt) This figure shows recruitment deviations for
 each cohort. The same above-average cohorts seen in the recruitment figure
@@ -1586,7 +1587,7 @@ recruitment deviations from Markov chain Monte Carlo models over the last
 `r length(retro_cohorts)` years. Recruitment deviations are the median
 log-scale differences between recruitment estimated by the model and expected
 recruitment from the stock-recruitment relationship (shading represents
-95% posterior credibility intervals for a select low, moderate,
+95% posterior credibility intervals for a select low
 and high deviation). Age-0 recruitment
 deviations are non-zero because Markov chain Monte Carlo allows for
 sampling from the full lognormal distribution. Lines represent estimated
