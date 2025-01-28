@@ -55,8 +55,7 @@ probability of both these occurring is `r joint_percent_prob_above_below`%.
 95% credible interval from `r ct_limit_quantiles["lower"]` to
 `r ct_limit_quantiles["upper"]`~t).
 
-- Projections were conducted across a wide-range of catch levels due to
-high uncertainty in estimates of recent and forecasted recruitment.
+- Projections were conducted across a wide-range of catch levels.
 Projections setting the `r forecast_yrs[1]` and
 `r forecast_yrs[2]` catches equal to the `r forecast_yrs[1] - 1`
 coast-wide TAC of `r last_yr_tac` t show the estimated median relative
