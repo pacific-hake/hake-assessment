@@ -70,8 +70,7 @@ table_ci_posteriors <- function(model,
                     trimws(f(df$supper * scale))),
              paste0(f(df$dlower * 100, digits),
                     "-",
-                    trimws(f(df$dupper * 100, digits)),
-                    "\\%"),
+                    trimws(f(df$dupper * 100, digits))),
              paste0(trimws(f(tot_bm_lower / scale)),
                     "-",
                     trimws(f(tot_bm_upper / scale))),
@@ -83,12 +82,10 @@ table_ci_posteriors <- function(model,
                     trimws(f(df$rupper * scale))),
              paste0(trimws(f(df$plower * 100, digits)),
                     "-",
-                    trimws(f(df$pupper * 100, digits)),
-                    "\\%"),
+                    trimws(f(df$pupper * 100, digits))),
              paste0(trimws(f(df$flower * 100, digits)),
                     "-",
-                    trimws(f(df$fupper * 100, digits)),
-                    "\\%")) |>
+                    trimws(f(df$fupper * 100, digits)))) |>
     as.data.frame() |>
     set_names(c("Year",
                 "Female spawning biomass (kt)",
@@ -106,12 +103,12 @@ table_ci_posteriors <- function(model,
 
   col_names <- c("Year",
                  "Female\nspawning\nbiomass\n(kt)",
-                 "Relative\nspawning\nbiomass",
+                 "Relative\nspawning\nbiomass\n(\\%)",
                  "Total\nbiomass\n(kt)",
                  "Age-2$+$\nbiomass\n(kt)",
                  "Age-0\nrecruits\n(millions)",
-                 "Relative\nfishing\nintensity",
-                 "Exploitation\nfraction")
+                 "Relative\nfishing\nintensity\n(\\%)",
+                 "Exploitation\nfraction\n(\\%)")
 
   # Insert custom header fontsize before linebreaker
   if(is.null(header_font_size)){
