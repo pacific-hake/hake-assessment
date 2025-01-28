@@ -232,9 +232,12 @@ include_graphics(file.path(figures_dir,
 
 \begin{table}[tbp]
 \centering
-\caption{\label{tab:app-ecosystem-report-risk-tab} Assessment of `r sp` vulnerability to climate change, using the Climate Variability
-Assessment approach (McClure et al., 2023). Level~1 is the lowest ranking and level~3
-the highest.}
+\caption{\label{tab:app-ecosystem-report-risk-tab}
+`Risk table' for Pacific Hake, to document ecosystem and climate factors
+potentially affecting stock productivity and uncertainty or other concerns
+arising from the stock assessment (see text). Level~1 is a favourable ranking,
+Level~2 neutral, and Level~3 is unfavourable. CVA is the Climate Variability
+Assessment approach (McClure et al., 2023).}
 \centering
 \fontsize{10}{12}\selectfont
 \begin{tabular}[t]{p{5cm}p{5cm}p{5cm}}
@@ -244,13 +247,15 @@ Assessment model fits and structural uncertainty\\
 \midrule
 \begin{itemize}
   \itemindent = -8pt
-  \item Waiting for Mary/Kristin
-  \item ...
+  \item Recruitment: 2021-2024 recruitment indicators neutral to favorable
+  \item Prey: favorable (krill, juvenile hake)
+  \item Predators: unfavorable (increasing)
+  \item CVA rank: low
   \end{itemize}
   &
   \begin{itemize}
   \itemindent = -8pt
-  \item Reliable catch reporting
+  \item Very reliable catch reporting
   \item Generally well-sampled fishery-dependent and \protect{-independent} age
   compositions
   \item Informative age-2+ fishery-independent survey biomass index every other
@@ -275,40 +280,85 @@ Assessment model fits and structural uncertainty\\
   patterns and stock abundance
   \end{itemize} \\
 \hline
-Level 2 (medium agreement, robust evidence) & Level 1 & Level 2\\
+Level~2 (medium agreement, robust evidence) & Level~1 & Level 2\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-To start the process of discussing the vulnerability of `r sp` to climate
-change, we include a Climate Vulnerability Assessment [@McClureEtAl2023]. TODO
-need some more text, plus overall conclusion.
+## Ecosystem and Environmental Conditions
 
-Inclusion
-TODO Kristin and Mary: please carefully check the first table; think I've got
-the directions right (though one was not in Vestfals Table A3 so I presume
-Kristin found it useful recently).
+To start the process of discussing the vulnerability of `r sp` to climate change,
+we evaluated recent trends in environmental drivers of hake recruitment and
+growth, predators, and prey, along with the climate vulnerability assessment
+(CVA) rank assigned to hake by @McClureEtAl2023. We did not consider
+competitors, habitat, or non-fisheries human activities (such as offshore wind
+development) during this evaluation. Overall, we consider ecosystem and
+environmental conditions to be neutral (Level 2) for hake, with medium to high
+confidence, based on medium agreement among indicators and robust evidence.
+We use this, plus information related to this stock assessment, to fill out
+the `risk table'
+in Table~\@ref(tab:app-ecosystem-report-risk-tab), based on the framework
+outlined by the [California Current Integrated Ecosystem Assessment (CCIEA) team](https://www.pcouncil.org/documents/2024/07/review-material-cciea-team-report-on-fep-initiative-4.pdf/).
 
-## Ecosystem and Environmental Conditions (need to update, write last, this is sablefish, or just start from text in main section that is copied into the Google Doc)
 
-We evaluated recent trends in environmental drivers of sablefish recruitment and growth, predators, and prey, along with the climate vulnerability assessment (CVA) rank assigned to hake by McClure et al. (2023). We did not consider competitors, habitat, or non-fisheries human activities (such as offshore wind development) during this evaluation. Overall, we consider ecosystem and environmental conditions to be neutral (Level 2) for hake, with medium to high confidence, based on medium agreement among indicators and robust evidence. Recent trends in prey abundance have been positive and the evidence for this trend is robust. However, other indices (potential negative impacts of El Niño and a moderate CVA rank) do not portend favorable conditions for hake productivity, though the evidence for these indicators is not as strong.
-Environmental drivers
-Recruitment
-Over the past three years, environmental conditions in the California Current Ecosystem have been largely warmer than average even with the backdrop of a prolonged La Niña event, which provided favorable recruitment conditions.
+### Recruitment
 
-[relates to 2023-2024] Overall, these data suggest a XX in stock productivity in
-coming years, (in)consistent with the assessment model. However, forecasts
-suggest an intensifying El Niño during fall 2023/winter 2024. During El Niño
-events that impact the California Current Ecosystem, upwelling is generally
-weaker (Jacox et al. 2015), and northern copepod populations are generally
-lower. These changes have the potential to negatively impact hake recruitment
-(Vestfals et al. 2023).
+A strong El Niño in 2023-24 caused warmer than average ocean temperatures in
+winter and spring. As expected during an El Niño, the biomass of lipid-rich
+northern copepods was generally lower during this period and indicators of krill
+abundance were below average. However, these conditions rapidly subsided in late
+spring. A delayed but strong spring upwelling ushered in cool and productive
+conditions, and the biomass of northern copepods and krill rebounded to near
+average levels for the remainder of the year. Overall, environmental conditions
+in winter and spring were likely less favorable for age-0 hake in 2024
+[@VestfalsEtAl2023, Table A.1] but conditions transitioned to those more favorable for
+hake productivity in summer and fall. Observations of larval hake off Southern
+California were above average during 2022-2024 and juvenile hake from Central
+California were at or above average 2021-2024.
 
-Hake distribution
+In 2025, the ecosystem is transitioning back to La Niña conditions, however
+large areas of warmer than average temperatures are still prevalent. In
+addition, marine heatwaves are forecasted to occur in offshore waters with the
+possibility of moving into coastal regions in summer and fall. It’s uncertain
+whether these conditions will negatively impact hake recruitment.
 
-Predators and prey
-Hake is common in many predator’s diets (e.g., Albacore, arrowtooth flounder, sharks (common and bigeye thresher, blue), swordfish (broadbill), CA sea lion, harbor seal, humboldt squid, northern fur seal, dolphins, pacific hake, jack mackerel, spiny dogfish, sablefish, shortspine thornyhead).  Recent trends (i.e. over the last 5 years) in these populations of hake predators are stable or increasing, suggesting mild concern about increased predation. We assume that long term trends, in particular those related to recovery of marine mammals over several decades, are implicitly represented in the stock assessment and do not represent notable changes that warrant inclusion in the risk table. However, recent indices of prey abundance are favorable. Krill is a dominant diet item for juveniles and adult hake (Wippel et al. 2017, Phillips et al. 2022, Bizzarro et al. 2023). The CCIEA krill indicator shows an increasing trend over the last five years.
-CVA results
-Hake are highly exposed with low sensitivity to climate change, with an overall rank of low (McClure et al. 2023).  However, we note that the CVA work pre-dates recent studies on the relationships between hake distribution and recruitment and ocean conditions (Malick et al. 2020, Vestfals et al. 2023).
+### Hake distribution
+
+TODO check the correct Malick 2020 ref, assuming Sidelecki
+
+Seasonal forecasts of hake distribution in the northern region of the California
+Current Ecosystem
+[@MalickSiedleckiEtAl2020] were not available at the time of writing this
+summary, however these temperature-driven forecasts will be presented at the
+2025 SRG meeting. Given what we know about the influence of temperature on hake
+distribution and the role of temperature as a proxy for prey availability
+[@MalickSiedleckiEtAl2020 @Phillips2022], we suspect that the delayed
+upwelling observed in 2024 may have delayed the extent of the northern migration
+of hake in the spring. Return to average conditions later in summer may have
+supported a later northern shift as feeding conditions for hake improved.
+
+### Predators and prey
+
+`r sp` are common in many predator's diets (e.g., Bluefin Tuna, Swordfish,
+sharks, marine mammals, Sablefish, Arrowtooth Flounder, and adult hake). Recent
+trends (i.e. over the last five years) in many of these populations of hake
+predators are stable or increasing, suggesting mild concern about increased
+predation. For example, the consumption of hake by Bluefin Tuna and Swordfish
+has been well above average in recent years and the spawning biomass of these
+species has increased over this period as well (Leising et al., in prep). We
+assume that long term trends, in particular those related to recovery of marine
+mammals over several decades, are implicitly represented in the stock assessment
+and do not represent notable changes that warrant inclusion in the risk
+table. However, recent indices of prey abundance are favorable. Krill is a
+dominant diet item for juvenile and adult hake TODO (Wippel et al. 2017)
+[@Phillips2022], Bizzarro et al. 2023). The CCIEA krill indicator shows an
+increasing trend in the central CCE over the last five years.
+
+### Climate Vulnerability Assessment results
+
+Hake are highly exposed with low sensitivity to climate change, with an overall
+rank of low @McClureEtAl2023. However, we note that the CVA work pre-dates
+recent studies on the relationships between hake distribution and recruitment
+and ocean conditions [@MalickSiedleckiEtAl2020, VestfalsEtAl2023].
 
 \clearpage
