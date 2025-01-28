@@ -1407,7 +1407,8 @@ is not as intuitive as for the other indices as it scales copies of DNA per micr
 to biomass. The eDNA index
 declined from 2019 to 2023, though more steeply between 2019 to 2021 then between
 2021 and 2023 (see Figure~\@ref(fig:app-eDNA-index-1-fig)). The eDNA index is
-fit well in this sensitivity model, somewhat at the cost of reduced fits in the age
+fit well in this sensitivity model (Figure~\@ref(fig:main-index-edna-fig)),
+somewhat at the cost of reduced fits in the age
 composition data. While the inclusion of the eDNA index did not significantly alter most
 key parameters and management quantities (Table~\@ref(tab:main-parameter-estimates-sens-2-tab)),
 it did reduce spawning stock biomass estimates from 2021 onward, similar in size and trajectory
