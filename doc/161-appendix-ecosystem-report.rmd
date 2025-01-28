@@ -206,7 +206,8 @@ text). Red (blue) bars represent a positive (negative) index, with the y-axis fl
 indices so that
 upwards represents a positive expected influence on recruitment.
 
-(ref:app-ecosystem-summary-from-pacea-alt) Alt text here. TODO
+(ref:app-ecosystem-summary-from-pacea-alt) This figures shows
+time series of hake recruitment plus five ecosystem indices.
 
 ```{r app-ecosystem-summary-from-pacea-fig, fig.cap = "(ref:app-ecosystem-summary-from-pacea-cap)", results = "asis"}
 
@@ -222,7 +223,8 @@ Figure~\@ref(fig:app-ecosystem-summary-from-pacea-fig) and in the
 text. *Recruitment has a $\cup$-shaped relationship
 with mean temperature during spawning and for simplicity we do not flip the axis.
 
-(ref:app-ecosystem-summary-from-glorys-alt) Alt text here. TODO
+(ref:app-ecosystem-summary-from-glorys-alt) This figures shows
+time series of hake recruitment plus six further ecosystem indices.
 
 ```{r app-ecosystem-summary-from-glorys-fig, fig.cap = "(ref:app-ecosystem-summary-from-glorys-cap)", results = "asis"}
 
@@ -353,8 +355,8 @@ mammals over several decades, are implicitly represented in the stock assessment
 and do not represent notable changes that warrant inclusion in the risk
 table.-->
 However, recent indices of prey abundance are favorable. Krill is a
-dominant diet item for juvenile and adult hake TODO (Wippel et al. 2017)
-[@Phillips2022], Bizzarro et al. 2023). The CCIEA krill indicator shows an
+dominant diet item for juvenile and adult hake
+[@WippelEtAl2017, @Phillips2022, @BizzarroEtAl2023]. The CCIEA krill indicator shows an
 increasing trend in the central CCE over the last five years.
 
 ### Climate Vulnerability Assessment results
