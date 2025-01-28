@@ -26,18 +26,18 @@ get ref, see document).
 
 ## Ecosystem variables relevant for recruitment
 
-We present some of the indicators that @VestfalsEtAl2023 found to lead to higher
-`r sp` recruitment (Table \@ref(tab:app-ecosystem-report-indicators-tab)). That
-analysis used estimated hake recruitment from 1980--2010, based on results in
-the @JTC2020 hake assessment. We conducted a preliminary update of
-that study using more recent recruitment estimates from the 2024 assessment
-[@JTC2024], finding .... (K.~Marshall, pers.~comm.). TODO: checkwith Kristin
-how to say that. Table~\@ref(tab:app-ecosystem-report-indicators-tab) describes
-11 variables of recruitment that we assimilated and their expected effected on
-recruitment of `r sp`. These include three of the five indices included in
-the best-fitting model of @VestfalsEtAl2023 (see their Figure~7), and three of
-the further nine indices found in their top 16 candidate models (their
-Table~2).
+We present some of the indicators that @VestfalsEtAl2023
+and subsequent analyses (Marshall et al., pers. comm.) found to correlate with
+higher
+`r sp` recruitment deviations (Table
+\@ref(tab:app-ecosystem-report-indicators-tab)).
+@VestfalsEtAl2023 used estimated hake recruitment deviations from 1980 to 2010, based on results in
+the @JTC2020 hake assessment and ocean model variables from the University of
+California, Santa Cruz Regional Ocean Modeling System (ROMS) hindcast. We also conducted a preliminary update using
+a newer ocean modeling product (GLORYS, described below) that extends the analysis to a more
+recent time period (1993 to 2023), and used extended statistical methods that focus
+on within-sample and out-of-sample prediction for variable selection
+(K.~Marshall, pers.~comm.).
 
 \begin{table}[hbp]
 \centering
@@ -79,8 +79,10 @@ productivity, and improved adult condition;
 $\uparrow$ recruitment the following year\\
 
 TEMP$_{\mbox{spawn}}$ & Mean temperature during spawning (shelf break,
-Jan-Mar, 130-500~m depth, 31-36~\textdegree~N) & Fish less likely to spawn at
-higher temperatures; $\downarrow$ recruitment that year\\
+Jan-Mar, 130-500~m depth, 31-36~\textdegree~N) &
+At higher temperatures, fish are less likely to spawn but growth rate of larvae
+increases;
+$\cup$-shaped relationship with recruitment that year\\
 
 AST$_{\mbox{eggs}}$ & Net along-shore transport (shelf break,
 Jan-Mar, 40-60~m depth, 31-36~\textdegree~N)
@@ -94,13 +96,13 @@ they rise in the water column affecting later transport; $\downarrow$ recruitmen
 
 SSH$_{\mbox{JA.c}}$ & Average sea-surface
 height off California as an indicator of basin-scale processes (from coast to
-30~km offshore, Jan-Apr, 34.5-42.5~\textdegree~N)
-& Not clear which way it goes (not in Table A3 Vestfals). TODO ???\\
+30~km offshore, Jan-Apr, 34.5-42.5~\textdegree~N) &
+$\uparrow$ recruitment that year\\
 
 MLD$_{\mbox{latelarv}}$ & Mean mixed layer depth (shelf break
 Mar-Jun, 31-37~\textdegree~N)
 & Larvae aggregate at base of mixed layer so mixed layer depth may limit how far they rise in the
-water column affecting later transport; $\downarrow$ recruitment that year\\
+water column affecting later transport; $\uparrow$ recruitment that year\\
 
 PU$_{\mbox{latelarv}}$ & Strength of poleward undercurrent (from coast to 275~m isobath,
 Mar-Jun, 75-275~m depth, 33.5-34.5~\textdegree~N)
@@ -114,12 +116,18 @@ PRED$_{\mbox{age0.age1hake}}$ & Biomass of age-1 Pacific Hake (from this stock a
 \end{tabular}
 \end{table}
 
-Time series for five variables are based on values amalgamated in the pacea R package [@EdwardsEtAl2024] and six
+Overall, this resulted in 11 ecosystem indices described in Table~\@ref(tab:app-ecosystem-report-indicators-tab) that correlate with recruitment deviations of `r sp`. These include three of the five indices included in
+the best-fitting model of @VestfalsEtAl2023 (see their Figure~7), and three of
+the further nine indices found in their top 16 candidate models (their
+Table~2).
+Time series for five indices are based on values amalgamated in the pacea R
+package [@EdwardsEtAl2024]. The other six indices
 were calculated from outputs of the Global
 Ocean Physics Reanalysis ([GLORYS12V1]((https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030/description))) product, which is a global ocean
-eddy-resolving oceanographic model covering 1993 onwards.
+eddy-resolving oceanographic model covering 1993 onwards. Details of spatial,
+depth, and temporal ranges are given in Table~\@ref(tab:app-ecosystem-report-indicators-tab).
 
-The following four variables are taken from pacea. Pacific Herring (\emph{Clupea pallasii}) spawning biomass index was
+The following variables are taken from pacea. Pacific Herring (\emph{Clupea pallasii}) spawning biomass index was
 calculated from latest results [@DFO2024] of the stock assessment, which is conducted using
 a statistical catch-at-age model [@ClearyEtAl2019]. The North Pacific Current
 Bifurcation Index (BI) was developed by @MalickEtAl2017, who found that a northward-shifted bifurcation was
@@ -133,10 +141,9 @@ The North Pacific Gyre Oscillation (NPGO) is a climate pattern
 that is significantly correlated with fluctuations of salinity,
 nutrients, and chlorophyll-a in long-term observations in the
 California Current and Gulf of Alaska [@DiLorenzoEtAl2024].
-
-The estimates of age-1 `r sp` are from this current assessment model (and will
-be available in pacea). The six further indices were calculated from
-GLORYS outputs by K. Marshall.
+The estimates of age-1 `r sp` are taken from this current assessment model (and will
+be updated in pacea). The six further indices were calculated from
+GLORYS outputs by K.~Marshall.
 
 Estimates of `r sp` recruitment from this assessment are presented alongside the
 five indices calculated using outputs from pacea
@@ -204,7 +211,9 @@ include_graphics(file.path(figures_dir,
 (ref:app-ecosystem-summary-from-glorys-cap) Estimated `r sp` recruitment from
 the current assessment model (top), plus six ecosystem calculated from GLORYS
 output. Axes are defined as in
-Figure~\@ref(fig:app-ecosystem-summary-from-pacea-fig) and in the text.
+Figure~\@ref(fig:app-ecosystem-summary-from-pacea-fig) and in the
+text. *Recruitment has a $\cup$-shaped relationship
+with mean temperature during spawning and for simplicity we do not flip the axis.
 
 (ref:app-ecosystem-summary-from-glorys-alt) Alt text here. TODO
 
