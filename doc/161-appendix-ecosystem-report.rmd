@@ -28,7 +28,7 @@ get ref, see document).
 
 We present some of the indicators that @VestfalsEtAl2023 found to lead to higher
 `r sp` recruitment (Table \@ref(tab:app-ecosystem-report-indicators-tab)). That
-analysis used estimated hake recruitment up to 2010, based on results in
+analysis used estimated hake recruitment from 1980--2010, based on results in
 the @JTC2020 hake assessment. We conducted a preliminary update of
 that study using more recent recruitment estimates from the 2024 assessment
 [@JTC2024], finding .... (K.~Marshall, pers.~comm.). TODO: checkwith Kristin
@@ -217,10 +217,11 @@ include_graphics(file.path(figures_dir,
 
 \clearpage
 
-\begin{table}[hbp]
+\begin{table}[tbp]
 \centering
-\caption{\label{tab:app-ecosystem-report-risk-tab}Risk table ....**Aaron doing
-in Google Doc.}
+\caption{\label{tab:app-ecosystem-report-risk-tab} Assessment of `r sp` vulnerability to climate change, using the Climate Variability
+Assessment approach (McClure et al., 2023). Level~1 is the lowest ranking and level~3
+the highest.}
 \centering
 \fontsize{10}{12}\selectfont
 \begin{tabular}[t]{p{5cm}p{5cm}p{5cm}}
@@ -228,20 +229,49 @@ in Google Doc.}
 Ecosystem and environmental conditions & Assessment data inputs &
 Assessment model fits and structural uncertainty\\
 \midrule
-Recruitment: 2020-2021 recruitment indicators were positive (environmental
-conditions) & & \\
- & & \\
-Prey: increasing (krill, juvenile hake) & & \\
- & & \\
-Predators: no trend & & \\
- & & \\
-CVA rank: low & & \\
+\begin{itemize}
+  \itemindent = -8pt
+  \item Waiting for Mary/Kristin
+  \item ...
+  \end{itemize}
+  &
+  \begin{itemize}
+  \itemindent = -8pt
+  \item Reliable catch reporting
+  \item Generally well-sampled fishery-dependent and \protect{-independent} age
+  compositions
+  \item Informative age-2+ fishery-independent survey biomass index every other
+  year
+  \item Informative age-1 recruitment index every other year
+  \item Includes externally estimated time-varying weight-at-age (growth) and
+  time-varying and temperature-dependent maturity (fecundity) as data inputs
+  \end{itemize}
+  &
+  \begin{itemize}
+  \itemindent = -8pt
+  \item Fully Bayesian stock assessment, integrating over multiple sources of
+  parametric uncertainty
+  \item High recruitment variability and no information on recent recruitment in
+  assessment model from 2023 onwards, given no survey in 2024
+  \item Key demographics estimated using priors (natural mortality and
+  steepness)
+  \item Clear identity of large cohorts after at least age-3
+  \item Model fits well to age compositions, though occasionally at the expense
+  of the survey index of abundance
+  \item Uncertain how changes in the distribution of fishing relate to migration
+  patterns and stock abundance
+  \end{itemize} \\
 \hline
-Level 2 (medium agreement, robust evidence) & Level XX & Level XX\\
+Level 2 (medium agreement, robust evidence) & Level 1 & Level 2\\
 \bottomrule
 \end{tabular}
 \end{table}
 
+To start the process of discussing the vulnerability of `r sp` to climate
+change, we include a Climate Vulnerability Assessment [@McClureEtAl2023]. TODO
+need some more text, plus overall conclusion.
+
+Inclusion
 TODO Kristin and Mary: please carefully check the first table; think I've got
 the directions right (though one was not in Vestfals Table A3 so I presume
 Kristin found it useful recently).
