@@ -195,10 +195,11 @@ table_input_age_data(
 ```
 
 ```{r main-survey-history-tab, results = "asis", echo = FALSE}
+
 table_survey_history(
   base_model,
   survey_history_df,
-  vessel_sep_lines = TRUE,
+  vessel_sep_lines = FALSE,
   digits = 3,
   caption = paste0(
     "Summary of the acoustic age 2$+$ surveys from ", survey_start_yr,

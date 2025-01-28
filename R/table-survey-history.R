@@ -33,9 +33,9 @@ table_survey_history <- function(model,
                                  header_vert_scale = 1.2,
                                  ...){
 
-  vess <- gsub(" +", "\n", d$vessels)
+  vess <- gsub(" +", "\\\\\\\\", d$vessels)
   vess <- gsub("-", " ", vess)
-  d$vessels <- linebreaker(vess, align = "c")
+  d$vessels <- paste0("\\makecell[tc]{", vess, "}")
   d <- d |>
     rename(yr = year,
            start_dt = start.date,
@@ -87,6 +87,21 @@ table_survey_history <- function(model,
   col_names <- paste0(hdr_font_str$dbl, col_names)
   # Add \\makecell{} latex command to headers with newlines
   col_names <- linebreaker(col_names, align = "c")
+
+  vess_df <- d |>
+    select(vessels)
+  j <- d |>
+    select(-vessels) |>
+    map_df(~{
+      paste0("\\makecell[t]{", .x, "}")
+      })
+  first_half_df <- j |>
+    select(yr, start_dt, end_dt)
+  second_half_df <- j |>
+    select(-yr, -start_dt, -end_dt)
+  d <- first_half_df |>
+    bind_cols(vess_df) |>
+    bind_cols(second_half_df)
 
   k <- kbl(d,
            format = "latex",
