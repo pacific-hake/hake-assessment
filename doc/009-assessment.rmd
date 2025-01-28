@@ -990,7 +990,9 @@ estimates in `r assess_yr` and throughout the current forecast period, because
 there is considerable uncertainty associated with the absolute size of the, now
 mostly mature, 2020 and 2021 year classes that propagates into forecasts. Although
 the 2023 acoustic survey helped to refine these estimates and reduce uncertainty,
-further observations of these year classes will improve estimates. The continued inclusion of
+further observations of these year classes will improve estimates. The removal of
+recruitment deviation estimates from 2023 onward through the forecast period led to
+an underestimation of uncertainty during the forecast period. The continued inclusion of
 the age-1 index in this assessment will, in some cases, also help to reduce this
 uncertainty during survey years (see
 Figure~\@ref(fig:main-recruitment-base-alternative-2-fig) discussed later).
@@ -1470,7 +1472,7 @@ quantities of interest are given in
 Table~\@ref(tab:main-parameter-estimates-retro-tab).
 
 This year's base model shows similar retrospective results to last year's
-[Figure~\@ref(fig:main-retrospective-recruitment-fig) and @JTC2022] for the
+[Figure~\@ref(fig:main-retrospective-recruitment-fig) and @JTC2024] for the
 most cohorts. The 2022 cohort, age 3 in `r assess_yr`, is estimated to
 be a below-average cohort, whereas in the `r assess_yr - 1` assessment it
 was estimated as possibly being an above-average cohort at the age of 2.
