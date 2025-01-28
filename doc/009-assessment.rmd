@@ -215,36 +215,39 @@ google.com/scholar_url?url=https://www.int-res.com/articles/meps_oa/m743p113.
 pdf&hl=en&sa=X&d=7035063540343333520&ei=dg3KZvPXCq-Ly9YPsfnLwQs&scisig=
 AFWwaeZ0XVe4uuKTGL-PCWaZhm-R&oi=scholaralrt&hist=_VMmiPwAAAAJ:9480142533121162666:
 AFWwaea2_PScUeInVLp6dXD_hYL6&html=&pos=0&folt=kw-top) identified `r sp` as the largest
-mean proportion of the diet of Harbor Seals. Additionally, the abundance of Harbor
-Seals is near carrying capacity in Canadian waters and has been since the late 1990s.
-Stock Synthesis allows for the inclusion of predators so predation mortality can be
-estimated on top of baseline natural mortality. Data for predation mortality can be
+mean proportion of the diet of harbor seals. Additionally, the abundance of harbor
+seals is near carrying capacity in Canadian waters and has been since the late 1990s.
+Stock Synthesis allows for the inclusion of a predator index to estimate predation
+mortality in addition to baseline natural mortality. Data for predation mortality can be
 absolute numbers of dead fish due to the predator, an index of predator effort, and
 predation composition (age or length) data. A predation index based on estimated
-abundance of Harbor Seals could be added to the assessment model, but this has not
+abundance of harbor seals could be added to the assessment model, but this has not
 been explored.*
 
-*A potential better path forward is to use Dynamic Structural Equation Modeling (DSEM)
-to include indices for multiple predators and allow for two-way interactions between
-them and the process that estimates $M$. This capability is not, and will not be,
-available within Stock Synthesis but is possible using models written in Template Model
-Builder. A proof of concept has been implemented for the Alaska Fisheries Science Center
-and discussions are ongoing to implement this in the Fisheries Integrated Modeling System
-(FIMS). Thus, for the 2025 assessment a simple version of FIMS will be fit, where the
-simple version does not have the capacity to estimate ageing error or facilitate DSEMs.
-A more complex FIMS model is planned to be presented to the SRG in 2026.*
+*A potential, better path forward is to use Dynamic Structural Equation
+Modeling (DSEM) to include indices for multiple predators and allow for two-way
+interactions between them and $M$. This capability is not, and will not be,
+available within Stock Synthesis but is possible using models written in
+Template Model Builder. A proof of concept has been implemented at the Alaska
+Fisheries Science Center and discussions are ongoing to implement this in the
+Fisheries Integrated Modeling System (FIMS). Thus, for the 2025 assessment a
+simple version of FIMS will be fit, where the simple version does not have the
+capacity to estimate ageing error or facilitate DSEMs. A more complex FIMS
+model will be presented to the SRG in 2026.*
 
-*Predation in Stock Synthesis does not allow for feedback between Pacific Hake and the predator, and thus,
-we used the Climate- Enhanced, Age-based model with Temperature-specific Trophic Linkages
-and Energetics (CEATTLE; Holsman et al., 2016) to estimate cannibalism. Results have been
-presented before and have recently been updated to provide estimates of baseline $M$ and
-$M$ at age due to cannibalism. These values can be input into Stock Synthesis as fixed $M$ at age. In
-2023 the JTC was unsuccessful in estimating age-specific $M$ because of a lack of data to
-inform the estimates. Additionally, fitting Lorenzen $M$ is not possible without
-simultaneously estimating growth. Thus, the JTC sees using fixed age-specific $M$ from
-CEATTLE as a way forward and have explored this within Stock Synthesis.
-Additionally, the JTC will investigate using the results from CEATTLE to inform
-age-specific priors on $M$ for the 2026 SRG meeting.*
+*In 2023 the JTC unsuccessfully estimated age-specific $M$ using Stock
+Synthesis, where it was seen as an unsuccessful exercise because estimates of
+$M$ increased with age due to a lack of data data to inform the estimates.
+Second, the JTC explored the use of Lorenzen $M$ but this is not possible in
+Stock Synthesis without simultaneously estimating growth. Thus, the JTC sees
+using estimates of age-specific $M$ from the Climate- Enhanced, Age-based model
+with Temperature-specific Trophic Linkages and Energetics (CEATTLE) model as a
+way forward [@HolsmanEtAl2016]. Output from CEATTLE includes time series of
+estimates of baseline $M$ and estimates of $M$ at age for ages 0--1, 2, 3, 4,
+and 5$^+$. Where the $M$ at-age estimates are strictly natural mortality due to
+cannibalism. Two sensitivities were run for this assessment, one where
+baseline mortality at age was fixed and one where it was estimated. Results
+are presented in Section~\@ref(sec:assessment-sensitivity-analyses).*
 
 3. **The SRG encourages an analysis of catch and biomass distribution for Canada and
 US that examines latitudinal shifts in fishing over time, and tries to predict factors
@@ -1258,9 +1261,11 @@ relationship ($\sigma_r$);
 1. Consideration of alternative standard deviations for time-varying
 selectivity;
 
-1. Adding a relative index of abundance based on environmental-DNA; and
+1. Adding a relative index of abundance based on environmental-DNA;
 
-1. Using the middle of the year to predict maturity-at-age data.
+1. Using the middle of the year to predict maturity-at-age data; and
+
+1. Assuming $M$ is specific to ages 0--1, 2, 3, 4, and 5$^+$.
 
 None of the sensitivities resulted in a substantial departure from the main
 population dynamics of the base model
@@ -1465,6 +1470,43 @@ pattern, the biomass decreasing as $\Phi$ changes from 0.21 to 2.1 to 1.4 to 0.7
 When $\Phi = 0.21$, the fit to the most recent age-2$+$ survey biomass index
 was the worst of the three investigated models
 (Figure~\@ref(fig:main-index-base-alternative-4-fig)).
+
+Estimates of mortality at age since 1993 due to cannibalism were estimated
+using CEATTLE [@HolsmanEtAl2016] and input into the assessment as fixed values.
+These deviations were available for five groups of fish, age-1 fish and younger,
+age-2 fish, age-3 fish, age-4 fish, and fish ages five and older. The same
+deviations were used for each sensitivity but the first sensitivity
+estimated baseline mortality for each age group, while the second
+sensitivity fixed baseline mortality at 0.13 for all groups based on the
+estimate of baseline mortality from CEATTLE. Given the age-specific
+deviations, mortality was, on average, more than 20 times larger for age-1 fish
+than any other age. Age-2 fish also experienced more cannibalism than older
+fish in most years but estimates of cannibalism were higher for age-3 than
+age-2 fish in some years (Figure~\@ref(fig:main-mortality-sens-fig)). These
+values were estimated by fitting the CEATTLE model to diet data up to 2019.
+Diet data since 2019 exists but has yet to be analyzed and included in regional
+database for its use in CEATTLE. Age-0 and age-1 fish were found in over 7000
+stomachs of `r sp`. Additionally, CEATTLE is informed by temperature at 130 m
+from the same spatial footprint of the acoustic survey taken from GLORYS
+output. More details about fitting data on `r sp` to CEATTLE can be found
+in @WassermannEtAl2025.
+
+Estimates of spawning biomass and other derived quantities were quite similar
+when baseline natural mortality was estimated,
+(Figures~\@ref(fig:main-biomass-base-alternative-5-fig)--
+\@ref(fig:main-index-base-alternative-5-fig)) with the largest differences seen
+in the mid-1980s and in the terminal years where the deviations are the highest
+(Figure~\@ref(fig:main-mortality-sens-fig)). Notably, estimates of spawning
+biomass decreased to near target levels when baseline natural mortality was
+fixed at 0.13 for all ages. Additionally, the uncertainty in almost all
+quantities decreased when baseline mortality was fixed. 
+Estimates of recruitment deviations were smaller for the initial period and
+larger for the main period, though the differences were relatively small, when
+age-specific natural mortality was not estimated compared to the other two
+models (Figure~\@ref(fig:main-recruitment-devs-base-alternative-5-fig)).
+In the future, an additional sensitivity should be conducted that adds another
+age group, i.e., age six and above, where the deviations are fixed at zero
+instead of assumed to be the same as age-5 fish.
 
 ## Retrospective analyses {#sec:assessment-retrospective-analyses}
 

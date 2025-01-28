@@ -58,7 +58,9 @@ sens_models_dirs <-
          "18-tv-maturity-182"),
        c("10-tv-select-phi-extra-low",
          "11-tv-select-phi-low",
-         "12-tv-select-phi-high"))
+         "12-tv-select-phi-high"),
+       c("19-m-at-age",
+         "20-m-at-age-fixed"))
 sens_models_desc <-
   list(c("Steepness Mean Prior Low (0.5)",
          "Steepness Fix 1.0",
@@ -73,7 +75,9 @@ sens_models_desc <-
          "Earlier maturity"),
        c("Phi t.v. selectivity (0.21)",
          "Phi t.v. selectivity (0.70)",
-         "Phi t.v. selectivity (2.10)"))
+         "Phi t.v. selectivity (2.10)"),
+       c("Natural mortality at age",
+         "Fixed natural mortality at age"))
 
 # bridge_models_dirs <- NA
 # bridge_models_desc <- NA

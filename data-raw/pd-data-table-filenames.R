@@ -15,6 +15,8 @@ create_data_hake("maturity_estimates_fn", "maturity-ogives.csv")
 create_data_hake("weight_age_sample_sizes_fn","wtatage-all-samplesize.csv")
 create_data_hake("weight_age_estimates_fn", "weight-at-age-ogives.csv")
 
+# Natural mortality
+create_data_hake("natural_mortality_estimates_fn", "M2.csv")
 # Age proportions ----
 create_data_hake("can_ft_age_props_fn", "can-ft-age-proportions.csv")
 create_data_hake("can_ss_age_props_fn", "can-ss-age-proportions.csv")

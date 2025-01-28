@@ -1472,6 +1472,27 @@ plot_survey_index_fits(sens_models[[2]][[4]],
         plot.margin = margin(12, 12, 6, 12))
 ```
 
+(ref:main-maturity-ogive-sens-cap) Maturity ogives by year used in the
+sensitivity to maturity being reached earlier in the year (July 1).
+The thick black line shows the equilibrium ogive which is an average of all
+years; the thick red line shows the forecast ogive which is an average of
+the last five years (`r last_data_yr - 4`--`r last_data_yr`). The colors of
+the year lines move from orange in 2009 through the spectrum to dark blue in
+`r last_data_yr`.
+
+(ref:main-maturity-ogive-sens-alt) Maturity by year is shown beginning in 2009 to
+present. The equilibrium and forecast ogives are also shown and appear to
+be very similar. The equilibrium ogive is an average of all years and
+the forecast ogive is an average of the last five years. Fish appear to
+reach full maturity between the age of 3 and 4 in all years.
+
+```{r main-maturity-ogive-sens-fig, fig.cap = "(ref:main-maturity-ogive-sens-cap)", fig.height = 10, out.height = "90%"}
+
+plot_maturity_ogives(doy = 182,
+                     vert_lines = c(2, 3, 4, 5, 6),
+                     vert_lines_thickness = 0.25)
+```
+
 (ref:main-biomass-base-alternative-4-cap) Markov chain Monte Carlo estimates
 of spawning biomass for the base model and alternative sensitivity runs
 representing different standard deviations ($\Phi$) associated with
@@ -1588,27 +1609,145 @@ if(!is.null(d_obj_sens_age2_index_grp3[[1]])){
 }
 ```
 
-(ref:main-maturity-ogive-sens-cap) Maturity ogives by year used in the
-sensitivity to maturity being reached earlier in the year (July 1).
-The thick black line shows the equilibrium ogive which is an average of all
-years; the thick red line shows the forecast ogive which is an average of
-the last five years (`r last_data_yr - 4`--`r last_data_yr`). The colors of
-the year lines move from orange in 2009 through the spectrum to dark blue in
-`r last_data_yr`.
+<!-- Natural mortality at age -->
+(ref:main-biomass-base-alternative-5-cap) Markov chain Monte Carlo estimates
+of spawning biomass for the base model and alternative sensitivity runs
+representing different ways to parameterize natural mortality at age, where
+the baseline mortality is estimated or fixed and cannibalistic mortality is
+added to the baseline mortality. Natural mortality is assumed to be equal for
+all ages five and above in both sensitivities.
 
-(ref:main-maturity-ogive-sens-alt) Maturity by year is shown beginning in 2009 to
-present. The equilibrium and forecast ogives are also shown and appear to
-be very similar. The equilibrium ogive is an average of all years and
-the forecast ogive is an average of the last five years. Fish appear to
-reach full maturity between the age of 3 and 4 in all years.
+(ref:main-biomass-base-alternative-5-alt) This figure shows that recent
+spawning biomass varies for some sensitivity runs. Fixing natural mortality
+at age to the estimates from an external model greatly reduces the uncertainty
+in the estimates of spawning biomass and reduced them to near target levels.
 
-```{r main-maturity-ogive-sens-fig, fig.cap = "(ref:main-maturity-ogive-cap)", fig.height = 10, out.height = "90%"}
+```{r main-biomass-base-alternative-5-fig, fig.cap = "(ref:main-biomass-base-alternative-5-cap)", fig.height = 4.5}
 
-plot_maturity_ogives(doy = 182,
-                     vert_lines = c(2, 3, 4, 5, 6),
-                     vert_lines_thickness = 0.25)
+if(!is.null(d_obj_sens_biomass[[4]])){
+  plot_biomass(d_obj = d_obj_sens_biomass[[4]],
+               x_expansion = 3.5,
+               leg_font_size = 12,
+               leg_pos = c(0.65, 0.8),
+               leg_ncol = 2,
+               rev_colors = TRUE)
+}
 ```
 
+(ref:main-status-base-alternative-5-cap) Markov chain Monte Carlo estimates
+of stock status (relative spawning biomass) for the base model and
+alternative sensitivity runs representing different ways to parameterize
+natural mortality at age. See
+Figure~\@ref(fig:main-biomass-base-alternative-5-fig) for sensitivity
+descriptions.
+
+(ref:main-status-base-alternative-5-alt) This figure shows that recent
+relative spawning biomass is near the 40 percent biomass target when
+natural mortality is fixed at values estimated from an external model.
+
+```{r main-status-base-alternative-5-fig, fig.cap = "(ref:main-status-base-alternative-5-cap)", fig.height = 4.5}
+
+if(!is.null(d_obj_sens_rel_biomass[[4]])){
+  plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[4]],
+                   ylim = c(0, 3),
+                   show_arrows = TRUE,
+                   x_expansion = 2,
+                   leg_font_size = 12,
+                   leg_pos = c(0.65, 0.85),
+                   rev_colors = TRUE)
+}
+```
+
+(ref:main-recruitment-base-alternative-5-cap) Markov chain Monte Carlo
+estimates of recruitment for the base model and alternative sensitivity runs
+representing different ways to parameterize natural mortality at age. See
+Figure~\@ref(fig:main-biomass-base-alternative-5-fig) for sensitivity
+descriptions.
+
+(ref:main-recruitment-base-alternative-5-alt) Estimates of recruitment are
+much higher when natural mortality at age is estimated and typically the
+lowest from the base model.
+
+```{r main-recruitment-base-alternative-5-fig, fig.cap = "(ref:main-recruitment-base-alternative-5-cap)", fig.height = 4.5}
+
+if(!is.null(d_obj_sens_recr[[4]])){
+  plot_recruitment(d_obj = d_obj_sens_recr[[4]],
+                   leg_font_size = 12,
+                   leg_pos = c(0.45, 0.88),
+                   inc_means = FALSE,
+                   rev_colors = TRUE)
+}
+```
+
+(ref:main-recruitment-devs-base-alternative-5-cap) Markov chain Monte Carlo
+estimates of recruitment deviations  for the base model and
+alternative sensitivity runs representing different ways to parameterize
+natural mortality at age. See
+Figure~\@ref(fig:main-biomass-base-alternative-5-fig) for sensitivity
+descriptions.
+
+(ref:main-recruitment-devs-base-alternative-5-alt) The estimates of
+recruitment deviations are similar between the three model runs.
+
+```{r main-recruitment-devs-base-alternative-5-fig, fig.cap = "(ref:main-recruitment-devs-base-alternative-5-cap)", fig.height = 4.5}
+
+if(!is.null(d_obj_sens_recdev[[4]])){
+  plot_recdevs(d_obj = d_obj_sens_recdev[[4]],
+               leg_pos = c(0.18, 0.88),
+               rev_colors = TRUE)
+}
+```
+
+(ref:main-index-base-alternative-5-cap) Markov chain Monte Carlo estimates
+of the fit to the survey index of age-2$+$ biomass for the base model and
+alternative sensitivity runs representing different standard deviations
+($\Phi$) associated with time-varying selectivity. See
+Figure~\@ref(fig:main-biomass-base-alternative-5-fig) for sensitivity
+descriptions.
+
+(ref:main-index-base-alternative-5-alt) This figure shows differences in the
+fit to the biomass index for certain sensitivity runs. There is a large
+scaling upward of recent index estimates when the Phi parameter is
+set to 0.21.
+
+```{r main-index-base-alternative-5-fig, fig.cap = "(ref:main-index-base-alternative-5-cap)", fig.height = 4.5}
+
+if(!is.null(d_obj_sens_age2_index_grp4[[1]])){
+  plot_survey_index_fits(base_model,
+                         d_obj = d_obj_sens_age2_index_grp4[[1]],
+                         survey_type = "age2",
+                         rev_colors = TRUE,
+                         tick_prop = 1,
+                         leg_pos = c(0.18, 0.88),
+                         xlim = c(1995, end_yr + 1))
+}
+```
+
+(ref:main-mortality-sens-cap) Mortality due to cannibalism for five
+age groups (colors), where mortality is assumed to be equal for all
+ages five and above.
+
+(ref:main-mortality-sens-alt) Cannibalistic mortality is higher for
+age-1 fish than any other age. Estimates are projected to increase in
+the coming years.
+
+```{r main-mortality-sens-fig, fig.cap = "(ref:main-mortality-sens-cap)", fig.height = 10, out.height = "90%"}
+ggplot2::ggplot(
+  dplyr::filter(m_at_age_df, age < 6, year <= last_data_yr + 5),
+  ggplot2::aes(year, M2, color = age, group = age)
+) +
+  ggplot2::geom_line() +
+  ggplot2::xlab("Year") +
+  ggplot2::ylab("Cannibalistic mortality") +
+  ggplot2::theme(legend.title = ggplot2::element_blank(),
+      # legend.text = ggplot2::element_text(size = leg_font_size),
+      legend.text = ggplot2::element_text(0),
+      # axis.text.x = ggplot2::element_text(vjust = vjust_x_labels),
+      # axis.title.x = ggplot2::element_text(vjust = vjust_x_labels),
+      axis.title.y = ggplot2::element_text(vjust = 2))
+```
+
+<!-- End Natural mortality at age -->
 \clearpage
 
 (ref:main-retrospective-recruitment-cap) Retrospective analysis of

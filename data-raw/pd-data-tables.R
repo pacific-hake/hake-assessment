@@ -72,6 +72,11 @@ create_data_hake("weight_age_sample_sizes_df",
                           col_types = cols(),
                           show_col_types = FALSE))
 
+# Natural mortality
+create_data_hake("m_at_age_df",
+                 read_csv(file.path(load_dir,"M2.csv"))
+)
+
 # Catch and TAC ----
 create_data_hake("ct",
                  read_csv(file.path(load_dir,
