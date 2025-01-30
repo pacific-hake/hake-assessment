@@ -650,7 +650,24 @@ fishing at the `r fspr_40` default harvest-rate catch limit
 in `r assess_yr - 1` results in a median relative fishing intensity of
 `r fi_at_hcr` (Table~\@ref(tab:es-decisions-spr-tab)).
 
-\newpage
+Management metrics that were identified as important to the Joint Management
+Committee and the Advisory Panel in 2012 are presented for
+`r str_flatten_comma(forecast_yrs[-1], last = ", and ")` projections
+(Tables~\@ref(tab:es-risk-year-1-tab), \@ref(tab:es-risk-year-2-tab),
+and~\@ref(tab:es-risk-year-3-tab);
+Figures~\@ref(fig:es-risk-year-1-fig),
+\@ref(fig:es-risk-year-2-fig),
+and~\@ref(fig:es-risk-year-3-fig)).
+These metrics summarize the probability of various outcomes from the base model
+given each potential management action. Although not linear, probabilities can
+be interpolated from these results with reasonable accuracy for intermediate catch values in
+`r assess_yr` (Table~\@ref(tab:es-risk-year-1-tab) and
+Figure~\@ref(fig:es-risk-year-1-fig)).
+However, interpolation is not appropriate for the Default HR scenario
+in `r assess_yr + 1` or `r assess_yr + 2` because it is conditional on previous year(s) catch
+levels.
+
+\clearpage
 
 ```{r es-decisions-biomass-tab, results = "asis", echo = FALSE}
 
@@ -685,6 +702,8 @@ table_decision(
   longtable = TRUE)
 ```
 
+\clearpage
+
 ```{r es-decisions-spr-tab, results = "asis", echo = FALSE}
 
 table_decision(
@@ -714,22 +733,6 @@ table_decision(
   longtable = TRUE)
 ```
 
-Management metrics that were identified as important to the Joint Management
-Committee and the Advisory Panel in 2012 are presented for
-`r str_flatten_comma(forecast_yrs[-1], last = ", and ")` projections
-(Tables~\@ref(tab:es-risk-year-1-tab), \@ref(tab:es-risk-year-2-tab),
-and~\@ref(tab:es-risk-year-3-tab);
-Figures~\@ref(fig:es-risk-year-1-fig),
-\@ref(fig:es-risk-year-2-fig),
-and~\@ref(fig:es-risk-year-3-fig)).
-These metrics summarize the probability of various outcomes from the base model
-given each potential management action. Although not linear, probabilities can
-be interpolated from these results with reasonable accuracy for intermediate catch values in
-`r assess_yr` (Table~\@ref(tab:es-risk-year-1-tab) and
-Figure~\@ref(fig:es-risk-year-1-fig)).
-However, interpolation is not appropriate for the Default HR scenario
-in `r assess_yr + 1` or `r assess_yr + 2` because it is conditional on previous year(s) catch
-levels.
 <!-- Commenting out in 2025 as did not happen, as we only have the one
 bouncing-around catch alternatve.
 This explains why probabilities can sometimes decline (rather than rise) with
