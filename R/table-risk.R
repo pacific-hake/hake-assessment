@@ -90,7 +90,7 @@ risk <- risk |>
                         "> 100\\%"),
                  paste0(forecast_yrs[index + 1],
                         "\nDefault HR\ncatch\n",
-                        "> ",
+                        "< ",
                         forecast_yrs[index],
                         "\ncatch"))
 
