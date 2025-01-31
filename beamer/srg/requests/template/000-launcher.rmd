@@ -6,13 +6,13 @@ project_variables:
   science_name: "Merluccius productus"
   simple_name: "hake"
   survey_name: "Joint U.S. and Canadian Integrated Acoustic and Trawl Survey"
-  assess_yr: 2024
-  last_assess_yr: 2023
-  last_data_yr: 2023
-  forecast_yrs: 2024:2027
+  assess_yr: 2025
+  last_assess_yr: 2024
+  last_data_yr: 2024
+  forecast_yrs: 2025:2028
   model_version: "01"
-  last_yr_model_version: "01"
-  ss_version: "3.30.20"
+  last_yr_model_version: "02"
+  ss_version: "3.30.23.1"
   # For a list of colors you can use here see:
   # https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/latexcolors/latexcolors.pdf
   #table_highlight_color: "fuzzywuzzy"
