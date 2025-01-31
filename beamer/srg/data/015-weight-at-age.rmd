@@ -1,5 +1,5 @@
-# Weight/fecundity at age
-## Summary of weight- and fecundity-at-age data
+# Weight and fecundity-at-age
+## Summary of weight and fecundity-at-age
 * Fixed inputs to Stock Synthesis.
 * Fecundity at age is maturity-at-age $*$ weight-at-age data.
 * Pre-1975 U.S.~weight-at-age data are not included because they were
