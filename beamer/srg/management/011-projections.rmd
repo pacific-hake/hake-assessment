@@ -71,7 +71,7 @@ table_fore_age_props(fore_catch_prop,
                      ages_filt = 1:15,
                      font_size = 8) |>
     # Highlight two largest cohorts
-    row_spec(12:13,
+    row_spec(11:12,
            bold = table_highlight_bold,
            background = table_highlight_color)
 ```
