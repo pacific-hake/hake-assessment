@@ -26,7 +26,7 @@
 ```{r main-projected-catch-density, out.height = "80%"}
 
 plot_param_density(base_model,
-                   param_nm = "ForeCatch_2024",
+                   param_nm = paste0("ForeCatch_", assess_yr),
                    y_lim = c(0, 0.0013),
                    expand_vec = c(100, 100),
                    show_y_labels = FALSE,
@@ -54,7 +54,7 @@ plot_param_density(base_model,
 # See the file `forecast-catch-levels.R` at the list called `ct_levels`. The values in
 # `fore_inds` below are the indices of those forecast values in that list.
 plot_depl_fore_comparison(base_model,
-                          fore_inds = c(1, 2, 5, 12, 14),
+                          fore_inds = c(1, 2, 6, 10, 11),
                           forecast_yrs = forecast_yrs)
 ```
 :::

@@ -9,30 +9,18 @@
   
 * Catch alternatives
   - **a**: `r ct_levels[[1]][[2]]` (zero catch)
-  - **b**, **c**, **f**, **h**, **j**: Constant catches of
-    `r ct_levels[[2]][[2]]`, `r ct_levels[[3]][[2]]`,
-    `r ct_levels[[6]][[2]]`, `r ct_levels[[8]][[2]]`,
-    `r ct_levels[[10]][[2]]`.
-  - **d**: Constant catch equal to the `r ct_levels[[5]][[2]]`,
-  - **k**: Constant catch equal to the `r ct_levels[[11]][[2]]`,
-  - **l**: Constant catch equal to the `r ct_levels[[12]][[2]]`,
-  - **d**, **g**, **i**: Annual reductions of 10% from:
-        `r f(ct_levels[[4]][[1]][1])` t,
-        `r f(ct_levels[[7]][[1]][1])` t, and
-        `r f(ct_levels[[9]][[1]][1])` t
-  - **m**: Fishing Intensity = 100% in each year conditioned on fixed catch
-       in previous year
-  - **n**: Median Default Harvest Rule in each year conditioned on fixed catch
-         in previous year
-  - **o**: Fishing intensity giving 50% probability that the median
-         `r assess_yr` catch equals median `r assess_yr + 1` catch
+  - **b**--**i**: Constant catches of
+    `r str_comma_sep(map_chr(ct_levels[2:9], ~{.x[[2]]}))`.
+  - **j**: Constant catch equal to the `r ct_levels[[10]][[2]]`
+  - **k**: Median Default Harvest Rule in each year conditioned on fixed catch
+    in previous year
 
 ## Relative Spawning Biomass (select rows only)
 ```{r decisions-biomass-table, results = "asis"}
 
 table_decision(base_model,
                type = "biomass",
-               rows_to_show = c("a", "b", "e", "j", "l"),
+               rows_to_show = c("a", "b", "e", "j", "k"),
                font_size = 6,
                header_font_size = 7)
 ```
@@ -78,7 +66,7 @@ table_risk(base_model,
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[1],
-                  leg_pos = c(0.25, 0.75),
+                  leg_pos = c(0.25, 0.7),
                   leg_font_size = 9,
                   remove_x_val = c(270)) +
   # Following make the legend smaller and legend items closer together
@@ -108,7 +96,7 @@ table_risk(base_model,
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[2],
-                  leg_pos = c(0.25, 0.3),
+                  leg_pos = c(0.25, 0.7),
                   leg_font_size = 9,
                   remove_x_val = c(342, 651,767)) +
   # Following make the legend smaller and legend items closer together
@@ -137,7 +125,7 @@ table_risk(base_model,
 plot_fore_compare(base_model,
                   forecast_yrs = forecast_yrs,
                   fore_yr = forecast_yrs[3],
-                  leg_pos = c(0.25, 0.4),
+                  leg_pos = c(0.25, 0.7),
                   leg_font_size = 9,
                   remove_x_val = c(259, 605, 717)) +
   # Following make the legend smaller and legend items closer together
