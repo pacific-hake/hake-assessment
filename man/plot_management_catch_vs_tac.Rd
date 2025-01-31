@@ -18,6 +18,7 @@ plot_management_catch_vs_tac(
   ret_tbl = FALSE,
   font_size = 10,
   right_cols_cm = 1.8,
+  y_breaks = seq(0, 1000, 100),
   ...
 )
 }
@@ -51,6 +52,8 @@ the outputs instead of the \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} objec
 
 \item{right_cols_cm}{The number of centimeters wide to make all of the
 rightmost columns (all the value columns)}
+
+\item{y_breaks}{A vector of values to show on the y-axis}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object

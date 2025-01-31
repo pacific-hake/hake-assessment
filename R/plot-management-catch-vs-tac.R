@@ -19,6 +19,7 @@
 #' @param font_size The table data and header font size in points
 #' @param right_cols_cm The number of centimeters wide to make all of the
 #' rightmost columns (all the value columns)
+#' @param y_breaks A vector of values to show on the y-axis
 #'
 #' @return A [ggplot2::ggplot()] object
 #' @export
@@ -34,6 +35,7 @@ plot_management_catch_vs_tac <- function(d,
                                          ret_tbl = FALSE,
                                          font_size = 10,
                                          right_cols_cm = 1.8,
+                                         y_breaks = seq(0, 1000, 100),
                                          ...){
 
   d <- d |>
@@ -98,7 +100,8 @@ plot_management_catch_vs_tac <- function(d,
           legend.spacing.y = unit(0.01, "cm")) +
     guides(color = guide_legend(byrow = TRUE)) +
     scale_y_continuous(labels = comma,
-                       limits = c(0, NA)) +
+                       limits = c(0, NA),
+                       breaks = y_breaks) +
     scale_x_continuous(breaks = x_breaks,
                        labels = x_labels)
 
