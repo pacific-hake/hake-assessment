@@ -2,7 +2,7 @@
 
 \rfoot{eDNA index}
 
-# Developing an abundance index for Pacific Hake using Environmental DNA {#sec:app-eDNA-index}
+# Developing an abundance index for Pacific Hake using environmental DNA {#sec:app-eDNA-index}
 
 Contributed by Andrew O. Shelton, Krista Nichols, Kim M. Parsons, Madison Betts, Samantha Engster, Ana Ramón-Laca, Meghan Parsley, Megan Shaffer, Abigail Wells
 
@@ -139,7 +139,7 @@ include_graphics(file.path(figures_dir,
                  error = FALSE)
 ```
 
-### Model Fit and Spatial Predictions
+### Model fit and spatial predictions
 
 The model generated predictions that varied in space and time and was able to match qPCR observations. We present a few diagnostic plots including predicted-observed plots for both the occurrence and positive components in a section at the end of this document (see \@ref(diagnostic-plots)). We focus on the spatial predictions here as they are the most relevant component to generating an abundance index, but we also comment on the contribution of fixed, smooth, and random effects to model predictions.
 
