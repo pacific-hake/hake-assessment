@@ -6,7 +6,7 @@
 ## Modeling history {#sec:assessment-modeling-history}
 
 In spite of the relatively short history of fishing, `r sp` have surely been
-subject to a larger number of stock assessments than any marine species off the
+subject to a larger number of stock assessments than any other marine species off the
 west coast of the U.S.~and Canada. These assessments have included a large
 variety of age-structured models. Initially, a cohort analysis tuned to fishery
 CPUE was used [@FrancisSwartzmanEtAl1982]. Later, the cohort analysis was
@@ -60,7 +60,7 @@ to estimate posterior distributions [@Monnahan2018; @Monnahan2019], a change
 from previous assessments that used the random walk Metropolis Hastings (rwMH)
 sampler [details described in @JTC2021]. The list of changes discussed above
 is for illustrative purposes only and represents a small fraction of the
-different choices analysts have made and that reviewers have required.
+different choices analysts have made and that reviewers have requested.
 
 The structure of the assessment models has perhaps had the largest number of
 changes. In terms of spatial models, analysts have considered
@@ -237,7 +237,7 @@ model will be presented to the SRG in 2026.*
 
 *In 2023 the JTC unsuccessfully estimated age-specific $M$ using Stock
 Synthesis, where it was seen as an unsuccessful exercise because estimates of
-$M$ increased with age due to a lack of data data to inform the estimates.
+$M$ increased with age due to a lack of data to inform the estimates.
 Second, the JTC explored the use of Lorenzen $M$ but this is not possible in
 Stock Synthesis without simultaneously estimating growth. Thus, the JTC sees
 using estimates of age-specific $M$ from the Climate- Enhanced, Age-based model
@@ -281,7 +281,7 @@ reference point figures and summary metrics in this stock assessment.*
 5. **The SRG recommends continued work to collect ovary samples, with a focus on
 fecundity and functional maturity, as well as continued annual maturity analysis.**
 
-*Response -- The estimates of maturity have been updated with recent data for the
+*Response -- The estimates of maturity have been updated with recent data for
 this assessment. The selection of the best day of the year to predict maturity to remains
 an area for further discussion. The JTC has researched the internal assumptions of
 Stock Synthesis to help inform the best day of the year, but no investigation can make
@@ -460,7 +460,7 @@ small enough that they had little impact on the model results.
 The addition of the `r last_data_yr` catch, modelled weight-at-age estimates,
 and fishery age compositions extends the model to the start of `r assess_yr`.
 Historical recruitment estimates and the stock trajectory were relatively
-unchanged through 2023 but the female spawning biomass increased in the final
+unchanged through 2023 but female spawning biomass increased in the final
 year of the model due to the estimate of above-average recruitment in
 `r last_data_yr-1` (Figure~\@ref(fig:main-bridge-summary-2-fig)).
 With the lack of a survey in 2024, the `r last_data_yr-1` recruitment deviation
@@ -529,7 +529,7 @@ Regarding the D-M parameter $\theta_{\text{fish}}$,
 the estimate (median and 95% credible interval) for
 $\log \theta_{\text{fish}}$ was
 `r f(log_theta_fishery_median, 3)`
-(`r f(log_theta_fishery_lower, 3)`--`r f(log_theta_fishery_upper, 3)`),
+(`r f(log_theta_fishery_lower, 3)` to `r f(log_theta_fishery_upper, 3)`),
 giving an effective sample size multiplier
 $\theta_{\text{fish}} / (1 + \theta_{\text{fish}})$ of
 `r f(dm_weight_fishery_median, 3)`
@@ -670,7 +670,7 @@ generally higher availability) of the younger cohorts in those years. This
 pattern is consistent with the 2008 cohort appearing strong in the fishery
 age compositions initially, but decreasing in prominence from 2013 onward (Figure~\@ref(fig:main-age-comp-fits-fishery-fig)). Fishery selectivity on
 age-2 fish was at its highest in 2016. Fishery selectivity for
-`r last_data_yr` was characterised by higher than average for age-1 fish
+`r last_data_yr` was higher than average for age-1 fish
 followed by a relatively flat pattern from age-2 to age-5 before increasing
 at older ages (Figure~\@ref(fig:main-tv-selex-uncertainty-fig)).
 Even though the survey selectivity is time invariant, the posterior shows a
@@ -757,7 +757,7 @@ loss of older age classes in the population. Thus, this data point was considere
 suspect as a standalone observation (i.e., without the addition of survey information).
 By restricting `r last_data_yr - 1` recruitment to the stock--recruitment relationship, the assessment model
 was not allowed to predict a very high `r last_data_yr - 1` year class based solely on the age-1
-catch in the fishery. Another year of data, particularly form the age-2$+$ acoustic--trawl
+catch in the fishery. Another year of data, particularly for the age-2$+$ acoustic--trawl
 survey in `r assess_yr` will provide additional information on the size of the `r last_data_yr - 1` year class.
 
 The 2021 recruitment is estimated to be well above average
@@ -863,9 +863,8 @@ Whereas Figure~\@ref(fig:main-recruitment-fig) suggests that 1967, 1973, 1977,
 over-optimistic impression of how often we can expect cohorts the size of
 the 2010 cohort to occur. The 2021 cohort is still very uncertain but has a
 small chance of exceeding the 2010 cohort
-(Figure~\@ref(fig:main-recruitment-scale-all-fig)). Participants in the `r sp`
-process have an intuition that the 2010 is a very large recruitment event. As a result,
-Figure~\@ref(fig:main-recruitment-scale-all-fig) shows how it is the largest in
+(Figure~\@ref(fig:main-recruitment-scale-all-fig)). 
+Figure~\@ref(fig:main-recruitment-scale-all-fig) shows how the 2010 cohort is the largest in
 the last 30~years, and that such large cohorts are rarer than is inferred
 from Figure~\@ref(fig:main-recruitment-fig).
 
@@ -1332,10 +1331,10 @@ higher than the input $\sigma_r$, i.e., `r sigma_r_lo_main` and
 `r sigma_r_hi_main` when $\sigma_r$ was `r sigma_r_sens[1]` and
 `r sigma_r_sens[2]`, respectively. The calculated standard deviation of
 recruitment deviations from the base model was intermediate with a median of
-`r sigma_r_this_year_main` These
+`r sigma_r_this_year_main`. These
 calculated standard deviations should match the input if the vectors of
 deviations were from the `population' of values rather than just a sample.
-However, this systematic bias to be larger than the input value indicates that
+A systematic bias larger than the input value indicates that
 the standard deviation of recruitment deviations is accounting for more
 variability than just variability in recruitment. The high $\sigma_r$ model led
 to a larger difference between the female spawning biomass at unfished
@@ -1442,7 +1441,7 @@ series, including unfished spawning biomass
 (Table~\@ref(tab:main-parameter-estimates-sens-2-tab),
 Figure~\@ref(fig:main-biomass-base-alternative-2-fig)). Because this model
 leads to a lower estimates of unfished biomass and similar terminal female
-spawning biomass, the estimates of current depletion are higher than the base
+spawning biomass, the estimates of relative spawning biomass are higher than the base
 model (Figure~\@ref(fig:main-status-base-alternative-2-fig)).
 
 The degree of flexibility of annual variation in the fishery selectivity was
@@ -1517,7 +1516,7 @@ quantities of interest are given in
 Table~\@ref(tab:main-parameter-estimates-retro-tab).
 
 This year's base model shows similar retrospective results to last year's
-[Figure~\@ref(fig:main-retrospective-recruitment-fig) and @JTC2024] for the
+[Figure~\@ref(fig:main-retrospective-recruitment-fig) and @JTC2024] for 
 most cohorts. The 2022 cohort, age 3 in `r assess_yr`, is estimated to
 be a below-average cohort, whereas in the `r assess_yr - 1` assessment it
 was estimated as possibly being an above-average cohort at the age of 2.
