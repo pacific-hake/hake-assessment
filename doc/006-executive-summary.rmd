@@ -80,7 +80,7 @@ of `r sp` in non-target fisheries is not. Discard from all fisheries,
 including those that do not target `r sp`, is estimated to be less than 1% of
 landings in recent years. The catches in `r  last_data_yr` declined below
 the long-term average catch (`r f(long_term_avge_ct)`~t), continuing the
-pattern of declining catches over recent years(especially in Canada). Landings
+pattern of declining catches over recent years (especially in Canada). Landings
 between 2001 and 2008 were predominantly comprised of fish from the very large
 1999 year class, with a cumulative removal (through `r end_yr - 1`) from
 that cohort of
@@ -185,9 +185,8 @@ estimated 2023 recruitment, estimated recruitment in 2023 was
 based solely on the stock--recruitment relationship, with no estimated
 recruitment deviations (i.e., deviations fixed at zero, giving average recruitment). For consistency, this was also done for 2024 and the
 projection years. This differs to previous assessment models, for which
-recruitments in such years also included a random component (extra variability
-around the stock-recruitment relationship), yielding a large range of
-recruitments.
+recruitments at the end of the time series included a random component (extra variability
+around the stock-recruitment relationship).
 
 This assessment continues to use (since 2014) time-varying
 (rather than constant) selectivity to maintain flexibility within the
@@ -196,7 +195,7 @@ The Dirichlet-multinomial estimation approach to weighting composition data
 was retained, and sensitivity to an alternative data-weighting approach was
 investigated. Time-varying fecundity, which was introduced in 2019, was
 retained and improved upon with time-varying estimates of maturity in 2024.
-Assumptions for the forecast period for weight at age and
+Assumptions for the forecast period for weight-at-age and
 selectivity continue to be based on conditions during the last five years,
 as done since the 2020 assessment.
 
@@ -255,8 +254,7 @@ biomass at the start of `r end_yr` divided by that at unfished equilibrium,
 95% posterior credibility interval from `r curr_depl_lower`% to
 `r curr_depl_upper`% (Table~\@ref(tab:es-biomass-tab)), partly due to remaining
 unknowns about the size of the
-potentially large 2021 cohort because the acoustic survey has only provided one year of
-information about it.
+potentially large 2021 cohort because it has only been observed once by the acoustic survey.
 
 The median estimate of the `r end_yr` female spawning biomass is
 `r curr_bio_median` (with a 95% posterior credibility interval from
@@ -362,7 +360,7 @@ The 2021 recruitment is estimated to be potentially large with a median of
 several years of fishery data and the 2023 survey. The 2022 cohort was observed
 by the age-1 index in 2023, suggesting it is average to below average in size.
 There are no survey data available to inform the estimates of
-the `r end_yr - 2`--`r end_yr` year class sizes, for which recruitment
+the `r end_yr - 2`--`r end_yr - 1` year class sizes, for which recruitment
 deviations were set to zero.
 The general notion remains that recent `r sp` recruitment is
 highly uncertain, and estimates for recent years (based on limited data) can
@@ -663,7 +661,7 @@ given each potential management action. Although not linear, probabilities can
 be interpolated from these results with reasonable accuracy for intermediate catch values in
 `r assess_yr` (Table~\@ref(tab:es-risk-year-1-tab) and
 Figure~\@ref(fig:es-risk-year-1-fig)).
-However, interpolation is not appropriate for the Default HR scenario
+However, interpolation is not appropriate for the default harvest rule (e.g. referred to as Default HR) scenario
 in `r assess_yr + 1` or `r assess_yr + 2` because it is conditional on previous year(s) catch
 levels.
 
