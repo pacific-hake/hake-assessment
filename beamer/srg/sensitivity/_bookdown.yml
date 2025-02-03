@@ -10,10 +10,13 @@ rmd_files: ["000-launcher.rmd",
             "012-removal-of-age1-index.rmd",
             "013-weighting.rmd",
             "014-tv-selectivity-phi.rmd",
-            "015-retrospectives.rmd",
-            "016-historical.rmd",
-            "017-recruitment.rmd",
-            "020-summary.rmd",
+            "015-eDNA",
+            "016-maturity-at-age",
+            "017-m-at-age",
+            "018-retrospectives.rmd",
+            "019-historical.rmd",
+            "020-recruitment.rmd",
+            "021-summary.rmd",
             "../../../doc/999-blank.rmd"]
 # `delete_merged_file`: If true, the hake.Rmd file which was created by
 # bookdown during the build will be kept after the hake.pdf file is created
