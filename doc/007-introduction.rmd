@@ -48,8 +48,8 @@ of terms appears in Appendix~\@ref(sec:app-glossary).
 ## Stock structure and life history {#sec:intro-stock-structure}
 
 `r sp` is a semi-pelagic, schooling species distributed along the west coast of
-North America, generally ranging in latitude from 25° N~to 55° North Latitude (N. Lat.).
-(Figure~\@ref(fig:main-overview-map-fig)). It is among 18 species of hake from
+North America, generally ranging in latitude from 25° N.~to 55° North Latitude (N. Lat.).
+(Figure~\@ref(fig:main-overview-map-fig)). It is among 18 species of `r sp` from
 four genera (being the majority of the family *Merluccidae*), which are found
 in both hemispheres of the Atlantic and Pacific Oceans [@AlheitPitcher1995;
 @LlorisMatallanasEtAl2005]. The coastal population of `r sp` is currently the
@@ -123,16 +123,16 @@ to oceanographic conditions have been investigated [@ResslerHolmesEtAl2007;
 @HamelEtAl2015; @MalickHunsickerEtAl2020; @MalickSiedleckiEtAl2020] and provide
 a foundation for further research on these topics.
 
-Motivated by such research, focussing on @VestfalsEtAl2023 in particular, we
-include a new hake-specific ecosystem summary
+Motivated by such research, focusing on @VestfalsEtAl2023 in particular, we
+include a new Pacific Hake-specific ecosystem summary
 in Appendix~\@ref(sec:app-ecosystem-report). We collate time series of relevant ecosystem
-processes that are believed to somewhat influence hake recruitment. These include prey/competitors (Pacific Herring, \emph{Clupea pallasii}, off
-Vancouver Island) and predators (age-1 hake), basin-scale oceanography, and
+processes that are believed to influence `r sp` recruitment. These include prey/competitors (Pacific Herring, \emph{Clupea pallasii}, off
+Vancouver Island) and predators (age-1 `r sp`), basin-scale oceanography, and
 local calculations of sea-surface temperature, alongshore transport, sea-surface
 height, mixed layer depths, and the strength of poleward undercurrent. These are
 calculated for specific areas and time periods corresponding to different
 life-history stages of `r sp` [@VestfalsEtAl2023]. While not
-comprehensive or definitive, this is a start to including such hake-relevant
+comprehensive or definitive, this is a start to including such Pacific Hake-relevant
 ecosystem information in the annual stock assessment.
 
 Recent oceanographic trends and large-scale ecosystem conditions,
@@ -157,7 +157,7 @@ productive conditions following a strong spring upwelling. The northern copepods
 and krill recovered to near average abundances in summer and fall, and the
 forage community throughout the CCE was relatively diverse and
 productive. Observations of forage communities in the central and southern
-regions of the CCE indicate that the abundances of larval and juvenile hake in
+regions of the CCE indicate that the abundances of larval and juvenile `r sp` in
 these regions are above average and have been increasing over the past five
 years. At the same time, consumption of `r sp` by Bluefin Tuna and
 Swordfish has been well above average in recent years (2022-23) and the spawning
@@ -247,7 +247,7 @@ to avoid and reduce bycatch of salmon and rockfish.
 ### Management of `r sp` in Canada {#sec:intro-management-canada}
 
 Canadian groundfish managers distribute their portion of the coast-wide TAC
-as quota to individual license holders. In `r last_data_yr`, Canadian hake
+as quota to individual license holders. In `r last_data_yr`, Canadian `r sp`
 fishermen were allocated a TAC of `r last_yr_can_tac`~t, which did not
 include any carryover quota. Canadian priority lies with the domestic fishery.
 However, when there is determined to be an excess of fish for which there is not
@@ -292,10 +292,10 @@ China, South Africa, Lithuania, and other countries [@DFO2023].
 In the United States, over USD \$89.2 million in labor costs is estimated to have been paid to
 employees in 2022
 ([www.noaa.gov](https://dataexplorer.northwestscience.fisheries.noaa.gov/fisheye/PerformanceMetrics/)).
-This includes wages paid to crew and captains fishing on catcher vessels that
+This includes wages paid to: crew and captains fishing on catcher vessels that
 deliver shoreside and at-sea to motherships, workers in shore-based processing
 facilities, crew, captains, and workers on catcher-processor vessels, and
-workers on mothership vessels. The exported value of Pacific Hake was USD \$172
+workers on mothership vessels. The exported value of `r sp` was USD \$172
 million in 2022, including to Netherlands, Lithuania and Spain, which make up
 about 58\% of the total
 ([www.noaa.gov](https://foss.nmfs.noaa.gov/apexfoss/f?p=215:200:2797069701321)).
@@ -408,9 +408,9 @@ The shoreside vessels, which land fresh round product onshore, landed
 `r last_yr_can_shore`~t in `r last_data_yr`, the lowest on record since 1990, and
 less than half of the `r last_data_yr - 1` landings of
 `r f(ct |> dplyr::filter(Year == last_data_yr - 1) |> pull("Canada Shoreside"))`~t.
-The Freezer trawlers, which freeze headed and gutted product while
+The freezer trawlers, which freeze headed and gutted product while
 at sea, landed `r last_yr_can_freezer`~t. This was the lowest amount the
-Freezer trawlers have landed since 2013, despite doubling the number of
+freezer trawlers have landed since 2013, despite doubling the number of
 vessels since then.
 
 Fishing started in early April and ended in November. The general view of
