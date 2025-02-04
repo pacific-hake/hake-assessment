@@ -1406,8 +1406,8 @@ A biomass-based index of `r sp` relative abundance has been developed using
 environmental DNA (see Appendix~\@ref(sec:app-eDNA-index)) that covers
 the years 2019, 2021, and 2023. The index was specified as having
 a Student’s t-distribution for the error structure (similar to the age-1 index)
-with the number of degrees of freedom equal to one less than the
-number of available data points (i.e., 2). An additional constant and additive
+with the number of degrees of freedom (2) equal to one less than the
+number of available data points (3). An additional constant and additive
 standard deviation on the log-scale was freely estimated to accommodate
 unaccounted-for sources of process and observation error (median estimate
 is `r f(as.numeric(sens_models[[2]][[4]]$extra_mcmc$q_extrasd_edna_med), 3)`).
