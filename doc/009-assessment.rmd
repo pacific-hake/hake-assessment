@@ -1484,7 +1484,7 @@ fish in most years but estimates of cannibalism were higher for age-3 than
 age-2 fish in some years (Figure~\@ref(fig:main-mortality-sens-fig)). Age-specific
 values were estimated by fitting the CEATTLE model to diet data up to 2019.
 Diet data since 2019 exists but has yet to be analyzed and included in the regional
-database for use in CEATTLE. Age-0 and age-1 fish were found in over 7000
+database for use in CEATTLE. Age-0 and age-1 fish were found in over 7,000
 stomachs of `r sp`. Additionally, CEATTLE is informed by temperature at 130 m
 depth from the same spatial footprint of the acoustic survey taken from GLORYS
 output. More details about fitting data on `r sp` to CEATTLE can be found
