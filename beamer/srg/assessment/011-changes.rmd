@@ -3,8 +3,8 @@
 
 * Update Stock Synthesis to version `r ss_version`
 * Incrementally update catch, weight-at-age, age-1 index, and fishery age-composition
-data from years to 2023 
-* Incrementally add 2023 catch, weight-at-age, biomass survey, survey age-composition,
+data from years up to `r last_data_yr - 1`
+* Incrementally add `r last_data_yr` catch, weight-at-age, biomass survey, survey age-composition,
 age-1 index, and fishery age-composition data
   \pause
 * Change the error distribution associated with the age-1 index from lognormal to
@@ -155,10 +155,10 @@ plot_grid(plotlist = p,
 * Updating data previous to `r last_data_yr` had very little effect on the
   stock trajectory
 * Adding the `r last_data_yr` survey biomass estimate led to a downward shift in stock
-  trajectory (and fit to biomass survey) going back to 2017 
+  trajectory (and fit to biomass survey) going back to 2017
 * Adding the `r last_data_yr` survey age compositions increased stock biomass from 2023 to
   2024 with increases in 2020 and 2021 recruitment
-* Adding the age-1 index resulted in a slight increase in 2022 recruitment 
+* Adding the age-1 index resulted in a slight increase in 2022 recruitment
 * Adding `r last_assess_yr` fishery age composition data shifted the stock trajectory
   upwards slightly in recent years and increased 2020 and 2021 recruitment (decreased 2019 and 2022)
   \pause
@@ -167,5 +167,5 @@ plot_grid(plotlist = p,
 * Time-varying maturity did not influence general trends in stock size or status, but:
   - There was a reduction in spawning biomass in recent years; and
   - The transition to spawning biomass was delayed for up to a year in some cases
-  
+
 \esmall
