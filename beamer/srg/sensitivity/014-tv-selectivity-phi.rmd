@@ -14,7 +14,7 @@
 Here we test alternative values of $\Phi$
 
 ## Alternative deviations for selectivity, $\Phi$
-```{r phi-biomass-fig, fig.height = 3, out.height = "85%"}
+```{r phi-biomass-fig, fig.height = 4, out.height = "85%"}
 plot_biomass(model_lst = list(base_model,
                               sens_models[[3]][[2]],
                               sens_models[[3]][[3]],
@@ -39,7 +39,7 @@ plot_biomass(model_lst = list(base_model,
 ```
 
 ## Alternative deviations for selectivity, $\Phi$
-```{r phi-recr-fig, fig.height = 3, out.height = "85%"}
+```{r phi-recr-fig, fig.height = 4, out.height = "85%"}
 plot_recruitment(d_obj = d_obj_sens_recr[[3]],
                  x_expansion = 2,
                  ylim = c(0,45),
@@ -56,7 +56,7 @@ plot_recruitment(d_obj = d_obj_sens_recr[[3]],
 ```
 
 ## Alternative deviations for selectivity -- age-2$+$ biomass index fit
-```{r phi-survey-fig, fig.height = 3, out.height = "85%"}
+```{r phi-survey-fig, fig.height = 4, out.height = "85%"}
 plot_survey_index_fits(base_model,
                        d_obj = d_obj_sens_age2_index_grp3[[1]],
                        survey_type = "age2",

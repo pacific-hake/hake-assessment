@@ -101,7 +101,7 @@ plot_recruitment(d_obj = base_model$retrospectives$recr_df  ,
                  tick_prop = 1.5,
                  vjust_x_labels = 0,
                  leg_font_size = 5,
-                 leg_pos = c(0.13, 0.85),
+                 leg_pos = c(0.50, 0.75),
                  inc_means = FALSE,
                  rev_colors = TRUE) +
   theme(axis.title.x = element_text(size = 12),
@@ -112,11 +112,15 @@ plot_recruitment(d_obj = base_model$retrospectives$recr_df  ,
 
 ## Base model retrospectives -- recruitment
 ```{r retro-recr-2, fig.height = 3, out.height = "85%"}
+leg_font_size <- 5
+leg_locs <- c(0.7, 0.85)
+ribbon_line_type <- 0
+
 plot_recruitment(d_obj = base_model$retrospectives$recr_df  ,
                  tick_prop = 1.5,
                  vjust_x_labels = 0,
                  leg_font_size = 5,
-                 leg_pos = c(0.13, 0.85),
+                 leg_pos = c(0.10, 0.75),
                  inc_means = FALSE,
                  rev_colors = TRUE,
                  xlim = c(2007, 2024),
