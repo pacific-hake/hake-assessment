@@ -1,1 +1,58 @@
-# Relative index of abundance eDNA
+# eDNA
+
+## Adding an eDNA relative index of abundance
+
+```{r edna-sensitivity-biomass-fig, fig.height = 4, out.height = "85%"}
+
+leg_font_size <- 5
+leg_locs <- c(0.7, 0.85)
+ribbon_line_type <- 0
+
+plot_biomass(model_lst = list(base_model,
+                              sens_models[[2]][[4]]),
+             model_names = c(base_model_name,
+                             sens_models_desc[[2]][3]),
+             x_expansion = 4,
+             ylim = c(0, 5),
+             y_breaks = seq(0, 5, 1),
+             tick_prop = 1.5,
+             vjust_x_labels = -0.25,
+             leg_font_size = leg_font_size,
+             leg_pos = leg_locs,
+             rev_colors = TRUE,
+             ribbon_line_type = ribbon_line_type) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+
+## Adding an eDNA relative index of abundance
+
+```{r edna-sensitivity-biomass-rel, fig.height = 4, out.height = "85%"}
+plot_rel_biomass(model_lst = list(base_model,
+                                  sens_models[[2]][[4]]),
+                 model_names = c(base_model_name,
+                                 sens_models_desc[[2]][3]),
+                 x_expansion = 4,
+                 ylim = c(0, 2.5),
+                 y_breaks = seq(0, 2.5, 0.5),
+                 tick_prop = 1.5,
+                 vjust_x_labels = -0.5,
+                 hjust_y_labels = 1,
+                 leg_font_size = 5,
+                 leg_pos = c(0.7, 0.85),
+                 rev_colors = TRUE,
+                 ribbon_line_type = 0) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
+```
+
+
+## Adding an eDNA relative index of abundance
+
+Fit to the index
+
