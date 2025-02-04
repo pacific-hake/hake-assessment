@@ -95,9 +95,9 @@ get_param_est_comparison_df <- function(models,
         # `recs` is a named vector of all recruitment cohorts
         recs,
         bo = mdl$mcmccalcs$refpts$unfish_fem_bio[2],
-        ssb_2009 =
-          paste0(f(mdl$mcmccalcs$dmed["2009"] * 100, 1),
-                 "\\%"),
+        #ssb_2009 =
+        #  paste0(f(mdl$mcmccalcs$dmed["2009"] * 100, 1),
+        #         "\\%"),
         ssb_last =
           ifelse(mdl$Retro_year < end_yr - 1,
                  paste0(f(mdl$mcmccalcs$dmed[as.character(mdl$endyr + 1)] * 100,
@@ -174,7 +174,7 @@ get_param_est_comparison_df <- function(models,
     paste(large_cohorts, "recruitment (millions)"),
     paste0("Unfished female spawning biomass (",
            latex_subscr(latex_italics("B"), "0"), ", kt)"),
-    "2009 relative spawning biomass",
+    #"2009 relative spawning biomass",
     paste0(end_yr, " relative spawning biomass"),
     paste0(end_yr + 1, " relative spawning biomass"),
     paste0(end_yr, " rel. fishing intensity: ", rel_fishing_intensity_for_latex_table),
