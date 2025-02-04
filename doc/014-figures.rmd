@@ -1677,7 +1677,8 @@ if(!is.null(d_obj_sens_recr[[4]])){
                    leg_font_size = 12,
                    leg_pos = c(0.45, 0.88),
                    inc_means = FALSE,
-                   rev_colors = TRUE)
+                   rev_colors = TRUE,
+                   ylim = c(0, 120))
 }
 ```
 
