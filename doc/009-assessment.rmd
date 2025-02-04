@@ -1196,10 +1196,10 @@ spanning `r f(fore_catch_prop_age4_lower)`%--
 
 Due to the higher average weight of older fish compared to younger fish, the
 median expected proportion of the `r forecast_yrs[1]` catch by weight
-is `r f(fore_catch_prop_wt_age4_median)`% for the age-3
-`r forecast_yrs[1] - 4` cohort (compared to `r fore_catch_prop[["11"]]`% by
+is `r f(fore_catch_prop_wt_age4_median)`% for the age-4
+`r forecast_yrs[1] - 4` cohort (compared to `r fore_catch_prop[["4"]]`% by
 numbers) and `r f(fore_catch_prop_wt_age11_median)`%
-for the age-4 `r forecast_yrs[1] - 11` cohort
+for the large age-11 `r forecast_yrs[1] - 11` cohort
 (compared to `r fore_catch_prop[["11"]]`% by numbers;
 Figure~\@ref(fig:main-age-comp-forecast-fig)).
 
