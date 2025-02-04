@@ -1290,7 +1290,7 @@ prediction has high uncertainty when compared to the other cohorts.
 
 ```{r main-age-comp-forecast-fig, fig.cap = "(ref:main-age-comp-forecast-cap)", fig.height = 4.5}
 
-plot_fore_age_comps(base_model)
+plot_fore_age_comps(base_model, y_lim = c(0, 0.65))
 ```
 
 (ref:main-biomass-base-alternative-1-cap) Markov chain Monte Carlo estimates
