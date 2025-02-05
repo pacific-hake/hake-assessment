@@ -29,7 +29,6 @@ plot_biomass(model_lst = list(base_model,
 ```{r phi-recr-fig, fig.height = 4, out.height = "85%"}
 plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
                  x_expansion = 2,
-                 ylim = c(0,45),
                  tick_prop = 1.5,
                  vjust_x_labels = -0.25,
                  leg_font_size = 9,
