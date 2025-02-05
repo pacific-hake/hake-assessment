@@ -15,7 +15,7 @@ plot_assessment_history_biomass(base_model,
         legend.text = element_text(size = 6))
 ```
 
-
+<!--
 ## Historical performance of the Pacific Hake assessment
 
 * General question -- how 'good' are projection probabilities? And why do
@@ -102,3 +102,5 @@ plot_historical_probs(base_model,
       from 2020 onwards, with 2022 and 2023 being greater than those from the previous assessments
 * Analysis gives some confidence in the current expectation of remaining
       above `r b_40`
+
+-->
