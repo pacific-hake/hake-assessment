@@ -1,6 +1,6 @@
 # Age-1 index
 
-## Remove age-1 index
+## Removing the age-1 index
 ```{r age1-biomass-fig, fig.height = 4, out.height = "85%"}
 plot_biomass(model_lst = list(base_model,
                               sens_models[[2]][[2]]),
@@ -21,7 +21,7 @@ plot_biomass(model_lst = list(base_model,
         legend.text = element_text(size = 10))
 ```
 
-## Remove age-1 index
+## Removing the age-1 index
 ```{r age1-par-table, results = "asis"}
 table_param_est(models = list(sens_models[[2]][[1]],
                               sens_models[[2]][[2]]),
@@ -34,7 +34,7 @@ table_param_est(models = list(sens_models[[2]][[1]],
                 section_line_above = FALSE,
                 section_line_below = FALSE) |>
   # Highlight some rows
-  row_spec(c(3, 14, 17),
+  row_spec(c(3),
            bold = table_highlight_bold,
            background = table_highlight_color)
 

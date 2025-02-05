@@ -1,18 +1,5 @@
 # $\Phi$
 
-## Flexibility in time-varying selectivity -- $\Phi$
-
-* \textcolor{red}{2017 assessment} -- deviation of time-varying fishery
-  selectivity was increased from $\phi=0.03$ to $\phi=0.20$, to reduce an
-  anomalously high estimate of 2014 recruitment driven solely by fishery
-  catch-at-age data
-* \textcolor{red}{2018 assessment} -- changed from logistic space
-  ($\phi=0.20$) to standard space ($\Phi=1.40$)
-* \textcolor{red}{2019-`r assess_yr` assessments} -- retained the 2018
-  value of $\Phi=1.40$
-
-Here we test alternative values of $\Phi$
-
 ## Alternative deviations for selectivity, $\Phi$
 ```{r phi-biomass-fig, fig.height = 4, out.height = "85%"}
 plot_biomass(model_lst = list(base_model,
@@ -40,7 +27,7 @@ plot_biomass(model_lst = list(base_model,
 
 ## Alternative deviations for selectivity, $\Phi$
 ```{r phi-recr-fig, fig.height = 4, out.height = "85%"}
-plot_recruitment(d_obj = d_obj_sens_recr[[3]],
+plot_recdevs(d_obj = d_obj_sens_recr[[3]],
                  x_expansion = 2,
                  ylim = c(0,45),
                  tick_prop = 1.5,
