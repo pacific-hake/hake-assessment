@@ -15,7 +15,6 @@ rmd_files: ["000-launcher.rmd",
             "017-m-at-age.rmd",
             "018-retrospectives.rmd",
             "019-historical.rmd",
-            "020-recruitment.rmd",
             "021-summary.rmd",
             "../../../doc/999-blank.rmd"]
 # `delete_merged_file`: If true, the hake.Rmd file which was created by
