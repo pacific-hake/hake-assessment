@@ -21,6 +21,11 @@ plot_biomass(model_lst = list(base_model,
              ribbon_line_type = ribbon_line_type) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black", fill=NA),
         legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```
@@ -48,6 +53,11 @@ plot_rel_biomass(model_lst = list(base_model,
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12,
                                     vjust = -5),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black", fill=NA),
         legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10),
         axis.ticks.length = unit(0.3, "cm"))
@@ -71,7 +81,7 @@ table_param_est(models = list(base_model,
                 section_line_above = FALSE,
                 section_line_below = FALSE) |>
   # Highlight some rows
-  row_spec(c(2, 3, 19),
+  row_spec(c(2, 3, 18),
            bold = table_highlight_bold,
            background = table_highlight_color)
 ```
