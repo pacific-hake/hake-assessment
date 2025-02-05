@@ -1,9 +1,8 @@
 # Outline
 
 * Model changes from `r last_assess_yr`
-* Show some MCMC diagnostics
+* Some MCMC diagnostics
 * Fits to data
 * Estimates of key quantities
 * Brief response to select `r last_assess_yr` SRG assessment recommendations
 * Summary
-
