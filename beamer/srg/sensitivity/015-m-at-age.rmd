@@ -26,7 +26,7 @@ plot_biomass(model_lst = list(base_model,
 ```
 
 ## Natural mortality, *M* (base has prior median 0.2, sd 0.1)
-```{r m-biomass-fig-rel, fig.height 3, out.height = "85%"}
+```{r m-biomass-fig-rel, fig.height = 4, out.height = "85%"}
 plot_rel_biomass(model_lst = list(base_model,
                                   sens_models[[1]][[6]],
                                   sens_models[[1]][[7]],
@@ -71,7 +71,7 @@ table_param_est(models = list(base_model,
                 section_line_above = FALSE,
                 section_line_below = FALSE) |>
   # Highlight some rows
-  row_spec(c(2, 3, 17),
+  row_spec(c(2, 3, 19),
            bold = table_highlight_bold,
            background = table_highlight_color)
 ```

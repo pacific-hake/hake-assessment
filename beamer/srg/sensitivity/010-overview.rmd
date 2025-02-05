@@ -10,8 +10,7 @@
     - Alternative standard deviations for time-varying selectivity ($\Phi$),
     - Alternative prior distributions and parameterizations for natural mortality (*M*),
     - Using the middle of the year to predict maturity-at-age, and
-    - Adding a relative index of abundance based on environmental-DNA,
-
+    - Adding a relative index of abundance based on environmental-DNA.
 
 2. Retrospectives `r length(retrospective_yrs)` years into the past
 

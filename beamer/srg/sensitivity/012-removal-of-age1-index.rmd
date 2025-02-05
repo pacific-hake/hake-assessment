@@ -61,7 +61,7 @@ table_param_est(models = list(sens_models[[2]][[1]],
                 section_line_above = FALSE,
                 section_line_below = FALSE) |>
   # Highlight some rows
-  row_spec(c(3),
+  row_spec(c(3, 18),
            bold = table_highlight_bold,
            background = table_highlight_color)
 
