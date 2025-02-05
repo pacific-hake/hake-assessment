@@ -56,15 +56,15 @@ plot_rel_biomass(model_lst = list(base_model,
 
 ```{r edna-sensitivity-index, fig.height = 4, out.height = "85%"}
 
-plot_survey_index_fits(model_lst = list(base_model,
-                                  sens_models[[2]][[4]]),
-                       model_names = c(base_model_name,
-                                 sens_models_desc[[2]][3]),
+plot_survey_index_fits(sens_models[[2]][[4]],
+                       list(sens_models[[2]][[4]]),
+                       "",
+                       survey_type = "edna",
                        tick_prop = 1,
                        vjust_x_labels = -2,
+                       leg_pos = c(0.75,0.75),
                        ylim = c(0, 0.5),
                        y_breaks = seq(0, 0.5, 0.1),
-                       leg_pos = c(0.3, 0.85)
                        xlim = c(2019, 2023),
                        x_breaks = seq(2019, 2023, 1),
                        x_labs_mod = 1,
