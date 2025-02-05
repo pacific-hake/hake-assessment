@@ -6,19 +6,15 @@
     - Alternative assumptions for steepness (*h*),
     - Alternative standard deviations for recruitment ($\sigma_r$),
     - Remove the age-1 index,
-    - Downweight fishery age-composition data,
+    - Down-weight fishery age-composition data,
     - Alternative standard deviations for time-varying selectivity ($\Phi$),
-    - Adding a relative index of abundance based on environmental-DNA,
-    - Alternative prior distributions for natural mortality (*M*),
+    - Alternative prior distributions and parameterizations for natural mortality (*M*),
     - Using the middle of the year to predict maturity-at-age, and
-    - Assuming natural mortality is specific to ages 0-1, 2, 3, 4, and 5+.
+    - Adding a relative index of abundance based on environmental-DNA,
+
 
 2. Retrospectives `r length(retrospective_yrs)` years into the past
 
 3. Spawning biomass estimates from `r assess_yr - 1991 + 1` years of assessments
-
-4. Hindsight performance of past projections
-
-5. Conveying recruitment uncertainty
 
 **All models were run using MCMC**
