@@ -192,20 +192,26 @@ plot_grid(plotlist = p,
 
 \bsmall
 
-* Updating data previous to `r last_data_yr` had very little effect on the
+* Updating data for years up to `r last_data_yr-1` had very little effect on the
   stock trajectory
-* Adding the `r last_data_yr` survey biomass estimate led to a downward shift in stock
+<!-- * Adding the `r last_data_yr` survey biomass estimate led to a downward shift in stock
   trajectory (and fit to biomass survey) going back to 2017
 * Adding the `r last_data_yr` survey age compositions increased stock biomass from 2023 to
   2024 with increases in 2020 and 2021 recruitment
-* Adding the age-1 index resulted in a slight increase in 2022 recruitment
-* Adding `r last_assess_yr` fishery age composition data shifted the stock trajectory
-  upwards slightly in recent years and increased 2020 and 2021 recruitment (decreased 2019 and 2022)
+ * Adding the age-1 index resulted in a slight increase in 2022 recruitment -->
+* Adding `r last_assess_yr` data changed the stock trajectory
+  in recent years, and increased decreased 2022 recruitment and suggested high
+  2023 recruitment.
   \pause
-* Model-based weight-at-age altered stock size and status in the 1970s and 1980s (and
-  equilibrium B~0~), but had little net effect since that time
-* Time-varying maturity did not influence general trends in stock size or status, but:
-  - There was a reduction in spawning biomass in recent years; and
-  - The transition to spawning biomass was delayed for up to a year in some cases
+<!-- * Model-based weight-at-age altered stock size and status in the 1970s and 1980s (and
+  equilibrium B~0~), but had little net effect since that time -->
+* The only model change this year was setting the recruitment deviations for 2023
+  and 2024 to zero, because:
+  * estimated high 2023 recruitment was only based on age-1 fishery
+  data
+  * fishing showed unusual seasonal patterns in 2024
+  * such recruitment estimates often become lower with subsequent years of data
+  (e.g. as just shown for 2022 recruitment, and see squid plots later).
+* This lowered the estimated 2025 spawning biomass and reduced the associated uncertainty.
 
 \esmall
