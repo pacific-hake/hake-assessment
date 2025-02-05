@@ -1,6 +1,6 @@
 # Maturity
 
-## Maturity-at-age estimated using middle of the year
+## Maturity-at-age estimated using middle (182) of the year
 
 ```{r mat-sensitivity-biomass-fig, fig.height = 4, out.height = "85%"}
 
@@ -28,7 +28,7 @@ plot_biomass(model_lst = list(base_model,
 ```
 
 
-## Maturity-at-age estimated using middle of the year
+## Maturity-at-age estimated using middle (182) of the year
 
 ```{r mat-sensitivity-biomass-rel, fig.height = 4, out.height = "85%"}
 plot_rel_biomass(model_lst = list(base_model,
