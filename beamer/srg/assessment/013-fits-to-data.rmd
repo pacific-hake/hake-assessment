@@ -33,12 +33,14 @@ plot_survey_fit_mcmc(base_model,
 ## Fit to acoustic survey age comps
 :::::: {.columns}
 ::: {.column width="40%"}
-* Predicted higher: \textcolor{pink}{1999} cohort and \textcolor{yellow}{2010} cohort
-  in 2017 survey
-* Predicted lower: some young cohorts in 2003--2011, \textcolor{orange}{2014} cohort in
-  2017 survey, **2021** cohort in 2023 survey
-* Predictions for the \textcolor{brown}{2016} cohort have been lower than observed
-  in the 2021 and 2023 surveys
+* Essentially the same as last year's assessment
+* Overestimated:
+  * \textcolor{blue}{1999} cohort in most surveys
+  * \textcolor{yellow}{2010} cohort in 2017 survey
+* Underestimated:
+  * some young cohorts in 2003--2011
+  * \textcolor{black}{2014} cohort in 2017 survey
+  * \textcolor{yellow}{2021} cohort in 2023 survey
 :::
 
 ::: {.column width="60%"}
@@ -56,11 +58,12 @@ plot_age_comp_fit(base_model,
 ## Fit to fishery age comps
 :::::: {.columns}
 ::: {.column width="40%"}
-* Large \textcolor{orange}{1999}, \textcolor{red}{2010}, \textcolor{orange}{2014},
-  and \textcolor{purple}{2016} cohorts fit particularly well
-* Some over- and under-fitting in \textcolor{red}{1980} and \textcolor{orange}{1984} cohorts
-* The **2020** cohort is slightly under-fit in recent years
-* Overall, fishery data in 2023 is fit well and implies age 2 and 3 fish made up
+* Essentially the same as last year's assessment
+* Large \textcolor{purple}{1999}, \textcolor{pink}{2010}, \textcolor{purple}{2014},
+  and \textcolor{orange}{2016} cohorts fit particularly well
+* Some over- and under-fitting in \textcolor{pink}{1980} and \textcolor{purple}{1984} cohorts
+* The \textcolor{green}{2020} cohort is fit better than last year
+* Overall, fishery data in `r assess_yr` is fit well and implies age-3 and -4 fish made up
   a large contributon of the catch
 :::
 
@@ -96,4 +99,3 @@ plot_pearson_bubbles(base_model,
 ::::::
 Dark bubbles are positive residuals (observed > expected) and white bubbles
 are negative residuals (observed < expected)
-
