@@ -47,7 +47,7 @@ plot_recdevs(model_lst = list(base_model,
         legend.text = element_text(size = 10))
 ```
 
-
+<!--
 ## Removing the age-1 index
 ```{r age1-par-table, results = "asis"}
 table_param_est(models = list(sens_models[[2]][[1]],
@@ -66,3 +66,4 @@ table_param_est(models = list(sens_models[[2]][[1]],
            background = table_highlight_color)
 
 ```
+-->
