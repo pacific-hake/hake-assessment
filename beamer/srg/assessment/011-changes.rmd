@@ -159,6 +159,31 @@ plot_recdevs(d_obj = rec_dev_to_plot,
   coord_cartesian(xlim = c(2011, assess_yr),
                   clip = "on")
 ```
+## Retrospectives of 2024 base model only for cohorts without age-1 index
+```{r retro-last-yr-no-age1, fig.height = 3, out.height = "85%"}
+plot_squid(last_yr_base_model,
+           show_ci = TRUE,
+           ci_yrs = c(2017, 2021),
+           y_lim = y_lim_squid,
+           cohorts = survey_age1_yrs) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12), )
+```
+
+
+## Retrospectives of 2024 base model only for cohorts with age-1 index
+```{r retro-last-yr-with-age1, fig.height = 3, out.height = "85%"}
+plot_squid(last_yr_base_model,
+           show_ci = TRUE,
+           ci_yrs = c(2020, 2022),
+           y_lim = y_lim_squid,
+           cohorts = survey_age1_yrs - 1) +
+  theme(axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12), )
+```
+
+
+
 ## Bridging: Add 2024 data and change rec devs (survey fits)
 
 ```{r bridge-survey-2, fig.height = 4, out.height = "80%"}
@@ -199,9 +224,10 @@ plot_grid(plotlist = p,
 * Adding the `r last_data_yr` survey age compositions increased stock biomass from 2023 to
   2024 with increases in 2020 and 2021 recruitment
  * Adding the age-1 index resulted in a slight increase in 2022 recruitment -->
-* Adding `r last_assess_yr` data changed the stock trajectory
-  in recent years, and increased decreased 2022 recruitment and suggested high
-  2023 recruitment.
+* Adding `r last_assess_yr` data:
+  * changed the stock trajectory for recent years
+  * decreased 2022 recruitment
+  * suggested high 2023 recruitment.
   \pause
 <!-- * Model-based weight-at-age altered stock size and status in the 1970s and 1980s (and
   equilibrium B~0~), but had little net effect since that time -->
@@ -211,7 +237,7 @@ plot_grid(plotlist = p,
   data
   * fishing showed unusual seasonal patterns in 2024
   * such recruitment estimates often become lower with subsequent years of data
-  (e.g. as just shown for 2022 recruitment, and see squid plots later).
+  (e.g. as just shown for 2022 recruitment, and TODO see next plot).
 * This lowered the estimated 2025 spawning biomass and reduced the associated uncertainty.
 
 \esmall

@@ -8,7 +8,9 @@
 #' @param ci_alpha The a transparency value for the credible interval
 #' ribbon fill
 #' @param ci_yrs A vector of years to include credible intervals for.
-#' If `NULL`, all will be shown. Only used if `show_ci` is `TRUE`
+#'   If `NULL`, all will be shown. Only used if `show_ci` is `TRUE`
+#' @param cohorts A vector of years so as to plot only those cohorts if available (useful for
+#'   talks). If `NULL` (the default) plots all available cohorots.
 #' @param year_label_font_size Size of the font for the year labels
 #' @param y_lim A vector to specify y limits, default is to span what is being
 #'   plotted. If `full` then automatically span all the
@@ -26,13 +28,20 @@ plot_squid <- function(model,
                        year_label_font_size = 4,
                        y_lim = c(NA, NA),
                        surv_point_type = 17,
-                       reg_point_type = 19){
+                       reg_point_type = 19,
+                       cohorts = NULL){
 
   # Extract a data frame of long-format recruitment deviations containing all
   # the models in the model list
   d <- model$retrospectives$recdevs_df$d
 
-  cohorts <- as.numeric(levels(d$model)) - 1
+  if(!is.null(cohorts)){
+    cohorts <- intersect(cohorts,
+                         as.numeric(levels(d$model)) - 1) # only use those available
+    } else {
+      cohorts <- as.numeric(levels(d$model)) - 1
+    }
+
 
   # Colors of lines and fill - add black to the beginning and remove end color
   # The B3 here is the transparency, B3 = 179 decimal out of possible 255 (FF),

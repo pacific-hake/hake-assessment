@@ -35,7 +35,7 @@ k <- function(){
   d <- tibble(a = c(paste0("Median (", assess_yr, ")"),
                     f(median(base_model$extra_mcmc$q_vector), 2)),
               b = c(paste0("Median (", last_assess_yr, ")"),
-                    f(median(last_yr_base_model$extra_mcmc$Q_vector), 2)))
+                    f(median(last_yr_base_model$extra_mcmc$q_vector), 2)))
 
   kbl(d,
       format = "latex",
@@ -44,9 +44,9 @@ k <- function(){
       align = c("c", "c"),
       linesep = "",
       escape = FALSE) |>
-    row_spec(0, bold = TRUE) |> 
-    column_spec(1, color = "green") |> 
-    column_spec(2, color = "red") |> 
+    row_spec(0, bold = TRUE) |>
+    column_spec(1, color = "green") |>
+    column_spec(2, color = "red") |>
     kable_styling(position = "center")
 }
 
@@ -68,7 +68,7 @@ k <- function(){
   d <- tibble(a = c(paste0("Median (", assess_yr, ")"),
                     f(median(base_model$extra_mcmc$q_vector_age1), 2)),
               b = c(paste0("Median (", last_assess_yr, ")"),
-                    f(median(last_yr_base_model$extra_mcmc$Q_vector_age1), 2)))
+                    f(median(last_yr_base_model$extra_mcmc$q_vector_age1), 2)))
 
   kbl(d,
       format = "latex",
@@ -77,9 +77,9 @@ k <- function(){
       align = c("c", "c"),
       linesep = "",
       escape = FALSE) |>
-    row_spec(0, bold = TRUE) |> 
-    column_spec(1, color = "green") |> 
-    column_spec(2, color = "red") |> 
+    row_spec(0, bold = TRUE) |>
+    column_spec(1, color = "green") |>
+    column_spec(2, color = "red") |>
     kable_styling(position = "center")
 }
 
