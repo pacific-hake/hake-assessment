@@ -1,6 +1,5 @@
 # Retrospectives
 
-<!--
 ## Base model retrospectives -- Spawning biomass
 ```{r retro-biomass-1, fig.height = 3, out.height = "85%"}
 
@@ -76,7 +75,7 @@ plot_biomass(d_obj = retros_biomass_incremental[[4]],
         legend.key.size = unit(0.1, units = "cm"),
         legend.text = element_text(size = 8))
 ```
--->
+
 
 ## Base model retrospectives -- spawning biomass
 ```{r retro-biomass-5, fig.height = 3, out.height = "85%"}
