@@ -100,12 +100,29 @@ plot_catches <- function(ct,
   x_labels <- make_major_tick_labels(x_breaks = x_breaks,
                                      modulo = x_labs_mod)
 
+  d <- ct |>
+    mutate(ord = case_when(fishery == "Canada Joint-venture" ~ 1,
+                           fishery == "Canada Foreign" ~ 2,
+                           fishery == "U.S. Joint-venture" ~ 3,
+                           fishery == "U.S. Foreign" ~ 4,
+                           fishery == "Canada Freezer-trawler" ~ 5,
+                           fishery == "Canada Shoreside" ~ 6,
+                           fishery == " " ~ 7,
+                           fishery == "  " ~ 8,
+                           fishery == "   " ~ 9,
+                           fishery == "U.S. Shoreside" ~ 10,
+                           fishery == "U.S. Catcher-processor" ~ 11,
+                           fishery == "U.S. Mothership" ~ 12))
+
+  d <- d[order(d$ord), ]
+browser()
   g <-
-    ggplot(ct,
+    ggplot(d,
            aes(x = Year,
                y = value,
                fill = fishery)) +
-    geom_hline(yintercept = y_breaks,
+    #fill = forcats::fct_reorder(fishery, ord))) +
+  geom_hline(yintercept = y_breaks,
                linetype = "dashed",
                linewidth = 0.25) +
     geom_col(color = "transparent") +
