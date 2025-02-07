@@ -1,18 +1,19 @@
-# Weight and fecundity-at-age
-## Summary of weight and fecundity-at-age
+# Weight and fecundity-at-age data
+## Summary of weight and fecundity at age
+
 * Fixed inputs to Stock Synthesis.
-* Fecundity at age is maturity-at-age $*$ weight-at-age data.
-* Pre-1975 U.S.~weight-at-age data are not included because they were
-collected from the Puget Sound.
-* Ovary sampling occurs in
-U.S. at-sea sectors by at-sea observers,
-acoustic survey, and
-U.S. West Coast Groundfish Bottom Trawl Survey.
+* Fecundity at age is maturity at age $*$ weight at age.
+* Pre-1975 weight-at-age data are available from the U.S.~Shorebased fleet;
+  these data were included in the GLMM but pre-1975 values are age-specific
+  means across all years.
+* Ovary sampling occurs in U.S.~at-sea sectors by at-sea observers, acoustic
+  survey, and U.S.~West Coast Groundfish Bottom Trawl Survey.
 * Survey-based ovary sampling is length stratified with target numbers for 2~cm
 length bins.
-* 2023 ovaries have yet to be analyzed and 21 samples from Canadian acoustic-survey vessels also are not yet analyzed.
+* 2024 ovaries have yet to be analyzed.
+* Canadian and Southern California samples are not included in the analysis.
 * Historical weight and fecundity are age-specific means from all years.
-* Future weight and fecundity are age-specific means from most recent five
+* Forecasted weight and fecundity are age-specific means from most recent five
 years.
 
 ## Sample sizes of weight-at-age by year
@@ -77,6 +78,7 @@ plot_heatmap_weight_at_age(
   pre_yrs = start_yr_age_comps:base_model$endyr,
   pre_func = mean,
   post_yrs = (base_model$endyr - 4):base_model$endyr,
+  yrs = (start_yr_age_comps - 1):(base_model$endyr + 1),
   post_func = mean,
   cols = c("red",
            "yellow",
@@ -85,16 +87,3 @@ plot_heatmap_weight_at_age(
   theme(axis.text.x = element_text(size = 8),
         axis.text.y = element_text(size = 6))
 ```
-
-## Fecundity needs
-
-* We need a better understanding of the following:
-  - Batch fecundity and how it varies across space and time.
-  - Batch spawning.
-  - Links between fecundity and size, age, and weight.
-  - How the above topics provide further information about factors that
-influence varying reproductive output.
-* More winter acoustic surveys may provide further information about these
-questions.
-* Potential to sample from U.S. shoreside vessels using dock-side sampling
-or at-sea observers on shore-based vessels (n = 1) that lack electronic monitoring.

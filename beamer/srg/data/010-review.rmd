@@ -53,7 +53,7 @@ sector, and
 * Age-1$^+$ compositions (1975--`r end_yr - 1`)
 * Acoustic survey (`r survey_start_yr`--`r survey_end_yr`)
   - Biomass index of age 2$^+$ (t)
-  - Age-2$^+$ compositions
+  - Age-2$^+$ age compositions
   - Relative index of age-1 fish (numbers)
 * Ageing imprecision and biases
   - double reads

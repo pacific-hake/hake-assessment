@@ -80,7 +80,7 @@ plot_catch_by_month(list(us_ss_catch_by_month_df,
                     ax_text_y = 8)
 ```
 
-## U.S. Proportion of Sector quota caught
+## U.S. Proportion of sector quota caught
 ```{r proportion-of-quota-catch-by-month-fig}
 
 plot_catch_by_month(list(us_ss_catch_by_month_df,

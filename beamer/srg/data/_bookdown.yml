@@ -11,7 +11,7 @@ rmd_files: ["000-launcher.rmd",
             "013-ages.rmd",
             "014-surveys.rmd",
             "015-weight-at-age.rmd",
-            "016-spatiotemporal-models.rmd",
+            # "016-spatiotemporal-models.rmd",
             "../../jtc/079-unused.rmd",
             "../../../doc/999-blank.rmd"]
 # `delete_merged_file`: If true, the hake.Rmd file which was created by
