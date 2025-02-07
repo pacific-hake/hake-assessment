@@ -21,6 +21,11 @@ plot_biomass(model_lst = list(base_model,
              ribbon_line_type = 0) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black", fill=NA),
         legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```
@@ -32,11 +37,16 @@ plot_recdevs(d_obj = d_obj_sens_recdev[[3]],
                  tick_prop = 1.5,
                  vjust_x_labels = -0.25,
                  leg_font_size = 9,
-                 leg_pos = c(0.13, 0.90),
+                 leg_pos = c(0.13, 0.86),
                  inc_means = FALSE,
                  rev_colors = TRUE) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black", fill=NA),
         legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```
@@ -50,12 +60,17 @@ plot_survey_index_fits(base_model,
                        x_expansion = 2,
                        tick_prop = 1.5,
                        vjust_x_labels = -0.5,
-                       leg_pos = c(0.74, 0.20),
+                       leg_pos = c(0.74, 0.16),
                        rev_colors = TRUE,
                        leg_font_size = 6,
                        xlim = c(1995, end_yr - 1)) +
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black", fill=NA),
         legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```
