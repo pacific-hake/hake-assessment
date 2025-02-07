@@ -1,6 +1,6 @@
 # Age-1 index
 
-## Removing the age-1 index
+## Removing the age-1 relative index
 ```{r age1-biomass-fig, fig.height = 4, out.height = "85%"}
 plot_biomass(model_lst = list(base_model,
                               sens_models[[2]][[2]]),
@@ -21,7 +21,7 @@ plot_biomass(model_lst = list(base_model,
         legend.text = element_text(size = 10))
 ```
 
-## Removing the age-1 index
+## Removing the age-1 relative index
 ```{r age1-rec-devs-fig, fig.height = 4, out.height = "85%"}
 plot_recdevs(model_lst = list(base_model,
                               sens_models[[2]][[2]]),

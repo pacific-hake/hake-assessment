@@ -5,7 +5,7 @@
 plot_biomass(model_lst = list(base_model,
                               sens_models[[2]][[3]]),
              model_names = c(base_model_name,
-                             sens_models_desc[[2]][2]),
+                             "Down-weight fishery comps"),
              x_expansion = 4,
              ylim = c(0, 5),
              y_breaks = seq(0, 5, 1),

@@ -1,6 +1,6 @@
 # M
 
-## Natural mortality, *M* (base has prior median 0.2, sd 0.1)
+## Natural mortality, *M* (base has prior median 0.2, SD 0.1)
 ```{r m-biomass-fig, fig.height = 4, out.height = "85%"}
 plot_biomass(model_lst = list(base_model,
                               sens_models[[1]][[6]],
@@ -30,7 +30,7 @@ plot_biomass(model_lst = list(base_model,
         legend.text = element_text(size = 10))
 ```
 
-## Natural mortality, *M* (base has prior median 0.2, sd 0.1)
+## Natural mortality, *M* (base has prior median 0.2, SD 0.1)
 ```{r m-biomass-fig-rel, fig.height = 4, out.height = "85%"}
 plot_rel_biomass(model_lst = list(base_model,
                                   sens_models[[1]][[6]],
@@ -63,7 +63,7 @@ plot_rel_biomass(model_lst = list(base_model,
         axis.ticks.length = unit(0.3, "cm"))
 ```
 
-## Natural mortality, *M* (base has prior median 0.2, sd 0.1)
+## Natural mortality, *M* (base has prior median 0.2, SD 0.1)
 ```{r m-par-table, results = "asis"}
 table_param_est(models = list(base_model,
                               sens_models[[1]][[6]],  # [[1]] is base model
@@ -87,7 +87,7 @@ table_param_est(models = list(base_model,
 ```
 
 
-## Natural mortality-at-age (0-1, 2, 3, 4, 5+)
+## Natural mortality at age (0-1, 2, 3, 4, 5+)
 
 
 ```{r matage-sensitivity-biomass-fig, fig.height = 4, out.height = "85%"}
@@ -118,7 +118,7 @@ plot_biomass(model_lst = list(base_model,
 ```
 
 
-## Natural mortality-at-age (0-1, 2, 3, 4, 5+)
+## Natural mortality at age (0-1, 2, 3, 4, 5+)
 
 ```{r matage-sensitivity-biomass-rel, fig.height = 4, out.height = "85%"}
 plot_rel_biomass(model_lst = list(base_model,

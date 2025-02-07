@@ -3,13 +3,13 @@
 ## Overview
 
 1. Select sensitivity models:
-    - Alternative assumptions for steepness (*h*),
-    - Alternative standard deviations for recruitment ($\sigma_r$),
-    - Remove the age-1 index,
-    - Down-weight fishery age-composition data,
-    - Alternative standard deviations for time-varying selectivity ($\Phi$),
-    - Alternative prior distributions and parameterizations for natural mortality (*M*),
-    - Using the middle of the year to predict maturity-at-age, and
+    - Alternative assumptions for steepness (*h*);
+    - Alternative standard deviations for recruitment ($\sigma_r$);
+    - Remove the age-1 relative index;
+    - Down-weight fishery age-composition data;
+    - Alternative standard deviations for time-varying selectivity ($\Phi$);
+    - Alternative prior distributions and parameterizations for natural mortality (*M*);
+    - Using the middle of the year to predict maturity-at-age; and
     - Adding a relative index of abundance based on environmental-DNA.
 
 2. Retrospectives `r length(retrospective_yrs)` years into the past

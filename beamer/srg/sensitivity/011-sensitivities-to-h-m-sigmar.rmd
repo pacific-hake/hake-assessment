@@ -29,7 +29,7 @@ plot_biomass(model_lst = list(sens_models[[1]][[1]],
 ```
 
 
-## Alternative s.d. of recruitment variability, $\sigma_r$; base `r sigma_r`
+## Alternative SD of recruitment variability, $\sigma_r$; base `r sigma_r`
 ```{r sigmar-biomass-fig, fig.height = 4, out.height  = "85%"}
 plot_biomass(model_lst = list(base_model,
                               sens_models[[1]][[4]],
@@ -52,7 +52,7 @@ plot_biomass(model_lst = list(base_model,
         legend.text = element_text(size = 10))
 ```
 
-## Alternative s.d. of recruitment variability, $\sigma_r$; base `r sigma_r`
+## Alternative SD of recruitment variability, $\sigma_r$; base `r sigma_r`
 ```{r sigmar-biomass-fig-rel, fig.height = 4, out.height = "85%"}
 plot_rel_biomass(model_lst = list(base_model,
                                   sens_models[[1]][[4]],
