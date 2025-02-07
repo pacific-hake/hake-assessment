@@ -9,7 +9,7 @@
 * Based on the default harvest rule, the estimated median catch limit
   for `r min(forecast_yrs)` is `r ct_limit_quantiles["median"]` t
   (with 95% interval from `r ct_limit_quantiles["lower"]` to
-  `r ct_limit_quantiles["upper"]` t (slide 11)
+  `r ct_limit_quantiles["upper"]` t) (slide 11)
 
 * There is `r prob_decl_yr1_zero_catch`% chance that spawning biomass will
   decline from `r forecast_yrs[1]` to `r forecast_yrs[2]` with zero catch
