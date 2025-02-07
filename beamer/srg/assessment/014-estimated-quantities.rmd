@@ -1,7 +1,7 @@
 # Estimated Quantities
 ## Key parameters
 :::::: {.columns}
-::: {.column width="40%"}
+::: {.column width="30%"}
 * **Prior** for natural mortality looks to be
   influencing \textcolor{Maroon}{median} of \textcolor{blue}{posterior}
 * Posterior for steepness does not shift much from prior
@@ -9,7 +9,7 @@
 * Prior for DM parameters essentially defines parameter bounds
 :::
 
-::: {.column width="60%"}
+::: {.column width="70%"}
 ```{r priors-posts, fig.height = 4, out.height = "80%"}
 plot_priors_vs_posts(base_model,
                      x_range = "prior",
