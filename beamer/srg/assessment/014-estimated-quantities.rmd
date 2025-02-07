@@ -14,7 +14,9 @@
 plot_priors_vs_posts(base_model,
                      x_range = "prior",
                      ncol = 3,
-                     nrow = 3)
+                     nrow = 3,
+                     facet_title_font_size = 10) +
+  theme(axis.text.x = element_text(size = 8))
 ```
 :::
 ::::::
