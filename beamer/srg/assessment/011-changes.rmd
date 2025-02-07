@@ -120,7 +120,7 @@ plot_grid(plotlist = p,
 ```
 ## Bridging: add 2024 data and change rec devs (biomass)
 
-```{r bridge-biomass-2, fig.height = 4, out.height = "80%"}
+```{r bridge-rel-biomass-2, fig.height = 4, out.height = "80%"}
 plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[2]],
                  ylim = c(0, 2.5),
                  xlim = c(2015, assess_yr),
@@ -135,7 +135,10 @@ plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[2]],
 
 ## Bridging: Add 2024 data and change rec devs (recruitment)
 
-```{r bridge-recruit-3, fig.height = 4, out.height = "80%"}
+```{r bridge-recdevs-2, fig.height = 4, out.height = "80%"}
+rec_dev_to_plot <- d_obj_bridge_recdev[[2]][[1]]
+rec_dev_to_plot[is.na(rec_dev_to_plot)] <- 0
+rec_dev_to_plot <- list(rec_dev_to_plot)
 plot_recdevs(d_obj = rec_dev_to_plot,
              x_labs_mod = 1,
              xlim = c(2011, assess_yr),
