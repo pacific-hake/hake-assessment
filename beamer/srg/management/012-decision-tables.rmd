@@ -6,7 +6,9 @@
   - Quantiles from the posterior distribution for *Relative spawning biomass*
     (Table **g**) and *Fishing intensity* (Table **h**)
   - Look of the tables has changed but the information is the same as last year
-  
+
+* New forecast catch alternatives this year, as chosen by the JMC
+
 * Catch alternatives
   - **a**: `r ct_levels[[1]][[2]]` (zero catch)
   - **b**--**i**: Constant catches of

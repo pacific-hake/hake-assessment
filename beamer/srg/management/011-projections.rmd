@@ -2,7 +2,7 @@
 
 ## Projection methods
 
-* Projections for 4 years; `r end_yr`--`r end_yr + 3`
+* Projections from start of `r end_yr` to the start of `r end_yr + 3`
 
 * Projections estimate the biomass at start of those years
   - Mean of fishery selectivity from `r end_yr - 5`--`r end_yr - 1` used in
@@ -12,6 +12,9 @@
   - Recruitment from stock--recruitment relationship
 
 * Alternative future catch levels explored
+
+* In future assessments, we will be doing 2 year projections at the
+  instruction of the JMC
 
 ## Default harvest policy for `r assess_yr`
 :::::: {.columns}
@@ -39,13 +42,12 @@ plot_param_density(base_model,
 ## Three-year projections
 :::::: {.columns}
 ::: {.column width="38%"}
-- No fishing results in a 1-year increase in biomass followed by a flat
-  relative spawning biomass from `r end_yr + 1` to `r end_yr + 3`
+- All catch options result in continuous decline of the stock through to
+  the start of `r end_yr + 3`
 
-- Positive catch options less than 350,000 t result in a 1-year increase
-  in biomass followed by continuous decline through to start of 2027
-
-- Uncertainty is large and increases from `r end_yr` to `r end_yr + 3`
+- Fixing recruitment deviations in `r end_yr - 2` and `r end_yr - 1` results
+  in lower uncertainty and no chance for large recruitments in the projected
+  years
 :::
 
 ::: {.column width="62%"}
@@ -79,7 +81,7 @@ table_fore_age_props(fore_catch_prop,
 
 ::: {.column width="55%"}
 ```{r main-age-comp-forecast, fig.height = 3.5, fig.width = 5.5, out.height = "80%"}
-plot_fore_age_comps(base_model)
+plot_fore_age_comps(base_model, y_lim = c(0, 0.7))
 ```
 :::
 ::::::

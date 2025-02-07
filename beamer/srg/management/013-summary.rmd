@@ -13,11 +13,11 @@
 
 * There is `r prob_decl_yr1_zero_catch`% chance that spawning biomass will
   decline from `r forecast_yrs[1]` to `r forecast_yrs[2]` with zero catch
-  and 100% chance of decline for all other catch streams (slide 17)
+  and >99% chance of decline for all other catch streams (slide 17)
 
 * There is `r prob_decl_yr2_zero_catch`% chance that spawning biomass will
   decline from `r forecast_yrs[2]` to `r forecast_yrs[3]` with zero catch
-  and 100% chance of decline for all other catch streams (slide 19)
+  and >99% chance of decline for all other catch streams (slide 19)
 
 * Projections strongly influenced by size of the above-average 2021 cohort,
   which is still highly uncertain at this point
