@@ -59,10 +59,10 @@ plot_age_comp_fit(base_model,
 :::::: {.columns}
 ::: {.column width="40%"}
 * Essentially the same as last year's assessment
-* Large \textcolor{purple}{1999}, \textcolor{pink}{2010}, \textcolor{purple}{2014},
-  and \textcolor{orange}{2016} cohorts fit particularly well
-* Some over- and under-fitting in \textcolor{pink}{1980} and \textcolor{purple}{1984} cohorts
-* The \textcolor{green}{2020} cohort is fit better than last year
+* Large \textcolor{Purple}{1999}, \textcolor{Pink}{2010}, \textcolor{Purple}{2014},
+  and \textcolor{Orange}{2016} cohorts fit particularly well
+* Some over- and under-fitting in \textcolor{Pink}{1980} and \textcolor{Purple}{1984} cohorts
+* The \textcolor{Green}{2020} cohort is fit better than last year
 * Overall, fishery data in `r assess_yr` is fit well and implies age-3 and -4 fish made up
   a large contributon of the catch
 :::

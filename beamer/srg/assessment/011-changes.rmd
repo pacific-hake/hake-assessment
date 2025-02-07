@@ -10,11 +10,11 @@ weight-at-age, fecundity-at-age,
 <!-- biomass survey, survey age-composition, age-1 index, -->
 and fishery age-composition data
   \pause
-* Turn off estimation of recruitment deviations from 2023 onwards -- these
+* Turn off estimation of recruitment deviations from `r last_data_yr - 1` onwards -- these
   recruitments were estimated solely from the
   stock-recruitment relationship.
 * In previous assessment models we would have allowed a random lognormal
-  component about the stock-recruitment relationships for recruitments from 2023
+  component about the stock-recruitment relationships for recruitments from `r last_data_yr - 1`
   onwards.
   \pause
 * All model runs in the assessment use MCMC
@@ -34,7 +34,8 @@ p[[1]] <-
                x_labs_mod = 10,
                wrap_y_label = TRUE,
                tick_prop = 2,
-               leg_pos = c(0.5, 0.9))
+               ylim = c(0, 5.5),
+               leg_pos = c(0.5, 0.87))
 p[[2]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[1]],
                    xlim = c(1964, last_assess_yr),,
@@ -47,6 +48,7 @@ plot_grid(plotlist = p,
           nrow = 1,
           ncol = 2)
 ```
+
 ## Bridging: update SS3 and older data (biomass) (recruitment)
 
 ```{r bridge-recruit-1, fig.height = 4, out.height = "80%"}
@@ -103,7 +105,8 @@ p[[1]] <-
                x_labs_mod = 10,
                wrap_y_label = TRUE,
                tick_prop = 2,
-               leg_pos = c(0.52, 0.9))
+               ylim = c(0, 5.5),
+               leg_pos = c(0.52, 0.87))
 p[[2]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[2]],
                    ylim = c(0, 2.5),
@@ -117,48 +120,34 @@ plot_grid(plotlist = p,
 ```
 ## Bridging: add 2024 data and change rec devs (biomass)
 
-```{r bridge-biomass-3, fig.height = 4, out.height = "80%"}
+```{r bridge-biomass-2, fig.height = 4, out.height = "80%"}
 plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[2]],
                  ylim = c(0, 2.5),
+                 xlim = c(2015, assess_yr),
                  leg_ncol = 2,
                  leg_font_size = 4.5,
-                 x_labs_mod = 10,
+                 x_labs_mod = 1,
                  wrap_y_label = TRUE,
-                 tick_prop = 2,
-                 leg_pos = c(0.3, 0.85)) +
-  coord_cartesian(xlim = c(2015, assess_yr),
-                  clip = "on")
+                 tick_prop = 1,
+                 x_expansion = 0.5,
+                 leg_pos = c(0.3, 0.85))
 ```
-## Bridging: Add 2024 data and change rec devs (recruitment)
 
-```{r bridge-recruit-2, fig.height = 4, out.height = "80%"}
-rec_dev_to_plot <- d_obj_bridge_recdev[[2]][[1]]
-rec_dev_to_plot[is.na(rec_dev_to_plot)] <- 0
-rec_dev_to_plot <- list(rec_dev_to_plot)
-plot_recdevs(d_obj = rec_dev_to_plot,
-             x_labs_mod = 10,
-             leg_ncol = 2,
-             leg_font_size = 5,
-             leg_pos = c(0.2, 0.9),
-             rev_colors = TRUE,
-             line_width = 0.1)
-
-```
 ## Bridging: Add 2024 data and change rec devs (recruitment)
 
 ```{r bridge-recruit-3, fig.height = 4, out.height = "80%"}
 plot_recdevs(d_obj = rec_dev_to_plot,
-             x_labs_mod = 10,
-             x_expansion = 0,
+             x_labs_mod = 1,
+             xlim = c(2011, assess_yr),
+             x_expansion = 0.5,
              leg_ncol = 2,
              leg_font_size = 5,
              leg_pos = c(0.2, 0.9),
              rev_colors = TRUE,
              line_width = 0.1,
-             dodge_val = 0.5) +
-  coord_cartesian(xlim = c(2011, assess_yr),
-                  clip = "on")
+             dodge_val = 0.5)
 ```
+
 ## Retrospectives of 2024 base model only for cohorts without age-1 index
 ```{r retro-last-yr-no-age1, fig.height = 3, out.height = "85%"}
 plot_squid(last_yr_base_model,
@@ -183,6 +172,7 @@ plot_squid(last_yr_base_model,
 ```
 
 
+=======
 
 ## Bridging: Add 2024 data and change rec devs (survey fits)
 
