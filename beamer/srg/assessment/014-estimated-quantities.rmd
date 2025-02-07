@@ -6,8 +6,7 @@
   influencing \textcolor{Maroon}{median} of \textcolor{blue}{posterior}
 * Posterior for steepness does not shift much from prior
 * DM for fishery has a relatively narrow posterior distribution
-* Prior for DM parameters essentially defines parameter bounds (discussed
-  further in sensitivity section)
+* Prior for DM parameters essentially defines parameter bounds
 :::
 
 ::: {.column width="60%"}
@@ -20,8 +19,10 @@ plot_priors_vs_posts(base_model,
 :::
 ::::::
 
+<!-- Might want these back in for survey years
 ## Acoustic survey catchability (\emph{$q_b$}) posterior for this assessment
-```{r catchability-density-q, fig.height = 4, out.height = "60%"}
+-->
+```{r catchability-density-q, fig.height = 4, out.height = "60%", eval = FALSE}
 plot_catchability_density(base_model,
                           last_yr_base_model,
                           type = "age2",
@@ -29,7 +30,7 @@ plot_catchability_density(base_model,
                           line_types = c("solid", "solid"))
 ```
 
-```{r table-catchability-medians-q, results = "asis"}
+```{r table-catchability-medians-q, results = "asis", eval = FALSE}
 k <- function(){
 
   d <- tibble(a = c(paste0("Median (", assess_yr, ")"),
@@ -53,8 +54,10 @@ k <- function(){
 k()
 ```
 
+<!-- Probably want back in for survey years
 ## Age-1 index catchability (\emph{$q_1$}) posterior for this assessment
-```{r catchability-density-1, fig.height = 4, out.height = "60%"}
+-->
+```{r catchability-density-1, fig.height = 4, out.height = "60%", eval = FALSE}
 plot_catchability_density(base_model,
                           last_yr_base_model,
                           type = "age1",
@@ -62,7 +65,7 @@ plot_catchability_density(base_model,
                           line_types = c("solid", "solid"))
 ```
 
-```{r table-catchability-medians-1, results = "asis"}
+```{r table-catchability-medians-1, results = "asis", eval = FALSE}
 k <- function(){
 
   d <- tibble(a = c(paste0("Median (", assess_yr, ")"),

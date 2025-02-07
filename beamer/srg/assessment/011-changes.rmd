@@ -10,14 +10,13 @@ weight-at-age, fecundity-at-age,
 <!-- biomass survey, survey age-composition, age-1 index, -->
 and fishery age-composition data
   \pause
-* Turn off estimation of recruitment deviations from `r last_data_yr - 1` onwards -- these
-  recruitments were estimated solely from the
+* Turn off estimation of recruitment deviations from `r last_data_yr - 1`
+ onwards:
+  * these recruitments were estimated solely from the
   stock-recruitment relationship.
-* In previous assessment models we would have allowed a random lognormal
+  * in previous assessment models we would have allowed a random lognormal
   component about the stock-recruitment relationships for recruitments from `r last_data_yr - 1`
-  onwards.
-  \pause
-* All model runs in the assessment use MCMC
+  onwards
 
 ## Bridging: update SS3 and older data (biomass)
 
@@ -153,6 +152,7 @@ plot_recdevs(d_obj = rec_dev_to_plot,
 
 ## Retrospectives of 2024 base model only for cohorts without age-1 index
 ```{r retro-last-yr-no-age1, fig.height = 3, out.height = "85%"}
+y_lim_squid <- c(-3.6, 4.2)    # Fix across plots.
 plot_squid(last_yr_base_model,
            show_ci = TRUE,
            ci_yrs = c(2017, 2021),
@@ -173,9 +173,6 @@ plot_squid(last_yr_base_model,
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12), )
 ```
-
-
-=======
 
 ## Bridging: Add 2024 data and change rec devs (survey fits)
 
@@ -220,7 +217,7 @@ plot_grid(plotlist = p,
 * Adding `r last_assess_yr` data:
   * changed the stock trajectory for recent years
   * decreased 2022 recruitment
-  * suggested high 2023 recruitment.
+  * suggested high 2023 recruitment
   \pause
 <!-- * Model-based weight-at-age altered stock size and status in the 1970s and 1980s (and
   equilibrium B~0~), but had little net effect since that time -->
@@ -230,7 +227,6 @@ plot_grid(plotlist = p,
   data
   * fishing showed unusual seasonal patterns in 2024
   * such recruitment estimates often become lower with subsequent years of data
-  (e.g. as just shown for 2022 recruitment, and TODO see next plot).
-* This lowered the estimated 2025 spawning biomass and reduced the associated uncertainty.
+* This lowered the estimated 2025 spawning biomass and reduced the associated uncertainty
 
 \esmall

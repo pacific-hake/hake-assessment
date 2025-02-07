@@ -1,18 +1,5 @@
 # MCMC Diagnostics
-## Diagnostics: Summary
-* Summary diagnostics for key parameters are shown in Appendix A of the
-  assessment document
-* Additional diagnostic evaluations were performed using the ShinySTAN
-  application, an analysis and visualization GUI for MCMC, including:
-  - Effective sample sizes for all parameters
-  - Number and location of divergent transitions in parameter space for
-    all parameters
-  - Multiple chain comparison statistics (Rhat)
-  - Many others
-* Posterior correlations among key parameters and summary diagnostics for
-  all chains combined are shown in Appendix A (no issues identified)
-
-## Diagnostics for all parameters and spawning biomass
+## Diagnostics for all parameters and spawning biomass (Appendix A)
 ```{r main-mcmc-diag-hists, fig.height = 4, out.height = "80%"}
 plot_mcmc_diagnostics_all_params(base_model,
                                  show_ro = TRUE,
@@ -20,4 +7,3 @@ plot_mcmc_diagnostics_all_params(base_model,
                                  ro_text_nudges = c(0.15, 0, 0.55, 0),
                                  ro_text_size = 3)
 ```
-
