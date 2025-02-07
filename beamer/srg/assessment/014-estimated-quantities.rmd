@@ -141,9 +141,8 @@ plot_selex_posteriors(base_model,
 
 ## Key quantities
 ```{r table-parameter-ests, results = "asis"}
-
-table_param_est_last_year_hardcoded(
-  model = list(base_model),
+table_param_est(
+  models = list(base_model, last_yr_base_model),
   model_nms = c(base_model_name, last_yr_base_model_name),
   section_bold = TRUE,
   section_italics = TRUE,
@@ -152,8 +151,8 @@ table_param_est_last_year_hardcoded(
   section_line_below = FALSE,
   digits = 3,
   font_size = 4,
-  header_font_size = 9)
-
+  header_font_size = 9,
+  show_loglike = FALSE)
 ```
 
 ## Recruitment Deviations
@@ -175,10 +174,21 @@ plot_recruitment(list(base_model),
   suppressWarnings()
 ```
 
+## Absolute Recruitment (`r assess_yr - 1` assessment)
+```{r rec-abs-last-year, fig.height = 4, out.height = "80%"}
+
+plot_recruitment(list(last_yr_base_model),
+                 list(last_yr_base_model_name),
+                 inc_means = FALSE,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
+
 ## Estimates of above-average cohorts
 ```{r above-average-cohorts-table, results = "asis"}
 
-cohorts <- sort(c(large_cohorts, 2017))
+cohorts <- sort(c(2016, 2017, 2020, 2021, 2022)) # large_cohorts includes
+                                        # 2010, 2014
 last_few_yrs <- c(last_assess_yr, assess_yr)
 table_above_avg_cohorts_yrs(cohorts, last_few_yrs)
 ```
@@ -225,11 +235,8 @@ table_yearly_model_compare(last_yr_base_model,
                            digits = 3,
                            font_size = 10)
 ```
-* The median estimate of *B*~`r assess_yr-1` has decreased from last
-  year's assessment, partly due to the 2023 survey biomass and time-varying
-  fecundity delaying maturity in recent years
-* This year's *B*~`r assess_yr-1` credible interval does not include the median
-  from last year's assessment
+* The median estimate of *B*~`r assess_yr-1` has decreased slightly from last
+  year's assessment.
 
 ## Uncertainty in Spawning Biomass
 ```{r main-historical-dispersion-fig, , fig.height = 4, out.height = "80%"}
