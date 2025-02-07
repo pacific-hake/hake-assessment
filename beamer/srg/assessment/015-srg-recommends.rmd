@@ -29,7 +29,7 @@ standard workflow.
 **The SRG recommends that the JTC explore alternative ways of estimating natural mortality ($M$) to update the current approach in the model, which is based on methods from more than a decade ago, and particularly consider options which have age-based $M$.**
 
 Response: In 2023 the JTC unsuccessfully estimated age-specific $M$ using Stock
-Synthesis because estimates of
+Synthesis where estimates of
 $M$ increased with age due to a lack of data to inform the estimates.
 
 The JTC also explored the use of Lorenzen $M$ but this is not possible in
@@ -45,9 +45,9 @@ Two sensitivities were run for this assessment, one where
 baseline mortality at age was fixed and one where it was estimated. Results
 were discussed in the Sensitivity presentation.
 
-Future work should include estimation properties of age-based $M$ deviations along with
-time-varying selectivity and recruitment deviations to better understand interactions and
-estimation tradoffs.
+Future work could include estimation properties of time-varying selectivity
+and recruitment deviations when alternative age-based $M$ deviations are used
+to better understand interactions and estimation tradeoffs.
 
 ## 2024 SRG Request 3
 
@@ -164,7 +164,7 @@ already use random effects.  The JTC has completed initial explorations using WH
 and concluded random effect structures will be beneficial for modeling Pacific Hake.
 
 The JTC is also following research on dynamic structural equation models for incorporating
-time-variation into stock assessment models, including the estimation of $\sigma_R$.
+environmental and ecosystem time series into the model with the help of causal maps, which could help reduce the amount of process error currently being included in $\sigma_R$.
 
 ## 2024 SRG Request 9
 
@@ -188,7 +188,7 @@ and a JMC recommendation was put forth. The JTC followed those recommendations f
 decision tables used in this assessment.
 
 This included a reduction in the total number of catch scenarios and recommendations
-to reduce to 2-year forecasts (instead of the current 3-year).
+to reduce to 2-year forecasts (instead of 3-year).
 
 ## 2024 SRG Request 11
 
