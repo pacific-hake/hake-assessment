@@ -26,10 +26,17 @@
 #'   Pacific Hake start in the early 70s, which means that the cohorts are
 #'   predicted for years prior to this, i.e., year - age, so we want to remove
 #'   these early years with little data. The default for Pacific Hake is 1975.
+#' @param out_location A path to a directory where you want to save the
+#'   resulting rds file with the predictions from the model. The default is to
+#'   save them to the hake server.
 #' @return
 #' A data frame in long format with time-varying weight-at-age data.
 #' @author Kelli F. Johnson
-estimate_tv_weight_at_age <- function(max_age = 15, first_year = 1975) {
+estimate_tv_weight_at_age <- function(
+  max_age = 15,
+  first_year = 1975,
+  out_location = "/srv/hake/other/tv"
+) {
   weight_at_age_files <- fs::dir_ls(
     regexp = "weight-at-age.csv",
     here::here("data-tables")
@@ -54,32 +61,27 @@ estimate_tv_weight_at_age <- function(max_age = 15, first_year = 1975) {
     ) |>
     dplyr::rename_with(.fn = tolower) |>
     dplyr::filter(weight > 0)
+
+  # do some more manipulation and save it to a csv file that stores
+  # the sample-size information to be plotted later
   weight_at_age_data |>
-    dplyr::group_by(year, age_yrs) |>
+    dplyr::group_by(year, age) |>
     dplyr::count() |>
-    dplyr::arrange(age_yrs) |>
+    dplyr::arrange(age) |>
     dplyr::ungroup() |>
     dplyr::bind_rows(
-      dplyr::group_by(weight_at_age_data, age_yrs) |>
+      dplyr::group_by(weight_at_age_data, age) |>
       dplyr::count() |>
       dplyr::mutate(year = -1940)
     ) |>
     tidyr::pivot_wider(
-      names_from = age_yrs,
+      names_from = age,
       values_from = n,
       names_sort = FALSE,
-      names_glue = "a{age_yrs}"
+      names_glue = "a{age}"
     ) |>
     dplyr::arrange(year) |>
     dplyr::rename(Yr = year) |>
-    dplyr::mutate(
-      seas = 1,
-      gender = 1,
-      GP = 1,
-      bseas = 1,
-      Fleet = 1,
-      .after = Yr
-    ) |>
     utils::write.csv(
       fs::path(here::here("data-tables"), "wtatage-all-samplesize.csv"),
       row.names = FALSE
@@ -93,7 +95,7 @@ estimate_tv_weight_at_age <- function(max_age = 15, first_year = 1975) {
     spatial = "off",
     spatiotemporal = "off",
     time = "year",
-    control = sdmTMB::sdmTMBcontrol(newton_loops = 1)
+    control = sdmTMB::sdmTMBcontrol(newton_loops = 4)
   )
   # create prediction grid
   pred_grid <- expand.grid(
@@ -119,7 +121,10 @@ estimate_tv_weight_at_age <- function(max_age = 15, first_year = 1975) {
   preds <- predict(m1, newdata = pred_grid) |>
     dplyr::mutate(est_weight = exp(est)) |>
     dplyr::filter(year >= first_year)
-
+  saveRDS(
+    preds,
+    file = fs::path(out_location, "weight-at-age-preds.rds")
+  )
   # make EWAA
   # Where it is the average of all sexes.
   ewaa <- dplyr::group_by(preds, year, age) |>
@@ -156,14 +161,3 @@ estimate_tv_weight_at_age <- function(max_age = 15, first_year = 1975) {
 
   return(ewaa_long)
 }
-
-# estimate_tv_maturity_at_age <- function() {
-#   cli::cli_inform(c(
-#     "i" = "Time-varying maturity is estimated by Eric Ward.",
-#     "!" = "Ensure the rds file is downloaded and used to update maturity.",
-#     "i" = "Find the raw .rds on ericward-noaa/hake-maturity-assessment-2025.",
-#     "i" = "Add model = 'Spatial + temperature' as a column to the rds data.",
-#     "i" = "Save the information from the .rds in maturity-ogives.csv"
-#   ))
-# }
-

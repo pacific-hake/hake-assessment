@@ -138,7 +138,7 @@ temperature at 130.67~m. -->
 plot_heatmap_weight_at_age(
   base_model,
   fleet = -2,
-  cell_font_size = 3,
+  cell_font_size = 2,
   sample_size_df = weight_age_sample_sizes_df,
   pre_yrs = start_yr_age_comps:base_model$endyr,
   pre_func = mean,
