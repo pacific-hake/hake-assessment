@@ -10,7 +10,7 @@ table_param_est(
   models = NULL,
   model_nms = NULL,
   show_loglike = TRUE,
-  section_row_inds = c(1, 11, 21, 22 + length(large_cohorts)),
+  section_row_inds = c(1, 11, 20, 21 + length(large_cohorts)),
   section_row_headers = c("Parameters", "Derived Quantities",
     paste0("Reference Points based on ", fspr_40_bold_for_latex_table),
     "Negative log likelihoods"),

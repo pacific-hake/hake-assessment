@@ -4,7 +4,11 @@
 \alias{estimate_tv_weight_at_age}
 \title{Estimate time-varying weight at age}
 \usage{
-estimate_tv_weight_at_age(max_age = 15, first_year = 1975)
+estimate_tv_weight_at_age(
+  max_age = 15,
+  first_year = 1975,
+  out_location = "/srv/hake/other/tv"
+)
 }
 \arguments{
 \item{max_age}{An integer specifying the maximum age of the modeled data
@@ -20,6 +24,10 @@ include this year as a separate year. For example, weight-at-age data for
 Pacific Hake start in the early 70s, which means that the cohorts are
 predicted for years prior to this, i.e., year - age, so we want to remove
 these early years with little data. The default for Pacific Hake is 1975.}
+
+\item{out_location}{A path to a directory where you want to save the
+resulting rds file with the predictions from the model. The default is to
+save them to the hake server.}
 }
 \value{
 A data frame in long format with time-varying weight-at-age data.

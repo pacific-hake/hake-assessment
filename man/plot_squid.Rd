@@ -13,7 +13,8 @@ plot_squid(
   year_label_font_size = 4,
   y_lim = c(NA, NA),
   surv_point_type = 17,
-  reg_point_type = 19
+  reg_point_type = 19,
+  cohorts = NULL
 )
 }
 \arguments{
@@ -42,6 +43,9 @@ and \code{show_ci = TRUE} as we do not currently use those.}
 \item{surv_point_type}{The point shape type for ages in age-1 index years}
 
 \item{reg_point_type}{The point shape type for ages in non-age-1-index years}
+
+\item{cohorts}{A vector of years so as to plot only those cohorts if available (useful for
+talks). If \code{NULL} (the default) plots all available cohorots.}
 }
 \description{
 Make the retrospective recruitment deviations plot (squid plot)
