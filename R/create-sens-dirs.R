@@ -321,6 +321,53 @@ create_sens_dirs <- function(dir_version,
     change_max_age_selectivity(age_max = 8)
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
+  # Time-varying maturity in the middle of the year
+  aa <- setup_sensitivity(prefix_number = 18, suffix_string = "tv-maturity-182")
+  write_wtatage_file(
+    file = fs::path(aa, "wtatage.ss"),
+    data = pad_weight_at_age(weight_at_age_estimates_df),
+    maturity = maturity_estimates_df |>
+      dplyr::filter(doy == 182) |>
+      dplyr::summarize(p_mature = mean(p_mature), .by = c(age)) |>
+      dplyr::pull(p_mature)
+  )
+  # Read that weight-at-age data back in and update it with the
+  # time-varying maturity and write back out
+  weight_at_age <- r4ss::SS_readwtatage(fs::path(aa, "wtatage.ss"))
+  inputs <- r4ss::SS_read(aa)
+  inputs[["wtatage"]] <- update_ss3_maturity(
+    maturity = maturity_estimates_df |>
+      dplyr::filter(
+        model == "Spatial + temperature",
+        !is.na(p_mature),
+        doy == 182
+      ),
+    weight_at_age = weight_at_age
+  )
+  fishery_age_composition <- calc_fishery_ages(
+    weight_at_age = inputs[["wtatage"]]
+  )
+  colnames(fishery_age_composition) <- colnames(inputs[["dat"]][["agecomp"]])
+  inputs[["dat"]][["agecomp"]] <- dplyr::bind_rows(
+    dplyr::filter(
+      inputs[["dat"]][["agecomp"]],
+      !(fleet == 1 & year >= 2008)
+    ),
+    fishery_age_composition |>
+      dplyr::filter(year >= 2008)
+  ) |>
+    dplyr::arrange(-fleet, year)
+  inputs[["par"]] <- NULL
+  r4ss::SS_write(
+    inputlist = inputs,
+    dir = aa,
+    overwrite = TRUE,
+    verbose = FALSE
+  )
+  # Chris wrote this function and I am not sure what it does but the files
+  # will not run without doing it
+  purrr::walk(aa, .f = \(x) system(glue::glue("cd {x} && clean_ss3")))
+
   cli::cli_alert(c(
     "i" = "Created new sensitivity directories in {sens_dir}"
   ))
