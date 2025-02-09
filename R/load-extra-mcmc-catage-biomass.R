@@ -35,12 +35,12 @@ load_extra_mcmc_catage_biomass <- function(reps,
     # to start_yr_wtatage
     row <- wt |>
       as_tibble() |>
-      dplyr::filter(yr == min(yr), Fleet == 2)
+      dplyr::filter(yr == min(yr), fleet == 2)
 
     if(nrow(row) > 1){
       stop("The biomass-at-age table failed to build. The `model$wtatage` ",
            "table had ", nrow(row), " rows match the filter for minimum ",
-           "year and Fleet == 2, when it should only be one row")
+           "year and fleet == 2, when it should only be one row")
     }
     missing_yrs <- actual_start_yr:(start_yr_wtatage - 1)
     for(yr in rev(missing_yrs)){
@@ -50,7 +50,7 @@ load_extra_mcmc_catage_biomass <- function(reps,
   }
   ages <- grep("[0-9]+", names(wt), value = TRUE)
   wtatage <- wt |>
-    dplyr::filter(Fleet == 2) |>
+    dplyr::filter(fleet == 2) |>
     select(yr, all_of(ages))
 
   yrs <- sort(unique(catage$yr))
