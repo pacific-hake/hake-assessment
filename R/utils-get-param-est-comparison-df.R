@@ -103,7 +103,7 @@ get_param_est_comparison_df <- function(models,
                  paste0(f(mdl$mcmccalcs$dmed[as.character(mdl$endyr + 1)] * 100,
                           1),
                         "\\%"),
-                 paste0(f(mdl$mcmccalcs$dmed[as.character(mdl$endyr)] * 100,
+                 paste0(f(mdl$mcmccalcs$dmed[as.character(end_yr)] * 100,
                           1),
                         "\\%")),
         ssb_curr =
