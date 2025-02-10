@@ -38,16 +38,14 @@ plot_rel_biomass(model_lst = list(base_model,
                  x_expansion = 4,
                  ylim = c(0, 2.5),
                  y_breaks = seq(0, 2.5, 0.5),
-                 tick_prop = 1.5,
-                 vjust_x_labels = -0.5,
+                 tick_prop = 1.25,
+                 vjust_x_labels = -1.5,
                  hjust_y_labels = 1,
                  leg_font_size = 5,
                  leg_pos = c(0.7, 0.85),
                  rev_colors = TRUE,
                  ribbon_line_type = 0) +
-  theme(axis.title.x = element_text(size = 12),
-        axis.title.y = element_text(size = 12),
-        legend.key.size = unit(0.5, units = "cm"),
+  theme(legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```
 

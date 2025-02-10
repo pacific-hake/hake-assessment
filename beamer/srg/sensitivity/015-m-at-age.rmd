@@ -13,20 +13,13 @@ plot_biomass(model_lst = list(base_model,
              x_expansion = 4,
              ylim = c(0, 20),
              y_breaks = seq(0, 20, 5),
-             tick_prop = 1.5,
+             tick_prop = 1.25,
              vjust_x_labels = -0.25,
              leg_font_size = leg_font_size,
              leg_pos = leg_locs,
              rev_colors = TRUE,
              ribbon_line_type = ribbon_line_type) +
-  theme(axis.title.x = element_text(size = 12),
-        axis.title.y = element_text(size = 12),
-        panel.background = element_blank(),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        axis.line = element_line(colour = "black"),
-        panel.border = element_rect(colour = "black", fill=NA),
-        legend.key.size = unit(0.5, units = "cm"),
+  theme(legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```
 
@@ -50,17 +43,8 @@ plot_rel_biomass(model_lst = list(base_model,
              leg_pos = leg_locs,
              rev_colors = TRUE,
              ribbon_line_type = ribbon_line_type) +
-  theme(axis.title.x = element_text(size = 12),
-        axis.title.y = element_text(size = 12,
-                                    vjust = -5),
-        panel.background = element_blank(),
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(),
-        axis.line = element_line(colour = "black"),
-        panel.border = element_rect(colour = "black", fill=NA),
-        legend.key.size = unit(0.5, units = "cm"),
-        legend.text = element_text(size = 10),
-        axis.ticks.length = unit(0.3, "cm"))
+  theme(legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
 ```
 
 ## Natural mortality, *M* (base has prior median 0.2, SD 0.1)
@@ -111,9 +95,7 @@ plot_biomass(model_lst = list(base_model,
              leg_pos = leg_locs,
              rev_colors = TRUE,
              ribbon_line_type = ribbon_line_type) +
-  theme(axis.title.x = element_text(size = 12),
-        axis.title.y = element_text(size = 12),
-        legend.key.size = unit(0.5, units = "cm"),
+  theme(legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```
 
@@ -130,15 +112,13 @@ plot_rel_biomass(model_lst = list(base_model,
                  x_expansion = 4,
                  ylim = c(0, 2.5),
                  y_breaks = seq(0, 2.5, 0.5),
-                 tick_prop = 1.5,
-                 vjust_x_labels = -0.5,
+                 tick_prop = 1.25,
+                 vjust_x_labels = -1.5,
                  hjust_y_labels = 1,
                  leg_font_size = 5,
                  leg_pos = c(0.7, 0.85),
                  rev_colors = TRUE,
                  ribbon_line_type = 0) +
-  theme(axis.title.x = element_text(size = 12),
-        axis.title.y = element_text(size = 12),
-        legend.key.size = unit(0.5, units = "cm"),
+  theme(legend.key.size = unit(0.5, units = "cm"),
         legend.text = element_text(size = 10))
 ```

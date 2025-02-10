@@ -151,5 +151,9 @@ plot_recdevs <- function(
       guides(color = guide_legend(ncol = leg_ncol))
   }
 
+  g <- g +
+    theme(axis.text.x = element_text(vjust = vjust_x_labels),
+          axis.title.x = element_text(vjust = vjust_x_labels))
+
   g
 }
