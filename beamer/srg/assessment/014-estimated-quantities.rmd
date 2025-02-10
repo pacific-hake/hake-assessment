@@ -1,4 +1,4 @@
-# Estimated Quantities
+# Estimated quantities
 ## Key parameters
 :::::: {.columns}
 ::: {.column width="30%"}
@@ -155,7 +155,7 @@ table_param_est(
   section_line_above = FALSE,
   section_line_below = FALSE,
   digits = 3,
-  font_size = 4,
+  font_size = 3,
   header_font_size = 9,
   show_loglike = FALSE)
 ```

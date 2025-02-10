@@ -1,5 +1,5 @@
 # Summary
-## Summary -- Biomass
+## Summary -- Results
 * Assessment model continues to fit the age data particularly well
 * The median estimate of the `r end_yr` relative spawning biomass
   is `r curr_depl_median`% but is highly uncertain (with 95%
@@ -14,5 +14,6 @@
   39% of the 2017 catch)
 * Catch in Canada has steadily declined since 2018, to a very low 3,928~t in 2024
 * High proportion of age-4 and age-3 fish in `r end_yr-1` fishery
-* These above-average 2020 and 2021 cohorts continue to mature, entering into the
-  spawning biomass in 2025
+* These above-average 2020 and 2021 cohorts continue to increase  the spawning biomass
+  * individuals are still growing and becoming mature
+  * though 2020 cohort is now declining in total biomass

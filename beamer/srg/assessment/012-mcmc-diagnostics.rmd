@@ -1,4 +1,4 @@
-# MCMC Diagnostics
+# MCMC diagnostics
 ## Diagnostics for all parameters and spawning biomass (Appendix A)
 ```{r main-mcmc-diag-hists, fig.height = 4, out.height = "80%"}
 plot_mcmc_diagnostics_all_params(base_model,
