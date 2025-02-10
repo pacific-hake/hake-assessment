@@ -188,8 +188,7 @@ plot_squid <- function(model,
                     nudge_x = 0.5 * ifelse(relative, -1, 1),
                     nudge_y = -0.25,
                     direction = "both") +
-    scale_x_continuous(breaks = c(seq_along(cohorts),
-                                  length(cohorts) + 1) - 1) +
+    scale_x_continuous(breaks = seq(0, 20)) +
     scale_y_continuous(breaks = seq(-10, 10),
                        limits = y_lim) +
     scale_color_identity() +
