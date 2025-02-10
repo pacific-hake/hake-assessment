@@ -48,7 +48,7 @@ plot_grid(plotlist = p,
           ncol = 2)
 ```
 
-## Bridging: update SS3 and older data (biomass) (recruitment)
+## Bridging: update SS3 and older data (recruitment)
 
 ```{r bridge-recruit-1, fig.height = 4, out.height = "80%"}
   plot_recdevs(d_obj = d_obj_bridge_recdev[[1]],
