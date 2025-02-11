@@ -28,6 +28,21 @@ plot_survey_fit_mcmc(model,
                      leg_font_size = 10 / .pt)
 ```
 
+## Fit to the acoustic survey (base model) for comparison
+```{r mcmc-survey-fit-base, fig.height = 4, out.height = "80%"}
+
+plot_survey_fit_mcmc(base_model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     y_lim = c(0, 6),
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.7,
+                     leg_sep = 0.7,
+                     leg_font_size = 10 / .pt)
+```
+
 ## Fit to acoustic survey age composition data
 :::::: {.columns}
 ::: {.column width="40%"}
