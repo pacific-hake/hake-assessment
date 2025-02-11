@@ -11,7 +11,7 @@ Provide plots of selectivity in 2024 as well as mountain plots for sensitivities
 <!-- slide 1 -->
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r selectivity-mountains, fig.height = 4, out.height = "80%"}
+```{r selectivity-mountains-1, fig.height = 4, out.height = "80%"}
 
 tv_selex_start_yr <- 1990
 
@@ -25,7 +25,7 @@ plot_selex_mountains(sens_models[[2]][[2]],
 :::
 
 ::: {.column width="50%"}
-```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
+```{r selectivity-uncertainty-1, fig.height = 4, out.height = "80%"}
 
 # Right
 plot_selex_uncertainty(sens_models[[2]][[2]],
@@ -42,7 +42,7 @@ plot_selex_uncertainty(sens_models[[2]][[2]],
 <!-- slide 2 -->
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
+```{r selectivity-posterior-survey-1, fig.height = 4, out.height = "80%"}
 # Left
 plot_selex_posteriors(sens_models[[2]][[2]],
                       type = "survey",
@@ -55,7 +55,7 @@ plot_selex_posteriors(sens_models[[2]][[2]],
 :::
 
 ::: {.column width="50%"}
-```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
+```{r selectivity-posterior-fishery-1, fig.height = 4, out.height = "80%"}
 # Right
 plot_selex_posteriors(sens_models[[2]][[2]],
                       type = "fishery",
@@ -71,7 +71,7 @@ plot_selex_posteriors(sens_models[[2]][[2]],
 <!-- slide 1 -->
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r selectivity-mountains, fig.height = 4, out.height = "80%"}
+```{r selectivity-mountains-2, fig.height = 4, out.height = "80%"}
 
 tv_selex_start_yr <- 1990
 
@@ -85,7 +85,7 @@ plot_selex_mountains(sens_models[[3]][[2]],
 :::
 
 ::: {.column width="50%"}
-```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
+```{r selectivity-uncertainty-2, fig.height = 4, out.height = "80%"}
 
 # Right
 plot_selex_uncertainty(sens_models[[3]][[2]],
@@ -102,7 +102,7 @@ plot_selex_uncertainty(sens_models[[3]][[2]],
 <!-- slide 2 -->
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
+```{r selectivity-posterior-survey-2, fig.height = 4, out.height = "80%"}
 # Left
 plot_selex_posteriors(sens_models[[3]][[2]],
                       type = "survey",
@@ -115,7 +115,7 @@ plot_selex_posteriors(sens_models[[3]][[2]],
 :::
 
 ::: {.column width="50%"}
-```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
+```{r selectivity-posterior-fishery-2, fig.height = 4, out.height = "80%"}
 # Right
 plot_selex_posteriors(sens_models[[3]][[2]],
                       type = "fishery",
@@ -131,7 +131,7 @@ plot_selex_posteriors(sens_models[[3]][[2]],
 <!-- slide 1 -->
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r selectivity-mountains, fig.height = 4, out.height = "80%"}
+```{r selectivity-mountains-3, fig.height = 4, out.height = "80%"}
 
 tv_selex_start_yr <- 1990
 
@@ -145,7 +145,7 @@ plot_selex_mountains(sens_models[[3]][[3]],
 :::
 
 ::: {.column width="50%"}
-```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
+```{r selectivity-uncertainty-3, fig.height = 4, out.height = "80%"}
 
 # Right
 plot_selex_uncertainty(sens_models[[3]][[3]],
@@ -162,7 +162,7 @@ plot_selex_uncertainty(sens_models[[3]][[3]],
 <!-- slide 2 -->
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
+```{r selectivity-posterior-survey-3, fig.height = 4, out.height = "80%"}
 # Left
 plot_selex_posteriors(sens_models[[3]][[3]],
                       type = "survey",
@@ -175,7 +175,7 @@ plot_selex_posteriors(sens_models[[3]][[3]],
 :::
 
 ::: {.column width="50%"}
-```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
+```{r selectivity-posterior-fishery-3, fig.height = 4, out.height = "80%"}
 # Right
 plot_selex_posteriors(sens_models[[3]][[3]],
                       type = "fishery",
@@ -191,7 +191,7 @@ plot_selex_posteriors(sens_models[[3]][[3]],
 <!-- slide 1 -->
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r selectivity-mountains, fig.height = 4, out.height = "80%"}
+```{r selectivity-mountains-4, fig.height = 4, out.height = "80%"}
 
 tv_selex_start_yr <- 1990
 
@@ -205,7 +205,7 @@ plot_selex_mountains(sens_models[[3]][[4]],
 :::
 
 ::: {.column width="50%"}
-```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
+```{r selectivity-uncertainty-4, fig.height = 4, out.height = "80%"}
 
 # Right
 plot_selex_uncertainty(sens_models[[3]][[4]],
@@ -222,7 +222,7 @@ plot_selex_uncertainty(sens_models[[3]][[4]],
 <!-- slide 2 -->
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
+```{r selectivity-posterior-survey-4, fig.height = 4, out.height = "80%"}
 # Left
 plot_selex_posteriors(sens_models[[3]][[4]],
                       type = "survey",
@@ -235,7 +235,7 @@ plot_selex_posteriors(sens_models[[3]][[4]],
 :::
 
 ::: {.column width="50%"}
-```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
+```{r selectivity-posterior-fishery-4, fig.height = 4, out.height = "80%"}
 # Right
 plot_selex_posteriors(sens_models[[3]][[4]],
                       type = "fishery",
@@ -251,7 +251,7 @@ plot_selex_posteriors(sens_models[[3]][[4]],
 <!-- slide 1 -->
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r selectivity-mountains, fig.height = 4, out.height = "80%"}
+```{r selectivity-mountains-5, fig.height = 4, out.height = "80%"}
 
 tv_selex_start_yr <- 1990
 
@@ -265,7 +265,7 @@ plot_selex_mountains(sens_models[[2]][[4]],
 :::
 
 ::: {.column width="50%"}
-```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
+```{r selectivity-uncertainty-5, fig.height = 4, out.height = "80%"}
 
 # Right
 plot_selex_uncertainty(sens_models[[2]][[4]],
@@ -282,7 +282,7 @@ plot_selex_uncertainty(sens_models[[2]][[4]],
 <!-- slide 2 -->
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
+```{r selectivity-posterior-survey-5, fig.height = 4, out.height = "80%"}
 # Left
 plot_selex_posteriors(sens_models[[2]][[4]],
                       type = "survey",
@@ -295,7 +295,7 @@ plot_selex_posteriors(sens_models[[2]][[4]],
 :::
 
 ::: {.column width="50%"}
-```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
+```{r selectivity-posterior-fishery-5, fig.height = 4, out.height = "80%"}
 # Right
 plot_selex_posteriors(sens_models[[2]][[4]],
                       type = "fishery",
