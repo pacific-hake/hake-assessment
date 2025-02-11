@@ -115,7 +115,6 @@ plot_catches <- function(ct,
                            fishery == "U.S. Mothership" ~ 12))
 
   d <- d[order(d$ord), ]
-browser()
   g <-
     ggplot(d,
            aes(x = Year,
