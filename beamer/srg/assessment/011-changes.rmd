@@ -57,7 +57,9 @@ plot_grid(plotlist = p,
                leg_font_size = 6,
                line_width = 0.1,
                rev_colors = TRUE,
-               leg_pos = c(0.22, 0.9))
+               leg_pos = c(0.32, 0.9)) +
+  theme(legend.key.size = unit(0.5, units = "cm"),
+        legend.text = element_text(size = 10))
 
 ```
 <!--
@@ -105,7 +107,9 @@ p[[1]] <-
                wrap_y_label = TRUE,
                tick_prop = 2,
                ylim = c(0, 5.5),
-               leg_pos = c(0.52, 0.87))
+               leg_pos = c(0.52, 0.87)) +
+  theme(legend.key.size = unit(0.3, units = "cm"),
+        legend.text = element_text(size = 8))
 p[[2]] <-
   plot_rel_biomass(d_obj = d_obj_bridge_rel_biomass[[2]],
                    ylim = c(0, 2.5),
