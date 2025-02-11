@@ -2,5 +2,306 @@
 
 Provide plots of selectivity in 2024 as well as mountain plots for sensitivities to removing age-1 index, to the alternative values of phi (deviations for selectivity), and for adding in the eDNA index
 
-* Point form answers
+* Two time-varying selectivity figures and posterior selectivity for the survey
+  and the fishery, each showing just 1000 draws, for the requested
+  sensitivities are shown in the subsequent slides.
 
+<!-- sensitivity 1 -->
+## Remove age-1 index: time-varying selectivity
+<!-- slide 1 -->
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-mountains, fig.height = 4, out.height = "80%"}
+
+tv_selex_start_yr <- 1990
+
+# Left
+plot_selex_mountains(base_model,
+                     yrs = tv_selex_start_yr:last_data_yr,
+                     ages = 1:8,
+                     fill_num_colors = 50,
+                     scale = 20)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
+
+# Right
+plot_selex_uncertainty(base_model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE,
+                       label_loc = c(1, 0.65),
+                       label_font_size = 3)
+```
+:::
+::::::
+
+## Remove age-1 index: survey (left) and fishery (right)
+<!-- slide 2 -->
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
+# Left
+plot_selex_posteriors(base_model,
+                      type = "survey",
+                      age_range = c(1, 8),
+                      n_posts = 1000,
+                      post_med_line_color = "red3",
+                      unc_line_color = "red3",
+                      glow = TRUE)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
+# Right
+plot_selex_posteriors(base_model,
+                      type = "fishery",
+                      n_posts = 1000,
+                      age_range = c(1, 8),
+                      glow = TRUE)
+```
+:::
+::::::
+
+<!-- sensitivity 2 -->
+## Phi 0.21: time-varying selectivity
+<!-- slide 1 -->
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-mountains, fig.height = 4, out.height = "80%"}
+
+tv_selex_start_yr <- 1990
+
+# Left
+plot_selex_mountains(base_model,
+                     yrs = tv_selex_start_yr:last_data_yr,
+                     ages = 1:8,
+                     fill_num_colors = 50,
+                     scale = 20)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
+
+# Right
+plot_selex_uncertainty(base_model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE,
+                       label_loc = c(1, 0.65),
+                       label_font_size = 3)
+```
+:::
+::::::
+
+## Phi 0.21: survey (left) and fishery (right)
+<!-- slide 2 -->
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
+# Left
+plot_selex_posteriors(base_model,
+                      type = "survey",
+                      age_range = c(1, 8),
+                      n_posts = 1000,
+                      post_med_line_color = "red3",
+                      unc_line_color = "red3",
+                      glow = TRUE)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
+# Right
+plot_selex_posteriors(base_model,
+                      type = "fishery",
+                      n_posts = 1000,
+                      age_range = c(1, 8),
+                      glow = TRUE)
+```
+:::
+::::::
+
+<!-- sensitivity 3 -->
+## Phi 0.70: time-varying selectivity
+<!-- slide 1 -->
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-mountains, fig.height = 4, out.height = "80%"}
+
+tv_selex_start_yr <- 1990
+
+# Left
+plot_selex_mountains(base_model,
+                     yrs = tv_selex_start_yr:last_data_yr,
+                     ages = 1:8,
+                     fill_num_colors = 50,
+                     scale = 20)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
+
+# Right
+plot_selex_uncertainty(base_model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE,
+                       label_loc = c(1, 0.65),
+                       label_font_size = 3)
+```
+:::
+::::::
+
+## Phi 0.70: survey (left) and fishery (right)
+<!-- slide 2 -->
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
+# Left
+plot_selex_posteriors(base_model,
+                      type = "survey",
+                      age_range = c(1, 8),
+                      n_posts = 1000,
+                      post_med_line_color = "red3",
+                      unc_line_color = "red3",
+                      glow = TRUE)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
+# Right
+plot_selex_posteriors(base_model,
+                      type = "fishery",
+                      n_posts = 1000,
+                      age_range = c(1, 8),
+                      glow = TRUE)
+```
+:::
+::::::
+
+<!-- sensitivity 4 -->
+## Phi 2.10: time-varying selectivity
+<!-- slide 1 -->
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-mountains, fig.height = 4, out.height = "80%"}
+
+tv_selex_start_yr <- 1990
+
+# Left
+plot_selex_mountains(base_model,
+                     yrs = tv_selex_start_yr:last_data_yr,
+                     ages = 1:8,
+                     fill_num_colors = 50,
+                     scale = 20)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
+
+# Right
+plot_selex_uncertainty(base_model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE,
+                       label_loc = c(1, 0.65),
+                       label_font_size = 3)
+```
+:::
+::::::
+
+## Phi 2.10: survey (left) and fishery (right)
+<!-- slide 2 -->
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
+# Left
+plot_selex_posteriors(base_model,
+                      type = "survey",
+                      age_range = c(1, 8),
+                      n_posts = 1000,
+                      post_med_line_color = "red3",
+                      unc_line_color = "red3",
+                      glow = TRUE)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
+# Right
+plot_selex_posteriors(base_model,
+                      type = "fishery",
+                      n_posts = 1000,
+                      age_range = c(1, 8),
+                      glow = TRUE)
+```
+:::
+::::::
+
+<!-- sensitivity 5 -->
+## eDNA: time-varying selectivity
+<!-- slide 1 -->
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-mountains, fig.height = 4, out.height = "80%"}
+
+tv_selex_start_yr <- 1990
+
+# Left
+plot_selex_mountains(base_model,
+                     yrs = tv_selex_start_yr:last_data_yr,
+                     ages = 1:8,
+                     fill_num_colors = 50,
+                     scale = 20)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
+
+# Right
+plot_selex_uncertainty(base_model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE,
+                       label_loc = c(1, 0.65),
+                       label_font_size = 3)
+```
+:::
+::::::
+
+## eDNA: survey (left) and fishery (right)
+<!-- slide 2 -->
+:::::: {.columns}
+::: {.column width="50%"}
+```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
+# Left
+plot_selex_posteriors(base_model,
+                      type = "survey",
+                      age_range = c(1, 8),
+                      n_posts = 1000,
+                      post_med_line_color = "red3",
+                      unc_line_color = "red3",
+                      glow = TRUE)
+```
+:::
+
+::: {.column width="50%"}
+```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
+# Right
+plot_selex_posteriors(base_model,
+                      type = "fishery",
+                      n_posts = 1000,
+                      age_range = c(1, 8),
+                      glow = TRUE)
+```
+:::
+::::::
