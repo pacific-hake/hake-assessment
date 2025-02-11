@@ -95,7 +95,7 @@ plot_age_comp_fit(model,
 ::: {.column width="50%"}
 \center Fishery \center
 ```{r fishery-pearson, fig.height = 4, fig.width = 6, out.height = "65%"}
-plot_pearson_bubbles(base_model,
+plot_pearson_bubbles(model,
                      type = "fishery",
                      leg_pos = "top")
 ```
@@ -105,6 +105,30 @@ plot_pearson_bubbles(base_model,
 \center Survey \center
 ```{r survey-pearson, fig.height = 4, fig.width = 6, out.height = "65%"}
 plot_pearson_bubbles(model,
+                     type = "survey",
+                     alpha = 0.7)
+```
+:::
+::::::
+Dark bubbles: observed > expected
+
+White bubbles: observed < expected
+
+## Pearson residual for fit to the age data (base model) for comparison
+:::::: {.columns}
+::: {.column width="50%"}
+\center Fishery \center
+```{r fishery-pearson-base, fig.height = 4, fig.width = 6, out.height = "65%"}
+plot_pearson_bubbles(base_model,
+                     type = "fishery",
+                     leg_pos = "top")
+```
+:::
+
+::: {.column width="50%"}
+\center Survey \center
+```{r survey-pearson-base, fig.height = 4, fig.width = 6, out.height = "65%"}
+plot_pearson_bubbles(base_model,
                      type = "survey",
                      alpha = 0.7)
 ```
