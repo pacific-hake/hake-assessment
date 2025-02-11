@@ -12,9 +12,11 @@ plot_squid(
   ci_yrs = NULL,
   year_label_font_size = 4,
   y_lim = c(NA, NA),
+  x_lim = c(NA, NA),
   surv_point_type = 17,
   reg_point_type = 19,
-  cohorts = NULL
+  cohorts = NULL,
+  color_offset = 0
 )
 }
 \arguments{
@@ -40,12 +42,19 @@ credible intervals even when not showing them all (useful
 for showing sequential plots in a talk). Not tested with \code{relative = TRUE}
 and \code{show_ci = TRUE} as we do not currently use those.}
 
+\item{x_lim}{A vector to specify x limits, default is to span what is being
+plotted.}
+
 \item{surv_point_type}{The point shape type for ages in age-1 index years}
 
 \item{reg_point_type}{The point shape type for ages in non-age-1-index years}
 
 \item{cohorts}{A vector of years so as to plot only those cohorts if available (useful for
-talks). If \code{NULL} (the default) plots all available cohorots.}
+talks). If \code{NULL} (the default) plots all available cohorts.}
+
+\item{color_offset}{A value to offset the colors to compared to the ten
+retrospective years. This may be used when comparing model where only five
+retrospective years were run with those that have ten.}
 }
 \description{
 Make the retrospective recruitment deviations plot (squid plot)

@@ -1,9 +1,32 @@
 # Requests
 
-## Request 1 -- "Retrospectives for age-1 model"
+## Request 1 -- "Retrospectives for no age-1 model"
 
-Conduct a 5-year retrospective for the sensitivity removing the age-1 index – particularly interested 2022 and 2020 year classes.
+Conduct a 5-year retrospective for the sensitivity removing the age-1 index
+– particularly interested 2022 and 2020 year classes.
 
-* Point form answers
+* Squid plot shows that the 2020 cohort has increased uncertainty at age 3
+and the 2022 cohort is estimated to be smaller than the base model predicts
 
+## Retrospectives of model without age-1 index included
+```{r retro-last-yr-no-age1, fig.height = 3, out.height = "85%"}
+
+y_lim_squid <- c(-4.5, 4.5)
+plot_squid(sens_models[[2]][[2]],
+           show_ci = TRUE,
+           ci_yrs = c(2020, 2022),
+           x_lim = c(0, 12),
+           y_lim = y_lim_squid,
+           color_offset = 6)
+```
+
+## Retrospectives of Base model for comparison
+
+```{r main-retrospective-recruitment-fig, fig.cap = "(ref:main-retrospective-recruitment-cap)", fig.height = 3, out.height = "85%"}
+
+plot_squid(base_model,
+           show_ci = TRUE,
+           y_lim = y_lim_squid,
+           ci_yrs = c(2020, 2022))
+```
 

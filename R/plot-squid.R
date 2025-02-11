@@ -10,8 +10,10 @@
 #' @param ci_yrs A vector of years to include credible intervals for.
 #'   If `NULL`, all will be shown. Only used if `show_ci` is `TRUE`
 #' @param cohorts A vector of years so as to plot only those cohorts if available (useful for
-#'   talks). If `NULL` (the default) plots all available cohorots.
+#'   talks). If `NULL` (the default) plots all available cohorts.
 #' @param year_label_font_size Size of the font for the year labels
+#' @param x_lim A vector to specify x limits, default is to span what is being
+#' plotted.
 #' @param y_lim A vector to specify y limits, default is to span what is being
 #'   plotted. If `full` then automatically span all the
 #'   credible intervals even when not showing them all (useful
@@ -19,6 +21,9 @@
 #'   and `show_ci = TRUE` as we do not currently use those.
 #' @param surv_point_type The point shape type for ages in age-1 index years
 #' @param reg_point_type The point shape type for ages in non-age-1-index years
+#' @param color_offset A value to offset the colors to compared to the ten
+#' retrospective years. This may be used when comparing model where only five
+#' retrospective years were run with those that have ten.
 #' @export
 plot_squid <- function(model,
                        relative = FALSE,
@@ -27,9 +32,11 @@ plot_squid <- function(model,
                        ci_yrs = NULL,
                        year_label_font_size = 4,
                        y_lim = c(NA, NA),
+                       x_lim = c(NA, NA),
                        surv_point_type = 17,
                        reg_point_type = 19,
-                       cohorts = NULL){
+                       cohorts = NULL,
+                       color_offset = 0){
 
   # Extract a data frame of long-format recruitment deviations containing all
   # the models in the model list
@@ -42,12 +49,16 @@ plot_squid <- function(model,
       cohorts <- as.numeric(levels(d$model)) - 1
     }
 
-
   # Colors of lines and fill - add black to the beginning and remove end color
   # The B3 here is the transparency, B3 = 179 decimal out of possible 255 (FF),
   # So B3 means it is about 70% opaque
+  # colors <- c("#000000B3",
+  #             rev(rich_colors_short(length(cohorts))[-1]))
+
   colors <- c("#000000B3",
-              rev(rich_colors_short(length(cohorts))[-1]))
+              rev(rich_colors_short(10)[-1]))
+
+  colors <- colors[color_offset:(color_offset + length(cohorts) - 1)]
 
   # Add flag for whether the year was a survey year or not.
   d <- d |>
@@ -126,7 +137,7 @@ plot_squid <- function(model,
         dplyr::filter(year %in% ci_yrs)
     }
     vert_lines_dat <- ribbon_dat |>
-      dplyr::filter(model %in% c(min(model), max(model))) |>
+      dplyr::filter(model %in% min(model):max(model)) |>
       mutate(year = factor(year)) |>
       mutate(model = factor(model))
 
@@ -188,7 +199,8 @@ plot_squid <- function(model,
                     nudge_x = 0.5 * ifelse(relative, -1, 1),
                     nudge_y = -0.25,
                     direction = "both") +
-    scale_x_continuous(breaks = seq(0, 20)) +
+    scale_x_continuous(breaks = seq(0, 20),
+                       limits = x_lim) +
     scale_y_continuous(breaks = seq(-10, 10),
                        limits = y_lim) +
     scale_color_identity() +
