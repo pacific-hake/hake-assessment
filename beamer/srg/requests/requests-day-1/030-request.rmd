@@ -16,7 +16,7 @@ Provide plots of selectivity in 2024 as well as mountain plots for sensitivities
 tv_selex_start_yr <- 1990
 
 # Left
-plot_selex_mountains(base_model,
+plot_selex_mountains(sens_models[[2]][[2]],
                      yrs = tv_selex_start_yr:last_data_yr,
                      ages = 1:8,
                      fill_num_colors = 50,
@@ -28,7 +28,7 @@ plot_selex_mountains(base_model,
 ```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
 
 # Right
-plot_selex_uncertainty(base_model,
+plot_selex_uncertainty(sens_models[[2]][[2]],
                        n_col = 2,
                        pad_top = TRUE,
                        pad_bottom = TRUE,
@@ -44,7 +44,7 @@ plot_selex_uncertainty(base_model,
 ::: {.column width="50%"}
 ```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
 # Left
-plot_selex_posteriors(base_model,
+plot_selex_posteriors(sens_models[[2]][[2]],
                       type = "survey",
                       age_range = c(1, 8),
                       n_posts = 1000,
@@ -57,7 +57,7 @@ plot_selex_posteriors(base_model,
 ::: {.column width="50%"}
 ```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
 # Right
-plot_selex_posteriors(base_model,
+plot_selex_posteriors(sens_models[[2]][[2]],
                       type = "fishery",
                       n_posts = 1000,
                       age_range = c(1, 8),
@@ -76,7 +76,7 @@ plot_selex_posteriors(base_model,
 tv_selex_start_yr <- 1990
 
 # Left
-plot_selex_mountains(base_model,
+plot_selex_mountains(sens_models[[3]][[2]],
                      yrs = tv_selex_start_yr:last_data_yr,
                      ages = 1:8,
                      fill_num_colors = 50,
@@ -88,7 +88,7 @@ plot_selex_mountains(base_model,
 ```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
 
 # Right
-plot_selex_uncertainty(base_model,
+plot_selex_uncertainty(sens_models[[3]][[2]],
                        n_col = 2,
                        pad_top = TRUE,
                        pad_bottom = TRUE,
@@ -104,7 +104,7 @@ plot_selex_uncertainty(base_model,
 ::: {.column width="50%"}
 ```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
 # Left
-plot_selex_posteriors(base_model,
+plot_selex_posteriors(sens_models[[3]][[2]],
                       type = "survey",
                       age_range = c(1, 8),
                       n_posts = 1000,
@@ -117,7 +117,7 @@ plot_selex_posteriors(base_model,
 ::: {.column width="50%"}
 ```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
 # Right
-plot_selex_posteriors(base_model,
+plot_selex_posteriors(sens_models[[3]][[2]],
                       type = "fishery",
                       n_posts = 1000,
                       age_range = c(1, 8),
@@ -136,7 +136,7 @@ plot_selex_posteriors(base_model,
 tv_selex_start_yr <- 1990
 
 # Left
-plot_selex_mountains(base_model,
+plot_selex_mountains(sens_models[[3]][[3]],
                      yrs = tv_selex_start_yr:last_data_yr,
                      ages = 1:8,
                      fill_num_colors = 50,
@@ -148,7 +148,7 @@ plot_selex_mountains(base_model,
 ```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
 
 # Right
-plot_selex_uncertainty(base_model,
+plot_selex_uncertainty(sens_models[[3]][[3]],
                        n_col = 2,
                        pad_top = TRUE,
                        pad_bottom = TRUE,
@@ -164,7 +164,7 @@ plot_selex_uncertainty(base_model,
 ::: {.column width="50%"}
 ```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
 # Left
-plot_selex_posteriors(base_model,
+plot_selex_posteriors(sens_models[[3]][[3]],
                       type = "survey",
                       age_range = c(1, 8),
                       n_posts = 1000,
@@ -177,7 +177,7 @@ plot_selex_posteriors(base_model,
 ::: {.column width="50%"}
 ```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
 # Right
-plot_selex_posteriors(base_model,
+plot_selex_posteriors(sens_models[[3]][[3]],
                       type = "fishery",
                       n_posts = 1000,
                       age_range = c(1, 8),
@@ -196,7 +196,7 @@ plot_selex_posteriors(base_model,
 tv_selex_start_yr <- 1990
 
 # Left
-plot_selex_mountains(base_model,
+plot_selex_mountains(sens_models[[3]][[4]],
                      yrs = tv_selex_start_yr:last_data_yr,
                      ages = 1:8,
                      fill_num_colors = 50,
@@ -208,7 +208,7 @@ plot_selex_mountains(base_model,
 ```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
 
 # Right
-plot_selex_uncertainty(base_model,
+plot_selex_uncertainty(sens_models[[3]][[4]],
                        n_col = 2,
                        pad_top = TRUE,
                        pad_bottom = TRUE,
@@ -224,7 +224,7 @@ plot_selex_uncertainty(base_model,
 ::: {.column width="50%"}
 ```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
 # Left
-plot_selex_posteriors(base_model,
+plot_selex_posteriors(sens_models[[3]][[4]],
                       type = "survey",
                       age_range = c(1, 8),
                       n_posts = 1000,
@@ -237,7 +237,7 @@ plot_selex_posteriors(base_model,
 ::: {.column width="50%"}
 ```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
 # Right
-plot_selex_posteriors(base_model,
+plot_selex_posteriors(sens_models[[3]][[4]],
                       type = "fishery",
                       n_posts = 1000,
                       age_range = c(1, 8),
@@ -256,7 +256,7 @@ plot_selex_posteriors(base_model,
 tv_selex_start_yr <- 1990
 
 # Left
-plot_selex_mountains(base_model,
+plot_selex_mountains(sens_models[[2]][[4]],
                      yrs = tv_selex_start_yr:last_data_yr,
                      ages = 1:8,
                      fill_num_colors = 50,
@@ -268,7 +268,7 @@ plot_selex_mountains(base_model,
 ```{r selectivity-uncertainty, fig.height = 4, out.height = "80%"}
 
 # Right
-plot_selex_uncertainty(base_model,
+plot_selex_uncertainty(sens_models[[2]][[4]],
                        n_col = 2,
                        pad_top = TRUE,
                        pad_bottom = TRUE,
@@ -284,7 +284,7 @@ plot_selex_uncertainty(base_model,
 ::: {.column width="50%"}
 ```{r selectivity-posterior-survey, fig.height = 4, out.height = "80%"}
 # Left
-plot_selex_posteriors(base_model,
+plot_selex_posteriors(sens_models[[2]][[4]],
                       type = "survey",
                       age_range = c(1, 8),
                       n_posts = 1000,
@@ -297,7 +297,7 @@ plot_selex_posteriors(base_model,
 ::: {.column width="50%"}
 ```{r selectivity-posterior-fishery, fig.height = 4, out.height = "80%"}
 # Right
-plot_selex_posteriors(base_model,
+plot_selex_posteriors(sens_models[[2]][[4]],
                       type = "fishery",
                       n_posts = 1000,
                       age_range = c(1, 8),
