@@ -1,8 +1,8 @@
-# Request 1
+# Requests
 
 ## Request 1 -- "Bottom trawl index uncertainty check"
 
 The SRG requests reanalyzing the bottom trawl index such that uncertainty remains within the range of 0 and 1 given that these are proportions.
 
-## Description of figure from Eric here
-![](image-files/test)
+## Estimated proportion of biomass observed by area
+![](image-files/Proportions_2003_2023)
