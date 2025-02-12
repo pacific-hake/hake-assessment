@@ -6,10 +6,11 @@ The SRG requests sensitivities on fishery selectivity parameterization (in the b
 
 ```{r main-tv-selex-unc-base, fig.height = 4, out.height = "80%"}
 
-plot_selex_uncertainty(base_model,
-                       n_col = 2,
-                       pad_top = TRUE,
-                       pad_bottom = TRUE)
+plot_selex_posteriors(base_model,
+                      type = "fishery",
+                      n_posts = 1000,
+                      age_range = c(1, 8),
+                      glow = TRUE)
 ```
 
 ## Selectivity in 2024: maximum age of 8
@@ -18,10 +19,11 @@ plot_selex_uncertainty(base_model,
 
 model <- sens_models[[2]][[2]]
 
-plot_selex_uncertainty(model,
-                       n_col = 2,
-                       pad_top = TRUE,
-                       pad_bottom = TRUE)
+plot_selex_posteriors(model,
+                      type = "fishery",
+                      n_posts = 1000,
+                      age_range = c(1, 8),
+                      glow = TRUE)
 ```
 
 ## Selectivity in 2024: maximum age of 10
@@ -30,10 +32,11 @@ plot_selex_uncertainty(model,
 
 model <- sens_models[[2]][[2]]
 
-plot_selex_uncertainty(model,
-                       n_col = 2,
-                       pad_top = TRUE,
-                       pad_bottom = TRUE)
+plot_selex_posteriors(model,
+                      type = "fishery",
+                      n_posts = 1000,
+                      age_range = c(1, 8),
+                      glow = TRUE)
 ```
 
 ## Selectivity in 2024: maximum age of 12
@@ -42,10 +45,11 @@ plot_selex_uncertainty(model,
 
 model <- sens_models[[2]][[2]]
 
-plot_selex_uncertainty(model,
-                       n_col = 2,
-                       pad_top = TRUE,
-                       pad_bottom = TRUE)
+plot_selex_posteriors(model,
+                      type = "fishery",
+                      n_posts = 1000,
+                      age_range = c(1, 8),
+                      glow = TRUE)
 ```
 
 ## Selectivity: maximum age of 6 (base model)
