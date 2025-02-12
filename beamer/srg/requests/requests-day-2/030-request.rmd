@@ -1,6 +1,327 @@
-## Request 3 -- "name of request"
+## Request 3 -- "Maximum age selectivity"
 
-Description
+The SRG requests sensitivities on fishery selectivity parameterization (in the base model) by increasing the maximum age beyond which selectivity is held constant to ages 8, 10, and 12. Present the resulting fishery selectivity (2024 with uncertainty and MCMC traces and individual years with uncertainty), spawning biomass trajectories, fits to the acoustic survey index, and recruitment deviation estimates.
 
-* Point form answers
+## Selectivity in 2024: maximum age of 6 (base model)
 
+```{r main-tv-selex-unc-base, fig.height = 4, out.height = "80%"}
+
+plot_selex_uncertainty(base_model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE)
+```
+
+## Selectivity in 2024: maximum age of 8
+
+```{r main-tv-selex-unc-8, fig.height = 4, out.height = "80%"}
+
+model <- sens_models[[2]][[2]]
+
+plot_selex_uncertainty(model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE)
+```
+
+## Selectivity in 2024: maximum age of 10
+
+```{r main-tv-selex-unc-10, fig.height = 4, out.height = "80%"}
+
+model <- sens_models[[2]][[2]]
+
+plot_selex_uncertainty(model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE)
+```
+
+## Selectivity in 2024: maximum age of 12
+
+```{r main-tv-selex-unc-12, fig.height = 4, out.height = "80%"}
+
+model <- sens_models[[2]][[2]]
+
+plot_selex_uncertainty(model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE)
+```
+
+## Selectivity: maximum age of 6 (base model)
+
+```{r main-tv-selex-base, fig.height = 4, out.height = "80%"}
+
+tv_selex_start_yr <- 1990
+
+plot_selex_mountains(base_model,
+                     yrs = tv_selex_start_yr:last_data_yr,
+                     ages = 1:8,
+                     fill_num_colors = 50,
+                     scale = 20)
+```
+
+## Selectivity: maximum age of 8
+
+```{r main-tv-selex-8, fig.height = 4, out.height = "80%"}
+
+tv_selex_start_yr <- 1990
+
+model <- sens_models[[2]][[2]]
+
+plot_selex_mountains(model,
+                     yrs = tv_selex_start_yr:last_data_yr,
+                     ages = 1:8,
+                     fill_num_colors = 50,
+                     scale = 20)
+```
+
+## Selectivity: maximum age of 10
+
+```{r main-tv-selex-10, fig.height = 4, out.height = "80%"}
+
+tv_selex_start_yr <- 1990
+
+model <- sens_models[[2]][[2]]
+
+plot_selex_mountains(model,
+                     yrs = tv_selex_start_yr:last_data_yr,
+                     ages = 1:8,
+                     fill_num_colors = 50,
+                     scale = 20)
+```
+
+## Selectivity: maximum age of 12
+
+```{r main-tv-selex-12, fig.height = 4, out.height = "80%"}
+
+tv_selex_start_yr <- 1990
+
+model <- sens_models[[2]][[2]]
+
+plot_selex_mountains(model,
+                     yrs = tv_selex_start_yr:last_data_yr,
+                     ages = 1:8,
+                     fill_num_colors = 50,
+                     scale = 20)
+```
+
+## Spawning biomass: maximum age of 6 (base model)
+:::::: {.columns}
+::: {.column width="50%"}
+```{r main-biomass-base, fig.height = 4, out.height = "80%"}
+# Left
+plot_biomass(list(base_model),
+             ylim = c(0, 5),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r main-relative-biomass-base, fig.height = 4, out.height = "80%"}
+# Right
+plot_rel_biomass(model_lst = list(base_model),
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
+:::
+::::::
+
+## Spawning biomass: maximum age of 8
+model <- sens_models[[2]][[2]]
+:::::: {.columns}
+::: {.column width="50%"}
+```{r main-biomass-8, fig.height = 4, out.height = "80%"}
+# Left
+plot_biomass(list(model),
+             ylim = c(0, 5),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r main-relative-biomass-8, fig.height = 4, out.height = "80%"}
+# Right
+plot_rel_biomass(list(model),
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
+:::
+::::::
+
+## Spawning biomass: maximum age of 10
+model <- sens_models[[2]][[2]]
+:::::: {.columns}
+::: {.column width="50%"}
+```{r main-biomass-10, fig.height = 4, out.height = "80%"}
+# Left
+plot_biomass(list(model),
+             ylim = c(0, 5),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r main-relative-biomass-10, fig.height = 4, out.height = "80%"}
+# Right
+plot_rel_biomass(list(model),
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
+:::
+::::::
+
+## Spawning biomass: maximum age of 12
+model <- sens_models[[2]][[2]]
+:::::: {.columns}
+::: {.column width="50%"}
+```{r main-biomass-12, fig.height = 4, out.height = "80%"}
+# Left
+plot_biomass(list(model),
+             ylim = c(0, 5),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r main-relative-biomass-12, fig.height = 4, out.height = "80%"}
+# Right
+plot_rel_biomass(list(model),
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
+:::
+::::::
+
+## Acoustic survey fit: maximum age of 6 (base model)
+
+```{r main-survey-index-fit-mcmc-base, fig.height = 4, out.height = "80%"}
+
+plot_survey_fit_mcmc(base_model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.8,
+                     leg_sep = 0.45,
+                     x_lim = c(survey_start_yr, survey_end_yr),
+                     y_lim = c(0, 6),
+                     x_labs_mod = 5,
+                     y_labs_by = 0.5,
+                     tick_prop = 1,
+                     vjust_x_labels = -2,
+                     remove_yr_labels = NULL)
+```
+
+
+## Acoustic survey fit: maximum age of 8
+
+```{r main-survey-index-fit-mcmc-8, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_survey_fit_mcmc(model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.8,
+                     leg_sep = 0.45,
+                     x_lim = c(survey_start_yr, survey_end_yr),
+                     y_lim = c(0, 6),
+                     x_labs_mod = 5,
+                     y_labs_by = 0.5,
+                     tick_prop = 1,
+                     vjust_x_labels = -2,
+                     remove_yr_labels = NULL)
+```
+
+## Acoustic survey fit: maximum age of 10
+
+```{r main-survey-index-fit-mcmc-10, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_survey_fit_mcmc(model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.8,
+                     leg_sep = 0.45,
+                     x_lim = c(survey_start_yr, survey_end_yr),
+                     y_lim = c(0, 6),
+                     x_labs_mod = 5,
+                     y_labs_by = 0.5,
+                     tick_prop = 1,
+                     vjust_x_labels = -2,
+                     remove_yr_labels = NULL)
+```
+
+## Acoustic survey fit: maximum age of 12
+
+```{r main-survey-index-fit-mcmc-12, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_survey_fit_mcmc(model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.8,
+                     leg_sep = 0.45,
+                     x_lim = c(survey_start_yr, survey_end_yr),
+                     y_lim = c(0, 6),
+                     x_labs_mod = 5,
+                     y_labs_by = 0.5,
+                     tick_prop = 1,
+                     vjust_x_labels = -2,
+                     remove_yr_labels = NULL)
+```
+
+## Rec devs: maximum age of 6 (base model)
+
+```{r main-recruitment-devs-base, fig.height = 4, out.height = "80%"}
+
+plot_recdevs(list(base_model),
+             line_color = ts_single_line_color,
+             leg_pos = "none")
+```
+
+## Rec devs: maximum age of 8
+
+```{r main-recruitment-devs-8, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_recdevs(list(model),
+             line_color = ts_single_line_color,
+             leg_pos = "none")
+```
+
+## Rec devs: maximum age of 10
+
+```{r main-recruitment-devs-10, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_recdevs(list(model),
+             line_color = ts_single_line_color,
+             leg_pos = "none")
+```
+
+## Rec devs: maximum age of 12
+
+```{r main-recruitment-devs-12, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_recdevs(list(model),
+             line_color = ts_single_line_color,
+             leg_pos = "none")
+```

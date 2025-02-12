@@ -1,6 +1,13 @@
-## Request 4 -- "name of request"
+## Request 4 -- "Peel age-1 index data"
 
-Description
+The SRG requests running the base model with the age-1 index, keeping 2023 and beyond recruitment deterministic, and sequentially (backwards in time) removing the age-1 index from the data. Run the base model: 
 
-* Point form answers
+* without the 2023 age-1 index, 
 
+* then without the 2023 and 2021 age-1 indices, 
+
+* then without the 2023, 2021, and 2019 age-1 indices, and 
+
+* then without the 2023, 2021, 2019, 2017, and 2015 age-1 indices.
+
+Present spawning biomass trajectories (with unfished equilibrium spawning biomass), recruitment deviation estimates, and fits to the acoustic survey index.
