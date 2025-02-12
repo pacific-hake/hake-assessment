@@ -6,6 +6,10 @@ The SRG requests sensitivities on fishery selectivity parameterization (in the b
 
 ```{r main-tv-selex-unc-base, fig.height = 4, out.height = "80%"}
 
+model_age_8 <- request_models[[1]][[1]]
+model_age_10 <- request_models[[1]][[2]]
+model_age_12 <- request_models[[1]][[3]]
+
 plot_selex_posteriors(base_model,
                       type = "fishery",
                       n_posts = 1000,
@@ -17,9 +21,7 @@ plot_selex_posteriors(base_model,
 
 ```{r main-tv-selex-unc-8, fig.height = 4, out.height = "80%"}
 
-model <- sens_models[[2]][[2]]
-
-plot_selex_posteriors(model,
+plot_selex_posteriors(model_age_8,
                       type = "fishery",
                       n_posts = 1000,
                       age_range = c(1, 8),
@@ -30,9 +32,7 @@ plot_selex_posteriors(model,
 
 ```{r main-tv-selex-unc-10, fig.height = 4, out.height = "80%"}
 
-model <- sens_models[[2]][[2]]
-
-plot_selex_posteriors(model,
+plot_selex_posteriors(model_age_10,
                       type = "fishery",
                       n_posts = 1000,
                       age_range = c(1, 8),
@@ -43,9 +43,7 @@ plot_selex_posteriors(model,
 
 ```{r main-tv-selex-unc-12, fig.height = 4, out.height = "80%"}
 
-model <- sens_models[[2]][[2]]
-
-plot_selex_posteriors(model,
+plot_selex_posteriors(model_age_12,
                       type = "fishery",
                       n_posts = 1000,
                       age_range = c(1, 8),
@@ -66,8 +64,8 @@ plot_selex_uncertainty(base_model,
 ## Selectivity: maximum age of 8
 
 ```{r main-tv-selex-8, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_selex_uncertainty(model,
+
+plot_selex_uncertainty(model_age_8,
                        n_col = 2,
                        pad_top = TRUE,
                        pad_bottom = TRUE,
@@ -78,8 +76,8 @@ plot_selex_uncertainty(model,
 ## Selectivity: maximum age of 10
 
 ```{r main-tv-selex-10, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_selex_uncertainty(model,
+
+plot_selex_uncertainty(model_age_10,
                        n_col = 2,
                        pad_top = TRUE,
                        pad_bottom = TRUE,
@@ -90,8 +88,8 @@ plot_selex_uncertainty(model,
 ## Selectivity: maximum age of 12
 
 ```{r main-tv-selex-12, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_selex_uncertainty(model,
+
+plot_selex_uncertainty(model_age_12,
                        n_col = 2,
                        pad_top = TRUE,
                        pad_bottom = TRUE,
@@ -124,12 +122,12 @@ plot_rel_biomass(model_lst = list(base_model),
 ::::::
 
 ## Spawning biomass: maximum age of 8
-model <- sens_models[[2]][[2]]
+
 :::::: {.columns}
 ::: {.column width="50%"}
 ```{r main-biomass-8, fig.height = 4, out.height = "80%"}
 # Left
-plot_biomass(list(model),
+plot_biomass(list(model_age_8),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
              leg_pos = "none")
@@ -139,7 +137,7 @@ plot_biomass(list(model),
 ::: {.column width="50%"}
 ```{r main-relative-biomass-8, fig.height = 4, out.height = "80%"}
 # Right
-plot_rel_biomass(list(model),
+plot_rel_biomass(list(model_age_8),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
                  leg_pos = "none") |>
@@ -149,12 +147,12 @@ plot_rel_biomass(list(model),
 ::::::
 
 ## Spawning biomass: maximum age of 10
-model <- sens_models[[2]][[2]]
+
 :::::: {.columns}
 ::: {.column width="50%"}
 ```{r main-biomass-10, fig.height = 4, out.height = "80%"}
 # Left
-plot_biomass(list(model),
+plot_biomass(list(model_age_10),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
              leg_pos = "none")
@@ -164,7 +162,7 @@ plot_biomass(list(model),
 ::: {.column width="50%"}
 ```{r main-relative-biomass-10, fig.height = 4, out.height = "80%"}
 # Right
-plot_rel_biomass(list(model),
+plot_rel_biomass(list(model_age_10),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
                  leg_pos = "none") |>
@@ -174,12 +172,12 @@ plot_rel_biomass(list(model),
 ::::::
 
 ## Spawning biomass: maximum age of 12
-model <- sens_models[[2]][[2]]
+
 :::::: {.columns}
 ::: {.column width="50%"}
 ```{r main-biomass-12, fig.height = 4, out.height = "80%"}
 # Left
-plot_biomass(list(model),
+plot_biomass(list(model_age_12),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
              leg_pos = "none")
@@ -189,7 +187,7 @@ plot_biomass(list(model),
 ::: {.column width="50%"}
 ```{r main-relative-biomass-12, fig.height = 4, out.height = "80%"}
 # Right
-plot_rel_biomass(list(model),
+plot_rel_biomass(list(model_age_12),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
                  leg_pos = "none") |>
@@ -223,8 +221,8 @@ plot_survey_fit_mcmc(base_model,
 ## Acoustic survey fit: maximum age of 8
 
 ```{r main-survey-index-fit-mcmc-8, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_survey_fit_mcmc(model,
+
+plot_survey_fit_mcmc(model_age_8,
                      type = "acoustic",
                      n_posts = 1000,
                      glow = TRUE,
@@ -244,8 +242,8 @@ plot_survey_fit_mcmc(model,
 ## Acoustic survey fit: maximum age of 10
 
 ```{r main-survey-index-fit-mcmc-10, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_survey_fit_mcmc(model,
+
+plot_survey_fit_mcmc(model_age_10,
                      type = "acoustic",
                      n_posts = 1000,
                      glow = TRUE,
@@ -265,8 +263,8 @@ plot_survey_fit_mcmc(model,
 ## Acoustic survey fit: maximum age of 12
 
 ```{r main-survey-index-fit-mcmc-12, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_survey_fit_mcmc(model,
+
+plot_survey_fit_mcmc(model_age_12,
                      type = "acoustic",
                      n_posts = 1000,
                      glow = TRUE,
@@ -295,8 +293,8 @@ plot_recdevs(list(base_model),
 ## Rec devs: maximum age of 8
 
 ```{r main-recruitment-devs-8, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_recdevs(list(model),
+
+plot_recdevs(list(model_age_8),
              line_color = ts_single_line_color,
              leg_pos = "none")
 ```
@@ -304,8 +302,8 @@ plot_recdevs(list(model),
 ## Rec devs: maximum age of 10
 
 ```{r main-recruitment-devs-10, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_recdevs(list(model),
+
+plot_recdevs(list(model_age_10),
              line_color = ts_single_line_color,
              leg_pos = "none")
 ```
@@ -313,8 +311,8 @@ plot_recdevs(list(model),
 ## Rec devs: maximum age of 12
 
 ```{r main-recruitment-devs-12, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_recdevs(list(model),
+
+plot_recdevs(list(model_age_12),
              line_color = ts_single_line_color,
              leg_pos = "none")
 ```
