@@ -90,7 +90,8 @@ sens_models_desc <-
 #request_models_desc <- NA
 
 request_models_dirs <-
-  list(c("02-max-sel-age-10",
+  list(c("01-max-sel-age-8",
+         "02-max-sel-age-10",
          "03-max-sel-age-12"),
        c("04-no-2023-age1",
          "05-no-2021-2023-age1",
