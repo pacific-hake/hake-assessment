@@ -11,3 +11,277 @@ The SRG requests running the base model with the age-1 index, keeping 2023 and b
 * then without the 2023, 2021, 2019, 2017, and 2015 age-1 indices.
 
 Present spawning biomass trajectories (with unfished equilibrium spawning biomass), recruitment deviation estimates, and fits to the acoustic survey index.
+
+## Spawning biomass: full age 1 index (base model)
+:::::: {.columns}
+::: {.column width="50%"}
+```{r main-biomass-base, fig.height = 4, out.height = "80%"}
+# Left
+plot_biomass(list(base_model),
+             ylim = c(0, 5),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r main-relative-biomass-base, fig.height = 4, out.height = "80%"}
+# Right
+plot_rel_biomass(model_lst = list(base_model),
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
+:::
+::::::
+
+## Spawning biomass: remove back to 2023
+model <- sens_models[[2]][[2]]
+:::::: {.columns}
+::: {.column width="50%"}
+```{r main-biomass-rm1, fig.height = 4, out.height = "80%"}
+# Left
+plot_biomass(list(model),
+             ylim = c(0, 5),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r main-relative-biomass-rm1, fig.height = 4, out.height = "80%"}
+# Right
+plot_rel_biomass(model_lst = list(model),
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
+:::
+::::::
+
+## Spawning biomass: remove back to 2021
+model <- sens_models[[2]][[2]]
+:::::: {.columns}
+::: {.column width="50%"}
+```{r main-biomass-rm2, fig.height = 4, out.height = "80%"}
+# Left
+plot_biomass(list(model),
+             ylim = c(0, 5),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r main-relative-biomass-rm2, fig.height = 4, out.height = "80%"}
+# Right
+plot_rel_biomass(model_lst = list(model),
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
+:::
+::::::
+
+## Spawning biomass: remove back to 2019
+model <- sens_models[[2]][[2]]
+:::::: {.columns}
+::: {.column width="50%"}
+```{r main-biomass-rm3, fig.height = 4, out.height = "80%"}
+# Left
+plot_biomass(list(model),
+             ylim = c(0, 5),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r main-relative-biomass-rm3, fig.height = 4, out.height = "80%"}
+# Right
+plot_rel_biomass(model_lst = list(model),
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
+:::
+::::::
+
+## Spawning biomass: remove back to 2015
+model <- sens_models[[2]][[2]]
+:::::: {.columns}
+::: {.column width="50%"}
+```{r main-biomass-rm5, fig.height = 4, out.height = "80%"}
+# Left
+plot_biomass(list(model),
+             ylim = c(0, 5),
+             point_shape = ts_single_model_pointshape,
+             leg_pos = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r main-relative-biomass-rm5, fig.height = 4, out.height = "80%"}
+# Right
+plot_rel_biomass(model_lst = list(model),
+                 ylim = c(0, 2.5),
+                 alpha = 0.2,
+                 leg_pos = "none") |>
+  suppressWarnings()
+```
+:::
+::::::
+
+## Rec devs: full age 1 index (base model)
+
+```{r main-recruitment-devs-base, fig.height = 4, out.height = "80%"}
+
+plot_recdevs(list(base_model),
+             line_color = ts_single_line_color,
+             leg_pos = "none")
+```
+
+## Rec devs: remove back to 2023
+
+```{r main-recruitment-devs-rm1, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_recdevs(list(model),
+             line_color = ts_single_line_color,
+             leg_pos = "none")
+```
+
+## Rec devs: remove back to 2021
+
+```{r main-recruitment-devs-rm2, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_recdevs(list(model),
+             line_color = ts_single_line_color,
+             leg_pos = "none")
+```
+
+## Rec devs: remove back to 2019
+
+```{r main-recruitment-devs-rm3, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_recdevs(list(model),
+             line_color = ts_single_line_color,
+             leg_pos = "none")
+```
+
+## Rec devs: remove back to 2015
+
+```{r main-recruitment-devs-rm5, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_recdevs(list(model),
+             line_color = ts_single_line_color,
+             leg_pos = "none")
+```
+
+## Acoustic survey fit: full age 1 index (base model)
+
+```{r main-survey-index-fit-mcmc-base, fig.height = 4, out.height = "80%"}
+
+plot_survey_fit_mcmc(base_model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.8,
+                     leg_sep = 0.45,
+                     x_lim = c(survey_start_yr, survey_end_yr),
+                     y_lim = c(0, 6),
+                     x_labs_mod = 5,
+                     y_labs_by = 0.5,
+                     tick_prop = 1,
+                     vjust_x_labels = -2,
+                     remove_yr_labels = NULL)
+```
+
+## Acoustic survey fit: remove back to 2023
+
+```{r main-survey-index-fit-mcmc-rm1, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_survey_fit_mcmc(model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.8,
+                     leg_sep = 0.45,
+                     x_lim = c(survey_start_yr, survey_end_yr),
+                     y_lim = c(0, 6),
+                     x_labs_mod = 5,
+                     y_labs_by = 0.5,
+                     tick_prop = 1,
+                     vjust_x_labels = -2,
+                     remove_yr_labels = NULL)
+```
+
+## Acoustic survey fit: remove back to 2021
+
+```{r main-survey-index-fit-mcmc-rm2, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_survey_fit_mcmc(model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.8,
+                     leg_sep = 0.45,
+                     x_lim = c(survey_start_yr, survey_end_yr),
+                     y_lim = c(0, 6),
+                     x_labs_mod = 5,
+                     y_labs_by = 0.5,
+                     tick_prop = 1,
+                     vjust_x_labels = -2,
+                     remove_yr_labels = NULL)
+```
+
+## Acoustic survey fit: remove back to 2019
+
+```{r main-survey-index-fit-mcmc-rm3, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_survey_fit_mcmc(model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.8,
+                     leg_sep = 0.45,
+                     x_lim = c(survey_start_yr, survey_end_yr),
+                     y_lim = c(0, 6),
+                     x_labs_mod = 5,
+                     y_labs_by = 0.5,
+                     tick_prop = 1,
+                     vjust_x_labels = -2,
+                     remove_yr_labels = NULL)
+```
+
+## Acoustic survey fit: remove back to 2015
+
+```{r main-survey-index-fit-mcmc-rm5, fig.height = 4, out.height = "80%"}
+model <- sens_models[[2]][[2]]
+plot_survey_fit_mcmc(model,
+                     type = "acoustic",
+                     n_posts = 1000,
+                     glow = TRUE,
+                     glow_color = "black",
+                     glow_offset = 0.5,
+                     leg_ymax = 4.8,
+                     leg_sep = 0.45,
+                     x_lim = c(survey_start_yr, survey_end_yr),
+                     y_lim = c(0, 6),
+                     x_labs_mod = 5,
+                     y_labs_by = 0.5,
+                     tick_prop = 1,
+                     vjust_x_labels = -2,
+                     remove_yr_labels = NULL)
+```
