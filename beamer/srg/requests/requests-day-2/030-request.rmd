@@ -1,3 +1,5 @@
+# Request 3
+
 ## Request 3 -- "Maximum age selectivity"
 
 The SRG requests sensitivities on fishery selectivity parameterization (in the base model) by increasing the maximum age beyond which selectivity is held constant to ages 8, 10, and 12. Present the resulting fishery selectivity (2024 with uncertainty and MCMC traces and individual years with uncertainty), spawning biomass trajectories, fits to the acoustic survey index, and recruitment deviation estimates.
@@ -123,7 +125,7 @@ plot_biomass(list(base_model, model_age_8, model_age_10, model_age_12),
 ```{r main-relative-biomass-base-a, fig.height = 4, out.height = "80%"}
 # Right
 plot_rel_biomass(list(base_model, model_age_8, model_age_10, model_age_12),
-             c("base model", request_models_names[[1]]),
+                 c("base model", request_models_names[[1]]),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
                  leg_pos = c(0.75, 0.80)) |>
