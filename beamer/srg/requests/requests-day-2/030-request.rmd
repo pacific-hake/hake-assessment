@@ -13,7 +13,7 @@ model_age_12 <- request_models[[1]][[3]]
 plot_selex_posteriors(base_model,
                       type = "fishery",
                       n_posts = 1000,
-                      age_range = c(1, 8),
+                      age_range = c(1, 13),
                       glow = TRUE)
 ```
 
@@ -24,7 +24,7 @@ plot_selex_posteriors(base_model,
 plot_selex_posteriors(model_age_8,
                       type = "fishery",
                       n_posts = 1000,
-                      age_range = c(1, 8),
+                      age_range = c(1, 13),
                       glow = TRUE)
 ```
 
@@ -35,7 +35,7 @@ plot_selex_posteriors(model_age_8,
 plot_selex_posteriors(model_age_10,
                       type = "fishery",
                       n_posts = 1000,
-                      age_range = c(1, 8),
+                      age_range = c(1, 13),
                       glow = TRUE)
 ```
 
@@ -46,7 +46,7 @@ plot_selex_posteriors(model_age_10,
 plot_selex_posteriors(model_age_12,
                       type = "fishery",
                       n_posts = 1000,
-                      age_range = c(1, 8),
+                      age_range = c(1, 13),
                       glow = TRUE)
 ```
 
