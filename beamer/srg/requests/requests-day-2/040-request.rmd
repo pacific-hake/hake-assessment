@@ -16,6 +16,12 @@ Present spawning biomass trajectories (with unfished equilibrium spawning biomas
 :::::: {.columns}
 ::: {.column width="50%"}
 ```{r main-biomass-base, fig.height = 4, out.height = "80%"}
+
+model_age1_minus_1 <- request_models[[2]][[1]]
+model_age1_minus_2 <- request_models[[2]][[2]]
+model_age1_minus_3 <- request_models[[2]][[3]]
+model_age1_minus_5 <- request_models[[2]][[4]]
+
 # Left
 plot_biomass(list(base_model),
              ylim = c(0, 5),
@@ -37,12 +43,12 @@ plot_rel_biomass(model_lst = list(base_model),
 ::::::
 
 ## Spawning biomass: remove back to 2023
-model <- sens_models[[2]][[2]]
+
 :::::: {.columns}
 ::: {.column width="50%"}
 ```{r main-biomass-rm1, fig.height = 4, out.height = "80%"}
 # Left
-plot_biomass(list(model),
+plot_biomass(list(model_age1_minus_1),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
              leg_pos = "none")
@@ -52,7 +58,7 @@ plot_biomass(list(model),
 ::: {.column width="50%"}
 ```{r main-relative-biomass-rm1, fig.height = 4, out.height = "80%"}
 # Right
-plot_rel_biomass(model_lst = list(model),
+plot_rel_biomass(model_lst = list(model_age1_minus_1),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
                  leg_pos = "none") |>
@@ -62,12 +68,12 @@ plot_rel_biomass(model_lst = list(model),
 ::::::
 
 ## Spawning biomass: remove back to 2021
-model <- sens_models[[2]][[2]]
+
 :::::: {.columns}
 ::: {.column width="50%"}
 ```{r main-biomass-rm2, fig.height = 4, out.height = "80%"}
 # Left
-plot_biomass(list(model),
+plot_biomass(list(model_age1_minus_2),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
              leg_pos = "none")
@@ -77,7 +83,7 @@ plot_biomass(list(model),
 ::: {.column width="50%"}
 ```{r main-relative-biomass-rm2, fig.height = 4, out.height = "80%"}
 # Right
-plot_rel_biomass(model_lst = list(model),
+plot_rel_biomass(model_lst = list(model_age1_minus_2),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
                  leg_pos = "none") |>
@@ -87,12 +93,12 @@ plot_rel_biomass(model_lst = list(model),
 ::::::
 
 ## Spawning biomass: remove back to 2019
-model <- sens_models[[2]][[2]]
+
 :::::: {.columns}
 ::: {.column width="50%"}
 ```{r main-biomass-rm3, fig.height = 4, out.height = "80%"}
 # Left
-plot_biomass(list(model),
+plot_biomass(list(model_age1_minus_3),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
              leg_pos = "none")
@@ -102,7 +108,7 @@ plot_biomass(list(model),
 ::: {.column width="50%"}
 ```{r main-relative-biomass-rm3, fig.height = 4, out.height = "80%"}
 # Right
-plot_rel_biomass(model_lst = list(model),
+plot_rel_biomass(model_lst = list(model_age1_minus_3),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
                  leg_pos = "none") |>
@@ -112,12 +118,12 @@ plot_rel_biomass(model_lst = list(model),
 ::::::
 
 ## Spawning biomass: remove back to 2015
-model <- sens_models[[2]][[2]]
+
 :::::: {.columns}
 ::: {.column width="50%"}
 ```{r main-biomass-rm5, fig.height = 4, out.height = "80%"}
 # Left
-plot_biomass(list(model),
+plot_biomass(list(model_age1_minus_5),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
              leg_pos = "none")
@@ -127,7 +133,7 @@ plot_biomass(list(model),
 ::: {.column width="50%"}
 ```{r main-relative-biomass-rm5, fig.height = 4, out.height = "80%"}
 # Right
-plot_rel_biomass(model_lst = list(model),
+plot_rel_biomass(model_lst = list(model_age1_minus_5),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
                  leg_pos = "none") |>
@@ -148,8 +154,8 @@ plot_recdevs(list(base_model),
 ## Rec devs: remove back to 2023
 
 ```{r main-recruitment-devs-rm1, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_recdevs(list(model),
+
+plot_recdevs(list(model_age1_minus_1),
              line_color = ts_single_line_color,
              leg_pos = "none")
 ```
@@ -157,8 +163,8 @@ plot_recdevs(list(model),
 ## Rec devs: remove back to 2021
 
 ```{r main-recruitment-devs-rm2, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_recdevs(list(model),
+
+plot_recdevs(list(model_age1_minus_2),
              line_color = ts_single_line_color,
              leg_pos = "none")
 ```
@@ -166,8 +172,8 @@ plot_recdevs(list(model),
 ## Rec devs: remove back to 2019
 
 ```{r main-recruitment-devs-rm3, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_recdevs(list(model),
+
+plot_recdevs(list(model_age1_minus_3),
              line_color = ts_single_line_color,
              leg_pos = "none")
 ```
@@ -175,8 +181,8 @@ plot_recdevs(list(model),
 ## Rec devs: remove back to 2015
 
 ```{r main-recruitment-devs-rm5, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_recdevs(list(model),
+
+plot_recdevs(list(model_age1_minus_5),
              line_color = ts_single_line_color,
              leg_pos = "none")
 ```
@@ -205,8 +211,8 @@ plot_survey_fit_mcmc(base_model,
 ## Acoustic survey fit: remove back to 2023
 
 ```{r main-survey-index-fit-mcmc-rm1, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_survey_fit_mcmc(model,
+
+plot_survey_fit_mcmc(model_age1_minus_1,
                      type = "acoustic",
                      n_posts = 1000,
                      glow = TRUE,
@@ -226,8 +232,8 @@ plot_survey_fit_mcmc(model,
 ## Acoustic survey fit: remove back to 2021
 
 ```{r main-survey-index-fit-mcmc-rm2, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_survey_fit_mcmc(model,
+
+plot_survey_fit_mcmc(model_age1_minus_2,
                      type = "acoustic",
                      n_posts = 1000,
                      glow = TRUE,
@@ -247,8 +253,8 @@ plot_survey_fit_mcmc(model,
 ## Acoustic survey fit: remove back to 2019
 
 ```{r main-survey-index-fit-mcmc-rm3, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_survey_fit_mcmc(model,
+
+plot_survey_fit_mcmc(model_age1_minus_3,
                      type = "acoustic",
                      n_posts = 1000,
                      glow = TRUE,
@@ -268,8 +274,8 @@ plot_survey_fit_mcmc(model,
 ## Acoustic survey fit: remove back to 2015
 
 ```{r main-survey-index-fit-mcmc-rm5, fig.height = 4, out.height = "80%"}
-model <- sens_models[[2]][[2]]
-plot_survey_fit_mcmc(model,
+
+plot_survey_fit_mcmc(model_age1_minus_5,
                      type = "acoustic",
                      n_posts = 1000,
                      glow = TRUE,
