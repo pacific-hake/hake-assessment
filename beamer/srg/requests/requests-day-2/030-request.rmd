@@ -177,7 +177,7 @@ plot_survey_fit_mcmc(model_age_8,
 
 ## Acoustic survey fit: maximum age of 10
 
-```{r main-survey-index-fit-mcmc-10, fig.height = 4, out.height = "80%", eval=FALSE}
+```{r main-survey-index-fit-mcmc-10, fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age_10,
                      type = "acoustic",
@@ -198,7 +198,7 @@ plot_survey_fit_mcmc(model_age_10,
 
 ## Acoustic survey fit: maximum age of 12
 
-```{r main-survey-index-fit-mcmc-12, fig.height = 4, out.height = "80%", eval=FALSE}
+```{r main-survey-index-fit-mcmc-12, fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age_12,
                      type = "acoustic",

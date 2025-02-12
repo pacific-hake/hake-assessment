@@ -60,7 +60,7 @@ plot_recdevs(model_lst = list(base_model, model_age1_minus_1, model_age1_minus_2
 
 ## Acoustic survey fit: base model
 
-```{r main-survey-index-fit-mcmc-base, fig.height = 4, out.height = "80%", eval = FALSE}
+```{r main-survey-index-fit-mcmc-base, fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(base_model,
                      type = "acoustic",
@@ -81,7 +81,7 @@ plot_survey_fit_mcmc(base_model,
 
 ## Acoustic survey fit: removing 2023
 
-```{r main-survey-index-fit-mcmc-rm1, fig.height = 4, out.height = "80%", eval = FALSE}
+```{r main-survey-index-fit-mcmc-rm1, fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age1_minus_1,
                      type = "acoustic",
@@ -102,7 +102,7 @@ plot_survey_fit_mcmc(model_age1_minus_1,
 
 ## Acoustic survey fit: removing 2021 and 2023
 
-```{r main-survey-index-fit-mcmc-rm2, fig.height = 4, out.height = "80%", eval = FALSE}
+```{r main-survey-index-fit-mcmc-rm2, fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age1_minus_2,
                      type = "acoustic",
@@ -123,7 +123,7 @@ plot_survey_fit_mcmc(model_age1_minus_2,
 
 ## Acoustic survey fit: removing 2019, 2021, and 2023
 
-```{r main-survey-index-fit-mcmc-rm3, fig.height = 4, out.height = "80%", eval = FALSE}
+```{r main-survey-index-fit-mcmc-rm3, fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age1_minus_3,
                      type = "acoustic",
@@ -144,7 +144,7 @@ plot_survey_fit_mcmc(model_age1_minus_3,
 
 ## Acoustic survey fit: removing 2015, 2017, 2019, 2021 and 2023
 
-```{r main-survey-index-fit-mcmc-rm5, fig.height = 4, out.height = "80%", eval = FALSE}
+```{r main-survey-index-fit-mcmc-rm5, fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age1_minus_5,
                      type = "acoustic",
