@@ -188,7 +188,7 @@ age bubble plots from dark green to red you would find this line of code:
 File: `data-raw/plot-settings.R`  
 Line: `create_data_hake("age_diag_linecolor", "darkgreen")`  
 
-and change darkgreen to red. Then source the file and reload the package
+and change darkgreen to red. Then run that line of code and reload the package
 using:  
 `devtools::load_all()`
 
