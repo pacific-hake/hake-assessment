@@ -97,12 +97,13 @@ plot_selex_uncertainty(model_age_12,
                        label_font_size = 3)
 ```
 
-## Spawning biomass: maximum age of 6 (base model)
+## Spawning biomass: maximum age of 6 (base model), 8, 10, and 12
 :::::: {.columns}
 ::: {.column width="50%"}
 ```{r main-biomass-base-a, fig.height = 4, out.height = "80%"}
 # Left
-plot_biomass(list(base_model),
+plot_biomass(list(base_model, model_age_8, model_age_10, model_age_12),
+             c("base model", request_models_names[[1]]),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
              leg_pos = "none")
@@ -112,82 +113,8 @@ plot_biomass(list(base_model),
 ::: {.column width="50%"}
 ```{r main-relative-biomass-base-a, fig.height = 4, out.height = "80%"}
 # Right
-plot_rel_biomass(model_lst = list(base_model),
-                 ylim = c(0, 2.5),
-                 alpha = 0.2,
-                 leg_pos = "none") |>
-  suppressWarnings()
-```
-:::
-::::::
-
-## Spawning biomass: maximum age of 8
-
-:::::: {.columns}
-::: {.column width="50%"}
-```{r main-biomass-8, fig.height = 4, out.height = "80%"}
-# Left
-plot_biomass(list(model_age_8),
-             ylim = c(0, 5),
-             point_shape = ts_single_model_pointshape,
-             leg_pos = "none")
-```
-:::
-
-::: {.column width="50%"}
-```{r main-relative-biomass-8, fig.height = 4, out.height = "80%"}
-# Right
-plot_rel_biomass(list(model_age_8),
-                 ylim = c(0, 2.5),
-                 alpha = 0.2,
-                 leg_pos = "none") |>
-  suppressWarnings()
-```
-:::
-::::::
-
-## Spawning biomass: maximum age of 10
-
-:::::: {.columns}
-::: {.column width="50%"}
-```{r main-biomass-10, fig.height = 4, out.height = "80%"}
-# Left
-plot_biomass(list(model_age_10),
-             ylim = c(0, 5),
-             point_shape = ts_single_model_pointshape,
-             leg_pos = "none")
-```
-:::
-
-::: {.column width="50%"}
-```{r main-relative-biomass-10, fig.height = 4, out.height = "80%"}
-# Right
-plot_rel_biomass(list(model_age_10),
-                 ylim = c(0, 2.5),
-                 alpha = 0.2,
-                 leg_pos = "none") |>
-  suppressWarnings()
-```
-:::
-::::::
-
-## Spawning biomass: maximum age of 12
-
-:::::: {.columns}
-::: {.column width="50%"}
-```{r main-biomass-12, fig.height = 4, out.height = "80%"}
-# Left
-plot_biomass(list(model_age_12),
-             ylim = c(0, 5),
-             point_shape = ts_single_model_pointshape,
-             leg_pos = "none")
-```
-:::
-
-::: {.column width="50%"}
-```{r main-relative-biomass-12, fig.height = 4, out.height = "80%"}
-# Right
-plot_rel_biomass(list(model_age_12),
+plot_rel_biomass(list(base_model, model_age_8, model_age_10, model_age_12),
+             c("base model", request_models_names[[1]]),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
                  leg_pos = "none") |>
@@ -220,7 +147,7 @@ plot_survey_fit_mcmc(base_model,
 
 ## Acoustic survey fit: maximum age of 8
 
-```{r main-survey-index-fit-mcmc-8, fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-8, fig.height = 4, out.height = "80%", eval=FALSE}
 
 plot_survey_fit_mcmc(model_age_8,
                      type = "acoustic",
@@ -241,7 +168,7 @@ plot_survey_fit_mcmc(model_age_8,
 
 ## Acoustic survey fit: maximum age of 10
 
-```{r main-survey-index-fit-mcmc-10, fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-10, fig.height = 4, out.height = "80%", eval=FALSE}
 
 plot_survey_fit_mcmc(model_age_10,
                      type = "acoustic",
@@ -262,7 +189,7 @@ plot_survey_fit_mcmc(model_age_10,
 
 ## Acoustic survey fit: maximum age of 12
 
-```{r main-survey-index-fit-mcmc-12, fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-12, fig.height = 4, out.height = "80%", eval=FALSE}
 
 plot_survey_fit_mcmc(model_age_12,
                      type = "acoustic",
@@ -281,38 +208,13 @@ plot_survey_fit_mcmc(model_age_12,
                      remove_yr_labels = NULL)
 ```
 
-## Rec devs: maximum age of 6 (base model)
+## Rec devs: maximum age of 6 (base model), 8, 10, and 12
 
 ```{r main-recruitment-devs-base-a, fig.height = 4, out.height = "80%"}
 
-plot_recdevs(list(base_model),
+plot_recdevs(list(base_model, model_age_8, model_age_10, model_age_12),
+             c("base model", request_models_names[[1]]),
              line_color = ts_single_line_color,
              leg_pos = "none")
 ```
 
-## Rec devs: maximum age of 8
-
-```{r main-recruitment-devs-8, fig.height = 4, out.height = "80%"}
-
-plot_recdevs(list(model_age_8),
-             line_color = ts_single_line_color,
-             leg_pos = "none")
-```
-
-## Rec devs: maximum age of 10
-
-```{r main-recruitment-devs-10, fig.height = 4, out.height = "80%"}
-
-plot_recdevs(list(model_age_10),
-             line_color = ts_single_line_color,
-             leg_pos = "none")
-```
-
-## Rec devs: maximum age of 12
-
-```{r main-recruitment-devs-12, fig.height = 4, out.height = "80%"}
-
-plot_recdevs(list(model_age_12),
-             line_color = ts_single_line_color,
-             leg_pos = "none")
-```
