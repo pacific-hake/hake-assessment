@@ -193,7 +193,7 @@ using:
 `devtools::load_all()`
 
 <a name="assessment-cycle"></a>
-## 2024 Assessment cycle (Jan - Mar 2024)
+## 2025 Assessment cycle (Jan - Mar 2025)
 
 * Model runs were done on an Ubuntu 22.04 LTS server with 80 Xeon Gold CPUs
   and 404 GB of RAM.
@@ -205,17 +205,17 @@ using:
 * `extra-mcmc must be and was enabled for ALL models`
 
 <a name="server-setup"></a>
-### Server setup for 2024
+### Server setup for 2025
 
 * Operating system: Ubuntu 22.04 LTS (Jammy Jellyfish)
 
-* R version: 4.3.1 (2023-06-16 "Beagle Scouts")
+* R version: 4.4.2 (2024-10-31 "Pile of Leaves")
 
 * The R packages listed
   [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/R/all.R#L20) are all installed site-wide; users do not need to (and should
   not) install them on their own accounts
 
-* TexLive version: 2023 (tlmgr revision 66457 (2023-03-08 00:07:12 +0100))
+* TexLive version: 2024 (tlmgr revision 73493 (2025-01-17 23:28:29 +0100))
 
 * The TexLive packages listed
   [here](https://github.com/pacific-hake/hake-assessment/blob/356f1a069ddc1f806f0c151d6b15e59e2efe92ec/docker/install_packages.R#L21) are all installed site-wide; users do not
