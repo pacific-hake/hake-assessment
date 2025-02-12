@@ -156,7 +156,7 @@ plot_selex_uncertainty <- function(model,
 
   d <- d |>
     bind_rows(d_spc)
-
+  d[["age"]] <- factor(d[["age"]], labels = ages, levels = as.character(ages))
   g <- ggplot(d,
               aes(x = age,
                   y = med,
