@@ -2,6 +2,11 @@
 
 The SRG requests sensitivities on fishery selectivity parameterization (in the base model) by increasing the maximum age beyond which selectivity is held constant to ages 8, 10, and 12. Present the resulting fishery selectivity (2024 with uncertainty and MCMC traces and individual years with uncertainty), spawning biomass trajectories, fits to the acoustic survey index, and recruitment deviation estimates.
 
+* Maximum age 6 (base) model: 262 parameters
+* Maximum age 8 model: 333 parameters
+* Maximum age 10 model: 403 parameters
+* Maximum age 12 model: 473 parameters
+
 ## Selectivity in 2024: maximum age of 6 (base model)
 
 ```{r main-tv-selex-unc-base, fig.height = 4, out.height = "80%"}
