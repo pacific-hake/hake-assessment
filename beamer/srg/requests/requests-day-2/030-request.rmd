@@ -215,6 +215,7 @@ plot_survey_fit_mcmc(model_age_12,
 plot_recdevs(list(base_model, model_age_8, model_age_10, model_age_12),
              c("base model", request_models_names[[1]]),
              line_color = ts_single_line_color,
-             leg_pos = c(0.75, 0.80))
+             leg_ncol = 2,
+             leg_pos = c(0.30, 0.90))
 ```
 
