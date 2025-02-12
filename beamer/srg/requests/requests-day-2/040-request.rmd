@@ -27,7 +27,7 @@ plot_biomass(model_lst = list(base_model, model_age1_minus_1, model_age1_minus_2
              model_names = c("base model", request_models_desc[[2]]),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
-             leg_pos = c(0.70, 0.75))
+             leg_pos = c(0.75, 0.80))
 ```
 :::
 
@@ -38,7 +38,8 @@ plot_rel_biomass(model_lst = list(base_model, model_age1_minus_1, model_age1_min
              model_names = c("base model", request_models_desc[[2]]),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
-                 leg_pos = c(0.70, 0.75)) |>
+                 leg_ncol = 2,
+                 leg_pos = c(0.55, 0.85)) |>
   suppressWarnings()
 ```
 :::
@@ -52,7 +53,8 @@ plot_rel_biomass(model_lst = list(base_model, model_age1_minus_1, model_age1_min
 plot_recdevs(model_lst = list(base_model, model_age1_minus_1, model_age1_minus_2, model_age1_minus_3, model_age1_minus_5),
              model_names = c("base model", request_models_desc[[2]]),
              line_color = ts_single_line_color,
-             leg_pos = c(0.75, 0.75))
+             leg_ncol = 2,
+             leg_pos = c(0.52, 0.87))
 ```
 
 
