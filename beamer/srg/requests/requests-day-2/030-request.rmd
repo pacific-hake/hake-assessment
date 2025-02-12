@@ -106,7 +106,7 @@ plot_biomass(list(base_model, model_age_8, model_age_10, model_age_12),
              c("base model", request_models_names[[1]]),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
-             leg_pos = "none")
+             leg_pos = c(0.85, 0.75))
 ```
 :::
 
@@ -117,7 +117,7 @@ plot_rel_biomass(list(base_model, model_age_8, model_age_10, model_age_12),
              c("base model", request_models_names[[1]]),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
-                 leg_pos = "none") |>
+                 leg_pos = c(0.85, 0.75)) |>
   suppressWarnings()
 ```
 :::
