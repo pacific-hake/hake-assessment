@@ -86,8 +86,24 @@ sens_models_desc <-
 # sens_models_dirs <- NA
 # sens_models_desc <- NA
 
-request_models_dirs <- NA
-request_models_desc <- NA
+#request_models_dirs <- NA
+#request_models_desc <- NA
+
+request_models_dirs <-
+  list(c("02-max-sel-age-10",
+         "03-max-sel-age-12"),
+       c("04-no-2023-age1",
+         "05-no-2021-2023-age1",
+         "06-no-2019-2021-2023-age1",
+         "07-no-2015-2017-2019-2021-2023-age1"))
+request_models_desc <-
+  list(c("Max sel. age 8",
+         "Max sel. age 10",
+         "Max sel. age 12"),
+       c("No 2023 age-1 ind.",
+         "No 2021, 2023 age-1 ind.",
+         "No 2019, 2021, 2023 age-1 ind.",
+         "No 2015, 2017, 2019, 2021, 2023 age-1 ind."))
 
 test_models_dirs <- NA
 test_models_desc <- NA
