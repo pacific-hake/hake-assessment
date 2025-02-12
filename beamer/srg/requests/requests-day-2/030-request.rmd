@@ -102,7 +102,7 @@ plot_selex_uncertainty(model,
 ## Spawning biomass: maximum age of 6 (base model)
 :::::: {.columns}
 ::: {.column width="50%"}
-```{r main-biomass-base, fig.height = 4, out.height = "80%"}
+```{r main-biomass-base-a, fig.height = 4, out.height = "80%"}
 # Left
 plot_biomass(list(base_model),
              ylim = c(0, 5),
@@ -112,7 +112,7 @@ plot_biomass(list(base_model),
 :::
 
 ::: {.column width="50%"}
-```{r main-relative-biomass-base, fig.height = 4, out.height = "80%"}
+```{r main-relative-biomass-base-a, fig.height = 4, out.height = "80%"}
 # Right
 plot_rel_biomass(model_lst = list(base_model),
                  ylim = c(0, 2.5),
@@ -200,7 +200,7 @@ plot_rel_biomass(list(model),
 
 ## Acoustic survey fit: maximum age of 6 (base model)
 
-```{r main-survey-index-fit-mcmc-base, fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-base-a, fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(base_model,
                      type = "acoustic",
@@ -285,7 +285,7 @@ plot_survey_fit_mcmc(model,
 
 ## Rec devs: maximum age of 6 (base model)
 
-```{r main-recruitment-devs-base, fig.height = 4, out.height = "80%"}
+```{r main-recruitment-devs-base-a, fig.height = 4, out.height = "80%"}
 
 plot_recdevs(list(base_model),
              line_color = ts_single_line_color,
