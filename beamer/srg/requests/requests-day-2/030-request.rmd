@@ -51,59 +51,48 @@ plot_selex_uncertainty(model,
 ## Selectivity: maximum age of 6 (base model)
 
 ```{r main-tv-selex-base, fig.height = 4, out.height = "80%"}
-
-tv_selex_start_yr <- 1990
-
-plot_selex_mountains(base_model,
-                     yrs = tv_selex_start_yr:last_data_yr,
-                     ages = 1:8,
-                     fill_num_colors = 50,
-                     scale = 20)
+plot_selex_uncertainty(base_model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE,
+                       label_loc = c(1, 0.65),
+                       label_font_size = 3)
 ```
 
 ## Selectivity: maximum age of 8
 
 ```{r main-tv-selex-8, fig.height = 4, out.height = "80%"}
-
-tv_selex_start_yr <- 1990
-
 model <- sens_models[[2]][[2]]
-
-plot_selex_mountains(model,
-                     yrs = tv_selex_start_yr:last_data_yr,
-                     ages = 1:8,
-                     fill_num_colors = 50,
-                     scale = 20)
+plot_selex_uncertainty(model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE,
+                       label_loc = c(1, 0.65),
+                       label_font_size = 3)
 ```
 
 ## Selectivity: maximum age of 10
 
 ```{r main-tv-selex-10, fig.height = 4, out.height = "80%"}
-
-tv_selex_start_yr <- 1990
-
 model <- sens_models[[2]][[2]]
-
-plot_selex_mountains(model,
-                     yrs = tv_selex_start_yr:last_data_yr,
-                     ages = 1:8,
-                     fill_num_colors = 50,
-                     scale = 20)
+plot_selex_uncertainty(model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE,
+                       label_loc = c(1, 0.65),
+                       label_font_size = 3)
 ```
 
 ## Selectivity: maximum age of 12
 
 ```{r main-tv-selex-12, fig.height = 4, out.height = "80%"}
-
-tv_selex_start_yr <- 1990
-
 model <- sens_models[[2]][[2]]
-
-plot_selex_mountains(model,
-                     yrs = tv_selex_start_yr:last_data_yr,
-                     ages = 1:8,
-                     fill_num_colors = 50,
-                     scale = 20)
+plot_selex_uncertainty(model,
+                       n_col = 2,
+                       pad_top = TRUE,
+                       pad_bottom = TRUE,
+                       label_loc = c(1, 0.65),
+                       label_font_size = 3)
 ```
 
 ## Spawning biomass: maximum age of 6 (base model)
