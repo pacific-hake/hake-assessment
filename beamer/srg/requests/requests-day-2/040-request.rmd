@@ -12,7 +12,7 @@ The SRG requests running the base model with the age-1 index, keeping 2023 and b
 
 Present spawning biomass trajectories (with unfished equilibrium spawning biomass), recruitment deviation estimates, and fits to the acoustic survey index.
 
-## Spawning biomass: full age 1 index (base model)
+## Spawning biomass: removing age 1 index data points
 :::::: {.columns}
 ::: {.column width="50%"}
 ```{r main-biomass-base, fig.height = 4, out.height = "80%"}
@@ -23,173 +23,42 @@ model_age1_minus_3 <- request_models[[2]][[3]]
 model_age1_minus_5 <- request_models[[2]][[4]]
 
 # Left
-plot_biomass(list(base_model),
+plot_biomass(model_lst = list(base_model, model_age1_minus_1, model_age1_minus_2, model_age1_minus_3, model_age1_minus_5),
+             model_names = c("base model", request_models_desc[[2]]),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
-             leg_pos = "none")
+             leg_pos = c(0.75, 0.75))
 ```
 :::
 
 ::: {.column width="50%"}
 ```{r main-relative-biomass-base, fig.height = 4, out.height = "80%"}
 # Right
-plot_rel_biomass(model_lst = list(base_model),
+plot_rel_biomass(model_lst = list(base_model, model_age1_minus_1, model_age1_minus_2, model_age1_minus_3, model_age1_minus_5),
+             model_names = c("base model", request_models_desc[[2]]),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
-                 leg_pos = "none") |>
+                 leg_pos = c(0.85, 0.75)) |>
   suppressWarnings()
 ```
 :::
 ::::::
 
-## Spawning biomass: remove back to 2023
 
-:::::: {.columns}
-::: {.column width="50%"}
-```{r main-biomass-rm1, fig.height = 4, out.height = "80%"}
-# Left
-plot_biomass(list(model_age1_minus_1),
-             ylim = c(0, 5),
-             point_shape = ts_single_model_pointshape,
-             leg_pos = "none")
-```
-:::
-
-::: {.column width="50%"}
-```{r main-relative-biomass-rm1, fig.height = 4, out.height = "80%"}
-# Right
-plot_rel_biomass(model_lst = list(model_age1_minus_1),
-                 ylim = c(0, 2.5),
-                 alpha = 0.2,
-                 leg_pos = "none") |>
-  suppressWarnings()
-```
-:::
-::::::
-
-## Spawning biomass: remove back to 2021
-
-:::::: {.columns}
-::: {.column width="50%"}
-```{r main-biomass-rm2, fig.height = 4, out.height = "80%"}
-# Left
-plot_biomass(list(model_age1_minus_2),
-             ylim = c(0, 5),
-             point_shape = ts_single_model_pointshape,
-             leg_pos = "none")
-```
-:::
-
-::: {.column width="50%"}
-```{r main-relative-biomass-rm2, fig.height = 4, out.height = "80%"}
-# Right
-plot_rel_biomass(model_lst = list(model_age1_minus_2),
-                 ylim = c(0, 2.5),
-                 alpha = 0.2,
-                 leg_pos = "none") |>
-  suppressWarnings()
-```
-:::
-::::::
-
-## Spawning biomass: remove back to 2019
-
-:::::: {.columns}
-::: {.column width="50%"}
-```{r main-biomass-rm3, fig.height = 4, out.height = "80%"}
-# Left
-plot_biomass(list(model_age1_minus_3),
-             ylim = c(0, 5),
-             point_shape = ts_single_model_pointshape,
-             leg_pos = "none")
-```
-:::
-
-::: {.column width="50%"}
-```{r main-relative-biomass-rm3, fig.height = 4, out.height = "80%"}
-# Right
-plot_rel_biomass(model_lst = list(model_age1_minus_3),
-                 ylim = c(0, 2.5),
-                 alpha = 0.2,
-                 leg_pos = "none") |>
-  suppressWarnings()
-```
-:::
-::::::
-
-## Spawning biomass: remove back to 2015
-
-:::::: {.columns}
-::: {.column width="50%"}
-```{r main-biomass-rm5, fig.height = 4, out.height = "80%"}
-# Left
-plot_biomass(list(model_age1_minus_5),
-             ylim = c(0, 5),
-             point_shape = ts_single_model_pointshape,
-             leg_pos = "none")
-```
-:::
-
-::: {.column width="50%"}
-```{r main-relative-biomass-rm5, fig.height = 4, out.height = "80%"}
-# Right
-plot_rel_biomass(model_lst = list(model_age1_minus_5),
-                 ylim = c(0, 2.5),
-                 alpha = 0.2,
-                 leg_pos = "none") |>
-  suppressWarnings()
-```
-:::
-::::::
-
-## Rec devs: full age 1 index (base model)
+## Rec devs: removing age 1 index data points
 
 ```{r main-recruitment-devs-base, fig.height = 4, out.height = "80%"}
 
-plot_recdevs(list(base_model),
+plot_recdevs(model_lst = list(base_model, model_age1_minus_1, model_age1_minus_2, model_age1_minus_3, model_age1_minus_5),
+             model_names = c("base model", request_models_desc[[2]]),
              line_color = ts_single_line_color,
-             leg_pos = "none")
+             leg_pos = c(0.75, 0.75))
 ```
 
-## Rec devs: remove back to 2023
 
-```{r main-recruitment-devs-rm1, fig.height = 4, out.height = "80%"}
+## Acoustic survey fit: base model
 
-plot_recdevs(list(model_age1_minus_1),
-             line_color = ts_single_line_color,
-             leg_pos = "none")
-```
-
-## Rec devs: remove back to 2021
-
-```{r main-recruitment-devs-rm2, fig.height = 4, out.height = "80%"}
-
-plot_recdevs(list(model_age1_minus_2),
-             line_color = ts_single_line_color,
-             leg_pos = "none")
-```
-
-## Rec devs: remove back to 2019
-
-```{r main-recruitment-devs-rm3, fig.height = 4, out.height = "80%"}
-
-plot_recdevs(list(model_age1_minus_3),
-             line_color = ts_single_line_color,
-             leg_pos = "none")
-```
-
-## Rec devs: remove back to 2015
-
-```{r main-recruitment-devs-rm5, fig.height = 4, out.height = "80%"}
-
-plot_recdevs(list(model_age1_minus_5),
-             line_color = ts_single_line_color,
-             leg_pos = "none")
-```
-
-## Acoustic survey fit: full age 1 index (base model)
-
-```{r main-survey-index-fit-mcmc-base, fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-base, fig.height = 4, out.height = "80%", eval = FALSE}
 
 plot_survey_fit_mcmc(base_model,
                      type = "acoustic",
@@ -208,9 +77,9 @@ plot_survey_fit_mcmc(base_model,
                      remove_yr_labels = NULL)
 ```
 
-## Acoustic survey fit: remove back to 2023
+## Acoustic survey fit: removing 2023
 
-```{r main-survey-index-fit-mcmc-rm1, fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-rm1, fig.height = 4, out.height = "80%", eval = FALSE}
 
 plot_survey_fit_mcmc(model_age1_minus_1,
                      type = "acoustic",
@@ -229,9 +98,9 @@ plot_survey_fit_mcmc(model_age1_minus_1,
                      remove_yr_labels = NULL)
 ```
 
-## Acoustic survey fit: remove back to 2021
+## Acoustic survey fit: removing 2021 and 2023
 
-```{r main-survey-index-fit-mcmc-rm2, fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-rm2, fig.height = 4, out.height = "80%", eval = FALSE}
 
 plot_survey_fit_mcmc(model_age1_minus_2,
                      type = "acoustic",
@@ -250,9 +119,9 @@ plot_survey_fit_mcmc(model_age1_minus_2,
                      remove_yr_labels = NULL)
 ```
 
-## Acoustic survey fit: remove back to 2019
+## Acoustic survey fit: removing 2019, 2021, and 2023
 
-```{r main-survey-index-fit-mcmc-rm3, fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-rm3, fig.height = 4, out.height = "80%", eval = FALSE}
 
 plot_survey_fit_mcmc(model_age1_minus_3,
                      type = "acoustic",
@@ -271,9 +140,9 @@ plot_survey_fit_mcmc(model_age1_minus_3,
                      remove_yr_labels = NULL)
 ```
 
-## Acoustic survey fit: remove back to 2015
+## Acoustic survey fit: removing 2015, 2017, 2019, 2021 and 2023
 
-```{r main-survey-index-fit-mcmc-rm5, fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-rm5, fig.height = 4, out.height = "80%", eval = FALSE}
 
 plot_survey_fit_mcmc(model_age1_minus_5,
                      type = "acoustic",
