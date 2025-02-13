@@ -23,6 +23,8 @@
 #' If `NULL` this will be calculated as `header_font_size * header_vert_scale`
 #' @param header_vert_scale Scale factor to create the vertical spacing value.
 #' See `header_vert_spacing`
+#' @param ret_df Logical. If `TRUE`, return a data frame (tibble()) instead
+#' of the [kableExtra::kbl()].
 #' @param ... Arguments passed to [knitr::kable()]
 #'
 #' @return An [knitr::kable()] object
@@ -41,6 +43,7 @@ table_decision <- \(
   header_font_size = 10,
   header_vert_spacing = 12,
   header_vert_scale = 1.2,
+  ret_df = FALSE,
   ...){
 
   type <- match.arg(type)
@@ -232,6 +235,10 @@ table_decision <- \(
   }else{
     d <- d |>
       select(-yr)
+  }
+
+  if(ret_df){
+    return(d)
   }
 
   # Remove the first three column headers, because there will be a
