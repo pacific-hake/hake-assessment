@@ -1,6 +1,38 @@
-## Request 2 -- "name of request"
+## Request 2 -- alternative projections with late devs estimated
 
-Description
+Request: The SRG requests that decision tables and probability tables be produced with 2023 and onward recruitment estimated and incorporating uncertainty. This would be done on the model without the age-1 index.
 
-* Point form answers
+Response: Decision tables and probabilities have been provided along with tables of recent spawning biomass and recruitment estimates.
 
+## Request 2 -- spawning biomass
+
+```{r biomass-with-late-devs, fig.height = 4, out.height = "80%"}
+#base_with_late_devs <- sens_models[[2]][[1]]
+
+#table_biomass(
+#  base_with_late_devs,
+#  start_yr = end_yr - 9,
+#  end_yr = end_yr,
+#  caption = paste0(
+#    "Recent trends in estimated beginning of the year female spawning ",
+#    "biomass (SB; kt) and SB relative to estimated SB at unfished equilibrium ",
+#    "(Rel. SB; \\%)."),
+#  font_size = 10,
+#  header_font_size = 8)
+```
+
+## Request 2 -- recruitment
+
+```{r recruits-with-late-devs, fig.height = 4, out.height = "80%"}
+#table_recruitment(
+#  base_with_late_devs ,
+#  start_yr = end_yr - 10,
+#  end_yr = end_yr - 1,
+#  caption = paste0(
+#    "Estimates of recent recruitment (millions of age-0 fish) and ",
+#    "recruitment deviations, where deviations below (above) zero indicate ",
+#    "recruitment below (above) that estimated from the stock--recruitment ",
+#    "relationship."),
+#  font_size = 10,
+#  header_font_size = 9)
+```
