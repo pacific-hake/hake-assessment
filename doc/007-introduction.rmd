@@ -48,8 +48,8 @@ of terms appears in Appendix~\@ref(sec:app-glossary).
 ## Stock structure and life history {#sec:intro-stock-structure}
 
 `r sp` is a semi-pelagic, schooling species distributed along the west coast of
-North America, generally ranging in latitude from 25° N.~to 55° North Latitude (N. Lat.)
-(Figure~\@ref(fig:main-overview-map-fig)). It is among 18 species of `r sp` from
+North America, generally ranging in latitude from 25° to 55° North Latitude (N.~Lat.);
+Figure~\@ref(fig:main-overview-map-fig). It is among 18 species of `r sp` from
 four genera (being the majority of the family *Merluccidae*), which are found
 in both hemispheres of the Atlantic and Pacific Oceans [@AlheitPitcher1995;
 @LlorisMatallanasEtAl2005]. The coastal population of `r sp` is currently the
@@ -335,15 +335,15 @@ quota to non-tribal sectors on
 and
 `r f(last_yr_us_shore_quota_reallocated)`~t, respectively.
 
-Prior to 2015, the shoreside sector was allowed to fish starting June 15 north of 42° N. Lat.
-(the Oregon--California border) and April 1 between 40° 30' N. Lat. and 42° N.
-Lat., whereas the at-sea sectors were allowed to fish starting May 15.
-Between 2015--2022, the shoreside sector was allowed to fish north of 40°
-30' N. Lat. starting May 15 and south of 40° 30' N. Lat. starting April 15,
+Prior to 2015, the shoreside sector was allowed to fish starting June 15 north
+of 42° N.~Lat. (the Oregon--California border) and April 1 between
+40°~30' N.~Lat. and 42° N.~Lat., whereas the at-sea sectors were allowed to fish starting May 15.
+Between 2015--2022, the shoreside sector was allowed to fish north of 40°~30'
+N.~Lat. starting May 15 and south of 40°~30' N.~Lat. starting April 15,
 although only 5% of the shoreside allocation was released for this early
 period. Since 2023, all sectors have been allowed to fish starting May 1.
 Regulations do not allow at-sea processing or night fishing (midnight to one
-hour after official sunrise) south of 42° N. Lat. at any time during the
+hour after official sunrise) south of 42° N.~Lat. at any time during the
 year.
 
 In `r last_data_yr`, the total catch of `r sp` in U.S. waters was ranked `r last_yr_us_rank`
