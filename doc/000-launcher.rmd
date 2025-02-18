@@ -82,7 +82,7 @@ output:
    # NOTE: cannot use backticks inside R-chunk which already uses backticks
    # here, so need to use [['hake_pdf']] instead of $`hake_pdf`
    #footer_right: "Font: `r rmarkdown::metadata$output[['hake_pdf']]$font`"
-   footer_right: "DRAFT - Do not circulate" # " "
+   footer_right: " " # "DRAFT - Do not circulate"
    # ---------------------------------------------------------------------------
 
    # Table of contents and reference link settings ----------------------------
@@ -288,9 +288,8 @@ Chantel R. Wetzel^1^ \
 
 \
 
-This DRAFT document is non-citable.
+<!-- This DRAFT document is non-citable. -->
 
-<!--
 This document should be cited as follows:
 
 K.F. Johnson, K.F., A.M. Edwards, A.M. Berger, C.J. Grandin, and C.R. Wetzel.
@@ -300,6 +299,6 @@ Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`.
 Prepared by the Joint Technical Committee of the U.S. and Canada
 `r rmarkdown::metadata$project_variables$sp`/Whiting Agreement, National
 Marine Fisheries Service and Fisheries and Oceans Canada. \pageref{LastPage}~p.
--->
+
 
 TABLE OF CONTENTS GOES HERE
