@@ -292,7 +292,7 @@ Chantel R. Wetzel^1^ \
 
 This document should be cited as follows:
 
-K.F. Johnson, K.F., A.M. Edwards, A.M. Berger, C.J. Grandin, and C.R. Wetzel.
+Johnson, K.F., A.M. Edwards, A.M. Berger, C.J. Grandin, and C.R. Wetzel.
 `r rmarkdown::metadata$project_variables$assess_yr`. Status of the
 `r rmarkdown::metadata$project_variables$sp` (whiting) stock in U.S. and
 Canadian waters in `r rmarkdown::metadata$project_variables$assess_yr`.
