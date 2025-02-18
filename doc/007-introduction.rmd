@@ -48,7 +48,7 @@ of terms appears in Appendix~\@ref(sec:app-glossary).
 ## Stock structure and life history {#sec:intro-stock-structure}
 
 `r sp` is a semi-pelagic, schooling species distributed along the west coast of
-North America, generally ranging in latitude from 25° N.~to 55° North Latitude (N. Lat.).
+North America, generally ranging in latitude from 25° N.~to 55° North Latitude (N. Lat.)
 (Figure~\@ref(fig:main-overview-map-fig)). It is among 18 species of `r sp` from
 four genera (being the majority of the family *Merluccidae*), which are found
 in both hemispheres of the Atlantic and Pacific Oceans [@AlheitPitcher1995;
@@ -162,7 +162,9 @@ these regions are above average and have been increasing over the past five
 years. At the same time, consumption of `r sp` by Bluefin Tuna and
 Swordfish has been well above average in recent years (2022-23) and the spawning
 stock biomass of these predators has been increasing over this same period as
-well.
+well. See Appendix~\@ref(sec:app-ecosystem-report) for more details and a
+'risk table' documenting ecosystem and climate factors potentially affecting `r sp`
+stock productivity and uncertainty.
 
 Using empirical weight-at-age data in the model allows for
 time-varying growth without needing a mechanistic relationship or environmental

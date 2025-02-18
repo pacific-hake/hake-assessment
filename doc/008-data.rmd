@@ -310,7 +310,7 @@ biomass beyond the western end of a transect, which was refined and supported
 by the SRG starting with the 2016 assessment [@JTC2016].
 
 Starting in 2021, the EK~60 echosounders were replaced with EK~80 echosounders,
-and thus, survey estimates from years using the new echosounders are scaled by
+and thus, survey estimates from years using the new echosounders are scaled by a
 factor of 1.06 to convert the EK~80 to EK~60 acoustic data. The survey team will
 eventually be converting all pre-2021 EK~60 data to an equivalent EK~80 format.
 Thus, a full time series of consistently analyzed survey biomass
@@ -429,7 +429,7 @@ model to translate numbers at age to biomass at age. Annual weight-at-age data
 was modelled from biological samples pooled from all fisheries and most
 surveys for the years 1965 to `r max_fishery_age_prop[2]`
 (Figures~\@ref(fig:main-weight-at-age-fig)--
-\@ref(fig:main-weight-at-age-lines-fig)). Samples from near-shore areas, i.e.,
+\@ref(fig:main-weight-at-age-lines-fig)). Samples from near-shore areas, such as
 the Puget Sound, were not included. The earliest samples come from the U.S.
 shoreside vessels that date back to 1965. With the effort to reconstruct all
 historical data, some additional historical samples were found within the U.S.
@@ -443,7 +443,7 @@ weight-at-age.
 
 A generalized linear mixed model (GLMM) with a
 lognormal distribution has been used to model weight-at-age data external to the
-assessment since the 2024 assessment. Where weight relates to a smoothed effect of age between
+assessment since the 2024 assessment, with weight relating to a smoothed effect of age between
 ages zero and fifteen; random effects for cohort and year; and fixed effects for
 sex. The model is similar to models investigated for Walleye Pollock off
 Alaska, where models with correlations between age, cohort, and year were
@@ -507,13 +507,13 @@ older individuals, a smooth effect of calendar day modeled with penalized
 (P-spline) regression [@EilersMarx1996], a linear offset for fishery-dependent
 samples, and year effects as a quadratic function of modeled subsurface
 (130.67 m) temperature indices in the domain of the West Coast Groundfish
-Bottom Trawl Survey [@LelloucheEtAl2021],
+Bottom Trawl Survey [@LelloucheEtAl2021]. The model is
 \begin{align}
 E[\bm{y}] = g^{-1} \left( \bm{X} \bm{\beta} + \bm{Z} \bm{b} + \bm{\omega}_{s} +
 \bm{x}_{age} * \bm{\zeta}_{s,age} + \bm{x}_{age^{2}} * \bm{\zeta}_{s,age^{2}}
-\right).
+\right),
 \end{align}
-Where, $g^{-1}()$ represents the inverse-logit function, $\bm{X}$ represents
+where $g^{-1}()$ represents the inverse-logit function, $\bm{X}$ represents
 the design matrix of fixed effects with estimated parameters $\bm{\beta}$ that
 include the quadratic effects of temperature, the P-spline is represented with
 random effect design matrix $\bm{Z}$ and corresponding coefficients $\bm{b}$,
@@ -653,7 +653,7 @@ has been evaluated extensively in many previous assessments of `r sp`
 (see @JTC2013 for a discussion of the historical treatment of natural
 mortality and its prior) and is repeated here (see Section
 \@ref(sec:assessment-sensitivity-analyses)), including increasing the prior
-standard deviation and using an alternative prior distribution based on a life 
+standard deviation and using an alternative prior distribution based on a life
 history meta-analysis [@Hamel2015; @HamelCope2022]. The
 Hamel--Cope prior used a lognormal prior distribution with a median of 0.22
 (based on a maximum age of 25) and a standard deviation (in log space) of 0.31.

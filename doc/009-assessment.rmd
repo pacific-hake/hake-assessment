@@ -110,7 +110,7 @@ in 2024 was considered
 potentially suspect as a standalone observation (i.e., without the addition of survey information).
 Therefore, recruitment in 2023 was based on the stock--recruitment relationship
 (no additional recruitment deviate estimate). In addition, no recruitment deviations were
-estimated for `r end_yr - 1` -- forecast years because no information is available
+estimated for `r end_yr - 1` onwards (including the forecast years) because no information is available
 to inform the estimates.
 
 The `r assess_yr` base model includes a time series (1995 to
@@ -244,7 +244,7 @@ using estimates of age-specific $M$ from the Climate- Enhanced, Age-based model
 with Temperature-specific Trophic Linkages and Energetics (CEATTLE) model as a
 way forward [@HolsmanEtAl2016]. Output from CEATTLE includes time series of
 estimates of baseline $M$ and estimates of $M$ at age for ages 0--1, 2, 3, 4,
-and 5$^+$. Where the $M$ at-age estimates are strictly natural mortality due to
+and 5$^+$, where the $M$ at-age estimates are strictly natural mortality due to
 cannibalism. Two sensitivities were run for this assessment, one where
 baseline mortality at age was fixed and one where it was estimated. Results
 are presented in Section~\@ref(sec:assessment-sensitivity-analyses).*
@@ -310,9 +310,9 @@ assessments, not smaller. For example, 2016--17 increase from each assessment is
   - *2018 base model: increase of 194,000 t*
   - *2024 base model: increase of 423,000 t;*
 
-*and 2022--2023 (presumably) increase from each assessment is:*
+- *the 2022--2023 (presumably) increase from each assessment is:*
   - *2023 base model: increase of 486,000 t*
-  - *2024 base model: increase of 549,000 t*
+  - *2024 base model: increase of 549,000 t*.
 
  *An age-0 recruitment index could help, and the JTC plans to continue analyses
  of age-0 Pacific Hake data presented at previous SRG meetings when time allows.*
@@ -551,7 +551,7 @@ to the 2019 data point is very good compared to the 2023 assessment when it
 was overestimated. The 2021 fit remains underestimated but within the range
 of the input standard deviation.
 The median of the posterior distribution for the analytically-derived
-catchability associated with the acoustic survey biomass index ($q~b~$)
+catchability associated with the acoustic survey biomass index ($q_b$)
 was `r f(median(base_model$extra_mcmc$q_vector), 3)`
 (Figure~\@ref(fig:main-catchability-density-fig)).
 
@@ -770,7 +770,7 @@ addition of `r last_assess_yr` data did not appreciably change this estimate.
 The 95% credible interval in the `r end_yr - 1` assessment was
 `r f(last_yr_base_model$mcmccalcs$rlower["2021"], 2)`--
 `r f(last_yr_base_model$mcmccalcs$rupper["2021"], 2)`~billion fish,
-slightly reduced in the current assessment to
+reduced and narrowed in the current assessment to
 `r f(base_model$mcmccalcs$rlower["2021"], 1)`--
 `r f(base_model$mcmccalcs$rupper["2021"], 1)`~billion fish.
 The median has changed by
@@ -856,14 +856,14 @@ the 2010 recruitment, Figure~\@ref(fig:main-recruitment-scale-all-fig) provides
 an intuitive way to compare recruitment across years [see
 @JTC2022 for motivation and methods]. It shows that
 only the 1980 recruitment is probably larger than 2010 (median
-relative values $>1$), and the 1984
+relative value $>1$), and the 1984
 recruitment has a small chance of being as large as 2010.
 Whereas Figure~\@ref(fig:main-recruitment-fig) suggests that 1967, 1973, 1977,
 1999, 2014, and 2021 could also possibly be larger than in 2010, giving an
 over-optimistic impression of how often we can expect cohorts the size of
 the 2010 cohort to occur. The 2021 cohort is still very uncertain but has a
 small chance of exceeding the 2010 cohort
-(Figure~\@ref(fig:main-recruitment-scale-all-fig)). 
+(Figure~\@ref(fig:main-recruitment-scale-all-fig)).
 Figure~\@ref(fig:main-recruitment-scale-all-fig) shows how the 2010 cohort is the largest in
 the last 30~years, and that such large cohorts are rarer than is inferred
 from Figure~\@ref(fig:main-recruitment-fig).
@@ -1498,7 +1498,7 @@ in the mid-1980s and in the terminal years where the deviations are the highest
 (Figure~\@ref(fig:main-mortality-sens-fig)). Notably, estimates of spawning
 biomass decreased to near target levels when baseline natural mortality was
 fixed at 0.13 for all ages. Additionally, the uncertainty in almost all
-quantities decreased when baseline mortality was fixed. 
+quantities decreased when baseline mortality was fixed.
 Estimates of recruitment deviations were smaller for the initial period and
 larger for the main period, though the differences were relatively small, when
 age-specific natural mortality was not estimated compared to the other two
@@ -1516,7 +1516,7 @@ quantities of interest are given in
 Table~\@ref(tab:main-parameter-estimates-retro-tab).
 
 This year's base model shows similar retrospective results to last year's
-[Figure~\@ref(fig:main-retrospective-recruitment-fig) and @JTC2024] for 
+[Figure~\@ref(fig:main-retrospective-recruitment-fig) and @JTC2024] for
 most cohorts. The 2022 cohort, age 3 in `r assess_yr`, is estimated to
 be a below-average cohort, whereas in the `r assess_yr - 1` assessment it
 was estimated as possibly being an above-average cohort at the age of 2.
