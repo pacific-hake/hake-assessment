@@ -18,7 +18,8 @@ bridge_models_dirs <-
          "10-add-catches",
          "20-add-weight-at-age",
          "50-add-fishery-ages",
-         "60-fix-late-devs"))
+         "60-fix-late-devs",
+         "70-age-1-survey"))
 bridge_models_desc <-
   list(c("Update the SS3 model",
          "Add changes to catch data",
@@ -29,7 +30,8 @@ bridge_models_desc <-
          paste0("Add ", last_data_yr, " catches"),
          paste0("Add ", last_data_yr, " weight-at-age"),
          paste0("Add ", last_data_yr, " fishery ages"),
-         "Fix last two years rec devs"))
+         "Fix last two years rec devs",
+         "Remove Age-1 index"))
 prepend_to_bridge <- c(TRUE, FALSE)
 # Subtract the following number of years of the end of the models
 # when plotting. Should only be 1 for the first one or two, then zeroes.
