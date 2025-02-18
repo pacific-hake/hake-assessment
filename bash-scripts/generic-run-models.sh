@@ -50,7 +50,7 @@ repo_path=`Rscript -e "cat(here::here())"`
 models_path="models"
 # *Never* change `year_path` manually - See `get-assess-year.sh` call above
 year_path=$assess_year
-version_path="01-version"
+version_path="02-version"
 
 ss_exe="ss3"
 num_chains=8
