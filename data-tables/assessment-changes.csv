@@ -16,4 +16,4 @@ Year,Framework,Survey,Comp_Method,Comp_Fishery,Comp_Survey,MCMC,Change
 2022,SS3 3.30.16.03,yes,Dirichlet-multinomial,0.363,0.93,12005,Add relative age-1 index
 2023,SS3 3.30.20.00,no,Dirichlet-multinomial,0.348,0.93,8000,No major changes
 2024,SS3 3.30.22.00,yes,Dirichlet-multinomial,0.348,0.93,8000,Time-varying maturity
-2025,SS3 3.30.23.01,no,Dirichlet-multinomial,0.342,0.94,8000,Turn off estimation of late and forecast recruitment deviations
+2025,SS3 3.30.23.01,no,Dirichlet-multinomial,0.342,0.94,8000,Turn off estimation of late and forecast recruitment deviations; exclude relative age-1 index
