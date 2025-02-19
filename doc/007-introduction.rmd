@@ -39,7 +39,7 @@ version `r ss_version` of the Stock Synthesis software [@MethotWetzel2013].
 The `r assess_yr` base model is structurally similar to last year's model,
 except the `r assess_yr` base model does not include estimates of annual
 recruitment deviations in the final two years of the model
-(i.e., `r last_data_yr - 1` and `r last_data_yr`).
+(i.e., `r last_data_yr - 1` and `r last_data_yr`) and the age-1 index has been excluded.
 All model runs reported in this document are performed in a Bayesian
 context. Responses to `r last_assess_yr` SRG
 requests are in Section~\@ref(sec:assessment-response-review) and a Glossary
