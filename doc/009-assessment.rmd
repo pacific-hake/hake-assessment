@@ -104,8 +104,9 @@ assumes that the `r sp` population is a single coast-wide stock subject to
 one aggregated fleet with combined male and female population dynamics. Stock
 Synthesis [@MethotWetzel2013] version `r ss_version` was the modeling platform
 used. The largest changes between the `r last_assess_yr` and `r assess_yr`
-stock assessments are the addition of another year of fishery data and a change
-in the estimation of recruitment from 2023 onwards. Given the unique
+stock assessments are the addition of another year of fishery data, a change
+in the estimation of recruitment from 2023 onwards, and the exclusion of the
+age-1 index. Given the unique
 seasonal fishing conditions during the year, the fishery age composition of age-1 fish
 in 2024 was considered
 potentially suspect as a standalone observation (i.e., without the addition of survey information).
