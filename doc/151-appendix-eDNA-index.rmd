@@ -336,7 +336,7 @@ include_graphics(file.path(figures_dir,
 We developed a state-space framework for modeling hake DNA concentration in the coastal ocean building and modifying the work of Shelton et al. (2022).  State-space models separate the true biological process from the methods used to observe the process. Let $D_t(x,y,d)$ be the true, but unobserved concentration of hake DNA (log DNA~copies$~\mu$L$^{-1}$) present at spatial coordinates $\{x,y\}$ (eastings and northings, respectively, in km) and sample depth $d$ (meters) in year $t$. Let $\alpha_t$ be a year-specific intercept, $s(b)$ be a smooth that depends on bottom depth in meters at location $\{x,y\}$, $b$, and $\epsilon_t(x,y,d)$ be a random effect that allows for covariation among spatial locations, years, and water depth. We write these as additive on the log-scale,
 
 \begin{align}
-  & D_t(x,y,d) = \alpha_t + s(b) + \epsilon_t(x,y,d)
+  & D_t(x,y,d) = \alpha_t + s(b) + \epsilon_t(x,y,d),
 \end{align}
 
 and so the hake DNA concentration of is a function of both fixed and random effects. Unlike many spatial datasets, the eDNA samples here are collected across depths at uneven spacing and at varying depths among years (in 2019 water was collected at the surface, 50, 100, 150, 300, and 500 meters while in 2021 and 2023, water was collect at the same depths except samples at 200m replace the 100m). The fixed effect of bottom depth $s(d)$ does not depend on year, reflecting a well documented bottom depth-association between hake and the shelf break (Malick et al. 2020), with the year-specific intercept terms allowing for region-wide shifts in hake DNA concentration.
@@ -344,7 +344,7 @@ and so the hake DNA concentration of is a function of both fixed and random effe
 Preliminary analyses showed clear correlations among depths at particular locations and so we developed a variant of factor analysis to efficiently estimate a spatial field for each depth in each year that allows correlation among the fields as a function of depth. We model $\epsilon_t(x,y,d)$ as a linear combination of Gaussian Markov Random Fields. Specifically, we let $\omega_{tf}(x,y)$ be a zero-centered spatial field for factor $f$,
 
 \begin{align}
-  \bm{\omega}_{tf}(x,y) \sim MVN (0,\bm{\Sigma})
+  \bm{\omega}_{tf}(x,y) \sim MVN (0,\bm{\Sigma}),
 \end{align}
 
 where covariance matrix $\bm{\Sigma}$ follows a Matern covariance function with marginal variance fixed at 1. We allow for anisotropy in the spatial correlation and estimate a single shared spatial range parameter ($\kappa$) for all spatial fields. We follow the parameterization and approach of *sdmTMB* (Anderson et al. 2024) for GMRFs.
@@ -352,7 +352,7 @@ where covariance matrix $\bm{\Sigma}$ follows a Matern covariance function with 
 We allow multiple independent factors, $f=1,..,F$ in year $t$ so $\omega_{tf}(x,y)$ are independent among years and factors. Then we estimate a weight coefficient for each factor that is a function of water depth so the realized spatial field in each depth is a linear combination of spatial fields and factor weights,
 
 \begin{align}
- \epsilon_t(x,y,d) = \sum_{f=1}^F l_{f}(d) \omega_{tf}(x,y)
+ \epsilon_t(x,y,d) = \sum_{f=1}^F l_{f}(d) \omega_{tf}(x,y).
 \end{align}
 
 This can be expressed in matrix notation as
@@ -364,7 +364,7 @@ This can be expressed in matrix notation as
 where $\bm{L}$ has $F$ columns (one for each factor) and $D$ rows (one for each projection depth) and $\bm{\Omega}_{t}$ has $F$ rows and $S$ (number of spatial locations) columns. Classic factor analysis estimates the factors $l_{f}(d)$ as independent parameters (e.g. to estimate spatial fields for multiple species that are correlated in space and provide among species correlations; Thorson et al 2016), but we are interested in maintaining the correlation structure across depths. Thus we introduce the potential for correlations among water depths by modeling the factor weights as a smooth function of water depth,
 
 \begin{align}
-  l_{f}(d) = s_f(d)
+  l_{f}(d) = s_f(d),
 \end{align}
 
 where $s_f(d)$ indicates a p-spline for factor $f$. In practice we have samples from at most six depths at any station, and so we limit the number of knots in the spline to four to each avoid over-parameterization. To improve estimation and avoid identifiability and label-switching issues, we impose additional constraints on the factor smoothers. Specifically, we impose a penalty on the intercept term for each factor, such that the intercept associated with factor $f$ has a prior distribution $a_{0f} \sim N(0, 3f^{-1})$.  This has the practical impact of associating the first factor with the largest intercept, the second factor with a smaller intercept, etc. Using a smooth for the factor weights allows for model predictions to additional water depths that were unobserved during survey (e.g. 250m or 400m) using a relatively small number of parameters. Unlike most factor analyses, we are not expressly interested in the factors themselves or relating factors to environmental covariates and so we do not transform or further explore the factor loadings (e.g. varimax rotation). Note that we use a single smooth for each factor and do not estimate year-specific factor smoothers. Future work may justify relaxing this model form.
@@ -375,35 +375,35 @@ After experimenting with fits using a range of factors (1 and 4), we settled on 
 
 We are primarily interested in the DNA concentration over space, time, and depth, and thus the latent variable $D_t(x,y,d)$ is our focus.  Unfortunately, qPCR does not allow us to directly measure this concentration. Instead qPCR measures the PCR cycle at which a 2$\mu L^{-1}$ aliquot of extracted DNA was detected to fluoresce and compares that observation against the flourescence pattern of samples of known DNA concentration ("the standard curve"), to provide an estimate of DNA concentration for each unknown sample. Each water sample is analyzed using at least 3 independent qPCR replicates to account for laboratory and machine variability. In addition to qPCR variability among replicates, we also have to account for modifications that affect each water sample and occurred during water sampling and processing. First, we have three offsets that modify the true DNA concentration to affect what we observed in the qPCR: 1) $V_i$ is the proportion of 2.5 L filtered from Niskin $i$ (occasionally some seawater was spilled or not filtered; $V_i =1$ for the vast majority of samples); 2) $I_i$ is the known dilution used to on sample $i$ to eliminate PCR inhibition. PCR inhibition is most commonly observed in surface samples and is vanishingly rare for samples collected below 100m; 3) $\bm{I}\zeta$ is an estimated offset for an ethanol wash error from 2019 ($\zeta$ is the estimated effect of the wash error and $\bm{I}$ is an indicator variable where $\bm{I}=1$ for affected samples and $\bm{I}=0$ otherwise; see Shelton et al. 2022 Supp S1 for additional description).
 
-Finally, we add a random effect for the individual bottles sampled at each year-station-depth combination (for notational simplicity, let $\delta_i = \delta_t(x,y,d)$). This effect which describes the deviation of individual sampled bottles from the location mean, $\delta_i \sim N(0,\tau_d)$, with $\tau_d$ indicating a depth-specific standard deviation among bottles. We impose a smooth on $\tau_d$ so it is function of water depth  This reflects empirical observations of between water bottle variability that changes with depth (Shelton et al. 2022). Then, the log-concentration of DNA in a sample analyzed by qPCR, $E_i$ (other subscripts suppressed for notational simplicity) is,
+Finally, we add a random effect for the individual bottles sampled at each year-station-depth combination (for notational simplicity, let $\delta_i = \delta_t(x,y,d)$). This effect which describes the deviation of individual sampled bottles from the location mean, $\delta_i \sim N(0,\tau_d)$, with $\tau_d$ indicating a depth-specific standard deviation among bottles. We impose a smooth on $\tau_d$ so it is function of water depth  This reflects empirical observations of between water bottle variability that changes with depth (Shelton et al. 2022). Then, the log-concentration of DNA in a sample analyzed by qPCR, $E_i$ (other subscripts suppressed for notational simplicity) is
 
 \begin{align}
-  E_{i} &= D_t({x,y,d}) +  \log{V_i} + \log{I_i} + \bm{I}\zeta + \delta_i
+  E_{i} &= D_t({x,y,d}) +  \log{V_i} + \log{I_i} + \bm{I}\zeta + \delta_i.
 \end{align}
 
 We connect the estimated concentrations to observations from qPCR using two likelihoods that are similar to a hurdle model. First we determine whether amplification was detected in each qPCR replicate $r$ run on each plate $j$, $G_{ijr} \in \{0,1\}$ and if amplification was observed we model the PCR cycle at which amplification was detected $C_{ijr}$; $C_{ijr}$ is observed as a continuous, positive value. DNA concentrations have a log-linear relationships with $C_{ijr}$; smaller values of $C_{ijr}$ are associated with higher DNA concentrations (see Figure~\@ref(fig:app-eDNA-index-plot-stand-2-fig)).
 
-Because we are modeling the discrete number of DNA molecules that are present in the assayed sample, we know that the Poisson distribution provides an appropriate observation distribution for the number of molecules present in a given qPCR reaction. Assuming a Poisson distribution, conditional on a true mean number of DNA copies in the sample $X$, the probability of having exactly zero DNA copies in a qPCR reaction is $e^{-X}$ and the probability of having non-zero DNA copies is the complement, $1-e^{-X}$. If there are exactly zero molecules in a qPCR reaction, amplification and therefore detection of amplification will not occur. However, there are other factors that may reduce amplification further and therefore we expect the probability of amplification to be at most $1-e^{-X}$. As a result, we estimate an additional term, $\phi_{j}$ representing the fractional reduction in amplification efficiency due to other factors on qPCR plate $j$ ($0<\phi_{j}<1$). Then we have pair of observation models for hake DNA, both of which are a function of DNA concentration.
+Because we are modeling the discrete number of DNA molecules that are present in the assayed sample, we know that the Poisson distribution provides an appropriate observation distribution for the number of molecules present in a given qPCR reaction. Assuming a Poisson distribution, conditional on a true mean number of DNA copies in the sample $X$, the probability of having exactly zero DNA copies in a qPCR reaction is $e^{-X}$ and the probability of having non-zero DNA copies is the complement, $1-e^{-X}$. If there are exactly zero molecules in a qPCR reaction, amplification and therefore detection of amplification will not occur. However, there are other factors that may reduce amplification further and therefore we expect the probability of amplification to be at most $1-e^{-X}$. As a result, we estimate an additional term, $\phi_{j}$ representing the fractional reduction in amplification efficiency due to other factors on qPCR plate $j$ ($0<\phi_{j}<1$). Then we have pair of observation models for hake DNA, both of which are a function of DNA concentration:
 
 \begin{align}
-  G_{ijr} &\sim Bernoulli\left(1 - \exp(-2 e^{E_{ij}}\phi_{j})\right)\\
-  C_{ijr} &\sim N(\beta_{0j}+\beta_{1j}{E_{ij}},\sigma_C(E_{ij})) \qquad  if \: G_{ijr} = 1
+  G_{ijr} &\sim \textrm{Bernoulli}\left(1 - \exp(-2 e^{E_{ij}}\phi_{j})\right),\\
+  C_{ijr} &\sim \textrm{Normal}(\beta_{0j}+\beta_{1j}{E_{ij}},\sigma_C(E_{ij})) \qquad  \textrm{if} \: G_{ijr} = 1.
 \end{align}
 
-The 2 is present in the first line of the equation because we use 2 $\mu$L of sample in each qPCR reaction and so the expected DNA copies in reaction is $2e^{E_{ij}}$. We allow $\sigma_C({E_ij})$ to vary as a log-linear function of DNA concentration to account for the fact that there is decreased variability in qPCR measures of $C_t$ at higher DNA concentrations: $\sigma_C({E_{ij}}) = exp(\gamma_{0}+\gamma_{1}E_{ij})$.
+The 2 is present in the first line of the equation because we use 2 $\mu$L of sample in each qPCR reaction and so the expected DNA copies in reaction is $2e^{E_{ij}}$. We allow $\sigma_C({E_ij})$ to vary as a log-linear function of DNA concentration to account for the fact that there is decreased variability in qPCR measures of $C_t$ at higher DNA concentrations: $\sigma_C({E_{ij}}) = \exp(\gamma_{0}+\gamma_{1}E_{ij})$.
 
 By itself, the above model is unidentifiable because field samples do not provide information about the parameters that define relationship between the number of DNA copies and PCR cycle ($\beta_{0j}$, $\beta_{1j}$, and $\phi_j$). Therefore, as is standard with qPCR analyses, we include standards of known concentration to estimate these parameters. Each qPCR plate has replicate samples with a known number of DNA copies. These standards span six orders of magnitude (1 to 100,000~copies$~\mu$L$^{-1}$, each of 2$\mu$L) and determine the relationship between copy number and PCR cycle of detection. Let $K_j$ be the log copy number in PCR plate $j$, then,
 
 \begin{align}
-  G_{jr} &\sim Bernoulli\left(1-exp(-2 K_j \phi_{j})\right)\\
-  C_{jr} &\sim Normal(\beta_{0j}+\beta_{1j}\log{K_{j}},\sigma_C({K_j})) \quad  if \: G_{jr} =1
+  G_{jr} &\sim \textrm{Bernoulli}\left(1-\exp(-2 K_j \phi_{j})\right),\\
+  C_{jr} &\sim \textrm{Normal}(\beta_{0j}+\beta_{1j}\log{K_{j}},\sigma_C({K_j})) \quad  \textrm{if} \: G_{jr} =1.
 \end{align}
 
 Note that there are different intercept $\beta_{0j}$, slope $\beta_{1j}$ and
 detectability $\phi_{j}$ parameters for each PCR plate to allow for among-plate
 variation in amplification. We model each calibration parameter
 $\beta_{0j},\beta_{1j},\phi_{j}$ hierarchically using a normal distribution,
-with among plate mean and variance; i.e. $\beta_{0j} \sim N(\mu_{\beta_{0}},\sigma_{\beta_{0}})$.
+with among plate mean and variance; i.e. $\beta_{0j} \sim \textrm{N}(\mu_{\beta_{0}},\sigma_{\beta_{0}})$.
 
 For estimation, we fit the model for the standards first and treat them as fixed and known when we estimate the parameters for the field collected water samples.
 
