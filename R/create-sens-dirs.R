@@ -30,6 +30,7 @@
 #' * 13-max-sel-age-'5
 #' * 14-max-sel-age-7
 #' * 15-max-sel-age-8
+#' * 18-tv-maturity-182
 #'
 create_sens_dirs <- function(dir_version,
                              sens_dir_name = "03-sensitivity-models") {
@@ -329,7 +330,8 @@ create_sens_dirs <- function(dir_version,
     maturity = maturity_estimates_df |>
       dplyr::filter(doy == 182) |>
       dplyr::summarize(p_mature = mean(p_mature), .by = c(age)) |>
-      dplyr::pull(p_mature)
+      dplyr::pull(p_mature),
+    n_fleets = dat[["Nfleets"]]
   )
   # Read that weight-at-age data back in and update it with the
   # time-varying maturity and write back out

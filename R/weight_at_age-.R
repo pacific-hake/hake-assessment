@@ -412,12 +412,20 @@ make_wtatage_plots <- function(plots = 1:6, data, counts, lengths = NULL,
 #'   Stock Synthesis. The file path can either be relative or absolute.
 #' @param data Weight at age matrix.
 #' @param maturity A vector of maturity at age.
+#' @param n_fleets An integer specifying the number of fleets that are in the
+#'   model. The default is two, e.g., one fishery and one survey. When the
+#'   age-1 index is also included in the model, then this value should be
+#'   changed to 3, e.g., one fishery, age 2+ survey, and relative age-1 index
+#'   of abundance.
 #'
 write_wtatage_file <- function(
   file = paste0("wtatage_", format(Sys.time(), "%d-%b-%Y_%H.%M"), ".ss"),
   data,
-  maturity
+  maturity,
+  n_fleets = 2
 ) {
+  stopifnot(is.vector(maturity))
+
   # Ensure column name that matters is lowercase
   colnames(data)[grep("fleet", ignore.case = TRUE, colnames(data))] <- "fleet"
 
@@ -472,7 +480,7 @@ write_wtatage_file <- function(
 
   writeLines("#All matrices below use the same values, pooled across all data sources")
 
-  for (ifleet in -1:3) {
+  for (ifleet in -1:n_fleets) {
     data$fleet <- ifleet
     if (ifleet == -1) note <- "#Weight at age for population in middle of the year: Fleet = -1"
     if (ifleet == 0) note <- "#Weight at age for population at beginning of the year: Fleet = 0"
