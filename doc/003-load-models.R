@@ -18,8 +18,8 @@ bridge_models_dirs <-
          "10-add-catches",
          "20-add-weight-at-age",
          "50-add-fishery-ages",
-         "60-fix-late-devs"))
-         # "70-age-1-index"))
+         "60-fix-late-devs",
+         "70-age-1-index"))
 bridge_models_desc <-
   list(c("Update the SS3 model",
          "Add changes to catch data",
