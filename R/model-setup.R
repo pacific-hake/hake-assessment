@@ -173,6 +173,7 @@ model_setup <- function(drs = NA,
 
     if(!is.null(type[1]) && !is.na(type[1])){
       # Check that the RDS files exists for these models. If they don't, stop
+      unique_models_dirs <- unique_models_dirs[!is.na(unique_models_dirs)]
       walk(unique_models_dirs, \(path){
         fn <- file.path(path, paste0(basename(path), ".rds"))
         if(!file.exists(fn)){
