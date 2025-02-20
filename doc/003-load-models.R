@@ -56,7 +56,7 @@ sens_models_dirs <-
          "07-m-hamel-prior"),
        c("08-age-1-survey",
          "09-comp-weight-harmonic-mean",
-         "17-eDNA-index",
+         "17-edna-index",
          "18-tv-maturity-182"),
        c("10-tv-select-phi-extra-low",
          "11-tv-select-phi-low",
@@ -85,8 +85,8 @@ sens_models_desc <-
 # bridge_models_desc <- NA
 # prepend_to_bridge <- NA
 
-sens_models_dirs <- NA
-sens_models_desc <- NA
+#sens_models_dirs <- NA
+#sens_models_desc <- NA
 
 #request_models_dirs <- NA
 #request_models_desc <- NA
