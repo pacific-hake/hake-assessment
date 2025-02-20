@@ -788,11 +788,11 @@ an almost identical prior and posterior distribution.
 
 ```{r main-prior-posterior-fig, fig.cap = "(ref:main-prior-posterior-cap)", fig.height = 10, out.height = "85%"}
 
-plot_priors_vs_posts(base_model,
-                     x_range = "prior",
-                     facet_title_font_size = 10,
-                     ncol = 3,
-                     nrow = 3)
+# plot_priors_vs_posts(base_model,
+#                      x_range = "prior",
+#                      facet_title_font_size = 10,
+#                      ncol = 3,
+#                      nrow = 3)
 ```
 
 (ref:main-prior-posterior-truncated-cap) As for Figure
@@ -807,11 +807,11 @@ have an almost identical prior and posterior distribution.
 
 ```{r main-prior-posterior-truncated-fig, fig.cap = "(ref:main-prior-posterior-truncated-cap)", fig.height = 10, out.height = "85%"}
 
-plot_priors_vs_posts(base_model,
-                     x_range = "posterior",
-                     facet_title_font_size = 10,
-                     ncol = 3,
-                     nrow = 3)
+# plot_priors_vs_posts(base_model,
+#                      x_range = "posterior",
+#                      facet_title_font_size = 10,
+#                      ncol = 3,
+#                      nrow = 3)
 ```
 
 (ref:main-tv-selex-cap) Mountains plot of median fishery selectivity in each

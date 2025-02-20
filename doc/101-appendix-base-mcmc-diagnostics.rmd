@@ -84,32 +84,32 @@ standard deviation parameters.
 
 ```{r app-mcmc-diag-extra-sd-fig, fig.cap = "(ref:app-mcmc-diag-extra-sd-cap)", fig.height = 8}
 
-plist <- NULL
-plist[[1]] <-
-  plot_mcmc_diagnostics(base_model,
-                        key_posteriors[[4]],
-                        key_posteriors_titles[[4]],
-                        # Trace lines and autocorrelation bar color
-                        color = "royalblue",
-                        # Iteration and density fill color
-                        fill = "royalblue",
-                        # Iteration and density transparency
-                        rib_alpha = 0.3,
-                        #Trace lines and autocorrelation bar transparency
-                        line_bar_alpha = 0.8)
-plist[[2]] <-
-  plot_mcmc_diagnostics(base_model,
-                        key_posteriors[[5]],
-                        key_posteriors_titles[[5]],
-                        # Trace lines and autocorrelation bar color
-                        color = "royalblue",
-                        # Iteration and density fill color
-                        fill = "royalblue",
-                        # Iteration and density transparency
-                        rib_alpha = 0.3,
-                        #Trace lines and autocorrelation bar transparency
-                        line_bar_alpha = 0.8)
-plot_grid(plotlist = plist, nrow = 2)
+# plist <- NULL
+# plist[[1]] <-
+#   plot_mcmc_diagnostics(base_model,
+#                         key_posteriors[[4]],
+#                         key_posteriors_titles[[4]],
+#                         # Trace lines and autocorrelation bar color
+#                         color = "royalblue",
+#                         # Iteration and density fill color
+#                         fill = "royalblue",
+#                         # Iteration and density transparency
+#                         rib_alpha = 0.3,
+#                         #Trace lines and autocorrelation bar transparency
+#                         line_bar_alpha = 0.8)
+# plist[[2]] <-
+#   plot_mcmc_diagnostics(base_model,
+#                         key_posteriors[[5]],
+#                         key_posteriors_titles[[5]],
+#                         # Trace lines and autocorrelation bar color
+#                         color = "royalblue",
+#                         # Iteration and density fill color
+#                         fill = "royalblue",
+#                         # Iteration and density transparency
+#                         rib_alpha = 0.3,
+#                         #Trace lines and autocorrelation bar transparency
+#                         line_bar_alpha = 0.8)
+# plot_grid(plotlist = plist, nrow = 2)
 ```
 (ref:app-mcmc-diag-dm-cap) Summary of Markov chain Monte Carlo diagnostics
 for the Dirichlet-multinomial age-composition parameters for the
