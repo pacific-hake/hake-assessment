@@ -43,8 +43,8 @@ recruitment indices have been considered but ultimately none were identified
 as adding appreciable contribution to model results [@HelserDornEtAl2002;
 @HelserFleischerEtAl2005; @StewartHamel2010], except for the
 fishery-independent acoustic-based relative age-1 index that was included
-in the base model in the 2022-2024 assessments and used as a sensitivity
-analysis this year. The process for generating
+in the base model in the 2022-2024 assessments and removed in the final bridging
+step this year. The process for generating
 fecundity-at-age from the combination of weight-at-age and maturity data changed
 in 2019 from using time-invariant to year-specific weight-at-age values. In 2024,
 time-varying maturity ogives were also added to the calculation of fecundity-at-age
@@ -106,20 +106,23 @@ Synthesis [@MethotWetzel2013] version `r ss_version` was the modeling platform
 used. The largest changes between the `r last_assess_yr` and `r assess_yr`
 stock assessments are the addition of another year of fishery data, a change
 in the estimation of recruitment from 2023 onwards, and the exclusion of the
-age-1 index. Given the unique
+age-1 index of relative numbers of age-1 fish from the acoustic survey.
+Given the unique
 seasonal fishing conditions during the year, the fishery age composition of age-1 fish
 in 2024 was considered
 potentially suspect as a standalone observation (i.e., without the addition of survey information).
 Therefore, recruitment in 2023 was based on the stock--recruitment relationship
 (no additional recruitment deviate estimate). In addition, no recruitment deviations were
 estimated for `r end_yr - 1` onwards (including the forecast years) because no information is available
-to inform the estimates.
+to inform the estimates. The age-1 index
+(Section~\@ref(sec:data-acoustic-survey)) was excluded from the base model
+because it was found to be strongly influencing recruitment estimates even for
+cohorts that had several years of data (see
+Section~\@ref(sec:assessment-changes)), and it does not have an externally
+calculated measure of uncertainty.
 
 The `r assess_yr` base model includes a time series (1995 to
-`r last_survey_yr`) of acoustic age-2$+$ biomass estimates and acoustic
-estimates of relative numbers of age-1 fish
-(see Section~\@ref(sec:data-acoustic-survey) for more details on the age-1
-index). Maturity is assumed to be time-invariant prior to 2009,
+`r last_survey_yr`) of acoustic age-2$+$ biomass estimates. Maturity is assumed to be time-invariant prior to 2009,
 and time-varying, with the integration of annual maturity ogives informed by sea
 temperature at depth, since 2009 (see Section~\@ref(sec:data-maturity)).
 Fecundity-at-age is time-varying as defined by annual weight-at-age
@@ -138,8 +141,7 @@ of the acoustic survey is assumed to be time invariant. Selectivity curves
 were modeled as non-parametric functions estimating age-specific values for
 each age beginning at age two for the index of age-2$+$ biomass and age one for
 the fishery until a maximum age of 6, after which all ages are assumed to have
-the same selectivity. Selectivity for the relative age-1 index was set to one
-for age one and zero for all other ages.
+the same selectivity.
 
 Prior probability distributions are used for a select few parameters and fixed
 values are used for several parameters. For the base model, the instantaneous
@@ -159,14 +161,15 @@ assessment. This value is based on consistency with the observed variability
 in the time series of recruitment deviation estimates and is the same as
 assumed in assessments from 2013 to `r last_assess_yr`
 (Table~\@ref(tab:main-assessment-changes-tab)). Catchabilities associated with the
-biomass index (*q*~b~) and with the relative age-1 index (*q*~1~) were calculated
+biomass index (*q*~b~) and with the relative age-1 index (*q*~1~), for bridging
+models that included it, were calculated
 analytically as per @LudwigWalters1981 for each sample of posterior parameters,
 resulting in a distribution of catchability for each.
 
 Statistical likelihood functions used for data fitting are typical of many
 stock assessments. The biomass index was fit via a lognormal likelihood
 function, using the observed (and extra 2009) sampling variability, estimated
-via kriging, as year-specific weightings. The relative age-1 index was
+via kriging, as year-specific weightings. When included, the relative age-1 index was
 specified as having a Student's t-distribution for its error structure with the
 number of degrees of freedom equal to one less than the number of available
 data points. An additional constant and additive standard deviation on the
@@ -447,6 +450,9 @@ follow current best practices;
 - Incrementally update catch, maturity-at-age/weight-at-age/fecundity-at-age, and fishery age-composition data from years previous to `r last_data_yr` (in that order);
 - Incrementally add `r last_data_yr` catch, maturity-at-age/weight-at-age/fecundity-at-age, and fishery age-composition data (in that order); and
 - Turn off estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (i.e., recruitment comes from the stock--recruitment relationship) due to limited data to inform the estimation of `r last_data_yr - 1` year class strength in the absence of survey data. Similarly, no recruitment deviations were estimated during the forecast period.
+
+TODO add in age-1 index, and somewhere mention: Selectivity for the relative age-1 index was set to one
+for age one and zero for all other ages.
 
 Stock Synthesis version `r ss_version` includes a number of changes since the
 version used by @JTC2024. However, none of the changes were specifically relevant
