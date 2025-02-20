@@ -300,9 +300,12 @@ and 1999 supported much of the commercial catch from the 1980s to the
 mid-2000s. From 2000 to 2007, estimated recruitment was at some of the
 lowest values in the time series but this was followed by an above average
 2008 year class and a very strong 2010 year class. Above average year classes
-have occurred since then in 2014, 2016 and 2021, which have been sustaining the fishery over the
-last decade, with small year classes for all other years from 2011--2019
-(median recruitment well below the mean of all median recruitments).
+have occurred since then in 2014, 2016, 2020 and 2021
+(median recruitment above the mean of all median recruitments),
+which have been sustaining the fishery over the
+last decade, with below average year classes for all other years from 2011--2022.
+
+<!-- yrs_since_2010_recruitment_med_below_mean -- check that for the last sentence -->
 
 ```{r es-recruitment-tab, results = "asis", echo = FALSE}
 
@@ -340,14 +343,19 @@ plot_recruitment(list(base_model),
 
 The addition of `r last_data_yr` data for this assessment do not significantly
 change the general pattern of recruitment estimated in recent assessments.
-However, estimates of absolute recruitment for the most recent years can change
-with new data and updated assumptions about recent recruitments. The estimate of 2020 recruitment is above average, whereas in the previous
+However, estimates of absolute recent recruitments are all reduced from the
+previous assessment due to new data, updated assumptions about recent
+recruitments, and removal of the age-1 index.
+The estimate of 2020 recruitment is above average, whereas in the previous
 two assessments it was highly uncertain but thought to be possibly very large.
 The 2021 recruitment is estimated to be potentially large with a median of
 `r f(base_model$mcmccalcs$rmed["2021"], 1)`~billion fish based on
 several years of fishery data and the 2023 survey. The 2022 cohort was observed
-by the age-1 index in 2023, suggesting it is average to below average in size.
-There are no survey data available to inform the estimates of
+by the age-1 index in 2023 and fit to in the 2024 assessment, which suggested it is
+average to below average in size; however, with the removal of the age-1 index
+in this year's assessment the 2022 cohort is now estimated to be very small,
+based on fishery age data.
+There are also no survey data available to inform the estimates of
 the `r end_yr - 2`--`r end_yr - 1` year class sizes, for which recruitment
 deviations were set to zero.
 The general notion remains that recent `r sp` recruitment is
@@ -356,7 +364,8 @@ change substantially as new data refines estimates. Retrospective analyses
 of year class strength for young fish have shown the estimates of recent
 recruitment to be unreliable prior to at least a modelled age of 3
 (observed as age-2 fish the previous year) without a survey in the most recent
-year and a modelled age of 2 (observed as age-1 fish) with a survey, giving
+year and a modelled age of 2 (observed as age-1 fish, though the age-1 index is
+now not fit to) with a survey, giving
 further motivation for fixing recruitment deviations to 0 for `r end_yr - 2` onwards.
 
 ## Default harvest policy {-}
