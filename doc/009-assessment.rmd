@@ -172,7 +172,8 @@ function, using the observed (and extra 2009) sampling variability, estimated
 via kriging, as year-specific weightings. When included, the relative age-1 index was
 specified as having a Student's t-distribution for its error structure with the
 number of degrees of freedom equal to one less than the number of available
-data points. An additional constant and additive standard deviation on the
+data points, and its selectivity was set to one for age one and zero for all other ages.
+An additional constant and additive standard deviation on the
 log-scale component is included for both the biomass index and the relative
 age-1 index, which were freely estimated to accommodate unaccounted-for sources
 of process and observation error. A D-M likelihood was applied to
@@ -448,11 +449,14 @@ the `r assess_yr` base model. The steps are as follows:
 - Update to the latest version of Stock Synthesis, version `r ss_version`, to
 follow current best practices;
 - Incrementally update catch, maturity-at-age/weight-at-age/fecundity-at-age, and fishery age-composition data from years previous to `r last_data_yr` (in that order);
-- Incrementally add `r last_data_yr` catch, maturity-at-age/weight-at-age/fecundity-at-age, and fishery age-composition data (in that order); and
-- Turn off estimation of the `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (i.e., recruitment comes from the stock--recruitment relationship) due to limited data to inform the estimation of `r last_data_yr - 1` year class strength in the absence of survey data. Similarly, no recruitment deviations were estimated during the forecast period.
-
-TODO add in age-1 index, and somewhere mention: Selectivity for the relative age-1 index was set to one
-for age one and zero for all other ages.
+- Incrementally add `r last_data_yr` catch, maturity-at-age/weight-at-age/fecundity-at-age, and fishery age-composition data (in that order);
+- Turn off estimation of the `r last_data_yr - 1` and `r last_data_yr`
+  recruitment deviations (i.e., recruitment comes from the stock--recruitment
+  relationship) due to limited data to inform the estimation of
+  `r last_data_yr - 1` year class strength in the absence of survey
+  data. Similarly, no recruitment deviations were estimated during the forecast
+  period; and
+- Exclude the age-1 index.
 
 Stock Synthesis version `r ss_version` includes a number of changes since the
 version used by @JTC2024. However, none of the changes were specifically relevant
@@ -485,7 +489,7 @@ had a negligible effect on the stock trajectory, it did slightly adjust estimate
 recruitment strength, in particular raising the 2022 recruitment somewhat.
 --->
 
-The final step in this year's bridging led to turning off the estimation of the
+The penultimate step in this year's bridging led to turning off the estimation of the
 `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (i.e.,
 recruitment without deviation from the stock--recruitment relationship,
 Figure~\@ref(fig:main-bridge-summary-2-fig)). Given the unique seasonal fishing
@@ -494,11 +498,22 @@ potentially suspect without the addition of survey information. This change led
 to decreased estimates of female spawning biomass at the start of `r assess_yr`
 relative to the previous model bridging steps. The next assessment will include
 data from the `r assess_yr` survey that will provide an age-2+ index with age
-compositions providing additional information on the `r last_data_yr-1`
-year-class strength. Additionally, the `r assess_yr+1` assessment will explore
-estimating recruitment deviations for `r last_data_yr` and `r assess_yr`
-because there will be both a relative age-1 index and fishery age-composition
-data to inform those estimates.
+compositions providing additional information on the `r last_data_yr-1` and
+`r last_data_yr`
+year-class strengths. Given this survey information, the `r assess_yr+1` assessment will explore
+estimating recruitment deviations for `r last_data_yr`.
+
+TODO someone please confirm that last bit is okay.
+
+The final bridging step was to exclude the age-1 index from the base model.
+
+TODO, once we have results, adapt this from earlier text:
+
+because it was found to be strongly influencing recruitment estimates even for
+cohorts that had several years of data.
+
+Also, the age-1 index does not have an externally calculated measure of uncertainty.
+
 
 ### Assessment model results {#sec:assessment-model-results}
 
