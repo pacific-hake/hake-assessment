@@ -7,9 +7,9 @@
 - The stock assessment model for `r assess_yr` has the same
 population dynamics structure as the `r last_assess_yr` model,
 except for fixing recruitment deviations to zero in the final two years and in
-the projection years of the model.
-The model is fit to an acoustic survey index of biomass, a relative index of
-age-1 fish, annual commercial catch data, and age-composition data from the
+the projection years of the model, and removing the relative index of age-1 fish.
+The model is fit to an acoustic survey index of biomass, annual commercial catch
+data, and age-composition data from the
 survey and commercial fisheries.
 
 - Data for `r end_yr-1` were included for each data set and minor changes to
@@ -29,7 +29,7 @@ out of a total allowable catch (TAC), adjusted for carryovers, of
 (female spawning biomass at the start of `r end_yr` divided by that at
 unfished equilibrium, B~0~) is `r curr_depl_median`% but is highly
 uncertain (with 95% credible interval from `r curr_depl_lower`% to
-`r curr_depl_upper`%). After declining from 2018--2021, the median
+`r curr_depl_upper`%). After declining from 2018--2022, the median
 relative spawning biomass increased from 2022--2025, due to the
 estimated above average, but uncertain, size of the 2020 and 2021
 cohorts entering maturity.
@@ -71,11 +71,11 @@ of the female spawning biomass falling below `r b_40` in `r end_yr + 2`.
 <!-- `r last_yr_tac_risk_3_biomass_decline`% chance of it declining -->
 <!-- from `r end_yr + 2` to `r end_yr + 3` with a constant catch of -->
 <!-- `r last_yr_tac` t. -->
-There is nearly a 100% chance that female spawning biomass will decline from 2025
+The model estimates a 100% chance that female spawning biomass will decline from 2025
 through 2027 with a constant catch of `r last_yr_tac` t, given the current assumption
 of average recruitment from 2023 onward.
 
-- Despite estimates of a healthy stock status, the recent lack
+- Despite estimates of a healthy stock status (albeit less so than last year), the recent lack
 of survey abundance and fishery catch in Canada suggests
 a population structure not conducive to achieving harvest quotas in
 northern fisheries over recent years.
