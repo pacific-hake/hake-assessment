@@ -97,8 +97,7 @@ year classes were estimated at
 This Joint Technical Committee (JTC) assessment depends on fishery
 landings (`r start_yr`--`r last_data_yr`), an acoustic survey biomass index
 of age-2$+$ fish (Figure~\@ref(fig:es-survey-biomass-fig)) and age compositions
-(`r survey_start_yr`--`r survey_end_yr`), a relative index of age-1 fish
-(Figure~\@ref(fig:es-survey-age1-fig); `r survey_start_yr`--`r survey_end_yr`),
+(`r survey_start_yr`--`r survey_end_yr`),
 fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`), and
 weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011
 the survey biomass index of age-2$+$ fish was the lowest in the time series and was followed
@@ -106,14 +105,11 @@ by the index increasing in 2012, 2013, and again in 2015 before decreasing to
 near the time series average in 2017. The survey
 (Figure~\@ref(fig:es-survey-biomass-fig)) shows a decline from 2019 (the fourth
 highest of the series) to 2023 (the third lowest of the series).
-Age-composition data from the aggregated fisheries and the acoustic survey,
-along with the age-1 index, provide data that facilitates estimating relative
-cohort strength, i.e., strong and weak cohorts. The age-1 index suggests
-particularly large numbers of age-1 fish in 2009, 2011, and 2015 (2008,
-2010, and 2014 year classes, respectively), and is not available for
-most even years (odd year classes, Figure~\@ref(fig:es-survey-age1-fig)).
-There are no survey data to inform the size of the `r last_data_yr-1` and
-`r last_data_yr` year classes.
+Age-composition data from the aggregated fisheries and the acoustic survey
+provide data that facilitates estimating relative
+cohort strength, i.e., strong and weak cohorts.
+No survey data are used to inform the size of the
+`r last_data_yr-2`--`r last_data_yr` year classes.
 
 (ref:es-survey-biomass-cap) Acoustic survey biomass index of age-2$+$ fish
 (Mt). Approximate 95% confidence intervals are based on
@@ -135,7 +131,7 @@ performance of the assessment model, respectively. The Bayesian approach
 combines prior knowledge about natural mortality, stock--recruitment steepness
 (e.g., a parameter for stock productivity), and several other parameters, with
 likelihoods for the acoustic survey biomass index, acoustic survey
-age-composition data, the relative age-1 index, and fishery age-composition
+age-composition data, and fishery age-composition
 data. Integrating the joint posterior distribution over model parameters
 provides probabilistic inferences about uncertain model parameters and
 forecasts derived from those parameters; this is done via Markov chain Monte
@@ -151,20 +147,6 @@ changes in the distribution or `r sp`, and harvest control rules affect expected
 management outcomes given repeated application of these procedures over
 the long-term. The results of past (and ongoing) closed-loop simulations
 help inform decisions made for this assessment.
-
-(ref:es-survey-age1-cap) Relative index of age-1 fish (numbers of fish) and
-approximate 95% confidence intervals based on sampling variability. The index
-is relative because the survey does not attempt to sample all available age-1
-fish and the analysis does not include kriging as is done to estimate age-2$+$
-biomass.
-
-(ref:es-survey-age1-alt) This figure shows that the age-1 survey estimate has
-increased from 2019 to 2021.
-
-```{r es-survey-age1-fig, fig.cap = "(ref:es-survey-age1-cap)"}
-
-plot_survey_biomass(base_model, index = "age1", y_lim = c(0, 16))
-```
 
 This `r assess_yr` assessment retained the same general population dynamics
 structure as the base assessment model from `r last_assess_yr` and again is
@@ -187,6 +169,12 @@ recruitment deviations (i.e., deviations fixed at zero, giving average recruitme
 projection years. This differs to previous assessment models, for which
 recruitments at the end of the time series included a random component (extra variability
 around the stock-recruitment relationship).
+
+Also, the relative index of age-1 fish from the survey was not used to fit the
+model this year
+because it was found to be strongly influencing recruitment estimates even for
+cohorts that had several years of data, and it does not have an externally
+calculated measure of uncertainty.
 
 This assessment continues to use (since 2014) time-varying
 (rather than constant) selectivity to maintain flexibility within the
