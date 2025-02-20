@@ -25,6 +25,7 @@ ld="/srv/hake/"
 remove_path_regex="\\/srv\\/hake\\/"
 
 files=(*.rds \
+       hake.Rdata \
        starter.ss \
        wtatage.ss \
        forecast.ss \
