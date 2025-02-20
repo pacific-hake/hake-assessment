@@ -174,19 +174,17 @@ table_param_est_bounds <- function(model,
     dplyr::filter(grepl("extrasd_age1", param))
 
   if(nrow(row) != 1){
-    warning("Either the 'extra SD age 1' parameter was not found ",
-            "in the control file or there is more than one of them")
+    stop("Either the 'extra SD age 1' parameter was not found ",
+         "in the control file or there is more than one of them")
   }
 
-  if(nrow(row) == 1){
-    row$param <- "extra_sd_age1"
-    row$num_param <- ifelse(row$phase <= 0 , "--", "1")
-    row$bounds <- paste0("(", row$lo, ", ", row$hi, ")")
-    row$latex_nm <- "Additional variance for age-1 index log(SE)"
-    row$prior_str <- get_prior_string(row, digits)
-    sr_params <- sr_params |>
-      bind_rows(row)
-  }
+  row$param <- "extra_sd_age1"
+  row$num_param <- ifelse(row$phase <= 0 , "--", "1")
+  row$bounds <- paste0("(", row$lo, ", ", row$hi, ")")
+  row$latex_nm <- "Additional variance for age-1 index log(SE)"
+  row$prior_str <- get_prior_string(row, digits)
+  sr_params <- sr_params |>
+    bind_rows(row)
 
   # Fishery selectivity parameters ----
   sel_params <- convert_ctl_file_param_dfs(ctl, "age_selex_parms") |>
