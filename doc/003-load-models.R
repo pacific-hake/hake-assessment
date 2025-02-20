@@ -19,7 +19,7 @@ bridge_models_dirs <-
          "20-add-weight-at-age",
          "50-add-fishery-ages",
          "60-fix-late-devs",
-         "70-age-1-survey"))
+         "70-age-1-index"))
 bridge_models_desc <-
   list(c("Update the SS3 model",
          "Add changes to catch data",
@@ -85,8 +85,8 @@ sens_models_desc <-
 # bridge_models_desc <- NA
 # prepend_to_bridge <- NA
 
-# sens_models_dirs <- NA
-# sens_models_desc <- NA
+sens_models_dirs <- NA
+sens_models_desc <- NA
 
 #request_models_dirs <- NA
 #request_models_desc <- NA
@@ -107,6 +107,10 @@ request_models_desc <-
          "No 2021, 2023 age-1 ind.",
          "No 2019, 2021, 2023 age-1 ind.",
          "No 2015, 2017, 2019, 2021, 2023 age-1 ind."))
+
+request_models_dirs <- NA
+request_models_desc <- NA
+
 
 test_models_dirs <- NA
 test_models_desc <- NA
