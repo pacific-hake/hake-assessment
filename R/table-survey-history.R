@@ -61,9 +61,7 @@ table_survey_history <- function(model,
            vessels,
            obs_2,
            se_log_2,
-           num_hauls_samples,
-           obs_3,
-           se_log_3)
+           num_hauls_samples)
 
   col_names <- c("Year",
                  "Start\ndate",
@@ -71,9 +69,7 @@ table_survey_history <- function(model,
                  "Vessels",
                  "Age-2$+$\nbiomass\nindex\n(million t)",
                  "Sampling\nCV\nage-2$+$",
-                 "Number\nof\nhauls\nwith\nage\nsamples",
-                 "Age-1\nindex\n(billions\nof\nfish)",
-                 "Sampling\nCV\nage-1")
+                 "Number\nof\nhauls\nwith\nage\nsamples")
 
   # Insert custom header fontsize before linebreaker
   if(is.null(header_font_size)){
