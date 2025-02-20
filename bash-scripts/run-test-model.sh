@@ -32,13 +32,13 @@ models_path="/srv/hake/models"
 year_path=$assess_year
 version_path="02-version"
 type_path="05-test-models"
-model_name="14-long-base"
+model_name="00-edna"
 
-ss_exe="ss3_2024"
-num_chains=1
-num_samples=32000
-num_warmup_samples=50
-adapt_delta=0.99
+ss_exe="ss3"
+num_chains=8
+num_samples=8000
+num_warmup_samples=250
+adapt_delta=0.85
 run_extra_mcmc=FALSE
 
 model_path=$models_path/$year_path/$version_path/$type_path/$model_name
