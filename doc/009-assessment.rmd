@@ -249,8 +249,8 @@ Stock Synthesis without simultaneously estimating growth. Thus, the JTC sees
 using estimates of age-specific $M$ from the Climate- Enhanced, Age-based model
 with Temperature-specific Trophic Linkages and Energetics (CEATTLE) model as a
 way forward [@HolsmanEtAl2016]. Output from CEATTLE includes time series of
-estimates of baseline $M$ and estimates of $M$ at age for ages 0--1, 2, 3, 4,
-and 5$^+$, where the $M$ at-age estimates are strictly natural mortality due to
+estimates of baseline $M$ and estimates of $M$ at age for ages 0--1, 2, 3, 4, 5,
+and 6$^+$, where the $M$ at-age estimates are strictly natural mortality due to
 cannibalism. Two sensitivities were run for this assessment, one where
 baseline mortality at age was fixed and one where it was estimated. Results
 are presented in Section~\@ref(sec:assessment-sensitivity-analyses).*
@@ -1268,7 +1268,7 @@ natural mortality;
 
 1. Consideration of an alternative prior distribution (mean and standard
 deviation) for natural mortality based on the @Hamel2015 and @HamelCope2022
-life history meta-analytic method;
+life-history meta-analytic method;
 
 1. Consideration of an alternative prior distribution and a fixed value for
 steepness, to change the resiliency of the stock;
@@ -1276,85 +1276,86 @@ steepness, to change the resiliency of the stock;
 1. Consideration of higher and lower variation about the stock--recruitment
 relationship ($\sigma_r$);
 
-1. Removal of the age-1 index as a data source;
+1. Addition of the relative age-1 index as a data source;
 
-1. Downweighting the fishery age-composition data;
+1. Down weighting the fishery age-composition data;
 
 1. Consideration of alternative standard deviations for time-varying
 selectivity;
 
-1. Adding a relative index of abundance based on environmental-DNA;
+1. Addition of a relative index of abundance based on environmental-DNA;
 
 1. Using the middle of the year to predict maturity-at-age data; and
 
-1. Assuming $M$ is specific to ages 0--1, 2, 3, 4, and 5$^+$.
+1. Assuming $M$ is specific to ages 0--1, 2, 3, 4, 5, and 6$^+$.
 
-None of the sensitivities resulted in a substantial departure from the main
-population dynamics of the base model
+Most of the sensitivities resulted in a similar trajectory of the population
+dynamics as the base model
 (Tables~\@ref(tab:main-parameter-estimates-sens-1-tab)--
 \@ref(tab:main-parameter-estimates-sens-3-tab) and
 Figures~\@ref(fig:main-biomass-base-alternative-1-fig)--
-\@ref(fig:main-index-base-alternative-4-fig)).
-All sensitivity models showed large estimated increases in
-female spawning biomass in the early- to mid-2010s
-driven by the 2010, 2014, and 2016 cohorts, followed by a period of general
-decline (2018--2023) during a period of high catches, before increasing again due to the above average 2020 and
-2021 cohorts. All sensitivity models indicate that `r assess_yr` relative spawning
-biomass is essentially above `r b_40` (the lowest median relative spawning biomass is
-0.65$B_0$ and a few of the credible intervals dip slightly below `r b_40`). The overall scale of the population was impacted
-by various alternative assumptions, and the highly uncertain size of the
-recent cohorts were more variable across sensitivity analyses than earlier
+\@ref(fig:main-mortality-sens-fig)), with the largest deviations occurring
+in the sensitivities related to natural mortality.
+All sensitivity models matched the base model in terms of trends from the start
+of the model to approximately 2020, e.g., increases in female spawning biomass
+in the early- to mid-2010s driven by the 2010, 2014, and 2016 cohorts, followed
+by a period of general decline during a period of high catches. Some of the
+models differed from the base model in their trajectories of recent trends and
+unfished levels.
+All sensitivity models, except when age-specific natural mortality was fixed,
+indicate that `r assess_yr` median estimate of relative spawning biomass is
+above `r b_40`. As previously mentioned, the overall scale of the population was
+impacted by various alternative assumptions, and the uncertainty about size of
+the recent cohorts was more variable across sensitivity analyses than earlier
 cohorts that have been observed for more years.
 
 The standard deviation of the prior distribution on natural mortality was
 increased from the base model value of 0.1 to 0.2, 0.3, and 0.31. Note that
-the median of the prior was also changed for the latter sensitivity that uses the @HamelCope2022 prior. Each of these
-sensitivities led to an increase in estimates of natural mortality relative to
-the base model. The medians of the MCMC posteriors for natural mortality
-increased from `r f(nat_m[2], 3)` to
+the median of the prior was also changed for the latter sensitivity due to the
+use of the @HamelCope2022 prior. Estimates of natural mortality were higher than
+the base model for each of these changes to the prior. The medians of the MCMC
+osteriors for natural mortality increased from `r f(nat_m[2], 3)` to
 `r f_nat_m_02[2]`, `r f_nat_m_03[2]`, and `r f_nat_m_hamel[2]`, respectively.
 The 95% credibility intervals also increased, with the largest differences
 in the upper end rather than the lower end of the intervals. The credible
 interval for the base model was
-`r f(nat_m[1], 3)`--`r f(nat_m[3], 3)`, and for the sensitivity runs were,
-respectively,
+`r f(nat_m[1], 3)`--`r f(nat_m[3], 3)`, and for the sensitivity runs were
 `r f_nat_m_02[1]`--`r f_nat_m_02[3]`,
 `r f_nat_m_03[1]`--`r f_nat_m_03[3]` , and
-`r f_nat_m_hamel[1]`--`r f_nat_m_hamel[3]` (Table~\@ref(tab:main-parameter-estimates-sens-1-tab)).
+`r f_nat_m_hamel[1]`--`r f_nat_m_hamel[3]`,
+respectively, (Table~\@ref(tab:main-parameter-estimates-sens-1-tab)).
 In addition to increased estimates of natural mortality, results from these
 sensitivity models also showed increases in the overall scale of the
 population, the estimated stock status relative to `r b_0` prior to 1990, and
-the uncertainty in female spawning biomass on both absolute and relative
-scales. They also showed roughly a halving of the estimated relative fishing intensity in `r end_yr - 1`
-and roughly a doubling of equilibrium yield at `r bspr_40`
+the uncertainty in female spawning biomass on both absolute and relative scales.
+They also led to roughly a halving of the estimated relative fishing intensity
+in `r end_yr - 1` and roughly a doubling of equilibrium yield at `r bspr_40`
 (Table~\@ref(tab:main-parameter-estimates-sens-1-tab) and
 Figures~\@ref(fig:main-biomass-base-alternative-1-fig) and
 \@ref(fig:main-status-base-alternative-1-fig)).
 
 The mean of the prior distribution on steepness was decreased from 0.777
-(base) to 0.5 and, separately, steepness was fixed at 1.0. The decrease in
-the mean of the prior resulted in a decrease in the MCMC estimate of steepness
-from a median of `r f(steep[2], 3)` with a 95% credible interval of
-`r f(steep[1], 3)`--`r f(steep[3], 3)` to a median of
-`r f_steep_prior_05[2]` with a 95% credible interval of
-`r f_steep_prior_05[1]`--`r f_steep_prior_05[3]`
-(Table~\@ref(tab:main-parameter-estimates-sens-1-tab)). However, neither
-steepness sensitivity analysis had a large impact on the overall model
-results (Figures~\@ref(fig:main-biomass-base-alternative-1-fig) and
+to 0.5 and, separately, steepness was fixed at 1.0. The decrease in
+the mean of the prior resulted in a decrease in the median estimate of steepness
+from `r f(steep[2], 3)` (`r f(steep[1], 3)`--`r f(steep[3], 3)`) to
+`r f_steep_prior_05[2]` (`r f_steep_prior_05[1]`--`r f_steep_prior_05[3]`;
+Table~\@ref(tab:main-parameter-estimates-sens-1-tab)). However, neither
+sensitivity analysis had a large impact on the overall model results
+(Figures~\@ref(fig:main-biomass-base-alternative-1-fig) and
 \@ref(fig:main-status-base-alternative-1-fig)), because `r sp` female spawning
 biomass has remained above levels where changes in steepness would appreciably
 influence the stock--recruitment relationship
 (Figure~\@ref(fig:main-stock-recruitment-fig)).
 
-Input values of $\sigma_r$ were changed from `r sigma_r` (base) to
+The fixed value for $\sigma_r$ was changed from `r sigma_r` to
 alternative low (`r sigma_r_sens[1]`) and high (`r sigma_r_sens[2]`) states.
-Both sensitivities were similar to the base model in that the calculated
-standard deviation of recruitment deviations (from the main period) was
-higher than the input $\sigma_r$, i.e., `r sigma_r_lo_main` and
-`r sigma_r_hi_main` when $\sigma_r$ was `r sigma_r_sens[1]` and
-`r sigma_r_sens[2]`, respectively. The calculated standard deviation of
-recruitment deviations from the base model was intermediate with a median of
-`r sigma_r_this_year_main`. These
+Both sensitivities led to results that were similar to the base model and higher
+calculated standard deviation of recruitment deviations (from the main period)
+than the fixed value used in the analysis, i.e., when $\sigma_r$ was
+`r sigma_r_sens[1]` the calculated value was `r sigma_r_lo_main` and when
+$\sigma_r$ was `r sigma_r_sens[2]` the calculated value was `r sigma_r_hi_main`.
+For the base model, the calculated standard deviation of the recruitment
+deviations was intermediate with a median of `r sigma_r_this_year_main`. These
 calculated standard deviations should match the input if the vectors of
 deviations were from the `population' of values rather than just a sample.
 A systematic bias larger than the input value indicates that
@@ -1364,48 +1365,48 @@ to a larger difference between the female spawning biomass at unfished
 equilibrium and the female spawning biomass at the initial year of the model
 than the low $\sigma_r$ model
 (Figure~\@ref(fig:main-biomass-base-alternative-1-fig)). Similar to previous
-assessments, estimates of unfished equilibrium recruitment and relative
-spawning biomass are sensitive to $\sigma_r$, whereas absolute estimates of
-female spawning biomass are relatively insensitive. The method that
+assessments, estimates of unfished equilibrium recruitment are sensitive to
+$\sigma_r$, whereas absolute estimates of female spawning biomass are relatively
+insensitive. The method that
 @MethotTaylor2011 proposed to tune $\sigma_r$ was developed in the context of
 maximum likelihood estimation and not Bayesian inference, where the latter
 potentially allows for estimating $\sigma_r$ using random effects, and thus,
 this proposed method is not used here to tune the fixed input value.
 
-The sensitivity of the base model to the removal of the relative age-1 index
+The sensitivity of the base model to the addition of the relative age-1 index
 provides a method to evaluate how the information about juvenile fish is
 propagated through the model. Estimates of female spawning biomass throughout
 most of the time series are similar between models with and without the relative
-age-1 index (which only starts in 1995) but diverge near the end of the time series
+age-1 index, which starts in 1995, but start to diverge in 2017
 (Table~\@ref(tab:main-parameter-estimates-sens-1-tab),
 Figures~\@ref(fig:main-biomass-base-alternative-2-fig) and
 \@ref(fig:main-status-base-alternative-2-fig)). The `r end_yr` estimates of
 relative spawning biomass are `r f(100 * bratio_curr[2], 1)`% for the base model
 (95% credible interval of `r f(100 * bratio_curr[1], 1)`--
 `r f(100 * bratio_curr[3], 1)`%) and `r f(100 * bratio_age1[2], 1)`%
-for the model where the relative age-1 index is removed (95% credible interval of
+for the model where the relative age-1 index is included (95% credible interval of
 `r f(100 * bratio_age1[1], 1)`--`r f(100 * bratio_age1[3], 1)`%). This
 difference is due to the relative age-1 index providing additional information on
 recruitment for cohorts associated with recent age-1 indices (i.e., 2020 and
 2022 cohorts detected in the 2021 and 2023 age-1 indices). In particular, the
-base model with the relative age-1 index indicates slightly larger 2020 and
-2021 year classes than the model removing the age-1 index
+sensitivity with the relative age-1 index indicates slightly larger 2020 and
+2021 year classes than the base model without the relative age-1 index
 (Figure~\@ref(fig:main-recruitment-base-alternative-2-fig)). Similarly,
-recruitment in 2022 is estimated to be somewhat larger for the base model than
-when removing the age-1 index, though both median recruitment deviations are
-negative (unlike last year's assessment for which the base model's was positive).
-Removing the relative age-1 index led to changes in fit to the
-age-2$+$ survey biomass index. Both models underestimate the 2021 age-2$+$ index (the
-base model less so), and both overestimate the 2023 age-2$+$ (the base model
-more so); (Figure~\@ref(fig:main-index-base-alternative-2-fig)). So the
-inclusion of the age-1 index in the base model estimates a higher biomass in
-recent years than excluding it.
+recruitment in 2022 is estimated to be somewhat larger for the model with the
+relative age-1 index than the base model, though both median recruitment
+deviations are negative.
+Adding the relative age-1 index led to changes in fit to the
+age-2$+$ survey biomass index. Both models underestimate the 2021 age-2$+$ index
+(the base model more so), and both overestimate the 2023 age-2$+$ (the base model
+less so; Figure~\@ref(fig:main-index-base-alternative-2-fig)). The
+inclusion of the age-1 index leads to higher estimates of female spawning
+biomass in recent years compared to the base model.
 
 The base model includes a Dirichlet-multinomial likelihood component that
-includes two estimated parameters to automatically weight each of the fishery
-and survey age compositions. The base model was compared to a model that
-downweighted the fishery age compositions relative to the survey age
-compositions. This downweighting was based on the McAllister--Ianelli method,
+includes two estimated parameters to automatically weight the fishery and
+survey age compositions. The base model was compared to a model that
+down weighted the fishery age compositions relative to the survey age
+compositions. This down weighting was based on the McAllister--Ianelli method,
 which requires manual iterative adjustments to the input sample sizes using a
 derived multiplier. The McAllister--Ianelli method, which was used in
 assessments prior to 2018 (Table~\@ref(tab:main-assessment-changes-tab)),
@@ -1413,59 +1414,70 @@ attempts to make the arithmetic mean of the input sample size approximately
 equal to the harmonic mean of the effective sample size. Here, this was
 accomplished with weighting factors of 0.14 and 0.46 (ratio of 0.30) for fishery and survey
 age compositions, respectively. These weighting factors are not specific to this
-year's base model, rather they are values calculated from previous maximum
+year's base model because an iterative process is not possible when using
+Bayesian inference, rather they are values calculated from previous maximum
 likelihood estimates. The median estimate from the Dirichlet-multinomial
 method used in the base model was `r f(dm_weight_fishery_median, 3)` and
-`r f(dm_weight_survey_median, 3)` (ratio of
+`r f(dm_weight_survey_median, 3)`, respectively (ratio of
 `r f(as.numeric(dm_weight_fishery_median) / as.numeric(dm_weight_survey_median), 2)`).
-Downweighting fishery composition data led to minor changes in relative
+Down weighting fishery composition data led to minor changes in relative
 spawning biomass, recruitment estimates, and increased uncertainty in estimates
-of early recruitments compared to the base model
+of early recruitment deviations compared to the base model
 (Figures~\@ref(fig:main-status-base-alternative-2-fig) and
-\@ref(fig:main-recruitment-base-alternative-2-fig)). The largest changes in the time
-series occurred prior to the availability of survey data.
+\@ref(fig:main-recruitment-base-alternative-2-fig)). The majority of these
+changes were realized in the 1980s but estimates of female spawning biomass in
+the most recent years were also different between these two models. In particular,
+estimates of female spawning biomass in the most recent four years indicated
+less recovery of the population when fishery-age composition data were down
+weighted.
 
 A biomass-based index of `r sp` relative abundance has been developed using
 environmental DNA (see Appendix~\@ref(sec:app-eDNA-index)) that covers
-the years 2019, 2021, and 2023. The index was specified as having
-a Student’s t-distribution for the error structure (similar to the age-1 index)
-with the number of degrees of freedom (2) equal to one less than the
-number of available data points (3). An additional constant and additive
-standard deviation on the log-scale was freely estimated to accommodate
-unaccounted-for sources of process and observation error (median estimate
-is `r f(as.numeric(sens_models[[2]][[4]]$extra_mcmc$q_extrasd_edna_med), 3)`).
-The index is representative of all fish age-1 and older (i.e., fully selective
-of fish age-1$+$), with a median catchability estimate of
-`r f(as.numeric(exp(sens_models[[2]][[4]]$extra_mcmc$lnq_edna_med)), 3)`. Catchability
-is not as intuitive as for the other indices as it scales copies of DNA per microliter
-to biomass. The eDNA index
-declined from 2019 to 2023, though more steeply between 2019 to 2021 then between
-2021 and 2023 (see Figure~\@ref(fig:app-eDNA-index-1-fig)). The eDNA index is
-fit well in this sensitivity model (Figure~\@ref(fig:main-index-edna-fig)),
-somewhat at the cost of reduced fits in the age
-composition data. While the inclusion of the eDNA index did not significantly alter most
-key parameters and management quantities (Table~\@ref(tab:main-parameter-estimates-sens-2-tab)),
-it did reduce spawning stock biomass estimates from 2021 onward, similar in size and trajectory
-to the removal of the age-1 index sensitivity
+the years
+`r sens_models[[2]][[4]][["cpue"]] |> dplyr::filter(grepl("edna", Fleet_name, ignore.case = TRUE), Use > 0) |> dplyr::pull(Yr) |> glue::glue_collapse(sep = ", ", last = ", and ")`.
+The index was specified as having
+a Student’s t-distribution for the error structure (similar to the
+sensitivity with the relative age-1 index) with
+`r sens_models[[2]][[4]][["dat"]][["CPUEinfo"]] |> tibble::rownames_to_column() |> dplyr::filter(grepl("edna", rowname, ignore.case = TRUE)) |> dplyr::pull(errtype)` degrees of freedom given that
+there are
+`r sens_models[[2]][[4]][["cpue"]] |> dplyr::filter(grepl("edna", Fleet_name, ignore.case = TRUE), Use > 0) |> NROW()`
+data points in the time series. An additional constant and additive
+standard deviation on the log-scale (median estimate
+is `r f(as.numeric(sens_models[[2]][[4]]$extra_mcmc$q_extrasd_edna_med), 3)`)
+was freely estimated to accommodate
+unaccounted-for sources of process and observation error.
+The index is representative of all fish age-1 and older, with a median estimate
+of catchability of
+`r f(as.numeric(exp(sens_models[[2]][[4]]$extra_mcmc$lnq_edna_med)), 3)`.
+Catchability is not as intuitive as for the other indices as it scales copies of
+DNA per microliter to biomass. The eDNA index declined from 2019 to 2023, though
+more steeply between 2019 to 2021 than between 2021 and 2023
+(see Figure~\@ref(fig:app-eDNA-index-1-fig)). The eDNA index is
+fit well in the model (Figure~\@ref(fig:main-index-edna-fig)),
+somewhat at the cost of reduced fits to the age-composition data. While the
+inclusion of the eDNA index did not significantly alter most key parameters and
+management quantities (Table~\@ref(tab:main-parameter-estimates-sens-2-tab)),
+it did lead to reductions in estimates of female spawning biomass from 2021
+onward, similar in size and trajectory to when fishery age-composition data are
+down weighted
 (Figure~\@ref(fig:main-biomass-base-alternative-2-fig)). The eDNA index was
-included here
-as an initial exploration and proof-of-concept. Further explorations
+included here as an initial exploration and proof-of-concept. Further explorations
 are needed, such as integrating eDNA data with acoustic data outside the assessment model
-to produce more accurate and robust survey estimates, before it should be used directly
-for management advice. The construction of a longer time-series, through continued
-environmental DNA sampling, will be advantageous for understanding `r sp` population
+to produce more accurate and robust survey estimates, before it should be used
+for management advice. The construction of a longer time series, through continued
+eDNA sampling, will be advantageous for understanding `r sp` population
 dynamics and the biological communities that interact with `r sp`.
 
 Changing the day of year that maturity was predicted to from
 `r maturity_estimates_df |> dplyr::pull(doy) |> unique() |> max()` to
 `r maturity_estimates_df |> dplyr::pull(doy) |> unique() |> min()`
-led to a decrease in estimates of spawning biomass for the majority of the time
-series, including unfished spawning biomass
+led to decreases in estimates of female spawning biomass for the majority of the
+time series except for the terminal year. Estimates of unfished spawning biomass
+were also lower for this model
 (Table~\@ref(tab:main-parameter-estimates-sens-2-tab),
-Figure~\@ref(fig:main-biomass-base-alternative-2-fig)). Because this model
-leads to a lower estimates of unfished biomass and similar terminal female
-spawning biomass, the estimates of relative spawning biomass are higher than the base
-model (Figure~\@ref(fig:main-status-base-alternative-2-fig)).
+Figure~\@ref(fig:main-biomass-base-alternative-2-fig)), and thus estimates of 
+relative biomass are similar between this sensitivity and the base model
+(Figure~\@ref(fig:main-status-base-alternative-2-fig)).
 
 The degree of flexibility of annual variation in the fishery selectivity was
 tested using three alternative values of standard deviations ($\Phi$)
@@ -1476,41 +1488,43 @@ Section~\@ref(sec:data-variability-selectivity). Changing $\Phi$, which
 controls the flexibility in time-varying selectivity, from
 the base model value of $\Phi = 1.40$ to 0.21, 0.70, and 2.10 did not
 appreciably influence the estimates, or precision, associated with recruitment
-in 2014 or 2016 but it did impact more recent recruitments
-(Figure~\@ref(fig:main-recruitment-base-alternative-4-fig)). In particular,
-recruitment estimates for 2020, 2021, and particularly 2022 are linked to the choice of $\Phi$,
-where the smallest investigated value of $\Phi$ (0.21) led to the highest
-estimates of these recruitment deviations
+in 2014 or 2016 but it did impact more recent estimates of recruitment
+(Figure~\@ref(fig:main-recruitment-base-alternative-4-fig)). Changes in
+estimates of recruitment did not linearly scale with the changes in $\Phi$ and
+patterns were not consistent across years. For example, in 2011 higher $\Phi$
+values led to higher estimates of recruitment but for the 2021 estimate of
+recruitment a \$Phi$ of 0.70 led to the lowest estimate
 (Figure~\@ref(fig:main-recruitment-devs-base-alternative-4-fig)).
-For 2021 and 2022 the second highest deviations were for the largest value of
-$\Phi$ (2.10), the next highest for $\Phi = 1.4$, and the smallest for
-$\Phi = 0.7$ (rather than going from lowest to highest $\Phi$).
 The higher estimates of recruitment for $\Phi = 0.21$ led to a large increase in female spawning
-biomass in recent years compared to the base model, with, due to the above recruitment
-pattern, the biomass decreasing as $\Phi$ changes from 0.21 to 2.1 to 1.4 to 0.7.
+biomass in recent years compared to the base model due to the pattern in recruitment
+estimates. Estimates of terminal female spawning biomass decrease as $\Phi$
+changes from 0.21 to 2.1 to 1.4 to 0.7.
 (Figure~\@ref(fig:main-biomass-base-alternative-4-fig)).
 When $\Phi = 0.21$, the fit to the most recent age-2$+$ survey biomass index
 was the worst of the three investigated models
 (Figure~\@ref(fig:main-index-base-alternative-4-fig)).
 
-Estimates of mortality at age since 1993 due to cannibalism were estimated
-using CEATTLE [@HolsmanEtAl2016] and input into the assessment as fixed values.
-These deviations were available for five groups of fish, age-1 fish and younger,
-age-2 fish, age-3 fish, age-4 fish, and fish ages five and older. The same
-deviations were used for two sensitivity models. The first sensitivity
+Cannibalistic mortality at age since 1993 was estimated using CEATTLE
+[@HolsmanEtAl2016] and input into the assessment as fixed values.
+These annual deviations were available for six groups of fish, age-1 fish and younger,
+age-2 fish, age-3 fish, age-4 fish, age-5 fish, and fish ages six and older. The
+annual deviations were used the following sensitivities related to specifying
+natural mortality at age rather than time-invariant and age-invariant natural
+mortality, like what is in the base model. The first sensitivity
 estimated baseline mortality for each age group, while the second
 sensitivity fixed baseline mortality at 0.13 for all groups based on the
-estimate of baseline mortality from CEATTLE. Given the age-specific
+estimate of baseline mortality from CEATTLE. Given the time-varying age-specific
 deviations, mortality was, on average, more than 20 times larger for age-1 fish
 than any other age. Age-2 fish also experienced more cannibalism than older
 fish in most years but estimates of cannibalism were higher for age-3 than
-age-2 fish in some years (Figure~\@ref(fig:main-mortality-sens-fig)). Age-specific
-values were estimated by fitting the CEATTLE model to diet data up to 2019.
-Diet data since 2019 exists but has yet to be analyzed and included in the regional
-database for use in CEATTLE. Age-0 and age-1 fish were found in over 7,000
+age-2 fish in some years (Figure~\@ref(fig:main-mortality-sens-fig)). Cannibalism
+for fish age six and above was zero in all years. The annual age-specific
+deviations were estimated by fitting CEATTLE to diet data up to 2019.
+More recent diet data exists but it has yet to be analyzed and included in the regional
+database for its use in CEATTLE. Age-0 and age-1 fish were found in over 7,000
 stomachs of `r sp`. Additionally, CEATTLE is informed by temperature at 130 m
-depth from the same spatial footprint of the acoustic survey taken from GLORYS
-output. More details about fitting data on `r sp` to CEATTLE can be found
+depth from GLORYS output at the same spatial footprint of the acoustic survey.
+More details about fitting data on `r sp` to CEATTLE can be found
 in @WassermannEtAl2025.
 
 Estimates of spawning biomass and other derived quantities were quite similar
@@ -1520,15 +1534,12 @@ when baseline natural mortality was estimated
 in the mid-1980s and in the terminal years where the deviations are the highest
 (Figure~\@ref(fig:main-mortality-sens-fig)). Notably, estimates of spawning
 biomass decreased to near target levels when baseline natural mortality was
-fixed at 0.13 for all ages. Additionally, the uncertainty in almost all
+fixed at 0.13 for all ages. The uncertainty in almost all estimated
 quantities decreased when baseline mortality was fixed.
 Estimates of recruitment deviations were smaller for the initial period and
 larger for the main period, though the differences were relatively small, when
 age-specific natural mortality was not estimated compared to the other two
 models (Figure~\@ref(fig:main-recruitment-devs-base-alternative-5-fig)).
-Future sensitivity evaluations could include adding another
-age group, i.e., age six and above, where the deviations are fixed at zero
-instead of assumed to be the same as age-5 fish.
 
 ## Retrospective analyses {#sec:assessment-retrospective-analyses}
 
