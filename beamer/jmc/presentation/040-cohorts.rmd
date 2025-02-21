@@ -29,7 +29,7 @@ plot_cumulative_catch_cohorts(base_model)
 
 ```{r above-average-cohorts-table, results = "asis"}
 
-cohorts <- sort(c(large_cohorts, 2010))
+cohorts <- sort(c(large_cohorts))
 last_few_yrs <- c(last_assess_yr, assess_yr)
 table_above_avg_cohorts_yrs(cohorts, last_few_yrs)
 ```
@@ -43,4 +43,3 @@ plot_squid(base_model,
   theme(axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12))
 ```
-
