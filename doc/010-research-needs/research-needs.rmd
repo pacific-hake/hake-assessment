@@ -45,7 +45,8 @@ of population abundance. Develop species distribution models for `r sp`
 that utilize ecosystem information as drivers of observations across
 spatiotemporal domains. Investigate alternative ways to utilize survey
 age-composition information in the assessment model. Develop estimates of
-uncertainty for the current relative age-1 index. Broaden the scope of
+uncertainty for the relative age-1 index and test performance for furture use.
+Broaden the scope of
 uncertainty considered in the age-2$+$ index and adjust for changes arising
 from the U.S. Integrated Survey Initiative. Bootstrapping of the
 acoustic survey time series, or related methods, could help incorporate
