@@ -512,10 +512,8 @@ plot_phase(base_model,
 
 \clearpage
 
-TODO check first statement here when have full build -- cannot tell from figure:
-
 The median relative spawning biomass was above the `r b_40`
-reference level in all years except 2007--2011
+reference level in all years except 2007--2009 and 2011
 (Figures~\@ref(fig:es-relative-biomass-fig)
 and~\@ref(fig:es-phase-fig)), and the median relative fishing intensity has
 always been below
