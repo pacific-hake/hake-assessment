@@ -10,29 +10,29 @@
 * Projections strongly influenced by size of above-average 2020 and 2021
   cohorts, with 2021 being potentially large but also *highly* uncertain.
 
-* Spawning biomass has a 50% chance of decreasing from `r assess_yr` to
-  `r assess_yr + 1` for a 1-year catch of 350,000~t. At that level and higher,
-  declines in spawning biomass from catch outpace increases from growth
-  given recent 5-year average selectivity and population age structure.
+* Spawning biomass has a 100% chance of decreasing from `r assess_yr` to
+  `r assess_yr + 1` for any catch. Declines in spawning biomass from catch
+  will outpace increases from growth given recent 5-year average
+  selectivity and population age structure.
 
-* The decline is even more likely after two and three years of catch.
+* The probability of decline after two and three years of any catch is 100%.
 
-* Achieving a constant catch of 625,000~t (the 2023 TAC) gives a 4%
-  chance of falling below `r b_40` in 1 year, 11% in 2 years, and
-  21% in 3 years.
+* Achieving a constant catch of 300,000~t (close to 10-year average catch)
+  gives a 23% chance of falling below `r b_40` in 1 year, 39% in 2 years, and
+  59% in 3 years.
 
 ## Summary (2/3)
 
-* Spawning biomass has rapidly increased from 2022--2024 after a steady decline
-  from 2018--2022 (though still well above `r b_40`).
+* Spawning biomass has rapidly increased from 2022--2025 after a steady decline
+  from 2018--2022.
 
-* High proportion of age-3 and age-4 fish predicted in 2024 fishery
-  (61% by numbers, 55% by weight).
+* High proportion of age-4 and age-5 fish predicted in 2024 fishery
+  (72% by numbers, 70% by weight).
 
 * Older fish predicted in 2024 fishery primarily from 2014 and 2016 cohort
-  (15% by numbers, 20% by weight).
+  (10% by numbers, 14% by weight).
 
-* The 2021 year class currently estimated to be well above average.
+* The 2021 year class currently estimated to be above average.
 
 * Uncertainty is large, but stock currently has `r probs_curr_below_b40`%
   chance of being below `r b_40` and `r probs_curr_rel_fish_intens_above_1`%
