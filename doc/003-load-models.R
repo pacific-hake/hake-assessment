@@ -41,6 +41,11 @@ bridge_model_end_yr <-
   list(end_yr - c(1, rep(0, length(bridge_models_desc[[1]]))),
        end_yr - rep(0, length(bridge_models_desc[[2]])))
 
+# Uncomment these if you do not want to load bridge models
+# bridge_models_dirs <- NA
+# bridge_models_desc <- NA
+# prepend_to_bridge <- NA
+
 # This is a list of vectors of sensitivity groups (sensitivity models that
 # will be plotted against each other). It can be `NA` if you want it to be
 # ignored.
@@ -81,15 +86,9 @@ sens_models_desc <-
        c("Natural mortality at age",
          "Fixed natural mortality at age"))
 
-# bridge_models_dirs <- NA
-# bridge_models_desc <- NA
-# prepend_to_bridge <- NA
-
+# Uncomment these if you do not want to load sensitivity models
 #sens_models_dirs <- NA
 #sens_models_desc <- NA
-
-#request_models_dirs <- NA
-#request_models_desc <- NA
 
 request_models_dirs <-
   list(c("01-max-sel-age-8",
@@ -108,9 +107,9 @@ request_models_desc <-
          "No 2019, 2021, 2023 age-1 ind.",
          "No 2015, 2017, 2019, 2021, 2023 age-1 ind."))
 
+# Uncomment these if you do not want to load request models
 #request_models_dirs <- NA
 #request_models_desc <- NA
-
 
 test_models_dirs <- NA
 test_models_desc <- NA
