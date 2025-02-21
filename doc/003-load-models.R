@@ -49,8 +49,9 @@ bridge_model_end_yr <-
 # This is a list of vectors of sensitivity groups (sensitivity models that
 # will be plotted against each other). It can be `NA` if you want it to be
 # ignored.
-# The base mode will be prepended to each group by the function.
-# See `set_dirs()`
+# The base model will be prepended to each group by the function. `set_dirs()`
+# This means you must reference the models by one more than it appears to be
+# e.g. from this list sens_models[[1]][[2]] will be 01-h-prior-mean-low
 sens_models_dirs <-
   list(c("01-h-prior-mean-low",
          "02-h-fix-high",
