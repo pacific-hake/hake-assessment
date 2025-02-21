@@ -79,36 +79,36 @@ productivity, and improved adult condition;
 $\uparrow$ recruitment the following year\\
 
 TEMP$_{\mbox{spawn}}$ & Mean temperature during spawning (shelf break,
-Jan-Mar, 130-500~m depth, 31-36~\textdegree~N) &
+Jan-Mar, 130-500~m depth, 31-36°~N) &
 At higher temperatures, fish are less likely to spawn but growth rate of larvae
 increases;
 $\cup$-shaped relationship with recruitment that year\\
 
 AST$_{\mbox{eggs}}$ & Net along-shore transport (shelf break,
-Jan-Mar, 40-60~m depth, 31-36~\textdegree~N)
+Jan-Mar, 40-60~m depth, 31-36°~N)
 & Increased northward advection away from juvenile nursery areas decreases
 recruitment; $\downarrow$ recruitment that year\\
 
 MLD$_{\mbox{yolk}}$ & Mean mixed layer depth (shelf break
-Jan-Apr, 31-36~\textdegree~N)
+Jan-Apr, 31-36°~N)
 & Larvae aggregate at base of mixed layer so mixed layer depth may limit how far
 they rise in the water column affecting later transport; $\downarrow$ recruitment that year\\
 
 SSH$_{\mbox{JA.c}}$ & Average sea-surface
 height off California as an indicator of basin-scale processes (from coast to
-30~km offshore, Jan-Apr, 34.5-42.5~\textdegree~N) &
+30~km offshore, Jan-Apr, 34.5-42.5°~N) &
 Higher sea surface is indicative of higher productivity and better conditions for copepods;
 $\uparrow$ recruitment that year\\
 
 MLD$_{\mbox{latelarv}}$ & Mean mixed layer depth (shelf break
-Mar-Jun, 31-37~\textdegree~N)
+Mar-Jun, 31-37°~N)
 & Larvae aggregate at base of mixed layer so mixed layer depth may limit how far they rise in the
 water column affecting later transport, and possibly less competition and
 predation when mixed layer shallower; % Kristin's guess
 $\uparrow$ recruitment that year\\
 
 PU$_{\mbox{latelarv}}$ & Strength of poleward undercurrent (from coast to 275~m isobath,
-Mar-Jun, 75-275~m depth, 33.5-34.5~\textdegree~N)
+Mar-Jun, 75-275~m depth, 33.5-34.5°~N)
 & Increased northward
 advection away from juvenile nursery areas decreases recruitment; $\downarrow$ recruitment that year \\
 
