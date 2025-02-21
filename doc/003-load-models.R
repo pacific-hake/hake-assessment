@@ -71,7 +71,7 @@ sens_models_desc <-
          "Natural Mortality (SD=0.2)",
          "Natural Mortality (SD=0.3)",
          "Natural Mortality (Hamel/Cope prior)"),
-       c("Remove Age 1 Index",
+       c("Add Age-1 Index",
          "Down-weight Fishery Comps",
          "eDNA Index",
          "Earlier maturity"),
