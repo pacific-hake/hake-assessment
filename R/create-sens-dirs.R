@@ -31,6 +31,8 @@
 #' * 14-max-sel-age-7
 #' * 15-max-sel-age-8
 #' * 18-tv-maturity-182
+#' * 19-m-at-age
+#' * 20-m-at-age-fixed
 #'
 create_sens_dirs <- function(dir_version,
                              sens_dir_name = "03-sensitivity-models") {
@@ -322,6 +324,7 @@ create_sens_dirs <- function(dir_version,
     change_max_age_selectivity(age_max = 8)
   r4ss::SS_writectl(ctl, ctl[["sourcefile"]], verbose = FALSE, overwrite = TRUE)
 
+  # Maturity ----
   # Time-varying maturity in the middle of the year
   aa <- setup_sensitivity(prefix_number = 18, suffix_string = "tv-maturity-182")
   write_wtatage_file(
@@ -368,6 +371,38 @@ create_sens_dirs <- function(dir_version,
   )
   # Chris wrote this function and I am not sure what it does but the files
   # will not run without doing it
+  purrr::walk(aa, .f = \(x) system(glue::glue("cd {x} && clean_ss3")))
+
+  # Mortality ----
+  aa <- setup_sensitivity(prefix_number = 19, suffix_string = "m-at-age")
+  inputs <- r4ss::SS_read(aa)
+  inputs[["ctl"]] <- change_mortality_ctl(inputs[["ctl"]])
+  inputs[["dat"]] <- change_mortality_dat(
+    inputs[["dat"]],
+    data = m_at_age_df,
+    years = inputs[["dat"]][["styr"]]:inputs[["dat"]][["endyr"]]
+  )
+  r4ss::SS_write(
+    inputs,
+    dir = aa,
+    overwrite = TRUE,
+    verbose = FALSE
+  )
+  purrr::walk(aa, .f = \(x) system(glue::glue("cd {x} && clean_ss3")))
+  aa <- setup_sensitivity(prefix_number = 20, suffix_string = "m-at-age-fixed")
+  inputs <- r4ss::SS_read(aa)
+  inputs[["ctl"]] <- change_mortality_ctl(inputs[["ctl"]], estimate = FALSE)
+  inputs[["dat"]] <- change_mortality_dat(
+    inputs[["dat"]],
+    data = m_at_age_df,
+    years = inputs[["dat"]][["styr"]]:inputs[["dat"]][["endyr"]]
+  )
+  r4ss::SS_write(
+    inputs,
+    dir = aa,
+    overwrite = TRUE,
+    verbose = FALSE
+  )
   purrr::walk(aa, .f = \(x) system(glue::glue("cd {x} && clean_ss3")))
 
   cli::cli_alert(c(

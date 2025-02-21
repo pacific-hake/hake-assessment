@@ -30,7 +30,10 @@ models=( \
         13-max-sel-age-5 \
         14-max-sel-age-7 \
         15-max-sel-age-8 \
-        #16-zero-sum-constraint \
+        16-zero-sum-constraint \
+        18-tv-maturity-182 \
+        19-m-at-age \
+        20-m-at-age-fixed \
         )
 
 type_path="03-sensitivity-models"
