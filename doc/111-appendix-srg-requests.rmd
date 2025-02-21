@@ -40,7 +40,7 @@ no substantial differences in the age composition fits.
 
 ```{r mcmc-survey-fit-srg-app, fig.cap = "(ref:mcmc-survey-fit-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
-plot_survey_fit_mcmc(sens_models[[2]][[1]],
+plot_survey_fit_mcmc(sens_models[[2]][[2]],
                      type = "acoustic",
                      n_posts = 1000,
                      y_lim = c(0, 6),
@@ -74,7 +74,7 @@ selectivity among years.
 
 ```{r main-tv-selex-uncertainty-fig-srg-app, fig.cap = "(ref:main-tv-selex-uncertainty-srg-app-cap)", fig.height = 9}
 
-plot_selex_uncertainty(sens_models[[3]][[1]],
+plot_selex_uncertainty(sens_models[[3]][[2]],
                        n_col = 2,
                        pad_top = TRUE,
                        pad_bottom = TRUE)
@@ -94,7 +94,7 @@ Fishery selectivity is less variable and monotonically increasing from ages 1 to
 ```{r main-tv-selex-posteriors-fig-srg-app, fig.cap = "(ref:main-tv-selex-posteriors-srg-app-cap)", fig.height = 8}
 
 p <- list()
-p[[1]] <- plot_selex_posteriors(sens_models[[3]][[1]],
+p[[1]] <- plot_selex_posteriors(sens_models[[3]][[2]],
                                 type = "survey",
                                 age_range = c(1, 8),
                                 n_posts = 1000,  # if change then change below
@@ -122,7 +122,7 @@ selectivity among years.
 
 ```{r main-tv-selex-uncertainty-fig2-srg-app, fig.cap = "(ref:main-tv-selex-uncertainty2-srg-app-cap)", fig.height = 9}
 
-plot_selex_uncertainty(sens_models[[3]][[2]],
+plot_selex_uncertainty(sens_models[[3]][[3]],
                        n_col = 2,
                        pad_top = TRUE,
                        pad_bottom = TRUE)
@@ -143,7 +143,7 @@ fully selective at age 6.
 ```{r main-tv-selex-posteriors-fig2-srg-app, fig.cap = "(ref:main-tv-selex-posteriors2-srg-app-cap)", fig.height = 8}
 
 p <- list()
-p[[1]] <- plot_selex_posteriors(sens_models[[3]][[2]],
+p[[1]] <- plot_selex_posteriors(sens_models[[3]][[3]],
                                 type = "survey",
                                 age_range = c(1, 8),
                                 n_posts = 1000,  # if change then change below
@@ -171,7 +171,7 @@ selectivity among years.
 
 ```{r main-tv-selex-uncertainty-fig3-srg-app, fig.cap = "(ref:main-tv-selex-uncertainty3-srg-app-cap)", fig.height = 9}
 
-plot_selex_uncertainty(sens_models[[3]][[3]],
+plot_selex_uncertainty(sens_models[[3]][[4]],
                        n_col = 2,
                        pad_top = TRUE,
                        pad_bottom = TRUE)
@@ -192,7 +192,7 @@ a large jump to fully selective at age 6.
 ```{r main-tv-selex-posteriors-fig3-srg-app, fig.cap = "(ref:main-tv-selex-posteriors3-srg-app-cap)", fig.height = 8}
 
 p <- list()
-p[[1]] <- plot_selex_posteriors(sens_models[[3]][[3]],
+p[[1]] <- plot_selex_posteriors(sens_models[[3]][[4]],
                                 type = "survey",
                                 age_range = c(1, 8),
                                 n_posts = 1000,  # if change then change below
@@ -222,7 +222,7 @@ selectivity among years to the base model.
 
 ```{r main-tv-selex-uncertainty-fig4-srg-app, fig.cap = "(ref:main-tv-selex-uncertainty4-srg-app-cap)", fig.height = 9}
 
-plot_selex_uncertainty(sens_models[[2]][[3]],
+plot_selex_uncertainty(sens_models[[2]][[4]],
                        n_col = 2,
                        pad_top = TRUE,
                        pad_bottom = TRUE)
@@ -242,7 +242,7 @@ Fishery selectivity is similar to the base model.
 ```{r main-tv-selex-posteriors-fig4-srg-app, fig.cap = "(ref:main-tv-selex-posteriors4-srg-app-cap)", fig.height = 8}
 
 p <- list()
-p[[1]] <- plot_selex_posteriors(sens_models[[2]][[3]],
+p[[1]] <- plot_selex_posteriors(sens_models[[2]][[4]],
                                 type = "survey",
                                 age_range = c(1, 8),
                                 n_posts = 1000,  # if change then change below
@@ -251,7 +251,7 @@ p[[1]] <- plot_selex_posteriors(sens_models[[2]][[3]],
                                 post_med_line_color = "red",
                                 unc_line_color = "red",
                                 glow = FALSE)
-p[[2]] <- plot_selex_posteriors(sens_models[[2]][[3]],
+p[[2]] <- plot_selex_posteriors(sens_models[[2]][[4]],
                                 type = "fishery",
                                 age_range = c(1, 8),
                                 n_posts = 1000,
@@ -503,7 +503,7 @@ the pre-SRG base model (i.e., includes the age-1 index).
 
 ```{r main-biomass-base-a-srg-app, fig.cap = "(ref:main-biomass-base-a-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
-plot_biomass(list(sens_models[[2]][[1]], model_age_8, model_age_10, model_age_12),
+plot_biomass(list(sens_models[[2]][[2]], model_age_8, model_age_10, model_age_12),
              c("pre-SRG base model", request_models_names[[1]]),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
@@ -518,7 +518,7 @@ the pre-SRG base model (i.e., includes the age-1 index).
 
 ```{r main-relative-biomass-base-a-srg-app, fig.cap = "(ref:main-relative-biomass-base-a-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
-plot_rel_biomass(list(sens_models[[2]][[1]], model_age_8, model_age_10, model_age_12),
+plot_rel_biomass(list(sens_models[[2]][[2]], model_age_8, model_age_10, model_age_12),
              c("pre-SRG base model", request_models_names[[1]]),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
@@ -608,7 +608,7 @@ were detected.
 
 ```{r main-recruitment-devs-base-a-srg-app, fig.cap = "(ref:main-recruitment-devs-base-a-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
-plot_recdevs(list(sens_models[[2]][[1]], model_age_8, model_age_10, model_age_12),
+plot_recdevs(list(sens_models[[2]][[2]], model_age_8, model_age_10, model_age_12),
              c("pre-SRG base model", request_models_names[[1]]),
              line_color = ts_single_line_color,
              leg_ncol = 2,
@@ -641,7 +641,7 @@ model_age1_minus_2 <- request_models[[2]][[2]]
 model_age1_minus_3 <- request_models[[2]][[3]]
 model_age1_minus_5 <- request_models[[2]][[4]]
 
-plot_biomass(model_lst = list(sens_models[[2]][[1]], model_age1_minus_1, model_age1_minus_2, model_age1_minus_3, model_age1_minus_5),
+plot_biomass(model_lst = list(sens_models[[2]][[2]], model_age1_minus_1, model_age1_minus_2, model_age1_minus_3, model_age1_minus_5),
              model_names = c("pre-SRG base model", request_models_desc[[2]]),
              ylim = c(0, 5),
              point_shape = ts_single_model_pointshape,
@@ -657,7 +657,7 @@ influencial, with the relative spawning biomass being lower than otherwise.
 
 ```{r main-relative-biomass-base-srg-app, fig.cap = "(ref:main-relative-biomass-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
-plot_rel_biomass(model_lst = list(sens_models[[2]][[1]], model_age1_minus_1, model_age1_minus_2, model_age1_minus_3, model_age1_minus_5),
+plot_rel_biomass(model_lst = list(sens_models[[2]][[2]], model_age1_minus_1, model_age1_minus_2, model_age1_minus_3, model_age1_minus_5),
              model_names = c("pre-SRG base model", request_models_desc[[2]]),
                  ylim = c(0, 2.5),
                  alpha = 0.2,
@@ -676,7 +676,7 @@ were most influencialon 2019 and 2023 recruitment deviations.
 
 ```{r main-recruitment-devs-base-srg-app, fig.cap = "(ref:main-recruitment-devs-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
-plot_recdevs(model_lst = list(sens_models[[2]][[1]], model_age1_minus_1, model_age1_minus_2, model_age1_minus_3, model_age1_minus_5),
+plot_recdevs(model_lst = list(sens_models[[2]][[2]], model_age1_minus_1, model_age1_minus_2, model_age1_minus_3, model_age1_minus_5),
              model_names = c("pre-SRG base model", request_models_desc[[2]]),
              line_color = ts_single_line_color,
              leg_ncol = 2,
@@ -691,7 +691,7 @@ considerably.
 
 ```{r main-survey-index-fit-mcmc-base-srg-app, fig.cap = "(ref:main-survey-index-fit-mcmc-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
-plot_survey_fit_mcmc(sens_models[[2]][[1]],
+plot_survey_fit_mcmc(sens_models[[2]][[2]],
                      type = "acoustic",
                      n_posts = 1000,
                      glow = TRUE,
