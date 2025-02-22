@@ -1000,7 +1000,7 @@ and below the `r b_40` spawning biomass level at the start of
 
 The base assessment model integrates over the substantial uncertainty
 associated with several important model parameters including: biomass
-index and age-1 index catchabilities (*q*~b~ and *q*~1~, respectively) and
+index catchability (*q*~b) and
 observation errors, the
 magnitude of the stock (via the `r r_0` parameter for equilibrium recruitment),
 productivity of the stock (via the steepness parameter, *h*, of the
@@ -1009,14 +1009,17 @@ selectivity for key ages, recruitment deviations, and survey and fishery data
 weights (via the D-M parameters
 $\theta_{\text{fish}}$ and $\theta_{\text{surv}}$).
 
-The medians of the key parameters from the posterior distribution are
-generally similar to those in last year's base model
-(Table~\@ref(tab:main-parameter-estimates-tab)). Parameter differences were generally less
-than 10%. For derived management quantities, the largest change was a reduction in the
+The medians of the key parameters from the posterior distribution changed somewhat
+compared to those in last year's base model
+(Table~\@ref(tab:main-parameter-estimates-tab)). Parameter differences were largely due to
+the removal of the age-1 index this year, but also from other data and structural
+changes (see Section~\@ref(sec:assessment-changes)).
+For derived management quantities, the largest change was a reduction in the
 estimated relative spawning biomass at the start of 2024 from
 `r f(100*last_yr_base_model$mcmccalcs$dmed["2024"], 1)`% in last year's model to
 `r f(100*base_model$mcmccalcs$dmed["2024"], 1)`% this year as a result
-of updated data and a reduced estimate of the 2022 year class (e.g., estimated positive recruitment in `r last_data_yr` assessment to negative in this assessment).
+of removing the age-1 index and associated changes to recruitment estimates (e.g.,
+reduced estimate of the 2018 and 2022 year classes).
 
 The `r sp` stock displays a very high degree of recruitment variability,
 perhaps the largest of any west coast groundfish stock, resulting in large and
@@ -1031,13 +1034,7 @@ mostly mature, 2020 and 2021 year classes that propagates into forecasts. Althou
 the 2023 acoustic survey helped to refine these estimates and reduce uncertainty,
 further observations of these year classes will improve estimates. The removal of
 recruitment deviation estimates from 2023 onward through the forecast period led to
-an underestimation of uncertainty during the forecast period. The continued inclusion of
-the age-1 index in this assessment will, in some cases, also help to reduce this
-uncertainty during survey years (see
-Figure~\@ref(fig:main-recruitment-base-alternative-2-fig) discussed later).
-However, further work is needed to improve upon the characterization of
-uncertainty in the age-1 index itself, which is based on a time invariant
-assumption about index observation error and catchability.
+an underestimation of uncertainty during the forecast period.
 
 Uncertainty measures in the base model underestimate the total uncertainty in
 the current stock status and projections, because they do not account for
