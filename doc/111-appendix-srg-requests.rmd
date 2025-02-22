@@ -61,7 +61,8 @@ Provide plots of selectivity in 2024 as well as mountain plots for sensitivities
 A series of figures were produced, including two that showed time-varying selectivity across
 all years and the posterior selectivity for the survey and the fishery selectivity in 2024.
 The latter included 1000 draws from the posterior distribution. The set of figures based
-on the model that removes that age-1 index are not shown here. This model is now the base model and is in the main text.  Shown below are the requested figures for the other four models.
+on the model that removes that age-1 index are not shown here. This model is now the base model and is in the main text.  Shown are the requested figures for the other four models
+(Figures~\@ref(fig:main-tv-selex-uncertainty-fig-srg-app)--\@ref(fig:main-tv-selex-posteriors-fig4-srg-app)).
 
 <!-- phi=0.21-->
 (ref:main-tv-selex-uncertainty-srg-app-cap) Fishery selectivity sampled from
@@ -278,7 +279,8 @@ some indication of increasing biomass in California
 over recent years.  Additionally, the southern portion of the eDNA index
 covering years 2021 and 2023 showed a slight upward trend
 (Figure~\@ref(fig:srg-app-edna-fig)). The distribution of
-At-Sea (Figure) and Shoreside (Figure) revenue over recent years indicated a tendency for
+At-Sea (Figure~\@ref(fig:srg-app-pacfem-atsea-fig)) and
+Shoreside (Figure~\@ref(fig:srg-app-pacfem-ss-fig)) revenue over recent years indicated a tendency for
 the At-Sea fleet to catch fish closer to the southern extent of the fishing grounds in
 recent years. There was a more stable distribution for the Shoreside fleet. Additional
 information relevant to the request was shown in research presentations contributed
@@ -290,7 +292,7 @@ data. Courtesy of Eric Ward.
 (ref:srg-app-btsi-alt) This plot shows an increase from 2020 to 2022 in United
 States waters and a decrease from 2022 to 2023.
 
-```{r srg-app-btsi-fig, fig.cap = "(ref:srg-app-btsi-cap)", fig.height = 9}
+```{r srg-app-btsi-fig, fig.cap = "(ref:srg-app-btsi-cap)", results = "asis"}
 include_graphics(file.path(figures_dir,"Estimated_indices_2018_2023.png"), error = FALSE)
 ```
 
@@ -300,7 +302,7 @@ DFO and NWFSC data. Courtesy of Eric Ward.
 (ref:srg-app-btsi-alt) This plot shows an increasing proportion of fish being South of
 42 latitude and a decreasing proportion north of 42 latitude.
 
-```{r srg-app-btsi2-fig, fig.cap = "(ref:srg-app-btsi-cap)", fig.height = 9}
+```{r srg-app-btsi2-fig, fig.cap = "(ref:srg-app-btsi-cap)", results = "asis"}
 include_graphics(file.path(figures_dir,"Estimated_proportion_2018_2023.png"), error = FALSE)
 ```
 
@@ -309,7 +311,7 @@ include_graphics(file.path(figures_dir,"Estimated_proportion_2018_2023.png"), er
 
 (ref:srg-app-edna-alt) The south area index show a slight increase from 2021 to 2022.
 
-```{r srg-app-edna-fig, fig.cap = "(ref:srg-app-edna-cap)", fig.height = 9}
+```{r srg-app-edna-fig, fig.cap = "(ref:srg-app-edna-cap)", results = "asis"}
 include_graphics(file.path(figures_dir,"eDNA_index_1.png"), error = FALSE)
 ```
 
@@ -319,7 +321,7 @@ States At-Sea fleet. Courtesy of Lisa Pfeiffer.
 (ref:srg-app-pacfem-atsea-alt) There was a tendency for the At-Sea fleet to catch fish
 closer to the southern extent of the fishing grounds in recent years.
 
-```{r srg-app-pacfem-atsea-fig, fig.cap = "(ref:srg-app-pacfem-atsea-cap)", fig.height = 9}
+```{r srg-app-pacfem-atsea-fig, fig.cap = "(ref:srg-app-pacfem-atsea-cap)", results = "asis"}
 include_graphics(file.path(figures_dir,"PacFEM_atSea.png"), error = FALSE)
 ```
 
@@ -328,7 +330,7 @@ States Shoreside. Courtesy of Lisa Pfeiffer.
 
 (ref:srg-app-pacfem-ss-alt) There was a relatively stable distribution for the Shoreside fleet.
 
-```{r srg-app-pacfem-ss-fig, fig.cap = "(ref:srg-app-pacfem-ss-cap)", fig.height = 9}
+```{r srg-app-pacfem-ss-fig, fig.cap = "(ref:srg-app-pacfem-ss-cap)", results = "asis"}
 include_graphics(file.path(figures_dir,"PacFEM_shoreside.png"), error = FALSE)
 ```
 
@@ -351,14 +353,15 @@ The SRG requests that the bottom trawl index be analyzed with only US data incor
 
 **JTC Response**
 
-The following bottom trawl survey figures were produced to show trends from both north
-and south of 42 latitude.
+Two bottom trawl survey figures were produced to show trends from both north
+and south of 42 latitude
+(Figures~\@ref(fig:srg-app-btsi3-fig) and \@ref(fig:srg-app-btsi4-fig)).
 
 (ref:srg-app-btsi3-cap) Bottom trawl survey indices compiled by area in United States waters. Courtesy of Eric Ward.
 
 (ref:srg-app-btsi3-alt) This plot shows generally similar trends in each area.
 
-```{r srg-app-btsi3-fig, fig.cap = "(ref:srg-app-btsi3-cap)", fig.height = 9}
+```{r srg-app-btsi3-fig, fig.cap = "(ref:srg-app-btsi3-cap)", results = "asis"}
 include_graphics(file.path(figures_dir,"Total_index_2003_2024.png"), error = FALSE)
 ```
 
@@ -368,7 +371,7 @@ by area in United States waters. Courtesy of Eric Ward.
 (ref:srg-app-btsi4-alt) Over the last 10 years there has been an increasing amount of fish
 south of 42 latitude and a decreasing amount north of 42 latitude.
 
-```{r srg-app-btsi4-fig, fig.cap = "(ref:srg-app-btsi4-cap)", fig.height = 9}
+```{r srg-app-btsi4-fig, fig.cap = "(ref:srg-app-btsi4-cap)", results = "asis"}
 include_graphics(file.path(figures_dir,"Proportions_2003_2024.png"), error = FALSE)
 ```
 
@@ -382,7 +385,8 @@ The SRG requests sensitivities on fishery selectivity parameterization (in the b
 The number of active parameters increases considerably when using a maximum age of 6
 (base; 262 parameters) for time-varying selectivity compared to a maximum of age of 8
 (333 parameters), 10 (403 parameters), and 12 (473 parameters). The following figures
-show some key results comparing the models that increase the maximum selectivity age.
+show some key results comparing the models that increase the maximum selectivity age
+(see Figures~\@ref(fig:main-tv-selex-unc-tv8-srg-app)--\@ref(fig:main-recruitment-devs-base-a-srg-app)).
 
 (ref:main-tv-selex-unc-tv8-srg-app-cap) Estimated selectivities for the fishery
 from a subsample of 1,000 draws from the posterior distribution for the
@@ -622,8 +626,10 @@ The SRG requests running the base model with the age-1 index, keeping 2023 and b
 
 **JTC Response**
 
-The figures requested are presented next and include each of the four sequential age-1
-index data point removal models.  The base model shown in the following figures is the
+The figures requested include each of the four sequential age-1
+index data point removal models
+(see Figures~\@ref(fig:main-biomass-base-srg-app)--\@ref(fig:main-survey-index-fit-mcmc-rm5-srg-app)).
+The base model shown in the following figures is the
 pre-SRG base model (i.e., includes the age-1 index).
 
 (ref:main-biomass-base-srg-app-cap) Median (solid line) of the posterior distribution for
