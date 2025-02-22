@@ -568,7 +568,8 @@ multiplier $\theta_{\text{surv}} / (1 + \theta_{\text{surv}})$ of
 
 The base model fit to the acoustic survey biomass index
 (Figure~\@ref(fig:main-survey-index-fit-mcmc-fig)) remains similar to the
-`r last_assess_yr` base model. The low `r last_survey_yr` survey
+`r last_assess_yr` base model, except the fit to the 2023 survey biomass is
+slightly improved. The low `r last_survey_yr` survey
 biomass pulls down the last few years of estimated biomass, such that the fit
 to the 2019 data point is very good compared to the 2023 assessment when it
 was overestimated. The 2021 fit remains underestimated but within the range
@@ -579,7 +580,7 @@ was `r f(median(base_model$extra_mcmc$q_vector), 3)`
 (Figure~\@ref(fig:main-catchability-density-fig)).
 
 The 2023 biomass index is the third lowest in the series
-(Table~\@ref(tab:main-survey-history-tab)), and is well below the model
+(Table~\@ref(tab:main-survey-history-tab)), and is below the model
 estimate, similar to the 2001 index that has always been below
 model estimates [@JTC2023]. While no direct cause for the
 2001 index anomaly is known, the survey did begin earlier that year than all other surveys
@@ -607,18 +608,18 @@ suggest as population trends. Additionally, the population has undergone
 recent high, but declining, catch levels and produced a couple of
 above-average cohorts that are now mature.
 
-The base model fit to the relative index of age-1 fish highlights an overall general
-confirmation of relative cohort strength
-(Figure~\@ref(fig:main-age1-index-fit-mcmc-fig)). In particular, the 2008, 2014,
-and 2018
-cohorts were estimated to be less than the index, while the 1994 and 2016
-cohorts were estimated to be larger than indicated by the index. The 2011 value
-(the large 2010 cohort) was closely fit.  Age-1 fish in 2021
-(2020 cohort) and in 2023 (2022 cohort) were estimated below the index value.
-The median of the posterior distribution for the analytically-derived catchability
-associated with the age-1 index (*q*~1~) was
-`r f(median(base_model$extra_mcmc$q_vector_age1), 3)`
-(Figure~\@ref(fig:main-catchability-density-age1-fig)).
+<!--The base model fit to the relative index of age-1 fish highlights an overall general -->
+<!--confirmation of relative cohort strength -->
+<!--(Figure~\@ref(fig:main-age1-index-fit-mcmc-fig)). In particular, the 2008, 2014, -->
+<!--and 2018 -->
+<!--cohorts were estimated to be less than the index, while the 1994 and 2016 -->
+<!--cohorts were estimated to be larger than indicated by the index. The 2011 value -->
+<!--(the large 2010 cohort) was closely fit.  Age-1 fish in 2021 -->
+<!--(2020 cohort) and in 2023 (2022 cohort) were estimated below the index value. -->
+<!--The median of the posterior distribution for the analytically-derived catchability -->
+<!--associated with the age-1 index (*q*~1~) was -->
+<!--`r f(median(base_model$extra_mcmc$q_vector_age1), 3)` -->
+<!--(Figure~\@ref(fig:main-catchability-density-age1-fig)). -->
 
 Fits to the age-composition data continue to show close correspondence to the
 dominant and small cohorts observed in the data when the data give a
@@ -757,12 +758,12 @@ The median estimate of the `r end_yr` female spawning biomass is
 `r curr_bio_median` million~t (with a 95% posterior credibility interval from
 `r curr_bio_lower` to `r curr_bio_upper` million~t). The current estimate of
 the `r end_yr - 1` female spawning biomass is `r prev_bio_median`
-(`r prev_bio_lower`--`r prev_bio_upper`) million~t, giving a slightly narrower range of
+(`r prev_bio_lower`--`r prev_bio_upper`) million~t, giving a narrower range of
 uncertainty compared to the estimate from the `r end_yr - 1` assessment of `r prev_bio_median_last_assess`
 (`r prev_bio_lower_last_assess`--`r prev_bio_upper_last_assess`) million~t. The current
 median is reduced from last year, partly due to the influence of the age-2$+$ biomass index
 pulling down the estimated biomass for recent years, the reduction in the estimate of
-the 2022 year class with updated data, and the setting of the 2023 year class using only
+the 2022 year class with updated data, the removal of the age-1 index, and the setting of the 2023 year class using only
 the stock-recruitment relationship (i.e., no estimated recruitment deviate; Figure~\@ref(fig:main-bridge-summary-1-fig)).
 
 **Recruitment**
@@ -857,9 +858,9 @@ For all other years from 2011 to 2022, the model currently estimates small year 
 <!-- see: yrs_since_2010_recruitment_med_below_mean -->
 (median recruitment below the mean of all median
 recruitments), except for 2020 as previously mentioned. The 2022 cohort was observed
-by the age-1 index in 2023 and in recent years by the fishery.  To date, this information
-suggests that it is well below average (Figures~\@ref(fig:main-survey-age1-fig)
-and~\@ref(fig:main-recruitment-fig)). It will be observed as part of the age-2$+$
+in recent years by the fishery.  To date, this information
+suggests that it is well below average (Figure~\@ref(fig:main-recruitment-fig)).
+It will be observed as part of the age-2$+$
 survey index for the first time in 2025. There is no information in the data to estimate the
 sizes of the `r end_yr-1` and `r end_yr` year classes. Retrospective analyses
 of year class strength for young fish have shown the estimates of recent
@@ -918,16 +919,16 @@ Tables~\@ref(tab:main-median-posterior-tab) and
 because fishing intensity more directly accounts for the age-structure of
 both the population and the catch. Median relative fishing intensity is
 estimated to have declined from `r median_intensity_2010`% in 2010 to
-`r median_intensity_2015`% in 2015, and then leveled off around 73--80% from
-2016 to 2019. It then declined to around 63% from 2020 to 2022 before declining further
+`r median_intensity_2015`% in 2015, and then leveled off around 80% from
+2016 to 2019. It then declined to around 70% from 2020 to 2022 before declining further
 to `r median_intensity_2024`% in 2024. The
 median exploitation fraction has increased from a recent low of
-`r exploitation_med_2012` in 2012 to `r exploitation_med_2021`. It has since declined
+`r exploitation_med_2012` in 2012 to `r exploitation_med_2021` in 2021. It has since declined
 rapidly to `r exploitation_med_2024` in 2024.
 Although there is a considerable amount of imprecision around these
 recent estimates due to uncertainty in recruitment and spawning biomass,
 the 95% posterior credibility interval of relative fishing intensity was
-below 100% from 2012--2016 and again from 2020--2024 (Figure~\@ref(fig:main-fishing-intensity-fig)).
+below 100% from 2013--2015 and again from 2020--2021 (Figure~\@ref(fig:main-fishing-intensity-fig)).
 
 **Management performance**
 
@@ -969,7 +970,7 @@ was 112%.
 As noted above, the median relative fishing intensity was below 100% (i.e.
 median fishing intensity below `r fspr_40`)
 `r median_intensity_above_1_text`. The median relative spawning biomass
-was above 40% (the `r b_40` reference point) in all years except 2007--2011
+was above 40% (the `r b_40` reference point) in all years except 2007--2009 and 2011
 (Table~\@ref(tab:main-median-posterior-tab) and
 Figure~\@ref(fig:main-relative-biomass-fig)).
 These are also shown on a phase plot of the joint history of relative

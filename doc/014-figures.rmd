@@ -202,26 +202,26 @@ plot_survey_biomass(base_model,
                     remove_yr_labels = NULL)
 ```
 
-(ref:main-survey-age1-cap) Relative index of age-1 fish (numbers of fish,
-Table~\@ref(tab:main-survey-history-tab)) and approximate 95% confidence
-intervals based on sampling variability. The index is relative because
-the survey does not attempt to sample all available age-1 fish and the
-analysis does not include kriging as is done to estimate age-2$+$ biomass.
+<!--(ref:main-survey-age1-cap) Relative index of age-1 fish (numbers of fish,-->
+<!--Table~\@ref(tab:main-survey-history-tab)) and approximate 95% confidence-->
+<!--intervals based on sampling variability. The index is relative because-->
+<!--the survey does not attempt to sample all available age-1 fish and the-->
+<!--analysis does not include kriging as is done to estimate age-2$+$ biomass.-->
 
-(ref:main-survey-age1-alt) This figure shows that the age-1 survey estimate
-has increased from years 2019 to 2021 and then decreased to 2023.
+<!--(ref:main-survey-age1-alt) This figure shows that the age-1 survey estimate-->
+<!--has increased from years 2019 to 2021 and then decreased to 2023.-->
 
-```{r main-survey-age1-fig, fig.cap = "(ref:main-survey-age1-cap)"}
+<!--```{r main-survey-age1-fig, fig.cap = "(ref:main-survey-age1-cap)"}-->
 
-plot_survey_biomass(base_model,
-                    index = "age1",
-                    y_lim = c(0, 16),
-                    x_labs_mod = 5,
-                    alpha = 0.3,
-                    tick_prop = 1,
-                    vjust_x_labels = -1.5,
-                    remove_yr_labels = NULL)
-```
+<!--plot_survey_biomass(base_model,-->
+<!--                    index = "age1",-->
+<!--                    y_lim = c(0, 16),-->
+<!--                    x_labs_mod = 5,-->
+<!--                    alpha = 0.3,-->
+<!--                    tick_prop = 1,-->
+<!--                    vjust_x_labels = -1.5,-->
+<!--                    remove_yr_labels = NULL)-->
+<!--```-->
 
 (ref:main-maturity-ogive-cap) Maturity ogives by year used in the assessment.
 The thick black line shows the equilibrium ogive which is an average of all
@@ -619,42 +619,42 @@ plot_survey_fit_mcmc(base_model,
                      remove_yr_labels = NULL)
 ```
 
-(ref:main-age1-index-fit-mcmc-cap) Assessment model fit to the relative
-age-1 index data that was produced from acoustic survey observations. Age-1
-index observations (black dots) are input into the assessment model with
-uncertainty arising from sampling variability (thick vertical black lines).
-Additional uncertainty is estimated within the stock assessment model (thin
-vertical black lines) and added to the input sampling variability. A time
-series of the assessment model fit to the observations (blue line) represents
-the median of the posterior Markov chain Monte Carlo (MCMC) samples. A
-random subset of the individual MCMC time series samples are shown (thin
-blue lines) to provide context for the description of the median MCMC
-estimate.
+<!--(ref:main-age1-index-fit-mcmc-cap) Assessment model fit to the relative-->
+<!--age-1 index data that was produced from acoustic survey observations. Age-1-->
+<!--index observations (black dots) are input into the assessment model with-->
+<!--uncertainty arising from sampling variability (thick vertical black lines).-->
+<!--Additional uncertainty is estimated within the stock assessment model (thin-->
+<!--vertical black lines) and added to the input sampling variability. A time-->
+<!--series of the assessment model fit to the observations (blue line) represents-->
+<!--the median of the posterior Markov chain Monte Carlo (MCMC) samples. A-->
+<!--random subset of the individual MCMC time series samples are shown (thin-->
+<!--blue lines) to provide context for the description of the median MCMC-->
+<!--estimate.-->
 
-(ref:main-age1-index-fit-mcmc-alt) This figure shows many posterior
-trajectories of the expected numbers of age 1 fish fitting well to the
-age 1 index. The lines are very tightly packed together for most of the
-time series but diverge a little at the end of the time series since 2021.
+<!--(ref:main-age1-index-fit-mcmc-alt) This figure shows many posterior-->
+<!--trajectories of the expected numbers of age 1 fish fitting well to the-->
+<!--age 1 index. The lines are very tightly packed together for most of the-->
+<!--time series but diverge a little at the end of the time series since 2021.-->
 
-```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height = 6}
+<!--```{r main-age1-index-fit-mcmc-fig, fig.cap = "(ref:main-age1-index-fit-mcmc-cap)", fig.height = 6}-->
 
-plot_survey_fit_mcmc(base_model,
-                     type = "age1",
-                     n_posts = 1000,
-                     glow = TRUE,
-                     glow_color = "black",
-                     glow_offset = 0.5,
-                     leg_ymax = 4.8,
-                     leg_sep = 0.45,
-                     x_lim = c(survey_start_yr, survey_end_yr),
-                     y_lim = c(0, 10),
-                     x_labs_mod = 5,
-                     y_labs_by = 1,
-                     tick_prop = 1,
-                     vjust_x_labels = -2,
-                     remove_yr_labels = NULL,
-                     post_line_col = "blue")
-```
+<!--plot_survey_fit_mcmc(base_model,-->
+<!--                     type = "age1",-->
+<!--                     n_posts = 1000,-->
+<!--                     glow = TRUE,-->
+<!--                     glow_color = "black",-->
+<!--                     glow_offset = 0.5,-->
+<!--                     leg_ymax = 4.8,-->
+<!--                     leg_sep = 0.45,-->
+<!--                     x_lim = c(survey_start_yr, survey_end_yr),-->
+<!--                     y_lim = c(0, 10),-->
+<!--                     x_labs_mod = 5,-->
+<!--                     y_labs_by = 1,-->
+<!--                     tick_prop = 1,-->
+<!--                     vjust_x_labels = -2,-->
+<!--                     remove_yr_labels = NULL,-->
+<!--                     post_line_col = "blue")-->
+<!--```-->
 
 (ref:main-catchability-density-cap) Density of the Catchability (q) parameter
 for the acoustic survey index. The green vertical line is the median of the
@@ -679,27 +679,27 @@ plot_catchability_density(base_model,
         axis.ticks.y = element_blank())
 ```
 
-(ref:main-catchability-density-age1-cap) Density of the Catchability (q) parameter
-for the age-1 index. The green vertical line is the median of the
-posterior for `r assess_yr`, which is
-`r f(median(base_model$extra_mcmc$q_vector_age1), 3)`; the red line is
-the median of the posterior for the last assessment year, `r last_data_yr`,
-which was `r f(median(last_yr_base_model$extra_mcmc$q_vector_age1), 3)`.
+<!--(ref:main-catchability-density-age1-cap) Density of the Catchability (q) parameter-->
+<!--for the age-1 index. The green vertical line is the median of the-->
+<!--posterior for `r assess_yr`, which is-->
+<!--`r f(median(base_model$extra_mcmc$q_vector_age1), 3)`; the red line is-->
+<!--the median of the posterior for the last assessment year, `r last_data_yr`,-->
+<!--which was `r f(median(last_yr_base_model$extra_mcmc$q_vector_age1), 3)`.-->
 
-(ref:main-catchability-density-age1-alt) The distribution of the catchability
-parameter posterior for the age 1 index is shown with a median around 0.49.
+<!--(ref:main-catchability-density-age1-alt) The distribution of the catchability-->
+<!--parameter posterior for the age 1 index is shown with a median around 0.49.-->
 
-```{r main-catchability-density-age1-fig, fig.cap = "(ref:main-catchability-density-age1-cap)", fig.height = 4.5}
-plot_catchability_density(base_model,
-                          last_yr_base_model,
-                          type = "age1",
-                          line_widths = c(1, 1),
-                          line_types = c("solid", "solid")) +
-  xlab("Catchability (q)") +
-  ylab("Distribution") +
-  theme(axis.text.y = element_blank(),
-        axis.ticks.y = element_blank())
-```
+<!--```{r main-catchability-density-age1-fig, fig.cap = "(ref:main-catchability-density-age1-cap)", fig.height = 4.5}-->
+<!--plot_catchability_density(base_model,-->
+<!--                          last_yr_base_model,-->
+<!--                          type = "age1",-->
+<!--                          line_widths = c(1, 1),-->
+<!--                          line_types = c("solid", "solid")) +-->
+<!--  xlab("Catchability (q)") +-->
+<!--  ylab("Distribution") +-->
+<!--  theme(axis.text.y = element_blank(),-->
+<!--        axis.ticks.y = element_blank())-->
+<!--```-->
 
 (ref:main-age-comp-fits-fishery-cap) Base model fits to the fishery
 age-composition data. Colored bars show observed proportions with colors
