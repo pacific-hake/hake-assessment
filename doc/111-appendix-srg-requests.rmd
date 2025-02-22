@@ -6,6 +6,10 @@
 
 This appendix summarizes results produced in response to Scientific Review
 Group requests made during the meeting held from February 10--13, `r assess_yr`.
+Full presentations given at the meeting are available by request by contacting
+a Joint Technical Committee member (see the Treaty
+[website](https://www.fisheries.noaa.gov/west-coast/partners/joint-technical-committee-pacific-hake-whiting-treaty)
+for current members).
 
 ## Day 1
 
@@ -31,8 +35,8 @@ All the requested plots were created and shared.  After removing the age-1 index
 trajectory of the expected biomass was reduced, resulting in a poorer fit to the median in 2021
 and an improved fit in 2023 (negligible change to the fit in 2019) when compared to
 the model with the age-1 index removed (Figure~\@ref(fig:mcmc-survey-fit-srg-app)). Plots of survey and fishery age composition fits showed a very small change
-in the survey age composition fit for age-3 fish in 2021. Other than that there are
-no substantial differences in the age composition fits.
+in the survey age composition fit for age-3 fish in 2021. Otherwise, there were
+no substantial differences in the age composition fits (figures not shown).
 
 (ref:mcmc-survey-fit-srg-app-cap) Fit to the acoustic survey for the model that excludes the age-1 index (new base model).
 
@@ -59,9 +63,10 @@ Provide plots of selectivity in 2024 as well as mountain plots for sensitivities
 **JTC Response**
 
 A series of figures were produced, including two that showed time-varying selectivity across
-all years and the posterior selectivity for the survey and the fishery selectivity in 2024.
+all years and the posterior selectivity for the survey and fishery in 2024.
 The latter included 1000 draws from the posterior distribution. The set of figures based
-on the model that removes that age-1 index are not shown here. This model is now the base model and is in the main text.  Shown are the requested figures for the other four models
+on the model that removes that age-1 index are included in the main document because it is
+now the base model.  Shown are a representative subset of the requested figures for the other four models
 (Figures~\@ref(fig:main-tv-selex-uncertainty-fig-srg-app)--\@ref(fig:main-tv-selex-posteriors-fig4-srg-app)).
 
 <!-- phi=0.21-->
@@ -273,8 +278,8 @@ trawl survey, eDNA from the hydroacoustic survey, and the hydroacoustic survey.
 In collaboration with several researchers present at the meeting, figures were
 presented showing trends in
 an integrated (DFO and NOAA) bottom trawl index
-(Figure~\@ref(fig:srg-app-btsi-fig)) and the relative proportion by in
-latitudinal sub-areas (Figure~\@ref(fig:srg-app-btsi2-fig)) provided
+(Figure~\@ref(fig:srg-app-btsi-fig)) and the relative proportion by
+latitudinal sub-areas (Figure~\@ref(fig:srg-app-btsi2-fig)), which provided
 some indication of increasing biomass in California
 over recent years.  Additionally, the southern portion of the eDNA index
 covering years 2021 and 2023 showed a slight upward trend
@@ -284,7 +289,8 @@ Shoreside (Figure~\@ref(fig:srg-app-pacfem-ss-fig)) revenue over recent years in
 the At-Sea fleet to catch fish closer to the southern extent of the fishing grounds in
 recent years. There was a more stable distribution for the Shoreside fleet. Additional
 information relevant to the request was shown in research presentations contributed
-by Owen Liu, Rebecca Thomas, Kristin Marshall, Mary Hunsicker, and Andy Edwards.
+by Owen Liu, Rebecca Thomas, Kristin Marshall, Mary Hunsicker, and Andy Edwards (not shown
+here).
 
 (ref:srg-app-btsi-cap) Bottom trawl survey indices compiled by joining DFO and NWFSC
 data. Courtesy of Eric Ward.
@@ -334,6 +340,7 @@ States Shoreside. Courtesy of Lisa Pfeiffer.
 include_graphics(file.path(figures_dir,"PacFEM_shoreside.png"), error = FALSE)
 ```
 
+\clearpage
 
 ## Day 2
 
@@ -344,7 +351,8 @@ within the range of 0 and 1 given that these are proportions.
 
 **JTC Response**
 
-For completeness, the bottom trawl index was shown with the uncertainty fixed.  Not shown here.
+For completeness, the bottom trawl index was shown with the uncertainty fixed as
+requested (not shown here).
 
 **Request 2**
 
@@ -383,9 +391,9 @@ The SRG requests sensitivities on fishery selectivity parameterization (in the b
 **JTC Response**
 
 The number of active parameters increases considerably when using a maximum age of 6
-(base; 262 parameters) for time-varying selectivity compared to a maximum of age of 8
-(333 parameters), 10 (403 parameters), and 12 (473 parameters). The following figures
-show some key results comparing the models that increase the maximum selectivity age
+(base model; 262 parameters) for time-varying selectivity compared to a maximum of age of 8
+(333 parameters), 10 (403 parameters), and 12 (473 parameters). A set of figures were produced
+to show some key results comparing the models that increase the age at maximum selectivity
 (see Figures~\@ref(fig:main-tv-selex-unc-tv8-srg-app)--\@ref(fig:main-recruitment-devs-base-a-srg-app)).
 
 (ref:main-tv-selex-unc-tv8-srg-app-cap) Estimated selectivities for the fishery
@@ -629,7 +637,7 @@ The SRG requests running the base model with the age-1 index, keeping 2023 and b
 The figures requested include each of the four sequential age-1
 index data point removal models
 (see Figures~\@ref(fig:main-biomass-base-srg-app)--\@ref(fig:main-survey-index-fit-mcmc-rm5-srg-app)).
-The base model shown in the following figures is the
+The base model shown in the figures is the
 pre-SRG base model (i.e., includes the age-1 index).
 
 (ref:main-biomass-base-srg-app-cap) Median (solid line) of the posterior distribution for
@@ -810,6 +818,7 @@ plot_survey_fit_mcmc(model_age1_minus_5,
                      remove_yr_labels = NULL)
 ```
 
+\clearpage
 
 ## Day 3
 
@@ -829,3 +838,5 @@ The SRG requests that decision tables and probability tables be produced with 20
 **JTC Response**
 
 Decision tables and probabilities were provided along with tables of recent spawning biomass and recruitment estimates.
+
+\clearpage
