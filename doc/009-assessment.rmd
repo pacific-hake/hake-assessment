@@ -1650,9 +1650,12 @@ have remained similar to the previous assessment, being somewhat lower than in t
 information about the 2014 and 2016 cohorts, the 2018 assessment model also
 included a change in the data weighting method, an update to maturity and
 fecundity, and a change to selectivity parameterization
-(Table~\@ref(tab:main-assessment-changes-tab)). The uncertainty interval
-associated with the `r end_yr` assessment brackets the majority of the
-historical estimates.
+(Table~\@ref(tab:main-assessment-changes-tab)). From 2022 to 2024, the relative
+age-1 index was used to inform cohort size at an early age.  The age-1 index
+was removed in the 2025 assessment. While there was a significant change from
+this assessment to the previous one (see Section~\@ref(sec:assessment-changes)),
+the uncertainty interval associated with the `r end_yr` assessment brackets
+the majority of the historical estimates.
 
 The level of uncertainty associated with each assessment's estimate of that
 year's current female spawning biomass (i.e., that used to convey current
