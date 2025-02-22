@@ -503,8 +503,15 @@ compositions providing additional information on the `r last_data_yr-1`
 year-class strength. Given this survey information, the `r assess_yr+1` assessment will explore
 estimating recruitment deviations for `r last_data_yr-1` and beyond.
 
-The final bridging step was to exclude the age-1 index from the base model. This decision
-occurred through discussions and supporting analyses at the `r assess_yr` Scientific
+The final bridging step was to exclude the age-1 index from the base model. Exluding
+the age-1 index considerably shifted the female spawning biomass trajectory
+downwards from 2015 onwards, with the largest changes coming since 2022
+(Figure~\@ref(fig:main-bridge-summary-2-fig)). Recruitment deviations in 2018 and 2022 were
+reduced considerably, while all others since 2019 were slightly reduced. The fit to the
+acoustic survey index in 2023 was considerably improved, but the fit in 2021 was lessened.
+
+The decision to exclude the age-1 index occurred through discussions and
+supporting analyses at the `r assess_yr` Scientific
 Review Group meeting (see Appendix~\@ref(sec:app-srg-requests) for additional details).
 In summary, the performance of the age-1 index over recent years was called into question
 given that it was found to be strongly influencing recruitment estimates even for
