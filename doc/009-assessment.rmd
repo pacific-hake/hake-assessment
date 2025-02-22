@@ -1144,36 +1144,36 @@ changes in selectivity could be reflected in the projection of slight over-
 or under-fishing relative to the desired `r fspr_40` rate.
 
 Key management metrics are presented for
-`r str_comma_sep(forecast_yrs[2:length(forecast_yrs)])` projections
+`r forecast_yrs[2]` and `r forecast_yrs[3]` projections
 (Tables~\@ref(tab:main-risk-year-1-tab)--
-\@ref(tab:main-risk-year-3-tab) and
+\@ref(tab:main-risk-year-2-tab) and
 Figures~\@ref(fig:main-risk-year-1-fig)--
-\@ref(fig:main-risk-year-3-fig)). These metrics summarize
+\@ref(fig:main-risk-year-2-fig)). These metrics summarize
 the probability of various outcomes from the base model given each potential
 management action. Although not linear, probabilities can be interpolated
 from this table for intermediate catch values in `r assess_yr`
 (Table~\@ref(tab:main-risk-year-1-tab) and
 Figure~\@ref(fig:main-risk-year-1-fig)). However,
-interpolation may not be applicable for all catches in `r assess_yr + 1` and
-`r assess_yr + 2` because they are conditional on catch levels from the
+interpolation may not be applicable for all catches in `r assess_yr + 1`
+because they are conditional on catch levels from the
 previous year or years.
 
 Figure~\@ref(fig:main-depletion-comparison-fig) shows the projected
 relative spawning biomass trajectory through
 `r forecast_yrs[length(forecast_yrs)]` for several of these management
-actions. With zero catch for the next three years, the biomass has a
+actions. With zero catch for the next two years, the biomass has a
 `r zero_catch_prob_bio_down_1`% probability of decreasing from
 `r forecast_yrs[1]` to `r forecast_yrs[2]`
 (Table~\@ref(tab:main-risk-year-1-tab) and
-Figure~\@ref(fig:main-risk-year-1-fig)), a
+Figure~\@ref(fig:main-risk-year-1-fig)) and a
 `r zero_catch_prob_bio_down_2`% probability of decreasing from
 `r forecast_yrs[2]` to `r forecast_yrs[3]`
 (Table~\@ref(tab:main-risk-year-2-tab) and
-Figure~\@ref(fig:main-risk-year-2-fig)), and a
-`r zero_catch_prob_bio_down_3`% probability of decreasing from
-`r forecast_yrs[3]` to `r forecast_yrs[4]`
-(Table~\@ref(tab:main-risk-year-3-tab)
-and Figure~\@ref(fig:main-risk-year-3-fig)).
+Figure~\@ref(fig:main-risk-year-2-fig)).
+<!--and a `r zero_catch_prob_bio_down_3`% probability of decreasing from-->
+<!--`r forecast_yrs[3]` to `r forecast_yrs[4]`-->
+<!--(Table~\@ref(tab:main-risk-year-3-tab)-->
+<!--and Figure~\@ref(fig:main-risk-year-3-fig)).-->
 
 The probability of the female spawning biomass decreasing from `r end_yr` to
 `r end_yr + 1` is greater or equal to `r prob_all_catch_greater`% for all catch
@@ -1181,16 +1181,22 @@ levels examined other than zero (Table~\@ref(tab:main-risk-year-1-tab) and
 Figure~\@ref(fig:main-risk-year-1-fig)). For all explored catches, the
 maximum probability of the female spawning biomass dropping below `r b_10`
 at the start of `r end_yr + 1` is
-`r prob_max_below_10_yr1`%, at the start of `r end_yr + 2` is
-`r prob_max_below_10_yr2`%, and at the start of `r end_yr + 3` is
-`r prob_max_below_10_yr3`%
-(Tables~\@ref(tab:main-risk-year-1-tab)--\@ref(tab:main-risk-year-3-tab) and
+`r prob_max_below_10_yr1`% and at the start of `r end_yr + 2` is
+`r prob_max_below_10_yr2`%
+<!--and at the start of `r end_yr + 3` is-->
+<!--`r prob_max_below_10_yr3`%-->
+(Tables~\@ref(tab:main-risk-year-1-tab)--\@ref(tab:main-risk-year-2-tab) and
 Figures~\@ref(fig:main-risk-year-1-fig)--
-\@ref(fig:main-risk-year-3-fig)). The similar maximum
+\@ref(fig:main-risk-year-2-fig)). The similar maximum
 probability of dropping below `r b_40` at the start of `r end_yr + 1` is
-`r prob_max_below_40_yr1`%, at the start of `r end_yr + 2` is
-`r prob_max_below_40_yr2`%, and at the start of `r end_yr + 3`
-is `r prob_max_below_40_yr3`%.
+`r prob_max_below_40_yr1`% and at the start of `r end_yr + 2` is
+`r prob_max_below_40_yr2`%.
+<!--and at the start of `r end_yr + 3`-->
+<!--is `r prob_max_below_40_yr3`%.-->
+The model estimates that in two years
+time the stock will be at `r b_40` with a catch
+of 250,000~t in 2026 and 2027, given the current assumption of average recruitment
+from 2023 onward.
 
 It should be noted that forecasted biomass is not only influenced by catch
 levels. As the above average 2014 and 2016 cohorts continue to age, total
@@ -1202,9 +1208,11 @@ growth-mortality transition period around 2024
 (Tables~\@ref(tab:main-est-biomass-at-age-tab) and
 \@ref(tab:main-cohort-effects-tab)).
 The 2021 cohort will play a large role in determining female spawning
-biomass during the forecast years presented here. The below-average 2015,
+biomass during the forecast years presented here. Similarly, the application
+of no recruitment deviations from 2023 onwards also plays a major role in forecasted
+female spawning biomass levels. The below-average 2015,
 2018, and 2019 cohorts will contribute much less to forecasted spawning
-biomass than the larger cohorts.
+biomass than the larger cohorts. 
 
 The age composition (in numbers) of the catch in `r forecast_yrs[1]` is
 projected to be (using MCMC medians)
