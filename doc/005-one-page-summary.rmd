@@ -71,9 +71,9 @@ of the female spawning biomass falling below `r b_40` in `r end_yr + 2`.
 <!-- `r last_yr_tac_risk_3_biomass_decline`% chance of it declining -->
 <!-- from `r end_yr + 2` to `r end_yr + 3` with a constant catch of -->
 <!-- `r last_yr_tac` t. -->
-The model estimates a 100% chance that female spawning biomass will decline from 2025
-through 2027 with a constant catch of `r last_yr_tac` t, given the current assumption
-of average recruitment from 2023 onward.
+The model estimates that in two years time the stock will be at `r b_40` with a catch
+of 250,000~t in 2026 and 2027, given the current assumption of average recruitment
+from 2023 onward.
 
 - Despite estimates of a healthy stock status (albeit less so than last year), the recent lack
 of survey abundance and fishery catch in Canada suggests
