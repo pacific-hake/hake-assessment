@@ -1680,7 +1680,7 @@ P(*B*~t+1~ < *B*~t~), from the current base model
 [Figure~\@ref(fig:main-historical-1-fig); see @JTC2022 for full methods].
 
 Each assessment correctly predicted whether the stock would most likely
-increase or decrease the following year, except for 2017, 2021, and 2023
+increase or decrease the following year, except for 2017 and 2023
 (Figure~\@ref(fig:main-historical-1-fig)). Estimates from previous assessments
 are almost always closer to 50% than those from the current base model
 (Figure~\@ref(fig:main-historical-1-fig)), because the current assessment model
@@ -1690,7 +1690,7 @@ probabilities from the assessment documents are not too definitive (too close
 to 0% or to 100%), because they are admitting a wide range of uncertainty
 given unknown recent recruitments.
 
-The 2017, 2021, and 2023 assessments `incorrectly' projected that the stock would
+The 2017 and 2023 assessments `incorrectly' projected that the stock would
 likely decline the following year (given the catch that subsequently occurred),
 because the current assessment model estimates a likely increase
 (Figure~\@ref(fig:main-historical-1-fig)). For the 2017 [@JTC2017] assessment
@@ -1698,11 +1698,6 @@ the biomass trend was projected to be relatively flat the
 following year, so even slight changes in
 biomass could influence the binomial outcome of an 'increase' or 'decrease' in
 biomass, despite the overall change in biomass not being very substantial.
-The 2021 assessment [@JTC2021] had minimal information on the 2019 cohort and so
-projections included a large range of values for 2019 recruitment. But this
-recruitment now (with
-more years of data) seems to be particularly small, such that the biomass most
-likely declined between 2019 and 2020 (the opposite to what the 2021 assessment expected).
 The
 2023 assessment [@JTC2023] had minimal information on the 2021 cohort and
 predicted the biomass would probably decline in 2024 with any non-zero 2023
@@ -1724,13 +1719,16 @@ The 2012 assessment was the only one that gave a >50% chance of the
 biomass falling below `r b_40` in the subsequent year, but later data
 determined that the 2010 year class was substantial and so in
 hindsight the probability of going below `r b_40` was 0% (based on the
-current assessment). From the 2018 assessment onwards, the estimated
+current assessment). From the 2016 assessment onwards, the estimated
 P(*B*~t+1~ < `r b_40`) probabilities rose, until falling due to the
 incoming above-average 2020 cohort and lower catches
 (Figure~\@ref(fig:main-historical-2-fig)). The same probabilities calculated
 from the current base model similarly rose, but all remained lower than
-(or only slightly above) the previous
-assessments' calculations, mostly similar to the analogous figure in the 2024
-assessment [@JTC2024].
+the previous
+assessments' calculations, until being above since 2022 onwards. The
+current assessment estimates a probability of 11--12% that the biomass was below
+`r b_40` in each of 2023--2025, above the respective probabilities of 8%, 3%,
+and 1% estimated in the 2022--2024 assessments.
+<!-- historical_probs_df for values -->
 
 \newpage
