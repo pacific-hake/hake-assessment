@@ -396,7 +396,7 @@ By itself, the above model is unidentifiable because field samples do not provid
 
 \begin{align}
   G_{jr} &\sim \textrm{Bernoulli}\left(1-\exp(-2 e^{K_j}\phi_{j})\right),\\
-  C_{jr} &\sim \textrm{Normal}(\beta_{0j}+\beta_{1j}\{K_{j}},\sigma_C({K_j})) \quad  \textrm{if} \: G_{jr} =1.
+  C_{jr} &\sim \textrm{Normal}(\beta_{0j}+\beta_{1j}{K_{j}},\sigma_C({K_j})) \quad  \textrm{if} \: G_{jr} =1.
 \end{align}
 
 Note that there are different intercept $\beta_{0j}$, slope $\beta_{1j}$ and
