@@ -50,10 +50,7 @@ plot_survey_index_fits <- function(
     ...){
 
   survey_type <- match.arg(survey_type)
-  survey_index <- ifelse(survey_type == "age2", 2,
-                         ifelse(survey_type == "age1",
-                                3,
-                                4))
+  survey_index <- ifelse(survey_type == "age2", 2, 3)
 
   if(is.null(d_obj)){
     if(is.null(model_lst[1]) || is.null(model_names[1])){

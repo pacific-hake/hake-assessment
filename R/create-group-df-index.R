@@ -16,10 +16,7 @@ create_group_df_index <- function(model_lst = NULL,
 
   survey_type <- match.arg(survey_type)
 
-  fleet <- ifelse(survey_type == "age2", 2,
-                  ifelse(survey_type == "age1",
-                         3,
-                         4))
+  fleet <- ifelse(survey_type == "age2", 2, 3)
 
   obs <- model_lst[[1]]$dat$CPUE |>
     as_tibble() |>

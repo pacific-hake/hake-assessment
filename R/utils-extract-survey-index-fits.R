@@ -22,10 +22,7 @@ extract_survey_index_fits <- function(model_lst,
                                       inc_model_year = FALSE){
 
   survey_type <- match.arg(survey_type)
-  fleet <- ifelse(survey_type == "age2", 2,
-                  ifelse(survey_type == "age1",
-                         3,
-                         4))
+  fleet <- ifelse(survey_type == "age2", 2, 3)
 
   type <- match.arg(type)
   out <- map2(model_lst, model_names, ~{

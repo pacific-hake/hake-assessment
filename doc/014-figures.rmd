@@ -1454,7 +1454,7 @@ eDNA survey as an index of abundance.
 
 plot_survey_index_fits(sens_models[[2]][[4]],
                        list(sens_models[[2]][[4]]),
-                       "EDNA",
+                       sens_models_desc[[2]][[3]],
                        survey_type = "edna",
                        tick_prop = 1,
                        vjust_x_labels = -2,
