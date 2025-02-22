@@ -158,23 +158,26 @@ fishery catch and age-composition data from `r end_yr-1`, weight-at-age data for
 and minor changes to pre-`r end_yr-1` data. The model-based
 approaches used to develop the input weight-at-age matrix and time-varying
 temperature-dependent maturity were retained from last year's assessment
-to better inform fecundity. The only data point that can directly inform the size of
+to better inform fecundity. 
+
+Structural changes to the model included removing the age-1 index and fixing
+late and forecast recruitment deviations to zero. The relative index of age-1
+fish from the survey was not used to fit the model this year
+because it was found to be strongly influencing recruitment estimates even for
+cohorts that had several years of data, and it does not have an externally
+calculated measure of uncertainty.
+The only data point that can directly inform the size of
 the 2023 cohort is from age-1 observations in the commercial fishery
 in 2024. Given the unique seasonal
 fishing conditions during the year, and that this single data point (not from a
 survey) can be overly influential on the
 estimated 2023 recruitment, estimated recruitment in 2023 was
 based solely on the stock--recruitment relationship, with no estimated
-recruitment deviations (i.e., deviations fixed at zero, giving average recruitment). For consistency, this was also done for 2024 and the
+recruitment deviations (i.e., deviations fixed at zero, giving average recruitment).
+By necessity, this was also done for 2024 and the
 projection years. This differs to previous assessment models, for which
 recruitments at the end of the time series included a random component (extra variability
 around the stock-recruitment relationship).
-
-Also, the relative index of age-1 fish from the survey was not used to fit the
-model this year
-because it was found to be strongly influencing recruitment estimates even for
-cohorts that had several years of data, and it does not have an externally
-calculated measure of uncertainty.
 
 This assessment continues to use (since 2014) time-varying
 (rather than constant) selectivity to maintain flexibility within the
@@ -255,7 +258,8 @@ uncertainty compared to the estimate from the `r end_yr - 1` assessment of `r pr
 median is reduced from last year's assessment due to the reduction in the estimate of
 the 2022 year class with updated data, the aforementioned fixed zero
 recruitment deviation for the 2023 recruitment, and removal of the age-1 index
-from the model (which in particularly further reduced the estimated 2022 year class).
+from the model (which in particularly reduced estimates of several recent
+year classes).
 
 (ref:es-relative-biomass-cap) Median (solid line) of the posterior
 distribution for relative spawning biomass ($B_t / B_0$) through `r end_yr`
@@ -345,7 +349,7 @@ The addition of `r last_data_yr` data for this assessment do not significantly
 change the general pattern of recruitment estimated in recent assessments.
 However, estimates of absolute recent recruitments are all reduced from the
 previous assessment due to new data, updated assumptions about recent
-recruitments, and removal of the age-1 index.
+recruitments and, in particular, removal of the age-1 index.
 The estimate of 2020 recruitment is above average, whereas in the previous
 two assessments it was highly uncertain but thought to be possibly very large.
 The 2021 recruitment is estimated to be potentially large with a median of
@@ -364,9 +368,8 @@ change substantially as new data refines estimates. Retrospective analyses
 of year class strength for young fish have shown the estimates of recent
 recruitment to be unreliable prior to at least a modelled age of 3
 (observed as age-2 fish the previous year) without a survey in the most recent
-year and a modelled age of 2 (observed as age-1 fish, though the age-1 index is
-now not fit to) with a survey, giving
-further motivation for fixing recruitment deviations to 0 for `r end_yr - 2` onwards.
+year and a modelled age of 2 with a survey, giving
+further motivation for fixing recruitment deviations to 0 for `r end_yr - 2` this year.
 
 ## Default harvest policy {-}
 
@@ -413,7 +416,7 @@ Figure~\@ref(fig:es-fishing-intensity-fig)).
 Although there is a considerable amount of imprecision around these
 estimates due to uncertainty in recruitment and spawning biomass,
 the 95% posterior credibility interval of relative fishing intensity was
-below 1.0 from 2012--2015 and again in 2020, 2021, and 2023
+below 1.0 from 2013--2015 and again in 2020, 2021, and 2023
 (Figure~\@ref(fig:es-fishing-intensity-fig)).
 
 (ref:es-fishing-intensity-cap) Trend in median relative fishing intensity
@@ -432,7 +435,7 @@ plot_fishing_intensity(base_model, show_arrows = TRUE, line_color="grey32")
 ```
 
 The median exploitation fraction (catch divided by biomass of fish of age-2 and
-above) peaked in 1999 and 2006 (Figure~\@ref(fig:es-exploitation-fraction-fig)).
+above) peaked in 2006 and 2008 (Figure~\@ref(fig:es-exploitation-fraction-fig)).
 The median exploitation fraction has decreased from a recent high in 2021 of
 `r exploitation_med_2021` to `r exploitation_med_2024` in 2024, which is the
 lowest over the past 10 years (Table~\@ref(tab:es-fishing-intensity-tab) and
@@ -577,7 +580,7 @@ in the current stock status and projections because they do not account for
 possible alternative structural models for `r simple_name` population
 dynamics and fishery processes (e.g., selectivity) and the scientific basis
 for prior probability distributions. To address such structural uncertainties,
-we performed sensitivity analyses to investigate a range of alternative
+sensitivity analyses were performed to investigate a range of alternative
 assumptions and present the key ones in the main document.
 
 The `r sp` stock displays high recruitment variability relative to other West
@@ -588,26 +591,29 @@ of uncertainty in estimates of current stock status and stock projections
 because, with limited data to estimate incoming recruitment, the cohorts are
 fished before the assessment can accurately determine how big they are (i.e.,
 cohort strength is typically not well known until it is observed by the
-fishery and survey, typically at a minimum age of three).
-However, the changes in assumptions of recent recruitments and removal of the
-age-1 index have reduced overall uncertainty in this assessment.
-In particular, while the model estimates the 2020 and 2021 cohorts as
-above average in size and their absolute size remains highly uncertain, the
-uncertainty is less than in last year's assessment (which is only partly due to
-2024 data). This
-uncertainty propagates directly into current and forecasted estimates of female
-spawning biomass. The 2023 acoustic survey provided additional
-information on the size of the 2020 year-class (as well as informed the 2021 year
-class).
-Collectively, these lessened uncertainty around estimates of female
-spawning biomass, as did the changes in model assumptions. Information on the size of the 2023 year class from the 2024
-fishery was considered suspect given the unique fishing conditions during the
-year and so, as mentioned earlier, recruitment deviations from 2023 onwards were
-set to zero. Further, the impact of interactions among variance parameters that
+fishery and survey, typically at a minimum age of three). Further, the impact
+of interactions among variance parameters that
 govern variability in fishery selectivity and recruitment parameters through
 time, as well as those used in relative data weighting, are not well understood. If
 variance parameters were estimated as random effects, such interactions could
 propagate uncertainty beyond what is presented in this assessment.
+
+While the removal of both the age-1 index and recent recruitment deviations in
+this assessment reduced uncertainty around recent spawning stock biomass estimates,
+it results in a significant underestimate of uncertainty during the forecast period. 
+For example, the model estimates the 2020 and 2021 cohorts as
+above average in size, and while their absolute size remains highly uncertain, the
+uncertainty is less than in last year's assessment (which is only partly due to
+2024 data). This uncertainty propagates directly into current and forecasted
+estimates of female spawning biomass. The 2023 acoustic survey provided additional
+information on the size of the 2020 year-class (as well as informed the 2021 year
+class). Collectively, these lessened uncertainty around estimates of female
+spawning biomass, as did the changes in model assumptions. Information on the size
+of the 2023 year class from the 2024 fishery was considered suspect given the unique
+fishing conditions during the year and so, as mentioned earlier, recruitment
+deviations from 2023 onwards were set to zero. This model change considerably reduces
+uncertainty for recent and forecasted recruitment and thus spawning biomass two to three
+years later. 
 
 \clearpage
 
@@ -624,7 +630,8 @@ catch alternatives for the base model (Tables~\@ref(tab:es-decisions-biomass-tab
 and~\@ref(tab:es-decisions-spr-tab)). The tables are organized to show the
 projected outcome for each potential catch level and year (row) across the
 quantiles (columns) of the posterior distribution. Tables show results for up
-to three years of future catch levels based on subsequent estimates of stock
+to three years (only two years in subsequent assessments following JMC advice)
+of future catch levels based on subsequent estimates of stock
 status and fishing intensity.
 Figure~\@ref(fig:es-depletion-comparison-fig) shows the projected relative
 spawning biomass for several of the catch alternatives. Population dynamics
@@ -634,7 +641,7 @@ most recent years (`r assess_yr - 5`--`r assess_yr - 1`), and constant
 values for all other parameters. The setting of recruitment deviations to zero from 2023
 onwards does not allow very large (or very small) random recruitments to
 occur and propagate through the projections as these cohorts mature, such that total
-uncertainty for projections appears to be less than for previous assessments.
+uncertainty for projections is underestimated relative to previous assessments.
 
 A relative fishing intensity of 1 should indicate fishing at the `r fspr_40`
 default harvest rate catch target. But, the projected median relative fishing
@@ -651,19 +658,16 @@ in `r assess_yr - 1` results in a median relative fishing intensity of
 
 Management metrics that were identified as important to the Joint Management
 Committee and the Advisory Panel in 2012 are presented for
-`r str_flatten_comma(forecast_yrs[-1], last = ", and ")` projections
-(Tables~\@ref(tab:es-risk-year-1-tab), \@ref(tab:es-risk-year-2-tab),
-and~\@ref(tab:es-risk-year-3-tab);
-Figures~\@ref(fig:es-risk-year-1-fig),
-\@ref(fig:es-risk-year-2-fig),
-and~\@ref(fig:es-risk-year-3-fig)).
+`r forecast_yrs[2]` and `r forecast_yrs[3]` projections
+(Tables~\@ref(tab:es-risk-year-1-tab) and~\@ref(tab:es-risk-year-2-tab);
+Figures~\@ref(fig:es-risk-year-1-fig) and~\@ref(fig:es-risk-year-2-fig)).
 These metrics summarize the probability of various outcomes from the base model
 given each potential management action. Although not linear, probabilities can
 be interpolated from these results with reasonable accuracy for intermediate catch values in
 `r assess_yr` (Table~\@ref(tab:es-risk-year-1-tab) and
 Figure~\@ref(fig:es-risk-year-1-fig)).
 However, interpolation is not appropriate for the default harvest rule scenario
-in `r assess_yr + 1` or `r assess_yr + 2` because it is conditional on previous year(s) catch
+in `r assess_yr + 1` because it is conditional on previous year(s) catch
 levels.
 
 \clearpage
@@ -759,22 +763,25 @@ plot_depl_fore_comparison(base_model,
                           forecast_yrs = forecast_yrs)
 ```
 
-With zero catch for the next three years and average recruitment from 2023 onward, the biomass has a
+With zero catch for the next two years and average recruitment from 2023 onward, the biomass has a
 `r zero_catch_prob_bio_down_1`% probability of decreasing from
 `r forecast_yrs[1]` to `r forecast_yrs[2]` (Table~\@ref(tab:es-risk-year-1-tab) and
-Figure~\@ref(fig:es-risk-year-1-fig)), a
+Figure~\@ref(fig:es-risk-year-1-fig)) and a
 `r zero_catch_prob_bio_down_2`% probability of decreasing from
 `r forecast_yrs[2]` to `r forecast_yrs[3]` (Table~\@ref(tab:es-risk-year-2-tab)
-and Figure~\@ref(fig:es-risk-year-2-fig)),
-and a `r zero_catch_prob_bio_down_3`% probability of decreasing from
-`r forecast_yrs[3]` to `r forecast_yrs[4]` (Table~\@ref(tab:es-risk-year-3-tab)
-and Figure~\@ref(fig:es-risk-year-1-fig)).
+and Figure~\@ref(fig:es-risk-year-2-fig)).
+<!--and a `r zero_catch_prob_bio_down_3`% probability of decreasing from-->
+<!--`r forecast_yrs[3]` to `r forecast_yrs[4]` (Table~\@ref(tab:es-risk-year-3-tab)-->
+<!--and Figure~\@ref(fig:es-risk-year-1-fig)).-->
 
 For all explored catches, the maximum probability of female spawning biomass at
 the start of `r end_yr + 1` dropping below `r b_10` is
 `r prob_max_below_10_yr1`% and of dropping below `r b_40` is
 `r prob_max_below_40_yr1`% (Table~\@ref(tab:es-risk-year-1-tab) and
-Figure~\@ref(fig:es-risk-year-1-fig)). As the above average 2014 and 2016
+Figure~\@ref(fig:es-risk-year-1-fig)). The model estimates that in two years
+time the stock will be at `r b_40` with a catch
+of 250,000~t in 2026 and 2027, given the current assumption of average recruitment
+from 2023 onward. As the above average 2014 and 2016
 cohorts continue to age, total biomass of these cohorts even without fishing
 mortality is expected to decrease as losses from mortality outweigh increases
 from growth. The estimated above-average 2021 cohort will continue to play a
@@ -877,53 +884,53 @@ table_risk(
   longtable = TRUE)
 ```
 
-(ref:es-risk-year-3-cap) Graphical representation of
-the probabilities related to spawning biomass, relative fishing intensity, and
-the `r end_yr + 3` default harvest policy catch for alternative `r end_yr + 2`
-catch options (including associated `r end_yr` and `r end_yr + 1` catches;
-catch options explained in Table~\@ref(tab:es-decisions-biomass-tab)) as listed in
-Table~\@ref(tab:es-risk-year-3-tab). The symbols indicate points that were computed
-directly from model output and lines interpolate between the points.
+<!--(ref:es-risk-year-3-cap) Graphical representation of-->
+<!--the probabilities related to spawning biomass, relative fishing intensity, and-->
+<!--the `r end_yr + 3` default harvest policy catch for alternative `r end_yr + 2`-->
+<!--catch options (including associated `r end_yr` and `r end_yr + 1` catches;-->
+<!--catch options explained in Table~\@ref(tab:es-decisions-biomass-tab)) as listed in-->
+<!--Table~\@ref(tab:es-risk-year-3-tab). The symbols indicate points that were computed-->
+<!--directly from model output and lines interpolate between the points.-->
 
-(ref:es-risk-year-3-alt) This figure shows that the probability that the
-stock declines in 2026 is approximately 65 percent or greater for all catch
-levels including zero. The probability that the stock falls under B40 is
-below 0.1 for catches up to approximately 350 thousand tonnes.
+<!--(ref:es-risk-year-3-alt) This figure shows that the probability that the-->
+<!--stock declines in 2026 is approximately 65 percent or greater for all catch-->
+<!--levels including zero. The probability that the stock falls under B40 is-->
+<!--below 0.1 for catches up to approximately 350 thousand tonnes.-->
 
-```{r es-risk-year-3-fig, fig.cap = "(ref:es-risk-year-3-cap)", fig.height = 4.5}
+<!--```{r es-risk-year-3-fig, fig.cap = "(ref:es-risk-year-3-cap)", fig.height = 4.5}-->
 
-plot_fore_compare(base_model,
-                  forecast_yrs = forecast_yrs,
-                  fore_yr = forecast_yrs[3],
-                  leg_pos = c(0.25, 0.75),
-                  leg_font_size = 9,
-                  remove_x_val = c(264, 605)) +
-  # Following make the legend smaller and legend items closer together
-  theme(legend.key.size = unit(0.25, "cm"),
-        legend.spacing.y = unit(0.01, "cm"),
-        legend.box.background = element_rect(colour = "black")) +
-  guides(color = guide_legend(byrow = TRUE))
-```
+<!--plot_fore_compare(base_model,-->
+<!--                  forecast_yrs = forecast_yrs,-->
+<!--                  fore_yr = forecast_yrs[3],-->
+<!--                  leg_pos = c(0.25, 0.75),-->
+<!--                  leg_font_size = 9,-->
+<!--                  remove_x_val = c(264, 605)) +-->
+<!--  # Following make the legend smaller and legend items closer together-->
+<!--  theme(legend.key.size = unit(0.25, "cm"),-->
+<!--        legend.spacing.y = unit(0.01, "cm"),-->
+<!--        legend.box.background = element_rect(colour = "black")) +-->
+<!--  guides(color = guide_legend(byrow = TRUE))-->
+<!--```
 
-```{r es-risk-year-3-tab, results = "asis", echo = FALSE}
+<!--```{r es-risk-year-3-tab, results = "asis", echo = FALSE}-->
 
-table_risk(
-  base_model,
-  forecast_yrs,
-  index = 3,
-  type = "probability",
-  digits = 2,
-  caption = paste0(
-    "Probabilities related to spawning biomass, relative fishing intensity, ",
-    "and the ", end_yr + 3, " default harvest policy catch for alternative ",
-    end_yr + 2, " catch options, given the ", end_yr, " and ", end_yr + 1,
-    " catch levels shown in Tables~\\@ref(tab:es-risk-year-1-tab) and~",
-    "\\@ref(tab:es-risk-year-2-tab) (catch options are explained in Table~",
-    "\\@ref(tab:es-decisions-biomass-tab))."),
-  font_size = 10,
-  header_font_size = 10,
-  longtable = TRUE)
-```
+<!--table_risk(-->
+<!--  base_model,-->
+<!--  forecast_yrs,-->
+<!--  index = 3,-->
+<!--  type = "probability",-->
+<!--  digits = 2,-->
+<!--  caption = paste0(-->
+<!--    "Probabilities related to spawning biomass, relative fishing intensity, ",-->
+<!--    "and the ", end_yr + 3, " default harvest policy catch for alternative ",-->
+<!--    end_yr + 2, " catch options, given the ", end_yr, " and ", end_yr + 1,-->
+<!--    " catch levels shown in Tables~\\@ref(tab:es-risk-year-1-tab) and~",-->
+<!--    "\\@ref(tab:es-risk-year-2-tab) (catch options are explained in Table~",-->
+<!--    "\\@ref(tab:es-decisions-biomass-tab))."),-->
+<!--  font_size = 10,-->
+<!--  header_font_size = 10,-->
+<!--  longtable = TRUE)-->
+<!--```-->
 \clearpage
 
 ## Research and data needs {-}
