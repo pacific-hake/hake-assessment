@@ -1240,34 +1240,34 @@ plot_fore_compare(base_model,
   guides(color = guide_legend(byrow = TRUE))
 ```
 
-(ref:main-risk-year-3-cap) Graphical representation of the probabilities
-related to spawning biomass, relative fishing intensity, and the
-`r end_yr + 3` default harvest policy catch for alternative `r end_yr + 2`
-catch options (including associated `r end_yr` and `r end_yr + 1` catches;
-catch options explained in Table~\@ref(tab:main-decisions-biomass-tab)) as
-listed in Table~\@ref(tab:main-risk-year-3-tab). The symbols indicate points
-that were computed directly from model output and lines interpolate between
-the points.
+<!--(ref:main-risk-year-3-cap) Graphical representation of the probabilities-->
+<!--related to spawning biomass, relative fishing intensity, and the-->
+<!--`r end_yr + 3` default harvest policy catch for alternative `r end_yr + 2`-->
+<!--catch options (including associated `r end_yr` and `r end_yr + 1` catches;-->
+<!--catch options explained in Table~\@ref(tab:main-decisions-biomass-tab)) as-->
+<!--listed in Table~\@ref(tab:main-risk-year-3-tab). The symbols indicate points-->
+<!--that were computed directly from model output and lines interpolate between-->
+<!--the points.-->
 
-(ref:main-risk-year-3-alt) This figure shows that the probability that the
-stock declines in 2027 is approximately 65 percent or greater for all catch
-levels including zero. The probability that the stock falls under B40 is
-below 0.1 for catches up to approximately 350 kilotonnes.
+<!--(ref:main-risk-year-3-alt) This figure shows that the probability that the-->
+<!--stock declines in 2027 is approximately 65 percent or greater for all catch-->
+<!--levels including zero. The probability that the stock falls under B40 is-->
+<!--below 0.1 for catches up to approximately 350 kilotonnes.-->
 
-```{r main-risk-year-3-fig, fig.cap = "(ref:main-risk-year-3-cap)", fig.height = 5}
+<!--```{r main-risk-year-3-fig, fig.cap = "(ref:main-risk-year-3-cap)", fig.height = 5}-->
 
-plot_fore_compare(base_model,
-                  forecast_yrs = forecast_yrs,
-                  fore_yr = forecast_yrs[3],
-                  leg_pos = c(0.25, 0.75),
-                  leg_font_size = 9,
-                  remove_x_val = c(264, 605)) +
-  # Following make the legend smaller and legend items closer together
-  theme(legend.key.size = unit(0.25, "cm"),
-        legend.spacing.y = unit(0.01, "cm"),
-        legend.box.background = element_rect(colour = "black")) +
-  guides(color = guide_legend(byrow = TRUE))
-```
+<!--plot_fore_compare(base_model,-->
+<!--                  forecast_yrs = forecast_yrs,-->
+<!--                  fore_yr = forecast_yrs[3],-->
+<!--                  leg_pos = c(0.25, 0.75),-->
+<!--                  leg_font_size = 9,-->
+<!--                  remove_x_val = c(264, 605)) +-->
+<!--  # Following make the legend smaller and legend items closer together-->
+<!--  theme(legend.key.size = unit(0.25, "cm"),-->
+<!--        legend.spacing.y = unit(0.01, "cm"),-->
+<!--        legend.box.background = element_rect(colour = "black")) +-->
+<!--  guides(color = guide_legend(byrow = TRUE))-->
+<!--```-->
 
 \clearpage
 

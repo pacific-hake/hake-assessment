@@ -551,26 +551,26 @@ table_risk(
   longtable = TRUE)
 ```
 
-```{r main-risk-year-3-tab, results = "asis", echo = FALSE, eval = !is.null(base_model$risks)}
-# Index in model$risks to use, e.g. 1 means forecast year 2 compared to
-# forecast year 1
-table_risk(
-  base_model,
-  forecast_yrs,
-  index = 3,
-  type = "probability",
-  digits = 2,
-  caption = paste0(
-    "Probabilities related to spawning biomass, relative fishing intensity, ",
-    "and the ", end_yr + 3, " default harvest policy catch for alternative ",
-    end_yr + 2, " catch options, given the ", end_yr, " and ", end_yr + 1,
-    " catch levels shown in Tables~\\@ref(tab:main-risk-year-1-tab) and~",
-    "\\@ref(tab:main-risk-year-2-tab) (catch options explained in Table~",
-    "\\@ref(tab:main-decisions-biomass-tab))."),
-  font_size = 10,
-  header_font_size = 10,
-  longtable = TRUE)
-```
+<!--```{r main-risk-year-3-tab, results = "asis", echo = FALSE, eval = !is.null(base_model$risks)}-->
+<!--# Index in model$risks to use, e.g. 1 means forecast year 2 compared to-->
+<!--# forecast year 1-->
+<!--table_risk(-->
+<!--  base_model,-->
+<!--  forecast_yrs,-->
+<!--  index = 3,-->
+<!--  type = "probability",-->
+<!--  digits = 2,-->
+<!--  caption = paste0(-->
+<!--    "Probabilities related to spawning biomass, relative fishing intensity, ",-->
+<!--    "and the ", end_yr + 3, " default harvest policy catch for alternative ",-->
+<!--    end_yr + 2, " catch options, given the ", end_yr, " and ", end_yr + 1,-->
+<!--    " catch levels shown in Tables~\\@ref(tab:main-risk-year-1-tab) and~",-->
+<!--    "\\@ref(tab:main-risk-year-2-tab) (catch options explained in Table~",
+<!--    "\\@ref(tab:main-decisions-biomass-tab))."),-->
+<!--  font_size = 10,-->
+<!--  header_font_size = 10,-->
+<!--  longtable = TRUE)-->
+<!--```-->
 
 <!-- The following ADJUST TABLE macro is used by the post-processor to shift
 the table left by this many inches. The margins are modified for this
