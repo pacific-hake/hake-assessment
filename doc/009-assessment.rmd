@@ -472,7 +472,8 @@ small enough that they had little impact on the model results.
 The addition of the `r last_data_yr` catch, modelled weight-at-age estimates,
 and fishery age compositions extends the model to the start of `r assess_yr`.
 Historical recruitment estimates and the stock trajectory were relatively
-unchanged through 2023 but female spawning biomass increased in the final
+unchanged through 2023 (except for changes in recruitment due to adding fishery age
+compositions), but female spawning biomass increased in the final
 year of the model due to the estimate of above-average recruitment in
 `r last_data_yr-1` (Figure~\@ref(fig:main-bridge-summary-2-fig)).
 With the lack of a survey in 2024, the `r last_data_yr-1` recruitment deviation
@@ -493,27 +494,29 @@ The penultimate step in this year's bridging led to turning off the estimation o
 `r last_data_yr - 1` and `r last_data_yr` recruitment deviations (i.e.,
 recruitment without deviation from the stock--recruitment relationship,
 Figure~\@ref(fig:main-bridge-summary-2-fig)). Given the unique seasonal fishing
-conditions during the year, these estimates of recruitment were considered
+conditions during the year, the 2023 estimate of recruitment was considered
 potentially suspect without the addition of survey information. This change led
 to decreased estimates of female spawning biomass at the start of `r assess_yr`
 relative to the previous model bridging steps. The next assessment will include
 data from the `r assess_yr` survey that will provide an age-2+ index with age
-compositions providing additional information on the `r last_data_yr-1` and
-`r last_data_yr`
-year-class strengths. Given this survey information, the `r assess_yr+1` assessment will explore
-estimating recruitment deviations for `r last_data_yr`.
+compositions providing additional information on the `r last_data_yr-1`
+year-class strength. Given this survey information, the `r assess_yr+1` assessment will explore
+estimating recruitment deviations for `r last_data_yr-1` and beyond.
 
-TODO someone please confirm that last bit is okay.
-
-The final bridging step was to exclude the age-1 index from the base model.
-
-TODO, once we have results, adapt this from earlier text:
-
-because it was found to be strongly influencing recruitment estimates even for
-cohorts that had several years of data.
-
-Also, the age-1 index does not have an externally calculated measure of uncertainty.
-
+The final bridging step was to exclude the age-1 index from the base model. This decision
+occurred through discussions and supporting analyses at the `r assess_yr` Scientific
+Review Group meeting (see Appendix~\@ref(sec:app-srg-requests) for additional details).
+In summary, the performance of the age-1 index over recent years was called into question
+given that it was found to be strongly influencing recruitment estimates even for
+cohorts that had several years of data (going back to 2015). In addition, the age-1
+index does not have an externally calculated measure of uncertainty, including any
+measure of year to year differences in the quality of the index. Analyses
+conducted during the review week identified the 2019 and 2023 index points as having
+a particularly high impact on model results. The model considerably underfit these
+data points such that the age-1 index was suggesting larger recruitment in 2018 and 2022
+than all other data sources in the assessment. Further analyses into the performance of the
+age-1 index and the quantification of yearly uncertainty measures will provide the means to
+potentially include this index once again in future assessments.
 
 ### Assessment model results {#sec:assessment-model-results}
 
