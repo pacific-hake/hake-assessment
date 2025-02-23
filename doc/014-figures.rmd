@@ -9,7 +9,7 @@ Ocean occupied by `r sp`. Ports and areas of interest referred to in this
 document or past assessment documents are shown.
 
 (ref:main-overview-map-alt) This figure shows many ports and cities of
-interest for the hake fishery.
+interest for the hake fishery along the United States and Canadian West Coast.
 
 ```{r main-overview-map-fig, fig.cap = "(ref:main-overview-map-cap)", fig.height = 10, out.height = "90%"}
 
@@ -24,7 +24,7 @@ for ages 2 to 20, with major cohorts highlighted in color. Figure produced
 by Julia Clemons (NOAA).
 
 (ref:main-acoustic-age2-bs-alt) This figure shows that `r sp` migrate further
-north in some years.
+north in some years and the southern start of the survey varies by year.
 
 BEGIN LANDSCAPE - must have blank line below separating this from figure code
 
@@ -44,8 +44,8 @@ of the survey sampling design. Additional backscatter from age-1 fish
 intermixed with older fish is not shown. Area of the circle is roughly
 proportional to observed backscatter. Figure produced by Julia Clemons (NOAA).
 
-(ref:main-acoustic-age1-bs-alt) This figure shows the assumed varying
-locations of age-1 `r sp`.
+(ref:main-acoustic-age1-bs-alt) This figure shows that age-1 fish caught in the
+survey are quite patchy and quite variable distributions among years.
 
 BEGIN LANDSCAPE
 
@@ -99,8 +99,8 @@ box represent the median depth and boxes encompass the middle 50% of the
 data. Whiskers encompass the 95% quantiles.
 
 (ref:main-can-depths-alt) This figure shows that for the last five years in
-Canada freezer trawlers fished at an approximate bottom depth of 250 to 400 meters
-and shoreside vessels fished at an approximate bottom depth of 200 meters.
+Canada freezer trawlers fished from 250 to 400 meters
+and shoreside vessels more consistently fished at an approximate bottom depth of 200 meters.
 Freezer trawlers fished at a gear depth of approximately 100 to 300 meters and
 shoreside vessels at a depth of approximately 150 to 250 meters. Bottom depths
 for both fleets have become shallower with fishing being closer to the bottom.
@@ -255,8 +255,8 @@ data such that weights were predicted from the time-varying model. The bottom
 row (mean) is the mean weight-at-age over all years of data.
 
 (ref:main-weight-at-age-alt) This figure shows how weight at age changes
-through time. The weight of older fish appears to have decreased overall from
-1975 to present.
+through time. The weight of fish about 5 and older are quite variable indicating
+difference in growht over time.
 
 ```{r main-weight-at-age-fig, fig.cap = "(ref:main-weight-at-age-cap)", fig.height = 10, out.height = "85%"}
 
@@ -393,9 +393,9 @@ representing the observed survey indices.
 any of these bridging models.
 
 (ref:main-bridge-summary-2-alt) The largest change amongst the models
-occurred when new fishery composition data from the current year and
-the estimation of recruitment deviations was turned off for 2023 onwards
-were added to the model.
+occurred when the age-1 index was removed.  Other notable changes included
+when the new fishery composition data from the current year was added and
+the estimation of recruitment deviations was turned off for 2023 onwards.
 
 ```{r main-bridge-summary-1-fig, fig.cap = "(ref:main-bridge-summary-1-cap)", fig.height = 8}
 
@@ -598,7 +598,7 @@ model estimate of additional uncertainty.
 trajectories of the expected survey biomass fitting well to the observed
 biomass. The lines are very tightly packed together for most of the time
 series but diverge a little near the end of the time series from about 2017
-to 2023.
+to 2023. The 2023 survey index point is overfit.
 
 ```{r main-survey-index-fit-mcmc-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-cap)", fig.height=6, fig.width=8}
 
@@ -664,8 +664,8 @@ the median of the posterior for the last assessment year, `r last_data_yr`,
 which was `r f(median(last_yr_base_model$extra_mcmc$q_vector), 3)`.
 
 (ref:main-catchability-density-alt) The distribution of the catchability
-parameter posterior for the acoustic survey index is shown with a median around
-0.84.
+parameter posterior for the acoustic survey index spans from about 0.5 to 1.3,
+with a median around 0.89.
 
 ```{r main-catchability-density-fig, fig.cap = "(ref:main-catchability-density-cap)", fig.height = 4.5}
 plot_catchability_density(base_model,
@@ -709,7 +709,8 @@ Monte Carlo calculations.
 
 (ref:main-age-comp-fits-fishery-alt) This figure shows the age composition
 fits for the fishery against the data. There is some slight over and
-under fitting in the early part of the time series from 1975 to 1995.
+under fitting in the early part of the time series from 1975 to 1995, but
+otherwise the model fits these data well.
 
 ```{r main-age-comp-fits-fishery-fig, fig.cap = "(ref:main-age-comp-fits-fishery-cap)", fig.height = 10, out.height = "90%"}
 
@@ -726,7 +727,7 @@ chain Monte Carlo calculations.
 
 (ref:main-age-comp-fits-survey-alt) This figure shows the age composition
 fits for the acoustic survey against the data. There is some over
-fitting from 2001 to 2005.
+fitting from 2001 to 2005. In recent years, the data fit quite well.
 
 ```{r main-age-comp-fits-survey-fig, fig.cap = "(ref:main-age-comp-fits-survey-cap)", fig.height = 10, out.height = "90%"}
 
@@ -745,7 +746,7 @@ open bubbles are negative residuals (observed < expected). Green lines track
 cohorts from years of large recruitment events.
 
 (ref:main-age-comp-pearson-alt) This figure shows that there are no obvious
-patterns in the Pearson residuals for the fishery and the survey.
+systematic patterns in the Pearson residuals for the fishery and the survey.
 
 ```{r main-age-comp-pearson-fig, fig.cap = "(ref:main-age-comp-pearson-cap)", fig.height = 10, out.height = "90%"}
 
@@ -819,7 +820,9 @@ year for the base model. The range of selectivity is scaled to be between
 0 and 1 in each year.
 
 (ref:main-tv-selex-alt) This figure shows individual median selectivity
-plots for each year in a mountain range configuration.
+plots for each year in a mountain range configuration. There is considerable
+variability among years and ages. In 2024, selectivity is low from age 1 to 5
+before quickly increasing at age 6 and older. 
 
 ```{r main-tv-selex-fig, fig.cap = "(ref:main-tv-selex-cap)", fig.height = 9}
 
@@ -841,7 +844,8 @@ Selectivity for `r tv_selex_start_yr` is shared for all years from
 `r start_yr` to `r tv_selex_start_yr`.
 
 (ref:main-tv-selex-uncertainty-alt) This figure shows individual panels for
-each year with selectivity medians and 0.95 credible intervals.
+each year with selectivity medians and 0.95 credible intervals. Selectivity patterns
+are the same as in the previous figure.
 
 ```{r main-tv-selex-uncertainty-fig, fig.cap = "(ref:main-tv-selex-uncertainty-cap)", fig.height = 9}
 
@@ -859,6 +863,9 @@ a subsample of 1,000 draws from the posterior distribution for the base model.
 (ref:main-tv-selex-posteriors-alt) This plot shows individual median
 selectivity trajectories for a subset of samples from the posteriors of
 fishery and survey selectivity parameters with 95 percent credible intervals.
+Survey selectivity monotonically increases from age 1 to age 6, with the exception
+of a small reduction at age 4. In 2024, fishery selectivity is low from age 1 to 5
+before quickly increasing at age 6 and older.
 
 ```{r main-tv-selex-posteriors-fig, fig.cap = "(ref:main-tv-selex-posteriors-cap)", fig.height = 8}
 
@@ -906,7 +913,8 @@ with 95% posterior credibility intervals (shaded area). Dashed horizontal
 lines show 10%, 40%, and 100% of the unfished equilibrium ($B_0$).
 
 (ref:main-relative-biomass-alt) This figure shows that the relative spawning
-biomass has been increasing since 2022. The value for 2023 is around B zero.
+biomass has been increasing since 2022 but the amount of increase has lessened
+each year.
 
 ```{r main-relative-biomass-fig, fig.cap = "(ref:main-relative-biomass-cap)", fig.height = 5}
 
@@ -949,7 +957,9 @@ were not estimated in the model.
 
 (ref:main-recruitment-devs-alt) This figure shows recruitment deviations for
 each cohort. The same above-average cohorts seen in the recruitment figure
-are also seen here.
+are also seen here. The negative deviation for 2022 has high uncertainty but
+the entire uncertainty range remains below zero. 
+
 
 ```{r main-recruitment-devs-fig, fig.cap = "(ref:main-recruitment-devs-cap)", fig.height = 5}
 
@@ -972,8 +982,8 @@ for values.
 
 (ref:main-numbers-at-age-alt) This figure clearly shows the strong cohorts
 decreasing in numbers as they pass through the stock from one year to the
-next. The mean age has fluctuated over time and is currently rising and at
-just above age 3.
+next. The mean age has fluctuated over time and is currently rising since
+2021 and is currently just above a mean age of 3.
 
 ```{r main-numbers-at-age-fig, fig.cap = "(ref:main-numbers-at-age-cap)", fig.height = 10, out.height = "90%"}
 
@@ -999,7 +1009,8 @@ dashed line with the 95% posterior credibility interval shaded between the
 dotted lines.
 
 (ref:main-recruitment-scale-all-alt) This figure shows distributions of
-recruitment estimates relative to those in 2010 for all years.
+recruitment estimates relative to those in 2010 for all years, highlighting
+the uncertainty of the 2020 and 2021 year classes.
 
 ```{r main-recruitment-scale-all-fig, fig.cap = "(ref:main-recruitment-scale-all-cap)", fig.height = 4.5}
 
@@ -1027,6 +1038,7 @@ recruitments.
 
 (ref:main-stock-recruitment-alt) This figure shows that the stock--recruitment
 relationship does not fit the estimated recruitments very well for this stock.
+It shows the effect of allowing recruitment deviations to have a large variance.
 
 ```{r main-stock-recruitment-fig, fig.cap = "(ref:main-stock-recruitment-cap)", fig.height = 8}
 
@@ -1054,8 +1066,9 @@ plot_fishing_intensity(base_model, line_color="grey32")
 credibility intervals.
 
 (ref:main-exploitation-fraction-alt) This figure shows that the current
-exploitation fraction of the female spawning biomass is approximately 0.07.
-This is a drop from the previous five years which have been above 0.1.
+exploitation fraction of the female spawning biomass is approximately 0.06.
+This is a drop from the previous seven years where values were close to or well
+above 0.1.
 
 ```{r main-exploitation-fraction-fig, fig.cap = "(ref:main-exploitation-fraction-cap)"}
 
@@ -1093,7 +1106,7 @@ quantile to the 97.5% quantile, covering the range
 `r ct_limit_quantiles["lower"]`--`r ct_limit_quantiles["upper"]`~t.
 
 (ref:main-projected-catch-density-alt) This figure shows the wide posterior
-distribution of the default catch limit using the default harvest policy.
+lognormal distribution of the default catch limit using the default harvest policy.
 
 ```{r main-projected-catch-density-fig, fig.cap = "(ref:main-projected-catch-density-cap)", fig.height = 4.5}
 
@@ -1174,8 +1187,8 @@ default harvest policy catches are
 `r f(base_model$ct_default_policy[3])`~t in `r end_yr + 2`.
 
 (ref:main-depletion-comparison-alt) This figure shows that the
-median relative spawning biomass is projected to remain flat for the next
-3 years with zero catch and to decline for all non-zero catch levels
+median relative spawning biomass is projected to decline for the next
+3 years with zero catch and all non-zero catch levels
 evaluated.
 
 ```{r main-depletion-comparison-fig, fig.cap = "(ref:main-depletion-comparison-cap)", fig.height = 5}
@@ -1193,9 +1206,9 @@ Table~\@ref(tab:main-risk-year-1-tab). The symbols indicate points that were
 computed directly from model output and lines interpolate between the points.
 
 (ref:main-risk-year-1-alt) This figure shows that the probability that the
-stock declines in 2025 is 50 percent or greater for all catch levels
-above 350 kilotonnes. The probability that the stock falls under B40 is almost
-zero for catches up to approximately 350 kilotonnes.
+stock declines in 2025 is near 100 percent for all catch levels.
+The probability that the stock falls under B40 is between 10% and 35%
+for examined catch scenarios.
 
 ```{r main-risk-year-1-fig, fig.cap = "(ref:main-risk-year-1-cap)", fig.height = 5}
 
@@ -1221,9 +1234,9 @@ Table~\@ref(tab:main-risk-year-2-tab). The symbols indicate points that were
 computed directly from model output and lines interpolate between the points.
 
 (ref:main-risk-year-2-alt) This figure shows that the probability that the
-stock declines in 2026 is over 50 percent for all catch levels
-including zero. The probability that the stock falls under B40 is below 0.1
-for catches up to approximately 380 kilotonnes.
+stock declines in 2026 is near 100% percent for all catch levels
+including zero. The probability that the stock falls under B40 rises
+above 50% for catches above approximately 400 kilotonnes.
 
 ```{r main-risk-year-2-fig, fig.cap = "(ref:main-risk-year-2-cap)", fig.height = 5}
 
@@ -1285,8 +1298,9 @@ based on the weight at each age averaged across the last five years.
 
 (ref:main-age-comp-forecast-alt) This figure shows how the few dominant
 cohorts are expected to make up most of the coming years catch. The 2021
-cohort is predicted to be the largest cohort in the catch in 2024. That
-prediction has high uncertainty when compared to the other cohorts.
+cohort is predicted to be the largest cohort in the catch in 2025, followed
+by the 2020 cohort. Both predictions have high uncertainty when compared
+to the other cohorts.
 
 ```{r main-age-comp-forecast-fig, fig.cap = "(ref:main-age-comp-forecast-cap)", fig.height = 4.5}
 
@@ -1358,8 +1372,9 @@ in the year.
 
 (ref:main-biomass-base-alternative-2-alt) This figure shows how spawning
 biomass changes between the second set of sensitivity runs. The biomass
-estimate decreases in recent years with the removal of the age-1 index from the
-model. Female spawning biomass in all years is less when maturity is estimated
+estimate increases in recent years with the addition of the age-1 index, and it
+decreases in recent years when the eDNA index is added.
+Female spawning biomass in all years is less when maturity is estimated
 earlier in the year.
 
 ```{r main-biomass-base-alternative-2-fig, fig.cap = "(ref:main-biomass-base-alternative-2-cap)", fig.height = 4.5}
@@ -1380,8 +1395,8 @@ descriptions.
 
 (ref:main-status-base-alternative-2-alt) This figure shows how relative
 spawning biomass changes between the second set of sensitivity runs. As in
-the absolute biomass figure the relative biomass estimate decreases with the
-removal of the age-1 index from the model.
+the absolute biomass figure the relative biomass estimate increases with the
+addition of the age-1 index and decreases with the addition of the eDNA index.
 
 ```{r main-status-base-alternative-2-fig, fig.cap = "(ref:main-status-base-alternative-2-cap)", fig.height = 4.5}
 
@@ -1400,8 +1415,8 @@ Figure~\@ref(fig:main-biomass-base-alternative-2-fig) for sensitivity
 descriptions.
 
 (ref:main-recruitment-base-alternative-2-alt) This figure shows the occasional
-changes in recruitment deviations for some of the sensitivity runs. Removing
-the age 1 index decreases the estimate of 2022 recruitment.
+changes in recruitment deviations for some of the sensitivity runs. Adding
+the age 1 index increases the estimates of recruitment after 2018.
 
 ```{r main-recruitment-base-alternative-2-fig, fig.cap = "(ref:main-recruitment-base-alternative-2-cap)", fig.height = 4.5}
 
@@ -1423,9 +1438,8 @@ sensitivity descriptions.
 
 (ref:main-index-base-alternative-2-alt) This figure shows the similarity
 between some sensitivity runs of the estimates of the fit to the biomass
-index. Removal of the age-1 index results in a drop in recent survey index
-fits while changing the age composition method to the McAllister--Ianelli
-method increases it.
+index. Addition of the age-1 index results in a considerable increase in recent survey index
+fits while adding the eDNA index reduces the fit in 2021 but fits well the index in 2023.
 
 ```{r main-index-base-alternative-2-fig, fig.cap = "(ref:main-index-base-alternative-2-cap)", fig.height = 4.5}
 
@@ -1448,7 +1462,7 @@ and the blue dots are the estimated values for each year.
 
 (ref:main-index-edna-alt) This figure shows the three indices and model fits
 to those index points for the eDNA survey for the sensitivity which includes
-eDNA survey as an index of abundance.
+eDNA survey as an index of abundance. The eDNA index is fit well in this sensitivity.
 
 ```{r main-index-edna-fig, fig.cap = "(ref:main-index-edna-cap)", fig.height = 4.5}
 
@@ -1620,7 +1634,8 @@ sensitivities. Natural mortality is assumed to be equal for
 all ages five and above.
 
 (ref:main-biomass-base-alternative-5-alt) This figure shows that recent
-spawning biomass varies for some sensitivity runs. Fixing natural mortality
+spawning biomass varies for some natural mortality at age sensitivity runs.
+Fixing natural mortality
 at age to the estimates from an external model greatly reduces the uncertainty
 in the estimates of spawning biomass and reduced them to near target levels.
 
@@ -1690,7 +1705,7 @@ Figure~\@ref(fig:main-biomass-base-alternative-5-fig) for sensitivity
 descriptions.
 
 (ref:main-recruitment-devs-base-alternative-5-alt) The estimates of
-recruitment deviations are similar between the three model runs.
+recruitment deviations differ for nearly every year across the three model runs.
 
 ```{r main-recruitment-devs-base-alternative-5-fig, fig.cap = "(ref:main-recruitment-devs-base-alternative-5-cap)", fig.height = 4.5}
 
@@ -1703,15 +1718,14 @@ if(!is.null(d_obj_sens_recdev[[4]])){
 
 (ref:main-index-base-alternative-5-cap) Markov chain Monte Carlo estimates
 of the fit to the survey index of age-2$+$ biomass for the base model and
-alternative sensitivity runs representing different standard deviations
-($\Phi$) associated with time-varying selectivity. See
+alternative sensitivity runs representing different ways to parameterize
+natural mortality at age. See
 Figure~\@ref(fig:main-biomass-base-alternative-5-fig) for sensitivity
 descriptions.
 
 (ref:main-index-base-alternative-5-alt) This figure shows differences in the
-fit to the biomass index for certain sensitivity runs. There is a large
-scaling upward of recent index estimates when the Phi parameter is
-set to 0.21.
+fit to the biomass index for certain sensitivity runs. There is only minor differences
+in the fit to the survey across these scenarios.
 
 ```{r main-index-base-alternative-5-fig, fig.cap = "(ref:main-index-base-alternative-5-cap)", fig.height = 4.5}
 
@@ -1832,7 +1846,9 @@ estimates of spawning biomass at the start of each year (top) and recruitment
 spawning biomass and recruitment vary for retrospective runs. The
 retrospectives all follow the same biomass trajectory and have similar
 recruitment estimates for all but the most recent years indicating a
-stable model.
+generally stable model. The minus two year retrospective run indicated an
+extremely high recruitment without the age-1 index to counter fishery age
+composition data.
 
 ```{r main-biomass-recruitment-retrospective-fig, fig.cap = "(ref:main-biomass-recruitment-retrospective-cap)", fig.height = 8}
 
@@ -1864,7 +1880,8 @@ shades of orange for the oldest models, yellow shades for the 2000's, green
 shades for the 2010's and into blue shades from 2013 to present.
 
 (ref:main-historical-assessments-alt) This figure shows the varying
-historical estimates of spawning biomass from the annual assessments.
+historical estimates of spawning biomass from the annual assessments. The large
+change from this year to last year is mostly due to the removal of the age-1 index.
 
 ```{r main-historical-assessments-fig, fig.cap = "(ref:main-historical-assessments-cap)", fig.height = 5.5}
 
@@ -1891,7 +1908,8 @@ calculated as $(Q_3 - Q_1) / (Q_1 + Q_3)$.
 
 (ref:main-historical-dispersion-alt) This figure shows the amount of
 absolute and scaled variability present with terminal year estimates of
-spawning biomass from assessments dating back to 2012.
+spawning biomass from assessments dating back to 2012. The most recent year
+is in line with earlier years.
 
 <!-- Don't remove the clearpage here, you will get a 'to many
 unprocessed floats' -->
