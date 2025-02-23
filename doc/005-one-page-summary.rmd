@@ -15,7 +15,7 @@ The model was not fit to the relative index of age-one fish.
 - Data for `r end_yr-1` were included for each data set and minor changes to
 pre-`r end_yr-1` data were made as necessary. Similar to last year's assessment, a
 model-based approach was used for the input weight-at-age matrix and time-varying
-temperature-dependent maturity, both of which better inform fecundity.
+temperature-dependent maturity, both of which inform fecundity.
 
 - Coast-wide catch in `r end_yr-1` was `r last_yr_landings`~t
 (t represents tonnes), 48% below the average over the most recent 10 years
@@ -27,7 +27,7 @@ out of a total allowable catch (TAC), adjusted for carryovers, of
 
 - The median estimate of the `r end_yr` relative spawning biomass
 (female spawning biomass at the start of `r end_yr` divided by that at
-unfished equilibrium, B~0~) is `r curr_depl_median`% but is highly
+unfished equilibrium, B~0~) is `r curr_depl_median`% but it is highly
 uncertain (with 95% credible interval from `r curr_depl_lower`% to
 `r curr_depl_upper`%). After declining from 2018--2022, the median
 relative spawning biomass increased from 2022--2025, due to the
@@ -71,11 +71,11 @@ of the female spawning biomass falling below `r b_40` in `r end_yr + 2`.
 <!-- `r last_yr_tac_risk_3_biomass_decline`% chance of it declining -->
 <!-- from `r end_yr + 2` to `r end_yr + 3` with a constant catch of -->
 <!-- `r last_yr_tac` t. -->
-The model estimates that in two years time the stock will be at `r b_40` with a catch
+It was estimated that the stock will be at `r b_40` in the beginning of 2028 with a catch
 of 250,000~t in 2026 and 2027, given the current assumption of average recruitment
 from 2023 onward.
 
-- Despite estimates of a healthy stock status (albeit less so than last year), the recent lack
+- Despite estimates of a current stock status above `r b_40`, the recent lack
 of survey abundance and fishery catch in Canada suggests
 a population structure not conducive to achieving harvest quotas in
 northern fisheries over recent years.
