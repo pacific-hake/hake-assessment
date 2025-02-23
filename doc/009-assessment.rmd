@@ -1560,53 +1560,36 @@ models (Figure~\@ref(fig:main-recruitment-devs-base-alternative-5-fig)).
 ## Retrospective analyses {#sec:assessment-retrospective-analyses}
 
 Retrospective analyses were performed by iteratively removing the terminal
-year data for ten years and estimating the posterior distribution of
-parameters under the assumptions of the base model. Medians of various
-quantities of interest are given in
-Table~\@ref(tab:main-parameter-estimates-retro-tab).
+year data used to fit the model until ten years of data were removed
+Table~\@ref(tab:main-parameter-estimates-retro-tab). Retrospective analyses are
+informative for identifying consistent under- and over-estimation of estimates,
+particularly for spawning biomass and recruitment deviations.
 
-This year's base model shows similar retrospective results to last year's
-[Figure~\@ref(fig:main-retrospective-recruitment-fig) and @JTC2024] for
-most cohorts. The 2022 cohort, age 3 in `r assess_yr`, is estimated to
-be a below-average cohort, whereas in the `r assess_yr - 1` assessment it
-was estimated as possibly being an above-average cohort at the age of 2.
-Uncertainties are shown for select cohorts in
-Figures~\@ref(fig:main-retrospective-recruitment-fig)
-and~\@ref(fig:main-retrospective-recruitment-2-fig). The uncertainty is
-represented as credible intervals from `r f(probs[1] * 100, 1)`% to
-`r f(probs[3] * 100, 1)`%. For cohorts that have positive recruitment
-deviations such as the 2014 cohort, the uncertainty is a narrower band
-around the median due to a higher sampling rate over the years than the
+As more information is gained regarding large cohorts, the estimated strength
+of the cohort tends to decrease
+(Figures~\@ref(fig:main-retrospective-recruitment-fig)
+and~\@ref(fig:main-retrospective-recruitment-2-fig)).
+In this assessment, the previous trend was true for both large (positive) and
+small (negative) recruitment deviations, where all cohorts except the 2016 and
+2018 cohorts were estimated to be smaller with time. For cohorts that have
+positive recruitment deviations, such as the 2014 cohort, the uncertainty is
+narrower around the median due to a higher sampling rate over the years than the
 cohorts with negative recruitments such as the 2015 cohort.
 
 The retrospective plots in this year's assessment look slightly different
-than those from previous assessments; the last two years of the
-time series plus the assessment year have their recruitment deviations fixed
-at zero for this assessment. This represents zero deviations from the
-stock-recruit relationship (Figure~\@ref(fig:main-stock-recruitment-fig))
-for the last two data years (`r last_data_yr - 1` and `r last_data_yr`) and
-the assessment year (`r assess_yr`). These zeroes can be seen for ages 0, 1,
-and 2 in the retrospective plots
-(Figures~\@ref(fig:main-retrospective-recruitment-fig)
-and~\@ref(fig:main-retrospective-recruitment-2-fig)).
+than those from previous assessments; recruitment deviations for the last two
+years of the time series plus the assessment year are fixed at zero.
 
-The latest data confirm that 2020 is not likely to be a large cohort
+The latest data confirm that 2020 is not likely to be an extremely large cohort
 (Figures~\@ref(fig:main-retrospective-recruitment-fig)
 and~\@ref(fig:main-retrospective-recruitment-2-fig)). The 2021 cohort at
-age-3 has a similar median to the 2020 cohort at age-3, but with less uncertainty
-(narrower credibility interval in
-Figure~\@ref(fig:main-retrospective-recruitment-2-fig)) because it has been seen
-in the age-2$+$ biomass survey (whereas the 2020 cohort was not seen in that
-survey until it was another year older). Addition of the `r last_data_yr` data
-show that the recruitment deviation for the 2021 cohort is almost the same as
-it was in the `r assess_yr - 1` assessment, indicating that the 2021 cohort
-is likely to be a large cohort.
-
-Cohort strength is further informed when at least one year of age-2$+$
-survey biomass index age-composition data are available for a
-cohort, which for even-numbered recruitment years typically does not occur
-until the cohort reaches age-3, due to the acoustic survey occurring in odd
-years; though the age-1 index does provide some information.
+age-3 had a lower median than the 2020 cohort at age-3 but did not decrease as
+much as the 2020 cohort at age 4. Confirming cohort strengths for even-numbered
+recruitment years takes longer than for odd-numbered recruitment years because
+the survey does not include them in the age-2$+$ survey until they are of age
+three. Almost all estimates of recruitment deviations, positive or negative,
+stabilize by the age of six
+(Figure~\@ref(fig:main-relative-retrospective-recruitment-fig)).
 
 The stability of the recruitment estimates seen in
 Figure~\@ref(fig:main-retrospective-recruitment-fig) is also evident
@@ -1620,13 +1603,15 @@ Overall, there is little retrospective change to the relative spawning biomass
 trajectory up to the mid-2010s, and most retrospective change occurs in the
 final 5 years of the retrospective model
 (upper panel of Figure~\@ref(fig:main-biomass-recruitment-retrospective-fig)).
-In this assessment, there is very little retrospective bias, with only slight
-year-specific positive and negative bias in female spawning biomass, some
-minor adjustments to recruitment deviates, and a slight trend in `r b_0` as the
-retrospective year increases. All of these retrospective differences are well
-within the range of estimation uncertainty across all retrospective years.
-There is no indication from retrospective evaluations that the base model is
-displaying a systematic bias.
+The most change in spawning biomass occurs when two years of data are removed
+because of changes in the estimate of absolute recruitment in 2020 to a much
+larger recruitment event compared to the base model. The large positive
+recruitment event is not present in the three-year peel of data when the terminal-year
+estimates are again informed by both fishery and survey data. Except for the
+previously explained changes, there is very little retrospective bias, with only
+slight year-specific positive bias in female spawning biomass, some minor
+adjustments to recruitment deviates, and a slight negative trend in `r b_0` as the
+retrospective year increases.
 
 ## Comparison with past assessments {#sec:assessment-past-assessments}
 
