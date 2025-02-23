@@ -185,10 +185,10 @@ This assessment continues to use (since 2014) time-varying
 (rather than constant) selectivity to maintain flexibility within the
 fishery dynamics given variability in `r sp` distribution patterns.
 The Dirichlet-multinomial estimation approach to weighting composition data
-was retained, and sensitivity to an alternative data-weighting approach was
+was retained, and a sensitivity to an alternative data-weighting approach was
 investigated. Time-varying fecundity, which was introduced in 2019, was
 retained and improved upon with time-varying estimates of maturity in 2024.
-Assumptions for the forecast period for weight-at-age and
+Assumptions for the forecast period for weight at age, maturity at age, and
 selectivity continue to be based on conditions during the last five years,
 as done since the 2020 assessment.
 
