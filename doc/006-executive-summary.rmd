@@ -98,8 +98,9 @@ This Joint Technical Committee (JTC) assessment depends on fishery
 landings (`r start_yr`--`r last_data_yr`), an acoustic survey biomass index
 of age-2$+$ fish (Figure~\@ref(fig:es-survey-biomass-fig)) and age compositions
 (`r survey_start_yr`--`r survey_end_yr`),
-fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`), and
-weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011
+fishery age compositions (`r start_yr_age_comps`--`r last_data_yr`),
+maturity-at-age data, and
+weight-at-age data (`r start_yr_age_comps`--`r last_data_yr`). In 2011,
 the survey biomass index of age-2$+$ fish was the lowest in the time series and was followed
 by the index increasing in 2012, 2013, and again in 2015 before decreasing to
 near the time series average in 2017. The survey
@@ -145,32 +146,33 @@ closed-loop simulations that provide insights into how alternative
 combinations of survey frequency, assessment model selectivity assumptions,
 changes in the distribution or `r sp`, and harvest control rules affect expected
 management outcomes given repeated application of these procedures over
-the long-term. The results of past (and ongoing) closed-loop simulations
+the long term. The results of past (and ongoing) closed-loop simulations
 help inform decisions made for this assessment.
 
-This `r assess_yr` assessment retained the same general population dynamics
-structure as the base assessment model from `r last_assess_yr` and again is
-configured using Stock Synthesis. Updates in this assessment include incorporating
+This `r assess_yr` assessment is again configured using Stock Synthesis. The
+same general population dynamics structure as the base assessment model from
+`r last_assess_yr` was used except for terminal recruitment and forecast
+recruitment deviations, which were fixed at zero in this assessment.
+Updates to data in this assessment include incorporating
 <!-- the new biomass estimate and age-composition data from the acoustic survey conducted in `r survey_end_yr`, -->
 fishery catch and age-composition data from `r end_yr-1`, weight-at-age data for
 `r end_yr-1`,
+maturity-at-age data for `r end_yr-2`,
 <!-- the `r survey_end_yr` age-1 index estimate, -->
 and minor changes to pre-`r end_yr-1` data. The model-based
 approaches used to develop the input weight-at-age matrix and time-varying
 temperature-dependent maturity were retained from last year's assessment
-to better inform fecundity. 
+to inform fecundity.
 
-Structural changes to the model included removing the age-1 index and fixing
-late and forecast recruitment deviations to zero. The relative index of age-1
-fish from the survey was not used to fit the model this year
-because it was found to be strongly influencing recruitment estimates even for
-cohorts that had several years of data, and it does not have an externally
-calculated measure of uncertainty.
-The only data point that can directly inform the size of
+The relative index of age-1 fish from the survey was not used to fit this
+assessment model this because it was found to have a strong influence on estimates
+of recruitment even for cohorts that had several years of data and it lacks
+time-specific measurements of uncertainty.
+Thus, the only data point that can directly inform the size of
 the 2023 cohort is from age-1 observations in the commercial fishery
 in 2024. Given the unique seasonal
-fishing conditions during the year, and that this single data point (not from a
-survey) can be overly influential on the
+fishing conditions during the year and that this fishery-dependent data point
+can be overly influential on the
 estimated 2023 recruitment, estimated recruitment in 2023 was
 based solely on the stock--recruitment relationship, with no estimated
 recruitment deviations (i.e., deviations fixed at zero, giving average recruitment).
