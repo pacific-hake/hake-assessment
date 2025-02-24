@@ -75,28 +75,27 @@ plot_grid(plotlist = plist, nrow = 2)
 ```
 (ref:app-mcmc-diag-extra-sd-cap) Summary of Markov chain Monte Carlo
 diagnostics for the additional standard deviation (SD) in the biomass
-index (upper 4 panels) and for the age-1 index (lower 4 panels) in the base
-model. Sub-panel descriptions as in Figure~\@ref(fig:app-mcmc-diag-m-r0-fig).
+index. Sub-panel descriptions as in Figure~\@ref(fig:app-mcmc-diag-m-r0-fig).
 
 (ref:app-mcmc-diag-extra-sd-alt) This figure shows good Markov chain Monte
-Carlo diagnostics for the base model for the survey and age-1 index additional
+Carlo diagnostics for the base model for the survey additional
 standard deviation parameters.
 
 ```{r app-mcmc-diag-extra-sd-fig, fig.cap = "(ref:app-mcmc-diag-extra-sd-cap)", fig.height = 8}
 
-# plist <- NULL
-# plist[[1]] <-
-#   plot_mcmc_diagnostics(base_model,
-#                         key_posteriors[[4]],
-#                         key_posteriors_titles[[4]],
-#                         # Trace lines and autocorrelation bar color
-#                         color = "royalblue",
-#                         # Iteration and density fill color
-#                         fill = "royalblue",
-#                         # Iteration and density transparency
-#                         rib_alpha = 0.3,
-#                         #Trace lines and autocorrelation bar transparency
-#                         line_bar_alpha = 0.8)
+plist <- NULL
+plist[[1]] <-
+  plot_mcmc_diagnostics(base_model,
+                        key_posteriors[[4]],
+                        key_posteriors_titles[[4]],
+                        # Trace lines and autocorrelation bar color
+                        color = "royalblue",
+                        # Iteration and density fill color
+                        fill = "royalblue",
+                        # Iteration and density transparency
+                        rib_alpha = 0.3,
+                        #Trace lines and autocorrelation bar transparency
+                        line_bar_alpha = 0.8)
 # plist[[2]] <-
 #   plot_mcmc_diagnostics(base_model,
 #                         key_posteriors[[5]],
@@ -109,8 +108,9 @@ standard deviation parameters.
 #                         rib_alpha = 0.3,
 #                         #Trace lines and autocorrelation bar transparency
 #                         line_bar_alpha = 0.8)
-# plot_grid(plotlist = plist, nrow = 2)
+plot_grid(plotlist = plist, nrow = 1)
 ```
+
 (ref:app-mcmc-diag-dm-cap) Summary of Markov chain Monte Carlo diagnostics
 for the Dirichlet-multinomial age-composition parameters for the
 fishery ($\theta_{\text{fish}}$, upper 4 panels) and the survey
