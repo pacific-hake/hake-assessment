@@ -1404,6 +1404,7 @@ addition of the age-1 index and decreases with the addition of the eDNA index.
 if(!is.null(d_obj_sens_rel_biomass[[1]])){
   plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[2]],
                    x_expansion = 2,
+                   ylim = c(0, 2.5),
                    leg_pos = c(0.65, 0.80),
                    rev_colors = TRUE)
 }
