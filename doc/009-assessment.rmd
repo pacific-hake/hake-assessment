@@ -1539,7 +1539,7 @@ for fish age six and above was zero in all years. The annual age-specific
 deviations were estimated by fitting CEATTLE to diet data up to 2019.
 More recent diet data exists but it has yet to be analyzed and included in the regional
 database for its use in CEATTLE. Age-0 and age-1 fish were found in over 7,000
-stomachs of `r sp`. Additionally, CEATTLE is informed by temperature at 130 m
+stomachs of the 17,000 `r sp` stomachs analyzed. Additionally, CEATTLE is informed by temperature at 130 m
 depth from GLORYS output at the same spatial footprint of the acoustic survey.
 More details about fitting data on `r sp` to CEATTLE can be found
 in @WassermannEtAl2025.
