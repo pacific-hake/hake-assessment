@@ -1646,8 +1646,9 @@ in the estimates of spawning biomass and reduced them to near target levels.
 if(!is.null(d_obj_sens_biomass[[4]])){
   plot_biomass(d_obj = d_obj_sens_biomass[[4]],
                x_expansion = 3.5,
+               ylim = c(0, 5),
                leg_font_size = 12,
-               leg_pos = c(0.65, 0.8),
+               leg_pos = c(0.65, 0.9),
                leg_ncol = 2,
                rev_colors = TRUE)
 }
