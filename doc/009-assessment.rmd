@@ -161,8 +161,8 @@ assessment. This value is based on consistency with the observed variability
 in the time series of recruitment deviation estimates and is the same as
 assumed in assessments from 2013 to `r last_assess_yr`
 (Table~\@ref(tab:main-assessment-changes-tab)). Catchabilities associated with the
-biomass index (*q*~b~) and with the relative age-1 index (*q*~1~), for bridging
-models that included it, were calculated
+biomass index (*q*~b~), and with the relative age-1 index (*q*~1~) bridging
+model, were calculated
 analytically as per @LudwigWalters1981 for each sample of posterior parameters,
 resulting in a distribution of catchability for each.
 
@@ -174,8 +174,8 @@ specified as having a Student's t-distribution for its error structure with the
 number of degrees of freedom equal to one less than the number of available
 data points, and its selectivity was set to one for age one and zero for all other ages.
 An additional constant and additive standard deviation on the
-log-scale component is included for both the biomass index and the relative
-age-1 index, which were freely estimated to accommodate unaccounted-for sources
+log-scale component is included for the biomass index (and the relative
+age-1 index when included), which was freely estimated to accommodate unaccounted-for sources
 of process and observation error. A D-M likelihood was applied to
 age-composition data, with input sample sizes equal to the sum of the number of
 trips and hauls sampled across all fishing fleets or the number of trawl sets
@@ -208,7 +208,8 @@ JTC:
 time-varying selectivity, and down-weighting fishery age-composition data.**
 
 *Response -- The incorporation of these sensitivities have been included per our
-standard workflow.*
+standard workflow. Due to the removal of the age-1 index in the base model this year,
+the relevant sensitivity model was to include the age-1 index.*
 
 2. **The SRG recommends that the JTC explore alternative ways of estimating
 natural mortality ($M$) to update the current approach in the model, which
@@ -508,7 +509,7 @@ the age-1 index considerably shifted the female spawning biomass trajectory
 downwards from 2015 onwards, with the largest changes coming since 2022
 (Figure~\@ref(fig:main-bridge-summary-2-fig)). Recruitment deviations in 2018 and 2022 were
 reduced considerably, while all others since 2019 were slightly reduced. The fit to the
-acoustic survey index in 2023 was considerably improved, but the fit in 2021 was lessened.
+acoustic survey index in 2023 was improved, but the fit in 2021 was lessened.
 
 The decision to exclude the age-1 index occurred through discussions and
 supporting analyses at the `r assess_yr` Scientific
@@ -759,7 +760,7 @@ biomass at the start of `r end_yr` divided by that at unfished equilibrium,
 `r curr_depl_upper`% (Tables~\@ref(tab:main-median-posterior-tab) and
 \@ref(tab:main-ci-posterior-tab)), partly due to remaining unknowns about the size of the
 potentially large 2021 cohort because the acoustic survey has only provided one year of
-information about it during the 2023 survey. The biennial age-1 index does not provide
+information about it during the 2023 survey. Even when used, the biennial age-1 index does not provide
 additional information for odd year cohorts like this one.
 <!-- for non-survey years: age-1 information, which is more uncertain than the -->
 <!-- 2+ estimate. -->
@@ -876,7 +877,7 @@ sizes of the `r end_yr-1` and `r end_yr` year classes. Retrospective analyses
 of year class strength for young fish have shown the estimates of recent
 recruitment to be unreliable prior to at least model age-3 (observed at age-2
 the previous year)
-without a survey in the most recent year and age-2 (observed at age-1) with a
+without a survey in the most recent year and age-2 with a
 survey.
 
 From Figure~\@ref(fig:main-recruitment-fig) it looks as though the 2014
@@ -911,7 +912,9 @@ recruitments have been produced throughout the range of observed female
 spawning biomass (Figure~\@ref(fig:main-stock-recruitment-fig)). The
 standard deviation of the time series of median recruitment deviation
 estimates for the years 1970--`r last_data_yr - 1`, which are informed by
-the age compositions and the age-1 index, is `r sd_med_recr_dev_estimates`.
+the age compositions
+<!--and the age-1 index,-->
+is `r sd_med_recr_dev_estimates`.
 
 **Exploitation status**
 
@@ -1393,7 +1396,7 @@ The sensitivity of the base model to the addition of the relative age-1 index
 provides a method to evaluate how the information about juvenile fish is
 propagated through the model. Estimates of female spawning biomass throughout
 most of the time series are similar between models with and without the relative
-age-1 index, which starts in 1995, but start to diverge in 2017
+age-1 index, which starts in 1995, but start to noticeably diverge in 2017
 (Table~\@ref(tab:main-parameter-estimates-sens-1-tab),
 Figures~\@ref(fig:main-biomass-base-alternative-2-fig) and
 \@ref(fig:main-status-base-alternative-2-fig)). The `r end_yr` estimates of
@@ -1458,10 +1461,8 @@ sensitivity with the relative age-1 index) with
 there are
 `r sens_models[[2]][[4]][["cpue"]] |> dplyr::filter(grepl("edna", Fleet_name, ignore.case = TRUE), Use > 0) |> NROW()`
 data points in the time series. An additional constant and additive
-standard deviation on the log-scale (median estimate
-is `r f(as.numeric(sens_models[[2]][[4]]$extra_mcmc$q_extrasd_edna_med), 3)`)
-was freely estimated to accommodate
-unaccounted-for sources of process and observation error.
+standard deviation on the log-scale to accommodate
+unaccounted-for sources of process and observation error was determined unneccessary.
 The index is representative of all fish age-1 and older, with a median estimate
 of catchability of
 `r f(as.numeric(exp(sens_models[[2]][[4]]$extra_mcmc$lnq_edna_med)), 3)`.
@@ -1474,7 +1475,7 @@ somewhat at the cost of reduced fits to the age-composition data. While the
 inclusion of the eDNA index did not significantly alter most key parameters and
 management quantities (Table~\@ref(tab:main-parameter-estimates-sens-2-tab)),
 it did lead to reductions in estimates of female spawning biomass from 2021
-onward, similar in size and trajectory to when fishery age-composition data are
+onward, similar to when fishery age-composition data are
 down weighted
 (Figure~\@ref(fig:main-biomass-base-alternative-2-fig)). The eDNA index was
 included here as an initial exploration and proof-of-concept. Further explorations
