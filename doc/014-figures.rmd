@@ -134,7 +134,8 @@ abundance and age compositions from 1995 to present for odd years.
 
 ```{r main-data-overview-fig, fig.cap = "(ref:main-data-overview-cap)", fig.height = 6}
 
-plot_data_summary(base_model)
+plot_data_summary(base_model,
+                  label_y_placement = c(1.8, 1.8, 2.5))
 ```
 
 (ref:main-age-comp-bubbles-cap) Age compositions for the aggregate fishery
