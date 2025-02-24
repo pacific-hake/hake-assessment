@@ -35,9 +35,11 @@ plot_priors_vs_posts <- function(model,
 
   priors <- model$parameter_priors
   priors <- priors[names(priors) != "Fishery recruitment deviations"]
+  priors <- priors[names(priors) != "Age 1 extra SD"]
   titles <- names(priors)
 
   posts <- model$parameter_posts
+  names(posts) <- titles
 
   posts_long <- posts |>
     pivot_longer(everything(), names_to = "param") |>
