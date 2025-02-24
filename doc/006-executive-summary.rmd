@@ -152,7 +152,7 @@ help inform decisions made for this assessment.
 This `r assess_yr` assessment is again configured using Stock Synthesis. The
 same general population dynamics structure as the base assessment model from
 `r last_assess_yr` was used except for terminal recruitment and forecast
-recruitment deviations, which were fixed at zero in this assessment.
+recruitment deviations (so from 2023 onwards), which were fixed at zero in this assessment.
 Updates to data in this assessment include incorporating
 <!-- the new biomass estimate and age-composition data from the acoustic survey conducted in `r survey_end_yr`, -->
 fishery catch and age-composition data from `r end_yr-1`, weight-at-age data for
@@ -165,8 +165,8 @@ temperature-dependent maturity were retained from last year's assessment
 to inform fecundity.
 
 The relative index of age-1 fish from the survey was not used to fit this
-assessment model, because it was found to have a strong influence on estimates
-of recruitment even for cohorts that had several years of data and it lacks
+assessment model because it was found to have a strong influence on estimates
+of recruitment even for cohorts that had several years of data, and because it lacks
 time-specific measurements of uncertainty.
 Thus, the only data point that can directly inform the size of
 the 2023 cohort is from age-1 observations in the commercial fishery
@@ -602,7 +602,7 @@ propagate uncertainty beyond what is presented in this assessment.
 
 While the removal of both the age-1 index and recent recruitment deviations in
 this assessment reduced uncertainty around recent spawning stock biomass estimates,
-it results in a significant underestimate of uncertainty during the forecast period. 
+it results in a significant underestimate of uncertainty during the forecast period.
 For example, the model estimates the 2020 and 2021 cohorts as
 above average in size, and while their absolute size remains highly uncertain, the
 uncertainty is less than in last year's assessment (which is only partly due to
@@ -615,7 +615,7 @@ of the 2023 year class from the 2024 fishery was considered suspect given the un
 fishing conditions during the year and so, as mentioned earlier, recruitment
 deviations from 2023 onwards were set to zero. This model change considerably reduces
 uncertainty for recent and forecasted recruitment and thus spawning biomass two to three
-years later. 
+years later.
 
 \clearpage
 
