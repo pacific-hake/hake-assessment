@@ -333,17 +333,27 @@ table_param_est_bounds <- function(model,
                      "", "", ""), 7)
   d <- insert_row(d,
                   c(paste0("\\textbf{\\underline{Data Weighting}}"),
-                    "", "", ""), 13)
+                    "", "", ""), 12)
   d <- insert_row(d,
                    c(paste0("\\textbf{\\emph{Acoustic Survey}}"),
                      "", "", ""), 8)
+
+  # To add Age-1 back in, uncomment the following and mess with the row indices
+  # following until correct. Also comment out the line below which filters out
+  # the row containing "Non-parametric age-based selectivity: ages 2--6".
+  # Use gotest() to test
+
+  # d <- insert_row(d,
+  #                  c(paste0("\\textbf{\\emph{Age-1 Survey}}"),
+  #                    "", "", ""), 11)
+
+  d <- d |>
+    dplyr::filter(Parameter != "Non-parametric age-based selectivity: ages 2--6")
+
   d <- insert_row(d,
-                   c(paste0("\\textbf{\\emph{Age-1 Survey}}"),
-                     "", "", ""), 11)
-  d <- insert_row(d,
-                   c(paste0("\\textbf{\\emph{Fishery Survey}}"),
-                     "", "", ""), 13)
-  sec_inds <- c(1, 7, 16)
+                  c(paste0("\\textbf{\\emph{Fishery and Survey}}"),
+                    "", "", ""), 11)
+  sec_inds <- c(1, 7, 13)
   # Add spaces after commas and before opening parentheses
   d <- map_df(d, ~{gsub(",", ", ", .x)})
   d <- map_df(d, ~{gsub("\\(", " \\(", .x)})
