@@ -68,7 +68,7 @@ coverage in 2021 and 2023. There are no samples in the southern region in 2019.
 ```{r app-eDNA-index-station-map-acoustic-lines-fig, fig.cap = "(ref:app-eDNA-index-station-map-acoustic-lines-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                          "2019-23, CTD locations+acoustics.png"),
+                          "2019_23_CTD_locations_acoustics.png"),
                  error = FALSE)
 ```
 
@@ -89,7 +89,7 @@ Therefore we made predictions for each grid cell on a regular grid at evenly spa
 ```{r app-eDNA-index-area-by-year-fig, fig.cap = "(ref:app-eDNA-index-area-by-year-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                          "2019-23, projection areas.png"),
+                          "2019_23_projection_areas.png"),
                  error = FALSE)
 ```
 
@@ -138,7 +138,7 @@ habitat.
 ```{r app-eDNA-index-plot-raw-eDNA-fig, fig.cap = "(ref:app-eDNA-index-plot-raw-eDNA-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                          "2019, 2021, 2023, Hake raw copies.png"),
+                          "2019_2021_2023_Hake_raw_copies.png"),
                  error = FALSE)
 ```
 
@@ -302,7 +302,7 @@ include_graphics(file.path(figures_dir,
 ```{r app-eDNA-index-plot-2D-diff-fig, fig.cap = "(ref:app-eDNA-index-plot-2D-diff-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                          "p_D_pred_2D_ratio.png"),
+                          "p_D_predicted_2D_ratio.png"),
                  error = FALSE)
 ```
 
@@ -443,7 +443,7 @@ include_graphics(file.path(figures_dir,
 ```{r app-eDNA-index-plot-stand-3-fig, fig.cap = "(ref:app-eDNA-index-plot-stand-3-cap)", results = "asis"}
 
 include_graphics(file.path(figures_dir,
-                          "p_pos_stand_year.png"),
+                          "p_position_stand_year.png"),
                  error = FALSE)
 ```
 
