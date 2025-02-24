@@ -130,7 +130,8 @@ We first present visualizations and summaries of the eDNA observations under min
 
 Figure~\@ref(fig:app-eDNA-index-plot-raw-eDNA-fig) presents an overview of water sample level observations. While this figure is busy, we can see that the spatial distribution of observed eDNA concentration varies substantially among depths and years. Note in addition that there are clearly a few samples in each year that are notably higher concentration than the average.
 
-(ref:app-eDNA-index-plot-raw-eDNA-cap) Raw estimates of hake eDNA concentration by year (rows) and sampling depth (columns).   Each circle represents estimated eDNA from a single water bottle. Black dots represent samples in which amplification was not detected.
+(ref:app-eDNA-index-plot-raw-eDNA-cap) Raw estimates of hake eDNA concentration by year (rows) and sampling depth (columns).   Each circle represents estimated eDNA from a single water bottle. Black dots represent samples in which amplification was not detected. The sampling design by depth was changed after 2019 from a station at 100m to 200m, which is more representative of Pacific Hake
+habitat. 
 
 (ref:app-eDNA-index-plot-raw-eDNA-alt) Envrionmental DNA is found at all depths sampled across years, with latitudinal variation by year and depth.
 
