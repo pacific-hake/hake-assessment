@@ -31,9 +31,12 @@ Figure~\@ref(fig:main-age-comp-bubbles-fig)).
  and~\@ref(fig:main-survey-extrap-biomass-fig)).
 
 - The relative age-1 index (billions of age-1 fish) derived from the
-`r survey_name` (`r str_flatten_comma(survey_age1_yrs)`;
- Table~\@ref(tab:main-survey-history-tab);
- Figure~\@ref(fig:main-survey-extrap-biomass-fig)).
+`r survey_name` was used in a sensitivity model exploration in this
+assessment (Table~\@ref(tab:main-parameter-estimates-sens-2-tab); 
+Figure~\@ref(fig:main-biomass-base-alternative-2-fig)).
+<!--(`r str_flatten_comma(survey_age1_yrs)`;-->
+<!-- Table~\@ref(tab:main-survey-history-tab);-->
+<!-- Figure~\@ref(fig:main-survey-extrap-biomass-fig)).-->
 
  - An age-1$+$ relative biomass index for `r sp` based on
  environmental DNA was used in a sensitivity model exploration in this
@@ -226,7 +229,8 @@ about their catchability by the trawl gear, and differences in expected
 location during the summer months when the survey takes place.
 Observations of age-1 `r sp` are recorded during the survey, and additional
 analyses, described below, are conducted to develop a relative age-1 index that
-is excluded from the base model in the final bridging step.
+is excluded from the base model this year in the final bridging step
+(see Section~\@ref(sec:assessment-changes) and Appendix~\@ref(sec:app-srg-requests)).
 
 The `r survey_end_yr` survey covered U.S. and Canadian waters from Point
 Conception to north of Haida Gwaii using 116 transects
@@ -344,23 +348,21 @@ also exclude age-0 and age-1 fish (Table~\@ref(tab:main-input-age-data-survey-ta
 Estimates of country-specific age-2$+$ biomass are also provided
 (Table~\@ref(tab:main-survey-by-country-tab)).
 
-The separate relative age-1 index (numbers of fish) was used here in the
-bridging models. For the 2013--2021 assessments
-[@JTC2013; @JTC2021], the relative age-1 index was only explored as a
-sensitivity here and not included in the base model. It was then included in the base
-model from 2022--2024, but excluded here in the final bridging step  (see
-Section~\@ref(sec:assessment-changes)). The relative index of age-1
-fish was estimated similarly to previous years. Similar to
-the age-2$+$ index, data collected using EK~80 echosounders are scaled by
-a factor of 1.06 to account for differences between the EK~60 and EK~80
-echosounders for the age-1 index. Note that, in error, this scaling factor was not applied to the
-2021 estimate in the 2022 [@JTC2022] and 2023 [@JTC2023] assessments. The index
-indicates relative changes between years, not absolute values, and confirms the
+The separate relative age-1 index (numbers of fish) was excluded from the base
+model this year as described in the bridging models (see
+Section~\@ref(sec:assessment-changes)). This is similar to the 2013--2021 assessments
+[@JTC2013; @JTC2021], where the relative age-1 index was only explored as a
+sensitivity model. The index was included in the base
+model from 2022--2024. For the sensitivity model, the relative index of age-1
+fish was estimated similarly to previous years, including the use of a 1.06 scaling
+factor to account for differences between the EK~60 and EK~80
+echosounders Similar to what is done for the age-2$+$ index.
+The index indicates relative changes between years, not absolute values, and confirms the
 large year classes in 2008, 2010, 2014, and 2016, and suggests large cohorts for 2020 and 2022
 (Table~\@ref(tab:main-survey-history-tab) and
 Figure~\@ref(fig:main-acoustic-age1-bs-fig)).
 
-Incorporating the relative age-1 index results in estimates of recruitment
+Incorporating the relative age-1 index can result in estimates of recruitment
 strength that are informed on average one year earlier than models without the
 index [e.g., Figures~54 and~G.1 in @JTC2021]. The suite of sensitivity models
 related to the relative age-1 index explored over the past decade indicate that
@@ -368,15 +370,16 @@ its use typically informs recruitment such that the direction of cohort
 strength (i.e., weak, strong, or neutral) remains unchanged in subsequent
 assessments even after being informed by more data. The utility of an informed
 recruitment signal was deemed far greater than an uninformed recruitment assumption.
-The `r survey_name` team supports its use in the stock assessment and
+The `r survey_name` team supports exploring its use in the stock assessment and
 is committed to continually evaluating and refining approaches to improve the
-estimates and related uncertainty. However, this year the age-1 index was
-excluded from the base model in the final bridging step.
+estimates and related uncertainty. This year the age-1 index was
+excluded from the base model in the final bridging step (see
+Section~\@ref(sec:assessment-changes) for more details).
 
 ## Other data not used in this assessment {#sec:data-not-used}
 
-Some data sources were not included in the base model but have been explored,
-were used for sensitivity analyses, or were included in previous stock
+Some data sources were not included in the base model but have been explored
+or were included in previous stock
 assessments. Data sources not discussed here have either been discussed at past
 `r sp` assessment review meetings or are discussed in more detail in the 2013
 stock assessment document [@JTC2013]. These primarily include those listed below.
