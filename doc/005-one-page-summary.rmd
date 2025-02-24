@@ -10,7 +10,7 @@ except for recruitment deviations in the terminal two years and projection years
 being fixed at zero.
 The model is fit to an acoustic survey index of biomass, annual commercial catch
 data, and age-composition data from the survey and commercial fisheries.
-The model was not fit to the relative index of age-one fish.
+Unlike last year's assessment, the model was not fit to the relative index of age-1 fish.
 
 - Data for `r end_yr-1` were included for each data set and minor changes to
 pre-`r end_yr-1` data were made as necessary. Similar to last year's assessment, a
