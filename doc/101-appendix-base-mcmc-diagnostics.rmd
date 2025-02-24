@@ -170,8 +170,8 @@ Monte Carlo diagnostics for all base model parameters.
 
 plot_mcmc_diagnostics_all_params(base_model,
                                  show_ro = TRUE,
-                                 ro_arrow_lengths = c(10, 20, 15, 20),
-                                 ro_text_nudges = c(0.2, 0, -0.55, 0),
+                                 ro_arrow_lengths = c(20, 30, 5, 30),
+                                 ro_text_nudges = c(0.3, 0, -0.55, 0),
                                  ro_text_size = 5,
                                  y_lim_geweke = c(0, 40))
 ```
