@@ -256,7 +256,7 @@ row (mean) is the mean weight-at-age over all years of data.
 
 (ref:main-weight-at-age-alt) This figure shows how weight at age changes
 through time. The weight of fish about 5 and older are quite variable indicating
-difference in growht over time.
+difference in growth over time.
 
 ```{r main-weight-at-age-fig, fig.cap = "(ref:main-weight-at-age-cap)", fig.height = 10, out.height = "85%"}
 
