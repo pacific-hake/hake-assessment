@@ -1669,7 +1669,7 @@ natural mortality is fixed at values estimated from an external model.
 
 if(!is.null(d_obj_sens_rel_biomass[[4]])){
   plot_rel_biomass(d_obj = d_obj_sens_rel_biomass[[4]],
-                   ylim = c(0, 3),
+                   ylim = c(0, 2.5),
                    show_arrows = TRUE,
                    x_expansion = 2,
                    leg_font_size = 12,
@@ -1696,7 +1696,7 @@ if(!is.null(d_obj_sens_recr[[4]])){
                    leg_pos = c(0.45, 0.88),
                    inc_means = FALSE,
                    rev_colors = TRUE,
-                   ylim = c(0, 120))
+                   ylim = c(0, 100))
 }
 ```
 
