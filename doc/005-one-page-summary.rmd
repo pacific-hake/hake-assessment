@@ -6,8 +6,8 @@
 
 - The stock assessment model for `r assess_yr` has the same
 population dynamics structure as the `r last_assess_yr` model,
-except for recruitment deviations in the terminal two years of
-the model and projections years being fixed at zero.
+except for recruitment deviations in the terminal two years and projection years
+being fixed at zero.
 The model is fit to an acoustic survey index of biomass, annual commercial catch
 data, and age-composition data from the survey and commercial fisheries.
 The model was not fit to the relative index of age-one fish.
