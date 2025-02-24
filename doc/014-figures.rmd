@@ -1142,8 +1142,8 @@ plot_biomass_fished_unfished(base_model,
                              model_nms = c("Base model - Fished",
                                            "Base model - Unfished"),
                              leg_pos = c(0.6, 0.9),
-                             xlim = c(1963,
-                                      year(Sys.time())),
+                             xlim = c(1963, assess_yr),
+                             ylim = c(0, 5),
                              rel = FALSE)
 ```
 
