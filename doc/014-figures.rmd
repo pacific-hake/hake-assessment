@@ -665,7 +665,7 @@ the median of the posterior for the last assessment year, `r last_data_yr`,
 which was `r f(median(last_yr_base_model$extra_mcmc$q_vector), 3)`.
 
 (ref:main-catchability-density-alt) The distribution of the catchability
-parameter posterior for the acoustic survey index spans from about 0.5 to 1.3,
+parameter posterior for the acoustic survey index spans from about 0.5 to 1.3
 with a median around 0.89.
 
 ```{r main-catchability-density-fig, fig.cap = "(ref:main-catchability-density-cap)", fig.height = 4.5}
@@ -710,7 +710,7 @@ Monte Carlo calculations.
 
 (ref:main-age-comp-fits-fishery-alt) This figure shows the age composition
 fits for the fishery against the data. There is some slight over and
-under fitting in the early part of the time series from 1975 to 1995, but
+under fitting in the early part of the time series from 1975 to 1995 but
 otherwise the model fits these data well.
 
 ```{r main-age-comp-fits-fishery-fig, fig.cap = "(ref:main-age-comp-fits-fishery-cap)", fig.height = 10, out.height = "90%"}
@@ -728,7 +728,7 @@ chain Monte Carlo calculations.
 
 (ref:main-age-comp-fits-survey-alt) This figure shows the age composition
 fits for the acoustic survey against the data. There is some over
-fitting from 2001 to 2005. In recent years, the data fit quite well.
+fitting from 2001 to 2005. In recent years the data fit quite well.
 
 ```{r main-age-comp-fits-survey-fig, fig.cap = "(ref:main-age-comp-fits-survey-cap)", fig.height = 10, out.height = "90%"}
 
@@ -822,7 +822,7 @@ year for the base model. The range of selectivity is scaled to be between
 
 (ref:main-tv-selex-alt) This figure shows individual median selectivity
 plots for each year in a mountain range configuration. There is considerable
-variability among years and ages. In 2024, selectivity is low from age 1 to 5
+variability among years and ages. In 2024 selectivity is low from age 1 to 5
 before quickly increasing at age 6 and older. 
 
 ```{r main-tv-selex-fig, fig.cap = "(ref:main-tv-selex-cap)", fig.height = 9}
@@ -864,8 +864,8 @@ a subsample of 1,000 draws from the posterior distribution for the base model.
 (ref:main-tv-selex-posteriors-alt) This plot shows individual median
 selectivity trajectories for a subset of samples from the posteriors of
 fishery and survey selectivity parameters with 95 percent credible intervals.
-Survey selectivity monotonically increases from age 1 to age 6, with the exception
-of a small reduction at age 4. In 2024, fishery selectivity is low from age 1 to 5
+Survey selectivity monotonically increases from age 1 to age 6 with the exception
+of a small reduction at age 4. In 2024 fishery selectivity is low from age 1 to 5
 before quickly increasing at age 6 and older.
 
 ```{r main-tv-selex-posteriors-fig, fig.cap = "(ref:main-tv-selex-posteriors-cap)", fig.height = 8}
@@ -1010,7 +1010,7 @@ dashed line with the 95% posterior credibility interval shaded between the
 dotted lines.
 
 (ref:main-recruitment-scale-all-alt) This figure shows distributions of
-recruitment estimates relative to those in 2010 for all years, highlighting
+recruitment estimates relative to those in 2010 for all years highlighting
 the uncertainty of the 2020 and 2021 year classes.
 
 ```{r main-recruitment-scale-all-fig, fig.cap = "(ref:main-recruitment-scale-all-cap)", fig.height = 4.5}
@@ -1208,8 +1208,8 @@ computed directly from model output and lines interpolate between the points.
 
 (ref:main-risk-year-1-alt) This figure shows that the probability that the
 stock declines in 2025 is near 100 percent for all catch levels.
-The probability that the stock falls under B40 is between 10% and 35%
-for examined catch scenarios.
+The probability that the stock falls under B40 is between 10 percent and 35
+percent for examined catch scenarios.
 
 ```{r main-risk-year-1-fig, fig.cap = "(ref:main-risk-year-1-cap)", fig.height = 5}
 
@@ -1235,9 +1235,9 @@ Table~\@ref(tab:main-risk-year-2-tab). The symbols indicate points that were
 computed directly from model output and lines interpolate between the points.
 
 (ref:main-risk-year-2-alt) This figure shows that the probability that the
-stock declines in 2026 is near 100% percent for all catch levels
+stock declines in 2026 is near 100 percent for all catch levels
 including zero. The probability that the stock falls under B40 rises
-above 50% for catches above approximately 400 kilotonnes.
+above 50 percent for catches above approximately 400 kilotonnes.
 
 ```{r main-risk-year-2-fig, fig.cap = "(ref:main-risk-year-2-cap)", fig.height = 5}
 
@@ -1299,7 +1299,7 @@ based on the weight at each age averaged across the last five years.
 
 (ref:main-age-comp-forecast-alt) This figure shows how the few dominant
 cohorts are expected to make up most of the coming years catch. The 2021
-cohort is predicted to be the largest cohort in the catch in 2025, followed
+cohort is predicted to be the largest cohort in the catch in 2025 followed
 by the 2020 cohort. Both predictions have high uncertainty when compared
 to the other cohorts.
 
@@ -1373,7 +1373,7 @@ in the year.
 
 (ref:main-biomass-base-alternative-2-alt) This figure shows how spawning
 biomass changes between the second set of sensitivity runs. The biomass
-estimate increases in recent years with the addition of the age-1 index, and it
+estimate increases in recent years with the addition of the age-1 index and it
 decreases in recent years when the eDNA index is added.
 Female spawning biomass in all years is less when maturity is estimated
 earlier in the year.
