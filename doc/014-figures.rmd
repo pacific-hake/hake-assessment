@@ -899,7 +899,7 @@ is the estimated unfished equilibrium biomass, $B_0$.
 (ref:main-biomass-alt) This figure shows that the median spawning biomass has
 been increasing in size since 2022.
 
-```{r main-biomass-fig, fig.cap = "(ref:main-biomass-cap)", fig.height = 5}
+```{r main-biomass-fig, fig.cap = "(ref:main-biomass-cap)", fig.height = 4.5}
 
 plot_biomass(list(base_model),
              list(base_model_name),
@@ -917,7 +917,7 @@ lines show 10%, 40%, and 100% of the unfished equilibrium ($B_0$).
 biomass has been increasing since 2022 but the amount of increase has lessened
 each year.
 
-```{r main-relative-biomass-fig, fig.cap = "(ref:main-relative-biomass-cap)", fig.height = 5}
+```{r main-relative-biomass-fig, fig.cap = "(ref:main-relative-biomass-cap)", fig.height = 4.5}
 
 plot_rel_biomass(model_lst = list(base_model),
                  model_names = list(base_model_name),
