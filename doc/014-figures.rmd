@@ -1112,7 +1112,7 @@ lognormal distribution of the default catch limit using the default harvest poli
 
 plot_param_density(base_model,
                    param_nm = paste0("ForeCatch_", assess_yr),
-                   y_lim = c(0, 0.0013),
+                   y_lim = c(0, 0.0017),
                    expand_vec = c(100, 100),
                    show_y_labels = FALSE,
                    x_lab = paste0("Projected ", assess_yr, " catch (kt) ",
