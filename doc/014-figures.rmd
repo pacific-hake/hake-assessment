@@ -1327,10 +1327,10 @@ effect and scales the population up with an increase in its size.
 if(!is.null(d_obj_sens_biomass[[1]])){
   plot_biomass(d_obj = d_obj_sens_biomass[[1]],
                x_expansion = 3.5,
-               ylim = c(0, 24),
-               y_breaks = seq(0, 24, 2),
+               ylim = c(0, 20),
+               y_breaks = seq(0, 20, 2),
                leg_font_size =8,
-               leg_pos = c(0.65, 0.8),
+               leg_pos = c(0.65, 0.85),
                leg_ncol = 2,
                rev_colors = TRUE)
 }
