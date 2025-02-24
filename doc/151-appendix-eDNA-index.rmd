@@ -84,7 +84,7 @@ Therefore we made predictions for each grid cell on a regular grid at evenly spa
 
 (ref:app-eDNA-index-area-by-year-cap) Areas included in projections.
 
-(ref:app-eDNA-index-area-by-year-alt) The core area includes Washington, Oregon, and northern California.  The southern area represents southern California, and the northern area is in British Columbia.
+(ref:app-eDNA-index-area-by-year-alt) The core area includes Washington and Oregon and northern California.  The southern area represents southern California and the northern area is in British Columbia.
 
 ```{r app-eDNA-index-area-by-year-fig, fig.cap = "(ref:app-eDNA-index-area-by-year-cap)", results = "asis"}
 
@@ -133,7 +133,7 @@ Figure~\@ref(fig:app-eDNA-index-plot-raw-eDNA-fig) presents an overview of water
 (ref:app-eDNA-index-plot-raw-eDNA-cap) Raw estimates of hake eDNA concentration by year (rows) and sampling depth (columns).   Each circle represents estimated eDNA from a single water bottle. Black dots represent samples in which amplification was not detected. The sampling design by depth was changed after 2019 from a station at 100m to 200m, which is more representative of Pacific Hake
 habitat. 
 
-(ref:app-eDNA-index-plot-raw-eDNA-alt) Envrionmental DNA is found at all depths sampled across years, with latitudinal variation by year and depth.
+(ref:app-eDNA-index-plot-raw-eDNA-alt) Envrionmental DNA is found at all depths sampled across years with latitudinal variation by year and depth.
 
 ```{r app-eDNA-index-plot-raw-eDNA-fig, fig.cap = "(ref:app-eDNA-index-plot-raw-eDNA-cap)", results = "asis"}
 
@@ -199,7 +199,7 @@ Another way to look at the spatial patterns are along-transect perpendicular to 
 
 (ref:app-eDNA-index-plot-D-trans1-cap) Predicted hake DNA concentration (copies per uL) along E-W transect at 37.58 N. Projections are in 50m depth bins.
 
-(ref:app-eDNA-index-plot-D-trans1-alt) Shows similar concentrations in 2019 and 2021, with an increase at certain depths in 2023.
+(ref:app-eDNA-index-plot-D-trans1-alt) Shows similar concentrations in 2019 and 2021 with an increase at certain depths in 2023.
 
 ```{r app-eDNA-index-plot-D-trans1-fig, fig.cap = "(ref:app-eDNA-index-plot-D-trans1-cap)", results = "asis"}
 
@@ -210,7 +210,7 @@ include_graphics(file.path(figures_dir,
 
 (ref:app-eDNA-index-plot-D-trans2-cap) Predicted hake DNA concentration (copies per uL) along E-W transect at 40 N. Projections are in 50m depth bins.
 
-(ref:app-eDNA-index-plot-D-trans2-alt) Shows similar concentrations in 2019 and 2021, with an increase at certain depths in 2023.
+(ref:app-eDNA-index-plot-D-trans2-alt) Shows similar concentrations in 2019 and 2021 with an increase at certain depths in 2023.
 
 ```{r app-eDNA-index-plot-D-trans2-fig, fig.cap = "(ref:app-eDNA-index-plot-D-trans2-cap)", results = "asis"}
 
@@ -286,7 +286,7 @@ Differences among years become more obvious when we plot the index as a ratio be
 
 (ref:app-eDNA-index-plot-2D-1-cap) Depth-integrated eDNA index for 5km grid cell in each year.
 
-(ref:app-eDNA-index-plot-2D-1-alt) Concentrations of eDNA are variable in space and time for the three index years (2019, 2021, and 2023).
+(ref:app-eDNA-index-plot-2D-1-alt) Concentrations of eDNA are variable in space and time for the three index years (2019 and 2021 and 2023).
 
 ```{r app-eDNA-index-plot-2D-1-fig, fig.cap = "(ref:app-eDNA-index-plot-2D-1-cap)", results = "asis"}
 
@@ -297,7 +297,7 @@ include_graphics(file.path(figures_dir,
 
 (ref:app-eDNA-index-plot-2D-diff-cap) The ratio of the depth-integrated eDNA index between all pairs of years for each year. This shows how areas have changed in their hake DNA among years. Each panel shows the relationship between two years. For example, ratio_19_21 is the predictions from 2021 divided by the predictions from 2019.  This means blue cells are areas in which the predictions are larger in 2019 than 2021 (red areas indicate the converse). Grey areas indicate areas that are out of the survey area for one or both of the years.
 
-(ref:app-eDNA-index-plot-2D-diff-alt) There are spatial changes across years, particularly from 2021 to 2023.
+(ref:app-eDNA-index-plot-2D-diff-alt) There are spatial changes across years particularly from 2021 to 2023.
 
 ```{r app-eDNA-index-plot-2D-diff-fig, fig.cap = "(ref:app-eDNA-index-plot-2D-diff-cap)", results = "asis"}
 
@@ -438,7 +438,7 @@ include_graphics(file.path(figures_dir,
 
 (ref:app-eDNA-index-plot-stand-3-cap) Positives for standards, all years, all plates.
 
-(ref:app-eDNA-index-plot-stand-3-alt) Positives for standards, all years, all plates.
+(ref:app-eDNA-index-plot-stand-3-alt) Positives for standards including all years and all plates.
 
 ```{r app-eDNA-index-plot-stand-3-fig, fig.cap = "(ref:app-eDNA-index-plot-stand-3-cap)", results = "asis"}
 
@@ -453,7 +453,7 @@ We provide a few plots of predictions and observations for pres-abs and positive
 
 (ref:app-eDNA-index-plot-pres-abs-unk-cap) Prediction vs. observed, presence-absence component.
 
-(ref:app-eDNA-index-plot-pres-abs-unk-alt) Prediction vs. observed.
+(ref:app-eDNA-index-plot-pres-abs-unk-alt) Prediction versus observed.
 
 ```{r app-eDNA-index-plot-pres-abs-unk-fig, fig.cap = "(ref:app-eDNA-index-plot-pres-abs-unk-cap)", results = "asis"}
 
@@ -464,7 +464,7 @@ include_graphics(file.path(figures_dir,
 
 (ref:app-eDNA-index-plot-pos-unk-cap) Prediction vs. observed, positive component. Note the rare outliers; outliers are almost always one bottle of very high concentration that has a replicate bottle that has very low estimated concentration. Lines are loess smoothers.
 
-(ref:app-eDNA-index-plot-pos-unk-alt) Prediction vs. observed, positive component.
+(ref:app-eDNA-index-plot-pos-unk-alt) Prediction versus observed for the positive component.
 
 ```{r app-eDNA-index-plot-pos-unk-fig, fig.cap = "(ref:app-eDNA-index-plot-pos-unk-cap)", results = "asis"}
 
@@ -486,7 +486,7 @@ include_graphics(file.path(figures_dir,
 
 (ref:app-eDNA-index-plot-D-v-E2-cap) Plot of the latent variable D vs. E for undiluted samples for years (columns) and water depths (rows).
 
-(ref:app-eDNA-index-plot-D-v-E2-alt) Plot of the latent variable D vs. E for dilution ==1.  Faceted by depth.
+(ref:app-eDNA-index-plot-D-v-E2-alt) Plot of the latent variable D vs. E for dilution equals 1.  Faceted by depth.
 
 ```{r app-eDNA-index-plot-D-v-E2-fig, fig.cap = "(ref:app-eDNA-index-plot-D-v-E2-cap)", results = "asis"}
 

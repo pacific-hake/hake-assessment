@@ -40,7 +40,7 @@ no substantial differences in the age composition fits (figures not shown).
 
 (ref:mcmc-survey-fit-srg-app-cap) Fit to the acoustic survey for the model that excludes the age-1 index (new base model).
 
-(ref:mcmc-survey-fit-srg-app-alt) The fit is similar to the model that includes the age-1 survey, except for small differences in 2019, 2021, and 2023.
+(ref:mcmc-survey-fit-srg-app-alt) The fit is similar to the model that includes the age-1 survey except for small differences in 2019 and 2021 and 2023.
 
 ```{r mcmc-survey-fit-srg-app, fig.cap = "(ref:mcmc-survey-fit-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
@@ -75,7 +75,7 @@ posterior probability distribution by year for the sensitivity model with time-v
 variance (phi) set to 0.21. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main text for futher description.
 
 (ref:main-tv-selex-uncertainty-srg-app-alt) This figure shows individual panels for
-each year with selectivity medians and 0.95 credible intervals, with less variability in
+each year with selectivity medians and 0.95 credible intervals with less variability in
 selectivity among years.
 
 ```{r main-tv-selex-uncertainty-fig-srg-app, fig.cap = "(ref:main-tv-selex-uncertainty-srg-app-cap)", fig.height = 9}
@@ -123,7 +123,7 @@ posterior probability distribution by year for the sensitivity model with time-v
 variance (phi) set to 0.70. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main text for futher description.
 
 (ref:main-tv-selex-uncertainty2-srg-app-alt) This figure shows individual panels for
-each year with selectivity medians and 0.95 credible intervals, with less variability in
+each year with selectivity medians and 0.95 credible intervals with less variability in
 selectivity among years.
 
 ```{r main-tv-selex-uncertainty-fig2-srg-app, fig.cap = "(ref:main-tv-selex-uncertainty2-srg-app-cap)", fig.height = 9}
@@ -172,7 +172,7 @@ posterior probability distribution by year for the sensitivity model with time-v
 variance (phi) set to 2.10. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main text for futher description.
 
 (ref:main-tv-selex-uncertainty3-srg-app-alt) This figure shows individual panels for
-each year with selectivity medians and 0.95 credible intervals, with more variability in
+each year with selectivity medians and 0.95 credible intervals with more variability in
 selectivity among years.
 
 ```{r main-tv-selex-uncertainty-fig3-srg-app, fig.cap = "(ref:main-tv-selex-uncertainty3-srg-app-cap)", fig.height = 9}
@@ -223,7 +223,7 @@ eDNA index. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main
 text for futher description.
 
 (ref:main-tv-selex-uncertainty4-srg-app-alt) This figure shows individual panels for
-each year with selectivity medians and 0.95 credible intervals, with similar variability in
+each year with selectivity medians and 0.95 credible intervals with similar variability in
 selectivity among years to the base model.
 
 ```{r main-tv-selex-uncertainty-fig4-srg-app, fig.cap = "(ref:main-tv-selex-uncertainty4-srg-app-cap)", fig.height = 9}
@@ -401,7 +401,7 @@ from a subsample of 1,000 draws from the posterior distribution for the
 model with a maximum age of 8 for selectivity.
 
 (ref:main-tv-selex-unc-tv8-srg-app-alt) This figure shows relatively low selectivity
-for ages 1 through 6, with a slight increase to age 7 and a large increase to age 8
+for ages 1 through 6 with a slight increase to age 7 and a large increase to age 8
 and above.
 
 ```{r main-tv-selex-unc-tv8-srg-app, fig.cap = "(ref:main-tv-selex-unc-tv8-srg-app-cap)", fig.height = 4, out.height = "80%"}
@@ -420,7 +420,7 @@ from a subsample of 1,000 draws from the posterior distribution for the
 model with a maximum age of 10 for selectivity.
 
 (ref:main-tv-selex-unc-tv10-srg-app-alt) This figure shows relatively low selectivity
-for ages 1 through 6, with a slight increase to age 7 and a large increase to ages
+for ages 1 through 6 with a slight increase to age 7 and a large increase to ages
 8 through 10 and above.
 
 ```{r main-tv-selex-unc-tv10-srg-app, fig.cap = "(ref:main-tv-selex-unc-tv10-srg-app-cap)", fig.height = 4, out.height = "80%"}
@@ -565,7 +565,6 @@ plot_survey_fit_mcmc(model_age_8,
 (ref:main-survey-index-fit-mcmc-10-srg-app-cap) Fit to the acoustic survey for the model that set the maximum age at 10 for selectivity.
 
 (ref:main-survey-index-fit-mcmc-10-srg-app-alt) The fit to the 2023 index point worsened.
-on the survey fit.
 
 ```{r main-survey-index-fit-mcmc-10-srg-app, fig.cap = "(ref:main-survey-index-fit-mcmc-10-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
@@ -589,7 +588,6 @@ plot_survey_fit_mcmc(model_age_10,
 (ref:main-survey-index-fit-mcmc-12-srg-app-cap) Fit to the acoustic survey for the model that set the maximum age at 12 for selectivity.
 
 (ref:main-survey-index-fit-mcmc-12-srg-app-alt) The fit to the 2023 index point worsened further.
-on the survey fit.
 
 ```{r main-survey-index-fit-mcmc-12-srg-app, fig.cap = "(ref:main-survey-index-fit-mcmc-12-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
@@ -646,7 +644,7 @@ beginning of the year female spawning biomass with 95% posterior credibility int
 the pre-SRG base model (i.e., includes the age-1 index).
 
 (ref:main-biomass-base-srg-app-alt) The removal of the 2023 and 2019 data points were most
-influencial, with the spawning biomass being lower than otherwise.
+influencial with the spawning biomass being lower than otherwise.
 
 ```{r main-biomass-base-srg-app, fig.cap = "(ref:main-biomass-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
@@ -667,7 +665,7 @@ plot_biomass(model_lst = list(sens_models[[2]][[2]], model_age1_minus_1, model_a
 the pre-SRG base model (i.e., includes the age-1 index).
 
 (ref:main-relative-biomass-base-srg-app-alt) The removal of the 2023 and 2019 data points were most
-influencial, with the relative spawning biomass being lower than otherwise.
+influencial with the relative spawning biomass being lower than otherwise.
 
 ```{r main-relative-biomass-base-srg-app, fig.cap = "(ref:main-relative-biomass-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
