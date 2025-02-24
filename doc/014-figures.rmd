@@ -775,7 +775,7 @@ plot_grid(plotlist = p, ncol = 1)
 (ref:main-prior-posterior-cap) Prior (black lines) and posterior (blue
 histograms) distributions for natural mortality ($M$), equilibrium log
 recruitment ($\ln R_0)$, steepness ($h$), the additional process-error
-standard deviation (SD) for the acoustic survey and the age-1 index, and the
+standard deviation (SD) for the acoustic survey, and the
 Dirichlet-multinomial parameters for the fishery ($\log \theta_{\text{fish}}$)
 and the survey ($\log \theta_{\text{surv}}$). Green triangles signify the initial
 value for each parameter. Red vertical lines represent the median of the
