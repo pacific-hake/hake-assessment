@@ -79,7 +79,12 @@ appendix-srg-requests-2019.rnw
 /sandbox/andy/pacea-save/*.rda
 /doc/main-figures/main-figures-10e364f.rnw
 /data-tables/extractedData/*
-doc/_bookdown.yml   # git add -f doc/_bookdown.yml if you make a change you want to push
+doc/_bookdown.yml
+# To force update _bookdown.yml run the following from within the doc directory:
+# git update-index --no-skip-worktree _bookdown.yml
+# git add  --force _bookdown.yml
+# Run git commit and push as you usually do...
+# git update-index --no-skip-worktree _bookdown.yml
 
 # Bash
 .bash_history
