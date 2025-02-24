@@ -597,7 +597,8 @@ if(!all(is.na(sens_models[[1]]))){
     right_cols_cm = 1.8,
     font_size = 8,
     header_font_size = 9,
-    longtable = TRUE) |>
+    longtable = TRUE,
+    show_loglike = FALSE) |>
     landscape()
 }
 ```
@@ -624,7 +625,8 @@ if(!all(is.na(sens_models[[1]]))){
     right_cols_cm = 2,
     font_size = 9,
     header_font_size = 9,
-    longtable = TRUE) |>
+    longtable = TRUE,
+    show_loglike = FALSE) |>
     landscape()
 }
 ```
@@ -651,7 +653,8 @@ if(!all(is.na(sens_models[[1]]))){
     right_cols_cm = 1.8,
     font_size = 9,
     header_font_size = 9,
-    longtable = TRUE) |>
+    longtable = TRUE,
+    show_loglike = FALSE) |>
     landscape()
 }
 ```
@@ -676,6 +679,7 @@ table_param_est(
   right_cols_cm = 1.8,
   font_size = 9,
   header_font_size = 9,
-  longtable = TRUE) |>
+  longtable = TRUE,
+  show_loglike = FALSE) |>
   landscape()
 ```
