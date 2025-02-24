@@ -619,11 +619,9 @@ occur and propagate through the projections as these cohorts mature. Thus, while
 this results in calculated uncertainty for projections being less than for
 previous assessments, the true uncertainty is underestimated because median
 recruitment is assumed rather than allowing a broad distribution. This assumption was deemed
-preferable to allowing potentially large recruitments that can inflate the forecast
+preferable this year to allowing potentially large recruitments that can inflate the forecast
 biomass yet are based on limited or no data and so may not materialise in
-practice. The influence of potentially small
-recruitments is less impactful because the deviations are calculated on a log
-scale that results in a skewed distribution of simulated recruitments.
+practice.
 
 \clearpage
 
