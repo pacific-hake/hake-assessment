@@ -669,10 +669,7 @@ be interpolated from these results with reasonable accuracy for intermediate cat
 `r assess_yr` (Table~\@ref(tab:es-risk-year-1-tab) and
 Figure~\@ref(fig:es-risk-year-1-fig)).
 However, interpolation is not appropriate for the default harvest rule scenario
-in `r assess_yr + 1` because it is conditional on previous year(s) catch
-levels.
-
-\clearpage
+in `r assess_yr + 1` because it is conditional on the `r assess_yr` catch.
 
 ```{r es-decisions-biomass-tab, results = "asis", echo = FALSE}
 
