@@ -602,20 +602,28 @@ propagate uncertainty beyond what is presented in this assessment.
 
 While the removal of both the age-1 index and recent recruitment deviations in
 this assessment reduced uncertainty around recent spawning stock biomass estimates,
-it results in a significant underestimate of uncertainty during the forecast period.
-For example, the model estimates the 2020 and 2021 cohorts as
+it also results in a significant underestimate of uncertainty during the forecast period.
+The model estimates the 2020 and 2021 cohorts as
 above average in size, and while their absolute size remains highly uncertain, the
 uncertainty is less than in last year's assessment (which is only partly due to
-2024 data). This uncertainty propagates directly into current and forecasted
+2024 data). This reduced uncertainty propagates directly into current and forecasted
 estimates of female spawning biomass. The 2023 acoustic survey provided additional
 information on the size of the 2020 year-class (as well as informed the 2021 year
 class). Collectively, these lessened uncertainty around estimates of female
-spawning biomass, as did the changes in model assumptions. Information on the size
+spawning biomass, as did the changes in model assumptions. However, information on the size
 of the 2023 year class from the 2024 fishery was considered suspect given the unique
 fishing conditions during the year and so, as mentioned earlier, recruitment
-deviations from 2023 onwards were set to zero. This model change considerably reduces
-uncertainty for recent and forecasted recruitment and thus spawning biomass two to three
-years later.
+deviations from 2023 onwards were set to zero.
+This does not allow very large (or very small) random recruitments to
+occur and propagate through the projections as these cohorts mature. Thus, while
+this results in calculated uncertainty for projections being less than for
+previous assessments, the true uncertainty is underestimated because median
+recruitment is assumed rather than allowing a broad distribution. This assumption was deemed
+preferable to allowing potentially large recruitments that can inflate the forecast
+biomass yet are based on limited or no data and so may not materialise in
+practice. The influence of potentially small
+recruitments is less impactful because the deviations are calculated on a log
+scale that results in a skewed distribution of simulated recruitments.
 
 \clearpage
 
@@ -640,10 +648,7 @@ spawning biomass for several of the catch alternatives. Population dynamics
 and governing parameters assumed during the forecast period include selectivity,
 weight-at-age and fecundity-at-age averaged over the five
 most recent years (`r assess_yr - 5`--`r assess_yr - 1`), and constant
-values for all other parameters. The setting of recruitment deviations to zero from 2023
-onwards does not allow very large (or very small) random recruitments to
-occur and propagate through the projections as these cohorts mature, such that total
-uncertainty for projections is underestimated relative to previous assessments.
+values for all other parameters.
 
 A relative fishing intensity of 1 should indicate fishing at the `r fspr_40`
 default harvest rate catch target. But, the projected median relative fishing
