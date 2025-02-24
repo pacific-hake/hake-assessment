@@ -1202,7 +1202,7 @@ probability of dropping below `r b_40` at the start of `r end_yr + 1` is
 <!--is `r prob_max_below_40_yr3`%.-->
 The model estimates that in two years
 time the stock will be at `r b_40` with a catch
-of 250,000~t in 2026 and 2027, given the current assumption of average recruitment
+of 250,000~t in 2026 and 2027, given the current assumption of median recruitment
 from 2023 onward.
 
 It should be noted that forecasted biomass is not only influenced by catch
