@@ -781,7 +781,7 @@ Dirichlet-multinomial parameters for the fishery ($\log \theta_{\text{fish}}$)
 and the survey ($\log \theta_{\text{surv}}$). Green triangles signify the initial
 value for each parameter. Red vertical lines represent the median of the
 posterior. The small downturns at the ends of the uniform priors for
-$ln(R_0)$, and the acoustic survey and age-1 extra SD parameters represent the hard
+$ln(R_0)$ and the acoustic survey extra SD parameters represent the hard
 limits (via the smoothed line) set for the priors in the Stock Synthesis control file.
 
 (ref:main-prior-posterior-alt) This figure shows how the posteriors shift
