@@ -62,7 +62,6 @@ post_process_add_alt_text <- function(x,
     start <- lt_inds[i - 1]
     end <- lt_inds[i] - 1
     if(i != length(lt_inds)){
-      #browser()
       y <- c(y, x[start:end], "\\tagpdfsetup{table/tagging=false}")
     }else{
       y <- c(y, x[start:(end + 1)])
