@@ -38,11 +38,11 @@ the model with the age-1 index removed (Figure~\@ref(fig:mcmc-survey-fit-srg-app
 in the survey age composition fit for age-3 fish in 2021. Otherwise, there were
 no substantial differences in the age composition fits (figures not shown).
 
-(ref:mcmc-survey-fit-srg-app-cap) Fit to the acoustic survey for the model that excludes the age-1 index (new base model).
+(ref:mcmc-survey-srg-app-fit-cap) Fit to the acoustic survey for the model that excludes the age-1 index (new base model).
 
-(ref:mcmc-survey-fit-srg-app-alt) The fit is similar to the model that includes the age-1 survey except for small differences in 2019 and 2021 and 2023.
+(ref:mcmc-survey-srg-app-fit-alt) The fit is similar to the model that includes the age-1 survey except for small differences in 2019 and 2021 and 2023.
 
-```{r mcmc-survey-fit-srg-app, fig.cap = "(ref:mcmc-survey-fit-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r mcmc-survey-srg-app-fit-fig, fig.cap = "(ref:mcmc-survey-srg-app-fit-cap)", fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(sens_models[[2]][[2]],
                      type = "acoustic",
@@ -67,18 +67,18 @@ all years and the posterior selectivity for the survey and fishery in 2024.
 The latter included 1000 draws from the posterior distribution. The set of figures based
 on the model that removes that age-1 index are included in the main document because it is
 now the base model.  Shown are a representative subset of the requested figures for the other four models
-(Figures~\@ref(fig:main-tv-selex-uncertainty-fig-srg-app)--\@ref(fig:main-tv-selex-posteriors-fig4-srg-app)).
+(Figures~\@ref(fig:main-tv-selex-uncertainty-srg-app-fig)--\@ref(fig:main-tv-selex-posteriors-fig4-srg-app)).
 
 <!-- phi=0.21-->
 (ref:main-tv-selex-uncertainty-srg-app-cap) Fishery selectivity sampled from
 posterior probability distribution by year for the sensitivity model with time-varying
-variance (phi) set to 0.21. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main text for futher description.
+variance (phi) set to 0.21. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main text for further description.
 
 (ref:main-tv-selex-uncertainty-srg-app-alt) This figure shows individual panels for
 each year with selectivity medians and 0.95 credible intervals with less variability in
 selectivity among years.
 
-```{r main-tv-selex-uncertainty-fig-srg-app, fig.cap = "(ref:main-tv-selex-uncertainty-srg-app-cap)", fig.height = 9}
+```{r main-tv-selex-uncertainty-srg-app-fig, fig.cap = "(ref:main-tv-selex-uncertainty-srg-app-cap)", fig.height = 9}
 
 plot_selex_uncertainty(sens_models[[3]][[2]],
                        n_col = 2,
@@ -97,7 +97,7 @@ selectivity trajectories for a subset of samples from the posteriors of
 fishery and survey selectivity parameters with 95 percent credible intervals.
 Fishery selectivity is less variable and monotonically increasing from ages 1 to 6.
 
-```{r main-tv-selex-posteriors-fig-srg-app, fig.cap = "(ref:main-tv-selex-posteriors-srg-app-cap)", fig.height = 8}
+```{r main-tv-selex-posteriors-srg-app-fig, fig.cap = "(ref:main-tv-selex-posteriors-srg-app-cap)", fig.height = 8}
 
 p <- list()
 p[[1]] <- plot_selex_posteriors(sens_models[[3]][[2]],
@@ -118,15 +118,15 @@ plot_grid(plotlist = p, ncol = 1, align = "v")
 ```
 
 <!-- phi=0.70-->
-(ref:main-tv-selex-uncertainty2-srg-app-cap) Fishery selectivity sampled from
+(ref:main-tv-selex-uncertainty-srg-app-2-cap) Fishery selectivity sampled from
 posterior probability distribution by year for the sensitivity model with time-varying
 variance (phi) set to 0.70. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main text for futher description.
 
-(ref:main-tv-selex-uncertainty2-srg-app-alt) This figure shows individual panels for
+(ref:main-tv-selex-uncertainty-srg-app-2-alt) This figure shows individual panels for
 each year with selectivity medians and 0.95 credible intervals with less variability in
 selectivity among years.
 
-```{r main-tv-selex-uncertainty-fig2-srg-app, fig.cap = "(ref:main-tv-selex-uncertainty2-srg-app-cap)", fig.height = 9}
+```{r main-tv-selex-uncertainty-srg-app-2-fig, fig.cap = "(ref:main-tv-selex-uncertainty-srg-app-2-cap)", fig.height = 9}
 
 plot_selex_uncertainty(sens_models[[3]][[3]],
                        n_col = 2,
@@ -134,19 +134,19 @@ plot_selex_uncertainty(sens_models[[3]][[3]],
                        pad_bottom = TRUE)
 ```
 
-(ref:main-tv-selex-posteriors2-srg-app-cap) Estimated selectivities for the acoustic
+(ref:main-tv-selex-posteriors-srg-app-2-cap) Estimated selectivities for the acoustic
 survey age-2$+$ biomass index (top, with selectivity of zero for age-1 fish)
 and fishery (bottom -- shown for `r end_yr - 1` only, age-1 and older) from
 a subsample of 1,000 draws from the posterior distribution for the sensitivity
 model with time-varying variance (phi) set to 0.70.
 
-(ref:main-tv-selex-posteriors2-srg-app-alt) This plot shows individual median
+(ref:main-tv-selex-posteriors-srg-app-2-alt) This plot shows individual median
 selectivity trajectories for a subset of samples from the posteriors of
 fishery and survey selectivity parameters with 95 percent credible intervals.
 Fishery selectivity is slowly increasing from ages 1 to 5 before a large jump to
 fully selective at age 6.
 
-```{r main-tv-selex-posteriors-fig2-srg-app, fig.cap = "(ref:main-tv-selex-posteriors2-srg-app-cap)", fig.height = 8}
+```{r main-tv-selex-posteriors-srg-app-2-fig, fig.cap = "(ref:main-tv-selex-posteriors-srg-app-2-cap)", fig.height = 8}
 
 p <- list()
 p[[1]] <- plot_selex_posteriors(sens_models[[3]][[3]],
@@ -167,15 +167,15 @@ plot_grid(plotlist = p, ncol = 1, align = "v")
 ```
 
 <!-- phi=2.10-->
-(ref:main-tv-selex-uncertainty3-srg-app-cap) Fishery selectivity sampled from
+(ref:main-tv-selex-uncertainty-srg-app-3-cap) Fishery selectivity sampled from
 posterior probability distribution by year for the sensitivity model with time-varying
 variance (phi) set to 2.10. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main text for futher description.
 
-(ref:main-tv-selex-uncertainty3-srg-app-alt) This figure shows individual panels for
+(ref:main-tv-selex-uncertainty-srg-app-3-alt) This figure shows individual panels for
 each year with selectivity medians and 0.95 credible intervals with more variability in
 selectivity among years.
 
-```{r main-tv-selex-uncertainty-fig3-srg-app, fig.cap = "(ref:main-tv-selex-uncertainty3-srg-app-cap)", fig.height = 9}
+```{r main-tv-selex-uncertainty-srg-app-3-fig, fig.cap = "(ref:main-tv-selex-uncertainty-srg-app-3-cap)", fig.height = 9}
 
 plot_selex_uncertainty(sens_models[[3]][[4]],
                        n_col = 2,
@@ -183,19 +183,19 @@ plot_selex_uncertainty(sens_models[[3]][[4]],
                        pad_bottom = TRUE)
 ```
 
-(ref:main-tv-selex-posteriors3-srg-app-cap) Estimated selectivities for the acoustic
+(ref:main-tv-selex-posteriors-srg-app-3-cap) Estimated selectivities for the acoustic
 survey age-2$+$ biomass index (top, with selectivity of zero for age-1 fish)
 and fishery (bottom -- shown for `r end_yr - 1` only, age-1 and older) from
 a subsample of 1,000 draws from the posterior distribution for the sensitivity
 model with time-varying variance (phi) set to 2.10.
 
-(ref:main-tv-selex-posteriors3-srg-app-alt) This plot shows individual median
+(ref:main-tv-selex-posteriors-srg-app-3-alt) This plot shows individual median
 selectivity trajectories for a subset of samples from the posteriors of
 fishery and survey selectivity parameters with 95 percent credible intervals.
 Fishery selectivity is low with both increases and decreases from ages 1 to 5 before
 a large jump to fully selective at age 6.
 
-```{r main-tv-selex-posteriors-fig3-srg-app, fig.cap = "(ref:main-tv-selex-posteriors3-srg-app-cap)", fig.height = 8}
+```{r main-tv-selex-posteriors-srg-app-3-fig, fig.cap = "(ref:main-tv-selex-posteriors-srg-app-3-cap)", fig.height = 8}
 
 p <- list()
 p[[1]] <- plot_selex_posteriors(sens_models[[3]][[4]],
@@ -217,16 +217,16 @@ plot_grid(plotlist = p, ncol = 1, align = "v")
 
 
 <!-- eDNA-->
-(ref:main-tv-selex-uncertainty4-srg-app-cap) Fishery selectivity sampled from
+(ref:main-tv-selex-uncertainty-srg-app-4-cap) Fishery selectivity sampled from
 posterior probability distribution by year for the sensitivity model that included the
 eDNA index. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main
 text for futher description.
 
-(ref:main-tv-selex-uncertainty4-srg-app-alt) This figure shows individual panels for
+(ref:main-tv-selex-uncertainty-srg-app-4-alt) This figure shows individual panels for
 each year with selectivity medians and 0.95 credible intervals with similar variability in
 selectivity among years to the base model.
 
-```{r main-tv-selex-uncertainty-fig4-srg-app, fig.cap = "(ref:main-tv-selex-uncertainty4-srg-app-cap)", fig.height = 9}
+```{r main-tv-selex-uncertainty-srg-app-4-fig, fig.cap = "(ref:main-tv-selex-uncertainty-srg-app-4-cap)", fig.height = 9}
 
 plot_selex_uncertainty(sens_models[[2]][[4]],
                        n_col = 2,
@@ -234,18 +234,18 @@ plot_selex_uncertainty(sens_models[[2]][[4]],
                        pad_bottom = TRUE)
 ```
 
-(ref:main-tv-selex-posteriors4-srg-app-cap) Estimated selectivities for the acoustic
+(ref:main-tv-selex-posteriors-srg-app-4-cap) Estimated selectivities for the acoustic
 survey age-2$+$ biomass index (top, with selectivity of zero for age-1 fish)
 and fishery (bottom -- shown for `r end_yr - 1` only, age-1 and older) from
 a subsample of 1,000 draws from the posterior distribution for the sensitivity
 model that included the eDNA index.
 
-(ref:main-tv-selex-posteriors4-srg-app-alt) This plot shows individual median
+(ref:main-tv-selex-posteriors-srg-app-4-alt) This plot shows individual median
 selectivity trajectories for a subset of samples from the posteriors of
 fishery and survey selectivity parameters with 95 percent credible intervals.
 Fishery selectivity is similar to the base model.
 
-```{r main-tv-selex-posteriors-fig4-srg-app, fig.cap = "(ref:main-tv-selex-posteriors4-srg-app-cap)", fig.height = 8}
+```{r main-tv-selex-posteriors-srg-app-4-fig, fig.cap = "(ref:main-tv-selex-posteriors-srg-app-4-cap)", fig.height = 8}
 
 p <- list()
 p[[1]] <- plot_selex_posteriors(sens_models[[2]][[4]],
@@ -302,13 +302,13 @@ States waters and a decrease from 2022 to 2023.
 include_graphics(file.path(figures_dir,"Estimated_indices_2018_2023.png"), error = FALSE)
 ```
 
-(ref:srg-app-btsi-cap) Bottom trawl survey index proportions by area from the combined
+(ref:srg-app-btsi2-cap) Bottom trawl survey index proportions by area from the combined
 DFO and NWFSC data. Courtesy of Eric Ward.
 
-(ref:srg-app-btsi-alt) This plot shows an increasing proportion of fish being South of
+(ref:srg-app-btsi2-alt) This plot shows an increasing proportion of fish being South of
 42 latitude and a decreasing proportion north of 42 latitude.
 
-```{r srg-app-btsi2-fig, fig.cap = "(ref:srg-app-btsi-cap)", results = "asis"}
+```{r srg-app-btsi2-fig, fig.cap = "(ref:srg-app-btsi2-cap)", results = "asis"}
 include_graphics(file.path(figures_dir,"Estimated_proportion_2018_2023.png"), error = FALSE)
 ```
 
@@ -321,8 +321,7 @@ include_graphics(file.path(figures_dir,"Estimated_proportion_2018_2023.png"), er
 include_graphics(file.path(figures_dir,"eDNA_index_1.png"), error = FALSE)
 ```
 
-(ref:srg-app-pacfem-atsea-cap) Distribution of fishing revenue from 2016 to 2023 for the United
-States At-Sea fleet. Courtesy of Lisa Pfeiffer.
+(ref:srg-app-pacfem-atsea-cap) Distribution of fishing revenue from 2016 to 2023 for the United States At-Sea fleet. Courtesy of Lisa Pfeiffer.
 
 (ref:srg-app-pacfem-atsea-alt) There was a tendency for the At-Sea fleet to catch fish
 closer to the southern extent of the fishing grounds in recent years.
@@ -394,7 +393,7 @@ The number of active parameters increases considerably when using a maximum age 
 (base model; 262 parameters) for time-varying selectivity compared to a maximum of age of 8
 (333 parameters), 10 (403 parameters), and 12 (473 parameters). A set of figures were produced
 to show some key results comparing the models that increase the age at maximum selectivity
-(see Figures~\@ref(fig:main-tv-selex-unc-tv8-srg-app)--\@ref(fig:main-recruitment-devs-base-a-srg-app)).
+(see Figures~\@ref(fig:main-tv-selex-unc-tv8-srg-app-fig)--\@ref(fig:main-recruitment-devs-base-a-srg-app-fig)).
 
 (ref:main-tv-selex-unc-tv8-srg-app-cap) Estimated selectivities for the fishery
 from a subsample of 1,000 draws from the posterior distribution for the
@@ -404,7 +403,7 @@ model with a maximum age of 8 for selectivity.
 for ages 1 through 6 with a slight increase to age 7 and a large increase to age 8
 and above.
 
-```{r main-tv-selex-unc-tv8-srg-app, fig.cap = "(ref:main-tv-selex-unc-tv8-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-tv-selex-unc-tv8-srg-app-fig, fig.cap = "(ref:main-tv-selex-unc-tv8-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 model_age_8 <- request_models[[1]][[1]]
 
@@ -423,7 +422,7 @@ model with a maximum age of 10 for selectivity.
 for ages 1 through 6 with a slight increase to age 7 and a large increase to ages
 8 through 10 and above.
 
-```{r main-tv-selex-unc-tv10-srg-app, fig.cap = "(ref:main-tv-selex-unc-tv10-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-tv-selex-unc-tv10-srg-app-fig, fig.cap = "(ref:main-tv-selex-unc-tv10-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 model_age_10 <- request_models[[1]][[2]]
 
@@ -439,9 +438,9 @@ from a subsample of 1,000 draws from the posterior distribution for the
 model with a maximum age of 12 for selectivity.
 
 (ref:main-tv-selex-unc-tv12-srg-app-alt) This figure shows relatively low selectivity
-for ages 1 through 7 and then a jump to 50% selective for ages 8 to 12 and above.
+for ages 1 through 7 and then a jump to 50 percent selective for ages 8 to 12 and above.
 
-```{r main-tv-selex-unc-tv12-srg-app, fig.cap = "(ref:main-tv-selex-unc-tv12-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-tv-selex-unc-tv12-srg-app-fig, fig.cap = "(ref:main-tv-selex-unc-tv12-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 model_age_12 <- request_models[[1]][[3]]
 
@@ -459,7 +458,7 @@ of 8 for selectivity. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the
 (ref:main-tv-selex-8-srg-app-alt) This figure shows an increase in variability around ages
 7 and above.
 
-```{r main-tv-selex-8-srg-app, fig.cap = "(ref:main-tv-selex-8-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-tv-selex-8-srg-app-fig, fig.cap = "(ref:main-tv-selex-8-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_selex_uncertainty(model_age_8,
                        n_col = 2,
@@ -472,12 +471,11 @@ plot_selex_uncertainty(model_age_8,
 
 (ref:main-tv-selex-10-srg-app-cap) Fishery selectivity sampled from
 posterior probability distribution by year for the sensitivity model with maximum age
-of 10 for selectivity. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main text for futher description.
+of 10 for selectivity. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main text for further description.
 
-(ref:main-tv-selex-10-srg-app-alt) This figure shows a large increase in variability around ages
-7 and above.
+(ref:main-tv-selex-10-srg-app-alt) This figure shows a large increase in variability around ages 7 and above.
 
-```{r main-tv-selex-10-srg-app, fig.cap = "(ref:main-tv-selex-10-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-tv-selex-10-srg-app-fig, fig.cap = "(ref:main-tv-selex-10-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_selex_uncertainty(model_age_10,
                        n_col = 2,
@@ -490,12 +488,11 @@ plot_selex_uncertainty(model_age_10,
 
 (ref:main-tv-selex-12-srg-app-cap) Fishery selectivity sampled from
 posterior probability distribution by year for the sensitivity model with maximum age
-of 12 for selectivity. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main text for futher description.
+of 12 for selectivity. See Figure~\@ref(fig:main-tv-selex-uncertainty-fig) in the main text for further description.
 
-(ref:main-tv-selex-12-srg-app-alt) This figure shows a large increase in variability around ages
-7 and above.
+(ref:main-tv-selex-12-srg-app-alt) This figure shows a large increase in variability around ages 7 and above.
 
-```{r main-tv-selex-12-srg-app, fig.cap = "(ref:main-tv-selex-12-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-tv-selex-12-srg-app-fig, fig.cap = "(ref:main-tv-selex-12-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_selex_uncertainty(model_age_12,
                        n_col = 2,
@@ -513,7 +510,7 @@ the pre-SRG base model (i.e., includes the age-1 index).
 
 (ref:main-biomass-base-a-srg-app-alt) The maximum age of 12 for selectivity model results in a much higher biomass in the final years compared to the others.
 
-```{r main-biomass-base-a-srg-app, fig.cap = "(ref:main-biomass-base-a-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-biomass-base-a-srg-app-fig, fig.cap = "(ref:main-biomass-base-a-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_biomass(list(sens_models[[2]][[2]], model_age_8, model_age_10, model_age_12),
              c("pre-SRG base model", request_models_names[[1]]),
@@ -528,7 +525,7 @@ the pre-SRG base model (i.e., includes the age-1 index).
 
 (ref:main-relative-biomass-base-a-srg-app-alt) The maximum age of 12 for selectivity model results in a much higher relative biomass in the final years compared to the others.
 
-```{r main-relative-biomass-base-a-srg-app, fig.cap = "(ref:main-relative-biomass-base-a-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-relative-biomass-base-a-srg-app-fig, fig.cap = "(ref:main-relative-biomass-base-a-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_rel_biomass(list(sens_models[[2]][[2]], model_age_8, model_age_10, model_age_12),
              c("pre-SRG base model", request_models_names[[1]]),
@@ -543,7 +540,7 @@ plot_rel_biomass(list(sens_models[[2]][[2]], model_age_8, model_age_10, model_ag
 (ref:main-survey-index-fit-mcmc-8-srg-app-alt) There was almost no detectable affect
 on the survey fit.
 
-```{r main-survey-index-fit-mcmc-8-srg-app, fig.cap = "(ref:main-survey-index-fit-mcmc-8-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-8-srg-app-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-8-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age_8,
                      type = "acoustic",
@@ -566,7 +563,7 @@ plot_survey_fit_mcmc(model_age_8,
 
 (ref:main-survey-index-fit-mcmc-10-srg-app-alt) The fit to the 2023 index point worsened.
 
-```{r main-survey-index-fit-mcmc-10-srg-app, fig.cap = "(ref:main-survey-index-fit-mcmc-10-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-10-srg-app-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-10-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age_10,
                      type = "acoustic",
@@ -589,7 +586,7 @@ plot_survey_fit_mcmc(model_age_10,
 
 (ref:main-survey-index-fit-mcmc-12-srg-app-alt) The fit to the 2023 index point worsened further.
 
-```{r main-survey-index-fit-mcmc-12-srg-app, fig.cap = "(ref:main-survey-index-fit-mcmc-12-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-12-srg-app-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-12-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age_12,
                      type = "acoustic",
@@ -613,10 +610,9 @@ distribution for log-scale recruitment deviations with 95% posterior
 credibility intervals (vertical lines) for alternative maximum age for selectivity models.
 The base model in this figure represents the pre-SRG base model (i.e., includes the age-1 index).
 
-(ref:main-recruitment-devs-base-a-srg-app-alt) Only minor differences in recruitment deviations
-were detected.
+(ref:main-recruitment-devs-base-a-srg-app-alt) Only minor differences in recruitment deviations were detected.
 
-```{r main-recruitment-devs-base-a-srg-app, fig.cap = "(ref:main-recruitment-devs-base-a-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-recruitment-devs-base-a-srg-app-fig, fig.cap = "(ref:main-recruitment-devs-base-a-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_recdevs(list(sens_models[[2]][[2]], model_age_8, model_age_10, model_age_12),
              c("pre-SRG base model", request_models_names[[1]]),
@@ -646,7 +642,7 @@ the pre-SRG base model (i.e., includes the age-1 index).
 (ref:main-biomass-base-srg-app-alt) The removal of the 2023 and 2019 data points were most
 influencial with the spawning biomass being lower than otherwise.
 
-```{r main-biomass-base-srg-app, fig.cap = "(ref:main-biomass-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-biomass-base-srg-app-fig, fig.cap = "(ref:main-biomass-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 model_age1_minus_1 <- request_models[[2]][[1]]
 model_age1_minus_2 <- request_models[[2]][[2]]
@@ -664,10 +660,9 @@ plot_biomass(model_lst = list(sens_models[[2]][[2]], model_age1_minus_1, model_a
 (shaded area) for each age-1 data point removal model. The base model in this figure represents
 the pre-SRG base model (i.e., includes the age-1 index).
 
-(ref:main-relative-biomass-base-srg-app-alt) The removal of the 2023 and 2019 data points were most
-influencial with the relative spawning biomass being lower than otherwise.
+(ref:main-relative-biomass-base-srg-app-alt) The removal of the 2023 and 2019 data points were most influencial with the relative spawning biomass being lower than otherwise.
 
-```{r main-relative-biomass-base-srg-app, fig.cap = "(ref:main-relative-biomass-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-relative-biomass-base-srg-app-fig, fig.cap = "(ref:main-relative-biomass-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_rel_biomass(model_lst = list(sens_models[[2]][[2]], model_age1_minus_1, model_age1_minus_2, model_age1_minus_3, model_age1_minus_5),
              model_names = c("pre-SRG base model", request_models_desc[[2]]),
@@ -684,9 +679,9 @@ credibility intervals (vertical lines) for each age-1 data point removal model.
 The base model in this figure represents the pre-SRG base model (i.e., includes the age-1 index).
 
 (ref:main-recruitment-devs-base-srg-app-alt) The removal of the 2023 and 2019 data points
-were most influencialon 2019 and 2023 recruitment deviations.
+were most influential 2019 and 2023 recruitment deviations.
 
-```{r main-recruitment-devs-base-srg-app, fig.cap = "(ref:main-recruitment-devs-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-recruitment-devs-base-srg-app-fig, fig.cap = "(ref:main-recruitment-devs-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_recdevs(model_lst = list(sens_models[[2]][[2]], model_age1_minus_1, model_age1_minus_2, model_age1_minus_3, model_age1_minus_5),
              model_names = c("pre-SRG base model", request_models_desc[[2]]),
@@ -701,7 +696,7 @@ pre-SRG base model.
 (ref:main-survey-index-fit-mcmc-base-srg-app-alt) The 2023 index point is overfit
 considerably.
 
-```{r main-survey-index-fit-mcmc-base-srg-app, fig.cap = "(ref:main-survey-index-fit-mcmc-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-base-srg-app-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-base-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(sens_models[[2]][[2]],
                      type = "acoustic",
@@ -725,7 +720,7 @@ model that removes the 2023 age-1 index data point.
 
 (ref:main-survey-index-fit-mcmc-rm1-srg-app-alt) The 2023 index point is fit slightly better than the pre-SRG base model.
 
-```{r main-survey-index-fit-mcmc-rm1-srg-app, fig.cap = "(ref:main-survey-index-fit-mcmc-rm1-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-rm1-srg-app-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-rm1-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age1_minus_1,
                      type = "acoustic",
@@ -749,7 +744,7 @@ model that removes the 2023 and 2021 age-1 index data points.
 
 (ref:main-survey-index-fit-mcmc-rm2-srg-app-alt) The 2023 index point is fit slightly better than the pre-SRG base model.
 
-```{r main-survey-index-fit-mcmc-rm2-srg-app, fig.cap = "(ref:main-survey-index-fit-mcmc-rm2-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-rm2-srg-app-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-rm2-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age1_minus_2,
                      type = "acoustic",
@@ -773,7 +768,7 @@ model that removes the 2023, 2021, and 2019 age-1 index data points.
 
 (ref:main-survey-index-fit-mcmc-rm3-srg-app-alt) The 2023 index point is fit better than the pre-SRG base model.
 
-```{r main-survey-index-fit-mcmc-rm3-srg-app, fig.cap = "(ref:main-survey-index-fit-mcmc-rm3-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-rm3-srg-app-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-rm3-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age1_minus_3,
                      type = "acoustic",
@@ -797,7 +792,7 @@ model that removes the 2023, 2021, 2019, 2017, and 2015 age-1 index data points.
 
 (ref:main-survey-index-fit-mcmc-rm5-srg-app-alt) The 2023 index point is fit better than the pre-SRG base model.
 
-```{r main-survey-index-fit-mcmc-rm5-srg-app, fig.cap = "(ref:main-survey-index-fit-mcmc-rm5-srg-app-cap)", fig.height = 4, out.height = "80%"}
+```{r main-survey-index-fit-mcmc-rm5-srg-app-fig, fig.cap = "(ref:main-survey-index-fit-mcmc-rm5-srg-app-cap)", fig.height = 4, out.height = "80%"}
 
 plot_survey_fit_mcmc(model_age1_minus_5,
                      type = "acoustic",
