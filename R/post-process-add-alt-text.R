@@ -44,13 +44,31 @@ post_process_add_alt_text <- function(x,
     "% The following code was injected by",
     "% hake::post_process_add_alt_text()",
     "%",
-    "\\RequirePackage{pdfmanagement-testphase}",
-    paste0("\\DocumentMetadata{testphase=phase-II, uncompress, ",
+    #"\\RequirePackage{pdfmanagement-testphase}",
+    paste0("\\DocumentMetadata{testphase={phase-II,table}, uncompress, ",
            "pdfstandard=A-2U, lang=en-US}"),
     "%",
     "% End of injected code",
     "%",
     x)
+
+  # Inject anti-table tagging code to stop errors on captions in longtables
+  # captions in longtables will cause an error if the newest tagpdf
+  # (pdfmanagement-testphase) is used as of 2025 version of the package.)
+  lt_inds <- grep("\\\\begin\\{longtable\\}", x)
+  lt_inds <- c(1, lt_inds, length(x))
+  y <- NULL
+  for(i in 2:length(lt_inds)){
+    start <- lt_inds[i - 1]
+    end <- lt_inds[i] - 1
+    if(i != length(lt_inds)){
+      #browser()
+      y <- c(y, x[start:end], "\\tagpdfsetup{table/tagging=false}")
+    }else{
+      y <- c(y, x[start:(end + 1)])
+    }
+  }
+  x <- y
 
   # Title page image is totally different in the way it is included so we
   # remove it from the process right at the start
@@ -88,7 +106,7 @@ post_process_add_alt_text <- function(x,
                            nchar(knitr_figures_dir)) == "/",
                     "(.*?)-fig-[0-9]+\\} *$",
                     "/(.*?)-fig-[0-9]+\\} *$")
-  knitr_labels <- gsub(paste0(".*?\\{",
+  knitr_labels <- gsub(paste0(".*\\{",
                               knitr_figures_dir,
                               mid_pat),
                        "\\1",
