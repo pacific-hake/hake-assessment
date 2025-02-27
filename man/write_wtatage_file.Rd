@@ -7,7 +7,8 @@
 write_wtatage_file(
   file = paste0("wtatage_", format(Sys.time(), "\%d-\%b-\%Y_\%H.\%M"), ".ss"),
   data,
-  maturity
+  maturity,
+  n_fleets = 2
 )
 }
 \arguments{
@@ -18,6 +19,12 @@ Stock Synthesis. The file path can either be relative or absolute.}
 \item{data}{Weight at age matrix.}
 
 \item{maturity}{A vector of maturity at age.}
+
+\item{n_fleets}{An integer specifying the number of fleets that are in the
+model. The default is two, e.g., one fishery and one survey. When the
+age-1 index is also included in the model, then this value should be
+changed to 3, e.g., one fishery, age 2+ survey, and relative age-1 index
+of abundance.}
 }
 \description{
 Write weight-at-age file

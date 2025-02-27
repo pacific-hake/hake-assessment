@@ -432,7 +432,8 @@ horizontal line}
 \item{refpt_lrp_linetype}{The line type for the Limit Reference point
 horizontal line}
 
-\item{model}{A model, created by \code{\link[=create_rds_file]{create_rds_file()}}}
+\item{model}{A model list which is used for plotting the 'observed' values.
+The \code{model_lst} argument contains the models to plot the fit for}
 
 \item{cohorts}{A vector of cohorts to make lines for}
 

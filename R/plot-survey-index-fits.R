@@ -2,6 +2,8 @@
 #' for one of the acoustic surveys
 #'
 #' @rdname plot_biomass
+#' @param model A model list which is used for plotting the 'observed' values.
+#' The `model_lst` argument contains the models to plot the fit for
 #' @param ... Arguments passed to [ggplot2::geom_pointrange()]
 #' @export
 plot_survey_index_fits <- function(
