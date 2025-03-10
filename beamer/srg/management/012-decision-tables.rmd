@@ -108,6 +108,7 @@ plot_fore_compare(base_model,
   guides(color = guide_legend(byrow = TRUE))
 ```
 
+<!---  removed these for the JMC meeting
 ## Probabilities based on `r end_yr`, `r end_yr + 1`, and `r end_yr + 2` catches
 ```{r main-risk-forecast-year-3-table, results = "asis"}
 
@@ -136,4 +137,5 @@ plot_fore_compare(base_model,
         legend.box.background = element_rect(colour = "black")) +
   guides(color = guide_legend(byrow = TRUE))
 ```
+-->
 

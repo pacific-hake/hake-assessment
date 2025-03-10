@@ -10,7 +10,7 @@
 * Attainment in Canada was `r last_yr_can_attained`% of its quota
   (`r paste0(ifelse(last_2yr_can_attained_diff < 0, "down", "up"))`
   `r abs(as.numeric(last_2yr_can_attained_diff))`% from last year)
-* Both attainments are record lows (going back to 1978/1979)
+* Both attainments are record lows
 
 ## Overview of stock assessment -- methods
 * Usual updates:
@@ -30,14 +30,14 @@
 \pause
 
 * Model changes:
-  - Assume average recruitment from `r assess_yr - 2` instead of allowing
+  - Assume average recruitment from `r assess_yr - 2` onward instead of allowing
     possibly very large or very small values
   - Remove the age-1 index time series -- concluded to have too strong an
-    influence on recruitments, overwhelming other data
+    influence on recruitment, overwhelming other data
 
 ## Overview of stock assessment -- main conclusions
 
-* General lowering of absolute biomass compared to last year's assessment
+* General reduction in absolute biomass compared to last year's assessment
 * The median estimate of `r end_yr` relative spawning biomass is
   `r curr_depl_median`% (with 95% interval from `r curr_depl_lower`%
    to `r curr_depl_upper`%)
@@ -53,3 +53,21 @@
   `r ct_limit_quantiles["lower"]` to `r ct_limit_quantiles["upper"]` t)
 * New `r last_data_yr` age data from fishery are fit well by the
   model
+  
+## Key observations
+
+Stock assessment model
+
+* Catch has declined considerably over last few years
+* Recent age composition data indicates increasing biomass
+* Recent acoustic survey data indicates decreasing biomass
+* Combined, population trend relatively stable over last few years
+* Stock status is above `r b_40`, but highly uncertain
+
+Outside the assessment model
+
+* Some evidence of hake distribution moving southward over time
+* Delayed upwelling in 2024 a possible link to delayed migration
+* Indications of good recruitment (larval and juvenile) in 2024
+* Indications of increasing amounts of hake prey (and potentially predators)
+* Economics of fishing not sustainable in areas
