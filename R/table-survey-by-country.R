@@ -10,7 +10,9 @@
 #' If `NULL` this will be calculated as `header_font_size * header_vert_scale`
 #' @param header_vert_scale Scale factor to create the vertical spacing value.
 #' See `header_vert_spacing`
-#' @param ... Arguments passed to [knitr::kable()]
+#' @param ret_df Logical. If `TRUE`, return a data frame of the table, If
+#' `FALSE`, return a [kableExtra::kbl()] object
+#' @param ... Arguments passed to [kableExtra::kbl()]
 #'
 #' @return A [knitr::kable()] object
 #' @export
@@ -20,6 +22,7 @@ table_survey_by_country <- function(d,
                                     header_font_size = 10,
                                     header_vert_spacing = 12,
                                     header_vert_scale = 1.2,
+                                    ret_df = FALSE,
                                     ...){
 
   d <- d |>
@@ -39,6 +42,9 @@ table_survey_by_country <- function(d,
            canada.prop) |>
     mutate_at(vars(-year), ~{f(as.numeric(.x), digits)})
 
+  if(ret_df){
+    return(d)
+  }
   col_names <- c("Year",
                  "U.S.\nAge-2$+$\nbiomass\n(million t)",
                  "U.S.\nsampling\nCV\nage-2$+$",
