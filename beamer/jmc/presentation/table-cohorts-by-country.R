@@ -237,6 +237,11 @@ table_cohort_by_country <- function(
                     "Canada biomass",
                     "US biomass")
 
+  # Remove age 0 and 1 values for Cnada and US because the aurvey is 2+
+  d <- d |>
+    mutate(can.baa = ifelse(age %in% c(0, 1), "--", can.baa)) |>
+    mutate(us.baa = ifelse(age %in% c(0, 1), "--", us.baa))
+
   if(!dir.exists(csv_dir)){
     dir.create(csv_dir)
   }
@@ -250,7 +255,7 @@ table_cohort_by_country <- function(
                  "Natural\nMortality\n(kt)",
                  "Surviving\nBiomass\n(kt)",
                  "Canada\nBiomass\n(kt)",
-                 "US\nbiomass\n(kt)")
+                 "US\nBiomass\n(kt)")
 
   # Find the actual row indices for the cohort header lines
   cohort_row_inds <-
