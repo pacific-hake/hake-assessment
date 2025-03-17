@@ -67,7 +67,7 @@ table_cohort_by_country(
                    "\\textbf{Note that a single proportion for each year is being ",
                    "used for all ages in the given year. A future improvement would ",
                    "be using survey biomass-at-age data to generate this table}"),
-  font_size = 9,
+  font_size = 8,
   header_font_size = 9,
   longtable = TRUE,
   can_baa_df = can_baa,
