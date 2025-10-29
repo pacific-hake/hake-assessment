@@ -215,5 +215,19 @@ pacea_save <- function(model_lst = list(base_model),
   saveRDS(get(age_1_biomass_name),
           file = paste0(dir_to_save, "/", age_1_biomass_name, ".rds"))
 
+  # -- Biomass-at-age of hake --
+  # Want them all for 3d printing, though will do 15+ for that. Still keep age-1
+  # only as that's a simple index. This is a tibble of age and year.
+  batage <- model_lst[[1]]$extra_mcmc$batage_med %>%
+    dplyr::rename(year = yr)
+
+  total_biomass_at_age_name <- paste0("hake_total_biomass_at_age_",
+                                      assess_yr)
+  assign(total_biomass_at_age_name,
+         batage)
+
+  saveRDS(get(total_biomass_at_age_name),
+          file = paste0(dir_to_save, "/", total_biomass_at_age_name, ".rds"))
+
   return()
 }
