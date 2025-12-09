@@ -68,9 +68,9 @@ table_sampling_by_month(
 \begin{center}\textbf{At-Sea}\end{center}
 ```{r us-atsea-sampling-summary, results = "asis"}
 d <- tibble(month = c("May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
-            num_age = c(215, 1, 0, 72, 178, 157, 0, 623),
-            num_length = c(429, 4, 28, 250, 715, 455, 0, 1881),
-            num_weight = c(429, 4, 28, 250, 715, 455, 0, 1881))
+            num_age = c(0, 0, 0, 0, 0, 0, 0, 0),
+            num_length = c(507, 535, 311, 319, 276, 605, 26, 2579),
+            num_weight = c(507, 535, 311, 319, 276, 605, 26, 2579))
 table_sampling_by_month(d,
                         font_size = 8,
                         header_font_size = 9)
@@ -81,9 +81,9 @@ table_sampling_by_month(d,
 \begin{center}\textbf{Shore-based}\end{center}
 ```{r us-sb-sampling-summary, results = "asis"}
 d <- tibble(month = c("May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Total"),
-            num_age = c(119, 240, 330, 240, 219, 140, 0, 1288),
-            num_length = c(360, 600, 800, 620, 510, 360, 0, 3250),
-            num_weight = c(240, 480, 650, 500, 380, 300, 0, 2550))
+            num_age = c(58, 200, 360, 280, 200, 140, 0, 1238),
+            num_length = c(78, 360, 440, 440, 340, 388, 20, 2066),
+            num_weight = c(78, 360, 440, 440, 340, 388, 20, 2066))
 table_sampling_by_month(d,
                         font_size = 8,
                         header_font_size = 9)
