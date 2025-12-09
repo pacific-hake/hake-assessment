@@ -145,7 +145,7 @@ for the fleets, and create the CSV files for them.
         country = "can",
         fleet = "ft",
         type = "gear",
-        yrs = 2007:2023)
+        yrs = 2007:2025)
 
       # Canadian Shoreside gear depth
       create_depth_by_year_csv_files(
@@ -155,7 +155,7 @@ for the fleets, and create the CSV files for them.
         country = "can",
         fleet = "ss",
         type = "gear",
-        yrs = 2007:2023)
+        yrs = 2007:2025)
      
       # Canadian Freezer trawlers bottom depth
       create_depth_by_year_csv_files(
@@ -165,7 +165,7 @@ for the fleets, and create the CSV files for them.
         country = "can",
         fleet = "ft",
         type = "bottom",
-        yrs = 2007:2023)
+        yrs = 2007:2025)
 
       # Canadian Shoreside bottom depth
       create_depth_by_year_csv_files(
@@ -175,5 +175,5 @@ for the fleets, and create the CSV files for them.
         country = "can",
         fleet = "ss",
         type = "bottom",
-        yrs = 2007:2023)
+        yrs = 2007:2025)
       ```

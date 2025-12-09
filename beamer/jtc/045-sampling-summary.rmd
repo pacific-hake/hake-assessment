@@ -58,7 +58,7 @@ table_sampling_by_month(
 ```{r us-sample-summary-sb, results = "asis", eval = FALSE}
 # TODO: use this code rather than the pre-made tables below
 table_sampling_by_month(
-  us_extract_sampling_by_month(c("AGE", "FISH_LENGTH", "FISH_WEIGHT"), page),
+  us_sb_age_df, #us_extract_sampling_by_month(c("AGE", "FISH_LENGTH", "FISH_WEIGHT"), page),
   font_size = 8,
   header_font_size = 9)
 ```

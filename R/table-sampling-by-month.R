@@ -46,10 +46,11 @@ table_sampling_by_month <- function(d,
   # multi-line header cells
   col_names <- linebreaker(col_names, align = "c")
 
-  # Put commas in the numbers if over 1,000
-  d <- d |>
-    mutate(across(-month, f))
-
+  # Put commas in the numbers if over 1,000 - Commented out on Dec 10, 2025
+  #  because a -- appeared in the table and there were no thousands values
+  # d <- d |>
+  #   mutate(across(-month, f))
+browser()
   k <- kbl(d,
            format = "latex",
            booktabs = TRUE,

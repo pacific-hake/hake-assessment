@@ -12,8 +12,9 @@ post_process_beamer_add_extra_headers_etc <- function(x, ...){
   ind <- grep("\\\\ifLuaTeX", x)
 
   if(!length(ind)){
-    stop("`\\ifLuaTex` not found. It is needed to inject all the header ",
-         "calls so the tables work properly and so page numbers show up")
+    ind <- grep("\\\\setbeamertemplate", x)[1]
+    #stop("`\\ifLuaTex` not found. It is needed to inject all the header ",
+    #     "calls so the tables work properly and so page numbers show up")
   }
   if(length(ind) > 1){
     stop("`\\ifLuaTex` found more than once. It must be present once only ",
@@ -25,7 +26,7 @@ post_process_beamer_add_extra_headers_etc <- function(x, ...){
   post <- x[ind:length(x)]
 
   data <- c(paste0("\\usepackage{makecell, booktabs, makecell, array, ",
-                   "longtable, bm, colortbl, latexcolors}"),
+                   "longtable, colortbl, latexcolors}"),
             paste0("\\makeatletter\\def\\fnum@table{\\usebeamercolor",
                    "{caption name}\\usebeamerfont*{caption name}",
                    "\\tablename~\\thetable}\\makeatother"),
