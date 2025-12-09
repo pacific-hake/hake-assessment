@@ -50,7 +50,7 @@ table_sampling_by_month <- function(d,
   #  because a -- appeared in the table and there were no thousands values
   # d <- d |>
   #   mutate(across(-month, f))
-browser()
+
   k <- kbl(d,
            format = "latex",
            booktabs = TRUE,
