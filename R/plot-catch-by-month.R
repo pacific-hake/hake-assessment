@@ -149,6 +149,12 @@ plot_catch_by_month <- function(catch_lst,
             legend.text.align = 0) +
       ggtitle(title)
 
+    if(type %in% c("proportion", "quota")){
+      g <- g +
+        geom_hline(yintercept = 1,
+                   linetype = "dashed",
+                   alpha = 0.5)
+    }
     if(!is.null(y_breaks)){
       g <- g +
         scale_y_continuous(breaks = y_breaks) +
