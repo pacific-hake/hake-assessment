@@ -80,7 +80,7 @@ plot_catch_by_month(list(us_ss_catch_by_month_df,
                     ax_text_y = 8)
 ```
 
-## U.S. Proportion of sector quota caught
+## U.S. Proportion of sector TAC caught (reallocations included)
 ```{r proportion-of-quota-catch-by-month-fig}
 
 plot_catch_by_month(list(us_ss_catch_by_month_df,
@@ -104,8 +104,9 @@ plot_catch_by_month(list(us_ss_catch_by_month_df,
                       "quotas so only U.S. sectors are\n",
                       "shown here."),
                     yrs = c(last_data_yr - 4, last_data_yr),
-                    y_breaks = seq(0, 1, 0.25),
+                    y_breaks = seq(0, 1.3, 0.25),
                     leg_font_size = 8,
+                    leg_pos = c(0.1, 0.6),
                     title_font_size = 10,
                     ax_text_x = 8,
                     ax_text_y = 8)
