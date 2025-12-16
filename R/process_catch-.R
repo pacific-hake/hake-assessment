@@ -90,9 +90,11 @@
 #'   * us-cp-catch-rate-by-month.csv
 #'   * us-ms-catch-rate-by-month.csv
 #'
-process_catch_norpac <- function(ncatch = get_local(file = "ncatch.Rdat"),
-                                 nyears = 5,
-                                 savedir = hakedata_wd()) {
+process_catch_norpac <- function(
+  ncatch = get_local(file = "ncatch.Rdat"),
+  nyears = 5,
+  savedir = hakedata_wd()
+) {
   # Setup the environment
   args <- list(
     width = 6.5,
@@ -141,7 +143,8 @@ process_catch_norpac <- function(ncatch = get_local(file = "ncatch.Rdat"),
         test = sampled == 0,
         yes = OFFICIAL_TOTAL_CATCHkg * (1 - bycatchrate),
         no = EXTRAPOLATED_WEIGHT
-      ) / 1000,
+      ) /
+        1000,
       ByCatch = ifelse(
         test = sampled == 0,
         yes = OFFICIAL_TOTAL_CATCHkg - Catch.MT / 1000,
@@ -161,8 +164,12 @@ process_catch_norpac <- function(ncatch = get_local(file = "ncatch.Rdat"),
     out_ncatch <- out_ncatch |>
       dplyr::mutate(
         month = ifelse(
-          year %in% test[["year"]] & month %in% test[["month"]] &
-          vesseltype %in% test[["vesseltype"]], month - 1, month
+          year %in%
+            test[["year"]] &
+            month %in% test[["month"]] &
+            vesseltype %in% test[["vesseltype"]],
+          month - 1,
+          month
         ),
         month = ifelse(month < 5, 5, month)
       )
@@ -211,7 +218,6 @@ process_catch_norpac <- function(ncatch = get_local(file = "ncatch.Rdat"),
         )
       ))
     )
-
 
   # Unique vessel (either catcher boat if not NA or mothership)
   keeptheseyears <- utils::tail(1:max(hcatch[["year"]], na.rm = TRUE), nyears)
@@ -281,16 +287,18 @@ process_catch_norpac <- function(ncatch = get_local(file = "ncatch.Rdat"),
 #' * us-research-catch-by-month.csv
 #' * us-ti-catch-by-month.csv
 #'
-process_catch_pacfin <- function(pcatch = get_local(file = "pcatch.Rdat"),
-                                 nyears = 5,
-                                 savedir = hakedata_wd()) {
+process_catch_pacfin <- function(
+  pcatch = get_local(file = "pcatch.Rdat"),
+  nyears = 5,
+  savedir = hakedata_wd()
+) {
   # FLEET XXX is in the hake assessment as shore-based catches,
   # although 1986 differs from data used
   # database  1986 3431.9436
   # assesment 1986 3465.00
 
   pcatch_by_month_year <- pcatch |>
-    # TODO: remove this filter when we want all the data 
+    # TODO: remove this filter when we want all the data
     dplyr::group_by(
       sector,
       month,
@@ -333,7 +341,7 @@ process_catch_pacfin <- function(pcatch = get_local(file = "pcatch.Rdat"),
       dplyr::mutate(
         catch = ifelse(n_v < 3, NA_real_, catch)
       ) |>
-      dplyr::select(-n_v) |>
+      #dplyr::select(-n_v) |>
       dplyr::arrange(year, month) |>
       dplyr::ungroup(),
     file = file.path(savedir, "us-ti-catch-by-month.csv"),
