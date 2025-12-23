@@ -4,7 +4,6 @@
 
 ```{r catch-tac-attain-table, results = "asis"}
 
-
 table_catch_tac_summary(last_data_yr, font_size = 6)
 ```
 
