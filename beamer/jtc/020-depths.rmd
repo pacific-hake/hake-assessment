@@ -1,4 +1,4 @@
-# Depths
+# Depth data
 
 ```{r setup-depth-range}
 depth_y_lim <- c(0, 700)

@@ -1,4 +1,5 @@
 ```{r read-survey-age-data}
+
 survey_weight_at_age <- utils::read.csv("survey-weight-at-age.csv")
 survey_weight_at_age |>
   dplyr::group_by(Year, Age_yrs) |>

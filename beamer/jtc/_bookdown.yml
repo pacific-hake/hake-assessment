@@ -12,7 +12,7 @@ rmd_files: ["000-launcher.rmd",
             "050-raw-lengths.rmd",
             "060-raw-weights.rmd",
             "070-ages.rmd",
-            "079-unused.rmd",
+            #"079-unused.rmd",
             "080-thanks.rmd",
             "../../doc/999-blank.rmd"]
 
